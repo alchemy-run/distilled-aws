@@ -51,7 +51,8 @@
         "alias": "createAiToMarkdown",
         "target": "transformToMarkdown"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ai#RunRequestTextTextEmbeddingsCase1List": {
@@ -1088,37 +1089,37 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.ai#Run"
+          "target": "com.cloudflare.ai#CreateFinetune"
         },
         {
-          "target": "com.cloudflare.ai#AuthorsList"
+          "target": "com.cloudflare.ai#CreateFinetuneAsset"
         },
         {
-          "target": "com.cloudflare.ai#FinetunesCreate"
+          "target": "com.cloudflare.ai#GetModelSchema"
         },
         {
-          "target": "com.cloudflare.ai#FinetunesList"
+          "target": "com.cloudflare.ai#ListAuthors"
         },
         {
-          "target": "com.cloudflare.ai#FinetunesAssetsCreate"
+          "target": "com.cloudflare.ai#ListFinetunePublics"
         },
         {
-          "target": "com.cloudflare.ai#FinetunesPublicList"
+          "target": "com.cloudflare.ai#ListFinetunes"
         },
         {
-          "target": "com.cloudflare.ai#ModelsList"
+          "target": "com.cloudflare.ai#ListModels"
         },
         {
-          "target": "com.cloudflare.ai#ModelsSchemaGet"
+          "target": "com.cloudflare.ai#ListTasks"
         },
         {
-          "target": "com.cloudflare.ai#TasksList"
+          "target": "com.cloudflare.ai#RunAi"
         },
         {
-          "target": "com.cloudflare.ai#ToMarkdownSupported"
+          "target": "com.cloudflare.ai#SupportedToMarkdown"
         },
         {
-          "target": "com.cloudflare.ai#ToMarkdownTransform"
+          "target": "com.cloudflare.ai#TransformToMarkdown"
         }
       ],
       "traits": {

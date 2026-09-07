@@ -22,7 +22,8 @@
       "modifiedOn": "modified_on",
       "queryString": "query_string",
       "statusCode": "status_code"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.page_rules#CreateRequestActionsItemAlwaysUseHTTPSId": {
@@ -14622,22 +14623,22 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.page_rules#Create"
+          "target": "com.cloudflare.page_rules#CreatePageRule"
         },
         {
-          "target": "com.cloudflare.page_rules#Delete"
+          "target": "com.cloudflare.page_rules#DeletePageRule"
         },
         {
-          "target": "com.cloudflare.page_rules#Edit"
+          "target": "com.cloudflare.page_rules#GetPageRule"
         },
         {
-          "target": "com.cloudflare.page_rules#Get"
+          "target": "com.cloudflare.page_rules#ListPageRules"
         },
         {
-          "target": "com.cloudflare.page_rules#List"
+          "target": "com.cloudflare.page_rules#PatchPageRule"
         },
         {
-          "target": "com.cloudflare.page_rules#Update"
+          "target": "com.cloudflare.page_rules#UpdatePageRule"
         }
       ],
       "traits": {

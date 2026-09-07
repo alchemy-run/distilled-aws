@@ -155,127 +155,6 @@ export const ApiDefinitionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ApiDefinitionsCreateOrUpdateResponse",
 }) as any as S.Schema<ApiDefinitionsCreateOrUpdateResponse>;
 
-export interface ApiDefinitionsExportSpecificationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Azure API Center service. */
-  serviceName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the API. */
-  apiName: string;
-  /** The name of the API version. */
-  versionName: string;
-  /** The name of the API definition. */
-  definitionName: string;
-}
-export const ApiDefinitionsExportSpecificationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      apiName: S.String.pipe(T.Label()),
-      versionName: S.String.pipe(T.Label()),
-      definitionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}/exportSpecification",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "ApiDefinitionsExportSpecificationRequest",
-}) as any as S.Schema<ApiDefinitionsExportSpecificationRequest>;
-
-/** Result format for exported Api spec */
-export type ApiSpecExportResultFormat = "inline" | "link";
-export const ApiSpecExportResultFormat = /*@__PURE__*/ S.String;
-
-/** The API specification export result. */
-export interface ApiSpecExportResult {
-  /** The format of exported result */
-  format?: ApiSpecExportResultFormat;
-  /** The result of the export operation. */
-  value?: string;
-}
-export const ApiSpecExportResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    format: S.optional(ApiSpecExportResultFormat),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiSpecExportResult",
-}) as any as S.Schema<ApiSpecExportResult>;
-
-/** Source format for imported Api spec */
-export type ApiSpecImportSourceFormat = "inline" | "link";
-export const ApiSpecImportSourceFormat = /*@__PURE__*/ S.String;
-
-/** API specification details. */
-export type ApiSpecImportRequestSpecification =
-  ApiDefinitionPropertiesSpecification;
-export const ApiSpecImportRequestSpecification =
-  ApiDefinitionPropertiesSpecification;
-
-export interface ApiDefinitionsImportSpecificationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Azure API Center service. */
-  serviceName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the API. */
-  apiName: string;
-  /** The name of the API version. */
-  versionName: string;
-  /** The name of the API definition. */
-  definitionName: string;
-  /** Value of the API specification source. */
-  value?: string;
-  /** Format of the API specification source. */
-  format?: ApiSpecImportSourceFormat | (string & {});
-  /** API specification details. */
-  specification?: ApiDefinitionPropertiesSpecification;
-}
-export const ApiDefinitionsImportSpecificationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      apiName: S.String.pipe(T.Label()),
-      versionName: S.String.pipe(T.Label()),
-      definitionName: S.String.pipe(T.Label()),
-      value: S.optional(S.String),
-      format: S.optional(ApiSpecImportSourceFormat),
-      specification: S.optional(ApiDefinitionPropertiesSpecification),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}/importSpecification",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "ApiDefinitionsImportSpecificationRequest",
-}) as any as S.Schema<ApiDefinitionsImportSpecificationRequest>;
-
-export interface ApiDefinitionsImportSpecificationResponse {}
-export const ApiDefinitionsImportSpecificationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ApiDefinitionsImportSpecificationResponse",
-  }) as any as S.Schema<ApiDefinitionsImportSpecificationResponse>;
-
 /** The kind of the API */
 export type ApiKind =
   | "rest"
@@ -1113,6 +992,116 @@ export const EnvironmentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EnvironmentsCreateOrUpdateResponse",
 }) as any as S.Schema<EnvironmentsCreateOrUpdateResponse>;
 
+export interface ExportApiDefinitionSpecificationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Azure API Center service. */
+  serviceName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The name of the API. */
+  apiName: string;
+  /** The name of the API version. */
+  versionName: string;
+  /** The name of the API definition. */
+  definitionName: string;
+}
+export const ExportApiDefinitionSpecificationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      apiName: S.String.pipe(T.Label()),
+      versionName: S.String.pipe(T.Label()),
+      definitionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}/exportSpecification",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ExportApiDefinitionSpecificationRequest",
+}) as any as S.Schema<ExportApiDefinitionSpecificationRequest>;
+
+/** Result format for exported Api spec */
+export type ApiSpecExportResultFormat = "inline" | "link";
+export const ApiSpecExportResultFormat = /*@__PURE__*/ S.String;
+
+/** The API specification export result. */
+export interface ApiSpecExportResult {
+  /** The format of exported result */
+  format?: ApiSpecExportResultFormat;
+  /** The result of the export operation. */
+  value?: string;
+}
+export const ApiSpecExportResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    format: S.optional(ApiSpecExportResultFormat),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApiSpecExportResult",
+}) as any as S.Schema<ApiSpecExportResult>;
+
+/** Assignment entity for Metadata */
+export type MetadataAssignmentEntity = "api" | "environment" | "deployment";
+export const MetadataAssignmentEntity = /*@__PURE__*/ S.String;
+
+export interface ExportServiceMetadataSchemaRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Azure API Center service. */
+  serviceName: string;
+  /** An entity the metadata schema is requested for. */
+  assignedTo?: MetadataAssignmentEntity | (string & {});
+}
+export const ExportServiceMetadataSchemaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    assignedTo: S.optional(MetadataAssignmentEntity),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/exportMetadataSchema",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExportServiceMetadataSchemaRequest",
+}) as any as S.Schema<ExportServiceMetadataSchemaRequest>;
+
+/** The format for schema export */
+export type MetadataSchemaExportFormat = "inline" | "link";
+export const MetadataSchemaExportFormat = /*@__PURE__*/ S.String;
+
+/** The metadata schema export result. */
+export interface MetadataSchemaExportResult {
+  /** The export format for the schema */
+  format?: MetadataSchemaExportFormat;
+  /** The result of the export operation. */
+  value?: string;
+}
+export const MetadataSchemaExportResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    format: S.optional(MetadataSchemaExportFormat),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MetadataSchemaExportResult",
+}) as any as S.Schema<MetadataSchemaExportResult>;
+
 export interface GetApiDefinitionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1426,10 +1415,6 @@ export const GetMetadataSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMetadataSchemaRequest",
 }) as any as S.Schema<GetMetadataSchemaRequest>;
 
-/** Assignment entity for Metadata */
-export type MetadataAssignmentEntity = "api" | "environment" | "deployment";
-export const MetadataAssignmentEntity = /*@__PURE__*/ S.String;
-
 /** Assignment metadata */
 export interface MetadataAssignment {
   /** The entities this metadata schema component gets applied to. */
@@ -1521,11 +1506,11 @@ export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServiceRequest>;
 
 /** Resource tags. */
-export type ServicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetServiceResponseTagsMap = { [key: string]: string | undefined };
+export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesGetResponseTagsMap>;
+) as any as S.Schema<GetServiceResponseTagsMap>;
 
 /** The provisioning state of the resource */
 export type ProvisioningState = "Succeeded" | "Failed" | "Canceled";
@@ -1578,7 +1563,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ServicesGetResponseIdentity {
+export interface GetServiceResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -1586,7 +1571,7 @@ export interface ServicesGetResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const ServicesGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetServiceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -1594,8 +1579,8 @@ export const ServicesGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "ServicesGetResponseIdentity",
-}) as any as S.Schema<ServicesGetResponseIdentity>;
+  identifier: "GetServiceResponseIdentity",
+}) as any as S.Schema<GetServiceResponseIdentity>;
 
 export interface GetServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1607,13 +1592,13 @@ export interface GetServiceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ServicesGetResponseTagsMap;
+  tags?: GetServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ServiceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ServicesGetResponseIdentity;
+  identity?: GetServiceResponseIdentity;
 }
 export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1621,10 +1606,10 @@ export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ServicesGetResponseTagsMap),
+    tags: S.optional(GetServiceResponseTagsMap),
     location: S.String,
     properties: S.optional(ServiceProperties),
-    identity: S.optional(ServicesGetResponseIdentity),
+    identity: S.optional(GetServiceResponseIdentity),
   }),
 ).annotate({
   identifier: "GetServiceResponse",
@@ -1697,6 +1682,70 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetWorkspaceResponse",
 }) as any as S.Schema<GetWorkspaceResponse>;
+
+/** Source format for imported Api spec */
+export type ApiSpecImportSourceFormat = "inline" | "link";
+export const ApiSpecImportSourceFormat = /*@__PURE__*/ S.String;
+
+/** API specification details. */
+export type ApiSpecImportRequestSpecification =
+  ApiDefinitionPropertiesSpecification;
+export const ApiSpecImportRequestSpecification =
+  ApiDefinitionPropertiesSpecification;
+
+export interface ImportApiDefinitionSpecificationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Azure API Center service. */
+  serviceName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The name of the API. */
+  apiName: string;
+  /** The name of the API version. */
+  versionName: string;
+  /** The name of the API definition. */
+  definitionName: string;
+  /** Value of the API specification source. */
+  value?: string;
+  /** Format of the API specification source. */
+  format?: ApiSpecImportSourceFormat | (string & {});
+  /** API specification details. */
+  specification?: ApiDefinitionPropertiesSpecification;
+}
+export const ImportApiDefinitionSpecificationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      apiName: S.String.pipe(T.Label()),
+      versionName: S.String.pipe(T.Label()),
+      definitionName: S.String.pipe(T.Label()),
+      value: S.optional(S.String),
+      format: S.optional(ApiSpecImportSourceFormat),
+      specification: S.optional(ApiDefinitionPropertiesSpecification),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}/importSpecification",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ImportApiDefinitionSpecificationRequest",
+}) as any as S.Schema<ImportApiDefinitionSpecificationRequest>;
+
+export interface ImportApiDefinitionSpecificationResponse {}
+export const ImportApiDefinitionSpecificationResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ImportApiDefinitionSpecificationResponse",
+}) as any as S.Schema<ImportApiDefinitionSpecificationResponse>;
 
 export interface ListApiDefinitionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2229,20 +2278,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2279,8 +2328,8 @@ export const ServiceTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ServiceTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ServiceIdentity = ServicesGetResponseIdentity;
-export const ServiceIdentity = ServicesGetResponseIdentity;
+export type ServiceIdentity = GetServiceResponseIdentity;
+export const ServiceIdentity = GetServiceResponseIdentity;
 
 /** The service entity. */
 export interface Service {
@@ -2299,7 +2348,7 @@ export interface Service {
   /** The resource-specific properties for this resource. */
   properties?: ServiceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ServicesGetResponseIdentity;
+  identity?: GetServiceResponseIdentity;
 }
 export const Service = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2310,7 +2359,7 @@ export const Service = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(ServiceTagsMap),
     location: S.String,
     properties: S.optional(ServiceProperties),
-    identity: S.optional(ServicesGetResponseIdentity),
+    identity: S.optional(GetServiceResponseIdentity),
   }),
 ).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
 
@@ -2577,10 +2626,9 @@ export const ServicesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ServicesCreateOrUpdateResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ServicesCreateOrUpdateResponseIdentity =
-  ServicesGetResponseIdentity;
+export type ServicesCreateOrUpdateResponseIdentity = GetServiceResponseIdentity;
 export const ServicesCreateOrUpdateResponseIdentity =
-  ServicesGetResponseIdentity;
+  GetServiceResponseIdentity;
 
 export interface ServicesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2598,7 +2646,7 @@ export interface ServicesCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: ServiceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ServicesGetResponseIdentity;
+  identity?: GetServiceResponseIdentity;
 }
 export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2609,74 +2657,24 @@ export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(ServicesCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(ServiceProperties),
-    identity: S.optional(ServicesGetResponseIdentity),
+    identity: S.optional(GetServiceResponseIdentity),
   }),
 ).annotate({
   identifier: "ServicesCreateOrUpdateResponse",
 }) as any as S.Schema<ServicesCreateOrUpdateResponse>;
 
-export interface ServicesExportMetadataSchemaRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Azure API Center service. */
-  serviceName: string;
-  /** An entity the metadata schema is requested for. */
-  assignedTo?: MetadataAssignmentEntity | (string & {});
-}
-export const ServicesExportMetadataSchemaRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    assignedTo: S.optional(MetadataAssignmentEntity),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/exportMetadataSchema",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesExportMetadataSchemaRequest",
-}) as any as S.Schema<ServicesExportMetadataSchemaRequest>;
-
-/** The format for schema export */
-export type MetadataSchemaExportFormat = "inline" | "link";
-export const MetadataSchemaExportFormat = /*@__PURE__*/ S.String;
-
-/** The metadata schema export result. */
-export interface MetadataSchemaExportResult {
-  /** The export format for the schema */
-  format?: MetadataSchemaExportFormat;
-  /** The result of the export operation. */
-  value?: string;
-}
-export const MetadataSchemaExportResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    format: S.optional(MetadataSchemaExportFormat),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MetadataSchemaExportResult",
-}) as any as S.Schema<MetadataSchemaExportResult>;
-
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ServicesUpdateRequestIdentity =
+export type UpdateServiceRequestIdentity =
   ServicesCreateOrUpdateRequestIdentity;
-export const ServicesUpdateRequestIdentity =
+export const UpdateServiceRequestIdentity =
   ServicesCreateOrUpdateRequestIdentity;
 
 /** Resource tags. */
-export type ServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateServiceRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServiceRequestTagsMap>;
 
 export interface UpdateServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2688,7 +2686,7 @@ export interface UpdateServiceRequest {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: ServicesCreateOrUpdateRequestIdentity;
   /** Resource tags. */
-  tags?: ServicesUpdateRequestTagsMap;
+  tags?: UpdateServiceRequestTagsMap;
 }
 export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2696,7 +2694,7 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     identity: S.optional(ServicesCreateOrUpdateRequestIdentity),
-    tags: S.optional(ServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateServiceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2710,17 +2708,17 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateServiceRequest>;
 
 /** Resource tags. */
-export type ServicesUpdateResponseTagsMap = {
+export type UpdateServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateServiceResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ServicesUpdateResponseIdentity = ServicesGetResponseIdentity;
-export const ServicesUpdateResponseIdentity = ServicesGetResponseIdentity;
+export type UpdateServiceResponseIdentity = GetServiceResponseIdentity;
+export const UpdateServiceResponseIdentity = GetServiceResponseIdentity;
 
 export interface UpdateServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2732,13 +2730,13 @@ export interface UpdateServiceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ServicesUpdateResponseTagsMap;
+  tags?: UpdateServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ServiceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ServicesGetResponseIdentity;
+  identity?: GetServiceResponseIdentity;
 }
 export const UpdateServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2746,10 +2744,10 @@ export const UpdateServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ServicesUpdateResponseTagsMap),
+    tags: S.optional(UpdateServiceResponseTagsMap),
     location: S.String,
     properties: S.optional(ServiceProperties),
-    identity: S.optional(ServicesGetResponseIdentity),
+    identity: S.optional(GetServiceResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateServiceResponse",
@@ -2820,36 +2818,6 @@ export const ApiDefinitionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApiDefinitionsCreateOrUpdateRequest,
   output: ApiDefinitionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiDefinitionsExportSpecificationError = AzureOpError;
-/** Exports the API specification. */
-export const ApiDefinitionsExportSpecification: API.OperationMethod<
-  ApiDefinitionsExportSpecificationRequest,
-  ApiSpecExportResult,
-  ApiDefinitionsExportSpecificationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiDefinitionsExportSpecificationRequest,
-  output: ApiSpecExportResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiDefinitionsImportSpecificationError = AzureOpError;
-/** Imports the API specification. */
-export const ApiDefinitionsImportSpecification: API.OperationMethod<
-  ApiDefinitionsImportSpecificationRequest,
-  ApiDefinitionsImportSpecificationResponse,
-  ApiDefinitionsImportSpecificationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiDefinitionsImportSpecificationRequest,
-  output: ApiDefinitionsImportSpecificationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3035,6 +3003,36 @@ export const EnvironmentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ExportApiDefinitionSpecificationError = AzureOpError;
+/** Exports the API specification. */
+export const ExportApiDefinitionSpecification: API.OperationMethod<
+  ExportApiDefinitionSpecificationRequest,
+  ApiSpecExportResult,
+  ExportApiDefinitionSpecificationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportApiDefinitionSpecificationRequest,
+  output: ApiSpecExportResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportServiceMetadataSchemaError = AzureOpError;
+/** Exports the effective metadata schema. */
+export const ExportServiceMetadataSchema: API.OperationMethod<
+  ExportServiceMetadataSchemaRequest,
+  MetadataSchemaExportResult,
+  ExportServiceMetadataSchemaError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportServiceMetadataSchemaRequest,
+  output: MetadataSchemaExportResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetApiDefinitionError = AzureOpError;
 /** Returns details of the API definition. */
 export const GetApiDefinition: API.OperationMethod<
@@ -3150,6 +3148,21 @@ export const GetWorkspace: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetWorkspaceRequest,
   output: GetWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImportApiDefinitionSpecificationError = AzureOpError;
+/** Imports the API specification. */
+export const ImportApiDefinitionSpecification: API.OperationMethod<
+  ImportApiDefinitionSpecificationRequest,
+  ImportApiDefinitionSpecificationResponse,
+  ImportApiDefinitionSpecificationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImportApiDefinitionSpecificationRequest,
+  output: ImportApiDefinitionSpecificationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3330,21 +3343,6 @@ export const ServicesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ServicesCreateOrUpdateRequest,
   output: ServicesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServicesExportMetadataSchemaError = AzureOpError;
-/** Exports the effective metadata schema. */
-export const ServicesExportMetadataSchema: API.OperationMethod<
-  ServicesExportMetadataSchemaRequest,
-  MetadataSchemaExportResult,
-  ServicesExportMetadataSchemaError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServicesExportMetadataSchemaRequest,
-  output: MetadataSchemaExportResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

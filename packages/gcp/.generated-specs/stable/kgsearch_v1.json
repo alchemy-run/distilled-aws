@@ -4,18 +4,13 @@
     "service": "kgsearch",
     "version": "v1",
     "title": "Knowledge Graph Search API",
-    "baseUrl": "https://kgsearch.googleapis.com/"
+    "baseUrl": "https://kgsearch.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.kgsearch_v1#SearchResponse": {
       "type": "structure",
       "members": {
-        "@context": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions."
-          }
-        },
         "@type": {
           "target": "smithy.api#Document",
           "traits": {
@@ -26,6 +21,12 @@
           "target": "com.gcp.kgsearch_v1#DocumentList",
           "traits": {
             "smithy.api#documentation": "The item list of search results."
+          }
+        },
+        "@context": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions."
           }
         }
       },
@@ -48,6 +49,13 @@
     "com.gcp.kgsearch_v1#SearchEntitiesRequest": {
       "type": "structure",
       "members": {
+        "types": {
+          "target": "com.gcp.kgsearch_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types.",
+            "smithy.api#httpQuery": "types"
+          }
+        },
         "limit": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -55,11 +63,11 @@
             "smithy.api#httpQuery": "limit"
           }
         },
-        "types": {
+        "ids": {
           "target": "com.gcp.kgsearch_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types.",
-            "smithy.api#httpQuery": "types"
+            "smithy.api#documentation": "The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B",
+            "smithy.api#httpQuery": "ids"
           }
         },
         "languages": {
@@ -76,25 +84,18 @@
             "smithy.api#httpQuery": "prefix"
           }
         },
-        "query": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The literal query string for search.",
-            "smithy.api#httpQuery": "query"
-          }
-        },
-        "ids": {
-          "target": "com.gcp.kgsearch_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B",
-            "smithy.api#httpQuery": "ids"
-          }
-        },
         "indent": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Enables indenting of json results.",
             "smithy.api#httpQuery": "indent"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The literal query string for search.",
+            "smithy.api#httpQuery": "query"
           }
         }
       }

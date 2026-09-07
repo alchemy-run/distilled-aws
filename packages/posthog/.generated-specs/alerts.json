@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.alerts#ListAlertsRequest": {
@@ -257,13 +258,13 @@
         "investigation_agent_enabled": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+            "smithy.api#documentation": "When enabled, an investigation agent runs on each check where the alert fires, up to three times per firing episode, and writes findings to a Notebook linked from the alert check. An episode is the run of consecutive firing checks since the last check that did not fire. A later investigation of the same episode that reaches a different verdict sends one follow-up notification, unless investigation_inconclusive_action suppresses it. Only effective for detector-based (anomaly) alerts."
           }
         },
         "investigation_gates_notifications": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), the first fire of an episode is held until the investigation agent produces a verdict, and that notification is suppressed when the verdict is false_positive (and optionally when inconclusive). Later fires of the same episode notify without waiting. A safety-net task force-fires after a few minutes if the investigation stalls."
           }
         },
         "investigation_inconclusive_action": {
@@ -1725,7 +1726,7 @@
         }
       }
     },
-    "com.posthog.alerts#AlertsCreateRequestSubscribedUsersList": {
+    "com.posthog.alerts#CreateAlertRequestSubscribedUsersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -1776,7 +1777,7 @@
           }
         },
         "subscribed_users": {
-          "target": "com.posthog.alerts#AlertsCreateRequestSubscribedUsersList",
+          "target": "com.posthog.alerts#CreateAlertRequestSubscribedUsersList",
           "traits": {
             "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
           }
@@ -1843,13 +1844,13 @@
         "investigation_agent_enabled": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+            "smithy.api#documentation": "When enabled, an investigation agent runs on each check where the alert fires, up to three times per firing episode, and writes findings to a Notebook linked from the alert check. An episode is the run of consecutive firing checks since the last check that did not fire. A later investigation of the same episode that reaches a different verdict sends one follow-up notification, unless investigation_inconclusive_action suppresses it. Only effective for detector-based (anomaly) alerts."
           }
         },
         "investigation_gates_notifications": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), the first fire of an episode is held until the investigation agent produces a verdict, and that notification is suppressed when the verdict is false_positive (and optionally when inconclusive). Later fires of the same episode notify without waiting. A safety-net task force-fires after a few minutes if the investigation stalls."
           }
         },
         "investigation_inconclusive_action": {
@@ -1890,7 +1891,7 @@
         }
       }
     },
-    "com.posthog.alerts#AlertsRetrieveRequest": {
+    "com.posthog.alerts#GetAlertRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1942,10 +1943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.alerts#AlertsRetrieve": {
+    "com.posthog.alerts#GetAlert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.alerts#AlertsRetrieveRequest"
+        "target": "com.posthog.alerts#GetAlertRequest"
       },
       "output": {
         "target": "com.posthog.alerts#Alert"
@@ -1969,7 +1970,7 @@
         }
       }
     },
-    "com.posthog.alerts#AlertsUpdateRequestSubscribedUsersList": {
+    "com.posthog.alerts#UpdateAlertRequestSubscribedUsersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -2010,7 +2011,7 @@
           }
         },
         "subscribed_users": {
-          "target": "com.posthog.alerts#AlertsUpdateRequestSubscribedUsersList",
+          "target": "com.posthog.alerts#UpdateAlertRequestSubscribedUsersList",
           "traits": {
             "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
           }
@@ -2077,13 +2078,13 @@
         "investigation_agent_enabled": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+            "smithy.api#documentation": "When enabled, an investigation agent runs on each check where the alert fires, up to three times per firing episode, and writes findings to a Notebook linked from the alert check. An episode is the run of consecutive firing checks since the last check that did not fire. A later investigation of the same episode that reaches a different verdict sends one follow-up notification, unless investigation_inconclusive_action suppresses it. Only effective for detector-based (anomaly) alerts."
           }
         },
         "investigation_gates_notifications": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), the first fire of an episode is held until the investigation agent produces a verdict, and that notification is suppressed when the verdict is false_positive (and optionally when inconclusive). Later fires of the same episode notify without waiting. A safety-net task force-fires after a few minutes if the investigation stalls."
           }
         },
         "investigation_inconclusive_action": {
@@ -2124,7 +2125,7 @@
         }
       }
     },
-    "com.posthog.alerts#AlertsPartialUpdateRequestSubscribedUsersList": {
+    "com.posthog.alerts#UpdateAlertsPartialRequestSubscribedUsersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -2133,7 +2134,7 @@
         "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
       }
     },
-    "com.posthog.alerts#UpdateAlertPartialRequest": {
+    "com.posthog.alerts#UpdateAlertsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2165,7 +2166,7 @@
           }
         },
         "subscribed_users": {
-          "target": "com.posthog.alerts#AlertsPartialUpdateRequestSubscribedUsersList",
+          "target": "com.posthog.alerts#UpdateAlertsPartialRequestSubscribedUsersList",
           "traits": {
             "smithy.api#documentation": "User IDs to subscribe to this alert. Note: Response returns full UserBasicSerializer object."
           }
@@ -2232,13 +2233,13 @@
         "investigation_agent_enabled": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+            "smithy.api#documentation": "When enabled, an investigation agent runs on each check where the alert fires, up to three times per firing episode, and writes findings to a Notebook linked from the alert check. An episode is the run of consecutive firing checks since the last check that did not fire. A later investigation of the same episode that reaches a different verdict sends one follow-up notification, unless investigation_inconclusive_action suppresses it. Only effective for detector-based (anomaly) alerts."
           }
         },
         "investigation_gates_notifications": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), the first fire of an episode is held until the investigation agent produces a verdict, and that notification is suppressed when the verdict is false_positive (and optionally when inconclusive). Later fires of the same episode notify without waiting. A safety-net task force-fires after a few minutes if the investigation stalls."
           }
         },
         "investigation_inconclusive_action": {
@@ -2252,10 +2253,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.alerts#UpdateAlertPartial": {
+    "com.posthog.alerts#UpdateAlertsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.alerts#UpdateAlertPartialRequest"
+        "target": "com.posthog.alerts#UpdateAlertsPartialRequest"
       },
       "output": {
         "target": "com.posthog.alerts#Alert"
@@ -2327,7 +2328,7 @@
         }
       }
     },
-    "com.posthog.alerts#CreateAlertTestDeliveryRequest": {
+    "com.posthog.alerts#CreateAlertsTestDeliveryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2351,10 +2352,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.alerts#CreateAlertTestDelivery": {
+    "com.posthog.alerts#CreateAlertsTestDelivery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.alerts#CreateAlertTestDeliveryRequest"
+        "target": "com.posthog.alerts#CreateAlertsTestDeliveryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2368,7 +2369,21 @@
         "smithy.api#documentation": "Send a synthetic test notification to subscribed users and every active destination on this alert."
       }
     },
-    "com.posthog.alerts#CreateAlertSimulateRequest": {
+    "com.posthog.alerts#CreateAlertsSimulateRequestInsight": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Integer"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Numeric insight ID or saved insight short ID to simulate the detector on."
+      }
+    },
+    "com.posthog.alerts#CreateAlertsSimulateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2380,15 +2395,15 @@
           }
         },
         "insight": {
-          "target": "smithy.api#Integer",
+          "target": "com.posthog.alerts#CreateAlertsSimulateRequestInsight",
           "traits": {
-            "smithy.api#documentation": "Insight ID to simulate the detector on."
+            "smithy.api#documentation": "Numeric insight ID or saved insight short ID to simulate the detector on."
           }
         },
         "detector_config": {
           "target": "com.posthog.alerts#DetectorConfig",
           "traits": {
-            "smithy.api#documentation": "Detector configuration to simulate."
+            "smithy.api#documentation": "Detector configuration to simulate. Omit it to use the default daily z-score detector (threshold 0.95, window 90, first-difference preprocessing)."
           }
         },
         "series_index": {
@@ -2680,10 +2695,10 @@
         "smithy.api#documentation": "Per-breakdown-value simulation results. Present only when the insight has breakdowns (up to 25 values)."
       }
     },
-    "com.posthog.alerts#CreateAlertSimulate": {
+    "com.posthog.alerts#CreateAlertsSimulate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.alerts#CreateAlertSimulateRequest"
+        "target": "com.posthog.alerts#CreateAlertsSimulateRequest"
       },
       "output": {
         "target": "com.posthog.alerts#AlertSimulateResponse"
@@ -2752,28 +2767,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.alerts#ListAlerts"
+          "target": "com.posthog.alerts#AlertsDestroy"
         },
         {
           "target": "com.posthog.alerts#CreateAlert"
         },
         {
-          "target": "com.posthog.alerts#AlertsRetrieve"
+          "target": "com.posthog.alerts#CreateAlertsSimulate"
+        },
+        {
+          "target": "com.posthog.alerts#CreateAlertsTestDelivery"
+        },
+        {
+          "target": "com.posthog.alerts#GetAlert"
+        },
+        {
+          "target": "com.posthog.alerts#ListAlerts"
         },
         {
           "target": "com.posthog.alerts#UpdateAlert"
         },
         {
-          "target": "com.posthog.alerts#UpdateAlertPartial"
-        },
-        {
-          "target": "com.posthog.alerts#AlertsDestroy"
-        },
-        {
-          "target": "com.posthog.alerts#CreateAlertTestDelivery"
-        },
-        {
-          "target": "com.posthog.alerts#CreateAlertSimulate"
+          "target": "com.posthog.alerts#UpdateAlertsPartial"
         }
       ],
       "traits": {

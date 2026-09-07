@@ -12,186 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Purgeable orchestration state to be used in retention policies */
-export type PurgeableOrchestrationState =
-  | "Completed"
-  | "Failed"
-  | "Terminated"
-  | "Canceled";
-export const PurgeableOrchestrationState = /*@__PURE__*/ S.String;
-
-/** The properties of a retention policy */
-export interface RetentionPolicyDetails {
-  /** The retention period in days after which the orchestration will be purged automatically */
-  retentionPeriodInDays: number;
-  /** The orchestration state to which this policy applies. If omitted, the policy applies to all purgeable orchestration states. */
-  orchestrationState?: PurgeableOrchestrationState | (string & {});
-}
-export const RetentionPolicyDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retentionPeriodInDays: S.Number,
-    orchestrationState: S.optional(PurgeableOrchestrationState),
-  }),
-).annotate({
-  identifier: "RetentionPolicyDetails",
-}) as any as S.Schema<RetentionPolicyDetails>;
-
-/** The orchestration retention policies */
-export type RetentionPolicyPropertiesInputRetentionPoliciesList =
-  Array<RetentionPolicyDetails>;
-export const RetentionPolicyPropertiesInputRetentionPoliciesList =
-  /*@__PURE__*/ S.Array(
-    RetentionPolicyDetails,
-  ) as any as S.Schema<RetentionPolicyPropertiesInputRetentionPoliciesList>;
-
-/** The retention policy settings for the resource */
-export interface RetentionPolicyPropertiesInput {
-  /** The orchestration retention policies */
-  retentionPolicies?: RetentionPolicyPropertiesInputRetentionPoliciesList;
-}
-export const RetentionPolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retentionPolicies: S.optional(
-      RetentionPolicyPropertiesInputRetentionPoliciesList,
-    ),
-  }),
-).annotate({
-  identifier: "RetentionPolicyPropertiesInput",
-}) as any as S.Schema<RetentionPolicyPropertiesInput>;
-
-export interface CreateRetentionPolicyOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: RetentionPolicyPropertiesInput;
-}
-export const CreateRetentionPolicyOrReplaceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      schedulerName: S.String.pipe(T.Label()),
-      properties: S.optional(RetentionPolicyPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "CreateRetentionPolicyOrReplaceRequest",
-}) as any as S.Schema<CreateRetentionPolicyOrReplaceRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** The status of the current operation */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Provisioning"
-  | "Updating"
-  | "Deleting"
-  | "Accepted";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** The orchestration retention policies */
-export type RetentionPolicyPropertiesRetentionPoliciesList =
-  Array<RetentionPolicyDetails>;
-export const RetentionPolicyPropertiesRetentionPoliciesList =
-  /*@__PURE__*/ S.Array(
-    RetentionPolicyDetails,
-  ) as any as S.Schema<RetentionPolicyPropertiesRetentionPoliciesList>;
-
-/** The retention policy settings for the resource */
-export interface RetentionPolicyProperties {
-  /** The status of the last operation */
-  provisioningState?: ProvisioningState;
-  /** The orchestration retention policies */
-  retentionPolicies?: RetentionPolicyPropertiesRetentionPoliciesList;
-}
-export const RetentionPolicyProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    retentionPolicies: S.optional(
-      RetentionPolicyPropertiesRetentionPoliciesList,
-    ),
-  }),
-).annotate({
-  identifier: "RetentionPolicyProperties",
-}) as any as S.Schema<RetentionPolicyProperties>;
-
-export interface CreateRetentionPolicyOrReplaceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: RetentionPolicyProperties;
-}
-export const CreateRetentionPolicyOrReplaceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RetentionPolicyProperties),
-    }),
-).annotate({
-  identifier: "CreateRetentionPolicyOrReplaceResponse",
-}) as any as S.Schema<CreateRetentionPolicyOrReplaceResponse>;
-
 export interface DeleteRetentionPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -351,6 +171,109 @@ export const GetRetentionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRetentionPolicyRequest",
 }) as any as S.Schema<GetRetentionPolicyRequest>;
 
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** The status of the current operation */
+export type ProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Provisioning"
+  | "Updating"
+  | "Deleting"
+  | "Accepted";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Purgeable orchestration state to be used in retention policies */
+export type PurgeableOrchestrationState =
+  | "Completed"
+  | "Failed"
+  | "Terminated"
+  | "Canceled";
+export const PurgeableOrchestrationState = /*@__PURE__*/ S.String;
+
+/** The properties of a retention policy */
+export interface RetentionPolicyDetails {
+  /** The retention period in days after which the orchestration will be purged automatically */
+  retentionPeriodInDays: number;
+  /** The orchestration state to which this policy applies. If omitted, the policy applies to all purgeable orchestration states. */
+  orchestrationState?: PurgeableOrchestrationState | (string & {});
+}
+export const RetentionPolicyDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retentionPeriodInDays: S.Number,
+    orchestrationState: S.optional(PurgeableOrchestrationState),
+  }),
+).annotate({
+  identifier: "RetentionPolicyDetails",
+}) as any as S.Schema<RetentionPolicyDetails>;
+
+/** The orchestration retention policies */
+export type RetentionPolicyPropertiesRetentionPoliciesList =
+  Array<RetentionPolicyDetails>;
+export const RetentionPolicyPropertiesRetentionPoliciesList =
+  /*@__PURE__*/ S.Array(
+    RetentionPolicyDetails,
+  ) as any as S.Schema<RetentionPolicyPropertiesRetentionPoliciesList>;
+
+/** The retention policy settings for the resource */
+export interface RetentionPolicyProperties {
+  /** The status of the last operation */
+  provisioningState?: ProvisioningState;
+  /** The orchestration retention policies */
+  retentionPolicies?: RetentionPolicyPropertiesRetentionPoliciesList;
+}
+export const RetentionPolicyProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    retentionPolicies: S.optional(
+      RetentionPolicyPropertiesRetentionPoliciesList,
+    ),
+  }),
+).annotate({
+  identifier: "RetentionPolicyProperties",
+}) as any as S.Schema<RetentionPolicyProperties>;
+
 export interface GetRetentionPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -401,13 +324,11 @@ export const GetSchedulerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSchedulerRequest>;
 
 /** Resource tags. */
-export type SchedulersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchedulersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetSchedulerResponseTagsMap = { [key: string]: string | undefined };
+export const GetSchedulerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchedulersGetResponseTagsMap>;
+) as any as S.Schema<GetSchedulerResponseTagsMap>;
 
 /** IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR */
 export type SchedulerPropertiesIpAllowlistList = Array<string>;
@@ -595,7 +516,7 @@ export interface GetSchedulerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SchedulersGetResponseTagsMap;
+  tags?: GetSchedulerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -607,7 +528,7 @@ export const GetSchedulerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchedulersGetResponseTagsMap),
+    tags: S.optional(GetSchedulerResponseTagsMap),
     location: S.String,
     properties: S.optional(SchedulerProperties),
   }),
@@ -894,20 +815,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1288,6 +1209,83 @@ export const TaskHubListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskHubListResult",
 }) as any as S.Schema<TaskHubListResult>;
 
+/** The orchestration retention policies */
+export type RetentionPolicyPropertiesInputRetentionPoliciesList =
+  Array<RetentionPolicyDetails>;
+export const RetentionPolicyPropertiesInputRetentionPoliciesList =
+  /*@__PURE__*/ S.Array(
+    RetentionPolicyDetails,
+  ) as any as S.Schema<RetentionPolicyPropertiesInputRetentionPoliciesList>;
+
+/** The retention policy settings for the resource */
+export interface RetentionPolicyPropertiesInput {
+  /** The orchestration retention policies */
+  retentionPolicies?: RetentionPolicyPropertiesInputRetentionPoliciesList;
+}
+export const RetentionPolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retentionPolicies: S.optional(
+      RetentionPolicyPropertiesInputRetentionPoliciesList,
+    ),
+  }),
+).annotate({
+  identifier: "RetentionPolicyPropertiesInput",
+}) as any as S.Schema<RetentionPolicyPropertiesInput>;
+
+export interface RetentionPoliciesCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: RetentionPolicyPropertiesInput;
+}
+export const RetentionPoliciesCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      schedulerName: S.String.pipe(T.Label()),
+      properties: S.optional(RetentionPolicyPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "RetentionPoliciesCreateOrReplaceRequest",
+}) as any as S.Schema<RetentionPoliciesCreateOrReplaceRequest>;
+
+export interface RetentionPoliciesCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: RetentionPolicyProperties;
+}
+export const RetentionPoliciesCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RetentionPolicyProperties),
+    }),
+).annotate({
+  identifier: "RetentionPoliciesCreateOrReplaceResponse",
+}) as any as S.Schema<RetentionPoliciesCreateOrReplaceResponse>;
+
 /** Resource tags. */
 export type SchedulersCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1631,13 +1629,13 @@ export const SchedulerPropertiesUpdateInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SchedulerPropertiesUpdateInput>;
 
 /** Resource tags. */
-export type SchedulersUpdateRequestTagsMap = {
+export type UpdateSchedulerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SchedulersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSchedulerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchedulersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSchedulerRequestTagsMap>;
 
 export interface UpdateSchedulerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1649,7 +1647,7 @@ export interface UpdateSchedulerRequest {
   /** The resource-specific properties for this resource. */
   properties?: SchedulerPropertiesUpdateInput;
   /** Resource tags. */
-  tags?: SchedulersUpdateRequestTagsMap;
+  tags?: UpdateSchedulerRequestTagsMap;
 }
 export const UpdateSchedulerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1657,7 +1655,7 @@ export const UpdateSchedulerRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     schedulerName: S.String.pipe(T.Label()),
     properties: S.optional(SchedulerPropertiesUpdateInput),
-    tags: S.optional(SchedulersUpdateRequestTagsMap),
+    tags: S.optional(UpdateSchedulerRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1671,13 +1669,13 @@ export const UpdateSchedulerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSchedulerRequest>;
 
 /** Resource tags. */
-export type SchedulersUpdateResponseTagsMap = {
+export type UpdateSchedulerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SchedulersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSchedulerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchedulersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSchedulerResponseTagsMap>;
 
 export interface UpdateSchedulerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1689,7 +1687,7 @@ export interface UpdateSchedulerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SchedulersUpdateResponseTagsMap;
+  tags?: UpdateSchedulerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1701,7 +1699,7 @@ export const UpdateSchedulerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchedulersUpdateResponseTagsMap),
+    tags: S.optional(UpdateSchedulerResponseTagsMap),
     location: S.String,
     properties: S.optional(SchedulerProperties),
   }),
@@ -1710,25 +1708,25 @@ export const UpdateSchedulerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSchedulerResponse>;
 
 /** The private endpoint resource. */
-export type SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
+export type UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
   PrivateEndpointInput;
-export const SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
+export const UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
   PrivateEndpointInput;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
-export type SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
+export type UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
   PrivateLinkServiceConnectionState;
-export const SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
+export const UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
   PrivateLinkServiceConnectionState;
 
 /** The private endpoint connection properties */
-export interface SchedulersUpdatePrivateEndpointConnectionRequestProperties {
+export interface UpdateSchedulerPrivateEndpointConnectionRequestProperties {
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpointInput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
 }
-export const SchedulersUpdatePrivateEndpointConnectionRequestProperties =
+export const UpdateSchedulerPrivateEndpointConnectionRequestProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateEndpoint: S.optional(PrivateEndpointInput),
@@ -1737,8 +1735,8 @@ export const SchedulersUpdatePrivateEndpointConnectionRequestProperties =
       ),
     }),
   ).annotate({
-    identifier: "SchedulersUpdatePrivateEndpointConnectionRequestProperties",
-  }) as any as S.Schema<SchedulersUpdatePrivateEndpointConnectionRequestProperties>;
+    identifier: "UpdateSchedulerPrivateEndpointConnectionRequestProperties",
+  }) as any as S.Schema<UpdateSchedulerPrivateEndpointConnectionRequestProperties>;
 
 export interface UpdateSchedulerPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1750,7 +1748,7 @@ export interface UpdateSchedulerPrivateEndpointConnectionRequest {
   /** The name of the private endpoint connection associated with the Azure resource. */
   privateEndpointConnectionName: string;
   /** The private endpoint connection properties */
-  properties?: SchedulersUpdatePrivateEndpointConnectionRequestProperties;
+  properties?: UpdateSchedulerPrivateEndpointConnectionRequestProperties;
 }
 export const UpdateSchedulerPrivateEndpointConnectionRequest =
   /*@__PURE__*/ S.suspend(() =>
@@ -1760,7 +1758,7 @@ export const UpdateSchedulerPrivateEndpointConnectionRequest =
       schedulerName: S.String.pipe(T.Label()),
       privateEndpointConnectionName: S.String.pipe(T.Label()),
       properties: S.optional(
-        SchedulersUpdatePrivateEndpointConnectionRequestProperties,
+        UpdateSchedulerPrivateEndpointConnectionRequestProperties,
       ),
     }).pipe(
       T.Http({
@@ -1798,21 +1796,6 @@ export const UpdateSchedulerPrivateEndpointConnectionResponse =
   ).annotate({
     identifier: "UpdateSchedulerPrivateEndpointConnectionResponse",
   }) as any as S.Schema<UpdateSchedulerPrivateEndpointConnectionResponse>;
-
-export type CreateRetentionPolicyOrReplaceError = AzureOpError;
-/** Create or Update a Retention Policy */
-export const CreateRetentionPolicyOrReplace: API.OperationMethod<
-  CreateRetentionPolicyOrReplaceRequest,
-  CreateRetentionPolicyOrReplaceResponse,
-  CreateRetentionPolicyOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateRetentionPolicyOrReplaceRequest,
-  output: CreateRetentionPolicyOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
 
 export type DeleteRetentionPolicyError = AzureOpError;
 /** Delete a Retention Policy */
@@ -2049,6 +2032,21 @@ export const ListTaskHubByScheduler: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTaskHubBySchedulerRequest,
   output: TaskHubListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RetentionPoliciesCreateOrReplaceError = AzureOpError;
+/** Create or Update a Retention Policy */
+export const RetentionPoliciesCreateOrReplace: API.OperationMethod<
+  RetentionPoliciesCreateOrReplaceRequest,
+  RetentionPoliciesCreateOrReplaceResponse,
+  RetentionPoliciesCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RetentionPoliciesCreateOrReplaceRequest,
+  output: RetentionPoliciesCreateOrReplaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

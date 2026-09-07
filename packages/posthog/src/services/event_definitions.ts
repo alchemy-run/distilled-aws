@@ -39,20 +39,20 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type EventDefinitionsCreateRequestTagsList = Array<unknown>;
-export const EventDefinitionsCreateRequestTagsList = /*@__PURE__*/ S.Array(
+export type CreateEventDefinitionRequestTagsList = Array<unknown>;
+export const CreateEventDefinitionRequestTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<EventDefinitionsCreateRequestTagsList>;
+) as any as S.Schema<CreateEventDefinitionRequestTagsList>;
 
 /** * `allow` - Allow * `reject` - Reject */
-export type EnforcementModeEnum = "allow" | "reject";
-export const EnforcementModeEnum = /*@__PURE__*/ S.String;
+export type SchemaEnforcementModeEnum = "allow" | "reject";
+export const SchemaEnforcementModeEnum = /*@__PURE__*/ S.String;
 
-export type EventDefinitionsCreateRequestDefaultColumnsList = Array<string>;
-export const EventDefinitionsCreateRequestDefaultColumnsList =
+export type CreateEventDefinitionRequestDefaultColumnsList = Array<string>;
+export const CreateEventDefinitionRequestDefaultColumnsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<EventDefinitionsCreateRequestDefaultColumnsList>;
+  ) as any as S.Schema<CreateEventDefinitionRequestDefaultColumnsList>;
 
 export interface CreateEventDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -60,14 +60,14 @@ export interface CreateEventDefinitionRequest {
   name?: string;
   owner?: number | null;
   description?: string | null;
-  tags?: EventDefinitionsCreateRequestTagsList;
+  tags?: CreateEventDefinitionRequestTagsList;
   verified?: boolean;
   hidden?: boolean | null;
-  enforcement_mode?: EnforcementModeEnum | (string & {});
+  enforcement_mode?: SchemaEnforcementModeEnum | (string & {});
   /** Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event. */
   primary_property?: string | null;
   post_to_slack?: boolean;
-  default_columns?: EventDefinitionsCreateRequestDefaultColumnsList;
+  default_columns?: CreateEventDefinitionRequestDefaultColumnsList;
 }
 export const CreateEventDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -75,15 +75,13 @@ export const CreateEventDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     owner: S.optional(S.NullOr(S.Number)),
     description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(EventDefinitionsCreateRequestTagsList),
+    tags: S.optional(CreateEventDefinitionRequestTagsList),
     verified: S.optional(S.Boolean),
     hidden: S.optional(S.NullOr(S.Boolean)),
-    enforcement_mode: S.optional(EnforcementModeEnum),
+    enforcement_mode: S.optional(SchemaEnforcementModeEnum),
     primary_property: S.optional(S.NullOr(S.String)),
     post_to_slack: S.optional(S.Boolean),
-    default_columns: S.optional(
-      EventDefinitionsCreateRequestDefaultColumnsList,
-    ),
+    default_columns: S.optional(CreateEventDefinitionRequestDefaultColumnsList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -179,7 +177,7 @@ export interface EnterpriseEventDefinition {
   verified_at?: string | null;
   verified_by?: UserBasic | null;
   hidden?: boolean | null;
-  enforcement_mode?: EnforcementModeEnum;
+  enforcement_mode?: SchemaEnforcementModeEnum;
   /** Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event. */
   primary_property?: string | null;
   is_action?: boolean;
@@ -207,7 +205,7 @@ export const EnterpriseEventDefinition = /*@__PURE__*/ S.suspend(() =>
     verified_at: S.optional(S.NullOr(S.String)),
     verified_by: S.optional(S.NullOr(UserBasic)),
     hidden: S.optional(S.NullOr(S.Boolean)),
-    enforcement_mode: S.optional(EnforcementModeEnum),
+    enforcement_mode: S.optional(SchemaEnforcementModeEnum),
     primary_property: S.optional(S.NullOr(S.String)),
     is_action: S.optional(S.Boolean),
     action_id: S.optional(S.Number),
@@ -320,72 +318,6 @@ export const EventDefinitionBulkUpdateVerifiedResponse =
     identifier: "EventDefinitionBulkUpdateVerifiedResponse",
   }) as any as S.Schema<EventDefinitionBulkUpdateVerifiedResponse>;
 
-export interface EventDefinitionsByNameRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The exact event name to look up */
-  name: string;
-}
-export const EventDefinitionsByNameRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/event_definitions/by_name/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "EventDefinitionsByNameRetrieveRequest",
-}) as any as S.Schema<EventDefinitionsByNameRetrieveRequest>;
-
-export type EventDefinitionRecordTagsList = Array<unknown>;
-export const EventDefinitionRecordTagsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<EventDefinitionRecordTagsList>;
-
-/** Serializer mixin that handles tags for objects. */
-export interface EventDefinitionRecord {
-  id?: string;
-  name?: string;
-  created_at?: string | null;
-  last_seen_at?: string | null;
-  last_updated_at?: string;
-  tags?: EventDefinitionRecordTagsList;
-  enforcement_mode?: EnforcementModeEnum;
-  /** Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event. */
-  primary_property?: string | null;
-  is_action?: boolean;
-  action_id?: number;
-  is_calculating?: boolean;
-  last_calculated_at?: string;
-  created_by?: UserBasic | null;
-  post_to_slack?: boolean;
-}
-export const EventDefinitionRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    created_at: S.optional(S.NullOr(S.String)),
-    last_seen_at: S.optional(S.NullOr(S.String)),
-    last_updated_at: S.optional(S.String),
-    tags: S.optional(EventDefinitionRecordTagsList),
-    enforcement_mode: S.optional(EnforcementModeEnum),
-    primary_property: S.optional(S.NullOr(S.String)),
-    is_action: S.optional(S.Boolean),
-    action_id: S.optional(S.Number),
-    is_calculating: S.optional(S.Boolean),
-    last_calculated_at: S.optional(S.String),
-    created_by: S.optional(S.NullOr(UserBasic)),
-    post_to_slack: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "EventDefinitionRecord",
-}) as any as S.Schema<EventDefinitionRecord>;
-
 export interface EventDefinitionsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -414,53 +346,135 @@ export const EventDefinitionsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EventDefinitionsDestroyResponse",
 }) as any as S.Schema<EventDefinitionsDestroyResponse>;
 
-export interface EventDefinitionsGolangRetrieveRequest {
+export interface GetEventDefinitionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this event definition. */
+  id: string;
+}
+export const GetEventDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/event_definitions/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEventDefinitionRequest",
+}) as any as S.Schema<GetEventDefinitionRequest>;
+
+export interface GetEventDefinitionsByNameRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The exact event name to look up */
+  name: string;
+}
+export const GetEventDefinitionsByNameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/event_definitions/by_name/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEventDefinitionsByNameRequest",
+}) as any as S.Schema<GetEventDefinitionsByNameRequest>;
+
+export type EventDefinitionRecordTagsList = Array<unknown>;
+export const EventDefinitionRecordTagsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<EventDefinitionRecordTagsList>;
+
+/** Serializer mixin that handles tags for objects. */
+export interface EventDefinitionRecord {
+  id?: string;
+  name?: string;
+  created_at?: string | null;
+  last_seen_at?: string | null;
+  last_updated_at?: string;
+  tags?: EventDefinitionRecordTagsList;
+  enforcement_mode?: SchemaEnforcementModeEnum;
+  /** Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event. */
+  primary_property?: string | null;
+  is_action?: boolean;
+  action_id?: number;
+  is_calculating?: boolean;
+  last_calculated_at?: string;
+  created_by?: UserBasic | null;
+  post_to_slack?: boolean;
+}
+export const EventDefinitionRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    created_at: S.optional(S.NullOr(S.String)),
+    last_seen_at: S.optional(S.NullOr(S.String)),
+    last_updated_at: S.optional(S.String),
+    tags: S.optional(EventDefinitionRecordTagsList),
+    enforcement_mode: S.optional(SchemaEnforcementModeEnum),
+    primary_property: S.optional(S.NullOr(S.String)),
+    is_action: S.optional(S.Boolean),
+    action_id: S.optional(S.Number),
+    is_calculating: S.optional(S.Boolean),
+    last_calculated_at: S.optional(S.String),
+    created_by: S.optional(S.NullOr(UserBasic)),
+    post_to_slack: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "EventDefinitionRecord",
+}) as any as S.Schema<EventDefinitionRecord>;
+
+export interface GetEventDefinitionsGolangRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const EventDefinitionsGolangRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/event_definitions/golang/",
-        code: 200,
-      }),
-    ),
+export const GetEventDefinitionsGolangRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/event_definitions/golang/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "EventDefinitionsGolangRetrieveRequest",
-}) as any as S.Schema<EventDefinitionsGolangRetrieveRequest>;
+  identifier: "GetEventDefinitionsGolangRequest",
+}) as any as S.Schema<GetEventDefinitionsGolangRequest>;
 
-export interface EventDefinitionsGolangRetrieveResponse {}
-export const EventDefinitionsGolangRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface GetEventDefinitionsGolangResponse {}
+export const GetEventDefinitionsGolangResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "EventDefinitionsGolangRetrieveResponse",
-}) as any as S.Schema<EventDefinitionsGolangRetrieveResponse>;
+  identifier: "GetEventDefinitionsGolangResponse",
+}) as any as S.Schema<GetEventDefinitionsGolangResponse>;
 
-export type EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList =
-  Array<string>;
-export const EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList =
+export type GetEventDefinitionsPrimaryPropertyRequestNamesList = Array<string>;
+export const GetEventDefinitionsPrimaryPropertyRequestNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList>;
+  ) as any as S.Schema<GetEventDefinitionsPrimaryPropertyRequestNamesList>;
 
-export interface EventDefinitionsPrimaryPropertiesRetrieveRequest {
+export interface GetEventDefinitionsPrimaryPropertyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Optional: restrict the response to these event names. Repeat the parameter for multiple names (e.g. `?names=a&names=b`). When omitted, returns every team-configured primary property. */
-  names?: EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList;
+  names?: GetEventDefinitionsPrimaryPropertyRequestNamesList;
 }
-export const EventDefinitionsPrimaryPropertiesRetrieveRequest =
+export const GetEventDefinitionsPrimaryPropertyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       names: S.optional(
-        EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList.pipe(
-          T.Query(),
-        ),
+        GetEventDefinitionsPrimaryPropertyRequestNamesList.pipe(T.Query()),
       ),
     }).pipe(
       T.Http({
@@ -470,8 +484,8 @@ export const EventDefinitionsPrimaryPropertiesRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "EventDefinitionsPrimaryPropertiesRetrieveRequest",
-  }) as any as S.Schema<EventDefinitionsPrimaryPropertiesRetrieveRequest>;
+    identifier: "GetEventDefinitionsPrimaryPropertyRequest",
+  }) as any as S.Schema<GetEventDefinitionsPrimaryPropertyRequest>;
 
 /** Mapping from event name to the team-configured primary property for that event. Names without a configured primary property are omitted; callers should fall back to the core taxonomy defaults for those. */
 export type PrimaryPropertiesResponsePrimaryPropertiesMap = {
@@ -495,59 +509,37 @@ export const PrimaryPropertiesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrimaryPropertiesResponse",
 }) as any as S.Schema<PrimaryPropertiesResponse>;
 
-export interface EventDefinitionsPythonRetrieveRequest {
+export interface GetEventDefinitionsPythonRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const EventDefinitionsPythonRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/event_definitions/python/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "EventDefinitionsPythonRetrieveRequest",
-}) as any as S.Schema<EventDefinitionsPythonRetrieveRequest>;
-
-export interface EventDefinitionsPythonRetrieveResponse {}
-export const EventDefinitionsPythonRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "EventDefinitionsPythonRetrieveResponse",
-}) as any as S.Schema<EventDefinitionsPythonRetrieveResponse>;
-
-export interface EventDefinitionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this event definition. */
-  id: string;
-}
-export const EventDefinitionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEventDefinitionsPythonRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/event_definitions/{id}/",
+      uri: "/api/projects/{project_id}/event_definitions/python/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "EventDefinitionsRetrieveRequest",
-}) as any as S.Schema<EventDefinitionsRetrieveRequest>;
+  identifier: "GetEventDefinitionsPythonRequest",
+}) as any as S.Schema<GetEventDefinitionsPythonRequest>;
 
-export interface EventDefinitionsTypescriptRetrieveRequest {
+export interface GetEventDefinitionsPythonResponse {}
+export const GetEventDefinitionsPythonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetEventDefinitionsPythonResponse",
+}) as any as S.Schema<GetEventDefinitionsPythonResponse>;
+
+export interface GetEventDefinitionsTypescriptRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const EventDefinitionsTypescriptRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetEventDefinitionsTypescriptRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -557,20 +549,21 @@ export const EventDefinitionsTypescriptRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "EventDefinitionsTypescriptRetrieveRequest",
-  }) as any as S.Schema<EventDefinitionsTypescriptRetrieveRequest>;
+).annotate({
+  identifier: "GetEventDefinitionsTypescriptRequest",
+}) as any as S.Schema<GetEventDefinitionsTypescriptRequest>;
 
-export interface EventDefinitionsTypescriptRetrieveResponse {}
-export const EventDefinitionsTypescriptRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "EventDefinitionsTypescriptRetrieveResponse",
-  }) as any as S.Schema<EventDefinitionsTypescriptRetrieveResponse>;
+export interface GetEventDefinitionsTypescriptResponse {}
+export const GetEventDefinitionsTypescriptResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetEventDefinitionsTypescriptResponse",
+}) as any as S.Schema<GetEventDefinitionsTypescriptResponse>;
 
-export type EventDefinitionsListRequestNamesList = Array<string>;
-export const EventDefinitionsListRequestNamesList = /*@__PURE__*/ S.Array(
+export type ListEventDefinitionsRequestNamesList = Array<string>;
+export const ListEventDefinitionsRequestNamesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<EventDefinitionsListRequestNamesList>;
+) as any as S.Schema<ListEventDefinitionsRequestNamesList>;
 
 export interface ListEventDefinitionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -582,7 +575,7 @@ export interface ListEventDefinitionsRequest {
   /** Number of results to return per page. */
   limit?: number;
   /** Return exact matches for these event names. Pass names as repeated or comma-separated values. */
-  names?: EventDefinitionsListRequestNamesList;
+  names?: ListEventDefinitionsRequestNamesList;
   /** The initial index from which to return the results. */
   offset?: number;
 }
@@ -592,7 +585,7 @@ export const ListEventDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
     exclude_hidden: S.optional(S.Boolean.pipe(T.Query())),
     exclude_stale: S.optional(S.Boolean.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
-    names: S.optional(EventDefinitionsListRequestNamesList.pipe(T.Query())),
+    names: S.optional(ListEventDefinitionsRequestNamesList.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -630,16 +623,16 @@ export const PaginatedEnterpriseEventDefinitionList = /*@__PURE__*/ S.suspend(
   identifier: "PaginatedEnterpriseEventDefinitionList",
 }) as any as S.Schema<PaginatedEnterpriseEventDefinitionList>;
 
-export type EventDefinitionsUpdateRequestTagsList = Array<unknown>;
-export const EventDefinitionsUpdateRequestTagsList = /*@__PURE__*/ S.Array(
+export type UpdateEventDefinitionRequestTagsList = Array<unknown>;
+export const UpdateEventDefinitionRequestTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<EventDefinitionsUpdateRequestTagsList>;
+) as any as S.Schema<UpdateEventDefinitionRequestTagsList>;
 
-export type EventDefinitionsUpdateRequestDefaultColumnsList = Array<string>;
-export const EventDefinitionsUpdateRequestDefaultColumnsList =
+export type UpdateEventDefinitionRequestDefaultColumnsList = Array<string>;
+export const UpdateEventDefinitionRequestDefaultColumnsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<EventDefinitionsUpdateRequestDefaultColumnsList>;
+  ) as any as S.Schema<UpdateEventDefinitionRequestDefaultColumnsList>;
 
 export interface UpdateEventDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -649,14 +642,14 @@ export interface UpdateEventDefinitionRequest {
   name?: string;
   owner?: number | null;
   description?: string | null;
-  tags?: EventDefinitionsUpdateRequestTagsList;
+  tags?: UpdateEventDefinitionRequestTagsList;
   verified?: boolean;
   hidden?: boolean | null;
-  enforcement_mode?: EnforcementModeEnum | (string & {});
+  enforcement_mode?: SchemaEnforcementModeEnum | (string & {});
   /** Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event. */
   primary_property?: string | null;
   post_to_slack?: boolean;
-  default_columns?: EventDefinitionsUpdateRequestDefaultColumnsList;
+  default_columns?: UpdateEventDefinitionRequestDefaultColumnsList;
 }
 export const UpdateEventDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -665,15 +658,13 @@ export const UpdateEventDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     owner: S.optional(S.NullOr(S.Number)),
     description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(EventDefinitionsUpdateRequestTagsList),
+    tags: S.optional(UpdateEventDefinitionRequestTagsList),
     verified: S.optional(S.Boolean),
     hidden: S.optional(S.NullOr(S.Boolean)),
-    enforcement_mode: S.optional(EnforcementModeEnum),
+    enforcement_mode: S.optional(SchemaEnforcementModeEnum),
     primary_property: S.optional(S.NullOr(S.String)),
     post_to_slack: S.optional(S.Boolean),
-    default_columns: S.optional(
-      EventDefinitionsUpdateRequestDefaultColumnsList,
-    ),
+    default_columns: S.optional(UpdateEventDefinitionRequestDefaultColumnsList),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -685,20 +676,20 @@ export const UpdateEventDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateEventDefinitionRequest",
 }) as any as S.Schema<UpdateEventDefinitionRequest>;
 
-export type EventDefinitionsPartialUpdateRequestTagsList = Array<unknown>;
-export const EventDefinitionsPartialUpdateRequestTagsList =
+export type UpdateEventDefinitionsPartialRequestTagsList = Array<unknown>;
+export const UpdateEventDefinitionsPartialRequestTagsList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<EventDefinitionsPartialUpdateRequestTagsList>;
+  ) as any as S.Schema<UpdateEventDefinitionsPartialRequestTagsList>;
 
-export type EventDefinitionsPartialUpdateRequestDefaultColumnsList =
+export type UpdateEventDefinitionsPartialRequestDefaultColumnsList =
   Array<string>;
-export const EventDefinitionsPartialUpdateRequestDefaultColumnsList =
+export const UpdateEventDefinitionsPartialRequestDefaultColumnsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<EventDefinitionsPartialUpdateRequestDefaultColumnsList>;
+  ) as any as S.Schema<UpdateEventDefinitionsPartialRequestDefaultColumnsList>;
 
-export interface UpdateEventDefinitionPartialRequest {
+export interface UpdateEventDefinitionsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this event definition. */
@@ -706,41 +697,42 @@ export interface UpdateEventDefinitionPartialRequest {
   name?: string;
   owner?: number | null;
   description?: string | null;
-  tags?: EventDefinitionsPartialUpdateRequestTagsList;
+  tags?: UpdateEventDefinitionsPartialRequestTagsList;
   verified?: boolean;
   hidden?: boolean | null;
-  enforcement_mode?: EnforcementModeEnum | (string & {});
+  enforcement_mode?: SchemaEnforcementModeEnum | (string & {});
   /** Name of a single property on this event that PostHog UIs should display alongside the event (for example `$pathname` on `$pageview`). When set, surfaces like the session replay inspector show the property's value next to the event name without the user having to open the event. */
   primary_property?: string | null;
   post_to_slack?: boolean;
-  default_columns?: EventDefinitionsPartialUpdateRequestDefaultColumnsList;
+  default_columns?: UpdateEventDefinitionsPartialRequestDefaultColumnsList;
 }
-export const UpdateEventDefinitionPartialRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    owner: S.optional(S.NullOr(S.Number)),
-    description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(EventDefinitionsPartialUpdateRequestTagsList),
-    verified: S.optional(S.Boolean),
-    hidden: S.optional(S.NullOr(S.Boolean)),
-    enforcement_mode: S.optional(EnforcementModeEnum),
-    primary_property: S.optional(S.NullOr(S.String)),
-    post_to_slack: S.optional(S.Boolean),
-    default_columns: S.optional(
-      EventDefinitionsPartialUpdateRequestDefaultColumnsList,
+export const UpdateEventDefinitionsPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      owner: S.optional(S.NullOr(S.Number)),
+      description: S.optional(S.NullOr(S.String)),
+      tags: S.optional(UpdateEventDefinitionsPartialRequestTagsList),
+      verified: S.optional(S.Boolean),
+      hidden: S.optional(S.NullOr(S.Boolean)),
+      enforcement_mode: S.optional(SchemaEnforcementModeEnum),
+      primary_property: S.optional(S.NullOr(S.String)),
+      post_to_slack: S.optional(S.Boolean),
+      default_columns: S.optional(
+        UpdateEventDefinitionsPartialRequestDefaultColumnsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/event_definitions/{id}/",
+        code: 200,
+      }),
     ),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/event_definitions/{id}/",
-      code: 200,
-    }),
-  ),
 ).annotate({
-  identifier: "UpdateEventDefinitionPartialRequest",
-}) as any as S.Schema<UpdateEventDefinitionPartialRequest>;
+  identifier: "UpdateEventDefinitionsPartialRequest",
+}) as any as S.Schema<UpdateEventDefinitionsPartialRequest>;
 
 export type CreateEventDefinitionError =
   | BadRequest
@@ -775,25 +767,6 @@ export const eventDefinitionsBulkUpdateVerifiedCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EventDefinitionsByNameRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get event definition by exact name */
-export const eventDefinitionsByNameRetrieve: API.OperationMethod<
-  EventDefinitionsByNameRetrieveRequest,
-  EventDefinitionRecord,
-  EventDefinitionsByNameRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventDefinitionsByNameRetrieveRequest,
-  output: EventDefinitionRecord,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EventDefinitionsDestroyError =
   | Forbidden
   | NotFound
@@ -811,84 +784,100 @@ export const eventDefinitionsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EventDefinitionsGolangRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const eventDefinitionsGolangRetrieve: API.OperationMethod<
-  EventDefinitionsGolangRetrieveRequest,
-  EventDefinitionsGolangRetrieveResponse,
-  EventDefinitionsGolangRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventDefinitionsGolangRetrieveRequest,
-  output: EventDefinitionsGolangRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EventDefinitionsPrimaryPropertiesRetrieveError = PosthogOpError;
-/** Resolve team-configured primary properties for event definitions. The response only contains entries where a non-null primary_property is set on the EventDefinition. Callers should fall back to the core taxonomy defaults client-side for names not present in the response. */
-export const eventDefinitionsPrimaryPropertiesRetrieve: API.OperationMethod<
-  EventDefinitionsPrimaryPropertiesRetrieveRequest,
-  PrimaryPropertiesResponse,
-  EventDefinitionsPrimaryPropertiesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventDefinitionsPrimaryPropertiesRetrieveRequest,
-  output: PrimaryPropertiesResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EventDefinitionsPythonRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const eventDefinitionsPythonRetrieve: API.OperationMethod<
-  EventDefinitionsPythonRetrieveRequest,
-  EventDefinitionsPythonRetrieveResponse,
-  EventDefinitionsPythonRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventDefinitionsPythonRetrieveRequest,
-  output: EventDefinitionsPythonRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EventDefinitionsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const eventDefinitionsRetrieve: API.OperationMethod<
-  EventDefinitionsRetrieveRequest,
+export type GetEventDefinitionError = Forbidden | NotFound | PosthogOpError;
+export const getEventDefinition: API.OperationMethod<
+  GetEventDefinitionRequest,
   EnterpriseEventDefinition,
-  EventDefinitionsRetrieveError,
+  GetEventDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventDefinitionsRetrieveRequest,
+  input: GetEventDefinitionRequest,
   output: EnterpriseEventDefinition,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type EventDefinitionsTypescriptRetrieveError =
+export type GetEventDefinitionsByNameError =
+  | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const eventDefinitionsTypescriptRetrieve: API.OperationMethod<
-  EventDefinitionsTypescriptRetrieveRequest,
-  EventDefinitionsTypescriptRetrieveResponse,
-  EventDefinitionsTypescriptRetrieveError,
+/** Get event definition by exact name */
+export const getEventDefinitionsByName: API.OperationMethod<
+  GetEventDefinitionsByNameRequest,
+  EventDefinitionRecord,
+  GetEventDefinitionsByNameError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventDefinitionsTypescriptRetrieveRequest,
-  output: EventDefinitionsTypescriptRetrieveResponse,
+  input: GetEventDefinitionsByNameRequest,
+  output: EventDefinitionRecord,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEventDefinitionsGolangError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getEventDefinitionsGolang: API.OperationMethod<
+  GetEventDefinitionsGolangRequest,
+  GetEventDefinitionsGolangResponse,
+  GetEventDefinitionsGolangError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEventDefinitionsGolangRequest,
+  output: GetEventDefinitionsGolangResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEventDefinitionsPrimaryPropertyError = PosthogOpError;
+/** Resolve team-configured primary properties for event definitions. The response only contains entries where a non-null primary_property is set on the EventDefinition. Callers should fall back to the core taxonomy defaults client-side for names not present in the response. */
+export const getEventDefinitionsPrimaryProperty: API.OperationMethod<
+  GetEventDefinitionsPrimaryPropertyRequest,
+  PrimaryPropertiesResponse,
+  GetEventDefinitionsPrimaryPropertyError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEventDefinitionsPrimaryPropertyRequest,
+  output: PrimaryPropertiesResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEventDefinitionsPythonError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getEventDefinitionsPython: API.OperationMethod<
+  GetEventDefinitionsPythonRequest,
+  GetEventDefinitionsPythonResponse,
+  GetEventDefinitionsPythonError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEventDefinitionsPythonRequest,
+  output: GetEventDefinitionsPythonResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEventDefinitionsTypescriptError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getEventDefinitionsTypescript: API.OperationMethod<
+  GetEventDefinitionsTypescriptRequest,
+  GetEventDefinitionsTypescriptResponse,
+  GetEventDefinitionsTypescriptError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEventDefinitionsTypescriptRequest,
+  output: GetEventDefinitionsTypescriptResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -930,18 +919,18 @@ export const updateEventDefinition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateEventDefinitionPartialError =
+export type UpdateEventDefinitionsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateEventDefinitionPartial: API.OperationMethod<
-  UpdateEventDefinitionPartialRequest,
+export const updateEventDefinitionsPartial: API.OperationMethod<
+  UpdateEventDefinitionsPartialRequest,
   EnterpriseEventDefinition,
-  UpdateEventDefinitionPartialError,
+  UpdateEventDefinitionsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateEventDefinitionPartialRequest,
+  input: UpdateEventDefinitionsPartialRequest,
   output: EnterpriseEventDefinition,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

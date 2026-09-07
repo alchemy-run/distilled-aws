@@ -29,7 +29,8 @@
         "alias": "listRules",
         "target": "getRule"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.snippets#ListResultItem": {
@@ -154,31 +155,31 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.snippets#Delete"
+          "target": "com.cloudflare.snippets#DeleteRule"
         },
         {
-          "target": "com.cloudflare.snippets#Get"
+          "target": "com.cloudflare.snippets#DeleteSnippet"
         },
         {
-          "target": "com.cloudflare.snippets#List"
+          "target": "com.cloudflare.snippets#GetContent"
         },
         {
-          "target": "com.cloudflare.snippets#Update"
+          "target": "com.cloudflare.snippets#GetRule"
         },
         {
-          "target": "com.cloudflare.snippets#ContentGet"
-        },
-        {
-          "target": "com.cloudflare.snippets#RulesDelete"
-        },
-        {
-          "target": "com.cloudflare.snippets#RulesGet"
+          "target": "com.cloudflare.snippets#GetSnippet"
         },
         {
           "target": "com.cloudflare.snippets#ListRules"
         },
         {
-          "target": "com.cloudflare.snippets#RulesUpdate"
+          "target": "com.cloudflare.snippets#ListSnippets"
+        },
+        {
+          "target": "com.cloudflare.snippets#PutRule"
+        },
+        {
+          "target": "com.cloudflare.snippets#PutSnippet"
         }
       ],
       "traits": {

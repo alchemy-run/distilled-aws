@@ -67,21 +67,21 @@ export class NotFound
 
 /** Represents the access granted for a given Resource Pattern in an ACL. */
 export interface AclEntry {
-  /** Required. The principal. Specified as Google Cloud account, with the Kafka StandardAuthorizer prefix "User:". For example: "User:test-kafka-client@test-project.iam.gserviceaccount.com". Can be the wildcard "User:*" to refer to all users. */
-  principal?: string;
+  /** Required. The permission type. Accepted values are (case insensitive): ALLOW, DENY. */
+  permissionType?: string;
   /** Required. The host. Must be set to "*" for Managed Service for Apache Kafka. */
   host?: string;
   /** Required. The operation type. Allowed values are (case insensitive): ALL, READ, WRITE, CREATE, DELETE, ALTER, DESCRIBE, CLUSTER_ACTION, DESCRIBE_CONFIGS, ALTER_CONFIGS, and IDEMPOTENT_WRITE. See https://kafka.apache.org/documentation/#operations_resources_and_protocols for valid combinations of resource_type and operation for different Kafka API requests. */
   operation?: string;
-  /** Required. The permission type. Accepted values are (case insensitive): ALLOW, DENY. */
-  permissionType?: string;
+  /** Required. The principal. Specified as Google Cloud account, with the Kafka StandardAuthorizer prefix "User:". For example: "User:test-kafka-client@test-project.iam.gserviceaccount.com". Can be the wildcard "User:*" to refer to all users. */
+  principal?: string;
 }
 export const AclEntry = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    principal: S.optional(S.String),
+    permissionType: S.optional(S.String),
     host: S.optional(S.String),
     operation: S.optional(S.String),
-    permissionType: S.optional(S.String),
+    principal: S.optional(S.String),
   }),
 ).annotate({ identifier: "AclEntry" }) as any as S.Schema<AclEntry>;
 
@@ -114,41 +114,41 @@ export const AclEntryList = /*@__PURE__*/ S.Array(
 
 /** Represents the set of ACLs for a given Kafka Resource Pattern, which consists of resource_type, resource_name and pattern_type. */
 export interface Acl {
-  /** Required. The ACL entries that apply to the resource pattern. The maximum number of allowed entries 100. */
-  aclEntries?: AclEntryList;
   /** Output only. The ACL resource name derived from the name. For cluster resource_type, this is always "kafka-cluster". Can be the wildcard literal "*". */
   resourceName?: string;
+  /** Output only. The ACL pattern type derived from the name. One of: LITERAL, PREFIXED. */
+  patternType?: string;
   /** Output only. The ACL resource type derived from the name. One of: CLUSTER, TOPIC, GROUP, TRANSACTIONAL_ID. */
   resourceType?: string;
   /** Optional. `etag` is used for concurrency control. An `etag` is returned in the response to `GetAcl` and `CreateAcl`. Callers are required to put that etag in the request to `UpdateAcl` to ensure that their change will be applied to the same version of the acl that exists in the Kafka Cluster. A terminal 'T' character in the etag indicates that the AclEntries were truncated; more entries for the Acl exist on the Kafka Cluster, but can't be returned in the Acl due to repeated field limits. */
   etag?: string;
+  /** Required. The ACL entries that apply to the resource pattern. The maximum number of allowed entries 100. */
+  aclEntries?: AclEntryList;
   /** Identifier. The name for the acl. Represents a single Resource Pattern. Structured like: projects/{project}/locations/{location}/clusters/{cluster}/acls/{acl_id} The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. `acl_id` is structured like one of the following: For acls on the cluster: `cluster` For acls on a single resource within the cluster: `topic/{resource_name}` `consumerGroup/{resource_name}` `transactionalId/{resource_name}` For acls on all resources that match a prefix: `topicPrefixed/{resource_name}` `consumerGroupPrefixed/{resource_name}` `transactionalIdPrefixed/{resource_name}` For acls on all resources of a given type (i.e. the wildcard literal "*"): `allTopics` (represents `topic/*`) `allConsumerGroups` (represents `consumerGroup/*`) `allTransactionalIds` (represents `transactionalId/*`) */
   name?: string;
-  /** Output only. The ACL pattern type derived from the name. One of: LITERAL, PREFIXED. */
-  patternType?: string;
 }
 export const Acl = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    aclEntries: S.optional(AclEntryList),
     resourceName: S.optional(S.String),
+    patternType: S.optional(S.String),
     resourceType: S.optional(S.String),
     etag: S.optional(S.String),
+    aclEntries: S.optional(AclEntryList),
     name: S.optional(S.String),
-    patternType: S.optional(S.String),
   }),
 ).annotate({ identifier: "Acl" }) as any as S.Schema<Acl>;
 
 /** Response for AddAclEntry. */
 export interface AddAclEntryResponse {
-  /** The updated acl. */
-  acl?: Acl;
   /** Whether the acl was created as a result of adding the acl entry. */
   aclCreated?: boolean;
+  /** The updated acl. */
+  acl?: Acl;
 }
 export const AddAclEntryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    acl: S.optional(Acl),
     aclCreated: S.optional(S.Boolean),
+    acl: S.optional(Acl),
   }),
 ).annotate({
   identifier: "AddAclEntryResponse",
@@ -190,27 +190,20 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
-export type CheckCompatibilityRequestSchemaTypeEnum =
-  | "SCHEMA_TYPE_UNSPECIFIED"
-  | "AVRO"
-  | "JSON"
-  | "PROTOBUF";
-export const CheckCompatibilityRequestSchemaTypeEnum = /*@__PURE__*/ S.String;
-
 /** SchemaReference is a reference to a schema. */
 export interface SchemaReference {
-  /** Required. The name of the reference. */
-  name?: string;
   /** Required. The subject of the reference. */
   subject?: string;
   /** Required. The version of the reference. */
   version?: number;
+  /** Required. The name of the reference. */
+  name?: string;
 }
 export const SchemaReference = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     subject: S.optional(S.String),
     version: S.optional(S.Number),
+    name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SchemaReference",
@@ -221,23 +214,30 @@ export const SchemaReferenceList = /*@__PURE__*/ S.Array(
   SchemaReference,
 ) as any as S.Schema<SchemaReferenceList>;
 
+export type CheckCompatibilityRequestSchemaTypeEnum =
+  | "SCHEMA_TYPE_UNSPECIFIED"
+  | "AVRO"
+  | "JSON"
+  | "PROTOBUF";
+export const CheckCompatibilityRequestSchemaTypeEnum = /*@__PURE__*/ S.String;
+
 /** Request for CheckCompatibility. */
 export interface CheckCompatibilityRequest {
-  /** Optional. The schema type of the schema. */
-  schemaType?: CheckCompatibilityRequestSchemaTypeEnum | (string & {});
-  /** Optional. If true, the response will contain the compatibility check result with reasons for failed checks. The default is false. */
-  verbose?: boolean;
-  /** Optional. The schema references used by the schema. */
-  references?: SchemaReferenceList;
   /** Required. The schema payload */
   schema?: string;
+  /** Optional. The schema references used by the schema. */
+  references?: SchemaReferenceList;
+  /** Optional. If true, the response will contain the compatibility check result with reasons for failed checks. The default is false. */
+  verbose?: boolean;
+  /** Optional. The schema type of the schema. */
+  schemaType?: CheckCompatibilityRequestSchemaTypeEnum | (string & {});
 }
 export const CheckCompatibilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    schemaType: S.optional(CheckCompatibilityRequestSchemaTypeEnum),
-    verbose: S.optional(S.Boolean),
-    references: S.optional(SchemaReferenceList),
     schema: S.optional(S.String),
+    references: S.optional(SchemaReferenceList),
+    verbose: S.optional(S.Boolean),
+    schemaType: S.optional(CheckCompatibilityRequestSchemaTypeEnum),
   }),
 ).annotate({
   identifier: "CheckCompatibilityRequest",
@@ -273,15 +273,15 @@ export const StringList = /*@__PURE__*/ S.Array(
 
 /** Response for CheckCompatibility. */
 export interface CheckCompatibilityResponse {
-  /** The compatibility check result. If true, the schema is compatible with the resource. */
-  is_compatible?: boolean;
   /** Failure reasons if verbose = true. */
   messages?: StringList;
+  /** The compatibility check result. If true, the schema is compatible with the resource. */
+  is_compatible?: boolean;
 }
 export const CheckCompatibilityResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    is_compatible: S.optional(S.Boolean),
     messages: S.optional(StringList),
+    is_compatible: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "CheckCompatibilityResponse",
@@ -310,6 +310,36 @@ export const CheckCompatibilityProjectsLocationsSchemaRegistriesContextsCompatib
       "CheckCompatibilityProjectsLocationsSchemaRegistriesContextsCompatibilityRequest",
   }) as any as S.Schema<CheckCompatibilityProjectsLocationsSchemaRegistriesContextsCompatibilityRequest>;
 
+export type StringMap = { [key: string]: string | undefined };
+export const StringMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StringMap>;
+
+/** Describes the effective capacity configuration of a Kafka cluster, both cluster-wide and per-broker. */
+export interface EffectiveCapacityConfig {
+  /** Output only. The number of brokers in the cluster. */
+  brokerCount?: string;
+  /** Output only. The disk assigned to each broker in Gibibytes. */
+  brokerDiskSizeGib?: string;
+}
+export const EffectiveCapacityConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brokerCount: S.optional(S.String),
+    brokerDiskSizeGib: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EffectiveCapacityConfig",
+}) as any as S.Schema<EffectiveCapacityConfig>;
+
+export type ClusterStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "CREATING"
+  | "ACTIVE"
+  | "DELETING"
+  | "UPDATING";
+export const ClusterStateEnum = /*@__PURE__*/ S.String;
+
 /** A capacity configuration of a Kafka cluster. */
 export interface CapacityConfig {
   /** Required. The number of vCPUs to provision for the cluster. Minimum: 3. */
@@ -326,18 +356,18 @@ export const CapacityConfig = /*@__PURE__*/ S.suspend(() =>
 
 /** Details of a broker in the Kafka cluster. */
 export interface BrokerDetails {
+  /** Output only. The index of the broker. */
+  brokerIndex?: string;
   /** Output only. The node id of the broker. */
   nodeId?: string;
   /** Output only. The rack of the broker. */
   rack?: string;
-  /** Output only. The index of the broker. */
-  brokerIndex?: string;
 }
 export const BrokerDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    brokerIndex: S.optional(S.String),
     nodeId: S.optional(S.String),
     rack: S.optional(S.String),
-    brokerIndex: S.optional(S.String),
   }),
 ).annotate({ identifier: "BrokerDetails" }) as any as S.Schema<BrokerDetails>;
 
@@ -345,23 +375,6 @@ export type BrokerDetailsList = Array<BrokerDetails>;
 export const BrokerDetailsList = /*@__PURE__*/ S.Array(
   BrokerDetails,
 ) as any as S.Schema<BrokerDetailsList>;
-
-export type StringMap = { [key: string]: string | undefined };
-export const StringMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StringMap>;
-
-/** UpdateOptions specifies options that influence how a cluster update is applied. These options control the behavior of the update process, rather than defining the desired end-state of a cluster. */
-export interface UpdateOptions {
-  /** Optional. If true, allows an update operation that increases the total vCPU and/or memory allocation of the cluster to significantly decrease the per-broker vCPU and/or memory allocation. This can result in reduced performance and availability. By default, the update operation will fail if an upscale request results in a vCPU or memory allocation for the brokers that is smaller than 90% of the current broker size. */
-  allowBrokerDownscaleOnClusterUpscale?: boolean;
-}
-export const UpdateOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowBrokerDownscaleOnClusterUpscale: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "UpdateOptions" }) as any as S.Schema<UpdateOptions>;
 
 export type RebalanceConfigModeEnum =
   | "MODE_UNSPECIFIED"
@@ -381,6 +394,22 @@ export const RebalanceConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RebalanceConfig",
 }) as any as S.Schema<RebalanceConfig>;
+
+/** Details of the public cluster feature for the Kafka cluster. */
+export interface PublicClusterDetails {
+  /** Output only. DNS discovery records that resolve to all of the external IP addresses associated with the public cluster. Used for configuring DNS-based egress firewall rules to a public cluster. discovery_dns_record can be added to this list if the cluster is scaled up. Must configure DNS based firewalls to resolve ALL DNS records in this list as large clusters have IP addresses sharded across records. Each record contains a maximum of 30 IP addresses. */
+  discoveryDnsRecords?: StringList;
+  /** Output only. All of the external IP addresses associated with the public cluster used for configuring egress firewall rules to a public cluster. external_ip_address can be added to this list if the cluster is scaled up. */
+  externalIpAddresses?: StringList;
+}
+export const PublicClusterDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    discoveryDnsRecords: S.optional(StringList),
+    externalIpAddresses: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "PublicClusterDetails",
+}) as any as S.Schema<PublicClusterDetails>;
 
 /** A configuration for the Google Certificate Authority Service. */
 export interface CertificateAuthorityServiceConfig {
@@ -426,13 +455,16 @@ export const TlsConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TlsConfig" }) as any as S.Schema<TlsConfig>;
 
-export type ClusterStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "CREATING"
-  | "ACTIVE"
-  | "DELETING"
-  | "UPDATING";
-export const ClusterStateEnum = /*@__PURE__*/ S.String;
+/** UpdateOptions specifies options that influence how a cluster update is applied. These options control the behavior of the update process, rather than defining the desired end-state of a cluster. */
+export interface UpdateOptions {
+  /** Optional. If true, allows an update operation that increases the total vCPU and/or memory allocation of the cluster to significantly decrease the per-broker vCPU and/or memory allocation. This can result in reduced performance and availability. By default, the update operation will fail if an upscale request results in a vCPU or memory allocation for the brokers that is smaller than 90% of the current broker size. */
+  allowBrokerDownscaleOnClusterUpscale?: boolean;
+}
+export const UpdateOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowBrokerDownscaleOnClusterUpscale: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "UpdateOptions" }) as any as S.Schema<UpdateOptions>;
 
 /** The configuration of a Virtual Private Cloud (VPC) network that can access the Kafka cluster. */
 export interface NetworkConfig {
@@ -450,86 +482,127 @@ export const NetworkConfigList = /*@__PURE__*/ S.Array(
   NetworkConfig,
 ) as any as S.Schema<NetworkConfigList>;
 
+/** The configuration for a public Kafka cluster */
+export interface PublicClusterConfig {
+  /** Required. The list of IPv4 ranges in CIDR notation that are allowed to connect to the public Kafka broker endpoints. The Kafka cluster should only be exposed to trusted external ranges. A maximum of 500 IP ranges can be specified and no single range can be larger than a `/16`. This field is required if PublicClusterConfig is specified. */
+  allowedSourceIpRanges?: StringList;
+}
+export const PublicClusterConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowedSourceIpRanges: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "PublicClusterConfig",
+}) as any as S.Schema<PublicClusterConfig>;
+
 /** The configuration of access to the Kafka cluster. */
 export interface AccessConfig {
   /** Required. Virtual Private Cloud (VPC) networks that must be granted direct access to the Kafka cluster. Minimum of 1 network is required. Maximum 10 networks can be specified. */
   networkConfigs?: NetworkConfigList;
+  /** Optional. The configuration for public connectivity to the Kafka cluster. */
+  publicClusterConfig?: PublicClusterConfig;
 }
 export const AccessConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     networkConfigs: S.optional(NetworkConfigList),
+    publicClusterConfig: S.optional(PublicClusterConfig),
   }),
 ).annotate({ identifier: "AccessConfig" }) as any as S.Schema<AccessConfig>;
 
 /** Configuration properties for a Kafka cluster deployed to Google Cloud Platform. */
 export interface GcpConfig {
-  /** Optional. Immutable. The Cloud KMS Key name to use for encryption. The key must be located in the same region as the cluster and cannot be changed. Structured like: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}. */
-  kmsKey?: string;
   /** Required. Access configuration for the Kafka cluster. */
   accessConfig?: AccessConfig;
+  /** Optional. Immutable. The Cloud KMS Key name to use for encryption. The key must be located in the same region as the cluster and cannot be changed. Structured like: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}. */
+  kmsKey?: string;
 }
 export const GcpConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kmsKey: S.optional(S.String),
     accessConfig: S.optional(AccessConfig),
+    kmsKey: S.optional(S.String),
   }),
 ).annotate({ identifier: "GcpConfig" }) as any as S.Schema<GcpConfig>;
 
+/** Capacity configuration at a per-broker level within the Kafka cluster. The config will be appled to each broker in the cluster. */
+export interface BrokerCapacityConfig {
+  /** Optional. The disk to provision for each broker in Gibibytes. Minimum: 100 GiB. */
+  diskSizeGib?: string;
+}
+export const BrokerCapacityConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskSizeGib: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BrokerCapacityConfig",
+}) as any as S.Schema<BrokerCapacityConfig>;
+
 /** An Apache Kafka cluster deployed in a location. */
 export interface Cluster {
-  /** Output only. Only populated when FULL view is requested. The Kafka version of the cluster. */
-  kafkaVersion?: string;
-  /** Output only. The time when the cluster was created. */
-  createTime?: string;
-  /** Identifier. The name of the cluster. Structured like: projects/{project_number}/locations/{location}/clusters/{cluster_id} */
-  name?: string;
-  /** Output only. Reserved for future use. */
-  satisfiesPzs?: boolean;
-  /** Required. Capacity configuration for the Kafka cluster. */
-  capacityConfig?: CapacityConfig;
-  /** Output only. Only populated when FULL view is requested. Details of each broker in the cluster. */
-  brokerDetails?: BrokerDetailsList;
   /** Optional. Labels as key value pairs. */
   labels?: StringMap;
-  /** Optional. UpdateOptions represents options that control how updates to the cluster are applied. */
-  updateOptions?: UpdateOptions;
+  /** Output only. Only populated when FULL view is requested. The effective capacity configuration of the cluster. */
+  effectiveCapacityConfig?: EffectiveCapacityConfig;
   /** Output only. The time when the cluster was last updated. */
   updateTime?: string;
-  /** Optional. Rebalance configuration for the Kafka cluster. */
-  rebalanceConfig?: RebalanceConfig;
-  /** Optional. TLS configuration for the Kafka cluster. */
-  tlsConfig?: TlsConfig;
+  /** Output only. The time when the cluster was created. */
+  createTime?: string;
   /** Output only. Reserved for future use. */
   satisfiesPzi?: boolean;
   /** Output only. The current state of the cluster. */
   state?: ClusterStateEnum | (string & {});
+  /** Output only. The bootstrap address of the Kafka cluster. The returned address format is: `bootstrap-...managedkafka.s.cloud.goog` or `bootstrap...managedkafka..cloud.goog` (legacy format). ## Examples: `bootstrap-nol2mecj8p94jhx2ge2rg54579a.c0aad26f.europe-west1.managedkafka.s.cloud.goog` - `bootstrap.my-cluster.us-central1.managedkafka.my-project.cloud.goog` The port number is omitted so clients can connect to their target listener (for example, `:9092` for TLS or `:9094` for mTLS). */
+  bootstrapAddress?: string;
+  /** Required. Capacity configuration for the Kafka cluster. */
+  capacityConfig?: CapacityConfig;
+  /** Output only. Only populated when FULL view is requested. Details of each broker in the cluster. */
+  brokerDetails?: BrokerDetailsList;
+  /** Identifier. The name of the cluster. Structured like: projects/{project_number}/locations/{location}/clusters/{cluster_id} */
+  name?: string;
+  /** Optional. Rebalance configuration for the Kafka cluster. */
+  rebalanceConfig?: RebalanceConfig;
+  /** Output only. Details of the public cluster feature for the Kafka cluster. */
+  publicClusterDetails?: PublicClusterDetails;
+  /** Output only. Reserved for future use. */
+  satisfiesPzs?: boolean;
+  /** Output only. Only populated when FULL view is requested. The Kafka version of the cluster. */
+  kafkaVersion?: string;
+  /** Optional. TLS configuration for the Kafka cluster. */
+  tlsConfig?: TlsConfig;
+  /** Optional. UpdateOptions represents options that control how updates to the cluster are applied. */
+  updateOptions?: UpdateOptions;
   /** Required. Configuration properties for a Kafka cluster deployed to Google Cloud Platform. */
   gcpConfig?: GcpConfig;
+  /** Optional. Capacity configuration at a per-broker level within the Kafka cluster. The config will be appled to each broker in the cluster. */
+  brokerCapacityConfig?: BrokerCapacityConfig;
 }
 export const Cluster = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kafkaVersion: S.optional(S.String),
-    createTime: S.optional(S.String),
-    name: S.optional(S.String),
-    satisfiesPzs: S.optional(S.Boolean),
-    capacityConfig: S.optional(CapacityConfig),
-    brokerDetails: S.optional(BrokerDetailsList),
     labels: S.optional(StringMap),
-    updateOptions: S.optional(UpdateOptions),
+    effectiveCapacityConfig: S.optional(EffectiveCapacityConfig),
     updateTime: S.optional(S.String),
-    rebalanceConfig: S.optional(RebalanceConfig),
-    tlsConfig: S.optional(TlsConfig),
+    createTime: S.optional(S.String),
     satisfiesPzi: S.optional(S.Boolean),
     state: S.optional(ClusterStateEnum),
+    bootstrapAddress: S.optional(S.String),
+    capacityConfig: S.optional(CapacityConfig),
+    brokerDetails: S.optional(BrokerDetailsList),
+    name: S.optional(S.String),
+    rebalanceConfig: S.optional(RebalanceConfig),
+    publicClusterDetails: S.optional(PublicClusterDetails),
+    satisfiesPzs: S.optional(S.Boolean),
+    kafkaVersion: S.optional(S.String),
+    tlsConfig: S.optional(TlsConfig),
+    updateOptions: S.optional(UpdateOptions),
     gcpConfig: S.optional(GcpConfig),
+    brokerCapacityConfig: S.optional(BrokerCapacityConfig),
   }),
 ).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
 
 export interface CreateProjectsLocationsClustersRequest {
-  /** Required. The ID to use for the cluster, which will become the final component of the cluster's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-cluster-id`. */
-  clusterId?: string;
   /** Required. The parent region in which to create the cluster. Structured like `projects/{project}/locations/{location}`. */
   parent: string;
+  /** Required. The ID to use for the cluster, which will become the final component of the cluster's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-cluster-id`. */
+  clusterId?: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID to avoid duplication of requests. If a request times out or fails, retrying with the same ID allows the server to recognize the previous attempt. For at least 60 minutes, the server ignores duplicate requests bearing the same ID. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID within 60 minutes of the last request, the server checks if an original operation with the same request ID was received. If so, the server ignores the second request. The request ID must be a valid UUID. A zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
   /** Request body */
@@ -538,8 +611,8 @@ export interface CreateProjectsLocationsClustersRequest {
 export const CreateProjectsLocationsClustersRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      clusterId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      clusterId: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Cluster.pipe(T.HttpBody())),
     }).pipe(
@@ -566,18 +639,18 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** The status code, which should be an enum value of google.rpc.Code. */
-  code?: number;
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
+  /** The status code, which should be an enum value of google.rpc.Code. */
+  code?: number;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    code: S.optional(S.Number),
-    details: S.optional(DocumentMapList),
     message: S.optional(S.String),
+    details: S.optional(DocumentMapList),
+    code: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
@@ -585,22 +658,22 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
 export interface Operation {
   /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
   done?: boolean;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     done: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    response: S.optional(DocumentMap),
     error: S.optional(Status),
     metadata: S.optional(DocumentMap),
-    response: S.optional(DocumentMap),
-    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
@@ -635,33 +708,33 @@ export interface Topic {
   configs?: StringMap;
   /** Identifier. The name of the topic. The `topic` segment is used when connecting directly to the cluster. Structured like: projects/{project}/locations/{location}/clusters/{cluster}/topics/{topic} */
   name?: string;
-  /** Required. Immutable. The number of replicas of each partition. A replication factor of 3 is recommended for high availability. */
-  replicationFactor?: number;
   /** Required. The number of partitions this topic has. The partition count can only be increased, not decreased. Please note that if partitions are increased for a topic that has a key, the partitioning logic or the ordering of the messages will be affected. */
   partitionCount?: number;
+  /** Required. Immutable. The number of replicas of each partition. A replication factor of 3 is recommended for high availability. */
+  replicationFactor?: number;
 }
 export const Topic = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     configs: S.optional(StringMap),
     name: S.optional(S.String),
-    replicationFactor: S.optional(S.Number),
     partitionCount: S.optional(S.Number),
+    replicationFactor: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Topic" }) as any as S.Schema<Topic>;
 
 export interface CreateProjectsLocationsClustersTopicsRequest {
-  /** Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`. */
-  topicId?: string;
   /** Required. The parent cluster in which to create the topic. Structured like `projects/{project}/locations/{location}/clusters/{cluster}`. */
   parent: string;
+  /** Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`. */
+  topicId?: string;
   /** Request body */
   body?: Topic;
 }
 export const CreateProjectsLocationsClustersTopicsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      topicId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      topicId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Topic.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -674,20 +747,28 @@ export const CreateProjectsLocationsClustersTopicsRequest =
     identifier: "CreateProjectsLocationsClustersTopicsRequest",
   }) as any as S.Schema<CreateProjectsLocationsClustersTopicsRequest>;
 
+export type ConnectClusterStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "CREATING"
+  | "ACTIVE"
+  | "DELETING"
+  | "DETACHED";
+export const ConnectClusterStateEnum = /*@__PURE__*/ S.String;
+
 /** The configuration of a Virtual Private Cloud (VPC) network that can access the Kafka Connect cluster. */
 export interface ConnectNetworkConfig {
   /** Optional. Additional DNS domain names from the subnet's network to be made visible to the Connect Cluster. When using MirrorMaker2, it's necessary to add the bootstrap address's dns domain name of the target cluster to make it visible to the connector. For example: my-kafka-cluster.us-central1.managedkafka.my-project.cloud.goog */
   dnsDomainNames?: StringList;
-  /** Required. VPC subnet to make available to the Kafka Connect cluster. Structured like: projects/{project}/regions/{region}/subnetworks/{subnet_id} It is used to create a Private Service Connect (PSC) interface for the Kafka Connect workers. It must be located in the same region as the Kafka Connect cluster. The CIDR range of the subnet must be within the IPv4 address ranges for private networks, as specified in RFC 1918. The primary subnet CIDR range must have a minimum size of /22 (1024 addresses). */
-  primarySubnet?: string;
   /** Optional. Deprecated: Managed Kafka Connect clusters can now reach any endpoint accessible from the primary subnet without the need to define additional subnets. Please see https://cloud.google.com/managed-service-for-apache-kafka/docs/connect-cluster/create-connect-cluster#worker-subnet for more information. */
   additionalSubnets?: StringList;
+  /** Required. VPC subnet to make available to the Kafka Connect cluster. Structured like: projects/{project}/regions/{region}/subnetworks/{subnet_id} It is used to create a Private Service Connect (PSC) interface for the Kafka Connect workers. It must be located in the same region as the Kafka Connect cluster. The CIDR range of the subnet must be within the IPv4 address ranges for private networks, as specified in RFC 1918. The primary subnet CIDR range must have a minimum size of /22 (1024 addresses). */
+  primarySubnet?: string;
 }
 export const ConnectNetworkConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     dnsDomainNames: S.optional(StringList),
-    primarySubnet: S.optional(S.String),
     additionalSubnets: S.optional(StringList),
+    primarySubnet: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ConnectNetworkConfig",
@@ -727,62 +808,54 @@ export const ConnectGcpConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectGcpConfig",
 }) as any as S.Schema<ConnectGcpConfig>;
 
-export type ConnectClusterStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "CREATING"
-  | "ACTIVE"
-  | "DELETING"
-  | "DETACHED";
-export const ConnectClusterStateEnum = /*@__PURE__*/ S.String;
-
 /** An Apache Kafka Connect cluster deployed in a location. */
 export interface ConnectCluster {
   /** Required. Immutable. The name of the Kafka cluster this Kafka Connect cluster is attached to. Structured like: projects/{project}/locations/{location}/clusters/{cluster} */
   kafkaCluster?: string;
+  /** Output only. Reserved for future use. */
+  satisfiesPzi?: boolean;
   /** Required. Capacity configuration for the Kafka Connect cluster. */
   capacityConfig?: CapacityConfig;
-  /** Required. Configuration properties for a Kafka Connect cluster deployed to Google Cloud Platform. */
-  gcpConfig?: ConnectGcpConfig;
-  /** Output only. Reserved for future use. */
-  satisfiesPzs?: boolean;
   /** Output only. The current state of the Kafka Connect cluster. */
   state?: ConnectClusterStateEnum | (string & {});
+  /** Optional. Labels as key value pairs. */
+  labels?: StringMap;
+  /** Output only. Reserved for future use. */
+  satisfiesPzs?: boolean;
+  /** Required. Configuration properties for a Kafka Connect cluster deployed to Google Cloud Platform. */
+  gcpConfig?: ConnectGcpConfig;
+  /** Output only. The time when the cluster was created. */
+  createTime?: string;
+  /** Identifier. The name of the Kafka Connect cluster. Structured like: projects/{project_number}/locations/{location}/connectClusters/{connect_cluster_id} */
+  name?: string;
   /** Optional. Reserved for future use. This field is meant for worker config overrides, but is unsupported for now. */
   config?: StringMap;
   /** Output only. The time when the cluster was last updated. */
   updateTime?: string;
-  /** Output only. Reserved for future use. */
-  satisfiesPzi?: boolean;
-  /** Identifier. The name of the Kafka Connect cluster. Structured like: projects/{project_number}/locations/{location}/connectClusters/{connect_cluster_id} */
-  name?: string;
-  /** Output only. The time when the cluster was created. */
-  createTime?: string;
-  /** Optional. Labels as key value pairs. */
-  labels?: StringMap;
 }
 export const ConnectCluster = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     kafkaCluster: S.optional(S.String),
+    satisfiesPzi: S.optional(S.Boolean),
     capacityConfig: S.optional(CapacityConfig),
-    gcpConfig: S.optional(ConnectGcpConfig),
-    satisfiesPzs: S.optional(S.Boolean),
     state: S.optional(ConnectClusterStateEnum),
+    labels: S.optional(StringMap),
+    satisfiesPzs: S.optional(S.Boolean),
+    gcpConfig: S.optional(ConnectGcpConfig),
+    createTime: S.optional(S.String),
+    name: S.optional(S.String),
     config: S.optional(StringMap),
     updateTime: S.optional(S.String),
-    satisfiesPzi: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    createTime: S.optional(S.String),
-    labels: S.optional(StringMap),
   }),
 ).annotate({ identifier: "ConnectCluster" }) as any as S.Schema<ConnectCluster>;
 
 export interface CreateProjectsLocationsConnectClustersRequest {
   /** Required. The parent project/location in which to create the Kafka Connect cluster. Structured like `projects/{project}/locations/{location}/`. */
   parent: string;
-  /** Required. The ID to use for the Connect cluster, which will become the final component of the cluster's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-cluster-id`. */
-  connectClusterId?: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID to avoid duplication of requests. If a request times out or fails, retrying with the same ID allows the server to recognize the previous attempt. For at least 60 minutes, the server ignores duplicate requests bearing the same ID. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID within 60 minutes of the last request, the server checks if an original operation with the same request ID was received. If so, the server ignores the second request. The request ID must be a valid UUID. A zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Required. The ID to use for the Connect cluster, which will become the final component of the cluster's name. The ID must be 1-63 characters long, and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` to comply with RFC 1035. This value is structured like: `my-cluster-id`. */
+  connectClusterId?: string;
   /** Request body */
   body?: ConnectCluster;
 }
@@ -790,8 +863,8 @@ export const CreateProjectsLocationsConnectClustersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       parent: S.String.pipe(T.Label()),
-      connectClusterId: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      connectClusterId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(ConnectCluster.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -804,6 +877,25 @@ export const CreateProjectsLocationsConnectClustersRequest =
     identifier: "CreateProjectsLocationsConnectClustersRequest",
   }) as any as S.Schema<CreateProjectsLocationsConnectClustersRequest>;
 
+/** Task Retry Policy is implemented on a best-effort basis. The default policy retries tasks with a minimum_backoff of 60 seconds, and a maximum_backoff of 12 hours. You can disable the policy by setting the task_retry_disabled field to true. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. Note that the delay between consecutive task restarts may not always precisely match the configured settings. This can happen when the ConnectCluster is in rebalancing state or if the ConnectCluster is unresponsive etc. The default values for minimum and maximum backoffs are 60 seconds and 12 hours respectively. */
+export interface TaskRetryPolicy {
+  /** Optional. The maximum amount of time to wait before retrying a failed task. This sets an upper bound for the backoff delay. */
+  maximumBackoff?: string;
+  /** Optional. If true, task retry is disabled. */
+  taskRetryDisabled?: boolean;
+  /** Optional. The minimum amount of time to wait before retrying a failed task. This sets a lower bound for the backoff delay. */
+  minimumBackoff?: string;
+}
+export const TaskRetryPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maximumBackoff: S.optional(S.String),
+    taskRetryDisabled: S.optional(S.Boolean),
+    minimumBackoff: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskRetryPolicy",
+}) as any as S.Schema<TaskRetryPolicy>;
+
 export type ConnectorStateEnum =
   | "STATE_UNSPECIFIED"
   | "UNASSIGNED"
@@ -814,42 +906,23 @@ export type ConnectorStateEnum =
   | "STOPPED";
 export const ConnectorStateEnum = /*@__PURE__*/ S.String;
 
-/** Task Retry Policy is implemented on a best-effort basis. The default policy retries tasks with a minimum_backoff of 60 seconds, and a maximum_backoff of 12 hours. You can disable the policy by setting the task_retry_disabled field to true. Retry delay will be exponential based on provided minimum and maximum backoffs. https://en.wikipedia.org/wiki/Exponential_backoff. Note that the delay between consecutive task restarts may not always precisely match the configured settings. This can happen when the ConnectCluster is in rebalancing state or if the ConnectCluster is unresponsive etc. The default values for minimum and maximum backoffs are 60 seconds and 12 hours respectively. */
-export interface TaskRetryPolicy {
-  /** Optional. If true, task retry is disabled. */
-  taskRetryDisabled?: boolean;
-  /** Optional. The minimum amount of time to wait before retrying a failed task. This sets a lower bound for the backoff delay. */
-  minimumBackoff?: string;
-  /** Optional. The maximum amount of time to wait before retrying a failed task. This sets an upper bound for the backoff delay. */
-  maximumBackoff?: string;
-}
-export const TaskRetryPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskRetryDisabled: S.optional(S.Boolean),
-    minimumBackoff: S.optional(S.String),
-    maximumBackoff: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskRetryPolicy",
-}) as any as S.Schema<TaskRetryPolicy>;
-
 /** A Kafka Connect connector in a given ConnectCluster. */
 export interface Connector {
-  /** Identifier. The name of the connector. Structured like: projects/{project}/locations/{location}/connectClusters/{connect_cluster}/connectors/{connector} */
-  name?: string;
+  /** Optional. Restarts the individual tasks of a Connector. */
+  taskRestartPolicy?: TaskRetryPolicy;
   /** Output only. The current state of the connector. */
   state?: ConnectorStateEnum | (string & {});
   /** Optional. Connector config as keys/values. The keys of the map are connector property names, for example: `connector.class`, `tasks.max`, `key.converter`. */
   configs?: StringMap;
-  /** Optional. Restarts the individual tasks of a Connector. */
-  taskRestartPolicy?: TaskRetryPolicy;
+  /** Identifier. The name of the connector. Structured like: projects/{project}/locations/{location}/connectClusters/{connect_cluster}/connectors/{connector} */
+  name?: string;
 }
 export const Connector = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
+    taskRestartPolicy: S.optional(TaskRetryPolicy),
     state: S.optional(ConnectorStateEnum),
     configs: S.optional(StringMap),
-    taskRestartPolicy: S.optional(TaskRetryPolicy),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Connector" }) as any as S.Schema<Connector>;
 
@@ -894,15 +967,15 @@ export const SchemaRegistry = /*@__PURE__*/ S.suspend(() =>
 
 /** Request to create a schema registry instance. */
 export interface CreateSchemaRegistryRequest {
-  /** Required. The schema registry instance ID to use for this schema registry. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores (-). The maximum length is 63 characters. The ID must not start with a number. */
-  schemaRegistryId?: string;
   /** Required. The schema registry instance to create. The name field is ignored. */
   schemaRegistry?: SchemaRegistry;
+  /** Required. The schema registry instance ID to use for this schema registry. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores (-). The maximum length is 63 characters. The ID must not start with a number. */
+  schemaRegistryId?: string;
 }
 export const CreateSchemaRegistryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    schemaRegistryId: S.optional(S.String),
     schemaRegistry: S.optional(SchemaRegistry),
+    schemaRegistryId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CreateSchemaRegistryRequest",
@@ -939,27 +1012,27 @@ export const CreateVersionRequestSchemaTypeEnum = /*@__PURE__*/ S.String;
 
 /** Request for CreateVersion. */
 export interface CreateVersionRequest {
-  /** Optional. If true, the schema will be normalized before being stored. The default is false. */
-  normalize?: boolean;
-  /** Required. The schema payload */
-  schema?: string;
-  /** Optional. The version to create. It is optional. If not specified, the version will be created with the max version ID of the subject increased by 1. If the version ID is specified, it will be used as the new version ID and must not be used by an existing version of the subject. */
-  version?: number;
   /** Optional. The type of the schema. It is optional. If not specified, the schema type will be AVRO. */
   schemaType?: CreateVersionRequestSchemaTypeEnum | (string & {});
-  /** Optional. The schema ID of the schema. If not specified, the schema ID will be generated by the server. If the schema ID is specified, it must not be used by an existing schema that is different from the schema to be created. */
-  id?: number;
+  /** Required. The schema payload */
+  schema?: string;
   /** Optional. The schema references used by the schema. */
   references?: SchemaReferenceList;
+  /** Optional. If true, the schema will be normalized before being stored. The default is false. */
+  normalize?: boolean;
+  /** Optional. The schema ID of the schema. If not specified, the schema ID will be generated by the server. If the schema ID is specified, it must not be used by an existing schema that is different from the schema to be created. */
+  id?: number;
+  /** Optional. The version to create. It is optional. If not specified, the version will be created with the max version ID of the subject increased by 1. If the version ID is specified, it will be used as the new version ID and must not be used by an existing version of the subject. */
+  version?: number;
 }
 export const CreateVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    normalize: S.optional(S.Boolean),
-    schema: S.optional(S.String),
-    version: S.optional(S.Number),
     schemaType: S.optional(CreateVersionRequestSchemaTypeEnum),
-    id: S.optional(S.Number),
+    schema: S.optional(S.String),
     references: S.optional(SchemaReferenceList),
+    normalize: S.optional(S.Boolean),
+    id: S.optional(S.Number),
+    version: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "CreateVersionRequest",
@@ -1305,32 +1378,32 @@ export const DeleteProjectsLocationsSchemaRegistriesContextsSubjectsRequest =
 
 /** Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged. */
 export interface HttpBody {
-  /** The HTTP Content-Type header value specifying the content type of the body. */
-  contentType?: string;
   /** Application specific response metadata. Must be set in the first response for streaming APIs. */
   extensions?: DocumentMapList;
   /** The HTTP request/response body as raw binary. */
   data?: string;
+  /** The HTTP Content-Type header value specifying the content type of the body. */
+  contentType?: string;
 }
 export const HttpBody = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    contentType: S.optional(S.String),
     extensions: S.optional(DocumentMapList),
     data: S.optional(S.String),
+    contentType: S.optional(S.String),
   }),
 ).annotate({ identifier: "HttpBody" }) as any as S.Schema<HttpBody>;
 
 export interface DeleteProjectsLocationsSchemaRegistriesContextsSubjectsVersionsRequest {
-  /** Required. The name of the subject version to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}` */
-  name: string;
   /** Optional. If true, both the version and the referenced schema ID will be permanently deleted. The default is false. If false, the version will be deleted but the schema ID will be retained. Soft-deleted versions can still be searched in ListVersions API call with deleted=true query parameter. A soft-delete of a version must be performed before a hard-delete. */
   permanent?: boolean;
+  /** Required. The name of the subject version to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}` */
+  name: string;
 }
 export const DeleteProjectsLocationsSchemaRegistriesContextsSubjectsVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       permanent: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1363,16 +1436,16 @@ export const DeleteProjectsLocationsSchemaRegistriesModeRequest =
   }) as any as S.Schema<DeleteProjectsLocationsSchemaRegistriesModeRequest>;
 
 export interface DeleteProjectsLocationsSchemaRegistriesSubjectsRequest {
-  /** Required. The name of the subject to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}` */
-  name: string;
   /** Optional. If true, the subject and all associated metadata including the schema ID will be deleted permanently. Otherwise, only the subject is soft-deleted. The default is false. Soft-deleted subjects can still be searched in ListSubjects API call with deleted=true query parameter. A soft-delete of a subject must be performed before a hard-delete. */
   permanent?: boolean;
+  /** Required. The name of the subject to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}` */
+  name: string;
 }
 export const DeleteProjectsLocationsSchemaRegistriesSubjectsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       permanent: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1385,16 +1458,16 @@ export const DeleteProjectsLocationsSchemaRegistriesSubjectsRequest =
   }) as any as S.Schema<DeleteProjectsLocationsSchemaRegistriesSubjectsRequest>;
 
 export interface DeleteProjectsLocationsSchemaRegistriesSubjectsVersionsRequest {
-  /** Required. The name of the subject version to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}` */
-  name: string;
   /** Optional. If true, both the version and the referenced schema ID will be permanently deleted. The default is false. If false, the version will be deleted but the schema ID will be retained. Soft-deleted versions can still be searched in ListVersions API call with deleted=true query parameter. A soft-delete of a version must be performed before a hard-delete. */
   permanent?: boolean;
+  /** Required. The name of the subject version to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}` */
+  name: string;
 }
 export const DeleteProjectsLocationsSchemaRegistriesSubjectsVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       permanent: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1427,24 +1500,24 @@ export const GetProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A resource that represents a Google Cloud location. */
 export interface Location {
-  /** Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"` */
-  name?: string;
-  /** The friendly name for this location, typically a nearby city name. For example, "Tokyo". */
-  displayName?: string;
-  /** The canonical id for this location. For example: `"us-east1"`. */
-  locationId?: string;
-  /** Service-specific metadata. For example the available capacity at the given location. */
-  metadata?: DocumentMap;
   /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
   labels?: StringMap;
+  /** Service-specific metadata. For example the available capacity at the given location. */
+  metadata?: DocumentMap;
+  /** The canonical id for this location. For example: `"us-east1"`. */
+  locationId?: string;
+  /** The friendly name for this location, typically a nearby city name. For example, "Tokyo". */
+  displayName?: string;
+  /** Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"` */
+  name?: string;
 }
 export const Location = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    locationId: S.optional(S.String),
-    metadata: S.optional(DocumentMap),
     labels: S.optional(StringMap),
+    metadata: S.optional(DocumentMap),
+    locationId: S.optional(S.String),
+    displayName: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
@@ -1560,15 +1633,15 @@ export const ConsumerTopicMetadataMap = /*@__PURE__*/ S.Record(
 
 /** A Kafka consumer group in a given cluster. */
 export interface ConsumerGroup {
-  /** Optional. Metadata for this consumer group for all topics it has metadata for. The key of the map is a topic name, structured like: projects/{project}/locations/{location}/clusters/{cluster}/topics/{topic} */
-  topics?: ConsumerTopicMetadataMap;
   /** Identifier. The name of the consumer group. The `consumer_group` segment is used when connecting directly to the cluster. Structured like: projects/{project}/locations/{location}/clusters/{cluster}/consumerGroups/{consumer_group} */
   name?: string;
+  /** Optional. Metadata for this consumer group for all topics it has metadata for. The key of the map is a topic name, structured like: projects/{project}/locations/{location}/clusters/{cluster}/topics/{topic} */
+  topics?: ConsumerTopicMetadataMap;
 }
 export const ConsumerGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    topics: S.optional(ConsumerTopicMetadataMap),
     name: S.optional(S.String),
+    topics: S.optional(ConsumerTopicMetadataMap),
   }),
 ).annotate({ identifier: "ConsumerGroup" }) as any as S.Schema<ConsumerGroup>;
 
@@ -1723,16 +1796,16 @@ export const Context = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Context" }) as any as S.Schema<Context>;
 
 export interface GetProjectsLocationsSchemaRegistriesContextsConfigRequest {
-  /** Required. The resource name to get the config for. It can be either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config: Get config at global level. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}: Get config for a specific subject. */
-  name: string;
   /** Optional. If true, the config will fall back to the config at the global level if no subject level config is found. */
   defaultToGlobal?: boolean;
+  /** Required. The resource name to get the config for. It can be either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config: Get config at global level. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}: Get config for a specific subject. */
+  name: string;
 }
 export const GetProjectsLocationsSchemaRegistriesContextsConfigRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       defaultToGlobal: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1764,16 +1837,16 @@ export const GetProjectsLocationsSchemaRegistriesContextsModeRequest =
   }) as any as S.Schema<GetProjectsLocationsSchemaRegistriesContextsModeRequest>;
 
 export interface GetProjectsLocationsSchemaRegistriesContextsSchemasRequest {
-  /** Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context. */
-  subject?: string;
   /** Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` */
   name: string;
+  /** Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context. */
+  subject?: string;
 }
 export const GetProjectsLocationsSchemaRegistriesContextsSchemasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      subject: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      subject: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1794,18 +1867,18 @@ export const Managedkafka_SchemaSchemaTypeEnum = /*@__PURE__*/ S.String;
 
 /** Schema for a Kafka message. */
 export interface Managedkafka_Schema {
-  /** Optional. The schema type of the schema. */
-  schemaType?: Managedkafka_SchemaSchemaTypeEnum;
   /** Optional. The schema references used by the schema. */
   references?: SchemaReferenceList;
   /** The schema payload. */
   schema?: string;
+  /** Optional. The schema type of the schema. */
+  schemaType?: Managedkafka_SchemaSchemaTypeEnum;
 }
 export const Managedkafka_Schema = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    schemaType: S.optional(Managedkafka_SchemaSchemaTypeEnum),
     references: S.optional(SchemaReferenceList),
     schema: S.optional(S.String),
+    schemaType: S.optional(Managedkafka_SchemaSchemaTypeEnum),
   }),
 ).annotate({
   identifier: "Managedkafka_Schema",
@@ -1843,27 +1916,27 @@ export const SchemaVersionSchemaTypeEnum = /*@__PURE__*/ S.String;
 
 /** Version of a schema. */
 export interface SchemaVersion {
-  /** Required. The schema ID. */
-  id?: number;
-  /** Required. The subject of the version. */
-  subject?: string;
-  /** Optional. The schema type of the schema. */
-  schemaType?: SchemaVersionSchemaTypeEnum;
   /** Required. The schema payload. */
   schema?: string;
+  /** Required. The schema ID. */
+  id?: number;
   /** Optional. The schema references used by the schema. */
   references?: SchemaReferenceList;
+  /** Required. The subject of the version. */
+  subject?: string;
   /** Required. The version ID */
   version?: number;
+  /** Optional. The schema type of the schema. */
+  schemaType?: SchemaVersionSchemaTypeEnum;
 }
 export const SchemaVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.Number),
-    subject: S.optional(S.String),
-    schemaType: S.optional(SchemaVersionSchemaTypeEnum),
     schema: S.optional(S.String),
+    id: S.optional(S.Number),
     references: S.optional(SchemaReferenceList),
+    subject: S.optional(S.String),
     version: S.optional(S.Number),
+    schemaType: S.optional(SchemaVersionSchemaTypeEnum),
   }),
 ).annotate({ identifier: "SchemaVersion" }) as any as S.Schema<SchemaVersion>;
 
@@ -1887,16 +1960,16 @@ export const GetProjectsLocationsSchemaRegistriesModeRequest =
   }) as any as S.Schema<GetProjectsLocationsSchemaRegistriesModeRequest>;
 
 export interface GetProjectsLocationsSchemaRegistriesSchemasRequest {
-  /** Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context. */
-  subject?: string;
   /** Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` */
   name: string;
+  /** Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context. */
+  subject?: string;
 }
 export const GetProjectsLocationsSchemaRegistriesSchemasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      subject: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      subject: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1909,16 +1982,16 @@ export const GetProjectsLocationsSchemaRegistriesSchemasRequest =
   }) as any as S.Schema<GetProjectsLocationsSchemaRegistriesSchemasRequest>;
 
 export interface GetProjectsLocationsSchemaRegistriesSubjectsVersionsRequest {
-  /** Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false. */
-  deleted?: boolean;
   /** Required. The name of the subject to return versions. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}` */
   name: string;
+  /** Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false. */
+  deleted?: boolean;
 }
 export const GetProjectsLocationsSchemaRegistriesSubjectsVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      deleted: S.optional(S.Boolean.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      deleted: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1931,16 +2004,16 @@ export const GetProjectsLocationsSchemaRegistriesSubjectsVersionsRequest =
   }) as any as S.Schema<GetProjectsLocationsSchemaRegistriesSubjectsVersionsRequest>;
 
 export interface GetSchemaProjectsLocationsSchemaRegistriesContextsSchemasRequest {
-  /** Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context. */
-  subject?: string;
   /** Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` */
   name: string;
+  /** Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context. */
+  subject?: string;
 }
 export const GetSchemaProjectsLocationsSchemaRegistriesContextsSchemasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      subject: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      subject: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1977,16 +2050,16 @@ export const GetSchemaProjectsLocationsSchemaRegistriesContextsSubjectsVersionsR
   }) as any as S.Schema<GetSchemaProjectsLocationsSchemaRegistriesContextsSubjectsVersionsRequest>;
 
 export interface GetSchemaProjectsLocationsSchemaRegistriesSchemasRequest {
-  /** Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` */
-  name: string;
   /** Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context. */
   subject?: string;
+  /** Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` */
+  name: string;
 }
 export const GetSchemaProjectsLocationsSchemaRegistriesSchemasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       subject: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1999,16 +2072,16 @@ export const GetSchemaProjectsLocationsSchemaRegistriesSchemasRequest =
   }) as any as S.Schema<GetSchemaProjectsLocationsSchemaRegistriesSchemasRequest>;
 
 export interface GetSchemaProjectsLocationsSchemaRegistriesSubjectsVersionsRequest {
-  /** Required. The name of the subject to return versions. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}` */
-  name: string;
   /** Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false. */
   deleted?: boolean;
+  /** Required. The name of the subject to return versions. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}` */
+  name: string;
 }
 export const GetSchemaProjectsLocationsSchemaRegistriesSubjectsVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       deleted: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2022,24 +2095,24 @@ export const GetSchemaProjectsLocationsSchemaRegistriesSubjectsVersionsRequest =
   }) as any as S.Schema<GetSchemaProjectsLocationsSchemaRegistriesSubjectsVersionsRequest>;
 
 export interface ListProjectsLocationsRequest {
-  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
-  pageToken?: string;
-  /** The resource that owns the locations collection, if applicable. */
-  name: string;
-  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
-  extraLocationTypes?: StringList;
-  /** A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160). */
-  filter?: string;
   /** The maximum number of results to return. If not set, the service selects a default. */
   pageSize?: number;
+  /** A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160). */
+  filter?: string;
+  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
+  extraLocationTypes?: StringList;
+  /** The resource that owns the locations collection, if applicable. */
+  name: string;
+  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
+  pageToken?: string;
 }
 export const ListProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    name: S.String.pipe(T.Label()),
-    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2073,25 +2146,25 @@ export const ListLocationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLocationsResponse>;
 
 export interface ListProjectsLocationsClustersRequest {
-  /** Optional. Order by fields for the result. */
-  orderBy?: string;
-  /** Optional. The maximum number of clusters to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default. */
-  pageSize?: number;
-  /** Optional. Filter expression for the result. */
-  filter?: string;
-  /** Required. The parent location whose clusters are to be listed. Structured like `projects/{project}/locations/{location}`. */
-  parent: string;
   /** Optional. A page token, received from a previous `ListClusters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListClusters` must match the call that provided the page token. */
   pageToken?: string;
+  /** Optional. The maximum number of clusters to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default. */
+  pageSize?: number;
+  /** Required. The parent location whose clusters are to be listed. Structured like `projects/{project}/locations/{location}`. */
+  parent: string;
+  /** Optional. Filter expression for the result. */
+  filter?: string;
+  /** Optional. Order by fields for the result. */
+  orderBy?: string;
 }
 export const ListProjectsLocationsClustersRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2110,36 +2183,36 @@ export const ClusterList = /*@__PURE__*/ S.Array(
 
 /** Response for ListClusters. */
 export interface ListClustersResponse {
+  /** Locations that could not be reached. */
+  unreachable?: StringList;
   /** The list of Clusters in the requested parent. */
   clusters?: ClusterList;
   /** A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results. */
   nextPageToken?: string;
-  /** Locations that could not be reached. */
-  unreachable?: StringList;
 }
 export const ListClustersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    unreachable: S.optional(StringList),
     clusters: S.optional(ClusterList),
     nextPageToken: S.optional(S.String),
-    unreachable: S.optional(StringList),
   }),
 ).annotate({
   identifier: "ListClustersResponse",
 }) as any as S.Schema<ListClustersResponse>;
 
 export interface ListProjectsLocationsClustersAclsRequest {
-  /** Optional. The maximum number of acls to return. The service may return fewer than this value. If unset or zero, all acls for the parent is returned. */
-  pageSize?: number;
   /** Optional. A page token, received from a previous `ListAcls` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAcls` must match the call that provided the page token. */
   pageToken?: string;
+  /** Optional. The maximum number of acls to return. The service may return fewer than this value. If unset or zero, all acls for the parent is returned. */
+  pageSize?: number;
   /** Required. The parent cluster whose acls are to be listed. Structured like `projects/{project}/locations/{location}/clusters/{cluster}`. */
   parent: string;
 }
 export const ListProjectsLocationsClustersAclsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -2179,27 +2252,27 @@ export const ListProjectsLocationsClustersConsumerGroupsViewEnum =
   /*@__PURE__*/ S.String;
 
 export interface ListProjectsLocationsClustersConsumerGroupsRequest {
-  /** Optional. The maximum number of consumer groups to return. The service may return fewer than this value. If unset or zero, all consumer groups for the parent is returned. */
-  pageSize?: number;
   /** Optional. Specifies the view (BASIC or FULL) of the ConsumerGroup resource to be returned in the response. Defaults to FULL view. */
   view?: ListProjectsLocationsClustersConsumerGroupsViewEnum | (string & {});
-  /** Optional. Filter expression for the result. Only supports filtering by topic name as a key in the `topics` map. */
-  filter?: string;
   /** Required. The parent cluster whose consumer groups are to be listed. Structured like `projects/{project}/locations/{location}/clusters/{cluster}`. */
   parent: string;
   /** Optional. A page token, received from a previous `ListConsumerGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConsumerGroups` must match the call that provided the page token. */
   pageToken?: string;
+  /** Optional. Filter expression for the result. Only supports filtering by topic name as a key in the `topics` map. */
+  filter?: string;
+  /** Optional. The maximum number of consumer groups to return. The service may return fewer than this value. If unset or zero, all consumer groups for the parent is returned. */
+  pageSize?: number;
 }
 export const ListProjectsLocationsClustersConsumerGroupsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       view: S.optional(
         ListProjectsLocationsClustersConsumerGroupsViewEnum.pipe(T.Query()),
       ),
-      filter: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2218,34 +2291,34 @@ export const ConsumerGroupList = /*@__PURE__*/ S.Array(
 
 /** Response for ListConsumerGroups. */
 export interface ListConsumerGroupsResponse {
-  /** The list of consumer group in the requested parent. The order of the consumer groups is unspecified. */
-  consumerGroups?: ConsumerGroupList;
   /** A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results. */
   nextPageToken?: string;
+  /** The list of consumer group in the requested parent. The order of the consumer groups is unspecified. */
+  consumerGroups?: ConsumerGroupList;
 }
 export const ListConsumerGroupsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    consumerGroups: S.optional(ConsumerGroupList),
     nextPageToken: S.optional(S.String),
+    consumerGroups: S.optional(ConsumerGroupList),
   }),
 ).annotate({
   identifier: "ListConsumerGroupsResponse",
 }) as any as S.Schema<ListConsumerGroupsResponse>;
 
 export interface ListProjectsLocationsClustersTopicsRequest {
-  /** Optional. The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent is returned. */
-  pageSize?: number;
-  /** Required. The parent cluster whose topics are to be listed. Structured like `projects/{project}/locations/{location}/clusters/{cluster}`. */
-  parent: string;
   /** Optional. A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token. */
   pageToken?: string;
+  /** Required. The parent cluster whose topics are to be listed. Structured like `projects/{project}/locations/{location}/clusters/{cluster}`. */
+  parent: string;
+  /** Optional. The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent is returned. */
+  pageSize?: number;
 }
 export const ListProjectsLocationsClustersTopicsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2279,25 +2352,25 @@ export const ListTopicsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTopicsResponse>;
 
 export interface ListProjectsLocationsConnectClustersRequest {
-  /** Optional. Order by fields for the result. */
-  orderBy?: string;
-  /** Optional. Filter expression for the result. */
-  filter?: string;
-  /** Optional. A page token, received from a previous `ListConnectClusters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectClusters` must match the call that provided the page token. */
-  pageToken?: string;
-  /** Required. The parent project/location whose Connect clusters are to be listed. Structured like `projects/{project}/locations/{location}`. */
-  parent: string;
   /** Optional. The maximum number of Connect clusters to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default. */
   pageSize?: number;
+  /** Optional. A page token, received from a previous `ListConnectClusters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectClusters` must match the call that provided the page token. */
+  pageToken?: string;
+  /** Optional. Order by fields for the result. */
+  orderBy?: string;
+  /** Required. The parent project/location whose Connect clusters are to be listed. Structured like `projects/{project}/locations/{location}`. */
+  parent: string;
+  /** Optional. Filter expression for the result. */
+  filter?: string;
 }
 export const ListProjectsLocationsConnectClustersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2316,37 +2389,37 @@ export const ConnectClusterList = /*@__PURE__*/ S.Array(
 
 /** Response for ListConnectClusters. */
 export interface ListConnectClustersResponse {
+  /** Locations that could not be reached. */
+  unreachable?: StringList;
   /** A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results. */
   nextPageToken?: string;
   /** The list of Connect clusters in the requested parent. */
   connectClusters?: ConnectClusterList;
-  /** Locations that could not be reached. */
-  unreachable?: StringList;
 }
 export const ListConnectClustersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    unreachable: S.optional(StringList),
     nextPageToken: S.optional(S.String),
     connectClusters: S.optional(ConnectClusterList),
-    unreachable: S.optional(StringList),
   }),
 ).annotate({
   identifier: "ListConnectClustersResponse",
 }) as any as S.Schema<ListConnectClustersResponse>;
 
 export interface ListProjectsLocationsConnectClustersConnectorsRequest {
+  /** Optional. The maximum number of connectors to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default. */
+  pageSize?: number;
   /** Optional. A page token, received from a previous `ListConnectors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectors` must match the call that provided the page token. */
   pageToken?: string;
   /** Required. The parent Connect cluster whose connectors are to be listed. Structured like `projects/{project}/locations/{location}/connectClusters/{connect_cluster_id}`. */
   parent: string;
-  /** Optional. The maximum number of connectors to return. The service may return fewer than this value. If unspecified, server will pick an appropriate default. */
-  pageSize?: number;
 }
 export const ListProjectsLocationsConnectClustersConnectorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2380,25 +2453,25 @@ export const ListConnectorsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListConnectorsResponse>;
 
 export interface ListProjectsLocationsOperationsRequest {
-  /** The standard list page size. */
-  pageSize?: number;
-  /** The standard list page token. */
-  pageToken?: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
-  /** The name of the operation's parent resource. */
-  name: string;
+  /** The standard list page token. */
+  pageToken?: string;
+  /** The standard list page size. */
+  pageSize?: number;
   /** The standard list filter. */
   filter?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
 }
 export const ListProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       filter: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2419,16 +2492,16 @@ export const OperationList = /*@__PURE__*/ S.Array(
 export interface ListOperationsResponse {
   /** The standard List next-page token. */
   nextPageToken?: string;
-  /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
-  unreachable?: StringList;
   /** A list of operations that matches the specified filter in the request. */
   operations?: OperationList;
+  /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
+  unreachable?: StringList;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextPageToken: S.optional(S.String),
-    unreachable: S.optional(StringList),
     operations: S.optional(OperationList),
+    unreachable: S.optional(StringList),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
@@ -2505,17 +2578,17 @@ export const ListProjectsLocationsSchemaRegistriesContextsRequest =
 export interface ListProjectsLocationsSchemaRegistriesContextsSchemasSubjectsRequest {
   /** Required. The schema resource whose associated subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}` */
   parent: string;
-  /** Optional. The subject to filter the subjects by. */
-  subject?: string;
   /** Optional. If true, the response will include soft-deleted subjects. The default is false. */
   deleted?: boolean;
+  /** Optional. The subject to filter the subjects by. */
+  subject?: string;
 }
 export const ListProjectsLocationsSchemaRegistriesContextsSchemasSubjectsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       parent: S.String.pipe(T.Label()),
-      subject: S.optional(S.String.pipe(T.Query())),
       deleted: S.optional(S.Boolean.pipe(T.Query())),
+      subject: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2549,19 +2622,19 @@ export const ListProjectsLocationsSchemaRegistriesContextsSchemasTypesRequest =
   }) as any as S.Schema<ListProjectsLocationsSchemaRegistriesContextsSchemasTypesRequest>;
 
 export interface ListProjectsLocationsSchemaRegistriesContextsSchemasVersionsRequest {
-  /** Required. The schema whose schema versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}` */
-  parent: string;
-  /** Optional. The subject to filter the subjects by. */
-  subject?: string;
   /** Optional. If true, the response will include soft-deleted versions of the schema, even if the subject is soft-deleted. The default is false. */
   deleted?: boolean;
+  /** Optional. The subject to filter the subjects by. */
+  subject?: string;
+  /** Required. The schema whose schema versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}` */
+  parent: string;
 }
 export const ListProjectsLocationsSchemaRegistriesContextsSchemasVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
-      subject: S.optional(S.String.pipe(T.Query())),
       deleted: S.optional(S.Boolean.pipe(T.Query())),
+      subject: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2577,17 +2650,17 @@ export const ListProjectsLocationsSchemaRegistriesContextsSchemasVersionsRequest
 export interface ListProjectsLocationsSchemaRegistriesContextsSubjectsRequest {
   /** Optional. If true, the response will include soft-deleted subjects. The default is false. */
   deleted?: boolean;
-  /** Required. The parent schema registry/context whose subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}` */
-  parent: string;
   /** Optional. The context to filter the subjects by, in the format of `:.{context}:`. If unset, all subjects in the registry are returned. Set to empty string or add as '?subjectPrefix=' at the end of this request to list subjects in the default context. */
   subjectPrefix?: string;
+  /** Required. The parent schema registry/context whose subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}` */
+  parent: string;
 }
 export const ListProjectsLocationsSchemaRegistriesContextsSubjectsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       deleted: S.optional(S.Boolean.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       subjectPrefix: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2643,19 +2716,19 @@ export const ListProjectsLocationsSchemaRegistriesContextsSubjectsVersionsRefere
   }) as any as S.Schema<ListProjectsLocationsSchemaRegistriesContextsSubjectsVersionsReferencedbyRequest>;
 
 export interface ListProjectsLocationsSchemaRegistriesSchemasSubjectsRequest {
-  /** Optional. If true, the response will include soft-deleted subjects. The default is false. */
-  deleted?: boolean;
   /** Required. The schema resource whose associated subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}` */
   parent: string;
   /** Optional. The subject to filter the subjects by. */
   subject?: string;
+  /** Optional. If true, the response will include soft-deleted subjects. The default is false. */
+  deleted?: boolean;
 }
 export const ListProjectsLocationsSchemaRegistriesSchemasSubjectsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      deleted: S.optional(S.Boolean.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       subject: S.optional(S.String.pipe(T.Query())),
+      deleted: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2687,18 +2760,18 @@ export const ListProjectsLocationsSchemaRegistriesSchemasTypesRequest =
   }) as any as S.Schema<ListProjectsLocationsSchemaRegistriesSchemasTypesRequest>;
 
 export interface ListProjectsLocationsSchemaRegistriesSchemasVersionsRequest {
-  /** Optional. The subject to filter the subjects by. */
-  subject?: string;
   /** Required. The schema whose schema versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}` */
   parent: string;
+  /** Optional. The subject to filter the subjects by. */
+  subject?: string;
   /** Optional. If true, the response will include soft-deleted versions of the schema, even if the subject is soft-deleted. The default is false. */
   deleted?: boolean;
 }
 export const ListProjectsLocationsSchemaRegistriesSchemasVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      subject: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      subject: S.optional(S.String.pipe(T.Query())),
       deleted: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -2714,17 +2787,17 @@ export const ListProjectsLocationsSchemaRegistriesSchemasVersionsRequest =
 export interface ListProjectsLocationsSchemaRegistriesSubjectsRequest {
   /** Required. The parent schema registry/context whose subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}` */
   parent: string;
-  /** Optional. If true, the response will include soft-deleted subjects. The default is false. */
-  deleted?: boolean;
   /** Optional. The context to filter the subjects by, in the format of `:.{context}:`. If unset, all subjects in the registry are returned. Set to empty string or add as '?subjectPrefix=' at the end of this request to list subjects in the default context. */
   subjectPrefix?: string;
+  /** Optional. If true, the response will include soft-deleted subjects. The default is false. */
+  deleted?: boolean;
 }
 export const ListProjectsLocationsSchemaRegistriesSubjectsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       parent: S.String.pipe(T.Label()),
-      deleted: S.optional(S.Boolean.pipe(T.Query())),
       subjectPrefix: S.optional(S.String.pipe(T.Query())),
+      deleted: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2737,16 +2810,16 @@ export const ListProjectsLocationsSchemaRegistriesSubjectsRequest =
   }) as any as S.Schema<ListProjectsLocationsSchemaRegistriesSubjectsRequest>;
 
 export interface ListProjectsLocationsSchemaRegistriesSubjectsVersionsRequest {
-  /** Required. The subject whose versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}` */
-  parent: string;
   /** Optional. If true, the response will include soft-deleted versions of an active or soft-deleted subject. The default is false. */
   deleted?: boolean;
+  /** Required. The subject whose versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}` */
+  parent: string;
 }
 export const ListProjectsLocationsSchemaRegistriesSubjectsVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
       deleted: S.optional(S.Boolean.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2789,22 +2862,22 @@ export const LookupVersionRequestSchemaTypeEnum = /*@__PURE__*/ S.String;
 export interface LookupVersionRequest {
   /** Optional. If true, the schema will be normalized before being looked up. The default is false. */
   normalize?: boolean;
-  /** Optional. The schema type of the schema. */
-  schemaType?: LookupVersionRequestSchemaTypeEnum | (string & {});
-  /** Optional. The schema references used by the schema. */
-  references?: SchemaReferenceList;
   /** Optional. If true, soft-deleted versions will be included in lookup, no matter if the subject is active or soft-deleted. If false, soft-deleted versions will be excluded. The default is false. */
   deleted?: boolean;
   /** Required. The schema payload */
   schema?: string;
+  /** Optional. The schema type of the schema. */
+  schemaType?: LookupVersionRequestSchemaTypeEnum | (string & {});
+  /** Optional. The schema references used by the schema. */
+  references?: SchemaReferenceList;
 }
 export const LookupVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     normalize: S.optional(S.Boolean),
-    schemaType: S.optional(LookupVersionRequestSchemaTypeEnum),
-    references: S.optional(SchemaReferenceList),
     deleted: S.optional(S.Boolean),
     schema: S.optional(S.String),
+    schemaType: S.optional(LookupVersionRequestSchemaTypeEnum),
+    references: S.optional(SchemaReferenceList),
   }),
 ).annotate({
   identifier: "LookupVersionRequest",
@@ -2858,10 +2931,10 @@ export const LookupVersionProjectsLocationsSchemaRegistriesSubjectsRequest =
 export interface PatchProjectsLocationsClustersRequest {
   /** Identifier. The name of the cluster. Structured like: projects/{project_number}/locations/{location}/clusters/{cluster_id} */
   name: string;
-  /** Required. Field mask is used to specify the fields to be overwritten in the cluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The mask is required and a value of * will update all fields. */
-  updateMask?: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID to avoid duplication of requests. If a request times out or fails, retrying with the same ID allows the server to recognize the previous attempt. For at least 60 minutes, the server ignores duplicate requests bearing the same ID. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID within 60 minutes of the last request, the server checks if an original operation with the same request ID was received. If so, the server ignores the second request. The request ID must be a valid UUID. A zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Required. Field mask is used to specify the fields to be overwritten in the cluster resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. The mask is required and a value of * will update all fields. */
+  updateMask?: string;
   /** Request body */
   body?: Cluster;
 }
@@ -2869,8 +2942,8 @@ export const PatchProjectsLocationsClustersRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       name: S.String.pipe(T.Label()),
-      updateMask: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Cluster.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2884,18 +2957,18 @@ export const PatchProjectsLocationsClustersRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchProjectsLocationsClustersRequest>;
 
 export interface PatchProjectsLocationsClustersAclsRequest {
-  /** Optional. Field mask is used to specify the fields to be overwritten in the Acl resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. */
-  updateMask?: string;
   /** Identifier. The name for the acl. Represents a single Resource Pattern. Structured like: projects/{project}/locations/{location}/clusters/{cluster}/acls/{acl_id} The structure of `acl_id` defines the Resource Pattern (resource_type, resource_name, pattern_type) of the acl. `acl_id` is structured like one of the following: For acls on the cluster: `cluster` For acls on a single resource within the cluster: `topic/{resource_name}` `consumerGroup/{resource_name}` `transactionalId/{resource_name}` For acls on all resources that match a prefix: `topicPrefixed/{resource_name}` `consumerGroupPrefixed/{resource_name}` `transactionalIdPrefixed/{resource_name}` For acls on all resources of a given type (i.e. the wildcard literal "*"): `allTopics` (represents `topic/*`) `allConsumerGroups` (represents `consumerGroup/*`) `allTransactionalIds` (represents `transactionalId/*`) */
   name: string;
+  /** Optional. Field mask is used to specify the fields to be overwritten in the Acl resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. */
+  updateMask?: string;
   /** Request body */
   body?: Acl;
 }
 export const PatchProjectsLocationsClustersAclsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      updateMask: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Acl.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -3069,15 +3142,15 @@ export const RemoveAclEntryProjectsLocationsClustersAclsRequest =
 
 /** Response for RemoveAclEntry. */
 export interface RemoveAclEntryResponse {
-  /** Returned with value true if the removed acl entry was the last entry in the acl, resulting in acl deletion. */
-  aclDeleted?: boolean;
   /** The updated acl. Returned if the removed acl entry was not the last entry in the acl. */
   acl?: Acl;
+  /** Returned with value true if the removed acl entry was the last entry in the acl, resulting in acl deletion. */
+  aclDeleted?: boolean;
 }
 export const RemoveAclEntryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    aclDeleted: S.optional(S.Boolean),
     acl: S.optional(Acl),
+    aclDeleted: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "RemoveAclEntryResponse",

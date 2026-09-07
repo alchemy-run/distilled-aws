@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.flash#FlashContainerDeregisterRequest": {
@@ -56,7 +57,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.flash#FlashContainerListResponseContainer": {
+    "com.modal.flash#ListFlashContainerResponseContainer": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -70,17 +71,17 @@
         }
       }
     },
-    "com.modal.flash#FlashContainerListResponseContainerList": {
+    "com.modal.flash#ListFlashContainerResponseContainerList": {
       "type": "list",
       "member": {
-        "target": "com.modal.flash#FlashContainerListResponseContainer"
+        "target": "com.modal.flash#ListFlashContainerResponseContainer"
       }
     },
     "com.modal.flash#ListFlashContainerResponse": {
       "type": "structure",
       "members": {
         "containers": {
-          "target": "com.modal.flash#FlashContainerListResponseContainerList"
+          "target": "com.modal.flash#ListFlashContainerResponseContainerList"
         }
       },
       "traits": {
@@ -103,7 +104,7 @@
         }
       }
     },
-    "com.modal.flash#FlashContainerRegisterRequest": {
+    "com.modal.flash#RegisterFlashContainerRequest": {
       "type": "structure",
       "members": {
         "serviceName": {
@@ -129,7 +130,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.flash#FlashContainerRegisterResponse": {
+    "com.modal.flash#RegisterFlashContainerResponse": {
       "type": "structure",
       "members": {
         "url": {
@@ -140,13 +141,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.flash#FlashContainerRegister": {
+    "com.modal.flash#RegisterFlashContainer": {
       "type": "operation",
       "input": {
-        "target": "com.modal.flash#FlashContainerRegisterRequest"
+        "target": "com.modal.flash#RegisterFlashContainerRequest"
       },
       "output": {
-        "target": "com.modal.flash#FlashContainerRegisterResponse"
+        "target": "com.modal.flash#RegisterFlashContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -156,7 +157,7 @@
         }
       }
     },
-    "com.modal.flash#SetFlashTargetSlotMetricRequest": {
+    "com.modal.flash#FlashSetTargetSlotsMetricsRequest": {
       "type": "structure",
       "members": {
         "functionId": {
@@ -173,20 +174,20 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.flash#SetFlashTargetSlotMetricResponse": {
+    "com.modal.flash#FlashSetTargetSlotsMetricsResponse": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.modal.flash#SetFlashTargetSlotMetric": {
+    "com.modal.flash#FlashSetTargetSlotsMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.modal.flash#SetFlashTargetSlotMetricRequest"
+        "target": "com.modal.flash#FlashSetTargetSlotsMetricsRequest"
       },
       "output": {
-        "target": "com.modal.flash#SetFlashTargetSlotMetricResponse"
+        "target": "com.modal.flash#FlashSetTargetSlotsMetricsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -204,13 +205,13 @@
           "target": "com.modal.flash#FlashContainerDeregister"
         },
         {
+          "target": "com.modal.flash#FlashSetTargetSlotsMetrics"
+        },
+        {
           "target": "com.modal.flash#ListFlashContainer"
         },
         {
-          "target": "com.modal.flash#FlashContainerRegister"
-        },
-        {
-          "target": "com.modal.flash#SetFlashTargetSlotMetric"
+          "target": "com.modal.flash#RegisterFlashContainer"
         }
       ],
       "traits": {

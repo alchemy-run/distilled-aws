@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.dispute_alerts#ListDisputeAlertsRequestType": {
@@ -449,7 +450,7 @@
         }
       }
     },
-    "com.whop.dispute_alerts#RetrieveDisputeAlertRequest": {
+    "com.whop.dispute_alerts#GetDisputeAlertRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -465,10 +466,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.dispute_alerts#RetrieveDisputeAlert": {
+    "com.whop.dispute_alerts#GetDisputeAlert": {
       "type": "operation",
       "input": {
-        "target": "com.whop.dispute_alerts#RetrieveDisputeAlertRequest"
+        "target": "com.whop.dispute_alerts#GetDisputeAlertRequest"
       },
       "output": {
         "target": "com.whop.dispute_alerts#DisputeAlert"
@@ -534,10 +535,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.dispute_alerts#ListDisputeAlerts"
+          "target": "com.whop.dispute_alerts#GetDisputeAlert"
         },
         {
-          "target": "com.whop.dispute_alerts#RetrieveDisputeAlert"
+          "target": "com.whop.dispute_alerts#ListDisputeAlerts"
         }
       ],
       "traits": {

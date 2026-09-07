@@ -80,10 +80,10 @@ export interface GeneratorCliOptions {
   /** Directory of hand-authored models merged after the generated ones. */
   readonly manualSpecsDir?: string;
   /**
-   * @deprecated Patches apply in convert. Pass `false` or omit. A string
-   * throws — generate must not patch Smithy models.
+   * RFC-6902 patches apply in convert, never here. Only `false` is accepted
+   * so a string is a type error rather than a silently ignored setting.
    */
-  readonly patchesDir?: string | false;
+  readonly patchesDir?: false;
   /**
    * Model transform applied before generation (e.g. AWS dropping
    * unreachable foreign-namespace shapes from a vendored model). Does not
@@ -160,14 +160,6 @@ export const runGeneratorCli = (options: GeneratorCliOptions): void => {
         );
 
         yield* fs.makeDirectory(outDir, { recursive: true });
-
-        if (typeof options.patchesDir === "string") {
-          return yield* Effect.die(
-            new Error(
-              "RFC-6902 patches apply in convert so .generated-specs is the patched model; generate does not patch. Drop patchesDir or pass false.",
-            ),
-          );
-        }
 
         const written: string[] = [];
         const failedModels: string[] = [];

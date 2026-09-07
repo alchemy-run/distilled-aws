@@ -12,56 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CertificateProfilesRevokeCertificateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Artifact Signing account name. */
-  accountName: string;
-  /** Certificate profile name. */
-  profileName: string;
-  /** Serial number of the certificate. */
-  serialNumber: string;
-  /** Thumbprint of the certificate. */
-  thumbprint: string;
-  /** The timestamp when the revocation is effective. */
-  effectiveAt: string;
-  /** Reason for the revocation. */
-  reason: string;
-  /** Remarks for the revocation. */
-  remarks?: string;
-}
-export const CertificateProfilesRevokeCertificateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      profileName: S.String.pipe(T.Label()),
-      serialNumber: S.String,
-      thumbprint: S.String,
-      effectiveAt: S.String,
-      reason: S.String,
-      remarks: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles/{profileName}/revokeCertificate",
-        code: 200,
-        apiVersion: "2025-10-13",
-      }),
-    ),
-  ).annotate({
-    identifier: "CertificateProfilesRevokeCertificateRequest",
-  }) as any as S.Schema<CertificateProfilesRevokeCertificateRequest>;
-
-export interface CertificateProfilesRevokeCertificateResponse {}
-export const CertificateProfilesRevokeCertificateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CertificateProfilesRevokeCertificateResponse",
-  }) as any as S.Schema<CertificateProfilesRevokeCertificateResponse>;
-
 export interface CheckCodeSigningAccountNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -376,13 +326,13 @@ export const CreateCertificateProfileResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCertificateProfileResponse>;
 
 /** Resource tags. */
-export type CodeSigningAccountsCreateRequestTagsMap = {
+export type CreateCodeSigningAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CodeSigningAccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateCodeSigningAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CodeSigningAccountsCreateRequestTagsMap>;
+) as any as S.Schema<CreateCodeSigningAccountRequestTagsMap>;
 
 /** Name of the sku. */
 export type SkuName = "Basic" | "Premium";
@@ -420,7 +370,7 @@ export interface CreateCodeSigningAccountRequest {
   /** Artifact Signing account name. */
   accountName: string;
   /** Resource tags. */
-  tags?: CodeSigningAccountsCreateRequestTagsMap;
+  tags?: CreateCodeSigningAccountRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -431,7 +381,7 @@ export const CreateCodeSigningAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(CodeSigningAccountsCreateRequestTagsMap),
+    tags: S.optional(CreateCodeSigningAccountRequestTagsMap),
     location: S.String,
     properties: S.optional(CodeSigningAccountPropertiesInput),
   }).pipe(
@@ -447,13 +397,13 @@ export const CreateCodeSigningAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCodeSigningAccountRequest>;
 
 /** Resource tags. */
-export type CodeSigningAccountsCreateResponseTagsMap = {
+export type CreateCodeSigningAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CodeSigningAccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateCodeSigningAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CodeSigningAccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateCodeSigningAccountResponseTagsMap>;
 
 /** Properties of the artifact signing account. */
 export interface CodeSigningAccountProperties {
@@ -484,7 +434,7 @@ export interface CreateCodeSigningAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CodeSigningAccountsCreateResponseTagsMap;
+  tags?: CreateCodeSigningAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -496,7 +446,7 @@ export const CreateCodeSigningAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CodeSigningAccountsCreateResponseTagsMap),
+    tags: S.optional(CreateCodeSigningAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(CodeSigningAccountProperties),
   }),
@@ -649,13 +599,13 @@ export const GetCodeSigningAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCodeSigningAccountRequest>;
 
 /** Resource tags. */
-export type CodeSigningAccountsGetResponseTagsMap = {
+export type GetCodeSigningAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CodeSigningAccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCodeSigningAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CodeSigningAccountsGetResponseTagsMap>;
+) as any as S.Schema<GetCodeSigningAccountResponseTagsMap>;
 
 export interface GetCodeSigningAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -667,7 +617,7 @@ export interface GetCodeSigningAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CodeSigningAccountsGetResponseTagsMap;
+  tags?: GetCodeSigningAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -679,7 +629,7 @@ export const GetCodeSigningAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CodeSigningAccountsGetResponseTagsMap),
+    tags: S.optional(GetCodeSigningAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(CodeSigningAccountProperties),
   }),
@@ -931,34 +881,84 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
+export interface RevokeCertificateProfileCertificateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Artifact Signing account name. */
+  accountName: string;
+  /** Certificate profile name. */
+  profileName: string;
+  /** Serial number of the certificate. */
+  serialNumber: string;
+  /** Thumbprint of the certificate. */
+  thumbprint: string;
+  /** The timestamp when the revocation is effective. */
+  effectiveAt: string;
+  /** Reason for the revocation. */
+  reason: string;
+  /** Remarks for the revocation. */
+  remarks?: string;
+}
+export const RevokeCertificateProfileCertificateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      profileName: S.String.pipe(T.Label()),
+      serialNumber: S.String,
+      thumbprint: S.String,
+      effectiveAt: S.String,
+      reason: S.String,
+      remarks: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles/{profileName}/revokeCertificate",
+        code: 200,
+        apiVersion: "2025-10-13",
+      }),
+    ),
+  ).annotate({
+    identifier: "RevokeCertificateProfileCertificateRequest",
+  }) as any as S.Schema<RevokeCertificateProfileCertificateRequest>;
+
+export interface RevokeCertificateProfileCertificateResponse {}
+export const RevokeCertificateProfileCertificateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RevokeCertificateProfileCertificateResponse",
+  }) as any as S.Schema<RevokeCertificateProfileCertificateResponse>;
+
 /** Resource tags. */
-export type CodeSigningAccountsUpdateRequestTagsMap = {
+export type UpdateCodeSigningAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CodeSigningAccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCodeSigningAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CodeSigningAccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCodeSigningAccountRequestTagsMap>;
 
 /** SKU of the artifact signing account. */
 export interface AccountSkuPatch {
@@ -994,7 +994,7 @@ export interface UpdateCodeSigningAccountRequest {
   /** Artifact Signing account name. */
   accountName: string;
   /** Resource tags. */
-  tags?: CodeSigningAccountsUpdateRequestTagsMap;
+  tags?: UpdateCodeSigningAccountRequestTagsMap;
   /** Properties of the artifact signing account. */
   properties?: CodeSigningAccountPatchProperties;
 }
@@ -1003,7 +1003,7 @@ export const UpdateCodeSigningAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(CodeSigningAccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateCodeSigningAccountRequestTagsMap),
     properties: S.optional(CodeSigningAccountPatchProperties),
   }).pipe(
     T.Http({
@@ -1018,13 +1018,13 @@ export const UpdateCodeSigningAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCodeSigningAccountRequest>;
 
 /** Resource tags. */
-export type CodeSigningAccountsUpdateResponseTagsMap = {
+export type UpdateCodeSigningAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CodeSigningAccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCodeSigningAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CodeSigningAccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCodeSigningAccountResponseTagsMap>;
 
 export interface UpdateCodeSigningAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1036,7 +1036,7 @@ export interface UpdateCodeSigningAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CodeSigningAccountsUpdateResponseTagsMap;
+  tags?: UpdateCodeSigningAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1048,28 +1048,13 @@ export const UpdateCodeSigningAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CodeSigningAccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateCodeSigningAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(CodeSigningAccountProperties),
   }),
 ).annotate({
   identifier: "UpdateCodeSigningAccountResponse",
 }) as any as S.Schema<UpdateCodeSigningAccountResponse>;
-
-export type CertificateProfilesRevokeCertificateError = AzureOpError;
-/** Revoke a certificate under a certificate profile. */
-export const CertificateProfilesRevokeCertificate: API.OperationMethod<
-  CertificateProfilesRevokeCertificateRequest,
-  CertificateProfilesRevokeCertificateResponse,
-  CertificateProfilesRevokeCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificateProfilesRevokeCertificateRequest,
-  output: CertificateProfilesRevokeCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
 
 export type CheckCodeSigningAccountNameAvailabilityError = AzureOpError;
 /** Checks if the artifact signing account name is valid and is not already in use. */
@@ -1231,6 +1216,21 @@ export const ListOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOperationsRequest,
   output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RevokeCertificateProfileCertificateError = AzureOpError;
+/** Revoke a certificate under a certificate profile. */
+export const RevokeCertificateProfileCertificate: API.OperationMethod<
+  RevokeCertificateProfileCertificateRequest,
+  RevokeCertificateProfileCertificateResponse,
+  RevokeCertificateProfileCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RevokeCertificateProfileCertificateRequest,
+  output: RevokeCertificateProfileCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

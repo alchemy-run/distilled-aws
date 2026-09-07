@@ -232,40 +232,46 @@ export const AttachedNetworksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AttachedNetworksCreateOrUpdateResponse",
 }) as any as S.Schema<AttachedNetworksCreateOrUpdateResponse>;
 
-export interface CatalogsConnectRequest {
+export interface CancelProjectCatalogImageDefinitionBuildRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the devcenter. */
-  devCenterName: string;
+  /** The name of the project. */
+  projectName: string;
   /** The name of the Catalog. */
   catalogName: string;
+  /** The name of the Image Definition. */
+  imageDefinitionName: string;
+  /** The ID of the Image Definition Build. */
+  buildName: string;
 }
-export const CatalogsConnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    devCenterName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/connect",
-      code: 200,
-      apiVersion: "2025-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsConnectRequest",
-}) as any as S.Schema<CatalogsConnectRequest>;
+export const CancelProjectCatalogImageDefinitionBuildRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      catalogName: S.String.pipe(T.Label()),
+      imageDefinitionName: S.String.pipe(T.Label()),
+      buildName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/catalogs/{catalogName}/imageDefinitions/{imageDefinitionName}/builds/{buildName}/cancel",
+        code: 200,
+        apiVersion: "2025-02-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelProjectCatalogImageDefinitionBuildRequest",
+  }) as any as S.Schema<CancelProjectCatalogImageDefinitionBuildRequest>;
 
-export interface CatalogsConnectResponse {}
-export const CatalogsConnectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CatalogsConnectResponse",
-}) as any as S.Schema<CatalogsConnectResponse>;
+export interface CancelProjectCatalogImageDefinitionBuildResponse {}
+export const CancelProjectCatalogImageDefinitionBuildResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CancelProjectCatalogImageDefinitionBuildResponse",
+  }) as any as S.Schema<CancelProjectCatalogImageDefinitionBuildResponse>;
 
 /** Properties for a Git repository catalog. */
 export interface GitCatalog {
@@ -499,7 +505,7 @@ export const CatalogsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CatalogsCreateOrUpdateResponse",
 }) as any as S.Schema<CatalogsCreateOrUpdateResponse>;
 
-export interface CatalogsSyncRequest {
+export interface ConnectCatalogRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -509,7 +515,7 @@ export interface CatalogsSyncRequest {
   /** The name of the Catalog. */
   catalogName: string;
 }
-export const CatalogsSyncRequest = /*@__PURE__*/ S.suspend(() =>
+export const ConnectCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -518,127 +524,56 @@ export const CatalogsSyncRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/sync",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/connect",
       code: 200,
       apiVersion: "2025-02-01",
     }),
   ),
 ).annotate({
-  identifier: "CatalogsSyncRequest",
-}) as any as S.Schema<CatalogsSyncRequest>;
+  identifier: "ConnectCatalogRequest",
+}) as any as S.Schema<ConnectCatalogRequest>;
 
-export interface CatalogsSyncResponse {}
-export const CatalogsSyncResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ConnectCatalogResponse {}
+export const ConnectCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "CatalogsSyncResponse",
-}) as any as S.Schema<CatalogsSyncResponse>;
+  identifier: "ConnectCatalogResponse",
+}) as any as S.Schema<ConnectCatalogResponse>;
 
-export interface CheckNameAvailabilityExecuteRequest {
+export interface ConnectProjectCatalogRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of the resource for which availability needs to be checked. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the project. */
+  projectName: string;
+  /** The name of the Catalog. */
+  catalogName: string;
 }
-export const CheckNameAvailabilityExecuteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ConnectProjectCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
+    resourceGroupName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevCenter/checkNameAvailability",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/catalogs/{catalogName}/connect",
       code: 200,
       apiVersion: "2025-02-01",
     }),
   ),
 ).annotate({
-  identifier: "CheckNameAvailabilityExecuteRequest",
-}) as any as S.Schema<CheckNameAvailabilityExecuteRequest>;
+  identifier: "ConnectProjectCatalogRequest",
+}) as any as S.Schema<ConnectProjectCatalogRequest>;
 
-/** The reason why the given name is not available. */
-export type CheckNameAvailabilityExecuteResponseReason =
-  | "Invalid"
-  | "AlreadyExists";
-export const CheckNameAvailabilityExecuteResponseReason =
-  /*@__PURE__*/ S.String;
-
-export interface CheckNameAvailabilityExecuteResponse {
-  /** Indicates if the resource name is available. */
-  nameAvailable?: boolean;
-  /** The reason why the given name is not available. */
-  reason?: CheckNameAvailabilityExecuteResponseReason;
-  /** Detailed reason why the given name is available. */
-  message?: string;
-}
-export const CheckNameAvailabilityExecuteResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(CheckNameAvailabilityExecuteResponseReason),
-      message: S.optional(S.String),
-    }),
+export interface ConnectProjectCatalogResponse {}
+export const ConnectProjectCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "CheckNameAvailabilityExecuteResponse",
-}) as any as S.Schema<CheckNameAvailabilityExecuteResponse>;
-
-export interface CheckScopedNameAvailabilityExecuteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource for which availability needs to be checked. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The resource id to scope the name check. */
-  scope?: string;
-}
-export const CheckScopedNameAvailabilityExecuteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      scope: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevCenter/checkScopedNameAvailability",
-        code: 200,
-        apiVersion: "2025-02-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckScopedNameAvailabilityExecuteRequest",
-  }) as any as S.Schema<CheckScopedNameAvailabilityExecuteRequest>;
-
-/** The reason why the given name is not available. */
-export type CheckScopedNameAvailabilityExecuteResponseReason =
-  | "Invalid"
-  | "AlreadyExists";
-export const CheckScopedNameAvailabilityExecuteResponseReason =
-  /*@__PURE__*/ S.String;
-
-export interface CheckScopedNameAvailabilityExecuteResponse {
-  /** Indicates if the resource name is available. */
-  nameAvailable?: boolean;
-  /** The reason why the given name is not available. */
-  reason?: CheckScopedNameAvailabilityExecuteResponseReason;
-  /** Detailed reason why the given name is available. */
-  message?: string;
-}
-export const CheckScopedNameAvailabilityExecuteResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(CheckScopedNameAvailabilityExecuteResponseReason),
-      message: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CheckScopedNameAvailabilityExecuteResponse",
-  }) as any as S.Schema<CheckScopedNameAvailabilityExecuteResponse>;
+  identifier: "ConnectProjectCatalogResponse",
+}) as any as S.Schema<ConnectProjectCatalogResponse>;
 
 export interface DeleteAttachedNetworkRequest {
   /** The ID of the target subscription. */
@@ -1954,6 +1889,112 @@ export const EnvironmentTypesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "EnvironmentTypesCreateOrUpdateResponse",
 }) as any as S.Schema<EnvironmentTypesCreateOrUpdateResponse>;
 
+export interface ExecuteCheckNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource for which availability needs to be checked. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+}
+export const ExecuteCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevCenter/checkNameAvailability",
+      code: 200,
+      apiVersion: "2025-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExecuteCheckNameAvailabilityRequest",
+}) as any as S.Schema<ExecuteCheckNameAvailabilityRequest>;
+
+/** The reason why the given name is not available. */
+export type ExecuteCheckNameAvailabilityResponseReason =
+  | "Invalid"
+  | "AlreadyExists";
+export const ExecuteCheckNameAvailabilityResponseReason =
+  /*@__PURE__*/ S.String;
+
+export interface ExecuteCheckNameAvailabilityResponse {
+  /** Indicates if the resource name is available. */
+  nameAvailable?: boolean;
+  /** The reason why the given name is not available. */
+  reason?: ExecuteCheckNameAvailabilityResponseReason;
+  /** Detailed reason why the given name is available. */
+  message?: string;
+}
+export const ExecuteCheckNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nameAvailable: S.optional(S.Boolean),
+      reason: S.optional(ExecuteCheckNameAvailabilityResponseReason),
+      message: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ExecuteCheckNameAvailabilityResponse",
+}) as any as S.Schema<ExecuteCheckNameAvailabilityResponse>;
+
+export interface ExecuteCheckScopedNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource for which availability needs to be checked. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The resource id to scope the name check. */
+  scope?: string;
+}
+export const ExecuteCheckScopedNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      scope: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevCenter/checkScopedNameAvailability",
+        code: 200,
+        apiVersion: "2025-02-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExecuteCheckScopedNameAvailabilityRequest",
+  }) as any as S.Schema<ExecuteCheckScopedNameAvailabilityRequest>;
+
+/** The reason why the given name is not available. */
+export type ExecuteCheckScopedNameAvailabilityResponseReason =
+  | "Invalid"
+  | "AlreadyExists";
+export const ExecuteCheckScopedNameAvailabilityResponseReason =
+  /*@__PURE__*/ S.String;
+
+export interface ExecuteCheckScopedNameAvailabilityResponse {
+  /** Indicates if the resource name is available. */
+  nameAvailable?: boolean;
+  /** The reason why the given name is not available. */
+  reason?: ExecuteCheckScopedNameAvailabilityResponseReason;
+  /** Detailed reason why the given name is available. */
+  message?: string;
+}
+export const ExecuteCheckScopedNameAvailabilityResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nameAvailable: S.optional(S.Boolean),
+      reason: S.optional(ExecuteCheckScopedNameAvailabilityResponseReason),
+      message: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ExecuteCheckScopedNameAvailabilityResponse",
+  }) as any as S.Schema<ExecuteCheckScopedNameAvailabilityResponse>;
+
 /** Properties of a gallery. */
 export interface GalleryPropertiesInput {
   /** The resource ID of the backing Azure Compute Gallery. */
@@ -2216,7 +2257,7 @@ export const GetCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCatalogResponse",
 }) as any as S.Schema<GetCatalogResponse>;
 
-export interface GetCatalogSyncErrorDetailRequest {
+export interface GetCatalogSyncErrorDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2226,7 +2267,7 @@ export interface GetCatalogSyncErrorDetailRequest {
   /** The name of the Catalog. */
   catalogName: string;
 }
-export const GetCatalogSyncErrorDetailRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCatalogSyncErrorDetailsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2241,8 +2282,8 @@ export const GetCatalogSyncErrorDetailRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetCatalogSyncErrorDetailRequest",
-}) as any as S.Schema<GetCatalogSyncErrorDetailRequest>;
+  identifier: "GetCatalogSyncErrorDetailsRequest",
+}) as any as S.Schema<GetCatalogSyncErrorDetailsRequest>;
 
 /** Catalog error details */
 export type SyncErrorDetailsOperationError =
@@ -2443,7 +2484,7 @@ export const GetCustomizationTaskResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCustomizationTaskResponse",
 }) as any as S.Schema<GetCustomizationTaskResponse>;
 
-export interface GetCustomizationTaskErrorDetailRequest {
+export interface GetCustomizationTaskErrorDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2455,7 +2496,7 @@ export interface GetCustomizationTaskErrorDetailRequest {
   /** The name of the Task. */
   taskName: string;
 }
-export const GetCustomizationTaskErrorDetailRequest = /*@__PURE__*/ S.suspend(
+export const GetCustomizationTaskErrorDetailsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2472,8 +2513,8 @@ export const GetCustomizationTaskErrorDetailRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetCustomizationTaskErrorDetailRequest",
-}) as any as S.Schema<GetCustomizationTaskErrorDetailRequest>;
+  identifier: "GetCustomizationTaskErrorDetailsRequest",
+}) as any as S.Schema<GetCustomizationTaskErrorDetailsRequest>;
 
 /** Catalog error details */
 export type CatalogErrorDetails =
@@ -2482,25 +2523,25 @@ export const CatalogErrorDetails =
   DevBoxDefinitionPropertiesInputImageValidationErrorDetails;
 
 /** Errors associated with resources synchronized from the catalog. */
-export type CustomizationTasksGetErrorDetailsResponseErrorsList =
+export type GetCustomizationTaskErrorDetailsResponseErrorsList =
   Array<DevBoxDefinitionPropertiesInputImageValidationErrorDetails>;
-export const CustomizationTasksGetErrorDetailsResponseErrorsList =
+export const GetCustomizationTaskErrorDetailsResponseErrorsList =
   /*@__PURE__*/ S.Array(
     DevBoxDefinitionPropertiesInputImageValidationErrorDetails,
-  ) as any as S.Schema<CustomizationTasksGetErrorDetailsResponseErrorsList>;
+  ) as any as S.Schema<GetCustomizationTaskErrorDetailsResponseErrorsList>;
 
-export interface GetCustomizationTaskErrorDetailResponse {
+export interface GetCustomizationTaskErrorDetailsResponse {
   /** Errors associated with resources synchronized from the catalog. */
-  errors?: CustomizationTasksGetErrorDetailsResponseErrorsList;
+  errors?: GetCustomizationTaskErrorDetailsResponseErrorsList;
 }
-export const GetCustomizationTaskErrorDetailResponse = /*@__PURE__*/ S.suspend(
+export const GetCustomizationTaskErrorDetailsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      errors: S.optional(CustomizationTasksGetErrorDetailsResponseErrorsList),
+      errors: S.optional(GetCustomizationTaskErrorDetailsResponseErrorsList),
     }),
 ).annotate({
-  identifier: "GetCustomizationTaskErrorDetailResponse",
-}) as any as S.Schema<GetCustomizationTaskErrorDetailResponse>;
+  identifier: "GetCustomizationTaskErrorDetailsResponse",
+}) as any as S.Schema<GetCustomizationTaskErrorDetailsResponse>;
 
 export interface GetDevBoxDefinitionRequest {
   /** The ID of the target subscription. */
@@ -2531,13 +2572,13 @@ export const GetDevBoxDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDevBoxDefinitionRequest>;
 
 /** Resource tags. */
-export type DevBoxDefinitionsGetResponseTagsMap = {
+export type GetDevBoxDefinitionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DevBoxDefinitionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDevBoxDefinitionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DevBoxDefinitionsGetResponseTagsMap>;
+) as any as S.Schema<GetDevBoxDefinitionResponseTagsMap>;
 
 export interface GetDevBoxDefinitionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2549,7 +2590,7 @@ export interface GetDevBoxDefinitionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DevBoxDefinitionsGetResponseTagsMap;
+  tags?: GetDevBoxDefinitionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Dev Box definition properties */
@@ -2561,7 +2602,7 @@ export const GetDevBoxDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DevBoxDefinitionsGetResponseTagsMap),
+    tags: S.optional(GetDevBoxDefinitionResponseTagsMap),
     location: S.String,
     properties: S.optional(DevBoxDefinitionProperties),
   }),
@@ -2598,14 +2639,14 @@ export const GetDevBoxDefinitionByProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDevBoxDefinitionByProjectRequest>;
 
 /** Resource tags. */
-export type DevBoxDefinitionsGetByProjectResponseTagsMap = {
+export type GetDevBoxDefinitionByProjectResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DevBoxDefinitionsGetByProjectResponseTagsMap =
+export const GetDevBoxDefinitionByProjectResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DevBoxDefinitionsGetByProjectResponseTagsMap>;
+  ) as any as S.Schema<GetDevBoxDefinitionByProjectResponseTagsMap>;
 
 export interface GetDevBoxDefinitionByProjectResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2617,7 +2658,7 @@ export interface GetDevBoxDefinitionByProjectResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DevBoxDefinitionsGetByProjectResponseTagsMap;
+  tags?: GetDevBoxDefinitionByProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Dev Box definition properties */
@@ -2630,7 +2671,7 @@ export const GetDevBoxDefinitionByProjectResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(DevBoxDefinitionsGetByProjectResponseTagsMap),
+      tags: S.optional(GetDevBoxDefinitionByProjectResponseTagsMap),
       location: S.String,
       properties: S.optional(DevBoxDefinitionProperties),
     }),
@@ -2664,18 +2705,16 @@ export const GetDevCenterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDevCenterRequest>;
 
 /** Resource tags. */
-export type DevCentersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DevCentersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDevCenterResponseTagsMap = { [key: string]: string | undefined };
+export const GetDevCenterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DevCentersGetResponseTagsMap>;
+) as any as S.Schema<GetDevCenterResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type DevCentersGetResponseIdentity =
+export type GetDevCenterResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
-export const DevCentersGetResponseIdentity =
+export const GetDevCenterResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
 
 export interface GetDevCenterResponse {
@@ -2688,7 +2727,7 @@ export interface GetDevCenterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DevCentersGetResponseTagsMap;
+  tags?: GetDevCenterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** DevCenter properties */
@@ -2702,7 +2741,7 @@ export const GetDevCenterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DevCentersGetResponseTagsMap),
+    tags: S.optional(GetDevCenterResponseTagsMap),
     location: S.String,
     properties: S.optional(DevCenterProperties),
     identity: S.optional(DevCentersCreateOrUpdateResponseIdentity),
@@ -2902,7 +2941,7 @@ export const GetEnvironmentDefinitionByProjectCatalogResponse =
     identifier: "GetEnvironmentDefinitionByProjectCatalogResponse",
   }) as any as S.Schema<GetEnvironmentDefinitionByProjectCatalogResponse>;
 
-export interface GetEnvironmentDefinitionErrorDetailRequest {
+export interface GetEnvironmentDefinitionErrorDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2914,7 +2953,7 @@ export interface GetEnvironmentDefinitionErrorDetailRequest {
   /** The name of the Environment Definition. */
   environmentDefinitionName: string;
 }
-export const GetEnvironmentDefinitionErrorDetailRequest =
+export const GetEnvironmentDefinitionErrorDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2931,31 +2970,31 @@ export const GetEnvironmentDefinitionErrorDetailRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetEnvironmentDefinitionErrorDetailRequest",
-  }) as any as S.Schema<GetEnvironmentDefinitionErrorDetailRequest>;
+    identifier: "GetEnvironmentDefinitionErrorDetailsRequest",
+  }) as any as S.Schema<GetEnvironmentDefinitionErrorDetailsRequest>;
 
 /** Errors associated with resources synchronized from the catalog. */
-export type EnvironmentDefinitionsGetErrorDetailsResponseErrorsList =
+export type GetEnvironmentDefinitionErrorDetailsResponseErrorsList =
   Array<DevBoxDefinitionPropertiesInputImageValidationErrorDetails>;
-export const EnvironmentDefinitionsGetErrorDetailsResponseErrorsList =
+export const GetEnvironmentDefinitionErrorDetailsResponseErrorsList =
   /*@__PURE__*/ S.Array(
     DevBoxDefinitionPropertiesInputImageValidationErrorDetails,
-  ) as any as S.Schema<EnvironmentDefinitionsGetErrorDetailsResponseErrorsList>;
+  ) as any as S.Schema<GetEnvironmentDefinitionErrorDetailsResponseErrorsList>;
 
-export interface GetEnvironmentDefinitionErrorDetailResponse {
+export interface GetEnvironmentDefinitionErrorDetailsResponse {
   /** Errors associated with resources synchronized from the catalog. */
-  errors?: EnvironmentDefinitionsGetErrorDetailsResponseErrorsList;
+  errors?: GetEnvironmentDefinitionErrorDetailsResponseErrorsList;
 }
-export const GetEnvironmentDefinitionErrorDetailResponse =
+export const GetEnvironmentDefinitionErrorDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       errors: S.optional(
-        EnvironmentDefinitionsGetErrorDetailsResponseErrorsList,
+        GetEnvironmentDefinitionErrorDetailsResponseErrorsList,
       ),
     }),
   ).annotate({
-    identifier: "GetEnvironmentDefinitionErrorDetailResponse",
-  }) as any as S.Schema<GetEnvironmentDefinitionErrorDetailResponse>;
+    identifier: "GetEnvironmentDefinitionErrorDetailsResponse",
+  }) as any as S.Schema<GetEnvironmentDefinitionErrorDetailsResponse>;
 
 export interface GetEnvironmentTypeRequest {
   /** The ID of the target subscription. */
@@ -2986,13 +3025,13 @@ export const GetEnvironmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEnvironmentTypeRequest>;
 
 /** Resource tags. */
-export type EnvironmentTypesGetResponseTagsMap = {
+export type GetEnvironmentTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnvironmentTypesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetEnvironmentTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnvironmentTypesGetResponseTagsMap>;
+) as any as S.Schema<GetEnvironmentTypeResponseTagsMap>;
 
 export interface GetEnvironmentTypeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3006,7 +3045,7 @@ export interface GetEnvironmentTypeResponse {
   /** Properties of an environment type. */
   properties?: EnvironmentTypeProperties;
   /** Resource tags. */
-  tags?: EnvironmentTypesGetResponseTagsMap;
+  tags?: GetEnvironmentTypeResponseTagsMap;
 }
 export const GetEnvironmentTypeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3015,7 +3054,7 @@ export const GetEnvironmentTypeResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(EnvironmentTypeProperties),
-    tags: S.optional(EnvironmentTypesGetResponseTagsMap),
+    tags: S.optional(GetEnvironmentTypeResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetEnvironmentTypeResponse",
@@ -3447,13 +3486,13 @@ export const GetNetworkConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkConnectionRequest>;
 
 /** Resource tags. */
-export type NetworkConnectionsGetResponseTagsMap = {
+export type GetNetworkConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkConnectionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkConnectionsGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkConnectionResponseTagsMap>;
 
 /** Provisioning state of the resource. */
 export type NetworkPropertiesProvisioningState =
@@ -3540,7 +3579,7 @@ export interface GetNetworkConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkConnectionsGetResponseTagsMap;
+  tags?: GetNetworkConnectionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a Network Connection */
@@ -3552,7 +3591,7 @@ export const GetNetworkConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkConnectionsGetResponseTagsMap),
+    tags: S.optional(GetNetworkConnectionResponseTagsMap),
     location: S.String,
     properties: S.optional(NetworkProperties),
   }),
@@ -3560,7 +3599,7 @@ export const GetNetworkConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetNetworkConnectionResponse",
 }) as any as S.Schema<GetNetworkConnectionResponse>;
 
-export interface GetNetworkConnectionHealthDetailRequest {
+export interface GetNetworkConnectionHealthDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3568,7 +3607,7 @@ export interface GetNetworkConnectionHealthDetailRequest {
   /** Name of the Network Connection that can be applied to a Pool. */
   networkConnectionName: string;
 }
-export const GetNetworkConnectionHealthDetailRequest = /*@__PURE__*/ S.suspend(
+export const GetNetworkConnectionHealthDetailsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3583,8 +3622,8 @@ export const GetNetworkConnectionHealthDetailRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetNetworkConnectionHealthDetailRequest",
-}) as any as S.Schema<GetNetworkConnectionHealthDetailRequest>;
+  identifier: "GetNetworkConnectionHealthDetailsRequest",
+}) as any as S.Schema<GetNetworkConnectionHealthDetailsRequest>;
 
 /** Health check status values */
 export type HealthCheckStatus =
@@ -3655,7 +3694,7 @@ export const HealthCheckStatusDetailsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "HealthCheckStatusDetailsProperties",
 }) as any as S.Schema<HealthCheckStatusDetailsProperties>;
 
-export interface GetNetworkConnectionHealthDetailResponse {
+export interface GetNetworkConnectionHealthDetailsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3667,8 +3706,8 @@ export interface GetNetworkConnectionHealthDetailResponse {
   /** Health check status details properties. */
   properties?: HealthCheckStatusDetailsProperties;
 }
-export const GetNetworkConnectionHealthDetailResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetNetworkConnectionHealthDetailsResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
@@ -3676,9 +3715,9 @@ export const GetNetworkConnectionHealthDetailResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(HealthCheckStatusDetailsProperties),
     }),
-).annotate({
-  identifier: "GetNetworkConnectionHealthDetailResponse",
-}) as any as S.Schema<GetNetworkConnectionHealthDetailResponse>;
+  ).annotate({
+    identifier: "GetNetworkConnectionHealthDetailsResponse",
+  }) as any as S.Schema<GetNetworkConnectionHealthDetailsResponse>;
 
 export interface GetOperationStatusRequest {
   /** The ID of the target subscription. */
@@ -3800,11 +3839,11 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type OperationStatusesGetResponseOperationsList =
+export type GetOperationStatusResponseOperationsList =
   Array<OperationStatusResult>;
-export const OperationStatusesGetResponseOperationsList = /*@__PURE__*/ S.Array(
+export const GetOperationStatusResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<OperationStatusesGetResponseOperationsList>;
+) as any as S.Schema<GetOperationStatusResponseOperationsList>;
 
 export interface GetOperationStatusResponse {
   /** Fully qualified ID for the async operation. */
@@ -3822,7 +3861,7 @@ export interface GetOperationStatusResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: OperationStatusesGetResponseOperationsList;
+  operations?: GetOperationStatusResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
   /** Custom operation properties, populated only for a successful operation. */
@@ -3837,7 +3876,7 @@ export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusesGetResponseOperationsList),
+    operations: S.optional(GetOperationStatusResponseOperationsList),
     error: S.optional(ErrorDetail),
     properties: S.optional(S.Unknown),
   }),
@@ -3872,11 +3911,11 @@ export const GetPoolRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetPoolRequest" }) as any as S.Schema<GetPoolRequest>;
 
 /** Resource tags. */
-export type PoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const PoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolsGetResponseTagsMap>;
+) as any as S.Schema<GetPoolResponseTagsMap>;
 
 /** Indicates if the pool is created from an existing Dev Box Definition or if one is provided directly. */
 export type PoolDevBoxDefinitionType = "Reference" | "Value";
@@ -4099,7 +4138,7 @@ export interface GetPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PoolsGetResponseTagsMap;
+  tags?: GetPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Pool properties */
@@ -4111,7 +4150,7 @@ export const GetPoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PoolsGetResponseTagsMap),
+    tags: S.optional(GetPoolResponseTagsMap),
     location: S.String,
     properties: S.optional(PoolProperties),
   }),
@@ -4145,11 +4184,11 @@ export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectRequest>;
 
 /** Resource tags. */
-export type ProjectsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ProjectsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetProjectResponseTagsMap = { [key: string]: string | undefined };
+export const GetProjectResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsGetResponseTagsMap>;
+) as any as S.Schema<GetProjectResponseTagsMap>;
 
 /** Indicates catalog item types that can be synced. */
 export type ProjectCatalogSettingsCatalogItemSyncTypesList = Array<
@@ -4227,9 +4266,9 @@ export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ProjectsGetResponseIdentity =
+export type GetProjectResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
-export const ProjectsGetResponseIdentity =
+export const GetProjectResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
 
 export interface GetProjectResponse {
@@ -4242,7 +4281,7 @@ export interface GetProjectResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProjectsGetResponseTagsMap;
+  tags?: GetProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a project. */
@@ -4256,7 +4295,7 @@ export const GetProjectResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ProjectsGetResponseTagsMap),
+    tags: S.optional(GetProjectResponseTagsMap),
     location: S.String,
     properties: S.optional(ProjectProperties),
     identity: S.optional(DevCentersCreateOrUpdateResponseIdentity),
@@ -4410,7 +4449,7 @@ export const GetProjectCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProjectCatalogResponse",
 }) as any as S.Schema<GetProjectCatalogResponse>;
 
-export interface GetProjectCatalogEnvironmentDefinitionErrorDetailRequest {
+export interface GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4422,7 +4461,7 @@ export interface GetProjectCatalogEnvironmentDefinitionErrorDetailRequest {
   /** The name of the Environment Definition. */
   environmentDefinitionName: string;
 }
-export const GetProjectCatalogEnvironmentDefinitionErrorDetailRequest =
+export const GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4439,31 +4478,31 @@ export const GetProjectCatalogEnvironmentDefinitionErrorDetailRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetProjectCatalogEnvironmentDefinitionErrorDetailRequest",
-  }) as any as S.Schema<GetProjectCatalogEnvironmentDefinitionErrorDetailRequest>;
+    identifier: "GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest",
+  }) as any as S.Schema<GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest>;
 
 /** Errors associated with resources synchronized from the catalog. */
-export type ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList =
+export type GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList =
   Array<DevBoxDefinitionPropertiesInputImageValidationErrorDetails>;
-export const ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList =
+export const GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList =
   /*@__PURE__*/ S.Array(
     DevBoxDefinitionPropertiesInputImageValidationErrorDetails,
-  ) as any as S.Schema<ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList>;
+  ) as any as S.Schema<GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList>;
 
-export interface GetProjectCatalogEnvironmentDefinitionErrorDetailResponse {
+export interface GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse {
   /** Errors associated with resources synchronized from the catalog. */
-  errors?: ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList;
+  errors?: GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList;
 }
-export const GetProjectCatalogEnvironmentDefinitionErrorDetailResponse =
+export const GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       errors: S.optional(
-        ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList,
+        GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList,
       ),
     }),
   ).annotate({
-    identifier: "GetProjectCatalogEnvironmentDefinitionErrorDetailResponse",
-  }) as any as S.Schema<GetProjectCatalogEnvironmentDefinitionErrorDetailResponse>;
+    identifier: "GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse",
+  }) as any as S.Schema<GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse>;
 
 export interface GetProjectCatalogImageDefinitionBuildRequest {
   /** The ID of the target subscription. */
@@ -4574,7 +4613,7 @@ export const GetProjectCatalogImageDefinitionBuildResponse =
     identifier: "GetProjectCatalogImageDefinitionBuildResponse",
   }) as any as S.Schema<GetProjectCatalogImageDefinitionBuildResponse>;
 
-export interface GetProjectCatalogImageDefinitionBuildBuildDetailRequest {
+export interface GetProjectCatalogImageDefinitionBuildBuildDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4588,7 +4627,7 @@ export interface GetProjectCatalogImageDefinitionBuildBuildDetailRequest {
   /** The ID of the Image Definition Build. */
   buildName: string;
 }
-export const GetProjectCatalogImageDefinitionBuildBuildDetailRequest =
+export const GetProjectCatalogImageDefinitionBuildBuildDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4606,13 +4645,13 @@ export const GetProjectCatalogImageDefinitionBuildBuildDetailRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetProjectCatalogImageDefinitionBuildBuildDetailRequest",
-  }) as any as S.Schema<GetProjectCatalogImageDefinitionBuildBuildDetailRequest>;
+    identifier: "GetProjectCatalogImageDefinitionBuildBuildDetailsRequest",
+  }) as any as S.Schema<GetProjectCatalogImageDefinitionBuildBuildDetailsRequest>;
 
 /** Image reference information */
-export type ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseImageReference =
+export type GetProjectCatalogImageDefinitionBuildBuildDetailsResponseImageReference =
   DevBoxDefinitionPropertiesImageReference;
-export const ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseImageReference =
+export const GetProjectCatalogImageDefinitionBuildBuildDetailsResponseImageReference =
   DevBoxDefinitionPropertiesImageReference;
 
 export interface ImageDefinitionBuildTaskParametersItem {
@@ -4703,14 +4742,14 @@ export const ImageDefinitionBuildTaskGroup = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImageDefinitionBuildTaskGroup>;
 
 /** The list of task groups executed during the image definition build. */
-export type ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList =
+export type GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList =
   Array<ImageDefinitionBuildTaskGroup>;
-export const ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList =
+export const GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList =
   /*@__PURE__*/ S.Array(
     ImageDefinitionBuildTaskGroup,
-  ) as any as S.Schema<ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList>;
+  ) as any as S.Schema<GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList>;
 
-export interface GetProjectCatalogImageDefinitionBuildBuildDetailResponse {
+export interface GetProjectCatalogImageDefinitionBuildBuildDetailsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4730,9 +4769,9 @@ export interface GetProjectCatalogImageDefinitionBuildBuildDetailResponse {
   /** Details for image creation error. Populated when the image creation is not successful. */
   errorDetails?: DevBoxDefinitionPropertiesInputImageValidationErrorDetails;
   /** The list of task groups executed during the image definition build. */
-  taskGroups?: ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList;
+  taskGroups?: GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList;
 }
-export const GetProjectCatalogImageDefinitionBuildBuildDetailResponse =
+export const GetProjectCatalogImageDefinitionBuildBuildDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -4747,12 +4786,12 @@ export const GetProjectCatalogImageDefinitionBuildBuildDetailResponse =
         DevBoxDefinitionPropertiesInputImageValidationErrorDetails,
       ),
       taskGroups: S.optional(
-        ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList,
+        GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList,
       ),
     }),
   ).annotate({
-    identifier: "GetProjectCatalogImageDefinitionBuildBuildDetailResponse",
-  }) as any as S.Schema<GetProjectCatalogImageDefinitionBuildBuildDetailResponse>;
+    identifier: "GetProjectCatalogImageDefinitionBuildBuildDetailsResponse",
+  }) as any as S.Schema<GetProjectCatalogImageDefinitionBuildBuildDetailsResponse>;
 
 export interface GetProjectCatalogImageDefinitionByProjectCatalogRequest {
   /** The ID of the target subscription. */
@@ -4911,7 +4950,7 @@ export const GetProjectCatalogImageDefinitionByProjectCatalogResponse =
     identifier: "GetProjectCatalogImageDefinitionByProjectCatalogResponse",
   }) as any as S.Schema<GetProjectCatalogImageDefinitionByProjectCatalogResponse>;
 
-export interface GetProjectCatalogImageDefinitionErrorDetailRequest {
+export interface GetProjectCatalogImageDefinitionErrorDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4923,7 +4962,7 @@ export interface GetProjectCatalogImageDefinitionErrorDetailRequest {
   /** The name of the Image Definition. */
   imageDefinitionName: string;
 }
-export const GetProjectCatalogImageDefinitionErrorDetailRequest =
+export const GetProjectCatalogImageDefinitionErrorDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4940,33 +4979,33 @@ export const GetProjectCatalogImageDefinitionErrorDetailRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetProjectCatalogImageDefinitionErrorDetailRequest",
-  }) as any as S.Schema<GetProjectCatalogImageDefinitionErrorDetailRequest>;
+    identifier: "GetProjectCatalogImageDefinitionErrorDetailsRequest",
+  }) as any as S.Schema<GetProjectCatalogImageDefinitionErrorDetailsRequest>;
 
 /** Errors associated with resources synchronized from the catalog. */
-export type ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList =
+export type GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList =
   Array<DevBoxDefinitionPropertiesInputImageValidationErrorDetails>;
-export const ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList =
+export const GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList =
   /*@__PURE__*/ S.Array(
     DevBoxDefinitionPropertiesInputImageValidationErrorDetails,
-  ) as any as S.Schema<ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList>;
+  ) as any as S.Schema<GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList>;
 
-export interface GetProjectCatalogImageDefinitionErrorDetailResponse {
+export interface GetProjectCatalogImageDefinitionErrorDetailsResponse {
   /** Errors associated with resources synchronized from the catalog. */
-  errors?: ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList;
+  errors?: GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList;
 }
-export const GetProjectCatalogImageDefinitionErrorDetailResponse =
+export const GetProjectCatalogImageDefinitionErrorDetailsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       errors: S.optional(
-        ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList,
+        GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList,
       ),
     }),
   ).annotate({
-    identifier: "GetProjectCatalogImageDefinitionErrorDetailResponse",
-  }) as any as S.Schema<GetProjectCatalogImageDefinitionErrorDetailResponse>;
+    identifier: "GetProjectCatalogImageDefinitionErrorDetailsResponse",
+  }) as any as S.Schema<GetProjectCatalogImageDefinitionErrorDetailsResponse>;
 
-export interface GetProjectCatalogSyncErrorDetailRequest {
+export interface GetProjectCatalogSyncErrorDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4976,7 +5015,7 @@ export interface GetProjectCatalogSyncErrorDetailRequest {
   /** The name of the Catalog. */
   catalogName: string;
 }
-export const GetProjectCatalogSyncErrorDetailRequest = /*@__PURE__*/ S.suspend(
+export const GetProjectCatalogSyncErrorDetailsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4992,8 +5031,8 @@ export const GetProjectCatalogSyncErrorDetailRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetProjectCatalogSyncErrorDetailRequest",
-}) as any as S.Schema<GetProjectCatalogSyncErrorDetailRequest>;
+  identifier: "GetProjectCatalogSyncErrorDetailsRequest",
+}) as any as S.Schema<GetProjectCatalogSyncErrorDetailsRequest>;
 
 export interface GetProjectEnvironmentTypeRequest {
   /** The ID of the target subscription. */
@@ -5160,18 +5199,18 @@ export const ProjectEnvironmentTypeProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProjectEnvironmentTypeProperties>;
 
 /** Resource tags. */
-export type ProjectEnvironmentTypesGetResponseTagsMap = {
+export type GetProjectEnvironmentTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProjectEnvironmentTypesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetProjectEnvironmentTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectEnvironmentTypesGetResponseTagsMap>;
+) as any as S.Schema<GetProjectEnvironmentTypeResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ProjectEnvironmentTypesGetResponseIdentity =
+export type GetProjectEnvironmentTypeResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
-export const ProjectEnvironmentTypesGetResponseIdentity =
+export const GetProjectEnvironmentTypeResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
 
 export interface GetProjectEnvironmentTypeResponse {
@@ -5186,7 +5225,7 @@ export interface GetProjectEnvironmentTypeResponse {
   /** Properties of an environment type. */
   properties?: ProjectEnvironmentTypeProperties;
   /** Resource tags. */
-  tags?: ProjectEnvironmentTypesGetResponseTagsMap;
+  tags?: GetProjectEnvironmentTypeResponseTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: DevCentersCreateOrUpdateResponseIdentity;
   /** The geo-location for the environment type */
@@ -5199,7 +5238,7 @@ export const GetProjectEnvironmentTypeResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProjectEnvironmentTypeProperties),
-    tags: S.optional(ProjectEnvironmentTypesGetResponseTagsMap),
+    tags: S.optional(GetProjectEnvironmentTypeResponseTagsMap),
     identity: S.optional(DevCentersCreateOrUpdateResponseIdentity),
     location: S.optional(S.String),
   }),
@@ -5207,7 +5246,7 @@ export const GetProjectEnvironmentTypeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProjectEnvironmentTypeResponse",
 }) as any as S.Schema<GetProjectEnvironmentTypeResponse>;
 
-export interface GetProjectInheritedSettingRequest {
+export interface GetProjectInheritedSettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5215,7 +5254,7 @@ export interface GetProjectInheritedSettingRequest {
   /** The name of the project. */
   projectName: string;
 }
-export const GetProjectInheritedSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectInheritedSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5229,8 +5268,8 @@ export const GetProjectInheritedSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetProjectInheritedSettingRequest",
-}) as any as S.Schema<GetProjectInheritedSettingRequest>;
+  identifier: "GetProjectInheritedSettingsRequest",
+}) as any as S.Schema<GetProjectInheritedSettingsRequest>;
 
 /** Network settings for the project. */
 export interface ProjectNetworkSettings {
@@ -6700,7 +6739,7 @@ export const HealthCheckStatusDetailsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "HealthCheckStatusDetailsListResult",
 }) as any as S.Schema<HealthCheckStatusDetailsListResult>;
 
-export interface ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest {
+export interface ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6710,7 +6749,7 @@ export interface ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest 
   /** The maximum number of resources to return from the operation. Example: '$top=10'. */
   _top?: number;
 }
-export const ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest =
+export const ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6727,8 +6766,8 @@ export const ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest =
     ),
   ).annotate({
     identifier:
-      "ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest",
-  }) as any as S.Schema<ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest>;
+      "ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest>;
 
 /** Details about the connection between the Batch service and the endpoint. */
 export interface EndpointDetail {
@@ -6882,20 +6921,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -7638,11 +7677,11 @@ export const ListSkusByProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSkusByProjectRequest>;
 
 /** SKU supported locations. */
-export type SkusListByProjectResponseValueItemLocationsList = Array<string>;
-export const SkusListByProjectResponseValueItemLocationsList =
+export type ListSkusByProjectResponseValueItemLocationsList = Array<string>;
+export const ListSkusByProjectResponseValueItemLocationsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<SkusListByProjectResponseValueItemLocationsList>;
+  ) as any as S.Schema<ListSkusByProjectResponseValueItemLocationsList>;
 
 /** A name/value pair to describe a capability. */
 export interface Capability {
@@ -7659,15 +7698,15 @@ export const Capability = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Capability" }) as any as S.Schema<Capability>;
 
 /** Collection of name/value pairs to describe the SKU capabilities. */
-export type SkusListByProjectResponseValueItemCapabilitiesList =
+export type ListSkusByProjectResponseValueItemCapabilitiesList =
   Array<Capability>;
-export const SkusListByProjectResponseValueItemCapabilitiesList =
+export const ListSkusByProjectResponseValueItemCapabilitiesList =
   /*@__PURE__*/ S.Array(
     Capability,
-  ) as any as S.Schema<SkusListByProjectResponseValueItemCapabilitiesList>;
+  ) as any as S.Schema<ListSkusByProjectResponseValueItemCapabilitiesList>;
 
 /** The resource model definition representing SKU for DevCenter resources */
-export interface SkusListByProjectResponseValueItem {
+export interface ListSkusByProjectResponseValueItem {
   /** The name of the SKU. E.g. P3. It is typically a letter+number code */
   name: string;
   tier?: SkuTier;
@@ -7680,11 +7719,11 @@ export interface SkusListByProjectResponseValueItem {
   /** The name of the resource type */
   resourceType?: string;
   /** SKU supported locations. */
-  locations?: SkusListByProjectResponseValueItemLocationsList;
+  locations?: ListSkusByProjectResponseValueItemLocationsList;
   /** Collection of name/value pairs to describe the SKU capabilities. */
-  capabilities?: SkusListByProjectResponseValueItemCapabilitiesList;
+  capabilities?: ListSkusByProjectResponseValueItemCapabilitiesList;
 }
-export const SkusListByProjectResponseValueItem = /*@__PURE__*/ S.suspend(() =>
+export const ListSkusByProjectResponseValueItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
     tier: S.optional(SkuTier),
@@ -7692,31 +7731,31 @@ export const SkusListByProjectResponseValueItem = /*@__PURE__*/ S.suspend(() =>
     family: S.optional(S.String),
     capacity: S.optional(S.Number),
     resourceType: S.optional(S.String),
-    locations: S.optional(SkusListByProjectResponseValueItemLocationsList),
+    locations: S.optional(ListSkusByProjectResponseValueItemLocationsList),
     capabilities: S.optional(
-      SkusListByProjectResponseValueItemCapabilitiesList,
+      ListSkusByProjectResponseValueItemCapabilitiesList,
     ),
   }),
 ).annotate({
-  identifier: "SkusListByProjectResponseValueItem",
-}) as any as S.Schema<SkusListByProjectResponseValueItem>;
+  identifier: "ListSkusByProjectResponseValueItem",
+}) as any as S.Schema<ListSkusByProjectResponseValueItem>;
 
 /** Current page of results. */
-export type SkusListByProjectResponseValueList =
-  Array<SkusListByProjectResponseValueItem>;
-export const SkusListByProjectResponseValueList = /*@__PURE__*/ S.Array(
-  SkusListByProjectResponseValueItem,
-) as any as S.Schema<SkusListByProjectResponseValueList>;
+export type ListSkusByProjectResponseValueList =
+  Array<ListSkusByProjectResponseValueItem>;
+export const ListSkusByProjectResponseValueList = /*@__PURE__*/ S.Array(
+  ListSkusByProjectResponseValueItem,
+) as any as S.Schema<ListSkusByProjectResponseValueList>;
 
 export interface ListSkusByProjectResponse {
   /** Current page of results. */
-  value?: SkusListByProjectResponseValueList;
+  value?: ListSkusByProjectResponseValueList;
   /** URL to get the next set of results if there are any. */
   nextLink?: string;
 }
 export const ListSkusByProjectResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(SkusListByProjectResponseValueList),
+    value: S.optional(ListSkusByProjectResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -8033,38 +8072,6 @@ export const NetworkConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "NetworkConnectionsCreateOrUpdateResponse",
 }) as any as S.Schema<NetworkConnectionsCreateOrUpdateResponse>;
 
-export interface NetworkConnectionsRunHealthChecksRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Connection that can be applied to a Pool. */
-  networkConnectionName: string;
-}
-export const NetworkConnectionsRunHealthChecksRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}/runHealthChecks",
-        code: 200,
-        apiVersion: "2025-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkConnectionsRunHealthChecksRequest",
-}) as any as S.Schema<NetworkConnectionsRunHealthChecksRequest>;
-
-export interface NetworkConnectionsRunHealthChecksResponse {}
-export const NetworkConnectionsRunHealthChecksResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NetworkConnectionsRunHealthChecksResponse",
-  }) as any as S.Schema<NetworkConnectionsRunHealthChecksResponse>;
-
 /** Indicates the type of sync that is configured for the catalog. */
 export type CatalogUpdatePropertiesSyncType = "Manual" | "Scheduled";
 export const CatalogUpdatePropertiesSyncType = /*@__PURE__*/ S.String;
@@ -8332,82 +8339,6 @@ export const PoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PoolsCreateOrUpdateResponse",
 }) as any as S.Schema<PoolsCreateOrUpdateResponse>;
 
-export interface PoolsRunHealthChecksRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the project. */
-  projectName: string;
-  /** Name of the pool. */
-  poolName: string;
-}
-export const PoolsRunHealthChecksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/pools/{poolName}/runHealthChecks",
-      code: 200,
-      apiVersion: "2025-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "PoolsRunHealthChecksRequest",
-}) as any as S.Schema<PoolsRunHealthChecksRequest>;
-
-export interface PoolsRunHealthChecksResponse {}
-export const PoolsRunHealthChecksResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PoolsRunHealthChecksResponse",
-}) as any as S.Schema<PoolsRunHealthChecksResponse>;
-
-export interface ProjectCatalogImageDefinitionBuildCancelRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the project. */
-  projectName: string;
-  /** The name of the Catalog. */
-  catalogName: string;
-  /** The name of the Image Definition. */
-  imageDefinitionName: string;
-  /** The ID of the Image Definition Build. */
-  buildName: string;
-}
-export const ProjectCatalogImageDefinitionBuildCancelRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      catalogName: S.String.pipe(T.Label()),
-      imageDefinitionName: S.String.pipe(T.Label()),
-      buildName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/catalogs/{catalogName}/imageDefinitions/{imageDefinitionName}/builds/{buildName}/cancel",
-        code: 200,
-        apiVersion: "2025-02-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ProjectCatalogImageDefinitionBuildCancelRequest",
-  }) as any as S.Schema<ProjectCatalogImageDefinitionBuildCancelRequest>;
-
-export interface ProjectCatalogImageDefinitionBuildCancelResponse {}
-export const ProjectCatalogImageDefinitionBuildCancelResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ProjectCatalogImageDefinitionBuildCancelResponse",
-  }) as any as S.Schema<ProjectCatalogImageDefinitionBuildCancelResponse>;
-
 export interface ProjectCatalogImageDefinitionsBuildImageRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -8445,41 +8376,6 @@ export const ProjectCatalogImageDefinitionsBuildImageResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "ProjectCatalogImageDefinitionsBuildImageResponse",
   }) as any as S.Schema<ProjectCatalogImageDefinitionsBuildImageResponse>;
-
-export interface ProjectCatalogsConnectRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the project. */
-  projectName: string;
-  /** The name of the Catalog. */
-  catalogName: string;
-}
-export const ProjectCatalogsConnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/catalogs/{catalogName}/connect",
-      code: 200,
-      apiVersion: "2025-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectCatalogsConnectRequest",
-}) as any as S.Schema<ProjectCatalogsConnectRequest>;
-
-export interface ProjectCatalogsConnectResponse {}
-export const ProjectCatalogsConnectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProjectCatalogsConnectResponse",
-}) as any as S.Schema<ProjectCatalogsConnectResponse>;
 
 export interface ProjectCatalogsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -8537,41 +8433,6 @@ export const ProjectCatalogsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ProjectCatalogsCreateOrUpdateResponse",
 }) as any as S.Schema<ProjectCatalogsCreateOrUpdateResponse>;
-
-export interface ProjectCatalogsSyncRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the project. */
-  projectName: string;
-  /** The name of the Catalog. */
-  catalogName: string;
-}
-export const ProjectCatalogsSyncRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/catalogs/{catalogName}/sync",
-      code: 200,
-      apiVersion: "2025-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectCatalogsSyncRequest",
-}) as any as S.Schema<ProjectCatalogsSyncRequest>;
-
-export interface ProjectCatalogsSyncResponse {}
-export const ProjectCatalogsSyncResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProjectCatalogsSyncResponse",
-}) as any as S.Schema<ProjectCatalogsSyncResponse>;
 
 /** A role that can be assigned to a user. */
 export type EnvironmentRoleInput = UserAssignedIdentityInput;
@@ -8985,6 +8846,74 @@ export const ProjectsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProjectsCreateOrUpdateResponse",
 }) as any as S.Schema<ProjectsCreateOrUpdateResponse>;
 
+export interface RunNetworkConnectionHealthChecksRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Connection that can be applied to a Pool. */
+  networkConnectionName: string;
+}
+export const RunNetworkConnectionHealthChecksRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}/runHealthChecks",
+        code: 200,
+        apiVersion: "2025-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "RunNetworkConnectionHealthChecksRequest",
+}) as any as S.Schema<RunNetworkConnectionHealthChecksRequest>;
+
+export interface RunNetworkConnectionHealthChecksResponse {}
+export const RunNetworkConnectionHealthChecksResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RunNetworkConnectionHealthChecksResponse",
+}) as any as S.Schema<RunNetworkConnectionHealthChecksResponse>;
+
+export interface RunPoolHealthChecksRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the project. */
+  projectName: string;
+  /** Name of the pool. */
+  poolName: string;
+}
+export const RunPoolHealthChecksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/pools/{poolName}/runHealthChecks",
+      code: 200,
+      apiVersion: "2025-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "RunPoolHealthChecksRequest",
+}) as any as S.Schema<RunPoolHealthChecksRequest>;
+
+export interface RunPoolHealthChecksResponse {}
+export const RunPoolHealthChecksResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RunPoolHealthChecksResponse",
+}) as any as S.Schema<RunPoolHealthChecksResponse>;
+
 /** The Schedule properties defining when and what to execute. */
 export interface SchedulePropertiesInput {
   /** Resource tags. */
@@ -9076,6 +9005,76 @@ export const SchedulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SchedulesCreateOrUpdateResponse",
 }) as any as S.Schema<SchedulesCreateOrUpdateResponse>;
+
+export interface SyncCatalogRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the devcenter. */
+  devCenterName: string;
+  /** The name of the Catalog. */
+  catalogName: string;
+}
+export const SyncCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    devCenterName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/sync",
+      code: 200,
+      apiVersion: "2025-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "SyncCatalogRequest",
+}) as any as S.Schema<SyncCatalogRequest>;
+
+export interface SyncCatalogResponse {}
+export const SyncCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SyncCatalogResponse",
+}) as any as S.Schema<SyncCatalogResponse>;
+
+export interface SyncProjectCatalogRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the project. */
+  projectName: string;
+  /** The name of the Catalog. */
+  catalogName: string;
+}
+export const SyncProjectCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/projects/{projectName}/catalogs/{catalogName}/sync",
+      code: 200,
+      apiVersion: "2025-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "SyncProjectCatalogRequest",
+}) as any as S.Schema<SyncProjectCatalogRequest>;
+
+export interface SyncProjectCatalogResponse {}
+export const SyncProjectCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SyncProjectCatalogResponse",
+}) as any as S.Schema<SyncProjectCatalogResponse>;
 
 export interface UpdateCatalogRequest {
   /** The ID of the target subscription. */
@@ -9205,13 +9204,13 @@ export const UpdateDevBoxDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDevBoxDefinitionRequest>;
 
 /** Resource tags. */
-export type DevBoxDefinitionsUpdateResponseTagsMap = {
+export type UpdateDevBoxDefinitionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DevBoxDefinitionsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDevBoxDefinitionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DevBoxDefinitionsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDevBoxDefinitionResponseTagsMap>;
 
 export interface UpdateDevBoxDefinitionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9223,7 +9222,7 @@ export interface UpdateDevBoxDefinitionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DevBoxDefinitionsUpdateResponseTagsMap;
+  tags?: UpdateDevBoxDefinitionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Dev Box definition properties */
@@ -9235,7 +9234,7 @@ export const UpdateDevBoxDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DevBoxDefinitionsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDevBoxDefinitionResponseTagsMap),
     location: S.String,
     properties: S.optional(DevBoxDefinitionProperties),
   }),
@@ -9244,9 +9243,9 @@ export const UpdateDevBoxDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDevBoxDefinitionResponse>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type DevCentersUpdateRequestIdentity =
+export type UpdateDevCenterRequestIdentity =
   DevCentersCreateOrUpdateRequestIdentity;
-export const DevCentersUpdateRequestIdentity =
+export const UpdateDevCenterRequestIdentity =
   DevCentersCreateOrUpdateRequestIdentity;
 
 /** Properties of the devcenter. These properties can be updated after the resource has been created. */
@@ -9291,18 +9290,18 @@ export const UpdateDevCenterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDevCenterRequest>;
 
 /** Resource tags. */
-export type DevCentersUpdateResponseTagsMap = {
+export type UpdateDevCenterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DevCentersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDevCenterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DevCentersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDevCenterResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type DevCentersUpdateResponseIdentity =
+export type UpdateDevCenterResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
-export const DevCentersUpdateResponseIdentity =
+export const UpdateDevCenterResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
 
 export interface UpdateDevCenterResponse {
@@ -9315,7 +9314,7 @@ export interface UpdateDevCenterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DevCentersUpdateResponseTagsMap;
+  tags?: UpdateDevCenterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** DevCenter properties */
@@ -9329,7 +9328,7 @@ export const UpdateDevCenterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DevCentersUpdateResponseTagsMap),
+    tags: S.optional(UpdateDevCenterResponseTagsMap),
     location: S.String,
     properties: S.optional(DevCenterProperties),
     identity: S.optional(DevCentersCreateOrUpdateResponseIdentity),
@@ -9343,13 +9342,13 @@ export type EnvironmentTypeUpdateProperties = EnvironmentTypePropertiesInput;
 export const EnvironmentTypeUpdateProperties = EnvironmentTypePropertiesInput;
 
 /** Resource tags. */
-export type EnvironmentTypesUpdateRequestTagsMap = {
+export type UpdateEnvironmentTypeRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnvironmentTypesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnvironmentTypeRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnvironmentTypesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateEnvironmentTypeRequestTagsMap>;
 
 export interface UpdateEnvironmentTypeRequest {
   /** The ID of the target subscription. */
@@ -9363,7 +9362,7 @@ export interface UpdateEnvironmentTypeRequest {
   /** Properties of an environment type to be updated. */
   properties?: EnvironmentTypePropertiesInput;
   /** Resource tags. */
-  tags?: EnvironmentTypesUpdateRequestTagsMap;
+  tags?: UpdateEnvironmentTypeRequestTagsMap;
 }
 export const UpdateEnvironmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9372,7 +9371,7 @@ export const UpdateEnvironmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
     devCenterName: S.String.pipe(T.Label()),
     environmentTypeName: S.String.pipe(T.Label()),
     properties: S.optional(EnvironmentTypePropertiesInput),
-    tags: S.optional(EnvironmentTypesUpdateRequestTagsMap),
+    tags: S.optional(UpdateEnvironmentTypeRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -9386,13 +9385,13 @@ export const UpdateEnvironmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEnvironmentTypeRequest>;
 
 /** Resource tags. */
-export type EnvironmentTypesUpdateResponseTagsMap = {
+export type UpdateEnvironmentTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnvironmentTypesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnvironmentTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnvironmentTypesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateEnvironmentTypeResponseTagsMap>;
 
 export interface UpdateEnvironmentTypeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9406,7 +9405,7 @@ export interface UpdateEnvironmentTypeResponse {
   /** Properties of an environment type. */
   properties?: EnvironmentTypeProperties;
   /** Resource tags. */
-  tags?: EnvironmentTypesUpdateResponseTagsMap;
+  tags?: UpdateEnvironmentTypeResponseTagsMap;
 }
 export const UpdateEnvironmentTypeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9415,7 +9414,7 @@ export const UpdateEnvironmentTypeResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(EnvironmentTypeProperties),
-    tags: S.optional(EnvironmentTypesUpdateResponseTagsMap),
+    tags: S.optional(UpdateEnvironmentTypeResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateEnvironmentTypeResponse",
@@ -9481,13 +9480,13 @@ export const UpdateNetworkConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkConnectionRequest>;
 
 /** Resource tags. */
-export type NetworkConnectionsUpdateResponseTagsMap = {
+export type UpdateNetworkConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkConnectionsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkConnectionsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkConnectionResponseTagsMap>;
 
 export interface UpdateNetworkConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9499,7 +9498,7 @@ export interface UpdateNetworkConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkConnectionsUpdateResponseTagsMap;
+  tags?: UpdateNetworkConnectionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a Network Connection */
@@ -9511,7 +9510,7 @@ export const UpdateNetworkConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkConnectionsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkConnectionResponseTagsMap),
     location: S.String,
     properties: S.optional(NetworkProperties),
   }),
@@ -9613,11 +9612,11 @@ export const UpdatePoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePoolRequest>;
 
 /** Resource tags. */
-export type PoolsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const PoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdatePoolResponseTagsMap = { [key: string]: string | undefined };
+export const UpdatePoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePoolResponseTagsMap>;
 
 export interface UpdatePoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9629,7 +9628,7 @@ export interface UpdatePoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PoolsUpdateResponseTagsMap;
+  tags?: UpdatePoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Pool properties */
@@ -9641,7 +9640,7 @@ export const UpdatePoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PoolsUpdateResponseTagsMap),
+    tags: S.optional(UpdatePoolResponseTagsMap),
     location: S.String,
     properties: S.optional(PoolProperties),
   }),
@@ -9654,9 +9653,9 @@ export type ProjectUpdateProperties = ProjectPropertiesInput;
 export const ProjectUpdateProperties = ProjectPropertiesInput;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ProjectsUpdateRequestIdentity =
+export type UpdateProjectRequestIdentity =
   DevCentersCreateOrUpdateRequestIdentity;
-export const ProjectsUpdateRequestIdentity =
+export const UpdateProjectRequestIdentity =
   DevCentersCreateOrUpdateRequestIdentity;
 
 export interface UpdateProjectRequest {
@@ -9697,18 +9696,18 @@ export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProjectRequest>;
 
 /** Resource tags. */
-export type ProjectsUpdateResponseTagsMap = {
+export type UpdateProjectResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProjectsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateProjectResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateProjectResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ProjectsUpdateResponseIdentity =
+export type UpdateProjectResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
-export const ProjectsUpdateResponseIdentity =
+export const UpdateProjectResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
 
 export interface UpdateProjectResponse {
@@ -9721,7 +9720,7 @@ export interface UpdateProjectResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProjectsUpdateResponseTagsMap;
+  tags?: UpdateProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a project. */
@@ -9735,7 +9734,7 @@ export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ProjectsUpdateResponseTagsMap),
+    tags: S.optional(UpdateProjectResponseTagsMap),
     location: S.String,
     properties: S.optional(ProjectProperties),
     identity: S.optional(DevCentersCreateOrUpdateResponseIdentity),
@@ -9810,19 +9809,19 @@ export const ProjectEnvironmentTypeUpdatePropertiesInput =
   }) as any as S.Schema<ProjectEnvironmentTypeUpdatePropertiesInput>;
 
 /** Resource tags. */
-export type ProjectEnvironmentTypesUpdateRequestTagsMap = {
+export type UpdateProjectEnvironmentTypeRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProjectEnvironmentTypesUpdateRequestTagsMap =
+export const UpdateProjectEnvironmentTypeRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProjectEnvironmentTypesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateProjectEnvironmentTypeRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ProjectEnvironmentTypesUpdateRequestIdentity =
+export type UpdateProjectEnvironmentTypeRequestIdentity =
   DevCentersCreateOrUpdateRequestIdentity;
-export const ProjectEnvironmentTypesUpdateRequestIdentity =
+export const UpdateProjectEnvironmentTypeRequestIdentity =
   DevCentersCreateOrUpdateRequestIdentity;
 
 export interface UpdateProjectEnvironmentTypeRequest {
@@ -9837,7 +9836,7 @@ export interface UpdateProjectEnvironmentTypeRequest {
   /** Properties to configure an environment type. */
   properties?: ProjectEnvironmentTypeUpdatePropertiesInput;
   /** Resource tags. */
-  tags?: ProjectEnvironmentTypesUpdateRequestTagsMap;
+  tags?: UpdateProjectEnvironmentTypeRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: DevCentersCreateOrUpdateRequestIdentity;
 }
@@ -9848,7 +9847,7 @@ export const UpdateProjectEnvironmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
     projectName: S.String.pipe(T.Label()),
     environmentTypeName: S.String.pipe(T.Label()),
     properties: S.optional(ProjectEnvironmentTypeUpdatePropertiesInput),
-    tags: S.optional(ProjectEnvironmentTypesUpdateRequestTagsMap),
+    tags: S.optional(UpdateProjectEnvironmentTypeRequestTagsMap),
     identity: S.optional(DevCentersCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
@@ -9863,19 +9862,19 @@ export const UpdateProjectEnvironmentTypeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProjectEnvironmentTypeRequest>;
 
 /** Resource tags. */
-export type ProjectEnvironmentTypesUpdateResponseTagsMap = {
+export type UpdateProjectEnvironmentTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProjectEnvironmentTypesUpdateResponseTagsMap =
+export const UpdateProjectEnvironmentTypeResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProjectEnvironmentTypesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateProjectEnvironmentTypeResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ProjectEnvironmentTypesUpdateResponseIdentity =
+export type UpdateProjectEnvironmentTypeResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
-export const ProjectEnvironmentTypesUpdateResponseIdentity =
+export const UpdateProjectEnvironmentTypeResponseIdentity =
   DevCentersCreateOrUpdateResponseIdentity;
 
 export interface UpdateProjectEnvironmentTypeResponse {
@@ -9890,7 +9889,7 @@ export interface UpdateProjectEnvironmentTypeResponse {
   /** Properties of an environment type. */
   properties?: ProjectEnvironmentTypeProperties;
   /** Resource tags. */
-  tags?: ProjectEnvironmentTypesUpdateResponseTagsMap;
+  tags?: UpdateProjectEnvironmentTypeResponseTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: DevCentersCreateOrUpdateResponseIdentity;
   /** The geo-location for the environment type */
@@ -9904,7 +9903,7 @@ export const UpdateProjectEnvironmentTypeResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(ProjectEnvironmentTypeProperties),
-      tags: S.optional(ProjectEnvironmentTypesUpdateResponseTagsMap),
+      tags: S.optional(UpdateProjectEnvironmentTypeResponseTagsMap),
       identity: S.optional(DevCentersCreateOrUpdateResponseIdentity),
       location: S.optional(S.String),
     }),
@@ -10106,16 +10105,16 @@ export const AttachedNetworksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CatalogsConnectError = AzureOpError;
-/** Connects a catalog to enable syncing. */
-export const CatalogsConnect: API.OperationMethod<
-  CatalogsConnectRequest,
-  CatalogsConnectResponse,
-  CatalogsConnectError,
+export type CancelProjectCatalogImageDefinitionBuildError = AzureOpError;
+/** Cancels the specified build for an image definition. */
+export const CancelProjectCatalogImageDefinitionBuild: API.OperationMethod<
+  CancelProjectCatalogImageDefinitionBuildRequest,
+  CancelProjectCatalogImageDefinitionBuildResponse,
+  CancelProjectCatalogImageDefinitionBuildError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsConnectRequest,
-  output: CatalogsConnectResponse,
+  input: CancelProjectCatalogImageDefinitionBuildRequest,
+  output: CancelProjectCatalogImageDefinitionBuildResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10136,46 +10135,31 @@ export const CatalogsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CatalogsSyncError = AzureOpError;
-/** Syncs templates for a template source. */
-export const CatalogsSync: API.OperationMethod<
-  CatalogsSyncRequest,
-  CatalogsSyncResponse,
-  CatalogsSyncError,
+export type ConnectCatalogError = AzureOpError;
+/** Connects a catalog to enable syncing. */
+export const ConnectCatalog: API.OperationMethod<
+  ConnectCatalogRequest,
+  ConnectCatalogResponse,
+  ConnectCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsSyncRequest,
-  output: CatalogsSyncResponse,
+  input: ConnectCatalogRequest,
+  output: ConnectCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CheckNameAvailabilityExecuteError = AzureOpError;
-/** Check the availability of name for resource */
-export const CheckNameAvailabilityExecute: API.OperationMethod<
-  CheckNameAvailabilityExecuteRequest,
-  CheckNameAvailabilityExecuteResponse,
-  CheckNameAvailabilityExecuteError,
+export type ConnectProjectCatalogError = AzureOpError;
+/** Connects a project catalog to enable syncing. */
+export const ConnectProjectCatalog: API.OperationMethod<
+  ConnectProjectCatalogRequest,
+  ConnectProjectCatalogResponse,
+  ConnectProjectCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckNameAvailabilityExecuteRequest,
-  output: CheckNameAvailabilityExecuteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckScopedNameAvailabilityExecuteError = AzureOpError;
-/** Check the availability of name for resource */
-export const CheckScopedNameAvailabilityExecute: API.OperationMethod<
-  CheckScopedNameAvailabilityExecuteRequest,
-  CheckScopedNameAvailabilityExecuteResponse,
-  CheckScopedNameAvailabilityExecuteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckScopedNameAvailabilityExecuteRequest,
-  output: CheckScopedNameAvailabilityExecuteResponse,
+  input: ConnectProjectCatalogRequest,
+  output: ConnectProjectCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10421,6 +10405,36 @@ export const EnvironmentTypesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ExecuteCheckNameAvailabilityError = AzureOpError;
+/** Check the availability of name for resource */
+export const ExecuteCheckNameAvailability: API.OperationMethod<
+  ExecuteCheckNameAvailabilityRequest,
+  ExecuteCheckNameAvailabilityResponse,
+  ExecuteCheckNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteCheckNameAvailabilityRequest,
+  output: ExecuteCheckNameAvailabilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecuteCheckScopedNameAvailabilityError = AzureOpError;
+/** Check the availability of name for resource */
+export const ExecuteCheckScopedNameAvailability: API.OperationMethod<
+  ExecuteCheckScopedNameAvailabilityRequest,
+  ExecuteCheckScopedNameAvailabilityResponse,
+  ExecuteCheckScopedNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteCheckScopedNameAvailabilityRequest,
+  output: ExecuteCheckScopedNameAvailabilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GalleriesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a gallery. */
 export const GalleriesCreateOrUpdate: API.OperationMethod<
@@ -10481,15 +10495,15 @@ export const GetCatalog: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCatalogSyncErrorDetailError = AzureOpError;
+export type GetCatalogSyncErrorDetailsError = AzureOpError;
 /** Gets catalog synchronization error details */
-export const GetCatalogSyncErrorDetail: API.OperationMethod<
-  GetCatalogSyncErrorDetailRequest,
+export const GetCatalogSyncErrorDetails: API.OperationMethod<
+  GetCatalogSyncErrorDetailsRequest,
   SyncErrorDetails,
-  GetCatalogSyncErrorDetailError,
+  GetCatalogSyncErrorDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCatalogSyncErrorDetailRequest,
+  input: GetCatalogSyncErrorDetailsRequest,
   output: SyncErrorDetails,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -10511,16 +10525,16 @@ export const GetCustomizationTask: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCustomizationTaskErrorDetailError = AzureOpError;
+export type GetCustomizationTaskErrorDetailsError = AzureOpError;
 /** Gets Customization Task error details */
-export const GetCustomizationTaskErrorDetail: API.OperationMethod<
-  GetCustomizationTaskErrorDetailRequest,
-  GetCustomizationTaskErrorDetailResponse,
-  GetCustomizationTaskErrorDetailError,
+export const GetCustomizationTaskErrorDetails: API.OperationMethod<
+  GetCustomizationTaskErrorDetailsRequest,
+  GetCustomizationTaskErrorDetailsResponse,
+  GetCustomizationTaskErrorDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCustomizationTaskErrorDetailRequest,
-  output: GetCustomizationTaskErrorDetailResponse,
+  input: GetCustomizationTaskErrorDetailsRequest,
+  output: GetCustomizationTaskErrorDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10601,16 +10615,16 @@ export const GetEnvironmentDefinitionByProjectCatalog: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetEnvironmentDefinitionErrorDetailError = AzureOpError;
+export type GetEnvironmentDefinitionErrorDetailsError = AzureOpError;
 /** Gets Environment Definition error details */
-export const GetEnvironmentDefinitionErrorDetail: API.OperationMethod<
-  GetEnvironmentDefinitionErrorDetailRequest,
-  GetEnvironmentDefinitionErrorDetailResponse,
-  GetEnvironmentDefinitionErrorDetailError,
+export const GetEnvironmentDefinitionErrorDetails: API.OperationMethod<
+  GetEnvironmentDefinitionErrorDetailsRequest,
+  GetEnvironmentDefinitionErrorDetailsResponse,
+  GetEnvironmentDefinitionErrorDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEnvironmentDefinitionErrorDetailRequest,
-  output: GetEnvironmentDefinitionErrorDetailResponse,
+  input: GetEnvironmentDefinitionErrorDetailsRequest,
+  output: GetEnvironmentDefinitionErrorDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10721,16 +10735,16 @@ export const GetNetworkConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetNetworkConnectionHealthDetailError = AzureOpError;
+export type GetNetworkConnectionHealthDetailsError = AzureOpError;
 /** Gets health check status details. */
-export const GetNetworkConnectionHealthDetail: API.OperationMethod<
-  GetNetworkConnectionHealthDetailRequest,
-  GetNetworkConnectionHealthDetailResponse,
-  GetNetworkConnectionHealthDetailError,
+export const GetNetworkConnectionHealthDetails: API.OperationMethod<
+  GetNetworkConnectionHealthDetailsRequest,
+  GetNetworkConnectionHealthDetailsResponse,
+  GetNetworkConnectionHealthDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetNetworkConnectionHealthDetailRequest,
-  output: GetNetworkConnectionHealthDetailResponse,
+  input: GetNetworkConnectionHealthDetailsRequest,
+  output: GetNetworkConnectionHealthDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10811,17 +10825,17 @@ export const GetProjectCatalog: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProjectCatalogEnvironmentDefinitionErrorDetailError =
+export type GetProjectCatalogEnvironmentDefinitionErrorDetailsError =
   AzureOpError;
 /** Gets Environment Definition error details */
-export const GetProjectCatalogEnvironmentDefinitionErrorDetail: API.OperationMethod<
-  GetProjectCatalogEnvironmentDefinitionErrorDetailRequest,
-  GetProjectCatalogEnvironmentDefinitionErrorDetailResponse,
-  GetProjectCatalogEnvironmentDefinitionErrorDetailError,
+export const GetProjectCatalogEnvironmentDefinitionErrorDetails: API.OperationMethod<
+  GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest,
+  GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse,
+  GetProjectCatalogEnvironmentDefinitionErrorDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectCatalogEnvironmentDefinitionErrorDetailRequest,
-  output: GetProjectCatalogEnvironmentDefinitionErrorDetailResponse,
+  input: GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest,
+  output: GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10842,17 +10856,17 @@ export const GetProjectCatalogImageDefinitionBuild: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProjectCatalogImageDefinitionBuildBuildDetailError =
+export type GetProjectCatalogImageDefinitionBuildBuildDetailsError =
   AzureOpError;
 /** Gets Build details */
-export const GetProjectCatalogImageDefinitionBuildBuildDetail: API.OperationMethod<
-  GetProjectCatalogImageDefinitionBuildBuildDetailRequest,
-  GetProjectCatalogImageDefinitionBuildBuildDetailResponse,
-  GetProjectCatalogImageDefinitionBuildBuildDetailError,
+export const GetProjectCatalogImageDefinitionBuildBuildDetails: API.OperationMethod<
+  GetProjectCatalogImageDefinitionBuildBuildDetailsRequest,
+  GetProjectCatalogImageDefinitionBuildBuildDetailsResponse,
+  GetProjectCatalogImageDefinitionBuildBuildDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectCatalogImageDefinitionBuildBuildDetailRequest,
-  output: GetProjectCatalogImageDefinitionBuildBuildDetailResponse,
+  input: GetProjectCatalogImageDefinitionBuildBuildDetailsRequest,
+  output: GetProjectCatalogImageDefinitionBuildBuildDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10874,30 +10888,30 @@ export const GetProjectCatalogImageDefinitionByProjectCatalog: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type GetProjectCatalogImageDefinitionErrorDetailError = AzureOpError;
+export type GetProjectCatalogImageDefinitionErrorDetailsError = AzureOpError;
 /** Gets Image Definition error details */
-export const GetProjectCatalogImageDefinitionErrorDetail: API.OperationMethod<
-  GetProjectCatalogImageDefinitionErrorDetailRequest,
-  GetProjectCatalogImageDefinitionErrorDetailResponse,
-  GetProjectCatalogImageDefinitionErrorDetailError,
+export const GetProjectCatalogImageDefinitionErrorDetails: API.OperationMethod<
+  GetProjectCatalogImageDefinitionErrorDetailsRequest,
+  GetProjectCatalogImageDefinitionErrorDetailsResponse,
+  GetProjectCatalogImageDefinitionErrorDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectCatalogImageDefinitionErrorDetailRequest,
-  output: GetProjectCatalogImageDefinitionErrorDetailResponse,
+  input: GetProjectCatalogImageDefinitionErrorDetailsRequest,
+  output: GetProjectCatalogImageDefinitionErrorDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetProjectCatalogSyncErrorDetailError = AzureOpError;
+export type GetProjectCatalogSyncErrorDetailsError = AzureOpError;
 /** Gets project catalog synchronization error details */
-export const GetProjectCatalogSyncErrorDetail: API.OperationMethod<
-  GetProjectCatalogSyncErrorDetailRequest,
+export const GetProjectCatalogSyncErrorDetails: API.OperationMethod<
+  GetProjectCatalogSyncErrorDetailsRequest,
   SyncErrorDetails,
-  GetProjectCatalogSyncErrorDetailError,
+  GetProjectCatalogSyncErrorDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectCatalogSyncErrorDetailRequest,
+  input: GetProjectCatalogSyncErrorDetailsRequest,
   output: SyncErrorDetails,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -10919,15 +10933,15 @@ export const GetProjectEnvironmentType: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProjectInheritedSettingError = AzureOpError;
+export type GetProjectInheritedSettingsError = AzureOpError;
 /** Gets applicable inherited settings for this project. */
-export const GetProjectInheritedSetting: API.OperationMethod<
-  GetProjectInheritedSettingRequest,
+export const GetProjectInheritedSettings: API.OperationMethod<
+  GetProjectInheritedSettingsRequest,
   InheritedSettingsForProject,
-  GetProjectInheritedSettingError,
+  GetProjectInheritedSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectInheritedSettingRequest,
+  input: GetProjectInheritedSettingsRequest,
   output: InheritedSettingsForProject,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -11264,16 +11278,16 @@ export const ListNetworkConnectionHealthDetails: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListNetworkConnectionOutboundNetworkDependencyEndpointsError =
+export type ListNetworkConnectionOutboundNetworkDependenciesEndpointsError =
   AzureOpError;
 /** Lists the endpoints that agents may call as part of Dev Box service administration. These FQDNs should be allowed for outbound access in order for the Dev Box service to function. */
-export const ListNetworkConnectionOutboundNetworkDependencyEndpoints: API.OperationMethod<
-  ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest,
+export const ListNetworkConnectionOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest,
   OutboundEnvironmentEndpointCollection,
-  ListNetworkConnectionOutboundNetworkDependencyEndpointsError,
+  ListNetworkConnectionOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest,
+  input: ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest,
   output: OutboundEnvironmentEndpointCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -11507,21 +11521,6 @@ export const NetworkConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkConnectionsRunHealthChecksError = AzureOpError;
-/** Triggers a new health check run. The execution and health check result can be tracked via the network Connection health check details */
-export const NetworkConnectionsRunHealthChecks: API.OperationMethod<
-  NetworkConnectionsRunHealthChecksRequest,
-  NetworkConnectionsRunHealthChecksResponse,
-  NetworkConnectionsRunHealthChecksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkConnectionsRunHealthChecksRequest,
-  output: NetworkConnectionsRunHealthChecksResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PatchProjectCatalogError = AzureOpError;
 /** Partially updates a project catalog. */
 export const PatchProjectCatalog: API.OperationMethod<
@@ -11552,36 +11551,6 @@ export const PoolsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PoolsRunHealthChecksError = AzureOpError;
-/** Triggers a refresh of the pool status. */
-export const PoolsRunHealthChecks: API.OperationMethod<
-  PoolsRunHealthChecksRequest,
-  PoolsRunHealthChecksResponse,
-  PoolsRunHealthChecksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolsRunHealthChecksRequest,
-  output: PoolsRunHealthChecksResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectCatalogImageDefinitionBuildCancelError = AzureOpError;
-/** Cancels the specified build for an image definition. */
-export const ProjectCatalogImageDefinitionBuildCancel: API.OperationMethod<
-  ProjectCatalogImageDefinitionBuildCancelRequest,
-  ProjectCatalogImageDefinitionBuildCancelResponse,
-  ProjectCatalogImageDefinitionBuildCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectCatalogImageDefinitionBuildCancelRequest,
-  output: ProjectCatalogImageDefinitionBuildCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProjectCatalogImageDefinitionsBuildImageError = AzureOpError;
 /** Builds an image for the specified Image Definition. */
 export const ProjectCatalogImageDefinitionsBuildImage: API.OperationMethod<
@@ -11597,21 +11566,6 @@ export const ProjectCatalogImageDefinitionsBuildImage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProjectCatalogsConnectError = AzureOpError;
-/** Connects a project catalog to enable syncing. */
-export const ProjectCatalogsConnect: API.OperationMethod<
-  ProjectCatalogsConnectRequest,
-  ProjectCatalogsConnectResponse,
-  ProjectCatalogsConnectError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectCatalogsConnectRequest,
-  output: ProjectCatalogsConnectResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProjectCatalogsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a project catalog. */
 export const ProjectCatalogsCreateOrUpdate: API.OperationMethod<
@@ -11622,21 +11576,6 @@ export const ProjectCatalogsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ProjectCatalogsCreateOrUpdateRequest,
   output: ProjectCatalogsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectCatalogsSyncError = AzureOpError;
-/** Syncs templates for a template source. */
-export const ProjectCatalogsSync: API.OperationMethod<
-  ProjectCatalogsSyncRequest,
-  ProjectCatalogsSyncResponse,
-  ProjectCatalogsSyncError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectCatalogsSyncRequest,
-  output: ProjectCatalogsSyncResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11687,6 +11626,36 @@ export const ProjectsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RunNetworkConnectionHealthChecksError = AzureOpError;
+/** Triggers a new health check run. The execution and health check result can be tracked via the network Connection health check details */
+export const RunNetworkConnectionHealthChecks: API.OperationMethod<
+  RunNetworkConnectionHealthChecksRequest,
+  RunNetworkConnectionHealthChecksResponse,
+  RunNetworkConnectionHealthChecksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunNetworkConnectionHealthChecksRequest,
+  output: RunNetworkConnectionHealthChecksResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunPoolHealthChecksError = AzureOpError;
+/** Triggers a refresh of the pool status. */
+export const RunPoolHealthChecks: API.OperationMethod<
+  RunPoolHealthChecksRequest,
+  RunPoolHealthChecksResponse,
+  RunPoolHealthChecksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunPoolHealthChecksRequest,
+  output: RunPoolHealthChecksResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SchedulesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Schedule. */
 export const SchedulesCreateOrUpdate: API.OperationMethod<
@@ -11697,6 +11666,36 @@ export const SchedulesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SchedulesCreateOrUpdateRequest,
   output: SchedulesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncCatalogError = AzureOpError;
+/** Syncs templates for a template source. */
+export const SyncCatalog: API.OperationMethod<
+  SyncCatalogRequest,
+  SyncCatalogResponse,
+  SyncCatalogError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncCatalogRequest,
+  output: SyncCatalogResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncProjectCatalogError = AzureOpError;
+/** Syncs templates for a template source. */
+export const SyncProjectCatalog: API.OperationMethod<
+  SyncProjectCatalogRequest,
+  SyncProjectCatalogResponse,
+  SyncProjectCatalogError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncProjectCatalogRequest,
+  output: SyncProjectCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

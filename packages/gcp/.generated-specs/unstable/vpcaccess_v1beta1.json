@@ -4,28 +4,137 @@
     "service": "vpcaccess",
     "version": "v1beta1",
     "title": "Serverless VPC Access API",
-    "baseUrl": "https://vpcaccess.googleapis.com/"
+    "baseUrl": "https://vpcaccess.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.vpcaccess_v1beta1#ListConnectorsResponse": {
+      "type": "structure",
+      "members": {
+        "connectors": {
+          "target": "com.gcp.vpcaccess_v1beta1#ConnectorList",
+          "traits": {
+            "smithy.api#documentation": "List of Serverless VPC Access connectors."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing Serverless VPC Access connectors."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#ConnectorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.vpcaccess_v1beta1#Connector"
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#Location": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.vpcaccess_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.vpcaccess_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.vpcaccess_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.vpcaccess_v1beta1#DocumentMap"
+      }
+    },
     "com.gcp.vpcaccess_v1beta1#OperationMetadata": {
       "type": "structure",
       "members": {
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time when the operation completed."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time when the operation was created."
-          }
-        },
         "method": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Method that initiated the operation e.g. google.cloud.vpcaccess.v1.Connectors.CreateConnector."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the operation completed."
           }
         },
         "target": {
@@ -33,73 +142,191 @@
           "traits": {
             "smithy.api#documentation": "Output only. Name of the resource that this operation is acting on e.g. projects/my-project/locations/us-central1/connectors/v1."
           }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the operation was created."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Metadata for google.longrunning.Operation."
       }
     },
-    "com.gcp.vpcaccess_v1beta1#Connector": {
+    "com.gcp.vpcaccess_v1beta1#OperationMetadataV1Alpha1": {
       "type": "structure",
       "members": {
-        "machineType": {
+        "insertTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Machine type of VM Instance underlying connector. Default is e2-micro"
+            "smithy.api#documentation": "Output only. Time when the operation was created."
           }
         },
-        "minInstances": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Minimum value of instances in autoscaling group underlying the connector."
-          }
-        },
-        "subnet": {
-          "target": "com.gcp.vpcaccess_v1beta1#Subnet",
-          "traits": {
-            "smithy.api#documentation": "Optional. The subnet in which to house the VPC Access Connector."
-          }
-        },
-        "name": {
+        "target": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The resource name in the format `projects/*/locations/*/connectors/*`."
+            "smithy.api#documentation": "Output only. Name of the resource that this operation is acting on e.g. projects/my-project/locations/us-central1/connectors/v1."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the operation completed."
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Method that initiated the operation e.g. google.cloud.vpcaccess.v1alpha1.Connectors.CreateConnector."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for google.longrunning.Operation."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.vpcaccess_v1beta1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.vpcaccess_v1beta1#Location"
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#OperationMetadataV1Beta1": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the resource that this operation is acting on e.g. projects/my-project/locations/us-central1/connectors/v1."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time when the operation completed."
+          }
+        },
+        "method": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Method that initiated the operation e.g. google.cloud.vpcaccess.v1beta1.Connectors.CreateConnector."
           }
         },
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The creation time of the connector."
+            "smithy.api#documentation": "Output only. Time when the operation was created."
           }
-        },
-        "state": {
-          "target": "com.gcp.vpcaccess_v1beta1#ConnectorStateEnum",
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for google.longrunning.Operation."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.vpcaccess_v1beta1#OperationList",
           "traits": {
-            "smithy.api#documentation": "Output only. State of the VPC access connector."
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
           }
         },
-        "maxThroughput": {
-          "target": "smithy.api#Integer",
+        "unreachable": {
+          "target": "com.gcp.vpcaccess_v1beta1#StringList",
           "traits": {
-            "smithy.api#documentation": "Maximum throughput of the connector in Mbps. Refers to the expected throughput when using an `e2-micro` machine type. Value must be a multiple of 100 from 300 through 1000. Must be higher than the value specified by --min-throughput. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput. The use of `max-throughput` is discouraged in favor of `max-instances`."
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
           }
         },
-        "lastRestartTime": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The last restart time of the connector."
+            "smithy.api#documentation": "The standard List next-page token."
           }
-        },
-        "maxInstances": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Maximum value of instances in autoscaling group underlying the connector."
-          }
-        },
-        "network": {
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.vpcaccess_v1beta1#Operation"
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Name of a VPC network."
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.vpcaccess_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.vpcaccess_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.vpcaccess_v1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#Connector": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name in the format `projects/*/locations/*/connectors/*`."
           }
         },
         "ipCidrRange": {
@@ -108,16 +335,70 @@
             "smithy.api#documentation": "Optional. The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`."
           }
         },
+        "minInstances": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum value of instances in autoscaling group underlying the connector."
+          }
+        },
+        "maxThroughput": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum throughput of the connector in Mbps. Refers to the expected throughput when using an `e2-micro` machine type. Value must be a multiple of 100 from 300 through 1000. Must be higher than the value specified by --min-throughput. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput. The use of `max-throughput` is discouraged in favor of `max-instances`."
+          }
+        },
+        "state": {
+          "target": "com.gcp.vpcaccess_v1beta1#ConnectorStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the VPC access connector."
+          }
+        },
+        "maxInstances": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum value of instances in autoscaling group underlying the connector."
+          }
+        },
+        "lastRestartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last restart time of the connector."
+          }
+        },
         "connectedProjects": {
           "target": "com.gcp.vpcaccess_v1beta1#StringList",
           "traits": {
             "smithy.api#documentation": "Output only. List of projects using the connector."
           }
         },
+        "subnet": {
+          "target": "com.gcp.vpcaccess_v1beta1#Subnet",
+          "traits": {
+            "smithy.api#documentation": "Optional. The subnet in which to house the VPC Access Connector."
+          }
+        },
         "minThroughput": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Minimum throughput of the connector in Mbps. Refers to the expected throughput when using an `e2-micro` machine type. Value must be a multiple of 100 from 200 through 900. Must be lower than the value specified by --max-throughput. If both min-throughput and min-instances are provided, min-instances takes precedence over min-throughput. The use of `min-throughput` is discouraged in favor of `min-instances`."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of a VPC network."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation time of the connector."
+          }
+        },
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Machine type of VM Instance underlying connector. Default is e2-micro"
           }
         }
       },
@@ -166,128 +447,6 @@
         }
       }
     },
-    "com.gcp.vpcaccess_v1beta1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.vpcaccess_v1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "operations": {
-          "target": "com.gcp.vpcaccess_v1beta1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.vpcaccess_v1beta1#Operation"
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#OperationMetadataV1Beta1": {
-      "type": "structure",
-      "members": {
-        "method": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Method that initiated the operation e.g. google.cloud.vpcaccess.v1beta1.Connectors.CreateConnector."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Name of the resource that this operation is acting on e.g. projects/my-project/locations/us-central1/connectors/v1."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time when the operation was created."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time when the operation completed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Metadata for google.longrunning.Operation."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ListConnectorsResponse": {
-      "type": "structure",
-      "members": {
-        "connectors": {
-          "target": "com.gcp.vpcaccess_v1beta1#ConnectorList",
-          "traits": {
-            "smithy.api#documentation": "List of Serverless VPC Access connectors."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Continuation token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for listing Serverless VPC Access connectors."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ConnectorList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.vpcaccess_v1beta1#Connector"
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ListLocationsResponse": {
-      "type": "structure",
-      "members": {
-        "locations": {
-          "target": "com.gcp.vpcaccess_v1beta1#LocationList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#LocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.vpcaccess_v1beta1#Location"
-      }
-    },
     "com.gcp.vpcaccess_v1beta1#Subnet": {
       "type": "structure",
       "members": {
@@ -308,167 +467,23 @@
         "smithy.api#documentation": "The subnet in which to house the connector"
       }
     },
-    "com.gcp.vpcaccess_v1beta1#Status": {
-      "type": "structure",
-      "members": {
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
-        "details": {
-          "target": "com.gcp.vpcaccess_v1beta1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.vpcaccess_v1beta1#DocumentMap"
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#Operation": {
-      "type": "structure",
-      "members": {
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "error": {
-          "target": "com.gcp.vpcaccess_v1beta1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "response": {
-          "target": "com.gcp.vpcaccess_v1beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.vpcaccess_v1beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#OperationMetadataV1Alpha1": {
-      "type": "structure",
-      "members": {
-        "method": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Method that initiated the operation e.g. google.cloud.vpcaccess.v1alpha1.Connectors.CreateConnector."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Name of the resource that this operation is acting on e.g. projects/my-project/locations/us-central1/connectors/v1."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time when the operation completed."
-          }
-        },
-        "insertTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time when the operation was created."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Metadata for google.longrunning.Operation."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#Location": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.vpcaccess_v1beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.vpcaccess_v1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
     "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.vpcaccess_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -483,26 +498,12 @@
             "smithy.api#httpQuery": "filter"
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "extraLocationTypes": {
-          "target": "com.gcp.vpcaccess_v1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
           }
         }
       }
@@ -561,176 +562,29 @@
         }
       }
     },
-    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsOperationsRequest": {
+    "com.gcp.vpcaccess_v1beta1#PatchProjectsLocationsConnectorsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.vpcaccess_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.vpcaccess_v1beta1#ListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+name}/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsConnectorsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Continuation token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location from which the routes should be listed.",
+            "smithy.api#documentation": "The resource name in the format `projects/*/locations/*/connectors/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of functions to return per call.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsConnectors": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsConnectorsRequest"
-      },
-      "output": {
-        "target": "com.gcp.vpcaccess_v1beta1#ListConnectorsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+parent}/connectors"
-        },
-        "smithy.api#documentation": "Lists Serverless VPC Access connectors.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#DeleteProjectsLocationsConnectorsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
+        "updateMask": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Name of a Serverless VPC Access connector to delete.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The fields to update on the entry group. If absent or empty, all modifiable fields are updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.vpcaccess_v1beta1#Connector",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -761,63 +615,6 @@
         ]
       }
     },
-    "com.gcp.vpcaccess_v1beta1#DeleteProjectsLocationsConnectors": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.vpcaccess_v1beta1#DeleteProjectsLocationsConnectorsRequest"
-      },
-      "output": {
-        "target": "com.gcp.vpcaccess_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the resource does not exist."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#PatchProjectsLocationsConnectorsRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fields to update on the entry group. If absent or empty, all modifiable fields are updated.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource name in the format `projects/*/locations/*/connectors/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.vpcaccess_v1beta1#Connector",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
     "com.gcp.vpcaccess_v1beta1#PatchProjectsLocationsConnectors": {
       "type": "operation",
       "input": {
@@ -846,43 +643,6 @@
           "uri": "v1beta1/{+name}"
         },
         "smithy.api#documentation": "Updates a Serverless VPC Access connector, returns an operation."
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsConnectorsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of a Serverless VPC Access connector to get.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsConnectors": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsConnectorsRequest"
-      },
-      "output": {
-        "target": "com.gcp.vpcaccess_v1beta1#Connector"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource does not exist."
       }
     },
     "com.gcp.vpcaccess_v1beta1#CreateProjectsLocationsConnectorsRequest": {
@@ -940,6 +700,247 @@
           "uri": "v1beta1/{+parent}/connectors"
         },
         "smithy.api#documentation": "Creates a Serverless VPC Access connector, returns an operation."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#DeleteProjectsLocationsConnectorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of a Serverless VPC Access connector to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#DeleteProjectsLocationsConnectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.vpcaccess_v1beta1#DeleteProjectsLocationsConnectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.vpcaccess_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the resource does not exist."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsConnectorsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of functions to return per call.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location from which the routes should be listed.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsConnectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsConnectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.vpcaccess_v1beta1#ListConnectorsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/connectors"
+        },
+        "smithy.api#documentation": "Lists Serverless VPC Access connectors.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsConnectorsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of a Serverless VPC Access connector to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsConnectors": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsConnectorsRequest"
+      },
+      "output": {
+        "target": "com.gcp.vpcaccess_v1beta1#Connector"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource does not exist."
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.vpcaccess_v1beta1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.vpcaccess_v1beta1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.vpcaccess_v1beta1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.vpcaccess_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.vpcaccess_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     }
   }

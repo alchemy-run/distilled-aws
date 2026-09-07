@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.domainregistration#DomainsTransferOut": {
+    "com.azure.domainregistration#TransferDomainOut": {
       "type": "operation",
       "input": {
-        "target": "com.azure.domainregistration#DomainsTransferOutRequest"
+        "target": "com.azure.domainregistration#TransferDomainOutRequest"
       },
       "output": {
-        "target": "com.azure.domainregistration#DomainsTransferOutResponse"
+        "target": "com.azure.domainregistration#TransferDomainOutResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.domainregistration#DomainsTransferOutResponse": {
+    "com.azure.domainregistration#TransferDomainOutResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -64,7 +65,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainregistration#DomainsTransferOutResponseTagsMap",
+          "target": "com.azure.domainregistration#TransferDomainOutResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -734,7 +735,7 @@
         "smithy.api#documentation": "Address information for domain registration."
       }
     },
-    "com.azure.domainregistration#DomainsTransferOutResponseTagsMap": {
+    "com.azure.domainregistration#TransferDomainOutResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -854,7 +855,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.domainregistration#DomainsTransferOutRequest": {
+    "com.azure.domainregistration#TransferDomainOutRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -886,10 +887,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.domainregistration#DomainsRenew": {
+    "com.azure.domainregistration#RenewDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.domainregistration#DomainsRenewRequest"
+        "target": "com.azure.domainregistration#RenewDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -905,7 +906,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.domainregistration#DomainsRenewRequest": {
+    "com.azure.domainregistration#RenewDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1573,7 +1574,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainregistration#DomainsUpdateResponseTagsMap",
+          "target": "com.azure.domainregistration#UpdateDomainResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1602,7 +1603,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.domainregistration#DomainsUpdateResponseTagsMap": {
+    "com.azure.domainregistration#UpdateDomainResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2020,7 +2021,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainregistration#DomainsGetResponseTagsMap",
+          "target": "com.azure.domainregistration#GetDomainResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2049,7 +2050,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.domainregistration#DomainsGetResponseTagsMap": {
+    "com.azure.domainregistration#GetDomainResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2656,10 +2657,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.domainregistration#DomainsGetControlCenterSsoRequest": {
+    "com.azure.domainregistration#GetDomainControlCenterSsoRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.domainregistration#DomainsGetControlCenterSsoRequestRequest"
+        "target": "com.azure.domainregistration#GetDomainControlCenterSsoRequestRequest"
       },
       "output": {
         "target": "com.azure.domainregistration#DomainControlCenterSsoRequest"
@@ -2701,7 +2702,7 @@
         "smithy.api#documentation": "Single sign-on request information for domain management."
       }
     },
-    "com.azure.domainregistration#DomainsGetControlCenterSsoRequestRequest": {
+    "com.azure.domainregistration#GetDomainControlCenterSsoRequestRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3245,64 +3246,64 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.domainregistration#DomainsTransferOut"
-        },
-        {
-          "target": "com.azure.domainregistration#DomainsRenew"
-        },
-        {
-          "target": "com.azure.domainregistration#DeleteDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.domainregistration#UpdateDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.domainregistration#GetDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.domainregistration#ListDomainOwnershipIdentifiers"
+          "target": "com.azure.domainregistration#CheckDomainAvailability"
         },
         {
           "target": "com.azure.domainregistration#DeleteDomain"
         },
         {
-          "target": "com.azure.domainregistration#UpdateDomain"
+          "target": "com.azure.domainregistration#DeleteDomainOwnershipIdentifier"
         },
         {
           "target": "com.azure.domainregistration#DomainsCreateOrUpdate"
         },
         {
+          "target": "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifier"
+        },
+        {
           "target": "com.azure.domainregistration#GetDomain"
         },
         {
-          "target": "com.azure.domainregistration#ListDomainByResourceGroup"
+          "target": "com.azure.domainregistration#GetDomainControlCenterSsoRequest"
         },
         {
-          "target": "com.azure.domainregistration#ListTopLevelDomainAgreements"
+          "target": "com.azure.domainregistration#GetDomainOwnershipIdentifier"
         },
         {
           "target": "com.azure.domainregistration#GetTopLevelDomain"
         },
         {
-          "target": "com.azure.domainregistration#ListTopLevelDomains"
+          "target": "com.azure.domainregistration#ListDomainByResourceGroup"
+        },
+        {
+          "target": "com.azure.domainregistration#ListDomainOwnershipIdentifiers"
         },
         {
           "target": "com.azure.domainregistration#ListDomainRecommendations"
         },
         {
-          "target": "com.azure.domainregistration#DomainsGetControlCenterSsoRequest"
+          "target": "com.azure.domainregistration#ListDomainRegistrationProviderOperations"
         },
         {
           "target": "com.azure.domainregistration#ListDomains"
         },
         {
-          "target": "com.azure.domainregistration#CheckDomainAvailability"
+          "target": "com.azure.domainregistration#ListTopLevelDomainAgreements"
         },
         {
-          "target": "com.azure.domainregistration#ListDomainRegistrationProviderOperations"
+          "target": "com.azure.domainregistration#ListTopLevelDomains"
+        },
+        {
+          "target": "com.azure.domainregistration#RenewDomain"
+        },
+        {
+          "target": "com.azure.domainregistration#TransferDomainOut"
+        },
+        {
+          "target": "com.azure.domainregistration#UpdateDomain"
+        },
+        {
+          "target": "com.azure.domainregistration#UpdateDomainOwnershipIdentifier"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.paths_v2#PathsV2SegmentItem": {
@@ -37,7 +38,7 @@
       },
       "traits": {}
     },
-    "com.posthog.paths_v2#PathsV2SegmentToFunnelCreateRequestItemsList": {
+    "com.posthog.paths_v2#CreatePathsV2SegmentToFunnelRequestItemsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.paths_v2#PathsV2SegmentItem"
@@ -46,7 +47,7 @@
         "smithy.api#documentation": "The segment's path items in displayed order. In open mode exactly two items - a single edge, source then target. In anchored mode the concrete chain as shown, starting at the anchor."
       }
     },
-    "com.posthog.paths_v2#CreatePathV2SegmentToFunnelRequest": {
+    "com.posthog.paths_v2#CreatePathsV2SegmentToFunnelRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -65,7 +66,7 @@
           }
         },
         "items": {
-          "target": "com.posthog.paths_v2#PathsV2SegmentToFunnelCreateRequestItemsList",
+          "target": "com.posthog.paths_v2#CreatePathsV2SegmentToFunnelRequestItemsList",
           "traits": {
             "smithy.api#documentation": "The segment's path items in displayed order. In open mode exactly two items - a single edge, source then target. In anchored mode the concrete chain as shown, starting at the anchor.",
             "smithy.api#required": {}
@@ -89,10 +90,10 @@
       },
       "traits": {}
     },
-    "com.posthog.paths_v2#CreatePathV2SegmentToFunnel": {
+    "com.posthog.paths_v2#CreatePathsV2SegmentToFunnel": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.paths_v2#CreatePathV2SegmentToFunnelRequest"
+        "target": "com.posthog.paths_v2#CreatePathsV2SegmentToFunnelRequest"
       },
       "output": {
         "target": "com.posthog.paths_v2#PathsV2SegmentToFunnelResponse"
@@ -129,7 +130,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.paths_v2#CreatePathV2SegmentToFunnel"
+          "target": "com.posthog.paths_v2#CreatePathsV2SegmentToFunnel"
         }
       ],
       "traits": {

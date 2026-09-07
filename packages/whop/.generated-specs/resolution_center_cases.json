@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.resolution_center_cases#ListResolutionCenterCasesRequestOrder": {
@@ -894,7 +895,7 @@
         "smithy.api#documentation": "Open a Case as the Customer\n\nOpens a case, as the customer, against one of your own payments. Provide the payment (`receipt_id`), the `reason`, and a `message`."
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestGroupsItem": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestGroupsItem": {
       "type": "enum",
       "members": {
         "STATUS": {
@@ -918,14 +919,14 @@
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestGroupsList": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestGroupsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestGroupsItem"
+        "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestGroupsItem"
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestStatusItem": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestStatusItem": {
       "type": "enum",
       "members": {
         "AWAITING_MERCHANT": {
@@ -955,14 +956,14 @@
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestStatusList": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestStatusList": {
       "type": "list",
       "member": {
-        "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestStatusItem"
+        "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestStatusItem"
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestReasonItem": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestReasonItem": {
       "type": "enum",
       "members": {
         "FRAUDULENT": {
@@ -998,14 +999,14 @@
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestReasonList": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestReasonList": {
       "type": "list",
       "member": {
-        "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestReasonItem"
+        "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestReasonItem"
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestOutcomeItem": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestOutcomeItem": {
       "type": "enum",
       "members": {
         "CUSTOMER_WON": {
@@ -1029,18 +1030,18 @@
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestOutcomeList": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestOutcomeList": {
       "type": "list",
       "member": {
-        "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestOutcomeItem"
+        "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestOutcomeItem"
       },
       "traits": {}
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequest": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequest": {
       "type": "structure",
       "members": {
         "groups": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestGroupsList",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestGroupsList",
           "traits": {
             "smithy.api#httpQuery": "groups",
             "smithy.api#documentation": "Which breakdowns to return, keyed by these names under `groups`. Repeat the parameter to ask for several; omit it for all of them."
@@ -1061,21 +1062,21 @@
           }
         },
         "status": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestStatusList",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestStatusList",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Only cases in these statuses."
           }
         },
         "reason": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestReasonList",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestReasonList",
           "traits": {
             "smithy.api#httpQuery": "reason",
             "smithy.api#documentation": "Only cases opened for these reasons."
           }
         },
         "outcome": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequestOutcomeList",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequestOutcomeList",
           "traits": {
             "smithy.api#httpQuery": "outcome",
             "smithy.api#documentation": "Only closed cases that ended these ways."
@@ -1100,7 +1101,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroupsOutcome": {
       "type": "structure",
       "members": {
         "customer_won": {
@@ -1126,7 +1127,7 @@
         "smithy.api#documentation": "How many of the matching cases ended each way. Every outcome is present, including those with a count of zero; open cases are counted in none of them."
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroupsReason": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroupsReason": {
       "type": "structure",
       "members": {
         "fraudulent": {
@@ -1164,7 +1165,7 @@
         "smithy.api#documentation": "How many of the matching cases were opened for each reason. Every reason is present, including those with a count of zero."
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroupsStatus": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroupsStatus": {
       "type": "structure",
       "members": {
         "awaiting_customer": {
@@ -1196,23 +1197,23 @@
         "smithy.api#documentation": "How many of the matching cases are in each status. Every status is present, including those with a count of zero."
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroups": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroups": {
       "type": "structure",
       "members": {
         "outcome": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroupsOutcome",
           "traits": {
             "smithy.api#documentation": "How many of the matching cases ended each way. Every outcome is present, including those with a count of zero; open cases are counted in none of them."
           }
         },
         "reason": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroupsReason",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroupsReason",
           "traits": {
             "smithy.api#documentation": "How many of the matching cases were opened for each reason. Every reason is present, including those with a count of zero."
           }
         },
         "status": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroupsStatus",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroupsStatus",
           "traits": {
             "smithy.api#documentation": "How many of the matching cases are in each status. Every status is present, including those with a count of zero."
           }
@@ -1222,11 +1223,11 @@
         "smithy.api#documentation": "One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent."
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponse": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponse": {
       "type": "structure",
       "members": {
         "groups": {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponseGroups",
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponseGroups",
           "traits": {
             "smithy.api#documentation": "One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent.",
             "smithy.api#required": {}
@@ -1244,13 +1245,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummary": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseSummary": {
       "type": "operation",
       "input": {
-        "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryRequest"
+        "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryRequest"
       },
       "output": {
-        "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummaryResponse"
+        "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummaryResponse"
       },
       "errors": [
         {
@@ -1266,7 +1267,7 @@
         "smithy.api#documentation": "Retrieve Resolution Center Case Summary\n\nAggregates the same cases `GET /resolution_center_cases` lists, using the same filters. Use it to build status tabs and issue filters without paging the whole list."
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseRequest": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCaseRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1282,10 +1283,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.resolution_center_cases#RetrieveResolutionCenterCase": {
+    "com.whop.resolution_center_cases#GetResolutionCenterCase": {
       "type": "operation",
       "input": {
-        "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseRequest"
+        "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseRequest"
       },
       "output": {
         "target": "com.whop.resolution_center_cases#ResolutionCenterCase"
@@ -2153,28 +2154,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.resolution_center_cases#ListResolutionCenterCases"
-        },
-        {
-          "target": "com.whop.resolution_center_cases#CreateResolutionCenterCase"
-        },
-        {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCaseSummary"
-        },
-        {
-          "target": "com.whop.resolution_center_cases#RetrieveResolutionCenterCase"
-        },
-        {
           "target": "com.whop.resolution_center_cases#AcceptResolutionCenterCase"
         },
         {
           "target": "com.whop.resolution_center_cases#AppealResolutionCenterCase"
         },
         {
+          "target": "com.whop.resolution_center_cases#CreateResolutionCenterCase"
+        },
+        {
           "target": "com.whop.resolution_center_cases#DenyResolutionCenterCase"
         },
         {
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCase"
+        },
+        {
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummary"
+        },
+        {
           "target": "com.whop.resolution_center_cases#ListResolutionCenterCaseEvents"
+        },
+        {
+          "target": "com.whop.resolution_center_cases#ListResolutionCenterCases"
         },
         {
           "target": "com.whop.resolution_center_cases#ReplyToResolutionCenterCase"

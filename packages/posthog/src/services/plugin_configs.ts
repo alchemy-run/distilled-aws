@@ -39,7 +39,7 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface ListPluginConfigLogsRequest {
+export interface ListPluginConfigsLogsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   plugin_config_id: number;
@@ -48,7 +48,7 @@ export interface ListPluginConfigLogsRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const ListPluginConfigLogsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPluginConfigsLogsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     plugin_config_id: S.Number.pipe(T.Label()),
@@ -62,8 +62,8 @@ export const ListPluginConfigLogsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListPluginConfigLogsRequest",
-}) as any as S.Schema<ListPluginConfigLogsRequest>;
+  identifier: "ListPluginConfigsLogsRequest",
+}) as any as S.Schema<ListPluginConfigsLogsRequest>;
 
 /** * `SYSTEM` - SYSTEM * `PLUGIN` - PLUGIN * `CONSOLE` - CONSOLE */
 export type PluginLogEntrySourceEnum = "SYSTEM" | "PLUGIN" | "CONSOLE";
@@ -125,18 +125,18 @@ export const PaginatedPluginLogEntryList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedPluginLogEntryList",
 }) as any as S.Schema<PaginatedPluginLogEntryList>;
 
-export type ListPluginConfigLogsError =
+export type ListPluginConfigsLogsError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const listPluginConfigLogs: API.OperationMethod<
-  ListPluginConfigLogsRequest,
+export const listPluginConfigsLogs: API.OperationMethod<
+  ListPluginConfigsLogsRequest,
   PaginatedPluginLogEntryList,
-  ListPluginConfigLogsError,
+  ListPluginConfigsLogsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPluginConfigLogsRequest,
+  input: ListPluginConfigsLogsRequest,
   output: PaginatedPluginLogEntryList,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

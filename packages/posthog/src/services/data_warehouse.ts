@@ -40,78 +40,6 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface CheckDataWarehouseDatabaseNameRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Database name to check */
-  name: string;
-}
-export const CheckDataWarehouseDatabaseNameRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_warehouse/check-database-name/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckDataWarehouseDatabaseNameRetrieveRequest",
-  }) as any as S.Schema<CheckDataWarehouseDatabaseNameRetrieveRequest>;
-
-export interface CheckDatabaseNameResponse {
-  name: string;
-  available: boolean;
-}
-export const CheckDatabaseNameResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    available: S.Boolean,
-  }),
-).annotate({
-  identifier: "CheckDatabaseNameResponse",
-}) as any as S.Schema<CheckDatabaseNameResponse>;
-
-export interface CheckDataWarehouseSchemaNameRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Schema name to check */
-  name: string;
-}
-export const CheckDataWarehouseSchemaNameRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_warehouse/check-schema-name/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckDataWarehouseSchemaNameRetrieveRequest",
-  }) as any as S.Schema<CheckDataWarehouseSchemaNameRetrieveRequest>;
-
-export interface CheckSchemaNameResponse {
-  /** The schema name that was checked */
-  name: string;
-  /** Whether the schema name is free within the organization's warehouse */
-  available: boolean;
-}
-export const CheckSchemaNameResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    available: S.Boolean,
-  }),
-).annotate({
-  identifier: "CheckSchemaNameResponse",
-}) as any as S.Schema<CheckSchemaNameResponse>;
-
 export interface CreateDataWarehouseDeprovisionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -206,11 +134,11 @@ export const CreateDataWarehouseProvisionResponse = /*@__PURE__*/ S.suspend(
   identifier: "CreateDataWarehouseProvisionResponse",
 }) as any as S.Schema<CreateDataWarehouseProvisionResponse>;
 
-export interface CreateDataWarehouseResetPasswordRequest {
+export interface DataWarehouseResetPasswordCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const CreateDataWarehouseResetPasswordRequest = /*@__PURE__*/ S.suspend(
+export const DataWarehouseResetPasswordCreateRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -222,8 +150,8 @@ export const CreateDataWarehouseResetPasswordRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateDataWarehouseResetPasswordRequest",
-}) as any as S.Schema<CreateDataWarehouseResetPasswordRequest>;
+  identifier: "DataWarehouseResetPasswordCreateRequest",
+}) as any as S.Schema<DataWarehouseResetPasswordCreateRequest>;
 
 export interface ResetPasswordResponse {
   username: string;
@@ -238,12 +166,118 @@ export const ResetPasswordResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResetPasswordResponse",
 }) as any as S.Schema<ResetPasswordResponse>;
 
-export interface DataWarehouseCompletedActivityRetrieveRequest {
+export interface DeleteDataWarehouseOrgDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseCompletedActivityRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteDataWarehouseOrgDestroyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/data_warehouse/delete-org/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteDataWarehouseOrgDestroyRequest",
+}) as any as S.Schema<DeleteDataWarehouseOrgDestroyRequest>;
+
+export interface DeleteWarehouseOrgResponse {
+  /** Deletion lifecycle message from the provisioner */
+  status?: string;
+  /** duckgres org identifier (the PostHog organization id) */
+  org?: string;
+}
+export const DeleteWarehouseOrgResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    org: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeleteWarehouseOrgResponse",
+}) as any as S.Schema<DeleteWarehouseOrgResponse>;
+
+export interface GetDataWarehouseCheckDatabaseNameRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Database name to check */
+  name: string;
+}
+export const GetDataWarehouseCheckDatabaseNameRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/data_warehouse/check-database-name/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetDataWarehouseCheckDatabaseNameRequest",
+}) as any as S.Schema<GetDataWarehouseCheckDatabaseNameRequest>;
+
+export interface CheckDatabaseNameResponse {
+  name: string;
+  available: boolean;
+}
+export const CheckDatabaseNameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    available: S.Boolean,
+  }),
+).annotate({
+  identifier: "CheckDatabaseNameResponse",
+}) as any as S.Schema<CheckDatabaseNameResponse>;
+
+export interface GetDataWarehouseCheckSchemaNameRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Schema name to check */
+  name: string;
+}
+export const GetDataWarehouseCheckSchemaNameRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/data_warehouse/check-schema-name/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetDataWarehouseCheckSchemaNameRequest",
+}) as any as S.Schema<GetDataWarehouseCheckSchemaNameRequest>;
+
+export interface CheckSchemaNameResponse {
+  /** The schema name that was checked */
+  name: string;
+  /** Whether the schema name is free within the organization's warehouse */
+  available: boolean;
+}
+export const CheckSchemaNameResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    available: S.Boolean,
+  }),
+).annotate({
+  identifier: "CheckSchemaNameResponse",
+}) as any as S.Schema<CheckSchemaNameResponse>;
+
+export interface GetDataWarehouseCompletedActivityRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetDataWarehouseCompletedActivityRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -253,22 +287,22 @@ export const DataWarehouseCompletedActivityRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehouseCompletedActivityRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseCompletedActivityRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehouseCompletedActivityRequest",
+}) as any as S.Schema<GetDataWarehouseCompletedActivityRequest>;
 
-export interface DataWarehouseCompletedActivityRetrieveResponse {}
-export const DataWarehouseCompletedActivityRetrieveResponse =
+export interface GetDataWarehouseCompletedActivityResponse {}
+export const GetDataWarehouseCompletedActivityResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DataWarehouseCompletedActivityRetrieveResponse",
-  }) as any as S.Schema<DataWarehouseCompletedActivityRetrieveResponse>;
+    identifier: "GetDataWarehouseCompletedActivityResponse",
+  }) as any as S.Schema<GetDataWarehouseCompletedActivityResponse>;
 
-export interface DataWarehouseDataHealthIssuesRetrieveRequest {
+export interface GetDataWarehouseDataHealthIssueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseDataHealthIssuesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDataWarehouseDataHealthIssueRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -278,22 +312,23 @@ export const DataWarehouseDataHealthIssuesRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehouseDataHealthIssuesRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseDataHealthIssuesRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehouseDataHealthIssueRequest",
+}) as any as S.Schema<GetDataWarehouseDataHealthIssueRequest>;
 
-export interface DataWarehouseDataHealthIssuesRetrieveResponse {}
-export const DataWarehouseDataHealthIssuesRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DataWarehouseDataHealthIssuesRetrieveResponse",
-  }) as any as S.Schema<DataWarehouseDataHealthIssuesRetrieveResponse>;
+export interface GetDataWarehouseDataHealthIssueResponse {}
+export const GetDataWarehouseDataHealthIssueResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetDataWarehouseDataHealthIssueResponse",
+}) as any as S.Schema<GetDataWarehouseDataHealthIssueResponse>;
 
-export interface DataWarehouseDataOpsDashboardRetrieveRequest {
+export interface GetDataWarehouseDataOpsDashboardRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseDataOpsDashboardRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDataWarehouseDataOpsDashboardRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -303,22 +338,23 @@ export const DataWarehouseDataOpsDashboardRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehouseDataOpsDashboardRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseDataOpsDashboardRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehouseDataOpsDashboardRequest",
+}) as any as S.Schema<GetDataWarehouseDataOpsDashboardRequest>;
 
-export interface DataWarehouseDataOpsDashboardRetrieveResponse {}
-export const DataWarehouseDataOpsDashboardRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DataWarehouseDataOpsDashboardRetrieveResponse",
-  }) as any as S.Schema<DataWarehouseDataOpsDashboardRetrieveResponse>;
+export interface GetDataWarehouseDataOpsDashboardResponse {}
+export const GetDataWarehouseDataOpsDashboardResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetDataWarehouseDataOpsDashboardResponse",
+}) as any as S.Schema<GetDataWarehouseDataOpsDashboardResponse>;
 
-export interface DataWarehouseDataQualityGateRetrieveRequest {
+export interface GetDataWarehouseDataQualityGateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseDataQualityGateRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDataWarehouseDataQualityGateRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -328,9 +364,9 @@ export const DataWarehouseDataQualityGateRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehouseDataQualityGateRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseDataQualityGateRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehouseDataQualityGateRequest",
+}) as any as S.Schema<GetDataWarehouseDataQualityGateRequest>;
 
 /** The team-level materialization gate. Checks always run and warn; this only toggles blocking. */
 export interface DataQualityGateConfig {
@@ -345,37 +381,36 @@ export const DataQualityGateConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataQualityGateConfig",
 }) as any as S.Schema<DataQualityGateConfig>;
 
-export interface DataWarehouseJobStatsRetrieveRequest {
+export interface GetDataWarehouseJobStatRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseJobStatsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_warehouse/job_stats/",
-        code: 200,
-      }),
-    ),
+export const GetDataWarehouseJobStatRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_warehouse/job_stats/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DataWarehouseJobStatsRetrieveRequest",
-}) as any as S.Schema<DataWarehouseJobStatsRetrieveRequest>;
+  identifier: "GetDataWarehouseJobStatRequest",
+}) as any as S.Schema<GetDataWarehouseJobStatRequest>;
 
-export interface DataWarehouseJobStatsRetrieveResponse {}
-export const DataWarehouseJobStatsRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface GetDataWarehouseJobStatResponse {}
+export const GetDataWarehouseJobStatResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DataWarehouseJobStatsRetrieveResponse",
-}) as any as S.Schema<DataWarehouseJobStatsRetrieveResponse>;
+  identifier: "GetDataWarehouseJobStatResponse",
+}) as any as S.Schema<GetDataWarehouseJobStatResponse>;
 
-export interface DataWarehouseManagedWarehouseDataStatusRetrieveRequest {
+export interface GetDataWarehouseManagedWarehouseDataStatusRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseManagedWarehouseDataStatusRetrieveRequest =
+export const GetDataWarehouseManagedWarehouseDataStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -387,8 +422,8 @@ export const DataWarehouseManagedWarehouseDataStatusRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "DataWarehouseManagedWarehouseDataStatusRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseManagedWarehouseDataStatusRetrieveRequest>;
+    identifier: "GetDataWarehouseManagedWarehouseDataStatusRequest",
+  }) as any as S.Schema<GetDataWarehouseManagedWarehouseDataStatusRequest>;
 
 /** * `not_configured` - not_configured * `waiting` - waiting * `backfilling` - backfilling * `up_to_date` - up_to_date * `needs_attention` - needs_attention * `sync_paused` - sync_paused */
 export type ManagedWarehouseReadinessStateEnum =
@@ -519,11 +554,11 @@ export const ManagedWarehouseDataStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedWarehouseDataStatusResponse",
 }) as any as S.Schema<ManagedWarehouseDataStatusResponse>;
 
-export interface DataWarehouseManagedWarehouseMonitoringRetrieveRequest {
+export interface GetDataWarehouseManagedWarehouseMonitoringRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseManagedWarehouseMonitoringRetrieveRequest =
+export const GetDataWarehouseManagedWarehouseMonitoringRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -535,8 +570,8 @@ export const DataWarehouseManagedWarehouseMonitoringRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "DataWarehouseManagedWarehouseMonitoringRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseManagedWarehouseMonitoringRetrieveRequest>;
+    identifier: "GetDataWarehouseManagedWarehouseMonitoringRequest",
+  }) as any as S.Schema<GetDataWarehouseManagedWarehouseMonitoringRequest>;
 
 export interface ManagedWarehouseMonitoringWarehouse {
   /** Current managed warehouse lifecycle state, such as ready, provisioning, or resharding. */
@@ -728,7 +763,7 @@ export const ManagedWarehouseMonitoringSnapshotResponse =
     identifier: "ManagedWarehouseMonitoringSnapshotResponse",
   }) as any as S.Schema<ManagedWarehouseMonitoringSnapshotResponse>;
 
-export type DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestMetric =
+export type GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric =
   | "query_rate"
   | "error_ratio"
   | "duration_p50"
@@ -738,40 +773,40 @@ export type DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestMetr
   | "acquire_by_source"
   | "storage_bytes"
   | "worker_crash_rate";
-export const DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestMetric =
+export const GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric =
   /*@__PURE__*/ S.String;
 
-export type DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestWindow =
+export type GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow =
   | "1h"
   | "6h"
   | "24h"
   | "7d"
   | "30d";
-export const DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestWindow =
+export const GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow =
   /*@__PURE__*/ S.String;
 
-export interface DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest {
+export interface GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Allow-listed managed warehouse metric to retrieve. * `query_rate` - query_rate * `error_ratio` - error_ratio * `duration_p50` - duration_p50 * `duration_p95` - duration_p95 * `sessions_active` - sessions_active * `acquire_p95` - acquire_p95 * `acquire_by_source` - acquire_by_source * `storage_bytes` - storage_bytes * `worker_crash_rate` - worker_crash_rate */
   metric:
-    | DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestMetric
+    | GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric
     | (string & {});
   /** Trailing time window to retrieve. Defaults to 24h. * `1h` - 1h * `6h` - 6h * `24h` - 24h * `7d` - 7d * `30d` - 30d */
   window?:
-    | DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestWindow
+    | GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow
     | (string & {});
 }
-export const DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest =
+export const GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       metric:
-        DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestMetric.pipe(
+        GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric.pipe(
           T.Query(),
         ),
       window: S.optional(
-        DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestWindow.pipe(
+        GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow.pipe(
           T.Query(),
         ),
       ),
@@ -783,9 +818,8 @@ export const DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier:
-      "DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest>;
+    identifier: "GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest",
+  }) as any as S.Schema<GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest>;
 
 /** Allow-listed labels distinguishing this series, such as query outcome or acquisition source. */
 export type ManagedWarehouseMonitoringSeriesLabelsMap = {
@@ -875,13 +909,13 @@ export const ManagedWarehouseMonitoringSeriesResponse = /*@__PURE__*/ S.suspend(
   identifier: "ManagedWarehouseMonitoringSeriesResponse",
 }) as any as S.Schema<ManagedWarehouseMonitoringSeriesResponse>;
 
-export interface DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest {
+export interface GetDataWarehouseManagedWarehouseSourceSchemaRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Imported source connection to fetch per-schema detail for. */
   source_id: string;
 }
-export const DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest =
+export const GetDataWarehouseManagedWarehouseSourceSchemaRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -894,8 +928,8 @@ export const DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest>;
+    identifier: "GetDataWarehouseManagedWarehouseSourceSchemaRequest",
+  }) as any as S.Schema<GetDataWarehouseManagedWarehouseSourceSchemaRequest>;
 
 /** * `copy` - copy * `register` - register */
 export type WorkflowTypeEnum = "copy" | "register";
@@ -979,12 +1013,12 @@ export const ManagedWarehouseSourceSchemasResponse = /*@__PURE__*/ S.suspend(
   identifier: "ManagedWarehouseSourceSchemasResponse",
 }) as any as S.Schema<ManagedWarehouseSourceSchemasResponse>;
 
-export interface DataWarehousePropertyValuesRetrieveRequest {
+export interface GetDataWarehousePropertyValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehousePropertyValuesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDataWarehousePropertyValueRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -994,22 +1028,23 @@ export const DataWarehousePropertyValuesRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehousePropertyValuesRetrieveRequest",
-  }) as any as S.Schema<DataWarehousePropertyValuesRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehousePropertyValueRequest",
+}) as any as S.Schema<GetDataWarehousePropertyValueRequest>;
 
-export interface DataWarehousePropertyValuesRetrieveResponse {}
-export const DataWarehousePropertyValuesRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DataWarehousePropertyValuesRetrieveResponse",
-  }) as any as S.Schema<DataWarehousePropertyValuesRetrieveResponse>;
+export interface GetDataWarehousePropertyValueResponse {}
+export const GetDataWarehousePropertyValueResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetDataWarehousePropertyValueResponse",
+}) as any as S.Schema<GetDataWarehousePropertyValueResponse>;
 
-export interface DataWarehouseRunningActivityRetrieveRequest {
+export interface GetDataWarehouseRunningActivityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseRunningActivityRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDataWarehouseRunningActivityRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -1019,22 +1054,23 @@ export const DataWarehouseRunningActivityRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehouseRunningActivityRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseRunningActivityRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehouseRunningActivityRequest",
+}) as any as S.Schema<GetDataWarehouseRunningActivityRequest>;
 
-export interface DataWarehouseRunningActivityRetrieveResponse {}
-export const DataWarehouseRunningActivityRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DataWarehouseRunningActivityRetrieveResponse",
-  }) as any as S.Schema<DataWarehouseRunningActivityRetrieveResponse>;
+export interface GetDataWarehouseRunningActivityResponse {}
+export const GetDataWarehouseRunningActivityResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetDataWarehouseRunningActivityResponse",
+}) as any as S.Schema<GetDataWarehouseRunningActivityResponse>;
 
-export interface DataWarehouseTotalRowsStatsRetrieveRequest {
+export interface GetDataWarehouseTotalRowsStatRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseTotalRowsStatsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDataWarehouseTotalRowsStatRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -1044,22 +1080,23 @@ export const DataWarehouseTotalRowsStatsRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehouseTotalRowsStatsRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseTotalRowsStatsRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehouseTotalRowsStatRequest",
+}) as any as S.Schema<GetDataWarehouseTotalRowsStatRequest>;
 
-export interface DataWarehouseTotalRowsStatsRetrieveResponse {}
-export const DataWarehouseTotalRowsStatsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DataWarehouseTotalRowsStatsRetrieveResponse",
-  }) as any as S.Schema<DataWarehouseTotalRowsStatsRetrieveResponse>;
+export interface GetDataWarehouseTotalRowsStatResponse {}
+export const GetDataWarehouseTotalRowsStatResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetDataWarehouseTotalRowsStatResponse",
+}) as any as S.Schema<GetDataWarehouseTotalRowsStatResponse>;
 
-export interface DataWarehouseWarehouseStatusRetrieveRequest {
+export interface GetDataWarehouseWarehouseStatusRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataWarehouseWarehouseStatusRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetDataWarehouseWarehouseStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
     }).pipe(
@@ -1069,9 +1106,9 @@ export const DataWarehouseWarehouseStatusRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "DataWarehouseWarehouseStatusRetrieveRequest",
-  }) as any as S.Schema<DataWarehouseWarehouseStatusRetrieveRequest>;
+).annotate({
+  identifier: "GetDataWarehouseWarehouseStatusRequest",
+}) as any as S.Schema<GetDataWarehouseWarehouseStatusRequest>;
 
 /** * `pending` - pending * `provisioning` - provisioning * `ready` - ready * `failed` - failed * `deleting` - deleting * `deleted` - deleted */
 export type WarehouseStatusResponseStateEnum =
@@ -1154,40 +1191,6 @@ export const WarehouseStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WarehouseStatusResponse",
 }) as any as S.Schema<WarehouseStatusResponse>;
 
-export interface DeleteOrgDataWarehouseDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const DeleteOrgDataWarehouseDestroyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/data_warehouse/delete-org/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DeleteOrgDataWarehouseDestroyRequest",
-}) as any as S.Schema<DeleteOrgDataWarehouseDestroyRequest>;
-
-export interface DeleteWarehouseOrgResponse {
-  /** Deletion lifecycle message from the provisioner */
-  status?: string;
-  /** duckgres org identifier (the PostHog organization id) */
-  org?: string;
-}
-export const DeleteWarehouseOrgResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    org: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeleteWarehouseOrgResponse",
-}) as any as S.Schema<DeleteWarehouseOrgResponse>;
-
 export interface UpdateDataWarehouseDataQualityGatePartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -1209,36 +1212,6 @@ export const UpdateDataWarehouseDataQualityGatePartialRequest =
   ).annotate({
     identifier: "UpdateDataWarehouseDataQualityGatePartialRequest",
   }) as any as S.Schema<UpdateDataWarehouseDataQualityGatePartialRequest>;
-
-export type CheckDataWarehouseDatabaseNameRetrieveError = PosthogOpError;
-/** Check if a database name is available. */
-export const checkDataWarehouseDatabaseNameRetrieve: API.OperationMethod<
-  CheckDataWarehouseDatabaseNameRetrieveRequest,
-  CheckDatabaseNameResponse,
-  CheckDataWarehouseDatabaseNameRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckDataWarehouseDatabaseNameRetrieveRequest,
-  output: CheckDatabaseNameResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckDataWarehouseSchemaNameRetrieveError = PosthogOpError;
-/** Check if a schema name is free within the organization's managed warehouse. */
-export const checkDataWarehouseSchemaNameRetrieve: API.OperationMethod<
-  CheckDataWarehouseSchemaNameRetrieveRequest,
-  CheckSchemaNameResponse,
-  CheckDataWarehouseSchemaNameRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckDataWarehouseSchemaNameRetrieveRequest,
-  output: CheckSchemaNameResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
 
 export type CreateDataWarehouseDeprovisionError = PosthogOpError;
 /** Start deprovisioning the organization's managed warehouse. Restricted to organization admins. */
@@ -1285,236 +1258,264 @@ export const createDataWarehouseProvision: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateDataWarehouseResetPasswordError = PosthogOpError;
+export type DataWarehouseResetPasswordCreateError = PosthogOpError;
 /** Reset the root password for the managed warehouse. */
-export const createDataWarehouseResetPassword: API.OperationMethod<
-  CreateDataWarehouseResetPasswordRequest,
+export const dataWarehouseResetPasswordCreate: API.OperationMethod<
+  DataWarehouseResetPasswordCreateRequest,
   ResetPasswordResponse,
-  CreateDataWarehouseResetPasswordError,
+  DataWarehouseResetPasswordCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataWarehouseResetPasswordRequest,
+  input: DataWarehouseResetPasswordCreateRequest,
   output: ResetPasswordResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseCompletedActivityRetrieveError = PosthogOpError;
+export type DeleteDataWarehouseOrgDestroyError = PosthogOpError;
+/** Remove the organization's provisioning record after teardown, freeing its warehouse name. Called once the warehouse status reports `deleted`: deprovision tears the warehouse down, this removes the now-empty org row so the database_name can be reused. Restricted to organization admins. */
+export const deleteDataWarehouseOrgDestroy: API.OperationMethod<
+  DeleteDataWarehouseOrgDestroyRequest,
+  DeleteWarehouseOrgResponse,
+  DeleteDataWarehouseOrgDestroyError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataWarehouseOrgDestroyRequest,
+  output: DeleteWarehouseOrgResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataWarehouseCheckDatabaseNameError = PosthogOpError;
+/** Check if a database name is available. */
+export const getDataWarehouseCheckDatabaseName: API.OperationMethod<
+  GetDataWarehouseCheckDatabaseNameRequest,
+  CheckDatabaseNameResponse,
+  GetDataWarehouseCheckDatabaseNameError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataWarehouseCheckDatabaseNameRequest,
+  output: CheckDatabaseNameResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataWarehouseCheckSchemaNameError = PosthogOpError;
+/** Check if a schema name is free within the organization's managed warehouse. */
+export const getDataWarehouseCheckSchemaName: API.OperationMethod<
+  GetDataWarehouseCheckSchemaNameRequest,
+  CheckSchemaNameResponse,
+  GetDataWarehouseCheckSchemaNameError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataWarehouseCheckSchemaNameRequest,
+  output: CheckSchemaNameResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataWarehouseCompletedActivityError = PosthogOpError;
 /** Returns completed/non-running activities (jobs with status 'Completed'). Supports pagination and cutoff time filtering. */
-export const dataWarehouseCompletedActivityRetrieve: API.OperationMethod<
-  DataWarehouseCompletedActivityRetrieveRequest,
-  DataWarehouseCompletedActivityRetrieveResponse,
-  DataWarehouseCompletedActivityRetrieveError,
+export const getDataWarehouseCompletedActivity: API.OperationMethod<
+  GetDataWarehouseCompletedActivityRequest,
+  GetDataWarehouseCompletedActivityResponse,
+  GetDataWarehouseCompletedActivityError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseCompletedActivityRetrieveRequest,
-  output: DataWarehouseCompletedActivityRetrieveResponse,
+  input: GetDataWarehouseCompletedActivityRequest,
+  output: GetDataWarehouseCompletedActivityResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseDataHealthIssuesRetrieveError = PosthogOpError;
+export type GetDataWarehouseDataHealthIssueError = PosthogOpError;
 /** Returns failed/disabled data pipeline items for the Pipeline status side panel. Includes: materializations, syncs, sources, destinations, and transformations. */
-export const dataWarehouseDataHealthIssuesRetrieve: API.OperationMethod<
-  DataWarehouseDataHealthIssuesRetrieveRequest,
-  DataWarehouseDataHealthIssuesRetrieveResponse,
-  DataWarehouseDataHealthIssuesRetrieveError,
+export const getDataWarehouseDataHealthIssue: API.OperationMethod<
+  GetDataWarehouseDataHealthIssueRequest,
+  GetDataWarehouseDataHealthIssueResponse,
+  GetDataWarehouseDataHealthIssueError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseDataHealthIssuesRetrieveRequest,
-  output: DataWarehouseDataHealthIssuesRetrieveResponse,
+  input: GetDataWarehouseDataHealthIssueRequest,
+  output: GetDataWarehouseDataHealthIssueResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseDataOpsDashboardRetrieveError = PosthogOpError;
+export type GetDataWarehouseDataOpsDashboardError = PosthogOpError;
 /** Returns the data ops overview dashboard ID for this team, creating it if it doesn't exist yet. */
-export const dataWarehouseDataOpsDashboardRetrieve: API.OperationMethod<
-  DataWarehouseDataOpsDashboardRetrieveRequest,
-  DataWarehouseDataOpsDashboardRetrieveResponse,
-  DataWarehouseDataOpsDashboardRetrieveError,
+export const getDataWarehouseDataOpsDashboard: API.OperationMethod<
+  GetDataWarehouseDataOpsDashboardRequest,
+  GetDataWarehouseDataOpsDashboardResponse,
+  GetDataWarehouseDataOpsDashboardError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseDataOpsDashboardRetrieveRequest,
-  output: DataWarehouseDataOpsDashboardRetrieveResponse,
+  input: GetDataWarehouseDataOpsDashboardRequest,
+  output: GetDataWarehouseDataOpsDashboardResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseDataQualityGateRetrieveError = PosthogOpError;
+export type GetDataWarehouseDataQualityGateError = PosthogOpError;
 /** Read or update the team's data quality gate: whether a materialization whose error-severity checks fail is published. */
-export const dataWarehouseDataQualityGateRetrieve: API.OperationMethod<
-  DataWarehouseDataQualityGateRetrieveRequest,
+export const getDataWarehouseDataQualityGate: API.OperationMethod<
+  GetDataWarehouseDataQualityGateRequest,
   DataQualityGateConfig,
-  DataWarehouseDataQualityGateRetrieveError,
+  GetDataWarehouseDataQualityGateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseDataQualityGateRetrieveRequest,
+  input: GetDataWarehouseDataQualityGateRequest,
   output: DataQualityGateConfig,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseJobStatsRetrieveError = PosthogOpError;
+export type GetDataWarehouseJobStatError = PosthogOpError;
 /** Returns success and failed job statistics for the last 1, 7, or 30 days. Query parameter 'days' can be 1, 7, or 30 (default: 7). */
-export const dataWarehouseJobStatsRetrieve: API.OperationMethod<
-  DataWarehouseJobStatsRetrieveRequest,
-  DataWarehouseJobStatsRetrieveResponse,
-  DataWarehouseJobStatsRetrieveError,
+export const getDataWarehouseJobStat: API.OperationMethod<
+  GetDataWarehouseJobStatRequest,
+  GetDataWarehouseJobStatResponse,
+  GetDataWarehouseJobStatError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseJobStatsRetrieveRequest,
-  output: DataWarehouseJobStatsRetrieveResponse,
+  input: GetDataWarehouseJobStatRequest,
+  output: GetDataWarehouseJobStatResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseManagedWarehouseDataStatusRetrieveError =
-  PosthogOpError;
+export type GetDataWarehouseManagedWarehouseDataStatusError = PosthogOpError;
 /** Get events, persons, and imported source readiness for the managed warehouse. */
-export const dataWarehouseManagedWarehouseDataStatusRetrieve: API.OperationMethod<
-  DataWarehouseManagedWarehouseDataStatusRetrieveRequest,
+export const getDataWarehouseManagedWarehouseDataStatus: API.OperationMethod<
+  GetDataWarehouseManagedWarehouseDataStatusRequest,
   ManagedWarehouseDataStatusResponse,
-  DataWarehouseManagedWarehouseDataStatusRetrieveError,
+  GetDataWarehouseManagedWarehouseDataStatusError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseManagedWarehouseDataStatusRetrieveRequest,
+  input: GetDataWarehouseManagedWarehouseDataStatusRequest,
   output: ManagedWarehouseDataStatusResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseManagedWarehouseMonitoringRetrieveError =
+export type GetDataWarehouseManagedWarehouseMonitoringError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Get managed warehouse monitoring snapshot Get tenant-safe live worker, session, queue, and capacity data for the current organization. */
-export const dataWarehouseManagedWarehouseMonitoringRetrieve: API.OperationMethod<
-  DataWarehouseManagedWarehouseMonitoringRetrieveRequest,
+export const getDataWarehouseManagedWarehouseMonitoring: API.OperationMethod<
+  GetDataWarehouseManagedWarehouseMonitoringRequest,
   ManagedWarehouseMonitoringSnapshotResponse,
-  DataWarehouseManagedWarehouseMonitoringRetrieveError,
+  GetDataWarehouseManagedWarehouseMonitoringError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseManagedWarehouseMonitoringRetrieveRequest,
+  input: GetDataWarehouseManagedWarehouseMonitoringRequest,
   output: ManagedWarehouseMonitoringSnapshotResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveError =
+export type GetDataWarehouseManagedWarehouseMonitoringTimeseriesError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Get managed warehouse monitoring time series Get one allow-listed monitoring metric for the current organization and trailing time window. */
-export const dataWarehouseManagedWarehouseMonitoringTimeseriesRetrieve: API.OperationMethod<
-  DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest,
+export const getDataWarehouseManagedWarehouseMonitoringTimeseries: API.OperationMethod<
+  GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest,
   ManagedWarehouseMonitoringSeriesResponse,
-  DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveError,
+  GetDataWarehouseManagedWarehouseMonitoringTimeseriesError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest,
+  input: GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest,
   output: ManagedWarehouseMonitoringSeriesResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseManagedWarehouseSourceSchemasRetrieveError =
-  PosthogOpError;
+export type GetDataWarehouseManagedWarehouseSourceSchemaError = PosthogOpError;
 /** Get per-schema detail for one imported source Per-schema backfill and live import status for one source, for the Overview tab's drill-down modal — the main status endpoint only returns a per-source rollup. */
-export const dataWarehouseManagedWarehouseSourceSchemasRetrieve: API.OperationMethod<
-  DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest,
+export const getDataWarehouseManagedWarehouseSourceSchema: API.OperationMethod<
+  GetDataWarehouseManagedWarehouseSourceSchemaRequest,
   ManagedWarehouseSourceSchemasResponse,
-  DataWarehouseManagedWarehouseSourceSchemasRetrieveError,
+  GetDataWarehouseManagedWarehouseSourceSchemaError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest,
+  input: GetDataWarehouseManagedWarehouseSourceSchemaRequest,
   output: ManagedWarehouseSourceSchemasResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehousePropertyValuesRetrieveError = PosthogOpError;
+export type GetDataWarehousePropertyValueError = PosthogOpError;
 /** API endpoints for data warehouse aggregate statistics and operations. */
-export const dataWarehousePropertyValuesRetrieve: API.OperationMethod<
-  DataWarehousePropertyValuesRetrieveRequest,
-  DataWarehousePropertyValuesRetrieveResponse,
-  DataWarehousePropertyValuesRetrieveError,
+export const getDataWarehousePropertyValue: API.OperationMethod<
+  GetDataWarehousePropertyValueRequest,
+  GetDataWarehousePropertyValueResponse,
+  GetDataWarehousePropertyValueError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehousePropertyValuesRetrieveRequest,
-  output: DataWarehousePropertyValuesRetrieveResponse,
+  input: GetDataWarehousePropertyValueRequest,
+  output: GetDataWarehousePropertyValueResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseRunningActivityRetrieveError = PosthogOpError;
+export type GetDataWarehouseRunningActivityError = PosthogOpError;
 /** Returns currently running activities (jobs with status 'Running'). Supports pagination and cutoff time filtering. */
-export const dataWarehouseRunningActivityRetrieve: API.OperationMethod<
-  DataWarehouseRunningActivityRetrieveRequest,
-  DataWarehouseRunningActivityRetrieveResponse,
-  DataWarehouseRunningActivityRetrieveError,
+export const getDataWarehouseRunningActivity: API.OperationMethod<
+  GetDataWarehouseRunningActivityRequest,
+  GetDataWarehouseRunningActivityResponse,
+  GetDataWarehouseRunningActivityError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseRunningActivityRetrieveRequest,
-  output: DataWarehouseRunningActivityRetrieveResponse,
+  input: GetDataWarehouseRunningActivityRequest,
+  output: GetDataWarehouseRunningActivityResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseTotalRowsStatsRetrieveError = PosthogOpError;
+export type GetDataWarehouseTotalRowsStatError = PosthogOpError;
 /** Returns aggregated statistics for the data warehouse total rows processed within the current billing period. Used by the frontend data warehouse scene to display usage information. */
-export const dataWarehouseTotalRowsStatsRetrieve: API.OperationMethod<
-  DataWarehouseTotalRowsStatsRetrieveRequest,
-  DataWarehouseTotalRowsStatsRetrieveResponse,
-  DataWarehouseTotalRowsStatsRetrieveError,
+export const getDataWarehouseTotalRowsStat: API.OperationMethod<
+  GetDataWarehouseTotalRowsStatRequest,
+  GetDataWarehouseTotalRowsStatResponse,
+  GetDataWarehouseTotalRowsStatError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseTotalRowsStatsRetrieveRequest,
-  output: DataWarehouseTotalRowsStatsRetrieveResponse,
+  input: GetDataWarehouseTotalRowsStatRequest,
+  output: GetDataWarehouseTotalRowsStatResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataWarehouseWarehouseStatusRetrieveError = PosthogOpError;
+export type GetDataWarehouseWarehouseStatusError = PosthogOpError;
 /** Get the current provisioning status of the managed warehouse, with this project's onboarding state. */
-export const dataWarehouseWarehouseStatusRetrieve: API.OperationMethod<
-  DataWarehouseWarehouseStatusRetrieveRequest,
+export const getDataWarehouseWarehouseStatus: API.OperationMethod<
+  GetDataWarehouseWarehouseStatusRequest,
   WarehouseStatusResponse,
-  DataWarehouseWarehouseStatusRetrieveError,
+  GetDataWarehouseWarehouseStatusError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataWarehouseWarehouseStatusRetrieveRequest,
+  input: GetDataWarehouseWarehouseStatusRequest,
   output: WarehouseStatusResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOrgDataWarehouseDestroyError = PosthogOpError;
-/** Remove the organization's provisioning record after teardown, freeing its warehouse name. Called once the warehouse status reports `deleted`: deprovision tears the warehouse down, this removes the now-empty org row so the database_name can be reused. Restricted to organization admins. */
-export const deleteOrgDataWarehouseDestroy: API.OperationMethod<
-  DeleteOrgDataWarehouseDestroyRequest,
-  DeleteWarehouseOrgResponse,
-  DeleteOrgDataWarehouseDestroyError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOrgDataWarehouseDestroyRequest,
-  output: DeleteWarehouseOrgResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

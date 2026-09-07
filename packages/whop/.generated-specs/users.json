@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.users#ListUsersRequest": {
@@ -1923,7 +1924,7 @@
       },
       "traits": {}
     },
-    "com.whop.users#RetrieveUserPreferences": {
+    "com.whop.users#GetUserPreferences": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2722,7 +2723,7 @@
         }
       }
     },
-    "com.whop.users#RetrieveUserRequestInterval": {
+    "com.whop.users#GetUserRequestInterval": {
       "type": "enum",
       "members": {
         "HOUR": {
@@ -2752,7 +2753,7 @@
       },
       "traits": {}
     },
-    "com.whop.users#RetrieveUserRequest": {
+    "com.whop.users#GetUserRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2792,7 +2793,7 @@
           }
         },
         "interval": {
-          "target": "com.whop.users#RetrieveUserRequestInterval",
+          "target": "com.whop.users#GetUserRequestInterval",
           "traits": {
             "smithy.api#httpQuery": "interval",
             "smithy.api#documentation": "Balance-history point granularity. Defaults to `day`. Only used with `include_balance_history`."
@@ -2810,10 +2811,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.users#RetrieveUser": {
+    "com.whop.users#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.whop.users#RetrieveUserRequest"
+        "target": "com.whop.users#GetUserRequest"
       },
       "output": {
         "target": "com.whop.users#User"
@@ -3376,16 +3377,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.users#ListUsers"
-        },
-        {
-          "target": "com.whop.users#ListOauthGrants"
+          "target": "com.whop.users#CheckUserAccess"
         },
         {
           "target": "com.whop.users#CreateOauthGrant"
-        },
-        {
-          "target": "com.whop.users#ListPasskeys"
         },
         {
           "target": "com.whop.users#CreatePasskey"
@@ -3397,13 +3392,16 @@
           "target": "com.whop.users#DeletePasskey"
         },
         {
-          "target": "com.whop.users#RetrieveUserPreferences"
+          "target": "com.whop.users#GetUser"
         },
         {
-          "target": "com.whop.users#UpdateUserPreferences"
+          "target": "com.whop.users#GetUserPreferences"
         },
         {
-          "target": "com.whop.users#SetUserNotificationPreferences"
+          "target": "com.whop.users#ListOauthGrants"
+        },
+        {
+          "target": "com.whop.users#ListPasskeys"
         },
         {
           "target": "com.whop.users#ListUserNotificationExperiencePreferences"
@@ -3412,16 +3410,19 @@
           "target": "com.whop.users#ListUserNotificationTopicPreferences"
         },
         {
-          "target": "com.whop.users#RetrieveUser"
+          "target": "com.whop.users#ListUserRecommendedActions"
+        },
+        {
+          "target": "com.whop.users#ListUsers"
+        },
+        {
+          "target": "com.whop.users#SetUserNotificationPreferences"
         },
         {
           "target": "com.whop.users#UpdateUser"
         },
         {
-          "target": "com.whop.users#CheckUserAccess"
-        },
-        {
-          "target": "com.whop.users#ListUserRecommendedActions"
+          "target": "com.whop.users#UpdateUserPreferences"
         }
       ],
       "traits": {

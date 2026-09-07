@@ -116,6 +116,124 @@ export const AdvanceRelocateBucketOperationsResponse = /*@__PURE__*/ S.suspend(
   identifier: "AdvanceRelocateBucketOperationsResponse",
 }) as any as S.Schema<AdvanceRelocateBucketOperationsResponse>;
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+/** A bulk restore objects request. */
+export interface BulkRestoreObjectsRequest {
+  /** If false (default), the restore will not overwrite live objects with the same name at the destination. This means some deleted objects may be skipped. If true, live objects will be overwritten resulting in a noncurrent object (if versioning is enabled). If versioning is not enabled, overwriting the object will result in a soft-deleted object. In either case, if a noncurrent object already exists with the same name, a live version can be written without issue. */
+  allowOverwrite?: boolean;
+  /** Restores only the objects that were soft-deleted after this time. */
+  softDeletedAfterTime?: string;
+  /** Restores only the objects that were soft-deleted before this time. */
+  softDeletedBeforeTime?: string;
+  /** Restores only the objects matching any of the specified glob(s). If this parameter is not specified, all objects will be restored within the specified time range. */
+  matchGlobs?: StringList;
+  /** If true, copies the source object's ACL; otherwise, uses the bucket's default object ACL. The default is false. */
+  copySourceAcl?: boolean;
+  /** Restores only the objects that were created after this time. */
+  createdAfterTime?: string;
+  /** Restores only the objects that were created before this time. */
+  createdBeforeTime?: string;
+}
+export const BulkRestoreObjectsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowOverwrite: S.optional(S.Boolean),
+    softDeletedAfterTime: S.optional(S.String),
+    softDeletedBeforeTime: S.optional(S.String),
+    matchGlobs: S.optional(StringList),
+    copySourceAcl: S.optional(S.Boolean),
+    createdAfterTime: S.optional(S.String),
+    createdBeforeTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BulkRestoreObjectsRequest",
+}) as any as S.Schema<BulkRestoreObjectsRequest>;
+
+export interface BulkRestoreObjectsRequest_ {
+  /** Name of the bucket in which the object resides. */
+  bucket: string;
+  /** Request body */
+  body?: BulkRestoreObjectsRequest;
+}
+export const BulkRestoreObjectsRequest_ = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bucket: S.String.pipe(T.Label()),
+    body: S.optional(BulkRestoreObjectsRequest.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "b/{bucket}/o/bulkRestore",
+      baseUrl: "https://storage.googleapis.com/storage/v1/",
+    }),
+  ),
+).annotate({
+  identifier: "BulkRestoreObjectsRequest_",
+}) as any as S.Schema<BulkRestoreObjectsRequest_>;
+
+export type DocumentMap = { [key: string]: unknown | undefined };
+export const DocumentMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<DocumentMap>;
+
+export type DocumentMapList = Array<DocumentMap>;
+export const DocumentMapList = /*@__PURE__*/ S.Array(
+  DocumentMap,
+) as any as S.Schema<DocumentMapList>;
+
+/** The "Status" type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each "Status" message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
+export interface GoogleRpcStatus {
+  /** The status code, which should be an enum value of google.rpc.Code. */
+  code?: number;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
+  /** A developer-facing error message, which should be in English. */
+  message?: string;
+}
+export const GoogleRpcStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.Number),
+    details: S.optional(DocumentMapList),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GoogleRpcStatus",
+}) as any as S.Schema<GoogleRpcStatus>;
+
+/** This resource represents a long-running operation that is the result of a network API call. */
+export interface GoogleLongrunningOperation {
+  /** If the value is "false", it means the operation is still in progress. If "true", the operation is completed, and either "error" or "response" is available. */
+  done?: boolean;
+  /** The error result of the operation in case of failure or cancellation. */
+  error?: GoogleRpcStatus;
+  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
+  metadata?: DocumentMap;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the "name" should be a resource name ending with "operations/{operationId}". */
+  name?: string;
+  /** The normal response of the operation in case of success. If the original method returns no data on success, such as "Delete", the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type "XxxResponse", where "Xxx" is the original method name. For example, if the original method name is "TakeSnapshot()", the inferred response type is "TakeSnapshotResponse". */
+  response?: DocumentMap;
+  /** The link to this long running operation. */
+  selfLink?: string;
+  /** The kind of item this is. For operations, this is always storage#operation. */
+  kind?: string;
+}
+export const GoogleLongrunningOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    done: S.optional(S.Boolean),
+    error: S.optional(GoogleRpcStatus),
+    metadata: S.optional(DocumentMap),
+    name: S.optional(S.String),
+    response: S.optional(DocumentMap),
+    selfLink: S.optional(S.String),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GoogleLongrunningOperation",
+}) as any as S.Schema<GoogleLongrunningOperation>;
+
 export interface CancelOperationsRequest {
   /** The parent bucket of the operation resource. */
   bucket: string;
@@ -153,11 +271,6 @@ export type ComposeObjectsDestinationPredefinedAclEnum =
   | "publicRead";
 export const ComposeObjectsDestinationPredefinedAclEnum =
   /*@__PURE__*/ S.String;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
 
 export interface ObjectAccessControlProjectTeam {
   /** The project number. */
@@ -1049,67 +1162,6 @@ export const DeleteRecursiveFoldersRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteRecursiveFoldersRequest",
 }) as any as S.Schema<DeleteRecursiveFoldersRequest>;
-
-export type DocumentMap = { [key: string]: unknown | undefined };
-export const DocumentMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DocumentMap>;
-
-export type DocumentMapList = Array<DocumentMap>;
-export const DocumentMapList = /*@__PURE__*/ S.Array(
-  DocumentMap,
-) as any as S.Schema<DocumentMapList>;
-
-/** The "Status" type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each "Status" message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
-export interface GoogleRpcStatus {
-  /** The status code, which should be an enum value of google.rpc.Code. */
-  code?: number;
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
-  /** A developer-facing error message, which should be in English. */
-  message?: string;
-}
-export const GoogleRpcStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.Number),
-    details: S.optional(DocumentMapList),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleRpcStatus",
-}) as any as S.Schema<GoogleRpcStatus>;
-
-/** This resource represents a long-running operation that is the result of a network API call. */
-export interface GoogleLongrunningOperation {
-  /** If the value is "false", it means the operation is still in progress. If "true", the operation is completed, and either "error" or "response" is available. */
-  done?: boolean;
-  /** The error result of the operation in case of failure or cancellation. */
-  error?: GoogleRpcStatus;
-  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
-  metadata?: DocumentMap;
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the "name" should be a resource name ending with "operations/{operationId}". */
-  name?: string;
-  /** The normal response of the operation in case of success. If the original method returns no data on success, such as "Delete", the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type "XxxResponse", where "Xxx" is the original method name. For example, if the original method name is "TakeSnapshot()", the inferred response type is "TakeSnapshotResponse". */
-  response?: DocumentMap;
-  /** The link to this long running operation. */
-  selfLink?: string;
-  /** The kind of item this is. For operations, this is always storage#operation. */
-  kind?: string;
-}
-export const GoogleLongrunningOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    done: S.optional(S.Boolean),
-    error: S.optional(GoogleRpcStatus),
-    metadata: S.optional(DocumentMap),
-    name: S.optional(S.String),
-    response: S.optional(DocumentMap),
-    selfLink: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleLongrunningOperation",
-}) as any as S.Schema<GoogleLongrunningOperation>;
 
 export interface DisableAnywhereCachesRequest {
   /** Name of the parent bucket. */
@@ -3987,58 +4039,6 @@ export const RestoreBucketsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestoreBucketsRequest",
 }) as any as S.Schema<RestoreBucketsRequest>;
 
-/** A bulk restore objects request. */
-export interface RestoreBulkObjectRequest {
-  /** If false (default), the restore will not overwrite live objects with the same name at the destination. This means some deleted objects may be skipped. If true, live objects will be overwritten resulting in a noncurrent object (if versioning is enabled). If versioning is not enabled, overwriting the object will result in a soft-deleted object. In either case, if a noncurrent object already exists with the same name, a live version can be written without issue. */
-  allowOverwrite?: boolean;
-  /** Restores only the objects that were soft-deleted after this time. */
-  softDeletedAfterTime?: string;
-  /** Restores only the objects that were soft-deleted before this time. */
-  softDeletedBeforeTime?: string;
-  /** Restores only the objects matching any of the specified glob(s). If this parameter is not specified, all objects will be restored within the specified time range. */
-  matchGlobs?: StringList;
-  /** If true, copies the source object's ACL; otherwise, uses the bucket's default object ACL. The default is false. */
-  copySourceAcl?: boolean;
-  /** Restores only the objects that were created after this time. */
-  createdAfterTime?: string;
-  /** Restores only the objects that were created before this time. */
-  createdBeforeTime?: string;
-}
-export const RestoreBulkObjectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowOverwrite: S.optional(S.Boolean),
-    softDeletedAfterTime: S.optional(S.String),
-    softDeletedBeforeTime: S.optional(S.String),
-    matchGlobs: S.optional(StringList),
-    copySourceAcl: S.optional(S.Boolean),
-    createdAfterTime: S.optional(S.String),
-    createdBeforeTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RestoreBulkObjectRequest",
-}) as any as S.Schema<RestoreBulkObjectRequest>;
-
-export interface BulkRestoreObjectsRequest_ {
-  /** Name of the bucket in which the object resides. */
-  bucket: string;
-  /** Request body */
-  body?: RestoreBulkObjectRequest;
-}
-export const BulkRestoreObjectsRequest_ = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bucket: S.String.pipe(T.Label()),
-    body: S.optional(RestoreBulkObjectRequest.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "b/{bucket}/o/bulkRestore",
-      baseUrl: "https://storage.googleapis.com/storage/v1/",
-    }),
-  ),
-).annotate({
-  identifier: "BulkRestoreObjectsRequest_",
-}) as any as S.Schema<BulkRestoreObjectsRequest_>;
-
 export type RestoreObjectsProjectionEnum = "full" | "noAcl";
 export const RestoreObjectsProjectionEnum = /*@__PURE__*/ S.String;
 
@@ -4811,6 +4811,26 @@ export const advanceRelocateBucketOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AdvanceRelocateBucketOperationsRequest,
   output: AdvanceRelocateBucketOperationsResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkRestoreObjectsError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Initiates a long-running bulk restore operation on the specified bucket. */
+export const bulkRestoreObjects: API.OperationMethod<
+  BulkRestoreObjectsRequest_,
+  GoogleLongrunningOperation,
+  BulkRestoreObjectsError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkRestoreObjectsRequest_,
+  output: GoogleLongrunningOperation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
@@ -6039,26 +6059,6 @@ export const restoreBuckets: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RestoreBucketsRequest,
   output: Bucket,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestoreBulkObjectError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Initiates a long-running bulk restore operation on the specified bucket. */
-export const restoreBulkObject: API.OperationMethod<
-  BulkRestoreObjectsRequest_,
-  GoogleLongrunningOperation,
-  RestoreBulkObjectError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BulkRestoreObjectsRequest_,
-  output: GoogleLongrunningOperation,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,

@@ -33,7 +33,8 @@
       "timeIntervals": "time_intervals",
       "totalCount": "total_count",
       "upstreamIps": "upstream_ips"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.dns_firewall#CreateRequestUpstreamIpsList": {
@@ -698,31 +699,31 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.dns_firewall#Create"
+          "target": "com.cloudflare.dns_firewall#CreateDnsFirewall"
         },
         {
-          "target": "com.cloudflare.dns_firewall#Delete"
+          "target": "com.cloudflare.dns_firewall#DeleteDnsFirewall"
         },
         {
-          "target": "com.cloudflare.dns_firewall#Edit"
+          "target": "com.cloudflare.dns_firewall#GetAnalyticReport"
         },
         {
-          "target": "com.cloudflare.dns_firewall#Get"
+          "target": "com.cloudflare.dns_firewall#GetAnalyticReportBytime"
         },
         {
-          "target": "com.cloudflare.dns_firewall#List"
+          "target": "com.cloudflare.dns_firewall#GetDnsFirewall"
         },
         {
-          "target": "com.cloudflare.dns_firewall#AnalyticsReportsGet"
+          "target": "com.cloudflare.dns_firewall#GetReverseDn"
         },
         {
-          "target": "com.cloudflare.dns_firewall#AnalyticsReportsBytimesGet"
+          "target": "com.cloudflare.dns_firewall#ListDnsFirewalls"
         },
         {
-          "target": "com.cloudflare.dns_firewall#ReverseDnsEdit"
+          "target": "com.cloudflare.dns_firewall#PatchDnsFirewall"
         },
         {
-          "target": "com.cloudflare.dns_firewall#ReverseDnsGet"
+          "target": "com.cloudflare.dns_firewall#PatchReverseDn"
         }
       ],
       "traits": {

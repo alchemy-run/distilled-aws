@@ -31,7 +31,8 @@
       "resultInfo": "result_info",
       "totalCount": "total_count",
       "zoneSettings": "zone_settings"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.memberships#GetResponseAccountType": {
@@ -1067,16 +1068,16 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.memberships#Delete"
+          "target": "com.cloudflare.memberships#DeleteMembership"
         },
         {
-          "target": "com.cloudflare.memberships#Get"
+          "target": "com.cloudflare.memberships#GetMembership"
         },
         {
-          "target": "com.cloudflare.memberships#List"
+          "target": "com.cloudflare.memberships#ListMemberships"
         },
         {
-          "target": "com.cloudflare.memberships#Update"
+          "target": "com.cloudflare.memberships#PutMembership"
         }
       ],
       "traits": {

@@ -29,7 +29,8 @@
       "stepName": "step_name",
       "subdivision_2IsoCode": "subdivision_2_iso_code",
       "threatScore": "threat_score"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.request_tracers#TracesCreateRequestBody": {
@@ -142,7 +143,7 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.request_tracers#TracesCreate"
+          "target": "com.cloudflare.request_tracers#CreateTrace"
         }
       ],
       "traits": {

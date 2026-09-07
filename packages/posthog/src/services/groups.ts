@@ -78,7 +78,7 @@ export const Group = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Group" }) as any as S.Schema<Group>;
 
-export interface GroupsActivityRetrieveRequest {
+export interface GetGroupsActivityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Specify the group type to find */
@@ -86,7 +86,7 @@ export interface GroupsActivityRetrieveRequest {
   /** Specify the id of the user to find groups for */
   id: string;
 }
-export const GroupsActivityRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGroupsActivityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     group_type_index: S.Number.pipe(T.Query()),
@@ -99,15 +99,105 @@ export const GroupsActivityRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GroupsActivityRetrieveRequest",
-}) as any as S.Schema<GroupsActivityRetrieveRequest>;
+  identifier: "GetGroupsActivityRequest",
+}) as any as S.Schema<GetGroupsActivityRequest>;
 
-export interface GroupsActivityRetrieveResponse {}
-export const GroupsActivityRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
+export interface GetGroupsActivityResponse {}
+export const GetGroupsActivityResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "GroupsActivityRetrieveResponse",
-}) as any as S.Schema<GroupsActivityRetrieveResponse>;
+  identifier: "GetGroupsActivityResponse",
+}) as any as S.Schema<GetGroupsActivityResponse>;
+
+export interface GetGroupsFindRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Specify the key of the group to find */
+  group_key: string;
+  /** Specify the group type to find */
+  group_type_index: number;
+  /** When true, do not lazily create the group's CRM notebook. Use for read-only lookups (e.g. resolving a group's display name) that should not have side effects. */
+  skip_create_notebook?: boolean;
+}
+export const GetGroupsFindRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    group_key: S.String.pipe(T.Query()),
+    group_type_index: S.Number.pipe(T.Query()),
+    skip_create_notebook: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/groups/find/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupsFindRequest",
+}) as any as S.Schema<GetGroupsFindRequest>;
+
+export interface GetGroupsFindResponse {}
+export const GetGroupsFindResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetGroupsFindResponse",
+}) as any as S.Schema<GetGroupsFindResponse>;
+
+export interface GetGroupsPropertyValueRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetGroupsPropertyValueRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/groups/property_values/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupsPropertyValueRequest",
+}) as any as S.Schema<GetGroupsPropertyValueRequest>;
+
+export interface GetGroupsPropertyValueResponse {}
+export const GetGroupsPropertyValueResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetGroupsPropertyValueResponse",
+}) as any as S.Schema<GetGroupsPropertyValueResponse>;
+
+export interface GetGroupsRelatedRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Specify the group type to find */
+  group_type_index: number;
+  /** Specify the id of the user to find groups for */
+  id: string;
+}
+export const GetGroupsRelatedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    group_type_index: S.Number.pipe(T.Query()),
+    id: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/groups/related/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupsRelatedRequest",
+}) as any as S.Schema<GetGroupsRelatedRequest>;
+
+export interface GetGroupsRelatedResponse {}
+export const GetGroupsRelatedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetGroupsRelatedResponse",
+}) as any as S.Schema<GetGroupsRelatedResponse>;
 
 export interface GroupsDeletePropertyCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -141,96 +231,6 @@ export const GroupsDeletePropertyCreateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GroupsDeletePropertyCreateResponse",
 }) as any as S.Schema<GroupsDeletePropertyCreateResponse>;
-
-export interface GroupsFindRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Specify the key of the group to find */
-  group_key: string;
-  /** Specify the group type to find */
-  group_type_index: number;
-  /** When true, do not lazily create the group's CRM notebook. Use for read-only lookups (e.g. resolving a group's display name) that should not have side effects. */
-  skip_create_notebook?: boolean;
-}
-export const GroupsFindRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    group_key: S.String.pipe(T.Query()),
-    group_type_index: S.Number.pipe(T.Query()),
-    skip_create_notebook: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/groups/find/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GroupsFindRetrieveRequest",
-}) as any as S.Schema<GroupsFindRetrieveRequest>;
-
-export interface GroupsFindRetrieveResponse {}
-export const GroupsFindRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GroupsFindRetrieveResponse",
-}) as any as S.Schema<GroupsFindRetrieveResponse>;
-
-export interface GroupsPropertyValuesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const GroupsPropertyValuesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/groups/property_values/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GroupsPropertyValuesRetrieveRequest",
-}) as any as S.Schema<GroupsPropertyValuesRetrieveRequest>;
-
-export interface GroupsPropertyValuesRetrieveResponse {}
-export const GroupsPropertyValuesRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "GroupsPropertyValuesRetrieveResponse",
-}) as any as S.Schema<GroupsPropertyValuesRetrieveResponse>;
-
-export interface GroupsRelatedRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Specify the group type to find */
-  group_type_index: number;
-  /** Specify the id of the user to find groups for */
-  id: string;
-}
-export const GroupsRelatedRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    group_type_index: S.Number.pipe(T.Query()),
-    id: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/groups/related/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GroupsRelatedRetrieveRequest",
-}) as any as S.Schema<GroupsRelatedRetrieveRequest>;
-
-export interface GroupsRelatedRetrieveResponse {}
-export const GroupsRelatedRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GroupsRelatedRetrieveResponse",
-}) as any as S.Schema<GroupsRelatedRetrieveResponse>;
 
 export interface GroupsUpdatePropertyCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -295,14 +295,14 @@ export const ListGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListGroupsRequest",
 }) as any as S.Schema<ListGroupsRequest>;
 
-export type GroupsListResponseBodyList = Array<Group>;
-export const GroupsListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListGroupsResponseBodyList = Array<Group>;
+export const ListGroupsResponseBodyList = /*@__PURE__*/ S.Array(
   Group,
-) as any as S.Schema<GroupsListResponseBodyList>;
+) as any as S.Schema<ListGroupsResponseBodyList>;
 
-export type ListGroupsResponse = GroupsListResponseBodyList;
+export type ListGroupsResponse = ListGroupsResponseBodyList;
 export const ListGroupsResponse = /*@__PURE__*/ S.suspend(() =>
-  GroupsListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListGroupsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListGroupsResponse",
 }) as any as S.Schema<ListGroupsResponse>;
@@ -325,19 +325,69 @@ export const createGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GroupsActivityRetrieveError =
+export type GetGroupsActivityError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const groupsActivityRetrieve: API.OperationMethod<
-  GroupsActivityRetrieveRequest,
-  GroupsActivityRetrieveResponse,
-  GroupsActivityRetrieveError,
+export const getGroupsActivity: API.OperationMethod<
+  GetGroupsActivityRequest,
+  GetGroupsActivityResponse,
+  GetGroupsActivityError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupsActivityRetrieveRequest,
-  output: GroupsActivityRetrieveResponse,
+  input: GetGroupsActivityRequest,
+  output: GetGroupsActivityResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupsFindError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getGroupsFind: API.OperationMethod<
+  GetGroupsFindRequest,
+  GetGroupsFindResponse,
+  GetGroupsFindError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupsFindRequest,
+  output: GetGroupsFindResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupsPropertyValueError = Forbidden | NotFound | PosthogOpError;
+export const getGroupsPropertyValue: API.OperationMethod<
+  GetGroupsPropertyValueRequest,
+  GetGroupsPropertyValueResponse,
+  GetGroupsPropertyValueError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupsPropertyValueRequest,
+  output: GetGroupsPropertyValueResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupsRelatedError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getGroupsRelated: API.OperationMethod<
+  GetGroupsRelatedRequest,
+  GetGroupsRelatedResponse,
+  GetGroupsRelatedError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupsRelatedRequest,
+  output: GetGroupsRelatedResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -356,59 +406,6 @@ export const groupsDeletePropertyCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GroupsDeletePropertyCreateRequest,
   output: GroupsDeletePropertyCreateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupsFindRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const groupsFindRetrieve: API.OperationMethod<
-  GroupsFindRetrieveRequest,
-  GroupsFindRetrieveResponse,
-  GroupsFindRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupsFindRetrieveRequest,
-  output: GroupsFindRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupsPropertyValuesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const groupsPropertyValuesRetrieve: API.OperationMethod<
-  GroupsPropertyValuesRetrieveRequest,
-  GroupsPropertyValuesRetrieveResponse,
-  GroupsPropertyValuesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupsPropertyValuesRetrieveRequest,
-  output: GroupsPropertyValuesRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupsRelatedRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const groupsRelatedRetrieve: API.OperationMethod<
-  GroupsRelatedRetrieveRequest,
-  GroupsRelatedRetrieveResponse,
-  GroupsRelatedRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupsRelatedRetrieveRequest,
-  output: GroupsRelatedRetrieveResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

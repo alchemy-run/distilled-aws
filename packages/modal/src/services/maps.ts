@@ -12,48 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-export interface CheckMapInputRequest {
-  lastEntryId?: string;
-  timeout?: number;
-  attemptTokens?: StringList;
-}
-export const CheckMapInputRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lastEntryId: S.optional(S.String),
-    timeout: S.optional(S.Number),
-    attemptTokens: S.optional(StringList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/MapCheckInputs",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CheckMapInputRequest",
-}) as any as S.Schema<CheckMapInputRequest>;
-
-export type BooleanList = Array<boolean>;
-export const BooleanList = /*@__PURE__*/ S.Array(
-  S.Boolean,
-) as any as S.Schema<BooleanList>;
-
-export interface CheckMapInputResponse {
-  lost?: BooleanList;
-}
-export const CheckMapInputResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lost: S.optional(BooleanList),
-  }),
-).annotate({
-  identifier: "CheckMapInputResponse",
-}) as any as S.Schema<CheckMapInputResponse>;
-
 export interface MapAwaitRequest {
   functionCallId?: string;
   mapToken?: string;
@@ -183,6 +141,48 @@ export const MapAwaitResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "MapAwaitResponse",
 }) as any as S.Schema<MapAwaitResponse>;
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+export interface MapCheckInputsRequest {
+  lastEntryId?: string;
+  timeout?: number;
+  attemptTokens?: StringList;
+}
+export const MapCheckInputsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lastEntryId: S.optional(S.String),
+    timeout: S.optional(S.Number),
+    attemptTokens: S.optional(StringList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/MapCheckInputs",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "MapCheckInputsRequest",
+}) as any as S.Schema<MapCheckInputsRequest>;
+
+export type BooleanList = Array<boolean>;
+export const BooleanList = /*@__PURE__*/ S.Array(
+  S.Boolean,
+) as any as S.Schema<BooleanList>;
+
+export interface MapCheckInputsResponse {
+  lost?: BooleanList;
+}
+export const MapCheckInputsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lost: S.optional(BooleanList),
+  }),
+).annotate({
+  identifier: "MapCheckInputsResponse",
+}) as any as S.Schema<MapCheckInputsResponse>;
+
 export interface FunctionInput {
   /** serialized (args, kwargs). */
   args?: string;
@@ -238,7 +238,7 @@ export const MapStartOrContinueItemList = /*@__PURE__*/ S.Array(
   MapStartOrContinueItem,
 ) as any as S.Schema<MapStartOrContinueItemList>;
 
-export interface StartMapOrContinueRequest {
+export interface MapStartOrContinueRequest {
   functionId?: string;
   parentInputId?: string;
   /** Clients will send call_info on map continue requests. */
@@ -247,7 +247,7 @@ export interface StartMapOrContinueRequest {
   items?: MapStartOrContinueItemList;
   proxied?: boolean;
 }
-export const StartMapOrContinueRequest = /*@__PURE__*/ S.suspend(() =>
+export const MapStartOrContinueRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     functionId: S.optional(S.String),
     parentInputId: S.optional(S.String),
@@ -263,8 +263,8 @@ export const StartMapOrContinueRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StartMapOrContinueRequest",
-}) as any as S.Schema<StartMapOrContinueRequest>;
+  identifier: "MapStartOrContinueRequest",
+}) as any as S.Schema<MapStartOrContinueRequest>;
 
 export interface FunctionRetryPolicy {
   backoffCoefficient?: number;
@@ -284,7 +284,7 @@ export const FunctionRetryPolicy = /*@__PURE__*/ S.suspend(() =>
   identifier: "FunctionRetryPolicy",
 }) as any as S.Schema<FunctionRetryPolicy>;
 
-export interface StartMapOrContinueResponse {
+export interface MapStartOrContinueResponse {
   /** function_id and function_call_id are not necessary if map_token is provided. All 3 will be sent until it is safe to only send map_token. */
   mapToken?: string;
   functionId?: string;
@@ -293,7 +293,7 @@ export interface StartMapOrContinueResponse {
   attemptTokens?: StringList;
   retryPolicy?: FunctionRetryPolicy;
 }
-export const StartMapOrContinueResponse = /*@__PURE__*/ S.suspend(() =>
+export const MapStartOrContinueResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     mapToken: S.optional(S.String),
     functionId: S.optional(S.String),
@@ -303,22 +303,8 @@ export const StartMapOrContinueResponse = /*@__PURE__*/ S.suspend(() =>
     retryPolicy: S.optional(FunctionRetryPolicy),
   }),
 ).annotate({
-  identifier: "StartMapOrContinueResponse",
-}) as any as S.Schema<StartMapOrContinueResponse>;
-
-export type CheckMapInputError = ModalOpError;
-export const checkMapInput: API.OperationMethod<
-  CheckMapInputRequest,
-  CheckMapInputResponse,
-  CheckMapInputError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckMapInputRequest,
-  output: CheckMapInputResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
+  identifier: "MapStartOrContinueResponse",
+}) as any as S.Schema<MapStartOrContinueResponse>;
 
 export type MapAwaitError = ModalOpError;
 /** Input Plane Map */
@@ -335,15 +321,29 @@ export const mapAwait: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StartMapOrContinueError = ModalOpError;
-export const startMapOrContinue: API.OperationMethod<
-  StartMapOrContinueRequest,
-  StartMapOrContinueResponse,
-  StartMapOrContinueError,
+export type MapCheckInputsError = ModalOpError;
+export const mapCheckInputs: API.OperationMethod<
+  MapCheckInputsRequest,
+  MapCheckInputsResponse,
+  MapCheckInputsError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartMapOrContinueRequest,
-  output: StartMapOrContinueResponse,
+  input: MapCheckInputsRequest,
+  output: MapCheckInputsResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MapStartOrContinueError = ModalOpError;
+export const mapStartOrContinue: API.OperationMethod<
+  MapStartOrContinueRequest,
+  MapStartOrContinueResponse,
+  MapStartOrContinueError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MapStartOrContinueRequest,
+  output: MapStartOrContinueResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

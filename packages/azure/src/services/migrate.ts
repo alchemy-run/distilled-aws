@@ -12,113 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AksAssessmentOperationsDownloadUrlRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** AKS Assessment Name. */
-  assessmentName: string;
-}
-export const AksAssessmentOperationsDownloadUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      assessmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/aksAssessments/{assessmentName}/downloadUrl",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "AksAssessmentOperationsDownloadUrlRequest",
-  }) as any as S.Schema<AksAssessmentOperationsDownloadUrlRequest>;
-
-/** Data model of Download URL for assessment report. */
-export interface DownloadUrl {
-  /** Hyperlink to download report. */
-  assessmentReportUrl: string;
-  /** Expiry date of download url. */
-  expirationTime: string;
-}
-export const DownloadUrl = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    assessmentReportUrl: S.String,
-    expirationTime: S.String,
-  }),
-).annotate({ identifier: "DownloadUrl" }) as any as S.Schema<DownloadUrl>;
-
-export interface AssessmentsOperationsDownloadUrlRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-  /** Machine Assessment ARM name */
-  assessmentName: string;
-}
-export const AssessmentsOperationsDownloadUrlRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      groupName: S.String.pipe(T.Label()),
-      assessmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/assessments/{assessmentName}/downloadUrl",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-).annotate({
-  identifier: "AssessmentsOperationsDownloadUrlRequest",
-}) as any as S.Schema<AssessmentsOperationsDownloadUrlRequest>;
-
-export interface AvsAssessmentsOperationsDownloadUrlRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-  /** AVS Assessment ARM name */
-  assessmentName: string;
-}
-export const AvsAssessmentsOperationsDownloadUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      groupName: S.String.pipe(T.Label()),
-      assessmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}/downloadUrl",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "AvsAssessmentsOperationsDownloadUrlRequest",
-  }) as any as S.Schema<AvsAssessmentsOperationsDownloadUrlRequest>;
-
 /** Data model of Assessment Scope Parameters. */
 export interface AssessmentScopeParameters {
   /** Gets or sets the server group id. */
@@ -480,6 +373,16 @@ export const CreateAksAssessmentOperationResponse = /*@__PURE__*/ S.suspend(
   identifier: "CreateAksAssessmentOperationResponse",
 }) as any as S.Schema<CreateAksAssessmentOperationResponse>;
 
+/** Resource tags. */
+export type CreateAssessmentProjectsOperationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateAssessmentProjectsOperationRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateAssessmentProjectsOperationRequestTagsMap>;
+
 /** The status of the current operation. */
 export type ProvisioningState =
   | "Succeeded"
@@ -490,6 +393,272 @@ export type ProvisioningState =
   | "Deleting"
   | "Accepted";
 export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Project Status. */
+export type ProjectStatus = "Active" | "Inactive";
+export const ProjectStatus = /*@__PURE__*/ S.String;
+
+/** Properties of a project. */
+export interface ProjectPropertiesInput {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState | (string & {});
+  /** Assessment solution ARM id tracked by Microsoft.Migrate/migrateProjects. */
+  assessmentSolutionId?: string;
+  /** Assessment project status. */
+  projectStatus?: ProjectStatus | (string & {});
+  /** The ARM id of service map workspace created by customer. */
+  customerWorkspaceId?: string;
+  /** Location of service map workspace created by customer. */
+  customerWorkspaceLocation?: string;
+  /** This value can be set to 'enabled' to avoid breaking changes on existing customer resources and templates. If set to 'disabled', traffic over public interface is not allowed, and private endpoint connections would be the exclusive access method. */
+  publicNetworkAccess?: string;
+  /** The ARM id of the storage account used for interactions when public access is disabled. */
+  customerStorageAccountArmId?: string;
+}
+export const ProjectPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    assessmentSolutionId: S.optional(S.String),
+    projectStatus: S.optional(ProjectStatus),
+    customerWorkspaceId: S.optional(S.String),
+    customerWorkspaceLocation: S.optional(S.String),
+    publicNetworkAccess: S.optional(S.String),
+    customerStorageAccountArmId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProjectPropertiesInput",
+}) as any as S.Schema<ProjectPropertiesInput>;
+
+export interface CreateAssessmentProjectsOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Resource tags. */
+  tags?: CreateAssessmentProjectsOperationRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ProjectPropertiesInput;
+}
+export const CreateAssessmentProjectsOperationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      tags: S.optional(CreateAssessmentProjectsOperationRequestTagsMap),
+      location: S.String,
+      properties: S.optional(ProjectPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+).annotate({
+  identifier: "CreateAssessmentProjectsOperationRequest",
+}) as any as S.Schema<CreateAssessmentProjectsOperationRequest>;
+
+/** Resource tags. */
+export type CreateAssessmentProjectsOperationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateAssessmentProjectsOperationResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CreateAssessmentProjectsOperationResponseTagsMap>;
+
+/** The group ids for the private endpoint resource. */
+export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
+export const PrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** The private endpoint resource. */
+export interface PrivateEndpoint {
+  /** The ARM identifier for private endpoint. */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
+
+/** The private endpoint connection status. */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected";
+export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PrivateEndpointServiceConnectionStatus),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkServiceConnectionState",
+}) as any as S.Schema<PrivateLinkServiceConnectionState>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Failed";
+export const PrivateEndpointConnectionProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
+    privateEndpoint: S.optional(PrivateEndpoint),
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+
+/** Private endpoint connection resource. */
+export interface PrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the private endpoint connection. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateEndpointConnectionProperties),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnection",
+}) as any as S.Schema<PrivateEndpointConnection>;
+
+/** The list of private endpoint connections to the project. */
+export type ProjectPropertiesPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnection>;
+export const ProjectPropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<ProjectPropertiesPrivateEndpointConnectionsList>;
+
+/** Properties of a project. */
+export interface ProjectProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** Time when this project was created. Date-Time represented in ISO-8601 format. */
+  createdTimestamp?: string;
+  /** Time when this project was last updated. Date-Time represented in ISO-8601 format. */
+  updatedTimestamp?: string;
+  /** Endpoint at which the collector agent can call agent REST API. */
+  serviceEndpoint?: string;
+  /** Assessment solution ARM id tracked by Microsoft.Migrate/migrateProjects. */
+  assessmentSolutionId?: string;
+  /** Assessment project status. */
+  projectStatus?: ProjectStatus;
+  /** The ARM id of service map workspace created by customer. */
+  customerWorkspaceId?: string;
+  /** Location of service map workspace created by customer. */
+  customerWorkspaceLocation?: string;
+  /** This value can be set to 'enabled' to avoid breaking changes on existing customer resources and templates. If set to 'disabled', traffic over public interface is not allowed, and private endpoint connections would be the exclusive access method. */
+  publicNetworkAccess?: string;
+  /** The list of private endpoint connections to the project. */
+  privateEndpointConnections?: ProjectPropertiesPrivateEndpointConnectionsList;
+  /** The ARM id of the storage account used for interactions when public access is disabled. */
+  customerStorageAccountArmId?: string;
+}
+export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    createdTimestamp: S.optional(S.String),
+    updatedTimestamp: S.optional(S.String),
+    serviceEndpoint: S.optional(S.String),
+    assessmentSolutionId: S.optional(S.String),
+    projectStatus: S.optional(ProjectStatus),
+    customerWorkspaceId: S.optional(S.String),
+    customerWorkspaceLocation: S.optional(S.String),
+    publicNetworkAccess: S.optional(S.String),
+    privateEndpointConnections: S.optional(
+      ProjectPropertiesPrivateEndpointConnectionsList,
+    ),
+    customerStorageAccountArmId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProjectProperties",
+}) as any as S.Schema<ProjectProperties>;
+
+export interface CreateAssessmentProjectsOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CreateAssessmentProjectsOperationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ProjectProperties;
+}
+export const CreateAssessmentProjectsOperationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(CreateAssessmentProjectsOperationResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ProjectProperties),
+    }),
+  ).annotate({
+    identifier: "CreateAssessmentProjectsOperationResponse",
+  }) as any as S.Schema<CreateAssessmentProjectsOperationResponse>;
 
 export type AzurePricingTier = "Standard" | "Basic";
 export const AzurePricingTier = /*@__PURE__*/ S.String;
@@ -725,7 +894,7 @@ export const MachineAssessmentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineAssessmentPropertiesInput",
 }) as any as S.Schema<MachineAssessmentPropertiesInput>;
 
-export interface CreateAssessmentOperationRequest {
+export interface CreateAssessmentsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -739,7 +908,7 @@ export interface CreateAssessmentOperationRequest {
   /** The resource-specific properties for this resource. */
   properties?: MachineAssessmentPropertiesInput;
 }
-export const CreateAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAssessmentsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -756,8 +925,8 @@ export const CreateAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateAssessmentOperationRequest",
-}) as any as S.Schema<CreateAssessmentOperationRequest>;
+  identifier: "CreateAssessmentsOperationRequest",
+}) as any as S.Schema<CreateAssessmentsOperationRequest>;
 
 /** Gets or sets the assessment error summary. This is the number of machines affected by each type of error in this assessment. */
 export type MachineAssessmentPropertiesAssessmentErrorSummaryMap = {
@@ -1023,7 +1192,7 @@ export const MachineAssessmentProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineAssessmentProperties",
 }) as any as S.Schema<MachineAssessmentProperties>;
 
-export interface CreateAssessmentOperationResponse {
+export interface CreateAssessmentsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1035,7 +1204,7 @@ export interface CreateAssessmentOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: MachineAssessmentProperties;
 }
-export const CreateAssessmentOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateAssessmentsOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1044,284 +1213,8 @@ export const CreateAssessmentOperationResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(MachineAssessmentProperties),
   }),
 ).annotate({
-  identifier: "CreateAssessmentOperationResponse",
-}) as any as S.Schema<CreateAssessmentOperationResponse>;
-
-/** Resource tags. */
-export type AssessmentProjectsOperationsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AssessmentProjectsOperationsCreateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AssessmentProjectsOperationsCreateRequestTagsMap>;
-
-/** Project Status. */
-export type ProjectStatus = "Active" | "Inactive";
-export const ProjectStatus = /*@__PURE__*/ S.String;
-
-/** Properties of a project. */
-export interface ProjectPropertiesInput {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState | (string & {});
-  /** Assessment solution ARM id tracked by Microsoft.Migrate/migrateProjects. */
-  assessmentSolutionId?: string;
-  /** Assessment project status. */
-  projectStatus?: ProjectStatus | (string & {});
-  /** The ARM id of service map workspace created by customer. */
-  customerWorkspaceId?: string;
-  /** Location of service map workspace created by customer. */
-  customerWorkspaceLocation?: string;
-  /** This value can be set to 'enabled' to avoid breaking changes on existing customer resources and templates. If set to 'disabled', traffic over public interface is not allowed, and private endpoint connections would be the exclusive access method. */
-  publicNetworkAccess?: string;
-  /** The ARM id of the storage account used for interactions when public access is disabled. */
-  customerStorageAccountArmId?: string;
-}
-export const ProjectPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    assessmentSolutionId: S.optional(S.String),
-    projectStatus: S.optional(ProjectStatus),
-    customerWorkspaceId: S.optional(S.String),
-    customerWorkspaceLocation: S.optional(S.String),
-    publicNetworkAccess: S.optional(S.String),
-    customerStorageAccountArmId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProjectPropertiesInput",
-}) as any as S.Schema<ProjectPropertiesInput>;
-
-export interface CreateAssessmentProjectOperationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Resource tags. */
-  tags?: AssessmentProjectsOperationsCreateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ProjectPropertiesInput;
-}
-export const CreateAssessmentProjectOperationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      tags: S.optional(AssessmentProjectsOperationsCreateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(ProjectPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-).annotate({
-  identifier: "CreateAssessmentProjectOperationRequest",
-}) as any as S.Schema<CreateAssessmentProjectOperationRequest>;
-
-/** Resource tags. */
-export type AssessmentProjectsOperationsCreateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AssessmentProjectsOperationsCreateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AssessmentProjectsOperationsCreateResponseTagsMap>;
-
-/** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
-export const PrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** The private endpoint resource. */
-export interface PrivateEndpoint {
-  /** The ARM identifier for private endpoint. */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
-
-/** The private endpoint connection status. */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PrivateEndpointServiceConnectionStatus),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkServiceConnectionState",
-}) as any as S.Schema<PrivateLinkServiceConnectionState>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
-    privateEndpoint: S.optional(PrivateEndpoint),
-    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
-
-/** Private endpoint connection resource. */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateEndpointConnectionProperties),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
-
-/** The list of private endpoint connections to the project. */
-export type ProjectPropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection>;
-export const ProjectPropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<ProjectPropertiesPrivateEndpointConnectionsList>;
-
-/** Properties of a project. */
-export interface ProjectProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** Time when this project was created. Date-Time represented in ISO-8601 format. */
-  createdTimestamp?: string;
-  /** Time when this project was last updated. Date-Time represented in ISO-8601 format. */
-  updatedTimestamp?: string;
-  /** Endpoint at which the collector agent can call agent REST API. */
-  serviceEndpoint?: string;
-  /** Assessment solution ARM id tracked by Microsoft.Migrate/migrateProjects. */
-  assessmentSolutionId?: string;
-  /** Assessment project status. */
-  projectStatus?: ProjectStatus;
-  /** The ARM id of service map workspace created by customer. */
-  customerWorkspaceId?: string;
-  /** Location of service map workspace created by customer. */
-  customerWorkspaceLocation?: string;
-  /** This value can be set to 'enabled' to avoid breaking changes on existing customer resources and templates. If set to 'disabled', traffic over public interface is not allowed, and private endpoint connections would be the exclusive access method. */
-  publicNetworkAccess?: string;
-  /** The list of private endpoint connections to the project. */
-  privateEndpointConnections?: ProjectPropertiesPrivateEndpointConnectionsList;
-  /** The ARM id of the storage account used for interactions when public access is disabled. */
-  customerStorageAccountArmId?: string;
-}
-export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    createdTimestamp: S.optional(S.String),
-    updatedTimestamp: S.optional(S.String),
-    serviceEndpoint: S.optional(S.String),
-    assessmentSolutionId: S.optional(S.String),
-    projectStatus: S.optional(ProjectStatus),
-    customerWorkspaceId: S.optional(S.String),
-    customerWorkspaceLocation: S.optional(S.String),
-    publicNetworkAccess: S.optional(S.String),
-    privateEndpointConnections: S.optional(
-      ProjectPropertiesPrivateEndpointConnectionsList,
-    ),
-    customerStorageAccountArmId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProjectProperties",
-}) as any as S.Schema<ProjectProperties>;
-
-export interface CreateAssessmentProjectOperationResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AssessmentProjectsOperationsCreateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ProjectProperties;
-}
-export const CreateAssessmentProjectOperationResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(AssessmentProjectsOperationsCreateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ProjectProperties),
-    }),
-).annotate({
-  identifier: "CreateAssessmentProjectOperationResponse",
-}) as any as S.Schema<CreateAssessmentProjectOperationResponse>;
+  identifier: "CreateAssessmentsOperationResponse",
+}) as any as S.Schema<CreateAssessmentsOperationResponse>;
 
 /** FTT and RAID Level. */
 export type FttAndRaidLevel =
@@ -1527,7 +1420,7 @@ export const AvsAssessmentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvsAssessmentPropertiesInput",
 }) as any as S.Schema<AvsAssessmentPropertiesInput>;
 
-export interface CreateAvsAssessmentOperationRequest {
+export interface CreateAvsAssessmentsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1541,25 +1434,26 @@ export interface CreateAvsAssessmentOperationRequest {
   /** The resource-specific properties for this resource. */
   properties?: AvsAssessmentPropertiesInput;
 }
-export const CreateAvsAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    groupName: S.String.pipe(T.Label()),
-    assessmentName: S.String.pipe(T.Label()),
-    properties: S.optional(AvsAssessmentPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}",
-      code: 200,
-      apiVersion: "2024-01-15",
-    }),
-  ),
+export const CreateAvsAssessmentsOperationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+      assessmentName: S.String.pipe(T.Label()),
+      properties: S.optional(AvsAssessmentPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
 ).annotate({
-  identifier: "CreateAvsAssessmentOperationRequest",
-}) as any as S.Schema<CreateAvsAssessmentOperationRequest>;
+  identifier: "CreateAvsAssessmentsOperationRequest",
+}) as any as S.Schema<CreateAvsAssessmentsOperationRequest>;
 
 /** Gets the assessment error summary. This is the number of machines affected by each type of error in this assessment. */
 export type AvsAssessmentPropertiesAssessmentErrorSummaryMap = {
@@ -1910,7 +1804,7 @@ export const AvsAssessmentProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvsAssessmentProperties",
 }) as any as S.Schema<AvsAssessmentProperties>;
 
-export interface CreateAvsAssessmentOperationResponse {
+export interface CreateAvsAssessmentsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1922,7 +1816,7 @@ export interface CreateAvsAssessmentOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: AvsAssessmentProperties;
 }
-export const CreateAvsAssessmentOperationResponse = /*@__PURE__*/ S.suspend(
+export const CreateAvsAssessmentsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1932,8 +1826,8 @@ export const CreateAvsAssessmentOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AvsAssessmentProperties),
     }),
 ).annotate({
-  identifier: "CreateAvsAssessmentOperationResponse",
-}) as any as S.Schema<CreateAvsAssessmentOperationResponse>;
+  identifier: "CreateAvsAssessmentsOperationResponse",
+}) as any as S.Schema<CreateAvsAssessmentsOperationResponse>;
 
 /** List of assessment types supported on this group. */
 export type GroupPropertiesInputSupportedAssessmentTypesList = Array<
@@ -1965,7 +1859,7 @@ export const GroupPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupPropertiesInput",
 }) as any as S.Schema<GroupPropertiesInput>;
 
-export interface CreateGroupOperationRequest {
+export interface CreateGroupsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1977,7 +1871,7 @@ export interface CreateGroupOperationRequest {
   /** The resource-specific properties for this resource. */
   properties?: GroupPropertiesInput;
 }
-export const CreateGroupOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateGroupsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1993,8 +1887,8 @@ export const CreateGroupOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateGroupOperationRequest",
-}) as any as S.Schema<CreateGroupOperationRequest>;
+  identifier: "CreateGroupsOperationRequest",
+}) as any as S.Schema<CreateGroupsOperationRequest>;
 
 export type GroupStatus =
   | "Created"
@@ -2056,7 +1950,7 @@ export const GroupProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupProperties",
 }) as any as S.Schema<GroupProperties>;
 
-export interface CreateGroupOperationResponse {
+export interface CreateGroupsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2068,7 +1962,7 @@ export interface CreateGroupOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: GroupProperties;
 }
-export const CreateGroupOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateGroupsOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2077,8 +1971,8 @@ export const CreateGroupOperationResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(GroupProperties),
   }),
 ).annotate({
-  identifier: "CreateGroupOperationResponse",
-}) as any as S.Schema<CreateGroupOperationResponse>;
+  identifier: "CreateGroupsOperationResponse",
+}) as any as S.Schema<CreateGroupsOperationResponse>;
 
 /** Gets or sets list of hosts (FQDN) currently being tracked by the cluster. */
 export type HypervClusterPropertiesInputHostFqdnListList = Array<string>;
@@ -2367,7 +2261,7 @@ export const CollectorPropertiesBaseWithAgentInput = /*@__PURE__*/ S.suspend(
   identifier: "CollectorPropertiesBaseWithAgentInput",
 }) as any as S.Schema<CollectorPropertiesBaseWithAgentInput>;
 
-export interface CreateHypervCollectorOperationRequest {
+export interface CreateHypervCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2379,7 +2273,7 @@ export interface CreateHypervCollectorOperationRequest {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgentInput;
 }
-export const CreateHypervCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const CreateHypervCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2396,8 +2290,8 @@ export const CreateHypervCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateHypervCollectorOperationRequest",
-}) as any as S.Schema<CreateHypervCollectorOperationRequest>;
+  identifier: "CreateHypervCollectorsOperationRequest",
+}) as any as S.Schema<CreateHypervCollectorsOperationRequest>;
 
 /** Collector properties class. */
 export interface CollectorPropertiesBaseWithAgent {
@@ -2424,7 +2318,7 @@ export const CollectorPropertiesBaseWithAgent = /*@__PURE__*/ S.suspend(() =>
   identifier: "CollectorPropertiesBaseWithAgent",
 }) as any as S.Schema<CollectorPropertiesBaseWithAgent>;
 
-export interface CreateHypervCollectorOperationResponse {
+export interface CreateHypervCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2436,7 +2330,7 @@ export interface CreateHypervCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgent;
 }
-export const CreateHypervCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export const CreateHypervCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -2446,8 +2340,8 @@ export const CreateHypervCollectorOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(CollectorPropertiesBaseWithAgent),
     }),
 ).annotate({
-  identifier: "CreateHypervCollectorOperationResponse",
-}) as any as S.Schema<CreateHypervCollectorOperationResponse>;
+  identifier: "CreateHypervCollectorsOperationResponse",
+}) as any as S.Schema<CreateHypervCollectorsOperationResponse>;
 
 /** The properties of Hyperv Host */
 export interface HypervHostPropertiesInput {
@@ -2561,13 +2455,13 @@ export const CreateHypervHostControllerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateHypervHostControllerResponse>;
 
 /** Resource tags. */
-export type HypervSitesControllerCreateRequestTagsMap = {
+export type CreateHypervSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const HypervSitesControllerCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateHypervSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HypervSitesControllerCreateRequestTagsMap>;
+) as any as S.Schema<CreateHypervSitesControllerRequestTagsMap>;
 
 /** Class for site properties. */
 export interface SiteSpnProperties {
@@ -2638,7 +2532,7 @@ export const SitePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SitePropertiesInput",
 }) as any as S.Schema<SitePropertiesInput>;
 
-export interface CreateHypervSiteControllerRequest {
+export interface CreateHypervSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2646,18 +2540,18 @@ export interface CreateHypervSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: HypervSitesControllerCreateRequestTagsMap;
+  tags?: CreateHypervSitesControllerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SitePropertiesInput;
 }
-export const CreateHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateHypervSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(HypervSitesControllerCreateRequestTagsMap),
+    tags: S.optional(CreateHypervSitesControllerRequestTagsMap),
     location: S.String,
     properties: S.optional(SitePropertiesInput),
   }).pipe(
@@ -2669,18 +2563,18 @@ export const CreateHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateHypervSiteControllerRequest",
-}) as any as S.Schema<CreateHypervSiteControllerRequest>;
+  identifier: "CreateHypervSitesControllerRequest",
+}) as any as S.Schema<CreateHypervSitesControllerRequest>;
 
 /** Resource tags. */
-export type HypervSitesControllerCreateResponseTagsMap = {
+export type CreateHypervSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HypervSitesControllerCreateResponseTagsMap =
+export const CreateHypervSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<HypervSitesControllerCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateHypervSitesControllerResponseTagsMap>;
 
 /** Class for site agent properties. */
 export interface SiteAgentProperties {
@@ -2736,7 +2630,7 @@ export const SiteProperties = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SiteProperties" }) as any as S.Schema<SiteProperties>;
 
-export interface CreateHypervSiteControllerResponse {
+export interface CreateHypervSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2746,25 +2640,25 @@ export interface CreateHypervSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HypervSitesControllerCreateResponseTagsMap;
+  tags?: CreateHypervSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SiteProperties;
 }
-export const CreateHypervSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateHypervSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HypervSitesControllerCreateResponseTagsMap),
+    tags: S.optional(CreateHypervSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
   }),
 ).annotate({
-  identifier: "CreateHypervSiteControllerResponse",
-}) as any as S.Schema<CreateHypervSiteControllerResponse>;
+  identifier: "CreateHypervSitesControllerResponse",
+}) as any as S.Schema<CreateHypervSitesControllerResponse>;
 
 /** Collector properties class. */
 export interface CollectorPropertiesBaseInput {
@@ -2782,7 +2676,7 @@ export const CollectorPropertiesBaseInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CollectorPropertiesBaseInput",
 }) as any as S.Schema<CollectorPropertiesBaseInput>;
 
-export interface CreateImportCollectorOperationRequest {
+export interface CreateImportCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2794,7 +2688,7 @@ export interface CreateImportCollectorOperationRequest {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseInput;
 }
-export const CreateImportCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const CreateImportCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2811,8 +2705,8 @@ export const CreateImportCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateImportCollectorOperationRequest",
-}) as any as S.Schema<CreateImportCollectorOperationRequest>;
+  identifier: "CreateImportCollectorsOperationRequest",
+}) as any as S.Schema<CreateImportCollectorsOperationRequest>;
 
 /** Collector properties class. */
 export interface CollectorPropertiesBase {
@@ -2836,7 +2730,7 @@ export const CollectorPropertiesBase = /*@__PURE__*/ S.suspend(() =>
   identifier: "CollectorPropertiesBase",
 }) as any as S.Schema<CollectorPropertiesBase>;
 
-export interface CreateImportCollectorOperationResponse {
+export interface CreateImportCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2848,7 +2742,7 @@ export interface CreateImportCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBase;
 }
-export const CreateImportCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export const CreateImportCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -2858,17 +2752,17 @@ export const CreateImportCollectorOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(CollectorPropertiesBase),
     }),
 ).annotate({
-  identifier: "CreateImportCollectorOperationResponse",
-}) as any as S.Schema<CreateImportCollectorOperationResponse>;
+  identifier: "CreateImportCollectorsOperationResponse",
+}) as any as S.Schema<CreateImportCollectorsOperationResponse>;
 
 /** Resource tags. */
-export type ImportSitesControllerCreateRequestTagsMap = {
+export type CreateImportSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ImportSitesControllerCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateImportSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImportSitesControllerCreateRequestTagsMap>;
+) as any as S.Schema<CreateImportSitesControllerRequestTagsMap>;
 
 /** The properties of ImportSiteResource */
 export interface ImportSitePropertiesInput {
@@ -2886,7 +2780,7 @@ export const ImportSitePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportSitePropertiesInput",
 }) as any as S.Schema<ImportSitePropertiesInput>;
 
-export interface CreateImportSiteControllerRequest {
+export interface CreateImportSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2894,18 +2788,18 @@ export interface CreateImportSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: ImportSitesControllerCreateRequestTagsMap;
+  tags?: CreateImportSitesControllerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ImportSitePropertiesInput;
 }
-export const CreateImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateImportSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(ImportSitesControllerCreateRequestTagsMap),
+    tags: S.optional(CreateImportSitesControllerRequestTagsMap),
     location: S.String,
     properties: S.optional(ImportSitePropertiesInput),
   }).pipe(
@@ -2917,18 +2811,18 @@ export const CreateImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateImportSiteControllerRequest",
-}) as any as S.Schema<CreateImportSiteControllerRequest>;
+  identifier: "CreateImportSitesControllerRequest",
+}) as any as S.Schema<CreateImportSitesControllerRequest>;
 
 /** Resource tags. */
-export type ImportSitesControllerCreateResponseTagsMap = {
+export type CreateImportSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ImportSitesControllerCreateResponseTagsMap =
+export const CreateImportSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ImportSitesControllerCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateImportSitesControllerResponseTagsMap>;
 
 /** The properties of ImportSiteResource */
 export interface ImportSiteProperties {
@@ -2952,7 +2846,7 @@ export const ImportSiteProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportSiteProperties",
 }) as any as S.Schema<ImportSiteProperties>;
 
-export interface CreateImportSiteControllerResponse {
+export interface CreateImportSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2962,34 +2856,34 @@ export interface CreateImportSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ImportSitesControllerCreateResponseTagsMap;
+  tags?: CreateImportSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ImportSiteProperties;
 }
-export const CreateImportSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateImportSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ImportSitesControllerCreateResponseTagsMap),
+    tags: S.optional(CreateImportSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(ImportSiteProperties),
   }),
 ).annotate({
-  identifier: "CreateImportSiteControllerResponse",
-}) as any as S.Schema<CreateImportSiteControllerResponse>;
+  identifier: "CreateImportSitesControllerResponse",
+}) as any as S.Schema<CreateImportSitesControllerResponse>;
 
 /** Resource tags. */
-export type MasterSitesControllerCreateRequestTagsMap = {
+export type CreateMasterSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MasterSitesControllerCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateMasterSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MasterSitesControllerCreateRequestTagsMap>;
+) as any as S.Schema<CreateMasterSitesControllerRequestTagsMap>;
 
 /** PublicNetworkAccess */
 export type MasterSitePropertiesPublicNetworkAccess =
@@ -3026,7 +2920,7 @@ export const MasterSitePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "MasterSitePropertiesInput",
 }) as any as S.Schema<MasterSitePropertiesInput>;
 
-export interface CreateMasterSiteControllerRequest {
+export interface CreateMasterSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3034,18 +2928,18 @@ export interface CreateMasterSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: MasterSitesControllerCreateRequestTagsMap;
+  tags?: CreateMasterSitesControllerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MasterSitePropertiesInput;
 }
-export const CreateMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateMasterSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(MasterSitesControllerCreateRequestTagsMap),
+    tags: S.optional(CreateMasterSitesControllerRequestTagsMap),
     location: S.String,
     properties: S.optional(MasterSitePropertiesInput),
   }).pipe(
@@ -3057,18 +2951,18 @@ export const CreateMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateMasterSiteControllerRequest",
-}) as any as S.Schema<CreateMasterSiteControllerRequest>;
+  identifier: "CreateMasterSitesControllerRequest",
+}) as any as S.Schema<CreateMasterSitesControllerRequest>;
 
 /** Resource tags. */
-export type MasterSitesControllerCreateResponseTagsMap = {
+export type CreateMasterSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MasterSitesControllerCreateResponseTagsMap =
+export const CreateMasterSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MasterSitesControllerCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateMasterSitesControllerResponseTagsMap>;
 
 /** Gets or sets the sites that are a part of Master Site. The key should contain the Site ARM name. */
 export type MasterSitePropertiesSitesList = Array<string>;
@@ -3218,7 +3112,7 @@ export const MasterSiteProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MasterSiteProperties",
 }) as any as S.Schema<MasterSiteProperties>;
 
-export interface CreateMasterSiteControllerResponse {
+export interface CreateMasterSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3228,25 +3122,25 @@ export interface CreateMasterSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MasterSitesControllerCreateResponseTagsMap;
+  tags?: CreateMasterSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MasterSiteProperties;
 }
-export const CreateMasterSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateMasterSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MasterSitesControllerCreateResponseTagsMap),
+    tags: S.optional(CreateMasterSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(MasterSiteProperties),
   }),
 ).annotate({
-  identifier: "CreateMasterSiteControllerResponse",
-}) as any as S.Schema<CreateMasterSiteControllerResponse>;
+  identifier: "CreateMasterSitesControllerResponse",
+}) as any as S.Schema<CreateMasterSitesControllerResponse>;
 
 /** PrivateEndpointConnectionProperties V2 */
 export interface PrivateEndpointConnectionPropertiesV2Input {
@@ -3654,7 +3548,7 @@ export const PrivateEndpointConnectionProxy = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionProxy",
 }) as any as S.Schema<PrivateEndpointConnectionProxy>;
 
-export interface CreateServerCollectorOperationRequest {
+export interface CreateServerCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3666,7 +3560,7 @@ export interface CreateServerCollectorOperationRequest {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgentInput;
 }
-export const CreateServerCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const CreateServerCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3683,10 +3577,10 @@ export const CreateServerCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateServerCollectorOperationRequest",
-}) as any as S.Schema<CreateServerCollectorOperationRequest>;
+  identifier: "CreateServerCollectorsOperationRequest",
+}) as any as S.Schema<CreateServerCollectorsOperationRequest>;
 
-export interface CreateServerCollectorOperationResponse {
+export interface CreateServerCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3698,7 +3592,7 @@ export interface CreateServerCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgent;
 }
-export const CreateServerCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export const CreateServerCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -3708,17 +3602,17 @@ export const CreateServerCollectorOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(CollectorPropertiesBaseWithAgent),
     }),
 ).annotate({
-  identifier: "CreateServerCollectorOperationResponse",
-}) as any as S.Schema<CreateServerCollectorOperationResponse>;
+  identifier: "CreateServerCollectorsOperationResponse",
+}) as any as S.Schema<CreateServerCollectorsOperationResponse>;
 
 /** Resource tags. */
-export type ServerSitesControllerCreateRequestTagsMap = {
+export type CreateServerSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerSitesControllerCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateServerSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServerSitesControllerCreateRequestTagsMap>;
+) as any as S.Schema<CreateServerSitesControllerRequestTagsMap>;
 
 /** The properties of SiteResource */
 export interface SitesPropertiesInput {
@@ -3742,7 +3636,7 @@ export const SitesPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SitesPropertiesInput",
 }) as any as S.Schema<SitesPropertiesInput>;
 
-export interface CreateServerSiteControllerRequest {
+export interface CreateServerSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3750,18 +3644,18 @@ export interface CreateServerSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: ServerSitesControllerCreateRequestTagsMap;
+  tags?: CreateServerSitesControllerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SitesPropertiesInput;
 }
-export const CreateServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateServerSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(ServerSitesControllerCreateRequestTagsMap),
+    tags: S.optional(CreateServerSitesControllerRequestTagsMap),
     location: S.String,
     properties: S.optional(SitesPropertiesInput),
   }).pipe(
@@ -3773,24 +3667,24 @@ export const CreateServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateServerSiteControllerRequest",
-}) as any as S.Schema<CreateServerSiteControllerRequest>;
+  identifier: "CreateServerSitesControllerRequest",
+}) as any as S.Schema<CreateServerSitesControllerRequest>;
 
 /** Resource tags. */
-export type ServerSitesControllerCreateResponseTagsMap = {
+export type CreateServerSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerSitesControllerCreateResponseTagsMap =
+export const CreateServerSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ServerSitesControllerCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateServerSitesControllerResponseTagsMap>;
 
 /** The properties of SiteResource */
 export type SitesProperties = SiteProperties;
 export const SitesProperties = SiteProperties;
 
-export interface CreateServerSiteControllerResponse {
+export interface CreateServerSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3800,36 +3694,36 @@ export interface CreateServerSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ServerSitesControllerCreateResponseTagsMap;
+  tags?: CreateServerSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SiteProperties;
 }
-export const CreateServerSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateServerSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ServerSitesControllerCreateResponseTagsMap),
+    tags: S.optional(CreateServerSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
   }),
 ).annotate({
-  identifier: "CreateServerSiteControllerResponse",
-}) as any as S.Schema<CreateServerSiteControllerResponse>;
+  identifier: "CreateServerSitesControllerResponse",
+}) as any as S.Schema<CreateServerSitesControllerResponse>;
 
 /** Resource tags. */
-export type SitesControllerCreateRequestTagsMap = {
+export type CreateSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SitesControllerCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SitesControllerCreateRequestTagsMap>;
+) as any as S.Schema<CreateSitesControllerRequestTagsMap>;
 
-export interface CreateSiteControllerRequest {
+export interface CreateSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3837,18 +3731,18 @@ export interface CreateSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: SitesControllerCreateRequestTagsMap;
+  tags?: CreateSitesControllerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SitesPropertiesInput;
 }
-export const CreateSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(SitesControllerCreateRequestTagsMap),
+    tags: S.optional(CreateSitesControllerRequestTagsMap),
     location: S.String,
     properties: S.optional(SitesPropertiesInput),
   }).pipe(
@@ -3860,19 +3754,19 @@ export const CreateSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSiteControllerRequest",
-}) as any as S.Schema<CreateSiteControllerRequest>;
+  identifier: "CreateSitesControllerRequest",
+}) as any as S.Schema<CreateSitesControllerRequest>;
 
 /** Resource tags. */
-export type SitesControllerCreateResponseTagsMap = {
+export type CreateSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SitesControllerCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSitesControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SitesControllerCreateResponseTagsMap>;
+) as any as S.Schema<CreateSitesControllerResponseTagsMap>;
 
-export interface CreateSiteControllerResponse {
+export interface CreateSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3882,7 +3776,7 @@ export interface CreateSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SitesControllerCreateResponseTagsMap;
+  tags?: CreateSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3890,20 +3784,20 @@ export interface CreateSiteControllerResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const CreateSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SitesControllerCreateResponseTagsMap),
+    tags: S.optional(CreateSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "CreateSiteControllerResponse",
-}) as any as S.Schema<CreateSiteControllerResponse>;
+  identifier: "CreateSitesControllerResponse",
+}) as any as S.Schema<CreateSitesControllerResponse>;
 
 /** Gets or sets the tool being used in the solution. */
 export type SolutionPropertiesInputTool =
@@ -4028,7 +3922,7 @@ export const SolutionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SolutionPropertiesInput",
 }) as any as S.Schema<SolutionPropertiesInput>;
 
-export interface CreateSolutionControllerRequest {
+export interface CreateSolutionsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4042,7 +3936,7 @@ export interface CreateSolutionControllerRequest {
   /** Gets or sets the properties of the solution. */
   properties?: SolutionPropertiesInput;
 }
-export const CreateSolutionControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSolutionsControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4059,8 +3953,8 @@ export const CreateSolutionControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSolutionControllerRequest",
-}) as any as S.Schema<CreateSolutionControllerRequest>;
+  identifier: "CreateSolutionsControllerRequest",
+}) as any as S.Schema<CreateSolutionsControllerRequest>;
 
 /** Gets or sets the tool being used in the solution. */
 export type SolutionPropertiesTool =
@@ -4788,7 +4682,7 @@ export const SqlSitePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlSitePropertiesInput",
 }) as any as S.Schema<SqlSitePropertiesInput>;
 
-export interface CreateSqlSiteControllerRequest {
+export interface CreateSqlSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4800,7 +4694,7 @@ export interface CreateSqlSiteControllerRequest {
   /** The resource-specific properties for this resource. */
   properties?: SqlSitePropertiesInput;
 }
-export const CreateSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSqlSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4816,8 +4710,8 @@ export const CreateSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSqlSiteControllerRequest",
-}) as any as S.Schema<CreateSqlSiteControllerRequest>;
+  identifier: "CreateSqlSitesControllerRequest",
+}) as any as S.Schema<CreateSqlSitesControllerRequest>;
 
 /** Class for site appliance properties. */
 export interface SiteApplianceProperties {
@@ -4870,7 +4764,7 @@ export const SqlSiteProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlSiteProperties",
 }) as any as S.Schema<SqlSiteProperties>;
 
-export interface CreateSqlSiteControllerResponse {
+export interface CreateSqlSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4882,7 +4776,7 @@ export interface CreateSqlSiteControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlSiteProperties;
 }
-export const CreateSqlSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSqlSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4891,8 +4785,8 @@ export const CreateSqlSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SqlSiteProperties),
   }),
 ).annotate({
-  identifier: "CreateSqlSiteControllerResponse",
-}) as any as S.Schema<CreateSqlSiteControllerResponse>;
+  identifier: "CreateSqlSitesControllerResponse",
+}) as any as S.Schema<CreateSqlSitesControllerResponse>;
 
 /** The properties of VMwareSiteResource */
 export interface VcenterPropertiesInput {
@@ -5023,7 +4917,7 @@ export const CreateVcenterControllerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateVcenterControllerResponse",
 }) as any as S.Schema<CreateVcenterControllerResponse>;
 
-export interface CreateVmwareCollectorOperationRequest {
+export interface CreateVmwareCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5035,7 +4929,7 @@ export interface CreateVmwareCollectorOperationRequest {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgentInput;
 }
-export const CreateVmwareCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const CreateVmwareCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5052,10 +4946,10 @@ export const CreateVmwareCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateVmwareCollectorOperationRequest",
-}) as any as S.Schema<CreateVmwareCollectorOperationRequest>;
+  identifier: "CreateVmwareCollectorsOperationRequest",
+}) as any as S.Schema<CreateVmwareCollectorsOperationRequest>;
 
-export interface CreateVmwareCollectorOperationResponse {
+export interface CreateVmwareCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5067,7 +4961,7 @@ export interface CreateVmwareCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgent;
 }
-export const CreateVmwareCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export const CreateVmwareCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -5077,8 +4971,8 @@ export const CreateVmwareCollectorOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(CollectorPropertiesBaseWithAgent),
     }),
 ).annotate({
-  identifier: "CreateVmwareCollectorOperationResponse",
-}) as any as S.Schema<CreateVmwareCollectorOperationResponse>;
+  identifier: "CreateVmwareCollectorsOperationResponse",
+}) as any as S.Schema<CreateVmwareCollectorsOperationResponse>;
 
 /** App service native settings. */
 export interface AppSvcNativeSettings {
@@ -5460,7 +5354,7 @@ export type DiscoverySiteDataSourceProperties =
 export const DiscoverySiteDataSourceProperties =
   SqlDiscoverySiteDataSourceProperties;
 
-export interface CreateWebAppDiscoverySiteDataSourceControllerRequest {
+export interface CreateWebAppDiscoverySiteDataSourcesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5474,7 +5368,7 @@ export interface CreateWebAppDiscoverySiteDataSourceControllerRequest {
   /** The resource-specific properties for this resource. */
   properties?: SqlDiscoverySiteDataSourceProperties;
 }
-export const CreateWebAppDiscoverySiteDataSourceControllerRequest =
+export const CreateWebAppDiscoverySiteDataSourcesControllerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5492,10 +5386,10 @@ export const CreateWebAppDiscoverySiteDataSourceControllerRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateWebAppDiscoverySiteDataSourceControllerRequest",
-  }) as any as S.Schema<CreateWebAppDiscoverySiteDataSourceControllerRequest>;
+    identifier: "CreateWebAppDiscoverySiteDataSourcesControllerRequest",
+  }) as any as S.Schema<CreateWebAppDiscoverySiteDataSourcesControllerRequest>;
 
-export interface CreateWebAppDiscoverySiteDataSourceControllerResponse {
+export interface CreateWebAppDiscoverySiteDataSourcesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -5507,7 +5401,7 @@ export interface CreateWebAppDiscoverySiteDataSourceControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlDiscoverySiteDataSourceProperties;
 }
-export const CreateWebAppDiscoverySiteDataSourceControllerResponse =
+export const CreateWebAppDiscoverySiteDataSourcesControllerResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -5517,8 +5411,8 @@ export const CreateWebAppDiscoverySiteDataSourceControllerResponse =
       properties: S.optional(SqlDiscoverySiteDataSourceProperties),
     }),
   ).annotate({
-    identifier: "CreateWebAppDiscoverySiteDataSourceControllerResponse",
-  }) as any as S.Schema<CreateWebAppDiscoverySiteDataSourceControllerResponse>;
+    identifier: "CreateWebAppDiscoverySiteDataSourcesControllerResponse",
+  }) as any as S.Schema<CreateWebAppDiscoverySiteDataSourcesControllerResponse>;
 
 /** Gets or sets the appliance details used by service to communicate to the appliance. */
 export type WebAppSitePropertiesInputSiteAppliancePropertiesCollectionList =
@@ -5550,7 +5444,7 @@ export const WebAppSitePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppSitePropertiesInput",
 }) as any as S.Schema<WebAppSitePropertiesInput>;
 
-export interface CreateWebAppSiteControllerRequest {
+export interface CreateWebAppSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5562,7 +5456,7 @@ export interface CreateWebAppSiteControllerRequest {
   /** The resource-specific properties for this resource. */
   properties?: WebAppSitePropertiesInput;
 }
-export const CreateWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateWebAppSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5578,8 +5472,8 @@ export const CreateWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateWebAppSiteControllerRequest",
-}) as any as S.Schema<CreateWebAppSiteControllerRequest>;
+  identifier: "CreateWebAppSitesControllerRequest",
+}) as any as S.Schema<CreateWebAppSitesControllerRequest>;
 
 /** Gets or sets the appliance details used by service to communicate to the appliance. */
 export type WebAppSitePropertiesSiteAppliancePropertiesCollectionList =
@@ -5613,7 +5507,7 @@ export const WebAppSiteProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppSiteProperties",
 }) as any as S.Schema<WebAppSiteProperties>;
 
-export interface CreateWebAppSiteControllerResponse {
+export interface CreateWebAppSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -5625,7 +5519,7 @@ export interface CreateWebAppSiteControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: WebAppSiteProperties;
 }
-export const CreateWebAppSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateWebAppSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5634,8 +5528,8 @@ export const CreateWebAppSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(WebAppSiteProperties),
   }),
 ).annotate({
-  identifier: "CreateWebAppSiteControllerResponse",
-}) as any as S.Schema<CreateWebAppSiteControllerResponse>;
+  identifier: "CreateWebAppSitesControllerResponse",
+}) as any as S.Schema<CreateWebAppSitesControllerResponse>;
 
 export interface DeleteAksAssessmentOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5672,7 +5566,39 @@ export const DeleteAksAssessmentOperationResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteAksAssessmentOperationResponse",
 }) as any as S.Schema<DeleteAksAssessmentOperationResponse>;
 
-export interface DeleteAssessmentOperationRequest {
+export interface DeleteAssessmentProjectsOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+}
+export const DeleteAssessmentProjectsOperationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteAssessmentProjectsOperationRequest",
+}) as any as S.Schema<DeleteAssessmentProjectsOperationRequest>;
+
+export interface DeleteAssessmentProjectsOperationResponse {}
+export const DeleteAssessmentProjectsOperationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteAssessmentProjectsOperationResponse",
+  }) as any as S.Schema<DeleteAssessmentProjectsOperationResponse>;
+
+export interface DeleteAssessmentsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5684,7 +5610,7 @@ export interface DeleteAssessmentOperationRequest {
   /** Machine Assessment ARM name */
   assessmentName: string;
 }
-export const DeleteAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAssessmentsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5700,50 +5626,17 @@ export const DeleteAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAssessmentOperationRequest",
-}) as any as S.Schema<DeleteAssessmentOperationRequest>;
+  identifier: "DeleteAssessmentsOperationRequest",
+}) as any as S.Schema<DeleteAssessmentsOperationRequest>;
 
-export interface DeleteAssessmentOperationResponse {}
-export const DeleteAssessmentOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAssessmentsOperationResponse {}
+export const DeleteAssessmentsOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAssessmentOperationResponse",
-}) as any as S.Schema<DeleteAssessmentOperationResponse>;
+  identifier: "DeleteAssessmentsOperationResponse",
+}) as any as S.Schema<DeleteAssessmentsOperationResponse>;
 
-export interface DeleteAssessmentProjectOperationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-}
-export const DeleteAssessmentProjectOperationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-).annotate({
-  identifier: "DeleteAssessmentProjectOperationRequest",
-}) as any as S.Schema<DeleteAssessmentProjectOperationRequest>;
-
-export interface DeleteAssessmentProjectOperationResponse {}
-export const DeleteAssessmentProjectOperationResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteAssessmentProjectOperationResponse",
-}) as any as S.Schema<DeleteAssessmentProjectOperationResponse>;
-
-export interface DeleteAvsAssessmentOperationRequest {
+export interface DeleteAvsAssessmentsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5755,33 +5648,34 @@ export interface DeleteAvsAssessmentOperationRequest {
   /** AVS Assessment ARM name */
   assessmentName: string;
 }
-export const DeleteAvsAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    groupName: S.String.pipe(T.Label()),
-    assessmentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}",
-      code: 200,
-      apiVersion: "2024-01-15",
-    }),
-  ),
+export const DeleteAvsAssessmentsOperationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+      assessmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
 ).annotate({
-  identifier: "DeleteAvsAssessmentOperationRequest",
-}) as any as S.Schema<DeleteAvsAssessmentOperationRequest>;
+  identifier: "DeleteAvsAssessmentsOperationRequest",
+}) as any as S.Schema<DeleteAvsAssessmentsOperationRequest>;
 
-export interface DeleteAvsAssessmentOperationResponse {}
-export const DeleteAvsAssessmentOperationResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteAvsAssessmentsOperationResponse {}
+export const DeleteAvsAssessmentsOperationResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteAvsAssessmentOperationResponse",
-}) as any as S.Schema<DeleteAvsAssessmentOperationResponse>;
+  identifier: "DeleteAvsAssessmentsOperationResponse",
+}) as any as S.Schema<DeleteAvsAssessmentsOperationResponse>;
 
-export interface DeleteEventControllerRequest {
+export interface DeleteEventsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5791,7 +5685,7 @@ export interface DeleteEventControllerRequest {
   /** Unique name of an event within a migrate project. */
   eventName: string;
 }
-export const DeleteEventControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteEventsControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5806,17 +5700,17 @@ export const DeleteEventControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteEventControllerRequest",
-}) as any as S.Schema<DeleteEventControllerRequest>;
+  identifier: "DeleteEventsControllerRequest",
+}) as any as S.Schema<DeleteEventsControllerRequest>;
 
-export type DeleteEventControllerResponse = unknown;
-export const DeleteEventControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export type DeleteEventsControllerResponse = unknown;
+export const DeleteEventsControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "DeleteEventControllerResponse",
-}) as any as S.Schema<DeleteEventControllerResponse>;
+  identifier: "DeleteEventsControllerResponse",
+}) as any as S.Schema<DeleteEventsControllerResponse>;
 
-export interface DeleteGroupOperationRequest {
+export interface DeleteGroupsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5826,7 +5720,7 @@ export interface DeleteGroupOperationRequest {
   /** Group ARM name */
   groupName: string;
 }
-export const DeleteGroupOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteGroupsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5841,15 +5735,15 @@ export const DeleteGroupOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteGroupOperationRequest",
-}) as any as S.Schema<DeleteGroupOperationRequest>;
+  identifier: "DeleteGroupsOperationRequest",
+}) as any as S.Schema<DeleteGroupsOperationRequest>;
 
-export interface DeleteGroupOperationResponse {}
-export const DeleteGroupOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteGroupsOperationResponse {}
+export const DeleteGroupsOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteGroupOperationResponse",
-}) as any as S.Schema<DeleteGroupOperationResponse>;
+  identifier: "DeleteGroupsOperationResponse",
+}) as any as S.Schema<DeleteGroupsOperationResponse>;
 
 export interface DeleteHypervClusterControllerRequest {
   /** The ID of the target subscription. */
@@ -5887,7 +5781,7 @@ export const DeleteHypervClusterControllerResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteHypervClusterControllerResponse",
 }) as any as S.Schema<DeleteHypervClusterControllerResponse>;
 
-export interface DeleteHypervCollectorOperationRequest {
+export interface DeleteHypervCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5897,7 +5791,7 @@ export interface DeleteHypervCollectorOperationRequest {
   /** Hyper-V collector ARM name */
   hypervCollectorName: string;
 }
-export const DeleteHypervCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const DeleteHypervCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5913,15 +5807,15 @@ export const DeleteHypervCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteHypervCollectorOperationRequest",
-}) as any as S.Schema<DeleteHypervCollectorOperationRequest>;
+  identifier: "DeleteHypervCollectorsOperationRequest",
+}) as any as S.Schema<DeleteHypervCollectorsOperationRequest>;
 
-export interface DeleteHypervCollectorOperationResponse {}
-export const DeleteHypervCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteHypervCollectorsOperationResponse {}
+export const DeleteHypervCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteHypervCollectorOperationResponse",
-}) as any as S.Schema<DeleteHypervCollectorOperationResponse>;
+  identifier: "DeleteHypervCollectorsOperationResponse",
+}) as any as S.Schema<DeleteHypervCollectorsOperationResponse>;
 
 export interface DeleteHypervHostControllerRequest {
   /** The ID of the target subscription. */
@@ -5958,7 +5852,7 @@ export const DeleteHypervHostControllerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteHypervHostControllerResponse",
 }) as any as S.Schema<DeleteHypervHostControllerResponse>;
 
-export interface DeleteHypervSiteControllerRequest {
+export interface DeleteHypervSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5966,7 +5860,7 @@ export interface DeleteHypervSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const DeleteHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteHypervSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5980,17 +5874,17 @@ export const DeleteHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteHypervSiteControllerRequest",
-}) as any as S.Schema<DeleteHypervSiteControllerRequest>;
+  identifier: "DeleteHypervSitesControllerRequest",
+}) as any as S.Schema<DeleteHypervSitesControllerRequest>;
 
-export interface DeleteHypervSiteControllerResponse {}
-export const DeleteHypervSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteHypervSitesControllerResponse {}
+export const DeleteHypervSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteHypervSiteControllerResponse",
-}) as any as S.Schema<DeleteHypervSiteControllerResponse>;
+  identifier: "DeleteHypervSitesControllerResponse",
+}) as any as S.Schema<DeleteHypervSitesControllerResponse>;
 
-export interface DeleteImportCollectorOperationRequest {
+export interface DeleteImportCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6000,7 +5894,7 @@ export interface DeleteImportCollectorOperationRequest {
   /** Import collector ARM name */
   importCollectorName: string;
 }
-export const DeleteImportCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const DeleteImportCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6016,17 +5910,17 @@ export const DeleteImportCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteImportCollectorOperationRequest",
-}) as any as S.Schema<DeleteImportCollectorOperationRequest>;
+  identifier: "DeleteImportCollectorsOperationRequest",
+}) as any as S.Schema<DeleteImportCollectorsOperationRequest>;
 
-export interface DeleteImportCollectorOperationResponse {}
-export const DeleteImportCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteImportCollectorsOperationResponse {}
+export const DeleteImportCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteImportCollectorOperationResponse",
-}) as any as S.Schema<DeleteImportCollectorOperationResponse>;
+  identifier: "DeleteImportCollectorsOperationResponse",
+}) as any as S.Schema<DeleteImportCollectorsOperationResponse>;
 
-export interface DeleteImportMachineControllerRequest {
+export interface DeleteImportMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6036,7 +5930,7 @@ export interface DeleteImportMachineControllerRequest {
   /** Machine name */
   machineName: string;
 }
-export const DeleteImportMachineControllerRequest = /*@__PURE__*/ S.suspend(
+export const DeleteImportMachinesControllerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6052,17 +5946,17 @@ export const DeleteImportMachineControllerRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteImportMachineControllerRequest",
-}) as any as S.Schema<DeleteImportMachineControllerRequest>;
+  identifier: "DeleteImportMachinesControllerRequest",
+}) as any as S.Schema<DeleteImportMachinesControllerRequest>;
 
-export interface DeleteImportMachineControllerResponse {}
-export const DeleteImportMachineControllerResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteImportMachinesControllerResponse {}
+export const DeleteImportMachinesControllerResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteImportMachineControllerResponse",
-}) as any as S.Schema<DeleteImportMachineControllerResponse>;
+  identifier: "DeleteImportMachinesControllerResponse",
+}) as any as S.Schema<DeleteImportMachinesControllerResponse>;
 
-export interface DeleteImportSiteControllerRequest {
+export interface DeleteImportSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6070,7 +5964,7 @@ export interface DeleteImportSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const DeleteImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteImportSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6084,17 +5978,17 @@ export const DeleteImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteImportSiteControllerRequest",
-}) as any as S.Schema<DeleteImportSiteControllerRequest>;
+  identifier: "DeleteImportSitesControllerRequest",
+}) as any as S.Schema<DeleteImportSitesControllerRequest>;
 
-export interface DeleteImportSiteControllerResponse {}
-export const DeleteImportSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteImportSitesControllerResponse {}
+export const DeleteImportSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteImportSiteControllerResponse",
-}) as any as S.Schema<DeleteImportSiteControllerResponse>;
+  identifier: "DeleteImportSitesControllerResponse",
+}) as any as S.Schema<DeleteImportSitesControllerResponse>;
 
-export interface DeleteImportSiteControllerImportedMachineRequest {
+export interface DeleteImportSitesControllerImportedMachinesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6102,7 +5996,7 @@ export interface DeleteImportSiteControllerImportedMachineRequest {
   /** Site name */
   siteName: string;
 }
-export const DeleteImportSiteControllerImportedMachineRequest =
+export const DeleteImportSitesControllerImportedMachinesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6117,8 +6011,8 @@ export const DeleteImportSiteControllerImportedMachineRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteImportSiteControllerImportedMachineRequest",
-  }) as any as S.Schema<DeleteImportSiteControllerImportedMachineRequest>;
+    identifier: "DeleteImportSitesControllerImportedMachinesRequest",
+  }) as any as S.Schema<DeleteImportSitesControllerImportedMachinesRequest>;
 
 /** Import URI response class. */
 export interface SasUriResponse {
@@ -6134,7 +6028,7 @@ export const SasUriResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SasUriResponse" }) as any as S.Schema<SasUriResponse>;
 
-export interface DeleteMasterSiteControllerRequest {
+export interface DeleteMasterSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6142,7 +6036,7 @@ export interface DeleteMasterSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const DeleteMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteMasterSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6156,47 +6050,15 @@ export const DeleteMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteMasterSiteControllerRequest",
-}) as any as S.Schema<DeleteMasterSiteControllerRequest>;
+  identifier: "DeleteMasterSitesControllerRequest",
+}) as any as S.Schema<DeleteMasterSitesControllerRequest>;
 
-export interface DeleteMasterSiteControllerResponse {}
-export const DeleteMasterSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteMasterSitesControllerResponse {}
+export const DeleteMasterSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteMasterSiteControllerResponse",
-}) as any as S.Schema<DeleteMasterSiteControllerResponse>;
-
-export interface DeleteMigrateProjectControllerMigrateProjectRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-}
-export const DeleteMigrateProjectControllerMigrateProjectRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteMigrateProjectControllerMigrateProjectRequest",
-  }) as any as S.Schema<DeleteMigrateProjectControllerMigrateProjectRequest>;
-
-export interface DeleteMigrateProjectControllerMigrateProjectResponse {}
-export const DeleteMigrateProjectControllerMigrateProjectResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteMigrateProjectControllerMigrateProjectResponse",
-  }) as any as S.Schema<DeleteMigrateProjectControllerMigrateProjectResponse>;
+  identifier: "DeleteMasterSitesControllerResponse",
+}) as any as S.Schema<DeleteMasterSitesControllerResponse>;
 
 export interface DeletePrivateEndpointConnectionControllerRequest {
   /** The ID of the target subscription. */
@@ -6263,7 +6125,7 @@ export const DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionR
       "DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionRequest",
   }) as any as S.Schema<DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionRequest>;
 
-export type PrivateEndpointConnectionControllerDeletePrivateEndpointConnectionResponseBody =
+export type DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionResponseBody =
   | "Continue"
   | "SwitchingProtocols"
   | "OK"
@@ -6311,14 +6173,14 @@ export type PrivateEndpointConnectionControllerDeletePrivateEndpointConnectionRe
   | "ServiceUnavailable"
   | "GatewayTimeout"
   | "HttpVersionNotSupported";
-export const PrivateEndpointConnectionControllerDeletePrivateEndpointConnectionResponseBody =
+export const DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionResponseBody =
   /*@__PURE__*/ S.String;
 
 export type DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionResponse =
-  PrivateEndpointConnectionControllerDeletePrivateEndpointConnectionResponseBody;
+  DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionResponseBody;
 export const DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionResponse =
   /*@__PURE__*/ S.suspend(() =>
-    PrivateEndpointConnectionControllerDeletePrivateEndpointConnectionResponseBody.pipe(
+    DeletePrivateEndpointConnectionControllerPrivateEndpointConnectionResponseBody.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
@@ -6396,7 +6258,7 @@ export const DeletePrivateEndpointConnectionProxyControllerResponse =
     identifier: "DeletePrivateEndpointConnectionProxyControllerResponse",
   }) as any as S.Schema<DeletePrivateEndpointConnectionProxyControllerResponse>;
 
-export interface DeleteServerCollectorOperationRequest {
+export interface DeleteServerCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6406,7 +6268,7 @@ export interface DeleteServerCollectorOperationRequest {
   /** Physical server collector ARM name */
   serverCollectorName: string;
 }
-export const DeleteServerCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const DeleteServerCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6422,17 +6284,17 @@ export const DeleteServerCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteServerCollectorOperationRequest",
-}) as any as S.Schema<DeleteServerCollectorOperationRequest>;
+  identifier: "DeleteServerCollectorsOperationRequest",
+}) as any as S.Schema<DeleteServerCollectorsOperationRequest>;
 
-export interface DeleteServerCollectorOperationResponse {}
-export const DeleteServerCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteServerCollectorsOperationResponse {}
+export const DeleteServerCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteServerCollectorOperationResponse",
-}) as any as S.Schema<DeleteServerCollectorOperationResponse>;
+  identifier: "DeleteServerCollectorsOperationResponse",
+}) as any as S.Schema<DeleteServerCollectorsOperationResponse>;
 
-export interface DeleteServerControllerMachineRequest {
+export interface DeleteServersControllerMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6442,7 +6304,7 @@ export interface DeleteServerControllerMachineRequest {
   /** A server machine name */
   machineName: string;
 }
-export const DeleteServerControllerMachineRequest = /*@__PURE__*/ S.suspend(
+export const DeleteServersControllerMachineRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6458,17 +6320,17 @@ export const DeleteServerControllerMachineRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteServerControllerMachineRequest",
-}) as any as S.Schema<DeleteServerControllerMachineRequest>;
+  identifier: "DeleteServersControllerMachineRequest",
+}) as any as S.Schema<DeleteServersControllerMachineRequest>;
 
-export interface DeleteServerControllerMachineResponse {}
-export const DeleteServerControllerMachineResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteServersControllerMachineResponse {}
+export const DeleteServersControllerMachineResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteServerControllerMachineResponse",
-}) as any as S.Schema<DeleteServerControllerMachineResponse>;
+  identifier: "DeleteServersControllerMachineResponse",
+}) as any as S.Schema<DeleteServersControllerMachineResponse>;
 
-export interface DeleteServerSiteControllerRequest {
+export interface DeleteServerSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6476,7 +6338,7 @@ export interface DeleteServerSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const DeleteServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServerSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6490,17 +6352,17 @@ export const DeleteServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteServerSiteControllerRequest",
-}) as any as S.Schema<DeleteServerSiteControllerRequest>;
+  identifier: "DeleteServerSitesControllerRequest",
+}) as any as S.Schema<DeleteServerSitesControllerRequest>;
 
-export interface DeleteServerSiteControllerResponse {}
-export const DeleteServerSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteServerSitesControllerResponse {}
+export const DeleteServerSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteServerSiteControllerResponse",
-}) as any as S.Schema<DeleteServerSiteControllerResponse>;
+  identifier: "DeleteServerSitesControllerResponse",
+}) as any as S.Schema<DeleteServerSitesControllerResponse>;
 
-export interface DeleteSiteControllerRequest {
+export interface DeleteSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6508,7 +6370,7 @@ export interface DeleteSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const DeleteSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6522,17 +6384,17 @@ export const DeleteSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteSiteControllerRequest",
-}) as any as S.Schema<DeleteSiteControllerRequest>;
+  identifier: "DeleteSitesControllerRequest",
+}) as any as S.Schema<DeleteSitesControllerRequest>;
 
-export interface DeleteSiteControllerResponse {}
-export const DeleteSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSitesControllerResponse {}
+export const DeleteSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteSiteControllerResponse",
-}) as any as S.Schema<DeleteSiteControllerResponse>;
+  identifier: "DeleteSitesControllerResponse",
+}) as any as S.Schema<DeleteSitesControllerResponse>;
 
-export interface DeleteSolutionControllerSolutionRequest {
+export interface DeleteSolutionsControllerSolutionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6542,7 +6404,7 @@ export interface DeleteSolutionControllerSolutionRequest {
   /** Unique name of a migration solution within a migrate project. */
   solutionName: string;
 }
-export const DeleteSolutionControllerSolutionRequest = /*@__PURE__*/ S.suspend(
+export const DeleteSolutionsControllerSolutionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6558,15 +6420,14 @@ export const DeleteSolutionControllerSolutionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteSolutionControllerSolutionRequest",
-}) as any as S.Schema<DeleteSolutionControllerSolutionRequest>;
+  identifier: "DeleteSolutionsControllerSolutionRequest",
+}) as any as S.Schema<DeleteSolutionsControllerSolutionRequest>;
 
-export type DeleteSolutionControllerSolutionResponse = unknown;
-export const DeleteSolutionControllerSolutionResponse = /*@__PURE__*/ S.suspend(
-  () => S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "DeleteSolutionControllerSolutionResponse",
-}) as any as S.Schema<DeleteSolutionControllerSolutionResponse>;
+export type DeleteSolutionsControllerSolutionResponse = unknown;
+export const DeleteSolutionsControllerSolutionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "DeleteSolutionsControllerSolutionResponse",
+  }) as any as S.Schema<DeleteSolutionsControllerSolutionResponse>;
 
 export interface DeleteSqlAssessmentV2OperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6680,7 +6541,7 @@ export const DeleteSqlDiscoverySiteDataSourceControllerResponse =
     identifier: "DeleteSqlDiscoverySiteDataSourceControllerResponse",
   }) as any as S.Schema<DeleteSqlDiscoverySiteDataSourceControllerResponse>;
 
-export interface DeleteSqlSiteControllerRequest {
+export interface DeleteSqlSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6690,7 +6551,7 @@ export interface DeleteSqlSiteControllerRequest {
   /** SQL site name. */
   sqlSiteName: string;
 }
-export const DeleteSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSqlSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6705,15 +6566,15 @@ export const DeleteSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteSqlSiteControllerRequest",
-}) as any as S.Schema<DeleteSqlSiteControllerRequest>;
+  identifier: "DeleteSqlSitesControllerRequest",
+}) as any as S.Schema<DeleteSqlSitesControllerRequest>;
 
-export interface DeleteSqlSiteControllerResponse {}
-export const DeleteSqlSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSqlSitesControllerResponse {}
+export const DeleteSqlSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteSqlSiteControllerResponse",
-}) as any as S.Schema<DeleteSqlSiteControllerResponse>;
+  identifier: "DeleteSqlSitesControllerResponse",
+}) as any as S.Schema<DeleteSqlSitesControllerResponse>;
 
 export interface DeleteVcenterControllerRequest {
   /** The ID of the target subscription. */
@@ -6750,7 +6611,7 @@ export const DeleteVcenterControllerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVcenterControllerResponse",
 }) as any as S.Schema<DeleteVcenterControllerResponse>;
 
-export interface DeleteVmwareCollectorOperationRequest {
+export interface DeleteVmwareCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6760,7 +6621,7 @@ export interface DeleteVmwareCollectorOperationRequest {
   /** VMware collector ARM name */
   vmWareCollectorName: string;
 }
-export const DeleteVmwareCollectorOperationRequest = /*@__PURE__*/ S.suspend(
+export const DeleteVmwareCollectorsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6776,15 +6637,15 @@ export const DeleteVmwareCollectorOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteVmwareCollectorOperationRequest",
-}) as any as S.Schema<DeleteVmwareCollectorOperationRequest>;
+  identifier: "DeleteVmwareCollectorsOperationRequest",
+}) as any as S.Schema<DeleteVmwareCollectorsOperationRequest>;
 
-export interface DeleteVmwareCollectorOperationResponse {}
-export const DeleteVmwareCollectorOperationResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteVmwareCollectorsOperationResponse {}
+export const DeleteVmwareCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteVmwareCollectorOperationResponse",
-}) as any as S.Schema<DeleteVmwareCollectorOperationResponse>;
+  identifier: "DeleteVmwareCollectorsOperationResponse",
+}) as any as S.Schema<DeleteVmwareCollectorsOperationResponse>;
 
 export interface DeleteWebAppAssessmentV2OperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6860,7 +6721,7 @@ export const DeleteWebAppCollectorOperationResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteWebAppCollectorOperationResponse",
 }) as any as S.Schema<DeleteWebAppCollectorOperationResponse>;
 
-export interface DeleteWebAppDiscoverySiteDataSourceControllerRequest {
+export interface DeleteWebAppDiscoverySiteDataSourcesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6872,7 +6733,7 @@ export interface DeleteWebAppDiscoverySiteDataSourceControllerRequest {
   /** Data Source ARM name. */
   discoverySiteDataSourceName: string;
 }
-export const DeleteWebAppDiscoverySiteDataSourceControllerRequest =
+export const DeleteWebAppDiscoverySiteDataSourcesControllerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6889,16 +6750,16 @@ export const DeleteWebAppDiscoverySiteDataSourceControllerRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteWebAppDiscoverySiteDataSourceControllerRequest",
-  }) as any as S.Schema<DeleteWebAppDiscoverySiteDataSourceControllerRequest>;
+    identifier: "DeleteWebAppDiscoverySiteDataSourcesControllerRequest",
+  }) as any as S.Schema<DeleteWebAppDiscoverySiteDataSourcesControllerRequest>;
 
-export interface DeleteWebAppDiscoverySiteDataSourceControllerResponse {}
-export const DeleteWebAppDiscoverySiteDataSourceControllerResponse =
+export interface DeleteWebAppDiscoverySiteDataSourcesControllerResponse {}
+export const DeleteWebAppDiscoverySiteDataSourcesControllerResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteWebAppDiscoverySiteDataSourceControllerResponse",
-  }) as any as S.Schema<DeleteWebAppDiscoverySiteDataSourceControllerResponse>;
+    identifier: "DeleteWebAppDiscoverySiteDataSourcesControllerResponse",
+  }) as any as S.Schema<DeleteWebAppDiscoverySiteDataSourcesControllerResponse>;
 
-export interface DeleteWebAppSiteControllerRequest {
+export interface DeleteWebAppSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6908,7 +6769,7 @@ export interface DeleteWebAppSiteControllerRequest {
   /** Web app site name. */
   webAppSiteName: string;
 }
-export const DeleteWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteWebAppSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6923,15 +6784,15 @@ export const DeleteWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteWebAppSiteControllerRequest",
-}) as any as S.Schema<DeleteWebAppSiteControllerRequest>;
+  identifier: "DeleteWebAppSitesControllerRequest",
+}) as any as S.Schema<DeleteWebAppSitesControllerRequest>;
 
-export interface DeleteWebAppSiteControllerResponse {}
-export const DeleteWebAppSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteWebAppSitesControllerResponse {}
+export const DeleteWebAppSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteWebAppSiteControllerResponse",
-}) as any as S.Schema<DeleteWebAppSiteControllerResponse>;
+  identifier: "DeleteWebAppSitesControllerResponse",
+}) as any as S.Schema<DeleteWebAppSitesControllerResponse>;
 
 /** array of machine ids */
 export type DependencyMapServiceMapextensionsDependencyMapRequestFiltersMachineIdsList =
@@ -7022,44 +6883,6 @@ export const DependencyMapControllerClientGroupMembersResponse =
     identifier: "DependencyMapControllerClientGroupMembersResponse",
   }) as any as S.Schema<DependencyMapControllerClientGroupMembersResponse>;
 
-export interface DependencyMapControllerExportDependenciesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** start time */
-  startTime?: string;
-  /** end time */
-  endTime?: string;
-}
-export const DependencyMapControllerExportDependenciesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportDependencies",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "DependencyMapControllerExportDependenciesRequest",
-  }) as any as S.Schema<DependencyMapControllerExportDependenciesRequest>;
-
-export type DependencyMapControllerExportDependenciesResponse = unknown;
-export const DependencyMapControllerExportDependenciesResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "DependencyMapControllerExportDependenciesResponse",
-  }) as any as S.Schema<DependencyMapControllerExportDependenciesResponse>;
-
 export interface DependencyMapControllerServerGroupMembersRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -7105,6 +6928,696 @@ export const DependencyMapControllerServerGroupMembersResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
     identifier: "DependencyMapControllerServerGroupMembersResponse",
   }) as any as S.Schema<DependencyMapControllerServerGroupMembersResponse>;
+
+export interface DownloadAksAssessmentOperationUrlRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** AKS Assessment Name. */
+  assessmentName: string;
+}
+export const DownloadAksAssessmentOperationUrlRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      assessmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/aksAssessments/{assessmentName}/downloadUrl",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+).annotate({
+  identifier: "DownloadAksAssessmentOperationUrlRequest",
+}) as any as S.Schema<DownloadAksAssessmentOperationUrlRequest>;
+
+/** Data model of Download URL for assessment report. */
+export interface DownloadUrl {
+  /** Hyperlink to download report. */
+  assessmentReportUrl: string;
+  /** Expiry date of download url. */
+  expirationTime: string;
+}
+export const DownloadUrl = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    assessmentReportUrl: S.String,
+    expirationTime: S.String,
+  }),
+).annotate({ identifier: "DownloadUrl" }) as any as S.Schema<DownloadUrl>;
+
+export interface DownloadAssessmentsOperationUrlRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
+  /** Machine Assessment ARM name */
+  assessmentName: string;
+}
+export const DownloadAssessmentsOperationUrlRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+      assessmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/assessments/{assessmentName}/downloadUrl",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+).annotate({
+  identifier: "DownloadAssessmentsOperationUrlRequest",
+}) as any as S.Schema<DownloadAssessmentsOperationUrlRequest>;
+
+export interface DownloadAvsAssessmentsOperationUrlRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
+  /** AVS Assessment ARM name */
+  assessmentName: string;
+}
+export const DownloadAvsAssessmentsOperationUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+      assessmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}/downloadUrl",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadAvsAssessmentsOperationUrlRequest",
+  }) as any as S.Schema<DownloadAvsAssessmentsOperationUrlRequest>;
+
+export interface DownloadSqlAssessmentV2OperationUrlRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
+  /** SQL Assessment arm name. */
+  assessmentName: string;
+}
+export const DownloadSqlAssessmentV2OperationUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+      assessmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/sqlAssessments/{assessmentName}/downloadUrl",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadSqlAssessmentV2OperationUrlRequest",
+  }) as any as S.Schema<DownloadSqlAssessmentV2OperationUrlRequest>;
+
+export interface DownloadWebAppAssessmentV2OperationUrlRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
+  /** Web app Assessment arm name. */
+  assessmentName: string;
+}
+export const DownloadWebAppAssessmentV2OperationUrlRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+      assessmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/webAppAssessments/{assessmentName}/downloadUrl",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadWebAppAssessmentV2OperationUrlRequest",
+  }) as any as S.Schema<DownloadWebAppAssessmentV2OperationUrlRequest>;
+
+export interface ExportDependencyMapControllerDependenciesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** start time */
+  startTime?: string;
+  /** end time */
+  endTime?: string;
+}
+export const ExportDependencyMapControllerDependenciesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportDependencies",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportDependencyMapControllerDependenciesRequest",
+  }) as any as S.Schema<ExportDependencyMapControllerDependenciesRequest>;
+
+export type ExportDependencyMapControllerDependenciesResponse = unknown;
+export const ExportDependencyMapControllerDependenciesResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportDependencyMapControllerDependenciesResponse",
+  }) as any as S.Schema<ExportDependencyMapControllerDependenciesResponse>;
+
+export interface ExportHypervDependencyMapControllerDependenciesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** start time */
+  startTime?: string;
+  /** end time */
+  endTime?: string;
+}
+export const ExportHypervDependencyMapControllerDependenciesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/hypervSites/{siteName}/exportDependencies",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportHypervDependencyMapControllerDependenciesRequest",
+  }) as any as S.Schema<ExportHypervDependencyMapControllerDependenciesRequest>;
+
+export type ExportHypervDependencyMapControllerDependenciesResponse = unknown;
+export const ExportHypervDependencyMapControllerDependenciesResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportHypervDependencyMapControllerDependenciesResponse",
+  }) as any as S.Schema<ExportHypervDependencyMapControllerDependenciesResponse>;
+
+export interface ExportHypervSitesControllerApplicationsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const ExportHypervSitesControllerApplicationsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/hypervSites/{siteName}/exportApplications",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportHypervSitesControllerApplicationsRequest",
+  }) as any as S.Schema<ExportHypervSitesControllerApplicationsRequest>;
+
+export type ExportHypervSitesControllerApplicationsResponse = unknown;
+export const ExportHypervSitesControllerApplicationsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportHypervSitesControllerApplicationsResponse",
+  }) as any as S.Schema<ExportHypervSitesControllerApplicationsResponse>;
+
+/** Export Machine Errors Properties */
+export type ExportMachineErrorsProperties =
+  | "AppsAndRoles"
+  | "DependencyMap"
+  | "StaticData"
+  | "SQLServerConnectionInfo";
+export const ExportMachineErrorsProperties = /*@__PURE__*/ S.String;
+
+/** The Properties class for export machine errors request body. */
+export interface RequestExportMachineErrorsProperties {
+  /** Gets or sets the discovery scope. */
+  discoveryScope?: ExportMachineErrorsProperties | (string & {});
+}
+export const RequestExportMachineErrorsProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      discoveryScope: S.optional(ExportMachineErrorsProperties),
+    }),
+).annotate({
+  identifier: "RequestExportMachineErrorsProperties",
+}) as any as S.Schema<RequestExportMachineErrorsProperties>;
+
+export interface ExportHypervSitesControllerMachineErrorsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Gets or sets the properties. */
+  properties?: RequestExportMachineErrorsProperties;
+}
+export const ExportHypervSitesControllerMachineErrorsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      properties: S.optional(RequestExportMachineErrorsProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/hypervSites/{siteName}/exportMachineErrors",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportHypervSitesControllerMachineErrorsRequest",
+  }) as any as S.Schema<ExportHypervSitesControllerMachineErrorsRequest>;
+
+export type ExportHypervSitesControllerMachineErrorsResponse = unknown;
+export const ExportHypervSitesControllerMachineErrorsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportHypervSitesControllerMachineErrorsResponse",
+  }) as any as S.Schema<ExportHypervSitesControllerMachineErrorsResponse>;
+
+export interface ExportImportSitesControllerUriRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Gets or sets the job ARM ID. */
+  jobArmId?: string;
+  /** Gets or sets the SAS URI. */
+  uri?: string;
+}
+export const ExportImportSitesControllerUriRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      jobArmId: S.optional(S.String),
+      uri: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/importSites/{siteName}/exportUri",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+).annotate({
+  identifier: "ExportImportSitesControllerUriRequest",
+}) as any as S.Schema<ExportImportSitesControllerUriRequest>;
+
+export interface ExportServerDependencyMapControllerDependenciesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** start time */
+  startTime?: string;
+  /** end time */
+  endTime?: string;
+}
+export const ExportServerDependencyMapControllerDependenciesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/exportDependencies",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportServerDependencyMapControllerDependenciesRequest",
+  }) as any as S.Schema<ExportServerDependencyMapControllerDependenciesRequest>;
+
+export type ExportServerDependencyMapControllerDependenciesResponse = unknown;
+export const ExportServerDependencyMapControllerDependenciesResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportServerDependencyMapControllerDependenciesResponse",
+  }) as any as S.Schema<ExportServerDependencyMapControllerDependenciesResponse>;
+
+export interface ExportServerSitesControllerApplicationsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const ExportServerSitesControllerApplicationsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/exportApplications",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportServerSitesControllerApplicationsRequest",
+  }) as any as S.Schema<ExportServerSitesControllerApplicationsRequest>;
+
+export type ExportServerSitesControllerApplicationsResponse = unknown;
+export const ExportServerSitesControllerApplicationsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportServerSitesControllerApplicationsResponse",
+  }) as any as S.Schema<ExportServerSitesControllerApplicationsResponse>;
+
+export interface ExportServerSitesControllerMachineErrorsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Gets or sets the properties. */
+  properties?: RequestExportMachineErrorsProperties;
+}
+export const ExportServerSitesControllerMachineErrorsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      properties: S.optional(RequestExportMachineErrorsProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/exportMachineErrors",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportServerSitesControllerMachineErrorsRequest",
+  }) as any as S.Schema<ExportServerSitesControllerMachineErrorsRequest>;
+
+export type ExportServerSitesControllerMachineErrorsResponse = unknown;
+export const ExportServerSitesControllerMachineErrorsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportServerSitesControllerMachineErrorsResponse",
+  }) as any as S.Schema<ExportServerSitesControllerMachineErrorsResponse>;
+
+export interface ExportSitesControllerApplicationsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const ExportSitesControllerApplicationsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportApplications",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+).annotate({
+  identifier: "ExportSitesControllerApplicationsRequest",
+}) as any as S.Schema<ExportSitesControllerApplicationsRequest>;
+
+export type ExportSitesControllerApplicationsResponse = unknown;
+export const ExportSitesControllerApplicationsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportSitesControllerApplicationsResponse",
+  }) as any as S.Schema<ExportSitesControllerApplicationsResponse>;
+
+export interface ExportSitesControllerMachineErrorsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Gets or sets the properties. */
+  properties?: RequestExportMachineErrorsProperties;
+}
+export const ExportSitesControllerMachineErrorsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      properties: S.optional(RequestExportMachineErrorsProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportMachineErrors",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportSitesControllerMachineErrorsRequest",
+  }) as any as S.Schema<ExportSitesControllerMachineErrorsRequest>;
+
+export type ExportSitesControllerMachineErrorsResponse = unknown;
+export const ExportSitesControllerMachineErrorsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportSitesControllerMachineErrorsResponse",
+  }) as any as S.Schema<ExportSitesControllerMachineErrorsResponse>;
+
+export interface ExportSitesControllerMachinesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** filter options. */
+  filter?: string;
+}
+export const ExportSitesControllerMachinesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      filter: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportMachines",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+).annotate({
+  identifier: "ExportSitesControllerMachinesRequest",
+}) as any as S.Schema<ExportSitesControllerMachinesRequest>;
+
+export type ExportSitesControllerMachinesResponse = unknown;
+export const ExportSitesControllerMachinesResponse = /*@__PURE__*/ S.suspend(
+  () => S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ExportSitesControllerMachinesResponse",
+}) as any as S.Schema<ExportSitesControllerMachinesResponse>;
+
+export interface ExportSqlSitesControllerSqlServerErrorsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** SQL site name. */
+  sqlSiteName: string;
+}
+export const ExportSqlSitesControllerSqlServerErrorsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      sqlSiteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/exportSqlServerErrors",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportSqlSitesControllerSqlServerErrorsRequest",
+  }) as any as S.Schema<ExportSqlSitesControllerSqlServerErrorsRequest>;
+
+export type ExportSqlSitesControllerSqlServerErrorsResponse = unknown;
+export const ExportSqlSitesControllerSqlServerErrorsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportSqlSitesControllerSqlServerErrorsResponse",
+  }) as any as S.Schema<ExportSqlSitesControllerSqlServerErrorsResponse>;
+
+export interface ExportSqlSitesControllerSqlServersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** SQL site name. */
+  sqlSiteName: string;
+  /** Gets or sets the Appliance Name. */
+  applianceName?: string;
+  /** filter options. */
+  filter?: string;
+}
+export const ExportSqlSitesControllerSqlServersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      sqlSiteName: S.String.pipe(T.Label()),
+      applianceName: S.optional(S.String),
+      filter: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/exportSqlServers",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportSqlSitesControllerSqlServersRequest",
+  }) as any as S.Schema<ExportSqlSitesControllerSqlServersRequest>;
+
+export type ExportSqlSitesControllerSqlServersResponse = unknown;
+export const ExportSqlSitesControllerSqlServersResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportSqlSitesControllerSqlServersResponse",
+  }) as any as S.Schema<ExportSqlSitesControllerSqlServersResponse>;
+
+export interface ExportWebAppSitesControllerInventoryRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Web app site name. */
+  webAppSiteName: string;
+  /** filter options. */
+  filter?: string;
+}
+export const ExportWebAppSitesControllerInventoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      webAppSiteName: S.String.pipe(T.Label()),
+      filter: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/webAppSites/{webAppSiteName}/exportInventory",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportWebAppSitesControllerInventoryRequest",
+  }) as any as S.Schema<ExportWebAppSitesControllerInventoryRequest>;
+
+export type ExportWebAppSitesControllerInventoryResponse = unknown;
+export const ExportWebAppSitesControllerInventoryResponse =
+  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
+    identifier: "ExportWebAppSitesControllerInventoryResponse",
+  }) as any as S.Schema<ExportWebAppSitesControllerInventoryResponse>;
 
 export interface GenerateDependencyMapControllerCoarseMapRequest {
   /** The ID of the target subscription. */
@@ -7573,7 +8086,7 @@ export const GetAksClusterOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAksClusterOperationResponse",
 }) as any as S.Schema<GetAksClusterOperationResponse>;
 
-export interface GetAksOptionOperationRequest {
+export interface GetAksOptionsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7583,7 +8096,7 @@ export interface GetAksOptionOperationRequest {
   /** AKS Assessment Options Name. */
   assessmentOptionsName: string;
 }
-export const GetAksOptionOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAksOptionsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7598,8 +8111,8 @@ export const GetAksOptionOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAksOptionOperationRequest",
-}) as any as S.Schema<GetAksOptionOperationRequest>;
+  identifier: "GetAksOptionsOperationRequest",
+}) as any as S.Schema<GetAksOptionsOperationRequest>;
 
 export type RecordOfStringArrayValueList = Array<string>;
 export const RecordOfStringArrayValueList = /*@__PURE__*/ S.Array(
@@ -7637,7 +8150,7 @@ export const OptionsArmPropertiesBase = /*@__PURE__*/ S.suspend(() =>
   identifier: "OptionsArmPropertiesBase",
 }) as any as S.Schema<OptionsArmPropertiesBase>;
 
-export interface GetAksOptionOperationResponse {
+export interface GetAksOptionsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7651,7 +8164,7 @@ export interface GetAksOptionOperationResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const GetAksOptionOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAksOptionsOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -7661,8 +8174,8 @@ export const GetAksOptionOperationResponse = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetAksOptionOperationResponse",
-}) as any as S.Schema<GetAksOptionOperationResponse>;
+  identifier: "GetAksOptionsOperationResponse",
+}) as any as S.Schema<GetAksOptionsOperationResponse>;
 
 export interface GetAksSummaryOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7842,7 +8355,7 @@ export const GetAksSummaryOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAksSummaryOperationResponse",
 }) as any as S.Schema<GetAksSummaryOperationResponse>;
 
-export interface GetAssessedMachineOperationRequest {
+export interface GetAssessedMachinesOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7856,7 +8369,7 @@ export interface GetAssessedMachineOperationRequest {
   /** Machine assessment Assessed Machine ARM name */
   assessedMachineName: string;
 }
-export const GetAssessedMachineOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAssessedMachinesOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7873,8 +8386,8 @@ export const GetAssessedMachineOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAssessedMachineOperationRequest",
-}) as any as S.Schema<GetAssessedMachineOperationRequest>;
+  identifier: "GetAssessedMachinesOperationRequest",
+}) as any as S.Schema<GetAssessedMachinesOperationRequest>;
 
 /** Gets the error message parameters. */
 export type ErrorMessageParametersMap = { [key: string]: string | undefined };
@@ -8891,7 +9404,7 @@ export const AssessedMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessedMachineProperties",
 }) as any as S.Schema<AssessedMachineProperties>;
 
-export interface GetAssessedMachineOperationResponse {
+export interface GetAssessedMachinesOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8903,17 +9416,18 @@ export interface GetAssessedMachineOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: AssessedMachineProperties;
 }
-export const GetAssessedMachineOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AssessedMachineProperties),
-  }),
+export const GetAssessedMachinesOperationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AssessedMachineProperties),
+    }),
 ).annotate({
-  identifier: "GetAssessedMachineOperationResponse",
-}) as any as S.Schema<GetAssessedMachineOperationResponse>;
+  identifier: "GetAssessedMachinesOperationResponse",
+}) as any as S.Schema<GetAssessedMachinesOperationResponse>;
 
 export interface GetAssessedSqlDatabaseV2OperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -10005,7 +10519,7 @@ export const GetAssessedSqlInstanceV2OperationResponse =
     identifier: "GetAssessedSqlInstanceV2OperationResponse",
   }) as any as S.Schema<GetAssessedSqlInstanceV2OperationResponse>;
 
-export interface GetAssessedSqlMachineOperationRequest {
+export interface GetAssessedSqlMachinesOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10019,7 +10533,7 @@ export interface GetAssessedSqlMachineOperationRequest {
   /** Sql assessment Assessed Machine ARM name. */
   assessedSqlMachineName: string;
 }
-export const GetAssessedSqlMachineOperationRequest = /*@__PURE__*/ S.suspend(
+export const GetAssessedSqlMachinesOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10037,8 +10551,8 @@ export const GetAssessedSqlMachineOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetAssessedSqlMachineOperationRequest",
-}) as any as S.Schema<GetAssessedSqlMachineOperationRequest>;
+  identifier: "GetAssessedSqlMachinesOperationRequest",
+}) as any as S.Schema<GetAssessedSqlMachinesOperationRequest>;
 
 export type SqlFCIState = "Unknown" | "Active" | "Passive" | "NotApplicable";
 export const SqlFCIState = /*@__PURE__*/ S.String;
@@ -10358,7 +10872,7 @@ export const AssessedSqlMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessedSqlMachineProperties",
 }) as any as S.Schema<AssessedSqlMachineProperties>;
 
-export interface GetAssessedSqlMachineOperationResponse {
+export interface GetAssessedSqlMachinesOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10370,7 +10884,7 @@ export interface GetAssessedSqlMachineOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: AssessedSqlMachineProperties;
 }
-export const GetAssessedSqlMachineOperationResponse = /*@__PURE__*/ S.suspend(
+export const GetAssessedSqlMachinesOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -10380,8 +10894,8 @@ export const GetAssessedSqlMachineOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AssessedSqlMachineProperties),
     }),
 ).annotate({
-  identifier: "GetAssessedSqlMachineOperationResponse",
-}) as any as S.Schema<GetAssessedSqlMachineOperationResponse>;
+  identifier: "GetAssessedSqlMachinesOperationResponse",
+}) as any as S.Schema<GetAssessedSqlMachinesOperationResponse>;
 
 export interface GetAssessedSqlRecommendedEntityOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -10945,62 +11459,7 @@ export const GetAssessedWebAppV2OperationResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetAssessedWebAppV2OperationResponse",
 }) as any as S.Schema<GetAssessedWebAppV2OperationResponse>;
 
-export interface GetAssessmentOperationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-  /** Machine Assessment ARM name */
-  assessmentName: string;
-}
-export const GetAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    groupName: S.String.pipe(T.Label()),
-    assessmentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/assessments/{assessmentName}",
-      code: 200,
-      apiVersion: "2024-01-15",
-    }),
-  ),
-).annotate({
-  identifier: "GetAssessmentOperationRequest",
-}) as any as S.Schema<GetAssessmentOperationRequest>;
-
-export interface GetAssessmentOperationResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MachineAssessmentProperties;
-}
-export const GetAssessmentOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MachineAssessmentProperties),
-  }),
-).annotate({
-  identifier: "GetAssessmentOperationResponse",
-}) as any as S.Schema<GetAssessmentOperationResponse>;
-
-export interface GetAssessmentOptionOperationRequest {
+export interface GetAssessmentOptionsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11010,23 +11469,24 @@ export interface GetAssessmentOptionOperationRequest {
   /** assessment options ARM name. Accepted value is 'default' */
   assessmentOptionsName: string;
 }
-export const GetAssessmentOptionOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    assessmentOptionsName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/assessmentOptions/{assessmentOptionsName}",
-      code: 200,
-      apiVersion: "2024-01-15",
-    }),
-  ),
+export const GetAssessmentOptionsOperationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      assessmentOptionsName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/assessmentOptions/{assessmentOptionsName}",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
 ).annotate({
-  identifier: "GetAssessmentOptionOperationRequest",
-}) as any as S.Schema<GetAssessmentOptionOperationRequest>;
+  identifier: "GetAssessmentOptionsOperationRequest",
+}) as any as S.Schema<GetAssessmentOptionsOperationRequest>;
 
 /** List of Azure regions. */
 export type VmFamilyOptionsTargetLocationsList = Array<string>;
@@ -11218,7 +11678,7 @@ export const AssessmentOptionsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessmentOptionsProperties",
 }) as any as S.Schema<AssessmentOptionsProperties>;
 
-export interface GetAssessmentOptionOperationResponse {
+export interface GetAssessmentOptionsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11230,7 +11690,7 @@ export interface GetAssessmentOptionOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: AssessmentOptionsProperties;
 }
-export const GetAssessmentOptionOperationResponse = /*@__PURE__*/ S.suspend(
+export const GetAssessmentOptionsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -11240,10 +11700,10 @@ export const GetAssessmentOptionOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AssessmentOptionsProperties),
     }),
 ).annotate({
-  identifier: "GetAssessmentOptionOperationResponse",
-}) as any as S.Schema<GetAssessmentOptionOperationResponse>;
+  identifier: "GetAssessmentOptionsOperationResponse",
+}) as any as S.Schema<GetAssessmentOptionsOperationResponse>;
 
-export interface GetAssessmentProjectOperationRequest {
+export interface GetAssessmentProjectsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11251,7 +11711,7 @@ export interface GetAssessmentProjectOperationRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const GetAssessmentProjectOperationRequest = /*@__PURE__*/ S.suspend(
+export const GetAssessmentProjectsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11266,20 +11726,20 @@ export const GetAssessmentProjectOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetAssessmentProjectOperationRequest",
-}) as any as S.Schema<GetAssessmentProjectOperationRequest>;
+  identifier: "GetAssessmentProjectsOperationRequest",
+}) as any as S.Schema<GetAssessmentProjectsOperationRequest>;
 
 /** Resource tags. */
-export type AssessmentProjectsOperationsGetResponseTagsMap = {
+export type GetAssessmentProjectsOperationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AssessmentProjectsOperationsGetResponseTagsMap =
+export const GetAssessmentProjectsOperationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AssessmentProjectsOperationsGetResponseTagsMap>;
+  ) as any as S.Schema<GetAssessmentProjectsOperationResponseTagsMap>;
 
-export interface GetAssessmentProjectOperationResponse {
+export interface GetAssessmentProjectsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11289,26 +11749,26 @@ export interface GetAssessmentProjectOperationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AssessmentProjectsOperationsGetResponseTagsMap;
+  tags?: GetAssessmentProjectsOperationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ProjectProperties;
 }
-export const GetAssessmentProjectOperationResponse = /*@__PURE__*/ S.suspend(
+export const GetAssessmentProjectsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(AssessmentProjectsOperationsGetResponseTagsMap),
+      tags: S.optional(GetAssessmentProjectsOperationResponseTagsMap),
       location: S.String,
       properties: S.optional(ProjectProperties),
     }),
 ).annotate({
-  identifier: "GetAssessmentProjectOperationResponse",
-}) as any as S.Schema<GetAssessmentProjectOperationResponse>;
+  identifier: "GetAssessmentProjectsOperationResponse",
+}) as any as S.Schema<GetAssessmentProjectsOperationResponse>;
 
 export interface GetAssessmentProjectSummaryOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11419,7 +11879,62 @@ export const GetAssessmentProjectSummaryOperationResponse =
     identifier: "GetAssessmentProjectSummaryOperationResponse",
   }) as any as S.Schema<GetAssessmentProjectSummaryOperationResponse>;
 
-export interface GetAvsAssessedMachineOperationRequest {
+export interface GetAssessmentsOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
+  /** Machine Assessment ARM name */
+  assessmentName: string;
+}
+export const GetAssessmentsOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    groupName: S.String.pipe(T.Label()),
+    assessmentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/assessments/{assessmentName}",
+      code: 200,
+      apiVersion: "2024-01-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetAssessmentsOperationRequest",
+}) as any as S.Schema<GetAssessmentsOperationRequest>;
+
+export interface GetAssessmentsOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MachineAssessmentProperties;
+}
+export const GetAssessmentsOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MachineAssessmentProperties),
+  }),
+).annotate({
+  identifier: "GetAssessmentsOperationResponse",
+}) as any as S.Schema<GetAssessmentsOperationResponse>;
+
+export interface GetAvsAssessedMachinesOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11433,7 +11948,7 @@ export interface GetAvsAssessedMachineOperationRequest {
   /** AVS assessment Assessed Machine ARM name */
   avsAssessedMachineName: string;
 }
-export const GetAvsAssessedMachineOperationRequest = /*@__PURE__*/ S.suspend(
+export const GetAvsAssessedMachinesOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11451,8 +11966,8 @@ export const GetAvsAssessedMachineOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetAvsAssessedMachineOperationRequest",
-}) as any as S.Schema<GetAvsAssessedMachineOperationRequest>;
+  identifier: "GetAvsAssessedMachinesOperationRequest",
+}) as any as S.Schema<GetAvsAssessedMachinesOperationRequest>;
 
 /** List of errors for this machine. */
 export type AvsAssessedMachinePropertiesErrorsList = Array<Error>;
@@ -11651,7 +12166,7 @@ export const AvsAssessedMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvsAssessedMachineProperties",
 }) as any as S.Schema<AvsAssessedMachineProperties>;
 
-export interface GetAvsAssessedMachineOperationResponse {
+export interface GetAvsAssessedMachinesOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11663,7 +12178,7 @@ export interface GetAvsAssessedMachineOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: AvsAssessedMachineProperties;
 }
-export const GetAvsAssessedMachineOperationResponse = /*@__PURE__*/ S.suspend(
+export const GetAvsAssessedMachinesOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -11673,65 +12188,10 @@ export const GetAvsAssessedMachineOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AvsAssessedMachineProperties),
     }),
 ).annotate({
-  identifier: "GetAvsAssessedMachineOperationResponse",
-}) as any as S.Schema<GetAvsAssessedMachineOperationResponse>;
+  identifier: "GetAvsAssessedMachinesOperationResponse",
+}) as any as S.Schema<GetAvsAssessedMachinesOperationResponse>;
 
-export interface GetAvsAssessmentOperationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-  /** AVS Assessment ARM name */
-  assessmentName: string;
-}
-export const GetAvsAssessmentOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    groupName: S.String.pipe(T.Label()),
-    assessmentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}",
-      code: 200,
-      apiVersion: "2024-01-15",
-    }),
-  ),
-).annotate({
-  identifier: "GetAvsAssessmentOperationRequest",
-}) as any as S.Schema<GetAvsAssessmentOperationRequest>;
-
-export interface GetAvsAssessmentOperationResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AvsAssessmentProperties;
-}
-export const GetAvsAssessmentOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AvsAssessmentProperties),
-  }),
-).annotate({
-  identifier: "GetAvsAssessmentOperationResponse",
-}) as any as S.Schema<GetAvsAssessmentOperationResponse>;
-
-export interface GetAvsAssessmentOptionOperationRequest {
+export interface GetAvsAssessmentOptionsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11741,7 +12201,7 @@ export interface GetAvsAssessmentOptionOperationRequest {
   /** AVS Assessment options ARM name. Accepted value is 'default' */
   avsAssessmentOptionsName: string;
 }
-export const GetAvsAssessmentOptionOperationRequest = /*@__PURE__*/ S.suspend(
+export const GetAvsAssessmentOptionsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11757,8 +12217,8 @@ export const GetAvsAssessmentOptionOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetAvsAssessmentOptionOperationRequest",
-}) as any as S.Schema<GetAvsAssessmentOptionOperationRequest>;
+  identifier: "GetAvsAssessmentOptionsOperationRequest",
+}) as any as S.Schema<GetAvsAssessmentOptionsOperationRequest>;
 
 /** List of locations where this node type is available. */
 export type AvsSkuOptionsTargetLocationsList = Array<AzureLocation>;
@@ -11900,7 +12360,7 @@ export const AvsAssessmentOptionsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvsAssessmentOptionsProperties",
 }) as any as S.Schema<AvsAssessmentOptionsProperties>;
 
-export interface GetAvsAssessmentOptionOperationResponse {
+export interface GetAvsAssessmentOptionsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11912,7 +12372,7 @@ export interface GetAvsAssessmentOptionOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: AvsAssessmentOptionsProperties;
 }
-export const GetAvsAssessmentOptionOperationResponse = /*@__PURE__*/ S.suspend(
+export const GetAvsAssessmentOptionsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -11922,146 +12382,65 @@ export const GetAvsAssessmentOptionOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AvsAssessmentOptionsProperties),
     }),
 ).annotate({
-  identifier: "GetAvsAssessmentOptionOperationResponse",
-}) as any as S.Schema<GetAvsAssessmentOptionOperationResponse>;
+  identifier: "GetAvsAssessmentOptionsOperationResponse",
+}) as any as S.Schema<GetAvsAssessmentOptionsOperationResponse>;
 
-export interface GetDatabaseControllerDatabaseRequest {
-  /** The ID of the target subscription. */
+export interface GetAvsAssessmentsOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-  /** Unique name of a database in Azure migration hub. */
-  databaseName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
+  /** AVS Assessment ARM name */
+  assessmentName: string;
 }
-export const GetDatabaseControllerDatabaseRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/databases/{databaseName}",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "GetDatabaseControllerDatabaseRequest",
-}) as any as S.Schema<GetDatabaseControllerDatabaseRequest>;
-
-/** Gets or sets the extended properties of the database. */
-export type DatabaseAssessmentDetailsExtendedInfoMap = {
-  [key: string]: string | undefined;
-};
-export const DatabaseAssessmentDetailsExtendedInfoMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DatabaseAssessmentDetailsExtendedInfoMap>;
-
-/** Assessment properties that can be shared by various publishers. */
-export interface DatabaseAssessmentDetails {
-  /** Gets or sets the database assessment scope/Id. */
-  assessmentId?: string;
-  /** Gets the relative URL to get to this DatabaseAssessmentDetails resource. */
-  id?: string;
-  /** Gets or sets the number of blocking changes found. */
-  migrationBlockersCount?: number;
-  /** Gets or sets the number of breaking changes found. */
-  breakingChangesCount?: number;
-  /** Gets or sets a value indicating whether the database is ready for migration. */
-  isReadyForMigration?: boolean;
-  /** Gets or sets the assessed target database type. */
-  assessmentTargetType?: string;
-  /** Gets or sets the time when the database was last assessed. */
-  lastAssessedTime?: string;
-  /** Gets or sets the compatibility level of the database. */
-  compatibilityLevel?: string;
-  /** Gets or sets the database size. */
-  databaseSizeInMB?: string;
-  /** Gets or sets the time of the last modification of the database details. */
-  lastUpdatedTime?: string;
-  /** Gets or sets the time the message was enqueued. */
-  enqueueTime?: string;
-  /** Gets or sets the name of the solution that sent the data. */
-  solutionName?: string;
-  /** Gets or sets the database server instance Id. */
-  instanceId?: string;
-  /** Gets or sets the database name. */
-  databaseName?: string;
-  /** Gets or sets the extended properties of the database. */
-  extendedInfo?: DatabaseAssessmentDetailsExtendedInfoMap;
-}
-export const DatabaseAssessmentDetails = /*@__PURE__*/ S.suspend(() =>
+export const GetAvsAssessmentsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    assessmentId: S.optional(S.String),
-    id: S.optional(S.String),
-    migrationBlockersCount: S.optional(S.Number),
-    breakingChangesCount: S.optional(S.Number),
-    isReadyForMigration: S.optional(S.Boolean),
-    assessmentTargetType: S.optional(S.String),
-    lastAssessedTime: S.optional(S.String),
-    compatibilityLevel: S.optional(S.String),
-    databaseSizeInMB: S.optional(S.String),
-    lastUpdatedTime: S.optional(S.String),
-    enqueueTime: S.optional(S.String),
-    solutionName: S.optional(S.String),
-    instanceId: S.optional(S.String),
-    databaseName: S.optional(S.String),
-    extendedInfo: S.optional(DatabaseAssessmentDetailsExtendedInfoMap),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    groupName: S.String.pipe(T.Label()),
+    assessmentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments/{assessmentName}",
+      code: 200,
+      apiVersion: "2024-01-15",
+    }),
+  ),
 ).annotate({
-  identifier: "DatabaseAssessmentDetails",
-}) as any as S.Schema<DatabaseAssessmentDetails>;
+  identifier: "GetAvsAssessmentsOperationRequest",
+}) as any as S.Schema<GetAvsAssessmentsOperationRequest>;
 
-/** Gets or sets the assessment details of the database published by various sources. */
-export type DatabasePropertiesAssessmentDataList =
-  Array<DatabaseAssessmentDetails>;
-export const DatabasePropertiesAssessmentDataList = /*@__PURE__*/ S.Array(
-  DatabaseAssessmentDetails,
-) as any as S.Schema<DatabasePropertiesAssessmentDataList>;
-
-/** Properties of the database resource. */
-export interface DatabaseProperties {
-  /** Gets or sets the assessment details of the database published by various sources. */
-  assessmentData?: DatabasePropertiesAssessmentDataList;
-  /** Gets or sets the time of the last modification of the database. */
-  lastUpdatedTime?: string;
-}
-export const DatabaseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    assessmentData: S.optional(DatabasePropertiesAssessmentDataList),
-    lastUpdatedTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabaseProperties",
-}) as any as S.Schema<DatabaseProperties>;
-
-/** Database REST resource. */
-export interface Database {
-  /** Gets or sets the relative URL to get to this REST resource. */
+export interface GetAvsAssessmentsOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
-  /** Gets or sets the name of this REST resource. */
+  /** The name of the resource */
   name?: string;
-  /** Gets the type of this REST resource. */
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
-  /** Gets or sets the properties of the database. */
-  properties?: DatabaseProperties;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AvsAssessmentProperties;
 }
-export const Database = /*@__PURE__*/ S.suspend(() =>
+export const GetAvsAssessmentsOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    properties: S.optional(DatabaseProperties),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AvsAssessmentProperties),
   }),
-).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
+).annotate({
+  identifier: "GetAvsAssessmentsOperationResponse",
+}) as any as S.Schema<GetAvsAssessmentsOperationResponse>;
 
-export interface GetDatabaseInstanceControllerDatabaseInstanceRequest {
+export interface GetDatabaseInstancesControllerDatabaseInstanceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12071,7 +12450,7 @@ export interface GetDatabaseInstanceControllerDatabaseInstanceRequest {
   /** Unique name of a database instance in Azure migration hub. */
   databaseInstanceName: string;
 }
-export const GetDatabaseInstanceControllerDatabaseInstanceRequest =
+export const GetDatabaseInstancesControllerDatabaseInstanceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12087,8 +12466,8 @@ export const GetDatabaseInstanceControllerDatabaseInstanceRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetDatabaseInstanceControllerDatabaseInstanceRequest",
-  }) as any as S.Schema<GetDatabaseInstanceControllerDatabaseInstanceRequest>;
+    identifier: "GetDatabaseInstancesControllerDatabaseInstanceRequest",
+  }) as any as S.Schema<GetDatabaseInstancesControllerDatabaseInstanceRequest>;
 
 /** Gets or sets the extended properties of the database server. */
 export type DatabaseInstanceDiscoveryDetailsExtendedInfoMap = {
@@ -12220,7 +12599,143 @@ export const DatabaseInstance = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatabaseInstance",
 }) as any as S.Schema<DatabaseInstance>;
 
-export interface GetEventControllerEventRequest {
+export interface GetDatabasesControllerDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+  /** Unique name of a database in Azure migration hub. */
+  databaseName: string;
+}
+export const GetDatabasesControllerDatabaseRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/databases/{databaseName}",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetDatabasesControllerDatabaseRequest",
+}) as any as S.Schema<GetDatabasesControllerDatabaseRequest>;
+
+/** Gets or sets the extended properties of the database. */
+export type DatabaseAssessmentDetailsExtendedInfoMap = {
+  [key: string]: string | undefined;
+};
+export const DatabaseAssessmentDetailsExtendedInfoMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DatabaseAssessmentDetailsExtendedInfoMap>;
+
+/** Assessment properties that can be shared by various publishers. */
+export interface DatabaseAssessmentDetails {
+  /** Gets or sets the database assessment scope/Id. */
+  assessmentId?: string;
+  /** Gets the relative URL to get to this DatabaseAssessmentDetails resource. */
+  id?: string;
+  /** Gets or sets the number of blocking changes found. */
+  migrationBlockersCount?: number;
+  /** Gets or sets the number of breaking changes found. */
+  breakingChangesCount?: number;
+  /** Gets or sets a value indicating whether the database is ready for migration. */
+  isReadyForMigration?: boolean;
+  /** Gets or sets the assessed target database type. */
+  assessmentTargetType?: string;
+  /** Gets or sets the time when the database was last assessed. */
+  lastAssessedTime?: string;
+  /** Gets or sets the compatibility level of the database. */
+  compatibilityLevel?: string;
+  /** Gets or sets the database size. */
+  databaseSizeInMB?: string;
+  /** Gets or sets the time of the last modification of the database details. */
+  lastUpdatedTime?: string;
+  /** Gets or sets the time the message was enqueued. */
+  enqueueTime?: string;
+  /** Gets or sets the name of the solution that sent the data. */
+  solutionName?: string;
+  /** Gets or sets the database server instance Id. */
+  instanceId?: string;
+  /** Gets or sets the database name. */
+  databaseName?: string;
+  /** Gets or sets the extended properties of the database. */
+  extendedInfo?: DatabaseAssessmentDetailsExtendedInfoMap;
+}
+export const DatabaseAssessmentDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    assessmentId: S.optional(S.String),
+    id: S.optional(S.String),
+    migrationBlockersCount: S.optional(S.Number),
+    breakingChangesCount: S.optional(S.Number),
+    isReadyForMigration: S.optional(S.Boolean),
+    assessmentTargetType: S.optional(S.String),
+    lastAssessedTime: S.optional(S.String),
+    compatibilityLevel: S.optional(S.String),
+    databaseSizeInMB: S.optional(S.String),
+    lastUpdatedTime: S.optional(S.String),
+    enqueueTime: S.optional(S.String),
+    solutionName: S.optional(S.String),
+    instanceId: S.optional(S.String),
+    databaseName: S.optional(S.String),
+    extendedInfo: S.optional(DatabaseAssessmentDetailsExtendedInfoMap),
+  }),
+).annotate({
+  identifier: "DatabaseAssessmentDetails",
+}) as any as S.Schema<DatabaseAssessmentDetails>;
+
+/** Gets or sets the assessment details of the database published by various sources. */
+export type DatabasePropertiesAssessmentDataList =
+  Array<DatabaseAssessmentDetails>;
+export const DatabasePropertiesAssessmentDataList = /*@__PURE__*/ S.Array(
+  DatabaseAssessmentDetails,
+) as any as S.Schema<DatabasePropertiesAssessmentDataList>;
+
+/** Properties of the database resource. */
+export interface DatabaseProperties {
+  /** Gets or sets the assessment details of the database published by various sources. */
+  assessmentData?: DatabasePropertiesAssessmentDataList;
+  /** Gets or sets the time of the last modification of the database. */
+  lastUpdatedTime?: string;
+}
+export const DatabaseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    assessmentData: S.optional(DatabasePropertiesAssessmentDataList),
+    lastUpdatedTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabaseProperties",
+}) as any as S.Schema<DatabaseProperties>;
+
+/** Database REST resource. */
+export interface Database {
+  /** Gets or sets the relative URL to get to this REST resource. */
+  id?: string;
+  /** Gets or sets the name of this REST resource. */
+  name?: string;
+  /** Gets the type of this REST resource. */
+  type?: string;
+  /** Gets or sets the properties of the database. */
+  properties?: DatabaseProperties;
+}
+export const Database = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(DatabaseProperties),
+  }),
+).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
+
+export interface GetEventsControllerEventRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12230,7 +12745,7 @@ export interface GetEventControllerEventRequest {
   /** Unique name of an event within a migrate project. */
   eventName: string;
 }
-export const GetEventControllerEventRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEventsControllerEventRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12245,8 +12760,8 @@ export const GetEventControllerEventRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetEventControllerEventRequest",
-}) as any as S.Schema<GetEventControllerEventRequest>;
+  identifier: "GetEventsControllerEventRequest",
+}) as any as S.Schema<GetEventsControllerEventRequest>;
 
 /** Properties of the error resource. */
 export interface MigrateEventProperties {
@@ -12299,7 +12814,7 @@ export const MigrateEvent = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "MigrateEvent" }) as any as S.Schema<MigrateEvent>;
 
-export interface GetGroupOperationRequest {
+export interface GetGroupsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12309,7 +12824,7 @@ export interface GetGroupOperationRequest {
   /** Group ARM name */
   groupName: string;
 }
-export const GetGroupOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGroupsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12324,10 +12839,10 @@ export const GetGroupOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetGroupOperationRequest",
-}) as any as S.Schema<GetGroupOperationRequest>;
+  identifier: "GetGroupsOperationRequest",
+}) as any as S.Schema<GetGroupsOperationRequest>;
 
-export interface GetGroupOperationResponse {
+export interface GetGroupsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12339,7 +12854,7 @@ export interface GetGroupOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: GroupProperties;
 }
-export const GetGroupOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGroupsOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -12348,8 +12863,8 @@ export const GetGroupOperationResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(GroupProperties),
   }),
 ).annotate({
-  identifier: "GetGroupOperationResponse",
-}) as any as S.Schema<GetGroupOperationResponse>;
+  identifier: "GetGroupsOperationResponse",
+}) as any as S.Schema<GetGroupsOperationResponse>;
 
 export interface GetHypervClusterControllerClusterRequest {
   /** The ID of the target subscription. */
@@ -12405,7 +12920,7 @@ export const GetHypervClusterControllerClusterResponse =
     identifier: "GetHypervClusterControllerClusterResponse",
   }) as any as S.Schema<GetHypervClusterControllerClusterResponse>;
 
-export interface GetHypervCollectorOperationRequest {
+export interface GetHypervCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12415,7 +12930,7 @@ export interface GetHypervCollectorOperationRequest {
   /** Hyper-V collector ARM name */
   hypervCollectorName: string;
 }
-export const GetHypervCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHypervCollectorsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12430,10 +12945,10 @@ export const GetHypervCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHypervCollectorOperationRequest",
-}) as any as S.Schema<GetHypervCollectorOperationRequest>;
+  identifier: "GetHypervCollectorsOperationRequest",
+}) as any as S.Schema<GetHypervCollectorsOperationRequest>;
 
-export interface GetHypervCollectorOperationResponse {
+export interface GetHypervCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12445,17 +12960,18 @@ export interface GetHypervCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgent;
 }
-export const GetHypervCollectorOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CollectorPropertiesBaseWithAgent),
-  }),
+export const GetHypervCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CollectorPropertiesBaseWithAgent),
+    }),
 ).annotate({
-  identifier: "GetHypervCollectorOperationResponse",
-}) as any as S.Schema<GetHypervCollectorOperationResponse>;
+  identifier: "GetHypervCollectorsOperationResponse",
+}) as any as S.Schema<GetHypervCollectorsOperationResponse>;
 
 export interface GetHypervHostControllerRequest {
   /** The ID of the target subscription. */
@@ -12637,7 +13153,7 @@ export const GetHypervJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetHypervJobResponse",
 }) as any as S.Schema<GetHypervJobResponse>;
 
-export interface GetHypervJobControllerRequest {
+export interface GetHypervJobsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12647,7 +13163,7 @@ export interface GetHypervJobControllerRequest {
   /** Jobs name */
   jobName: string;
 }
-export const GetHypervJobControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHypervJobsControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12662,10 +13178,10 @@ export const GetHypervJobControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHypervJobControllerRequest",
-}) as any as S.Schema<GetHypervJobControllerRequest>;
+  identifier: "GetHypervJobsControllerRequest",
+}) as any as S.Schema<GetHypervJobsControllerRequest>;
 
-export interface GetHypervJobControllerResponse {
+export interface GetHypervJobsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -12677,7 +13193,7 @@ export interface GetHypervJobControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: JobProperties;
 }
-export const GetHypervJobControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHypervJobsControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -12686,10 +13202,10 @@ export const GetHypervJobControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(JobProperties),
   }),
 ).annotate({
-  identifier: "GetHypervJobControllerResponse",
-}) as any as S.Schema<GetHypervJobControllerResponse>;
+  identifier: "GetHypervJobsControllerResponse",
+}) as any as S.Schema<GetHypervJobsControllerResponse>;
 
-export interface GetHypervMachineControllerRequest {
+export interface GetHypervMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12699,7 +13215,7 @@ export interface GetHypervMachineControllerRequest {
   /** HypervMachine name */
   machineName: string;
 }
-export const GetHypervMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHypervMachinesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12714,8 +13230,8 @@ export const GetHypervMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHypervMachineControllerRequest",
-}) as any as S.Schema<GetHypervMachineControllerRequest>;
+  identifier: "GetHypervMachinesControllerRequest",
+}) as any as S.Schema<GetHypervMachinesControllerRequest>;
 
 /** Value indicating whether the VM is highly available */
 export type HighAvailability = "Unknown" | "No" | "Yes";
@@ -13617,7 +14133,7 @@ export const HypervMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervMachineProperties",
 }) as any as S.Schema<HypervMachineProperties>;
 
-export interface GetHypervMachineControllerResponse {
+export interface GetHypervMachinesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -13629,7 +14145,7 @@ export interface GetHypervMachineControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: HypervMachineProperties;
 }
-export const GetHypervMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHypervMachinesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -13638,10 +14154,10 @@ export const GetHypervMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(HypervMachineProperties),
   }),
 ).annotate({
-  identifier: "GetHypervMachineControllerResponse",
-}) as any as S.Schema<GetHypervMachineControllerResponse>;
+  identifier: "GetHypervMachinesControllerResponse",
+}) as any as S.Schema<GetHypervMachinesControllerResponse>;
 
-export interface GetHypervOperationStatusControllerHypervOperationStatusRequest {
+export interface GetHypervOperationsStatusControllerHypervOperationsStatusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13651,7 +14167,7 @@ export interface GetHypervOperationStatusControllerHypervOperationStatusRequest 
   /** Operation status Arm Name. */
   operationStatusName: string;
 }
-export const GetHypervOperationStatusControllerHypervOperationStatusRequest =
+export const GetHypervOperationsStatusControllerHypervOperationsStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13668,8 +14184,8 @@ export const GetHypervOperationStatusControllerHypervOperationStatusRequest =
     ),
   ).annotate({
     identifier:
-      "GetHypervOperationStatusControllerHypervOperationStatusRequest",
-  }) as any as S.Schema<GetHypervOperationStatusControllerHypervOperationStatusRequest>;
+      "GetHypervOperationsStatusControllerHypervOperationsStatusRequest",
+  }) as any as S.Schema<GetHypervOperationsStatusControllerHypervOperationsStatusRequest>;
 
 /** Class for operation status errors. */
 export interface OperationStatusError {
@@ -13731,7 +14247,7 @@ export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationStatus",
 }) as any as S.Schema<OperationStatus>;
 
-export interface GetHypervRunAsAccountControllerRequest {
+export interface GetHypervRunAsAccountsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13741,7 +14257,7 @@ export interface GetHypervRunAsAccountControllerRequest {
   /** RunAsAccounts name */
   accountName: string;
 }
-export const GetHypervRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(
+export const GetHypervRunAsAccountsControllerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13757,8 +14273,8 @@ export const GetHypervRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetHypervRunAsAccountControllerRequest",
-}) as any as S.Schema<GetHypervRunAsAccountControllerRequest>;
+  identifier: "GetHypervRunAsAccountsControllerRequest",
+}) as any as S.Schema<GetHypervRunAsAccountsControllerRequest>;
 
 /** Class for run as account properties. */
 export interface RunAsAccountProperties {
@@ -13788,7 +14304,7 @@ export const RunAsAccountProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunAsAccountProperties",
 }) as any as S.Schema<RunAsAccountProperties>;
 
-export interface GetHypervRunAsAccountControllerResponse {
+export interface GetHypervRunAsAccountsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -13800,7 +14316,7 @@ export interface GetHypervRunAsAccountControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: RunAsAccountProperties;
 }
-export const GetHypervRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(
+export const GetHypervRunAsAccountsControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -13810,10 +14326,10 @@ export const GetHypervRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(RunAsAccountProperties),
     }),
 ).annotate({
-  identifier: "GetHypervRunAsAccountControllerResponse",
-}) as any as S.Schema<GetHypervRunAsAccountControllerResponse>;
+  identifier: "GetHypervRunAsAccountsControllerResponse",
+}) as any as S.Schema<GetHypervRunAsAccountsControllerResponse>;
 
-export interface GetHypervSiteControllerRequest {
+export interface GetHypervSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13821,7 +14337,7 @@ export interface GetHypervSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const GetHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHypervSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -13835,19 +14351,19 @@ export const GetHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHypervSiteControllerRequest",
-}) as any as S.Schema<GetHypervSiteControllerRequest>;
+  identifier: "GetHypervSitesControllerRequest",
+}) as any as S.Schema<GetHypervSitesControllerRequest>;
 
 /** Resource tags. */
-export type HypervSitesControllerGetResponseTagsMap = {
+export type GetHypervSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HypervSitesControllerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetHypervSitesControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HypervSitesControllerGetResponseTagsMap>;
+) as any as S.Schema<GetHypervSitesControllerResponseTagsMap>;
 
-export interface GetHypervSiteControllerResponse {
+export interface GetHypervSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -13857,32 +14373,32 @@ export interface GetHypervSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HypervSitesControllerGetResponseTagsMap;
+  tags?: GetHypervSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SiteProperties;
 }
-export const GetHypervSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHypervSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HypervSitesControllerGetResponseTagsMap),
+    tags: S.optional(GetHypervSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
   }),
 ).annotate({
-  identifier: "GetHypervSiteControllerResponse",
-}) as any as S.Schema<GetHypervSiteControllerResponse>;
+  identifier: "GetHypervSitesControllerResponse",
+}) as any as S.Schema<GetHypervSitesControllerResponse>;
 
-export type HypervSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault =
+export type GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault =
   "default";
-export const HypervSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault =
+export const GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault =
   /*@__PURE__*/ S.String;
 
-export interface GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest {
+export interface GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13893,10 +14409,10 @@ export interface GetHypervSoftwareInventoryControllerMachineSoftwareInventoryReq
   machineName: string;
   /** Default value. */
   default:
-    | HypervSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault
+    | GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault
     | (string & {});
 }
-export const GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest =
+export const GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13904,7 +14420,7 @@ export const GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest
       siteName: S.String.pipe(T.Label()),
       machineName: S.String.pipe(T.Label()),
       default:
-        HypervSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault.pipe(
+        GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -13917,8 +14433,8 @@ export const GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest
     ),
   ).annotate({
     identifier:
-      "GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest",
-  }) as any as S.Schema<GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest>;
+      "GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequest",
+  }) as any as S.Schema<GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequest>;
 
 /** Class for machine software inventory properties. */
 export interface MachineSoftwareInventoryProperties {
@@ -13936,7 +14452,7 @@ export const MachineSoftwareInventoryProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineSoftwareInventoryProperties",
 }) as any as S.Schema<MachineSoftwareInventoryProperties>;
 
-export interface GetHypervSoftwareInventoryControllerMachineSoftwareInventoryResponse {
+export interface GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -13948,7 +14464,7 @@ export interface GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRes
   /** The resource-specific properties for this resource. */
   properties?: MachineSoftwareInventoryProperties;
 }
-export const GetHypervSoftwareInventoryControllerMachineSoftwareInventoryResponse =
+export const GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -13959,10 +14475,10 @@ export const GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRespons
     }),
   ).annotate({
     identifier:
-      "GetHypervSoftwareInventoryControllerMachineSoftwareInventoryResponse",
-  }) as any as S.Schema<GetHypervSoftwareInventoryControllerMachineSoftwareInventoryResponse>;
+      "GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryResponse",
+  }) as any as S.Schema<GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryResponse>;
 
-export interface GetIisWebApplicationControllerRequest {
+export interface GetIisWebApplicationsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13974,7 +14490,7 @@ export interface GetIisWebApplicationControllerRequest {
   /** Web application name. */
   webApplicationName: string;
 }
-export const GetIisWebApplicationControllerRequest = /*@__PURE__*/ S.suspend(
+export const GetIisWebApplicationsControllerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13991,8 +14507,8 @@ export const GetIisWebApplicationControllerRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetIisWebApplicationControllerRequest",
-}) as any as S.Schema<GetIisWebApplicationControllerRequest>;
+  identifier: "GetIisWebApplicationsControllerRequest",
+}) as any as S.Schema<GetIisWebApplicationsControllerRequest>;
 
 /** Second level entity for virtual directories. */
 export interface DirectoryPath {
@@ -14334,7 +14850,7 @@ export const IisWebApplicationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IisWebApplicationProperties",
 }) as any as S.Schema<IisWebApplicationProperties>;
 
-export interface GetIisWebApplicationControllerResponse {
+export interface GetIisWebApplicationsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -14346,7 +14862,7 @@ export interface GetIisWebApplicationControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: IisWebApplicationProperties;
 }
-export const GetIisWebApplicationControllerResponse = /*@__PURE__*/ S.suspend(
+export const GetIisWebApplicationsControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -14356,10 +14872,10 @@ export const GetIisWebApplicationControllerResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(IisWebApplicationProperties),
     }),
 ).annotate({
-  identifier: "GetIisWebApplicationControllerResponse",
-}) as any as S.Schema<GetIisWebApplicationControllerResponse>;
+  identifier: "GetIisWebApplicationsControllerResponse",
+}) as any as S.Schema<GetIisWebApplicationsControllerResponse>;
 
-export interface GetIisWebServerControllerRequest {
+export interface GetIisWebServersControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14371,7 +14887,7 @@ export interface GetIisWebServerControllerRequest {
   /** Web server name. */
   webServerName: string;
 }
-export const GetIisWebServerControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIisWebServersControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -14387,8 +14903,8 @@ export const GetIisWebServerControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetIisWebServerControllerRequest",
-}) as any as S.Schema<GetIisWebServerControllerRequest>;
+  identifier: "GetIisWebServersControllerRequest",
+}) as any as S.Schema<GetIisWebServersControllerRequest>;
 
 /** Gets the list of machines. */
 export type IisWebServerPropertiesMachineIdsList = Array<string>;
@@ -14469,7 +14985,7 @@ export const IisWebServerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IisWebServerProperties",
 }) as any as S.Schema<IisWebServerProperties>;
 
-export interface GetIisWebServerControllerResponse {
+export interface GetIisWebServersControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -14481,7 +14997,7 @@ export interface GetIisWebServerControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: IisWebServerProperties;
 }
-export const GetIisWebServerControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetIisWebServersControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -14490,10 +15006,10 @@ export const GetIisWebServerControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(IisWebServerProperties),
   }),
 ).annotate({
-  identifier: "GetIisWebServerControllerResponse",
-}) as any as S.Schema<GetIisWebServerControllerResponse>;
+  identifier: "GetIisWebServersControllerResponse",
+}) as any as S.Schema<GetIisWebServersControllerResponse>;
 
-export interface GetImportCollectorOperationRequest {
+export interface GetImportCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14503,7 +15019,7 @@ export interface GetImportCollectorOperationRequest {
   /** Import collector ARM name */
   importCollectorName: string;
 }
-export const GetImportCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetImportCollectorsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -14518,10 +15034,10 @@ export const GetImportCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetImportCollectorOperationRequest",
-}) as any as S.Schema<GetImportCollectorOperationRequest>;
+  identifier: "GetImportCollectorsOperationRequest",
+}) as any as S.Schema<GetImportCollectorsOperationRequest>;
 
-export interface GetImportCollectorOperationResponse {
+export interface GetImportCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -14533,19 +15049,20 @@ export interface GetImportCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBase;
 }
-export const GetImportCollectorOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CollectorPropertiesBase),
-  }),
+export const GetImportCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CollectorPropertiesBase),
+    }),
 ).annotate({
-  identifier: "GetImportCollectorOperationResponse",
-}) as any as S.Schema<GetImportCollectorOperationResponse>;
+  identifier: "GetImportCollectorsOperationResponse",
+}) as any as S.Schema<GetImportCollectorsOperationResponse>;
 
-export interface GetImportJobControllerRequest {
+export interface GetImportJobsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14555,7 +15072,7 @@ export interface GetImportJobControllerRequest {
   /** Jobs name */
   jobName: string;
 }
-export const GetImportJobControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetImportJobsControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -14570,10 +15087,10 @@ export const GetImportJobControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetImportJobControllerRequest",
-}) as any as S.Schema<GetImportJobControllerRequest>;
+  identifier: "GetImportJobsControllerRequest",
+}) as any as S.Schema<GetImportJobsControllerRequest>;
 
-export interface GetImportJobControllerResponse {
+export interface GetImportJobsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -14585,7 +15102,7 @@ export interface GetImportJobControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: JobProperties;
 }
-export const GetImportJobControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetImportJobsControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -14594,10 +15111,10 @@ export const GetImportJobControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(JobProperties),
   }),
 ).annotate({
-  identifier: "GetImportJobControllerResponse",
-}) as any as S.Schema<GetImportJobControllerResponse>;
+  identifier: "GetImportJobsControllerResponse",
+}) as any as S.Schema<GetImportJobsControllerResponse>;
 
-export interface GetImportJobControllerDeletejobRequest {
+export interface GetImportJobsControllerDeletejobRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14607,7 +15124,7 @@ export interface GetImportJobControllerDeletejobRequest {
   /** Job Arm Name. */
   jobName: string;
 }
-export const GetImportJobControllerDeletejobRequest = /*@__PURE__*/ S.suspend(
+export const GetImportJobsControllerDeletejobRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14623,8 +15140,8 @@ export const GetImportJobControllerDeletejobRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetImportJobControllerDeletejobRequest",
-}) as any as S.Schema<GetImportJobControllerDeletejobRequest>;
+  identifier: "GetImportJobsControllerDeletejobRequest",
+}) as any as S.Schema<GetImportJobsControllerDeletejobRequest>;
 
 /** Cosmos db Imported Machines JobEntity */
 export type DeleteImportedMachinesJobPropertiesJobState =
@@ -14686,7 +15203,7 @@ export const DeleteImportedMachinesJobProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteImportedMachinesJobProperties",
 }) as any as S.Schema<DeleteImportedMachinesJobProperties>;
 
-export interface GetImportJobControllerDeletejobResponse {
+export interface GetImportJobsControllerDeletejobResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -14698,7 +15215,7 @@ export interface GetImportJobControllerDeletejobResponse {
   /** The resource-specific properties for this resource. */
   properties?: DeleteImportedMachinesJobProperties;
 }
-export const GetImportJobControllerDeletejobResponse = /*@__PURE__*/ S.suspend(
+export const GetImportJobsControllerDeletejobResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -14708,10 +15225,10 @@ export const GetImportJobControllerDeletejobResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(DeleteImportedMachinesJobProperties),
     }),
 ).annotate({
-  identifier: "GetImportJobControllerDeletejobResponse",
-}) as any as S.Schema<GetImportJobControllerDeletejobResponse>;
+  identifier: "GetImportJobsControllerDeletejobResponse",
+}) as any as S.Schema<GetImportJobsControllerDeletejobResponse>;
 
-export interface GetImportJobControllerExportjobRequest {
+export interface GetImportJobsControllerExportjobRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14721,7 +15238,7 @@ export interface GetImportJobControllerExportjobRequest {
   /** Job Arm Name. */
   jobName: string;
 }
-export const GetImportJobControllerExportjobRequest = /*@__PURE__*/ S.suspend(
+export const GetImportJobsControllerExportjobRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14737,8 +15254,8 @@ export const GetImportJobControllerExportjobRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetImportJobControllerExportjobRequest",
-}) as any as S.Schema<GetImportJobControllerExportjobRequest>;
+  identifier: "GetImportJobsControllerExportjobRequest",
+}) as any as S.Schema<GetImportJobsControllerExportjobRequest>;
 
 /** Export Imported Machines JobEntity Properties */
 export interface ExportImportedMachinesJobEntityProperties {
@@ -14791,7 +15308,7 @@ export const ExportImportedMachinesJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExportImportedMachinesJob",
 }) as any as S.Schema<ExportImportedMachinesJob>;
 
-export interface GetImportJobControllerImportjobRequest {
+export interface GetImportJobsControllerImportjobRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14801,7 +15318,7 @@ export interface GetImportJobControllerImportjobRequest {
   /** Job Arm Name. */
   jobName: string;
 }
-export const GetImportJobControllerImportjobRequest = /*@__PURE__*/ S.suspend(
+export const GetImportJobsControllerImportjobRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14817,8 +15334,8 @@ export const GetImportJobControllerImportjobRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetImportJobControllerImportjobRequest",
-}) as any as S.Schema<GetImportJobControllerImportjobRequest>;
+  identifier: "GetImportJobsControllerImportjobRequest",
+}) as any as S.Schema<GetImportJobsControllerImportjobRequest>;
 
 /** JobResultValues */
 export type JobResult =
@@ -14918,7 +15435,7 @@ export const ImportMachinesJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportMachinesJob",
 }) as any as S.Schema<ImportMachinesJob>;
 
-export interface GetImportMachineControllerRequest {
+export interface GetImportMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14928,7 +15445,7 @@ export interface GetImportMachineControllerRequest {
   /** Machine name */
   machineName: string;
 }
-export const GetImportMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetImportMachinesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -14943,8 +15460,8 @@ export const GetImportMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetImportMachineControllerRequest",
-}) as any as S.Schema<GetImportMachineControllerRequest>;
+  identifier: "GetImportMachinesControllerRequest",
+}) as any as S.Schema<GetImportMachinesControllerRequest>;
 
 /** IP Addresses. */
 export type ImportMachinePropertiesIpAddressesList = Array<string>;
@@ -15114,7 +15631,7 @@ export const ImportMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportMachineProperties",
 }) as any as S.Schema<ImportMachineProperties>;
 
-export interface GetImportMachineControllerResponse {
+export interface GetImportMachinesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -15126,7 +15643,7 @@ export interface GetImportMachineControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: ImportMachineProperties;
 }
-export const GetImportMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetImportMachinesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -15135,10 +15652,10 @@ export const GetImportMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ImportMachineProperties),
   }),
 ).annotate({
-  identifier: "GetImportMachineControllerResponse",
-}) as any as S.Schema<GetImportMachineControllerResponse>;
+  identifier: "GetImportMachinesControllerResponse",
+}) as any as S.Schema<GetImportMachinesControllerResponse>;
 
-export interface GetImportSiteControllerRequest {
+export interface GetImportSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15146,7 +15663,7 @@ export interface GetImportSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const GetImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetImportSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -15160,19 +15677,19 @@ export const GetImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetImportSiteControllerRequest",
-}) as any as S.Schema<GetImportSiteControllerRequest>;
+  identifier: "GetImportSitesControllerRequest",
+}) as any as S.Schema<GetImportSitesControllerRequest>;
 
 /** Resource tags. */
-export type ImportSitesControllerGetResponseTagsMap = {
+export type GetImportSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ImportSitesControllerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetImportSitesControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImportSitesControllerGetResponseTagsMap>;
+) as any as S.Schema<GetImportSitesControllerResponseTagsMap>;
 
-export interface GetImportSiteControllerResponse {
+export interface GetImportSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -15182,27 +15699,27 @@ export interface GetImportSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ImportSitesControllerGetResponseTagsMap;
+  tags?: GetImportSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ImportSiteProperties;
 }
-export const GetImportSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetImportSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ImportSitesControllerGetResponseTagsMap),
+    tags: S.optional(GetImportSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(ImportSiteProperties),
   }),
 ).annotate({
-  identifier: "GetImportSiteControllerResponse",
-}) as any as S.Schema<GetImportSiteControllerResponse>;
+  identifier: "GetImportSitesControllerResponse",
+}) as any as S.Schema<GetImportSitesControllerResponse>;
 
-export interface GetMachineControllerRequest {
+export interface GetMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15212,7 +15729,7 @@ export interface GetMachineControllerRequest {
   /** Machine name */
   machineName: string;
 }
-export const GetMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMachinesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -15227,8 +15744,8 @@ export const GetMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMachineControllerRequest",
-}) as any as S.Schema<GetMachineControllerRequest>;
+  identifier: "GetMachinesControllerRequest",
+}) as any as S.Schema<GetMachinesControllerRequest>;
 
 /** Second level object returned as part of Machine REST resource. */
 export interface VmwareDisk {
@@ -15517,7 +16034,7 @@ export const VmwareMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareMachineProperties",
 }) as any as S.Schema<VmwareMachineProperties>;
 
-export interface GetMachineControllerResponse {
+export interface GetMachinesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -15529,7 +16046,7 @@ export interface GetMachineControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: VmwareMachineProperties;
 }
-export const GetMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMachinesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -15538,10 +16055,10 @@ export const GetMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(VmwareMachineProperties),
   }),
 ).annotate({
-  identifier: "GetMachineControllerResponse",
-}) as any as S.Schema<GetMachineControllerResponse>;
+  identifier: "GetMachinesControllerResponse",
+}) as any as S.Schema<GetMachinesControllerResponse>;
 
-export interface GetMachineControllerMachineRequest {
+export interface GetMachinesControllerMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15551,7 +16068,7 @@ export interface GetMachineControllerMachineRequest {
   /** Unique name of a machine in Azure migration hub. */
   machineName: string;
 }
-export const GetMachineControllerMachineRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMachinesControllerMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -15566,8 +16083,8 @@ export const GetMachineControllerMachineRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMachineControllerMachineRequest",
-}) as any as S.Schema<GetMachineControllerMachineRequest>;
+  identifier: "GetMachinesControllerMachineRequest",
+}) as any as S.Schema<GetMachinesControllerMachineRequest>;
 
 /** Gets or sets the list of IP addresses of the machine. IP addresses could be IP V4 or IP V6. */
 export type DiscoveryDetailsIpAddressesList = Array<string>;
@@ -15881,7 +16398,7 @@ export const Machine_2 = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Machine_2" }) as any as S.Schema<Machine_2>;
 
-export interface GetMachineOperationRequest {
+export interface GetMachinesOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15891,7 +16408,7 @@ export interface GetMachineOperationRequest {
   /** Assessible Machine ARM name */
   machineName: string;
 }
-export const GetMachineOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMachinesOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -15906,8 +16423,8 @@ export const GetMachineOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMachineOperationRequest",
-}) as any as S.Schema<GetMachineOperationRequest>;
+  identifier: "GetMachinesOperationRequest",
+}) as any as S.Schema<GetMachinesOperationRequest>;
 
 /** Workload summary. */
 export interface WorkloadSummary {
@@ -16078,7 +16595,7 @@ export const MachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineProperties",
 }) as any as S.Schema<MachineProperties>;
 
-export interface GetMachineOperationResponse {
+export interface GetMachinesOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -16090,7 +16607,7 @@ export interface GetMachineOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: MachineProperties;
 }
-export const GetMachineOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMachinesOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -16099,10 +16616,10 @@ export const GetMachineOperationResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(MachineProperties),
   }),
 ).annotate({
-  identifier: "GetMachineOperationResponse",
-}) as any as S.Schema<GetMachineOperationResponse>;
+  identifier: "GetMachinesOperationResponse",
+}) as any as S.Schema<GetMachinesOperationResponse>;
 
-export interface GetMasterSiteControllerRequest {
+export interface GetMasterSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -16110,7 +16627,7 @@ export interface GetMasterSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const GetMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMasterSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -16124,19 +16641,19 @@ export const GetMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMasterSiteControllerRequest",
-}) as any as S.Schema<GetMasterSiteControllerRequest>;
+  identifier: "GetMasterSitesControllerRequest",
+}) as any as S.Schema<GetMasterSitesControllerRequest>;
 
 /** Resource tags. */
-export type MasterSitesControllerGetResponseTagsMap = {
+export type GetMasterSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MasterSitesControllerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetMasterSitesControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MasterSitesControllerGetResponseTagsMap>;
+) as any as S.Schema<GetMasterSitesControllerResponseTagsMap>;
 
-export interface GetMasterSiteControllerResponse {
+export interface GetMasterSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -16146,27 +16663,27 @@ export interface GetMasterSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MasterSitesControllerGetResponseTagsMap;
+  tags?: GetMasterSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MasterSiteProperties;
 }
-export const GetMasterSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMasterSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MasterSitesControllerGetResponseTagsMap),
+    tags: S.optional(GetMasterSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(MasterSiteProperties),
   }),
 ).annotate({
-  identifier: "GetMasterSiteControllerResponse",
-}) as any as S.Schema<GetMasterSiteControllerResponse>;
+  identifier: "GetMasterSitesControllerResponse",
+}) as any as S.Schema<GetMasterSitesControllerResponse>;
 
-export interface GetMasterSiteOperationStatusControllerVmwareOperationStatusRequest {
+export interface GetMasterSitesOperationsStatusControllerVmwareOperationStatusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -16176,7 +16693,7 @@ export interface GetMasterSiteOperationStatusControllerVmwareOperationStatusRequ
   /** Operation status Arm Name. */
   operationStatusName: string;
 }
-export const GetMasterSiteOperationStatusControllerVmwareOperationStatusRequest =
+export const GetMasterSitesOperationsStatusControllerVmwareOperationStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -16193,36 +16710,10 @@ export const GetMasterSiteOperationStatusControllerVmwareOperationStatusRequest 
     ),
   ).annotate({
     identifier:
-      "GetMasterSiteOperationStatusControllerVmwareOperationStatusRequest",
-  }) as any as S.Schema<GetMasterSiteOperationStatusControllerVmwareOperationStatusRequest>;
+      "GetMasterSitesOperationsStatusControllerVmwareOperationStatusRequest",
+  }) as any as S.Schema<GetMasterSitesOperationsStatusControllerVmwareOperationStatusRequest>;
 
-export interface GetMigrateProjectControllerMigrateProjectRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-}
-export const GetMigrateProjectControllerMigrateProjectRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetMigrateProjectControllerMigrateProjectRequest",
-  }) as any as S.Schema<GetMigrateProjectControllerMigrateProjectRequest>;
-
-export type MigrateProjectPropertiesRegisteredToolsItem =
+export type GetMigrateProjectsControllerToolRegistrationDetailsRequestTool =
   | "ServerDiscovery"
   | "ServerAssessment"
   | "ServerMigration"
@@ -16248,79 +16739,150 @@ export type MigrateProjectPropertiesRegisteredToolsItem =
   | "Modernization"
   | "ServerMigration_DataReplication"
   | "Unknown";
-export const MigrateProjectPropertiesRegisteredToolsItem =
+export const GetMigrateProjectsControllerToolRegistrationDetailsRequestTool =
   /*@__PURE__*/ S.String;
 
-/** Register tools inside project. */
-export type MigrateProjectPropertiesRegisteredToolsList =
-  Array<MigrateProjectPropertiesRegisteredToolsItem>;
-export const MigrateProjectPropertiesRegisteredToolsList =
-  /*@__PURE__*/ S.Array(
-    MigrateProjectPropertiesRegisteredToolsItem,
-  ) as any as S.Schema<MigrateProjectPropertiesRegisteredToolsList>;
-
-/** Refresh summary state. */
-export type ProjectSummaryRefreshSummaryState =
-  | "Started"
-  | "InProgress"
-  | "Completed"
-  | "Failed";
-export const ProjectSummaryRefreshSummaryState = /*@__PURE__*/ S.String;
-
-/** Extended summary. */
-export type ProjectSummaryExtendedSummaryMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectSummaryExtendedSummaryMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectSummaryExtendedSummaryMap>;
-
-/** Project summary. */
-export interface ProjectSummary {
-  /** Instance type. */
-  instanceType?: string;
-  /** Refresh summary state. */
-  refreshSummaryState?: ProjectSummaryRefreshSummaryState;
-  /** Last summary refresh time. */
-  lastSummaryRefreshedTime?: string;
-  /** Extended summary. */
-  extendedSummary?: ProjectSummaryExtendedSummaryMap;
+export interface AadAppDetails {
+  tenantId?: string;
+  applicationId?: string;
 }
-export const ProjectSummary = /*@__PURE__*/ S.suspend(() =>
+export const AadAppDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    instanceType: S.optional(S.String),
-    refreshSummaryState: S.optional(ProjectSummaryRefreshSummaryState),
-    lastSummaryRefreshedTime: S.optional(S.String),
-    extendedSummary: S.optional(ProjectSummaryExtendedSummaryMap),
+    tenantId: S.optional(S.String),
+    applicationId: S.optional(S.String),
   }),
-).annotate({ identifier: "ProjectSummary" }) as any as S.Schema<ProjectSummary>;
+).annotate({ identifier: "AadAppDetails" }) as any as S.Schema<AadAppDetails>;
 
-/** Project summary. */
-export type MigrateProjectPropertiesSummaryMap = {
-  [key: string]: ProjectSummary | undefined;
-};
-export const MigrateProjectPropertiesSummaryMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ProjectSummary,
-) as any as S.Schema<MigrateProjectPropertiesSummaryMap>;
+export interface GetMigrateProjectsControllerToolRegistrationDetailsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+  tool?:
+    | GetMigrateProjectsControllerToolRegistrationDetailsRequestTool
+    | (string & {});
+  applicationDetails?: AadAppDetails;
+}
+export const GetMigrateProjectsControllerToolRegistrationDetailsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+      tool: S.optional(
+        GetMigrateProjectsControllerToolRegistrationDetailsRequestTool,
+      ),
+      applicationDetails: S.optional(AadAppDetails),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/registrationDetails",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetMigrateProjectsControllerToolRegistrationDetailsRequest",
+  }) as any as S.Schema<GetMigrateProjectsControllerToolRegistrationDetailsRequest>;
 
-/** Refresh summary state. */
-export type MigrateProjectPropertiesRefreshSummaryState =
-  | "Started"
-  | "InProgress"
-  | "Completed"
-  | "Failed";
-export const MigrateProjectPropertiesRefreshSummaryState =
-  /*@__PURE__*/ S.String;
+export interface RegistrationDetailsResponse {
+  serviceEndpoint?: string;
+  oneTimeKey?: string;
+}
+export const RegistrationDetailsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceEndpoint: S.optional(S.String),
+    oneTimeKey: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RegistrationDetailsResponse",
+}) as any as S.Schema<RegistrationDetailsResponse>;
 
-/** Gets or sets the state of public network access. */
-export type MigrateProjectPropertiesPublicNetworkAccess =
-  | "NotSpecified"
-  | "Enabled"
-  | "Disabled";
-export const MigrateProjectPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export interface GetPrivateEndpointConnectionControllerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Private link resource name. */
+  peConnectionName: string;
+}
+export const GetPrivateEndpointConnectionControllerRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      peConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/privateEndpointConnections/{peConnectionName}",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPrivateEndpointConnectionControllerRequest",
+  }) as any as S.Schema<GetPrivateEndpointConnectionControllerRequest>;
+
+export interface GetPrivateEndpointConnectionControllerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateEndpointConnectionPropertiesV2;
+}
+export const GetPrivateEndpointConnectionControllerResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionPropertiesV2),
+    }),
+  ).annotate({
+    identifier: "GetPrivateEndpointConnectionControllerResponse",
+  }) as any as S.Schema<GetPrivateEndpointConnectionControllerResponse>;
+
+export interface GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+  /** Private endpoint connection name. */
+  peConnectionName: string;
+}
+export const GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+      peConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnections/{peConnectionName}",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest>;
 
 /** Provisioning state. */
 export type PrivateEndpointConnectionPropertiesProvisioningState =
@@ -16431,298 +16993,6 @@ export const PrivateEndpointConnection_2 = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnection_2",
 }) as any as S.Schema<PrivateEndpointConnection_2>;
 
-/** Gets the private endpoint connections. */
-export type MigrateProjectPropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection_2>;
-export const MigrateProjectPropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection_2,
-  ) as any as S.Schema<MigrateProjectPropertiesPrivateEndpointConnectionsList>;
-
-/** Properties of a migrate project. */
-export interface MigrateProjectProperties {
-  /** Register tools inside project. */
-  registeredTools?: MigrateProjectPropertiesRegisteredToolsList;
-  /** Service endpoint. */
-  serviceEndpoint?: string;
-  /** Project summary. */
-  summary?: MigrateProjectPropertiesSummaryMap;
-  /** Last summary refresh time. */
-  lastSummaryRefreshedTime?: string;
-  /** Refresh summary state. */
-  refreshSummaryState?: MigrateProjectPropertiesRefreshSummaryState;
-  /** Utility storage account id. */
-  utilityStorageAccountId?: string;
-  /** Gets or sets the state of public network access. */
-  publicNetworkAccess?: MigrateProjectPropertiesPublicNetworkAccess;
-  /** Gets the private endpoint connections. */
-  privateEndpointConnections?: MigrateProjectPropertiesPrivateEndpointConnectionsList;
-}
-export const MigrateProjectProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    registeredTools: S.optional(MigrateProjectPropertiesRegisteredToolsList),
-    serviceEndpoint: S.optional(S.String),
-    summary: S.optional(MigrateProjectPropertiesSummaryMap),
-    lastSummaryRefreshedTime: S.optional(S.String),
-    refreshSummaryState: S.optional(
-      MigrateProjectPropertiesRefreshSummaryState,
-    ),
-    utilityStorageAccountId: S.optional(S.String),
-    publicNetworkAccess: S.optional(
-      MigrateProjectPropertiesPublicNetworkAccess,
-    ),
-    privateEndpointConnections: S.optional(
-      MigrateProjectPropertiesPrivateEndpointConnectionsList,
-    ),
-  }),
-).annotate({
-  identifier: "MigrateProjectProperties",
-}) as any as S.Schema<MigrateProjectProperties>;
-
-/** The type of identity that created the resource. */
-export type MigrateProjectSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const MigrateProjectSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type MigrateProjectSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const MigrateProjectSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface MigrateProjectSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: MigrateProjectSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: MigrateProjectSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const MigrateProjectSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(MigrateProjectSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(MigrateProjectSystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MigrateProjectSystemData",
-}) as any as S.Schema<MigrateProjectSystemData>;
-
-/** Migrate project. */
-export interface MigrateProject {
-  properties?: MigrateProjectProperties;
-  /** For optimistic concurrency control. */
-  eTag?: string;
-  /** Azure location in which project is created. */
-  location?: string;
-  /** Path reference to this project /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{projectName} */
-  id?: string;
-  /** Name of the project. */
-  name?: string;
-  /** Type of the object = [Microsoft.Migrate/migrateProjects]. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: MigrateProjectSystemData;
-}
-export const MigrateProject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(MigrateProjectProperties),
-    eTag: S.optional(S.String),
-    location: S.optional(S.String),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(MigrateProjectSystemData),
-  }),
-).annotate({ identifier: "MigrateProject" }) as any as S.Schema<MigrateProject>;
-
-export type MigrateProjectsControllerGetToolRegistrationDetailsRequestTool =
-  | "ServerDiscovery"
-  | "ServerAssessment"
-  | "ServerMigration"
-  | "Cloudamize"
-  | "Turbonomic"
-  | "Zerto"
-  | "CorentTech"
-  | "ServerAssessmentV1"
-  | "ServerMigration_Replication"
-  | "Carbonite"
-  | "DataMigrationAssistant"
-  | "DatabaseMigrationService"
-  | "Device42"
-  | "JetStream"
-  | "RackWare"
-  | "UnifyCloud"
-  | "Flexera"
-  | "ServerDiscovery_Import"
-  | "Lakeside"
-  | "AppServiceMigrationAssistant"
-  | "Movere"
-  | "CloudSphere"
-  | "Modernization"
-  | "ServerMigration_DataReplication"
-  | "Unknown";
-export const MigrateProjectsControllerGetToolRegistrationDetailsRequestTool =
-  /*@__PURE__*/ S.String;
-
-export interface AadAppDetails {
-  tenantId?: string;
-  applicationId?: string;
-}
-export const AadAppDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.optional(S.String),
-    applicationId: S.optional(S.String),
-  }),
-).annotate({ identifier: "AadAppDetails" }) as any as S.Schema<AadAppDetails>;
-
-export interface GetMigrateProjectControllerToolRegistrationDetailRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-  tool?:
-    | MigrateProjectsControllerGetToolRegistrationDetailsRequestTool
-    | (string & {});
-  applicationDetails?: AadAppDetails;
-}
-export const GetMigrateProjectControllerToolRegistrationDetailRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-      tool: S.optional(
-        MigrateProjectsControllerGetToolRegistrationDetailsRequestTool,
-      ),
-      applicationDetails: S.optional(AadAppDetails),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/registrationDetails",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetMigrateProjectControllerToolRegistrationDetailRequest",
-  }) as any as S.Schema<GetMigrateProjectControllerToolRegistrationDetailRequest>;
-
-export interface RegistrationDetailsResponse {
-  serviceEndpoint?: string;
-  oneTimeKey?: string;
-}
-export const RegistrationDetailsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceEndpoint: S.optional(S.String),
-    oneTimeKey: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RegistrationDetailsResponse",
-}) as any as S.Schema<RegistrationDetailsResponse>;
-
-export interface GetPrivateEndpointConnectionControllerRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Private link resource name. */
-  peConnectionName: string;
-}
-export const GetPrivateEndpointConnectionControllerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      peConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/privateEndpointConnections/{peConnectionName}",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetPrivateEndpointConnectionControllerRequest",
-  }) as any as S.Schema<GetPrivateEndpointConnectionControllerRequest>;
-
-export interface GetPrivateEndpointConnectionControllerResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateEndpointConnectionPropertiesV2;
-}
-export const GetPrivateEndpointConnectionControllerResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionPropertiesV2),
-    }),
-  ).annotate({
-    identifier: "GetPrivateEndpointConnectionControllerResponse",
-  }) as any as S.Schema<GetPrivateEndpointConnectionControllerResponse>;
-
-export interface GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-  /** Private endpoint connection name. */
-  peConnectionName: string;
-}
-export const GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-      peConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnections/{peConnectionName}",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest",
-  }) as any as S.Schema<GetPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest>;
-
 export interface GetPrivateEndpointConnectionOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -16753,17 +17023,17 @@ export const GetPrivateEndpointConnectionOperationRequest =
   }) as any as S.Schema<GetPrivateEndpointConnectionOperationRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionOperationsGetResponsePropertiesGroupIdsList =
+export type GetPrivateEndpointConnectionOperationResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionOperationsGetResponsePropertiesGroupIdsList =
+export const GetPrivateEndpointConnectionOperationResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionOperationsGetResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<GetPrivateEndpointConnectionOperationResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionOperationsGetResponseProperties {
+export interface GetPrivateEndpointConnectionOperationResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionOperationsGetResponsePropertiesGroupIdsList;
+  groupIds?: GetPrivateEndpointConnectionOperationResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -16771,19 +17041,19 @@ export interface PrivateEndpointConnectionOperationsGetResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionOperationsGetResponseProperties =
+export const GetPrivateEndpointConnectionOperationResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionOperationsGetResponsePropertiesGroupIdsList,
+        GetPrivateEndpointConnectionOperationResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionOperationsGetResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionOperationsGetResponseProperties>;
+    identifier: "GetPrivateEndpointConnectionOperationResponseProperties",
+  }) as any as S.Schema<GetPrivateEndpointConnectionOperationResponseProperties>;
 
 export interface GetPrivateEndpointConnectionOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -16795,7 +17065,7 @@ export interface GetPrivateEndpointConnectionOperationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionOperationsGetResponseProperties;
+  properties?: GetPrivateEndpointConnectionOperationResponseProperties;
 }
 export const GetPrivateEndpointConnectionOperationResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -16805,7 +17075,7 @@ export const GetPrivateEndpointConnectionOperationResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        PrivateEndpointConnectionOperationsGetResponseProperties,
+        GetPrivateEndpointConnectionOperationResponseProperties,
       ),
     }),
   ).annotate({
@@ -16841,102 +17111,7 @@ export const GetPrivateEndpointConnectionProxyControllerRequest =
     identifier: "GetPrivateEndpointConnectionProxyControllerRequest",
   }) as any as S.Schema<GetPrivateEndpointConnectionProxyControllerRequest>;
 
-export interface GetPrivateLinkResourceControllerRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Private link resource name. */
-  privateLinkResourceName: string;
-}
-export const GetPrivateLinkResourceControllerRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      privateLinkResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/privateLinkResources/{privateLinkResourceName}",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-).annotate({
-  identifier: "GetPrivateLinkResourceControllerRequest",
-}) as any as S.Schema<GetPrivateLinkResourceControllerRequest>;
-
-/** required members */
-export type PrivateLinkResourcePropertiesRequiredMembersList_3 = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList_3 =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList_3>;
-
-/** required zone names */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList_3 =
-  Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList_3 =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList_3>;
-
-/** private link resource properties model */
-export interface PrivateLinkResourceProperties_3 {
-  /** required members */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList_3;
-  /** required zone names */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList_3;
-  /** group id */
-  groupId?: string;
-  /** provisioning state enum */
-  provisioningState?: ProvisioningState_2;
-}
-export const PrivateLinkResourceProperties_3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList_3,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList_3,
-    ),
-    groupId: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState_2),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties_3",
-}) as any as S.Schema<PrivateLinkResourceProperties_3>;
-
-export interface GetPrivateLinkResourceControllerResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateLinkResourceProperties_3;
-}
-export const GetPrivateLinkResourceControllerResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateLinkResourceProperties_3),
-    }),
-).annotate({
-  identifier: "GetPrivateLinkResourceControllerResponse",
-}) as any as S.Schema<GetPrivateLinkResourceControllerResponse>;
-
-export interface GetPrivateLinkResourceControllerPrivateLinkResourceRequest {
+export interface GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -16944,7 +17119,7 @@ export interface GetPrivateLinkResourceControllerPrivateLinkResourceRequest {
   /** Name of the Azure Migrate project. */
   migrateProjectName: string;
 }
-export const GetPrivateLinkResourceControllerPrivateLinkResourceRequest =
+export const GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -16953,7 +17128,61 @@ export const GetPrivateLinkResourceControllerPrivateLinkResourceRequest =
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateLinkResources",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsRequest",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsRequest>;
+
+/** Gets the list of machines. */
+export type PrivateEndpointConnectionCollectionValueList =
+  Array<PrivateEndpointConnection_2>;
+export const PrivateEndpointConnectionCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection_2,
+  ) as any as S.Schema<PrivateEndpointConnectionCollectionValueList>;
+
+/** Collection of PrivateLink resources. */
+export interface PrivateEndpointConnectionCollection {
+  /** Gets the list of machines. */
+  value?: PrivateEndpointConnectionCollectionValueList;
+  /** Gets the value of next link. */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateEndpointConnectionCollectionValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionCollection",
+}) as any as S.Schema<PrivateEndpointConnectionCollection>;
+
+export interface GetPrivateLinkResourceControllerPrivateLinkResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+  /** Private Link resource name. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceControllerPrivateLinkResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+      privateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateLinkResources/{privateLinkResourceName}",
         code: 200,
         apiVersion: "2023-01-01",
       }),
@@ -17022,6 +17251,32 @@ export const PrivateLinkResource_2 = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResource_2",
 }) as any as S.Schema<PrivateLinkResource_2>;
 
+export interface GetPrivateLinkResourceControllerPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+}
+export const GetPrivateLinkResourceControllerPrivateLinkResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPrivateLinkResourceControllerPrivateLinkResourcesRequest",
+  }) as any as S.Schema<GetPrivateLinkResourceControllerPrivateLinkResourcesRequest>;
+
 /** List of private links. */
 export type PrivateLinkResourceCollectionValueList =
   Array<PrivateLinkResource_2>;
@@ -17075,44 +17330,44 @@ export const GetPrivateLinkResourceOperationRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetPrivateLinkResourceOperationRequest>;
 
 /** The private link resource required member names. */
-export type PrivateLinkResourceOperationsGetResponsePropertiesRequiredMembersList =
+export type GetPrivateLinkResourceOperationResponsePropertiesRequiredMembersList =
   Array<string>;
-export const PrivateLinkResourceOperationsGetResponsePropertiesRequiredMembersList =
+export const GetPrivateLinkResourceOperationResponsePropertiesRequiredMembersList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateLinkResourceOperationsGetResponsePropertiesRequiredMembersList>;
+  ) as any as S.Schema<GetPrivateLinkResourceOperationResponsePropertiesRequiredMembersList>;
 
 /** The private link resource private link DNS zone name. */
-export type PrivateLinkResourceOperationsGetResponsePropertiesRequiredZoneNamesList =
+export type GetPrivateLinkResourceOperationResponsePropertiesRequiredZoneNamesList =
   Array<string>;
-export const PrivateLinkResourceOperationsGetResponsePropertiesRequiredZoneNamesList =
+export const GetPrivateLinkResourceOperationResponsePropertiesRequiredZoneNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateLinkResourceOperationsGetResponsePropertiesRequiredZoneNamesList>;
+  ) as any as S.Schema<GetPrivateLinkResourceOperationResponsePropertiesRequiredZoneNamesList>;
 
 /** Properties of a private link resource. */
-export interface PrivateLinkResourceOperationsGetResponseProperties {
+export interface GetPrivateLinkResourceOperationResponseProperties {
   /** The private link resource group id. */
   groupId?: string;
   /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourceOperationsGetResponsePropertiesRequiredMembersList;
+  requiredMembers?: GetPrivateLinkResourceOperationResponsePropertiesRequiredMembersList;
   /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourceOperationsGetResponsePropertiesRequiredZoneNamesList;
+  requiredZoneNames?: GetPrivateLinkResourceOperationResponsePropertiesRequiredZoneNamesList;
 }
-export const PrivateLinkResourceOperationsGetResponseProperties =
+export const GetPrivateLinkResourceOperationResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupId: S.optional(S.String),
       requiredMembers: S.optional(
-        PrivateLinkResourceOperationsGetResponsePropertiesRequiredMembersList,
+        GetPrivateLinkResourceOperationResponsePropertiesRequiredMembersList,
       ),
       requiredZoneNames: S.optional(
-        PrivateLinkResourceOperationsGetResponsePropertiesRequiredZoneNamesList,
+        GetPrivateLinkResourceOperationResponsePropertiesRequiredZoneNamesList,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkResourceOperationsGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkResourceOperationsGetResponseProperties>;
+    identifier: "GetPrivateLinkResourceOperationResponseProperties",
+  }) as any as S.Schema<GetPrivateLinkResourceOperationResponseProperties>;
 
 export interface GetPrivateLinkResourceOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -17124,7 +17379,7 @@ export interface GetPrivateLinkResourceOperationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of a private link resource. */
-  properties?: PrivateLinkResourceOperationsGetResponseProperties;
+  properties?: GetPrivateLinkResourceOperationResponseProperties;
 }
 export const GetPrivateLinkResourceOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -17133,15 +17388,108 @@ export const GetPrivateLinkResourceOperationResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      properties: S.optional(
-        PrivateLinkResourceOperationsGetResponseProperties,
-      ),
+      properties: S.optional(GetPrivateLinkResourceOperationResponseProperties),
     }),
 ).annotate({
   identifier: "GetPrivateLinkResourceOperationResponse",
 }) as any as S.Schema<GetPrivateLinkResourceOperationResponse>;
 
-export interface GetRunAsAccountControllerRequest {
+export interface GetPrivateLinkResourcesControllerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Private link resource name. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourcesControllerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      privateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/privateLinkResources/{privateLinkResourceName}",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+).annotate({
+  identifier: "GetPrivateLinkResourcesControllerRequest",
+}) as any as S.Schema<GetPrivateLinkResourcesControllerRequest>;
+
+/** required members */
+export type PrivateLinkResourcePropertiesRequiredMembersList_3 = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList_3 =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList_3>;
+
+/** required zone names */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList_3 =
+  Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList_3 =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList_3>;
+
+/** private link resource properties model */
+export interface PrivateLinkResourceProperties_3 {
+  /** required members */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList_3;
+  /** required zone names */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList_3;
+  /** group id */
+  groupId?: string;
+  /** provisioning state enum */
+  provisioningState?: ProvisioningState_2;
+}
+export const PrivateLinkResourceProperties_3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList_3,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList_3,
+    ),
+    groupId: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState_2),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties_3",
+}) as any as S.Schema<PrivateLinkResourceProperties_3>;
+
+export interface GetPrivateLinkResourcesControllerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateLinkResourceProperties_3;
+}
+export const GetPrivateLinkResourcesControllerResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateLinkResourceProperties_3),
+    }),
+  ).annotate({
+    identifier: "GetPrivateLinkResourcesControllerResponse",
+  }) as any as S.Schema<GetPrivateLinkResourcesControllerResponse>;
+
+export interface GetRunAsAccountsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17151,7 +17499,7 @@ export interface GetRunAsAccountControllerRequest {
   /** RunAsAccounts name */
   accountName: string;
 }
-export const GetRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRunAsAccountsControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17166,10 +17514,10 @@ export const GetRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetRunAsAccountControllerRequest",
-}) as any as S.Schema<GetRunAsAccountControllerRequest>;
+  identifier: "GetRunAsAccountsControllerRequest",
+}) as any as S.Schema<GetRunAsAccountsControllerRequest>;
 
-export interface GetRunAsAccountControllerResponse {
+export interface GetRunAsAccountsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -17181,7 +17529,7 @@ export interface GetRunAsAccountControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: RunAsAccountProperties;
 }
-export const GetRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRunAsAccountsControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -17190,10 +17538,10 @@ export const GetRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(RunAsAccountProperties),
   }),
 ).annotate({
-  identifier: "GetRunAsAccountControllerResponse",
-}) as any as S.Schema<GetRunAsAccountControllerResponse>;
+  identifier: "GetRunAsAccountsControllerResponse",
+}) as any as S.Schema<GetRunAsAccountsControllerResponse>;
 
-export interface GetServerCollectorOperationRequest {
+export interface GetServerCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17203,7 +17551,7 @@ export interface GetServerCollectorOperationRequest {
   /** Physical server collector ARM name */
   serverCollectorName: string;
 }
-export const GetServerCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServerCollectorsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17218,10 +17566,10 @@ export const GetServerCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetServerCollectorOperationRequest",
-}) as any as S.Schema<GetServerCollectorOperationRequest>;
+  identifier: "GetServerCollectorsOperationRequest",
+}) as any as S.Schema<GetServerCollectorsOperationRequest>;
 
-export interface GetServerCollectorOperationResponse {
+export interface GetServerCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -17233,19 +17581,156 @@ export interface GetServerCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgent;
 }
-export const GetServerCollectorOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetServerCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CollectorPropertiesBaseWithAgent),
+    }),
+).annotate({
+  identifier: "GetServerCollectorsOperationResponse",
+}) as any as S.Schema<GetServerCollectorsOperationResponse>;
+
+export interface GetServerJobsControllerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Jobs name */
+  jobName: string;
+}
+export const GetServerJobsControllerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/jobs/{jobName}",
+      code: 200,
+      apiVersion: "2023-06-06",
+    }),
+  ),
+).annotate({
+  identifier: "GetServerJobsControllerRequest",
+}) as any as S.Schema<GetServerJobsControllerRequest>;
+
+export interface GetServerJobsControllerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: JobProperties;
+}
+export const GetServerJobsControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(CollectorPropertiesBaseWithAgent),
+    properties: S.optional(JobProperties),
   }),
 ).annotate({
-  identifier: "GetServerCollectorOperationResponse",
-}) as any as S.Schema<GetServerCollectorOperationResponse>;
+  identifier: "GetServerJobsControllerResponse",
+}) as any as S.Schema<GetServerJobsControllerResponse>;
 
-export interface GetServerControllerMachineRequest {
+export interface GetServerOperationsStatusControllerServerSiteOperationsStatusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Operation status Arm Name. */
+  operationStatusName: string;
+}
+export const GetServerOperationsStatusControllerServerSiteOperationsStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      operationStatusName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/operationsStatus/{operationStatusName}",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "GetServerOperationsStatusControllerServerSiteOperationsStatusRequest",
+  }) as any as S.Schema<GetServerOperationsStatusControllerServerSiteOperationsStatusRequest>;
+
+export interface GetServerRunAsAccountsControllerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** RunAsAccounts name */
+  accountName: string;
+}
+export const GetServerRunAsAccountsControllerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/runAsAccounts/{accountName}",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+).annotate({
+  identifier: "GetServerRunAsAccountsControllerRequest",
+}) as any as S.Schema<GetServerRunAsAccountsControllerRequest>;
+
+export interface GetServerRunAsAccountsControllerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: RunAsAccountProperties;
+}
+export const GetServerRunAsAccountsControllerResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RunAsAccountProperties),
+    }),
+).annotate({
+  identifier: "GetServerRunAsAccountsControllerResponse",
+}) as any as S.Schema<GetServerRunAsAccountsControllerResponse>;
+
+export interface GetServersControllerMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17255,7 +17740,7 @@ export interface GetServerControllerMachineRequest {
   /** A server machine name */
   machineName: string;
 }
-export const GetServerControllerMachineRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServersControllerMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17270,8 +17755,8 @@ export const GetServerControllerMachineRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetServerControllerMachineRequest",
-}) as any as S.Schema<GetServerControllerMachineRequest>;
+  identifier: "GetServersControllerMachineRequest",
+}) as any as S.Schema<GetServersControllerMachineRequest>;
 
 /** Gets IP addresses for the machine. */
 export type ServerNetworkAdapterIpAddressListList = Array<string>;
@@ -17510,7 +17995,7 @@ export const ServerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerProperties",
 }) as any as S.Schema<ServerProperties>;
 
-export interface GetServerControllerMachineResponse {
+export interface GetServersControllerMachineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -17522,7 +18007,7 @@ export interface GetServerControllerMachineResponse {
   /** The resource-specific properties for this resource. */
   properties?: ServerProperties;
 }
-export const GetServerControllerMachineResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetServersControllerMachineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -17531,146 +18016,10 @@ export const GetServerControllerMachineResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ServerProperties),
   }),
 ).annotate({
-  identifier: "GetServerControllerMachineResponse",
-}) as any as S.Schema<GetServerControllerMachineResponse>;
+  identifier: "GetServersControllerMachineResponse",
+}) as any as S.Schema<GetServersControllerMachineResponse>;
 
-export interface GetServerJobControllerRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Jobs name */
-  jobName: string;
-}
-export const GetServerJobControllerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/jobs/{jobName}",
-      code: 200,
-      apiVersion: "2023-06-06",
-    }),
-  ),
-).annotate({
-  identifier: "GetServerJobControllerRequest",
-}) as any as S.Schema<GetServerJobControllerRequest>;
-
-export interface GetServerJobControllerResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: JobProperties;
-}
-export const GetServerJobControllerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(JobProperties),
-  }),
-).annotate({
-  identifier: "GetServerJobControllerResponse",
-}) as any as S.Schema<GetServerJobControllerResponse>;
-
-export interface GetServerOperationStatusControllerServerSiteOperationStatusRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Operation status Arm Name. */
-  operationStatusName: string;
-}
-export const GetServerOperationStatusControllerServerSiteOperationStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      operationStatusName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/operationsStatus/{operationStatusName}",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GetServerOperationStatusControllerServerSiteOperationStatusRequest",
-  }) as any as S.Schema<GetServerOperationStatusControllerServerSiteOperationStatusRequest>;
-
-export interface GetServerRunAsAccountControllerRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** RunAsAccounts name */
-  accountName: string;
-}
-export const GetServerRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/runAsAccounts/{accountName}",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-).annotate({
-  identifier: "GetServerRunAsAccountControllerRequest",
-}) as any as S.Schema<GetServerRunAsAccountControllerRequest>;
-
-export interface GetServerRunAsAccountControllerResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: RunAsAccountProperties;
-}
-export const GetServerRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RunAsAccountProperties),
-    }),
-).annotate({
-  identifier: "GetServerRunAsAccountControllerResponse",
-}) as any as S.Schema<GetServerRunAsAccountControllerResponse>;
-
-export interface GetServerSiteControllerRequest {
+export interface GetServerSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17678,7 +18027,7 @@ export interface GetServerSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const GetServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServerSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17692,19 +18041,19 @@ export const GetServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetServerSiteControllerRequest",
-}) as any as S.Schema<GetServerSiteControllerRequest>;
+  identifier: "GetServerSitesControllerRequest",
+}) as any as S.Schema<GetServerSitesControllerRequest>;
 
 /** Resource tags. */
-export type ServerSitesControllerGetResponseTagsMap = {
+export type GetServerSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerSitesControllerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetServerSitesControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServerSitesControllerGetResponseTagsMap>;
+) as any as S.Schema<GetServerSitesControllerResponseTagsMap>;
 
-export interface GetServerSiteControllerResponse {
+export interface GetServerSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -17714,32 +18063,32 @@ export interface GetServerSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ServerSitesControllerGetResponseTagsMap;
+  tags?: GetServerSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SiteProperties;
 }
-export const GetServerSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetServerSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ServerSitesControllerGetResponseTagsMap),
+    tags: S.optional(GetServerSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
   }),
 ).annotate({
-  identifier: "GetServerSiteControllerResponse",
-}) as any as S.Schema<GetServerSiteControllerResponse>;
+  identifier: "GetServerSitesControllerResponse",
+}) as any as S.Schema<GetServerSitesControllerResponse>;
 
-export type ServerSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault =
+export type GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault =
   "default";
-export const ServerSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault =
+export const GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault =
   /*@__PURE__*/ S.String;
 
-export interface GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest {
+export interface GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17750,10 +18099,10 @@ export interface GetServerSoftwareInventoryControllerMachineSoftwareInventoryReq
   machineName: string;
   /** Default value. */
   default:
-    | ServerSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault
+    | GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault
     | (string & {});
 }
-export const GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest =
+export const GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -17761,7 +18110,7 @@ export const GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest
       siteName: S.String.pipe(T.Label()),
       machineName: S.String.pipe(T.Label()),
       default:
-        ServerSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault.pipe(
+        GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -17774,10 +18123,10 @@ export const GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest
     ),
   ).annotate({
     identifier:
-      "GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest",
-  }) as any as S.Schema<GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest>;
+      "GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequest",
+  }) as any as S.Schema<GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequest>;
 
-export interface GetServerSoftwareInventoryControllerMachineSoftwareInventoryResponse {
+export interface GetServerSoftwareInventoriesControllerMachineSoftwareInventoryResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -17789,7 +18138,7 @@ export interface GetServerSoftwareInventoryControllerMachineSoftwareInventoryRes
   /** The resource-specific properties for this resource. */
   properties?: MachineSoftwareInventoryProperties;
 }
-export const GetServerSoftwareInventoryControllerMachineSoftwareInventoryResponse =
+export const GetServerSoftwareInventoriesControllerMachineSoftwareInventoryResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -17800,10 +18149,10 @@ export const GetServerSoftwareInventoryControllerMachineSoftwareInventoryRespons
     }),
   ).annotate({
     identifier:
-      "GetServerSoftwareInventoryControllerMachineSoftwareInventoryResponse",
-  }) as any as S.Schema<GetServerSoftwareInventoryControllerMachineSoftwareInventoryResponse>;
+      "GetServerSoftwareInventoriesControllerMachineSoftwareInventoryResponse",
+  }) as any as S.Schema<GetServerSoftwareInventoriesControllerMachineSoftwareInventoryResponse>;
 
-export interface GetSiteControllerRequest {
+export interface GetSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17811,7 +18160,7 @@ export interface GetSiteControllerRequest {
   /** Site name */
   siteName: string;
 }
-export const GetSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17825,19 +18174,19 @@ export const GetSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSiteControllerRequest",
-}) as any as S.Schema<GetSiteControllerRequest>;
+  identifier: "GetSitesControllerRequest",
+}) as any as S.Schema<GetSitesControllerRequest>;
 
 /** Resource tags. */
-export type SitesControllerGetResponseTagsMap = {
+export type GetSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SitesControllerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSitesControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SitesControllerGetResponseTagsMap>;
+) as any as S.Schema<GetSitesControllerResponseTagsMap>;
 
-export interface GetSiteControllerResponse {
+export interface GetSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -17847,7 +18196,7 @@ export interface GetSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SitesControllerGetResponseTagsMap;
+  tags?: GetSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -17855,22 +18204,22 @@ export interface GetSiteControllerResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const GetSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SitesControllerGetResponseTagsMap),
+    tags: S.optional(GetSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetSiteControllerResponse",
-}) as any as S.Schema<GetSiteControllerResponse>;
+  identifier: "GetSitesControllerResponse",
+}) as any as S.Schema<GetSitesControllerResponse>;
 
-export interface GetSolutionControllerConfigRequest {
+export interface GetSolutionsControllerConfigRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17880,7 +18229,7 @@ export interface GetSolutionControllerConfigRequest {
   /** Unique name of a migration solution within a migrate project. */
   solutionName: string;
 }
-export const GetSolutionControllerConfigRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSolutionsControllerConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17895,8 +18244,8 @@ export const GetSolutionControllerConfigRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSolutionControllerConfigRequest",
-}) as any as S.Schema<GetSolutionControllerConfigRequest>;
+  identifier: "GetSolutionsControllerConfigRequest",
+}) as any as S.Schema<GetSolutionsControllerConfigRequest>;
 
 /** Class representing the config for the solution in the migrate project. */
 export interface SolutionConfig {
@@ -17909,7 +18258,7 @@ export const SolutionConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SolutionConfig" }) as any as S.Schema<SolutionConfig>;
 
-export interface GetSolutionControllerSolutionRequest {
+export interface GetSolutionsControllerSolutionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17919,7 +18268,7 @@ export interface GetSolutionControllerSolutionRequest {
   /** Unique name of a migration solution within a migrate project. */
   solutionName: string;
 }
-export const GetSolutionControllerSolutionRequest = /*@__PURE__*/ S.suspend(
+export const GetSolutionsControllerSolutionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -17935,10 +18284,10 @@ export const GetSolutionControllerSolutionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetSolutionControllerSolutionRequest",
-}) as any as S.Schema<GetSolutionControllerSolutionRequest>;
+  identifier: "GetSolutionsControllerSolutionRequest",
+}) as any as S.Schema<GetSolutionsControllerSolutionRequest>;
 
-export interface GetSqlAssessmentOptionOperationRequest {
+export interface GetSqlAssessmentOptionsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17948,7 +18297,7 @@ export interface GetSqlAssessmentOptionOperationRequest {
   /** Sql assessment options ARM name. Accepted values is 'default' */
   assessmentOptionsName: string;
 }
-export const GetSqlAssessmentOptionOperationRequest = /*@__PURE__*/ S.suspend(
+export const GetSqlAssessmentOptionsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -17964,8 +18313,8 @@ export const GetSqlAssessmentOptionOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetSqlAssessmentOptionOperationRequest",
-}) as any as S.Schema<GetSqlAssessmentOptionOperationRequest>;
+  identifier: "GetSqlAssessmentOptionsOperationRequest",
+}) as any as S.Schema<GetSqlAssessmentOptionsOperationRequest>;
 
 /** Gets the list of VM families. */
 export type SqlAssessmentOptionsPropertiesVmFamiliesList =
@@ -18185,7 +18534,7 @@ export const SqlAssessmentOptionsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlAssessmentOptionsProperties",
 }) as any as S.Schema<SqlAssessmentOptionsProperties>;
 
-export interface GetSqlAssessmentOptionOperationResponse {
+export interface GetSqlAssessmentOptionsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -18197,7 +18546,7 @@ export interface GetSqlAssessmentOptionOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlAssessmentOptionsProperties;
 }
-export const GetSqlAssessmentOptionOperationResponse = /*@__PURE__*/ S.suspend(
+export const GetSqlAssessmentOptionsOperationResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -18207,8 +18556,8 @@ export const GetSqlAssessmentOptionOperationResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(SqlAssessmentOptionsProperties),
     }),
 ).annotate({
-  identifier: "GetSqlAssessmentOptionOperationResponse",
-}) as any as S.Schema<GetSqlAssessmentOptionOperationResponse>;
+  identifier: "GetSqlAssessmentOptionsOperationResponse",
+}) as any as S.Schema<GetSqlAssessmentOptionsOperationResponse>;
 
 export interface GetSqlAssessmentV2OperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -18495,7 +18844,7 @@ export const GetSqlAssessmentV2SummaryOperationResponse =
     identifier: "GetSqlAssessmentV2SummaryOperationResponse",
   }) as any as S.Schema<GetSqlAssessmentV2SummaryOperationResponse>;
 
-export interface GetSqlAvailabilityGroupControllerRequest {
+export interface GetSqlAvailabilityGroupsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18507,8 +18856,8 @@ export interface GetSqlAvailabilityGroupControllerRequest {
   /** SQL availability group name. */
   sqlAvailabilityGroupName: string;
 }
-export const GetSqlAvailabilityGroupControllerRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetSqlAvailabilityGroupsControllerRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -18523,9 +18872,9 @@ export const GetSqlAvailabilityGroupControllerRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "GetSqlAvailabilityGroupControllerRequest",
-}) as any as S.Schema<GetSqlAvailabilityGroupControllerRequest>;
+  ).annotate({
+    identifier: "GetSqlAvailabilityGroupsControllerRequest",
+  }) as any as S.Schema<GetSqlAvailabilityGroupsControllerRequest>;
 
 /** AvailabilityGroupType */
 export type SqlAvailabilityGroupPropertiesAvailabilityGroupType =
@@ -18771,7 +19120,7 @@ export const SqlAvailabilityGroupProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlAvailabilityGroupProperties",
 }) as any as S.Schema<SqlAvailabilityGroupProperties>;
 
-export interface GetSqlAvailabilityGroupControllerResponse {
+export interface GetSqlAvailabilityGroupsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -18783,7 +19132,7 @@ export interface GetSqlAvailabilityGroupControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlAvailabilityGroupProperties;
 }
-export const GetSqlAvailabilityGroupControllerResponse =
+export const GetSqlAvailabilityGroupsControllerResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -18793,8 +19142,8 @@ export const GetSqlAvailabilityGroupControllerResponse =
       properties: S.optional(SqlAvailabilityGroupProperties),
     }),
   ).annotate({
-    identifier: "GetSqlAvailabilityGroupControllerResponse",
-  }) as any as S.Schema<GetSqlAvailabilityGroupControllerResponse>;
+    identifier: "GetSqlAvailabilityGroupsControllerResponse",
+  }) as any as S.Schema<GetSqlAvailabilityGroupsControllerResponse>;
 
 export interface GetSqlCollectorOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -18848,7 +19197,7 @@ export const GetSqlCollectorOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSqlCollectorOperationResponse",
 }) as any as S.Schema<GetSqlCollectorOperationResponse>;
 
-export interface GetSqlDatabaseControllerRequest {
+export interface GetSqlDatabasesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18860,7 +19209,7 @@ export interface GetSqlDatabaseControllerRequest {
   /** SQL Database name. */
   sqlDatabaseName: string;
 }
-export const GetSqlDatabaseControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlDatabasesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -18876,8 +19225,8 @@ export const GetSqlDatabaseControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSqlDatabaseControllerRequest",
-}) as any as S.Schema<GetSqlDatabaseControllerRequest>;
+  identifier: "GetSqlDatabasesControllerRequest",
+}) as any as S.Schema<GetSqlDatabasesControllerRequest>;
 
 /** file type */
 export type FileType =
@@ -19041,7 +19390,7 @@ export const SqlDatabasePropertiesV2 = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlDatabasePropertiesV2",
 }) as any as S.Schema<SqlDatabasePropertiesV2>;
 
-export interface GetSqlDatabaseControllerResponse {
+export interface GetSqlDatabasesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -19053,7 +19402,7 @@ export interface GetSqlDatabaseControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlDatabasePropertiesV2;
 }
-export const GetSqlDatabaseControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlDatabasesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -19062,8 +19411,8 @@ export const GetSqlDatabaseControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SqlDatabasePropertiesV2),
   }),
 ).annotate({
-  identifier: "GetSqlDatabaseControllerResponse",
-}) as any as S.Schema<GetSqlDatabaseControllerResponse>;
+  identifier: "GetSqlDatabasesControllerResponse",
+}) as any as S.Schema<GetSqlDatabasesControllerResponse>;
 
 export interface GetSqlDiscoverySiteDataSourceControllerRequest {
   /** The ID of the target subscription. */
@@ -19122,7 +19471,7 @@ export const GetSqlDiscoverySiteDataSourceControllerResponse =
     identifier: "GetSqlDiscoverySiteDataSourceControllerResponse",
   }) as any as S.Schema<GetSqlDiscoverySiteDataSourceControllerResponse>;
 
-export interface GetSqlJobControllerRequest {
+export interface GetSqlJobsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19134,7 +19483,7 @@ export interface GetSqlJobControllerRequest {
   /** SQL Job name. */
   jobName: string;
 }
-export const GetSqlJobControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlJobsControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -19150,10 +19499,10 @@ export const GetSqlJobControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSqlJobControllerRequest",
-}) as any as S.Schema<GetSqlJobControllerRequest>;
+  identifier: "GetSqlJobsControllerRequest",
+}) as any as S.Schema<GetSqlJobsControllerRequest>;
 
-export interface GetSqlJobControllerResponse {
+export interface GetSqlJobsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -19165,7 +19514,7 @@ export interface GetSqlJobControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: JobProperties;
 }
-export const GetSqlJobControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlJobsControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -19174,10 +19523,10 @@ export const GetSqlJobControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(JobProperties),
   }),
 ).annotate({
-  identifier: "GetSqlJobControllerResponse",
-}) as any as S.Schema<GetSqlJobControllerResponse>;
+  identifier: "GetSqlJobsControllerResponse",
+}) as any as S.Schema<GetSqlJobsControllerResponse>;
 
-export interface GetSqlOperationStatusControllerSqlOperationStatusRequest {
+export interface GetSqlOperationsStatusControllerSqlOperationStatusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19189,7 +19538,7 @@ export interface GetSqlOperationStatusControllerSqlOperationStatusRequest {
   /** Operation status Arm Name. */
   operationStatusName: string;
 }
-export const GetSqlOperationStatusControllerSqlOperationStatusRequest =
+export const GetSqlOperationsStatusControllerSqlOperationStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -19206,10 +19555,10 @@ export const GetSqlOperationStatusControllerSqlOperationStatusRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetSqlOperationStatusControllerSqlOperationStatusRequest",
-  }) as any as S.Schema<GetSqlOperationStatusControllerSqlOperationStatusRequest>;
+    identifier: "GetSqlOperationsStatusControllerSqlOperationStatusRequest",
+  }) as any as S.Schema<GetSqlOperationsStatusControllerSqlOperationStatusRequest>;
 
-export interface GetSqlRunAsAccountControllerRequest {
+export interface GetSqlRunAsAccountsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19221,26 +19570,27 @@ export interface GetSqlRunAsAccountControllerRequest {
   /** SQL RunAsAccounts name */
   accountName: string;
 }
-export const GetSqlRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-    sqlSiteName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/runAsAccounts/{accountName}",
-      code: 200,
-      apiVersion: "2023-06-06",
-    }),
-  ),
+export const GetSqlRunAsAccountsControllerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      sqlSiteName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/runAsAccounts/{accountName}",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
 ).annotate({
-  identifier: "GetSqlRunAsAccountControllerRequest",
-}) as any as S.Schema<GetSqlRunAsAccountControllerRequest>;
+  identifier: "GetSqlRunAsAccountsControllerRequest",
+}) as any as S.Schema<GetSqlRunAsAccountsControllerRequest>;
 
-export interface GetSqlRunAsAccountControllerResponse {
+export interface GetSqlRunAsAccountsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -19252,7 +19602,7 @@ export interface GetSqlRunAsAccountControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: RunAsAccountProperties;
 }
-export const GetSqlRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(
+export const GetSqlRunAsAccountsControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -19262,10 +19612,10 @@ export const GetSqlRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(RunAsAccountProperties),
     }),
 ).annotate({
-  identifier: "GetSqlRunAsAccountControllerResponse",
-}) as any as S.Schema<GetSqlRunAsAccountControllerResponse>;
+  identifier: "GetSqlRunAsAccountsControllerResponse",
+}) as any as S.Schema<GetSqlRunAsAccountsControllerResponse>;
 
-export interface GetSqlServerControllerRequest {
+export interface GetSqlServersControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19277,7 +19627,7 @@ export interface GetSqlServerControllerRequest {
   /** SQL server name. */
   sqlServerName: string;
 }
-export const GetSqlServerControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlServersControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -19293,8 +19643,8 @@ export const GetSqlServerControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSqlServerControllerRequest",
-}) as any as S.Schema<GetSqlServerControllerRequest>;
+  identifier: "GetSqlServersControllerRequest",
+}) as any as S.Schema<GetSqlServersControllerRequest>;
 
 /** sql fci role */
 export type SqlMachineOverviewFciRole =
@@ -19502,7 +19852,7 @@ export const SqlServerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlServerProperties",
 }) as any as S.Schema<SqlServerProperties>;
 
-export interface GetSqlServerControllerResponse {
+export interface GetSqlServersControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -19514,7 +19864,7 @@ export interface GetSqlServerControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlServerProperties;
 }
-export const GetSqlServerControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlServersControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -19523,10 +19873,10 @@ export const GetSqlServerControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SqlServerProperties),
   }),
 ).annotate({
-  identifier: "GetSqlServerControllerResponse",
-}) as any as S.Schema<GetSqlServerControllerResponse>;
+  identifier: "GetSqlServersControllerResponse",
+}) as any as S.Schema<GetSqlServersControllerResponse>;
 
-export interface GetSqlSiteControllerRequest {
+export interface GetSqlSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19536,7 +19886,7 @@ export interface GetSqlSiteControllerRequest {
   /** SQL site name. */
   sqlSiteName: string;
 }
-export const GetSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -19551,10 +19901,10 @@ export const GetSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSqlSiteControllerRequest",
-}) as any as S.Schema<GetSqlSiteControllerRequest>;
+  identifier: "GetSqlSitesControllerRequest",
+}) as any as S.Schema<GetSqlSitesControllerRequest>;
 
-export interface GetSqlSiteControllerResponse {
+export interface GetSqlSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -19566,7 +19916,7 @@ export interface GetSqlSiteControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlSiteProperties;
 }
-export const GetSqlSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSqlSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -19575,10 +19925,10 @@ export const GetSqlSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SqlSiteProperties),
   }),
 ).annotate({
-  identifier: "GetSqlSiteControllerResponse",
-}) as any as S.Schema<GetSqlSiteControllerResponse>;
+  identifier: "GetSqlSitesControllerResponse",
+}) as any as S.Schema<GetSqlSitesControllerResponse>;
 
-export interface GetTomcatWebApplicationControllerRequest {
+export interface GetTomcatWebApplicationsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19590,8 +19940,8 @@ export interface GetTomcatWebApplicationControllerRequest {
   /** Web application name. */
   webApplicationName: string;
 }
-export const GetTomcatWebApplicationControllerRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetTomcatWebApplicationsControllerRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -19606,9 +19956,9 @@ export const GetTomcatWebApplicationControllerRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "GetTomcatWebApplicationControllerRequest",
-}) as any as S.Schema<GetTomcatWebApplicationControllerRequest>;
+  ).annotate({
+    identifier: "GetTomcatWebApplicationsControllerRequest",
+  }) as any as S.Schema<GetTomcatWebApplicationsControllerRequest>;
 
 /** Gets the list of machine ARM Ids on which the web application is deployed. */
 export type TomcatWebApplicationPropertiesMachineArmIdsList = Array<string>;
@@ -19760,7 +20110,7 @@ export const TomcatWebApplicationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "TomcatWebApplicationProperties",
 }) as any as S.Schema<TomcatWebApplicationProperties>;
 
-export interface GetTomcatWebApplicationControllerResponse {
+export interface GetTomcatWebApplicationsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -19772,7 +20122,7 @@ export interface GetTomcatWebApplicationControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: TomcatWebApplicationProperties;
 }
-export const GetTomcatWebApplicationControllerResponse =
+export const GetTomcatWebApplicationsControllerResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -19782,10 +20132,10 @@ export const GetTomcatWebApplicationControllerResponse =
       properties: S.optional(TomcatWebApplicationProperties),
     }),
   ).annotate({
-    identifier: "GetTomcatWebApplicationControllerResponse",
-  }) as any as S.Schema<GetTomcatWebApplicationControllerResponse>;
+    identifier: "GetTomcatWebApplicationsControllerResponse",
+  }) as any as S.Schema<GetTomcatWebApplicationsControllerResponse>;
 
-export interface GetTomcatWebServerControllerRequest {
+export interface GetTomcatWebServersControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -19797,24 +20147,25 @@ export interface GetTomcatWebServerControllerRequest {
   /** Web server name. */
   webServerName: string;
 }
-export const GetTomcatWebServerControllerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-    webAppSiteName: S.String.pipe(T.Label()),
-    webServerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/webAppSites/{webAppSiteName}/tomcatWebServers/{webServerName}",
-      code: 200,
-      apiVersion: "2023-06-06",
-    }),
-  ),
+export const GetTomcatWebServersControllerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      webAppSiteName: S.String.pipe(T.Label()),
+      webServerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/webAppSites/{webAppSiteName}/tomcatWebServers/{webServerName}",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
 ).annotate({
-  identifier: "GetTomcatWebServerControllerRequest",
-}) as any as S.Schema<GetTomcatWebServerControllerRequest>;
+  identifier: "GetTomcatWebServersControllerRequest",
+}) as any as S.Schema<GetTomcatWebServersControllerRequest>;
 
 /** Gets or sets the bindings for the connector. */
 export type ConnectorUnitBindingsList = Array<FrontEndBinding>;
@@ -20014,7 +20365,7 @@ export const TomcatWebServerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "TomcatWebServerProperties",
 }) as any as S.Schema<TomcatWebServerProperties>;
 
-export interface GetTomcatWebServerControllerResponse {
+export interface GetTomcatWebServersControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -20026,7 +20377,7 @@ export interface GetTomcatWebServerControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: TomcatWebServerProperties;
 }
-export const GetTomcatWebServerControllerResponse = /*@__PURE__*/ S.suspend(
+export const GetTomcatWebServersControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -20036,8 +20387,8 @@ export const GetTomcatWebServerControllerResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(TomcatWebServerProperties),
     }),
 ).annotate({
-  identifier: "GetTomcatWebServerControllerResponse",
-}) as any as S.Schema<GetTomcatWebServerControllerResponse>;
+  identifier: "GetTomcatWebServersControllerResponse",
+}) as any as S.Schema<GetTomcatWebServersControllerResponse>;
 
 export interface GetVcenterControllerRequest {
   /** The ID of the target subscription. */
@@ -20256,7 +20607,7 @@ export const VirtualDesktopUser = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualDesktopUser",
 }) as any as S.Schema<VirtualDesktopUser>;
 
-export interface GetVmwareCollectorOperationRequest {
+export interface GetVmwareCollectorsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20266,7 +20617,7 @@ export interface GetVmwareCollectorOperationRequest {
   /** VMware collector ARM name */
   vmWareCollectorName: string;
 }
-export const GetVmwareCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetVmwareCollectorsOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -20281,10 +20632,10 @@ export const GetVmwareCollectorOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetVmwareCollectorOperationRequest",
-}) as any as S.Schema<GetVmwareCollectorOperationRequest>;
+  identifier: "GetVmwareCollectorsOperationRequest",
+}) as any as S.Schema<GetVmwareCollectorsOperationRequest>;
 
-export interface GetVmwareCollectorOperationResponse {
+export interface GetVmwareCollectorsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -20296,17 +20647,18 @@ export interface GetVmwareCollectorOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: CollectorPropertiesBaseWithAgent;
 }
-export const GetVmwareCollectorOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CollectorPropertiesBaseWithAgent),
-  }),
+export const GetVmwareCollectorsOperationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CollectorPropertiesBaseWithAgent),
+    }),
 ).annotate({
-  identifier: "GetVmwareCollectorOperationResponse",
-}) as any as S.Schema<GetVmwareCollectorOperationResponse>;
+  identifier: "GetVmwareCollectorsOperationResponse",
+}) as any as S.Schema<GetVmwareCollectorsOperationResponse>;
 
 export interface GetVmwareHostControllerRequest {
   /** The ID of the target subscription. */
@@ -20441,7 +20793,7 @@ export const GetVmwareHostControllerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVmwareHostControllerResponse",
 }) as any as S.Schema<GetVmwareHostControllerResponse>;
 
-export interface GetVmwareOperationStatusVmwareOperationStatusRequest {
+export interface GetVmwareOperationsStatusVmwareOperationStatusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20451,7 +20803,7 @@ export interface GetVmwareOperationStatusVmwareOperationStatusRequest {
   /** Operation status Arm Name. */
   operationStatusName: string;
 }
-export const GetVmwareOperationStatusVmwareOperationStatusRequest =
+export const GetVmwareOperationsStatusVmwareOperationStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -20467,15 +20819,15 @@ export const GetVmwareOperationStatusVmwareOperationStatusRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVmwareOperationStatusVmwareOperationStatusRequest",
-  }) as any as S.Schema<GetVmwareOperationStatusVmwareOperationStatusRequest>;
+    identifier: "GetVmwareOperationsStatusVmwareOperationStatusRequest",
+  }) as any as S.Schema<GetVmwareOperationsStatusVmwareOperationStatusRequest>;
 
-export type VmwareSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault =
+export type GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault =
   "default";
-export const VmwareSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault =
+export const GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault =
   /*@__PURE__*/ S.String;
 
-export interface GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest {
+export interface GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20486,10 +20838,10 @@ export interface GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryReq
   machineName: string;
   /** Default value. */
   default:
-    | VmwareSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault
+    | GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault
     | (string & {});
 }
-export const GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest =
+export const GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -20497,7 +20849,7 @@ export const GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest
       siteName: S.String.pipe(T.Label()),
       machineName: S.String.pipe(T.Label()),
       default:
-        VmwareSoftwareInventoriesControllerGetMachineSoftwareInventoryRequestDefault.pipe(
+        GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequestDefault.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -20510,10 +20862,10 @@ export const GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest
     ),
   ).annotate({
     identifier:
-      "GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest",
-  }) as any as S.Schema<GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest>;
+      "GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequest",
+  }) as any as S.Schema<GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequest>;
 
-export interface GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryResponse {
+export interface GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -20525,7 +20877,7 @@ export interface GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRes
   /** The resource-specific properties for this resource. */
   properties?: MachineSoftwareInventoryProperties;
 }
-export const GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryResponse =
+export const GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -20536,10 +20888,10 @@ export const GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRespons
     }),
   ).annotate({
     identifier:
-      "GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryResponse",
-  }) as any as S.Schema<GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryResponse>;
+      "GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryResponse",
+  }) as any as S.Schema<GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryResponse>;
 
-export interface GetWebAppAssessmentOptionOperationRequest {
+export interface GetWebAppAssessmentOptionsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20549,7 +20901,7 @@ export interface GetWebAppAssessmentOptionOperationRequest {
   /** Web app assessment options ARM name. Accepted values is 'default' */
   assessmentOptionsName: string;
 }
-export const GetWebAppAssessmentOptionOperationRequest =
+export const GetWebAppAssessmentOptionsOperationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -20565,8 +20917,8 @@ export const GetWebAppAssessmentOptionOperationRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetWebAppAssessmentOptionOperationRequest",
-  }) as any as S.Schema<GetWebAppAssessmentOptionOperationRequest>;
+    identifier: "GetWebAppAssessmentOptionsOperationRequest",
+  }) as any as S.Schema<GetWebAppAssessmentOptionsOperationRequest>;
 
 export type AzureWebAppTier =
   | "Unknown"
@@ -20697,7 +21049,7 @@ export const WebAppAssessmentOptionsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppAssessmentOptionsProperties",
 }) as any as S.Schema<WebAppAssessmentOptionsProperties>;
 
-export interface GetWebAppAssessmentOptionOperationResponse {
+export interface GetWebAppAssessmentOptionsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -20709,7 +21061,7 @@ export interface GetWebAppAssessmentOptionOperationResponse {
   /** The resource-specific properties for this resource. */
   properties?: WebAppAssessmentOptionsProperties;
 }
-export const GetWebAppAssessmentOptionOperationResponse =
+export const GetWebAppAssessmentOptionsOperationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -20719,8 +21071,8 @@ export const GetWebAppAssessmentOptionOperationResponse =
       properties: S.optional(WebAppAssessmentOptionsProperties),
     }),
   ).annotate({
-    identifier: "GetWebAppAssessmentOptionOperationResponse",
-  }) as any as S.Schema<GetWebAppAssessmentOptionOperationResponse>;
+    identifier: "GetWebAppAssessmentOptionsOperationResponse",
+  }) as any as S.Schema<GetWebAppAssessmentOptionsOperationResponse>;
 
 export interface GetWebAppAssessmentV2OperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -21037,7 +21389,7 @@ export const GetWebAppCollectorOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWebAppCollectorOperationResponse",
 }) as any as S.Schema<GetWebAppCollectorOperationResponse>;
 
-export interface GetWebAppDiscoverySiteDataSourceControllerRequest {
+export interface GetWebAppDiscoverySiteDataSourcesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21049,7 +21401,7 @@ export interface GetWebAppDiscoverySiteDataSourceControllerRequest {
   /** Data Source ARM name. */
   discoverySiteDataSourceName: string;
 }
-export const GetWebAppDiscoverySiteDataSourceControllerRequest =
+export const GetWebAppDiscoverySiteDataSourcesControllerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -21066,10 +21418,10 @@ export const GetWebAppDiscoverySiteDataSourceControllerRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetWebAppDiscoverySiteDataSourceControllerRequest",
-  }) as any as S.Schema<GetWebAppDiscoverySiteDataSourceControllerRequest>;
+    identifier: "GetWebAppDiscoverySiteDataSourcesControllerRequest",
+  }) as any as S.Schema<GetWebAppDiscoverySiteDataSourcesControllerRequest>;
 
-export interface GetWebAppDiscoverySiteDataSourceControllerResponse {
+export interface GetWebAppDiscoverySiteDataSourcesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -21081,7 +21433,7 @@ export interface GetWebAppDiscoverySiteDataSourceControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlDiscoverySiteDataSourceProperties;
 }
-export const GetWebAppDiscoverySiteDataSourceControllerResponse =
+export const GetWebAppDiscoverySiteDataSourcesControllerResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -21091,10 +21443,10 @@ export const GetWebAppDiscoverySiteDataSourceControllerResponse =
       properties: S.optional(SqlDiscoverySiteDataSourceProperties),
     }),
   ).annotate({
-    identifier: "GetWebAppDiscoverySiteDataSourceControllerResponse",
-  }) as any as S.Schema<GetWebAppDiscoverySiteDataSourceControllerResponse>;
+    identifier: "GetWebAppDiscoverySiteDataSourcesControllerResponse",
+  }) as any as S.Schema<GetWebAppDiscoverySiteDataSourcesControllerResponse>;
 
-export interface GetWebAppExtendedMachineControllerRequest {
+export interface GetWebAppExtendedMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21106,7 +21458,7 @@ export interface GetWebAppExtendedMachineControllerRequest {
   /** Extended machine name. */
   extendedMachineName: string;
 }
-export const GetWebAppExtendedMachineControllerRequest =
+export const GetWebAppExtendedMachinesControllerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -21123,8 +21475,8 @@ export const GetWebAppExtendedMachineControllerRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetWebAppExtendedMachineControllerRequest",
-  }) as any as S.Schema<GetWebAppExtendedMachineControllerRequest>;
+    identifier: "GetWebAppExtendedMachinesControllerRequest",
+  }) as any as S.Schema<GetWebAppExtendedMachinesControllerRequest>;
 
 /** Gets the Error details. */
 export type WebAppExtendedMachinePropertiesErrorsList =
@@ -21173,7 +21525,7 @@ export const WebAppExtendedMachineProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppExtendedMachineProperties",
 }) as any as S.Schema<WebAppExtendedMachineProperties>;
 
-export interface GetWebAppExtendedMachineControllerResponse {
+export interface GetWebAppExtendedMachinesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -21185,7 +21537,7 @@ export interface GetWebAppExtendedMachineControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: WebAppExtendedMachineProperties;
 }
-export const GetWebAppExtendedMachineControllerResponse =
+export const GetWebAppExtendedMachinesControllerResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -21195,10 +21547,10 @@ export const GetWebAppExtendedMachineControllerResponse =
       properties: S.optional(WebAppExtendedMachineProperties),
     }),
   ).annotate({
-    identifier: "GetWebAppExtendedMachineControllerResponse",
-  }) as any as S.Schema<GetWebAppExtendedMachineControllerResponse>;
+    identifier: "GetWebAppExtendedMachinesControllerResponse",
+  }) as any as S.Schema<GetWebAppExtendedMachinesControllerResponse>;
 
-export interface GetWebAppRunAsAccountControllerRequest {
+export interface GetWebAppRunAsAccountsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21210,7 +21562,7 @@ export interface GetWebAppRunAsAccountControllerRequest {
   /** Run as account ARM name. */
   accountName: string;
 }
-export const GetWebAppRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(
+export const GetWebAppRunAsAccountsControllerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -21227,10 +21579,10 @@ export const GetWebAppRunAsAccountControllerRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetWebAppRunAsAccountControllerRequest",
-}) as any as S.Schema<GetWebAppRunAsAccountControllerRequest>;
+  identifier: "GetWebAppRunAsAccountsControllerRequest",
+}) as any as S.Schema<GetWebAppRunAsAccountsControllerRequest>;
 
-export interface GetWebAppRunAsAccountControllerResponse {
+export interface GetWebAppRunAsAccountsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -21242,7 +21594,7 @@ export interface GetWebAppRunAsAccountControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: RunAsAccountProperties;
 }
-export const GetWebAppRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(
+export const GetWebAppRunAsAccountsControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -21252,8 +21604,8 @@ export const GetWebAppRunAsAccountControllerResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(RunAsAccountProperties),
     }),
 ).annotate({
-  identifier: "GetWebAppRunAsAccountControllerResponse",
-}) as any as S.Schema<GetWebAppRunAsAccountControllerResponse>;
+  identifier: "GetWebAppRunAsAccountsControllerResponse",
+}) as any as S.Schema<GetWebAppRunAsAccountsControllerResponse>;
 
 export interface GetWebAppServicePlanV2OperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -21381,7 +21733,7 @@ export const GetWebAppServicePlanV2OperationResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetWebAppServicePlanV2OperationResponse",
 }) as any as S.Schema<GetWebAppServicePlanV2OperationResponse>;
 
-export interface GetWebAppSiteControllerRequest {
+export interface GetWebAppSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21391,7 +21743,7 @@ export interface GetWebAppSiteControllerRequest {
   /** Web app site name. */
   webAppSiteName: string;
 }
-export const GetWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebAppSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -21406,10 +21758,10 @@ export const GetWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetWebAppSiteControllerRequest",
-}) as any as S.Schema<GetWebAppSiteControllerRequest>;
+  identifier: "GetWebAppSitesControllerRequest",
+}) as any as S.Schema<GetWebAppSitesControllerRequest>;
 
-export interface GetWebAppSiteControllerResponse {
+export interface GetWebAppSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -21421,7 +21773,7 @@ export interface GetWebAppSiteControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: WebAppSiteProperties;
 }
-export const GetWebAppSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWebAppSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -21430,10 +21782,10 @@ export const GetWebAppSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(WebAppSiteProperties),
   }),
 ).annotate({
-  identifier: "GetWebAppSiteControllerResponse",
-}) as any as S.Schema<GetWebAppSiteControllerResponse>;
+  identifier: "GetWebAppSitesControllerResponse",
+}) as any as S.Schema<GetWebAppSitesControllerResponse>;
 
-export interface GetWebServerControllerWebServerRequest {
+export interface GetWebServersControllerWebServerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21443,7 +21795,7 @@ export interface GetWebServerControllerWebServerRequest {
   /** The ARM name of the virtual desktop user. */
   webServerId: string;
 }
-export const GetWebServerControllerWebServerRequest = /*@__PURE__*/ S.suspend(
+export const GetWebServersControllerWebServerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -21459,8 +21811,8 @@ export const GetWebServerControllerWebServerRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetWebServerControllerWebServerRequest",
-}) as any as S.Schema<GetWebServerControllerWebServerRequest>;
+  identifier: "GetWebServersControllerWebServerRequest",
+}) as any as S.Schema<GetWebServersControllerWebServerRequest>;
 
 export type WebServerDiscoveryDetailsPortListList = Array<number>;
 export const WebServerDiscoveryDetailsPortListList = /*@__PURE__*/ S.Array(
@@ -21580,7 +21932,7 @@ export const WebServer = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WebServer" }) as any as S.Schema<WebServer>;
 
-export interface GetWebSiteControllerWebSiteRequest {
+export interface GetWebSitesControllerWebSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21590,7 +21942,7 @@ export interface GetWebSiteControllerWebSiteRequest {
   /** The ARM name of the website to be fetched. */
   webSiteName: string;
 }
-export const GetWebSiteControllerWebSiteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebSitesControllerWebSiteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -21605,8 +21957,8 @@ export const GetWebSiteControllerWebSiteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetWebSiteControllerWebSiteRequest",
-}) as any as S.Schema<GetWebSiteControllerWebSiteRequest>;
+  identifier: "GetWebSitesControllerWebSiteRequest",
+}) as any as S.Schema<GetWebSitesControllerWebSiteRequest>;
 
 export type WebSiteDiscoveryDetailsExtendedInfoMap = {
   [key: string]: string | undefined;
@@ -21860,44 +22212,6 @@ export const HypervDependencyMapControllerClientGroupMembersResponse =
     identifier: "HypervDependencyMapControllerClientGroupMembersResponse",
   }) as any as S.Schema<HypervDependencyMapControllerClientGroupMembersResponse>;
 
-export interface HypervDependencyMapControllerExportDependenciesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** start time */
-  startTime?: string;
-  /** end time */
-  endTime?: string;
-}
-export const HypervDependencyMapControllerExportDependenciesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/hypervSites/{siteName}/exportDependencies",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "HypervDependencyMapControllerExportDependenciesRequest",
-  }) as any as S.Schema<HypervDependencyMapControllerExportDependenciesRequest>;
-
-export type HypervDependencyMapControllerExportDependenciesResponse = unknown;
-export const HypervDependencyMapControllerExportDependenciesResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "HypervDependencyMapControllerExportDependenciesResponse",
-  }) as any as S.Schema<HypervDependencyMapControllerExportDependenciesResponse>;
-
 export interface HypervDependencyMapControllerServerGroupMembersRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -22064,95 +22378,6 @@ export const HypervSiteUsage = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervSiteUsage",
 }) as any as S.Schema<HypervSiteUsage>;
 
-export interface HypervSitesControllerExportApplicationsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const HypervSitesControllerExportApplicationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/hypervSites/{siteName}/exportApplications",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "HypervSitesControllerExportApplicationsRequest",
-  }) as any as S.Schema<HypervSitesControllerExportApplicationsRequest>;
-
-export type HypervSitesControllerExportApplicationsResponse = unknown;
-export const HypervSitesControllerExportApplicationsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "HypervSitesControllerExportApplicationsResponse",
-  }) as any as S.Schema<HypervSitesControllerExportApplicationsResponse>;
-
-/** Export Machine Errors Properties */
-export type ExportMachineErrorsProperties =
-  | "AppsAndRoles"
-  | "DependencyMap"
-  | "StaticData"
-  | "SQLServerConnectionInfo";
-export const ExportMachineErrorsProperties = /*@__PURE__*/ S.String;
-
-/** The Properties class for export machine errors request body. */
-export interface RequestExportMachineErrorsProperties {
-  /** Gets or sets the discovery scope. */
-  discoveryScope?: ExportMachineErrorsProperties | (string & {});
-}
-export const RequestExportMachineErrorsProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      discoveryScope: S.optional(ExportMachineErrorsProperties),
-    }),
-).annotate({
-  identifier: "RequestExportMachineErrorsProperties",
-}) as any as S.Schema<RequestExportMachineErrorsProperties>;
-
-export interface HypervSitesControllerExportMachineErrorsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Gets or sets the properties. */
-  properties?: RequestExportMachineErrorsProperties;
-}
-export const HypervSitesControllerExportMachineErrorsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      properties: S.optional(RequestExportMachineErrorsProperties),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/hypervSites/{siteName}/exportMachineErrors",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "HypervSitesControllerExportMachineErrorsRequest",
-  }) as any as S.Schema<HypervSitesControllerExportMachineErrorsRequest>;
-
-export type HypervSitesControllerExportMachineErrorsResponse = unknown;
-export const HypervSitesControllerExportMachineErrorsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "HypervSitesControllerExportMachineErrorsResponse",
-  }) as any as S.Schema<HypervSitesControllerExportMachineErrorsResponse>;
-
 export interface HypervSitesControllerSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -22178,7 +22403,7 @@ export const HypervSitesControllerSummaryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervSitesControllerSummaryRequest",
 }) as any as S.Schema<HypervSitesControllerSummaryRequest>;
 
-export interface ImportSitesControllerExportUriRequest {
+export interface ImportImportSitesControllerUriRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -22190,39 +22415,7 @@ export interface ImportSitesControllerExportUriRequest {
   /** Gets or sets the SAS URI. */
   uri?: string;
 }
-export const ImportSitesControllerExportUriRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      jobArmId: S.optional(S.String),
-      uri: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/importSites/{siteName}/exportUri",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-).annotate({
-  identifier: "ImportSitesControllerExportUriRequest",
-}) as any as S.Schema<ImportSitesControllerExportUriRequest>;
-
-export interface ImportSitesControllerImportUriRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Gets or sets the job ARM ID. */
-  jobArmId?: string;
-  /** Gets or sets the SAS URI. */
-  uri?: string;
-}
-export const ImportSitesControllerImportUriRequest = /*@__PURE__*/ S.suspend(
+export const ImportImportSitesControllerUriRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -22239,8 +22432,162 @@ export const ImportSitesControllerImportUriRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ImportSitesControllerImportUriRequest",
-}) as any as S.Schema<ImportSitesControllerImportUriRequest>;
+  identifier: "ImportImportSitesControllerUriRequest",
+}) as any as S.Schema<ImportImportSitesControllerUriRequest>;
+
+export interface ImportJobsControllerListByImportSiteRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const ImportJobsControllerListByImportSiteRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/importSites/{siteName}/jobs",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ImportJobsControllerListByImportSiteRequest",
+  }) as any as S.Schema<ImportJobsControllerListByImportSiteRequest>;
+
+/** A host resource belonging to a site resource. */
+export interface ImportJob {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: JobProperties;
+}
+export const ImportJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(JobProperties),
+  }),
+).annotate({ identifier: "ImportJob" }) as any as S.Schema<ImportJob>;
+
+/** The ImportJob items on this page */
+export type ImportJobListResultValueList = Array<ImportJob>;
+export const ImportJobListResultValueList = /*@__PURE__*/ S.Array(
+  ImportJob,
+) as any as S.Schema<ImportJobListResultValueList>;
+
+/** The response of a ImportJob list operation. */
+export interface ImportJobListResult {
+  /** The ImportJob items on this page */
+  value: ImportJobListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ImportJobListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ImportJobListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImportJobListResult",
+}) as any as S.Schema<ImportJobListResult>;
+
+export interface ImportMachinesControllerListByImportSiteRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** filter query */
+  filter?: string;
+  /** page size query */
+  top?: string;
+  /** Optional parameter for continuation token. */
+  continuationToken?: string;
+  /** Total count of machines in the given site. */
+  totalRecordCount?: number;
+}
+export const ImportMachinesControllerListByImportSiteRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+      filter: S.optional(S.String.pipe(T.Query())),
+      top: S.optional(S.String.pipe(T.Query())),
+      continuationToken: S.optional(S.String.pipe(T.Query())),
+      totalRecordCount: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/importSites/{siteName}/machines",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ImportMachinesControllerListByImportSiteRequest",
+  }) as any as S.Schema<ImportMachinesControllerListByImportSiteRequest>;
+
+/** An machine resource belonging to a site resource. */
+export interface ImportMachine {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ImportMachineProperties;
+}
+export const ImportMachine = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ImportMachineProperties),
+  }),
+).annotate({ identifier: "ImportMachine" }) as any as S.Schema<ImportMachine>;
+
+/** The ImportMachine items on this page */
+export type ImportMachineListResultValueList = Array<ImportMachine>;
+export const ImportMachineListResultValueList = /*@__PURE__*/ S.Array(
+  ImportMachine,
+) as any as S.Schema<ImportMachineListResultValueList>;
+
+/** The response of a ImportMachine list operation. */
+export interface ImportMachineListResult {
+  /** The ImportMachine items on this page */
+  value: ImportMachineListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ImportMachineListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ImportMachineListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImportMachineListResult",
+}) as any as S.Schema<ImportMachineListResult>;
 
 export interface ListAksAssessmentOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -22488,7 +22835,7 @@ export const AKSCostDetailListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AKSCostDetailListResult",
 }) as any as S.Schema<AKSCostDetailListResult>;
 
-export interface ListAksOptionOperationByAssessmentProjectRequest {
+export interface ListAksOptionsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -22496,7 +22843,7 @@ export interface ListAksOptionOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListAksOptionOperationByAssessmentProjectRequest =
+export const ListAksOptionsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -22511,8 +22858,8 @@ export const ListAksOptionOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAksOptionOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListAksOptionOperationByAssessmentProjectRequest>;
+    identifier: "ListAksOptionsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListAksOptionsOperationByAssessmentProjectRequest>;
 
 /** ARM model of AKS Assessment Options. */
 export interface AKSAssessmentOptions {
@@ -22642,7 +22989,7 @@ export const AKSSummaryListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AKSSummaryListResult",
 }) as any as S.Schema<AKSSummaryListResult>;
 
-export interface ListAssessedMachineOperationByAssessmentRequest {
+export interface ListAssessedMachinesOperationByAssessmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -22662,7 +23009,7 @@ export interface ListAssessedMachineOperationByAssessmentRequest {
   /** Total record count. */
   totalRecordCount?: number;
 }
-export const ListAssessedMachineOperationByAssessmentRequest =
+export const ListAssessedMachinesOperationByAssessmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -22683,8 +23030,8 @@ export const ListAssessedMachineOperationByAssessmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAssessedMachineOperationByAssessmentRequest",
-  }) as any as S.Schema<ListAssessedMachineOperationByAssessmentRequest>;
+    identifier: "ListAssessedMachinesOperationByAssessmentRequest",
+  }) as any as S.Schema<ListAssessedMachinesOperationByAssessmentRequest>;
 
 /** Machine assessment Assessed Machine resource. */
 export interface AssessedMachine {
@@ -22917,7 +23264,7 @@ export const AssessedSqlInstanceV2ListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessedSqlInstanceV2ListResult",
 }) as any as S.Schema<AssessedSqlInstanceV2ListResult>;
 
-export interface ListAssessedSqlMachineOperationBySqlAssessmentV2Request {
+export interface ListAssessedSqlMachinesOperationBySqlAssessmentV2Request {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -22937,7 +23284,7 @@ export interface ListAssessedSqlMachineOperationBySqlAssessmentV2Request {
   /** Total record count. */
   totalRecordCount?: number;
 }
-export const ListAssessedSqlMachineOperationBySqlAssessmentV2Request =
+export const ListAssessedSqlMachinesOperationBySqlAssessmentV2Request =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -22958,8 +23305,8 @@ export const ListAssessedSqlMachineOperationBySqlAssessmentV2Request =
       }),
     ),
   ).annotate({
-    identifier: "ListAssessedSqlMachineOperationBySqlAssessmentV2Request",
-  }) as any as S.Schema<ListAssessedSqlMachineOperationBySqlAssessmentV2Request>;
+    identifier: "ListAssessedSqlMachinesOperationBySqlAssessmentV2Request",
+  }) as any as S.Schema<ListAssessedSqlMachinesOperationBySqlAssessmentV2Request>;
 
 /** SQL Assessment REST resource. */
 export interface AssessedSqlMachine {
@@ -23286,81 +23633,7 @@ export const AssessedWebAppV2ListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessedWebAppV2ListResult",
 }) as any as S.Schema<AssessedWebAppV2ListResult>;
 
-export interface ListAssessmentOperationByGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-}
-export const ListAssessmentOperationByGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      groupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/assessments",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-).annotate({
-  identifier: "ListAssessmentOperationByGroupRequest",
-}) as any as S.Schema<ListAssessmentOperationByGroupRequest>;
-
-/** Machine assessment resource. */
-export interface Assessment {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MachineAssessmentProperties;
-}
-export const Assessment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MachineAssessmentProperties),
-  }),
-).annotate({ identifier: "Assessment" }) as any as S.Schema<Assessment>;
-
-/** The Assessment items on this page */
-export type AssessmentListResultValueList = Array<Assessment>;
-export const AssessmentListResultValueList = /*@__PURE__*/ S.Array(
-  Assessment,
-) as any as S.Schema<AssessmentListResultValueList>;
-
-/** The response of a Assessment list operation. */
-export interface AssessmentListResult {
-  /** The Assessment items on this page */
-  value: AssessmentListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AssessmentListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AssessmentListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AssessmentListResult",
-}) as any as S.Schema<AssessmentListResult>;
-
-export interface ListAssessmentOptionOperationByAssessmentProjectRequest {
+export interface ListAssessmentOptionsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23368,7 +23641,7 @@ export interface ListAssessmentOptionOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListAssessmentOptionOperationByAssessmentProjectRequest =
+export const ListAssessmentOptionsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -23383,8 +23656,8 @@ export const ListAssessmentOptionOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAssessmentOptionOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListAssessmentOptionOperationByAssessmentProjectRequest>;
+    identifier: "ListAssessmentOptionsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListAssessmentOptionsOperationByAssessmentProjectRequest>;
 
 /** Assessment options resource. */
 export interface AssessmentOptions {
@@ -23433,13 +23706,13 @@ export const AssessmentOptionsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessmentOptionsListResult",
 }) as any as S.Schema<AssessmentOptionsListResult>;
 
-export interface ListAssessmentProjectOperationByResourceGroupRequest {
+export interface ListAssessmentProjectsOperationByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListAssessmentProjectOperationByResourceGroupRequest =
+export const ListAssessmentProjectsOperationByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -23453,8 +23726,8 @@ export const ListAssessmentProjectOperationByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAssessmentProjectOperationByResourceGroupRequest",
-  }) as any as S.Schema<ListAssessmentProjectOperationByResourceGroupRequest>;
+    identifier: "ListAssessmentProjectsOperationByResourceGroupRequest",
+  }) as any as S.Schema<ListAssessmentProjectsOperationByResourceGroupRequest>;
 
 /** Resource tags. */
 export type AssessmentProjectTagsMap = { [key: string]: string | undefined };
@@ -23516,11 +23789,11 @@ export const AssessmentProjectListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessmentProjectListResult",
 }) as any as S.Schema<AssessmentProjectListResult>;
 
-export interface ListAssessmentProjectOperationBySubscriptionRequest {
+export interface ListAssessmentProjectsOperationBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListAssessmentProjectOperationBySubscriptionRequest =
+export const ListAssessmentProjectsOperationBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -23533,8 +23806,8 @@ export const ListAssessmentProjectOperationBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAssessmentProjectOperationBySubscriptionRequest",
-  }) as any as S.Schema<ListAssessmentProjectOperationBySubscriptionRequest>;
+    identifier: "ListAssessmentProjectsOperationBySubscriptionRequest",
+  }) as any as S.Schema<ListAssessmentProjectsOperationBySubscriptionRequest>;
 
 export interface ListAssessmentProjectSummaryOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -23612,7 +23885,81 @@ export const AssessmentProjectSummaryListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessmentProjectSummaryListResult",
 }) as any as S.Schema<AssessmentProjectSummaryListResult>;
 
-export interface ListAvsAssessedMachineOperationByAvsAssessmentRequest {
+export interface ListAssessmentsOperationByGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
+}
+export const ListAssessmentsOperationByGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/assessments",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
+).annotate({
+  identifier: "ListAssessmentsOperationByGroupRequest",
+}) as any as S.Schema<ListAssessmentsOperationByGroupRequest>;
+
+/** Machine assessment resource. */
+export interface Assessment {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MachineAssessmentProperties;
+}
+export const Assessment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MachineAssessmentProperties),
+  }),
+).annotate({ identifier: "Assessment" }) as any as S.Schema<Assessment>;
+
+/** The Assessment items on this page */
+export type AssessmentListResultValueList = Array<Assessment>;
+export const AssessmentListResultValueList = /*@__PURE__*/ S.Array(
+  Assessment,
+) as any as S.Schema<AssessmentListResultValueList>;
+
+/** The response of a Assessment list operation. */
+export interface AssessmentListResult {
+  /** The Assessment items on this page */
+  value: AssessmentListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AssessmentListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AssessmentListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AssessmentListResult",
+}) as any as S.Schema<AssessmentListResult>;
+
+export interface ListAvsAssessedMachinesOperationByAvsAssessmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23632,7 +23979,7 @@ export interface ListAvsAssessedMachineOperationByAvsAssessmentRequest {
   /** Total record count. */
   totalRecordCount?: number;
 }
-export const ListAvsAssessedMachineOperationByAvsAssessmentRequest =
+export const ListAvsAssessedMachinesOperationByAvsAssessmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -23653,8 +24000,8 @@ export const ListAvsAssessedMachineOperationByAvsAssessmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAvsAssessedMachineOperationByAvsAssessmentRequest",
-  }) as any as S.Schema<ListAvsAssessedMachineOperationByAvsAssessmentRequest>;
+    identifier: "ListAvsAssessedMachinesOperationByAvsAssessmentRequest",
+  }) as any as S.Schema<ListAvsAssessedMachinesOperationByAvsAssessmentRequest>;
 
 /** AVS assessment Assessed Machine resource. */
 export interface AvsAssessedMachine {
@@ -23703,81 +24050,7 @@ export const AvsAssessedMachineListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvsAssessedMachineListResult",
 }) as any as S.Schema<AvsAssessedMachineListResult>;
 
-export interface ListAvsAssessmentOperationByGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-}
-export const ListAvsAssessmentOperationByGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      groupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-).annotate({
-  identifier: "ListAvsAssessmentOperationByGroupRequest",
-}) as any as S.Schema<ListAvsAssessmentOperationByGroupRequest>;
-
-/** AVS assessment resource. */
-export interface AvsAssessment {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AvsAssessmentProperties;
-}
-export const AvsAssessment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AvsAssessmentProperties),
-  }),
-).annotate({ identifier: "AvsAssessment" }) as any as S.Schema<AvsAssessment>;
-
-/** The AvsAssessment items on this page */
-export type AvsAssessmentListResultValueList = Array<AvsAssessment>;
-export const AvsAssessmentListResultValueList = /*@__PURE__*/ S.Array(
-  AvsAssessment,
-) as any as S.Schema<AvsAssessmentListResultValueList>;
-
-/** The response of a AvsAssessment list operation. */
-export interface AvsAssessmentListResult {
-  /** The AvsAssessment items on this page */
-  value: AvsAssessmentListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AvsAssessmentListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AvsAssessmentListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AvsAssessmentListResult",
-}) as any as S.Schema<AvsAssessmentListResult>;
-
-export interface ListAvsAssessmentOptionOperationByAssessmentProjectRequest {
+export interface ListAvsAssessmentOptionsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23785,7 +24058,7 @@ export interface ListAvsAssessmentOptionOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListAvsAssessmentOptionOperationByAssessmentProjectRequest =
+export const ListAvsAssessmentOptionsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -23800,8 +24073,8 @@ export const ListAvsAssessmentOptionOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAvsAssessmentOptionOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListAvsAssessmentOptionOperationByAssessmentProjectRequest>;
+    identifier: "ListAvsAssessmentOptionsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListAvsAssessmentOptionsOperationByAssessmentProjectRequest>;
 
 /** AVS Assessment options resource. */
 export interface AvsAssessmentOptions {
@@ -23851,61 +24124,81 @@ export const AvsAssessmentOptionsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvsAssessmentOptionsListResult",
 }) as any as S.Schema<AvsAssessmentOptionsListResult>;
 
-export interface ListDatabaseControllerDatabasesRequest {
-  /** The ID of the target subscription. */
+export interface ListAvsAssessmentsOperationByGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-  /** The continuation token. */
-  continuationToken?: string;
-  /** The number of items to be returned in a single page. This value is honored only if it is less than the 100. */
-  pageSize?: number;
+  /** Assessment Project Name */
+  projectName: string;
+  /** Group ARM name */
+  groupName: string;
 }
-export const ListDatabaseControllerDatabasesRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListAvsAssessmentsOperationByGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-      continuationToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/databases",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/avsAssessments",
         code: 200,
-        apiVersion: "2023-01-01",
+        apiVersion: "2024-01-15",
       }),
     ),
-).annotate({
-  identifier: "ListDatabaseControllerDatabasesRequest",
-}) as any as S.Schema<ListDatabaseControllerDatabasesRequest>;
+  ).annotate({
+    identifier: "ListAvsAssessmentsOperationByGroupRequest",
+  }) as any as S.Schema<ListAvsAssessmentsOperationByGroupRequest>;
 
-/** Gets or sets the databases. */
-export type DatabaseCollectionValueList = Array<Database>;
-export const DatabaseCollectionValueList = /*@__PURE__*/ S.Array(
-  Database,
-) as any as S.Schema<DatabaseCollectionValueList>;
+/** AVS assessment resource. */
+export interface AvsAssessment {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AvsAssessmentProperties;
+}
+export const AvsAssessment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AvsAssessmentProperties),
+  }),
+).annotate({ identifier: "AvsAssessment" }) as any as S.Schema<AvsAssessment>;
 
-/** Collection of databases. */
-export interface DatabaseCollection {
-  /** Gets or sets the databases. */
-  value?: DatabaseCollectionValueList;
-  /** Gets or sets the value of nextLink. */
+/** The AvsAssessment items on this page */
+export type AvsAssessmentListResultValueList = Array<AvsAssessment>;
+export const AvsAssessmentListResultValueList = /*@__PURE__*/ S.Array(
+  AvsAssessment,
+) as any as S.Schema<AvsAssessmentListResultValueList>;
+
+/** The response of a AvsAssessment list operation. */
+export interface AvsAssessmentListResult {
+  /** The AvsAssessment items on this page */
+  value: AvsAssessmentListResultValueList;
+  /** The link to the next page of items */
   nextLink?: string;
 }
-export const DatabaseCollection = /*@__PURE__*/ S.suspend(() =>
+export const AvsAssessmentListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(DatabaseCollectionValueList),
+    value: AvsAssessmentListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DatabaseCollection",
-}) as any as S.Schema<DatabaseCollection>;
+  identifier: "AvsAssessmentListResult",
+}) as any as S.Schema<AvsAssessmentListResult>;
 
-export interface ListDatabaseInstanceControllerDatabaseInstancesRequest {
+export interface ListDatabaseInstancesControllerDatabaseInstancesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23917,7 +24210,7 @@ export interface ListDatabaseInstanceControllerDatabaseInstancesRequest {
   /** The number of items to be returned in a single page. This value is honored only if it is less than the 100. */
   pageSize?: number;
 }
-export const ListDatabaseInstanceControllerDatabaseInstancesRequest =
+export const ListDatabaseInstancesControllerDatabaseInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -23934,8 +24227,8 @@ export const ListDatabaseInstanceControllerDatabaseInstancesRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListDatabaseInstanceControllerDatabaseInstancesRequest",
-  }) as any as S.Schema<ListDatabaseInstanceControllerDatabaseInstancesRequest>;
+    identifier: "ListDatabaseInstancesControllerDatabaseInstancesRequest",
+  }) as any as S.Schema<ListDatabaseInstancesControllerDatabaseInstancesRequest>;
 
 /** Gets or sets the database instances. */
 export type DatabaseInstanceCollectionValueList = Array<DatabaseInstance>;
@@ -23959,7 +24252,61 @@ export const DatabaseInstanceCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatabaseInstanceCollection",
 }) as any as S.Schema<DatabaseInstanceCollection>;
 
-export interface ListEventControllerEventsRequest {
+export interface ListDatabasesControllerDatabasesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+  /** The continuation token. */
+  continuationToken?: string;
+  /** The number of items to be returned in a single page. This value is honored only if it is less than the 100. */
+  pageSize?: number;
+}
+export const ListDatabasesControllerDatabasesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+      continuationToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/databases",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDatabasesControllerDatabasesRequest",
+}) as any as S.Schema<ListDatabasesControllerDatabasesRequest>;
+
+/** Gets or sets the databases. */
+export type DatabaseCollectionValueList = Array<Database>;
+export const DatabaseCollectionValueList = /*@__PURE__*/ S.Array(
+  Database,
+) as any as S.Schema<DatabaseCollectionValueList>;
+
+/** Collection of databases. */
+export interface DatabaseCollection {
+  /** Gets or sets the databases. */
+  value?: DatabaseCollectionValueList;
+  /** Gets or sets the value of nextLink. */
+  nextLink?: string;
+}
+export const DatabaseCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(DatabaseCollectionValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabaseCollection",
+}) as any as S.Schema<DatabaseCollection>;
+
+export interface ListEventsControllerEventsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23969,7 +24316,7 @@ export interface ListEventControllerEventsRequest {
   /** The continuation token. */
   continuationToken?: string;
 }
-export const ListEventControllerEventsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEventsControllerEventsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -23984,8 +24331,8 @@ export const ListEventControllerEventsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListEventControllerEventsRequest",
-}) as any as S.Schema<ListEventControllerEventsRequest>;
+  identifier: "ListEventsControllerEventsRequest",
+}) as any as S.Schema<ListEventsControllerEventsRequest>;
 
 /** Gets or sets the machines. */
 export type EventCollectionValueList = Array<MigrateEvent>;
@@ -24009,7 +24356,7 @@ export const EventCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "EventCollection",
 }) as any as S.Schema<EventCollection>;
 
-export interface ListGroupOperationByAssessmentProjectRequest {
+export interface ListGroupsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24017,7 +24364,7 @@ export interface ListGroupOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListGroupOperationByAssessmentProjectRequest =
+export const ListGroupsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24032,8 +24379,8 @@ export const ListGroupOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListGroupOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListGroupOperationByAssessmentProjectRequest>;
+    identifier: "ListGroupsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListGroupsOperationByAssessmentProjectRequest>;
 
 /** Group resource. */
 export interface Group {
@@ -24154,7 +24501,7 @@ export const HypervClusterListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervClusterListResult",
 }) as any as S.Schema<HypervClusterListResult>;
 
-export interface ListHypervCollectorOperationByAssessmentProjectRequest {
+export interface ListHypervCollectorsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24162,7 +24509,7 @@ export interface ListHypervCollectorOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListHypervCollectorOperationByAssessmentProjectRequest =
+export const ListHypervCollectorsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24177,8 +24524,8 @@ export const ListHypervCollectorOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHypervCollectorOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListHypervCollectorOperationByAssessmentProjectRequest>;
+    identifier: "ListHypervCollectorsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListHypervCollectorsOperationByAssessmentProjectRequest>;
 
 /** Hyper-V collector resource. */
 export interface HypervCollector {
@@ -24327,32 +24674,13 @@ export const ListHypervJobByHypervSiteRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListHypervJobByHypervSiteRequest>;
 
 /** A job resource belonging to a site resource. */
-export interface HypervJob {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: JobProperties;
-}
-export const HypervJob = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(JobProperties),
-  }),
-).annotate({ identifier: "HypervJob" }) as any as S.Schema<HypervJob>;
+export type HypervJob = ImportJob;
+export const HypervJob = ImportJob;
 
 /** The HypervJob items on this page */
-export type HypervJobListResultValueList = Array<HypervJob>;
+export type HypervJobListResultValueList = Array<ImportJob>;
 export const HypervJobListResultValueList = /*@__PURE__*/ S.Array(
-  HypervJob,
+  ImportJob,
 ) as any as S.Schema<HypervJobListResultValueList>;
 
 /** The response of a HypervJob list operation. */
@@ -24371,7 +24699,7 @@ export const HypervJobListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervJobListResult",
 }) as any as S.Schema<HypervJobListResult>;
 
-export interface ListHypervJobControllerByVmwareSiteRequest {
+export interface ListHypervJobsControllerByVmwareSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24379,7 +24707,7 @@ export interface ListHypervJobControllerByVmwareSiteRequest {
   /** Site name */
   siteName: string;
 }
-export const ListHypervJobControllerByVmwareSiteRequest =
+export const ListHypervJobsControllerByVmwareSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24394,17 +24722,17 @@ export const ListHypervJobControllerByVmwareSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHypervJobControllerByVmwareSiteRequest",
-  }) as any as S.Schema<ListHypervJobControllerByVmwareSiteRequest>;
+    identifier: "ListHypervJobsControllerByVmwareSiteRequest",
+  }) as any as S.Schema<ListHypervJobsControllerByVmwareSiteRequest>;
 
 /** A host resource belonging to a site resource. */
-export type VmwareJob = HypervJob;
-export const VmwareJob = HypervJob;
+export type VmwareJob = ImportJob;
+export const VmwareJob = ImportJob;
 
 /** The VmwareJob items on this page */
-export type VmwareJobListResultValueList = Array<HypervJob>;
+export type VmwareJobListResultValueList = Array<ImportJob>;
 export const VmwareJobListResultValueList = /*@__PURE__*/ S.Array(
-  HypervJob,
+  ImportJob,
 ) as any as S.Schema<VmwareJobListResultValueList>;
 
 /** The response of a VmwareJob list operation. */
@@ -24423,7 +24751,7 @@ export const VmwareJobListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareJobListResult",
 }) as any as S.Schema<VmwareJobListResult>;
 
-export interface ListHypervMachineControllerByHypervSiteRequest {
+export interface ListHypervMachinesControllerByHypervSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24439,7 +24767,7 @@ export interface ListHypervMachineControllerByHypervSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListHypervMachineControllerByHypervSiteRequest =
+export const ListHypervMachinesControllerByHypervSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24458,8 +24786,8 @@ export const ListHypervMachineControllerByHypervSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHypervMachineControllerByHypervSiteRequest",
-  }) as any as S.Schema<ListHypervMachineControllerByHypervSiteRequest>;
+    identifier: "ListHypervMachinesControllerByHypervSiteRequest",
+  }) as any as S.Schema<ListHypervMachinesControllerByHypervSiteRequest>;
 
 /** A machine resource belonging to a site resource. */
 export interface HypervMachine {
@@ -24506,7 +24834,7 @@ export const HypervMachineListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervMachineListResult",
 }) as any as S.Schema<HypervMachineListResult>;
 
-export interface ListHypervRunAsAccountControllerByHypervSiteRequest {
+export interface ListHypervRunAsAccountsControllerByHypervSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24514,7 +24842,7 @@ export interface ListHypervRunAsAccountControllerByHypervSiteRequest {
   /** Site name */
   siteName: string;
 }
-export const ListHypervRunAsAccountControllerByHypervSiteRequest =
+export const ListHypervRunAsAccountsControllerByHypervSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24529,8 +24857,8 @@ export const ListHypervRunAsAccountControllerByHypervSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHypervRunAsAccountControllerByHypervSiteRequest",
-  }) as any as S.Schema<ListHypervRunAsAccountControllerByHypervSiteRequest>;
+    identifier: "ListHypervRunAsAccountsControllerByHypervSiteRequest",
+  }) as any as S.Schema<ListHypervRunAsAccountsControllerByHypervSiteRequest>;
 
 /** A machine resource belonging to a site resource. */
 export interface HypervRunAsAccountResource {
@@ -24682,7 +25010,7 @@ export const ListHypervSiteBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListHypervSiteBySubscriptionRequest",
 }) as any as S.Schema<ListHypervSiteBySubscriptionRequest>;
 
-export interface ListHypervSiteControllerHealthSummaryRequest {
+export interface ListHypervSitesControllerHealthSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24690,7 +25018,7 @@ export interface ListHypervSiteControllerHealthSummaryRequest {
   /** Site name */
   siteName: string;
 }
-export const ListHypervSiteControllerHealthSummaryRequest =
+export const ListHypervSitesControllerHealthSummaryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24705,8 +25033,8 @@ export const ListHypervSiteControllerHealthSummaryRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHypervSiteControllerHealthSummaryRequest",
-  }) as any as S.Schema<ListHypervSiteControllerHealthSummaryRequest>;
+    identifier: "ListHypervSitesControllerHealthSummaryRequest",
+  }) as any as S.Schema<ListHypervSitesControllerHealthSummaryRequest>;
 
 /** Gets or sets the affected resources. */
 export type SiteHealthSummaryAffectedResourcesList = Array<string>;
@@ -24800,7 +25128,7 @@ export const SiteHealthSummaryCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "SiteHealthSummaryCollection",
 }) as any as S.Schema<SiteHealthSummaryCollection>;
 
-export interface ListHypervSoftwareInventoryControllerByHypervMachineRequest {
+export interface ListHypervSoftwareInventoriesControllerByHypervMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24810,7 +25138,7 @@ export interface ListHypervSoftwareInventoryControllerByHypervMachineRequest {
   /** HypervMachine name */
   machineName: string;
 }
-export const ListHypervSoftwareInventoryControllerByHypervMachineRequest =
+export const ListHypervSoftwareInventoriesControllerByHypervMachineRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24826,8 +25154,8 @@ export const ListHypervSoftwareInventoryControllerByHypervMachineRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHypervSoftwareInventoryControllerByHypervMachineRequest",
-  }) as any as S.Schema<ListHypervSoftwareInventoryControllerByHypervMachineRequest>;
+    identifier: "ListHypervSoftwareInventoriesControllerByHypervMachineRequest",
+  }) as any as S.Schema<ListHypervSoftwareInventoriesControllerByHypervMachineRequest>;
 
 /** HyperV VM software inventory REST resource. */
 export interface HypervVmSoftwareInventory {
@@ -24878,7 +25206,7 @@ export const HypervVmSoftwareInventoryListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervVmSoftwareInventoryListResult",
 }) as any as S.Schema<HypervVmSoftwareInventoryListResult>;
 
-export interface ListIisWebApplicationControllerByWebAppSiteRequest {
+export interface ListIisWebApplicationsControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24896,7 +25224,7 @@ export interface ListIisWebApplicationControllerByWebAppSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListIisWebApplicationControllerByWebAppSiteRequest =
+export const ListIisWebApplicationsControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24916,8 +25244,8 @@ export const ListIisWebApplicationControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListIisWebApplicationControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListIisWebApplicationControllerByWebAppSiteRequest>;
+    identifier: "ListIisWebApplicationsControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListIisWebApplicationsControllerByWebAppSiteRequest>;
 
 /** Web application REST Resource. */
 export interface IisWebApplications {
@@ -24966,7 +25294,7 @@ export const IisWebApplicationsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IisWebApplicationsListResult",
 }) as any as S.Schema<IisWebApplicationsListResult>;
 
-export interface ListIisWebServerControllerByWebAppSiteRequest {
+export interface ListIisWebServersControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24984,7 +25312,7 @@ export interface ListIisWebServerControllerByWebAppSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListIisWebServerControllerByWebAppSiteRequest =
+export const ListIisWebServersControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25004,8 +25332,8 @@ export const ListIisWebServerControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListIisWebServerControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListIisWebServerControllerByWebAppSiteRequest>;
+    identifier: "ListIisWebServersControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListIisWebServersControllerByWebAppSiteRequest>;
 
 /** Web server REST Resource. */
 export interface IisWebServers {
@@ -25052,7 +25380,7 @@ export const IisWebServersListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IisWebServersListResult",
 }) as any as S.Schema<IisWebServersListResult>;
 
-export interface ListImportCollectorOperationByAssessmentProjectRequest {
+export interface ListImportCollectorsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25060,7 +25388,7 @@ export interface ListImportCollectorOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListImportCollectorOperationByAssessmentProjectRequest =
+export const ListImportCollectorsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25075,8 +25403,8 @@ export const ListImportCollectorOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListImportCollectorOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListImportCollectorOperationByAssessmentProjectRequest>;
+    identifier: "ListImportCollectorsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListImportCollectorsOperationByAssessmentProjectRequest>;
 
 /** Import collector resource. */
 export interface ImportCollector {
@@ -25125,7 +25453,7 @@ export const ImportCollectorListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportCollectorListResult",
 }) as any as S.Schema<ImportCollectorListResult>;
 
-export interface ListImportJobControllerByImportSiteRequest {
+export interface ListImportJobsControllerDeletejobsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25133,60 +25461,8 @@ export interface ListImportJobControllerByImportSiteRequest {
   /** Site name */
   siteName: string;
 }
-export const ListImportJobControllerByImportSiteRequest =
+export const ListImportJobsControllerDeletejobsRequest =
   /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/importSites/{siteName}/jobs",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListImportJobControllerByImportSiteRequest",
-  }) as any as S.Schema<ListImportJobControllerByImportSiteRequest>;
-
-/** A host resource belonging to a site resource. */
-export type ImportJob = HypervJob;
-export const ImportJob = HypervJob;
-
-/** The ImportJob items on this page */
-export type ImportJobListResultValueList = Array<HypervJob>;
-export const ImportJobListResultValueList = /*@__PURE__*/ S.Array(
-  HypervJob,
-) as any as S.Schema<ImportJobListResultValueList>;
-
-/** The response of a ImportJob list operation. */
-export interface ImportJobListResult {
-  /** The ImportJob items on this page */
-  value: ImportJobListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ImportJobListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ImportJobListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImportJobListResult",
-}) as any as S.Schema<ImportJobListResult>;
-
-export interface ListImportJobControllerDeletejobsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const ListImportJobControllerDeletejobsRequest = /*@__PURE__*/ S.suspend(
-  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -25199,9 +25475,9 @@ export const ListImportJobControllerDeletejobsRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "ListImportJobControllerDeletejobsRequest",
-}) as any as S.Schema<ListImportJobControllerDeletejobsRequest>;
+  ).annotate({
+    identifier: "ListImportJobsControllerDeletejobsRequest",
+  }) as any as S.Schema<ListImportJobsControllerDeletejobsRequest>;
 
 /** A host resource belonging to a site resource. */
 export interface DeleteImportMachinesJob {
@@ -25251,7 +25527,7 @@ export const PagedDeleteImportMachinesJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "PagedDeleteImportMachinesJob",
 }) as any as S.Schema<PagedDeleteImportMachinesJob>;
 
-export interface ListImportJobControllerExportjobsRequest {
+export interface ListImportJobsControllerExportjobsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25259,8 +25535,8 @@ export interface ListImportJobControllerExportjobsRequest {
   /** Site name */
   siteName: string;
 }
-export const ListImportJobControllerExportjobsRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListImportJobsControllerExportjobsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -25273,9 +25549,9 @@ export const ListImportJobControllerExportjobsRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "ListImportJobControllerExportjobsRequest",
-}) as any as S.Schema<ListImportJobControllerExportjobsRequest>;
+  ).annotate({
+    identifier: "ListImportJobsControllerExportjobsRequest",
+  }) as any as S.Schema<ListImportJobsControllerExportjobsRequest>;
 
 /** The ExportImportedMachinesJob items on this page */
 export type PagedExportImportedMachinesJobValueList =
@@ -25300,7 +25576,7 @@ export const PagedExportImportedMachinesJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "PagedExportImportedMachinesJob",
 }) as any as S.Schema<PagedExportImportedMachinesJob>;
 
-export interface ListImportJobControllerImportjobsRequest {
+export interface ListImportJobsControllerImportjobsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25308,8 +25584,8 @@ export interface ListImportJobControllerImportjobsRequest {
   /** Site name */
   siteName: string;
 }
-export const ListImportJobControllerImportjobsRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListImportJobsControllerImportjobsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -25322,9 +25598,9 @@ export const ListImportJobControllerImportjobsRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "ListImportJobControllerImportjobsRequest",
-}) as any as S.Schema<ListImportJobControllerImportjobsRequest>;
+  ).annotate({
+    identifier: "ListImportJobsControllerImportjobsRequest",
+  }) as any as S.Schema<ListImportJobsControllerImportjobsRequest>;
 
 /** The ImportMachinesJob items on this page */
 export type PagedImportMachinesJobValueList = Array<ImportMachinesJob>;
@@ -25348,96 +25624,13 @@ export const PagedImportMachinesJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "PagedImportMachinesJob",
 }) as any as S.Schema<PagedImportMachinesJob>;
 
-export interface ListImportMachineControllerByImportSiteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** filter query */
-  filter?: string;
-  /** page size query */
-  top?: string;
-  /** Optional parameter for continuation token. */
-  continuationToken?: string;
-  /** Total count of machines in the given site. */
-  totalRecordCount?: number;
-}
-export const ListImportMachineControllerByImportSiteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      filter: S.optional(S.String.pipe(T.Query())),
-      top: S.optional(S.String.pipe(T.Query())),
-      continuationToken: S.optional(S.String.pipe(T.Query())),
-      totalRecordCount: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/importSites/{siteName}/machines",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListImportMachineControllerByImportSiteRequest",
-  }) as any as S.Schema<ListImportMachineControllerByImportSiteRequest>;
-
-/** An machine resource belonging to a site resource. */
-export interface ImportMachine {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ImportMachineProperties;
-}
-export const ImportMachine = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ImportMachineProperties),
-  }),
-).annotate({ identifier: "ImportMachine" }) as any as S.Schema<ImportMachine>;
-
-/** The ImportMachine items on this page */
-export type ImportMachineListResultValueList = Array<ImportMachine>;
-export const ImportMachineListResultValueList = /*@__PURE__*/ S.Array(
-  ImportMachine,
-) as any as S.Schema<ImportMachineListResultValueList>;
-
-/** The response of a ImportMachine list operation. */
-export interface ImportMachineListResult {
-  /** The ImportMachine items on this page */
-  value: ImportMachineListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ImportMachineListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ImportMachineListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImportMachineListResult",
-}) as any as S.Schema<ImportMachineListResult>;
-
-export interface ListImportSiteControllerByResourceGroupRequest {
+export interface ListImportSitesControllerByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListImportSiteControllerByResourceGroupRequest =
+export const ListImportSitesControllerByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25451,8 +25644,8 @@ export const ListImportSiteControllerByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListImportSiteControllerByResourceGroupRequest",
-  }) as any as S.Schema<ListImportSiteControllerByResourceGroupRequest>;
+    identifier: "ListImportSitesControllerByResourceGroupRequest",
+  }) as any as S.Schema<ListImportSitesControllerByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ImportSiteTagsMap = { [key: string]: string | undefined };
@@ -25512,11 +25705,11 @@ export const ImportSiteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImportSiteListResult",
 }) as any as S.Schema<ImportSiteListResult>;
 
-export interface ListImportSiteControllerBySubscriptionRequest {
+export interface ListImportSitesControllerBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ListImportSiteControllerBySubscriptionRequest =
+export const ListImportSitesControllerBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25529,10 +25722,10 @@ export const ListImportSiteControllerBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListImportSiteControllerBySubscriptionRequest",
-  }) as any as S.Schema<ListImportSiteControllerBySubscriptionRequest>;
+    identifier: "ListImportSitesControllerBySubscriptionRequest",
+  }) as any as S.Schema<ListImportSitesControllerBySubscriptionRequest>;
 
-export interface ListMachineControllerByVmwareSiteRequest {
+export interface ListMachinesControllerByVmwareSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25548,8 +25741,8 @@ export interface ListMachineControllerByVmwareSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListMachineControllerByVmwareSiteRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListMachinesControllerByVmwareSiteRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -25566,9 +25759,9 @@ export const ListMachineControllerByVmwareSiteRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "ListMachineControllerByVmwareSiteRequest",
-}) as any as S.Schema<ListMachineControllerByVmwareSiteRequest>;
+  ).annotate({
+    identifier: "ListMachinesControllerByVmwareSiteRequest",
+  }) as any as S.Schema<ListMachinesControllerByVmwareSiteRequest>;
 
 /** An machine resource belonging to a site resource. */
 export interface MachineResource {
@@ -25617,7 +25810,7 @@ export const MachineResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineResourceListResult",
 }) as any as S.Schema<MachineResourceListResult>;
 
-export interface ListMachineControllerMachinesRequest {
+export interface ListMachinesControllerMachinesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25629,7 +25822,7 @@ export interface ListMachineControllerMachinesRequest {
   /** The number of items to be returned in a single page. This value is honored only if it is less than the 100. */
   pageSize?: number;
 }
-export const ListMachineControllerMachinesRequest = /*@__PURE__*/ S.suspend(
+export const ListMachinesControllerMachinesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25646,8 +25839,8 @@ export const ListMachineControllerMachinesRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListMachineControllerMachinesRequest",
-}) as any as S.Schema<ListMachineControllerMachinesRequest>;
+  identifier: "ListMachinesControllerMachinesRequest",
+}) as any as S.Schema<ListMachinesControllerMachinesRequest>;
 
 /** Gets or sets the machines. */
 export type MachineCollectionValueList = Array<Machine_2>;
@@ -25671,7 +25864,7 @@ export const MachineCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineCollection",
 }) as any as S.Schema<MachineCollection>;
 
-export interface ListMachineOperationByAssessmentProjectRequest {
+export interface ListMachinesOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -25687,7 +25880,7 @@ export interface ListMachineOperationByAssessmentProjectRequest {
   /** Total record count. */
   totalRecordCount?: number;
 }
-export const ListMachineOperationByAssessmentProjectRequest =
+export const ListMachinesOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25706,8 +25899,8 @@ export const ListMachineOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMachineOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListMachineOperationByAssessmentProjectRequest>;
+    identifier: "ListMachinesOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListMachinesOperationByAssessmentProjectRequest>;
 
 /** Machine resource. */
 export interface Machine {
@@ -25754,13 +25947,13 @@ export const MachineListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineListResult",
 }) as any as S.Schema<MachineListResult>;
 
-export interface ListMasterSiteControllerByResourceGroupRequest {
+export interface ListMasterSitesControllerByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListMasterSiteControllerByResourceGroupRequest =
+export const ListMasterSitesControllerByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25774,8 +25967,8 @@ export const ListMasterSiteControllerByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMasterSiteControllerByResourceGroupRequest",
-  }) as any as S.Schema<ListMasterSiteControllerByResourceGroupRequest>;
+    identifier: "ListMasterSitesControllerByResourceGroupRequest",
+  }) as any as S.Schema<ListMasterSitesControllerByResourceGroupRequest>;
 
 /** Resource tags. */
 export type MasterSiteTagsMap = { [key: string]: string | undefined };
@@ -25835,11 +26028,11 @@ export const MasterSiteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MasterSiteListResult",
 }) as any as S.Schema<MasterSiteListResult>;
 
-export interface ListMasterSiteControllerBySubscriptionRequest {
+export interface ListMasterSitesControllerBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ListMasterSiteControllerBySubscriptionRequest =
+export const ListMasterSitesControllerBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -25852,8 +26045,8 @@ export const ListMasterSiteControllerBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMasterSiteControllerBySubscriptionRequest",
-  }) as any as S.Schema<ListMasterSiteControllerBySubscriptionRequest>;
+    identifier: "ListMasterSitesControllerBySubscriptionRequest",
+  }) as any as S.Schema<ListMasterSitesControllerBySubscriptionRequest>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -25923,20 +26116,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -26097,80 +26290,6 @@ export const PrivateEndpointConnectionProxyCollection = /*@__PURE__*/ S.suspend(
   identifier: "PrivateEndpointConnectionProxyCollection",
 }) as any as S.Schema<PrivateEndpointConnectionProxyCollection>;
 
-export interface ListPrivateLinkResourceControllerByMasterSiteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const ListPrivateLinkResourceControllerByMasterSiteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListPrivateLinkResourceControllerByMasterSiteRequest",
-  }) as any as S.Schema<ListPrivateLinkResourceControllerByMasterSiteRequest>;
-
-/** REST model used to encapsulate Private Link properties for tracked resources. */
-export interface PrivateLinkResource_3 {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateLinkResourceProperties_3;
-}
-export const PrivateLinkResource_3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties_3),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource_3",
-}) as any as S.Schema<PrivateLinkResource_3>;
-
-/** The PrivateLinkResource items on this page */
-export type PrivateLinkResourceListResultValueList_2 =
-  Array<PrivateLinkResource_3>;
-export const PrivateLinkResourceListResultValueList_2 = /*@__PURE__*/ S.Array(
-  PrivateLinkResource_3,
-) as any as S.Schema<PrivateLinkResourceListResultValueList_2>;
-
-/** The response of a PrivateLinkResource list operation. */
-export interface PrivateLinkResourceListResult_2 {
-  /** The PrivateLinkResource items on this page */
-  value: PrivateLinkResourceListResultValueList_2;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateLinkResourceListResult_2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourceListResultValueList_2,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceListResult_2",
-}) as any as S.Schema<PrivateLinkResourceListResult_2>;
-
 export interface ListPrivateLinkResourceOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -26281,6 +26400,80 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
+export interface ListPrivateLinkResourcesControllerByMasterSiteRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const ListPrivateLinkResourcesControllerByMasterSiteRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateLinkResourcesControllerByMasterSiteRequest",
+  }) as any as S.Schema<ListPrivateLinkResourcesControllerByMasterSiteRequest>;
+
+/** REST model used to encapsulate Private Link properties for tracked resources. */
+export interface PrivateLinkResource_3 {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateLinkResourceProperties_3;
+}
+export const PrivateLinkResource_3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties_3),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource_3",
+}) as any as S.Schema<PrivateLinkResource_3>;
+
+/** The PrivateLinkResource items on this page */
+export type PrivateLinkResourceListResultValueList_2 =
+  Array<PrivateLinkResource_3>;
+export const PrivateLinkResourceListResultValueList_2 = /*@__PURE__*/ S.Array(
+  PrivateLinkResource_3,
+) as any as S.Schema<PrivateLinkResourceListResultValueList_2>;
+
+/** The response of a PrivateLinkResource list operation. */
+export interface PrivateLinkResourceListResult_2 {
+  /** The PrivateLinkResource items on this page */
+  value: PrivateLinkResourceListResultValueList_2;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateLinkResourceListResult_2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourceListResultValueList_2,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceListResult_2",
+}) as any as S.Schema<PrivateLinkResourceListResult_2>;
+
 export interface ListProjectBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -26299,6 +26492,227 @@ export const ListProjectBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListProjectBySubscriptionRequest",
 }) as any as S.Schema<ListProjectBySubscriptionRequest>;
+
+export type MigrateProjectPropertiesRegisteredToolsItem =
+  | "ServerDiscovery"
+  | "ServerAssessment"
+  | "ServerMigration"
+  | "Cloudamize"
+  | "Turbonomic"
+  | "Zerto"
+  | "CorentTech"
+  | "ServerAssessmentV1"
+  | "ServerMigration_Replication"
+  | "Carbonite"
+  | "DataMigrationAssistant"
+  | "DatabaseMigrationService"
+  | "Device42"
+  | "JetStream"
+  | "RackWare"
+  | "UnifyCloud"
+  | "Flexera"
+  | "ServerDiscovery_Import"
+  | "Lakeside"
+  | "AppServiceMigrationAssistant"
+  | "Movere"
+  | "CloudSphere"
+  | "Modernization"
+  | "ServerMigration_DataReplication"
+  | "Unknown";
+export const MigrateProjectPropertiesRegisteredToolsItem =
+  /*@__PURE__*/ S.String;
+
+/** Register tools inside project. */
+export type MigrateProjectPropertiesRegisteredToolsList =
+  Array<MigrateProjectPropertiesRegisteredToolsItem>;
+export const MigrateProjectPropertiesRegisteredToolsList =
+  /*@__PURE__*/ S.Array(
+    MigrateProjectPropertiesRegisteredToolsItem,
+  ) as any as S.Schema<MigrateProjectPropertiesRegisteredToolsList>;
+
+/** Refresh summary state. */
+export type ProjectSummaryRefreshSummaryState =
+  | "Started"
+  | "InProgress"
+  | "Completed"
+  | "Failed";
+export const ProjectSummaryRefreshSummaryState = /*@__PURE__*/ S.String;
+
+/** Extended summary. */
+export type ProjectSummaryExtendedSummaryMap = {
+  [key: string]: string | undefined;
+};
+export const ProjectSummaryExtendedSummaryMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ProjectSummaryExtendedSummaryMap>;
+
+/** Project summary. */
+export interface ProjectSummary {
+  /** Instance type. */
+  instanceType?: string;
+  /** Refresh summary state. */
+  refreshSummaryState?: ProjectSummaryRefreshSummaryState;
+  /** Last summary refresh time. */
+  lastSummaryRefreshedTime?: string;
+  /** Extended summary. */
+  extendedSummary?: ProjectSummaryExtendedSummaryMap;
+}
+export const ProjectSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.optional(S.String),
+    refreshSummaryState: S.optional(ProjectSummaryRefreshSummaryState),
+    lastSummaryRefreshedTime: S.optional(S.String),
+    extendedSummary: S.optional(ProjectSummaryExtendedSummaryMap),
+  }),
+).annotate({ identifier: "ProjectSummary" }) as any as S.Schema<ProjectSummary>;
+
+/** Project summary. */
+export type MigrateProjectPropertiesSummaryMap = {
+  [key: string]: ProjectSummary | undefined;
+};
+export const MigrateProjectPropertiesSummaryMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ProjectSummary,
+) as any as S.Schema<MigrateProjectPropertiesSummaryMap>;
+
+/** Refresh summary state. */
+export type MigrateProjectPropertiesRefreshSummaryState =
+  | "Started"
+  | "InProgress"
+  | "Completed"
+  | "Failed";
+export const MigrateProjectPropertiesRefreshSummaryState =
+  /*@__PURE__*/ S.String;
+
+/** Gets or sets the state of public network access. */
+export type MigrateProjectPropertiesPublicNetworkAccess =
+  | "NotSpecified"
+  | "Enabled"
+  | "Disabled";
+export const MigrateProjectPropertiesPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
+
+/** Gets the private endpoint connections. */
+export type MigrateProjectPropertiesPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnection_2>;
+export const MigrateProjectPropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection_2,
+  ) as any as S.Schema<MigrateProjectPropertiesPrivateEndpointConnectionsList>;
+
+/** Properties of a migrate project. */
+export interface MigrateProjectProperties {
+  /** Register tools inside project. */
+  registeredTools?: MigrateProjectPropertiesRegisteredToolsList;
+  /** Service endpoint. */
+  serviceEndpoint?: string;
+  /** Project summary. */
+  summary?: MigrateProjectPropertiesSummaryMap;
+  /** Last summary refresh time. */
+  lastSummaryRefreshedTime?: string;
+  /** Refresh summary state. */
+  refreshSummaryState?: MigrateProjectPropertiesRefreshSummaryState;
+  /** Utility storage account id. */
+  utilityStorageAccountId?: string;
+  /** Gets or sets the state of public network access. */
+  publicNetworkAccess?: MigrateProjectPropertiesPublicNetworkAccess;
+  /** Gets the private endpoint connections. */
+  privateEndpointConnections?: MigrateProjectPropertiesPrivateEndpointConnectionsList;
+}
+export const MigrateProjectProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    registeredTools: S.optional(MigrateProjectPropertiesRegisteredToolsList),
+    serviceEndpoint: S.optional(S.String),
+    summary: S.optional(MigrateProjectPropertiesSummaryMap),
+    lastSummaryRefreshedTime: S.optional(S.String),
+    refreshSummaryState: S.optional(
+      MigrateProjectPropertiesRefreshSummaryState,
+    ),
+    utilityStorageAccountId: S.optional(S.String),
+    publicNetworkAccess: S.optional(
+      MigrateProjectPropertiesPublicNetworkAccess,
+    ),
+    privateEndpointConnections: S.optional(
+      MigrateProjectPropertiesPrivateEndpointConnectionsList,
+    ),
+  }),
+).annotate({
+  identifier: "MigrateProjectProperties",
+}) as any as S.Schema<MigrateProjectProperties>;
+
+/** The type of identity that created the resource. */
+export type MigrateProjectSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const MigrateProjectSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type MigrateProjectSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const MigrateProjectSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface MigrateProjectSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: MigrateProjectSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: MigrateProjectSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const MigrateProjectSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(MigrateProjectSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(MigrateProjectSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MigrateProjectSystemData",
+}) as any as S.Schema<MigrateProjectSystemData>;
+
+/** Migrate project. */
+export interface MigrateProject {
+  properties?: MigrateProjectProperties;
+  /** For optimistic concurrency control. */
+  eTag?: string;
+  /** Azure location in which project is created. */
+  location?: string;
+  /** Path reference to this project /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{projectName} */
+  id?: string;
+  /** Name of the project. */
+  name?: string;
+  /** Type of the object = [Microsoft.Migrate/migrateProjects]. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: MigrateProjectSystemData;
+}
+export const MigrateProject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(MigrateProjectProperties),
+    eTag: S.optional(S.String),
+    location: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(MigrateProjectSystemData),
+  }),
+).annotate({ identifier: "MigrateProject" }) as any as S.Schema<MigrateProject>;
 
 /** List of projects. */
 export type ProjectResultListValueList = Array<MigrateProject>;
@@ -26343,7 +26757,7 @@ export const ListProjectsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListProjectsRequest",
 }) as any as S.Schema<ListProjectsRequest>;
 
-export interface ListRunAsAccountControllerByVmwareSiteRequest {
+export interface ListRunAsAccountsControllerByVmwareSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -26351,7 +26765,7 @@ export interface ListRunAsAccountControllerByVmwareSiteRequest {
   /** Site name */
   siteName: string;
 }
-export const ListRunAsAccountControllerByVmwareSiteRequest =
+export const ListRunAsAccountsControllerByVmwareSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26366,8 +26780,8 @@ export const ListRunAsAccountControllerByVmwareSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListRunAsAccountControllerByVmwareSiteRequest",
-  }) as any as S.Schema<ListRunAsAccountControllerByVmwareSiteRequest>;
+    identifier: "ListRunAsAccountsControllerByVmwareSiteRequest",
+  }) as any as S.Schema<ListRunAsAccountsControllerByVmwareSiteRequest>;
 
 /** A runasaccount resource belonging to a site resource. */
 export type VmwareRunAsAccountResource = HypervRunAsAccountResource;
@@ -26398,7 +26812,7 @@ export const VmwareRunAsAccountResourceListResult = /*@__PURE__*/ S.suspend(
   identifier: "VmwareRunAsAccountResourceListResult",
 }) as any as S.Schema<VmwareRunAsAccountResourceListResult>;
 
-export interface ListServerCollectorOperationByAssessmentProjectRequest {
+export interface ListServerCollectorsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -26406,7 +26820,7 @@ export interface ListServerCollectorOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListServerCollectorOperationByAssessmentProjectRequest =
+export const ListServerCollectorsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26421,8 +26835,8 @@ export const ListServerCollectorOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListServerCollectorOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListServerCollectorOperationByAssessmentProjectRequest>;
+    identifier: "ListServerCollectorsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListServerCollectorsOperationByAssessmentProjectRequest>;
 
 /** Physical server collector resource. */
 export type ServerCollector = HypervCollector;
@@ -26450,7 +26864,112 @@ export const ServerCollectorListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerCollectorListResult",
 }) as any as S.Schema<ServerCollectorListResult>;
 
-export interface ListServerControllerByServerSiteResourceRequest {
+export interface ListServerJobsControllerByServerSiteResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const ListServerJobsControllerByServerSiteResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/jobs",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListServerJobsControllerByServerSiteResourceRequest",
+  }) as any as S.Schema<ListServerJobsControllerByServerSiteResourceRequest>;
+
+/** A host resource belonging to a site resource. */
+export type ServerJob = ImportJob;
+export const ServerJob = ImportJob;
+
+/** The ServerJob items on this page */
+export type ServerJobListResultValueList = Array<ImportJob>;
+export const ServerJobListResultValueList = /*@__PURE__*/ S.Array(
+  ImportJob,
+) as any as S.Schema<ServerJobListResultValueList>;
+
+/** The response of a ServerJob list operation. */
+export interface ServerJobListResult {
+  /** The ServerJob items on this page */
+  value: ServerJobListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ServerJobListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ServerJobListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServerJobListResult",
+}) as any as S.Schema<ServerJobListResult>;
+
+export interface ListServerRunAsAccountsControllerByServerSiteResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const ListServerRunAsAccountsControllerByServerSiteResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/runAsAccounts",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListServerRunAsAccountsControllerByServerSiteResourceRequest",
+  }) as any as S.Schema<ListServerRunAsAccountsControllerByServerSiteResourceRequest>;
+
+/** A run as account resource belonging to a site resource. */
+export type ServerRunAsAccount = HypervRunAsAccountResource;
+export const ServerRunAsAccount = HypervRunAsAccountResource;
+
+/** The ServerRunAsAccount items on this page */
+export type ServerRunAsAccountListResultValueList =
+  Array<HypervRunAsAccountResource>;
+export const ServerRunAsAccountListResultValueList = /*@__PURE__*/ S.Array(
+  HypervRunAsAccountResource,
+) as any as S.Schema<ServerRunAsAccountListResultValueList>;
+
+/** The response of a ServerRunAsAccount list operation. */
+export interface ServerRunAsAccountListResult {
+  /** The ServerRunAsAccount items on this page */
+  value: ServerRunAsAccountListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ServerRunAsAccountListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ServerRunAsAccountListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServerRunAsAccountListResult",
+}) as any as S.Schema<ServerRunAsAccountListResult>;
+
+export interface ListServersControllerByServerSiteResourceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -26466,7 +26985,7 @@ export interface ListServerControllerByServerSiteResourceRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListServerControllerByServerSiteResourceRequest =
+export const ListServersControllerByServerSiteResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26485,8 +27004,8 @@ export const ListServerControllerByServerSiteResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListServerControllerByServerSiteResourceRequest",
-  }) as any as S.Schema<ListServerControllerByServerSiteResourceRequest>;
+    identifier: "ListServersControllerByServerSiteResourceRequest",
+  }) as any as S.Schema<ListServersControllerByServerSiteResourceRequest>;
 
 /** A machine resource belonging to a site resource. */
 export interface Server {
@@ -26533,118 +27052,13 @@ export const ServerListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerListResult",
 }) as any as S.Schema<ServerListResult>;
 
-export interface ListServerJobControllerByServerSiteResourceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const ListServerJobControllerByServerSiteResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/jobs",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListServerJobControllerByServerSiteResourceRequest",
-  }) as any as S.Schema<ListServerJobControllerByServerSiteResourceRequest>;
-
-/** A host resource belonging to a site resource. */
-export type ServerJob = HypervJob;
-export const ServerJob = HypervJob;
-
-/** The ServerJob items on this page */
-export type ServerJobListResultValueList = Array<HypervJob>;
-export const ServerJobListResultValueList = /*@__PURE__*/ S.Array(
-  HypervJob,
-) as any as S.Schema<ServerJobListResultValueList>;
-
-/** The response of a ServerJob list operation. */
-export interface ServerJobListResult {
-  /** The ServerJob items on this page */
-  value: ServerJobListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ServerJobListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ServerJobListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServerJobListResult",
-}) as any as S.Schema<ServerJobListResult>;
-
-export interface ListServerRunAsAccountControllerByServerSiteResourceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const ListServerRunAsAccountControllerByServerSiteResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/runAsAccounts",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListServerRunAsAccountControllerByServerSiteResourceRequest",
-  }) as any as S.Schema<ListServerRunAsAccountControllerByServerSiteResourceRequest>;
-
-/** A run as account resource belonging to a site resource. */
-export type ServerRunAsAccount = HypervRunAsAccountResource;
-export const ServerRunAsAccount = HypervRunAsAccountResource;
-
-/** The ServerRunAsAccount items on this page */
-export type ServerRunAsAccountListResultValueList =
-  Array<HypervRunAsAccountResource>;
-export const ServerRunAsAccountListResultValueList = /*@__PURE__*/ S.Array(
-  HypervRunAsAccountResource,
-) as any as S.Schema<ServerRunAsAccountListResultValueList>;
-
-/** The response of a ServerRunAsAccount list operation. */
-export interface ServerRunAsAccountListResult {
-  /** The ServerRunAsAccount items on this page */
-  value: ServerRunAsAccountListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ServerRunAsAccountListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ServerRunAsAccountListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServerRunAsAccountListResult",
-}) as any as S.Schema<ServerRunAsAccountListResult>;
-
-export interface ListServerSiteControllerByResourceGroupRequest {
+export interface ListServerSitesControllerByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListServerSiteControllerByResourceGroupRequest =
+export const ListServerSitesControllerByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26658,8 +27072,8 @@ export const ListServerSiteControllerByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListServerSiteControllerByResourceGroupRequest",
-  }) as any as S.Schema<ListServerSiteControllerByResourceGroupRequest>;
+    identifier: "ListServerSitesControllerByResourceGroupRequest",
+  }) as any as S.Schema<ListServerSitesControllerByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ServerSiteResourceTagsMap = { [key: string]: string | undefined };
@@ -26721,11 +27135,11 @@ export const ServerSiteResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerSiteResourceListResult",
 }) as any as S.Schema<ServerSiteResourceListResult>;
 
-export interface ListServerSiteControllerBySubscriptionRequest {
+export interface ListServerSitesControllerBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ListServerSiteControllerBySubscriptionRequest =
+export const ListServerSitesControllerBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26738,10 +27152,10 @@ export const ListServerSiteControllerBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListServerSiteControllerBySubscriptionRequest",
-  }) as any as S.Schema<ListServerSiteControllerBySubscriptionRequest>;
+    identifier: "ListServerSitesControllerBySubscriptionRequest",
+  }) as any as S.Schema<ListServerSitesControllerBySubscriptionRequest>;
 
-export interface ListServerSiteControllerHealthSummaryRequest {
+export interface ListServerSitesControllerHealthSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -26749,7 +27163,7 @@ export interface ListServerSiteControllerHealthSummaryRequest {
   /** Site name */
   siteName: string;
 }
-export const ListServerSiteControllerHealthSummaryRequest =
+export const ListServerSitesControllerHealthSummaryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26764,10 +27178,10 @@ export const ListServerSiteControllerHealthSummaryRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListServerSiteControllerHealthSummaryRequest",
-  }) as any as S.Schema<ListServerSiteControllerHealthSummaryRequest>;
+    identifier: "ListServerSitesControllerHealthSummaryRequest",
+  }) as any as S.Schema<ListServerSitesControllerHealthSummaryRequest>;
 
-export interface ListServerSoftwareInventoryControllerByServerRequest {
+export interface ListServerSoftwareInventoriesControllerByServerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -26777,7 +27191,7 @@ export interface ListServerSoftwareInventoryControllerByServerRequest {
   /** A server machine name */
   machineName: string;
 }
-export const ListServerSoftwareInventoryControllerByServerRequest =
+export const ListServerSoftwareInventoriesControllerByServerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26793,8 +27207,8 @@ export const ListServerSoftwareInventoryControllerByServerRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListServerSoftwareInventoryControllerByServerRequest",
-  }) as any as S.Schema<ListServerSoftwareInventoryControllerByServerRequest>;
+    identifier: "ListServerSoftwareInventoriesControllerByServerRequest",
+  }) as any as S.Schema<ListServerSoftwareInventoriesControllerByServerRequest>;
 
 /** An software inventory resource belonging to a server resource. */
 export type ServerSoftwareInventory = HypervVmSoftwareInventory;
@@ -26823,14 +27237,14 @@ export const ServerSoftwareInventoryListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerSoftwareInventoryListResult",
 }) as any as S.Schema<ServerSoftwareInventoryListResult>;
 
-export interface ListSiteControllerByResourceGroupRequest {
+export interface ListSitesControllerByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListSiteControllerByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListSitesControllerByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -26842,9 +27256,9 @@ export const ListSiteControllerByResourceGroupRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "ListSiteControllerByResourceGroupRequest",
-}) as any as S.Schema<ListSiteControllerByResourceGroupRequest>;
+  ).annotate({
+    identifier: "ListSitesControllerByResourceGroupRequest",
+  }) as any as S.Schema<ListSitesControllerByResourceGroupRequest>;
 
 /** Resource tags. */
 export type VmwareSiteTagsMap = { [key: string]: string | undefined };
@@ -26907,11 +27321,11 @@ export const VmwareSiteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareSiteListResult",
 }) as any as S.Schema<VmwareSiteListResult>;
 
-export interface ListSiteControllerBySubscriptionRequest {
+export interface ListSitesControllerBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ListSiteControllerBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListSitesControllerBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26924,10 +27338,10 @@ export const ListSiteControllerBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSiteControllerBySubscriptionRequest",
-}) as any as S.Schema<ListSiteControllerBySubscriptionRequest>;
+  identifier: "ListSitesControllerBySubscriptionRequest",
+}) as any as S.Schema<ListSitesControllerBySubscriptionRequest>;
 
-export interface ListSiteControllerHealthSummaryRequest {
+export interface ListSitesControllerHealthSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -26935,7 +27349,7 @@ export interface ListSiteControllerHealthSummaryRequest {
   /** Site name */
   siteName: string;
 }
-export const ListSiteControllerHealthSummaryRequest = /*@__PURE__*/ S.suspend(
+export const ListSitesControllerHealthSummaryRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26950,10 +27364,10 @@ export const ListSiteControllerHealthSummaryRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSiteControllerHealthSummaryRequest",
-}) as any as S.Schema<ListSiteControllerHealthSummaryRequest>;
+  identifier: "ListSitesControllerHealthSummaryRequest",
+}) as any as S.Schema<ListSitesControllerHealthSummaryRequest>;
 
-export interface ListSolutionControllerSolutionsRequest {
+export interface ListSolutionsControllerSolutionsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -26961,7 +27375,7 @@ export interface ListSolutionControllerSolutionsRequest {
   /** Name of the Azure Migrate project. */
   migrateProjectName: string;
 }
-export const ListSolutionControllerSolutionsRequest = /*@__PURE__*/ S.suspend(
+export const ListSolutionsControllerSolutionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -26976,8 +27390,8 @@ export const ListSolutionControllerSolutionsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSolutionControllerSolutionsRequest",
-}) as any as S.Schema<ListSolutionControllerSolutionsRequest>;
+  identifier: "ListSolutionsControllerSolutionsRequest",
+}) as any as S.Schema<ListSolutionsControllerSolutionsRequest>;
 
 /** Gets or sets the list of solutions. */
 export type SolutionsCollectionValueList = Array<Solution>;
@@ -27001,7 +27415,7 @@ export const SolutionsCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "SolutionsCollection",
 }) as any as S.Schema<SolutionsCollection>;
 
-export interface ListSqlAssessmentOptionOperationByAssessmentProjectRequest {
+export interface ListSqlAssessmentOptionsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27009,7 +27423,7 @@ export interface ListSqlAssessmentOptionOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListSqlAssessmentOptionOperationByAssessmentProjectRequest =
+export const ListSqlAssessmentOptionsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27024,8 +27438,8 @@ export const ListSqlAssessmentOptionOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListSqlAssessmentOptionOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListSqlAssessmentOptionOperationByAssessmentProjectRequest>;
+    identifier: "ListSqlAssessmentOptionsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListSqlAssessmentOptionsOperationByAssessmentProjectRequest>;
 
 /** SQL Assessment options web model object. */
 export interface SqlAssessmentOptions {
@@ -27231,7 +27645,7 @@ export const SqlAssessmentV2SummaryListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlAssessmentV2SummaryListResult",
 }) as any as S.Schema<SqlAssessmentV2SummaryListResult>;
 
-export interface ListSqlAvailabilityGroupControllerBySqlSiteRequest {
+export interface ListSqlAvailabilityGroupsControllerBySqlSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27249,7 +27663,7 @@ export interface ListSqlAvailabilityGroupControllerBySqlSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListSqlAvailabilityGroupControllerBySqlSiteRequest =
+export const ListSqlAvailabilityGroupsControllerBySqlSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27269,8 +27683,8 @@ export const ListSqlAvailabilityGroupControllerBySqlSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListSqlAvailabilityGroupControllerBySqlSiteRequest",
-  }) as any as S.Schema<ListSqlAvailabilityGroupControllerBySqlSiteRequest>;
+    identifier: "ListSqlAvailabilityGroupsControllerBySqlSiteRequest",
+  }) as any as S.Schema<ListSqlAvailabilityGroupsControllerBySqlSiteRequest>;
 
 /** Class representing the web model of SQL Availability Group. */
 export interface SqlAvailabilityGroup {
@@ -27372,7 +27786,7 @@ export const SqlCollectorListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlCollectorListResult",
 }) as any as S.Schema<SqlCollectorListResult>;
 
-export interface ListSqlDatabaseControllerBySqlSiteRequest {
+export interface ListSqlDatabasesControllerBySqlSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27390,7 +27804,7 @@ export interface ListSqlDatabaseControllerBySqlSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListSqlDatabaseControllerBySqlSiteRequest =
+export const ListSqlDatabasesControllerBySqlSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27410,8 +27824,8 @@ export const ListSqlDatabaseControllerBySqlSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListSqlDatabaseControllerBySqlSiteRequest",
-  }) as any as S.Schema<ListSqlDatabaseControllerBySqlSiteRequest>;
+    identifier: "ListSqlDatabasesControllerBySqlSiteRequest",
+  }) as any as S.Schema<ListSqlDatabasesControllerBySqlSiteRequest>;
 
 /** Class representing the web model of SQL Database. */
 export interface SqlDatabaseV2 {
@@ -27537,7 +27951,7 @@ export const SqlDiscoverySiteDataSourceListResult = /*@__PURE__*/ S.suspend(
   identifier: "SqlDiscoverySiteDataSourceListResult",
 }) as any as S.Schema<SqlDiscoverySiteDataSourceListResult>;
 
-export interface ListSqlJobControllerBySqlSiteRequest {
+export interface ListSqlJobsControllerBySqlSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27547,7 +27961,7 @@ export interface ListSqlJobControllerBySqlSiteRequest {
   /** SQL site name. */
   sqlSiteName: string;
 }
-export const ListSqlJobControllerBySqlSiteRequest = /*@__PURE__*/ S.suspend(
+export const ListSqlJobsControllerBySqlSiteRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27563,17 +27977,17 @@ export const ListSqlJobControllerBySqlSiteRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSqlJobControllerBySqlSiteRequest",
-}) as any as S.Schema<ListSqlJobControllerBySqlSiteRequest>;
+  identifier: "ListSqlJobsControllerBySqlSiteRequest",
+}) as any as S.Schema<ListSqlJobsControllerBySqlSiteRequest>;
 
 /** Class representing the web model of SQL Database. */
-export type SqlJob = HypervJob;
-export const SqlJob = HypervJob;
+export type SqlJob = ImportJob;
+export const SqlJob = ImportJob;
 
 /** The SqlJob items on this page */
-export type SqlJobListResultValueList = Array<HypervJob>;
+export type SqlJobListResultValueList = Array<ImportJob>;
 export const SqlJobListResultValueList = /*@__PURE__*/ S.Array(
-  HypervJob,
+  ImportJob,
 ) as any as S.Schema<SqlJobListResultValueList>;
 
 /** The response of a SqlJob list operation. */
@@ -27592,7 +28006,7 @@ export const SqlJobListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlJobListResult",
 }) as any as S.Schema<SqlJobListResult>;
 
-export interface ListSqlRunAsAccountControllerBySqlSiteRequest {
+export interface ListSqlRunAsAccountsControllerBySqlSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27602,7 +28016,7 @@ export interface ListSqlRunAsAccountControllerBySqlSiteRequest {
   /** SQL site name. */
   sqlSiteName: string;
 }
-export const ListSqlRunAsAccountControllerBySqlSiteRequest =
+export const ListSqlRunAsAccountsControllerBySqlSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27618,8 +28032,8 @@ export const ListSqlRunAsAccountControllerBySqlSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListSqlRunAsAccountControllerBySqlSiteRequest",
-  }) as any as S.Schema<ListSqlRunAsAccountControllerBySqlSiteRequest>;
+    identifier: "ListSqlRunAsAccountsControllerBySqlSiteRequest",
+  }) as any as S.Schema<ListSqlRunAsAccountsControllerBySqlSiteRequest>;
 
 /** A runasaccount resource belonging to a site resource. */
 export type SqlRunAsAccount = HypervRunAsAccountResource;
@@ -27648,7 +28062,7 @@ export const SqlRunAsAccountListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlRunAsAccountListResult",
 }) as any as S.Schema<SqlRunAsAccountListResult>;
 
-export interface ListSqlServerControllerBySqlSiteRequest {
+export interface ListSqlServersControllerBySqlSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27666,7 +28080,7 @@ export interface ListSqlServerControllerBySqlSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListSqlServerControllerBySqlSiteRequest = /*@__PURE__*/ S.suspend(
+export const ListSqlServersControllerBySqlSiteRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27686,8 +28100,8 @@ export const ListSqlServerControllerBySqlSiteRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSqlServerControllerBySqlSiteRequest",
-}) as any as S.Schema<ListSqlServerControllerBySqlSiteRequest>;
+  identifier: "ListSqlServersControllerBySqlSiteRequest",
+}) as any as S.Schema<ListSqlServersControllerBySqlSiteRequest>;
 
 /** Class representing the web model of SQL Server. */
 export interface SqlServerV2 {
@@ -27734,7 +28148,7 @@ export const SqlServerV2ListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlServerV2ListResult",
 }) as any as S.Schema<SqlServerV2ListResult>;
 
-export interface ListSqlSiteControllerByMasterSiteRequest {
+export interface ListSqlSitesControllerByMasterSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27742,8 +28156,8 @@ export interface ListSqlSiteControllerByMasterSiteRequest {
   /** Site name */
   siteName: string;
 }
-export const ListSqlSiteControllerByMasterSiteRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListSqlSitesControllerByMasterSiteRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -27756,9 +28170,9 @@ export const ListSqlSiteControllerByMasterSiteRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "ListSqlSiteControllerByMasterSiteRequest",
-}) as any as S.Schema<ListSqlSiteControllerByMasterSiteRequest>;
+  ).annotate({
+    identifier: "ListSqlSitesControllerByMasterSiteRequest",
+  }) as any as S.Schema<ListSqlSitesControllerByMasterSiteRequest>;
 
 /** SQL site web model. */
 export interface SqlSite {
@@ -27805,7 +28219,7 @@ export const SqlSiteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlSiteListResult",
 }) as any as S.Schema<SqlSiteListResult>;
 
-export interface ListTomcatWebApplicationControllerByWebAppSiteRequest {
+export interface ListTomcatWebApplicationsControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27823,7 +28237,7 @@ export interface ListTomcatWebApplicationControllerByWebAppSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListTomcatWebApplicationControllerByWebAppSiteRequest =
+export const ListTomcatWebApplicationsControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27843,8 +28257,8 @@ export const ListTomcatWebApplicationControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListTomcatWebApplicationControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListTomcatWebApplicationControllerByWebAppSiteRequest>;
+    identifier: "ListTomcatWebApplicationsControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListTomcatWebApplicationsControllerByWebAppSiteRequest>;
 
 /** Web application REST Resource. */
 export interface TomcatWebApplications {
@@ -27894,7 +28308,7 @@ export const TomcatWebApplicationsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TomcatWebApplicationsListResult",
 }) as any as S.Schema<TomcatWebApplicationsListResult>;
 
-export interface ListTomcatWebServerControllerByWebAppSiteRequest {
+export interface ListTomcatWebServersControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -27912,7 +28326,7 @@ export interface ListTomcatWebServerControllerByWebAppSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListTomcatWebServerControllerByWebAppSiteRequest =
+export const ListTomcatWebServersControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -27932,8 +28346,8 @@ export const ListTomcatWebServerControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListTomcatWebServerControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListTomcatWebServerControllerByWebAppSiteRequest>;
+    identifier: "ListTomcatWebServersControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListTomcatWebServersControllerByWebAppSiteRequest>;
 
 /** Web server REST Resource. */
 export interface TomcatWebServers {
@@ -28107,7 +28521,7 @@ export const VirtualDesktopUserCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualDesktopUserCollection",
 }) as any as S.Schema<VirtualDesktopUserCollection>;
 
-export interface ListVmwareCollectorOperationByAssessmentProjectRequest {
+export interface ListVmwareCollectorsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -28115,7 +28529,7 @@ export interface ListVmwareCollectorOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListVmwareCollectorOperationByAssessmentProjectRequest =
+export const ListVmwareCollectorsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -28130,8 +28544,8 @@ export const ListVmwareCollectorOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListVmwareCollectorOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListVmwareCollectorOperationByAssessmentProjectRequest>;
+    identifier: "ListVmwareCollectorsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListVmwareCollectorsOperationByAssessmentProjectRequest>;
 
 /** VMware collector resource. */
 export type VmwareCollector = HypervCollector;
@@ -28230,7 +28644,7 @@ export const VmwareHostListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareHostListResult",
 }) as any as S.Schema<VmwareHostListResult>;
 
-export interface ListVmwareSoftwareInventoryControllerByMachineResourceRequest {
+export interface ListVmwareSoftwareInventoriesControllerByMachineResourceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -28240,7 +28654,7 @@ export interface ListVmwareSoftwareInventoryControllerByMachineResourceRequest {
   /** Machine name */
   machineName: string;
 }
-export const ListVmwareSoftwareInventoryControllerByMachineResourceRequest =
+export const ListVmwareSoftwareInventoriesControllerByMachineResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -28256,8 +28670,9 @@ export const ListVmwareSoftwareInventoryControllerByMachineResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListVmwareSoftwareInventoryControllerByMachineResourceRequest",
-  }) as any as S.Schema<ListVmwareSoftwareInventoryControllerByMachineResourceRequest>;
+    identifier:
+      "ListVmwareSoftwareInventoriesControllerByMachineResourceRequest",
+  }) as any as S.Schema<ListVmwareSoftwareInventoriesControllerByMachineResourceRequest>;
 
 /** An software inventory resource belonging to a machine resource. */
 export type VmwareMachineSoftwareInventory = HypervVmSoftwareInventory;
@@ -28288,7 +28703,7 @@ export const VmwareMachineSoftwareInventoryListResult = /*@__PURE__*/ S.suspend(
   identifier: "VmwareMachineSoftwareInventoryListResult",
 }) as any as S.Schema<VmwareMachineSoftwareInventoryListResult>;
 
-export interface ListWebAppAssessmentOptionOperationByAssessmentProjectRequest {
+export interface ListWebAppAssessmentOptionsOperationByAssessmentProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -28296,7 +28711,7 @@ export interface ListWebAppAssessmentOptionOperationByAssessmentProjectRequest {
   /** Assessment Project Name */
   projectName: string;
 }
-export const ListWebAppAssessmentOptionOperationByAssessmentProjectRequest =
+export const ListWebAppAssessmentOptionsOperationByAssessmentProjectRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -28311,8 +28726,9 @@ export const ListWebAppAssessmentOptionOperationByAssessmentProjectRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListWebAppAssessmentOptionOperationByAssessmentProjectRequest",
-  }) as any as S.Schema<ListWebAppAssessmentOptionOperationByAssessmentProjectRequest>;
+    identifier:
+      "ListWebAppAssessmentOptionsOperationByAssessmentProjectRequest",
+  }) as any as S.Schema<ListWebAppAssessmentOptionsOperationByAssessmentProjectRequest>;
 
 /** Web app Assessment options web model object. */
 export interface WebAppAssessmentOptions {
@@ -28593,7 +29009,7 @@ export const WebAppCollectorListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppCollectorListResult",
 }) as any as S.Schema<WebAppCollectorListResult>;
 
-export interface ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest {
+export interface ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -28603,7 +29019,7 @@ export interface ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest 
   /** Web app site name. */
   webAppSiteName: string;
 }
-export const ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest =
+export const ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -28620,8 +29036,8 @@ export const ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest =
     ),
   ).annotate({
     identifier:
-      "ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest>;
+      "ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteRequest>;
 
 /** Web app data source web model. */
 export type DiscoverySiteDataSource = SqlDiscoverySiteDataSource;
@@ -28650,7 +29066,7 @@ export const DiscoverySiteDataSourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiscoverySiteDataSourceListResult",
 }) as any as S.Schema<DiscoverySiteDataSourceListResult>;
 
-export interface ListWebAppExtendedMachineControllerByWebAppSiteRequest {
+export interface ListWebAppExtendedMachinesControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -28668,7 +29084,7 @@ export interface ListWebAppExtendedMachineControllerByWebAppSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListWebAppExtendedMachineControllerByWebAppSiteRequest =
+export const ListWebAppExtendedMachinesControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -28688,8 +29104,8 @@ export const ListWebAppExtendedMachineControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListWebAppExtendedMachineControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListWebAppExtendedMachineControllerByWebAppSiteRequest>;
+    identifier: "ListWebAppExtendedMachinesControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListWebAppExtendedMachinesControllerByWebAppSiteRequest>;
 
 /** Web app extended machine REST Resource. */
 export interface WebAppExtendedMachine {
@@ -28739,7 +29155,7 @@ export const WebAppExtendedMachineListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppExtendedMachineListResult",
 }) as any as S.Schema<WebAppExtendedMachineListResult>;
 
-export interface ListWebApplicationControllerByWebAppSiteRequest {
+export interface ListWebApplicationsControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -28757,7 +29173,7 @@ export interface ListWebApplicationControllerByWebAppSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListWebApplicationControllerByWebAppSiteRequest =
+export const ListWebApplicationsControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -28777,8 +29193,8 @@ export const ListWebApplicationControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListWebApplicationControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListWebApplicationControllerByWebAppSiteRequest>;
+    identifier: "ListWebApplicationsControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListWebApplicationsControllerByWebAppSiteRequest>;
 
 /** Gets the list of machine ARM Ids on which the SQL server is deployed. */
 export type WebApplicationPropertiesMachineArmIdsList = Array<string>;
@@ -28958,7 +29374,7 @@ export const WebApplicationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebApplicationListResult",
 }) as any as S.Schema<WebApplicationListResult>;
 
-export interface ListWebAppRunAsAccountControllerByWebAppSiteRequest {
+export interface ListWebAppRunAsAccountsControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -28968,7 +29384,7 @@ export interface ListWebAppRunAsAccountControllerByWebAppSiteRequest {
   /** Web app site name. */
   webAppSiteName: string;
 }
-export const ListWebAppRunAsAccountControllerByWebAppSiteRequest =
+export const ListWebAppRunAsAccountsControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -28984,8 +29400,8 @@ export const ListWebAppRunAsAccountControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListWebAppRunAsAccountControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListWebAppRunAsAccountControllerByWebAppSiteRequest>;
+    identifier: "ListWebAppRunAsAccountsControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListWebAppRunAsAccountsControllerByWebAppSiteRequest>;
 
 /** Run as account REST Resource. */
 export type WebAppRunAsAccount = HypervRunAsAccountResource;
@@ -29105,7 +29521,7 @@ export const WebAppServicePlanV2ListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppServicePlanV2ListResult",
 }) as any as S.Schema<WebAppServicePlanV2ListResult>;
 
-export interface ListWebAppSiteControllerByMasterSiteRequest {
+export interface ListWebAppSitesControllerByMasterSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -29113,7 +29529,7 @@ export interface ListWebAppSiteControllerByMasterSiteRequest {
   /** Site name */
   siteName: string;
 }
-export const ListWebAppSiteControllerByMasterSiteRequest =
+export const ListWebAppSitesControllerByMasterSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -29128,8 +29544,8 @@ export const ListWebAppSiteControllerByMasterSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListWebAppSiteControllerByMasterSiteRequest",
-  }) as any as S.Schema<ListWebAppSiteControllerByMasterSiteRequest>;
+    identifier: "ListWebAppSitesControllerByMasterSiteRequest",
+  }) as any as S.Schema<ListWebAppSitesControllerByMasterSiteRequest>;
 
 /** WebApp site web model. */
 export interface WebAppSite {
@@ -29176,7 +29592,7 @@ export const WebAppSiteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppSiteListResult",
 }) as any as S.Schema<WebAppSiteListResult>;
 
-export interface ListWebServerControllerByWebAppSiteRequest {
+export interface ListWebServersControllerByWebAppSiteRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -29194,7 +29610,7 @@ export interface ListWebServerControllerByWebAppSiteRequest {
   /** Total count of machines in the given site. */
   totalRecordCount?: number;
 }
-export const ListWebServerControllerByWebAppSiteRequest =
+export const ListWebServersControllerByWebAppSiteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -29214,8 +29630,8 @@ export const ListWebServerControllerByWebAppSiteRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListWebServerControllerByWebAppSiteRequest",
-  }) as any as S.Schema<ListWebServerControllerByWebAppSiteRequest>;
+    identifier: "ListWebServersControllerByWebAppSiteRequest",
+  }) as any as S.Schema<ListWebServersControllerByWebAppSiteRequest>;
 
 /** Gets the list of machines. */
 export type WebServerPropertiesMachineIdsList = Array<string>;
@@ -29341,7 +29757,7 @@ export const WebServerListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebServerListResult",
 }) as any as S.Schema<WebServerListResult>;
 
-export interface ListWebServerControllerWebServersRequest {
+export interface ListWebServersControllerWebServersRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -29353,8 +29769,8 @@ export interface ListWebServerControllerWebServersRequest {
   /** The number of items to be returned in a single page. This value is honored only if it is less than the 100. */
   pageSize?: number;
 }
-export const ListWebServerControllerWebServersRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListWebServersControllerWebServersRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -29369,9 +29785,9 @@ export const ListWebServerControllerWebServersRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-01-01",
       }),
     ),
-).annotate({
-  identifier: "ListWebServerControllerWebServersRequest",
-}) as any as S.Schema<ListWebServerControllerWebServersRequest>;
+  ).annotate({
+    identifier: "ListWebServersControllerWebServersRequest",
+  }) as any as S.Schema<ListWebServersControllerWebServersRequest>;
 
 export type WebServerCollectionValueList = Array<WebServer>;
 export const WebServerCollectionValueList = /*@__PURE__*/ S.Array(
@@ -29392,7 +29808,7 @@ export const WebServerCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebServerCollection",
 }) as any as S.Schema<WebServerCollection>;
 
-export interface ListWebSiteControllerWebSitesRequest {
+export interface ListWebSitesControllerWebSitesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -29404,7 +29820,7 @@ export interface ListWebSiteControllerWebSitesRequest {
   /** The number of items to be returned in a single page. This value is honored only if it is less than the 100. */
   pageSize?: number;
 }
-export const ListWebSiteControllerWebSitesRequest = /*@__PURE__*/ S.suspend(
+export const ListWebSitesControllerWebSitesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -29421,8 +29837,8 @@ export const ListWebSiteControllerWebSitesRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListWebSiteControllerWebSitesRequest",
-}) as any as S.Schema<ListWebSiteControllerWebSitesRequest>;
+  identifier: "ListWebSitesControllerWebSitesRequest",
+}) as any as S.Schema<ListWebSitesControllerWebSitesRequest>;
 
 export type WebSiteCollectionValueList = Array<WebSite>;
 export const WebSiteCollectionValueList = /*@__PURE__*/ S.Array(
@@ -29471,6 +29887,64 @@ export const MasterSitesControllerErrorSummaryRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "MasterSitesControllerErrorSummaryRequest",
 }) as any as S.Schema<MasterSitesControllerErrorSummaryRequest>;
+
+export interface MigrateProjectsControllerDeleteMigrateProjectRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+}
+export const MigrateProjectsControllerDeleteMigrateProjectRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateProjectsControllerDeleteMigrateProjectRequest",
+  }) as any as S.Schema<MigrateProjectsControllerDeleteMigrateProjectRequest>;
+
+export interface MigrateProjectsControllerDeleteMigrateProjectResponse {}
+export const MigrateProjectsControllerDeleteMigrateProjectResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "MigrateProjectsControllerDeleteMigrateProjectResponse",
+  }) as any as S.Schema<MigrateProjectsControllerDeleteMigrateProjectResponse>;
+
+export interface MigrateProjectsControllerGetMigrateProjectRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+}
+export const MigrateProjectsControllerGetMigrateProjectRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateProjectsControllerGetMigrateProjectRequest",
+  }) as any as S.Schema<MigrateProjectsControllerGetMigrateProjectRequest>;
 
 /** Gets or sets the state of public network access. */
 export type MigrateProjectPropertiesInputPublicNetworkAccess =
@@ -29571,14 +30045,63 @@ export const MigrateProjectsControllerPutMigrateProjectRequest =
     identifier: "MigrateProjectsControllerPutMigrateProjectRequest",
   }) as any as S.Schema<MigrateProjectsControllerPutMigrateProjectRequest>;
 
+/** Properties of a private endpoint connection. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** Gets the properties of the object. */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState_2;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateLinkServiceConnectionState: S.optional(
+        PrivateLinkServiceConnectionState_2,
+      ),
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface PutPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+  /** Private endpoint connection name. */
+  peConnectionName: string;
+  /** Gets the properties of the object. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const PutPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+      peConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnections/{peConnectionName}",
+        code: 200,
+        apiVersion: "2023-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "PutPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<PutPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest>;
+
 /** Gets or sets the goal for which summary needs to be refreshed. */
-export type MigrateProjectsControllerRefreshSummaryRequestGoal =
+export type RefreshMigrateProjectsControllerSummaryRequestGoal =
   | "Servers"
   | "Databases";
-export const MigrateProjectsControllerRefreshSummaryRequestGoal =
+export const RefreshMigrateProjectsControllerSummaryRequestGoal =
   /*@__PURE__*/ S.String;
 
-export interface MigrateProjectsControllerRefreshSummaryRequest {
+export interface RefreshMigrateProjectsControllerSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -29586,15 +30109,15 @@ export interface MigrateProjectsControllerRefreshSummaryRequest {
   /** Name of the Azure Migrate project. */
   migrateProjectName: string;
   /** Gets or sets the goal for which summary needs to be refreshed. */
-  goal?: MigrateProjectsControllerRefreshSummaryRequestGoal | (string & {});
+  goal?: RefreshMigrateProjectsControllerSummaryRequestGoal | (string & {});
 }
-export const MigrateProjectsControllerRefreshSummaryRequest =
+export const RefreshMigrateProjectsControllerSummaryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       migrateProjectName: S.String.pipe(T.Label()),
-      goal: S.optional(MigrateProjectsControllerRefreshSummaryRequestGoal),
+      goal: S.optional(RefreshMigrateProjectsControllerSummaryRequestGoal),
     }).pipe(
       T.Http({
         method: "POST",
@@ -29604,8 +30127,8 @@ export const MigrateProjectsControllerRefreshSummaryRequest =
       }),
     ),
   ).annotate({
-    identifier: "MigrateProjectsControllerRefreshSummaryRequest",
-  }) as any as S.Schema<MigrateProjectsControllerRefreshSummaryRequest>;
+    identifier: "RefreshMigrateProjectsControllerSummaryRequest",
+  }) as any as S.Schema<RefreshMigrateProjectsControllerSummaryRequest>;
 
 /** Class representing the refresh summary status of the migrate project. */
 export interface RefreshSummaryResult {
@@ -29620,8 +30143,117 @@ export const RefreshSummaryResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "RefreshSummaryResult",
 }) as any as S.Schema<RefreshSummaryResult>;
 
+export interface RefreshServerSitesControllerSiteRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+}
+export const RefreshServerSitesControllerSiteRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      siteName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/refreshSite",
+        code: 200,
+        apiVersion: "2023-06-06",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshServerSitesControllerSiteRequest",
+}) as any as S.Schema<RefreshServerSitesControllerSiteRequest>;
+
+export type RefreshServerSitesControllerSiteResponse = unknown;
+export const RefreshServerSitesControllerSiteResponse = /*@__PURE__*/ S.suspend(
+  () => S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RefreshServerSitesControllerSiteResponse",
+}) as any as S.Schema<RefreshServerSitesControllerSiteResponse>;
+
+export interface RefreshSqlSitesControllerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** SQL site name. */
+  sqlSiteName: string;
+  /** Gets or sets the appliance name of the agent in the site. */
+  applianceName?: string;
+}
+export const RefreshSqlSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+    sqlSiteName: S.String.pipe(T.Label()),
+    applianceName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/refresh",
+      code: 200,
+      apiVersion: "2023-06-06",
+    }),
+  ),
+).annotate({
+  identifier: "RefreshSqlSitesControllerRequest",
+}) as any as S.Schema<RefreshSqlSitesControllerRequest>;
+
+export type RefreshSqlSitesControllerResponse = unknown;
+export const RefreshSqlSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RefreshSqlSitesControllerResponse",
+}) as any as S.Schema<RefreshSqlSitesControllerResponse>;
+
+export interface RefreshWebAppSitesControllerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Site name */
+  siteName: string;
+  /** Web app site name. */
+  webAppSiteName: string;
+  /** Gets or sets the appliance name of the agent in the site. */
+  applianceName?: string;
+}
+export const RefreshWebAppSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    siteName: S.String.pipe(T.Label()),
+    webAppSiteName: S.String.pipe(T.Label()),
+    applianceName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/webAppSites/{webAppSiteName}/refresh",
+      code: 200,
+      apiVersion: "2023-06-06",
+    }),
+  ),
+).annotate({
+  identifier: "RefreshWebAppSitesControllerRequest",
+}) as any as S.Schema<RefreshWebAppSitesControllerRequest>;
+
+export type RefreshWebAppSitesControllerResponse = unknown;
+export const RefreshWebAppSitesControllerResponse = /*@__PURE__*/ S.suspend(
+  () => S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RefreshWebAppSitesControllerResponse",
+}) as any as S.Schema<RefreshWebAppSitesControllerResponse>;
+
 /** Gets or sets the tool to be registered. */
-export type MigrateProjectsControllerRegisterToolRequestTool =
+export type RegisterMigrateProjectsControllerToolRequestTool =
   | "ServerDiscovery"
   | "ServerAssessment"
   | "ServerMigration"
@@ -29647,10 +30279,10 @@ export type MigrateProjectsControllerRegisterToolRequestTool =
   | "Modernization"
   | "ServerMigration_DataReplication"
   | "Unknown";
-export const MigrateProjectsControllerRegisterToolRequestTool =
+export const RegisterMigrateProjectsControllerToolRequestTool =
   /*@__PURE__*/ S.String;
 
-export interface MigrateProjectsControllerRegisterToolRequest {
+export interface RegisterMigrateProjectsControllerToolRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -29658,15 +30290,15 @@ export interface MigrateProjectsControllerRegisterToolRequest {
   /** Name of the Azure Migrate project. */
   migrateProjectName: string;
   /** Gets or sets the tool to be registered. */
-  tool?: MigrateProjectsControllerRegisterToolRequestTool | (string & {});
+  tool?: RegisterMigrateProjectsControllerToolRequestTool | (string & {});
 }
-export const MigrateProjectsControllerRegisterToolRequest =
+export const RegisterMigrateProjectsControllerToolRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       migrateProjectName: S.String.pipe(T.Label()),
-      tool: S.optional(MigrateProjectsControllerRegisterToolRequestTool),
+      tool: S.optional(RegisterMigrateProjectsControllerToolRequestTool),
     }).pipe(
       T.Http({
         method: "POST",
@@ -29676,8 +30308,8 @@ export const MigrateProjectsControllerRegisterToolRequest =
       }),
     ),
   ).annotate({
-    identifier: "MigrateProjectsControllerRegisterToolRequest",
-  }) as any as S.Schema<MigrateProjectsControllerRegisterToolRequest>;
+    identifier: "RegisterMigrateProjectsControllerToolRequest",
+  }) as any as S.Schema<RegisterMigrateProjectsControllerToolRequest>;
 
 /** Class representing the registration status of a tool with the migrate project. */
 export interface RegistrationResult {
@@ -29691,168 +30323,6 @@ export const RegistrationResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RegistrationResult",
 }) as any as S.Schema<RegistrationResult>;
-
-/** Properties of a private endpoint connection. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** Gets the properties of the object. */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState_2;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateLinkServiceConnectionState: S.optional(
-        PrivateLinkServiceConnectionState_2,
-      ),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionControllerPutPrivateEndpointConnectionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-  /** Private endpoint connection name. */
-  peConnectionName: string;
-  /** Gets the properties of the object. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionControllerPutPrivateEndpointConnectionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-      peConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnections/{peConnectionName}",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PrivateEndpointConnectionControllerPutPrivateEndpointConnectionRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionControllerPutPrivateEndpointConnectionRequest>;
-
-export interface PrivateEndpointConnectionProxyControllerValidateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-  /** Private link proxy name. */
-  pecProxyName: string;
-  eTag?: string;
-  properties?: PrivateEndpointConnectionProxyPropertiesInput;
-}
-export const PrivateEndpointConnectionProxyControllerValidateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-      pecProxyName: S.String.pipe(T.Label()),
-      eTag: S.optional(S.String),
-      properties: S.optional(PrivateEndpointConnectionProxyPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnectionProxies/{pecProxyName}/validate",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionProxyControllerValidateRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionProxyControllerValidateRequest>;
-
-export interface PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-}
-export const PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsRequest>;
-
-/** Gets the list of machines. */
-export type PrivateEndpointConnectionCollectionValueList =
-  Array<PrivateEndpointConnection_2>;
-export const PrivateEndpointConnectionCollectionValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection_2,
-  ) as any as S.Schema<PrivateEndpointConnectionCollectionValueList>;
-
-/** Collection of PrivateLink resources. */
-export interface PrivateEndpointConnectionCollection {
-  /** Gets the list of machines. */
-  value?: PrivateEndpointConnectionCollectionValueList;
-  /** Gets the value of next link. */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateEndpointConnectionCollectionValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionCollection",
-}) as any as S.Schema<PrivateEndpointConnectionCollection>;
-
-export interface PrivateLinkResourceControllerGetPrivateLinkResourceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Azure Migrate project. */
-  migrateProjectName: string;
-  /** Private Link resource name. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourceControllerGetPrivateLinkResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      migrateProjectName: S.String.pipe(T.Label()),
-      privateLinkResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateLinkResources/{privateLinkResourceName}",
-        code: 200,
-        apiVersion: "2023-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateLinkResourceControllerGetPrivateLinkResourceRequest",
-  }) as any as S.Schema<PrivateLinkResourceControllerGetPrivateLinkResourceRequest>;
 
 export interface ServerDependencyMapControllerClientGroupMembersRequest {
   /** The ID of the target subscription. */
@@ -29905,44 +30375,6 @@ export const ServerDependencyMapControllerClientGroupMembersResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
     identifier: "ServerDependencyMapControllerClientGroupMembersResponse",
   }) as any as S.Schema<ServerDependencyMapControllerClientGroupMembersResponse>;
-
-export interface ServerDependencyMapControllerExportDependenciesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** start time */
-  startTime?: string;
-  /** end time */
-  endTime?: string;
-}
-export const ServerDependencyMapControllerExportDependenciesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/exportDependencies",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServerDependencyMapControllerExportDependenciesRequest",
-  }) as any as S.Schema<ServerDependencyMapControllerExportDependenciesRequest>;
-
-export type ServerDependencyMapControllerExportDependenciesResponse = unknown;
-export const ServerDependencyMapControllerExportDependenciesResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "ServerDependencyMapControllerExportDependenciesResponse",
-  }) as any as S.Schema<ServerDependencyMapControllerExportDependenciesResponse>;
 
 export interface ServerDependencyMapControllerServerGroupMembersRequest {
   /** The ID of the target subscription. */
@@ -30058,106 +30490,6 @@ export const ServerSiteUsageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerSiteUsageResponse",
 }) as any as S.Schema<ServerSiteUsageResponse>;
 
-export interface ServerSitesControllerExportApplicationsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const ServerSitesControllerExportApplicationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/exportApplications",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServerSitesControllerExportApplicationsRequest",
-  }) as any as S.Schema<ServerSitesControllerExportApplicationsRequest>;
-
-export type ServerSitesControllerExportApplicationsResponse = unknown;
-export const ServerSitesControllerExportApplicationsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "ServerSitesControllerExportApplicationsResponse",
-  }) as any as S.Schema<ServerSitesControllerExportApplicationsResponse>;
-
-export interface ServerSitesControllerExportMachineErrorsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Gets or sets the properties. */
-  properties?: RequestExportMachineErrorsProperties;
-}
-export const ServerSitesControllerExportMachineErrorsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      properties: S.optional(RequestExportMachineErrorsProperties),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/exportMachineErrors",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServerSitesControllerExportMachineErrorsRequest",
-  }) as any as S.Schema<ServerSitesControllerExportMachineErrorsRequest>;
-
-export type ServerSitesControllerExportMachineErrorsResponse = unknown;
-export const ServerSitesControllerExportMachineErrorsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "ServerSitesControllerExportMachineErrorsResponse",
-  }) as any as S.Schema<ServerSitesControllerExportMachineErrorsResponse>;
-
-export interface ServerSitesControllerRefreshSiteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const ServerSitesControllerRefreshSiteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/serverSites/{siteName}/refreshSite",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-).annotate({
-  identifier: "ServerSitesControllerRefreshSiteRequest",
-}) as any as S.Schema<ServerSitesControllerRefreshSiteRequest>;
-
-export type ServerSitesControllerRefreshSiteResponse = unknown;
-export const ServerSitesControllerRefreshSiteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ServerSitesControllerRefreshSiteResponse",
-}) as any as S.Schema<ServerSitesControllerRefreshSiteResponse>;
-
 export interface ServerSitesControllerSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -30269,109 +30601,6 @@ export const VmwareSiteUsage = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmwareSiteUsage",
 }) as any as S.Schema<VmwareSiteUsage>;
 
-export interface SitesControllerExportApplicationsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-}
-export const SitesControllerExportApplicationsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportApplications",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-).annotate({
-  identifier: "SitesControllerExportApplicationsRequest",
-}) as any as S.Schema<SitesControllerExportApplicationsRequest>;
-
-export type SitesControllerExportApplicationsResponse = unknown;
-export const SitesControllerExportApplicationsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "SitesControllerExportApplicationsResponse",
-  }) as any as S.Schema<SitesControllerExportApplicationsResponse>;
-
-export interface SitesControllerExportMachineErrorsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Gets or sets the properties. */
-  properties?: RequestExportMachineErrorsProperties;
-}
-export const SitesControllerExportMachineErrorsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      properties: S.optional(RequestExportMachineErrorsProperties),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportMachineErrors",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "SitesControllerExportMachineErrorsRequest",
-  }) as any as S.Schema<SitesControllerExportMachineErrorsRequest>;
-
-export type SitesControllerExportMachineErrorsResponse = unknown;
-export const SitesControllerExportMachineErrorsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "SitesControllerExportMachineErrorsResponse",
-  }) as any as S.Schema<SitesControllerExportMachineErrorsResponse>;
-
-export interface SitesControllerExportMachinesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** filter options. */
-  filter?: string;
-}
-export const SitesControllerExportMachinesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      filter: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/vmwareSites/{siteName}/exportMachines",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-).annotate({
-  identifier: "SitesControllerExportMachinesRequest",
-}) as any as S.Schema<SitesControllerExportMachinesRequest>;
-
-export type SitesControllerExportMachinesResponse = unknown;
-export const SitesControllerExportMachinesResponse = /*@__PURE__*/ S.suspend(
-  () => S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SitesControllerExportMachinesResponse",
-}) as any as S.Schema<SitesControllerExportMachinesResponse>;
-
 export interface SitesControllerSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -30433,38 +30662,6 @@ export const SolutionsControllerCleanupDataResponse = /*@__PURE__*/ S.suspend(
   identifier: "SolutionsControllerCleanupDataResponse",
 }) as any as S.Schema<SolutionsControllerCleanupDataResponse>;
 
-export interface SqlAssessmentV2OperationsDownloadUrlRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-  /** SQL Assessment arm name. */
-  assessmentName: string;
-}
-export const SqlAssessmentV2OperationsDownloadUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      groupName: S.String.pipe(T.Label()),
-      assessmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/sqlAssessments/{assessmentName}/downloadUrl",
-        code: 200,
-        apiVersion: "2024-01-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlAssessmentV2OperationsDownloadUrlRequest",
-  }) as any as S.Schema<SqlAssessmentV2OperationsDownloadUrlRequest>;
-
 export interface SqlSitesControllerErrorSummaryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -30496,120 +30693,6 @@ export const SqlSitesControllerErrorSummaryRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "SqlSitesControllerErrorSummaryRequest",
 }) as any as S.Schema<SqlSitesControllerErrorSummaryRequest>;
-
-export interface SqlSitesControllerExportSqlServerErrorsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** SQL site name. */
-  sqlSiteName: string;
-}
-export const SqlSitesControllerExportSqlServerErrorsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      sqlSiteName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/exportSqlServerErrors",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlSitesControllerExportSqlServerErrorsRequest",
-  }) as any as S.Schema<SqlSitesControllerExportSqlServerErrorsRequest>;
-
-export type SqlSitesControllerExportSqlServerErrorsResponse = unknown;
-export const SqlSitesControllerExportSqlServerErrorsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "SqlSitesControllerExportSqlServerErrorsResponse",
-  }) as any as S.Schema<SqlSitesControllerExportSqlServerErrorsResponse>;
-
-export interface SqlSitesControllerExportSqlServersRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** SQL site name. */
-  sqlSiteName: string;
-  /** Gets or sets the Appliance Name. */
-  applianceName?: string;
-  /** filter options. */
-  filter?: string;
-}
-export const SqlSitesControllerExportSqlServersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      sqlSiteName: S.String.pipe(T.Label()),
-      applianceName: S.optional(S.String),
-      filter: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/exportSqlServers",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlSitesControllerExportSqlServersRequest",
-  }) as any as S.Schema<SqlSitesControllerExportSqlServersRequest>;
-
-export type SqlSitesControllerExportSqlServersResponse = unknown;
-export const SqlSitesControllerExportSqlServersResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "SqlSitesControllerExportSqlServersResponse",
-  }) as any as S.Schema<SqlSitesControllerExportSqlServersResponse>;
-
-export interface SqlSitesControllerRefreshRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** SQL site name. */
-  sqlSiteName: string;
-  /** Gets or sets the appliance name of the agent in the site. */
-  applianceName?: string;
-}
-export const SqlSitesControllerRefreshRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-    sqlSiteName: S.String.pipe(T.Label()),
-    applianceName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/sqlSites/{sqlSiteName}/refresh",
-      code: 200,
-      apiVersion: "2023-06-06",
-    }),
-  ),
-).annotate({
-  identifier: "SqlSitesControllerRefreshRequest",
-}) as any as S.Schema<SqlSitesControllerRefreshRequest>;
-
-export type SqlSitesControllerRefreshResponse = unknown;
-export const SqlSitesControllerRefreshResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SqlSitesControllerRefreshResponse",
-}) as any as S.Schema<SqlSitesControllerRefreshResponse>;
 
 export interface SqlSitesControllerSummaryRequest {
   /** The ID of the target subscription. */
@@ -30656,7 +30739,7 @@ export const SqlSiteUsage = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SqlSiteUsage" }) as any as S.Schema<SqlSiteUsage>;
 
-export interface StartMachineControllerRequest {
+export interface StartMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -30666,7 +30749,7 @@ export interface StartMachineControllerRequest {
   /** Machine name */
   machineName: string;
 }
-export const StartMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartMachinesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -30681,17 +30764,17 @@ export const StartMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StartMachineControllerRequest",
-}) as any as S.Schema<StartMachineControllerRequest>;
+  identifier: "StartMachinesControllerRequest",
+}) as any as S.Schema<StartMachinesControllerRequest>;
 
-export type StartMachineControllerResponse = unknown;
-export const StartMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export type StartMachinesControllerResponse = unknown;
+export const StartMachinesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "StartMachineControllerResponse",
-}) as any as S.Schema<StartMachineControllerResponse>;
+  identifier: "StartMachinesControllerResponse",
+}) as any as S.Schema<StartMachinesControllerResponse>;
 
-export interface StopMachineControllerRequest {
+export interface StopMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -30701,7 +30784,7 @@ export interface StopMachineControllerRequest {
   /** Machine name */
   machineName: string;
 }
-export const StopMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopMachinesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -30716,25 +30799,25 @@ export const StopMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StopMachineControllerRequest",
-}) as any as S.Schema<StopMachineControllerRequest>;
+  identifier: "StopMachinesControllerRequest",
+}) as any as S.Schema<StopMachinesControllerRequest>;
 
-export type StopMachineControllerResponse = unknown;
-export const StopMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export type StopMachinesControllerResponse = unknown;
+export const StopMachinesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "StopMachineControllerResponse",
-}) as any as S.Schema<StopMachineControllerResponse>;
+  identifier: "StopMachinesControllerResponse",
+}) as any as S.Schema<StopMachinesControllerResponse>;
 
 /** Resource tags. */
-export type AssessmentProjectsOperationsUpdateRequestTagsMap = {
+export type UpdateAssessmentProjectsOperationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AssessmentProjectsOperationsUpdateRequestTagsMap =
+export const UpdateAssessmentProjectsOperationRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AssessmentProjectsOperationsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateAssessmentProjectsOperationRequestTagsMap>;
 
 /** The updatable properties of the AssessmentProject. */
 export interface AssessmentProjectUpdateProperties {
@@ -30767,7 +30850,7 @@ export const AssessmentProjectUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssessmentProjectUpdateProperties",
 }) as any as S.Schema<AssessmentProjectUpdateProperties>;
 
-export interface UpdateAssessmentProjectOperationRequest {
+export interface UpdateAssessmentProjectsOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -30775,16 +30858,16 @@ export interface UpdateAssessmentProjectOperationRequest {
   /** Assessment Project Name */
   projectName: string;
   /** Resource tags. */
-  tags?: AssessmentProjectsOperationsUpdateRequestTagsMap;
+  tags?: UpdateAssessmentProjectsOperationRequestTagsMap;
   properties?: AssessmentProjectUpdateProperties;
 }
-export const UpdateAssessmentProjectOperationRequest = /*@__PURE__*/ S.suspend(
+export const UpdateAssessmentProjectsOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       projectName: S.String.pipe(T.Label()),
-      tags: S.optional(AssessmentProjectsOperationsUpdateRequestTagsMap),
+      tags: S.optional(UpdateAssessmentProjectsOperationRequestTagsMap),
       properties: S.optional(AssessmentProjectUpdateProperties),
     }).pipe(
       T.Http({
@@ -30795,20 +30878,20 @@ export const UpdateAssessmentProjectOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateAssessmentProjectOperationRequest",
-}) as any as S.Schema<UpdateAssessmentProjectOperationRequest>;
+  identifier: "UpdateAssessmentProjectsOperationRequest",
+}) as any as S.Schema<UpdateAssessmentProjectsOperationRequest>;
 
 /** Resource tags. */
-export type AssessmentProjectsOperationsUpdateResponseTagsMap = {
+export type UpdateAssessmentProjectsOperationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AssessmentProjectsOperationsUpdateResponseTagsMap =
+export const UpdateAssessmentProjectsOperationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AssessmentProjectsOperationsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateAssessmentProjectsOperationResponseTagsMap>;
 
-export interface UpdateAssessmentProjectOperationResponse {
+export interface UpdateAssessmentProjectsOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -30818,26 +30901,26 @@ export interface UpdateAssessmentProjectOperationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AssessmentProjectsOperationsUpdateResponseTagsMap;
+  tags?: UpdateAssessmentProjectsOperationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ProjectProperties;
 }
-export const UpdateAssessmentProjectOperationResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateAssessmentProjectsOperationResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(AssessmentProjectsOperationsUpdateResponseTagsMap),
+      tags: S.optional(UpdateAssessmentProjectsOperationResponseTagsMap),
       location: S.String,
       properties: S.optional(ProjectProperties),
     }),
-).annotate({
-  identifier: "UpdateAssessmentProjectOperationResponse",
-}) as any as S.Schema<UpdateAssessmentProjectOperationResponse>;
+  ).annotate({
+    identifier: "UpdateAssessmentProjectsOperationResponse",
+  }) as any as S.Schema<UpdateAssessmentProjectsOperationResponse>;
 
 export type GroupUpdateOperation = "Add" | "Remove";
 export const GroupUpdateOperation = /*@__PURE__*/ S.String;
@@ -30864,7 +30947,7 @@ export const GroupBodyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupBodyProperties",
 }) as any as S.Schema<GroupBodyProperties>;
 
-export interface UpdateGroupOperationMachineRequest {
+export interface UpdateGroupsOperationMachinesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -30878,27 +30961,28 @@ export interface UpdateGroupOperationMachineRequest {
   /** Properties of the group. */
   properties?: GroupBodyProperties;
 }
-export const UpdateGroupOperationMachineRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    groupName: S.String.pipe(T.Label()),
-    eTag: S.optional(S.String),
-    properties: S.optional(GroupBodyProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/updateMachines",
-      code: 200,
-      apiVersion: "2024-01-15",
-    }),
-  ),
+export const UpdateGroupsOperationMachinesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+      eTag: S.optional(S.String),
+      properties: S.optional(GroupBodyProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/updateMachines",
+        code: 200,
+        apiVersion: "2024-01-15",
+      }),
+    ),
 ).annotate({
-  identifier: "UpdateGroupOperationMachineRequest",
-}) as any as S.Schema<UpdateGroupOperationMachineRequest>;
+  identifier: "UpdateGroupsOperationMachinesRequest",
+}) as any as S.Schema<UpdateGroupsOperationMachinesRequest>;
 
-export interface UpdateGroupOperationMachineResponse {
+export interface UpdateGroupsOperationMachinesResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -30910,17 +30994,18 @@ export interface UpdateGroupOperationMachineResponse {
   /** The resource-specific properties for this resource. */
   properties?: GroupProperties;
 }
-export const UpdateGroupOperationMachineResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GroupProperties),
-  }),
+export const UpdateGroupsOperationMachinesResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupProperties),
+    }),
 ).annotate({
-  identifier: "UpdateGroupOperationMachineResponse",
-}) as any as S.Schema<UpdateGroupOperationMachineResponse>;
+  identifier: "UpdateGroupsOperationMachinesResponse",
+}) as any as S.Schema<UpdateGroupsOperationMachinesResponse>;
 
 /** Machine class. */
 export interface DependencyMapMachineInput {
@@ -30939,12 +31024,12 @@ export const DependencyMapMachineInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DependencyMapMachineInput>;
 
 /** Gets or sets the machine collection. */
-export type HypervDependencyMapControllerUpdateDependencyMapStatusRequestMachinesList =
+export type UpdateHypervDependencyMapControllerDependencyMapStatusRequestMachinesList =
   Array<DependencyMapMachineInput>;
-export const HypervDependencyMapControllerUpdateDependencyMapStatusRequestMachinesList =
+export const UpdateHypervDependencyMapControllerDependencyMapStatusRequestMachinesList =
   /*@__PURE__*/ S.Array(
     DependencyMapMachineInput,
-  ) as any as S.Schema<HypervDependencyMapControllerUpdateDependencyMapStatusRequestMachinesList>;
+  ) as any as S.Schema<UpdateHypervDependencyMapControllerDependencyMapStatusRequestMachinesList>;
 
 export interface UpdateHypervDependencyMapControllerDependencyMapStatusRequest {
   /** The ID of the target subscription. */
@@ -30954,7 +31039,7 @@ export interface UpdateHypervDependencyMapControllerDependencyMapStatusRequest {
   /** Site name */
   siteName: string;
   /** Gets or sets the machine collection. */
-  machines?: HypervDependencyMapControllerUpdateDependencyMapStatusRequestMachinesList;
+  machines?: UpdateHypervDependencyMapControllerDependencyMapStatusRequestMachinesList;
 }
 export const UpdateHypervDependencyMapControllerDependencyMapStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
@@ -30963,7 +31048,7 @@ export const UpdateHypervDependencyMapControllerDependencyMapStatusRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
       machines: S.optional(
-        HypervDependencyMapControllerUpdateDependencyMapStatusRequestMachinesList,
+        UpdateHypervDependencyMapControllerDependencyMapStatusRequestMachinesList,
       ),
     }).pipe(
       T.Http({
@@ -31031,7 +31116,7 @@ export const HypervMachineUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "HypervMachineUpdateProperties",
 }) as any as S.Schema<HypervMachineUpdateProperties>;
 
-export interface UpdateHypervMachineControllerRequest {
+export interface UpdateHypervMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31042,7 +31127,7 @@ export interface UpdateHypervMachineControllerRequest {
   machineName: string;
   properties?: HypervMachineUpdateProperties;
 }
-export const UpdateHypervMachineControllerRequest = /*@__PURE__*/ S.suspend(
+export const UpdateHypervMachinesControllerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -31059,10 +31144,10 @@ export const UpdateHypervMachineControllerRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateHypervMachineControllerRequest",
-}) as any as S.Schema<UpdateHypervMachineControllerRequest>;
+  identifier: "UpdateHypervMachinesControllerRequest",
+}) as any as S.Schema<UpdateHypervMachinesControllerRequest>;
 
-export interface UpdateHypervMachineControllerResponse {
+export interface UpdateHypervMachinesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31074,7 +31159,7 @@ export interface UpdateHypervMachineControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: HypervMachineProperties;
 }
-export const UpdateHypervMachineControllerResponse = /*@__PURE__*/ S.suspend(
+export const UpdateHypervMachinesControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -31084,8 +31169,8 @@ export const UpdateHypervMachineControllerResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(HypervMachineProperties),
     }),
 ).annotate({
-  identifier: "UpdateHypervMachineControllerResponse",
-}) as any as S.Schema<UpdateHypervMachineControllerResponse>;
+  identifier: "UpdateHypervMachinesControllerResponse",
+}) as any as S.Schema<UpdateHypervMachinesControllerResponse>;
 
 /** machine tags */
 export type MachineMetadataTagsMap = { [key: string]: string | undefined };
@@ -31114,14 +31199,14 @@ export const MachineMetadata = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MachineMetadata>;
 
 /** The list of Machine MetaData. */
-export type HypervMachinesControllerUpdatePropertiesRequestValueList =
+export type UpdateHypervMachinesControllerPropertiesRequestValueList =
   Array<MachineMetadata>;
-export const HypervMachinesControllerUpdatePropertiesRequestValueList =
+export const UpdateHypervMachinesControllerPropertiesRequestValueList =
   /*@__PURE__*/ S.Array(
     MachineMetadata,
-  ) as any as S.Schema<HypervMachinesControllerUpdatePropertiesRequestValueList>;
+  ) as any as S.Schema<UpdateHypervMachinesControllerPropertiesRequestValueList>;
 
-export interface UpdateHypervMachineControllerPropertyRequest {
+export interface UpdateHypervMachinesControllerPropertiesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31129,15 +31214,15 @@ export interface UpdateHypervMachineControllerPropertyRequest {
   /** Site name */
   siteName: string;
   /** The list of Machine MetaData. */
-  value: HypervMachinesControllerUpdatePropertiesRequestValueList;
+  value: UpdateHypervMachinesControllerPropertiesRequestValueList;
 }
-export const UpdateHypervMachineControllerPropertyRequest =
+export const UpdateHypervMachinesControllerPropertiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
-      value: HypervMachinesControllerUpdatePropertiesRequestValueList,
+      value: UpdateHypervMachinesControllerPropertiesRequestValueList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -31147,29 +31232,29 @@ export const UpdateHypervMachineControllerPropertyRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateHypervMachineControllerPropertyRequest",
-  }) as any as S.Schema<UpdateHypervMachineControllerPropertyRequest>;
+    identifier: "UpdateHypervMachinesControllerPropertiesRequest",
+  }) as any as S.Schema<UpdateHypervMachinesControllerPropertiesRequest>;
 
-export type UpdateHypervMachineControllerPropertyResponse = unknown;
-export const UpdateHypervMachineControllerPropertyResponse =
+export type UpdateHypervMachinesControllerPropertiesResponse = unknown;
+export const UpdateHypervMachinesControllerPropertiesResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateHypervMachineControllerPropertyResponse",
-  }) as any as S.Schema<UpdateHypervMachineControllerPropertyResponse>;
+    identifier: "UpdateHypervMachinesControllerPropertiesResponse",
+  }) as any as S.Schema<UpdateHypervMachinesControllerPropertiesResponse>;
 
 /** Resource tags. */
-export type HypervSitesControllerUpdateRequestTagsMap = {
+export type UpdateHypervSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const HypervSitesControllerUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateHypervSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HypervSitesControllerUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateHypervSitesControllerRequestTagsMap>;
 
 /** The updatable properties of the HypervSite. */
 export type HypervSiteUpdatePropertiesInput = SitePropertiesInput;
 export const HypervSiteUpdatePropertiesInput = SitePropertiesInput;
 
-export interface UpdateHypervSiteControllerRequest {
+export interface UpdateHypervSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31177,15 +31262,15 @@ export interface UpdateHypervSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: HypervSitesControllerUpdateRequestTagsMap;
+  tags?: UpdateHypervSitesControllerRequestTagsMap;
   properties?: SitePropertiesInput;
 }
-export const UpdateHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateHypervSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(HypervSitesControllerUpdateRequestTagsMap),
+    tags: S.optional(UpdateHypervSitesControllerRequestTagsMap),
     properties: S.optional(SitePropertiesInput),
   }).pipe(
     T.Http({
@@ -31196,20 +31281,20 @@ export const UpdateHypervSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateHypervSiteControllerRequest",
-}) as any as S.Schema<UpdateHypervSiteControllerRequest>;
+  identifier: "UpdateHypervSitesControllerRequest",
+}) as any as S.Schema<UpdateHypervSitesControllerRequest>;
 
 /** Resource tags. */
-export type HypervSitesControllerUpdateResponseTagsMap = {
+export type UpdateHypervSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HypervSitesControllerUpdateResponseTagsMap =
+export const UpdateHypervSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<HypervSitesControllerUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateHypervSitesControllerResponseTagsMap>;
 
-export interface UpdateHypervSiteControllerResponse {
+export interface UpdateHypervSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31219,25 +31304,25 @@ export interface UpdateHypervSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HypervSitesControllerUpdateResponseTagsMap;
+  tags?: UpdateHypervSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SiteProperties;
 }
-export const UpdateHypervSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateHypervSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HypervSitesControllerUpdateResponseTagsMap),
+    tags: S.optional(UpdateHypervSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
   }),
 ).annotate({
-  identifier: "UpdateHypervSiteControllerResponse",
-}) as any as S.Schema<UpdateHypervSiteControllerResponse>;
+  identifier: "UpdateHypervSitesControllerResponse",
+}) as any as S.Schema<UpdateHypervSitesControllerResponse>;
 
 /** Gets or sets tags on the resource. */
 export type IisWebApplicationsUpdatePropertiesTagsMap = {
@@ -31261,7 +31346,7 @@ export const IisWebApplicationsUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IisWebApplicationsUpdateProperties",
 }) as any as S.Schema<IisWebApplicationsUpdateProperties>;
 
-export interface UpdateIisWebApplicationControllerRequest {
+export interface UpdateIisWebApplicationsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31274,8 +31359,8 @@ export interface UpdateIisWebApplicationControllerRequest {
   webApplicationName: string;
   properties?: IisWebApplicationsUpdateProperties;
 }
-export const UpdateIisWebApplicationControllerRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateIisWebApplicationsControllerRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -31291,11 +31376,11 @@ export const UpdateIisWebApplicationControllerRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "UpdateIisWebApplicationControllerRequest",
-}) as any as S.Schema<UpdateIisWebApplicationControllerRequest>;
+  ).annotate({
+    identifier: "UpdateIisWebApplicationsControllerRequest",
+  }) as any as S.Schema<UpdateIisWebApplicationsControllerRequest>;
 
-export interface UpdateIisWebApplicationControllerResponse {
+export interface UpdateIisWebApplicationsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31307,7 +31392,7 @@ export interface UpdateIisWebApplicationControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: IisWebApplicationProperties;
 }
-export const UpdateIisWebApplicationControllerResponse =
+export const UpdateIisWebApplicationsControllerResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -31317,23 +31402,23 @@ export const UpdateIisWebApplicationControllerResponse =
       properties: S.optional(IisWebApplicationProperties),
     }),
   ).annotate({
-    identifier: "UpdateIisWebApplicationControllerResponse",
-  }) as any as S.Schema<UpdateIisWebApplicationControllerResponse>;
+    identifier: "UpdateIisWebApplicationsControllerResponse",
+  }) as any as S.Schema<UpdateIisWebApplicationsControllerResponse>;
 
 /** Resource tags. */
-export type ImportSitesControllerUpdateRequestTagsMap = {
+export type UpdateImportSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ImportSitesControllerUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateImportSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImportSitesControllerUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateImportSitesControllerRequestTagsMap>;
 
 /** The updatable properties of the ImportSite. */
 export type ImportSiteUpdateProperties = ImportSitePropertiesInput;
 export const ImportSiteUpdateProperties = ImportSitePropertiesInput;
 
-export interface UpdateImportSiteControllerRequest {
+export interface UpdateImportSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31341,15 +31426,15 @@ export interface UpdateImportSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: ImportSitesControllerUpdateRequestTagsMap;
+  tags?: UpdateImportSitesControllerRequestTagsMap;
   properties?: ImportSitePropertiesInput;
 }
-export const UpdateImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateImportSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(ImportSitesControllerUpdateRequestTagsMap),
+    tags: S.optional(UpdateImportSitesControllerRequestTagsMap),
     properties: S.optional(ImportSitePropertiesInput),
   }).pipe(
     T.Http({
@@ -31360,20 +31445,20 @@ export const UpdateImportSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateImportSiteControllerRequest",
-}) as any as S.Schema<UpdateImportSiteControllerRequest>;
+  identifier: "UpdateImportSitesControllerRequest",
+}) as any as S.Schema<UpdateImportSitesControllerRequest>;
 
 /** Resource tags. */
-export type ImportSitesControllerUpdateResponseTagsMap = {
+export type UpdateImportSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ImportSitesControllerUpdateResponseTagsMap =
+export const UpdateImportSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ImportSitesControllerUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateImportSitesControllerResponseTagsMap>;
 
-export interface UpdateImportSiteControllerResponse {
+export interface UpdateImportSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31383,25 +31468,25 @@ export interface UpdateImportSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ImportSitesControllerUpdateResponseTagsMap;
+  tags?: UpdateImportSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ImportSiteProperties;
 }
-export const UpdateImportSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateImportSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ImportSitesControllerUpdateResponseTagsMap),
+    tags: S.optional(UpdateImportSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(ImportSiteProperties),
   }),
 ).annotate({
-  identifier: "UpdateImportSiteControllerResponse",
-}) as any as S.Schema<UpdateImportSiteControllerResponse>;
+  identifier: "UpdateImportSitesControllerResponse",
+}) as any as S.Schema<UpdateImportSitesControllerResponse>;
 
 /** Gets or sets tags on the VMware machine. */
 export type MachineResourceUpdatePropertiesTagsMap = {
@@ -31449,7 +31534,7 @@ export const MachineResourceUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachineResourceUpdateProperties",
 }) as any as S.Schema<MachineResourceUpdateProperties>;
 
-export interface UpdateMachineControllerRequest {
+export interface UpdateMachinesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31460,7 +31545,7 @@ export interface UpdateMachineControllerRequest {
   machineName: string;
   properties?: MachineResourceUpdateProperties;
 }
-export const UpdateMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMachinesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -31476,10 +31561,10 @@ export const UpdateMachineControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateMachineControllerRequest",
-}) as any as S.Schema<UpdateMachineControllerRequest>;
+  identifier: "UpdateMachinesControllerRequest",
+}) as any as S.Schema<UpdateMachinesControllerRequest>;
 
-export interface UpdateMachineControllerResponse {
+export interface UpdateMachinesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31491,7 +31576,7 @@ export interface UpdateMachineControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: VmwareMachineProperties;
 }
-export const UpdateMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMachinesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -31500,17 +31585,17 @@ export const UpdateMachineControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(VmwareMachineProperties),
   }),
 ).annotate({
-  identifier: "UpdateMachineControllerResponse",
-}) as any as S.Schema<UpdateMachineControllerResponse>;
+  identifier: "UpdateMachinesControllerResponse",
+}) as any as S.Schema<UpdateMachinesControllerResponse>;
 
 /** Resource tags. */
-export type MasterSitesControllerUpdateRequestTagsMap = {
+export type UpdateMasterSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MasterSitesControllerUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateMasterSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MasterSitesControllerUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateMasterSitesControllerRequestTagsMap>;
 
 /** Gets or sets the sites that are a part of Master Site. The key should contain the Site ARM name. */
 export type MasterSiteUpdatePropertiesSitesList = Array<string>;
@@ -31540,7 +31625,7 @@ export const MasterSiteUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MasterSiteUpdateProperties",
 }) as any as S.Schema<MasterSiteUpdateProperties>;
 
-export interface UpdateMasterSiteControllerRequest {
+export interface UpdateMasterSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31548,15 +31633,15 @@ export interface UpdateMasterSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: MasterSitesControllerUpdateRequestTagsMap;
+  tags?: UpdateMasterSitesControllerRequestTagsMap;
   properties?: MasterSiteUpdateProperties;
 }
-export const UpdateMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMasterSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(MasterSitesControllerUpdateRequestTagsMap),
+    tags: S.optional(UpdateMasterSitesControllerRequestTagsMap),
     properties: S.optional(MasterSiteUpdateProperties),
   }).pipe(
     T.Http({
@@ -31567,20 +31652,20 @@ export const UpdateMasterSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateMasterSiteControllerRequest",
-}) as any as S.Schema<UpdateMasterSiteControllerRequest>;
+  identifier: "UpdateMasterSitesControllerRequest",
+}) as any as S.Schema<UpdateMasterSitesControllerRequest>;
 
 /** Resource tags. */
-export type MasterSitesControllerUpdateResponseTagsMap = {
+export type UpdateMasterSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MasterSitesControllerUpdateResponseTagsMap =
+export const UpdateMasterSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MasterSitesControllerUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateMasterSitesControllerResponseTagsMap>;
 
-export interface UpdateMasterSiteControllerResponse {
+export interface UpdateMasterSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31590,25 +31675,25 @@ export interface UpdateMasterSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MasterSitesControllerUpdateResponseTagsMap;
+  tags?: UpdateMasterSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MasterSiteProperties;
 }
-export const UpdateMasterSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMasterSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MasterSitesControllerUpdateResponseTagsMap),
+    tags: S.optional(UpdateMasterSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(MasterSiteProperties),
   }),
 ).annotate({
-  identifier: "UpdateMasterSiteControllerResponse",
-}) as any as S.Schema<UpdateMasterSiteControllerResponse>;
+  identifier: "UpdateMasterSitesControllerResponse",
+}) as any as S.Schema<UpdateMasterSitesControllerResponse>;
 
 /** The private endpoint resource. */
 export type PrivateEndpointInput =
@@ -31617,13 +31702,13 @@ export const PrivateEndpointInput =
   PrivateEndpointConnectionProxyPropertiesInput;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionOperationsUpdateRequestProperties {
+export interface UpdatePrivateEndpointConnectionOperationRequestProperties {
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpointConnectionProxyPropertiesInput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
 }
-export const PrivateEndpointConnectionOperationsUpdateRequestProperties =
+export const UpdatePrivateEndpointConnectionOperationRequestProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateEndpoint: S.optional(
@@ -31632,8 +31717,8 @@ export const PrivateEndpointConnectionOperationsUpdateRequestProperties =
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionOperationsUpdateRequestProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionOperationsUpdateRequestProperties>;
+    identifier: "UpdatePrivateEndpointConnectionOperationRequestProperties",
+  }) as any as S.Schema<UpdatePrivateEndpointConnectionOperationRequestProperties>;
 
 export interface UpdatePrivateEndpointConnectionOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -31645,7 +31730,7 @@ export interface UpdatePrivateEndpointConnectionOperationRequest {
   /** Private endpoint connection ARM name */
   privateEndpointConnectionName: string;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionOperationsUpdateRequestProperties;
+  properties?: UpdatePrivateEndpointConnectionOperationRequestProperties;
 }
 export const UpdatePrivateEndpointConnectionOperationRequest =
   /*@__PURE__*/ S.suspend(() =>
@@ -31655,7 +31740,7 @@ export const UpdatePrivateEndpointConnectionOperationRequest =
       projectName: S.String.pipe(T.Label()),
       privateEndpointConnectionName: S.String.pipe(T.Label()),
       properties: S.optional(
-        PrivateEndpointConnectionOperationsUpdateRequestProperties,
+        UpdatePrivateEndpointConnectionOperationRequestProperties,
       ),
     }).pipe(
       T.Http({
@@ -31670,17 +31755,17 @@ export const UpdatePrivateEndpointConnectionOperationRequest =
   }) as any as S.Schema<UpdatePrivateEndpointConnectionOperationRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionOperationsUpdateResponsePropertiesGroupIdsList =
+export type UpdatePrivateEndpointConnectionOperationResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionOperationsUpdateResponsePropertiesGroupIdsList =
+export const UpdatePrivateEndpointConnectionOperationResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionOperationsUpdateResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<UpdatePrivateEndpointConnectionOperationResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionOperationsUpdateResponseProperties {
+export interface UpdatePrivateEndpointConnectionOperationResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionOperationsUpdateResponsePropertiesGroupIdsList;
+  groupIds?: UpdatePrivateEndpointConnectionOperationResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -31688,19 +31773,19 @@ export interface PrivateEndpointConnectionOperationsUpdateResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionOperationsUpdateResponseProperties =
+export const UpdatePrivateEndpointConnectionOperationResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionOperationsUpdateResponsePropertiesGroupIdsList,
+        UpdatePrivateEndpointConnectionOperationResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionOperationsUpdateResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionOperationsUpdateResponseProperties>;
+    identifier: "UpdatePrivateEndpointConnectionOperationResponseProperties",
+  }) as any as S.Schema<UpdatePrivateEndpointConnectionOperationResponseProperties>;
 
 export interface UpdatePrivateEndpointConnectionOperationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -31712,7 +31797,7 @@ export interface UpdatePrivateEndpointConnectionOperationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionOperationsUpdateResponseProperties;
+  properties?: UpdatePrivateEndpointConnectionOperationResponseProperties;
 }
 export const UpdatePrivateEndpointConnectionOperationResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -31722,7 +31807,7 @@ export const UpdatePrivateEndpointConnectionOperationResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        PrivateEndpointConnectionOperationsUpdateResponseProperties,
+        UpdatePrivateEndpointConnectionOperationResponseProperties,
       ),
     }),
   ).annotate({
@@ -31829,7 +31914,7 @@ export const ServerUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServerUpdatePropertiesInput",
 }) as any as S.Schema<ServerUpdatePropertiesInput>;
 
-export interface UpdateServerControllerMachineRequest {
+export interface UpdateServersControllerMachineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31840,7 +31925,7 @@ export interface UpdateServerControllerMachineRequest {
   machineName: string;
   properties?: ServerUpdatePropertiesInput;
 }
-export const UpdateServerControllerMachineRequest = /*@__PURE__*/ S.suspend(
+export const UpdateServersControllerMachineRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -31857,10 +31942,10 @@ export const UpdateServerControllerMachineRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateServerControllerMachineRequest",
-}) as any as S.Schema<UpdateServerControllerMachineRequest>;
+  identifier: "UpdateServersControllerMachineRequest",
+}) as any as S.Schema<UpdateServersControllerMachineRequest>;
 
-export interface UpdateServerControllerMachineResponse {
+export interface UpdateServersControllerMachineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31872,7 +31957,7 @@ export interface UpdateServerControllerMachineResponse {
   /** The resource-specific properties for this resource. */
   properties?: ServerProperties;
 }
-export const UpdateServerControllerMachineResponse = /*@__PURE__*/ S.suspend(
+export const UpdateServersControllerMachineResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -31882,23 +31967,23 @@ export const UpdateServerControllerMachineResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(ServerProperties),
     }),
 ).annotate({
-  identifier: "UpdateServerControllerMachineResponse",
-}) as any as S.Schema<UpdateServerControllerMachineResponse>;
+  identifier: "UpdateServersControllerMachineResponse",
+}) as any as S.Schema<UpdateServersControllerMachineResponse>;
 
 /** Resource tags. */
-export type ServerSitesControllerUpdateRequestTagsMap = {
+export type UpdateServerSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerSitesControllerUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServerSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServerSitesControllerUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServerSitesControllerRequestTagsMap>;
 
 /** The updatable properties of the ServerSiteResource. */
 export type ServerSiteResourceUpdatePropertiesInput = SitesPropertiesInput;
 export const ServerSiteResourceUpdatePropertiesInput = SitesPropertiesInput;
 
-export interface UpdateServerSiteControllerRequest {
+export interface UpdateServerSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31906,15 +31991,15 @@ export interface UpdateServerSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: ServerSitesControllerUpdateRequestTagsMap;
+  tags?: UpdateServerSitesControllerRequestTagsMap;
   properties?: SitesPropertiesInput;
 }
-export const UpdateServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateServerSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(ServerSitesControllerUpdateRequestTagsMap),
+    tags: S.optional(UpdateServerSitesControllerRequestTagsMap),
     properties: S.optional(SitesPropertiesInput),
   }).pipe(
     T.Http({
@@ -31925,20 +32010,20 @@ export const UpdateServerSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateServerSiteControllerRequest",
-}) as any as S.Schema<UpdateServerSiteControllerRequest>;
+  identifier: "UpdateServerSitesControllerRequest",
+}) as any as S.Schema<UpdateServerSitesControllerRequest>;
 
 /** Resource tags. */
-export type ServerSitesControllerUpdateResponseTagsMap = {
+export type UpdateServerSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerSitesControllerUpdateResponseTagsMap =
+export const UpdateServerSitesControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ServerSitesControllerUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateServerSitesControllerResponseTagsMap>;
 
-export interface UpdateServerSiteControllerResponse {
+export interface UpdateServerSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -31948,35 +32033,35 @@ export interface UpdateServerSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ServerSitesControllerUpdateResponseTagsMap;
+  tags?: UpdateServerSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SiteProperties;
 }
-export const UpdateServerSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateServerSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ServerSitesControllerUpdateResponseTagsMap),
+    tags: S.optional(UpdateServerSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
   }),
 ).annotate({
-  identifier: "UpdateServerSiteControllerResponse",
-}) as any as S.Schema<UpdateServerSiteControllerResponse>;
+  identifier: "UpdateServerSitesControllerResponse",
+}) as any as S.Schema<UpdateServerSitesControllerResponse>;
 
 /** Gets or sets the machine collection. */
-export type ServerSitesControllerUpdateDependencyMapStatusRequestMachinesList =
+export type UpdateServerSitesControllerDependencyMapStatusRequestMachinesList =
   Array<DependencyMapMachineInput>;
-export const ServerSitesControllerUpdateDependencyMapStatusRequestMachinesList =
+export const UpdateServerSitesControllerDependencyMapStatusRequestMachinesList =
   /*@__PURE__*/ S.Array(
     DependencyMapMachineInput,
-  ) as any as S.Schema<ServerSitesControllerUpdateDependencyMapStatusRequestMachinesList>;
+  ) as any as S.Schema<UpdateServerSitesControllerDependencyMapStatusRequestMachinesList>;
 
-export interface UpdateServerSiteControllerDependencyMapStatusRequest {
+export interface UpdateServerSitesControllerDependencyMapStatusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -31984,16 +32069,16 @@ export interface UpdateServerSiteControllerDependencyMapStatusRequest {
   /** Site name */
   siteName: string;
   /** Gets or sets the machine collection. */
-  machines?: ServerSitesControllerUpdateDependencyMapStatusRequestMachinesList;
+  machines?: UpdateServerSitesControllerDependencyMapStatusRequestMachinesList;
 }
-export const UpdateServerSiteControllerDependencyMapStatusRequest =
+export const UpdateServerSitesControllerDependencyMapStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
       machines: S.optional(
-        ServerSitesControllerUpdateDependencyMapStatusRequestMachinesList,
+        UpdateServerSitesControllerDependencyMapStatusRequestMachinesList,
       ),
     }).pipe(
       T.Http({
@@ -32004,24 +32089,24 @@ export const UpdateServerSiteControllerDependencyMapStatusRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateServerSiteControllerDependencyMapStatusRequest",
-  }) as any as S.Schema<UpdateServerSiteControllerDependencyMapStatusRequest>;
+    identifier: "UpdateServerSitesControllerDependencyMapStatusRequest",
+  }) as any as S.Schema<UpdateServerSitesControllerDependencyMapStatusRequest>;
 
-export type UpdateServerSiteControllerDependencyMapStatusResponse = unknown;
-export const UpdateServerSiteControllerDependencyMapStatusResponse =
+export type UpdateServerSitesControllerDependencyMapStatusResponse = unknown;
+export const UpdateServerSitesControllerDependencyMapStatusResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateServerSiteControllerDependencyMapStatusResponse",
-  }) as any as S.Schema<UpdateServerSiteControllerDependencyMapStatusResponse>;
+    identifier: "UpdateServerSitesControllerDependencyMapStatusResponse",
+  }) as any as S.Schema<UpdateServerSitesControllerDependencyMapStatusResponse>;
 
 /** The list of Machine MetaData. */
-export type ServerSitesControllerUpdatePropertiesRequestValueList =
+export type UpdateServerSitesControllerPropertiesRequestValueList =
   Array<MachineMetadata>;
-export const ServerSitesControllerUpdatePropertiesRequestValueList =
+export const UpdateServerSitesControllerPropertiesRequestValueList =
   /*@__PURE__*/ S.Array(
     MachineMetadata,
-  ) as any as S.Schema<ServerSitesControllerUpdatePropertiesRequestValueList>;
+  ) as any as S.Schema<UpdateServerSitesControllerPropertiesRequestValueList>;
 
-export interface UpdateServerSiteControllerPropertyRequest {
+export interface UpdateServerSitesControllerPropertiesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32029,15 +32114,15 @@ export interface UpdateServerSiteControllerPropertyRequest {
   /** Site name */
   siteName: string;
   /** The list of Machine MetaData. */
-  value: ServerSitesControllerUpdatePropertiesRequestValueList;
+  value: UpdateServerSitesControllerPropertiesRequestValueList;
 }
-export const UpdateServerSiteControllerPropertyRequest =
+export const UpdateServerSitesControllerPropertiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
-      value: ServerSitesControllerUpdatePropertiesRequestValueList,
+      value: UpdateServerSitesControllerPropertiesRequestValueList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -32047,29 +32132,29 @@ export const UpdateServerSiteControllerPropertyRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateServerSiteControllerPropertyRequest",
-  }) as any as S.Schema<UpdateServerSiteControllerPropertyRequest>;
+    identifier: "UpdateServerSitesControllerPropertiesRequest",
+  }) as any as S.Schema<UpdateServerSitesControllerPropertiesRequest>;
 
-export type UpdateServerSiteControllerPropertyResponse = unknown;
-export const UpdateServerSiteControllerPropertyResponse =
+export type UpdateServerSitesControllerPropertiesResponse = unknown;
+export const UpdateServerSitesControllerPropertiesResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateServerSiteControllerPropertyResponse",
-  }) as any as S.Schema<UpdateServerSiteControllerPropertyResponse>;
+    identifier: "UpdateServerSitesControllerPropertiesResponse",
+  }) as any as S.Schema<UpdateServerSitesControllerPropertiesResponse>;
 
 /** Resource tags. */
-export type SitesControllerUpdateRequestTagsMap = {
+export type UpdateSitesControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SitesControllerUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSitesControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SitesControllerUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSitesControllerRequestTagsMap>;
 
 /** The updatable properties of the VmwareSite. */
 export type VmwareSiteUpdatePropertiesInput = SitePropertiesInput;
 export const VmwareSiteUpdatePropertiesInput = SitePropertiesInput;
 
-export interface UpdateSiteControllerRequest {
+export interface UpdateSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32077,15 +32162,15 @@ export interface UpdateSiteControllerRequest {
   /** Site name */
   siteName: string;
   /** Resource tags. */
-  tags?: SitesControllerUpdateRequestTagsMap;
+  tags?: UpdateSitesControllerRequestTagsMap;
   properties?: SitePropertiesInput;
 }
-export const UpdateSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     siteName: S.String.pipe(T.Label()),
-    tags: S.optional(SitesControllerUpdateRequestTagsMap),
+    tags: S.optional(UpdateSitesControllerRequestTagsMap),
     properties: S.optional(SitePropertiesInput),
   }).pipe(
     T.Http({
@@ -32096,19 +32181,19 @@ export const UpdateSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSiteControllerRequest",
-}) as any as S.Schema<UpdateSiteControllerRequest>;
+  identifier: "UpdateSitesControllerRequest",
+}) as any as S.Schema<UpdateSitesControllerRequest>;
 
 /** Resource tags. */
-export type SitesControllerUpdateResponseTagsMap = {
+export type UpdateSitesControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SitesControllerUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSitesControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SitesControllerUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSitesControllerResponseTagsMap>;
 
-export interface UpdateSiteControllerResponse {
+export interface UpdateSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -32118,7 +32203,7 @@ export interface UpdateSiteControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SitesControllerUpdateResponseTagsMap;
+  tags?: UpdateSitesControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -32126,22 +32211,22 @@ export interface UpdateSiteControllerResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const UpdateSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SitesControllerUpdateResponseTagsMap),
+    tags: S.optional(UpdateSitesControllerResponseTagsMap),
     location: S.String,
     properties: S.optional(SiteProperties),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateSiteControllerResponse",
-}) as any as S.Schema<UpdateSiteControllerResponse>;
+  identifier: "UpdateSitesControllerResponse",
+}) as any as S.Schema<UpdateSitesControllerResponse>;
 
-export interface UpdateSolutionControllerRequest {
+export interface UpdateSolutionsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32155,7 +32240,7 @@ export interface UpdateSolutionControllerRequest {
   /** Gets or sets the properties of the solution. */
   properties?: SolutionPropertiesInput;
 }
-export const UpdateSolutionControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSolutionsControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -32172,8 +32257,8 @@ export const UpdateSolutionControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSolutionControllerRequest",
-}) as any as S.Schema<UpdateSolutionControllerRequest>;
+  identifier: "UpdateSolutionsControllerRequest",
+}) as any as S.Schema<UpdateSolutionsControllerRequest>;
 
 /** Gets or sets tags on the resource. */
 export type SqlServerV2UpdatePropertiesTagsMap = {
@@ -32281,7 +32366,7 @@ export const SqlServerV2UpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlServerV2UpdateProperties",
 }) as any as S.Schema<SqlServerV2UpdateProperties>;
 
-export interface UpdateSqlServerControllerRequest {
+export interface UpdateSqlServersControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32294,7 +32379,7 @@ export interface UpdateSqlServerControllerRequest {
   sqlServerName: string;
   properties?: SqlServerV2UpdateProperties;
 }
-export const UpdateSqlServerControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSqlServersControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -32311,10 +32396,10 @@ export const UpdateSqlServerControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSqlServerControllerRequest",
-}) as any as S.Schema<UpdateSqlServerControllerRequest>;
+  identifier: "UpdateSqlServersControllerRequest",
+}) as any as S.Schema<UpdateSqlServersControllerRequest>;
 
-export interface UpdateSqlServerControllerResponse {
+export interface UpdateSqlServersControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -32326,7 +32411,7 @@ export interface UpdateSqlServerControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlServerProperties;
 }
-export const UpdateSqlServerControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSqlServersControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -32335,8 +32420,8 @@ export const UpdateSqlServerControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SqlServerProperties),
   }),
 ).annotate({
-  identifier: "UpdateSqlServerControllerResponse",
-}) as any as S.Schema<UpdateSqlServerControllerResponse>;
+  identifier: "UpdateSqlServersControllerResponse",
+}) as any as S.Schema<UpdateSqlServersControllerResponse>;
 
 /** Gets or sets the appliance details used by service to communicate to the appliance. */
 export type SqlSiteUpdatePropertiesInputSiteAppliancePropertiesCollectionList =
@@ -32364,7 +32449,7 @@ export const SqlSiteUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SqlSiteUpdatePropertiesInput",
 }) as any as S.Schema<SqlSiteUpdatePropertiesInput>;
 
-export interface UpdateSqlSiteControllerRequest {
+export interface UpdateSqlSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32375,7 +32460,7 @@ export interface UpdateSqlSiteControllerRequest {
   sqlSiteName: string;
   properties?: SqlSiteUpdatePropertiesInput;
 }
-export const UpdateSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSqlSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -32391,10 +32476,10 @@ export const UpdateSqlSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSqlSiteControllerRequest",
-}) as any as S.Schema<UpdateSqlSiteControllerRequest>;
+  identifier: "UpdateSqlSitesControllerRequest",
+}) as any as S.Schema<UpdateSqlSitesControllerRequest>;
 
-export interface UpdateSqlSiteControllerResponse {
+export interface UpdateSqlSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -32406,7 +32491,7 @@ export interface UpdateSqlSiteControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: SqlSiteProperties;
 }
-export const UpdateSqlSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSqlSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -32415,10 +32500,10 @@ export const UpdateSqlSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SqlSiteProperties),
   }),
 ).annotate({
-  identifier: "UpdateSqlSiteControllerResponse",
-}) as any as S.Schema<UpdateSqlSiteControllerResponse>;
+  identifier: "UpdateSqlSitesControllerResponse",
+}) as any as S.Schema<UpdateSqlSitesControllerResponse>;
 
-export interface UpdateTomcatWebApplicationControllerRequest {
+export interface UpdateTomcatWebApplicationsControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32430,7 +32515,7 @@ export interface UpdateTomcatWebApplicationControllerRequest {
   /** Web application name. */
   webApplicationName: string;
 }
-export const UpdateTomcatWebApplicationControllerRequest =
+export const UpdateTomcatWebApplicationsControllerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -32447,10 +32532,10 @@ export const UpdateTomcatWebApplicationControllerRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateTomcatWebApplicationControllerRequest",
-  }) as any as S.Schema<UpdateTomcatWebApplicationControllerRequest>;
+    identifier: "UpdateTomcatWebApplicationsControllerRequest",
+  }) as any as S.Schema<UpdateTomcatWebApplicationsControllerRequest>;
 
-export interface UpdateTomcatWebApplicationControllerResponse {
+export interface UpdateTomcatWebApplicationsControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -32462,7 +32547,7 @@ export interface UpdateTomcatWebApplicationControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: TomcatWebApplicationProperties;
 }
-export const UpdateTomcatWebApplicationControllerResponse =
+export const UpdateTomcatWebApplicationsControllerResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -32472,18 +32557,18 @@ export const UpdateTomcatWebApplicationControllerResponse =
       properties: S.optional(TomcatWebApplicationProperties),
     }),
   ).annotate({
-    identifier: "UpdateTomcatWebApplicationControllerResponse",
-  }) as any as S.Schema<UpdateTomcatWebApplicationControllerResponse>;
+    identifier: "UpdateTomcatWebApplicationsControllerResponse",
+  }) as any as S.Schema<UpdateTomcatWebApplicationsControllerResponse>;
 
 /** Gets or sets the machine collection. */
-export type VmwarePropertiesControllerUpdateDependencyMapStatusRequestMachinesList =
+export type UpdateVmwarePropertiesControllerDependencyMapStatusRequestMachinesList =
   Array<DependencyMapMachineInput>;
-export const VmwarePropertiesControllerUpdateDependencyMapStatusRequestMachinesList =
+export const UpdateVmwarePropertiesControllerDependencyMapStatusRequestMachinesList =
   /*@__PURE__*/ S.Array(
     DependencyMapMachineInput,
-  ) as any as S.Schema<VmwarePropertiesControllerUpdateDependencyMapStatusRequestMachinesList>;
+  ) as any as S.Schema<UpdateVmwarePropertiesControllerDependencyMapStatusRequestMachinesList>;
 
-export interface UpdateVmwarePropertyControllerDependencyMapStatusRequest {
+export interface UpdateVmwarePropertiesControllerDependencyMapStatusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32491,16 +32576,16 @@ export interface UpdateVmwarePropertyControllerDependencyMapStatusRequest {
   /** Site name */
   siteName: string;
   /** Gets or sets the machine collection. */
-  machines?: VmwarePropertiesControllerUpdateDependencyMapStatusRequestMachinesList;
+  machines?: UpdateVmwarePropertiesControllerDependencyMapStatusRequestMachinesList;
 }
-export const UpdateVmwarePropertyControllerDependencyMapStatusRequest =
+export const UpdateVmwarePropertiesControllerDependencyMapStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
       machines: S.optional(
-        VmwarePropertiesControllerUpdateDependencyMapStatusRequestMachinesList,
+        UpdateVmwarePropertiesControllerDependencyMapStatusRequestMachinesList,
       ),
     }).pipe(
       T.Http({
@@ -32511,24 +32596,25 @@ export const UpdateVmwarePropertyControllerDependencyMapStatusRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateVmwarePropertyControllerDependencyMapStatusRequest",
-  }) as any as S.Schema<UpdateVmwarePropertyControllerDependencyMapStatusRequest>;
+    identifier: "UpdateVmwarePropertiesControllerDependencyMapStatusRequest",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerDependencyMapStatusRequest>;
 
-export type UpdateVmwarePropertyControllerDependencyMapStatusResponse = unknown;
-export const UpdateVmwarePropertyControllerDependencyMapStatusResponse =
+export type UpdateVmwarePropertiesControllerDependencyMapStatusResponse =
+  unknown;
+export const UpdateVmwarePropertiesControllerDependencyMapStatusResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateVmwarePropertyControllerDependencyMapStatusResponse",
-  }) as any as S.Schema<UpdateVmwarePropertyControllerDependencyMapStatusResponse>;
+    identifier: "UpdateVmwarePropertiesControllerDependencyMapStatusResponse",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerDependencyMapStatusResponse>;
 
 /** The list of Machine MetaData. */
-export type VmwarePropertiesControllerUpdatePropertiesRequestValueList =
+export type UpdateVmwarePropertiesControllerPropertiesRequestValueList =
   Array<MachineMetadata>;
-export const VmwarePropertiesControllerUpdatePropertiesRequestValueList =
+export const UpdateVmwarePropertiesControllerPropertiesRequestValueList =
   /*@__PURE__*/ S.Array(
     MachineMetadata,
-  ) as any as S.Schema<VmwarePropertiesControllerUpdatePropertiesRequestValueList>;
+  ) as any as S.Schema<UpdateVmwarePropertiesControllerPropertiesRequestValueList>;
 
-export interface UpdateVmwarePropertyControllerPropertyRequest {
+export interface UpdateVmwarePropertiesControllerPropertiesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32536,15 +32622,15 @@ export interface UpdateVmwarePropertyControllerPropertyRequest {
   /** Site name */
   siteName: string;
   /** The list of Machine MetaData. */
-  value: VmwarePropertiesControllerUpdatePropertiesRequestValueList;
+  value: UpdateVmwarePropertiesControllerPropertiesRequestValueList;
 }
-export const UpdateVmwarePropertyControllerPropertyRequest =
+export const UpdateVmwarePropertiesControllerPropertiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
-      value: VmwarePropertiesControllerUpdatePropertiesRequestValueList,
+      value: UpdateVmwarePropertiesControllerPropertiesRequestValueList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -32554,14 +32640,14 @@ export const UpdateVmwarePropertyControllerPropertyRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateVmwarePropertyControllerPropertyRequest",
-  }) as any as S.Schema<UpdateVmwarePropertyControllerPropertyRequest>;
+    identifier: "UpdateVmwarePropertiesControllerPropertiesRequest",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerPropertiesRequest>;
 
-export type UpdateVmwarePropertyControllerPropertyResponse = unknown;
-export const UpdateVmwarePropertyControllerPropertyResponse =
+export type UpdateVmwarePropertiesControllerPropertiesResponse = unknown;
+export const UpdateVmwarePropertiesControllerPropertiesResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateVmwarePropertyControllerPropertyResponse",
-  }) as any as S.Schema<UpdateVmwarePropertyControllerPropertyResponse>;
+    identifier: "UpdateVmwarePropertiesControllerPropertiesResponse",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerPropertiesResponse>;
 
 /** Machine class. */
 export interface RunAsAccountMachineInput {
@@ -32580,14 +32666,14 @@ export const RunAsAccountMachineInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RunAsAccountMachineInput>;
 
 /** Gets or sets the machine collection. */
-export type VmwarePropertiesControllerUpdateRunAsAccountRequestMachinesList =
+export type UpdateVmwarePropertiesControllerRunAsAccountRequestMachinesList =
   Array<RunAsAccountMachineInput>;
-export const VmwarePropertiesControllerUpdateRunAsAccountRequestMachinesList =
+export const UpdateVmwarePropertiesControllerRunAsAccountRequestMachinesList =
   /*@__PURE__*/ S.Array(
     RunAsAccountMachineInput,
-  ) as any as S.Schema<VmwarePropertiesControllerUpdateRunAsAccountRequestMachinesList>;
+  ) as any as S.Schema<UpdateVmwarePropertiesControllerRunAsAccountRequestMachinesList>;
 
-export interface UpdateVmwarePropertyControllerRunAsAccountRequest {
+export interface UpdateVmwarePropertiesControllerRunAsAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32595,16 +32681,16 @@ export interface UpdateVmwarePropertyControllerRunAsAccountRequest {
   /** Site name */
   siteName: string;
   /** Gets or sets the machine collection. */
-  machines?: VmwarePropertiesControllerUpdateRunAsAccountRequestMachinesList;
+  machines?: UpdateVmwarePropertiesControllerRunAsAccountRequestMachinesList;
 }
-export const UpdateVmwarePropertyControllerRunAsAccountRequest =
+export const UpdateVmwarePropertiesControllerRunAsAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
       machines: S.optional(
-        VmwarePropertiesControllerUpdateRunAsAccountRequestMachinesList,
+        UpdateVmwarePropertiesControllerRunAsAccountRequestMachinesList,
       ),
     }).pipe(
       T.Http({
@@ -32615,14 +32701,14 @@ export const UpdateVmwarePropertyControllerRunAsAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateVmwarePropertyControllerRunAsAccountRequest",
-  }) as any as S.Schema<UpdateVmwarePropertyControllerRunAsAccountRequest>;
+    identifier: "UpdateVmwarePropertiesControllerRunAsAccountRequest",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerRunAsAccountRequest>;
 
-export type UpdateVmwarePropertyControllerRunAsAccountResponse = unknown;
-export const UpdateVmwarePropertyControllerRunAsAccountResponse =
+export type UpdateVmwarePropertiesControllerRunAsAccountResponse = unknown;
+export const UpdateVmwarePropertiesControllerRunAsAccountResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateVmwarePropertyControllerRunAsAccountResponse",
-  }) as any as S.Schema<UpdateVmwarePropertyControllerRunAsAccountResponse>;
+    identifier: "UpdateVmwarePropertiesControllerRunAsAccountResponse",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerRunAsAccountResponse>;
 
 /** run as AccountId */
 export type TagsMachineInputTagsMap = { [key: string]: string | undefined };
@@ -32648,14 +32734,14 @@ export const TagsMachineInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TagsMachineInput>;
 
 /** Gets or sets the machine collection. */
-export type VmwarePropertiesControllerUpdateTagsRequestMachinesList =
+export type UpdateVmwarePropertiesControllerTagsRequestMachinesList =
   Array<TagsMachineInput>;
-export const VmwarePropertiesControllerUpdateTagsRequestMachinesList =
+export const UpdateVmwarePropertiesControllerTagsRequestMachinesList =
   /*@__PURE__*/ S.Array(
     TagsMachineInput,
-  ) as any as S.Schema<VmwarePropertiesControllerUpdateTagsRequestMachinesList>;
+  ) as any as S.Schema<UpdateVmwarePropertiesControllerTagsRequestMachinesList>;
 
-export interface UpdateVmwarePropertyControllerTagRequest {
+export interface UpdateVmwarePropertiesControllerTagsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32663,16 +32749,16 @@ export interface UpdateVmwarePropertyControllerTagRequest {
   /** Site name */
   siteName: string;
   /** Gets or sets the machine collection. */
-  machines?: VmwarePropertiesControllerUpdateTagsRequestMachinesList;
+  machines?: UpdateVmwarePropertiesControllerTagsRequestMachinesList;
 }
-export const UpdateVmwarePropertyControllerTagRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateVmwarePropertiesControllerTagsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       siteName: S.String.pipe(T.Label()),
       machines: S.optional(
-        VmwarePropertiesControllerUpdateTagsRequestMachinesList,
+        UpdateVmwarePropertiesControllerTagsRequestMachinesList,
       ),
     }).pipe(
       T.Http({
@@ -32682,15 +32768,15 @@ export const UpdateVmwarePropertyControllerTagRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-06-06",
       }),
     ),
-).annotate({
-  identifier: "UpdateVmwarePropertyControllerTagRequest",
-}) as any as S.Schema<UpdateVmwarePropertyControllerTagRequest>;
+  ).annotate({
+    identifier: "UpdateVmwarePropertiesControllerTagsRequest",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerTagsRequest>;
 
-export type UpdateVmwarePropertyControllerTagResponse = unknown;
-export const UpdateVmwarePropertyControllerTagResponse =
+export type UpdateVmwarePropertiesControllerTagsResponse = unknown;
+export const UpdateVmwarePropertiesControllerTagsResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateVmwarePropertyControllerTagResponse",
-  }) as any as S.Schema<UpdateVmwarePropertyControllerTagResponse>;
+    identifier: "UpdateVmwarePropertiesControllerTagsResponse",
+  }) as any as S.Schema<UpdateVmwarePropertiesControllerTagsResponse>;
 
 /** Gets or sets Tags. */
 export type WebAppPropertiesTagsMap = { [key: string]: string | undefined };
@@ -32716,14 +32802,14 @@ export const WebAppProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WebAppProperties>;
 
 /** Gets or sets the list of web app properties. */
-export type WebAppPropertiesControllerUpdatePropertiesRequestWebAppsList =
+export type UpdateWebAppPropertiesControllerPropertiesRequestWebAppsList =
   Array<WebAppProperties>;
-export const WebAppPropertiesControllerUpdatePropertiesRequestWebAppsList =
+export const UpdateWebAppPropertiesControllerPropertiesRequestWebAppsList =
   /*@__PURE__*/ S.Array(
     WebAppProperties,
-  ) as any as S.Schema<WebAppPropertiesControllerUpdatePropertiesRequestWebAppsList>;
+  ) as any as S.Schema<UpdateWebAppPropertiesControllerPropertiesRequestWebAppsList>;
 
-export interface UpdateWebAppPropertyControllerPropertyRequest {
+export interface UpdateWebAppPropertiesControllerPropertiesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32733,9 +32819,9 @@ export interface UpdateWebAppPropertyControllerPropertyRequest {
   /** Web app site name. */
   webAppSiteName: string;
   /** Gets or sets the list of web app properties. */
-  webApps?: WebAppPropertiesControllerUpdatePropertiesRequestWebAppsList;
+  webApps?: UpdateWebAppPropertiesControllerPropertiesRequestWebAppsList;
 }
-export const UpdateWebAppPropertyControllerPropertyRequest =
+export const UpdateWebAppPropertiesControllerPropertiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -32743,7 +32829,7 @@ export const UpdateWebAppPropertyControllerPropertyRequest =
       siteName: S.String.pipe(T.Label()),
       webAppSiteName: S.String.pipe(T.Label()),
       webApps: S.optional(
-        WebAppPropertiesControllerUpdatePropertiesRequestWebAppsList,
+        UpdateWebAppPropertiesControllerPropertiesRequestWebAppsList,
       ),
     }).pipe(
       T.Http({
@@ -32754,14 +32840,14 @@ export const UpdateWebAppPropertyControllerPropertyRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateWebAppPropertyControllerPropertyRequest",
-  }) as any as S.Schema<UpdateWebAppPropertyControllerPropertyRequest>;
+    identifier: "UpdateWebAppPropertiesControllerPropertiesRequest",
+  }) as any as S.Schema<UpdateWebAppPropertiesControllerPropertiesRequest>;
 
-export type UpdateWebAppPropertyControllerPropertyResponse = unknown;
-export const UpdateWebAppPropertyControllerPropertyResponse =
+export type UpdateWebAppPropertiesControllerPropertiesResponse = unknown;
+export const UpdateWebAppPropertiesControllerPropertiesResponse =
   /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "UpdateWebAppPropertyControllerPropertyResponse",
-  }) as any as S.Schema<UpdateWebAppPropertyControllerPropertyResponse>;
+    identifier: "UpdateWebAppPropertiesControllerPropertiesResponse",
+  }) as any as S.Schema<UpdateWebAppPropertiesControllerPropertiesResponse>;
 
 /** Gets or sets the appliance details used by service to communicate to the appliance. */
 export type WebAppSiteUpdatePropertiesInputSiteAppliancePropertiesCollectionList =
@@ -32789,7 +32875,7 @@ export const WebAppSiteUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppSiteUpdatePropertiesInput",
 }) as any as S.Schema<WebAppSiteUpdatePropertiesInput>;
 
-export interface UpdateWebAppSiteControllerRequest {
+export interface UpdateWebAppSitesControllerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32800,7 +32886,7 @@ export interface UpdateWebAppSiteControllerRequest {
   webAppSiteName: string;
   properties?: WebAppSiteUpdatePropertiesInput;
 }
-export const UpdateWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebAppSitesControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -32816,10 +32902,10 @@ export const UpdateWebAppSiteControllerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateWebAppSiteControllerRequest",
-}) as any as S.Schema<UpdateWebAppSiteControllerRequest>;
+  identifier: "UpdateWebAppSitesControllerRequest",
+}) as any as S.Schema<UpdateWebAppSitesControllerRequest>;
 
-export interface UpdateWebAppSiteControllerResponse {
+export interface UpdateWebAppSitesControllerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -32831,7 +32917,7 @@ export interface UpdateWebAppSiteControllerResponse {
   /** The resource-specific properties for this resource. */
   properties?: WebAppSiteProperties;
 }
-export const UpdateWebAppSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebAppSitesControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -32840,40 +32926,41 @@ export const UpdateWebAppSiteControllerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(WebAppSiteProperties),
   }),
 ).annotate({
-  identifier: "UpdateWebAppSiteControllerResponse",
-}) as any as S.Schema<UpdateWebAppSiteControllerResponse>;
+  identifier: "UpdateWebAppSitesControllerResponse",
+}) as any as S.Schema<UpdateWebAppSitesControllerResponse>;
 
-export interface WebAppAssessmentV2OperationsDownloadUrlRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
+export interface ValidatePrivateEndpointConnectionProxyControllerRequest {
+  /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Assessment Project Name */
-  projectName: string;
-  /** Group ARM name */
-  groupName: string;
-  /** Web app Assessment arm name. */
-  assessmentName: string;
+  /** Name of the Azure Migrate project. */
+  migrateProjectName: string;
+  /** Private link proxy name. */
+  pecProxyName: string;
+  eTag?: string;
+  properties?: PrivateEndpointConnectionProxyPropertiesInput;
 }
-export const WebAppAssessmentV2OperationsDownloadUrlRequest =
+export const ValidatePrivateEndpointConnectionProxyControllerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      groupName: S.String.pipe(T.Label()),
-      assessmentName: S.String.pipe(T.Label()),
+      migrateProjectName: S.String.pipe(T.Label()),
+      pecProxyName: S.String.pipe(T.Label()),
+      eTag: S.optional(S.String),
+      properties: S.optional(PrivateEndpointConnectionProxyPropertiesInput),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/assessmentProjects/{projectName}/groups/{groupName}/webAppAssessments/{assessmentName}/downloadUrl",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Migrate/migrateProjects/{migrateProjectName}/privateEndpointConnectionProxies/{pecProxyName}/validate",
         code: 200,
-        apiVersion: "2024-01-15",
+        apiVersion: "2023-01-01",
       }),
     ),
   ).annotate({
-    identifier: "WebAppAssessmentV2OperationsDownloadUrlRequest",
-  }) as any as S.Schema<WebAppAssessmentV2OperationsDownloadUrlRequest>;
+    identifier: "ValidatePrivateEndpointConnectionProxyControllerRequest",
+  }) as any as S.Schema<ValidatePrivateEndpointConnectionProxyControllerRequest>;
 
 export interface WebAppSitesControllerErrorSummaryRequest {
   /** The ID of the target subscription. */
@@ -32906,82 +32993,6 @@ export const WebAppSitesControllerErrorSummaryRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "WebAppSitesControllerErrorSummaryRequest",
 }) as any as S.Schema<WebAppSitesControllerErrorSummaryRequest>;
-
-export interface WebAppSitesControllerExportInventoryRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Web app site name. */
-  webAppSiteName: string;
-  /** filter options. */
-  filter?: string;
-}
-export const WebAppSitesControllerExportInventoryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      siteName: S.String.pipe(T.Label()),
-      webAppSiteName: S.String.pipe(T.Label()),
-      filter: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/webAppSites/{webAppSiteName}/exportInventory",
-        code: 200,
-        apiVersion: "2023-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebAppSitesControllerExportInventoryRequest",
-  }) as any as S.Schema<WebAppSitesControllerExportInventoryRequest>;
-
-export type WebAppSitesControllerExportInventoryResponse = unknown;
-export const WebAppSitesControllerExportInventoryResponse =
-  /*@__PURE__*/ S.suspend(() => S.Unknown.pipe(T.RawResponseRoot())).annotate({
-    identifier: "WebAppSitesControllerExportInventoryResponse",
-  }) as any as S.Schema<WebAppSitesControllerExportInventoryResponse>;
-
-export interface WebAppSitesControllerRefreshRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Site name */
-  siteName: string;
-  /** Web app site name. */
-  webAppSiteName: string;
-  /** Gets or sets the appliance name of the agent in the site. */
-  applianceName?: string;
-}
-export const WebAppSitesControllerRefreshRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    siteName: S.String.pipe(T.Label()),
-    webAppSiteName: S.String.pipe(T.Label()),
-    applianceName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzure/masterSites/{siteName}/webAppSites/{webAppSiteName}/refresh",
-      code: 200,
-      apiVersion: "2023-06-06",
-    }),
-  ),
-).annotate({
-  identifier: "WebAppSitesControllerRefreshRequest",
-}) as any as S.Schema<WebAppSitesControllerRefreshRequest>;
-
-export type WebAppSitesControllerRefreshResponse = unknown;
-export const WebAppSitesControllerRefreshResponse = /*@__PURE__*/ S.suspend(
-  () => S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "WebAppSitesControllerRefreshResponse",
-}) as any as S.Schema<WebAppSitesControllerRefreshResponse>;
 
 export interface WebAppSitesControllerSummaryRequest {
   /** The ID of the target subscription. */
@@ -33030,51 +33041,6 @@ export const WebAppSiteUsage = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebAppSiteUsage",
 }) as any as S.Schema<WebAppSiteUsage>;
 
-export type AksAssessmentOperationsDownloadUrlError = AzureOpError;
-/** Get URL for downloading AKS Assessment Report. */
-export const AksAssessmentOperationsDownloadUrl: API.OperationMethod<
-  AksAssessmentOperationsDownloadUrlRequest,
-  DownloadUrl,
-  AksAssessmentOperationsDownloadUrlError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AksAssessmentOperationsDownloadUrlRequest,
-  output: DownloadUrl,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AssessmentsOperationsDownloadUrlError = AzureOpError;
-/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
-export const AssessmentsOperationsDownloadUrl: API.OperationMethod<
-  AssessmentsOperationsDownloadUrlRequest,
-  DownloadUrl,
-  AssessmentsOperationsDownloadUrlError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AssessmentsOperationsDownloadUrlRequest,
-  output: DownloadUrl,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AvsAssessmentsOperationsDownloadUrlError = AzureOpError;
-/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
-export const AvsAssessmentsOperationsDownloadUrl: API.OperationMethod<
-  AvsAssessmentsOperationsDownloadUrlRequest,
-  DownloadUrl,
-  AvsAssessmentsOperationsDownloadUrlError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AvsAssessmentsOperationsDownloadUrlRequest,
-  output: DownloadUrl,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateAksAssessmentOperationError = AzureOpError;
 /** Create a AKSAssessment */
 export const CreateAksAssessmentOperation: API.OperationMethod<
@@ -33090,61 +33056,61 @@ export const CreateAksAssessmentOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateAssessmentOperationError = AzureOpError;
-/** Create a Assessment */
-export const CreateAssessmentOperation: API.OperationMethod<
-  CreateAssessmentOperationRequest,
-  CreateAssessmentOperationResponse,
-  CreateAssessmentOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateAssessmentOperationRequest,
-  output: CreateAssessmentOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateAssessmentProjectOperationError = AzureOpError;
+export type CreateAssessmentProjectsOperationError = AzureOpError;
 /** Create a AssessmentProject */
-export const CreateAssessmentProjectOperation: API.OperationMethod<
-  CreateAssessmentProjectOperationRequest,
-  CreateAssessmentProjectOperationResponse,
-  CreateAssessmentProjectOperationError,
+export const CreateAssessmentProjectsOperation: API.OperationMethod<
+  CreateAssessmentProjectsOperationRequest,
+  CreateAssessmentProjectsOperationResponse,
+  CreateAssessmentProjectsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAssessmentProjectOperationRequest,
-  output: CreateAssessmentProjectOperationResponse,
+  input: CreateAssessmentProjectsOperationRequest,
+  output: CreateAssessmentProjectsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateAvsAssessmentOperationError = AzureOpError;
+export type CreateAssessmentsOperationError = AzureOpError;
+/** Create a Assessment */
+export const CreateAssessmentsOperation: API.OperationMethod<
+  CreateAssessmentsOperationRequest,
+  CreateAssessmentsOperationResponse,
+  CreateAssessmentsOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAssessmentsOperationRequest,
+  output: CreateAssessmentsOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAvsAssessmentsOperationError = AzureOpError;
 /** Create a AvsAssessment */
-export const CreateAvsAssessmentOperation: API.OperationMethod<
-  CreateAvsAssessmentOperationRequest,
-  CreateAvsAssessmentOperationResponse,
-  CreateAvsAssessmentOperationError,
+export const CreateAvsAssessmentsOperation: API.OperationMethod<
+  CreateAvsAssessmentsOperationRequest,
+  CreateAvsAssessmentsOperationResponse,
+  CreateAvsAssessmentsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAvsAssessmentOperationRequest,
-  output: CreateAvsAssessmentOperationResponse,
+  input: CreateAvsAssessmentsOperationRequest,
+  output: CreateAvsAssessmentsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateGroupOperationError = AzureOpError;
+export type CreateGroupsOperationError = AzureOpError;
 /** Create a Group */
-export const CreateGroupOperation: API.OperationMethod<
-  CreateGroupOperationRequest,
-  CreateGroupOperationResponse,
-  CreateGroupOperationError,
+export const CreateGroupsOperation: API.OperationMethod<
+  CreateGroupsOperationRequest,
+  CreateGroupsOperationResponse,
+  CreateGroupsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateGroupOperationRequest,
-  output: CreateGroupOperationResponse,
+  input: CreateGroupsOperationRequest,
+  output: CreateGroupsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33165,16 +33131,16 @@ export const CreateHypervClusterControllerCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateHypervCollectorOperationError = AzureOpError;
+export type CreateHypervCollectorsOperationError = AzureOpError;
 /** Create a HypervCollector */
-export const CreateHypervCollectorOperation: API.OperationMethod<
-  CreateHypervCollectorOperationRequest,
-  CreateHypervCollectorOperationResponse,
-  CreateHypervCollectorOperationError,
+export const CreateHypervCollectorsOperation: API.OperationMethod<
+  CreateHypervCollectorsOperationRequest,
+  CreateHypervCollectorsOperationResponse,
+  CreateHypervCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateHypervCollectorOperationRequest,
-  output: CreateHypervCollectorOperationResponse,
+  input: CreateHypervCollectorsOperationRequest,
+  output: CreateHypervCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33195,61 +33161,61 @@ export const CreateHypervHostController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateHypervSiteControllerError = AzureOpError;
+export type CreateHypervSitesControllerError = AzureOpError;
 /** Create a HypervSite */
-export const CreateHypervSiteController: API.OperationMethod<
-  CreateHypervSiteControllerRequest,
-  CreateHypervSiteControllerResponse,
-  CreateHypervSiteControllerError,
+export const CreateHypervSitesController: API.OperationMethod<
+  CreateHypervSitesControllerRequest,
+  CreateHypervSitesControllerResponse,
+  CreateHypervSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateHypervSiteControllerRequest,
-  output: CreateHypervSiteControllerResponse,
+  input: CreateHypervSitesControllerRequest,
+  output: CreateHypervSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateImportCollectorOperationError = AzureOpError;
+export type CreateImportCollectorsOperationError = AzureOpError;
 /** Create a ImportCollector */
-export const CreateImportCollectorOperation: API.OperationMethod<
-  CreateImportCollectorOperationRequest,
-  CreateImportCollectorOperationResponse,
-  CreateImportCollectorOperationError,
+export const CreateImportCollectorsOperation: API.OperationMethod<
+  CreateImportCollectorsOperationRequest,
+  CreateImportCollectorsOperationResponse,
+  CreateImportCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateImportCollectorOperationRequest,
-  output: CreateImportCollectorOperationResponse,
+  input: CreateImportCollectorsOperationRequest,
+  output: CreateImportCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateImportSiteControllerError = AzureOpError;
+export type CreateImportSitesControllerError = AzureOpError;
 /** Create a ImportSite */
-export const CreateImportSiteController: API.OperationMethod<
-  CreateImportSiteControllerRequest,
-  CreateImportSiteControllerResponse,
-  CreateImportSiteControllerError,
+export const CreateImportSitesController: API.OperationMethod<
+  CreateImportSitesControllerRequest,
+  CreateImportSitesControllerResponse,
+  CreateImportSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateImportSiteControllerRequest,
-  output: CreateImportSiteControllerResponse,
+  input: CreateImportSitesControllerRequest,
+  output: CreateImportSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateMasterSiteControllerError = AzureOpError;
+export type CreateMasterSitesControllerError = AzureOpError;
 /** Method to create or update a site. */
-export const CreateMasterSiteController: API.OperationMethod<
-  CreateMasterSiteControllerRequest,
-  CreateMasterSiteControllerResponse,
-  CreateMasterSiteControllerError,
+export const CreateMasterSitesController: API.OperationMethod<
+  CreateMasterSitesControllerRequest,
+  CreateMasterSitesControllerResponse,
+  CreateMasterSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateMasterSiteControllerRequest,
-  output: CreateMasterSiteControllerResponse,
+  input: CreateMasterSitesControllerRequest,
+  output: CreateMasterSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33285,60 +33251,60 @@ export const CreatePrivateEndpointConnectionProxyController: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type CreateServerCollectorOperationError = AzureOpError;
+export type CreateServerCollectorsOperationError = AzureOpError;
 /** Create a ServerCollector */
-export const CreateServerCollectorOperation: API.OperationMethod<
-  CreateServerCollectorOperationRequest,
-  CreateServerCollectorOperationResponse,
-  CreateServerCollectorOperationError,
+export const CreateServerCollectorsOperation: API.OperationMethod<
+  CreateServerCollectorsOperationRequest,
+  CreateServerCollectorsOperationResponse,
+  CreateServerCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateServerCollectorOperationRequest,
-  output: CreateServerCollectorOperationResponse,
+  input: CreateServerCollectorsOperationRequest,
+  output: CreateServerCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateServerSiteControllerError = AzureOpError;
+export type CreateServerSitesControllerError = AzureOpError;
 /** Create a ServerSiteResource */
-export const CreateServerSiteController: API.OperationMethod<
-  CreateServerSiteControllerRequest,
-  CreateServerSiteControllerResponse,
-  CreateServerSiteControllerError,
+export const CreateServerSitesController: API.OperationMethod<
+  CreateServerSitesControllerRequest,
+  CreateServerSitesControllerResponse,
+  CreateServerSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateServerSiteControllerRequest,
-  output: CreateServerSiteControllerResponse,
+  input: CreateServerSitesControllerRequest,
+  output: CreateServerSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSiteControllerError = AzureOpError;
+export type CreateSitesControllerError = AzureOpError;
 /** Create a VmwareSite */
-export const CreateSiteController: API.OperationMethod<
-  CreateSiteControllerRequest,
-  CreateSiteControllerResponse,
-  CreateSiteControllerError,
+export const CreateSitesController: API.OperationMethod<
+  CreateSitesControllerRequest,
+  CreateSitesControllerResponse,
+  CreateSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSiteControllerRequest,
-  output: CreateSiteControllerResponse,
+  input: CreateSitesControllerRequest,
+  output: CreateSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSolutionControllerError = AzureOpError;
+export type CreateSolutionsControllerError = AzureOpError;
 /** Creates a solution in the migrate project. */
-export const CreateSolutionController: API.OperationMethod<
-  CreateSolutionControllerRequest,
+export const CreateSolutionsController: API.OperationMethod<
+  CreateSolutionsControllerRequest,
   Solution,
-  CreateSolutionControllerError,
+  CreateSolutionsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSolutionControllerRequest,
+  input: CreateSolutionsControllerRequest,
   output: Solution,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -33390,16 +33356,16 @@ export const CreateSqlDiscoverySiteDataSourceController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSqlSiteControllerError = AzureOpError;
+export type CreateSqlSitesControllerError = AzureOpError;
 /** Method to create a SQL site. */
-export const CreateSqlSiteController: API.OperationMethod<
-  CreateSqlSiteControllerRequest,
-  CreateSqlSiteControllerResponse,
-  CreateSqlSiteControllerError,
+export const CreateSqlSitesController: API.OperationMethod<
+  CreateSqlSitesControllerRequest,
+  CreateSqlSitesControllerResponse,
+  CreateSqlSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSqlSiteControllerRequest,
-  output: CreateSqlSiteControllerResponse,
+  input: CreateSqlSitesControllerRequest,
+  output: CreateSqlSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33420,16 +33386,16 @@ export const CreateVcenterController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateVmwareCollectorOperationError = AzureOpError;
+export type CreateVmwareCollectorsOperationError = AzureOpError;
 /** Create a VmwareCollector */
-export const CreateVmwareCollectorOperation: API.OperationMethod<
-  CreateVmwareCollectorOperationRequest,
-  CreateVmwareCollectorOperationResponse,
-  CreateVmwareCollectorOperationError,
+export const CreateVmwareCollectorsOperation: API.OperationMethod<
+  CreateVmwareCollectorsOperationRequest,
+  CreateVmwareCollectorsOperationResponse,
+  CreateVmwareCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateVmwareCollectorOperationRequest,
-  output: CreateVmwareCollectorOperationResponse,
+  input: CreateVmwareCollectorsOperationRequest,
+  output: CreateVmwareCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33465,31 +33431,31 @@ export const CreateWebAppCollectorOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateWebAppDiscoverySiteDataSourceControllerError = AzureOpError;
+export type CreateWebAppDiscoverySiteDataSourcesControllerError = AzureOpError;
 /** Method to create or update a Web app data source in site. */
-export const CreateWebAppDiscoverySiteDataSourceController: API.OperationMethod<
-  CreateWebAppDiscoverySiteDataSourceControllerRequest,
-  CreateWebAppDiscoverySiteDataSourceControllerResponse,
-  CreateWebAppDiscoverySiteDataSourceControllerError,
+export const CreateWebAppDiscoverySiteDataSourcesController: API.OperationMethod<
+  CreateWebAppDiscoverySiteDataSourcesControllerRequest,
+  CreateWebAppDiscoverySiteDataSourcesControllerResponse,
+  CreateWebAppDiscoverySiteDataSourcesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWebAppDiscoverySiteDataSourceControllerRequest,
-  output: CreateWebAppDiscoverySiteDataSourceControllerResponse,
+  input: CreateWebAppDiscoverySiteDataSourcesControllerRequest,
+  output: CreateWebAppDiscoverySiteDataSourcesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateWebAppSiteControllerError = AzureOpError;
+export type CreateWebAppSitesControllerError = AzureOpError;
 /** Method to create a WebApp site. */
-export const CreateWebAppSiteController: API.OperationMethod<
-  CreateWebAppSiteControllerRequest,
-  CreateWebAppSiteControllerResponse,
-  CreateWebAppSiteControllerError,
+export const CreateWebAppSitesController: API.OperationMethod<
+  CreateWebAppSitesControllerRequest,
+  CreateWebAppSitesControllerResponse,
+  CreateWebAppSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWebAppSiteControllerRequest,
-  output: CreateWebAppSiteControllerResponse,
+  input: CreateWebAppSitesControllerRequest,
+  output: CreateWebAppSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33510,76 +33476,76 @@ export const DeleteAksAssessmentOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAssessmentOperationError = AzureOpError;
-/** Delete a Assessment */
-export const DeleteAssessmentOperation: API.OperationMethod<
-  DeleteAssessmentOperationRequest,
-  DeleteAssessmentOperationResponse,
-  DeleteAssessmentOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAssessmentOperationRequest,
-  output: DeleteAssessmentOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteAssessmentProjectOperationError = AzureOpError;
+export type DeleteAssessmentProjectsOperationError = AzureOpError;
 /** Delete a AssessmentProject */
-export const DeleteAssessmentProjectOperation: API.OperationMethod<
-  DeleteAssessmentProjectOperationRequest,
-  DeleteAssessmentProjectOperationResponse,
-  DeleteAssessmentProjectOperationError,
+export const DeleteAssessmentProjectsOperation: API.OperationMethod<
+  DeleteAssessmentProjectsOperationRequest,
+  DeleteAssessmentProjectsOperationResponse,
+  DeleteAssessmentProjectsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAssessmentProjectOperationRequest,
-  output: DeleteAssessmentProjectOperationResponse,
+  input: DeleteAssessmentProjectsOperationRequest,
+  output: DeleteAssessmentProjectsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteAvsAssessmentOperationError = AzureOpError;
+export type DeleteAssessmentsOperationError = AzureOpError;
+/** Delete a Assessment */
+export const DeleteAssessmentsOperation: API.OperationMethod<
+  DeleteAssessmentsOperationRequest,
+  DeleteAssessmentsOperationResponse,
+  DeleteAssessmentsOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAssessmentsOperationRequest,
+  output: DeleteAssessmentsOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAvsAssessmentsOperationError = AzureOpError;
 /** Delete a AvsAssessment */
-export const DeleteAvsAssessmentOperation: API.OperationMethod<
-  DeleteAvsAssessmentOperationRequest,
-  DeleteAvsAssessmentOperationResponse,
-  DeleteAvsAssessmentOperationError,
+export const DeleteAvsAssessmentsOperation: API.OperationMethod<
+  DeleteAvsAssessmentsOperationRequest,
+  DeleteAvsAssessmentsOperationResponse,
+  DeleteAvsAssessmentsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAvsAssessmentOperationRequest,
-  output: DeleteAvsAssessmentOperationResponse,
+  input: DeleteAvsAssessmentsOperationRequest,
+  output: DeleteAvsAssessmentsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteEventControllerError = AzureOpError;
+export type DeleteEventsControllerError = AzureOpError;
 /** Delete the migrate event Delete the migrate event. Deleting non-existent migrate event is a no-operation. */
-export const DeleteEventController: API.OperationMethod<
-  DeleteEventControllerRequest,
-  DeleteEventControllerResponse,
-  DeleteEventControllerError,
+export const DeleteEventsController: API.OperationMethod<
+  DeleteEventsControllerRequest,
+  DeleteEventsControllerResponse,
+  DeleteEventsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteEventControllerRequest,
-  output: DeleteEventControllerResponse,
+  input: DeleteEventsControllerRequest,
+  output: DeleteEventsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteGroupOperationError = AzureOpError;
+export type DeleteGroupsOperationError = AzureOpError;
 /** Delete a Group */
-export const DeleteGroupOperation: API.OperationMethod<
-  DeleteGroupOperationRequest,
-  DeleteGroupOperationResponse,
-  DeleteGroupOperationError,
+export const DeleteGroupsOperation: API.OperationMethod<
+  DeleteGroupsOperationRequest,
+  DeleteGroupsOperationResponse,
+  DeleteGroupsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGroupOperationRequest,
-  output: DeleteGroupOperationResponse,
+  input: DeleteGroupsOperationRequest,
+  output: DeleteGroupsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33600,16 +33566,16 @@ export const DeleteHypervClusterController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteHypervCollectorOperationError = AzureOpError;
+export type DeleteHypervCollectorsOperationError = AzureOpError;
 /** Delete a HypervCollector */
-export const DeleteHypervCollectorOperation: API.OperationMethod<
-  DeleteHypervCollectorOperationRequest,
-  DeleteHypervCollectorOperationResponse,
-  DeleteHypervCollectorOperationError,
+export const DeleteHypervCollectorsOperation: API.OperationMethod<
+  DeleteHypervCollectorsOperationRequest,
+  DeleteHypervCollectorsOperationResponse,
+  DeleteHypervCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHypervCollectorOperationRequest,
-  output: DeleteHypervCollectorOperationResponse,
+  input: DeleteHypervCollectorsOperationRequest,
+  output: DeleteHypervCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33630,106 +33596,91 @@ export const DeleteHypervHostController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteHypervSiteControllerError = AzureOpError;
+export type DeleteHypervSitesControllerError = AzureOpError;
 /** Delete a HypervSite */
-export const DeleteHypervSiteController: API.OperationMethod<
-  DeleteHypervSiteControllerRequest,
-  DeleteHypervSiteControllerResponse,
-  DeleteHypervSiteControllerError,
+export const DeleteHypervSitesController: API.OperationMethod<
+  DeleteHypervSitesControllerRequest,
+  DeleteHypervSitesControllerResponse,
+  DeleteHypervSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHypervSiteControllerRequest,
-  output: DeleteHypervSiteControllerResponse,
+  input: DeleteHypervSitesControllerRequest,
+  output: DeleteHypervSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteImportCollectorOperationError = AzureOpError;
+export type DeleteImportCollectorsOperationError = AzureOpError;
 /** Delete a ImportCollector */
-export const DeleteImportCollectorOperation: API.OperationMethod<
-  DeleteImportCollectorOperationRequest,
-  DeleteImportCollectorOperationResponse,
-  DeleteImportCollectorOperationError,
+export const DeleteImportCollectorsOperation: API.OperationMethod<
+  DeleteImportCollectorsOperationRequest,
+  DeleteImportCollectorsOperationResponse,
+  DeleteImportCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteImportCollectorOperationRequest,
-  output: DeleteImportCollectorOperationResponse,
+  input: DeleteImportCollectorsOperationRequest,
+  output: DeleteImportCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteImportMachineControllerError = AzureOpError;
+export type DeleteImportMachinesControllerError = AzureOpError;
 /** Delete a ImportMachine */
-export const DeleteImportMachineController: API.OperationMethod<
-  DeleteImportMachineControllerRequest,
-  DeleteImportMachineControllerResponse,
-  DeleteImportMachineControllerError,
+export const DeleteImportMachinesController: API.OperationMethod<
+  DeleteImportMachinesControllerRequest,
+  DeleteImportMachinesControllerResponse,
+  DeleteImportMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteImportMachineControllerRequest,
-  output: DeleteImportMachineControllerResponse,
+  input: DeleteImportMachinesControllerRequest,
+  output: DeleteImportMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteImportSiteControllerError = AzureOpError;
+export type DeleteImportSitesControllerError = AzureOpError;
 /** Delete a ImportSite */
-export const DeleteImportSiteController: API.OperationMethod<
-  DeleteImportSiteControllerRequest,
-  DeleteImportSiteControllerResponse,
-  DeleteImportSiteControllerError,
+export const DeleteImportSitesController: API.OperationMethod<
+  DeleteImportSitesControllerRequest,
+  DeleteImportSitesControllerResponse,
+  DeleteImportSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteImportSiteControllerRequest,
-  output: DeleteImportSiteControllerResponse,
+  input: DeleteImportSitesControllerRequest,
+  output: DeleteImportSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteImportSiteControllerImportedMachineError = AzureOpError;
+export type DeleteImportSitesControllerImportedMachinesError = AzureOpError;
 /** Deletes the imported machines for site. */
-export const DeleteImportSiteControllerImportedMachine: API.OperationMethod<
-  DeleteImportSiteControllerImportedMachineRequest,
+export const DeleteImportSitesControllerImportedMachines: API.OperationMethod<
+  DeleteImportSitesControllerImportedMachinesRequest,
   SasUriResponse,
-  DeleteImportSiteControllerImportedMachineError,
+  DeleteImportSitesControllerImportedMachinesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteImportSiteControllerImportedMachineRequest,
+  input: DeleteImportSitesControllerImportedMachinesRequest,
   output: SasUriResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteMasterSiteControllerError = AzureOpError;
+export type DeleteMasterSitesControllerError = AzureOpError;
 /** Method to delete a site. */
-export const DeleteMasterSiteController: API.OperationMethod<
-  DeleteMasterSiteControllerRequest,
-  DeleteMasterSiteControllerResponse,
-  DeleteMasterSiteControllerError,
+export const DeleteMasterSitesController: API.OperationMethod<
+  DeleteMasterSitesControllerRequest,
+  DeleteMasterSitesControllerResponse,
+  DeleteMasterSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMasterSiteControllerRequest,
-  output: DeleteMasterSiteControllerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteMigrateProjectControllerMigrateProjectError = AzureOpError;
-/** Delete the project Delete the migrate project. It deletes summary of the project. */
-export const DeleteMigrateProjectControllerMigrateProject: API.OperationMethod<
-  DeleteMigrateProjectControllerMigrateProjectRequest,
-  DeleteMigrateProjectControllerMigrateProjectResponse,
-  DeleteMigrateProjectControllerMigrateProjectError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMigrateProjectControllerMigrateProjectRequest,
-  output: DeleteMigrateProjectControllerMigrateProjectResponse,
+  input: DeleteMasterSitesControllerRequest,
+  output: DeleteMasterSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33798,76 +33749,76 @@ export const DeletePrivateEndpointConnectionProxyController: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type DeleteServerCollectorOperationError = AzureOpError;
+export type DeleteServerCollectorsOperationError = AzureOpError;
 /** Delete a ServerCollector */
-export const DeleteServerCollectorOperation: API.OperationMethod<
-  DeleteServerCollectorOperationRequest,
-  DeleteServerCollectorOperationResponse,
-  DeleteServerCollectorOperationError,
+export const DeleteServerCollectorsOperation: API.OperationMethod<
+  DeleteServerCollectorsOperationRequest,
+  DeleteServerCollectorsOperationResponse,
+  DeleteServerCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServerCollectorOperationRequest,
-  output: DeleteServerCollectorOperationResponse,
+  input: DeleteServerCollectorsOperationRequest,
+  output: DeleteServerCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteServerControllerMachineError = AzureOpError;
+export type DeleteServersControllerMachineError = AzureOpError;
 /** Delete a Server */
-export const DeleteServerControllerMachine: API.OperationMethod<
-  DeleteServerControllerMachineRequest,
-  DeleteServerControllerMachineResponse,
-  DeleteServerControllerMachineError,
+export const DeleteServersControllerMachine: API.OperationMethod<
+  DeleteServersControllerMachineRequest,
+  DeleteServersControllerMachineResponse,
+  DeleteServersControllerMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServerControllerMachineRequest,
-  output: DeleteServerControllerMachineResponse,
+  input: DeleteServersControllerMachineRequest,
+  output: DeleteServersControllerMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteServerSiteControllerError = AzureOpError;
+export type DeleteServerSitesControllerError = AzureOpError;
 /** Delete a ServerSiteResource */
-export const DeleteServerSiteController: API.OperationMethod<
-  DeleteServerSiteControllerRequest,
-  DeleteServerSiteControllerResponse,
-  DeleteServerSiteControllerError,
+export const DeleteServerSitesController: API.OperationMethod<
+  DeleteServerSitesControllerRequest,
+  DeleteServerSitesControllerResponse,
+  DeleteServerSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServerSiteControllerRequest,
-  output: DeleteServerSiteControllerResponse,
+  input: DeleteServerSitesControllerRequest,
+  output: DeleteServerSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSiteControllerError = AzureOpError;
+export type DeleteSitesControllerError = AzureOpError;
 /** Delete a VmwareSite */
-export const DeleteSiteController: API.OperationMethod<
-  DeleteSiteControllerRequest,
-  DeleteSiteControllerResponse,
-  DeleteSiteControllerError,
+export const DeleteSitesController: API.OperationMethod<
+  DeleteSitesControllerRequest,
+  DeleteSitesControllerResponse,
+  DeleteSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSiteControllerRequest,
-  output: DeleteSiteControllerResponse,
+  input: DeleteSitesControllerRequest,
+  output: DeleteSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteSolutionControllerSolutionError = AzureOpError;
+export type DeleteSolutionsControllerSolutionError = AzureOpError;
 /** Delete the solution Delete the solution. Deleting non-existent project is a no-operation. */
-export const DeleteSolutionControllerSolution: API.OperationMethod<
-  DeleteSolutionControllerSolutionRequest,
-  DeleteSolutionControllerSolutionResponse,
-  DeleteSolutionControllerSolutionError,
+export const DeleteSolutionsControllerSolution: API.OperationMethod<
+  DeleteSolutionsControllerSolutionRequest,
+  DeleteSolutionsControllerSolutionResponse,
+  DeleteSolutionsControllerSolutionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSolutionControllerSolutionRequest,
-  output: DeleteSolutionControllerSolutionResponse,
+  input: DeleteSolutionsControllerSolutionRequest,
+  output: DeleteSolutionsControllerSolutionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33918,16 +33869,16 @@ export const DeleteSqlDiscoverySiteDataSourceController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSqlSiteControllerError = AzureOpError;
+export type DeleteSqlSitesControllerError = AzureOpError;
 /** Deletes the SQL site. */
-export const DeleteSqlSiteController: API.OperationMethod<
-  DeleteSqlSiteControllerRequest,
-  DeleteSqlSiteControllerResponse,
-  DeleteSqlSiteControllerError,
+export const DeleteSqlSitesController: API.OperationMethod<
+  DeleteSqlSitesControllerRequest,
+  DeleteSqlSitesControllerResponse,
+  DeleteSqlSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSqlSiteControllerRequest,
-  output: DeleteSqlSiteControllerResponse,
+  input: DeleteSqlSitesControllerRequest,
+  output: DeleteSqlSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33948,16 +33899,16 @@ export const DeleteVcenterController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteVmwareCollectorOperationError = AzureOpError;
+export type DeleteVmwareCollectorsOperationError = AzureOpError;
 /** Delete a VmwareCollector */
-export const DeleteVmwareCollectorOperation: API.OperationMethod<
-  DeleteVmwareCollectorOperationRequest,
-  DeleteVmwareCollectorOperationResponse,
-  DeleteVmwareCollectorOperationError,
+export const DeleteVmwareCollectorsOperation: API.OperationMethod<
+  DeleteVmwareCollectorsOperationRequest,
+  DeleteVmwareCollectorsOperationResponse,
+  DeleteVmwareCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteVmwareCollectorOperationRequest,
-  output: DeleteVmwareCollectorOperationResponse,
+  input: DeleteVmwareCollectorsOperationRequest,
+  output: DeleteVmwareCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -33993,31 +33944,31 @@ export const DeleteWebAppCollectorOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteWebAppDiscoverySiteDataSourceControllerError = AzureOpError;
+export type DeleteWebAppDiscoverySiteDataSourcesControllerError = AzureOpError;
 /** Method to delete a Web app data source in site. */
-export const DeleteWebAppDiscoverySiteDataSourceController: API.OperationMethod<
-  DeleteWebAppDiscoverySiteDataSourceControllerRequest,
-  DeleteWebAppDiscoverySiteDataSourceControllerResponse,
-  DeleteWebAppDiscoverySiteDataSourceControllerError,
+export const DeleteWebAppDiscoverySiteDataSourcesController: API.OperationMethod<
+  DeleteWebAppDiscoverySiteDataSourcesControllerRequest,
+  DeleteWebAppDiscoverySiteDataSourcesControllerResponse,
+  DeleteWebAppDiscoverySiteDataSourcesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteWebAppDiscoverySiteDataSourceControllerRequest,
-  output: DeleteWebAppDiscoverySiteDataSourceControllerResponse,
+  input: DeleteWebAppDiscoverySiteDataSourcesControllerRequest,
+  output: DeleteWebAppDiscoverySiteDataSourcesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteWebAppSiteControllerError = AzureOpError;
+export type DeleteWebAppSitesControllerError = AzureOpError;
 /** Deletes the WebApp site. */
-export const DeleteWebAppSiteController: API.OperationMethod<
-  DeleteWebAppSiteControllerRequest,
-  DeleteWebAppSiteControllerResponse,
-  DeleteWebAppSiteControllerError,
+export const DeleteWebAppSitesController: API.OperationMethod<
+  DeleteWebAppSitesControllerRequest,
+  DeleteWebAppSitesControllerResponse,
+  DeleteWebAppSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteWebAppSiteControllerRequest,
-  output: DeleteWebAppSiteControllerResponse,
+  input: DeleteWebAppSitesControllerRequest,
+  output: DeleteWebAppSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34038,21 +33989,6 @@ export const DependencyMapControllerClientGroupMembers: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DependencyMapControllerExportDependenciesError = AzureOpError;
-/** API to generate report containing agentless dependencies. */
-export const DependencyMapControllerExportDependencies: API.OperationMethod<
-  DependencyMapControllerExportDependenciesRequest,
-  DependencyMapControllerExportDependenciesResponse,
-  DependencyMapControllerExportDependenciesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DependencyMapControllerExportDependenciesRequest,
-  output: DependencyMapControllerExportDependenciesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DependencyMapControllerServerGroupMembersError = AzureOpError;
 /** API to list server group members for the selected server group. */
 export const DependencyMapControllerServerGroupMembers: API.OperationMethod<
@@ -34063,6 +33999,291 @@ export const DependencyMapControllerServerGroupMembers: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DependencyMapControllerServerGroupMembersRequest,
   output: DependencyMapControllerServerGroupMembersResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadAksAssessmentOperationUrlError = AzureOpError;
+/** Get URL for downloading AKS Assessment Report. */
+export const DownloadAksAssessmentOperationUrl: API.OperationMethod<
+  DownloadAksAssessmentOperationUrlRequest,
+  DownloadUrl,
+  DownloadAksAssessmentOperationUrlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadAksAssessmentOperationUrlRequest,
+  output: DownloadUrl,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadAssessmentsOperationUrlError = AzureOpError;
+/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
+export const DownloadAssessmentsOperationUrl: API.OperationMethod<
+  DownloadAssessmentsOperationUrlRequest,
+  DownloadUrl,
+  DownloadAssessmentsOperationUrlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadAssessmentsOperationUrlRequest,
+  output: DownloadUrl,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadAvsAssessmentsOperationUrlError = AzureOpError;
+/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
+export const DownloadAvsAssessmentsOperationUrl: API.OperationMethod<
+  DownloadAvsAssessmentsOperationUrlRequest,
+  DownloadUrl,
+  DownloadAvsAssessmentsOperationUrlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadAvsAssessmentsOperationUrlRequest,
+  output: DownloadUrl,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadSqlAssessmentV2OperationUrlError = AzureOpError;
+/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
+export const DownloadSqlAssessmentV2OperationUrl: API.OperationMethod<
+  DownloadSqlAssessmentV2OperationUrlRequest,
+  DownloadUrl,
+  DownloadSqlAssessmentV2OperationUrlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadSqlAssessmentV2OperationUrlRequest,
+  output: DownloadUrl,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadWebAppAssessmentV2OperationUrlError = AzureOpError;
+/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
+export const DownloadWebAppAssessmentV2OperationUrl: API.OperationMethod<
+  DownloadWebAppAssessmentV2OperationUrlRequest,
+  DownloadUrl,
+  DownloadWebAppAssessmentV2OperationUrlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadWebAppAssessmentV2OperationUrlRequest,
+  output: DownloadUrl,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDependencyMapControllerDependenciesError = AzureOpError;
+/** API to generate report containing agentless dependencies. */
+export const ExportDependencyMapControllerDependencies: API.OperationMethod<
+  ExportDependencyMapControllerDependenciesRequest,
+  ExportDependencyMapControllerDependenciesResponse,
+  ExportDependencyMapControllerDependenciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDependencyMapControllerDependenciesRequest,
+  output: ExportDependencyMapControllerDependenciesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportHypervDependencyMapControllerDependenciesError = AzureOpError;
+/** API to generate report containing agentless dependencies. */
+export const ExportHypervDependencyMapControllerDependencies: API.OperationMethod<
+  ExportHypervDependencyMapControllerDependenciesRequest,
+  ExportHypervDependencyMapControllerDependenciesResponse,
+  ExportHypervDependencyMapControllerDependenciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportHypervDependencyMapControllerDependenciesRequest,
+  output: ExportHypervDependencyMapControllerDependenciesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportHypervSitesControllerApplicationsError = AzureOpError;
+/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
+export const ExportHypervSitesControllerApplications: API.OperationMethod<
+  ExportHypervSitesControllerApplicationsRequest,
+  ExportHypervSitesControllerApplicationsResponse,
+  ExportHypervSitesControllerApplicationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportHypervSitesControllerApplicationsRequest,
+  output: ExportHypervSitesControllerApplicationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportHypervSitesControllerMachineErrorsError = AzureOpError;
+/** Method to generate report containing machine and the errors encountered during guest discovery of the machine. */
+export const ExportHypervSitesControllerMachineErrors: API.OperationMethod<
+  ExportHypervSitesControllerMachineErrorsRequest,
+  ExportHypervSitesControllerMachineErrorsResponse,
+  ExportHypervSitesControllerMachineErrorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportHypervSitesControllerMachineErrorsRequest,
+  output: ExportHypervSitesControllerMachineErrorsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportImportSitesControllerUriError = AzureOpError;
+/** Method to export a site. */
+export const ExportImportSitesControllerUri: API.OperationMethod<
+  ExportImportSitesControllerUriRequest,
+  SasUriResponse,
+  ExportImportSitesControllerUriError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportImportSitesControllerUriRequest,
+  output: SasUriResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportServerDependencyMapControllerDependenciesError = AzureOpError;
+/** API to generate report containing agentless dependencies. */
+export const ExportServerDependencyMapControllerDependencies: API.OperationMethod<
+  ExportServerDependencyMapControllerDependenciesRequest,
+  ExportServerDependencyMapControllerDependenciesResponse,
+  ExportServerDependencyMapControllerDependenciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportServerDependencyMapControllerDependenciesRequest,
+  output: ExportServerDependencyMapControllerDependenciesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportServerSitesControllerApplicationsError = AzureOpError;
+/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
+export const ExportServerSitesControllerApplications: API.OperationMethod<
+  ExportServerSitesControllerApplicationsRequest,
+  ExportServerSitesControllerApplicationsResponse,
+  ExportServerSitesControllerApplicationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportServerSitesControllerApplicationsRequest,
+  output: ExportServerSitesControllerApplicationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportServerSitesControllerMachineErrorsError = AzureOpError;
+/** Method to generate report containing machine and the errors encountered during guest discovery of the machine. */
+export const ExportServerSitesControllerMachineErrors: API.OperationMethod<
+  ExportServerSitesControllerMachineErrorsRequest,
+  ExportServerSitesControllerMachineErrorsResponse,
+  ExportServerSitesControllerMachineErrorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportServerSitesControllerMachineErrorsRequest,
+  output: ExportServerSitesControllerMachineErrorsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportSitesControllerApplicationsError = AzureOpError;
+/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
+export const ExportSitesControllerApplications: API.OperationMethod<
+  ExportSitesControllerApplicationsRequest,
+  ExportSitesControllerApplicationsResponse,
+  ExportSitesControllerApplicationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportSitesControllerApplicationsRequest,
+  output: ExportSitesControllerApplicationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportSitesControllerMachineErrorsError = AzureOpError;
+/** Method to generate report containing machine and the errors encountered during guest discovery of the machine. */
+export const ExportSitesControllerMachineErrors: API.OperationMethod<
+  ExportSitesControllerMachineErrorsRequest,
+  ExportSitesControllerMachineErrorsResponse,
+  ExportSitesControllerMachineErrorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportSitesControllerMachineErrorsRequest,
+  output: ExportSitesControllerMachineErrorsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportSitesControllerMachinesError = AzureOpError;
+/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
+export const ExportSitesControllerMachines: API.OperationMethod<
+  ExportSitesControllerMachinesRequest,
+  ExportSitesControllerMachinesResponse,
+  ExportSitesControllerMachinesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportSitesControllerMachinesRequest,
+  output: ExportSitesControllerMachinesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportSqlSitesControllerSqlServerErrorsError = AzureOpError;
+/** Method to generate report containing SQL servers. */
+export const ExportSqlSitesControllerSqlServerErrors: API.OperationMethod<
+  ExportSqlSitesControllerSqlServerErrorsRequest,
+  ExportSqlSitesControllerSqlServerErrorsResponse,
+  ExportSqlSitesControllerSqlServerErrorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportSqlSitesControllerSqlServerErrorsRequest,
+  output: ExportSqlSitesControllerSqlServerErrorsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportSqlSitesControllerSqlServersError = AzureOpError;
+/** Method to generate report containing SQL servers. */
+export const ExportSqlSitesControllerSqlServers: API.OperationMethod<
+  ExportSqlSitesControllerSqlServersRequest,
+  ExportSqlSitesControllerSqlServersResponse,
+  ExportSqlSitesControllerSqlServersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportSqlSitesControllerSqlServersRequest,
+  output: ExportSqlSitesControllerSqlServersResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportWebAppSitesControllerInventoryError = AzureOpError;
+/** Method to generate report containing web app inventory. */
+export const ExportWebAppSitesControllerInventory: API.OperationMethod<
+  ExportWebAppSitesControllerInventoryRequest,
+  ExportWebAppSitesControllerInventoryResponse,
+  ExportWebAppSitesControllerInventoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportWebAppSitesControllerInventoryRequest,
+  output: ExportWebAppSitesControllerInventoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34190,16 +34411,16 @@ export const GetAksClusterOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAksOptionOperationError = AzureOpError;
+export type GetAksOptionsOperationError = AzureOpError;
 /** Get a AKSAssessmentOptions */
-export const GetAksOptionOperation: API.OperationMethod<
-  GetAksOptionOperationRequest,
-  GetAksOptionOperationResponse,
-  GetAksOptionOperationError,
+export const GetAksOptionsOperation: API.OperationMethod<
+  GetAksOptionsOperationRequest,
+  GetAksOptionsOperationResponse,
+  GetAksOptionsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAksOptionOperationRequest,
-  output: GetAksOptionOperationResponse,
+  input: GetAksOptionsOperationRequest,
+  output: GetAksOptionsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34220,16 +34441,16 @@ export const GetAksSummaryOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAssessedMachineOperationError = AzureOpError;
+export type GetAssessedMachinesOperationError = AzureOpError;
 /** Get a AssessedMachine */
-export const GetAssessedMachineOperation: API.OperationMethod<
-  GetAssessedMachineOperationRequest,
-  GetAssessedMachineOperationResponse,
-  GetAssessedMachineOperationError,
+export const GetAssessedMachinesOperation: API.OperationMethod<
+  GetAssessedMachinesOperationRequest,
+  GetAssessedMachinesOperationResponse,
+  GetAssessedMachinesOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAssessedMachineOperationRequest,
-  output: GetAssessedMachineOperationResponse,
+  input: GetAssessedMachinesOperationRequest,
+  output: GetAssessedMachinesOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34265,16 +34486,16 @@ export const GetAssessedSqlInstanceV2Operation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAssessedSqlMachineOperationError = AzureOpError;
+export type GetAssessedSqlMachinesOperationError = AzureOpError;
 /** Get a AssessedSqlMachine */
-export const GetAssessedSqlMachineOperation: API.OperationMethod<
-  GetAssessedSqlMachineOperationRequest,
-  GetAssessedSqlMachineOperationResponse,
-  GetAssessedSqlMachineOperationError,
+export const GetAssessedSqlMachinesOperation: API.OperationMethod<
+  GetAssessedSqlMachinesOperationRequest,
+  GetAssessedSqlMachinesOperationResponse,
+  GetAssessedSqlMachinesOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAssessedSqlMachineOperationRequest,
-  output: GetAssessedSqlMachineOperationResponse,
+  input: GetAssessedSqlMachinesOperationRequest,
+  output: GetAssessedSqlMachinesOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34325,46 +34546,31 @@ export const GetAssessedWebAppV2Operation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAssessmentOperationError = AzureOpError;
-/** Get a Assessment */
-export const GetAssessmentOperation: API.OperationMethod<
-  GetAssessmentOperationRequest,
-  GetAssessmentOperationResponse,
-  GetAssessmentOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetAssessmentOperationRequest,
-  output: GetAssessmentOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetAssessmentOptionOperationError = AzureOpError;
+export type GetAssessmentOptionsOperationError = AzureOpError;
 /** Get a AssessmentOptions */
-export const GetAssessmentOptionOperation: API.OperationMethod<
-  GetAssessmentOptionOperationRequest,
-  GetAssessmentOptionOperationResponse,
-  GetAssessmentOptionOperationError,
+export const GetAssessmentOptionsOperation: API.OperationMethod<
+  GetAssessmentOptionsOperationRequest,
+  GetAssessmentOptionsOperationResponse,
+  GetAssessmentOptionsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAssessmentOptionOperationRequest,
-  output: GetAssessmentOptionOperationResponse,
+  input: GetAssessmentOptionsOperationRequest,
+  output: GetAssessmentOptionsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetAssessmentProjectOperationError = AzureOpError;
+export type GetAssessmentProjectsOperationError = AzureOpError;
 /** Get a AssessmentProject */
-export const GetAssessmentProjectOperation: API.OperationMethod<
-  GetAssessmentProjectOperationRequest,
-  GetAssessmentProjectOperationResponse,
-  GetAssessmentProjectOperationError,
+export const GetAssessmentProjectsOperation: API.OperationMethod<
+  GetAssessmentProjectsOperationRequest,
+  GetAssessmentProjectsOperationResponse,
+  GetAssessmentProjectsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAssessmentProjectOperationRequest,
-  output: GetAssessmentProjectOperationResponse,
+  input: GetAssessmentProjectsOperationRequest,
+  output: GetAssessmentProjectsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34385,106 +34591,121 @@ export const GetAssessmentProjectSummaryOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAvsAssessedMachineOperationError = AzureOpError;
+export type GetAssessmentsOperationError = AzureOpError;
+/** Get a Assessment */
+export const GetAssessmentsOperation: API.OperationMethod<
+  GetAssessmentsOperationRequest,
+  GetAssessmentsOperationResponse,
+  GetAssessmentsOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAssessmentsOperationRequest,
+  output: GetAssessmentsOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAvsAssessedMachinesOperationError = AzureOpError;
 /** Get a AvsAssessedMachine */
-export const GetAvsAssessedMachineOperation: API.OperationMethod<
-  GetAvsAssessedMachineOperationRequest,
-  GetAvsAssessedMachineOperationResponse,
-  GetAvsAssessedMachineOperationError,
+export const GetAvsAssessedMachinesOperation: API.OperationMethod<
+  GetAvsAssessedMachinesOperationRequest,
+  GetAvsAssessedMachinesOperationResponse,
+  GetAvsAssessedMachinesOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAvsAssessedMachineOperationRequest,
-  output: GetAvsAssessedMachineOperationResponse,
+  input: GetAvsAssessedMachinesOperationRequest,
+  output: GetAvsAssessedMachinesOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetAvsAssessmentOperationError = AzureOpError;
-/** Get a AvsAssessment */
-export const GetAvsAssessmentOperation: API.OperationMethod<
-  GetAvsAssessmentOperationRequest,
-  GetAvsAssessmentOperationResponse,
-  GetAvsAssessmentOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetAvsAssessmentOperationRequest,
-  output: GetAvsAssessmentOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetAvsAssessmentOptionOperationError = AzureOpError;
+export type GetAvsAssessmentOptionsOperationError = AzureOpError;
 /** Get a AvsAssessmentOptions */
-export const GetAvsAssessmentOptionOperation: API.OperationMethod<
-  GetAvsAssessmentOptionOperationRequest,
-  GetAvsAssessmentOptionOperationResponse,
-  GetAvsAssessmentOptionOperationError,
+export const GetAvsAssessmentOptionsOperation: API.OperationMethod<
+  GetAvsAssessmentOptionsOperationRequest,
+  GetAvsAssessmentOptionsOperationResponse,
+  GetAvsAssessmentOptionsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAvsAssessmentOptionOperationRequest,
-  output: GetAvsAssessmentOptionOperationResponse,
+  input: GetAvsAssessmentOptionsOperationRequest,
+  output: GetAvsAssessmentOptionsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDatabaseControllerDatabaseError = AzureOpError;
-/** Gets a database in the migrate project. */
-export const GetDatabaseControllerDatabase: API.OperationMethod<
-  GetDatabaseControllerDatabaseRequest,
-  Database,
-  GetDatabaseControllerDatabaseError,
+export type GetAvsAssessmentsOperationError = AzureOpError;
+/** Get a AvsAssessment */
+export const GetAvsAssessmentsOperation: API.OperationMethod<
+  GetAvsAssessmentsOperationRequest,
+  GetAvsAssessmentsOperationResponse,
+  GetAvsAssessmentsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDatabaseControllerDatabaseRequest,
-  output: Database,
+  input: GetAvsAssessmentsOperationRequest,
+  output: GetAvsAssessmentsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDatabaseInstanceControllerDatabaseInstanceError = AzureOpError;
+export type GetDatabaseInstancesControllerDatabaseInstanceError = AzureOpError;
 /** Gets a database instance in the migrate project. */
-export const GetDatabaseInstanceControllerDatabaseInstance: API.OperationMethod<
-  GetDatabaseInstanceControllerDatabaseInstanceRequest,
+export const GetDatabaseInstancesControllerDatabaseInstance: API.OperationMethod<
+  GetDatabaseInstancesControllerDatabaseInstanceRequest,
   DatabaseInstance,
-  GetDatabaseInstanceControllerDatabaseInstanceError,
+  GetDatabaseInstancesControllerDatabaseInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDatabaseInstanceControllerDatabaseInstanceRequest,
+  input: GetDatabaseInstancesControllerDatabaseInstanceRequest,
   output: DatabaseInstance,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetEventControllerEventError = AzureOpError;
-/** Gets an event in the migrate project. */
-export const GetEventControllerEvent: API.OperationMethod<
-  GetEventControllerEventRequest,
-  MigrateEvent,
-  GetEventControllerEventError,
+export type GetDatabasesControllerDatabaseError = AzureOpError;
+/** Gets a database in the migrate project. */
+export const GetDatabasesControllerDatabase: API.OperationMethod<
+  GetDatabasesControllerDatabaseRequest,
+  Database,
+  GetDatabasesControllerDatabaseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetEventControllerEventRequest,
+  input: GetDatabasesControllerDatabaseRequest,
+  output: Database,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEventsControllerEventError = AzureOpError;
+/** Gets an event in the migrate project. */
+export const GetEventsControllerEvent: API.OperationMethod<
+  GetEventsControllerEventRequest,
+  MigrateEvent,
+  GetEventsControllerEventError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEventsControllerEventRequest,
   output: MigrateEvent,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetGroupOperationError = AzureOpError;
+export type GetGroupsOperationError = AzureOpError;
 /** Get a Group */
-export const GetGroupOperation: API.OperationMethod<
-  GetGroupOperationRequest,
-  GetGroupOperationResponse,
-  GetGroupOperationError,
+export const GetGroupsOperation: API.OperationMethod<
+  GetGroupsOperationRequest,
+  GetGroupsOperationResponse,
+  GetGroupsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetGroupOperationRequest,
-  output: GetGroupOperationResponse,
+  input: GetGroupsOperationRequest,
+  output: GetGroupsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34505,16 +34726,16 @@ export const GetHypervClusterControllerCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetHypervCollectorOperationError = AzureOpError;
+export type GetHypervCollectorsOperationError = AzureOpError;
 /** Get a HypervCollector */
-export const GetHypervCollectorOperation: API.OperationMethod<
-  GetHypervCollectorOperationRequest,
-  GetHypervCollectorOperationResponse,
-  GetHypervCollectorOperationError,
+export const GetHypervCollectorsOperation: API.OperationMethod<
+  GetHypervCollectorsOperationRequest,
+  GetHypervCollectorsOperationResponse,
+  GetHypervCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHypervCollectorOperationRequest,
-  output: GetHypervCollectorOperationResponse,
+  input: GetHypervCollectorsOperationRequest,
+  output: GetHypervCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34550,333 +34771,319 @@ export const GetHypervJob: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetHypervJobControllerError = AzureOpError;
+export type GetHypervJobsControllerError = AzureOpError;
 /** Get a VmwareJob */
-export const GetHypervJobController: API.OperationMethod<
-  GetHypervJobControllerRequest,
-  GetHypervJobControllerResponse,
-  GetHypervJobControllerError,
+export const GetHypervJobsController: API.OperationMethod<
+  GetHypervJobsControllerRequest,
+  GetHypervJobsControllerResponse,
+  GetHypervJobsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHypervJobControllerRequest,
-  output: GetHypervJobControllerResponse,
+  input: GetHypervJobsControllerRequest,
+  output: GetHypervJobsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHypervMachineControllerError = AzureOpError;
+export type GetHypervMachinesControllerError = AzureOpError;
 /** Get a HypervMachine */
-export const GetHypervMachineController: API.OperationMethod<
-  GetHypervMachineControllerRequest,
-  GetHypervMachineControllerResponse,
-  GetHypervMachineControllerError,
+export const GetHypervMachinesController: API.OperationMethod<
+  GetHypervMachinesControllerRequest,
+  GetHypervMachinesControllerResponse,
+  GetHypervMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHypervMachineControllerRequest,
-  output: GetHypervMachineControllerResponse,
+  input: GetHypervMachinesControllerRequest,
+  output: GetHypervMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHypervOperationStatusControllerHypervOperationStatusError =
+export type GetHypervOperationsStatusControllerHypervOperationsStatusError =
   AzureOpError;
 /** Method to get operation status. */
-export const GetHypervOperationStatusControllerHypervOperationStatus: API.OperationMethod<
-  GetHypervOperationStatusControllerHypervOperationStatusRequest,
+export const GetHypervOperationsStatusControllerHypervOperationsStatus: API.OperationMethod<
+  GetHypervOperationsStatusControllerHypervOperationsStatusRequest,
   OperationStatus,
-  GetHypervOperationStatusControllerHypervOperationStatusError,
+  GetHypervOperationsStatusControllerHypervOperationsStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHypervOperationStatusControllerHypervOperationStatusRequest,
+  input: GetHypervOperationsStatusControllerHypervOperationsStatusRequest,
   output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHypervRunAsAccountControllerError = AzureOpError;
+export type GetHypervRunAsAccountsControllerError = AzureOpError;
 /** Get a HypervRunAsAccountResource */
-export const GetHypervRunAsAccountController: API.OperationMethod<
-  GetHypervRunAsAccountControllerRequest,
-  GetHypervRunAsAccountControllerResponse,
-  GetHypervRunAsAccountControllerError,
+export const GetHypervRunAsAccountsController: API.OperationMethod<
+  GetHypervRunAsAccountsControllerRequest,
+  GetHypervRunAsAccountsControllerResponse,
+  GetHypervRunAsAccountsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHypervRunAsAccountControllerRequest,
-  output: GetHypervRunAsAccountControllerResponse,
+  input: GetHypervRunAsAccountsControllerRequest,
+  output: GetHypervRunAsAccountsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHypervSiteControllerError = AzureOpError;
+export type GetHypervSitesControllerError = AzureOpError;
 /** Get a HypervSite */
-export const GetHypervSiteController: API.OperationMethod<
-  GetHypervSiteControllerRequest,
-  GetHypervSiteControllerResponse,
-  GetHypervSiteControllerError,
+export const GetHypervSitesController: API.OperationMethod<
+  GetHypervSitesControllerRequest,
+  GetHypervSitesControllerResponse,
+  GetHypervSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHypervSiteControllerRequest,
-  output: GetHypervSiteControllerResponse,
+  input: GetHypervSitesControllerRequest,
+  output: GetHypervSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHypervSoftwareInventoryControllerMachineSoftwareInventoryError =
+export type GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryError =
   AzureOpError;
 /** Method to get a machines software inventory like applications and roles. */
-export const GetHypervSoftwareInventoryControllerMachineSoftwareInventory: API.OperationMethod<
-  GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest,
-  GetHypervSoftwareInventoryControllerMachineSoftwareInventoryResponse,
-  GetHypervSoftwareInventoryControllerMachineSoftwareInventoryError,
+export const GetHypervSoftwareInventoriesControllerMachineSoftwareInventory: API.OperationMethod<
+  GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequest,
+  GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryResponse,
+  GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHypervSoftwareInventoryControllerMachineSoftwareInventoryRequest,
-  output: GetHypervSoftwareInventoryControllerMachineSoftwareInventoryResponse,
+  input: GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryRequest,
+  output:
+    GetHypervSoftwareInventoriesControllerMachineSoftwareInventoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetIisWebApplicationControllerError = AzureOpError;
+export type GetIisWebApplicationsControllerError = AzureOpError;
 /** Method to get an IIS web application. */
-export const GetIisWebApplicationController: API.OperationMethod<
-  GetIisWebApplicationControllerRequest,
-  GetIisWebApplicationControllerResponse,
-  GetIisWebApplicationControllerError,
+export const GetIisWebApplicationsController: API.OperationMethod<
+  GetIisWebApplicationsControllerRequest,
+  GetIisWebApplicationsControllerResponse,
+  GetIisWebApplicationsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetIisWebApplicationControllerRequest,
-  output: GetIisWebApplicationControllerResponse,
+  input: GetIisWebApplicationsControllerRequest,
+  output: GetIisWebApplicationsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetIisWebServerControllerError = AzureOpError;
+export type GetIisWebServersControllerError = AzureOpError;
 /** Method to get an IIS web server. */
-export const GetIisWebServerController: API.OperationMethod<
-  GetIisWebServerControllerRequest,
-  GetIisWebServerControllerResponse,
-  GetIisWebServerControllerError,
+export const GetIisWebServersController: API.OperationMethod<
+  GetIisWebServersControllerRequest,
+  GetIisWebServersControllerResponse,
+  GetIisWebServersControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetIisWebServerControllerRequest,
-  output: GetIisWebServerControllerResponse,
+  input: GetIisWebServersControllerRequest,
+  output: GetIisWebServersControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetImportCollectorOperationError = AzureOpError;
+export type GetImportCollectorsOperationError = AzureOpError;
 /** Get a ImportCollector */
-export const GetImportCollectorOperation: API.OperationMethod<
-  GetImportCollectorOperationRequest,
-  GetImportCollectorOperationResponse,
-  GetImportCollectorOperationError,
+export const GetImportCollectorsOperation: API.OperationMethod<
+  GetImportCollectorsOperationRequest,
+  GetImportCollectorsOperationResponse,
+  GetImportCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetImportCollectorOperationRequest,
-  output: GetImportCollectorOperationResponse,
+  input: GetImportCollectorsOperationRequest,
+  output: GetImportCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetImportJobControllerError = AzureOpError;
+export type GetImportJobsControllerError = AzureOpError;
 /** Get a ImportJob */
-export const GetImportJobController: API.OperationMethod<
-  GetImportJobControllerRequest,
-  GetImportJobControllerResponse,
-  GetImportJobControllerError,
+export const GetImportJobsController: API.OperationMethod<
+  GetImportJobsControllerRequest,
+  GetImportJobsControllerResponse,
+  GetImportJobsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetImportJobControllerRequest,
-  output: GetImportJobControllerResponse,
+  input: GetImportJobsControllerRequest,
+  output: GetImportJobsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetImportJobControllerDeletejobError = AzureOpError;
+export type GetImportJobsControllerDeletejobError = AzureOpError;
 /** Gets the delete imported machines job with the given job name. */
-export const GetImportJobControllerDeletejob: API.OperationMethod<
-  GetImportJobControllerDeletejobRequest,
-  GetImportJobControllerDeletejobResponse,
-  GetImportJobControllerDeletejobError,
+export const GetImportJobsControllerDeletejob: API.OperationMethod<
+  GetImportJobsControllerDeletejobRequest,
+  GetImportJobsControllerDeletejobResponse,
+  GetImportJobsControllerDeletejobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetImportJobControllerDeletejobRequest,
-  output: GetImportJobControllerDeletejobResponse,
+  input: GetImportJobsControllerDeletejobRequest,
+  output: GetImportJobsControllerDeletejobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetImportJobControllerExportjobError = AzureOpError;
+export type GetImportJobsControllerExportjobError = AzureOpError;
 /** Gets the export imported machines job with the given job name. */
-export const GetImportJobControllerExportjob: API.OperationMethod<
-  GetImportJobControllerExportjobRequest,
+export const GetImportJobsControllerExportjob: API.OperationMethod<
+  GetImportJobsControllerExportjobRequest,
   ExportImportedMachinesJob,
-  GetImportJobControllerExportjobError,
+  GetImportJobsControllerExportjobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetImportJobControllerExportjobRequest,
+  input: GetImportJobsControllerExportjobRequest,
   output: ExportImportedMachinesJob,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetImportJobControllerImportjobError = AzureOpError;
+export type GetImportJobsControllerImportjobError = AzureOpError;
 /** Gets the import job with the given job name. */
-export const GetImportJobControllerImportjob: API.OperationMethod<
-  GetImportJobControllerImportjobRequest,
+export const GetImportJobsControllerImportjob: API.OperationMethod<
+  GetImportJobsControllerImportjobRequest,
   ImportMachinesJob,
-  GetImportJobControllerImportjobError,
+  GetImportJobsControllerImportjobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetImportJobControllerImportjobRequest,
+  input: GetImportJobsControllerImportjobRequest,
   output: ImportMachinesJob,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetImportMachineControllerError = AzureOpError;
+export type GetImportMachinesControllerError = AzureOpError;
 /** Get a ImportMachine */
-export const GetImportMachineController: API.OperationMethod<
-  GetImportMachineControllerRequest,
-  GetImportMachineControllerResponse,
-  GetImportMachineControllerError,
+export const GetImportMachinesController: API.OperationMethod<
+  GetImportMachinesControllerRequest,
+  GetImportMachinesControllerResponse,
+  GetImportMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetImportMachineControllerRequest,
-  output: GetImportMachineControllerResponse,
+  input: GetImportMachinesControllerRequest,
+  output: GetImportMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetImportSiteControllerError = AzureOpError;
+export type GetImportSitesControllerError = AzureOpError;
 /** Get a ImportSite */
-export const GetImportSiteController: API.OperationMethod<
-  GetImportSiteControllerRequest,
-  GetImportSiteControllerResponse,
-  GetImportSiteControllerError,
+export const GetImportSitesController: API.OperationMethod<
+  GetImportSitesControllerRequest,
+  GetImportSitesControllerResponse,
+  GetImportSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetImportSiteControllerRequest,
-  output: GetImportSiteControllerResponse,
+  input: GetImportSitesControllerRequest,
+  output: GetImportSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMachineControllerError = AzureOpError;
+export type GetMachinesControllerError = AzureOpError;
 /** Get a MachineResource */
-export const GetMachineController: API.OperationMethod<
-  GetMachineControllerRequest,
-  GetMachineControllerResponse,
-  GetMachineControllerError,
+export const GetMachinesController: API.OperationMethod<
+  GetMachinesControllerRequest,
+  GetMachinesControllerResponse,
+  GetMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMachineControllerRequest,
-  output: GetMachineControllerResponse,
+  input: GetMachinesControllerRequest,
+  output: GetMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMachineControllerMachineError = AzureOpError;
+export type GetMachinesControllerMachineError = AzureOpError;
 /** Gets a machine in the migrate project. */
-export const GetMachineControllerMachine: API.OperationMethod<
-  GetMachineControllerMachineRequest,
+export const GetMachinesControllerMachine: API.OperationMethod<
+  GetMachinesControllerMachineRequest,
   Machine_2,
-  GetMachineControllerMachineError,
+  GetMachinesControllerMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMachineControllerMachineRequest,
+  input: GetMachinesControllerMachineRequest,
   output: Machine_2,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMachineOperationError = AzureOpError;
+export type GetMachinesOperationError = AzureOpError;
 /** Get a Machine */
-export const GetMachineOperation: API.OperationMethod<
-  GetMachineOperationRequest,
-  GetMachineOperationResponse,
-  GetMachineOperationError,
+export const GetMachinesOperation: API.OperationMethod<
+  GetMachinesOperationRequest,
+  GetMachinesOperationResponse,
+  GetMachinesOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMachineOperationRequest,
-  output: GetMachineOperationResponse,
+  input: GetMachinesOperationRequest,
+  output: GetMachinesOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMasterSiteControllerError = AzureOpError;
+export type GetMasterSitesControllerError = AzureOpError;
 /** Method to get a master site. Get a MasterSite */
-export const GetMasterSiteController: API.OperationMethod<
-  GetMasterSiteControllerRequest,
-  GetMasterSiteControllerResponse,
-  GetMasterSiteControllerError,
+export const GetMasterSitesController: API.OperationMethod<
+  GetMasterSitesControllerRequest,
+  GetMasterSitesControllerResponse,
+  GetMasterSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMasterSiteControllerRequest,
-  output: GetMasterSiteControllerResponse,
+  input: GetMasterSitesControllerRequest,
+  output: GetMasterSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMasterSiteOperationStatusControllerVmwareOperationStatusError =
+export type GetMasterSitesOperationsStatusControllerVmwareOperationStatusError =
   AzureOpError;
 /** A operation status resource belonging to a master site resource. */
-export const GetMasterSiteOperationStatusControllerVmwareOperationStatus: API.OperationMethod<
-  GetMasterSiteOperationStatusControllerVmwareOperationStatusRequest,
+export const GetMasterSitesOperationsStatusControllerVmwareOperationStatus: API.OperationMethod<
+  GetMasterSitesOperationsStatusControllerVmwareOperationStatusRequest,
   OperationStatus,
-  GetMasterSiteOperationStatusControllerVmwareOperationStatusError,
+  GetMasterSitesOperationsStatusControllerVmwareOperationStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMasterSiteOperationStatusControllerVmwareOperationStatusRequest,
+  input: GetMasterSitesOperationsStatusControllerVmwareOperationStatusRequest,
   output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMigrateProjectControllerMigrateProjectError = AzureOpError;
-/** Get a specific project. Get information related to a specific migrate project. Returns a json object of type 'migrateProject' as specified in the models section. */
-export const GetMigrateProjectControllerMigrateProject: API.OperationMethod<
-  GetMigrateProjectControllerMigrateProjectRequest,
-  MigrateProject,
-  GetMigrateProjectControllerMigrateProjectError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetMigrateProjectControllerMigrateProjectRequest,
-  output: MigrateProject,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetMigrateProjectControllerToolRegistrationDetailError =
+export type GetMigrateProjectsControllerToolRegistrationDetailsError =
   AzureOpError;
-export const GetMigrateProjectControllerToolRegistrationDetail: API.OperationMethod<
-  GetMigrateProjectControllerToolRegistrationDetailRequest,
+export const GetMigrateProjectsControllerToolRegistrationDetails: API.OperationMethod<
+  GetMigrateProjectsControllerToolRegistrationDetailsRequest,
   RegistrationDetailsResponse,
-  GetMigrateProjectControllerToolRegistrationDetailError,
+  GetMigrateProjectsControllerToolRegistrationDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMigrateProjectControllerToolRegistrationDetailRequest,
+  input: GetMigrateProjectsControllerToolRegistrationDetailsRequest,
   output: RegistrationDetailsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -34944,16 +35151,18 @@ export const GetPrivateEndpointConnectionProxyController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkResourceControllerError = AzureOpError;
-/** Gets the private link resource. */
-export const GetPrivateLinkResourceController: API.OperationMethod<
-  GetPrivateLinkResourceControllerRequest,
-  GetPrivateLinkResourceControllerResponse,
-  GetPrivateLinkResourceControllerError,
+export type GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsError =
+  AzureOpError;
+/** Get the private endpoint connections. Get all the private endpoint connections under a migrate project. */
+export const GetPrivateEndpointConnectionsControllerPrivateEndpointConnections: API.OperationMethod<
+  GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionCollection,
+  GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkResourceControllerRequest,
-  output: GetPrivateLinkResourceControllerResponse,
+  input:
+    GetPrivateEndpointConnectionsControllerPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -34961,14 +35170,30 @@ export const GetPrivateLinkResourceController: API.OperationMethod<
 
 export type GetPrivateLinkResourceControllerPrivateLinkResourceError =
   AzureOpError;
-/** Get the list of private link resources. Get the list of private link resources under a resource group and migrate project. */
+/** Get the private link resource. Get the private link resource with the specified name. */
 export const GetPrivateLinkResourceControllerPrivateLinkResource: API.OperationMethod<
   GetPrivateLinkResourceControllerPrivateLinkResourceRequest,
-  PrivateLinkResourceCollection,
+  PrivateLinkResource_2,
   GetPrivateLinkResourceControllerPrivateLinkResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetPrivateLinkResourceControllerPrivateLinkResourceRequest,
+  output: PrivateLinkResource_2,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceControllerPrivateLinkResourcesError =
+  AzureOpError;
+/** Get the list of private link resources. Get the list of private link resources under a resource group and migrate project. */
+export const GetPrivateLinkResourceControllerPrivateLinkResources: API.OperationMethod<
+  GetPrivateLinkResourceControllerPrivateLinkResourcesRequest,
+  PrivateLinkResourceCollection,
+  GetPrivateLinkResourceControllerPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceControllerPrivateLinkResourcesRequest,
   output: PrivateLinkResourceCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -34990,183 +35215,199 @@ export const GetPrivateLinkResourceOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetRunAsAccountControllerError = AzureOpError;
+export type GetPrivateLinkResourcesControllerError = AzureOpError;
+/** Gets the private link resource. */
+export const GetPrivateLinkResourcesController: API.OperationMethod<
+  GetPrivateLinkResourcesControllerRequest,
+  GetPrivateLinkResourcesControllerResponse,
+  GetPrivateLinkResourcesControllerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourcesControllerRequest,
+  output: GetPrivateLinkResourcesControllerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRunAsAccountsControllerError = AzureOpError;
 /** Get a VmwareRunAsAccountResource */
-export const GetRunAsAccountController: API.OperationMethod<
-  GetRunAsAccountControllerRequest,
-  GetRunAsAccountControllerResponse,
-  GetRunAsAccountControllerError,
+export const GetRunAsAccountsController: API.OperationMethod<
+  GetRunAsAccountsControllerRequest,
+  GetRunAsAccountsControllerResponse,
+  GetRunAsAccountsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetRunAsAccountControllerRequest,
-  output: GetRunAsAccountControllerResponse,
+  input: GetRunAsAccountsControllerRequest,
+  output: GetRunAsAccountsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServerCollectorOperationError = AzureOpError;
+export type GetServerCollectorsOperationError = AzureOpError;
 /** Get a ServerCollector */
-export const GetServerCollectorOperation: API.OperationMethod<
-  GetServerCollectorOperationRequest,
-  GetServerCollectorOperationResponse,
-  GetServerCollectorOperationError,
+export const GetServerCollectorsOperation: API.OperationMethod<
+  GetServerCollectorsOperationRequest,
+  GetServerCollectorsOperationResponse,
+  GetServerCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerCollectorOperationRequest,
-  output: GetServerCollectorOperationResponse,
+  input: GetServerCollectorsOperationRequest,
+  output: GetServerCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServerControllerMachineError = AzureOpError;
-/** Get a Server */
-export const GetServerControllerMachine: API.OperationMethod<
-  GetServerControllerMachineRequest,
-  GetServerControllerMachineResponse,
-  GetServerControllerMachineError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetServerControllerMachineRequest,
-  output: GetServerControllerMachineResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetServerJobControllerError = AzureOpError;
+export type GetServerJobsControllerError = AzureOpError;
 /** Get a ServerJob */
-export const GetServerJobController: API.OperationMethod<
-  GetServerJobControllerRequest,
-  GetServerJobControllerResponse,
-  GetServerJobControllerError,
+export const GetServerJobsController: API.OperationMethod<
+  GetServerJobsControllerRequest,
+  GetServerJobsControllerResponse,
+  GetServerJobsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerJobControllerRequest,
-  output: GetServerJobControllerResponse,
+  input: GetServerJobsControllerRequest,
+  output: GetServerJobsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServerOperationStatusControllerServerSiteOperationStatusError =
+export type GetServerOperationsStatusControllerServerSiteOperationsStatusError =
   AzureOpError;
 /** A operation status resource belonging to a site resource. */
-export const GetServerOperationStatusControllerServerSiteOperationStatus: API.OperationMethod<
-  GetServerOperationStatusControllerServerSiteOperationStatusRequest,
+export const GetServerOperationsStatusControllerServerSiteOperationsStatus: API.OperationMethod<
+  GetServerOperationsStatusControllerServerSiteOperationsStatusRequest,
   OperationStatus,
-  GetServerOperationStatusControllerServerSiteOperationStatusError,
+  GetServerOperationsStatusControllerServerSiteOperationsStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerOperationStatusControllerServerSiteOperationStatusRequest,
+  input: GetServerOperationsStatusControllerServerSiteOperationsStatusRequest,
   output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServerRunAsAccountControllerError = AzureOpError;
+export type GetServerRunAsAccountsControllerError = AzureOpError;
 /** Get a ServerRunAsAccount */
-export const GetServerRunAsAccountController: API.OperationMethod<
-  GetServerRunAsAccountControllerRequest,
-  GetServerRunAsAccountControllerResponse,
-  GetServerRunAsAccountControllerError,
+export const GetServerRunAsAccountsController: API.OperationMethod<
+  GetServerRunAsAccountsControllerRequest,
+  GetServerRunAsAccountsControllerResponse,
+  GetServerRunAsAccountsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerRunAsAccountControllerRequest,
-  output: GetServerRunAsAccountControllerResponse,
+  input: GetServerRunAsAccountsControllerRequest,
+  output: GetServerRunAsAccountsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServerSiteControllerError = AzureOpError;
+export type GetServersControllerMachineError = AzureOpError;
+/** Get a Server */
+export const GetServersControllerMachine: API.OperationMethod<
+  GetServersControllerMachineRequest,
+  GetServersControllerMachineResponse,
+  GetServersControllerMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServersControllerMachineRequest,
+  output: GetServersControllerMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServerSitesControllerError = AzureOpError;
 /** Get a ServerSiteResource */
-export const GetServerSiteController: API.OperationMethod<
-  GetServerSiteControllerRequest,
-  GetServerSiteControllerResponse,
-  GetServerSiteControllerError,
+export const GetServerSitesController: API.OperationMethod<
+  GetServerSitesControllerRequest,
+  GetServerSitesControllerResponse,
+  GetServerSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerSiteControllerRequest,
-  output: GetServerSiteControllerResponse,
+  input: GetServerSitesControllerRequest,
+  output: GetServerSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServerSoftwareInventoryControllerMachineSoftwareInventoryError =
+export type GetServerSoftwareInventoriesControllerMachineSoftwareInventoryError =
   AzureOpError;
 /** Method to get a machines software inventory like applications and roles. */
-export const GetServerSoftwareInventoryControllerMachineSoftwareInventory: API.OperationMethod<
-  GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest,
-  GetServerSoftwareInventoryControllerMachineSoftwareInventoryResponse,
-  GetServerSoftwareInventoryControllerMachineSoftwareInventoryError,
+export const GetServerSoftwareInventoriesControllerMachineSoftwareInventory: API.OperationMethod<
+  GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequest,
+  GetServerSoftwareInventoriesControllerMachineSoftwareInventoryResponse,
+  GetServerSoftwareInventoriesControllerMachineSoftwareInventoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerSoftwareInventoryControllerMachineSoftwareInventoryRequest,
-  output: GetServerSoftwareInventoryControllerMachineSoftwareInventoryResponse,
+  input: GetServerSoftwareInventoriesControllerMachineSoftwareInventoryRequest,
+  output:
+    GetServerSoftwareInventoriesControllerMachineSoftwareInventoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSiteControllerError = AzureOpError;
+export type GetSitesControllerError = AzureOpError;
 /** Get a VmwareSite */
-export const GetSiteController: API.OperationMethod<
-  GetSiteControllerRequest,
-  GetSiteControllerResponse,
-  GetSiteControllerError,
+export const GetSitesController: API.OperationMethod<
+  GetSitesControllerRequest,
+  GetSitesControllerResponse,
+  GetSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSiteControllerRequest,
-  output: GetSiteControllerResponse,
+  input: GetSitesControllerRequest,
+  output: GetSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSolutionControllerConfigError = AzureOpError;
+export type GetSolutionsControllerConfigError = AzureOpError;
 /** Gets the config for the solution in the migrate project. */
-export const GetSolutionControllerConfig: API.OperationMethod<
-  GetSolutionControllerConfigRequest,
+export const GetSolutionsControllerConfig: API.OperationMethod<
+  GetSolutionsControllerConfigRequest,
   SolutionConfig,
-  GetSolutionControllerConfigError,
+  GetSolutionsControllerConfigError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSolutionControllerConfigRequest,
+  input: GetSolutionsControllerConfigRequest,
   output: SolutionConfig,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSolutionControllerSolutionError = AzureOpError;
+export type GetSolutionsControllerSolutionError = AzureOpError;
 /** Gets a solution in the migrate project. */
-export const GetSolutionControllerSolution: API.OperationMethod<
-  GetSolutionControllerSolutionRequest,
+export const GetSolutionsControllerSolution: API.OperationMethod<
+  GetSolutionsControllerSolutionRequest,
   Solution,
-  GetSolutionControllerSolutionError,
+  GetSolutionsControllerSolutionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSolutionControllerSolutionRequest,
+  input: GetSolutionsControllerSolutionRequest,
   output: Solution,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSqlAssessmentOptionOperationError = AzureOpError;
+export type GetSqlAssessmentOptionsOperationError = AzureOpError;
 /** Get a SqlAssessmentOptions */
-export const GetSqlAssessmentOptionOperation: API.OperationMethod<
-  GetSqlAssessmentOptionOperationRequest,
-  GetSqlAssessmentOptionOperationResponse,
-  GetSqlAssessmentOptionOperationError,
+export const GetSqlAssessmentOptionsOperation: API.OperationMethod<
+  GetSqlAssessmentOptionsOperationRequest,
+  GetSqlAssessmentOptionsOperationResponse,
+  GetSqlAssessmentOptionsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlAssessmentOptionOperationRequest,
-  output: GetSqlAssessmentOptionOperationResponse,
+  input: GetSqlAssessmentOptionsOperationRequest,
+  output: GetSqlAssessmentOptionsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35202,16 +35443,16 @@ export const GetSqlAssessmentV2SummaryOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSqlAvailabilityGroupControllerError = AzureOpError;
+export type GetSqlAvailabilityGroupsControllerError = AzureOpError;
 /** Gets the sql availability group. */
-export const GetSqlAvailabilityGroupController: API.OperationMethod<
-  GetSqlAvailabilityGroupControllerRequest,
-  GetSqlAvailabilityGroupControllerResponse,
-  GetSqlAvailabilityGroupControllerError,
+export const GetSqlAvailabilityGroupsController: API.OperationMethod<
+  GetSqlAvailabilityGroupsControllerRequest,
+  GetSqlAvailabilityGroupsControllerResponse,
+  GetSqlAvailabilityGroupsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlAvailabilityGroupControllerRequest,
-  output: GetSqlAvailabilityGroupControllerResponse,
+  input: GetSqlAvailabilityGroupsControllerRequest,
+  output: GetSqlAvailabilityGroupsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35232,16 +35473,16 @@ export const GetSqlCollectorOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSqlDatabaseControllerError = AzureOpError;
+export type GetSqlDatabasesControllerError = AzureOpError;
 /** Gets the sql Database. */
-export const GetSqlDatabaseController: API.OperationMethod<
-  GetSqlDatabaseControllerRequest,
-  GetSqlDatabaseControllerResponse,
-  GetSqlDatabaseControllerError,
+export const GetSqlDatabasesController: API.OperationMethod<
+  GetSqlDatabasesControllerRequest,
+  GetSqlDatabasesControllerResponse,
+  GetSqlDatabasesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlDatabaseControllerRequest,
-  output: GetSqlDatabaseControllerResponse,
+  input: GetSqlDatabasesControllerRequest,
+  output: GetSqlDatabasesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35262,107 +35503,107 @@ export const GetSqlDiscoverySiteDataSourceController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSqlJobControllerError = AzureOpError;
+export type GetSqlJobsControllerError = AzureOpError;
 /** Gets the sql Job. Get a SqlJob */
-export const GetSqlJobController: API.OperationMethod<
-  GetSqlJobControllerRequest,
-  GetSqlJobControllerResponse,
-  GetSqlJobControllerError,
+export const GetSqlJobsController: API.OperationMethod<
+  GetSqlJobsControllerRequest,
+  GetSqlJobsControllerResponse,
+  GetSqlJobsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlJobControllerRequest,
-  output: GetSqlJobControllerResponse,
+  input: GetSqlJobsControllerRequest,
+  output: GetSqlJobsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSqlOperationStatusControllerSqlOperationStatusError =
+export type GetSqlOperationsStatusControllerSqlOperationStatusError =
   AzureOpError;
 /** Method to get operation status. */
-export const GetSqlOperationStatusControllerSqlOperationStatus: API.OperationMethod<
-  GetSqlOperationStatusControllerSqlOperationStatusRequest,
+export const GetSqlOperationsStatusControllerSqlOperationStatus: API.OperationMethod<
+  GetSqlOperationsStatusControllerSqlOperationStatusRequest,
   OperationStatus,
-  GetSqlOperationStatusControllerSqlOperationStatusError,
+  GetSqlOperationsStatusControllerSqlOperationStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlOperationStatusControllerSqlOperationStatusRequest,
+  input: GetSqlOperationsStatusControllerSqlOperationStatusRequest,
   output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSqlRunAsAccountControllerError = AzureOpError;
+export type GetSqlRunAsAccountsControllerError = AzureOpError;
 /** Get a SqlRunAsAccount */
-export const GetSqlRunAsAccountController: API.OperationMethod<
-  GetSqlRunAsAccountControllerRequest,
-  GetSqlRunAsAccountControllerResponse,
-  GetSqlRunAsAccountControllerError,
+export const GetSqlRunAsAccountsController: API.OperationMethod<
+  GetSqlRunAsAccountsControllerRequest,
+  GetSqlRunAsAccountsControllerResponse,
+  GetSqlRunAsAccountsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlRunAsAccountControllerRequest,
-  output: GetSqlRunAsAccountControllerResponse,
+  input: GetSqlRunAsAccountsControllerRequest,
+  output: GetSqlRunAsAccountsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSqlServerControllerError = AzureOpError;
+export type GetSqlServersControllerError = AzureOpError;
 /** Gets the sql server. */
-export const GetSqlServerController: API.OperationMethod<
-  GetSqlServerControllerRequest,
-  GetSqlServerControllerResponse,
-  GetSqlServerControllerError,
+export const GetSqlServersController: API.OperationMethod<
+  GetSqlServersControllerRequest,
+  GetSqlServersControllerResponse,
+  GetSqlServersControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlServerControllerRequest,
-  output: GetSqlServerControllerResponse,
+  input: GetSqlServersControllerRequest,
+  output: GetSqlServersControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSqlSiteControllerError = AzureOpError;
+export type GetSqlSitesControllerError = AzureOpError;
 /** Method to get a site. */
-export const GetSqlSiteController: API.OperationMethod<
-  GetSqlSiteControllerRequest,
-  GetSqlSiteControllerResponse,
-  GetSqlSiteControllerError,
+export const GetSqlSitesController: API.OperationMethod<
+  GetSqlSitesControllerRequest,
+  GetSqlSitesControllerResponse,
+  GetSqlSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlSiteControllerRequest,
-  output: GetSqlSiteControllerResponse,
+  input: GetSqlSitesControllerRequest,
+  output: GetSqlSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetTomcatWebApplicationControllerError = AzureOpError;
+export type GetTomcatWebApplicationsControllerError = AzureOpError;
 /** Method to get an Tomcat web application. */
-export const GetTomcatWebApplicationController: API.OperationMethod<
-  GetTomcatWebApplicationControllerRequest,
-  GetTomcatWebApplicationControllerResponse,
-  GetTomcatWebApplicationControllerError,
+export const GetTomcatWebApplicationsController: API.OperationMethod<
+  GetTomcatWebApplicationsControllerRequest,
+  GetTomcatWebApplicationsControllerResponse,
+  GetTomcatWebApplicationsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTomcatWebApplicationControllerRequest,
-  output: GetTomcatWebApplicationControllerResponse,
+  input: GetTomcatWebApplicationsControllerRequest,
+  output: GetTomcatWebApplicationsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetTomcatWebServerControllerError = AzureOpError;
+export type GetTomcatWebServersControllerError = AzureOpError;
 /** Method to get an Tomcat web server. */
-export const GetTomcatWebServerController: API.OperationMethod<
-  GetTomcatWebServerControllerRequest,
-  GetTomcatWebServerControllerResponse,
-  GetTomcatWebServerControllerError,
+export const GetTomcatWebServersController: API.OperationMethod<
+  GetTomcatWebServersControllerRequest,
+  GetTomcatWebServersControllerResponse,
+  GetTomcatWebServersControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTomcatWebServerControllerRequest,
-  output: GetTomcatWebServerControllerResponse,
+  input: GetTomcatWebServersControllerRequest,
+  output: GetTomcatWebServersControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35399,16 +35640,16 @@ export const GetVirtualDesktopUserControllerVirtualDesktopUser: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type GetVmwareCollectorOperationError = AzureOpError;
+export type GetVmwareCollectorsOperationError = AzureOpError;
 /** Get a VmwareCollector */
-export const GetVmwareCollectorOperation: API.OperationMethod<
-  GetVmwareCollectorOperationRequest,
-  GetVmwareCollectorOperationResponse,
-  GetVmwareCollectorOperationError,
+export const GetVmwareCollectorsOperation: API.OperationMethod<
+  GetVmwareCollectorsOperationRequest,
+  GetVmwareCollectorsOperationResponse,
+  GetVmwareCollectorsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareCollectorOperationRequest,
-  output: GetVmwareCollectorOperationResponse,
+  input: GetVmwareCollectorsOperationRequest,
+  output: GetVmwareCollectorsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35429,47 +35670,48 @@ export const GetVmwareHostController: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVmwareOperationStatusVmwareOperationStatusError = AzureOpError;
+export type GetVmwareOperationsStatusVmwareOperationStatusError = AzureOpError;
 /** A operation status resource belonging to a site resource. */
-export const GetVmwareOperationStatusVmwareOperationStatus: API.OperationMethod<
-  GetVmwareOperationStatusVmwareOperationStatusRequest,
+export const GetVmwareOperationsStatusVmwareOperationStatus: API.OperationMethod<
+  GetVmwareOperationsStatusVmwareOperationStatusRequest,
   OperationStatus,
-  GetVmwareOperationStatusVmwareOperationStatusError,
+  GetVmwareOperationsStatusVmwareOperationStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareOperationStatusVmwareOperationStatusRequest,
+  input: GetVmwareOperationsStatusVmwareOperationStatusRequest,
   output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryError =
+export type GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryError =
   AzureOpError;
 /** Method to get a machines software inventory like applications and roles. */
-export const GetVmwareSoftwareInventoryControllerMachineSoftwareInventory: API.OperationMethod<
-  GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest,
-  GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryResponse,
-  GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryError,
+export const GetVmwareSoftwareInventoriesControllerMachineSoftwareInventory: API.OperationMethod<
+  GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequest,
+  GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryResponse,
+  GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryRequest,
-  output: GetVmwareSoftwareInventoryControllerMachineSoftwareInventoryResponse,
+  input: GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryRequest,
+  output:
+    GetVmwareSoftwareInventoriesControllerMachineSoftwareInventoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetWebAppAssessmentOptionOperationError = AzureOpError;
+export type GetWebAppAssessmentOptionsOperationError = AzureOpError;
 /** Get a WebAppAssessmentOptions */
-export const GetWebAppAssessmentOptionOperation: API.OperationMethod<
-  GetWebAppAssessmentOptionOperationRequest,
-  GetWebAppAssessmentOptionOperationResponse,
-  GetWebAppAssessmentOptionOperationError,
+export const GetWebAppAssessmentOptionsOperation: API.OperationMethod<
+  GetWebAppAssessmentOptionsOperationRequest,
+  GetWebAppAssessmentOptionsOperationResponse,
+  GetWebAppAssessmentOptionsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebAppAssessmentOptionOperationRequest,
-  output: GetWebAppAssessmentOptionOperationResponse,
+  input: GetWebAppAssessmentOptionsOperationRequest,
+  output: GetWebAppAssessmentOptionsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35520,46 +35762,46 @@ export const GetWebAppCollectorOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetWebAppDiscoverySiteDataSourceControllerError = AzureOpError;
+export type GetWebAppDiscoverySiteDataSourcesControllerError = AzureOpError;
 /** Method to get a Web app data source in site. */
-export const GetWebAppDiscoverySiteDataSourceController: API.OperationMethod<
-  GetWebAppDiscoverySiteDataSourceControllerRequest,
-  GetWebAppDiscoverySiteDataSourceControllerResponse,
-  GetWebAppDiscoverySiteDataSourceControllerError,
+export const GetWebAppDiscoverySiteDataSourcesController: API.OperationMethod<
+  GetWebAppDiscoverySiteDataSourcesControllerRequest,
+  GetWebAppDiscoverySiteDataSourcesControllerResponse,
+  GetWebAppDiscoverySiteDataSourcesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebAppDiscoverySiteDataSourceControllerRequest,
-  output: GetWebAppDiscoverySiteDataSourceControllerResponse,
+  input: GetWebAppDiscoverySiteDataSourcesControllerRequest,
+  output: GetWebAppDiscoverySiteDataSourcesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetWebAppExtendedMachineControllerError = AzureOpError;
+export type GetWebAppExtendedMachinesControllerError = AzureOpError;
 /** Method to get a extended machine. */
-export const GetWebAppExtendedMachineController: API.OperationMethod<
-  GetWebAppExtendedMachineControllerRequest,
-  GetWebAppExtendedMachineControllerResponse,
-  GetWebAppExtendedMachineControllerError,
+export const GetWebAppExtendedMachinesController: API.OperationMethod<
+  GetWebAppExtendedMachinesControllerRequest,
+  GetWebAppExtendedMachinesControllerResponse,
+  GetWebAppExtendedMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebAppExtendedMachineControllerRequest,
-  output: GetWebAppExtendedMachineControllerResponse,
+  input: GetWebAppExtendedMachinesControllerRequest,
+  output: GetWebAppExtendedMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetWebAppRunAsAccountControllerError = AzureOpError;
+export type GetWebAppRunAsAccountsControllerError = AzureOpError;
 /** Method to get run as account. */
-export const GetWebAppRunAsAccountController: API.OperationMethod<
-  GetWebAppRunAsAccountControllerRequest,
-  GetWebAppRunAsAccountControllerResponse,
-  GetWebAppRunAsAccountControllerError,
+export const GetWebAppRunAsAccountsController: API.OperationMethod<
+  GetWebAppRunAsAccountsControllerRequest,
+  GetWebAppRunAsAccountsControllerResponse,
+  GetWebAppRunAsAccountsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebAppRunAsAccountControllerRequest,
-  output: GetWebAppRunAsAccountControllerResponse,
+  input: GetWebAppRunAsAccountsControllerRequest,
+  output: GetWebAppRunAsAccountsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35580,45 +35822,45 @@ export const GetWebAppServicePlanV2Operation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetWebAppSiteControllerError = AzureOpError;
+export type GetWebAppSitesControllerError = AzureOpError;
 /** Method to get a site. */
-export const GetWebAppSiteController: API.OperationMethod<
-  GetWebAppSiteControllerRequest,
-  GetWebAppSiteControllerResponse,
-  GetWebAppSiteControllerError,
+export const GetWebAppSitesController: API.OperationMethod<
+  GetWebAppSitesControllerRequest,
+  GetWebAppSitesControllerResponse,
+  GetWebAppSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebAppSiteControllerRequest,
-  output: GetWebAppSiteControllerResponse,
+  input: GetWebAppSitesControllerRequest,
+  output: GetWebAppSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetWebServerControllerWebServerError = AzureOpError;
+export type GetWebServersControllerWebServerError = AzureOpError;
 /** Gets a webserver in the migrate project. */
-export const GetWebServerControllerWebServer: API.OperationMethod<
-  GetWebServerControllerWebServerRequest,
+export const GetWebServersControllerWebServer: API.OperationMethod<
+  GetWebServersControllerWebServerRequest,
   WebServer,
-  GetWebServerControllerWebServerError,
+  GetWebServersControllerWebServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebServerControllerWebServerRequest,
+  input: GetWebServersControllerWebServerRequest,
   output: WebServer,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetWebSiteControllerWebSiteError = AzureOpError;
+export type GetWebSitesControllerWebSiteError = AzureOpError;
 /** Gets a website in the migrate project. */
-export const GetWebSiteControllerWebSite: API.OperationMethod<
-  GetWebSiteControllerWebSiteRequest,
+export const GetWebSitesControllerWebSite: API.OperationMethod<
+  GetWebSitesControllerWebSiteRequest,
   WebSite,
-  GetWebSiteControllerWebSiteError,
+  GetWebSitesControllerWebSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebSiteControllerWebSiteRequest,
+  input: GetWebSitesControllerWebSiteRequest,
   output: WebSite,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -35635,21 +35877,6 @@ export const HypervDependencyMapControllerClientGroupMembers: API.OperationMetho
 > = /*@__PURE__*/ API.make(() => ({
   input: HypervDependencyMapControllerClientGroupMembersRequest,
   output: HypervDependencyMapControllerClientGroupMembersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HypervDependencyMapControllerExportDependenciesError = AzureOpError;
-/** API to generate report containing agentless dependencies. */
-export const HypervDependencyMapControllerExportDependencies: API.OperationMethod<
-  HypervDependencyMapControllerExportDependenciesRequest,
-  HypervDependencyMapControllerExportDependenciesResponse,
-  HypervDependencyMapControllerExportDependenciesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HypervDependencyMapControllerExportDependenciesRequest,
-  output: HypervDependencyMapControllerExportDependenciesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35700,36 +35927,6 @@ export const HypervSitesControllerComputeusage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HypervSitesControllerExportApplicationsError = AzureOpError;
-/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
-export const HypervSitesControllerExportApplications: API.OperationMethod<
-  HypervSitesControllerExportApplicationsRequest,
-  HypervSitesControllerExportApplicationsResponse,
-  HypervSitesControllerExportApplicationsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HypervSitesControllerExportApplicationsRequest,
-  output: HypervSitesControllerExportApplicationsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HypervSitesControllerExportMachineErrorsError = AzureOpError;
-/** Method to generate report containing machine and the errors encountered during guest discovery of the machine. */
-export const HypervSitesControllerExportMachineErrors: API.OperationMethod<
-  HypervSitesControllerExportMachineErrorsRequest,
-  HypervSitesControllerExportMachineErrorsResponse,
-  HypervSitesControllerExportMachineErrorsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HypervSitesControllerExportMachineErrorsRequest,
-  output: HypervSitesControllerExportMachineErrorsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type HypervSitesControllerSummaryError = AzureOpError;
 /** Method to get site usage. */
 export const HypervSitesControllerSummary: API.OperationMethod<
@@ -35745,31 +35942,46 @@ export const HypervSitesControllerSummary: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImportSitesControllerExportUriError = AzureOpError;
-/** Method to export a site. */
-export const ImportSitesControllerExportUri: API.OperationMethod<
-  ImportSitesControllerExportUriRequest,
+export type ImportImportSitesControllerUriError = AzureOpError;
+/** Method to import a site. */
+export const ImportImportSitesControllerUri: API.OperationMethod<
+  ImportImportSitesControllerUriRequest,
   SasUriResponse,
-  ImportSitesControllerExportUriError,
+  ImportImportSitesControllerUriError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImportSitesControllerExportUriRequest,
+  input: ImportImportSitesControllerUriRequest,
   output: SasUriResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ImportSitesControllerImportUriError = AzureOpError;
-/** Method to import a site. */
-export const ImportSitesControllerImportUri: API.OperationMethod<
-  ImportSitesControllerImportUriRequest,
-  SasUriResponse,
-  ImportSitesControllerImportUriError,
+export type ImportJobsControllerListByImportSiteError = AzureOpError;
+/** List ImportJob resources by ImportSite */
+export const ImportJobsControllerListByImportSite: API.OperationMethod<
+  ImportJobsControllerListByImportSiteRequest,
+  ImportJobListResult,
+  ImportJobsControllerListByImportSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImportSitesControllerImportUriRequest,
-  output: SasUriResponse,
+  input: ImportJobsControllerListByImportSiteRequest,
+  output: ImportJobListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImportMachinesControllerListByImportSiteError = AzureOpError;
+/** List ImportMachine resources by ImportSite */
+export const ImportMachinesControllerListByImportSite: API.OperationMethod<
+  ImportMachinesControllerListByImportSiteRequest,
+  ImportMachineListResult,
+  ImportMachinesControllerListByImportSiteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImportMachinesControllerListByImportSiteRequest,
+  output: ImportMachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -35820,15 +36032,15 @@ export const ListAksCostDetailOperationByAksAssessment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAksOptionOperationByAssessmentProjectError = AzureOpError;
+export type ListAksOptionsOperationByAssessmentProjectError = AzureOpError;
 /** List AKSAssessmentOptions resources by AssessmentProject */
-export const ListAksOptionOperationByAssessmentProject: API.OperationMethod<
-  ListAksOptionOperationByAssessmentProjectRequest,
+export const ListAksOptionsOperationByAssessmentProject: API.OperationMethod<
+  ListAksOptionsOperationByAssessmentProjectRequest,
   AKSAssessmentOptionsListResult,
-  ListAksOptionOperationByAssessmentProjectError,
+  ListAksOptionsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAksOptionOperationByAssessmentProjectRequest,
+  input: ListAksOptionsOperationByAssessmentProjectRequest,
   output: AKSAssessmentOptionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -35850,15 +36062,15 @@ export const ListAksSummaryOperationByAksAssessment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAssessedMachineOperationByAssessmentError = AzureOpError;
+export type ListAssessedMachinesOperationByAssessmentError = AzureOpError;
 /** List AssessedMachine resources by Assessment */
-export const ListAssessedMachineOperationByAssessment: API.OperationMethod<
-  ListAssessedMachineOperationByAssessmentRequest,
+export const ListAssessedMachinesOperationByAssessment: API.OperationMethod<
+  ListAssessedMachinesOperationByAssessmentRequest,
   AssessedMachineListResult,
-  ListAssessedMachineOperationByAssessmentError,
+  ListAssessedMachinesOperationByAssessmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAssessedMachineOperationByAssessmentRequest,
+  input: ListAssessedMachinesOperationByAssessmentRequest,
   output: AssessedMachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -35897,16 +36109,16 @@ export const ListAssessedSqlInstanceV2OperationBySqlAssessmentV2: API.OperationM
   retry: Retry.Retry,
 }));
 
-export type ListAssessedSqlMachineOperationBySqlAssessmentV2Error =
+export type ListAssessedSqlMachinesOperationBySqlAssessmentV2Error =
   AzureOpError;
 /** List AssessedSqlMachine resources by SqlAssessmentV2 */
-export const ListAssessedSqlMachineOperationBySqlAssessmentV2: API.OperationMethod<
-  ListAssessedSqlMachineOperationBySqlAssessmentV2Request,
+export const ListAssessedSqlMachinesOperationBySqlAssessmentV2: API.OperationMethod<
+  ListAssessedSqlMachinesOperationBySqlAssessmentV2Request,
   AssessedSqlMachineListResult,
-  ListAssessedSqlMachineOperationBySqlAssessmentV2Error,
+  ListAssessedSqlMachinesOperationBySqlAssessmentV2Error,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAssessedSqlMachineOperationBySqlAssessmentV2Request,
+  input: ListAssessedSqlMachinesOperationBySqlAssessmentV2Request,
   output: AssessedSqlMachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -35961,61 +36173,46 @@ export const ListAssessedWebAppV2OperationByWebAppAssessmentV2: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type ListAssessmentOperationByGroupError = AzureOpError;
-/** List Assessment resources by Group */
-export const ListAssessmentOperationByGroup: API.OperationMethod<
-  ListAssessmentOperationByGroupRequest,
-  AssessmentListResult,
-  ListAssessmentOperationByGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListAssessmentOperationByGroupRequest,
-  output: AssessmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListAssessmentOptionOperationByAssessmentProjectError =
+export type ListAssessmentOptionsOperationByAssessmentProjectError =
   AzureOpError;
 /** List AssessmentOptions resources by AssessmentProject */
-export const ListAssessmentOptionOperationByAssessmentProject: API.OperationMethod<
-  ListAssessmentOptionOperationByAssessmentProjectRequest,
+export const ListAssessmentOptionsOperationByAssessmentProject: API.OperationMethod<
+  ListAssessmentOptionsOperationByAssessmentProjectRequest,
   AssessmentOptionsListResult,
-  ListAssessmentOptionOperationByAssessmentProjectError,
+  ListAssessmentOptionsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAssessmentOptionOperationByAssessmentProjectRequest,
+  input: ListAssessmentOptionsOperationByAssessmentProjectRequest,
   output: AssessmentOptionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAssessmentProjectOperationByResourceGroupError = AzureOpError;
+export type ListAssessmentProjectsOperationByResourceGroupError = AzureOpError;
 /** List AssessmentProject resources by resource group */
-export const ListAssessmentProjectOperationByResourceGroup: API.OperationMethod<
-  ListAssessmentProjectOperationByResourceGroupRequest,
+export const ListAssessmentProjectsOperationByResourceGroup: API.OperationMethod<
+  ListAssessmentProjectsOperationByResourceGroupRequest,
   AssessmentProjectListResult,
-  ListAssessmentProjectOperationByResourceGroupError,
+  ListAssessmentProjectsOperationByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAssessmentProjectOperationByResourceGroupRequest,
+  input: ListAssessmentProjectsOperationByResourceGroupRequest,
   output: AssessmentProjectListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAssessmentProjectOperationBySubscriptionError = AzureOpError;
+export type ListAssessmentProjectsOperationBySubscriptionError = AzureOpError;
 /** List AssessmentProject resources by subscription ID */
-export const ListAssessmentProjectOperationBySubscription: API.OperationMethod<
-  ListAssessmentProjectOperationBySubscriptionRequest,
+export const ListAssessmentProjectsOperationBySubscription: API.OperationMethod<
+  ListAssessmentProjectsOperationBySubscriptionRequest,
   AssessmentProjectListResult,
-  ListAssessmentProjectOperationBySubscriptionError,
+  ListAssessmentProjectsOperationBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAssessmentProjectOperationBySubscriptionRequest,
+  input: ListAssessmentProjectsOperationBySubscriptionRequest,
   output: AssessmentProjectListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36038,106 +36235,122 @@ export const ListAssessmentProjectSummaryOperationByAssessmentProject: API.Opera
   retry: Retry.Retry,
 }));
 
-export type ListAvsAssessedMachineOperationByAvsAssessmentError = AzureOpError;
-/** List AvsAssessedMachine resources by AvsAssessment */
-export const ListAvsAssessedMachineOperationByAvsAssessment: API.OperationMethod<
-  ListAvsAssessedMachineOperationByAvsAssessmentRequest,
-  AvsAssessedMachineListResult,
-  ListAvsAssessedMachineOperationByAvsAssessmentError,
+export type ListAssessmentsOperationByGroupError = AzureOpError;
+/** List Assessment resources by Group */
+export const ListAssessmentsOperationByGroup: API.OperationMethod<
+  ListAssessmentsOperationByGroupRequest,
+  AssessmentListResult,
+  ListAssessmentsOperationByGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAvsAssessedMachineOperationByAvsAssessmentRequest,
+  input: ListAssessmentsOperationByGroupRequest,
+  output: AssessmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAvsAssessedMachinesOperationByAvsAssessmentError = AzureOpError;
+/** List AvsAssessedMachine resources by AvsAssessment */
+export const ListAvsAssessedMachinesOperationByAvsAssessment: API.OperationMethod<
+  ListAvsAssessedMachinesOperationByAvsAssessmentRequest,
+  AvsAssessedMachineListResult,
+  ListAvsAssessedMachinesOperationByAvsAssessmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAvsAssessedMachinesOperationByAvsAssessmentRequest,
   output: AvsAssessedMachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAvsAssessmentOperationByGroupError = AzureOpError;
-/** List AvsAssessment resources by Group */
-export const ListAvsAssessmentOperationByGroup: API.OperationMethod<
-  ListAvsAssessmentOperationByGroupRequest,
-  AvsAssessmentListResult,
-  ListAvsAssessmentOperationByGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListAvsAssessmentOperationByGroupRequest,
-  output: AvsAssessmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListAvsAssessmentOptionOperationByAssessmentProjectError =
+export type ListAvsAssessmentOptionsOperationByAssessmentProjectError =
   AzureOpError;
 /** List AvsAssessmentOptions resources by AssessmentProject */
-export const ListAvsAssessmentOptionOperationByAssessmentProject: API.OperationMethod<
-  ListAvsAssessmentOptionOperationByAssessmentProjectRequest,
+export const ListAvsAssessmentOptionsOperationByAssessmentProject: API.OperationMethod<
+  ListAvsAssessmentOptionsOperationByAssessmentProjectRequest,
   AvsAssessmentOptionsListResult,
-  ListAvsAssessmentOptionOperationByAssessmentProjectError,
+  ListAvsAssessmentOptionsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAvsAssessmentOptionOperationByAssessmentProjectRequest,
+  input: ListAvsAssessmentOptionsOperationByAssessmentProjectRequest,
   output: AvsAssessmentOptionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListDatabaseControllerDatabasesError = AzureOpError;
-/** Gets a list of databases in the migrate project. */
-export const ListDatabaseControllerDatabases: API.OperationMethod<
-  ListDatabaseControllerDatabasesRequest,
-  DatabaseCollection,
-  ListDatabaseControllerDatabasesError,
+export type ListAvsAssessmentsOperationByGroupError = AzureOpError;
+/** List AvsAssessment resources by Group */
+export const ListAvsAssessmentsOperationByGroup: API.OperationMethod<
+  ListAvsAssessmentsOperationByGroupRequest,
+  AvsAssessmentListResult,
+  ListAvsAssessmentsOperationByGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDatabaseControllerDatabasesRequest,
-  output: DatabaseCollection,
+  input: ListAvsAssessmentsOperationByGroupRequest,
+  output: AvsAssessmentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListDatabaseInstanceControllerDatabaseInstancesError = AzureOpError;
+export type ListDatabaseInstancesControllerDatabaseInstancesError =
+  AzureOpError;
 /** Gets a list of database instances in the migrate project. */
-export const ListDatabaseInstanceControllerDatabaseInstances: API.OperationMethod<
-  ListDatabaseInstanceControllerDatabaseInstancesRequest,
+export const ListDatabaseInstancesControllerDatabaseInstances: API.OperationMethod<
+  ListDatabaseInstancesControllerDatabaseInstancesRequest,
   DatabaseInstanceCollection,
-  ListDatabaseInstanceControllerDatabaseInstancesError,
+  ListDatabaseInstancesControllerDatabaseInstancesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDatabaseInstanceControllerDatabaseInstancesRequest,
+  input: ListDatabaseInstancesControllerDatabaseInstancesRequest,
   output: DatabaseInstanceCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListEventControllerEventsError = AzureOpError;
-/** Gets a list of events in the migrate project. */
-export const ListEventControllerEvents: API.OperationMethod<
-  ListEventControllerEventsRequest,
-  EventCollection,
-  ListEventControllerEventsError,
+export type ListDatabasesControllerDatabasesError = AzureOpError;
+/** Gets a list of databases in the migrate project. */
+export const ListDatabasesControllerDatabases: API.OperationMethod<
+  ListDatabasesControllerDatabasesRequest,
+  DatabaseCollection,
+  ListDatabasesControllerDatabasesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListEventControllerEventsRequest,
+  input: ListDatabasesControllerDatabasesRequest,
+  output: DatabaseCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEventsControllerEventsError = AzureOpError;
+/** Gets a list of events in the migrate project. */
+export const ListEventsControllerEvents: API.OperationMethod<
+  ListEventsControllerEventsRequest,
+  EventCollection,
+  ListEventsControllerEventsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEventsControllerEventsRequest,
   output: EventCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListGroupOperationByAssessmentProjectError = AzureOpError;
+export type ListGroupsOperationByAssessmentProjectError = AzureOpError;
 /** List Group resources by AssessmentProject */
-export const ListGroupOperationByAssessmentProject: API.OperationMethod<
-  ListGroupOperationByAssessmentProjectRequest,
+export const ListGroupsOperationByAssessmentProject: API.OperationMethod<
+  ListGroupsOperationByAssessmentProjectRequest,
   GroupListResult,
-  ListGroupOperationByAssessmentProjectError,
+  ListGroupsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGroupOperationByAssessmentProjectRequest,
+  input: ListGroupsOperationByAssessmentProjectRequest,
   output: GroupListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36159,15 +36372,16 @@ export const ListHypervClusterControllerByHypervSite: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListHypervCollectorOperationByAssessmentProjectError = AzureOpError;
+export type ListHypervCollectorsOperationByAssessmentProjectError =
+  AzureOpError;
 /** List HypervCollector resources by AssessmentProject */
-export const ListHypervCollectorOperationByAssessmentProject: API.OperationMethod<
-  ListHypervCollectorOperationByAssessmentProjectRequest,
+export const ListHypervCollectorsOperationByAssessmentProject: API.OperationMethod<
+  ListHypervCollectorsOperationByAssessmentProjectRequest,
   HypervCollectorListResult,
-  ListHypervCollectorOperationByAssessmentProjectError,
+  ListHypervCollectorsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHypervCollectorOperationByAssessmentProjectRequest,
+  input: ListHypervCollectorsOperationByAssessmentProjectRequest,
   output: HypervCollectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36204,45 +36418,45 @@ export const ListHypervJobByHypervSite: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListHypervJobControllerByVmwareSiteError = AzureOpError;
+export type ListHypervJobsControllerByVmwareSiteError = AzureOpError;
 /** List VmwareJob resources by VmwareSite */
-export const ListHypervJobControllerByVmwareSite: API.OperationMethod<
-  ListHypervJobControllerByVmwareSiteRequest,
+export const ListHypervJobsControllerByVmwareSite: API.OperationMethod<
+  ListHypervJobsControllerByVmwareSiteRequest,
   VmwareJobListResult,
-  ListHypervJobControllerByVmwareSiteError,
+  ListHypervJobsControllerByVmwareSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHypervJobControllerByVmwareSiteRequest,
+  input: ListHypervJobsControllerByVmwareSiteRequest,
   output: VmwareJobListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListHypervMachineControllerByHypervSiteError = AzureOpError;
+export type ListHypervMachinesControllerByHypervSiteError = AzureOpError;
 /** List HypervMachine resources by HypervSite */
-export const ListHypervMachineControllerByHypervSite: API.OperationMethod<
-  ListHypervMachineControllerByHypervSiteRequest,
+export const ListHypervMachinesControllerByHypervSite: API.OperationMethod<
+  ListHypervMachinesControllerByHypervSiteRequest,
   HypervMachineListResult,
-  ListHypervMachineControllerByHypervSiteError,
+  ListHypervMachinesControllerByHypervSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHypervMachineControllerByHypervSiteRequest,
+  input: ListHypervMachinesControllerByHypervSiteRequest,
   output: HypervMachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListHypervRunAsAccountControllerByHypervSiteError = AzureOpError;
+export type ListHypervRunAsAccountsControllerByHypervSiteError = AzureOpError;
 /** List HypervRunAsAccountResource resources by HypervSite */
-export const ListHypervRunAsAccountControllerByHypervSite: API.OperationMethod<
-  ListHypervRunAsAccountControllerByHypervSiteRequest,
+export const ListHypervRunAsAccountsControllerByHypervSite: API.OperationMethod<
+  ListHypervRunAsAccountsControllerByHypervSiteRequest,
   HypervRunAsAccountResourceListResult,
-  ListHypervRunAsAccountControllerByHypervSiteError,
+  ListHypervRunAsAccountsControllerByHypervSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHypervRunAsAccountControllerByHypervSiteRequest,
+  input: ListHypervRunAsAccountsControllerByHypervSiteRequest,
   output: HypervRunAsAccountResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36279,256 +36493,227 @@ export const ListHypervSiteBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListHypervSiteControllerHealthSummaryError = AzureOpError;
+export type ListHypervSitesControllerHealthSummaryError = AzureOpError;
 /** Method to get site health summary. */
-export const ListHypervSiteControllerHealthSummary: API.OperationMethod<
-  ListHypervSiteControllerHealthSummaryRequest,
+export const ListHypervSitesControllerHealthSummary: API.OperationMethod<
+  ListHypervSitesControllerHealthSummaryRequest,
   SiteHealthSummaryCollection,
-  ListHypervSiteControllerHealthSummaryError,
+  ListHypervSitesControllerHealthSummaryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHypervSiteControllerHealthSummaryRequest,
+  input: ListHypervSitesControllerHealthSummaryRequest,
   output: SiteHealthSummaryCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListHypervSoftwareInventoryControllerByHypervMachineError =
+export type ListHypervSoftwareInventoriesControllerByHypervMachineError =
   AzureOpError;
 /** List HypervVmSoftwareInventory resources by HypervMachine */
-export const ListHypervSoftwareInventoryControllerByHypervMachine: API.OperationMethod<
-  ListHypervSoftwareInventoryControllerByHypervMachineRequest,
+export const ListHypervSoftwareInventoriesControllerByHypervMachine: API.OperationMethod<
+  ListHypervSoftwareInventoriesControllerByHypervMachineRequest,
   HypervVmSoftwareInventoryListResult,
-  ListHypervSoftwareInventoryControllerByHypervMachineError,
+  ListHypervSoftwareInventoriesControllerByHypervMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHypervSoftwareInventoryControllerByHypervMachineRequest,
+  input: ListHypervSoftwareInventoriesControllerByHypervMachineRequest,
   output: HypervVmSoftwareInventoryListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListIisWebApplicationControllerByWebAppSiteError = AzureOpError;
+export type ListIisWebApplicationsControllerByWebAppSiteError = AzureOpError;
 /** Method to get all IIS web application. */
-export const ListIisWebApplicationControllerByWebAppSite: API.OperationMethod<
-  ListIisWebApplicationControllerByWebAppSiteRequest,
+export const ListIisWebApplicationsControllerByWebAppSite: API.OperationMethod<
+  ListIisWebApplicationsControllerByWebAppSiteRequest,
   IisWebApplicationsListResult,
-  ListIisWebApplicationControllerByWebAppSiteError,
+  ListIisWebApplicationsControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListIisWebApplicationControllerByWebAppSiteRequest,
+  input: ListIisWebApplicationsControllerByWebAppSiteRequest,
   output: IisWebApplicationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListIisWebServerControllerByWebAppSiteError = AzureOpError;
+export type ListIisWebServersControllerByWebAppSiteError = AzureOpError;
 /** Method to get all IIS web servers. */
-export const ListIisWebServerControllerByWebAppSite: API.OperationMethod<
-  ListIisWebServerControllerByWebAppSiteRequest,
+export const ListIisWebServersControllerByWebAppSite: API.OperationMethod<
+  ListIisWebServersControllerByWebAppSiteRequest,
   IisWebServersListResult,
-  ListIisWebServerControllerByWebAppSiteError,
+  ListIisWebServersControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListIisWebServerControllerByWebAppSiteRequest,
+  input: ListIisWebServersControllerByWebAppSiteRequest,
   output: IisWebServersListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListImportCollectorOperationByAssessmentProjectError = AzureOpError;
+export type ListImportCollectorsOperationByAssessmentProjectError =
+  AzureOpError;
 /** List ImportCollector resources by AssessmentProject */
-export const ListImportCollectorOperationByAssessmentProject: API.OperationMethod<
-  ListImportCollectorOperationByAssessmentProjectRequest,
+export const ListImportCollectorsOperationByAssessmentProject: API.OperationMethod<
+  ListImportCollectorsOperationByAssessmentProjectRequest,
   ImportCollectorListResult,
-  ListImportCollectorOperationByAssessmentProjectError,
+  ListImportCollectorsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListImportCollectorOperationByAssessmentProjectRequest,
+  input: ListImportCollectorsOperationByAssessmentProjectRequest,
   output: ImportCollectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListImportJobControllerByImportSiteError = AzureOpError;
-/** List ImportJob resources by ImportSite */
-export const ListImportJobControllerByImportSite: API.OperationMethod<
-  ListImportJobControllerByImportSiteRequest,
-  ImportJobListResult,
-  ListImportJobControllerByImportSiteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListImportJobControllerByImportSiteRequest,
-  output: ImportJobListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListImportJobControllerDeletejobsError = AzureOpError;
+export type ListImportJobsControllerDeletejobsError = AzureOpError;
 /** Method to get all delete import machines job for the given site. */
-export const ListImportJobControllerDeletejobs: API.OperationMethod<
-  ListImportJobControllerDeletejobsRequest,
+export const ListImportJobsControllerDeletejobs: API.OperationMethod<
+  ListImportJobsControllerDeletejobsRequest,
   PagedDeleteImportMachinesJob,
-  ListImportJobControllerDeletejobsError,
+  ListImportJobsControllerDeletejobsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListImportJobControllerDeletejobsRequest,
+  input: ListImportJobsControllerDeletejobsRequest,
   output: PagedDeleteImportMachinesJob,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListImportJobControllerExportjobsError = AzureOpError;
+export type ListImportJobsControllerExportjobsError = AzureOpError;
 /** Method to get all export import machines job for the given site. */
-export const ListImportJobControllerExportjobs: API.OperationMethod<
-  ListImportJobControllerExportjobsRequest,
+export const ListImportJobsControllerExportjobs: API.OperationMethod<
+  ListImportJobsControllerExportjobsRequest,
   PagedExportImportedMachinesJob,
-  ListImportJobControllerExportjobsError,
+  ListImportJobsControllerExportjobsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListImportJobControllerExportjobsRequest,
+  input: ListImportJobsControllerExportjobsRequest,
   output: PagedExportImportedMachinesJob,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListImportJobControllerImportjobsError = AzureOpError;
+export type ListImportJobsControllerImportjobsError = AzureOpError;
 /** Method to get all import machines job for the given site. */
-export const ListImportJobControllerImportjobs: API.OperationMethod<
-  ListImportJobControllerImportjobsRequest,
+export const ListImportJobsControllerImportjobs: API.OperationMethod<
+  ListImportJobsControllerImportjobsRequest,
   PagedImportMachinesJob,
-  ListImportJobControllerImportjobsError,
+  ListImportJobsControllerImportjobsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListImportJobControllerImportjobsRequest,
+  input: ListImportJobsControllerImportjobsRequest,
   output: PagedImportMachinesJob,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListImportMachineControllerByImportSiteError = AzureOpError;
-/** List ImportMachine resources by ImportSite */
-export const ListImportMachineControllerByImportSite: API.OperationMethod<
-  ListImportMachineControllerByImportSiteRequest,
-  ImportMachineListResult,
-  ListImportMachineControllerByImportSiteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListImportMachineControllerByImportSiteRequest,
-  output: ImportMachineListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListImportSiteControllerByResourceGroupError = AzureOpError;
+export type ListImportSitesControllerByResourceGroupError = AzureOpError;
 /** Get all import sites. */
-export const ListImportSiteControllerByResourceGroup: API.OperationMethod<
-  ListImportSiteControllerByResourceGroupRequest,
+export const ListImportSitesControllerByResourceGroup: API.OperationMethod<
+  ListImportSitesControllerByResourceGroupRequest,
   ImportSiteListResult,
-  ListImportSiteControllerByResourceGroupError,
+  ListImportSitesControllerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListImportSiteControllerByResourceGroupRequest,
+  input: ListImportSitesControllerByResourceGroupRequest,
   output: ImportSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListImportSiteControllerBySubscriptionError = AzureOpError;
+export type ListImportSitesControllerBySubscriptionError = AzureOpError;
 /** List ImportSite resources by subscription ID */
-export const ListImportSiteControllerBySubscription: API.OperationMethod<
-  ListImportSiteControllerBySubscriptionRequest,
+export const ListImportSitesControllerBySubscription: API.OperationMethod<
+  ListImportSitesControllerBySubscriptionRequest,
   ImportSiteListResult,
-  ListImportSiteControllerBySubscriptionError,
+  ListImportSitesControllerBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListImportSiteControllerBySubscriptionRequest,
+  input: ListImportSitesControllerBySubscriptionRequest,
   output: ImportSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMachineControllerByVmwareSiteError = AzureOpError;
+export type ListMachinesControllerByVmwareSiteError = AzureOpError;
 /** List MachineResource resources by VmwareSite */
-export const ListMachineControllerByVmwareSite: API.OperationMethod<
-  ListMachineControllerByVmwareSiteRequest,
+export const ListMachinesControllerByVmwareSite: API.OperationMethod<
+  ListMachinesControllerByVmwareSiteRequest,
   MachineResourceListResult,
-  ListMachineControllerByVmwareSiteError,
+  ListMachinesControllerByVmwareSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMachineControllerByVmwareSiteRequest,
+  input: ListMachinesControllerByVmwareSiteRequest,
   output: MachineResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMachineControllerMachinesError = AzureOpError;
+export type ListMachinesControllerMachinesError = AzureOpError;
 /** Gets a list of machines in the migrate project. */
-export const ListMachineControllerMachines: API.OperationMethod<
-  ListMachineControllerMachinesRequest,
+export const ListMachinesControllerMachines: API.OperationMethod<
+  ListMachinesControllerMachinesRequest,
   MachineCollection,
-  ListMachineControllerMachinesError,
+  ListMachinesControllerMachinesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMachineControllerMachinesRequest,
+  input: ListMachinesControllerMachinesRequest,
   output: MachineCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMachineOperationByAssessmentProjectError = AzureOpError;
+export type ListMachinesOperationByAssessmentProjectError = AzureOpError;
 /** List Machine resources by AssessmentProject */
-export const ListMachineOperationByAssessmentProject: API.OperationMethod<
-  ListMachineOperationByAssessmentProjectRequest,
+export const ListMachinesOperationByAssessmentProject: API.OperationMethod<
+  ListMachinesOperationByAssessmentProjectRequest,
   MachineListResult,
-  ListMachineOperationByAssessmentProjectError,
+  ListMachinesOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMachineOperationByAssessmentProjectRequest,
+  input: ListMachinesOperationByAssessmentProjectRequest,
   output: MachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMasterSiteControllerByResourceGroupError = AzureOpError;
+export type ListMasterSitesControllerByResourceGroupError = AzureOpError;
 /** Get all sites. Get all the sites in the resource group. */
-export const ListMasterSiteControllerByResourceGroup: API.OperationMethod<
-  ListMasterSiteControllerByResourceGroupRequest,
+export const ListMasterSitesControllerByResourceGroup: API.OperationMethod<
+  ListMasterSitesControllerByResourceGroupRequest,
   MasterSiteListResult,
-  ListMasterSiteControllerByResourceGroupError,
+  ListMasterSitesControllerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMasterSiteControllerByResourceGroupRequest,
+  input: ListMasterSitesControllerByResourceGroupRequest,
   output: MasterSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMasterSiteControllerBySubscriptionError = AzureOpError;
+export type ListMasterSitesControllerBySubscriptionError = AzureOpError;
 /** Get all the sites in the subscription. List MasterSite resources by subscription ID */
-export const ListMasterSiteControllerBySubscription: API.OperationMethod<
-  ListMasterSiteControllerBySubscriptionRequest,
+export const ListMasterSitesControllerBySubscription: API.OperationMethod<
+  ListMasterSitesControllerBySubscriptionRequest,
   MasterSiteListResult,
-  ListMasterSiteControllerBySubscriptionError,
+  ListMasterSitesControllerBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMasterSiteControllerBySubscriptionRequest,
+  input: ListMasterSitesControllerBySubscriptionRequest,
   output: MasterSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36599,21 +36784,6 @@ export const ListPrivateEndpointConnectionProxyControllerPrivateEndpointConnecti
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkResourceControllerByMasterSiteError = AzureOpError;
-/** Gets the private link resource. */
-export const ListPrivateLinkResourceControllerByMasterSite: API.OperationMethod<
-  ListPrivateLinkResourceControllerByMasterSiteRequest,
-  PrivateLinkResourceListResult_2,
-  ListPrivateLinkResourceControllerByMasterSiteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkResourceControllerByMasterSiteRequest,
-  output: PrivateLinkResourceListResult_2,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListPrivateLinkResourceOperationByAssessmentProjectError =
   AzureOpError;
 /** List PrivateLinkResource resources by AssessmentProject */
@@ -36625,6 +36795,21 @@ export const ListPrivateLinkResourceOperationByAssessmentProject: API.OperationM
 > = /*@__PURE__*/ API.make(() => ({
   input: ListPrivateLinkResourceOperationByAssessmentProjectRequest,
   output: PrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourcesControllerByMasterSiteError = AzureOpError;
+/** Gets the private link resource. */
+export const ListPrivateLinkResourcesControllerByMasterSite: API.OperationMethod<
+  ListPrivateLinkResourcesControllerByMasterSiteRequest,
+  PrivateLinkResourceListResult_2,
+  ListPrivateLinkResourcesControllerByMasterSiteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourcesControllerByMasterSiteRequest,
+  output: PrivateLinkResourceListResult_2,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -36660,212 +36845,213 @@ export const ListProjects: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListRunAsAccountControllerByVmwareSiteError = AzureOpError;
+export type ListRunAsAccountsControllerByVmwareSiteError = AzureOpError;
 /** List VmwareRunAsAccountResource resources by VmwareSite */
-export const ListRunAsAccountControllerByVmwareSite: API.OperationMethod<
-  ListRunAsAccountControllerByVmwareSiteRequest,
+export const ListRunAsAccountsControllerByVmwareSite: API.OperationMethod<
+  ListRunAsAccountsControllerByVmwareSiteRequest,
   VmwareRunAsAccountResourceListResult,
-  ListRunAsAccountControllerByVmwareSiteError,
+  ListRunAsAccountsControllerByVmwareSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListRunAsAccountControllerByVmwareSiteRequest,
+  input: ListRunAsAccountsControllerByVmwareSiteRequest,
   output: VmwareRunAsAccountResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListServerCollectorOperationByAssessmentProjectError = AzureOpError;
+export type ListServerCollectorsOperationByAssessmentProjectError =
+  AzureOpError;
 /** List ServerCollector resources by AssessmentProject */
-export const ListServerCollectorOperationByAssessmentProject: API.OperationMethod<
-  ListServerCollectorOperationByAssessmentProjectRequest,
+export const ListServerCollectorsOperationByAssessmentProject: API.OperationMethod<
+  ListServerCollectorsOperationByAssessmentProjectRequest,
   ServerCollectorListResult,
-  ListServerCollectorOperationByAssessmentProjectError,
+  ListServerCollectorsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerCollectorOperationByAssessmentProjectRequest,
+  input: ListServerCollectorsOperationByAssessmentProjectRequest,
   output: ServerCollectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListServerControllerByServerSiteResourceError = AzureOpError;
-/** Get all machines in a site. */
-export const ListServerControllerByServerSiteResource: API.OperationMethod<
-  ListServerControllerByServerSiteResourceRequest,
-  ServerListResult,
-  ListServerControllerByServerSiteResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListServerControllerByServerSiteResourceRequest,
-  output: ServerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListServerJobControllerByServerSiteResourceError = AzureOpError;
+export type ListServerJobsControllerByServerSiteResourceError = AzureOpError;
 /** List ServerJob resources by ServerSiteResource */
-export const ListServerJobControllerByServerSiteResource: API.OperationMethod<
-  ListServerJobControllerByServerSiteResourceRequest,
+export const ListServerJobsControllerByServerSiteResource: API.OperationMethod<
+  ListServerJobsControllerByServerSiteResourceRequest,
   ServerJobListResult,
-  ListServerJobControllerByServerSiteResourceError,
+  ListServerJobsControllerByServerSiteResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerJobControllerByServerSiteResourceRequest,
+  input: ListServerJobsControllerByServerSiteResourceRequest,
   output: ServerJobListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListServerRunAsAccountControllerByServerSiteResourceError =
+export type ListServerRunAsAccountsControllerByServerSiteResourceError =
   AzureOpError;
 /** List ServerRunAsAccount resources by ServerSiteResource */
-export const ListServerRunAsAccountControllerByServerSiteResource: API.OperationMethod<
-  ListServerRunAsAccountControllerByServerSiteResourceRequest,
+export const ListServerRunAsAccountsControllerByServerSiteResource: API.OperationMethod<
+  ListServerRunAsAccountsControllerByServerSiteResourceRequest,
   ServerRunAsAccountListResult,
-  ListServerRunAsAccountControllerByServerSiteResourceError,
+  ListServerRunAsAccountsControllerByServerSiteResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerRunAsAccountControllerByServerSiteResourceRequest,
+  input: ListServerRunAsAccountsControllerByServerSiteResourceRequest,
   output: ServerRunAsAccountListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListServerSiteControllerByResourceGroupError = AzureOpError;
+export type ListServersControllerByServerSiteResourceError = AzureOpError;
+/** Get all machines in a site. */
+export const ListServersControllerByServerSiteResource: API.OperationMethod<
+  ListServersControllerByServerSiteResourceRequest,
+  ServerListResult,
+  ListServersControllerByServerSiteResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServersControllerByServerSiteResourceRequest,
+  output: ServerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServerSitesControllerByResourceGroupError = AzureOpError;
 /** List ServerSiteResource resources by resource group */
-export const ListServerSiteControllerByResourceGroup: API.OperationMethod<
-  ListServerSiteControllerByResourceGroupRequest,
+export const ListServerSitesControllerByResourceGroup: API.OperationMethod<
+  ListServerSitesControllerByResourceGroupRequest,
   ServerSiteResourceListResult,
-  ListServerSiteControllerByResourceGroupError,
+  ListServerSitesControllerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerSiteControllerByResourceGroupRequest,
+  input: ListServerSitesControllerByResourceGroupRequest,
   output: ServerSiteResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListServerSiteControllerBySubscriptionError = AzureOpError;
+export type ListServerSitesControllerBySubscriptionError = AzureOpError;
 /** List ServerSiteResource resources by subscription ID */
-export const ListServerSiteControllerBySubscription: API.OperationMethod<
-  ListServerSiteControllerBySubscriptionRequest,
+export const ListServerSitesControllerBySubscription: API.OperationMethod<
+  ListServerSitesControllerBySubscriptionRequest,
   ServerSiteResourceListResult,
-  ListServerSiteControllerBySubscriptionError,
+  ListServerSitesControllerBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerSiteControllerBySubscriptionRequest,
+  input: ListServerSitesControllerBySubscriptionRequest,
   output: ServerSiteResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListServerSiteControllerHealthSummaryError = AzureOpError;
+export type ListServerSitesControllerHealthSummaryError = AzureOpError;
 /** Method to get site health summary. */
-export const ListServerSiteControllerHealthSummary: API.OperationMethod<
-  ListServerSiteControllerHealthSummaryRequest,
+export const ListServerSitesControllerHealthSummary: API.OperationMethod<
+  ListServerSitesControllerHealthSummaryRequest,
   SiteHealthSummaryCollection,
-  ListServerSiteControllerHealthSummaryError,
+  ListServerSitesControllerHealthSummaryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerSiteControllerHealthSummaryRequest,
+  input: ListServerSitesControllerHealthSummaryRequest,
   output: SiteHealthSummaryCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListServerSoftwareInventoryControllerByServerError = AzureOpError;
+export type ListServerSoftwareInventoriesControllerByServerError = AzureOpError;
 /** List ServerSoftwareInventory resources by Server */
-export const ListServerSoftwareInventoryControllerByServer: API.OperationMethod<
-  ListServerSoftwareInventoryControllerByServerRequest,
+export const ListServerSoftwareInventoriesControllerByServer: API.OperationMethod<
+  ListServerSoftwareInventoriesControllerByServerRequest,
   ServerSoftwareInventoryListResult,
-  ListServerSoftwareInventoryControllerByServerError,
+  ListServerSoftwareInventoriesControllerByServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListServerSoftwareInventoryControllerByServerRequest,
+  input: ListServerSoftwareInventoriesControllerByServerRequest,
   output: ServerSoftwareInventoryListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSiteControllerByResourceGroupError = AzureOpError;
+export type ListSitesControllerByResourceGroupError = AzureOpError;
 /** Get all vmware sites. Get all the vmware sites in the resource group. */
-export const ListSiteControllerByResourceGroup: API.OperationMethod<
-  ListSiteControllerByResourceGroupRequest,
+export const ListSitesControllerByResourceGroup: API.OperationMethod<
+  ListSitesControllerByResourceGroupRequest,
   VmwareSiteListResult,
-  ListSiteControllerByResourceGroupError,
+  ListSitesControllerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSiteControllerByResourceGroupRequest,
+  input: ListSitesControllerByResourceGroupRequest,
   output: VmwareSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSiteControllerBySubscriptionError = AzureOpError;
+export type ListSitesControllerBySubscriptionError = AzureOpError;
 /** Get all vmware sites. Get all the vmware sites in the subscription. */
-export const ListSiteControllerBySubscription: API.OperationMethod<
-  ListSiteControllerBySubscriptionRequest,
+export const ListSitesControllerBySubscription: API.OperationMethod<
+  ListSitesControllerBySubscriptionRequest,
   VmwareSiteListResult,
-  ListSiteControllerBySubscriptionError,
+  ListSitesControllerBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSiteControllerBySubscriptionRequest,
+  input: ListSitesControllerBySubscriptionRequest,
   output: VmwareSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSiteControllerHealthSummaryError = AzureOpError;
+export type ListSitesControllerHealthSummaryError = AzureOpError;
 /** Method to get site health summary. */
-export const ListSiteControllerHealthSummary: API.OperationMethod<
-  ListSiteControllerHealthSummaryRequest,
+export const ListSitesControllerHealthSummary: API.OperationMethod<
+  ListSitesControllerHealthSummaryRequest,
   SiteHealthSummaryCollection,
-  ListSiteControllerHealthSummaryError,
+  ListSitesControllerHealthSummaryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSiteControllerHealthSummaryRequest,
+  input: ListSitesControllerHealthSummaryRequest,
   output: SiteHealthSummaryCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSolutionControllerSolutionsError = AzureOpError;
+export type ListSolutionsControllerSolutionsError = AzureOpError;
 /** Gets the list of solutions in the migrate project. */
-export const ListSolutionControllerSolutions: API.OperationMethod<
-  ListSolutionControllerSolutionsRequest,
+export const ListSolutionsControllerSolutions: API.OperationMethod<
+  ListSolutionsControllerSolutionsRequest,
   SolutionsCollection,
-  ListSolutionControllerSolutionsError,
+  ListSolutionsControllerSolutionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSolutionControllerSolutionsRequest,
+  input: ListSolutionsControllerSolutionsRequest,
   output: SolutionsCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSqlAssessmentOptionOperationByAssessmentProjectError =
+export type ListSqlAssessmentOptionsOperationByAssessmentProjectError =
   AzureOpError;
 /** List SqlAssessmentOptions resources by AssessmentProject */
-export const ListSqlAssessmentOptionOperationByAssessmentProject: API.OperationMethod<
-  ListSqlAssessmentOptionOperationByAssessmentProjectRequest,
+export const ListSqlAssessmentOptionsOperationByAssessmentProject: API.OperationMethod<
+  ListSqlAssessmentOptionsOperationByAssessmentProjectRequest,
   SqlAssessmentOptionsListResult,
-  ListSqlAssessmentOptionOperationByAssessmentProjectError,
+  ListSqlAssessmentOptionsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSqlAssessmentOptionOperationByAssessmentProjectRequest,
+  input: ListSqlAssessmentOptionsOperationByAssessmentProjectRequest,
   output: SqlAssessmentOptionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36903,15 +37089,15 @@ export const ListSqlAssessmentV2SummaryOperationBySqlAssessmentV2: API.Operation
   retry: Retry.Retry,
 }));
 
-export type ListSqlAvailabilityGroupControllerBySqlSiteError = AzureOpError;
+export type ListSqlAvailabilityGroupsControllerBySqlSiteError = AzureOpError;
 /** Gets the sql availability groups. */
-export const ListSqlAvailabilityGroupControllerBySqlSite: API.OperationMethod<
-  ListSqlAvailabilityGroupControllerBySqlSiteRequest,
+export const ListSqlAvailabilityGroupsControllerBySqlSite: API.OperationMethod<
+  ListSqlAvailabilityGroupsControllerBySqlSiteRequest,
   SqlAvailabilityGroupListResult,
-  ListSqlAvailabilityGroupControllerBySqlSiteError,
+  ListSqlAvailabilityGroupsControllerBySqlSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSqlAvailabilityGroupControllerBySqlSiteRequest,
+  input: ListSqlAvailabilityGroupsControllerBySqlSiteRequest,
   output: SqlAvailabilityGroupListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36933,15 +37119,15 @@ export const ListSqlCollectorOperationByAssessmentProject: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSqlDatabaseControllerBySqlSiteError = AzureOpError;
+export type ListSqlDatabasesControllerBySqlSiteError = AzureOpError;
 /** Gets the sql Databases. */
-export const ListSqlDatabaseControllerBySqlSite: API.OperationMethod<
-  ListSqlDatabaseControllerBySqlSiteRequest,
+export const ListSqlDatabasesControllerBySqlSite: API.OperationMethod<
+  ListSqlDatabasesControllerBySqlSiteRequest,
   SqlDatabaseV2ListResult,
-  ListSqlDatabaseControllerBySqlSiteError,
+  ListSqlDatabasesControllerBySqlSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSqlDatabaseControllerBySqlSiteRequest,
+  input: ListSqlDatabasesControllerBySqlSiteRequest,
   output: SqlDatabaseV2ListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -36964,90 +37150,90 @@ export const ListSqlDiscoverySiteDataSourceControllerBySqlSite: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type ListSqlJobControllerBySqlSiteError = AzureOpError;
+export type ListSqlJobsControllerBySqlSiteError = AzureOpError;
 /** Gets the sql Jobs. List SqlJob resources by SqlSite */
-export const ListSqlJobControllerBySqlSite: API.OperationMethod<
-  ListSqlJobControllerBySqlSiteRequest,
+export const ListSqlJobsControllerBySqlSite: API.OperationMethod<
+  ListSqlJobsControllerBySqlSiteRequest,
   SqlJobListResult,
-  ListSqlJobControllerBySqlSiteError,
+  ListSqlJobsControllerBySqlSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSqlJobControllerBySqlSiteRequest,
+  input: ListSqlJobsControllerBySqlSiteRequest,
   output: SqlJobListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSqlRunAsAccountControllerBySqlSiteError = AzureOpError;
+export type ListSqlRunAsAccountsControllerBySqlSiteError = AzureOpError;
 /** List SqlRunAsAccount resources by SqlSite */
-export const ListSqlRunAsAccountControllerBySqlSite: API.OperationMethod<
-  ListSqlRunAsAccountControllerBySqlSiteRequest,
+export const ListSqlRunAsAccountsControllerBySqlSite: API.OperationMethod<
+  ListSqlRunAsAccountsControllerBySqlSiteRequest,
   SqlRunAsAccountListResult,
-  ListSqlRunAsAccountControllerBySqlSiteError,
+  ListSqlRunAsAccountsControllerBySqlSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSqlRunAsAccountControllerBySqlSiteRequest,
+  input: ListSqlRunAsAccountsControllerBySqlSiteRequest,
   output: SqlRunAsAccountListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSqlServerControllerBySqlSiteError = AzureOpError;
+export type ListSqlServersControllerBySqlSiteError = AzureOpError;
 /** Gets the sql servers. */
-export const ListSqlServerControllerBySqlSite: API.OperationMethod<
-  ListSqlServerControllerBySqlSiteRequest,
+export const ListSqlServersControllerBySqlSite: API.OperationMethod<
+  ListSqlServersControllerBySqlSiteRequest,
   SqlServerV2ListResult,
-  ListSqlServerControllerBySqlSiteError,
+  ListSqlServersControllerBySqlSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSqlServerControllerBySqlSiteRequest,
+  input: ListSqlServersControllerBySqlSiteRequest,
   output: SqlServerV2ListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSqlSiteControllerByMasterSiteError = AzureOpError;
+export type ListSqlSitesControllerByMasterSiteError = AzureOpError;
 /** Method to get all sites. */
-export const ListSqlSiteControllerByMasterSite: API.OperationMethod<
-  ListSqlSiteControllerByMasterSiteRequest,
+export const ListSqlSitesControllerByMasterSite: API.OperationMethod<
+  ListSqlSitesControllerByMasterSiteRequest,
   SqlSiteListResult,
-  ListSqlSiteControllerByMasterSiteError,
+  ListSqlSitesControllerByMasterSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSqlSiteControllerByMasterSiteRequest,
+  input: ListSqlSitesControllerByMasterSiteRequest,
   output: SqlSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListTomcatWebApplicationControllerByWebAppSiteError = AzureOpError;
+export type ListTomcatWebApplicationsControllerByWebAppSiteError = AzureOpError;
 /** Method to get all Tomcat web application. */
-export const ListTomcatWebApplicationControllerByWebAppSite: API.OperationMethod<
-  ListTomcatWebApplicationControllerByWebAppSiteRequest,
+export const ListTomcatWebApplicationsControllerByWebAppSite: API.OperationMethod<
+  ListTomcatWebApplicationsControllerByWebAppSiteRequest,
   TomcatWebApplicationsListResult,
-  ListTomcatWebApplicationControllerByWebAppSiteError,
+  ListTomcatWebApplicationsControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListTomcatWebApplicationControllerByWebAppSiteRequest,
+  input: ListTomcatWebApplicationsControllerByWebAppSiteRequest,
   output: TomcatWebApplicationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListTomcatWebServerControllerByWebAppSiteError = AzureOpError;
+export type ListTomcatWebServersControllerByWebAppSiteError = AzureOpError;
 /** Method to get all Tomcat web servers. */
-export const ListTomcatWebServerControllerByWebAppSite: API.OperationMethod<
-  ListTomcatWebServerControllerByWebAppSiteRequest,
+export const ListTomcatWebServersControllerByWebAppSite: API.OperationMethod<
+  ListTomcatWebServersControllerByWebAppSiteRequest,
   TomcatWebServersListResult,
-  ListTomcatWebServerControllerByWebAppSiteError,
+  ListTomcatWebServersControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListTomcatWebServerControllerByWebAppSiteRequest,
+  input: ListTomcatWebServersControllerByWebAppSiteRequest,
   output: TomcatWebServersListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -37085,15 +37271,16 @@ export const ListVirtualDesktopUserControllerVirtualDesktopUsers: API.OperationM
   retry: Retry.Retry,
 }));
 
-export type ListVmwareCollectorOperationByAssessmentProjectError = AzureOpError;
+export type ListVmwareCollectorsOperationByAssessmentProjectError =
+  AzureOpError;
 /** List VmwareCollector resources by AssessmentProject */
-export const ListVmwareCollectorOperationByAssessmentProject: API.OperationMethod<
-  ListVmwareCollectorOperationByAssessmentProjectRequest,
+export const ListVmwareCollectorsOperationByAssessmentProject: API.OperationMethod<
+  ListVmwareCollectorsOperationByAssessmentProjectRequest,
   VmwareCollectorListResult,
-  ListVmwareCollectorOperationByAssessmentProjectError,
+  ListVmwareCollectorsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListVmwareCollectorOperationByAssessmentProjectRequest,
+  input: ListVmwareCollectorsOperationByAssessmentProjectRequest,
   output: VmwareCollectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -37115,32 +37302,32 @@ export const ListVmwareHostControllerByVmwareSite: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListVmwareSoftwareInventoryControllerByMachineResourceError =
+export type ListVmwareSoftwareInventoriesControllerByMachineResourceError =
   AzureOpError;
 /** List VmwareMachineSoftwareInventory resources by MachineResource */
-export const ListVmwareSoftwareInventoryControllerByMachineResource: API.OperationMethod<
-  ListVmwareSoftwareInventoryControllerByMachineResourceRequest,
+export const ListVmwareSoftwareInventoriesControllerByMachineResource: API.OperationMethod<
+  ListVmwareSoftwareInventoriesControllerByMachineResourceRequest,
   VmwareMachineSoftwareInventoryListResult,
-  ListVmwareSoftwareInventoryControllerByMachineResourceError,
+  ListVmwareSoftwareInventoriesControllerByMachineResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListVmwareSoftwareInventoryControllerByMachineResourceRequest,
+  input: ListVmwareSoftwareInventoriesControllerByMachineResourceRequest,
   output: VmwareMachineSoftwareInventoryListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWebAppAssessmentOptionOperationByAssessmentProjectError =
+export type ListWebAppAssessmentOptionsOperationByAssessmentProjectError =
   AzureOpError;
 /** List WebAppAssessmentOptions resources by AssessmentProject */
-export const ListWebAppAssessmentOptionOperationByAssessmentProject: API.OperationMethod<
-  ListWebAppAssessmentOptionOperationByAssessmentProjectRequest,
+export const ListWebAppAssessmentOptionsOperationByAssessmentProject: API.OperationMethod<
+  ListWebAppAssessmentOptionsOperationByAssessmentProjectRequest,
   WebAppAssessmentOptionsListResult,
-  ListWebAppAssessmentOptionOperationByAssessmentProjectError,
+  ListWebAppAssessmentOptionsOperationByAssessmentProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebAppAssessmentOptionOperationByAssessmentProjectRequest,
+  input: ListWebAppAssessmentOptionsOperationByAssessmentProjectRequest,
   output: WebAppAssessmentOptionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -37193,61 +37380,62 @@ export const ListWebAppCollectorOperationByAssessmentProject: API.OperationMetho
   retry: Retry.Retry,
 }));
 
-export type ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteError =
+export type ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteError =
   AzureOpError;
 /** Method to get all Web app data sources in site. */
-export const ListWebAppDiscoverySiteDataSourceControllerByWebAppSite: API.OperationMethod<
-  ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest,
+export const ListWebAppDiscoverySiteDataSourcesControllerByWebAppSite: API.OperationMethod<
+  ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteRequest,
   DiscoverySiteDataSourceListResult,
-  ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteError,
+  ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebAppDiscoverySiteDataSourceControllerByWebAppSiteRequest,
+  input: ListWebAppDiscoverySiteDataSourcesControllerByWebAppSiteRequest,
   output: DiscoverySiteDataSourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWebAppExtendedMachineControllerByWebAppSiteError = AzureOpError;
+export type ListWebAppExtendedMachinesControllerByWebAppSiteError =
+  AzureOpError;
 /** Method to get all extended machines. */
-export const ListWebAppExtendedMachineControllerByWebAppSite: API.OperationMethod<
-  ListWebAppExtendedMachineControllerByWebAppSiteRequest,
+export const ListWebAppExtendedMachinesControllerByWebAppSite: API.OperationMethod<
+  ListWebAppExtendedMachinesControllerByWebAppSiteRequest,
   WebAppExtendedMachineListResult,
-  ListWebAppExtendedMachineControllerByWebAppSiteError,
+  ListWebAppExtendedMachinesControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebAppExtendedMachineControllerByWebAppSiteRequest,
+  input: ListWebAppExtendedMachinesControllerByWebAppSiteRequest,
   output: WebAppExtendedMachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWebApplicationControllerByWebAppSiteError = AzureOpError;
+export type ListWebApplicationsControllerByWebAppSiteError = AzureOpError;
 /** Method to get all IIS web applications. */
-export const ListWebApplicationControllerByWebAppSite: API.OperationMethod<
-  ListWebApplicationControllerByWebAppSiteRequest,
+export const ListWebApplicationsControllerByWebAppSite: API.OperationMethod<
+  ListWebApplicationsControllerByWebAppSiteRequest,
   WebApplicationListResult,
-  ListWebApplicationControllerByWebAppSiteError,
+  ListWebApplicationsControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebApplicationControllerByWebAppSiteRequest,
+  input: ListWebApplicationsControllerByWebAppSiteRequest,
   output: WebApplicationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWebAppRunAsAccountControllerByWebAppSiteError = AzureOpError;
+export type ListWebAppRunAsAccountsControllerByWebAppSiteError = AzureOpError;
 /** Method to get all run as accounts. */
-export const ListWebAppRunAsAccountControllerByWebAppSite: API.OperationMethod<
-  ListWebAppRunAsAccountControllerByWebAppSiteRequest,
+export const ListWebAppRunAsAccountsControllerByWebAppSite: API.OperationMethod<
+  ListWebAppRunAsAccountsControllerByWebAppSiteRequest,
   WebAppRunAsAccountListResult,
-  ListWebAppRunAsAccountControllerByWebAppSiteError,
+  ListWebAppRunAsAccountsControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebAppRunAsAccountControllerByWebAppSiteRequest,
+  input: ListWebAppRunAsAccountsControllerByWebAppSiteRequest,
   output: WebAppRunAsAccountListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -37270,60 +37458,60 @@ export const ListWebAppServicePlanV2OperationByWebAppAssessmentV2: API.Operation
   retry: Retry.Retry,
 }));
 
-export type ListWebAppSiteControllerByMasterSiteError = AzureOpError;
+export type ListWebAppSitesControllerByMasterSiteError = AzureOpError;
 /** Method to get all sites. */
-export const ListWebAppSiteControllerByMasterSite: API.OperationMethod<
-  ListWebAppSiteControllerByMasterSiteRequest,
+export const ListWebAppSitesControllerByMasterSite: API.OperationMethod<
+  ListWebAppSitesControllerByMasterSiteRequest,
   WebAppSiteListResult,
-  ListWebAppSiteControllerByMasterSiteError,
+  ListWebAppSitesControllerByMasterSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebAppSiteControllerByMasterSiteRequest,
+  input: ListWebAppSitesControllerByMasterSiteRequest,
   output: WebAppSiteListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWebServerControllerByWebAppSiteError = AzureOpError;
+export type ListWebServersControllerByWebAppSiteError = AzureOpError;
 /** Method to get all web servers. */
-export const ListWebServerControllerByWebAppSite: API.OperationMethod<
-  ListWebServerControllerByWebAppSiteRequest,
+export const ListWebServersControllerByWebAppSite: API.OperationMethod<
+  ListWebServersControllerByWebAppSiteRequest,
   WebServerListResult,
-  ListWebServerControllerByWebAppSiteError,
+  ListWebServersControllerByWebAppSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebServerControllerByWebAppSiteRequest,
+  input: ListWebServersControllerByWebAppSiteRequest,
   output: WebServerListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWebServerControllerWebServersError = AzureOpError;
+export type ListWebServersControllerWebServersError = AzureOpError;
 /** Gets a list of WebServers in the migrate project. */
-export const ListWebServerControllerWebServers: API.OperationMethod<
-  ListWebServerControllerWebServersRequest,
+export const ListWebServersControllerWebServers: API.OperationMethod<
+  ListWebServersControllerWebServersRequest,
   WebServerCollection,
-  ListWebServerControllerWebServersError,
+  ListWebServersControllerWebServersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebServerControllerWebServersRequest,
+  input: ListWebServersControllerWebServersRequest,
   output: WebServerCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWebSiteControllerWebSitesError = AzureOpError;
+export type ListWebSitesControllerWebSitesError = AzureOpError;
 /** Gets a list of websites in the migrate project. */
-export const ListWebSiteControllerWebSites: API.OperationMethod<
-  ListWebSiteControllerWebSitesRequest,
+export const ListWebSitesControllerWebSites: API.OperationMethod<
+  ListWebSitesControllerWebSitesRequest,
   WebSiteCollection,
-  ListWebSiteControllerWebSitesError,
+  ListWebSitesControllerWebSitesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebSiteControllerWebSitesRequest,
+  input: ListWebSitesControllerWebSitesRequest,
   output: WebSiteCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -37340,6 +37528,36 @@ export const MasterSitesControllerErrorSummary: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: MasterSitesControllerErrorSummaryRequest,
   output: SiteErrorSummary,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateProjectsControllerDeleteMigrateProjectError = AzureOpError;
+/** Delete the project Delete the migrate project. It deletes summary of the project. */
+export const MigrateProjectsControllerDeleteMigrateProject: API.OperationMethod<
+  MigrateProjectsControllerDeleteMigrateProjectRequest,
+  MigrateProjectsControllerDeleteMigrateProjectResponse,
+  MigrateProjectsControllerDeleteMigrateProjectError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateProjectsControllerDeleteMigrateProjectRequest,
+  output: MigrateProjectsControllerDeleteMigrateProjectResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateProjectsControllerGetMigrateProjectError = AzureOpError;
+/** Get a specific project. Get information related to a specific migrate project. Returns a json object of type 'migrateProject' as specified in the models section. */
+export const MigrateProjectsControllerGetMigrateProject: API.OperationMethod<
+  MigrateProjectsControllerGetMigrateProjectRequest,
+  MigrateProject,
+  MigrateProjectsControllerGetMigrateProjectError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateProjectsControllerGetMigrateProjectRequest,
+  output: MigrateProject,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37375,96 +37593,92 @@ export const MigrateProjectsControllerPutMigrateProject: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MigrateProjectsControllerRefreshSummaryError = AzureOpError;
-/** Refresh the summary of the migrate project. */
-export const MigrateProjectsControllerRefreshSummary: API.OperationMethod<
-  MigrateProjectsControllerRefreshSummaryRequest,
-  RefreshSummaryResult,
-  MigrateProjectsControllerRefreshSummaryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrateProjectsControllerRefreshSummaryRequest,
-  output: RefreshSummaryResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MigrateProjectsControllerRegisterToolError = AzureOpError;
-/** Registers a tool with the migrate project. */
-export const MigrateProjectsControllerRegisterTool: API.OperationMethod<
-  MigrateProjectsControllerRegisterToolRequest,
-  RegistrationResult,
-  MigrateProjectsControllerRegisterToolError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrateProjectsControllerRegisterToolRequest,
-  output: RegistrationResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionControllerPutPrivateEndpointConnectionError =
+export type PutPrivateEndpointConnectionControllerPrivateEndpointConnectionError =
   AzureOpError;
 /** Create or update private endpoint. Create or update a private endpoint with specified name. If a private endpoint already exists, update it. */
-export const PrivateEndpointConnectionControllerPutPrivateEndpointConnection: API.OperationMethod<
-  PrivateEndpointConnectionControllerPutPrivateEndpointConnectionRequest,
+export const PutPrivateEndpointConnectionControllerPrivateEndpointConnection: API.OperationMethod<
+  PutPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest,
   PrivateEndpointConnection_2,
-  PrivateEndpointConnectionControllerPutPrivateEndpointConnectionError,
+  PutPrivateEndpointConnectionControllerPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionControllerPutPrivateEndpointConnectionRequest,
+  input: PutPrivateEndpointConnectionControllerPrivateEndpointConnectionRequest,
   output: PrivateEndpointConnection_2,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionProxyControllerValidateError =
-  AzureOpError;
-/** Validates private endpoint connection proxy. Validates private endpoint connection using a project and private endpoint connection proxy */
-export const PrivateEndpointConnectionProxyControllerValidate: API.OperationMethod<
-  PrivateEndpointConnectionProxyControllerValidateRequest,
-  PrivateEndpointConnectionProxy,
-  PrivateEndpointConnectionProxyControllerValidateError,
+export type RefreshMigrateProjectsControllerSummaryError = AzureOpError;
+/** Refresh the summary of the migrate project. */
+export const RefreshMigrateProjectsControllerSummary: API.OperationMethod<
+  RefreshMigrateProjectsControllerSummaryRequest,
+  RefreshSummaryResult,
+  RefreshMigrateProjectsControllerSummaryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionProxyControllerValidateRequest,
-  output: PrivateEndpointConnectionProxy,
+  input: RefreshMigrateProjectsControllerSummaryRequest,
+  output: RefreshSummaryResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsError =
-  AzureOpError;
-/** Get the private endpoint connections. Get all the private endpoint connections under a migrate project. */
-export const PrivateEndpointConnectionsControllerGetPrivateEndpointConnections: API.OperationMethod<
-  PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsRequest,
-  PrivateEndpointConnectionCollection,
-  PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsError,
+export type RefreshServerSitesControllerSiteError = AzureOpError;
+/** Operation to refresh a site */
+export const RefreshServerSitesControllerSite: API.OperationMethod<
+  RefreshServerSitesControllerSiteRequest,
+  RefreshServerSitesControllerSiteResponse,
+  RefreshServerSitesControllerSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    PrivateEndpointConnectionsControllerGetPrivateEndpointConnectionsRequest,
-  output: PrivateEndpointConnectionCollection,
+  input: RefreshServerSitesControllerSiteRequest,
+  output: RefreshServerSitesControllerSiteResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourceControllerGetPrivateLinkResourceError =
-  AzureOpError;
-/** Get the private link resource. Get the private link resource with the specified name. */
-export const PrivateLinkResourceControllerGetPrivateLinkResource: API.OperationMethod<
-  PrivateLinkResourceControllerGetPrivateLinkResourceRequest,
-  PrivateLinkResource_2,
-  PrivateLinkResourceControllerGetPrivateLinkResourceError,
+export type RefreshSqlSitesControllerError = AzureOpError;
+/** Method to refresh a site. */
+export const RefreshSqlSitesController: API.OperationMethod<
+  RefreshSqlSitesControllerRequest,
+  RefreshSqlSitesControllerResponse,
+  RefreshSqlSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourceControllerGetPrivateLinkResourceRequest,
-  output: PrivateLinkResource_2,
+  input: RefreshSqlSitesControllerRequest,
+  output: RefreshSqlSitesControllerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshWebAppSitesControllerError = AzureOpError;
+/** Method to refresh a site. */
+export const RefreshWebAppSitesController: API.OperationMethod<
+  RefreshWebAppSitesControllerRequest,
+  RefreshWebAppSitesControllerResponse,
+  RefreshWebAppSitesControllerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshWebAppSitesControllerRequest,
+  output: RefreshWebAppSitesControllerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegisterMigrateProjectsControllerToolError = AzureOpError;
+/** Registers a tool with the migrate project. */
+export const RegisterMigrateProjectsControllerTool: API.OperationMethod<
+  RegisterMigrateProjectsControllerToolRequest,
+  RegistrationResult,
+  RegisterMigrateProjectsControllerToolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegisterMigrateProjectsControllerToolRequest,
+  output: RegistrationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37480,21 +37694,6 @@ export const ServerDependencyMapControllerClientGroupMembers: API.OperationMetho
 > = /*@__PURE__*/ API.make(() => ({
   input: ServerDependencyMapControllerClientGroupMembersRequest,
   output: ServerDependencyMapControllerClientGroupMembersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServerDependencyMapControllerExportDependenciesError = AzureOpError;
-/** API to generate report containing agentless dependencies. */
-export const ServerDependencyMapControllerExportDependencies: API.OperationMethod<
-  ServerDependencyMapControllerExportDependenciesRequest,
-  ServerDependencyMapControllerExportDependenciesResponse,
-  ServerDependencyMapControllerExportDependenciesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServerDependencyMapControllerExportDependenciesRequest,
-  output: ServerDependencyMapControllerExportDependenciesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37545,51 +37744,6 @@ export const ServerSitesControllerComputeusage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ServerSitesControllerExportApplicationsError = AzureOpError;
-/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
-export const ServerSitesControllerExportApplications: API.OperationMethod<
-  ServerSitesControllerExportApplicationsRequest,
-  ServerSitesControllerExportApplicationsResponse,
-  ServerSitesControllerExportApplicationsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServerSitesControllerExportApplicationsRequest,
-  output: ServerSitesControllerExportApplicationsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServerSitesControllerExportMachineErrorsError = AzureOpError;
-/** Method to generate report containing machine and the errors encountered during guest discovery of the machine. */
-export const ServerSitesControllerExportMachineErrors: API.OperationMethod<
-  ServerSitesControllerExportMachineErrorsRequest,
-  ServerSitesControllerExportMachineErrorsResponse,
-  ServerSitesControllerExportMachineErrorsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServerSitesControllerExportMachineErrorsRequest,
-  output: ServerSitesControllerExportMachineErrorsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServerSitesControllerRefreshSiteError = AzureOpError;
-/** Operation to refresh a site */
-export const ServerSitesControllerRefreshSite: API.OperationMethod<
-  ServerSitesControllerRefreshSiteRequest,
-  ServerSitesControllerRefreshSiteResponse,
-  ServerSitesControllerRefreshSiteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServerSitesControllerRefreshSiteRequest,
-  output: ServerSitesControllerRefreshSiteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ServerSitesControllerSummaryError = AzureOpError;
 /** Method to get site usage. */
 export const ServerSitesControllerSummary: API.OperationMethod<
@@ -37635,51 +37789,6 @@ export const SitesControllerComputeusage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SitesControllerExportApplicationsError = AzureOpError;
-/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
-export const SitesControllerExportApplications: API.OperationMethod<
-  SitesControllerExportApplicationsRequest,
-  SitesControllerExportApplicationsResponse,
-  SitesControllerExportApplicationsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SitesControllerExportApplicationsRequest,
-  output: SitesControllerExportApplicationsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SitesControllerExportMachineErrorsError = AzureOpError;
-/** Method to generate report containing machine and the errors encountered during guest discovery of the machine. */
-export const SitesControllerExportMachineErrors: API.OperationMethod<
-  SitesControllerExportMachineErrorsRequest,
-  SitesControllerExportMachineErrorsResponse,
-  SitesControllerExportMachineErrorsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SitesControllerExportMachineErrorsRequest,
-  output: SitesControllerExportMachineErrorsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SitesControllerExportMachinesError = AzureOpError;
-/** Method to generate report containing machine and the deep discovery of the application installed in the machine. */
-export const SitesControllerExportMachines: API.OperationMethod<
-  SitesControllerExportMachinesRequest,
-  SitesControllerExportMachinesResponse,
-  SitesControllerExportMachinesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SitesControllerExportMachinesRequest,
-  output: SitesControllerExportMachinesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SitesControllerSummaryError = AzureOpError;
 /** Method to get site usage/summary. */
 export const SitesControllerSummary: API.OperationMethod<
@@ -37710,21 +37819,6 @@ export const SolutionsControllerCleanupData: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SqlAssessmentV2OperationsDownloadUrlError = AzureOpError;
-/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
-export const SqlAssessmentV2OperationsDownloadUrl: API.OperationMethod<
-  SqlAssessmentV2OperationsDownloadUrlRequest,
-  DownloadUrl,
-  SqlAssessmentV2OperationsDownloadUrlError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlAssessmentV2OperationsDownloadUrlRequest,
-  output: DownloadUrl,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SqlSitesControllerErrorSummaryError = AzureOpError;
 /** Method to get error summary from SQL site. */
 export const SqlSitesControllerErrorSummary: API.OperationMethod<
@@ -37735,51 +37829,6 @@ export const SqlSitesControllerErrorSummary: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SqlSitesControllerErrorSummaryRequest,
   output: SiteErrorSummary,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlSitesControllerExportSqlServerErrorsError = AzureOpError;
-/** Method to generate report containing SQL servers. */
-export const SqlSitesControllerExportSqlServerErrors: API.OperationMethod<
-  SqlSitesControllerExportSqlServerErrorsRequest,
-  SqlSitesControllerExportSqlServerErrorsResponse,
-  SqlSitesControllerExportSqlServerErrorsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlSitesControllerExportSqlServerErrorsRequest,
-  output: SqlSitesControllerExportSqlServerErrorsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlSitesControllerExportSqlServersError = AzureOpError;
-/** Method to generate report containing SQL servers. */
-export const SqlSitesControllerExportSqlServers: API.OperationMethod<
-  SqlSitesControllerExportSqlServersRequest,
-  SqlSitesControllerExportSqlServersResponse,
-  SqlSitesControllerExportSqlServersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlSitesControllerExportSqlServersRequest,
-  output: SqlSitesControllerExportSqlServersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlSitesControllerRefreshError = AzureOpError;
-/** Method to refresh a site. */
-export const SqlSitesControllerRefresh: API.OperationMethod<
-  SqlSitesControllerRefreshRequest,
-  SqlSitesControllerRefreshResponse,
-  SqlSitesControllerRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlSitesControllerRefreshRequest,
-  output: SqlSitesControllerRefreshResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37800,61 +37849,61 @@ export const SqlSitesControllerSummary: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StartMachineControllerError = AzureOpError;
+export type StartMachinesControllerError = AzureOpError;
 /** Method to start a machine. */
-export const StartMachineController: API.OperationMethod<
-  StartMachineControllerRequest,
-  StartMachineControllerResponse,
-  StartMachineControllerError,
+export const StartMachinesController: API.OperationMethod<
+  StartMachinesControllerRequest,
+  StartMachinesControllerResponse,
+  StartMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartMachineControllerRequest,
-  output: StartMachineControllerResponse,
+  input: StartMachinesControllerRequest,
+  output: StartMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StopMachineControllerError = AzureOpError;
+export type StopMachinesControllerError = AzureOpError;
 /** Method to stop a machine. */
-export const StopMachineController: API.OperationMethod<
-  StopMachineControllerRequest,
-  StopMachineControllerResponse,
-  StopMachineControllerError,
+export const StopMachinesController: API.OperationMethod<
+  StopMachinesControllerRequest,
+  StopMachinesControllerResponse,
+  StopMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopMachineControllerRequest,
-  output: StopMachineControllerResponse,
+  input: StopMachinesControllerRequest,
+  output: StopMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateAssessmentProjectOperationError = AzureOpError;
+export type UpdateAssessmentProjectsOperationError = AzureOpError;
 /** Update a AssessmentProject */
-export const UpdateAssessmentProjectOperation: API.OperationMethod<
-  UpdateAssessmentProjectOperationRequest,
-  UpdateAssessmentProjectOperationResponse,
-  UpdateAssessmentProjectOperationError,
+export const UpdateAssessmentProjectsOperation: API.OperationMethod<
+  UpdateAssessmentProjectsOperationRequest,
+  UpdateAssessmentProjectsOperationResponse,
+  UpdateAssessmentProjectsOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateAssessmentProjectOperationRequest,
-  output: UpdateAssessmentProjectOperationResponse,
+  input: UpdateAssessmentProjectsOperationRequest,
+  output: UpdateAssessmentProjectsOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateGroupOperationMachineError = AzureOpError;
+export type UpdateGroupsOperationMachinesError = AzureOpError;
 /** Update machines in group. Update machines in group by adding or removing machines. */
-export const UpdateGroupOperationMachine: API.OperationMethod<
-  UpdateGroupOperationMachineRequest,
-  UpdateGroupOperationMachineResponse,
-  UpdateGroupOperationMachineError,
+export const UpdateGroupsOperationMachines: API.OperationMethod<
+  UpdateGroupsOperationMachinesRequest,
+  UpdateGroupsOperationMachinesResponse,
+  UpdateGroupsOperationMachinesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateGroupOperationMachineRequest,
-  output: UpdateGroupOperationMachineResponse,
+  input: UpdateGroupsOperationMachinesRequest,
+  output: UpdateGroupsOperationMachinesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37876,106 +37925,106 @@ export const UpdateHypervDependencyMapControllerDependencyMapStatus: API.Operati
   retry: Retry.Retry,
 }));
 
-export type UpdateHypervMachineControllerError = AzureOpError;
+export type UpdateHypervMachinesControllerError = AzureOpError;
 /** Update a HypervMachine */
-export const UpdateHypervMachineController: API.OperationMethod<
-  UpdateHypervMachineControllerRequest,
-  UpdateHypervMachineControllerResponse,
-  UpdateHypervMachineControllerError,
+export const UpdateHypervMachinesController: API.OperationMethod<
+  UpdateHypervMachinesControllerRequest,
+  UpdateHypervMachinesControllerResponse,
+  UpdateHypervMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateHypervMachineControllerRequest,
-  output: UpdateHypervMachineControllerResponse,
+  input: UpdateHypervMachinesControllerRequest,
+  output: UpdateHypervMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateHypervMachineControllerPropertyError = AzureOpError;
+export type UpdateHypervMachinesControllerPropertiesError = AzureOpError;
 /** Method to update custom properties for HYPERV machines in a site. */
-export const UpdateHypervMachineControllerProperty: API.OperationMethod<
-  UpdateHypervMachineControllerPropertyRequest,
-  UpdateHypervMachineControllerPropertyResponse,
-  UpdateHypervMachineControllerPropertyError,
+export const UpdateHypervMachinesControllerProperties: API.OperationMethod<
+  UpdateHypervMachinesControllerPropertiesRequest,
+  UpdateHypervMachinesControllerPropertiesResponse,
+  UpdateHypervMachinesControllerPropertiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateHypervMachineControllerPropertyRequest,
-  output: UpdateHypervMachineControllerPropertyResponse,
+  input: UpdateHypervMachinesControllerPropertiesRequest,
+  output: UpdateHypervMachinesControllerPropertiesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateHypervSiteControllerError = AzureOpError;
+export type UpdateHypervSitesControllerError = AzureOpError;
 /** Update a HypervSite */
-export const UpdateHypervSiteController: API.OperationMethod<
-  UpdateHypervSiteControllerRequest,
-  UpdateHypervSiteControllerResponse,
-  UpdateHypervSiteControllerError,
+export const UpdateHypervSitesController: API.OperationMethod<
+  UpdateHypervSitesControllerRequest,
+  UpdateHypervSitesControllerResponse,
+  UpdateHypervSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateHypervSiteControllerRequest,
-  output: UpdateHypervSiteControllerResponse,
+  input: UpdateHypervSitesControllerRequest,
+  output: UpdateHypervSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateIisWebApplicationControllerError = AzureOpError;
+export type UpdateIisWebApplicationsControllerError = AzureOpError;
 /** Method to update tags on IIS web application. */
-export const UpdateIisWebApplicationController: API.OperationMethod<
-  UpdateIisWebApplicationControllerRequest,
-  UpdateIisWebApplicationControllerResponse,
-  UpdateIisWebApplicationControllerError,
+export const UpdateIisWebApplicationsController: API.OperationMethod<
+  UpdateIisWebApplicationsControllerRequest,
+  UpdateIisWebApplicationsControllerResponse,
+  UpdateIisWebApplicationsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateIisWebApplicationControllerRequest,
-  output: UpdateIisWebApplicationControllerResponse,
+  input: UpdateIisWebApplicationsControllerRequest,
+  output: UpdateIisWebApplicationsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateImportSiteControllerError = AzureOpError;
+export type UpdateImportSitesControllerError = AzureOpError;
 /** Update a ImportSite */
-export const UpdateImportSiteController: API.OperationMethod<
-  UpdateImportSiteControllerRequest,
-  UpdateImportSiteControllerResponse,
-  UpdateImportSiteControllerError,
+export const UpdateImportSitesController: API.OperationMethod<
+  UpdateImportSitesControllerRequest,
+  UpdateImportSitesControllerResponse,
+  UpdateImportSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateImportSiteControllerRequest,
-  output: UpdateImportSiteControllerResponse,
+  input: UpdateImportSitesControllerRequest,
+  output: UpdateImportSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateMachineControllerError = AzureOpError;
+export type UpdateMachinesControllerError = AzureOpError;
 /** Update a MachineResource */
-export const UpdateMachineController: API.OperationMethod<
-  UpdateMachineControllerRequest,
-  UpdateMachineControllerResponse,
-  UpdateMachineControllerError,
+export const UpdateMachinesController: API.OperationMethod<
+  UpdateMachinesControllerRequest,
+  UpdateMachinesControllerResponse,
+  UpdateMachinesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateMachineControllerRequest,
-  output: UpdateMachineControllerResponse,
+  input: UpdateMachinesControllerRequest,
+  output: UpdateMachinesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateMasterSiteControllerError = AzureOpError;
+export type UpdateMasterSitesControllerError = AzureOpError;
 /** Method to update an existing site. */
-export const UpdateMasterSiteController: API.OperationMethod<
-  UpdateMasterSiteControllerRequest,
-  UpdateMasterSiteControllerResponse,
-  UpdateMasterSiteControllerError,
+export const UpdateMasterSitesController: API.OperationMethod<
+  UpdateMasterSitesControllerRequest,
+  UpdateMasterSitesControllerResponse,
+  UpdateMasterSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateMasterSiteControllerRequest,
-  output: UpdateMasterSiteControllerResponse,
+  input: UpdateMasterSitesControllerRequest,
+  output: UpdateMasterSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37996,242 +38045,243 @@ export const UpdatePrivateEndpointConnectionOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateServerControllerMachineError = AzureOpError;
+export type UpdateServersControllerMachineError = AzureOpError;
 /** Update a Server machine */
-export const UpdateServerControllerMachine: API.OperationMethod<
-  UpdateServerControllerMachineRequest,
-  UpdateServerControllerMachineResponse,
-  UpdateServerControllerMachineError,
+export const UpdateServersControllerMachine: API.OperationMethod<
+  UpdateServersControllerMachineRequest,
+  UpdateServersControllerMachineResponse,
+  UpdateServersControllerMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateServerControllerMachineRequest,
-  output: UpdateServerControllerMachineResponse,
+  input: UpdateServersControllerMachineRequest,
+  output: UpdateServersControllerMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateServerSiteControllerError = AzureOpError;
+export type UpdateServerSitesControllerError = AzureOpError;
 /** Update a ServerSiteResource */
-export const UpdateServerSiteController: API.OperationMethod<
-  UpdateServerSiteControllerRequest,
-  UpdateServerSiteControllerResponse,
-  UpdateServerSiteControllerError,
+export const UpdateServerSitesController: API.OperationMethod<
+  UpdateServerSitesControllerRequest,
+  UpdateServerSitesControllerResponse,
+  UpdateServerSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateServerSiteControllerRequest,
-  output: UpdateServerSiteControllerResponse,
+  input: UpdateServerSitesControllerRequest,
+  output: UpdateServerSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateServerSiteControllerDependencyMapStatusError = AzureOpError;
+export type UpdateServerSitesControllerDependencyMapStatusError = AzureOpError;
 /** Method to enable disable dependency map status for machines in a site. */
-export const UpdateServerSiteControllerDependencyMapStatus: API.OperationMethod<
-  UpdateServerSiteControllerDependencyMapStatusRequest,
-  UpdateServerSiteControllerDependencyMapStatusResponse,
-  UpdateServerSiteControllerDependencyMapStatusError,
+export const UpdateServerSitesControllerDependencyMapStatus: API.OperationMethod<
+  UpdateServerSitesControllerDependencyMapStatusRequest,
+  UpdateServerSitesControllerDependencyMapStatusResponse,
+  UpdateServerSitesControllerDependencyMapStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateServerSiteControllerDependencyMapStatusRequest,
-  output: UpdateServerSiteControllerDependencyMapStatusResponse,
+  input: UpdateServerSitesControllerDependencyMapStatusRequest,
+  output: UpdateServerSitesControllerDependencyMapStatusResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateServerSiteControllerPropertyError = AzureOpError;
+export type UpdateServerSitesControllerPropertiesError = AzureOpError;
 /** Operation to update custom properties for servers */
-export const UpdateServerSiteControllerProperty: API.OperationMethod<
-  UpdateServerSiteControllerPropertyRequest,
-  UpdateServerSiteControllerPropertyResponse,
-  UpdateServerSiteControllerPropertyError,
+export const UpdateServerSitesControllerProperties: API.OperationMethod<
+  UpdateServerSitesControllerPropertiesRequest,
+  UpdateServerSitesControllerPropertiesResponse,
+  UpdateServerSitesControllerPropertiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateServerSiteControllerPropertyRequest,
-  output: UpdateServerSiteControllerPropertyResponse,
+  input: UpdateServerSitesControllerPropertiesRequest,
+  output: UpdateServerSitesControllerPropertiesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSiteControllerError = AzureOpError;
+export type UpdateSitesControllerError = AzureOpError;
 /** Update a VmwareSite */
-export const UpdateSiteController: API.OperationMethod<
-  UpdateSiteControllerRequest,
-  UpdateSiteControllerResponse,
-  UpdateSiteControllerError,
+export const UpdateSitesController: API.OperationMethod<
+  UpdateSitesControllerRequest,
+  UpdateSitesControllerResponse,
+  UpdateSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSiteControllerRequest,
-  output: UpdateSiteControllerResponse,
+  input: UpdateSitesControllerRequest,
+  output: UpdateSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSolutionControllerError = AzureOpError;
+export type UpdateSolutionsControllerError = AzureOpError;
 /** Update solution. Update a solution with specified name. Supports partial updates, for example only tags can be provided. */
-export const UpdateSolutionController: API.OperationMethod<
-  UpdateSolutionControllerRequest,
+export const UpdateSolutionsController: API.OperationMethod<
+  UpdateSolutionsControllerRequest,
   Solution,
-  UpdateSolutionControllerError,
+  UpdateSolutionsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSolutionControllerRequest,
+  input: UpdateSolutionsControllerRequest,
   output: Solution,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSqlServerControllerError = AzureOpError;
+export type UpdateSqlServersControllerError = AzureOpError;
 /** Updates the sql server tags. */
-export const UpdateSqlServerController: API.OperationMethod<
-  UpdateSqlServerControllerRequest,
-  UpdateSqlServerControllerResponse,
-  UpdateSqlServerControllerError,
+export const UpdateSqlServersController: API.OperationMethod<
+  UpdateSqlServersControllerRequest,
+  UpdateSqlServersControllerResponse,
+  UpdateSqlServersControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSqlServerControllerRequest,
-  output: UpdateSqlServerControllerResponse,
+  input: UpdateSqlServersControllerRequest,
+  output: UpdateSqlServersControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSqlSiteControllerError = AzureOpError;
+export type UpdateSqlSitesControllerError = AzureOpError;
 /** Method to update an existing site. */
-export const UpdateSqlSiteController: API.OperationMethod<
-  UpdateSqlSiteControllerRequest,
-  UpdateSqlSiteControllerResponse,
-  UpdateSqlSiteControllerError,
+export const UpdateSqlSitesController: API.OperationMethod<
+  UpdateSqlSitesControllerRequest,
+  UpdateSqlSitesControllerResponse,
+  UpdateSqlSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSqlSiteControllerRequest,
-  output: UpdateSqlSiteControllerResponse,
+  input: UpdateSqlSitesControllerRequest,
+  output: UpdateSqlSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateTomcatWebApplicationControllerError = AzureOpError;
+export type UpdateTomcatWebApplicationsControllerError = AzureOpError;
 /** Updates the Tomcat web application tags. */
-export const UpdateTomcatWebApplicationController: API.OperationMethod<
-  UpdateTomcatWebApplicationControllerRequest,
-  UpdateTomcatWebApplicationControllerResponse,
-  UpdateTomcatWebApplicationControllerError,
+export const UpdateTomcatWebApplicationsController: API.OperationMethod<
+  UpdateTomcatWebApplicationsControllerRequest,
+  UpdateTomcatWebApplicationsControllerResponse,
+  UpdateTomcatWebApplicationsControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateTomcatWebApplicationControllerRequest,
-  output: UpdateTomcatWebApplicationControllerResponse,
+  input: UpdateTomcatWebApplicationsControllerRequest,
+  output: UpdateTomcatWebApplicationsControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateVmwarePropertyControllerDependencyMapStatusError =
+export type UpdateVmwarePropertiesControllerDependencyMapStatusError =
   AzureOpError;
 /** Method to enable disable dependency map status for machines in a site. */
-export const UpdateVmwarePropertyControllerDependencyMapStatus: API.OperationMethod<
-  UpdateVmwarePropertyControllerDependencyMapStatusRequest,
-  UpdateVmwarePropertyControllerDependencyMapStatusResponse,
-  UpdateVmwarePropertyControllerDependencyMapStatusError,
+export const UpdateVmwarePropertiesControllerDependencyMapStatus: API.OperationMethod<
+  UpdateVmwarePropertiesControllerDependencyMapStatusRequest,
+  UpdateVmwarePropertiesControllerDependencyMapStatusResponse,
+  UpdateVmwarePropertiesControllerDependencyMapStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateVmwarePropertyControllerDependencyMapStatusRequest,
-  output: UpdateVmwarePropertyControllerDependencyMapStatusResponse,
+  input: UpdateVmwarePropertiesControllerDependencyMapStatusRequest,
+  output: UpdateVmwarePropertiesControllerDependencyMapStatusResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateVmwarePropertyControllerPropertyError = AzureOpError;
+export type UpdateVmwarePropertiesControllerPropertiesError = AzureOpError;
 /** Method to update properties for machines in a site. */
-export const UpdateVmwarePropertyControllerProperty: API.OperationMethod<
-  UpdateVmwarePropertyControllerPropertyRequest,
-  UpdateVmwarePropertyControllerPropertyResponse,
-  UpdateVmwarePropertyControllerPropertyError,
+export const UpdateVmwarePropertiesControllerProperties: API.OperationMethod<
+  UpdateVmwarePropertiesControllerPropertiesRequest,
+  UpdateVmwarePropertiesControllerPropertiesResponse,
+  UpdateVmwarePropertiesControllerPropertiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateVmwarePropertyControllerPropertyRequest,
-  output: UpdateVmwarePropertyControllerPropertyResponse,
+  input: UpdateVmwarePropertiesControllerPropertiesRequest,
+  output: UpdateVmwarePropertiesControllerPropertiesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateVmwarePropertyControllerRunAsAccountError = AzureOpError;
+export type UpdateVmwarePropertiesControllerRunAsAccountError = AzureOpError;
 /** Method to associate Run as account to machine in a site. */
-export const UpdateVmwarePropertyControllerRunAsAccount: API.OperationMethod<
-  UpdateVmwarePropertyControllerRunAsAccountRequest,
-  UpdateVmwarePropertyControllerRunAsAccountResponse,
-  UpdateVmwarePropertyControllerRunAsAccountError,
+export const UpdateVmwarePropertiesControllerRunAsAccount: API.OperationMethod<
+  UpdateVmwarePropertiesControllerRunAsAccountRequest,
+  UpdateVmwarePropertiesControllerRunAsAccountResponse,
+  UpdateVmwarePropertiesControllerRunAsAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateVmwarePropertyControllerRunAsAccountRequest,
-  output: UpdateVmwarePropertyControllerRunAsAccountResponse,
+  input: UpdateVmwarePropertiesControllerRunAsAccountRequest,
+  output: UpdateVmwarePropertiesControllerRunAsAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateVmwarePropertyControllerTagError = AzureOpError;
+export type UpdateVmwarePropertiesControllerTagsError = AzureOpError;
 /** Method to associate Run as account to machine in a site. */
-export const UpdateVmwarePropertyControllerTag: API.OperationMethod<
-  UpdateVmwarePropertyControllerTagRequest,
-  UpdateVmwarePropertyControllerTagResponse,
-  UpdateVmwarePropertyControllerTagError,
+export const UpdateVmwarePropertiesControllerTags: API.OperationMethod<
+  UpdateVmwarePropertiesControllerTagsRequest,
+  UpdateVmwarePropertiesControllerTagsResponse,
+  UpdateVmwarePropertiesControllerTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateVmwarePropertyControllerTagRequest,
-  output: UpdateVmwarePropertyControllerTagResponse,
+  input: UpdateVmwarePropertiesControllerTagsRequest,
+  output: UpdateVmwarePropertiesControllerTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateWebAppPropertyControllerPropertyError = AzureOpError;
+export type UpdateWebAppPropertiesControllerPropertiesError = AzureOpError;
 /** Method to update properties for web applications. in a site. */
-export const UpdateWebAppPropertyControllerProperty: API.OperationMethod<
-  UpdateWebAppPropertyControllerPropertyRequest,
-  UpdateWebAppPropertyControllerPropertyResponse,
-  UpdateWebAppPropertyControllerPropertyError,
+export const UpdateWebAppPropertiesControllerProperties: API.OperationMethod<
+  UpdateWebAppPropertiesControllerPropertiesRequest,
+  UpdateWebAppPropertiesControllerPropertiesResponse,
+  UpdateWebAppPropertiesControllerPropertiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWebAppPropertyControllerPropertyRequest,
-  output: UpdateWebAppPropertyControllerPropertyResponse,
+  input: UpdateWebAppPropertiesControllerPropertiesRequest,
+  output: UpdateWebAppPropertiesControllerPropertiesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateWebAppSiteControllerError = AzureOpError;
+export type UpdateWebAppSitesControllerError = AzureOpError;
 /** Method to update an existing site. */
-export const UpdateWebAppSiteController: API.OperationMethod<
-  UpdateWebAppSiteControllerRequest,
-  UpdateWebAppSiteControllerResponse,
-  UpdateWebAppSiteControllerError,
+export const UpdateWebAppSitesController: API.OperationMethod<
+  UpdateWebAppSitesControllerRequest,
+  UpdateWebAppSitesControllerResponse,
+  UpdateWebAppSitesControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWebAppSiteControllerRequest,
-  output: UpdateWebAppSiteControllerResponse,
+  input: UpdateWebAppSitesControllerRequest,
+  output: UpdateWebAppSitesControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type WebAppAssessmentV2OperationsDownloadUrlError = AzureOpError;
-/** Get download URL for the assessment report. Get the URL for downloading the assessment in a report format. */
-export const WebAppAssessmentV2OperationsDownloadUrl: API.OperationMethod<
-  WebAppAssessmentV2OperationsDownloadUrlRequest,
-  DownloadUrl,
-  WebAppAssessmentV2OperationsDownloadUrlError,
+export type ValidatePrivateEndpointConnectionProxyControllerError =
+  AzureOpError;
+/** Validates private endpoint connection proxy. Validates private endpoint connection using a project and private endpoint connection proxy */
+export const ValidatePrivateEndpointConnectionProxyController: API.OperationMethod<
+  ValidatePrivateEndpointConnectionProxyControllerRequest,
+  PrivateEndpointConnectionProxy,
+  ValidatePrivateEndpointConnectionProxyControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebAppAssessmentV2OperationsDownloadUrlRequest,
-  output: DownloadUrl,
+  input: ValidatePrivateEndpointConnectionProxyControllerRequest,
+  output: PrivateEndpointConnectionProxy,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -38247,36 +38297,6 @@ export const WebAppSitesControllerErrorSummary: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WebAppSitesControllerErrorSummaryRequest,
   output: SiteErrorSummary,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebAppSitesControllerExportInventoryError = AzureOpError;
-/** Method to generate report containing web app inventory. */
-export const WebAppSitesControllerExportInventory: API.OperationMethod<
-  WebAppSitesControllerExportInventoryRequest,
-  WebAppSitesControllerExportInventoryResponse,
-  WebAppSitesControllerExportInventoryError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebAppSitesControllerExportInventoryRequest,
-  output: WebAppSitesControllerExportInventoryResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebAppSitesControllerRefreshError = AzureOpError;
-/** Method to refresh a site. */
-export const WebAppSitesControllerRefresh: API.OperationMethod<
-  WebAppSitesControllerRefreshRequest,
-  WebAppSitesControllerRefreshResponse,
-  WebAppSitesControllerRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebAppSitesControllerRefreshRequest,
-  output: WebAppSitesControllerRefreshResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -67,6 +67,183 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface AcceptProjectTransferRequestRequestPaidFeatures {
+  concurrentBuilds?: number | null;
+  passwordProtection?: boolean | null;
+  previewDeploymentSuffix?: boolean | null;
+}
+export const AcceptProjectTransferRequestRequestPaidFeatures =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      concurrentBuilds: S.optional(S.NullOr(S.Number)),
+      passwordProtection: S.optional(S.NullOr(S.Boolean)),
+      previewDeploymentSuffix: S.optional(S.NullOr(S.Boolean)),
+    }),
+  ).annotate({
+    identifier: "AcceptProjectTransferRequestRequestPaidFeatures",
+  }) as any as S.Schema<AcceptProjectTransferRequestRequestPaidFeatures>;
+
+export interface AcceptProjectTransferRequestRequestAcceptedPoliciesValue {
+  eula: string;
+  privacy: string;
+}
+export const AcceptProjectTransferRequestRequestAcceptedPoliciesValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      eula: S.String,
+      privacy: S.String,
+    }),
+  ).annotate({
+    identifier: "AcceptProjectTransferRequestRequestAcceptedPoliciesValue",
+  }) as any as S.Schema<AcceptProjectTransferRequestRequestAcceptedPoliciesValue>;
+
+export type AcceptProjectTransferRequestRequestAcceptedPoliciesMap = {
+  [key: string]:
+    | AcceptProjectTransferRequestRequestAcceptedPoliciesValue
+    | undefined;
+};
+export const AcceptProjectTransferRequestRequestAcceptedPoliciesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    AcceptProjectTransferRequestRequestAcceptedPoliciesValue,
+  ) as any as S.Schema<AcceptProjectTransferRequestRequestAcceptedPoliciesMap>;
+
+export interface AcceptProjectTransferRequestRequest {
+  /** The code of the project transfer request. */
+  code: string;
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+  /** The desired name for the project */
+  newProjectName?: string;
+  paidFeatures?: AcceptProjectTransferRequestRequestPaidFeatures;
+  acceptedPolicies?: AcceptProjectTransferRequestRequestAcceptedPoliciesMap;
+}
+export const AcceptProjectTransferRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.String.pipe(T.Label()),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+    newProjectName: S.optional(S.String),
+    paidFeatures: S.optional(AcceptProjectTransferRequestRequestPaidFeatures),
+    acceptedPolicies: S.optional(
+      AcceptProjectTransferRequestRequestAcceptedPoliciesMap,
+    ),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/projects/transfer-request/{code}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AcceptProjectTransferRequestRequest",
+}) as any as S.Schema<AcceptProjectTransferRequestRequest>;
+
+export type AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList =
+  Array<string>;
+export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList>;
+
+export type AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus =
+  | "errored"
+  | "fulfilled";
+export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus =
+  /*@__PURE__*/ S.String;
+
+export interface AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult {
+  status: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus;
+  error?: unknown;
+  code?: string;
+}
+export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status:
+        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus,
+      error: S.optional(S.Unknown),
+      code: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult",
+  }) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult>;
+
+export interface AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem {
+  installationId: string;
+  resourceIds: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList;
+  result: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult;
+}
+export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      installationId: S.String,
+      resourceIds:
+        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList,
+      result:
+        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult,
+    }),
+  ).annotate({
+    identifier: "AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem",
+  }) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem>;
+
+export type AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList =
+  Array<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem>;
+export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList =
+  /*@__PURE__*/ S.Array(
+    AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem,
+  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList>;
+
+export type AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList =
+  Array<unknown>;
+export const AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList>;
+
+export type AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList =
+  Array<string>;
+export const AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList>;
+
+export interface AcceptProjectTransferRequestResponseBodyCase0 {
+  partnerCalls: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList;
+  resourceTransferErrors: AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList;
+  transferredStoreIds: AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList;
+}
+export const AcceptProjectTransferRequestResponseBodyCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      partnerCalls:
+        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList,
+      resourceTransferErrors:
+        AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList,
+      transferredStoreIds:
+        AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList,
+    }),
+  ).annotate({
+    identifier: "AcceptProjectTransferRequestResponseBodyCase0",
+  }) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0>;
+
+export type AcceptProjectTransferRequestResponseBody =
+  | AcceptProjectTransferRequestResponseBodyCase0
+  | unknown;
+export const AcceptProjectTransferRequestResponseBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<AcceptProjectTransferRequestResponseBody>;
+
+export type AcceptProjectTransferRequestResponse =
+  AcceptProjectTransferRequestResponseBody;
+export const AcceptProjectTransferRequestResponse = /*@__PURE__*/ S.suspend(
+  () => AcceptProjectTransferRequestResponseBody.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "AcceptProjectTransferRequestResponse",
+}) as any as S.Schema<AcceptProjectTransferRequestResponse>;
+
 /** Status code for domain redirect */
 export type AddProjectDomainRequestRedirectStatusCode = 301 | 302 | 307 | 308;
 export const AddProjectDomainRequestRedirectStatusCode = /*@__PURE__*/ S.Number;
@@ -350,6 +527,7 @@ export type CreateProjectRequestFramework =
   | "fasthtml"
   | "django"
   | "ash"
+  | "factory-eve"
   | "eve"
   | "sanity"
   | "sanity-v2"
@@ -2167,6 +2345,7 @@ export type CreateProjectResponseFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -2253,6 +2432,7 @@ export type CreateProjectResponseServicesItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -4184,6 +4364,20 @@ export const CreateProjectResponsePermissionsAiGatewaySettingsList =
     ACLAction,
   ) as any as S.Schema<CreateProjectResponsePermissionsAiGatewaySettingsList>;
 
+export type CreateProjectResponsePermissionsAiGatewayTranscriptsList =
+  Array<ACLAction>;
+export const CreateProjectResponsePermissionsAiGatewayTranscriptsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<CreateProjectResponsePermissionsAiGatewayTranscriptsList>;
+
+export type CreateProjectResponsePermissionsAiGatewayTranscriptsSettingsList =
+  Array<ACLAction>;
+export const CreateProjectResponsePermissionsAiGatewayTranscriptsSettingsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<CreateProjectResponsePermissionsAiGatewayTranscriptsSettingsList>;
+
 export type CreateProjectResponsePermissionsAiGatewayUsageList =
   Array<ACLAction>;
 export const CreateProjectResponsePermissionsAiGatewayUsageList =
@@ -5067,6 +5261,13 @@ export const CreateProjectResponsePermissionsProjectTransferInList =
     ACLAction,
   ) as any as S.Schema<CreateProjectResponsePermissionsProjectTransferInList>;
 
+export type CreateProjectResponsePermissionsProjectTransferRequestList =
+  Array<ACLAction>;
+export const CreateProjectResponsePermissionsProjectTransferRequestList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<CreateProjectResponsePermissionsProjectTransferRequestList>;
+
 export type CreateProjectResponsePermissionsProTrialOnboardingList =
   Array<ACLAction>;
 export const CreateProjectResponsePermissionsProTrialOnboardingList =
@@ -5915,6 +6116,8 @@ export interface CreateProjectResponsePermissions {
   aiGatewayGuardrails?: CreateProjectResponsePermissionsAiGatewayGuardrailsList;
   aiGatewayRules?: CreateProjectResponsePermissionsAiGatewayRulesList;
   aiGatewaySettings?: CreateProjectResponsePermissionsAiGatewaySettingsList;
+  aiGatewayTranscripts?: CreateProjectResponsePermissionsAiGatewayTranscriptsList;
+  aiGatewayTranscriptsSettings?: CreateProjectResponsePermissionsAiGatewayTranscriptsSettingsList;
   aiGatewayUsage?: CreateProjectResponsePermissionsAiGatewayUsageList;
   aiGatewayVirtualModelConfigs?: CreateProjectResponsePermissionsAiGatewayVirtualModelConfigsList;
   alerts?: CreateProjectResponsePermissionsAlertsList;
@@ -6047,6 +6250,7 @@ export interface CreateProjectResponsePermissions {
   previewDeploymentSuffix?: CreateProjectResponsePermissionsPreviewDeploymentSuffixList;
   privateCloudAccount?: CreateProjectResponsePermissionsPrivateCloudAccountList;
   projectTransferIn?: CreateProjectResponsePermissionsProjectTransferInList;
+  projectTransferRequest?: CreateProjectResponsePermissionsProjectTransferRequestList;
   proTrialOnboarding?: CreateProjectResponsePermissionsProTrialOnboardingList;
   rateLimit?: CreateProjectResponsePermissionsRateLimitList;
   redis?: CreateProjectResponsePermissionsRedisList;
@@ -6224,6 +6428,12 @@ export const CreateProjectResponsePermissions = /*@__PURE__*/ S.suspend(() =>
     ),
     aiGatewaySettings: S.optional(
       CreateProjectResponsePermissionsAiGatewaySettingsList,
+    ),
+    aiGatewayTranscripts: S.optional(
+      CreateProjectResponsePermissionsAiGatewayTranscriptsList,
+    ),
+    aiGatewayTranscriptsSettings: S.optional(
+      CreateProjectResponsePermissionsAiGatewayTranscriptsSettingsList,
     ),
     aiGatewayUsage: S.optional(
       CreateProjectResponsePermissionsAiGatewayUsageList,
@@ -6554,6 +6764,9 @@ export const CreateProjectResponsePermissions = /*@__PURE__*/ S.suspend(() =>
     ),
     projectTransferIn: S.optional(
       CreateProjectResponsePermissionsProjectTransferInList,
+    ),
+    projectTransferRequest: S.optional(
+      CreateProjectResponsePermissionsProjectTransferRequestList,
     ),
     proTrialOnboarding: S.optional(
       CreateProjectResponsePermissionsProTrialOnboardingList,
@@ -10264,7 +10477,6 @@ export const CreateProjectTransferRequestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateProjectTransferRequestRequest>;
 
 export interface CreateProjectTransferRequestResponse {
-  /** Code that can be used to accept the project transfer request. */
   code: string;
 }
 export const CreateProjectTransferRequestResponse = /*@__PURE__*/ S.suspend(
@@ -13796,6 +14008,7 @@ export type GetProjectResponseFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -13881,6 +14094,7 @@ export type GetProjectResponseServicesItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -15678,6 +15892,20 @@ export const GetProjectResponsePermissionsAiGatewaySettingsList =
     ACLAction,
   ) as any as S.Schema<GetProjectResponsePermissionsAiGatewaySettingsList>;
 
+export type GetProjectResponsePermissionsAiGatewayTranscriptsList =
+  Array<ACLAction>;
+export const GetProjectResponsePermissionsAiGatewayTranscriptsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetProjectResponsePermissionsAiGatewayTranscriptsList>;
+
+export type GetProjectResponsePermissionsAiGatewayTranscriptsSettingsList =
+  Array<ACLAction>;
+export const GetProjectResponsePermissionsAiGatewayTranscriptsSettingsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetProjectResponsePermissionsAiGatewayTranscriptsSettingsList>;
+
 export type GetProjectResponsePermissionsAiGatewayUsageList = Array<ACLAction>;
 export const GetProjectResponsePermissionsAiGatewayUsageList =
   /*@__PURE__*/ S.Array(
@@ -16534,6 +16762,13 @@ export const GetProjectResponsePermissionsProjectTransferInList =
     ACLAction,
   ) as any as S.Schema<GetProjectResponsePermissionsProjectTransferInList>;
 
+export type GetProjectResponsePermissionsProjectTransferRequestList =
+  Array<ACLAction>;
+export const GetProjectResponsePermissionsProjectTransferRequestList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetProjectResponsePermissionsProjectTransferRequestList>;
+
 export type GetProjectResponsePermissionsProTrialOnboardingList =
   Array<ACLAction>;
 export const GetProjectResponsePermissionsProTrialOnboardingList =
@@ -17348,6 +17583,8 @@ export interface GetProjectResponsePermissions {
   aiGatewayGuardrails?: GetProjectResponsePermissionsAiGatewayGuardrailsList;
   aiGatewayRules?: GetProjectResponsePermissionsAiGatewayRulesList;
   aiGatewaySettings?: GetProjectResponsePermissionsAiGatewaySettingsList;
+  aiGatewayTranscripts?: GetProjectResponsePermissionsAiGatewayTranscriptsList;
+  aiGatewayTranscriptsSettings?: GetProjectResponsePermissionsAiGatewayTranscriptsSettingsList;
   aiGatewayUsage?: GetProjectResponsePermissionsAiGatewayUsageList;
   aiGatewayVirtualModelConfigs?: GetProjectResponsePermissionsAiGatewayVirtualModelConfigsList;
   alerts?: GetProjectResponsePermissionsAlertsList;
@@ -17480,6 +17717,7 @@ export interface GetProjectResponsePermissions {
   previewDeploymentSuffix?: GetProjectResponsePermissionsPreviewDeploymentSuffixList;
   privateCloudAccount?: GetProjectResponsePermissionsPrivateCloudAccountList;
   projectTransferIn?: GetProjectResponsePermissionsProjectTransferInList;
+  projectTransferRequest?: GetProjectResponsePermissionsProjectTransferRequestList;
   proTrialOnboarding?: GetProjectResponsePermissionsProTrialOnboardingList;
   rateLimit?: GetProjectResponsePermissionsRateLimitList;
   redis?: GetProjectResponsePermissionsRedisList;
@@ -17651,6 +17889,12 @@ export const GetProjectResponsePermissions = /*@__PURE__*/ S.suspend(() =>
     aiGatewayRules: S.optional(GetProjectResponsePermissionsAiGatewayRulesList),
     aiGatewaySettings: S.optional(
       GetProjectResponsePermissionsAiGatewaySettingsList,
+    ),
+    aiGatewayTranscripts: S.optional(
+      GetProjectResponsePermissionsAiGatewayTranscriptsList,
+    ),
+    aiGatewayTranscriptsSettings: S.optional(
+      GetProjectResponsePermissionsAiGatewayTranscriptsSettingsList,
     ),
     aiGatewayUsage: S.optional(GetProjectResponsePermissionsAiGatewayUsageList),
     aiGatewayVirtualModelConfigs: S.optional(
@@ -17955,6 +18199,9 @@ export const GetProjectResponsePermissions = /*@__PURE__*/ S.suspend(() =>
     ),
     projectTransferIn: S.optional(
       GetProjectResponsePermissionsProjectTransferInList,
+    ),
+    projectTransferRequest: S.optional(
+      GetProjectResponsePermissionsProjectTransferRequestList,
     ),
     proTrialOnboarding: S.optional(
       GetProjectResponsePermissionsProTrialOnboardingList,
@@ -22783,6 +23030,7 @@ export type GetProjectsResponseBodyCase0ItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -27132,6 +27380,7 @@ export type GetProjectsResponseBodyCase1ProjectsItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -31893,6 +32142,7 @@ export type GetProjectsResponseBodyCase2ProjectsItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -31980,6 +32230,7 @@ export type GetProjectsResponseBodyCase2ProjectsItemServicesItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -33938,6 +34189,20 @@ export const GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewaySetting
     ACLAction,
   ) as any as S.Schema<GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewaySettingsList>;
 
+export type GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsList =
+  Array<ACLAction>;
+export const GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsList>;
+
+export type GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsSettingsList =
+  Array<ACLAction>;
+export const GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsSettingsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsSettingsList>;
+
 export type GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayUsageList =
   Array<ACLAction>;
 export const GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayUsageList =
@@ -34862,6 +35127,13 @@ export const GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferI
     ACLAction,
   ) as any as S.Schema<GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferInList>;
 
+export type GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferRequestList =
+  Array<ACLAction>;
+export const GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferRequestList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferRequestList>;
+
 export type GetProjectsResponseBodyCase2ProjectsItemPermissionsProTrialOnboardingList =
   Array<ACLAction>;
 export const GetProjectsResponseBodyCase2ProjectsItemPermissionsProTrialOnboardingList =
@@ -35758,6 +36030,8 @@ export interface GetProjectsResponseBodyCase2ProjectsItemPermissions {
   aiGatewayGuardrails?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayGuardrailsList;
   aiGatewayRules?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayRulesList;
   aiGatewaySettings?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewaySettingsList;
+  aiGatewayTranscripts?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsList;
+  aiGatewayTranscriptsSettings?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsSettingsList;
   aiGatewayUsage?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayUsageList;
   aiGatewayVirtualModelConfigs?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayVirtualModelConfigsList;
   alerts?: GetProjectsResponseBodyCase2ProjectsItemPermissionsAlertsList;
@@ -35890,6 +36164,7 @@ export interface GetProjectsResponseBodyCase2ProjectsItemPermissions {
   previewDeploymentSuffix?: GetProjectsResponseBodyCase2ProjectsItemPermissionsPreviewDeploymentSuffixList;
   privateCloudAccount?: GetProjectsResponseBodyCase2ProjectsItemPermissionsPrivateCloudAccountList;
   projectTransferIn?: GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferInList;
+  projectTransferRequest?: GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferRequestList;
   proTrialOnboarding?: GetProjectsResponseBodyCase2ProjectsItemPermissionsProTrialOnboardingList;
   rateLimit?: GetProjectsResponseBodyCase2ProjectsItemPermissionsRateLimitList;
   redis?: GetProjectsResponseBodyCase2ProjectsItemPermissionsRedisList;
@@ -36078,6 +36353,12 @@ export const GetProjectsResponseBodyCase2ProjectsItemPermissions =
       ),
       aiGatewaySettings: S.optional(
         GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewaySettingsList,
+      ),
+      aiGatewayTranscripts: S.optional(
+        GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsList,
+      ),
+      aiGatewayTranscriptsSettings: S.optional(
+        GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsSettingsList,
       ),
       aiGatewayUsage: S.optional(
         GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayUsageList,
@@ -36474,6 +36755,9 @@ export const GetProjectsResponseBodyCase2ProjectsItemPermissions =
       ),
       projectTransferIn: S.optional(
         GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferInList,
+      ),
+      projectTransferRequest: S.optional(
+        GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferRequestList,
       ),
       proTrialOnboarding: S.optional(
         GetProjectsResponseBodyCase2ProjectsItemPermissionsProTrialOnboardingList,
@@ -41215,183 +41499,6 @@ export const RemoveProjectEnvResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RemoveProjectEnvResponse",
 }) as any as S.Schema<RemoveProjectEnvResponse>;
 
-export interface AcceptProjectTransferRequestRequestPaidFeatures {
-  concurrentBuilds?: number | null;
-  passwordProtection?: boolean | null;
-  previewDeploymentSuffix?: boolean | null;
-}
-export const AcceptProjectTransferRequestRequestPaidFeatures =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      concurrentBuilds: S.optional(S.NullOr(S.Number)),
-      passwordProtection: S.optional(S.NullOr(S.Boolean)),
-      previewDeploymentSuffix: S.optional(S.NullOr(S.Boolean)),
-    }),
-  ).annotate({
-    identifier: "AcceptProjectTransferRequestRequestPaidFeatures",
-  }) as any as S.Schema<AcceptProjectTransferRequestRequestPaidFeatures>;
-
-export interface AcceptProjectTransferRequestRequestAcceptedPoliciesValue {
-  eula: string;
-  privacy: string;
-}
-export const AcceptProjectTransferRequestRequestAcceptedPoliciesValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      eula: S.String,
-      privacy: S.String,
-    }),
-  ).annotate({
-    identifier: "AcceptProjectTransferRequestRequestAcceptedPoliciesValue",
-  }) as any as S.Schema<AcceptProjectTransferRequestRequestAcceptedPoliciesValue>;
-
-export type AcceptProjectTransferRequestRequestAcceptedPoliciesMap = {
-  [key: string]:
-    | AcceptProjectTransferRequestRequestAcceptedPoliciesValue
-    | undefined;
-};
-export const AcceptProjectTransferRequestRequestAcceptedPoliciesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    AcceptProjectTransferRequestRequestAcceptedPoliciesValue,
-  ) as any as S.Schema<AcceptProjectTransferRequestRequestAcceptedPoliciesMap>;
-
-export interface RequestAcceptProjectTransferRequest {
-  /** The code of the project transfer request. */
-  code: string;
-  /** The Team identifier to perform the request on behalf of. */
-  teamId?: string;
-  /** The Team slug to perform the request on behalf of. */
-  slug?: string;
-  /** The desired name for the project */
-  newProjectName?: string;
-  paidFeatures?: AcceptProjectTransferRequestRequestPaidFeatures;
-  acceptedPolicies?: AcceptProjectTransferRequestRequestAcceptedPoliciesMap;
-}
-export const RequestAcceptProjectTransferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.String.pipe(T.Label()),
-    teamId: S.optional(S.String.pipe(T.Query())),
-    slug: S.optional(S.String.pipe(T.Query())),
-    newProjectName: S.optional(S.String),
-    paidFeatures: S.optional(AcceptProjectTransferRequestRequestPaidFeatures),
-    acceptedPolicies: S.optional(
-      AcceptProjectTransferRequestRequestAcceptedPoliciesMap,
-    ),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/projects/transfer-request/{code}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RequestAcceptProjectTransferRequest",
-}) as any as S.Schema<RequestAcceptProjectTransferRequest>;
-
-export type AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList =
-  Array<string>;
-export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList>;
-
-export type AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus =
-  | "errored"
-  | "fulfilled";
-export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus =
-  /*@__PURE__*/ S.String;
-
-export interface AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult {
-  status: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus;
-  error?: unknown;
-  code?: string;
-}
-export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status:
-        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResultStatus,
-      error: S.optional(S.Unknown),
-      code: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult",
-  }) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult>;
-
-export interface AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem {
-  installationId: string;
-  resourceIds: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList;
-  result: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult;
-}
-export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      installationId: S.String,
-      resourceIds:
-        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResourceIdsList,
-      result:
-        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItemResult,
-    }),
-  ).annotate({
-    identifier: "AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem",
-  }) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem>;
-
-export type AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList =
-  Array<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem>;
-export const AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList =
-  /*@__PURE__*/ S.Array(
-    AcceptProjectTransferRequestResponseBodyCase0PartnerCallsItem,
-  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList>;
-
-export type AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList =
-  Array<unknown>;
-export const AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList>;
-
-export type AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList =
-  Array<string>;
-export const AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList>;
-
-export interface AcceptProjectTransferRequestResponseBodyCase0 {
-  partnerCalls: AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList;
-  resourceTransferErrors: AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList;
-  transferredStoreIds: AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList;
-}
-export const AcceptProjectTransferRequestResponseBodyCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      partnerCalls:
-        AcceptProjectTransferRequestResponseBodyCase0PartnerCallsList,
-      resourceTransferErrors:
-        AcceptProjectTransferRequestResponseBodyCase0ResourceTransferErrorsList,
-      transferredStoreIds:
-        AcceptProjectTransferRequestResponseBodyCase0TransferredStoreIdsList,
-    }),
-  ).annotate({
-    identifier: "AcceptProjectTransferRequestResponseBodyCase0",
-  }) as any as S.Schema<AcceptProjectTransferRequestResponseBodyCase0>;
-
-export type AcceptProjectTransferRequestResponseBody =
-  | AcceptProjectTransferRequestResponseBodyCase0
-  | unknown;
-export const AcceptProjectTransferRequestResponseBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AcceptProjectTransferRequestResponseBody>;
-
-export type RequestAcceptProjectTransferResponse =
-  AcceptProjectTransferRequestResponseBody;
-export const RequestAcceptProjectTransferResponse = /*@__PURE__*/ S.suspend(
-  () => AcceptProjectTransferRequestResponseBody.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "RequestAcceptProjectTransferResponse",
-}) as any as S.Schema<RequestAcceptProjectTransferResponse>;
-
 export interface RequestPromoteRequest {
   projectId: string;
   deploymentId: string;
@@ -42862,6 +42969,7 @@ export type UpdateMicrofrontendsResponseFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -42948,6 +43056,7 @@ export type UpdateMicrofrontendsResponseServicesItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -44842,6 +44951,20 @@ export const UpdateMicrofrontendsResponsePermissionsAiGatewaySettingsList =
     ACLAction,
   ) as any as S.Schema<UpdateMicrofrontendsResponsePermissionsAiGatewaySettingsList>;
 
+export type UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsList =
+  Array<ACLAction>;
+export const UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsList>;
+
+export type UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsSettingsList =
+  Array<ACLAction>;
+export const UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsSettingsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsSettingsList>;
+
 export type UpdateMicrofrontendsResponsePermissionsAiGatewayUsageList =
   Array<ACLAction>;
 export const UpdateMicrofrontendsResponsePermissionsAiGatewayUsageList =
@@ -45763,6 +45886,13 @@ export const UpdateMicrofrontendsResponsePermissionsProjectTransferInList =
     ACLAction,
   ) as any as S.Schema<UpdateMicrofrontendsResponsePermissionsProjectTransferInList>;
 
+export type UpdateMicrofrontendsResponsePermissionsProjectTransferRequestList =
+  Array<ACLAction>;
+export const UpdateMicrofrontendsResponsePermissionsProjectTransferRequestList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UpdateMicrofrontendsResponsePermissionsProjectTransferRequestList>;
+
 export type UpdateMicrofrontendsResponsePermissionsProTrialOnboardingList =
   Array<ACLAction>;
 export const UpdateMicrofrontendsResponsePermissionsProTrialOnboardingList =
@@ -46652,6 +46782,8 @@ export interface UpdateMicrofrontendsResponsePermissions {
   aiGatewayGuardrails?: UpdateMicrofrontendsResponsePermissionsAiGatewayGuardrailsList;
   aiGatewayRules?: UpdateMicrofrontendsResponsePermissionsAiGatewayRulesList;
   aiGatewaySettings?: UpdateMicrofrontendsResponsePermissionsAiGatewaySettingsList;
+  aiGatewayTranscripts?: UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsList;
+  aiGatewayTranscriptsSettings?: UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsSettingsList;
   aiGatewayUsage?: UpdateMicrofrontendsResponsePermissionsAiGatewayUsageList;
   aiGatewayVirtualModelConfigs?: UpdateMicrofrontendsResponsePermissionsAiGatewayVirtualModelConfigsList;
   alerts?: UpdateMicrofrontendsResponsePermissionsAlertsList;
@@ -46784,6 +46916,7 @@ export interface UpdateMicrofrontendsResponsePermissions {
   previewDeploymentSuffix?: UpdateMicrofrontendsResponsePermissionsPreviewDeploymentSuffixList;
   privateCloudAccount?: UpdateMicrofrontendsResponsePermissionsPrivateCloudAccountList;
   projectTransferIn?: UpdateMicrofrontendsResponsePermissionsProjectTransferInList;
+  projectTransferRequest?: UpdateMicrofrontendsResponsePermissionsProjectTransferRequestList;
   proTrialOnboarding?: UpdateMicrofrontendsResponsePermissionsProTrialOnboardingList;
   rateLimit?: UpdateMicrofrontendsResponsePermissionsRateLimitList;
   redis?: UpdateMicrofrontendsResponsePermissionsRedisList;
@@ -46964,6 +47097,12 @@ export const UpdateMicrofrontendsResponsePermissions = /*@__PURE__*/ S.suspend(
       ),
       aiGatewaySettings: S.optional(
         UpdateMicrofrontendsResponsePermissionsAiGatewaySettingsList,
+      ),
+      aiGatewayTranscripts: S.optional(
+        UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsList,
+      ),
+      aiGatewayTranscriptsSettings: S.optional(
+        UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsSettingsList,
       ),
       aiGatewayUsage: S.optional(
         UpdateMicrofrontendsResponsePermissionsAiGatewayUsageList,
@@ -47334,6 +47473,9 @@ export const UpdateMicrofrontendsResponsePermissions = /*@__PURE__*/ S.suspend(
       ),
       projectTransferIn: S.optional(
         UpdateMicrofrontendsResponsePermissionsProjectTransferInList,
+      ),
+      projectTransferRequest: S.optional(
+        UpdateMicrofrontendsResponsePermissionsProjectTransferRequestList,
       ),
       proTrialOnboarding: S.optional(
         UpdateMicrofrontendsResponsePermissionsProTrialOnboardingList,
@@ -49944,6 +50086,7 @@ export type UpdateProjectRequestFramework =
   | "fasthtml"
   | "django"
   | "ash"
+  | "factory-eve"
   | "eve"
   | "sanity"
   | "sanity-v2"
@@ -52388,6 +52531,7 @@ export type UpdateProjectResponseFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -52474,6 +52618,7 @@ export type UpdateProjectResponseServicesItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -54312,6 +54457,20 @@ export const UpdateProjectResponsePermissionsAiGatewaySettingsList =
     ACLAction,
   ) as any as S.Schema<UpdateProjectResponsePermissionsAiGatewaySettingsList>;
 
+export type UpdateProjectResponsePermissionsAiGatewayTranscriptsList =
+  Array<ACLAction>;
+export const UpdateProjectResponsePermissionsAiGatewayTranscriptsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UpdateProjectResponsePermissionsAiGatewayTranscriptsList>;
+
+export type UpdateProjectResponsePermissionsAiGatewayTranscriptsSettingsList =
+  Array<ACLAction>;
+export const UpdateProjectResponsePermissionsAiGatewayTranscriptsSettingsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UpdateProjectResponsePermissionsAiGatewayTranscriptsSettingsList>;
+
 export type UpdateProjectResponsePermissionsAiGatewayUsageList =
   Array<ACLAction>;
 export const UpdateProjectResponsePermissionsAiGatewayUsageList =
@@ -55195,6 +55354,13 @@ export const UpdateProjectResponsePermissionsProjectTransferInList =
     ACLAction,
   ) as any as S.Schema<UpdateProjectResponsePermissionsProjectTransferInList>;
 
+export type UpdateProjectResponsePermissionsProjectTransferRequestList =
+  Array<ACLAction>;
+export const UpdateProjectResponsePermissionsProjectTransferRequestList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UpdateProjectResponsePermissionsProjectTransferRequestList>;
+
 export type UpdateProjectResponsePermissionsProTrialOnboardingList =
   Array<ACLAction>;
 export const UpdateProjectResponsePermissionsProTrialOnboardingList =
@@ -56043,6 +56209,8 @@ export interface UpdateProjectResponsePermissions {
   aiGatewayGuardrails?: UpdateProjectResponsePermissionsAiGatewayGuardrailsList;
   aiGatewayRules?: UpdateProjectResponsePermissionsAiGatewayRulesList;
   aiGatewaySettings?: UpdateProjectResponsePermissionsAiGatewaySettingsList;
+  aiGatewayTranscripts?: UpdateProjectResponsePermissionsAiGatewayTranscriptsList;
+  aiGatewayTranscriptsSettings?: UpdateProjectResponsePermissionsAiGatewayTranscriptsSettingsList;
   aiGatewayUsage?: UpdateProjectResponsePermissionsAiGatewayUsageList;
   aiGatewayVirtualModelConfigs?: UpdateProjectResponsePermissionsAiGatewayVirtualModelConfigsList;
   alerts?: UpdateProjectResponsePermissionsAlertsList;
@@ -56175,6 +56343,7 @@ export interface UpdateProjectResponsePermissions {
   previewDeploymentSuffix?: UpdateProjectResponsePermissionsPreviewDeploymentSuffixList;
   privateCloudAccount?: UpdateProjectResponsePermissionsPrivateCloudAccountList;
   projectTransferIn?: UpdateProjectResponsePermissionsProjectTransferInList;
+  projectTransferRequest?: UpdateProjectResponsePermissionsProjectTransferRequestList;
   proTrialOnboarding?: UpdateProjectResponsePermissionsProTrialOnboardingList;
   rateLimit?: UpdateProjectResponsePermissionsRateLimitList;
   redis?: UpdateProjectResponsePermissionsRedisList;
@@ -56352,6 +56521,12 @@ export const UpdateProjectResponsePermissions = /*@__PURE__*/ S.suspend(() =>
     ),
     aiGatewaySettings: S.optional(
       UpdateProjectResponsePermissionsAiGatewaySettingsList,
+    ),
+    aiGatewayTranscripts: S.optional(
+      UpdateProjectResponsePermissionsAiGatewayTranscriptsList,
+    ),
+    aiGatewayTranscriptsSettings: S.optional(
+      UpdateProjectResponsePermissionsAiGatewayTranscriptsSettingsList,
     ),
     aiGatewayUsage: S.optional(
       UpdateProjectResponsePermissionsAiGatewayUsageList,
@@ -56682,6 +56857,9 @@ export const UpdateProjectResponsePermissions = /*@__PURE__*/ S.suspend(() =>
     ),
     projectTransferIn: S.optional(
       UpdateProjectResponsePermissionsProjectTransferInList,
+    ),
+    projectTransferRequest: S.optional(
+      UpdateProjectResponsePermissionsProjectTransferRequestList,
     ),
     proTrialOnboarding: S.optional(
       UpdateProjectResponsePermissionsProTrialOnboardingList,
@@ -60789,6 +60967,7 @@ export type UploadProjectAvatarResponseFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -60875,6 +61054,7 @@ export type UploadProjectAvatarResponseServicesItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -62761,6 +62941,20 @@ export const UploadProjectAvatarResponsePermissionsAiGatewaySettingsList =
     ACLAction,
   ) as any as S.Schema<UploadProjectAvatarResponsePermissionsAiGatewaySettingsList>;
 
+export type UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsList =
+  Array<ACLAction>;
+export const UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsList>;
+
+export type UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsSettingsList =
+  Array<ACLAction>;
+export const UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsSettingsList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsSettingsList>;
+
 export type UploadProjectAvatarResponsePermissionsAiGatewayUsageList =
   Array<ACLAction>;
 export const UploadProjectAvatarResponsePermissionsAiGatewayUsageList =
@@ -63677,6 +63871,13 @@ export const UploadProjectAvatarResponsePermissionsProjectTransferInList =
     ACLAction,
   ) as any as S.Schema<UploadProjectAvatarResponsePermissionsProjectTransferInList>;
 
+export type UploadProjectAvatarResponsePermissionsProjectTransferRequestList =
+  Array<ACLAction>;
+export const UploadProjectAvatarResponsePermissionsProjectTransferRequestList =
+  /*@__PURE__*/ S.Array(
+    ACLAction,
+  ) as any as S.Schema<UploadProjectAvatarResponsePermissionsProjectTransferRequestList>;
+
 export type UploadProjectAvatarResponsePermissionsProTrialOnboardingList =
   Array<ACLAction>;
 export const UploadProjectAvatarResponsePermissionsProTrialOnboardingList =
@@ -64564,6 +64765,8 @@ export interface UploadProjectAvatarResponsePermissions {
   aiGatewayGuardrails?: UploadProjectAvatarResponsePermissionsAiGatewayGuardrailsList;
   aiGatewayRules?: UploadProjectAvatarResponsePermissionsAiGatewayRulesList;
   aiGatewaySettings?: UploadProjectAvatarResponsePermissionsAiGatewaySettingsList;
+  aiGatewayTranscripts?: UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsList;
+  aiGatewayTranscriptsSettings?: UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsSettingsList;
   aiGatewayUsage?: UploadProjectAvatarResponsePermissionsAiGatewayUsageList;
   aiGatewayVirtualModelConfigs?: UploadProjectAvatarResponsePermissionsAiGatewayVirtualModelConfigsList;
   alerts?: UploadProjectAvatarResponsePermissionsAlertsList;
@@ -64696,6 +64899,7 @@ export interface UploadProjectAvatarResponsePermissions {
   previewDeploymentSuffix?: UploadProjectAvatarResponsePermissionsPreviewDeploymentSuffixList;
   privateCloudAccount?: UploadProjectAvatarResponsePermissionsPrivateCloudAccountList;
   projectTransferIn?: UploadProjectAvatarResponsePermissionsProjectTransferInList;
+  projectTransferRequest?: UploadProjectAvatarResponsePermissionsProjectTransferRequestList;
   proTrialOnboarding?: UploadProjectAvatarResponsePermissionsProTrialOnboardingList;
   rateLimit?: UploadProjectAvatarResponsePermissionsRateLimitList;
   redis?: UploadProjectAvatarResponsePermissionsRedisList;
@@ -64876,6 +65080,12 @@ export const UploadProjectAvatarResponsePermissions = /*@__PURE__*/ S.suspend(
       ),
       aiGatewaySettings: S.optional(
         UploadProjectAvatarResponsePermissionsAiGatewaySettingsList,
+      ),
+      aiGatewayTranscripts: S.optional(
+        UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsList,
+      ),
+      aiGatewayTranscriptsSettings: S.optional(
+        UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsSettingsList,
       ),
       aiGatewayUsage: S.optional(
         UploadProjectAvatarResponsePermissionsAiGatewayUsageList,
@@ -65246,6 +65456,9 @@ export const UploadProjectAvatarResponsePermissions = /*@__PURE__*/ S.suspend(
       ),
       projectTransferIn: S.optional(
         UploadProjectAvatarResponsePermissionsProjectTransferInList,
+      ),
+      projectTransferRequest: S.optional(
+        UploadProjectAvatarResponsePermissionsProjectTransferRequestList,
       ),
       proTrialOnboarding: S.optional(
         UploadProjectAvatarResponsePermissionsProTrialOnboardingList,
@@ -67866,6 +68079,26 @@ export const VerifyProjectDomainResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VerifyProjectDomainResponse",
 }) as any as S.Schema<VerifyProjectDomainResponse>;
 
+export type AcceptProjectTransferRequestError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | VercelOpError;
+/** Accept project transfer request Accept a project transfer request initated by another team. <br/> The `code` is generated using the `POST /projects/:idOrName/transfer-request` endpoint. */
+export const acceptProjectTransferRequest: API.OperationMethod<
+  AcceptProjectTransferRequestRequest,
+  AcceptProjectTransferRequestResponse,
+  AcceptProjectTransferRequestError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AcceptProjectTransferRequestRequest,
+  output: AcceptProjectTransferRequestResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
 export type AddProjectDomainError =
   | BadRequest
   | PaymentRequired
@@ -67951,6 +68184,7 @@ export const createProjectEnv: API.OperationMethod<
 export type CreateProjectTransferRequestError =
   | BadRequest
   | Forbidden
+  | Conflict
   | VercelOpError;
 /** Create project transfer request Initiates a project transfer request from one team to another. <br/> Returns a `code` that remains valid for 24 hours and can be used to accept the transfer request by another team using the `PUT /projects/transfer-request/:code` endpoint. <br/> Users can also accept the project transfer request using the claim URL: `https://vercel.com/claim-deployment?code=<code>&returnUrl=<returnUrl>`. <br/> The `code` parameter specifies the project transfer request code generated using this endpoint. <br/> The `returnUrl` parameter redirects users to a specific page of the application if the claim URL is invalid or expired. */
 export const createProjectTransferRequest: API.OperationMethod<
@@ -67961,7 +68195,7 @@ export const createProjectTransferRequest: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateProjectTransferRequestRequest,
   output: CreateProjectTransferRequestResponse,
-  errors: [BadRequest, Forbidden],
+  errors: [BadRequest, Forbidden, Conflict],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -68241,26 +68475,6 @@ export const removeProjectEnv: API.OperationMethod<
   input: RemoveProjectEnvRequest,
   output: RemoveProjectEnvResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
-  protocol: VercelProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RequestAcceptProjectTransferError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | VercelOpError;
-/** Accept project transfer request Accept a project transfer request initated by another team. <br/> The `code` is generated using the `POST /projects/:idOrName/transfer-request` endpoint. */
-export const requestAcceptProjectTransfer: API.OperationMethod<
-  RequestAcceptProjectTransferRequest,
-  RequestAcceptProjectTransferResponse,
-  RequestAcceptProjectTransferError,
-  VercelOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestAcceptProjectTransferRequest,
-  output: RequestAcceptProjectTransferResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));

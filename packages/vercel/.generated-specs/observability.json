@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.observability#GetObservabilityConfigurationProjectsRequest": {
@@ -602,19 +603,19 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.observability#GetObservabilityConfigurationProjects"
-        },
-        {
-          "target": "com.vercel.observability#UpdateObservabilityConfigurationProject"
-        },
-        {
           "target": "com.vercel.observability#CreateObservabilityQuery"
+        },
+        {
+          "target": "com.vercel.observability#GetObservabilityConfigurationProjects"
         },
         {
           "target": "com.vercel.observability#GetObservabilitySchema"
         },
         {
           "target": "com.vercel.observability#GetObservabilitySchemaByMetricId"
+        },
+        {
+          "target": "com.vercel.observability#UpdateObservabilityConfigurationProject"
         }
       ],
       "traits": {

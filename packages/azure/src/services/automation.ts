@@ -13,77 +13,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Gets or sets the agent registration key name - primary or secondary. */
-export type AgentRegistrationKeyName = "primary" | "secondary";
-export const AgentRegistrationKeyName = /*@__PURE__*/ S.String;
-
-export interface AgentRegistrationInformationRegenerateKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** Gets or sets the agent registration key name - primary or secondary. */
-  keyName: AgentRegistrationKeyName | (string & {});
-}
-export const AgentRegistrationInformationRegenerateKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      keyName: AgentRegistrationKeyName,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/agentRegistrationInformation/regenerateKey",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "AgentRegistrationInformationRegenerateKeyRequest",
-  }) as any as S.Schema<AgentRegistrationInformationRegenerateKeyRequest>;
-
-/** Definition of the agent registration keys. */
-export interface AgentRegistrationKeys {
-  /** Gets or sets the primary key. */
-  primary?: string;
-  /** Gets or sets the secondary key. */
-  secondary?: string;
-}
-export const AgentRegistrationKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primary: S.optional(S.String),
-    secondary: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AgentRegistrationKeys",
-}) as any as S.Schema<AgentRegistrationKeys>;
-
-/** Definition of the agent registration information type. */
-export interface AgentRegistration {
-  /** Gets or sets the dsc meta configuration. */
-  dscMetaConfiguration?: string;
-  /** Gets or sets the dsc server endpoint. */
-  endpoint?: string;
-  /** Gets or sets the agent registration keys. */
-  keys?: AgentRegistrationKeys;
-  /** Gets or sets the id. */
-  id?: string;
-}
-export const AgentRegistration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dscMetaConfiguration: S.optional(S.String),
-    endpoint: S.optional(S.String),
-    keys: S.optional(AgentRegistrationKeys),
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AgentRegistration",
-}) as any as S.Schema<AgentRegistration>;
-
 /** Gets or sets the SKU name of the account. */
 export type SkuNameEnum = "Free" | "Basic";
 export const SkuNameEnum = /*@__PURE__*/ S.String;
@@ -1057,13 +986,13 @@ export const CreateHybridRunbookWorkerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateHybridRunbookWorkerRequest>;
 
 /** Resource tags. */
-export type HybridRunbookWorkersCreateResponseTagsMap = {
+export type CreateHybridRunbookWorkerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HybridRunbookWorkersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateHybridRunbookWorkerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HybridRunbookWorkersCreateResponseTagsMap>;
+) as any as S.Schema<CreateHybridRunbookWorkerResponseTagsMap>;
 
 /** Type of the HybridWorker. */
 export type WorkerType = "HybridV1" | "HybridV2";
@@ -1107,7 +1036,7 @@ export interface CreateHybridRunbookWorkerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HybridRunbookWorkersCreateResponseTagsMap;
+  tags?: CreateHybridRunbookWorkerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the hybrid worker group properties. */
@@ -1119,7 +1048,7 @@ export const CreateHybridRunbookWorkerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HybridRunbookWorkersCreateResponseTagsMap),
+    tags: S.optional(CreateHybridRunbookWorkerResponseTagsMap),
     location: S.String,
     properties: S.optional(HybridRunbookWorkerProperties),
   }),
@@ -1190,14 +1119,14 @@ export const CreateHybridRunbookWorkerGroupRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateHybridRunbookWorkerGroupRequest>;
 
 /** Resource tags. */
-export type HybridRunbookWorkerGroupCreateResponseTagsMap = {
+export type CreateHybridRunbookWorkerGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HybridRunbookWorkerGroupCreateResponseTagsMap =
+export const CreateHybridRunbookWorkerGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<HybridRunbookWorkerGroupCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateHybridRunbookWorkerGroupResponseTagsMap>;
 
 /** Type of the HybridWorkerGroup. */
 export type GroupTypeEnum = "User" | "System";
@@ -1229,7 +1158,7 @@ export interface CreateHybridRunbookWorkerGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HybridRunbookWorkerGroupCreateResponseTagsMap;
+  tags?: CreateHybridRunbookWorkerGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the hybrid worker group properties. */
@@ -1242,7 +1171,7 @@ export const CreateHybridRunbookWorkerGroupResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(HybridRunbookWorkerGroupCreateResponseTagsMap),
+      tags: S.optional(CreateHybridRunbookWorkerGroupResponseTagsMap),
       location: S.String,
       properties: S.optional(HybridRunbookWorkerGroupProperties),
     }),
@@ -1577,13 +1506,13 @@ export const CreateJobScheduleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateJobScheduleResponse>;
 
 /** Resource tags. */
-export type RuntimeEnvironmentsCreateRequestTagsMap = {
+export type CreateRuntimeEnvironmentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const RuntimeEnvironmentsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateRuntimeEnvironmentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RuntimeEnvironmentsCreateRequestTagsMap>;
+) as any as S.Schema<CreateRuntimeEnvironmentRequestTagsMap>;
 
 /** Runtime properties. */
 export interface RuntimeProperties {
@@ -1640,7 +1569,7 @@ export interface CreateRuntimeEnvironmentRequest {
   /** The name of the Runtime Environment. */
   runtimeEnvironmentName: string;
   /** Resource tags. */
-  tags?: RuntimeEnvironmentsCreateRequestTagsMap;
+  tags?: CreateRuntimeEnvironmentRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the Runtime Environment properties. */
@@ -1652,7 +1581,7 @@ export const CreateRuntimeEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     automationAccountName: S.String.pipe(T.Label()),
     runtimeEnvironmentName: S.String.pipe(T.Label()),
-    tags: S.optional(RuntimeEnvironmentsCreateRequestTagsMap),
+    tags: S.optional(CreateRuntimeEnvironmentRequestTagsMap),
     location: S.String,
     properties: S.optional(RuntimeEnvironmentProperties),
   }).pipe(
@@ -1668,13 +1597,13 @@ export const CreateRuntimeEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRuntimeEnvironmentRequest>;
 
 /** Resource tags. */
-export type RuntimeEnvironmentsCreateResponseTagsMap = {
+export type CreateRuntimeEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RuntimeEnvironmentsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateRuntimeEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RuntimeEnvironmentsCreateResponseTagsMap>;
+) as any as S.Schema<CreateRuntimeEnvironmentResponseTagsMap>;
 
 export interface CreateRuntimeEnvironmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1686,7 +1615,7 @@ export interface CreateRuntimeEnvironmentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RuntimeEnvironmentsCreateResponseTagsMap;
+  tags?: CreateRuntimeEnvironmentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the Runtime Environment properties. */
@@ -1698,13 +1627,618 @@ export const CreateRuntimeEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RuntimeEnvironmentsCreateResponseTagsMap),
+    tags: S.optional(CreateRuntimeEnvironmentResponseTagsMap),
     location: S.String,
     properties: S.optional(RuntimeEnvironmentProperties),
   }),
 ).annotate({
   identifier: "CreateRuntimeEnvironmentResponse",
 }) as any as S.Schema<CreateRuntimeEnvironmentResponse>;
+
+/** Target operating system for the software update configuration. */
+export type OperatingSystemType = "Windows" | "Linux";
+export const OperatingSystemType = /*@__PURE__*/ S.String;
+
+/** Update classification included in the software update configuration. A comma separated string with required values */
+export type WindowsUpdateClasses =
+  | "Unclassified"
+  | "Critical"
+  | "Security"
+  | "UpdateRollup"
+  | "FeaturePack"
+  | "ServicePack"
+  | "Definition"
+  | "Tools"
+  | "Updates";
+export const WindowsUpdateClasses = /*@__PURE__*/ S.String;
+
+/** KB numbers excluded from the software update configuration. */
+export type WindowsPropertiesExcludedKbNumbersList = Array<string>;
+export const WindowsPropertiesExcludedKbNumbersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WindowsPropertiesExcludedKbNumbersList>;
+
+/** KB numbers included from the software update configuration. */
+export type WindowsPropertiesIncludedKbNumbersList = Array<string>;
+export const WindowsPropertiesIncludedKbNumbersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WindowsPropertiesIncludedKbNumbersList>;
+
+/** Windows specific update configuration. */
+export interface WindowsProperties {
+  /** Update classification included in the software update configuration. A comma separated string with required values */
+  includedUpdateClassifications?: WindowsUpdateClasses | (string & {});
+  /** KB numbers excluded from the software update configuration. */
+  excludedKbNumbers?: WindowsPropertiesExcludedKbNumbersList;
+  /** KB numbers included from the software update configuration. */
+  includedKbNumbers?: WindowsPropertiesIncludedKbNumbersList;
+  /** Reboot setting for the software update configuration. */
+  rebootSetting?: string;
+}
+export const WindowsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    includedUpdateClassifications: S.optional(WindowsUpdateClasses),
+    excludedKbNumbers: S.optional(WindowsPropertiesExcludedKbNumbersList),
+    includedKbNumbers: S.optional(WindowsPropertiesIncludedKbNumbersList),
+    rebootSetting: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WindowsProperties",
+}) as any as S.Schema<WindowsProperties>;
+
+/** Update classifications included in the software update configuration. */
+export type LinuxUpdateClasses =
+  | "Unclassified"
+  | "Critical"
+  | "Security"
+  | "Other";
+export const LinuxUpdateClasses = /*@__PURE__*/ S.String;
+
+/** packages excluded from the software update configuration. */
+export type LinuxPropertiesExcludedPackageNameMasksList = Array<string>;
+export const LinuxPropertiesExcludedPackageNameMasksList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LinuxPropertiesExcludedPackageNameMasksList>;
+
+/** packages included from the software update configuration. */
+export type LinuxPropertiesIncludedPackageNameMasksList = Array<string>;
+export const LinuxPropertiesIncludedPackageNameMasksList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LinuxPropertiesIncludedPackageNameMasksList>;
+
+/** Linux specific update configuration. */
+export interface LinuxProperties {
+  /** Update classifications included in the software update configuration. */
+  includedPackageClassifications?: LinuxUpdateClasses | (string & {});
+  /** packages excluded from the software update configuration. */
+  excludedPackageNameMasks?: LinuxPropertiesExcludedPackageNameMasksList;
+  /** packages included from the software update configuration. */
+  includedPackageNameMasks?: LinuxPropertiesIncludedPackageNameMasksList;
+  /** Reboot setting for the software update configuration. */
+  rebootSetting?: string;
+}
+export const LinuxProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    includedPackageClassifications: S.optional(LinuxUpdateClasses),
+    excludedPackageNameMasks: S.optional(
+      LinuxPropertiesExcludedPackageNameMasksList,
+    ),
+    includedPackageNameMasks: S.optional(
+      LinuxPropertiesIncludedPackageNameMasksList,
+    ),
+    rebootSetting: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LinuxProperties",
+}) as any as S.Schema<LinuxProperties>;
+
+/** List of azure resource Ids for azure virtual machines targeted by the software update configuration. */
+export type UpdateConfigurationAzureVirtualMachinesList = Array<string>;
+export const UpdateConfigurationAzureVirtualMachinesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateConfigurationAzureVirtualMachinesList>;
+
+/** List of names of non-azure machines targeted by the software update configuration. */
+export type UpdateConfigurationNonAzureComputerNamesList = Array<string>;
+export const UpdateConfigurationNonAzureComputerNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateConfigurationNonAzureComputerNamesList>;
+
+/** List of Subscription or Resource Group ARM Ids. */
+export type AzureQueryPropertiesScopeList = Array<string>;
+export const AzureQueryPropertiesScopeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AzureQueryPropertiesScopeList>;
+
+/** List of locations to scope the query to. */
+export type AzureQueryPropertiesLocationsList = Array<string>;
+export const AzureQueryPropertiesLocationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AzureQueryPropertiesLocationsList>;
+
+export type TagSettingsPropertiesTagsValueList = Array<string>;
+export const TagSettingsPropertiesTagsValueList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TagSettingsPropertiesTagsValueList>;
+
+/** Dictionary of tags with its list of values. */
+export type TagSettingsPropertiesTagsMap = {
+  [key: string]: TagSettingsPropertiesTagsValueList | undefined;
+};
+export const TagSettingsPropertiesTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TagSettingsPropertiesTagsValueList,
+) as any as S.Schema<TagSettingsPropertiesTagsMap>;
+
+/** Filter VMs by Any or All specified tags. */
+export type TagOperators = "All" | "Any";
+export const TagOperators = /*@__PURE__*/ S.String;
+
+/** Tag filter information for the VM. */
+export interface TagSettingsProperties {
+  /** Dictionary of tags with its list of values. */
+  tags?: TagSettingsPropertiesTagsMap;
+  /** Filter VMs by Any or All specified tags. */
+  filterOperator?: TagOperators | (string & {});
+}
+export const TagSettingsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tags: S.optional(TagSettingsPropertiesTagsMap),
+    filterOperator: S.optional(TagOperators),
+  }),
+).annotate({
+  identifier: "TagSettingsProperties",
+}) as any as S.Schema<TagSettingsProperties>;
+
+/** Azure query for the update configuration. */
+export interface AzureQueryProperties {
+  /** List of Subscription or Resource Group ARM Ids. */
+  scope?: AzureQueryPropertiesScopeList;
+  /** List of locations to scope the query to. */
+  locations?: AzureQueryPropertiesLocationsList;
+  /** Tag settings for the VM. */
+  tagSettings?: TagSettingsProperties;
+}
+export const AzureQueryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.optional(AzureQueryPropertiesScopeList),
+    locations: S.optional(AzureQueryPropertiesLocationsList),
+    tagSettings: S.optional(TagSettingsProperties),
+  }),
+).annotate({
+  identifier: "AzureQueryProperties",
+}) as any as S.Schema<AzureQueryProperties>;
+
+/** List of Azure queries in the software update configuration. */
+export type TargetPropertiesAzureQueriesList = Array<AzureQueryProperties>;
+export const TargetPropertiesAzureQueriesList = /*@__PURE__*/ S.Array(
+  AzureQueryProperties,
+) as any as S.Schema<TargetPropertiesAzureQueriesList>;
+
+/** Non Azure query for the update configuration. */
+export interface NonAzureQueryProperties {
+  /** Log Analytics Saved Search name. */
+  functionAlias?: string;
+  /** Workspace Id for Log Analytics in which the saved Search is resided. */
+  workspaceId?: string;
+}
+export const NonAzureQueryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    functionAlias: S.optional(S.String),
+    workspaceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NonAzureQueryProperties",
+}) as any as S.Schema<NonAzureQueryProperties>;
+
+/** List of non Azure queries in the software update configuration. */
+export type TargetPropertiesNonAzureQueriesList =
+  Array<NonAzureQueryProperties>;
+export const TargetPropertiesNonAzureQueriesList = /*@__PURE__*/ S.Array(
+  NonAzureQueryProperties,
+) as any as S.Schema<TargetPropertiesNonAzureQueriesList>;
+
+/** Group specific to the update configuration. */
+export interface TargetProperties {
+  /** List of Azure queries in the software update configuration. */
+  azureQueries?: TargetPropertiesAzureQueriesList;
+  /** List of non Azure queries in the software update configuration. */
+  nonAzureQueries?: TargetPropertiesNonAzureQueriesList;
+}
+export const TargetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    azureQueries: S.optional(TargetPropertiesAzureQueriesList),
+    nonAzureQueries: S.optional(TargetPropertiesNonAzureQueriesList),
+  }),
+).annotate({
+  identifier: "TargetProperties",
+}) as any as S.Schema<TargetProperties>;
+
+/** Update specific properties of the software update configuration. */
+export interface UpdateConfiguration {
+  /** operating system of target machines */
+  operatingSystem: OperatingSystemType | (string & {});
+  /** Windows specific update configuration. */
+  windows?: WindowsProperties;
+  /** Linux specific update configuration. */
+  linux?: LinuxProperties;
+  /** Maximum time allowed for the software update configuration run. Duration needs to be specified using the format PT[n]H[n]M[n]S as per ISO8601 */
+  duration?: string;
+  /** List of azure resource Ids for azure virtual machines targeted by the software update configuration. */
+  azureVirtualMachines?: UpdateConfigurationAzureVirtualMachinesList;
+  /** List of names of non-azure machines targeted by the software update configuration. */
+  nonAzureComputerNames?: UpdateConfigurationNonAzureComputerNamesList;
+  /** Group targets for the software update configuration. */
+  targets?: TargetProperties;
+}
+export const UpdateConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operatingSystem: OperatingSystemType,
+    windows: S.optional(WindowsProperties),
+    linux: S.optional(LinuxProperties),
+    duration: S.optional(S.String),
+    azureVirtualMachines: S.optional(
+      UpdateConfigurationAzureVirtualMachinesList,
+    ),
+    nonAzureComputerNames: S.optional(
+      UpdateConfigurationNonAzureComputerNamesList,
+    ),
+    targets: S.optional(TargetProperties),
+  }),
+).annotate({
+  identifier: "UpdateConfiguration",
+}) as any as S.Schema<UpdateConfiguration>;
+
+/** Gets or sets the frequency of the schedule. */
+export type ScheduleFrequency =
+  | "OneTime"
+  | "Day"
+  | "Hour"
+  | "Week"
+  | "Month"
+  | "Minute";
+export const ScheduleFrequency = /*@__PURE__*/ S.String;
+
+/** Days of the week that the job should execute on. */
+export type AdvancedScheduleWeekDaysList = Array<string>;
+export const AdvancedScheduleWeekDaysList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AdvancedScheduleWeekDaysList>;
+
+/** Days of the month that the job should execute on. Must be between 1 and 31. */
+export type AdvancedScheduleMonthDaysList = Array<number>;
+export const AdvancedScheduleMonthDaysList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<AdvancedScheduleMonthDaysList>;
+
+/** Day of the occurrence. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
+export type ScheduleDay =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday";
+export const ScheduleDay = /*@__PURE__*/ S.String;
+
+/** The properties of the create advanced schedule monthly occurrence. */
+export interface AdvancedScheduleMonthlyOccurrence {
+  /** Occurrence of the week within the month. Must be between 1 and 5 */
+  occurrence?: number;
+  /** Day of the occurrence. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
+  day?: ScheduleDay | (string & {});
+}
+export const AdvancedScheduleMonthlyOccurrence = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    occurrence: S.optional(S.Number),
+    day: S.optional(ScheduleDay),
+  }),
+).annotate({
+  identifier: "AdvancedScheduleMonthlyOccurrence",
+}) as any as S.Schema<AdvancedScheduleMonthlyOccurrence>;
+
+/** Occurrences of days within a month. */
+export type AdvancedScheduleMonthlyOccurrencesList =
+  Array<AdvancedScheduleMonthlyOccurrence>;
+export const AdvancedScheduleMonthlyOccurrencesList = /*@__PURE__*/ S.Array(
+  AdvancedScheduleMonthlyOccurrence,
+) as any as S.Schema<AdvancedScheduleMonthlyOccurrencesList>;
+
+/** The properties of the create Advanced Schedule. */
+export interface AdvancedSchedule {
+  /** Days of the week that the job should execute on. */
+  weekDays?: AdvancedScheduleWeekDaysList;
+  /** Days of the month that the job should execute on. Must be between 1 and 31. */
+  monthDays?: AdvancedScheduleMonthDaysList;
+  /** Occurrences of days within a month. */
+  monthlyOccurrences?: AdvancedScheduleMonthlyOccurrencesList;
+}
+export const AdvancedSchedule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    weekDays: S.optional(AdvancedScheduleWeekDaysList),
+    monthDays: S.optional(AdvancedScheduleMonthDaysList),
+    monthlyOccurrences: S.optional(AdvancedScheduleMonthlyOccurrencesList),
+  }),
+).annotate({
+  identifier: "AdvancedSchedule",
+}) as any as S.Schema<AdvancedSchedule>;
+
+/** Definition of schedule parameters. */
+export interface SUCSchedulePropertiesInput {
+  /** Gets or sets the start time of the schedule. */
+  startTime?: string;
+  /** Gets or sets the end time of the schedule. */
+  expiryTime?: string | null;
+  /** Gets or sets the expiry time's offset in minutes. */
+  expiryTimeOffsetMinutes?: number;
+  /** Gets or sets a value indicating whether this schedule is enabled. */
+  isEnabled?: boolean;
+  /** Gets or sets the next run time of the schedule. */
+  nextRun?: string | null;
+  /** Gets or sets the next run time's offset in minutes. */
+  nextRunOffsetMinutes?: number;
+  /** Gets or sets the interval of the schedule. */
+  interval?: number;
+  /** Gets or sets the frequency of the schedule. */
+  frequency?: ScheduleFrequency | (string & {});
+  /** Gets or sets the time zone of the schedule. */
+  timeZone?: string;
+  /** Gets or sets the advanced schedule. */
+  advancedSchedule?: AdvancedSchedule;
+  /** Gets or sets the creation time. */
+  creationTime?: string;
+  /** Gets or sets the last modified time. */
+  lastModifiedTime?: string;
+  /** Gets or sets the description. */
+  description?: string;
+}
+export const SUCSchedulePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    expiryTime: S.optional(S.NullOr(S.String)),
+    expiryTimeOffsetMinutes: S.optional(S.Number),
+    isEnabled: S.optional(S.Boolean),
+    nextRun: S.optional(S.NullOr(S.String)),
+    nextRunOffsetMinutes: S.optional(S.Number),
+    interval: S.optional(S.Number),
+    frequency: S.optional(ScheduleFrequency),
+    timeZone: S.optional(S.String),
+    advancedSchedule: S.optional(AdvancedSchedule),
+    creationTime: S.optional(S.String),
+    lastModifiedTime: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SUCSchedulePropertiesInput",
+}) as any as S.Schema<SUCSchedulePropertiesInput>;
+
+/** Error response of an operation failure */
+export interface AutomationErrorResponse {
+  /** Error code */
+  code?: string;
+  /** Error message indicating why the operation failed. */
+  message?: string;
+}
+export const AutomationErrorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AutomationErrorResponse",
+}) as any as S.Schema<AutomationErrorResponse>;
+
+/** Gets or sets the parameters of the task. */
+export type TaskPropertiesParametersMap = { [key: string]: string | undefined };
+export const TaskPropertiesParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TaskPropertiesParametersMap>;
+
+/** Task properties of the software update configuration. */
+export interface TaskProperties {
+  /** Gets or sets the parameters of the task. */
+  parameters?: TaskPropertiesParametersMap;
+  /** Gets or sets the name of the runbook. */
+  source?: string;
+}
+export const TaskProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    parameters: S.optional(TaskPropertiesParametersMap),
+    source: S.optional(S.String),
+  }),
+).annotate({ identifier: "TaskProperties" }) as any as S.Schema<TaskProperties>;
+
+/** Task properties of the software update configuration. */
+export interface SoftwareUpdateConfigurationTasks {
+  /** Pre task properties. */
+  preTask?: TaskProperties;
+  /** Post task properties. */
+  postTask?: TaskProperties;
+}
+export const SoftwareUpdateConfigurationTasks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    preTask: S.optional(TaskProperties),
+    postTask: S.optional(TaskProperties),
+  }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationTasks",
+}) as any as S.Schema<SoftwareUpdateConfigurationTasks>;
+
+/** Software update configuration properties. */
+export interface SoftwareUpdateConfigurationPropertiesInput {
+  /** update specific properties for the Software update configuration */
+  updateConfiguration: UpdateConfiguration;
+  /** Schedule information for the Software update configuration */
+  scheduleInfo: SUCSchedulePropertiesInput;
+  /** Details of provisioning error */
+  error?: AutomationErrorResponse;
+  /** Tasks information for the Software update configuration. */
+  tasks?: SoftwareUpdateConfigurationTasks;
+}
+export const SoftwareUpdateConfigurationPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      updateConfiguration: UpdateConfiguration,
+      scheduleInfo: SUCSchedulePropertiesInput,
+      error: S.optional(AutomationErrorResponse),
+      tasks: S.optional(SoftwareUpdateConfigurationTasks),
+    }),
+  ).annotate({
+    identifier: "SoftwareUpdateConfigurationPropertiesInput",
+  }) as any as S.Schema<SoftwareUpdateConfigurationPropertiesInput>;
+
+export interface CreateSoftwareUpdateConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The name of the software update configuration to be created. */
+  softwareUpdateConfigurationName: string;
+  /** Software update configuration properties. */
+  properties: SoftwareUpdateConfigurationPropertiesInput;
+}
+export const CreateSoftwareUpdateConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      softwareUpdateConfigurationName: S.String.pipe(T.Label()),
+      properties: SoftwareUpdateConfigurationPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+).annotate({
+  identifier: "CreateSoftwareUpdateConfigurationRequest",
+}) as any as S.Schema<CreateSoftwareUpdateConfigurationRequest>;
+
+/** Definition of schedule parameters. */
+export interface SUCScheduleProperties {
+  /** Gets or sets the start time of the schedule. */
+  startTime?: string;
+  /** Gets the start time's offset in minutes. */
+  startTimeOffsetMinutes?: number;
+  /** Gets or sets the end time of the schedule. */
+  expiryTime?: string | null;
+  /** Gets or sets the expiry time's offset in minutes. */
+  expiryTimeOffsetMinutes?: number;
+  /** Gets or sets a value indicating whether this schedule is enabled. */
+  isEnabled?: boolean;
+  /** Gets or sets the next run time of the schedule. */
+  nextRun?: string | null;
+  /** Gets or sets the next run time's offset in minutes. */
+  nextRunOffsetMinutes?: number;
+  /** Gets or sets the interval of the schedule. */
+  interval?: number;
+  /** Gets or sets the frequency of the schedule. */
+  frequency?: ScheduleFrequency;
+  /** Gets or sets the time zone of the schedule. */
+  timeZone?: string;
+  /** Gets or sets the advanced schedule. */
+  advancedSchedule?: AdvancedSchedule;
+  /** Gets or sets the creation time. */
+  creationTime?: string;
+  /** Gets or sets the last modified time. */
+  lastModifiedTime?: string;
+  /** Gets or sets the description. */
+  description?: string;
+}
+export const SUCScheduleProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    startTimeOffsetMinutes: S.optional(S.Number),
+    expiryTime: S.optional(S.NullOr(S.String)),
+    expiryTimeOffsetMinutes: S.optional(S.Number),
+    isEnabled: S.optional(S.Boolean),
+    nextRun: S.optional(S.NullOr(S.String)),
+    nextRunOffsetMinutes: S.optional(S.Number),
+    interval: S.optional(S.Number),
+    frequency: S.optional(ScheduleFrequency),
+    timeZone: S.optional(S.String),
+    advancedSchedule: S.optional(AdvancedSchedule),
+    creationTime: S.optional(S.String),
+    lastModifiedTime: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SUCScheduleProperties",
+}) as any as S.Schema<SUCScheduleProperties>;
+
+/** Software update configuration properties. */
+export interface SoftwareUpdateConfigurationProperties {
+  /** update specific properties for the Software update configuration */
+  updateConfiguration: UpdateConfiguration;
+  /** Schedule information for the Software update configuration */
+  scheduleInfo: SUCScheduleProperties;
+  /** Provisioning state for the software update configuration, which only appears in the response. */
+  provisioningState?: string;
+  /** Details of provisioning error */
+  error?: AutomationErrorResponse;
+  /** Creation time of the resource, which only appears in the response. */
+  creationTime?: string;
+  /** CreatedBy property, which only appears in the response. */
+  createdBy?: string;
+  /** Last time resource was modified, which only appears in the response. */
+  lastModifiedTime?: string;
+  /** LastModifiedBy property, which only appears in the response. */
+  lastModifiedBy?: string;
+  /** Tasks information for the Software update configuration. */
+  tasks?: SoftwareUpdateConfigurationTasks;
+}
+export const SoftwareUpdateConfigurationProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      updateConfiguration: UpdateConfiguration,
+      scheduleInfo: SUCScheduleProperties,
+      provisioningState: S.optional(S.String),
+      error: S.optional(AutomationErrorResponse),
+      creationTime: S.optional(S.String),
+      createdBy: S.optional(S.String),
+      lastModifiedTime: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      tasks: S.optional(SoftwareUpdateConfigurationTasks),
+    }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationProperties",
+}) as any as S.Schema<SoftwareUpdateConfigurationProperties>;
+
+export interface CreateSoftwareUpdateConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Software update configuration properties. */
+  properties: SoftwareUpdateConfigurationProperties;
+}
+export const CreateSoftwareUpdateConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: SoftwareUpdateConfigurationProperties,
+    }),
+  ).annotate({
+    identifier: "CreateSoftwareUpdateConfigurationResponse",
+  }) as any as S.Schema<CreateSoftwareUpdateConfigurationResponse>;
 
 /** Definition of create source control sync job properties. */
 export interface SourceControlSyncJobCreateProperties {
@@ -1813,13 +2347,13 @@ export const SourceControlSyncJob = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SourceControlSyncJob>;
 
 /** Gets or sets the parameters of the test job. */
-export type TestJobCreateRequestParametersMap = {
+export type CreateTestJobRequestParametersMap = {
   [key: string]: string | undefined;
 };
-export const TestJobCreateRequestParametersMap = /*@__PURE__*/ S.Record(
+export const CreateTestJobRequestParametersMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TestJobCreateRequestParametersMap>;
+) as any as S.Schema<CreateTestJobRequestParametersMap>;
 
 export interface CreateTestJobRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1831,7 +2365,7 @@ export interface CreateTestJobRequest {
   /** The runbook name. */
   runbookName: string;
   /** Gets or sets the parameters of the test job. */
-  parameters?: TestJobCreateRequestParametersMap;
+  parameters?: CreateTestJobRequestParametersMap;
   /** Gets or sets the runOn which specifies the group name where the job is to be executed. */
   runOn?: string;
   /** The runtime Environment Name on which job needs to be tested */
@@ -1843,7 +2377,7 @@ export const CreateTestJobRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     automationAccountName: S.String.pipe(T.Label()),
     runbookName: S.String.pipe(T.Label()),
-    parameters: S.optional(TestJobCreateRequestParametersMap),
+    parameters: S.optional(CreateTestJobRequestParametersMap),
     runOn: S.optional(S.String),
     runtimeEnvironment: S.optional(S.String),
   }).pipe(
@@ -2675,6 +3209,41 @@ export const DeleteScheduleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteScheduleResponse",
 }) as any as S.Schema<DeleteScheduleResponse>;
 
+export interface DeleteSoftwareUpdateConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The name of the software update configuration to be created. */
+  softwareUpdateConfigurationName: string;
+}
+export const DeleteSoftwareUpdateConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      softwareUpdateConfigurationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteSoftwareUpdateConfigurationRequest",
+}) as any as S.Schema<DeleteSoftwareUpdateConfigurationRequest>;
+
+export interface DeleteSoftwareUpdateConfigurationResponse {}
+export const DeleteSoftwareUpdateConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteSoftwareUpdateConfigurationResponse",
+  }) as any as S.Schema<DeleteSoftwareUpdateConfigurationResponse>;
+
 export interface DeleteSourceControlRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -3155,6 +3724,98 @@ export const DscNodeConfigurationCreateOrUpdateResponse =
     identifier: "DscNodeConfigurationCreateOrUpdateResponse",
   }) as any as S.Schema<DscNodeConfigurationCreateOrUpdateResponse>;
 
+export interface EditRunbookDraftUndoRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The runbook name. */
+  runbookName: string;
+}
+export const EditRunbookDraftUndoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    automationAccountName: S.String.pipe(T.Label()),
+    runbookName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/draft/undoEdit",
+      code: 200,
+      apiVersion: "2024-10-23",
+    }),
+  ),
+).annotate({
+  identifier: "EditRunbookDraftUndoRequest",
+}) as any as S.Schema<EditRunbookDraftUndoRequest>;
+
+export type HttpStatusCode =
+  | "Continue"
+  | "SwitchingProtocols"
+  | "OK"
+  | "Created"
+  | "Accepted"
+  | "NonAuthoritativeInformation"
+  | "NoContent"
+  | "ResetContent"
+  | "PartialContent"
+  | "MultipleChoices"
+  | "Ambiguous"
+  | "MovedPermanently"
+  | "Moved"
+  | "Found"
+  | "Redirect"
+  | "SeeOther"
+  | "RedirectMethod"
+  | "NotModified"
+  | "UseProxy"
+  | "Unused"
+  | "TemporaryRedirect"
+  | "RedirectKeepVerb"
+  | "BadRequest"
+  | "Unauthorized"
+  | "PaymentRequired"
+  | "Forbidden"
+  | "NotFound"
+  | "MethodNotAllowed"
+  | "NotAcceptable"
+  | "ProxyAuthenticationRequired"
+  | "RequestTimeout"
+  | "Conflict"
+  | "Gone"
+  | "LengthRequired"
+  | "PreconditionFailed"
+  | "RequestEntityTooLarge"
+  | "RequestUriTooLong"
+  | "UnsupportedMediaType"
+  | "RequestedRangeNotSatisfiable"
+  | "ExpectationFailed"
+  | "UpgradeRequired"
+  | "InternalServerError"
+  | "NotImplemented"
+  | "BadGateway"
+  | "ServiceUnavailable"
+  | "GatewayTimeout"
+  | "HttpVersionNotSupported";
+export const HttpStatusCode = /*@__PURE__*/ S.String;
+
+/** The response model for the undo edit runbook operation. */
+export interface EditRunbookDraftUndoResult {
+  statusCode?: HttpStatusCode;
+  requestId?: string;
+}
+export const EditRunbookDraftUndoResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    statusCode: S.optional(HttpStatusCode),
+    requestId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EditRunbookDraftUndoResult",
+}) as any as S.Schema<EditRunbookDraftUndoResult>;
+
 export interface GenerateWebhookUriRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -3399,6 +4060,44 @@ export const GetAgentRegistrationInformationRequest = /*@__PURE__*/ S.suspend(
   identifier: "GetAgentRegistrationInformationRequest",
 }) as any as S.Schema<GetAgentRegistrationInformationRequest>;
 
+/** Definition of the agent registration keys. */
+export interface AgentRegistrationKeys {
+  /** Gets or sets the primary key. */
+  primary?: string;
+  /** Gets or sets the secondary key. */
+  secondary?: string;
+}
+export const AgentRegistrationKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primary: S.optional(S.String),
+    secondary: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AgentRegistrationKeys",
+}) as any as S.Schema<AgentRegistrationKeys>;
+
+/** Definition of the agent registration information type. */
+export interface AgentRegistration {
+  /** Gets or sets the dsc meta configuration. */
+  dscMetaConfiguration?: string;
+  /** Gets or sets the dsc server endpoint. */
+  endpoint?: string;
+  /** Gets or sets the agent registration keys. */
+  keys?: AgentRegistrationKeys;
+  /** Gets or sets the id. */
+  id?: string;
+}
+export const AgentRegistration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dscMetaConfiguration: S.optional(S.String),
+    endpoint: S.optional(S.String),
+    keys: S.optional(AgentRegistrationKeys),
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AgentRegistration",
+}) as any as S.Schema<AgentRegistration>;
+
 export interface GetAutomationAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -3425,13 +4124,13 @@ export const GetAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAutomationAccountRequest>;
 
 /** Resource tags. */
-export type AutomationAccountGetResponseTagsMap = {
+export type GetAutomationAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AutomationAccountGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAutomationAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AutomationAccountGetResponseTagsMap>;
+) as any as S.Schema<GetAutomationAccountResponseTagsMap>;
 
 export interface GetAutomationAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3443,7 +4142,7 @@ export interface GetAutomationAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AutomationAccountGetResponseTagsMap;
+  tags?: GetAutomationAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the automation account properties. */
@@ -3459,7 +4158,7 @@ export const GetAutomationAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AutomationAccountGetResponseTagsMap),
+    tags: S.optional(GetAutomationAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AutomationAccountProperties),
     etag: S.optional(S.String),
@@ -3706,13 +4405,13 @@ export const GetDscConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDscConfigurationRequest>;
 
 /** Resource tags. */
-export type DscConfigurationGetResponseTagsMap = {
+export type GetDscConfigurationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DscConfigurationGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDscConfigurationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DscConfigurationGetResponseTagsMap>;
+) as any as S.Schema<GetDscConfigurationResponseTagsMap>;
 
 export interface GetDscConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3724,7 +4423,7 @@ export interface GetDscConfigurationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DscConfigurationGetResponseTagsMap;
+  tags?: GetDscConfigurationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the configuration properties. */
@@ -3738,7 +4437,7 @@ export const GetDscConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DscConfigurationGetResponseTagsMap),
+    tags: S.optional(GetDscConfigurationResponseTagsMap),
     location: S.String,
     properties: S.optional(DscConfigurationProperties),
     etag: S.optional(S.String),
@@ -4026,13 +4725,13 @@ export const GetHybridRunbookWorkerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHybridRunbookWorkerRequest>;
 
 /** Resource tags. */
-export type HybridRunbookWorkersGetResponseTagsMap = {
+export type GetHybridRunbookWorkerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HybridRunbookWorkersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetHybridRunbookWorkerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HybridRunbookWorkersGetResponseTagsMap>;
+) as any as S.Schema<GetHybridRunbookWorkerResponseTagsMap>;
 
 export interface GetHybridRunbookWorkerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4044,7 +4743,7 @@ export interface GetHybridRunbookWorkerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HybridRunbookWorkersGetResponseTagsMap;
+  tags?: GetHybridRunbookWorkerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the hybrid worker group properties. */
@@ -4056,7 +4755,7 @@ export const GetHybridRunbookWorkerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HybridRunbookWorkersGetResponseTagsMap),
+    tags: S.optional(GetHybridRunbookWorkerResponseTagsMap),
     location: S.String,
     properties: S.optional(HybridRunbookWorkerProperties),
   }),
@@ -4093,14 +4792,14 @@ export const GetHybridRunbookWorkerGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHybridRunbookWorkerGroupRequest>;
 
 /** Resource tags. */
-export type HybridRunbookWorkerGroupGetResponseTagsMap = {
+export type GetHybridRunbookWorkerGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HybridRunbookWorkerGroupGetResponseTagsMap =
+export const GetHybridRunbookWorkerGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<HybridRunbookWorkerGroupGetResponseTagsMap>;
+  ) as any as S.Schema<GetHybridRunbookWorkerGroupResponseTagsMap>;
 
 export interface GetHybridRunbookWorkerGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4112,7 +4811,7 @@ export interface GetHybridRunbookWorkerGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HybridRunbookWorkerGroupGetResponseTagsMap;
+  tags?: GetHybridRunbookWorkerGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the hybrid worker group properties. */
@@ -4124,7 +4823,7 @@ export const GetHybridRunbookWorkerGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HybridRunbookWorkerGroupGetResponseTagsMap),
+    tags: S.optional(GetHybridRunbookWorkerGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(HybridRunbookWorkerGroupProperties),
   }),
@@ -4462,11 +5161,11 @@ export const GetModuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetModuleRequest>;
 
 /** Resource tags. */
-export type ModuleGetResponseTagsMap = { [key: string]: string | undefined };
-export const ModuleGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetModuleResponseTagsMap = { [key: string]: string | undefined };
+export const GetModuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ModuleGetResponseTagsMap>;
+) as any as S.Schema<GetModuleResponseTagsMap>;
 
 /** Gets or sets the provisioning state of the module. */
 export type ModuleProvisioningState =
@@ -4574,7 +5273,7 @@ export interface GetModuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ModuleGetResponseTagsMap;
+  tags?: GetModuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the module properties. */
@@ -4588,7 +5287,7 @@ export const GetModuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ModuleGetResponseTagsMap),
+    tags: S.optional(GetModuleResponseTagsMap),
     location: S.String,
     properties: S.optional(ModuleProperties),
     etag: S.optional(S.String),
@@ -4597,10 +5296,10 @@ export const GetModuleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetModuleResponse",
 }) as any as S.Schema<GetModuleResponse>;
 
-export type NodeCountInformationGetRequestCountType =
+export type GetNodeCountInformationRequestCountType =
   | "status"
   | "nodeconfiguration";
-export const NodeCountInformationGetRequestCountType = /*@__PURE__*/ S.String;
+export const GetNodeCountInformationRequestCountType = /*@__PURE__*/ S.String;
 
 export interface GetNodeCountInformationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4610,14 +5309,14 @@ export interface GetNodeCountInformationRequest {
   /** The name of the automation account. */
   automationAccountName: string;
   /** The type of counts to retrieve */
-  countType: NodeCountInformationGetRequestCountType | (string & {});
+  countType: GetNodeCountInformationRequestCountType | (string & {});
 }
 export const GetNodeCountInformationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     automationAccountName: S.String.pipe(T.Label()),
-    countType: NodeCountInformationGetRequestCountType.pipe(T.Label()),
+    countType: GetNodeCountInformationRequestCountType.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4981,11 +5680,11 @@ export const GetPackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPackageRequest>;
 
 /** Resource tags. */
-export type PackageGetResponseTagsMap = { [key: string]: string | undefined };
-export const PackageGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetPackageResponseTagsMap = { [key: string]: string | undefined };
+export const GetPackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PackageGetResponseTagsMap>;
+) as any as S.Schema<GetPackageResponseTagsMap>;
 
 /** Gets or sets the provisioning state of the Package. */
 export type PackageProvisioningState =
@@ -5108,7 +5807,7 @@ export interface GetPackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PackageGetResponseTagsMap;
+  tags?: GetPackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the Package properties. */
@@ -5120,7 +5819,7 @@ export const GetPackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PackageGetResponseTagsMap),
+    tags: S.optional(GetPackageResponseTagsMap),
     location: S.String,
     properties: S.optional(PackageProperties),
   }),
@@ -5210,13 +5909,13 @@ export const GetPython2PackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPython2PackageRequest>;
 
 /** Resource tags. */
-export type Python2PackageGetResponseTagsMap = {
+export type GetPython2PackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const Python2PackageGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPython2PackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<Python2PackageGetResponseTagsMap>;
+) as any as S.Schema<GetPython2PackageResponseTagsMap>;
 
 export interface GetPython2PackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5228,7 +5927,7 @@ export interface GetPython2PackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: Python2PackageGetResponseTagsMap;
+  tags?: GetPython2PackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the module properties. */
@@ -5242,7 +5941,7 @@ export const GetPython2PackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(Python2PackageGetResponseTagsMap),
+    tags: S.optional(GetPython2PackageResponseTagsMap),
     location: S.String,
     properties: S.optional(ModuleProperties),
     etag: S.optional(S.String),
@@ -5280,13 +5979,13 @@ export const GetPython3PackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPython3PackageRequest>;
 
 /** Resource tags. */
-export type Python3PackageGetResponseTagsMap = {
+export type GetPython3PackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const Python3PackageGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPython3PackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<Python3PackageGetResponseTagsMap>;
+) as any as S.Schema<GetPython3PackageResponseTagsMap>;
 
 export interface GetPython3PackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5298,7 +5997,7 @@ export interface GetPython3PackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: Python3PackageGetResponseTagsMap;
+  tags?: GetPython3PackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the module properties. */
@@ -5312,7 +6011,7 @@ export const GetPython3PackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(Python3PackageGetResponseTagsMap),
+    tags: S.optional(GetPython3PackageResponseTagsMap),
     location: S.String,
     properties: S.optional(ModuleProperties),
     etag: S.optional(S.String),
@@ -5350,11 +6049,11 @@ export const GetRunbookRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRunbookRequest>;
 
 /** Resource tags. */
-export type RunbookGetResponseTagsMap = { [key: string]: string | undefined };
-export const RunbookGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetRunbookResponseTagsMap = { [key: string]: string | undefined };
+export const GetRunbookResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RunbookGetResponseTagsMap>;
+) as any as S.Schema<GetRunbookResponseTagsMap>;
 
 /** Gets or sets the type of the runbook. */
 export type RunbookTypeEnum =
@@ -5505,7 +6204,7 @@ export interface GetRunbookResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RunbookGetResponseTagsMap;
+  tags?: GetRunbookResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the runbook properties. */
@@ -5519,7 +6218,7 @@ export const GetRunbookResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RunbookGetResponseTagsMap),
+    tags: S.optional(GetRunbookResponseTagsMap),
     location: S.String,
     properties: S.optional(RunbookProperties),
     etag: S.optional(S.String),
@@ -5655,13 +6354,13 @@ export const GetRuntimeEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRuntimeEnvironmentRequest>;
 
 /** Resource tags. */
-export type RuntimeEnvironmentsGetResponseTagsMap = {
+export type GetRuntimeEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RuntimeEnvironmentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRuntimeEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RuntimeEnvironmentsGetResponseTagsMap>;
+) as any as S.Schema<GetRuntimeEnvironmentResponseTagsMap>;
 
 export interface GetRuntimeEnvironmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5673,7 +6372,7 @@ export interface GetRuntimeEnvironmentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RuntimeEnvironmentsGetResponseTagsMap;
+  tags?: GetRuntimeEnvironmentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the Runtime Environment properties. */
@@ -5685,7 +6384,7 @@ export const GetRuntimeEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RuntimeEnvironmentsGetResponseTagsMap),
+    tags: S.optional(GetRuntimeEnvironmentResponseTagsMap),
     location: S.String,
     properties: S.optional(RuntimeEnvironmentProperties),
   }),
@@ -5720,81 +6419,6 @@ export const GetScheduleRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetScheduleRequest",
 }) as any as S.Schema<GetScheduleRequest>;
-
-/** Gets or sets the frequency of the schedule. */
-export type ScheduleFrequency =
-  | "OneTime"
-  | "Day"
-  | "Hour"
-  | "Week"
-  | "Month"
-  | "Minute";
-export const ScheduleFrequency = /*@__PURE__*/ S.String;
-
-/** Days of the week that the job should execute on. */
-export type AdvancedScheduleWeekDaysList = Array<string>;
-export const AdvancedScheduleWeekDaysList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AdvancedScheduleWeekDaysList>;
-
-/** Days of the month that the job should execute on. Must be between 1 and 31. */
-export type AdvancedScheduleMonthDaysList = Array<number>;
-export const AdvancedScheduleMonthDaysList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<AdvancedScheduleMonthDaysList>;
-
-/** Day of the occurrence. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
-export type ScheduleDay =
-  | "Monday"
-  | "Tuesday"
-  | "Wednesday"
-  | "Thursday"
-  | "Friday"
-  | "Saturday"
-  | "Sunday";
-export const ScheduleDay = /*@__PURE__*/ S.String;
-
-/** The properties of the create advanced schedule monthly occurrence. */
-export interface AdvancedScheduleMonthlyOccurrence {
-  /** Occurrence of the week within the month. Must be between 1 and 5 */
-  occurrence?: number;
-  /** Day of the occurrence. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday. */
-  day?: ScheduleDay | (string & {});
-}
-export const AdvancedScheduleMonthlyOccurrence = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    occurrence: S.optional(S.Number),
-    day: S.optional(ScheduleDay),
-  }),
-).annotate({
-  identifier: "AdvancedScheduleMonthlyOccurrence",
-}) as any as S.Schema<AdvancedScheduleMonthlyOccurrence>;
-
-/** Occurrences of days within a month. */
-export type AdvancedScheduleMonthlyOccurrencesList =
-  Array<AdvancedScheduleMonthlyOccurrence>;
-export const AdvancedScheduleMonthlyOccurrencesList = /*@__PURE__*/ S.Array(
-  AdvancedScheduleMonthlyOccurrence,
-) as any as S.Schema<AdvancedScheduleMonthlyOccurrencesList>;
-
-/** The properties of the create Advanced Schedule. */
-export interface AdvancedSchedule {
-  /** Days of the week that the job should execute on. */
-  weekDays?: AdvancedScheduleWeekDaysList;
-  /** Days of the month that the job should execute on. Must be between 1 and 31. */
-  monthDays?: AdvancedScheduleMonthDaysList;
-  /** Occurrences of days within a month. */
-  monthlyOccurrences?: AdvancedScheduleMonthlyOccurrencesList;
-}
-export const AdvancedSchedule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    weekDays: S.optional(AdvancedScheduleWeekDaysList),
-    monthDays: S.optional(AdvancedScheduleMonthDaysList),
-    monthlyOccurrences: S.optional(AdvancedScheduleMonthlyOccurrencesList),
-  }),
-).annotate({
-  identifier: "AdvancedSchedule",
-}) as any as S.Schema<AdvancedSchedule>;
 
 /** Definition of schedule parameters. */
 export interface ScheduleProperties {
@@ -5871,6 +6495,326 @@ export const GetScheduleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetScheduleResponse",
 }) as any as S.Schema<GetScheduleResponse>;
+
+export interface GetSoftwareUpdateConfigurationByNameRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The name of the software update configuration to be created. */
+  softwareUpdateConfigurationName: string;
+}
+export const GetSoftwareUpdateConfigurationByNameRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      softwareUpdateConfigurationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetSoftwareUpdateConfigurationByNameRequest",
+  }) as any as S.Schema<GetSoftwareUpdateConfigurationByNameRequest>;
+
+export interface GetSoftwareUpdateConfigurationByNameResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Software update configuration properties. */
+  properties: SoftwareUpdateConfigurationProperties;
+}
+export const GetSoftwareUpdateConfigurationByNameResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: SoftwareUpdateConfigurationProperties,
+    }),
+  ).annotate({
+    identifier: "GetSoftwareUpdateConfigurationByNameResponse",
+  }) as any as S.Schema<GetSoftwareUpdateConfigurationByNameResponse>;
+
+export interface GetSoftwareUpdateConfigurationMachineRunByIdRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The Id of the software update configuration machine run. */
+  softwareUpdateConfigurationMachineRunId: string;
+}
+export const GetSoftwareUpdateConfigurationMachineRunByIdRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      softwareUpdateConfigurationMachineRunId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationMachineRuns/{softwareUpdateConfigurationMachineRunId}",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetSoftwareUpdateConfigurationMachineRunByIdRequest",
+  }) as any as S.Schema<GetSoftwareUpdateConfigurationMachineRunByIdRequest>;
+
+/** Software update configuration Run Navigation model. */
+export interface UpdateConfigurationNavigation {
+  /** Name of the software update configuration triggered the software update configuration run */
+  name?: string;
+}
+export const UpdateConfigurationNavigation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateConfigurationNavigation",
+}) as any as S.Schema<UpdateConfigurationNavigation>;
+
+/** Software update configuration machine run job navigation properties. */
+export interface JobNavigation {
+  /** Id of the job associated with the software update configuration run */
+  id?: string;
+}
+export const JobNavigation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({ identifier: "JobNavigation" }) as any as S.Schema<JobNavigation>;
+
+/** Software update configuration machine run properties. */
+export interface UpdateConfigurationMachineRunProperties {
+  /** name of the updated computer */
+  targetComputer?: string;
+  /** type of the updated computer. */
+  targetComputerType?: string;
+  /** software update configuration triggered this run */
+  softwareUpdateConfiguration?: UpdateConfigurationNavigation;
+  /** Status of the software update configuration machine run. */
+  status?: string;
+  /** Operating system target of the software update configuration triggered this run */
+  osType?: string;
+  /** correlation id of the software update configuration machine run */
+  correlationId?: string;
+  /** source computer id of the software update configuration machine run */
+  sourceComputerId?: string;
+  /** Start time of the software update configuration machine run. */
+  startTime?: string;
+  /** End time of the software update configuration machine run. */
+  endTime?: string | null;
+  /** configured duration for the software update configuration run. */
+  configuredDuration?: string;
+  /** Job associated with the software update configuration machine run */
+  job?: JobNavigation;
+  /** Creation time of the resource, which only appears in the response. */
+  creationTime?: string;
+  /** createdBy property, which only appears in the response. */
+  createdBy?: string;
+  /** Last time resource was modified, which only appears in the response. */
+  lastModifiedTime?: string;
+  /** lastModifiedBy property, which only appears in the response. */
+  lastModifiedBy?: string;
+  /** Details of provisioning error */
+  error?: AutomationErrorResponse;
+}
+export const UpdateConfigurationMachineRunProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      targetComputer: S.optional(S.String),
+      targetComputerType: S.optional(S.String),
+      softwareUpdateConfiguration: S.optional(UpdateConfigurationNavigation),
+      status: S.optional(S.String),
+      osType: S.optional(S.String),
+      correlationId: S.optional(S.String),
+      sourceComputerId: S.optional(S.String),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.NullOr(S.String)),
+      configuredDuration: S.optional(S.String),
+      job: S.optional(JobNavigation),
+      creationTime: S.optional(S.String),
+      createdBy: S.optional(S.String),
+      lastModifiedTime: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      error: S.optional(AutomationErrorResponse),
+    }),
+).annotate({
+  identifier: "UpdateConfigurationMachineRunProperties",
+}) as any as S.Schema<UpdateConfigurationMachineRunProperties>;
+
+/** Software update configuration machine run model. */
+export interface SoftwareUpdateConfigurationMachineRun {
+  /** Name of the software update configuration machine run */
+  name?: string;
+  /** Resource Id of the software update configuration machine run */
+  id?: string;
+  /** Software update configuration machine run properties. */
+  properties?: UpdateConfigurationMachineRunProperties;
+}
+export const SoftwareUpdateConfigurationMachineRun = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.String),
+      id: S.optional(S.String),
+      properties: S.optional(UpdateConfigurationMachineRunProperties),
+    }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationMachineRun",
+}) as any as S.Schema<SoftwareUpdateConfigurationMachineRun>;
+
+export interface GetSoftwareUpdateConfigurationRunByIdRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The Id of the software update configuration run. */
+  softwareUpdateConfigurationRunId: string;
+}
+export const GetSoftwareUpdateConfigurationRunByIdRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      softwareUpdateConfigurationRunId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationRuns/{softwareUpdateConfigurationRunId}",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetSoftwareUpdateConfigurationRunByIdRequest",
+  }) as any as S.Schema<GetSoftwareUpdateConfigurationRunByIdRequest>;
+
+/** Task properties of the software update configuration. */
+export interface SoftwareUpdateConfigurationRunTaskProperties {
+  /** The status of the task. */
+  status?: string;
+  /** The name of the source of the task. */
+  source?: string;
+  /** The job id of the task. */
+  jobId?: string;
+}
+export const SoftwareUpdateConfigurationRunTaskProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(S.String),
+      source: S.optional(S.String),
+      jobId: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "SoftwareUpdateConfigurationRunTaskProperties",
+  }) as any as S.Schema<SoftwareUpdateConfigurationRunTaskProperties>;
+
+/** Software update configuration run tasks model. */
+export interface SoftwareUpdateConfigurationRunTasks {
+  /** Pre task properties. */
+  preTask?: SoftwareUpdateConfigurationRunTaskProperties;
+  /** Post task properties. */
+  postTask?: SoftwareUpdateConfigurationRunTaskProperties;
+}
+export const SoftwareUpdateConfigurationRunTasks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    preTask: S.optional(SoftwareUpdateConfigurationRunTaskProperties),
+    postTask: S.optional(SoftwareUpdateConfigurationRunTaskProperties),
+  }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationRunTasks",
+}) as any as S.Schema<SoftwareUpdateConfigurationRunTasks>;
+
+/** Software update configuration properties. */
+export interface SoftwareUpdateConfigurationRunProperties {
+  /** software update configuration triggered this run */
+  softwareUpdateConfiguration?: UpdateConfigurationNavigation;
+  /** Status of the software update configuration run. */
+  status?: string;
+  /** Configured duration for the software update configuration run. */
+  configuredDuration?: string;
+  /** Operating system target of the software update configuration triggered this run */
+  osType?: string;
+  /** Start time of the software update configuration run. */
+  startTime?: string;
+  /** End time of the software update configuration run. */
+  endTime?: string | null;
+  /** Number of computers in the software update configuration run. */
+  computerCount?: number;
+  /** Number of computers with failed status. */
+  failedCount?: number;
+  /** Creation time of the resource, which only appears in the response. */
+  creationTime?: string;
+  /** CreatedBy property, which only appears in the response. */
+  createdBy?: string;
+  /** Last time resource was modified, which only appears in the response. */
+  lastModifiedTime?: string;
+  /** LastModifiedBy property, which only appears in the response. */
+  lastModifiedBy?: string;
+  /** Software update configuration tasks triggered in this run */
+  tasks?: SoftwareUpdateConfigurationRunTasks;
+}
+export const SoftwareUpdateConfigurationRunProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      softwareUpdateConfiguration: S.optional(UpdateConfigurationNavigation),
+      status: S.optional(S.String),
+      configuredDuration: S.optional(S.String),
+      osType: S.optional(S.String),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.NullOr(S.String)),
+      computerCount: S.optional(S.Number),
+      failedCount: S.optional(S.Number),
+      creationTime: S.optional(S.String),
+      createdBy: S.optional(S.String),
+      lastModifiedTime: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      tasks: S.optional(SoftwareUpdateConfigurationRunTasks),
+    }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationRunProperties",
+}) as any as S.Schema<SoftwareUpdateConfigurationRunProperties>;
+
+/** Software update configuration Run properties. */
+export interface SoftwareUpdateConfigurationRun {
+  /** Name of the software update configuration run. */
+  name?: string;
+  /** Resource Id of the software update configuration run */
+  id?: string;
+  /** Software update configuration Run properties. */
+  properties?: SoftwareUpdateConfigurationRunProperties;
+}
+export const SoftwareUpdateConfigurationRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    id: S.optional(S.String),
+    properties: S.optional(SoftwareUpdateConfigurationRunProperties),
+  }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationRun",
+}) as any as S.Schema<SoftwareUpdateConfigurationRun>;
 
 export interface GetSourceControlRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6348,11 +7292,11 @@ export const WatcherProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WatcherProperties>;
 
 /** Resource tags. */
-export type WatcherGetResponseTagsMap = { [key: string]: string | undefined };
-export const WatcherGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWatcherResponseTagsMap = { [key: string]: string | undefined };
+export const GetWatcherResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WatcherGetResponseTagsMap>;
+) as any as S.Schema<GetWatcherResponseTagsMap>;
 
 export interface GetWatcherResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6368,7 +7312,7 @@ export interface GetWatcherResponse {
   /** Gets or sets the etag of the resource. */
   etag?: string;
   /** Resource tags. */
-  tags?: WatcherGetResponseTagsMap;
+  tags?: GetWatcherResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -6380,7 +7324,7 @@ export const GetWatcherResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(WatcherProperties),
     etag: S.optional(S.String),
-    tags: S.optional(WatcherGetResponseTagsMap),
+    tags: S.optional(GetWatcherResponseTagsMap),
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -6490,79 +7434,6 @@ export const GetWebhookResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetWebhookResponse",
 }) as any as S.Schema<GetWebhookResponse>;
-
-export interface HybridRunbookWorkersMoveRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The hybrid runbook worker group name */
-  hybridRunbookWorkerGroupName: string;
-  /** The hybrid runbook worker id */
-  hybridRunbookWorkerId: string;
-}
-export const HybridRunbookWorkersMoveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    automationAccountName: S.String.pipe(T.Label()),
-    hybridRunbookWorkerGroupName: S.String.pipe(T.Label()),
-    hybridRunbookWorkerId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/hybridRunbookWorkerGroups/{hybridRunbookWorkerGroupName}/hybridRunbookWorkers/{hybridRunbookWorkerId}/move",
-      code: 200,
-      apiVersion: "2024-10-23",
-    }),
-  ),
-).annotate({
-  identifier: "HybridRunbookWorkersMoveRequest",
-}) as any as S.Schema<HybridRunbookWorkersMoveRequest>;
-
-export interface HybridRunbookWorkersMoveResponse {}
-export const HybridRunbookWorkersMoveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "HybridRunbookWorkersMoveResponse",
-}) as any as S.Schema<HybridRunbookWorkersMoveResponse>;
-
-export interface JobResumeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The job name. */
-  jobName: string;
-}
-export const JobResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    automationAccountName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/jobs/{jobName}/resume",
-      code: 200,
-      apiVersion: "2024-10-23",
-    }),
-  ),
-).annotate({
-  identifier: "JobResumeRequest",
-}) as any as S.Schema<JobResumeRequest>;
-
-export interface JobResumeResponse {}
-export const JobResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "JobResumeResponse",
-}) as any as S.Schema<JobResumeResponse>;
 
 export interface ListActivityByModuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6684,20 +7555,20 @@ export const AutomationAccountListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<AutomationAccountListResultValueList>;
 
 /** The response of a AutomationAccount list operation. */
-export interface ListAutomationAccountResult {
+export interface AutomationAccountListResult {
   /** The AutomationAccount items on this page */
   value: AutomationAccountListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListAutomationAccountResult = /*@__PURE__*/ S.suspend(() =>
+export const AutomationAccountListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: AutomationAccountListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListAutomationAccountResult",
-}) as any as S.Schema<ListAutomationAccountResult>;
+  identifier: "AutomationAccountListResult",
+}) as any as S.Schema<AutomationAccountListResult>;
 
 export interface ListAutomationAccountByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7966,7 +8837,7 @@ export const JobStreamListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobStreamListResult",
 }) as any as S.Schema<JobStreamListResult>;
 
-export interface ListKeyByAutomationAccountRequest {
+export interface ListKeysByAutomationAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7974,7 +8845,7 @@ export interface ListKeyByAutomationAccountRequest {
   /** The name of the automation account. */
   automationAccountName: string;
 }
-export const ListKeyByAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListKeysByAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7988,8 +8859,8 @@ export const ListKeyByAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListKeyByAutomationAccountRequest",
-}) as any as S.Schema<ListKeyByAutomationAccountRequest>;
+  identifier: "ListKeysByAutomationAccountRequest",
+}) as any as S.Schema<ListKeysByAutomationAccountRequest>;
 
 /** Automation key name. */
 export type AutomationKeyName = "Primary" | "Secondary";
@@ -8172,39 +9043,7 @@ export const DscNodeReportListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DscNodeReportListResult",
 }) as any as S.Schema<DscNodeReportListResult>;
 
-export interface ListObjectDataTypeFieldByModuleAndTypeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The module name. */
-  moduleName: string;
-  /** The name of type. */
-  typeName: string;
-}
-export const ListObjectDataTypeFieldByModuleAndTypeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      moduleName: S.String.pipe(T.Label()),
-      typeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/modules/{moduleName}/objectDataTypes/{typeName}/fields",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListObjectDataTypeFieldByModuleAndTypeRequest",
-  }) as any as S.Schema<ListObjectDataTypeFieldByModuleAndTypeRequest>;
-
-export interface ListObjectDataTypeFieldByTypeRequest {
+export interface ListObjectDataTypeFieldsByTypeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8214,7 +9053,7 @@ export interface ListObjectDataTypeFieldByTypeRequest {
   /** The name of type. */
   typeName: string;
 }
-export const ListObjectDataTypeFieldByTypeRequest = /*@__PURE__*/ S.suspend(
+export const ListObjectDataTypeFieldsByTypeRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8230,8 +9069,8 @@ export const ListObjectDataTypeFieldByTypeRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListObjectDataTypeFieldByTypeRequest",
-}) as any as S.Schema<ListObjectDataTypeFieldByTypeRequest>;
+  identifier: "ListObjectDataTypeFieldsByTypeRequest",
+}) as any as S.Schema<ListObjectDataTypeFieldsByTypeRequest>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -8862,6 +9701,232 @@ export const ScheduleListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScheduleListResult",
 }) as any as S.Schema<ScheduleListResult>;
 
+export interface ListSoftwareUpdateConfigurationMachineRunsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The filter to apply on the operation. You can use the following filters: 'properties/osType', 'properties/status', 'properties/startTime', and 'properties/softwareUpdateConfiguration/name' */
+  _filter?: string;
+  /** number of entries you skip before returning results */
+  _skip?: string;
+  /** Maximum number of entries returned in the results collection */
+  _top?: string;
+}
+export const ListSoftwareUpdateConfigurationMachineRunsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _skip: S.optional(S.String.pipe(T.Query("$skip"))),
+      _top: S.optional(S.String.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationMachineRuns",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSoftwareUpdateConfigurationMachineRunsRequest",
+  }) as any as S.Schema<ListSoftwareUpdateConfigurationMachineRunsRequest>;
+
+/** The softwareUpdateConfigurationMachineRun items on this page */
+export type SoftwareUpdateConfigurationMachineRunListResultValueList =
+  Array<SoftwareUpdateConfigurationMachineRun>;
+export const SoftwareUpdateConfigurationMachineRunListResultValueList =
+  /*@__PURE__*/ S.Array(
+    SoftwareUpdateConfigurationMachineRun,
+  ) as any as S.Schema<SoftwareUpdateConfigurationMachineRunListResultValueList>;
+
+/** result of listing all software update configuration machine runs */
+export interface SoftwareUpdateConfigurationMachineRunListResult {
+  /** The softwareUpdateConfigurationMachineRun items on this page */
+  value: SoftwareUpdateConfigurationMachineRunListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SoftwareUpdateConfigurationMachineRunListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: SoftwareUpdateConfigurationMachineRunListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "SoftwareUpdateConfigurationMachineRunListResult",
+  }) as any as S.Schema<SoftwareUpdateConfigurationMachineRunListResult>;
+
+export interface ListSoftwareUpdateConfigurationRunsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The filter to apply on the operation. You can use the following filters: 'properties/osType', 'properties/status', 'properties/startTime', and 'properties/softwareUpdateConfiguration/name' */
+  _filter?: string;
+  /** Number of entries you skip before returning results */
+  _skip?: string;
+  /** Maximum number of entries returned in the results collection */
+  _top?: string;
+}
+export const ListSoftwareUpdateConfigurationRunsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _skip: S.optional(S.String.pipe(T.Query("$skip"))),
+      _top: S.optional(S.String.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationRuns",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSoftwareUpdateConfigurationRunsRequest",
+  }) as any as S.Schema<ListSoftwareUpdateConfigurationRunsRequest>;
+
+/** The softwareUpdateConfigurationRun items on this page */
+export type SoftwareUpdateConfigurationRunListResultValueList =
+  Array<SoftwareUpdateConfigurationRun>;
+export const SoftwareUpdateConfigurationRunListResultValueList =
+  /*@__PURE__*/ S.Array(
+    SoftwareUpdateConfigurationRun,
+  ) as any as S.Schema<SoftwareUpdateConfigurationRunListResultValueList>;
+
+/** result of listing all software update configuration runs */
+export interface SoftwareUpdateConfigurationRunListResult {
+  /** The softwareUpdateConfigurationRun items on this page */
+  value: SoftwareUpdateConfigurationRunListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SoftwareUpdateConfigurationRunListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: SoftwareUpdateConfigurationRunListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationRunListResult",
+}) as any as S.Schema<SoftwareUpdateConfigurationRunListResult>;
+
+export interface ListSoftwareUpdateConfigurationsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The filter to apply on the operation. */
+  _filter?: string;
+}
+export const ListSoftwareUpdateConfigurationsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+).annotate({
+  identifier: "ListSoftwareUpdateConfigurationsRequest",
+}) as any as S.Schema<ListSoftwareUpdateConfigurationsRequest>;
+
+/** Software update configuration collection item properties. */
+export interface SoftwareUpdateConfigurationCollectionItemProperties {
+  /** Update specific properties of the software update configuration. */
+  updateConfiguration?: UpdateConfiguration;
+  /** Pre and Post Tasks defined */
+  tasks?: SoftwareUpdateConfigurationTasks;
+  /** execution frequency of the schedule associated with the software update configuration */
+  frequency?: ScheduleFrequency;
+  /** the start time of the update. */
+  startTime?: string;
+  /** Creation time of the software update configuration, which only appears in the response. */
+  creationTime?: string;
+  /** Last time software update configuration was modified, which only appears in the response. */
+  lastModifiedTime?: string;
+  /** Provisioning state for the software update configuration, which only appears in the response. */
+  provisioningState?: string;
+  /** ext run time of the update. */
+  nextRun?: string | null;
+}
+export const SoftwareUpdateConfigurationCollectionItemProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      updateConfiguration: S.optional(UpdateConfiguration),
+      tasks: S.optional(SoftwareUpdateConfigurationTasks),
+      frequency: S.optional(ScheduleFrequency),
+      startTime: S.optional(S.String),
+      creationTime: S.optional(S.String),
+      lastModifiedTime: S.optional(S.String),
+      provisioningState: S.optional(S.String),
+      nextRun: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "SoftwareUpdateConfigurationCollectionItemProperties",
+  }) as any as S.Schema<SoftwareUpdateConfigurationCollectionItemProperties>;
+
+/** Software update configuration collection item properties. */
+export interface SoftwareUpdateConfigurationCollectionItem {
+  /** Name of the software update configuration. */
+  name?: string;
+  /** Resource Id of the software update configuration */
+  id?: string;
+  /** Software update configuration properties. */
+  properties: SoftwareUpdateConfigurationCollectionItemProperties;
+}
+export const SoftwareUpdateConfigurationCollectionItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.optional(S.String),
+      id: S.optional(S.String),
+      properties: SoftwareUpdateConfigurationCollectionItemProperties,
+    }),
+  ).annotate({
+    identifier: "SoftwareUpdateConfigurationCollectionItem",
+  }) as any as S.Schema<SoftwareUpdateConfigurationCollectionItem>;
+
+/** outer object returned when listing all software update configurations */
+export type SoftwareUpdateConfigurationListResultValueList =
+  Array<SoftwareUpdateConfigurationCollectionItem>;
+export const SoftwareUpdateConfigurationListResultValueList =
+  /*@__PURE__*/ S.Array(
+    SoftwareUpdateConfigurationCollectionItem,
+  ) as any as S.Schema<SoftwareUpdateConfigurationListResultValueList>;
+
+/** result of listing all software update configuration */
+export interface SoftwareUpdateConfigurationListResult {
+  /** outer object returned when listing all software update configurations */
+  value?: SoftwareUpdateConfigurationListResultValueList;
+}
+export const SoftwareUpdateConfigurationListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(SoftwareUpdateConfigurationListResultValueList),
+    }),
+).annotate({
+  identifier: "SoftwareUpdateConfigurationListResult",
+}) as any as S.Schema<SoftwareUpdateConfigurationListResult>;
+
 export interface ListSourceControlByAutomationAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -8991,7 +10056,7 @@ export const SourceControlSyncJobListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SourceControlSyncJobListResult",
 }) as any as S.Schema<SourceControlSyncJobListResult>;
 
-export interface SourceControlSyncJobStreamsListBySyncJobRequest {
+export interface ListSourceControlSyncJobStreamBySyncJobRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9005,7 +10070,7 @@ export interface SourceControlSyncJobStreamsListBySyncJobRequest {
   /** The filter to apply on the operation. */
   _filter?: string;
 }
-export const SourceControlSyncJobStreamsListBySyncJobRequest =
+export const ListSourceControlSyncJobStreamBySyncJobRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9023,8 +10088,8 @@ export const SourceControlSyncJobStreamsListBySyncJobRequest =
       }),
     ),
   ).annotate({
-    identifier: "SourceControlSyncJobStreamsListBySyncJobRequest",
-  }) as any as S.Schema<SourceControlSyncJobStreamsListBySyncJobRequest>;
+    identifier: "ListSourceControlSyncJobStreamBySyncJobRequest",
+  }) as any as S.Schema<ListSourceControlSyncJobStreamBySyncJobRequest>;
 
 /** Definition of source control sync job stream properties. */
 export interface SourceControlSyncJobStreamProperties {
@@ -9090,7 +10155,7 @@ export const SourceControlSyncJobStreamsListBySyncJob = /*@__PURE__*/ S.suspend(
   identifier: "SourceControlSyncJobStreamsListBySyncJob",
 }) as any as S.Schema<SourceControlSyncJobStreamsListBySyncJob>;
 
-export interface ListStatisticByAutomationAccountRequest {
+export interface ListStatisticsByAutomationAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9100,7 +10165,7 @@ export interface ListStatisticByAutomationAccountRequest {
   /** The filter to apply on the operation. */
   _filter?: string;
 }
-export const ListStatisticByAutomationAccountRequest = /*@__PURE__*/ S.suspend(
+export const ListStatisticsByAutomationAccountRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9116,8 +10181,8 @@ export const ListStatisticByAutomationAccountRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListStatisticByAutomationAccountRequest",
-}) as any as S.Schema<ListStatisticByAutomationAccountRequest>;
+  identifier: "ListStatisticsByAutomationAccountRequest",
+}) as any as S.Schema<ListStatisticsByAutomationAccountRequest>;
 
 /** Definition of the statistic. */
 export interface Statistics {
@@ -9621,6 +10686,76 @@ export const ModuleCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ModuleCreateOrUpdateResponse",
 }) as any as S.Schema<ModuleCreateOrUpdateResponse>;
 
+export interface MoveHybridRunbookWorkerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The hybrid runbook worker group name */
+  hybridRunbookWorkerGroupName: string;
+  /** The hybrid runbook worker id */
+  hybridRunbookWorkerId: string;
+}
+export const MoveHybridRunbookWorkerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    automationAccountName: S.String.pipe(T.Label()),
+    hybridRunbookWorkerGroupName: S.String.pipe(T.Label()),
+    hybridRunbookWorkerId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/hybridRunbookWorkerGroups/{hybridRunbookWorkerGroupName}/hybridRunbookWorkers/{hybridRunbookWorkerId}/move",
+      code: 200,
+      apiVersion: "2024-10-23",
+    }),
+  ),
+).annotate({
+  identifier: "MoveHybridRunbookWorkerRequest",
+}) as any as S.Schema<MoveHybridRunbookWorkerRequest>;
+
+export interface MoveHybridRunbookWorkerResponse {}
+export const MoveHybridRunbookWorkerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MoveHybridRunbookWorkerResponse",
+}) as any as S.Schema<MoveHybridRunbookWorkerResponse>;
+
+export interface ObjectDataTypesListFieldsByModuleAndTypeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The module name. */
+  moduleName: string;
+  /** The name of type. */
+  typeName: string;
+}
+export const ObjectDataTypesListFieldsByModuleAndTypeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      moduleName: S.String.pipe(T.Label()),
+      typeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/modules/{moduleName}/objectDataTypes/{typeName}/fields",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+  ).annotate({
+    identifier: "ObjectDataTypesListFieldsByModuleAndTypeRequest",
+  }) as any as S.Schema<ObjectDataTypesListFieldsByModuleAndTypeRequest>;
+
 /** The parameters supplied to the create or update package properties. */
 export interface PackageCreateOrUpdateProperties {
   /** Gets or sets the package content link. */
@@ -9770,13 +10905,13 @@ export const PatchHybridRunbookWorkerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchHybridRunbookWorkerRequest>;
 
 /** Resource tags. */
-export type HybridRunbookWorkersPatchResponseTagsMap = {
+export type PatchHybridRunbookWorkerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HybridRunbookWorkersPatchResponseTagsMap = /*@__PURE__*/ S.Record(
+export const PatchHybridRunbookWorkerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HybridRunbookWorkersPatchResponseTagsMap>;
+) as any as S.Schema<PatchHybridRunbookWorkerResponseTagsMap>;
 
 export interface PatchHybridRunbookWorkerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9788,7 +10923,7 @@ export interface PatchHybridRunbookWorkerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HybridRunbookWorkersPatchResponseTagsMap;
+  tags?: PatchHybridRunbookWorkerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the hybrid worker group properties. */
@@ -9800,7 +10935,7 @@ export const PatchHybridRunbookWorkerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HybridRunbookWorkersPatchResponseTagsMap),
+    tags: S.optional(PatchHybridRunbookWorkerResponseTagsMap),
     location: S.String,
     properties: S.optional(HybridRunbookWorkerProperties),
   }),
@@ -10011,6 +11146,41 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
+export interface PublishRunbookRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The runbook name. */
+  runbookName: string;
+}
+export const PublishRunbookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    automationAccountName: S.String.pipe(T.Label()),
+    runbookName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/publish",
+      code: 200,
+      apiVersion: "2024-10-23",
+    }),
+  ),
+).annotate({
+  identifier: "PublishRunbookRequest",
+}) as any as S.Schema<PublishRunbookRequest>;
+
+export interface PublishRunbookResponse {}
+export const PublishRunbookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PublishRunbookResponse",
+}) as any as S.Schema<PublishRunbookResponse>;
+
 /** The parameters supplied to the create or update module properties. */
 export type PythonPackageCreateProperties = ModuleCreateOrUpdateProperties;
 export const PythonPackageCreateProperties = ModuleCreateOrUpdateProperties;
@@ -10191,6 +11361,146 @@ export const Python3PackageCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "Python3PackageCreateOrUpdateResponse",
 }) as any as S.Schema<Python3PackageCreateOrUpdateResponse>;
 
+/** Gets or sets the agent registration key name - primary or secondary. */
+export type AgentRegistrationKeyName = "primary" | "secondary";
+export const AgentRegistrationKeyName = /*@__PURE__*/ S.String;
+
+export interface RegenerateAgentRegistrationInformationKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** Gets or sets the agent registration key name - primary or secondary. */
+  keyName: AgentRegistrationKeyName | (string & {});
+}
+export const RegenerateAgentRegistrationInformationKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      automationAccountName: S.String.pipe(T.Label()),
+      keyName: AgentRegistrationKeyName,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/agentRegistrationInformation/regenerateKey",
+        code: 200,
+        apiVersion: "2024-10-23",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateAgentRegistrationInformationKeyRequest",
+  }) as any as S.Schema<RegenerateAgentRegistrationInformationKeyRequest>;
+
+export interface ReplaceRunbookDraftContentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The runbook name. */
+  runbookName: string;
+  body: string;
+}
+export const ReplaceRunbookDraftContentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    automationAccountName: S.String.pipe(T.Label()),
+    runbookName: S.String.pipe(T.Label()),
+    body: S.String.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/draft/content",
+      code: 200,
+      apiVersion: "2024-10-23",
+    }),
+  ),
+).annotate({
+  identifier: "ReplaceRunbookDraftContentRequest",
+}) as any as S.Schema<ReplaceRunbookDraftContentRequest>;
+
+export interface ReplaceRunbookDraftContentResponse {}
+export const ReplaceRunbookDraftContentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ReplaceRunbookDraftContentResponse",
+}) as any as S.Schema<ReplaceRunbookDraftContentResponse>;
+
+export interface ResumeJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The job name. */
+  jobName: string;
+}
+export const ResumeJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    automationAccountName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/jobs/{jobName}/resume",
+      code: 200,
+      apiVersion: "2024-10-23",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeJobRequest",
+}) as any as S.Schema<ResumeJobRequest>;
+
+export interface ResumeJobResponse {}
+export const ResumeJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResumeJobResponse",
+}) as any as S.Schema<ResumeJobResponse>;
+
+export interface ResumeTestJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the automation account. */
+  automationAccountName: string;
+  /** The runbook name. */
+  runbookName: string;
+}
+export const ResumeTestJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    automationAccountName: S.String.pipe(T.Label()),
+    runbookName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/draft/testJob/resume",
+      code: 200,
+      apiVersion: "2024-10-23",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeTestJobRequest",
+}) as any as S.Schema<ResumeTestJobRequest>;
+
+export interface ResumeTestJobResponse {}
+export const ResumeTestJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResumeTestJobResponse",
+}) as any as S.Schema<ResumeTestJobResponse>;
+
 /** The parameters supplied to the create or update runbook properties. */
 export interface RunbookCreateOrUpdateProperties {
   /** Gets or sets verbose log option. */
@@ -10316,170 +11626,6 @@ export const RunbookCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunbookCreateOrUpdateResponse",
 }) as any as S.Schema<RunbookCreateOrUpdateResponse>;
 
-export interface RunbookDraftReplaceContentRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The runbook name. */
-  runbookName: string;
-  body: string;
-}
-export const RunbookDraftReplaceContentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    automationAccountName: S.String.pipe(T.Label()),
-    runbookName: S.String.pipe(T.Label()),
-    body: S.String.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/draft/content",
-      code: 200,
-      apiVersion: "2024-10-23",
-    }),
-  ),
-).annotate({
-  identifier: "RunbookDraftReplaceContentRequest",
-}) as any as S.Schema<RunbookDraftReplaceContentRequest>;
-
-export interface RunbookDraftReplaceContentResponse {}
-export const RunbookDraftReplaceContentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RunbookDraftReplaceContentResponse",
-}) as any as S.Schema<RunbookDraftReplaceContentResponse>;
-
-export interface RunbookDraftUndoEditRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The runbook name. */
-  runbookName: string;
-}
-export const RunbookDraftUndoEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    automationAccountName: S.String.pipe(T.Label()),
-    runbookName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/draft/undoEdit",
-      code: 200,
-      apiVersion: "2024-10-23",
-    }),
-  ),
-).annotate({
-  identifier: "RunbookDraftUndoEditRequest",
-}) as any as S.Schema<RunbookDraftUndoEditRequest>;
-
-export type HttpStatusCode =
-  | "Continue"
-  | "SwitchingProtocols"
-  | "OK"
-  | "Created"
-  | "Accepted"
-  | "NonAuthoritativeInformation"
-  | "NoContent"
-  | "ResetContent"
-  | "PartialContent"
-  | "MultipleChoices"
-  | "Ambiguous"
-  | "MovedPermanently"
-  | "Moved"
-  | "Found"
-  | "Redirect"
-  | "SeeOther"
-  | "RedirectMethod"
-  | "NotModified"
-  | "UseProxy"
-  | "Unused"
-  | "TemporaryRedirect"
-  | "RedirectKeepVerb"
-  | "BadRequest"
-  | "Unauthorized"
-  | "PaymentRequired"
-  | "Forbidden"
-  | "NotFound"
-  | "MethodNotAllowed"
-  | "NotAcceptable"
-  | "ProxyAuthenticationRequired"
-  | "RequestTimeout"
-  | "Conflict"
-  | "Gone"
-  | "LengthRequired"
-  | "PreconditionFailed"
-  | "RequestEntityTooLarge"
-  | "RequestUriTooLong"
-  | "UnsupportedMediaType"
-  | "RequestedRangeNotSatisfiable"
-  | "ExpectationFailed"
-  | "UpgradeRequired"
-  | "InternalServerError"
-  | "NotImplemented"
-  | "BadGateway"
-  | "ServiceUnavailable"
-  | "GatewayTimeout"
-  | "HttpVersionNotSupported";
-export const HttpStatusCode = /*@__PURE__*/ S.String;
-
-/** The response model for the undo edit runbook operation. */
-export interface RunbookDraftUndoEditResult {
-  statusCode?: HttpStatusCode;
-  requestId?: string;
-}
-export const RunbookDraftUndoEditResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    statusCode: S.optional(HttpStatusCode),
-    requestId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RunbookDraftUndoEditResult",
-}) as any as S.Schema<RunbookDraftUndoEditResult>;
-
-export interface RunbookPublishRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The runbook name. */
-  runbookName: string;
-}
-export const RunbookPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    automationAccountName: S.String.pipe(T.Label()),
-    runbookName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/publish",
-      code: 200,
-      apiVersion: "2024-10-23",
-    }),
-  ),
-).annotate({
-  identifier: "RunbookPublishRequest",
-}) as any as S.Schema<RunbookPublishRequest>;
-
-export interface RunbookPublishResponse {}
-export const RunbookPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RunbookPublishResponse",
-}) as any as S.Schema<RunbookPublishResponse>;
-
 /** The parameters supplied to the create or update schedule operation. */
 export interface ScheduleCreateOrUpdateProperties {
   /** Gets or sets the description of the schedule. */
@@ -10568,1117 +11714,6 @@ export const ScheduleCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ScheduleCreateOrUpdateResponse",
 }) as any as S.Schema<ScheduleCreateOrUpdateResponse>;
-
-export interface SoftwareUpdateConfigurationMachineRunsGetByIdRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The Id of the software update configuration machine run. */
-  softwareUpdateConfigurationMachineRunId: string;
-}
-export const SoftwareUpdateConfigurationMachineRunsGetByIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      softwareUpdateConfigurationMachineRunId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationMachineRuns/{softwareUpdateConfigurationMachineRunId}",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationMachineRunsGetByIdRequest",
-  }) as any as S.Schema<SoftwareUpdateConfigurationMachineRunsGetByIdRequest>;
-
-/** Software update configuration Run Navigation model. */
-export interface UpdateConfigurationNavigation {
-  /** Name of the software update configuration triggered the software update configuration run */
-  name?: string;
-}
-export const UpdateConfigurationNavigation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateConfigurationNavigation",
-}) as any as S.Schema<UpdateConfigurationNavigation>;
-
-/** Software update configuration machine run job navigation properties. */
-export interface JobNavigation {
-  /** Id of the job associated with the software update configuration run */
-  id?: string;
-}
-export const JobNavigation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "JobNavigation" }) as any as S.Schema<JobNavigation>;
-
-/** Error response of an operation failure */
-export interface AutomationErrorResponse {
-  /** Error code */
-  code?: string;
-  /** Error message indicating why the operation failed. */
-  message?: string;
-}
-export const AutomationErrorResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutomationErrorResponse",
-}) as any as S.Schema<AutomationErrorResponse>;
-
-/** Software update configuration machine run properties. */
-export interface UpdateConfigurationMachineRunProperties {
-  /** name of the updated computer */
-  targetComputer?: string;
-  /** type of the updated computer. */
-  targetComputerType?: string;
-  /** software update configuration triggered this run */
-  softwareUpdateConfiguration?: UpdateConfigurationNavigation;
-  /** Status of the software update configuration machine run. */
-  status?: string;
-  /** Operating system target of the software update configuration triggered this run */
-  osType?: string;
-  /** correlation id of the software update configuration machine run */
-  correlationId?: string;
-  /** source computer id of the software update configuration machine run */
-  sourceComputerId?: string;
-  /** Start time of the software update configuration machine run. */
-  startTime?: string;
-  /** End time of the software update configuration machine run. */
-  endTime?: string | null;
-  /** configured duration for the software update configuration run. */
-  configuredDuration?: string;
-  /** Job associated with the software update configuration machine run */
-  job?: JobNavigation;
-  /** Creation time of the resource, which only appears in the response. */
-  creationTime?: string;
-  /** createdBy property, which only appears in the response. */
-  createdBy?: string;
-  /** Last time resource was modified, which only appears in the response. */
-  lastModifiedTime?: string;
-  /** lastModifiedBy property, which only appears in the response. */
-  lastModifiedBy?: string;
-  /** Details of provisioning error */
-  error?: AutomationErrorResponse;
-}
-export const UpdateConfigurationMachineRunProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      targetComputer: S.optional(S.String),
-      targetComputerType: S.optional(S.String),
-      softwareUpdateConfiguration: S.optional(UpdateConfigurationNavigation),
-      status: S.optional(S.String),
-      osType: S.optional(S.String),
-      correlationId: S.optional(S.String),
-      sourceComputerId: S.optional(S.String),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.NullOr(S.String)),
-      configuredDuration: S.optional(S.String),
-      job: S.optional(JobNavigation),
-      creationTime: S.optional(S.String),
-      createdBy: S.optional(S.String),
-      lastModifiedTime: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      error: S.optional(AutomationErrorResponse),
-    }),
-).annotate({
-  identifier: "UpdateConfigurationMachineRunProperties",
-}) as any as S.Schema<UpdateConfigurationMachineRunProperties>;
-
-/** Software update configuration machine run model. */
-export interface SoftwareUpdateConfigurationMachineRun {
-  /** Name of the software update configuration machine run */
-  name?: string;
-  /** Resource Id of the software update configuration machine run */
-  id?: string;
-  /** Software update configuration machine run properties. */
-  properties?: UpdateConfigurationMachineRunProperties;
-}
-export const SoftwareUpdateConfigurationMachineRun = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.String),
-      id: S.optional(S.String),
-      properties: S.optional(UpdateConfigurationMachineRunProperties),
-    }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationMachineRun",
-}) as any as S.Schema<SoftwareUpdateConfigurationMachineRun>;
-
-export interface SoftwareUpdateConfigurationMachineRunsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The filter to apply on the operation. You can use the following filters: 'properties/osType', 'properties/status', 'properties/startTime', and 'properties/softwareUpdateConfiguration/name' */
-  _filter?: string;
-  /** number of entries you skip before returning results */
-  _skip?: string;
-  /** Maximum number of entries returned in the results collection */
-  _top?: string;
-}
-export const SoftwareUpdateConfigurationMachineRunsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _skip: S.optional(S.String.pipe(T.Query("$skip"))),
-      _top: S.optional(S.String.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationMachineRuns",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationMachineRunsListRequest",
-  }) as any as S.Schema<SoftwareUpdateConfigurationMachineRunsListRequest>;
-
-/** The softwareUpdateConfigurationMachineRun items on this page */
-export type SoftwareUpdateConfigurationMachineRunListResultValueList =
-  Array<SoftwareUpdateConfigurationMachineRun>;
-export const SoftwareUpdateConfigurationMachineRunListResultValueList =
-  /*@__PURE__*/ S.Array(
-    SoftwareUpdateConfigurationMachineRun,
-  ) as any as S.Schema<SoftwareUpdateConfigurationMachineRunListResultValueList>;
-
-/** result of listing all software update configuration machine runs */
-export interface SoftwareUpdateConfigurationMachineRunListResult {
-  /** The softwareUpdateConfigurationMachineRun items on this page */
-  value: SoftwareUpdateConfigurationMachineRunListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SoftwareUpdateConfigurationMachineRunListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: SoftwareUpdateConfigurationMachineRunListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationMachineRunListResult",
-  }) as any as S.Schema<SoftwareUpdateConfigurationMachineRunListResult>;
-
-export interface SoftwareUpdateConfigurationRunsGetByIdRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The Id of the software update configuration run. */
-  softwareUpdateConfigurationRunId: string;
-}
-export const SoftwareUpdateConfigurationRunsGetByIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      softwareUpdateConfigurationRunId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationRuns/{softwareUpdateConfigurationRunId}",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationRunsGetByIdRequest",
-  }) as any as S.Schema<SoftwareUpdateConfigurationRunsGetByIdRequest>;
-
-/** Task properties of the software update configuration. */
-export interface SoftwareUpdateConfigurationRunTaskProperties {
-  /** The status of the task. */
-  status?: string;
-  /** The name of the source of the task. */
-  source?: string;
-  /** The job id of the task. */
-  jobId?: string;
-}
-export const SoftwareUpdateConfigurationRunTaskProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(S.String),
-      source: S.optional(S.String),
-      jobId: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationRunTaskProperties",
-  }) as any as S.Schema<SoftwareUpdateConfigurationRunTaskProperties>;
-
-/** Software update configuration run tasks model. */
-export interface SoftwareUpdateConfigurationRunTasks {
-  /** Pre task properties. */
-  preTask?: SoftwareUpdateConfigurationRunTaskProperties;
-  /** Post task properties. */
-  postTask?: SoftwareUpdateConfigurationRunTaskProperties;
-}
-export const SoftwareUpdateConfigurationRunTasks = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    preTask: S.optional(SoftwareUpdateConfigurationRunTaskProperties),
-    postTask: S.optional(SoftwareUpdateConfigurationRunTaskProperties),
-  }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationRunTasks",
-}) as any as S.Schema<SoftwareUpdateConfigurationRunTasks>;
-
-/** Software update configuration properties. */
-export interface SoftwareUpdateConfigurationRunProperties {
-  /** software update configuration triggered this run */
-  softwareUpdateConfiguration?: UpdateConfigurationNavigation;
-  /** Status of the software update configuration run. */
-  status?: string;
-  /** Configured duration for the software update configuration run. */
-  configuredDuration?: string;
-  /** Operating system target of the software update configuration triggered this run */
-  osType?: string;
-  /** Start time of the software update configuration run. */
-  startTime?: string;
-  /** End time of the software update configuration run. */
-  endTime?: string | null;
-  /** Number of computers in the software update configuration run. */
-  computerCount?: number;
-  /** Number of computers with failed status. */
-  failedCount?: number;
-  /** Creation time of the resource, which only appears in the response. */
-  creationTime?: string;
-  /** CreatedBy property, which only appears in the response. */
-  createdBy?: string;
-  /** Last time resource was modified, which only appears in the response. */
-  lastModifiedTime?: string;
-  /** LastModifiedBy property, which only appears in the response. */
-  lastModifiedBy?: string;
-  /** Software update configuration tasks triggered in this run */
-  tasks?: SoftwareUpdateConfigurationRunTasks;
-}
-export const SoftwareUpdateConfigurationRunProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      softwareUpdateConfiguration: S.optional(UpdateConfigurationNavigation),
-      status: S.optional(S.String),
-      configuredDuration: S.optional(S.String),
-      osType: S.optional(S.String),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.NullOr(S.String)),
-      computerCount: S.optional(S.Number),
-      failedCount: S.optional(S.Number),
-      creationTime: S.optional(S.String),
-      createdBy: S.optional(S.String),
-      lastModifiedTime: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      tasks: S.optional(SoftwareUpdateConfigurationRunTasks),
-    }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationRunProperties",
-}) as any as S.Schema<SoftwareUpdateConfigurationRunProperties>;
-
-/** Software update configuration Run properties. */
-export interface SoftwareUpdateConfigurationRun {
-  /** Name of the software update configuration run. */
-  name?: string;
-  /** Resource Id of the software update configuration run */
-  id?: string;
-  /** Software update configuration Run properties. */
-  properties?: SoftwareUpdateConfigurationRunProperties;
-}
-export const SoftwareUpdateConfigurationRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    id: S.optional(S.String),
-    properties: S.optional(SoftwareUpdateConfigurationRunProperties),
-  }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationRun",
-}) as any as S.Schema<SoftwareUpdateConfigurationRun>;
-
-export interface SoftwareUpdateConfigurationRunsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The filter to apply on the operation. You can use the following filters: 'properties/osType', 'properties/status', 'properties/startTime', and 'properties/softwareUpdateConfiguration/name' */
-  _filter?: string;
-  /** Number of entries you skip before returning results */
-  _skip?: string;
-  /** Maximum number of entries returned in the results collection */
-  _top?: string;
-}
-export const SoftwareUpdateConfigurationRunsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _skip: S.optional(S.String.pipe(T.Query("$skip"))),
-      _top: S.optional(S.String.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurationRuns",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationRunsListRequest",
-  }) as any as S.Schema<SoftwareUpdateConfigurationRunsListRequest>;
-
-/** The softwareUpdateConfigurationRun items on this page */
-export type SoftwareUpdateConfigurationRunListResultValueList =
-  Array<SoftwareUpdateConfigurationRun>;
-export const SoftwareUpdateConfigurationRunListResultValueList =
-  /*@__PURE__*/ S.Array(
-    SoftwareUpdateConfigurationRun,
-  ) as any as S.Schema<SoftwareUpdateConfigurationRunListResultValueList>;
-
-/** result of listing all software update configuration runs */
-export interface SoftwareUpdateConfigurationRunListResult {
-  /** The softwareUpdateConfigurationRun items on this page */
-  value: SoftwareUpdateConfigurationRunListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SoftwareUpdateConfigurationRunListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: SoftwareUpdateConfigurationRunListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationRunListResult",
-}) as any as S.Schema<SoftwareUpdateConfigurationRunListResult>;
-
-/** Target operating system for the software update configuration. */
-export type OperatingSystemType = "Windows" | "Linux";
-export const OperatingSystemType = /*@__PURE__*/ S.String;
-
-/** Update classification included in the software update configuration. A comma separated string with required values */
-export type WindowsUpdateClasses =
-  | "Unclassified"
-  | "Critical"
-  | "Security"
-  | "UpdateRollup"
-  | "FeaturePack"
-  | "ServicePack"
-  | "Definition"
-  | "Tools"
-  | "Updates";
-export const WindowsUpdateClasses = /*@__PURE__*/ S.String;
-
-/** KB numbers excluded from the software update configuration. */
-export type WindowsPropertiesExcludedKbNumbersList = Array<string>;
-export const WindowsPropertiesExcludedKbNumbersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WindowsPropertiesExcludedKbNumbersList>;
-
-/** KB numbers included from the software update configuration. */
-export type WindowsPropertiesIncludedKbNumbersList = Array<string>;
-export const WindowsPropertiesIncludedKbNumbersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WindowsPropertiesIncludedKbNumbersList>;
-
-/** Windows specific update configuration. */
-export interface WindowsProperties {
-  /** Update classification included in the software update configuration. A comma separated string with required values */
-  includedUpdateClassifications?: WindowsUpdateClasses | (string & {});
-  /** KB numbers excluded from the software update configuration. */
-  excludedKbNumbers?: WindowsPropertiesExcludedKbNumbersList;
-  /** KB numbers included from the software update configuration. */
-  includedKbNumbers?: WindowsPropertiesIncludedKbNumbersList;
-  /** Reboot setting for the software update configuration. */
-  rebootSetting?: string;
-}
-export const WindowsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    includedUpdateClassifications: S.optional(WindowsUpdateClasses),
-    excludedKbNumbers: S.optional(WindowsPropertiesExcludedKbNumbersList),
-    includedKbNumbers: S.optional(WindowsPropertiesIncludedKbNumbersList),
-    rebootSetting: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WindowsProperties",
-}) as any as S.Schema<WindowsProperties>;
-
-/** Update classifications included in the software update configuration. */
-export type LinuxUpdateClasses =
-  | "Unclassified"
-  | "Critical"
-  | "Security"
-  | "Other";
-export const LinuxUpdateClasses = /*@__PURE__*/ S.String;
-
-/** packages excluded from the software update configuration. */
-export type LinuxPropertiesExcludedPackageNameMasksList = Array<string>;
-export const LinuxPropertiesExcludedPackageNameMasksList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LinuxPropertiesExcludedPackageNameMasksList>;
-
-/** packages included from the software update configuration. */
-export type LinuxPropertiesIncludedPackageNameMasksList = Array<string>;
-export const LinuxPropertiesIncludedPackageNameMasksList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LinuxPropertiesIncludedPackageNameMasksList>;
-
-/** Linux specific update configuration. */
-export interface LinuxProperties {
-  /** Update classifications included in the software update configuration. */
-  includedPackageClassifications?: LinuxUpdateClasses | (string & {});
-  /** packages excluded from the software update configuration. */
-  excludedPackageNameMasks?: LinuxPropertiesExcludedPackageNameMasksList;
-  /** packages included from the software update configuration. */
-  includedPackageNameMasks?: LinuxPropertiesIncludedPackageNameMasksList;
-  /** Reboot setting for the software update configuration. */
-  rebootSetting?: string;
-}
-export const LinuxProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    includedPackageClassifications: S.optional(LinuxUpdateClasses),
-    excludedPackageNameMasks: S.optional(
-      LinuxPropertiesExcludedPackageNameMasksList,
-    ),
-    includedPackageNameMasks: S.optional(
-      LinuxPropertiesIncludedPackageNameMasksList,
-    ),
-    rebootSetting: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LinuxProperties",
-}) as any as S.Schema<LinuxProperties>;
-
-/** List of azure resource Ids for azure virtual machines targeted by the software update configuration. */
-export type UpdateConfigurationAzureVirtualMachinesList = Array<string>;
-export const UpdateConfigurationAzureVirtualMachinesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<UpdateConfigurationAzureVirtualMachinesList>;
-
-/** List of names of non-azure machines targeted by the software update configuration. */
-export type UpdateConfigurationNonAzureComputerNamesList = Array<string>;
-export const UpdateConfigurationNonAzureComputerNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<UpdateConfigurationNonAzureComputerNamesList>;
-
-/** List of Subscription or Resource Group ARM Ids. */
-export type AzureQueryPropertiesScopeList = Array<string>;
-export const AzureQueryPropertiesScopeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AzureQueryPropertiesScopeList>;
-
-/** List of locations to scope the query to. */
-export type AzureQueryPropertiesLocationsList = Array<string>;
-export const AzureQueryPropertiesLocationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AzureQueryPropertiesLocationsList>;
-
-export type TagSettingsPropertiesTagsValueList = Array<string>;
-export const TagSettingsPropertiesTagsValueList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TagSettingsPropertiesTagsValueList>;
-
-/** Dictionary of tags with its list of values. */
-export type TagSettingsPropertiesTagsMap = {
-  [key: string]: TagSettingsPropertiesTagsValueList | undefined;
-};
-export const TagSettingsPropertiesTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TagSettingsPropertiesTagsValueList,
-) as any as S.Schema<TagSettingsPropertiesTagsMap>;
-
-/** Filter VMs by Any or All specified tags. */
-export type TagOperators = "All" | "Any";
-export const TagOperators = /*@__PURE__*/ S.String;
-
-/** Tag filter information for the VM. */
-export interface TagSettingsProperties {
-  /** Dictionary of tags with its list of values. */
-  tags?: TagSettingsPropertiesTagsMap;
-  /** Filter VMs by Any or All specified tags. */
-  filterOperator?: TagOperators | (string & {});
-}
-export const TagSettingsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tags: S.optional(TagSettingsPropertiesTagsMap),
-    filterOperator: S.optional(TagOperators),
-  }),
-).annotate({
-  identifier: "TagSettingsProperties",
-}) as any as S.Schema<TagSettingsProperties>;
-
-/** Azure query for the update configuration. */
-export interface AzureQueryProperties {
-  /** List of Subscription or Resource Group ARM Ids. */
-  scope?: AzureQueryPropertiesScopeList;
-  /** List of locations to scope the query to. */
-  locations?: AzureQueryPropertiesLocationsList;
-  /** Tag settings for the VM. */
-  tagSettings?: TagSettingsProperties;
-}
-export const AzureQueryProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.optional(AzureQueryPropertiesScopeList),
-    locations: S.optional(AzureQueryPropertiesLocationsList),
-    tagSettings: S.optional(TagSettingsProperties),
-  }),
-).annotate({
-  identifier: "AzureQueryProperties",
-}) as any as S.Schema<AzureQueryProperties>;
-
-/** List of Azure queries in the software update configuration. */
-export type TargetPropertiesAzureQueriesList = Array<AzureQueryProperties>;
-export const TargetPropertiesAzureQueriesList = /*@__PURE__*/ S.Array(
-  AzureQueryProperties,
-) as any as S.Schema<TargetPropertiesAzureQueriesList>;
-
-/** Non Azure query for the update configuration. */
-export interface NonAzureQueryProperties {
-  /** Log Analytics Saved Search name. */
-  functionAlias?: string;
-  /** Workspace Id for Log Analytics in which the saved Search is resided. */
-  workspaceId?: string;
-}
-export const NonAzureQueryProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    functionAlias: S.optional(S.String),
-    workspaceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NonAzureQueryProperties",
-}) as any as S.Schema<NonAzureQueryProperties>;
-
-/** List of non Azure queries in the software update configuration. */
-export type TargetPropertiesNonAzureQueriesList =
-  Array<NonAzureQueryProperties>;
-export const TargetPropertiesNonAzureQueriesList = /*@__PURE__*/ S.Array(
-  NonAzureQueryProperties,
-) as any as S.Schema<TargetPropertiesNonAzureQueriesList>;
-
-/** Group specific to the update configuration. */
-export interface TargetProperties {
-  /** List of Azure queries in the software update configuration. */
-  azureQueries?: TargetPropertiesAzureQueriesList;
-  /** List of non Azure queries in the software update configuration. */
-  nonAzureQueries?: TargetPropertiesNonAzureQueriesList;
-}
-export const TargetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    azureQueries: S.optional(TargetPropertiesAzureQueriesList),
-    nonAzureQueries: S.optional(TargetPropertiesNonAzureQueriesList),
-  }),
-).annotate({
-  identifier: "TargetProperties",
-}) as any as S.Schema<TargetProperties>;
-
-/** Update specific properties of the software update configuration. */
-export interface UpdateConfiguration {
-  /** operating system of target machines */
-  operatingSystem: OperatingSystemType | (string & {});
-  /** Windows specific update configuration. */
-  windows?: WindowsProperties;
-  /** Linux specific update configuration. */
-  linux?: LinuxProperties;
-  /** Maximum time allowed for the software update configuration run. Duration needs to be specified using the format PT[n]H[n]M[n]S as per ISO8601 */
-  duration?: string;
-  /** List of azure resource Ids for azure virtual machines targeted by the software update configuration. */
-  azureVirtualMachines?: UpdateConfigurationAzureVirtualMachinesList;
-  /** List of names of non-azure machines targeted by the software update configuration. */
-  nonAzureComputerNames?: UpdateConfigurationNonAzureComputerNamesList;
-  /** Group targets for the software update configuration. */
-  targets?: TargetProperties;
-}
-export const UpdateConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operatingSystem: OperatingSystemType,
-    windows: S.optional(WindowsProperties),
-    linux: S.optional(LinuxProperties),
-    duration: S.optional(S.String),
-    azureVirtualMachines: S.optional(
-      UpdateConfigurationAzureVirtualMachinesList,
-    ),
-    nonAzureComputerNames: S.optional(
-      UpdateConfigurationNonAzureComputerNamesList,
-    ),
-    targets: S.optional(TargetProperties),
-  }),
-).annotate({
-  identifier: "UpdateConfiguration",
-}) as any as S.Schema<UpdateConfiguration>;
-
-/** Definition of schedule parameters. */
-export interface SUCSchedulePropertiesInput {
-  /** Gets or sets the start time of the schedule. */
-  startTime?: string;
-  /** Gets or sets the end time of the schedule. */
-  expiryTime?: string | null;
-  /** Gets or sets the expiry time's offset in minutes. */
-  expiryTimeOffsetMinutes?: number;
-  /** Gets or sets a value indicating whether this schedule is enabled. */
-  isEnabled?: boolean;
-  /** Gets or sets the next run time of the schedule. */
-  nextRun?: string | null;
-  /** Gets or sets the next run time's offset in minutes. */
-  nextRunOffsetMinutes?: number;
-  /** Gets or sets the interval of the schedule. */
-  interval?: number;
-  /** Gets or sets the frequency of the schedule. */
-  frequency?: ScheduleFrequency | (string & {});
-  /** Gets or sets the time zone of the schedule. */
-  timeZone?: string;
-  /** Gets or sets the advanced schedule. */
-  advancedSchedule?: AdvancedSchedule;
-  /** Gets or sets the creation time. */
-  creationTime?: string;
-  /** Gets or sets the last modified time. */
-  lastModifiedTime?: string;
-  /** Gets or sets the description. */
-  description?: string;
-}
-export const SUCSchedulePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startTime: S.optional(S.String),
-    expiryTime: S.optional(S.NullOr(S.String)),
-    expiryTimeOffsetMinutes: S.optional(S.Number),
-    isEnabled: S.optional(S.Boolean),
-    nextRun: S.optional(S.NullOr(S.String)),
-    nextRunOffsetMinutes: S.optional(S.Number),
-    interval: S.optional(S.Number),
-    frequency: S.optional(ScheduleFrequency),
-    timeZone: S.optional(S.String),
-    advancedSchedule: S.optional(AdvancedSchedule),
-    creationTime: S.optional(S.String),
-    lastModifiedTime: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SUCSchedulePropertiesInput",
-}) as any as S.Schema<SUCSchedulePropertiesInput>;
-
-/** Gets or sets the parameters of the task. */
-export type TaskPropertiesParametersMap = { [key: string]: string | undefined };
-export const TaskPropertiesParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TaskPropertiesParametersMap>;
-
-/** Task properties of the software update configuration. */
-export interface TaskProperties {
-  /** Gets or sets the parameters of the task. */
-  parameters?: TaskPropertiesParametersMap;
-  /** Gets or sets the name of the runbook. */
-  source?: string;
-}
-export const TaskProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    parameters: S.optional(TaskPropertiesParametersMap),
-    source: S.optional(S.String),
-  }),
-).annotate({ identifier: "TaskProperties" }) as any as S.Schema<TaskProperties>;
-
-/** Task properties of the software update configuration. */
-export interface SoftwareUpdateConfigurationTasks {
-  /** Pre task properties. */
-  preTask?: TaskProperties;
-  /** Post task properties. */
-  postTask?: TaskProperties;
-}
-export const SoftwareUpdateConfigurationTasks = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    preTask: S.optional(TaskProperties),
-    postTask: S.optional(TaskProperties),
-  }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationTasks",
-}) as any as S.Schema<SoftwareUpdateConfigurationTasks>;
-
-/** Software update configuration properties. */
-export interface SoftwareUpdateConfigurationPropertiesInput {
-  /** update specific properties for the Software update configuration */
-  updateConfiguration: UpdateConfiguration;
-  /** Schedule information for the Software update configuration */
-  scheduleInfo: SUCSchedulePropertiesInput;
-  /** Details of provisioning error */
-  error?: AutomationErrorResponse;
-  /** Tasks information for the Software update configuration. */
-  tasks?: SoftwareUpdateConfigurationTasks;
-}
-export const SoftwareUpdateConfigurationPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      updateConfiguration: UpdateConfiguration,
-      scheduleInfo: SUCSchedulePropertiesInput,
-      error: S.optional(AutomationErrorResponse),
-      tasks: S.optional(SoftwareUpdateConfigurationTasks),
-    }),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationPropertiesInput",
-  }) as any as S.Schema<SoftwareUpdateConfigurationPropertiesInput>;
-
-export interface SoftwareUpdateConfigurationsCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The name of the software update configuration to be created. */
-  softwareUpdateConfigurationName: string;
-  /** Software update configuration properties. */
-  properties: SoftwareUpdateConfigurationPropertiesInput;
-}
-export const SoftwareUpdateConfigurationsCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      softwareUpdateConfigurationName: S.String.pipe(T.Label()),
-      properties: SoftwareUpdateConfigurationPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationsCreateRequest",
-  }) as any as S.Schema<SoftwareUpdateConfigurationsCreateRequest>;
-
-/** Definition of schedule parameters. */
-export interface SUCScheduleProperties {
-  /** Gets or sets the start time of the schedule. */
-  startTime?: string;
-  /** Gets the start time's offset in minutes. */
-  startTimeOffsetMinutes?: number;
-  /** Gets or sets the end time of the schedule. */
-  expiryTime?: string | null;
-  /** Gets or sets the expiry time's offset in minutes. */
-  expiryTimeOffsetMinutes?: number;
-  /** Gets or sets a value indicating whether this schedule is enabled. */
-  isEnabled?: boolean;
-  /** Gets or sets the next run time of the schedule. */
-  nextRun?: string | null;
-  /** Gets or sets the next run time's offset in minutes. */
-  nextRunOffsetMinutes?: number;
-  /** Gets or sets the interval of the schedule. */
-  interval?: number;
-  /** Gets or sets the frequency of the schedule. */
-  frequency?: ScheduleFrequency;
-  /** Gets or sets the time zone of the schedule. */
-  timeZone?: string;
-  /** Gets or sets the advanced schedule. */
-  advancedSchedule?: AdvancedSchedule;
-  /** Gets or sets the creation time. */
-  creationTime?: string;
-  /** Gets or sets the last modified time. */
-  lastModifiedTime?: string;
-  /** Gets or sets the description. */
-  description?: string;
-}
-export const SUCScheduleProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startTime: S.optional(S.String),
-    startTimeOffsetMinutes: S.optional(S.Number),
-    expiryTime: S.optional(S.NullOr(S.String)),
-    expiryTimeOffsetMinutes: S.optional(S.Number),
-    isEnabled: S.optional(S.Boolean),
-    nextRun: S.optional(S.NullOr(S.String)),
-    nextRunOffsetMinutes: S.optional(S.Number),
-    interval: S.optional(S.Number),
-    frequency: S.optional(ScheduleFrequency),
-    timeZone: S.optional(S.String),
-    advancedSchedule: S.optional(AdvancedSchedule),
-    creationTime: S.optional(S.String),
-    lastModifiedTime: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SUCScheduleProperties",
-}) as any as S.Schema<SUCScheduleProperties>;
-
-/** Software update configuration properties. */
-export interface SoftwareUpdateConfigurationProperties {
-  /** update specific properties for the Software update configuration */
-  updateConfiguration: UpdateConfiguration;
-  /** Schedule information for the Software update configuration */
-  scheduleInfo: SUCScheduleProperties;
-  /** Provisioning state for the software update configuration, which only appears in the response. */
-  provisioningState?: string;
-  /** Details of provisioning error */
-  error?: AutomationErrorResponse;
-  /** Creation time of the resource, which only appears in the response. */
-  creationTime?: string;
-  /** CreatedBy property, which only appears in the response. */
-  createdBy?: string;
-  /** Last time resource was modified, which only appears in the response. */
-  lastModifiedTime?: string;
-  /** LastModifiedBy property, which only appears in the response. */
-  lastModifiedBy?: string;
-  /** Tasks information for the Software update configuration. */
-  tasks?: SoftwareUpdateConfigurationTasks;
-}
-export const SoftwareUpdateConfigurationProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      updateConfiguration: UpdateConfiguration,
-      scheduleInfo: SUCScheduleProperties,
-      provisioningState: S.optional(S.String),
-      error: S.optional(AutomationErrorResponse),
-      creationTime: S.optional(S.String),
-      createdBy: S.optional(S.String),
-      lastModifiedTime: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      tasks: S.optional(SoftwareUpdateConfigurationTasks),
-    }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationProperties",
-}) as any as S.Schema<SoftwareUpdateConfigurationProperties>;
-
-export interface SoftwareUpdateConfigurationsCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Software update configuration properties. */
-  properties: SoftwareUpdateConfigurationProperties;
-}
-export const SoftwareUpdateConfigurationsCreateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: SoftwareUpdateConfigurationProperties,
-    }),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationsCreateResponse",
-  }) as any as S.Schema<SoftwareUpdateConfigurationsCreateResponse>;
-
-export interface SoftwareUpdateConfigurationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The name of the software update configuration to be created. */
-  softwareUpdateConfigurationName: string;
-}
-export const SoftwareUpdateConfigurationsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      softwareUpdateConfigurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationsDeleteRequest",
-  }) as any as S.Schema<SoftwareUpdateConfigurationsDeleteRequest>;
-
-export interface SoftwareUpdateConfigurationsDeleteResponse {}
-export const SoftwareUpdateConfigurationsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SoftwareUpdateConfigurationsDeleteResponse",
-  }) as any as S.Schema<SoftwareUpdateConfigurationsDeleteResponse>;
-
-export interface SoftwareUpdateConfigurationsGetByNameRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The name of the software update configuration to be created. */
-  softwareUpdateConfigurationName: string;
-}
-export const SoftwareUpdateConfigurationsGetByNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      softwareUpdateConfigurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations/{softwareUpdateConfigurationName}",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationsGetByNameRequest",
-  }) as any as S.Schema<SoftwareUpdateConfigurationsGetByNameRequest>;
-
-export interface SoftwareUpdateConfigurationsGetByNameResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Software update configuration properties. */
-  properties: SoftwareUpdateConfigurationProperties;
-}
-export const SoftwareUpdateConfigurationsGetByNameResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: SoftwareUpdateConfigurationProperties,
-    }),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationsGetByNameResponse",
-  }) as any as S.Schema<SoftwareUpdateConfigurationsGetByNameResponse>;
-
-export interface SoftwareUpdateConfigurationsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The filter to apply on the operation. */
-  _filter?: string;
-}
-export const SoftwareUpdateConfigurationsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      automationAccountName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations",
-        code: 200,
-        apiVersion: "2024-10-23",
-      }),
-    ),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationsListRequest",
-}) as any as S.Schema<SoftwareUpdateConfigurationsListRequest>;
-
-/** Software update configuration collection item properties. */
-export interface SoftwareUpdateConfigurationCollectionItemProperties {
-  /** Update specific properties of the software update configuration. */
-  updateConfiguration?: UpdateConfiguration;
-  /** Pre and Post Tasks defined */
-  tasks?: SoftwareUpdateConfigurationTasks;
-  /** execution frequency of the schedule associated with the software update configuration */
-  frequency?: ScheduleFrequency;
-  /** the start time of the update. */
-  startTime?: string;
-  /** Creation time of the software update configuration, which only appears in the response. */
-  creationTime?: string;
-  /** Last time software update configuration was modified, which only appears in the response. */
-  lastModifiedTime?: string;
-  /** Provisioning state for the software update configuration, which only appears in the response. */
-  provisioningState?: string;
-  /** ext run time of the update. */
-  nextRun?: string | null;
-}
-export const SoftwareUpdateConfigurationCollectionItemProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      updateConfiguration: S.optional(UpdateConfiguration),
-      tasks: S.optional(SoftwareUpdateConfigurationTasks),
-      frequency: S.optional(ScheduleFrequency),
-      startTime: S.optional(S.String),
-      creationTime: S.optional(S.String),
-      lastModifiedTime: S.optional(S.String),
-      provisioningState: S.optional(S.String),
-      nextRun: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationCollectionItemProperties",
-  }) as any as S.Schema<SoftwareUpdateConfigurationCollectionItemProperties>;
-
-/** Software update configuration collection item properties. */
-export interface SoftwareUpdateConfigurationCollectionItem {
-  /** Name of the software update configuration. */
-  name?: string;
-  /** Resource Id of the software update configuration */
-  id?: string;
-  /** Software update configuration properties. */
-  properties: SoftwareUpdateConfigurationCollectionItemProperties;
-}
-export const SoftwareUpdateConfigurationCollectionItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.optional(S.String),
-      id: S.optional(S.String),
-      properties: SoftwareUpdateConfigurationCollectionItemProperties,
-    }),
-  ).annotate({
-    identifier: "SoftwareUpdateConfigurationCollectionItem",
-  }) as any as S.Schema<SoftwareUpdateConfigurationCollectionItem>;
-
-/** outer object returned when listing all software update configurations */
-export type SoftwareUpdateConfigurationListResultValueList =
-  Array<SoftwareUpdateConfigurationCollectionItem>;
-export const SoftwareUpdateConfigurationListResultValueList =
-  /*@__PURE__*/ S.Array(
-    SoftwareUpdateConfigurationCollectionItem,
-  ) as any as S.Schema<SoftwareUpdateConfigurationListResultValueList>;
-
-/** result of listing all software update configuration */
-export interface SoftwareUpdateConfigurationListResult {
-  /** outer object returned when listing all software update configurations */
-  value?: SoftwareUpdateConfigurationListResultValueList;
-}
-export const SoftwareUpdateConfigurationListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(SoftwareUpdateConfigurationListResultValueList),
-    }),
-).annotate({
-  identifier: "SoftwareUpdateConfigurationListResult",
-}) as any as S.Schema<SoftwareUpdateConfigurationListResult>;
 
 /** The token type. Must be either PersonalAccessToken or Oauth. */
 export type TokenType = "PersonalAccessToken" | "Oauth";
@@ -12001,41 +12036,6 @@ export const SuspendTestJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SuspendTestJobResponse",
 }) as any as S.Schema<SuspendTestJobResponse>;
 
-export interface TestJobResumeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the automation account. */
-  automationAccountName: string;
-  /** The runbook name. */
-  runbookName: string;
-}
-export const TestJobResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    automationAccountName: S.String.pipe(T.Label()),
-    runbookName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/draft/testJob/resume",
-      code: 200,
-      apiVersion: "2024-10-23",
-    }),
-  ),
-).annotate({
-  identifier: "TestJobResumeRequest",
-}) as any as S.Schema<TestJobResumeRequest>;
-
-export interface TestJobResumeResponse {}
-export const TestJobResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TestJobResumeResponse",
-}) as any as S.Schema<TestJobResumeResponse>;
-
 /** The parameters supplied to the update account properties. */
 export type AutomationAccountUpdateProperties =
   AutomationAccountCreateOrUpdateProperties;
@@ -12043,13 +12043,13 @@ export const AutomationAccountUpdateProperties =
   AutomationAccountCreateOrUpdateProperties;
 
 /** Gets or sets the tags attached to the resource. */
-export type AutomationAccountUpdateRequestTagsMap = {
+export type UpdateAutomationAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AutomationAccountUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAutomationAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AutomationAccountUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAutomationAccountRequestTagsMap>;
 
 export interface UpdateAutomationAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12067,7 +12067,7 @@ export interface UpdateAutomationAccountRequest {
   /** Sets the identity property for automation account */
   identity?: IdentityInput;
   /** Gets or sets the tags attached to the resource. */
-  tags?: AutomationAccountUpdateRequestTagsMap;
+  tags?: UpdateAutomationAccountRequestTagsMap;
 }
 export const UpdateAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12078,7 +12078,7 @@ export const UpdateAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     location: S.optional(S.String),
     identity: S.optional(IdentityInput),
-    tags: S.optional(AutomationAccountUpdateRequestTagsMap),
+    tags: S.optional(UpdateAutomationAccountRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12092,13 +12092,13 @@ export const UpdateAutomationAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAutomationAccountRequest>;
 
 /** Resource tags. */
-export type AutomationAccountUpdateResponseTagsMap = {
+export type UpdateAutomationAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AutomationAccountUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAutomationAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AutomationAccountUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAutomationAccountResponseTagsMap>;
 
 export interface UpdateAutomationAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12110,7 +12110,7 @@ export interface UpdateAutomationAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AutomationAccountUpdateResponseTagsMap;
+  tags?: UpdateAutomationAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the automation account properties. */
@@ -12126,7 +12126,7 @@ export const UpdateAutomationAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AutomationAccountUpdateResponseTagsMap),
+    tags: S.optional(UpdateAutomationAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AutomationAccountProperties),
     etag: S.optional(S.String),
@@ -12371,13 +12371,13 @@ export const UpdateCredentialResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCredentialResponse>;
 
 /** Gets or sets the tags attached to the resource. */
-export type DscConfigurationUpdateRequestTagsMap = {
+export type UpdateDscConfigurationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DscConfigurationUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDscConfigurationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DscConfigurationUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDscConfigurationRequestTagsMap>;
 
 export interface UpdateDscConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12393,7 +12393,7 @@ export interface UpdateDscConfigurationRequest {
   /** Gets or sets name of the resource. */
   name?: string;
   /** Gets or sets the tags attached to the resource. */
-  tags?: DscConfigurationUpdateRequestTagsMap;
+  tags?: UpdateDscConfigurationRequestTagsMap;
 }
 export const UpdateDscConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12403,7 +12403,7 @@ export const UpdateDscConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
     configurationName: S.String.pipe(T.Label()),
     properties: S.optional(DscConfigurationCreateOrUpdateProperties),
     name: S.optional(S.String),
-    tags: S.optional(DscConfigurationUpdateRequestTagsMap),
+    tags: S.optional(UpdateDscConfigurationRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12417,13 +12417,13 @@ export const UpdateDscConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDscConfigurationRequest>;
 
 /** Resource tags. */
-export type DscConfigurationUpdateResponseTagsMap = {
+export type UpdateDscConfigurationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DscConfigurationUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDscConfigurationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DscConfigurationUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDscConfigurationResponseTagsMap>;
 
 export interface UpdateDscConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12435,7 +12435,7 @@ export interface UpdateDscConfigurationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DscConfigurationUpdateResponseTagsMap;
+  tags?: UpdateDscConfigurationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the configuration properties. */
@@ -12449,7 +12449,7 @@ export const UpdateDscConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DscConfigurationUpdateResponseTagsMap),
+    tags: S.optional(UpdateDscConfigurationResponseTagsMap),
     location: S.String,
     properties: S.optional(DscConfigurationProperties),
     etag: S.optional(S.String),
@@ -12560,14 +12560,14 @@ export const UpdateHybridRunbookWorkerGroupRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateHybridRunbookWorkerGroupRequest>;
 
 /** Resource tags. */
-export type HybridRunbookWorkerGroupUpdateResponseTagsMap = {
+export type UpdateHybridRunbookWorkerGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HybridRunbookWorkerGroupUpdateResponseTagsMap =
+export const UpdateHybridRunbookWorkerGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<HybridRunbookWorkerGroupUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateHybridRunbookWorkerGroupResponseTagsMap>;
 
 export interface UpdateHybridRunbookWorkerGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12579,7 +12579,7 @@ export interface UpdateHybridRunbookWorkerGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HybridRunbookWorkerGroupUpdateResponseTagsMap;
+  tags?: UpdateHybridRunbookWorkerGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the hybrid worker group properties. */
@@ -12592,7 +12592,7 @@ export const UpdateHybridRunbookWorkerGroupResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(HybridRunbookWorkerGroupUpdateResponseTagsMap),
+      tags: S.optional(UpdateHybridRunbookWorkerGroupResponseTagsMap),
       location: S.String,
       properties: S.optional(HybridRunbookWorkerGroupProperties),
     }),
@@ -12614,11 +12614,11 @@ export const ModuleUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ModuleUpdateProperties>;
 
 /** Gets or sets the tags attached to the resource. */
-export type ModuleUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const ModuleUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateModuleRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateModuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ModuleUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateModuleRequestTagsMap>;
 
 export interface UpdateModuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12632,7 +12632,7 @@ export interface UpdateModuleRequest {
   /** Gets or sets the module update properties. */
   properties?: ModuleUpdateProperties;
   /** Gets or sets the tags attached to the resource. */
-  tags?: ModuleUpdateRequestTagsMap;
+  tags?: UpdateModuleRequestTagsMap;
 }
 export const UpdateModuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12641,7 +12641,7 @@ export const UpdateModuleRequest = /*@__PURE__*/ S.suspend(() =>
     automationAccountName: S.String.pipe(T.Label()),
     moduleName: S.String.pipe(T.Label()),
     properties: S.optional(ModuleUpdateProperties),
-    tags: S.optional(ModuleUpdateRequestTagsMap),
+    tags: S.optional(UpdateModuleRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12655,11 +12655,11 @@ export const UpdateModuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateModuleRequest>;
 
 /** Resource tags. */
-export type ModuleUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const ModuleUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateModuleResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateModuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ModuleUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateModuleResponseTagsMap>;
 
 export interface UpdateModuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12671,7 +12671,7 @@ export interface UpdateModuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ModuleUpdateResponseTagsMap;
+  tags?: UpdateModuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the module properties. */
@@ -12685,7 +12685,7 @@ export const UpdateModuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ModuleUpdateResponseTagsMap),
+    tags: S.optional(UpdateModuleResponseTagsMap),
     location: S.String,
     properties: S.optional(ModuleProperties),
     etag: S.optional(S.String),
@@ -12708,29 +12708,29 @@ export const PackageUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PackageUpdateProperties>;
 
 /** Resource tags. */
-export type PackageUpdateRequestAllOfTagsMap = {
+export type UpdatePackageRequestAllOfTagsMap = {
   [key: string]: string | undefined;
 };
-export const PackageUpdateRequestAllOfTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePackageRequestAllOfTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PackageUpdateRequestAllOfTagsMap>;
+) as any as S.Schema<UpdatePackageRequestAllOfTagsMap>;
 
 /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
-export interface PackageUpdateRequestAllOf {
+export interface UpdatePackageRequestAllOf {
   /** Resource tags. */
-  tags?: PackageUpdateRequestAllOfTagsMap;
+  tags?: UpdatePackageRequestAllOfTagsMap;
   /** The geo-location where the resource lives */
   location: string;
 }
-export const PackageUpdateRequestAllOf = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePackageRequestAllOf = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    tags: S.optional(PackageUpdateRequestAllOfTagsMap),
+    tags: S.optional(UpdatePackageRequestAllOfTagsMap),
     location: S.String,
   }),
 ).annotate({
-  identifier: "PackageUpdateRequestAllOf",
-}) as any as S.Schema<PackageUpdateRequestAllOf>;
+  identifier: "UpdatePackageRequestAllOf",
+}) as any as S.Schema<UpdatePackageRequestAllOf>;
 
 export interface UpdatePackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12746,7 +12746,7 @@ export interface UpdatePackageRequest {
   /** Gets or sets the package update properties. */
   properties?: PackageUpdateProperties;
   /** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
-  allOf?: PackageUpdateRequestAllOf;
+  allOf?: UpdatePackageRequestAllOf;
 }
 export const UpdatePackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12756,7 +12756,7 @@ export const UpdatePackageRequest = /*@__PURE__*/ S.suspend(() =>
     runtimeEnvironmentName: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
     properties: S.optional(PackageUpdateProperties),
-    allOf: S.optional(PackageUpdateRequestAllOf),
+    allOf: S.optional(UpdatePackageRequestAllOf),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12770,13 +12770,13 @@ export const UpdatePackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePackageRequest>;
 
 /** Resource tags. */
-export type PackageUpdateResponseTagsMap = {
+export type UpdatePackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PackageUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PackageUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePackageResponseTagsMap>;
 
 export interface UpdatePackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12788,7 +12788,7 @@ export interface UpdatePackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PackageUpdateResponseTagsMap;
+  tags?: UpdatePackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the Package properties. */
@@ -12800,7 +12800,7 @@ export const UpdatePackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PackageUpdateResponseTagsMap),
+    tags: S.optional(UpdatePackageResponseTagsMap),
     location: S.String,
     properties: S.optional(PackageProperties),
   }),
@@ -12809,13 +12809,13 @@ export const UpdatePackageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePackageResponse>;
 
 /** Gets or sets the tags attached to the resource. */
-export type Python2PackageUpdateRequestTagsMap = {
+export type UpdatePython2PackageRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const Python2PackageUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePython2PackageRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<Python2PackageUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePython2PackageRequestTagsMap>;
 
 export interface UpdatePython2PackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12827,7 +12827,7 @@ export interface UpdatePython2PackageRequest {
   /** The python package name. */
   packageName: string;
   /** Gets or sets the tags attached to the resource. */
-  tags?: Python2PackageUpdateRequestTagsMap;
+  tags?: UpdatePython2PackageRequestTagsMap;
 }
 export const UpdatePython2PackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12835,7 +12835,7 @@ export const UpdatePython2PackageRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     automationAccountName: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
-    tags: S.optional(Python2PackageUpdateRequestTagsMap),
+    tags: S.optional(UpdatePython2PackageRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12849,13 +12849,13 @@ export const UpdatePython2PackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePython2PackageRequest>;
 
 /** Resource tags. */
-export type Python2PackageUpdateResponseTagsMap = {
+export type UpdatePython2PackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const Python2PackageUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePython2PackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<Python2PackageUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePython2PackageResponseTagsMap>;
 
 export interface UpdatePython2PackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12867,7 +12867,7 @@ export interface UpdatePython2PackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: Python2PackageUpdateResponseTagsMap;
+  tags?: UpdatePython2PackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the module properties. */
@@ -12881,7 +12881,7 @@ export const UpdatePython2PackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(Python2PackageUpdateResponseTagsMap),
+    tags: S.optional(UpdatePython2PackageResponseTagsMap),
     location: S.String,
     properties: S.optional(ModuleProperties),
     etag: S.optional(S.String),
@@ -12891,13 +12891,13 @@ export const UpdatePython2PackageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePython2PackageResponse>;
 
 /** Gets or sets the tags attached to the resource. */
-export type Python3PackageUpdateRequestTagsMap = {
+export type UpdatePython3PackageRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const Python3PackageUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePython3PackageRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<Python3PackageUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePython3PackageRequestTagsMap>;
 
 export interface UpdatePython3PackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12909,7 +12909,7 @@ export interface UpdatePython3PackageRequest {
   /** The python package name. */
   packageName: string;
   /** Gets or sets the tags attached to the resource. */
-  tags?: Python3PackageUpdateRequestTagsMap;
+  tags?: UpdatePython3PackageRequestTagsMap;
 }
 export const UpdatePython3PackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12917,7 +12917,7 @@ export const UpdatePython3PackageRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     automationAccountName: S.String.pipe(T.Label()),
     packageName: S.String.pipe(T.Label()),
-    tags: S.optional(Python3PackageUpdateRequestTagsMap),
+    tags: S.optional(UpdatePython3PackageRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12931,13 +12931,13 @@ export const UpdatePython3PackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePython3PackageRequest>;
 
 /** Resource tags. */
-export type Python3PackageUpdateResponseTagsMap = {
+export type UpdatePython3PackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const Python3PackageUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePython3PackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<Python3PackageUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePython3PackageResponseTagsMap>;
 
 export interface UpdatePython3PackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12949,7 +12949,7 @@ export interface UpdatePython3PackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: Python3PackageUpdateResponseTagsMap;
+  tags?: UpdatePython3PackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the module properties. */
@@ -12963,7 +12963,7 @@ export const UpdatePython3PackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(Python3PackageUpdateResponseTagsMap),
+    tags: S.optional(UpdatePython3PackageResponseTagsMap),
     location: S.String,
     properties: S.optional(ModuleProperties),
     etag: S.optional(S.String),
@@ -12995,11 +12995,11 @@ export const RunbookUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RunbookUpdateProperties>;
 
 /** Gets or sets the tags attached to the resource. */
-export type RunbookUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const RunbookUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateRunbookRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateRunbookRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RunbookUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateRunbookRequestTagsMap>;
 
 export interface UpdateRunbookRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13017,7 +13017,7 @@ export interface UpdateRunbookRequest {
   /** Gets or sets the location of the resource. */
   location?: string;
   /** Gets or sets the tags attached to the resource. */
-  tags?: RunbookUpdateRequestTagsMap;
+  tags?: UpdateRunbookRequestTagsMap;
 }
 export const UpdateRunbookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13028,7 +13028,7 @@ export const UpdateRunbookRequest = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(RunbookUpdateProperties),
     name: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(RunbookUpdateRequestTagsMap),
+    tags: S.optional(UpdateRunbookRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -13042,13 +13042,13 @@ export const UpdateRunbookRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRunbookRequest>;
 
 /** Resource tags. */
-export type RunbookUpdateResponseTagsMap = {
+export type UpdateRunbookResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RunbookUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRunbookResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RunbookUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateRunbookResponseTagsMap>;
 
 export interface UpdateRunbookResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -13060,7 +13060,7 @@ export interface UpdateRunbookResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RunbookUpdateResponseTagsMap;
+  tags?: UpdateRunbookResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the runbook properties. */
@@ -13074,7 +13074,7 @@ export const UpdateRunbookResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RunbookUpdateResponseTagsMap),
+    tags: S.optional(UpdateRunbookResponseTagsMap),
     location: S.String,
     properties: S.optional(RunbookProperties),
     etag: S.optional(S.String),
@@ -13140,13 +13140,13 @@ export const UpdateRuntimeEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRuntimeEnvironmentRequest>;
 
 /** Resource tags. */
-export type RuntimeEnvironmentsUpdateResponseTagsMap = {
+export type UpdateRuntimeEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RuntimeEnvironmentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRuntimeEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RuntimeEnvironmentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateRuntimeEnvironmentResponseTagsMap>;
 
 export interface UpdateRuntimeEnvironmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -13158,7 +13158,7 @@ export interface UpdateRuntimeEnvironmentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RuntimeEnvironmentsUpdateResponseTagsMap;
+  tags?: UpdateRuntimeEnvironmentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Gets or sets the Runtime Environment properties. */
@@ -13170,7 +13170,7 @@ export const UpdateRuntimeEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RuntimeEnvironmentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateRuntimeEnvironmentResponseTagsMap),
     location: S.String,
     properties: S.optional(RuntimeEnvironmentProperties),
   }),
@@ -13457,13 +13457,13 @@ export const UpdateWatcherRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWatcherRequest>;
 
 /** Resource tags. */
-export type WatcherUpdateResponseTagsMap = {
+export type UpdateWatcherResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WatcherUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWatcherResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WatcherUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWatcherResponseTagsMap>;
 
 export interface UpdateWatcherResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -13479,7 +13479,7 @@ export interface UpdateWatcherResponse {
   /** Gets or sets the etag of the resource. */
   etag?: string;
   /** Resource tags. */
-  tags?: WatcherUpdateResponseTagsMap;
+  tags?: UpdateWatcherResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -13491,7 +13491,7 @@ export const UpdateWatcherResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(WatcherProperties),
     etag: S.optional(S.String),
-    tags: S.optional(WatcherUpdateResponseTagsMap),
+    tags: S.optional(UpdateWatcherResponseTagsMap),
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -13885,21 +13885,6 @@ export const WebhookCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebhookCreateOrUpdateResponse",
 }) as any as S.Schema<WebhookCreateOrUpdateResponse>;
 
-export type AgentRegistrationInformationRegenerateKeyError = AzureOpError;
-/** Regenerate a primary or secondary agent registration key */
-export const AgentRegistrationInformationRegenerateKey: API.OperationMethod<
-  AgentRegistrationInformationRegenerateKeyRequest,
-  AgentRegistration,
-  AgentRegistrationInformationRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentRegistrationInformationRegenerateKeyRequest,
-  output: AgentRegistration,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AutomationAccountCreateOrUpdateError = AzureOpError;
 /** Create or update automation account. */
 export const AutomationAccountCreateOrUpdate: API.OperationMethod<
@@ -14045,6 +14030,21 @@ export const CreateRuntimeEnvironment: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateRuntimeEnvironmentRequest,
   output: CreateRuntimeEnvironmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSoftwareUpdateConfigurationError = AzureOpError;
+/** Create a new software update configuration with the name given in the URI. */
+export const CreateSoftwareUpdateConfiguration: API.OperationMethod<
+  CreateSoftwareUpdateConfigurationRequest,
+  CreateSoftwareUpdateConfigurationResponse,
+  CreateSoftwareUpdateConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSoftwareUpdateConfigurationRequest,
+  output: CreateSoftwareUpdateConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14380,6 +14380,21 @@ export const DeleteSchedule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteSoftwareUpdateConfigurationError = AzureOpError;
+/** delete a specific software update configuration. */
+export const DeleteSoftwareUpdateConfiguration: API.OperationMethod<
+  DeleteSoftwareUpdateConfigurationRequest,
+  DeleteSoftwareUpdateConfigurationResponse,
+  DeleteSoftwareUpdateConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSoftwareUpdateConfigurationRequest,
+  output: DeleteSoftwareUpdateConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteSourceControlError = AzureOpError;
 /** Delete the source control. */
 export const DeleteSourceControl: API.OperationMethod<
@@ -14465,6 +14480,21 @@ export const DscNodeConfigurationCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DscNodeConfigurationCreateOrUpdateRequest,
   output: DscNodeConfigurationCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EditRunbookDraftUndoError = AzureOpError;
+/** Undo draft edit to last known published state identified by runbook name. */
+export const EditRunbookDraftUndo: API.OperationMethod<
+  EditRunbookDraftUndoRequest,
+  EditRunbookDraftUndoResult,
+  EditRunbookDraftUndoError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditRunbookDraftUndoRequest,
+  output: EditRunbookDraftUndoResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14980,6 +15010,51 @@ export const GetSchedule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSoftwareUpdateConfigurationByNameError = AzureOpError;
+/** Get a single software update configuration by name. */
+export const GetSoftwareUpdateConfigurationByName: API.OperationMethod<
+  GetSoftwareUpdateConfigurationByNameRequest,
+  GetSoftwareUpdateConfigurationByNameResponse,
+  GetSoftwareUpdateConfigurationByNameError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSoftwareUpdateConfigurationByNameRequest,
+  output: GetSoftwareUpdateConfigurationByNameResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSoftwareUpdateConfigurationMachineRunByIdError = AzureOpError;
+/** Get a single software update configuration machine run by Id. */
+export const GetSoftwareUpdateConfigurationMachineRunById: API.OperationMethod<
+  GetSoftwareUpdateConfigurationMachineRunByIdRequest,
+  SoftwareUpdateConfigurationMachineRun,
+  GetSoftwareUpdateConfigurationMachineRunByIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSoftwareUpdateConfigurationMachineRunByIdRequest,
+  output: SoftwareUpdateConfigurationMachineRun,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSoftwareUpdateConfigurationRunByIdError = AzureOpError;
+/** Get a single software update configuration Run by Id. */
+export const GetSoftwareUpdateConfigurationRunById: API.OperationMethod<
+  GetSoftwareUpdateConfigurationRunByIdRequest,
+  SoftwareUpdateConfigurationRun,
+  GetSoftwareUpdateConfigurationRunByIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSoftwareUpdateConfigurationRunByIdRequest,
+  output: SoftwareUpdateConfigurationRun,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSourceControlError = AzureOpError;
 /** Retrieve the source control identified by source control name. */
 export const GetSourceControl: API.OperationMethod<
@@ -15100,36 +15175,6 @@ export const GetWebhook: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HybridRunbookWorkersMoveError = AzureOpError;
-/** Move a hybrid worker to a different group. */
-export const HybridRunbookWorkersMove: API.OperationMethod<
-  HybridRunbookWorkersMoveRequest,
-  HybridRunbookWorkersMoveResponse,
-  HybridRunbookWorkersMoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HybridRunbookWorkersMoveRequest,
-  output: HybridRunbookWorkersMoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobResumeError = AzureOpError;
-/** Resume the job identified by jobName. */
-export const JobResume: API.OperationMethod<
-  JobResumeRequest,
-  JobResumeResponse,
-  JobResumeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobResumeRequest,
-  output: JobResumeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListActivityByModuleError = AzureOpError;
 /** Retrieve a list of activities in the module identified by module name. */
 export const ListActivityByModule: API.OperationMethod<
@@ -15149,12 +15194,12 @@ export type ListAutomationAccountError = AzureOpError;
 /** Lists the Automation Accounts within an Azure subscription. Retrieve a list of accounts within a given subscription. */
 export const ListAutomationAccount: API.OperationMethod<
   ListAutomationAccountRequest,
-  ListAutomationAccountResult,
+  AutomationAccountListResult,
   ListAutomationAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListAutomationAccountRequest,
-  output: ListAutomationAccountResult,
+  output: AutomationAccountListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15164,12 +15209,12 @@ export type ListAutomationAccountByResourceGroupError = AzureOpError;
 /** Retrieve a list of accounts within a given resource group. */
 export const ListAutomationAccountByResourceGroup: API.OperationMethod<
   ListAutomationAccountByResourceGroupRequest,
-  ListAutomationAccountResult,
+  AutomationAccountListResult,
   ListAutomationAccountByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListAutomationAccountByResourceGroupRequest,
-  output: ListAutomationAccountResult,
+  output: AutomationAccountListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15401,15 +15446,15 @@ export const ListJobStreamByJob: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListKeyByAutomationAccountError = AzureOpError;
+export type ListKeysByAutomationAccountError = AzureOpError;
 /** Retrieve the automation keys for an account. */
-export const ListKeyByAutomationAccount: API.OperationMethod<
-  ListKeyByAutomationAccountRequest,
+export const ListKeysByAutomationAccount: API.OperationMethod<
+  ListKeysByAutomationAccountRequest,
   KeyListResult,
-  ListKeyByAutomationAccountError,
+  ListKeysByAutomationAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListKeyByAutomationAccountRequest,
+  input: ListKeysByAutomationAccountRequest,
   output: KeyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -15446,30 +15491,15 @@ export const ListNodeReportByNode: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListObjectDataTypeFieldByModuleAndTypeError = AzureOpError;
-/** Retrieve a list of fields of a given type identified by module name. */
-export const ListObjectDataTypeFieldByModuleAndType: API.OperationMethod<
-  ListObjectDataTypeFieldByModuleAndTypeRequest,
-  TypeFieldListResult,
-  ListObjectDataTypeFieldByModuleAndTypeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListObjectDataTypeFieldByModuleAndTypeRequest,
-  output: TypeFieldListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListObjectDataTypeFieldByTypeError = AzureOpError;
+export type ListObjectDataTypeFieldsByTypeError = AzureOpError;
 /** Retrieve a list of fields of a given type across all accessible modules. */
-export const ListObjectDataTypeFieldByType: API.OperationMethod<
-  ListObjectDataTypeFieldByTypeRequest,
+export const ListObjectDataTypeFieldsByType: API.OperationMethod<
+  ListObjectDataTypeFieldsByTypeRequest,
   TypeFieldListResult,
-  ListObjectDataTypeFieldByTypeError,
+  ListObjectDataTypeFieldsByTypeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListObjectDataTypeFieldByTypeRequest,
+  input: ListObjectDataTypeFieldsByTypeRequest,
   output: TypeFieldListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -15597,6 +15627,51 @@ export const ListScheduleByAutomationAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListSoftwareUpdateConfigurationMachineRunsError = AzureOpError;
+/** Return list of software update configuration machine runs */
+export const ListSoftwareUpdateConfigurationMachineRuns: API.OperationMethod<
+  ListSoftwareUpdateConfigurationMachineRunsRequest,
+  SoftwareUpdateConfigurationMachineRunListResult,
+  ListSoftwareUpdateConfigurationMachineRunsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSoftwareUpdateConfigurationMachineRunsRequest,
+  output: SoftwareUpdateConfigurationMachineRunListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSoftwareUpdateConfigurationRunsError = AzureOpError;
+/** Return list of software update configuration runs */
+export const ListSoftwareUpdateConfigurationRuns: API.OperationMethod<
+  ListSoftwareUpdateConfigurationRunsRequest,
+  SoftwareUpdateConfigurationRunListResult,
+  ListSoftwareUpdateConfigurationRunsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSoftwareUpdateConfigurationRunsRequest,
+  output: SoftwareUpdateConfigurationRunListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSoftwareUpdateConfigurationsError = AzureOpError;
+/** Get all software update configurations for the account. */
+export const ListSoftwareUpdateConfigurations: API.OperationMethod<
+  ListSoftwareUpdateConfigurationsRequest,
+  SoftwareUpdateConfigurationListResult,
+  ListSoftwareUpdateConfigurationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSoftwareUpdateConfigurationsRequest,
+  output: SoftwareUpdateConfigurationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListSourceControlByAutomationAccountError = AzureOpError;
 /** Retrieve a list of source controls. */
 export const ListSourceControlByAutomationAccount: API.OperationMethod<
@@ -15627,30 +15702,30 @@ export const ListSourceControlSyncJobByAutomationAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSourceControlSyncJobStreamBySyncJob2Error = AzureOpError;
+export type ListSourceControlSyncJobStreamBySyncJobError = AzureOpError;
 /** Retrieve a list of sync job streams identified by sync job id. */
-export const ListSourceControlSyncJobStreamBySyncJob2: API.OperationMethod<
-  SourceControlSyncJobStreamsListBySyncJobRequest,
+export const ListSourceControlSyncJobStreamBySyncJob: API.OperationMethod<
+  ListSourceControlSyncJobStreamBySyncJobRequest,
   SourceControlSyncJobStreamsListBySyncJob,
-  ListSourceControlSyncJobStreamBySyncJob2Error,
+  ListSourceControlSyncJobStreamBySyncJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SourceControlSyncJobStreamsListBySyncJobRequest,
+  input: ListSourceControlSyncJobStreamBySyncJobRequest,
   output: SourceControlSyncJobStreamsListBySyncJob,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListStatisticByAutomationAccountError = AzureOpError;
+export type ListStatisticsByAutomationAccountError = AzureOpError;
 /** Retrieve the statistics for the account. */
-export const ListStatisticByAutomationAccount: API.OperationMethod<
-  ListStatisticByAutomationAccountRequest,
+export const ListStatisticsByAutomationAccount: API.OperationMethod<
+  ListStatisticsByAutomationAccountRequest,
   StatisticsListResult,
-  ListStatisticByAutomationAccountError,
+  ListStatisticsByAutomationAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListStatisticByAutomationAccountRequest,
+  input: ListStatisticsByAutomationAccountRequest,
   output: StatisticsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -15747,6 +15822,36 @@ export const ModuleCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MoveHybridRunbookWorkerError = AzureOpError;
+/** Move a hybrid worker to a different group. */
+export const MoveHybridRunbookWorker: API.OperationMethod<
+  MoveHybridRunbookWorkerRequest,
+  MoveHybridRunbookWorkerResponse,
+  MoveHybridRunbookWorkerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MoveHybridRunbookWorkerRequest,
+  output: MoveHybridRunbookWorkerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ObjectDataTypesListFieldsByModuleAndTypeError = AzureOpError;
+/** Retrieve a list of fields of a given type identified by module name. */
+export const ObjectDataTypesListFieldsByModuleAndType: API.OperationMethod<
+  ObjectDataTypesListFieldsByModuleAndTypeRequest,
+  TypeFieldListResult,
+  ObjectDataTypesListFieldsByModuleAndTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ObjectDataTypesListFieldsByModuleAndTypeRequest,
+  output: TypeFieldListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PackageCreateOrUpdateError = AzureOpError;
 /** Create or update the package identified by package name. */
 export const PackageCreateOrUpdate: API.OperationMethod<
@@ -15807,6 +15912,21 @@ export const PrivateLinkResourcesAutomation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PublishRunbookError = AzureOpError;
+/** Publish runbook draft. */
+export const PublishRunbook: API.OperationMethod<
+  PublishRunbookRequest,
+  PublishRunbookResponse,
+  PublishRunbookError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishRunbookRequest,
+  output: PublishRunbookResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type Python2PackageCreateOrUpdateError = AzureOpError;
 /** Create or Update the python 2 package identified by package name. */
 export const Python2PackageCreateOrUpdate: API.OperationMethod<
@@ -15837,6 +15957,66 @@ export const Python3PackageCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RegenerateAgentRegistrationInformationKeyError = AzureOpError;
+/** Regenerate a primary or secondary agent registration key */
+export const RegenerateAgentRegistrationInformationKey: API.OperationMethod<
+  RegenerateAgentRegistrationInformationKeyRequest,
+  AgentRegistration,
+  RegenerateAgentRegistrationInformationKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateAgentRegistrationInformationKeyRequest,
+  output: AgentRegistration,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReplaceRunbookDraftContentError = AzureOpError;
+/** Replaces the runbook draft content. */
+export const ReplaceRunbookDraftContent: API.OperationMethod<
+  ReplaceRunbookDraftContentRequest,
+  ReplaceRunbookDraftContentResponse,
+  ReplaceRunbookDraftContentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReplaceRunbookDraftContentRequest,
+  output: ReplaceRunbookDraftContentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeJobError = AzureOpError;
+/** Resume the job identified by jobName. */
+export const ResumeJob: API.OperationMethod<
+  ResumeJobRequest,
+  ResumeJobResponse,
+  ResumeJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeJobRequest,
+  output: ResumeJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeTestJobError = AzureOpError;
+/** Resume the test job. */
+export const ResumeTestJob: API.OperationMethod<
+  ResumeTestJobRequest,
+  ResumeTestJobResponse,
+  ResumeTestJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeTestJobRequest,
+  output: ResumeTestJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RunbookCreateOrUpdateError = AzureOpError;
 /** Create the runbook identified by runbook name. */
 export const RunbookCreateOrUpdate: API.OperationMethod<
@@ -15852,51 +16032,6 @@ export const RunbookCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RunbookDraftReplaceContentError = AzureOpError;
-/** Replaces the runbook draft content. */
-export const RunbookDraftReplaceContent: API.OperationMethod<
-  RunbookDraftReplaceContentRequest,
-  RunbookDraftReplaceContentResponse,
-  RunbookDraftReplaceContentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RunbookDraftReplaceContentRequest,
-  output: RunbookDraftReplaceContentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RunbookDraftUndoEditError = AzureOpError;
-/** Undo draft edit to last known published state identified by runbook name. */
-export const RunbookDraftUndoEdit: API.OperationMethod<
-  RunbookDraftUndoEditRequest,
-  RunbookDraftUndoEditResult,
-  RunbookDraftUndoEditError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RunbookDraftUndoEditRequest,
-  output: RunbookDraftUndoEditResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RunbookPublishError = AzureOpError;
-/** Publish runbook draft. */
-export const RunbookPublish: API.OperationMethod<
-  RunbookPublishRequest,
-  RunbookPublishResponse,
-  RunbookPublishError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RunbookPublishRequest,
-  output: RunbookPublishResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ScheduleCreateOrUpdateError = AzureOpError;
 /** Create a schedule. */
 export const ScheduleCreateOrUpdate: API.OperationMethod<
@@ -15907,126 +16042,6 @@ export const ScheduleCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ScheduleCreateOrUpdateRequest,
   output: ScheduleCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationMachineRunsGetByIdError = AzureOpError;
-/** Get a single software update configuration machine run by Id. */
-export const SoftwareUpdateConfigurationMachineRunsGetById: API.OperationMethod<
-  SoftwareUpdateConfigurationMachineRunsGetByIdRequest,
-  SoftwareUpdateConfigurationMachineRun,
-  SoftwareUpdateConfigurationMachineRunsGetByIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationMachineRunsGetByIdRequest,
-  output: SoftwareUpdateConfigurationMachineRun,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationMachineRunsListError = AzureOpError;
-/** Return list of software update configuration machine runs */
-export const SoftwareUpdateConfigurationMachineRunsList: API.OperationMethod<
-  SoftwareUpdateConfigurationMachineRunsListRequest,
-  SoftwareUpdateConfigurationMachineRunListResult,
-  SoftwareUpdateConfigurationMachineRunsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationMachineRunsListRequest,
-  output: SoftwareUpdateConfigurationMachineRunListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationRunsGetByIdError = AzureOpError;
-/** Get a single software update configuration Run by Id. */
-export const SoftwareUpdateConfigurationRunsGetById: API.OperationMethod<
-  SoftwareUpdateConfigurationRunsGetByIdRequest,
-  SoftwareUpdateConfigurationRun,
-  SoftwareUpdateConfigurationRunsGetByIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationRunsGetByIdRequest,
-  output: SoftwareUpdateConfigurationRun,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationRunsListError = AzureOpError;
-/** Return list of software update configuration runs */
-export const SoftwareUpdateConfigurationRunsList: API.OperationMethod<
-  SoftwareUpdateConfigurationRunsListRequest,
-  SoftwareUpdateConfigurationRunListResult,
-  SoftwareUpdateConfigurationRunsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationRunsListRequest,
-  output: SoftwareUpdateConfigurationRunListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationsCreateError = AzureOpError;
-/** Create a new software update configuration with the name given in the URI. */
-export const SoftwareUpdateConfigurationsCreate: API.OperationMethod<
-  SoftwareUpdateConfigurationsCreateRequest,
-  SoftwareUpdateConfigurationsCreateResponse,
-  SoftwareUpdateConfigurationsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationsCreateRequest,
-  output: SoftwareUpdateConfigurationsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationsDeleteError = AzureOpError;
-/** delete a specific software update configuration. */
-export const SoftwareUpdateConfigurationsDelete: API.OperationMethod<
-  SoftwareUpdateConfigurationsDeleteRequest,
-  SoftwareUpdateConfigurationsDeleteResponse,
-  SoftwareUpdateConfigurationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationsDeleteRequest,
-  output: SoftwareUpdateConfigurationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationsGetByNameError = AzureOpError;
-/** Get a single software update configuration by name. */
-export const SoftwareUpdateConfigurationsGetByName: API.OperationMethod<
-  SoftwareUpdateConfigurationsGetByNameRequest,
-  SoftwareUpdateConfigurationsGetByNameResponse,
-  SoftwareUpdateConfigurationsGetByNameError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationsGetByNameRequest,
-  output: SoftwareUpdateConfigurationsGetByNameResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SoftwareUpdateConfigurationsListError = AzureOpError;
-/** Get all software update configurations for the account. */
-export const SoftwareUpdateConfigurationsList: API.OperationMethod<
-  SoftwareUpdateConfigurationsListRequest,
-  SoftwareUpdateConfigurationListResult,
-  SoftwareUpdateConfigurationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SoftwareUpdateConfigurationsListRequest,
-  output: SoftwareUpdateConfigurationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16132,21 +16147,6 @@ export const SuspendTestJob: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SuspendTestJobRequest,
   output: SuspendTestJobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TestJobResumeError = AzureOpError;
-/** Resume the test job. */
-export const TestJobResume: API.OperationMethod<
-  TestJobResumeRequest,
-  TestJobResumeResponse,
-  TestJobResumeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TestJobResumeRequest,
-  output: TestJobResumeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

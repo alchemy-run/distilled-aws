@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.playwrighttesting#GetAccountQuota": {
+    "com.azure.playwrighttesting#GetAccountQuotas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.playwrighttesting#GetAccountQuotaRequest"
+        "target": "com.azure.playwrighttesting#GetAccountQuotasRequest"
       },
       "output": {
-        "target": "com.azure.playwrighttesting#GetAccountQuotaResponse"
+        "target": "com.azure.playwrighttesting#GetAccountQuotasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-01"
       }
     },
-    "com.azure.playwrighttesting#GetAccountQuotaResponse": {
+    "com.azure.playwrighttesting#GetAccountQuotasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -289,7 +290,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.playwrighttesting#GetAccountQuotaRequest": {
+    "com.azure.playwrighttesting#GetAccountQuotasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -317,7 +318,7 @@
           }
         },
         "quotaName": {
-          "target": "com.azure.playwrighttesting#AccountQuotasGetRequestQuotaName",
+          "target": "com.azure.playwrighttesting#GetAccountQuotasRequestQuotaName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -329,7 +330,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.playwrighttesting#AccountQuotasGetRequestQuotaName": {
+    "com.azure.playwrighttesting#GetAccountQuotasRequestQuotaName": {
       "type": "enum",
       "members": {
         "SCALABLEEXECUTION": {
@@ -347,10 +348,10 @@
       },
       "traits": {}
     },
-    "com.azure.playwrighttesting#ListAccountQuotaByAccount": {
+    "com.azure.playwrighttesting#ListAccountQuotasByAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.playwrighttesting#ListAccountQuotaByAccountRequest"
+        "target": "com.azure.playwrighttesting#ListAccountQuotasByAccountRequest"
       },
       "output": {
         "target": "com.azure.playwrighttesting#AccountQuotaListResult"
@@ -434,7 +435,7 @@
         "smithy.api#documentation": "A quota resource for a Playwright service account."
       }
     },
-    "com.azure.playwrighttesting#ListAccountQuotaByAccountRequest": {
+    "com.azure.playwrighttesting#ListAccountQuotasByAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -564,7 +565,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.playwrighttesting#AccountsUpdateResponseTagsMap",
+          "target": "com.azure.playwrighttesting#UpdateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -711,7 +712,7 @@
         "smithy.api#documentation": "This property sets the connection region for Playwright client workers to cloud-hosted browsers. If enabled, workers connect to browsers in the closest Azure region, ensuring lower latency. If disabled, workers connect to browsers in the Azure region in which the workspace was initially created."
       }
     },
-    "com.azure.playwrighttesting#AccountsUpdateResponseTagsMap": {
+    "com.azure.playwrighttesting#UpdateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -751,7 +752,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.playwrighttesting#AccountsUpdateRequestTagsMap",
+          "target": "com.azure.playwrighttesting#UpdateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -819,7 +820,7 @@
         "smithy.api#documentation": "The enablement status of a feature."
       }
     },
-    "com.azure.playwrighttesting#AccountsUpdateRequestTagsMap": {
+    "com.azure.playwrighttesting#UpdateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1135,7 +1136,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.playwrighttesting#AccountsGetResponseTagsMap",
+          "target": "com.azure.playwrighttesting#GetAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1158,7 +1159,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.playwrighttesting#AccountsGetResponseTagsMap": {
+    "com.azure.playwrighttesting#GetAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1338,13 +1339,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.playwrighttesting#GetQuota": {
+    "com.azure.playwrighttesting#GetQuotas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.playwrighttesting#GetQuotaRequest"
+        "target": "com.azure.playwrighttesting#GetQuotasRequest"
       },
       "output": {
-        "target": "com.azure.playwrighttesting#GetQuotaResponse"
+        "target": "com.azure.playwrighttesting#GetQuotasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1357,7 +1358,7 @@
         "com.distilled.openapi#apiVersion": "2024-12-01"
       }
     },
-    "com.azure.playwrighttesting#GetQuotaResponse": {
+    "com.azure.playwrighttesting#GetQuotasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1507,7 +1508,7 @@
         "smithy.api#documentation": "The free-trial state."
       }
     },
-    "com.azure.playwrighttesting#GetQuotaRequest": {
+    "com.azure.playwrighttesting#GetQuotasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1527,7 +1528,7 @@
           }
         },
         "quotaName": {
-          "target": "com.azure.playwrighttesting#QuotasGetRequestQuotaName",
+          "target": "com.azure.playwrighttesting#GetQuotasRequestQuotaName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -1539,7 +1540,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.playwrighttesting#QuotasGetRequestQuotaName": {
+    "com.azure.playwrighttesting#GetQuotasRequestQuotaName": {
       "type": "enum",
       "members": {
         "SCALABLEEXECUTION": {
@@ -1557,10 +1558,10 @@
       },
       "traits": {}
     },
-    "com.azure.playwrighttesting#ListQuotaBySubscription": {
+    "com.azure.playwrighttesting#ListQuotasBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.playwrighttesting#ListQuotaBySubscriptionRequest"
+        "target": "com.azure.playwrighttesting#ListQuotasBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.playwrighttesting#QuotaListResult"
@@ -1644,7 +1645,7 @@
         "smithy.api#documentation": "A subscription quota resource."
       }
     },
-    "com.azure.playwrighttesting#ListQuotaBySubscriptionRequest": {
+    "com.azure.playwrighttesting#ListQuotasBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1697,7 +1698,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.playwrighttesting#AccountsCheckNameAvailabilityResponseReason",
+          "target": "com.azure.playwrighttesting#CheckAccountNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -1713,7 +1714,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.playwrighttesting#AccountsCheckNameAvailabilityResponseReason": {
+    "com.azure.playwrighttesting#CheckAccountNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -1819,7 +1820,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.playwrighttesting#OperationsListResponseValueList",
+          "target": "com.azure.playwrighttesting#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1835,7 +1836,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.playwrighttesting#OperationsListResponseValueList": {
+    "com.azure.playwrighttesting#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.playwrighttesting#Operation"
@@ -1959,40 +1960,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.playwrighttesting#GetAccountQuota"
-        },
-        {
-          "target": "com.azure.playwrighttesting#ListAccountQuotaByAccount"
-        },
-        {
-          "target": "com.azure.playwrighttesting#DeleteAccount"
-        },
-        {
-          "target": "com.azure.playwrighttesting#UpdateAccount"
-        },
-        {
           "target": "com.azure.playwrighttesting#AccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.playwrighttesting#GetAccount"
-        },
-        {
-          "target": "com.azure.playwrighttesting#ListAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.playwrighttesting#GetQuota"
-        },
-        {
-          "target": "com.azure.playwrighttesting#ListQuotaBySubscription"
         },
         {
           "target": "com.azure.playwrighttesting#CheckAccountNameAvailability"
         },
         {
+          "target": "com.azure.playwrighttesting#DeleteAccount"
+        },
+        {
+          "target": "com.azure.playwrighttesting#GetAccount"
+        },
+        {
+          "target": "com.azure.playwrighttesting#GetAccountQuotas"
+        },
+        {
+          "target": "com.azure.playwrighttesting#GetQuotas"
+        },
+        {
+          "target": "com.azure.playwrighttesting#ListAccountByResourceGroup"
+        },
+        {
           "target": "com.azure.playwrighttesting#ListAccountBySubscription"
         },
         {
+          "target": "com.azure.playwrighttesting#ListAccountQuotasByAccount"
+        },
+        {
           "target": "com.azure.playwrighttesting#ListOperations"
+        },
+        {
+          "target": "com.azure.playwrighttesting#ListQuotasBySubscription"
+        },
+        {
+          "target": "com.azure.playwrighttesting#UpdateAccount"
         }
       ],
       "traits": {

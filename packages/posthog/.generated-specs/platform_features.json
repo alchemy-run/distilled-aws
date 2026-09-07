@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.platform_features#ListApprovalPoliciesRequest": {
@@ -293,7 +294,7 @@
         }
       }
     },
-    "com.posthog.platform_features#ApprovalPoliciesCreateRequestBypassRolesList": {
+    "com.posthog.platform_features#CreateApprovalPolicyRequestBypassRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -327,7 +328,7 @@
           "target": "smithy.api#Document"
         },
         "bypass_roles": {
-          "target": "com.posthog.platform_features#ApprovalPoliciesCreateRequestBypassRolesList"
+          "target": "com.posthog.platform_features#CreateApprovalPolicyRequestBypassRolesList"
         },
         "expires_after": {
           "target": "smithy.api#String",
@@ -359,7 +360,7 @@
         }
       }
     },
-    "com.posthog.platform_features#ApprovalPoliciesRetrieveRequest": {
+    "com.posthog.platform_features#GetApprovalPolicyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -383,10 +384,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.platform_features#ApprovalPoliciesRetrieve": {
+    "com.posthog.platform_features#GetApprovalPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.platform_features#ApprovalPoliciesRetrieveRequest"
+        "target": "com.posthog.platform_features#GetApprovalPolicyRequest"
       },
       "output": {
         "target": "com.posthog.platform_features#ApprovalPolicy"
@@ -399,7 +400,7 @@
         }
       }
     },
-    "com.posthog.platform_features#ApprovalPoliciesUpdateRequestBypassRolesList": {
+    "com.posthog.platform_features#UpdateApprovalPolicyRequestBypassRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -441,7 +442,7 @@
           "target": "smithy.api#Document"
         },
         "bypass_roles": {
-          "target": "com.posthog.platform_features#ApprovalPoliciesUpdateRequestBypassRolesList"
+          "target": "com.posthog.platform_features#UpdateApprovalPolicyRequestBypassRolesList"
         },
         "expires_after": {
           "target": "smithy.api#String",
@@ -473,14 +474,14 @@
         }
       }
     },
-    "com.posthog.platform_features#ApprovalPoliciesPartialUpdateRequestBypassRolesList": {
+    "com.posthog.platform_features#UpdateApprovalPoliciesPartialRequestBypassRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.platform_features#UpdateApprovalPolicyPartialRequest": {
+    "com.posthog.platform_features#UpdateApprovalPoliciesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -515,7 +516,7 @@
           "target": "smithy.api#Document"
         },
         "bypass_roles": {
-          "target": "com.posthog.platform_features#ApprovalPoliciesPartialUpdateRequestBypassRolesList"
+          "target": "com.posthog.platform_features#UpdateApprovalPoliciesPartialRequestBypassRolesList"
         },
         "expires_after": {
           "target": "smithy.api#String",
@@ -531,10 +532,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.platform_features#UpdateApprovalPolicyPartial": {
+    "com.posthog.platform_features#UpdateApprovalPoliciesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.platform_features#UpdateApprovalPolicyPartialRequest"
+        "target": "com.posthog.platform_features#UpdateApprovalPoliciesPartialRequest"
       },
       "output": {
         "target": "com.posthog.platform_features#ApprovalPolicy"
@@ -587,7 +588,7 @@
         }
       }
     },
-    "com.posthog.platform_features#ChangeRequestsListRequestStateList": {
+    "com.posthog.platform_features#ListChangeRequestsRequestStateList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -644,7 +645,7 @@
           }
         },
         "state": {
-          "target": "com.posthog.platform_features#ChangeRequestsListRequestStateList",
+          "target": "com.posthog.platform_features#ListChangeRequestsRequestStateList",
           "traits": {
             "smithy.api#httpQuery": "state",
             "smithy.api#documentation": "Multiple values may be separated by commas."
@@ -898,7 +899,7 @@
         }
       }
     },
-    "com.posthog.platform_features#ChangeRequestsRetrieveRequest": {
+    "com.posthog.platform_features#GetChangeRequestRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -922,10 +923,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.platform_features#ChangeRequestsRetrieve": {
+    "com.posthog.platform_features#GetChangeRequest": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.platform_features#ChangeRequestsRetrieveRequest"
+        "target": "com.posthog.platform_features#GetChangeRequestRequest"
       },
       "output": {
         "target": "com.posthog.platform_features#ChangeRequest"
@@ -938,7 +939,7 @@
         }
       }
     },
-    "com.posthog.platform_features#CreateChangeRequestApproveRequest": {
+    "com.posthog.platform_features#ChangeRequestsApproveCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1001,10 +1002,10 @@
       },
       "traits": {}
     },
-    "com.posthog.platform_features#CreateChangeRequestApprove": {
+    "com.posthog.platform_features#ChangeRequestsApproveCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.platform_features#CreateChangeRequestApproveRequest"
+        "target": "com.posthog.platform_features#ChangeRequestsApproveCreateRequest"
       },
       "output": {
         "target": "com.posthog.platform_features#ChangeRequestDecisionResponse"
@@ -1018,7 +1019,7 @@
         "smithy.api#documentation": "Approve a change request.\nIf quorum is reached, automatically applies the change immediately."
       }
     },
-    "com.posthog.platform_features#CreateChangeRequestCancelRequest": {
+    "com.posthog.platform_features#ChangeRequestsCancelCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1042,10 +1043,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.platform_features#CreateChangeRequestCancel": {
+    "com.posthog.platform_features#ChangeRequestsCancelCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.platform_features#CreateChangeRequestCancelRequest"
+        "target": "com.posthog.platform_features#ChangeRequestsCancelCreateRequest"
       },
       "output": {
         "target": "com.posthog.platform_features#ChangeRequest"
@@ -1059,7 +1060,7 @@
         "smithy.api#documentation": "Cancel a change request.\nOnly the requester can cancel their own pending change request."
       }
     },
-    "com.posthog.platform_features#CreateChangeRequestRejectRequest": {
+    "com.posthog.platform_features#ChangeRequestsRejectCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1090,10 +1091,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.platform_features#CreateChangeRequestReject": {
+    "com.posthog.platform_features#ChangeRequestsRejectCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.platform_features#CreateChangeRequestRejectRequest"
+        "target": "com.posthog.platform_features#ChangeRequestsRejectCreateRequest"
       },
       "output": {
         "target": "com.posthog.platform_features#ChangeRequestDecisionResponse"
@@ -1112,37 +1113,37 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.platform_features#ListApprovalPolicies"
+          "target": "com.posthog.platform_features#ApprovalPoliciesDestroy"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsApproveCreate"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsCancelCreate"
+        },
+        {
+          "target": "com.posthog.platform_features#ChangeRequestsRejectCreate"
         },
         {
           "target": "com.posthog.platform_features#CreateApprovalPolicy"
         },
         {
-          "target": "com.posthog.platform_features#ApprovalPoliciesRetrieve"
+          "target": "com.posthog.platform_features#GetApprovalPolicy"
         },
         {
-          "target": "com.posthog.platform_features#UpdateApprovalPolicy"
+          "target": "com.posthog.platform_features#GetChangeRequest"
         },
         {
-          "target": "com.posthog.platform_features#UpdateApprovalPolicyPartial"
-        },
-        {
-          "target": "com.posthog.platform_features#ApprovalPoliciesDestroy"
+          "target": "com.posthog.platform_features#ListApprovalPolicies"
         },
         {
           "target": "com.posthog.platform_features#ListChangeRequests"
         },
         {
-          "target": "com.posthog.platform_features#ChangeRequestsRetrieve"
+          "target": "com.posthog.platform_features#UpdateApprovalPoliciesPartial"
         },
         {
-          "target": "com.posthog.platform_features#CreateChangeRequestApprove"
-        },
-        {
-          "target": "com.posthog.platform_features#CreateChangeRequestCancel"
-        },
-        {
-          "target": "com.posthog.platform_features#CreateChangeRequestReject"
+          "target": "com.posthog.platform_features#UpdateApprovalPolicy"
         }
       ],
       "traits": {

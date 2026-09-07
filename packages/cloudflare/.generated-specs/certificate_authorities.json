@@ -17,7 +17,8 @@
     ],
     "keyDictionary": {
       "mtlsCertificateId": "mtls_certificate_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponseHostnamesList": {
@@ -43,10 +44,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGet"
+          "target": "com.cloudflare.certificate_authorities#GetHostnameAssociation"
         },
         {
-          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdate"
+          "target": "com.cloudflare.certificate_authorities#PutHostnameAssociation"
         }
       ],
       "traits": {

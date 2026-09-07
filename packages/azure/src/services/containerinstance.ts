@@ -13,6 +13,50 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface AttachContainerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the container group. */
+  containerGroupName: string;
+  /** The name of the container instance. */
+  containerName: string;
+}
+export const AttachContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    containerGroupName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/containerGroups/{containerGroupName}/containers/{containerName}/attach",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "AttachContainerRequest",
+}) as any as S.Schema<AttachContainerRequest>;
+
+/** The information for the output stream from container attach. */
+export interface ContainerAttachResponse {
+  /** The uri for the output stream from the attach. */
+  webSocketUri?: string;
+  /** The password to the output stream from the attach. Send as an Authorization header value when connecting to the websocketUri. */
+  password?: string | Redacted.Redacted<string>;
+}
+export const ContainerAttachResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webSocketUri: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "ContainerAttachResponse",
+}) as any as S.Schema<ContainerAttachResponse>;
+
 /** The container group SKU. */
 export type ContainerGroupSku =
   | "NotSpecified"
@@ -689,14 +733,14 @@ export const AzureFileVolume = /*@__PURE__*/ S.suspend(() =>
   identifier: "AzureFileVolume",
 }) as any as S.Schema<AzureFileVolume>;
 
-/** The secret volume. */
+/** Defines files for a secret volume. Dictionary keys are file names and values are Base64-encoded secret data used as file contents. The values are sensitive, and the service does not return the contents of this property in GET responses. */
 export type VolumeSecretMap = { [key: string]: string | undefined };
 export const VolumeSecretMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<VolumeSecretMap>;
 
-/** The secret reference volume. */
+/** Defines files for a secret reference volume. Dictionary keys are file names and values identify entries in the container group's secretReferences collection. This property contains reference names rather than secret values. */
 export type VolumeSecretReferenceMap = { [key: string]: string | undefined };
 export const VolumeSecretReferenceMap = /*@__PURE__*/ S.Record(
   S.String,
@@ -728,9 +772,9 @@ export interface Volume {
   azureFile?: AzureFileVolume;
   /** The empty directory volume. */
   emptyDir?: unknown;
-  /** The secret volume. */
+  /** Defines files for a secret volume. Dictionary keys are file names and values are Base64-encoded secret data used as file contents. The values are sensitive, and the service does not return the contents of this property in GET responses. */
   secret?: VolumeSecretMap;
-  /** The secret reference volume. */
+  /** Defines files for a secret reference volume. Dictionary keys are file names and values identify entries in the container group's secretReferences collection. This property contains reference names rather than secret values. */
   secretReference?: VolumeSecretReferenceMap;
   /** The git repo volume. */
   gitRepo?: GitRepoVolume;
@@ -1453,6 +1497,50 @@ export const CGProfileCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CGProfileCreateOrUpdateResponse",
 }) as any as S.Schema<CGProfileCreateOrUpdateResponse>;
 
+export interface ConnectSandboxGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup. */
+  sandboxGroupName: string;
+}
+export const ConnectSandboxGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sandboxGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/sandboxGroups/{sandboxGroupName}/connect",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ConnectSandboxGroupRequest",
+}) as any as S.Schema<ConnectSandboxGroupRequest>;
+
+/** The result of getting an access token for a SandboxGroup. */
+export interface SandboxGroupAccessToken {
+  /** The endpoint URL to use with the access token. */
+  endpoint: string;
+  /** The access token used to authenticate against the endpoint. */
+  accessToken: string | Redacted.Redacted<string>;
+  /** The UTC date and time at which the access token expires. */
+  notAfter: string;
+}
+export const SandboxGroupAccessToken = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpoint: S.String,
+    accessToken: S.String.pipe(T.SensitiveValue({})),
+    notAfter: S.String,
+  }),
+).annotate({
+  identifier: "SandboxGroupAccessToken",
+}) as any as S.Schema<SandboxGroupAccessToken>;
+
 /** The resource tags. */
 export type ContainerGroupsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -2090,117 +2178,7 @@ export const ContainerGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ContainerGroupsCreateOrUpdateResponse",
 }) as any as S.Schema<ContainerGroupsCreateOrUpdateResponse>;
 
-export interface ContainersAttachRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the container group. */
-  containerGroupName: string;
-  /** The name of the container instance. */
-  containerName: string;
-}
-export const ContainersAttachRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    containerGroupName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/containerGroups/{containerGroupName}/containers/{containerName}/attach",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContainersAttachRequest",
-}) as any as S.Schema<ContainersAttachRequest>;
-
-/** The information for the output stream from container attach. */
-export interface ContainerAttachResponse {
-  /** The uri for the output stream from the attach. */
-  webSocketUri?: string;
-  /** The password to the output stream from the attach. Send as an Authorization header value when connecting to the websocketUri. */
-  password?: string | Redacted.Redacted<string>;
-}
-export const ContainerAttachResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webSocketUri: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "ContainerAttachResponse",
-}) as any as S.Schema<ContainerAttachResponse>;
-
-/** The size of the terminal. */
-export interface ContainerExecRequestTerminalSize {
-  /** The row size of the terminal */
-  rows?: number;
-  /** The column size of the terminal */
-  cols?: number;
-}
-export const ContainerExecRequestTerminalSize = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rows: S.optional(S.Number),
-    cols: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ContainerExecRequestTerminalSize",
-}) as any as S.Schema<ContainerExecRequestTerminalSize>;
-
-export interface ContainersExecuteCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the container group. */
-  containerGroupName: string;
-  /** The name of the container instance. */
-  containerName: string;
-  /** The command to be executed. */
-  command?: string;
-  /** The size of the terminal. */
-  terminalSize?: ContainerExecRequestTerminalSize;
-}
-export const ContainersExecuteCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    containerGroupName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-    command: S.optional(S.String),
-    terminalSize: S.optional(ContainerExecRequestTerminalSize),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/containerGroups/{containerGroupName}/containers/{containerName}/exec",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContainersExecuteCommandRequest",
-}) as any as S.Schema<ContainersExecuteCommandRequest>;
-
-/** The information for the container exec command. */
-export interface ContainerExecResponse {
-  /** The uri for the exec websocket. */
-  webSocketUri?: string;
-  /** The password to start the exec command. */
-  password?: string | Redacted.Redacted<string>;
-}
-export const ContainerExecResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webSocketUri: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "ContainerExecResponse",
-}) as any as S.Schema<ContainerExecResponse>;
-
-export interface DeleteCgProfileRequest {
+export interface DeleteCGProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2208,7 +2186,7 @@ export interface DeleteCgProfileRequest {
   /** ContainerGroupProfile name. */
   containerGroupProfileName: string;
 }
-export const DeleteCgProfileRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCGProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2222,15 +2200,15 @@ export const DeleteCgProfileRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteCgProfileRequest",
-}) as any as S.Schema<DeleteCgProfileRequest>;
+  identifier: "DeleteCGProfileRequest",
+}) as any as S.Schema<DeleteCGProfileRequest>;
 
-export interface DeleteCgProfileResponse {}
-export const DeleteCgProfileResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCGProfileResponse {}
+export const DeleteCGProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteCgProfileResponse",
-}) as any as S.Schema<DeleteCgProfileResponse>;
+  identifier: "DeleteCGProfileResponse",
+}) as any as S.Schema<DeleteCGProfileResponse>;
 
 export interface DeleteContainerGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2258,19 +2236,19 @@ export const DeleteContainerGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteContainerGroupRequest>;
 
 /** The resource tags. */
-export type ContainerGroupsDeleteResponseTagsMap = {
+export type DeleteContainerGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerGroupsDeleteResponseTagsMap = /*@__PURE__*/ S.Record(
+export const DeleteContainerGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerGroupsDeleteResponseTagsMap>;
+) as any as S.Schema<DeleteContainerGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type ContainerGroupsDeleteResponseZonesList = Array<string>;
-export const ContainerGroupsDeleteResponseZonesList = /*@__PURE__*/ S.Array(
+export type DeleteContainerGroupResponseZonesList = Array<string>;
+export const DeleteContainerGroupResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ContainerGroupsDeleteResponseZonesList>;
+) as any as S.Schema<DeleteContainerGroupResponseZonesList>;
 
 export interface DeleteContainerGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2284,9 +2262,9 @@ export interface DeleteContainerGroupResponse {
   /** The resource location of the container group. */
   location?: string;
   /** The resource tags. */
-  tags?: ContainerGroupsDeleteResponseTagsMap;
+  tags?: DeleteContainerGroupResponseTagsMap;
   /** The availability zones. */
-  zones?: ContainerGroupsDeleteResponseZonesList;
+  zones?: DeleteContainerGroupResponseZonesList;
   /** The identity of the container group, if configured. */
   identity?: ContainerGroupIdentity;
   /** The container group properties */
@@ -2299,8 +2277,8 @@ export const DeleteContainerGroupResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     location: S.optional(S.String),
-    tags: S.optional(ContainerGroupsDeleteResponseTagsMap),
-    zones: S.optional(ContainerGroupsDeleteResponseZonesList),
+    tags: S.optional(DeleteContainerGroupResponseTagsMap),
+    zones: S.optional(DeleteContainerGroupResponseZonesList),
     identity: S.optional(ContainerGroupIdentity),
     properties: ContainerGroupPropertiesProperties,
   }),
@@ -2407,7 +2385,73 @@ export const DeleteSubnetServiceAssociationLinkResponse =
     identifier: "DeleteSubnetServiceAssociationLinkResponse",
   }) as any as S.Schema<DeleteSubnetServiceAssociationLinkResponse>;
 
-export interface GetCgProfileRequest {
+/** The size of the terminal. */
+export interface ContainerExecRequestTerminalSize {
+  /** The row size of the terminal */
+  rows?: number;
+  /** The column size of the terminal */
+  cols?: number;
+}
+export const ContainerExecRequestTerminalSize = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rows: S.optional(S.Number),
+    cols: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ContainerExecRequestTerminalSize",
+}) as any as S.Schema<ContainerExecRequestTerminalSize>;
+
+export interface ExecuteContainerCommandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the container group. */
+  containerGroupName: string;
+  /** The name of the container instance. */
+  containerName: string;
+  /** The command to be executed. */
+  command?: string;
+  /** The size of the terminal. */
+  terminalSize?: ContainerExecRequestTerminalSize;
+}
+export const ExecuteContainerCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    containerGroupName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+    command: S.optional(S.String),
+    terminalSize: S.optional(ContainerExecRequestTerminalSize),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/containerGroups/{containerGroupName}/containers/{containerName}/exec",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExecuteContainerCommandRequest",
+}) as any as S.Schema<ExecuteContainerCommandRequest>;
+
+/** The information for the container exec command. */
+export interface ContainerExecResponse {
+  /** The uri for the exec websocket. */
+  webSocketUri?: string;
+  /** The password to start the exec command. */
+  password?: string | Redacted.Redacted<string>;
+}
+export const ContainerExecResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webSocketUri: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "ContainerExecResponse",
+}) as any as S.Schema<ContainerExecResponse>;
+
+export interface GetCGProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2415,7 +2459,7 @@ export interface GetCgProfileRequest {
   /** ContainerGroupProfile name. */
   containerGroupProfileName: string;
 }
-export const GetCgProfileRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCGProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2429,23 +2473,23 @@ export const GetCgProfileRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetCgProfileRequest",
-}) as any as S.Schema<GetCgProfileRequest>;
+  identifier: "GetCGProfileRequest",
+}) as any as S.Schema<GetCGProfileRequest>;
 
 /** Resource tags. */
-export type CGProfileGetResponseTagsMap = { [key: string]: string | undefined };
-export const CGProfileGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCGProfileResponseTagsMap = { [key: string]: string | undefined };
+export const GetCGProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CGProfileGetResponseTagsMap>;
+) as any as S.Schema<GetCGProfileResponseTagsMap>;
 
 /** The availability zones. */
-export type CGProfileGetResponseZonesList = Array<string>;
-export const CGProfileGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetCGProfileResponseZonesList = Array<string>;
+export const GetCGProfileResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<CGProfileGetResponseZonesList>;
+) as any as S.Schema<GetCGProfileResponseZonesList>;
 
-export interface GetCgProfileResponse {
+export interface GetCGProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2457,28 +2501,28 @@ export interface GetCgProfileResponse {
   /** The container group profile properties */
   properties?: ContainerGroupProfileProperties;
   /** Resource tags. */
-  tags?: CGProfileGetResponseTagsMap;
+  tags?: GetCGProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The availability zones. */
-  zones?: CGProfileGetResponseZonesList;
+  zones?: GetCGProfileResponseZonesList;
 }
-export const GetCgProfileResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCGProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ContainerGroupProfileProperties),
-    tags: S.optional(CGProfileGetResponseTagsMap),
+    tags: S.optional(GetCGProfileResponseTagsMap),
     location: S.optional(S.String),
-    zones: S.optional(CGProfileGetResponseZonesList),
+    zones: S.optional(GetCGProfileResponseZonesList),
   }),
 ).annotate({
-  identifier: "GetCgProfileResponse",
-}) as any as S.Schema<GetCgProfileResponse>;
+  identifier: "GetCGProfileResponse",
+}) as any as S.Schema<GetCGProfileResponse>;
 
-export interface GetCgProfileByRevisionNumberRequest {
+export interface GetCGProfileByRevisionNumberRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2488,7 +2532,7 @@ export interface GetCgProfileByRevisionNumberRequest {
   /** The revision number of the container group profile. */
   revisionNumber: string;
 }
-export const GetCgProfileByRevisionNumberRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCGProfileByRevisionNumberRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2503,27 +2547,27 @@ export const GetCgProfileByRevisionNumberRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetCgProfileByRevisionNumberRequest",
-}) as any as S.Schema<GetCgProfileByRevisionNumberRequest>;
+  identifier: "GetCGProfileByRevisionNumberRequest",
+}) as any as S.Schema<GetCGProfileByRevisionNumberRequest>;
 
 /** Resource tags. */
-export type CGProfileGetByRevisionNumberResponseTagsMap = {
+export type GetCGProfileByRevisionNumberResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CGProfileGetByRevisionNumberResponseTagsMap =
+export const GetCGProfileByRevisionNumberResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CGProfileGetByRevisionNumberResponseTagsMap>;
+  ) as any as S.Schema<GetCGProfileByRevisionNumberResponseTagsMap>;
 
 /** The availability zones. */
-export type CGProfileGetByRevisionNumberResponseZonesList = Array<string>;
-export const CGProfileGetByRevisionNumberResponseZonesList =
+export type GetCGProfileByRevisionNumberResponseZonesList = Array<string>;
+export const GetCGProfileByRevisionNumberResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<CGProfileGetByRevisionNumberResponseZonesList>;
+  ) as any as S.Schema<GetCGProfileByRevisionNumberResponseZonesList>;
 
-export interface GetCgProfileByRevisionNumberResponse {
+export interface GetCGProfileByRevisionNumberResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2535,13 +2579,13 @@ export interface GetCgProfileByRevisionNumberResponse {
   /** The container group profile properties */
   properties?: ContainerGroupProfileProperties;
   /** Resource tags. */
-  tags?: CGProfileGetByRevisionNumberResponseTagsMap;
+  tags?: GetCGProfileByRevisionNumberResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The availability zones. */
-  zones?: CGProfileGetByRevisionNumberResponseZonesList;
+  zones?: GetCGProfileByRevisionNumberResponseZonesList;
 }
-export const GetCgProfileByRevisionNumberResponse = /*@__PURE__*/ S.suspend(
+export const GetCGProfileByRevisionNumberResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -2549,13 +2593,13 @@ export const GetCgProfileByRevisionNumberResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(ContainerGroupProfileProperties),
-      tags: S.optional(CGProfileGetByRevisionNumberResponseTagsMap),
+      tags: S.optional(GetCGProfileByRevisionNumberResponseTagsMap),
       location: S.optional(S.String),
-      zones: S.optional(CGProfileGetByRevisionNumberResponseZonesList),
+      zones: S.optional(GetCGProfileByRevisionNumberResponseZonesList),
     }),
 ).annotate({
-  identifier: "GetCgProfileByRevisionNumberResponse",
-}) as any as S.Schema<GetCgProfileByRevisionNumberResponse>;
+  identifier: "GetCGProfileByRevisionNumberResponse",
+}) as any as S.Schema<GetCGProfileByRevisionNumberResponse>;
 
 export interface GetContainerGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2583,19 +2627,19 @@ export const GetContainerGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetContainerGroupRequest>;
 
 /** The resource tags. */
-export type ContainerGroupsGetResponseTagsMap = {
+export type GetContainerGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetContainerGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetContainerGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type ContainerGroupsGetResponseZonesList = Array<string>;
-export const ContainerGroupsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetContainerGroupResponseZonesList = Array<string>;
+export const GetContainerGroupResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ContainerGroupsGetResponseZonesList>;
+) as any as S.Schema<GetContainerGroupResponseZonesList>;
 
 export interface GetContainerGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2609,9 +2653,9 @@ export interface GetContainerGroupResponse {
   /** The resource location of the container group. */
   location?: string;
   /** The resource tags. */
-  tags?: ContainerGroupsGetResponseTagsMap;
+  tags?: GetContainerGroupResponseTagsMap;
   /** The availability zones. */
-  zones?: ContainerGroupsGetResponseZonesList;
+  zones?: GetContainerGroupResponseZonesList;
   /** The identity of the container group, if configured. */
   identity?: ContainerGroupIdentity;
   /** The container group properties */
@@ -2624,8 +2668,8 @@ export const GetContainerGroupResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     location: S.optional(S.String),
-    tags: S.optional(ContainerGroupsGetResponseTagsMap),
-    zones: S.optional(ContainerGroupsGetResponseZonesList),
+    tags: S.optional(GetContainerGroupResponseTagsMap),
+    zones: S.optional(GetContainerGroupResponseZonesList),
     identity: S.optional(ContainerGroupIdentity),
     properties: ContainerGroupPropertiesProperties,
   }),
@@ -2633,7 +2677,7 @@ export const GetContainerGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetContainerGroupResponse",
 }) as any as S.Schema<GetContainerGroupResponse>;
 
-export interface GetContainerGroupOutboundNetworkDependencyEndpointRequest {
+export interface GetContainerGroupOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2641,7 +2685,7 @@ export interface GetContainerGroupOutboundNetworkDependencyEndpointRequest {
   /** The name of the container group. */
   containerGroupName: string;
 }
-export const GetContainerGroupOutboundNetworkDependencyEndpointRequest =
+export const GetContainerGroupOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2656,8 +2700,8 @@ export const GetContainerGroupOutboundNetworkDependencyEndpointRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetContainerGroupOutboundNetworkDependencyEndpointRequest",
-  }) as any as S.Schema<GetContainerGroupOutboundNetworkDependencyEndpointRequest>;
+    identifier: "GetContainerGroupOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<GetContainerGroupOutboundNetworkDependenciesEndpointsRequest>;
 
 /** Response for network dependencies, always empty list. */
 export type NetworkDependenciesResponse = Array<string>;
@@ -2665,14 +2709,14 @@ export const NetworkDependenciesResponse = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<NetworkDependenciesResponse>;
 
-export type GetContainerGroupOutboundNetworkDependencyEndpointResponse =
+export type GetContainerGroupOutboundNetworkDependenciesEndpointsResponse =
   NetworkDependenciesResponse;
-export const GetContainerGroupOutboundNetworkDependencyEndpointResponse =
+export const GetContainerGroupOutboundNetworkDependenciesEndpointsResponse =
   /*@__PURE__*/ S.suspend(() =>
     NetworkDependenciesResponse.pipe(T.RawResponseRoot()),
   ).annotate({
-    identifier: "GetContainerGroupOutboundNetworkDependencyEndpointResponse",
-  }) as any as S.Schema<GetContainerGroupOutboundNetworkDependencyEndpointResponse>;
+    identifier: "GetContainerGroupOutboundNetworkDependenciesEndpointsResponse",
+  }) as any as S.Schema<GetContainerGroupOutboundNetworkDependenciesEndpointsResponse>;
 
 export interface GetNGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3115,17 +3159,17 @@ export const NGroupProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NGroupProperties>;
 
 /** Resource tags. */
-export type NGroupsGetResponseTagsMap = { [key: string]: string | undefined };
-export const NGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetNGroupResponseTagsMap = { [key: string]: string | undefined };
+export const GetNGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetNGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type NGroupsGetResponseZonesList = Array<string>;
-export const NGroupsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetNGroupResponseZonesList = Array<string>;
+export const GetNGroupResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<NGroupsGetResponseZonesList>;
+) as any as S.Schema<GetNGroupResponseZonesList>;
 
 /** The list of user identities associated with the NGroup. */
 export type NGroupIdentityUserAssignedIdentitiesMap = {
@@ -3168,11 +3212,11 @@ export interface GetNGroupResponse {
   /** Describes the properties of the NGroups resource. */
   properties?: NGroupProperties;
   /** Resource tags. */
-  tags?: NGroupsGetResponseTagsMap;
+  tags?: GetNGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The availability zones. */
-  zones?: NGroupsGetResponseZonesList;
+  zones?: GetNGroupResponseZonesList;
   /** The identity of the NGroup, if configured. */
   identity?: NGroupIdentity;
 }
@@ -3183,9 +3227,9 @@ export const GetNGroupResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(NGroupProperties),
-    tags: S.optional(NGroupsGetResponseTagsMap),
+    tags: S.optional(GetNGroupResponseTagsMap),
     location: S.optional(S.String),
-    zones: S.optional(NGroupsGetResponseZonesList),
+    zones: S.optional(GetNGroupResponseZonesList),
     identity: S.optional(NGroupIdentity),
   }),
 ).annotate({
@@ -3218,13 +3262,13 @@ export const GetSandboxGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSandboxGroupRequest>;
 
 /** Resource tags. */
-export type SandboxGroupsGetResponseTagsMap = {
+export type GetSandboxGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SandboxGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSandboxGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SandboxGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetSandboxGroupResponseTagsMap>;
 
 /** The provisioning state of a SandboxGroup resource. */
 export type SandboxGroupProvisioningState =
@@ -3296,7 +3340,7 @@ export type ManagedServiceIdentityType =
 export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface SandboxGroupsGetResponseIdentity {
+export interface GetSandboxGroupResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -3304,7 +3348,7 @@ export interface SandboxGroupsGetResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const SandboxGroupsGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetSandboxGroupResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -3312,8 +3356,8 @@ export const SandboxGroupsGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "SandboxGroupsGetResponseIdentity",
-}) as any as S.Schema<SandboxGroupsGetResponseIdentity>;
+  identifier: "GetSandboxGroupResponseIdentity",
+}) as any as S.Schema<GetSandboxGroupResponseIdentity>;
 
 export interface GetSandboxGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3325,13 +3369,13 @@ export interface GetSandboxGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SandboxGroupsGetResponseTagsMap;
+  tags?: GetSandboxGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SandboxGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: SandboxGroupsGetResponseIdentity;
+  identity?: GetSandboxGroupResponseIdentity;
 }
 export const GetSandboxGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3339,16 +3383,16 @@ export const GetSandboxGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SandboxGroupsGetResponseTagsMap),
+    tags: S.optional(GetSandboxGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(SandboxGroupProperties),
-    identity: S.optional(SandboxGroupsGetResponseIdentity),
+    identity: S.optional(GetSandboxGroupResponseIdentity),
   }),
 ).annotate({
   identifier: "GetSandboxGroupResponse",
 }) as any as S.Schema<GetSandboxGroupResponse>;
 
-export interface ListCgProfileAllRevisionsRequest {
+export interface ListCGProfileAllRevisionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3356,7 +3400,7 @@ export interface ListCgProfileAllRevisionsRequest {
   /** ContainerGroupProfile name. */
   containerGroupProfileName: string;
 }
-export const ListCgProfileAllRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCGProfileAllRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3370,8 +3414,8 @@ export const ListCgProfileAllRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListCgProfileAllRevisionsRequest",
-}) as any as S.Schema<ListCgProfileAllRevisionsRequest>;
+  identifier: "ListCGProfileAllRevisionsRequest",
+}) as any as S.Schema<ListCGProfileAllRevisionsRequest>;
 
 /** Resource tags. */
 export type ContainerGroupProfileTagsMap = {
@@ -3445,13 +3489,13 @@ export const ContainerGroupProfileListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerGroupProfileListResult",
 }) as any as S.Schema<ContainerGroupProfileListResult>;
 
-export interface ListCgProfileByResourceGroupRequest {
+export interface ListCGProfileByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListCgProfileByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCGProfileByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3464,14 +3508,14 @@ export const ListCgProfileByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListCgProfileByResourceGroupRequest",
-}) as any as S.Schema<ListCgProfileByResourceGroupRequest>;
+  identifier: "ListCGProfileByResourceGroupRequest",
+}) as any as S.Schema<ListCGProfileByResourceGroupRequest>;
 
-export interface ListCgProfileBySubscriptionRequest {
+export interface ListCGProfileBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListCgProfileBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCGProfileBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -3483,8 +3527,8 @@ export const ListCgProfileBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListCgProfileBySubscriptionRequest",
-}) as any as S.Schema<ListCgProfileBySubscriptionRequest>;
+  identifier: "ListCGProfileBySubscriptionRequest",
+}) as any as S.Schema<ListCGProfileBySubscriptionRequest>;
 
 export interface ListContainerGroupByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4110,20 +4154,20 @@ export const NGroupsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<NGroupsListResultValueList>;
 
 /** The response of a NGroups list operation. */
-export interface ListNGroupsResult {
+export interface NGroupsListResult {
   /** The NGroup items on this page */
   value: NGroupsListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListNGroupsResult = /*@__PURE__*/ S.suspend(() =>
+export const NGroupsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: NGroupsListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListNGroupsResult",
-}) as any as S.Schema<ListNGroupsResult>;
+  identifier: "NGroupsListResult",
+}) as any as S.Schema<NGroupsListResult>;
 
 export interface ListNGroupsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4257,8 +4301,8 @@ export const SandboxGroupTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<SandboxGroupTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type SandboxGroupIdentity = SandboxGroupsGetResponseIdentity;
-export const SandboxGroupIdentity = SandboxGroupsGetResponseIdentity;
+export type SandboxGroupIdentity = GetSandboxGroupResponseIdentity;
+export const SandboxGroupIdentity = GetSandboxGroupResponseIdentity;
 
 /** A SandboxGroup tracked resource. */
 export interface SandboxGroup {
@@ -4277,7 +4321,7 @@ export interface SandboxGroup {
   /** The resource-specific properties for this resource. */
   properties?: SandboxGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: SandboxGroupsGetResponseIdentity;
+  identity?: GetSandboxGroupResponseIdentity;
 }
 export const SandboxGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4288,7 +4332,7 @@ export const SandboxGroup = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(SandboxGroupTagsMap),
     location: S.String,
     properties: S.optional(SandboxGroupProperties),
-    identity: S.optional(SandboxGroupsGetResponseIdentity),
+    identity: S.optional(GetSandboxGroupResponseIdentity),
   }),
 ).annotate({ identifier: "SandboxGroup" }) as any as S.Schema<SandboxGroup>;
 
@@ -4532,50 +4576,6 @@ export const RestartNGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestartNGroupResponse",
 }) as any as S.Schema<RestartNGroupResponse>;
 
-export interface SandboxGroupsConnectRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the SandboxGroup. */
-  sandboxGroupName: string;
-}
-export const SandboxGroupsConnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    sandboxGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerInstance/sandboxGroups/{sandboxGroupName}/connect",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "SandboxGroupsConnectRequest",
-}) as any as S.Schema<SandboxGroupsConnectRequest>;
-
-/** The result of getting an access token for a SandboxGroup. */
-export interface SandboxGroupAccessToken {
-  /** The endpoint URL to use with the access token. */
-  endpoint: string;
-  /** The access token used to authenticate against the endpoint. */
-  accessToken: string | Redacted.Redacted<string>;
-  /** The UTC date and time at which the access token expires. */
-  notAfter: string;
-}
-export const SandboxGroupAccessToken = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpoint: S.String,
-    accessToken: S.String.pipe(T.SensitiveValue({})),
-    notAfter: S.String,
-  }),
-).annotate({
-  identifier: "SandboxGroupAccessToken",
-}) as any as S.Schema<SandboxGroupAccessToken>;
-
 /** Resource tags. */
 export type SandboxGroupsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -4662,9 +4662,9 @@ export const SandboxGroupsCreateOrUpdateResponseTagsMap =
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type SandboxGroupsCreateOrUpdateResponseIdentity =
-  SandboxGroupsGetResponseIdentity;
+  GetSandboxGroupResponseIdentity;
 export const SandboxGroupsCreateOrUpdateResponseIdentity =
-  SandboxGroupsGetResponseIdentity;
+  GetSandboxGroupResponseIdentity;
 
 export interface SandboxGroupsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4682,7 +4682,7 @@ export interface SandboxGroupsCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: SandboxGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: SandboxGroupsGetResponseIdentity;
+  identity?: GetSandboxGroupResponseIdentity;
 }
 export const SandboxGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4693,7 +4693,7 @@ export const SandboxGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(SandboxGroupsCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(SandboxGroupProperties),
-    identity: S.optional(SandboxGroupsGetResponseIdentity),
+    identity: S.optional(GetSandboxGroupResponseIdentity),
   }),
 ).annotate({
   identifier: "SandboxGroupsCreateOrUpdateResponse",
@@ -4828,15 +4828,15 @@ export const StopNGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopNGroupResponse>;
 
 /** Resource tags. */
-export type CGProfileUpdateRequestTagsMap = {
+export type UpdateCGProfileRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CGProfileUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCGProfileRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CGProfileUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCGProfileRequestTagsMap>;
 
-export interface UpdateCgProfileRequest {
+export interface UpdateCGProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4844,14 +4844,14 @@ export interface UpdateCgProfileRequest {
   /** ContainerGroupProfile name. */
   containerGroupProfileName: string;
   /** Resource tags. */
-  tags?: CGProfileUpdateRequestTagsMap;
+  tags?: UpdateCGProfileRequestTagsMap;
 }
-export const UpdateCgProfileRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCGProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     containerGroupProfileName: S.String.pipe(T.Label()),
-    tags: S.optional(CGProfileUpdateRequestTagsMap),
+    tags: S.optional(UpdateCGProfileRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4861,25 +4861,25 @@ export const UpdateCgProfileRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateCgProfileRequest",
-}) as any as S.Schema<UpdateCgProfileRequest>;
+  identifier: "UpdateCGProfileRequest",
+}) as any as S.Schema<UpdateCGProfileRequest>;
 
 /** Resource tags. */
-export type CGProfileUpdateResponseTagsMap = {
+export type UpdateCGProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CGProfileUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCGProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CGProfileUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCGProfileResponseTagsMap>;
 
 /** The availability zones. */
-export type CGProfileUpdateResponseZonesList = Array<string>;
-export const CGProfileUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateCGProfileResponseZonesList = Array<string>;
+export const UpdateCGProfileResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<CGProfileUpdateResponseZonesList>;
+) as any as S.Schema<UpdateCGProfileResponseZonesList>;
 
-export interface UpdateCgProfileResponse {
+export interface UpdateCGProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4891,41 +4891,41 @@ export interface UpdateCgProfileResponse {
   /** The container group profile properties */
   properties?: ContainerGroupProfileProperties;
   /** Resource tags. */
-  tags?: CGProfileUpdateResponseTagsMap;
+  tags?: UpdateCGProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The availability zones. */
-  zones?: CGProfileUpdateResponseZonesList;
+  zones?: UpdateCGProfileResponseZonesList;
 }
-export const UpdateCgProfileResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCGProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ContainerGroupProfileProperties),
-    tags: S.optional(CGProfileUpdateResponseTagsMap),
+    tags: S.optional(UpdateCGProfileResponseTagsMap),
     location: S.optional(S.String),
-    zones: S.optional(CGProfileUpdateResponseZonesList),
+    zones: S.optional(UpdateCGProfileResponseZonesList),
   }),
 ).annotate({
-  identifier: "UpdateCgProfileResponse",
-}) as any as S.Schema<UpdateCgProfileResponse>;
+  identifier: "UpdateCGProfileResponse",
+}) as any as S.Schema<UpdateCGProfileResponse>;
 
 /** The resource tags. */
-export type ContainerGroupsUpdateRequestTagsMap = {
+export type UpdateContainerGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContainerGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateContainerGroupRequestTagsMap>;
 
 /** The zones for the container group. */
-export type ContainerGroupsUpdateRequestZonesList = Array<string>;
-export const ContainerGroupsUpdateRequestZonesList = /*@__PURE__*/ S.Array(
+export type UpdateContainerGroupRequestZonesList = Array<string>;
+export const UpdateContainerGroupRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ContainerGroupsUpdateRequestZonesList>;
+) as any as S.Schema<UpdateContainerGroupRequestZonesList>;
 
 export interface UpdateContainerGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4937,9 +4937,9 @@ export interface UpdateContainerGroupRequest {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: ContainerGroupsUpdateRequestTagsMap;
+  tags?: UpdateContainerGroupRequestTagsMap;
   /** The zones for the container group. */
-  zones?: ContainerGroupsUpdateRequestZonesList;
+  zones?: UpdateContainerGroupRequestZonesList;
 }
 export const UpdateContainerGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4947,8 +4947,8 @@ export const UpdateContainerGroupRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     containerGroupName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ContainerGroupsUpdateRequestTagsMap),
-    zones: S.optional(ContainerGroupsUpdateRequestZonesList),
+    tags: S.optional(UpdateContainerGroupRequestTagsMap),
+    zones: S.optional(UpdateContainerGroupRequestZonesList),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4962,19 +4962,19 @@ export const UpdateContainerGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateContainerGroupRequest>;
 
 /** The resource tags. */
-export type ContainerGroupsUpdateResponseTagsMap = {
+export type UpdateContainerGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContainerGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateContainerGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type ContainerGroupsUpdateResponseZonesList = Array<string>;
-export const ContainerGroupsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateContainerGroupResponseZonesList = Array<string>;
+export const UpdateContainerGroupResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ContainerGroupsUpdateResponseZonesList>;
+) as any as S.Schema<UpdateContainerGroupResponseZonesList>;
 
 export interface UpdateContainerGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4988,9 +4988,9 @@ export interface UpdateContainerGroupResponse {
   /** The resource location of the container group. */
   location?: string;
   /** The resource tags. */
-  tags?: ContainerGroupsUpdateResponseTagsMap;
+  tags?: UpdateContainerGroupResponseTagsMap;
   /** The availability zones. */
-  zones?: ContainerGroupsUpdateResponseZonesList;
+  zones?: UpdateContainerGroupResponseZonesList;
   /** The identity of the container group, if configured. */
   identity?: ContainerGroupIdentity;
   /** The container group properties */
@@ -5003,8 +5003,8 @@ export const UpdateContainerGroupResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     location: S.optional(S.String),
-    tags: S.optional(ContainerGroupsUpdateResponseTagsMap),
-    zones: S.optional(ContainerGroupsUpdateResponseZonesList),
+    tags: S.optional(UpdateContainerGroupResponseTagsMap),
+    zones: S.optional(UpdateContainerGroupResponseZonesList),
     identity: S.optional(ContainerGroupIdentity),
     properties: ContainerGroupPropertiesProperties,
   }),
@@ -5013,17 +5013,17 @@ export const UpdateContainerGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateContainerGroupResponse>;
 
 /** The resource tags. */
-export type NGroupsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const NGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateNGroupRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateNGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNGroupRequestTagsMap>;
 
 /** The zones for the NGroup. */
-export type NGroupsUpdateRequestZonesList = Array<string>;
-export const NGroupsUpdateRequestZonesList = /*@__PURE__*/ S.Array(
+export type UpdateNGroupRequestZonesList = Array<string>;
+export const UpdateNGroupRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<NGroupsUpdateRequestZonesList>;
+) as any as S.Schema<UpdateNGroupRequestZonesList>;
 
 export interface UpdateNGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5037,9 +5037,9 @@ export interface UpdateNGroupRequest {
   /** The identity of the NGroup, if configured. */
   identity?: NGroupIdentityInput;
   /** The resource tags. */
-  tags?: NGroupsUpdateRequestTagsMap;
+  tags?: UpdateNGroupRequestTagsMap;
   /** The zones for the NGroup. */
-  zones?: NGroupsUpdateRequestZonesList;
+  zones?: UpdateNGroupRequestZonesList;
 }
 export const UpdateNGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5048,8 +5048,8 @@ export const UpdateNGroupRequest = /*@__PURE__*/ S.suspend(() =>
     ngroupsName: S.String.pipe(T.Label()),
     properties: S.optional(NGroupProperties),
     identity: S.optional(NGroupIdentityInput),
-    tags: S.optional(NGroupsUpdateRequestTagsMap),
-    zones: S.optional(NGroupsUpdateRequestZonesList),
+    tags: S.optional(UpdateNGroupRequestTagsMap),
+    zones: S.optional(UpdateNGroupRequestZonesList),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5063,19 +5063,17 @@ export const UpdateNGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNGroupRequest>;
 
 /** Resource tags. */
-export type NGroupsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateNGroupResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateNGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type NGroupsUpdateResponseZonesList = Array<string>;
-export const NGroupsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateNGroupResponseZonesList = Array<string>;
+export const UpdateNGroupResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<NGroupsUpdateResponseZonesList>;
+) as any as S.Schema<UpdateNGroupResponseZonesList>;
 
 export interface UpdateNGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5089,11 +5087,11 @@ export interface UpdateNGroupResponse {
   /** Describes the properties of the NGroups resource. */
   properties?: NGroupProperties;
   /** Resource tags. */
-  tags?: NGroupsUpdateResponseTagsMap;
+  tags?: UpdateNGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The availability zones. */
-  zones?: NGroupsUpdateResponseZonesList;
+  zones?: UpdateNGroupResponseZonesList;
   /** The identity of the NGroup, if configured. */
   identity?: NGroupIdentity;
 }
@@ -5104,9 +5102,9 @@ export const UpdateNGroupResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(NGroupProperties),
-    tags: S.optional(NGroupsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNGroupResponseTagsMap),
     location: S.optional(S.String),
-    zones: S.optional(NGroupsUpdateResponseZonesList),
+    zones: S.optional(UpdateNGroupResponseZonesList),
     identity: S.optional(NGroupIdentity),
   }),
 ).annotate({
@@ -5114,18 +5112,18 @@ export const UpdateNGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNGroupResponse>;
 
 /** Resource tags. */
-export type SandboxGroupsUpdateRequestTagsMap = {
+export type UpdateSandboxGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SandboxGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSandboxGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SandboxGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSandboxGroupRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type SandboxGroupsUpdateRequestIdentity =
+export type UpdateSandboxGroupRequestIdentity =
   SandboxGroupsCreateOrUpdateRequestIdentity;
-export const SandboxGroupsUpdateRequestIdentity =
+export const UpdateSandboxGroupRequestIdentity =
   SandboxGroupsCreateOrUpdateRequestIdentity;
 
 export interface UpdateSandboxGroupRequest {
@@ -5136,7 +5134,7 @@ export interface UpdateSandboxGroupRequest {
   /** The name of the SandboxGroup. */
   sandboxGroupName: string;
   /** Resource tags. */
-  tags?: SandboxGroupsUpdateRequestTagsMap;
+  tags?: UpdateSandboxGroupRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: SandboxGroupsCreateOrUpdateRequestIdentity;
 }
@@ -5145,7 +5143,7 @@ export const UpdateSandboxGroupRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     sandboxGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(SandboxGroupsUpdateRequestTagsMap),
+    tags: S.optional(UpdateSandboxGroupRequestTagsMap),
     identity: S.optional(SandboxGroupsCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
@@ -5160,19 +5158,19 @@ export const UpdateSandboxGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSandboxGroupRequest>;
 
 /** Resource tags. */
-export type SandboxGroupsUpdateResponseTagsMap = {
+export type UpdateSandboxGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SandboxGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSandboxGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SandboxGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSandboxGroupResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type SandboxGroupsUpdateResponseIdentity =
-  SandboxGroupsGetResponseIdentity;
-export const SandboxGroupsUpdateResponseIdentity =
-  SandboxGroupsGetResponseIdentity;
+export type UpdateSandboxGroupResponseIdentity =
+  GetSandboxGroupResponseIdentity;
+export const UpdateSandboxGroupResponseIdentity =
+  GetSandboxGroupResponseIdentity;
 
 export interface UpdateSandboxGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5184,13 +5182,13 @@ export interface UpdateSandboxGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SandboxGroupsUpdateResponseTagsMap;
+  tags?: UpdateSandboxGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SandboxGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: SandboxGroupsGetResponseIdentity;
+  identity?: GetSandboxGroupResponseIdentity;
 }
 export const UpdateSandboxGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5198,14 +5196,29 @@ export const UpdateSandboxGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SandboxGroupsUpdateResponseTagsMap),
+    tags: S.optional(UpdateSandboxGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(SandboxGroupProperties),
-    identity: S.optional(SandboxGroupsGetResponseIdentity),
+    identity: S.optional(GetSandboxGroupResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateSandboxGroupResponse",
 }) as any as S.Schema<UpdateSandboxGroupResponse>;
+
+export type AttachContainerError = AzureOpError;
+/** Attach to the output of a specific container instance. Attach to the output stream of a specific container instance in a specified resource group and container group. */
+export const AttachContainer: API.OperationMethod<
+  AttachContainerRequest,
+  ContainerAttachResponse,
+  AttachContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AttachContainerRequest,
+  output: ContainerAttachResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CGProfileCreateOrUpdateError = AzureOpError;
 /** Create or Update a ContainerGroupProfile Create a CGProfile if it doesn't exist or update an existing CGProfile. */
@@ -5217,6 +5230,21 @@ export const CGProfileCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CGProfileCreateOrUpdateRequest,
   output: CGProfileCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ConnectSandboxGroupError = AzureOpError;
+/** Get an access token and endpoint for connecting to the SandboxGroup. Get an access token and endpoint for connecting to the SandboxGroup. */
+export const ConnectSandboxGroup: API.OperationMethod<
+  ConnectSandboxGroupRequest,
+  SandboxGroupAccessToken,
+  ConnectSandboxGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConnectSandboxGroupRequest,
+  output: SandboxGroupAccessToken,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5237,46 +5265,16 @@ export const ContainerGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContainersAttachError = AzureOpError;
-/** Attach to the output of a specific container instance. Attach to the output stream of a specific container instance in a specified resource group and container group. */
-export const ContainersAttach: API.OperationMethod<
-  ContainersAttachRequest,
-  ContainerAttachResponse,
-  ContainersAttachError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainersAttachRequest,
-  output: ContainerAttachResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainersExecuteCommandError = AzureOpError;
-/** Executes a command in a specific container instance. Executes a command for a specific container instance in a specified resource group and container group. */
-export const ContainersExecuteCommand: API.OperationMethod<
-  ContainersExecuteCommandRequest,
-  ContainerExecResponse,
-  ContainersExecuteCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainersExecuteCommandRequest,
-  output: ContainerExecResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteCgProfileError = AzureOpError;
+export type DeleteCGProfileError = AzureOpError;
 /** Container group profile DELETE REST API. Deletes a container group profile. */
-export const DeleteCgProfile: API.OperationMethod<
-  DeleteCgProfileRequest,
-  DeleteCgProfileResponse,
-  DeleteCgProfileError,
+export const DeleteCGProfile: API.OperationMethod<
+  DeleteCGProfileRequest,
+  DeleteCGProfileResponse,
+  DeleteCGProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCgProfileRequest,
-  output: DeleteCgProfileResponse,
+  input: DeleteCGProfileRequest,
+  output: DeleteCGProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5342,31 +5340,46 @@ export const DeleteSubnetServiceAssociationLink: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCgProfileError = AzureOpError;
-/** Display information about a specified ContainerGroupProfile. Get the properties of the specified container group profile. */
-export const GetCgProfile: API.OperationMethod<
-  GetCgProfileRequest,
-  GetCgProfileResponse,
-  GetCgProfileError,
+export type ExecuteContainerCommandError = AzureOpError;
+/** Executes a command in a specific container instance. Executes a command for a specific container instance in a specified resource group and container group. */
+export const ExecuteContainerCommand: API.OperationMethod<
+  ExecuteContainerCommandRequest,
+  ContainerExecResponse,
+  ExecuteContainerCommandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCgProfileRequest,
-  output: GetCgProfileResponse,
+  input: ExecuteContainerCommandRequest,
+  output: ContainerExecResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetCgProfileByRevisionNumberError = AzureOpError;
-/** Get the properties of the specified revision of the container group profile. Gets the properties of the specified revision of the container group profile in the given subscription and resource group. The operation returns the properties of container group profile including containers, image registry credentials, restart policy, IP address type, OS type, volumes, current revision number, etc. */
-export const GetCgProfileByRevisionNumber: API.OperationMethod<
-  GetCgProfileByRevisionNumberRequest,
-  GetCgProfileByRevisionNumberResponse,
-  GetCgProfileByRevisionNumberError,
+export type GetCGProfileError = AzureOpError;
+/** Display information about a specified ContainerGroupProfile. Get the properties of the specified container group profile. */
+export const GetCGProfile: API.OperationMethod<
+  GetCGProfileRequest,
+  GetCGProfileResponse,
+  GetCGProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCgProfileByRevisionNumberRequest,
-  output: GetCgProfileByRevisionNumberResponse,
+  input: GetCGProfileRequest,
+  output: GetCGProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCGProfileByRevisionNumberError = AzureOpError;
+/** Get the properties of the specified revision of the container group profile. Gets the properties of the specified revision of the container group profile in the given subscription and resource group. The operation returns the properties of container group profile including containers, image registry credentials, restart policy, IP address type, OS type, volumes, current revision number, etc. */
+export const GetCGProfileByRevisionNumber: API.OperationMethod<
+  GetCGProfileByRevisionNumberRequest,
+  GetCGProfileByRevisionNumberResponse,
+  GetCGProfileByRevisionNumberError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCGProfileByRevisionNumberRequest,
+  output: GetCGProfileByRevisionNumberResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5387,17 +5400,17 @@ export const GetContainerGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetContainerGroupOutboundNetworkDependencyEndpointError =
+export type GetContainerGroupOutboundNetworkDependenciesEndpointsError =
   AzureOpError;
 /** Get all network dependencies for container group. Gets all the network dependencies for this container group to allow complete control of network setting and configuration. For container groups, this will always be an empty list. */
-export const GetContainerGroupOutboundNetworkDependencyEndpoint: API.OperationMethod<
-  GetContainerGroupOutboundNetworkDependencyEndpointRequest,
-  GetContainerGroupOutboundNetworkDependencyEndpointResponse,
-  GetContainerGroupOutboundNetworkDependencyEndpointError,
+export const GetContainerGroupOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  GetContainerGroupOutboundNetworkDependenciesEndpointsRequest,
+  GetContainerGroupOutboundNetworkDependenciesEndpointsResponse,
+  GetContainerGroupOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerGroupOutboundNetworkDependencyEndpointRequest,
-  output: GetContainerGroupOutboundNetworkDependencyEndpointResponse,
+  input: GetContainerGroupOutboundNetworkDependenciesEndpointsRequest,
+  output: GetContainerGroupOutboundNetworkDependenciesEndpointsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5433,45 +5446,45 @@ export const GetSandboxGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListCgProfileAllRevisionsError = AzureOpError;
+export type ListCGProfileAllRevisionsError = AzureOpError;
 /** Get a list of all the revisions of the specified container group profile in the given subscription and resource group. Get a list of all the revisions of the specified container group profile in the given subscription and resource group. This operation returns properties of each revision of the specified container group profile including containers, image registry credentials, restart policy, IP address type, OS type volumes, revision number, etc. */
-export const ListCgProfileAllRevisions: API.OperationMethod<
-  ListCgProfileAllRevisionsRequest,
+export const ListCGProfileAllRevisions: API.OperationMethod<
+  ListCGProfileAllRevisionsRequest,
   ContainerGroupProfileListResult,
-  ListCgProfileAllRevisionsError,
+  ListCGProfileAllRevisionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListCgProfileAllRevisionsRequest,
+  input: ListCGProfileAllRevisionsRequest,
   output: ContainerGroupProfileListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListCgProfileByResourceGroupError = AzureOpError;
+export type ListCGProfileByResourceGroupError = AzureOpError;
 /** List container group profiles in a resource group. Gets a list of all container group profiles under a resource group. */
-export const ListCgProfileByResourceGroup: API.OperationMethod<
-  ListCgProfileByResourceGroupRequest,
+export const ListCGProfileByResourceGroup: API.OperationMethod<
+  ListCGProfileByResourceGroupRequest,
   ContainerGroupProfileListResult,
-  ListCgProfileByResourceGroupError,
+  ListCGProfileByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListCgProfileByResourceGroupRequest,
+  input: ListCGProfileByResourceGroupRequest,
   output: ContainerGroupProfileListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListCgProfileBySubscriptionError = AzureOpError;
+export type ListCGProfileBySubscriptionError = AzureOpError;
 /** List container group profiles in a subscription. Gets a list of all container group profiles under a subscription. */
-export const ListCgProfileBySubscription: API.OperationMethod<
-  ListCgProfileBySubscriptionRequest,
+export const ListCGProfileBySubscription: API.OperationMethod<
+  ListCGProfileBySubscriptionRequest,
   ContainerGroupProfileListResult,
-  ListCgProfileBySubscriptionError,
+  ListCGProfileBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListCgProfileBySubscriptionRequest,
+  input: ListCGProfileBySubscriptionRequest,
   output: ContainerGroupProfileListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -5572,12 +5585,12 @@ export type ListNGroupByResourceGroupError = AzureOpError;
 /** GET NGroups under a resource group REST API. Gets a list of all NGroups resources under a resource group. */
 export const ListNGroupByResourceGroup: API.OperationMethod<
   ListNGroupByResourceGroupRequest,
-  ListNGroupsResult,
+  NGroupsListResult,
   ListNGroupByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListNGroupByResourceGroupRequest,
-  output: ListNGroupsResult,
+  output: NGroupsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5587,12 +5600,12 @@ export type ListNGroupsError = AzureOpError;
 /** List NGroups in a subscription. Gets a list of all NGroups resources under a subscription. */
 export const ListNGroups: API.OperationMethod<
   ListNGroupsRequest,
-  ListNGroupsResult,
+  NGroupsListResult,
   ListNGroupsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListNGroupsRequest,
-  output: ListNGroupsResult,
+  output: NGroupsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5688,21 +5701,6 @@ export const RestartNGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SandboxGroupsConnectError = AzureOpError;
-/** Get an access token and endpoint for connecting to the SandboxGroup. Get an access token and endpoint for connecting to the SandboxGroup. */
-export const SandboxGroupsConnect: API.OperationMethod<
-  SandboxGroupsConnectRequest,
-  SandboxGroupAccessToken,
-  SandboxGroupsConnectError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxGroupsConnectRequest,
-  output: SandboxGroupAccessToken,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SandboxGroupsCreateOrUpdateError = AzureOpError;
 /** Create a SandboxGroup Create a SandboxGroup */
 export const SandboxGroupsCreateOrUpdate: API.OperationMethod<
@@ -5778,16 +5776,16 @@ export const StopNGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateCgProfileError = AzureOpError;
+export type UpdateCGProfileError = AzureOpError;
 /** Container group profile PATCH REST API. Update a specified container group profile. */
-export const UpdateCgProfile: API.OperationMethod<
-  UpdateCgProfileRequest,
-  UpdateCgProfileResponse,
-  UpdateCgProfileError,
+export const UpdateCGProfile: API.OperationMethod<
+  UpdateCGProfileRequest,
+  UpdateCGProfileResponse,
+  UpdateCGProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateCgProfileRequest,
-  output: UpdateCgProfileResponse,
+  input: UpdateCGProfileRequest,
+  output: UpdateCGProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

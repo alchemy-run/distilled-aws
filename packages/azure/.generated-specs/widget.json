@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.widget#DeleteEmployee": {
@@ -115,7 +116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.widget#EmployeesUpdateResponseTagsMap",
+          "target": "com.azure.widget#UpdateEmployeeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -220,7 +221,7 @@
         "smithy.api#documentation": "The resource provisioning state."
       }
     },
-    "com.azure.widget#EmployeesUpdateResponseTagsMap": {
+    "com.azure.widget#UpdateEmployeeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -368,7 +369,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.widget#EmployeesUpdateRequestTagsMap",
+          "target": "com.azure.widget#UpdateEmployeeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -410,7 +411,7 @@
         "smithy.api#documentation": "Employee properties"
       }
     },
-    "com.azure.widget#EmployeesUpdateRequestTagsMap": {
+    "com.azure.widget#UpdateEmployeeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -614,7 +615,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.widget#EmployeesGetResponseTagsMap",
+          "target": "com.azure.widget#GetEmployeeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -637,7 +638,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.widget#EmployeesGetResponseTagsMap": {
+    "com.azure.widget#GetEmployeeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -875,7 +876,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.widget#OperationsListResponseValueList",
+          "target": "com.azure.widget#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -891,7 +892,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.widget#OperationsListResponseValueList": {
+    "com.azure.widget#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.widget#Operation"
@@ -1018,9 +1019,6 @@
           "target": "com.azure.widget#DeleteEmployee"
         },
         {
-          "target": "com.azure.widget#UpdateEmployee"
-        },
-        {
           "target": "com.azure.widget#EmployeesCreateOrUpdate"
         },
         {
@@ -1034,6 +1032,9 @@
         },
         {
           "target": "com.azure.widget#ListOperations"
+        },
+        {
+          "target": "com.azure.widget#UpdateEmployee"
         }
       ],
       "traits": {

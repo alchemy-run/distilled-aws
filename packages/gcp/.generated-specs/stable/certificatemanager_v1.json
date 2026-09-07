@@ -4,188 +4,138 @@
     "service": "certificatemanager",
     "version": "v1",
     "title": "Certificate Manager API",
-    "baseUrl": "https://certificatemanager.googleapis.com/"
+    "baseUrl": "https://certificatemanager.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.certificatemanager_v1#ProvisioningIssue": {
+    "com.gcp.certificatemanager_v1#GclbTarget": {
       "type": "structure",
       "members": {
-        "details": {
+        "targetSslProxy": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Human readable explanation about the issue. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum."
+            "smithy.api#documentation": "Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetSslProxies/*`."
           }
         },
-        "reason": {
-          "target": "com.gcp.certificatemanager_v1#ProvisioningIssueReasonEnum",
+        "ipConfigs": {
+          "target": "com.gcp.certificatemanager_v1#IpConfigList",
           "traits": {
-            "smithy.api#documentation": "Output only. Reason for provisioning failures."
+            "smithy.api#documentation": "Output only. IP configurations for this Target Proxy where the Certificate Map is serving."
+          }
+        },
+        "targetHttpsProxy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Information about issues with provisioning a Managed Certificate."
+        "smithy.api#documentation": "Describes a Target Proxy that uses this Certificate Map."
       }
     },
-    "com.gcp.certificatemanager_v1#ProvisioningIssueReasonEnum": {
-      "type": "enum",
-      "members": {
-        "REASON_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REASON_UNSPECIFIED"
-          }
-        },
-        "AUTHORIZATION_ISSUE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AUTHORIZATION_ISSUE"
-          }
-        },
-        "RATE_LIMITED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RATE_LIMITED"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListDnsAuthorizationsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "dnsAuthorizations": {
-          "target": "com.gcp.certificatemanager_v1#DnsAuthorizationList",
-          "traits": {
-            "smithy.api#documentation": "A list of dns authorizations for the parent resource."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the `ListDnsAuthorizations` method."
-      }
-    },
-    "com.gcp.certificatemanager_v1#StringList": {
+    "com.gcp.certificatemanager_v1#IpConfigList": {
       "type": "list",
       "member": {
+        "target": "com.gcp.certificatemanager_v1#IpConfig"
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateIssuanceConfig": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a CertificateIssuanceConfig."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation timestamp of a CertificateIssuanceConfig."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/*/locations/*/certificateIssuanceConfigs/*`."
+          }
+        },
+        "rotationWindowPercentage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the percentage of elapsed time of the certificate lifetime to wait before renewing the certificate. Must be a number between 1-99, inclusive."
+          }
+        },
+        "lifetime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Workload certificate lifetime requested."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last update timestamp of a CertificateIssuanceConfig."
+          }
+        },
+        "certificateAuthorityConfig": {
+          "target": "com.gcp.certificatemanager_v1#CertificateAuthorityConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. The CA that issues the workload certificate. It includes the CA address, type, authentication to CA service, etc."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of labels associated with a CertificateIssuanceConfig."
+          }
+        },
+        "keyAlgorithm": {
+          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfigKeyAlgorithmEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The key algorithm to use when generating the private key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CertificateIssuanceConfig specifies how to issue and manage a certificate."
+      }
+    },
+    "com.gcp.certificatemanager_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.certificatemanager_v1#DnsAuthorizationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#DnsAuthorization"
-      }
-    },
-    "com.gcp.certificatemanager_v1#AuthorizationAttemptInfo": {
-      "type": "structure",
-      "members": {
-        "domain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Domain name of the authorization attempt."
-          }
-        },
-        "state": {
-          "target": "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. State of the domain for managed certificate issuance."
-          }
-        },
-        "attemptTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The timestamp, when the authorization attempt was made."
-          }
-        },
-        "troubleshooting": {
-          "target": "com.gcp.certificatemanager_v1#Troubleshooting",
-          "traits": {
-            "smithy.api#documentation": "Output only. Troubleshooting information for the authorization attempt. This field is only populated if the authorization attempt failed."
-          }
-        },
-        "failureReason": {
-          "target": "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoFailureReasonEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Reason for failure of the authorization attempt for the domain."
-          }
-        },
-        "details": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human readable explanation for reaching the state. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use FailureReason enum."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "State of the latest attempt to authorize a domain for certificate issuance."
-      }
-    },
-    "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoStateEnum": {
+    "com.gcp.certificatemanager_v1#CertificateIssuanceConfigKeyAlgorithmEnum": {
       "type": "enum",
       "members": {
-        "STATE_UNSPECIFIED": {
+        "KEY_ALGORITHM_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+            "smithy.api#enumValue": "KEY_ALGORITHM_UNSPECIFIED"
           }
         },
-        "AUTHORIZING": {
+        "RSA_2048": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "AUTHORIZING"
+            "smithy.api#enumValue": "RSA_2048"
           }
         },
-        "AUTHORIZED": {
+        "ECDSA_P256": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "AUTHORIZED"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoFailureReasonEnum": {
-      "type": "enum",
-      "members": {
-        "FAILURE_REASON_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILURE_REASON_UNSPECIFIED"
-          }
-        },
-        "CONFIG": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONFIG"
-          }
-        },
-        "CAA": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CAA"
-          }
-        },
-        "RATE_LIMITED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RATE_LIMITED"
+            "smithy.api#enumValue": "ECDSA_P256"
           }
         }
       }
@@ -193,6 +143,12 @@
     "com.gcp.certificatemanager_v1#ListOperationsResponse": {
       "type": "structure",
       "members": {
+        "operations": {
+          "target": "com.gcp.certificatemanager_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
         "unreachable": {
           "target": "com.gcp.certificatemanager_v1#StringList",
           "traits": {
@@ -203,12 +159,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "operations": {
-          "target": "com.gcp.certificatemanager_v1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
           }
         }
       },
@@ -222,201 +172,102 @@
         "target": "com.gcp.certificatemanager_v1#Operation"
       }
     },
-    "com.gcp.certificatemanager_v1#TrustConfig": {
-      "type": "structure",
-      "members": {
-        "trustStores": {
-          "target": "com.gcp.certificatemanager_v1#TrustStoreList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation. Only one TrustStore specified is currently allowed."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The last update timestamp of a TrustConfig."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/*/locations/*/trustConfigs/*`."
-          }
-        },
-        "allowlistedCertificates": {
-          "target": "com.gcp.certificatemanager_v1#AllowlistedCertificateList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A certificate matching an allowlisted certificate is always considered valid as long as the certificate is parseable, proof of private key possession is established, and constraints on the certificate's SAN field are met."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The creation timestamp of a TrustConfig."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set of labels associated with a TrustConfig."
-          }
-        },
-        "spiffeTrustStores": {
-          "target": "com.gcp.certificatemanager_v1#TrustStoreMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Defines a mapping from a trust domain to a TrustStore. This is used for SPIFFE certificate validation."
-          }
-        },
-        "tags": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a TrustConfig."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines a trust config."
-      }
-    },
-    "com.gcp.certificatemanager_v1#TrustStoreList": {
+    "com.gcp.certificatemanager_v1#StringList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.certificatemanager_v1#TrustStore"
+        "target": "smithy.api#String"
       }
     },
-    "com.gcp.certificatemanager_v1#AllowlistedCertificateList": {
+    "com.gcp.certificatemanager_v1#CertificateAuthorityServiceConfig": {
+      "type": "structure",
+      "members": {
+        "caPool": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A CA pool resource used to issue a certificate. The CA pool string has a relative resource path following the form \"projects/{project}/locations/{location}/caPools/{ca_pool}\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains information required to contact CA service."
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateAuthorityConfig": {
+      "type": "structure",
+      "members": {
+        "certificateAuthorityServiceConfig": {
+          "target": "com.gcp.certificatemanager_v1#CertificateAuthorityServiceConfig",
+          "traits": {
+            "smithy.api#documentation": "Defines a CertificateAuthorityServiceConfig."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The CA that issues the workload certificate. It includes CA address, type, authentication to CA service, etc."
+      }
+    },
+    "com.gcp.certificatemanager_v1#TrustStore": {
+      "type": "structure",
+      "members": {
+        "trustAnchors": {
+          "target": "com.gcp.certificatemanager_v1#TrustAnchorList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of Trust Anchors to be used while performing validation against a given TrustStore."
+          }
+        },
+        "intermediateCas": {
+          "target": "com.gcp.certificatemanager_v1#IntermediateCAList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of intermediate CA certificates used for the path building phase of chain validation. The field is currently not supported if TrustConfig is used for the workload certificate feature."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a trust store."
+      }
+    },
+    "com.gcp.certificatemanager_v1#TrustAnchorList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.certificatemanager_v1#AllowlistedCertificate"
+        "target": "com.gcp.certificatemanager_v1#TrustAnchor"
       }
     },
-    "com.gcp.certificatemanager_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
+    "com.gcp.certificatemanager_v1#IntermediateCAList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#IntermediateCA"
       }
     },
-    "com.gcp.certificatemanager_v1#TrustStoreMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.certificatemanager_v1#TrustStore"
-      }
-    },
-    "com.gcp.certificatemanager_v1#TrustAnchor": {
+    "com.gcp.certificatemanager_v1#ListCertificateMapsResponse": {
       "type": "structure",
       "members": {
-        "pemCertificate": {
+        "certificateMaps": {
+          "target": "com.gcp.certificatemanager_v1#CertificateMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of certificate maps for the parent resource."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "PEM root certificate of the PKI used for validation. Each certificate provided in PEM format may occupy up to 5kB."
+            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Defines a trust anchor."
+        "smithy.api#documentation": "Response for the `ListCertificateMaps` method."
       }
     },
-    "com.gcp.certificatemanager_v1#DnsAuthorization": {
-      "type": "structure",
-      "members": {
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The creation timestamp of a DnsAuthorization."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/*/locations/*/dnsAuthorizations/*`."
-          }
-        },
-        "dnsResourceRecord": {
-          "target": "com.gcp.certificatemanager_v1#DnsResourceRecord",
-          "traits": {
-            "smithy.api#documentation": "Output only. DNS Resource Record that needs to be added to DNS configuration."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The last update timestamp of a DnsAuthorization."
-          }
-        },
-        "domain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Immutable. A domain that is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`."
-          }
-        },
-        "tags": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
-          }
-        },
-        "labels": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set of labels associated with a DnsAuthorization."
-          }
-        },
-        "type": {
-          "target": "com.gcp.certificatemanager_v1#DnsAuthorizationTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location `global`: FIXED_RECORD, - in other locations: PER_PROJECT_RECORD."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a DnsAuthorization."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A DnsAuthorization resource describes a way to perform domain authorization for certificate issuance."
-      }
-    },
-    "com.gcp.certificatemanager_v1#DnsAuthorizationTypeEnum": {
-      "type": "enum",
-      "members": {
-        "TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
-          }
-        },
-        "FIXED_RECORD": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FIXED_RECORD"
-          }
-        },
-        "PER_PROJECT_RECORD": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PER_PROJECT_RECORD"
-          }
-        }
+    "com.gcp.certificatemanager_v1#CertificateMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#CertificateMap"
       }
     },
     "com.gcp.certificatemanager_v1#ListTrustConfigsResponse": {
@@ -451,30 +302,684 @@
         "target": "com.gcp.certificatemanager_v1#TrustConfig"
       }
     },
-    "com.gcp.certificatemanager_v1#IPs": {
+    "com.gcp.certificatemanager_v1#TrustAnchor": {
       "type": "structure",
       "members": {
-        "serving": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
+        "pemCertificate": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The list of IP addresses, where the certificate is attached and port 443 is open."
-          }
-        },
-        "resolved": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The list of IP addresses resolved from the domain's A/AAAA records. Can contain both ipv4 and ipv6 addresses."
-          }
-        },
-        "servingOnAltPorts": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The list of IP addresses, where the certificate is attached, but port 443 is not open."
+            "smithy.api#documentation": "PEM root certificate of the PKI used for validation. Each certificate provided in PEM format may occupy up to 5kB."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "IPs troubleshooting information."
+        "smithy.api#documentation": "Defines a trust anchor."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListCertificateIssuanceConfigsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "certificateIssuanceConfigs": {
+          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfigList",
+          "traits": {
+            "smithy.api#documentation": "A list of certificate configs for the parent resource."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the `ListCertificateIssuanceConfigs` method."
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateIssuanceConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig"
+      }
+    },
+    "com.gcp.certificatemanager_v1#AuthorizationAttemptInfo": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human readable explanation for reaching the state. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use FailureReason enum."
+          }
+        },
+        "failureReason": {
+          "target": "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoFailureReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reason for failure of the authorization attempt for the domain."
+          }
+        },
+        "state": {
+          "target": "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the domain for managed certificate issuance."
+          }
+        },
+        "attemptTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp, when the authorization attempt was made."
+          }
+        },
+        "troubleshooting": {
+          "target": "com.gcp.certificatemanager_v1#Troubleshooting",
+          "traits": {
+            "smithy.api#documentation": "Output only. Troubleshooting information for the authorization attempt. This field is only populated if the authorization attempt failed."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Domain name of the authorization attempt."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of the latest attempt to authorize a domain for certificate issuance."
+      }
+    },
+    "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoFailureReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FAILURE_REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILURE_REASON_UNSPECIFIED"
+          }
+        },
+        "CONFIG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIG"
+          }
+        },
+        "CAA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAA"
+          }
+        },
+        "RATE_LIMITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RATE_LIMITED"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "AUTHORIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHORIZING"
+          }
+        },
+        "AUTHORIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHORIZED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#IntermediateCA": {
+      "type": "structure",
+      "members": {
+        "pemCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "PEM intermediate certificate used for building up paths for validation. Each certificate provided in PEM format may occupy up to 5kB."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines an intermediate CA."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListDnsAuthorizationsResponse": {
+      "type": "structure",
+      "members": {
+        "dnsAuthorizations": {
+          "target": "com.gcp.certificatemanager_v1#DnsAuthorizationList",
+          "traits": {
+            "smithy.api#documentation": "A list of dns authorizations for the parent resource."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the `ListDnsAuthorizations` method."
+      }
+    },
+    "com.gcp.certificatemanager_v1#DnsAuthorizationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#DnsAuthorization"
+      }
+    },
+    "com.gcp.certificatemanager_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.certificatemanager_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.certificatemanager_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.certificatemanager_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.certificatemanager_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.certificatemanager_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.certificatemanager_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.certificatemanager_v1#ManagedIdentityCertificate": {
+      "type": "structure",
+      "members": {
+        "identity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. SPIFFE ID of the Managed Identity used for this certificate."
+          }
+        },
+        "provisioningIssue": {
+          "target": "com.gcp.certificatemanager_v1#ProvisioningIssue",
+          "traits": {
+            "smithy.api#documentation": "Output only. Information about issues with provisioning a managed certificate."
+          }
+        },
+        "state": {
+          "target": "com.gcp.certificatemanager_v1#ManagedIdentityCertificateStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the managed certificate resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration and state of a Managed Identity Certificate. Certificate Manager provisions and renews Managed Identity Certificates automatically, for as long as it's authorized to do so."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ManagedIdentityCertificateStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROVISIONING"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server-defined resource path for the target of the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation was created."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable status of the operation, if any."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the verb executed by the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API version used to start the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation finished running."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation. Output only."
+      }
+    },
+    "com.gcp.certificatemanager_v1#TrustConfig": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/*/locations/*/trustConfigs/*`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding."
+          }
+        },
+        "trustStores": {
+          "target": "com.gcp.certificatemanager_v1#TrustStoreList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation. Only one TrustStore specified is currently allowed."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
+          }
+        },
+        "allowlistedCertificates": {
+          "target": "com.gcp.certificatemanager_v1#AllowlistedCertificateList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A certificate matching an allowlisted certificate is always considered valid as long as the certificate is parseable, proof of private key possession is established, and constraints on the certificate's SAN field are met."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a TrustConfig."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of labels associated with a TrustConfig."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last update timestamp of a TrustConfig."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation timestamp of a TrustConfig."
+          }
+        },
+        "spiffeTrustStores": {
+          "target": "com.gcp.certificatemanager_v1#TrustStoreMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Defines a mapping from a trust domain to a TrustStore. This is used for SPIFFE certificate validation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a trust config."
+      }
+    },
+    "com.gcp.certificatemanager_v1#TrustStoreList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#TrustStore"
+      }
+    },
+    "com.gcp.certificatemanager_v1#AllowlistedCertificateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#AllowlistedCertificate"
+      }
+    },
+    "com.gcp.certificatemanager_v1#TrustStoreMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.certificatemanager_v1#TrustStore"
+      }
+    },
+    "com.gcp.certificatemanager_v1#Certificate": {
+      "type": "structure",
+      "members": {
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The expiry timestamp of a Certificate."
+          }
+        },
+        "usedBy": {
+          "target": "com.gcp.certificatemanager_v1#UsedByList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of resources that use this Certificate."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a certificate."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation timestamp of a Certificate."
+          }
+        },
+        "pemCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The PEM-encoded certificate chain."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/*/locations/*/certificates/*`."
+          }
+        },
+        "sanDnsnames": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of Subject Alternative Names of dnsName type defined in the certificate (see RFC 5280 4.2.1.6). Managed certificates that haven't been provisioned yet have this field populated with a value of the managed.domains field."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of labels associated with a Certificate."
+          }
+        },
+        "selfManaged": {
+          "target": "com.gcp.certificatemanager_v1#SelfManagedCertificate",
+          "traits": {
+            "smithy.api#documentation": "If set, defines data of a self-managed certificate."
+          }
+        },
+        "scope": {
+          "target": "com.gcp.certificatemanager_v1#CertificateScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. The scope of the certificate."
+          }
+        },
+        "managedIdentity": {
+          "target": "com.gcp.certificatemanager_v1#ManagedIdentityCertificate",
+          "traits": {
+            "smithy.api#documentation": "If set, contains configuration and state of a managed identity certificate."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last update timestamp of a Certificate."
+          }
+        },
+        "managed": {
+          "target": "com.gcp.certificatemanager_v1#ManagedCertificate",
+          "traits": {
+            "smithy.api#documentation": "If set, contains configuration and state of a managed certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines TLS certificate."
+      }
+    },
+    "com.gcp.certificatemanager_v1#UsedByList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#UsedBy"
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateScopeEnum": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFAULT"
+          }
+        },
+        "EDGE_CACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EDGE_CACHE"
+          }
+        },
+        "ALL_REGIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_REGIONS"
+          }
+        },
+        "CLIENT_AUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_AUTH"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.certificatemanager_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.certificatemanager_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#Location"
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListCertificateMapEntriesResponse": {
+      "type": "structure",
+      "members": {
+        "certificateMapEntries": {
+          "target": "com.gcp.certificatemanager_v1#CertificateMapEntryList",
+          "traits": {
+            "smithy.api#documentation": "A list of certificate map entries for the parent resource."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the `ListCertificateMapEntries` method."
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateMapEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#CertificateMapEntry"
+      }
+    },
+    "com.gcp.certificatemanager_v1#UsedBy": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Full name of the resource https://google.aip.dev/122#full-resource-names, e.g. `//certificatemanager.googleapis.com/projects/*/locations/*/certificateMaps/*/certificateMapEntries/*` or `//compute.googleapis.com/projects/*/locations/*/targetHttpsProxies/*`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a resource that uses the certificate."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListCertificatesResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that could not be reached."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
+          }
+        },
+        "certificates": {
+          "target": "com.gcp.certificatemanager_v1#CertificateList",
+          "traits": {
+            "smithy.api#documentation": "A list of certificates for the parent resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for the `ListCertificates` method."
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#Certificate"
       }
     },
     "com.gcp.certificatemanager_v1#CNAME": {
@@ -503,13 +1008,377 @@
         "smithy.api#documentation": "CNAME troubleshooting information."
       }
     },
+    "com.gcp.certificatemanager_v1#CertificateMapEntry": {
+      "type": "structure",
+      "members": {
+        "certificates": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of Certificates defines for the given `hostname`. There can be defined up to four certificates in each Certificate Map Entry. Each certificate must match pattern `projects/*/locations/*/certificates/*`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the Certificate Map Entry. Certificate Map Entry names must be unique globally and match pattern `projects/*/locations/*/certificateMaps/*/certificateMapEntries/*`."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A Hostname (FQDN, e.g. `example.com`) or a wildcard hostname expression (`*.example.com`) for a set of hostnames with common suffix. Used as Server Name Indication (SNI) for selecting a proper certificate."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The update timestamp of a Certificate Map Entry."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of labels associated with a Certificate Map Entry."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation timestamp of a Certificate Map Entry."
+          }
+        },
+        "matcher": {
+          "target": "com.gcp.certificatemanager_v1#CertificateMapEntryMatcherEnum",
+          "traits": {
+            "smithy.api#documentation": "A predefined matcher for particular cases, other than SNI selection."
+          }
+        },
+        "state": {
+          "target": "com.gcp.certificatemanager_v1#CertificateMapEntryStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. A serving state of this Certificate Map Entry."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a certificate map entry."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a certificate map entry."
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateMapEntryMatcherEnum": {
+      "type": "enum",
+      "members": {
+        "MATCHER_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHER_UNSPECIFIED"
+          }
+        },
+        "PRIMARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIMARY"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateMapEntryStateEnum": {
+      "type": "enum",
+      "members": {
+        "SERVING_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVING_STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#SelfManagedCertificate": {
+      "type": "structure",
+      "members": {
+        "pemCertificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. The PEM-encoded certificate chain. Leaf certificate comes first, followed by intermediate ones if any."
+          }
+        },
+        "pemPrivateKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. The PEM-encoded private key of the leaf certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Certificate data for a SelfManaged Certificate. SelfManaged Certificates are uploaded by the user. Updating such certificates before they expire remains the user's responsibility."
+      }
+    },
+    "com.gcp.certificatemanager_v1#DnsResourceRecord": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Data of the DNS Resource Record."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Fully qualified name of the DNS Resource Record. e.g. `_acme-challenge.example.com`"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Type of the DNS Resource Record. Currently always set to \"CNAME\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The structure describing the DNS Resource Record that needs to be added to DNS configuration for the authorization to be usable by certificate."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ProvisioningIssue": {
+      "type": "structure",
+      "members": {
+        "reason": {
+          "target": "com.gcp.certificatemanager_v1#ProvisioningIssueReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reason for provisioning failures."
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human readable explanation about the issue. Provided to help address the configuration issues. Not guaranteed to be stable. For programmatic access use Reason enum."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about issues with provisioning a Managed Certificate."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ProvisioningIssueReasonEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "AUTHORIZATION_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHORIZATION_ISSUE"
+          }
+        },
+        "RATE_LIMITED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RATE_LIMITED"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.certificatemanager_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.certificatemanager_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#DocumentMap"
+      }
+    },
+    "com.gcp.certificatemanager_v1#DnsAuthorization": {
+      "type": "structure",
+      "members": {
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last update timestamp of a DnsAuthorization."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. A domain that is being authorized. A DnsAuthorization resource covers a single domain and its wildcard, e.g. authorization for `example.com` can be used to issue certificates for `example.com` and `*.example.com`."
+          }
+        },
+        "type": {
+          "target": "com.gcp.certificatemanager_v1#DnsAuthorizationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location `global`: FIXED_RECORD, - in other locations: PER_PROJECT_RECORD."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a DnsAuthorization."
+          }
+        },
+        "dnsResourceRecord": {
+          "target": "com.gcp.certificatemanager_v1#DnsResourceRecord",
+          "traits": {
+            "smithy.api#documentation": "Output only. DNS Resource Record that needs to be added to DNS configuration."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/*/locations/*/dnsAuthorizations/*`."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
+          }
+        },
+        "labels": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of labels associated with a DnsAuthorization."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation timestamp of a DnsAuthorization."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A DnsAuthorization resource describes a way to perform domain authorization for certificate issuance."
+      }
+    },
+    "com.gcp.certificatemanager_v1#DnsAuthorizationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "FIXED_RECORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED_RECORD"
+          }
+        },
+        "PER_PROJECT_RECORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PER_PROJECT_RECORD"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#CertificateMap": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set of labels associated with a Certificate Map."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The update timestamp of a Certificate Map."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The creation timestamp of a Certificate Map."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/*/locations/*/certificateMaps/*`."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a certificate map."
+          }
+        },
+        "gclbTargets": {
+          "target": "com.gcp.certificatemanager_v1#GclbTargetList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of GCLB targets that use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a collection of certificate configurations."
+      }
+    },
+    "com.gcp.certificatemanager_v1#GclbTargetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.certificatemanager_v1#GclbTarget"
+      }
+    },
     "com.gcp.certificatemanager_v1#Troubleshooting": {
       "type": "structure",
       "members": {
-        "ips": {
-          "target": "com.gcp.certificatemanager_v1#IPs",
+        "issues": {
+          "target": "com.gcp.certificatemanager_v1#TroubleshootingIssuesItemEnumList",
           "traits": {
-            "smithy.api#documentation": "Output only. IPs troubleshooting information."
+            "smithy.api#documentation": "Output only. The list of issues discovered during the authorization attempt."
           }
         },
         "cname": {
@@ -518,10 +1387,10 @@
             "smithy.api#documentation": "Output only. CNAME troubleshooting information."
           }
         },
-        "issues": {
-          "target": "com.gcp.certificatemanager_v1#TroubleshootingIssuesItemEnumList",
+        "ips": {
+          "target": "com.gcp.certificatemanager_v1#IPs",
           "traits": {
-            "smithy.api#documentation": "Output only. The list of issues discovered during the authorization attempt."
+            "smithy.api#documentation": "Output only. IPs troubleshooting information."
           }
         }
       },
@@ -576,153 +1445,71 @@
         "target": "com.gcp.certificatemanager_v1#TroubleshootingIssuesItemEnum"
       }
     },
-    "com.gcp.certificatemanager_v1#Certificate": {
+    "com.gcp.certificatemanager_v1#IPs": {
       "type": "structure",
       "members": {
-        "tags": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
-          }
-        },
-        "pemCertificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The PEM-encoded certificate chain."
-          }
-        },
-        "selfManaged": {
-          "target": "com.gcp.certificatemanager_v1#SelfManagedCertificate",
-          "traits": {
-            "smithy.api#documentation": "If set, defines data of a self-managed certificate."
-          }
-        },
-        "sanDnsnames": {
+        "resolved": {
           "target": "com.gcp.certificatemanager_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Output only. The list of Subject Alternative Names of dnsName type defined in the certificate (see RFC 5280 4.2.1.6). Managed certificates that haven't been provisioned yet have this field populated with a value of the managed.domains field."
+            "smithy.api#documentation": "Output only. The list of IP addresses resolved from the domain's A/AAAA records. Can contain both ipv4 and ipv6 addresses."
           }
         },
-        "labels": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
+        "serving": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Optional. Set of labels associated with a Certificate."
+            "smithy.api#documentation": "Output only. The list of IP addresses, where the certificate is attached and port 443 is open."
           }
         },
-        "usedBy": {
-          "target": "com.gcp.certificatemanager_v1#UsedByList",
+        "servingOnAltPorts": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Output only. The list of resources that use this Certificate."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a certificate."
-          }
-        },
-        "managedIdentity": {
-          "target": "com.gcp.certificatemanager_v1#ManagedIdentityCertificate",
-          "traits": {
-            "smithy.api#documentation": "If set, contains configuration and state of a managed identity certificate."
-          }
-        },
-        "expireTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The expiry timestamp of a Certificate."
-          }
-        },
-        "scope": {
-          "target": "com.gcp.certificatemanager_v1#CertificateScopeEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The scope of the certificate."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The last update timestamp of a Certificate."
-          }
-        },
-        "managed": {
-          "target": "com.gcp.certificatemanager_v1#ManagedCertificate",
-          "traits": {
-            "smithy.api#documentation": "If set, contains configuration and state of a managed certificate."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/*/locations/*/certificates/*`."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The creation timestamp of a Certificate."
+            "smithy.api#documentation": "Output only. The list of IP addresses, where the certificate is attached, but port 443 is not open."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Defines TLS certificate."
+        "smithy.api#documentation": "IPs troubleshooting information."
       }
     },
-    "com.gcp.certificatemanager_v1#UsedByList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#UsedBy"
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateScopeEnum": {
-      "type": "enum",
+    "com.gcp.certificatemanager_v1#IpConfig": {
+      "type": "structure",
       "members": {
-        "DEFAULT": {
-          "target": "smithy.api#Unit",
+        "ipAddress": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "DEFAULT"
+            "smithy.api#documentation": "Output only. An external IP address."
           }
         },
-        "EDGE_CACHE": {
-          "target": "smithy.api#Unit",
+        "ports": {
+          "target": "com.gcp.certificatemanager_v1#IntegerList",
           "traits": {
-            "smithy.api#enumValue": "EDGE_CACHE"
-          }
-        },
-        "ALL_REGIONS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ALL_REGIONS"
-          }
-        },
-        "CLIENT_AUTH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLIENT_AUTH"
+            "smithy.api#documentation": "Output only. Ports."
           }
         }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines IP configuration where this Certificate Map is serving."
       }
     },
-    "com.gcp.certificatemanager_v1#CancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+    "com.gcp.certificatemanager_v1#IntegerList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
       }
     },
     "com.gcp.certificatemanager_v1#ManagedCertificate": {
       "type": "structure",
       "members": {
+        "domains": {
+          "target": "com.gcp.certificatemanager_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. The domains for which a managed SSL certificate will be generated. Wildcard domains are only supported with DNS challenge resolution."
+          }
+        },
         "authorizationAttemptInfo": {
           "target": "com.gcp.certificatemanager_v1#AuthorizationAttemptInfoList",
           "traits": {
             "smithy.api#documentation": "Output only. Detailed state of the latest authorization attempt for each domain specified for managed certificate resource."
-          }
-        },
-        "dnsAuthorizations": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Immutable. Authorizations that will be used for performing domain authorization."
           }
         },
         "provisioningIssue": {
@@ -731,22 +1518,22 @@
             "smithy.api#documentation": "Output only. Information about issues with provisioning a Managed Certificate."
           }
         },
-        "issuanceConfig": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The resource name for a CertificateIssuanceConfig used to configure private PKI certificates in the format `projects/*/locations/*/certificateIssuanceConfigs/*`. If this field is not set, the certificates will instead be publicly signed as documented at https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa."
-          }
-        },
         "state": {
           "target": "com.gcp.certificatemanager_v1#ManagedCertificateStateEnum",
           "traits": {
             "smithy.api#documentation": "Output only. State of the managed certificate resource."
           }
         },
-        "domains": {
+        "dnsAuthorizations": {
           "target": "com.gcp.certificatemanager_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The domains for which a managed SSL certificate will be generated. Wildcard domains are only supported with DNS challenge resolution."
+            "smithy.api#documentation": "Optional. Immutable. Authorizations that will be used for performing domain authorization."
+          }
+        },
+        "issuanceConfig": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. The resource name for a CertificateIssuanceConfig used to configure private PKI certificates in the format `projects/*/locations/*/certificateIssuanceConfigs/*`. If this field is not set, the certificates will instead be publicly signed as documented at https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa."
           }
         }
       },
@@ -789,6 +1576,44 @@
         }
       }
     },
+    "com.gcp.certificatemanager_v1#Location": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.certificatemanager_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.certificatemanager_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
     "com.gcp.certificatemanager_v1#AllowlistedCertificate": {
       "type": "structure",
       "members": {
@@ -803,845 +1628,21 @@
         "smithy.api#documentation": "Defines an allowlisted certificate."
       }
     },
-    "com.gcp.certificatemanager_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.certificatemanager_v1#Status": {
-      "type": "structure",
-      "members": {
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
-        "details": {
-          "target": "com.gcp.certificatemanager_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.certificatemanager_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.certificatemanager_v1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#DocumentMap"
-      }
-    },
-    "com.gcp.certificatemanager_v1#TrustStore": {
-      "type": "structure",
-      "members": {
-        "trustAnchors": {
-          "target": "com.gcp.certificatemanager_v1#TrustAnchorList",
-          "traits": {
-            "smithy.api#documentation": "Optional. List of Trust Anchors to be used while performing validation against a given TrustStore."
-          }
-        },
-        "intermediateCas": {
-          "target": "com.gcp.certificatemanager_v1#IntermediateCAList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set of intermediate CA certificates used for the path building phase of chain validation. The field is currently not supported if TrustConfig is used for the workload certificate feature."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines a trust store."
-      }
-    },
-    "com.gcp.certificatemanager_v1#TrustAnchorList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#TrustAnchor"
-      }
-    },
-    "com.gcp.certificatemanager_v1#IntermediateCAList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#IntermediateCA"
-      }
-    },
-    "com.gcp.certificatemanager_v1#SelfManagedCertificate": {
-      "type": "structure",
-      "members": {
-        "pemPrivateKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. The PEM-encoded private key of the leaf certificate."
-          }
-        },
-        "pemCertificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. The PEM-encoded certificate chain. Leaf certificate comes first, followed by intermediate ones if any."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Certificate data for a SelfManaged Certificate. SelfManaged Certificates are uploaded by the user. Updating such certificates before they expire remains the user's responsibility."
-      }
-    },
-    "com.gcp.certificatemanager_v1#Location": {
-      "type": "structure",
-      "members": {
-        "labels": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.certificatemanager_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListLocationsResponse": {
-      "type": "structure",
-      "members": {
-        "locations": {
-          "target": "com.gcp.certificatemanager_v1#LocationList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
-      }
-    },
-    "com.gcp.certificatemanager_v1#LocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#Location"
-      }
-    },
-    "com.gcp.certificatemanager_v1#Operation": {
-      "type": "structure",
-      "members": {
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "error": {
-          "target": "com.gcp.certificatemanager_v1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.certificatemanager_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "response": {
-          "target": "com.gcp.certificatemanager_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.certificatemanager_v1#IntermediateCA": {
-      "type": "structure",
-      "members": {
-        "pemCertificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "PEM intermediate certificate used for building up paths for validation. Each certificate provided in PEM format may occupy up to 5kB."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines an intermediate CA."
-      }
-    },
-    "com.gcp.certificatemanager_v1#GclbTarget": {
-      "type": "structure",
-      "members": {
-        "ipConfigs": {
-          "target": "com.gcp.certificatemanager_v1#IpConfigList",
-          "traits": {
-            "smithy.api#documentation": "Output only. IP configurations for this Target Proxy where the Certificate Map is serving."
-          }
-        },
-        "targetHttpsProxy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`."
-          }
-        },
-        "targetSslProxy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. This field returns the resource name in the following format: `//compute.googleapis.com/projects/*/global/targetSslProxies/*`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes a Target Proxy that uses this Certificate Map."
-      }
-    },
-    "com.gcp.certificatemanager_v1#IpConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#IpConfig"
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateIssuanceConfig": {
-      "type": "structure",
-      "members": {
-        "tags": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The creation timestamp of a CertificateIssuanceConfig."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a CertificateIssuanceConfig."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The last update timestamp of a CertificateIssuanceConfig."
-          }
-        },
-        "keyAlgorithm": {
-          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfigKeyAlgorithmEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The key algorithm to use when generating the private key."
-          }
-        },
-        "certificateAuthorityConfig": {
-          "target": "com.gcp.certificatemanager_v1#CertificateAuthorityConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. The CA that issues the workload certificate. It includes the CA address, type, authentication to CA service, etc."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set of labels associated with a CertificateIssuanceConfig."
-          }
-        },
-        "lifetime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Workload certificate lifetime requested."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/*/locations/*/certificateIssuanceConfigs/*`."
-          }
-        },
-        "rotationWindowPercentage": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. Specifies the percentage of elapsed time of the certificate lifetime to wait before renewing the certificate. Must be a number between 1-99, inclusive."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "CertificateIssuanceConfig specifies how to issue and manage a certificate."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateIssuanceConfigKeyAlgorithmEnum": {
-      "type": "enum",
-      "members": {
-        "KEY_ALGORITHM_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "KEY_ALGORITHM_UNSPECIFIED"
-          }
-        },
-        "RSA_2048": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RSA_2048"
-          }
-        },
-        "ECDSA_P256": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ECDSA_P256"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateMap": {
-      "type": "structure",
-      "members": {
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The update timestamp of a Certificate Map."
-          }
-        },
-        "tags": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a certificate map."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/*/locations/*/certificateMaps/*`."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The creation timestamp of a Certificate Map."
-          }
-        },
-        "gclbTargets": {
-          "target": "com.gcp.certificatemanager_v1#GclbTargetList",
-          "traits": {
-            "smithy.api#documentation": "Output only. A list of GCLB targets that use this Certificate Map. A Target Proxy is only present on this list if it's attached to a Forwarding Rule."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set of labels associated with a Certificate Map."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines a collection of certificate configurations."
-      }
-    },
-    "com.gcp.certificatemanager_v1#GclbTargetList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#GclbTarget"
-      }
-    },
-    "com.gcp.certificatemanager_v1#DnsResourceRecord": {
-      "type": "structure",
-      "members": {
-        "data": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Data of the DNS Resource Record."
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Type of the DNS Resource Record. Currently always set to \"CNAME\"."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Fully qualified name of the DNS Resource Record. e.g. `_acme-challenge.example.com`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The structure describing the DNS Resource Record that needs to be added to DNS configuration for the authorization to be usable by certificate."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ManagedIdentityCertificate": {
-      "type": "structure",
-      "members": {
-        "state": {
-          "target": "com.gcp.certificatemanager_v1#ManagedIdentityCertificateStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. State of the managed certificate resource."
-          }
-        },
-        "provisioningIssue": {
-          "target": "com.gcp.certificatemanager_v1#ProvisioningIssue",
-          "traits": {
-            "smithy.api#documentation": "Output only. Information about issues with provisioning a managed certificate."
-          }
-        },
-        "identity": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Immutable. SPIFFE ID of the Managed Identity used for this certificate."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration and state of a Managed Identity Certificate. Certificate Manager provisions and renews Managed Identity Certificates automatically, for as long as it's authorized to do so."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ManagedIdentityCertificateStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "PROVISIONING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PROVISIONING"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListCertificateIssuanceConfigsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
-          }
-        },
-        "certificateIssuanceConfigs": {
-          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfigList",
-          "traits": {
-            "smithy.api#documentation": "A list of certificate configs for the parent resource."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the `ListCertificateIssuanceConfigs` method."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateIssuanceConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig"
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateAuthorityServiceConfig": {
-      "type": "structure",
-      "members": {
-        "caPool": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A CA pool resource used to issue a certificate. The CA pool string has a relative resource path following the form \"projects/{project}/locations/{location}/caPools/{ca_pool}\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains information required to contact CA service."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListCertificatesResponse": {
-      "type": "structure",
-      "members": {
-        "certificates": {
-          "target": "com.gcp.certificatemanager_v1#CertificateList",
-          "traits": {
-            "smithy.api#documentation": "A list of certificates for the parent resource."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that could not be reached."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the `ListCertificates` method."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#Certificate"
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateAuthorityConfig": {
-      "type": "structure",
-      "members": {
-        "certificateAuthorityServiceConfig": {
-          "target": "com.gcp.certificatemanager_v1#CertificateAuthorityServiceConfig",
-          "traits": {
-            "smithy.api#documentation": "Defines a CertificateAuthorityServiceConfig."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The CA that issues the workload certificate. It includes CA address, type, authentication to CA service, etc."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListCertificateMapsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "certificateMaps": {
-          "target": "com.gcp.certificatemanager_v1#CertificateMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of certificate maps for the parent resource."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the `ListCertificateMaps` method."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#CertificateMap"
-      }
-    },
-    "com.gcp.certificatemanager_v1#UsedBy": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Full name of the resource https://google.aip.dev/122#full-resource-names, e.g. `//certificatemanager.googleapis.com/projects/*/locations/*/certificateMaps/*/certificateMapEntries/*` or `//compute.googleapis.com/projects/*/locations/*/targetHttpsProxies/*`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines a resource that uses the certificate."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListCertificateMapEntriesResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`."
-          }
-        },
-        "certificateMapEntries": {
-          "target": "com.gcp.certificatemanager_v1#CertificateMapEntryList",
-          "traits": {
-            "smithy.api#documentation": "A list of certificate map entries for the parent resource."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for the `ListCertificateMapEntries` method."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateMapEntryList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.certificatemanager_v1#CertificateMapEntry"
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateMapEntry": {
-      "type": "structure",
-      "members": {
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A Hostname (FQDN, e.g. `example.com`) or a wildcard hostname expression (`*.example.com`) for a set of hostnames with common suffix. Used as Server Name Indication (SNI) for selecting a proper certificate."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the Certificate Map Entry. Certificate Map Entry names must be unique globally and match pattern `projects/*/locations/*/certificateMaps/*/certificateMapEntries/*`."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.certificatemanager_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set of labels associated with a Certificate Map Entry."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. One or more paragraphs of text description of a certificate map entry."
-          }
-        },
-        "matcher": {
-          "target": "com.gcp.certificatemanager_v1#CertificateMapEntryMatcherEnum",
-          "traits": {
-            "smithy.api#documentation": "A predefined matcher for particular cases, other than SNI selection."
-          }
-        },
-        "certificates": {
-          "target": "com.gcp.certificatemanager_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A set of Certificates defines for the given `hostname`. There can be defined up to four certificates in each Certificate Map Entry. Each certificate must match pattern `projects/*/locations/*/certificates/*`."
-          }
-        },
-        "state": {
-          "target": "com.gcp.certificatemanager_v1#CertificateMapEntryStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. A serving state of this Certificate Map Entry."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The update timestamp of a Certificate Map Entry."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The creation timestamp of a Certificate Map Entry."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines a certificate map entry."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateMapEntryMatcherEnum": {
-      "type": "enum",
-      "members": {
-        "MATCHER_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MATCHER_UNSPECIFIED"
-          }
-        },
-        "PRIMARY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PRIMARY"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#CertificateMapEntryStateEnum": {
-      "type": "enum",
-      "members": {
-        "SERVING_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SERVING_STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "PENDING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PENDING"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#OperationMetadata": {
-      "type": "structure",
-      "members": {
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Human-readable status of the operation, if any."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time the operation finished running."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time the operation was created."
-          }
-        },
-        "verb": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the verb executed by the operation."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "API version used to start the operation."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Server-defined resource path for the target of the operation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents the metadata of the long-running operation. Output only."
-      }
-    },
-    "com.gcp.certificatemanager_v1#IpConfig": {
-      "type": "structure",
-      "members": {
-        "ipAddress": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. An external IP address."
-          }
-        },
-        "ports": {
-          "target": "com.gcp.certificatemanager_v1#IntegerList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Ports."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines IP configuration where this Certificate Map is serving."
-      }
-    },
-    "com.gcp.certificatemanager_v1#IntegerList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Integer"
-      }
-    },
     "com.gcp.certificatemanager_v1#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "extraLocationTypes": {
@@ -1757,6 +1758,75 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.certificatemanager_v1#GetProjectsLocationsOperationsRequest": {
@@ -1915,54 +1985,54 @@
         "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsOperationsRequest": {
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsDnsAuthorizationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "Required. The project and location from which the dns authorizations should be listed, specified in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of Dns Authorization field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
+            "smithy.api#httpQuery": "orderBy"
           }
         },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#documentation": "Optional. Maximum number of dns authorizations to return per call.",
             "smithy.api#httpQuery": "pageSize"
           }
         },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
+        "filter": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
+            "smithy.api#documentation": "Optional. Filter expression to restrict the Dns Authorizations returned.",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#documentation": "Optional. The value returned by the last `ListDnsAuthorizationsResponse`. Indicates that this is a continuation of a prior `ListDnsAuthorizations` call, and that the system should return the next page of data.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsOperations": {
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsDnsAuthorizations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsOperationsRequest"
+        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsDnsAuthorizationsRequest"
       },
       "output": {
-        "target": "com.gcp.certificatemanager_v1#ListOperationsResponse"
+        "target": "com.gcp.certificatemanager_v1#ListDnsAuthorizationsResponse"
       },
       "errors": [
         {
@@ -1975,13 +2045,207 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+name}/operations"
+          "uri": "v1/{+parent}/dnsAuthorizations"
         },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#documentation": "Lists DnsAuthorizations in a given project and location.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsDnsAuthorizationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/*/locations/*/dnsAuthorizations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.certificatemanager_v1#DnsAuthorization",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsDnsAuthorizations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsDnsAuthorizationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a DnsAuthorization."
+      }
+    },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsDnsAuthorizationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A name of the dns authorization to describe. Must be in the format `projects/*/locations/*/dnsAuthorizations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsDnsAuthorizations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsDnsAuthorizationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#DnsAuthorization"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single DnsAuthorization."
+      }
+    },
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsDnsAuthorizationsRequest": {
+      "type": "structure",
+      "members": {
+        "dnsAuthorizationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A user-provided name of the dns authorization.",
+            "smithy.api#httpQuery": "dnsAuthorizationId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource of the dns authorization. Must be in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.certificatemanager_v1#DnsAuthorization",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsDnsAuthorizations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsDnsAuthorizationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/dnsAuthorizations"
+        },
+        "smithy.api#documentation": "Creates a new DnsAuthorization in a given project and location."
+      }
+    },
+    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsDnsAuthorizationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A name of the dns authorization to delete. Must be in the format `projects/*/locations/*/dnsAuthorizations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsDnsAuthorizations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#DeleteProjectsLocationsDnsAuthorizationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single DnsAuthorization."
       }
     },
     "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateMapsRequest": {
@@ -2027,22 +2291,128 @@
         "smithy.api#documentation": "Deletes a single CertificateMap. A Certificate Map can't be deleted if it contains Certificate Map Entries. Remove all the entries from the map before calling this method."
       }
     },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateMapsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A name of the certificate map to describe. Must be in the format `projects/*/locations/*/certificateMaps/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateMaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateMapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#CertificateMap"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single CertificateMap."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter expression to restrict the Certificates Maps returned.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of Certificate Map field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of certificate maps to return per call.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location from which the certificate maps should be listed, specified in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificateMapsResponse`. Indicates that this is a continuation of a prior `ListCertificateMaps` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMaps": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#ListCertificateMapsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/certificateMaps"
+        },
+        "smithy.api#documentation": "Lists CertificateMaps in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateMapsRequest": {
       "type": "structure",
       "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/*/locations/*/certificateMaps/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.",
-            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -2141,129 +2511,37 @@
         "smithy.api#documentation": "Creates a new CertificateMap in a given project and location."
       }
     },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsRequest": {
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The project and location from which the certificate maps should be listed, specified in the format `projects/*/locations/*`.",
+            "smithy.api#documentation": "Required. The parent resource of the certificate map entry. Must be in the format `projects/*/locations/*/certificateMaps/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "filter": {
+        "certificateMapEntryId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the Certificates Maps returned.",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "Required. A user-provided name of the certificate map entry.",
+            "smithy.api#httpQuery": "certificateMapEntryId"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "body": {
+          "target": "com.gcp.certificatemanager_v1#CertificateMapEntry",
           "traits": {
-            "smithy.api#documentation": "Optional. Maximum number of certificate maps to return per call.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of Certificate Map field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificateMapsResponse`. Indicates that this is a continuation of a prior `ListCertificateMaps` call, and that the system should return the next page of data.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMaps": {
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateMapsCertificateMapEntries": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#ListCertificateMapsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/certificateMaps"
-        },
-        "smithy.api#documentation": "Lists CertificateMaps in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateMapsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A name of the certificate map to describe. Must be in the format `projects/*/locations/*/certificateMaps/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateMaps": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateMapsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#CertificateMap"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single CertificateMap."
-      }
-    },
-    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A name of the certificate map entry to delete. Must be in the format `projects/*/locations/*/certificateMaps/*/certificateMapEntries/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateMapsCertificateMapEntries": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateMapsCertificateMapEntriesRequest"
+        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateMapsCertificateMapEntriesRequest"
       },
       "output": {
         "target": "com.gcp.certificatemanager_v1#Operation"
@@ -2284,10 +2562,10 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
+          "method": "POST",
+          "uri": "v1/{+parent}/certificateMapEntries"
         },
-        "smithy.api#documentation": "Deletes a single CertificateMapEntry."
+        "smithy.api#documentation": "Creates a new CertificateMapEntry in a given project and location."
       }
     },
     "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
@@ -2347,6 +2625,75 @@
         "smithy.api#documentation": "Updates a CertificateMapEntry."
       }
     },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
+      "type": "structure",
+      "members": {
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of Certificate Map Entry field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project, location and certificate map from which the certificate map entries should be listed, specified in the format `projects/*/locations/*/certificateMaps/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificateMapEntriesResponse`. Indicates that this is a continuation of a prior `ListCertificateMapEntries` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter expression to restrict the returned Certificate Map Entries.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of certificate map entries to return. The service may return fewer than this value. If unspecified, at most 50 certificate map entries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsCertificateMapEntries": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsCertificateMapEntriesRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#ListCertificateMapEntriesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/certificateMapEntries"
+        },
+        "smithy.api#documentation": "Lists CertificateMapEntries in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
       "type": "structure",
       "members": {
@@ -2384,54 +2731,126 @@
         "smithy.api#documentation": "Gets details of a single CertificateMapEntry."
       }
     },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
+    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Maximum number of certificate map entries to return. The service may return fewer than this value. If unspecified, at most 50 certificate map entries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificateMapEntriesResponse`. Indicates that this is a continuation of a prior `ListCertificateMapEntries` call, and that the system should return the next page of data.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of Certificate Map Entry field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project, location and certificate map from which the certificate map entries should be listed, specified in the format `projects/*/locations/*/certificateMaps/*`.",
+            "smithy.api#documentation": "Required. A name of the certificate map entry to delete. Must be in the format `projects/*/locations/*/certificateMaps/*/certificateMapEntries/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the returned Certificate Map Entries.",
-            "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsCertificateMapEntries": {
+    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateMapsCertificateMapEntries": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateMapsCertificateMapEntriesRequest"
+        "target": "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateMapsCertificateMapEntriesRequest"
       },
       "output": {
-        "target": "com.gcp.certificatemanager_v1#ListCertificateMapEntriesResponse"
+        "target": "com.gcp.certificatemanager_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single CertificateMapEntry."
+      }
+    },
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateIssuanceConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/*/locations/*/certificateIssuanceConfigs/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateIssuanceConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateIssuanceConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a CertificateIssuanceConfig."
+      }
+    },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateIssuanceConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A name of the certificate issuance config to describe. Must be in the format `projects/*/locations/*/certificateIssuanceConfigs/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateIssuanceConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateIssuanceConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig"
       },
       "errors": [
         {
@@ -2444,35 +2863,31 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/certificateMapEntries"
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Lists CertificateMapEntries in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Gets details of a single CertificateIssuanceConfig."
       }
     },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateMapsCertificateMapEntriesRequest": {
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateIssuanceConfigsRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The parent resource of the certificate map entry. Must be in the format `projects/*/locations/*/certificateMaps/*`.",
+            "smithy.api#documentation": "Required. The parent resource of the certificate issuance config. Must be in the format `projects/*/locations/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "certificateMapEntryId": {
+        "certificateIssuanceConfigId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. A user-provided name of the certificate map entry.",
-            "smithy.api#httpQuery": "certificateMapEntryId"
+            "smithy.api#documentation": "Required. A user-provided name of the certificate config.",
+            "smithy.api#httpQuery": "certificateIssuanceConfigId"
           }
         },
         "body": {
-          "target": "com.gcp.certificatemanager_v1#CertificateMapEntry",
+          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -2480,10 +2895,10 @@
         }
       }
     },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateMapsCertificateMapEntries": {
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateIssuanceConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateMapsCertificateMapEntriesRequest"
+        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateIssuanceConfigsRequest"
       },
       "output": {
         "target": "com.gcp.certificatemanager_v1#Operation"
@@ -2505,9 +2920,78 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+parent}/certificateMapEntries"
+          "uri": "v1/{+parent}/certificateIssuanceConfigs"
         },
-        "smithy.api#documentation": "Creates a new CertificateMapEntry in a given project and location."
+        "smithy.api#documentation": "Creates a new CertificateIssuanceConfig in a given project and location."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateIssuanceConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter expression to restrict the Certificates Configs returned.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificateIssuanceConfigsResponse`. Indicates that this is a continuation of a prior `ListCertificateIssuanceConfigs` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of certificate configs to return per call.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location from which the certificate should be listed, specified in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateIssuanceConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateIssuanceConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#ListCertificateIssuanceConfigsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/certificateIssuanceConfigs"
+        },
+        "smithy.api#documentation": "Lists CertificateIssuanceConfigs in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.certificatemanager_v1#DeleteProjectsLocationsCertificateIssuanceConfigsRequest": {
@@ -2553,117 +3037,9 @@
         "smithy.api#documentation": "Deletes a single CertificateIssuanceConfig."
       }
     },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateIssuanceConfigsRequest": {
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificatesRequest": {
       "type": "structure",
       "members": {
-        "certificateIssuanceConfigId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A user-provided name of the certificate config.",
-            "smithy.api#httpQuery": "certificateIssuanceConfigId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource of the certificate issuance config. Must be in the format `projects/*/locations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateIssuanceConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificateIssuanceConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/certificateIssuanceConfigs"
-        },
-        "smithy.api#documentation": "Creates a new CertificateIssuanceConfig in a given project and location."
-      }
-    },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateIssuanceConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A name of the certificate issuance config to describe. Must be in the format `projects/*/locations/*/certificateIssuanceConfigs/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateIssuanceConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificateIssuanceConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single CertificateIssuanceConfig."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateIssuanceConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificateIssuanceConfigsResponse`. Indicates that this is a continuation of a prior `ListCertificateIssuanceConfigs` call, and that the system should return the next page of data.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Maximum number of certificate configs to return per call.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
@@ -2672,425 +3048,43 @@
             "smithy.api#required": {}
           }
         },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the Certificates Configs returned.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateIssuanceConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificateIssuanceConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#ListCertificateIssuanceConfigsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/certificateIssuanceConfigs"
-        },
-        "smithy.api#documentation": "Lists CertificateIssuanceConfigs in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateIssuanceConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/*/locations/*/certificateIssuanceConfigs/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.certificatemanager_v1#CertificateIssuanceConfig",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateIssuanceConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificateIssuanceConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates a CertificateIssuanceConfig."
-      }
-    },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsTrustConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/*/locations/*/trustConfigs/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.certificatemanager_v1#TrustConfig",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsTrustConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsTrustConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates a TrustConfig."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsTrustConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "trustConfigId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A user-provided name of the TrustConfig. Must match the regexp `[a-z0-9-]{1,63}`.",
-            "smithy.api#httpQuery": "trustConfigId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource of the TrustConfig. Must be in the format `projects/*/locations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.certificatemanager_v1#TrustConfig",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsTrustConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsTrustConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/trustConfigs"
-        },
-        "smithy.api#documentation": "Creates a new TrustConfig in a given project and location."
-      }
-    },
-    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsTrustConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A name of the TrustConfig to delete. Must be in the format `projects/*/locations/*/trustConfigs/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The current etag of the TrustConfig. If an etag is provided and does not match the current etag of the resource, deletion will be blocked and an ABORTED error will be returned.",
-            "smithy.api#httpQuery": "etag"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsTrustConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#DeleteProjectsLocationsTrustConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a single TrustConfig."
-      }
-    },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsTrustConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A name of the TrustConfig to describe. Must be in the format `projects/*/locations/*/trustConfigs/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsTrustConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsTrustConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#TrustConfig"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single TrustConfig."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsTrustConfigsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location from which the TrustConfigs should be listed, specified in the format `projects/*/locations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the TrustConfigs returned.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The value returned by the last `ListTrustConfigsResponse`. Indicates that this is a continuation of a prior `ListTrustConfigs` call, and that the system should return the next page of data.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. Maximum number of TrustConfigs to return per call.",
+            "smithy.api#documentation": "Optional. Maximum number of certificates to return per call.",
             "smithy.api#httpQuery": "pageSize"
           }
         },
         "orderBy": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. A list of TrustConfig field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
+            "smithy.api#documentation": "Optional. A list of Certificate field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
             "smithy.api#httpQuery": "orderBy"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsTrustConfigs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsTrustConfigsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#ListTrustConfigsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/trustConfigs"
-        },
-        "smithy.api#documentation": "Lists TrustConfigs in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsDnsAuthorizationsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Maximum number of dns authorizations to return per call.",
-            "smithy.api#httpQuery": "pageSize"
           }
         },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The value returned by the last `ListDnsAuthorizationsResponse`. Indicates that this is a continuation of a prior `ListDnsAuthorizations` call, and that the system should return the next page of data.",
+            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificatesResponse`. Indicates that this is a continuation of a prior `ListCertificates` call, and that the system should return the next page of data.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location from which the dns authorizations should be listed, specified in the format `projects/*/locations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
           }
         },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the Dns Authorizations returned.",
+            "smithy.api#documentation": "Optional. Filter expression to restrict the Certificates returned.",
             "smithy.api#httpQuery": "filter"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of Dns Authorization field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
-            "smithy.api#httpQuery": "orderBy"
           }
         }
       }
     },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsDnsAuthorizations": {
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificates": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsDnsAuthorizationsRequest"
+        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificatesRequest"
       },
       "output": {
-        "target": "com.gcp.certificatemanager_v1#ListDnsAuthorizationsResponse"
+        "target": "com.gcp.certificatemanager_v1#ListCertificatesResponse"
       },
       "errors": [
         {
@@ -3103,96 +3097,16 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/dnsAuthorizations"
+          "uri": "v1/{+parent}/certificates"
         },
-        "smithy.api#documentation": "Lists DnsAuthorizations in a given project and location.",
+        "smithy.api#documentation": "Lists Certificates in a given project and location.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
       }
     },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsDnsAuthorizationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A name of the dns authorization to describe. Must be in the format `projects/*/locations/*/dnsAuthorizations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#GetProjectsLocationsDnsAuthorizations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsDnsAuthorizationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#DnsAuthorization"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single DnsAuthorization."
-      }
-    },
-    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsDnsAuthorizationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A name of the dns authorization to delete. Must be in the format `projects/*/locations/*/dnsAuthorizations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsDnsAuthorizations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#DeleteProjectsLocationsDnsAuthorizationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a single DnsAuthorization."
-      }
-    },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsDnsAuthorizationsRequest": {
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificatesRequest": {
       "type": "structure",
       "members": {
         "updateMask": {
@@ -3205,13 +3119,13 @@
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/*/locations/*/dnsAuthorizations/*`.",
+            "smithy.api#documentation": "Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/*/locations/*/certificates/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.certificatemanager_v1#DnsAuthorization",
+          "target": "com.gcp.certificatemanager_v1#Certificate",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3219,10 +3133,10 @@
         }
       }
     },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsDnsAuthorizations": {
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificates": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsDnsAuthorizationsRequest"
+        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificatesRequest"
       },
       "output": {
         "target": "com.gcp.certificatemanager_v1#Operation"
@@ -3246,82 +3160,25 @@
           "method": "PATCH",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Updates a DnsAuthorization."
-      }
-    },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsDnsAuthorizationsRequest": {
-      "type": "structure",
-      "members": {
-        "dnsAuthorizationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A user-provided name of the dns authorization.",
-            "smithy.api#httpQuery": "dnsAuthorizationId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource of the dns authorization. Must be in the format `projects/*/locations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.certificatemanager_v1#DnsAuthorization",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#CreateProjectsLocationsDnsAuthorizations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsDnsAuthorizationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/dnsAuthorizations"
-        },
-        "smithy.api#documentation": "Creates a new DnsAuthorization in a given project and location."
+        "smithy.api#documentation": "Updates a Certificate."
       }
     },
     "com.gcp.certificatemanager_v1#CreateProjectsLocationsCertificatesRequest": {
       "type": "structure",
       "members": {
-        "certificateId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A user-provided name of the certificate.",
-            "smithy.api#httpQuery": "certificateId"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The parent resource of the certificate. Must be in the format `projects/*/locations/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "certificateId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A user-provided name of the certificate.",
+            "smithy.api#httpQuery": "certificateId"
           }
         },
         "body": {
@@ -3361,75 +3218,6 @@
           "uri": "v1/{+parent}/certificates"
         },
         "smithy.api#documentation": "Creates a new Certificate in a given project and location."
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificatesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location from which the certificate should be listed, specified in the format `projects/*/locations/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the Certificates returned.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The value returned by the last `ListCertificatesResponse`. Indicates that this is a continuation of a prior `ListCertificates` call, and that the system should return the next page of data.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Maximum number of certificates to return per call.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of Certificate field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        }
-      }
-    },
-    "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificates": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsCertificatesRequest"
-      },
-      "output": {
-        "target": "com.gcp.certificatemanager_v1#ListCertificatesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.certificatemanager_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.certificatemanager_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/certificates"
-        },
-        "smithy.api#documentation": "Lists Certificates in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
       }
     },
     "com.gcp.certificatemanager_v1#GetProjectsLocationsCertificatesRequest": {
@@ -3512,13 +3300,13 @@
         "smithy.api#documentation": "Deletes a single Certificate."
       }
     },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificatesRequest": {
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsTrustConfigsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/*/locations/*/certificates/*`.",
+            "smithy.api#documentation": "Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/*/locations/*/trustConfigs/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -3531,7 +3319,7 @@
           }
         },
         "body": {
-          "target": "com.gcp.certificatemanager_v1#Certificate",
+          "target": "com.gcp.certificatemanager_v1#TrustConfig",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3539,10 +3327,10 @@
         }
       }
     },
-    "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificates": {
+    "com.gcp.certificatemanager_v1#PatchProjectsLocationsTrustConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsCertificatesRequest"
+        "target": "com.gcp.certificatemanager_v1#PatchProjectsLocationsTrustConfigsRequest"
       },
       "output": {
         "target": "com.gcp.certificatemanager_v1#Operation"
@@ -3566,7 +3354,220 @@
           "method": "PATCH",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Updates a Certificate."
+        "smithy.api#documentation": "Updates a TrustConfig."
+      }
+    },
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsTrustConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource of the TrustConfig. Must be in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "trustConfigId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A user-provided name of the TrustConfig. Must match the regexp `[a-z0-9-]{1,63}`.",
+            "smithy.api#httpQuery": "trustConfigId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.certificatemanager_v1#TrustConfig",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#CreateProjectsLocationsTrustConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#CreateProjectsLocationsTrustConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/trustConfigs"
+        },
+        "smithy.api#documentation": "Creates a new TrustConfig in a given project and location."
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsTrustConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter expression to restrict the TrustConfigs returned.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of TrustConfigs to return per call.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location from which the TrustConfigs should be listed, specified in the format `projects/*/locations/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The value returned by the last `ListTrustConfigsResponse`. Indicates that this is a continuation of a prior `ListTrustConfigs` call, and that the system should return the next page of data.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of TrustConfig field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `\" desc\"`.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#ListProjectsLocationsTrustConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#ListProjectsLocationsTrustConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#ListTrustConfigsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/trustConfigs"
+        },
+        "smithy.api#documentation": "Lists TrustConfigs in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsTrustConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A name of the TrustConfig to describe. Must be in the format `projects/*/locations/*/trustConfigs/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#GetProjectsLocationsTrustConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#GetProjectsLocationsTrustConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#TrustConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single TrustConfig."
+      }
+    },
+    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsTrustConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The current etag of the TrustConfig. If an etag is provided and does not match the current etag of the resource, deletion will be blocked and an ABORTED error will be returned.",
+            "smithy.api#httpQuery": "etag"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A name of the TrustConfig to delete. Must be in the format `projects/*/locations/*/trustConfigs/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.certificatemanager_v1#DeleteProjectsLocationsTrustConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.certificatemanager_v1#DeleteProjectsLocationsTrustConfigsRequest"
+      },
+      "output": {
+        "target": "com.gcp.certificatemanager_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.certificatemanager_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.certificatemanager_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single TrustConfig."
       }
     }
   }

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.imagebuilder#DeleteTrigger": {
@@ -857,10 +858,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.imagebuilder#VirtualMachineImageTemplatesRun": {
+    "com.azure.imagebuilder#RunVirtualMachineImageTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesRunRequest"
+        "target": "com.azure.imagebuilder#RunVirtualMachineImageTemplateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -876,7 +877,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-01"
       }
     },
-    "com.azure.imagebuilder#VirtualMachineImageTemplatesRunRequest": {
+    "com.azure.imagebuilder#RunVirtualMachineImageTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -908,10 +909,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.imagebuilder#VirtualMachineImageTemplatesCancel": {
+    "com.azure.imagebuilder#CancelVirtualMachineImageTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCancelRequest"
+        "target": "com.azure.imagebuilder#CancelVirtualMachineImageTemplateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -927,7 +928,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-01"
       }
     },
-    "com.azure.imagebuilder#VirtualMachineImageTemplatesCancelRequest": {
+    "com.azure.imagebuilder#CancelVirtualMachineImageTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1057,7 +1058,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateResponseTagsMap",
+          "target": "com.azure.imagebuilder#UpdateVirtualMachineImageTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1955,7 +1956,7 @@
         "smithy.api#documentation": "Describes a virtual machine image source for building, customizing and distributing"
       }
     },
-    "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateResponseTagsMap": {
+    "com.azure.imagebuilder#UpdateVirtualMachineImageTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2001,7 +2002,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateRequestTagsMap",
+          "target": "com.azure.imagebuilder#UpdateVirtualMachineImageTemplateRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The user-specified tags associated with the image template."
           }
@@ -2046,7 +2047,7 @@
         "smithy.api#documentation": "The distribution targets where the image output needs to go to."
       }
     },
-    "com.azure.imagebuilder#VirtualMachineImageTemplatesUpdateRequestTagsMap": {
+    "com.azure.imagebuilder#UpdateVirtualMachineImageTemplateRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2424,7 +2425,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesGetResponseTagsMap",
+          "target": "com.azure.imagebuilder#GetVirtualMachineImageTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2454,7 +2455,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.imagebuilder#VirtualMachineImageTemplatesGetResponseTagsMap": {
+    "com.azure.imagebuilder#GetVirtualMachineImageTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2800,49 +2801,49 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.imagebuilder#CancelVirtualMachineImageTemplate"
+        },
+        {
           "target": "com.azure.imagebuilder#DeleteTrigger"
         },
         {
-          "target": "com.azure.imagebuilder#TriggersCreateOrUpdate"
+          "target": "com.azure.imagebuilder#DeleteVirtualMachineImageTemplate"
         },
         {
           "target": "com.azure.imagebuilder#GetTrigger"
         },
         {
-          "target": "com.azure.imagebuilder#ListTriggerByImageTemplate"
+          "target": "com.azure.imagebuilder#GetVirtualMachineImageTemplate"
         },
         {
           "target": "com.azure.imagebuilder#GetVirtualMachineImageTemplateRunOutput"
         },
         {
+          "target": "com.azure.imagebuilder#ListOperations"
+        },
+        {
+          "target": "com.azure.imagebuilder#ListTriggerByImageTemplate"
+        },
+        {
+          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplateByResourceGroup"
+        },
+        {
           "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplateRunOutputs"
         },
         {
-          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesRun"
+          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplates"
         },
         {
-          "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCancel"
+          "target": "com.azure.imagebuilder#RunVirtualMachineImageTemplate"
         },
         {
-          "target": "com.azure.imagebuilder#DeleteVirtualMachineImageTemplate"
+          "target": "com.azure.imagebuilder#TriggersCreateOrUpdate"
         },
         {
           "target": "com.azure.imagebuilder#UpdateVirtualMachineImageTemplate"
         },
         {
           "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.imagebuilder#GetVirtualMachineImageTemplate"
-        },
-        {
-          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplateByResourceGroup"
-        },
-        {
-          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplates"
-        },
-        {
-          "target": "com.azure.imagebuilder#ListOperations"
         }
       ],
       "traits": {

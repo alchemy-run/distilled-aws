@@ -22,7 +22,8 @@
       "successCriteria": "success_criteria",
       "userProfiles": "user_profiles",
       "usernameExpressions": "username_expressions"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.fraud#GetResponseAuthenticationSettingsFailureCriteriaKind": {
@@ -360,10 +361,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.fraud#Get"
+          "target": "com.cloudflare.fraud#GetFraud"
         },
         {
-          "target": "com.cloudflare.fraud#Update"
+          "target": "com.cloudflare.fraud#PutFraud"
         }
       ],
       "traits": {

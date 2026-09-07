@@ -12,6 +12,92 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** The type of entity that added data to the issue */
+export type AddedByType = "Manual" | "Automatic";
+export const AddedByType = /*@__PURE__*/ S.String;
+
+/** Details about the origin of the entity - the source that added it to the issue */
+export interface Origin {
+  /** The ID of the origin - for example, in case of 'Manual', the user ID/app ID, and in case of 'Automatic', the name of the automatic system */
+  addedBy: string;
+  /** The source of the origin - Manual or Automatic */
+  addedByType: AddedByType | (string & {});
+}
+export const Origin = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    addedBy: S.String,
+    addedByType: AddedByType,
+  }),
+).annotate({ identifier: "Origin" }) as any as S.Schema<Origin>;
+
+export interface AddIssueInvestigationResultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Monitor Workspace. The name is case insensitive */
+  azureMonitorWorkspaceName: string;
+  /** The name of the IssueResource */
+  issueName: string;
+  /** The identifier of the investigation */
+  id: string;
+  /** The origin of the investigation */
+  origin?: Origin;
+  /** The creation time of the investigation (in UTC) */
+  createdAt?: string;
+  /** The last update time of the investigation (in UTC) */
+  lastModifiedAt?: string;
+  /** The result of this investigation */
+  result: string;
+}
+export const AddIssueInvestigationResultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    azureMonitorWorkspaceName: S.String.pipe(T.Label()),
+    issueName: S.String.pipe(T.Label()),
+    id: S.String,
+    origin: S.optional(Origin),
+    createdAt: S.optional(S.String),
+    lastModifiedAt: S.optional(S.String),
+    result: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/addInvestigationResult",
+      code: 200,
+      apiVersion: "2025-10-03",
+    }),
+  ),
+).annotate({
+  identifier: "AddIssueInvestigationResultRequest",
+}) as any as S.Schema<AddIssueInvestigationResultRequest>;
+
+/** Details about the investigation result */
+export interface InvestigationResult {
+  /** The identifier of the investigation */
+  id: string;
+  /** The origin of the investigation */
+  origin?: Origin;
+  /** The creation time of the investigation (in UTC) */
+  createdAt?: string;
+  /** The last update time of the investigation (in UTC) */
+  lastModifiedAt?: string;
+  /** The result of this investigation */
+  result: string;
+}
+export const InvestigationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    origin: S.optional(Origin),
+    createdAt: S.optional(S.String),
+    lastModifiedAt: S.optional(S.String),
+    result: S.String,
+  }),
+).annotate({
+  identifier: "InvestigationResult",
+}) as any as S.Schema<InvestigationResult>;
+
 /** Resource tags. */
 export type AzureMonitorWorkspacesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -819,6 +905,83 @@ export const DeletePipelineGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePipelineGroupResponse",
 }) as any as S.Schema<DeletePipelineGroupResponse>;
 
+export interface FetchIssueBackgroundVisualizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Monitor Workspace. The name is case insensitive */
+  azureMonitorWorkspaceName: string;
+  /** The name of the IssueResource */
+  issueName: string;
+}
+export const FetchIssueBackgroundVisualizationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      azureMonitorWorkspaceName: S.String.pipe(T.Label()),
+      issueName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/fetchBackgroundVisualization",
+        code: 200,
+        apiVersion: "2025-10-03",
+      }),
+    ),
+).annotate({
+  identifier: "FetchIssueBackgroundVisualizationRequest",
+}) as any as S.Schema<FetchIssueBackgroundVisualizationRequest>;
+
+/** The issue background visualization */
+export interface BackgroundVisualization {
+  /** The background visualization content, in Adaptive Card format */
+  visualization: string;
+  /** The background visualization origin */
+  origin: Origin;
+}
+export const BackgroundVisualization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    visualization: S.String,
+    origin: Origin,
+  }),
+).annotate({
+  identifier: "BackgroundVisualization",
+}) as any as S.Schema<BackgroundVisualization>;
+
+export interface FetchIssueInvestigationResultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Monitor Workspace. The name is case insensitive */
+  azureMonitorWorkspaceName: string;
+  /** The name of the IssueResource */
+  issueName: string;
+  /** The unique identifier of the investigation */
+  investigationId: string;
+}
+export const FetchIssueInvestigationResultRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      azureMonitorWorkspaceName: S.String.pipe(T.Label()),
+      issueName: S.String.pipe(T.Label()),
+      investigationId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/fetchInvestigationResult",
+        code: 200,
+        apiVersion: "2025-10-03",
+      }),
+    ),
+).annotate({
+  identifier: "FetchIssueInvestigationResultRequest",
+}) as any as S.Schema<FetchIssueInvestigationResultRequest>;
+
 export interface GetAzureMonitorWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -845,46 +1008,46 @@ export const GetAzureMonitorWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAzureMonitorWorkspaceRequest>;
 
 /** Resource tags. */
-export type AzureMonitorWorkspacesGetResponseTagsMap = {
+export type GetAzureMonitorWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureMonitorWorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAzureMonitorWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AzureMonitorWorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetAzureMonitorWorkspaceResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AzureMonitorWorkspacesGetResponseIdentityUserAssignedIdentitiesMap =
+export type GetAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap =
   { [key: string]: UserAssignedIdentity | undefined };
-export const AzureMonitorWorkspacesGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AzureMonitorWorkspacesGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AzureMonitorWorkspacesGetResponseIdentity {
+export interface GetAzureMonitorWorkspaceResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AzureMonitorWorkspacesGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AzureMonitorWorkspacesGetResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetAzureMonitorWorkspaceResponseIdentity = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(
-        AzureMonitorWorkspacesGetResponseIdentityUserAssignedIdentitiesMap,
+        GetAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap,
       ),
     }),
-  ).annotate({
-    identifier: "AzureMonitorWorkspacesGetResponseIdentity",
-  }) as any as S.Schema<AzureMonitorWorkspacesGetResponseIdentity>;
+).annotate({
+  identifier: "GetAzureMonitorWorkspaceResponseIdentity",
+}) as any as S.Schema<GetAzureMonitorWorkspaceResponseIdentity>;
 
 export interface GetAzureMonitorWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -896,13 +1059,13 @@ export interface GetAzureMonitorWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureMonitorWorkspacesGetResponseTagsMap;
+  tags?: GetAzureMonitorWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties */
   properties?: AzureMonitorWorkspace;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AzureMonitorWorkspacesGetResponseIdentity;
+  identity?: GetAzureMonitorWorkspaceResponseIdentity;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
@@ -912,10 +1075,10 @@ export const GetAzureMonitorWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AzureMonitorWorkspacesGetResponseTagsMap),
+    tags: S.optional(GetAzureMonitorWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(AzureMonitorWorkspace),
-    identity: S.optional(AzureMonitorWorkspacesGetResponseIdentity),
+    identity: S.optional(GetAzureMonitorWorkspaceResponseIdentity),
     etag: S.optional(S.String),
   }),
 ).annotate({
@@ -974,7 +1137,7 @@ export const GetIssueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIssueResponse",
 }) as any as S.Schema<GetIssueResponse>;
 
-export interface GetMetricContainerRequest {
+export interface GetMetricsContainerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -984,7 +1147,7 @@ export interface GetMetricContainerRequest {
   /** The name of the MetricsContainer */
   metricsContainerName: string;
 }
-export const GetMetricContainerRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMetricsContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -999,8 +1162,8 @@ export const GetMetricContainerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMetricContainerRequest",
-}) as any as S.Schema<GetMetricContainerRequest>;
+  identifier: "GetMetricsContainerRequest",
+}) as any as S.Schema<GetMetricsContainerRequest>;
 
 /** Properties of a metrics container. */
 export interface MetricsContainer {
@@ -1020,7 +1183,7 @@ export const MetricsContainer = /*@__PURE__*/ S.suspend(() =>
   identifier: "MetricsContainer",
 }) as any as S.Schema<MetricsContainer>;
 
-export interface GetMetricContainerResponse {
+export interface GetMetricsContainerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1032,7 +1195,7 @@ export interface GetMetricContainerResponse {
   /** The resource-specific properties for this resource. */
   properties?: MetricsContainer;
 }
-export const GetMetricContainerResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMetricsContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1041,8 +1204,8 @@ export const GetMetricContainerResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(MetricsContainer),
   }),
 ).annotate({
-  identifier: "GetMetricContainerResponse",
-}) as any as S.Schema<GetMetricContainerResponse>;
+  identifier: "GetMetricsContainerResponse",
+}) as any as S.Schema<GetMetricsContainerResponse>;
 
 export interface GetPipelineGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1070,13 +1233,13 @@ export const GetPipelineGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPipelineGroupRequest>;
 
 /** Resource tags. */
-export type PipelineGroupsGetResponseTagsMap = {
+export type GetPipelineGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PipelineGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPipelineGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PipelineGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetPipelineGroupResponseTagsMap>;
 
 /** The receiver type. */
 export type ReceiverType = "Syslog" | "OTLP";
@@ -1698,7 +1861,7 @@ export interface GetPipelineGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PipelineGroupsGetResponseTagsMap;
+  tags?: GetPipelineGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1712,7 +1875,7 @@ export const GetPipelineGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PipelineGroupsGetResponseTagsMap),
+    tags: S.optional(GetPipelineGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(PipelineGroupProperties),
     extendedLocation: S.optional(
@@ -1723,25 +1886,33 @@ export const GetPipelineGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPipelineGroupResponse",
 }) as any as S.Schema<GetPipelineGroupResponse>;
 
-/** The type of entity that added data to the issue */
-export type AddedByType = "Manual" | "Automatic";
-export const AddedByType = /*@__PURE__*/ S.String;
+/** The relevance status of the resource */
+export type Relevance = "None" | "Relevant" | "Irrelevant";
+export const Relevance = /*@__PURE__*/ S.String;
 
-/** Details about the origin of the entity - the source that added it to the issue */
-export interface Origin {
-  /** The ID of the origin - for example, in case of 'Manual', the user ID/app ID, and in case of 'Automatic', the name of the automatic system */
-  addedBy: string;
-  /** The source of the origin - Manual or Automatic */
-  addedByType: AddedByType | (string & {});
+/** Properties of an alert which is related to the issue */
+export interface RelatedAlertInput {
+  /** The alert ID */
+  id: string;
+  /** The alerts's relevance status */
+  relevance: Relevance | (string & {});
 }
-export const Origin = /*@__PURE__*/ S.suspend(() =>
+export const RelatedAlertInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    addedBy: S.String,
-    addedByType: AddedByType,
+    id: S.String,
+    relevance: Relevance,
   }),
-).annotate({ identifier: "Origin" }) as any as S.Schema<Origin>;
+).annotate({
+  identifier: "RelatedAlertInput",
+}) as any as S.Schema<RelatedAlertInput>;
 
-export interface IssueAddInvestigationResultRequest {
+/** A list of related alerts */
+export type IssueAddOrUpdateAlertsRequestValueList = Array<RelatedAlertInput>;
+export const IssueAddOrUpdateAlertsRequestValueList = /*@__PURE__*/ S.Array(
+  RelatedAlertInput,
+) as any as S.Schema<IssueAddOrUpdateAlertsRequestValueList>;
+
+export interface IssueAddOrUpdateAlertsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1750,111 +1921,92 @@ export interface IssueAddInvestigationResultRequest {
   azureMonitorWorkspaceName: string;
   /** The name of the IssueResource */
   issueName: string;
-  /** The identifier of the investigation */
-  id: string;
-  /** The origin of the investigation */
-  origin?: Origin;
-  /** The creation time of the investigation (in UTC) */
-  createdAt?: string;
-  /** The last update time of the investigation (in UTC) */
-  lastModifiedAt?: string;
-  /** The result of this investigation */
-  result: string;
+  /** A list of related alerts */
+  value: IssueAddOrUpdateAlertsRequestValueList;
 }
-export const IssueAddInvestigationResultRequest = /*@__PURE__*/ S.suspend(() =>
+export const IssueAddOrUpdateAlertsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     azureMonitorWorkspaceName: S.String.pipe(T.Label()),
     issueName: S.String.pipe(T.Label()),
-    id: S.String,
-    origin: S.optional(Origin),
-    createdAt: S.optional(S.String),
-    lastModifiedAt: S.optional(S.String),
-    result: S.String,
+    value: IssueAddOrUpdateAlertsRequestValueList,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/addInvestigationResult",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/addOrUpdateAlerts",
       code: 200,
       apiVersion: "2025-10-03",
     }),
   ),
 ).annotate({
-  identifier: "IssueAddInvestigationResultRequest",
-}) as any as S.Schema<IssueAddInvestigationResultRequest>;
+  identifier: "IssueAddOrUpdateAlertsRequest",
+}) as any as S.Schema<IssueAddOrUpdateAlertsRequest>;
 
-/** Details about the investigation result */
-export interface InvestigationResult {
-  /** The identifier of the investigation */
+/** Properties of an alert which is related to the issue */
+export interface RelatedAlert {
+  /** The alert ID */
   id: string;
-  /** The origin of the investigation */
-  origin?: Origin;
-  /** The creation time of the investigation (in UTC) */
-  createdAt?: string;
-  /** The last update time of the investigation (in UTC) */
-  lastModifiedAt?: string;
-  /** The result of this investigation */
-  result: string;
+  /** The alerts's relevance status */
+  relevance: Relevance;
+  /** The source that related the alert to the issue */
+  origin: Origin;
+  /** The time this relation was added to the issue (in UTC) */
+  addedAt: string;
+  /** The last update time of this relation (in UTC) */
+  lastModifiedAt: string;
 }
-export const InvestigationResult = /*@__PURE__*/ S.suspend(() =>
+export const RelatedAlert = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    origin: S.optional(Origin),
-    createdAt: S.optional(S.String),
-    lastModifiedAt: S.optional(S.String),
-    result: S.String,
-  }),
-).annotate({
-  identifier: "InvestigationResult",
-}) as any as S.Schema<InvestigationResult>;
-
-export interface IssueFetchBackgroundVisualizationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Monitor Workspace. The name is case insensitive */
-  azureMonitorWorkspaceName: string;
-  /** The name of the IssueResource */
-  issueName: string;
-}
-export const IssueFetchBackgroundVisualizationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      azureMonitorWorkspaceName: S.String.pipe(T.Label()),
-      issueName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/fetchBackgroundVisualization",
-        code: 200,
-        apiVersion: "2025-10-03",
-      }),
-    ),
-).annotate({
-  identifier: "IssueFetchBackgroundVisualizationRequest",
-}) as any as S.Schema<IssueFetchBackgroundVisualizationRequest>;
-
-/** The issue background visualization */
-export interface BackgroundVisualization {
-  /** The background visualization content, in Adaptive Card format */
-  visualization: string;
-  /** The background visualization origin */
-  origin: Origin;
-}
-export const BackgroundVisualization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    visualization: S.String,
+    relevance: Relevance,
     origin: Origin,
+    addedAt: S.String,
+    lastModifiedAt: S.String,
+  }),
+).annotate({ identifier: "RelatedAlert" }) as any as S.Schema<RelatedAlert>;
+
+/** A list of related alerts */
+export type RelatedAlertsValueList = Array<RelatedAlert>;
+export const RelatedAlertsValueList = /*@__PURE__*/ S.Array(
+  RelatedAlert,
+) as any as S.Schema<RelatedAlertsValueList>;
+
+/** A list of related alerts */
+export interface RelatedAlerts {
+  /** A list of related alerts */
+  value: RelatedAlertsValueList;
+}
+export const RelatedAlerts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RelatedAlertsValueList,
+  }),
+).annotate({ identifier: "RelatedAlerts" }) as any as S.Schema<RelatedAlerts>;
+
+/** Properties of a resource which is related to the issue */
+export interface RelatedResourceInput {
+  /** The resource ID */
+  id: string;
+  /** The resource's relevance status */
+  relevance: Relevance | (string & {});
+}
+export const RelatedResourceInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    relevance: Relevance,
   }),
 ).annotate({
-  identifier: "BackgroundVisualization",
-}) as any as S.Schema<BackgroundVisualization>;
+  identifier: "RelatedResourceInput",
+}) as any as S.Schema<RelatedResourceInput>;
 
-export interface IssueFetchInvestigationResultRequest {
+/** A list of related resources */
+export type IssueAddOrUpdateResourcesRequestValueList =
+  Array<RelatedResourceInput>;
+export const IssueAddOrUpdateResourcesRequestValueList = /*@__PURE__*/ S.Array(
+  RelatedResourceInput,
+) as any as S.Schema<IssueAddOrUpdateResourcesRequestValueList>;
+
+export interface IssueAddOrUpdateResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1863,28 +2015,71 @@ export interface IssueFetchInvestigationResultRequest {
   azureMonitorWorkspaceName: string;
   /** The name of the IssueResource */
   issueName: string;
-  /** The unique identifier of the investigation */
-  investigationId: string;
+  /** A list of related resources */
+  value: IssueAddOrUpdateResourcesRequestValueList;
 }
-export const IssueFetchInvestigationResultRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      azureMonitorWorkspaceName: S.String.pipe(T.Label()),
-      issueName: S.String.pipe(T.Label()),
-      investigationId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/fetchInvestigationResult",
-        code: 200,
-        apiVersion: "2025-10-03",
-      }),
-    ),
+export const IssueAddOrUpdateResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    azureMonitorWorkspaceName: S.String.pipe(T.Label()),
+    issueName: S.String.pipe(T.Label()),
+    value: IssueAddOrUpdateResourcesRequestValueList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/addOrUpdateResources",
+      code: 200,
+      apiVersion: "2025-10-03",
+    }),
+  ),
 ).annotate({
-  identifier: "IssueFetchInvestigationResultRequest",
-}) as any as S.Schema<IssueFetchInvestigationResultRequest>;
+  identifier: "IssueAddOrUpdateResourcesRequest",
+}) as any as S.Schema<IssueAddOrUpdateResourcesRequest>;
+
+/** Properties of a resource which is related to the issue */
+export interface RelatedResource {
+  /** The resource ID */
+  id: string;
+  /** The resource's relevance status */
+  relevance: Relevance;
+  /** The source that related the resource to the issue */
+  origin: Origin;
+  /** The time this relation was added to the issue (in UTC) */
+  addedAt: string;
+  /** The last update time of this relation (in UTC) */
+  lastModifiedAt: string;
+}
+export const RelatedResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    relevance: Relevance,
+    origin: Origin,
+    addedAt: S.String,
+    lastModifiedAt: S.String,
+  }),
+).annotate({
+  identifier: "RelatedResource",
+}) as any as S.Schema<RelatedResource>;
+
+/** A list of related resources */
+export type RelatedResourcesValueList = Array<RelatedResource>;
+export const RelatedResourcesValueList = /*@__PURE__*/ S.Array(
+  RelatedResource,
+) as any as S.Schema<RelatedResourcesValueList>;
+
+/** A list of related resources */
+export interface RelatedResources {
+  /** A list of related resources */
+  value: RelatedResourcesValueList;
+}
+export const RelatedResources = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RelatedResourcesValueList,
+  }),
+).annotate({
+  identifier: "RelatedResources",
+}) as any as S.Schema<RelatedResources>;
 
 export interface ListAzureMonitorWorkspaceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2135,33 +2330,6 @@ export const ListIssueAlertsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListIssueAlertsRequest",
 }) as any as S.Schema<ListIssueAlertsRequest>;
 
-/** The relevance status of the resource */
-export type Relevance = "None" | "Relevant" | "Irrelevant";
-export const Relevance = /*@__PURE__*/ S.String;
-
-/** Properties of an alert which is related to the issue */
-export interface RelatedAlert {
-  /** The alert ID */
-  id: string;
-  /** The alerts's relevance status */
-  relevance: Relevance;
-  /** The source that related the alert to the issue */
-  origin: Origin;
-  /** The time this relation was added to the issue (in UTC) */
-  addedAt: string;
-  /** The last update time of this relation (in UTC) */
-  lastModifiedAt: string;
-}
-export const RelatedAlert = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    relevance: Relevance,
-    origin: Origin,
-    addedAt: S.String,
-    lastModifiedAt: S.String,
-  }),
-).annotate({ identifier: "RelatedAlert" }) as any as S.Schema<RelatedAlert>;
-
 /** The RelatedAlert items on this page */
 export type PagedRelatedAlertValueList = Array<RelatedAlert>;
 export const PagedRelatedAlertValueList = /*@__PURE__*/ S.Array(
@@ -2215,31 +2383,6 @@ export const ListIssueResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListIssueResourcesRequest",
 }) as any as S.Schema<ListIssueResourcesRequest>;
 
-/** Properties of a resource which is related to the issue */
-export interface RelatedResource {
-  /** The resource ID */
-  id: string;
-  /** The resource's relevance status */
-  relevance: Relevance;
-  /** The source that related the resource to the issue */
-  origin: Origin;
-  /** The time this relation was added to the issue (in UTC) */
-  addedAt: string;
-  /** The last update time of this relation (in UTC) */
-  lastModifiedAt: string;
-}
-export const RelatedResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    relevance: Relevance,
-    origin: Origin,
-    addedAt: S.String,
-    lastModifiedAt: S.String,
-  }),
-).annotate({
-  identifier: "RelatedResource",
-}) as any as S.Schema<RelatedResource>;
-
 /** The RelatedResource items on this page */
 export type PagedRelatedResourceValueList = Array<RelatedResource>;
 export const PagedRelatedResourceValueList = /*@__PURE__*/ S.Array(
@@ -2262,7 +2405,7 @@ export const PagedRelatedResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "PagedRelatedResource",
 }) as any as S.Schema<PagedRelatedResource>;
 
-export interface ListMetricContainerByAzureMonitorWorkspaceRequest {
+export interface ListMetricsContainerByAzureMonitorWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2270,7 +2413,7 @@ export interface ListMetricContainerByAzureMonitorWorkspaceRequest {
   /** The name of the Azure Monitor Workspace. The name is case insensitive */
   azureMonitorWorkspaceName: string;
 }
-export const ListMetricContainerByAzureMonitorWorkspaceRequest =
+export const ListMetricsContainerByAzureMonitorWorkspaceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2285,8 +2428,8 @@ export const ListMetricContainerByAzureMonitorWorkspaceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMetricContainerByAzureMonitorWorkspaceRequest",
-  }) as any as S.Schema<ListMetricContainerByAzureMonitorWorkspaceRequest>;
+    identifier: "ListMetricsContainerByAzureMonitorWorkspaceRequest",
+  }) as any as S.Schema<ListMetricsContainerByAzureMonitorWorkspaceRequest>;
 
 /** Metrics container resource for an Azure Monitor Workspace. */
 export interface MetricsContainerResource {
@@ -2405,20 +2548,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2795,41 +2938,40 @@ export const SetIssueBackgroundVisualizationResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SetIssueBackgroundVisualizationResponse>;
 
 /** Resource tags. */
-export type AzureMonitorWorkspacesUpdateRequestTagsMap = {
+export type UpdateAzureMonitorWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureMonitorWorkspacesUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AzureMonitorWorkspacesUpdateRequestTagsMap>;
+export const UpdateAzureMonitorWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAzureMonitorWorkspaceRequestTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AzureMonitorWorkspacesUpdateRequestIdentityUserAssignedIdentitiesMap =
+export type UpdateAzureMonitorWorkspaceRequestIdentityUserAssignedIdentitiesMap =
   { [key: string]: UserAssignedIdentityInput | undefined };
-export const AzureMonitorWorkspacesUpdateRequestIdentityUserAssignedIdentitiesMap =
+export const UpdateAzureMonitorWorkspaceRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentityInput,
-  ) as any as S.Schema<AzureMonitorWorkspacesUpdateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAzureMonitorWorkspaceRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AzureMonitorWorkspacesUpdateRequestIdentity {
+export interface UpdateAzureMonitorWorkspaceRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AzureMonitorWorkspacesUpdateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAzureMonitorWorkspaceRequestIdentityUserAssignedIdentitiesMap;
 }
-export const AzureMonitorWorkspacesUpdateRequestIdentity =
+export const UpdateAzureMonitorWorkspaceRequestIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(
-        AzureMonitorWorkspacesUpdateRequestIdentityUserAssignedIdentitiesMap,
+        UpdateAzureMonitorWorkspaceRequestIdentityUserAssignedIdentitiesMap,
       ),
     }),
   ).annotate({
-    identifier: "AzureMonitorWorkspacesUpdateRequestIdentity",
-  }) as any as S.Schema<AzureMonitorWorkspacesUpdateRequestIdentity>;
+    identifier: "UpdateAzureMonitorWorkspaceRequestIdentity",
+  }) as any as S.Schema<UpdateAzureMonitorWorkspaceRequestIdentity>;
 
 export interface UpdateAzureMonitorWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2839,9 +2981,9 @@ export interface UpdateAzureMonitorWorkspaceRequest {
   /** The name of the Azure Monitor Workspace. The name is case insensitive */
   azureMonitorWorkspaceName: string;
   /** Resource tags. */
-  tags?: AzureMonitorWorkspacesUpdateRequestTagsMap;
+  tags?: UpdateAzureMonitorWorkspaceRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AzureMonitorWorkspacesUpdateRequestIdentity;
+  identity?: UpdateAzureMonitorWorkspaceRequestIdentity;
   /** Resource properties */
   properties?: AzureMonitorWorkspaceInput;
 }
@@ -2850,8 +2992,8 @@ export const UpdateAzureMonitorWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     azureMonitorWorkspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(AzureMonitorWorkspacesUpdateRequestTagsMap),
-    identity: S.optional(AzureMonitorWorkspacesUpdateRequestIdentity),
+    tags: S.optional(UpdateAzureMonitorWorkspaceRequestTagsMap),
+    identity: S.optional(UpdateAzureMonitorWorkspaceRequestIdentity),
     properties: S.optional(AzureMonitorWorkspaceInput),
   }).pipe(
     T.Http({
@@ -2866,47 +3008,47 @@ export const UpdateAzureMonitorWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAzureMonitorWorkspaceRequest>;
 
 /** Resource tags. */
-export type AzureMonitorWorkspacesUpdateResponseTagsMap = {
+export type UpdateAzureMonitorWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureMonitorWorkspacesUpdateResponseTagsMap =
+export const UpdateAzureMonitorWorkspaceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureMonitorWorkspacesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateAzureMonitorWorkspaceResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AzureMonitorWorkspacesUpdateResponseIdentityUserAssignedIdentitiesMap =
+export type UpdateAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap =
   { [key: string]: UserAssignedIdentity | undefined };
-export const AzureMonitorWorkspacesUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AzureMonitorWorkspacesUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AzureMonitorWorkspacesUpdateResponseIdentity {
+export interface UpdateAzureMonitorWorkspaceResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AzureMonitorWorkspacesUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AzureMonitorWorkspacesUpdateResponseIdentity =
+export const UpdateAzureMonitorWorkspaceResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(
-        AzureMonitorWorkspacesUpdateResponseIdentityUserAssignedIdentitiesMap,
+        UpdateAzureMonitorWorkspaceResponseIdentityUserAssignedIdentitiesMap,
       ),
     }),
   ).annotate({
-    identifier: "AzureMonitorWorkspacesUpdateResponseIdentity",
-  }) as any as S.Schema<AzureMonitorWorkspacesUpdateResponseIdentity>;
+    identifier: "UpdateAzureMonitorWorkspaceResponseIdentity",
+  }) as any as S.Schema<UpdateAzureMonitorWorkspaceResponseIdentity>;
 
 export interface UpdateAzureMonitorWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2918,13 +3060,13 @@ export interface UpdateAzureMonitorWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AzureMonitorWorkspacesUpdateResponseTagsMap;
+  tags?: UpdateAzureMonitorWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties */
   properties?: AzureMonitorWorkspace;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AzureMonitorWorkspacesUpdateResponseIdentity;
+  identity?: UpdateAzureMonitorWorkspaceResponseIdentity;
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
 }
@@ -2934,10 +3076,10 @@ export const UpdateAzureMonitorWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AzureMonitorWorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateAzureMonitorWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(AzureMonitorWorkspace),
-    identity: S.optional(AzureMonitorWorkspacesUpdateResponseIdentity),
+    identity: S.optional(UpdateAzureMonitorWorkspaceResponseIdentity),
     etag: S.optional(S.String),
   }),
 ).annotate({
@@ -3027,157 +3169,14 @@ export const UpdateIssueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateIssueResponse",
 }) as any as S.Schema<UpdateIssueResponse>;
 
-/** Properties of an alert which is related to the issue */
-export interface RelatedAlertInput {
-  /** The alert ID */
-  id: string;
-  /** The alerts's relevance status */
-  relevance: Relevance | (string & {});
-}
-export const RelatedAlertInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    relevance: Relevance,
-  }),
-).annotate({
-  identifier: "RelatedAlertInput",
-}) as any as S.Schema<RelatedAlertInput>;
-
-/** A list of related alerts */
-export type IssueAddOrUpdateAlertsRequestValueList = Array<RelatedAlertInput>;
-export const IssueAddOrUpdateAlertsRequestValueList = /*@__PURE__*/ S.Array(
-  RelatedAlertInput,
-) as any as S.Schema<IssueAddOrUpdateAlertsRequestValueList>;
-
-export interface UpdateIssueAddOrAlertRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Monitor Workspace. The name is case insensitive */
-  azureMonitorWorkspaceName: string;
-  /** The name of the IssueResource */
-  issueName: string;
-  /** A list of related alerts */
-  value: IssueAddOrUpdateAlertsRequestValueList;
-}
-export const UpdateIssueAddOrAlertRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    azureMonitorWorkspaceName: S.String.pipe(T.Label()),
-    issueName: S.String.pipe(T.Label()),
-    value: IssueAddOrUpdateAlertsRequestValueList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/addOrUpdateAlerts",
-      code: 200,
-      apiVersion: "2025-10-03",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateIssueAddOrAlertRequest",
-}) as any as S.Schema<UpdateIssueAddOrAlertRequest>;
-
-/** A list of related alerts */
-export type RelatedAlertsValueList = Array<RelatedAlert>;
-export const RelatedAlertsValueList = /*@__PURE__*/ S.Array(
-  RelatedAlert,
-) as any as S.Schema<RelatedAlertsValueList>;
-
-/** A list of related alerts */
-export interface RelatedAlerts {
-  /** A list of related alerts */
-  value: RelatedAlertsValueList;
-}
-export const RelatedAlerts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RelatedAlertsValueList,
-  }),
-).annotate({ identifier: "RelatedAlerts" }) as any as S.Schema<RelatedAlerts>;
-
-/** Properties of a resource which is related to the issue */
-export interface RelatedResourceInput {
-  /** The resource ID */
-  id: string;
-  /** The resource's relevance status */
-  relevance: Relevance | (string & {});
-}
-export const RelatedResourceInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    relevance: Relevance,
-  }),
-).annotate({
-  identifier: "RelatedResourceInput",
-}) as any as S.Schema<RelatedResourceInput>;
-
-/** A list of related resources */
-export type IssueAddOrUpdateResourcesRequestValueList =
-  Array<RelatedResourceInput>;
-export const IssueAddOrUpdateResourcesRequestValueList = /*@__PURE__*/ S.Array(
-  RelatedResourceInput,
-) as any as S.Schema<IssueAddOrUpdateResourcesRequestValueList>;
-
-export interface UpdateIssueAddOrResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Monitor Workspace. The name is case insensitive */
-  azureMonitorWorkspaceName: string;
-  /** The name of the IssueResource */
-  issueName: string;
-  /** A list of related resources */
-  value: IssueAddOrUpdateResourcesRequestValueList;
-}
-export const UpdateIssueAddOrResourceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    azureMonitorWorkspaceName: S.String.pipe(T.Label()),
-    issueName: S.String.pipe(T.Label()),
-    value: IssueAddOrUpdateResourcesRequestValueList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/addOrUpdateResources",
-      code: 200,
-      apiVersion: "2025-10-03",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateIssueAddOrResourceRequest",
-}) as any as S.Schema<UpdateIssueAddOrResourceRequest>;
-
-/** A list of related resources */
-export type RelatedResourcesValueList = Array<RelatedResource>;
-export const RelatedResourcesValueList = /*@__PURE__*/ S.Array(
-  RelatedResource,
-) as any as S.Schema<RelatedResourcesValueList>;
-
-/** A list of related resources */
-export interface RelatedResources {
-  /** A list of related resources */
-  value: RelatedResourcesValueList;
-}
-export const RelatedResources = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RelatedResourcesValueList,
-  }),
-).annotate({
-  identifier: "RelatedResources",
-}) as any as S.Schema<RelatedResources>;
-
 /** Resource tags. */
-export type PipelineGroupsUpdateRequestTagsMap = {
+export type UpdatePipelineGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PipelineGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePipelineGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PipelineGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePipelineGroupRequestTagsMap>;
 
 /** The receivers specified for a pipeline group instance. */
 export type PipelineGroupPropertiesUpdateReceiversList = Array<Receiver>;
@@ -3280,7 +3279,7 @@ export interface UpdatePipelineGroupRequest {
   /** The name of pipeline group. The name is case insensitive. */
   pipelineGroupName: string;
   /** Resource tags. */
-  tags?: PipelineGroupsUpdateRequestTagsMap;
+  tags?: UpdatePipelineGroupRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: PipelineGroupPropertiesUpdate;
 }
@@ -3289,7 +3288,7 @@ export const UpdatePipelineGroupRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     pipelineGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(PipelineGroupsUpdateRequestTagsMap),
+    tags: S.optional(UpdatePipelineGroupRequestTagsMap),
     properties: S.optional(PipelineGroupPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -3304,13 +3303,13 @@ export const UpdatePipelineGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePipelineGroupRequest>;
 
 /** Resource tags. */
-export type PipelineGroupsUpdateResponseTagsMap = {
+export type UpdatePipelineGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PipelineGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePipelineGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PipelineGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePipelineGroupResponseTagsMap>;
 
 export interface UpdatePipelineGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3322,7 +3321,7 @@ export interface UpdatePipelineGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PipelineGroupsUpdateResponseTagsMap;
+  tags?: UpdatePipelineGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3336,7 +3335,7 @@ export const UpdatePipelineGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PipelineGroupsUpdateResponseTagsMap),
+    tags: S.optional(UpdatePipelineGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(PipelineGroupProperties),
     extendedLocation: S.optional(
@@ -3346,6 +3345,21 @@ export const UpdatePipelineGroupResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdatePipelineGroupResponse",
 }) as any as S.Schema<UpdatePipelineGroupResponse>;
+
+export type AddIssueInvestigationResultError = AzureOpError;
+/** Adds investigation result */
+export const AddIssueInvestigationResult: API.OperationMethod<
+  AddIssueInvestigationResultRequest,
+  InvestigationResult,
+  AddIssueInvestigationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddIssueInvestigationResultRequest,
+  output: InvestigationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type AzureMonitorWorkspacesCreateOrUpdateError = AzureOpError;
 /** Creates or updates an Azure Monitor Workspace */
@@ -3422,6 +3436,36 @@ export const DeletePipelineGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type FetchIssueBackgroundVisualizationError = AzureOpError;
+/** Fetch the background visualization of the issue */
+export const FetchIssueBackgroundVisualization: API.OperationMethod<
+  FetchIssueBackgroundVisualizationRequest,
+  BackgroundVisualization,
+  FetchIssueBackgroundVisualizationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchIssueBackgroundVisualizationRequest,
+  output: BackgroundVisualization,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FetchIssueInvestigationResultError = AzureOpError;
+/** Fetch investigation result */
+export const FetchIssueInvestigationResult: API.OperationMethod<
+  FetchIssueInvestigationResultRequest,
+  InvestigationResult,
+  FetchIssueInvestigationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchIssueInvestigationResultRequest,
+  output: InvestigationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetAzureMonitorWorkspaceError = AzureOpError;
 /** Returns the specified Azure Monitor Workspace */
 export const GetAzureMonitorWorkspace: API.OperationMethod<
@@ -3452,16 +3496,16 @@ export const GetIssue: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetMetricContainerError = AzureOpError;
+export type GetMetricsContainerError = AzureOpError;
 /** Gets metrics container settings for a monitoring account. */
-export const GetMetricContainer: API.OperationMethod<
-  GetMetricContainerRequest,
-  GetMetricContainerResponse,
-  GetMetricContainerError,
+export const GetMetricsContainer: API.OperationMethod<
+  GetMetricsContainerRequest,
+  GetMetricsContainerResponse,
+  GetMetricsContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMetricContainerRequest,
-  output: GetMetricContainerResponse,
+  input: GetMetricsContainerRequest,
+  output: GetMetricsContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3482,46 +3526,31 @@ export const GetPipelineGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IssueAddInvestigationResultError = AzureOpError;
-/** Adds investigation result */
-export const IssueAddInvestigationResult: API.OperationMethod<
-  IssueAddInvestigationResultRequest,
-  InvestigationResult,
-  IssueAddInvestigationResultError,
+export type IssueAddOrUpdateAlertsError = AzureOpError;
+/** Add or update alerts associated with an issue */
+export const IssueAddOrUpdateAlerts: API.OperationMethod<
+  IssueAddOrUpdateAlertsRequest,
+  RelatedAlerts,
+  IssueAddOrUpdateAlertsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IssueAddInvestigationResultRequest,
-  output: InvestigationResult,
+  input: IssueAddOrUpdateAlertsRequest,
+  output: RelatedAlerts,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IssueFetchBackgroundVisualizationError = AzureOpError;
-/** Fetch the background visualization of the issue */
-export const IssueFetchBackgroundVisualization: API.OperationMethod<
-  IssueFetchBackgroundVisualizationRequest,
-  BackgroundVisualization,
-  IssueFetchBackgroundVisualizationError,
+export type IssueAddOrUpdateResourcesError = AzureOpError;
+/** Add or update resources associated with an issue */
+export const IssueAddOrUpdateResources: API.OperationMethod<
+  IssueAddOrUpdateResourcesRequest,
+  RelatedResources,
+  IssueAddOrUpdateResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IssueFetchBackgroundVisualizationRequest,
-  output: BackgroundVisualization,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IssueFetchInvestigationResultError = AzureOpError;
-/** Fetch investigation result */
-export const IssueFetchInvestigationResult: API.OperationMethod<
-  IssueFetchInvestigationResultRequest,
-  InvestigationResult,
-  IssueFetchInvestigationResultError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IssueFetchInvestigationResultRequest,
-  output: InvestigationResult,
+  input: IssueAddOrUpdateResourcesRequest,
+  output: RelatedResources,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3602,15 +3631,15 @@ export const ListIssueResources: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListMetricContainerByAzureMonitorWorkspaceError = AzureOpError;
+export type ListMetricsContainerByAzureMonitorWorkspaceError = AzureOpError;
 /** Lists metrics containers for a monitoring account. */
-export const ListMetricContainerByAzureMonitorWorkspace: API.OperationMethod<
-  ListMetricContainerByAzureMonitorWorkspaceRequest,
+export const ListMetricsContainerByAzureMonitorWorkspace: API.OperationMethod<
+  ListMetricsContainerByAzureMonitorWorkspaceRequest,
   MetricsContainerResourceListResult,
-  ListMetricContainerByAzureMonitorWorkspaceError,
+  ListMetricsContainerByAzureMonitorWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMetricContainerByAzureMonitorWorkspaceRequest,
+  input: ListMetricsContainerByAzureMonitorWorkspaceRequest,
   output: MetricsContainerResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3732,36 +3761,6 @@ export const UpdateIssue: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateIssueRequest,
   output: UpdateIssueResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateIssueAddOrAlertError = AzureOpError;
-/** Add or update alerts associated with an issue */
-export const UpdateIssueAddOrAlert: API.OperationMethod<
-  UpdateIssueAddOrAlertRequest,
-  RelatedAlerts,
-  UpdateIssueAddOrAlertError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateIssueAddOrAlertRequest,
-  output: RelatedAlerts,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateIssueAddOrResourceError = AzureOpError;
-/** Add or update resources associated with an issue */
-export const UpdateIssueAddOrResource: API.OperationMethod<
-  UpdateIssueAddOrResourceRequest,
-  RelatedResources,
-  UpdateIssueAddOrResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateIssueAddOrResourceRequest,
-  output: RelatedResources,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

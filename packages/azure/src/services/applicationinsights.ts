@@ -115,11 +115,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type WorkbooksGetResponseTagsMap = { [key: string]: string | undefined };
-export const WorkbooksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkbookResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkbookResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksGetResponseTagsMap>;
+) as any as S.Schema<GetWorkbookResponseTagsMap>;
 
 /** Being deprecated, please use the other tags field */
 export type WorkbookPropertiesTagsList = Array<string>;
@@ -238,7 +238,7 @@ export interface GetWorkbookResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkbooksGetResponseTagsMap;
+  tags?: GetWorkbookResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Metadata describing a workbook for an Azure resource. */
@@ -256,7 +256,7 @@ export const GetWorkbookResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkbooksGetResponseTagsMap),
+    tags: S.optional(GetWorkbookResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkbookProperties),
     identity: S.optional(WorkbookResourceIdentity),
@@ -267,7 +267,7 @@ export const GetWorkbookResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkbookResponse",
 }) as any as S.Schema<GetWorkbookResponse>;
 
-export interface GetWorkbookRevisionRequest {
+export interface GetWorkbooksRevisionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -277,7 +277,7 @@ export interface GetWorkbookRevisionRequest {
   /** The id of the workbook's revision. */
   revisionId: string;
 }
-export const GetWorkbookRevisionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkbooksRevisionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -292,19 +292,19 @@ export const GetWorkbookRevisionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetWorkbookRevisionRequest",
-}) as any as S.Schema<GetWorkbookRevisionRequest>;
+  identifier: "GetWorkbooksRevisionRequest",
+}) as any as S.Schema<GetWorkbooksRevisionRequest>;
 
 /** Resource tags. */
-export type WorkbooksRevisionGetResponseTagsMap = {
+export type GetWorkbooksRevisionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkbooksRevisionGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetWorkbooksRevisionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksRevisionGetResponseTagsMap>;
+) as any as S.Schema<GetWorkbooksRevisionResponseTagsMap>;
 
-export interface GetWorkbookRevisionResponse {
+export interface GetWorkbooksRevisionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -314,7 +314,7 @@ export interface GetWorkbookRevisionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkbooksRevisionGetResponseTagsMap;
+  tags?: GetWorkbooksRevisionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Metadata describing a workbook for an Azure resource. */
@@ -326,13 +326,13 @@ export interface GetWorkbookRevisionResponse {
   /** Resource etag */
   etag?: string;
 }
-export const GetWorkbookRevisionResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkbooksRevisionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkbooksRevisionGetResponseTagsMap),
+    tags: S.optional(GetWorkbooksRevisionResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkbookProperties),
     identity: S.optional(WorkbookResourceIdentity),
@@ -340,22 +340,21 @@ export const GetWorkbookRevisionResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetWorkbookRevisionResponse",
-}) as any as S.Schema<GetWorkbookRevisionResponse>;
+  identifier: "GetWorkbooksRevisionResponse",
+}) as any as S.Schema<GetWorkbooksRevisionResponse>;
 
-export type WorkbooksListByResourceGroupRequestCategory =
+export type ListWorkbookByResourceGroupRequestCategory =
   | "workbook"
   | "TSG"
   | "performance"
   | "retention";
-export const WorkbooksListByResourceGroupRequestCategory =
+export const ListWorkbookByResourceGroupRequestCategory =
   /*@__PURE__*/ S.String;
 
-export type WorkbooksListByResourceGroupRequestTagsList = Array<string>;
-export const WorkbooksListByResourceGroupRequestTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkbooksListByResourceGroupRequestTagsList>;
+export type ListWorkbookByResourceGroupRequestTagsList = Array<string>;
+export const ListWorkbookByResourceGroupRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListWorkbookByResourceGroupRequestTagsList>;
 
 export interface ListWorkbookByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -363,9 +362,9 @@ export interface ListWorkbookByResourceGroupRequest {
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Category of workbook to return. */
-  category: WorkbooksListByResourceGroupRequestCategory | (string & {});
+  category: ListWorkbookByResourceGroupRequestCategory | (string & {});
   /** Tags presents on each workbook returned. */
-  tags?: WorkbooksListByResourceGroupRequestTagsList;
+  tags?: ListWorkbookByResourceGroupRequestTagsList;
   /** Azure Resource Id that will fetch all linked workbooks. */
   sourceId?: string;
   /** Flag indicating whether or not to return the full content for each applicable workbook. If false, only return summary content for workbooks. */
@@ -375,9 +374,9 @@ export const ListWorkbookByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    category: WorkbooksListByResourceGroupRequestCategory.pipe(T.Query()),
+    category: ListWorkbookByResourceGroupRequestCategory.pipe(T.Query()),
     tags: S.optional(
-      WorkbooksListByResourceGroupRequestTagsList.pipe(T.Query()),
+      ListWorkbookByResourceGroupRequestTagsList.pipe(T.Query()),
     ),
     sourceId: S.optional(S.String.pipe(T.Query())),
     canFetchContent: S.optional(S.Boolean.pipe(T.Query())),
@@ -460,36 +459,33 @@ export const WorkbooksListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkbooksListResult",
 }) as any as S.Schema<WorkbooksListResult>;
 
-export type WorkbooksListBySubscriptionRequestCategory =
+export type ListWorkbookBySubscriptionRequestCategory =
   | "workbook"
   | "TSG"
   | "performance"
   | "retention";
-export const WorkbooksListBySubscriptionRequestCategory =
-  /*@__PURE__*/ S.String;
+export const ListWorkbookBySubscriptionRequestCategory = /*@__PURE__*/ S.String;
 
-export type WorkbooksListBySubscriptionRequestTagsList = Array<string>;
-export const WorkbooksListBySubscriptionRequestTagsList = /*@__PURE__*/ S.Array(
+export type ListWorkbookBySubscriptionRequestTagsList = Array<string>;
+export const ListWorkbookBySubscriptionRequestTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<WorkbooksListBySubscriptionRequestTagsList>;
+) as any as S.Schema<ListWorkbookBySubscriptionRequestTagsList>;
 
 export interface ListWorkbookBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Category of workbook to return. */
-  category: WorkbooksListBySubscriptionRequestCategory | (string & {});
+  category: ListWorkbookBySubscriptionRequestCategory | (string & {});
   /** Tags presents on each workbook returned. */
-  tags?: WorkbooksListBySubscriptionRequestTagsList;
+  tags?: ListWorkbookBySubscriptionRequestTagsList;
   /** Flag indicating whether or not to return the full content for each applicable workbook. If false, only return summary content for workbooks. */
   canFetchContent?: boolean;
 }
 export const ListWorkbookBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    category: WorkbooksListBySubscriptionRequestCategory.pipe(T.Query()),
-    tags: S.optional(
-      WorkbooksListBySubscriptionRequestTagsList.pipe(T.Query()),
-    ),
+    category: ListWorkbookBySubscriptionRequestCategory.pipe(T.Query()),
+    tags: S.optional(ListWorkbookBySubscriptionRequestTagsList.pipe(T.Query())),
     canFetchContent: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -503,7 +499,7 @@ export const ListWorkbookBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWorkbookBySubscriptionRequest",
 }) as any as S.Schema<ListWorkbookBySubscriptionRequest>;
 
-export interface ListWorkbookRevisionsRequest {
+export interface ListWorkbooksRevisionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -511,7 +507,7 @@ export interface ListWorkbookRevisionsRequest {
   /** The name of the workbook resource. The value must be an UUID. */
   resourceName: string;
 }
-export const ListWorkbookRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkbooksRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -525,21 +521,21 @@ export const ListWorkbookRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListWorkbookRevisionsRequest",
-}) as any as S.Schema<ListWorkbookRevisionsRequest>;
+  identifier: "ListWorkbooksRevisionsRequest",
+}) as any as S.Schema<ListWorkbooksRevisionsRequest>;
 
 /** The kind of workbook. Only valid value is shared. */
 export type WorkbookUpdateSharedTypeKind = "shared";
 export const WorkbookUpdateSharedTypeKind = /*@__PURE__*/ S.String;
 
 /** Resource tags. */
-export type WorkbooksUpdateRequestTagsMap = {
+export type UpdateWorkbookRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkbooksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkbookRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkbookRequestTagsMap>;
 
 /** A list of 0 or more tags that are associated with this workbook definition */
 export type WorkbookPropertiesUpdateParametersTagsList = Array<string>;
@@ -587,7 +583,7 @@ export interface UpdateWorkbookRequest {
   /** The kind of workbook. Only valid value is shared. */
   kind?: WorkbookUpdateSharedTypeKind | (string & {});
   /** Resource tags. */
-  tags?: WorkbooksUpdateRequestTagsMap;
+  tags?: UpdateWorkbookRequestTagsMap;
   /** Metadata describing a workbook for an Azure resource. */
   properties?: WorkbookPropertiesUpdateParameters;
 }
@@ -598,7 +594,7 @@ export const UpdateWorkbookRequest = /*@__PURE__*/ S.suspend(() =>
     resourceName: S.String.pipe(T.Label()),
     sourceId: S.optional(S.String.pipe(T.Query())),
     kind: S.optional(WorkbookUpdateSharedTypeKind),
-    tags: S.optional(WorkbooksUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkbookRequestTagsMap),
     properties: S.optional(WorkbookPropertiesUpdateParameters),
   }).pipe(
     T.Http({
@@ -613,13 +609,13 @@ export const UpdateWorkbookRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkbookRequest>;
 
 /** Resource tags. */
-export type WorkbooksUpdateResponseTagsMap = {
+export type UpdateWorkbookResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkbooksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkbookResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkbooksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkbookResponseTagsMap>;
 
 export interface UpdateWorkbookResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -631,7 +627,7 @@ export interface UpdateWorkbookResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkbooksUpdateResponseTagsMap;
+  tags?: UpdateWorkbookResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Metadata describing a workbook for an Azure resource. */
@@ -649,7 +645,7 @@ export const UpdateWorkbookResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkbooksUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkbookResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkbookProperties),
     identity: S.optional(WorkbookResourceIdentity),
@@ -864,16 +860,16 @@ export const GetWorkbook: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetWorkbookRevisionError = AzureOpError;
+export type GetWorkbooksRevisionError = AzureOpError;
 /** Get a single workbook revision defined by its revisionId. */
-export const GetWorkbookRevision: API.OperationMethod<
-  GetWorkbookRevisionRequest,
-  GetWorkbookRevisionResponse,
-  GetWorkbookRevisionError,
+export const GetWorkbooksRevision: API.OperationMethod<
+  GetWorkbooksRevisionRequest,
+  GetWorkbooksRevisionResponse,
+  GetWorkbooksRevisionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWorkbookRevisionRequest,
-  output: GetWorkbookRevisionResponse,
+  input: GetWorkbooksRevisionRequest,
+  output: GetWorkbooksRevisionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -909,15 +905,15 @@ export const ListWorkbookBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListWorkbookRevisionsError = AzureOpError;
+export type ListWorkbooksRevisionsError = AzureOpError;
 /** Get the revisions for the workbook defined by its resourceName. */
-export const ListWorkbookRevisions: API.OperationMethod<
-  ListWorkbookRevisionsRequest,
+export const ListWorkbooksRevisions: API.OperationMethod<
+  ListWorkbooksRevisionsRequest,
   WorkbooksListResult,
-  ListWorkbookRevisionsError,
+  ListWorkbooksRevisionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWorkbookRevisionsRequest,
+  input: ListWorkbooksRevisionsRequest,
   output: WorkbooksListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

@@ -154,13 +154,13 @@ export const DataCatalogCertification = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataCatalogCertification",
 }) as any as S.Schema<DataCatalogCertification>;
 
-export interface CreateDataCatalogCertificationCertifyRequest {
+export interface CreateDataCatalogCertificationsCertifyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this table certification. */
   id: string;
 }
-export const CreateDataCatalogCertificationCertifyRequest =
+export const CreateDataCatalogCertificationsCertifyRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -173,16 +173,16 @@ export const CreateDataCatalogCertificationCertifyRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateDataCatalogCertificationCertifyRequest",
-  }) as any as S.Schema<CreateDataCatalogCertificationCertifyRequest>;
+    identifier: "CreateDataCatalogCertificationsCertifyRequest",
+  }) as any as S.Schema<CreateDataCatalogCertificationsCertifyRequest>;
 
-export interface CreateDataCatalogCertificationDeprecateRequest {
+export interface CreateDataCatalogCertificationsDeprecateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this table certification. */
   id: string;
 }
-export const CreateDataCatalogCertificationDeprecateRequest =
+export const CreateDataCatalogCertificationsDeprecateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -195,24 +195,24 @@ export const CreateDataCatalogCertificationDeprecateRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateDataCatalogCertificationDeprecateRequest",
-  }) as any as S.Schema<CreateDataCatalogCertificationDeprecateRequest>;
+    identifier: "CreateDataCatalogCertificationsDeprecateRequest",
+  }) as any as S.Schema<CreateDataCatalogCertificationsDeprecateRequest>;
 
 /** Machine-readable query. Omit for a name+description-only stub. Stored upgrade-canonical. */
-export type DataCatalogMetricsCreateRequestDefinitionMap = {
+export type CreateDataCatalogMetricsRequestDefinitionMap = {
   [key: string]: unknown | undefined;
 };
-export const DataCatalogMetricsCreateRequestDefinitionMap =
+export const CreateDataCatalogMetricsRequestDefinitionMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<DataCatalogMetricsCreateRequestDefinitionMap>;
+  ) as any as S.Schema<CreateDataCatalogMetricsRequestDefinitionMap>;
 
 /** * `user` - user * `ai_generated` - ai_generated */
 export type CreatedSourceEnum = "user" | "ai_generated";
 export const CreatedSourceEnum = /*@__PURE__*/ S.String;
 
-export interface CreateDataCatalogMetricRequest {
+export interface CreateDataCatalogMetricsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Identifier-safe run handle, unique among the team's live metrics. Renaming or deleting a metric frees its name for reuse, and anything referencing the old name (SQL over information_schema.metrics, run URLs, links) stops resolving. */
@@ -224,7 +224,7 @@ export interface CreateDataCatalogMetricRequest {
   /** Unit of the result, e.g. usd, percent, cents. */
   unit?: string;
   /** Machine-readable query. Omit for a name+description-only stub. Stored upgrade-canonical. */
-  definition?: DataCatalogMetricsCreateRequestDefinitionMap | null;
+  definition?: CreateDataCatalogMetricsRequestDefinitionMap | null;
   /** Create the metric from this insight's query (snapshotted server-side). Set to null to unlink. Mutually exclusive with definition. */
   source_insight_short_id?: string | null;
   /** Whether a human ('user') or an agent ('ai_generated') authored this metric. * `user` - user * `ai_generated` - ai_generated */
@@ -236,7 +236,7 @@ export interface CreateDataCatalogMetricRequest {
   /** AI author's reasoning, surfaced as review context. */
   reasoning?: string;
 }
-export const CreateDataCatalogMetricRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDataCatalogMetricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String,
@@ -244,7 +244,7 @@ export const CreateDataCatalogMetricRequest = /*@__PURE__*/ S.suspend(() =>
     description: S.String,
     unit: S.optional(S.String),
     definition: S.optional(
-      S.NullOr(DataCatalogMetricsCreateRequestDefinitionMap),
+      S.NullOr(CreateDataCatalogMetricsRequestDefinitionMap),
     ),
     source_insight_short_id: S.optional(S.NullOr(S.String)),
     created_source: S.optional(CreatedSourceEnum),
@@ -259,8 +259,8 @@ export const CreateDataCatalogMetricRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateDataCatalogMetricRequest",
-}) as any as S.Schema<CreateDataCatalogMetricRequest>;
+  identifier: "CreateDataCatalogMetricsRequest",
+}) as any as S.Schema<CreateDataCatalogMetricsRequest>;
 
 /** Machine-readable query. Omit for a name+description-only stub. Stored upgrade-canonical. */
 export type DataCatalogMetricDefinitionMap = {
@@ -342,130 +342,14 @@ export const DataCatalogMetric = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataCatalogMetric",
 }) as any as S.Schema<DataCatalogMetric>;
 
-export interface CreateDataCatalogMetricApproveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  name: string;
-}
-export const CreateDataCatalogMetricApproveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/data_catalog/metrics/{name}/approve/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CreateDataCatalogMetricApproveRequest",
-}) as any as S.Schema<CreateDataCatalogMetricApproveRequest>;
-
-/** Names of the metrics to act on, at most 100. Duplicates are collapsed. */
-export type DataCatalogMetricsBulkApproveCreateRequestNamesList = Array<string>;
-export const DataCatalogMetricsBulkApproveCreateRequestNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DataCatalogMetricsBulkApproveCreateRequestNamesList>;
-
-export interface CreateDataCatalogMetricBulkApproveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Names of the metrics to act on, at most 100. Duplicates are collapsed. */
-  names: DataCatalogMetricsBulkApproveCreateRequestNamesList;
-}
-export const CreateDataCatalogMetricBulkApproveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      names: DataCatalogMetricsBulkApproveCreateRequestNamesList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/data_catalog/metrics/bulk_approve/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateDataCatalogMetricBulkApproveRequest",
-  }) as any as S.Schema<CreateDataCatalogMetricBulkApproveRequest>;
-
-/** The metrics that are now approved, freshly serialized. */
-export type DataCatalogMetricBulkApproveApprovedList = Array<DataCatalogMetric>;
-export const DataCatalogMetricBulkApproveApprovedList = /*@__PURE__*/ S.Array(
-  DataCatalogMetric,
-) as any as S.Schema<DataCatalogMetricBulkApproveApprovedList>;
-
-/** A metric the bulk action did not act on, and why. */
-export interface DataCatalogMetricBulkSkip {
-  /** Name of the metric that was skipped. */
-  name: string;
-  /** Why it was skipped, e.g. 'Not found', 'Already approved', 'Drifted from its source insight'. */
-  reason: string;
-}
-export const DataCatalogMetricBulkSkip = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    reason: S.String,
-  }),
-).annotate({
-  identifier: "DataCatalogMetricBulkSkip",
-}) as any as S.Schema<DataCatalogMetricBulkSkip>;
-
-/** Requested metrics that were not approved, with reasons. */
-export type DataCatalogMetricBulkApproveSkippedList =
-  Array<DataCatalogMetricBulkSkip>;
-export const DataCatalogMetricBulkApproveSkippedList = /*@__PURE__*/ S.Array(
-  DataCatalogMetricBulkSkip,
-) as any as S.Schema<DataCatalogMetricBulkApproveSkippedList>;
-
-/** Outcome of a bulk approve: what changed, and what was left alone. */
-export interface DataCatalogMetricBulkApprove {
-  /** The metrics that are now approved, freshly serialized. */
-  approved: DataCatalogMetricBulkApproveApprovedList;
-  /** Requested metrics that were not approved, with reasons. */
-  skipped: DataCatalogMetricBulkApproveSkippedList;
-}
-export const DataCatalogMetricBulkApprove = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    approved: DataCatalogMetricBulkApproveApprovedList,
-    skipped: DataCatalogMetricBulkApproveSkippedList,
-  }),
-).annotate({
-  identifier: "DataCatalogMetricBulkApprove",
-}) as any as S.Schema<DataCatalogMetricBulkApprove>;
-
-export interface CreateDataCatalogMetricRefreshFromInsightRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  name: string;
-}
-export const CreateDataCatalogMetricRefreshFromInsightRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/data_catalog/metrics/{name}/refresh_from_insight/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateDataCatalogMetricRefreshFromInsightRequest",
-  }) as any as S.Schema<CreateDataCatalogMetricRefreshFromInsightRequest>;
-
-export type DataCatalogMetricsRunCreateRequestRefresh =
+export type CreateDataCatalogMetricsRunRequestRefresh =
   | "blocking"
   | "async"
   | "lazy_async"
   | "force_blocking"
   | "force_async"
   | "force_cache";
-export const DataCatalogMetricsRunCreateRequestRefresh = /*@__PURE__*/ S.String;
+export const CreateDataCatalogMetricsRunRequestRefresh = /*@__PURE__*/ S.String;
 
 /** * `second` - second * `minute` - minute * `hour` - hour * `day` - day * `week` - week * `month` - month * `quarter` - quarter * `year` - year */
 export type DataCatalogMetricRunRequestIntervalEnum =
@@ -479,12 +363,12 @@ export type DataCatalogMetricRunRequestIntervalEnum =
   | "year";
 export const DataCatalogMetricRunRequestIntervalEnum = /*@__PURE__*/ S.String;
 
-export interface CreateDataCatalogMetricRunRequest {
+export interface CreateDataCatalogMetricsRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   name: string;
   /** Cache/execution behavior, same semantics as /query/. Omit to serve a fresh cache hit and calculate blocking when stale. * `blocking` - blocking * `async` - async * `lazy_async` - lazy_async * `force_blocking` - force_blocking * `force_async` - force_async * `force_cache` - force_cache */
-  refresh?: DataCatalogMetricsRunCreateRequestRefresh | (string & {});
+  refresh?: CreateDataCatalogMetricsRunRequestRefresh | (string & {});
   /** Override the start of the query window (e.g. '-7d'). Rejected for HogQLQuery metrics, whose window is fixed in SQL. */
   date_from?: string;
   /** Override the end of the query window. */
@@ -494,12 +378,12 @@ export interface CreateDataCatalogMetricRunRequest {
   /** Client-supplied id to correlate or cancel the run. */
   query_id?: string;
 }
-export const CreateDataCatalogMetricRunRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDataCatalogMetricsRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
     refresh: S.optional(
-      DataCatalogMetricsRunCreateRequestRefresh.pipe(T.Query()),
+      CreateDataCatalogMetricsRunRequestRefresh.pipe(T.Query()),
     ),
     date_from: S.optional(S.String),
     date_to: S.optional(S.String),
@@ -513,8 +397,8 @@ export const CreateDataCatalogMetricRunRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateDataCatalogMetricRunRequest",
-}) as any as S.Schema<CreateDataCatalogMetricRunRequest>;
+  identifier: "CreateDataCatalogMetricsRunRequest",
+}) as any as S.Schema<CreateDataCatalogMetricsRunRequest>;
 
 /** Normalized envelope returned by the metric-run endpoint. */
 export interface DataCatalogMetricRun {
@@ -655,53 +539,6 @@ export const DataCatalogRelationshipProposal = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataCatalogRelationshipProposal",
 }) as any as S.Schema<DataCatalogRelationshipProposal>;
 
-export interface CreateDataCatalogRelationshipProposalAcceptRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this relationship proposal. */
-  id: string;
-}
-export const CreateDataCatalogRelationshipProposalAcceptRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/data_catalog/relationship_proposals/{id}/accept/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateDataCatalogRelationshipProposalAcceptRequest",
-  }) as any as S.Schema<CreateDataCatalogRelationshipProposalAcceptRequest>;
-
-export interface CreateDataCatalogRelationshipProposalRejectRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this relationship proposal. */
-  id: string;
-  /** Why the proposal is rejected. Persisted so it is never re-proposed. */
-  rejection_reason?: string;
-}
-export const CreateDataCatalogRelationshipProposalRejectRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      rejection_reason: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/data_catalog/relationship_proposals/{id}/reject/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateDataCatalogRelationshipProposalRejectRequest",
-  }) as any as S.Schema<CreateDataCatalogRelationshipProposalRejectRequest>;
-
 export interface DataCatalogCertificationsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -731,27 +568,100 @@ export const DataCatalogCertificationsDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "DataCatalogCertificationsDestroyResponse",
 }) as any as S.Schema<DataCatalogCertificationsDestroyResponse>;
 
-export interface DataCatalogCertificationsRetrieveRequest {
+export interface DataCatalogMetricsApproveCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this table certification. */
-  id: string;
+  name: string;
 }
-export const DataCatalogCertificationsRetrieveRequest = /*@__PURE__*/ S.suspend(
+export const DataCatalogMetricsApproveCreateRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_catalog/certifications/{id}/",
+        method: "POST",
+        uri: "/api/projects/{project_id}/data_catalog/metrics/{name}/approve/",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "DataCatalogCertificationsRetrieveRequest",
-}) as any as S.Schema<DataCatalogCertificationsRetrieveRequest>;
+  identifier: "DataCatalogMetricsApproveCreateRequest",
+}) as any as S.Schema<DataCatalogMetricsApproveCreateRequest>;
+
+/** Names of the metrics to act on, at most 100. Duplicates are collapsed. */
+export type DataCatalogMetricsBulkApproveCreateRequestNamesList = Array<string>;
+export const DataCatalogMetricsBulkApproveCreateRequestNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DataCatalogMetricsBulkApproveCreateRequestNamesList>;
+
+export interface DataCatalogMetricsBulkApproveCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Names of the metrics to act on, at most 100. Duplicates are collapsed. */
+  names: DataCatalogMetricsBulkApproveCreateRequestNamesList;
+}
+export const DataCatalogMetricsBulkApproveCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      names: DataCatalogMetricsBulkApproveCreateRequestNamesList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/data_catalog/metrics/bulk_approve/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DataCatalogMetricsBulkApproveCreateRequest",
+  }) as any as S.Schema<DataCatalogMetricsBulkApproveCreateRequest>;
+
+/** The metrics that are now approved, freshly serialized. */
+export type DataCatalogMetricBulkApproveApprovedList = Array<DataCatalogMetric>;
+export const DataCatalogMetricBulkApproveApprovedList = /*@__PURE__*/ S.Array(
+  DataCatalogMetric,
+) as any as S.Schema<DataCatalogMetricBulkApproveApprovedList>;
+
+/** A metric the bulk action did not act on, and why. */
+export interface DataCatalogMetricBulkSkip {
+  /** Name of the metric that was skipped. */
+  name: string;
+  /** Why it was skipped, e.g. 'Not found', 'Already approved', 'Drifted from its source insight'. */
+  reason: string;
+}
+export const DataCatalogMetricBulkSkip = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    reason: S.String,
+  }),
+).annotate({
+  identifier: "DataCatalogMetricBulkSkip",
+}) as any as S.Schema<DataCatalogMetricBulkSkip>;
+
+/** Requested metrics that were not approved, with reasons. */
+export type DataCatalogMetricBulkApproveSkippedList =
+  Array<DataCatalogMetricBulkSkip>;
+export const DataCatalogMetricBulkApproveSkippedList = /*@__PURE__*/ S.Array(
+  DataCatalogMetricBulkSkip,
+) as any as S.Schema<DataCatalogMetricBulkApproveSkippedList>;
+
+/** Outcome of a bulk approve: what changed, and what was left alone. */
+export interface DataCatalogMetricBulkApprove {
+  /** The metrics that are now approved, freshly serialized. */
+  approved: DataCatalogMetricBulkApproveApprovedList;
+  /** Requested metrics that were not approved, with reasons. */
+  skipped: DataCatalogMetricBulkApproveSkippedList;
+}
+export const DataCatalogMetricBulkApprove = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    approved: DataCatalogMetricBulkApproveApprovedList,
+    skipped: DataCatalogMetricBulkApproveSkippedList,
+  }),
+).annotate({
+  identifier: "DataCatalogMetricBulkApprove",
+}) as any as S.Schema<DataCatalogMetricBulkApprove>;
 
 /** Names of the metrics to act on, at most 100. Duplicates are collapsed. */
 export type DataCatalogMetricsBulkDeleteCreateRequestNamesList = Array<string>;
@@ -838,12 +748,101 @@ export const DataCatalogMetricsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataCatalogMetricsDestroyResponse",
 }) as any as S.Schema<DataCatalogMetricsDestroyResponse>;
 
-export interface DataCatalogMetricsRetrieveRequest {
+export interface DataCatalogMetricsRefreshFromInsightCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   name: string;
 }
-export const DataCatalogMetricsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const DataCatalogMetricsRefreshFromInsightCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/data_catalog/metrics/{name}/refresh_from_insight/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DataCatalogMetricsRefreshFromInsightCreateRequest",
+  }) as any as S.Schema<DataCatalogMetricsRefreshFromInsightCreateRequest>;
+
+export interface DataCatalogRelationshipProposalsAcceptCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this relationship proposal. */
+  id: string;
+}
+export const DataCatalogRelationshipProposalsAcceptCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/data_catalog/relationship_proposals/{id}/accept/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DataCatalogRelationshipProposalsAcceptCreateRequest",
+  }) as any as S.Schema<DataCatalogRelationshipProposalsAcceptCreateRequest>;
+
+export interface DataCatalogRelationshipProposalsRejectCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this relationship proposal. */
+  id: string;
+  /** Why the proposal is rejected. Persisted so it is never re-proposed. */
+  rejection_reason?: string;
+}
+export const DataCatalogRelationshipProposalsRejectCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      rejection_reason: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/data_catalog/relationship_proposals/{id}/reject/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DataCatalogRelationshipProposalsRejectCreateRequest",
+  }) as any as S.Schema<DataCatalogRelationshipProposalsRejectCreateRequest>;
+
+export interface GetDataCatalogCertificationRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this table certification. */
+  id: string;
+}
+export const GetDataCatalogCertificationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_catalog/certifications/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDataCatalogCertificationRequest",
+}) as any as S.Schema<GetDataCatalogCertificationRequest>;
+
+export interface GetDataCatalogMetricsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  name: string;
+}
+export const GetDataCatalogMetricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
@@ -855,16 +854,16 @@ export const DataCatalogMetricsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataCatalogMetricsRetrieveRequest",
-}) as any as S.Schema<DataCatalogMetricsRetrieveRequest>;
+  identifier: "GetDataCatalogMetricsRequest",
+}) as any as S.Schema<GetDataCatalogMetricsRequest>;
 
-export interface DataCatalogRelationshipProposalsRetrieveRequest {
+export interface GetDataCatalogRelationshipProposalRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this relationship proposal. */
   id: string;
 }
-export const DataCatalogRelationshipProposalsRetrieveRequest =
+export const GetDataCatalogRelationshipProposalRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -877,8 +876,8 @@ export const DataCatalogRelationshipProposalsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "DataCatalogRelationshipProposalsRetrieveRequest",
-  }) as any as S.Schema<DataCatalogRelationshipProposalsRetrieveRequest>;
+    identifier: "GetDataCatalogRelationshipProposalRequest",
+  }) as any as S.Schema<GetDataCatalogRelationshipProposalRequest>;
 
 export interface ListDataCatalogCertificationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1031,16 +1030,16 @@ export const PaginatedDataCatalogRelationshipProposalList =
   }) as any as S.Schema<PaginatedDataCatalogRelationshipProposalList>;
 
 /** Machine-readable query. Omit for a name+description-only stub. Stored upgrade-canonical. */
-export type DataCatalogMetricsUpdateRequestDefinitionMap = {
+export type UpdateDataCatalogMetricsRequestDefinitionMap = {
   [key: string]: unknown | undefined;
 };
-export const DataCatalogMetricsUpdateRequestDefinitionMap =
+export const UpdateDataCatalogMetricsRequestDefinitionMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<DataCatalogMetricsUpdateRequestDefinitionMap>;
+  ) as any as S.Schema<UpdateDataCatalogMetricsRequestDefinitionMap>;
 
-export interface UpdateDataCatalogMetricRequest {
+export interface UpdateDataCatalogMetricsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   name: string;
@@ -1051,7 +1050,7 @@ export interface UpdateDataCatalogMetricRequest {
   /** Unit of the result, e.g. usd, percent, cents. */
   unit?: string;
   /** Machine-readable query. Omit for a name+description-only stub. Stored upgrade-canonical. */
-  definition?: DataCatalogMetricsUpdateRequestDefinitionMap | null;
+  definition?: UpdateDataCatalogMetricsRequestDefinitionMap | null;
   /** Create the metric from this insight's query (snapshotted server-side). Set to null to unlink. Mutually exclusive with definition. */
   source_insight_short_id?: string | null;
   /** Whether a human ('user') or an agent ('ai_generated') authored this metric. * `user` - user * `ai_generated` - ai_generated */
@@ -1063,7 +1062,7 @@ export interface UpdateDataCatalogMetricRequest {
   /** AI author's reasoning, surfaced as review context. */
   reasoning?: string;
 }
-export const UpdateDataCatalogMetricRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDataCatalogMetricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
@@ -1071,7 +1070,7 @@ export const UpdateDataCatalogMetricRequest = /*@__PURE__*/ S.suspend(() =>
     description: S.String,
     unit: S.optional(S.String),
     definition: S.optional(
-      S.NullOr(DataCatalogMetricsUpdateRequestDefinitionMap),
+      S.NullOr(UpdateDataCatalogMetricsRequestDefinitionMap),
     ),
     source_insight_short_id: S.optional(S.NullOr(S.String)),
     created_source: S.optional(CreatedSourceEnum),
@@ -1086,20 +1085,20 @@ export const UpdateDataCatalogMetricRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateDataCatalogMetricRequest",
-}) as any as S.Schema<UpdateDataCatalogMetricRequest>;
+  identifier: "UpdateDataCatalogMetricsRequest",
+}) as any as S.Schema<UpdateDataCatalogMetricsRequest>;
 
 /** Machine-readable query. Omit for a name+description-only stub. Stored upgrade-canonical. */
-export type DataCatalogMetricsPartialUpdateRequestDefinitionMap = {
+export type UpdateDataCatalogMetricsPartialRequestDefinitionMap = {
   [key: string]: unknown | undefined;
 };
-export const DataCatalogMetricsPartialUpdateRequestDefinitionMap =
+export const UpdateDataCatalogMetricsPartialRequestDefinitionMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<DataCatalogMetricsPartialUpdateRequestDefinitionMap>;
+  ) as any as S.Schema<UpdateDataCatalogMetricsPartialRequestDefinitionMap>;
 
-export interface UpdateDataCatalogMetricPartialRequest {
+export interface UpdateDataCatalogMetricsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   name: string;
@@ -1110,7 +1109,7 @@ export interface UpdateDataCatalogMetricPartialRequest {
   /** Unit of the result, e.g. usd, percent, cents. */
   unit?: string;
   /** Machine-readable query. Omit for a name+description-only stub. Stored upgrade-canonical. */
-  definition?: DataCatalogMetricsPartialUpdateRequestDefinitionMap | null;
+  definition?: UpdateDataCatalogMetricsPartialRequestDefinitionMap | null;
   /** Create the metric from this insight's query (snapshotted server-side). Set to null to unlink. Mutually exclusive with definition. */
   source_insight_short_id?: string | null;
   /** Whether a human ('user') or an agent ('ai_generated') authored this metric. * `user` - user * `ai_generated` - ai_generated */
@@ -1122,7 +1121,7 @@ export interface UpdateDataCatalogMetricPartialRequest {
   /** AI author's reasoning, surfaced as review context. */
   reasoning?: string;
 }
-export const UpdateDataCatalogMetricPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateDataCatalogMetricsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -1131,7 +1130,7 @@ export const UpdateDataCatalogMetricPartialRequest = /*@__PURE__*/ S.suspend(
       description: S.optional(S.String),
       unit: S.optional(S.String),
       definition: S.optional(
-        S.NullOr(DataCatalogMetricsPartialUpdateRequestDefinitionMap),
+        S.NullOr(UpdateDataCatalogMetricsPartialRequestDefinitionMap),
       ),
       source_insight_short_id: S.optional(S.NullOr(S.String)),
       created_source: S.optional(CreatedSourceEnum),
@@ -1146,8 +1145,8 @@ export const UpdateDataCatalogMetricPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateDataCatalogMetricPartialRequest",
-}) as any as S.Schema<UpdateDataCatalogMetricPartialRequest>;
+  identifier: "UpdateDataCatalogMetricsPartialRequest",
+}) as any as S.Schema<UpdateDataCatalogMetricsPartialRequest>;
 
 export type CreateDataCatalogCertificationError = PosthogOpError;
 /** Trust marks on warehouse tables and views. Reads exclude soft-deleted targets. */
@@ -1164,105 +1163,60 @@ export const createDataCatalogCertification: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateDataCatalogCertificationCertifyError = PosthogOpError;
+export type CreateDataCatalogCertificationsCertifyError = PosthogOpError;
 /** Mark the target as certified (prefer this source). */
-export const createDataCatalogCertificationCertify: API.OperationMethod<
-  CreateDataCatalogCertificationCertifyRequest,
+export const createDataCatalogCertificationsCertify: API.OperationMethod<
+  CreateDataCatalogCertificationsCertifyRequest,
   DataCatalogCertification,
-  CreateDataCatalogCertificationCertifyError,
+  CreateDataCatalogCertificationsCertifyError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogCertificationCertifyRequest,
+  input: CreateDataCatalogCertificationsCertifyRequest,
   output: DataCatalogCertification,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateDataCatalogCertificationDeprecateError = PosthogOpError;
+export type CreateDataCatalogCertificationsDeprecateError = PosthogOpError;
 /** Mark the target as deprecated (avoid this source). */
-export const createDataCatalogCertificationDeprecate: API.OperationMethod<
-  CreateDataCatalogCertificationDeprecateRequest,
+export const createDataCatalogCertificationsDeprecate: API.OperationMethod<
+  CreateDataCatalogCertificationsDeprecateRequest,
   DataCatalogCertification,
-  CreateDataCatalogCertificationDeprecateError,
+  CreateDataCatalogCertificationsDeprecateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogCertificationDeprecateRequest,
+  input: CreateDataCatalogCertificationsDeprecateRequest,
   output: DataCatalogCertification,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateDataCatalogMetricError = PosthogOpError;
+export type CreateDataCatalogMetricsError = PosthogOpError;
 /** Create a metric, or refine the one already holding this name for the team. */
-export const createDataCatalogMetric: API.OperationMethod<
-  CreateDataCatalogMetricRequest,
+export const createDataCatalogMetrics: API.OperationMethod<
+  CreateDataCatalogMetricsRequest,
   DataCatalogMetric,
-  CreateDataCatalogMetricError,
+  CreateDataCatalogMetricsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogMetricRequest,
+  input: CreateDataCatalogMetricsRequest,
   output: DataCatalogMetric,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateDataCatalogMetricApproveError = PosthogOpError;
-/** Bless a metric as canonical. Returns 409 while the metric is drifted from its insight. */
-export const createDataCatalogMetricApprove: API.OperationMethod<
-  CreateDataCatalogMetricApproveRequest,
-  DataCatalogMetric,
-  CreateDataCatalogMetricApproveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogMetricApproveRequest,
-  output: DataCatalogMetric,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateDataCatalogMetricBulkApproveError = PosthogOpError;
-/** Approve many metrics as canonical. Unknown, already-approved, and drifted metrics are skipped. */
-export const createDataCatalogMetricBulkApprove: API.OperationMethod<
-  CreateDataCatalogMetricBulkApproveRequest,
-  DataCatalogMetricBulkApprove,
-  CreateDataCatalogMetricBulkApproveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogMetricBulkApproveRequest,
-  output: DataCatalogMetricBulkApprove,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateDataCatalogMetricRefreshFromInsightError = PosthogOpError;
-/** Re-snapshot the linked insight's current query into the definition. */
-export const createDataCatalogMetricRefreshFromInsight: API.OperationMethod<
-  CreateDataCatalogMetricRefreshFromInsightRequest,
-  DataCatalogMetric,
-  CreateDataCatalogMetricRefreshFromInsightError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogMetricRefreshFromInsightRequest,
-  output: DataCatalogMetric,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateDataCatalogMetricRunError = BadRequest | PosthogOpError;
+export type CreateDataCatalogMetricsRunError = BadRequest | PosthogOpError;
 /** Execute the metric's definition and return the normalized result envelope. */
-export const createDataCatalogMetricRun: API.OperationMethod<
-  CreateDataCatalogMetricRunRequest,
+export const createDataCatalogMetricsRun: API.OperationMethod<
+  CreateDataCatalogMetricsRunRequest,
   DataCatalogMetricRun,
-  CreateDataCatalogMetricRunError,
+  CreateDataCatalogMetricsRunError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogMetricRunRequest,
+  input: CreateDataCatalogMetricsRunRequest,
   output: DataCatalogMetricRun,
   errors: [BadRequest],
   protocol: PosthogProtocol,
@@ -1284,36 +1238,6 @@ export const createDataCatalogRelationshipProposal: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateDataCatalogRelationshipProposalAcceptError = PosthogOpError;
-/** Promote the proposal to a real warehouse join after re-validating and probing it. */
-export const createDataCatalogRelationshipProposalAccept: API.OperationMethod<
-  CreateDataCatalogRelationshipProposalAcceptRequest,
-  DataCatalogRelationshipProposal,
-  CreateDataCatalogRelationshipProposalAcceptError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogRelationshipProposalAcceptRequest,
-  output: DataCatalogRelationshipProposal,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateDataCatalogRelationshipProposalRejectError = PosthogOpError;
-/** Reject the proposal. Persists forever so the pair is never re-proposed. */
-export const createDataCatalogRelationshipProposalReject: API.OperationMethod<
-  CreateDataCatalogRelationshipProposalRejectRequest,
-  DataCatalogRelationshipProposal,
-  CreateDataCatalogRelationshipProposalRejectError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateDataCatalogRelationshipProposalRejectRequest,
-  output: DataCatalogRelationshipProposal,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DataCatalogCertificationsDestroyError = PosthogOpError;
 /** Trust marks on warehouse tables and views. Reads exclude soft-deleted targets. */
 export const dataCatalogCertificationsDestroy: API.OperationMethod<
@@ -1329,16 +1253,31 @@ export const dataCatalogCertificationsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataCatalogCertificationsRetrieveError = PosthogOpError;
-/** Trust marks on warehouse tables and views. Reads exclude soft-deleted targets. */
-export const dataCatalogCertificationsRetrieve: API.OperationMethod<
-  DataCatalogCertificationsRetrieveRequest,
-  DataCatalogCertification,
-  DataCatalogCertificationsRetrieveError,
+export type DataCatalogMetricsApproveCreateError = PosthogOpError;
+/** Bless a metric as canonical. Returns 409 while the metric is drifted from its insight. */
+export const dataCatalogMetricsApproveCreate: API.OperationMethod<
+  DataCatalogMetricsApproveCreateRequest,
+  DataCatalogMetric,
+  DataCatalogMetricsApproveCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataCatalogCertificationsRetrieveRequest,
-  output: DataCatalogCertification,
+  input: DataCatalogMetricsApproveCreateRequest,
+  output: DataCatalogMetric,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DataCatalogMetricsBulkApproveCreateError = PosthogOpError;
+/** Approve many metrics as canonical. Unknown, already-approved, and drifted metrics are skipped. */
+export const dataCatalogMetricsBulkApproveCreate: API.OperationMethod<
+  DataCatalogMetricsBulkApproveCreateRequest,
+  DataCatalogMetricBulkApprove,
+  DataCatalogMetricsBulkApproveCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DataCatalogMetricsBulkApproveCreateRequest,
+  output: DataCatalogMetricBulkApprove,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1374,30 +1313,90 @@ export const dataCatalogMetricsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataCatalogMetricsRetrieveError = PosthogOpError;
-/** CRUD for catalog metrics, addressed by their ``name`` (e.g. /metrics/mrr/). */
-export const dataCatalogMetricsRetrieve: API.OperationMethod<
-  DataCatalogMetricsRetrieveRequest,
+export type DataCatalogMetricsRefreshFromInsightCreateError = PosthogOpError;
+/** Re-snapshot the linked insight's current query into the definition. */
+export const dataCatalogMetricsRefreshFromInsightCreate: API.OperationMethod<
+  DataCatalogMetricsRefreshFromInsightCreateRequest,
   DataCatalogMetric,
-  DataCatalogMetricsRetrieveError,
+  DataCatalogMetricsRefreshFromInsightCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataCatalogMetricsRetrieveRequest,
+  input: DataCatalogMetricsRefreshFromInsightCreateRequest,
   output: DataCatalogMetric,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataCatalogRelationshipProposalsRetrieveError = PosthogOpError;
-/** Reviewed join facts. Accepting one promotes it to a real DataWarehouseJoin; rejections persist. */
-export const dataCatalogRelationshipProposalsRetrieve: API.OperationMethod<
-  DataCatalogRelationshipProposalsRetrieveRequest,
+export type DataCatalogRelationshipProposalsAcceptCreateError = PosthogOpError;
+/** Promote the proposal to a real warehouse join after re-validating and probing it. */
+export const dataCatalogRelationshipProposalsAcceptCreate: API.OperationMethod<
+  DataCatalogRelationshipProposalsAcceptCreateRequest,
   DataCatalogRelationshipProposal,
-  DataCatalogRelationshipProposalsRetrieveError,
+  DataCatalogRelationshipProposalsAcceptCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataCatalogRelationshipProposalsRetrieveRequest,
+  input: DataCatalogRelationshipProposalsAcceptCreateRequest,
+  output: DataCatalogRelationshipProposal,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DataCatalogRelationshipProposalsRejectCreateError = PosthogOpError;
+/** Reject the proposal. Persists forever so the pair is never re-proposed. */
+export const dataCatalogRelationshipProposalsRejectCreate: API.OperationMethod<
+  DataCatalogRelationshipProposalsRejectCreateRequest,
+  DataCatalogRelationshipProposal,
+  DataCatalogRelationshipProposalsRejectCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DataCatalogRelationshipProposalsRejectCreateRequest,
+  output: DataCatalogRelationshipProposal,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataCatalogCertificationError = PosthogOpError;
+/** Trust marks on warehouse tables and views. Reads exclude soft-deleted targets. */
+export const getDataCatalogCertification: API.OperationMethod<
+  GetDataCatalogCertificationRequest,
+  DataCatalogCertification,
+  GetDataCatalogCertificationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataCatalogCertificationRequest,
+  output: DataCatalogCertification,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataCatalogMetricsError = PosthogOpError;
+/** CRUD for catalog metrics, addressed by their ``name`` (e.g. /metrics/mrr/). */
+export const getDataCatalogMetrics: API.OperationMethod<
+  GetDataCatalogMetricsRequest,
+  DataCatalogMetric,
+  GetDataCatalogMetricsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataCatalogMetricsRequest,
+  output: DataCatalogMetric,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataCatalogRelationshipProposalError = PosthogOpError;
+/** Reviewed join facts. Accepting one promotes it to a real DataWarehouseJoin; rejections persist. */
+export const getDataCatalogRelationshipProposal: API.OperationMethod<
+  GetDataCatalogRelationshipProposalRequest,
+  DataCatalogRelationshipProposal,
+  GetDataCatalogRelationshipProposalError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataCatalogRelationshipProposalRequest,
   output: DataCatalogRelationshipProposal,
   errors: [],
   protocol: PosthogProtocol,
@@ -1449,30 +1448,30 @@ export const listDataCatalogRelationshipProposals: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateDataCatalogMetricError = PosthogOpError;
+export type UpdateDataCatalogMetricsError = PosthogOpError;
 /** CRUD for catalog metrics, addressed by their ``name`` (e.g. /metrics/mrr/). */
-export const updateDataCatalogMetric: API.OperationMethod<
-  UpdateDataCatalogMetricRequest,
+export const updateDataCatalogMetrics: API.OperationMethod<
+  UpdateDataCatalogMetricsRequest,
   DataCatalogMetric,
-  UpdateDataCatalogMetricError,
+  UpdateDataCatalogMetricsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateDataCatalogMetricRequest,
+  input: UpdateDataCatalogMetricsRequest,
   output: DataCatalogMetric,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateDataCatalogMetricPartialError = PosthogOpError;
+export type UpdateDataCatalogMetricsPartialError = PosthogOpError;
 /** CRUD for catalog metrics, addressed by their ``name`` (e.g. /metrics/mrr/). */
-export const updateDataCatalogMetricPartial: API.OperationMethod<
-  UpdateDataCatalogMetricPartialRequest,
+export const updateDataCatalogMetricsPartial: API.OperationMethod<
+  UpdateDataCatalogMetricsPartialRequest,
   DataCatalogMetric,
-  UpdateDataCatalogMetricPartialError,
+  UpdateDataCatalogMetricsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateDataCatalogMetricPartialRequest,
+  input: UpdateDataCatalogMetricsPartialRequest,
   output: DataCatalogMetric,
   errors: [],
   protocol: PosthogProtocol,

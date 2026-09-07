@@ -4,118 +4,49 @@
     "service": "mybusinessverifications",
     "version": "v1",
     "title": "My Business Verifications API",
-    "baseUrl": "https://mybusinessverifications.googleapis.com/"
+    "baseUrl": "https://mybusinessverifications.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponse": {
+    "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsResponse": {
       "type": "structure",
       "members": {
-        "result": {
-          "target": "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponseResultEnum",
+        "options": {
+          "target": "com.gcp.mybusinessverifications_v1#VerificationOptionList",
           "traits": {
-            "smithy.api#documentation": "Output only. The result of the instant verification token generation."
+            "smithy.api#documentation": "The available verification options."
           }
-        },
-        "instantVerificationToken": {
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for Verifications.FetchVerificationOptions."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#VerificationOptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessverifications_v1#VerificationOption"
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#ResolveOwnershipConflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Indicates that the location duplicates another location that is in good standing."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#VerificationToken": {
+      "type": "structure",
+      "members": {
+        "tokenString": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The generated instant verification token."
+            "smithy.api#documentation": "The token string."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for Verifications.GenerateInstantVerificationToken."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponseResultEnum": {
-      "type": "enum",
-      "members": {
-        "RESULT_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RESULT_UNSPECIFIED"
-          }
-        },
-        "SUCCEEDED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUCCEEDED"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        }
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#AddressVerificationData": {
-      "type": "structure",
-      "members": {
-        "business": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Merchant's business name."
-          }
-        },
-        "address": {
-          "target": "com.gcp.mybusinessverifications_v1#PostalAddress",
-          "traits": {
-            "smithy.api#documentation": "Address that a postcard can be sent to."
-          }
-        },
-        "expectedDeliveryDaysRegion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Expected number of days it takes to deliver a postcard to the address's region."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Display data for verifications through postcard."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#Verify": {
-      "type": "structure",
-      "members": {
-        "hasPendingVerification": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether a verification process has already started, and can be completed by the location."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Indicates that the location requires verification. Contains information about the current verification actions performed on the location."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#CompleteVerificationResponse": {
-      "type": "structure",
-      "members": {
-        "verification": {
-          "target": "com.gcp.mybusinessverifications_v1#Verification",
-          "traits": {
-            "smithy.api#documentation": "The completed verification."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for Verifications.CompleteVerificationAction."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#CompleteVerificationRequest": {
-      "type": "structure",
-      "members": {
-        "pin": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. PIN code received by the merchant to complete the verification."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for Verifications.CompleteVerificationAction."
+        "smithy.api#documentation": "Token generated by a vetted [partner](https://support.google.com/business/answer/7674102)."
       }
     },
     "com.gcp.mybusinessverifications_v1#Verification": {
@@ -125,18 +56,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The timestamp when the verification is requested."
-          }
-        },
-        "state": {
-          "target": "com.gcp.mybusinessverifications_v1#VerificationStateEnum",
-          "traits": {
-            "smithy.api#documentation": "The state of the verification."
-          }
-        },
-        "method": {
-          "target": "com.gcp.mybusinessverifications_v1#VerificationMethodEnum",
-          "traits": {
-            "smithy.api#documentation": "The method of the verification."
           }
         },
         "name": {
@@ -149,6 +68,18 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. Response announcement set only if the method is VETTED_PARTNER."
+          }
+        },
+        "state": {
+          "target": "com.gcp.mybusinessverifications_v1#VerificationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the verification."
+          }
+        },
+        "method": {
+          "target": "com.gcp.mybusinessverifications_v1#VerificationMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "The method of the verification."
           }
         }
       },
@@ -232,141 +163,19 @@
         }
       }
     },
-    "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenRequest": {
-      "type": "structure",
-      "members": {
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The location identifier associated with an unverified listing. This is the location id generated at the time that the listing was originally created. It is the final portion of a location resource name as generated by the Google My Business API. Note: the caller must be an owner or manager of this listing in order to generate a verification token. See the [location resource](/my-business/reference/rest/v4/accounts.locations) documentation for more information."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for Verifications.GenerateInstantVerificationToken."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#VerifyLocationResponse": {
-      "type": "structure",
-      "members": {
-        "verification": {
-          "target": "com.gcp.mybusinessverifications_v1#Verification",
-          "traits": {
-            "smithy.api#documentation": "The created verification request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for Verifications.VerifyLocation."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#VerificationToken": {
-      "type": "structure",
-      "members": {
-        "tokenString": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The token string."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Token generated by a vetted [partner](https://support.google.com/business/answer/7674102)."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#PostalAddress": {
-      "type": "structure",
-      "members": {
-        "sortingCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (for example, \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (Côte d'Ivoire)."
-          }
-        },
-        "recipients": {
-          "target": "com.gcp.mybusinessverifications_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The recipient at the address. This field may, under certain circumstances, contain multiline information. For example, it might contain \"care of\" information."
-          }
-        },
-        "revision": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The schema revision of the `PostalAddress`. This must be set to 0, which is the latest revision. All new revisions **must** be backward compatible with old revisions."
-          }
-        },
-        "addressLines": {
-          "target": "com.gcp.mybusinessverifications_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas)."
-          }
-        },
-        "organization": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The name of the organization at the address."
-          }
-        },
-        "locality": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`."
-          }
-        },
-        "administrativeArea": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated."
-          }
-        },
-        "postalCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States)."
-          }
-        },
-        "regionCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address' country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: \"zh-Hant\", \"ja\", \"ja-Latn\", \"en\"."
-          }
-        },
-        "sublocality": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
     "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsRequest": {
       "type": "structure",
       "members": {
-        "context": {
-          "target": "com.gcp.mybusinessverifications_v1#ServiceBusinessContext",
-          "traits": {
-            "smithy.api#documentation": "Optional. Extra context information for the verification of service businesses. Can only be applied to the locations whose business type is CUSTOMER_LOCATION_ONLY. Specifying an accurate address could enable more options. INVALID_ARGUMENT will be thrown if it is set for other business types of locations."
-          }
-        },
         "languageCode": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The BCP 47 language code representing the language that is to be used for the verification process. Available options vary by language."
+          }
+        },
+        "context": {
+          "target": "com.gcp.mybusinessverifications_v1#ServiceBusinessContext",
+          "traits": {
+            "smithy.api#documentation": "Optional. Extra context information for the verification of service businesses. Can only be applied to the locations whose business type is CUSTOMER_LOCATION_ONLY. Specifying an accurate address could enable more options. INVALID_ARGUMENT will be thrown if it is set for other business types of locations."
           }
         }
       },
@@ -374,30 +183,138 @@
         "smithy.api#documentation": "Request message for Verifications.FetchVerificationOptions."
       }
     },
-    "com.gcp.mybusinessverifications_v1#EmailVerificationData": {
+    "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponse": {
       "type": "structure",
       "members": {
-        "isUserNameEditable": {
-          "target": "smithy.api#Boolean",
+        "result": {
+          "target": "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponseResultEnum",
           "traits": {
-            "smithy.api#documentation": "Whether client is allowed to provide a different user name."
+            "smithy.api#documentation": "Output only. The result of the instant verification token generation."
           }
         },
-        "domain": {
+        "instantVerificationToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Domain name in the email address. e.g. \"gmail.com\" in foo@gmail.com"
-          }
-        },
-        "user": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User name in the email address. e.g. \"foo\" in foo@gmail.com"
+            "smithy.api#documentation": "The generated instant verification token."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Display data for verifications through email."
+        "smithy.api#documentation": "Response message for Verifications.GenerateInstantVerificationToken."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponseResultEnum": {
+      "type": "enum",
+      "members": {
+        "RESULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESULT_UNSPECIFIED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#ListVerificationsResponse": {
+      "type": "structure",
+      "members": {
+        "verifications": {
+          "target": "com.gcp.mybusinessverifications_v1#VerificationList",
+          "traits": {
+            "smithy.api#documentation": "List of the verifications."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the number of verifications exceeded the requested page size, this field will be populated with a token to fetch the next page of verification on a subsequent call. If there are no more attributes, this field will not be present in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for Verifications.ListVerifications."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#VerificationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.mybusinessverifications_v1#Verification"
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#CompleteVerificationResponse": {
+      "type": "structure",
+      "members": {
+        "verification": {
+          "target": "com.gcp.mybusinessverifications_v1#Verification",
+          "traits": {
+            "smithy.api#documentation": "The completed verification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for Verifications.CompleteVerificationAction."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#WaitForVoiceOfMerchant": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Indicates that the location will gain voice of merchant after passing review."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#VoiceOfMerchantState": {
+      "type": "structure",
+      "members": {
+        "complyWithGuidelines": {
+          "target": "com.gcp.mybusinessverifications_v1#ComplyWithGuidelines",
+          "traits": {
+            "smithy.api#documentation": "The location fails to comply with our [guidelines](https://support.google.com/business/answer/3038177) and requires additional steps for reinstatement. To fix this issue, consult the [Help Center Article](https://support.google.com/business/answer/4569145)."
+          }
+        },
+        "waitForVoiceOfMerchant": {
+          "target": "com.gcp.mybusinessverifications_v1#WaitForVoiceOfMerchant",
+          "traits": {
+            "smithy.api#documentation": "Wait to gain Voice of Merchant. The location is under review for quality purposes."
+          }
+        },
+        "verify": {
+          "target": "com.gcp.mybusinessverifications_v1#Verify",
+          "traits": {
+            "smithy.api#documentation": "Start or continue the verification process."
+          }
+        },
+        "hasVoiceOfMerchant": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the location is in good standing and has control over the business on Google. Any edits made to the location will propagate to Maps after passing the review phase."
+          }
+        },
+        "resolveOwnershipConflict": {
+          "target": "com.gcp.mybusinessverifications_v1#ResolveOwnershipConflict",
+          "traits": {
+            "smithy.api#documentation": "This location duplicates another location that is in good standing. If you have access to the location in good standing, use that location's id to perform operations. Otherwise, request access from the current owner."
+          }
+        },
+        "hasBusinessAuthority": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the location has the authority (ownership) over the business on Google. If true, another location cannot take over and become the dominant listing on Maps. However, edits will not become live unless Voice of Merchant is gained (i.e. has_voice_of_merchant is true)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for VoiceOfMerchant.GetVoiceOfMerchantState."
       }
     },
     "com.gcp.mybusinessverifications_v1#ComplyWithGuidelines": {
@@ -437,48 +354,152 @@
         }
       }
     },
-    "com.gcp.mybusinessverifications_v1#VoiceOfMerchantState": {
+    "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenRequest": {
       "type": "structure",
       "members": {
-        "hasBusinessAuthority": {
-          "target": "smithy.api#Boolean",
+        "locationId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Indicates whether the location has the authority (ownership) over the business on Google. If true, another location cannot take over and become the dominant listing on Maps. However, edits will not become live unless Voice of Merchant is gained (i.e. has_voice_of_merchant is true)."
-          }
-        },
-        "hasVoiceOfMerchant": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether the location is in good standing and has control over the business on Google. Any edits made to the location will propagate to Maps after passing the review phase."
-          }
-        },
-        "resolveOwnershipConflict": {
-          "target": "com.gcp.mybusinessverifications_v1#ResolveOwnershipConflict",
-          "traits": {
-            "smithy.api#documentation": "This location duplicates another location that is in good standing. If you have access to the location in good standing, use that location's id to perform operations. Otherwise, request access from the current owner."
-          }
-        },
-        "complyWithGuidelines": {
-          "target": "com.gcp.mybusinessverifications_v1#ComplyWithGuidelines",
-          "traits": {
-            "smithy.api#documentation": "The location fails to comply with our [guidelines](https://support.google.com/business/answer/3038177) and requires additional steps for reinstatement. To fix this issue, consult the [Help Center Article](https://support.google.com/business/answer/4569145)."
-          }
-        },
-        "waitForVoiceOfMerchant": {
-          "target": "com.gcp.mybusinessverifications_v1#WaitForVoiceOfMerchant",
-          "traits": {
-            "smithy.api#documentation": "Wait to gain Voice of Merchant. The location is under review for quality purposes."
-          }
-        },
-        "verify": {
-          "target": "com.gcp.mybusinessverifications_v1#Verify",
-          "traits": {
-            "smithy.api#documentation": "Start or continue the verification process."
+            "smithy.api#documentation": "The location identifier associated with an unverified listing. This is the location id generated at the time that the listing was originally created. It is the final portion of a location resource name as generated by the Google My Business API. Note: the caller must be an owner or manager of this listing in order to generate a verification token. See the [location resource](/my-business/reference/rest/v4/accounts.locations) documentation for more information."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for VoiceOfMerchant.GetVoiceOfMerchantState."
+        "smithy.api#documentation": "Request message for Verifications.GenerateInstantVerificationToken."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#Verify": {
+      "type": "structure",
+      "members": {
+        "hasPendingVerification": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether a verification process has already started, and can be completed by the location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates that the location requires verification. Contains information about the current verification actions performed on the location."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#VerifyLocationResponse": {
+      "type": "structure",
+      "members": {
+        "verification": {
+          "target": "com.gcp.mybusinessverifications_v1#Verification",
+          "traits": {
+            "smithy.api#documentation": "The created verification request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for Verifications.VerifyLocation."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#PostalAddress": {
+      "type": "structure",
+      "members": {
+        "addressLines": {
+          "target": "com.gcp.mybusinessverifications_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas)."
+          }
+        },
+        "recipients": {
+          "target": "com.gcp.mybusinessverifications_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The recipient at the address. This field may, under certain circumstances, contain multiline information. For example, it might contain \"care of\" information."
+          }
+        },
+        "administrativeArea": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated."
+          }
+        },
+        "sortingCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (for example, \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (Côte d'Ivoire)."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address' country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: \"zh-Hant\", \"ja\", \"ja-Latn\", \"en\"."
+          }
+        },
+        "locality": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`."
+          }
+        },
+        "sublocality": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States)."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland."
+          }
+        },
+        "revision": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The schema revision of the `PostalAddress`. This must be set to 0, which is the latest revision. All new revisions **must** be backward compatible with old revisions."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the organization at the address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#EmailVerificationData": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User name in the email address. e.g. \"foo\" in foo@gmail.com"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name in the email address. e.g. \"gmail.com\" in foo@gmail.com"
+          }
+        },
+        "isUserNameEditable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether client is allowed to provide a different user name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display data for verifications through email."
       }
     },
     "com.gcp.mybusinessverifications_v1#ServiceBusinessContext": {
@@ -495,176 +516,39 @@
         "smithy.api#documentation": "Additional data for service business verification."
       }
     },
-    "com.gcp.mybusinessverifications_v1#WaitForVoiceOfMerchant": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Indicates that the location will gain voice of merchant after passing review."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsResponse": {
+    "com.gcp.mybusinessverifications_v1#AddressVerificationData": {
       "type": "structure",
       "members": {
-        "options": {
-          "target": "com.gcp.mybusinessverifications_v1#VerificationOptionList",
+        "business": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The available verification options."
+            "smithy.api#documentation": "Merchant's business name."
+          }
+        },
+        "address": {
+          "target": "com.gcp.mybusinessverifications_v1#PostalAddress",
+          "traits": {
+            "smithy.api#documentation": "Address that a postcard can be sent to."
+          }
+        },
+        "expectedDeliveryDaysRegion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Expected number of days it takes to deliver a postcard to the address's region."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for Verifications.FetchVerificationOptions."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#VerificationOptionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.mybusinessverifications_v1#VerificationOption"
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#ListVerificationsResponse": {
-      "type": "structure",
-      "members": {
-        "verifications": {
-          "target": "com.gcp.mybusinessverifications_v1#VerificationList",
-          "traits": {
-            "smithy.api#documentation": "List of the verifications."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If the number of verifications exceeded the requested page size, this field will be populated with a token to fetch the next page of verification on a subsequent call. If there are no more attributes, this field will not be present in the response."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for Verifications.ListVerifications."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#VerificationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.mybusinessverifications_v1#Verification"
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#ResolveOwnershipConflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Indicates that the location duplicates another location that is in good standing."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#VerifyLocationRequest": {
-      "type": "structure",
-      "members": {
-        "token": {
-          "target": "com.gcp.mybusinessverifications_v1#VerificationToken",
-          "traits": {
-            "smithy.api#documentation": "Optional. The input for VETTED_PARTNER method available to select [partners.](https://support.google.com/business/answer/7674102) The input is not needed for a vetted account. Token that is associated to the location. Token that is associated to the location."
-          }
-        },
-        "context": {
-          "target": "com.gcp.mybusinessverifications_v1#ServiceBusinessContext",
-          "traits": {
-            "smithy.api#documentation": "Optional. Extra context information for the verification of service businesses. It is only required for the locations whose business type is CUSTOMER_LOCATION_ONLY. For ADDRESS verification, the address will be used to send out postcard. For other methods, it should be the same as the one that is passed to GetVerificationOptions. INVALID_ARGUMENT will be thrown if it is set for other types of business locations."
-          }
-        },
-        "phoneNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The input for PHONE_CALL/SMS method The phone number that should be called or be sent SMS to. It must be one of the phone numbers in the eligible options."
-          }
-        },
-        "method": {
-          "target": "com.gcp.mybusinessverifications_v1#VerifyLocationRequestMethodEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Verification method."
-          }
-        },
-        "emailAddress": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The input for EMAIL method. Email address where the PIN should be sent to. An email address is accepted only if it is one of the addresses provided by FetchVerificationOptions. If the EmailVerificationData has is_user_name_editable set to true, the client may specify a different user name (local-part) but must match the domain name."
-          }
-        },
-        "mailerContact": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The input for ADDRESS method. Contact name the mail should be sent to."
-          }
-        },
-        "trustedPartnerToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The input for TRUSTED_PARTNER method The verification token that is associated to the location."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The BCP 47 language code representing the language that is to be used for the verification process."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for Verifications.VerifyLocation."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#VerifyLocationRequestMethodEnum": {
-      "type": "enum",
-      "members": {
-        "VERIFICATION_METHOD_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VERIFICATION_METHOD_UNSPECIFIED"
-          }
-        },
-        "ADDRESS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ADDRESS"
-          }
-        },
-        "EMAIL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EMAIL"
-          }
-        },
-        "PHONE_CALL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PHONE_CALL"
-          }
-        },
-        "SMS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SMS"
-          }
-        },
-        "AUTO": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AUTO"
-          }
-        },
-        "TRUSTED_PARTNER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TRUSTED_PARTNER"
-          }
-        }
+        "smithy.api#documentation": "Display data for verifications through postcard."
       }
     },
     "com.gcp.mybusinessverifications_v1#VerificationOption": {
       "type": "structure",
       "members": {
-        "addressData": {
-          "target": "com.gcp.mybusinessverifications_v1#AddressVerificationData",
+        "announcement": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Set only if the method is MAIL."
+            "smithy.api#documentation": "Set only if the method is VETTED_PARTNER."
           }
         },
         "phoneNumber": {
@@ -673,10 +557,10 @@
             "smithy.api#documentation": "Set only if the method is PHONE_CALL or SMS. Phone number that the PIN will be sent to."
           }
         },
-        "emailData": {
-          "target": "com.gcp.mybusinessverifications_v1#EmailVerificationData",
+        "addressData": {
+          "target": "com.gcp.mybusinessverifications_v1#AddressVerificationData",
           "traits": {
-            "smithy.api#documentation": "Set only if the method is EMAIL."
+            "smithy.api#documentation": "Set only if the method is MAIL."
           }
         },
         "verificationMethod": {
@@ -685,10 +569,10 @@
             "smithy.api#documentation": "Method to verify the location."
           }
         },
-        "announcement": {
-          "target": "smithy.api#String",
+        "emailData": {
+          "target": "com.gcp.mybusinessverifications_v1#EmailVerificationData",
           "traits": {
-            "smithy.api#documentation": "Set only if the method is VETTED_PARTNER."
+            "smithy.api#documentation": "Set only if the method is EMAIL."
           }
         }
       },
@@ -743,11 +627,136 @@
         }
       }
     },
-    "com.gcp.mybusinessverifications_v1#GenerateVerificationTokensRequest": {
+    "com.gcp.mybusinessverifications_v1#VerifyLocationRequest": {
       "type": "structure",
       "members": {
+        "mailerContact": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The input for ADDRESS method. Contact name the mail should be sent to."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The input for PHONE_CALL/SMS method The phone number that should be called or be sent SMS to. It must be one of the phone numbers in the eligible options."
+          }
+        },
+        "emailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The input for EMAIL method. Email address where the PIN should be sent to. An email address is accepted only if it is one of the addresses provided by FetchVerificationOptions. If the EmailVerificationData has is_user_name_editable set to true, the client may specify a different user name (local-part) but must match the domain name."
+          }
+        },
+        "context": {
+          "target": "com.gcp.mybusinessverifications_v1#ServiceBusinessContext",
+          "traits": {
+            "smithy.api#documentation": "Optional. Extra context information for the verification of service businesses. It is only required for the locations whose business type is CUSTOMER_LOCATION_ONLY. For ADDRESS verification, the address will be used to send out postcard. For other methods, it should be the same as the one that is passed to GetVerificationOptions. INVALID_ARGUMENT will be thrown if it is set for other types of business locations."
+          }
+        },
+        "method": {
+          "target": "com.gcp.mybusinessverifications_v1#VerifyLocationRequestMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Verification method."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The BCP 47 language code representing the language that is to be used for the verification process."
+          }
+        },
+        "trustedPartnerToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The input for TRUSTED_PARTNER method The verification token that is associated to the location."
+          }
+        },
+        "token": {
+          "target": "com.gcp.mybusinessverifications_v1#VerificationToken",
+          "traits": {
+            "smithy.api#documentation": "Optional. The input for VETTED_PARTNER method available to select [partners.](https://support.google.com/business/answer/7674102) The input is not needed for a vetted account. Token that is associated to the location. Token that is associated to the location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for Verifications.VerifyLocation."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#VerifyLocationRequestMethodEnum": {
+      "type": "enum",
+      "members": {
+        "VERIFICATION_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFICATION_METHOD_UNSPECIFIED"
+          }
+        },
+        "ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADDRESS"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMAIL"
+          }
+        },
+        "PHONE_CALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHONE_CALL"
+          }
+        },
+        "SMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMS"
+          }
+        },
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO"
+          }
+        },
+        "TRUSTED_PARTNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUSTED_PARTNER"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#CompleteVerificationRequest": {
+      "type": "structure",
+      "members": {
+        "pin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. PIN code received by the merchant to complete the verification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for Verifications.CompleteVerificationAction."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The location to verify.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
         "body": {
-          "target": "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenRequest",
+          "target": "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -807,56 +816,6 @@
         ]
       }
     },
-    "com.gcp.mybusinessverifications_v1#GenerateVerificationTokens": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.mybusinessverifications_v1#GenerateVerificationTokensRequest"
-      },
-      "output": {
-        "target": "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.mybusinessverifications_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.mybusinessverifications_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.mybusinessverifications_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.mybusinessverifications_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/verificationTokens:generate"
-        },
-        "smithy.api#documentation": "Generate a token for the provided location data to verify the location."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The location to verify.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
     "com.gcp.mybusinessverifications_v1#FetchVerificationOptionsLocations": {
       "type": "operation",
       "input": {
@@ -885,43 +844,6 @@
           "uri": "v1/{+location}:fetchVerificationOptions"
         },
         "smithy.api#documentation": "Reports all eligible verification options for a location in a specific language."
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#GetVoiceOfMerchantStateLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the location.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.mybusinessverifications_v1#GetVoiceOfMerchantStateLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.mybusinessverifications_v1#GetVoiceOfMerchantStateLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.mybusinessverifications_v1#VoiceOfMerchantState"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.mybusinessverifications_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.mybusinessverifications_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}/VoiceOfMerchantState"
-        },
-        "smithy.api#documentation": "Gets the VoiceOfMerchant state."
       }
     },
     "com.gcp.mybusinessverifications_v1#VerifyLocationsRequest": {
@@ -974,6 +896,98 @@
         "smithy.api#documentation": "Starts the verification process for a location."
       }
     },
+    "com.gcp.mybusinessverifications_v1#GetVoiceOfMerchantStateLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#GetVoiceOfMerchantStateLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessverifications_v1#GetVoiceOfMerchantStateLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessverifications_v1#VoiceOfMerchantState"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessverifications_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessverifications_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/VoiceOfMerchantState"
+        },
+        "smithy.api#documentation": "Gets the VoiceOfMerchant state."
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#ListLocationsVerificationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name of the location that verification requests belong to.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, returns the next page of verifications.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "How many verification to include per page. Minimum is 1, and the default and maximum page size is 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.mybusinessverifications_v1#ListLocationsVerifications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.mybusinessverifications_v1#ListLocationsVerificationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.mybusinessverifications_v1#ListVerificationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.mybusinessverifications_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.mybusinessverifications_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/verifications"
+        },
+        "smithy.api#documentation": "List verifications of a location, ordered by create time.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.mybusinessverifications_v1#CompleteLocationsVerificationsRequest": {
       "type": "structure",
       "members": {
@@ -1024,40 +1038,25 @@
         "smithy.api#documentation": "Completes a `PENDING` verification. It is only necessary for non `AUTO` verification methods. `AUTO` verification request is instantly `VERIFIED` upon creation."
       }
     },
-    "com.gcp.mybusinessverifications_v1#ListLocationsVerificationsRequest": {
+    "com.gcp.mybusinessverifications_v1#GenerateVerificationTokensRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "body": {
+          "target": "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenRequest",
           "traits": {
-            "smithy.api#documentation": "How many verification to include per page. Minimum is 1, and the default and maximum page size is 100.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If specified, returns the next page of verifications.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Resource name of the location that verification requests belong to.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.mybusinessverifications_v1#ListLocationsVerifications": {
+    "com.gcp.mybusinessverifications_v1#GenerateVerificationTokens": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.mybusinessverifications_v1#ListLocationsVerificationsRequest"
+        "target": "com.gcp.mybusinessverifications_v1#GenerateVerificationTokensRequest"
       },
       "output": {
-        "target": "com.gcp.mybusinessverifications_v1#ListVerificationsResponse"
+        "target": "com.gcp.mybusinessverifications_v1#GenerateInstantVerificationTokenResponse"
       },
       "errors": [
         {
@@ -1065,18 +1064,20 @@
         },
         {
           "target": "com.gcp.mybusinessverifications_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.mybusinessverifications_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.mybusinessverifications_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/verifications"
+          "method": "POST",
+          "uri": "v1/verificationTokens:generate"
         },
-        "smithy.api#documentation": "List verifications of a location, ordered by create time.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Generate a token for the provided location data to verify the location."
       }
     }
   }

@@ -108,6 +108,286 @@ export class TcpFlowProtectionRuleNotFound
     [{ status: 404 }],
   ) {}
 
+export interface AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem {
+  /** A comment describing the prefix. */
+  comment: string;
+  /** Whether to exclude the prefix from protection. */
+  excluded: boolean;
+  /** The prefix to add in CIDR format. */
+  prefix: string;
+}
+export const AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      comment: S.String,
+      excluded: S.Boolean,
+      prefix: S.String,
+    }),
+  ).annotate({
+    identifier: "AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem",
+  }) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem>;
+
+export type AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList =
+  Array<AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem>;
+export const AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList =
+  /*@__PURE__*/ S.Array(
+    AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem,
+  ) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList>;
+
+export interface BulkCreateAdvancedTcpProtectionPrefixesRequest {
+  /** Identifier. */
+  accountId: string;
+  body: AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList;
+}
+export const BulkCreateAdvancedTcpProtectionPrefixesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+      body: AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList.pipe(
+        T.HttpBody(),
+      ),
+    })
+      .pipe(
+        T.Http({
+          method: "POST",
+          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes/bulk",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkCreateAdvancedTcpProtectionPrefixesRequest",
+  }) as any as S.Schema<BulkCreateAdvancedTcpProtectionPrefixesRequest>;
+
+export interface AdvancedTcpProtectionPrefixesBulkCreateResultItem {
+  /** The unique ID of the prefix. */
+  id: string;
+  /** A comment describing the prefix. */
+  comment: string;
+  /** The creation timestamp of the prefix. */
+  createdOn: string;
+  /** Whether to exclude the prefix from protection. */
+  excluded: boolean;
+  /** The last modification timestamp of the prefix. */
+  modifiedOn: string;
+  /** The prefix in CIDR format. */
+  prefix: string;
+}
+export const AdvancedTcpProtectionPrefixesBulkCreateResultItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.String,
+      comment: S.String,
+      createdOn: S.String.pipe(T.Body("created_on")),
+      excluded: S.Boolean,
+      modifiedOn: S.String.pipe(T.Body("modified_on")),
+      prefix: S.String,
+    }),
+  ).annotate({
+    identifier: "AdvancedTcpProtectionPrefixesBulkCreateResultItem",
+  }) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateResultItem>;
+
+export type AdvancedTcpProtectionPrefixesBulkCreateResultList =
+  Array<AdvancedTcpProtectionPrefixesBulkCreateResultItem>;
+export const AdvancedTcpProtectionPrefixesBulkCreateResultList =
+  /*@__PURE__*/ S.Array(
+    AdvancedTcpProtectionPrefixesBulkCreateResultItem,
+  ) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateResultList>;
+
+export interface BulkCreateAdvancedTcpProtectionPrefixesResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: AdvancedTcpProtectionPrefixesBulkCreateResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const BulkCreateAdvancedTcpProtectionPrefixesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      result: AdvancedTcpProtectionPrefixesBulkCreateResultList.pipe(
+        T.EnvelopePayload(),
+      ),
+      resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkCreateAdvancedTcpProtectionPrefixesResponse",
+  }) as any as S.Schema<BulkCreateAdvancedTcpProtectionPrefixesResponse>;
+
+export interface BulkDeleteAdvancedTcpProtectionAllowlistsRequest {
+  /** Identifier. */
+  accountId: string;
+}
+export const BulkDeleteAdvancedTcpProtectionAllowlistsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+    })
+      .pipe(
+        T.Http({
+          method: "DELETE",
+          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionAllowlistsRequest",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionAllowlistsRequest>;
+
+export interface BulkDeleteAdvancedTcpProtectionAllowlistsResponse {}
+export const BulkDeleteAdvancedTcpProtectionAllowlistsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionAllowlistsResponse",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionAllowlistsResponse>;
+
+export interface BulkDeleteAdvancedTcpProtectionPrefixesRequest {
+  /** Identifier. */
+  accountId: string;
+}
+export const BulkDeleteAdvancedTcpProtectionPrefixesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+    })
+      .pipe(
+        T.Http({
+          method: "DELETE",
+          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionPrefixesRequest",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionPrefixesRequest>;
+
+export interface BulkDeleteAdvancedTcpProtectionPrefixesResponse {}
+export const BulkDeleteAdvancedTcpProtectionPrefixesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionPrefixesResponse",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionPrefixesResponse>;
+
+export interface BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest {
+  /** Identifier. */
+  accountId: string;
+}
+export const BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+    })
+      .pipe(
+        T.Http({
+          method: "DELETE",
+          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest>;
+
+export interface BulkDeleteAdvancedTcpProtectionSynProtectionFiltersResponse {}
+export const BulkDeleteAdvancedTcpProtectionSynProtectionFiltersResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionSynProtectionFiltersResponse",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionSynProtectionFiltersResponse>;
+
+export interface BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest {
+  /** Identifier. */
+  accountId: string;
+}
+export const BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+    })
+      .pipe(
+        T.Http({
+          method: "DELETE",
+          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest>;
+
+export interface BulkDeleteAdvancedTcpProtectionSynProtectionRulesResponse {}
+export const BulkDeleteAdvancedTcpProtectionSynProtectionRulesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionSynProtectionRulesResponse",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionSynProtectionRulesResponse>;
+
+export interface BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest {
+  /** Identifier. */
+  accountId: string;
+}
+export const BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+    })
+      .pipe(
+        T.Http({
+          method: "DELETE",
+          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier:
+      "BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest>;
+
+export interface BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersResponse {}
+export const BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier:
+      "BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersResponse",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersResponse>;
+
+export interface BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest {
+  /** Identifier. */
+  accountId: string;
+}
+export const BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+    })
+      .pipe(
+        T.Http({
+          method: "DELETE",
+          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest>;
+
+export interface BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesResponse {}
+export const BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesResponse",
+  }) as any as S.Schema<BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesResponse>;
+
 export interface CreateAdvancedTcpProtectionAllowlistRequest {
   /** Identifier. */
   accountId: string;
@@ -480,110 +760,6 @@ export const CreateAdvancedTcpProtectionTcpFlowProtectionRuleResponse =
     identifier: "CreateAdvancedTcpProtectionTcpFlowProtectionRuleResponse",
   }) as any as S.Schema<CreateAdvancedTcpProtectionTcpFlowProtectionRuleResponse>;
 
-export interface AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem {
-  /** A comment describing the prefix. */
-  comment: string;
-  /** Whether to exclude the prefix from protection. */
-  excluded: boolean;
-  /** The prefix to add in CIDR format. */
-  prefix: string;
-}
-export const AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      comment: S.String,
-      excluded: S.Boolean,
-      prefix: S.String,
-    }),
-  ).annotate({
-    identifier: "AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem",
-  }) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem>;
-
-export type AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList =
-  Array<AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem>;
-export const AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList =
-  /*@__PURE__*/ S.Array(
-    AdvancedTcpProtectionPrefixesBulkCreateRequestBodyItem,
-  ) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList>;
-
-export interface CreateBulkAdvancedTcpProtectionPrefixeRequest {
-  /** Identifier. */
-  accountId: string;
-  body: AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList;
-}
-export const CreateBulkAdvancedTcpProtectionPrefixeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-      body: AdvancedTcpProtectionPrefixesBulkCreateRequestBodyList.pipe(
-        T.HttpBody(),
-      ),
-    })
-      .pipe(
-        T.Http({
-          method: "POST",
-          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes/bulk",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "CreateBulkAdvancedTcpProtectionPrefixeRequest",
-  }) as any as S.Schema<CreateBulkAdvancedTcpProtectionPrefixeRequest>;
-
-export interface AdvancedTcpProtectionPrefixesBulkCreateResultItem {
-  /** The unique ID of the prefix. */
-  id: string;
-  /** A comment describing the prefix. */
-  comment: string;
-  /** The creation timestamp of the prefix. */
-  createdOn: string;
-  /** Whether to exclude the prefix from protection. */
-  excluded: boolean;
-  /** The last modification timestamp of the prefix. */
-  modifiedOn: string;
-  /** The prefix in CIDR format. */
-  prefix: string;
-}
-export const AdvancedTcpProtectionPrefixesBulkCreateResultItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-      comment: S.String,
-      createdOn: S.String.pipe(T.Body("created_on")),
-      excluded: S.Boolean,
-      modifiedOn: S.String.pipe(T.Body("modified_on")),
-      prefix: S.String,
-    }),
-  ).annotate({
-    identifier: "AdvancedTcpProtectionPrefixesBulkCreateResultItem",
-  }) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateResultItem>;
-
-export type AdvancedTcpProtectionPrefixesBulkCreateResultList =
-  Array<AdvancedTcpProtectionPrefixesBulkCreateResultItem>;
-export const AdvancedTcpProtectionPrefixesBulkCreateResultList =
-  /*@__PURE__*/ S.Array(
-    AdvancedTcpProtectionPrefixesBulkCreateResultItem,
-  ) as any as S.Schema<AdvancedTcpProtectionPrefixesBulkCreateResultList>;
-
-export interface CreateBulkAdvancedTcpProtectionPrefixeResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: AdvancedTcpProtectionPrefixesBulkCreateResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const CreateBulkAdvancedTcpProtectionPrefixeResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      result: AdvancedTcpProtectionPrefixesBulkCreateResultList.pipe(
-        T.EnvelopePayload(),
-      ),
-      resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "CreateBulkAdvancedTcpProtectionPrefixeResponse",
-  }) as any as S.Schema<CreateBulkAdvancedTcpProtectionPrefixeResponse>;
-
 export interface DeleteAdvancedTcpProtectionAllowlistItemRequest {
   /** Identifier. */
   accountId: string;
@@ -776,181 +952,6 @@ export const DeleteAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse =
   ).annotate({
     identifier: "DeleteAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse",
   }) as any as S.Schema<DeleteAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse>;
-
-export interface DeleteBulkAdvancedTcpProtectionAllowlistRequest {
-  /** Identifier. */
-  accountId: string;
-}
-export const DeleteBulkAdvancedTcpProtectionAllowlistRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-    })
-      .pipe(
-        T.Http({
-          method: "DELETE",
-          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/allowlist",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionAllowlistRequest",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionAllowlistRequest>;
-
-export interface DeleteBulkAdvancedTcpProtectionAllowlistResponse {}
-export const DeleteBulkAdvancedTcpProtectionAllowlistResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionAllowlistResponse",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionAllowlistResponse>;
-
-export interface DeleteBulkAdvancedTcpProtectionPrefixeRequest {
-  /** Identifier. */
-  accountId: string;
-}
-export const DeleteBulkAdvancedTcpProtectionPrefixeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-    })
-      .pipe(
-        T.Http({
-          method: "DELETE",
-          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/prefixes",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionPrefixeRequest",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionPrefixeRequest>;
-
-export interface DeleteBulkAdvancedTcpProtectionPrefixeResponse {}
-export const DeleteBulkAdvancedTcpProtectionPrefixeResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionPrefixeResponse",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionPrefixeResponse>;
-
-export interface DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest {
-  /** Identifier. */
-  accountId: string;
-}
-export const DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-    })
-      .pipe(
-        T.Http({
-          method: "DELETE",
-          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/filters",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest>;
-
-export interface DeleteBulkAdvancedTcpProtectionSynProtectionFilterResponse {}
-export const DeleteBulkAdvancedTcpProtectionSynProtectionFilterResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionSynProtectionFilterResponse",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionSynProtectionFilterResponse>;
-
-export interface DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest {
-  /** Identifier. */
-  accountId: string;
-}
-export const DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-    })
-      .pipe(
-        T.Http({
-          method: "DELETE",
-          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/syn_protection/rules",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest>;
-
-export interface DeleteBulkAdvancedTcpProtectionSynProtectionRuleResponse {}
-export const DeleteBulkAdvancedTcpProtectionSynProtectionRuleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionSynProtectionRuleResponse",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionSynProtectionRuleResponse>;
-
-export interface DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest {
-  /** Identifier. */
-  accountId: string;
-}
-export const DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-    })
-      .pipe(
-        T.Http({
-          method: "DELETE",
-          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/filters",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest>;
-
-export interface DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterResponse {}
-export const DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier:
-      "DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterResponse",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterResponse>;
-
-export interface DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest {
-  /** Identifier. */
-  accountId: string;
-}
-export const DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-    })
-      .pipe(
-        T.Http({
-          method: "DELETE",
-          uri: "/accounts/{account_id}/magic/advanced_tcp_protection/configs/tcp_flow_protection/rules",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest>;
-
-export interface DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleResponse {}
-export const DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleResponse",
-  }) as any as S.Schema<DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleResponse>;
 
 export interface GetAdvancedTcpProtectionAllowlistItemRequest {
   /** Identifier. */
@@ -2210,6 +2211,120 @@ export const PatchAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse =
     identifier: "PatchAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse",
   }) as any as S.Schema<PatchAdvancedTcpProtectionTcpFlowProtectionRuleItemResponse>;
 
+export type BulkCreateAdvancedTcpProtectionPrefixesError = CloudflareOpError;
+/** Create multiple prefixes for an account. */
+export const bulkCreateAdvancedTcpProtectionPrefixes: API.PaginatedOperationMethod<
+  BulkCreateAdvancedTcpProtectionPrefixesRequest,
+  BulkCreateAdvancedTcpProtectionPrefixesResponse,
+  BulkCreateAdvancedTcpProtectionPrefixesError,
+  CloudflareOpContext,
+  AdvancedTcpProtectionPrefixesBulkCreateResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkCreateAdvancedTcpProtectionPrefixesRequest,
+    output: BulkCreateAdvancedTcpProtectionPrefixesResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type BulkDeleteAdvancedTcpProtectionAllowlistsError = CloudflareOpError;
+/** Delete all allowlist prefixes for an account. */
+export const bulkDeleteAdvancedTcpProtectionAllowlists: API.OperationMethod<
+  BulkDeleteAdvancedTcpProtectionAllowlistsRequest,
+  BulkDeleteAdvancedTcpProtectionAllowlistsResponse,
+  BulkDeleteAdvancedTcpProtectionAllowlistsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteAdvancedTcpProtectionAllowlistsRequest,
+  output: BulkDeleteAdvancedTcpProtectionAllowlistsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteAdvancedTcpProtectionPrefixesError = CloudflareOpError;
+/** Delete all prefixes for an account. */
+export const bulkDeleteAdvancedTcpProtectionPrefixes: API.OperationMethod<
+  BulkDeleteAdvancedTcpProtectionPrefixesRequest,
+  BulkDeleteAdvancedTcpProtectionPrefixesResponse,
+  BulkDeleteAdvancedTcpProtectionPrefixesError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteAdvancedTcpProtectionPrefixesRequest,
+  output: BulkDeleteAdvancedTcpProtectionPrefixesResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteAdvancedTcpProtectionSynProtectionFiltersError =
+  CloudflareOpError;
+/** Delete all SYN Protection filters for an account. */
+export const bulkDeleteAdvancedTcpProtectionSynProtectionFilters: API.OperationMethod<
+  BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest,
+  BulkDeleteAdvancedTcpProtectionSynProtectionFiltersResponse,
+  BulkDeleteAdvancedTcpProtectionSynProtectionFiltersError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteAdvancedTcpProtectionSynProtectionFiltersRequest,
+  output: BulkDeleteAdvancedTcpProtectionSynProtectionFiltersResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteAdvancedTcpProtectionSynProtectionRulesError =
+  CloudflareOpError;
+/** Delete all SYN Protection rules for an account. */
+export const bulkDeleteAdvancedTcpProtectionSynProtectionRules: API.OperationMethod<
+  BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest,
+  BulkDeleteAdvancedTcpProtectionSynProtectionRulesResponse,
+  BulkDeleteAdvancedTcpProtectionSynProtectionRulesError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteAdvancedTcpProtectionSynProtectionRulesRequest,
+  output: BulkDeleteAdvancedTcpProtectionSynProtectionRulesResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersError =
+  CloudflareOpError;
+/** Delete all TCP Flow Protection filters for an account. */
+export const bulkDeleteAdvancedTcpProtectionTcpFlowProtectionFilters: API.OperationMethod<
+  BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest,
+  BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersResponse,
+  BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersRequest,
+  output: BulkDeleteAdvancedTcpProtectionTcpFlowProtectionFiltersResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesError =
+  CloudflareOpError;
+/** Delete all TCP Flow Protection rules for an account. */
+export const bulkDeleteAdvancedTcpProtectionTcpFlowProtectionRules: API.OperationMethod<
+  BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest,
+  BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesResponse,
+  BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesRequest,
+  output: BulkDeleteAdvancedTcpProtectionTcpFlowProtectionRulesResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateAdvancedTcpProtectionAllowlistError =
   | AdvancedTcpProtectionNotEntitled
   | Forbidden
@@ -2339,26 +2454,6 @@ export const createAdvancedTcpProtectionTcpFlowProtectionRule: API.OperationMeth
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
-
-export type CreateBulkAdvancedTcpProtectionPrefixeError = CloudflareOpError;
-/** Create multiple prefixes for an account. */
-export const createBulkAdvancedTcpProtectionPrefixe: API.PaginatedOperationMethod<
-  CreateBulkAdvancedTcpProtectionPrefixeRequest,
-  CreateBulkAdvancedTcpProtectionPrefixeResponse,
-  CreateBulkAdvancedTcpProtectionPrefixeError,
-  CloudflareOpContext,
-  AdvancedTcpProtectionPrefixesBulkCreateResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: CreateBulkAdvancedTcpProtectionPrefixeRequest,
-    output: CreateBulkAdvancedTcpProtectionPrefixeResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
 
 export type DeleteAdvancedTcpProtectionAllowlistItemError =
   | AllowlistEntryNotFound
@@ -2496,100 +2591,6 @@ export const deleteAdvancedTcpProtectionTcpFlowProtectionRuleItem: API.Operation
     CloudflareRateLimited,
     CloudflareError,
   ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkAdvancedTcpProtectionAllowlistError = CloudflareOpError;
-/** Delete all allowlist prefixes for an account. */
-export const deleteBulkAdvancedTcpProtectionAllowlist: API.OperationMethod<
-  DeleteBulkAdvancedTcpProtectionAllowlistRequest,
-  DeleteBulkAdvancedTcpProtectionAllowlistResponse,
-  DeleteBulkAdvancedTcpProtectionAllowlistError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkAdvancedTcpProtectionAllowlistRequest,
-  output: DeleteBulkAdvancedTcpProtectionAllowlistResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkAdvancedTcpProtectionPrefixeError = CloudflareOpError;
-/** Delete all prefixes for an account. */
-export const deleteBulkAdvancedTcpProtectionPrefixe: API.OperationMethod<
-  DeleteBulkAdvancedTcpProtectionPrefixeRequest,
-  DeleteBulkAdvancedTcpProtectionPrefixeResponse,
-  DeleteBulkAdvancedTcpProtectionPrefixeError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkAdvancedTcpProtectionPrefixeRequest,
-  output: DeleteBulkAdvancedTcpProtectionPrefixeResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkAdvancedTcpProtectionSynProtectionFilterError =
-  CloudflareOpError;
-/** Delete all SYN Protection filters for an account. */
-export const deleteBulkAdvancedTcpProtectionSynProtectionFilter: API.OperationMethod<
-  DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest,
-  DeleteBulkAdvancedTcpProtectionSynProtectionFilterResponse,
-  DeleteBulkAdvancedTcpProtectionSynProtectionFilterError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkAdvancedTcpProtectionSynProtectionFilterRequest,
-  output: DeleteBulkAdvancedTcpProtectionSynProtectionFilterResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkAdvancedTcpProtectionSynProtectionRuleError =
-  CloudflareOpError;
-/** Delete all SYN Protection rules for an account. */
-export const deleteBulkAdvancedTcpProtectionSynProtectionRule: API.OperationMethod<
-  DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest,
-  DeleteBulkAdvancedTcpProtectionSynProtectionRuleResponse,
-  DeleteBulkAdvancedTcpProtectionSynProtectionRuleError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkAdvancedTcpProtectionSynProtectionRuleRequest,
-  output: DeleteBulkAdvancedTcpProtectionSynProtectionRuleResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterError =
-  CloudflareOpError;
-/** Delete all TCP Flow Protection filters for an account. */
-export const deleteBulkAdvancedTcpProtectionTcpFlowProtectionFilter: API.OperationMethod<
-  DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest,
-  DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterResponse,
-  DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterRequest,
-  output: DeleteBulkAdvancedTcpProtectionTcpFlowProtectionFilterResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleError =
-  CloudflareOpError;
-/** Delete all TCP Flow Protection rules for an account. */
-export const deleteBulkAdvancedTcpProtectionTcpFlowProtectionRule: API.OperationMethod<
-  DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest,
-  DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleResponse,
-  DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleRequest,
-  output: DeleteBulkAdvancedTcpProtectionTcpFlowProtectionRuleResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));

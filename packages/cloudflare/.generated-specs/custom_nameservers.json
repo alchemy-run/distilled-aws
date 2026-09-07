@@ -20,7 +20,8 @@
       "nsName": "ns_name",
       "nsSet": "ns_set",
       "zoneTag": "zone_tag"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.custom_nameservers#CreateResponseDnsRecordsItemType": {
@@ -205,13 +206,13 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.custom_nameservers#Create"
+          "target": "com.cloudflare.custom_nameservers#CreateCustomNameserver"
         },
         {
-          "target": "com.cloudflare.custom_nameservers#Delete"
+          "target": "com.cloudflare.custom_nameservers#DeleteCustomNameserver"
         },
         {
-          "target": "com.cloudflare.custom_nameservers#Get"
+          "target": "com.cloudflare.custom_nameservers#GetCustomNameserver"
         }
       ],
       "traits": {

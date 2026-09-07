@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.fabric#SuspendFabricCapacity": {
@@ -207,10 +208,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fabric#FabricCapacitiesResume": {
+    "com.azure.fabric#ResumeFabricCapacity": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fabric#FabricCapacitiesResumeRequest"
+        "target": "com.azure.fabric#ResumeFabricCapacityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -226,7 +227,7 @@
         "com.distilled.openapi#apiVersion": "2023-11-01"
       }
     },
-    "com.azure.fabric#FabricCapacitiesResumeRequest": {
+    "com.azure.fabric#ResumeFabricCapacityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -356,7 +357,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fabric#FabricCapacitiesUpdateResponseTagsMap",
+          "target": "com.azure.fabric#UpdateFabricCapacityResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -562,7 +563,7 @@
         "smithy.api#documentation": "The provisioning state of the Fabric capacity resource."
       }
     },
-    "com.azure.fabric#FabricCapacitiesUpdateResponseTagsMap": {
+    "com.azure.fabric#UpdateFabricCapacityResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -716,7 +717,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fabric#FabricCapacitiesUpdateRequestTagsMap",
+          "target": "com.azure.fabric#UpdateFabricCapacityRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -746,7 +747,7 @@
         "smithy.api#documentation": "The updatable properties of the FabricCapacity."
       }
     },
-    "com.azure.fabric#FabricCapacitiesUpdateRequestTagsMap": {
+    "com.azure.fabric#UpdateFabricCapacityRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -981,7 +982,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fabric#FabricCapacitiesGetResponseTagsMap",
+          "target": "com.azure.fabric#GetFabricCapacityResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1012,7 +1013,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fabric#FabricCapacitiesGetResponseTagsMap": {
+    "com.azure.fabric#GetFabricCapacityResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1332,7 +1333,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityResponseReason",
+          "target": "com.azure.fabric#CheckFabricCapacityNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -1348,7 +1349,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fabric#FabricCapacitiesCheckNameAvailabilityResponseReason": {
+    "com.azure.fabric#CheckFabricCapacityNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -1462,7 +1463,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.fabric#OperationsListResponseValueList",
+          "target": "com.azure.fabric#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1478,7 +1479,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fabric#OperationsListResponseValueList": {
+    "com.azure.fabric#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.fabric#Operation"
@@ -1602,19 +1603,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.fabric#SuspendFabricCapacity"
-        },
-        {
-          "target": "com.azure.fabric#ListFabricCapacitySkusForCapacity"
-        },
-        {
-          "target": "com.azure.fabric#FabricCapacitiesResume"
+          "target": "com.azure.fabric#CheckFabricCapacityNameAvailability"
         },
         {
           "target": "com.azure.fabric#DeleteFabricCapacity"
-        },
-        {
-          "target": "com.azure.fabric#UpdateFabricCapacity"
         },
         {
           "target": "com.azure.fabric#FabricCapacitiesCreateOrUpdate"
@@ -1626,16 +1618,25 @@
           "target": "com.azure.fabric#ListFabricCapacityByResourceGroup"
         },
         {
-          "target": "com.azure.fabric#ListFabricCapacitySkus"
-        },
-        {
-          "target": "com.azure.fabric#CheckFabricCapacityNameAvailability"
-        },
-        {
           "target": "com.azure.fabric#ListFabricCapacityBySubscription"
         },
         {
+          "target": "com.azure.fabric#ListFabricCapacitySkus"
+        },
+        {
+          "target": "com.azure.fabric#ListFabricCapacitySkusForCapacity"
+        },
+        {
           "target": "com.azure.fabric#ListOperations"
+        },
+        {
+          "target": "com.azure.fabric#ResumeFabricCapacity"
+        },
+        {
+          "target": "com.azure.fabric#SuspendFabricCapacity"
+        },
+        {
+          "target": "com.azure.fabric#UpdateFabricCapacity"
         }
       ],
       "traits": {

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.dict#DictClearRequest": {
+    "com.modal.dict#ClearDictRequest": {
       "type": "structure",
       "members": {
         "dictId": {
@@ -28,10 +29,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.dict#DictClear": {
+    "com.modal.dict#ClearDict": {
       "type": "operation",
       "input": {
-        "target": "com.modal.dict#DictClearRequest"
+        "target": "com.modal.dict#ClearDictRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -157,7 +158,7 @@
         }
       }
     },
-    "com.modal.dict#GetDictByIdRequest": {
+    "com.modal.dict#DictGetByIdRequest": {
       "type": "structure",
       "members": {
         "dictId": {
@@ -196,7 +197,7 @@
         }
       }
     },
-    "com.modal.dict#GetDictByIdResponse": {
+    "com.modal.dict#DictGetByIdResponse": {
       "type": "structure",
       "members": {
         "dictId": {
@@ -210,13 +211,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.dict#GetDictById": {
+    "com.modal.dict#DictGetById": {
       "type": "operation",
       "input": {
-        "target": "com.modal.dict#GetDictByIdRequest"
+        "target": "com.modal.dict#DictGetByIdRequest"
       },
       "output": {
-        "target": "com.modal.dict#GetDictByIdResponse"
+        "target": "com.modal.dict#DictGetByIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -429,7 +430,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.dict#DictListResponseDictInfo": {
+    "com.modal.dict#ListDictResponseDictInfo": {
       "type": "structure",
       "members": {
         "name": {
@@ -449,17 +450,17 @@
         }
       }
     },
-    "com.modal.dict#DictListResponseDictInfoList": {
+    "com.modal.dict#ListDictResponseDictInfoList": {
       "type": "list",
       "member": {
-        "target": "com.modal.dict#DictListResponseDictInfo"
+        "target": "com.modal.dict#ListDictResponseDictInfo"
       }
     },
     "com.modal.dict#ListDictResponse": {
       "type": "structure",
       "members": {
         "dicts": {
-          "target": "com.modal.dict#DictListResponseDictInfoList"
+          "target": "com.modal.dict#ListDictResponseDictInfoList"
         },
         "environmentName": {
           "target": "smithy.api#String"
@@ -578,19 +579,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.dict#DictClear"
-        },
-        {
-          "target": "com.modal.dict#DictContains"
+          "target": "com.modal.dict#ClearDict"
         },
         {
           "target": "com.modal.dict#DeleteDict"
         },
         {
-          "target": "com.modal.dict#GetDict"
+          "target": "com.modal.dict#DictContains"
         },
         {
-          "target": "com.modal.dict#GetDictById"
+          "target": "com.modal.dict#DictGetById"
         },
         {
           "target": "com.modal.dict#DictGetOrCreate"
@@ -602,10 +600,13 @@
           "target": "com.modal.dict#DictLen"
         },
         {
-          "target": "com.modal.dict#ListDict"
+          "target": "com.modal.dict#DictPop"
         },
         {
-          "target": "com.modal.dict#DictPop"
+          "target": "com.modal.dict#GetDict"
+        },
+        {
+          "target": "com.modal.dict#ListDict"
         },
         {
           "target": "com.modal.dict#UpdateDict"

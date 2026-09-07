@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.discussions#CreateBlogCommentRequest": {
@@ -10326,7 +10327,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.discussions#RequestMergePullRequest": {
+    "com.huggingface.discussions#MergePullRequestRequest": {
       "type": "structure",
       "members": {
         "repoType": {
@@ -10365,10 +10366,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.huggingface.discussions#RequestMergePull": {
+    "com.huggingface.discussions#MergePullRequest": {
       "type": "operation",
       "input": {
-        "target": "com.huggingface.discussions#RequestMergePullRequest"
+        "target": "com.huggingface.discussions#MergePullRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14298,61 +14299,61 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.discussions#CreateBlogComment"
-        },
-        {
-          "target": "com.huggingface.discussions#ReplyToBlogComment"
-        },
-        {
-          "target": "com.huggingface.discussions#CreateCommunityBlogComment"
-        },
-        {
-          "target": "com.huggingface.discussions#ReplyToCommunityBlogComment"
-        },
-        {
-          "target": "com.huggingface.discussions#ListDiscussions"
-        },
-        {
-          "target": "com.huggingface.discussions#CreateNewDiscussion"
-        },
-        {
-          "target": "com.huggingface.discussions#GetDiscussionDetails"
-        },
-        {
-          "target": "com.huggingface.discussions#DeleteDiscussion"
-        },
-        {
-          "target": "com.huggingface.discussions#CreateDiscussionComment"
-        },
-        {
           "target": "com.huggingface.discussions#ChangeStatus"
         },
         {
           "target": "com.huggingface.discussions#ChangeTitle"
         },
         {
-          "target": "com.huggingface.discussions#PinDiscussion"
+          "target": "com.huggingface.discussions#CreateBlogComment"
         },
         {
-          "target": "com.huggingface.discussions#RequestMergePull"
+          "target": "com.huggingface.discussions#CreateCommunityBlogComment"
         },
         {
-          "target": "com.huggingface.discussions#DeletePrRef"
+          "target": "com.huggingface.discussions#CreateDiscussionComment"
         },
         {
-          "target": "com.huggingface.discussions#PrStorageEstimate"
+          "target": "com.huggingface.discussions#CreateNewDiscussion"
         },
         {
           "target": "com.huggingface.discussions#CreatePaperComment"
         },
         {
-          "target": "com.huggingface.discussions#ReplyToPaperComment"
+          "target": "com.huggingface.discussions#CreatePostComment"
+        },
+        {
+          "target": "com.huggingface.discussions#DeleteDiscussion"
         },
         {
           "target": "com.huggingface.discussions#DeletePost"
         },
         {
-          "target": "com.huggingface.discussions#CreatePostComment"
+          "target": "com.huggingface.discussions#DeletePrRef"
+        },
+        {
+          "target": "com.huggingface.discussions#GetDiscussionDetails"
+        },
+        {
+          "target": "com.huggingface.discussions#ListDiscussions"
+        },
+        {
+          "target": "com.huggingface.discussions#MergePullRequest"
+        },
+        {
+          "target": "com.huggingface.discussions#PinDiscussion"
+        },
+        {
+          "target": "com.huggingface.discussions#PrStorageEstimate"
+        },
+        {
+          "target": "com.huggingface.discussions#ReplyToBlogComment"
+        },
+        {
+          "target": "com.huggingface.discussions#ReplyToCommunityBlogComment"
+        },
+        {
+          "target": "com.huggingface.discussions#ReplyToPaperComment"
         },
         {
           "target": "com.huggingface.discussions#ReplyToPostComment"

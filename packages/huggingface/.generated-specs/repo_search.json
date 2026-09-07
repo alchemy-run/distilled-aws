@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.huggingface.repo_search#QuickSearchRequestLangCase0": {
+    "com.huggingface.repo_search#SearchQuickRequestLangCase0": {
       "type": "enum",
       "members": {
         "AA": {
@@ -1127,11 +1128,11 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestLang": {
+    "com.huggingface.repo_search#SearchQuickRequestLang": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestLangCase0"
+          "target": "com.huggingface.repo_search#SearchQuickRequestLangCase0"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -1139,7 +1140,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestLibraryCase0": {
+    "com.huggingface.repo_search#SearchQuickRequestLibraryCase0": {
       "type": "enum",
       "members": {
         "ACESTEP": {
@@ -1724,10 +1725,10 @@
             "smithy.api#enumValue": "keras-hub"
           }
         },
-        "KERASFORMERS": {
+        "ZEROMODELS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "kerasformers"
+            "smithy.api#enumValue": "zeromodels"
           }
         },
         "KERNELS": {
@@ -2270,6 +2271,12 @@
             "smithy.api#enumValue": "setfit"
           }
         },
+        "SHADOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shadow"
+          }
+        },
         "SKLEARN": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -2621,11 +2628,11 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestLibrary": {
+    "com.huggingface.repo_search#SearchQuickRequestLibrary": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestLibraryCase0"
+          "target": "com.huggingface.repo_search#SearchQuickRequestLibraryCase0"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -2633,7 +2640,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestTypeCase0Item": {
+    "com.huggingface.repo_search#SearchQuickRequestTypeCase0Item": {
       "type": "enum",
       "members": {
         "MODEL": {
@@ -2689,37 +2696,43 @@
           "traits": {
             "smithy.api#enumValue": "kernel"
           }
+        },
+        "BLOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blog"
+          }
         }
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestTypeCase0List": {
+    "com.huggingface.repo_search#SearchQuickRequestTypeCase0List": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchRequestTypeCase0Item"
+        "target": "com.huggingface.repo_search#SearchQuickRequestTypeCase0Item"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestTypeCase1List": {
+    "com.huggingface.repo_search#SearchQuickRequestTypeCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestType": {
+    "com.huggingface.repo_search#SearchQuickRequestType": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestTypeCase0List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestTypeCase0List"
         },
         "Case1": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestTypeCase1List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestTypeCase1List"
         }
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestOrgsFilterCase0Item": {
+    "com.huggingface.repo_search#SearchQuickRequestOrgsFilterCase0Item": {
       "type": "enum",
       "members": {
         "OWN": {
@@ -2737,33 +2750,33 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestOrgsFilterCase0List": {
+    "com.huggingface.repo_search#SearchQuickRequestOrgsFilterCase0List": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchRequestOrgsFilterCase0Item"
+        "target": "com.huggingface.repo_search#SearchQuickRequestOrgsFilterCase0Item"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestOrgsFilterCase1List": {
+    "com.huggingface.repo_search#SearchQuickRequestOrgsFilterCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestOrgsFilter": {
+    "com.huggingface.repo_search#SearchQuickRequestOrgsFilter": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestOrgsFilterCase0List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestOrgsFilterCase0List"
         },
         "Case1": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestOrgsFilterCase1List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestOrgsFilterCase1List"
         }
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestReposFilterCase0Item": {
+    "com.huggingface.repo_search#SearchQuickRequestReposFilterCase0Item": {
       "type": "enum",
       "members": {
         "SKIP_DISABLED": {
@@ -2799,33 +2812,33 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestReposFilterCase0List": {
+    "com.huggingface.repo_search#SearchQuickRequestReposFilterCase0List": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchRequestReposFilterCase0Item"
+        "target": "com.huggingface.repo_search#SearchQuickRequestReposFilterCase0Item"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestReposFilterCase1List": {
+    "com.huggingface.repo_search#SearchQuickRequestReposFilterCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestReposFilter": {
+    "com.huggingface.repo_search#SearchQuickRequestReposFilter": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestReposFilterCase0List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestReposFilterCase0List"
         },
         "Case1": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestReposFilterCase1List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestReposFilterCase1List"
         }
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestPipelinesCase0Item": {
+    "com.huggingface.repo_search#SearchQuickRequestPipelinesCase0Item": {
       "type": "enum",
       "members": {
         "TEXT_CLASSIFICATION": {
@@ -3173,56 +3186,56 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestPipelinesCase0List": {
+    "com.huggingface.repo_search#SearchQuickRequestPipelinesCase0List": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchRequestPipelinesCase0Item"
+        "target": "com.huggingface.repo_search#SearchQuickRequestPipelinesCase0Item"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestPipelinesCase1Case1List": {
+    "com.huggingface.repo_search#SearchQuickRequestPipelinesCase1Case1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestPipelinesCase1": {
+    "com.huggingface.repo_search#SearchQuickRequestPipelinesCase1": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestPipelinesCase1Case1List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestPipelinesCase1Case1List"
         }
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestPipelines": {
+    "com.huggingface.repo_search#SearchQuickRequestPipelines": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestPipelinesCase0List"
+          "target": "com.huggingface.repo_search#SearchQuickRequestPipelinesCase0List"
         },
         "Case1": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestPipelinesCase1"
+          "target": "com.huggingface.repo_search#SearchQuickRequestPipelinesCase1"
         }
       },
       "traits": {
         "smithy.api#documentation": "Comma-separated or array of pipeline types"
       }
     },
-    "com.huggingface.repo_search#QuickSearchRequestExcludeList": {
+    "com.huggingface.repo_search#SearchQuickRequestExcludeList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo"
+        "smithy.api#documentation": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug"
       }
     },
-    "com.huggingface.repo_search#QuickSearchRequestIncludeInvitees": {
+    "com.huggingface.repo_search#SearchQuickRequestIncludeInvitees": {
       "type": "union",
       "members": {
         "Case0": {
@@ -3234,7 +3247,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestRepoTypeCase0": {
+    "com.huggingface.repo_search#SearchQuickRequestRepoTypeCase0": {
       "type": "enum",
       "members": {
         "DATASET": {
@@ -3270,11 +3283,11 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestRepoType": {
+    "com.huggingface.repo_search#SearchQuickRequestRepoType": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestRepoTypeCase0"
+          "target": "com.huggingface.repo_search#SearchQuickRequestRepoTypeCase0"
         },
         "Case1": {
           "target": "smithy.api#String"
@@ -3282,14 +3295,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequestSpacesTagsList": {
+    "com.huggingface.repo_search#SearchQuickRequestSpacesTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchRequest": {
+    "com.huggingface.repo_search#SearchQuickRequest": {
       "type": "structure",
       "members": {
         "q": {
@@ -3305,43 +3318,43 @@
           }
         },
         "lang": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestLang",
+          "target": "com.huggingface.repo_search#SearchQuickRequestLang",
           "traits": {
             "smithy.api#httpQuery": "lang"
           }
         },
         "library": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestLibrary",
+          "target": "com.huggingface.repo_search#SearchQuickRequestLibrary",
           "traits": {
             "smithy.api#httpQuery": "library"
           }
         },
         "type": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestType",
+          "target": "com.huggingface.repo_search#SearchQuickRequestType",
           "traits": {
             "smithy.api#httpQuery": "type"
           }
         },
         "orgsFilter": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestOrgsFilter",
+          "target": "com.huggingface.repo_search#SearchQuickRequestOrgsFilter",
           "traits": {
             "smithy.api#httpQuery": "orgsFilter"
           }
         },
         "reposFilter": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestReposFilter",
+          "target": "com.huggingface.repo_search#SearchQuickRequestReposFilter",
           "traits": {
             "smithy.api#httpQuery": "reposFilter"
           }
         },
         "pipelines": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestPipelines",
+          "target": "com.huggingface.repo_search#SearchQuickRequestPipelines",
           "traits": {
             "smithy.api#httpQuery": "pipelines"
           }
         },
         "exclude": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestExcludeList",
+          "target": "com.huggingface.repo_search#SearchQuickRequestExcludeList",
           "traits": {
             "smithy.api#httpQuery": "exclude"
           }
@@ -3353,7 +3366,7 @@
           }
         },
         "includeInvitees": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestIncludeInvitees",
+          "target": "com.huggingface.repo_search#SearchQuickRequestIncludeInvitees",
           "traits": {
             "smithy.api#httpQuery": "includeInvitees"
           }
@@ -3365,7 +3378,7 @@
           }
         },
         "repoType": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestRepoType",
+          "target": "com.huggingface.repo_search#SearchQuickRequestRepoType",
           "traits": {
             "smithy.api#httpQuery": "repoType"
           }
@@ -3383,7 +3396,7 @@
           }
         },
         "spacesTags": {
-          "target": "com.huggingface.repo_search#QuickSearchRequestSpacesTagsList",
+          "target": "com.huggingface.repo_search#SearchQuickRequestSpacesTagsList",
           "traits": {
             "smithy.api#httpQuery": "spacesTags"
           }
@@ -3393,7 +3406,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.huggingface.repo_search#QuickSearchResponseDatasetsItem": {
+    "com.huggingface.repo_search#SearchQuickResponseDatasetsItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3420,14 +3433,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseDatasetsList": {
+    "com.huggingface.repo_search#SearchQuickResponseDatasetsList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseDatasetsItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseDatasetsItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseModelsItem": {
+    "com.huggingface.repo_search#SearchQuickResponseModelsItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3454,14 +3467,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseModelsList": {
+    "com.huggingface.repo_search#SearchQuickResponseModelsList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseModelsItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseModelsItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseOrgsItem": {
+    "com.huggingface.repo_search#SearchQuickResponseOrgsItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3491,14 +3504,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseOrgsList": {
+    "com.huggingface.repo_search#SearchQuickResponseOrgsList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseOrgsItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseOrgsItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseSpacesItem": {
+    "com.huggingface.repo_search#SearchQuickResponseSpacesItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3531,14 +3544,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseSpacesList": {
+    "com.huggingface.repo_search#SearchQuickResponseSpacesList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseSpacesItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseSpacesItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseUsersItem": {
+    "com.huggingface.repo_search#SearchQuickResponseUsersItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3568,14 +3581,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseUsersList": {
+    "com.huggingface.repo_search#SearchQuickResponseUsersList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseUsersItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseUsersItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponsePapersItem": {
+    "com.huggingface.repo_search#SearchQuickResponsePapersItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3596,14 +3609,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponsePapersList": {
+    "com.huggingface.repo_search#SearchQuickResponsePapersList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponsePapersItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponsePapersItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseCollectionsItem": {
+    "com.huggingface.repo_search#SearchQuickResponseCollectionsItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3624,14 +3637,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseCollectionsList": {
+    "com.huggingface.repo_search#SearchQuickResponseCollectionsList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseCollectionsItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseCollectionsItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseBucketsItem": {
+    "com.huggingface.repo_search#SearchQuickResponseBucketsItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3652,14 +3665,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseBucketsList": {
+    "com.huggingface.repo_search#SearchQuickResponseBucketsList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseBucketsItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseBucketsItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseKernelsItem": {
+    "com.huggingface.repo_search#SearchQuickResponseKernelsItem": {
       "type": "structure",
       "members": {
         "_id": {
@@ -3680,18 +3693,55 @@
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponseKernelsList": {
+    "com.huggingface.repo_search#SearchQuickResponseKernelsList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.repo_search#QuickSearchResponseKernelsItem"
+        "target": "com.huggingface.repo_search#SearchQuickResponseKernelsItem"
       },
       "traits": {}
     },
-    "com.huggingface.repo_search#QuickSearchResponse": {
+    "com.huggingface.repo_search#SearchQuickResponseBlogsItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.repo_search#SearchQuickResponseBlogsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.repo_search#SearchQuickResponseBlogsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.repo_search#SearchQuickResponse": {
       "type": "structure",
       "members": {
         "datasets": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseDatasetsList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseDatasetsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3703,7 +3753,7 @@
           }
         },
         "models": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseModelsList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseModelsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3715,7 +3765,7 @@
           }
         },
         "orgs": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseOrgsList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseOrgsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3727,7 +3777,7 @@
           }
         },
         "spaces": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseSpacesList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseSpacesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3739,13 +3789,13 @@
           }
         },
         "users": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseUsersList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseUsersList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "papers": {
-          "target": "com.huggingface.repo_search#QuickSearchResponsePapersList",
+          "target": "com.huggingface.repo_search#SearchQuickResponsePapersList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3757,7 +3807,7 @@
           }
         },
         "collections": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseCollectionsList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseCollectionsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3769,7 +3819,7 @@
           }
         },
         "buckets": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseBucketsList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseBucketsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3781,12 +3831,24 @@
           }
         },
         "kernels": {
-          "target": "com.huggingface.repo_search#QuickSearchResponseKernelsList",
+          "target": "com.huggingface.repo_search#SearchQuickResponseKernelsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "kernelsCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blogs": {
+          "target": "com.huggingface.repo_search#SearchQuickResponseBlogsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blogsCount": {
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#required": {}
@@ -3797,13 +3859,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.huggingface.repo_search#QuickSearch": {
+    "com.huggingface.repo_search#SearchQuick": {
       "type": "operation",
       "input": {
-        "target": "com.huggingface.repo_search#QuickSearchRequest"
+        "target": "com.huggingface.repo_search#SearchQuickRequest"
       },
       "output": {
-        "target": "com.huggingface.repo_search#QuickSearchResponse"
+        "target": "com.huggingface.repo_search#SearchQuickResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5521,10 +5583,10 @@
             "smithy.api#enumValue": "keras-hub"
           }
         },
-        "KERASFORMERS": {
+        "ZEROMODELS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "kerasformers"
+            "smithy.api#enumValue": "zeromodels"
           }
         },
         "KERNELS": {
@@ -6067,6 +6129,12 @@
             "smithy.api#enumValue": "setfit"
           }
         },
+        "SHADOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shadow"
+          }
+        },
         "SKLEARN": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -6485,6 +6553,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "kernel"
+          }
+        },
+        "BLOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blog"
           }
         }
       },
@@ -7016,7 +7090,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo"
+        "smithy.api#documentation": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug"
       }
     },
     "com.huggingface.repo_search#QuickSearchPostRequestIncludeInvitees": {
@@ -8793,10 +8867,10 @@
             "smithy.api#enumValue": "keras-hub"
           }
         },
-        "KERASFORMERS": {
+        "ZEROMODELS": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "kerasformers"
+            "smithy.api#enumValue": "zeromodels"
           }
         },
         "KERNELS": {
@@ -9339,6 +9413,12 @@
             "smithy.api#enumValue": "setfit"
           }
         },
+        "SHADOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "shadow"
+          }
+        },
         "SKLEARN": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -9757,6 +9837,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "kernel"
+          }
+        },
+        "BLOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blog"
           }
         }
       },
@@ -10288,7 +10374,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo"
+        "smithy.api#documentation": "Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug"
       }
     },
     "com.huggingface.repo_search#QuickSearchPostRequestIncludeInvitees2": {
@@ -10756,6 +10842,43 @@
       },
       "traits": {}
     },
+    "com.huggingface.repo_search#QuickSearchPostResponseBlogsItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.repo_search#QuickSearchPostResponseBlogsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.repo_search#QuickSearchPostResponseBlogsItem"
+      },
+      "traits": {}
+    },
     "com.huggingface.repo_search#QuickSearchPostResponse": {
       "type": "structure",
       "members": {
@@ -10860,6 +10983,18 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "blogs": {
+          "target": "com.huggingface.repo_search#QuickSearchPostResponseBlogsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blogsCount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
         }
       },
       "traits": {
@@ -10888,10 +11023,10 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.repo_search#QuickSearch"
+          "target": "com.huggingface.repo_search#QuickSearchPost"
         },
         {
-          "target": "com.huggingface.repo_search#QuickSearchPost"
+          "target": "com.huggingface.repo_search#SearchQuick"
         }
       ],
       "traits": {

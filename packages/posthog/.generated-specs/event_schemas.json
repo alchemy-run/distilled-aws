@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.event_schemas#ListEventSchemasRequest": {
@@ -135,7 +136,7 @@
           "target": "smithy.api#String"
         },
         "property_type": {
-          "target": "com.posthog.event_schemas#SchemaPropertyGroupPropertyPropertyTypeEnum"
+          "target": "com.posthog.event_schemas#SchemaPropertyTypeEnum"
         },
         "is_required": {
           "target": "smithy.api#Boolean"
@@ -155,7 +156,7 @@
       },
       "traits": {}
     },
-    "com.posthog.event_schemas#SchemaPropertyGroupPropertyPropertyTypeEnum": {
+    "com.posthog.event_schemas#SchemaPropertyTypeEnum": {
       "type": "enum",
       "members": {
         "DATETIME": {
@@ -500,7 +501,7 @@
         }
       }
     },
-    "com.posthog.event_schemas#UpdateEventSchemaPartialRequest": {
+    "com.posthog.event_schemas#UpdateEventSchemasPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -530,10 +531,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.event_schemas#UpdateEventSchemaPartial": {
+    "com.posthog.event_schemas#UpdateEventSchemasPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_schemas#UpdateEventSchemaPartialRequest"
+        "target": "com.posthog.event_schemas#UpdateEventSchemasPartialRequest"
       },
       "output": {
         "target": "com.posthog.event_schemas#EventSchemaOutput"
@@ -649,19 +650,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.event_schemas#ListEventSchemas"
+          "target": "com.posthog.event_schemas#CreateEventSchema"
         },
         {
-          "target": "com.posthog.event_schemas#CreateEventSchema"
+          "target": "com.posthog.event_schemas#EventSchemasDestroy"
+        },
+        {
+          "target": "com.posthog.event_schemas#ListEventSchemas"
         },
         {
           "target": "com.posthog.event_schemas#UpdateEventSchema"
         },
         {
-          "target": "com.posthog.event_schemas#UpdateEventSchemaPartial"
-        },
-        {
-          "target": "com.posthog.event_schemas#EventSchemasDestroy"
+          "target": "com.posthog.event_schemas#UpdateEventSchemasPartial"
         }
       ],
       "traits": {

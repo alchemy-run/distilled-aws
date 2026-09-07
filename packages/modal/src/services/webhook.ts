@@ -13,6 +13,32 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
+export interface AddWebhookTokenEnvironmentRequest {
+  tokenId?: string;
+  environmentId?: string;
+}
+export const AddWebhookTokenEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tokenId: S.optional(S.String),
+    environmentId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/WebhookTokenEnvironmentAdd",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AddWebhookTokenEnvironmentRequest",
+}) as any as S.Schema<AddWebhookTokenEnvironmentRequest>;
+
+export interface AddWebhookTokenEnvironmentResponse {}
+export const AddWebhookTokenEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AddWebhookTokenEnvironmentResponse",
+}) as any as S.Schema<AddWebhookTokenEnvironmentResponse>;
+
 export interface CreateWebhookTokenRequest {
   scoped?: boolean;
 }
@@ -143,67 +169,11 @@ export const ListWebhookTokenEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWebhookTokenEnvironmentResponse",
 }) as any as S.Schema<ListWebhookTokenEnvironmentResponse>;
 
-export interface ListWebhookTokenForEnvironmentRequest {
-  environmentName?: string;
-}
-export const ListWebhookTokenForEnvironmentRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      environmentName: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/modal.client.ModalClient/WebhookTokenListForEnvironment",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ListWebhookTokenForEnvironmentRequest",
-}) as any as S.Schema<ListWebhookTokenForEnvironmentRequest>;
-
-export interface ListWebhookTokenForEnvironmentResponse {
-  tokens?: WebhookTokenList2;
-}
-export const ListWebhookTokenForEnvironmentResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      tokens: S.optional(WebhookTokenList2),
-    }),
-).annotate({
-  identifier: "ListWebhookTokenForEnvironmentResponse",
-}) as any as S.Schema<ListWebhookTokenForEnvironmentResponse>;
-
-export interface WebhookTokenEnvironmentAddRequest {
+export interface RemoveWebhookTokenEnvironmentRequest {
   tokenId?: string;
   environmentId?: string;
 }
-export const WebhookTokenEnvironmentAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tokenId: S.optional(S.String),
-    environmentId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/WebhookTokenEnvironmentAdd",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhookTokenEnvironmentAddRequest",
-}) as any as S.Schema<WebhookTokenEnvironmentAddRequest>;
-
-export interface WebhookTokenEnvironmentAddResponse {}
-export const WebhookTokenEnvironmentAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebhookTokenEnvironmentAddResponse",
-}) as any as S.Schema<WebhookTokenEnvironmentAddResponse>;
-
-export interface WebhookTokenEnvironmentRemoveRequest {
-  tokenId?: string;
-  environmentId?: string;
-}
-export const WebhookTokenEnvironmentRemoveRequest = /*@__PURE__*/ S.suspend(
+export const RemoveWebhookTokenEnvironmentRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       tokenId: S.optional(S.String),
@@ -216,15 +186,59 @@ export const WebhookTokenEnvironmentRemoveRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "WebhookTokenEnvironmentRemoveRequest",
-}) as any as S.Schema<WebhookTokenEnvironmentRemoveRequest>;
+  identifier: "RemoveWebhookTokenEnvironmentRequest",
+}) as any as S.Schema<RemoveWebhookTokenEnvironmentRequest>;
 
-export interface WebhookTokenEnvironmentRemoveResponse {}
-export const WebhookTokenEnvironmentRemoveResponse = /*@__PURE__*/ S.suspend(
+export interface RemoveWebhookTokenEnvironmentResponse {}
+export const RemoveWebhookTokenEnvironmentResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "WebhookTokenEnvironmentRemoveResponse",
-}) as any as S.Schema<WebhookTokenEnvironmentRemoveResponse>;
+  identifier: "RemoveWebhookTokenEnvironmentResponse",
+}) as any as S.Schema<RemoveWebhookTokenEnvironmentResponse>;
+
+export interface WebhookTokenListForEnvironmentRequest {
+  environmentName?: string;
+}
+export const WebhookTokenListForEnvironmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      environmentName: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/modal.client.ModalClient/WebhookTokenListForEnvironment",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "WebhookTokenListForEnvironmentRequest",
+}) as any as S.Schema<WebhookTokenListForEnvironmentRequest>;
+
+export interface WebhookTokenListForEnvironmentResponse {
+  tokens?: WebhookTokenList2;
+}
+export const WebhookTokenListForEnvironmentResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      tokens: S.optional(WebhookTokenList2),
+    }),
+).annotate({
+  identifier: "WebhookTokenListForEnvironmentResponse",
+}) as any as S.Schema<WebhookTokenListForEnvironmentResponse>;
+
+export type AddWebhookTokenEnvironmentError = ModalOpError;
+export const addWebhookTokenEnvironment: API.OperationMethod<
+  AddWebhookTokenEnvironmentRequest,
+  AddWebhookTokenEnvironmentResponse,
+  AddWebhookTokenEnvironmentError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddWebhookTokenEnvironmentRequest,
+  output: AddWebhookTokenEnvironmentResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CreateWebhookTokenError = ModalOpError;
 /** Webhook tokens (proxy tokens) */
@@ -283,43 +297,29 @@ export const listWebhookTokenEnvironment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListWebhookTokenForEnvironmentError = ModalOpError;
-export const listWebhookTokenForEnvironment: API.OperationMethod<
-  ListWebhookTokenForEnvironmentRequest,
-  ListWebhookTokenForEnvironmentResponse,
-  ListWebhookTokenForEnvironmentError,
+export type RemoveWebhookTokenEnvironmentError = ModalOpError;
+export const removeWebhookTokenEnvironment: API.OperationMethod<
+  RemoveWebhookTokenEnvironmentRequest,
+  RemoveWebhookTokenEnvironmentResponse,
+  RemoveWebhookTokenEnvironmentError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWebhookTokenForEnvironmentRequest,
-  output: ListWebhookTokenForEnvironmentResponse,
+  input: RemoveWebhookTokenEnvironmentRequest,
+  output: RemoveWebhookTokenEnvironmentResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type WebhookTokenEnvironmentAddError = ModalOpError;
-export const webhookTokenEnvironmentAdd: API.OperationMethod<
-  WebhookTokenEnvironmentAddRequest,
-  WebhookTokenEnvironmentAddResponse,
-  WebhookTokenEnvironmentAddError,
+export type WebhookTokenListForEnvironmentError = ModalOpError;
+export const webhookTokenListForEnvironment: API.OperationMethod<
+  WebhookTokenListForEnvironmentRequest,
+  WebhookTokenListForEnvironmentResponse,
+  WebhookTokenListForEnvironmentError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebhookTokenEnvironmentAddRequest,
-  output: WebhookTokenEnvironmentAddResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhookTokenEnvironmentRemoveError = ModalOpError;
-export const webhookTokenEnvironmentRemove: API.OperationMethod<
-  WebhookTokenEnvironmentRemoveRequest,
-  WebhookTokenEnvironmentRemoveResponse,
-  WebhookTokenEnvironmentRemoveError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhookTokenEnvironmentRemoveRequest,
-  output: WebhookTokenEnvironmentRemoveResponse,
+  input: WebhookTokenListForEnvironmentRequest,
+  output: WebhookTokenListForEnvironmentResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

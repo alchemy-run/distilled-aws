@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.apps#ListAppsRequestAppType": {
@@ -1864,7 +1865,7 @@
         "smithy.api#documentation": "Create App\n\nRegisters a new app on the Whop developer platform. Apps provide custom experiences that can be added to products."
       }
     },
-    "com.whop.apps#RetrieveAppRequest": {
+    "com.whop.apps#GetAppRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1880,10 +1881,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.apps#RetrieveApp": {
+    "com.whop.apps#GetApp": {
       "type": "operation",
       "input": {
-        "target": "com.whop.apps#RetrieveAppRequest"
+        "target": "com.whop.apps#GetAppRequest"
       },
       "output": {
         "target": "com.whop.apps#App"
@@ -2923,16 +2924,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.apps#ListApps"
-        },
-        {
           "target": "com.whop.apps#CreateApp"
-        },
-        {
-          "target": "com.whop.apps#RetrieveApp"
-        },
-        {
-          "target": "com.whop.apps#UpdateApp"
         },
         {
           "target": "com.whop.apps#DeleteApp"
@@ -2941,7 +2933,16 @@
           "target": "com.whop.apps#DeployApp"
         },
         {
+          "target": "com.whop.apps#GetApp"
+        },
+        {
           "target": "com.whop.apps#ListAppLogs"
+        },
+        {
+          "target": "com.whop.apps#ListApps"
+        },
+        {
+          "target": "com.whop.apps#UpdateApp"
         },
         {
           "target": "com.whop.apps#UpdateAppPermissions"

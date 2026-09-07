@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.resourcegraph#DeleteGraphQuery": {
@@ -121,7 +122,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourcegraph#GraphQueryUpdateResponseTagsMap",
+          "target": "com.azure.resourcegraph#UpdateGraphQueryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -143,7 +144,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.resourcegraph#GraphQueryUpdateResponseTagsMap": {
+    "com.azure.resourcegraph#UpdateGraphQueryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -338,7 +339,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourcegraph#GraphQueryUpdateRequestTagsMap",
+          "target": "com.azure.resourcegraph#UpdateGraphQueryRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -380,7 +381,7 @@
         "smithy.api#documentation": "Properties that contain a workbook for PATCH operation."
       }
     },
-    "com.azure.resourcegraph#GraphQueryUpdateRequestTagsMap": {
+    "com.azure.resourcegraph#UpdateGraphQueryRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -621,7 +622,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourcegraph#GraphQueryGetResponseTagsMap",
+          "target": "com.azure.resourcegraph#GetGraphQueryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -643,7 +644,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.resourcegraph#GraphQueryGetResponseTagsMap": {
+    "com.azure.resourcegraph#GetGraphQueryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -693,7 +694,7 @@
         "target": "com.azure.resourcegraph#ListGraphQueryRequest"
       },
       "output": {
-        "target": "com.azure.resourcegraph#ListGraphQueryResult"
+        "target": "com.azure.resourcegraph#GraphQueryListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -706,7 +707,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-01"
       }
     },
-    "com.azure.resourcegraph#ListGraphQueryResult": {
+    "com.azure.resourcegraph#GraphQueryListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -834,7 +835,7 @@
         "target": "com.azure.resourcegraph#ListGraphQueryBySubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.resourcegraph#ListGraphQueryResult"
+        "target": "com.azure.resourcegraph#GraphQueryListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -1336,13 +1337,10 @@
           "target": "com.azure.resourcegraph#DeleteGraphQuery"
         },
         {
-          "target": "com.azure.resourcegraph#UpdateGraphQuery"
+          "target": "com.azure.resourcegraph#GetGraphQuery"
         },
         {
           "target": "com.azure.resourcegraph#GraphQueryCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resourcegraph#GetGraphQuery"
         },
         {
           "target": "com.azure.resourcegraph#ListGraphQuery"
@@ -1351,10 +1349,13 @@
           "target": "com.azure.resourcegraph#ListGraphQueryBySubscription"
         },
         {
+          "target": "com.azure.resourcegraph#ListOperations"
+        },
+        {
           "target": "com.azure.resourcegraph#Resources"
         },
         {
-          "target": "com.azure.resourcegraph#ListOperations"
+          "target": "com.azure.resourcegraph#UpdateGraphQuery"
         }
       ],
       "traits": {

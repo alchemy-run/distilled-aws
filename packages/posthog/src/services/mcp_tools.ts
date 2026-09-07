@@ -31,17 +31,17 @@ export const CreateMcpToolRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateMcpToolRequest",
 }) as any as S.Schema<CreateMcpToolRequest>;
 
-export type McpToolsCreateResponseBodyMap = {
+export type CreateMcpToolResponseBodyMap = {
   [key: string]: unknown | undefined;
 };
-export const McpToolsCreateResponseBodyMap = /*@__PURE__*/ S.Record(
+export const CreateMcpToolResponseBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<McpToolsCreateResponseBodyMap>;
+) as any as S.Schema<CreateMcpToolResponseBodyMap>;
 
-export type CreateMcpToolResponse = McpToolsCreateResponseBodyMap;
+export type CreateMcpToolResponse = CreateMcpToolResponseBodyMap;
 export const CreateMcpToolResponse = /*@__PURE__*/ S.suspend(() =>
-  McpToolsCreateResponseBodyMap.pipe(T.RawResponseRoot()),
+  CreateMcpToolResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "CreateMcpToolResponse",
 }) as any as S.Schema<CreateMcpToolResponse>;

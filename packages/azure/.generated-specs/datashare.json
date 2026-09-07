@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.datashare#ListTriggerByShareSubscription": {
@@ -508,7 +509,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#TriggersCreateResponseKind",
+          "target": "com.azure.datashare#CreateTriggerResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of synchronization on trigger.",
             "smithy.api#required": {}
@@ -519,7 +520,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#TriggersCreateResponseKind": {
+    "com.azure.datashare#CreateTriggerResponseKind": {
       "type": "enum",
       "members": {
         "SCHEDULEBASED": {
@@ -577,7 +578,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#TriggersCreateRequestKind",
+          "target": "com.azure.datashare#CreateTriggerRequestKind",
           "traits": {
             "smithy.api#documentation": "Kind of synchronization on trigger.",
             "smithy.api#required": {}
@@ -588,7 +589,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#TriggersCreateRequestKind": {
+    "com.azure.datashare#CreateTriggerRequestKind": {
       "type": "enum",
       "members": {
         "SCHEDULEBASED": {
@@ -649,7 +650,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#TriggersGetResponseKind",
+          "target": "com.azure.datashare#GetTriggerResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of synchronization on trigger.",
             "smithy.api#required": {}
@@ -660,7 +661,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#TriggersGetResponseKind": {
+    "com.azure.datashare#GetTriggerResponseKind": {
       "type": "enum",
       "members": {
         "SCHEDULEBASED": {
@@ -722,10 +723,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#ListSynchronizationSettingByShare": {
+    "com.azure.datashare#ListSynchronizationSettingsByShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#ListSynchronizationSettingByShareRequest"
+        "target": "com.azure.datashare#ListSynchronizationSettingsByShareRequest"
       },
       "output": {
         "target": "com.azure.datashare#SynchronizationSettingList"
@@ -824,7 +825,7 @@
         "smithy.api#documentation": "Kind of synchronization setting."
       }
     },
-    "com.azure.datashare#ListSynchronizationSettingByShareRequest": {
+    "com.azure.datashare#ListSynchronizationSettingsByShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -871,10 +872,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#DeleteSynchronizationSetting": {
+    "com.azure.datashare#DeleteSynchronizationSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#DeleteSynchronizationSettingRequest"
+        "target": "com.azure.datashare#DeleteSynchronizationSettingsRequest"
       },
       "output": {
         "target": "com.azure.datashare#OperationResponse"
@@ -890,7 +891,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#DeleteSynchronizationSettingRequest": {
+    "com.azure.datashare#DeleteSynchronizationSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -938,13 +939,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#CreateSynchronizationSetting": {
+    "com.azure.datashare#CreateSynchronizationSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#CreateSynchronizationSettingRequest"
+        "target": "com.azure.datashare#CreateSynchronizationSettingsRequest"
       },
       "output": {
-        "target": "com.azure.datashare#CreateSynchronizationSettingResponse"
+        "target": "com.azure.datashare#CreateSynchronizationSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -957,7 +958,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#CreateSynchronizationSettingResponse": {
+    "com.azure.datashare#CreateSynchronizationSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -985,7 +986,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#SynchronizationSettingsCreateResponseKind",
+          "target": "com.azure.datashare#CreateSynchronizationSettingsResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of synchronization setting.",
             "smithy.api#required": {}
@@ -996,7 +997,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#SynchronizationSettingsCreateResponseKind": {
+    "com.azure.datashare#CreateSynchronizationSettingsResponseKind": {
       "type": "enum",
       "members": {
         "SCHEDULEBASED": {
@@ -1010,7 +1011,7 @@
         "smithy.api#documentation": "Kind of synchronization setting."
       }
     },
-    "com.azure.datashare#CreateSynchronizationSettingRequest": {
+    "com.azure.datashare#CreateSynchronizationSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1054,7 +1055,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#SynchronizationSettingsCreateRequestKind",
+          "target": "com.azure.datashare#CreateSynchronizationSettingsRequestKind",
           "traits": {
             "smithy.api#documentation": "Kind of synchronization setting.",
             "smithy.api#required": {}
@@ -1065,7 +1066,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#SynchronizationSettingsCreateRequestKind": {
+    "com.azure.datashare#CreateSynchronizationSettingsRequestKind": {
       "type": "enum",
       "members": {
         "SCHEDULEBASED": {
@@ -1079,13 +1080,13 @@
         "smithy.api#documentation": "Kind of synchronization setting."
       }
     },
-    "com.azure.datashare#GetSynchronizationSetting": {
+    "com.azure.datashare#GetSynchronizationSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#GetSynchronizationSettingRequest"
+        "target": "com.azure.datashare#GetSynchronizationSettingsRequest"
       },
       "output": {
-        "target": "com.azure.datashare#GetSynchronizationSettingResponse"
+        "target": "com.azure.datashare#GetSynchronizationSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1098,7 +1099,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#GetSynchronizationSettingResponse": {
+    "com.azure.datashare#GetSynchronizationSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1126,7 +1127,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#SynchronizationSettingsGetResponseKind",
+          "target": "com.azure.datashare#GetSynchronizationSettingsResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of synchronization setting.",
             "smithy.api#required": {}
@@ -1137,7 +1138,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#SynchronizationSettingsGetResponseKind": {
+    "com.azure.datashare#GetSynchronizationSettingsResponseKind": {
       "type": "enum",
       "members": {
         "SCHEDULEBASED": {
@@ -1151,7 +1152,7 @@
         "smithy.api#documentation": "Kind of synchronization setting."
       }
     },
-    "com.azure.datashare#GetSynchronizationSettingRequest": {
+    "com.azure.datashare#GetSynchronizationSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2782,10 +2783,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#ShareSubscriptionsCancelSynchronization": {
+    "com.azure.datashare#CancelShareSubscriptionSynchronization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#ShareSubscriptionsCancelSynchronizationRequest"
+        "target": "com.azure.datashare#CancelShareSubscriptionSynchronizationRequest"
       },
       "output": {
         "target": "com.azure.datashare#ShareSubscriptionSynchronization"
@@ -2801,7 +2802,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#ShareSubscriptionsCancelSynchronizationRequest": {
+    "com.azure.datashare#CancelShareSubscriptionSynchronizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3740,13 +3741,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#ProviderShareSubscriptionsRevoke": {
+    "com.azure.datashare#RevokeProviderShareSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#ProviderShareSubscriptionsRevokeRequest"
+        "target": "com.azure.datashare#RevokeProviderShareSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.datashare#ProviderShareSubscriptionsRevokeResponse"
+        "target": "com.azure.datashare#RevokeProviderShareSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3759,7 +3760,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#ProviderShareSubscriptionsRevokeResponse": {
+    "com.azure.datashare#RevokeProviderShareSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3797,7 +3798,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#ProviderShareSubscriptionsRevokeRequest": {
+    "com.azure.datashare#RevokeProviderShareSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5294,10 +5295,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#EmailRegistrationsRegisterEmail": {
+    "com.azure.datashare#RegisterEmailRegistrationEmail": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#EmailRegistrationsRegisterEmailRequest"
+        "target": "com.azure.datashare#RegisterEmailRegistrationEmailRequest"
       },
       "output": {
         "target": "com.azure.datashare#EmailRegistration"
@@ -5377,7 +5378,7 @@
         "smithy.api#documentation": "Registration status"
       }
     },
-    "com.azure.datashare#EmailRegistrationsRegisterEmailRequest": {
+    "com.azure.datashare#RegisterEmailRegistrationEmailRequest": {
       "type": "structure",
       "members": {
         "location": {
@@ -5393,10 +5394,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#EmailRegistrationsActivateEmail": {
+    "com.azure.datashare#ActivateEmailRegistrationEmail": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#EmailRegistrationsActivateEmailRequest"
+        "target": "com.azure.datashare#ActivateEmailRegistrationEmailRequest"
       },
       "output": {
         "target": "com.azure.datashare#EmailRegistration"
@@ -5412,7 +5413,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#EmailRegistrationsActivateEmailRequest": {
+    "com.azure.datashare#ActivateEmailRegistrationEmailRequest": {
       "type": "structure",
       "members": {
         "location": {
@@ -5434,10 +5435,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#DataSetMappingsListByShareSubscription": {
+    "com.azure.datashare#ListDataSetMappingByShareSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#DataSetMappingsListByShareSubscriptionRequest"
+        "target": "com.azure.datashare#ListDataSetMappingByShareSubscriptionRequest"
       },
       "output": {
         "target": "com.azure.datashare#DataSetMappingList"
@@ -5602,7 +5603,7 @@
         "smithy.api#documentation": "Kind of data set mapping."
       }
     },
-    "com.azure.datashare#DataSetMappingsListByShareSubscriptionRequest": {
+    "com.azure.datashare#ListDataSetMappingByShareSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5663,10 +5664,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#DataSetMappingsDelete": {
+    "com.azure.datashare#DeleteDataSetMapping": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#DataSetMappingsDeleteRequest"
+        "target": "com.azure.datashare#DeleteDataSetMappingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5682,7 +5683,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#DataSetMappingsDeleteRequest": {
+    "com.azure.datashare#DeleteDataSetMappingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5730,13 +5731,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#DataSetMappingsCreate": {
+    "com.azure.datashare#CreateDataSetMapping": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#DataSetMappingsCreateRequest"
+        "target": "com.azure.datashare#CreateDataSetMappingRequest"
       },
       "output": {
-        "target": "com.azure.datashare#DataSetMappingsCreateResponse"
+        "target": "com.azure.datashare#CreateDataSetMappingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5749,7 +5750,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#DataSetMappingsCreateResponse": {
+    "com.azure.datashare#CreateDataSetMappingResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5777,7 +5778,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#DataSetMappingsCreateResponseKind",
+          "target": "com.azure.datashare#CreateDataSetMappingResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of data set mapping.",
             "smithy.api#required": {}
@@ -5788,7 +5789,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#DataSetMappingsCreateResponseKind": {
+    "com.azure.datashare#CreateDataSetMappingResponseKind": {
       "type": "enum",
       "members": {
         "BLOB": {
@@ -5868,7 +5869,7 @@
         "smithy.api#documentation": "Kind of data set mapping."
       }
     },
-    "com.azure.datashare#DataSetMappingsCreateRequest": {
+    "com.azure.datashare#CreateDataSetMappingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5912,7 +5913,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#DataSetMappingsCreateRequestKind",
+          "target": "com.azure.datashare#CreateDataSetMappingRequestKind",
           "traits": {
             "smithy.api#documentation": "Kind of data set mapping.",
             "smithy.api#required": {}
@@ -5923,7 +5924,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#DataSetMappingsCreateRequestKind": {
+    "com.azure.datashare#CreateDataSetMappingRequestKind": {
       "type": "enum",
       "members": {
         "BLOB": {
@@ -6003,13 +6004,13 @@
         "smithy.api#documentation": "Kind of data set mapping."
       }
     },
-    "com.azure.datashare#DataSetMappingsGet": {
+    "com.azure.datashare#GetDataSetMapping": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#DataSetMappingsGetRequest"
+        "target": "com.azure.datashare#GetDataSetMappingRequest"
       },
       "output": {
-        "target": "com.azure.datashare#DataSetMappingsGetResponse"
+        "target": "com.azure.datashare#GetDataSetMappingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6022,7 +6023,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#DataSetMappingsGetResponse": {
+    "com.azure.datashare#GetDataSetMappingResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6050,7 +6051,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#DataSetMappingsGetResponseKind",
+          "target": "com.azure.datashare#GetDataSetMappingResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of data set mapping.",
             "smithy.api#required": {}
@@ -6061,7 +6062,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#DataSetMappingsGetResponseKind": {
+    "com.azure.datashare#GetDataSetMappingResponseKind": {
       "type": "enum",
       "members": {
         "BLOB": {
@@ -6141,7 +6142,7 @@
         "smithy.api#documentation": "Kind of data set mapping."
       }
     },
-    "com.azure.datashare#DataSetMappingsGetRequest": {
+    "com.azure.datashare#GetDataSetMappingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6544,7 +6545,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#DataSetsCreateResponseKind",
+          "target": "com.azure.datashare#CreateDataSetResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of data set.",
             "smithy.api#required": {}
@@ -6555,7 +6556,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#DataSetsCreateResponseKind": {
+    "com.azure.datashare#CreateDataSetResponseKind": {
       "type": "enum",
       "members": {
         "BLOB": {
@@ -6691,7 +6692,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#DataSetsCreateRequestKind",
+          "target": "com.azure.datashare#CreateDataSetRequestKind",
           "traits": {
             "smithy.api#documentation": "Kind of data set.",
             "smithy.api#required": {}
@@ -6702,7 +6703,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#DataSetsCreateRequestKind": {
+    "com.azure.datashare#CreateDataSetRequestKind": {
       "type": "enum",
       "members": {
         "BLOB": {
@@ -6841,7 +6842,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.datashare#DataSetsGetResponseKind",
+          "target": "com.azure.datashare#GetDataSetResponseKind",
           "traits": {
             "smithy.api#documentation": "Kind of data set.",
             "smithy.api#required": {}
@@ -6852,7 +6853,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#DataSetsGetResponseKind": {
+    "com.azure.datashare#GetDataSetResponseKind": {
       "type": "enum",
       "members": {
         "BLOB": {
@@ -6992,13 +6993,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#ConsumerInvitationsRejectInvitation": {
+    "com.azure.datashare#RejectConsumerInvitationInvitation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datashare#ConsumerInvitationsRejectInvitationRequest"
+        "target": "com.azure.datashare#RejectConsumerInvitationInvitationRequest"
       },
       "output": {
-        "target": "com.azure.datashare#ConsumerInvitationsRejectInvitationResponse"
+        "target": "com.azure.datashare#RejectConsumerInvitationInvitationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7011,7 +7012,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.datashare#ConsumerInvitationsRejectInvitationResponse": {
+    "com.azure.datashare#RejectConsumerInvitationInvitationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7181,7 +7182,7 @@
         "smithy.api#documentation": "The status of the invitation."
       }
     },
-    "com.azure.datashare#ConsumerInvitationsRejectInvitationRequest": {
+    "com.azure.datashare#RejectConsumerInvitationInvitationRequest": {
       "type": "structure",
       "members": {
         "location": {
@@ -7767,7 +7768,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datashare#AccountsUpdateResponseTagsMap",
+          "target": "com.azure.datashare#UpdateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -7790,7 +7791,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#AccountsUpdateResponseTagsMap": {
+    "com.azure.datashare#UpdateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7830,7 +7831,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datashare#AccountsUpdateRequestTagsMap",
+          "target": "com.azure.datashare#UpdateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -7840,7 +7841,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datashare#AccountsUpdateRequestTagsMap": {
+    "com.azure.datashare#UpdateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7905,7 +7906,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datashare#AccountsCreateResponseTagsMap",
+          "target": "com.azure.datashare#CreateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -7928,7 +7929,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#AccountsCreateResponseTagsMap": {
+    "com.azure.datashare#CreateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7974,7 +7975,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datashare#AccountsCreateRequestTagsMap",
+          "target": "com.azure.datashare#CreateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -8032,7 +8033,7 @@
         "smithy.api#documentation": "Identity Type"
       }
     },
-    "com.azure.datashare#AccountsCreateRequestTagsMap": {
+    "com.azure.datashare#CreateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8097,7 +8098,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datashare#AccountsGetResponseTagsMap",
+          "target": "com.azure.datashare#GetAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags on the azure resource."
           }
@@ -8120,7 +8121,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datashare#AccountsGetResponseTagsMap": {
+    "com.azure.datashare#GetAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8211,163 +8212,163 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datashare#ListTriggerByShareSubscription"
+          "target": "com.azure.datashare#ActivateEmailRegistrationEmail"
         },
         {
-          "target": "com.azure.datashare#DeleteTrigger"
-        },
-        {
-          "target": "com.azure.datashare#CreateTrigger"
-        },
-        {
-          "target": "com.azure.datashare#GetTrigger"
-        },
-        {
-          "target": "com.azure.datashare#ListSynchronizationSettingByShare"
-        },
-        {
-          "target": "com.azure.datashare#DeleteSynchronizationSetting"
-        },
-        {
-          "target": "com.azure.datashare#CreateSynchronizationSetting"
-        },
-        {
-          "target": "com.azure.datashare#GetSynchronizationSetting"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSubscriptionByAccount"
-        },
-        {
-          "target": "com.azure.datashare#DeleteShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#CreateShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#GetShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#ShareSubscriptionsSynchronize"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSubscriptionSynchronizations"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSubscriptionSynchronizationDetails"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSubscriptionSourceShareSynchronizationSettings"
-        },
-        {
-          "target": "com.azure.datashare#ListConsumerSourceDataSetByShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#ShareSubscriptionsCancelSynchronization"
-        },
-        {
-          "target": "com.azure.datashare#ListShareByAccount"
-        },
-        {
-          "target": "com.azure.datashare#DeleteShare"
-        },
-        {
-          "target": "com.azure.datashare#CreateShare"
-        },
-        {
-          "target": "com.azure.datashare#GetShare"
-        },
-        {
-          "target": "com.azure.datashare#ListProviderShareSubscriptionByShare"
-        },
-        {
-          "target": "com.azure.datashare#GetProviderShareSubscriptionByShare"
-        },
-        {
-          "target": "com.azure.datashare#ProviderShareSubscriptionsRevoke"
-        },
-        {
-          "target": "com.azure.datashare#ProviderShareSubscriptionsReinstate"
-        },
-        {
-          "target": "com.azure.datashare#ProviderShareSubscriptionsAdjust"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSynchronizations"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSynchronizationDetails"
-        },
-        {
-          "target": "com.azure.datashare#ListOperations"
-        },
-        {
-          "target": "com.azure.datashare#ListInvitationByShare"
-        },
-        {
-          "target": "com.azure.datashare#DeleteInvitation"
-        },
-        {
-          "target": "com.azure.datashare#CreateInvitation"
-        },
-        {
-          "target": "com.azure.datashare#GetInvitation"
-        },
-        {
-          "target": "com.azure.datashare#EmailRegistrationsRegisterEmail"
-        },
-        {
-          "target": "com.azure.datashare#EmailRegistrationsActivateEmail"
-        },
-        {
-          "target": "com.azure.datashare#DataSetMappingsListByShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#DataSetMappingsDelete"
-        },
-        {
-          "target": "com.azure.datashare#DataSetMappingsCreate"
-        },
-        {
-          "target": "com.azure.datashare#DataSetMappingsGet"
-        },
-        {
-          "target": "com.azure.datashare#ListDataSetByShare"
-        },
-        {
-          "target": "com.azure.datashare#DeleteDataSet"
-        },
-        {
-          "target": "com.azure.datashare#CreateDataSet"
-        },
-        {
-          "target": "com.azure.datashare#GetDataSet"
-        },
-        {
-          "target": "com.azure.datashare#ConsumerInvitationsRejectInvitation"
-        },
-        {
-          "target": "com.azure.datashare#GetConsumerInvitation"
-        },
-        {
-          "target": "com.azure.datashare#ListConsumerInvitationInvitations"
-        },
-        {
-          "target": "com.azure.datashare#ListAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.datashare#DeleteAccount"
-        },
-        {
-          "target": "com.azure.datashare#UpdateAccount"
+          "target": "com.azure.datashare#CancelShareSubscriptionSynchronization"
         },
         {
           "target": "com.azure.datashare#CreateAccount"
         },
         {
+          "target": "com.azure.datashare#CreateDataSet"
+        },
+        {
+          "target": "com.azure.datashare#CreateDataSetMapping"
+        },
+        {
+          "target": "com.azure.datashare#CreateInvitation"
+        },
+        {
+          "target": "com.azure.datashare#CreateShare"
+        },
+        {
+          "target": "com.azure.datashare#CreateShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#CreateSynchronizationSettings"
+        },
+        {
+          "target": "com.azure.datashare#CreateTrigger"
+        },
+        {
+          "target": "com.azure.datashare#DeleteAccount"
+        },
+        {
+          "target": "com.azure.datashare#DeleteDataSet"
+        },
+        {
+          "target": "com.azure.datashare#DeleteDataSetMapping"
+        },
+        {
+          "target": "com.azure.datashare#DeleteInvitation"
+        },
+        {
+          "target": "com.azure.datashare#DeleteShare"
+        },
+        {
+          "target": "com.azure.datashare#DeleteShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#DeleteSynchronizationSettings"
+        },
+        {
+          "target": "com.azure.datashare#DeleteTrigger"
+        },
+        {
           "target": "com.azure.datashare#GetAccount"
         },
         {
+          "target": "com.azure.datashare#GetConsumerInvitation"
+        },
+        {
+          "target": "com.azure.datashare#GetDataSet"
+        },
+        {
+          "target": "com.azure.datashare#GetDataSetMapping"
+        },
+        {
+          "target": "com.azure.datashare#GetInvitation"
+        },
+        {
+          "target": "com.azure.datashare#GetProviderShareSubscriptionByShare"
+        },
+        {
+          "target": "com.azure.datashare#GetShare"
+        },
+        {
+          "target": "com.azure.datashare#GetShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#GetSynchronizationSettings"
+        },
+        {
+          "target": "com.azure.datashare#GetTrigger"
+        },
+        {
+          "target": "com.azure.datashare#ListAccountByResourceGroup"
+        },
+        {
           "target": "com.azure.datashare#ListAccountBySubscription"
+        },
+        {
+          "target": "com.azure.datashare#ListConsumerInvitationInvitations"
+        },
+        {
+          "target": "com.azure.datashare#ListConsumerSourceDataSetByShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#ListDataSetByShare"
+        },
+        {
+          "target": "com.azure.datashare#ListDataSetMappingByShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#ListInvitationByShare"
+        },
+        {
+          "target": "com.azure.datashare#ListOperations"
+        },
+        {
+          "target": "com.azure.datashare#ListProviderShareSubscriptionByShare"
+        },
+        {
+          "target": "com.azure.datashare#ListShareByAccount"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSubscriptionByAccount"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSubscriptionSourceShareSynchronizationSettings"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSubscriptionSynchronizationDetails"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSubscriptionSynchronizations"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSynchronizationDetails"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSynchronizations"
+        },
+        {
+          "target": "com.azure.datashare#ListSynchronizationSettingsByShare"
+        },
+        {
+          "target": "com.azure.datashare#ListTriggerByShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#ProviderShareSubscriptionsAdjust"
+        },
+        {
+          "target": "com.azure.datashare#ProviderShareSubscriptionsReinstate"
+        },
+        {
+          "target": "com.azure.datashare#RegisterEmailRegistrationEmail"
+        },
+        {
+          "target": "com.azure.datashare#RejectConsumerInvitationInvitation"
+        },
+        {
+          "target": "com.azure.datashare#RevokeProviderShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#ShareSubscriptionsSynchronize"
+        },
+        {
+          "target": "com.azure.datashare#UpdateAccount"
         }
       ],
       "traits": {

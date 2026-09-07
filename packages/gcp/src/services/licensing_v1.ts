@@ -66,17 +66,17 @@ export class NotFound
   ) {}
 
 export interface DeleteLicenseAssignmentsRequest {
-  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
-  productId: string;
   /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
   userId: string;
+  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
+  productId: string;
   /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
   skuId: string;
 }
 export const DeleteLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    productId: S.String.pipe(T.Label()),
     userId: S.String.pipe(T.Label()),
+    productId: S.String.pipe(T.Label()),
     skuId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -96,18 +96,18 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
 }) as any as S.Schema<Empty>;
 
 export interface GetLicenseAssignmentsRequest {
-  /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
-  skuId: string;
-  /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
-  userId: string;
   /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
   productId: string;
+  /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
+  userId: string;
+  /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
+  skuId: string;
 }
 export const GetLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    skuId: S.String.pipe(T.Label()),
-    userId: S.String.pipe(T.Label()),
     productId: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
+    skuId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -121,33 +121,33 @@ export const GetLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Representation of a license assignment. */
 export interface LicenseAssignment {
-  /** ETag of the resource. */
-  etags?: string;
-  /** Display Name of the product. */
-  productName?: string;
   /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
   skuId?: string;
-  /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
-  userId?: string;
   /** Display Name of the sku of the product. */
   skuName?: string;
+  /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
+  userId?: string;
+  /** ETag of the resource. */
+  etags?: string;
+  /** Identifies the resource as a LicenseAssignment, which is `licensing#licenseAssignment`. */
+  kind?: string;
+  /** Display Name of the product. */
+  productName?: string;
   /** A product's unique identifier. For more information about products in this version of the API, see Product and SKU IDs. */
   productId?: string;
   /** Link to this page. */
   selfLink?: string;
-  /** Identifies the resource as a LicenseAssignment, which is `licensing#licenseAssignment`. */
-  kind?: string;
 }
 export const LicenseAssignment = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    etags: S.optional(S.String),
-    productName: S.optional(S.String),
     skuId: S.optional(S.String),
-    userId: S.optional(S.String),
     skuName: S.optional(S.String),
+    userId: S.optional(S.String),
+    etags: S.optional(S.String),
+    kind: S.optional(S.String),
+    productName: S.optional(S.String),
     productId: S.optional(S.String),
     selfLink: S.optional(S.String),
-    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "LicenseAssignment",
@@ -167,17 +167,17 @@ export const LicenseAssignmentInsert = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LicenseAssignmentInsert>;
 
 export interface InsertLicenseAssignmentsRequest {
-  /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
-  skuId: string;
   /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
   productId: string;
+  /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
+  skuId: string;
   /** Request body */
   body?: LicenseAssignmentInsert;
 }
 export const InsertLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    skuId: S.String.pipe(T.Label()),
     productId: S.String.pipe(T.Label()),
+    skuId: S.String.pipe(T.Label()),
     body: S.optional(LicenseAssignmentInsert.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -191,25 +191,25 @@ export const InsertLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertLicenseAssignmentsRequest>;
 
 export interface ListForProductAndSkuLicenseAssignmentsRequest {
+  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
+  productId: string;
+  /** The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number. */
+  maxResults?: number;
+  /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
+  skuId: string;
   /** Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page. */
   pageToken?: string;
   /** The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error. */
   customerId: string;
-  /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
-  skuId: string;
-  /** The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number. */
-  maxResults?: number;
-  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
-  productId: string;
 }
 export const ListForProductAndSkuLicenseAssignmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      productId: S.String.pipe(T.Label()),
+      maxResults: S.optional(S.Number.pipe(T.Query())),
+      skuId: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
       customerId: S.String.pipe(T.Query()),
-      skuId: S.String.pipe(T.Label()),
-      maxResults: S.optional(S.Number.pipe(T.Query())),
-      productId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -227,43 +227,43 @@ export const LicenseAssignmentList_ = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LicenseAssignmentList_>;
 
 export interface LicenseAssignmentList {
-  /** Identifies the resource as a collection of LicenseAssignments. */
-  kind?: string;
-  /** ETag of the resource. */
-  etag?: string;
   /** The LicenseAssignments in this page of results. */
   items: LicenseAssignmentList_;
+  /** Identifies the resource as a collection of LicenseAssignments. */
+  kind?: string;
   /** The token that you must submit in a subsequent request to retrieve additional license results matching your query parameters. The `maxResults` query string is related to the `nextPageToken` since `maxResults` determines how many entries are returned on each next page. */
   nextPageToken?: string;
+  /** ETag of the resource. */
+  etag?: string;
 }
 export const LicenseAssignmentList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
-    etag: S.optional(S.String),
     items: LicenseAssignmentList_,
+    kind: S.optional(S.String),
     nextPageToken: S.optional(S.String),
+    etag: S.optional(S.String),
   }),
 ).annotate({
   identifier: "LicenseAssignmentList",
 }) as any as S.Schema<LicenseAssignmentList>;
 
 export interface ListForProductLicenseAssignmentsRequest {
-  /** The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number. */
-  maxResults?: number;
-  /** Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page. */
-  pageToken?: string;
   /** The customer's unique ID as defined in the Admin console, such as `C00000000`. If the customer is suspended, the server returns an error. */
   customerId: string;
+  /** Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page. */
+  pageToken?: string;
   /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
   productId: string;
+  /** The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number. */
+  maxResults?: number;
 }
 export const ListForProductLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      maxResults: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
       customerId: S.String.pipe(T.Query()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       productId: S.String.pipe(T.Label()),
+      maxResults: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -276,20 +276,20 @@ export const ListForProductLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListForProductLicenseAssignmentsRequest>;
 
 export interface PatchLicenseAssignmentsRequest {
-  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
-  productId: string;
-  /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
-  userId: string;
   /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
   skuId: string;
+  /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
+  userId: string;
+  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
+  productId: string;
   /** Request body */
   body?: LicenseAssignment;
 }
 export const PatchLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    productId: S.String.pipe(T.Label()),
-    userId: S.String.pipe(T.Label()),
     skuId: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
+    productId: S.String.pipe(T.Label()),
     body: S.optional(LicenseAssignment.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -303,20 +303,20 @@ export const PatchLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchLicenseAssignmentsRequest>;
 
 export interface UpdateLicenseAssignmentsRequest {
-  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
-  productId: string;
   /** The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes. */
   userId: string;
   /** A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs. */
   skuId: string;
+  /** A product's unique identifier. For more information about products in this version of the API, see Products and SKUs. */
+  productId: string;
   /** Request body */
   body?: LicenseAssignment;
 }
 export const UpdateLicenseAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    productId: S.String.pipe(T.Label()),
     userId: S.String.pipe(T.Label()),
     skuId: S.String.pipe(T.Label()),
+    productId: S.String.pipe(T.Label()),
     body: S.optional(LicenseAssignment.pipe(T.HttpBody())),
   }).pipe(
     T.Http({

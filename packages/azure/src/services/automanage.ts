@@ -753,7 +753,7 @@ export const DeleteConfigurationProfileAssignmentResponse =
     identifier: "DeleteConfigurationProfileAssignmentResponse",
   }) as any as S.Schema<DeleteConfigurationProfileAssignmentResponse>;
 
-export interface DeleteConfigurationProfileHciAssignmentRequest {
+export interface DeleteConfigurationProfileHCIAssignmentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -763,7 +763,7 @@ export interface DeleteConfigurationProfileHciAssignmentRequest {
   /** Name of the configuration profile assignment */
   configurationProfileAssignmentName: string;
 }
-export const DeleteConfigurationProfileHciAssignmentRequest =
+export const DeleteConfigurationProfileHCIAssignmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -779,16 +779,16 @@ export const DeleteConfigurationProfileHciAssignmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteConfigurationProfileHciAssignmentRequest",
-  }) as any as S.Schema<DeleteConfigurationProfileHciAssignmentRequest>;
+    identifier: "DeleteConfigurationProfileHCIAssignmentRequest",
+  }) as any as S.Schema<DeleteConfigurationProfileHCIAssignmentRequest>;
 
-export interface DeleteConfigurationProfileHciAssignmentResponse {}
-export const DeleteConfigurationProfileHciAssignmentResponse =
+export interface DeleteConfigurationProfileHCIAssignmentResponse {}
+export const DeleteConfigurationProfileHCIAssignmentResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteConfigurationProfileHciAssignmentResponse",
-  }) as any as S.Schema<DeleteConfigurationProfileHciAssignmentResponse>;
+    identifier: "DeleteConfigurationProfileHCIAssignmentResponse",
+  }) as any as S.Schema<DeleteConfigurationProfileHCIAssignmentResponse>;
 
-export interface DeleteConfigurationProfileHcrpAssignmentRequest {
+export interface DeleteConfigurationProfileHCRPAssignmentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -798,7 +798,7 @@ export interface DeleteConfigurationProfileHcrpAssignmentRequest {
   /** Name of the configuration profile assignment */
   configurationProfileAssignmentName: string;
 }
-export const DeleteConfigurationProfileHcrpAssignmentRequest =
+export const DeleteConfigurationProfileHCRPAssignmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -814,16 +814,16 @@ export const DeleteConfigurationProfileHcrpAssignmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteConfigurationProfileHcrpAssignmentRequest",
-  }) as any as S.Schema<DeleteConfigurationProfileHcrpAssignmentRequest>;
+    identifier: "DeleteConfigurationProfileHCRPAssignmentRequest",
+  }) as any as S.Schema<DeleteConfigurationProfileHCRPAssignmentRequest>;
 
-export interface DeleteConfigurationProfileHcrpAssignmentResponse {}
-export const DeleteConfigurationProfileHcrpAssignmentResponse =
+export interface DeleteConfigurationProfileHCRPAssignmentResponse {}
+export const DeleteConfigurationProfileHCRPAssignmentResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteConfigurationProfileHcrpAssignmentResponse",
-  }) as any as S.Schema<DeleteConfigurationProfileHcrpAssignmentResponse>;
+    identifier: "DeleteConfigurationProfileHCRPAssignmentResponse",
+  }) as any as S.Schema<DeleteConfigurationProfileHCRPAssignmentResponse>;
 
-export interface DeleteConfigurationProfileVersionRequest {
+export interface DeleteConfigurationProfilesVersionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -833,8 +833,8 @@ export interface DeleteConfigurationProfileVersionRequest {
   /** The configuration profile version name. */
   versionName: string;
 }
-export const DeleteConfigurationProfileVersionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteConfigurationProfilesVersionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -848,15 +848,15 @@ export const DeleteConfigurationProfileVersionRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2022-05-04",
       }),
     ),
-).annotate({
-  identifier: "DeleteConfigurationProfileVersionRequest",
-}) as any as S.Schema<DeleteConfigurationProfileVersionRequest>;
+  ).annotate({
+    identifier: "DeleteConfigurationProfilesVersionRequest",
+  }) as any as S.Schema<DeleteConfigurationProfilesVersionRequest>;
 
-export interface DeleteConfigurationProfileVersionResponse {}
-export const DeleteConfigurationProfileVersionResponse =
+export interface DeleteConfigurationProfilesVersionResponse {}
+export const DeleteConfigurationProfilesVersionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteConfigurationProfileVersionResponse",
-  }) as any as S.Schema<DeleteConfigurationProfileVersionResponse>;
+    identifier: "DeleteConfigurationProfilesVersionResponse",
+  }) as any as S.Schema<DeleteConfigurationProfilesVersionResponse>;
 
 export interface GetBestPracticeRequest {
   /** The Automanage best practice name. */
@@ -944,13 +944,13 @@ export const BestPractice = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BestPractice" }) as any as S.Schema<BestPractice>;
 
-export interface GetBestPracticeVersionRequest {
+export interface GetBestPracticesVersionRequest {
   /** The Automanage best practice name. */
   bestPracticeName: string;
   /** The Automanage best practice version name. */
   versionName: string;
 }
-export const GetBestPracticeVersionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBestPracticesVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     bestPracticeName: S.String.pipe(T.Label()),
     versionName: S.String.pipe(T.Label()),
@@ -963,8 +963,8 @@ export const GetBestPracticeVersionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetBestPracticeVersionRequest",
-}) as any as S.Schema<GetBestPracticeVersionRequest>;
+  identifier: "GetBestPracticesVersionRequest",
+}) as any as S.Schema<GetBestPracticesVersionRequest>;
 
 export interface GetConfigurationProfileRequest {
   /** The ID of the target subscription. */
@@ -992,64 +992,64 @@ export const GetConfigurationProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConfigurationProfileRequest>;
 
 /** Resource tags. */
-export type ConfigurationProfilesGetResponseTagsMap = {
+export type GetConfigurationProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationProfilesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetConfigurationProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationProfilesGetResponseTagsMap>;
+) as any as S.Schema<GetConfigurationProfileResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationProfilesGetResponseSystemDataCreatedByType =
+export type GetConfigurationProfileResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfilesGetResponseSystemDataCreatedByType =
+export const GetConfigurationProfileResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationProfilesGetResponseSystemDataLastModifiedByType =
+export type GetConfigurationProfileResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfilesGetResponseSystemDataLastModifiedByType =
+export const GetConfigurationProfileResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationProfilesGetResponseSystemData {
+export interface GetConfigurationProfileResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationProfilesGetResponseSystemDataCreatedByType;
+  createdByType?: GetConfigurationProfileResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationProfilesGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetConfigurationProfileResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationProfilesGetResponseSystemData =
+export const GetConfigurationProfileResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationProfilesGetResponseSystemDataCreatedByType,
+        GetConfigurationProfileResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationProfilesGetResponseSystemDataLastModifiedByType,
+        GetConfigurationProfileResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationProfilesGetResponseSystemData",
-  }) as any as S.Schema<ConfigurationProfilesGetResponseSystemData>;
+    identifier: "GetConfigurationProfileResponseSystemData",
+  }) as any as S.Schema<GetConfigurationProfileResponseSystemData>;
 
 export interface GetConfigurationProfileResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1059,23 +1059,23 @@ export interface GetConfigurationProfileResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ConfigurationProfilesGetResponseTagsMap;
+  tags?: GetConfigurationProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the configuration profile. */
   properties?: ConfigurationProfileProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationProfilesGetResponseSystemData;
+  systemData?: GetConfigurationProfileResponseSystemData;
 }
 export const GetConfigurationProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ConfigurationProfilesGetResponseTagsMap),
+    tags: S.optional(GetConfigurationProfileResponseTagsMap),
     location: S.String,
     properties: S.optional(ConfigurationProfileProperties),
-    systemData: S.optional(ConfigurationProfilesGetResponseSystemData),
+    systemData: S.optional(GetConfigurationProfileResponseSystemData),
   }),
 ).annotate({
   identifier: "GetConfigurationProfileResponse",
@@ -1111,55 +1111,55 @@ export const GetConfigurationProfileAssignmentRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetConfigurationProfileAssignmentRequest>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationProfileAssignmentsGetResponseSystemDataCreatedByType =
+export type GetConfigurationProfileAssignmentResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileAssignmentsGetResponseSystemDataCreatedByType =
+export const GetConfigurationProfileAssignmentResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationProfileAssignmentsGetResponseSystemDataLastModifiedByType =
+export type GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileAssignmentsGetResponseSystemDataLastModifiedByType =
+export const GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationProfileAssignmentsGetResponseSystemData {
+export interface GetConfigurationProfileAssignmentResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationProfileAssignmentsGetResponseSystemDataCreatedByType;
+  createdByType?: GetConfigurationProfileAssignmentResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationProfileAssignmentsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationProfileAssignmentsGetResponseSystemData =
+export const GetConfigurationProfileAssignmentResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationProfileAssignmentsGetResponseSystemDataCreatedByType,
+        GetConfigurationProfileAssignmentResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationProfileAssignmentsGetResponseSystemDataLastModifiedByType,
+        GetConfigurationProfileAssignmentResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationProfileAssignmentsGetResponseSystemData",
-  }) as any as S.Schema<ConfigurationProfileAssignmentsGetResponseSystemData>;
+    identifier: "GetConfigurationProfileAssignmentResponseSystemData",
+  }) as any as S.Schema<GetConfigurationProfileAssignmentResponseSystemData>;
 
 export interface GetConfigurationProfileAssignmentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1173,7 +1173,7 @@ export interface GetConfigurationProfileAssignmentResponse {
   /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
   managedBy?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationProfileAssignmentsGetResponseSystemData;
+  systemData?: GetConfigurationProfileAssignmentResponseSystemData;
 }
 export const GetConfigurationProfileAssignmentResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -1184,14 +1184,14 @@ export const GetConfigurationProfileAssignmentResponse =
       properties: S.optional(ConfigurationProfileAssignmentProperties),
       managedBy: S.optional(S.String),
       systemData: S.optional(
-        ConfigurationProfileAssignmentsGetResponseSystemData,
+        GetConfigurationProfileAssignmentResponseSystemData,
       ),
     }),
   ).annotate({
     identifier: "GetConfigurationProfileAssignmentResponse",
   }) as any as S.Schema<GetConfigurationProfileAssignmentResponse>;
 
-export interface GetConfigurationProfileHciAssignmentRequest {
+export interface GetConfigurationProfileHCIAssignmentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1201,7 +1201,7 @@ export interface GetConfigurationProfileHciAssignmentRequest {
   /** The configuration profile assignment name. */
   configurationProfileAssignmentName: string;
 }
-export const GetConfigurationProfileHciAssignmentRequest =
+export const GetConfigurationProfileHCIAssignmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1217,61 +1217,61 @@ export const GetConfigurationProfileHciAssignmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetConfigurationProfileHciAssignmentRequest",
-  }) as any as S.Schema<GetConfigurationProfileHciAssignmentRequest>;
+    identifier: "GetConfigurationProfileHCIAssignmentRequest",
+  }) as any as S.Schema<GetConfigurationProfileHCIAssignmentRequest>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationProfileHCIAssignmentsGetResponseSystemDataCreatedByType =
+export type GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileHCIAssignmentsGetResponseSystemDataCreatedByType =
+export const GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationProfileHCIAssignmentsGetResponseSystemDataLastModifiedByType =
+export type GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileHCIAssignmentsGetResponseSystemDataLastModifiedByType =
+export const GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationProfileHCIAssignmentsGetResponseSystemData {
+export interface GetConfigurationProfileHCIAssignmentResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationProfileHCIAssignmentsGetResponseSystemDataCreatedByType;
+  createdByType?: GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationProfileHCIAssignmentsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationProfileHCIAssignmentsGetResponseSystemData =
+export const GetConfigurationProfileHCIAssignmentResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationProfileHCIAssignmentsGetResponseSystemDataCreatedByType,
+        GetConfigurationProfileHCIAssignmentResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationProfileHCIAssignmentsGetResponseSystemDataLastModifiedByType,
+        GetConfigurationProfileHCIAssignmentResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationProfileHCIAssignmentsGetResponseSystemData",
-  }) as any as S.Schema<ConfigurationProfileHCIAssignmentsGetResponseSystemData>;
+    identifier: "GetConfigurationProfileHCIAssignmentResponseSystemData",
+  }) as any as S.Schema<GetConfigurationProfileHCIAssignmentResponseSystemData>;
 
-export interface GetConfigurationProfileHciAssignmentResponse {
+export interface GetConfigurationProfileHCIAssignmentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1283,9 +1283,9 @@ export interface GetConfigurationProfileHciAssignmentResponse {
   /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
   managedBy?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationProfileHCIAssignmentsGetResponseSystemData;
+  systemData?: GetConfigurationProfileHCIAssignmentResponseSystemData;
 }
-export const GetConfigurationProfileHciAssignmentResponse =
+export const GetConfigurationProfileHCIAssignmentResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1294,14 +1294,14 @@ export const GetConfigurationProfileHciAssignmentResponse =
       properties: S.optional(ConfigurationProfileAssignmentProperties),
       managedBy: S.optional(S.String),
       systemData: S.optional(
-        ConfigurationProfileHCIAssignmentsGetResponseSystemData,
+        GetConfigurationProfileHCIAssignmentResponseSystemData,
       ),
     }),
   ).annotate({
-    identifier: "GetConfigurationProfileHciAssignmentResponse",
-  }) as any as S.Schema<GetConfigurationProfileHciAssignmentResponse>;
+    identifier: "GetConfigurationProfileHCIAssignmentResponse",
+  }) as any as S.Schema<GetConfigurationProfileHCIAssignmentResponse>;
 
-export interface GetConfigurationProfileHcrpAssignmentRequest {
+export interface GetConfigurationProfileHCRPAssignmentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1311,7 +1311,7 @@ export interface GetConfigurationProfileHcrpAssignmentRequest {
   /** The configuration profile assignment name. */
   configurationProfileAssignmentName: string;
 }
-export const GetConfigurationProfileHcrpAssignmentRequest =
+export const GetConfigurationProfileHCRPAssignmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1327,61 +1327,61 @@ export const GetConfigurationProfileHcrpAssignmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetConfigurationProfileHcrpAssignmentRequest",
-  }) as any as S.Schema<GetConfigurationProfileHcrpAssignmentRequest>;
+    identifier: "GetConfigurationProfileHCRPAssignmentRequest",
+  }) as any as S.Schema<GetConfigurationProfileHCRPAssignmentRequest>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationProfileHCRPAssignmentsGetResponseSystemDataCreatedByType =
+export type GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileHCRPAssignmentsGetResponseSystemDataCreatedByType =
+export const GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationProfileHCRPAssignmentsGetResponseSystemDataLastModifiedByType =
+export type GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfileHCRPAssignmentsGetResponseSystemDataLastModifiedByType =
+export const GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationProfileHCRPAssignmentsGetResponseSystemData {
+export interface GetConfigurationProfileHCRPAssignmentResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationProfileHCRPAssignmentsGetResponseSystemDataCreatedByType;
+  createdByType?: GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationProfileHCRPAssignmentsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationProfileHCRPAssignmentsGetResponseSystemData =
+export const GetConfigurationProfileHCRPAssignmentResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationProfileHCRPAssignmentsGetResponseSystemDataCreatedByType,
+        GetConfigurationProfileHCRPAssignmentResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationProfileHCRPAssignmentsGetResponseSystemDataLastModifiedByType,
+        GetConfigurationProfileHCRPAssignmentResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationProfileHCRPAssignmentsGetResponseSystemData",
-  }) as any as S.Schema<ConfigurationProfileHCRPAssignmentsGetResponseSystemData>;
+    identifier: "GetConfigurationProfileHCRPAssignmentResponseSystemData",
+  }) as any as S.Schema<GetConfigurationProfileHCRPAssignmentResponseSystemData>;
 
-export interface GetConfigurationProfileHcrpAssignmentResponse {
+export interface GetConfigurationProfileHCRPAssignmentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1393,9 +1393,9 @@ export interface GetConfigurationProfileHcrpAssignmentResponse {
   /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
   managedBy?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationProfileHCRPAssignmentsGetResponseSystemData;
+  systemData?: GetConfigurationProfileHCRPAssignmentResponseSystemData;
 }
-export const GetConfigurationProfileHcrpAssignmentResponse =
+export const GetConfigurationProfileHCRPAssignmentResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1404,14 +1404,14 @@ export const GetConfigurationProfileHcrpAssignmentResponse =
       properties: S.optional(ConfigurationProfileAssignmentProperties),
       managedBy: S.optional(S.String),
       systemData: S.optional(
-        ConfigurationProfileHCRPAssignmentsGetResponseSystemData,
+        GetConfigurationProfileHCRPAssignmentResponseSystemData,
       ),
     }),
   ).annotate({
-    identifier: "GetConfigurationProfileHcrpAssignmentResponse",
-  }) as any as S.Schema<GetConfigurationProfileHcrpAssignmentResponse>;
+    identifier: "GetConfigurationProfileHCRPAssignmentResponse",
+  }) as any as S.Schema<GetConfigurationProfileHCRPAssignmentResponse>;
 
-export interface GetConfigurationProfileVersionRequest {
+export interface GetConfigurationProfilesVersionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1421,7 +1421,7 @@ export interface GetConfigurationProfileVersionRequest {
   /** The configuration profile version name. */
   versionName: string;
 }
-export const GetConfigurationProfileVersionRequest = /*@__PURE__*/ S.suspend(
+export const GetConfigurationProfilesVersionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1437,71 +1437,71 @@ export const GetConfigurationProfileVersionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetConfigurationProfileVersionRequest",
-}) as any as S.Schema<GetConfigurationProfileVersionRequest>;
+  identifier: "GetConfigurationProfilesVersionRequest",
+}) as any as S.Schema<GetConfigurationProfilesVersionRequest>;
 
 /** Resource tags. */
-export type ConfigurationProfilesVersionsGetResponseTagsMap = {
+export type GetConfigurationProfilesVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationProfilesVersionsGetResponseTagsMap =
+export const GetConfigurationProfilesVersionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ConfigurationProfilesVersionsGetResponseTagsMap>;
+  ) as any as S.Schema<GetConfigurationProfilesVersionResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationProfilesVersionsGetResponseSystemDataCreatedByType =
+export type GetConfigurationProfilesVersionResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfilesVersionsGetResponseSystemDataCreatedByType =
+export const GetConfigurationProfilesVersionResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationProfilesVersionsGetResponseSystemDataLastModifiedByType =
+export type GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfilesVersionsGetResponseSystemDataLastModifiedByType =
+export const GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationProfilesVersionsGetResponseSystemData {
+export interface GetConfigurationProfilesVersionResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationProfilesVersionsGetResponseSystemDataCreatedByType;
+  createdByType?: GetConfigurationProfilesVersionResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationProfilesVersionsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationProfilesVersionsGetResponseSystemData =
+export const GetConfigurationProfilesVersionResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationProfilesVersionsGetResponseSystemDataCreatedByType,
+        GetConfigurationProfilesVersionResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationProfilesVersionsGetResponseSystemDataLastModifiedByType,
+        GetConfigurationProfilesVersionResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationProfilesVersionsGetResponseSystemData",
-  }) as any as S.Schema<ConfigurationProfilesVersionsGetResponseSystemData>;
+    identifier: "GetConfigurationProfilesVersionResponseSystemData",
+  }) as any as S.Schema<GetConfigurationProfilesVersionResponseSystemData>;
 
-export interface GetConfigurationProfileVersionResponse {
+export interface GetConfigurationProfilesVersionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1509,32 +1509,30 @@ export interface GetConfigurationProfileVersionResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ConfigurationProfilesVersionsGetResponseTagsMap;
+  tags?: GetConfigurationProfilesVersionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the configuration profile. */
   properties?: ConfigurationProfileProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationProfilesVersionsGetResponseSystemData;
+  systemData?: GetConfigurationProfilesVersionResponseSystemData;
 }
-export const GetConfigurationProfileVersionResponse = /*@__PURE__*/ S.suspend(
+export const GetConfigurationProfilesVersionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
-      tags: S.optional(ConfigurationProfilesVersionsGetResponseTagsMap),
+      tags: S.optional(GetConfigurationProfilesVersionResponseTagsMap),
       location: S.String,
       properties: S.optional(ConfigurationProfileProperties),
-      systemData: S.optional(
-        ConfigurationProfilesVersionsGetResponseSystemData,
-      ),
+      systemData: S.optional(GetConfigurationProfilesVersionResponseSystemData),
     }),
 ).annotate({
-  identifier: "GetConfigurationProfileVersionResponse",
-}) as any as S.Schema<GetConfigurationProfileVersionResponse>;
+  identifier: "GetConfigurationProfilesVersionResponse",
+}) as any as S.Schema<GetConfigurationProfilesVersionResponse>;
 
-export interface GetHciReportRequest {
+export interface GetHCIReportRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1546,7 +1544,7 @@ export interface GetHciReportRequest {
   /** The report name. */
   reportName: string;
 }
-export const GetHciReportRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHCIReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1562,8 +1560,8 @@ export const GetHciReportRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHciReportRequest",
-}) as any as S.Schema<GetHciReportRequest>;
+  identifier: "GetHCIReportRequest",
+}) as any as S.Schema<GetHCIReportRequest>;
 
 /** The error details. */
 export type ErrorDetailDetailsList = Array<ErrorDetail>;
@@ -1764,54 +1762,54 @@ export const AssignmentReportProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AssignmentReportProperties>;
 
 /** The type of identity that created the resource. */
-export type HCIReportsGetResponseSystemDataCreatedByType =
+export type GetHCIReportResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const HCIReportsGetResponseSystemDataCreatedByType =
+export const GetHCIReportResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type HCIReportsGetResponseSystemDataLastModifiedByType =
+export type GetHCIReportResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const HCIReportsGetResponseSystemDataLastModifiedByType =
+export const GetHCIReportResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface HCIReportsGetResponseSystemData {
+export interface GetHCIReportResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: HCIReportsGetResponseSystemDataCreatedByType;
+  createdByType?: GetHCIReportResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: HCIReportsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetHCIReportResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const HCIReportsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetHCIReportResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(HCIReportsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetHCIReportResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      HCIReportsGetResponseSystemDataLastModifiedByType,
+      GetHCIReportResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "HCIReportsGetResponseSystemData",
-}) as any as S.Schema<HCIReportsGetResponseSystemData>;
+  identifier: "GetHCIReportResponseSystemData",
+}) as any as S.Schema<GetHCIReportResponseSystemData>;
 
-export interface GetHciReportResponse {
+export interface GetHCIReportResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1821,21 +1819,21 @@ export interface GetHciReportResponse {
   /** The properties for the report. */
   properties?: AssignmentReportProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: HCIReportsGetResponseSystemData;
+  systemData?: GetHCIReportResponseSystemData;
 }
-export const GetHciReportResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHCIReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     properties: S.optional(AssignmentReportProperties),
-    systemData: S.optional(HCIReportsGetResponseSystemData),
+    systemData: S.optional(GetHCIReportResponseSystemData),
   }),
 ).annotate({
-  identifier: "GetHciReportResponse",
-}) as any as S.Schema<GetHciReportResponse>;
+  identifier: "GetHCIReportResponse",
+}) as any as S.Schema<GetHCIReportResponse>;
 
-export interface GetHcrpReportRequest {
+export interface GetHCRPReportRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1847,7 +1845,7 @@ export interface GetHcrpReportRequest {
   /** The report name. */
   reportName: string;
 }
-export const GetHcrpReportRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHCRPReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1863,58 +1861,58 @@ export const GetHcrpReportRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHcrpReportRequest",
-}) as any as S.Schema<GetHcrpReportRequest>;
+  identifier: "GetHCRPReportRequest",
+}) as any as S.Schema<GetHCRPReportRequest>;
 
 /** The type of identity that created the resource. */
-export type HCRPReportsGetResponseSystemDataCreatedByType =
+export type GetHCRPReportResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const HCRPReportsGetResponseSystemDataCreatedByType =
+export const GetHCRPReportResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type HCRPReportsGetResponseSystemDataLastModifiedByType =
+export type GetHCRPReportResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const HCRPReportsGetResponseSystemDataLastModifiedByType =
+export const GetHCRPReportResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface HCRPReportsGetResponseSystemData {
+export interface GetHCRPReportResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: HCRPReportsGetResponseSystemDataCreatedByType;
+  createdByType?: GetHCRPReportResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: HCRPReportsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetHCRPReportResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const HCRPReportsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetHCRPReportResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(HCRPReportsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetHCRPReportResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      HCRPReportsGetResponseSystemDataLastModifiedByType,
+      GetHCRPReportResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "HCRPReportsGetResponseSystemData",
-}) as any as S.Schema<HCRPReportsGetResponseSystemData>;
+  identifier: "GetHCRPReportResponseSystemData",
+}) as any as S.Schema<GetHCRPReportResponseSystemData>;
 
-export interface GetHcrpReportResponse {
+export interface GetHCRPReportResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1924,19 +1922,19 @@ export interface GetHcrpReportResponse {
   /** The properties for the report. */
   properties?: AssignmentReportProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: HCRPReportsGetResponseSystemData;
+  systemData?: GetHCRPReportResponseSystemData;
 }
-export const GetHcrpReportResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHCRPReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     properties: S.optional(AssignmentReportProperties),
-    systemData: S.optional(HCRPReportsGetResponseSystemData),
+    systemData: S.optional(GetHCRPReportResponseSystemData),
   }),
 ).annotate({
-  identifier: "GetHcrpReportResponse",
-}) as any as S.Schema<GetHcrpReportResponse>;
+  identifier: "GetHCRPReportResponse",
+}) as any as S.Schema<GetHCRPReportResponse>;
 
 export interface GetReportRequest {
   /** The ID of the target subscription. */
@@ -1970,51 +1968,51 @@ export const GetReportRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetReportRequest>;
 
 /** The type of identity that created the resource. */
-export type ReportsGetResponseSystemDataCreatedByType =
+export type GetReportResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReportsGetResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+export const GetReportResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ReportsGetResponseSystemDataLastModifiedByType =
+export type GetReportResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ReportsGetResponseSystemDataLastModifiedByType =
+export const GetReportResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ReportsGetResponseSystemData {
+export interface GetReportResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ReportsGetResponseSystemDataCreatedByType;
+  createdByType?: GetReportResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ReportsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetReportResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ReportsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetReportResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ReportsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetReportResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ReportsGetResponseSystemDataLastModifiedByType,
+      GetReportResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ReportsGetResponseSystemData",
-}) as any as S.Schema<ReportsGetResponseSystemData>;
+  identifier: "GetReportResponseSystemData",
+}) as any as S.Schema<GetReportResponseSystemData>;
 
 export interface GetReportResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2026,7 +2024,7 @@ export interface GetReportResponse {
   /** The properties for the report. */
   properties?: AssignmentReportProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ReportsGetResponseSystemData;
+  systemData?: GetReportResponseSystemData;
 }
 export const GetReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2034,7 +2032,7 @@ export const GetReportResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     properties: S.optional(AssignmentReportProperties),
-    systemData: S.optional(ReportsGetResponseSystemData),
+    systemData: S.optional(GetReportResponseSystemData),
   }),
 ).annotate({
   identifier: "GetReportResponse",
@@ -2076,55 +2074,55 @@ export const ServicePrincipalProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServicePrincipalProperties>;
 
 /** The type of identity that created the resource. */
-export type ServicePrincipalsGetResponseSystemDataCreatedByType =
+export type GetServicePrincipalResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServicePrincipalsGetResponseSystemDataCreatedByType =
+export const GetServicePrincipalResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ServicePrincipalsGetResponseSystemDataLastModifiedByType =
+export type GetServicePrincipalResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServicePrincipalsGetResponseSystemDataLastModifiedByType =
+export const GetServicePrincipalResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ServicePrincipalsGetResponseSystemData {
+export interface GetServicePrincipalResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ServicePrincipalsGetResponseSystemDataCreatedByType;
+  createdByType?: GetServicePrincipalResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ServicePrincipalsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetServicePrincipalResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ServicePrincipalsGetResponseSystemData = /*@__PURE__*/ S.suspend(
+export const GetServicePrincipalResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ServicePrincipalsGetResponseSystemDataCreatedByType,
+        GetServicePrincipalResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ServicePrincipalsGetResponseSystemDataLastModifiedByType,
+        GetServicePrincipalResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ServicePrincipalsGetResponseSystemData",
-}) as any as S.Schema<ServicePrincipalsGetResponseSystemData>;
+  identifier: "GetServicePrincipalResponseSystemData",
+}) as any as S.Schema<GetServicePrincipalResponseSystemData>;
 
 export interface GetServicePrincipalResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2136,7 +2134,7 @@ export interface GetServicePrincipalResponse {
   /** The Service Principal properties for the subscription */
   properties?: ServicePrincipalProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ServicePrincipalsGetResponseSystemData;
+  systemData?: GetServicePrincipalResponseSystemData;
 }
 export const GetServicePrincipalResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2144,7 +2142,7 @@ export const GetServicePrincipalResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     properties: S.optional(ServicePrincipalProperties),
-    systemData: S.optional(ServicePrincipalsGetResponseSystemData),
+    systemData: S.optional(GetServicePrincipalResponseSystemData),
   }),
 ).annotate({
   identifier: "GetServicePrincipalResponse",
@@ -2183,11 +2181,11 @@ export const BestPracticeList = /*@__PURE__*/ S.suspend(() =>
   identifier: "BestPracticeList",
 }) as any as S.Schema<BestPracticeList>;
 
-export interface ListBestPracticeVersionByTenantRequest {
+export interface ListBestPracticesVersionByTenantRequest {
   /** The Automanage best practice name. */
   bestPracticeName: string;
 }
-export const ListBestPracticeVersionByTenantRequest = /*@__PURE__*/ S.suspend(
+export const ListBestPracticesVersionByTenantRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       bestPracticeName: S.String.pipe(T.Label()),
@@ -2200,8 +2198,8 @@ export const ListBestPracticeVersionByTenantRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListBestPracticeVersionByTenantRequest",
-}) as any as S.Schema<ListBestPracticeVersionByTenantRequest>;
+  identifier: "ListBestPracticesVersionByTenantRequest",
+}) as any as S.Schema<ListBestPracticesVersionByTenantRequest>;
 
 export interface ListConfigurationProfileAssignmentByClusterNameRequest {
   /** The ID of the target subscription. */
@@ -2572,7 +2570,7 @@ export const ListConfigurationProfileBySubscriptionRequest =
     identifier: "ListConfigurationProfileBySubscriptionRequest",
   }) as any as S.Schema<ListConfigurationProfileBySubscriptionRequest>;
 
-export interface ListConfigurationProfileVersionChildResourcesRequest {
+export interface ListConfigurationProfilesVersionChildResourcesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2580,7 +2578,7 @@ export interface ListConfigurationProfileVersionChildResourcesRequest {
   /** Name of the configuration profile. */
   configurationProfileName: string;
 }
-export const ListConfigurationProfileVersionChildResourcesRequest =
+export const ListConfigurationProfilesVersionChildResourcesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2595,10 +2593,10 @@ export const ListConfigurationProfileVersionChildResourcesRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListConfigurationProfileVersionChildResourcesRequest",
-  }) as any as S.Schema<ListConfigurationProfileVersionChildResourcesRequest>;
+    identifier: "ListConfigurationProfilesVersionChildResourcesRequest",
+  }) as any as S.Schema<ListConfigurationProfilesVersionChildResourcesRequest>;
 
-export interface ListHciReportByConfigurationProfileAssignmentsRequest {
+export interface ListHCIReportByConfigurationProfileAssignmentsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2608,7 +2606,7 @@ export interface ListHciReportByConfigurationProfileAssignmentsRequest {
   /** The configuration profile assignment name. */
   configurationProfileAssignmentName: string;
 }
-export const ListHciReportByConfigurationProfileAssignmentsRequest =
+export const ListHCIReportByConfigurationProfileAssignmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2624,8 +2622,8 @@ export const ListHciReportByConfigurationProfileAssignmentsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHciReportByConfigurationProfileAssignmentsRequest",
-  }) as any as S.Schema<ListHciReportByConfigurationProfileAssignmentsRequest>;
+    identifier: "ListHCIReportByConfigurationProfileAssignmentsRequest",
+  }) as any as S.Schema<ListHCIReportByConfigurationProfileAssignmentsRequest>;
 
 /** The type of identity that created the resource. */
 export type ReportSystemDataCreatedByType =
@@ -2711,7 +2709,7 @@ export const ReportList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ReportList" }) as any as S.Schema<ReportList>;
 
-export interface ListHcrpReportByConfigurationProfileAssignmentsRequest {
+export interface ListHCRPReportByConfigurationProfileAssignmentsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2721,7 +2719,7 @@ export interface ListHcrpReportByConfigurationProfileAssignmentsRequest {
   /** The configuration profile assignment name. */
   configurationProfileAssignmentName: string;
 }
-export const ListHcrpReportByConfigurationProfileAssignmentsRequest =
+export const ListHCRPReportByConfigurationProfileAssignmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2737,8 +2735,8 @@ export const ListHcrpReportByConfigurationProfileAssignmentsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListHcrpReportByConfigurationProfileAssignmentsRequest",
-  }) as any as S.Schema<ListHcrpReportByConfigurationProfileAssignmentsRequest>;
+    identifier: "ListHCRPReportByConfigurationProfileAssignmentsRequest",
+  }) as any as S.Schema<ListHCRPReportByConfigurationProfileAssignmentsRequest>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -2808,20 +2806,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2969,13 +2967,13 @@ export const ServicePrincipalListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServicePrincipalListResult>;
 
 /** The tags of the resource. */
-export type ConfigurationProfilesUpdateRequestTagsMap = {
+export type UpdateConfigurationProfileRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationProfilesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigurationProfileRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationProfilesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateConfigurationProfileRequestTagsMap>;
 
 export interface UpdateConfigurationProfileRequest {
   /** The ID of the target subscription. */
@@ -2985,7 +2983,7 @@ export interface UpdateConfigurationProfileRequest {
   /** Name of the configuration profile. */
   configurationProfileName: string;
   /** The tags of the resource. */
-  tags?: ConfigurationProfilesUpdateRequestTagsMap;
+  tags?: UpdateConfigurationProfileRequestTagsMap;
   /** Properties of the configuration profile. */
   properties?: ConfigurationProfileProperties;
 }
@@ -2994,7 +2992,7 @@ export const UpdateConfigurationProfileRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     configurationProfileName: S.String.pipe(T.Label()),
-    tags: S.optional(ConfigurationProfilesUpdateRequestTagsMap),
+    tags: S.optional(UpdateConfigurationProfileRequestTagsMap),
     properties: S.optional(ConfigurationProfileProperties),
   }).pipe(
     T.Http({
@@ -3009,65 +3007,64 @@ export const UpdateConfigurationProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConfigurationProfileRequest>;
 
 /** Resource tags. */
-export type ConfigurationProfilesUpdateResponseTagsMap = {
+export type UpdateConfigurationProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationProfilesUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConfigurationProfilesUpdateResponseTagsMap>;
+export const UpdateConfigurationProfileResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateConfigurationProfileResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationProfilesUpdateResponseSystemDataCreatedByType =
+export type UpdateConfigurationProfileResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfilesUpdateResponseSystemDataCreatedByType =
+export const UpdateConfigurationProfileResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationProfilesUpdateResponseSystemDataLastModifiedByType =
+export type UpdateConfigurationProfileResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationProfilesUpdateResponseSystemDataLastModifiedByType =
+export const UpdateConfigurationProfileResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationProfilesUpdateResponseSystemData {
+export interface UpdateConfigurationProfileResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationProfilesUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateConfigurationProfileResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationProfilesUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateConfigurationProfileResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationProfilesUpdateResponseSystemData =
+export const UpdateConfigurationProfileResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationProfilesUpdateResponseSystemDataCreatedByType,
+        UpdateConfigurationProfileResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationProfilesUpdateResponseSystemDataLastModifiedByType,
+        UpdateConfigurationProfileResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationProfilesUpdateResponseSystemData",
-  }) as any as S.Schema<ConfigurationProfilesUpdateResponseSystemData>;
+    identifier: "UpdateConfigurationProfileResponseSystemData",
+  }) as any as S.Schema<UpdateConfigurationProfileResponseSystemData>;
 
 export interface UpdateConfigurationProfileResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3077,23 +3074,23 @@ export interface UpdateConfigurationProfileResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ConfigurationProfilesUpdateResponseTagsMap;
+  tags?: UpdateConfigurationProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the configuration profile. */
   properties?: ConfigurationProfileProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationProfilesUpdateResponseSystemData;
+  systemData?: UpdateConfigurationProfileResponseSystemData;
 }
 export const UpdateConfigurationProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ConfigurationProfilesUpdateResponseTagsMap),
+    tags: S.optional(UpdateConfigurationProfileResponseTagsMap),
     location: S.String,
     properties: S.optional(ConfigurationProfileProperties),
-    systemData: S.optional(ConfigurationProfilesUpdateResponseSystemData),
+    systemData: S.optional(UpdateConfigurationProfileResponseSystemData),
   }),
 ).annotate({
   identifier: "UpdateConfigurationProfileResponse",
@@ -3206,46 +3203,46 @@ export const DeleteConfigurationProfileAssignment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteConfigurationProfileHciAssignmentError = AzureOpError;
+export type DeleteConfigurationProfileHCIAssignmentError = AzureOpError;
 /** Delete a configuration profile assignment */
-export const DeleteConfigurationProfileHciAssignment: API.OperationMethod<
-  DeleteConfigurationProfileHciAssignmentRequest,
-  DeleteConfigurationProfileHciAssignmentResponse,
-  DeleteConfigurationProfileHciAssignmentError,
+export const DeleteConfigurationProfileHCIAssignment: API.OperationMethod<
+  DeleteConfigurationProfileHCIAssignmentRequest,
+  DeleteConfigurationProfileHCIAssignmentResponse,
+  DeleteConfigurationProfileHCIAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteConfigurationProfileHciAssignmentRequest,
-  output: DeleteConfigurationProfileHciAssignmentResponse,
+  input: DeleteConfigurationProfileHCIAssignmentRequest,
+  output: DeleteConfigurationProfileHCIAssignmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteConfigurationProfileHcrpAssignmentError = AzureOpError;
+export type DeleteConfigurationProfileHCRPAssignmentError = AzureOpError;
 /** Delete a configuration profile assignment */
-export const DeleteConfigurationProfileHcrpAssignment: API.OperationMethod<
-  DeleteConfigurationProfileHcrpAssignmentRequest,
-  DeleteConfigurationProfileHcrpAssignmentResponse,
-  DeleteConfigurationProfileHcrpAssignmentError,
+export const DeleteConfigurationProfileHCRPAssignment: API.OperationMethod<
+  DeleteConfigurationProfileHCRPAssignmentRequest,
+  DeleteConfigurationProfileHCRPAssignmentResponse,
+  DeleteConfigurationProfileHCRPAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteConfigurationProfileHcrpAssignmentRequest,
-  output: DeleteConfigurationProfileHcrpAssignmentResponse,
+  input: DeleteConfigurationProfileHCRPAssignmentRequest,
+  output: DeleteConfigurationProfileHCRPAssignmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteConfigurationProfileVersionError = AzureOpError;
+export type DeleteConfigurationProfilesVersionError = AzureOpError;
 /** Delete a configuration profile version */
-export const DeleteConfigurationProfileVersion: API.OperationMethod<
-  DeleteConfigurationProfileVersionRequest,
-  DeleteConfigurationProfileVersionResponse,
-  DeleteConfigurationProfileVersionError,
+export const DeleteConfigurationProfilesVersion: API.OperationMethod<
+  DeleteConfigurationProfilesVersionRequest,
+  DeleteConfigurationProfilesVersionResponse,
+  DeleteConfigurationProfilesVersionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteConfigurationProfileVersionRequest,
-  output: DeleteConfigurationProfileVersionResponse,
+  input: DeleteConfigurationProfilesVersionRequest,
+  output: DeleteConfigurationProfilesVersionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3266,15 +3263,15 @@ export const GetBestPractice: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetBestPracticeVersionError = AzureOpError;
+export type GetBestPracticesVersionError = AzureOpError;
 /** Get information about a Automanage best practice version */
-export const GetBestPracticeVersion: API.OperationMethod<
-  GetBestPracticeVersionRequest,
+export const GetBestPracticesVersion: API.OperationMethod<
+  GetBestPracticesVersionRequest,
   BestPractice,
-  GetBestPracticeVersionError,
+  GetBestPracticesVersionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetBestPracticeVersionRequest,
+  input: GetBestPracticesVersionRequest,
   output: BestPractice,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3311,76 +3308,76 @@ export const GetConfigurationProfileAssignment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetConfigurationProfileHciAssignmentError = AzureOpError;
+export type GetConfigurationProfileHCIAssignmentError = AzureOpError;
 /** Get information about a configuration profile assignment */
-export const GetConfigurationProfileHciAssignment: API.OperationMethod<
-  GetConfigurationProfileHciAssignmentRequest,
-  GetConfigurationProfileHciAssignmentResponse,
-  GetConfigurationProfileHciAssignmentError,
+export const GetConfigurationProfileHCIAssignment: API.OperationMethod<
+  GetConfigurationProfileHCIAssignmentRequest,
+  GetConfigurationProfileHCIAssignmentResponse,
+  GetConfigurationProfileHCIAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConfigurationProfileHciAssignmentRequest,
-  output: GetConfigurationProfileHciAssignmentResponse,
+  input: GetConfigurationProfileHCIAssignmentRequest,
+  output: GetConfigurationProfileHCIAssignmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetConfigurationProfileHcrpAssignmentError = AzureOpError;
+export type GetConfigurationProfileHCRPAssignmentError = AzureOpError;
 /** Get information about a configuration profile assignment */
-export const GetConfigurationProfileHcrpAssignment: API.OperationMethod<
-  GetConfigurationProfileHcrpAssignmentRequest,
-  GetConfigurationProfileHcrpAssignmentResponse,
-  GetConfigurationProfileHcrpAssignmentError,
+export const GetConfigurationProfileHCRPAssignment: API.OperationMethod<
+  GetConfigurationProfileHCRPAssignmentRequest,
+  GetConfigurationProfileHCRPAssignmentResponse,
+  GetConfigurationProfileHCRPAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConfigurationProfileHcrpAssignmentRequest,
-  output: GetConfigurationProfileHcrpAssignmentResponse,
+  input: GetConfigurationProfileHCRPAssignmentRequest,
+  output: GetConfigurationProfileHCRPAssignmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetConfigurationProfileVersionError = AzureOpError;
+export type GetConfigurationProfilesVersionError = AzureOpError;
 /** Get information about a configuration profile version */
-export const GetConfigurationProfileVersion: API.OperationMethod<
-  GetConfigurationProfileVersionRequest,
-  GetConfigurationProfileVersionResponse,
-  GetConfigurationProfileVersionError,
+export const GetConfigurationProfilesVersion: API.OperationMethod<
+  GetConfigurationProfilesVersionRequest,
+  GetConfigurationProfilesVersionResponse,
+  GetConfigurationProfilesVersionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConfigurationProfileVersionRequest,
-  output: GetConfigurationProfileVersionResponse,
+  input: GetConfigurationProfilesVersionRequest,
+  output: GetConfigurationProfilesVersionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHciReportError = AzureOpError;
+export type GetHCIReportError = AzureOpError;
 /** Get information about a report associated with a configuration profile assignment run */
-export const GetHciReport: API.OperationMethod<
-  GetHciReportRequest,
-  GetHciReportResponse,
-  GetHciReportError,
+export const GetHCIReport: API.OperationMethod<
+  GetHCIReportRequest,
+  GetHCIReportResponse,
+  GetHCIReportError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHciReportRequest,
-  output: GetHciReportResponse,
+  input: GetHCIReportRequest,
+  output: GetHCIReportResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetHcrpReportError = AzureOpError;
+export type GetHCRPReportError = AzureOpError;
 /** Get information about a report associated with a configuration profile assignment run */
-export const GetHcrpReport: API.OperationMethod<
-  GetHcrpReportRequest,
-  GetHcrpReportResponse,
-  GetHcrpReportError,
+export const GetHCRPReport: API.OperationMethod<
+  GetHCRPReportRequest,
+  GetHCRPReportResponse,
+  GetHCRPReportError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHcrpReportRequest,
-  output: GetHcrpReportResponse,
+  input: GetHCRPReportRequest,
+  output: GetHCRPReportResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3431,15 +3428,15 @@ export const ListBestPracticeByTenant: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListBestPracticeVersionByTenantError = AzureOpError;
+export type ListBestPracticesVersionByTenantError = AzureOpError;
 /** Retrieve a list of Automanage best practices versions */
-export const ListBestPracticeVersionByTenant: API.OperationMethod<
-  ListBestPracticeVersionByTenantRequest,
+export const ListBestPracticesVersionByTenant: API.OperationMethod<
+  ListBestPracticesVersionByTenantRequest,
   BestPracticeList,
-  ListBestPracticeVersionByTenantError,
+  ListBestPracticesVersionByTenantError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBestPracticeVersionByTenantRequest,
+  input: ListBestPracticesVersionByTenantRequest,
   output: BestPracticeList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3553,45 +3550,45 @@ export const ListConfigurationProfileBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListConfigurationProfileVersionChildResourcesError = AzureOpError;
+export type ListConfigurationProfilesVersionChildResourcesError = AzureOpError;
 /** Retrieve a list of configuration profile version for a configuration profile */
-export const ListConfigurationProfileVersionChildResources: API.OperationMethod<
-  ListConfigurationProfileVersionChildResourcesRequest,
+export const ListConfigurationProfilesVersionChildResources: API.OperationMethod<
+  ListConfigurationProfilesVersionChildResourcesRequest,
   ConfigurationProfileList,
-  ListConfigurationProfileVersionChildResourcesError,
+  ListConfigurationProfilesVersionChildResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListConfigurationProfileVersionChildResourcesRequest,
+  input: ListConfigurationProfilesVersionChildResourcesRequest,
   output: ConfigurationProfileList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListHciReportByConfigurationProfileAssignmentsError = AzureOpError;
+export type ListHCIReportByConfigurationProfileAssignmentsError = AzureOpError;
 /** Retrieve a list of reports within a given configuration profile assignment */
-export const ListHciReportByConfigurationProfileAssignments: API.OperationMethod<
-  ListHciReportByConfigurationProfileAssignmentsRequest,
+export const ListHCIReportByConfigurationProfileAssignments: API.OperationMethod<
+  ListHCIReportByConfigurationProfileAssignmentsRequest,
   ReportList,
-  ListHciReportByConfigurationProfileAssignmentsError,
+  ListHCIReportByConfigurationProfileAssignmentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHciReportByConfigurationProfileAssignmentsRequest,
+  input: ListHCIReportByConfigurationProfileAssignmentsRequest,
   output: ReportList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListHcrpReportByConfigurationProfileAssignmentsError = AzureOpError;
+export type ListHCRPReportByConfigurationProfileAssignmentsError = AzureOpError;
 /** Retrieve a list of reports within a given configuration profile assignment */
-export const ListHcrpReportByConfigurationProfileAssignments: API.OperationMethod<
-  ListHcrpReportByConfigurationProfileAssignmentsRequest,
+export const ListHCRPReportByConfigurationProfileAssignments: API.OperationMethod<
+  ListHCRPReportByConfigurationProfileAssignmentsRequest,
   ReportList,
-  ListHcrpReportByConfigurationProfileAssignmentsError,
+  ListHCRPReportByConfigurationProfileAssignmentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListHcrpReportByConfigurationProfileAssignmentsRequest,
+  input: ListHCRPReportByConfigurationProfileAssignmentsRequest,
   output: ReportList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

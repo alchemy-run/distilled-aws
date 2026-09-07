@@ -17,7 +17,8 @@
     ],
     "keyDictionary": {
       "modifiedOn": "modified_on"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.argo#SmartRoutingEditRequestValue": {
@@ -149,16 +150,16 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.argo#SmartRoutingEdit"
+          "target": "com.cloudflare.argo#GetSmartRouting"
         },
         {
-          "target": "com.cloudflare.argo#SmartRoutingGet"
+          "target": "com.cloudflare.argo#GetTieredCaching"
         },
         {
-          "target": "com.cloudflare.argo#TieredCachingEdit"
+          "target": "com.cloudflare.argo#PatchSmartRouting"
         },
         {
-          "target": "com.cloudflare.argo#TieredCachingGet"
+          "target": "com.cloudflare.argo#PatchTieredCaching"
         }
       ],
       "traits": {

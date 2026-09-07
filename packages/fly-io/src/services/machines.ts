@@ -652,7 +652,7 @@ export type IPAssignmentType =
   | "egress_pair";
 export const IPAssignmentType = /*@__PURE__*/ S.String;
 
-export interface CreateAppIpAssignmentRequest {
+export interface CreateAppIPAssignmentRequest {
   /** Fly App Name */
   app_name: string;
   network?: string;
@@ -661,7 +661,7 @@ export interface CreateAppIpAssignmentRequest {
   service_name?: string;
   type?: IPAssignmentType | (string & {});
 }
-export const CreateAppIpAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAppIPAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     app_name: S.String.pipe(T.Label()),
     network: S.optional(S.String),
@@ -677,8 +677,8 @@ export const CreateAppIpAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateAppIpAssignmentRequest",
-}) as any as S.Schema<CreateAppIpAssignmentRequest>;
+  identifier: "CreateAppIPAssignmentRequest",
+}) as any as S.Schema<CreateAppIPAssignmentRequest>;
 
 export interface IPPair {
   v4?: string;
@@ -2755,13 +2755,13 @@ export const DestroyCustomCertificateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DestroyCustomCertificateResponse",
 }) as any as S.Schema<DestroyCustomCertificateResponse>;
 
-export interface DeleteAppIpAssignmentRequest {
+export interface DeleteAppIPAssignmentRequest {
   /** Fly App Name */
   app_name: string;
   /** IP address */
   ip: string;
 }
-export const DeleteAppIpAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAppIPAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     app_name: S.String.pipe(T.Label()),
     ip: S.String.pipe(T.Label()),
@@ -2773,15 +2773,15 @@ export const DeleteAppIpAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAppIpAssignmentRequest",
-}) as any as S.Schema<DeleteAppIpAssignmentRequest>;
+  identifier: "DeleteAppIPAssignmentRequest",
+}) as any as S.Schema<DeleteAppIPAssignmentRequest>;
 
-export interface DeleteAppIpAssignmentResponse {}
-export const DeleteAppIpAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAppIPAssignmentResponse {}
+export const DeleteAppIPAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAppIpAssignmentResponse",
-}) as any as S.Schema<DeleteAppIpAssignmentResponse>;
+  identifier: "DeleteAppIPAssignmentResponse",
+}) as any as S.Schema<DeleteAppIPAssignmentResponse>;
 
 export interface DeleteMachineRequest {
   /** Fly App Name */
@@ -3917,11 +3917,11 @@ export const ListCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCertificatesResponse",
 }) as any as S.Schema<ListCertificatesResponse>;
 
-export interface ListAppIpAssignmentsRequest {
+export interface ListAppIPAssignmentsRequest {
   /** Fly App Name */
   app_name: string;
 }
-export const ListAppIpAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAppIPAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     app_name: S.String.pipe(T.Label()),
   }).pipe(
@@ -3932,8 +3932,8 @@ export const ListAppIpAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListAppIpAssignmentsRequest",
-}) as any as S.Schema<ListAppIpAssignmentsRequest>;
+  identifier: "ListAppIPAssignmentsRequest",
+}) as any as S.Schema<ListAppIPAssignmentsRequest>;
 
 export interface IPAssignment {
   created_at?: string;
@@ -4163,51 +4163,7 @@ export const ListMachinesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListMachinesResponse",
 }) as any as S.Schema<ListMachinesResponse>;
 
-export interface ListMachineVersionsRequest {
-  /** Fly App Name */
-  app_name: string;
-  /** Machine ID */
-  machine_id: string;
-}
-export const ListMachineVersionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    app_name: S.String.pipe(T.Label()),
-    machine_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/apps/{app_name}/machines/{machine_id}/versions",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListMachineVersionsRequest",
-}) as any as S.Schema<ListMachineVersionsRequest>;
-
-export interface MachineVersion {
-  user_config?: FlyMachineConfig;
-  version?: string;
-}
-export const MachineVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_config: S.optional(FlyMachineConfig),
-    version: S.optional(S.String),
-  }),
-).annotate({ identifier: "MachineVersion" }) as any as S.Schema<MachineVersion>;
-
-export type ListMachineVersionsResponseBodyList = Array<MachineVersion>;
-export const ListMachineVersionsResponseBodyList = /*@__PURE__*/ S.Array(
-  MachineVersion,
-) as any as S.Schema<ListMachineVersionsResponseBodyList>;
-
-export type ListMachineVersionsResponse = ListMachineVersionsResponseBodyList;
-export const ListMachineVersionsResponse = /*@__PURE__*/ S.suspend(() =>
-  ListMachineVersionsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListMachineVersionsResponse",
-}) as any as S.Schema<ListMachineVersionsResponse>;
-
-export interface ListOrgMachinesRequest {
+export interface ListMachinesOrgRequest {
   /** Fly Organization Slug */
   org_slug: string;
   /** Include deleted machines */
@@ -4225,7 +4181,7 @@ export interface ListOrgMachinesRequest {
   /** The number of machines to fetch (max of 1000). This limit is advisory. Responses may be shorter, or even empty, even when more machines remain. If omitted, the maximum is used */
   limit?: number;
 }
-export const ListOrgMachinesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMachinesOrgRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org_slug: S.String.pipe(T.Label()),
     include_deleted: S.optional(S.Boolean.pipe(T.Query())),
@@ -4239,8 +4195,8 @@ export const ListOrgMachinesRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/v1/orgs/{org_slug}/machines", code: 200 }),
   ),
 ).annotate({
-  identifier: "ListOrgMachinesRequest",
-}) as any as S.Schema<ListOrgMachinesRequest>;
+  identifier: "ListMachinesOrgRequest",
+}) as any as S.Schema<ListMachinesOrgRequest>;
 
 export type OrgMachinesResponseErrorRegionsList = Array<string>;
 export const OrgMachinesResponseErrorRegionsList = /*@__PURE__*/ S.Array(
@@ -4321,121 +4277,49 @@ export const OrgMachinesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrgMachinesResponse",
 }) as any as S.Schema<OrgMachinesResponse>;
 
-export interface ListOrgVolumesRequest {
-  /** Fly Organization Slug */
-  org_slug: string;
-  /** Include deleted volumes */
-  include_deleted?: boolean;
-  /** Region filter */
-  region?: string;
-  /** Comma separated list of volume states to filter */
-  state?: string;
-  /** Only return summary info about volumes (omit blocks, block size, etc) */
-  summary?: boolean;
-  /** Only return volumes updated after this time. Timestamp must be in the RFC 3339 format */
-  updated_after?: string;
-  /** Pagination cursor from previous response (takes precedence over updated_after) */
-  cursor?: string;
-  /** The number of volumes to fetch (max of 1000). This limit is advisory. Responses may be shorter, even when more volumes remain. If omitted, the maximum is used */
-  limit?: number;
+export interface ListMachineVersionsRequest {
+  /** Fly App Name */
+  app_name: string;
+  /** Machine ID */
+  machine_id: string;
 }
-export const ListOrgVolumesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMachineVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    org_slug: S.String.pipe(T.Label()),
-    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
-    region: S.optional(S.String.pipe(T.Query())),
-    state: S.optional(S.String.pipe(T.Query())),
-    summary: S.optional(S.Boolean.pipe(T.Query())),
-    updated_after: S.optional(S.String.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
+    app_name: S.String.pipe(T.Label()),
+    machine_id: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/v1/orgs/{org_slug}/volumes", code: 200 }),
+    T.Http({
+      method: "GET",
+      uri: "/v1/apps/{app_name}/machines/{machine_id}/versions",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "ListOrgVolumesRequest",
-}) as any as S.Schema<ListOrgVolumesRequest>;
+  identifier: "ListMachineVersionsRequest",
+}) as any as S.Schema<ListMachineVersionsRequest>;
 
-export type OrgVolumeHostStatus = "ok" | "unknown" | "unreachable";
-export const OrgVolumeHostStatus = /*@__PURE__*/ S.String;
-
-export type OrgVolumeType = "local" | "cache";
-export const OrgVolumeType = /*@__PURE__*/ S.String;
-
-export interface OrgVolume {
-  app_name?: string;
-  attached_alloc_id?: string;
-  attached_machine_id?: string;
-  auto_backup_enabled?: boolean;
-  block_size?: number;
-  blocks?: number;
-  blocks_avail?: number;
-  blocks_free?: number;
-  bytes_total?: number;
-  bytes_used?: number;
-  created_at?: string;
-  encrypted?: boolean;
-  fstype?: string;
-  host_status?: OrgVolumeHostStatus;
-  id?: string;
-  name?: string;
-  region?: string;
-  size_gb?: number;
-  snapshot_retention?: number;
-  state?: string;
-  type?: OrgVolumeType;
-  updated_at?: string;
-  zone?: string;
+export interface MachineVersion {
+  user_config?: FlyMachineConfig;
+  version?: string;
 }
-export const OrgVolume = /*@__PURE__*/ S.suspend(() =>
+export const MachineVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    app_name: S.optional(S.String),
-    attached_alloc_id: S.optional(S.String),
-    attached_machine_id: S.optional(S.String),
-    auto_backup_enabled: S.optional(S.Boolean),
-    block_size: S.optional(S.Number),
-    blocks: S.optional(S.Number),
-    blocks_avail: S.optional(S.Number),
-    blocks_free: S.optional(S.Number),
-    bytes_total: S.optional(S.Number),
-    bytes_used: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    encrypted: S.optional(S.Boolean),
-    fstype: S.optional(S.String),
-    host_status: S.optional(OrgVolumeHostStatus),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    region: S.optional(S.String),
-    size_gb: S.optional(S.Number),
-    snapshot_retention: S.optional(S.Number),
-    state: S.optional(S.String),
-    type: S.optional(OrgVolumeType),
-    updated_at: S.optional(S.String),
-    zone: S.optional(S.String),
+    user_config: S.optional(FlyMachineConfig),
+    version: S.optional(S.String),
   }),
-).annotate({ identifier: "OrgVolume" }) as any as S.Schema<OrgVolume>;
+).annotate({ identifier: "MachineVersion" }) as any as S.Schema<MachineVersion>;
 
-export type OrgVolumesResponseVolumesList = Array<OrgVolume>;
-export const OrgVolumesResponseVolumesList = /*@__PURE__*/ S.Array(
-  OrgVolume,
-) as any as S.Schema<OrgVolumesResponseVolumesList>;
+export type ListMachineVersionsResponseBodyList = Array<MachineVersion>;
+export const ListMachineVersionsResponseBodyList = /*@__PURE__*/ S.Array(
+  MachineVersion,
+) as any as S.Schema<ListMachineVersionsResponseBodyList>;
 
-export interface OrgVolumesResponse {
-  last_updated_at?: string;
-  last_volume_id?: string;
-  next_cursor?: string;
-  volumes?: OrgVolumesResponseVolumesList;
-}
-export const OrgVolumesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    last_updated_at: S.optional(S.String),
-    last_volume_id: S.optional(S.String),
-    next_cursor: S.optional(S.String),
-    volumes: S.optional(OrgVolumesResponseVolumesList),
-  }),
+export type ListMachineVersionsResponse = ListMachineVersionsResponseBodyList;
+export const ListMachineVersionsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListMachineVersionsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "OrgVolumesResponse",
-}) as any as S.Schema<OrgVolumesResponse>;
+  identifier: "ListMachineVersionsResponse",
+}) as any as S.Schema<ListMachineVersionsResponse>;
 
 export interface ListPostgresRequest {
   /** Fly Organization Slug */
@@ -4885,6 +4769,150 @@ export const ListVolumeSnapshotsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVolumeSnapshotsResponse",
 }) as any as S.Schema<ListVolumeSnapshotsResponse>;
 
+export interface ListVolumesOrgRequest {
+  /** Fly Organization Slug */
+  org_slug: string;
+  /** Include deleted volumes */
+  include_deleted?: boolean;
+  /** Region filter */
+  region?: string;
+  /** Comma separated list of volume states to filter */
+  state?: string;
+  /** Only return summary info about volumes (omit blocks, block size, etc) */
+  summary?: boolean;
+  /** Only return volumes updated after this time. Timestamp must be in the RFC 3339 format */
+  updated_after?: string;
+  /** Pagination cursor from previous response (takes precedence over updated_after) */
+  cursor?: string;
+  /** The number of volumes to fetch (max of 1000). This limit is advisory. Responses may be shorter, even when more volumes remain. If omitted, the maximum is used */
+  limit?: number;
+}
+export const ListVolumesOrgRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org_slug: S.String.pipe(T.Label()),
+    include_deleted: S.optional(S.Boolean.pipe(T.Query())),
+    region: S.optional(S.String.pipe(T.Query())),
+    state: S.optional(S.String.pipe(T.Query())),
+    summary: S.optional(S.Boolean.pipe(T.Query())),
+    updated_after: S.optional(S.String.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/orgs/{org_slug}/volumes", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListVolumesOrgRequest",
+}) as any as S.Schema<ListVolumesOrgRequest>;
+
+export type OrgVolumeHostStatus = "ok" | "unknown" | "unreachable";
+export const OrgVolumeHostStatus = /*@__PURE__*/ S.String;
+
+export type OrgVolumeType = "local" | "cache";
+export const OrgVolumeType = /*@__PURE__*/ S.String;
+
+export interface OrgVolume {
+  app_name?: string;
+  attached_alloc_id?: string;
+  attached_machine_id?: string;
+  auto_backup_enabled?: boolean;
+  block_size?: number;
+  blocks?: number;
+  blocks_avail?: number;
+  blocks_free?: number;
+  bytes_total?: number;
+  bytes_used?: number;
+  created_at?: string;
+  encrypted?: boolean;
+  fstype?: string;
+  host_status?: OrgVolumeHostStatus;
+  id?: string;
+  name?: string;
+  region?: string;
+  size_gb?: number;
+  snapshot_retention?: number;
+  state?: string;
+  type?: OrgVolumeType;
+  updated_at?: string;
+  zone?: string;
+}
+export const OrgVolume = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    app_name: S.optional(S.String),
+    attached_alloc_id: S.optional(S.String),
+    attached_machine_id: S.optional(S.String),
+    auto_backup_enabled: S.optional(S.Boolean),
+    block_size: S.optional(S.Number),
+    blocks: S.optional(S.Number),
+    blocks_avail: S.optional(S.Number),
+    blocks_free: S.optional(S.Number),
+    bytes_total: S.optional(S.Number),
+    bytes_used: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    encrypted: S.optional(S.Boolean),
+    fstype: S.optional(S.String),
+    host_status: S.optional(OrgVolumeHostStatus),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    region: S.optional(S.String),
+    size_gb: S.optional(S.Number),
+    snapshot_retention: S.optional(S.Number),
+    state: S.optional(S.String),
+    type: S.optional(OrgVolumeType),
+    updated_at: S.optional(S.String),
+    zone: S.optional(S.String),
+  }),
+).annotate({ identifier: "OrgVolume" }) as any as S.Schema<OrgVolume>;
+
+export type OrgVolumesResponseVolumesList = Array<OrgVolume>;
+export const OrgVolumesResponseVolumesList = /*@__PURE__*/ S.Array(
+  OrgVolume,
+) as any as S.Schema<OrgVolumesResponseVolumesList>;
+
+export interface OrgVolumesResponse {
+  last_updated_at?: string;
+  last_volume_id?: string;
+  next_cursor?: string;
+  volumes?: OrgVolumesResponseVolumesList;
+}
+export const OrgVolumesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    last_updated_at: S.optional(S.String),
+    last_volume_id: S.optional(S.String),
+    next_cursor: S.optional(S.String),
+    volumes: S.optional(OrgVolumesResponseVolumesList),
+  }),
+).annotate({
+  identifier: "OrgVolumesResponse",
+}) as any as S.Schema<OrgVolumesResponse>;
+
+export interface MachinesReleaseLeaseRequest {
+  /** Fly App Name */
+  app_name: string;
+  /** Machine ID */
+  machine_id: string;
+}
+export const MachinesReleaseLeaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    app_name: S.String.pipe(T.Label()),
+    machine_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/apps/{app_name}/machines/{machine_id}/lease",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "MachinesReleaseLeaseRequest",
+}) as any as S.Schema<MachinesReleaseLeaseRequest>;
+
+export interface MachinesReleaseLeaseResponse {}
+export const MachinesReleaseLeaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MachinesReleaseLeaseResponse",
+}) as any as S.Schema<MachinesReleaseLeaseResponse>;
+
 export type PatchMachineMetadataRequestMetadataMap = {
   [key: string]: string | undefined;
 };
@@ -5007,34 +5035,6 @@ export const MainReclaimMemoryResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MainReclaimMemoryResponse",
 }) as any as S.Schema<MainReclaimMemoryResponse>;
-
-export interface ReleaseMachineLeaseRequest {
-  /** Fly App Name */
-  app_name: string;
-  /** Machine ID */
-  machine_id: string;
-}
-export const ReleaseMachineLeaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    app_name: S.String.pipe(T.Label()),
-    machine_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v1/apps/{app_name}/machines/{machine_id}/lease",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReleaseMachineLeaseRequest",
-}) as any as S.Schema<ReleaseMachineLeaseRequest>;
-
-export interface ReleaseMachineLeaseResponse {}
-export const ReleaseMachineLeaseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ReleaseMachineLeaseResponse",
-}) as any as S.Schema<ReleaseMachineLeaseResponse>;
 
 export interface RequestKmsTokenRequest {}
 export const RequestKmsTokenRequest = /*@__PURE__*/ S.suspend(() =>
@@ -5915,20 +5915,20 @@ export const createAppDeployToken: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateAppIpAssignmentError =
+export type CreateAppIPAssignmentError =
   | BadRequest
   | Forbidden
   | NotFound
   | Conflict
   | FlyIoOpError;
 /** Assign new IP address to app */
-export const createAppIpAssignment: API.OperationMethod<
-  CreateAppIpAssignmentRequest,
+export const createAppIPAssignment: API.OperationMethod<
+  CreateAppIPAssignmentRequest,
   AssignIPResponse,
-  CreateAppIpAssignmentError,
+  CreateAppIPAssignmentError,
   FlyIoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAppIpAssignmentRequest,
+  input: CreateAppIPAssignmentRequest,
   output: AssignIPResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
   protocol: FlyIoProtocol,
@@ -6204,16 +6204,16 @@ export const deleteAppCustomCertificate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAppIpAssignmentError = Forbidden | NotFound | FlyIoOpError;
+export type DeleteAppIPAssignmentError = Forbidden | NotFound | FlyIoOpError;
 /** Remove IP assignment from app */
-export const deleteAppIpAssignment: API.OperationMethod<
-  DeleteAppIpAssignmentRequest,
-  DeleteAppIpAssignmentResponse,
-  DeleteAppIpAssignmentError,
+export const deleteAppIPAssignment: API.OperationMethod<
+  DeleteAppIPAssignmentRequest,
+  DeleteAppIPAssignmentResponse,
+  DeleteAppIPAssignmentError,
   FlyIoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAppIpAssignmentRequest,
-  output: DeleteAppIpAssignmentResponse,
+  input: DeleteAppIPAssignmentRequest,
+  output: DeleteAppIPAssignmentResponse,
   errors: [Forbidden, NotFound],
   protocol: FlyIoProtocol,
   retry: Retry.Retry,
@@ -6711,15 +6711,15 @@ export const listAppCertificates: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAppIpAssignmentsError = Forbidden | NotFound | FlyIoOpError;
+export type ListAppIPAssignmentsError = Forbidden | NotFound | FlyIoOpError;
 /** List IP assignments for app */
-export const listAppIpAssignments: API.OperationMethod<
-  ListAppIpAssignmentsRequest,
+export const listAppIPAssignments: API.OperationMethod<
+  ListAppIPAssignmentsRequest,
   ListIPAssignmentsResponse,
-  ListAppIpAssignmentsError,
+  ListAppIPAssignmentsError,
   FlyIoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAppIpAssignmentsRequest,
+  input: ListAppIPAssignmentsRequest,
   output: ListIPAssignmentsResponse,
   errors: [Forbidden, NotFound],
   protocol: FlyIoProtocol,
@@ -6790,6 +6790,21 @@ export const listMachines: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListMachinesOrgError = Forbidden | NotFound | FlyIoOpError;
+/** List All Machines List all Machines associated with a specific organization. Machines are sorted by their `updated_at` timestamps, oldest to newest. This API call represents "a point in time". Recent machine changes, including creations and destructions, may take time to propagate. When polling with `updated_after`, offset your timestamps to catch late-arriving events. */
+export const listMachinesOrg: API.OperationMethod<
+  ListMachinesOrgRequest,
+  OrgMachinesResponse,
+  ListMachinesOrgError,
+  FlyIoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMachinesOrgRequest,
+  output: OrgMachinesResponse,
+  errors: [Forbidden, NotFound],
+  protocol: FlyIoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListMachineVersionsError = Forbidden | NotFound | FlyIoOpError;
 /** List Versions List all versions of the configuration for a specific Machine within an app. */
 export const listMachineVersions: API.OperationMethod<
@@ -6801,36 +6816,6 @@ export const listMachineVersions: API.OperationMethod<
   input: ListMachineVersionsRequest,
   output: ListMachineVersionsResponse,
   errors: [Forbidden, NotFound],
-  protocol: FlyIoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListOrgMachinesError = Forbidden | NotFound | FlyIoOpError;
-/** List All Machines List all Machines associated with a specific organization. Machines are sorted by their `updated_at` timestamps, oldest to newest. This API call represents "a point in time". Recent machine changes, including creations and destructions, may take time to propagate. When polling with `updated_after`, offset your timestamps to catch late-arriving events. */
-export const listOrgMachines: API.OperationMethod<
-  ListOrgMachinesRequest,
-  OrgMachinesResponse,
-  ListOrgMachinesError,
-  FlyIoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListOrgMachinesRequest,
-  output: OrgMachinesResponse,
-  errors: [Forbidden, NotFound],
-  protocol: FlyIoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListOrgVolumesError = FlyIoOpError;
-/** List All Volumes List all volumes for an organization with optional filters and cursor-based pagination. */
-export const listOrgVolumes: API.OperationMethod<
-  ListOrgVolumesRequest,
-  OrgVolumesResponse,
-  ListOrgVolumesError,
-  FlyIoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListOrgVolumesRequest,
-  output: OrgVolumesResponse,
-  errors: [],
   protocol: FlyIoProtocol,
   retry: Retry.Retry,
 }));
@@ -6970,6 +6955,36 @@ export const listVolumeSnapshots: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListVolumesOrgError = FlyIoOpError;
+/** List All Volumes List all volumes for an organization with optional filters and cursor-based pagination. */
+export const listVolumesOrg: API.OperationMethod<
+  ListVolumesOrgRequest,
+  OrgVolumesResponse,
+  ListVolumesOrgError,
+  FlyIoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVolumesOrgRequest,
+  output: OrgVolumesResponse,
+  errors: [],
+  protocol: FlyIoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MachinesReleaseLeaseError = Forbidden | NotFound | FlyIoOpError;
+/** Release Lease Release the lease of a specific Machine within an app. Machine leases can be used to obtain an exclusive lock on modifying a Machine. */
+export const machinesReleaseLease: API.OperationMethod<
+  MachinesReleaseLeaseRequest,
+  MachinesReleaseLeaseResponse,
+  MachinesReleaseLeaseError,
+  FlyIoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MachinesReleaseLeaseRequest,
+  output: MachinesReleaseLeaseResponse,
+  errors: [Forbidden, NotFound],
+  protocol: FlyIoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PatchMachineMetadataError = BadRequest | FlyIoOpError;
 /** Update Metadata (set/remove multiple keys) Update multiple metadata keys at once. Null values and empty strings remove keys. + If `machine_version` is provided and no longer matches the current machine version, returns 412 Precondition Failed. */
 export const patchMachineMetadata: API.OperationMethod<
@@ -7018,21 +7033,6 @@ export const reclaimMachineMemory: API.OperationMethod<
   input: ReclaimMachineMemoryRequest,
   output: MainReclaimMemoryResponse,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: FlyIoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReleaseMachineLeaseError = Forbidden | NotFound | FlyIoOpError;
-/** Release Lease Release the lease of a specific Machine within an app. Machine leases can be used to obtain an exclusive lock on modifying a Machine. */
-export const releaseMachineLease: API.OperationMethod<
-  ReleaseMachineLeaseRequest,
-  ReleaseMachineLeaseResponse,
-  ReleaseMachineLeaseError,
-  FlyIoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReleaseMachineLeaseRequest,
-  output: ReleaseMachineLeaseResponse,
-  errors: [Forbidden, NotFound],
   protocol: FlyIoProtocol,
   retry: Retry.Retry,
 }));

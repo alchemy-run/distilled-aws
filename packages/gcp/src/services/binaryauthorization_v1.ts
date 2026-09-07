@@ -90,37 +90,37 @@ export const PkixPublicKeySignatureAlgorithmEnum = /*@__PURE__*/ S.String;
 
 /** A public key in the PkixPublicKey [format](https://tools.ietf.org/html/rfc5280#section-4.1.2.7). Public keys of this type are typically textually encoded using the PEM format. */
 export interface PkixPublicKey {
+  /** The signature algorithm used to verify a message against a signature using this key. These signature algorithm must match the structure and any object identifiers encoded in `public_key_pem` (i.e. this algorithm must match that of the public key). */
+  signatureAlgorithm?: PkixPublicKeySignatureAlgorithmEnum | (string & {});
   /** A PEM-encoded public key, as described in https://tools.ietf.org/html/rfc7468#section-13 */
   publicKeyPem?: string;
   /** Optional. The ID of this public key. Signatures verified by Binary Authorization must include the ID of the public key that can be used to verify them. The ID must match exactly contents of the `key_id` field exactly. The ID may be explicitly provided by the caller, but it MUST be a valid RFC3986 URI. If `key_id` is left blank and this `PkixPublicKey` is not used in the context of a wrapper (see next paragraph), a default key ID will be computed based on the digest of the DER encoding of the public key. If this `PkixPublicKey` is used in the context of a wrapper that has its own notion of key ID (e.g. `AttestorPublicKey`), then this field can either match that value exactly, or be left blank, in which case it behaves exactly as though it is equal to that wrapper value. */
   keyId?: string;
-  /** The signature algorithm used to verify a message against a signature using this key. These signature algorithm must match the structure and any object identifiers encoded in `public_key_pem` (i.e. this algorithm must match that of the public key). */
-  signatureAlgorithm?: PkixPublicKeySignatureAlgorithmEnum | (string & {});
 }
 export const PkixPublicKey = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    signatureAlgorithm: S.optional(PkixPublicKeySignatureAlgorithmEnum),
     publicKeyPem: S.optional(S.String),
     keyId: S.optional(S.String),
-    signatureAlgorithm: S.optional(PkixPublicKeySignatureAlgorithmEnum),
   }),
 ).annotate({ identifier: "PkixPublicKey" }) as any as S.Schema<PkixPublicKey>;
 
 /** An attestor public key that will be used to verify attestations signed by this attestor. */
 export interface AttestorPublicKey {
+  /** The ID of this public key. Signatures verified by Binary Authorization must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. Additional restrictions on this field can be imposed based on which public key type is encapsulated. See the documentation on `public_key` cases below for details. */
+  id?: string;
   /** Optional. A descriptive comment. This field may be updated. */
   comment?: string;
   /** ASCII-armored representation of a PGP public key, as the entire output by the command `gpg --export --armor foo@example.com` (either LF or CRLF line endings). When using this field, `id` should be left blank. The Binary Authorization API handlers will calculate the ID and fill it in automatically. Binary Authorization computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as upper-case hex. If `id` is provided by the caller, it will be overwritten by the API-calculated ID. */
   asciiArmoredPgpPublicKey?: string;
-  /** The ID of this public key. Signatures verified by Binary Authorization must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. Additional restrictions on this field can be imposed based on which public key type is encapsulated. See the documentation on `public_key` cases below for details. */
-  id?: string;
   /** A raw PKIX SubjectPublicKeyInfo format public key. NOTE: `id` may be explicitly provided by the caller when using this type of public key, but it MUST be a valid RFC3986 URI. If `id` is left blank, a default one will be computed based on the digest of the DER encoding of the public key. */
   pkixPublicKey?: PkixPublicKey;
 }
 export const AttestorPublicKey = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.optional(S.String),
     comment: S.optional(S.String),
     asciiArmoredPgpPublicKey: S.optional(S.String),
-    id: S.optional(S.String),
     pkixPublicKey: S.optional(PkixPublicKey),
   }),
 ).annotate({
@@ -134,18 +134,18 @@ export const AttestorPublicKeyList = /*@__PURE__*/ S.Array(
 
 /** An user owned Grafeas note references a Grafeas Attestation.Authority Note created by the user. */
 export interface UserOwnedGrafeasNote {
-  /** Optional. Public keys that verify attestations signed by this attestor. This field may be updated. If this field is non-empty, one of the specified public keys must verify that an attestation was signed by this attestor for the image specified in the admission request. If this field is empty, this attestor always returns that no valid attestations exist. */
-  publicKeys?: AttestorPublicKeyList;
   /** Output only. This field will contain the service account email address that this attestor will use as the principal when querying Container Analysis. Attestor administrators must grant this service account the IAM role needed to read attestations from the note_reference in Container Analysis (`containeranalysis.notes.occurrences.viewer`). This email address is fixed for the lifetime of the attestor, but callers should not make any other assumptions about the service account email; future versions may use an email based on a different naming pattern. */
   delegationServiceAccountEmail?: string;
   /** Required. The Grafeas resource name of a Attestation.Authority Note, created by the user, in the format: `projects/[PROJECT_ID]/notes/*`. This field may not be updated. A project ID must be used, not a project number. An attestation by this attestor is stored as a Grafeas Attestation.Authority Occurrence that names a container image and that links to this Note. Grafeas is an external dependency. */
   noteReference?: string;
+  /** Optional. Public keys that verify attestations signed by this attestor. This field may be updated. If this field is non-empty, one of the specified public keys must verify that an attestation was signed by this attestor for the image specified in the admission request. If this field is empty, this attestor always returns that no valid attestations exist. */
+  publicKeys?: AttestorPublicKeyList;
 }
 export const UserOwnedGrafeasNote = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    publicKeys: S.optional(AttestorPublicKeyList),
     delegationServiceAccountEmail: S.optional(S.String),
     noteReference: S.optional(S.String),
+    publicKeys: S.optional(AttestorPublicKeyList),
   }),
 ).annotate({
   identifier: "UserOwnedGrafeasNote",
@@ -254,16 +254,16 @@ export const VulnerabilityCheckMaximumFixableSeverityEnum =
 
 /** An image vulnerability check, which rejects images that violate the configured vulnerability rules. */
 export interface VulnerabilityCheck {
-  /** Optional. A list of specific CVEs to always raise warnings about even if the vulnerability level meets `maximumUnfixableSeverity` or `maximumFixableSeverity`. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will block vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`. */
-  blockedCves?: StringList;
-  /** Optional. The projects where vulnerabilities are stored as Container Analysis Occurrences. Each project is expressed in the resource format of `projects/[PROJECT_ID]`, e.g., `projects/my-gcp-project`. An attempt will be made for each project to fetch vulnerabilities, and all valid vulnerabilities will be used to check against the vulnerability policy. If no valid scan is found in all projects configured here, an error will be returned for the check. Maximum number of `container_analysis_vulnerability_projects` allowed in each `VulnerabilityCheck` is 10. */
-  containerAnalysisVulnerabilityProjects?: StringList;
   /** Optional. A list of specific CVEs to ignore even if the vulnerability level violates `maximumUnfixableSeverity` or `maximumFixableSeverity`. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will allow vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`. */
   allowedCves?: StringList;
+  /** Optional. A list of specific CVEs to always raise warnings about even if the vulnerability level meets `maximumUnfixableSeverity` or `maximumFixableSeverity`. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will block vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`. */
+  blockedCves?: StringList;
   /** Required. The threshold for severity for which a fix isn't currently available. This field is required and must be set. */
   maximumUnfixableSeverity?:
     | VulnerabilityCheckMaximumUnfixableSeverityEnum
     | (string & {});
+  /** Optional. The projects where vulnerabilities are stored as Container Analysis Occurrences. Each project is expressed in the resource format of `projects/[PROJECT_ID]`, e.g., `projects/my-gcp-project`. An attempt will be made for each project to fetch vulnerabilities, and all valid vulnerabilities will be used to check against the vulnerability policy. If no valid scan is found in all projects configured here, an error will be returned for the check. Maximum number of `container_analysis_vulnerability_projects` allowed in each `VulnerabilityCheck` is 10. */
+  containerAnalysisVulnerabilityProjects?: StringList;
   /** Required. The threshold for severity for which a fix is currently available. This field is required and must be set. */
   maximumFixableSeverity?:
     | VulnerabilityCheckMaximumFixableSeverityEnum
@@ -271,12 +271,12 @@ export interface VulnerabilityCheck {
 }
 export const VulnerabilityCheck = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    blockedCves: S.optional(StringList),
-    containerAnalysisVulnerabilityProjects: S.optional(StringList),
     allowedCves: S.optional(StringList),
+    blockedCves: S.optional(StringList),
     maximumUnfixableSeverity: S.optional(
       VulnerabilityCheckMaximumUnfixableSeverityEnum,
     ),
+    containerAnalysisVulnerabilityProjects: S.optional(StringList),
     maximumFixableSeverity: S.optional(
       VulnerabilityCheckMaximumFixableSeverityEnum,
     ),
@@ -284,6 +284,19 @@ export const VulnerabilityCheck = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "VulnerabilityCheck",
 }) as any as S.Schema<VulnerabilityCheck>;
+
+/** An image freshness check, which rejects images that were uploaded before the set number of days ago to the supported repositories. */
+export interface ImageFreshnessCheck {
+  /** Required. The max number of days that is allowed since the image was uploaded. Must be greater than zero. */
+  maxUploadAgeDays?: number;
+}
+export const ImageFreshnessCheck = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxUploadAgeDays: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ImageFreshnessCheck",
+}) as any as S.Schema<ImageFreshnessCheck>;
 
 export type PkixPublicKeyList = Array<PkixPublicKey>;
 export const PkixPublicKeyList = /*@__PURE__*/ S.Array(
@@ -340,6 +353,19 @@ export const SimpleSigningAttestationCheck = /*@__PURE__*/ S.suspend(() =>
   identifier: "SimpleSigningAttestationCheck",
 }) as any as S.Schema<SimpleSigningAttestationCheck>;
 
+/** A trusted directory check, which rejects images that do not come from the set of user-configured trusted directories. */
+export interface TrustedDirectoryCheck {
+  /** Required. List of trusted directory patterns. A pattern is in the form "registry/path/to/directory". The registry domain part is defined as two or more dot-separated words, e.g., `us.pkg.dev`, or `gcr.io`. Additionally, `*` can be used in three ways as wildcards: 1. leading `*` to match varying prefixes in registry subdomain (useful for location prefixes); 2. trailing `*` after registry/ to match varying endings; 3. trailing `**` after registry/ to match "/" as well. For example: -- `gcr.io/my-project/my-repo` is valid to match a single directory -- `*-docker.pkg.dev/my-project/my-repo` or `*.gcr.io/my-project` are valid to match varying prefixes -- `gcr.io/my-project/*` will match all direct directories in `my-project` -- `gcr.io/my-project/**` would match all directories in `my-project` -- `gcr.i*` is not allowed since the registry is not completely specified -- `sub*domain.gcr.io/nginx` is not valid because only leading `*` or trailing `*` are allowed. -- `*pkg.dev/my-project/my-repo` is not valid because leading `*` can only match subdomain -- `**-docker.pkg.dev` is not valid because one leading `*` is allowed, and that it cannot match `/` */
+  trustedDirPatterns?: StringList;
+}
+export const TrustedDirectoryCheck = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trustedDirPatterns: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "TrustedDirectoryCheck",
+}) as any as S.Schema<TrustedDirectoryCheck>;
+
 export type VerificationRuleTrustedBuilderEnum =
   | "BUILDER_UNSPECIFIED"
   | "GOOGLE_CLOUD_BUILD";
@@ -360,24 +386,24 @@ export const AttestationSource = /*@__PURE__*/ S.suspend(() =>
 
 /** Specifies verification rules for evaluating the SLSA attestations including: which builders to trust, where to fetch the SLSA attestations generated by those builders, and other builder-specific evaluation rules such as which source repositories are trusted. An image is considered verified by the rule if any of the fetched SLSA attestations is verified. */
 export interface VerificationRule {
+  /** If true, require the image to be built from a top-level configuration. `trusted_source_repo_patterns` specifies the repositories containing this configuration. */
+  configBasedBuildRequired?: boolean;
+  /** List of trusted source code repository URL patterns. These patterns match the full repository URL without its scheme (e.g. `https://`). The patterns must not include schemes. For example, the pattern `source.cloud.google.com/my-project/my-repo-name` matches the following URLs: - `source.cloud.google.com/my-project/my-repo-name` - `git+ssh://source.cloud.google.com/my-project/my-repo-name` - `https://source.cloud.google.com/my-project/my-repo-name` A pattern matches a URL either exactly or with `*` wildcards. `*` can be used in only two ways: 1. trailing `*` after hosturi/ to match varying endings; 2. trailing `**` after hosturi/ to match `/` as well. `*` and `**` can only be used as wildcards and can only occur at the end of the pattern after a `/`. (So it's not possible to match a URL that contains literal `*`.) For example: - `github.com/my-project/my-repo` is valid to match a single repo - `github.com/my-project/*` will match all direct repos in `my-project` - `github.com/**` matches all repos in GitHub */
+  trustedSourceRepoPatterns?: StringList;
   /** Each verification rule is used for evaluation against provenances generated by a specific builder (group). For some of the builders, such as the Google Cloud Build, users don't need to explicitly specify their roots of trust in the policy since the evaluation service can automatically fetch them based on the builder (group). */
   trustedBuilder?: VerificationRuleTrustedBuilderEnum | (string & {});
   /** Specifies where to fetch the provenances attestations generated by the builder (group). */
   attestationSource?: AttestationSource;
   /** Optional. A CEL expression for specifying custom constraints on the provenance payload. This can be used when users want to specify expectations on provenance fields that are not covered by the general check. For example, users can use this field to require that certain parameters should never be used during the build process. */
   customConstraints?: string;
-  /** List of trusted source code repository URL patterns. These patterns match the full repository URL without its scheme (e.g. `https://`). The patterns must not include schemes. For example, the pattern `source.cloud.google.com/my-project/my-repo-name` matches the following URLs: - `source.cloud.google.com/my-project/my-repo-name` - `git+ssh://source.cloud.google.com/my-project/my-repo-name` - `https://source.cloud.google.com/my-project/my-repo-name` A pattern matches a URL either exactly or with `*` wildcards. `*` can be used in only two ways: 1. trailing `*` after hosturi/ to match varying endings; 2. trailing `**` after hosturi/ to match `/` as well. `*` and `**` can only be used as wildcards and can only occur at the end of the pattern after a `/`. (So it's not possible to match a URL that contains literal `*`.) For example: - `github.com/my-project/my-repo` is valid to match a single repo - `github.com/my-project/*` will match all direct repos in `my-project` - `github.com/**` matches all repos in GitHub */
-  trustedSourceRepoPatterns?: StringList;
-  /** If true, require the image to be built from a top-level configuration. `trusted_source_repo_patterns` specifies the repositories containing this configuration. */
-  configBasedBuildRequired?: boolean;
 }
 export const VerificationRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    configBasedBuildRequired: S.optional(S.Boolean),
+    trustedSourceRepoPatterns: S.optional(StringList),
     trustedBuilder: S.optional(VerificationRuleTrustedBuilderEnum),
     attestationSource: S.optional(AttestationSource),
     customConstraints: S.optional(S.String),
-    trustedSourceRepoPatterns: S.optional(StringList),
-    configBasedBuildRequired: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "VerificationRule",
@@ -398,19 +424,6 @@ export const SlsaCheck = /*@__PURE__*/ S.suspend(() =>
     rules: S.optional(VerificationRuleList),
   }),
 ).annotate({ identifier: "SlsaCheck" }) as any as S.Schema<SlsaCheck>;
-
-/** A trusted directory check, which rejects images that do not come from the set of user-configured trusted directories. */
-export interface TrustedDirectoryCheck {
-  /** Required. List of trusted directory patterns. A pattern is in the form "registry/path/to/directory". The registry domain part is defined as two or more dot-separated words, e.g., `us.pkg.dev`, or `gcr.io`. Additionally, `*` can be used in three ways as wildcards: 1. leading `*` to match varying prefixes in registry subdomain (useful for location prefixes); 2. trailing `*` after registry/ to match varying endings; 3. trailing `**` after registry/ to match "/" as well. For example: -- `gcr.io/my-project/my-repo` is valid to match a single directory -- `*-docker.pkg.dev/my-project/my-repo` or `*.gcr.io/my-project` are valid to match varying prefixes -- `gcr.io/my-project/*` will match all direct directories in `my-project` -- `gcr.io/my-project/**` would match all directories in `my-project` -- `gcr.i*` is not allowed since the registry is not completely specified -- `sub*domain.gcr.io/nginx` is not valid because only leading `*` or trailing `*` are allowed. -- `*pkg.dev/my-project/my-repo` is not valid because leading `*` can only match subdomain -- `**-docker.pkg.dev` is not valid because one leading `*` is allowed, and that it cannot match `/` */
-  trustedDirPatterns?: StringList;
-}
-export const TrustedDirectoryCheck = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trustedDirPatterns: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "TrustedDirectoryCheck",
-}) as any as S.Schema<TrustedDirectoryCheck>;
 
 /** A Sigstore public key. `SigstorePublicKey` is the public key material used to authenticate Sigstore signatures. */
 export interface SigstorePublicKey {
@@ -445,15 +458,15 @@ export const SigstorePublicKeySet = /*@__PURE__*/ S.suspend(() =>
 
 /** A Sigstore authority, used to verify signatures that are created by Sigstore. An authority is analogous to an attestation authenticator, verifying that a signature is valid or invalid. */
 export interface SigstoreAuthority {
-  /** Required. A simple set of public keys. A signature is considered valid if any keys in the set validate the signature. */
-  publicKeySet?: SigstorePublicKeySet;
   /** Optional. A user-provided name for this `SigstoreAuthority`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results. */
   displayName?: string;
+  /** Required. A simple set of public keys. A signature is considered valid if any keys in the set validate the signature. */
+  publicKeySet?: SigstorePublicKeySet;
 }
 export const SigstoreAuthority = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    publicKeySet: S.optional(SigstorePublicKeySet),
     displayName: S.optional(S.String),
+    publicKeySet: S.optional(SigstorePublicKeySet),
   }),
 ).annotate({
   identifier: "SigstoreAuthority",
@@ -477,51 +490,38 @@ export const SigstoreSignatureCheck = /*@__PURE__*/ S.suspend(() =>
   identifier: "SigstoreSignatureCheck",
 }) as any as S.Schema<SigstoreSignatureCheck>;
 
-/** An image freshness check, which rejects images that were uploaded before the set number of days ago to the supported repositories. */
-export interface ImageFreshnessCheck {
-  /** Required. The max number of days that is allowed since the image was uploaded. Must be greater than zero. */
-  maxUploadAgeDays?: number;
-}
-export const ImageFreshnessCheck = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxUploadAgeDays: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ImageFreshnessCheck",
-}) as any as S.Schema<ImageFreshnessCheck>;
-
 /** A single check to perform against a Pod. Checks are grouped into `CheckSet` objects, which are defined by the top-level policy. */
 export interface Check {
   /** Optional. Require that an image does not contain vulnerabilities that violate the configured rules, such as based on severity levels. */
   vulnerabilityCheck?: VulnerabilityCheck;
-  /** Optional. Require a SimpleSigning-type attestation for every image in the deployment. */
-  simpleSigningAttestationCheck?: SimpleSigningAttestationCheck;
-  /** Optional. A user-provided name for this check. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results. */
-  displayName?: string;
   /** Optional. Images exempted from this check. If any of the patterns match the image url, the check will not be evaluated. */
   imageAllowlist?: ImageAllowlist;
+  /** Optional. Require that an image is no older than a configured expiration time. Image age is determined by its upload time. */
+  imageFreshnessCheck?: ImageFreshnessCheck;
+  /** Optional. Require a SimpleSigning-type attestation for every image in the deployment. */
+  simpleSigningAttestationCheck?: SimpleSigningAttestationCheck;
+  /** Optional. Require that an image lives in a trusted directory. */
+  trustedDirectoryCheck?: TrustedDirectoryCheck;
+  /** Optional. A user-provided name for this check. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results. */
+  displayName?: string;
   /** Optional. Require that an image was built by a trusted builder (such as Google Cloud Build), meets requirements for Supply chain Levels for Software Artifacts (SLSA), and was built from a trusted source code repostitory. */
   slsaCheck?: SlsaCheck;
   /** Optional. A special-case check that always denies. Note that this still only applies when the scope of the `CheckSet` applies and the image isn't exempted by an image allowlist. This check is primarily useful for testing, or to set the default behavior for all unmatched scopes to "deny". */
   alwaysDeny?: boolean;
-  /** Optional. Require that an image lives in a trusted directory. */
-  trustedDirectoryCheck?: TrustedDirectoryCheck;
   /** Optional. Require that an image was signed by Cosign with a trusted key. This check requires that both the image and signature are stored in Artifact Registry. */
   sigstoreSignatureCheck?: SigstoreSignatureCheck;
-  /** Optional. Require that an image is no older than a configured expiration time. Image age is determined by its upload time. */
-  imageFreshnessCheck?: ImageFreshnessCheck;
 }
 export const Check = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     vulnerabilityCheck: S.optional(VulnerabilityCheck),
-    simpleSigningAttestationCheck: S.optional(SimpleSigningAttestationCheck),
-    displayName: S.optional(S.String),
     imageAllowlist: S.optional(ImageAllowlist),
+    imageFreshnessCheck: S.optional(ImageFreshnessCheck),
+    simpleSigningAttestationCheck: S.optional(SimpleSigningAttestationCheck),
+    trustedDirectoryCheck: S.optional(TrustedDirectoryCheck),
+    displayName: S.optional(S.String),
     slsaCheck: S.optional(SlsaCheck),
     alwaysDeny: S.optional(S.Boolean),
-    trustedDirectoryCheck: S.optional(TrustedDirectoryCheck),
     sigstoreSignatureCheck: S.optional(SigstoreSignatureCheck),
-    imageFreshnessCheck: S.optional(ImageFreshnessCheck),
   }),
 ).annotate({ identifier: "Check" }) as any as S.Schema<Check>;
 
@@ -532,21 +532,21 @@ export const CheckList = /*@__PURE__*/ S.Array(
 
 /** A conjunction of policy checks, scoped to a particular namespace or Kubernetes service account. In order for evaluation of a `CheckSet` to return "allowed" for a given image in a given Pod, one of the following conditions must be satisfied: * The image is explicitly exempted by an entry in `image_allowlist`, OR * ALL of the `checks` evaluate to "allowed". */
 export interface CheckSet {
-  /** Optional. Images exempted from this `CheckSet`. If any of the patterns match the image being evaluated, no checks in the `CheckSet` will be evaluated. */
-  imageAllowlist?: ImageAllowlist;
-  /** Optional. A user-provided name for this `CheckSet`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results. */
-  displayName?: string;
   /** Optional. The scope to which this `CheckSet` applies. If unset or an empty string (the default), applies to all namespaces and service accounts. See the `Scope` message documentation for details on scoping rules. */
   scope?: Scope;
   /** Optional. The checks to apply. The ultimate result of evaluating the check set will be "allow" if and only if every check in `checks` evaluates to "allow". If `checks` is empty, the default behavior is "always allow". */
   checks?: CheckList;
+  /** Optional. A user-provided name for this `CheckSet`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results. */
+  displayName?: string;
+  /** Optional. Images exempted from this `CheckSet`. If any of the patterns match the image being evaluated, no checks in the `CheckSet` will be evaluated. */
+  imageAllowlist?: ImageAllowlist;
 }
 export const CheckSet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    imageAllowlist: S.optional(ImageAllowlist),
-    displayName: S.optional(S.String),
     scope: S.optional(Scope),
     checks: S.optional(CheckList),
+    displayName: S.optional(S.String),
+    imageAllowlist: S.optional(ImageAllowlist),
   }),
 ).annotate({ identifier: "CheckSet" }) as any as S.Schema<CheckSet>;
 
@@ -573,22 +573,22 @@ export const GkePolicy = /*@__PURE__*/ S.suspend(() =>
 export interface PlatformPolicy {
   /** Optional. Used to prevent updating the policy when another request has updated it since it was retrieved. */
   etag?: string;
-  /** Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/*\/platforms/*\/policies/*`. */
-  name?: string;
-  /** Output only. Time when the policy was last updated. */
-  updateTime?: string;
   /** Optional. GKE platform-specific policy. */
   gkePolicy?: GkePolicy;
+  /** Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/*\/platforms/*\/policies/*`. */
+  name?: string;
   /** Optional. A description comment about the policy. */
   description?: string;
+  /** Output only. Time when the policy was last updated. */
+  updateTime?: string;
 }
 export const PlatformPolicy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     etag: S.optional(S.String),
-    name: S.optional(S.String),
-    updateTime: S.optional(S.String),
     gkePolicy: S.optional(GkePolicy),
+    name: S.optional(S.String),
     description: S.optional(S.String),
+    updateTime: S.optional(S.String),
   }),
 ).annotate({ identifier: "PlatformPolicy" }) as any as S.Schema<PlatformPolicy>;
 
@@ -642,16 +642,16 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
 }) as any as S.Schema<Empty>;
 
 export interface DeleteProjectsPlatformsPoliciesRequest {
-  /** Required. The name of the platform policy to delete, in the format `projects/*\/platforms/*\/policies/*`. */
-  name: string;
   /** Optional. Used to prevent deleting the policy when another request has updated it since it was retrieved. */
   etag?: string;
+  /** Required. The name of the platform policy to delete, in the format `projects/*\/platforms/*\/policies/*`. */
+  name: string;
 }
 export const DeleteProjectsPlatformsPoliciesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       etag: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -711,13 +711,6 @@ export type EvaluateGkePolicyResponseVerdictEnum =
   | "ERROR";
 export const EvaluateGkePolicyResponseVerdictEnum = /*@__PURE__*/ S.String;
 
-export type PodResultVerdictEnum =
-  | "POD_VERDICT_UNSPECIFIED"
-  | "CONFORMANT"
-  | "NON_CONFORMANT"
-  | "ERROR";
-export const PodResultVerdictEnum = /*@__PURE__*/ S.String;
-
 export type ImageResultVerdictEnum =
   | "IMAGE_VERDICT_UNSPECIFIED"
   | "CONFORMANT"
@@ -760,12 +753,12 @@ export const EvaluationResult = /*@__PURE__*/ S.suspend(() =>
 
 /** Result of evaluating one check. */
 export interface CheckResult {
-  /** Explanation of this check result. */
-  explanation?: string;
   /** The type of the check. */
   type?: string;
   /** If the image was exempted by an allow_pattern in the check, contains the pattern that the image name matched. */
   allowlistResult?: AllowlistResult;
+  /** Explanation of this check result. */
+  explanation?: string;
   /** If a check was evaluated, contains the result of the check. */
   evaluationResult?: EvaluationResult;
   /** The index of the check. */
@@ -775,9 +768,9 @@ export interface CheckResult {
 }
 export const CheckResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    explanation: S.optional(S.String),
     type: S.optional(S.String),
     allowlistResult: S.optional(AllowlistResult),
+    explanation: S.optional(S.String),
     evaluationResult: S.optional(EvaluationResult),
     index: S.optional(S.String),
     displayName: S.optional(S.String),
@@ -802,50 +795,50 @@ export const CheckResults = /*@__PURE__*/ S.suspend(() =>
 
 /** Result of evaluating one check set. */
 export interface CheckSetResult {
-  /** The scope of the check set. */
-  scope?: Scope;
-  /** Explanation of this check set result. Only populated if no checks were evaluated. */
-  explanation?: string;
   /** If checks were evaluated, contains the results of evaluating each check. */
   checkResults?: CheckResults;
-  /** If the image was exempted by an allow_pattern in the check set, contains the pattern that the image name matched. */
-  allowlistResult?: AllowlistResult;
+  /** Explanation of this check set result. Only populated if no checks were evaluated. */
+  explanation?: string;
   /** The index of the check set. */
   index?: string;
+  /** If the image was exempted by an allow_pattern in the check set, contains the pattern that the image name matched. */
+  allowlistResult?: AllowlistResult;
   /** The name of the check set. */
   displayName?: string;
+  /** The scope of the check set. */
+  scope?: Scope;
 }
 export const CheckSetResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scope: S.optional(Scope),
-    explanation: S.optional(S.String),
     checkResults: S.optional(CheckResults),
-    allowlistResult: S.optional(AllowlistResult),
+    explanation: S.optional(S.String),
     index: S.optional(S.String),
+    allowlistResult: S.optional(AllowlistResult),
     displayName: S.optional(S.String),
+    scope: S.optional(Scope),
   }),
 ).annotate({ identifier: "CheckSetResult" }) as any as S.Schema<CheckSetResult>;
 
 /** Result of evaluating one image. */
 export interface ImageResult {
-  /** Explanation of this image result. Only populated if no check sets were evaluated. */
-  explanation?: string;
   /** The result of evaluating this image. */
   verdict?: ImageResultVerdictEnum;
+  /** If the image was exempted by a top-level allow_pattern, contains the allowlist pattern that the image name matched. */
+  allowlistResult?: AllowlistResult;
   /** Image URI from the request. */
   imageUri?: string;
   /** If a check set was evaluated, contains the result of the check set. Empty if there were no check sets. */
   checkSetResult?: CheckSetResult;
-  /** If the image was exempted by a top-level allow_pattern, contains the allowlist pattern that the image name matched. */
-  allowlistResult?: AllowlistResult;
+  /** Explanation of this image result. Only populated if no check sets were evaluated. */
+  explanation?: string;
 }
 export const ImageResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    explanation: S.optional(S.String),
     verdict: S.optional(ImageResultVerdictEnum),
+    allowlistResult: S.optional(AllowlistResult),
     imageUri: S.optional(S.String),
     checkSetResult: S.optional(CheckSetResult),
-    allowlistResult: S.optional(AllowlistResult),
+    explanation: S.optional(S.String),
   }),
 ).annotate({ identifier: "ImageResult" }) as any as S.Schema<ImageResult>;
 
@@ -854,26 +847,33 @@ export const ImageResultList = /*@__PURE__*/ S.Array(
   ImageResult,
 ) as any as S.Schema<ImageResultList>;
 
+export type PodResultVerdictEnum =
+  | "POD_VERDICT_UNSPECIFIED"
+  | "CONFORMANT"
+  | "NON_CONFORMANT"
+  | "ERROR";
+export const PodResultVerdictEnum = /*@__PURE__*/ S.String;
+
 /** Result of evaluating the whole GKE policy for one Pod. */
 export interface PodResult {
-  /** The Kubernetes service account of the Pod. */
-  kubernetesServiceAccount?: string;
-  /** The name of the Pod. */
-  podName?: string;
-  /** The result of evaluating this Pod. */
-  verdict?: PodResultVerdictEnum;
   /** Per-image details. */
   imageResults?: ImageResultList;
+  /** The result of evaluating this Pod. */
+  verdict?: PodResultVerdictEnum;
+  /** The name of the Pod. */
+  podName?: string;
   /** The Kubernetes namespace of the Pod. */
   kubernetesNamespace?: string;
+  /** The Kubernetes service account of the Pod. */
+  kubernetesServiceAccount?: string;
 }
 export const PodResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kubernetesServiceAccount: S.optional(S.String),
-    podName: S.optional(S.String),
-    verdict: S.optional(PodResultVerdictEnum),
     imageResults: S.optional(ImageResultList),
+    verdict: S.optional(PodResultVerdictEnum),
+    podName: S.optional(S.String),
     kubernetesNamespace: S.optional(S.String),
+    kubernetesServiceAccount: S.optional(S.String),
   }),
 ).annotate({ identifier: "PodResult" }) as any as S.Schema<PodResult>;
 
@@ -899,16 +899,16 @@ export const EvaluateGkePolicyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EvaluateGkePolicyResponse>;
 
 export interface GetIamPolicyProjectsAttestorsRequest {
-  /** REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field. */
-  resource: string;
   /** Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
   "options.requestedPolicyVersion"?: number;
+  /** REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field. */
+  resource: string;
 }
 export const GetIamPolicyProjectsAttestorsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      resource: S.String.pipe(T.Label()),
       "options.requestedPolicyVersion": S.optional(S.Number.pipe(T.Query())),
+      resource: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -924,36 +924,36 @@ export const GetIamPolicyProjectsAttestorsRequest = /*@__PURE__*/ S.suspend(
 export interface Expr {
   /** Textual representation of an expression in Common Expression Language syntax. */
   expression?: string;
-  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
-  location?: string;
   /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
   description?: string;
+  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
+  location?: string;
   /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
   title?: string;
 }
 export const Expr = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     expression: S.optional(S.String),
-    location: S.optional(S.String),
     description: S.optional(S.String),
+    location: S.optional(S.String),
     title: S.optional(S.String),
   }),
 ).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
 
 /** Associates `members`, or principals, with a `role`. */
 export interface Binding {
-  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
-  role?: string;
   /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
   members?: StringList;
   /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
   condition?: Expr;
+  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
+  role?: string;
 }
 export const Binding = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    role: S.optional(S.String),
     members: S.optional(StringList),
     condition: S.optional(Expr),
+    role: S.optional(S.String),
   }),
 ).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
 
@@ -964,17 +964,17 @@ export const BindingList = /*@__PURE__*/ S.Array(
 
 /** An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/). */
 export interface IamPolicy {
-  /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  version?: number;
   /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
   etag?: string;
+  /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  version?: number;
   /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
   bindings?: BindingList;
 }
 export const IamPolicy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    version: S.optional(S.Number),
     etag: S.optional(S.String),
+    version: S.optional(S.Number),
     bindings: S.optional(BindingList),
   }),
 ).annotate({ identifier: "IamPolicy" }) as any as S.Schema<IamPolicy>;
@@ -1018,30 +1018,6 @@ export const GetPolicyProjectsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPolicyProjectsRequest",
 }) as any as S.Schema<GetPolicyProjectsRequest>;
 
-export type PolicyGlobalPolicyEvaluationModeEnum =
-  | "GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED"
-  | "ENABLE"
-  | "DISABLE";
-export const PolicyGlobalPolicyEvaluationModeEnum = /*@__PURE__*/ S.String;
-
-/** An admission allowlist pattern exempts images from checks by admission rules. */
-export interface AdmissionWhitelistPattern {
-  /** An image name pattern to allowlist, in the form `registry/path/to/image`. This supports a trailing `*` wildcard, but this is allowed only in text after the `registry/` part. This also supports a trailing `**` wildcard which matches subdirectories of a given entry. */
-  namePattern?: string;
-}
-export const AdmissionWhitelistPattern = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namePattern: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AdmissionWhitelistPattern",
-}) as any as S.Schema<AdmissionWhitelistPattern>;
-
-export type AdmissionWhitelistPatternList = Array<AdmissionWhitelistPattern>;
-export const AdmissionWhitelistPatternList = /*@__PURE__*/ S.Array(
-  AdmissionWhitelistPattern,
-) as any as S.Schema<AdmissionWhitelistPatternList>;
-
 export type AdmissionRuleEvaluationModeEnum =
   | "EVALUATION_MODE_UNSPECIFIED"
   | "ALWAYS_ALLOW"
@@ -1078,48 +1054,72 @@ export const AdmissionRuleMap = /*@__PURE__*/ S.Record(
   AdmissionRule,
 ) as any as S.Schema<AdmissionRuleMap>;
 
+export type PolicyGlobalPolicyEvaluationModeEnum =
+  | "GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED"
+  | "ENABLE"
+  | "DISABLE";
+export const PolicyGlobalPolicyEvaluationModeEnum = /*@__PURE__*/ S.String;
+
+/** An admission allowlist pattern exempts images from checks by admission rules. */
+export interface AdmissionWhitelistPattern {
+  /** An image name pattern to allowlist, in the form `registry/path/to/image`. This supports a trailing `*` wildcard, but this is allowed only in text after the `registry/` part. This also supports a trailing `**` wildcard which matches subdirectories of a given entry. */
+  namePattern?: string;
+}
+export const AdmissionWhitelistPattern = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namePattern: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AdmissionWhitelistPattern",
+}) as any as S.Schema<AdmissionWhitelistPattern>;
+
+export type AdmissionWhitelistPatternList = Array<AdmissionWhitelistPattern>;
+export const AdmissionWhitelistPatternList = /*@__PURE__*/ S.Array(
+  AdmissionWhitelistPattern,
+) as any as S.Schema<AdmissionWhitelistPatternList>;
+
 /** A policy for container image binary authorization. */
 export interface Policy {
-  /** Optional. A descriptive comment. */
-  description?: string;
+  /** Optional. A checksum, returned by the server, that can be sent on update requests to ensure the policy has an up-to-date value before attempting to update it. See https://google.aip.dev/154. */
+  etag?: string;
+  /** Optional. Per-istio-service-identity admission rules. Istio service identity spec format: `spiffe:///ns//sa/` or `/ns//sa/` e.g. `spiffe://example.com/ns/test-ns/sa/default` */
+  istioServiceIdentityAdmissionRules?: AdmissionRuleMap;
+  /** Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format: `[a-z.-]+`, e.g. `some-namespace` */
+  kubernetesNamespaceAdmissionRules?: AdmissionRuleMap;
+  /** Optional. A valid policy has only one of the following rule maps non-empty, i.e. only one of `cluster_admission_rules`, `kubernetes_namespace_admission_rules`, `kubernetes_service_account_admission_rules`, or `istio_service_identity_admission_rules` can be non-empty. Per-cluster admission rules. Cluster spec format: `location.clusterId`. There can be at most one admission rule per cluster spec. A `location` is either a compute zone (e.g. us-central1-a) or a region (e.g. us-central1). For `clusterId` syntax restrictions see https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters. */
+  clusterAdmissionRules?: AdmissionRuleMap;
+  /** Optional. Per-kubernetes-service-account admission rules. Service account spec format: `namespace:serviceaccount`. e.g. `test-ns:default` */
+  kubernetesServiceAccountAdmissionRules?: AdmissionRuleMap;
   /** Optional. Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not covered by the global policy will be subject to the project admission policy. This setting has no effect when specified inside a global admission policy. */
   globalPolicyEvaluationMode?:
     | PolicyGlobalPolicyEvaluationModeEnum
     | (string & {});
-  /** Output only. The resource name, in the format `projects/*\/policy`. There is at most one policy per project. */
-  name?: string;
-  /** Optional. Admission policy allowlisting. A matching admission request will always be permitted. This feature is typically used to exclude Google or third-party infrastructure images from Binary Authorization policies. */
-  admissionWhitelistPatterns?: AdmissionWhitelistPatternList;
-  /** Optional. A checksum, returned by the server, that can be sent on update requests to ensure the policy has an up-to-date value before attempting to update it. See https://google.aip.dev/154. */
-  etag?: string;
+  /** Optional. A descriptive comment. */
+  description?: string;
   /** Required. Default admission rule for a cluster without a per-cluster, per- kubernetes-service-account, or per-istio-service-identity admission rule. */
   defaultAdmissionRule?: AdmissionRule;
-  /** Optional. Per-istio-service-identity admission rules. Istio service identity spec format: `spiffe:///ns//sa/` or `/ns//sa/` e.g. `spiffe://example.com/ns/test-ns/sa/default` */
-  istioServiceIdentityAdmissionRules?: AdmissionRuleMap;
-  /** Optional. Per-kubernetes-service-account admission rules. Service account spec format: `namespace:serviceaccount`. e.g. `test-ns:default` */
-  kubernetesServiceAccountAdmissionRules?: AdmissionRuleMap;
-  /** Optional. A valid policy has only one of the following rule maps non-empty, i.e. only one of `cluster_admission_rules`, `kubernetes_namespace_admission_rules`, `kubernetes_service_account_admission_rules`, or `istio_service_identity_admission_rules` can be non-empty. Per-cluster admission rules. Cluster spec format: `location.clusterId`. There can be at most one admission rule per cluster spec. A `location` is either a compute zone (e.g. us-central1-a) or a region (e.g. us-central1). For `clusterId` syntax restrictions see https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters. */
-  clusterAdmissionRules?: AdmissionRuleMap;
+  /** Optional. Admission policy allowlisting. A matching admission request will always be permitted. This feature is typically used to exclude Google or third-party infrastructure images from Binary Authorization policies. */
+  admissionWhitelistPatterns?: AdmissionWhitelistPatternList;
   /** Output only. Time when the policy was last updated. */
   updateTime?: string;
-  /** Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format: `[a-z.-]+`, e.g. `some-namespace` */
-  kubernetesNamespaceAdmissionRules?: AdmissionRuleMap;
+  /** Output only. The resource name, in the format `projects/*\/policy`. There is at most one policy per project. */
+  name?: string;
 }
 export const Policy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    description: S.optional(S.String),
+    etag: S.optional(S.String),
+    istioServiceIdentityAdmissionRules: S.optional(AdmissionRuleMap),
+    kubernetesNamespaceAdmissionRules: S.optional(AdmissionRuleMap),
+    clusterAdmissionRules: S.optional(AdmissionRuleMap),
+    kubernetesServiceAccountAdmissionRules: S.optional(AdmissionRuleMap),
     globalPolicyEvaluationMode: S.optional(
       PolicyGlobalPolicyEvaluationModeEnum,
     ),
-    name: S.optional(S.String),
-    admissionWhitelistPatterns: S.optional(AdmissionWhitelistPatternList),
-    etag: S.optional(S.String),
+    description: S.optional(S.String),
     defaultAdmissionRule: S.optional(AdmissionRule),
-    istioServiceIdentityAdmissionRules: S.optional(AdmissionRuleMap),
-    kubernetesServiceAccountAdmissionRules: S.optional(AdmissionRuleMap),
-    clusterAdmissionRules: S.optional(AdmissionRuleMap),
+    admissionWhitelistPatterns: S.optional(AdmissionWhitelistPatternList),
     updateTime: S.optional(S.String),
-    kubernetesNamespaceAdmissionRules: S.optional(AdmissionRuleMap),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Policy" }) as any as S.Schema<Policy>;
 
@@ -1178,18 +1178,18 @@ export const GetProjectsPlatformsPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectsPlatformsPoliciesRequest>;
 
 export interface ListProjectsAttestorsRequest {
-  /** Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default. */
-  pageSize?: number;
-  /** A token identifying a page of results the server should return. Typically, this is the value of ListAttestorsResponse.next_page_token returned from the previous call to the `ListAttestors` method. */
-  pageToken?: string;
   /** Required. The resource name of the project associated with the attestors, in the format `projects/*`. */
   parent: string;
+  /** A token identifying a page of results the server should return. Typically, this is the value of ListAttestorsResponse.next_page_token returned from the previous call to the `ListAttestors` method. */
+  pageToken?: string;
+  /** Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default. */
+  pageSize?: number;
 }
 export const ListProjectsAttestorsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1225,17 +1225,17 @@ export const ListAttestorsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListProjectsPlatformsPoliciesRequest {
   /** Requested page size. The server may return fewer results than requested. If unspecified, the server picks an appropriate default. */
   pageSize?: number;
-  /** Required. The resource name of the platform associated with the platform policies using the format `projects/*\/platforms/*`. */
-  parent: string;
   /** A token identifying a page of results the server should return. Typically, this is the value of ListPlatformPoliciesResponse.next_page_token returned from the previous call to the `ListPlatformPolicies` method. */
   pageToken?: string;
+  /** Required. The resource name of the platform associated with the platform policies using the format `projects/*\/platforms/*`. */
+  parent: string;
 }
 export const ListProjectsPlatformsPoliciesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1473,15 +1473,15 @@ export const JwtList = /*@__PURE__*/ S.Array(Jwt) as any as S.Schema<JwtList>;
 
 /** Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be "attached" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any "attached" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature). */
 export interface Signature {
-  /** The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload. */
-  signature?: string;
   /** The identifier for the public key that verifies this signature. * The `public_key_id` is required. * The `public_key_id` SHOULD be an RFC3986 conformant URI. * When possible, the `public_key_id` SHOULD be an immutable reference, such as a cryptographic digest. Examples of valid `public_key_id`s: OpenPGP V4 public key fingerprint: * "openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA" See https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more details on this scheme. RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER serialization): * "ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU" * "nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5" */
   publicKeyId?: string;
+  /** The content of the signature, an opaque bytestring. The payload that this signature verifies MUST be unambiguously provided with the Signature during verification. A wrapper message might provide the payload explicitly. Alternatively, a message might have a canonical serialization that can always be unambiguously computed to derive the payload. */
+  signature?: string;
 }
 export const Signature = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    signature: S.optional(S.String),
     publicKeyId: S.optional(S.String),
+    signature: S.optional(S.String),
   }),
 ).annotate({ identifier: "Signature" }) as any as S.Schema<Signature>;
 
@@ -1511,19 +1511,19 @@ export const AttestationOccurrence = /*@__PURE__*/ S.suspend(() =>
 
 /** Request message for ValidationHelperV1.ValidateAttestationOccurrence. */
 export interface ValidateAttestationOccurrenceRequest {
-  /** Required. An AttestationOccurrence to be checked that it can be verified by the `Attestor`. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid `AttestationOccurrence`. */
-  attestation?: AttestationOccurrence;
   /** Required. The URI of the artifact (e.g. container image) that is the subject of the containing Occurrence. */
   occurrenceResourceUri?: string;
   /** Required. The resource name of the Note to which the containing Occurrence is associated. */
   occurrenceNote?: string;
+  /** Required. An AttestationOccurrence to be checked that it can be verified by the `Attestor`. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid `AttestationOccurrence`. */
+  attestation?: AttestationOccurrence;
 }
 export const ValidateAttestationOccurrenceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      attestation: S.optional(AttestationOccurrence),
       occurrenceResourceUri: S.optional(S.String),
       occurrenceNote: S.optional(S.String),
+      attestation: S.optional(AttestationOccurrence),
     }),
 ).annotate({
   identifier: "ValidateAttestationOccurrenceRequest",
@@ -1560,16 +1560,16 @@ export const ValidateAttestationOccurrenceResponseResultEnum =
 
 /** Response message for ValidationHelperV1.ValidateAttestationOccurrence. */
 export interface ValidateAttestationOccurrenceResponse {
-  /** The reason for denial if the Attestation couldn't be validated. */
-  denialReason?: string;
   /** The result of the Attestation validation. */
   result?: ValidateAttestationOccurrenceResponseResultEnum;
+  /** The reason for denial if the Attestation couldn't be validated. */
+  denialReason?: string;
 }
 export const ValidateAttestationOccurrenceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      denialReason: S.optional(S.String),
       result: S.optional(ValidateAttestationOccurrenceResponseResultEnum),
+      denialReason: S.optional(S.String),
     }),
 ).annotate({
   identifier: "ValidateAttestationOccurrenceResponse",

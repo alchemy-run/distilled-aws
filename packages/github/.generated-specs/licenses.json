@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.licenses#GetAllCommonlyUsedRequest": {
@@ -519,10 +520,10 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.licenses#GetAllCommonlyUsed"
+          "target": "com.github.licenses#Get"
         },
         {
-          "target": "com.github.licenses#Get"
+          "target": "com.github.licenses#GetAllCommonlyUsed"
         },
         {
           "target": "com.github.licenses#GetForRepo"

@@ -39,75 +39,26 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type PropertyDefinitionsListRequestType =
-  | "event"
-  | "person"
-  | "group"
-  | "session";
-export const PropertyDefinitionsListRequestType = /*@__PURE__*/ S.String;
-
-export interface ListPropertyDefinitionsRequest {
+export interface GetPropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** If sent, response value will have `is_seen_on_filtered_events` populated. JSON-encoded */
-  event_names?: string;
-  /** Whether to exclude core properties */
-  exclude_core_properties?: boolean;
-  /** Whether to exclude properties marked as hidden */
-  exclude_hidden?: boolean;
-  /** Whether to exclude properties that the current user does not have read access to via field-level access control */
-  exclude_restricted?: boolean;
-  /** JSON-encoded list of excluded properties */
-  excluded_properties?: string;
-  /** Whether to return only properties for events in `event_names`. Note: this event scoping does not apply to feature flag properties ($feature/*), which are global and not tracked per-event; to retrieve feature flags use is_feature_flag=true instead. */
-  filter_by_event_names?: boolean;
-  /** What group type is the property for. Only should be set if `type=group` */
-  group_type_index?: number;
-  /** Whether to return only (or excluding) feature flag properties ($feature/*). Flags are global, not per-event, so they can't be scoped by event_names/filter_by_event_names — pass is_feature_flag=true to list them all. */
-  is_feature_flag?: boolean;
-  /** Whether to return only (or excluding) numerical property definitions */
-  is_numerical?: boolean;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Comma-separated list of properties to filter */
-  properties?: string;
-  /** Searches properties by name */
-  search?: string;
-  /** What property definitions to return * `event` - event * `person` - person * `group` - group * `session` - session */
-  type?: PropertyDefinitionsListRequestType | (string & {});
-  /** Filter by verified status. True returns only verified, false returns only unverified. */
-  verified?: boolean;
+  /** A UUID string identifying this property definition. */
+  id: string;
 }
-export const ListPropertyDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    event_names: S.optional(S.String.pipe(T.Query())),
-    exclude_core_properties: S.optional(S.Boolean.pipe(T.Query())),
-    exclude_hidden: S.optional(S.Boolean.pipe(T.Query())),
-    exclude_restricted: S.optional(S.Boolean.pipe(T.Query())),
-    excluded_properties: S.optional(S.String.pipe(T.Query())),
-    filter_by_event_names: S.optional(S.Boolean.pipe(T.Query())),
-    group_type_index: S.optional(S.Number.pipe(T.Query())),
-    is_feature_flag: S.optional(S.Boolean.pipe(T.Query())),
-    is_numerical: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    properties: S.optional(S.String.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-    type: S.optional(PropertyDefinitionsListRequestType.pipe(T.Query())),
-    verified: S.optional(S.Boolean.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/property_definitions/",
+      uri: "/api/projects/{project_id}/property_definitions/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListPropertyDefinitionsRequest",
-}) as any as S.Schema<ListPropertyDefinitionsRequest>;
+  identifier: "GetPropertyDefinitionRequest",
+}) as any as S.Schema<GetPropertyDefinitionRequest>;
 
 export type EnterprisePropertyDefinitionTagsList = Array<unknown>;
 export const EnterprisePropertyDefinitionTagsList = /*@__PURE__*/ S.Array(
@@ -166,16 +117,16 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserBasic" }) as any as S.Schema<UserBasic>;
 
 /** * `DateTime` - DateTime * `String` - String * `Numeric` - Numeric * `Boolean` - Boolean * `Duration` - Duration */
-export type PropertyDefinitionTypeEnum =
+export type PropertyTypeEnum =
   | "DateTime"
   | "String"
   | "Numeric"
   | "Boolean"
   | "Duration";
-export const PropertyDefinitionTypeEnum = /*@__PURE__*/ S.String;
+export const PropertyTypeEnum = /*@__PURE__*/ S.String;
 
 export type EnterprisePropertyDefinitionPropertyType =
-  | PropertyDefinitionTypeEnum
+  | PropertyTypeEnum
   | BlankEnum;
 export const EnterprisePropertyDefinitionPropertyType =
   /*@__PURE__*/ S.Unknown as any as S.Schema<EnterprisePropertyDefinitionPropertyType>;
@@ -220,6 +171,101 @@ export const EnterprisePropertyDefinition = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EnterprisePropertyDefinition",
 }) as any as S.Schema<EnterprisePropertyDefinition>;
+
+export interface GetPropertyDefinitionsSeenTogetherRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetPropertyDefinitionsSeenTogetherRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/property_definitions/seen_together/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPropertyDefinitionsSeenTogetherRequest",
+  }) as any as S.Schema<GetPropertyDefinitionsSeenTogetherRequest>;
+
+export interface GetPropertyDefinitionsSeenTogetherResponse {}
+export const GetPropertyDefinitionsSeenTogetherResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetPropertyDefinitionsSeenTogetherResponse",
+  }) as any as S.Schema<GetPropertyDefinitionsSeenTogetherResponse>;
+
+export type ListPropertyDefinitionsRequestType =
+  | "event"
+  | "person"
+  | "group"
+  | "session";
+export const ListPropertyDefinitionsRequestType = /*@__PURE__*/ S.String;
+
+export interface ListPropertyDefinitionsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** If sent, response value will have `is_seen_on_filtered_events` populated. JSON-encoded */
+  event_names?: string;
+  /** Whether to exclude core properties */
+  exclude_core_properties?: boolean;
+  /** Whether to exclude properties marked as hidden */
+  exclude_hidden?: boolean;
+  /** Whether to exclude properties that the current user does not have read access to via field-level access control */
+  exclude_restricted?: boolean;
+  /** JSON-encoded list of excluded properties */
+  excluded_properties?: string;
+  /** Whether to return only properties for events in `event_names`. Note: this event scoping does not apply to feature flag properties ($feature/*), which are global and not tracked per-event; to retrieve feature flags use is_feature_flag=true instead. */
+  filter_by_event_names?: boolean;
+  /** What group type is the property for. Only should be set if `type=group` */
+  group_type_index?: number;
+  /** Whether to return only (or excluding) feature flag properties ($feature/*). Flags are global, not per-event, so they can't be scoped by event_names/filter_by_event_names — pass is_feature_flag=true to list them all. */
+  is_feature_flag?: boolean;
+  /** Whether to return only (or excluding) numerical property definitions */
+  is_numerical?: boolean;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Comma-separated list of properties to filter */
+  properties?: string;
+  /** Searches properties by name */
+  search?: string;
+  /** What property definitions to return * `event` - event * `person` - person * `group` - group * `session` - session */
+  type?: ListPropertyDefinitionsRequestType | (string & {});
+  /** Filter by verified status. True returns only verified, false returns only unverified. */
+  verified?: boolean;
+}
+export const ListPropertyDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    event_names: S.optional(S.String.pipe(T.Query())),
+    exclude_core_properties: S.optional(S.Boolean.pipe(T.Query())),
+    exclude_hidden: S.optional(S.Boolean.pipe(T.Query())),
+    exclude_restricted: S.optional(S.Boolean.pipe(T.Query())),
+    excluded_properties: S.optional(S.String.pipe(T.Query())),
+    filter_by_event_names: S.optional(S.Boolean.pipe(T.Query())),
+    group_type_index: S.optional(S.Number.pipe(T.Query())),
+    is_feature_flag: S.optional(S.Boolean.pipe(T.Query())),
+    is_numerical: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    properties: S.optional(S.String.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+    type: S.optional(ListPropertyDefinitionsRequestType.pipe(T.Query())),
+    verified: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/property_definitions/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListPropertyDefinitionsRequest",
+}) as any as S.Schema<ListPropertyDefinitionsRequest>;
 
 export type PaginatedEnterprisePropertyDefinitionListResultsList =
   Array<EnterprisePropertyDefinition>;
@@ -376,62 +422,16 @@ export const PropertyDefinitionsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PropertyDefinitionsDestroyResponse",
 }) as any as S.Schema<PropertyDefinitionsDestroyResponse>;
 
-export interface PropertyDefinitionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this property definition. */
-  id: string;
-}
-export const PropertyDefinitionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/property_definitions/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PropertyDefinitionsRetrieveRequest",
-}) as any as S.Schema<PropertyDefinitionsRetrieveRequest>;
-
-export interface PropertyDefinitionsSeenTogetherRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const PropertyDefinitionsSeenTogetherRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/property_definitions/seen_together/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "PropertyDefinitionsSeenTogetherRetrieveRequest",
-  }) as any as S.Schema<PropertyDefinitionsSeenTogetherRetrieveRequest>;
-
-export interface PropertyDefinitionsSeenTogetherRetrieveResponse {}
-export const PropertyDefinitionsSeenTogetherRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PropertyDefinitionsSeenTogetherRetrieveResponse",
-  }) as any as S.Schema<PropertyDefinitionsSeenTogetherRetrieveResponse>;
-
-export type PropertyDefinitionsUpdateRequestTagsList = Array<unknown>;
-export const PropertyDefinitionsUpdateRequestTagsList = /*@__PURE__*/ S.Array(
+export type UpdatePropertyDefinitionRequestTagsList = Array<unknown>;
+export const UpdatePropertyDefinitionRequestTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<PropertyDefinitionsUpdateRequestTagsList>;
+) as any as S.Schema<UpdatePropertyDefinitionRequestTagsList>;
 
-export type PropertyDefinitionsUpdateRequestPropertyType =
-  | PropertyDefinitionTypeEnum
+export type UpdatePropertyDefinitionRequestPropertyType =
+  | PropertyTypeEnum
   | BlankEnum;
-export const PropertyDefinitionsUpdateRequestPropertyType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyDefinitionsUpdateRequestPropertyType>;
+export const UpdatePropertyDefinitionRequestPropertyType =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdatePropertyDefinitionRequestPropertyType>;
 
 export interface UpdatePropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -439,8 +439,8 @@ export interface UpdatePropertyDefinitionRequest {
   /** A UUID string identifying this property definition. */
   id: string;
   description?: string | null;
-  tags?: PropertyDefinitionsUpdateRequestTagsList;
-  property_type?: PropertyDefinitionsUpdateRequestPropertyType | null;
+  tags?: UpdatePropertyDefinitionRequestTagsList;
+  property_type?: UpdatePropertyDefinitionRequestPropertyType | null;
   verified?: boolean;
   hidden?: boolean | null;
 }
@@ -449,9 +449,9 @@ export const UpdatePropertyDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(PropertyDefinitionsUpdateRequestTagsList),
+    tags: S.optional(UpdatePropertyDefinitionRequestTagsList),
     property_type: S.optional(
-      S.NullOr(PropertyDefinitionsUpdateRequestPropertyType),
+      S.NullOr(UpdatePropertyDefinitionRequestPropertyType),
     ),
     verified: S.optional(S.Boolean),
     hidden: S.optional(S.NullOr(S.Boolean)),
@@ -466,38 +466,38 @@ export const UpdatePropertyDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdatePropertyDefinitionRequest",
 }) as any as S.Schema<UpdatePropertyDefinitionRequest>;
 
-export type PropertyDefinitionsPartialUpdateRequestTagsList = Array<unknown>;
-export const PropertyDefinitionsPartialUpdateRequestTagsList =
+export type UpdatePropertyDefinitionsPartialRequestTagsList = Array<unknown>;
+export const UpdatePropertyDefinitionsPartialRequestTagsList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<PropertyDefinitionsPartialUpdateRequestTagsList>;
+  ) as any as S.Schema<UpdatePropertyDefinitionsPartialRequestTagsList>;
 
-export type PropertyDefinitionsPartialUpdateRequestPropertyType =
-  | PropertyDefinitionTypeEnum
+export type UpdatePropertyDefinitionsPartialRequestPropertyType =
+  | PropertyTypeEnum
   | BlankEnum;
-export const PropertyDefinitionsPartialUpdateRequestPropertyType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PropertyDefinitionsPartialUpdateRequestPropertyType>;
+export const UpdatePropertyDefinitionsPartialRequestPropertyType =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdatePropertyDefinitionsPartialRequestPropertyType>;
 
-export interface UpdatePropertyDefinitionPartialRequest {
+export interface UpdatePropertyDefinitionsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this property definition. */
   id: string;
   description?: string | null;
-  tags?: PropertyDefinitionsPartialUpdateRequestTagsList;
-  property_type?: PropertyDefinitionsPartialUpdateRequestPropertyType | null;
+  tags?: UpdatePropertyDefinitionsPartialRequestTagsList;
+  property_type?: UpdatePropertyDefinitionsPartialRequestPropertyType | null;
   verified?: boolean;
   hidden?: boolean | null;
 }
-export const UpdatePropertyDefinitionPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdatePropertyDefinitionsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
       description: S.optional(S.NullOr(S.String)),
-      tags: S.optional(PropertyDefinitionsPartialUpdateRequestTagsList),
+      tags: S.optional(UpdatePropertyDefinitionsPartialRequestTagsList),
       property_type: S.optional(
-        S.NullOr(PropertyDefinitionsPartialUpdateRequestPropertyType),
+        S.NullOr(UpdatePropertyDefinitionsPartialRequestPropertyType),
       ),
       verified: S.optional(S.Boolean),
       hidden: S.optional(S.NullOr(S.Boolean)),
@@ -509,8 +509,40 @@ export const UpdatePropertyDefinitionPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdatePropertyDefinitionPartialRequest",
-}) as any as S.Schema<UpdatePropertyDefinitionPartialRequest>;
+  identifier: "UpdatePropertyDefinitionsPartialRequest",
+}) as any as S.Schema<UpdatePropertyDefinitionsPartialRequest>;
+
+export type GetPropertyDefinitionError = Forbidden | NotFound | PosthogOpError;
+export const getPropertyDefinition: API.OperationMethod<
+  GetPropertyDefinitionRequest,
+  EnterprisePropertyDefinition,
+  GetPropertyDefinitionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPropertyDefinitionRequest,
+  output: EnterprisePropertyDefinition,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPropertyDefinitionsSeenTogetherError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Allows a caller to provide a list of event names and a single property name Returns a map of the event names to a boolean representing whether that property has ever been seen with that event_name */
+export const getPropertyDefinitionsSeenTogether: API.OperationMethod<
+  GetPropertyDefinitionsSeenTogetherRequest,
+  GetPropertyDefinitionsSeenTogetherResponse,
+  GetPropertyDefinitionsSeenTogetherError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPropertyDefinitionsSeenTogetherRequest,
+  output: GetPropertyDefinitionsSeenTogetherResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListPropertyDefinitionsError =
   | BadRequest
@@ -566,41 +598,6 @@ export const propertyDefinitionsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PropertyDefinitionsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const propertyDefinitionsRetrieve: API.OperationMethod<
-  PropertyDefinitionsRetrieveRequest,
-  EnterprisePropertyDefinition,
-  PropertyDefinitionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PropertyDefinitionsRetrieveRequest,
-  output: EnterprisePropertyDefinition,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PropertyDefinitionsSeenTogetherRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Allows a caller to provide a list of event names and a single property name Returns a map of the event names to a boolean representing whether that property has ever been seen with that event_name */
-export const propertyDefinitionsSeenTogetherRetrieve: API.OperationMethod<
-  PropertyDefinitionsSeenTogetherRetrieveRequest,
-  PropertyDefinitionsSeenTogetherRetrieveResponse,
-  PropertyDefinitionsSeenTogetherRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PropertyDefinitionsSeenTogetherRetrieveRequest,
-  output: PropertyDefinitionsSeenTogetherRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdatePropertyDefinitionError =
   | BadRequest
   | Forbidden
@@ -619,18 +616,18 @@ export const updatePropertyDefinition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdatePropertyDefinitionPartialError =
+export type UpdatePropertyDefinitionsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updatePropertyDefinitionPartial: API.OperationMethod<
-  UpdatePropertyDefinitionPartialRequest,
+export const updatePropertyDefinitionsPartial: API.OperationMethod<
+  UpdatePropertyDefinitionsPartialRequest,
   EnterprisePropertyDefinition,
-  UpdatePropertyDefinitionPartialError,
+  UpdatePropertyDefinitionsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePropertyDefinitionPartialRequest,
+  input: UpdatePropertyDefinitionsPartialRequest,
   output: EnterprisePropertyDefinition,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

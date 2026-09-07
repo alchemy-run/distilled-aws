@@ -24,7 +24,8 @@
         "alias": "putContentScanning",
         "target": "createContentScanning"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.content_scanning#CreateRequestValue": {
@@ -218,7 +219,7 @@
         "target": "com.cloudflare.content_scanning#PayloadsListResultItem"
       }
     },
-    "com.cloudflare.content_scanning#GetSettingRequest": {
+    "com.cloudflare.content_scanning#GetSettingsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -234,7 +235,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.content_scanning#GetSettingResponse": {
+    "com.cloudflare.content_scanning#GetSettingsResponse": {
       "type": "structure",
       "members": {
         "modified": {
@@ -255,13 +256,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.content_scanning#GetSetting": {
+    "com.cloudflare.content_scanning#GetSettings": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.content_scanning#GetSettingRequest"
+        "target": "com.cloudflare.content_scanning#GetSettingsRequest"
       },
       "output": {
-        "target": "com.cloudflare.content_scanning#GetSettingResponse"
+        "target": "com.cloudflare.content_scanning#GetSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -283,31 +284,31 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.content_scanning#Create"
+          "target": "com.cloudflare.content_scanning#CreateContentScanning"
         },
         {
-          "target": "com.cloudflare.content_scanning#Disable"
+          "target": "com.cloudflare.content_scanning#CreatePayload"
         },
         {
-          "target": "com.cloudflare.content_scanning#Enable"
+          "target": "com.cloudflare.content_scanning#DeletePayload"
         },
         {
-          "target": "com.cloudflare.content_scanning#Get"
+          "target": "com.cloudflare.content_scanning#DisableContentScanning"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#EnableContentScanning"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#GetContentScanning"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#GetSettings"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#ListPayloads"
         },
         {
           "target": "com.cloudflare.content_scanning#Update"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#PayloadsCreate"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#PayloadsDelete"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#PayloadsList"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#GetSetting"
         }
       ],
       "traits": {

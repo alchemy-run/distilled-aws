@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.discord.api#PrivateApplicationResponse": {
@@ -58,10 +59,25 @@
         "primary_sku_id": {
           "target": "smithy.api#String"
         },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
         "bot": {
           "target": "com.discord.api#UserResponse"
         },
         "slug": {
+          "target": "smithy.api#String"
+        },
+        "vibegrations_project_id": {
           "target": "smithy.api#String"
         },
         "guild_id": {
@@ -92,18 +108,6 @@
           "target": "com.discord.api#PrivateApplicationResponseIntegrationTypesConfigMap"
         },
         "verify_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags_new": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
@@ -2215,10 +2219,25 @@
         "primary_sku_id": {
           "target": "smithy.api#String"
         },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
         "bot": {
           "target": "com.discord.api#UserResponse"
         },
         "slug": {
+          "target": "smithy.api#String"
+        },
+        "vibegrations_project_id": {
           "target": "smithy.api#String"
         },
         "guild_id": {
@@ -2249,18 +2268,6 @@
           "target": "com.discord.api#ApplicationResponseIntegrationTypesConfigMap"
         },
         "verify_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags_new": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
@@ -5063,7 +5070,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#SetBulkApplicationCommandRequest": {
+    "com.discord.api#BulkSetApplicationCommandsRequest": {
       "type": "structure",
       "members": {
         "application_id": {
@@ -5093,7 +5100,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#SetBulkApplicationCommandResponse": {
+    "com.discord.api#BulkSetApplicationCommandsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5109,13 +5116,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.discord.api#SetBulkApplicationCommand": {
+    "com.discord.api#BulkSetApplicationCommands": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#SetBulkApplicationCommandRequest"
+        "target": "com.discord.api#BulkSetApplicationCommandsRequest"
       },
       "output": {
-        "target": "com.discord.api#SetBulkApplicationCommandResponse"
+        "target": "com.discord.api#BulkSetApplicationCommandsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6375,7 +6382,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#SetBulkGuildApplicationCommandRequest": {
+    "com.discord.api#BulkSetGuildApplicationCommandsRequest": {
       "type": "structure",
       "members": {
         "application_id": {
@@ -6412,7 +6419,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#SetBulkGuildApplicationCommandResponse": {
+    "com.discord.api#BulkSetGuildApplicationCommandsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -6428,13 +6435,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.discord.api#SetBulkGuildApplicationCommand": {
+    "com.discord.api#BulkSetGuildApplicationCommands": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#SetBulkGuildApplicationCommandRequest"
+        "target": "com.discord.api#BulkSetGuildApplicationCommandsRequest"
       },
       "output": {
-        "target": "com.discord.api#SetBulkGuildApplicationCommandResponse"
+        "target": "com.discord.api#BulkSetGuildApplicationCommandsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9399,10 +9406,25 @@
         "primary_sku_id": {
           "target": "smithy.api#String"
         },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
         "bot": {
           "target": "com.discord.api#UserResponse"
         },
         "slug": {
+          "target": "smithy.api#String"
+        },
+        "vibegrations_project_id": {
           "target": "smithy.api#String"
         },
         "guild_id": {
@@ -9433,18 +9455,6 @@
           "target": "com.discord.api#InviteApplicationResponseIntegrationTypesConfigMap"
         },
         "verify_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags_new": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
@@ -12702,6 +12712,18 @@
         },
         "primary_sku_id": {
           "target": "smithy.api#String"
+        },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
         },
         "bot": {
           "target": "com.discord.api#UserResponse"
@@ -16025,7 +16047,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#DeleteBulkMessageRequest": {
+    "com.discord.api#BulkDeleteMessagesRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -16046,10 +16068,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#DeleteBulkMessage": {
+    "com.discord.api#BulkDeleteMessages": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#DeleteBulkMessageRequest"
+        "target": "com.discord.api#BulkDeleteMessagesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16966,7 +16988,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#DeprecatedListPinsResponseBodyList": {
+    "com.discord.api#ListDeprecatedPinsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#MessageResponse"
@@ -16977,7 +16999,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.discord.api#DeprecatedListPinsResponseBodyList",
+          "target": "com.discord.api#ListDeprecatedPinsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {},
@@ -18103,21 +18125,21 @@
         }
       }
     },
-    "com.discord.api#ThreadSearchRequestTagCase1List": {
+    "com.discord.api#SearchThreadRequestTagCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#ThreadSearchRequestTag": {
+    "com.discord.api#SearchThreadRequestTag": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.discord.api#ThreadSearchRequestTagCase1List"
+          "target": "com.discord.api#SearchThreadRequestTagCase1List"
         }
       },
       "traits": {}
@@ -18170,7 +18192,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#ThreadSearchRequest": {
+    "com.discord.api#SearchThreadRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -18205,7 +18227,7 @@
           }
         },
         "tag": {
-          "target": "com.discord.api#ThreadSearchRequestTag",
+          "target": "com.discord.api#SearchThreadRequestTag",
           "traits": {
             "smithy.api#httpQuery": "tag"
           }
@@ -18305,10 +18327,10 @@
       },
       "traits": {}
     },
-    "com.discord.api#ThreadSearch": {
+    "com.discord.api#SearchThread": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#ThreadSearchRequest"
+        "target": "com.discord.api#SearchThreadRequest"
       },
       "output": {
         "target": "com.discord.api#ThreadSearchResponse"
@@ -24955,7 +24977,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#UpdateBulkGuildChannelRequest": {
+    "com.discord.api#BulkUpdateGuildChannelsRequest": {
       "type": "structure",
       "members": {
         "guild_id": {
@@ -24977,10 +24999,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#UpdateBulkGuildChannel": {
+    "com.discord.api#BulkUpdateGuildChannels": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#UpdateBulkGuildChannelRequest"
+        "target": "com.discord.api#BulkUpdateGuildChannelsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -25386,6 +25408,18 @@
         },
         "primary_sku_id": {
           "target": "smithy.api#String"
+        },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
         },
         "bot": {
           "target": "com.discord.api#UserResponse"
@@ -26382,7 +26416,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAuthorIdList": {
+    "com.discord.api#SearchGuildRequestAuthorIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26431,35 +26465,35 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAuthorTypeList": {
+    "com.discord.api#SearchGuildRequestAuthorTypeList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#AuthorType"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestMentionsList": {
+    "com.discord.api#SearchGuildRequestMentionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestMentionsRoleIdList": {
+    "com.discord.api#SearchGuildRequestMentionsRoleIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestRepliedToUserIdList": {
+    "com.discord.api#SearchGuildRequestRepliedToUserIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestRepliedToMessageIdList": {
+    "com.discord.api#SearchGuildRequestRepliedToMessageIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26580,21 +26614,21 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestHasList": {
+    "com.discord.api#SearchGuildRequestHasList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#HasOption"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestLinkHostnameList": {
+    "com.discord.api#SearchGuildRequestLinkHostnameList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestEmbedProviderList": {
+    "com.discord.api#SearchGuildRequestEmbedProviderList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26637,35 +26671,35 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestEmbedTypeList": {
+    "com.discord.api#SearchGuildRequestEmbedTypeList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#SearchableEmbedType"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAttachmentExtensionList": {
+    "com.discord.api#SearchGuildRequestAttachmentExtensionList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAttachmentFilenameList": {
+    "com.discord.api#SearchGuildRequestAttachmentFilenameList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestChannelIdList": {
+    "com.discord.api#SearchGuildRequestChannelIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequest": {
+    "com.discord.api#SearchGuildRequest": {
       "type": "structure",
       "members": {
         "guild_id": {
@@ -26700,37 +26734,37 @@
           }
         },
         "author_id": {
-          "target": "com.discord.api#GuildSearchRequestAuthorIdList",
+          "target": "com.discord.api#SearchGuildRequestAuthorIdList",
           "traits": {
             "smithy.api#httpQuery": "author_id"
           }
         },
         "author_type": {
-          "target": "com.discord.api#GuildSearchRequestAuthorTypeList",
+          "target": "com.discord.api#SearchGuildRequestAuthorTypeList",
           "traits": {
             "smithy.api#httpQuery": "author_type"
           }
         },
         "mentions": {
-          "target": "com.discord.api#GuildSearchRequestMentionsList",
+          "target": "com.discord.api#SearchGuildRequestMentionsList",
           "traits": {
             "smithy.api#httpQuery": "mentions"
           }
         },
         "mentions_role_id": {
-          "target": "com.discord.api#GuildSearchRequestMentionsRoleIdList",
+          "target": "com.discord.api#SearchGuildRequestMentionsRoleIdList",
           "traits": {
             "smithy.api#httpQuery": "mentions_role_id"
           }
         },
         "replied_to_user_id": {
-          "target": "com.discord.api#GuildSearchRequestRepliedToUserIdList",
+          "target": "com.discord.api#SearchGuildRequestRepliedToUserIdList",
           "traits": {
             "smithy.api#httpQuery": "replied_to_user_id"
           }
         },
         "replied_to_message_id": {
-          "target": "com.discord.api#GuildSearchRequestRepliedToMessageIdList",
+          "target": "com.discord.api#SearchGuildRequestRepliedToMessageIdList",
           "traits": {
             "smithy.api#httpQuery": "replied_to_message_id"
           }
@@ -26766,37 +26800,37 @@
           }
         },
         "has": {
-          "target": "com.discord.api#GuildSearchRequestHasList",
+          "target": "com.discord.api#SearchGuildRequestHasList",
           "traits": {
             "smithy.api#httpQuery": "has"
           }
         },
         "link_hostname": {
-          "target": "com.discord.api#GuildSearchRequestLinkHostnameList",
+          "target": "com.discord.api#SearchGuildRequestLinkHostnameList",
           "traits": {
             "smithy.api#httpQuery": "link_hostname"
           }
         },
         "embed_provider": {
-          "target": "com.discord.api#GuildSearchRequestEmbedProviderList",
+          "target": "com.discord.api#SearchGuildRequestEmbedProviderList",
           "traits": {
             "smithy.api#httpQuery": "embed_provider"
           }
         },
         "embed_type": {
-          "target": "com.discord.api#GuildSearchRequestEmbedTypeList",
+          "target": "com.discord.api#SearchGuildRequestEmbedTypeList",
           "traits": {
             "smithy.api#httpQuery": "embed_type"
           }
         },
         "attachment_extension": {
-          "target": "com.discord.api#GuildSearchRequestAttachmentExtensionList",
+          "target": "com.discord.api#SearchGuildRequestAttachmentExtensionList",
           "traits": {
             "smithy.api#httpQuery": "attachment_extension"
           }
         },
         "attachment_filename": {
-          "target": "com.discord.api#GuildSearchRequestAttachmentFilenameList",
+          "target": "com.discord.api#SearchGuildRequestAttachmentFilenameList",
           "traits": {
             "smithy.api#httpQuery": "attachment_filename"
           }
@@ -26814,7 +26848,7 @@
           }
         },
         "channel_id": {
-          "target": "com.discord.api#GuildSearchRequestChannelIdList",
+          "target": "com.discord.api#SearchGuildRequestChannelIdList",
           "traits": {
             "smithy.api#httpQuery": "channel_id"
           }
@@ -27214,10 +27248,10 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearch": {
+    "com.discord.api#SearchGuild": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#GuildSearchRequest"
+        "target": "com.discord.api#SearchGuildRequest"
       },
       "output": {
         "target": "com.discord.api#GuildSearchResponse"
@@ -28706,7 +28740,7 @@
         "smithy.api#documentation": "List join requests for guild, optionally filtered by application status"
       }
     },
-    "com.discord.api#RequestActionGuildJoinRequest": {
+    "com.discord.api#JoinActionGuildRequestRequest": {
       "type": "structure",
       "members": {
         "guild_id": {
@@ -28741,10 +28775,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#RequestActionGuildJoin": {
+    "com.discord.api#JoinActionGuildRequest": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#RequestActionGuildJoinRequest"
+        "target": "com.discord.api#JoinActionGuildRequestRequest"
       },
       "output": {
         "target": "com.discord.api#GuildJoinRequestResponse"
@@ -28939,7 +28973,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#UpdateBulkGuildRoleRequest": {
+    "com.discord.api#BulkUpdateGuildRolesRequest": {
       "type": "structure",
       "members": {
         "guild_id": {
@@ -28968,7 +29002,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#UpdateBulkGuildRoleResponse": {
+    "com.discord.api#BulkUpdateGuildRolesResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -28983,13 +29017,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.discord.api#UpdateBulkGuildRole": {
+    "com.discord.api#BulkUpdateGuildRoles": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#UpdateBulkGuildRoleRequest"
+        "target": "com.discord.api#BulkUpdateGuildRolesRequest"
       },
       "output": {
-        "target": "com.discord.api#UpdateBulkGuildRoleResponse"
+        "target": "com.discord.api#BulkUpdateGuildRolesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -33909,7 +33943,7 @@
         }
       }
     },
-    "com.discord.api#InviteRevokeRequest": {
+    "com.discord.api#RevokeInviteRequest": {
       "type": "structure",
       "members": {
         "code": {
@@ -33924,7 +33958,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#InviteRevokeResponseBody": {
+    "com.discord.api#RevokeInviteResponseBody": {
       "type": "union",
       "members": {
         "FriendInviteResponse": {
@@ -33939,11 +33973,11 @@
       },
       "traits": {}
     },
-    "com.discord.api#InviteRevokeResponse": {
+    "com.discord.api#RevokeInviteResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.discord.api#InviteRevokeResponseBody",
+          "target": "com.discord.api#RevokeInviteResponseBody",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -33954,13 +33988,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.discord.api#InviteRevoke": {
+    "com.discord.api#RevokeInvite": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#InviteRevokeRequest"
+        "target": "com.discord.api#RevokeInviteRequest"
       },
       "output": {
-        "target": "com.discord.api#InviteRevokeResponse"
+        "target": "com.discord.api#RevokeInviteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -34808,7 +34842,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#UpdateBulkLobbyMemberRequest": {
+    "com.discord.api#BulkUpdateLobbyMembersRequest": {
       "type": "structure",
       "members": {
         "lobby_id": {
@@ -34838,7 +34872,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#UpdateBulkLobbyMemberResponse": {
+    "com.discord.api#BulkUpdateLobbyMembersResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -34854,13 +34888,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.discord.api#UpdateBulkLobbyMember": {
+    "com.discord.api#BulkUpdateLobbyMembers": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#UpdateBulkLobbyMemberRequest"
+        "target": "com.discord.api#BulkUpdateLobbyMembersRequest"
       },
       "output": {
-        "target": "com.discord.api#UpdateBulkLobbyMemberResponse"
+        "target": "com.discord.api#BulkUpdateLobbyMembersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -39728,148 +39762,142 @@
       "version": "10",
       "operations": [
         {
-          "target": "com.discord.api#GetMyApplication"
+          "target": "com.discord.api#AddGroupDmUser"
         },
         {
-          "target": "com.discord.api#UpdateMyApplication"
+          "target": "com.discord.api#AddGuildMember"
         },
         {
-          "target": "com.discord.api#GetApplication"
+          "target": "com.discord.api#AddGuildMemberRole"
         },
         {
-          "target": "com.discord.api#UpdateApplication"
+          "target": "com.discord.api#AddLobbyMember"
         },
         {
-          "target": "com.discord.api#GetApplicationActivityInstance"
+          "target": "com.discord.api#AddMyMessageReaction"
         },
         {
-          "target": "com.discord.api#UploadApplicationAttachment"
+          "target": "com.discord.api#AddThreadMember"
         },
         {
-          "target": "com.discord.api#ListApplicationCommands"
+          "target": "com.discord.api#BanUserFromGuild"
         },
         {
-          "target": "com.discord.api#CreateApplicationCommand"
+          "target": "com.discord.api#BotPartnerSdkToken"
         },
         {
-          "target": "com.discord.api#SetBulkApplicationCommand"
+          "target": "com.discord.api#BotPartnerSdkUnmergeProvisionalAccount"
         },
         {
-          "target": "com.discord.api#GetApplicationCommand"
+          "target": "com.discord.api#BulkBanUsersFromGuild"
         },
         {
-          "target": "com.discord.api#UpdateApplicationCommand"
+          "target": "com.discord.api#BulkDeleteMessages"
         },
         {
-          "target": "com.discord.api#DeleteApplicationCommand"
+          "target": "com.discord.api#BulkSetApplicationCommands"
         },
         {
-          "target": "com.discord.api#ListApplicationEmojis"
+          "target": "com.discord.api#BulkSetGuildApplicationCommands"
         },
         {
-          "target": "com.discord.api#CreateApplicationEmoji"
+          "target": "com.discord.api#BulkUpdateGuildChannels"
         },
         {
-          "target": "com.discord.api#GetApplicationEmoji"
+          "target": "com.discord.api#BulkUpdateGuildRoles"
         },
         {
-          "target": "com.discord.api#UpdateApplicationEmoji"
-        },
-        {
-          "target": "com.discord.api#DeleteApplicationEmoji"
-        },
-        {
-          "target": "com.discord.api#GetEntitlements"
-        },
-        {
-          "target": "com.discord.api#CreateEntitlement"
-        },
-        {
-          "target": "com.discord.api#GetEntitlement"
-        },
-        {
-          "target": "com.discord.api#DeleteEntitlement"
+          "target": "com.discord.api#BulkUpdateLobbyMembers"
         },
         {
           "target": "com.discord.api#ConsumeEntitlement"
         },
         {
-          "target": "com.discord.api#ListGuildApplicationCommands"
+          "target": "com.discord.api#CountGuildScheduledEventUsers"
         },
         {
-          "target": "com.discord.api#CreateGuildApplicationCommand"
+          "target": "com.discord.api#CreateApplicationCommand"
         },
         {
-          "target": "com.discord.api#SetBulkGuildApplicationCommand"
+          "target": "com.discord.api#CreateApplicationEmoji"
         },
         {
-          "target": "com.discord.api#ListGuildApplicationCommandPermissions"
-        },
-        {
-          "target": "com.discord.api#GetGuildApplicationCommand"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildApplicationCommand"
-        },
-        {
-          "target": "com.discord.api#DeleteGuildApplicationCommand"
-        },
-        {
-          "target": "com.discord.api#GetGuildApplicationCommandPermissions"
-        },
-        {
-          "target": "com.discord.api#SetGuildApplicationCommandPermissions"
-        },
-        {
-          "target": "com.discord.api#GetApplicationRoleConnectionsMetadata"
-        },
-        {
-          "target": "com.discord.api#UpdateApplicationRoleConnectionsMetadata"
-        },
-        {
-          "target": "com.discord.api#GetChannel"
-        },
-        {
-          "target": "com.discord.api#UpdateChannel"
-        },
-        {
-          "target": "com.discord.api#DeleteChannel"
-        },
-        {
-          "target": "com.discord.api#FollowChannel"
-        },
-        {
-          "target": "com.discord.api#ListChannelInvites"
+          "target": "com.discord.api#CreateAutoModerationRule"
         },
         {
           "target": "com.discord.api#CreateChannelInvite"
         },
         {
-          "target": "com.discord.api#ListMessages"
+          "target": "com.discord.api#CreateDeprecatedPin"
+        },
+        {
+          "target": "com.discord.api#CreateDm"
+        },
+        {
+          "target": "com.discord.api#CreateEntitlement"
+        },
+        {
+          "target": "com.discord.api#CreateGuildApplicationCommand"
+        },
+        {
+          "target": "com.discord.api#CreateGuildChannel"
+        },
+        {
+          "target": "com.discord.api#CreateGuildEmoji"
+        },
+        {
+          "target": "com.discord.api#CreateGuildRole"
+        },
+        {
+          "target": "com.discord.api#CreateGuildScheduledEvent"
+        },
+        {
+          "target": "com.discord.api#CreateGuildScheduledEventException"
+        },
+        {
+          "target": "com.discord.api#CreateGuildSoundboardSound"
+        },
+        {
+          "target": "com.discord.api#CreateGuildSticker"
+        },
+        {
+          "target": "com.discord.api#CreateGuildTemplate"
+        },
+        {
+          "target": "com.discord.api#CreateInteractionResponse"
+        },
+        {
+          "target": "com.discord.api#CreateLinkedLobbyGuildInviteForSelf"
+        },
+        {
+          "target": "com.discord.api#CreateLinkedLobbyGuildInviteForUser"
+        },
+        {
+          "target": "com.discord.api#CreateLobby"
+        },
+        {
+          "target": "com.discord.api#CreateLobbyMessage"
         },
         {
           "target": "com.discord.api#CreateMessage"
         },
         {
-          "target": "com.discord.api#DeleteBulkMessage"
-        },
-        {
-          "target": "com.discord.api#ListPins"
+          "target": "com.discord.api#CreateOrJoinLobby"
         },
         {
           "target": "com.discord.api#CreatePin"
         },
         {
-          "target": "com.discord.api#DeletePin"
+          "target": "com.discord.api#CreateStageInstance"
         },
         {
-          "target": "com.discord.api#GetMessage"
+          "target": "com.discord.api#CreateThread"
         },
         {
-          "target": "com.discord.api#UpdateMessage"
+          "target": "com.discord.api#CreateThreadFromMessage"
         },
         {
-          "target": "com.discord.api#DeleteMessage"
+          "target": "com.discord.api#CreateWebhook"
         },
         {
           "target": "com.discord.api#CrosspostMessage"
@@ -39878,355 +39906,214 @@
           "target": "com.discord.api#DeleteAllMessageReactions"
         },
         {
-          "target": "com.discord.api#ListMessageReactionsByEmoji"
-        },
-        {
           "target": "com.discord.api#DeleteAllMessageReactionsByEmoji"
         },
         {
-          "target": "com.discord.api#AddMyMessageReaction"
+          "target": "com.discord.api#DeleteApplicationCommand"
         },
         {
-          "target": "com.discord.api#DeleteMyMessageReaction"
+          "target": "com.discord.api#DeleteApplicationEmoji"
         },
         {
-          "target": "com.discord.api#DeleteUserMessageReaction"
-        },
-        {
-          "target": "com.discord.api#CreateThreadFromMessage"
-        },
-        {
-          "target": "com.discord.api#SetChannelPermissionOverwrite"
-        },
-        {
-          "target": "com.discord.api#DeleteChannelPermissionOverwrite"
-        },
-        {
-          "target": "com.discord.api#ListDeprecatedPins"
-        },
-        {
-          "target": "com.discord.api#CreateDeprecatedPin"
-        },
-        {
-          "target": "com.discord.api#DeleteDeprecatedPin"
-        },
-        {
-          "target": "com.discord.api#GetAnswerVoters"
-        },
-        {
-          "target": "com.discord.api#PollExpire"
-        },
-        {
-          "target": "com.discord.api#AddGroupDmUser"
-        },
-        {
-          "target": "com.discord.api#DeleteGroupDmUser"
-        },
-        {
-          "target": "com.discord.api#SendSoundboardSound"
-        },
-        {
-          "target": "com.discord.api#ListThreadMembers"
-        },
-        {
-          "target": "com.discord.api#JoinThread"
-        },
-        {
-          "target": "com.discord.api#LeaveThread"
-        },
-        {
-          "target": "com.discord.api#GetThreadMember"
-        },
-        {
-          "target": "com.discord.api#AddThreadMember"
-        },
-        {
-          "target": "com.discord.api#DeleteThreadMember"
-        },
-        {
-          "target": "com.discord.api#CreateThread"
-        },
-        {
-          "target": "com.discord.api#ListPrivateArchivedThreads"
-        },
-        {
-          "target": "com.discord.api#ListPublicArchivedThreads"
-        },
-        {
-          "target": "com.discord.api#ThreadSearch"
-        },
-        {
-          "target": "com.discord.api#TriggerTypingIndicator"
-        },
-        {
-          "target": "com.discord.api#ListMyPrivateArchivedThreads"
-        },
-        {
-          "target": "com.discord.api#UpdateVoiceChannelStatus"
-        },
-        {
-          "target": "com.discord.api#ListChannelWebhooks"
-        },
-        {
-          "target": "com.discord.api#CreateWebhook"
-        },
-        {
-          "target": "com.discord.api#GetGateway"
-        },
-        {
-          "target": "com.discord.api#GetBotGateway"
-        },
-        {
-          "target": "com.discord.api#GetGuildTemplate"
-        },
-        {
-          "target": "com.discord.api#GetGuild"
-        },
-        {
-          "target": "com.discord.api#UpdateGuild"
-        },
-        {
-          "target": "com.discord.api#ListGuildAuditLogEntries"
-        },
-        {
-          "target": "com.discord.api#ListAutoModerationRules"
-        },
-        {
-          "target": "com.discord.api#CreateAutoModerationRule"
-        },
-        {
-          "target": "com.discord.api#GetAutoModerationRule"
-        },
-        {
-          "target": "com.discord.api#UpdateAutoModerationRule"
+          "target": "com.discord.api#DeleteApplicationUserRoleConnection"
         },
         {
           "target": "com.discord.api#DeleteAutoModerationRule"
         },
         {
-          "target": "com.discord.api#ListGuildBans"
+          "target": "com.discord.api#DeleteChannel"
         },
         {
-          "target": "com.discord.api#GetGuildBan"
+          "target": "com.discord.api#DeleteChannelPermissionOverwrite"
         },
         {
-          "target": "com.discord.api#BanUserFromGuild"
+          "target": "com.discord.api#DeleteDeprecatedPin"
         },
         {
-          "target": "com.discord.api#UnbanUserFromGuild"
+          "target": "com.discord.api#DeleteEntitlement"
         },
         {
-          "target": "com.discord.api#BulkBanUsersFromGuild"
+          "target": "com.discord.api#DeleteGroupDmUser"
         },
         {
-          "target": "com.discord.api#ListGuildChannels"
-        },
-        {
-          "target": "com.discord.api#CreateGuildChannel"
-        },
-        {
-          "target": "com.discord.api#UpdateBulkGuildChannel"
-        },
-        {
-          "target": "com.discord.api#ListGuildEmojis"
-        },
-        {
-          "target": "com.discord.api#CreateGuildEmoji"
-        },
-        {
-          "target": "com.discord.api#GetGuildEmoji"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildEmoji"
+          "target": "com.discord.api#DeleteGuildApplicationCommand"
         },
         {
           "target": "com.discord.api#DeleteGuildEmoji"
         },
         {
-          "target": "com.discord.api#UpdateGuildIncidentActions"
-        },
-        {
-          "target": "com.discord.api#ListGuildIntegrations"
-        },
-        {
           "target": "com.discord.api#DeleteGuildIntegration"
-        },
-        {
-          "target": "com.discord.api#ListGuildInvites"
-        },
-        {
-          "target": "com.discord.api#ListGuildMembers"
-        },
-        {
-          "target": "com.discord.api#UpdateMyGuildMember"
-        },
-        {
-          "target": "com.discord.api#SearchGuildMembers"
-        },
-        {
-          "target": "com.discord.api#GetGuildMember"
-        },
-        {
-          "target": "com.discord.api#AddGuildMember"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildMember"
         },
         {
           "target": "com.discord.api#DeleteGuildMember"
         },
         {
-          "target": "com.discord.api#AddGuildMemberRole"
-        },
-        {
           "target": "com.discord.api#DeleteGuildMemberRole"
-        },
-        {
-          "target": "com.discord.api#GuildSearch"
-        },
-        {
-          "target": "com.discord.api#GetGuildNewMemberWelcome"
-        },
-        {
-          "target": "com.discord.api#GetGuildsOnboarding"
-        },
-        {
-          "target": "com.discord.api#PutGuildsOnboarding"
-        },
-        {
-          "target": "com.discord.api#GetGuildPreview"
-        },
-        {
-          "target": "com.discord.api#PreviewPruneGuild"
-        },
-        {
-          "target": "com.discord.api#PruneGuild"
-        },
-        {
-          "target": "com.discord.api#ListGuildVoiceRegions"
-        },
-        {
-          "target": "com.discord.api#GetGuildJoinRequests"
-        },
-        {
-          "target": "com.discord.api#RequestActionGuildJoin"
-        },
-        {
-          "target": "com.discord.api#ListGuildRoles"
-        },
-        {
-          "target": "com.discord.api#CreateGuildRole"
-        },
-        {
-          "target": "com.discord.api#UpdateBulkGuildRole"
-        },
-        {
-          "target": "com.discord.api#GuildRoleMemberCounts"
-        },
-        {
-          "target": "com.discord.api#GetGuildRole"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildRole"
         },
         {
           "target": "com.discord.api#DeleteGuildRole"
         },
         {
-          "target": "com.discord.api#ListGuildScheduledEvents"
-        },
-        {
-          "target": "com.discord.api#CreateGuildScheduledEvent"
-        },
-        {
-          "target": "com.discord.api#GetGuildScheduledEvent"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildScheduledEvent"
-        },
-        {
           "target": "com.discord.api#DeleteGuildScheduledEvent"
-        },
-        {
-          "target": "com.discord.api#CreateGuildScheduledEventException"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildScheduledEventException"
         },
         {
           "target": "com.discord.api#DeleteGuildScheduledEventException"
         },
         {
-          "target": "com.discord.api#ListGuildScheduledEventUsers"
-        },
-        {
-          "target": "com.discord.api#CountGuildScheduledEventUsers"
-        },
-        {
-          "target": "com.discord.api#ListGuildScheduledEventExceptionUsers"
-        },
-        {
-          "target": "com.discord.api#ListGuildSoundboardSounds"
-        },
-        {
-          "target": "com.discord.api#CreateGuildSoundboardSound"
-        },
-        {
-          "target": "com.discord.api#GetGuildSoundboardSound"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildSoundboardSound"
-        },
-        {
           "target": "com.discord.api#DeleteGuildSoundboardSound"
-        },
-        {
-          "target": "com.discord.api#ListGuildStickers"
-        },
-        {
-          "target": "com.discord.api#CreateGuildSticker"
-        },
-        {
-          "target": "com.discord.api#GetGuildSticker"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildSticker"
         },
         {
           "target": "com.discord.api#DeleteGuildSticker"
         },
         {
-          "target": "com.discord.api#ListGuildTemplates"
-        },
-        {
-          "target": "com.discord.api#CreateGuildTemplate"
-        },
-        {
-          "target": "com.discord.api#SyncGuildTemplate"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildTemplate"
-        },
-        {
           "target": "com.discord.api#DeleteGuildTemplate"
+        },
+        {
+          "target": "com.discord.api#DeleteLobby"
+        },
+        {
+          "target": "com.discord.api#DeleteLobbyMember"
+        },
+        {
+          "target": "com.discord.api#DeleteMessage"
+        },
+        {
+          "target": "com.discord.api#DeleteMyMessageReaction"
+        },
+        {
+          "target": "com.discord.api#DeleteOriginalWebhookMessage"
+        },
+        {
+          "target": "com.discord.api#DeletePin"
+        },
+        {
+          "target": "com.discord.api#DeleteStageInstance"
+        },
+        {
+          "target": "com.discord.api#DeleteThreadMember"
+        },
+        {
+          "target": "com.discord.api#DeleteUserMessageReaction"
+        },
+        {
+          "target": "com.discord.api#DeleteWebhook"
+        },
+        {
+          "target": "com.discord.api#DeleteWebhookByToken"
+        },
+        {
+          "target": "com.discord.api#DeleteWebhookMessage"
+        },
+        {
+          "target": "com.discord.api#EditLobby"
+        },
+        {
+          "target": "com.discord.api#EditLobbyChannelLink"
+        },
+        {
+          "target": "com.discord.api#ExecuteGithubCompatibleWebhook"
+        },
+        {
+          "target": "com.discord.api#ExecuteSlackCompatibleWebhook"
+        },
+        {
+          "target": "com.discord.api#ExecuteWebhook"
+        },
+        {
+          "target": "com.discord.api#FollowChannel"
         },
         {
           "target": "com.discord.api#GetActiveGuildThreads"
         },
         {
+          "target": "com.discord.api#GetAnswerVoters"
+        },
+        {
+          "target": "com.discord.api#GetApplication"
+        },
+        {
+          "target": "com.discord.api#GetApplicationActivityInstance"
+        },
+        {
+          "target": "com.discord.api#GetApplicationCommand"
+        },
+        {
+          "target": "com.discord.api#GetApplicationEmoji"
+        },
+        {
+          "target": "com.discord.api#GetApplicationRoleConnectionsMetadata"
+        },
+        {
+          "target": "com.discord.api#GetApplicationUserRoleConnection"
+        },
+        {
+          "target": "com.discord.api#GetAutoModerationRule"
+        },
+        {
+          "target": "com.discord.api#GetBotGateway"
+        },
+        {
+          "target": "com.discord.api#GetChannel"
+        },
+        {
+          "target": "com.discord.api#GetCurrentUserApplicationEntitlements"
+        },
+        {
+          "target": "com.discord.api#GetEntitlement"
+        },
+        {
+          "target": "com.discord.api#GetEntitlements"
+        },
+        {
+          "target": "com.discord.api#GetGateway"
+        },
+        {
+          "target": "com.discord.api#GetGuild"
+        },
+        {
+          "target": "com.discord.api#GetGuildApplicationCommand"
+        },
+        {
+          "target": "com.discord.api#GetGuildApplicationCommandPermissions"
+        },
+        {
+          "target": "com.discord.api#GetGuildBan"
+        },
+        {
+          "target": "com.discord.api#GetGuildEmoji"
+        },
+        {
+          "target": "com.discord.api#GetGuildJoinRequests"
+        },
+        {
+          "target": "com.discord.api#GetGuildMember"
+        },
+        {
+          "target": "com.discord.api#GetGuildNewMemberWelcome"
+        },
+        {
+          "target": "com.discord.api#GetGuildPreview"
+        },
+        {
+          "target": "com.discord.api#GetGuildRole"
+        },
+        {
+          "target": "com.discord.api#GetGuildScheduledEvent"
+        },
+        {
+          "target": "com.discord.api#GetGuildsOnboarding"
+        },
+        {
+          "target": "com.discord.api#GetGuildSoundboardSound"
+        },
+        {
+          "target": "com.discord.api#GetGuildSticker"
+        },
+        {
+          "target": "com.discord.api#GetGuildTemplate"
+        },
+        {
           "target": "com.discord.api#GetGuildVanityUrl"
-        },
-        {
-          "target": "com.discord.api#GetSelfVoiceState"
-        },
-        {
-          "target": "com.discord.api#UpdateSelfVoiceState"
-        },
-        {
-          "target": "com.discord.api#GetVoiceState"
-        },
-        {
-          "target": "com.discord.api#UpdateVoiceState"
         },
         {
           "target": "com.discord.api#GetGuildWebhooks"
@@ -40235,160 +40122,187 @@
           "target": "com.discord.api#GetGuildWelcomeScreen"
         },
         {
-          "target": "com.discord.api#UpdateGuildWelcomeScreen"
-        },
-        {
-          "target": "com.discord.api#GetGuildWidgetSettings"
-        },
-        {
-          "target": "com.discord.api#UpdateGuildWidgetSettings"
-        },
-        {
           "target": "com.discord.api#GetGuildWidget"
         },
         {
           "target": "com.discord.api#GetGuildWidgetPng"
         },
         {
-          "target": "com.discord.api#CreateInteractionResponse"
-        },
-        {
-          "target": "com.discord.api#InviteResolve"
-        },
-        {
-          "target": "com.discord.api#InviteRevoke"
+          "target": "com.discord.api#GetGuildWidgetSettings"
         },
         {
           "target": "com.discord.api#GetInviteTargetUsers"
         },
         {
-          "target": "com.discord.api#UpdateInviteTargetUsers"
-        },
-        {
           "target": "com.discord.api#GetInviteTargetUsersJobStatus"
-        },
-        {
-          "target": "com.discord.api#CreateLobby"
-        },
-        {
-          "target": "com.discord.api#CreateOrJoinLobby"
         },
         {
           "target": "com.discord.api#GetLobby"
         },
         {
-          "target": "com.discord.api#EditLobby"
-        },
-        {
-          "target": "com.discord.api#DeleteLobby"
-        },
-        {
-          "target": "com.discord.api#EditLobbyChannelLink"
-        },
-        {
-          "target": "com.discord.api#LeaveLobby"
-        },
-        {
-          "target": "com.discord.api#CreateLinkedLobbyGuildInviteForSelf"
-        },
-        {
-          "target": "com.discord.api#UpdateBulkLobbyMember"
-        },
-        {
-          "target": "com.discord.api#AddLobbyMember"
-        },
-        {
-          "target": "com.discord.api#DeleteLobbyMember"
-        },
-        {
-          "target": "com.discord.api#CreateLinkedLobbyGuildInviteForUser"
-        },
-        {
           "target": "com.discord.api#GetLobbyMessages"
         },
         {
-          "target": "com.discord.api#CreateLobbyMessage"
+          "target": "com.discord.api#GetMessage"
         },
         {
-          "target": "com.discord.api#UpdateLobbyMessageExternalModerationMetadata"
+          "target": "com.discord.api#GetMyApplication"
         },
         {
-          "target": "com.discord.api#GetMyOauth2Authorization"
+          "target": "com.discord.api#GetMyGuildMember"
         },
         {
           "target": "com.discord.api#GetMyOauth2Application"
         },
         {
-          "target": "com.discord.api#GetPublicKeys"
-        },
-        {
-          "target": "com.discord.api#GetOpenidConnectUserinfo"
-        },
-        {
-          "target": "com.discord.api#UpdateUserMessageExternalModerationMetadata"
-        },
-        {
-          "target": "com.discord.api#PartnerSdkUnmergeProvisionalAccount"
-        },
-        {
-          "target": "com.discord.api#BotPartnerSdkUnmergeProvisionalAccount"
-        },
-        {
-          "target": "com.discord.api#PartnerSdkToken"
-        },
-        {
-          "target": "com.discord.api#BotPartnerSdkToken"
-        },
-        {
-          "target": "com.discord.api#GetSkuSubscriptions"
-        },
-        {
-          "target": "com.discord.api#GetSkuSubscription"
-        },
-        {
-          "target": "com.discord.api#GetSoundboardDefaultSounds"
-        },
-        {
-          "target": "com.discord.api#CreateStageInstance"
-        },
-        {
-          "target": "com.discord.api#GetStageInstance"
-        },
-        {
-          "target": "com.discord.api#UpdateStageInstance"
-        },
-        {
-          "target": "com.discord.api#DeleteStageInstance"
-        },
-        {
-          "target": "com.discord.api#ListStickerPacks"
-        },
-        {
-          "target": "com.discord.api#GetStickerPack"
-        },
-        {
-          "target": "com.discord.api#GetSticker"
+          "target": "com.discord.api#GetMyOauth2Authorization"
         },
         {
           "target": "com.discord.api#GetMyUser"
         },
         {
-          "target": "com.discord.api#UpdateMyUser"
+          "target": "com.discord.api#GetOpenidConnectUserinfo"
         },
         {
-          "target": "com.discord.api#GetCurrentUserApplicationEntitlements"
+          "target": "com.discord.api#GetOriginalWebhookMessage"
         },
         {
-          "target": "com.discord.api#GetApplicationUserRoleConnection"
+          "target": "com.discord.api#GetPublicKeys"
         },
         {
-          "target": "com.discord.api#UpdateApplicationUserRoleConnection"
+          "target": "com.discord.api#GetSelfVoiceState"
         },
         {
-          "target": "com.discord.api#DeleteApplicationUserRoleConnection"
+          "target": "com.discord.api#GetSkuSubscription"
         },
         {
-          "target": "com.discord.api#CreateDm"
+          "target": "com.discord.api#GetSkuSubscriptions"
+        },
+        {
+          "target": "com.discord.api#GetSoundboardDefaultSounds"
+        },
+        {
+          "target": "com.discord.api#GetStageInstance"
+        },
+        {
+          "target": "com.discord.api#GetSticker"
+        },
+        {
+          "target": "com.discord.api#GetStickerPack"
+        },
+        {
+          "target": "com.discord.api#GetThreadMember"
+        },
+        {
+          "target": "com.discord.api#GetUser"
+        },
+        {
+          "target": "com.discord.api#GetVoiceState"
+        },
+        {
+          "target": "com.discord.api#GetWebhook"
+        },
+        {
+          "target": "com.discord.api#GetWebhookByToken"
+        },
+        {
+          "target": "com.discord.api#GetWebhookMessage"
+        },
+        {
+          "target": "com.discord.api#GuildRoleMemberCounts"
+        },
+        {
+          "target": "com.discord.api#InviteResolve"
+        },
+        {
+          "target": "com.discord.api#JoinActionGuildRequest"
+        },
+        {
+          "target": "com.discord.api#JoinThread"
+        },
+        {
+          "target": "com.discord.api#LeaveGuild"
+        },
+        {
+          "target": "com.discord.api#LeaveLobby"
+        },
+        {
+          "target": "com.discord.api#LeaveThread"
+        },
+        {
+          "target": "com.discord.api#ListApplicationCommands"
+        },
+        {
+          "target": "com.discord.api#ListApplicationEmojis"
+        },
+        {
+          "target": "com.discord.api#ListAutoModerationRules"
+        },
+        {
+          "target": "com.discord.api#ListChannelInvites"
+        },
+        {
+          "target": "com.discord.api#ListChannelWebhooks"
+        },
+        {
+          "target": "com.discord.api#ListDeprecatedPins"
+        },
+        {
+          "target": "com.discord.api#ListGuildApplicationCommandPermissions"
+        },
+        {
+          "target": "com.discord.api#ListGuildApplicationCommands"
+        },
+        {
+          "target": "com.discord.api#ListGuildAuditLogEntries"
+        },
+        {
+          "target": "com.discord.api#ListGuildBans"
+        },
+        {
+          "target": "com.discord.api#ListGuildChannels"
+        },
+        {
+          "target": "com.discord.api#ListGuildEmojis"
+        },
+        {
+          "target": "com.discord.api#ListGuildIntegrations"
+        },
+        {
+          "target": "com.discord.api#ListGuildInvites"
+        },
+        {
+          "target": "com.discord.api#ListGuildMembers"
+        },
+        {
+          "target": "com.discord.api#ListGuildRoles"
+        },
+        {
+          "target": "com.discord.api#ListGuildScheduledEventExceptionUsers"
+        },
+        {
+          "target": "com.discord.api#ListGuildScheduledEvents"
+        },
+        {
+          "target": "com.discord.api#ListGuildScheduledEventUsers"
+        },
+        {
+          "target": "com.discord.api#ListGuildSoundboardSounds"
+        },
+        {
+          "target": "com.discord.api#ListGuildStickers"
+        },
+        {
+          "target": "com.discord.api#ListGuildTemplates"
+        },
+        {
+          "target": "com.discord.api#ListGuildVoiceRegions"
+        },
+        {
+          "target": "com.discord.api#ListMessageReactionsByEmoji"
+        },
+        {
+          "target": "com.discord.api#ListMessages"
         },
         {
           "target": "com.discord.api#ListMyConnections"
@@ -40397,61 +40311,181 @@
           "target": "com.discord.api#ListMyGuilds"
         },
         {
-          "target": "com.discord.api#LeaveGuild"
+          "target": "com.discord.api#ListMyPrivateArchivedThreads"
         },
         {
-          "target": "com.discord.api#GetMyGuildMember"
+          "target": "com.discord.api#ListPins"
         },
         {
-          "target": "com.discord.api#GetUser"
+          "target": "com.discord.api#ListPrivateArchivedThreads"
+        },
+        {
+          "target": "com.discord.api#ListPublicArchivedThreads"
+        },
+        {
+          "target": "com.discord.api#ListStickerPacks"
+        },
+        {
+          "target": "com.discord.api#ListThreadMembers"
         },
         {
           "target": "com.discord.api#ListVoiceRegions"
         },
         {
-          "target": "com.discord.api#GetWebhook"
+          "target": "com.discord.api#PartnerSdkToken"
         },
         {
-          "target": "com.discord.api#UpdateWebhook"
+          "target": "com.discord.api#PartnerSdkUnmergeProvisionalAccount"
         },
         {
-          "target": "com.discord.api#DeleteWebhook"
+          "target": "com.discord.api#PollExpire"
         },
         {
-          "target": "com.discord.api#GetWebhookByToken"
+          "target": "com.discord.api#PreviewPruneGuild"
         },
         {
-          "target": "com.discord.api#ExecuteWebhook"
+          "target": "com.discord.api#PruneGuild"
         },
         {
-          "target": "com.discord.api#UpdateWebhookByToken"
+          "target": "com.discord.api#PutGuildsOnboarding"
         },
         {
-          "target": "com.discord.api#DeleteWebhookByToken"
+          "target": "com.discord.api#RevokeInvite"
         },
         {
-          "target": "com.discord.api#ExecuteGithubCompatibleWebhook"
+          "target": "com.discord.api#SearchGuild"
         },
         {
-          "target": "com.discord.api#GetOriginalWebhookMessage"
+          "target": "com.discord.api#SearchGuildMembers"
+        },
+        {
+          "target": "com.discord.api#SearchThread"
+        },
+        {
+          "target": "com.discord.api#SendSoundboardSound"
+        },
+        {
+          "target": "com.discord.api#SetChannelPermissionOverwrite"
+        },
+        {
+          "target": "com.discord.api#SetGuildApplicationCommandPermissions"
+        },
+        {
+          "target": "com.discord.api#SyncGuildTemplate"
+        },
+        {
+          "target": "com.discord.api#TriggerTypingIndicator"
+        },
+        {
+          "target": "com.discord.api#UnbanUserFromGuild"
+        },
+        {
+          "target": "com.discord.api#UpdateApplication"
+        },
+        {
+          "target": "com.discord.api#UpdateApplicationCommand"
+        },
+        {
+          "target": "com.discord.api#UpdateApplicationEmoji"
+        },
+        {
+          "target": "com.discord.api#UpdateApplicationRoleConnectionsMetadata"
+        },
+        {
+          "target": "com.discord.api#UpdateApplicationUserRoleConnection"
+        },
+        {
+          "target": "com.discord.api#UpdateAutoModerationRule"
+        },
+        {
+          "target": "com.discord.api#UpdateChannel"
+        },
+        {
+          "target": "com.discord.api#UpdateGuild"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildApplicationCommand"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildEmoji"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildIncidentActions"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildMember"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildRole"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildScheduledEvent"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildScheduledEventException"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildSoundboardSound"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildSticker"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildTemplate"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildWelcomeScreen"
+        },
+        {
+          "target": "com.discord.api#UpdateGuildWidgetSettings"
+        },
+        {
+          "target": "com.discord.api#UpdateInviteTargetUsers"
+        },
+        {
+          "target": "com.discord.api#UpdateLobbyMessageExternalModerationMetadata"
+        },
+        {
+          "target": "com.discord.api#UpdateMessage"
+        },
+        {
+          "target": "com.discord.api#UpdateMyApplication"
+        },
+        {
+          "target": "com.discord.api#UpdateMyGuildMember"
+        },
+        {
+          "target": "com.discord.api#UpdateMyUser"
         },
         {
           "target": "com.discord.api#UpdateOriginalWebhookMessage"
         },
         {
-          "target": "com.discord.api#DeleteOriginalWebhookMessage"
+          "target": "com.discord.api#UpdateSelfVoiceState"
         },
         {
-          "target": "com.discord.api#GetWebhookMessage"
+          "target": "com.discord.api#UpdateStageInstance"
+        },
+        {
+          "target": "com.discord.api#UpdateUserMessageExternalModerationMetadata"
+        },
+        {
+          "target": "com.discord.api#UpdateVoiceChannelStatus"
+        },
+        {
+          "target": "com.discord.api#UpdateVoiceState"
+        },
+        {
+          "target": "com.discord.api#UpdateWebhook"
+        },
+        {
+          "target": "com.discord.api#UpdateWebhookByToken"
         },
         {
           "target": "com.discord.api#UpdateWebhookMessage"
         },
         {
-          "target": "com.discord.api#DeleteWebhookMessage"
-        },
-        {
-          "target": "com.discord.api#ExecuteSlackCompatibleWebhook"
+          "target": "com.discord.api#UploadApplicationAttachment"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.webhooks#ListWebhooksResponseBodyItemJobEnvironmentMap": {
@@ -3670,16 +3671,7 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.webhooks#ListWebhooks"
-        },
-        {
           "target": "com.huggingface.webhooks#CreateWebhook"
-        },
-        {
-          "target": "com.huggingface.webhooks#GetWebhook"
-        },
-        {
-          "target": "com.huggingface.webhooks#UpdateWebhook"
         },
         {
           "target": "com.huggingface.webhooks#DeleteWebhook"
@@ -3688,7 +3680,16 @@
           "target": "com.huggingface.webhooks#EnableDisableWebhook"
         },
         {
+          "target": "com.huggingface.webhooks#GetWebhook"
+        },
+        {
+          "target": "com.huggingface.webhooks#ListWebhooks"
+        },
+        {
           "target": "com.huggingface.webhooks#ReplayWebhookLog"
+        },
+        {
+          "target": "com.huggingface.webhooks#UpdateWebhook"
         }
       ],
       "traits": {

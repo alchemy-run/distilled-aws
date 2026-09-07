@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.event_definitions#EventDefinitionsListRequestNamesList": {
+    "com.posthog.event_definitions#ListEventDefinitionsRequestNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -57,7 +58,7 @@
           }
         },
         "names": {
-          "target": "com.posthog.event_definitions#EventDefinitionsListRequestNamesList",
+          "target": "com.posthog.event_definitions#ListEventDefinitionsRequestNamesList",
           "traits": {
             "smithy.api#httpQuery": "names",
             "smithy.api#documentation": "Return exact matches for these event names. Pass names as repeated or comma-separated values."
@@ -169,7 +170,7 @@
           }
         },
         "enforcement_mode": {
-          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+          "target": "com.posthog.event_definitions#SchemaEnforcementModeEnum"
         },
         "primary_property": {
           "target": "smithy.api#String",
@@ -358,7 +359,7 @@
       },
       "traits": {}
     },
-    "com.posthog.event_definitions#EnforcementModeEnum": {
+    "com.posthog.event_definitions#SchemaEnforcementModeEnum": {
       "type": "enum",
       "members": {
         "ALLOW": {
@@ -426,14 +427,14 @@
         }
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsCreateRequestTagsList": {
+    "com.posthog.event_definitions#CreateEventDefinitionRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.event_definitions#EventDefinitionsCreateRequestDefaultColumnsList": {
+    "com.posthog.event_definitions#CreateEventDefinitionRequestDefaultColumnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -467,7 +468,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.event_definitions#EventDefinitionsCreateRequestTagsList"
+          "target": "com.posthog.event_definitions#CreateEventDefinitionRequestTagsList"
         },
         "verified": {
           "target": "smithy.api#Boolean"
@@ -479,7 +480,7 @@
           }
         },
         "enforcement_mode": {
-          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+          "target": "com.posthog.event_definitions#SchemaEnforcementModeEnum"
         },
         "primary_property": {
           "target": "smithy.api#String",
@@ -492,7 +493,7 @@
           "target": "smithy.api#Boolean"
         },
         "default_columns": {
-          "target": "com.posthog.event_definitions#EventDefinitionsCreateRequestDefaultColumnsList"
+          "target": "com.posthog.event_definitions#CreateEventDefinitionRequestDefaultColumnsList"
         }
       },
       "traits": {
@@ -526,7 +527,7 @@
         }
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsRetrieveRequest": {
+    "com.posthog.event_definitions#GetEventDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -550,10 +551,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsRetrieve": {
+    "com.posthog.event_definitions#GetEventDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_definitions#EventDefinitionsRetrieveRequest"
+        "target": "com.posthog.event_definitions#GetEventDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.event_definitions#EnterpriseEventDefinition"
@@ -574,14 +575,14 @@
         }
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsUpdateRequestTagsList": {
+    "com.posthog.event_definitions#UpdateEventDefinitionRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.event_definitions#EventDefinitionsUpdateRequestDefaultColumnsList": {
+    "com.posthog.event_definitions#UpdateEventDefinitionRequestDefaultColumnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -623,7 +624,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.event_definitions#EventDefinitionsUpdateRequestTagsList"
+          "target": "com.posthog.event_definitions#UpdateEventDefinitionRequestTagsList"
         },
         "verified": {
           "target": "smithy.api#Boolean"
@@ -635,7 +636,7 @@
           }
         },
         "enforcement_mode": {
-          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+          "target": "com.posthog.event_definitions#SchemaEnforcementModeEnum"
         },
         "primary_property": {
           "target": "smithy.api#String",
@@ -648,7 +649,7 @@
           "target": "smithy.api#Boolean"
         },
         "default_columns": {
-          "target": "com.posthog.event_definitions#EventDefinitionsUpdateRequestDefaultColumnsList"
+          "target": "com.posthog.event_definitions#UpdateEventDefinitionRequestDefaultColumnsList"
         }
       },
       "traits": {
@@ -682,21 +683,21 @@
         }
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestTagsList": {
+    "com.posthog.event_definitions#UpdateEventDefinitionsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestDefaultColumnsList": {
+    "com.posthog.event_definitions#UpdateEventDefinitionsPartialRequestDefaultColumnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.event_definitions#UpdateEventDefinitionPartialRequest": {
+    "com.posthog.event_definitions#UpdateEventDefinitionsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -731,7 +732,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestTagsList"
+          "target": "com.posthog.event_definitions#UpdateEventDefinitionsPartialRequestTagsList"
         },
         "verified": {
           "target": "smithy.api#Boolean"
@@ -743,7 +744,7 @@
           }
         },
         "enforcement_mode": {
-          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+          "target": "com.posthog.event_definitions#SchemaEnforcementModeEnum"
         },
         "primary_property": {
           "target": "smithy.api#String",
@@ -756,17 +757,17 @@
           "target": "smithy.api#Boolean"
         },
         "default_columns": {
-          "target": "com.posthog.event_definitions#EventDefinitionsPartialUpdateRequestDefaultColumnsList"
+          "target": "com.posthog.event_definitions#UpdateEventDefinitionsPartialRequestDefaultColumnsList"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.event_definitions#UpdateEventDefinitionPartial": {
+    "com.posthog.event_definitions#UpdateEventDefinitionsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_definitions#UpdateEventDefinitionPartialRequest"
+        "target": "com.posthog.event_definitions#UpdateEventDefinitionsPartialRequest"
       },
       "output": {
         "target": "com.posthog.event_definitions#EnterpriseEventDefinition"
@@ -972,7 +973,7 @@
         "smithy.api#documentation": "Mark multiple event definitions as verified or unverified in one request.\n\nIn the same vein as ``bulk_update_tags``, but ``verified`` lives on the enterprise\n``EnterpriseEventDefinition`` extension rather than the base row, so this action:\n- requires an enterprise license;\n- scopes by project (``team__project_id``) and relies on project membership — the same\n  boundary the single-object update path uses — rather than object-level RBAC;\n- lazily promotes ingestion-created base rows to ``EnterpriseEventDefinition`` (mirroring\n  ``_get_event_definition``) before setting ``verified``;\n- mirrors the single-object semantics: verifying stamps ``verified_by``/``verified_at`` and\n  unhides the event (an event cannot be both hidden and verified); unverifying clears them;\n- logs a \"changed\" activity per event so the History tab matches the single-object path.\n\nEvents already in the target state are skipped (not re-written, not logged)."
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsByNameRetrieveRequest": {
+    "com.posthog.event_definitions#GetEventDefinitionsByNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1024,7 +1025,7 @@
           "target": "com.posthog.event_definitions#EventDefinitionRecordTagsList"
         },
         "enforcement_mode": {
-          "target": "com.posthog.event_definitions#EnforcementModeEnum"
+          "target": "com.posthog.event_definitions#SchemaEnforcementModeEnum"
         },
         "primary_property": {
           "target": "smithy.api#String",
@@ -1066,10 +1067,10 @@
       },
       "traits": {}
     },
-    "com.posthog.event_definitions#EventDefinitionsByNameRetrieve": {
+    "com.posthog.event_definitions#GetEventDefinitionsByName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_definitions#EventDefinitionsByNameRetrieveRequest"
+        "target": "com.posthog.event_definitions#GetEventDefinitionsByNameRequest"
       },
       "output": {
         "target": "com.posthog.event_definitions#EventDefinitionRecord"
@@ -1094,7 +1095,7 @@
         "smithy.api#documentation": "Get event definition by exact name"
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsGolangRetrieveRequest": {
+    "com.posthog.event_definitions#GetEventDefinitionsGolangRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1110,10 +1111,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsGolangRetrieve": {
+    "com.posthog.event_definitions#GetEventDefinitionsGolang": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_definitions#EventDefinitionsGolangRetrieveRequest"
+        "target": "com.posthog.event_definitions#GetEventDefinitionsGolangRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1134,14 +1135,14 @@
         }
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList": {
+    "com.posthog.event_definitions#GetEventDefinitionsPrimaryPropertyRequestNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequest": {
+    "com.posthog.event_definitions#GetEventDefinitionsPrimaryPropertyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1153,7 +1154,7 @@
           }
         },
         "names": {
-          "target": "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequestNamesList",
+          "target": "com.posthog.event_definitions#GetEventDefinitionsPrimaryPropertyRequestNamesList",
           "traits": {
             "smithy.api#httpQuery": "names",
             "smithy.api#documentation": "Optional: restrict the response to these event names. Repeat the parameter for multiple names (e.g. `?names=a&names=b`). When omitted, returns every team-configured primary property."
@@ -1189,10 +1190,10 @@
         "smithy.api#documentation": "Mapping from event name to the team-configured primary property for that event. Names without a configured primary property are omitted; callers should fall back to the core taxonomy defaults for those."
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieve": {
+    "com.posthog.event_definitions#GetEventDefinitionsPrimaryProperty": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieveRequest"
+        "target": "com.posthog.event_definitions#GetEventDefinitionsPrimaryPropertyRequest"
       },
       "output": {
         "target": "com.posthog.event_definitions#PrimaryPropertiesResponse"
@@ -1206,7 +1207,7 @@
         "smithy.api#documentation": "Resolve team-configured primary properties for event definitions.\n\nThe response only contains entries where a non-null primary_property is set on the\nEventDefinition. Callers should fall back to the core taxonomy defaults client-side\nfor names not present in the response."
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsPythonRetrieveRequest": {
+    "com.posthog.event_definitions#GetEventDefinitionsPythonRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1222,10 +1223,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsPythonRetrieve": {
+    "com.posthog.event_definitions#GetEventDefinitionsPython": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_definitions#EventDefinitionsPythonRetrieveRequest"
+        "target": "com.posthog.event_definitions#GetEventDefinitionsPythonRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1246,7 +1247,7 @@
         }
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieveRequest": {
+    "com.posthog.event_definitions#GetEventDefinitionsTypescriptRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1262,10 +1263,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieve": {
+    "com.posthog.event_definitions#GetEventDefinitionsTypescript": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieveRequest"
+        "target": "com.posthog.event_definitions#GetEventDefinitionsTypescriptRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1330,40 +1331,40 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.event_definitions#ListEventDefinitions"
-        },
-        {
           "target": "com.posthog.event_definitions#CreateEventDefinition"
-        },
-        {
-          "target": "com.posthog.event_definitions#EventDefinitionsRetrieve"
-        },
-        {
-          "target": "com.posthog.event_definitions#UpdateEventDefinition"
-        },
-        {
-          "target": "com.posthog.event_definitions#UpdateEventDefinitionPartial"
-        },
-        {
-          "target": "com.posthog.event_definitions#EventDefinitionsDestroy"
         },
         {
           "target": "com.posthog.event_definitions#EventDefinitionsBulkUpdateVerifiedCreate"
         },
         {
-          "target": "com.posthog.event_definitions#EventDefinitionsByNameRetrieve"
+          "target": "com.posthog.event_definitions#EventDefinitionsDestroy"
         },
         {
-          "target": "com.posthog.event_definitions#EventDefinitionsGolangRetrieve"
+          "target": "com.posthog.event_definitions#GetEventDefinition"
         },
         {
-          "target": "com.posthog.event_definitions#EventDefinitionsPrimaryPropertiesRetrieve"
+          "target": "com.posthog.event_definitions#GetEventDefinitionsByName"
         },
         {
-          "target": "com.posthog.event_definitions#EventDefinitionsPythonRetrieve"
+          "target": "com.posthog.event_definitions#GetEventDefinitionsGolang"
         },
         {
-          "target": "com.posthog.event_definitions#EventDefinitionsTypescriptRetrieve"
+          "target": "com.posthog.event_definitions#GetEventDefinitionsPrimaryProperty"
+        },
+        {
+          "target": "com.posthog.event_definitions#GetEventDefinitionsPython"
+        },
+        {
+          "target": "com.posthog.event_definitions#GetEventDefinitionsTypescript"
+        },
+        {
+          "target": "com.posthog.event_definitions#ListEventDefinitions"
+        },
+        {
+          "target": "com.posthog.event_definitions#UpdateEventDefinition"
+        },
+        {
+          "target": "com.posthog.event_definitions#UpdateEventDefinitionsPartial"
         }
       ],
       "traits": {

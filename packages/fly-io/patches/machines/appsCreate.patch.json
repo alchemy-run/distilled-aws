@@ -3,14 +3,14 @@
   "patches": [
     {
       "op": "add",
-      "path": "/paths/~1apps/post/responses/409",
+      "path": "/paths/~1v1~1apps/post/responses/409",
       "value": {
         "description": "Conflict"
       }
     },
     {
       "op": "add",
-      "path": "/paths/~1apps/post/responses/422",
+      "path": "/paths/~1v1~1apps/post/responses/422",
       "value": {
         "description": "Unprocessable Entity"
       }

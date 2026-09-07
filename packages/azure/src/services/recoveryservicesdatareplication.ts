@@ -12,53 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CheckNameAvailabilityPostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** Gets or sets the resource name. */
-  name?: string;
-  /** Gets or sets the resource type. */
-  type?: string;
-}
-export const CheckNameAvailabilityPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataReplication/locations/{location}/checkNameAvailability",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "CheckNameAvailabilityPostRequest",
-}) as any as S.Schema<CheckNameAvailabilityPostRequest>;
-
-/** Check name availability response model. */
-export interface CheckNameAvailabilityResponseModel {
-  /** Gets or sets a value indicating whether resource name is available or not. */
-  nameAvailable?: boolean;
-  /** Gets or sets the reason for resource name unavailability. */
-  reason?: string;
-  /** Gets or sets the message for resource name unavailability. */
-  message?: string;
-}
-export const CheckNameAvailabilityResponseModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResponseModel",
-}) as any as S.Schema<CheckNameAvailabilityResponseModel>;
-
 /** Gets or sets the custom email address for sending emails. */
 export type EmailConfigurationModelPropertiesInputCustomEmailAddressesList =
   Array<string>;
@@ -230,11 +183,11 @@ export const CreateEmailConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEmailConfigurationResponse>;
 
 /** Resource tags. */
-export type FabricCreateRequestTagsMap = { [key: string]: string | undefined };
-export const FabricCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateFabricRequestTagsMap = { [key: string]: string | undefined };
+export const CreateFabricRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricCreateRequestTagsMap>;
+) as any as S.Schema<CreateFabricRequestTagsMap>;
 
 /** Fabric model custom properties. */
 export interface FabricModelCustomProperties {
@@ -270,7 +223,7 @@ export interface CreateFabricRequest {
   /** The fabric name. */
   fabricName: string;
   /** Resource tags. */
-  tags?: FabricCreateRequestTagsMap;
+  tags?: CreateFabricRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -281,7 +234,7 @@ export const CreateFabricRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fabricName: S.String.pipe(T.Label()),
-    tags: S.optional(FabricCreateRequestTagsMap),
+    tags: S.optional(CreateFabricRequestTagsMap),
     location: S.String,
     properties: S.optional(FabricModelPropertiesInput),
   }).pipe(
@@ -297,11 +250,11 @@ export const CreateFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateFabricRequest>;
 
 /** Resource tags. */
-export type FabricCreateResponseTagsMap = { [key: string]: string | undefined };
-export const FabricCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreateFabricResponseTagsMap = { [key: string]: string | undefined };
+export const CreateFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricCreateResponseTagsMap>;
+) as any as S.Schema<CreateFabricResponseTagsMap>;
 
 /** Gets or sets the fabric health. */
 export type HealthStatus = "Normal" | "Warning" | "Critical";
@@ -461,7 +414,7 @@ export interface CreateFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricCreateResponseTagsMap;
+  tags?: CreateFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -473,7 +426,7 @@ export const CreateFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricCreateResponseTagsMap),
+    tags: S.optional(CreateFabricResponseTagsMap),
     location: S.String,
     properties: S.optional(FabricModelProperties),
   }),
@@ -1151,11 +1104,11 @@ export const CreateReplicationExtensionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateReplicationExtensionResponse>;
 
 /** Resource tags. */
-export type VaultCreateRequestTagsMap = { [key: string]: string | undefined };
-export const VaultCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateVaultRequestTagsMap = { [key: string]: string | undefined };
+export const CreateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultCreateRequestTagsMap>;
+) as any as S.Schema<CreateVaultRequestTagsMap>;
 
 /** Gets or sets the type of vault. */
 export type ReplicationVaultType = "DisasterRecovery" | "Migrate";
@@ -1198,31 +1151,31 @@ export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserAssignedIdentityInput>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultCreateRequestIdentityUserAssignedIdentitiesMap = {
+export type CreateVaultRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentityInput | undefined;
 };
-export const VaultCreateRequestIdentityUserAssignedIdentitiesMap =
+export const CreateVaultRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentityInput,
-  ) as any as S.Schema<VaultCreateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<CreateVaultRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultCreateRequestIdentity {
+export interface CreateVaultRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultCreateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: CreateVaultRequestIdentityUserAssignedIdentitiesMap;
 }
-export const VaultCreateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateVaultRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      VaultCreateRequestIdentityUserAssignedIdentitiesMap,
+      CreateVaultRequestIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "VaultCreateRequestIdentity",
-}) as any as S.Schema<VaultCreateRequestIdentity>;
+  identifier: "CreateVaultRequestIdentity",
+}) as any as S.Schema<CreateVaultRequestIdentity>;
 
 export interface CreateVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1232,23 +1185,23 @@ export interface CreateVaultRequest {
   /** The vault name. */
   vaultName: string;
   /** Resource tags. */
-  tags?: VaultCreateRequestTagsMap;
+  tags?: CreateVaultRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: VaultModelPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultCreateRequestIdentity;
+  identity?: CreateVaultRequestIdentity;
 }
 export const CreateVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
-    tags: S.optional(VaultCreateRequestTagsMap),
+    tags: S.optional(CreateVaultRequestTagsMap),
     location: S.String,
     properties: S.optional(VaultModelPropertiesInput),
-    identity: S.optional(VaultCreateRequestIdentity),
+    identity: S.optional(CreateVaultRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -1262,11 +1215,11 @@ export const CreateVaultRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateVaultRequest>;
 
 /** Resource tags. */
-export type VaultCreateResponseTagsMap = { [key: string]: string | undefined };
-export const VaultCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreateVaultResponseTagsMap = { [key: string]: string | undefined };
+export const CreateVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultCreateResponseTagsMap>;
+) as any as S.Schema<CreateVaultResponseTagsMap>;
 
 /** Private endpoint state for the vault. */
 export type VaultPrivateEndpointState =
@@ -1420,37 +1373,37 @@ export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserAssignedIdentity>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultCreateResponseIdentityUserAssignedIdentitiesMap = {
+export type CreateVaultResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const VaultCreateResponseIdentityUserAssignedIdentitiesMap =
+export const CreateVaultResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<VaultCreateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<CreateVaultResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultCreateResponseIdentity {
+export interface CreateVaultResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultCreateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: CreateVaultResponseIdentityUserAssignedIdentitiesMap;
 }
-export const VaultCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateVaultResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      VaultCreateResponseIdentityUserAssignedIdentitiesMap,
+      CreateVaultResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "VaultCreateResponseIdentity",
-}) as any as S.Schema<VaultCreateResponseIdentity>;
+  identifier: "CreateVaultResponseIdentity",
+}) as any as S.Schema<CreateVaultResponseIdentity>;
 
 export interface CreateVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1462,13 +1415,13 @@ export interface CreateVaultResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VaultCreateResponseTagsMap;
+  tags?: CreateVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: VaultModelProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultCreateResponseIdentity;
+  identity?: CreateVaultResponseIdentity;
 }
 export const CreateVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1476,10 +1429,10 @@ export const CreateVaultResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VaultCreateResponseTagsMap),
+    tags: S.optional(CreateVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(VaultModelProperties),
-    identity: S.optional(VaultCreateResponseIdentity),
+    identity: S.optional(CreateVaultResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateVaultResponse",
@@ -1728,87 +1681,6 @@ export const DeleteVaultResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVaultResponse",
 }) as any as S.Schema<DeleteVaultResponse>;
 
-/** Deployment preflight resource. */
-export interface DeploymentPreflightResource {
-  /** Gets or sets the resource name. */
-  name?: string;
-  /** Gets or sets the resource type. */
-  type?: string;
-  /** Gets or sets the location of the resource. */
-  location?: string;
-  /** Gets or sets the Api version. */
-  apiVersion?: string;
-  /** Gets or sets the properties of the resource. */
-  properties?: unknown;
-}
-export const DeploymentPreflightResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    apiVersion: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DeploymentPreflightResource",
-}) as any as S.Schema<DeploymentPreflightResource>;
-
-/** Gets or sets the list of resources. */
-export type DeploymentPreflightPostRequestResourcesList =
-  Array<DeploymentPreflightResource>;
-export const DeploymentPreflightPostRequestResourcesList =
-  /*@__PURE__*/ S.Array(
-    DeploymentPreflightResource,
-  ) as any as S.Schema<DeploymentPreflightPostRequestResourcesList>;
-
-export interface DeploymentPreflightPostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Deployment Id. */
-  deploymentId: string;
-  /** Gets or sets the list of resources. */
-  resources?: DeploymentPreflightPostRequestResourcesList;
-}
-export const DeploymentPreflightPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deploymentId: S.String.pipe(T.Label()),
-    resources: S.optional(DeploymentPreflightPostRequestResourcesList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/deployments/{deploymentId}/preflight",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentPreflightPostRequest",
-}) as any as S.Schema<DeploymentPreflightPostRequest>;
-
-/** Gets or sets the list of resources. */
-export type DeploymentPreflightModelResourcesList =
-  Array<DeploymentPreflightResource>;
-export const DeploymentPreflightModelResourcesList = /*@__PURE__*/ S.Array(
-  DeploymentPreflightResource,
-) as any as S.Schema<DeploymentPreflightModelResourcesList>;
-
-/** Deployment preflight model. */
-export interface DeploymentPreflightModel {
-  /** Gets or sets the list of resources. */
-  resources?: DeploymentPreflightModelResourcesList;
-}
-export const DeploymentPreflightModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resources: S.optional(DeploymentPreflightModelResourcesList),
-  }),
-).annotate({
-  identifier: "DeploymentPreflightModel",
-}) as any as S.Schema<DeploymentPreflightModel>;
-
 export interface GetEmailConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -2001,11 +1873,11 @@ export const GetFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFabricRequest>;
 
 /** Resource tags. */
-export type FabricGetResponseTagsMap = { [key: string]: string | undefined };
-export const FabricGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFabricResponseTagsMap = { [key: string]: string | undefined };
+export const GetFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricGetResponseTagsMap>;
+) as any as S.Schema<GetFabricResponseTagsMap>;
 
 export interface GetFabricResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2017,7 +1889,7 @@ export interface GetFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricGetResponseTagsMap;
+  tags?: GetFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2029,7 +1901,7 @@ export const GetFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricGetResponseTagsMap),
+    tags: S.optional(GetFabricResponseTagsMap),
     location: S.String,
     properties: S.optional(FabricModelProperties),
   }),
@@ -2887,44 +2759,44 @@ export const GetVaultRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVaultRequest>;
 
 /** Resource tags. */
-export type VaultGetResponseTagsMap = { [key: string]: string | undefined };
-export const VaultGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetVaultResponseTagsMap = { [key: string]: string | undefined };
+export const GetVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultGetResponseTagsMap>;
+) as any as S.Schema<GetVaultResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultGetResponseIdentityUserAssignedIdentitiesMap = {
+export type GetVaultResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const VaultGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetVaultResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<VaultGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetVaultResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultGetResponseIdentity {
+export interface GetVaultResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetVaultResponseIdentityUserAssignedIdentitiesMap;
 }
-export const VaultGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetVaultResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      VaultGetResponseIdentityUserAssignedIdentitiesMap,
+      GetVaultResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "VaultGetResponseIdentity",
-}) as any as S.Schema<VaultGetResponseIdentity>;
+  identifier: "GetVaultResponseIdentity",
+}) as any as S.Schema<GetVaultResponseIdentity>;
 
 export interface GetVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2936,13 +2808,13 @@ export interface GetVaultResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VaultGetResponseTagsMap;
+  tags?: GetVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: VaultModelProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultGetResponseIdentity;
+  identity?: GetVaultResponseIdentity;
 }
 export const GetVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2950,10 +2822,10 @@ export const GetVaultResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VaultGetResponseTagsMap),
+    tags: S.optional(GetVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(VaultModelProperties),
-    identity: S.optional(VaultGetResponseIdentity),
+    identity: S.optional(GetVaultResponseIdentity),
   }),
 ).annotate({
   identifier: "GetVaultResponse",
@@ -3407,20 +3279,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -3987,6 +3859,134 @@ export const ListVaultBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVaultBySubscriptionRequest",
 }) as any as S.Schema<ListVaultBySubscriptionRequest>;
 
+export interface PostCheckNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** Gets or sets the resource name. */
+  name?: string;
+  /** Gets or sets the resource type. */
+  type?: string;
+}
+export const PostCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataReplication/locations/{location}/checkNameAvailability",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostCheckNameAvailabilityRequest",
+}) as any as S.Schema<PostCheckNameAvailabilityRequest>;
+
+/** Check name availability response model. */
+export interface CheckNameAvailabilityResponseModel {
+  /** Gets or sets a value indicating whether resource name is available or not. */
+  nameAvailable?: boolean;
+  /** Gets or sets the reason for resource name unavailability. */
+  reason?: string;
+  /** Gets or sets the message for resource name unavailability. */
+  message?: string;
+}
+export const CheckNameAvailabilityResponseModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResponseModel",
+}) as any as S.Schema<CheckNameAvailabilityResponseModel>;
+
+/** Deployment preflight resource. */
+export interface DeploymentPreflightResource {
+  /** Gets or sets the resource name. */
+  name?: string;
+  /** Gets or sets the resource type. */
+  type?: string;
+  /** Gets or sets the location of the resource. */
+  location?: string;
+  /** Gets or sets the Api version. */
+  apiVersion?: string;
+  /** Gets or sets the properties of the resource. */
+  properties?: unknown;
+}
+export const DeploymentPreflightResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    apiVersion: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DeploymentPreflightResource",
+}) as any as S.Schema<DeploymentPreflightResource>;
+
+/** Gets or sets the list of resources. */
+export type PostDeploymentPreflightRequestResourcesList =
+  Array<DeploymentPreflightResource>;
+export const PostDeploymentPreflightRequestResourcesList =
+  /*@__PURE__*/ S.Array(
+    DeploymentPreflightResource,
+  ) as any as S.Schema<PostDeploymentPreflightRequestResourcesList>;
+
+export interface PostDeploymentPreflightRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Deployment Id. */
+  deploymentId: string;
+  /** Gets or sets the list of resources. */
+  resources?: PostDeploymentPreflightRequestResourcesList;
+}
+export const PostDeploymentPreflightRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deploymentId: S.String.pipe(T.Label()),
+    resources: S.optional(PostDeploymentPreflightRequestResourcesList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/deployments/{deploymentId}/preflight",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostDeploymentPreflightRequest",
+}) as any as S.Schema<PostDeploymentPreflightRequest>;
+
+/** Gets or sets the list of resources. */
+export type DeploymentPreflightModelResourcesList =
+  Array<DeploymentPreflightResource>;
+export const DeploymentPreflightModelResourcesList = /*@__PURE__*/ S.Array(
+  DeploymentPreflightResource,
+) as any as S.Schema<DeploymentPreflightModelResourcesList>;
+
+/** Deployment preflight model. */
+export interface DeploymentPreflightModel {
+  /** Gets or sets the list of resources. */
+  resources?: DeploymentPreflightModelResourcesList;
+}
+export const DeploymentPreflightModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resources: S.optional(DeploymentPreflightModelResourcesList),
+  }),
+).annotate({
+  identifier: "DeploymentPreflightModel",
+}) as any as S.Schema<DeploymentPreflightModel>;
+
 /** Planned failover model custom properties. */
 export interface PlannedFailoverModelCustomProperties {
   /** Discriminator property for PlannedFailoverModelCustomProperties. */
@@ -4059,11 +4059,11 @@ export const PlannedFailoverModel = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PlannedFailoverModel>;
 
 /** Gets or sets the resource tags. */
-export type FabricUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const FabricUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFabricRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFabricRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFabricRequestTagsMap>;
 
 export interface UpdateFabricRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4073,7 +4073,7 @@ export interface UpdateFabricRequest {
   /** The fabric name. */
   fabricName: string;
   /** Gets or sets the resource tags. */
-  tags?: FabricUpdateRequestTagsMap;
+  tags?: UpdateFabricRequestTagsMap;
   /** Fabric model properties. */
   properties?: FabricModelPropertiesInput;
 }
@@ -4082,7 +4082,7 @@ export const UpdateFabricRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fabricName: S.String.pipe(T.Label()),
-    tags: S.optional(FabricUpdateRequestTagsMap),
+    tags: S.optional(UpdateFabricRequestTagsMap),
     properties: S.optional(FabricModelPropertiesInput),
   }).pipe(
     T.Http({
@@ -4097,11 +4097,11 @@ export const UpdateFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFabricRequest>;
 
 /** Resource tags. */
-export type FabricUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const FabricUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFabricResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFabricResponseTagsMap>;
 
 export interface UpdateFabricResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4113,7 +4113,7 @@ export interface UpdateFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricUpdateResponseTagsMap;
+  tags?: UpdateFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4125,7 +4125,7 @@ export const UpdateFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricUpdateResponseTagsMap),
+    tags: S.optional(UpdateFabricResponseTagsMap),
     location: S.String,
     properties: S.optional(FabricModelProperties),
   }),
@@ -4292,11 +4292,11 @@ export const UpdateProtectedItemResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProtectedItemResponse>;
 
 /** Gets or sets the resource tags. */
-export type VaultUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const VaultUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVaultRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVaultRequestTagsMap>;
 
 /** Gets or sets the identityType which can be either SystemAssigned or None. */
 export type VaultIdentityType = "None" | "SystemAssigned" | "UserAssigned";
@@ -4323,7 +4323,7 @@ export interface UpdateVaultRequest {
   /** The vault name. */
   vaultName: string;
   /** Gets or sets the resource tags. */
-  tags?: VaultUpdateRequestTagsMap;
+  tags?: UpdateVaultRequestTagsMap;
   /** Vault properties. */
   properties?: VaultModelPropertiesInput;
   /** Vault identity. */
@@ -4334,7 +4334,7 @@ export const UpdateVaultRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
-    tags: S.optional(VaultUpdateRequestTagsMap),
+    tags: S.optional(UpdateVaultRequestTagsMap),
     properties: S.optional(VaultModelPropertiesInput),
     identity: S.optional(VaultIdentityModelInput),
   }).pipe(
@@ -4350,44 +4350,44 @@ export const UpdateVaultRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVaultRequest>;
 
 /** Resource tags. */
-export type VaultUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const VaultUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVaultResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVaultResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateVaultResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const VaultUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateVaultResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<VaultUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateVaultResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultUpdateResponseIdentity {
+export interface UpdateVaultResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateVaultResponseIdentityUserAssignedIdentitiesMap;
 }
-export const VaultUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVaultResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      VaultUpdateResponseIdentityUserAssignedIdentitiesMap,
+      UpdateVaultResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "VaultUpdateResponseIdentity",
-}) as any as S.Schema<VaultUpdateResponseIdentity>;
+  identifier: "UpdateVaultResponseIdentity",
+}) as any as S.Schema<UpdateVaultResponseIdentity>;
 
 export interface UpdateVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4399,13 +4399,13 @@ export interface UpdateVaultResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VaultUpdateResponseTagsMap;
+  tags?: UpdateVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: VaultModelProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultUpdateResponseIdentity;
+  identity?: UpdateVaultResponseIdentity;
 }
 export const UpdateVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4413,29 +4413,14 @@ export const UpdateVaultResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VaultUpdateResponseTagsMap),
+    tags: S.optional(UpdateVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(VaultModelProperties),
-    identity: S.optional(VaultUpdateResponseIdentity),
+    identity: S.optional(UpdateVaultResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateVaultResponse",
 }) as any as S.Schema<UpdateVaultResponse>;
-
-export type CheckNameAvailabilityPostError = AzureOpError;
-/** Performs the resource name availability check. Checks the resource name availability. */
-export const CheckNameAvailabilityPost: API.OperationMethod<
-  CheckNameAvailabilityPostRequest,
-  CheckNameAvailabilityResponseModel,
-  CheckNameAvailabilityPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckNameAvailabilityPostRequest,
-  output: CheckNameAvailabilityResponseModel,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
 
 export type CreateEmailConfigurationError = AzureOpError;
 /** Creates an alert configuration setting for the given vault. */
@@ -4642,21 +4627,6 @@ export const DeleteVault: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteVaultRequest,
   output: DeleteVaultResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentPreflightPostError = AzureOpError;
-/** Performs resource deployment validation. Performs resource deployment preflight validation. */
-export const DeploymentPreflightPost: API.OperationMethod<
-  DeploymentPreflightPostRequest,
-  DeploymentPreflightModel,
-  DeploymentPreflightPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentPreflightPostRequest,
-  output: DeploymentPreflightModel,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5092,6 +5062,36 @@ export const ListVaultBySubscription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVaultBySubscriptionRequest,
   output: VaultModelListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostCheckNameAvailabilityError = AzureOpError;
+/** Performs the resource name availability check. Checks the resource name availability. */
+export const PostCheckNameAvailability: API.OperationMethod<
+  PostCheckNameAvailabilityRequest,
+  CheckNameAvailabilityResponseModel,
+  PostCheckNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostCheckNameAvailabilityRequest,
+  output: CheckNameAvailabilityResponseModel,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostDeploymentPreflightError = AzureOpError;
+/** Performs resource deployment validation. Performs resource deployment preflight validation. */
+export const PostDeploymentPreflight: API.OperationMethod<
+  PostDeploymentPreflightRequest,
+  DeploymentPreflightModel,
+  PostDeploymentPreflightError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostDeploymentPreflightRequest,
+  output: DeploymentPreflightModel,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

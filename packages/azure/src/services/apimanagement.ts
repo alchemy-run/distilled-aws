@@ -1429,43 +1429,65 @@ export const ApiIssueCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApiIssueCreateOrUpdateResponse",
 }) as any as S.Schema<ApiIssueCreateOrUpdateResponse>;
 
-export interface ApiManagementServiceApplyNetworkConfigurationUpdatesRequest {
+/** The type of access to be used for the storage account. */
+export type ApiManagementServiceBackupRequestAccessType =
+  | "AccessKey"
+  | "SystemAssignedManagedIdentity"
+  | "UserAssignedManagedIdentity";
+export const ApiManagementServiceBackupRequestAccessType =
+  /*@__PURE__*/ S.String;
+
+export interface ApiManagementServiceBackupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the API Management service. */
   serviceName: string;
-  /** Location of the Api Management service to update for a multi-region service. For a service deployed in a single region, this parameter is not required. */
-  location?: string;
+  /** The name of the Azure storage account (used to place/retrieve the backup). */
+  storageAccount: string;
+  /** The name of the blob container (used to place/retrieve the backup). */
+  containerName: string;
+  /** The name of the backup file to create/retrieve. */
+  backupName: string;
+  /** The type of access to be used for the storage account. */
+  accessType?: ApiManagementServiceBackupRequestAccessType | (string & {});
+  /** Storage account access key. Required only if `accessType` is set to `AccessKey`. */
+  accessKey?: string;
+  /** The Client ID of user assigned managed identity. Required only if `accessType` is set to `UserAssignedManagedIdentity`. */
+  clientId?: string;
 }
-export const ApiManagementServiceApplyNetworkConfigurationUpdatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/applynetworkconfigurationupdates",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ApiManagementServiceApplyNetworkConfigurationUpdatesRequest",
-  }) as any as S.Schema<ApiManagementServiceApplyNetworkConfigurationUpdatesRequest>;
+export const ApiManagementServiceBackupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    storageAccount: S.String,
+    containerName: S.String,
+    backupName: S.String,
+    accessType: S.optional(ApiManagementServiceBackupRequestAccessType),
+    accessKey: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backup",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ApiManagementServiceBackupRequest",
+}) as any as S.Schema<ApiManagementServiceBackupRequest>;
 
 /** Resource tags. */
-export type ApiManagementServiceApplyNetworkConfigurationUpdatesResponseTagsMap =
-  { [key: string]: string | undefined };
-export const ApiManagementServiceApplyNetworkConfigurationUpdatesResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ApiManagementServiceApplyNetworkConfigurationUpdatesResponseTagsMap>;
+export type ApiManagementServiceBackupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ApiManagementServiceBackupResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApiManagementServiceBackupResponseTagsMap>;
 
 /** Hostname type. */
 export type HostnameConfigurationType =
@@ -2138,175 +2160,6 @@ export const ApiManagementServiceIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApiManagementServiceIdentity>;
 
 /** The type of identity that created the resource. */
-export type ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemData",
-  }) as any as S.Schema<ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemData>;
-
-/** A list of availability zones denoting where the resource needs to come from. */
-export type ApiManagementServiceApplyNetworkConfigurationUpdatesResponseZonesList =
-  Array<string>;
-export const ApiManagementServiceApplyNetworkConfigurationUpdatesResponseZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApiManagementServiceApplyNetworkConfigurationUpdatesResponseZonesList>;
-
-export interface ApiManagementServiceApplyNetworkConfigurationUpdatesResponse {
-  /** Resource ID. */
-  id?: string;
-  /** Resource name. */
-  name?: string;
-  /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
-  type?: string;
-  /** Resource tags. */
-  tags?: ApiManagementServiceApplyNetworkConfigurationUpdatesResponseTagsMap;
-  /** Properties of the API Management service. */
-  properties: ApiManagementServiceProperties;
-  /** SKU properties of the API Management service. */
-  sku: ApiManagementServiceSkuProperties;
-  /** Managed service identity of the Api Management service. */
-  identity?: ApiManagementServiceIdentity;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemData;
-  /** Resource location. */
-  location: string;
-  /** ETag of the resource. */
-  etag?: string;
-  /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: ApiManagementServiceApplyNetworkConfigurationUpdatesResponseZonesList;
-}
-export const ApiManagementServiceApplyNetworkConfigurationUpdatesResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      tags: S.optional(
-        ApiManagementServiceApplyNetworkConfigurationUpdatesResponseTagsMap,
-      ),
-      properties: ApiManagementServiceProperties,
-      sku: ApiManagementServiceSkuProperties,
-      identity: S.optional(ApiManagementServiceIdentity),
-      systemData: S.optional(
-        ApiManagementServiceApplyNetworkConfigurationUpdatesResponseSystemData,
-      ),
-      location: S.String,
-      etag: S.optional(S.String),
-      zones: S.optional(
-        ApiManagementServiceApplyNetworkConfigurationUpdatesResponseZonesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ApiManagementServiceApplyNetworkConfigurationUpdatesResponse",
-  }) as any as S.Schema<ApiManagementServiceApplyNetworkConfigurationUpdatesResponse>;
-
-/** The type of access to be used for the storage account. */
-export type ApiManagementServiceBackupRequestAccessType =
-  | "AccessKey"
-  | "SystemAssignedManagedIdentity"
-  | "UserAssignedManagedIdentity";
-export const ApiManagementServiceBackupRequestAccessType =
-  /*@__PURE__*/ S.String;
-
-export interface ApiManagementServiceBackupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** The name of the Azure storage account (used to place/retrieve the backup). */
-  storageAccount: string;
-  /** The name of the blob container (used to place/retrieve the backup). */
-  containerName: string;
-  /** The name of the backup file to create/retrieve. */
-  backupName: string;
-  /** The type of access to be used for the storage account. */
-  accessType?: ApiManagementServiceBackupRequestAccessType | (string & {});
-  /** Storage account access key. Required only if `accessType` is set to `AccessKey`. */
-  accessKey?: string;
-  /** The Client ID of user assigned managed identity. Required only if `accessType` is set to `UserAssignedManagedIdentity`. */
-  clientId?: string;
-}
-export const ApiManagementServiceBackupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    storageAccount: S.String,
-    containerName: S.String,
-    backupName: S.String,
-    accessType: S.optional(ApiManagementServiceBackupRequestAccessType),
-    accessKey: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backup",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiManagementServiceBackupRequest",
-}) as any as S.Schema<ApiManagementServiceBackupRequest>;
-
-/** Resource tags. */
-export type ApiManagementServiceBackupResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApiManagementServiceBackupResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApiManagementServiceBackupResponseTagsMap>;
-
-/** The type of identity that created the resource. */
 export type ApiManagementServiceBackupResponseSystemDataCreatedByType =
   | "User"
   | "Application"
@@ -2915,155 +2768,6 @@ export const ApiManagementServiceCreateOrUpdateResponse =
     identifier: "ApiManagementServiceCreateOrUpdateResponse",
   }) as any as S.Schema<ApiManagementServiceCreateOrUpdateResponse>;
 
-/** Mode of Migration to stv2. Default is PreserveIp. */
-export type ApiManagementServiceMigrateToStv2RequestMode =
-  | "PreserveIp"
-  | "NewIP";
-export const ApiManagementServiceMigrateToStv2RequestMode =
-  /*@__PURE__*/ S.String;
-
-export interface ApiManagementServiceMigrateToStv2Request {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Mode of Migration to stv2. Default is PreserveIp. */
-  mode?: ApiManagementServiceMigrateToStv2RequestMode | (string & {});
-}
-export const ApiManagementServiceMigrateToStv2Request = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      mode: S.optional(ApiManagementServiceMigrateToStv2RequestMode),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/migrateToStv2",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "ApiManagementServiceMigrateToStv2Request",
-}) as any as S.Schema<ApiManagementServiceMigrateToStv2Request>;
-
-/** Resource tags. */
-export type ApiManagementServiceMigrateToStv2ResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApiManagementServiceMigrateToStv2ResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ApiManagementServiceMigrateToStv2ResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApiManagementServiceMigrateToStv2ResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApiManagementServiceMigrateToStv2ResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApiManagementServiceMigrateToStv2ResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApiManagementServiceMigrateToStv2ResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApiManagementServiceMigrateToStv2ResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApiManagementServiceMigrateToStv2ResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApiManagementServiceMigrateToStv2ResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApiManagementServiceMigrateToStv2ResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApiManagementServiceMigrateToStv2ResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApiManagementServiceMigrateToStv2ResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ApiManagementServiceMigrateToStv2ResponseSystemData",
-  }) as any as S.Schema<ApiManagementServiceMigrateToStv2ResponseSystemData>;
-
-/** A list of availability zones denoting where the resource needs to come from. */
-export type ApiManagementServiceMigrateToStv2ResponseZonesList = Array<string>;
-export const ApiManagementServiceMigrateToStv2ResponseZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApiManagementServiceMigrateToStv2ResponseZonesList>;
-
-export interface ApiManagementServiceMigrateToStv2Response {
-  /** Resource ID. */
-  id?: string;
-  /** Resource name. */
-  name?: string;
-  /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
-  type?: string;
-  /** Resource tags. */
-  tags?: ApiManagementServiceMigrateToStv2ResponseTagsMap;
-  /** Properties of the API Management service. */
-  properties: ApiManagementServiceProperties;
-  /** SKU properties of the API Management service. */
-  sku: ApiManagementServiceSkuProperties;
-  /** Managed service identity of the Api Management service. */
-  identity?: ApiManagementServiceIdentity;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApiManagementServiceMigrateToStv2ResponseSystemData;
-  /** Resource location. */
-  location: string;
-  /** ETag of the resource. */
-  etag?: string;
-  /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: ApiManagementServiceMigrateToStv2ResponseZonesList;
-}
-export const ApiManagementServiceMigrateToStv2Response =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      tags: S.optional(ApiManagementServiceMigrateToStv2ResponseTagsMap),
-      properties: ApiManagementServiceProperties,
-      sku: ApiManagementServiceSkuProperties,
-      identity: S.optional(ApiManagementServiceIdentity),
-      systemData: S.optional(
-        ApiManagementServiceMigrateToStv2ResponseSystemData,
-      ),
-      location: S.String,
-      etag: S.optional(S.String),
-      zones: S.optional(ApiManagementServiceMigrateToStv2ResponseZonesList),
-    }),
-  ).annotate({
-    identifier: "ApiManagementServiceMigrateToStv2Response",
-  }) as any as S.Schema<ApiManagementServiceMigrateToStv2Response>;
-
 /** Parameter values. */
 export type ParameterContractValuesList = Array<string>;
 export const ParameterContractValuesList = /*@__PURE__*/ S.Array(
@@ -3587,235 +3291,6 @@ export const ApiReleaseCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApiReleaseCreateOrUpdateResponse",
 }) as any as S.Schema<ApiReleaseCreateOrUpdateResponse>;
 
-export interface ApiReleaseDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** Release identifier within an API. Must be unique in the current API Management service instance. */
-  releaseId: string;
-}
-export const ApiReleaseDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    releaseId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiReleaseDeleteRequest",
-}) as any as S.Schema<ApiReleaseDeleteRequest>;
-
-export interface ApiReleaseDeleteResponse {}
-export const ApiReleaseDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApiReleaseDeleteResponse",
-}) as any as S.Schema<ApiReleaseDeleteResponse>;
-
-export interface ApiReleaseGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** Release identifier within an API. Must be unique in the current API Management service instance. */
-  releaseId: string;
-}
-export const ApiReleaseGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    releaseId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiReleaseGetRequest",
-}) as any as S.Schema<ApiReleaseGetRequest>;
-
-export interface ApiReleaseGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** ApiRelease entity contract properties. */
-  properties?: ApiReleaseContractProperties;
-}
-export const ApiReleaseGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiReleaseContractProperties),
-  }),
-).annotate({
-  identifier: "ApiReleaseGetResponse",
-}) as any as S.Schema<ApiReleaseGetResponse>;
-
-export interface ApiReleaseListByServiceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br>| notes | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |</br> */
-  _filter?: string;
-  /** Number of records to return. */
-  _top?: number;
-  /** Number of records to skip. */
-  _skip?: number;
-}
-export const ApiReleaseListByServiceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiReleaseListByServiceRequest",
-}) as any as S.Schema<ApiReleaseListByServiceRequest>;
-
-/** ApiRelease details. */
-export interface ApiReleaseContract {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** ApiRelease entity contract properties. */
-  properties?: ApiReleaseContractProperties;
-}
-export const ApiReleaseContract = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiReleaseContractProperties),
-  }),
-).annotate({
-  identifier: "ApiReleaseContract",
-}) as any as S.Schema<ApiReleaseContract>;
-
-/** Page values. */
-export type ApiReleaseListByServiceResponseValueList =
-  Array<ApiReleaseContract>;
-export const ApiReleaseListByServiceResponseValueList = /*@__PURE__*/ S.Array(
-  ApiReleaseContract,
-) as any as S.Schema<ApiReleaseListByServiceResponseValueList>;
-
-export interface ApiReleaseListByServiceResponse {
-  /** Page values. */
-  value?: ApiReleaseListByServiceResponseValueList;
-  /** Total record count number across all pages. */
-  count?: number;
-  /** Next page link if any. */
-  nextLink?: string;
-}
-export const ApiReleaseListByServiceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ApiReleaseListByServiceResponseValueList),
-    count: S.optional(S.Number),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiReleaseListByServiceResponse",
-}) as any as S.Schema<ApiReleaseListByServiceResponse>;
-
-export interface ApiReleaseUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** Release identifier within an API. Must be unique in the current API Management service instance. */
-  releaseId: string;
-  /** ApiRelease entity contract properties. */
-  properties?: ApiReleaseContractPropertiesInput;
-}
-export const ApiReleaseUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    releaseId: S.String.pipe(T.Label()),
-    properties: S.optional(ApiReleaseContractPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiReleaseUpdateRequest",
-}) as any as S.Schema<ApiReleaseUpdateRequest>;
-
-export interface ApiReleaseUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** ApiRelease entity contract properties. */
-  properties?: ApiReleaseContractProperties;
-}
-export const ApiReleaseUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiReleaseContractProperties),
-  }),
-).annotate({
-  identifier: "ApiReleaseUpdateResponse",
-}) as any as S.Schema<ApiReleaseUpdateResponse>;
-
 /** Api Schema Document Properties. */
 export interface SchemaDocumentProperties {
   /** Json escaped string defining the document representing the Schema. Used for schemas other than Swagger/OpenAPI. */
@@ -4113,262 +3588,6 @@ export const ApiVersionSetCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApiVersionSetCreateOrUpdateResponse",
 }) as any as S.Schema<ApiVersionSetCreateOrUpdateResponse>;
 
-export interface ApiVersionSetDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
-  versionSetId: string;
-}
-export const ApiVersionSetDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    versionSetId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets/{versionSetId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiVersionSetDeleteRequest",
-}) as any as S.Schema<ApiVersionSetDeleteRequest>;
-
-export interface ApiVersionSetDeleteResponse {}
-export const ApiVersionSetDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApiVersionSetDeleteResponse",
-}) as any as S.Schema<ApiVersionSetDeleteResponse>;
-
-export interface ApiVersionSetGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
-  versionSetId: string;
-}
-export const ApiVersionSetGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    versionSetId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets/{versionSetId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiVersionSetGetRequest",
-}) as any as S.Schema<ApiVersionSetGetRequest>;
-
-export interface ApiVersionSetGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** API VersionSet contract properties. */
-  properties?: ApiVersionSetContractProperties;
-}
-export const ApiVersionSetGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiVersionSetContractProperties),
-  }),
-).annotate({
-  identifier: "ApiVersionSetGetResponse",
-}) as any as S.Schema<ApiVersionSetGetResponse>;
-
-export interface ApiVersionSetListByServiceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br> */
-  _filter?: string;
-  /** Number of records to return. */
-  _top?: number;
-  /** Number of records to skip. */
-  _skip?: number;
-}
-export const ApiVersionSetListByServiceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiVersionSetListByServiceRequest",
-}) as any as S.Schema<ApiVersionSetListByServiceRequest>;
-
-/** API Version Set Contract details. */
-export interface ApiVersionSetContract {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** API VersionSet contract properties. */
-  properties?: ApiVersionSetContractProperties;
-}
-export const ApiVersionSetContract = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiVersionSetContractProperties),
-  }),
-).annotate({
-  identifier: "ApiVersionSetContract",
-}) as any as S.Schema<ApiVersionSetContract>;
-
-/** Page values. */
-export type ApiVersionSetListByServiceResponseValueList =
-  Array<ApiVersionSetContract>;
-export const ApiVersionSetListByServiceResponseValueList =
-  /*@__PURE__*/ S.Array(
-    ApiVersionSetContract,
-  ) as any as S.Schema<ApiVersionSetListByServiceResponseValueList>;
-
-export interface ApiVersionSetListByServiceResponse {
-  /** Page values. */
-  value?: ApiVersionSetListByServiceResponseValueList;
-  /** Total record count number across all pages. */
-  count?: number;
-  /** Next page link if any. */
-  nextLink?: string;
-}
-export const ApiVersionSetListByServiceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ApiVersionSetListByServiceResponseValueList),
-    count: S.optional(S.Number),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiVersionSetListByServiceResponse",
-}) as any as S.Schema<ApiVersionSetListByServiceResponse>;
-
-/** An value that determines where the API Version identifier will be located in a HTTP request. */
-export type ApiVersionSetUpdateParametersPropertiesVersioningScheme =
-  | "Segment"
-  | "Query"
-  | "Header";
-export const ApiVersionSetUpdateParametersPropertiesVersioningScheme =
-  /*@__PURE__*/ S.String;
-
-/** Properties used to create or update an API Version Set. */
-export interface ApiVersionSetUpdateParametersProperties {
-  /** Description of API Version Set. */
-  description?: string;
-  /** Name of query parameter that indicates the API Version if versioningScheme is set to `query`. */
-  versionQueryName?: string;
-  /** Name of HTTP header parameter that indicates the API Version if versioningScheme is set to `header`. */
-  versionHeaderName?: string;
-  /** Name of API Version Set */
-  displayName?: string;
-  /** An value that determines where the API Version identifier will be located in a HTTP request. */
-  versioningScheme?:
-    | ApiVersionSetUpdateParametersPropertiesVersioningScheme
-    | (string & {});
-}
-export const ApiVersionSetUpdateParametersProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      description: S.optional(S.String),
-      versionQueryName: S.optional(S.String),
-      versionHeaderName: S.optional(S.String),
-      displayName: S.optional(S.String),
-      versioningScheme: S.optional(
-        ApiVersionSetUpdateParametersPropertiesVersioningScheme,
-      ),
-    }),
-).annotate({
-  identifier: "ApiVersionSetUpdateParametersProperties",
-}) as any as S.Schema<ApiVersionSetUpdateParametersProperties>;
-
-export interface ApiVersionSetUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
-  versionSetId: string;
-  /** Parameters to update or create an API Version Set Contract. */
-  properties?: ApiVersionSetUpdateParametersProperties;
-}
-export const ApiVersionSetUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    versionSetId: S.String.pipe(T.Label()),
-    properties: S.optional(ApiVersionSetUpdateParametersProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets/{versionSetId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiVersionSetUpdateRequest",
-}) as any as S.Schema<ApiVersionSetUpdateRequest>;
-
-export interface ApiVersionSetUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** API VersionSet contract properties. */
-  properties?: ApiVersionSetContractProperties;
-}
-export const ApiVersionSetUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiVersionSetContractProperties),
-  }),
-).annotate({
-  identifier: "ApiVersionSetUpdateResponse",
-}) as any as S.Schema<ApiVersionSetUpdateResponse>;
-
 /** Wiki documentation details. */
 export interface WikiDocumentationContract {
   /** Documentation Identifier */
@@ -4453,6 +3672,325 @@ export const ApiWikiCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ApiWikiCreateOrUpdateResponse",
 }) as any as S.Schema<ApiWikiCreateOrUpdateResponse>;
+
+export interface ApplyApiManagementServiceNetworkConfigurationUpdatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Location of the Api Management service to update for a multi-region service. For a service deployed in a single region, this parameter is not required. */
+  location?: string;
+}
+export const ApplyApiManagementServiceNetworkConfigurationUpdatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/applynetworkconfigurationupdates",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ApplyApiManagementServiceNetworkConfigurationUpdatesRequest",
+  }) as any as S.Schema<ApplyApiManagementServiceNetworkConfigurationUpdatesRequest>;
+
+/** Resource tags. */
+export type ApplyApiManagementServiceNetworkConfigurationUpdatesResponseTagsMap =
+  { [key: string]: string | undefined };
+export const ApplyApiManagementServiceNetworkConfigurationUpdatesResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ApplyApiManagementServiceNetworkConfigurationUpdatesResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemData",
+  }) as any as S.Schema<ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemData>;
+
+/** A list of availability zones denoting where the resource needs to come from. */
+export type ApplyApiManagementServiceNetworkConfigurationUpdatesResponseZonesList =
+  Array<string>;
+export const ApplyApiManagementServiceNetworkConfigurationUpdatesResponseZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ApplyApiManagementServiceNetworkConfigurationUpdatesResponseZonesList>;
+
+export interface ApplyApiManagementServiceNetworkConfigurationUpdatesResponse {
+  /** Resource ID. */
+  id?: string;
+  /** Resource name. */
+  name?: string;
+  /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
+  type?: string;
+  /** Resource tags. */
+  tags?: ApplyApiManagementServiceNetworkConfigurationUpdatesResponseTagsMap;
+  /** Properties of the API Management service. */
+  properties: ApiManagementServiceProperties;
+  /** SKU properties of the API Management service. */
+  sku: ApiManagementServiceSkuProperties;
+  /** Managed service identity of the Api Management service. */
+  identity?: ApiManagementServiceIdentity;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemData;
+  /** Resource location. */
+  location: string;
+  /** ETag of the resource. */
+  etag?: string;
+  /** A list of availability zones denoting where the resource needs to come from. */
+  zones?: ApplyApiManagementServiceNetworkConfigurationUpdatesResponseZonesList;
+}
+export const ApplyApiManagementServiceNetworkConfigurationUpdatesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      tags: S.optional(
+        ApplyApiManagementServiceNetworkConfigurationUpdatesResponseTagsMap,
+      ),
+      properties: ApiManagementServiceProperties,
+      sku: ApiManagementServiceSkuProperties,
+      identity: S.optional(ApiManagementServiceIdentity),
+      systemData: S.optional(
+        ApplyApiManagementServiceNetworkConfigurationUpdatesResponseSystemData,
+      ),
+      location: S.String,
+      etag: S.optional(S.String),
+      zones: S.optional(
+        ApplyApiManagementServiceNetworkConfigurationUpdatesResponseZonesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ApplyApiManagementServiceNetworkConfigurationUpdatesResponse",
+  }) as any as S.Schema<ApplyApiManagementServiceNetworkConfigurationUpdatesResponse>;
+
+export interface AssignTagToApiRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
+  apiId: string;
+  /** Tag identifier. Must be unique in the current API Management service instance. */
+  tagId: string;
+}
+export const AssignTagToApiRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    tagId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/tags/{tagId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "AssignTagToApiRequest",
+}) as any as S.Schema<AssignTagToApiRequest>;
+
+/** Tag contract Properties. */
+export interface TagContractProperties {
+  /** Tag name. */
+  displayName: string;
+}
+export const TagContractProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.String,
+  }),
+).annotate({
+  identifier: "TagContractProperties",
+}) as any as S.Schema<TagContractProperties>;
+
+export interface AssignTagToApiResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Tag entity contract properties. */
+  properties?: TagContractProperties;
+}
+export const AssignTagToApiResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(TagContractProperties),
+  }),
+).annotate({
+  identifier: "AssignTagToApiResponse",
+}) as any as S.Schema<AssignTagToApiResponse>;
+
+export interface AssignTagToOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
+  apiId: string;
+  /** Operation identifier within an API. Must be unique in the current API Management service instance. */
+  operationId: string;
+  /** Tag identifier. Must be unique in the current API Management service instance. */
+  tagId: string;
+}
+export const AssignTagToOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    operationId: S.String.pipe(T.Label()),
+    tagId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/operations/{operationId}/tags/{tagId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "AssignTagToOperationRequest",
+}) as any as S.Schema<AssignTagToOperationRequest>;
+
+export interface AssignTagToOperationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Tag entity contract properties. */
+  properties?: TagContractProperties;
+}
+export const AssignTagToOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(TagContractProperties),
+  }),
+).annotate({
+  identifier: "AssignTagToOperationResponse",
+}) as any as S.Schema<AssignTagToOperationResponse>;
+
+export interface AssignTagToProductRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Product identifier. Must be unique in the current API Management service instance. */
+  productId: string;
+  /** Tag identifier. Must be unique in the current API Management service instance. */
+  tagId: string;
+}
+export const AssignTagToProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    productId: S.String.pipe(T.Label()),
+    tagId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/products/{productId}/tags/{tagId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "AssignTagToProductRequest",
+}) as any as S.Schema<AssignTagToProductRequest>;
+
+export interface AssignTagToProductResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Tag entity contract properties. */
+  properties?: TagContractProperties;
+}
+export const AssignTagToProductResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(TagContractProperties),
+  }),
+).annotate({
+  identifier: "AssignTagToProductResponse",
+}) as any as S.Schema<AssignTagToProductResponse>;
 
 /** The allowed Azure Active Directory Application IDs */
 export type AuthorizationAccessPolicyContractPropertiesAppIdsList =
@@ -4541,48 +4079,6 @@ export const AuthorizationAccessPolicyCreateOrUpdateResponse =
   ).annotate({
     identifier: "AuthorizationAccessPolicyCreateOrUpdateResponse",
   }) as any as S.Schema<AuthorizationAccessPolicyCreateOrUpdateResponse>;
-
-export interface AuthorizationConfirmConsentCodeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Identifier of the authorization provider. */
-  authorizationProviderId: string;
-  /** Identifier of the authorization. */
-  authorizationId: string;
-  /** The consent code from the authorization server after authorizing and consenting. */
-  consentCode?: string;
-}
-export const AuthorizationConfirmConsentCodeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      authorizationProviderId: S.String.pipe(T.Label()),
-      authorizationId: S.String.pipe(T.Label()),
-      consentCode: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/authorizationProviders/{authorizationProviderId}/authorizations/{authorizationId}/confirmConsentCode",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "AuthorizationConfirmConsentCodeRequest",
-}) as any as S.Schema<AuthorizationConfirmConsentCodeRequest>;
-
-export interface AuthorizationConfirmConsentCodeResponse {}
-export const AuthorizationConfirmConsentCodeResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AuthorizationConfirmConsentCodeResponse",
-}) as any as S.Schema<AuthorizationConfirmConsentCodeResponse>;
 
 /** Authorization type options */
 export type AuthorizationContractPropertiesAuthorizationType = "OAuth2";
@@ -4706,52 +4202,6 @@ export const AuthorizationCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AuthorizationCreateOrUpdateResponse",
 }) as any as S.Schema<AuthorizationCreateOrUpdateResponse>;
-
-export interface AuthorizationLoginLinksPostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Identifier of the authorization provider. */
-  authorizationProviderId: string;
-  /** Identifier of the authorization. */
-  authorizationId: string;
-  /** The redirect URL after login has completed. */
-  postLoginRedirectUrl?: string;
-}
-export const AuthorizationLoginLinksPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    authorizationProviderId: S.String.pipe(T.Label()),
-    authorizationId: S.String.pipe(T.Label()),
-    postLoginRedirectUrl: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/authorizationProviders/{authorizationProviderId}/authorizations/{authorizationId}/getLoginLinks",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "AuthorizationLoginLinksPostRequest",
-}) as any as S.Schema<AuthorizationLoginLinksPostRequest>;
-
-export interface AuthorizationLoginLinksPostResponse {
-  /** The login link */
-  loginLink?: string;
-}
-export const AuthorizationLoginLinksPostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    loginLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AuthorizationLoginLinksPostResponse",
-}) as any as S.Schema<AuthorizationLoginLinksPostResponse>;
 
 /** OAuth2 authorization code grant parameters */
 export type AuthorizationProviderOAuth2GrantTypesAuthorizationCodeMap = {
@@ -5828,55 +5278,6 @@ export const CertificateCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CertificateCreateOrUpdateResponse",
 }) as any as S.Schema<CertificateCreateOrUpdateResponse>;
 
-export interface CertificateRefreshSecretRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Identifier of the certificate entity. Must be unique in the current API Management service instance. */
-  certificateId: string;
-}
-export const CertificateRefreshSecretRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    certificateId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/certificates/{certificateId}/refreshSecret",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "CertificateRefreshSecretRequest",
-}) as any as S.Schema<CertificateRefreshSecretRequest>;
-
-export interface CertificateRefreshSecretResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Certificate properties details. */
-  properties?: CertificateContractProperties;
-}
-export const CertificateRefreshSecretResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(CertificateContractProperties),
-  }),
-).annotate({
-  identifier: "CertificateRefreshSecretResponse",
-}) as any as S.Schema<CertificateRefreshSecretResponse>;
-
 export interface CheckApiManagementServiceNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5928,327 +5329,47 @@ export const ApiManagementServiceNameAvailabilityResult =
     identifier: "ApiManagementServiceNameAvailabilityResult",
   }) as any as S.Schema<ApiManagementServiceNameAvailabilityResult>;
 
-/** Definitions about the connectivity check origin. */
-export interface PerformConnectivityCheckAsyncRequestSource {
-  /** The API Management service region from where to start the connectivity check operation. */
-  region: string;
-  /** The particular VMSS instance from which to fire the request. */
-  instance?: number;
-}
-export const PerformConnectivityCheckAsyncRequestSource =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      region: S.String,
-      instance: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "PerformConnectivityCheckAsyncRequestSource",
-  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestSource>;
-
-/** The connectivity check operation destination. */
-export interface PerformConnectivityCheckAsyncRequestDestination {
-  /** Destination address. Can either be an IP address or a FQDN. */
-  address: string;
-  /** Destination port. */
-  port: number;
-}
-export const PerformConnectivityCheckAsyncRequestDestination =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      address: S.String,
-      port: S.Number,
-    }),
-  ).annotate({
-    identifier: "PerformConnectivityCheckAsyncRequestDestination",
-  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestDestination>;
-
-/** The IP version to be used. Only IPv4 is supported for now. */
-export type PerformConnectivityCheckAsyncRequestPreferredIPVersion = "IPv4";
-export const PerformConnectivityCheckAsyncRequestPreferredIPVersion =
-  /*@__PURE__*/ S.String;
-
-/** The request's protocol. Specific protocol configuration can be available based on this selection. The specified destination address must be coherent with this value. */
-export type PerformConnectivityCheckAsyncRequestProtocol =
-  | "TCP"
-  | "HTTP"
-  | "HTTPS";
-export const PerformConnectivityCheckAsyncRequestProtocol =
-  /*@__PURE__*/ S.String;
-
-/** The HTTP method to be used. */
-export type PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod =
-  | "GET"
-  | "POST";
-export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod =
-  /*@__PURE__*/ S.String;
-
-/** List of HTTP status codes considered valid for the request response. */
-export type PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList =
-  Array<number>;
-export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList>;
-
-/** HTTP header and it's value. */
-export interface HTTPHeader {
-  /** Header name. */
-  name: string;
-  /** Header value. */
-  value: string;
-}
-export const HTTPHeader = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    value: S.String,
-  }),
-).annotate({ identifier: "HTTPHeader" }) as any as S.Schema<HTTPHeader>;
-
-/** List of headers to be included in the request. */
-export type PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList =
-  Array<HTTPHeader>;
-export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList =
-  /*@__PURE__*/ S.Array(
-    HTTPHeader,
-  ) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList>;
-
-/** Configuration for HTTP or HTTPS requests. */
-export interface PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration {
-  /** The HTTP method to be used. */
-  method?:
-    | PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod
-    | (string & {});
-  /** List of HTTP status codes considered valid for the request response. */
-  validStatusCodes?: PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList;
-  /** List of headers to be included in the request. */
-  headers?: PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList;
-}
-export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      method: S.optional(
-        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod,
-      ),
-      validStatusCodes: S.optional(
-        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList,
-      ),
-      headers: S.optional(
-        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration",
-  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration>;
-
-/** Protocol-specific configuration. */
-export interface PerformConnectivityCheckAsyncRequestProtocolConfiguration {
-  /** Configuration for HTTP or HTTPS requests. */
-  HTTPConfiguration?: PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration;
-}
-export const PerformConnectivityCheckAsyncRequestProtocolConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      HTTPConfiguration: S.optional(
-        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration,
-      ),
-    }),
-  ).annotate({
-    identifier: "PerformConnectivityCheckAsyncRequestProtocolConfiguration",
-  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfiguration>;
-
-export interface CheckPerformConnectivityAsyncRequest {
+export interface ConfirmAuthorizationConsentCodeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the API Management service. */
   serviceName: string;
-  /** Definitions about the connectivity check origin. */
-  source: PerformConnectivityCheckAsyncRequestSource;
-  /** The connectivity check operation destination. */
-  destination: PerformConnectivityCheckAsyncRequestDestination;
-  /** The IP version to be used. Only IPv4 is supported for now. */
-  preferredIPVersion?:
-    | PerformConnectivityCheckAsyncRequestPreferredIPVersion
-    | (string & {});
-  /** The request's protocol. Specific protocol configuration can be available based on this selection. The specified destination address must be coherent with this value. */
-  protocol?: PerformConnectivityCheckAsyncRequestProtocol | (string & {});
-  /** Protocol-specific configuration. */
-  protocolConfiguration?: PerformConnectivityCheckAsyncRequestProtocolConfiguration;
+  /** Identifier of the authorization provider. */
+  authorizationProviderId: string;
+  /** Identifier of the authorization. */
+  authorizationId: string;
+  /** The consent code from the authorization server after authorizing and consenting. */
+  consentCode?: string;
 }
-export const CheckPerformConnectivityAsyncRequest = /*@__PURE__*/ S.suspend(
+export const ConfirmAuthorizationConsentCodeRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       serviceName: S.String.pipe(T.Label()),
-      source: PerformConnectivityCheckAsyncRequestSource,
-      destination: PerformConnectivityCheckAsyncRequestDestination,
-      preferredIPVersion: S.optional(
-        PerformConnectivityCheckAsyncRequestPreferredIPVersion,
-      ),
-      protocol: S.optional(PerformConnectivityCheckAsyncRequestProtocol),
-      protocolConfiguration: S.optional(
-        PerformConnectivityCheckAsyncRequestProtocolConfiguration,
-      ),
+      authorizationProviderId: S.String.pipe(T.Label()),
+      authorizationId: S.String.pipe(T.Label()),
+      consentCode: S.optional(S.String),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/connectivityCheck",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/authorizationProviders/{authorizationProviderId}/authorizations/{authorizationId}/confirmConsentCode",
         code: 200,
         apiVersion: "2024-05-01",
       }),
     ),
 ).annotate({
-  identifier: "CheckPerformConnectivityAsyncRequest",
-}) as any as S.Schema<CheckPerformConnectivityAsyncRequest>;
+  identifier: "ConfirmAuthorizationConsentCodeRequest",
+}) as any as S.Schema<ConfirmAuthorizationConsentCodeRequest>;
 
-/** List of next hop identifiers. */
-export type ConnectivityHopNextHopIdsList = Array<string>;
-export const ConnectivityHopNextHopIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ConnectivityHopNextHopIdsList>;
-
-/** The origin of the issue. */
-export type ConnectivityIssueOrigin = "Local" | "Inbound" | "Outbound";
-export const ConnectivityIssueOrigin = /*@__PURE__*/ S.String;
-
-/** The severity of the issue. */
-export type ConnectivityIssueSeverity = "Error" | "Warning";
-export const ConnectivityIssueSeverity = /*@__PURE__*/ S.String;
-
-/** The type of issue. */
-export type ConnectivityIssueType =
-  | "Unknown"
-  | "AgentStopped"
-  | "GuestFirewall"
-  | "DnsResolution"
-  | "SocketBind"
-  | "NetworkSecurityRule"
-  | "UserDefinedRoute"
-  | "PortThrottled"
-  | "Platform";
-export const ConnectivityIssueType = /*@__PURE__*/ S.String;
-
-/** A key-value pair that provides additional context on the issue. */
-export type IssueContext = { [key: string]: string | undefined };
-export const IssueContext = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IssueContext>;
-
-/** Provides additional context on the issue. */
-export type ConnectivityIssueContextList = Array<IssueContext>;
-export const ConnectivityIssueContextList = /*@__PURE__*/ S.Array(
-  IssueContext,
-) as any as S.Schema<ConnectivityIssueContextList>;
-
-/** Information about an issue encountered in the process of checking for connectivity. */
-export interface ConnectivityIssue {
-  /** The origin of the issue. */
-  origin?: ConnectivityIssueOrigin;
-  /** The severity of the issue. */
-  severity?: ConnectivityIssueSeverity;
-  /** The type of issue. */
-  type?: ConnectivityIssueType;
-  /** Provides additional context on the issue. */
-  context?: ConnectivityIssueContextList;
-}
-export const ConnectivityIssue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    origin: S.optional(ConnectivityIssueOrigin),
-    severity: S.optional(ConnectivityIssueSeverity),
-    type: S.optional(ConnectivityIssueType),
-    context: S.optional(ConnectivityIssueContextList),
-  }),
+export interface ConfirmAuthorizationConsentCodeResponse {}
+export const ConfirmAuthorizationConsentCodeResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "ConnectivityIssue",
-}) as any as S.Schema<ConnectivityIssue>;
-
-/** List of issues. */
-export type ConnectivityHopIssuesList = Array<ConnectivityIssue>;
-export const ConnectivityHopIssuesList = /*@__PURE__*/ S.Array(
-  ConnectivityIssue,
-) as any as S.Schema<ConnectivityHopIssuesList>;
-
-/** Information about a hop between the source and the destination. */
-export interface ConnectivityHop {
-  /** The type of the hop. */
-  type?: string;
-  /** The ID of the hop. */
-  id?: string;
-  /** The IP address of the hop. */
-  address?: string;
-  /** The ID of the resource corresponding to this hop. */
-  resourceId?: string;
-  /** List of next hop identifiers. */
-  nextHopIds?: ConnectivityHopNextHopIdsList;
-  /** List of issues. */
-  issues?: ConnectivityHopIssuesList;
-}
-export const ConnectivityHop = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    address: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    nextHopIds: S.optional(ConnectivityHopNextHopIdsList),
-    issues: S.optional(ConnectivityHopIssuesList),
-  }),
-).annotate({
-  identifier: "ConnectivityHop",
-}) as any as S.Schema<ConnectivityHop>;
-
-/** List of hops between the source and the destination. */
-export type PerformConnectivityCheckAsyncResponseHopsList =
-  Array<ConnectivityHop>;
-export const PerformConnectivityCheckAsyncResponseHopsList =
-  /*@__PURE__*/ S.Array(
-    ConnectivityHop,
-  ) as any as S.Schema<PerformConnectivityCheckAsyncResponseHopsList>;
-
-/** The connection status. */
-export type PerformConnectivityCheckAsyncResponseConnectionStatus =
-  | "Unknown"
-  | "Connected"
-  | "Disconnected"
-  | "Degraded";
-export const PerformConnectivityCheckAsyncResponseConnectionStatus =
-  /*@__PURE__*/ S.String;
-
-export interface CheckPerformConnectivityAsyncResponse {
-  /** List of hops between the source and the destination. */
-  hops?: PerformConnectivityCheckAsyncResponseHopsList;
-  /** The connection status. */
-  connectionStatus?: PerformConnectivityCheckAsyncResponseConnectionStatus;
-  /** Average latency in milliseconds. */
-  avgLatencyInMs?: number;
-  /** Minimum latency in milliseconds. */
-  minLatencyInMs?: number;
-  /** Maximum latency in milliseconds. */
-  maxLatencyInMs?: number;
-  /** Total number of probes sent. */
-  probesSent?: number;
-  /** Number of failed probes. */
-  probesFailed?: number;
-}
-export const CheckPerformConnectivityAsyncResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      hops: S.optional(PerformConnectivityCheckAsyncResponseHopsList),
-      connectionStatus: S.optional(
-        PerformConnectivityCheckAsyncResponseConnectionStatus,
-      ),
-      avgLatencyInMs: S.optional(S.Number),
-      minLatencyInMs: S.optional(S.Number),
-      maxLatencyInMs: S.optional(S.Number),
-      probesSent: S.optional(S.Number),
-      probesFailed: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "CheckPerformConnectivityAsyncResponse",
-}) as any as S.Schema<CheckPerformConnectivityAsyncResponse>;
+  identifier: "ConfirmAuthorizationConsentCodeResponse",
+}) as any as S.Schema<ConfirmAuthorizationConsentCodeResponse>;
 
 export type ContentItemContractProperties = {
   [key: string]: unknown | undefined;
@@ -6544,8 +5665,8 @@ export const CreateGroupUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateGroupUserResponse",
 }) as any as S.Schema<CreateGroupUserResponse>;
 
-export type TenantAccessCreateRequestAccessName = "access" | "gitAccess";
-export const TenantAccessCreateRequestAccessName = /*@__PURE__*/ S.String;
+export type CreateTenantAccessRequestAccessName = "access" | "gitAccess";
+export const CreateTenantAccessRequestAccessName = /*@__PURE__*/ S.String;
 
 /** Tenant access information update parameters of the API Management service */
 export interface AccessInformationCreateParameterProperties {
@@ -6578,7 +5699,7 @@ export interface CreateTenantAccessRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** The identifier of the Access configuration. */
-  accessName: TenantAccessCreateRequestAccessName | (string & {});
+  accessName: CreateTenantAccessRequestAccessName | (string & {});
   /** Tenant access information update parameter properties. */
   properties?: AccessInformationCreateParameterProperties;
 }
@@ -6587,7 +5708,7 @@ export const CreateTenantAccessRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    accessName: TenantAccessCreateRequestAccessName.pipe(T.Label()),
+    accessName: CreateTenantAccessRequestAccessName.pipe(T.Label()),
     properties: S.optional(AccessInformationCreateParameterProperties),
   }).pipe(
     T.Http({
@@ -7030,8 +6151,8 @@ export const DeleteApiOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteApiOperationResponse",
 }) as any as S.Schema<DeleteApiOperationResponse>;
 
-export type ApiOperationPolicyDeleteRequestPolicyId = "policy";
-export const ApiOperationPolicyDeleteRequestPolicyId = /*@__PURE__*/ S.String;
+export type DeleteApiOperationPolicyRequestPolicyId = "policy";
+export const DeleteApiOperationPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
 export interface DeleteApiOperationPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7045,7 +6166,7 @@ export interface DeleteApiOperationPolicyRequest {
   /** Operation identifier within an API. Must be unique in the current API Management service instance. */
   operationId: string;
   /** The identifier of the Policy. */
-  policyId: ApiOperationPolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteApiOperationPolicyRequestPolicyId | (string & {});
 }
 export const DeleteApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7054,7 +6175,7 @@ export const DeleteApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     apiId: S.String.pipe(T.Label()),
     operationId: S.String.pipe(T.Label()),
-    policyId: ApiOperationPolicyDeleteRequestPolicyId.pipe(T.Label()),
+    policyId: DeleteApiOperationPolicyRequestPolicyId.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -7074,8 +6195,8 @@ export const DeleteApiOperationPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteApiOperationPolicyResponse",
 }) as any as S.Schema<DeleteApiOperationPolicyResponse>;
 
-export type ApiPolicyDeleteRequestPolicyId = "policy";
-export const ApiPolicyDeleteRequestPolicyId = /*@__PURE__*/ S.String;
+export type DeleteApiPolicyRequestPolicyId = "policy";
+export const DeleteApiPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
 export interface DeleteApiPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7087,7 +6208,7 @@ export interface DeleteApiPolicyRequest {
   /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
   apiId: string;
   /** The identifier of the Policy. */
-  policyId: ApiPolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteApiPolicyRequestPolicyId | (string & {});
 }
 export const DeleteApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7095,7 +6216,7 @@ export const DeleteApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     apiId: S.String.pipe(T.Label()),
-    policyId: ApiPolicyDeleteRequestPolicyId.pipe(T.Label()),
+    policyId: DeleteApiPolicyRequestPolicyId.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -7114,6 +6235,44 @@ export const DeleteApiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteApiPolicyResponse",
 }) as any as S.Schema<DeleteApiPolicyResponse>;
+
+export interface DeleteApiReleaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** Release identifier within an API. Must be unique in the current API Management service instance. */
+  releaseId: string;
+}
+export const DeleteApiReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    releaseId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApiReleaseRequest",
+}) as any as S.Schema<DeleteApiReleaseRequest>;
+
+export interface DeleteApiReleaseResponse {}
+export const DeleteApiReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApiReleaseResponse",
+}) as any as S.Schema<DeleteApiReleaseResponse>;
 
 export interface DeleteApiSchemaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7193,6 +6352,41 @@ export const DeleteApiTagDescriptionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteApiTagDescriptionResponse",
 }) as any as S.Schema<DeleteApiTagDescriptionResponse>;
+
+export interface DeleteApiVersionSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
+  versionSetId: string;
+}
+export const DeleteApiVersionSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    versionSetId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets/{versionSetId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApiVersionSetRequest",
+}) as any as S.Schema<DeleteApiVersionSetRequest>;
+
+export interface DeleteApiVersionSetResponse {}
+export const DeleteApiVersionSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApiVersionSetResponse",
+}) as any as S.Schema<DeleteApiVersionSetResponse>;
 
 export interface DeleteApiWikiRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7627,39 +6821,7 @@ export const DeleteDocumentationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDocumentationResponse",
 }) as any as S.Schema<DeleteDocumentationResponse>;
 
-export interface DeletedServicesPurgeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The location of the deleted API Management service. */
-  location: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-}
-export const DeletedServicesPurgeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ApiManagement/locations/{location}/deletedservices/{serviceName}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletedServicesPurgeRequest",
-}) as any as S.Schema<DeletedServicesPurgeRequest>;
-
-export interface DeletedServicesPurgeResponse {}
-export const DeletedServicesPurgeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeletedServicesPurgeResponse",
-}) as any as S.Schema<DeletedServicesPurgeResponse>;
-
-export type EmailTemplateDeleteRequestTemplateName =
+export type DeleteEmailTemplateRequestTemplateName =
   | "applicationApprovedNotificationMessage"
   | "accountClosedDeveloper"
   | "quotaLimitApproachingDeveloperNotificationMessage"
@@ -7674,7 +6836,7 @@ export type EmailTemplateDeleteRequestTemplateName =
   | "passwordResetByAdminNotificationMessage"
   | "rejectDeveloperNotificationMessage"
   | "requestDeveloperNotificationMessage";
-export const EmailTemplateDeleteRequestTemplateName = /*@__PURE__*/ S.String;
+export const DeleteEmailTemplateRequestTemplateName = /*@__PURE__*/ S.String;
 
 export interface DeleteEmailTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7684,14 +6846,14 @@ export interface DeleteEmailTemplateRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** Email Template Name Identifier. */
-  templateName: EmailTemplateDeleteRequestTemplateName | (string & {});
+  templateName: DeleteEmailTemplateRequestTemplateName | (string & {});
 }
 export const DeleteEmailTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    templateName: EmailTemplateDeleteRequestTemplateName.pipe(T.Label()),
+    templateName: DeleteEmailTemplateRequestTemplateName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -7895,7 +7057,7 @@ export const DeleteGlobalSchemaResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteGlobalSchemaResponse",
 }) as any as S.Schema<DeleteGlobalSchemaResponse>;
 
-export interface DeleteGraphQlApiResolverRequest {
+export interface DeleteGraphQLApiResolverRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7907,7 +7069,7 @@ export interface DeleteGraphQlApiResolverRequest {
   /** Resolver identifier within a GraphQL API. Must be unique in the current API Management service instance. */
   resolverId: string;
 }
-export const DeleteGraphQlApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteGraphQLApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7923,21 +7085,21 @@ export const DeleteGraphQlApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteGraphQlApiResolverRequest",
-}) as any as S.Schema<DeleteGraphQlApiResolverRequest>;
+  identifier: "DeleteGraphQLApiResolverRequest",
+}) as any as S.Schema<DeleteGraphQLApiResolverRequest>;
 
-export interface DeleteGraphQlApiResolverResponse {}
-export const DeleteGraphQlApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteGraphQLApiResolverResponse {}
+export const DeleteGraphQLApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteGraphQlApiResolverResponse",
-}) as any as S.Schema<DeleteGraphQlApiResolverResponse>;
+  identifier: "DeleteGraphQLApiResolverResponse",
+}) as any as S.Schema<DeleteGraphQLApiResolverResponse>;
 
-export type GraphQLApiResolverPolicyDeleteRequestPolicyId = "policy";
-export const GraphQLApiResolverPolicyDeleteRequestPolicyId =
+export type DeleteGraphQLApiResolverPolicyRequestPolicyId = "policy";
+export const DeleteGraphQLApiResolverPolicyRequestPolicyId =
   /*@__PURE__*/ S.String;
 
-export interface DeleteGraphQlApiResolverPolicyRequest {
+export interface DeleteGraphQLApiResolverPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7949,9 +7111,9 @@ export interface DeleteGraphQlApiResolverPolicyRequest {
   /** Resolver identifier within a GraphQL API. Must be unique in the current API Management service instance. */
   resolverId: string;
   /** The identifier of the Policy. */
-  policyId: GraphQLApiResolverPolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteGraphQLApiResolverPolicyRequestPolicyId | (string & {});
 }
-export const DeleteGraphQlApiResolverPolicyRequest = /*@__PURE__*/ S.suspend(
+export const DeleteGraphQLApiResolverPolicyRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7959,7 +7121,7 @@ export const DeleteGraphQlApiResolverPolicyRequest = /*@__PURE__*/ S.suspend(
       serviceName: S.String.pipe(T.Label()),
       apiId: S.String.pipe(T.Label()),
       resolverId: S.String.pipe(T.Label()),
-      policyId: GraphQLApiResolverPolicyDeleteRequestPolicyId.pipe(T.Label()),
+      policyId: DeleteGraphQLApiResolverPolicyRequestPolicyId.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -7969,15 +7131,15 @@ export const DeleteGraphQlApiResolverPolicyRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteGraphQlApiResolverPolicyRequest",
-}) as any as S.Schema<DeleteGraphQlApiResolverPolicyRequest>;
+  identifier: "DeleteGraphQLApiResolverPolicyRequest",
+}) as any as S.Schema<DeleteGraphQLApiResolverPolicyRequest>;
 
-export interface DeleteGraphQlApiResolverPolicyResponse {}
-export const DeleteGraphQlApiResolverPolicyResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteGraphQLApiResolverPolicyResponse {}
+export const DeleteGraphQLApiResolverPolicyResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteGraphQlApiResolverPolicyResponse",
-}) as any as S.Schema<DeleteGraphQlApiResolverPolicyResponse>;
+  identifier: "DeleteGraphQLApiResolverPolicyResponse",
+}) as any as S.Schema<DeleteGraphQLApiResolverPolicyResponse>;
 
 export interface DeleteGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8052,14 +7214,14 @@ export const DeleteGroupUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteGroupUserResponse",
 }) as any as S.Schema<DeleteGroupUserResponse>;
 
-export type IdentityProviderDeleteRequestIdentityProviderName =
+export type DeleteIdentityProviderRequestIdentityProviderName =
   | "facebook"
   | "google"
   | "microsoft"
   | "twitter"
   | "aad"
   | "aadB2C";
-export const IdentityProviderDeleteRequestIdentityProviderName =
+export const DeleteIdentityProviderRequestIdentityProviderName =
   /*@__PURE__*/ S.String;
 
 export interface DeleteIdentityProviderRequest {
@@ -8071,7 +7233,7 @@ export interface DeleteIdentityProviderRequest {
   serviceName: string;
   /** Identity Provider Type identifier. */
   identityProviderName:
-    | IdentityProviderDeleteRequestIdentityProviderName
+    | DeleteIdentityProviderRequestIdentityProviderName
     | (string & {});
 }
 export const DeleteIdentityProviderRequest = /*@__PURE__*/ S.suspend(() =>
@@ -8080,7 +7242,7 @@ export const DeleteIdentityProviderRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     identityProviderName:
-      IdentityProviderDeleteRequestIdentityProviderName.pipe(T.Label()),
+      DeleteIdentityProviderRequestIdentityProviderName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -8170,7 +7332,7 @@ export const DeleteNamedValueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteNamedValueResponse",
 }) as any as S.Schema<DeleteNamedValueResponse>;
 
-export type NotificationRecipientEmailDeleteRequestNotificationName =
+export type DeleteNotificationRecipientEmailRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -8178,7 +7340,7 @@ export type NotificationRecipientEmailDeleteRequestNotificationName =
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const NotificationRecipientEmailDeleteRequestNotificationName =
+export const DeleteNotificationRecipientEmailRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface DeleteNotificationRecipientEmailRequest {
@@ -8190,7 +7352,7 @@ export interface DeleteNotificationRecipientEmailRequest {
   serviceName: string;
   /** Notification Name Identifier. */
   notificationName:
-    | NotificationRecipientEmailDeleteRequestNotificationName
+    | DeleteNotificationRecipientEmailRequestNotificationName
     | (string & {});
   /** Email identifier. */
   email: string;
@@ -8202,7 +7364,7 @@ export const DeleteNotificationRecipientEmailRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       serviceName: S.String.pipe(T.Label()),
       notificationName:
-        NotificationRecipientEmailDeleteRequestNotificationName.pipe(T.Label()),
+        DeleteNotificationRecipientEmailRequestNotificationName.pipe(T.Label()),
       email: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -8223,7 +7385,7 @@ export const DeleteNotificationRecipientEmailResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteNotificationRecipientEmailResponse",
 }) as any as S.Schema<DeleteNotificationRecipientEmailResponse>;
 
-export type NotificationRecipientUserDeleteRequestNotificationName =
+export type DeleteNotificationRecipientUserRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -8231,7 +7393,7 @@ export type NotificationRecipientUserDeleteRequestNotificationName =
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const NotificationRecipientUserDeleteRequestNotificationName =
+export const DeleteNotificationRecipientUserRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface DeleteNotificationRecipientUserRequest {
@@ -8243,7 +7405,7 @@ export interface DeleteNotificationRecipientUserRequest {
   serviceName: string;
   /** Notification Name Identifier. */
   notificationName:
-    | NotificationRecipientUserDeleteRequestNotificationName
+    | DeleteNotificationRecipientUserRequestNotificationName
     | (string & {});
   /** User identifier. Must be unique in the current API Management service instance. */
   userId: string;
@@ -8255,7 +7417,7 @@ export const DeleteNotificationRecipientUserRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       serviceName: S.String.pipe(T.Label()),
       notificationName:
-        NotificationRecipientUserDeleteRequestNotificationName.pipe(T.Label()),
+        DeleteNotificationRecipientUserRequestNotificationName.pipe(T.Label()),
       userId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -8311,8 +7473,8 @@ export const DeleteOpenIdConnectProviderResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteOpenIdConnectProviderResponse",
 }) as any as S.Schema<DeleteOpenIdConnectProviderResponse>;
 
-export type PolicyDeleteRequestPolicyId = "policy";
-export const PolicyDeleteRequestPolicyId = /*@__PURE__*/ S.String;
+export type DeletePolicyRequestPolicyId = "policy";
+export const DeletePolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
 export interface DeletePolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8322,14 +7484,14 @@ export interface DeletePolicyRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** The identifier of the Policy. */
-  policyId: PolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeletePolicyRequestPolicyId | (string & {});
 }
 export const DeletePolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    policyId: PolicyDeleteRequestPolicyId.pipe(T.Label()),
+    policyId: DeletePolicyRequestPolicyId.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -8645,8 +7807,8 @@ export const DeleteProductGroupLinkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteProductGroupLinkResponse",
 }) as any as S.Schema<DeleteProductGroupLinkResponse>;
 
-export type ProductPolicyDeleteRequestPolicyId = "policy";
-export const ProductPolicyDeleteRequestPolicyId = /*@__PURE__*/ S.String;
+export type DeleteProductPolicyRequestPolicyId = "policy";
+export const DeleteProductPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
 export interface DeleteProductPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8658,7 +7820,7 @@ export interface DeleteProductPolicyRequest {
   /** Product identifier. Must be unique in the current API Management service instance. */
   productId: string;
   /** The identifier of the Policy. */
-  policyId: ProductPolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteProductPolicyRequestPolicyId | (string & {});
 }
 export const DeleteProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8666,7 +7828,7 @@ export const DeleteProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     productId: S.String.pipe(T.Label()),
-    policyId: ProductPolicyDeleteRequestPolicyId.pipe(T.Label()),
+    policyId: DeleteProductPolicyRequestPolicyId.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -8905,8 +8067,8 @@ export const DeleteTagProductLinkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteTagProductLinkResponse",
 }) as any as S.Schema<DeleteTagProductLinkResponse>;
 
-export type UserDeleteRequestAppType = "portal" | "developerPortal";
-export const UserDeleteRequestAppType = /*@__PURE__*/ S.String;
+export type DeleteUserRequestAppType = "portal" | "developerPortal";
+export const DeleteUserRequestAppType = /*@__PURE__*/ S.String;
 
 export interface DeleteUserRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8922,7 +8084,7 @@ export interface DeleteUserRequest {
   /** Send an Account Closed Email notification to the User. */
   notify?: boolean;
   /** Determines the type of application which send the create user request. Default is legacy publisher portal. */
-  appType?: UserDeleteRequestAppType | (string & {});
+  appType?: DeleteUserRequestAppType | (string & {});
 }
 export const DeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8932,7 +8094,7 @@ export const DeleteUserRequest = /*@__PURE__*/ S.suspend(() =>
     userId: S.String.pipe(T.Label()),
     deleteSubscriptions: S.optional(S.Boolean.pipe(T.Query())),
     notify: S.optional(S.Boolean.pipe(T.Query())),
-    appType: S.optional(UserDeleteRequestAppType.pipe(T.Query())),
+    appType: S.optional(DeleteUserRequestAppType.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -9110,8 +8272,8 @@ export const DeleteWorkspaceApiOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteWorkspaceApiOperationResponse",
 }) as any as S.Schema<DeleteWorkspaceApiOperationResponse>;
 
-export type WorkspaceApiOperationPolicyDeleteRequestPolicyId = "policy";
-export const WorkspaceApiOperationPolicyDeleteRequestPolicyId =
+export type DeleteWorkspaceApiOperationPolicyRequestPolicyId = "policy";
+export const DeleteWorkspaceApiOperationPolicyRequestPolicyId =
   /*@__PURE__*/ S.String;
 
 export interface DeleteWorkspaceApiOperationPolicyRequest {
@@ -9128,7 +8290,7 @@ export interface DeleteWorkspaceApiOperationPolicyRequest {
   /** Operation identifier within an API. Must be unique in the current API Management service instance. */
   operationId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspaceApiOperationPolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteWorkspaceApiOperationPolicyRequestPolicyId | (string & {});
 }
 export const DeleteWorkspaceApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -9139,7 +8301,7 @@ export const DeleteWorkspaceApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(
       workspaceId: S.String.pipe(T.Label()),
       apiId: S.String.pipe(T.Label()),
       operationId: S.String.pipe(T.Label()),
-      policyId: WorkspaceApiOperationPolicyDeleteRequestPolicyId.pipe(
+      policyId: DeleteWorkspaceApiOperationPolicyRequestPolicyId.pipe(
         T.Label(),
       ),
     }).pipe(
@@ -9160,8 +8322,8 @@ export const DeleteWorkspaceApiOperationPolicyResponse =
     identifier: "DeleteWorkspaceApiOperationPolicyResponse",
   }) as any as S.Schema<DeleteWorkspaceApiOperationPolicyResponse>;
 
-export type WorkspaceApiPolicyDeleteRequestPolicyId = "policy";
-export const WorkspaceApiPolicyDeleteRequestPolicyId = /*@__PURE__*/ S.String;
+export type DeleteWorkspaceApiPolicyRequestPolicyId = "policy";
+export const DeleteWorkspaceApiPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
 export interface DeleteWorkspaceApiPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9175,7 +8337,7 @@ export interface DeleteWorkspaceApiPolicyRequest {
   /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
   apiId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspaceApiPolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteWorkspaceApiPolicyRequestPolicyId | (string & {});
 }
 export const DeleteWorkspaceApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9184,7 +8346,7 @@ export const DeleteWorkspaceApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
     apiId: S.String.pipe(T.Label()),
-    policyId: WorkspaceApiPolicyDeleteRequestPolicyId.pipe(T.Label()),
+    policyId: DeleteWorkspaceApiPolicyRequestPolicyId.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -9203,6 +8365,47 @@ export const DeleteWorkspaceApiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteWorkspaceApiPolicyResponse",
 }) as any as S.Schema<DeleteWorkspaceApiPolicyResponse>;
+
+export interface DeleteWorkspaceApiReleaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** Release identifier within an API. Must be unique in the current API Management service instance. */
+  releaseId: string;
+}
+export const DeleteWorkspaceApiReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    workspaceId: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    releaseId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases/{releaseId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkspaceApiReleaseRequest",
+}) as any as S.Schema<DeleteWorkspaceApiReleaseRequest>;
+
+export interface DeleteWorkspaceApiReleaseResponse {}
+export const DeleteWorkspaceApiReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkspaceApiReleaseResponse",
+}) as any as S.Schema<DeleteWorkspaceApiReleaseResponse>;
 
 export interface DeleteWorkspaceApiSchemaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9247,6 +8450,44 @@ export const DeleteWorkspaceApiSchemaResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteWorkspaceApiSchemaResponse",
 }) as any as S.Schema<DeleteWorkspaceApiSchemaResponse>;
+
+export interface DeleteWorkspaceApiVersionSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
+  versionSetId: string;
+}
+export const DeleteWorkspaceApiVersionSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    workspaceId: S.String.pipe(T.Label()),
+    versionSetId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets/{versionSetId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkspaceApiVersionSetRequest",
+}) as any as S.Schema<DeleteWorkspaceApiVersionSetRequest>;
+
+export interface DeleteWorkspaceApiVersionSetResponse {}
+export const DeleteWorkspaceApiVersionSetResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkspaceApiVersionSetResponse",
+}) as any as S.Schema<DeleteWorkspaceApiVersionSetResponse>;
 
 export interface DeleteWorkspaceBackendRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9555,7 +8796,7 @@ export const DeleteWorkspaceNamedValueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteWorkspaceNamedValueResponse",
 }) as any as S.Schema<DeleteWorkspaceNamedValueResponse>;
 
-export type WorkspaceNotificationRecipientEmailDeleteRequestNotificationName =
+export type DeleteWorkspaceNotificationRecipientEmailRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -9563,7 +8804,7 @@ export type WorkspaceNotificationRecipientEmailDeleteRequestNotificationName =
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const WorkspaceNotificationRecipientEmailDeleteRequestNotificationName =
+export const DeleteWorkspaceNotificationRecipientEmailRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface DeleteWorkspaceNotificationRecipientEmailRequest {
@@ -9577,7 +8818,7 @@ export interface DeleteWorkspaceNotificationRecipientEmailRequest {
   workspaceId: string;
   /** Notification Name Identifier. */
   notificationName:
-    | WorkspaceNotificationRecipientEmailDeleteRequestNotificationName
+    | DeleteWorkspaceNotificationRecipientEmailRequestNotificationName
     | (string & {});
   /** Email identifier. */
   email: string;
@@ -9590,7 +8831,7 @@ export const DeleteWorkspaceNotificationRecipientEmailRequest =
       serviceName: S.String.pipe(T.Label()),
       workspaceId: S.String.pipe(T.Label()),
       notificationName:
-        WorkspaceNotificationRecipientEmailDeleteRequestNotificationName.pipe(
+        DeleteWorkspaceNotificationRecipientEmailRequestNotificationName.pipe(
           T.Label(),
         ),
       email: S.String.pipe(T.Label()),
@@ -9612,7 +8853,7 @@ export const DeleteWorkspaceNotificationRecipientEmailResponse =
     identifier: "DeleteWorkspaceNotificationRecipientEmailResponse",
   }) as any as S.Schema<DeleteWorkspaceNotificationRecipientEmailResponse>;
 
-export type WorkspaceNotificationRecipientUserDeleteRequestNotificationName =
+export type DeleteWorkspaceNotificationRecipientUserRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -9620,7 +8861,7 @@ export type WorkspaceNotificationRecipientUserDeleteRequestNotificationName =
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const WorkspaceNotificationRecipientUserDeleteRequestNotificationName =
+export const DeleteWorkspaceNotificationRecipientUserRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface DeleteWorkspaceNotificationRecipientUserRequest {
@@ -9634,7 +8875,7 @@ export interface DeleteWorkspaceNotificationRecipientUserRequest {
   workspaceId: string;
   /** Notification Name Identifier. */
   notificationName:
-    | WorkspaceNotificationRecipientUserDeleteRequestNotificationName
+    | DeleteWorkspaceNotificationRecipientUserRequestNotificationName
     | (string & {});
   /** User identifier. Must be unique in the current API Management service instance. */
   userId: string;
@@ -9647,7 +8888,7 @@ export const DeleteWorkspaceNotificationRecipientUserRequest =
       serviceName: S.String.pipe(T.Label()),
       workspaceId: S.String.pipe(T.Label()),
       notificationName:
-        WorkspaceNotificationRecipientUserDeleteRequestNotificationName.pipe(
+        DeleteWorkspaceNotificationRecipientUserRequestNotificationName.pipe(
           T.Label(),
         ),
       userId: S.String.pipe(T.Label()),
@@ -9669,8 +8910,8 @@ export const DeleteWorkspaceNotificationRecipientUserResponse =
     identifier: "DeleteWorkspaceNotificationRecipientUserResponse",
   }) as any as S.Schema<DeleteWorkspaceNotificationRecipientUserResponse>;
 
-export type WorkspacePolicyDeleteRequestPolicyId = "policy";
-export const WorkspacePolicyDeleteRequestPolicyId = /*@__PURE__*/ S.String;
+export type DeleteWorkspacePolicyRequestPolicyId = "policy";
+export const DeleteWorkspacePolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
 export interface DeleteWorkspacePolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9682,7 +8923,7 @@ export interface DeleteWorkspacePolicyRequest {
   /** Workspace identifier. Must be unique in the current API Management service instance. */
   workspaceId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspacePolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteWorkspacePolicyRequestPolicyId | (string & {});
 }
 export const DeleteWorkspacePolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9690,7 +8931,7 @@ export const DeleteWorkspacePolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
-    policyId: WorkspacePolicyDeleteRequestPolicyId.pipe(T.Label()),
+    policyId: DeleteWorkspacePolicyRequestPolicyId.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -9874,8 +9115,8 @@ export const DeleteWorkspaceProductGroupLinkResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteWorkspaceProductGroupLinkResponse",
 }) as any as S.Schema<DeleteWorkspaceProductGroupLinkResponse>;
 
-export type WorkspaceProductPolicyDeleteRequestPolicyId = "policy";
-export const WorkspaceProductPolicyDeleteRequestPolicyId =
+export type DeleteWorkspaceProductPolicyRequestPolicyId = "policy";
+export const DeleteWorkspaceProductPolicyRequestPolicyId =
   /*@__PURE__*/ S.String;
 
 export interface DeleteWorkspaceProductPolicyRequest {
@@ -9890,7 +9131,7 @@ export interface DeleteWorkspaceProductPolicyRequest {
   /** Product identifier. Must be unique in the current API Management service instance. */
   productId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspaceProductPolicyDeleteRequestPolicyId | (string & {});
+  policyId: DeleteWorkspaceProductPolicyRequestPolicyId | (string & {});
 }
 export const DeleteWorkspaceProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9899,7 +9140,7 @@ export const DeleteWorkspaceProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
     productId: S.String.pipe(T.Label()),
-    policyId: WorkspaceProductPolicyDeleteRequestPolicyId.pipe(T.Label()),
+    policyId: DeleteWorkspaceProductPolicyRequestPolicyId.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -10119,6 +9360,313 @@ export const DeleteWorkspaceTagProductLinkResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "DeleteWorkspaceTagProductLinkResponse",
 }) as any as S.Schema<DeleteWorkspaceTagProductLinkResponse>;
+
+export type DeployTenantConfigurationRequestConfigurationName = "configuration";
+export const DeployTenantConfigurationRequestConfigurationName =
+  /*@__PURE__*/ S.String;
+
+/** Parameters supplied to the Deploy Configuration operation. */
+export interface DeployConfigurationParameterProperties {
+  /** The name of the Git branch from which the configuration is to be deployed to the configuration database. */
+  branch: string;
+  /** The value enforcing deleting subscriptions to products that are deleted in this update. */
+  force?: boolean;
+}
+export const DeployConfigurationParameterProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      branch: S.String,
+      force: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "DeployConfigurationParameterProperties",
+}) as any as S.Schema<DeployConfigurationParameterProperties>;
+
+export interface DeployTenantConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** The identifier of the Git Configuration Operation. */
+  configurationName:
+    | DeployTenantConfigurationRequestConfigurationName
+    | (string & {});
+  /** Deploy Configuration Parameter contract properties. */
+  properties?: DeployConfigurationParameterProperties;
+}
+export const DeployTenantConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    configurationName: DeployTenantConfigurationRequestConfigurationName.pipe(
+      T.Label(),
+    ),
+    properties: S.optional(DeployConfigurationParameterProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{configurationName}/deploy",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeployTenantConfigurationRequest",
+}) as any as S.Schema<DeployTenantConfigurationRequest>;
+
+/** Status of an async operation. */
+export type OperationResultContractPropertiesStatus =
+  | "Started"
+  | "InProgress"
+  | "Succeeded"
+  | "Failed";
+export const OperationResultContractPropertiesStatus = /*@__PURE__*/ S.String;
+
+/** Error Field contract. */
+export interface ErrorFieldContract {
+  /** Property level error code. */
+  code?: string;
+  /** Human-readable representation of property-level error. */
+  message?: string;
+  /** Property name. */
+  target?: string;
+}
+export const ErrorFieldContract = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ErrorFieldContract",
+}) as any as S.Schema<ErrorFieldContract>;
+
+/** The list of invalid fields send in request, in case of validation error. */
+export type OperationResultContractPropertiesErrorDetailsList =
+  Array<ErrorFieldContract>;
+export const OperationResultContractPropertiesErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorFieldContract,
+  ) as any as S.Schema<OperationResultContractPropertiesErrorDetailsList>;
+
+/** Error Body contract. */
+export interface OperationResultContractPropertiesError {
+  /** Service-defined error code. This code serves as a sub-status for the HTTP error code specified in the response. */
+  code?: string;
+  /** Human-readable representation of the error. */
+  message?: string;
+  /** The list of invalid fields send in request, in case of validation error. */
+  details?: OperationResultContractPropertiesErrorDetailsList;
+}
+export const OperationResultContractPropertiesError = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      details: S.optional(OperationResultContractPropertiesErrorDetailsList),
+    }),
+).annotate({
+  identifier: "OperationResultContractPropertiesError",
+}) as any as S.Schema<OperationResultContractPropertiesError>;
+
+/** Log of the entity being created, updated or deleted. */
+export interface OperationResultLogItemContract {
+  /** The type of entity contract. */
+  objectType?: string;
+  /** Action like create/update/delete. */
+  action?: string;
+  /** Identifier of the entity being created/updated/deleted. */
+  objectKey?: string;
+}
+export const OperationResultLogItemContract = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectType: S.optional(S.String),
+    action: S.optional(S.String),
+    objectKey: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationResultLogItemContract",
+}) as any as S.Schema<OperationResultLogItemContract>;
+
+/** This property if only provided as part of the TenantConfiguration_Validate operation. It contains the log the entities which will be updated/created/deleted as part of the TenantConfiguration_Deploy operation. */
+export type OperationResultContractPropertiesActionLogList =
+  Array<OperationResultLogItemContract>;
+export const OperationResultContractPropertiesActionLogList =
+  /*@__PURE__*/ S.Array(
+    OperationResultLogItemContract,
+  ) as any as S.Schema<OperationResultContractPropertiesActionLogList>;
+
+/** Operation Result. */
+export interface OperationResultContractProperties {
+  /** Operation result identifier. */
+  id?: string;
+  /** Status of an async operation. */
+  status?: OperationResultContractPropertiesStatus;
+  /** Start time of an async operation. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard. */
+  started?: string;
+  /** Last update time of an async operation. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard. */
+  updated?: string;
+  /** Optional result info. */
+  resultInfo?: string;
+  /** Error Body contract. */
+  error?: OperationResultContractPropertiesError;
+  /** This property if only provided as part of the TenantConfiguration_Validate operation. It contains the log the entities which will be updated/created/deleted as part of the TenantConfiguration_Deploy operation. */
+  actionLog?: OperationResultContractPropertiesActionLogList;
+}
+export const OperationResultContractProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    status: S.optional(OperationResultContractPropertiesStatus),
+    started: S.optional(S.String),
+    updated: S.optional(S.String),
+    resultInfo: S.optional(S.String),
+    error: S.optional(OperationResultContractPropertiesError),
+    actionLog: S.optional(OperationResultContractPropertiesActionLogList),
+  }),
+).annotate({
+  identifier: "OperationResultContractProperties",
+}) as any as S.Schema<OperationResultContractProperties>;
+
+export interface DeployTenantConfigurationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Properties of the Operation Contract. */
+  properties?: OperationResultContractProperties;
+}
+export const DeployTenantConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(OperationResultContractProperties),
+  }),
+).annotate({
+  identifier: "DeployTenantConfigurationResponse",
+}) as any as S.Schema<DeployTenantConfigurationResponse>;
+
+export interface DetachTagFromApiRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
+  apiId: string;
+  /** Tag identifier. Must be unique in the current API Management service instance. */
+  tagId: string;
+}
+export const DetachTagFromApiRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    tagId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/tags/{tagId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DetachTagFromApiRequest",
+}) as any as S.Schema<DetachTagFromApiRequest>;
+
+export interface DetachTagFromApiResponse {}
+export const DetachTagFromApiResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DetachTagFromApiResponse",
+}) as any as S.Schema<DetachTagFromApiResponse>;
+
+export interface DetachTagFromOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
+  apiId: string;
+  /** Operation identifier within an API. Must be unique in the current API Management service instance. */
+  operationId: string;
+  /** Tag identifier. Must be unique in the current API Management service instance. */
+  tagId: string;
+}
+export const DetachTagFromOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    operationId: S.String.pipe(T.Label()),
+    tagId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/operations/{operationId}/tags/{tagId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DetachTagFromOperationRequest",
+}) as any as S.Schema<DetachTagFromOperationRequest>;
+
+export interface DetachTagFromOperationResponse {}
+export const DetachTagFromOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DetachTagFromOperationResponse",
+}) as any as S.Schema<DetachTagFromOperationResponse>;
+
+export interface DetachTagFromProductRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Product identifier. Must be unique in the current API Management service instance. */
+  productId: string;
+  /** Tag identifier. Must be unique in the current API Management service instance. */
+  tagId: string;
+}
+export const DetachTagFromProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    productId: S.String.pipe(T.Label()),
+    tagId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/products/{productId}/tags/{tagId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DetachTagFromProductRequest",
+}) as any as S.Schema<DetachTagFromProductRequest>;
+
+export interface DetachTagFromProductResponse {}
+export const DetachTagFromProductResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DetachTagFromProductResponse",
+}) as any as S.Schema<DetachTagFromProductResponse>;
 
 export interface DiagnosticCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -10730,86 +10278,9 @@ export const GatewayHostnameConfigurationCreateOrUpdateResponse =
     identifier: "GatewayHostnameConfigurationCreateOrUpdateResponse",
   }) as any as S.Schema<GatewayHostnameConfigurationCreateOrUpdateResponse>;
 
-export interface GatewayInvalidateDebugCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed' */
-  gatewayId: string;
-}
-export const GatewayInvalidateDebugCredentialsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      gatewayId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/gateways/{gatewayId}/invalidateDebugCredentials",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "GatewayInvalidateDebugCredentialsRequest",
-}) as any as S.Schema<GatewayInvalidateDebugCredentialsRequest>;
-
-export interface GatewayInvalidateDebugCredentialsResponse {}
-export const GatewayInvalidateDebugCredentialsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "GatewayInvalidateDebugCredentialsResponse",
-  }) as any as S.Schema<GatewayInvalidateDebugCredentialsResponse>;
-
-/** The Key being regenerated. */
-export type GatewayRegenerateKeyRequestKeyType = "primary" | "secondary";
-export const GatewayRegenerateKeyRequestKeyType = /*@__PURE__*/ S.String;
-
-export interface GatewayRegenerateKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed' */
-  gatewayId: string;
-  /** The Key being regenerated. */
-  keyType: GatewayRegenerateKeyRequestKeyType | (string & {});
-}
-export const GatewayRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayId: S.String.pipe(T.Label()),
-    keyType: GatewayRegenerateKeyRequestKeyType,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/gateways/{gatewayId}/regenerateKey",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "GatewayRegenerateKeyRequest",
-}) as any as S.Schema<GatewayRegenerateKeyRequest>;
-
-export interface GatewayRegenerateKeyResponse {}
-export const GatewayRegenerateKeyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GatewayRegenerateKeyResponse",
-}) as any as S.Schema<GatewayRegenerateKeyResponse>;
-
 /** The Key to be used to generate gateway token. */
-export type GatewayGenerateTokenRequestKeyType = "primary" | "secondary";
-export const GatewayGenerateTokenRequestKeyType = /*@__PURE__*/ S.String;
+export type GenerateGatewayTokenRequestKeyType = "primary" | "secondary";
+export const GenerateGatewayTokenRequestKeyType = /*@__PURE__*/ S.String;
 
 export interface GenerateGatewayTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -10821,7 +10292,7 @@ export interface GenerateGatewayTokenRequest {
   /** Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed' */
   gatewayId: string;
   /** The Key to be used to generate gateway token. */
-  keyType: GatewayGenerateTokenRequestKeyType | (string & {});
+  keyType: GenerateGatewayTokenRequestKeyType | (string & {});
   /** The Expiry time of the Token. Maximum token expiry time is set to 30 days. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard. */
   expiry: string;
 }
@@ -10831,7 +10302,7 @@ export const GenerateGatewayTokenRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     gatewayId: S.String.pipe(T.Label()),
-    keyType: GatewayGenerateTokenRequestKeyType,
+    keyType: GenerateGatewayTokenRequestKeyType,
     expiry: S.String,
   }).pipe(
     T.Http({
@@ -11020,61 +10491,61 @@ export const GetApiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApiGatewayRequest>;
 
 /** Resource tags. */
-export type ApiGatewayGetResponseTagsMap = {
+export type GetApiGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApiGatewayGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApiGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApiGatewayGetResponseTagsMap>;
+) as any as S.Schema<GetApiGatewayResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApiGatewayGetResponseSystemDataCreatedByType =
+export type GetApiGatewayResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiGatewayGetResponseSystemDataCreatedByType =
+export const GetApiGatewayResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApiGatewayGetResponseSystemDataLastModifiedByType =
+export type GetApiGatewayResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiGatewayGetResponseSystemDataLastModifiedByType =
+export const GetApiGatewayResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApiGatewayGetResponseSystemData {
+export interface GetApiGatewayResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApiGatewayGetResponseSystemDataCreatedByType;
+  createdByType?: GetApiGatewayResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApiGatewayGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApiGatewayResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApiGatewayGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetApiGatewayResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ApiGatewayGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetApiGatewayResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ApiGatewayGetResponseSystemDataLastModifiedByType,
+      GetApiGatewayResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ApiGatewayGetResponseSystemData",
-}) as any as S.Schema<ApiGatewayGetResponseSystemData>;
+  identifier: "GetApiGatewayResponseSystemData",
+}) as any as S.Schema<GetApiGatewayResponseSystemData>;
 
 export interface GetApiGatewayResponse {
   /** Resource ID. */
@@ -11084,13 +10555,13 @@ export interface GetApiGatewayResponse {
   /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
   type?: string;
   /** Resource tags. */
-  tags?: ApiGatewayGetResponseTagsMap;
+  tags?: GetApiGatewayResponseTagsMap;
   /** Properties of the API Management gateway. */
   properties: ApiManagementGatewayProperties;
   /** SKU properties of the API Management gateway. */
   sku: ApiManagementGatewaySkuProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApiGatewayGetResponseSystemData;
+  systemData?: GetApiGatewayResponseSystemData;
   /** Resource location. */
   location: string;
   /** ETag of the resource. */
@@ -11101,10 +10572,10 @@ export const GetApiGatewayResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ApiGatewayGetResponseTagsMap),
+    tags: S.optional(GetApiGatewayResponseTagsMap),
     properties: ApiManagementGatewayProperties,
     sku: ApiManagementGatewaySkuProperties,
-    systemData: S.optional(ApiGatewayGetResponseSystemData),
+    systemData: S.optional(GetApiGatewayResponseSystemData),
     location: S.String,
     etag: S.optional(S.String),
   }),
@@ -11357,70 +10828,70 @@ export const GetApiManagementServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApiManagementServiceRequest>;
 
 /** Resource tags. */
-export type ApiManagementServiceGetResponseTagsMap = {
+export type GetApiManagementServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApiManagementServiceGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApiManagementServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApiManagementServiceGetResponseTagsMap>;
+) as any as S.Schema<GetApiManagementServiceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApiManagementServiceGetResponseSystemDataCreatedByType =
+export type GetApiManagementServiceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiManagementServiceGetResponseSystemDataCreatedByType =
+export const GetApiManagementServiceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApiManagementServiceGetResponseSystemDataLastModifiedByType =
+export type GetApiManagementServiceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiManagementServiceGetResponseSystemDataLastModifiedByType =
+export const GetApiManagementServiceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApiManagementServiceGetResponseSystemData {
+export interface GetApiManagementServiceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApiManagementServiceGetResponseSystemDataCreatedByType;
+  createdByType?: GetApiManagementServiceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApiManagementServiceGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApiManagementServiceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApiManagementServiceGetResponseSystemData =
+export const GetApiManagementServiceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApiManagementServiceGetResponseSystemDataCreatedByType,
+        GetApiManagementServiceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApiManagementServiceGetResponseSystemDataLastModifiedByType,
+        GetApiManagementServiceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ApiManagementServiceGetResponseSystemData",
-  }) as any as S.Schema<ApiManagementServiceGetResponseSystemData>;
+    identifier: "GetApiManagementServiceResponseSystemData",
+  }) as any as S.Schema<GetApiManagementServiceResponseSystemData>;
 
 /** A list of availability zones denoting where the resource needs to come from. */
-export type ApiManagementServiceGetResponseZonesList = Array<string>;
-export const ApiManagementServiceGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetApiManagementServiceResponseZonesList = Array<string>;
+export const GetApiManagementServiceResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ApiManagementServiceGetResponseZonesList>;
+) as any as S.Schema<GetApiManagementServiceResponseZonesList>;
 
 export interface GetApiManagementServiceResponse {
   /** Resource ID. */
@@ -11430,7 +10901,7 @@ export interface GetApiManagementServiceResponse {
   /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
   type?: string;
   /** Resource tags. */
-  tags?: ApiManagementServiceGetResponseTagsMap;
+  tags?: GetApiManagementServiceResponseTagsMap;
   /** Properties of the API Management service. */
   properties: ApiManagementServiceProperties;
   /** SKU properties of the API Management service. */
@@ -11438,27 +10909,27 @@ export interface GetApiManagementServiceResponse {
   /** Managed service identity of the Api Management service. */
   identity?: ApiManagementServiceIdentity;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApiManagementServiceGetResponseSystemData;
+  systemData?: GetApiManagementServiceResponseSystemData;
   /** Resource location. */
   location: string;
   /** ETag of the resource. */
   etag?: string;
   /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: ApiManagementServiceGetResponseZonesList;
+  zones?: GetApiManagementServiceResponseZonesList;
 }
 export const GetApiManagementServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ApiManagementServiceGetResponseTagsMap),
+    tags: S.optional(GetApiManagementServiceResponseTagsMap),
     properties: ApiManagementServiceProperties,
     sku: ApiManagementServiceSkuProperties,
     identity: S.optional(ApiManagementServiceIdentity),
-    systemData: S.optional(ApiManagementServiceGetResponseSystemData),
+    systemData: S.optional(GetApiManagementServiceResponseSystemData),
     location: S.String,
     etag: S.optional(S.String),
-    zones: S.optional(ApiManagementServiceGetResponseZonesList),
+    zones: S.optional(GetApiManagementServiceResponseZonesList),
   }),
 ).annotate({
   identifier: "GetApiManagementServiceResponse",
@@ -11485,18 +10956,18 @@ export const GetApiManagementServiceDomainOwnershipIdentifierRequest =
   }) as any as S.Schema<GetApiManagementServiceDomainOwnershipIdentifierRequest>;
 
 /** Response of the GetDomainOwnershipIdentifier operation. */
-export interface GetApiManagementServiceDomainOwnershipIdentifierResult {
+export interface ApiManagementServiceGetDomainOwnershipIdentifierResult {
   /** The domain ownership identifier value. */
   domainOwnershipIdentifier?: string;
 }
-export const GetApiManagementServiceDomainOwnershipIdentifierResult =
+export const ApiManagementServiceGetDomainOwnershipIdentifierResult =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       domainOwnershipIdentifier: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "GetApiManagementServiceDomainOwnershipIdentifierResult",
-  }) as any as S.Schema<GetApiManagementServiceDomainOwnershipIdentifierResult>;
+    identifier: "ApiManagementServiceGetDomainOwnershipIdentifierResult",
+  }) as any as S.Schema<ApiManagementServiceGetDomainOwnershipIdentifierResult>;
 
 export interface GetApiManagementServiceSsoTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11525,18 +10996,18 @@ export const GetApiManagementServiceSsoTokenRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetApiManagementServiceSsoTokenRequest>;
 
 /** The response of the GetSsoToken operation. */
-export interface GetApiManagementServiceSsoTokenResult {
+export interface ApiManagementServiceGetSsoTokenResult {
   /** Redirect URL to the Publisher Portal containing the SSO token. */
   redirectUri?: string;
 }
-export const GetApiManagementServiceSsoTokenResult = /*@__PURE__*/ S.suspend(
+export const ApiManagementServiceGetSsoTokenResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       redirectUri: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "GetApiManagementServiceSsoTokenResult",
-}) as any as S.Schema<GetApiManagementServiceSsoTokenResult>;
+  identifier: "ApiManagementServiceGetSsoTokenResult",
+}) as any as S.Schema<ApiManagementServiceGetSsoTokenResult>;
 
 export interface GetApiManagementWorkspaceLinkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11681,11 +11152,11 @@ export const GetApiOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetApiOperationResponse",
 }) as any as S.Schema<GetApiOperationResponse>;
 
-export type ApiOperationPolicyGetRequestPolicyId = "policy";
-export const ApiOperationPolicyGetRequestPolicyId = /*@__PURE__*/ S.String;
+export type GetApiOperationPolicyRequestPolicyId = "policy";
+export const GetApiOperationPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
-export type ApiOperationPolicyGetRequestFormat = "xml" | "rawxml";
-export const ApiOperationPolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetApiOperationPolicyRequestFormat = "xml" | "rawxml";
+export const GetApiOperationPolicyRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetApiOperationPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11699,9 +11170,9 @@ export interface GetApiOperationPolicyRequest {
   /** Operation identifier within an API. Must be unique in the current API Management service instance. */
   operationId: string;
   /** The identifier of the Policy. */
-  policyId: ApiOperationPolicyGetRequestPolicyId | (string & {});
+  policyId: GetApiOperationPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: ApiOperationPolicyGetRequestFormat | (string & {});
+  format?: GetApiOperationPolicyRequestFormat | (string & {});
 }
 export const GetApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11710,8 +11181,8 @@ export const GetApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     apiId: S.String.pipe(T.Label()),
     operationId: S.String.pipe(T.Label()),
-    policyId: ApiOperationPolicyGetRequestPolicyId.pipe(T.Label()),
-    format: S.optional(ApiOperationPolicyGetRequestFormat.pipe(T.Query())),
+    policyId: GetApiOperationPolicyRequestPolicyId.pipe(T.Label()),
+    format: S.optional(GetApiOperationPolicyRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -11745,11 +11216,11 @@ export const GetApiOperationPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetApiOperationPolicyResponse",
 }) as any as S.Schema<GetApiOperationPolicyResponse>;
 
-export type ApiPolicyGetRequestPolicyId = "policy";
-export const ApiPolicyGetRequestPolicyId = /*@__PURE__*/ S.String;
+export type GetApiPolicyRequestPolicyId = "policy";
+export const GetApiPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
-export type ApiPolicyGetRequestFormat = "xml" | "rawxml";
-export const ApiPolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetApiPolicyRequestFormat = "xml" | "rawxml";
+export const GetApiPolicyRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetApiPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11761,9 +11232,9 @@ export interface GetApiPolicyRequest {
   /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
   apiId: string;
   /** The identifier of the Policy. */
-  policyId: ApiPolicyGetRequestPolicyId | (string & {});
+  policyId: GetApiPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: ApiPolicyGetRequestFormat | (string & {});
+  format?: GetApiPolicyRequestFormat | (string & {});
 }
 export const GetApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11771,8 +11242,8 @@ export const GetApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     apiId: S.String.pipe(T.Label()),
-    policyId: ApiPolicyGetRequestPolicyId.pipe(T.Label()),
-    format: S.optional(ApiPolicyGetRequestFormat.pipe(T.Query())),
+    policyId: GetApiPolicyRequestPolicyId.pipe(T.Label()),
+    format: S.optional(GetApiPolicyRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -11805,6 +11276,58 @@ export const GetApiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetApiPolicyResponse",
 }) as any as S.Schema<GetApiPolicyResponse>;
+
+export interface GetApiReleaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** Release identifier within an API. Must be unique in the current API Management service instance. */
+  releaseId: string;
+}
+export const GetApiReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    releaseId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApiReleaseRequest",
+}) as any as S.Schema<GetApiReleaseRequest>;
+
+export interface GetApiReleaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** ApiRelease entity contract properties. */
+  properties?: ApiReleaseContractProperties;
+}
+export const GetApiReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiReleaseContractProperties),
+  }),
+).annotate({
+  identifier: "GetApiReleaseResponse",
+}) as any as S.Schema<GetApiReleaseResponse>;
 
 export interface GetApiSchemaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11909,6 +11432,55 @@ export const GetApiTagDescriptionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetApiTagDescriptionResponse",
 }) as any as S.Schema<GetApiTagDescriptionResponse>;
+
+export interface GetApiVersionSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
+  versionSetId: string;
+}
+export const GetApiVersionSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    versionSetId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets/{versionSetId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApiVersionSetRequest",
+}) as any as S.Schema<GetApiVersionSetRequest>;
+
+export interface GetApiVersionSetResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** API VersionSet contract properties. */
+  properties?: ApiVersionSetContractProperties;
+}
+export const GetApiVersionSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiVersionSetContractProperties),
+  }),
+).annotate({
+  identifier: "GetApiVersionSetResponse",
+}) as any as S.Schema<GetApiVersionSetResponse>;
 
 export interface GetApiWikiRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12578,7 +12150,7 @@ export const GetDocumentationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDocumentationResponse",
 }) as any as S.Schema<GetDocumentationResponse>;
 
-export type EmailTemplateGetRequestTemplateName =
+export type GetEmailTemplateRequestTemplateName =
   | "applicationApprovedNotificationMessage"
   | "accountClosedDeveloper"
   | "quotaLimitApproachingDeveloperNotificationMessage"
@@ -12593,7 +12165,7 @@ export type EmailTemplateGetRequestTemplateName =
   | "passwordResetByAdminNotificationMessage"
   | "rejectDeveloperNotificationMessage"
   | "requestDeveloperNotificationMessage";
-export const EmailTemplateGetRequestTemplateName = /*@__PURE__*/ S.String;
+export const GetEmailTemplateRequestTemplateName = /*@__PURE__*/ S.String;
 
 export interface GetEmailTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12603,14 +12175,14 @@ export interface GetEmailTemplateRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** Email Template Name Identifier. */
-  templateName: EmailTemplateGetRequestTemplateName | (string & {});
+  templateName: GetEmailTemplateRequestTemplateName | (string & {});
 }
 export const GetEmailTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    templateName: EmailTemplateGetRequestTemplateName.pipe(T.Label()),
+    templateName: GetEmailTemplateRequestTemplateName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -12879,7 +12451,7 @@ export const GetGlobalSchemaResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetGlobalSchemaResponse",
 }) as any as S.Schema<GetGlobalSchemaResponse>;
 
-export interface GetGraphQlApiResolverRequest {
+export interface GetGraphQLApiResolverRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12891,7 +12463,7 @@ export interface GetGraphQlApiResolverRequest {
   /** Resolver identifier within a GraphQL API. Must be unique in the current API Management service instance. */
   resolverId: string;
 }
-export const GetGraphQlApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGraphQLApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12907,8 +12479,8 @@ export const GetGraphQlApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetGraphQlApiResolverRequest",
-}) as any as S.Schema<GetGraphQlApiResolverRequest>;
+  identifier: "GetGraphQLApiResolverRequest",
+}) as any as S.Schema<GetGraphQLApiResolverRequest>;
 
 /** GraphQL API Resolver Entity Base Contract details. */
 export interface ResolverEntityBaseContract {
@@ -12929,7 +12501,7 @@ export const ResolverEntityBaseContract = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResolverEntityBaseContract",
 }) as any as S.Schema<ResolverEntityBaseContract>;
 
-export interface GetGraphQlApiResolverResponse {
+export interface GetGraphQLApiResolverResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -12939,7 +12511,7 @@ export interface GetGraphQlApiResolverResponse {
   /** Properties of the Resolver Contract. */
   properties?: ResolverEntityBaseContract;
 }
-export const GetGraphQlApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGraphQLApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -12947,17 +12519,17 @@ export const GetGraphQlApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ResolverEntityBaseContract),
   }),
 ).annotate({
-  identifier: "GetGraphQlApiResolverResponse",
-}) as any as S.Schema<GetGraphQlApiResolverResponse>;
+  identifier: "GetGraphQLApiResolverResponse",
+}) as any as S.Schema<GetGraphQLApiResolverResponse>;
 
-export type GraphQLApiResolverPolicyGetRequestPolicyId = "policy";
-export const GraphQLApiResolverPolicyGetRequestPolicyId =
+export type GetGraphQLApiResolverPolicyRequestPolicyId = "policy";
+export const GetGraphQLApiResolverPolicyRequestPolicyId =
   /*@__PURE__*/ S.String;
 
-export type GraphQLApiResolverPolicyGetRequestFormat = "xml" | "rawxml";
-export const GraphQLApiResolverPolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetGraphQLApiResolverPolicyRequestFormat = "xml" | "rawxml";
+export const GetGraphQLApiResolverPolicyRequestFormat = /*@__PURE__*/ S.String;
 
-export interface GetGraphQlApiResolverPolicyRequest {
+export interface GetGraphQLApiResolverPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12969,20 +12541,20 @@ export interface GetGraphQlApiResolverPolicyRequest {
   /** Resolver identifier within a GraphQL API. Must be unique in the current API Management service instance. */
   resolverId: string;
   /** The identifier of the Policy. */
-  policyId: GraphQLApiResolverPolicyGetRequestPolicyId | (string & {});
+  policyId: GetGraphQLApiResolverPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: GraphQLApiResolverPolicyGetRequestFormat | (string & {});
+  format?: GetGraphQLApiResolverPolicyRequestFormat | (string & {});
 }
-export const GetGraphQlApiResolverPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGraphQLApiResolverPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     apiId: S.String.pipe(T.Label()),
     resolverId: S.String.pipe(T.Label()),
-    policyId: GraphQLApiResolverPolicyGetRequestPolicyId.pipe(T.Label()),
+    policyId: GetGraphQLApiResolverPolicyRequestPolicyId.pipe(T.Label()),
     format: S.optional(
-      GraphQLApiResolverPolicyGetRequestFormat.pipe(T.Query()),
+      GetGraphQLApiResolverPolicyRequestFormat.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -12993,10 +12565,10 @@ export const GetGraphQlApiResolverPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetGraphQlApiResolverPolicyRequest",
-}) as any as S.Schema<GetGraphQlApiResolverPolicyRequest>;
+  identifier: "GetGraphQLApiResolverPolicyRequest",
+}) as any as S.Schema<GetGraphQLApiResolverPolicyRequest>;
 
-export interface GetGraphQlApiResolverPolicyResponse {
+export interface GetGraphQLApiResolverPolicyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -13006,7 +12578,7 @@ export interface GetGraphQlApiResolverPolicyResponse {
   /** Properties of the Policy. */
   properties?: PolicyContractProperties;
 }
-export const GetGraphQlApiResolverPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGraphQLApiResolverPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -13014,8 +12586,8 @@ export const GetGraphQlApiResolverPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PolicyContractProperties),
   }),
 ).annotate({
-  identifier: "GetGraphQlApiResolverPolicyResponse",
-}) as any as S.Schema<GetGraphQlApiResolverPolicyResponse>;
+  identifier: "GetGraphQLApiResolverPolicyResponse",
+}) as any as S.Schema<GetGraphQLApiResolverPolicyResponse>;
 
 export interface GetGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13095,14 +12667,14 @@ export const GetGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetGroupResponse",
 }) as any as S.Schema<GetGroupResponse>;
 
-export type IdentityProviderGetRequestIdentityProviderName =
+export type GetIdentityProviderRequestIdentityProviderName =
   | "facebook"
   | "google"
   | "microsoft"
   | "twitter"
   | "aad"
   | "aadB2C";
-export const IdentityProviderGetRequestIdentityProviderName =
+export const GetIdentityProviderRequestIdentityProviderName =
   /*@__PURE__*/ S.String;
 
 export interface GetIdentityProviderRequest {
@@ -13114,7 +12686,7 @@ export interface GetIdentityProviderRequest {
   serviceName: string;
   /** Identity Provider Type identifier. */
   identityProviderName:
-    | IdentityProviderGetRequestIdentityProviderName
+    | GetIdentityProviderRequestIdentityProviderName
     | (string & {});
 }
 export const GetIdentityProviderRequest = /*@__PURE__*/ S.suspend(() =>
@@ -13122,7 +12694,7 @@ export const GetIdentityProviderRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    identityProviderName: IdentityProviderGetRequestIdentityProviderName.pipe(
+    identityProviderName: GetIdentityProviderRequestIdentityProviderName.pipe(
       T.Label(),
     ),
   }).pipe(
@@ -13443,7 +13015,7 @@ export const GetNamedValueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetNamedValueResponse",
 }) as any as S.Schema<GetNamedValueResponse>;
 
-export type NotificationGetRequestNotificationName =
+export type GetNotificationRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -13451,7 +13023,7 @@ export type NotificationGetRequestNotificationName =
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const NotificationGetRequestNotificationName = /*@__PURE__*/ S.String;
+export const GetNotificationRequestNotificationName = /*@__PURE__*/ S.String;
 
 export interface GetNotificationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13461,14 +13033,14 @@ export interface GetNotificationRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** Notification Name Identifier. */
-  notificationName: NotificationGetRequestNotificationName | (string & {});
+  notificationName: GetNotificationRequestNotificationName | (string & {});
 }
 export const GetNotificationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    notificationName: NotificationGetRequestNotificationName.pipe(T.Label()),
+    notificationName: GetNotificationRequestNotificationName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -13630,7 +13202,7 @@ export const GetOpenIdConnectProviderResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetOpenIdConnectProviderResponse",
 }) as any as S.Schema<GetOpenIdConnectProviderResponse>;
 
-export interface GetOperationResultRequest {
+export interface GetOperationsResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -13638,7 +13210,7 @@ export interface GetOperationResultRequest {
   /** The ID of an ongoing async operation. */
   operationId: string;
 }
-export const GetOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationsResultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -13652,15 +13224,15 @@ export const GetOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetOperationResultRequest",
-}) as any as S.Schema<GetOperationResultRequest>;
+  identifier: "GetOperationsResultRequest",
+}) as any as S.Schema<GetOperationsResultRequest>;
 
-export interface GetOperationResultResponse {}
-export const GetOperationResultResponse = /*@__PURE__*/ S.suspend(() =>
+export interface GetOperationsResultResponse {}
+export const GetOperationsResultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "GetOperationResultResponse",
-}) as any as S.Schema<GetOperationResultResponse>;
+  identifier: "GetOperationsResultResponse",
+}) as any as S.Schema<GetOperationsResultResponse>;
 
 export interface GetOperationStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13782,11 +13354,11 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type OperationStatusGetResponseOperationsList =
+export type GetOperationStatusResponseOperationsList =
   Array<OperationStatusResult>;
-export const OperationStatusGetResponseOperationsList = /*@__PURE__*/ S.Array(
+export const GetOperationStatusResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<OperationStatusGetResponseOperationsList>;
+) as any as S.Schema<GetOperationStatusResponseOperationsList>;
 
 export interface GetOperationStatusResponse {
   /** Fully qualified ID for the async operation. */
@@ -13804,7 +13376,7 @@ export interface GetOperationStatusResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: OperationStatusGetResponseOperationsList;
+  operations?: GetOperationStatusResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
@@ -13817,18 +13389,18 @@ export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusGetResponseOperationsList),
+    operations: S.optional(GetOperationStatusResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
   identifier: "GetOperationStatusResponse",
 }) as any as S.Schema<GetOperationStatusResponse>;
 
-export type PolicyGetRequestPolicyId = "policy";
-export const PolicyGetRequestPolicyId = /*@__PURE__*/ S.String;
+export type GetPolicyRequestPolicyId = "policy";
+export const GetPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
-export type PolicyGetRequestFormat = "xml" | "rawxml";
-export const PolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetPolicyRequestFormat = "xml" | "rawxml";
+export const GetPolicyRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13838,17 +13410,17 @@ export interface GetPolicyRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** The identifier of the Policy. */
-  policyId: PolicyGetRequestPolicyId | (string & {});
+  policyId: GetPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: PolicyGetRequestFormat | (string & {});
+  format?: GetPolicyRequestFormat | (string & {});
 }
 export const GetPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    policyId: PolicyGetRequestPolicyId.pipe(T.Label()),
-    format: S.optional(PolicyGetRequestFormat.pipe(T.Query())),
+    policyId: GetPolicyRequestPolicyId.pipe(T.Label()),
+    format: S.optional(GetPolicyRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -13882,8 +13454,8 @@ export const GetPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPolicyResponse",
 }) as any as S.Schema<GetPolicyResponse>;
 
-export type PolicyFragmentGetRequestFormat = "xml" | "rawxml";
-export const PolicyFragmentGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetPolicyFragmentRequestFormat = "xml" | "rawxml";
+export const GetPolicyFragmentRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetPolicyFragmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13895,7 +13467,7 @@ export interface GetPolicyFragmentRequest {
   /** A resource identifier. */
   id: string;
   /** Policy fragment content format. */
-  format?: PolicyFragmentGetRequestFormat | (string & {});
+  format?: GetPolicyFragmentRequestFormat | (string & {});
 }
 export const GetPolicyFragmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13903,7 +13475,7 @@ export const GetPolicyFragmentRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
-    format: S.optional(PolicyFragmentGetRequestFormat.pipe(T.Query())),
+    format: S.optional(GetPolicyFragmentRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -14717,11 +14289,11 @@ export const GetProductGroupLinkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProductGroupLinkResponse",
 }) as any as S.Schema<GetProductGroupLinkResponse>;
 
-export type ProductPolicyGetRequestPolicyId = "policy";
-export const ProductPolicyGetRequestPolicyId = /*@__PURE__*/ S.String;
+export type GetProductPolicyRequestPolicyId = "policy";
+export const GetProductPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
-export type ProductPolicyGetRequestFormat = "xml" | "rawxml";
-export const ProductPolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetProductPolicyRequestFormat = "xml" | "rawxml";
+export const GetProductPolicyRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetProductPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14733,9 +14305,9 @@ export interface GetProductPolicyRequest {
   /** Product identifier. Must be unique in the current API Management service instance. */
   productId: string;
   /** The identifier of the Policy. */
-  policyId: ProductPolicyGetRequestPolicyId | (string & {});
+  policyId: GetProductPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: ProductPolicyGetRequestFormat | (string & {});
+  format?: GetProductPolicyRequestFormat | (string & {});
 }
 export const GetProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -14743,8 +14315,8 @@ export const GetProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     productId: S.String.pipe(T.Label()),
-    policyId: ProductPolicyGetRequestPolicyId.pipe(T.Label()),
-    format: S.optional(ProductPolicyGetRequestFormat.pipe(T.Query())),
+    policyId: GetProductPolicyRequestPolicyId.pipe(T.Label()),
+    format: S.optional(GetProductPolicyRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -14827,7 +14399,7 @@ export const GetProductWikiResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProductWikiResponse",
 }) as any as S.Schema<GetProductWikiResponse>;
 
-export interface GetQuotaByPeriodKeyRequest {
+export interface GetQuotaByPeriodKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14839,7 +14411,7 @@ export interface GetQuotaByPeriodKeyRequest {
   /** Quota period key identifier. */
   quotaPeriodKey: string;
 }
-export const GetQuotaByPeriodKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotaByPeriodKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -14855,8 +14427,8 @@ export const GetQuotaByPeriodKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetQuotaByPeriodKeyRequest",
-}) as any as S.Schema<GetQuotaByPeriodKeyRequest>;
+  identifier: "GetQuotaByPeriodKeysRequest",
+}) as any as S.Schema<GetQuotaByPeriodKeysRequest>;
 
 /** Quota counter value details. */
 export interface QuotaCounterValueContractProperties {
@@ -14874,7 +14446,7 @@ export const QuotaCounterValueContractProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaCounterValueContractProperties",
 }) as any as S.Schema<QuotaCounterValueContractProperties>;
 
-export interface GetQuotaByPeriodKeyResponse {
+export interface GetQuotaByPeriodKeysResponse {
   /** The Key value of the Counter. Must not be empty. */
   counterKey: string;
   /** Identifier of the Period for which the counter was collected. Must not be empty. */
@@ -14886,7 +14458,7 @@ export interface GetQuotaByPeriodKeyResponse {
   /** Quota Value Properties */
   value?: QuotaCounterValueContractProperties;
 }
-export const GetQuotaByPeriodKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotaByPeriodKeysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     counterKey: S.String,
     periodKey: S.String,
@@ -14895,8 +14467,8 @@ export const GetQuotaByPeriodKeyResponse = /*@__PURE__*/ S.suspend(() =>
     value: S.optional(QuotaCounterValueContractProperties),
   }),
 ).annotate({
-  identifier: "GetQuotaByPeriodKeyResponse",
-}) as any as S.Schema<GetQuotaByPeriodKeyResponse>;
+  identifier: "GetQuotaByPeriodKeysResponse",
+}) as any as S.Schema<GetQuotaByPeriodKeysResponse>;
 
 export interface GetSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15031,19 +14603,6 @@ export const GetTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({ identifier: "GetTagRequest" }) as any as S.Schema<GetTagRequest>;
-
-/** Tag contract Properties. */
-export interface TagContractProperties {
-  /** Tag name. */
-  displayName: string;
-}
-export const TagContractProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.String,
-  }),
-).annotate({
-  identifier: "TagContractProperties",
-}) as any as S.Schema<TagContractProperties>;
 
 export interface GetTagResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -15409,8 +14968,8 @@ export const GetTagProductLinkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTagProductLinkResponse",
 }) as any as S.Schema<GetTagProductLinkResponse>;
 
-export type TenantAccessGetRequestAccessName = "access" | "gitAccess";
-export const TenantAccessGetRequestAccessName = /*@__PURE__*/ S.String;
+export type GetTenantAccessRequestAccessName = "access" | "gitAccess";
+export const GetTenantAccessRequestAccessName = /*@__PURE__*/ S.String;
 
 export interface GetTenantAccessRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15420,14 +14979,14 @@ export interface GetTenantAccessRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** The identifier of the Access configuration. */
-  accessName: TenantAccessGetRequestAccessName | (string & {});
+  accessName: GetTenantAccessRequestAccessName | (string & {});
 }
 export const GetTenantAccessRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    accessName: TenantAccessGetRequestAccessName.pipe(T.Label()),
+    accessName: GetTenantAccessRequestAccessName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -15461,9 +15020,9 @@ export const GetTenantAccessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTenantAccessResponse",
 }) as any as S.Schema<GetTenantAccessResponse>;
 
-export type TenantConfigurationGetSyncStateRequestConfigurationName =
+export type GetTenantConfigurationSyncStateRequestConfigurationName =
   "configuration";
-export const TenantConfigurationGetSyncStateRequestConfigurationName =
+export const GetTenantConfigurationSyncStateRequestConfigurationName =
   /*@__PURE__*/ S.String;
 
 export interface GetTenantConfigurationSyncStateRequest {
@@ -15475,7 +15034,7 @@ export interface GetTenantConfigurationSyncStateRequest {
   serviceName: string;
   /** The identifier of the Git Configuration Operation. */
   configurationName:
-    | TenantConfigurationGetSyncStateRequestConfigurationName
+    | GetTenantConfigurationSyncStateRequestConfigurationName
     | (string & {});
 }
 export const GetTenantConfigurationSyncStateRequest = /*@__PURE__*/ S.suspend(
@@ -15485,7 +15044,7 @@ export const GetTenantConfigurationSyncStateRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       serviceName: S.String.pipe(T.Label()),
       configurationName:
-        TenantConfigurationGetSyncStateRequestConfigurationName.pipe(T.Label()),
+        GetTenantConfigurationSyncStateRequestConfigurationName.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -15944,12 +15503,12 @@ export const GetWorkspaceApiOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkspaceApiOperationResponse",
 }) as any as S.Schema<GetWorkspaceApiOperationResponse>;
 
-export type WorkspaceApiOperationPolicyGetRequestPolicyId = "policy";
-export const WorkspaceApiOperationPolicyGetRequestPolicyId =
+export type GetWorkspaceApiOperationPolicyRequestPolicyId = "policy";
+export const GetWorkspaceApiOperationPolicyRequestPolicyId =
   /*@__PURE__*/ S.String;
 
-export type WorkspaceApiOperationPolicyGetRequestFormat = "xml" | "rawxml";
-export const WorkspaceApiOperationPolicyGetRequestFormat =
+export type GetWorkspaceApiOperationPolicyRequestFormat = "xml" | "rawxml";
+export const GetWorkspaceApiOperationPolicyRequestFormat =
   /*@__PURE__*/ S.String;
 
 export interface GetWorkspaceApiOperationPolicyRequest {
@@ -15966,9 +15525,9 @@ export interface GetWorkspaceApiOperationPolicyRequest {
   /** Operation identifier within an API. Must be unique in the current API Management service instance. */
   operationId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspaceApiOperationPolicyGetRequestPolicyId | (string & {});
+  policyId: GetWorkspaceApiOperationPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: WorkspaceApiOperationPolicyGetRequestFormat | (string & {});
+  format?: GetWorkspaceApiOperationPolicyRequestFormat | (string & {});
 }
 export const GetWorkspaceApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -15979,9 +15538,9 @@ export const GetWorkspaceApiOperationPolicyRequest = /*@__PURE__*/ S.suspend(
       workspaceId: S.String.pipe(T.Label()),
       apiId: S.String.pipe(T.Label()),
       operationId: S.String.pipe(T.Label()),
-      policyId: WorkspaceApiOperationPolicyGetRequestPolicyId.pipe(T.Label()),
+      policyId: GetWorkspaceApiOperationPolicyRequestPolicyId.pipe(T.Label()),
       format: S.optional(
-        WorkspaceApiOperationPolicyGetRequestFormat.pipe(T.Query()),
+        GetWorkspaceApiOperationPolicyRequestFormat.pipe(T.Query()),
       ),
     }).pipe(
       T.Http({
@@ -16017,11 +15576,11 @@ export const GetWorkspaceApiOperationPolicyResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetWorkspaceApiOperationPolicyResponse",
 }) as any as S.Schema<GetWorkspaceApiOperationPolicyResponse>;
 
-export type WorkspaceApiPolicyGetRequestPolicyId = "policy";
-export const WorkspaceApiPolicyGetRequestPolicyId = /*@__PURE__*/ S.String;
+export type GetWorkspaceApiPolicyRequestPolicyId = "policy";
+export const GetWorkspaceApiPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
-export type WorkspaceApiPolicyGetRequestFormat = "xml" | "rawxml";
-export const WorkspaceApiPolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetWorkspaceApiPolicyRequestFormat = "xml" | "rawxml";
+export const GetWorkspaceApiPolicyRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetWorkspaceApiPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16035,9 +15594,9 @@ export interface GetWorkspaceApiPolicyRequest {
   /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
   apiId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspaceApiPolicyGetRequestPolicyId | (string & {});
+  policyId: GetWorkspaceApiPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: WorkspaceApiPolicyGetRequestFormat | (string & {});
+  format?: GetWorkspaceApiPolicyRequestFormat | (string & {});
 }
 export const GetWorkspaceApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -16046,8 +15605,8 @@ export const GetWorkspaceApiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
     apiId: S.String.pipe(T.Label()),
-    policyId: WorkspaceApiPolicyGetRequestPolicyId.pipe(T.Label()),
-    format: S.optional(WorkspaceApiPolicyGetRequestFormat.pipe(T.Query())),
+    policyId: GetWorkspaceApiPolicyRequestPolicyId.pipe(T.Label()),
+    format: S.optional(GetWorkspaceApiPolicyRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -16080,6 +15639,61 @@ export const GetWorkspaceApiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetWorkspaceApiPolicyResponse",
 }) as any as S.Schema<GetWorkspaceApiPolicyResponse>;
+
+export interface GetWorkspaceApiReleaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** Release identifier within an API. Must be unique in the current API Management service instance. */
+  releaseId: string;
+}
+export const GetWorkspaceApiReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    workspaceId: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    releaseId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases/{releaseId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceApiReleaseRequest",
+}) as any as S.Schema<GetWorkspaceApiReleaseRequest>;
+
+export interface GetWorkspaceApiReleaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** ApiRelease entity contract properties. */
+  properties?: ApiReleaseContractProperties;
+}
+export const GetWorkspaceApiReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiReleaseContractProperties),
+  }),
+).annotate({
+  identifier: "GetWorkspaceApiReleaseResponse",
+}) as any as S.Schema<GetWorkspaceApiReleaseResponse>;
 
 export interface GetWorkspaceApiSchemaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16135,6 +15749,58 @@ export const GetWorkspaceApiSchemaResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetWorkspaceApiSchemaResponse",
 }) as any as S.Schema<GetWorkspaceApiSchemaResponse>;
+
+export interface GetWorkspaceApiVersionSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
+  versionSetId: string;
+}
+export const GetWorkspaceApiVersionSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    workspaceId: S.String.pipe(T.Label()),
+    versionSetId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets/{versionSetId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceApiVersionSetRequest",
+}) as any as S.Schema<GetWorkspaceApiVersionSetRequest>;
+
+export interface GetWorkspaceApiVersionSetResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** API VersionSet contract properties. */
+  properties?: ApiVersionSetContractProperties;
+}
+export const GetWorkspaceApiVersionSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiVersionSetContractProperties),
+  }),
+).annotate({
+  identifier: "GetWorkspaceApiVersionSetResponse",
+}) as any as S.Schema<GetWorkspaceApiVersionSetResponse>;
 
 export interface GetWorkspaceBackendRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16500,7 +16166,7 @@ export const GetWorkspaceNamedValueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkspaceNamedValueResponse",
 }) as any as S.Schema<GetWorkspaceNamedValueResponse>;
 
-export type WorkspaceNotificationGetRequestNotificationName =
+export type GetWorkspaceNotificationRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -16508,7 +16174,7 @@ export type WorkspaceNotificationGetRequestNotificationName =
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const WorkspaceNotificationGetRequestNotificationName =
+export const GetWorkspaceNotificationRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface GetWorkspaceNotificationRequest {
@@ -16522,7 +16188,7 @@ export interface GetWorkspaceNotificationRequest {
   workspaceId: string;
   /** Notification Name Identifier. */
   notificationName:
-    | WorkspaceNotificationGetRequestNotificationName
+    | GetWorkspaceNotificationRequestNotificationName
     | (string & {});
 }
 export const GetWorkspaceNotificationRequest = /*@__PURE__*/ S.suspend(() =>
@@ -16531,7 +16197,7 @@ export const GetWorkspaceNotificationRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
-    notificationName: WorkspaceNotificationGetRequestNotificationName.pipe(
+    notificationName: GetWorkspaceNotificationRequestNotificationName.pipe(
       T.Label(),
     ),
   }).pipe(
@@ -16567,11 +16233,11 @@ export const GetWorkspaceNotificationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkspaceNotificationResponse",
 }) as any as S.Schema<GetWorkspaceNotificationResponse>;
 
-export type WorkspacePolicyGetRequestPolicyId = "policy";
-export const WorkspacePolicyGetRequestPolicyId = /*@__PURE__*/ S.String;
+export type GetWorkspacePolicyRequestPolicyId = "policy";
+export const GetWorkspacePolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
-export type WorkspacePolicyGetRequestFormat = "xml" | "rawxml";
-export const WorkspacePolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetWorkspacePolicyRequestFormat = "xml" | "rawxml";
+export const GetWorkspacePolicyRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetWorkspacePolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16583,9 +16249,9 @@ export interface GetWorkspacePolicyRequest {
   /** Workspace identifier. Must be unique in the current API Management service instance. */
   workspaceId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspacePolicyGetRequestPolicyId | (string & {});
+  policyId: GetWorkspacePolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: WorkspacePolicyGetRequestFormat | (string & {});
+  format?: GetWorkspacePolicyRequestFormat | (string & {});
 }
 export const GetWorkspacePolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -16593,8 +16259,8 @@ export const GetWorkspacePolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
-    policyId: WorkspacePolicyGetRequestPolicyId.pipe(T.Label()),
-    format: S.optional(WorkspacePolicyGetRequestFormat.pipe(T.Query())),
+    policyId: GetWorkspacePolicyRequestPolicyId.pipe(T.Label()),
+    format: S.optional(GetWorkspacePolicyRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -16628,8 +16294,8 @@ export const GetWorkspacePolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkspacePolicyResponse",
 }) as any as S.Schema<GetWorkspacePolicyResponse>;
 
-export type WorkspacePolicyFragmentGetRequestFormat = "xml" | "rawxml";
-export const WorkspacePolicyFragmentGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetWorkspacePolicyFragmentRequestFormat = "xml" | "rawxml";
+export const GetWorkspacePolicyFragmentRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetWorkspacePolicyFragmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16643,7 +16309,7 @@ export interface GetWorkspacePolicyFragmentRequest {
   /** A resource identifier. */
   id: string;
   /** Policy fragment content format. */
-  format?: WorkspacePolicyFragmentGetRequestFormat | (string & {});
+  format?: GetWorkspacePolicyFragmentRequestFormat | (string & {});
 }
 export const GetWorkspacePolicyFragmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -16652,7 +16318,7 @@ export const GetWorkspacePolicyFragmentRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
-    format: S.optional(WorkspacePolicyFragmentGetRequestFormat.pipe(T.Query())),
+    format: S.optional(GetWorkspacePolicyFragmentRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -16849,11 +16515,11 @@ export const GetWorkspaceProductGroupLinkResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetWorkspaceProductGroupLinkResponse",
 }) as any as S.Schema<GetWorkspaceProductGroupLinkResponse>;
 
-export type WorkspaceProductPolicyGetRequestPolicyId = "policy";
-export const WorkspaceProductPolicyGetRequestPolicyId = /*@__PURE__*/ S.String;
+export type GetWorkspaceProductPolicyRequestPolicyId = "policy";
+export const GetWorkspaceProductPolicyRequestPolicyId = /*@__PURE__*/ S.String;
 
-export type WorkspaceProductPolicyGetRequestFormat = "xml" | "rawxml";
-export const WorkspaceProductPolicyGetRequestFormat = /*@__PURE__*/ S.String;
+export type GetWorkspaceProductPolicyRequestFormat = "xml" | "rawxml";
+export const GetWorkspaceProductPolicyRequestFormat = /*@__PURE__*/ S.String;
 
 export interface GetWorkspaceProductPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16867,9 +16533,9 @@ export interface GetWorkspaceProductPolicyRequest {
   /** Product identifier. Must be unique in the current API Management service instance. */
   productId: string;
   /** The identifier of the Policy. */
-  policyId: WorkspaceProductPolicyGetRequestPolicyId | (string & {});
+  policyId: GetWorkspaceProductPolicyRequestPolicyId | (string & {});
   /** Policy Export Format. */
-  format?: WorkspaceProductPolicyGetRequestFormat | (string & {});
+  format?: GetWorkspaceProductPolicyRequestFormat | (string & {});
 }
 export const GetWorkspaceProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -16878,8 +16544,8 @@ export const GetWorkspaceProductPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     workspaceId: S.String.pipe(T.Label()),
     productId: S.String.pipe(T.Label()),
-    policyId: WorkspaceProductPolicyGetRequestPolicyId.pipe(T.Label()),
-    format: S.optional(WorkspaceProductPolicyGetRequestFormat.pipe(T.Query())),
+    policyId: GetWorkspaceProductPolicyRequestPolicyId.pipe(T.Label()),
+    format: S.optional(GetWorkspaceProductPolicyRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -17602,6 +17268,41 @@ export const IdentityProviderCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "IdentityProviderCreateOrUpdateResponse",
 }) as any as S.Schema<IdentityProviderCreateOrUpdateResponse>;
 
+export interface InvalidateGatewayDebugCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed' */
+  gatewayId: string;
+}
+export const InvalidateGatewayDebugCredentialsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      gatewayId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/gateways/{gatewayId}/invalidateDebugCredentials",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "InvalidateGatewayDebugCredentialsRequest",
+}) as any as S.Schema<InvalidateGatewayDebugCredentialsRequest>;
+
+export interface InvalidateGatewayDebugCredentialsResponse {}
+export const InvalidateGatewayDebugCredentialsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "InvalidateGatewayDebugCredentialsResponse",
+  }) as any as S.Schema<InvalidateGatewayDebugCredentialsResponse>;
+
 export interface ListAllPolicyByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -17674,21 +17375,21 @@ export const AllPoliciesContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AllPoliciesContract>;
 
 /** AllPolicies Contract value. */
-export type AllPoliciesListByServiceResponseValueList =
+export type ListAllPolicyByServiceResponseValueList =
   Array<AllPoliciesContract>;
-export const AllPoliciesListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListAllPolicyByServiceResponseValueList = /*@__PURE__*/ S.Array(
   AllPoliciesContract,
-) as any as S.Schema<AllPoliciesListByServiceResponseValueList>;
+) as any as S.Schema<ListAllPolicyByServiceResponseValueList>;
 
 export interface ListAllPolicyByServiceResponse {
   /** AllPolicies Contract value. */
-  value?: AllPoliciesListByServiceResponseValueList;
+  value?: ListAllPolicyByServiceResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListAllPolicyByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(AllPoliciesListByServiceResponseValueList),
+    value: S.optional(ListAllPolicyByServiceResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -17756,14 +17457,14 @@ export const ApiContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ApiContract" }) as any as S.Schema<ApiContract>;
 
 /** Page values. */
-export type ApiListByServiceResponseValueList = Array<ApiContract>;
-export const ApiListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiByServiceResponseValueList = Array<ApiContract>;
+export const ListApiByServiceResponseValueList = /*@__PURE__*/ S.Array(
   ApiContract,
-) as any as S.Schema<ApiListByServiceResponseValueList>;
+) as any as S.Schema<ListApiByServiceResponseValueList>;
 
 export interface ListApiByServiceResponse {
   /** Page values. */
-  value?: ApiListByServiceResponseValueList;
+  value?: ListApiByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -17771,7 +17472,7 @@ export interface ListApiByServiceResponse {
 }
 export const ListApiByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiListByServiceResponseValueList),
+    value: S.optional(ListApiByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -18029,14 +17730,14 @@ export const TagResourceContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TagResourceContract>;
 
 /** Page values. */
-export type ApiListByTagsResponseValueList = Array<TagResourceContract>;
-export const ApiListByTagsResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiByTagsResponseValueList = Array<TagResourceContract>;
+export const ListApiByTagsResponseValueList = /*@__PURE__*/ S.Array(
   TagResourceContract,
-) as any as S.Schema<ApiListByTagsResponseValueList>;
+) as any as S.Schema<ListApiByTagsResponseValueList>;
 
 export interface ListApiByTagsResponse {
   /** Page values. */
-  value?: ApiListByTagsResponseValueList;
+  value?: ListApiByTagsResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -18044,7 +17745,7 @@ export interface ListApiByTagsResponse {
 }
 export const ListApiByTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiListByTagsResponseValueList),
+    value: S.optional(ListApiByTagsResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -18112,16 +17813,16 @@ export const DiagnosticContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiagnosticContract>;
 
 /** Page values. */
-export type ApiDiagnosticListByServiceResponseValueList =
+export type ListApiDiagnosticByServiceResponseValueList =
   Array<DiagnosticContract>;
-export const ApiDiagnosticListByServiceResponseValueList =
+export const ListApiDiagnosticByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     DiagnosticContract,
-  ) as any as S.Schema<ApiDiagnosticListByServiceResponseValueList>;
+  ) as any as S.Schema<ListApiDiagnosticByServiceResponseValueList>;
 
 export interface ListApiDiagnosticByServiceResponse {
   /** Page values. */
-  value?: ApiDiagnosticListByServiceResponseValueList;
+  value?: ListApiDiagnosticByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -18129,7 +17830,7 @@ export interface ListApiDiagnosticByServiceResponse {
 }
 export const ListApiDiagnosticByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiDiagnosticListByServiceResponseValueList),
+    value: S.optional(ListApiDiagnosticByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -18440,16 +18141,16 @@ export const IssueAttachmentContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssueAttachmentContract>;
 
 /** Issue Attachment values. */
-export type ApiIssueAttachmentListByServiceResponseValueList =
+export type ListApiIssueAttachmentByServiceResponseValueList =
   Array<IssueAttachmentContract>;
-export const ApiIssueAttachmentListByServiceResponseValueList =
+export const ListApiIssueAttachmentByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     IssueAttachmentContract,
-  ) as any as S.Schema<ApiIssueAttachmentListByServiceResponseValueList>;
+  ) as any as S.Schema<ListApiIssueAttachmentByServiceResponseValueList>;
 
 export interface ListApiIssueAttachmentByServiceResponse {
   /** Issue Attachment values. */
-  value?: ApiIssueAttachmentListByServiceResponseValueList;
+  value?: ListApiIssueAttachmentByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -18458,7 +18159,7 @@ export interface ListApiIssueAttachmentByServiceResponse {
 export const ListApiIssueAttachmentByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(ApiIssueAttachmentListByServiceResponseValueList),
+      value: S.optional(ListApiIssueAttachmentByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -18527,14 +18228,14 @@ export const IssueContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IssueContract" }) as any as S.Schema<IssueContract>;
 
 /** Issue values. */
-export type ApiIssueListByServiceResponseValueList = Array<IssueContract>;
-export const ApiIssueListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiIssueByServiceResponseValueList = Array<IssueContract>;
+export const ListApiIssueByServiceResponseValueList = /*@__PURE__*/ S.Array(
   IssueContract,
-) as any as S.Schema<ApiIssueListByServiceResponseValueList>;
+) as any as S.Schema<ListApiIssueByServiceResponseValueList>;
 
 export interface ListApiIssueByServiceResponse {
   /** Issue values. */
-  value?: ApiIssueListByServiceResponseValueList;
+  value?: ListApiIssueByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -18542,7 +18243,7 @@ export interface ListApiIssueByServiceResponse {
 }
 export const ListApiIssueByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiIssueListByServiceResponseValueList),
+    value: S.optional(ListApiIssueByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -18613,16 +18314,16 @@ export const IssueCommentContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IssueCommentContract>;
 
 /** Issue Comment values. */
-export type ApiIssueCommentListByServiceResponseValueList =
+export type ListApiIssueCommentByServiceResponseValueList =
   Array<IssueCommentContract>;
-export const ApiIssueCommentListByServiceResponseValueList =
+export const ListApiIssueCommentByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     IssueCommentContract,
-  ) as any as S.Schema<ApiIssueCommentListByServiceResponseValueList>;
+  ) as any as S.Schema<ListApiIssueCommentByServiceResponseValueList>;
 
 export interface ListApiIssueCommentByServiceResponse {
   /** Issue Comment values. */
-  value?: ApiIssueCommentListByServiceResponseValueList;
+  value?: ListApiIssueCommentByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -18631,7 +18332,7 @@ export interface ListApiIssueCommentByServiceResponse {
 export const ListApiIssueCommentByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(ApiIssueCommentListByServiceResponseValueList),
+      value: S.optional(ListApiIssueCommentByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -18965,20 +18666,20 @@ export const ApiManagementServiceListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ApiManagementServiceListResultValueList>;
 
 /** The response of the List API Management services operation. */
-export interface ListApiManagementServiceResult {
+export interface ApiManagementServiceListResult {
   /** Result of the List API Management services operation. */
   value: ApiManagementServiceListResultValueList;
   /** Link to the next set of results. Not empty if Value contains incomplete list of API Management services. */
   nextLink?: string;
 }
-export const ListApiManagementServiceResult = /*@__PURE__*/ S.suspend(() =>
+export const ApiManagementServiceListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: ApiManagementServiceListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListApiManagementServiceResult",
-}) as any as S.Schema<ListApiManagementServiceResult>;
+  identifier: "ApiManagementServiceListResult",
+}) as any as S.Schema<ApiManagementServiceListResult>;
 
 export interface ListApiManagementServiceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19489,23 +19190,23 @@ export const ApiManagementWorkspaceLinksResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApiManagementWorkspaceLinksResource>;
 
 /** Result of the List API Management WorkspaceLinks operation. */
-export type ApiManagementWorkspaceLinksListByServiceResponseValueList =
+export type ListApiManagementWorkspaceLinkByServiceResponseValueList =
   Array<ApiManagementWorkspaceLinksResource>;
-export const ApiManagementWorkspaceLinksListByServiceResponseValueList =
+export const ListApiManagementWorkspaceLinkByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     ApiManagementWorkspaceLinksResource,
-  ) as any as S.Schema<ApiManagementWorkspaceLinksListByServiceResponseValueList>;
+  ) as any as S.Schema<ListApiManagementWorkspaceLinkByServiceResponseValueList>;
 
 export interface ListApiManagementWorkspaceLinkByServiceResponse {
   /** Result of the List API Management WorkspaceLinks operation. */
-  value: ApiManagementWorkspaceLinksListByServiceResponseValueList;
+  value: ListApiManagementWorkspaceLinkByServiceResponseValueList;
   /** Link to the next set of results. Not empty if Value contains incomplete list of API Management services. */
   nextLink?: string;
 }
 export const ListApiManagementWorkspaceLinkByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: ApiManagementWorkspaceLinksListByServiceResponseValueList,
+      value: ListApiManagementWorkspaceLinkByServiceResponseValueList,
       nextLink: S.optional(S.String),
     }),
   ).annotate({
@@ -19575,14 +19276,14 @@ export const OperationContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationContract>;
 
 /** Page values. */
-export type ApiOperationListByApiResponseValueList = Array<OperationContract>;
-export const ApiOperationListByApiResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiOperationByApiResponseValueList = Array<OperationContract>;
+export const ListApiOperationByApiResponseValueList = /*@__PURE__*/ S.Array(
   OperationContract,
-) as any as S.Schema<ApiOperationListByApiResponseValueList>;
+) as any as S.Schema<ListApiOperationByApiResponseValueList>;
 
 export interface ListApiOperationByApiResponse {
   /** Page values. */
-  value?: ApiOperationListByApiResponseValueList;
+  value?: ListApiOperationByApiResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -19590,7 +19291,7 @@ export interface ListApiOperationByApiResponse {
 }
 export const ListApiOperationByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiOperationListByApiResponseValueList),
+    value: S.optional(ListApiOperationByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -19651,16 +19352,16 @@ export const PolicyContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "PolicyContract" }) as any as S.Schema<PolicyContract>;
 
 /** Policy Contract value. */
-export type ApiOperationPolicyListByOperationResponseValueList =
+export type ListApiOperationPolicyByOperationResponseValueList =
   Array<PolicyContract>;
-export const ApiOperationPolicyListByOperationResponseValueList =
+export const ListApiOperationPolicyByOperationResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyContract,
-  ) as any as S.Schema<ApiOperationPolicyListByOperationResponseValueList>;
+  ) as any as S.Schema<ListApiOperationPolicyByOperationResponseValueList>;
 
 export interface ListApiOperationPolicyByOperationResponse {
   /** Policy Contract value. */
-  value?: ApiOperationPolicyListByOperationResponseValueList;
+  value?: ListApiOperationPolicyByOperationResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -19669,7 +19370,7 @@ export interface ListApiOperationPolicyByOperationResponse {
 export const ListApiOperationPolicyByOperationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(ApiOperationPolicyListByOperationResponseValueList),
+      value: S.optional(ListApiOperationPolicyByOperationResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -19706,14 +19407,14 @@ export const ListApiPolicyByApiRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListApiPolicyByApiRequest>;
 
 /** Policy Contract value. */
-export type ApiPolicyListByApiResponseValueList = Array<PolicyContract>;
-export const ApiPolicyListByApiResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiPolicyByApiResponseValueList = Array<PolicyContract>;
+export const ListApiPolicyByApiResponseValueList = /*@__PURE__*/ S.Array(
   PolicyContract,
-) as any as S.Schema<ApiPolicyListByApiResponseValueList>;
+) as any as S.Schema<ListApiPolicyByApiResponseValueList>;
 
 export interface ListApiPolicyByApiResponse {
   /** Policy Contract value. */
-  value?: ApiPolicyListByApiResponseValueList;
+  value?: ListApiPolicyByApiResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -19721,7 +19422,7 @@ export interface ListApiPolicyByApiResponse {
 }
 export const ListApiPolicyByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiPolicyListByApiResponseValueList),
+    value: S.optional(ListApiPolicyByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -19789,14 +19490,14 @@ export const ProductContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductContract>;
 
 /** Page values. */
-export type ApiProductListByApisResponseValueList = Array<ProductContract>;
-export const ApiProductListByApisResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiProductByApisResponseValueList = Array<ProductContract>;
+export const ListApiProductByApisResponseValueList = /*@__PURE__*/ S.Array(
   ProductContract,
-) as any as S.Schema<ApiProductListByApisResponseValueList>;
+) as any as S.Schema<ListApiProductByApisResponseValueList>;
 
 export interface ListApiProductByApisResponse {
   /** Page values. */
-  value?: ApiProductListByApisResponseValueList;
+  value?: ListApiProductByApisResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -19804,13 +19505,97 @@ export interface ListApiProductByApisResponse {
 }
 export const ListApiProductByApisResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiProductListByApisResponseValueList),
+    value: S.optional(ListApiProductByApisResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListApiProductByApisResponse",
 }) as any as S.Schema<ListApiProductByApisResponse>;
+
+export interface ListApiReleaseByServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br>| notes | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |</br> */
+  _filter?: string;
+  /** Number of records to return. */
+  _top?: number;
+  /** Number of records to skip. */
+  _skip?: number;
+}
+export const ListApiReleaseByServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApiReleaseByServiceRequest",
+}) as any as S.Schema<ListApiReleaseByServiceRequest>;
+
+/** ApiRelease details. */
+export interface ApiReleaseContract {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** ApiRelease entity contract properties. */
+  properties?: ApiReleaseContractProperties;
+}
+export const ApiReleaseContract = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiReleaseContractProperties),
+  }),
+).annotate({
+  identifier: "ApiReleaseContract",
+}) as any as S.Schema<ApiReleaseContract>;
+
+/** Page values. */
+export type ListApiReleaseByServiceResponseValueList =
+  Array<ApiReleaseContract>;
+export const ListApiReleaseByServiceResponseValueList = /*@__PURE__*/ S.Array(
+  ApiReleaseContract,
+) as any as S.Schema<ListApiReleaseByServiceResponseValueList>;
+
+export interface ListApiReleaseByServiceResponse {
+  /** Page values. */
+  value?: ListApiReleaseByServiceResponseValueList;
+  /** Total record count number across all pages. */
+  count?: number;
+  /** Next page link if any. */
+  nextLink?: string;
+}
+export const ListApiReleaseByServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListApiReleaseByServiceResponseValueList),
+    count: S.optional(S.Number),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListApiReleaseByServiceResponse",
+}) as any as S.Schema<ListApiReleaseByServiceResponse>;
 
 export interface ListApiRevisionByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19884,15 +19669,15 @@ export const ApiRevisionContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApiRevisionContract>;
 
 /** Page values. */
-export type ApiRevisionListByServiceResponseValueList =
+export type ListApiRevisionByServiceResponseValueList =
   Array<ApiRevisionContract>;
-export const ApiRevisionListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListApiRevisionByServiceResponseValueList = /*@__PURE__*/ S.Array(
   ApiRevisionContract,
-) as any as S.Schema<ApiRevisionListByServiceResponseValueList>;
+) as any as S.Schema<ListApiRevisionByServiceResponseValueList>;
 
 export interface ListApiRevisionByServiceResponse {
   /** Page values. */
-  value?: ApiRevisionListByServiceResponseValueList;
+  value?: ListApiRevisionByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -19900,7 +19685,7 @@ export interface ListApiRevisionByServiceResponse {
 }
 export const ListApiRevisionByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiRevisionListByServiceResponseValueList),
+    value: S.optional(ListApiRevisionByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -19966,14 +19751,14 @@ export const SchemaContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SchemaContract" }) as any as S.Schema<SchemaContract>;
 
 /** API Schema Contract value. */
-export type ApiSchemaListByApiResponseValueList = Array<SchemaContract>;
-export const ApiSchemaListByApiResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiSchemaByApiResponseValueList = Array<SchemaContract>;
+export const ListApiSchemaByApiResponseValueList = /*@__PURE__*/ S.Array(
   SchemaContract,
-) as any as S.Schema<ApiSchemaListByApiResponseValueList>;
+) as any as S.Schema<ListApiSchemaByApiResponseValueList>;
 
 export interface ListApiSchemaByApiResponse {
   /** API Schema Contract value. */
-  value?: ApiSchemaListByApiResponseValueList;
+  value?: ListApiSchemaByApiResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -19981,7 +19766,7 @@ export interface ListApiSchemaByApiResponse {
 }
 export const ListApiSchemaByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiSchemaListByApiResponseValueList),
+    value: S.optional(ListApiSchemaByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -20050,16 +19835,16 @@ export const TagDescriptionContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TagDescriptionContract>;
 
 /** Page values. */
-export type ApiTagDescriptionListByServiceResponseValueList =
+export type ListApiTagDescriptionByServiceResponseValueList =
   Array<TagDescriptionContract>;
-export const ApiTagDescriptionListByServiceResponseValueList =
+export const ListApiTagDescriptionByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     TagDescriptionContract,
-  ) as any as S.Schema<ApiTagDescriptionListByServiceResponseValueList>;
+  ) as any as S.Schema<ListApiTagDescriptionByServiceResponseValueList>;
 
 export interface ListApiTagDescriptionByServiceResponse {
   /** Page values. */
-  value?: ApiTagDescriptionListByServiceResponseValueList;
+  value?: ListApiTagDescriptionByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -20068,13 +19853,95 @@ export interface ListApiTagDescriptionByServiceResponse {
 export const ListApiTagDescriptionByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(ApiTagDescriptionListByServiceResponseValueList),
+      value: S.optional(ListApiTagDescriptionByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
   identifier: "ListApiTagDescriptionByServiceResponse",
 }) as any as S.Schema<ListApiTagDescriptionByServiceResponse>;
+
+export interface ListApiVersionSetByServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br> */
+  _filter?: string;
+  /** Number of records to return. */
+  _top?: number;
+  /** Number of records to skip. */
+  _skip?: number;
+}
+export const ListApiVersionSetByServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApiVersionSetByServiceRequest",
+}) as any as S.Schema<ListApiVersionSetByServiceRequest>;
+
+/** API Version Set Contract details. */
+export interface ApiVersionSetContract {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** API VersionSet contract properties. */
+  properties?: ApiVersionSetContractProperties;
+}
+export const ApiVersionSetContract = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiVersionSetContractProperties),
+  }),
+).annotate({
+  identifier: "ApiVersionSetContract",
+}) as any as S.Schema<ApiVersionSetContract>;
+
+/** Page values. */
+export type ListApiVersionSetByServiceResponseValueList =
+  Array<ApiVersionSetContract>;
+export const ListApiVersionSetByServiceResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ApiVersionSetContract,
+  ) as any as S.Schema<ListApiVersionSetByServiceResponseValueList>;
+
+export interface ListApiVersionSetByServiceResponse {
+  /** Page values. */
+  value?: ListApiVersionSetByServiceResponseValueList;
+  /** Total record count number across all pages. */
+  count?: number;
+  /** Next page link if any. */
+  nextLink?: string;
+}
+export const ListApiVersionSetByServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListApiVersionSetByServiceResponseValueList),
+    count: S.optional(S.Number),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListApiVersionSetByServiceResponse",
+}) as any as S.Schema<ListApiVersionSetByServiceResponse>;
 
 export interface ListApiWikisRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20134,20 +20001,20 @@ export const WikiContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "WikiContract" }) as any as S.Schema<WikiContract>;
 
 /** Page values. */
-export type ApiWikisListResponseValueList = Array<WikiContract>;
-export const ApiWikisListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListApiWikisResponseValueList = Array<WikiContract>;
+export const ListApiWikisResponseValueList = /*@__PURE__*/ S.Array(
   WikiContract,
-) as any as S.Schema<ApiWikisListResponseValueList>;
+) as any as S.Schema<ListApiWikisResponseValueList>;
 
 export interface ListApiWikisResponse {
   /** Page values. */
-  value?: ApiWikisListResponseValueList;
+  value?: ListApiWikisResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListApiWikisResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ApiWikisListResponseValueList),
+    value: S.optional(ListApiWikisResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -20218,16 +20085,16 @@ export const AuthorizationAccessPolicyContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthorizationAccessPolicyContract>;
 
 /** Page values. */
-export type AuthorizationAccessPolicyListByAuthorizationResponseValueList =
+export type ListAuthorizationAccessPolicyByAuthorizationResponseValueList =
   Array<AuthorizationAccessPolicyContract>;
-export const AuthorizationAccessPolicyListByAuthorizationResponseValueList =
+export const ListAuthorizationAccessPolicyByAuthorizationResponseValueList =
   /*@__PURE__*/ S.Array(
     AuthorizationAccessPolicyContract,
-  ) as any as S.Schema<AuthorizationAccessPolicyListByAuthorizationResponseValueList>;
+  ) as any as S.Schema<ListAuthorizationAccessPolicyByAuthorizationResponseValueList>;
 
 export interface ListAuthorizationAccessPolicyByAuthorizationResponse {
   /** Page values. */
-  value?: AuthorizationAccessPolicyListByAuthorizationResponseValueList;
+  value?: ListAuthorizationAccessPolicyByAuthorizationResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -20237,7 +20104,7 @@ export const ListAuthorizationAccessPolicyByAuthorizationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        AuthorizationAccessPolicyListByAuthorizationResponseValueList,
+        ListAuthorizationAccessPolicyByAuthorizationResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -20307,16 +20174,16 @@ export const AuthorizationContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthorizationContract>;
 
 /** Page values. */
-export type AuthorizationListByAuthorizationProviderResponseValueList =
+export type ListAuthorizationByAuthorizationProviderResponseValueList =
   Array<AuthorizationContract>;
-export const AuthorizationListByAuthorizationProviderResponseValueList =
+export const ListAuthorizationByAuthorizationProviderResponseValueList =
   /*@__PURE__*/ S.Array(
     AuthorizationContract,
-  ) as any as S.Schema<AuthorizationListByAuthorizationProviderResponseValueList>;
+  ) as any as S.Schema<ListAuthorizationByAuthorizationProviderResponseValueList>;
 
 export interface ListAuthorizationByAuthorizationProviderResponse {
   /** Page values. */
-  value?: AuthorizationListByAuthorizationProviderResponseValueList;
+  value?: ListAuthorizationByAuthorizationProviderResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -20326,7 +20193,7 @@ export const ListAuthorizationByAuthorizationProviderResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        AuthorizationListByAuthorizationProviderResponseValueList,
+        ListAuthorizationByAuthorizationProviderResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -20393,23 +20260,23 @@ export const AuthorizationProviderContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthorizationProviderContract>;
 
 /** Page values. */
-export type AuthorizationProviderListByServiceResponseValueList =
+export type ListAuthorizationProviderByServiceResponseValueList =
   Array<AuthorizationProviderContract>;
-export const AuthorizationProviderListByServiceResponseValueList =
+export const ListAuthorizationProviderByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     AuthorizationProviderContract,
-  ) as any as S.Schema<AuthorizationProviderListByServiceResponseValueList>;
+  ) as any as S.Schema<ListAuthorizationProviderByServiceResponseValueList>;
 
 export interface ListAuthorizationProviderByServiceResponse {
   /** Page values. */
-  value?: AuthorizationProviderListByServiceResponseValueList;
+  value?: ListAuthorizationProviderByServiceResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListAuthorizationProviderByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(AuthorizationProviderListByServiceResponseValueList),
+      value: S.optional(ListAuthorizationProviderByServiceResponseValueList),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
@@ -20474,16 +20341,16 @@ export const AuthorizationServerContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthorizationServerContract>;
 
 /** Page values. */
-export type AuthorizationServerListByServiceResponseValueList =
+export type ListAuthorizationServerByServiceResponseValueList =
   Array<AuthorizationServerContract>;
-export const AuthorizationServerListByServiceResponseValueList =
+export const ListAuthorizationServerByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     AuthorizationServerContract,
-  ) as any as S.Schema<AuthorizationServerListByServiceResponseValueList>;
+  ) as any as S.Schema<ListAuthorizationServerByServiceResponseValueList>;
 
 export interface ListAuthorizationServerByServiceResponse {
   /** Page values. */
-  value?: AuthorizationServerListByServiceResponseValueList;
+  value?: ListAuthorizationServerByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -20492,7 +20359,7 @@ export interface ListAuthorizationServerByServiceResponse {
 export const ListAuthorizationServerByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(AuthorizationServerListByServiceResponseValueList),
+      value: S.optional(ListAuthorizationServerByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -20605,14 +20472,14 @@ export const BackendContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BackendContract>;
 
 /** Backend values. */
-export type BackendListByServiceResponseValueList = Array<BackendContract>;
-export const BackendListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListBackendByServiceResponseValueList = Array<BackendContract>;
+export const ListBackendByServiceResponseValueList = /*@__PURE__*/ S.Array(
   BackendContract,
-) as any as S.Schema<BackendListByServiceResponseValueList>;
+) as any as S.Schema<ListBackendByServiceResponseValueList>;
 
 export interface ListBackendByServiceResponse {
   /** Backend values. */
-  value?: BackendListByServiceResponseValueList;
+  value?: ListBackendByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -20620,7 +20487,7 @@ export interface ListBackendByServiceResponse {
 }
 export const ListBackendByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(BackendListByServiceResponseValueList),
+    value: S.optional(ListBackendByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -20680,14 +20547,14 @@ export const CacheContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "CacheContract" }) as any as S.Schema<CacheContract>;
 
 /** Page values. */
-export type CacheListByServiceResponseValueList = Array<CacheContract>;
-export const CacheListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListCacheByServiceResponseValueList = Array<CacheContract>;
+export const ListCacheByServiceResponseValueList = /*@__PURE__*/ S.Array(
   CacheContract,
-) as any as S.Schema<CacheListByServiceResponseValueList>;
+) as any as S.Schema<ListCacheByServiceResponseValueList>;
 
 export interface ListCacheByServiceResponse {
   /** Page values. */
-  value?: CacheListByServiceResponseValueList;
+  value?: ListCacheByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -20695,7 +20562,7 @@ export interface ListCacheByServiceResponse {
 }
 export const ListCacheByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(CacheListByServiceResponseValueList),
+    value: S.optional(ListCacheByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -20763,15 +20630,15 @@ export const CertificateContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CertificateContract>;
 
 /** Page values. */
-export type CertificateListByServiceResponseValueList =
+export type ListCertificateByServiceResponseValueList =
   Array<CertificateContract>;
-export const CertificateListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListCertificateByServiceResponseValueList = /*@__PURE__*/ S.Array(
   CertificateContract,
-) as any as S.Schema<CertificateListByServiceResponseValueList>;
+) as any as S.Schema<ListCertificateByServiceResponseValueList>;
 
 export interface ListCertificateByServiceResponse {
   /** Page values. */
-  value?: CertificateListByServiceResponseValueList;
+  value?: ListCertificateByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -20779,7 +20646,7 @@ export interface ListCertificateByServiceResponse {
 }
 export const ListCertificateByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(CertificateListByServiceResponseValueList),
+    value: S.optional(ListCertificateByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -20838,21 +20705,21 @@ export const ContentItemContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ContentItemContract>;
 
 /** Collection of content items. */
-export type ContentItemListByServiceResponseValueList =
+export type ListContentItemByServiceResponseValueList =
   Array<ContentItemContract>;
-export const ContentItemListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListContentItemByServiceResponseValueList = /*@__PURE__*/ S.Array(
   ContentItemContract,
-) as any as S.Schema<ContentItemListByServiceResponseValueList>;
+) as any as S.Schema<ListContentItemByServiceResponseValueList>;
 
 export interface ListContentItemByServiceResponse {
   /** Collection of content items. */
-  value?: ContentItemListByServiceResponseValueList;
+  value?: ListContentItemByServiceResponseValueList;
   /** Next page link, if any. */
   nextLink?: string;
 }
 export const ListContentItemByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ContentItemListByServiceResponseValueList),
+    value: S.optional(ListContentItemByServiceResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -20907,21 +20774,21 @@ export const ContentTypeContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ContentTypeContract>;
 
 /** Collection of content types. */
-export type ContentTypeListByServiceResponseValueList =
+export type ListContentTypeByServiceResponseValueList =
   Array<ContentTypeContract>;
-export const ContentTypeListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListContentTypeByServiceResponseValueList = /*@__PURE__*/ S.Array(
   ContentTypeContract,
-) as any as S.Schema<ContentTypeListByServiceResponseValueList>;
+) as any as S.Schema<ListContentTypeByServiceResponseValueList>;
 
 export interface ListContentTypeByServiceResponse {
   /** Collection of content types. */
-  value?: ContentTypeListByServiceResponseValueList;
+  value?: ListContentTypeByServiceResponseValueList;
   /** Next page link, if any. */
   nextLink?: string;
 }
 export const ListContentTypeByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ContentTypeListByServiceResponseValueList),
+    value: S.optional(ListContentTypeByServiceResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -20974,23 +20841,23 @@ export const DeletedServiceContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeletedServiceContract>;
 
 /** Page values. */
-export type DeletedServicesListBySubscriptionResponseValueList =
+export type ListDeletedServiceBySubscriptionResponseValueList =
   Array<DeletedServiceContract>;
-export const DeletedServicesListBySubscriptionResponseValueList =
+export const ListDeletedServiceBySubscriptionResponseValueList =
   /*@__PURE__*/ S.Array(
     DeletedServiceContract,
-  ) as any as S.Schema<DeletedServicesListBySubscriptionResponseValueList>;
+  ) as any as S.Schema<ListDeletedServiceBySubscriptionResponseValueList>;
 
 export interface ListDeletedServiceBySubscriptionResponse {
   /** Page values. */
-  value?: DeletedServicesListBySubscriptionResponseValueList;
+  value?: ListDeletedServiceBySubscriptionResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListDeletedServiceBySubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(DeletedServicesListBySubscriptionResponseValueList),
+      value: S.optional(ListDeletedServiceBySubscriptionResponseValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
@@ -21032,15 +20899,15 @@ export const ListDiagnosticByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListDiagnosticByServiceRequest>;
 
 /** Page values. */
-export type DiagnosticListByServiceResponseValueList =
+export type ListDiagnosticByServiceResponseValueList =
   Array<DiagnosticContract>;
-export const DiagnosticListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListDiagnosticByServiceResponseValueList = /*@__PURE__*/ S.Array(
   DiagnosticContract,
-) as any as S.Schema<DiagnosticListByServiceResponseValueList>;
+) as any as S.Schema<ListDiagnosticByServiceResponseValueList>;
 
 export interface ListDiagnosticByServiceResponse {
   /** Page values. */
-  value?: DiagnosticListByServiceResponseValueList;
+  value?: ListDiagnosticByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -21048,7 +20915,7 @@ export interface ListDiagnosticByServiceResponse {
 }
 export const ListDiagnosticByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(DiagnosticListByServiceResponseValueList),
+    value: S.optional(ListDiagnosticByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -21113,22 +20980,22 @@ export const DocumentationContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DocumentationContract>;
 
 /** Page values. */
-export type DocumentationListByServiceResponseValueList =
+export type ListDocumentationByServiceResponseValueList =
   Array<DocumentationContract>;
-export const DocumentationListByServiceResponseValueList =
+export const ListDocumentationByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     DocumentationContract,
-  ) as any as S.Schema<DocumentationListByServiceResponseValueList>;
+  ) as any as S.Schema<ListDocumentationByServiceResponseValueList>;
 
 export interface ListDocumentationByServiceResponse {
   /** Page values. */
-  value?: DocumentationListByServiceResponseValueList;
+  value?: ListDocumentationByServiceResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListDocumentationByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(DocumentationListByServiceResponseValueList),
+    value: S.optional(ListDocumentationByServiceResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -21192,16 +21059,16 @@ export const EmailTemplateContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EmailTemplateContract>;
 
 /** Page values. */
-export type EmailTemplateListByServiceResponseValueList =
+export type ListEmailTemplateByServiceResponseValueList =
   Array<EmailTemplateContract>;
-export const EmailTemplateListByServiceResponseValueList =
+export const ListEmailTemplateByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     EmailTemplateContract,
-  ) as any as S.Schema<EmailTemplateListByServiceResponseValueList>;
+  ) as any as S.Schema<ListEmailTemplateByServiceResponseValueList>;
 
 export interface ListEmailTemplateByServiceResponse {
   /** Page values. */
-  value?: EmailTemplateListByServiceResponseValueList;
+  value?: ListEmailTemplateByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -21209,7 +21076,7 @@ export interface ListEmailTemplateByServiceResponse {
 }
 export const ListEmailTemplateByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(EmailTemplateListByServiceResponseValueList),
+    value: S.optional(ListEmailTemplateByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -21255,14 +21122,14 @@ export const ListGatewayApiByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGatewayApiByServiceRequest>;
 
 /** Page values. */
-export type GatewayApiListByServiceResponseValueList = Array<ApiContract>;
-export const GatewayApiListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListGatewayApiByServiceResponseValueList = Array<ApiContract>;
+export const ListGatewayApiByServiceResponseValueList = /*@__PURE__*/ S.Array(
   ApiContract,
-) as any as S.Schema<GatewayApiListByServiceResponseValueList>;
+) as any as S.Schema<ListGatewayApiByServiceResponseValueList>;
 
 export interface ListGatewayApiByServiceResponse {
   /** Page values. */
-  value?: GatewayApiListByServiceResponseValueList;
+  value?: ListGatewayApiByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -21270,7 +21137,7 @@ export interface ListGatewayApiByServiceResponse {
 }
 export const ListGatewayApiByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(GatewayApiListByServiceResponseValueList),
+    value: S.optional(ListGatewayApiByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -21335,14 +21202,14 @@ export const GatewayContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GatewayContract>;
 
 /** Page values. */
-export type GatewayListByServiceResponseValueList = Array<GatewayContract>;
-export const GatewayListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListGatewayByServiceResponseValueList = Array<GatewayContract>;
+export const ListGatewayByServiceResponseValueList = /*@__PURE__*/ S.Array(
   GatewayContract,
-) as any as S.Schema<GatewayListByServiceResponseValueList>;
+) as any as S.Schema<ListGatewayByServiceResponseValueList>;
 
 export interface ListGatewayByServiceResponse {
   /** Page values. */
-  value?: GatewayListByServiceResponseValueList;
+  value?: ListGatewayByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -21350,7 +21217,7 @@ export interface ListGatewayByServiceResponse {
 }
 export const ListGatewayByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(GatewayListByServiceResponseValueList),
+    value: S.optional(ListGatewayByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -21419,16 +21286,16 @@ export const GatewayCertificateAuthorityContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GatewayCertificateAuthorityContract>;
 
 /** Page values. */
-export type GatewayCertificateAuthorityListByServiceResponseValueList =
+export type ListGatewayCertificateAuthorityByServiceResponseValueList =
   Array<GatewayCertificateAuthorityContract>;
-export const GatewayCertificateAuthorityListByServiceResponseValueList =
+export const ListGatewayCertificateAuthorityByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     GatewayCertificateAuthorityContract,
-  ) as any as S.Schema<GatewayCertificateAuthorityListByServiceResponseValueList>;
+  ) as any as S.Schema<ListGatewayCertificateAuthorityByServiceResponseValueList>;
 
 export interface ListGatewayCertificateAuthorityByServiceResponse {
   /** Page values. */
-  value?: GatewayCertificateAuthorityListByServiceResponseValueList;
+  value?: ListGatewayCertificateAuthorityByServiceResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
@@ -21436,7 +21303,7 @@ export const ListGatewayCertificateAuthorityByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        GatewayCertificateAuthorityListByServiceResponseValueList,
+        ListGatewayCertificateAuthorityByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
@@ -21445,18 +21312,18 @@ export const ListGatewayCertificateAuthorityByServiceResponse =
   }) as any as S.Schema<ListGatewayCertificateAuthorityByServiceResponse>;
 
 /** Purpose of debug credential. */
-export type GatewayListDebugCredentialsRequestPurposesItem = "tracing";
-export const GatewayListDebugCredentialsRequestPurposesItem =
+export type ListGatewayDebugCredentialsRequestPurposesItem = "tracing";
+export const ListGatewayDebugCredentialsRequestPurposesItem =
   /*@__PURE__*/ S.String;
 
 /** Purposes of debug credential. */
-export type GatewayListDebugCredentialsRequestPurposesList = Array<
-  GatewayListDebugCredentialsRequestPurposesItem | (string & {})
+export type ListGatewayDebugCredentialsRequestPurposesList = Array<
+  ListGatewayDebugCredentialsRequestPurposesItem | (string & {})
 >;
-export const GatewayListDebugCredentialsRequestPurposesList =
+export const ListGatewayDebugCredentialsRequestPurposesList =
   /*@__PURE__*/ S.Array(
-    GatewayListDebugCredentialsRequestPurposesItem,
-  ) as any as S.Schema<GatewayListDebugCredentialsRequestPurposesList>;
+    ListGatewayDebugCredentialsRequestPurposesItem,
+  ) as any as S.Schema<ListGatewayDebugCredentialsRequestPurposesList>;
 
 export interface ListGatewayDebugCredentialsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -21470,7 +21337,7 @@ export interface ListGatewayDebugCredentialsRequest {
   /** Credentials expiration in ISO8601 format. Maximum duration of the credentials is PT1H. When property is not specified, them value PT1H is used. */
   credentialsExpireAfter?: string;
   /** Purposes of debug credential. */
-  purposes: GatewayListDebugCredentialsRequestPurposesList;
+  purposes: ListGatewayDebugCredentialsRequestPurposesList;
   /** Full resource Id of an API. */
   apiId: string;
 }
@@ -21481,7 +21348,7 @@ export const ListGatewayDebugCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     gatewayId: S.String.pipe(T.Label()),
     credentialsExpireAfter: S.optional(S.String),
-    purposes: GatewayListDebugCredentialsRequestPurposesList,
+    purposes: ListGatewayDebugCredentialsRequestPurposesList,
     apiId: S.String,
   }).pipe(
     T.Http({
@@ -21569,16 +21436,16 @@ export const GatewayHostnameConfigurationContract = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GatewayHostnameConfigurationContract>;
 
 /** Page values. */
-export type GatewayHostnameConfigurationListByServiceResponseValueList =
+export type ListGatewayHostnameConfigurationByServiceResponseValueList =
   Array<GatewayHostnameConfigurationContract>;
-export const GatewayHostnameConfigurationListByServiceResponseValueList =
+export const ListGatewayHostnameConfigurationByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     GatewayHostnameConfigurationContract,
-  ) as any as S.Schema<GatewayHostnameConfigurationListByServiceResponseValueList>;
+  ) as any as S.Schema<ListGatewayHostnameConfigurationByServiceResponseValueList>;
 
 export interface ListGatewayHostnameConfigurationByServiceResponse {
   /** Page values. */
-  value?: GatewayHostnameConfigurationListByServiceResponseValueList;
+  value?: ListGatewayHostnameConfigurationByServiceResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
@@ -21586,7 +21453,7 @@ export const ListGatewayHostnameConfigurationByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        GatewayHostnameConfigurationListByServiceResponseValueList,
+        ListGatewayHostnameConfigurationByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
@@ -21669,17 +21536,17 @@ export const ListGatewayTraceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGatewayTraceRequest>;
 
 /** Trace collected in gateway. */
-export type GatewayListTraceResponseBodyMap = {
+export type ListGatewayTraceResponseBodyMap = {
   [key: string]: unknown | undefined;
 };
-export const GatewayListTraceResponseBodyMap = /*@__PURE__*/ S.Record(
+export const ListGatewayTraceResponseBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<GatewayListTraceResponseBodyMap>;
+) as any as S.Schema<ListGatewayTraceResponseBodyMap>;
 
-export type ListGatewayTraceResponse = GatewayListTraceResponseBodyMap;
+export type ListGatewayTraceResponse = ListGatewayTraceResponseBodyMap;
 export const ListGatewayTraceResponse = /*@__PURE__*/ S.suspend(() =>
-  GatewayListTraceResponseBodyMap.pipe(T.RawResponseRoot()),
+  ListGatewayTraceResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListGatewayTraceResponse",
 }) as any as S.Schema<ListGatewayTraceResponse>;
@@ -21741,15 +21608,15 @@ export const GlobalSchemaContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GlobalSchemaContract>;
 
 /** Global Schema Contract value. */
-export type GlobalSchemaListByServiceResponseValueList =
+export type ListGlobalSchemaByServiceResponseValueList =
   Array<GlobalSchemaContract>;
-export const GlobalSchemaListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListGlobalSchemaByServiceResponseValueList = /*@__PURE__*/ S.Array(
   GlobalSchemaContract,
-) as any as S.Schema<GlobalSchemaListByServiceResponseValueList>;
+) as any as S.Schema<ListGlobalSchemaByServiceResponseValueList>;
 
 export interface ListGlobalSchemaByServiceResponse {
   /** Global Schema Contract value. */
-  value?: GlobalSchemaListByServiceResponseValueList;
+  value?: ListGlobalSchemaByServiceResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -21757,7 +21624,7 @@ export interface ListGlobalSchemaByServiceResponse {
 }
 export const ListGlobalSchemaByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(GlobalSchemaListByServiceResponseValueList),
+    value: S.optional(ListGlobalSchemaByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -21765,7 +21632,7 @@ export const ListGlobalSchemaByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListGlobalSchemaByServiceResponse",
 }) as any as S.Schema<ListGlobalSchemaByServiceResponse>;
 
-export interface ListGraphQlApiResolverByApiRequest {
+export interface ListGraphQLApiResolverByApiRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21781,7 +21648,7 @@ export interface ListGraphQlApiResolverByApiRequest {
   /** Number of records to skip. */
   _skip?: number;
 }
-export const ListGraphQlApiResolverByApiRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGraphQLApiResolverByApiRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -21799,8 +21666,8 @@ export const ListGraphQlApiResolverByApiRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListGraphQlApiResolverByApiRequest",
-}) as any as S.Schema<ListGraphQlApiResolverByApiRequest>;
+  identifier: "ListGraphQLApiResolverByApiRequest",
+}) as any as S.Schema<ListGraphQLApiResolverByApiRequest>;
 
 /** GraphQL API Resolver details. */
 export interface ResolverContract {
@@ -21825,32 +21692,32 @@ export const ResolverContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResolverContract>;
 
 /** Page values. */
-export type GraphQLApiResolverListByApiResponseValueList =
+export type ListGraphQLApiResolverByApiResponseValueList =
   Array<ResolverContract>;
-export const GraphQLApiResolverListByApiResponseValueList =
+export const ListGraphQLApiResolverByApiResponseValueList =
   /*@__PURE__*/ S.Array(
     ResolverContract,
-  ) as any as S.Schema<GraphQLApiResolverListByApiResponseValueList>;
+  ) as any as S.Schema<ListGraphQLApiResolverByApiResponseValueList>;
 
-export interface ListGraphQlApiResolverByApiResponse {
+export interface ListGraphQLApiResolverByApiResponse {
   /** Page values. */
-  value?: GraphQLApiResolverListByApiResponseValueList;
+  value?: ListGraphQLApiResolverByApiResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
   nextLink?: string;
 }
-export const ListGraphQlApiResolverByApiResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListGraphQLApiResolverByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(GraphQLApiResolverListByApiResponseValueList),
+    value: S.optional(ListGraphQLApiResolverByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListGraphQlApiResolverByApiResponse",
-}) as any as S.Schema<ListGraphQlApiResolverByApiResponse>;
+  identifier: "ListGraphQLApiResolverByApiResponse",
+}) as any as S.Schema<ListGraphQLApiResolverByApiResponse>;
 
-export interface ListGraphQlApiResolverPolicyByResolverRequest {
+export interface ListGraphQLApiResolverPolicyByResolverRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21862,7 +21729,7 @@ export interface ListGraphQlApiResolverPolicyByResolverRequest {
   /** Resolver identifier within a GraphQL API. Must be unique in the current API Management service instance. */
   resolverId: string;
 }
-export const ListGraphQlApiResolverPolicyByResolverRequest =
+export const ListGraphQLApiResolverPolicyByResolverRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -21879,37 +21746,37 @@ export const ListGraphQlApiResolverPolicyByResolverRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListGraphQlApiResolverPolicyByResolverRequest",
-  }) as any as S.Schema<ListGraphQlApiResolverPolicyByResolverRequest>;
+    identifier: "ListGraphQLApiResolverPolicyByResolverRequest",
+  }) as any as S.Schema<ListGraphQLApiResolverPolicyByResolverRequest>;
 
 /** Policy Contract value. */
-export type GraphQLApiResolverPolicyListByResolverResponseValueList =
+export type ListGraphQLApiResolverPolicyByResolverResponseValueList =
   Array<PolicyContract>;
-export const GraphQLApiResolverPolicyListByResolverResponseValueList =
+export const ListGraphQLApiResolverPolicyByResolverResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyContract,
-  ) as any as S.Schema<GraphQLApiResolverPolicyListByResolverResponseValueList>;
+  ) as any as S.Schema<ListGraphQLApiResolverPolicyByResolverResponseValueList>;
 
-export interface ListGraphQlApiResolverPolicyByResolverResponse {
+export interface ListGraphQLApiResolverPolicyByResolverResponse {
   /** Policy Contract value. */
-  value?: GraphQLApiResolverPolicyListByResolverResponseValueList;
+  value?: ListGraphQLApiResolverPolicyByResolverResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
   nextLink?: string;
 }
-export const ListGraphQlApiResolverPolicyByResolverResponse =
+export const ListGraphQLApiResolverPolicyByResolverResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        GraphQLApiResolverPolicyListByResolverResponseValueList,
+        ListGraphQLApiResolverPolicyByResolverResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListGraphQlApiResolverPolicyByResolverResponse",
-  }) as any as S.Schema<ListGraphQlApiResolverPolicyByResolverResponse>;
+    identifier: "ListGraphQLApiResolverPolicyByResolverResponse",
+  }) as any as S.Schema<ListGraphQLApiResolverPolicyByResolverResponse>;
 
 export interface ListGroupByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -21966,14 +21833,14 @@ export const GroupContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GroupContract" }) as any as S.Schema<GroupContract>;
 
 /** Page values. */
-export type GroupListByServiceResponseValueList = Array<GroupContract>;
-export const GroupListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListGroupByServiceResponseValueList = Array<GroupContract>;
+export const ListGroupByServiceResponseValueList = /*@__PURE__*/ S.Array(
   GroupContract,
-) as any as S.Schema<GroupListByServiceResponseValueList>;
+) as any as S.Schema<ListGroupByServiceResponseValueList>;
 
 export interface ListGroupByServiceResponse {
   /** Page values. */
-  value?: GroupListByServiceResponseValueList;
+  value?: ListGroupByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -21981,7 +21848,7 @@ export interface ListGroupByServiceResponse {
 }
 export const ListGroupByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(GroupListByServiceResponseValueList),
+    value: S.optional(ListGroupByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -22047,14 +21914,14 @@ export const UserContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "UserContract" }) as any as S.Schema<UserContract>;
 
 /** Page values. */
-export type GroupUserListResponseValueList = Array<UserContract>;
-export const GroupUserListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListGroupUserResponseValueList = Array<UserContract>;
+export const ListGroupUserResponseValueList = /*@__PURE__*/ S.Array(
   UserContract,
-) as any as S.Schema<GroupUserListResponseValueList>;
+) as any as S.Schema<ListGroupUserResponseValueList>;
 
 export interface ListGroupUserResponse {
   /** Page values. */
-  value?: GroupUserListResponseValueList;
+  value?: ListGroupUserResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22062,7 +21929,7 @@ export interface ListGroupUserResponse {
 }
 export const ListGroupUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(GroupUserListResponseValueList),
+    value: S.optional(ListGroupUserResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -22119,16 +21986,16 @@ export const IdentityProviderContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<IdentityProviderContract>;
 
 /** Identity Provider configuration values. */
-export type IdentityProviderListByServiceResponseValueList =
+export type ListIdentityProviderByServiceResponseValueList =
   Array<IdentityProviderContract>;
-export const IdentityProviderListByServiceResponseValueList =
+export const ListIdentityProviderByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     IdentityProviderContract,
-  ) as any as S.Schema<IdentityProviderListByServiceResponseValueList>;
+  ) as any as S.Schema<ListIdentityProviderByServiceResponseValueList>;
 
 export interface ListIdentityProviderByServiceResponse {
   /** Identity Provider configuration values. */
-  value?: IdentityProviderListByServiceResponseValueList;
+  value?: ListIdentityProviderByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22137,7 +22004,7 @@ export interface ListIdentityProviderByServiceResponse {
 export const ListIdentityProviderByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(IdentityProviderListByServiceResponseValueList),
+      value: S.optional(ListIdentityProviderByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -22145,14 +22012,14 @@ export const ListIdentityProviderByServiceResponse = /*@__PURE__*/ S.suspend(
   identifier: "ListIdentityProviderByServiceResponse",
 }) as any as S.Schema<ListIdentityProviderByServiceResponse>;
 
-export type IdentityProviderListSecretsRequestIdentityProviderName =
+export type ListIdentityProviderSecretsRequestIdentityProviderName =
   | "facebook"
   | "google"
   | "microsoft"
   | "twitter"
   | "aad"
   | "aadB2C";
-export const IdentityProviderListSecretsRequestIdentityProviderName =
+export const ListIdentityProviderSecretsRequestIdentityProviderName =
   /*@__PURE__*/ S.String;
 
 export interface ListIdentityProviderSecretsRequest {
@@ -22164,7 +22031,7 @@ export interface ListIdentityProviderSecretsRequest {
   serviceName: string;
   /** Identity Provider Type identifier. */
   identityProviderName:
-    | IdentityProviderListSecretsRequestIdentityProviderName
+    | ListIdentityProviderSecretsRequestIdentityProviderName
     | (string & {});
 }
 export const ListIdentityProviderSecretsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -22173,7 +22040,7 @@ export const ListIdentityProviderSecretsRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     identityProviderName:
-      IdentityProviderListSecretsRequestIdentityProviderName.pipe(T.Label()),
+      ListIdentityProviderSecretsRequestIdentityProviderName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -22233,14 +22100,14 @@ export const ListIssueByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListIssueByServiceRequest>;
 
 /** Issue values. */
-export type IssueListByServiceResponseValueList = Array<IssueContract>;
-export const IssueListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListIssueByServiceResponseValueList = Array<IssueContract>;
+export const ListIssueByServiceResponseValueList = /*@__PURE__*/ S.Array(
   IssueContract,
-) as any as S.Schema<IssueListByServiceResponseValueList>;
+) as any as S.Schema<ListIssueByServiceResponseValueList>;
 
 export interface ListIssueByServiceResponse {
   /** Issue values. */
-  value?: IssueListByServiceResponseValueList;
+  value?: ListIssueByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22248,7 +22115,7 @@ export interface ListIssueByServiceResponse {
 }
 export const ListIssueByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(IssueListByServiceResponseValueList),
+    value: S.optional(ListIssueByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -22311,14 +22178,14 @@ export const LoggerContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "LoggerContract" }) as any as S.Schema<LoggerContract>;
 
 /** Logger values. */
-export type LoggerListByServiceResponseValueList = Array<LoggerContract>;
-export const LoggerListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListLoggerByServiceResponseValueList = Array<LoggerContract>;
+export const ListLoggerByServiceResponseValueList = /*@__PURE__*/ S.Array(
   LoggerContract,
-) as any as S.Schema<LoggerListByServiceResponseValueList>;
+) as any as S.Schema<ListLoggerByServiceResponseValueList>;
 
 export interface ListLoggerByServiceResponse {
   /** Logger values. */
-  value?: LoggerListByServiceResponseValueList;
+  value?: ListLoggerByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22326,7 +22193,7 @@ export interface ListLoggerByServiceResponse {
 }
 export const ListLoggerByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(LoggerListByServiceResponseValueList),
+    value: S.optional(ListLoggerByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -22394,15 +22261,15 @@ export const NamedValueContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamedValueContract>;
 
 /** Page values. */
-export type NamedValueListByServiceResponseValueList =
+export type ListNamedValueByServiceResponseValueList =
   Array<NamedValueContract>;
-export const NamedValueListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListNamedValueByServiceResponseValueList = /*@__PURE__*/ S.Array(
   NamedValueContract,
-) as any as S.Schema<NamedValueListByServiceResponseValueList>;
+) as any as S.Schema<ListNamedValueByServiceResponseValueList>;
 
 export interface ListNamedValueByServiceResponse {
   /** Page values. */
-  value?: NamedValueListByServiceResponseValueList;
+  value?: ListNamedValueByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22410,7 +22277,7 @@ export interface ListNamedValueByServiceResponse {
 }
 export const ListNamedValueByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(NamedValueListByServiceResponseValueList),
+    value: S.optional(ListNamedValueByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -22596,16 +22463,16 @@ export const NetworkStatusContractByLocation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkStatusContractByLocation>;
 
 /** List of Network Status values. */
-export type NetworkStatusListByServiceResponseBodyList =
+export type ListNetworkStatusByServiceResponseBodyList =
   Array<NetworkStatusContractByLocation>;
-export const NetworkStatusListByServiceResponseBodyList = /*@__PURE__*/ S.Array(
+export const ListNetworkStatusByServiceResponseBodyList = /*@__PURE__*/ S.Array(
   NetworkStatusContractByLocation,
-) as any as S.Schema<NetworkStatusListByServiceResponseBodyList>;
+) as any as S.Schema<ListNetworkStatusByServiceResponseBodyList>;
 
 export type ListNetworkStatusByServiceResponse =
-  NetworkStatusListByServiceResponseBodyList;
+  ListNetworkStatusByServiceResponseBodyList;
 export const ListNetworkStatusByServiceResponse = /*@__PURE__*/ S.suspend(() =>
-  NetworkStatusListByServiceResponseBodyList.pipe(T.RawResponseRoot()),
+  ListNetworkStatusByServiceResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListNetworkStatusByServiceResponse",
 }) as any as S.Schema<ListNetworkStatusByServiceResponse>;
@@ -22664,15 +22531,15 @@ export const NotificationContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NotificationContract>;
 
 /** Page values. */
-export type NotificationListByServiceResponseValueList =
+export type ListNotificationByServiceResponseValueList =
   Array<NotificationContract>;
-export const NotificationListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListNotificationByServiceResponseValueList = /*@__PURE__*/ S.Array(
   NotificationContract,
-) as any as S.Schema<NotificationListByServiceResponseValueList>;
+) as any as S.Schema<ListNotificationByServiceResponseValueList>;
 
 export interface ListNotificationByServiceResponse {
   /** Page values. */
-  value?: NotificationListByServiceResponseValueList;
+  value?: ListNotificationByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22680,7 +22547,7 @@ export interface ListNotificationByServiceResponse {
 }
 export const ListNotificationByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(NotificationListByServiceResponseValueList),
+    value: S.optional(ListNotificationByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -22688,7 +22555,7 @@ export const ListNotificationByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListNotificationByServiceResponse",
 }) as any as S.Schema<ListNotificationByServiceResponse>;
 
-export type NotificationRecipientEmailListByNotificationRequestNotificationName =
+export type ListNotificationRecipientEmailByNotificationRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -22696,7 +22563,7 @@ export type NotificationRecipientEmailListByNotificationRequestNotificationName 
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const NotificationRecipientEmailListByNotificationRequestNotificationName =
+export const ListNotificationRecipientEmailByNotificationRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface ListNotificationRecipientEmailByNotificationRequest {
@@ -22708,7 +22575,7 @@ export interface ListNotificationRecipientEmailByNotificationRequest {
   serviceName: string;
   /** Notification Name Identifier. */
   notificationName:
-    | NotificationRecipientEmailListByNotificationRequestNotificationName
+    | ListNotificationRecipientEmailByNotificationRequestNotificationName
     | (string & {});
 }
 export const ListNotificationRecipientEmailByNotificationRequest =
@@ -22718,7 +22585,7 @@ export const ListNotificationRecipientEmailByNotificationRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       serviceName: S.String.pipe(T.Label()),
       notificationName:
-        NotificationRecipientEmailListByNotificationRequestNotificationName.pipe(
+        ListNotificationRecipientEmailByNotificationRequestNotificationName.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -22769,16 +22636,16 @@ export const RecipientEmailContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RecipientEmailContract>;
 
 /** Page values. */
-export type NotificationRecipientEmailListByNotificationResponseValueList =
+export type ListNotificationRecipientEmailByNotificationResponseValueList =
   Array<RecipientEmailContract>;
-export const NotificationRecipientEmailListByNotificationResponseValueList =
+export const ListNotificationRecipientEmailByNotificationResponseValueList =
   /*@__PURE__*/ S.Array(
     RecipientEmailContract,
-  ) as any as S.Schema<NotificationRecipientEmailListByNotificationResponseValueList>;
+  ) as any as S.Schema<ListNotificationRecipientEmailByNotificationResponseValueList>;
 
 export interface ListNotificationRecipientEmailByNotificationResponse {
   /** Page values. */
-  value?: NotificationRecipientEmailListByNotificationResponseValueList;
+  value?: ListNotificationRecipientEmailByNotificationResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22788,7 +22655,7 @@ export const ListNotificationRecipientEmailByNotificationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        NotificationRecipientEmailListByNotificationResponseValueList,
+        ListNotificationRecipientEmailByNotificationResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -22797,7 +22664,7 @@ export const ListNotificationRecipientEmailByNotificationResponse =
     identifier: "ListNotificationRecipientEmailByNotificationResponse",
   }) as any as S.Schema<ListNotificationRecipientEmailByNotificationResponse>;
 
-export type NotificationRecipientUserListByNotificationRequestNotificationName =
+export type ListNotificationRecipientUserByNotificationRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -22805,7 +22672,7 @@ export type NotificationRecipientUserListByNotificationRequestNotificationName =
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const NotificationRecipientUserListByNotificationRequestNotificationName =
+export const ListNotificationRecipientUserByNotificationRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface ListNotificationRecipientUserByNotificationRequest {
@@ -22817,7 +22684,7 @@ export interface ListNotificationRecipientUserByNotificationRequest {
   serviceName: string;
   /** Notification Name Identifier. */
   notificationName:
-    | NotificationRecipientUserListByNotificationRequestNotificationName
+    | ListNotificationRecipientUserByNotificationRequestNotificationName
     | (string & {});
 }
 export const ListNotificationRecipientUserByNotificationRequest =
@@ -22827,7 +22694,7 @@ export const ListNotificationRecipientUserByNotificationRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       serviceName: S.String.pipe(T.Label()),
       notificationName:
-        NotificationRecipientUserListByNotificationRequestNotificationName.pipe(
+        ListNotificationRecipientUserByNotificationRequestNotificationName.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -22878,16 +22745,16 @@ export const RecipientUserContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RecipientUserContract>;
 
 /** Page values. */
-export type NotificationRecipientUserListByNotificationResponseValueList =
+export type ListNotificationRecipientUserByNotificationResponseValueList =
   Array<RecipientUserContract>;
-export const NotificationRecipientUserListByNotificationResponseValueList =
+export const ListNotificationRecipientUserByNotificationResponseValueList =
   /*@__PURE__*/ S.Array(
     RecipientUserContract,
-  ) as any as S.Schema<NotificationRecipientUserListByNotificationResponseValueList>;
+  ) as any as S.Schema<ListNotificationRecipientUserByNotificationResponseValueList>;
 
 export interface ListNotificationRecipientUserByNotificationResponse {
   /** Page values. */
-  value?: NotificationRecipientUserListByNotificationResponseValueList;
+  value?: ListNotificationRecipientUserByNotificationResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22897,7 +22764,7 @@ export const ListNotificationRecipientUserByNotificationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        NotificationRecipientUserListByNotificationResponseValueList,
+        ListNotificationRecipientUserByNotificationResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -22964,16 +22831,16 @@ export const OpenidConnectProviderContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OpenidConnectProviderContract>;
 
 /** Page values. */
-export type OpenIdConnectProviderListByServiceResponseValueList =
+export type ListOpenIdConnectProviderByServiceResponseValueList =
   Array<OpenidConnectProviderContract>;
-export const OpenIdConnectProviderListByServiceResponseValueList =
+export const ListOpenIdConnectProviderByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     OpenidConnectProviderContract,
-  ) as any as S.Schema<OpenIdConnectProviderListByServiceResponseValueList>;
+  ) as any as S.Schema<ListOpenIdConnectProviderByServiceResponseValueList>;
 
 export interface ListOpenIdConnectProviderByServiceResponse {
   /** Page values. */
-  value?: OpenIdConnectProviderListByServiceResponseValueList;
+  value?: ListOpenIdConnectProviderByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -22982,7 +22849,7 @@ export interface ListOpenIdConnectProviderByServiceResponse {
 export const ListOpenIdConnectProviderByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(OpenIdConnectProviderListByServiceResponseValueList),
+      value: S.optional(ListOpenIdConnectProviderByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -23073,14 +22940,14 @@ export const ListOperationByTagsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOperationByTagsRequest>;
 
 /** Page values. */
-export type OperationListByTagsResponseValueList = Array<TagResourceContract>;
-export const OperationListByTagsResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationByTagsResponseValueList = Array<TagResourceContract>;
+export const ListOperationByTagsResponseValueList = /*@__PURE__*/ S.Array(
   TagResourceContract,
-) as any as S.Schema<OperationListByTagsResponseValueList>;
+) as any as S.Schema<ListOperationByTagsResponseValueList>;
 
 export interface ListOperationByTagsResponse {
   /** Page values. */
-  value?: OperationListByTagsResponseValueList;
+  value?: ListOperationByTagsResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -23088,7 +22955,7 @@ export interface ListOperationByTagsResponse {
 }
 export const ListOperationByTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationListByTagsResponseValueList),
+    value: S.optional(ListOperationByTagsResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -23096,7 +22963,7 @@ export const ListOperationByTagsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOperationByTagsResponse",
 }) as any as S.Schema<ListOperationByTagsResponse>;
 
-export interface ListOutboundNetworkDependencyEndpointByServiceRequest {
+export interface ListOutboundNetworkDependenciesEndpointByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23104,7 +22971,7 @@ export interface ListOutboundNetworkDependencyEndpointByServiceRequest {
   /** The name of the API Management service. */
   serviceName: string;
 }
-export const ListOutboundNetworkDependencyEndpointByServiceRequest =
+export const ListOutboundNetworkDependenciesEndpointByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -23119,8 +22986,8 @@ export const ListOutboundNetworkDependencyEndpointByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListOutboundNetworkDependencyEndpointByServiceRequest",
-  }) as any as S.Schema<ListOutboundNetworkDependencyEndpointByServiceRequest>;
+    identifier: "ListOutboundNetworkDependenciesEndpointByServiceRequest",
+  }) as any as S.Schema<ListOutboundNetworkDependenciesEndpointByServiceRequest>;
 
 /** Current TCP connectivity information from the Api Management Service to a single endpoint. */
 export interface EndpointDetail {
@@ -23230,14 +23097,14 @@ export const ListPolicyByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPolicyByServiceRequest>;
 
 /** Policy Contract value. */
-export type PolicyListByServiceResponseValueList = Array<PolicyContract>;
-export const PolicyListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListPolicyByServiceResponseValueList = Array<PolicyContract>;
+export const ListPolicyByServiceResponseValueList = /*@__PURE__*/ S.Array(
   PolicyContract,
-) as any as S.Schema<PolicyListByServiceResponseValueList>;
+) as any as S.Schema<ListPolicyByServiceResponseValueList>;
 
 export interface ListPolicyByServiceResponse {
   /** Policy Contract value. */
-  value?: PolicyListByServiceResponseValueList;
+  value?: ListPolicyByServiceResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -23245,7 +23112,7 @@ export interface ListPolicyByServiceResponse {
 }
 export const ListPolicyByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(PolicyListByServiceResponseValueList),
+    value: S.optional(ListPolicyByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -23253,13 +23120,13 @@ export const ListPolicyByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPolicyByServiceResponse",
 }) as any as S.Schema<ListPolicyByServiceResponse>;
 
-export type PolicyDescriptionListByServiceRequestScope =
+export type ListPolicyDescriptionByServiceRequestScope =
   | "Tenant"
   | "Product"
   | "Api"
   | "Operation"
   | "All";
-export const PolicyDescriptionListByServiceRequestScope =
+export const ListPolicyDescriptionByServiceRequestScope =
   /*@__PURE__*/ S.String;
 
 export interface ListPolicyDescriptionByServiceRequest {
@@ -23270,7 +23137,7 @@ export interface ListPolicyDescriptionByServiceRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** Policy scope. */
-  scope?: PolicyDescriptionListByServiceRequestScope | (string & {});
+  scope?: ListPolicyDescriptionByServiceRequestScope | (string & {});
 }
 export const ListPolicyDescriptionByServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -23279,7 +23146,7 @@ export const ListPolicyDescriptionByServiceRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       serviceName: S.String.pipe(T.Label()),
       scope: S.optional(
-        PolicyDescriptionListByServiceRequestScope.pipe(T.Query()),
+        ListPolicyDescriptionByServiceRequestScope.pipe(T.Query()),
       ),
     }).pipe(
       T.Http({
@@ -23332,23 +23199,23 @@ export const PolicyDescriptionContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PolicyDescriptionContract>;
 
 /** Descriptions of API Management policies. */
-export type PolicyDescriptionListByServiceResponseValueList =
+export type ListPolicyDescriptionByServiceResponseValueList =
   Array<PolicyDescriptionContract>;
-export const PolicyDescriptionListByServiceResponseValueList =
+export const ListPolicyDescriptionByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyDescriptionContract,
-  ) as any as S.Schema<PolicyDescriptionListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPolicyDescriptionByServiceResponseValueList>;
 
 export interface ListPolicyDescriptionByServiceResponse {
   /** Descriptions of API Management policies. */
-  value?: PolicyDescriptionListByServiceResponseValueList;
+  value?: ListPolicyDescriptionByServiceResponseValueList;
   /** Total record count number. */
   count?: number;
 }
 export const ListPolicyDescriptionByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(PolicyDescriptionListByServiceResponseValueList),
+      value: S.optional(ListPolicyDescriptionByServiceResponseValueList),
       count: S.optional(S.Number),
     }),
 ).annotate({
@@ -23415,16 +23282,16 @@ export const PolicyFragmentContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PolicyFragmentContract>;
 
 /** Policy fragment contract value. */
-export type PolicyFragmentListByServiceResponseValueList =
+export type ListPolicyFragmentByServiceResponseValueList =
   Array<PolicyFragmentContract>;
-export const PolicyFragmentListByServiceResponseValueList =
+export const ListPolicyFragmentByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyFragmentContract,
-  ) as any as S.Schema<PolicyFragmentListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPolicyFragmentByServiceResponseValueList>;
 
 export interface ListPolicyFragmentByServiceResponse {
   /** Policy fragment contract value. */
-  value?: PolicyFragmentListByServiceResponseValueList;
+  value?: ListPolicyFragmentByServiceResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -23432,7 +23299,7 @@ export interface ListPolicyFragmentByServiceResponse {
 }
 export const ListPolicyFragmentByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(PolicyFragmentListByServiceResponseValueList),
+    value: S.optional(ListPolicyFragmentByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -23492,15 +23359,15 @@ export const Resource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Resource" }) as any as S.Schema<Resource>;
 
 /** A collection of resources. */
-export type PolicyFragmentListReferencesResponseValueList = Array<Resource>;
-export const PolicyFragmentListReferencesResponseValueList =
+export type ListPolicyFragmentReferencesResponseValueList = Array<Resource>;
+export const ListPolicyFragmentReferencesResponseValueList =
   /*@__PURE__*/ S.Array(
     Resource,
-  ) as any as S.Schema<PolicyFragmentListReferencesResponseValueList>;
+  ) as any as S.Schema<ListPolicyFragmentReferencesResponseValueList>;
 
 export interface ListPolicyFragmentReferencesResponse {
   /** A collection of resources. */
-  value?: PolicyFragmentListReferencesResponseValueList;
+  value?: ListPolicyFragmentReferencesResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -23509,7 +23376,7 @@ export interface ListPolicyFragmentReferencesResponse {
 export const ListPolicyFragmentReferencesResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(PolicyFragmentListReferencesResponseValueList),
+      value: S.optional(ListPolicyFragmentReferencesResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -23565,22 +23432,22 @@ export const PolicyRestrictionContract = /*@__PURE__*/ S.suspend(() =>
   identifier: "PolicyRestrictionContract",
 }) as any as S.Schema<PolicyRestrictionContract>;
 
-export type PolicyRestrictionListByServiceResponseValueList =
+export type ListPolicyRestrictionByServiceResponseValueList =
   Array<PolicyRestrictionContract>;
-export const PolicyRestrictionListByServiceResponseValueList =
+export const ListPolicyRestrictionByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyRestrictionContract,
-  ) as any as S.Schema<PolicyRestrictionListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPolicyRestrictionByServiceResponseValueList>;
 
 export interface ListPolicyRestrictionByServiceResponse {
-  value?: PolicyRestrictionListByServiceResponseValueList;
+  value?: ListPolicyRestrictionByServiceResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListPolicyRestrictionByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(PolicyRestrictionListByServiceResponseValueList),
+      value: S.optional(ListPolicyRestrictionByServiceResponseValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
@@ -23635,21 +23502,21 @@ export const PortalConfigContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PortalConfigContract>;
 
 /** The developer portal configurations. */
-export type PortalConfigListByServiceResponseValueList =
+export type ListPortalConfigByServiceResponseValueList =
   Array<PortalConfigContract>;
-export const PortalConfigListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListPortalConfigByServiceResponseValueList = /*@__PURE__*/ S.Array(
   PortalConfigContract,
-) as any as S.Schema<PortalConfigListByServiceResponseValueList>;
+) as any as S.Schema<ListPortalConfigByServiceResponseValueList>;
 
 export interface ListPortalConfigByServiceResponse {
   /** The developer portal configurations. */
-  value?: PortalConfigListByServiceResponseValueList;
+  value?: ListPortalConfigByServiceResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListPortalConfigByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(PortalConfigListByServiceResponseValueList),
+    value: S.optional(ListPortalConfigByServiceResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -23713,22 +23580,22 @@ export const PortalRevisionContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PortalRevisionContract>;
 
 /** Collection of portal revisions. */
-export type PortalRevisionListByServiceResponseValueList =
+export type ListPortalRevisionByServiceResponseValueList =
   Array<PortalRevisionContract>;
-export const PortalRevisionListByServiceResponseValueList =
+export const ListPortalRevisionByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PortalRevisionContract,
-  ) as any as S.Schema<PortalRevisionListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPortalRevisionByServiceResponseValueList>;
 
 export interface ListPortalRevisionByServiceResponse {
   /** Collection of portal revisions. */
-  value?: PortalRevisionListByServiceResponseValueList;
+  value?: ListPortalRevisionByServiceResponseValueList;
   /** Next page link, if any. */
   nextLink?: string;
 }
 export const ListPortalRevisionByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(PortalRevisionListByServiceResponseValueList),
+    value: S.optional(ListPortalRevisionByServiceResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -23784,22 +23651,22 @@ export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointConnection>;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionListByServiceResponseValueList =
+export type ListPrivateEndpointConnectionByServiceResponseValueList =
   Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListByServiceResponseValueList =
+export const ListPrivateEndpointConnectionByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionByServiceResponseValueList>;
 
 export interface ListPrivateEndpointConnectionByServiceResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionListByServiceResponseValueList;
+  value?: ListPrivateEndpointConnectionByServiceResponseValueList;
 }
 export const ListPrivateEndpointConnectionByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionListByServiceResponseValueList,
+        ListPrivateEndpointConnectionByServiceResponseValueList,
       ),
     }),
   ).annotate({
@@ -23855,22 +23722,22 @@ export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateLinkResource>;
 
 /** Array of private link resources */
-export type PrivateEndpointConnectionListPrivateLinkResourcesResponseValueList =
+export type ListPrivateEndpointConnectionPrivateLinkResourcesResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateEndpointConnectionListPrivateLinkResourcesResponseValueList =
+export const ListPrivateEndpointConnectionPrivateLinkResourcesResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateEndpointConnectionListPrivateLinkResourcesResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionPrivateLinkResourcesResponseValueList>;
 
 export interface ListPrivateEndpointConnectionPrivateLinkResourcesResponse {
   /** Array of private link resources */
-  value?: PrivateEndpointConnectionListPrivateLinkResourcesResponseValueList;
+  value?: ListPrivateEndpointConnectionPrivateLinkResourcesResponseValueList;
 }
 export const ListPrivateEndpointConnectionPrivateLinkResourcesResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionListPrivateLinkResourcesResponseValueList,
+        ListPrivateEndpointConnectionPrivateLinkResourcesResponseValueList,
       ),
     }),
   ).annotate({
@@ -23915,14 +23782,14 @@ export const ListProductApiByProductRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProductApiByProductRequest>;
 
 /** Page values. */
-export type ProductApiListByProductResponseValueList = Array<ApiContract>;
-export const ProductApiListByProductResponseValueList = /*@__PURE__*/ S.Array(
+export type ListProductApiByProductResponseValueList = Array<ApiContract>;
+export const ListProductApiByProductResponseValueList = /*@__PURE__*/ S.Array(
   ApiContract,
-) as any as S.Schema<ProductApiListByProductResponseValueList>;
+) as any as S.Schema<ListProductApiByProductResponseValueList>;
 
 export interface ListProductApiByProductResponse {
   /** Page values. */
-  value?: ProductApiListByProductResponseValueList;
+  value?: ListProductApiByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -23930,7 +23797,7 @@ export interface ListProductApiByProductResponse {
 }
 export const ListProductApiByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductApiListByProductResponseValueList),
+    value: S.optional(ListProductApiByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -23998,16 +23865,16 @@ export const ProductApiLinkContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductApiLinkContract>;
 
 /** Page values. */
-export type ProductApiLinkListByProductResponseValueList =
+export type ListProductApiLinkByProductResponseValueList =
   Array<ProductApiLinkContract>;
-export const ProductApiLinkListByProductResponseValueList =
+export const ListProductApiLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     ProductApiLinkContract,
-  ) as any as S.Schema<ProductApiLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListProductApiLinkByProductResponseValueList>;
 
 export interface ListProductApiLinkByProductResponse {
   /** Page values. */
-  value?: ProductApiLinkListByProductResponseValueList;
+  value?: ListProductApiLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24015,7 +23882,7 @@ export interface ListProductApiLinkByProductResponse {
 }
 export const ListProductApiLinkByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductApiLinkListByProductResponseValueList),
+    value: S.optional(ListProductApiLinkByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24064,14 +23931,14 @@ export const ListProductByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProductByServiceRequest>;
 
 /** Page values. */
-export type ProductListByServiceResponseValueList = Array<ProductContract>;
-export const ProductListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListProductByServiceResponseValueList = Array<ProductContract>;
+export const ListProductByServiceResponseValueList = /*@__PURE__*/ S.Array(
   ProductContract,
-) as any as S.Schema<ProductListByServiceResponseValueList>;
+) as any as S.Schema<ListProductByServiceResponseValueList>;
 
 export interface ListProductByServiceResponse {
   /** Page values. */
-  value?: ProductListByServiceResponseValueList;
+  value?: ListProductByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24079,7 +23946,7 @@ export interface ListProductByServiceResponse {
 }
 export const ListProductByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductListByServiceResponseValueList),
+    value: S.optional(ListProductByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24125,14 +23992,14 @@ export const ListProductByTagsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProductByTagsRequest>;
 
 /** Page values. */
-export type ProductListByTagsResponseValueList = Array<TagResourceContract>;
-export const ProductListByTagsResponseValueList = /*@__PURE__*/ S.Array(
+export type ListProductByTagsResponseValueList = Array<TagResourceContract>;
+export const ListProductByTagsResponseValueList = /*@__PURE__*/ S.Array(
   TagResourceContract,
-) as any as S.Schema<ProductListByTagsResponseValueList>;
+) as any as S.Schema<ListProductByTagsResponseValueList>;
 
 export interface ListProductByTagsResponse {
   /** Page values. */
-  value?: ProductListByTagsResponseValueList;
+  value?: ListProductByTagsResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24140,7 +24007,7 @@ export interface ListProductByTagsResponse {
 }
 export const ListProductByTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductListByTagsResponseValueList),
+    value: S.optional(ListProductByTagsResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24186,14 +24053,14 @@ export const ListProductGroupByProductRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProductGroupByProductRequest>;
 
 /** Page values. */
-export type ProductGroupListByProductResponseValueList = Array<GroupContract>;
-export const ProductGroupListByProductResponseValueList = /*@__PURE__*/ S.Array(
+export type ListProductGroupByProductResponseValueList = Array<GroupContract>;
+export const ListProductGroupByProductResponseValueList = /*@__PURE__*/ S.Array(
   GroupContract,
-) as any as S.Schema<ProductGroupListByProductResponseValueList>;
+) as any as S.Schema<ListProductGroupByProductResponseValueList>;
 
 export interface ListProductGroupByProductResponse {
   /** Page values. */
-  value?: ProductGroupListByProductResponseValueList;
+  value?: ListProductGroupByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24201,7 +24068,7 @@ export interface ListProductGroupByProductResponse {
 }
 export const ListProductGroupByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductGroupListByProductResponseValueList),
+    value: S.optional(ListProductGroupByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24270,16 +24137,16 @@ export const ProductGroupLinkContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductGroupLinkContract>;
 
 /** Page values. */
-export type ProductGroupLinkListByProductResponseValueList =
+export type ListProductGroupLinkByProductResponseValueList =
   Array<ProductGroupLinkContract>;
-export const ProductGroupLinkListByProductResponseValueList =
+export const ListProductGroupLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     ProductGroupLinkContract,
-  ) as any as S.Schema<ProductGroupLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListProductGroupLinkByProductResponseValueList>;
 
 export interface ListProductGroupLinkByProductResponse {
   /** Page values. */
-  value?: ProductGroupLinkListByProductResponseValueList;
+  value?: ListProductGroupLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24288,7 +24155,7 @@ export interface ListProductGroupLinkByProductResponse {
 export const ListProductGroupLinkByProductResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(ProductGroupLinkListByProductResponseValueList),
+      value: S.optional(ListProductGroupLinkByProductResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -24325,15 +24192,15 @@ export const ListProductPolicyByProductRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProductPolicyByProductRequest>;
 
 /** Policy Contract value. */
-export type ProductPolicyListByProductResponseValueList = Array<PolicyContract>;
-export const ProductPolicyListByProductResponseValueList =
+export type ListProductPolicyByProductResponseValueList = Array<PolicyContract>;
+export const ListProductPolicyByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyContract,
-  ) as any as S.Schema<ProductPolicyListByProductResponseValueList>;
+  ) as any as S.Schema<ListProductPolicyByProductResponseValueList>;
 
 export interface ListProductPolicyByProductResponse {
   /** Policy Contract value. */
-  value?: ProductPolicyListByProductResponseValueList;
+  value?: ListProductPolicyByProductResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -24341,7 +24208,7 @@ export interface ListProductPolicyByProductResponse {
 }
 export const ListProductPolicyByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductPolicyListByProductResponseValueList),
+    value: S.optional(ListProductPolicyByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24409,15 +24276,15 @@ export const SubscriptionContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubscriptionContract>;
 
 /** Page values. */
-export type ProductSubscriptionsListResponseValueList =
+export type ListProductSubscriptionsResponseValueList =
   Array<SubscriptionContract>;
-export const ProductSubscriptionsListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListProductSubscriptionsResponseValueList = /*@__PURE__*/ S.Array(
   SubscriptionContract,
-) as any as S.Schema<ProductSubscriptionsListResponseValueList>;
+) as any as S.Schema<ListProductSubscriptionsResponseValueList>;
 
 export interface ListProductSubscriptionsResponse {
   /** Page values. */
-  value?: ProductSubscriptionsListResponseValueList;
+  value?: ListProductSubscriptionsResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24425,7 +24292,7 @@ export interface ListProductSubscriptionsResponse {
 }
 export const ListProductSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductSubscriptionsListResponseValueList),
+    value: S.optional(ListProductSubscriptionsResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24471,27 +24338,27 @@ export const ListProductWikisRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProductWikisRequest>;
 
 /** Page values. */
-export type ProductWikisListResponseValueList = Array<WikiContract>;
-export const ProductWikisListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListProductWikisResponseValueList = Array<WikiContract>;
+export const ListProductWikisResponseValueList = /*@__PURE__*/ S.Array(
   WikiContract,
-) as any as S.Schema<ProductWikisListResponseValueList>;
+) as any as S.Schema<ListProductWikisResponseValueList>;
 
 export interface ListProductWikisResponse {
   /** Page values. */
-  value?: ProductWikisListResponseValueList;
+  value?: ListProductWikisResponseValueList;
   /** Next page link if any. */
   nextLink?: string;
 }
 export const ListProductWikisResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ProductWikisListResponseValueList),
+    value: S.optional(ListProductWikisResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListProductWikisResponse",
 }) as any as S.Schema<ListProductWikisResponse>;
 
-export interface ListQuotaByCounterKeyByServiceRequest {
+export interface ListQuotaByCounterKeysByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -24501,7 +24368,7 @@ export interface ListQuotaByCounterKeyByServiceRequest {
   /** Quota counter key identifier.This is the result of expression defined in counter-key attribute of the quota-by-key policy.For Example, if you specify counter-key="boo" in the policy, then it’s accessible by "boo" counter key. But if it’s defined as counter-key="@("b"+"a")" then it will be accessible by "ba" key */
   quotaCounterKey: string;
 }
-export const ListQuotaByCounterKeyByServiceRequest = /*@__PURE__*/ S.suspend(
+export const ListQuotaByCounterKeysByServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -24517,8 +24384,8 @@ export const ListQuotaByCounterKeyByServiceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListQuotaByCounterKeyByServiceRequest",
-}) as any as S.Schema<ListQuotaByCounterKeyByServiceRequest>;
+  identifier: "ListQuotaByCounterKeysByServiceRequest",
+}) as any as S.Schema<ListQuotaByCounterKeysByServiceRequest>;
 
 /** Quota counter details. */
 export interface QuotaCounterContract {
@@ -24546,31 +24413,31 @@ export const QuotaCounterContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QuotaCounterContract>;
 
 /** Quota counter values. */
-export type QuotaByCounterKeysListByServiceResponseValueList =
+export type ListQuotaByCounterKeysByServiceResponseValueList =
   Array<QuotaCounterContract>;
-export const QuotaByCounterKeysListByServiceResponseValueList =
+export const ListQuotaByCounterKeysByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     QuotaCounterContract,
-  ) as any as S.Schema<QuotaByCounterKeysListByServiceResponseValueList>;
+  ) as any as S.Schema<ListQuotaByCounterKeysByServiceResponseValueList>;
 
-export interface ListQuotaByCounterKeyByServiceResponse {
+export interface ListQuotaByCounterKeysByServiceResponse {
   /** Quota counter values. */
-  value?: QuotaByCounterKeysListByServiceResponseValueList;
+  value?: ListQuotaByCounterKeysByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
   nextLink?: string;
 }
-export const ListQuotaByCounterKeyByServiceResponse = /*@__PURE__*/ S.suspend(
+export const ListQuotaByCounterKeysByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(QuotaByCounterKeysListByServiceResponseValueList),
+      value: S.optional(ListQuotaByCounterKeysByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListQuotaByCounterKeyByServiceResponse",
-}) as any as S.Schema<ListQuotaByCounterKeyByServiceResponse>;
+  identifier: "ListQuotaByCounterKeysByServiceResponse",
+}) as any as S.Schema<ListQuotaByCounterKeysByServiceResponse>;
 
 export interface ListRegionByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -24615,14 +24482,14 @@ export const RegionContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "RegionContract" }) as any as S.Schema<RegionContract>;
 
 /** Lists of Regions. */
-export type RegionListByServiceResponseValueList = Array<RegionContract>;
-export const RegionListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListRegionByServiceResponseValueList = Array<RegionContract>;
+export const ListRegionByServiceResponseValueList = /*@__PURE__*/ S.Array(
   RegionContract,
-) as any as S.Schema<RegionListByServiceResponseValueList>;
+) as any as S.Schema<ListRegionByServiceResponseValueList>;
 
 export interface ListRegionByServiceResponse {
   /** Lists of Regions. */
-  value?: RegionListByServiceResponseValueList;
+  value?: ListRegionByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24630,7 +24497,7 @@ export interface ListRegionByServiceResponse {
 }
 export const ListRegionByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(RegionListByServiceResponseValueList),
+    value: S.optional(ListRegionByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24764,14 +24631,14 @@ export const ReportRecordContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReportRecordContract>;
 
 /** Page values. */
-export type ReportsListByApiResponseValueList = Array<ReportRecordContract>;
-export const ReportsListByApiResponseValueList = /*@__PURE__*/ S.Array(
+export type ListReportByApiResponseValueList = Array<ReportRecordContract>;
+export const ListReportByApiResponseValueList = /*@__PURE__*/ S.Array(
   ReportRecordContract,
-) as any as S.Schema<ReportsListByApiResponseValueList>;
+) as any as S.Schema<ListReportByApiResponseValueList>;
 
 export interface ListReportByApiResponse {
   /** Page values. */
-  value?: ReportsListByApiResponseValueList;
+  value?: ListReportByApiResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24779,7 +24646,7 @@ export interface ListReportByApiResponse {
 }
 export const ListReportByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListByApiResponseValueList),
+    value: S.optional(ListReportByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24822,14 +24689,14 @@ export const ListReportByGeoRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReportByGeoRequest>;
 
 /** Page values. */
-export type ReportsListByGeoResponseValueList = Array<ReportRecordContract>;
-export const ReportsListByGeoResponseValueList = /*@__PURE__*/ S.Array(
+export type ListReportByGeoResponseValueList = Array<ReportRecordContract>;
+export const ListReportByGeoResponseValueList = /*@__PURE__*/ S.Array(
   ReportRecordContract,
-) as any as S.Schema<ReportsListByGeoResponseValueList>;
+) as any as S.Schema<ListReportByGeoResponseValueList>;
 
 export interface ListReportByGeoResponse {
   /** Page values. */
-  value?: ReportsListByGeoResponseValueList;
+  value?: ListReportByGeoResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24837,7 +24704,7 @@ export interface ListReportByGeoResponse {
 }
 export const ListReportByGeoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListByGeoResponseValueList),
+    value: S.optional(ListReportByGeoResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24883,15 +24750,15 @@ export const ListReportByOperationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReportByOperationRequest>;
 
 /** Page values. */
-export type ReportsListByOperationResponseValueList =
+export type ListReportByOperationResponseValueList =
   Array<ReportRecordContract>;
-export const ReportsListByOperationResponseValueList = /*@__PURE__*/ S.Array(
+export const ListReportByOperationResponseValueList = /*@__PURE__*/ S.Array(
   ReportRecordContract,
-) as any as S.Schema<ReportsListByOperationResponseValueList>;
+) as any as S.Schema<ListReportByOperationResponseValueList>;
 
 export interface ListReportByOperationResponse {
   /** Page values. */
-  value?: ReportsListByOperationResponseValueList;
+  value?: ListReportByOperationResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24899,7 +24766,7 @@ export interface ListReportByOperationResponse {
 }
 export const ListReportByOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListByOperationResponseValueList),
+    value: S.optional(ListReportByOperationResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -24945,14 +24812,14 @@ export const ListReportByProductRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReportByProductRequest>;
 
 /** Page values. */
-export type ReportsListByProductResponseValueList = Array<ReportRecordContract>;
-export const ReportsListByProductResponseValueList = /*@__PURE__*/ S.Array(
+export type ListReportByProductResponseValueList = Array<ReportRecordContract>;
+export const ListReportByProductResponseValueList = /*@__PURE__*/ S.Array(
   ReportRecordContract,
-) as any as S.Schema<ReportsListByProductResponseValueList>;
+) as any as S.Schema<ListReportByProductResponseValueList>;
 
 export interface ListReportByProductResponse {
   /** Page values. */
-  value?: ReportsListByProductResponseValueList;
+  value?: ListReportByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -24960,13 +24827,133 @@ export interface ListReportByProductResponse {
 }
 export const ListReportByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListByProductResponseValueList),
+    value: S.optional(ListReportByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListReportByProductResponse",
 }) as any as S.Schema<ListReportByProductResponse>;
+
+export interface ListReportByRequestRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br>| timestamp | filter | ge, le | | </br>| apiId | filter | eq | | </br>| operationId | filter | eq | | </br>| productId | filter | eq | | </br>| userId | filter | eq | | </br>| apiRegion | filter | eq | | </br>| subscriptionId | filter | eq | | </br> */
+  _filter: string;
+  /** Number of records to return. */
+  _top?: number;
+  /** Number of records to skip. */
+  _skip?: number;
+}
+export const ListReportByRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    _filter: S.String.pipe(T.Query("$filter")),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/reports/byRequest",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReportByRequestRequest",
+}) as any as S.Schema<ListReportByRequestRequest>;
+
+/** Request Report data. */
+export interface RequestReportRecordContract {
+  /** API identifier path. /apis/{apiId} */
+  apiId?: string;
+  /** Operation identifier path. /apis/{apiId}/operations/{operationId} */
+  operationId?: string;
+  /** Product identifier path. /products/{productId} */
+  productId?: string;
+  /** User identifier path. /users/{userId} */
+  userId?: string;
+  /** The HTTP method associated with this request.. */
+  method?: string;
+  /** The full URL associated with this request. */
+  url?: string;
+  /** The client IP address associated with this request. */
+  ipAddress?: string;
+  /** The HTTP status code received by the gateway as a result of forwarding this request to the backend. */
+  backendResponseCode?: string;
+  /** The HTTP status code returned by the gateway. */
+  responseCode?: number;
+  /** The size of the response returned by the gateway. */
+  responseSize?: number;
+  /** The date and time when this request was received by the gateway in ISO 8601 format. */
+  timestamp?: string;
+  /** Specifies if response cache was involved in generating the response. If the value is none, the cache was not used. If the value is hit, cached response was returned. If the value is miss, the cache was used but lookup resulted in a miss and request was fulfilled by the backend. */
+  cache?: string;
+  /** The total time it took to process this request. */
+  apiTime?: number;
+  /** he time it took to forward this request to the backend and get the response back. */
+  serviceTime?: number;
+  /** Azure region where the gateway that processed this request is located. */
+  apiRegion?: string;
+  /** Subscription identifier path. /subscriptions/{subscriptionId} */
+  subscriptionId?: string;
+  /** Request Identifier. */
+  requestId?: string;
+  /** The size of this request.. */
+  requestSize?: number;
+}
+export const RequestReportRecordContract = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    apiId: S.optional(S.String),
+    operationId: S.optional(S.String),
+    productId: S.optional(S.String),
+    userId: S.optional(S.String),
+    method: S.optional(S.String),
+    url: S.optional(S.String),
+    ipAddress: S.optional(S.String),
+    backendResponseCode: S.optional(S.String),
+    responseCode: S.optional(S.Number),
+    responseSize: S.optional(S.Number),
+    timestamp: S.optional(S.String),
+    cache: S.optional(S.String),
+    apiTime: S.optional(S.Number),
+    serviceTime: S.optional(S.Number),
+    apiRegion: S.optional(S.String),
+    subscriptionId: S.optional(S.String),
+    requestId: S.optional(S.String),
+    requestSize: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RequestReportRecordContract",
+}) as any as S.Schema<RequestReportRecordContract>;
+
+/** Page values. */
+export type ListReportByRequestResponseValueList =
+  Array<RequestReportRecordContract>;
+export const ListReportByRequestResponseValueList = /*@__PURE__*/ S.Array(
+  RequestReportRecordContract,
+) as any as S.Schema<ListReportByRequestResponseValueList>;
+
+export interface ListReportByRequestResponse {
+  /** Page values. */
+  value?: ListReportByRequestResponseValueList;
+  /** Total record count number across all pages. */
+  count?: number;
+}
+export const ListReportByRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListReportByRequestResponseValueList),
+    count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ListReportByRequestResponse",
+}) as any as S.Schema<ListReportByRequestResponse>;
 
 export interface ListReportBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -25006,15 +24993,15 @@ export const ListReportBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReportBySubscriptionRequest>;
 
 /** Page values. */
-export type ReportsListBySubscriptionResponseValueList =
+export type ListReportBySubscriptionResponseValueList =
   Array<ReportRecordContract>;
-export const ReportsListBySubscriptionResponseValueList = /*@__PURE__*/ S.Array(
+export const ListReportBySubscriptionResponseValueList = /*@__PURE__*/ S.Array(
   ReportRecordContract,
-) as any as S.Schema<ReportsListBySubscriptionResponseValueList>;
+) as any as S.Schema<ListReportBySubscriptionResponseValueList>;
 
 export interface ListReportBySubscriptionResponse {
   /** Page values. */
-  value?: ReportsListBySubscriptionResponseValueList;
+  value?: ListReportBySubscriptionResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25022,7 +25009,7 @@ export interface ListReportBySubscriptionResponse {
 }
 export const ListReportBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListBySubscriptionResponseValueList),
+    value: S.optional(ListReportBySubscriptionResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25071,14 +25058,14 @@ export const ListReportByTimeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReportByTimeRequest>;
 
 /** Page values. */
-export type ReportsListByTimeResponseValueList = Array<ReportRecordContract>;
-export const ReportsListByTimeResponseValueList = /*@__PURE__*/ S.Array(
+export type ListReportByTimeResponseValueList = Array<ReportRecordContract>;
+export const ListReportByTimeResponseValueList = /*@__PURE__*/ S.Array(
   ReportRecordContract,
-) as any as S.Schema<ReportsListByTimeResponseValueList>;
+) as any as S.Schema<ListReportByTimeResponseValueList>;
 
 export interface ListReportByTimeResponse {
   /** Page values. */
-  value?: ReportsListByTimeResponseValueList;
+  value?: ListReportByTimeResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25086,7 +25073,7 @@ export interface ListReportByTimeResponse {
 }
 export const ListReportByTimeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListByTimeResponseValueList),
+    value: S.optional(ListReportByTimeResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25132,14 +25119,14 @@ export const ListReportByUserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReportByUserRequest>;
 
 /** Page values. */
-export type ReportsListByUserResponseValueList = Array<ReportRecordContract>;
-export const ReportsListByUserResponseValueList = /*@__PURE__*/ S.Array(
+export type ListReportByUserResponseValueList = Array<ReportRecordContract>;
+export const ListReportByUserResponseValueList = /*@__PURE__*/ S.Array(
   ReportRecordContract,
-) as any as S.Schema<ReportsListByUserResponseValueList>;
+) as any as S.Schema<ListReportByUserResponseValueList>;
 
 export interface ListReportByUserResponse {
   /** Page values. */
-  value?: ReportsListByUserResponseValueList;
+  value?: ListReportByUserResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25147,7 +25134,7 @@ export interface ListReportByUserResponse {
 }
 export const ListReportByUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListByUserResponseValueList),
+    value: S.optional(ListReportByUserResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25190,14 +25177,14 @@ export const ListSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSubscriptionRequest>;
 
 /** Page values. */
-export type SubscriptionListResponseValueList = Array<SubscriptionContract>;
-export const SubscriptionListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListSubscriptionResponseValueList = Array<SubscriptionContract>;
+export const ListSubscriptionResponseValueList = /*@__PURE__*/ S.Array(
   SubscriptionContract,
-) as any as S.Schema<SubscriptionListResponseValueList>;
+) as any as S.Schema<ListSubscriptionResponseValueList>;
 
 export interface ListSubscriptionResponse {
   /** Page values. */
-  value?: SubscriptionListResponseValueList;
+  value?: ListSubscriptionResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25205,7 +25192,7 @@ export interface ListSubscriptionResponse {
 }
 export const ListSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(SubscriptionListResponseValueList),
+    value: S.optional(ListSubscriptionResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25316,15 +25303,15 @@ export const TagApiLinkContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TagApiLinkContract>;
 
 /** Page values. */
-export type TagApiLinkListByProductResponseValueList =
+export type ListTagApiLinkByProductResponseValueList =
   Array<TagApiLinkContract>;
-export const TagApiLinkListByProductResponseValueList = /*@__PURE__*/ S.Array(
+export const ListTagApiLinkByProductResponseValueList = /*@__PURE__*/ S.Array(
   TagApiLinkContract,
-) as any as S.Schema<TagApiLinkListByProductResponseValueList>;
+) as any as S.Schema<ListTagApiLinkByProductResponseValueList>;
 
 export interface ListTagApiLinkByProductResponse {
   /** Page values. */
-  value?: TagApiLinkListByProductResponseValueList;
+  value?: ListTagApiLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25332,7 +25319,7 @@ export interface ListTagApiLinkByProductResponse {
 }
 export const ListTagApiLinkByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TagApiLinkListByProductResponseValueList),
+    value: S.optional(ListTagApiLinkByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25398,14 +25385,14 @@ export const TagContract = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "TagContract" }) as any as S.Schema<TagContract>;
 
 /** Page values. */
-export type TagListByApiResponseValueList = Array<TagContract>;
-export const TagListByApiResponseValueList = /*@__PURE__*/ S.Array(
+export type ListTagByApiResponseValueList = Array<TagContract>;
+export const ListTagByApiResponseValueList = /*@__PURE__*/ S.Array(
   TagContract,
-) as any as S.Schema<TagListByApiResponseValueList>;
+) as any as S.Schema<ListTagByApiResponseValueList>;
 
 export interface ListTagByApiResponse {
   /** Page values. */
-  value?: TagListByApiResponseValueList;
+  value?: ListTagByApiResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25413,7 +25400,7 @@ export interface ListTagByApiResponse {
 }
 export const ListTagByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TagListByApiResponseValueList),
+    value: S.optional(ListTagByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25462,14 +25449,14 @@ export const ListTagByOperationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTagByOperationRequest>;
 
 /** Page values. */
-export type TagListByOperationResponseValueList = Array<TagContract>;
-export const TagListByOperationResponseValueList = /*@__PURE__*/ S.Array(
+export type ListTagByOperationResponseValueList = Array<TagContract>;
+export const ListTagByOperationResponseValueList = /*@__PURE__*/ S.Array(
   TagContract,
-) as any as S.Schema<TagListByOperationResponseValueList>;
+) as any as S.Schema<ListTagByOperationResponseValueList>;
 
 export interface ListTagByOperationResponse {
   /** Page values. */
-  value?: TagListByOperationResponseValueList;
+  value?: ListTagByOperationResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25477,7 +25464,7 @@ export interface ListTagByOperationResponse {
 }
 export const ListTagByOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TagListByOperationResponseValueList),
+    value: S.optional(ListTagByOperationResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25523,14 +25510,14 @@ export const ListTagByProductRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTagByProductRequest>;
 
 /** Page values. */
-export type TagListByProductResponseValueList = Array<TagContract>;
-export const TagListByProductResponseValueList = /*@__PURE__*/ S.Array(
+export type ListTagByProductResponseValueList = Array<TagContract>;
+export const ListTagByProductResponseValueList = /*@__PURE__*/ S.Array(
   TagContract,
-) as any as S.Schema<TagListByProductResponseValueList>;
+) as any as S.Schema<ListTagByProductResponseValueList>;
 
 export interface ListTagByProductResponse {
   /** Page values. */
-  value?: TagListByProductResponseValueList;
+  value?: ListTagByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25538,7 +25525,7 @@ export interface ListTagByProductResponse {
 }
 export const ListTagByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TagListByProductResponseValueList),
+    value: S.optional(ListTagByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25584,14 +25571,14 @@ export const ListTagByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTagByServiceRequest>;
 
 /** Page values. */
-export type TagListByServiceResponseValueList = Array<TagContract>;
-export const TagListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListTagByServiceResponseValueList = Array<TagContract>;
+export const ListTagByServiceResponseValueList = /*@__PURE__*/ S.Array(
   TagContract,
-) as any as S.Schema<TagListByServiceResponseValueList>;
+) as any as S.Schema<ListTagByServiceResponseValueList>;
 
 export interface ListTagByServiceResponse {
   /** Page values. */
-  value?: TagListByServiceResponseValueList;
+  value?: ListTagByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25599,7 +25586,7 @@ export interface ListTagByServiceResponse {
 }
 export const ListTagByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TagListByServiceResponseValueList),
+    value: S.optional(ListTagByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25668,16 +25655,16 @@ export const TagOperationLinkContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TagOperationLinkContract>;
 
 /** Page values. */
-export type TagOperationLinkListByProductResponseValueList =
+export type ListTagOperationLinkByProductResponseValueList =
   Array<TagOperationLinkContract>;
-export const TagOperationLinkListByProductResponseValueList =
+export const ListTagOperationLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     TagOperationLinkContract,
-  ) as any as S.Schema<TagOperationLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListTagOperationLinkByProductResponseValueList>;
 
 export interface ListTagOperationLinkByProductResponse {
   /** Page values. */
-  value?: TagOperationLinkListByProductResponseValueList;
+  value?: ListTagOperationLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25686,7 +25673,7 @@ export interface ListTagOperationLinkByProductResponse {
 export const ListTagOperationLinkByProductResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(TagOperationLinkListByProductResponseValueList),
+      value: S.optional(ListTagOperationLinkByProductResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -25754,16 +25741,16 @@ export const TagProductLinkContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TagProductLinkContract>;
 
 /** Page values. */
-export type TagProductLinkListByProductResponseValueList =
+export type ListTagProductLinkByProductResponseValueList =
   Array<TagProductLinkContract>;
-export const TagProductLinkListByProductResponseValueList =
+export const ListTagProductLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     TagProductLinkContract,
-  ) as any as S.Schema<TagProductLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListTagProductLinkByProductResponseValueList>;
 
 export interface ListTagProductLinkByProductResponse {
   /** Page values. */
-  value?: TagProductLinkListByProductResponseValueList;
+  value?: ListTagProductLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25771,7 +25758,7 @@ export interface ListTagProductLinkByProductResponse {
 }
 export const ListTagProductLinkByProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TagProductLinkListByProductResponseValueList),
+    value: S.optional(ListTagProductLinkByProductResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25814,15 +25801,15 @@ export const ListTagResourceByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTagResourceByServiceRequest>;
 
 /** Page values. */
-export type TagResourceListByServiceResponseValueList =
+export type ListTagResourceByServiceResponseValueList =
   Array<TagResourceContract>;
-export const TagResourceListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListTagResourceByServiceResponseValueList = /*@__PURE__*/ S.Array(
   TagResourceContract,
-) as any as S.Schema<TagResourceListByServiceResponseValueList>;
+) as any as S.Schema<ListTagResourceByServiceResponseValueList>;
 
 export interface ListTagResourceByServiceResponse {
   /** Page values. */
-  value?: TagResourceListByServiceResponseValueList;
+  value?: ListTagResourceByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25830,7 +25817,7 @@ export interface ListTagResourceByServiceResponse {
 }
 export const ListTagResourceByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TagResourceListByServiceResponseValueList),
+    value: S.optional(ListTagResourceByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25889,15 +25876,15 @@ export const AccessInformationContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccessInformationContract>;
 
 /** Page values. */
-export type TenantAccessListByServiceResponseValueList =
+export type ListTenantAccessByServiceResponseValueList =
   Array<AccessInformationContract>;
-export const TenantAccessListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export const ListTenantAccessByServiceResponseValueList = /*@__PURE__*/ S.Array(
   AccessInformationContract,
-) as any as S.Schema<TenantAccessListByServiceResponseValueList>;
+) as any as S.Schema<ListTenantAccessByServiceResponseValueList>;
 
 export interface ListTenantAccessByServiceResponse {
   /** Page values. */
-  value?: TenantAccessListByServiceResponseValueList;
+  value?: ListTenantAccessByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -25905,7 +25892,7 @@ export interface ListTenantAccessByServiceResponse {
 }
 export const ListTenantAccessByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(TenantAccessListByServiceResponseValueList),
+    value: S.optional(ListTenantAccessByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -25913,8 +25900,8 @@ export const ListTenantAccessByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTenantAccessByServiceResponse",
 }) as any as S.Schema<ListTenantAccessByServiceResponse>;
 
-export type TenantAccessListSecretsRequestAccessName = "access" | "gitAccess";
-export const TenantAccessListSecretsRequestAccessName = /*@__PURE__*/ S.String;
+export type ListTenantAccessSecretsRequestAccessName = "access" | "gitAccess";
+export const ListTenantAccessSecretsRequestAccessName = /*@__PURE__*/ S.String;
 
 export interface ListTenantAccessSecretsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -25924,14 +25911,14 @@ export interface ListTenantAccessSecretsRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** The identifier of the Access configuration. */
-  accessName: TenantAccessListSecretsRequestAccessName | (string & {});
+  accessName: ListTenantAccessSecretsRequestAccessName | (string & {});
 }
 export const ListTenantAccessSecretsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    accessName: TenantAccessListSecretsRequestAccessName.pipe(T.Label()),
+    accessName: ListTenantAccessSecretsRequestAccessName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -26006,14 +25993,14 @@ export const ListUserByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUserByServiceRequest>;
 
 /** Page values. */
-export type UserListByServiceResponseValueList = Array<UserContract>;
-export const UserListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListUserByServiceResponseValueList = Array<UserContract>;
+export const ListUserByServiceResponseValueList = /*@__PURE__*/ S.Array(
   UserContract,
-) as any as S.Schema<UserListByServiceResponseValueList>;
+) as any as S.Schema<ListUserByServiceResponseValueList>;
 
 export interface ListUserByServiceResponse {
   /** Page values. */
-  value?: UserListByServiceResponseValueList;
+  value?: ListUserByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26021,7 +26008,7 @@ export interface ListUserByServiceResponse {
 }
 export const ListUserByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(UserListByServiceResponseValueList),
+    value: S.optional(ListUserByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -26067,14 +26054,14 @@ export const ListUserGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUserGroupRequest>;
 
 /** Page values. */
-export type UserGroupListResponseValueList = Array<GroupContract>;
-export const UserGroupListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListUserGroupResponseValueList = Array<GroupContract>;
+export const ListUserGroupResponseValueList = /*@__PURE__*/ S.Array(
   GroupContract,
-) as any as S.Schema<UserGroupListResponseValueList>;
+) as any as S.Schema<ListUserGroupResponseValueList>;
 
 export interface ListUserGroupResponse {
   /** Page values. */
-  value?: UserGroupListResponseValueList;
+  value?: ListUserGroupResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26082,7 +26069,7 @@ export interface ListUserGroupResponse {
 }
 export const ListUserGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(UserGroupListResponseValueList),
+    value: S.optional(ListUserGroupResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -26119,14 +26106,14 @@ export const ListUserIdentitiesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUserIdentitiesRequest>;
 
 /** User Identity values. */
-export type UserIdentitiesListResponseValueList = Array<UserIdentityContract>;
-export const UserIdentitiesListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListUserIdentitiesResponseValueList = Array<UserIdentityContract>;
+export const ListUserIdentitiesResponseValueList = /*@__PURE__*/ S.Array(
   UserIdentityContract,
-) as any as S.Schema<UserIdentitiesListResponseValueList>;
+) as any as S.Schema<ListUserIdentitiesResponseValueList>;
 
 export interface ListUserIdentitiesResponse {
   /** User Identity values. */
-  value?: UserIdentitiesListResponseValueList;
+  value?: ListUserIdentitiesResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26134,7 +26121,7 @@ export interface ListUserIdentitiesResponse {
 }
 export const ListUserIdentitiesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(UserIdentitiesListResponseValueList),
+    value: S.optional(ListUserIdentitiesResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -26180,14 +26167,14 @@ export const ListUserSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUserSubscriptionRequest>;
 
 /** Page values. */
-export type UserSubscriptionListResponseValueList = Array<SubscriptionContract>;
-export const UserSubscriptionListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListUserSubscriptionResponseValueList = Array<SubscriptionContract>;
+export const ListUserSubscriptionResponseValueList = /*@__PURE__*/ S.Array(
   SubscriptionContract,
-) as any as S.Schema<UserSubscriptionListResponseValueList>;
+) as any as S.Schema<ListUserSubscriptionResponseValueList>;
 
 export interface ListUserSubscriptionResponse {
   /** Page values. */
-  value?: UserSubscriptionListResponseValueList;
+  value?: ListUserSubscriptionResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26195,7 +26182,7 @@ export interface ListUserSubscriptionResponse {
 }
 export const ListUserSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(UserSubscriptionListResponseValueList),
+    value: S.optional(ListUserSubscriptionResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -26247,14 +26234,14 @@ export const ListWorkspaceApiByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspaceApiByServiceRequest>;
 
 /** Page values. */
-export type WorkspaceApiListByServiceResponseValueList = Array<ApiContract>;
-export const WorkspaceApiListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListWorkspaceApiByServiceResponseValueList = Array<ApiContract>;
+export const ListWorkspaceApiByServiceResponseValueList = /*@__PURE__*/ S.Array(
   ApiContract,
-) as any as S.Schema<WorkspaceApiListByServiceResponseValueList>;
+) as any as S.Schema<ListWorkspaceApiByServiceResponseValueList>;
 
 export interface ListWorkspaceApiByServiceResponse {
   /** Page values. */
-  value?: WorkspaceApiListByServiceResponseValueList;
+  value?: ListWorkspaceApiByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26262,7 +26249,7 @@ export interface ListWorkspaceApiByServiceResponse {
 }
 export const ListWorkspaceApiByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceApiListByServiceResponseValueList),
+    value: S.optional(ListWorkspaceApiByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -26312,16 +26299,16 @@ export const ListWorkspaceApiDiagnosticByWorkspaceRequest =
   }) as any as S.Schema<ListWorkspaceApiDiagnosticByWorkspaceRequest>;
 
 /** Page values. */
-export type WorkspaceApiDiagnosticListByWorkspaceResponseValueList =
+export type ListWorkspaceApiDiagnosticByWorkspaceResponseValueList =
   Array<DiagnosticContract>;
-export const WorkspaceApiDiagnosticListByWorkspaceResponseValueList =
+export const ListWorkspaceApiDiagnosticByWorkspaceResponseValueList =
   /*@__PURE__*/ S.Array(
     DiagnosticContract,
-  ) as any as S.Schema<WorkspaceApiDiagnosticListByWorkspaceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceApiDiagnosticByWorkspaceResponseValueList>;
 
 export interface ListWorkspaceApiDiagnosticByWorkspaceResponse {
   /** Page values. */
-  value?: WorkspaceApiDiagnosticListByWorkspaceResponseValueList;
+  value?: ListWorkspaceApiDiagnosticByWorkspaceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26330,7 +26317,7 @@ export interface ListWorkspaceApiDiagnosticByWorkspaceResponse {
 export const ListWorkspaceApiDiagnosticByWorkspaceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceApiDiagnosticListByWorkspaceResponseValueList),
+      value: S.optional(ListWorkspaceApiDiagnosticByWorkspaceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -26383,16 +26370,16 @@ export const ListWorkspaceApiOperationByApiRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListWorkspaceApiOperationByApiRequest>;
 
 /** Page values. */
-export type WorkspaceApiOperationListByApiResponseValueList =
+export type ListWorkspaceApiOperationByApiResponseValueList =
   Array<OperationContract>;
-export const WorkspaceApiOperationListByApiResponseValueList =
+export const ListWorkspaceApiOperationByApiResponseValueList =
   /*@__PURE__*/ S.Array(
     OperationContract,
-  ) as any as S.Schema<WorkspaceApiOperationListByApiResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceApiOperationByApiResponseValueList>;
 
 export interface ListWorkspaceApiOperationByApiResponse {
   /** Page values. */
-  value?: WorkspaceApiOperationListByApiResponseValueList;
+  value?: ListWorkspaceApiOperationByApiResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26401,7 +26388,7 @@ export interface ListWorkspaceApiOperationByApiResponse {
 export const ListWorkspaceApiOperationByApiResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(WorkspaceApiOperationListByApiResponseValueList),
+      value: S.optional(ListWorkspaceApiOperationByApiResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -26445,16 +26432,16 @@ export const ListWorkspaceApiOperationPolicyByOperationRequest =
   }) as any as S.Schema<ListWorkspaceApiOperationPolicyByOperationRequest>;
 
 /** Policy Contract value. */
-export type WorkspaceApiOperationPolicyListByOperationResponseValueList =
+export type ListWorkspaceApiOperationPolicyByOperationResponseValueList =
   Array<PolicyContract>;
-export const WorkspaceApiOperationPolicyListByOperationResponseValueList =
+export const ListWorkspaceApiOperationPolicyByOperationResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyContract,
-  ) as any as S.Schema<WorkspaceApiOperationPolicyListByOperationResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceApiOperationPolicyByOperationResponseValueList>;
 
 export interface ListWorkspaceApiOperationPolicyByOperationResponse {
   /** Policy Contract value. */
-  value?: WorkspaceApiOperationPolicyListByOperationResponseValueList;
+  value?: ListWorkspaceApiOperationPolicyByOperationResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -26464,7 +26451,7 @@ export const ListWorkspaceApiOperationPolicyByOperationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        WorkspaceApiOperationPolicyListByOperationResponseValueList,
+        ListWorkspaceApiOperationPolicyByOperationResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -26505,16 +26492,16 @@ export const ListWorkspaceApiPolicyByApiRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspaceApiPolicyByApiRequest>;
 
 /** Policy Contract value. */
-export type WorkspaceApiPolicyListByApiResponseValueList =
+export type ListWorkspaceApiPolicyByApiResponseValueList =
   Array<PolicyContract>;
-export const WorkspaceApiPolicyListByApiResponseValueList =
+export const ListWorkspaceApiPolicyByApiResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyContract,
-  ) as any as S.Schema<WorkspaceApiPolicyListByApiResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceApiPolicyByApiResponseValueList>;
 
 export interface ListWorkspaceApiPolicyByApiResponse {
   /** Policy Contract value. */
-  value?: WorkspaceApiPolicyListByApiResponseValueList;
+  value?: ListWorkspaceApiPolicyByApiResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -26522,13 +26509,81 @@ export interface ListWorkspaceApiPolicyByApiResponse {
 }
 export const ListWorkspaceApiPolicyByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceApiPolicyListByApiResponseValueList),
+    value: S.optional(ListWorkspaceApiPolicyByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListWorkspaceApiPolicyByApiResponse",
 }) as any as S.Schema<ListWorkspaceApiPolicyByApiResponse>;
+
+export interface ListWorkspaceApiReleaseByServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br>| notes | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |</br> */
+  _filter?: string;
+  /** Number of records to return. */
+  _top?: number;
+  /** Number of records to skip. */
+  _skip?: number;
+}
+export const ListWorkspaceApiReleaseByServiceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceId: S.String.pipe(T.Label()),
+      apiId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListWorkspaceApiReleaseByServiceRequest",
+}) as any as S.Schema<ListWorkspaceApiReleaseByServiceRequest>;
+
+/** Page values. */
+export type ListWorkspaceApiReleaseByServiceResponseValueList =
+  Array<ApiReleaseContract>;
+export const ListWorkspaceApiReleaseByServiceResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ApiReleaseContract,
+  ) as any as S.Schema<ListWorkspaceApiReleaseByServiceResponseValueList>;
+
+export interface ListWorkspaceApiReleaseByServiceResponse {
+  /** Page values. */
+  value?: ListWorkspaceApiReleaseByServiceResponseValueList;
+  /** Total record count number across all pages. */
+  count?: number;
+  /** Next page link if any. */
+  nextLink?: string;
+}
+export const ListWorkspaceApiReleaseByServiceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ListWorkspaceApiReleaseByServiceResponseValueList),
+      count: S.optional(S.Number),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ListWorkspaceApiReleaseByServiceResponse",
+}) as any as S.Schema<ListWorkspaceApiReleaseByServiceResponse>;
 
 export interface ListWorkspaceApiRevisionByServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -26572,16 +26627,16 @@ export const ListWorkspaceApiRevisionByServiceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListWorkspaceApiRevisionByServiceRequest>;
 
 /** Page values. */
-export type WorkspaceApiRevisionListByServiceResponseValueList =
+export type ListWorkspaceApiRevisionByServiceResponseValueList =
   Array<ApiRevisionContract>;
-export const WorkspaceApiRevisionListByServiceResponseValueList =
+export const ListWorkspaceApiRevisionByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     ApiRevisionContract,
-  ) as any as S.Schema<WorkspaceApiRevisionListByServiceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceApiRevisionByServiceResponseValueList>;
 
 export interface ListWorkspaceApiRevisionByServiceResponse {
   /** Page values. */
-  value?: WorkspaceApiRevisionListByServiceResponseValueList;
+  value?: ListWorkspaceApiRevisionByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26590,7 +26645,7 @@ export interface ListWorkspaceApiRevisionByServiceResponse {
 export const ListWorkspaceApiRevisionByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceApiRevisionListByServiceResponseValueList),
+      value: S.optional(ListWorkspaceApiRevisionByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -26639,16 +26694,16 @@ export const ListWorkspaceApiSchemaByApiRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspaceApiSchemaByApiRequest>;
 
 /** API Schema Contract value. */
-export type WorkspaceApiSchemaListByApiResponseValueList =
+export type ListWorkspaceApiSchemaByApiResponseValueList =
   Array<SchemaContract>;
-export const WorkspaceApiSchemaListByApiResponseValueList =
+export const ListWorkspaceApiSchemaByApiResponseValueList =
   /*@__PURE__*/ S.Array(
     SchemaContract,
-  ) as any as S.Schema<WorkspaceApiSchemaListByApiResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceApiSchemaByApiResponseValueList>;
 
 export interface ListWorkspaceApiSchemaByApiResponse {
   /** API Schema Contract value. */
-  value?: WorkspaceApiSchemaListByApiResponseValueList;
+  value?: ListWorkspaceApiSchemaByApiResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -26656,13 +26711,78 @@ export interface ListWorkspaceApiSchemaByApiResponse {
 }
 export const ListWorkspaceApiSchemaByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceApiSchemaListByApiResponseValueList),
+    value: S.optional(ListWorkspaceApiSchemaByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListWorkspaceApiSchemaByApiResponse",
 }) as any as S.Schema<ListWorkspaceApiSchemaByApiResponse>;
+
+export interface ListWorkspaceApiVersionSetByServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br> */
+  _filter?: string;
+  /** Number of records to return. */
+  _top?: number;
+  /** Number of records to skip. */
+  _skip?: number;
+}
+export const ListWorkspaceApiVersionSetByServiceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWorkspaceApiVersionSetByServiceRequest",
+  }) as any as S.Schema<ListWorkspaceApiVersionSetByServiceRequest>;
+
+/** Page values. */
+export type ListWorkspaceApiVersionSetByServiceResponseValueList =
+  Array<ApiVersionSetContract>;
+export const ListWorkspaceApiVersionSetByServiceResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ApiVersionSetContract,
+  ) as any as S.Schema<ListWorkspaceApiVersionSetByServiceResponseValueList>;
+
+export interface ListWorkspaceApiVersionSetByServiceResponse {
+  /** Page values. */
+  value?: ListWorkspaceApiVersionSetByServiceResponseValueList;
+  /** Total record count number across all pages. */
+  count?: number;
+  /** Next page link if any. */
+  nextLink?: string;
+}
+export const ListWorkspaceApiVersionSetByServiceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(ListWorkspaceApiVersionSetByServiceResponseValueList),
+      count: S.optional(S.Number),
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ListWorkspaceApiVersionSetByServiceResponse",
+  }) as any as S.Schema<ListWorkspaceApiVersionSetByServiceResponse>;
 
 export interface ListWorkspaceBackendByWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -26703,16 +26823,16 @@ export const ListWorkspaceBackendByWorkspaceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListWorkspaceBackendByWorkspaceRequest>;
 
 /** Backend values. */
-export type WorkspaceBackendListByWorkspaceResponseValueList =
+export type ListWorkspaceBackendByWorkspaceResponseValueList =
   Array<BackendContract>;
-export const WorkspaceBackendListByWorkspaceResponseValueList =
+export const ListWorkspaceBackendByWorkspaceResponseValueList =
   /*@__PURE__*/ S.Array(
     BackendContract,
-  ) as any as S.Schema<WorkspaceBackendListByWorkspaceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceBackendByWorkspaceResponseValueList>;
 
 export interface ListWorkspaceBackendByWorkspaceResponse {
   /** Backend values. */
-  value?: WorkspaceBackendListByWorkspaceResponseValueList;
+  value?: ListWorkspaceBackendByWorkspaceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26721,7 +26841,7 @@ export interface ListWorkspaceBackendByWorkspaceResponse {
 export const ListWorkspaceBackendByWorkspaceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(WorkspaceBackendListByWorkspaceResponseValueList),
+      value: S.optional(ListWorkspaceBackendByWorkspaceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -26786,14 +26906,14 @@ export const WorkspaceContract = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkspaceContract>;
 
 /** Page values. */
-export type WorkspaceListByServiceResponseValueList = Array<WorkspaceContract>;
-export const WorkspaceListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListWorkspaceByServiceResponseValueList = Array<WorkspaceContract>;
+export const ListWorkspaceByServiceResponseValueList = /*@__PURE__*/ S.Array(
   WorkspaceContract,
-) as any as S.Schema<WorkspaceListByServiceResponseValueList>;
+) as any as S.Schema<ListWorkspaceByServiceResponseValueList>;
 
 export interface ListWorkspaceByServiceResponse {
   /** Page values. */
-  value?: WorkspaceListByServiceResponseValueList;
+  value?: ListWorkspaceByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26801,7 +26921,7 @@ export interface ListWorkspaceByServiceResponse {
 }
 export const ListWorkspaceByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceListByServiceResponseValueList),
+    value: S.optional(ListWorkspaceByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -26851,16 +26971,16 @@ export const ListWorkspaceCertificateByWorkspaceRequest =
   }) as any as S.Schema<ListWorkspaceCertificateByWorkspaceRequest>;
 
 /** Page values. */
-export type WorkspaceCertificateListByWorkspaceResponseValueList =
+export type ListWorkspaceCertificateByWorkspaceResponseValueList =
   Array<CertificateContract>;
-export const WorkspaceCertificateListByWorkspaceResponseValueList =
+export const ListWorkspaceCertificateByWorkspaceResponseValueList =
   /*@__PURE__*/ S.Array(
     CertificateContract,
-  ) as any as S.Schema<WorkspaceCertificateListByWorkspaceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceCertificateByWorkspaceResponseValueList>;
 
 export interface ListWorkspaceCertificateByWorkspaceResponse {
   /** Page values. */
-  value?: WorkspaceCertificateListByWorkspaceResponseValueList;
+  value?: ListWorkspaceCertificateByWorkspaceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26869,7 +26989,7 @@ export interface ListWorkspaceCertificateByWorkspaceResponse {
 export const ListWorkspaceCertificateByWorkspaceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceCertificateListByWorkspaceResponseValueList),
+      value: S.optional(ListWorkspaceCertificateByWorkspaceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -26916,16 +27036,16 @@ export const ListWorkspaceDiagnosticByWorkspaceRequest =
   }) as any as S.Schema<ListWorkspaceDiagnosticByWorkspaceRequest>;
 
 /** Page values. */
-export type WorkspaceDiagnosticListByWorkspaceResponseValueList =
+export type ListWorkspaceDiagnosticByWorkspaceResponseValueList =
   Array<DiagnosticContract>;
-export const WorkspaceDiagnosticListByWorkspaceResponseValueList =
+export const ListWorkspaceDiagnosticByWorkspaceResponseValueList =
   /*@__PURE__*/ S.Array(
     DiagnosticContract,
-  ) as any as S.Schema<WorkspaceDiagnosticListByWorkspaceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceDiagnosticByWorkspaceResponseValueList>;
 
 export interface ListWorkspaceDiagnosticByWorkspaceResponse {
   /** Page values. */
-  value?: WorkspaceDiagnosticListByWorkspaceResponseValueList;
+  value?: ListWorkspaceDiagnosticByWorkspaceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -26934,7 +27054,7 @@ export interface ListWorkspaceDiagnosticByWorkspaceResponse {
 export const ListWorkspaceDiagnosticByWorkspaceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceDiagnosticListByWorkspaceResponseValueList),
+      value: S.optional(ListWorkspaceDiagnosticByWorkspaceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -26981,16 +27101,16 @@ export const ListWorkspaceGlobalSchemaByServiceRequest =
   }) as any as S.Schema<ListWorkspaceGlobalSchemaByServiceRequest>;
 
 /** Global Schema Contract value. */
-export type WorkspaceGlobalSchemaListByServiceResponseValueList =
+export type ListWorkspaceGlobalSchemaByServiceResponseValueList =
   Array<GlobalSchemaContract>;
-export const WorkspaceGlobalSchemaListByServiceResponseValueList =
+export const ListWorkspaceGlobalSchemaByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     GlobalSchemaContract,
-  ) as any as S.Schema<WorkspaceGlobalSchemaListByServiceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceGlobalSchemaByServiceResponseValueList>;
 
 export interface ListWorkspaceGlobalSchemaByServiceResponse {
   /** Global Schema Contract value. */
-  value?: WorkspaceGlobalSchemaListByServiceResponseValueList;
+  value?: ListWorkspaceGlobalSchemaByServiceResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -26999,7 +27119,7 @@ export interface ListWorkspaceGlobalSchemaByServiceResponse {
 export const ListWorkspaceGlobalSchemaByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceGlobalSchemaListByServiceResponseValueList),
+      value: S.optional(ListWorkspaceGlobalSchemaByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27045,15 +27165,15 @@ export const ListWorkspaceGroupByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspaceGroupByServiceRequest>;
 
 /** Page values. */
-export type WorkspaceGroupListByServiceResponseValueList = Array<GroupContract>;
-export const WorkspaceGroupListByServiceResponseValueList =
+export type ListWorkspaceGroupByServiceResponseValueList = Array<GroupContract>;
+export const ListWorkspaceGroupByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     GroupContract,
-  ) as any as S.Schema<WorkspaceGroupListByServiceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceGroupByServiceResponseValueList>;
 
 export interface ListWorkspaceGroupByServiceResponse {
   /** Page values. */
-  value?: WorkspaceGroupListByServiceResponseValueList;
+  value?: ListWorkspaceGroupByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27061,7 +27181,7 @@ export interface ListWorkspaceGroupByServiceResponse {
 }
 export const ListWorkspaceGroupByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceGroupListByServiceResponseValueList),
+    value: S.optional(ListWorkspaceGroupByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -27110,14 +27230,14 @@ export const ListWorkspaceGroupUserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspaceGroupUserRequest>;
 
 /** Page values. */
-export type WorkspaceGroupUserListResponseValueList = Array<UserContract>;
-export const WorkspaceGroupUserListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListWorkspaceGroupUserResponseValueList = Array<UserContract>;
+export const ListWorkspaceGroupUserResponseValueList = /*@__PURE__*/ S.Array(
   UserContract,
-) as any as S.Schema<WorkspaceGroupUserListResponseValueList>;
+) as any as S.Schema<ListWorkspaceGroupUserResponseValueList>;
 
 export interface ListWorkspaceGroupUserResponse {
   /** Page values. */
-  value?: WorkspaceGroupUserListResponseValueList;
+  value?: ListWorkspaceGroupUserResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27125,7 +27245,7 @@ export interface ListWorkspaceGroupUserResponse {
 }
 export const ListWorkspaceGroupUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceGroupUserListResponseValueList),
+    value: S.optional(ListWorkspaceGroupUserResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -27172,16 +27292,16 @@ export const ListWorkspaceLoggerByWorkspaceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListWorkspaceLoggerByWorkspaceRequest>;
 
 /** Logger values. */
-export type WorkspaceLoggerListByWorkspaceResponseValueList =
+export type ListWorkspaceLoggerByWorkspaceResponseValueList =
   Array<LoggerContract>;
-export const WorkspaceLoggerListByWorkspaceResponseValueList =
+export const ListWorkspaceLoggerByWorkspaceResponseValueList =
   /*@__PURE__*/ S.Array(
     LoggerContract,
-  ) as any as S.Schema<WorkspaceLoggerListByWorkspaceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceLoggerByWorkspaceResponseValueList>;
 
 export interface ListWorkspaceLoggerByWorkspaceResponse {
   /** Logger values. */
-  value?: WorkspaceLoggerListByWorkspaceResponseValueList;
+  value?: ListWorkspaceLoggerByWorkspaceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27190,7 +27310,7 @@ export interface ListWorkspaceLoggerByWorkspaceResponse {
 export const ListWorkspaceLoggerByWorkspaceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(WorkspaceLoggerListByWorkspaceResponseValueList),
+      value: S.optional(ListWorkspaceLoggerByWorkspaceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27198,10 +27318,10 @@ export const ListWorkspaceLoggerByWorkspaceResponse = /*@__PURE__*/ S.suspend(
   identifier: "ListWorkspaceLoggerByWorkspaceResponse",
 }) as any as S.Schema<ListWorkspaceLoggerByWorkspaceResponse>;
 
-export type WorkspaceNamedValueListByServiceRequestIsKeyVaultRefreshFailed =
+export type ListWorkspaceNamedValueByServiceRequestIsKeyVaultRefreshFailed =
   | "true"
   | "false";
-export const WorkspaceNamedValueListByServiceRequestIsKeyVaultRefreshFailed =
+export const ListWorkspaceNamedValueByServiceRequestIsKeyVaultRefreshFailed =
   /*@__PURE__*/ S.String;
 
 export interface ListWorkspaceNamedValueByServiceRequest {
@@ -27221,7 +27341,7 @@ export interface ListWorkspaceNamedValueByServiceRequest {
   _skip?: number;
   /** Query parameter to fetch named value entities based on refresh status. */
   isKeyVaultRefreshFailed?:
-    | WorkspaceNamedValueListByServiceRequestIsKeyVaultRefreshFailed
+    | ListWorkspaceNamedValueByServiceRequestIsKeyVaultRefreshFailed
     | (string & {});
 }
 export const ListWorkspaceNamedValueByServiceRequest = /*@__PURE__*/ S.suspend(
@@ -27235,7 +27355,7 @@ export const ListWorkspaceNamedValueByServiceRequest = /*@__PURE__*/ S.suspend(
       _top: S.optional(S.Number.pipe(T.Query("$top"))),
       _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
       isKeyVaultRefreshFailed: S.optional(
-        WorkspaceNamedValueListByServiceRequestIsKeyVaultRefreshFailed.pipe(
+        ListWorkspaceNamedValueByServiceRequestIsKeyVaultRefreshFailed.pipe(
           T.Query(),
         ),
       ),
@@ -27252,16 +27372,16 @@ export const ListWorkspaceNamedValueByServiceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListWorkspaceNamedValueByServiceRequest>;
 
 /** Page values. */
-export type WorkspaceNamedValueListByServiceResponseValueList =
+export type ListWorkspaceNamedValueByServiceResponseValueList =
   Array<NamedValueContract>;
-export const WorkspaceNamedValueListByServiceResponseValueList =
+export const ListWorkspaceNamedValueByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     NamedValueContract,
-  ) as any as S.Schema<WorkspaceNamedValueListByServiceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceNamedValueByServiceResponseValueList>;
 
 export interface ListWorkspaceNamedValueByServiceResponse {
   /** Page values. */
-  value?: WorkspaceNamedValueListByServiceResponseValueList;
+  value?: ListWorkspaceNamedValueByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27270,7 +27390,7 @@ export interface ListWorkspaceNamedValueByServiceResponse {
 export const ListWorkspaceNamedValueByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(WorkspaceNamedValueListByServiceResponseValueList),
+      value: S.optional(ListWorkspaceNamedValueByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27358,16 +27478,16 @@ export const ListWorkspaceNotificationByServiceRequest =
   }) as any as S.Schema<ListWorkspaceNotificationByServiceRequest>;
 
 /** Page values. */
-export type WorkspaceNotificationListByServiceResponseValueList =
+export type ListWorkspaceNotificationByServiceResponseValueList =
   Array<NotificationContract>;
-export const WorkspaceNotificationListByServiceResponseValueList =
+export const ListWorkspaceNotificationByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     NotificationContract,
-  ) as any as S.Schema<WorkspaceNotificationListByServiceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceNotificationByServiceResponseValueList>;
 
 export interface ListWorkspaceNotificationByServiceResponse {
   /** Page values. */
-  value?: WorkspaceNotificationListByServiceResponseValueList;
+  value?: ListWorkspaceNotificationByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27376,7 +27496,7 @@ export interface ListWorkspaceNotificationByServiceResponse {
 export const ListWorkspaceNotificationByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceNotificationListByServiceResponseValueList),
+      value: S.optional(ListWorkspaceNotificationByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27384,7 +27504,7 @@ export const ListWorkspaceNotificationByServiceResponse =
     identifier: "ListWorkspaceNotificationByServiceResponse",
   }) as any as S.Schema<ListWorkspaceNotificationByServiceResponse>;
 
-export type WorkspaceNotificationRecipientEmailListByNotificationRequestNotificationName =
+export type ListWorkspaceNotificationRecipientEmailByNotificationRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -27392,7 +27512,7 @@ export type WorkspaceNotificationRecipientEmailListByNotificationRequestNotifica
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const WorkspaceNotificationRecipientEmailListByNotificationRequestNotificationName =
+export const ListWorkspaceNotificationRecipientEmailByNotificationRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface ListWorkspaceNotificationRecipientEmailByNotificationRequest {
@@ -27406,7 +27526,7 @@ export interface ListWorkspaceNotificationRecipientEmailByNotificationRequest {
   workspaceId: string;
   /** Notification Name Identifier. */
   notificationName:
-    | WorkspaceNotificationRecipientEmailListByNotificationRequestNotificationName
+    | ListWorkspaceNotificationRecipientEmailByNotificationRequestNotificationName
     | (string & {});
 }
 export const ListWorkspaceNotificationRecipientEmailByNotificationRequest =
@@ -27417,7 +27537,7 @@ export const ListWorkspaceNotificationRecipientEmailByNotificationRequest =
       serviceName: S.String.pipe(T.Label()),
       workspaceId: S.String.pipe(T.Label()),
       notificationName:
-        WorkspaceNotificationRecipientEmailListByNotificationRequestNotificationName.pipe(
+        ListWorkspaceNotificationRecipientEmailByNotificationRequestNotificationName.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -27433,16 +27553,16 @@ export const ListWorkspaceNotificationRecipientEmailByNotificationRequest =
   }) as any as S.Schema<ListWorkspaceNotificationRecipientEmailByNotificationRequest>;
 
 /** Page values. */
-export type WorkspaceNotificationRecipientEmailListByNotificationResponseValueList =
+export type ListWorkspaceNotificationRecipientEmailByNotificationResponseValueList =
   Array<RecipientEmailContract>;
-export const WorkspaceNotificationRecipientEmailListByNotificationResponseValueList =
+export const ListWorkspaceNotificationRecipientEmailByNotificationResponseValueList =
   /*@__PURE__*/ S.Array(
     RecipientEmailContract,
-  ) as any as S.Schema<WorkspaceNotificationRecipientEmailListByNotificationResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceNotificationRecipientEmailByNotificationResponseValueList>;
 
 export interface ListWorkspaceNotificationRecipientEmailByNotificationResponse {
   /** Page values. */
-  value?: WorkspaceNotificationRecipientEmailListByNotificationResponseValueList;
+  value?: ListWorkspaceNotificationRecipientEmailByNotificationResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27452,7 +27572,7 @@ export const ListWorkspaceNotificationRecipientEmailByNotificationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        WorkspaceNotificationRecipientEmailListByNotificationResponseValueList,
+        ListWorkspaceNotificationRecipientEmailByNotificationResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -27461,7 +27581,7 @@ export const ListWorkspaceNotificationRecipientEmailByNotificationResponse =
     identifier: "ListWorkspaceNotificationRecipientEmailByNotificationResponse",
   }) as any as S.Schema<ListWorkspaceNotificationRecipientEmailByNotificationResponse>;
 
-export type WorkspaceNotificationRecipientUserListByNotificationRequestNotificationName =
+export type ListWorkspaceNotificationRecipientUserByNotificationRequestNotificationName =
   | "RequestPublisherNotificationMessage"
   | "PurchasePublisherNotificationMessage"
   | "NewApplicationNotificationMessage"
@@ -27469,7 +27589,7 @@ export type WorkspaceNotificationRecipientUserListByNotificationRequestNotificat
   | "NewIssuePublisherNotificationMessage"
   | "AccountClosedPublisher"
   | "QuotaLimitApproachingPublisherNotificationMessage";
-export const WorkspaceNotificationRecipientUserListByNotificationRequestNotificationName =
+export const ListWorkspaceNotificationRecipientUserByNotificationRequestNotificationName =
   /*@__PURE__*/ S.String;
 
 export interface ListWorkspaceNotificationRecipientUserByNotificationRequest {
@@ -27483,7 +27603,7 @@ export interface ListWorkspaceNotificationRecipientUserByNotificationRequest {
   workspaceId: string;
   /** Notification Name Identifier. */
   notificationName:
-    | WorkspaceNotificationRecipientUserListByNotificationRequestNotificationName
+    | ListWorkspaceNotificationRecipientUserByNotificationRequestNotificationName
     | (string & {});
 }
 export const ListWorkspaceNotificationRecipientUserByNotificationRequest =
@@ -27494,7 +27614,7 @@ export const ListWorkspaceNotificationRecipientUserByNotificationRequest =
       serviceName: S.String.pipe(T.Label()),
       workspaceId: S.String.pipe(T.Label()),
       notificationName:
-        WorkspaceNotificationRecipientUserListByNotificationRequestNotificationName.pipe(
+        ListWorkspaceNotificationRecipientUserByNotificationRequestNotificationName.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -27510,16 +27630,16 @@ export const ListWorkspaceNotificationRecipientUserByNotificationRequest =
   }) as any as S.Schema<ListWorkspaceNotificationRecipientUserByNotificationRequest>;
 
 /** Page values. */
-export type WorkspaceNotificationRecipientUserListByNotificationResponseValueList =
+export type ListWorkspaceNotificationRecipientUserByNotificationResponseValueList =
   Array<RecipientUserContract>;
-export const WorkspaceNotificationRecipientUserListByNotificationResponseValueList =
+export const ListWorkspaceNotificationRecipientUserByNotificationResponseValueList =
   /*@__PURE__*/ S.Array(
     RecipientUserContract,
-  ) as any as S.Schema<WorkspaceNotificationRecipientUserListByNotificationResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceNotificationRecipientUserByNotificationResponseValueList>;
 
 export interface ListWorkspaceNotificationRecipientUserByNotificationResponse {
   /** Page values. */
-  value?: WorkspaceNotificationRecipientUserListByNotificationResponseValueList;
+  value?: ListWorkspaceNotificationRecipientUserByNotificationResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27529,7 +27649,7 @@ export const ListWorkspaceNotificationRecipientUserByNotificationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        WorkspaceNotificationRecipientUserListByNotificationResponseValueList,
+        ListWorkspaceNotificationRecipientUserByNotificationResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -27567,14 +27687,14 @@ export const ListWorkspacePolicyByApiRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspacePolicyByApiRequest>;
 
 /** Policy Contract value. */
-export type WorkspacePolicyListByApiResponseValueList = Array<PolicyContract>;
-export const WorkspacePolicyListByApiResponseValueList = /*@__PURE__*/ S.Array(
+export type ListWorkspacePolicyByApiResponseValueList = Array<PolicyContract>;
+export const ListWorkspacePolicyByApiResponseValueList = /*@__PURE__*/ S.Array(
   PolicyContract,
-) as any as S.Schema<WorkspacePolicyListByApiResponseValueList>;
+) as any as S.Schema<ListWorkspacePolicyByApiResponseValueList>;
 
 export interface ListWorkspacePolicyByApiResponse {
   /** Policy Contract value. */
-  value?: WorkspacePolicyListByApiResponseValueList;
+  value?: ListWorkspacePolicyByApiResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -27582,7 +27702,7 @@ export interface ListWorkspacePolicyByApiResponse {
 }
 export const ListWorkspacePolicyByApiResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspacePolicyListByApiResponseValueList),
+    value: S.optional(ListWorkspacePolicyByApiResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -27632,16 +27752,16 @@ export const ListWorkspacePolicyFragmentByServiceRequest =
   }) as any as S.Schema<ListWorkspacePolicyFragmentByServiceRequest>;
 
 /** Policy fragment contract value. */
-export type WorkspacePolicyFragmentListByServiceResponseValueList =
+export type ListWorkspacePolicyFragmentByServiceResponseValueList =
   Array<PolicyFragmentContract>;
-export const WorkspacePolicyFragmentListByServiceResponseValueList =
+export const ListWorkspacePolicyFragmentByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyFragmentContract,
-  ) as any as S.Schema<WorkspacePolicyFragmentListByServiceResponseValueList>;
+  ) as any as S.Schema<ListWorkspacePolicyFragmentByServiceResponseValueList>;
 
 export interface ListWorkspacePolicyFragmentByServiceResponse {
   /** Policy fragment contract value. */
-  value?: WorkspacePolicyFragmentListByServiceResponseValueList;
+  value?: ListWorkspacePolicyFragmentByServiceResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -27650,7 +27770,7 @@ export interface ListWorkspacePolicyFragmentByServiceResponse {
 export const ListWorkspacePolicyFragmentByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspacePolicyFragmentListByServiceResponseValueList),
+      value: S.optional(ListWorkspacePolicyFragmentByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27697,16 +27817,16 @@ export const ListWorkspacePolicyFragmentReferencesRequest =
   }) as any as S.Schema<ListWorkspacePolicyFragmentReferencesRequest>;
 
 /** A collection of resources. */
-export type WorkspacePolicyFragmentListReferencesResponseValueList =
+export type ListWorkspacePolicyFragmentReferencesResponseValueList =
   Array<Resource>;
-export const WorkspacePolicyFragmentListReferencesResponseValueList =
+export const ListWorkspacePolicyFragmentReferencesResponseValueList =
   /*@__PURE__*/ S.Array(
     Resource,
-  ) as any as S.Schema<WorkspacePolicyFragmentListReferencesResponseValueList>;
+  ) as any as S.Schema<ListWorkspacePolicyFragmentReferencesResponseValueList>;
 
 export interface ListWorkspacePolicyFragmentReferencesResponse {
   /** A collection of resources. */
-  value?: WorkspacePolicyFragmentListReferencesResponseValueList;
+  value?: ListWorkspacePolicyFragmentReferencesResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -27715,7 +27835,7 @@ export interface ListWorkspacePolicyFragmentReferencesResponse {
 export const ListWorkspacePolicyFragmentReferencesResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspacePolicyFragmentListReferencesResponseValueList),
+      value: S.optional(ListWorkspacePolicyFragmentReferencesResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27765,16 +27885,16 @@ export const ListWorkspaceProductApiLinkByProductRequest =
   }) as any as S.Schema<ListWorkspaceProductApiLinkByProductRequest>;
 
 /** Page values. */
-export type WorkspaceProductApiLinkListByProductResponseValueList =
+export type ListWorkspaceProductApiLinkByProductResponseValueList =
   Array<ProductApiLinkContract>;
-export const WorkspaceProductApiLinkListByProductResponseValueList =
+export const ListWorkspaceProductApiLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     ProductApiLinkContract,
-  ) as any as S.Schema<WorkspaceProductApiLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceProductApiLinkByProductResponseValueList>;
 
 export interface ListWorkspaceProductApiLinkByProductResponse {
   /** Page values. */
-  value?: WorkspaceProductApiLinkListByProductResponseValueList;
+  value?: ListWorkspaceProductApiLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27783,7 +27903,7 @@ export interface ListWorkspaceProductApiLinkByProductResponse {
 export const ListWorkspaceProductApiLinkByProductResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceProductApiLinkListByProductResponseValueList),
+      value: S.optional(ListWorkspaceProductApiLinkByProductResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27836,16 +27956,16 @@ export const ListWorkspaceProductByServiceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListWorkspaceProductByServiceRequest>;
 
 /** Page values. */
-export type WorkspaceProductListByServiceResponseValueList =
+export type ListWorkspaceProductByServiceResponseValueList =
   Array<ProductContract>;
-export const WorkspaceProductListByServiceResponseValueList =
+export const ListWorkspaceProductByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     ProductContract,
-  ) as any as S.Schema<WorkspaceProductListByServiceResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceProductByServiceResponseValueList>;
 
 export interface ListWorkspaceProductByServiceResponse {
   /** Page values. */
-  value?: WorkspaceProductListByServiceResponseValueList;
+  value?: ListWorkspaceProductByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27854,7 +27974,7 @@ export interface ListWorkspaceProductByServiceResponse {
 export const ListWorkspaceProductByServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(WorkspaceProductListByServiceResponseValueList),
+      value: S.optional(ListWorkspaceProductByServiceResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -27904,16 +28024,16 @@ export const ListWorkspaceProductGroupLinkByProductRequest =
   }) as any as S.Schema<ListWorkspaceProductGroupLinkByProductRequest>;
 
 /** Page values. */
-export type WorkspaceProductGroupLinkListByProductResponseValueList =
+export type ListWorkspaceProductGroupLinkByProductResponseValueList =
   Array<ProductGroupLinkContract>;
-export const WorkspaceProductGroupLinkListByProductResponseValueList =
+export const ListWorkspaceProductGroupLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     ProductGroupLinkContract,
-  ) as any as S.Schema<WorkspaceProductGroupLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceProductGroupLinkByProductResponseValueList>;
 
 export interface ListWorkspaceProductGroupLinkByProductResponse {
   /** Page values. */
-  value?: WorkspaceProductGroupLinkListByProductResponseValueList;
+  value?: ListWorkspaceProductGroupLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -27923,7 +28043,7 @@ export const ListWorkspaceProductGroupLinkByProductResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        WorkspaceProductGroupLinkListByProductResponseValueList,
+        ListWorkspaceProductGroupLinkByProductResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -27965,16 +28085,16 @@ export const ListWorkspaceProductPolicyByProductRequest =
   }) as any as S.Schema<ListWorkspaceProductPolicyByProductRequest>;
 
 /** Policy Contract value. */
-export type WorkspaceProductPolicyListByProductResponseValueList =
+export type ListWorkspaceProductPolicyByProductResponseValueList =
   Array<PolicyContract>;
-export const WorkspaceProductPolicyListByProductResponseValueList =
+export const ListWorkspaceProductPolicyByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     PolicyContract,
-  ) as any as S.Schema<WorkspaceProductPolicyListByProductResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceProductPolicyByProductResponseValueList>;
 
 export interface ListWorkspaceProductPolicyByProductResponse {
   /** Policy Contract value. */
-  value?: WorkspaceProductPolicyListByProductResponseValueList;
+  value?: ListWorkspaceProductPolicyByProductResponseValueList;
   /** Total record count number. */
   count?: number;
   /** Next page link if any. */
@@ -27983,7 +28103,7 @@ export interface ListWorkspaceProductPolicyByProductResponse {
 export const ListWorkspaceProductPolicyByProductResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceProductPolicyListByProductResponseValueList),
+      value: S.optional(ListWorkspaceProductPolicyByProductResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -28029,15 +28149,15 @@ export const ListWorkspaceSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspaceSubscriptionRequest>;
 
 /** Page values. */
-export type WorkspaceSubscriptionListResponseValueList =
+export type ListWorkspaceSubscriptionResponseValueList =
   Array<SubscriptionContract>;
-export const WorkspaceSubscriptionListResponseValueList = /*@__PURE__*/ S.Array(
+export const ListWorkspaceSubscriptionResponseValueList = /*@__PURE__*/ S.Array(
   SubscriptionContract,
-) as any as S.Schema<WorkspaceSubscriptionListResponseValueList>;
+) as any as S.Schema<ListWorkspaceSubscriptionResponseValueList>;
 
 export interface ListWorkspaceSubscriptionResponse {
   /** Page values. */
-  value?: WorkspaceSubscriptionListResponseValueList;
+  value?: ListWorkspaceSubscriptionResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -28045,7 +28165,7 @@ export interface ListWorkspaceSubscriptionResponse {
 }
 export const ListWorkspaceSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceSubscriptionListResponseValueList),
+    value: S.optional(ListWorkspaceSubscriptionResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -28143,16 +28263,16 @@ export const ListWorkspaceTagApiLinkByProductRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListWorkspaceTagApiLinkByProductRequest>;
 
 /** Page values. */
-export type WorkspaceTagApiLinkListByProductResponseValueList =
+export type ListWorkspaceTagApiLinkByProductResponseValueList =
   Array<TagApiLinkContract>;
-export const WorkspaceTagApiLinkListByProductResponseValueList =
+export const ListWorkspaceTagApiLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     TagApiLinkContract,
-  ) as any as S.Schema<WorkspaceTagApiLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceTagApiLinkByProductResponseValueList>;
 
 export interface ListWorkspaceTagApiLinkByProductResponse {
   /** Page values. */
-  value?: WorkspaceTagApiLinkListByProductResponseValueList;
+  value?: ListWorkspaceTagApiLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -28161,7 +28281,7 @@ export interface ListWorkspaceTagApiLinkByProductResponse {
 export const ListWorkspaceTagApiLinkByProductResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(WorkspaceTagApiLinkListByProductResponseValueList),
+      value: S.optional(ListWorkspaceTagApiLinkByProductResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -28210,14 +28330,14 @@ export const ListWorkspaceTagByServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListWorkspaceTagByServiceRequest>;
 
 /** Page values. */
-export type WorkspaceTagListByServiceResponseValueList = Array<TagContract>;
-export const WorkspaceTagListByServiceResponseValueList = /*@__PURE__*/ S.Array(
+export type ListWorkspaceTagByServiceResponseValueList = Array<TagContract>;
+export const ListWorkspaceTagByServiceResponseValueList = /*@__PURE__*/ S.Array(
   TagContract,
-) as any as S.Schema<WorkspaceTagListByServiceResponseValueList>;
+) as any as S.Schema<ListWorkspaceTagByServiceResponseValueList>;
 
 export interface ListWorkspaceTagByServiceResponse {
   /** Page values. */
-  value?: WorkspaceTagListByServiceResponseValueList;
+  value?: ListWorkspaceTagByServiceResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -28225,7 +28345,7 @@ export interface ListWorkspaceTagByServiceResponse {
 }
 export const ListWorkspaceTagByServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspaceTagListByServiceResponseValueList),
+    value: S.optional(ListWorkspaceTagByServiceResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
@@ -28275,16 +28395,16 @@ export const ListWorkspaceTagOperationLinkByProductRequest =
   }) as any as S.Schema<ListWorkspaceTagOperationLinkByProductRequest>;
 
 /** Page values. */
-export type WorkspaceTagOperationLinkListByProductResponseValueList =
+export type ListWorkspaceTagOperationLinkByProductResponseValueList =
   Array<TagOperationLinkContract>;
-export const WorkspaceTagOperationLinkListByProductResponseValueList =
+export const ListWorkspaceTagOperationLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     TagOperationLinkContract,
-  ) as any as S.Schema<WorkspaceTagOperationLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceTagOperationLinkByProductResponseValueList>;
 
 export interface ListWorkspaceTagOperationLinkByProductResponse {
   /** Page values. */
-  value?: WorkspaceTagOperationLinkListByProductResponseValueList;
+  value?: ListWorkspaceTagOperationLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -28294,7 +28414,7 @@ export const ListWorkspaceTagOperationLinkByProductResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        WorkspaceTagOperationLinkListByProductResponseValueList,
+        ListWorkspaceTagOperationLinkByProductResponseValueList,
       ),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
@@ -28345,16 +28465,16 @@ export const ListWorkspaceTagProductLinkByProductRequest =
   }) as any as S.Schema<ListWorkspaceTagProductLinkByProductRequest>;
 
 /** Page values. */
-export type WorkspaceTagProductLinkListByProductResponseValueList =
+export type ListWorkspaceTagProductLinkByProductResponseValueList =
   Array<TagProductLinkContract>;
-export const WorkspaceTagProductLinkListByProductResponseValueList =
+export const ListWorkspaceTagProductLinkByProductResponseValueList =
   /*@__PURE__*/ S.Array(
     TagProductLinkContract,
-  ) as any as S.Schema<WorkspaceTagProductLinkListByProductResponseValueList>;
+  ) as any as S.Schema<ListWorkspaceTagProductLinkByProductResponseValueList>;
 
 export interface ListWorkspaceTagProductLinkByProductResponse {
   /** Page values. */
-  value?: WorkspaceTagProductLinkListByProductResponseValueList;
+  value?: ListWorkspaceTagProductLinkByProductResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
@@ -28363,7 +28483,7 @@ export interface ListWorkspaceTagProductLinkByProductResponse {
 export const ListWorkspaceTagProductLinkByProductResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(WorkspaceTagProductLinkListByProductResponseValueList),
+      value: S.optional(ListWorkspaceTagProductLinkByProductResponseValueList),
       count: S.optional(S.Number),
       nextLink: S.optional(S.String),
     }),
@@ -28422,6 +28542,155 @@ export const LoggerCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "LoggerCreateOrUpdateResponse",
 }) as any as S.Schema<LoggerCreateOrUpdateResponse>;
+
+/** Mode of Migration to stv2. Default is PreserveIp. */
+export type MigrateApiManagementServiceToStv2RequestMode =
+  | "PreserveIp"
+  | "NewIP";
+export const MigrateApiManagementServiceToStv2RequestMode =
+  /*@__PURE__*/ S.String;
+
+export interface MigrateApiManagementServiceToStv2Request {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Mode of Migration to stv2. Default is PreserveIp. */
+  mode?: MigrateApiManagementServiceToStv2RequestMode | (string & {});
+}
+export const MigrateApiManagementServiceToStv2Request = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      mode: S.optional(MigrateApiManagementServiceToStv2RequestMode),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/migrateToStv2",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "MigrateApiManagementServiceToStv2Request",
+}) as any as S.Schema<MigrateApiManagementServiceToStv2Request>;
+
+/** Resource tags. */
+export type MigrateApiManagementServiceToStv2ResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateApiManagementServiceToStv2ResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateApiManagementServiceToStv2ResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type MigrateApiManagementServiceToStv2ResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const MigrateApiManagementServiceToStv2ResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type MigrateApiManagementServiceToStv2ResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const MigrateApiManagementServiceToStv2ResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface MigrateApiManagementServiceToStv2ResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: MigrateApiManagementServiceToStv2ResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: MigrateApiManagementServiceToStv2ResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const MigrateApiManagementServiceToStv2ResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        MigrateApiManagementServiceToStv2ResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        MigrateApiManagementServiceToStv2ResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "MigrateApiManagementServiceToStv2ResponseSystemData",
+  }) as any as S.Schema<MigrateApiManagementServiceToStv2ResponseSystemData>;
+
+/** A list of availability zones denoting where the resource needs to come from. */
+export type MigrateApiManagementServiceToStv2ResponseZonesList = Array<string>;
+export const MigrateApiManagementServiceToStv2ResponseZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MigrateApiManagementServiceToStv2ResponseZonesList>;
+
+export interface MigrateApiManagementServiceToStv2Response {
+  /** Resource ID. */
+  id?: string;
+  /** Resource name. */
+  name?: string;
+  /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
+  type?: string;
+  /** Resource tags. */
+  tags?: MigrateApiManagementServiceToStv2ResponseTagsMap;
+  /** Properties of the API Management service. */
+  properties: ApiManagementServiceProperties;
+  /** SKU properties of the API Management service. */
+  sku: ApiManagementServiceSkuProperties;
+  /** Managed service identity of the Api Management service. */
+  identity?: ApiManagementServiceIdentity;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: MigrateApiManagementServiceToStv2ResponseSystemData;
+  /** Resource location. */
+  location: string;
+  /** ETag of the resource. */
+  etag?: string;
+  /** A list of availability zones denoting where the resource needs to come from. */
+  zones?: MigrateApiManagementServiceToStv2ResponseZonesList;
+}
+export const MigrateApiManagementServiceToStv2Response =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      tags: S.optional(MigrateApiManagementServiceToStv2ResponseTagsMap),
+      properties: ApiManagementServiceProperties,
+      sku: ApiManagementServiceSkuProperties,
+      identity: S.optional(ApiManagementServiceIdentity),
+      systemData: S.optional(
+        MigrateApiManagementServiceToStv2ResponseSystemData,
+      ),
+      location: S.String,
+      etag: S.optional(S.String),
+      zones: S.optional(MigrateApiManagementServiceToStv2ResponseZonesList),
+    }),
+  ).annotate({
+    identifier: "MigrateApiManagementServiceToStv2Response",
+  }) as any as S.Schema<MigrateApiManagementServiceToStv2Response>;
 
 /** Optional tags that when provided can be used to filter the NamedValue list. */
 export type NamedValueCreateContractPropertiesTagsList = Array<string>;
@@ -28505,55 +28774,6 @@ export const NamedValueCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "NamedValueCreateOrUpdateResponse",
 }) as any as S.Schema<NamedValueCreateOrUpdateResponse>;
-
-export interface NamedValueRefreshSecretRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Identifier of the NamedValue. */
-  namedValueId: string;
-}
-export const NamedValueRefreshSecretRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    namedValueId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/namedValues/{namedValueId}/refreshSecret",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamedValueRefreshSecretRequest",
-}) as any as S.Schema<NamedValueRefreshSecretRequest>;
-
-export interface NamedValueRefreshSecretResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** NamedValue entity contract properties. */
-  properties?: NamedValueContractProperties;
-}
-export const NamedValueRefreshSecretResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(NamedValueContractProperties),
-  }),
-).annotate({
-  identifier: "NamedValueRefreshSecretResponse",
-}) as any as S.Schema<NamedValueRefreshSecretResponse>;
 
 export type NotificationCreateOrUpdateRequestNotificationName =
   | "RequestPublisherNotificationMessage"
@@ -28813,6 +29033,328 @@ export const OpenIdConnectProviderCreateOrUpdateResponse =
     identifier: "OpenIdConnectProviderCreateOrUpdateResponse",
   }) as any as S.Schema<OpenIdConnectProviderCreateOrUpdateResponse>;
 
+/** Definitions about the connectivity check origin. */
+export interface PerformConnectivityCheckAsyncRequestSource {
+  /** The API Management service region from where to start the connectivity check operation. */
+  region: string;
+  /** The particular VMSS instance from which to fire the request. */
+  instance?: number;
+}
+export const PerformConnectivityCheckAsyncRequestSource =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      region: S.String,
+      instance: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "PerformConnectivityCheckAsyncRequestSource",
+  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestSource>;
+
+/** The connectivity check operation destination. */
+export interface PerformConnectivityCheckAsyncRequestDestination {
+  /** Destination address. Can either be an IP address or a FQDN. */
+  address: string;
+  /** Destination port. */
+  port: number;
+}
+export const PerformConnectivityCheckAsyncRequestDestination =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      address: S.String,
+      port: S.Number,
+    }),
+  ).annotate({
+    identifier: "PerformConnectivityCheckAsyncRequestDestination",
+  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestDestination>;
+
+/** The IP version to be used. Only IPv4 is supported for now. */
+export type PerformConnectivityCheckAsyncRequestPreferredIPVersion = "IPv4";
+export const PerformConnectivityCheckAsyncRequestPreferredIPVersion =
+  /*@__PURE__*/ S.String;
+
+/** The request's protocol. Specific protocol configuration can be available based on this selection. The specified destination address must be coherent with this value. */
+export type PerformConnectivityCheckAsyncRequestProtocol =
+  | "TCP"
+  | "HTTP"
+  | "HTTPS";
+export const PerformConnectivityCheckAsyncRequestProtocol =
+  /*@__PURE__*/ S.String;
+
+/** The HTTP method to be used. */
+export type PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod =
+  | "GET"
+  | "POST";
+export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod =
+  /*@__PURE__*/ S.String;
+
+/** List of HTTP status codes considered valid for the request response. */
+export type PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList =
+  Array<number>;
+export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList>;
+
+/** HTTP header and it's value. */
+export interface HTTPHeader {
+  /** Header name. */
+  name: string;
+  /** Header value. */
+  value: string;
+}
+export const HTTPHeader = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    value: S.String,
+  }),
+).annotate({ identifier: "HTTPHeader" }) as any as S.Schema<HTTPHeader>;
+
+/** List of headers to be included in the request. */
+export type PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList =
+  Array<HTTPHeader>;
+export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList =
+  /*@__PURE__*/ S.Array(
+    HTTPHeader,
+  ) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList>;
+
+/** Configuration for HTTP or HTTPS requests. */
+export interface PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration {
+  /** The HTTP method to be used. */
+  method?:
+    | PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod
+    | (string & {});
+  /** List of HTTP status codes considered valid for the request response. */
+  validStatusCodes?: PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList;
+  /** List of headers to be included in the request. */
+  headers?: PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList;
+}
+export const PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      method: S.optional(
+        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationMethod,
+      ),
+      validStatusCodes: S.optional(
+        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationValidStatusCodesList,
+      ),
+      headers: S.optional(
+        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfigurationHeadersList,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration",
+  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration>;
+
+/** Protocol-specific configuration. */
+export interface PerformConnectivityCheckAsyncRequestProtocolConfiguration {
+  /** Configuration for HTTP or HTTPS requests. */
+  HTTPConfiguration?: PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration;
+}
+export const PerformConnectivityCheckAsyncRequestProtocolConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      HTTPConfiguration: S.optional(
+        PerformConnectivityCheckAsyncRequestProtocolConfigurationHTTPConfiguration,
+      ),
+    }),
+  ).annotate({
+    identifier: "PerformConnectivityCheckAsyncRequestProtocolConfiguration",
+  }) as any as S.Schema<PerformConnectivityCheckAsyncRequestProtocolConfiguration>;
+
+export interface PerformConnectivityCheckAsyncRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Definitions about the connectivity check origin. */
+  source: PerformConnectivityCheckAsyncRequestSource;
+  /** The connectivity check operation destination. */
+  destination: PerformConnectivityCheckAsyncRequestDestination;
+  /** The IP version to be used. Only IPv4 is supported for now. */
+  preferredIPVersion?:
+    | PerformConnectivityCheckAsyncRequestPreferredIPVersion
+    | (string & {});
+  /** The request's protocol. Specific protocol configuration can be available based on this selection. The specified destination address must be coherent with this value. */
+  protocol?: PerformConnectivityCheckAsyncRequestProtocol | (string & {});
+  /** Protocol-specific configuration. */
+  protocolConfiguration?: PerformConnectivityCheckAsyncRequestProtocolConfiguration;
+}
+export const PerformConnectivityCheckAsyncRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      source: PerformConnectivityCheckAsyncRequestSource,
+      destination: PerformConnectivityCheckAsyncRequestDestination,
+      preferredIPVersion: S.optional(
+        PerformConnectivityCheckAsyncRequestPreferredIPVersion,
+      ),
+      protocol: S.optional(PerformConnectivityCheckAsyncRequestProtocol),
+      protocolConfiguration: S.optional(
+        PerformConnectivityCheckAsyncRequestProtocolConfiguration,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/connectivityCheck",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "PerformConnectivityCheckAsyncRequest",
+}) as any as S.Schema<PerformConnectivityCheckAsyncRequest>;
+
+/** List of next hop identifiers. */
+export type ConnectivityHopNextHopIdsList = Array<string>;
+export const ConnectivityHopNextHopIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ConnectivityHopNextHopIdsList>;
+
+/** The origin of the issue. */
+export type ConnectivityIssueOrigin = "Local" | "Inbound" | "Outbound";
+export const ConnectivityIssueOrigin = /*@__PURE__*/ S.String;
+
+/** The severity of the issue. */
+export type ConnectivityIssueSeverity = "Error" | "Warning";
+export const ConnectivityIssueSeverity = /*@__PURE__*/ S.String;
+
+/** The type of issue. */
+export type ConnectivityIssueType =
+  | "Unknown"
+  | "AgentStopped"
+  | "GuestFirewall"
+  | "DnsResolution"
+  | "SocketBind"
+  | "NetworkSecurityRule"
+  | "UserDefinedRoute"
+  | "PortThrottled"
+  | "Platform";
+export const ConnectivityIssueType = /*@__PURE__*/ S.String;
+
+/** A key-value pair that provides additional context on the issue. */
+export type IssueContext = { [key: string]: string | undefined };
+export const IssueContext = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<IssueContext>;
+
+/** Provides additional context on the issue. */
+export type ConnectivityIssueContextList = Array<IssueContext>;
+export const ConnectivityIssueContextList = /*@__PURE__*/ S.Array(
+  IssueContext,
+) as any as S.Schema<ConnectivityIssueContextList>;
+
+/** Information about an issue encountered in the process of checking for connectivity. */
+export interface ConnectivityIssue {
+  /** The origin of the issue. */
+  origin?: ConnectivityIssueOrigin;
+  /** The severity of the issue. */
+  severity?: ConnectivityIssueSeverity;
+  /** The type of issue. */
+  type?: ConnectivityIssueType;
+  /** Provides additional context on the issue. */
+  context?: ConnectivityIssueContextList;
+}
+export const ConnectivityIssue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    origin: S.optional(ConnectivityIssueOrigin),
+    severity: S.optional(ConnectivityIssueSeverity),
+    type: S.optional(ConnectivityIssueType),
+    context: S.optional(ConnectivityIssueContextList),
+  }),
+).annotate({
+  identifier: "ConnectivityIssue",
+}) as any as S.Schema<ConnectivityIssue>;
+
+/** List of issues. */
+export type ConnectivityHopIssuesList = Array<ConnectivityIssue>;
+export const ConnectivityHopIssuesList = /*@__PURE__*/ S.Array(
+  ConnectivityIssue,
+) as any as S.Schema<ConnectivityHopIssuesList>;
+
+/** Information about a hop between the source and the destination. */
+export interface ConnectivityHop {
+  /** The type of the hop. */
+  type?: string;
+  /** The ID of the hop. */
+  id?: string;
+  /** The IP address of the hop. */
+  address?: string;
+  /** The ID of the resource corresponding to this hop. */
+  resourceId?: string;
+  /** List of next hop identifiers. */
+  nextHopIds?: ConnectivityHopNextHopIdsList;
+  /** List of issues. */
+  issues?: ConnectivityHopIssuesList;
+}
+export const ConnectivityHop = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    address: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    nextHopIds: S.optional(ConnectivityHopNextHopIdsList),
+    issues: S.optional(ConnectivityHopIssuesList),
+  }),
+).annotate({
+  identifier: "ConnectivityHop",
+}) as any as S.Schema<ConnectivityHop>;
+
+/** List of hops between the source and the destination. */
+export type PerformConnectivityCheckAsyncResponseHopsList =
+  Array<ConnectivityHop>;
+export const PerformConnectivityCheckAsyncResponseHopsList =
+  /*@__PURE__*/ S.Array(
+    ConnectivityHop,
+  ) as any as S.Schema<PerformConnectivityCheckAsyncResponseHopsList>;
+
+/** The connection status. */
+export type PerformConnectivityCheckAsyncResponseConnectionStatus =
+  | "Unknown"
+  | "Connected"
+  | "Disconnected"
+  | "Degraded";
+export const PerformConnectivityCheckAsyncResponseConnectionStatus =
+  /*@__PURE__*/ S.String;
+
+export interface PerformConnectivityCheckAsyncResponse {
+  /** List of hops between the source and the destination. */
+  hops?: PerformConnectivityCheckAsyncResponseHopsList;
+  /** The connection status. */
+  connectionStatus?: PerformConnectivityCheckAsyncResponseConnectionStatus;
+  /** Average latency in milliseconds. */
+  avgLatencyInMs?: number;
+  /** Minimum latency in milliseconds. */
+  minLatencyInMs?: number;
+  /** Maximum latency in milliseconds. */
+  maxLatencyInMs?: number;
+  /** Total number of probes sent. */
+  probesSent?: number;
+  /** Number of failed probes. */
+  probesFailed?: number;
+}
+export const PerformConnectivityCheckAsyncResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      hops: S.optional(PerformConnectivityCheckAsyncResponseHopsList),
+      connectionStatus: S.optional(
+        PerformConnectivityCheckAsyncResponseConnectionStatus,
+      ),
+      avgLatencyInMs: S.optional(S.Number),
+      minLatencyInMs: S.optional(S.Number),
+      maxLatencyInMs: S.optional(S.Number),
+      probesSent: S.optional(S.Number),
+      probesFailed: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "PerformConnectivityCheckAsyncResponse",
+}) as any as S.Schema<PerformConnectivityCheckAsyncResponse>;
+
 export type PolicyCreateOrUpdateRequestPolicyId = "policy";
 export const PolicyCreateOrUpdateRequestPolicyId = /*@__PURE__*/ S.String;
 
@@ -29026,119 +29568,6 @@ export const PolicyRestrictionValidationsByServiceRequest =
     identifier: "PolicyRestrictionValidationsByServiceRequest",
   }) as any as S.Schema<PolicyRestrictionValidationsByServiceRequest>;
 
-/** Status of an async operation. */
-export type OperationResultContractPropertiesStatus =
-  | "Started"
-  | "InProgress"
-  | "Succeeded"
-  | "Failed";
-export const OperationResultContractPropertiesStatus = /*@__PURE__*/ S.String;
-
-/** Error Field contract. */
-export interface ErrorFieldContract {
-  /** Property level error code. */
-  code?: string;
-  /** Human-readable representation of property-level error. */
-  message?: string;
-  /** Property name. */
-  target?: string;
-}
-export const ErrorFieldContract = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ErrorFieldContract",
-}) as any as S.Schema<ErrorFieldContract>;
-
-/** The list of invalid fields send in request, in case of validation error. */
-export type OperationResultContractPropertiesErrorDetailsList =
-  Array<ErrorFieldContract>;
-export const OperationResultContractPropertiesErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorFieldContract,
-  ) as any as S.Schema<OperationResultContractPropertiesErrorDetailsList>;
-
-/** Error Body contract. */
-export interface OperationResultContractPropertiesError {
-  /** Service-defined error code. This code serves as a sub-status for the HTTP error code specified in the response. */
-  code?: string;
-  /** Human-readable representation of the error. */
-  message?: string;
-  /** The list of invalid fields send in request, in case of validation error. */
-  details?: OperationResultContractPropertiesErrorDetailsList;
-}
-export const OperationResultContractPropertiesError = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      details: S.optional(OperationResultContractPropertiesErrorDetailsList),
-    }),
-).annotate({
-  identifier: "OperationResultContractPropertiesError",
-}) as any as S.Schema<OperationResultContractPropertiesError>;
-
-/** Log of the entity being created, updated or deleted. */
-export interface OperationResultLogItemContract {
-  /** The type of entity contract. */
-  objectType?: string;
-  /** Action like create/update/delete. */
-  action?: string;
-  /** Identifier of the entity being created/updated/deleted. */
-  objectKey?: string;
-}
-export const OperationResultLogItemContract = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectType: S.optional(S.String),
-    action: S.optional(S.String),
-    objectKey: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationResultLogItemContract",
-}) as any as S.Schema<OperationResultLogItemContract>;
-
-/** This property if only provided as part of the TenantConfiguration_Validate operation. It contains the log the entities which will be updated/created/deleted as part of the TenantConfiguration_Deploy operation. */
-export type OperationResultContractPropertiesActionLogList =
-  Array<OperationResultLogItemContract>;
-export const OperationResultContractPropertiesActionLogList =
-  /*@__PURE__*/ S.Array(
-    OperationResultLogItemContract,
-  ) as any as S.Schema<OperationResultContractPropertiesActionLogList>;
-
-/** Operation Result. */
-export interface OperationResultContractProperties {
-  /** Operation result identifier. */
-  id?: string;
-  /** Status of an async operation. */
-  status?: OperationResultContractPropertiesStatus;
-  /** Start time of an async operation. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard. */
-  started?: string;
-  /** Last update time of an async operation. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard. */
-  updated?: string;
-  /** Optional result info. */
-  resultInfo?: string;
-  /** Error Body contract. */
-  error?: OperationResultContractPropertiesError;
-  /** This property if only provided as part of the TenantConfiguration_Validate operation. It contains the log the entities which will be updated/created/deleted as part of the TenantConfiguration_Deploy operation. */
-  actionLog?: OperationResultContractPropertiesActionLogList;
-}
-export const OperationResultContractProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    status: S.optional(OperationResultContractPropertiesStatus),
-    started: S.optional(S.String),
-    updated: S.optional(S.String),
-    resultInfo: S.optional(S.String),
-    error: S.optional(OperationResultContractPropertiesError),
-    actionLog: S.optional(OperationResultContractPropertiesActionLogList),
-  }),
-).annotate({
-  identifier: "OperationResultContractProperties",
-}) as any as S.Schema<OperationResultContractProperties>;
-
 export interface PolicyRestrictionValidationsByServiceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -29281,6 +29710,52 @@ export const PortalRevisionCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "PortalRevisionCreateOrUpdateResponse",
 }) as any as S.Schema<PortalRevisionCreateOrUpdateResponse>;
+
+export interface PostAuthorizationLoginLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Identifier of the authorization provider. */
+  authorizationProviderId: string;
+  /** Identifier of the authorization. */
+  authorizationId: string;
+  /** The redirect URL after login has completed. */
+  postLoginRedirectUrl?: string;
+}
+export const PostAuthorizationLoginLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    authorizationProviderId: S.String.pipe(T.Label()),
+    authorizationId: S.String.pipe(T.Label()),
+    postLoginRedirectUrl: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/authorizationProviders/{authorizationProviderId}/authorizations/{authorizationId}/getLoginLinks",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostAuthorizationLoginLinkRequest",
+}) as any as S.Schema<PostAuthorizationLoginLinkRequest>;
+
+export interface PostAuthorizationLoginLinkResponse {
+  /** The login link */
+  loginLink?: string;
+}
+export const PostAuthorizationLoginLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    loginLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PostAuthorizationLoginLinkResponse",
+}) as any as S.Schema<PostAuthorizationLoginLinkResponse>;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
 export type PrivateEndpointConnectionCreateOrUpdateRequestPropertiesPrivateLinkServiceConnectionState =
@@ -29743,132 +30218,618 @@ export const ProductWikiCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProductWikiCreateOrUpdateResponse",
 }) as any as S.Schema<ProductWikiCreateOrUpdateResponse>;
 
-export interface ReportsListByRequestRequest {
+export interface PurgeDeletedServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The location of the deleted API Management service. */
+  location: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+}
+export const PurgeDeletedServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ApiManagement/locations/{location}/deletedservices/{serviceName}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeDeletedServiceRequest",
+}) as any as S.Schema<PurgeDeletedServiceRequest>;
+
+export interface PurgeDeletedServiceResponse {}
+export const PurgeDeletedServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeDeletedServiceResponse",
+}) as any as S.Schema<PurgeDeletedServiceResponse>;
+
+export interface RefreshCertificateSecretRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the API Management service. */
   serviceName: string;
-  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br>| timestamp | filter | ge, le | | </br>| apiId | filter | eq | | </br>| operationId | filter | eq | | </br>| productId | filter | eq | | </br>| userId | filter | eq | | </br>| apiRegion | filter | eq | | </br>| subscriptionId | filter | eq | | </br> */
-  _filter: string;
-  /** Number of records to return. */
-  _top?: number;
-  /** Number of records to skip. */
-  _skip?: number;
+  /** Identifier of the certificate entity. Must be unique in the current API Management service instance. */
+  certificateId: string;
 }
-export const ReportsListByRequestRequest = /*@__PURE__*/ S.suspend(() =>
+export const RefreshCertificateSecretRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    _filter: S.String.pipe(T.Query("$filter")),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    certificateId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/reports/byRequest",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/certificates/{certificateId}/refreshSecret",
       code: 200,
       apiVersion: "2024-05-01",
     }),
   ),
 ).annotate({
-  identifier: "ReportsListByRequestRequest",
-}) as any as S.Schema<ReportsListByRequestRequest>;
+  identifier: "RefreshCertificateSecretRequest",
+}) as any as S.Schema<RefreshCertificateSecretRequest>;
 
-/** Request Report data. */
-export interface RequestReportRecordContract {
-  /** API identifier path. /apis/{apiId} */
-  apiId?: string;
-  /** Operation identifier path. /apis/{apiId}/operations/{operationId} */
-  operationId?: string;
-  /** Product identifier path. /products/{productId} */
-  productId?: string;
-  /** User identifier path. /users/{userId} */
-  userId?: string;
-  /** The HTTP method associated with this request.. */
-  method?: string;
-  /** The full URL associated with this request. */
-  url?: string;
-  /** The client IP address associated with this request. */
-  ipAddress?: string;
-  /** The HTTP status code received by the gateway as a result of forwarding this request to the backend. */
-  backendResponseCode?: string;
-  /** The HTTP status code returned by the gateway. */
-  responseCode?: number;
-  /** The size of the response returned by the gateway. */
-  responseSize?: number;
-  /** The date and time when this request was received by the gateway in ISO 8601 format. */
-  timestamp?: string;
-  /** Specifies if response cache was involved in generating the response. If the value is none, the cache was not used. If the value is hit, cached response was returned. If the value is miss, the cache was used but lookup resulted in a miss and request was fulfilled by the backend. */
-  cache?: string;
-  /** The total time it took to process this request. */
-  apiTime?: number;
-  /** he time it took to forward this request to the backend and get the response back. */
-  serviceTime?: number;
-  /** Azure region where the gateway that processed this request is located. */
-  apiRegion?: string;
-  /** Subscription identifier path. /subscriptions/{subscriptionId} */
-  subscriptionId?: string;
-  /** Request Identifier. */
-  requestId?: string;
-  /** The size of this request.. */
-  requestSize?: number;
+export interface RefreshCertificateSecretResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Certificate properties details. */
+  properties?: CertificateContractProperties;
 }
-export const RequestReportRecordContract = /*@__PURE__*/ S.suspend(() =>
+export const RefreshCertificateSecretResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    apiId: S.optional(S.String),
-    operationId: S.optional(S.String),
-    productId: S.optional(S.String),
-    userId: S.optional(S.String),
-    method: S.optional(S.String),
-    url: S.optional(S.String),
-    ipAddress: S.optional(S.String),
-    backendResponseCode: S.optional(S.String),
-    responseCode: S.optional(S.Number),
-    responseSize: S.optional(S.Number),
-    timestamp: S.optional(S.String),
-    cache: S.optional(S.String),
-    apiTime: S.optional(S.Number),
-    serviceTime: S.optional(S.Number),
-    apiRegion: S.optional(S.String),
-    subscriptionId: S.optional(S.String),
-    requestId: S.optional(S.String),
-    requestSize: S.optional(S.Number),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(CertificateContractProperties),
   }),
 ).annotate({
-  identifier: "RequestReportRecordContract",
-}) as any as S.Schema<RequestReportRecordContract>;
+  identifier: "RefreshCertificateSecretResponse",
+}) as any as S.Schema<RefreshCertificateSecretResponse>;
 
-/** Page values. */
-export type ReportsListByRequestResponseValueList =
-  Array<RequestReportRecordContract>;
-export const ReportsListByRequestResponseValueList = /*@__PURE__*/ S.Array(
-  RequestReportRecordContract,
-) as any as S.Schema<ReportsListByRequestResponseValueList>;
-
-export interface ReportsListByRequestResponse {
-  /** Page values. */
-  value?: ReportsListByRequestResponseValueList;
-  /** Total record count number across all pages. */
-  count?: number;
+export interface RefreshNamedValueSecretRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Identifier of the NamedValue. */
+  namedValueId: string;
 }
-export const ReportsListByRequestResponse = /*@__PURE__*/ S.suspend(() =>
+export const RefreshNamedValueSecretRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(ReportsListByRequestResponseValueList),
-    count: S.optional(S.Number),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    namedValueId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/namedValues/{namedValueId}/refreshSecret",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "RefreshNamedValueSecretRequest",
+}) as any as S.Schema<RefreshNamedValueSecretRequest>;
+
+export interface RefreshNamedValueSecretResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** NamedValue entity contract properties. */
+  properties?: NamedValueContractProperties;
+}
+export const RefreshNamedValueSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(NamedValueContractProperties),
   }),
 ).annotate({
-  identifier: "ReportsListByRequestResponse",
-}) as any as S.Schema<ReportsListByRequestResponse>;
+  identifier: "RefreshNamedValueSecretResponse",
+}) as any as S.Schema<RefreshNamedValueSecretResponse>;
+
+export interface RefreshWorkspaceCertificateSecretRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** Identifier of the certificate entity. Must be unique in the current API Management service instance. */
+  certificateId: string;
+}
+export const RefreshWorkspaceCertificateSecretRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceId: S.String.pipe(T.Label()),
+      certificateId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/certificates/{certificateId}/refreshSecret",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshWorkspaceCertificateSecretRequest",
+}) as any as S.Schema<RefreshWorkspaceCertificateSecretRequest>;
+
+export interface RefreshWorkspaceCertificateSecretResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Certificate properties details. */
+  properties?: CertificateContractProperties;
+}
+export const RefreshWorkspaceCertificateSecretResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(CertificateContractProperties),
+    }),
+  ).annotate({
+    identifier: "RefreshWorkspaceCertificateSecretResponse",
+  }) as any as S.Schema<RefreshWorkspaceCertificateSecretResponse>;
+
+export interface RefreshWorkspaceNamedValueSecretRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** Identifier of the NamedValue. */
+  namedValueId: string;
+}
+export const RefreshWorkspaceNamedValueSecretRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceId: S.String.pipe(T.Label()),
+      namedValueId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/namedValues/{namedValueId}/refreshSecret",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshWorkspaceNamedValueSecretRequest",
+}) as any as S.Schema<RefreshWorkspaceNamedValueSecretRequest>;
+
+export interface RefreshWorkspaceNamedValueSecretResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** NamedValue entity contract properties. */
+  properties?: NamedValueContractProperties;
+}
+export const RefreshWorkspaceNamedValueSecretResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(NamedValueContractProperties),
+    }),
+).annotate({
+  identifier: "RefreshWorkspaceNamedValueSecretResponse",
+}) as any as S.Schema<RefreshWorkspaceNamedValueSecretResponse>;
+
+/** The Key being regenerated. */
+export type RegenerateGatewayKeyRequestKeyType = "primary" | "secondary";
+export const RegenerateGatewayKeyRequestKeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateGatewayKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Gateway entity identifier. Must be unique in the current API Management service instance. Must not have value 'managed' */
+  gatewayId: string;
+  /** The Key being regenerated. */
+  keyType: RegenerateGatewayKeyRequestKeyType | (string & {});
+}
+export const RegenerateGatewayKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayId: S.String.pipe(T.Label()),
+    keyType: RegenerateGatewayKeyRequestKeyType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/gateways/{gatewayId}/regenerateKey",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateGatewayKeyRequest",
+}) as any as S.Schema<RegenerateGatewayKeyRequest>;
+
+export interface RegenerateGatewayKeyResponse {}
+export const RegenerateGatewayKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RegenerateGatewayKeyResponse",
+}) as any as S.Schema<RegenerateGatewayKeyResponse>;
+
+export interface RegenerateSubscriptionPrimaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
+  sid: string;
+}
+export const RegenerateSubscriptionPrimaryKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      sid: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/subscriptions/{sid}/regeneratePrimaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "RegenerateSubscriptionPrimaryKeyRequest",
+}) as any as S.Schema<RegenerateSubscriptionPrimaryKeyRequest>;
+
+export interface RegenerateSubscriptionPrimaryKeyResponse {}
+export const RegenerateSubscriptionPrimaryKeyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RegenerateSubscriptionPrimaryKeyResponse",
+}) as any as S.Schema<RegenerateSubscriptionPrimaryKeyResponse>;
+
+export interface RegenerateSubscriptionSecondaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
+  sid: string;
+}
+export const RegenerateSubscriptionSecondaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      sid: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/subscriptions/{sid}/regenerateSecondaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateSubscriptionSecondaryKeyRequest",
+  }) as any as S.Schema<RegenerateSubscriptionSecondaryKeyRequest>;
+
+export interface RegenerateSubscriptionSecondaryKeyResponse {}
+export const RegenerateSubscriptionSecondaryKeyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RegenerateSubscriptionSecondaryKeyResponse",
+  }) as any as S.Schema<RegenerateSubscriptionSecondaryKeyResponse>;
+
+export type RegenerateTenantAccessGitPrimaryKeyRequestAccessName =
+  | "access"
+  | "gitAccess";
+export const RegenerateTenantAccessGitPrimaryKeyRequestAccessName =
+  /*@__PURE__*/ S.String;
+
+export interface RegenerateTenantAccessGitPrimaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** The identifier of the Access configuration. */
+  accessName:
+    | RegenerateTenantAccessGitPrimaryKeyRequestAccessName
+    | (string & {});
+}
+export const RegenerateTenantAccessGitPrimaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      accessName: RegenerateTenantAccessGitPrimaryKeyRequestAccessName.pipe(
+        T.Label(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/git/regeneratePrimaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateTenantAccessGitPrimaryKeyRequest",
+  }) as any as S.Schema<RegenerateTenantAccessGitPrimaryKeyRequest>;
+
+export interface RegenerateTenantAccessGitPrimaryKeyResponse {}
+export const RegenerateTenantAccessGitPrimaryKeyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RegenerateTenantAccessGitPrimaryKeyResponse",
+  }) as any as S.Schema<RegenerateTenantAccessGitPrimaryKeyResponse>;
+
+export type RegenerateTenantAccessGitSecondaryKeyRequestAccessName =
+  | "access"
+  | "gitAccess";
+export const RegenerateTenantAccessGitSecondaryKeyRequestAccessName =
+  /*@__PURE__*/ S.String;
+
+export interface RegenerateTenantAccessGitSecondaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** The identifier of the Access configuration. */
+  accessName:
+    | RegenerateTenantAccessGitSecondaryKeyRequestAccessName
+    | (string & {});
+}
+export const RegenerateTenantAccessGitSecondaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      accessName: RegenerateTenantAccessGitSecondaryKeyRequestAccessName.pipe(
+        T.Label(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/git/regenerateSecondaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateTenantAccessGitSecondaryKeyRequest",
+  }) as any as S.Schema<RegenerateTenantAccessGitSecondaryKeyRequest>;
+
+export interface RegenerateTenantAccessGitSecondaryKeyResponse {}
+export const RegenerateTenantAccessGitSecondaryKeyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RegenerateTenantAccessGitSecondaryKeyResponse",
+  }) as any as S.Schema<RegenerateTenantAccessGitSecondaryKeyResponse>;
+
+export type RegenerateTenantAccessPrimaryKeyRequestAccessName =
+  | "access"
+  | "gitAccess";
+export const RegenerateTenantAccessPrimaryKeyRequestAccessName =
+  /*@__PURE__*/ S.String;
+
+export interface RegenerateTenantAccessPrimaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** The identifier of the Access configuration. */
+  accessName: RegenerateTenantAccessPrimaryKeyRequestAccessName | (string & {});
+}
+export const RegenerateTenantAccessPrimaryKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      accessName: RegenerateTenantAccessPrimaryKeyRequestAccessName.pipe(
+        T.Label(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/regeneratePrimaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "RegenerateTenantAccessPrimaryKeyRequest",
+}) as any as S.Schema<RegenerateTenantAccessPrimaryKeyRequest>;
+
+export interface RegenerateTenantAccessPrimaryKeyResponse {}
+export const RegenerateTenantAccessPrimaryKeyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RegenerateTenantAccessPrimaryKeyResponse",
+}) as any as S.Schema<RegenerateTenantAccessPrimaryKeyResponse>;
+
+export type RegenerateTenantAccessSecondaryKeyRequestAccessName =
+  | "access"
+  | "gitAccess";
+export const RegenerateTenantAccessSecondaryKeyRequestAccessName =
+  /*@__PURE__*/ S.String;
+
+export interface RegenerateTenantAccessSecondaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** The identifier of the Access configuration. */
+  accessName:
+    | RegenerateTenantAccessSecondaryKeyRequestAccessName
+    | (string & {});
+}
+export const RegenerateTenantAccessSecondaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      accessName: RegenerateTenantAccessSecondaryKeyRequestAccessName.pipe(
+        T.Label(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/regenerateSecondaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateTenantAccessSecondaryKeyRequest",
+  }) as any as S.Schema<RegenerateTenantAccessSecondaryKeyRequest>;
+
+export interface RegenerateTenantAccessSecondaryKeyResponse {}
+export const RegenerateTenantAccessSecondaryKeyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RegenerateTenantAccessSecondaryKeyResponse",
+  }) as any as S.Schema<RegenerateTenantAccessSecondaryKeyResponse>;
+
+export interface RegenerateWorkspaceSubscriptionPrimaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
+  sid: string;
+}
+export const RegenerateWorkspaceSubscriptionPrimaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceId: S.String.pipe(T.Label()),
+      sid: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/subscriptions/{sid}/regeneratePrimaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateWorkspaceSubscriptionPrimaryKeyRequest",
+  }) as any as S.Schema<RegenerateWorkspaceSubscriptionPrimaryKeyRequest>;
+
+export interface RegenerateWorkspaceSubscriptionPrimaryKeyResponse {}
+export const RegenerateWorkspaceSubscriptionPrimaryKeyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RegenerateWorkspaceSubscriptionPrimaryKeyResponse",
+  }) as any as S.Schema<RegenerateWorkspaceSubscriptionPrimaryKeyResponse>;
+
+export interface RegenerateWorkspaceSubscriptionSecondaryKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
+  sid: string;
+}
+export const RegenerateWorkspaceSubscriptionSecondaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      workspaceId: S.String.pipe(T.Label()),
+      sid: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/subscriptions/{sid}/regenerateSecondaryKey",
+        code: 200,
+        apiVersion: "2024-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateWorkspaceSubscriptionSecondaryKeyRequest",
+  }) as any as S.Schema<RegenerateWorkspaceSubscriptionSecondaryKeyRequest>;
+
+export interface RegenerateWorkspaceSubscriptionSecondaryKeyResponse {}
+export const RegenerateWorkspaceSubscriptionSecondaryKeyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RegenerateWorkspaceSubscriptionSecondaryKeyResponse",
+  }) as any as S.Schema<RegenerateWorkspaceSubscriptionSecondaryKeyResponse>;
 
 /** The type of access to be used for the storage account. */
-export type ApiManagementServiceRestoreRequestAccessType =
+export type RestoreApiManagementServiceRequestAccessType =
   | "AccessKey"
   | "SystemAssignedManagedIdentity"
   | "UserAssignedManagedIdentity";
-export const ApiManagementServiceRestoreRequestAccessType =
+export const RestoreApiManagementServiceRequestAccessType =
   /*@__PURE__*/ S.String;
 
 export interface RestoreApiManagementServiceRequest {
@@ -29885,7 +30846,7 @@ export interface RestoreApiManagementServiceRequest {
   /** The name of the backup file to create/retrieve. */
   backupName: string;
   /** The type of access to be used for the storage account. */
-  accessType?: ApiManagementServiceRestoreRequestAccessType | (string & {});
+  accessType?: RestoreApiManagementServiceRequestAccessType | (string & {});
   /** Storage account access key. Required only if `accessType` is set to `AccessKey`. */
   accessKey?: string;
   /** The Client ID of user assigned managed identity. Required only if `accessType` is set to `UserAssignedManagedIdentity`. */
@@ -29899,7 +30860,7 @@ export const RestoreApiManagementServiceRequest = /*@__PURE__*/ S.suspend(() =>
     storageAccount: S.String,
     containerName: S.String,
     backupName: S.String,
-    accessType: S.optional(ApiManagementServiceRestoreRequestAccessType),
+    accessType: S.optional(RestoreApiManagementServiceRequestAccessType),
     accessKey: S.optional(S.String),
     clientId: S.optional(S.String),
   }).pipe(
@@ -29915,72 +30876,72 @@ export const RestoreApiManagementServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestoreApiManagementServiceRequest>;
 
 /** Resource tags. */
-export type ApiManagementServiceRestoreResponseTagsMap = {
+export type RestoreApiManagementServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApiManagementServiceRestoreResponseTagsMap =
+export const RestoreApiManagementServiceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ApiManagementServiceRestoreResponseTagsMap>;
+  ) as any as S.Schema<RestoreApiManagementServiceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApiManagementServiceRestoreResponseSystemDataCreatedByType =
+export type RestoreApiManagementServiceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiManagementServiceRestoreResponseSystemDataCreatedByType =
+export const RestoreApiManagementServiceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApiManagementServiceRestoreResponseSystemDataLastModifiedByType =
+export type RestoreApiManagementServiceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiManagementServiceRestoreResponseSystemDataLastModifiedByType =
+export const RestoreApiManagementServiceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApiManagementServiceRestoreResponseSystemData {
+export interface RestoreApiManagementServiceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApiManagementServiceRestoreResponseSystemDataCreatedByType;
+  createdByType?: RestoreApiManagementServiceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApiManagementServiceRestoreResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: RestoreApiManagementServiceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApiManagementServiceRestoreResponseSystemData =
+export const RestoreApiManagementServiceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApiManagementServiceRestoreResponseSystemDataCreatedByType,
+        RestoreApiManagementServiceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApiManagementServiceRestoreResponseSystemDataLastModifiedByType,
+        RestoreApiManagementServiceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ApiManagementServiceRestoreResponseSystemData",
-  }) as any as S.Schema<ApiManagementServiceRestoreResponseSystemData>;
+    identifier: "RestoreApiManagementServiceResponseSystemData",
+  }) as any as S.Schema<RestoreApiManagementServiceResponseSystemData>;
 
 /** A list of availability zones denoting where the resource needs to come from. */
-export type ApiManagementServiceRestoreResponseZonesList = Array<string>;
-export const ApiManagementServiceRestoreResponseZonesList =
+export type RestoreApiManagementServiceResponseZonesList = Array<string>;
+export const RestoreApiManagementServiceResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ApiManagementServiceRestoreResponseZonesList>;
+  ) as any as S.Schema<RestoreApiManagementServiceResponseZonesList>;
 
 export interface RestoreApiManagementServiceResponse {
   /** Resource ID. */
@@ -29990,7 +30951,7 @@ export interface RestoreApiManagementServiceResponse {
   /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
   type?: string;
   /** Resource tags. */
-  tags?: ApiManagementServiceRestoreResponseTagsMap;
+  tags?: RestoreApiManagementServiceResponseTagsMap;
   /** Properties of the API Management service. */
   properties: ApiManagementServiceProperties;
   /** SKU properties of the API Management service. */
@@ -29998,31 +30959,77 @@ export interface RestoreApiManagementServiceResponse {
   /** Managed service identity of the Api Management service. */
   identity?: ApiManagementServiceIdentity;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApiManagementServiceRestoreResponseSystemData;
+  systemData?: RestoreApiManagementServiceResponseSystemData;
   /** Resource location. */
   location: string;
   /** ETag of the resource. */
   etag?: string;
   /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: ApiManagementServiceRestoreResponseZonesList;
+  zones?: RestoreApiManagementServiceResponseZonesList;
 }
 export const RestoreApiManagementServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ApiManagementServiceRestoreResponseTagsMap),
+    tags: S.optional(RestoreApiManagementServiceResponseTagsMap),
     properties: ApiManagementServiceProperties,
     sku: ApiManagementServiceSkuProperties,
     identity: S.optional(ApiManagementServiceIdentity),
-    systemData: S.optional(ApiManagementServiceRestoreResponseSystemData),
+    systemData: S.optional(RestoreApiManagementServiceResponseSystemData),
     location: S.String,
     etag: S.optional(S.String),
-    zones: S.optional(ApiManagementServiceRestoreResponseZonesList),
+    zones: S.optional(RestoreApiManagementServiceResponseZonesList),
   }),
 ).annotate({
   identifier: "RestoreApiManagementServiceResponse",
 }) as any as S.Schema<RestoreApiManagementServiceResponse>;
+
+export type SendUserConfirmationPasswordRequestAppType =
+  | "portal"
+  | "developerPortal";
+export const SendUserConfirmationPasswordRequestAppType =
+  /*@__PURE__*/ S.String;
+
+export interface SendUserConfirmationPasswordRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** User identifier. Must be unique in the current API Management service instance. */
+  userId: string;
+  /** Determines the type of application which send the create user request. Default is legacy publisher portal. */
+  appType?: SendUserConfirmationPasswordRequestAppType | (string & {});
+}
+export const SendUserConfirmationPasswordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
+    appType: S.optional(
+      SendUserConfirmationPasswordRequestAppType.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/users/{userId}/confirmations/password/send",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "SendUserConfirmationPasswordRequest",
+}) as any as S.Schema<SendUserConfirmationPasswordRequest>;
+
+export interface SendUserConfirmationPasswordResponse {}
+export const SendUserConfirmationPasswordResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "SendUserConfirmationPasswordResponse",
+}) as any as S.Schema<SendUserConfirmationPasswordResponse>;
 
 export type SubscriptionCreateOrUpdateRequestAppType =
   | "portal"
@@ -30132,77 +31139,6 @@ export const SubscriptionCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SubscriptionCreateOrUpdateResponse",
 }) as any as S.Schema<SubscriptionCreateOrUpdateResponse>;
 
-export interface SubscriptionRegeneratePrimaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
-  sid: string;
-}
-export const SubscriptionRegeneratePrimaryKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      sid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/subscriptions/{sid}/regeneratePrimaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "SubscriptionRegeneratePrimaryKeyRequest",
-}) as any as S.Schema<SubscriptionRegeneratePrimaryKeyRequest>;
-
-export interface SubscriptionRegeneratePrimaryKeyResponse {}
-export const SubscriptionRegeneratePrimaryKeyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SubscriptionRegeneratePrimaryKeyResponse",
-}) as any as S.Schema<SubscriptionRegeneratePrimaryKeyResponse>;
-
-export interface SubscriptionRegenerateSecondaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
-  sid: string;
-}
-export const SubscriptionRegenerateSecondaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      sid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/subscriptions/{sid}/regenerateSecondaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SubscriptionRegenerateSecondaryKeyRequest",
-  }) as any as S.Schema<SubscriptionRegenerateSecondaryKeyRequest>;
-
-export interface SubscriptionRegenerateSecondaryKeyResponse {}
-export const SubscriptionRegenerateSecondaryKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SubscriptionRegenerateSecondaryKeyResponse",
-  }) as any as S.Schema<SubscriptionRegenerateSecondaryKeyResponse>;
-
 export interface TagApiLinkCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -30258,165 +31194,6 @@ export const TagApiLinkCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TagApiLinkCreateOrUpdateResponse",
 }) as any as S.Schema<TagApiLinkCreateOrUpdateResponse>;
 
-export interface TagAssignToApiRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
-  apiId: string;
-  /** Tag identifier. Must be unique in the current API Management service instance. */
-  tagId: string;
-}
-export const TagAssignToApiRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    tagId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/tags/{tagId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagAssignToApiRequest",
-}) as any as S.Schema<TagAssignToApiRequest>;
-
-export interface TagAssignToApiResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Tag entity contract properties. */
-  properties?: TagContractProperties;
-}
-export const TagAssignToApiResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(TagContractProperties),
-  }),
-).annotate({
-  identifier: "TagAssignToApiResponse",
-}) as any as S.Schema<TagAssignToApiResponse>;
-
-export interface TagAssignToOperationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
-  apiId: string;
-  /** Operation identifier within an API. Must be unique in the current API Management service instance. */
-  operationId: string;
-  /** Tag identifier. Must be unique in the current API Management service instance. */
-  tagId: string;
-}
-export const TagAssignToOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    operationId: S.String.pipe(T.Label()),
-    tagId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/operations/{operationId}/tags/{tagId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagAssignToOperationRequest",
-}) as any as S.Schema<TagAssignToOperationRequest>;
-
-export interface TagAssignToOperationResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Tag entity contract properties. */
-  properties?: TagContractProperties;
-}
-export const TagAssignToOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(TagContractProperties),
-  }),
-).annotate({
-  identifier: "TagAssignToOperationResponse",
-}) as any as S.Schema<TagAssignToOperationResponse>;
-
-export interface TagAssignToProductRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Product identifier. Must be unique in the current API Management service instance. */
-  productId: string;
-  /** Tag identifier. Must be unique in the current API Management service instance. */
-  tagId: string;
-}
-export const TagAssignToProductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    productId: S.String.pipe(T.Label()),
-    tagId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/products/{productId}/tags/{tagId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagAssignToProductRequest",
-}) as any as S.Schema<TagAssignToProductRequest>;
-
-export interface TagAssignToProductResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Tag entity contract properties. */
-  properties?: TagContractProperties;
-}
-export const TagAssignToProductResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(TagContractProperties),
-  }),
-).annotate({
-  identifier: "TagAssignToProductResponse",
-}) as any as S.Schema<TagAssignToProductResponse>;
-
 export interface TagCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -30468,123 +31245,6 @@ export const TagCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TagCreateOrUpdateResponse",
 }) as any as S.Schema<TagCreateOrUpdateResponse>;
-
-export interface TagDetachFromApiRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
-  apiId: string;
-  /** Tag identifier. Must be unique in the current API Management service instance. */
-  tagId: string;
-}
-export const TagDetachFromApiRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    tagId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/tags/{tagId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagDetachFromApiRequest",
-}) as any as S.Schema<TagDetachFromApiRequest>;
-
-export interface TagDetachFromApiResponse {}
-export const TagDetachFromApiResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TagDetachFromApiResponse",
-}) as any as S.Schema<TagDetachFromApiResponse>;
-
-export interface TagDetachFromOperationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** API revision identifier. Must be unique in the current API Management service instance. Non-current revision has ;rev=n as a suffix where n is the revision number. */
-  apiId: string;
-  /** Operation identifier within an API. Must be unique in the current API Management service instance. */
-  operationId: string;
-  /** Tag identifier. Must be unique in the current API Management service instance. */
-  tagId: string;
-}
-export const TagDetachFromOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    operationId: S.String.pipe(T.Label()),
-    tagId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/operations/{operationId}/tags/{tagId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagDetachFromOperationRequest",
-}) as any as S.Schema<TagDetachFromOperationRequest>;
-
-export interface TagDetachFromOperationResponse {}
-export const TagDetachFromOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TagDetachFromOperationResponse",
-}) as any as S.Schema<TagDetachFromOperationResponse>;
-
-export interface TagDetachFromProductRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Product identifier. Must be unique in the current API Management service instance. */
-  productId: string;
-  /** Tag identifier. Must be unique in the current API Management service instance. */
-  tagId: string;
-}
-export const TagDetachFromProductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    productId: S.String.pipe(T.Label()),
-    tagId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/products/{productId}/tags/{tagId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagDetachFromProductRequest",
-}) as any as S.Schema<TagDetachFromProductRequest>;
-
-export interface TagDetachFromProductResponse {}
-export const TagDetachFromProductResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TagDetachFromProductResponse",
-}) as any as S.Schema<TagDetachFromProductResponse>;
 
 export interface TagOperationLinkCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -30699,262 +31359,6 @@ export const TagProductLinkCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "TagProductLinkCreateOrUpdateResponse",
 }) as any as S.Schema<TagProductLinkCreateOrUpdateResponse>;
 
-export type TenantAccessGitRegeneratePrimaryKeyRequestAccessName =
-  | "access"
-  | "gitAccess";
-export const TenantAccessGitRegeneratePrimaryKeyRequestAccessName =
-  /*@__PURE__*/ S.String;
-
-export interface TenantAccessGitRegeneratePrimaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** The identifier of the Access configuration. */
-  accessName:
-    | TenantAccessGitRegeneratePrimaryKeyRequestAccessName
-    | (string & {});
-}
-export const TenantAccessGitRegeneratePrimaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      accessName: TenantAccessGitRegeneratePrimaryKeyRequestAccessName.pipe(
-        T.Label(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/git/regeneratePrimaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "TenantAccessGitRegeneratePrimaryKeyRequest",
-  }) as any as S.Schema<TenantAccessGitRegeneratePrimaryKeyRequest>;
-
-export interface TenantAccessGitRegeneratePrimaryKeyResponse {}
-export const TenantAccessGitRegeneratePrimaryKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "TenantAccessGitRegeneratePrimaryKeyResponse",
-  }) as any as S.Schema<TenantAccessGitRegeneratePrimaryKeyResponse>;
-
-export type TenantAccessGitRegenerateSecondaryKeyRequestAccessName =
-  | "access"
-  | "gitAccess";
-export const TenantAccessGitRegenerateSecondaryKeyRequestAccessName =
-  /*@__PURE__*/ S.String;
-
-export interface TenantAccessGitRegenerateSecondaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** The identifier of the Access configuration. */
-  accessName:
-    | TenantAccessGitRegenerateSecondaryKeyRequestAccessName
-    | (string & {});
-}
-export const TenantAccessGitRegenerateSecondaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      accessName: TenantAccessGitRegenerateSecondaryKeyRequestAccessName.pipe(
-        T.Label(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/git/regenerateSecondaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "TenantAccessGitRegenerateSecondaryKeyRequest",
-  }) as any as S.Schema<TenantAccessGitRegenerateSecondaryKeyRequest>;
-
-export interface TenantAccessGitRegenerateSecondaryKeyResponse {}
-export const TenantAccessGitRegenerateSecondaryKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "TenantAccessGitRegenerateSecondaryKeyResponse",
-  }) as any as S.Schema<TenantAccessGitRegenerateSecondaryKeyResponse>;
-
-export type TenantAccessRegeneratePrimaryKeyRequestAccessName =
-  | "access"
-  | "gitAccess";
-export const TenantAccessRegeneratePrimaryKeyRequestAccessName =
-  /*@__PURE__*/ S.String;
-
-export interface TenantAccessRegeneratePrimaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** The identifier of the Access configuration. */
-  accessName: TenantAccessRegeneratePrimaryKeyRequestAccessName | (string & {});
-}
-export const TenantAccessRegeneratePrimaryKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      accessName: TenantAccessRegeneratePrimaryKeyRequestAccessName.pipe(
-        T.Label(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/regeneratePrimaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "TenantAccessRegeneratePrimaryKeyRequest",
-}) as any as S.Schema<TenantAccessRegeneratePrimaryKeyRequest>;
-
-export interface TenantAccessRegeneratePrimaryKeyResponse {}
-export const TenantAccessRegeneratePrimaryKeyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "TenantAccessRegeneratePrimaryKeyResponse",
-}) as any as S.Schema<TenantAccessRegeneratePrimaryKeyResponse>;
-
-export type TenantAccessRegenerateSecondaryKeyRequestAccessName =
-  | "access"
-  | "gitAccess";
-export const TenantAccessRegenerateSecondaryKeyRequestAccessName =
-  /*@__PURE__*/ S.String;
-
-export interface TenantAccessRegenerateSecondaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** The identifier of the Access configuration. */
-  accessName:
-    | TenantAccessRegenerateSecondaryKeyRequestAccessName
-    | (string & {});
-}
-export const TenantAccessRegenerateSecondaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      accessName: TenantAccessRegenerateSecondaryKeyRequestAccessName.pipe(
-        T.Label(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{accessName}/regenerateSecondaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "TenantAccessRegenerateSecondaryKeyRequest",
-  }) as any as S.Schema<TenantAccessRegenerateSecondaryKeyRequest>;
-
-export interface TenantAccessRegenerateSecondaryKeyResponse {}
-export const TenantAccessRegenerateSecondaryKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "TenantAccessRegenerateSecondaryKeyResponse",
-  }) as any as S.Schema<TenantAccessRegenerateSecondaryKeyResponse>;
-
-export type TenantConfigurationDeployRequestConfigurationName = "configuration";
-export const TenantConfigurationDeployRequestConfigurationName =
-  /*@__PURE__*/ S.String;
-
-/** Parameters supplied to the Deploy Configuration operation. */
-export interface DeployConfigurationParameterProperties {
-  /** The name of the Git branch from which the configuration is to be deployed to the configuration database. */
-  branch: string;
-  /** The value enforcing deleting subscriptions to products that are deleted in this update. */
-  force?: boolean;
-}
-export const DeployConfigurationParameterProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      branch: S.String,
-      force: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "DeployConfigurationParameterProperties",
-}) as any as S.Schema<DeployConfigurationParameterProperties>;
-
-export interface TenantConfigurationDeployRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** The identifier of the Git Configuration Operation. */
-  configurationName:
-    | TenantConfigurationDeployRequestConfigurationName
-    | (string & {});
-  /** Deploy Configuration Parameter contract properties. */
-  properties?: DeployConfigurationParameterProperties;
-}
-export const TenantConfigurationDeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    configurationName: TenantConfigurationDeployRequestConfigurationName.pipe(
-      T.Label(),
-    ),
-    properties: S.optional(DeployConfigurationParameterProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{configurationName}/deploy",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TenantConfigurationDeployRequest",
-}) as any as S.Schema<TenantConfigurationDeployRequest>;
-
-export interface TenantConfigurationDeployResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Properties of the Operation Contract. */
-  properties?: OperationResultContractProperties;
-}
-export const TenantConfigurationDeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(OperationResultContractProperties),
-  }),
-).annotate({
-  identifier: "TenantConfigurationDeployResponse",
-}) as any as S.Schema<TenantConfigurationDeployResponse>;
-
 export type TenantConfigurationSaveRequestConfigurationName = "configuration";
 export const TenantConfigurationSaveRequestConfigurationName =
   /*@__PURE__*/ S.String;
@@ -31031,67 +31435,6 @@ export const TenantConfigurationSaveResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TenantConfigurationSaveResponse",
 }) as any as S.Schema<TenantConfigurationSaveResponse>;
-
-export type TenantConfigurationValidateRequestConfigurationName =
-  "configuration";
-export const TenantConfigurationValidateRequestConfigurationName =
-  /*@__PURE__*/ S.String;
-
-export interface TenantConfigurationValidateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** The identifier of the Git Configuration Operation. */
-  configurationName:
-    | TenantConfigurationValidateRequestConfigurationName
-    | (string & {});
-  /** Deploy Configuration Parameter contract properties. */
-  properties?: DeployConfigurationParameterProperties;
-}
-export const TenantConfigurationValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    configurationName: TenantConfigurationValidateRequestConfigurationName.pipe(
-      T.Label(),
-    ),
-    properties: S.optional(DeployConfigurationParameterProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{configurationName}/validate",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "TenantConfigurationValidateRequest",
-}) as any as S.Schema<TenantConfigurationValidateRequest>;
-
-export interface TenantConfigurationValidateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Properties of the Operation Contract. */
-  properties?: OperationResultContractProperties;
-}
-export const TenantConfigurationValidateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(OperationResultContractProperties),
-  }),
-).annotate({
-  identifier: "TenantConfigurationValidateResponse",
-}) as any as S.Schema<TenantConfigurationValidateResponse>;
 
 /** Type of API. */
 export type ApiContractUpdatePropertiesInputType =
@@ -31294,13 +31637,13 @@ export const UpdateApiDiagnosticResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApiDiagnosticResponse>;
 
 /** Resource tags. */
-export type ApiGatewayUpdateRequestTagsMap = {
+export type UpdateApiGatewayRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApiGatewayUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApiGatewayRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApiGatewayUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApiGatewayRequestTagsMap>;
 
 /** The type of VPN in which API Management gateway needs to be configured in. */
 export type ApiManagementGatewayUpdatePropertiesInputVirtualNetworkType =
@@ -31370,7 +31713,7 @@ export interface UpdateApiGatewayRequest {
   /** The name of the API Management gateway. */
   gatewayName: string;
   /** Resource tags. */
-  tags?: ApiGatewayUpdateRequestTagsMap;
+  tags?: UpdateApiGatewayRequestTagsMap;
   /** Properties of the API Management gateway. */
   properties?: ApiManagementGatewayUpdatePropertiesInput;
   /** SKU properties of the API Management gateway. */
@@ -31381,7 +31724,7 @@ export const UpdateApiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     gatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(ApiGatewayUpdateRequestTagsMap),
+    tags: S.optional(UpdateApiGatewayRequestTagsMap),
     properties: S.optional(ApiManagementGatewayUpdatePropertiesInput),
     sku: S.optional(ApiManagementGatewaySkuPropertiesForPatch),
   }).pipe(
@@ -31397,61 +31740,61 @@ export const UpdateApiGatewayRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApiGatewayRequest>;
 
 /** Resource tags. */
-export type ApiGatewayUpdateResponseTagsMap = {
+export type UpdateApiGatewayResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApiGatewayUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApiGatewayResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApiGatewayUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApiGatewayResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApiGatewayUpdateResponseSystemDataCreatedByType =
+export type UpdateApiGatewayResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiGatewayUpdateResponseSystemDataCreatedByType =
+export const UpdateApiGatewayResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApiGatewayUpdateResponseSystemDataLastModifiedByType =
+export type UpdateApiGatewayResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiGatewayUpdateResponseSystemDataLastModifiedByType =
+export const UpdateApiGatewayResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApiGatewayUpdateResponseSystemData {
+export interface UpdateApiGatewayResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApiGatewayUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateApiGatewayResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApiGatewayUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateApiGatewayResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApiGatewayUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateApiGatewayResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ApiGatewayUpdateResponseSystemDataCreatedByType),
+    createdByType: S.optional(UpdateApiGatewayResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ApiGatewayUpdateResponseSystemDataLastModifiedByType,
+      UpdateApiGatewayResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ApiGatewayUpdateResponseSystemData",
-}) as any as S.Schema<ApiGatewayUpdateResponseSystemData>;
+  identifier: "UpdateApiGatewayResponseSystemData",
+}) as any as S.Schema<UpdateApiGatewayResponseSystemData>;
 
 export interface UpdateApiGatewayResponse {
   /** Resource ID. */
@@ -31461,13 +31804,13 @@ export interface UpdateApiGatewayResponse {
   /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
   type?: string;
   /** Resource tags. */
-  tags?: ApiGatewayUpdateResponseTagsMap;
+  tags?: UpdateApiGatewayResponseTagsMap;
   /** Properties of the API Management gateway. */
   properties: ApiManagementGatewayProperties;
   /** SKU properties of the API Management gateway. */
   sku: ApiManagementGatewaySkuProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApiGatewayUpdateResponseSystemData;
+  systemData?: UpdateApiGatewayResponseSystemData;
   /** Resource location. */
   location: string;
   /** ETag of the resource. */
@@ -31478,10 +31821,10 @@ export const UpdateApiGatewayResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ApiGatewayUpdateResponseTagsMap),
+    tags: S.optional(UpdateApiGatewayResponseTagsMap),
     properties: ApiManagementGatewayProperties,
     sku: ApiManagementGatewaySkuProperties,
-    systemData: S.optional(ApiGatewayUpdateResponseSystemData),
+    systemData: S.optional(UpdateApiGatewayResponseSystemData),
     location: S.String,
     etag: S.optional(S.String),
   }),
@@ -31582,13 +31925,13 @@ export const UpdateApiIssueResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApiIssueResponse>;
 
 /** Resource tags. */
-export type ApiManagementServiceUpdateRequestTagsMap = {
+export type UpdateApiManagementServiceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApiManagementServiceUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApiManagementServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApiManagementServiceUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApiManagementServiceRequestTagsMap>;
 
 /** Custom hostname configuration of the API Management service. */
 export type ApiManagementServiceUpdatePropertiesInputHostnameConfigurationsList =
@@ -31776,10 +32119,10 @@ export const ApiManagementServiceUpdatePropertiesInput =
   }) as any as S.Schema<ApiManagementServiceUpdatePropertiesInput>;
 
 /** A list of availability zones denoting where the resource needs to come from. */
-export type ApiManagementServiceUpdateRequestZonesList = Array<string>;
-export const ApiManagementServiceUpdateRequestZonesList = /*@__PURE__*/ S.Array(
+export type UpdateApiManagementServiceRequestZonesList = Array<string>;
+export const UpdateApiManagementServiceRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ApiManagementServiceUpdateRequestZonesList>;
+) as any as S.Schema<UpdateApiManagementServiceRequestZonesList>;
 
 export interface UpdateApiManagementServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -31789,7 +32132,7 @@ export interface UpdateApiManagementServiceRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** Resource tags. */
-  tags?: ApiManagementServiceUpdateRequestTagsMap;
+  tags?: UpdateApiManagementServiceRequestTagsMap;
   /** Properties of the API Management service. */
   properties?: ApiManagementServiceUpdatePropertiesInput;
   /** SKU properties of the API Management service. */
@@ -31797,18 +32140,18 @@ export interface UpdateApiManagementServiceRequest {
   /** Managed service identity of the Api Management service. */
   identity?: ApiManagementServiceIdentityInput;
   /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: ApiManagementServiceUpdateRequestZonesList;
+  zones?: UpdateApiManagementServiceRequestZonesList;
 }
 export const UpdateApiManagementServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    tags: S.optional(ApiManagementServiceUpdateRequestTagsMap),
+    tags: S.optional(UpdateApiManagementServiceRequestTagsMap),
     properties: S.optional(ApiManagementServiceUpdatePropertiesInput),
     sku: S.optional(ApiManagementServiceSkuProperties),
     identity: S.optional(ApiManagementServiceIdentityInput),
-    zones: S.optional(ApiManagementServiceUpdateRequestZonesList),
+    zones: S.optional(UpdateApiManagementServiceRequestZonesList),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -31822,71 +32165,71 @@ export const UpdateApiManagementServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApiManagementServiceRequest>;
 
 /** Resource tags. */
-export type ApiManagementServiceUpdateResponseTagsMap = {
+export type UpdateApiManagementServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApiManagementServiceUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApiManagementServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApiManagementServiceUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApiManagementServiceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApiManagementServiceUpdateResponseSystemDataCreatedByType =
+export type UpdateApiManagementServiceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiManagementServiceUpdateResponseSystemDataCreatedByType =
+export const UpdateApiManagementServiceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApiManagementServiceUpdateResponseSystemDataLastModifiedByType =
+export type UpdateApiManagementServiceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApiManagementServiceUpdateResponseSystemDataLastModifiedByType =
+export const UpdateApiManagementServiceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApiManagementServiceUpdateResponseSystemData {
+export interface UpdateApiManagementServiceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApiManagementServiceUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateApiManagementServiceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApiManagementServiceUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateApiManagementServiceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApiManagementServiceUpdateResponseSystemData =
+export const UpdateApiManagementServiceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApiManagementServiceUpdateResponseSystemDataCreatedByType,
+        UpdateApiManagementServiceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApiManagementServiceUpdateResponseSystemDataLastModifiedByType,
+        UpdateApiManagementServiceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ApiManagementServiceUpdateResponseSystemData",
-  }) as any as S.Schema<ApiManagementServiceUpdateResponseSystemData>;
+    identifier: "UpdateApiManagementServiceResponseSystemData",
+  }) as any as S.Schema<UpdateApiManagementServiceResponseSystemData>;
 
 /** A list of availability zones denoting where the resource needs to come from. */
-export type ApiManagementServiceUpdateResponseZonesList = Array<string>;
-export const ApiManagementServiceUpdateResponseZonesList =
+export type UpdateApiManagementServiceResponseZonesList = Array<string>;
+export const UpdateApiManagementServiceResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ApiManagementServiceUpdateResponseZonesList>;
+  ) as any as S.Schema<UpdateApiManagementServiceResponseZonesList>;
 
 export interface UpdateApiManagementServiceResponse {
   /** Resource ID. */
@@ -31896,7 +32239,7 @@ export interface UpdateApiManagementServiceResponse {
   /** Resource type for API Management resource is set to Microsoft.ApiManagement. */
   type?: string;
   /** Resource tags. */
-  tags?: ApiManagementServiceUpdateResponseTagsMap;
+  tags?: UpdateApiManagementServiceResponseTagsMap;
   /** Properties of the API Management service. */
   properties: ApiManagementServiceProperties;
   /** SKU properties of the API Management service. */
@@ -31904,27 +32247,27 @@ export interface UpdateApiManagementServiceResponse {
   /** Managed service identity of the Api Management service. */
   identity?: ApiManagementServiceIdentity;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApiManagementServiceUpdateResponseSystemData;
+  systemData?: UpdateApiManagementServiceResponseSystemData;
   /** Resource location. */
   location: string;
   /** ETag of the resource. */
   etag?: string;
   /** A list of availability zones denoting where the resource needs to come from. */
-  zones?: ApiManagementServiceUpdateResponseZonesList;
+  zones?: UpdateApiManagementServiceResponseZonesList;
 }
 export const UpdateApiManagementServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ApiManagementServiceUpdateResponseTagsMap),
+    tags: S.optional(UpdateApiManagementServiceResponseTagsMap),
     properties: ApiManagementServiceProperties,
     sku: ApiManagementServiceSkuProperties,
     identity: S.optional(ApiManagementServiceIdentity),
-    systemData: S.optional(ApiManagementServiceUpdateResponseSystemData),
+    systemData: S.optional(UpdateApiManagementServiceResponseSystemData),
     location: S.String,
     etag: S.optional(S.String),
-    zones: S.optional(ApiManagementServiceUpdateResponseZonesList),
+    zones: S.optional(UpdateApiManagementServiceResponseZonesList),
   }),
 ).annotate({
   identifier: "UpdateApiManagementServiceResponse",
@@ -32036,6 +32379,151 @@ export const UpdateApiOperationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateApiOperationResponse",
 }) as any as S.Schema<UpdateApiOperationResponse>;
+
+export interface UpdateApiReleaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** Release identifier within an API. Must be unique in the current API Management service instance. */
+  releaseId: string;
+  /** ApiRelease entity contract properties. */
+  properties?: ApiReleaseContractPropertiesInput;
+}
+export const UpdateApiReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    releaseId: S.String.pipe(T.Label()),
+    properties: S.optional(ApiReleaseContractPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apis/{apiId}/releases/{releaseId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApiReleaseRequest",
+}) as any as S.Schema<UpdateApiReleaseRequest>;
+
+export interface UpdateApiReleaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** ApiRelease entity contract properties. */
+  properties?: ApiReleaseContractProperties;
+}
+export const UpdateApiReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiReleaseContractProperties),
+  }),
+).annotate({
+  identifier: "UpdateApiReleaseResponse",
+}) as any as S.Schema<UpdateApiReleaseResponse>;
+
+/** An value that determines where the API Version identifier will be located in a HTTP request. */
+export type ApiVersionSetUpdateParametersPropertiesVersioningScheme =
+  | "Segment"
+  | "Query"
+  | "Header";
+export const ApiVersionSetUpdateParametersPropertiesVersioningScheme =
+  /*@__PURE__*/ S.String;
+
+/** Properties used to create or update an API Version Set. */
+export interface ApiVersionSetUpdateParametersProperties {
+  /** Description of API Version Set. */
+  description?: string;
+  /** Name of query parameter that indicates the API Version if versioningScheme is set to `query`. */
+  versionQueryName?: string;
+  /** Name of HTTP header parameter that indicates the API Version if versioningScheme is set to `header`. */
+  versionHeaderName?: string;
+  /** Name of API Version Set */
+  displayName?: string;
+  /** An value that determines where the API Version identifier will be located in a HTTP request. */
+  versioningScheme?:
+    | ApiVersionSetUpdateParametersPropertiesVersioningScheme
+    | (string & {});
+}
+export const ApiVersionSetUpdateParametersProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      description: S.optional(S.String),
+      versionQueryName: S.optional(S.String),
+      versionHeaderName: S.optional(S.String),
+      displayName: S.optional(S.String),
+      versioningScheme: S.optional(
+        ApiVersionSetUpdateParametersPropertiesVersioningScheme,
+      ),
+    }),
+).annotate({
+  identifier: "ApiVersionSetUpdateParametersProperties",
+}) as any as S.Schema<ApiVersionSetUpdateParametersProperties>;
+
+export interface UpdateApiVersionSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
+  versionSetId: string;
+  /** Parameters to update or create an API Version Set Contract. */
+  properties?: ApiVersionSetUpdateParametersProperties;
+}
+export const UpdateApiVersionSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    versionSetId: S.String.pipe(T.Label()),
+    properties: S.optional(ApiVersionSetUpdateParametersProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/apiVersionSets/{versionSetId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApiVersionSetRequest",
+}) as any as S.Schema<UpdateApiVersionSetRequest>;
+
+export interface UpdateApiVersionSetResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** API VersionSet contract properties. */
+  properties?: ApiVersionSetContractProperties;
+}
+export const UpdateApiVersionSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiVersionSetContractProperties),
+  }),
+).annotate({
+  identifier: "UpdateApiVersionSetResponse",
+}) as any as S.Schema<UpdateApiVersionSetResponse>;
 
 export interface UpdateApiWikiRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -32602,7 +33090,7 @@ export const UpdateDocumentationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateDocumentationResponse",
 }) as any as S.Schema<UpdateDocumentationResponse>;
 
-export type EmailTemplateUpdateRequestTemplateName =
+export type UpdateEmailTemplateRequestTemplateName =
   | "applicationApprovedNotificationMessage"
   | "accountClosedDeveloper"
   | "quotaLimitApproachingDeveloperNotificationMessage"
@@ -32617,7 +33105,7 @@ export type EmailTemplateUpdateRequestTemplateName =
   | "passwordResetByAdminNotificationMessage"
   | "rejectDeveloperNotificationMessage"
   | "requestDeveloperNotificationMessage";
-export const EmailTemplateUpdateRequestTemplateName = /*@__PURE__*/ S.String;
+export const UpdateEmailTemplateRequestTemplateName = /*@__PURE__*/ S.String;
 
 export interface UpdateEmailTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -32627,7 +33115,7 @@ export interface UpdateEmailTemplateRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** Email Template Name Identifier. */
-  templateName: EmailTemplateUpdateRequestTemplateName | (string & {});
+  templateName: UpdateEmailTemplateRequestTemplateName | (string & {});
   /** Email Template Update contract properties. */
   properties?: EmailTemplateUpdateParameterProperties;
 }
@@ -32636,7 +33124,7 @@ export const UpdateEmailTemplateRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    templateName: EmailTemplateUpdateRequestTemplateName.pipe(T.Label()),
+    templateName: UpdateEmailTemplateRequestTemplateName.pipe(T.Label()),
     properties: S.optional(EmailTemplateUpdateParameterProperties),
   }).pipe(
     T.Http({
@@ -32727,7 +33215,7 @@ export const UpdateGatewayResponse = /*@__PURE__*/ S.suspend(() =>
 export type ResolverUpdateContractProperties = ResolverEntityBaseContract;
 export const ResolverUpdateContractProperties = ResolverEntityBaseContract;
 
-export interface UpdateGraphQlApiResolverRequest {
+export interface UpdateGraphQLApiResolverRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -32741,7 +33229,7 @@ export interface UpdateGraphQlApiResolverRequest {
   /** Properties of the GraphQL API Resolver entity that can be updated. */
   properties?: ResolverEntityBaseContract;
 }
-export const UpdateGraphQlApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGraphQLApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -32758,10 +33246,10 @@ export const UpdateGraphQlApiResolverRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateGraphQlApiResolverRequest",
-}) as any as S.Schema<UpdateGraphQlApiResolverRequest>;
+  identifier: "UpdateGraphQLApiResolverRequest",
+}) as any as S.Schema<UpdateGraphQLApiResolverRequest>;
 
-export interface UpdateGraphQlApiResolverResponse {
+export interface UpdateGraphQLApiResolverResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -32771,7 +33259,7 @@ export interface UpdateGraphQlApiResolverResponse {
   /** Properties of the Resolver Contract. */
   properties?: ResolverEntityBaseContract;
 }
-export const UpdateGraphQlApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGraphQLApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -32779,8 +33267,8 @@ export const UpdateGraphQlApiResolverResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ResolverEntityBaseContract),
   }),
 ).annotate({
-  identifier: "UpdateGraphQlApiResolverResponse",
-}) as any as S.Schema<UpdateGraphQlApiResolverResponse>;
+  identifier: "UpdateGraphQLApiResolverResponse",
+}) as any as S.Schema<UpdateGraphQLApiResolverResponse>;
 
 /** Group type. */
 export type GroupUpdateParametersPropertiesType =
@@ -32863,14 +33351,14 @@ export const UpdateGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateGroupResponse",
 }) as any as S.Schema<UpdateGroupResponse>;
 
-export type IdentityProviderUpdateRequestIdentityProviderName =
+export type UpdateIdentityProviderRequestIdentityProviderName =
   | "facebook"
   | "google"
   | "microsoft"
   | "twitter"
   | "aad"
   | "aadB2C";
-export const IdentityProviderUpdateRequestIdentityProviderName =
+export const UpdateIdentityProviderRequestIdentityProviderName =
   /*@__PURE__*/ S.String;
 
 /** Identity Provider Type identifier. */
@@ -32944,7 +33432,7 @@ export interface UpdateIdentityProviderRequest {
   serviceName: string;
   /** Identity Provider Type identifier. */
   identityProviderName:
-    | IdentityProviderUpdateRequestIdentityProviderName
+    | UpdateIdentityProviderRequestIdentityProviderName
     | (string & {});
   /** Identity Provider update properties. */
   properties?: IdentityProviderUpdateProperties;
@@ -32955,7 +33443,7 @@ export const UpdateIdentityProviderRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     identityProviderName:
-      IdentityProviderUpdateRequestIdentityProviderName.pipe(T.Label()),
+      UpdateIdentityProviderRequestIdentityProviderName.pipe(T.Label()),
     properties: S.optional(IdentityProviderUpdateProperties),
   }).pipe(
     T.Http({
@@ -33543,7 +34031,7 @@ export const UpdateProductWikiResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateProductWikiResponse",
 }) as any as S.Schema<UpdateProductWikiResponse>;
 
-export interface UpdateQuotaByCounterKeyRequest {
+export interface UpdateQuotaByCounterKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33555,7 +34043,7 @@ export interface UpdateQuotaByCounterKeyRequest {
   /** Quota counter value details. */
   properties?: QuotaCounterValueContractProperties;
 }
-export const UpdateQuotaByCounterKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByCounterKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -33571,35 +34059,35 @@ export const UpdateQuotaByCounterKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateQuotaByCounterKeyRequest",
-}) as any as S.Schema<UpdateQuotaByCounterKeyRequest>;
+  identifier: "UpdateQuotaByCounterKeysRequest",
+}) as any as S.Schema<UpdateQuotaByCounterKeysRequest>;
 
 /** Quota counter values. */
-export type QuotaByCounterKeysUpdateResponseValueList =
+export type UpdateQuotaByCounterKeysResponseValueList =
   Array<QuotaCounterContract>;
-export const QuotaByCounterKeysUpdateResponseValueList = /*@__PURE__*/ S.Array(
+export const UpdateQuotaByCounterKeysResponseValueList = /*@__PURE__*/ S.Array(
   QuotaCounterContract,
-) as any as S.Schema<QuotaByCounterKeysUpdateResponseValueList>;
+) as any as S.Schema<UpdateQuotaByCounterKeysResponseValueList>;
 
-export interface UpdateQuotaByCounterKeyResponse {
+export interface UpdateQuotaByCounterKeysResponse {
   /** Quota counter values. */
-  value?: QuotaByCounterKeysUpdateResponseValueList;
+  value?: UpdateQuotaByCounterKeysResponseValueList;
   /** Total record count number across all pages. */
   count?: number;
   /** Next page link if any. */
   nextLink?: string;
 }
-export const UpdateQuotaByCounterKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByCounterKeysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(QuotaByCounterKeysUpdateResponseValueList),
+    value: S.optional(UpdateQuotaByCounterKeysResponseValueList),
     count: S.optional(S.Number),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateQuotaByCounterKeyResponse",
-}) as any as S.Schema<UpdateQuotaByCounterKeyResponse>;
+  identifier: "UpdateQuotaByCounterKeysResponse",
+}) as any as S.Schema<UpdateQuotaByCounterKeysResponse>;
 
-export interface UpdateQuotaByPeriodKeyRequest {
+export interface UpdateQuotaByPeriodKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -33613,7 +34101,7 @@ export interface UpdateQuotaByPeriodKeyRequest {
   /** Quota counter value details. */
   properties?: QuotaCounterValueContractProperties;
 }
-export const UpdateQuotaByPeriodKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByPeriodKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -33630,10 +34118,10 @@ export const UpdateQuotaByPeriodKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateQuotaByPeriodKeyRequest",
-}) as any as S.Schema<UpdateQuotaByPeriodKeyRequest>;
+  identifier: "UpdateQuotaByPeriodKeysRequest",
+}) as any as S.Schema<UpdateQuotaByPeriodKeysRequest>;
 
-export interface UpdateQuotaByPeriodKeyResponse {
+export interface UpdateQuotaByPeriodKeysResponse {
   /** The Key value of the Counter. Must not be empty. */
   counterKey: string;
   /** Identifier of the Period for which the counter was collected. Must not be empty. */
@@ -33645,7 +34133,7 @@ export interface UpdateQuotaByPeriodKeyResponse {
   /** Quota Value Properties */
   value?: QuotaCounterValueContractProperties;
 }
-export const UpdateQuotaByPeriodKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaByPeriodKeysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     counterKey: S.String,
     periodKey: S.String,
@@ -33654,11 +34142,11 @@ export const UpdateQuotaByPeriodKeyResponse = /*@__PURE__*/ S.suspend(() =>
     value: S.optional(QuotaCounterValueContractProperties),
   }),
 ).annotate({
-  identifier: "UpdateQuotaByPeriodKeyResponse",
-}) as any as S.Schema<UpdateQuotaByPeriodKeyResponse>;
+  identifier: "UpdateQuotaByPeriodKeysResponse",
+}) as any as S.Schema<UpdateQuotaByPeriodKeysResponse>;
 
-export type SubscriptionUpdateRequestAppType = "portal" | "developerPortal";
-export const SubscriptionUpdateRequestAppType = /*@__PURE__*/ S.String;
+export type UpdateSubscriptionRequestAppType = "portal" | "developerPortal";
+export const UpdateSubscriptionRequestAppType = /*@__PURE__*/ S.String;
 
 /** Subscription state. Possible states are * active – the subscription is active, * suspended – the subscription is blocked, and the subscriber cannot call any APIs of the product, * submitted – the subscription request has been made by the developer, but has not yet been approved or rejected, * rejected – the subscription request has been denied by an administrator, * cancelled – the subscription has been cancelled by the developer or administrator, * expired – the subscription reached its expiration date and was deactivated. */
 export type SubscriptionUpdateParameterPropertiesState =
@@ -33721,7 +34209,7 @@ export interface UpdateSubscriptionRequest {
   /** Notify change in Subscription State. - If false, do not send any email notification for change of state of subscription - If true, send email notification of change of state of subscription */
   notify?: boolean;
   /** Determines the type of application which send the create user request. Default is legacy publisher portal. */
-  appType?: SubscriptionUpdateRequestAppType | (string & {});
+  appType?: UpdateSubscriptionRequestAppType | (string & {});
   /** Subscription Update contract properties. */
   properties?: SubscriptionUpdateParameterProperties;
 }
@@ -33732,7 +34220,7 @@ export const UpdateSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     serviceName: S.String.pipe(T.Label()),
     sid: S.String.pipe(T.Label()),
     notify: S.optional(S.Boolean.pipe(T.Query())),
-    appType: S.optional(SubscriptionUpdateRequestAppType.pipe(T.Query())),
+    appType: S.optional(UpdateSubscriptionRequestAppType.pipe(T.Query())),
     properties: S.optional(SubscriptionUpdateParameterProperties),
   }).pipe(
     T.Http({
@@ -33819,8 +34307,8 @@ export const UpdateTagResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateTagResponse",
 }) as any as S.Schema<UpdateTagResponse>;
 
-export type TenantAccessUpdateRequestAccessName = "access" | "gitAccess";
-export const TenantAccessUpdateRequestAccessName = /*@__PURE__*/ S.String;
+export type UpdateTenantAccessRequestAccessName = "access" | "gitAccess";
+export const UpdateTenantAccessRequestAccessName = /*@__PURE__*/ S.String;
 
 /** Tenant access information update parameters of the API Management service */
 export interface AccessInformationUpdateParameterProperties {
@@ -33844,7 +34332,7 @@ export interface UpdateTenantAccessRequest {
   /** The name of the API Management service. */
   serviceName: string;
   /** The identifier of the Access configuration. */
-  accessName: TenantAccessUpdateRequestAccessName | (string & {});
+  accessName: UpdateTenantAccessRequestAccessName | (string & {});
   /** Tenant access information update parameter properties. */
   properties?: AccessInformationUpdateParameterProperties;
 }
@@ -33853,7 +34341,7 @@ export const UpdateTenantAccessRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    accessName: TenantAccessUpdateRequestAccessName.pipe(T.Label()),
+    accessName: UpdateTenantAccessRequestAccessName.pipe(T.Label()),
     properties: S.optional(AccessInformationUpdateParameterProperties),
   }).pipe(
     T.Http({
@@ -34287,6 +34775,120 @@ export const UpdateWorkspaceApiOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWorkspaceApiOperationResponse",
 }) as any as S.Schema<UpdateWorkspaceApiOperationResponse>;
 
+export interface UpdateWorkspaceApiReleaseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** API identifier. Must be unique in the current API Management service instance. */
+  apiId: string;
+  /** Release identifier within an API. Must be unique in the current API Management service instance. */
+  releaseId: string;
+  /** ApiRelease entity contract properties. */
+  properties?: ApiReleaseContractPropertiesInput;
+}
+export const UpdateWorkspaceApiReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    workspaceId: S.String.pipe(T.Label()),
+    apiId: S.String.pipe(T.Label()),
+    releaseId: S.String.pipe(T.Label()),
+    properties: S.optional(ApiReleaseContractPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases/{releaseId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWorkspaceApiReleaseRequest",
+}) as any as S.Schema<UpdateWorkspaceApiReleaseRequest>;
+
+export interface UpdateWorkspaceApiReleaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** ApiRelease entity contract properties. */
+  properties?: ApiReleaseContractProperties;
+}
+export const UpdateWorkspaceApiReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ApiReleaseContractProperties),
+  }),
+).annotate({
+  identifier: "UpdateWorkspaceApiReleaseResponse",
+}) as any as S.Schema<UpdateWorkspaceApiReleaseResponse>;
+
+export interface UpdateWorkspaceApiVersionSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** Workspace identifier. Must be unique in the current API Management service instance. */
+  workspaceId: string;
+  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
+  versionSetId: string;
+  /** Parameters to update or create an API Version Set Contract. */
+  properties?: ApiVersionSetUpdateParametersProperties;
+}
+export const UpdateWorkspaceApiVersionSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    workspaceId: S.String.pipe(T.Label()),
+    versionSetId: S.String.pipe(T.Label()),
+    properties: S.optional(ApiVersionSetUpdateParametersProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets/{versionSetId}",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWorkspaceApiVersionSetRequest",
+}) as any as S.Schema<UpdateWorkspaceApiVersionSetRequest>;
+
+export interface UpdateWorkspaceApiVersionSetResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** API VersionSet contract properties. */
+  properties?: ApiVersionSetContractProperties;
+}
+export const UpdateWorkspaceApiVersionSetResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(ApiVersionSetContractProperties),
+    }),
+).annotate({
+  identifier: "UpdateWorkspaceApiVersionSetResponse",
+}) as any as S.Schema<UpdateWorkspaceApiVersionSetResponse>;
+
 export interface UpdateWorkspaceBackendRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -34617,10 +35219,10 @@ export const UpdateWorkspaceProductResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWorkspaceProductResponse",
 }) as any as S.Schema<UpdateWorkspaceProductResponse>;
 
-export type WorkspaceSubscriptionUpdateRequestAppType =
+export type UpdateWorkspaceSubscriptionRequestAppType =
   | "portal"
   | "developerPortal";
-export const WorkspaceSubscriptionUpdateRequestAppType = /*@__PURE__*/ S.String;
+export const UpdateWorkspaceSubscriptionRequestAppType = /*@__PURE__*/ S.String;
 
 export interface UpdateWorkspaceSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -34636,7 +35238,7 @@ export interface UpdateWorkspaceSubscriptionRequest {
   /** Notify change in Subscription State. - If false, do not send any email notification for change of state of subscription - If true, send email notification of change of state of subscription */
   notify?: boolean;
   /** Determines the type of application which send the create user request. Default is legacy publisher portal. */
-  appType?: WorkspaceSubscriptionUpdateRequestAppType | (string & {});
+  appType?: UpdateWorkspaceSubscriptionRequestAppType | (string & {});
   /** Subscription Update contract properties. */
   properties?: SubscriptionUpdateParameterProperties;
 }
@@ -34649,7 +35251,7 @@ export const UpdateWorkspaceSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     sid: S.String.pipe(T.Label()),
     notify: S.optional(S.Boolean.pipe(T.Query())),
     appType: S.optional(
-      WorkspaceSubscriptionUpdateRequestAppType.pipe(T.Query()),
+      UpdateWorkspaceSubscriptionRequestAppType.pipe(T.Query()),
     ),
     properties: S.optional(SubscriptionUpdateParameterProperties),
   }).pipe(
@@ -34739,52 +35341,6 @@ export const UpdateWorkspaceTagResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateWorkspaceTagResponse",
 }) as any as S.Schema<UpdateWorkspaceTagResponse>;
-
-export type UserConfirmationPasswordSendRequestAppType =
-  | "portal"
-  | "developerPortal";
-export const UserConfirmationPasswordSendRequestAppType =
-  /*@__PURE__*/ S.String;
-
-export interface UserConfirmationPasswordSendRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** User identifier. Must be unique in the current API Management service instance. */
-  userId: string;
-  /** Determines the type of application which send the create user request. Default is legacy publisher portal. */
-  appType?: UserConfirmationPasswordSendRequestAppType | (string & {});
-}
-export const UserConfirmationPasswordSendRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    userId: S.String.pipe(T.Label()),
-    appType: S.optional(
-      UserConfirmationPasswordSendRequestAppType.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/users/{userId}/confirmations/password/send",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "UserConfirmationPasswordSendRequest",
-}) as any as S.Schema<UserConfirmationPasswordSendRequest>;
-
-export interface UserConfirmationPasswordSendResponse {}
-export const UserConfirmationPasswordSendResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "UserConfirmationPasswordSendResponse",
-}) as any as S.Schema<UserConfirmationPasswordSendResponse>;
 
 /** Account state. Specifies whether the user is active or not. Blocked users are unable to sign into the developer portal or call any APIs of subscribed products. Default state is Active. */
 export type UserCreateParameterPropertiesState =
@@ -34901,6 +35457,67 @@ export const UserCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UserCreateOrUpdateResponse",
 }) as any as S.Schema<UserCreateOrUpdateResponse>;
+
+export type ValidateTenantConfigurationRequestConfigurationName =
+  "configuration";
+export const ValidateTenantConfigurationRequestConfigurationName =
+  /*@__PURE__*/ S.String;
+
+export interface ValidateTenantConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the API Management service. */
+  serviceName: string;
+  /** The identifier of the Git Configuration Operation. */
+  configurationName:
+    | ValidateTenantConfigurationRequestConfigurationName
+    | (string & {});
+  /** Deploy Configuration Parameter contract properties. */
+  properties?: DeployConfigurationParameterProperties;
+}
+export const ValidateTenantConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    configurationName: ValidateTenantConfigurationRequestConfigurationName.pipe(
+      T.Label(),
+    ),
+    properties: S.optional(DeployConfigurationParameterProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/tenant/{configurationName}/validate",
+      code: 200,
+      apiVersion: "2024-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateTenantConfigurationRequest",
+}) as any as S.Schema<ValidateTenantConfigurationRequest>;
+
+export interface ValidateTenantConfigurationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Properties of the Operation Contract. */
+  properties?: OperationResultContractProperties;
+}
+export const ValidateTenantConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(OperationResultContractProperties),
+  }),
+).annotate({
+  identifier: "ValidateTenantConfigurationResponse",
+}) as any as S.Schema<ValidateTenantConfigurationResponse>;
 
 export interface WorkspaceApiCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -35272,228 +35889,6 @@ export const WorkspaceApiReleaseCreateOrUpdateResponse =
     identifier: "WorkspaceApiReleaseCreateOrUpdateResponse",
   }) as any as S.Schema<WorkspaceApiReleaseCreateOrUpdateResponse>;
 
-export interface WorkspaceApiReleaseDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** Release identifier within an API. Must be unique in the current API Management service instance. */
-  releaseId: string;
-}
-export const WorkspaceApiReleaseDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    workspaceId: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    releaseId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases/{releaseId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceApiReleaseDeleteRequest",
-}) as any as S.Schema<WorkspaceApiReleaseDeleteRequest>;
-
-export interface WorkspaceApiReleaseDeleteResponse {}
-export const WorkspaceApiReleaseDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkspaceApiReleaseDeleteResponse",
-}) as any as S.Schema<WorkspaceApiReleaseDeleteResponse>;
-
-export interface WorkspaceApiReleaseGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** Release identifier within an API. Must be unique in the current API Management service instance. */
-  releaseId: string;
-}
-export const WorkspaceApiReleaseGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    workspaceId: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    releaseId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases/{releaseId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceApiReleaseGetRequest",
-}) as any as S.Schema<WorkspaceApiReleaseGetRequest>;
-
-export interface WorkspaceApiReleaseGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** ApiRelease entity contract properties. */
-  properties?: ApiReleaseContractProperties;
-}
-export const WorkspaceApiReleaseGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiReleaseContractProperties),
-  }),
-).annotate({
-  identifier: "WorkspaceApiReleaseGetResponse",
-}) as any as S.Schema<WorkspaceApiReleaseGetResponse>;
-
-export interface WorkspaceApiReleaseListByServiceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br>| notes | filter | ge, le, eq, ne, gt, lt | substringof, contains, startswith, endswith |</br> */
-  _filter?: string;
-  /** Number of records to return. */
-  _top?: number;
-  /** Number of records to skip. */
-  _skip?: number;
-}
-export const WorkspaceApiReleaseListByServiceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceId: S.String.pipe(T.Label()),
-      apiId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkspaceApiReleaseListByServiceRequest",
-}) as any as S.Schema<WorkspaceApiReleaseListByServiceRequest>;
-
-/** Page values. */
-export type WorkspaceApiReleaseListByServiceResponseValueList =
-  Array<ApiReleaseContract>;
-export const WorkspaceApiReleaseListByServiceResponseValueList =
-  /*@__PURE__*/ S.Array(
-    ApiReleaseContract,
-  ) as any as S.Schema<WorkspaceApiReleaseListByServiceResponseValueList>;
-
-export interface WorkspaceApiReleaseListByServiceResponse {
-  /** Page values. */
-  value?: WorkspaceApiReleaseListByServiceResponseValueList;
-  /** Total record count number across all pages. */
-  count?: number;
-  /** Next page link if any. */
-  nextLink?: string;
-}
-export const WorkspaceApiReleaseListByServiceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(WorkspaceApiReleaseListByServiceResponseValueList),
-      count: S.optional(S.Number),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "WorkspaceApiReleaseListByServiceResponse",
-}) as any as S.Schema<WorkspaceApiReleaseListByServiceResponse>;
-
-export interface WorkspaceApiReleaseUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** API identifier. Must be unique in the current API Management service instance. */
-  apiId: string;
-  /** Release identifier within an API. Must be unique in the current API Management service instance. */
-  releaseId: string;
-  /** ApiRelease entity contract properties. */
-  properties?: ApiReleaseContractPropertiesInput;
-}
-export const WorkspaceApiReleaseUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    workspaceId: S.String.pipe(T.Label()),
-    apiId: S.String.pipe(T.Label()),
-    releaseId: S.String.pipe(T.Label()),
-    properties: S.optional(ApiReleaseContractPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apis/{apiId}/releases/{releaseId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceApiReleaseUpdateRequest",
-}) as any as S.Schema<WorkspaceApiReleaseUpdateRequest>;
-
-export interface WorkspaceApiReleaseUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** ApiRelease entity contract properties. */
-  properties?: ApiReleaseContractProperties;
-}
-export const WorkspaceApiReleaseUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiReleaseContractProperties),
-  }),
-).annotate({
-  identifier: "WorkspaceApiReleaseUpdateResponse",
-}) as any as S.Schema<WorkspaceApiReleaseUpdateResponse>;
-
 export interface WorkspaceApiSchemaCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -35611,217 +36006,6 @@ export const WorkspaceApiVersionSetCreateOrUpdateResponse =
     identifier: "WorkspaceApiVersionSetCreateOrUpdateResponse",
   }) as any as S.Schema<WorkspaceApiVersionSetCreateOrUpdateResponse>;
 
-export interface WorkspaceApiVersionSetDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
-  versionSetId: string;
-}
-export const WorkspaceApiVersionSetDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    workspaceId: S.String.pipe(T.Label()),
-    versionSetId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets/{versionSetId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceApiVersionSetDeleteRequest",
-}) as any as S.Schema<WorkspaceApiVersionSetDeleteRequest>;
-
-export interface WorkspaceApiVersionSetDeleteResponse {}
-export const WorkspaceApiVersionSetDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkspaceApiVersionSetDeleteResponse",
-}) as any as S.Schema<WorkspaceApiVersionSetDeleteResponse>;
-
-export interface WorkspaceApiVersionSetGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
-  versionSetId: string;
-}
-export const WorkspaceApiVersionSetGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    workspaceId: S.String.pipe(T.Label()),
-    versionSetId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets/{versionSetId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceApiVersionSetGetRequest",
-}) as any as S.Schema<WorkspaceApiVersionSetGetRequest>;
-
-export interface WorkspaceApiVersionSetGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** API VersionSet contract properties. */
-  properties?: ApiVersionSetContractProperties;
-}
-export const WorkspaceApiVersionSetGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ApiVersionSetContractProperties),
-  }),
-).annotate({
-  identifier: "WorkspaceApiVersionSetGetResponse",
-}) as any as S.Schema<WorkspaceApiVersionSetGetResponse>;
-
-export interface WorkspaceApiVersionSetListByServiceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** | Field | Usage | Supported operators | Supported functions |</br>|-------------|-------------|-------------|-------------|</br> */
-  _filter?: string;
-  /** Number of records to return. */
-  _top?: number;
-  /** Number of records to skip. */
-  _skip?: number;
-}
-export const WorkspaceApiVersionSetListByServiceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkspaceApiVersionSetListByServiceRequest",
-  }) as any as S.Schema<WorkspaceApiVersionSetListByServiceRequest>;
-
-/** Page values. */
-export type WorkspaceApiVersionSetListByServiceResponseValueList =
-  Array<ApiVersionSetContract>;
-export const WorkspaceApiVersionSetListByServiceResponseValueList =
-  /*@__PURE__*/ S.Array(
-    ApiVersionSetContract,
-  ) as any as S.Schema<WorkspaceApiVersionSetListByServiceResponseValueList>;
-
-export interface WorkspaceApiVersionSetListByServiceResponse {
-  /** Page values. */
-  value?: WorkspaceApiVersionSetListByServiceResponseValueList;
-  /** Total record count number across all pages. */
-  count?: number;
-  /** Next page link if any. */
-  nextLink?: string;
-}
-export const WorkspaceApiVersionSetListByServiceResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(WorkspaceApiVersionSetListByServiceResponseValueList),
-      count: S.optional(S.Number),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "WorkspaceApiVersionSetListByServiceResponse",
-  }) as any as S.Schema<WorkspaceApiVersionSetListByServiceResponse>;
-
-export interface WorkspaceApiVersionSetUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** Api Version Set identifier. Must be unique in the current API Management service instance. */
-  versionSetId: string;
-  /** Parameters to update or create an API Version Set Contract. */
-  properties?: ApiVersionSetUpdateParametersProperties;
-}
-export const WorkspaceApiVersionSetUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    workspaceId: S.String.pipe(T.Label()),
-    versionSetId: S.String.pipe(T.Label()),
-    properties: S.optional(ApiVersionSetUpdateParametersProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/apiVersionSets/{versionSetId}",
-      code: 200,
-      apiVersion: "2024-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceApiVersionSetUpdateRequest",
-}) as any as S.Schema<WorkspaceApiVersionSetUpdateRequest>;
-
-export interface WorkspaceApiVersionSetUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** API VersionSet contract properties. */
-  properties?: ApiVersionSetContractProperties;
-}
-export const WorkspaceApiVersionSetUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(ApiVersionSetContractProperties),
-    }),
-).annotate({
-  identifier: "WorkspaceApiVersionSetUpdateResponse",
-}) as any as S.Schema<WorkspaceApiVersionSetUpdateResponse>;
-
 export interface WorkspaceBackendCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -35935,60 +36119,6 @@ export const WorkspaceCertificateCreateOrUpdateResponse =
   ).annotate({
     identifier: "WorkspaceCertificateCreateOrUpdateResponse",
   }) as any as S.Schema<WorkspaceCertificateCreateOrUpdateResponse>;
-
-export interface WorkspaceCertificateRefreshSecretRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** Identifier of the certificate entity. Must be unique in the current API Management service instance. */
-  certificateId: string;
-}
-export const WorkspaceCertificateRefreshSecretRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceId: S.String.pipe(T.Label()),
-      certificateId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/certificates/{certificateId}/refreshSecret",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkspaceCertificateRefreshSecretRequest",
-}) as any as S.Schema<WorkspaceCertificateRefreshSecretRequest>;
-
-export interface WorkspaceCertificateRefreshSecretResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Certificate properties details. */
-  properties?: CertificateContractProperties;
-}
-export const WorkspaceCertificateRefreshSecretResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(CertificateContractProperties),
-    }),
-  ).annotate({
-    identifier: "WorkspaceCertificateRefreshSecretResponse",
-  }) as any as S.Schema<WorkspaceCertificateRefreshSecretResponse>;
 
 export interface WorkspaceCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -36325,60 +36455,6 @@ export const WorkspaceNamedValueCreateOrUpdateResponse =
   ).annotate({
     identifier: "WorkspaceNamedValueCreateOrUpdateResponse",
   }) as any as S.Schema<WorkspaceNamedValueCreateOrUpdateResponse>;
-
-export interface WorkspaceNamedValueRefreshSecretRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** Identifier of the NamedValue. */
-  namedValueId: string;
-}
-export const WorkspaceNamedValueRefreshSecretRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceId: S.String.pipe(T.Label()),
-      namedValueId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/namedValues/{namedValueId}/refreshSecret",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkspaceNamedValueRefreshSecretRequest",
-}) as any as S.Schema<WorkspaceNamedValueRefreshSecretRequest>;
-
-export interface WorkspaceNamedValueRefreshSecretResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** NamedValue entity contract properties. */
-  properties?: NamedValueContractProperties;
-}
-export const WorkspaceNamedValueRefreshSecretResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(NamedValueContractProperties),
-    }),
-).annotate({
-  identifier: "WorkspaceNamedValueRefreshSecretResponse",
-}) as any as S.Schema<WorkspaceNamedValueRefreshSecretResponse>;
 
 export type WorkspaceNotificationCreateOrUpdateRequestNotificationName =
   | "RequestPublisherNotificationMessage"
@@ -37028,82 +37104,6 @@ export const WorkspaceSubscriptionCreateOrUpdateResponse =
     identifier: "WorkspaceSubscriptionCreateOrUpdateResponse",
   }) as any as S.Schema<WorkspaceSubscriptionCreateOrUpdateResponse>;
 
-export interface WorkspaceSubscriptionRegeneratePrimaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
-  sid: string;
-}
-export const WorkspaceSubscriptionRegeneratePrimaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceId: S.String.pipe(T.Label()),
-      sid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/subscriptions/{sid}/regeneratePrimaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkspaceSubscriptionRegeneratePrimaryKeyRequest",
-  }) as any as S.Schema<WorkspaceSubscriptionRegeneratePrimaryKeyRequest>;
-
-export interface WorkspaceSubscriptionRegeneratePrimaryKeyResponse {}
-export const WorkspaceSubscriptionRegeneratePrimaryKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "WorkspaceSubscriptionRegeneratePrimaryKeyResponse",
-  }) as any as S.Schema<WorkspaceSubscriptionRegeneratePrimaryKeyResponse>;
-
-export interface WorkspaceSubscriptionRegenerateSecondaryKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the API Management service. */
-  serviceName: string;
-  /** Workspace identifier. Must be unique in the current API Management service instance. */
-  workspaceId: string;
-  /** Subscription entity Identifier. The entity represents the association between a user and a product in API Management. */
-  sid: string;
-}
-export const WorkspaceSubscriptionRegenerateSecondaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      workspaceId: S.String.pipe(T.Label()),
-      sid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/workspaces/{workspaceId}/subscriptions/{sid}/regenerateSecondaryKey",
-        code: 200,
-        apiVersion: "2024-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkspaceSubscriptionRegenerateSecondaryKeyRequest",
-  }) as any as S.Schema<WorkspaceSubscriptionRegenerateSecondaryKeyRequest>;
-
-export interface WorkspaceSubscriptionRegenerateSecondaryKeyResponse {}
-export const WorkspaceSubscriptionRegenerateSecondaryKeyResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "WorkspaceSubscriptionRegenerateSecondaryKeyResponse",
-  }) as any as S.Schema<WorkspaceSubscriptionRegenerateSecondaryKeyResponse>;
-
 export interface WorkspaceTagApiLinkCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -37444,22 +37444,6 @@ export const ApiIssueCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApiManagementServiceApplyNetworkConfigurationUpdatesError =
-  AzureOpError;
-/** Updates the Microsoft.ApiManagement resource running in the Virtual network to pick the updated DNS changes. */
-export const ApiManagementServiceApplyNetworkConfigurationUpdates: API.OperationMethod<
-  ApiManagementServiceApplyNetworkConfigurationUpdatesRequest,
-  ApiManagementServiceApplyNetworkConfigurationUpdatesResponse,
-  ApiManagementServiceApplyNetworkConfigurationUpdatesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiManagementServiceApplyNetworkConfigurationUpdatesRequest,
-  output: ApiManagementServiceApplyNetworkConfigurationUpdatesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ApiManagementServiceBackupError = AzureOpError;
 /** Creates a backup of the API Management service to the given Azure Storage Account. This is long running operation and could take several minutes to complete. */
 export const ApiManagementServiceBackup: API.OperationMethod<
@@ -37485,21 +37469,6 @@ export const ApiManagementServiceCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApiManagementServiceCreateOrUpdateRequest,
   output: ApiManagementServiceCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiManagementServiceMigrateToStv2Error = AzureOpError;
-/** Upgrades an API Management service to the Stv2 platform. For details refer to https://aka.ms/apim-migrate-stv2. This change is not reversible. This is long running operation and could take several minutes to complete. */
-export const ApiManagementServiceMigrateToStv2: API.OperationMethod<
-  ApiManagementServiceMigrateToStv2Request,
-  ApiManagementServiceMigrateToStv2Response,
-  ApiManagementServiceMigrateToStv2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiManagementServiceMigrateToStv2Request,
-  output: ApiManagementServiceMigrateToStv2Response,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37565,66 +37534,6 @@ export const ApiReleaseCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApiReleaseDeleteError = AzureOpError;
-/** Deletes the specified release in the API. */
-export const ApiReleaseDelete: API.OperationMethod<
-  ApiReleaseDeleteRequest,
-  ApiReleaseDeleteResponse,
-  ApiReleaseDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiReleaseDeleteRequest,
-  output: ApiReleaseDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiReleaseGetError = AzureOpError;
-/** Returns the details of an API release. */
-export const ApiReleaseGet: API.OperationMethod<
-  ApiReleaseGetRequest,
-  ApiReleaseGetResponse,
-  ApiReleaseGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiReleaseGetRequest,
-  output: ApiReleaseGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiReleaseListByServiceError = AzureOpError;
-/** Lists all releases of an API. An API release is created when making an API Revision current. Releases are also used to rollback to previous revisions. Results will be paged and can be constrained by the $top and $skip parameters. */
-export const ApiReleaseListByService: API.OperationMethod<
-  ApiReleaseListByServiceRequest,
-  ApiReleaseListByServiceResponse,
-  ApiReleaseListByServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiReleaseListByServiceRequest,
-  output: ApiReleaseListByServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiReleaseUpdateError = AzureOpError;
-/** Updates the details of the release of the API specified by its identifier. */
-export const ApiReleaseUpdate: API.OperationMethod<
-  ApiReleaseUpdateRequest,
-  ApiReleaseUpdateResponse,
-  ApiReleaseUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiReleaseUpdateRequest,
-  output: ApiReleaseUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ApiSchemaCreateOrUpdateError = AzureOpError;
 /** Creates or updates schema configuration for the API. */
 export const ApiSchemaCreateOrUpdate: API.OperationMethod<
@@ -37670,66 +37579,6 @@ export const ApiVersionSetCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApiVersionSetDeleteError = AzureOpError;
-/** Deletes specific Api Version Set. */
-export const ApiVersionSetDelete: API.OperationMethod<
-  ApiVersionSetDeleteRequest,
-  ApiVersionSetDeleteResponse,
-  ApiVersionSetDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiVersionSetDeleteRequest,
-  output: ApiVersionSetDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiVersionSetGetError = AzureOpError;
-/** Gets the details of the Api Version Set specified by its identifier. */
-export const ApiVersionSetGet: API.OperationMethod<
-  ApiVersionSetGetRequest,
-  ApiVersionSetGetResponse,
-  ApiVersionSetGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiVersionSetGetRequest,
-  output: ApiVersionSetGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiVersionSetListByServiceError = AzureOpError;
-/** Lists a collection of API Version Sets in the specified service instance. */
-export const ApiVersionSetListByService: API.OperationMethod<
-  ApiVersionSetListByServiceRequest,
-  ApiVersionSetListByServiceResponse,
-  ApiVersionSetListByServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiVersionSetListByServiceRequest,
-  output: ApiVersionSetListByServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiVersionSetUpdateError = AzureOpError;
-/** Updates the details of the Api VersionSet specified by its identifier. */
-export const ApiVersionSetUpdate: API.OperationMethod<
-  ApiVersionSetUpdateRequest,
-  ApiVersionSetUpdateResponse,
-  ApiVersionSetUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiVersionSetUpdateRequest,
-  output: ApiVersionSetUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ApiWikiCreateOrUpdateError = AzureOpError;
 /** Creates a new Wiki for an API or updates an existing one. */
 export const ApiWikiCreateOrUpdate: API.OperationMethod<
@@ -37740,6 +37589,67 @@ export const ApiWikiCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApiWikiCreateOrUpdateRequest,
   output: ApiWikiCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ApplyApiManagementServiceNetworkConfigurationUpdatesError =
+  AzureOpError;
+/** Updates the Microsoft.ApiManagement resource running in the Virtual network to pick the updated DNS changes. */
+export const ApplyApiManagementServiceNetworkConfigurationUpdates: API.OperationMethod<
+  ApplyApiManagementServiceNetworkConfigurationUpdatesRequest,
+  ApplyApiManagementServiceNetworkConfigurationUpdatesResponse,
+  ApplyApiManagementServiceNetworkConfigurationUpdatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApplyApiManagementServiceNetworkConfigurationUpdatesRequest,
+  output: ApplyApiManagementServiceNetworkConfigurationUpdatesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AssignTagToApiError = AzureOpError;
+/** Assign tag to the Api. */
+export const AssignTagToApi: API.OperationMethod<
+  AssignTagToApiRequest,
+  AssignTagToApiResponse,
+  AssignTagToApiError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AssignTagToApiRequest,
+  output: AssignTagToApiResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AssignTagToOperationError = AzureOpError;
+/** Assign tag to the Operation. */
+export const AssignTagToOperation: API.OperationMethod<
+  AssignTagToOperationRequest,
+  AssignTagToOperationResponse,
+  AssignTagToOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AssignTagToOperationRequest,
+  output: AssignTagToOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AssignTagToProductError = AzureOpError;
+/** Assign tag to the Product. */
+export const AssignTagToProduct: API.OperationMethod<
+  AssignTagToProductRequest,
+  AssignTagToProductResponse,
+  AssignTagToProductError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AssignTagToProductRequest,
+  output: AssignTagToProductResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37760,21 +37670,6 @@ export const AuthorizationAccessPolicyCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AuthorizationConfirmConsentCodeError = AzureOpError;
-/** Confirm valid consent code to suppress Authorizations anti-phishing page. */
-export const AuthorizationConfirmConsentCode: API.OperationMethod<
-  AuthorizationConfirmConsentCodeRequest,
-  AuthorizationConfirmConsentCodeResponse,
-  AuthorizationConfirmConsentCodeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationConfirmConsentCodeRequest,
-  output: AuthorizationConfirmConsentCodeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AuthorizationCreateOrUpdateError = AzureOpError;
 /** Creates or updates authorization. */
 export const AuthorizationCreateOrUpdate: API.OperationMethod<
@@ -37785,21 +37680,6 @@ export const AuthorizationCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AuthorizationCreateOrUpdateRequest,
   output: AuthorizationCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AuthorizationLoginLinksPostError = AzureOpError;
-/** Gets authorization login links. */
-export const AuthorizationLoginLinksPost: API.OperationMethod<
-  AuthorizationLoginLinksPostRequest,
-  AuthorizationLoginLinksPostResponse,
-  AuthorizationLoginLinksPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationLoginLinksPostRequest,
-  output: AuthorizationLoginLinksPostResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -37895,21 +37775,6 @@ export const CertificateCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CertificateRefreshSecretError = AzureOpError;
-/** From KeyVault, Refresh the certificate being used for authentication with the backend. */
-export const CertificateRefreshSecret: API.OperationMethod<
-  CertificateRefreshSecretRequest,
-  CertificateRefreshSecretResponse,
-  CertificateRefreshSecretError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificateRefreshSecretRequest,
-  output: CertificateRefreshSecretResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CheckApiManagementServiceNameAvailabilityError = AzureOpError;
 /** Checks availability and correctness of a name for an API Management service. */
 export const CheckApiManagementServiceNameAvailability: API.OperationMethod<
@@ -37925,16 +37790,16 @@ export const CheckApiManagementServiceNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckPerformConnectivityAsyncError = AzureOpError;
-/** Performs a connectivity check between the API Management service and a given destination, and returns metrics for the connection, as well as errors encountered while trying to establish it. */
-export const CheckPerformConnectivityAsync: API.OperationMethod<
-  CheckPerformConnectivityAsyncRequest,
-  CheckPerformConnectivityAsyncResponse,
-  CheckPerformConnectivityAsyncError,
+export type ConfirmAuthorizationConsentCodeError = AzureOpError;
+/** Confirm valid consent code to suppress Authorizations anti-phishing page. */
+export const ConfirmAuthorizationConsentCode: API.OperationMethod<
+  ConfirmAuthorizationConsentCodeRequest,
+  ConfirmAuthorizationConsentCodeResponse,
+  ConfirmAuthorizationConsentCodeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckPerformConnectivityAsyncRequest,
-  output: CheckPerformConnectivityAsyncResponse,
+  input: ConfirmAuthorizationConsentCodeRequest,
+  output: ConfirmAuthorizationConsentCodeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -38180,6 +38045,21 @@ export const DeleteApiPolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteApiReleaseError = AzureOpError;
+/** Deletes the specified release in the API. */
+export const DeleteApiRelease: API.OperationMethod<
+  DeleteApiReleaseRequest,
+  DeleteApiReleaseResponse,
+  DeleteApiReleaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApiReleaseRequest,
+  output: DeleteApiReleaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteApiSchemaError = AzureOpError;
 /** Deletes the schema configuration at the Api. */
 export const DeleteApiSchema: API.OperationMethod<
@@ -38205,6 +38085,21 @@ export const DeleteApiTagDescription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteApiTagDescriptionRequest,
   output: DeleteApiTagDescriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApiVersionSetError = AzureOpError;
+/** Deletes specific Api Version Set. */
+export const DeleteApiVersionSet: API.OperationMethod<
+  DeleteApiVersionSetRequest,
+  DeleteApiVersionSetResponse,
+  DeleteApiVersionSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApiVersionSetRequest,
+  output: DeleteApiVersionSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -38390,21 +38285,6 @@ export const DeleteDocumentation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeletedServicesPurgeError = AzureOpError;
-/** Purges Api Management Service (deletes it with no option to undelete). */
-export const DeletedServicesPurge: API.OperationMethod<
-  DeletedServicesPurgeRequest,
-  DeletedServicesPurgeResponse,
-  DeletedServicesPurgeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedServicesPurgeRequest,
-  output: DeletedServicesPurgeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteEmailTemplateError = AzureOpError;
 /** Reset the Email Template to default template provided by the API Management service instance. */
 export const DeleteEmailTemplate: API.OperationMethod<
@@ -38495,31 +38375,31 @@ export const DeleteGlobalSchema: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteGraphQlApiResolverError = AzureOpError;
+export type DeleteGraphQLApiResolverError = AzureOpError;
 /** Deletes the specified resolver in the GraphQL API. */
-export const DeleteGraphQlApiResolver: API.OperationMethod<
-  DeleteGraphQlApiResolverRequest,
-  DeleteGraphQlApiResolverResponse,
-  DeleteGraphQlApiResolverError,
+export const DeleteGraphQLApiResolver: API.OperationMethod<
+  DeleteGraphQLApiResolverRequest,
+  DeleteGraphQLApiResolverResponse,
+  DeleteGraphQLApiResolverError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGraphQlApiResolverRequest,
-  output: DeleteGraphQlApiResolverResponse,
+  input: DeleteGraphQLApiResolverRequest,
+  output: DeleteGraphQLApiResolverResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteGraphQlApiResolverPolicyError = AzureOpError;
+export type DeleteGraphQLApiResolverPolicyError = AzureOpError;
 /** Deletes the policy configuration at the GraphQL Api Resolver. */
-export const DeleteGraphQlApiResolverPolicy: API.OperationMethod<
-  DeleteGraphQlApiResolverPolicyRequest,
-  DeleteGraphQlApiResolverPolicyResponse,
-  DeleteGraphQlApiResolverPolicyError,
+export const DeleteGraphQLApiResolverPolicy: API.OperationMethod<
+  DeleteGraphQLApiResolverPolicyRequest,
+  DeleteGraphQLApiResolverPolicyResponse,
+  DeleteGraphQLApiResolverPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGraphQlApiResolverPolicyRequest,
-  output: DeleteGraphQlApiResolverPolicyResponse,
+  input: DeleteGraphQLApiResolverPolicyRequest,
+  output: DeleteGraphQLApiResolverPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -38990,6 +38870,21 @@ export const DeleteWorkspaceApiPolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteWorkspaceApiReleaseError = AzureOpError;
+/** Deletes the specified release in the API. */
+export const DeleteWorkspaceApiRelease: API.OperationMethod<
+  DeleteWorkspaceApiReleaseRequest,
+  DeleteWorkspaceApiReleaseResponse,
+  DeleteWorkspaceApiReleaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspaceApiReleaseRequest,
+  output: DeleteWorkspaceApiReleaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteWorkspaceApiSchemaError = AzureOpError;
 /** Deletes the schema configuration at the Api. */
 export const DeleteWorkspaceApiSchema: API.OperationMethod<
@@ -39000,6 +38895,21 @@ export const DeleteWorkspaceApiSchema: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteWorkspaceApiSchemaRequest,
   output: DeleteWorkspaceApiSchemaResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkspaceApiVersionSetError = AzureOpError;
+/** Deletes specific Api Version Set. */
+export const DeleteWorkspaceApiVersionSet: API.OperationMethod<
+  DeleteWorkspaceApiVersionSetRequest,
+  DeleteWorkspaceApiVersionSetResponse,
+  DeleteWorkspaceApiVersionSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspaceApiVersionSetRequest,
+  output: DeleteWorkspaceApiVersionSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -39320,6 +39230,66 @@ export const DeleteWorkspaceTagProductLink: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeployTenantConfigurationError = AzureOpError;
+/** This operation applies changes from the specified Git branch to the configuration database. This is a long running operation and could take several minutes to complete. */
+export const DeployTenantConfiguration: API.OperationMethod<
+  DeployTenantConfigurationRequest,
+  DeployTenantConfigurationResponse,
+  DeployTenantConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeployTenantConfigurationRequest,
+  output: DeployTenantConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DetachTagFromApiError = AzureOpError;
+/** Detach the tag from the Api. */
+export const DetachTagFromApi: API.OperationMethod<
+  DetachTagFromApiRequest,
+  DetachTagFromApiResponse,
+  DetachTagFromApiError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DetachTagFromApiRequest,
+  output: DetachTagFromApiResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DetachTagFromOperationError = AzureOpError;
+/** Detach the tag from the Operation. */
+export const DetachTagFromOperation: API.OperationMethod<
+  DetachTagFromOperationRequest,
+  DetachTagFromOperationResponse,
+  DetachTagFromOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DetachTagFromOperationRequest,
+  output: DetachTagFromOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DetachTagFromProductError = AzureOpError;
+/** Detach the tag from the Product. */
+export const DetachTagFromProduct: API.OperationMethod<
+  DetachTagFromProductRequest,
+  DetachTagFromProductResponse,
+  DetachTagFromProductError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DetachTagFromProductRequest,
+  output: DetachTagFromProductResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DiagnosticCreateOrUpdateError = AzureOpError;
 /** Creates a new Diagnostic or updates an existing one. */
 export const DiagnosticCreateOrUpdate: API.OperationMethod<
@@ -39420,36 +39390,6 @@ export const GatewayHostnameConfigurationCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GatewayHostnameConfigurationCreateOrUpdateRequest,
   output: GatewayHostnameConfigurationCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GatewayInvalidateDebugCredentialsError = AzureOpError;
-/** Action is invalidating all debug credentials issued for gateway. */
-export const GatewayInvalidateDebugCredentials: API.OperationMethod<
-  GatewayInvalidateDebugCredentialsRequest,
-  GatewayInvalidateDebugCredentialsResponse,
-  GatewayInvalidateDebugCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GatewayInvalidateDebugCredentialsRequest,
-  output: GatewayInvalidateDebugCredentialsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GatewayRegenerateKeyError = AzureOpError;
-/** Regenerates specified gateway key invalidating any tokens created with it. */
-export const GatewayRegenerateKey: API.OperationMethod<
-  GatewayRegenerateKeyRequest,
-  GatewayRegenerateKeyResponse,
-  GatewayRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GatewayRegenerateKeyRequest,
-  output: GatewayRegenerateKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -39610,12 +39550,12 @@ export type GetApiManagementServiceDomainOwnershipIdentifierError =
 /** Get the custom domain ownership identifier for an API Management service. */
 export const GetApiManagementServiceDomainOwnershipIdentifier: API.OperationMethod<
   GetApiManagementServiceDomainOwnershipIdentifierRequest,
-  GetApiManagementServiceDomainOwnershipIdentifierResult,
+  ApiManagementServiceGetDomainOwnershipIdentifierResult,
   GetApiManagementServiceDomainOwnershipIdentifierError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetApiManagementServiceDomainOwnershipIdentifierRequest,
-  output: GetApiManagementServiceDomainOwnershipIdentifierResult,
+  output: ApiManagementServiceGetDomainOwnershipIdentifierResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -39625,12 +39565,12 @@ export type GetApiManagementServiceSsoTokenError = AzureOpError;
 /** Gets the Single-Sign-On token for the API Management Service which is valid for 5 Minutes. */
 export const GetApiManagementServiceSsoToken: API.OperationMethod<
   GetApiManagementServiceSsoTokenRequest,
-  GetApiManagementServiceSsoTokenResult,
+  ApiManagementServiceGetSsoTokenResult,
   GetApiManagementServiceSsoTokenError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetApiManagementServiceSsoTokenRequest,
-  output: GetApiManagementServiceSsoTokenResult,
+  output: ApiManagementServiceGetSsoTokenResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -39696,6 +39636,21 @@ export const GetApiPolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetApiReleaseError = AzureOpError;
+/** Returns the details of an API release. */
+export const GetApiRelease: API.OperationMethod<
+  GetApiReleaseRequest,
+  GetApiReleaseResponse,
+  GetApiReleaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiReleaseRequest,
+  output: GetApiReleaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetApiSchemaError = AzureOpError;
 /** Get the schema configuration at the API level. */
 export const GetApiSchema: API.OperationMethod<
@@ -39721,6 +39676,21 @@ export const GetApiTagDescription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetApiTagDescriptionRequest,
   output: GetApiTagDescriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApiVersionSetError = AzureOpError;
+/** Gets the details of the Api Version Set specified by its identifier. */
+export const GetApiVersionSet: API.OperationMethod<
+  GetApiVersionSetRequest,
+  GetApiVersionSetResponse,
+  GetApiVersionSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiVersionSetRequest,
+  output: GetApiVersionSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -39996,31 +39966,31 @@ export const GetGlobalSchema: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetGraphQlApiResolverError = AzureOpError;
+export type GetGraphQLApiResolverError = AzureOpError;
 /** Gets the details of the GraphQL API Resolver specified by its identifier. */
-export const GetGraphQlApiResolver: API.OperationMethod<
-  GetGraphQlApiResolverRequest,
-  GetGraphQlApiResolverResponse,
-  GetGraphQlApiResolverError,
+export const GetGraphQLApiResolver: API.OperationMethod<
+  GetGraphQLApiResolverRequest,
+  GetGraphQLApiResolverResponse,
+  GetGraphQLApiResolverError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetGraphQlApiResolverRequest,
-  output: GetGraphQlApiResolverResponse,
+  input: GetGraphQLApiResolverRequest,
+  output: GetGraphQLApiResolverResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetGraphQlApiResolverPolicyError = AzureOpError;
+export type GetGraphQLApiResolverPolicyError = AzureOpError;
 /** Get the policy configuration at the GraphQL API Resolver level. */
-export const GetGraphQlApiResolverPolicy: API.OperationMethod<
-  GetGraphQlApiResolverPolicyRequest,
-  GetGraphQlApiResolverPolicyResponse,
-  GetGraphQlApiResolverPolicyError,
+export const GetGraphQLApiResolverPolicy: API.OperationMethod<
+  GetGraphQLApiResolverPolicyRequest,
+  GetGraphQLApiResolverPolicyResponse,
+  GetGraphQLApiResolverPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetGraphQlApiResolverPolicyRequest,
-  output: GetGraphQlApiResolverPolicyResponse,
+  input: GetGraphQLApiResolverPolicyRequest,
+  output: GetGraphQLApiResolverPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -40131,16 +40101,16 @@ export const GetOpenIdConnectProvider: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOperationResultError = AzureOpError;
+export type GetOperationsResultError = AzureOpError;
 /** Returns operation results for long running operations executing DELETE or PATCH on the resource. */
-export const GetOperationResult: API.OperationMethod<
-  GetOperationResultRequest,
-  GetOperationResultResponse,
-  GetOperationResultError,
+export const GetOperationsResult: API.OperationMethod<
+  GetOperationsResultRequest,
+  GetOperationsResultResponse,
+  GetOperationsResultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetOperationResultRequest,
-  output: GetOperationResultResponse,
+  input: GetOperationsResultRequest,
+  output: GetOperationsResultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -40341,16 +40311,16 @@ export const GetProductWiki: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetQuotaByPeriodKeyError = AzureOpError;
+export type GetQuotaByPeriodKeysError = AzureOpError;
 /** Gets the value of the quota counter associated with the counter-key in the policy for the specific period in service instance. */
-export const GetQuotaByPeriodKey: API.OperationMethod<
-  GetQuotaByPeriodKeyRequest,
-  GetQuotaByPeriodKeyResponse,
-  GetQuotaByPeriodKeyError,
+export const GetQuotaByPeriodKeys: API.OperationMethod<
+  GetQuotaByPeriodKeysRequest,
+  GetQuotaByPeriodKeysResponse,
+  GetQuotaByPeriodKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetQuotaByPeriodKeyRequest,
-  output: GetQuotaByPeriodKeyResponse,
+  input: GetQuotaByPeriodKeysRequest,
+  output: GetQuotaByPeriodKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -40641,6 +40611,21 @@ export const GetWorkspaceApiPolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetWorkspaceApiReleaseError = AzureOpError;
+/** Returns the details of an API release. */
+export const GetWorkspaceApiRelease: API.OperationMethod<
+  GetWorkspaceApiReleaseRequest,
+  GetWorkspaceApiReleaseResponse,
+  GetWorkspaceApiReleaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceApiReleaseRequest,
+  output: GetWorkspaceApiReleaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetWorkspaceApiSchemaError = AzureOpError;
 /** Get the schema configuration at the API level. */
 export const GetWorkspaceApiSchema: API.OperationMethod<
@@ -40651,6 +40636,21 @@ export const GetWorkspaceApiSchema: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetWorkspaceApiSchemaRequest,
   output: GetWorkspaceApiSchemaResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceApiVersionSetError = AzureOpError;
+/** Gets the details of the Api Version Set specified by its identifier. */
+export const GetWorkspaceApiVersionSet: API.OperationMethod<
+  GetWorkspaceApiVersionSetRequest,
+  GetWorkspaceApiVersionSetResponse,
+  GetWorkspaceApiVersionSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceApiVersionSetRequest,
+  output: GetWorkspaceApiVersionSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -41016,6 +41016,21 @@ export const IdentityProviderCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type InvalidateGatewayDebugCredentialsError = AzureOpError;
+/** Action is invalidating all debug credentials issued for gateway. */
+export const InvalidateGatewayDebugCredentials: API.OperationMethod<
+  InvalidateGatewayDebugCredentialsRequest,
+  InvalidateGatewayDebugCredentialsResponse,
+  InvalidateGatewayDebugCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InvalidateGatewayDebugCredentialsRequest,
+  output: InvalidateGatewayDebugCredentialsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAllPolicyByServiceError = AzureOpError;
 /** Status of all policies of API Management services. */
 export const ListAllPolicyByService: API.OperationMethod<
@@ -41200,12 +41215,12 @@ export type ListApiManagementServiceError = AzureOpError;
 /** Lists all API Management services within an Azure subscription. */
 export const ListApiManagementService: API.OperationMethod<
   ListApiManagementServiceRequest,
-  ListApiManagementServiceResult,
+  ApiManagementServiceListResult,
   ListApiManagementServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListApiManagementServiceRequest,
-  output: ListApiManagementServiceResult,
+  output: ApiManagementServiceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -41215,12 +41230,12 @@ export type ListApiManagementServiceByResourceGroupError = AzureOpError;
 /** List all API Management services within a resource group. */
 export const ListApiManagementServiceByResourceGroup: API.OperationMethod<
   ListApiManagementServiceByResourceGroupRequest,
-  ListApiManagementServiceResult,
+  ApiManagementServiceListResult,
   ListApiManagementServiceByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListApiManagementServiceByResourceGroupRequest,
-  output: ListApiManagementServiceResult,
+  output: ApiManagementServiceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -41332,6 +41347,21 @@ export const ListApiProductByApis: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListApiReleaseByServiceError = AzureOpError;
+/** Lists all releases of an API. An API release is created when making an API Revision current. Releases are also used to rollback to previous revisions. Results will be paged and can be constrained by the $top and $skip parameters. */
+export const ListApiReleaseByService: API.OperationMethod<
+  ListApiReleaseByServiceRequest,
+  ListApiReleaseByServiceResponse,
+  ListApiReleaseByServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApiReleaseByServiceRequest,
+  output: ListApiReleaseByServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListApiRevisionByServiceError = AzureOpError;
 /** Lists all revisions of an API. */
 export const ListApiRevisionByService: API.OperationMethod<
@@ -41372,6 +41402,21 @@ export const ListApiTagDescriptionByService: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListApiTagDescriptionByServiceRequest,
   output: ListApiTagDescriptionByServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApiVersionSetByServiceError = AzureOpError;
+/** Lists a collection of API Version Sets in the specified service instance. */
+export const ListApiVersionSetByService: API.OperationMethod<
+  ListApiVersionSetByServiceRequest,
+  ListApiVersionSetByServiceResponse,
+  ListApiVersionSetByServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApiVersionSetByServiceRequest,
+  output: ListApiVersionSetByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -41722,31 +41767,31 @@ export const ListGlobalSchemaByService: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListGraphQlApiResolverByApiError = AzureOpError;
+export type ListGraphQLApiResolverByApiError = AzureOpError;
 /** Lists a collection of the resolvers for the specified GraphQL API. */
-export const ListGraphQlApiResolverByApi: API.OperationMethod<
-  ListGraphQlApiResolverByApiRequest,
-  ListGraphQlApiResolverByApiResponse,
-  ListGraphQlApiResolverByApiError,
+export const ListGraphQLApiResolverByApi: API.OperationMethod<
+  ListGraphQLApiResolverByApiRequest,
+  ListGraphQLApiResolverByApiResponse,
+  ListGraphQLApiResolverByApiError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGraphQlApiResolverByApiRequest,
-  output: ListGraphQlApiResolverByApiResponse,
+  input: ListGraphQLApiResolverByApiRequest,
+  output: ListGraphQLApiResolverByApiResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListGraphQlApiResolverPolicyByResolverError = AzureOpError;
+export type ListGraphQLApiResolverPolicyByResolverError = AzureOpError;
 /** Get the list of policy configuration at the GraphQL API Resolver level. */
-export const ListGraphQlApiResolverPolicyByResolver: API.OperationMethod<
-  ListGraphQlApiResolverPolicyByResolverRequest,
-  ListGraphQlApiResolverPolicyByResolverResponse,
-  ListGraphQlApiResolverPolicyByResolverError,
+export const ListGraphQLApiResolverPolicyByResolver: API.OperationMethod<
+  ListGraphQLApiResolverPolicyByResolverRequest,
+  ListGraphQLApiResolverPolicyByResolverResponse,
+  ListGraphQLApiResolverPolicyByResolverError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGraphQlApiResolverPolicyByResolverRequest,
-  output: ListGraphQlApiResolverPolicyByResolverResponse,
+  input: ListGraphQLApiResolverPolicyByResolverRequest,
+  output: ListGraphQLApiResolverPolicyByResolverResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -41992,15 +42037,16 @@ export const ListOperationByTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListOutboundNetworkDependencyEndpointByServiceError = AzureOpError;
+export type ListOutboundNetworkDependenciesEndpointByServiceError =
+  AzureOpError;
 /** Gets the network endpoints of all outbound dependencies of a ApiManagement service. */
-export const ListOutboundNetworkDependencyEndpointByService: API.OperationMethod<
-  ListOutboundNetworkDependencyEndpointByServiceRequest,
+export const ListOutboundNetworkDependenciesEndpointByService: API.OperationMethod<
+  ListOutboundNetworkDependenciesEndpointByServiceRequest,
   OutboundEnvironmentEndpointList,
-  ListOutboundNetworkDependencyEndpointByServiceError,
+  ListOutboundNetworkDependenciesEndpointByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListOutboundNetworkDependencyEndpointByServiceRequest,
+  input: ListOutboundNetworkDependenciesEndpointByServiceRequest,
   output: OutboundEnvironmentEndpointList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -42278,16 +42324,16 @@ export const ListProductWikis: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListQuotaByCounterKeyByServiceError = AzureOpError;
+export type ListQuotaByCounterKeysByServiceError = AzureOpError;
 /** Lists a collection of current quota counter periods associated with the counter-key configured in the policy on the specified service instance. The api does not support paging yet. */
-export const ListQuotaByCounterKeyByService: API.OperationMethod<
-  ListQuotaByCounterKeyByServiceRequest,
-  ListQuotaByCounterKeyByServiceResponse,
-  ListQuotaByCounterKeyByServiceError,
+export const ListQuotaByCounterKeysByService: API.OperationMethod<
+  ListQuotaByCounterKeysByServiceRequest,
+  ListQuotaByCounterKeysByServiceResponse,
+  ListQuotaByCounterKeysByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListQuotaByCounterKeyByServiceRequest,
-  output: ListQuotaByCounterKeyByServiceResponse,
+  input: ListQuotaByCounterKeysByServiceRequest,
+  output: ListQuotaByCounterKeysByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -42363,6 +42409,21 @@ export const ListReportByProduct: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListReportByProductRequest,
   output: ListReportByProductResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReportByRequestError = AzureOpError;
+/** Lists report records by Request. */
+export const ListReportByRequest: API.OperationMethod<
+  ListReportByRequestRequest,
+  ListReportByRequestResponse,
+  ListReportByRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReportByRequestRequest,
+  output: ListReportByRequestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -42728,6 +42789,21 @@ export const ListWorkspaceApiPolicyByApi: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListWorkspaceApiReleaseByServiceError = AzureOpError;
+/** Lists all releases of an API. An API release is created when making an API Revision current. Releases are also used to rollback to previous revisions. Results will be paged and can be constrained by the $top and $skip parameters. */
+export const ListWorkspaceApiReleaseByService: API.OperationMethod<
+  ListWorkspaceApiReleaseByServiceRequest,
+  ListWorkspaceApiReleaseByServiceResponse,
+  ListWorkspaceApiReleaseByServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspaceApiReleaseByServiceRequest,
+  output: ListWorkspaceApiReleaseByServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListWorkspaceApiRevisionByServiceError = AzureOpError;
 /** Lists all revisions of an API. */
 export const ListWorkspaceApiRevisionByService: API.OperationMethod<
@@ -42753,6 +42829,21 @@ export const ListWorkspaceApiSchemaByApi: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWorkspaceApiSchemaByApiRequest,
   output: ListWorkspaceApiSchemaByApiResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspaceApiVersionSetByServiceError = AzureOpError;
+/** Lists a collection of API Version Sets in the specified workspace with a service instance. */
+export const ListWorkspaceApiVersionSetByService: API.OperationMethod<
+  ListWorkspaceApiVersionSetByServiceRequest,
+  ListWorkspaceApiVersionSetByServiceResponse,
+  ListWorkspaceApiVersionSetByServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspaceApiVersionSetByServiceRequest,
+  output: ListWorkspaceApiVersionSetByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43165,6 +43256,21 @@ export const LoggerCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MigrateApiManagementServiceToStv2Error = AzureOpError;
+/** Upgrades an API Management service to the Stv2 platform. For details refer to https://aka.ms/apim-migrate-stv2. This change is not reversible. This is long running operation and could take several minutes to complete. */
+export const MigrateApiManagementServiceToStv2: API.OperationMethod<
+  MigrateApiManagementServiceToStv2Request,
+  MigrateApiManagementServiceToStv2Response,
+  MigrateApiManagementServiceToStv2Error,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateApiManagementServiceToStv2Request,
+  output: MigrateApiManagementServiceToStv2Response,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type NamedValueCreateOrUpdateError = AzureOpError;
 /** Creates or updates named value. */
 export const NamedValueCreateOrUpdate: API.OperationMethod<
@@ -43175,21 +43281,6 @@ export const NamedValueCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NamedValueCreateOrUpdateRequest,
   output: NamedValueCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamedValueRefreshSecretError = AzureOpError;
-/** Refresh the secret of the named value specified by its identifier. */
-export const NamedValueRefreshSecret: API.OperationMethod<
-  NamedValueRefreshSecretRequest,
-  NamedValueRefreshSecretResponse,
-  NamedValueRefreshSecretError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamedValueRefreshSecretRequest,
-  output: NamedValueRefreshSecretResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43250,6 +43341,21 @@ export const OpenIdConnectProviderCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: OpenIdConnectProviderCreateOrUpdateRequest,
   output: OpenIdConnectProviderCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PerformConnectivityCheckAsyncError = AzureOpError;
+/** Performs a connectivity check between the API Management service and a given destination, and returns metrics for the connection, as well as errors encountered while trying to establish it. */
+export const PerformConnectivityCheckAsync: API.OperationMethod<
+  PerformConnectivityCheckAsyncRequest,
+  PerformConnectivityCheckAsyncResponse,
+  PerformConnectivityCheckAsyncError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PerformConnectivityCheckAsyncRequest,
+  output: PerformConnectivityCheckAsyncResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43340,6 +43446,21 @@ export const PortalRevisionCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PortalRevisionCreateOrUpdateRequest,
   output: PortalRevisionCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostAuthorizationLoginLinkError = AzureOpError;
+/** Gets authorization login links. */
+export const PostAuthorizationLoginLink: API.OperationMethod<
+  PostAuthorizationLoginLinkRequest,
+  PostAuthorizationLoginLinkResponse,
+  PostAuthorizationLoginLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostAuthorizationLoginLinkRequest,
+  output: PostAuthorizationLoginLinkResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43465,16 +43586,211 @@ export const ProductWikiCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReportsListByRequestError = AzureOpError;
-/** Lists report records by Request. */
-export const ReportsListByRequest: API.OperationMethod<
-  ReportsListByRequestRequest,
-  ReportsListByRequestResponse,
-  ReportsListByRequestError,
+export type PurgeDeletedServiceError = AzureOpError;
+/** Purges Api Management Service (deletes it with no option to undelete). */
+export const PurgeDeletedService: API.OperationMethod<
+  PurgeDeletedServiceRequest,
+  PurgeDeletedServiceResponse,
+  PurgeDeletedServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReportsListByRequestRequest,
-  output: ReportsListByRequestResponse,
+  input: PurgeDeletedServiceRequest,
+  output: PurgeDeletedServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshCertificateSecretError = AzureOpError;
+/** From KeyVault, Refresh the certificate being used for authentication with the backend. */
+export const RefreshCertificateSecret: API.OperationMethod<
+  RefreshCertificateSecretRequest,
+  RefreshCertificateSecretResponse,
+  RefreshCertificateSecretError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshCertificateSecretRequest,
+  output: RefreshCertificateSecretResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshNamedValueSecretError = AzureOpError;
+/** Refresh the secret of the named value specified by its identifier. */
+export const RefreshNamedValueSecret: API.OperationMethod<
+  RefreshNamedValueSecretRequest,
+  RefreshNamedValueSecretResponse,
+  RefreshNamedValueSecretError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshNamedValueSecretRequest,
+  output: RefreshNamedValueSecretResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshWorkspaceCertificateSecretError = AzureOpError;
+/** From KeyVault, Refresh the certificate being used for authentication with the backend. */
+export const RefreshWorkspaceCertificateSecret: API.OperationMethod<
+  RefreshWorkspaceCertificateSecretRequest,
+  RefreshWorkspaceCertificateSecretResponse,
+  RefreshWorkspaceCertificateSecretError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshWorkspaceCertificateSecretRequest,
+  output: RefreshWorkspaceCertificateSecretResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshWorkspaceNamedValueSecretError = AzureOpError;
+/** Refresh the secret of the named value specified by its identifier. */
+export const RefreshWorkspaceNamedValueSecret: API.OperationMethod<
+  RefreshWorkspaceNamedValueSecretRequest,
+  RefreshWorkspaceNamedValueSecretResponse,
+  RefreshWorkspaceNamedValueSecretError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshWorkspaceNamedValueSecretRequest,
+  output: RefreshWorkspaceNamedValueSecretResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateGatewayKeyError = AzureOpError;
+/** Regenerates specified gateway key invalidating any tokens created with it. */
+export const RegenerateGatewayKey: API.OperationMethod<
+  RegenerateGatewayKeyRequest,
+  RegenerateGatewayKeyResponse,
+  RegenerateGatewayKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateGatewayKeyRequest,
+  output: RegenerateGatewayKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateSubscriptionPrimaryKeyError = AzureOpError;
+/** Regenerates primary key of existing subscription of the API Management service instance. */
+export const RegenerateSubscriptionPrimaryKey: API.OperationMethod<
+  RegenerateSubscriptionPrimaryKeyRequest,
+  RegenerateSubscriptionPrimaryKeyResponse,
+  RegenerateSubscriptionPrimaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateSubscriptionPrimaryKeyRequest,
+  output: RegenerateSubscriptionPrimaryKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateSubscriptionSecondaryKeyError = AzureOpError;
+/** Regenerates secondary key of existing subscription of the API Management service instance. */
+export const RegenerateSubscriptionSecondaryKey: API.OperationMethod<
+  RegenerateSubscriptionSecondaryKeyRequest,
+  RegenerateSubscriptionSecondaryKeyResponse,
+  RegenerateSubscriptionSecondaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateSubscriptionSecondaryKeyRequest,
+  output: RegenerateSubscriptionSecondaryKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateTenantAccessGitPrimaryKeyError = AzureOpError;
+/** Regenerate primary access key for GIT. */
+export const RegenerateTenantAccessGitPrimaryKey: API.OperationMethod<
+  RegenerateTenantAccessGitPrimaryKeyRequest,
+  RegenerateTenantAccessGitPrimaryKeyResponse,
+  RegenerateTenantAccessGitPrimaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateTenantAccessGitPrimaryKeyRequest,
+  output: RegenerateTenantAccessGitPrimaryKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateTenantAccessGitSecondaryKeyError = AzureOpError;
+/** Regenerate secondary access key for GIT. */
+export const RegenerateTenantAccessGitSecondaryKey: API.OperationMethod<
+  RegenerateTenantAccessGitSecondaryKeyRequest,
+  RegenerateTenantAccessGitSecondaryKeyResponse,
+  RegenerateTenantAccessGitSecondaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateTenantAccessGitSecondaryKeyRequest,
+  output: RegenerateTenantAccessGitSecondaryKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateTenantAccessPrimaryKeyError = AzureOpError;
+/** Regenerate primary access key */
+export const RegenerateTenantAccessPrimaryKey: API.OperationMethod<
+  RegenerateTenantAccessPrimaryKeyRequest,
+  RegenerateTenantAccessPrimaryKeyResponse,
+  RegenerateTenantAccessPrimaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateTenantAccessPrimaryKeyRequest,
+  output: RegenerateTenantAccessPrimaryKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateTenantAccessSecondaryKeyError = AzureOpError;
+/** Regenerate secondary access key */
+export const RegenerateTenantAccessSecondaryKey: API.OperationMethod<
+  RegenerateTenantAccessSecondaryKeyRequest,
+  RegenerateTenantAccessSecondaryKeyResponse,
+  RegenerateTenantAccessSecondaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateTenantAccessSecondaryKeyRequest,
+  output: RegenerateTenantAccessSecondaryKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateWorkspaceSubscriptionPrimaryKeyError = AzureOpError;
+/** Regenerates primary key of existing subscription of the workspace in an API Management service instance. */
+export const RegenerateWorkspaceSubscriptionPrimaryKey: API.OperationMethod<
+  RegenerateWorkspaceSubscriptionPrimaryKeyRequest,
+  RegenerateWorkspaceSubscriptionPrimaryKeyResponse,
+  RegenerateWorkspaceSubscriptionPrimaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateWorkspaceSubscriptionPrimaryKeyRequest,
+  output: RegenerateWorkspaceSubscriptionPrimaryKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateWorkspaceSubscriptionSecondaryKeyError = AzureOpError;
+/** Regenerates secondary key of existing subscription of the workspace in an API Management service instance. */
+export const RegenerateWorkspaceSubscriptionSecondaryKey: API.OperationMethod<
+  RegenerateWorkspaceSubscriptionSecondaryKeyRequest,
+  RegenerateWorkspaceSubscriptionSecondaryKeyResponse,
+  RegenerateWorkspaceSubscriptionSecondaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateWorkspaceSubscriptionSecondaryKeyRequest,
+  output: RegenerateWorkspaceSubscriptionSecondaryKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43495,6 +43811,21 @@ export const RestoreApiManagementService: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type SendUserConfirmationPasswordError = AzureOpError;
+/** Sends confirmation */
+export const SendUserConfirmationPassword: API.OperationMethod<
+  SendUserConfirmationPasswordRequest,
+  SendUserConfirmationPasswordResponse,
+  SendUserConfirmationPasswordError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SendUserConfirmationPasswordRequest,
+  output: SendUserConfirmationPasswordResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SubscriptionCreateOrUpdateError = AzureOpError;
 /** Creates or updates the subscription of specified user to the specified product. */
 export const SubscriptionCreateOrUpdate: API.OperationMethod<
@@ -43505,36 +43836,6 @@ export const SubscriptionCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SubscriptionCreateOrUpdateRequest,
   output: SubscriptionCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionRegeneratePrimaryKeyError = AzureOpError;
-/** Regenerates primary key of existing subscription of the API Management service instance. */
-export const SubscriptionRegeneratePrimaryKey: API.OperationMethod<
-  SubscriptionRegeneratePrimaryKeyRequest,
-  SubscriptionRegeneratePrimaryKeyResponse,
-  SubscriptionRegeneratePrimaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionRegeneratePrimaryKeyRequest,
-  output: SubscriptionRegeneratePrimaryKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionRegenerateSecondaryKeyError = AzureOpError;
-/** Regenerates secondary key of existing subscription of the API Management service instance. */
-export const SubscriptionRegenerateSecondaryKey: API.OperationMethod<
-  SubscriptionRegenerateSecondaryKeyRequest,
-  SubscriptionRegenerateSecondaryKeyResponse,
-  SubscriptionRegenerateSecondaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionRegenerateSecondaryKeyRequest,
-  output: SubscriptionRegenerateSecondaryKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43555,51 +43856,6 @@ export const TagApiLinkCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TagAssignToApiError = AzureOpError;
-/** Assign tag to the Api. */
-export const TagAssignToApi: API.OperationMethod<
-  TagAssignToApiRequest,
-  TagAssignToApiResponse,
-  TagAssignToApiError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TagAssignToApiRequest,
-  output: TagAssignToApiResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TagAssignToOperationError = AzureOpError;
-/** Assign tag to the Operation. */
-export const TagAssignToOperation: API.OperationMethod<
-  TagAssignToOperationRequest,
-  TagAssignToOperationResponse,
-  TagAssignToOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TagAssignToOperationRequest,
-  output: TagAssignToOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TagAssignToProductError = AzureOpError;
-/** Assign tag to the Product. */
-export const TagAssignToProduct: API.OperationMethod<
-  TagAssignToProductRequest,
-  TagAssignToProductResponse,
-  TagAssignToProductError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TagAssignToProductRequest,
-  output: TagAssignToProductResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TagCreateOrUpdateError = AzureOpError;
 /** Creates a tag. */
 export const TagCreateOrUpdate: API.OperationMethod<
@@ -43610,51 +43866,6 @@ export const TagCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TagCreateOrUpdateRequest,
   output: TagCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TagDetachFromApiError = AzureOpError;
-/** Detach the tag from the Api. */
-export const TagDetachFromApi: API.OperationMethod<
-  TagDetachFromApiRequest,
-  TagDetachFromApiResponse,
-  TagDetachFromApiError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TagDetachFromApiRequest,
-  output: TagDetachFromApiResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TagDetachFromOperationError = AzureOpError;
-/** Detach the tag from the Operation. */
-export const TagDetachFromOperation: API.OperationMethod<
-  TagDetachFromOperationRequest,
-  TagDetachFromOperationResponse,
-  TagDetachFromOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TagDetachFromOperationRequest,
-  output: TagDetachFromOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TagDetachFromProductError = AzureOpError;
-/** Detach the tag from the Product. */
-export const TagDetachFromProduct: API.OperationMethod<
-  TagDetachFromProductRequest,
-  TagDetachFromProductResponse,
-  TagDetachFromProductError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TagDetachFromProductRequest,
-  output: TagDetachFromProductResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43690,81 +43901,6 @@ export const TagProductLinkCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TenantAccessGitRegeneratePrimaryKeyError = AzureOpError;
-/** Regenerate primary access key for GIT. */
-export const TenantAccessGitRegeneratePrimaryKey: API.OperationMethod<
-  TenantAccessGitRegeneratePrimaryKeyRequest,
-  TenantAccessGitRegeneratePrimaryKeyResponse,
-  TenantAccessGitRegeneratePrimaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantAccessGitRegeneratePrimaryKeyRequest,
-  output: TenantAccessGitRegeneratePrimaryKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantAccessGitRegenerateSecondaryKeyError = AzureOpError;
-/** Regenerate secondary access key for GIT. */
-export const TenantAccessGitRegenerateSecondaryKey: API.OperationMethod<
-  TenantAccessGitRegenerateSecondaryKeyRequest,
-  TenantAccessGitRegenerateSecondaryKeyResponse,
-  TenantAccessGitRegenerateSecondaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantAccessGitRegenerateSecondaryKeyRequest,
-  output: TenantAccessGitRegenerateSecondaryKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantAccessRegeneratePrimaryKeyError = AzureOpError;
-/** Regenerate primary access key */
-export const TenantAccessRegeneratePrimaryKey: API.OperationMethod<
-  TenantAccessRegeneratePrimaryKeyRequest,
-  TenantAccessRegeneratePrimaryKeyResponse,
-  TenantAccessRegeneratePrimaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantAccessRegeneratePrimaryKeyRequest,
-  output: TenantAccessRegeneratePrimaryKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantAccessRegenerateSecondaryKeyError = AzureOpError;
-/** Regenerate secondary access key */
-export const TenantAccessRegenerateSecondaryKey: API.OperationMethod<
-  TenantAccessRegenerateSecondaryKeyRequest,
-  TenantAccessRegenerateSecondaryKeyResponse,
-  TenantAccessRegenerateSecondaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantAccessRegenerateSecondaryKeyRequest,
-  output: TenantAccessRegenerateSecondaryKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantConfigurationDeployError = AzureOpError;
-/** This operation applies changes from the specified Git branch to the configuration database. This is a long running operation and could take several minutes to complete. */
-export const TenantConfigurationDeploy: API.OperationMethod<
-  TenantConfigurationDeployRequest,
-  TenantConfigurationDeployResponse,
-  TenantConfigurationDeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantConfigurationDeployRequest,
-  output: TenantConfigurationDeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TenantConfigurationSaveError = AzureOpError;
 /** This operation creates a commit with the current configuration snapshot to the specified branch in the repository. This is a long running operation and could take several minutes to complete. */
 export const TenantConfigurationSave: API.OperationMethod<
@@ -43775,21 +43911,6 @@ export const TenantConfigurationSave: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TenantConfigurationSaveRequest,
   output: TenantConfigurationSaveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TenantConfigurationValidateError = AzureOpError;
-/** This operation validates the changes in the specified Git branch. This is a long running operation and could take several minutes to complete. */
-export const TenantConfigurationValidate: API.OperationMethod<
-  TenantConfigurationValidateRequest,
-  TenantConfigurationValidateResponse,
-  TenantConfigurationValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TenantConfigurationValidateRequest,
-  output: TenantConfigurationValidateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -43880,6 +44001,36 @@ export const UpdateApiOperation: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateApiOperationRequest,
   output: UpdateApiOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApiReleaseError = AzureOpError;
+/** Updates the details of the release of the API specified by its identifier. */
+export const UpdateApiRelease: API.OperationMethod<
+  UpdateApiReleaseRequest,
+  UpdateApiReleaseResponse,
+  UpdateApiReleaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApiReleaseRequest,
+  output: UpdateApiReleaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateApiVersionSetError = AzureOpError;
+/** Updates the details of the Api VersionSet specified by its identifier. */
+export const UpdateApiVersionSet: API.OperationMethod<
+  UpdateApiVersionSetRequest,
+  UpdateApiVersionSetResponse,
+  UpdateApiVersionSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateApiVersionSetRequest,
+  output: UpdateApiVersionSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -44005,16 +44156,16 @@ export const UpdateGateway: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateGraphQlApiResolverError = AzureOpError;
+export type UpdateGraphQLApiResolverError = AzureOpError;
 /** Updates the details of the resolver in the GraphQL API specified by its identifier. */
-export const UpdateGraphQlApiResolver: API.OperationMethod<
-  UpdateGraphQlApiResolverRequest,
-  UpdateGraphQlApiResolverResponse,
-  UpdateGraphQlApiResolverError,
+export const UpdateGraphQLApiResolver: API.OperationMethod<
+  UpdateGraphQLApiResolverRequest,
+  UpdateGraphQLApiResolverResponse,
+  UpdateGraphQLApiResolverError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateGraphQlApiResolverRequest,
-  output: UpdateGraphQlApiResolverResponse,
+  input: UpdateGraphQLApiResolverRequest,
+  output: UpdateGraphQLApiResolverResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -44170,31 +44321,31 @@ export const UpdateProductWiki: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateQuotaByCounterKeyError = AzureOpError;
+export type UpdateQuotaByCounterKeysError = AzureOpError;
 /** Updates all the quota counter values specified with the existing quota counter key to a value in the specified service instance. This should be used for reset of the quota counter values. */
-export const UpdateQuotaByCounterKey: API.OperationMethod<
-  UpdateQuotaByCounterKeyRequest,
-  UpdateQuotaByCounterKeyResponse,
-  UpdateQuotaByCounterKeyError,
+export const UpdateQuotaByCounterKeys: API.OperationMethod<
+  UpdateQuotaByCounterKeysRequest,
+  UpdateQuotaByCounterKeysResponse,
+  UpdateQuotaByCounterKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateQuotaByCounterKeyRequest,
-  output: UpdateQuotaByCounterKeyResponse,
+  input: UpdateQuotaByCounterKeysRequest,
+  output: UpdateQuotaByCounterKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateQuotaByPeriodKeyError = AzureOpError;
+export type UpdateQuotaByPeriodKeysError = AzureOpError;
 /** Updates an existing quota counter value in the specified service instance. */
-export const UpdateQuotaByPeriodKey: API.OperationMethod<
-  UpdateQuotaByPeriodKeyRequest,
-  UpdateQuotaByPeriodKeyResponse,
-  UpdateQuotaByPeriodKeyError,
+export const UpdateQuotaByPeriodKeys: API.OperationMethod<
+  UpdateQuotaByPeriodKeysRequest,
+  UpdateQuotaByPeriodKeysResponse,
+  UpdateQuotaByPeriodKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateQuotaByPeriodKeyRequest,
-  output: UpdateQuotaByPeriodKeyResponse,
+  input: UpdateQuotaByPeriodKeysRequest,
+  output: UpdateQuotaByPeriodKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -44320,6 +44471,36 @@ export const UpdateWorkspaceApiOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateWorkspaceApiReleaseError = AzureOpError;
+/** Updates the details of the release of the API specified by its identifier. */
+export const UpdateWorkspaceApiRelease: API.OperationMethod<
+  UpdateWorkspaceApiReleaseRequest,
+  UpdateWorkspaceApiReleaseResponse,
+  UpdateWorkspaceApiReleaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWorkspaceApiReleaseRequest,
+  output: UpdateWorkspaceApiReleaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWorkspaceApiVersionSetError = AzureOpError;
+/** Updates the details of the Api VersionSet specified by its identifier. */
+export const UpdateWorkspaceApiVersionSet: API.OperationMethod<
+  UpdateWorkspaceApiVersionSetRequest,
+  UpdateWorkspaceApiVersionSetResponse,
+  UpdateWorkspaceApiVersionSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWorkspaceApiVersionSetRequest,
+  output: UpdateWorkspaceApiVersionSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateWorkspaceBackendError = AzureOpError;
 /** Updates an existing backend. */
 export const UpdateWorkspaceBackend: API.OperationMethod<
@@ -44440,21 +44621,6 @@ export const UpdateWorkspaceTag: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UserConfirmationPasswordSendError = AzureOpError;
-/** Sends confirmation */
-export const UserConfirmationPasswordSend: API.OperationMethod<
-  UserConfirmationPasswordSendRequest,
-  UserConfirmationPasswordSendResponse,
-  UserConfirmationPasswordSendError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserConfirmationPasswordSendRequest,
-  output: UserConfirmationPasswordSendResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UserCreateOrUpdateError = AzureOpError;
 /** Creates or Updates a user. */
 export const UserCreateOrUpdate: API.OperationMethod<
@@ -44465,6 +44631,21 @@ export const UserCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UserCreateOrUpdateRequest,
   output: UserCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateTenantConfigurationError = AzureOpError;
+/** This operation validates the changes in the specified Git branch. This is a long running operation and could take several minutes to complete. */
+export const ValidateTenantConfiguration: API.OperationMethod<
+  ValidateTenantConfigurationRequest,
+  ValidateTenantConfigurationResponse,
+  ValidateTenantConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateTenantConfigurationRequest,
+  output: ValidateTenantConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -44560,66 +44741,6 @@ export const WorkspaceApiReleaseCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WorkspaceApiReleaseDeleteError = AzureOpError;
-/** Deletes the specified release in the API. */
-export const WorkspaceApiReleaseDelete: API.OperationMethod<
-  WorkspaceApiReleaseDeleteRequest,
-  WorkspaceApiReleaseDeleteResponse,
-  WorkspaceApiReleaseDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiReleaseDeleteRequest,
-  output: WorkspaceApiReleaseDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceApiReleaseGetError = AzureOpError;
-/** Returns the details of an API release. */
-export const WorkspaceApiReleaseGet: API.OperationMethod<
-  WorkspaceApiReleaseGetRequest,
-  WorkspaceApiReleaseGetResponse,
-  WorkspaceApiReleaseGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiReleaseGetRequest,
-  output: WorkspaceApiReleaseGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceApiReleaseListByServiceError = AzureOpError;
-/** Lists all releases of an API. An API release is created when making an API Revision current. Releases are also used to rollback to previous revisions. Results will be paged and can be constrained by the $top and $skip parameters. */
-export const WorkspaceApiReleaseListByService: API.OperationMethod<
-  WorkspaceApiReleaseListByServiceRequest,
-  WorkspaceApiReleaseListByServiceResponse,
-  WorkspaceApiReleaseListByServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiReleaseListByServiceRequest,
-  output: WorkspaceApiReleaseListByServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceApiReleaseUpdateError = AzureOpError;
-/** Updates the details of the release of the API specified by its identifier. */
-export const WorkspaceApiReleaseUpdate: API.OperationMethod<
-  WorkspaceApiReleaseUpdateRequest,
-  WorkspaceApiReleaseUpdateResponse,
-  WorkspaceApiReleaseUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiReleaseUpdateRequest,
-  output: WorkspaceApiReleaseUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WorkspaceApiSchemaCreateOrUpdateError = AzureOpError;
 /** Creates or updates schema configuration for the API. */
 export const WorkspaceApiSchemaCreateOrUpdate: API.OperationMethod<
@@ -44650,66 +44771,6 @@ export const WorkspaceApiVersionSetCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WorkspaceApiVersionSetDeleteError = AzureOpError;
-/** Deletes specific Api Version Set. */
-export const WorkspaceApiVersionSetDelete: API.OperationMethod<
-  WorkspaceApiVersionSetDeleteRequest,
-  WorkspaceApiVersionSetDeleteResponse,
-  WorkspaceApiVersionSetDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiVersionSetDeleteRequest,
-  output: WorkspaceApiVersionSetDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceApiVersionSetGetError = AzureOpError;
-/** Gets the details of the Api Version Set specified by its identifier. */
-export const WorkspaceApiVersionSetGet: API.OperationMethod<
-  WorkspaceApiVersionSetGetRequest,
-  WorkspaceApiVersionSetGetResponse,
-  WorkspaceApiVersionSetGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiVersionSetGetRequest,
-  output: WorkspaceApiVersionSetGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceApiVersionSetListByServiceError = AzureOpError;
-/** Lists a collection of API Version Sets in the specified workspace with a service instance. */
-export const WorkspaceApiVersionSetListByService: API.OperationMethod<
-  WorkspaceApiVersionSetListByServiceRequest,
-  WorkspaceApiVersionSetListByServiceResponse,
-  WorkspaceApiVersionSetListByServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiVersionSetListByServiceRequest,
-  output: WorkspaceApiVersionSetListByServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceApiVersionSetUpdateError = AzureOpError;
-/** Updates the details of the Api VersionSet specified by its identifier. */
-export const WorkspaceApiVersionSetUpdate: API.OperationMethod<
-  WorkspaceApiVersionSetUpdateRequest,
-  WorkspaceApiVersionSetUpdateResponse,
-  WorkspaceApiVersionSetUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceApiVersionSetUpdateRequest,
-  output: WorkspaceApiVersionSetUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WorkspaceBackendCreateOrUpdateError = AzureOpError;
 /** Creates or Updates a backend. */
 export const WorkspaceBackendCreateOrUpdate: API.OperationMethod<
@@ -44735,21 +44796,6 @@ export const WorkspaceCertificateCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkspaceCertificateCreateOrUpdateRequest,
   output: WorkspaceCertificateCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceCertificateRefreshSecretError = AzureOpError;
-/** From KeyVault, Refresh the certificate being used for authentication with the backend. */
-export const WorkspaceCertificateRefreshSecret: API.OperationMethod<
-  WorkspaceCertificateRefreshSecretRequest,
-  WorkspaceCertificateRefreshSecretResponse,
-  WorkspaceCertificateRefreshSecretError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceCertificateRefreshSecretRequest,
-  output: WorkspaceCertificateRefreshSecretResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -44840,21 +44886,6 @@ export const WorkspaceNamedValueCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkspaceNamedValueCreateOrUpdateRequest,
   output: WorkspaceNamedValueCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceNamedValueRefreshSecretError = AzureOpError;
-/** Refresh the secret of the named value specified by its identifier. */
-export const WorkspaceNamedValueRefreshSecret: API.OperationMethod<
-  WorkspaceNamedValueRefreshSecretRequest,
-  WorkspaceNamedValueRefreshSecretResponse,
-  WorkspaceNamedValueRefreshSecretError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceNamedValueRefreshSecretRequest,
-  output: WorkspaceNamedValueRefreshSecretResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -45007,36 +45038,6 @@ export const WorkspaceSubscriptionCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkspaceSubscriptionCreateOrUpdateRequest,
   output: WorkspaceSubscriptionCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceSubscriptionRegeneratePrimaryKeyError = AzureOpError;
-/** Regenerates primary key of existing subscription of the workspace in an API Management service instance. */
-export const WorkspaceSubscriptionRegeneratePrimaryKey: API.OperationMethod<
-  WorkspaceSubscriptionRegeneratePrimaryKeyRequest,
-  WorkspaceSubscriptionRegeneratePrimaryKeyResponse,
-  WorkspaceSubscriptionRegeneratePrimaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceSubscriptionRegeneratePrimaryKeyRequest,
-  output: WorkspaceSubscriptionRegeneratePrimaryKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceSubscriptionRegenerateSecondaryKeyError = AzureOpError;
-/** Regenerates secondary key of existing subscription of the workspace in an API Management service instance. */
-export const WorkspaceSubscriptionRegenerateSecondaryKey: API.OperationMethod<
-  WorkspaceSubscriptionRegenerateSecondaryKeyRequest,
-  WorkspaceSubscriptionRegenerateSecondaryKeyResponse,
-  WorkspaceSubscriptionRegenerateSecondaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceSubscriptionRegenerateSecondaryKeyRequest,
-  output: WorkspaceSubscriptionRegenerateSecondaryKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

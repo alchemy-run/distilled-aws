@@ -588,66 +588,6 @@ export const CassandraClustersDeallocateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CassandraClustersDeallocateResponse",
 }) as any as S.Schema<CassandraClustersDeallocateResponse>;
 
-/** The arguments for the command to be run */
-export type CassandraClustersInvokeCommandRequestArgumentsMap = {
-  [key: string]: string | undefined;
-};
-export const CassandraClustersInvokeCommandRequestArgumentsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CassandraClustersInvokeCommandRequestArgumentsMap>;
-
-export interface CassandraClustersInvokeCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Managed Cassandra cluster name. */
-  clusterName: string;
-  /** The command which should be run */
-  command: string;
-  /** The arguments for the command to be run */
-  arguments?: CassandraClustersInvokeCommandRequestArgumentsMap;
-  /** IP address of the cassandra host to run the command on */
-  host: string;
-  /** If true, stops cassandra before executing the command and then start it again */
-  cassandra_stop_start?: boolean;
-  /** If true, allows the command to *write* to the cassandra directory, otherwise read-only. */
-  readwrite?: boolean;
-}
-export const CassandraClustersInvokeCommandRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      command: S.String,
-      arguments: S.optional(CassandraClustersInvokeCommandRequestArgumentsMap),
-      host: S.String,
-      cassandra_stop_start: S.optional(
-        S.Boolean.pipe(T.Body("cassandra-stop-start")),
-      ),
-      readwrite: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/cassandraClusters/{clusterName}/invokeCommand",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-).annotate({
-  identifier: "CassandraClustersInvokeCommandRequest",
-}) as any as S.Schema<CassandraClustersInvokeCommandRequest>;
-
-export interface CassandraClustersInvokeCommandResponse {}
-export const CassandraClustersInvokeCommandResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "CassandraClustersInvokeCommandResponse",
-}) as any as S.Schema<CassandraClustersInvokeCommandResponse>;
-
 export interface CassandraClustersStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1925,415 +1865,12 @@ export const CassandraResourcesCreateUpdateCassandraTableResponse =
     identifier: "CassandraResourcesCreateUpdateCassandraTableResponse",
   }) as any as S.Schema<CassandraResourcesCreateUpdateCassandraTableResponse>;
 
-export interface CassandraResourcesMigrateCassandraKeyspaceToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB keyspace name. */
-  keyspaceName: string;
-}
-export const CassandraResourcesMigrateCassandraKeyspaceToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      keyspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "CassandraResourcesMigrateCassandraKeyspaceToAutoscaleRequest",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraKeyspaceToAutoscaleRequest>;
-
-/** Cosmos DB resource throughput policy */
-export interface ThroughputPolicyResource {
-  /** Determines whether the ThroughputPolicy is active or not */
-  isEnabled?: boolean;
-  /** Represents the percentage by which throughput can increase every time throughput policy kicks in. */
-  incrementPercent?: number;
-}
-export const ThroughputPolicyResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isEnabled: S.optional(S.Boolean),
-    incrementPercent: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ThroughputPolicyResource",
-}) as any as S.Schema<ThroughputPolicyResource>;
-
-/** Cosmos DB resource auto-upgrade policy */
-export interface AutoUpgradePolicyResource {
-  /** Represents throughput policy which service must adhere to for auto-upgrade */
-  throughputPolicy?: ThroughputPolicyResource;
-}
-export const AutoUpgradePolicyResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    throughputPolicy: S.optional(ThroughputPolicyResource),
-  }),
-).annotate({
-  identifier: "AutoUpgradePolicyResource",
-}) as any as S.Schema<AutoUpgradePolicyResource>;
-
-/** Cosmos DB provisioned throughput settings object */
-export interface AutoscaleSettingsResource {
-  /** Represents maximum throughput container can scale up to. */
-  maxThroughput: number;
-  /** Cosmos DB resource auto-upgrade policy */
-  autoUpgradePolicy?: AutoUpgradePolicyResource;
-  /** Represents target maximum throughput container can scale up to once offer is no longer in pending state. */
-  targetMaxThroughput?: number;
-}
-export const AutoscaleSettingsResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxThroughput: S.Number,
-    autoUpgradePolicy: S.optional(AutoUpgradePolicyResource),
-    targetMaxThroughput: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AutoscaleSettingsResource",
-}) as any as S.Schema<AutoscaleSettingsResource>;
-
-export interface ThroughputSettingsGetPropertiesResource {
-  /** Value of the Cosmos DB resource throughput. Either throughput is required or autoscaleSettings is required, but not both. */
-  throughput?: number;
-  /** Cosmos DB resource for autoscale settings. Either throughput is required or autoscaleSettings is required, but not both. */
-  autoscaleSettings?: AutoscaleSettingsResource;
-  /** The minimum throughput of the resource */
-  minimumThroughput?: string;
-  /** The throughput replace is pending */
-  offerReplacePending?: string;
-  /** The offer throughput value to instantly scale up without triggering splits */
-  instantMaximumThroughput?: string;
-  /** The maximum throughput value or the maximum maxThroughput value (for autoscale) that can be specified */
-  softAllowedMaximumThroughput?: string;
-  /** A system generated property. A unique identifier. */
-  _rid?: string;
-  /** A system generated property that denotes the last updated timestamp of the resource. */
-  _ts?: number;
-  /** A system generated property representing the resource etag required for optimistic concurrency control. */
-  _etag?: string;
-}
-export const ThroughputSettingsGetPropertiesResource = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      throughput: S.optional(S.Number),
-      autoscaleSettings: S.optional(AutoscaleSettingsResource),
-      minimumThroughput: S.optional(S.String),
-      offerReplacePending: S.optional(S.String),
-      instantMaximumThroughput: S.optional(S.String),
-      softAllowedMaximumThroughput: S.optional(S.String),
-      _rid: S.optional(S.String),
-      _ts: S.optional(S.Number),
-      _etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ThroughputSettingsGetPropertiesResource",
-}) as any as S.Schema<ThroughputSettingsGetPropertiesResource>;
-
-/** The properties of an Azure Cosmos DB resource throughput */
-export interface ThroughputSettingsGetProperties {
-  resource?: ThroughputSettingsGetPropertiesResource;
-}
-export const ThroughputSettingsGetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resource: S.optional(ThroughputSettingsGetPropertiesResource),
-  }),
-).annotate({
-  identifier: "ThroughputSettingsGetProperties",
-}) as any as S.Schema<ThroughputSettingsGetProperties>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponseTagsMap =
-  { [key: string]: string | undefined };
-export const CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponseTagsMap>;
-
-export interface CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse>;
-
-export interface CassandraResourcesMigrateCassandraKeyspaceToManualThroughputRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB keyspace name. */
-  keyspaceName: string;
-}
-export const CassandraResourcesMigrateCassandraKeyspaceToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      keyspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "CassandraResourcesMigrateCassandraKeyspaceToManualThroughputRequest",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraKeyspaceToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponseTagsMap =
-  { [key: string]: string | undefined };
-export const CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponseTagsMap>;
-
-export interface CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier:
-      "CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse>;
-
-export interface CassandraResourcesMigrateCassandraTableToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB keyspace name. */
-  keyspaceName: string;
-  /** Cosmos DB table name. */
-  tableName: string;
-}
-export const CassandraResourcesMigrateCassandraTableToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      keyspaceName: S.String.pipe(T.Label()),
-      tableName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/tables/{tableName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "CassandraResourcesMigrateCassandraTableToAutoscaleRequest",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraTableToAutoscaleRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesMigrateCassandraTableToAutoscaleResponseTagsMap =
-  { [key: string]: string | undefined };
-export const CassandraResourcesMigrateCassandraTableToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CassandraResourcesMigrateCassandraTableToAutoscaleResponseTagsMap>;
-
-export interface CassandraResourcesMigrateCassandraTableToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesMigrateCassandraTableToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const CassandraResourcesMigrateCassandraTableToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        CassandraResourcesMigrateCassandraTableToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "CassandraResourcesMigrateCassandraTableToAutoscaleResponse",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraTableToAutoscaleResponse>;
-
-export interface CassandraResourcesMigrateCassandraTableToManualThroughputRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB keyspace name. */
-  keyspaceName: string;
-  /** Cosmos DB table name. */
-  tableName: string;
-}
-export const CassandraResourcesMigrateCassandraTableToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      keyspaceName: S.String.pipe(T.Label()),
-      tableName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/tables/{tableName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "CassandraResourcesMigrateCassandraTableToManualThroughputRequest",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraTableToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesMigrateCassandraTableToManualThroughputResponseTagsMap =
-  { [key: string]: string | undefined };
-export const CassandraResourcesMigrateCassandraTableToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CassandraResourcesMigrateCassandraTableToManualThroughputResponseTagsMap>;
-
-export interface CassandraResourcesMigrateCassandraTableToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesMigrateCassandraTableToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const CassandraResourcesMigrateCassandraTableToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        CassandraResourcesMigrateCassandraTableToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier:
-      "CassandraResourcesMigrateCassandraTableToManualThroughputResponse",
-  }) as any as S.Schema<CassandraResourcesMigrateCassandraTableToManualThroughputResponse>;
-
 /** Resource tags. */
-export type FleetCreateRequestTagsMap = { [key: string]: string | undefined };
-export const FleetCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateFleetRequestTagsMap = { [key: string]: string | undefined };
+export const CreateFleetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetCreateRequestTagsMap>;
+) as any as S.Schema<CreateFleetRequestTagsMap>;
 
 /** Enum to indicate current buildout status of the region. */
 export type Status =
@@ -2370,7 +1907,7 @@ export interface CreateFleetRequest {
   /** Cosmos DB fleet name. Needs to be unique under a subscription. */
   fleetName: string;
   /** Resource tags. */
-  tags?: FleetCreateRequestTagsMap;
+  tags?: CreateFleetRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties to update Azure Cosmos DB fleet resource. */
@@ -2381,7 +1918,7 @@ export const CreateFleetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fleetName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetCreateRequestTagsMap),
+    tags: S.optional(CreateFleetRequestTagsMap),
     location: S.String,
     properties: S.optional(FleetResourceProperties),
   }).pipe(
@@ -2397,11 +1934,11 @@ export const CreateFleetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateFleetRequest>;
 
 /** Resource tags. */
-export type FleetCreateResponseTagsMap = { [key: string]: string | undefined };
-export const FleetCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreateFleetResponseTagsMap = { [key: string]: string | undefined };
+export const CreateFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetCreateResponseTagsMap>;
+) as any as S.Schema<CreateFleetResponseTagsMap>;
 
 export interface CreateFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2413,7 +1950,7 @@ export interface CreateFleetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetCreateResponseTagsMap;
+  tags?: CreateFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties to update Azure Cosmos DB fleet resource. */
@@ -2425,7 +1962,7 @@ export const CreateFleetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetCreateResponseTagsMap),
+    tags: S.optional(CreateFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetResourceProperties),
   }),
@@ -3856,6 +3393,75 @@ export const DatabaseAccountsFailoverPriorityChangeResponse =
     identifier: "DatabaseAccountsFailoverPriorityChangeResponse",
   }) as any as S.Schema<DatabaseAccountsFailoverPriorityChangeResponse>;
 
+export interface DatabaseAccountsGetReadOnlyKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+}
+export const DatabaseAccountsGetReadOnlyKeysRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/readonlykeys",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+).annotate({
+  identifier: "DatabaseAccountsGetReadOnlyKeysRequest",
+}) as any as S.Schema<DatabaseAccountsGetReadOnlyKeysRequest>;
+
+/** The read-only access keys for the given database account. */
+export interface DatabaseAccountListReadOnlyKeysResult {
+  /** Base 64 encoded value of the primary read-only key. */
+  primaryReadonlyMasterKey?: string;
+  /** Base 64 encoded value of the secondary read-only key. */
+  secondaryReadonlyMasterKey?: string;
+}
+export const DatabaseAccountListReadOnlyKeysResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      primaryReadonlyMasterKey: S.optional(S.String),
+      secondaryReadonlyMasterKey: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DatabaseAccountListReadOnlyKeysResult",
+}) as any as S.Schema<DatabaseAccountListReadOnlyKeysResult>;
+
+export interface DatabaseAccountsListReadOnlyKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+}
+export const DatabaseAccountsListReadOnlyKeysRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/readonlykeys",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+).annotate({
+  identifier: "DatabaseAccountsListReadOnlyKeysRequest",
+}) as any as S.Schema<DatabaseAccountsListReadOnlyKeysRequest>;
+
 export interface DatabaseAccountsOfflineRegionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -3926,50 +3532,6 @@ export const DatabaseAccountsOnlineRegionResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "DatabaseAccountsOnlineRegionResponse",
 }) as any as S.Schema<DatabaseAccountsOnlineRegionResponse>;
-
-/** The access key to regenerate. */
-export type KeyKind =
-  | "primary"
-  | "secondary"
-  | "primaryReadonly"
-  | "secondaryReadonly";
-export const KeyKind = /*@__PURE__*/ S.String;
-
-export interface DatabaseAccountsRegenerateKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** The access key to regenerate. */
-  keyKind: KeyKind | (string & {});
-}
-export const DatabaseAccountsRegenerateKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      keyKind: KeyKind,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/regenerateKey",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-).annotate({
-  identifier: "DatabaseAccountsRegenerateKeyRequest",
-}) as any as S.Schema<DatabaseAccountsRegenerateKeyRequest>;
-
-export interface DatabaseAccountsRegenerateKeyResponse {}
-export const DatabaseAccountsRegenerateKeyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DatabaseAccountsRegenerateKeyResponse",
-}) as any as S.Schema<DatabaseAccountsRegenerateKeyResponse>;
 
 export interface DeleteCassandraClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4461,7 +4023,7 @@ export const DeleteGremlinResourceGremlinRoleDefinitionResponse =
     identifier: "DeleteGremlinResourceGremlinRoleDefinitionResponse",
   }) as any as S.Schema<DeleteGremlinResourceGremlinRoleDefinitionResponse>;
 
-export interface DeleteMongoDbResourceMongoDbCollectionRequest {
+export interface DeleteMongoDBResourceMongoDBCollectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4473,7 +4035,7 @@ export interface DeleteMongoDbResourceMongoDbCollectionRequest {
   /** Cosmos DB collection name. */
   collectionName: string;
 }
-export const DeleteMongoDbResourceMongoDbCollectionRequest =
+export const DeleteMongoDBResourceMongoDBCollectionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4490,16 +4052,16 @@ export const DeleteMongoDbResourceMongoDbCollectionRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteMongoDbResourceMongoDbCollectionRequest",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoDbCollectionRequest>;
+    identifier: "DeleteMongoDBResourceMongoDBCollectionRequest",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoDBCollectionRequest>;
 
-export interface DeleteMongoDbResourceMongoDbCollectionResponse {}
-export const DeleteMongoDbResourceMongoDbCollectionResponse =
+export interface DeleteMongoDBResourceMongoDBCollectionResponse {}
+export const DeleteMongoDBResourceMongoDBCollectionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteMongoDbResourceMongoDbCollectionResponse",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoDbCollectionResponse>;
+    identifier: "DeleteMongoDBResourceMongoDBCollectionResponse",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoDBCollectionResponse>;
 
-export interface DeleteMongoDbResourceMongoDbDatabaseRequest {
+export interface DeleteMongoDBResourceMongoDBDatabaseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4509,7 +4071,7 @@ export interface DeleteMongoDbResourceMongoDbDatabaseRequest {
   /** Cosmos DB database name. */
   databaseName: string;
 }
-export const DeleteMongoDbResourceMongoDbDatabaseRequest =
+export const DeleteMongoDBResourceMongoDBDatabaseRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4525,16 +4087,16 @@ export const DeleteMongoDbResourceMongoDbDatabaseRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteMongoDbResourceMongoDbDatabaseRequest",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoDbDatabaseRequest>;
+    identifier: "DeleteMongoDBResourceMongoDBDatabaseRequest",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoDBDatabaseRequest>;
 
-export interface DeleteMongoDbResourceMongoDbDatabaseResponse {}
-export const DeleteMongoDbResourceMongoDbDatabaseResponse =
+export interface DeleteMongoDBResourceMongoDBDatabaseResponse {}
+export const DeleteMongoDBResourceMongoDBDatabaseResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteMongoDbResourceMongoDbDatabaseResponse",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoDbDatabaseResponse>;
+    identifier: "DeleteMongoDBResourceMongoDBDatabaseResponse",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoDBDatabaseResponse>;
 
-export interface DeleteMongoDbResourceMongoRoleDefinitionRequest {
+export interface DeleteMongoDBResourceMongoRoleDefinitionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4544,7 +4106,7 @@ export interface DeleteMongoDbResourceMongoRoleDefinitionRequest {
   /** The ID for the Role Definition {dbName.roleName}. */
   mongoRoleDefinitionId: string;
 }
-export const DeleteMongoDbResourceMongoRoleDefinitionRequest =
+export const DeleteMongoDBResourceMongoRoleDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4560,16 +4122,16 @@ export const DeleteMongoDbResourceMongoRoleDefinitionRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteMongoDbResourceMongoRoleDefinitionRequest",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoRoleDefinitionRequest>;
+    identifier: "DeleteMongoDBResourceMongoRoleDefinitionRequest",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoRoleDefinitionRequest>;
 
-export interface DeleteMongoDbResourceMongoRoleDefinitionResponse {}
-export const DeleteMongoDbResourceMongoRoleDefinitionResponse =
+export interface DeleteMongoDBResourceMongoRoleDefinitionResponse {}
+export const DeleteMongoDBResourceMongoRoleDefinitionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteMongoDbResourceMongoRoleDefinitionResponse",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoRoleDefinitionResponse>;
+    identifier: "DeleteMongoDBResourceMongoRoleDefinitionResponse",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoRoleDefinitionResponse>;
 
-export interface DeleteMongoDbResourceMongoUserDefinitionRequest {
+export interface DeleteMongoDBResourceMongoUserDefinitionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4579,7 +4141,7 @@ export interface DeleteMongoDbResourceMongoUserDefinitionRequest {
   /** The ID for the User Definition {dbName.userName}. */
   mongoUserDefinitionId: string;
 }
-export const DeleteMongoDbResourceMongoUserDefinitionRequest =
+export const DeleteMongoDBResourceMongoUserDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4595,16 +4157,16 @@ export const DeleteMongoDbResourceMongoUserDefinitionRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteMongoDbResourceMongoUserDefinitionRequest",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoUserDefinitionRequest>;
+    identifier: "DeleteMongoDBResourceMongoUserDefinitionRequest",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoUserDefinitionRequest>;
 
-export interface DeleteMongoDbResourceMongoUserDefinitionResponse {}
-export const DeleteMongoDbResourceMongoUserDefinitionResponse =
+export interface DeleteMongoDBResourceMongoUserDefinitionResponse {}
+export const DeleteMongoDBResourceMongoUserDefinitionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteMongoDbResourceMongoUserDefinitionResponse",
-  }) as any as S.Schema<DeleteMongoDbResourceMongoUserDefinitionResponse>;
+    identifier: "DeleteMongoDBResourceMongoUserDefinitionResponse",
+  }) as any as S.Schema<DeleteMongoDBResourceMongoUserDefinitionResponse>;
 
-export interface DeleteMongoMiResourceMongoMiRoleAssignmentRequest {
+export interface DeleteMongoMIResourceMongoMIRoleAssignmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4614,7 +4176,7 @@ export interface DeleteMongoMiResourceMongoMiRoleAssignmentRequest {
   /** The GUID for the Role Assignment. */
   roleAssignmentId: string;
 }
-export const DeleteMongoMiResourceMongoMiRoleAssignmentRequest =
+export const DeleteMongoMIResourceMongoMIRoleAssignmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4630,16 +4192,16 @@ export const DeleteMongoMiResourceMongoMiRoleAssignmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteMongoMiResourceMongoMiRoleAssignmentRequest",
-  }) as any as S.Schema<DeleteMongoMiResourceMongoMiRoleAssignmentRequest>;
+    identifier: "DeleteMongoMIResourceMongoMIRoleAssignmentRequest",
+  }) as any as S.Schema<DeleteMongoMIResourceMongoMIRoleAssignmentRequest>;
 
-export interface DeleteMongoMiResourceMongoMiRoleAssignmentResponse {}
-export const DeleteMongoMiResourceMongoMiRoleAssignmentResponse =
+export interface DeleteMongoMIResourceMongoMIRoleAssignmentResponse {}
+export const DeleteMongoMIResourceMongoMIRoleAssignmentResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteMongoMiResourceMongoMiRoleAssignmentResponse",
-  }) as any as S.Schema<DeleteMongoMiResourceMongoMiRoleAssignmentResponse>;
+    identifier: "DeleteMongoMIResourceMongoMIRoleAssignmentResponse",
+  }) as any as S.Schema<DeleteMongoMIResourceMongoMIRoleAssignmentResponse>;
 
-export interface DeleteMongoMiResourceMongoMiRoleDefinitionRequest {
+export interface DeleteMongoMIResourceMongoMIRoleDefinitionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4649,7 +4211,7 @@ export interface DeleteMongoMiResourceMongoMiRoleDefinitionRequest {
   /** The GUID for the Role Definition. */
   roleDefinitionId: string;
 }
-export const DeleteMongoMiResourceMongoMiRoleDefinitionRequest =
+export const DeleteMongoMIResourceMongoMIRoleDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4665,17 +4227,17 @@ export const DeleteMongoMiResourceMongoMiRoleDefinitionRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteMongoMiResourceMongoMiRoleDefinitionRequest",
-  }) as any as S.Schema<DeleteMongoMiResourceMongoMiRoleDefinitionRequest>;
+    identifier: "DeleteMongoMIResourceMongoMIRoleDefinitionRequest",
+  }) as any as S.Schema<DeleteMongoMIResourceMongoMIRoleDefinitionRequest>;
 
-export interface DeleteMongoMiResourceMongoMiRoleDefinitionResponse {}
-export const DeleteMongoMiResourceMongoMiRoleDefinitionResponse =
+export interface DeleteMongoMIResourceMongoMIRoleDefinitionResponse {}
+export const DeleteMongoMIResourceMongoMIRoleDefinitionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteMongoMiResourceMongoMiRoleDefinitionResponse",
-  }) as any as S.Schema<DeleteMongoMiResourceMongoMiRoleDefinitionResponse>;
+    identifier: "DeleteMongoMIResourceMongoMIRoleDefinitionResponse",
+  }) as any as S.Schema<DeleteMongoMIResourceMongoMIRoleDefinitionResponse>;
 
-export type NotebookWorkspacesDeleteRequestNotebookWorkspaceName = "default";
-export const NotebookWorkspacesDeleteRequestNotebookWorkspaceName =
+export type DeleteNotebookWorkspaceRequestNotebookWorkspaceName = "default";
+export const DeleteNotebookWorkspaceRequestNotebookWorkspaceName =
   /*@__PURE__*/ S.String;
 
 export interface DeleteNotebookWorkspaceRequest {
@@ -4687,7 +4249,7 @@ export interface DeleteNotebookWorkspaceRequest {
   accountName: string;
   /** The name of the notebook workspace resource. */
   notebookWorkspaceName:
-    | NotebookWorkspacesDeleteRequestNotebookWorkspaceName
+    | DeleteNotebookWorkspaceRequestNotebookWorkspaceName
     | (string & {});
 }
 export const DeleteNotebookWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
@@ -4696,7 +4258,7 @@ export const DeleteNotebookWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     notebookWorkspaceName:
-      NotebookWorkspacesDeleteRequestNotebookWorkspaceName.pipe(T.Label()),
+      DeleteNotebookWorkspaceRequestNotebookWorkspaceName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -4972,47 +4534,6 @@ export const DeleteSqlResourceSqlStoredProcedureResponse =
     identifier: "DeleteSqlResourceSqlStoredProcedureResponse",
   }) as any as S.Schema<DeleteSqlResourceSqlStoredProcedureResponse>;
 
-export interface DeleteSqlResourceSqlTriggerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB container name. */
-  containerName: string;
-  /** Cosmos DB trigger name. */
-  triggerName: string;
-}
-export const DeleteSqlResourceSqlTriggerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2026-03-15",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteSqlResourceSqlTriggerRequest",
-}) as any as S.Schema<DeleteSqlResourceSqlTriggerRequest>;
-
-export interface DeleteSqlResourceSqlTriggerResponse {}
-export const DeleteSqlResourceSqlTriggerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteSqlResourceSqlTriggerResponse",
-}) as any as S.Schema<DeleteSqlResourceSqlTriggerResponse>;
-
 export interface DeleteSqlResourceSqlUserDefinedFunctionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5185,13 +4706,13 @@ export const GetCassandraClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCassandraClusterRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraClustersGetResponseTagsMap = {
+export type GetCassandraClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCassandraClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CassandraClustersGetResponseTagsMap>;
+) as any as S.Schema<GetCassandraClusterResponseTagsMap>;
 
 export interface GetCassandraClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5207,7 +4728,7 @@ export interface GetCassandraClusterResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraClustersGetResponseTagsMap;
+  tags?: GetCassandraClusterResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedCassandraManagedServiceIdentity;
 }
@@ -5219,7 +4740,7 @@ export const GetCassandraClusterResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ClusterResourceProperties),
     location: S.optional(S.String),
-    tags: S.optional(CassandraClustersGetResponseTagsMap),
+    tags: S.optional(GetCassandraClusterResponseTagsMap),
     identity: S.optional(ManagedCassandraManagedServiceIdentity),
   }),
 ).annotate({
@@ -5308,14 +4829,14 @@ export const GetCassandraResourceCassandraKeyspaceRequest =
   }) as any as S.Schema<GetCassandraResourceCassandraKeyspaceRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesGetCassandraKeyspaceResponseTagsMap = {
+export type GetCassandraResourceCassandraKeyspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraResourcesGetCassandraKeyspaceResponseTagsMap =
+export const GetCassandraResourceCassandraKeyspaceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesGetCassandraKeyspaceResponseTagsMap>;
+  ) as any as S.Schema<GetCassandraResourceCassandraKeyspaceResponseTagsMap>;
 
 export interface GetCassandraResourceCassandraKeyspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5331,7 +4852,7 @@ export interface GetCassandraResourceCassandraKeyspaceResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesGetCassandraKeyspaceResponseTagsMap;
+  tags?: GetCassandraResourceCassandraKeyspaceResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -5344,7 +4865,7 @@ export const GetCassandraResourceCassandraKeyspaceResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(CassandraKeyspaceGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(CassandraResourcesGetCassandraKeyspaceResponseTagsMap),
+      tags: S.optional(GetCassandraResourceCassandraKeyspaceResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -5380,15 +4901,112 @@ export const GetCassandraResourceCassandraKeyspaceThroughputRequest =
     identifier: "GetCassandraResourceCassandraKeyspaceThroughputRequest",
   }) as any as S.Schema<GetCassandraResourceCassandraKeyspaceThroughputRequest>;
 
+/** Cosmos DB resource throughput policy */
+export interface ThroughputPolicyResource {
+  /** Determines whether the ThroughputPolicy is active or not */
+  isEnabled?: boolean;
+  /** Represents the percentage by which throughput can increase every time throughput policy kicks in. */
+  incrementPercent?: number;
+}
+export const ThroughputPolicyResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isEnabled: S.optional(S.Boolean),
+    incrementPercent: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ThroughputPolicyResource",
+}) as any as S.Schema<ThroughputPolicyResource>;
+
+/** Cosmos DB resource auto-upgrade policy */
+export interface AutoUpgradePolicyResource {
+  /** Represents throughput policy which service must adhere to for auto-upgrade */
+  throughputPolicy?: ThroughputPolicyResource;
+}
+export const AutoUpgradePolicyResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    throughputPolicy: S.optional(ThroughputPolicyResource),
+  }),
+).annotate({
+  identifier: "AutoUpgradePolicyResource",
+}) as any as S.Schema<AutoUpgradePolicyResource>;
+
+/** Cosmos DB provisioned throughput settings object */
+export interface AutoscaleSettingsResource {
+  /** Represents maximum throughput container can scale up to. */
+  maxThroughput: number;
+  /** Cosmos DB resource auto-upgrade policy */
+  autoUpgradePolicy?: AutoUpgradePolicyResource;
+  /** Represents target maximum throughput container can scale up to once offer is no longer in pending state. */
+  targetMaxThroughput?: number;
+}
+export const AutoscaleSettingsResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxThroughput: S.Number,
+    autoUpgradePolicy: S.optional(AutoUpgradePolicyResource),
+    targetMaxThroughput: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AutoscaleSettingsResource",
+}) as any as S.Schema<AutoscaleSettingsResource>;
+
+export interface ThroughputSettingsGetPropertiesResource {
+  /** Value of the Cosmos DB resource throughput. Either throughput is required or autoscaleSettings is required, but not both. */
+  throughput?: number;
+  /** Cosmos DB resource for autoscale settings. Either throughput is required or autoscaleSettings is required, but not both. */
+  autoscaleSettings?: AutoscaleSettingsResource;
+  /** The minimum throughput of the resource */
+  minimumThroughput?: string;
+  /** The throughput replace is pending */
+  offerReplacePending?: string;
+  /** The offer throughput value to instantly scale up without triggering splits */
+  instantMaximumThroughput?: string;
+  /** The maximum throughput value or the maximum maxThroughput value (for autoscale) that can be specified */
+  softAllowedMaximumThroughput?: string;
+  /** A system generated property. A unique identifier. */
+  _rid?: string;
+  /** A system generated property that denotes the last updated timestamp of the resource. */
+  _ts?: number;
+  /** A system generated property representing the resource etag required for optimistic concurrency control. */
+  _etag?: string;
+}
+export const ThroughputSettingsGetPropertiesResource = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      throughput: S.optional(S.Number),
+      autoscaleSettings: S.optional(AutoscaleSettingsResource),
+      minimumThroughput: S.optional(S.String),
+      offerReplacePending: S.optional(S.String),
+      instantMaximumThroughput: S.optional(S.String),
+      softAllowedMaximumThroughput: S.optional(S.String),
+      _rid: S.optional(S.String),
+      _ts: S.optional(S.Number),
+      _etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ThroughputSettingsGetPropertiesResource",
+}) as any as S.Schema<ThroughputSettingsGetPropertiesResource>;
+
+/** The properties of an Azure Cosmos DB resource throughput */
+export interface ThroughputSettingsGetProperties {
+  resource?: ThroughputSettingsGetPropertiesResource;
+}
+export const ThroughputSettingsGetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resource: S.optional(ThroughputSettingsGetPropertiesResource),
+  }),
+).annotate({
+  identifier: "ThroughputSettingsGetProperties",
+}) as any as S.Schema<ThroughputSettingsGetProperties>;
+
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesGetCassandraKeyspaceThroughputResponseTagsMap = {
+export type GetCassandraResourceCassandraKeyspaceThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraResourcesGetCassandraKeyspaceThroughputResponseTagsMap =
+export const GetCassandraResourceCassandraKeyspaceThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesGetCassandraKeyspaceThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetCassandraResourceCassandraKeyspaceThroughputResponseTagsMap>;
 
 export interface GetCassandraResourceCassandraKeyspaceThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5404,7 +5022,7 @@ export interface GetCassandraResourceCassandraKeyspaceThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesGetCassandraKeyspaceThroughputResponseTagsMap;
+  tags?: GetCassandraResourceCassandraKeyspaceThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -5418,7 +5036,7 @@ export const GetCassandraResourceCassandraKeyspaceThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        CassandraResourcesGetCassandraKeyspaceThroughputResponseTagsMap,
+        GetCassandraResourceCassandraKeyspaceThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
@@ -5567,14 +5185,14 @@ export const GetCassandraResourceCassandraTableRequest =
   }) as any as S.Schema<GetCassandraResourceCassandraTableRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesGetCassandraTableResponseTagsMap = {
+export type GetCassandraResourceCassandraTableResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraResourcesGetCassandraTableResponseTagsMap =
+export const GetCassandraResourceCassandraTableResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesGetCassandraTableResponseTagsMap>;
+  ) as any as S.Schema<GetCassandraResourceCassandraTableResponseTagsMap>;
 
 export interface GetCassandraResourceCassandraTableResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5590,7 +5208,7 @@ export interface GetCassandraResourceCassandraTableResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesGetCassandraTableResponseTagsMap;
+  tags?: GetCassandraResourceCassandraTableResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -5603,7 +5221,7 @@ export const GetCassandraResourceCassandraTableResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(CassandraTableGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(CassandraResourcesGetCassandraTableResponseTagsMap),
+      tags: S.optional(GetCassandraResourceCassandraTableResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -5643,14 +5261,14 @@ export const GetCassandraResourceCassandraTableThroughputRequest =
   }) as any as S.Schema<GetCassandraResourceCassandraTableThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesGetCassandraTableThroughputResponseTagsMap = {
+export type GetCassandraResourceCassandraTableThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraResourcesGetCassandraTableThroughputResponseTagsMap =
+export const GetCassandraResourceCassandraTableThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesGetCassandraTableThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetCassandraResourceCassandraTableThroughputResponseTagsMap>;
 
 export interface GetCassandraResourceCassandraTableThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5666,7 +5284,7 @@ export interface GetCassandraResourceCassandraTableThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesGetCassandraTableThroughputResponseTagsMap;
+  tags?: GetCassandraResourceCassandraTableThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -5680,7 +5298,7 @@ export const GetCassandraResourceCassandraTableThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        CassandraResourcesGetCassandraTableThroughputResponseTagsMap,
+        GetCassandraResourceCassandraTableThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
@@ -5714,20 +5332,20 @@ export const GetDatabaseAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDatabaseAccountRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type DatabaseAccountsGetResponseTagsMap = {
+export type GetDatabaseAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DatabaseAccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDatabaseAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DatabaseAccountsGetResponseTagsMap>;
+) as any as S.Schema<GetDatabaseAccountResponseTagsMap>;
 
 /** Indicates the type of database account. This can only be set at database account creation. */
-export type DatabaseAccountsGetResponseKind =
+export type GetDatabaseAccountResponseKind =
   | "GlobalDocumentDB"
   | "MongoDB"
   | "Parse";
-export const DatabaseAccountsGetResponseKind = /*@__PURE__*/ S.String;
+export const GetDatabaseAccountResponseKind = /*@__PURE__*/ S.String;
 
 export interface GetDatabaseAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5743,11 +5361,11 @@ export interface GetDatabaseAccountResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: DatabaseAccountsGetResponseTagsMap;
+  tags?: GetDatabaseAccountResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
   /** Indicates the type of database account. This can only be set at database account creation. */
-  kind?: DatabaseAccountsGetResponseKind;
+  kind?: GetDatabaseAccountResponseKind;
 }
 export const GetDatabaseAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5757,56 +5375,13 @@ export const GetDatabaseAccountResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(DatabaseAccountGetProperties),
     location: S.optional(S.String),
-    tags: S.optional(DatabaseAccountsGetResponseTagsMap),
+    tags: S.optional(GetDatabaseAccountResponseTagsMap),
     identity: S.optional(ManagedServiceIdentity),
-    kind: S.optional(DatabaseAccountsGetResponseKind),
+    kind: S.optional(GetDatabaseAccountResponseKind),
   }),
 ).annotate({
   identifier: "GetDatabaseAccountResponse",
 }) as any as S.Schema<GetDatabaseAccountResponse>;
-
-export interface GetDatabaseAccountReadOnlyKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-}
-export const GetDatabaseAccountReadOnlyKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/readonlykeys",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-).annotate({
-  identifier: "GetDatabaseAccountReadOnlyKeyRequest",
-}) as any as S.Schema<GetDatabaseAccountReadOnlyKeyRequest>;
-
-/** The read-only access keys for the given database account. */
-export interface DatabaseAccountListReadOnlyKeysResult {
-  /** Base 64 encoded value of the primary read-only key. */
-  primaryReadonlyMasterKey?: string;
-  /** Base 64 encoded value of the secondary read-only key. */
-  secondaryReadonlyMasterKey?: string;
-}
-export const DatabaseAccountListReadOnlyKeysResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      primaryReadonlyMasterKey: S.optional(S.String),
-      secondaryReadonlyMasterKey: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DatabaseAccountListReadOnlyKeysResult",
-}) as any as S.Schema<DatabaseAccountListReadOnlyKeysResult>;
 
 export interface GetFleetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5834,11 +5409,11 @@ export const GetFleetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFleetRequest>;
 
 /** Resource tags. */
-export type FleetGetResponseTagsMap = { [key: string]: string | undefined };
-export const FleetGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFleetResponseTagsMap = { [key: string]: string | undefined };
+export const GetFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetGetResponseTagsMap>;
+) as any as S.Schema<GetFleetResponseTagsMap>;
 
 export interface GetFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5850,7 +5425,7 @@ export interface GetFleetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetGetResponseTagsMap;
+  tags?: GetFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties to update Azure Cosmos DB fleet resource. */
@@ -5862,7 +5437,7 @@ export const GetFleetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetGetResponseTagsMap),
+    tags: S.optional(GetFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetResourceProperties),
   }),
@@ -5977,6 +5552,67 @@ export const GetFleetspaceAccountResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetFleetspaceAccountResponse",
 }) as any as S.Schema<GetFleetspaceAccountResponse>;
 
+export interface GetGremlinResourceContinuousBackupInformationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB graph name. */
+  graphName: string;
+  /** The name of the continuous backup restore location. */
+  location?: string;
+}
+export const GetGremlinResourceContinuousBackupInformationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      graphName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/retrieveContinuousBackupInformation",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetGremlinResourceContinuousBackupInformationRequest",
+  }) as any as S.Schema<GetGremlinResourceContinuousBackupInformationRequest>;
+
+/** Information about the status of continuous backups. */
+export interface ContinuousBackupInformation {
+  /** The latest restorable timestamp for a resource. */
+  latestRestorableTimestamp?: string;
+}
+export const ContinuousBackupInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    latestRestorableTimestamp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContinuousBackupInformation",
+}) as any as S.Schema<ContinuousBackupInformation>;
+
+/** Backup information of a resource. */
+export interface BackupInformation {
+  /** Information about the status of continuous backups. */
+  continuousBackupInformation?: ContinuousBackupInformation;
+}
+export const BackupInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    continuousBackupInformation: S.optional(ContinuousBackupInformation),
+  }),
+).annotate({
+  identifier: "BackupInformation",
+}) as any as S.Schema<BackupInformation>;
+
 export interface GetGremlinResourceGremlinDatabaseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6075,14 +5711,14 @@ export const GremlinDatabaseGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GremlinDatabaseGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesGetGremlinDatabaseResponseTagsMap = {
+export type GetGremlinResourceGremlinDatabaseResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesGetGremlinDatabaseResponseTagsMap =
+export const GetGremlinResourceGremlinDatabaseResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesGetGremlinDatabaseResponseTagsMap>;
+  ) as any as S.Schema<GetGremlinResourceGremlinDatabaseResponseTagsMap>;
 
 export interface GetGremlinResourceGremlinDatabaseResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6098,7 +5734,7 @@ export interface GetGremlinResourceGremlinDatabaseResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesGetGremlinDatabaseResponseTagsMap;
+  tags?: GetGremlinResourceGremlinDatabaseResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -6111,7 +5747,7 @@ export const GetGremlinResourceGremlinDatabaseResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(GremlinDatabaseGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(GremlinResourcesGetGremlinDatabaseResponseTagsMap),
+      tags: S.optional(GetGremlinResourceGremlinDatabaseResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -6148,14 +5784,14 @@ export const GetGremlinResourceGremlinDatabaseThroughputRequest =
   }) as any as S.Schema<GetGremlinResourceGremlinDatabaseThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesGetGremlinDatabaseThroughputResponseTagsMap = {
+export type GetGremlinResourceGremlinDatabaseThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesGetGremlinDatabaseThroughputResponseTagsMap =
+export const GetGremlinResourceGremlinDatabaseThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesGetGremlinDatabaseThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetGremlinResourceGremlinDatabaseThroughputResponseTagsMap>;
 
 export interface GetGremlinResourceGremlinDatabaseThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6171,7 +5807,7 @@ export interface GetGremlinResourceGremlinDatabaseThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesGetGremlinDatabaseThroughputResponseTagsMap;
+  tags?: GetGremlinResourceGremlinDatabaseThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -6185,7 +5821,7 @@ export const GetGremlinResourceGremlinDatabaseThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        GremlinResourcesGetGremlinDatabaseThroughputResponseTagsMap,
+        GetGremlinResourceGremlinDatabaseThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
@@ -6605,14 +6241,14 @@ export const GremlinGraphGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GremlinGraphGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesGetGremlinGraphResponseTagsMap = {
+export type GetGremlinResourceGremlinGraphResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesGetGremlinGraphResponseTagsMap =
+export const GetGremlinResourceGremlinGraphResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesGetGremlinGraphResponseTagsMap>;
+  ) as any as S.Schema<GetGremlinResourceGremlinGraphResponseTagsMap>;
 
 export interface GetGremlinResourceGremlinGraphResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6628,7 +6264,7 @@ export interface GetGremlinResourceGremlinGraphResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesGetGremlinGraphResponseTagsMap;
+  tags?: GetGremlinResourceGremlinGraphResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -6641,7 +6277,7 @@ export const GetGremlinResourceGremlinGraphResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(GremlinGraphGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(GremlinResourcesGetGremlinGraphResponseTagsMap),
+      tags: S.optional(GetGremlinResourceGremlinGraphResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
 ).annotate({
@@ -6681,14 +6317,14 @@ export const GetGremlinResourceGremlinGraphThroughputRequest =
   }) as any as S.Schema<GetGremlinResourceGremlinGraphThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesGetGremlinGraphThroughputResponseTagsMap = {
+export type GetGremlinResourceGremlinGraphThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesGetGremlinGraphThroughputResponseTagsMap =
+export const GetGremlinResourceGremlinGraphThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesGetGremlinGraphThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetGremlinResourceGremlinGraphThroughputResponseTagsMap>;
 
 export interface GetGremlinResourceGremlinGraphThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6704,7 +6340,7 @@ export interface GetGremlinResourceGremlinGraphThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesGetGremlinGraphThroughputResponseTagsMap;
+  tags?: GetGremlinResourceGremlinGraphThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -6717,9 +6353,7 @@ export const GetGremlinResourceGremlinGraphThroughputResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(
-        GremlinResourcesGetGremlinGraphThroughputResponseTagsMap,
-      ),
+      tags: S.optional(GetGremlinResourceGremlinGraphThroughputResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -6991,7 +6625,42 @@ export const GetLocationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetLocationResponse",
 }) as any as S.Schema<GetLocationResponse>;
 
-export interface GetMongoDbResourceMongoDbCollectionRequest {
+export interface GetMongoDBResourceContinuousBackupInformationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB collection name. */
+  collectionName: string;
+  /** The name of the continuous backup restore location. */
+  location?: string;
+}
+export const GetMongoDBResourceContinuousBackupInformationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      collectionName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/retrieveContinuousBackupInformation",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetMongoDBResourceContinuousBackupInformationRequest",
+  }) as any as S.Schema<GetMongoDBResourceContinuousBackupInformationRequest>;
+
+export interface GetMongoDBResourceMongoDBCollectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7003,7 +6672,7 @@ export interface GetMongoDbResourceMongoDbCollectionRequest {
   /** Cosmos DB collection name. */
   collectionName: string;
 }
-export const GetMongoDbResourceMongoDbCollectionRequest =
+export const GetMongoDBResourceMongoDBCollectionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7020,8 +6689,8 @@ export const GetMongoDbResourceMongoDbCollectionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoDbCollectionRequest",
-  }) as any as S.Schema<GetMongoDbResourceMongoDbCollectionRequest>;
+    identifier: "GetMongoDBResourceMongoDBCollectionRequest",
+  }) as any as S.Schema<GetMongoDBResourceMongoDBCollectionRequest>;
 
 /** A key-value pair of shard keys to be applied for the request. */
 export type MongoDBCollectionGetPropertiesResourceShardKeyMap = {
@@ -7147,16 +6816,16 @@ export const MongoDBCollectionGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MongoDBCollectionGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesGetMongoDBCollectionResponseTagsMap = {
+export type GetMongoDBResourceMongoDBCollectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesGetMongoDBCollectionResponseTagsMap =
+export const GetMongoDBResourceMongoDBCollectionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesGetMongoDBCollectionResponseTagsMap>;
+  ) as any as S.Schema<GetMongoDBResourceMongoDBCollectionResponseTagsMap>;
 
-export interface GetMongoDbResourceMongoDbCollectionResponse {
+export interface GetMongoDBResourceMongoDBCollectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7170,11 +6839,11 @@ export interface GetMongoDbResourceMongoDbCollectionResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesGetMongoDBCollectionResponseTagsMap;
+  tags?: GetMongoDBResourceMongoDBCollectionResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
-export const GetMongoDbResourceMongoDbCollectionResponse =
+export const GetMongoDBResourceMongoDBCollectionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7183,14 +6852,14 @@ export const GetMongoDbResourceMongoDbCollectionResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(MongoDBCollectionGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(MongoDBResourcesGetMongoDBCollectionResponseTagsMap),
+      tags: S.optional(GetMongoDBResourceMongoDBCollectionResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoDbCollectionResponse",
-  }) as any as S.Schema<GetMongoDbResourceMongoDbCollectionResponse>;
+    identifier: "GetMongoDBResourceMongoDBCollectionResponse",
+  }) as any as S.Schema<GetMongoDBResourceMongoDBCollectionResponse>;
 
-export interface GetMongoDbResourceMongoDbCollectionThroughputRequest {
+export interface GetMongoDBResourceMongoDBCollectionThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7202,7 +6871,7 @@ export interface GetMongoDbResourceMongoDbCollectionThroughputRequest {
   /** Cosmos DB collection name. */
   collectionName: string;
 }
-export const GetMongoDbResourceMongoDbCollectionThroughputRequest =
+export const GetMongoDBResourceMongoDBCollectionThroughputRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7219,20 +6888,20 @@ export const GetMongoDbResourceMongoDbCollectionThroughputRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoDbCollectionThroughputRequest",
-  }) as any as S.Schema<GetMongoDbResourceMongoDbCollectionThroughputRequest>;
+    identifier: "GetMongoDBResourceMongoDBCollectionThroughputRequest",
+  }) as any as S.Schema<GetMongoDBResourceMongoDBCollectionThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesGetMongoDBCollectionThroughputResponseTagsMap = {
+export type GetMongoDBResourceMongoDBCollectionThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesGetMongoDBCollectionThroughputResponseTagsMap =
+export const GetMongoDBResourceMongoDBCollectionThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesGetMongoDBCollectionThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetMongoDBResourceMongoDBCollectionThroughputResponseTagsMap>;
 
-export interface GetMongoDbResourceMongoDbCollectionThroughputResponse {
+export interface GetMongoDBResourceMongoDBCollectionThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7246,11 +6915,11 @@ export interface GetMongoDbResourceMongoDbCollectionThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesGetMongoDBCollectionThroughputResponseTagsMap;
+  tags?: GetMongoDBResourceMongoDBCollectionThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
-export const GetMongoDbResourceMongoDbCollectionThroughputResponse =
+export const GetMongoDBResourceMongoDBCollectionThroughputResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7260,15 +6929,15 @@ export const GetMongoDbResourceMongoDbCollectionThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        MongoDBResourcesGetMongoDBCollectionThroughputResponseTagsMap,
+        GetMongoDBResourceMongoDBCollectionThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoDbCollectionThroughputResponse",
-  }) as any as S.Schema<GetMongoDbResourceMongoDbCollectionThroughputResponse>;
+    identifier: "GetMongoDBResourceMongoDBCollectionThroughputResponse",
+  }) as any as S.Schema<GetMongoDBResourceMongoDBCollectionThroughputResponse>;
 
-export interface GetMongoDbResourceMongoDbDatabaseRequest {
+export interface GetMongoDBResourceMongoDBDatabaseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7278,7 +6947,7 @@ export interface GetMongoDbResourceMongoDbDatabaseRequest {
   /** Cosmos DB database name. */
   databaseName: string;
 }
-export const GetMongoDbResourceMongoDbDatabaseRequest = /*@__PURE__*/ S.suspend(
+export const GetMongoDBResourceMongoDBDatabaseRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7294,8 +6963,8 @@ export const GetMongoDbResourceMongoDbDatabaseRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetMongoDbResourceMongoDbDatabaseRequest",
-}) as any as S.Schema<GetMongoDbResourceMongoDbDatabaseRequest>;
+  identifier: "GetMongoDBResourceMongoDBDatabaseRequest",
+}) as any as S.Schema<GetMongoDBResourceMongoDBDatabaseRequest>;
 
 /** Enum to indicate the mode of account creation. */
 export type MongoDBDatabaseGetPropertiesResourceCreateMode =
@@ -7347,16 +7016,16 @@ export const MongoDBDatabaseGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MongoDBDatabaseGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesGetMongoDBDatabaseResponseTagsMap = {
+export type GetMongoDBResourceMongoDBDatabaseResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesGetMongoDBDatabaseResponseTagsMap =
+export const GetMongoDBResourceMongoDBDatabaseResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesGetMongoDBDatabaseResponseTagsMap>;
+  ) as any as S.Schema<GetMongoDBResourceMongoDBDatabaseResponseTagsMap>;
 
-export interface GetMongoDbResourceMongoDbDatabaseResponse {
+export interface GetMongoDBResourceMongoDBDatabaseResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7370,11 +7039,11 @@ export interface GetMongoDbResourceMongoDbDatabaseResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesGetMongoDBDatabaseResponseTagsMap;
+  tags?: GetMongoDBResourceMongoDBDatabaseResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
-export const GetMongoDbResourceMongoDbDatabaseResponse =
+export const GetMongoDBResourceMongoDBDatabaseResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7383,14 +7052,14 @@ export const GetMongoDbResourceMongoDbDatabaseResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(MongoDBDatabaseGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(MongoDBResourcesGetMongoDBDatabaseResponseTagsMap),
+      tags: S.optional(GetMongoDBResourceMongoDBDatabaseResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoDbDatabaseResponse",
-  }) as any as S.Schema<GetMongoDbResourceMongoDbDatabaseResponse>;
+    identifier: "GetMongoDBResourceMongoDBDatabaseResponse",
+  }) as any as S.Schema<GetMongoDBResourceMongoDBDatabaseResponse>;
 
-export interface GetMongoDbResourceMongoDbDatabaseThroughputRequest {
+export interface GetMongoDBResourceMongoDBDatabaseThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7400,7 +7069,7 @@ export interface GetMongoDbResourceMongoDbDatabaseThroughputRequest {
   /** Cosmos DB database name. */
   databaseName: string;
 }
-export const GetMongoDbResourceMongoDbDatabaseThroughputRequest =
+export const GetMongoDBResourceMongoDBDatabaseThroughputRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7416,20 +7085,20 @@ export const GetMongoDbResourceMongoDbDatabaseThroughputRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoDbDatabaseThroughputRequest",
-  }) as any as S.Schema<GetMongoDbResourceMongoDbDatabaseThroughputRequest>;
+    identifier: "GetMongoDBResourceMongoDBDatabaseThroughputRequest",
+  }) as any as S.Schema<GetMongoDBResourceMongoDBDatabaseThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesGetMongoDBDatabaseThroughputResponseTagsMap = {
+export type GetMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesGetMongoDBDatabaseThroughputResponseTagsMap =
+export const GetMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesGetMongoDBDatabaseThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap>;
 
-export interface GetMongoDbResourceMongoDbDatabaseThroughputResponse {
+export interface GetMongoDBResourceMongoDBDatabaseThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7443,11 +7112,11 @@ export interface GetMongoDbResourceMongoDbDatabaseThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesGetMongoDBDatabaseThroughputResponseTagsMap;
+  tags?: GetMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
-export const GetMongoDbResourceMongoDbDatabaseThroughputResponse =
+export const GetMongoDBResourceMongoDBDatabaseThroughputResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7457,15 +7126,15 @@ export const GetMongoDbResourceMongoDbDatabaseThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        MongoDBResourcesGetMongoDBDatabaseThroughputResponseTagsMap,
+        GetMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoDbDatabaseThroughputResponse",
-  }) as any as S.Schema<GetMongoDbResourceMongoDbDatabaseThroughputResponse>;
+    identifier: "GetMongoDBResourceMongoDBDatabaseThroughputResponse",
+  }) as any as S.Schema<GetMongoDBResourceMongoDBDatabaseThroughputResponse>;
 
-export interface GetMongoDbResourceMongoRoleDefinitionRequest {
+export interface GetMongoDBResourceMongoRoleDefinitionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7475,7 +7144,7 @@ export interface GetMongoDbResourceMongoRoleDefinitionRequest {
   /** The ID for the Role Definition {dbName.roleName}. */
   mongoRoleDefinitionId: string;
 }
-export const GetMongoDbResourceMongoRoleDefinitionRequest =
+export const GetMongoDBResourceMongoRoleDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7491,8 +7160,8 @@ export const GetMongoDbResourceMongoRoleDefinitionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoRoleDefinitionRequest",
-  }) as any as S.Schema<GetMongoDbResourceMongoRoleDefinitionRequest>;
+    identifier: "GetMongoDBResourceMongoRoleDefinitionRequest",
+  }) as any as S.Schema<GetMongoDBResourceMongoRoleDefinitionRequest>;
 
 /** Indicates whether the Role Definition was built-in or user created. */
 export type MongoRoleDefinitionType = "BuiltInRole" | "CustomRole";
@@ -7585,7 +7254,7 @@ export const MongoRoleDefinitionResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "MongoRoleDefinitionResource",
 }) as any as S.Schema<MongoRoleDefinitionResource>;
 
-export interface GetMongoDbResourceMongoRoleDefinitionResponse {
+export interface GetMongoDBResourceMongoRoleDefinitionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7597,7 +7266,7 @@ export interface GetMongoDbResourceMongoRoleDefinitionResponse {
   /** Properties related to the Mongo Role Definition. */
   properties?: MongoRoleDefinitionResource;
 }
-export const GetMongoDbResourceMongoRoleDefinitionResponse =
+export const GetMongoDBResourceMongoRoleDefinitionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7607,10 +7276,10 @@ export const GetMongoDbResourceMongoRoleDefinitionResponse =
       properties: S.optional(MongoRoleDefinitionResource),
     }),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoRoleDefinitionResponse",
-  }) as any as S.Schema<GetMongoDbResourceMongoRoleDefinitionResponse>;
+    identifier: "GetMongoDBResourceMongoRoleDefinitionResponse",
+  }) as any as S.Schema<GetMongoDBResourceMongoRoleDefinitionResponse>;
 
-export interface GetMongoDbResourceMongoUserDefinitionRequest {
+export interface GetMongoDBResourceMongoUserDefinitionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7620,7 +7289,7 @@ export interface GetMongoDbResourceMongoUserDefinitionRequest {
   /** The ID for the User Definition {dbName.userName}. */
   mongoUserDefinitionId: string;
 }
-export const GetMongoDbResourceMongoUserDefinitionRequest =
+export const GetMongoDBResourceMongoUserDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7636,8 +7305,8 @@ export const GetMongoDbResourceMongoUserDefinitionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoUserDefinitionRequest",
-  }) as any as S.Schema<GetMongoDbResourceMongoUserDefinitionRequest>;
+    identifier: "GetMongoDBResourceMongoUserDefinitionRequest",
+  }) as any as S.Schema<GetMongoDBResourceMongoUserDefinitionRequest>;
 
 /** The set of roles inherited by the User Definition. */
 export type MongoUserDefinitionResourceRolesList = Array<Role>;
@@ -7673,7 +7342,7 @@ export const MongoUserDefinitionResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "MongoUserDefinitionResource",
 }) as any as S.Schema<MongoUserDefinitionResource>;
 
-export interface GetMongoDbResourceMongoUserDefinitionResponse {
+export interface GetMongoDBResourceMongoUserDefinitionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7685,7 +7354,7 @@ export interface GetMongoDbResourceMongoUserDefinitionResponse {
   /** Properties related to the User Definition. */
   properties?: MongoUserDefinitionResource;
 }
-export const GetMongoDbResourceMongoUserDefinitionResponse =
+export const GetMongoDBResourceMongoUserDefinitionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7695,10 +7364,10 @@ export const GetMongoDbResourceMongoUserDefinitionResponse =
       properties: S.optional(MongoUserDefinitionResource),
     }),
   ).annotate({
-    identifier: "GetMongoDbResourceMongoUserDefinitionResponse",
-  }) as any as S.Schema<GetMongoDbResourceMongoUserDefinitionResponse>;
+    identifier: "GetMongoDBResourceMongoUserDefinitionResponse",
+  }) as any as S.Schema<GetMongoDBResourceMongoUserDefinitionResponse>;
 
-export interface GetMongoMiResourceMongoMiRoleAssignmentRequest {
+export interface GetMongoMIResourceMongoMIRoleAssignmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7708,7 +7377,7 @@ export interface GetMongoMiResourceMongoMiRoleAssignmentRequest {
   /** The GUID for the Role Assignment. */
   roleAssignmentId: string;
 }
-export const GetMongoMiResourceMongoMiRoleAssignmentRequest =
+export const GetMongoMIResourceMongoMIRoleAssignmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7724,8 +7393,8 @@ export const GetMongoMiResourceMongoMiRoleAssignmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMongoMiResourceMongoMiRoleAssignmentRequest",
-  }) as any as S.Schema<GetMongoMiResourceMongoMiRoleAssignmentRequest>;
+    identifier: "GetMongoMIResourceMongoMIRoleAssignmentRequest",
+  }) as any as S.Schema<GetMongoMIResourceMongoMIRoleAssignmentRequest>;
 
 /** Azure Cosmos DB MongoMI Role Assignment resource object. */
 export interface MongoMIRoleAssignmentResourceProperties {
@@ -7750,7 +7419,7 @@ export const MongoMIRoleAssignmentResourceProperties = /*@__PURE__*/ S.suspend(
   identifier: "MongoMIRoleAssignmentResourceProperties",
 }) as any as S.Schema<MongoMIRoleAssignmentResourceProperties>;
 
-export interface GetMongoMiResourceMongoMiRoleAssignmentResponse {
+export interface GetMongoMIResourceMongoMIRoleAssignmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7762,7 +7431,7 @@ export interface GetMongoMiResourceMongoMiRoleAssignmentResponse {
   /** Properties to create and update an Azure Cosmos DB MongoMI Role Assignment. */
   properties?: MongoMIRoleAssignmentResourceProperties;
 }
-export const GetMongoMiResourceMongoMiRoleAssignmentResponse =
+export const GetMongoMIResourceMongoMIRoleAssignmentResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7772,10 +7441,10 @@ export const GetMongoMiResourceMongoMiRoleAssignmentResponse =
       properties: S.optional(MongoMIRoleAssignmentResourceProperties),
     }),
   ).annotate({
-    identifier: "GetMongoMiResourceMongoMiRoleAssignmentResponse",
-  }) as any as S.Schema<GetMongoMiResourceMongoMiRoleAssignmentResponse>;
+    identifier: "GetMongoMIResourceMongoMIRoleAssignmentResponse",
+  }) as any as S.Schema<GetMongoMIResourceMongoMIRoleAssignmentResponse>;
 
-export interface GetMongoMiResourceMongoMiRoleDefinitionRequest {
+export interface GetMongoMIResourceMongoMIRoleDefinitionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7785,7 +7454,7 @@ export interface GetMongoMiResourceMongoMiRoleDefinitionRequest {
   /** The GUID for the Role Definition. */
   roleDefinitionId: string;
 }
-export const GetMongoMiResourceMongoMiRoleDefinitionRequest =
+export const GetMongoMIResourceMongoMIRoleDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7801,8 +7470,8 @@ export const GetMongoMiResourceMongoMiRoleDefinitionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetMongoMiResourceMongoMiRoleDefinitionRequest",
-  }) as any as S.Schema<GetMongoMiResourceMongoMiRoleDefinitionRequest>;
+    identifier: "GetMongoMIResourceMongoMIRoleDefinitionRequest",
+  }) as any as S.Schema<GetMongoMIResourceMongoMIRoleDefinitionRequest>;
 
 /** A set of fully qualified Scopes at or below which MongoMI Role Assignments may be created using this Role Definition. This will allow application of this Role Definition on the entire database account or any underlying Database / Collection. Must have at least one element. Scopes higher than Database account are not enforceable as assignable Scopes. Note that resources referenced in assignable Scopes need not exist. */
 export type MongoMIRoleDefinitionResourcePropertiesAssignableScopesList =
@@ -7850,7 +7519,7 @@ export const MongoMIRoleDefinitionResourceProperties = /*@__PURE__*/ S.suspend(
   identifier: "MongoMIRoleDefinitionResourceProperties",
 }) as any as S.Schema<MongoMIRoleDefinitionResourceProperties>;
 
-export interface GetMongoMiResourceMongoMiRoleDefinitionResponse {
+export interface GetMongoMIResourceMongoMIRoleDefinitionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7862,7 +7531,7 @@ export interface GetMongoMiResourceMongoMiRoleDefinitionResponse {
   /** Properties to create and update an Azure Cosmos DB MongoMI Role Definition. */
   properties?: MongoMIRoleDefinitionResourceProperties;
 }
-export const GetMongoMiResourceMongoMiRoleDefinitionResponse =
+export const GetMongoMIResourceMongoMIRoleDefinitionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7872,11 +7541,11 @@ export const GetMongoMiResourceMongoMiRoleDefinitionResponse =
       properties: S.optional(MongoMIRoleDefinitionResourceProperties),
     }),
   ).annotate({
-    identifier: "GetMongoMiResourceMongoMiRoleDefinitionResponse",
-  }) as any as S.Schema<GetMongoMiResourceMongoMiRoleDefinitionResponse>;
+    identifier: "GetMongoMIResourceMongoMIRoleDefinitionResponse",
+  }) as any as S.Schema<GetMongoMIResourceMongoMIRoleDefinitionResponse>;
 
-export type NotebookWorkspacesGetRequestNotebookWorkspaceName = "default";
-export const NotebookWorkspacesGetRequestNotebookWorkspaceName =
+export type GetNotebookWorkspaceRequestNotebookWorkspaceName = "default";
+export const GetNotebookWorkspaceRequestNotebookWorkspaceName =
   /*@__PURE__*/ S.String;
 
 export interface GetNotebookWorkspaceRequest {
@@ -7888,7 +7557,7 @@ export interface GetNotebookWorkspaceRequest {
   accountName: string;
   /** The name of the notebook workspace resource. */
   notebookWorkspaceName:
-    | NotebookWorkspacesGetRequestNotebookWorkspaceName
+    | GetNotebookWorkspaceRequestNotebookWorkspaceName
     | (string & {});
 }
 export const GetNotebookWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
@@ -7897,7 +7566,7 @@ export const GetNotebookWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     notebookWorkspaceName:
-      NotebookWorkspacesGetRequestNotebookWorkspaceName.pipe(T.Label()),
+      GetNotebookWorkspaceRequestNotebookWorkspaceName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -8390,6 +8059,41 @@ export const GetSqlResourceClientEncryptionKeyResponse =
     identifier: "GetSqlResourceClientEncryptionKeyResponse",
   }) as any as S.Schema<GetSqlResourceClientEncryptionKeyResponse>;
 
+export interface GetSqlResourceContinuousBackupInformationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB container name. */
+  containerName: string;
+  /** The name of the continuous backup restore location. */
+  location?: string;
+}
+export const GetSqlResourceContinuousBackupInformationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/retrieveContinuousBackupInformation",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetSqlResourceContinuousBackupInformationRequest",
+  }) as any as S.Schema<GetSqlResourceContinuousBackupInformationRequest>;
+
 export interface GetSqlResourceSqlContainerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -8652,14 +8356,13 @@ export const SqlContainerGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SqlContainerGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesGetSqlContainerResponseTagsMap = {
+export type GetSqlResourceSqlContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesGetSqlContainerResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlResourcesGetSqlContainerResponseTagsMap>;
+export const GetSqlResourceSqlContainerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSqlResourceSqlContainerResponseTagsMap>;
 
 export interface GetSqlResourceSqlContainerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8675,7 +8378,7 @@ export interface GetSqlResourceSqlContainerResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesGetSqlContainerResponseTagsMap;
+  tags?: GetSqlResourceSqlContainerResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -8687,7 +8390,7 @@ export const GetSqlResourceSqlContainerResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(SqlContainerGetProperties),
     location: S.optional(S.String),
-    tags: S.optional(SqlResourcesGetSqlContainerResponseTagsMap),
+    tags: S.optional(GetSqlResourceSqlContainerResponseTagsMap),
     identity: S.optional(ManagedServiceIdentity),
   }),
 ).annotate({
@@ -8727,14 +8430,14 @@ export const GetSqlResourceSqlContainerThroughputRequest =
   }) as any as S.Schema<GetSqlResourceSqlContainerThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesGetSqlContainerThroughputResponseTagsMap = {
+export type GetSqlResourceSqlContainerThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesGetSqlContainerThroughputResponseTagsMap =
+export const GetSqlResourceSqlContainerThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesGetSqlContainerThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetSqlResourceSqlContainerThroughputResponseTagsMap>;
 
 export interface GetSqlResourceSqlContainerThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8750,7 +8453,7 @@ export interface GetSqlResourceSqlContainerThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesGetSqlContainerThroughputResponseTagsMap;
+  tags?: GetSqlResourceSqlContainerThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -8763,7 +8466,7 @@ export const GetSqlResourceSqlContainerThroughputResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesGetSqlContainerThroughputResponseTagsMap),
+      tags: S.optional(GetSqlResourceSqlContainerThroughputResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -8851,13 +8554,13 @@ export const SqlDatabaseGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SqlDatabaseGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesGetSqlDatabaseResponseTagsMap = {
+export type GetSqlResourceSqlDatabaseResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesGetSqlDatabaseResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSqlResourceSqlDatabaseResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SqlResourcesGetSqlDatabaseResponseTagsMap>;
+) as any as S.Schema<GetSqlResourceSqlDatabaseResponseTagsMap>;
 
 export interface GetSqlResourceSqlDatabaseResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8873,7 +8576,7 @@ export interface GetSqlResourceSqlDatabaseResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesGetSqlDatabaseResponseTagsMap;
+  tags?: GetSqlResourceSqlDatabaseResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -8885,7 +8588,7 @@ export const GetSqlResourceSqlDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(SqlDatabaseGetProperties),
     location: S.optional(S.String),
-    tags: S.optional(SqlResourcesGetSqlDatabaseResponseTagsMap),
+    tags: S.optional(GetSqlResourceSqlDatabaseResponseTagsMap),
     identity: S.optional(ManagedServiceIdentity),
   }),
 ).annotate({
@@ -8922,14 +8625,14 @@ export const GetSqlResourceSqlDatabaseThroughputRequest =
   }) as any as S.Schema<GetSqlResourceSqlDatabaseThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesGetSqlDatabaseThroughputResponseTagsMap = {
+export type GetSqlResourceSqlDatabaseThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesGetSqlDatabaseThroughputResponseTagsMap =
+export const GetSqlResourceSqlDatabaseThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesGetSqlDatabaseThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetSqlResourceSqlDatabaseThroughputResponseTagsMap>;
 
 export interface GetSqlResourceSqlDatabaseThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8945,7 +8648,7 @@ export interface GetSqlResourceSqlDatabaseThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesGetSqlDatabaseThroughputResponseTagsMap;
+  tags?: GetSqlResourceSqlDatabaseThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -8958,7 +8661,7 @@ export const GetSqlResourceSqlDatabaseThroughputResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesGetSqlDatabaseThroughputResponseTagsMap),
+      tags: S.optional(GetSqlResourceSqlDatabaseThroughputResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -9200,14 +8903,14 @@ export const SqlStoredProcedureGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SqlStoredProcedureGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesGetSqlStoredProcedureResponseTagsMap = {
+export type GetSqlResourceSqlStoredProcedureResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesGetSqlStoredProcedureResponseTagsMap =
+export const GetSqlResourceSqlStoredProcedureResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesGetSqlStoredProcedureResponseTagsMap>;
+  ) as any as S.Schema<GetSqlResourceSqlStoredProcedureResponseTagsMap>;
 
 export interface GetSqlResourceSqlStoredProcedureResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9223,7 +8926,7 @@ export interface GetSqlResourceSqlStoredProcedureResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesGetSqlStoredProcedureResponseTagsMap;
+  tags?: GetSqlResourceSqlStoredProcedureResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -9236,143 +8939,12 @@ export const GetSqlResourceSqlStoredProcedureResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(SqlStoredProcedureGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesGetSqlStoredProcedureResponseTagsMap),
+      tags: S.optional(GetSqlResourceSqlStoredProcedureResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
 ).annotate({
   identifier: "GetSqlResourceSqlStoredProcedureResponse",
 }) as any as S.Schema<GetSqlResourceSqlStoredProcedureResponse>;
-
-export interface GetSqlResourceSqlTriggerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB container name. */
-  containerName: string;
-  /** Cosmos DB trigger name. */
-  triggerName: string;
-}
-export const GetSqlResourceSqlTriggerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2026-03-15",
-    }),
-  ),
-).annotate({
-  identifier: "GetSqlResourceSqlTriggerRequest",
-}) as any as S.Schema<GetSqlResourceSqlTriggerRequest>;
-
-/** Type of the Trigger */
-export type TriggerType = "Pre" | "Post";
-export const TriggerType = /*@__PURE__*/ S.String;
-
-/** The operation the trigger is associated with */
-export type TriggerOperation =
-  | "All"
-  | "Create"
-  | "Update"
-  | "Delete"
-  | "Replace";
-export const TriggerOperation = /*@__PURE__*/ S.String;
-
-export interface SqlTriggerGetPropertiesResource {
-  /** Name of the Cosmos DB SQL trigger */
-  id: string;
-  /** Body of the Trigger */
-  body?: string;
-  /** Type of the Trigger */
-  triggerType?: TriggerType;
-  /** The operation the trigger is associated with */
-  triggerOperation?: TriggerOperation;
-  /** A system generated property. A unique identifier. */
-  _rid?: string;
-  /** A system generated property that denotes the last updated timestamp of the resource. */
-  _ts?: number;
-  /** A system generated property representing the resource etag required for optimistic concurrency control. */
-  _etag?: string;
-}
-export const SqlTriggerGetPropertiesResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    body: S.optional(S.String),
-    triggerType: S.optional(TriggerType),
-    triggerOperation: S.optional(TriggerOperation),
-    _rid: S.optional(S.String),
-    _ts: S.optional(S.Number),
-    _etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SqlTriggerGetPropertiesResource",
-}) as any as S.Schema<SqlTriggerGetPropertiesResource>;
-
-/** The properties of an Azure Cosmos DB trigger */
-export interface SqlTriggerGetProperties {
-  resource?: SqlTriggerGetPropertiesResource;
-}
-export const SqlTriggerGetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resource: S.optional(SqlTriggerGetPropertiesResource),
-  }),
-).annotate({
-  identifier: "SqlTriggerGetProperties",
-}) as any as S.Schema<SqlTriggerGetProperties>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesGetSqlTriggerResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlResourcesGetSqlTriggerResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SqlResourcesGetSqlTriggerResponseTagsMap>;
-
-export interface GetSqlResourceSqlTriggerResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB trigger */
-  properties?: SqlTriggerGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesGetSqlTriggerResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const GetSqlResourceSqlTriggerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SqlTriggerGetProperties),
-    location: S.optional(S.String),
-    tags: S.optional(SqlResourcesGetSqlTriggerResponseTagsMap),
-    identity: S.optional(ManagedServiceIdentity),
-  }),
-).annotate({
-  identifier: "GetSqlResourceSqlTriggerResponse",
-}) as any as S.Schema<GetSqlResourceSqlTriggerResponse>;
 
 export interface GetSqlResourceSqlUserDefinedFunctionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9447,14 +9019,14 @@ export const SqlUserDefinedFunctionGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SqlUserDefinedFunctionGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesGetSqlUserDefinedFunctionResponseTagsMap = {
+export type GetSqlResourceSqlUserDefinedFunctionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesGetSqlUserDefinedFunctionResponseTagsMap =
+export const GetSqlResourceSqlUserDefinedFunctionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesGetSqlUserDefinedFunctionResponseTagsMap>;
+  ) as any as S.Schema<GetSqlResourceSqlUserDefinedFunctionResponseTagsMap>;
 
 export interface GetSqlResourceSqlUserDefinedFunctionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9470,7 +9042,7 @@ export interface GetSqlResourceSqlUserDefinedFunctionResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesGetSqlUserDefinedFunctionResponseTagsMap;
+  tags?: GetSqlResourceSqlUserDefinedFunctionResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -9483,12 +9055,44 @@ export const GetSqlResourceSqlUserDefinedFunctionResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(SqlUserDefinedFunctionGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesGetSqlUserDefinedFunctionResponseTagsMap),
+      tags: S.optional(GetSqlResourceSqlUserDefinedFunctionResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
     identifier: "GetSqlResourceSqlUserDefinedFunctionResponse",
   }) as any as S.Schema<GetSqlResourceSqlUserDefinedFunctionResponse>;
+
+export interface GetTableResourceContinuousBackupInformationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB table name. */
+  tableName: string;
+  /** The name of the continuous backup restore location. */
+  location?: string;
+}
+export const GetTableResourceContinuousBackupInformationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      tableName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/retrieveContinuousBackupInformation",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetTableResourceContinuousBackupInformationRequest",
+  }) as any as S.Schema<GetTableResourceContinuousBackupInformationRequest>;
 
 export interface GetTableResourceTableRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9564,13 +9168,13 @@ export const TableGetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TableGetProperties>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type TableResourcesGetTableResponseTagsMap = {
+export type GetTableResourceTableResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TableResourcesGetTableResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetTableResourceTableResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TableResourcesGetTableResponseTagsMap>;
+) as any as S.Schema<GetTableResourceTableResponseTagsMap>;
 
 export interface GetTableResourceTableResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9586,7 +9190,7 @@ export interface GetTableResourceTableResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: TableResourcesGetTableResponseTagsMap;
+  tags?: GetTableResourceTableResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -9598,7 +9202,7 @@ export const GetTableResourceTableResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(TableGetProperties),
     location: S.optional(S.String),
-    tags: S.optional(TableResourcesGetTableResponseTagsMap),
+    tags: S.optional(GetTableResourceTableResponseTagsMap),
     identity: S.optional(ManagedServiceIdentity),
   }),
 ).annotate({
@@ -9812,14 +9416,14 @@ export const GetTableResourceTableThroughputRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetTableResourceTableThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type TableResourcesGetTableThroughputResponseTagsMap = {
+export type GetTableResourceTableThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TableResourcesGetTableThroughputResponseTagsMap =
+export const GetTableResourceTableThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<TableResourcesGetTableThroughputResponseTagsMap>;
+  ) as any as S.Schema<GetTableResourceTableThroughputResponseTagsMap>;
 
 export interface GetTableResourceTableThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9835,7 +9439,7 @@ export interface GetTableResourceTableThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: TableResourcesGetTableThroughputResponseTagsMap;
+  tags?: GetTableResourceTableThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -9848,7 +9452,7 @@ export const GetTableResourceTableThroughputResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(TableResourcesGetTableThroughputResponseTagsMap),
+      tags: S.optional(GetTableResourceTableThroughputResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
 ).annotate({
@@ -10313,372 +9917,65 @@ export const GremlinResourcesCreateUpdateGremlinRoleDefinitionResponse =
     identifier: "GremlinResourcesCreateUpdateGremlinRoleDefinitionResponse",
   }) as any as S.Schema<GremlinResourcesCreateUpdateGremlinRoleDefinitionResponse>;
 
-export interface GremlinResourcesMigrateGremlinDatabaseToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-}
-export const GremlinResourcesMigrateGremlinDatabaseToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "GremlinResourcesMigrateGremlinDatabaseToAutoscaleRequest",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinDatabaseToAutoscaleRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponseTagsMap = {
+/** The arguments for the command to be run */
+export type InvokeCassandraClusterCommandRequestArgumentsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponseTagsMap =
+export const InvokeCassandraClusterCommandRequestArgumentsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponseTagsMap>;
+  ) as any as S.Schema<InvokeCassandraClusterCommandRequestArgumentsMap>;
 
-export interface GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse>;
-
-export interface GremlinResourcesMigrateGremlinDatabaseToManualThroughputRequest {
+export interface InvokeCassandraClusterCommandRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
+  /** Managed Cassandra cluster name. */
+  clusterName: string;
+  /** The command which should be run */
+  command: string;
+  /** The arguments for the command to be run */
+  arguments?: InvokeCassandraClusterCommandRequestArgumentsMap;
+  /** IP address of the cassandra host to run the command on */
+  host: string;
+  /** If true, stops cassandra before executing the command and then start it again */
+  cassandra_stop_start?: boolean;
+  /** If true, allows the command to *write* to the cassandra directory, otherwise read-only. */
+  readwrite?: boolean;
 }
-export const GremlinResourcesMigrateGremlinDatabaseToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const InvokeCassandraClusterCommandRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "GremlinResourcesMigrateGremlinDatabaseToManualThroughputRequest",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinDatabaseToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponseTagsMap =
-  { [key: string]: string | undefined };
-export const GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponseTagsMap>;
-
-export interface GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponseTagsMap,
+      clusterName: S.String.pipe(T.Label()),
+      command: S.String,
+      arguments: S.optional(InvokeCassandraClusterCommandRequestArgumentsMap),
+      host: S.String,
+      cassandra_stop_start: S.optional(
+        S.Boolean.pipe(T.Body("cassandra-stop-start")),
       ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier:
-      "GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse>;
-
-export interface GremlinResourcesMigrateGremlinGraphToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB graph name. */
-  graphName: string;
-}
-export const GremlinResourcesMigrateGremlinGraphToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      graphName: S.String.pipe(T.Label()),
+      readwrite: S.optional(S.Boolean),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/cassandraClusters/{clusterName}/invokeCommand",
         code: 200,
         apiVersion: "2026-03-15",
       }),
     ),
-  ).annotate({
-    identifier: "GremlinResourcesMigrateGremlinGraphToAutoscaleRequest",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinGraphToAutoscaleRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesMigrateGremlinGraphToAutoscaleResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GremlinResourcesMigrateGremlinGraphToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<GremlinResourcesMigrateGremlinGraphToAutoscaleResponseTagsMap>;
-
-export interface GremlinResourcesMigrateGremlinGraphToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesMigrateGremlinGraphToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const GremlinResourcesMigrateGremlinGraphToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        GremlinResourcesMigrateGremlinGraphToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "GremlinResourcesMigrateGremlinGraphToAutoscaleResponse",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinGraphToAutoscaleResponse>;
-
-export interface GremlinResourcesMigrateGremlinGraphToManualThroughputRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB graph name. */
-  graphName: string;
-}
-export const GremlinResourcesMigrateGremlinGraphToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      graphName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "GremlinResourcesMigrateGremlinGraphToManualThroughputRequest",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinGraphToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesMigrateGremlinGraphToManualThroughputResponseTagsMap =
-  { [key: string]: string | undefined };
-export const GremlinResourcesMigrateGremlinGraphToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<GremlinResourcesMigrateGremlinGraphToManualThroughputResponseTagsMap>;
-
-export interface GremlinResourcesMigrateGremlinGraphToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesMigrateGremlinGraphToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const GremlinResourcesMigrateGremlinGraphToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        GremlinResourcesMigrateGremlinGraphToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "GremlinResourcesMigrateGremlinGraphToManualThroughputResponse",
-  }) as any as S.Schema<GremlinResourcesMigrateGremlinGraphToManualThroughputResponse>;
-
-export interface GremlinResourcesRetrieveContinuousBackupInformationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB graph name. */
-  graphName: string;
-  /** The name of the continuous backup restore location. */
-  location?: string;
-}
-export const GremlinResourcesRetrieveContinuousBackupInformationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      graphName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/retrieveContinuousBackupInformation",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "GremlinResourcesRetrieveContinuousBackupInformationRequest",
-  }) as any as S.Schema<GremlinResourcesRetrieveContinuousBackupInformationRequest>;
-
-/** Information about the status of continuous backups. */
-export interface ContinuousBackupInformation {
-  /** The latest restorable timestamp for a resource. */
-  latestRestorableTimestamp?: string;
-}
-export const ContinuousBackupInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    latestRestorableTimestamp: S.optional(S.String),
-  }),
 ).annotate({
-  identifier: "ContinuousBackupInformation",
-}) as any as S.Schema<ContinuousBackupInformation>;
+  identifier: "InvokeCassandraClusterCommandRequest",
+}) as any as S.Schema<InvokeCassandraClusterCommandRequest>;
 
-/** Backup information of a resource. */
-export interface BackupInformation {
-  /** Information about the status of continuous backups. */
-  continuousBackupInformation?: ContinuousBackupInformation;
-}
-export const BackupInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    continuousBackupInformation: S.optional(ContinuousBackupInformation),
-  }),
+export interface InvokeCassandraClusterCommandResponse {}
+export const InvokeCassandraClusterCommandResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "BackupInformation",
-}) as any as S.Schema<BackupInformation>;
+  identifier: "InvokeCassandraClusterCommandResponse",
+}) as any as S.Schema<InvokeCassandraClusterCommandResponse>;
 
 export interface ListCassandraClusterByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11851,19 +11148,19 @@ export const DatabaseAccountsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DatabaseAccountsListResultValueList>;
 
 /** The List operation response, that contains the database accounts and their properties. */
-export interface ListDatabaseAccountsResult {
+export interface DatabaseAccountsListResult {
   /** List of database account and their properties. */
   value?: DatabaseAccountsListResultValueList;
   nextLink?: string;
 }
-export const ListDatabaseAccountsResult = /*@__PURE__*/ S.suspend(() =>
+export const DatabaseAccountsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(DatabaseAccountsListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListDatabaseAccountsResult",
-}) as any as S.Schema<ListDatabaseAccountsResult>;
+  identifier: "DatabaseAccountsListResult",
+}) as any as S.Schema<DatabaseAccountsListResult>;
 
 export interface ListDatabaseAccountConnectionStringsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12057,32 +11354,6 @@ export const ListDatabaseAccountMetricsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListDatabaseAccountMetricsRequest",
 }) as any as S.Schema<ListDatabaseAccountMetricsRequest>;
-
-export interface ListDatabaseAccountReadOnlyKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-}
-export const ListDatabaseAccountReadOnlyKeysRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/readonlykeys",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-).annotate({
-  identifier: "ListDatabaseAccountReadOnlyKeysRequest",
-}) as any as S.Schema<ListDatabaseAccountReadOnlyKeysRequest>;
 
 export interface ListDatabaseAccountRegionMetricsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12316,20 +11587,20 @@ export const FleetListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FleetListResultValueList>;
 
 /** The response of a FleetResource list operation. */
-export interface ListFleetResult {
+export interface FleetListResult {
   /** The FleetResource items on this page */
   value: FleetListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListFleetResult = /*@__PURE__*/ S.suspend(() =>
+export const FleetListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: FleetListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListFleetResult",
-}) as any as S.Schema<ListFleetResult>;
+  identifier: "FleetListResult",
+}) as any as S.Schema<FleetListResult>;
 
 export interface ListFleetByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12410,20 +11681,20 @@ export const FleetspaceListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FleetspaceListResultValueList>;
 
 /** The response of a FleetspaceResource list operation. */
-export interface ListFleetspaceResult {
+export interface FleetspaceListResult {
   /** The FleetspaceResource items on this page */
   value: FleetspaceListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListFleetspaceResult = /*@__PURE__*/ S.suspend(() =>
+export const FleetspaceListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: FleetspaceListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListFleetspaceResult",
-}) as any as S.Schema<ListFleetspaceResult>;
+  identifier: "FleetspaceListResult",
+}) as any as S.Schema<FleetspaceListResult>;
 
 export interface ListFleetspaceAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12486,20 +11757,20 @@ export const FleetspaceAccountListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FleetspaceAccountListResultValueList>;
 
 /** The response of a FleetspaceAccountResource list operation. */
-export interface ListFleetspaceAccountResult {
+export interface FleetspaceAccountListResult {
   /** The FleetspaceAccountResource items on this page */
   value: FleetspaceAccountListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListFleetspaceAccountResult = /*@__PURE__*/ S.suspend(() =>
+export const FleetspaceAccountListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: FleetspaceAccountListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListFleetspaceAccountResult",
-}) as any as S.Schema<ListFleetspaceAccountResult>;
+  identifier: "FleetspaceAccountListResult",
+}) as any as S.Schema<FleetspaceAccountListResult>;
 
 export interface ListGremlinResourceGremlinDatabasesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12898,7 +12169,7 @@ export const LocationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "LocationListResult",
 }) as any as S.Schema<LocationListResult>;
 
-export interface ListMongoDbResourceMongoDbCollectionsRequest {
+export interface ListMongoDBResourceMongoDBCollectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12908,7 +12179,7 @@ export interface ListMongoDbResourceMongoDbCollectionsRequest {
   /** Cosmos DB database name. */
   databaseName: string;
 }
-export const ListMongoDbResourceMongoDbCollectionsRequest =
+export const ListMongoDBResourceMongoDBCollectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12924,8 +12195,8 @@ export const ListMongoDbResourceMongoDbCollectionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMongoDbResourceMongoDbCollectionsRequest",
-  }) as any as S.Schema<ListMongoDbResourceMongoDbCollectionsRequest>;
+    identifier: "ListMongoDBResourceMongoDBCollectionsRequest",
+  }) as any as S.Schema<ListMongoDBResourceMongoDBCollectionsRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
 export type MongoDBCollectionGetResultsTagsMap = {
@@ -12992,7 +12263,7 @@ export const MongoDBCollectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MongoDBCollectionListResult",
 }) as any as S.Schema<MongoDBCollectionListResult>;
 
-export interface ListMongoDbResourceMongoDbDatabasesRequest {
+export interface ListMongoDBResourceMongoDBDatabasesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13000,7 +12271,7 @@ export interface ListMongoDbResourceMongoDbDatabasesRequest {
   /** Cosmos DB database account name. */
   accountName: string;
 }
-export const ListMongoDbResourceMongoDbDatabasesRequest =
+export const ListMongoDBResourceMongoDBDatabasesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13015,8 +12286,8 @@ export const ListMongoDbResourceMongoDbDatabasesRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMongoDbResourceMongoDbDatabasesRequest",
-  }) as any as S.Schema<ListMongoDbResourceMongoDbDatabasesRequest>;
+    identifier: "ListMongoDBResourceMongoDBDatabasesRequest",
+  }) as any as S.Schema<ListMongoDBResourceMongoDBDatabasesRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
 export type MongoDBDatabaseGetResultsTagsMap = {
@@ -13083,7 +12354,7 @@ export const MongoDBDatabaseListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MongoDBDatabaseListResult",
 }) as any as S.Schema<MongoDBDatabaseListResult>;
 
-export interface ListMongoDbResourceMongoRoleDefinitionsRequest {
+export interface ListMongoDBResourceMongoRoleDefinitionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13091,7 +12362,7 @@ export interface ListMongoDbResourceMongoRoleDefinitionsRequest {
   /** Cosmos DB database account name. */
   accountName: string;
 }
-export const ListMongoDbResourceMongoRoleDefinitionsRequest =
+export const ListMongoDBResourceMongoRoleDefinitionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13106,8 +12377,8 @@ export const ListMongoDbResourceMongoRoleDefinitionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMongoDbResourceMongoRoleDefinitionsRequest",
-  }) as any as S.Schema<ListMongoDbResourceMongoRoleDefinitionsRequest>;
+    identifier: "ListMongoDBResourceMongoRoleDefinitionsRequest",
+  }) as any as S.Schema<ListMongoDBResourceMongoRoleDefinitionsRequest>;
 
 /** An Azure Cosmos DB Mongo Role Definition. */
 export interface MongoRoleDefinitionGetResults {
@@ -13156,7 +12427,7 @@ export const MongoRoleDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MongoRoleDefinitionListResult",
 }) as any as S.Schema<MongoRoleDefinitionListResult>;
 
-export interface ListMongoDbResourceMongoUserDefinitionsRequest {
+export interface ListMongoDBResourceMongoUserDefinitionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13164,7 +12435,7 @@ export interface ListMongoDbResourceMongoUserDefinitionsRequest {
   /** Cosmos DB database account name. */
   accountName: string;
 }
-export const ListMongoDbResourceMongoUserDefinitionsRequest =
+export const ListMongoDBResourceMongoUserDefinitionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13179,8 +12450,8 @@ export const ListMongoDbResourceMongoUserDefinitionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMongoDbResourceMongoUserDefinitionsRequest",
-  }) as any as S.Schema<ListMongoDbResourceMongoUserDefinitionsRequest>;
+    identifier: "ListMongoDBResourceMongoUserDefinitionsRequest",
+  }) as any as S.Schema<ListMongoDBResourceMongoUserDefinitionsRequest>;
 
 /** An Azure Cosmos DB User Definition */
 export interface MongoUserDefinitionGetResults {
@@ -13229,7 +12500,7 @@ export const MongoUserDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MongoUserDefinitionListResult",
 }) as any as S.Schema<MongoUserDefinitionListResult>;
 
-export interface ListMongoMiResourceMongoMiRoleAssignmentsRequest {
+export interface ListMongoMIResourceMongoMIRoleAssignmentsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13237,7 +12508,7 @@ export interface ListMongoMiResourceMongoMiRoleAssignmentsRequest {
   /** Cosmos DB database account name. */
   accountName: string;
 }
-export const ListMongoMiResourceMongoMiRoleAssignmentsRequest =
+export const ListMongoMIResourceMongoMIRoleAssignmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13252,8 +12523,8 @@ export const ListMongoMiResourceMongoMiRoleAssignmentsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMongoMiResourceMongoMiRoleAssignmentsRequest",
-  }) as any as S.Schema<ListMongoMiResourceMongoMiRoleAssignmentsRequest>;
+    identifier: "ListMongoMIResourceMongoMIRoleAssignmentsRequest",
+  }) as any as S.Schema<ListMongoMIResourceMongoMIRoleAssignmentsRequest>;
 
 /** Parameters to create and update an Azure Cosmos DB MongoMI Role Assignment. */
 export interface MongoMIRoleAssignmentResource {
@@ -13303,7 +12574,7 @@ export const MongoMIRoleAssignmentListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MongoMIRoleAssignmentListResult",
 }) as any as S.Schema<MongoMIRoleAssignmentListResult>;
 
-export interface ListMongoMiResourceMongoMiRoleDefinitionsRequest {
+export interface ListMongoMIResourceMongoMIRoleDefinitionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13311,7 +12582,7 @@ export interface ListMongoMiResourceMongoMiRoleDefinitionsRequest {
   /** Cosmos DB database account name. */
   accountName: string;
 }
-export const ListMongoMiResourceMongoMiRoleDefinitionsRequest =
+export const ListMongoMIResourceMongoMIRoleDefinitionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13326,8 +12597,8 @@ export const ListMongoMiResourceMongoMiRoleDefinitionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListMongoMiResourceMongoMiRoleDefinitionsRequest",
-  }) as any as S.Schema<ListMongoMiResourceMongoMiRoleDefinitionsRequest>;
+    identifier: "ListMongoMIResourceMongoMIRoleDefinitionsRequest",
+  }) as any as S.Schema<ListMongoMIResourceMongoMIRoleDefinitionsRequest>;
 
 /** Parameters to create and update an Azure Cosmos DB MongoMI Role Definition. */
 export interface MongoMIRoleDefinitionResource {
@@ -13449,9 +12720,9 @@ export const NotebookWorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "NotebookWorkspaceListResult",
 }) as any as S.Schema<NotebookWorkspaceListResult>;
 
-export type NotebookWorkspacesListConnectionInfoRequestNotebookWorkspaceName =
+export type ListNotebookWorkspaceConnectionInfoRequestNotebookWorkspaceName =
   "default";
-export const NotebookWorkspacesListConnectionInfoRequestNotebookWorkspaceName =
+export const ListNotebookWorkspaceConnectionInfoRequestNotebookWorkspaceName =
   /*@__PURE__*/ S.String;
 
 export interface ListNotebookWorkspaceConnectionInfoRequest {
@@ -13463,7 +12734,7 @@ export interface ListNotebookWorkspaceConnectionInfoRequest {
   accountName: string;
   /** The name of the notebook workspace resource. */
   notebookWorkspaceName:
-    | NotebookWorkspacesListConnectionInfoRequestNotebookWorkspaceName
+    | ListNotebookWorkspaceConnectionInfoRequestNotebookWorkspaceName
     | (string & {});
 }
 export const ListNotebookWorkspaceConnectionInfoRequest =
@@ -13473,7 +12744,7 @@ export const ListNotebookWorkspaceConnectionInfoRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       accountName: S.String.pipe(T.Label()),
       notebookWorkspaceName:
-        NotebookWorkspacesListConnectionInfoRequestNotebookWorkspaceName.pipe(
+        ListNotebookWorkspaceConnectionInfoRequestNotebookWorkspaceName.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -14035,20 +13306,20 @@ export const RestorableDatabaseAccountsListResultValueList =
   ) as any as S.Schema<RestorableDatabaseAccountsListResultValueList>;
 
 /** The List operation response, that contains the restorable database accounts and their properties. */
-export interface ListRestorableDatabaseAccountsResult {
+export interface RestorableDatabaseAccountsListResult {
   /** List of restorable database accounts and their properties. */
   value?: RestorableDatabaseAccountsListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableDatabaseAccountsResult = /*@__PURE__*/ S.suspend(
+export const RestorableDatabaseAccountsListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(RestorableDatabaseAccountsListResultValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListRestorableDatabaseAccountsResult",
-}) as any as S.Schema<ListRestorableDatabaseAccountsResult>;
+  identifier: "RestorableDatabaseAccountsListResult",
+}) as any as S.Schema<RestorableDatabaseAccountsListResult>;
 
 export interface ListRestorableDatabaseAccountsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14181,20 +13452,20 @@ export const RestorableGremlinDatabasesListResultValueList =
   ) as any as S.Schema<RestorableGremlinDatabasesListResultValueList>;
 
 /** The List operation response, that contains the Gremlin database events and their properties. */
-export interface ListRestorableGremlinDatabasesResult {
+export interface RestorableGremlinDatabasesListResult {
   /** List of Gremlin database events and their properties. */
   value?: RestorableGremlinDatabasesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableGremlinDatabasesResult = /*@__PURE__*/ S.suspend(
+export const RestorableGremlinDatabasesListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(RestorableGremlinDatabasesListResultValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListRestorableGremlinDatabasesResult",
-}) as any as S.Schema<ListRestorableGremlinDatabasesResult>;
+  identifier: "RestorableGremlinDatabasesListResult",
+}) as any as S.Schema<RestorableGremlinDatabasesListResult>;
 
 export interface ListRestorableGremlinGraphsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14305,19 +13576,19 @@ export const RestorableGremlinGraphsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RestorableGremlinGraphsListResultValueList>;
 
 /** The List operation response, that contains the Gremlin graph events and their properties. */
-export interface ListRestorableGremlinGraphsResult {
+export interface RestorableGremlinGraphsListResult {
   /** List of Gremlin graph events and their properties. */
   value?: RestorableGremlinGraphsListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableGremlinGraphsResult = /*@__PURE__*/ S.suspend(() =>
+export const RestorableGremlinGraphsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(RestorableGremlinGraphsListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListRestorableGremlinGraphsResult",
-}) as any as S.Schema<ListRestorableGremlinGraphsResult>;
+  identifier: "RestorableGremlinGraphsListResult",
+}) as any as S.Schema<RestorableGremlinGraphsListResult>;
 
 export interface ListRestorableGremlinResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14392,20 +13663,20 @@ export const RestorableGremlinResourcesListResultValueList =
   ) as any as S.Schema<RestorableGremlinResourcesListResultValueList>;
 
 /** The List operation response, that contains the restorable Gremlin resources. */
-export interface ListRestorableGremlinResourcesResult {
+export interface RestorableGremlinResourcesListResult {
   /** List of restorable Gremlin resources, including the gremlin database and graph names. */
   value?: RestorableGremlinResourcesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableGremlinResourcesResult = /*@__PURE__*/ S.suspend(
+export const RestorableGremlinResourcesListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(RestorableGremlinResourcesListResultValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListRestorableGremlinResourcesResult",
-}) as any as S.Schema<ListRestorableGremlinResourcesResult>;
+  identifier: "RestorableGremlinResourcesListResult",
+}) as any as S.Schema<RestorableGremlinResourcesListResult>;
 
 export interface ListRestorableMongodbCollectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14520,20 +13791,20 @@ export const RestorableMongodbCollectionsListResultValueList =
   ) as any as S.Schema<RestorableMongodbCollectionsListResultValueList>;
 
 /** The List operation response, that contains the MongoDB collection events and their properties. */
-export interface ListRestorableMongodbCollectionsResult {
+export interface RestorableMongodbCollectionsListResult {
   /** List of MongoDB collection events and their properties. */
   value?: RestorableMongodbCollectionsListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableMongodbCollectionsResult = /*@__PURE__*/ S.suspend(
+export const RestorableMongodbCollectionsListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(RestorableMongodbCollectionsListResultValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListRestorableMongodbCollectionsResult",
-}) as any as S.Schema<ListRestorableMongodbCollectionsResult>;
+  identifier: "RestorableMongodbCollectionsListResult",
+}) as any as S.Schema<RestorableMongodbCollectionsListResult>;
 
 export interface ListRestorableMongodbDatabasesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14637,20 +13908,20 @@ export const RestorableMongodbDatabasesListResultValueList =
   ) as any as S.Schema<RestorableMongodbDatabasesListResultValueList>;
 
 /** The List operation response, that contains the MongoDB database events and their properties. */
-export interface ListRestorableMongodbDatabasesResult {
+export interface RestorableMongodbDatabasesListResult {
   /** List of MongoDB database events and their properties. */
   value?: RestorableMongodbDatabasesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableMongodbDatabasesResult = /*@__PURE__*/ S.suspend(
+export const RestorableMongodbDatabasesListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(RestorableMongodbDatabasesListResultValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListRestorableMongodbDatabasesResult",
-}) as any as S.Schema<ListRestorableMongodbDatabasesResult>;
+  identifier: "RestorableMongodbDatabasesListResult",
+}) as any as S.Schema<RestorableMongodbDatabasesListResult>;
 
 export interface ListRestorableMongodbResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14728,20 +13999,20 @@ export const RestorableMongodbResourcesListResultValueList =
   ) as any as S.Schema<RestorableMongodbResourcesListResultValueList>;
 
 /** The List operation response, that contains the restorable MongoDB resources. */
-export interface ListRestorableMongodbResourcesResult {
+export interface RestorableMongodbResourcesListResult {
   /** List of restorable MongoDB resources, including the database and collection names. */
   value?: RestorableMongodbResourcesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableMongodbResourcesResult = /*@__PURE__*/ S.suspend(
+export const RestorableMongodbResourcesListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(RestorableMongodbResourcesListResultValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ListRestorableMongodbResourcesResult",
-}) as any as S.Schema<ListRestorableMongodbResourcesResult>;
+  identifier: "RestorableMongodbResourcesListResult",
+}) as any as S.Schema<RestorableMongodbResourcesListResult>;
 
 export interface ListRestorableSqlContainersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14936,19 +14207,19 @@ export const RestorableSqlContainersListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RestorableSqlContainersListResultValueList>;
 
 /** The List operation response, that contains the SQL container events and their properties. */
-export interface ListRestorableSqlContainersResult {
+export interface RestorableSqlContainersListResult {
   /** List of SQL container events and their properties. */
   value?: RestorableSqlContainersListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableSqlContainersResult = /*@__PURE__*/ S.suspend(() =>
+export const RestorableSqlContainersListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(RestorableSqlContainersListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListRestorableSqlContainersResult",
-}) as any as S.Schema<ListRestorableSqlContainersResult>;
+  identifier: "RestorableSqlContainersListResult",
+}) as any as S.Schema<RestorableSqlContainersListResult>;
 
 export interface ListRestorableSqlDatabasesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15100,19 +14371,19 @@ export const RestorableSqlDatabasesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RestorableSqlDatabasesListResultValueList>;
 
 /** The List operation response, that contains the SQL database events and their properties. */
-export interface ListRestorableSqlDatabasesResult {
+export interface RestorableSqlDatabasesListResult {
   /** List of SQL database events and their properties. */
   value?: RestorableSqlDatabasesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableSqlDatabasesResult = /*@__PURE__*/ S.suspend(() =>
+export const RestorableSqlDatabasesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(RestorableSqlDatabasesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListRestorableSqlDatabasesResult",
-}) as any as S.Schema<ListRestorableSqlDatabasesResult>;
+  identifier: "RestorableSqlDatabasesListResult",
+}) as any as S.Schema<RestorableSqlDatabasesListResult>;
 
 export interface ListRestorableSqlResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15187,19 +14458,19 @@ export const RestorableSqlResourcesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RestorableSqlResourcesListResultValueList>;
 
 /** The List operation response, that contains the restorable SQL resources. */
-export interface ListRestorableSqlResourcesResult {
+export interface RestorableSqlResourcesListResult {
   /** List of restorable SQL resources, including the database and collection names. */
   value?: RestorableSqlResourcesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableSqlResourcesResult = /*@__PURE__*/ S.suspend(() =>
+export const RestorableSqlResourcesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(RestorableSqlResourcesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListRestorableSqlResourcesResult",
-}) as any as S.Schema<ListRestorableSqlResourcesResult>;
+  identifier: "RestorableSqlResourcesListResult",
+}) as any as S.Schema<RestorableSqlResourcesListResult>;
 
 export interface ListRestorableTableResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15260,19 +14531,19 @@ export const RestorableTableResourcesListResultValueList =
   ) as any as S.Schema<RestorableTableResourcesListResultValueList>;
 
 /** List of restorable table names. */
-export interface ListRestorableTableResourcesResult {
+export interface RestorableTableResourcesListResult {
   /** List of restorable table names. */
   value?: RestorableTableResourcesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableTableResourcesResult = /*@__PURE__*/ S.suspend(() =>
+export const RestorableTableResourcesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(RestorableTableResourcesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListRestorableTableResourcesResult",
-}) as any as S.Schema<ListRestorableTableResourcesResult>;
+  identifier: "RestorableTableResourcesListResult",
+}) as any as S.Schema<RestorableTableResourcesListResult>;
 
 export interface ListRestorableTablesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15379,19 +14650,19 @@ export const RestorableTablesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<RestorableTablesListResultValueList>;
 
 /** The List operation response, that contains the Table events and their properties. */
-export interface ListRestorableTablesResult {
+export interface RestorableTablesListResult {
   /** List of Table events and their properties. */
   value?: RestorableTablesListResultValueList;
   nextLink?: string;
 }
-export const ListRestorableTablesResult = /*@__PURE__*/ S.suspend(() =>
+export const RestorableTablesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(RestorableTablesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListRestorableTablesResult",
-}) as any as S.Schema<ListRestorableTablesResult>;
+  identifier: "RestorableTablesListResult",
+}) as any as S.Schema<RestorableTablesListResult>;
 
 export interface ListServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15995,6 +15266,61 @@ export const ListSqlResourceSqlTriggersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSqlResourceSqlTriggersRequest",
 }) as any as S.Schema<ListSqlResourceSqlTriggersRequest>;
 
+/** Type of the Trigger */
+export type TriggerType = "Pre" | "Post";
+export const TriggerType = /*@__PURE__*/ S.String;
+
+/** The operation the trigger is associated with */
+export type TriggerOperation =
+  | "All"
+  | "Create"
+  | "Update"
+  | "Delete"
+  | "Replace";
+export const TriggerOperation = /*@__PURE__*/ S.String;
+
+export interface SqlTriggerGetPropertiesResource {
+  /** Name of the Cosmos DB SQL trigger */
+  id: string;
+  /** Body of the Trigger */
+  body?: string;
+  /** Type of the Trigger */
+  triggerType?: TriggerType;
+  /** The operation the trigger is associated with */
+  triggerOperation?: TriggerOperation;
+  /** A system generated property. A unique identifier. */
+  _rid?: string;
+  /** A system generated property that denotes the last updated timestamp of the resource. */
+  _ts?: number;
+  /** A system generated property representing the resource etag required for optimistic concurrency control. */
+  _etag?: string;
+}
+export const SqlTriggerGetPropertiesResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    body: S.optional(S.String),
+    triggerType: S.optional(TriggerType),
+    triggerOperation: S.optional(TriggerOperation),
+    _rid: S.optional(S.String),
+    _ts: S.optional(S.Number),
+    _etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SqlTriggerGetPropertiesResource",
+}) as any as S.Schema<SqlTriggerGetPropertiesResource>;
+
+/** The properties of an Azure Cosmos DB trigger */
+export interface SqlTriggerGetProperties {
+  resource?: SqlTriggerGetPropertiesResource;
+}
+export const SqlTriggerGetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resource: S.optional(SqlTriggerGetPropertiesResource),
+  }),
+).annotate({
+  identifier: "SqlTriggerGetProperties",
+}) as any as S.Schema<SqlTriggerGetProperties>;
+
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
 export type SqlTriggerGetResultsTagsMap = { [key: string]: string | undefined };
 export const SqlTriggerGetResultsTagsMap = /*@__PURE__*/ S.Record(
@@ -16388,6 +15714,1378 @@ export const TableListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TableListResult",
 }) as any as S.Schema<TableListResult>;
+
+export interface MigrateCassandraResourceCassandraKeyspaceToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB keyspace name. */
+  keyspaceName: string;
+}
+export const MigrateCassandraResourceCassandraKeyspaceToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      keyspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateCassandraResourceCassandraKeyspaceToAutoscaleRequest",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraKeyspaceToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponseTagsMap>;
+
+export interface MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponse",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponse>;
+
+export interface MigrateCassandraResourceCassandraKeyspaceToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB keyspace name. */
+  keyspaceName: string;
+}
+export const MigrateCassandraResourceCassandraKeyspaceToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      keyspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "MigrateCassandraResourceCassandraKeyspaceToManualThroughputRequest",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraKeyspaceToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponseTagsMap>;
+
+export interface MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier:
+      "MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponse",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponse>;
+
+export interface MigrateCassandraResourceCassandraTableToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB keyspace name. */
+  keyspaceName: string;
+  /** Cosmos DB table name. */
+  tableName: string;
+}
+export const MigrateCassandraResourceCassandraTableToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      keyspaceName: S.String.pipe(T.Label()),
+      tableName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/tables/{tableName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateCassandraResourceCassandraTableToAutoscaleRequest",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraTableToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateCassandraResourceCassandraTableToAutoscaleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateCassandraResourceCassandraTableToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateCassandraResourceCassandraTableToAutoscaleResponseTagsMap>;
+
+export interface MigrateCassandraResourceCassandraTableToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateCassandraResourceCassandraTableToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateCassandraResourceCassandraTableToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateCassandraResourceCassandraTableToAutoscaleResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateCassandraResourceCassandraTableToAutoscaleResponse",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraTableToAutoscaleResponse>;
+
+export interface MigrateCassandraResourceCassandraTableToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB keyspace name. */
+  keyspaceName: string;
+  /** Cosmos DB table name. */
+  tableName: string;
+}
+export const MigrateCassandraResourceCassandraTableToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      keyspaceName: S.String.pipe(T.Label()),
+      tableName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/cassandraKeyspaces/{keyspaceName}/tables/{tableName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "MigrateCassandraResourceCassandraTableToManualThroughputRequest",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraTableToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateCassandraResourceCassandraTableToManualThroughputResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateCassandraResourceCassandraTableToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateCassandraResourceCassandraTableToManualThroughputResponseTagsMap>;
+
+export interface MigrateCassandraResourceCassandraTableToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateCassandraResourceCassandraTableToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateCassandraResourceCassandraTableToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateCassandraResourceCassandraTableToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier:
+      "MigrateCassandraResourceCassandraTableToManualThroughputResponse",
+  }) as any as S.Schema<MigrateCassandraResourceCassandraTableToManualThroughputResponse>;
+
+export interface MigrateGremlinResourceGremlinDatabaseToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+}
+export const MigrateGremlinResourceGremlinDatabaseToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateGremlinResourceGremlinDatabaseToAutoscaleRequest",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinDatabaseToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateGremlinResourceGremlinDatabaseToAutoscaleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateGremlinResourceGremlinDatabaseToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateGremlinResourceGremlinDatabaseToAutoscaleResponseTagsMap>;
+
+export interface MigrateGremlinResourceGremlinDatabaseToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateGremlinResourceGremlinDatabaseToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateGremlinResourceGremlinDatabaseToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateGremlinResourceGremlinDatabaseToAutoscaleResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateGremlinResourceGremlinDatabaseToAutoscaleResponse",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinDatabaseToAutoscaleResponse>;
+
+export interface MigrateGremlinResourceGremlinDatabaseToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+}
+export const MigrateGremlinResourceGremlinDatabaseToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "MigrateGremlinResourceGremlinDatabaseToManualThroughputRequest",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinDatabaseToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateGremlinResourceGremlinDatabaseToManualThroughputResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateGremlinResourceGremlinDatabaseToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateGremlinResourceGremlinDatabaseToManualThroughputResponseTagsMap>;
+
+export interface MigrateGremlinResourceGremlinDatabaseToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateGremlinResourceGremlinDatabaseToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateGremlinResourceGremlinDatabaseToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateGremlinResourceGremlinDatabaseToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier:
+      "MigrateGremlinResourceGremlinDatabaseToManualThroughputResponse",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinDatabaseToManualThroughputResponse>;
+
+export interface MigrateGremlinResourceGremlinGraphToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB graph name. */
+  graphName: string;
+}
+export const MigrateGremlinResourceGremlinGraphToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      graphName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateGremlinResourceGremlinGraphToAutoscaleRequest",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinGraphToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateGremlinResourceGremlinGraphToAutoscaleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateGremlinResourceGremlinGraphToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateGremlinResourceGremlinGraphToAutoscaleResponseTagsMap>;
+
+export interface MigrateGremlinResourceGremlinGraphToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateGremlinResourceGremlinGraphToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateGremlinResourceGremlinGraphToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateGremlinResourceGremlinGraphToAutoscaleResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateGremlinResourceGremlinGraphToAutoscaleResponse",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinGraphToAutoscaleResponse>;
+
+export interface MigrateGremlinResourceGremlinGraphToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB graph name. */
+  graphName: string;
+}
+export const MigrateGremlinResourceGremlinGraphToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      graphName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/gremlinDatabases/{databaseName}/graphs/{graphName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateGremlinResourceGremlinGraphToManualThroughputRequest",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinGraphToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateGremlinResourceGremlinGraphToManualThroughputResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateGremlinResourceGremlinGraphToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateGremlinResourceGremlinGraphToManualThroughputResponseTagsMap>;
+
+export interface MigrateGremlinResourceGremlinGraphToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateGremlinResourceGremlinGraphToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateGremlinResourceGremlinGraphToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateGremlinResourceGremlinGraphToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateGremlinResourceGremlinGraphToManualThroughputResponse",
+  }) as any as S.Schema<MigrateGremlinResourceGremlinGraphToManualThroughputResponse>;
+
+export interface MigrateMongoDBResourceMongoDBCollectionToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB collection name. */
+  collectionName: string;
+}
+export const MigrateMongoDBResourceMongoDBCollectionToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      collectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateMongoDBResourceMongoDBCollectionToAutoscaleRequest",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBCollectionToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponseTagsMap>;
+
+export interface MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponse",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponse>;
+
+export interface MigrateMongoDBResourceMongoDBCollectionToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB collection name. */
+  collectionName: string;
+}
+export const MigrateMongoDBResourceMongoDBCollectionToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      collectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "MigrateMongoDBResourceMongoDBCollectionToManualThroughputRequest",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBCollectionToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponseTagsMap>;
+
+export interface MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier:
+      "MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponse",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponse>;
+
+export interface MigrateMongoDBResourceMongoDBDatabaseToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+}
+export const MigrateMongoDBResourceMongoDBDatabaseToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateMongoDBResourceMongoDBDatabaseToAutoscaleRequest",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBDatabaseToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponseTagsMap>;
+
+export interface MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponse",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponse>;
+
+export interface MigrateMongoDBResourceMongoDBDatabaseToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+}
+export const MigrateMongoDBResourceMongoDBDatabaseToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "MigrateMongoDBResourceMongoDBDatabaseToManualThroughputRequest",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBDatabaseToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponseTagsMap =
+  { [key: string]: string | undefined };
+export const MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponseTagsMap>;
+
+export interface MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier:
+      "MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponse",
+  }) as any as S.Schema<MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponse>;
+
+export interface MigrateSqlResourceSqlContainerToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB container name. */
+  containerName: string;
+}
+export const MigrateSqlResourceSqlContainerToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlContainerToAutoscaleRequest",
+  }) as any as S.Schema<MigrateSqlResourceSqlContainerToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateSqlResourceSqlContainerToAutoscaleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateSqlResourceSqlContainerToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateSqlResourceSqlContainerToAutoscaleResponseTagsMap>;
+
+export interface MigrateSqlResourceSqlContainerToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateSqlResourceSqlContainerToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateSqlResourceSqlContainerToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateSqlResourceSqlContainerToAutoscaleResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlContainerToAutoscaleResponse",
+  }) as any as S.Schema<MigrateSqlResourceSqlContainerToAutoscaleResponse>;
+
+export interface MigrateSqlResourceSqlContainerToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+  /** Cosmos DB container name. */
+  containerName: string;
+}
+export const MigrateSqlResourceSqlContainerToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlContainerToManualThroughputRequest",
+  }) as any as S.Schema<MigrateSqlResourceSqlContainerToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateSqlResourceSqlContainerToManualThroughputResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateSqlResourceSqlContainerToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateSqlResourceSqlContainerToManualThroughputResponseTagsMap>;
+
+export interface MigrateSqlResourceSqlContainerToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateSqlResourceSqlContainerToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateSqlResourceSqlContainerToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateSqlResourceSqlContainerToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlContainerToManualThroughputResponse",
+  }) as any as S.Schema<MigrateSqlResourceSqlContainerToManualThroughputResponse>;
+
+export interface MigrateSqlResourceSqlDatabaseToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+}
+export const MigrateSqlResourceSqlDatabaseToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlDatabaseToAutoscaleRequest",
+  }) as any as S.Schema<MigrateSqlResourceSqlDatabaseToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateSqlResourceSqlDatabaseToAutoscaleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateSqlResourceSqlDatabaseToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateSqlResourceSqlDatabaseToAutoscaleResponseTagsMap>;
+
+export interface MigrateSqlResourceSqlDatabaseToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateSqlResourceSqlDatabaseToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateSqlResourceSqlDatabaseToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(MigrateSqlResourceSqlDatabaseToAutoscaleResponseTagsMap),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlDatabaseToAutoscaleResponse",
+  }) as any as S.Schema<MigrateSqlResourceSqlDatabaseToAutoscaleResponse>;
+
+export interface MigrateSqlResourceSqlDatabaseToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB database name. */
+  databaseName: string;
+}
+export const MigrateSqlResourceSqlDatabaseToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlDatabaseToManualThroughputRequest",
+  }) as any as S.Schema<MigrateSqlResourceSqlDatabaseToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateSqlResourceSqlDatabaseToManualThroughputResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateSqlResourceSqlDatabaseToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateSqlResourceSqlDatabaseToManualThroughputResponseTagsMap>;
+
+export interface MigrateSqlResourceSqlDatabaseToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateSqlResourceSqlDatabaseToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateSqlResourceSqlDatabaseToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateSqlResourceSqlDatabaseToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateSqlResourceSqlDatabaseToManualThroughputResponse",
+  }) as any as S.Schema<MigrateSqlResourceSqlDatabaseToManualThroughputResponse>;
+
+export interface MigrateTableResourceTableToAutoscaleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB table name. */
+  tableName: string;
+}
+export const MigrateTableResourceTableToAutoscaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      tableName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/throughputSettings/default/migrateToAutoscale",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateTableResourceTableToAutoscaleRequest",
+  }) as any as S.Schema<MigrateTableResourceTableToAutoscaleRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateTableResourceTableToAutoscaleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateTableResourceTableToAutoscaleResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateTableResourceTableToAutoscaleResponseTagsMap>;
+
+export interface MigrateTableResourceTableToAutoscaleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateTableResourceTableToAutoscaleResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateTableResourceTableToAutoscaleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(MigrateTableResourceTableToAutoscaleResponseTagsMap),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateTableResourceTableToAutoscaleResponse",
+  }) as any as S.Schema<MigrateTableResourceTableToAutoscaleResponse>;
+
+export interface MigrateTableResourceTableToManualThroughputRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** Cosmos DB table name. */
+  tableName: string;
+}
+export const MigrateTableResourceTableToManualThroughputRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      tableName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/throughputSettings/default/migrateToManualThroughput",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateTableResourceTableToManualThroughputRequest",
+  }) as any as S.Schema<MigrateTableResourceTableToManualThroughputRequest>;
+
+/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+export type MigrateTableResourceTableToManualThroughputResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MigrateTableResourceTableToManualThroughputResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<MigrateTableResourceTableToManualThroughputResponseTagsMap>;
+
+export interface MigrateTableResourceTableToManualThroughputResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of an Azure Cosmos DB resource throughput */
+  properties?: ThroughputSettingsGetProperties;
+  /** The location of the resource group to which the resource belongs. */
+  location?: string;
+  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
+  tags?: MigrateTableResourceTableToManualThroughputResponseTagsMap;
+  /** Identity for the resource. */
+  identity?: ManagedServiceIdentity;
+}
+export const MigrateTableResourceTableToManualThroughputResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ThroughputSettingsGetProperties),
+      location: S.optional(S.String),
+      tags: S.optional(
+        MigrateTableResourceTableToManualThroughputResponseTagsMap,
+      ),
+      identity: S.optional(ManagedServiceIdentity),
+    }),
+  ).annotate({
+    identifier: "MigrateTableResourceTableToManualThroughputResponse",
+  }) as any as S.Schema<MigrateTableResourceTableToManualThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
 export type MongoDBResourcesCreateUpdateMongoDBCollectionRequestTagsMap = {
@@ -16808,348 +17506,6 @@ export const MongoDBResourcesCreateUpdateMongoUserDefinitionResponse =
     identifier: "MongoDBResourcesCreateUpdateMongoUserDefinitionResponse",
   }) as any as S.Schema<MongoDBResourcesCreateUpdateMongoUserDefinitionResponse>;
 
-export interface MongoDBResourcesMigrateMongoDBCollectionToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB collection name. */
-  collectionName: string;
-}
-export const MongoDBResourcesMigrateMongoDBCollectionToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      collectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "MongoDBResourcesMigrateMongoDBCollectionToAutoscaleRequest",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBCollectionToAutoscaleRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponseTagsMap =
-  { [key: string]: string | undefined };
-export const MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponseTagsMap>;
-
-export interface MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse>;
-
-export interface MongoDBResourcesMigrateMongoDBCollectionToManualThroughputRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB collection name. */
-  collectionName: string;
-}
-export const MongoDBResourcesMigrateMongoDBCollectionToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      collectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "MongoDBResourcesMigrateMongoDBCollectionToManualThroughputRequest",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBCollectionToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponseTagsMap =
-  { [key: string]: string | undefined };
-export const MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponseTagsMap>;
-
-export interface MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier:
-      "MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse>;
-
-export interface MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-}
-export const MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleRequest",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponseTagsMap>;
-
-export interface MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse>;
-
-export interface MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-}
-export const MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputRequest",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponseTagsMap =
-  { [key: string]: string | undefined };
-export const MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponseTagsMap>;
-
-export interface MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier:
-      "MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse",
-  }) as any as S.Schema<MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse>;
-
-export interface MongoDBResourcesRetrieveContinuousBackupInformationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB collection name. */
-  collectionName: string;
-  /** The name of the continuous backup restore location. */
-  location?: string;
-}
-export const MongoDBResourcesRetrieveContinuousBackupInformationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      collectionName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/retrieveContinuousBackupInformation",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "MongoDBResourcesRetrieveContinuousBackupInformationRequest",
-  }) as any as S.Schema<MongoDBResourcesRetrieveContinuousBackupInformationRequest>;
-
 /** Azure Cosmos DB MongoMI Role Assignment resource object. */
 export interface MongoMIRoleAssignmentResourcePropertiesInput {
   /** The unique identifier for the associated Role Definition. */
@@ -17348,51 +17704,6 @@ export const NotebookWorkspacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "NotebookWorkspacesCreateOrUpdateResponse",
 }) as any as S.Schema<NotebookWorkspacesCreateOrUpdateResponse>;
 
-export type NotebookWorkspacesRegenerateAuthTokenRequestNotebookWorkspaceName =
-  "default";
-export const NotebookWorkspacesRegenerateAuthTokenRequestNotebookWorkspaceName =
-  /*@__PURE__*/ S.String;
-
-export interface NotebookWorkspacesRegenerateAuthTokenRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** The name of the notebook workspace resource. */
-  notebookWorkspaceName:
-    | NotebookWorkspacesRegenerateAuthTokenRequestNotebookWorkspaceName
-    | (string & {});
-}
-export const NotebookWorkspacesRegenerateAuthTokenRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      notebookWorkspaceName:
-        NotebookWorkspacesRegenerateAuthTokenRequestNotebookWorkspaceName.pipe(
-          T.Label(),
-        ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/notebookWorkspaces/{notebookWorkspaceName}/regenerateAuthToken",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NotebookWorkspacesRegenerateAuthTokenRequest",
-  }) as any as S.Schema<NotebookWorkspacesRegenerateAuthTokenRequest>;
-
-export interface NotebookWorkspacesRegenerateAuthTokenResponse {}
-export const NotebookWorkspacesRegenerateAuthTokenResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NotebookWorkspacesRegenerateAuthTokenResponse",
-  }) as any as S.Schema<NotebookWorkspacesRegenerateAuthTokenResponse>;
-
 /** Connection State of the Private Endpoint Connection. */
 export interface PrivateLinkServiceConnectionStatePropertyInput {
   /** The private link service connection status. */
@@ -17491,6 +17802,94 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
   ).annotate({
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
+
+/** The access key to regenerate. */
+export type KeyKind =
+  | "primary"
+  | "secondary"
+  | "primaryReadonly"
+  | "secondaryReadonly";
+export const KeyKind = /*@__PURE__*/ S.String;
+
+export interface RegenerateDatabaseAccountKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** The access key to regenerate. */
+  keyKind: KeyKind | (string & {});
+}
+export const RegenerateDatabaseAccountKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    keyKind: KeyKind,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/regenerateKey",
+      code: 200,
+      apiVersion: "2026-03-15",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateDatabaseAccountKeyRequest",
+}) as any as S.Schema<RegenerateDatabaseAccountKeyRequest>;
+
+export interface RegenerateDatabaseAccountKeyResponse {}
+export const RegenerateDatabaseAccountKeyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RegenerateDatabaseAccountKeyResponse",
+}) as any as S.Schema<RegenerateDatabaseAccountKeyResponse>;
+
+export type RegenerateNotebookWorkspaceAuthTokenRequestNotebookWorkspaceName =
+  "default";
+export const RegenerateNotebookWorkspaceAuthTokenRequestNotebookWorkspaceName =
+  /*@__PURE__*/ S.String;
+
+export interface RegenerateNotebookWorkspaceAuthTokenRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Cosmos DB database account name. */
+  accountName: string;
+  /** The name of the notebook workspace resource. */
+  notebookWorkspaceName:
+    | RegenerateNotebookWorkspaceAuthTokenRequestNotebookWorkspaceName
+    | (string & {});
+}
+export const RegenerateNotebookWorkspaceAuthTokenRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      notebookWorkspaceName:
+        RegenerateNotebookWorkspaceAuthTokenRequestNotebookWorkspaceName.pipe(
+          T.Label(),
+        ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/notebookWorkspaces/{notebookWorkspaceName}/regenerateAuthToken",
+        code: 200,
+        apiVersion: "2026-03-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateNotebookWorkspaceAuthTokenRequest",
+  }) as any as S.Schema<RegenerateNotebookWorkspaceAuthTokenRequest>;
+
+export interface RegenerateNotebookWorkspaceAuthTokenResponse {}
+export const RegenerateNotebookWorkspaceAuthTokenResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RegenerateNotebookWorkspaceAuthTokenResponse",
+  }) as any as S.Schema<RegenerateNotebookWorkspaceAuthTokenResponse>;
 
 /** Cosmos DB client encryption key resource object. */
 export interface ClientEncryptionKeyResource {
@@ -18429,7 +18828,7 @@ export const SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse =
     identifier: "SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse",
   }) as any as S.Schema<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>;
 
-export interface SqlResourcesMigrateSqlContainerToAutoscaleRequest {
+export interface SqlResourcesDeleteSqlTriggerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18440,74 +18839,37 @@ export interface SqlResourcesMigrateSqlContainerToAutoscaleRequest {
   databaseName: string;
   /** Cosmos DB container name. */
   containerName: string;
+  /** Cosmos DB trigger name. */
+  triggerName: string;
 }
-export const SqlResourcesMigrateSqlContainerToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlContainerToAutoscaleRequest",
-  }) as any as S.Schema<SqlResourcesMigrateSqlContainerToAutoscaleRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesMigrateSqlContainerToAutoscaleResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlResourcesMigrateSqlContainerToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlResourcesMigrateSqlContainerToAutoscaleResponseTagsMap>;
-
-export interface SqlResourcesMigrateSqlContainerToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesMigrateSqlContainerToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const SqlResourcesMigrateSqlContainerToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        SqlResourcesMigrateSqlContainerToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
+export const SqlResourcesDeleteSqlTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2026-03-15",
     }),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlContainerToAutoscaleResponse",
-  }) as any as S.Schema<SqlResourcesMigrateSqlContainerToAutoscaleResponse>;
+  ),
+).annotate({
+  identifier: "SqlResourcesDeleteSqlTriggerRequest",
+}) as any as S.Schema<SqlResourcesDeleteSqlTriggerRequest>;
 
-export interface SqlResourcesMigrateSqlContainerToManualThroughputRequest {
+export interface SqlResourcesDeleteSqlTriggerResponse {}
+export const SqlResourcesDeleteSqlTriggerResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "SqlResourcesDeleteSqlTriggerResponse",
+}) as any as S.Schema<SqlResourcesDeleteSqlTriggerResponse>;
+
+export interface SqlResourcesGetSqlTriggerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18518,38 +18880,39 @@ export interface SqlResourcesMigrateSqlContainerToManualThroughputRequest {
   databaseName: string;
   /** Cosmos DB container name. */
   containerName: string;
+  /** Cosmos DB trigger name. */
+  triggerName: string;
 }
-export const SqlResourcesMigrateSqlContainerToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlContainerToManualThroughputRequest",
-  }) as any as S.Schema<SqlResourcesMigrateSqlContainerToManualThroughputRequest>;
+export const SqlResourcesGetSqlTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2026-03-15",
+    }),
+  ),
+).annotate({
+  identifier: "SqlResourcesGetSqlTriggerRequest",
+}) as any as S.Schema<SqlResourcesGetSqlTriggerRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesMigrateSqlContainerToManualThroughputResponseTagsMap = {
+export type SqlResourcesGetSqlTriggerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesMigrateSqlContainerToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlResourcesMigrateSqlContainerToManualThroughputResponseTagsMap>;
+export const SqlResourcesGetSqlTriggerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SqlResourcesGetSqlTriggerResponseTagsMap>;
 
-export interface SqlResourcesMigrateSqlContainerToManualThroughputResponse {
+export interface SqlResourcesGetSqlTriggerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -18558,217 +18921,29 @@ export interface SqlResourcesMigrateSqlContainerToManualThroughputResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
+  /** The properties of an Azure Cosmos DB trigger */
+  properties?: SqlTriggerGetProperties;
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesMigrateSqlContainerToManualThroughputResponseTagsMap;
+  tags?: SqlResourcesGetSqlTriggerResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
-export const SqlResourcesMigrateSqlContainerToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        SqlResourcesMigrateSqlContainerToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlContainerToManualThroughputResponse",
-  }) as any as S.Schema<SqlResourcesMigrateSqlContainerToManualThroughputResponse>;
-
-export interface SqlResourcesMigrateSqlDatabaseToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-}
-export const SqlResourcesMigrateSqlDatabaseToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlDatabaseToAutoscaleRequest",
-  }) as any as S.Schema<SqlResourcesMigrateSqlDatabaseToAutoscaleRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesMigrateSqlDatabaseToAutoscaleResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlResourcesMigrateSqlDatabaseToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlResourcesMigrateSqlDatabaseToAutoscaleResponseTagsMap>;
-
-export interface SqlResourcesMigrateSqlDatabaseToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesMigrateSqlDatabaseToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const SqlResourcesMigrateSqlDatabaseToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        SqlResourcesMigrateSqlDatabaseToAutoscaleResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlDatabaseToAutoscaleResponse",
-  }) as any as S.Schema<SqlResourcesMigrateSqlDatabaseToAutoscaleResponse>;
-
-export interface SqlResourcesMigrateSqlDatabaseToManualThroughputRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-}
-export const SqlResourcesMigrateSqlDatabaseToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlDatabaseToManualThroughputRequest",
-  }) as any as S.Schema<SqlResourcesMigrateSqlDatabaseToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesMigrateSqlDatabaseToManualThroughputResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SqlResourcesMigrateSqlDatabaseToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SqlResourcesMigrateSqlDatabaseToManualThroughputResponseTagsMap>;
-
-export interface SqlResourcesMigrateSqlDatabaseToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesMigrateSqlDatabaseToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const SqlResourcesMigrateSqlDatabaseToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        SqlResourcesMigrateSqlDatabaseToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "SqlResourcesMigrateSqlDatabaseToManualThroughputResponse",
-  }) as any as S.Schema<SqlResourcesMigrateSqlDatabaseToManualThroughputResponse>;
-
-export interface SqlResourcesRetrieveContinuousBackupInformationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB database name. */
-  databaseName: string;
-  /** Cosmos DB container name. */
-  containerName: string;
-  /** The name of the continuous backup restore location. */
-  location?: string;
-}
-export const SqlResourcesRetrieveContinuousBackupInformationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/sqlDatabases/{databaseName}/containers/{containerName}/retrieveContinuousBackupInformation",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlResourcesRetrieveContinuousBackupInformationRequest",
-  }) as any as S.Schema<SqlResourcesRetrieveContinuousBackupInformationRequest>;
+export const SqlResourcesGetSqlTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SqlTriggerGetProperties),
+    location: S.optional(S.String),
+    tags: S.optional(SqlResourcesGetSqlTriggerResponseTagsMap),
+    identity: S.optional(ManagedServiceIdentity),
+  }),
+).annotate({
+  identifier: "SqlResourcesGetSqlTriggerResponse",
+}) as any as S.Schema<SqlResourcesGetSqlTriggerResponse>;
 
 export interface StartCassandraClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -18802,8 +18977,8 @@ export const StartCassandraClusterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartCassandraClusterResponse",
 }) as any as S.Schema<StartCassandraClusterResponse>;
 
-export type NotebookWorkspacesStartRequestNotebookWorkspaceName = "default";
-export const NotebookWorkspacesStartRequestNotebookWorkspaceName =
+export type StartNotebookWorkspaceRequestNotebookWorkspaceName = "default";
+export const StartNotebookWorkspaceRequestNotebookWorkspaceName =
   /*@__PURE__*/ S.String;
 
 export interface StartNotebookWorkspaceRequest {
@@ -18815,7 +18990,7 @@ export interface StartNotebookWorkspaceRequest {
   accountName: string;
   /** The name of the notebook workspace resource. */
   notebookWorkspaceName:
-    | NotebookWorkspacesStartRequestNotebookWorkspaceName
+    | StartNotebookWorkspaceRequestNotebookWorkspaceName
     | (string & {});
 }
 export const StartNotebookWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
@@ -18824,7 +18999,7 @@ export const StartNotebookWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     notebookWorkspaceName:
-      NotebookWorkspacesStartRequestNotebookWorkspaceName.pipe(T.Label()),
+      StartNotebookWorkspaceRequestNotebookWorkspaceName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -19110,194 +19285,14 @@ export const TableResourcesCreateUpdateTableRoleDefinitionResponse =
     identifier: "TableResourcesCreateUpdateTableRoleDefinitionResponse",
   }) as any as S.Schema<TableResourcesCreateUpdateTableRoleDefinitionResponse>;
 
-export interface TableResourcesMigrateTableToAutoscaleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB table name. */
-  tableName: string;
-}
-export const TableResourcesMigrateTableToAutoscaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      tableName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/throughputSettings/default/migrateToAutoscale",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "TableResourcesMigrateTableToAutoscaleRequest",
-  }) as any as S.Schema<TableResourcesMigrateTableToAutoscaleRequest>;
-
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type TableResourcesMigrateTableToAutoscaleResponseTagsMap = {
+export type UpdateCassandraClusterRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const TableResourcesMigrateTableToAutoscaleResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<TableResourcesMigrateTableToAutoscaleResponseTagsMap>;
-
-export interface TableResourcesMigrateTableToAutoscaleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: TableResourcesMigrateTableToAutoscaleResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const TableResourcesMigrateTableToAutoscaleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(TableResourcesMigrateTableToAutoscaleResponseTagsMap),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "TableResourcesMigrateTableToAutoscaleResponse",
-  }) as any as S.Schema<TableResourcesMigrateTableToAutoscaleResponse>;
-
-export interface TableResourcesMigrateTableToManualThroughputRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB table name. */
-  tableName: string;
-}
-export const TableResourcesMigrateTableToManualThroughputRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      tableName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/throughputSettings/default/migrateToManualThroughput",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "TableResourcesMigrateTableToManualThroughputRequest",
-  }) as any as S.Schema<TableResourcesMigrateTableToManualThroughputRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type TableResourcesMigrateTableToManualThroughputResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TableResourcesMigrateTableToManualThroughputResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<TableResourcesMigrateTableToManualThroughputResponseTagsMap>;
-
-export interface TableResourcesMigrateTableToManualThroughputResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of an Azure Cosmos DB resource throughput */
-  properties?: ThroughputSettingsGetProperties;
-  /** The location of the resource group to which the resource belongs. */
-  location?: string;
-  /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: TableResourcesMigrateTableToManualThroughputResponseTagsMap;
-  /** Identity for the resource. */
-  identity?: ManagedServiceIdentity;
-}
-export const TableResourcesMigrateTableToManualThroughputResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ThroughputSettingsGetProperties),
-      location: S.optional(S.String),
-      tags: S.optional(
-        TableResourcesMigrateTableToManualThroughputResponseTagsMap,
-      ),
-      identity: S.optional(ManagedServiceIdentity),
-    }),
-  ).annotate({
-    identifier: "TableResourcesMigrateTableToManualThroughputResponse",
-  }) as any as S.Schema<TableResourcesMigrateTableToManualThroughputResponse>;
-
-export interface TableResourcesRetrieveContinuousBackupInformationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Cosmos DB database account name. */
-  accountName: string;
-  /** Cosmos DB table name. */
-  tableName: string;
-  /** The name of the continuous backup restore location. */
-  location?: string;
-}
-export const TableResourcesRetrieveContinuousBackupInformationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      tableName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/tables/{tableName}/retrieveContinuousBackupInformation",
-        code: 200,
-        apiVersion: "2026-03-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "TableResourcesRetrieveContinuousBackupInformationRequest",
-  }) as any as S.Schema<TableResourcesRetrieveContinuousBackupInformationRequest>;
-
-/** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CassandraClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCassandraClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CassandraClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCassandraClusterRequestTagsMap>;
 
 export interface UpdateCassandraClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19311,7 +19306,7 @@ export interface UpdateCassandraClusterRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraClustersUpdateRequestTagsMap;
+  tags?: UpdateCassandraClusterRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedCassandraManagedServiceIdentityInput;
 }
@@ -19322,7 +19317,7 @@ export const UpdateCassandraClusterRequest = /*@__PURE__*/ S.suspend(() =>
     clusterName: S.String.pipe(T.Label()),
     properties: S.optional(ClusterResourcePropertiesInput),
     location: S.optional(S.String),
-    tags: S.optional(CassandraClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateCassandraClusterRequestTagsMap),
     identity: S.optional(ManagedCassandraManagedServiceIdentityInput),
   }).pipe(
     T.Http({
@@ -19337,13 +19332,13 @@ export const UpdateCassandraClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCassandraClusterRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraClustersUpdateResponseTagsMap = {
+export type UpdateCassandraClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCassandraClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CassandraClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCassandraClusterResponseTagsMap>;
 
 export interface UpdateCassandraClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -19359,7 +19354,7 @@ export interface UpdateCassandraClusterResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraClustersUpdateResponseTagsMap;
+  tags?: UpdateCassandraClusterResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedCassandraManagedServiceIdentity;
 }
@@ -19371,7 +19366,7 @@ export const UpdateCassandraClusterResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ClusterResourceProperties),
     location: S.optional(S.String),
-    tags: S.optional(CassandraClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateCassandraClusterResponseTagsMap),
     identity: S.optional(ManagedCassandraManagedServiceIdentity),
   }),
 ).annotate({
@@ -19434,13 +19429,14 @@ export const UpdateCassandraDataCenterResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCassandraDataCenterResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type CassandraResourcesUpdateCassandraKeyspaceThroughputRequestTagsMap =
-  { [key: string]: string | undefined };
-export const CassandraResourcesUpdateCassandraKeyspaceThroughputRequestTagsMap =
+export type UpdateCassandraResourceCassandraKeyspaceThroughputRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCassandraResourceCassandraKeyspaceThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesUpdateCassandraKeyspaceThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateCassandraResourceCassandraKeyspaceThroughputRequestTagsMap>;
 
 /** Cosmos DB provisioned throughput settings object */
 export interface AutoscaleSettingsResourceInput {
@@ -19500,7 +19496,7 @@ export interface UpdateCassandraResourceCassandraKeyspaceThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: CassandraResourcesUpdateCassandraKeyspaceThroughputRequestTagsMap;
+  tags?: UpdateCassandraResourceCassandraKeyspaceThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
@@ -19515,7 +19511,7 @@ export const UpdateCassandraResourceCassandraKeyspaceThroughputRequest =
       keyspaceName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
       tags: S.optional(
-        CassandraResourcesUpdateCassandraKeyspaceThroughputRequestTagsMap,
+        UpdateCassandraResourceCassandraKeyspaceThroughputRequestTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
@@ -19532,13 +19528,13 @@ export const UpdateCassandraResourceCassandraKeyspaceThroughputRequest =
   }) as any as S.Schema<UpdateCassandraResourceCassandraKeyspaceThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesUpdateCassandraKeyspaceThroughputResponseTagsMap =
+export type UpdateCassandraResourceCassandraKeyspaceThroughputResponseTagsMap =
   { [key: string]: string | undefined };
-export const CassandraResourcesUpdateCassandraKeyspaceThroughputResponseTagsMap =
+export const UpdateCassandraResourceCassandraKeyspaceThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesUpdateCassandraKeyspaceThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateCassandraResourceCassandraKeyspaceThroughputResponseTagsMap>;
 
 export interface UpdateCassandraResourceCassandraKeyspaceThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -19554,7 +19550,7 @@ export interface UpdateCassandraResourceCassandraKeyspaceThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesUpdateCassandraKeyspaceThroughputResponseTagsMap;
+  tags?: UpdateCassandraResourceCassandraKeyspaceThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -19568,7 +19564,7 @@ export const UpdateCassandraResourceCassandraKeyspaceThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        CassandraResourcesUpdateCassandraKeyspaceThroughputResponseTagsMap,
+        UpdateCassandraResourceCassandraKeyspaceThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
@@ -19577,14 +19573,14 @@ export const UpdateCassandraResourceCassandraKeyspaceThroughputResponse =
   }) as any as S.Schema<UpdateCassandraResourceCassandraKeyspaceThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type CassandraResourcesUpdateCassandraTableThroughputRequestTagsMap = {
+export type UpdateCassandraResourceCassandraTableThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraResourcesUpdateCassandraTableThroughputRequestTagsMap =
+export const UpdateCassandraResourceCassandraTableThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesUpdateCassandraTableThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateCassandraResourceCassandraTableThroughputRequestTagsMap>;
 
 export interface UpdateCassandraResourceCassandraTableThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19600,7 +19596,7 @@ export interface UpdateCassandraResourceCassandraTableThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: CassandraResourcesUpdateCassandraTableThroughputRequestTagsMap;
+  tags?: UpdateCassandraResourceCassandraTableThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
@@ -19616,7 +19612,7 @@ export const UpdateCassandraResourceCassandraTableThroughputRequest =
       tableName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
       tags: S.optional(
-        CassandraResourcesUpdateCassandraTableThroughputRequestTagsMap,
+        UpdateCassandraResourceCassandraTableThroughputRequestTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
@@ -19633,14 +19629,14 @@ export const UpdateCassandraResourceCassandraTableThroughputRequest =
   }) as any as S.Schema<UpdateCassandraResourceCassandraTableThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type CassandraResourcesUpdateCassandraTableThroughputResponseTagsMap = {
+export type UpdateCassandraResourceCassandraTableThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CassandraResourcesUpdateCassandraTableThroughputResponseTagsMap =
+export const UpdateCassandraResourceCassandraTableThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CassandraResourcesUpdateCassandraTableThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateCassandraResourceCassandraTableThroughputResponseTagsMap>;
 
 export interface UpdateCassandraResourceCassandraTableThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -19656,7 +19652,7 @@ export interface UpdateCassandraResourceCassandraTableThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: CassandraResourcesUpdateCassandraTableThroughputResponseTagsMap;
+  tags?: UpdateCassandraResourceCassandraTableThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -19670,7 +19666,7 @@ export const UpdateCassandraResourceCassandraTableThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        CassandraResourcesUpdateCassandraTableThroughputResponseTagsMap,
+        UpdateCassandraResourceCassandraTableThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
@@ -19679,13 +19675,13 @@ export const UpdateCassandraResourceCassandraTableThroughputResponse =
   }) as any as S.Schema<UpdateCassandraResourceCassandraTableThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type DatabaseAccountsUpdateRequestTagsMap = {
+export type UpdateDatabaseAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DatabaseAccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDatabaseAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DatabaseAccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDatabaseAccountRequestTagsMap>;
 
 /** An array that contains the georeplication locations enabled for the Cosmos DB account. */
 export type DatabaseAccountUpdatePropertiesInputLocationsList =
@@ -19857,7 +19853,7 @@ export interface UpdateDatabaseAccountRequest {
   /** Cosmos DB database account name. */
   accountName: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: DatabaseAccountsUpdateRequestTagsMap;
+  tags?: UpdateDatabaseAccountRequestTagsMap;
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Identity for the resource. */
@@ -19870,7 +19866,7 @@ export const UpdateDatabaseAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(DatabaseAccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDatabaseAccountRequestTagsMap),
     location: S.optional(S.String),
     identity: S.optional(ManagedServiceIdentityInput),
     properties: S.optional(DatabaseAccountUpdatePropertiesInput),
@@ -19887,20 +19883,20 @@ export const UpdateDatabaseAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDatabaseAccountRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type DatabaseAccountsUpdateResponseTagsMap = {
+export type UpdateDatabaseAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DatabaseAccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDatabaseAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DatabaseAccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDatabaseAccountResponseTagsMap>;
 
 /** Indicates the type of database account. This can only be set at database account creation. */
-export type DatabaseAccountsUpdateResponseKind =
+export type UpdateDatabaseAccountResponseKind =
   | "GlobalDocumentDB"
   | "MongoDB"
   | "Parse";
-export const DatabaseAccountsUpdateResponseKind = /*@__PURE__*/ S.String;
+export const UpdateDatabaseAccountResponseKind = /*@__PURE__*/ S.String;
 
 export interface UpdateDatabaseAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -19916,11 +19912,11 @@ export interface UpdateDatabaseAccountResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: DatabaseAccountsUpdateResponseTagsMap;
+  tags?: UpdateDatabaseAccountResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
   /** Indicates the type of database account. This can only be set at database account creation. */
-  kind?: DatabaseAccountsUpdateResponseKind;
+  kind?: UpdateDatabaseAccountResponseKind;
 }
 export const UpdateDatabaseAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -19930,20 +19926,20 @@ export const UpdateDatabaseAccountResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(DatabaseAccountGetProperties),
     location: S.optional(S.String),
-    tags: S.optional(DatabaseAccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDatabaseAccountResponseTagsMap),
     identity: S.optional(ManagedServiceIdentity),
-    kind: S.optional(DatabaseAccountsUpdateResponseKind),
+    kind: S.optional(UpdateDatabaseAccountResponseKind),
   }),
 ).annotate({
   identifier: "UpdateDatabaseAccountResponse",
 }) as any as S.Schema<UpdateDatabaseAccountResponse>;
 
 /** Resource tags. */
-export type FleetUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const FleetUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFleetRequestTagsMap>;
 
 export interface UpdateFleetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19953,7 +19949,7 @@ export interface UpdateFleetRequest {
   /** Cosmos DB fleet name. Needs to be unique under a subscription. */
   fleetName: string;
   /** Resource tags. */
-  tags?: FleetUpdateRequestTagsMap;
+  tags?: UpdateFleetRequestTagsMap;
   /** Properties to update Azure Cosmos DB fleet resource. */
   properties?: FleetResourceProperties;
 }
@@ -19962,7 +19958,7 @@ export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fleetName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetUpdateRequestTagsMap),
+    tags: S.optional(UpdateFleetRequestTagsMap),
     properties: S.optional(FleetResourceProperties),
   }).pipe(
     T.Http({
@@ -19977,11 +19973,11 @@ export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFleetRequest>;
 
 /** Resource tags. */
-export type FleetUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const FleetUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFleetResponseTagsMap>;
 
 export interface UpdateFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -19993,7 +19989,7 @@ export interface UpdateFleetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetUpdateResponseTagsMap;
+  tags?: UpdateFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties to update Azure Cosmos DB fleet resource. */
@@ -20005,7 +20001,7 @@ export const UpdateFleetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetUpdateResponseTagsMap),
+    tags: S.optional(UpdateFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetResourceProperties),
   }),
@@ -20069,14 +20065,14 @@ export const UpdateFleetspaceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFleetspaceResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type GremlinResourcesUpdateGremlinDatabaseThroughputRequestTagsMap = {
+export type UpdateGremlinResourceGremlinDatabaseThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesUpdateGremlinDatabaseThroughputRequestTagsMap =
+export const UpdateGremlinResourceGremlinDatabaseThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesUpdateGremlinDatabaseThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateGremlinResourceGremlinDatabaseThroughputRequestTagsMap>;
 
 export interface UpdateGremlinResourceGremlinDatabaseThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20090,7 +20086,7 @@ export interface UpdateGremlinResourceGremlinDatabaseThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: GremlinResourcesUpdateGremlinDatabaseThroughputRequestTagsMap;
+  tags?: UpdateGremlinResourceGremlinDatabaseThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
@@ -20105,7 +20101,7 @@ export const UpdateGremlinResourceGremlinDatabaseThroughputRequest =
       databaseName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
       tags: S.optional(
-        GremlinResourcesUpdateGremlinDatabaseThroughputRequestTagsMap,
+        UpdateGremlinResourceGremlinDatabaseThroughputRequestTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
@@ -20122,14 +20118,14 @@ export const UpdateGremlinResourceGremlinDatabaseThroughputRequest =
   }) as any as S.Schema<UpdateGremlinResourceGremlinDatabaseThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesUpdateGremlinDatabaseThroughputResponseTagsMap = {
+export type UpdateGremlinResourceGremlinDatabaseThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesUpdateGremlinDatabaseThroughputResponseTagsMap =
+export const UpdateGremlinResourceGremlinDatabaseThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesUpdateGremlinDatabaseThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateGremlinResourceGremlinDatabaseThroughputResponseTagsMap>;
 
 export interface UpdateGremlinResourceGremlinDatabaseThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -20145,7 +20141,7 @@ export interface UpdateGremlinResourceGremlinDatabaseThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesUpdateGremlinDatabaseThroughputResponseTagsMap;
+  tags?: UpdateGremlinResourceGremlinDatabaseThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -20159,7 +20155,7 @@ export const UpdateGremlinResourceGremlinDatabaseThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        GremlinResourcesUpdateGremlinDatabaseThroughputResponseTagsMap,
+        UpdateGremlinResourceGremlinDatabaseThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
@@ -20168,14 +20164,14 @@ export const UpdateGremlinResourceGremlinDatabaseThroughputResponse =
   }) as any as S.Schema<UpdateGremlinResourceGremlinDatabaseThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type GremlinResourcesUpdateGremlinGraphThroughputRequestTagsMap = {
+export type UpdateGremlinResourceGremlinGraphThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesUpdateGremlinGraphThroughputRequestTagsMap =
+export const UpdateGremlinResourceGremlinGraphThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesUpdateGremlinGraphThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateGremlinResourceGremlinGraphThroughputRequestTagsMap>;
 
 export interface UpdateGremlinResourceGremlinGraphThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20191,7 +20187,7 @@ export interface UpdateGremlinResourceGremlinGraphThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: GremlinResourcesUpdateGremlinGraphThroughputRequestTagsMap;
+  tags?: UpdateGremlinResourceGremlinGraphThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
@@ -20207,7 +20203,7 @@ export const UpdateGremlinResourceGremlinGraphThroughputRequest =
       graphName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
       tags: S.optional(
-        GremlinResourcesUpdateGremlinGraphThroughputRequestTagsMap,
+        UpdateGremlinResourceGremlinGraphThroughputRequestTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
@@ -20224,14 +20220,14 @@ export const UpdateGremlinResourceGremlinGraphThroughputRequest =
   }) as any as S.Schema<UpdateGremlinResourceGremlinGraphThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type GremlinResourcesUpdateGremlinGraphThroughputResponseTagsMap = {
+export type UpdateGremlinResourceGremlinGraphThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GremlinResourcesUpdateGremlinGraphThroughputResponseTagsMap =
+export const UpdateGremlinResourceGremlinGraphThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<GremlinResourcesUpdateGremlinGraphThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateGremlinResourceGremlinGraphThroughputResponseTagsMap>;
 
 export interface UpdateGremlinResourceGremlinGraphThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -20247,7 +20243,7 @@ export interface UpdateGremlinResourceGremlinGraphThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: GremlinResourcesUpdateGremlinGraphThroughputResponseTagsMap;
+  tags?: UpdateGremlinResourceGremlinGraphThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -20261,7 +20257,7 @@ export const UpdateGremlinResourceGremlinGraphThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        GremlinResourcesUpdateGremlinGraphThroughputResponseTagsMap,
+        UpdateGremlinResourceGremlinGraphThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
@@ -20270,16 +20266,16 @@ export const UpdateGremlinResourceGremlinGraphThroughputResponse =
   }) as any as S.Schema<UpdateGremlinResourceGremlinGraphThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type MongoDBResourcesUpdateMongoDBCollectionThroughputRequestTagsMap = {
+export type UpdateMongoDBResourceMongoDBCollectionThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesUpdateMongoDBCollectionThroughputRequestTagsMap =
+export const UpdateMongoDBResourceMongoDBCollectionThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesUpdateMongoDBCollectionThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateMongoDBResourceMongoDBCollectionThroughputRequestTagsMap>;
 
-export interface UpdateMongoDbResourceMongoDbCollectionThroughputRequest {
+export interface UpdateMongoDBResourceMongoDBCollectionThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20293,13 +20289,13 @@ export interface UpdateMongoDbResourceMongoDbCollectionThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: MongoDBResourcesUpdateMongoDBCollectionThroughputRequestTagsMap;
+  tags?: UpdateMongoDBResourceMongoDBCollectionThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
   properties: ThroughputSettingsUpdatePropertiesInput;
 }
-export const UpdateMongoDbResourceMongoDbCollectionThroughputRequest =
+export const UpdateMongoDBResourceMongoDBCollectionThroughputRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -20309,7 +20305,7 @@ export const UpdateMongoDbResourceMongoDbCollectionThroughputRequest =
       collectionName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
       tags: S.optional(
-        MongoDBResourcesUpdateMongoDBCollectionThroughputRequestTagsMap,
+        UpdateMongoDBResourceMongoDBCollectionThroughputRequestTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
@@ -20322,20 +20318,20 @@ export const UpdateMongoDbResourceMongoDbCollectionThroughputRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateMongoDbResourceMongoDbCollectionThroughputRequest",
-  }) as any as S.Schema<UpdateMongoDbResourceMongoDbCollectionThroughputRequest>;
+    identifier: "UpdateMongoDBResourceMongoDBCollectionThroughputRequest",
+  }) as any as S.Schema<UpdateMongoDBResourceMongoDBCollectionThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesUpdateMongoDBCollectionThroughputResponseTagsMap = {
+export type UpdateMongoDBResourceMongoDBCollectionThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesUpdateMongoDBCollectionThroughputResponseTagsMap =
+export const UpdateMongoDBResourceMongoDBCollectionThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesUpdateMongoDBCollectionThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateMongoDBResourceMongoDBCollectionThroughputResponseTagsMap>;
 
-export interface UpdateMongoDbResourceMongoDbCollectionThroughputResponse {
+export interface UpdateMongoDBResourceMongoDBCollectionThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -20349,11 +20345,11 @@ export interface UpdateMongoDbResourceMongoDbCollectionThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesUpdateMongoDBCollectionThroughputResponseTagsMap;
+  tags?: UpdateMongoDBResourceMongoDBCollectionThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
-export const UpdateMongoDbResourceMongoDbCollectionThroughputResponse =
+export const UpdateMongoDBResourceMongoDBCollectionThroughputResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -20363,25 +20359,25 @@ export const UpdateMongoDbResourceMongoDbCollectionThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        MongoDBResourcesUpdateMongoDBCollectionThroughputResponseTagsMap,
+        UpdateMongoDBResourceMongoDBCollectionThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
-    identifier: "UpdateMongoDbResourceMongoDbCollectionThroughputResponse",
-  }) as any as S.Schema<UpdateMongoDbResourceMongoDbCollectionThroughputResponse>;
+    identifier: "UpdateMongoDBResourceMongoDBCollectionThroughputResponse",
+  }) as any as S.Schema<UpdateMongoDBResourceMongoDBCollectionThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type MongoDBResourcesUpdateMongoDBDatabaseThroughputRequestTagsMap = {
+export type UpdateMongoDBResourceMongoDBDatabaseThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesUpdateMongoDBDatabaseThroughputRequestTagsMap =
+export const UpdateMongoDBResourceMongoDBDatabaseThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesUpdateMongoDBDatabaseThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateMongoDBResourceMongoDBDatabaseThroughputRequestTagsMap>;
 
-export interface UpdateMongoDbResourceMongoDbDatabaseThroughputRequest {
+export interface UpdateMongoDBResourceMongoDBDatabaseThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20393,13 +20389,13 @@ export interface UpdateMongoDbResourceMongoDbDatabaseThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: MongoDBResourcesUpdateMongoDBDatabaseThroughputRequestTagsMap;
+  tags?: UpdateMongoDBResourceMongoDBDatabaseThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
   properties: ThroughputSettingsUpdatePropertiesInput;
 }
-export const UpdateMongoDbResourceMongoDbDatabaseThroughputRequest =
+export const UpdateMongoDBResourceMongoDBDatabaseThroughputRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -20408,7 +20404,7 @@ export const UpdateMongoDbResourceMongoDbDatabaseThroughputRequest =
       databaseName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
       tags: S.optional(
-        MongoDBResourcesUpdateMongoDBDatabaseThroughputRequestTagsMap,
+        UpdateMongoDBResourceMongoDBDatabaseThroughputRequestTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
@@ -20421,20 +20417,20 @@ export const UpdateMongoDbResourceMongoDbDatabaseThroughputRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateMongoDbResourceMongoDbDatabaseThroughputRequest",
-  }) as any as S.Schema<UpdateMongoDbResourceMongoDbDatabaseThroughputRequest>;
+    identifier: "UpdateMongoDBResourceMongoDBDatabaseThroughputRequest",
+  }) as any as S.Schema<UpdateMongoDBResourceMongoDBDatabaseThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type MongoDBResourcesUpdateMongoDBDatabaseThroughputResponseTagsMap = {
+export type UpdateMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoDBResourcesUpdateMongoDBDatabaseThroughputResponseTagsMap =
+export const UpdateMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap>;
 
-export interface UpdateMongoDbResourceMongoDbDatabaseThroughputResponse {
+export interface UpdateMongoDBResourceMongoDBDatabaseThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -20448,11 +20444,11 @@ export interface UpdateMongoDbResourceMongoDbDatabaseThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: MongoDBResourcesUpdateMongoDBDatabaseThroughputResponseTagsMap;
+  tags?: UpdateMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
-export const UpdateMongoDbResourceMongoDbDatabaseThroughputResponse =
+export const UpdateMongoDBResourceMongoDBDatabaseThroughputResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -20462,23 +20458,23 @@ export const UpdateMongoDbResourceMongoDbDatabaseThroughputResponse =
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        MongoDBResourcesUpdateMongoDBDatabaseThroughputResponseTagsMap,
+        UpdateMongoDBResourceMongoDBDatabaseThroughputResponseTagsMap,
       ),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
-    identifier: "UpdateMongoDbResourceMongoDbDatabaseThroughputResponse",
-  }) as any as S.Schema<UpdateMongoDbResourceMongoDbDatabaseThroughputResponse>;
+    identifier: "UpdateMongoDBResourceMongoDBDatabaseThroughputResponse",
+  }) as any as S.Schema<UpdateMongoDBResourceMongoDBDatabaseThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type SqlResourcesUpdateSqlContainerThroughputRequestTagsMap = {
+export type UpdateSqlResourceSqlContainerThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesUpdateSqlContainerThroughputRequestTagsMap =
+export const UpdateSqlResourceSqlContainerThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesUpdateSqlContainerThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateSqlResourceSqlContainerThroughputRequestTagsMap>;
 
 export interface UpdateSqlResourceSqlContainerThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20494,7 +20490,7 @@ export interface UpdateSqlResourceSqlContainerThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: SqlResourcesUpdateSqlContainerThroughputRequestTagsMap;
+  tags?: UpdateSqlResourceSqlContainerThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
@@ -20509,7 +20505,7 @@ export const UpdateSqlResourceSqlContainerThroughputRequest =
       databaseName: S.String.pipe(T.Label()),
       containerName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesUpdateSqlContainerThroughputRequestTagsMap),
+      tags: S.optional(UpdateSqlResourceSqlContainerThroughputRequestTagsMap),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
     }).pipe(
@@ -20525,14 +20521,14 @@ export const UpdateSqlResourceSqlContainerThroughputRequest =
   }) as any as S.Schema<UpdateSqlResourceSqlContainerThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesUpdateSqlContainerThroughputResponseTagsMap = {
+export type UpdateSqlResourceSqlContainerThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesUpdateSqlContainerThroughputResponseTagsMap =
+export const UpdateSqlResourceSqlContainerThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesUpdateSqlContainerThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateSqlResourceSqlContainerThroughputResponseTagsMap>;
 
 export interface UpdateSqlResourceSqlContainerThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -20548,7 +20544,7 @@ export interface UpdateSqlResourceSqlContainerThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesUpdateSqlContainerThroughputResponseTagsMap;
+  tags?: UpdateSqlResourceSqlContainerThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -20561,7 +20557,7 @@ export const UpdateSqlResourceSqlContainerThroughputResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesUpdateSqlContainerThroughputResponseTagsMap),
+      tags: S.optional(UpdateSqlResourceSqlContainerThroughputResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -20569,14 +20565,14 @@ export const UpdateSqlResourceSqlContainerThroughputResponse =
   }) as any as S.Schema<UpdateSqlResourceSqlContainerThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type SqlResourcesUpdateSqlDatabaseThroughputRequestTagsMap = {
+export type UpdateSqlResourceSqlDatabaseThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesUpdateSqlDatabaseThroughputRequestTagsMap =
+export const UpdateSqlResourceSqlDatabaseThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesUpdateSqlDatabaseThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateSqlResourceSqlDatabaseThroughputRequestTagsMap>;
 
 export interface UpdateSqlResourceSqlDatabaseThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20590,7 +20586,7 @@ export interface UpdateSqlResourceSqlDatabaseThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: SqlResourcesUpdateSqlDatabaseThroughputRequestTagsMap;
+  tags?: UpdateSqlResourceSqlDatabaseThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
@@ -20604,7 +20600,7 @@ export const UpdateSqlResourceSqlDatabaseThroughputRequest =
       accountName: S.String.pipe(T.Label()),
       databaseName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesUpdateSqlDatabaseThroughputRequestTagsMap),
+      tags: S.optional(UpdateSqlResourceSqlDatabaseThroughputRequestTagsMap),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
     }).pipe(
@@ -20620,14 +20616,14 @@ export const UpdateSqlResourceSqlDatabaseThroughputRequest =
   }) as any as S.Schema<UpdateSqlResourceSqlDatabaseThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type SqlResourcesUpdateSqlDatabaseThroughputResponseTagsMap = {
+export type UpdateSqlResourceSqlDatabaseThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlResourcesUpdateSqlDatabaseThroughputResponseTagsMap =
+export const UpdateSqlResourceSqlDatabaseThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlResourcesUpdateSqlDatabaseThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateSqlResourceSqlDatabaseThroughputResponseTagsMap>;
 
 export interface UpdateSqlResourceSqlDatabaseThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -20643,7 +20639,7 @@ export interface UpdateSqlResourceSqlDatabaseThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: SqlResourcesUpdateSqlDatabaseThroughputResponseTagsMap;
+  tags?: UpdateSqlResourceSqlDatabaseThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -20656,7 +20652,7 @@ export const UpdateSqlResourceSqlDatabaseThroughputResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(SqlResourcesUpdateSqlDatabaseThroughputResponseTagsMap),
+      tags: S.optional(UpdateSqlResourceSqlDatabaseThroughputResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -20664,14 +20660,14 @@ export const UpdateSqlResourceSqlDatabaseThroughputResponse =
   }) as any as S.Schema<UpdateSqlResourceSqlDatabaseThroughputResponse>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-export type TableResourcesUpdateTableThroughputRequestTagsMap = {
+export type UpdateTableResourceTableThroughputRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const TableResourcesUpdateTableThroughputRequestTagsMap =
+export const UpdateTableResourceTableThroughputRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<TableResourcesUpdateTableThroughputRequestTagsMap>;
+  ) as any as S.Schema<UpdateTableResourceTableThroughputRequestTagsMap>;
 
 export interface UpdateTableResourceTableThroughputRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20685,7 +20681,7 @@ export interface UpdateTableResourceTableThroughputRequest {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with "defaultExperience": "Cassandra". Current "defaultExperience" values also include "Table", "Graph", "DocumentDB", and "MongoDB". */
-  tags?: TableResourcesUpdateTableThroughputRequestTagsMap;
+  tags?: UpdateTableResourceTableThroughputRequestTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentityInput;
   /** Properties to update Azure Cosmos DB resource throughput. */
@@ -20699,7 +20695,7 @@ export const UpdateTableResourceTableThroughputRequest =
       accountName: S.String.pipe(T.Label()),
       tableName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
-      tags: S.optional(TableResourcesUpdateTableThroughputRequestTagsMap),
+      tags: S.optional(UpdateTableResourceTableThroughputRequestTagsMap),
       identity: S.optional(ManagedServiceIdentityInput),
       properties: ThroughputSettingsUpdatePropertiesInput,
     }).pipe(
@@ -20715,14 +20711,14 @@ export const UpdateTableResourceTableThroughputRequest =
   }) as any as S.Schema<UpdateTableResourceTableThroughputRequest>;
 
 /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-export type TableResourcesUpdateTableThroughputResponseTagsMap = {
+export type UpdateTableResourceTableThroughputResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TableResourcesUpdateTableThroughputResponseTagsMap =
+export const UpdateTableResourceTableThroughputResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<TableResourcesUpdateTableThroughputResponseTagsMap>;
+  ) as any as S.Schema<UpdateTableResourceTableThroughputResponseTagsMap>;
 
 export interface UpdateTableResourceTableThroughputResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -20738,7 +20734,7 @@ export interface UpdateTableResourceTableThroughputResponse {
   /** The location of the resource group to which the resource belongs. */
   location?: string;
   /** Tags are a list of key-value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters. For example, the default experience for a template type is set with \"defaultExperience\": \"Cassandra\". Current \"defaultExperience\" values also include \"Table\", \"Graph\", \"DocumentDB\", and \"MongoDB\". */
-  tags?: TableResourcesUpdateTableThroughputResponseTagsMap;
+  tags?: UpdateTableResourceTableThroughputResponseTagsMap;
   /** Identity for the resource. */
   identity?: ManagedServiceIdentity;
 }
@@ -20751,7 +20747,7 @@ export const UpdateTableResourceTableThroughputResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ThroughputSettingsGetProperties),
       location: S.optional(S.String),
-      tags: S.optional(TableResourcesUpdateTableThroughputResponseTagsMap),
+      tags: S.optional(UpdateTableResourceTableThroughputResponseTagsMap),
       identity: S.optional(ManagedServiceIdentity),
     }),
   ).annotate({
@@ -20783,21 +20779,6 @@ export const CassandraClustersDeallocate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CassandraClustersDeallocateRequest,
   output: CassandraClustersDeallocateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CassandraClustersInvokeCommandError = AzureOpError;
-/** Invoke a command like nodetool for cassandra maintenance */
-export const CassandraClustersInvokeCommand: API.OperationMethod<
-  CassandraClustersInvokeCommandRequest,
-  CassandraClustersInvokeCommandResponse,
-  CassandraClustersInvokeCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CassandraClustersInvokeCommandRequest,
-  output: CassandraClustersInvokeCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -20895,70 +20876,6 @@ export const CassandraResourcesCreateUpdateCassandraTable: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CassandraResourcesMigrateCassandraKeyspaceToAutoscaleError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB Cassandra Keyspace from manual throughput to autoscale */
-export const CassandraResourcesMigrateCassandraKeyspaceToAutoscale: API.OperationMethod<
-  CassandraResourcesMigrateCassandraKeyspaceToAutoscaleRequest,
-  CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse,
-  CassandraResourcesMigrateCassandraKeyspaceToAutoscaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CassandraResourcesMigrateCassandraKeyspaceToAutoscaleRequest,
-  output: CassandraResourcesMigrateCassandraKeyspaceToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CassandraResourcesMigrateCassandraKeyspaceToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB Cassandra Keyspace from autoscale to manual throughput */
-export const CassandraResourcesMigrateCassandraKeyspaceToManualThroughput: API.OperationMethod<
-  CassandraResourcesMigrateCassandraKeyspaceToManualThroughputRequest,
-  CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse,
-  CassandraResourcesMigrateCassandraKeyspaceToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CassandraResourcesMigrateCassandraKeyspaceToManualThroughputRequest,
-  output: CassandraResourcesMigrateCassandraKeyspaceToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CassandraResourcesMigrateCassandraTableToAutoscaleError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB Cassandra table from manual throughput to autoscale */
-export const CassandraResourcesMigrateCassandraTableToAutoscale: API.OperationMethod<
-  CassandraResourcesMigrateCassandraTableToAutoscaleRequest,
-  CassandraResourcesMigrateCassandraTableToAutoscaleResponse,
-  CassandraResourcesMigrateCassandraTableToAutoscaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CassandraResourcesMigrateCassandraTableToAutoscaleRequest,
-  output: CassandraResourcesMigrateCassandraTableToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CassandraResourcesMigrateCassandraTableToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB Cassandra table from autoscale to manual throughput */
-export const CassandraResourcesMigrateCassandraTableToManualThroughput: API.OperationMethod<
-  CassandraResourcesMigrateCassandraTableToManualThroughputRequest,
-  CassandraResourcesMigrateCassandraTableToManualThroughputResponse,
-  CassandraResourcesMigrateCassandraTableToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CassandraResourcesMigrateCassandraTableToManualThroughputRequest,
-  output: CassandraResourcesMigrateCassandraTableToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateFleetError = AzureOpError;
 /** Creates an Azure Cosmos DB fleet under a subscription. */
 export const CreateFleet: API.OperationMethod<
@@ -21049,6 +20966,36 @@ export const DatabaseAccountsFailoverPriorityChange: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DatabaseAccountsGetReadOnlyKeysError = AzureOpError;
+/** Lists the read-only access keys for the specified Azure Cosmos DB database account. */
+export const DatabaseAccountsGetReadOnlyKeys: API.OperationMethod<
+  DatabaseAccountsGetReadOnlyKeysRequest,
+  DatabaseAccountListReadOnlyKeysResult,
+  DatabaseAccountsGetReadOnlyKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DatabaseAccountsGetReadOnlyKeysRequest,
+  output: DatabaseAccountListReadOnlyKeysResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DatabaseAccountsListReadOnlyKeysError = AzureOpError;
+/** Lists the read-only access keys for the specified Azure Cosmos DB database account. */
+export const DatabaseAccountsListReadOnlyKeys: API.OperationMethod<
+  DatabaseAccountsListReadOnlyKeysRequest,
+  DatabaseAccountListReadOnlyKeysResult,
+  DatabaseAccountsListReadOnlyKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DatabaseAccountsListReadOnlyKeysRequest,
+  output: DatabaseAccountListReadOnlyKeysResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DatabaseAccountsOfflineRegionError = AzureOpError;
 /** Offline the specified region for the specified Azure Cosmos DB database account. */
 export const DatabaseAccountsOfflineRegion: API.OperationMethod<
@@ -21074,21 +21021,6 @@ export const DatabaseAccountsOnlineRegion: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DatabaseAccountsOnlineRegionRequest,
   output: DatabaseAccountsOnlineRegionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabaseAccountsRegenerateKeyError = AzureOpError;
-/** Regenerates an access key for the specified Azure Cosmos DB database account. */
-export const DatabaseAccountsRegenerateKey: API.OperationMethod<
-  DatabaseAccountsRegenerateKeyRequest,
-  DatabaseAccountsRegenerateKeyResponse,
-  DatabaseAccountsRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabaseAccountsRegenerateKeyRequest,
-  output: DatabaseAccountsRegenerateKeyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21304,91 +21236,91 @@ export const DeleteGremlinResourceGremlinRoleDefinition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteMongoDbResourceMongoDbCollectionError = AzureOpError;
+export type DeleteMongoDBResourceMongoDBCollectionError = AzureOpError;
 /** Deletes an existing Azure Cosmos DB MongoDB Collection. */
-export const DeleteMongoDbResourceMongoDbCollection: API.OperationMethod<
-  DeleteMongoDbResourceMongoDbCollectionRequest,
-  DeleteMongoDbResourceMongoDbCollectionResponse,
-  DeleteMongoDbResourceMongoDbCollectionError,
+export const DeleteMongoDBResourceMongoDBCollection: API.OperationMethod<
+  DeleteMongoDBResourceMongoDBCollectionRequest,
+  DeleteMongoDBResourceMongoDBCollectionResponse,
+  DeleteMongoDBResourceMongoDBCollectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMongoDbResourceMongoDbCollectionRequest,
-  output: DeleteMongoDbResourceMongoDbCollectionResponse,
+  input: DeleteMongoDBResourceMongoDBCollectionRequest,
+  output: DeleteMongoDBResourceMongoDBCollectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteMongoDbResourceMongoDbDatabaseError = AzureOpError;
+export type DeleteMongoDBResourceMongoDBDatabaseError = AzureOpError;
 /** Deletes an existing Azure Cosmos DB MongoDB database. */
-export const DeleteMongoDbResourceMongoDbDatabase: API.OperationMethod<
-  DeleteMongoDbResourceMongoDbDatabaseRequest,
-  DeleteMongoDbResourceMongoDbDatabaseResponse,
-  DeleteMongoDbResourceMongoDbDatabaseError,
+export const DeleteMongoDBResourceMongoDBDatabase: API.OperationMethod<
+  DeleteMongoDBResourceMongoDBDatabaseRequest,
+  DeleteMongoDBResourceMongoDBDatabaseResponse,
+  DeleteMongoDBResourceMongoDBDatabaseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMongoDbResourceMongoDbDatabaseRequest,
-  output: DeleteMongoDbResourceMongoDbDatabaseResponse,
+  input: DeleteMongoDBResourceMongoDBDatabaseRequest,
+  output: DeleteMongoDBResourceMongoDBDatabaseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteMongoDbResourceMongoRoleDefinitionError = AzureOpError;
+export type DeleteMongoDBResourceMongoRoleDefinitionError = AzureOpError;
 /** Deletes an existing Azure Cosmos DB Mongo Role Definition. */
-export const DeleteMongoDbResourceMongoRoleDefinition: API.OperationMethod<
-  DeleteMongoDbResourceMongoRoleDefinitionRequest,
-  DeleteMongoDbResourceMongoRoleDefinitionResponse,
-  DeleteMongoDbResourceMongoRoleDefinitionError,
+export const DeleteMongoDBResourceMongoRoleDefinition: API.OperationMethod<
+  DeleteMongoDBResourceMongoRoleDefinitionRequest,
+  DeleteMongoDBResourceMongoRoleDefinitionResponse,
+  DeleteMongoDBResourceMongoRoleDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMongoDbResourceMongoRoleDefinitionRequest,
-  output: DeleteMongoDbResourceMongoRoleDefinitionResponse,
+  input: DeleteMongoDBResourceMongoRoleDefinitionRequest,
+  output: DeleteMongoDBResourceMongoRoleDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteMongoDbResourceMongoUserDefinitionError = AzureOpError;
+export type DeleteMongoDBResourceMongoUserDefinitionError = AzureOpError;
 /** Deletes an existing Azure Cosmos DB Mongo User Definition. */
-export const DeleteMongoDbResourceMongoUserDefinition: API.OperationMethod<
-  DeleteMongoDbResourceMongoUserDefinitionRequest,
-  DeleteMongoDbResourceMongoUserDefinitionResponse,
-  DeleteMongoDbResourceMongoUserDefinitionError,
+export const DeleteMongoDBResourceMongoUserDefinition: API.OperationMethod<
+  DeleteMongoDBResourceMongoUserDefinitionRequest,
+  DeleteMongoDBResourceMongoUserDefinitionResponse,
+  DeleteMongoDBResourceMongoUserDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMongoDbResourceMongoUserDefinitionRequest,
-  output: DeleteMongoDbResourceMongoUserDefinitionResponse,
+  input: DeleteMongoDBResourceMongoUserDefinitionRequest,
+  output: DeleteMongoDBResourceMongoUserDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteMongoMiResourceMongoMiRoleAssignmentError = AzureOpError;
+export type DeleteMongoMIResourceMongoMIRoleAssignmentError = AzureOpError;
 /** Deletes an existing Azure Cosmos DB MongoMI Role Assignment. */
-export const DeleteMongoMiResourceMongoMiRoleAssignment: API.OperationMethod<
-  DeleteMongoMiResourceMongoMiRoleAssignmentRequest,
-  DeleteMongoMiResourceMongoMiRoleAssignmentResponse,
-  DeleteMongoMiResourceMongoMiRoleAssignmentError,
+export const DeleteMongoMIResourceMongoMIRoleAssignment: API.OperationMethod<
+  DeleteMongoMIResourceMongoMIRoleAssignmentRequest,
+  DeleteMongoMIResourceMongoMIRoleAssignmentResponse,
+  DeleteMongoMIResourceMongoMIRoleAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMongoMiResourceMongoMiRoleAssignmentRequest,
-  output: DeleteMongoMiResourceMongoMiRoleAssignmentResponse,
+  input: DeleteMongoMIResourceMongoMIRoleAssignmentRequest,
+  output: DeleteMongoMIResourceMongoMIRoleAssignmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteMongoMiResourceMongoMiRoleDefinitionError = AzureOpError;
+export type DeleteMongoMIResourceMongoMIRoleDefinitionError = AzureOpError;
 /** Deletes an existing Azure Cosmos DB MongoMI Role Definition. */
-export const DeleteMongoMiResourceMongoMiRoleDefinition: API.OperationMethod<
-  DeleteMongoMiResourceMongoMiRoleDefinitionRequest,
-  DeleteMongoMiResourceMongoMiRoleDefinitionResponse,
-  DeleteMongoMiResourceMongoMiRoleDefinitionError,
+export const DeleteMongoMIResourceMongoMIRoleDefinition: API.OperationMethod<
+  DeleteMongoMIResourceMongoMIRoleDefinitionRequest,
+  DeleteMongoMIResourceMongoMIRoleDefinitionResponse,
+  DeleteMongoMIResourceMongoMIRoleDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMongoMiResourceMongoMiRoleDefinitionRequest,
-  output: DeleteMongoMiResourceMongoMiRoleDefinitionResponse,
+  input: DeleteMongoMIResourceMongoMIRoleDefinitionRequest,
+  output: DeleteMongoMIResourceMongoMIRoleDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21509,21 +21441,6 @@ export const DeleteSqlResourceSqlStoredProcedure: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteSqlResourceSqlStoredProcedureRequest,
   output: DeleteSqlResourceSqlStoredProcedureResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteSqlResourceSqlTriggerError = AzureOpError;
-/** Deletes an existing Azure Cosmos DB SQL trigger. */
-export const DeleteSqlResourceSqlTrigger: API.OperationMethod<
-  DeleteSqlResourceSqlTriggerRequest,
-  DeleteSqlResourceSqlTriggerResponse,
-  DeleteSqlResourceSqlTriggerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSqlResourceSqlTriggerRequest,
-  output: DeleteSqlResourceSqlTriggerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21724,21 +21641,6 @@ export const GetDatabaseAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDatabaseAccountReadOnlyKeyError = AzureOpError;
-/** Lists the read-only access keys for the specified Azure Cosmos DB database account. */
-export const GetDatabaseAccountReadOnlyKey: API.OperationMethod<
-  GetDatabaseAccountReadOnlyKeyRequest,
-  DatabaseAccountListReadOnlyKeysResult,
-  GetDatabaseAccountReadOnlyKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDatabaseAccountReadOnlyKeyRequest,
-  output: DatabaseAccountListReadOnlyKeysResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetFleetError = AzureOpError;
 /** Retrieves the properties of an existing Azure Cosmos DB fleet under a subscription */
 export const GetFleet: API.OperationMethod<
@@ -21779,6 +21681,21 @@ export const GetFleetspaceAccount: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetFleetspaceAccountRequest,
   output: GetFleetspaceAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGremlinResourceContinuousBackupInformationError = AzureOpError;
+/** Retrieves continuous backup information for a gremlin graph. */
+export const GetGremlinResourceContinuousBackupInformation: API.OperationMethod<
+  GetGremlinResourceContinuousBackupInformationRequest,
+  BackupInformation,
+  GetGremlinResourceContinuousBackupInformationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGremlinResourceContinuousBackupInformationRequest,
+  output: BackupInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21889,121 +21806,136 @@ export const GetLocation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetMongoDbResourceMongoDbCollectionError = AzureOpError;
+export type GetMongoDBResourceContinuousBackupInformationError = AzureOpError;
+/** Retrieves continuous backup information for a Mongodb collection. */
+export const GetMongoDBResourceContinuousBackupInformation: API.OperationMethod<
+  GetMongoDBResourceContinuousBackupInformationRequest,
+  BackupInformation,
+  GetMongoDBResourceContinuousBackupInformationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMongoDBResourceContinuousBackupInformationRequest,
+  output: BackupInformation,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMongoDBResourceMongoDBCollectionError = AzureOpError;
 /** Gets the MongoDB collection under an existing Azure Cosmos DB database account. */
-export const GetMongoDbResourceMongoDbCollection: API.OperationMethod<
-  GetMongoDbResourceMongoDbCollectionRequest,
-  GetMongoDbResourceMongoDbCollectionResponse,
-  GetMongoDbResourceMongoDbCollectionError,
+export const GetMongoDBResourceMongoDBCollection: API.OperationMethod<
+  GetMongoDBResourceMongoDBCollectionRequest,
+  GetMongoDBResourceMongoDBCollectionResponse,
+  GetMongoDBResourceMongoDBCollectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoDbResourceMongoDbCollectionRequest,
-  output: GetMongoDbResourceMongoDbCollectionResponse,
+  input: GetMongoDBResourceMongoDBCollectionRequest,
+  output: GetMongoDBResourceMongoDBCollectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMongoDbResourceMongoDbCollectionThroughputError = AzureOpError;
+export type GetMongoDBResourceMongoDBCollectionThroughputError = AzureOpError;
 /** Gets the RUs per second of the MongoDB collection under an existing Azure Cosmos DB database account with the provided name. */
-export const GetMongoDbResourceMongoDbCollectionThroughput: API.OperationMethod<
-  GetMongoDbResourceMongoDbCollectionThroughputRequest,
-  GetMongoDbResourceMongoDbCollectionThroughputResponse,
-  GetMongoDbResourceMongoDbCollectionThroughputError,
+export const GetMongoDBResourceMongoDBCollectionThroughput: API.OperationMethod<
+  GetMongoDBResourceMongoDBCollectionThroughputRequest,
+  GetMongoDBResourceMongoDBCollectionThroughputResponse,
+  GetMongoDBResourceMongoDBCollectionThroughputError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoDbResourceMongoDbCollectionThroughputRequest,
-  output: GetMongoDbResourceMongoDbCollectionThroughputResponse,
+  input: GetMongoDBResourceMongoDBCollectionThroughputRequest,
+  output: GetMongoDBResourceMongoDBCollectionThroughputResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMongoDbResourceMongoDbDatabaseError = AzureOpError;
+export type GetMongoDBResourceMongoDBDatabaseError = AzureOpError;
 /** Gets the MongoDB databases under an existing Azure Cosmos DB database account with the provided name. */
-export const GetMongoDbResourceMongoDbDatabase: API.OperationMethod<
-  GetMongoDbResourceMongoDbDatabaseRequest,
-  GetMongoDbResourceMongoDbDatabaseResponse,
-  GetMongoDbResourceMongoDbDatabaseError,
+export const GetMongoDBResourceMongoDBDatabase: API.OperationMethod<
+  GetMongoDBResourceMongoDBDatabaseRequest,
+  GetMongoDBResourceMongoDBDatabaseResponse,
+  GetMongoDBResourceMongoDBDatabaseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoDbResourceMongoDbDatabaseRequest,
-  output: GetMongoDbResourceMongoDbDatabaseResponse,
+  input: GetMongoDBResourceMongoDBDatabaseRequest,
+  output: GetMongoDBResourceMongoDBDatabaseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMongoDbResourceMongoDbDatabaseThroughputError = AzureOpError;
+export type GetMongoDBResourceMongoDBDatabaseThroughputError = AzureOpError;
 /** Gets the RUs per second of the MongoDB database under an existing Azure Cosmos DB database account with the provided name. */
-export const GetMongoDbResourceMongoDbDatabaseThroughput: API.OperationMethod<
-  GetMongoDbResourceMongoDbDatabaseThroughputRequest,
-  GetMongoDbResourceMongoDbDatabaseThroughputResponse,
-  GetMongoDbResourceMongoDbDatabaseThroughputError,
+export const GetMongoDBResourceMongoDBDatabaseThroughput: API.OperationMethod<
+  GetMongoDBResourceMongoDBDatabaseThroughputRequest,
+  GetMongoDBResourceMongoDBDatabaseThroughputResponse,
+  GetMongoDBResourceMongoDBDatabaseThroughputError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoDbResourceMongoDbDatabaseThroughputRequest,
-  output: GetMongoDbResourceMongoDbDatabaseThroughputResponse,
+  input: GetMongoDBResourceMongoDBDatabaseThroughputRequest,
+  output: GetMongoDBResourceMongoDBDatabaseThroughputResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMongoDbResourceMongoRoleDefinitionError = AzureOpError;
+export type GetMongoDBResourceMongoRoleDefinitionError = AzureOpError;
 /** Retrieves the properties of an existing Azure Cosmos DB Mongo Role Definition with the given Id. */
-export const GetMongoDbResourceMongoRoleDefinition: API.OperationMethod<
-  GetMongoDbResourceMongoRoleDefinitionRequest,
-  GetMongoDbResourceMongoRoleDefinitionResponse,
-  GetMongoDbResourceMongoRoleDefinitionError,
+export const GetMongoDBResourceMongoRoleDefinition: API.OperationMethod<
+  GetMongoDBResourceMongoRoleDefinitionRequest,
+  GetMongoDBResourceMongoRoleDefinitionResponse,
+  GetMongoDBResourceMongoRoleDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoDbResourceMongoRoleDefinitionRequest,
-  output: GetMongoDbResourceMongoRoleDefinitionResponse,
+  input: GetMongoDBResourceMongoRoleDefinitionRequest,
+  output: GetMongoDBResourceMongoRoleDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMongoDbResourceMongoUserDefinitionError = AzureOpError;
+export type GetMongoDBResourceMongoUserDefinitionError = AzureOpError;
 /** Retrieves the properties of an existing Azure Cosmos DB Mongo User Definition with the given Id. */
-export const GetMongoDbResourceMongoUserDefinition: API.OperationMethod<
-  GetMongoDbResourceMongoUserDefinitionRequest,
-  GetMongoDbResourceMongoUserDefinitionResponse,
-  GetMongoDbResourceMongoUserDefinitionError,
+export const GetMongoDBResourceMongoUserDefinition: API.OperationMethod<
+  GetMongoDBResourceMongoUserDefinitionRequest,
+  GetMongoDBResourceMongoUserDefinitionResponse,
+  GetMongoDBResourceMongoUserDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoDbResourceMongoUserDefinitionRequest,
-  output: GetMongoDbResourceMongoUserDefinitionResponse,
+  input: GetMongoDBResourceMongoUserDefinitionRequest,
+  output: GetMongoDBResourceMongoUserDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMongoMiResourceMongoMiRoleAssignmentError = AzureOpError;
+export type GetMongoMIResourceMongoMIRoleAssignmentError = AzureOpError;
 /** Retrieves the properties of an existing Azure Cosmos DB MongoMI Role Assignment with the given Id. */
-export const GetMongoMiResourceMongoMiRoleAssignment: API.OperationMethod<
-  GetMongoMiResourceMongoMiRoleAssignmentRequest,
-  GetMongoMiResourceMongoMiRoleAssignmentResponse,
-  GetMongoMiResourceMongoMiRoleAssignmentError,
+export const GetMongoMIResourceMongoMIRoleAssignment: API.OperationMethod<
+  GetMongoMIResourceMongoMIRoleAssignmentRequest,
+  GetMongoMIResourceMongoMIRoleAssignmentResponse,
+  GetMongoMIResourceMongoMIRoleAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoMiResourceMongoMiRoleAssignmentRequest,
-  output: GetMongoMiResourceMongoMiRoleAssignmentResponse,
+  input: GetMongoMIResourceMongoMIRoleAssignmentRequest,
+  output: GetMongoMIResourceMongoMIRoleAssignmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetMongoMiResourceMongoMiRoleDefinitionError = AzureOpError;
+export type GetMongoMIResourceMongoMIRoleDefinitionError = AzureOpError;
 /** Retrieves the properties of an existing Azure Cosmos DB MongoMI Role Definition with the given Id. */
-export const GetMongoMiResourceMongoMiRoleDefinition: API.OperationMethod<
-  GetMongoMiResourceMongoMiRoleDefinitionRequest,
-  GetMongoMiResourceMongoMiRoleDefinitionResponse,
-  GetMongoMiResourceMongoMiRoleDefinitionError,
+export const GetMongoMIResourceMongoMIRoleDefinition: API.OperationMethod<
+  GetMongoMIResourceMongoMIRoleDefinitionRequest,
+  GetMongoMIResourceMongoMIRoleDefinitionResponse,
+  GetMongoMIResourceMongoMIRoleDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMongoMiResourceMongoMiRoleDefinitionRequest,
-  output: GetMongoMiResourceMongoMiRoleDefinitionResponse,
+  input: GetMongoMIResourceMongoMIRoleDefinitionRequest,
+  output: GetMongoMIResourceMongoMIRoleDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22094,6 +22026,21 @@ export const GetSqlResourceClientEncryptionKey: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetSqlResourceClientEncryptionKeyRequest,
   output: GetSqlResourceClientEncryptionKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSqlResourceContinuousBackupInformationError = AzureOpError;
+/** Retrieves continuous backup information for a container resource. */
+export const GetSqlResourceContinuousBackupInformation: API.OperationMethod<
+  GetSqlResourceContinuousBackupInformationRequest,
+  BackupInformation,
+  GetSqlResourceContinuousBackupInformationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSqlResourceContinuousBackupInformationRequest,
+  output: BackupInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22204,21 +22151,6 @@ export const GetSqlResourceSqlStoredProcedure: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSqlResourceSqlTriggerError = AzureOpError;
-/** Gets the SQL trigger under an existing Azure Cosmos DB database account. */
-export const GetSqlResourceSqlTrigger: API.OperationMethod<
-  GetSqlResourceSqlTriggerRequest,
-  GetSqlResourceSqlTriggerResponse,
-  GetSqlResourceSqlTriggerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetSqlResourceSqlTriggerRequest,
-  output: GetSqlResourceSqlTriggerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetSqlResourceSqlUserDefinedFunctionError = AzureOpError;
 /** Gets the SQL userDefinedFunction under an existing Azure Cosmos DB database account. */
 export const GetSqlResourceSqlUserDefinedFunction: API.OperationMethod<
@@ -22229,6 +22161,21 @@ export const GetSqlResourceSqlUserDefinedFunction: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetSqlResourceSqlUserDefinedFunctionRequest,
   output: GetSqlResourceSqlUserDefinedFunctionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTableResourceContinuousBackupInformationError = AzureOpError;
+/** Retrieves continuous backup information for a table. */
+export const GetTableResourceContinuousBackupInformation: API.OperationMethod<
+  GetTableResourceContinuousBackupInformationRequest,
+  BackupInformation,
+  GetTableResourceContinuousBackupInformationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTableResourceContinuousBackupInformationRequest,
+  output: BackupInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22356,80 +22303,16 @@ export const GremlinResourcesCreateUpdateGremlinRoleDefinition: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type GremlinResourcesMigrateGremlinDatabaseToAutoscaleError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB Gremlin database from manual throughput to autoscale */
-export const GremlinResourcesMigrateGremlinDatabaseToAutoscale: API.OperationMethod<
-  GremlinResourcesMigrateGremlinDatabaseToAutoscaleRequest,
-  GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse,
-  GremlinResourcesMigrateGremlinDatabaseToAutoscaleError,
+export type InvokeCassandraClusterCommandError = AzureOpError;
+/** Invoke a command like nodetool for cassandra maintenance */
+export const InvokeCassandraClusterCommand: API.OperationMethod<
+  InvokeCassandraClusterCommandRequest,
+  InvokeCassandraClusterCommandResponse,
+  InvokeCassandraClusterCommandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GremlinResourcesMigrateGremlinDatabaseToAutoscaleRequest,
-  output: GremlinResourcesMigrateGremlinDatabaseToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GremlinResourcesMigrateGremlinDatabaseToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB Gremlin database from autoscale to manual throughput */
-export const GremlinResourcesMigrateGremlinDatabaseToManualThroughput: API.OperationMethod<
-  GremlinResourcesMigrateGremlinDatabaseToManualThroughputRequest,
-  GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse,
-  GremlinResourcesMigrateGremlinDatabaseToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GremlinResourcesMigrateGremlinDatabaseToManualThroughputRequest,
-  output: GremlinResourcesMigrateGremlinDatabaseToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GremlinResourcesMigrateGremlinGraphToAutoscaleError = AzureOpError;
-/** Migrate an Azure Cosmos DB Gremlin graph from manual throughput to autoscale */
-export const GremlinResourcesMigrateGremlinGraphToAutoscale: API.OperationMethod<
-  GremlinResourcesMigrateGremlinGraphToAutoscaleRequest,
-  GremlinResourcesMigrateGremlinGraphToAutoscaleResponse,
-  GremlinResourcesMigrateGremlinGraphToAutoscaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GremlinResourcesMigrateGremlinGraphToAutoscaleRequest,
-  output: GremlinResourcesMigrateGremlinGraphToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GremlinResourcesMigrateGremlinGraphToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB Gremlin graph from autoscale to manual throughput */
-export const GremlinResourcesMigrateGremlinGraphToManualThroughput: API.OperationMethod<
-  GremlinResourcesMigrateGremlinGraphToManualThroughputRequest,
-  GremlinResourcesMigrateGremlinGraphToManualThroughputResponse,
-  GremlinResourcesMigrateGremlinGraphToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GremlinResourcesMigrateGremlinGraphToManualThroughputRequest,
-  output: GremlinResourcesMigrateGremlinGraphToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GremlinResourcesRetrieveContinuousBackupInformationError =
-  AzureOpError;
-/** Retrieves continuous backup information for a gremlin graph. */
-export const GremlinResourcesRetrieveContinuousBackupInformation: API.OperationMethod<
-  GremlinResourcesRetrieveContinuousBackupInformationRequest,
-  BackupInformation,
-  GremlinResourcesRetrieveContinuousBackupInformationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GremlinResourcesRetrieveContinuousBackupInformationRequest,
-  output: BackupInformation,
+  input: InvokeCassandraClusterCommandRequest,
+  output: InvokeCassandraClusterCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22649,12 +22532,12 @@ export type ListDatabaseAccountByResourceGroupError = AzureOpError;
 /** Lists all the Azure Cosmos DB database accounts available under the given resource group. */
 export const ListDatabaseAccountByResourceGroup: API.OperationMethod<
   ListDatabaseAccountByResourceGroupRequest,
-  ListDatabaseAccountsResult,
+  DatabaseAccountsListResult,
   ListDatabaseAccountByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDatabaseAccountByResourceGroupRequest,
-  output: ListDatabaseAccountsResult,
+  output: DatabaseAccountsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22720,21 +22603,6 @@ export const ListDatabaseAccountMetrics: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListDatabaseAccountReadOnlyKeysError = AzureOpError;
-/** Lists the read-only access keys for the specified Azure Cosmos DB database account. */
-export const ListDatabaseAccountReadOnlyKeys: API.OperationMethod<
-  ListDatabaseAccountReadOnlyKeysRequest,
-  DatabaseAccountListReadOnlyKeysResult,
-  ListDatabaseAccountReadOnlyKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListDatabaseAccountReadOnlyKeysRequest,
-  output: DatabaseAccountListReadOnlyKeysResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListDatabaseAccountRegionMetricsError = AzureOpError;
 /** Retrieves the metrics determined by the given filter for the given database account and region. */
 export const ListDatabaseAccountRegionMetrics: API.OperationMethod<
@@ -22754,12 +22622,12 @@ export type ListDatabaseAccountsError = AzureOpError;
 /** Lists all the Azure Cosmos DB database accounts available under the subscription. */
 export const ListDatabaseAccounts: API.OperationMethod<
   ListDatabaseAccountsRequest,
-  ListDatabaseAccountsResult,
+  DatabaseAccountsListResult,
   ListDatabaseAccountsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDatabaseAccountsRequest,
-  output: ListDatabaseAccountsResult,
+  output: DatabaseAccountsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22829,12 +22697,12 @@ export type ListFleetError = AzureOpError;
 /** Lists all the fleets under the subscription. */
 export const ListFleet: API.OperationMethod<
   ListFleetRequest,
-  ListFleetResult,
+  FleetListResult,
   ListFleetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListFleetRequest,
-  output: ListFleetResult,
+  output: FleetListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22844,12 +22712,12 @@ export type ListFleetByResourceGroupError = AzureOpError;
 /** Lists all the fleets under the specified subscription and resource group. */
 export const ListFleetByResourceGroup: API.OperationMethod<
   ListFleetByResourceGroupRequest,
-  ListFleetResult,
+  FleetListResult,
   ListFleetByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListFleetByResourceGroupRequest,
-  output: ListFleetResult,
+  output: FleetListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22859,12 +22727,12 @@ export type ListFleetspaceError = AzureOpError;
 /** Lists all the fleetspaces under a fleet. */
 export const ListFleetspace: API.OperationMethod<
   ListFleetspaceRequest,
-  ListFleetspaceResult,
+  FleetspaceListResult,
   ListFleetspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListFleetspaceRequest,
-  output: ListFleetspaceResult,
+  output: FleetspaceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22874,12 +22742,12 @@ export type ListFleetspaceAccountError = AzureOpError;
 /** Lists all the fleetspaces accounts under a fleetspace. */
 export const ListFleetspaceAccount: API.OperationMethod<
   ListFleetspaceAccountRequest,
-  ListFleetspaceAccountResult,
+  FleetspaceAccountListResult,
   ListFleetspaceAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListFleetspaceAccountRequest,
-  output: ListFleetspaceAccountResult,
+  output: FleetspaceAccountListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22960,90 +22828,90 @@ export const ListLocations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListMongoDbResourceMongoDbCollectionsError = AzureOpError;
+export type ListMongoDBResourceMongoDBCollectionsError = AzureOpError;
 /** Lists the MongoDB collection under an existing Azure Cosmos DB database account. */
-export const ListMongoDbResourceMongoDbCollections: API.OperationMethod<
-  ListMongoDbResourceMongoDbCollectionsRequest,
+export const ListMongoDBResourceMongoDBCollections: API.OperationMethod<
+  ListMongoDBResourceMongoDBCollectionsRequest,
   MongoDBCollectionListResult,
-  ListMongoDbResourceMongoDbCollectionsError,
+  ListMongoDBResourceMongoDBCollectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMongoDbResourceMongoDbCollectionsRequest,
+  input: ListMongoDBResourceMongoDBCollectionsRequest,
   output: MongoDBCollectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMongoDbResourceMongoDbDatabasesError = AzureOpError;
+export type ListMongoDBResourceMongoDBDatabasesError = AzureOpError;
 /** Lists the MongoDB databases under an existing Azure Cosmos DB database account. */
-export const ListMongoDbResourceMongoDbDatabases: API.OperationMethod<
-  ListMongoDbResourceMongoDbDatabasesRequest,
+export const ListMongoDBResourceMongoDBDatabases: API.OperationMethod<
+  ListMongoDBResourceMongoDBDatabasesRequest,
   MongoDBDatabaseListResult,
-  ListMongoDbResourceMongoDbDatabasesError,
+  ListMongoDBResourceMongoDBDatabasesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMongoDbResourceMongoDbDatabasesRequest,
+  input: ListMongoDBResourceMongoDBDatabasesRequest,
   output: MongoDBDatabaseListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMongoDbResourceMongoRoleDefinitionsError = AzureOpError;
+export type ListMongoDBResourceMongoRoleDefinitionsError = AzureOpError;
 /** Retrieves the list of all Azure Cosmos DB Mongo Role Definitions. */
-export const ListMongoDbResourceMongoRoleDefinitions: API.OperationMethod<
-  ListMongoDbResourceMongoRoleDefinitionsRequest,
+export const ListMongoDBResourceMongoRoleDefinitions: API.OperationMethod<
+  ListMongoDBResourceMongoRoleDefinitionsRequest,
   MongoRoleDefinitionListResult,
-  ListMongoDbResourceMongoRoleDefinitionsError,
+  ListMongoDBResourceMongoRoleDefinitionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMongoDbResourceMongoRoleDefinitionsRequest,
+  input: ListMongoDBResourceMongoRoleDefinitionsRequest,
   output: MongoRoleDefinitionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMongoDbResourceMongoUserDefinitionsError = AzureOpError;
+export type ListMongoDBResourceMongoUserDefinitionsError = AzureOpError;
 /** Retrieves the list of all Azure Cosmos DB Mongo User Definition. */
-export const ListMongoDbResourceMongoUserDefinitions: API.OperationMethod<
-  ListMongoDbResourceMongoUserDefinitionsRequest,
+export const ListMongoDBResourceMongoUserDefinitions: API.OperationMethod<
+  ListMongoDBResourceMongoUserDefinitionsRequest,
   MongoUserDefinitionListResult,
-  ListMongoDbResourceMongoUserDefinitionsError,
+  ListMongoDBResourceMongoUserDefinitionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMongoDbResourceMongoUserDefinitionsRequest,
+  input: ListMongoDBResourceMongoUserDefinitionsRequest,
   output: MongoUserDefinitionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMongoMiResourceMongoMiRoleAssignmentsError = AzureOpError;
+export type ListMongoMIResourceMongoMIRoleAssignmentsError = AzureOpError;
 /** Retrieves the list of all Azure Cosmos DB MongoMI Role Assignments. */
-export const ListMongoMiResourceMongoMiRoleAssignments: API.OperationMethod<
-  ListMongoMiResourceMongoMiRoleAssignmentsRequest,
+export const ListMongoMIResourceMongoMIRoleAssignments: API.OperationMethod<
+  ListMongoMIResourceMongoMIRoleAssignmentsRequest,
   MongoMIRoleAssignmentListResult,
-  ListMongoMiResourceMongoMiRoleAssignmentsError,
+  ListMongoMIResourceMongoMIRoleAssignmentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMongoMiResourceMongoMiRoleAssignmentsRequest,
+  input: ListMongoMIResourceMongoMIRoleAssignmentsRequest,
   output: MongoMIRoleAssignmentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMongoMiResourceMongoMiRoleDefinitionsError = AzureOpError;
+export type ListMongoMIResourceMongoMIRoleDefinitionsError = AzureOpError;
 /** Retrieves the list of all Azure Cosmos DB MongoMI Role Definitions. */
-export const ListMongoMiResourceMongoMiRoleDefinitions: API.OperationMethod<
-  ListMongoMiResourceMongoMiRoleDefinitionsRequest,
+export const ListMongoMIResourceMongoMIRoleDefinitions: API.OperationMethod<
+  ListMongoMIResourceMongoMIRoleDefinitionsRequest,
   MongoMIRoleDefinitionListResult,
-  ListMongoMiResourceMongoMiRoleDefinitionsError,
+  ListMongoMIResourceMongoMIRoleDefinitionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMongoMiResourceMongoMiRoleDefinitionsRequest,
+  input: ListMongoMIResourceMongoMIRoleDefinitionsRequest,
   output: MongoMIRoleDefinitionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -23204,12 +23072,12 @@ export type ListRestorableDatabaseAccountByLocationError = AzureOpError;
 /** Lists all the restorable Azure Cosmos DB database accounts available under the subscription and in a region. This call requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/read' permission. */
 export const ListRestorableDatabaseAccountByLocation: API.OperationMethod<
   ListRestorableDatabaseAccountByLocationRequest,
-  ListRestorableDatabaseAccountsResult,
+  RestorableDatabaseAccountsListResult,
   ListRestorableDatabaseAccountByLocationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableDatabaseAccountByLocationRequest,
-  output: ListRestorableDatabaseAccountsResult,
+  output: RestorableDatabaseAccountsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23219,12 +23087,12 @@ export type ListRestorableDatabaseAccountsError = AzureOpError;
 /** Lists all the restorable Azure Cosmos DB database accounts available under the subscription. This call requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/read' permission. */
 export const ListRestorableDatabaseAccounts: API.OperationMethod<
   ListRestorableDatabaseAccountsRequest,
-  ListRestorableDatabaseAccountsResult,
+  RestorableDatabaseAccountsListResult,
   ListRestorableDatabaseAccountsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableDatabaseAccountsRequest,
-  output: ListRestorableDatabaseAccountsResult,
+  output: RestorableDatabaseAccountsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23234,12 +23102,12 @@ export type ListRestorableGremlinDatabasesError = AzureOpError;
 /** Show the event feed of all mutations done on all the Azure Cosmos DB Gremlin databases under the restorable account. This helps in scenario where database was accidentally deleted to get the deletion time. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission */
 export const ListRestorableGremlinDatabases: API.OperationMethod<
   ListRestorableGremlinDatabasesRequest,
-  ListRestorableGremlinDatabasesResult,
+  RestorableGremlinDatabasesListResult,
   ListRestorableGremlinDatabasesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableGremlinDatabasesRequest,
-  output: ListRestorableGremlinDatabasesResult,
+  output: RestorableGremlinDatabasesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23249,12 +23117,12 @@ export type ListRestorableGremlinGraphsError = AzureOpError;
 /** Show the event feed of all mutations done on all the Azure Cosmos DB Gremlin graphs under a specific database. This helps in scenario where container was accidentally deleted. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission */
 export const ListRestorableGremlinGraphs: API.OperationMethod<
   ListRestorableGremlinGraphsRequest,
-  ListRestorableGremlinGraphsResult,
+  RestorableGremlinGraphsListResult,
   ListRestorableGremlinGraphsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableGremlinGraphsRequest,
-  output: ListRestorableGremlinGraphsResult,
+  output: RestorableGremlinGraphsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23264,12 +23132,12 @@ export type ListRestorableGremlinResourcesError = AzureOpError;
 /** Return a list of gremlin database and graphs combo that exist on the account at the given timestamp and location. This helps in scenarios to validate what resources exist at given timestamp and location. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission. */
 export const ListRestorableGremlinResources: API.OperationMethod<
   ListRestorableGremlinResourcesRequest,
-  ListRestorableGremlinResourcesResult,
+  RestorableGremlinResourcesListResult,
   ListRestorableGremlinResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableGremlinResourcesRequest,
-  output: ListRestorableGremlinResourcesResult,
+  output: RestorableGremlinResourcesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23279,12 +23147,12 @@ export type ListRestorableMongodbCollectionsError = AzureOpError;
 /** Show the event feed of all mutations done on all the Azure Cosmos DB MongoDB collections under a specific database. This helps in scenario where container was accidentally deleted. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission */
 export const ListRestorableMongodbCollections: API.OperationMethod<
   ListRestorableMongodbCollectionsRequest,
-  ListRestorableMongodbCollectionsResult,
+  RestorableMongodbCollectionsListResult,
   ListRestorableMongodbCollectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableMongodbCollectionsRequest,
-  output: ListRestorableMongodbCollectionsResult,
+  output: RestorableMongodbCollectionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23294,12 +23162,12 @@ export type ListRestorableMongodbDatabasesError = AzureOpError;
 /** Show the event feed of all mutations done on all the Azure Cosmos DB MongoDB databases under the restorable account. This helps in scenario where database was accidentally deleted to get the deletion time. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission */
 export const ListRestorableMongodbDatabases: API.OperationMethod<
   ListRestorableMongodbDatabasesRequest,
-  ListRestorableMongodbDatabasesResult,
+  RestorableMongodbDatabasesListResult,
   ListRestorableMongodbDatabasesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableMongodbDatabasesRequest,
-  output: ListRestorableMongodbDatabasesResult,
+  output: RestorableMongodbDatabasesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23309,12 +23177,12 @@ export type ListRestorableMongodbResourcesError = AzureOpError;
 /** Return a list of database and collection combo that exist on the account at the given timestamp and location. This helps in scenarios to validate what resources exist at given timestamp and location. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission. */
 export const ListRestorableMongodbResources: API.OperationMethod<
   ListRestorableMongodbResourcesRequest,
-  ListRestorableMongodbResourcesResult,
+  RestorableMongodbResourcesListResult,
   ListRestorableMongodbResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableMongodbResourcesRequest,
-  output: ListRestorableMongodbResourcesResult,
+  output: RestorableMongodbResourcesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23324,12 +23192,12 @@ export type ListRestorableSqlContainersError = AzureOpError;
 /** Show the event feed of all mutations done on all the Azure Cosmos DB SQL containers under a specific database. This helps in scenario where container was accidentally deleted. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission */
 export const ListRestorableSqlContainers: API.OperationMethod<
   ListRestorableSqlContainersRequest,
-  ListRestorableSqlContainersResult,
+  RestorableSqlContainersListResult,
   ListRestorableSqlContainersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableSqlContainersRequest,
-  output: ListRestorableSqlContainersResult,
+  output: RestorableSqlContainersListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23339,12 +23207,12 @@ export type ListRestorableSqlDatabasesError = AzureOpError;
 /** Show the event feed of all mutations done on all the Azure Cosmos DB SQL databases under the restorable account. This helps in scenario where database was accidentally deleted to get the deletion time. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission */
 export const ListRestorableSqlDatabases: API.OperationMethod<
   ListRestorableSqlDatabasesRequest,
-  ListRestorableSqlDatabasesResult,
+  RestorableSqlDatabasesListResult,
   ListRestorableSqlDatabasesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableSqlDatabasesRequest,
-  output: ListRestorableSqlDatabasesResult,
+  output: RestorableSqlDatabasesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23354,12 +23222,12 @@ export type ListRestorableSqlResourcesError = AzureOpError;
 /** Return a list of database and container combo that exist on the account at the given timestamp and location. This helps in scenarios to validate what resources exist at given timestamp and location. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission. */
 export const ListRestorableSqlResources: API.OperationMethod<
   ListRestorableSqlResourcesRequest,
-  ListRestorableSqlResourcesResult,
+  RestorableSqlResourcesListResult,
   ListRestorableSqlResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableSqlResourcesRequest,
-  output: ListRestorableSqlResourcesResult,
+  output: RestorableSqlResourcesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23369,12 +23237,12 @@ export type ListRestorableTableResourcesError = AzureOpError;
 /** Return a list of tables that exist on the account at the given timestamp and location. This helps in scenarios to validate what resources exist at given timestamp and location. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission. */
 export const ListRestorableTableResources: API.OperationMethod<
   ListRestorableTableResourcesRequest,
-  ListRestorableTableResourcesResult,
+  RestorableTableResourcesListResult,
   ListRestorableTableResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableTableResourcesRequest,
-  output: ListRestorableTableResourcesResult,
+  output: RestorableTableResourcesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23384,12 +23252,12 @@ export type ListRestorableTablesError = AzureOpError;
 /** Show the event feed of all mutations done on all the Azure Cosmos DB Tables. This helps in scenario where table was accidentally deleted. This API requires 'Microsoft.DocumentDB/locations/restorableDatabaseAccounts/.../read' permission */
 export const ListRestorableTables: API.OperationMethod<
   ListRestorableTablesRequest,
-  ListRestorableTablesResult,
+  RestorableTablesListResult,
   ListRestorableTablesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRestorableTablesRequest,
-  output: ListRestorableTablesResult,
+  output: RestorableTablesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23575,6 +23443,288 @@ export const ListTableResourceTables: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MigrateCassandraResourceCassandraKeyspaceToAutoscaleError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB Cassandra Keyspace from manual throughput to autoscale */
+export const MigrateCassandraResourceCassandraKeyspaceToAutoscale: API.OperationMethod<
+  MigrateCassandraResourceCassandraKeyspaceToAutoscaleRequest,
+  MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponse,
+  MigrateCassandraResourceCassandraKeyspaceToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateCassandraResourceCassandraKeyspaceToAutoscaleRequest,
+  output: MigrateCassandraResourceCassandraKeyspaceToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateCassandraResourceCassandraKeyspaceToManualThroughputError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB Cassandra Keyspace from autoscale to manual throughput */
+export const MigrateCassandraResourceCassandraKeyspaceToManualThroughput: API.OperationMethod<
+  MigrateCassandraResourceCassandraKeyspaceToManualThroughputRequest,
+  MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponse,
+  MigrateCassandraResourceCassandraKeyspaceToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateCassandraResourceCassandraKeyspaceToManualThroughputRequest,
+  output: MigrateCassandraResourceCassandraKeyspaceToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateCassandraResourceCassandraTableToAutoscaleError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB Cassandra table from manual throughput to autoscale */
+export const MigrateCassandraResourceCassandraTableToAutoscale: API.OperationMethod<
+  MigrateCassandraResourceCassandraTableToAutoscaleRequest,
+  MigrateCassandraResourceCassandraTableToAutoscaleResponse,
+  MigrateCassandraResourceCassandraTableToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateCassandraResourceCassandraTableToAutoscaleRequest,
+  output: MigrateCassandraResourceCassandraTableToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateCassandraResourceCassandraTableToManualThroughputError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB Cassandra table from autoscale to manual throughput */
+export const MigrateCassandraResourceCassandraTableToManualThroughput: API.OperationMethod<
+  MigrateCassandraResourceCassandraTableToManualThroughputRequest,
+  MigrateCassandraResourceCassandraTableToManualThroughputResponse,
+  MigrateCassandraResourceCassandraTableToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateCassandraResourceCassandraTableToManualThroughputRequest,
+  output: MigrateCassandraResourceCassandraTableToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateGremlinResourceGremlinDatabaseToAutoscaleError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB Gremlin database from manual throughput to autoscale */
+export const MigrateGremlinResourceGremlinDatabaseToAutoscale: API.OperationMethod<
+  MigrateGremlinResourceGremlinDatabaseToAutoscaleRequest,
+  MigrateGremlinResourceGremlinDatabaseToAutoscaleResponse,
+  MigrateGremlinResourceGremlinDatabaseToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateGremlinResourceGremlinDatabaseToAutoscaleRequest,
+  output: MigrateGremlinResourceGremlinDatabaseToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateGremlinResourceGremlinDatabaseToManualThroughputError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB Gremlin database from autoscale to manual throughput */
+export const MigrateGremlinResourceGremlinDatabaseToManualThroughput: API.OperationMethod<
+  MigrateGremlinResourceGremlinDatabaseToManualThroughputRequest,
+  MigrateGremlinResourceGremlinDatabaseToManualThroughputResponse,
+  MigrateGremlinResourceGremlinDatabaseToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateGremlinResourceGremlinDatabaseToManualThroughputRequest,
+  output: MigrateGremlinResourceGremlinDatabaseToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateGremlinResourceGremlinGraphToAutoscaleError = AzureOpError;
+/** Migrate an Azure Cosmos DB Gremlin graph from manual throughput to autoscale */
+export const MigrateGremlinResourceGremlinGraphToAutoscale: API.OperationMethod<
+  MigrateGremlinResourceGremlinGraphToAutoscaleRequest,
+  MigrateGremlinResourceGremlinGraphToAutoscaleResponse,
+  MigrateGremlinResourceGremlinGraphToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateGremlinResourceGremlinGraphToAutoscaleRequest,
+  output: MigrateGremlinResourceGremlinGraphToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateGremlinResourceGremlinGraphToManualThroughputError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB Gremlin graph from autoscale to manual throughput */
+export const MigrateGremlinResourceGremlinGraphToManualThroughput: API.OperationMethod<
+  MigrateGremlinResourceGremlinGraphToManualThroughputRequest,
+  MigrateGremlinResourceGremlinGraphToManualThroughputResponse,
+  MigrateGremlinResourceGremlinGraphToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateGremlinResourceGremlinGraphToManualThroughputRequest,
+  output: MigrateGremlinResourceGremlinGraphToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateMongoDBResourceMongoDBCollectionToAutoscaleError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB MongoDB collection from manual throughput to autoscale */
+export const MigrateMongoDBResourceMongoDBCollectionToAutoscale: API.OperationMethod<
+  MigrateMongoDBResourceMongoDBCollectionToAutoscaleRequest,
+  MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponse,
+  MigrateMongoDBResourceMongoDBCollectionToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateMongoDBResourceMongoDBCollectionToAutoscaleRequest,
+  output: MigrateMongoDBResourceMongoDBCollectionToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateMongoDBResourceMongoDBCollectionToManualThroughputError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB MongoDB collection from autoscale to manual throughput */
+export const MigrateMongoDBResourceMongoDBCollectionToManualThroughput: API.OperationMethod<
+  MigrateMongoDBResourceMongoDBCollectionToManualThroughputRequest,
+  MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponse,
+  MigrateMongoDBResourceMongoDBCollectionToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateMongoDBResourceMongoDBCollectionToManualThroughputRequest,
+  output: MigrateMongoDBResourceMongoDBCollectionToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateMongoDBResourceMongoDBDatabaseToAutoscaleError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB MongoDB database from manual throughput to autoscale */
+export const MigrateMongoDBResourceMongoDBDatabaseToAutoscale: API.OperationMethod<
+  MigrateMongoDBResourceMongoDBDatabaseToAutoscaleRequest,
+  MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponse,
+  MigrateMongoDBResourceMongoDBDatabaseToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateMongoDBResourceMongoDBDatabaseToAutoscaleRequest,
+  output: MigrateMongoDBResourceMongoDBDatabaseToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateMongoDBResourceMongoDBDatabaseToManualThroughputError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB MongoDB database from autoscale to manual throughput */
+export const MigrateMongoDBResourceMongoDBDatabaseToManualThroughput: API.OperationMethod<
+  MigrateMongoDBResourceMongoDBDatabaseToManualThroughputRequest,
+  MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponse,
+  MigrateMongoDBResourceMongoDBDatabaseToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateMongoDBResourceMongoDBDatabaseToManualThroughputRequest,
+  output: MigrateMongoDBResourceMongoDBDatabaseToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateSqlResourceSqlContainerToAutoscaleError = AzureOpError;
+/** Migrate an Azure Cosmos DB SQL container from manual throughput to autoscale */
+export const MigrateSqlResourceSqlContainerToAutoscale: API.OperationMethod<
+  MigrateSqlResourceSqlContainerToAutoscaleRequest,
+  MigrateSqlResourceSqlContainerToAutoscaleResponse,
+  MigrateSqlResourceSqlContainerToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateSqlResourceSqlContainerToAutoscaleRequest,
+  output: MigrateSqlResourceSqlContainerToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateSqlResourceSqlContainerToManualThroughputError =
+  AzureOpError;
+/** Migrate an Azure Cosmos DB SQL container from autoscale to manual throughput */
+export const MigrateSqlResourceSqlContainerToManualThroughput: API.OperationMethod<
+  MigrateSqlResourceSqlContainerToManualThroughputRequest,
+  MigrateSqlResourceSqlContainerToManualThroughputResponse,
+  MigrateSqlResourceSqlContainerToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateSqlResourceSqlContainerToManualThroughputRequest,
+  output: MigrateSqlResourceSqlContainerToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateSqlResourceSqlDatabaseToAutoscaleError = AzureOpError;
+/** Migrate an Azure Cosmos DB SQL database from manual throughput to autoscale */
+export const MigrateSqlResourceSqlDatabaseToAutoscale: API.OperationMethod<
+  MigrateSqlResourceSqlDatabaseToAutoscaleRequest,
+  MigrateSqlResourceSqlDatabaseToAutoscaleResponse,
+  MigrateSqlResourceSqlDatabaseToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateSqlResourceSqlDatabaseToAutoscaleRequest,
+  output: MigrateSqlResourceSqlDatabaseToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateSqlResourceSqlDatabaseToManualThroughputError = AzureOpError;
+/** Migrate an Azure Cosmos DB SQL database from autoscale to manual throughput */
+export const MigrateSqlResourceSqlDatabaseToManualThroughput: API.OperationMethod<
+  MigrateSqlResourceSqlDatabaseToManualThroughputRequest,
+  MigrateSqlResourceSqlDatabaseToManualThroughputResponse,
+  MigrateSqlResourceSqlDatabaseToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateSqlResourceSqlDatabaseToManualThroughputRequest,
+  output: MigrateSqlResourceSqlDatabaseToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateTableResourceTableToAutoscaleError = AzureOpError;
+/** Migrate an Azure Cosmos DB Table from manual throughput to autoscale */
+export const MigrateTableResourceTableToAutoscale: API.OperationMethod<
+  MigrateTableResourceTableToAutoscaleRequest,
+  MigrateTableResourceTableToAutoscaleResponse,
+  MigrateTableResourceTableToAutoscaleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateTableResourceTableToAutoscaleRequest,
+  output: MigrateTableResourceTableToAutoscaleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateTableResourceTableToManualThroughputError = AzureOpError;
+/** Migrate an Azure Cosmos DB Table from autoscale to manual throughput */
+export const MigrateTableResourceTableToManualThroughput: API.OperationMethod<
+  MigrateTableResourceTableToManualThroughputRequest,
+  MigrateTableResourceTableToManualThroughputResponse,
+  MigrateTableResourceTableToManualThroughputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateTableResourceTableToManualThroughputRequest,
+  output: MigrateTableResourceTableToManualThroughputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type MongoDBResourcesCreateUpdateMongoDBCollectionError = AzureOpError;
 /** Create or update an Azure Cosmos DB MongoDB Collection */
 export const MongoDBResourcesCreateUpdateMongoDBCollection: API.OperationMethod<
@@ -23635,86 +23785,6 @@ export const MongoDBResourcesCreateUpdateMongoUserDefinition: API.OperationMetho
   retry: Retry.Retry,
 }));
 
-export type MongoDBResourcesMigrateMongoDBCollectionToAutoscaleError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB MongoDB collection from manual throughput to autoscale */
-export const MongoDBResourcesMigrateMongoDBCollectionToAutoscale: API.OperationMethod<
-  MongoDBResourcesMigrateMongoDBCollectionToAutoscaleRequest,
-  MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse,
-  MongoDBResourcesMigrateMongoDBCollectionToAutoscaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MongoDBResourcesMigrateMongoDBCollectionToAutoscaleRequest,
-  output: MongoDBResourcesMigrateMongoDBCollectionToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MongoDBResourcesMigrateMongoDBCollectionToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB MongoDB collection from autoscale to manual throughput */
-export const MongoDBResourcesMigrateMongoDBCollectionToManualThroughput: API.OperationMethod<
-  MongoDBResourcesMigrateMongoDBCollectionToManualThroughputRequest,
-  MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse,
-  MongoDBResourcesMigrateMongoDBCollectionToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MongoDBResourcesMigrateMongoDBCollectionToManualThroughputRequest,
-  output: MongoDBResourcesMigrateMongoDBCollectionToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB MongoDB database from manual throughput to autoscale */
-export const MongoDBResourcesMigrateMongoDBDatabaseToAutoscale: API.OperationMethod<
-  MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleRequest,
-  MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse,
-  MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleRequest,
-  output: MongoDBResourcesMigrateMongoDBDatabaseToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB MongoDB database from autoscale to manual throughput */
-export const MongoDBResourcesMigrateMongoDBDatabaseToManualThroughput: API.OperationMethod<
-  MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputRequest,
-  MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse,
-  MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputRequest,
-  output: MongoDBResourcesMigrateMongoDBDatabaseToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MongoDBResourcesRetrieveContinuousBackupInformationError =
-  AzureOpError;
-/** Retrieves continuous backup information for a Mongodb collection. */
-export const MongoDBResourcesRetrieveContinuousBackupInformation: API.OperationMethod<
-  MongoDBResourcesRetrieveContinuousBackupInformationRequest,
-  BackupInformation,
-  MongoDBResourcesRetrieveContinuousBackupInformationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MongoDBResourcesRetrieveContinuousBackupInformationRequest,
-  output: BackupInformation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type MongoMIResourcesCreateUpdateMongoMIRoleAssignmentError =
   AzureOpError;
 /** Creates or updates an Azure Cosmos DB MongoMI Role Assignment. */
@@ -23762,21 +23832,6 @@ export const NotebookWorkspacesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NotebookWorkspacesRegenerateAuthTokenError = AzureOpError;
-/** Regenerates the auth token for the notebook workspace */
-export const NotebookWorkspacesRegenerateAuthToken: API.OperationMethod<
-  NotebookWorkspacesRegenerateAuthTokenRequest,
-  NotebookWorkspacesRegenerateAuthTokenResponse,
-  NotebookWorkspacesRegenerateAuthTokenError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NotebookWorkspacesRegenerateAuthTokenRequest,
-  output: NotebookWorkspacesRegenerateAuthTokenResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateEndpointConnectionsCreateOrUpdateError = AzureOpError;
 /** Approve or reject a private endpoint connection with a given name. */
 export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
@@ -23787,6 +23842,36 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateEndpointConnectionsCreateOrUpdateRequest,
   output: PrivateEndpointConnectionsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateDatabaseAccountKeyError = AzureOpError;
+/** Regenerates an access key for the specified Azure Cosmos DB database account. */
+export const RegenerateDatabaseAccountKey: API.OperationMethod<
+  RegenerateDatabaseAccountKeyRequest,
+  RegenerateDatabaseAccountKeyResponse,
+  RegenerateDatabaseAccountKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateDatabaseAccountKeyRequest,
+  output: RegenerateDatabaseAccountKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateNotebookWorkspaceAuthTokenError = AzureOpError;
+/** Regenerates the auth token for the notebook workspace */
+export const RegenerateNotebookWorkspaceAuthToken: API.OperationMethod<
+  RegenerateNotebookWorkspaceAuthTokenRequest,
+  RegenerateNotebookWorkspaceAuthTokenResponse,
+  RegenerateNotebookWorkspaceAuthTokenError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateNotebookWorkspaceAuthTokenRequest,
+  output: RegenerateNotebookWorkspaceAuthTokenResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23912,78 +23997,31 @@ export const SqlResourcesCreateUpdateSqlUserDefinedFunction: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type SqlResourcesMigrateSqlContainerToAutoscaleError = AzureOpError;
-/** Migrate an Azure Cosmos DB SQL container from manual throughput to autoscale */
-export const SqlResourcesMigrateSqlContainerToAutoscale: API.OperationMethod<
-  SqlResourcesMigrateSqlContainerToAutoscaleRequest,
-  SqlResourcesMigrateSqlContainerToAutoscaleResponse,
-  SqlResourcesMigrateSqlContainerToAutoscaleError,
+export type SqlResourcesDeleteSqlTriggerError = AzureOpError;
+/** Deletes an existing Azure Cosmos DB SQL trigger. */
+export const SqlResourcesDeleteSqlTrigger: API.OperationMethod<
+  SqlResourcesDeleteSqlTriggerRequest,
+  SqlResourcesDeleteSqlTriggerResponse,
+  SqlResourcesDeleteSqlTriggerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SqlResourcesMigrateSqlContainerToAutoscaleRequest,
-  output: SqlResourcesMigrateSqlContainerToAutoscaleResponse,
+  input: SqlResourcesDeleteSqlTriggerRequest,
+  output: SqlResourcesDeleteSqlTriggerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SqlResourcesMigrateSqlContainerToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB SQL container from autoscale to manual throughput */
-export const SqlResourcesMigrateSqlContainerToManualThroughput: API.OperationMethod<
-  SqlResourcesMigrateSqlContainerToManualThroughputRequest,
-  SqlResourcesMigrateSqlContainerToManualThroughputResponse,
-  SqlResourcesMigrateSqlContainerToManualThroughputError,
+export type SqlResourcesGetSqlTriggerError = AzureOpError;
+/** Gets the SQL trigger under an existing Azure Cosmos DB database account. */
+export const SqlResourcesGetSqlTrigger: API.OperationMethod<
+  SqlResourcesGetSqlTriggerRequest,
+  SqlResourcesGetSqlTriggerResponse,
+  SqlResourcesGetSqlTriggerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SqlResourcesMigrateSqlContainerToManualThroughputRequest,
-  output: SqlResourcesMigrateSqlContainerToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlResourcesMigrateSqlDatabaseToAutoscaleError = AzureOpError;
-/** Migrate an Azure Cosmos DB SQL database from manual throughput to autoscale */
-export const SqlResourcesMigrateSqlDatabaseToAutoscale: API.OperationMethod<
-  SqlResourcesMigrateSqlDatabaseToAutoscaleRequest,
-  SqlResourcesMigrateSqlDatabaseToAutoscaleResponse,
-  SqlResourcesMigrateSqlDatabaseToAutoscaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlResourcesMigrateSqlDatabaseToAutoscaleRequest,
-  output: SqlResourcesMigrateSqlDatabaseToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlResourcesMigrateSqlDatabaseToManualThroughputError =
-  AzureOpError;
-/** Migrate an Azure Cosmos DB SQL database from autoscale to manual throughput */
-export const SqlResourcesMigrateSqlDatabaseToManualThroughput: API.OperationMethod<
-  SqlResourcesMigrateSqlDatabaseToManualThroughputRequest,
-  SqlResourcesMigrateSqlDatabaseToManualThroughputResponse,
-  SqlResourcesMigrateSqlDatabaseToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlResourcesMigrateSqlDatabaseToManualThroughputRequest,
-  output: SqlResourcesMigrateSqlDatabaseToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlResourcesRetrieveContinuousBackupInformationError = AzureOpError;
-/** Retrieves continuous backup information for a container resource. */
-export const SqlResourcesRetrieveContinuousBackupInformation: API.OperationMethod<
-  SqlResourcesRetrieveContinuousBackupInformationRequest,
-  BackupInformation,
-  SqlResourcesRetrieveContinuousBackupInformationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlResourcesRetrieveContinuousBackupInformationRequest,
-  output: BackupInformation,
+  input: SqlResourcesGetSqlTriggerRequest,
+  output: SqlResourcesGetSqlTriggerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24059,52 +24097,6 @@ export const TableResourcesCreateUpdateTableRoleDefinition: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TableResourcesCreateUpdateTableRoleDefinitionRequest,
   output: TableResourcesCreateUpdateTableRoleDefinitionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TableResourcesMigrateTableToAutoscaleError = AzureOpError;
-/** Migrate an Azure Cosmos DB Table from manual throughput to autoscale */
-export const TableResourcesMigrateTableToAutoscale: API.OperationMethod<
-  TableResourcesMigrateTableToAutoscaleRequest,
-  TableResourcesMigrateTableToAutoscaleResponse,
-  TableResourcesMigrateTableToAutoscaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TableResourcesMigrateTableToAutoscaleRequest,
-  output: TableResourcesMigrateTableToAutoscaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TableResourcesMigrateTableToManualThroughputError = AzureOpError;
-/** Migrate an Azure Cosmos DB Table from autoscale to manual throughput */
-export const TableResourcesMigrateTableToManualThroughput: API.OperationMethod<
-  TableResourcesMigrateTableToManualThroughputRequest,
-  TableResourcesMigrateTableToManualThroughputResponse,
-  TableResourcesMigrateTableToManualThroughputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TableResourcesMigrateTableToManualThroughputRequest,
-  output: TableResourcesMigrateTableToManualThroughputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TableResourcesRetrieveContinuousBackupInformationError =
-  AzureOpError;
-/** Retrieves continuous backup information for a table. */
-export const TableResourcesRetrieveContinuousBackupInformation: API.OperationMethod<
-  TableResourcesRetrieveContinuousBackupInformationRequest,
-  BackupInformation,
-  TableResourcesRetrieveContinuousBackupInformationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TableResourcesRetrieveContinuousBackupInformationRequest,
-  output: BackupInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24246,32 +24238,32 @@ export const UpdateGremlinResourceGremlinGraphThroughput: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateMongoDbResourceMongoDbCollectionThroughputError =
+export type UpdateMongoDBResourceMongoDBCollectionThroughputError =
   AzureOpError;
 /** Update the RUs per second of an Azure Cosmos DB MongoDB collection */
-export const UpdateMongoDbResourceMongoDbCollectionThroughput: API.OperationMethod<
-  UpdateMongoDbResourceMongoDbCollectionThroughputRequest,
-  UpdateMongoDbResourceMongoDbCollectionThroughputResponse,
-  UpdateMongoDbResourceMongoDbCollectionThroughputError,
+export const UpdateMongoDBResourceMongoDBCollectionThroughput: API.OperationMethod<
+  UpdateMongoDBResourceMongoDBCollectionThroughputRequest,
+  UpdateMongoDBResourceMongoDBCollectionThroughputResponse,
+  UpdateMongoDBResourceMongoDBCollectionThroughputError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateMongoDbResourceMongoDbCollectionThroughputRequest,
-  output: UpdateMongoDbResourceMongoDbCollectionThroughputResponse,
+  input: UpdateMongoDBResourceMongoDBCollectionThroughputRequest,
+  output: UpdateMongoDBResourceMongoDBCollectionThroughputResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateMongoDbResourceMongoDbDatabaseThroughputError = AzureOpError;
+export type UpdateMongoDBResourceMongoDBDatabaseThroughputError = AzureOpError;
 /** Update RUs per second of the an Azure Cosmos DB MongoDB database */
-export const UpdateMongoDbResourceMongoDbDatabaseThroughput: API.OperationMethod<
-  UpdateMongoDbResourceMongoDbDatabaseThroughputRequest,
-  UpdateMongoDbResourceMongoDbDatabaseThroughputResponse,
-  UpdateMongoDbResourceMongoDbDatabaseThroughputError,
+export const UpdateMongoDBResourceMongoDBDatabaseThroughput: API.OperationMethod<
+  UpdateMongoDBResourceMongoDBDatabaseThroughputRequest,
+  UpdateMongoDBResourceMongoDBDatabaseThroughputResponse,
+  UpdateMongoDBResourceMongoDBDatabaseThroughputError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateMongoDbResourceMongoDbDatabaseThroughputRequest,
-  output: UpdateMongoDbResourceMongoDbDatabaseThroughputResponse,
+  input: UpdateMongoDBResourceMongoDBDatabaseThroughputRequest,
+  output: UpdateMongoDBResourceMongoDBDatabaseThroughputResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

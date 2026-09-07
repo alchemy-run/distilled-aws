@@ -101,93 +101,11 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
-export type CustomOAuthConfigScmProviderEnum =
-  | "SCM_PROVIDER_UNKNOWN"
-  | "GITHUB_ENTERPRISE"
-  | "GITLAB_ENTERPRISE"
-  | "BITBUCKET_DATA_CENTER";
-export const CustomOAuthConfigScmProviderEnum = /*@__PURE__*/ S.String;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** ServiceDirectoryConfig represents Service Directory configuration for a connection. */
-export interface ServiceDirectoryConfig {
-  /** Required. The Service Directory service name. Format: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}. */
-  service?: string;
-}
-export const ServiceDirectoryConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    service: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceDirectoryConfig",
-}) as any as S.Schema<ServiceDirectoryConfig>;
-
-/** Message for a customized OAuth config. */
-export interface CustomOAuthConfig {
-  /** Output only. SCM server version installed at the host URI. */
-  serverVersion?: string;
-  /** Required. The type of the SCM provider. */
-  scmProvider?: CustomOAuthConfigScmProviderEnum | (string & {});
-  /** Required. The scopes to be requested during OAuth. */
-  scopes?: StringList;
-  /** Required. Immutable. The OAuth2 token request URL. */
-  tokenUri?: string;
-  /** Required. The client ID of the OAuth application. */
-  clientId?: string;
-  /** Optional. Configuration for using Service Directory to connect to a private service. */
-  serviceDirectoryConfig?: ServiceDirectoryConfig;
-  /** Required. Input only. The client secret of the OAuth application. It will be provided as plain text, but encrypted and stored in developer connect. As INPUT_ONLY field, it will not be included in the output. */
-  clientSecret?: string;
-  /** Optional. Disable PKCE for this OAuth config. PKCE is enabled by default. */
-  pkceDisabled?: boolean;
-  /** Required. Immutable. The OAuth2 authorization server URL. */
-  authUri?: string;
-  /** Optional. SSL certificate to use for requests to a private service. */
-  sslCaCertificate?: string;
-  /** Required. The host URI of the OAuth application. */
-  hostUri?: string;
-}
-export const CustomOAuthConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serverVersion: S.optional(S.String),
-    scmProvider: S.optional(CustomOAuthConfigScmProviderEnum),
-    scopes: S.optional(StringList),
-    tokenUri: S.optional(S.String),
-    clientId: S.optional(S.String),
-    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
-    clientSecret: S.optional(S.String),
-    pkceDisabled: S.optional(S.Boolean),
-    authUri: S.optional(S.String),
-    sslCaCertificate: S.optional(S.String),
-    hostUri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomOAuthConfig",
-}) as any as S.Schema<CustomOAuthConfig>;
-
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<StringMap>;
-
-/** The proxy configuration. */
-export interface ProxyConfig {
-  /** Output only. The base URI for the HTTP proxy endpoint. Has the format `https://{generatedID}-a-h-{shortRegion}.developerconnect.dev` Populated only when `enabled` is set to `true`. This endpoint is used by other Google services that integrate with Developer Connect. */
-  httpProxyBaseUri?: string;
-  /** Optional. Setting this to true allows the git and http proxies to perform actions on behalf of the user configured under the account connector. */
-  enabled?: boolean;
-}
-export const ProxyConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    httpProxyBaseUri: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "ProxyConfig" }) as any as S.Schema<ProxyConfig>;
 
 export type ProviderOAuthConfigSystemProviderIdEnum =
   | "SYSTEM_PROVIDER_UNSPECIFIED"
@@ -201,6 +119,11 @@ export type ProviderOAuthConfigSystemProviderIdEnum =
   | "DYNATRACE"
   | "BITBUCKET_CLOUD";
 export const ProviderOAuthConfigSystemProviderIdEnum = /*@__PURE__*/ S.String;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
 
 /** ProviderOAuthConfig is the OAuth config for a provider. */
 export interface ProviderOAuthConfig {
@@ -218,68 +141,145 @@ export const ProviderOAuthConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProviderOAuthConfig",
 }) as any as S.Schema<ProviderOAuthConfig>;
 
+/** The proxy configuration. */
+export interface ProxyConfig {
+  /** Output only. The base URI for the HTTP proxy endpoint. Has the format `https://{generatedID}-a-h-{shortRegion}.developerconnect.dev` Populated only when `enabled` is set to `true`. This endpoint is used by other Google services that integrate with Developer Connect. */
+  httpProxyBaseUri?: string;
+  /** Optional. Setting this to true allows the git and http proxies to perform actions on behalf of the user configured under the account connector. */
+  enabled?: boolean;
+}
+export const ProxyConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    httpProxyBaseUri: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "ProxyConfig" }) as any as S.Schema<ProxyConfig>;
+
+export type CustomOAuthConfigScmProviderEnum =
+  | "SCM_PROVIDER_UNKNOWN"
+  | "GITHUB_ENTERPRISE"
+  | "GITLAB_ENTERPRISE"
+  | "BITBUCKET_DATA_CENTER";
+export const CustomOAuthConfigScmProviderEnum = /*@__PURE__*/ S.String;
+
+/** ServiceDirectoryConfig represents Service Directory configuration for a connection. */
+export interface ServiceDirectoryConfig {
+  /** Required. The Service Directory service name. Format: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}. */
+  service?: string;
+}
+export const ServiceDirectoryConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    service: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceDirectoryConfig",
+}) as any as S.Schema<ServiceDirectoryConfig>;
+
+/** Message for a customized OAuth config. */
+export interface CustomOAuthConfig {
+  /** Required. The type of the SCM provider. */
+  scmProvider?: CustomOAuthConfigScmProviderEnum | (string & {});
+  /** Optional. SSL certificate to use for requests to a private service. */
+  sslCaCertificate?: string;
+  /** Required. Input only. The client secret of the OAuth application. It will be provided as plain text, but encrypted and stored in developer connect. As INPUT_ONLY field, it will not be included in the output. */
+  clientSecret?: string;
+  /** Required. Immutable. The OAuth2 authorization server URL. */
+  authUri?: string;
+  /** Required. The scopes to be requested during OAuth. */
+  scopes?: StringList;
+  /** Required. The client ID of the OAuth application. */
+  clientId?: string;
+  /** Required. Immutable. The OAuth2 token request URL. */
+  tokenUri?: string;
+  /** Output only. SCM server version installed at the host URI. */
+  serverVersion?: string;
+  /** Optional. Disable PKCE for this OAuth config. PKCE is enabled by default. */
+  pkceDisabled?: boolean;
+  /** Optional. Configuration for using Service Directory to connect to a private service. */
+  serviceDirectoryConfig?: ServiceDirectoryConfig;
+  /** Required. The host URI of the OAuth application. */
+  hostUri?: string;
+}
+export const CustomOAuthConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scmProvider: S.optional(CustomOAuthConfigScmProviderEnum),
+    sslCaCertificate: S.optional(S.String),
+    clientSecret: S.optional(S.String),
+    authUri: S.optional(S.String),
+    scopes: S.optional(StringList),
+    clientId: S.optional(S.String),
+    tokenUri: S.optional(S.String),
+    serverVersion: S.optional(S.String),
+    pkceDisabled: S.optional(S.Boolean),
+    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
+    hostUri: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomOAuthConfig",
+}) as any as S.Schema<CustomOAuthConfig>;
+
 /** AccountConnector encapsulates what a platform administrator needs to configure for users to connect to the service providers, which includes, among other fields, the OAuth client ID, client secret, and authorization and token endpoints. */
 export interface AccountConnector {
-  /** Custom OAuth config. */
-  customOauthConfig?: CustomOAuthConfig;
-  /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
-  etag?: string;
-  /** Optional. Labels as key value pairs */
-  labels?: StringMap;
-  /** Output only. The timestamp when the accountConnector was created. */
-  createTime?: string;
   /** Optional. Allows users to store small amounts of arbitrary data. */
   annotations?: StringMap;
-  /** Optional. Configuration for the http and git proxy features. */
-  proxyConfig?: ProxyConfig;
-  /** Output only. A system-assigned unique identifier for the Account Connector. */
-  uid?: string;
-  /** Output only. The timestamp when the accountConnector was updated. */
-  updateTime?: string;
-  /** Output only. Start OAuth flow by clicking on this URL. */
-  oauthStartUri?: string;
-  /** Identifier. The resource name of the accountConnector, in the format `projects/{project}/locations/{location}/accountConnectors/{account_connector_id}`. */
-  name?: string;
+  /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
+  etag?: string;
   /** Optional. Provider OAuth config. */
   providerOauthConfig?: ProviderOAuthConfig;
+  /** Output only. Start OAuth flow by clicking on this URL. */
+  oauthStartUri?: string;
+  /** Output only. The timestamp when the accountConnector was updated. */
+  updateTime?: string;
+  /** Optional. Labels as key value pairs */
+  labels?: StringMap;
+  /** Optional. Configuration for the http and git proxy features. */
+  proxyConfig?: ProxyConfig;
+  /** Identifier. The resource name of the accountConnector, in the format `projects/{project}/locations/{location}/accountConnectors/{account_connector_id}`. */
+  name?: string;
+  /** Output only. The timestamp when the accountConnector was created. */
+  createTime?: string;
+  /** Output only. A system-assigned unique identifier for the Account Connector. */
+  uid?: string;
+  /** Custom OAuth config. */
+  customOauthConfig?: CustomOAuthConfig;
 }
 export const AccountConnector = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    customOauthConfig: S.optional(CustomOAuthConfig),
-    etag: S.optional(S.String),
-    labels: S.optional(StringMap),
-    createTime: S.optional(S.String),
     annotations: S.optional(StringMap),
-    proxyConfig: S.optional(ProxyConfig),
-    uid: S.optional(S.String),
-    updateTime: S.optional(S.String),
-    oauthStartUri: S.optional(S.String),
-    name: S.optional(S.String),
+    etag: S.optional(S.String),
     providerOauthConfig: S.optional(ProviderOAuthConfig),
+    oauthStartUri: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    labels: S.optional(StringMap),
+    proxyConfig: S.optional(ProxyConfig),
+    name: S.optional(S.String),
+    createTime: S.optional(S.String),
+    uid: S.optional(S.String),
+    customOauthConfig: S.optional(CustomOAuthConfig),
   }),
 ).annotate({
   identifier: "AccountConnector",
 }) as any as S.Schema<AccountConnector>;
 
 export interface CreateProjectsLocationsAccountConnectorsRequest {
+  /** Optional. If set, validate the request, but do not actually post it. */
+  validateOnly?: boolean;
   /** Required. The ID to use for the AccountConnector, which will become the final component of the AccountConnector's resource name. Its format should adhere to https://google.aip.dev/122#resource-id-segments Names must be unique per-project per-location. */
   accountConnectorId?: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
   /** Required. Location resource name as the account_connector’s parent. */
   parent: string;
-  /** Optional. If set, validate the request, but do not actually post it. */
-  validateOnly?: boolean;
   /** Request body */
   body?: AccountConnector;
 }
 export const CreateProjectsLocationsAccountConnectorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       accountConnectorId: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       body: S.optional(AccountConnector.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -307,53 +307,53 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 export interface Status {
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     code: S.optional(S.Number),
-    details: S.optional(DocumentMapList),
     message: S.optional(S.String),
+    details: S.optional(DocumentMapList),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** The error result of the operation in case of failure or cancellation. */
-  error?: Status;
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
   /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
   done?: boolean;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
   /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
   name?: string;
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
+  /** The error result of the operation in case of failure or cancellation. */
+  error?: Status;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    error: S.optional(Status),
-    response: S.optional(DocumentMap),
     done: S.optional(S.Boolean),
     metadata: S.optional(DocumentMap),
     name: S.optional(S.String),
+    response: S.optional(DocumentMap),
+    error: S.optional(Status),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** Represents a personal access token that authorized the Connection, and associated metadata. */
 export interface UserCredential {
-  /** Output only. The username associated with this token. */
-  username?: string;
   /** Required. A SecretManager resource containing the user token that authorizes the Developer Connect connection. Format: `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). */
   userTokenSecretVersion?: string;
+  /** Output only. The username associated with this token. */
+  username?: string;
 }
 export const UserCredential = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    username: S.optional(S.String),
     userTokenSecretVersion: S.optional(S.String),
+    username: S.optional(S.String),
   }),
 ).annotate({ identifier: "UserCredential" }) as any as S.Schema<UserCredential>;
 
@@ -361,32 +361,68 @@ export const UserCredential = /*@__PURE__*/ S.suspend(() =>
 export interface GitLabEnterpriseConfig {
   /** Required. A GitLab personal access token with the minimum `read_api` scope access and a minimum role of `reporter`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to. */
   readAuthorizerCredential?: UserCredential;
-  /** Optional. SSL Certificate Authority certificate to use for requests to GitLab Enterprise instance. */
-  sslCaCertificate?: string;
   /** Optional. Configuration for using Service Directory to privately connect to a GitLab Enterprise instance. This should only be set if the GitLab Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitLab Enterprise server will be made over the public internet. */
   serviceDirectoryConfig?: ServiceDirectoryConfig;
-  /** Required. The URI of the GitLab Enterprise host this connection is for. */
-  hostUri?: string;
   /** Required. A GitLab personal access token with the minimum `api` scope access and a minimum role of `maintainer`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to. */
   authorizerCredential?: UserCredential;
-  /** Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks. */
-  webhookSecretSecretVersion?: string;
   /** Output only. Version of the GitLab Enterprise server running on the `host_uri`. */
   serverVersion?: string;
+  /** Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks. */
+  webhookSecretSecretVersion?: string;
+  /** Optional. SSL Certificate Authority certificate to use for requests to GitLab Enterprise instance. */
+  sslCaCertificate?: string;
+  /** Required. The URI of the GitLab Enterprise host this connection is for. */
+  hostUri?: string;
 }
 export const GitLabEnterpriseConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     readAuthorizerCredential: S.optional(UserCredential),
-    sslCaCertificate: S.optional(S.String),
     serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
-    hostUri: S.optional(S.String),
     authorizerCredential: S.optional(UserCredential),
-    webhookSecretSecretVersion: S.optional(S.String),
     serverVersion: S.optional(S.String),
+    webhookSecretSecretVersion: S.optional(S.String),
+    sslCaCertificate: S.optional(S.String),
+    hostUri: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GitLabEnterpriseConfig",
 }) as any as S.Schema<GitLabEnterpriseConfig>;
+
+/** The git proxy configuration. */
+export interface GitProxyConfig {
+  /** Output only. The base URI for the HTTP proxy endpoint. Has the format `https://{generatedID}-c-h-{shortRegion}.developerconnect.dev` Populated only when enabled is set to true. This endpoint is used by other Google services that integrate with Developer Connect. */
+  httpProxyBaseUri?: string;
+  /** Optional. Setting this to true allows the git proxy to be used for performing git operations on the repositories linked in the connection. */
+  enabled?: boolean;
+}
+export const GitProxyConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    httpProxyBaseUri: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "GitProxyConfig" }) as any as S.Schema<GitProxyConfig>;
+
+/** Configuration for connections to an instance of Bitbucket Cloud. */
+export interface BitbucketCloudConfig {
+  /** Required. An access token with the minimum `repository`, `pullrequest` and `webhook` scope access. It can either be a workspace, project or repository access token. This is needed to create webhooks. It's recommended to use a system account to generate these credentials. */
+  authorizerCredential?: UserCredential;
+  /** Required. An access token with the minimum `repository` access. It can either be a workspace, project or repository access token. It's recommended to use a system account to generate the credentials. */
+  readAuthorizerCredential?: UserCredential;
+  /** Required. The Bitbucket Cloud Workspace ID to be connected to Google Cloud Platform. */
+  workspace?: string;
+  /** Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate and create webhooks. */
+  webhookSecretSecretVersion?: string;
+}
+export const BitbucketCloudConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authorizerCredential: S.optional(UserCredential),
+    readAuthorizerCredential: S.optional(UserCredential),
+    workspace: S.optional(S.String),
+    webhookSecretSecretVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BitbucketCloudConfig",
+}) as any as S.Schema<BitbucketCloudConfig>;
 
 /** Configuration for connections to Secure Source Manager instance */
 export interface SecureSourceManagerInstanceConfig {
@@ -401,133 +437,6 @@ export const SecureSourceManagerInstanceConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecureSourceManagerInstanceConfig",
 }) as any as S.Schema<SecureSourceManagerInstanceConfig>;
 
-/** The git proxy configuration. */
-export interface GitProxyConfig {
-  /** Optional. Setting this to true allows the git proxy to be used for performing git operations on the repositories linked in the connection. */
-  enabled?: boolean;
-  /** Output only. The base URI for the HTTP proxy endpoint. Has the format `https://{generatedID}-c-h-{shortRegion}.developerconnect.dev` Populated only when enabled is set to true. This endpoint is used by other Google services that integrate with Developer Connect. */
-  httpProxyBaseUri?: string;
-}
-export const GitProxyConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    httpProxyBaseUri: S.optional(S.String),
-  }),
-).annotate({ identifier: "GitProxyConfig" }) as any as S.Schema<GitProxyConfig>;
-
-/** Configuration for connections to gitlab.com. */
-export interface GitLabConfig {
-  /** Required. A GitLab personal access token with the minimum `read_api` scope access and a minimum role of `reporter`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to. */
-  readAuthorizerCredential?: UserCredential;
-  /** Required. A GitLab personal access token with the minimum `api` scope access and a minimum role of `maintainer`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to. */
-  authorizerCredential?: UserCredential;
-  /** Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks. */
-  webhookSecretSecretVersion?: string;
-}
-export const GitLabConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    readAuthorizerCredential: S.optional(UserCredential),
-    authorizerCredential: S.optional(UserCredential),
-    webhookSecretSecretVersion: S.optional(S.String),
-  }),
-).annotate({ identifier: "GitLabConfig" }) as any as S.Schema<GitLabConfig>;
-
-/** Configuration for connections to an instance of GitHub Enterprise. */
-export interface GitHubEnterpriseConfig {
-  /** Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). */
-  webhookSecretSecretVersion?: string;
-  /** Optional. SSL certificate to use for requests to GitHub Enterprise. */
-  sslCaCertificate?: string;
-  /** Optional. ID of the GitHub App created from the manifest. */
-  appId?: string;
-  /** Output only. GitHub Enterprise version installed at the host_uri. */
-  serverVersion?: string;
-  /** Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). */
-  privateKeySecretVersion?: string;
-  /** Optional. Immutable. GitHub Enterprise organization in which the GitHub App is created. */
-  organization?: string;
-  /** Required. The URI of the GitHub Enterprise host this connection is for. */
-  hostUri?: string;
-  /** Output only. The URL-friendly name of the GitHub App. */
-  appSlug?: string;
-  /** Output only. The URI to navigate to in order to manage the installation associated with this GitHubEnterpriseConfig. */
-  installationUri?: string;
-  /** Optional. Configuration for using Service Directory to privately connect to a GitHub Enterprise server. This should only be set if the GitHub Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitHub Enterprise server will be made over the public internet. */
-  serviceDirectoryConfig?: ServiceDirectoryConfig;
-  /** Optional. ID of the installation of the GitHub App. */
-  appInstallationId?: string;
-}
-export const GitHubEnterpriseConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhookSecretSecretVersion: S.optional(S.String),
-    sslCaCertificate: S.optional(S.String),
-    appId: S.optional(S.String),
-    serverVersion: S.optional(S.String),
-    privateKeySecretVersion: S.optional(S.String),
-    organization: S.optional(S.String),
-    hostUri: S.optional(S.String),
-    appSlug: S.optional(S.String),
-    installationUri: S.optional(S.String),
-    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
-    appInstallationId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GitHubEnterpriseConfig",
-}) as any as S.Schema<GitHubEnterpriseConfig>;
-
-/** Configuration for connections to an instance of Bitbucket Data Center. */
-export interface BitbucketDataCenterConfig {
-  /** Optional. Configuration for using Service Directory to privately connect to a Bitbucket Data Center instance. This should only be set if the Bitbucket Data Center is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the Bitbucket Data Center will be made over the public internet. */
-  serviceDirectoryConfig?: ServiceDirectoryConfig;
-  /** Output only. Version of the Bitbucket Data Center server running on the `host_uri`. */
-  serverVersion?: string;
-  /** Required. An http access token with the minimum `Repository read` access. It's recommended to use a system account to generate the credentials. */
-  readAuthorizerCredential?: UserCredential;
-  /** Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks. */
-  webhookSecretSecretVersion?: string;
-  /** Optional. SSL certificate authority to trust when making requests to Bitbucket Data Center. */
-  sslCaCertificate?: string;
-  /** Required. An http access token with the minimum `Repository admin` scope access. This is needed to create webhooks. It's recommended to use a system account to generate these credentials. */
-  authorizerCredential?: UserCredential;
-  /** Required. The URI of the Bitbucket Data Center host this connection is for. */
-  hostUri?: string;
-}
-export const BitbucketDataCenterConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
-    serverVersion: S.optional(S.String),
-    readAuthorizerCredential: S.optional(UserCredential),
-    webhookSecretSecretVersion: S.optional(S.String),
-    sslCaCertificate: S.optional(S.String),
-    authorizerCredential: S.optional(UserCredential),
-    hostUri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BitbucketDataCenterConfig",
-}) as any as S.Schema<BitbucketDataCenterConfig>;
-
-/** Configuration for connections to an instance of Bitbucket Cloud. */
-export interface BitbucketCloudConfig {
-  /** Required. The Bitbucket Cloud Workspace ID to be connected to Google Cloud Platform. */
-  workspace?: string;
-  /** Required. An access token with the minimum `repository`, `pullrequest` and `webhook` scope access. It can either be a workspace, project or repository access token. This is needed to create webhooks. It's recommended to use a system account to generate these credentials. */
-  authorizerCredential?: UserCredential;
-  /** Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate and create webhooks. */
-  webhookSecretSecretVersion?: string;
-  /** Required. An access token with the minimum `repository` access. It can either be a workspace, project or repository access token. It's recommended to use a system account to generate the credentials. */
-  readAuthorizerCredential?: UserCredential;
-}
-export const BitbucketCloudConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workspace: S.optional(S.String),
-    authorizerCredential: S.optional(UserCredential),
-    webhookSecretSecretVersion: S.optional(S.String),
-    readAuthorizerCredential: S.optional(UserCredential),
-  }),
-).annotate({
-  identifier: "BitbucketCloudConfig",
-}) as any as S.Schema<BitbucketCloudConfig>;
-
 export type GitHubConfigGithubAppEnum =
   | "GIT_HUB_APP_UNSPECIFIED"
   | "DEVELOPER_CONNECT"
@@ -538,15 +447,15 @@ export const GitHubConfigGithubAppEnum = /*@__PURE__*/ S.String;
 
 /** Represents an OAuth token of the account that authorized the Connection, and associated metadata. */
 export interface OAuthCredential {
-  /** Required. A SecretManager resource containing the OAuth token that authorizes the connection. Format: `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). */
-  oauthTokenSecretVersion?: string;
   /** Output only. The username associated with this token. */
   username?: string;
+  /** Required. A SecretManager resource containing the OAuth token that authorizes the connection. Format: `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). */
+  oauthTokenSecretVersion?: string;
 }
 export const OAuthCredential = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    oauthTokenSecretVersion: S.optional(S.String),
     username: S.optional(S.String),
+    oauthTokenSecretVersion: S.optional(S.String),
   }),
 ).annotate({
   identifier: "OAuthCredential",
@@ -572,18 +481,36 @@ export const GitHubConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "GitHubConfig" }) as any as S.Schema<GitHubConfig>;
 
-/** The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature. */
-export interface CryptoKeyConfig {
-  /** Required. The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/*\/locations/*\/keyRings/*\/cryptoKeys/*`. */
-  keyReference?: string;
+/** Configuration for connections to an instance of Bitbucket Data Center. */
+export interface BitbucketDataCenterConfig {
+  /** Optional. Configuration for using Service Directory to privately connect to a Bitbucket Data Center instance. This should only be set if the Bitbucket Data Center is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the Bitbucket Data Center will be made over the public internet. */
+  serviceDirectoryConfig?: ServiceDirectoryConfig;
+  /** Optional. SSL certificate authority to trust when making requests to Bitbucket Data Center. */
+  sslCaCertificate?: string;
+  /** Required. The URI of the Bitbucket Data Center host this connection is for. */
+  hostUri?: string;
+  /** Required. An http access token with the minimum `Repository read` access. It's recommended to use a system account to generate the credentials. */
+  readAuthorizerCredential?: UserCredential;
+  /** Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks. */
+  webhookSecretSecretVersion?: string;
+  /** Required. An http access token with the minimum `Repository admin` scope access. This is needed to create webhooks. It's recommended to use a system account to generate these credentials. */
+  authorizerCredential?: UserCredential;
+  /** Output only. Version of the Bitbucket Data Center server running on the `host_uri`. */
+  serverVersion?: string;
 }
-export const CryptoKeyConfig = /*@__PURE__*/ S.suspend(() =>
+export const BitbucketDataCenterConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    keyReference: S.optional(S.String),
+    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
+    sslCaCertificate: S.optional(S.String),
+    hostUri: S.optional(S.String),
+    readAuthorizerCredential: S.optional(UserCredential),
+    webhookSecretSecretVersion: S.optional(S.String),
+    authorizerCredential: S.optional(UserCredential),
+    serverVersion: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "CryptoKeyConfig",
-}) as any as S.Schema<CryptoKeyConfig>;
+  identifier: "BitbucketDataCenterConfig",
+}) as any as S.Schema<BitbucketDataCenterConfig>;
 
 /** Bearer token authentication with a token. */
 export interface BearerTokenAuthentication {
@@ -618,22 +545,22 @@ export const BasicAuthentication = /*@__PURE__*/ S.suspend(() =>
 export interface GenericHTTPEndpointConfig {
   /** Optional. Bearer token authentication with a token. */
   bearerTokenAuthentication?: BearerTokenAuthentication;
-  /** Optional. Configuration for using Service Directory to privately connect to a HTTP service provider. This should only be set if the Http service provider is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the HTTP service provider will be made over the public internet. */
-  serviceDirectoryConfig?: ServiceDirectoryConfig;
-  /** Optional. The SSL certificate to use for requests to the HTTP service provider. */
-  sslCaCertificate?: string;
-  /** Required. Immutable. The service provider's https endpoint. */
-  hostUri?: string;
   /** Optional. Basic authentication with username and password. */
   basicAuthentication?: BasicAuthentication;
+  /** Optional. The SSL certificate to use for requests to the HTTP service provider. */
+  sslCaCertificate?: string;
+  /** Optional. Configuration for using Service Directory to privately connect to a HTTP service provider. This should only be set if the Http service provider is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the HTTP service provider will be made over the public internet. */
+  serviceDirectoryConfig?: ServiceDirectoryConfig;
+  /** Required. Immutable. The service provider's https endpoint. */
+  hostUri?: string;
 }
 export const GenericHTTPEndpointConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     bearerTokenAuthentication: S.optional(BearerTokenAuthentication),
-    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
-    sslCaCertificate: S.optional(S.String),
-    hostUri: S.optional(S.String),
     basicAuthentication: S.optional(BasicAuthentication),
+    sslCaCertificate: S.optional(S.String),
+    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
+    hostUri: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GenericHTTPEndpointConfig",
@@ -651,101 +578,174 @@ export const InstallationStateStageEnum = /*@__PURE__*/ S.String;
 export interface InstallationState {
   /** Output only. Current step of the installation process. */
   stage?: InstallationStateStageEnum | (string & {});
-  /** Output only. Link to follow for next action. Empty string if the installation is already complete. */
-  actionUri?: string;
   /** Output only. Message of what the user should do next to continue the installation. Empty string if the installation is already complete. */
   message?: string;
+  /** Output only. Link to follow for next action. Empty string if the installation is already complete. */
+  actionUri?: string;
 }
 export const InstallationState = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     stage: S.optional(InstallationStateStageEnum),
-    actionUri: S.optional(S.String),
     message: S.optional(S.String),
+    actionUri: S.optional(S.String),
   }),
 ).annotate({
   identifier: "InstallationState",
 }) as any as S.Schema<InstallationState>;
 
+/** The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature. */
+export interface CryptoKeyConfig {
+  /** Required. The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/*\/locations/*\/keyRings/*\/cryptoKeys/*`. */
+  keyReference?: string;
+}
+export const CryptoKeyConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyReference: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CryptoKeyConfig",
+}) as any as S.Schema<CryptoKeyConfig>;
+
+/** Configuration for connections to an instance of GitHub Enterprise. */
+export interface GitHubEnterpriseConfig {
+  /** Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). */
+  webhookSecretSecretVersion?: string;
+  /** Optional. SSL certificate to use for requests to GitHub Enterprise. */
+  sslCaCertificate?: string;
+  /** Output only. The URI to navigate to in order to manage the installation associated with this GitHubEnterpriseConfig. */
+  installationUri?: string;
+  /** Optional. ID of the installation of the GitHub App. */
+  appInstallationId?: string;
+  /** Output only. The URL-friendly name of the GitHub App. */
+  appSlug?: string;
+  /** Optional. Immutable. GitHub Enterprise organization in which the GitHub App is created. */
+  organization?: string;
+  /** Required. The URI of the GitHub Enterprise host this connection is for. */
+  hostUri?: string;
+  /** Optional. Configuration for using Service Directory to privately connect to a GitHub Enterprise server. This should only be set if the GitHub Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitHub Enterprise server will be made over the public internet. */
+  serviceDirectoryConfig?: ServiceDirectoryConfig;
+  /** Output only. GitHub Enterprise version installed at the host_uri. */
+  serverVersion?: string;
+  /** Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). */
+  privateKeySecretVersion?: string;
+  /** Optional. ID of the GitHub App created from the manifest. */
+  appId?: string;
+}
+export const GitHubEnterpriseConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhookSecretSecretVersion: S.optional(S.String),
+    sslCaCertificate: S.optional(S.String),
+    installationUri: S.optional(S.String),
+    appInstallationId: S.optional(S.String),
+    appSlug: S.optional(S.String),
+    organization: S.optional(S.String),
+    hostUri: S.optional(S.String),
+    serviceDirectoryConfig: S.optional(ServiceDirectoryConfig),
+    serverVersion: S.optional(S.String),
+    privateKeySecretVersion: S.optional(S.String),
+    appId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GitHubEnterpriseConfig",
+}) as any as S.Schema<GitHubEnterpriseConfig>;
+
+/** Configuration for connections to gitlab.com. */
+export interface GitLabConfig {
+  /** Required. A GitLab personal access token with the minimum `read_api` scope access and a minimum role of `reporter`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to. */
+  readAuthorizerCredential?: UserCredential;
+  /** Required. A GitLab personal access token with the minimum `api` scope access and a minimum role of `maintainer`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to. */
+  authorizerCredential?: UserCredential;
+  /** Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/*\/secrets/*\/versions/*` or `projects/*\/locations/*\/secrets/*\/versions/*` (if regional secrets are supported in that location). This is used to validate webhooks. */
+  webhookSecretSecretVersion?: string;
+}
+export const GitLabConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    readAuthorizerCredential: S.optional(UserCredential),
+    authorizerCredential: S.optional(UserCredential),
+    webhookSecretSecretVersion: S.optional(S.String),
+  }),
+).annotate({ identifier: "GitLabConfig" }) as any as S.Schema<GitLabConfig>;
+
 /** Message describing Connection object */
 export interface Connection {
-  /** Output only. [Output only] Update timestamp */
-  updateTime?: string;
-  /** Configuration for connections to an instance of GitLab Enterprise. */
-  gitlabEnterpriseConfig?: GitLabEnterpriseConfig;
-  /** Configuration for connections to an instance of Secure Source Manager. */
-  secureSourceManagerInstanceConfig?: SecureSourceManagerInstanceConfig;
-  /** Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy). */
-  gitProxyConfig?: GitProxyConfig;
-  /** Optional. If disabled is set to true, functionality is disabled for this connection. Repository based API methods and webhooks processing for repositories in this connection will be disabled. */
-  disabled?: boolean;
-  /** Configuration for connections to gitlab.com. */
-  gitlabConfig?: GitLabConfig;
-  /** Configuration for connections to an instance of GitHub Enterprise. */
-  githubEnterpriseConfig?: GitHubEnterpriseConfig;
-  /** Configuration for connections to an instance of Bitbucket Data Center. */
-  bitbucketDataCenterConfig?: BitbucketDataCenterConfig;
-  /** Configuration for connections to an instance of Bitbucket Clouds. */
-  bitbucketCloudConfig?: BitbucketCloudConfig;
-  /** Configuration for connections to github.com. */
-  githubConfig?: GitHubConfig;
   /** Output only. Set to true when the connection is being set up or updated in the background. */
   reconciling?: boolean;
+  /** Configuration for connections to an instance of GitLab Enterprise. */
+  gitlabEnterpriseConfig?: GitLabEnterpriseConfig;
+  /** Output only. [Output only] Delete timestamp */
+  deleteTime?: string;
+  /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
+  etag?: string;
+  /** Optional. Configuration for the git proxy feature. Enabling the git proxy allows clients to perform git operations on the repositories linked in the connection. [Learn more](https://docs.cloud.google.com/developer-connect/docs/configure-git-proxy). */
+  gitProxyConfig?: GitProxyConfig;
+  /** Configuration for connections to an instance of Bitbucket Clouds. */
+  bitbucketCloudConfig?: BitbucketCloudConfig;
+  /** Configuration for connections to an instance of Secure Source Manager. */
+  secureSourceManagerInstanceConfig?: SecureSourceManagerInstanceConfig;
+  /** Configuration for connections to github.com. */
+  githubConfig?: GitHubConfig;
+  /** Configuration for connections to an instance of Bitbucket Data Center. */
+  bitbucketDataCenterConfig?: BitbucketDataCenterConfig;
+  /** Output only. [Output only] Create timestamp */
+  createTime?: string;
   /** Output only. A system-assigned unique identifier for the Connection. */
   uid?: string;
+  /** Optional. Configuration for connections to an HTTP service provider. */
+  httpConfig?: GenericHTTPEndpointConfig;
+  /** Optional. If disabled is set to true, functionality is disabled for this connection. Repository based API methods and webhooks processing for repositories in this connection will be disabled. */
+  disabled?: boolean;
+  /** Output only. Installation state of the Connection. */
+  installationState?: InstallationState;
   /** Identifier. The resource name of the connection, in the format `projects/{project}/locations/{location}/connections/{connection_id}`. */
   name?: string;
   /** Optional. The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature. */
   cryptoKeyConfig?: CryptoKeyConfig;
-  /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
-  etag?: string;
-  /** Output only. [Output only] Delete timestamp */
-  deleteTime?: string;
-  /** Optional. Labels as key value pairs */
-  labels?: StringMap;
-  /** Optional. Configuration for connections to an HTTP service provider. */
-  httpConfig?: GenericHTTPEndpointConfig;
-  /** Output only. Installation state of the Connection. */
-  installationState?: InstallationState;
-  /** Output only. [Output only] Create timestamp */
-  createTime?: string;
+  /** Output only. [Output only] Update timestamp */
+  updateTime?: string;
   /** Optional. Allows clients to store small amounts of arbitrary data. */
   annotations?: StringMap;
+  /** Configuration for connections to an instance of GitHub Enterprise. */
+  githubEnterpriseConfig?: GitHubEnterpriseConfig;
+  /** Optional. Labels as key value pairs */
+  labels?: StringMap;
+  /** Configuration for connections to gitlab.com. */
+  gitlabConfig?: GitLabConfig;
 }
 export const Connection = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateTime: S.optional(S.String),
+    reconciling: S.optional(S.Boolean),
     gitlabEnterpriseConfig: S.optional(GitLabEnterpriseConfig),
+    deleteTime: S.optional(S.String),
+    etag: S.optional(S.String),
+    gitProxyConfig: S.optional(GitProxyConfig),
+    bitbucketCloudConfig: S.optional(BitbucketCloudConfig),
     secureSourceManagerInstanceConfig: S.optional(
       SecureSourceManagerInstanceConfig,
     ),
-    gitProxyConfig: S.optional(GitProxyConfig),
-    disabled: S.optional(S.Boolean),
-    gitlabConfig: S.optional(GitLabConfig),
-    githubEnterpriseConfig: S.optional(GitHubEnterpriseConfig),
-    bitbucketDataCenterConfig: S.optional(BitbucketDataCenterConfig),
-    bitbucketCloudConfig: S.optional(BitbucketCloudConfig),
     githubConfig: S.optional(GitHubConfig),
-    reconciling: S.optional(S.Boolean),
+    bitbucketDataCenterConfig: S.optional(BitbucketDataCenterConfig),
+    createTime: S.optional(S.String),
     uid: S.optional(S.String),
+    httpConfig: S.optional(GenericHTTPEndpointConfig),
+    disabled: S.optional(S.Boolean),
+    installationState: S.optional(InstallationState),
     name: S.optional(S.String),
     cryptoKeyConfig: S.optional(CryptoKeyConfig),
-    etag: S.optional(S.String),
-    deleteTime: S.optional(S.String),
-    labels: S.optional(StringMap),
-    httpConfig: S.optional(GenericHTTPEndpointConfig),
-    installationState: S.optional(InstallationState),
-    createTime: S.optional(S.String),
+    updateTime: S.optional(S.String),
     annotations: S.optional(StringMap),
+    githubEnterpriseConfig: S.optional(GitHubEnterpriseConfig),
+    labels: S.optional(StringMap),
+    gitlabConfig: S.optional(GitLabConfig),
   }),
 ).annotate({ identifier: "Connection" }) as any as S.Schema<Connection>;
 
 export interface CreateProjectsLocationsConnectionsRequest {
   /** Required. Id of the requesting object If auto-generating Id server-side, remove this field and connection_id from the method_signature of Create RPC */
   connectionId?: string;
-  /** Required. Value for parent. */
-  parent: string;
   /** Optional. If set, validate the request, but do not actually post it. */
   validateOnly?: boolean;
+  /** Required. Value for parent. */
+  parent: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
   /** Request body */
@@ -755,8 +755,8 @@ export const CreateProjectsLocationsConnectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       connectionId: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       validateOnly: S.optional(S.Boolean.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       requestId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Connection.pipe(T.HttpBody())),
     }).pipe(
@@ -772,44 +772,44 @@ export const CreateProjectsLocationsConnectionsRequest =
 
 /** Message describing the GitRepositoryLink object */
 export interface GitRepositoryLink {
-  /** Output only. URI to access the linked repository through the Git Proxy. This field is only populated if the git proxy is enabled for the connection. */
-  gitProxyUri?: string;
   /** Output only. External ID of the webhook created for the repository. */
   webhookId?: string;
   /** Optional. Allows clients to store small amounts of arbitrary data. */
   annotations?: StringMap;
-  /** Output only. [Output only] Create timestamp */
-  createTime?: string;
-  /** Output only. A system-assigned unique identifier for the GitRepositoryLink. */
-  uid?: string;
-  /** Identifier. Resource name of the repository, in the format `projects/*\/locations/*\/connections/*\/gitRepositoryLinks/*`. */
-  name?: string;
+  /** Output only. URI to access the linked repository through the Git Proxy. This field is only populated if the git proxy is enabled for the connection. */
+  gitProxyUri?: string;
   /** Output only. [Output only] Delete timestamp */
   deleteTime?: string;
-  /** Output only. Set to true when the connection is being set up or updated in the background. */
-  reconciling?: boolean;
   /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
   etag?: string;
+  /** Identifier. Resource name of the repository, in the format `projects/*\/locations/*\/connections/*\/gitRepositoryLinks/*`. */
+  name?: string;
   /** Optional. Labels as key value pairs */
   labels?: StringMap;
   /** Required. Git Clone URI. */
   cloneUri?: string;
+  /** Output only. [Output only] Create timestamp */
+  createTime?: string;
+  /** Output only. Set to true when the connection is being set up or updated in the background. */
+  reconciling?: boolean;
+  /** Output only. A system-assigned unique identifier for the GitRepositoryLink. */
+  uid?: string;
   /** Output only. [Output only] Update timestamp */
   updateTime?: string;
 }
 export const GitRepositoryLink = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    gitProxyUri: S.optional(S.String),
     webhookId: S.optional(S.String),
     annotations: S.optional(StringMap),
-    createTime: S.optional(S.String),
-    uid: S.optional(S.String),
-    name: S.optional(S.String),
+    gitProxyUri: S.optional(S.String),
     deleteTime: S.optional(S.String),
-    reconciling: S.optional(S.Boolean),
     etag: S.optional(S.String),
+    name: S.optional(S.String),
     labels: S.optional(StringMap),
     cloneUri: S.optional(S.String),
+    createTime: S.optional(S.String),
+    reconciling: S.optional(S.Boolean),
+    uid: S.optional(S.String),
     updateTime: S.optional(S.String),
   }),
 ).annotate({
@@ -817,24 +817,24 @@ export const GitRepositoryLink = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GitRepositoryLink>;
 
 export interface CreateProjectsLocationsConnectionsGitRepositoryLinksRequest {
-  /** Required. The ID to use for the repository, which will become the final component of the repository's resource name. This ID should be unique in the connection. Allows alphanumeric characters and any of -._~%!$&'()*+,;=@. */
-  gitRepositoryLinkId?: string;
-  /** Optional. If set, validate the request, but do not actually post it. */
-  validateOnly?: boolean;
   /** Required. Value for parent. */
   parent: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Required. The ID to use for the repository, which will become the final component of the repository's resource name. This ID should be unique in the connection. Allows alphanumeric characters and any of -._~%!$&'()*+,;=@. */
+  gitRepositoryLinkId?: string;
+  /** Optional. If set, validate the request, but do not actually post it. */
+  validateOnly?: boolean;
   /** Request body */
   body?: GitRepositoryLink;
 }
 export const CreateProjectsLocationsConnectionsGitRepositoryLinksRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      gitRepositoryLinkId: S.optional(S.String.pipe(T.Query())),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       requestId: S.optional(S.String.pipe(T.Query())),
+      gitRepositoryLinkId: S.optional(S.String.pipe(T.Query())),
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       body: S.optional(GitRepositoryLink.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -880,16 +880,16 @@ export const GoogleArtifactAnalysis = /*@__PURE__*/ S.suspend(() =>
 export interface ArtifactConfig {
   /** Optional. Set if the artifact is stored in Artifact registry. */
   googleArtifactRegistry?: GoogleArtifactRegistry;
-  /** Required. Immutable. The URI of the artifact that is deployed. e.g. `us-docker.pkg.dev/my-project/my-repo/image`. The URI does not include the tag / digest because it captures a lineage of artifacts. */
-  uri?: string;
   /** Optional. Set if the artifact metadata is stored in Artifact analysis. */
   googleArtifactAnalysis?: GoogleArtifactAnalysis;
+  /** Required. Immutable. The URI of the artifact that is deployed. e.g. `us-docker.pkg.dev/my-project/my-repo/image`. The URI does not include the tag / digest because it captures a lineage of artifacts. */
+  uri?: string;
 }
 export const ArtifactConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     googleArtifactRegistry: S.optional(GoogleArtifactRegistry),
-    uri: S.optional(S.String),
     googleArtifactAnalysis: S.optional(GoogleArtifactAnalysis),
+    uri: S.optional(S.String),
   }),
 ).annotate({ identifier: "ArtifactConfig" }) as any as S.Schema<ArtifactConfig>;
 
@@ -898,35 +898,22 @@ export const ArtifactConfigList = /*@__PURE__*/ S.Array(
   ArtifactConfig,
 ) as any as S.Schema<ArtifactConfigList>;
 
-export type StatusList = Array<Status>;
-export const StatusList = /*@__PURE__*/ S.Array(
-  Status,
-) as any as S.Schema<StatusList>;
-
-/** Projects represents the projects to track with the InsightsConfig. */
-export interface Projects {
-  /** Optional. The project IDs. Format: {project} */
-  projectIds?: StringList;
+/** AppHubWorkload represents the App Hub Workload. */
+export interface AppHubWorkload {
+  /** Output only. The criticality of the App Hub Workload. */
+  criticality?: string;
+  /** Required. Output only. Immutable. The name of the App Hub Workload. Format: `projects/{project}/locations/{location}/applications/{application}/workloads/{workload}`. */
+  workload?: string;
+  /** Output only. The environment of the App Hub Workload. */
+  environment?: string;
 }
-export const Projects = /*@__PURE__*/ S.suspend(() =>
+export const AppHubWorkload = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    projectIds: S.optional(StringList),
+    criticality: S.optional(S.String),
+    workload: S.optional(S.String),
+    environment: S.optional(S.String),
   }),
-).annotate({ identifier: "Projects" }) as any as S.Schema<Projects>;
-
-/** GKEWorkload represents the Google Kubernetes Engine runtime. */
-export interface GKEWorkload {
-  /** Required. Immutable. The name of the GKE cluster. Format: `projects/{project}/locations/{location}/clusters/{cluster}`. */
-  cluster?: string;
-  /** Output only. The name of the GKE deployment. Format: `projects/{project}/locations/{location}/clusters/{cluster}/namespaces/{namespace}/deployments/{deployment}`. */
-  deployment?: string;
-}
-export const GKEWorkload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cluster: S.optional(S.String),
-    deployment: S.optional(S.String),
-  }),
-).annotate({ identifier: "GKEWorkload" }) as any as S.Schema<GKEWorkload>;
+).annotate({ identifier: "AppHubWorkload" }) as any as S.Schema<AppHubWorkload>;
 
 /** AppHubService represents the App Hub Service. */
 export interface AppHubService {
@@ -945,23 +932,6 @@ export const AppHubService = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AppHubService" }) as any as S.Schema<AppHubService>;
 
-/** AppHubWorkload represents the App Hub Workload. */
-export interface AppHubWorkload {
-  /** Required. Output only. Immutable. The name of the App Hub Workload. Format: `projects/{project}/locations/{location}/applications/{application}/workloads/{workload}`. */
-  workload?: string;
-  /** Output only. The criticality of the App Hub Workload. */
-  criticality?: string;
-  /** Output only. The environment of the App Hub Workload. */
-  environment?: string;
-}
-export const AppHubWorkload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workload: S.optional(S.String),
-    criticality: S.optional(S.String),
-    environment: S.optional(S.String),
-  }),
-).annotate({ identifier: "AppHubWorkload" }) as any as S.Schema<AppHubWorkload>;
-
 /** GoogleCloudRun represents the Cloud Run runtime. */
 export interface GoogleCloudRun {
   /** Required. Immutable. The name of the Cloud Run service. Format: `projects/{project}/locations/{location}/services/{service}`. */
@@ -979,29 +949,43 @@ export type RuntimeConfigStateEnum =
   | "UNLINKED";
 export const RuntimeConfigStateEnum = /*@__PURE__*/ S.String;
 
+/** GKEWorkload represents the Google Kubernetes Engine runtime. */
+export interface GKEWorkload {
+  /** Output only. The name of the GKE deployment. Format: `projects/{project}/locations/{location}/clusters/{cluster}/namespaces/{namespace}/deployments/{deployment}`. */
+  deployment?: string;
+  /** Required. Immutable. The name of the GKE cluster. Format: `projects/{project}/locations/{location}/clusters/{cluster}`. */
+  cluster?: string;
+}
+export const GKEWorkload = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deployment: S.optional(S.String),
+    cluster: S.optional(S.String),
+  }),
+).annotate({ identifier: "GKEWorkload" }) as any as S.Schema<GKEWorkload>;
+
 /** RuntimeConfig represents the runtimes where the application is deployed. */
 export interface RuntimeConfig {
-  /** Output only. Google Kubernetes Engine runtime. */
-  gkeWorkload?: GKEWorkload;
-  /** Output only. App Hub Service. */
-  appHubService?: AppHubService;
-  /** Required. Immutable. The URI of the runtime configuration. For GKE, this is the cluster name. For Cloud Run, this is the service name. */
-  uri?: string;
   /** Output only. App Hub Workload. */
   appHubWorkload?: AppHubWorkload;
+  /** Required. Immutable. The URI of the runtime configuration. For GKE, this is the cluster name. For Cloud Run, this is the service name. */
+  uri?: string;
+  /** Output only. App Hub Service. */
+  appHubService?: AppHubService;
   /** Output only. Cloud Run runtime. */
   googleCloudRun?: GoogleCloudRun;
   /** Output only. The state of the Runtime. */
   state?: RuntimeConfigStateEnum | (string & {});
+  /** Output only. Google Kubernetes Engine runtime. */
+  gkeWorkload?: GKEWorkload;
 }
 export const RuntimeConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    gkeWorkload: S.optional(GKEWorkload),
-    appHubService: S.optional(AppHubService),
-    uri: S.optional(S.String),
     appHubWorkload: S.optional(AppHubWorkload),
+    uri: S.optional(S.String),
+    appHubService: S.optional(AppHubService),
     googleCloudRun: S.optional(GoogleCloudRun),
     state: S.optional(RuntimeConfigStateEnum),
+    gkeWorkload: S.optional(GKEWorkload),
   }),
 ).annotate({ identifier: "RuntimeConfig" }) as any as S.Schema<RuntimeConfig>;
 
@@ -1009,6 +993,22 @@ export type RuntimeConfigList = Array<RuntimeConfig>;
 export const RuntimeConfigList = /*@__PURE__*/ S.Array(
   RuntimeConfig,
 ) as any as S.Schema<RuntimeConfigList>;
+
+export type StatusList = Array<Status>;
+export const StatusList = /*@__PURE__*/ S.Array(
+  Status,
+) as any as S.Schema<StatusList>;
+
+/** Projects represents the projects to track with the InsightsConfig. */
+export interface Projects {
+  /** Optional. The project IDs. Format: {project} */
+  projectIds?: StringList;
+}
+export const Projects = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projectIds: S.optional(StringList),
+  }),
+).annotate({ identifier: "Projects" }) as any as S.Schema<Projects>;
 
 export type InsightsConfigStateEnum =
   | "STATE_UNSPECIFIED"
@@ -1019,44 +1019,44 @@ export const InsightsConfigStateEnum = /*@__PURE__*/ S.String;
 
 /** The InsightsConfig resource is the core configuration object to capture events from your Software Development Lifecycle. It acts as the central hub for managing how Developer Connect understands your application, its runtime environments, and the artifacts deployed within them. */
 export interface InsightsConfig {
-  /** Output only. Create timestamp. */
-  createTime?: string;
-  /** Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of InsightsConfig does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance. */
-  reconciling?: boolean;
-  /** Optional. Set of labels associated with an InsightsConfig. */
-  labels?: StringMap;
-  /** Optional. The artifact configurations of the artifacts that are deployed. */
-  artifactConfigs?: ArtifactConfigList;
-  /** Identifier. The name of the InsightsConfig. Format: projects/{project}/locations/{location}/insightsConfigs/{insightsConfig} */
-  name?: string;
-  /** Output only. Any errors that occurred while setting up the InsightsConfig. Each error will be in the format: `field_name: error_message`, e.g. GetAppHubApplication: Permission denied while getting App Hub application. Please grant permissions to the P4SA. */
-  errors?: StatusList;
   /** Optional. The name of the App Hub Application. Format: projects/{project}/locations/{location}/applications/{application} */
   appHubApplication?: string;
-  /** Optional. The projects to track with the InsightsConfig. */
-  projects?: Projects;
+  /** Optional. The artifact configurations of the artifacts that are deployed. */
+  artifactConfigs?: ArtifactConfigList;
   /** Optional. User specified annotations. See https://google.aip.dev/148#annotations for more details such as format and size limitations. */
   annotations?: StringMap;
-  /** Output only. Update timestamp. */
-  updateTime?: string;
+  /** Identifier. The name of the InsightsConfig. Format: projects/{project}/locations/{location}/insightsConfigs/{insightsConfig} */
+  name?: string;
   /** Output only. The runtime configurations where the application is deployed. */
   runtimeConfigs?: RuntimeConfigList;
+  /** Output only. Any errors that occurred while setting up the InsightsConfig. Each error will be in the format: `field_name: error_message`, e.g. GetAppHubApplication: Permission denied while getting App Hub application. Please grant permissions to the P4SA. */
+  errors?: StatusList;
+  /** Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of InsightsConfig does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance. */
+  reconciling?: boolean;
+  /** Output only. Create timestamp. */
+  createTime?: string;
+  /** Optional. The projects to track with the InsightsConfig. */
+  projects?: Projects;
+  /** Optional. Set of labels associated with an InsightsConfig. */
+  labels?: StringMap;
+  /** Output only. Update timestamp. */
+  updateTime?: string;
   /** Optional. Output only. The state of the InsightsConfig. */
   state?: InsightsConfigStateEnum | (string & {});
 }
 export const InsightsConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    createTime: S.optional(S.String),
-    reconciling: S.optional(S.Boolean),
-    labels: S.optional(StringMap),
-    artifactConfigs: S.optional(ArtifactConfigList),
-    name: S.optional(S.String),
-    errors: S.optional(StatusList),
     appHubApplication: S.optional(S.String),
-    projects: S.optional(Projects),
+    artifactConfigs: S.optional(ArtifactConfigList),
     annotations: S.optional(StringMap),
-    updateTime: S.optional(S.String),
+    name: S.optional(S.String),
     runtimeConfigs: S.optional(RuntimeConfigList),
+    errors: S.optional(StatusList),
+    reconciling: S.optional(S.Boolean),
+    createTime: S.optional(S.String),
+    projects: S.optional(Projects),
+    labels: S.optional(StringMap),
+    updateTime: S.optional(S.String),
     state: S.optional(InsightsConfigStateEnum),
   }),
 ).annotate({ identifier: "InsightsConfig" }) as any as S.Schema<InsightsConfig>;
@@ -1090,25 +1090,25 @@ export const CreateProjectsLocationsInsightsConfigsRequest =
   }) as any as S.Schema<CreateProjectsLocationsInsightsConfigsRequest>;
 
 export interface DeleteProjectsLocationsAccountConnectorsRequest {
-  /** Optional. The current etag of the AccountConnectorn. If an etag is provided and does not match the current etag of the AccountConnector, deletion will be blocked and an ABORTED error will be returned. */
-  etag?: string;
-  /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
-  /** Optional. If set to true, any Users from this AccountConnector will also be deleted. (Otherwise, the request will only work if the AccountConnector has no Users.) */
-  force?: boolean;
-  /** Optional. If set, validate the request, but do not actually post it. */
-  validateOnly?: boolean;
   /** Required. Name of the resource */
   name: string;
+  /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
+  /** Optional. If set, validate the request, but do not actually post it. */
+  validateOnly?: boolean;
+  /** Optional. The current etag of the AccountConnectorn. If an etag is provided and does not match the current etag of the AccountConnector, deletion will be blocked and an ABORTED error will be returned. */
+  etag?: string;
+  /** Optional. If set to true, any Users from this AccountConnector will also be deleted. (Otherwise, the request will only work if the AccountConnector has no Users.) */
+  force?: boolean;
 }
 export const DeleteProjectsLocationsAccountConnectorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      etag: S.optional(S.String.pipe(T.Query())),
-      requestId: S.optional(S.String.pipe(T.Query())),
-      force: S.optional(S.Boolean.pipe(T.Query())),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      requestId: S.optional(S.String.pipe(T.Query())),
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
+      etag: S.optional(S.String.pipe(T.Query())),
+      force: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1123,10 +1123,10 @@ export const DeleteProjectsLocationsAccountConnectorsRequest =
 export interface DeleteProjectsLocationsAccountConnectorsUsersRequest {
   /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
   etag?: string;
-  /** Optional. If set, validate the request, but do not actually post it. */
-  validateOnly?: boolean;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Optional. If set, validate the request, but do not actually post it. */
+  validateOnly?: boolean;
   /** Required. Name of the resource */
   name: string;
 }
@@ -1134,8 +1134,8 @@ export const DeleteProjectsLocationsAccountConnectorsUsersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       etag: S.optional(S.String.pipe(T.Query())),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -1149,22 +1149,22 @@ export const DeleteProjectsLocationsAccountConnectorsUsersRequest =
   }) as any as S.Schema<DeleteProjectsLocationsAccountConnectorsUsersRequest>;
 
 export interface DeleteProjectsLocationsConnectionsRequest {
-  /** Optional. The current etag of the Connection. If an etag is provided and does not match the current etag of the Connection, deletion will be blocked and an ABORTED error will be returned. */
-  etag?: string;
   /** Optional. If set, validate the request, but do not actually post it. */
   validateOnly?: boolean;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
   /** Required. Name of the resource */
   name: string;
+  /** Optional. The current etag of the Connection. If an etag is provided and does not match the current etag of the Connection, deletion will be blocked and an ABORTED error will be returned. */
+  etag?: string;
 }
 export const DeleteProjectsLocationsConnectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      etag: S.optional(S.String.pipe(T.Query())),
       validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      etag: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1177,10 +1177,10 @@ export const DeleteProjectsLocationsConnectionsRequest =
   }) as any as S.Schema<DeleteProjectsLocationsConnectionsRequest>;
 
 export interface DeleteProjectsLocationsConnectionsGitRepositoryLinksRequest {
-  /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
-  etag?: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
+  etag?: string;
   /** Required. Name of the resource */
   name: string;
   /** Optional. If set, validate the request, but do not actually post it. */
@@ -1189,8 +1189,8 @@ export interface DeleteProjectsLocationsConnectionsGitRepositoryLinksRequest {
 export const DeleteProjectsLocationsConnectionsGitRepositoryLinksRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      etag: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      etag: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
       validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
@@ -1207,20 +1207,20 @@ export const DeleteProjectsLocationsConnectionsGitRepositoryLinksRequest =
 export interface DeleteProjectsLocationsInsightsConfigsRequest {
   /** Required. Value for parent. */
   name: string;
-  /** Optional. If set, validate the request, but do not actually post it. */
-  validateOnly?: boolean;
   /** Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. */
   etag?: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Optional. If set, validate the request, but do not actually post it. */
+  validateOnly?: boolean;
 }
 export const DeleteProjectsLocationsInsightsConfigsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String.pipe(T.Label()),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       etag: S.optional(S.String.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1299,34 +1299,34 @@ export const FetchAccessTokenProjectsLocationsAccountConnectorsUsersRequest =
 
 /** Message for representing an error from exchanging OAuth tokens. */
 export interface ExchangeError {
-  /** https://datatracker.ietf.org/doc/html/rfc6749#section-5.2 - error */
-  code?: string;
   /** https://datatracker.ietf.org/doc/html/rfc6749#section-5.2 - error_description */
   description?: string;
+  /** https://datatracker.ietf.org/doc/html/rfc6749#section-5.2 - error */
+  code?: string;
 }
 export const ExchangeError = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    code: S.optional(S.String),
     description: S.optional(S.String),
+    code: S.optional(S.String),
   }),
 ).annotate({ identifier: "ExchangeError" }) as any as S.Schema<ExchangeError>;
 
 /** Message for responding to getting an OAuth access token. */
 export interface FetchAccessTokenResponse {
-  /** The error resulted from exchanging OAuth tokens from the service provider. */
-  exchangeError?: ExchangeError;
-  /** The token content. */
-  token?: string;
   /** The scopes of the access token. */
   scopes?: StringList;
+  /** The token content. */
+  token?: string;
+  /** The error resulted from exchanging OAuth tokens from the service provider. */
+  exchangeError?: ExchangeError;
   /** Expiration timestamp. Can be empty if unknown or non-expiring. */
   expirationTime?: string;
 }
 export const FetchAccessTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    exchangeError: S.optional(ExchangeError),
-    token: S.optional(S.String),
     scopes: S.optional(StringList),
+    token: S.optional(S.String),
+    exchangeError: S.optional(ExchangeError),
     expirationTime: S.optional(S.String),
   }),
 ).annotate({
@@ -1354,18 +1354,18 @@ export const FetchGitHubInstallationsProjectsLocationsConnectionsRequest =
 
 /** Represents an installation of the GitHub App. */
 export interface Installation {
-  /** ID of the installation in GitHub. */
-  id?: string;
   /** Name of the GitHub user or organization that owns this installation. */
   name?: string;
   /** Either "user" or "organization". */
   type?: string;
+  /** ID of the installation in GitHub. */
+  id?: string;
 }
 export const Installation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
+    id: S.optional(S.String),
   }),
 ).annotate({ identifier: "Installation" }) as any as S.Schema<Installation>;
 
@@ -1397,26 +1397,26 @@ export const FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRefTypeEn
 export interface FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRequest {
   /** Optional. Number of results to return in the list. Default to 20. */
   pageSize?: number;
-  /** Required. Type of refs to fetch. */
-  refType?:
-    | FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRefTypeEnum
-    | (string & {});
   /** Required. The resource name of GitRepositoryLink in the format `projects/*\/locations/*\/connections/*\/gitRepositoryLinks/*`. */
   gitRepositoryLink: string;
   /** Optional. Page start. */
   pageToken?: string;
+  /** Required. Type of refs to fetch. */
+  refType?:
+    | FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRefTypeEnum
+    | (string & {});
 }
 export const FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      gitRepositoryLink: S.String.pipe(T.Label()),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       refType: S.optional(
         FetchGitRefsProjectsLocationsConnectionsGitRepositoryLinksRefTypeEnum.pipe(
           T.Query(),
         ),
       ),
-      gitRepositoryLink: S.String.pipe(T.Label()),
-      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1446,19 +1446,19 @@ export const FetchGitRefsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FetchGitRefsResponse>;
 
 export interface FetchLinkableGitRepositoriesProjectsLocationsConnectionsRequest {
-  /** Required. The name of the Connection. Format: `projects/*\/locations/*\/connections/*`. */
-  connection: string;
-  /** Optional. Number of results to return in the list. Defaults to 20. */
-  pageSize?: number;
   /** Optional. Page start. */
   pageToken?: string;
+  /** Optional. Number of results to return in the list. Defaults to 20. */
+  pageSize?: number;
+  /** Required. The name of the Connection. Format: `projects/*\/locations/*\/connections/*`. */
+  connection: string;
 }
 export const FetchLinkableGitRepositoriesProjectsLocationsConnectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      connection: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      connection: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1535,18 +1535,18 @@ export const FetchReadTokenProjectsLocationsConnectionsGitRepositoryLinksRequest
 
 /** Message for responding to get read token. */
 export interface FetchReadTokenResponse {
+  /** The git_username to specify when making a git clone with the token. For example, for GitHub GitRepositoryLinks, this would be "x-access-token" */
+  gitUsername?: string;
   /** Expiration timestamp. Can be empty if unknown or non-expiring. */
   expirationTime?: string;
   /** The token content. */
   token?: string;
-  /** The git_username to specify when making a git clone with the token. For example, for GitHub GitRepositoryLinks, this would be "x-access-token" */
-  gitUsername?: string;
 }
 export const FetchReadTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    gitUsername: S.optional(S.String),
     expirationTime: S.optional(S.String),
     token: S.optional(S.String),
-    gitUsername: S.optional(S.String),
   }),
 ).annotate({
   identifier: "FetchReadTokenResponse",
@@ -1583,16 +1583,16 @@ export const FetchReadWriteTokenProjectsLocationsConnectionsGitRepositoryLinksRe
 export interface FetchReadWriteTokenResponse {
   /** Expiration timestamp. Can be empty if unknown or non-expiring. */
   expirationTime?: string;
-  /** The git_username to specify when making a git clone with the token. For example, for GitHub GitRepositoryLinks, this would be "x-access-token" */
-  gitUsername?: string;
   /** The token content. */
   token?: string;
+  /** The git_username to specify when making a git clone with the token. For example, for GitHub GitRepositoryLinks, this would be "x-access-token" */
+  gitUsername?: string;
 }
 export const FetchReadWriteTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     expirationTime: S.optional(S.String),
-    gitUsername: S.optional(S.String),
     token: S.optional(S.String),
+    gitUsername: S.optional(S.String),
   }),
 ).annotate({
   identifier: "FetchReadWriteTokenResponse",
@@ -1619,41 +1619,41 @@ export const FetchSelfProjectsLocationsAccountConnectorsUsersRequest =
 
 /** User represents a user connected to the service providers through a AccountConnector. */
 export interface User {
-  /** Identifier. Resource name of the user, in the format `projects/*\/locations/*\/accountConnectors/*\/users/*`. */
-  name?: string;
-  /** Output only. The timestamp when the user was created. */
-  createTime?: string;
-  /** Output only. Developer Connect automatically converts user identity to some human readable description, e.g., email address. */
-  displayName?: string;
   /** Output only. The timestamp when the token was last requested. */
   lastTokenRequestTime?: string;
+  /** Output only. Developer Connect automatically converts user identity to some human readable description, e.g., email address. */
+  displayName?: string;
+  /** Output only. The timestamp when the user was created. */
+  createTime?: string;
+  /** Identifier. Resource name of the user, in the format `projects/*\/locations/*\/accountConnectors/*\/users/*`. */
+  name?: string;
 }
 export const User = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    createTime: S.optional(S.String),
-    displayName: S.optional(S.String),
     lastTokenRequestTime: S.optional(S.String),
+    displayName: S.optional(S.String),
+    createTime: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "User" }) as any as S.Schema<User>;
 
 export interface FetchUserRepositoriesProjectsLocationsAccountConnectorsRequest {
-  /** Optional. Number of results to return in the list. Defaults to 20. */
-  pageSize?: number;
-  /** Optional. The name of the repository. When specified, only the UserRepository with this name will be returned if the repository is accessible under this Account Connector for the calling user. */
-  repository?: string;
   /** Required. The name of the Account Connector resource in the format: `projects/*\/locations/*\/accountConnectors/*`. */
   accountConnector: string;
   /** Optional. Page start. */
   pageToken?: string;
+  /** Optional. The name of the repository. When specified, only the UserRepository with this name will be returned if the repository is accessible under this Account Connector for the calling user. */
+  repository?: string;
+  /** Optional. Number of results to return in the list. Defaults to 20. */
+  pageSize?: number;
 }
 export const FetchUserRepositoriesProjectsLocationsAccountConnectorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      repository: S.optional(S.String.pipe(T.Query())),
       accountConnector: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      repository: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1670,16 +1670,16 @@ export const FetchUserRepositoriesProjectsLocationsAccountConnectorsRequest =
 export interface UserRepository {
   /** Output only. The user friendly repo name (e.g., myuser/myrepo) */
   displayName?: string;
-  /** Output only. The git clone URL of the repo. For example: https://github.com/myuser/myrepo.git */
-  cloneUri?: string;
   /** Output only. The Git proxy URL for this repo. For example: https://us-west1-git.developerconnect.dev/a/my-proj/my-ac/myuser/myrepo.git. Populated only when `proxy_config.enabled` is set to `true` in the Account Connector. This URL is used by other Google services that integrate with Developer Connect. */
   gitProxyUri?: string;
+  /** Output only. The git clone URL of the repo. For example: https://github.com/myuser/myrepo.git */
+  cloneUri?: string;
 }
 export const UserRepository = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     displayName: S.optional(S.String),
-    cloneUri: S.optional(S.String),
     gitProxyUri: S.optional(S.String),
+    cloneUri: S.optional(S.String),
   }),
 ).annotate({ identifier: "UserRepository" }) as any as S.Schema<UserRepository>;
 
@@ -1707,26 +1707,26 @@ export const FetchUserRepositoriesResponse = /*@__PURE__*/ S.suspend(() =>
 export interface FinishOAuthFlowProjectsLocationsAccountConnectorsUsersRequest {
   /** Required. The scopes returned by Google OAuth flow. */
   "googleOauthParams.scopes"?: StringList;
-  /** Required. The resource name of the AccountConnector in the format `projects/*\/locations/*\/accountConnectors/*`. */
-  accountConnector: string;
   /** Required. The code to be used for getting the token from SCM provider. */
   "oauthParams.code"?: string;
-  /** Required. The ticket to be used for post processing the callback from SCM provider. */
-  "oauthParams.ticket"?: string;
-  /** Required. The ticket to be used for post processing the callback from Google OAuth flow. */
-  "googleOauthParams.ticket"?: string;
   /** Optional. The version info returned by Google OAuth flow. */
   "googleOauthParams.versionInfo"?: string;
+  /** Required. The ticket to be used for post processing the callback from Google OAuth flow. */
+  "googleOauthParams.ticket"?: string;
+  /** Required. The ticket to be used for post processing the callback from SCM provider. */
+  "oauthParams.ticket"?: string;
+  /** Required. The resource name of the AccountConnector in the format `projects/*\/locations/*\/accountConnectors/*`. */
+  accountConnector: string;
 }
 export const FinishOAuthFlowProjectsLocationsAccountConnectorsUsersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       "googleOauthParams.scopes": S.optional(StringList.pipe(T.Query())),
-      accountConnector: S.String.pipe(T.Label()),
       "oauthParams.code": S.optional(S.String.pipe(T.Query())),
-      "oauthParams.ticket": S.optional(S.String.pipe(T.Query())),
-      "googleOauthParams.ticket": S.optional(S.String.pipe(T.Query())),
       "googleOauthParams.versionInfo": S.optional(S.String.pipe(T.Query())),
+      "googleOauthParams.ticket": S.optional(S.String.pipe(T.Query())),
+      "oauthParams.ticket": S.optional(S.String.pipe(T.Query())),
+      accountConnector: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1771,24 +1771,24 @@ export const GetProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A resource that represents a Google Cloud location. */
 export interface Location {
+  /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
+  labels?: StringMap;
+  /** The friendly name for this location, typically a nearby city name. For example, "Tokyo". */
+  displayName?: string;
   /** Service-specific metadata. For example the available capacity at the given location. */
   metadata?: DocumentMap;
   /** The canonical id for this location. For example: `"us-east1"`. */
   locationId?: string;
-  /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
-  labels?: StringMap;
   /** Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"` */
   name?: string;
-  /** The friendly name for this location, typically a nearby city name. For example, "Tokyo". */
-  displayName?: string;
 }
 export const Location = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    labels: S.optional(StringMap),
+    displayName: S.optional(S.String),
     metadata: S.optional(DocumentMap),
     locationId: S.optional(S.String),
-    labels: S.optional(StringMap),
     name: S.optional(S.String),
-    displayName: S.optional(S.String),
   }),
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
@@ -1887,41 +1887,35 @@ export const GetProjectsLocationsInsightsConfigsDeploymentEventsRequest =
     identifier: "GetProjectsLocationsInsightsConfigsDeploymentEventsRequest",
   }) as any as S.Schema<GetProjectsLocationsInsightsConfigsDeploymentEventsRequest>;
 
-export type DeploymentEventStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "STATE_ACTIVE"
-  | "STATE_INACTIVE";
-export const DeploymentEventStateEnum = /*@__PURE__*/ S.String;
-
 /** The ArtifactDeployment resource represents the deployment of the artifact within the InsightsConfig resource. */
 export interface ArtifactDeployment {
-  /** Output only. The time at which the deployment was undeployed, all artifacts are considered undeployed once this time is set. */
-  undeployTime?: string;
-  /** Output only. The time at which the deployment was deployed. */
-  deployTime?: string;
-  /** Output only. The artifact that is deployed. */
-  artifactReference?: string;
-  /** Output only. The artifact alias in the deployment spec, with Tag/SHA. e.g. us-docker.pkg.dev/my-project/my-repo/image:1.0.0 */
-  artifactAlias?: string;
   /** Output only. The URIs of the source code, if available. For Cloud Run source deploy for example: `gs://my-bucket/my-folder/1234567890.abcde-fdbe.zip#1234567890` */
   sourceCodeUris?: StringList;
-  /** Output only. The source commits at which this artifact was built. Extracted from provenance. */
-  sourceCommitUris?: StringList;
-  /** Output only. The summary of container status of the artifact deployment. Format as `ContainerStatusState-Reason : restartCount` e.g. "Waiting-ImagePullBackOff : 3" */
-  containerStatusSummary?: string;
   /** Output only. Unique identifier of `ArtifactDeployment`. */
   id?: string;
+  /** Output only. The time at which the deployment was deployed. */
+  deployTime?: string;
+  /** Output only. The source commits at which this artifact was built. Extracted from provenance. */
+  sourceCommitUris?: StringList;
+  /** Output only. The time at which the deployment was undeployed, all artifacts are considered undeployed once this time is set. */
+  undeployTime?: string;
+  /** Output only. The artifact alias in the deployment spec, with Tag/SHA. e.g. us-docker.pkg.dev/my-project/my-repo/image:1.0.0 */
+  artifactAlias?: string;
+  /** Output only. The summary of container status of the artifact deployment. Format as `ContainerStatusState-Reason : restartCount` e.g. "Waiting-ImagePullBackOff : 3" */
+  containerStatusSummary?: string;
+  /** Output only. The artifact that is deployed. */
+  artifactReference?: string;
 }
 export const ArtifactDeployment = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    undeployTime: S.optional(S.String),
-    deployTime: S.optional(S.String),
-    artifactReference: S.optional(S.String),
-    artifactAlias: S.optional(S.String),
     sourceCodeUris: S.optional(StringList),
-    sourceCommitUris: S.optional(StringList),
-    containerStatusSummary: S.optional(S.String),
     id: S.optional(S.String),
+    deployTime: S.optional(S.String),
+    sourceCommitUris: S.optional(StringList),
+    undeployTime: S.optional(S.String),
+    artifactAlias: S.optional(S.String),
+    containerStatusSummary: S.optional(S.String),
+    artifactReference: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ArtifactDeployment",
@@ -1932,38 +1926,44 @@ export const ArtifactDeploymentList = /*@__PURE__*/ S.Array(
   ArtifactDeployment,
 ) as any as S.Schema<ArtifactDeploymentList>;
 
+export type DeploymentEventStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "STATE_ACTIVE"
+  | "STATE_INACTIVE";
+export const DeploymentEventStateEnum = /*@__PURE__*/ S.String;
+
 /** The DeploymentEvent resource represents the deployment of the artifact within the InsightsConfig resource. */
 export interface DeploymentEvent {
-  /** Output only. The time at which the DeploymentEvent was undeployed, all artifacts are considered undeployed once this time is set. This would be the max of all ArtifactDeployment undeploy_times. If any ArtifactDeployment is still active (i.e. does not have an undeploy_time), this field will be empty. */
-  undeployTime?: string;
   /** Output only. The runtime assigned URI of the DeploymentEvent. For GKE, this is the fully qualified replica set uri. e.g. container.googleapis.com/projects/{project}/locations/{location}/clusters/{cluster}/k8s/namespaces/{namespace}/apps/replicasets/{replica-set-id} For Cloud Run, this is the revision name. */
   runtimeDeploymentUri?: string;
-  /** Output only. The update time of the DeploymentEvent. */
-  updateTime?: string;
-  /** Output only. The state of the DeploymentEvent. */
-  state?: DeploymentEventStateEnum;
-  /** Identifier. The name of the DeploymentEvent. This name is provided by Developer Connect insights. Format: projects/{project}/locations/{location}/insightsConfigs/{insights_config}/deploymentEvents/{uuid} */
-  name?: string;
   /** Output only. The artifact deployments of the DeploymentEvent. Each artifact deployment contains the artifact uri and the runtime configuration uri. For GKE, this would be all the containers images that are deployed in the pod. */
   artifactDeployments?: ArtifactDeploymentList;
-  /** Output only. The time at which the DeploymentEvent was deployed. This would be the min of all ArtifactDeployment deploy_times. */
-  deployTime?: string;
+  /** Identifier. The name of the DeploymentEvent. This name is provided by Developer Connect insights. Format: projects/{project}/locations/{location}/insightsConfigs/{insights_config}/deploymentEvents/{uuid} */
+  name?: string;
+  /** Output only. The state of the DeploymentEvent. */
+  state?: DeploymentEventStateEnum;
   /** Output only. The runtime configurations where the DeploymentEvent happened. */
   runtimeConfig?: RuntimeConfig;
   /** Output only. The create time of the DeploymentEvent. */
   createTime?: string;
+  /** Output only. The time at which the DeploymentEvent was undeployed, all artifacts are considered undeployed once this time is set. This would be the max of all ArtifactDeployment undeploy_times. If any ArtifactDeployment is still active (i.e. does not have an undeploy_time), this field will be empty. */
+  undeployTime?: string;
+  /** Output only. The time at which the DeploymentEvent was deployed. This would be the min of all ArtifactDeployment deploy_times. */
+  deployTime?: string;
+  /** Output only. The update time of the DeploymentEvent. */
+  updateTime?: string;
 }
 export const DeploymentEvent = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    undeployTime: S.optional(S.String),
     runtimeDeploymentUri: S.optional(S.String),
-    updateTime: S.optional(S.String),
-    state: S.optional(DeploymentEventStateEnum),
-    name: S.optional(S.String),
     artifactDeployments: S.optional(ArtifactDeploymentList),
-    deployTime: S.optional(S.String),
+    name: S.optional(S.String),
+    state: S.optional(DeploymentEventStateEnum),
     runtimeConfig: S.optional(RuntimeConfig),
     createTime: S.optional(S.String),
+    undeployTime: S.optional(S.String),
+    deployTime: S.optional(S.String),
+    updateTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "DeploymentEvent",
@@ -1989,24 +1989,24 @@ export const GetProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetProjectsLocationsOperationsRequest>;
 
 export interface ListProjectsLocationsRequest {
-  /** The resource that owns the locations collection, if applicable. */
-  name: string;
   /** The maximum number of results to return. If not set, the service selects a default. */
   pageSize?: number;
-  /** A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160). */
-  filter?: string;
+  /** The resource that owns the locations collection, if applicable. */
+  name: string;
   /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
   extraLocationTypes?: StringList;
   /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
   pageToken?: string;
+  /** A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160). */
+  filter?: string;
 }
 export const ListProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     extraLocationTypes: S.optional(StringList.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2040,25 +2040,25 @@ export const ListLocationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLocationsResponse>;
 
 export interface ListProjectsLocationsAccountConnectorsRequest {
-  /** Optional. Hint for how to order the results */
-  orderBy?: string;
+  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
+  pageSize?: number;
+  /** Optional. A token identifying a page of results the server should return. */
+  pageToken?: string;
   /** Required. Parent value for ListAccountConnectorsRequest */
   parent: string;
   /** Optional. Filtering results */
   filter?: string;
-  /** Optional. A token identifying a page of results the server should return. */
-  pageToken?: string;
-  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
-  pageSize?: number;
+  /** Optional. Hint for how to order the results */
+  orderBy?: string;
 }
 export const ListProjectsLocationsAccountConnectorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      orderBy: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2077,30 +2077,30 @@ export const AccountConnectorList = /*@__PURE__*/ S.Array(
 
 /** Message for response to listing AccountConnectors */
 export interface ListAccountConnectorsResponse {
+  /** A token identifying a page of results the server should return. */
+  nextPageToken?: string;
   /** The list of AccountConnectors */
   accountConnectors?: AccountConnectorList;
   /** Locations that could not be reached. */
   unreachable?: StringList;
-  /** A token identifying a page of results the server should return. */
-  nextPageToken?: string;
 }
 export const ListAccountConnectorsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    nextPageToken: S.optional(S.String),
     accountConnectors: S.optional(AccountConnectorList),
     unreachable: S.optional(StringList),
-    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListAccountConnectorsResponse",
 }) as any as S.Schema<ListAccountConnectorsResponse>;
 
 export interface ListProjectsLocationsAccountConnectorsUsersRequest {
+  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
+  pageSize?: number;
   /** Optional. Hint for how to order the results */
   orderBy?: string;
   /** Optional. A token identifying a page of results the server should return. */
   pageToken?: string;
-  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
-  pageSize?: number;
   /** Required. Parent value for ListUsersRequest */
   parent: string;
   /** Optional. Filtering results */
@@ -2109,9 +2109,9 @@ export interface ListProjectsLocationsAccountConnectorsUsersRequest {
 export const ListProjectsLocationsAccountConnectorsUsersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       orderBy: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
@@ -2154,21 +2154,21 @@ export interface ListProjectsLocationsConnectionsRequest {
   parent: string;
   /** Optional. Filtering results */
   filter?: string;
-  /** Optional. Hint for how to order the results */
-  orderBy?: string;
-  /** Optional. A token identifying a page of results the server should return. */
-  pageToken?: string;
   /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
   pageSize?: number;
+  /** Optional. A token identifying a page of results the server should return. */
+  pageToken?: string;
+  /** Optional. Hint for how to order the results */
+  orderBy?: string;
 }
 export const ListProjectsLocationsConnectionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2205,12 +2205,12 @@ export const ListConnectionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListConnectionsResponse>;
 
 export interface ListProjectsLocationsConnectionsGitRepositoryLinksRequest {
+  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
+  pageSize?: number;
   /** Optional. A token identifying a page of results the server should return. */
   pageToken?: string;
   /** Optional. Hint for how to order the results */
   orderBy?: string;
-  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
-  pageSize?: number;
   /** Required. Parent value for ListGitRepositoryLinksRequest */
   parent: string;
   /** Optional. Filtering results */
@@ -2219,9 +2219,9 @@ export interface ListProjectsLocationsConnectionsGitRepositoryLinksRequest {
 export const ListProjectsLocationsConnectionsGitRepositoryLinksRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       orderBy: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
@@ -2260,25 +2260,25 @@ export const ListGitRepositoryLinksResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListGitRepositoryLinksResponse>;
 
 export interface ListProjectsLocationsInsightsConfigsRequest {
-  /** Optional. Hint for how to order the results. */
-  orderBy?: string;
-  /** Optional. A token identifying a page of results the server should return. */
-  pageToken?: string;
-  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
-  pageSize?: number;
   /** Required. Parent value for ListInsightsConfigsRequest. */
   parent: string;
   /** Optional. Filtering results. See https://google.aip.dev/160 for more details. Filter string, adhering to the rules in https://google.aip.dev/160. List only InsightsConfigs matching the filter. If filter is empty, all InsightsConfigs are listed. */
   filter?: string;
+  /** Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. */
+  pageSize?: number;
+  /** Optional. Hint for how to order the results. */
+  orderBy?: string;
+  /** Optional. A token identifying a page of results the server should return. */
+  pageToken?: string;
 }
 export const ListProjectsLocationsInsightsConfigsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2297,43 +2297,43 @@ export const InsightsConfigList = /*@__PURE__*/ S.Array(
 
 /** Request for response to listing InsightsConfigs. */
 export interface ListInsightsConfigsResponse {
-  /** The list of InsightsConfigs. */
-  insightsConfigs?: InsightsConfigList;
   /** A token identifying a page of results the server should return. */
   nextPageToken?: string;
   /** Locations that could not be reached. */
   unreachable?: StringList;
+  /** The list of InsightsConfigs. */
+  insightsConfigs?: InsightsConfigList;
 }
 export const ListInsightsConfigsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    insightsConfigs: S.optional(InsightsConfigList),
     nextPageToken: S.optional(S.String),
     unreachable: S.optional(StringList),
+    insightsConfigs: S.optional(InsightsConfigList),
   }),
 ).annotate({
   identifier: "ListInsightsConfigsResponse",
 }) as any as S.Schema<ListInsightsConfigsResponse>;
 
 export interface ListProjectsLocationsInsightsConfigsDeploymentEventsRequest {
+  /** Optional. Field to use to order the list of DeploymentEvents. Expects AIP-132 format "field_name asc" or "field_name desc", e.g. "deploy_time desc" Supported fields for ordering are: deploy_time, update_time. Currently, only sorting by a single field is supported. If this field is not provided, the list will be sorted by "deploy_time desc". For more details on the ordering syntax, see https://google.aip.dev/132#ordering. */
+  orderBy?: string;
+  /** Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
+  pageSize?: number;
   /** Required. The parent insights config that owns this collection of deployment events. Format: projects/{project}/locations/{location}/insightsConfigs/{insights_config} */
   parent: string;
   /** Optional. Filter expression that matches a subset of the DeploymentEvents. https://google.aip.dev/160. */
   filter?: string;
-  /** Optional. Field to use to order the list of DeploymentEvents. Expects AIP-132 format "field_name asc" or "field_name desc", e.g. "deploy_time desc" Supported fields for ordering are: deploy_time, update_time. Currently, only sorting by a single field is supported. If this field is not provided, the list will be sorted by "deploy_time desc". For more details on the ordering syntax, see https://google.aip.dev/132#ordering. */
-  orderBy?: string;
   /** Optional. A page token, received from a previous `ListDeploymentEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDeploymentEvents` must match the call that provided the page token. */
   pageToken?: string;
-  /** Optional. The maximum number of deployment events to return. The service may return fewer than this value. If unspecified, at most 50 deployment events will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
-  pageSize?: number;
 }
 export const ListProjectsLocationsInsightsConfigsDeploymentEventsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      orderBy: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
-      orderBy: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2352,40 +2352,40 @@ export const DeploymentEventList = /*@__PURE__*/ S.Array(
 
 /** Response to listing DeploymentEvents. */
 export interface ListDeploymentEventsResponse {
-  /** The list of DeploymentEvents. */
-  deploymentEvents?: DeploymentEventList;
   /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
   nextPageToken?: string;
+  /** The list of DeploymentEvents. */
+  deploymentEvents?: DeploymentEventList;
 }
 export const ListDeploymentEventsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    deploymentEvents: S.optional(DeploymentEventList),
     nextPageToken: S.optional(S.String),
+    deploymentEvents: S.optional(DeploymentEventList),
   }),
 ).annotate({
   identifier: "ListDeploymentEventsResponse",
 }) as any as S.Schema<ListDeploymentEventsResponse>;
 
 export interface ListProjectsLocationsOperationsRequest {
-  /** The name of the operation's parent resource. */
-  name: string;
-  /** The standard list page size. */
-  pageSize?: number;
-  /** The standard list filter. */
-  filter?: string;
   /** The standard list page token. */
   pageToken?: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
+  /** The standard list filter. */
+  filter?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
+  /** The standard list page size. */
+  pageSize?: number;
 }
 export const ListProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2404,45 +2404,45 @@ export const OperationList = /*@__PURE__*/ S.Array(
 
 /** The response message for Operations.ListOperations. */
 export interface ListOperationsResponse {
-  /** A list of operations that matches the specified filter in the request. */
-  operations?: OperationList;
   /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
   unreachable?: StringList;
   /** The standard List next-page token. */
   nextPageToken?: string;
+  /** A list of operations that matches the specified filter in the request. */
+  operations?: OperationList;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    operations: S.optional(OperationList),
     unreachable: S.optional(StringList),
     nextPageToken: S.optional(S.String),
+    operations: S.optional(OperationList),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
 export interface PatchProjectsLocationsAccountConnectorsRequest {
-  /** Identifier. The resource name of the accountConnector, in the format `projects/{project}/locations/{location}/accountConnectors/{account_connector_id}`. */
-  name: string;
-  /** Optional. The list of fields to be updated. */
-  updateMask?: string;
-  /** Optional. If set, validate the request, but do not actually post it. */
-  validateOnly?: boolean;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
+  /** Optional. If set, validate the request, but do not actually post it. */
+  validateOnly?: boolean;
+  /** Identifier. The resource name of the accountConnector, in the format `projects/{project}/locations/{location}/accountConnectors/{account_connector_id}`. */
+  name: string;
   /** Optional. If set to true, and the accountConnector is not found a new accountConnector will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input accountConnector has all the necessary */
   allowMissing?: boolean;
+  /** Optional. The list of fields to be updated. */
+  updateMask?: string;
   /** Request body */
   body?: AccountConnector;
 }
 export const PatchProjectsLocationsAccountConnectorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
-      updateMask: S.optional(S.String.pipe(T.Query())),
-      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       requestId: S.optional(S.String.pipe(T.Query())),
+      validateOnly: S.optional(S.Boolean.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       allowMissing: S.optional(S.Boolean.pipe(T.Query())),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(AccountConnector.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2458,14 +2458,14 @@ export const PatchProjectsLocationsAccountConnectorsRequest =
 export interface PatchProjectsLocationsConnectionsRequest {
   /** Optional. If set, validate the request, but do not actually post it. */
   validateOnly?: boolean;
+  /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
+  /** Identifier. The resource name of the connection, in the format `projects/{project}/locations/{location}/connections/{connection_id}`. */
+  name: string;
   /** Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten. */
   updateMask?: string;
   /** Optional. If set to true, and the connection is not found a new connection will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input connection has all the necessary information (e.g a github_config with both user_oauth_token and installation_id properties). */
   allowMissing?: boolean;
-  /** Identifier. The resource name of the connection, in the format `projects/{project}/locations/{location}/connections/{connection_id}`. */
-  name: string;
-  /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
   /** Request body */
   body?: Connection;
 }
@@ -2473,10 +2473,10 @@ export const PatchProjectsLocationsConnectionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       validateOnly: S.optional(S.Boolean.pipe(T.Query())),
+      requestId: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
       allowMissing: S.optional(S.Boolean.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
-      requestId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Connection.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2490,12 +2490,12 @@ export const PatchProjectsLocationsConnectionsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchProjectsLocationsConnectionsRequest>;
 
 export interface PatchProjectsLocationsInsightsConfigsRequest {
-  /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
-  requestId?: string;
   /** Identifier. The name of the InsightsConfig. Format: projects/{project}/locations/{location}/insightsConfigs/{insightsConfig} */
   name: string;
   /** Optional. If set to true, and the insightsConfig is not found a new insightsConfig will be created. In this situation `update_mask` is ignored. The creation will succeed only if the input insightsConfig has all the necessary information (e.g a github_config with both user_oauth_token and installation_id properties). */
   allowMissing?: boolean;
+  /** Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000). */
+  requestId?: string;
   /** Optional. If set, validate the request, but do not actually post it. */
   validateOnly?: boolean;
   /** Request body */
@@ -2504,9 +2504,9 @@ export interface PatchProjectsLocationsInsightsConfigsRequest {
 export const PatchProjectsLocationsInsightsConfigsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      requestId: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
       allowMissing: S.optional(S.Boolean.pipe(T.Query())),
+      requestId: S.optional(S.String.pipe(T.Query())),
       validateOnly: S.optional(S.Boolean.pipe(T.Query())),
       body: S.optional(InsightsConfig.pipe(T.HttpBody())),
     }).pipe(
@@ -2522,17 +2522,17 @@ export const PatchProjectsLocationsInsightsConfigsRequest =
 
 /** Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged. */
 export interface HttpBody {
-  /** The HTTP Content-Type header value specifying the content type of the body. */
-  contentType?: string;
   /** Application specific response metadata. Must be set in the first response for streaming APIs. */
   extensions?: DocumentMapList;
+  /** The HTTP Content-Type header value specifying the content type of the body. */
+  contentType?: string;
   /** The HTTP request/response body as raw binary. */
   data?: string;
 }
 export const HttpBody = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    contentType: S.optional(S.String),
     extensions: S.optional(DocumentMapList),
+    contentType: S.optional(S.String),
     data: S.optional(S.String),
   }),
 ).annotate({ identifier: "HttpBody" }) as any as S.Schema<HttpBody>;
@@ -2721,29 +2721,29 @@ export const StartOAuthResponseSystemProviderIdEnum = /*@__PURE__*/ S.String;
 
 /** Message for responding to starting an OAuth flow. */
 export interface StartOAuthResponse {
-  /** The authorization server URL to the OAuth flow of the service provider. */
-  authUri?: string;
   /** The ticket to be used for post processing the callback from the service provider. */
   ticket?: string;
-  /** The client ID to the OAuth App of the service provider. */
-  clientId?: string;
   /** The list of scopes requested by the application. */
   scopes?: StringList;
+  /** The client ID to the OAuth App of the service provider. */
+  clientId?: string;
   /** Please refer to https://datatracker.ietf.org/doc/html/rfc7636#section-4.1 */
   codeChallenge?: string;
   /** The ID of the system provider. */
   systemProviderId?: StartOAuthResponseSystemProviderIdEnum;
+  /** The authorization server URL to the OAuth flow of the service provider. */
+  authUri?: string;
   /** Please refer to https://datatracker.ietf.org/doc/html/rfc7636#section-4.2 */
   codeChallengeMethod?: string;
 }
 export const StartOAuthResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    authUri: S.optional(S.String),
     ticket: S.optional(S.String),
-    clientId: S.optional(S.String),
     scopes: S.optional(StringList),
+    clientId: S.optional(S.String),
     codeChallenge: S.optional(S.String),
     systemProviderId: S.optional(StartOAuthResponseSystemProviderIdEnum),
+    authUri: S.optional(S.String),
     codeChallengeMethod: S.optional(S.String),
   }),
 ).annotate({

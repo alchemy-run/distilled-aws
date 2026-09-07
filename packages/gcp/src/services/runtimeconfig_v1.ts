@@ -119,23 +119,23 @@ export const DeleteOperationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteOperationsRequest>;
 
 export interface ListOperationsRequest {
-  /** The standard list page size. */
-  pageSize?: number;
-  /** The name of the operation's parent resource. */
-  name: string;
-  /** The standard list filter. */
-  filter?: string;
   /** The standard list page token. */
   pageToken?: string;
+  /** The standard list filter. */
+  filter?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
+  /** The standard list page size. */
+  pageSize?: number;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
 }
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    name: S.String.pipe(T.Label()),
-    filter: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
     returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -161,41 +161,41 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
+    details: S.optional(DocumentMapList),
     message: S.optional(S.String),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
   /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
   response?: DocumentMap;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     response: S.optional(DocumentMap),
     metadata: S.optional(DocumentMap),
-    done: S.optional(S.Boolean),
+    name: S.optional(S.String),
     error: S.optional(Status),
+    done: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 

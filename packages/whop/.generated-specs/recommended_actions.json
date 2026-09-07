@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.recommended_actions#ListRecommendedActionsRequest": {
@@ -249,7 +250,7 @@
         "smithy.api#documentation": "List Action Chains\n\nLists the recommended action chains for an account — short sequences of actions (create a product, price it, publish it) the account should run next, gated on what it already has."
       }
     },
-    "com.whop.recommended_actions#RetrieveRecommendedActionRequest": {
+    "com.whop.recommended_actions#GetRecommendedActionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -272,10 +273,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.recommended_actions#RetrieveRecommendedAction": {
+    "com.whop.recommended_actions#GetRecommendedAction": {
       "type": "operation",
       "input": {
-        "target": "com.whop.recommended_actions#RetrieveRecommendedActionRequest"
+        "target": "com.whop.recommended_actions#GetRecommendedActionRequest"
       },
       "output": {
         "target": "com.whop.recommended_actions#AccountRecommendedActionChain"
@@ -590,16 +591,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.recommended_actions#ListRecommendedActions"
-        },
-        {
-          "target": "com.whop.recommended_actions#RetrieveRecommendedAction"
-        },
-        {
-          "target": "com.whop.recommended_actions#RunRecommendedAction"
+          "target": "com.whop.recommended_actions#GetRecommendedAction"
         },
         {
           "target": "com.whop.recommended_actions#ListRecommendedActionExecutions"
+        },
+        {
+          "target": "com.whop.recommended_actions#ListRecommendedActions"
+        },
+        {
+          "target": "com.whop.recommended_actions#RunRecommendedAction"
         }
       ],
       "traits": {

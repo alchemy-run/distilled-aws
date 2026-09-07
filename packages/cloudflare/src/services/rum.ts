@@ -121,7 +121,7 @@ export const RulesBulkCreateRequestRulesList = /*@__PURE__*/ S.Array(
   RulesBulkCreateRequestRulesItem,
 ) as any as S.Schema<RulesBulkCreateRequestRulesList>;
 
-export interface CreateBulkRuleRequest {
+export interface BulkCreateRulesRequest {
   /** Identifier. */
   accountId: string;
   /** The Web Analytics ruleset identifier. */
@@ -131,7 +131,7 @@ export interface CreateBulkRuleRequest {
   /** A list of rules to create or update. */
   rules?: RulesBulkCreateRequestRulesList;
 }
-export const CreateBulkRuleRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateRulesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     accountId: S.String.pipe(T.Label("account_id")),
     rulesetId: S.String.pipe(T.Label("ruleset_id")),
@@ -149,8 +149,8 @@ export const CreateBulkRuleRequest = /*@__PURE__*/ S.suspend(() =>
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkRuleRequest",
-}) as any as S.Schema<CreateBulkRuleRequest>;
+  identifier: "BulkCreateRulesRequest",
+}) as any as S.Schema<BulkCreateRulesRequest>;
 
 export type RulesBulkCreateResponseRulesItemPathsList = Array<string>;
 export const RulesBulkCreateResponseRulesItemPathsList = /*@__PURE__*/ S.Array(
@@ -212,19 +212,19 @@ export const RulesBulkCreateResponseRuleset = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesBulkCreateResponseRuleset>;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface CreateBulkRuleResponse {
+export interface BulkCreateRulesResponse {
   /** A list of rules. */
   rules?: RulesBulkCreateResponseRulesList | null;
   ruleset?: RulesBulkCreateResponseRuleset | null;
 }
-export const CreateBulkRuleResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateRulesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     rules: S.optional(S.NullOr(RulesBulkCreateResponseRulesList)),
     ruleset: S.optional(S.NullOr(RulesBulkCreateResponseRuleset)),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkRuleResponse",
-}) as any as S.Schema<CreateBulkRuleResponse>;
+  identifier: "BulkCreateRulesResponse",
+}) as any as S.Schema<BulkCreateRulesResponse>;
 
 export type RulesCreateRequestPathsList = Array<string>;
 export const RulesCreateRequestPathsList = /*@__PURE__*/ S.Array(
@@ -963,16 +963,16 @@ export const UpdateSiteInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSiteInfoResponse",
 }) as any as S.Schema<UpdateSiteInfoResponse>;
 
-export type CreateBulkRuleError = CloudflareOpError;
+export type BulkCreateRulesError = CloudflareOpError;
 /** Modifies one or more rules in a Web Analytics ruleset with a single request. */
-export const createBulkRule: API.OperationMethod<
-  CreateBulkRuleRequest,
-  CreateBulkRuleResponse,
-  CreateBulkRuleError,
+export const bulkCreateRules: API.OperationMethod<
+  BulkCreateRulesRequest,
+  BulkCreateRulesResponse,
+  BulkCreateRulesError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateBulkRuleRequest,
-  output: CreateBulkRuleResponse,
+  input: BulkCreateRulesRequest,
+  output: BulkCreateRulesResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

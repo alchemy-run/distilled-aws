@@ -12,7 +12,39 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DataCollectionRuleConfigurationMetadataFetchRequest {
+export interface DeleteScheduledQueryRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the rule. */
+  ruleName: string;
+}
+export const DeleteScheduledQueryRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ruleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteScheduledQueryRuleRequest",
+}) as any as S.Schema<DeleteScheduledQueryRuleRequest>;
+
+export interface DeleteScheduledQueryRuleResponse {}
+export const DeleteScheduledQueryRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteScheduledQueryRuleResponse",
+}) as any as S.Schema<DeleteScheduledQueryRuleResponse>;
+
+export interface FetchDataCollectionRuleConfigurationMetadataRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The Azure region for the metadata request. */
@@ -24,7 +56,7 @@ export interface DataCollectionRuleConfigurationMetadataFetchRequest {
   /** When true, returns detailed stream metadata in the response. Defaults to false. */
   withStreamMetadata?: boolean;
 }
-export const DataCollectionRuleConfigurationMetadataFetchRequest =
+export const FetchDataCollectionRuleConfigurationMetadataRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -41,8 +73,8 @@ export const DataCollectionRuleConfigurationMetadataFetchRequest =
       }),
     ),
   ).annotate({
-    identifier: "DataCollectionRuleConfigurationMetadataFetchRequest",
-  }) as any as S.Schema<DataCollectionRuleConfigurationMetadataFetchRequest>;
+    identifier: "FetchDataCollectionRuleConfigurationMetadataRequest",
+  }) as any as S.Schema<FetchDataCollectionRuleConfigurationMetadataRequest>;
 
 /** List of supported destination resource types. */
 export type TelemetryTypeMetadataSupportedDestinationsList = Array<string>;
@@ -218,38 +250,6 @@ export const DataCollectionRuleConfigurationMetadataResponse =
   ).annotate({
     identifier: "DataCollectionRuleConfigurationMetadataResponse",
   }) as any as S.Schema<DataCollectionRuleConfigurationMetadataResponse>;
-
-export interface DeleteScheduledQueryRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the rule. */
-  ruleName: string;
-}
-export const DeleteScheduledQueryRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/scheduledQueryRules/{ruleName}",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteScheduledQueryRuleRequest",
-}) as any as S.Schema<DeleteScheduledQueryRuleRequest>;
-
-export interface DeleteScheduledQueryRuleResponse {}
-export const DeleteScheduledQueryRuleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteScheduledQueryRuleResponse",
-}) as any as S.Schema<DeleteScheduledQueryRuleResponse>;
 
 export interface GetScheduledQueryRuleRequest {
   /** The ID of the target subscription. */
@@ -779,20 +779,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1041,13 +1041,13 @@ export const ScheduledQueryRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ScheduledQueryRulesCreateOrUpdateRequest>;
 
 /** Resource tags */
-export type ScheduledQueryRulesUpdateRequestTagsMap = {
+export type UpdateScheduledQueryRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScheduledQueryRulesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateScheduledQueryRuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ScheduledQueryRulesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateScheduledQueryRuleRequestTagsMap>;
 
 export interface UpdateScheduledQueryRuleRequest {
   /** The ID of the target subscription. */
@@ -1059,7 +1059,7 @@ export interface UpdateScheduledQueryRuleRequest {
   /** The identity of the resource. */
   identity?: IdentityInput;
   /** Resource tags */
-  tags?: ScheduledQueryRulesUpdateRequestTagsMap;
+  tags?: UpdateScheduledQueryRuleRequestTagsMap;
   /** The scheduled query rule properties of the resource. */
   properties?: ScheduledQueryRulePropertiesInput;
 }
@@ -1069,7 +1069,7 @@ export const UpdateScheduledQueryRuleRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     ruleName: S.String.pipe(T.Label()),
     identity: S.optional(IdentityInput),
-    tags: S.optional(ScheduledQueryRulesUpdateRequestTagsMap),
+    tags: S.optional(UpdateScheduledQueryRuleRequestTagsMap),
     properties: S.optional(ScheduledQueryRulePropertiesInput),
   }).pipe(
     T.Http({
@@ -1083,21 +1083,6 @@ export const UpdateScheduledQueryRuleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateScheduledQueryRuleRequest",
 }) as any as S.Schema<UpdateScheduledQueryRuleRequest>;
 
-export type DataCollectionRuleConfigurationMetadataFetchError = AzureOpError;
-/** Fetches configuration metadata for data collection rules. When withStreamMetadata is true, returns detailed stream information. */
-export const DataCollectionRuleConfigurationMetadataFetch: API.OperationMethod<
-  DataCollectionRuleConfigurationMetadataFetchRequest,
-  DataCollectionRuleConfigurationMetadataResponse,
-  DataCollectionRuleConfigurationMetadataFetchError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataCollectionRuleConfigurationMetadataFetchRequest,
-  output: DataCollectionRuleConfigurationMetadataResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteScheduledQueryRuleError = AzureOpError;
 /** Deletes a scheduled query rule. */
 export const DeleteScheduledQueryRule: API.OperationMethod<
@@ -1108,6 +1093,21 @@ export const DeleteScheduledQueryRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteScheduledQueryRuleRequest,
   output: DeleteScheduledQueryRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FetchDataCollectionRuleConfigurationMetadataError = AzureOpError;
+/** Fetches configuration metadata for data collection rules. When withStreamMetadata is true, returns detailed stream information. */
+export const FetchDataCollectionRuleConfigurationMetadata: API.OperationMethod<
+  FetchDataCollectionRuleConfigurationMetadataRequest,
+  DataCollectionRuleConfigurationMetadataResponse,
+  FetchDataCollectionRuleConfigurationMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchDataCollectionRuleConfigurationMetadataRequest,
+  output: DataCollectionRuleConfigurationMetadataResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

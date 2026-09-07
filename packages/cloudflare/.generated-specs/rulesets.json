@@ -100,7 +100,8 @@
       "targetUrl": "target_url",
       "transformedRequestFields": "transformed_request_fields",
       "usernameExpression": "username_expression"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.rulesets#Rulesets": {
@@ -108,94 +109,94 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.rulesets#CreateForAccount"
+          "target": "com.cloudflare.rulesets#CreateRuleForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#CreateForZone"
+          "target": "com.cloudflare.rulesets#CreateRuleForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#DeleteForAccount"
+          "target": "com.cloudflare.rulesets#CreateRulesetForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#DeleteForZone"
+          "target": "com.cloudflare.rulesets#CreateRulesetForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#GetForAccount"
+          "target": "com.cloudflare.rulesets#DeleteRuleForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#GetForZone"
+          "target": "com.cloudflare.rulesets#DeleteRuleForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#ListForAccount"
+          "target": "com.cloudflare.rulesets#DeleteRulesetForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#ListForZone"
+          "target": "com.cloudflare.rulesets#DeleteRulesetForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#UpdateForAccount"
+          "target": "com.cloudflare.rulesets#DeleteVersionForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#UpdateForZone"
+          "target": "com.cloudflare.rulesets#DeleteVersionForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesGetForAccount"
+          "target": "com.cloudflare.rulesets#GetPhasForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesGetForZone"
+          "target": "com.cloudflare.rulesets#GetPhasForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesUpdateForAccount"
+          "target": "com.cloudflare.rulesets#GetPhasVersionForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesUpdateForZone"
+          "target": "com.cloudflare.rulesets#GetPhasVersionForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesVersionsGetForAccount"
+          "target": "com.cloudflare.rulesets#GetRulesetForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesVersionsGetForZone"
+          "target": "com.cloudflare.rulesets#GetRulesetForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesVersionsListForAccount"
+          "target": "com.cloudflare.rulesets#GetVersionForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#PhasesVersionsListForZone"
+          "target": "com.cloudflare.rulesets#GetVersionForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#RulesCreateForAccount"
+          "target": "com.cloudflare.rulesets#ListPhasVersionsForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#RulesCreateForZone"
+          "target": "com.cloudflare.rulesets#ListPhasVersionsForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#RulesDeleteForAccount"
+          "target": "com.cloudflare.rulesets#ListRulesetsForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#RulesDeleteForZone"
+          "target": "com.cloudflare.rulesets#ListRulesetsForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#RulesEditForAccount"
+          "target": "com.cloudflare.rulesets#ListVersionsForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#RulesEditForZone"
+          "target": "com.cloudflare.rulesets#ListVersionsForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#VersionsDeleteForAccount"
+          "target": "com.cloudflare.rulesets#PatchRuleForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#VersionsDeleteForZone"
+          "target": "com.cloudflare.rulesets#PatchRuleForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#VersionsGetForAccount"
+          "target": "com.cloudflare.rulesets#PutPhasForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#VersionsGetForZone"
+          "target": "com.cloudflare.rulesets#PutPhasForZone"
         },
         {
-          "target": "com.cloudflare.rulesets#VersionsListForAccount"
+          "target": "com.cloudflare.rulesets#UpdateRulesetForAccount"
         },
         {
-          "target": "com.cloudflare.rulesets#VersionsListForZone"
+          "target": "com.cloudflare.rulesets#UpdateRulesetForZone"
         }
       ],
       "traits": {
@@ -276,7 +277,7 @@
         "target": "com.cloudflare.rulesets#CreateRuleForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#CreateRuleForAccountResponse"
+        "target": "com.cloudflare.rulesets#CreateRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -324,7 +325,7 @@
         "target": "com.cloudflare.rulesets#CreateRuleForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#CreateRuleForZoneResponse"
+        "target": "com.cloudflare.rulesets#CreateRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -372,7 +373,7 @@
         "target": "com.cloudflare.rulesets#CreateRulesetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#CreateRulesetForAccountResponse"
+        "target": "com.cloudflare.rulesets#CreateRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -446,7 +447,7 @@
         "target": "com.cloudflare.rulesets#CreateRulesetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#CreateRulesetForZoneResponse"
+        "target": "com.cloudflare.rulesets#CreateRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -520,7 +521,7 @@
         "target": "com.cloudflare.rulesets#DeleteRuleForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#DeleteRuleForAccountResponse"
+        "target": "com.cloudflare.rulesets#DeleteRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -570,7 +571,7 @@
         "target": "com.cloudflare.rulesets#DeleteRuleForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#DeleteRuleForZoneResponse"
+        "target": "com.cloudflare.rulesets#DeleteRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -820,7 +821,7 @@
         "target": "com.cloudflare.rulesets#GetPhasForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetPhasForAccountResponse"
+        "target": "com.cloudflare.rulesets#GetPhasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -870,7 +871,7 @@
         "target": "com.cloudflare.rulesets#GetPhasForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetPhasForZoneResponse"
+        "target": "com.cloudflare.rulesets#GetPhasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -920,7 +921,7 @@
         "target": "com.cloudflare.rulesets#GetPhasVersionForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetPhasVersionForAccountResponse"
+        "target": "com.cloudflare.rulesets#GetPhasVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -970,7 +971,7 @@
         "target": "com.cloudflare.rulesets#GetPhasVersionForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetPhasVersionForZoneResponse"
+        "target": "com.cloudflare.rulesets#GetPhasVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1020,7 +1021,7 @@
         "target": "com.cloudflare.rulesets#GetRulesetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetRulesetForAccountResponse"
+        "target": "com.cloudflare.rulesets#GetRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1070,7 +1071,7 @@
         "target": "com.cloudflare.rulesets#GetRulesetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetRulesetForZoneResponse"
+        "target": "com.cloudflare.rulesets#GetRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1120,7 +1121,7 @@
         "target": "com.cloudflare.rulesets#GetVersionForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetVersionForAccountResponse"
+        "target": "com.cloudflare.rulesets#GetVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1170,7 +1171,7 @@
         "target": "com.cloudflare.rulesets#GetVersionForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#GetVersionForZoneResponse"
+        "target": "com.cloudflare.rulesets#GetVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1220,7 +1221,7 @@
         "target": "com.cloudflare.rulesets#ListPhasVersionsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#ListPhasVersionsForAccountResponse"
+        "target": "com.cloudflare.rulesets#ListPhasVersionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1266,7 +1267,7 @@
         "target": "com.cloudflare.rulesets#ListPhasVersionsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#ListPhasVersionsForZoneResponse"
+        "target": "com.cloudflare.rulesets#ListPhasVersionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1312,7 +1313,7 @@
         "target": "com.cloudflare.rulesets#ListRulesetsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#ListRulesetsForAccountResponse"
+        "target": "com.cloudflare.rulesets#ListRulesetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1367,7 +1368,7 @@
         "target": "com.cloudflare.rulesets#ListRulesetsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#ListRulesetsForZoneResponse"
+        "target": "com.cloudflare.rulesets#ListRulesetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1422,7 +1423,7 @@
         "target": "com.cloudflare.rulesets#ListVersionsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#ListVersionsForAccountResponse"
+        "target": "com.cloudflare.rulesets#ListVersionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1468,7 +1469,7 @@
         "target": "com.cloudflare.rulesets#ListVersionsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#ListVersionsForZoneResponse"
+        "target": "com.cloudflare.rulesets#ListVersionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1514,7 +1515,7 @@
         "target": "com.cloudflare.rulesets#PatchRuleForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#PatchRuleForAccountResponse"
+        "target": "com.cloudflare.rulesets#PatchRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1570,7 +1571,7 @@
         "target": "com.cloudflare.rulesets#PatchRuleForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#PatchRuleForZoneResponse"
+        "target": "com.cloudflare.rulesets#PatchRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1626,7 +1627,7 @@
         "target": "com.cloudflare.rulesets#PutPhasForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#PutPhasForAccountResponse"
+        "target": "com.cloudflare.rulesets#PutPhasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1697,7 +1698,7 @@
         "target": "com.cloudflare.rulesets#PutPhasForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#PutPhasForZoneResponse"
+        "target": "com.cloudflare.rulesets#PutPhasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1768,7 +1769,7 @@
         "target": "com.cloudflare.rulesets#UpdateRulesetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#UpdateRulesetForAccountResponse"
+        "target": "com.cloudflare.rulesets#UpdateRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1848,7 +1849,7 @@
         "target": "com.cloudflare.rulesets#UpdateRulesetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.rulesets#UpdateRulesetForZoneResponse"
+        "target": "com.cloudflare.rulesets#UpdateRulesetResponse"
       },
       "traits": {
         "smithy.api#http": {

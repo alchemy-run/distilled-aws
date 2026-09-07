@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.stripe.api#GetAccountRequestExpandList": {
@@ -69697,7 +69698,7 @@
         "smithy.api#documentation": "Specifies the scoping of the secret. Requests originating from UI extensions can only access account-scoped secrets or secrets scoped to their own user."
       }
     },
-    "com.stripe.api#DeletePostAppSecretRequest": {
+    "com.stripe.api#PostAppsSecretsDeleteRequest": {
       "type": "structure",
       "members": {
         "expand": {
@@ -69725,10 +69726,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#DeletePostAppSecret": {
+    "com.stripe.api#PostAppsSecretsDelete": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#DeletePostAppSecretRequest"
+        "target": "com.stripe.api#PostAppsSecretsDeleteRequest"
       },
       "output": {
         "target": "com.stripe.api#AppsSecret"
@@ -116245,7 +116246,7 @@
         "smithy.api#documentation": "Specifies which fields in the response should be expanded."
       }
     },
-    "com.stripe.api#VerifyPostCustomerCustomerSourceIdRequest": {
+    "com.stripe.api#PostCustomersCustomerSourcesIdVerifyRequest": {
       "type": "structure",
       "members": {
         "customer": {
@@ -116279,10 +116280,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#VerifyPostCustomerCustomerSourceId": {
+    "com.stripe.api#PostCustomersCustomerSourcesIdVerify": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#VerifyPostCustomerCustomerSourceIdRequest"
+        "target": "com.stripe.api#PostCustomersCustomerSourcesIdVerifyRequest"
       },
       "output": {
         "target": "com.stripe.api#BankAccount"
@@ -140218,7 +140219,7 @@
         "smithy.api#documentation": "The subscription creation or modification params to apply as a preview. Cannot be used with `schedule` or `schedule_details` fields."
       }
     },
-    "com.stripe.api#CreatePostInvoicePreviewRequest": {
+    "com.stripe.api#PostInvoicesCreatePreviewRequest": {
       "type": "structure",
       "members": {
         "automatic_tax": {
@@ -140316,10 +140317,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#CreatePostInvoicePreview": {
+    "com.stripe.api#PostInvoicesCreatePreview": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#CreatePostInvoicePreviewRequest"
+        "target": "com.stripe.api#PostInvoicesCreatePreviewRequest"
       },
       "output": {
         "target": "com.stripe.api#Invoice"
@@ -146362,7 +146363,7 @@
         "smithy.api#documentation": "The line items to update."
       }
     },
-    "com.stripe.api#UpdatePostInvoiceInvoiceLineRequest": {
+    "com.stripe.api#PostInvoicesInvoiceUpdateLinesRequest": {
       "type": "structure",
       "members": {
         "invoice": {
@@ -146396,10 +146397,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#UpdatePostInvoiceInvoiceLine": {
+    "com.stripe.api#PostInvoicesInvoiceUpdateLines": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#UpdatePostInvoiceInvoiceLineRequest"
+        "target": "com.stripe.api#PostInvoicesInvoiceUpdateLinesRequest"
       },
       "output": {
         "target": "com.stripe.api#Invoice"
@@ -231755,7 +231756,7 @@
         "smithy.api#documentation": "Specifies which fields in the response should be expanded."
       }
     },
-    "com.stripe.api#VerifyPostPaymentIntentIntentMicrodepositRequest": {
+    "com.stripe.api#PostPaymentIntentsIntentVerifyMicrodepositsRequest": {
       "type": "structure",
       "members": {
         "intent": {
@@ -231788,10 +231789,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#VerifyPostPaymentIntentIntentMicrodeposit": {
+    "com.stripe.api#PostPaymentIntentsIntentVerifyMicrodeposits": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#VerifyPostPaymentIntentIntentMicrodepositRequest"
+        "target": "com.stripe.api#PostPaymentIntentsIntentVerifyMicrodepositsRequest"
       },
       "output": {
         "target": "com.stripe.api#PaymentIntent"
@@ -266285,7 +266286,7 @@
         "smithy.api#documentation": "Specifies which fields in the response should be expanded."
       }
     },
-    "com.stripe.api#ListPostRadarValueItemsRequest": {
+    "com.stripe.api#PostRadarValueListItemsRequest": {
       "type": "structure",
       "members": {
         "expand": {
@@ -266313,10 +266314,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#ListPostRadarValueItems": {
+    "com.stripe.api#PostRadarValueListItems": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#ListPostRadarValueItemsRequest"
+        "target": "com.stripe.api#PostRadarValueListItemsRequest"
       },
       "output": {
         "target": "com.stripe.api#RadarValueListItem"
@@ -267102,7 +267103,7 @@
         "smithy.api#documentation": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
       }
     },
-    "com.stripe.api#ListPostRadarValueListValueRequest": {
+    "com.stripe.api#PostRadarValueListsValueListRequest": {
       "type": "structure",
       "members": {
         "value_list": {
@@ -267141,10 +267142,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#ListPostRadarValueListValue": {
+    "com.stripe.api#PostRadarValueListsValueList": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#ListPostRadarValueListValueRequest"
+        "target": "com.stripe.api#PostRadarValueListsValueListRequest"
       },
       "output": {
         "target": "com.stripe.api#RadarValueList"
@@ -289880,7 +289881,7 @@
         "smithy.api#documentation": "Specifies which fields in the response should be expanded."
       }
     },
-    "com.stripe.api#VerifyPostSetupIntentIntentMicrodepositRequest": {
+    "com.stripe.api#PostSetupIntentsIntentVerifyMicrodepositsRequest": {
       "type": "structure",
       "members": {
         "intent": {
@@ -289913,10 +289914,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#VerifyPostSetupIntentIntentMicrodeposit": {
+    "com.stripe.api#PostSetupIntentsIntentVerifyMicrodeposits": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#VerifyPostSetupIntentIntentMicrodepositRequest"
+        "target": "com.stripe.api#PostSetupIntentsIntentVerifyMicrodepositsRequest"
       },
       "output": {
         "target": "com.stripe.api#SetupIntent"
@@ -292948,7 +292949,7 @@
         "smithy.api#documentation": "The values needed to verify the source."
       }
     },
-    "com.stripe.api#VerifyPostSourceSourceRequest": {
+    "com.stripe.api#PostSourcesSourceVerifyRequest": {
       "type": "structure",
       "members": {
         "source": {
@@ -292976,10 +292977,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#VerifyPostSourceSource": {
+    "com.stripe.api#PostSourcesSourceVerify": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#VerifyPostSourceSourceRequest"
+        "target": "com.stripe.api#PostSourcesSourceVerifyRequest"
       },
       "output": {
         "target": "com.stripe.api#Source"
@@ -299022,7 +299023,7 @@
         "smithy.api#documentation": "Specifies which fields in the response should be expanded."
       }
     },
-    "com.stripe.api#ReleasePostSubscriptionScheduleScheduleRequest": {
+    "com.stripe.api#PostSubscriptionSchedulesScheduleReleaseRequest": {
       "type": "structure",
       "members": {
         "schedule": {
@@ -299049,10 +299050,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#ReleasePostSubscriptionScheduleSchedule": {
+    "com.stripe.api#PostSubscriptionSchedulesScheduleRelease": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#ReleasePostSubscriptionScheduleScheduleRequest"
+        "target": "com.stripe.api#PostSubscriptionSchedulesScheduleReleaseRequest"
       },
       "output": {
         "target": "com.stripe.api#SubscriptionSchedule"
@@ -319589,7 +319590,7 @@
         "smithy.api#documentation": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
       }
     },
-    "com.stripe.api#CreatePostTaxTransactionFromCalculationRequest": {
+    "com.stripe.api#PostTaxTransactionsCreateFromCalculationRequest": {
       "type": "structure",
       "members": {
         "calculation": {
@@ -320126,10 +320127,10 @@
         "smithy.api#documentation": "If `reversal`, this transaction reverses an earlier transaction."
       }
     },
-    "com.stripe.api#CreatePostTaxTransactionFromCalculation": {
+    "com.stripe.api#PostTaxTransactionsCreateFromCalculation": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#CreatePostTaxTransactionFromCalculationRequest"
+        "target": "com.stripe.api#PostTaxTransactionsCreateFromCalculationRequest"
       },
       "output": {
         "target": "com.stripe.api#TaxTransaction"
@@ -320274,7 +320275,7 @@
         "smithy.api#documentation": "The shipping cost to reverse."
       }
     },
-    "com.stripe.api#CreatePostTaxTransactionReversalRequest": {
+    "com.stripe.api#PostTaxTransactionsCreateReversalRequest": {
       "type": "structure",
       "members": {
         "expand": {
@@ -320333,10 +320334,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#CreatePostTaxTransactionReversal": {
+    "com.stripe.api#PostTaxTransactionsCreateReversal": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#CreatePostTaxTransactionReversalRequest"
+        "target": "com.stripe.api#PostTaxTransactionsCreateReversalRequest"
       },
       "output": {
         "target": "com.stripe.api#TaxTransaction"
@@ -331895,7 +331896,7 @@
         "smithy.api#documentation": "Type of information to display. Only `cart` is currently supported."
       }
     },
-    "com.stripe.api#SetPostTerminalReaderReaderReaderDisplayRequest": {
+    "com.stripe.api#PostTerminalReadersReaderSetReaderDisplayRequest": {
       "type": "structure",
       "members": {
         "reader": {
@@ -331929,10 +331930,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#SetPostTerminalReaderReaderReaderDisplay": {
+    "com.stripe.api#PostTerminalReadersReaderSetReaderDisplay": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#SetPostTerminalReaderReaderReaderDisplayRequest"
+        "target": "com.stripe.api#PostTerminalReadersReaderSetReaderDisplayRequest"
       },
       "output": {
         "target": "com.stripe.api#TerminalReader"
@@ -341395,7 +341396,7 @@
         "smithy.api#documentation": "Additional purchase information that is optionally provided by the merchant."
       }
     },
-    "com.stripe.api#CreatePostTestHelperIssuingTransactionForceCaptureRequest": {
+    "com.stripe.api#PostTestHelpersIssuingTransactionsCreateForceCaptureRequest": {
       "type": "structure",
       "members": {
         "amount": {
@@ -341441,10 +341442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#CreatePostTestHelperIssuingTransactionForceCapture": {
+    "com.stripe.api#PostTestHelpersIssuingTransactionsCreateForceCapture": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#CreatePostTestHelperIssuingTransactionForceCaptureRequest"
+        "target": "com.stripe.api#PostTestHelpersIssuingTransactionsCreateForceCaptureRequest"
       },
       "output": {
         "target": "com.stripe.api#IssuingTransaction"
@@ -343810,7 +343811,7 @@
         "smithy.api#documentation": "Additional purchase information that is optionally provided by the merchant."
       }
     },
-    "com.stripe.api#CreatePostTestHelperIssuingTransactionUnlinkedRefundRequest": {
+    "com.stripe.api#PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequest": {
       "type": "structure",
       "members": {
         "amount": {
@@ -343856,10 +343857,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#CreatePostTestHelperIssuingTransactionUnlinkedRefund": {
+    "com.stripe.api#PostTestHelpersIssuingTransactionsCreateUnlinkedRefund": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#CreatePostTestHelperIssuingTransactionUnlinkedRefundRequest"
+        "target": "com.stripe.api#PostTestHelpersIssuingTransactionsCreateUnlinkedRefundRequest"
       },
       "output": {
         "target": "com.stripe.api#IssuingTransaction"
@@ -407536,7 +407537,7 @@
         "smithy.api#documentation": "Delete an Event Destination\n\nDelete an event destination."
       }
     },
-    "com.stripe.api#DisablePostV2CoreEventDestinationIdRequest": {
+    "com.stripe.api#PostV2CoreEventDestinationsIdDisableRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -407552,10 +407553,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#DisablePostV2CoreEventDestinationId": {
+    "com.stripe.api#PostV2CoreEventDestinationsIdDisable": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#DisablePostV2CoreEventDestinationIdRequest"
+        "target": "com.stripe.api#PostV2CoreEventDestinationsIdDisableRequest"
       },
       "output": {
         "target": "com.stripe.api#V2CoreEventDestination"
@@ -407569,7 +407570,7 @@
         "smithy.api#documentation": "Disable an Event Destination\n\nDisable an event destination."
       }
     },
-    "com.stripe.api#EnablePostV2CoreEventDestinationIdRequest": {
+    "com.stripe.api#PostV2CoreEventDestinationsIdEnableRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -407585,10 +407586,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.stripe.api#EnablePostV2CoreEventDestinationId": {
+    "com.stripe.api#PostV2CoreEventDestinationsIdEnable": {
       "type": "operation",
       "input": {
-        "target": "com.stripe.api#EnablePostV2CoreEventDestinationIdRequest"
+        "target": "com.stripe.api#PostV2CoreEventDestinationsIdEnableRequest"
       },
       "output": {
         "target": "com.stripe.api#V2CoreEventDestination"
@@ -407935,28 +407936,97 @@
       "version": "2026-07-29.dahlia",
       "operations": [
         {
+          "target": "com.stripe.api#DeleteAccountsAccount"
+        },
+        {
+          "target": "com.stripe.api#DeleteAccountsAccountExternalAccountsId"
+        },
+        {
+          "target": "com.stripe.api#DeleteAccountsAccountPersonsPerson"
+        },
+        {
+          "target": "com.stripe.api#DeleteApplePayDomainsDomain"
+        },
+        {
+          "target": "com.stripe.api#DeleteCouponsCoupon"
+        },
+        {
+          "target": "com.stripe.api#DeleteCustomersCustomer"
+        },
+        {
+          "target": "com.stripe.api#DeleteCustomersCustomerDiscount"
+        },
+        {
+          "target": "com.stripe.api#DeleteCustomersCustomerSourcesId"
+        },
+        {
+          "target": "com.stripe.api#DeleteCustomersCustomerTaxIdsId"
+        },
+        {
+          "target": "com.stripe.api#DeleteEphemeralKeysKey"
+        },
+        {
+          "target": "com.stripe.api#DeleteInvoiceitemsInvoiceitem"
+        },
+        {
+          "target": "com.stripe.api#DeleteInvoicesInvoice"
+        },
+        {
+          "target": "com.stripe.api#DeletePlansPlan"
+        },
+        {
+          "target": "com.stripe.api#DeleteProductsId"
+        },
+        {
+          "target": "com.stripe.api#DeleteProductsProductFeaturesId"
+        },
+        {
+          "target": "com.stripe.api#DeleteRadarValueListItemsItem"
+        },
+        {
+          "target": "com.stripe.api#DeleteRadarValueListsValueList"
+        },
+        {
+          "target": "com.stripe.api#DeleteSubscriptionItemsItem"
+        },
+        {
+          "target": "com.stripe.api#DeleteSubscriptionsSubscriptionExposedId"
+        },
+        {
+          "target": "com.stripe.api#DeleteSubscriptionsSubscriptionExposedIdDiscount"
+        },
+        {
+          "target": "com.stripe.api#DeleteTaxIdsId"
+        },
+        {
+          "target": "com.stripe.api#DeleteTerminalConfigurationsConfiguration"
+        },
+        {
+          "target": "com.stripe.api#DeleteTerminalLocationsLocation"
+        },
+        {
+          "target": "com.stripe.api#DeleteTerminalReadersReader"
+        },
+        {
+          "target": "com.stripe.api#DeleteTestHelpersTestClocksTestClock"
+        },
+        {
+          "target": "com.stripe.api#DeleteV2CoreAccountsAccountIdPersonsId"
+        },
+        {
+          "target": "com.stripe.api#DeleteV2CoreEventDestinationsId"
+        },
+        {
+          "target": "com.stripe.api#DeleteWebhookEndpointsWebhookEndpoint"
+        },
+        {
           "target": "com.stripe.api#GetAccount"
-        },
-        {
-          "target": "com.stripe.api#PostAccountLinks"
-        },
-        {
-          "target": "com.stripe.api#PostAccountSessions"
         },
         {
           "target": "com.stripe.api#GetAccounts"
         },
         {
-          "target": "com.stripe.api#PostAccounts"
-        },
-        {
           "target": "com.stripe.api#GetAccountsAccount"
-        },
-        {
-          "target": "com.stripe.api#PostAccountsAccount"
-        },
-        {
-          "target": "com.stripe.api#DeleteAccountsAccount"
         },
         {
           "target": "com.stripe.api#GetAccountsAccountCapabilities"
@@ -407965,58 +408035,22 @@
           "target": "com.stripe.api#GetAccountsAccountCapabilitiesCapability"
         },
         {
-          "target": "com.stripe.api#PostAccountsAccountCapabilitiesCapability"
-        },
-        {
           "target": "com.stripe.api#GetAccountsAccountExternalAccounts"
-        },
-        {
-          "target": "com.stripe.api#PostAccountsAccountExternalAccounts"
         },
         {
           "target": "com.stripe.api#GetAccountsAccountExternalAccountsId"
         },
         {
-          "target": "com.stripe.api#PostAccountsAccountExternalAccountsId"
-        },
-        {
-          "target": "com.stripe.api#DeleteAccountsAccountExternalAccountsId"
-        },
-        {
-          "target": "com.stripe.api#PostAccountsAccountLoginLinks"
-        },
-        {
           "target": "com.stripe.api#GetAccountsAccountPersons"
-        },
-        {
-          "target": "com.stripe.api#PostAccountsAccountPersons"
         },
         {
           "target": "com.stripe.api#GetAccountsAccountPersonsPerson"
         },
         {
-          "target": "com.stripe.api#PostAccountsAccountPersonsPerson"
-        },
-        {
-          "target": "com.stripe.api#DeleteAccountsAccountPersonsPerson"
-        },
-        {
-          "target": "com.stripe.api#PostAccountsAccountReject"
-        },
-        {
-          "target": "com.stripe.api#PostAccountsAccountUnreject"
-        },
-        {
           "target": "com.stripe.api#GetApplePayDomains"
         },
         {
-          "target": "com.stripe.api#PostApplePayDomains"
-        },
-        {
           "target": "com.stripe.api#GetApplePayDomainsDomain"
-        },
-        {
-          "target": "com.stripe.api#DeleteApplePayDomainsDomain"
         },
         {
           "target": "com.stripe.api#GetApplicationFees"
@@ -408025,25 +408059,13 @@
           "target": "com.stripe.api#GetApplicationFeesFeeRefundsId"
         },
         {
-          "target": "com.stripe.api#PostApplicationFeesFeeRefundsId"
-        },
-        {
           "target": "com.stripe.api#GetApplicationFeesId"
         },
         {
           "target": "com.stripe.api#GetApplicationFeesIdRefunds"
         },
         {
-          "target": "com.stripe.api#PostApplicationFeesIdRefunds"
-        },
-        {
           "target": "com.stripe.api#GetAppsSecrets"
-        },
-        {
-          "target": "com.stripe.api#PostAppsSecrets"
-        },
-        {
-          "target": "com.stripe.api#DeletePostAppSecret"
         },
         {
           "target": "com.stripe.api#GetAppsSecretsFind"
@@ -408055,9 +408077,6 @@
           "target": "com.stripe.api#GetBalanceSettings"
         },
         {
-          "target": "com.stripe.api#PostBalanceSettings"
-        },
-        {
           "target": "com.stripe.api#GetBalanceTransactions"
         },
         {
@@ -408067,19 +408086,7 @@
           "target": "com.stripe.api#GetBillingAlerts"
         },
         {
-          "target": "com.stripe.api#PostBillingAlerts"
-        },
-        {
           "target": "com.stripe.api#GetBillingAlertsId"
-        },
-        {
-          "target": "com.stripe.api#PostBillingAlertsIdActivate"
-        },
-        {
-          "target": "com.stripe.api#PostBillingAlertsIdArchive"
-        },
-        {
-          "target": "com.stripe.api#PostBillingAlertsIdDeactivate"
         },
         {
           "target": "com.stripe.api#GetBillingCreditBalanceSummary"
@@ -408094,79 +408101,28 @@
           "target": "com.stripe.api#GetBillingCreditGrants"
         },
         {
-          "target": "com.stripe.api#PostBillingCreditGrants"
-        },
-        {
           "target": "com.stripe.api#GetBillingCreditGrantsId"
-        },
-        {
-          "target": "com.stripe.api#PostBillingCreditGrantsId"
-        },
-        {
-          "target": "com.stripe.api#PostBillingCreditGrantsIdExpire"
-        },
-        {
-          "target": "com.stripe.api#PostBillingCreditGrantsIdVoid"
-        },
-        {
-          "target": "com.stripe.api#PostBillingMeterEventAdjustments"
-        },
-        {
-          "target": "com.stripe.api#PostBillingMeterEvents"
         },
         {
           "target": "com.stripe.api#GetBillingMeters"
         },
         {
-          "target": "com.stripe.api#PostBillingMeters"
-        },
-        {
           "target": "com.stripe.api#GetBillingMetersId"
-        },
-        {
-          "target": "com.stripe.api#PostBillingMetersId"
-        },
-        {
-          "target": "com.stripe.api#PostBillingMetersIdDeactivate"
         },
         {
           "target": "com.stripe.api#GetBillingMetersIdEventSummaries"
         },
         {
-          "target": "com.stripe.api#PostBillingMetersIdReactivate"
-        },
-        {
           "target": "com.stripe.api#GetBillingPortalConfigurations"
-        },
-        {
-          "target": "com.stripe.api#PostBillingPortalConfigurations"
         },
         {
           "target": "com.stripe.api#GetBillingPortalConfigurationsConfiguration"
         },
         {
-          "target": "com.stripe.api#PostBillingPortalConfigurationsConfiguration"
-        },
-        {
-          "target": "com.stripe.api#PostBillingPortalSessions"
-        },
-        {
           "target": "com.stripe.api#GetCharges"
         },
         {
-          "target": "com.stripe.api#PostCharges"
-        },
-        {
-          "target": "com.stripe.api#GetChargesSearch"
-        },
-        {
           "target": "com.stripe.api#GetChargesCharge"
-        },
-        {
-          "target": "com.stripe.api#PostChargesCharge"
-        },
-        {
-          "target": "com.stripe.api#PostChargesChargeCapture"
         },
         {
           "target": "com.stripe.api#GetChargesChargeRefunds"
@@ -408175,19 +408131,13 @@
           "target": "com.stripe.api#GetChargesChargeRefundsRefund"
         },
         {
+          "target": "com.stripe.api#GetChargesSearch"
+        },
+        {
           "target": "com.stripe.api#GetCheckoutSessions"
         },
         {
-          "target": "com.stripe.api#PostCheckoutSessions"
-        },
-        {
           "target": "com.stripe.api#GetCheckoutSessionsSession"
-        },
-        {
-          "target": "com.stripe.api#PostCheckoutSessionsSession"
-        },
-        {
-          "target": "com.stripe.api#PostCheckoutSessionsSessionExpire"
         },
         {
           "target": "com.stripe.api#GetCheckoutSessionsSessionLineItems"
@@ -408196,16 +408146,7 @@
           "target": "com.stripe.api#GetClimateOrders"
         },
         {
-          "target": "com.stripe.api#PostClimateOrders"
-        },
-        {
           "target": "com.stripe.api#GetClimateOrdersOrder"
-        },
-        {
-          "target": "com.stripe.api#PostClimateOrdersOrder"
-        },
-        {
-          "target": "com.stripe.api#PostClimateOrdersOrderCancel"
         },
         {
           "target": "com.stripe.api#GetClimateProducts"
@@ -408232,28 +408173,10 @@
           "target": "com.stripe.api#GetCoupons"
         },
         {
-          "target": "com.stripe.api#PostCoupons"
-        },
-        {
           "target": "com.stripe.api#GetCouponsCoupon"
         },
         {
-          "target": "com.stripe.api#PostCouponsCoupon"
-        },
-        {
-          "target": "com.stripe.api#DeleteCouponsCoupon"
-        },
-        {
           "target": "com.stripe.api#GetCreditNotes"
-        },
-        {
-          "target": "com.stripe.api#PostCreditNotes"
-        },
-        {
-          "target": "com.stripe.api#GetCreditNotesPreview"
-        },
-        {
-          "target": "com.stripe.api#GetCreditNotesPreviewLines"
         },
         {
           "target": "com.stripe.api#GetCreditNotesCreditNoteLines"
@@ -408262,61 +408185,31 @@
           "target": "com.stripe.api#GetCreditNotesId"
         },
         {
-          "target": "com.stripe.api#PostCreditNotesId"
+          "target": "com.stripe.api#GetCreditNotesPreview"
         },
         {
-          "target": "com.stripe.api#PostCreditNotesIdVoid"
-        },
-        {
-          "target": "com.stripe.api#PostCustomerSessions"
+          "target": "com.stripe.api#GetCreditNotesPreviewLines"
         },
         {
           "target": "com.stripe.api#GetCustomers"
         },
         {
-          "target": "com.stripe.api#PostCustomers"
-        },
-        {
-          "target": "com.stripe.api#GetCustomersSearch"
-        },
-        {
           "target": "com.stripe.api#GetCustomersCustomer"
-        },
-        {
-          "target": "com.stripe.api#PostCustomersCustomer"
-        },
-        {
-          "target": "com.stripe.api#DeleteCustomersCustomer"
         },
         {
           "target": "com.stripe.api#GetCustomersCustomerBalanceTransactions"
         },
         {
-          "target": "com.stripe.api#PostCustomersCustomerBalanceTransactions"
-        },
-        {
           "target": "com.stripe.api#GetCustomersCustomerBalanceTransactionsTransaction"
         },
         {
-          "target": "com.stripe.api#PostCustomersCustomerBalanceTransactionsTransaction"
-        },
-        {
           "target": "com.stripe.api#GetCustomersCustomerCashBalance"
-        },
-        {
-          "target": "com.stripe.api#PostCustomersCustomerCashBalance"
         },
         {
           "target": "com.stripe.api#GetCustomersCustomerCashBalanceTransactions"
         },
         {
           "target": "com.stripe.api#GetCustomersCustomerCashBalanceTransactionsTransaction"
-        },
-        {
-          "target": "com.stripe.api#DeleteCustomersCustomerDiscount"
-        },
-        {
-          "target": "com.stripe.api#PostCustomersCustomerFundingInstructions"
         },
         {
           "target": "com.stripe.api#GetCustomersCustomerPaymentMethods"
@@ -408328,43 +408221,22 @@
           "target": "com.stripe.api#GetCustomersCustomerSources"
         },
         {
-          "target": "com.stripe.api#PostCustomersCustomerSources"
-        },
-        {
           "target": "com.stripe.api#GetCustomersCustomerSourcesId"
-        },
-        {
-          "target": "com.stripe.api#PostCustomersCustomerSourcesId"
-        },
-        {
-          "target": "com.stripe.api#DeleteCustomersCustomerSourcesId"
-        },
-        {
-          "target": "com.stripe.api#VerifyPostCustomerCustomerSourceId"
         },
         {
           "target": "com.stripe.api#GetCustomersCustomerTaxIds"
         },
         {
-          "target": "com.stripe.api#PostCustomersCustomerTaxIds"
-        },
-        {
           "target": "com.stripe.api#GetCustomersCustomerTaxIdsId"
         },
         {
-          "target": "com.stripe.api#DeleteCustomersCustomerTaxIdsId"
+          "target": "com.stripe.api#GetCustomersSearch"
         },
         {
           "target": "com.stripe.api#GetDisputes"
         },
         {
           "target": "com.stripe.api#GetDisputesDispute"
-        },
-        {
-          "target": "com.stripe.api#PostDisputesDispute"
-        },
-        {
-          "target": "com.stripe.api#PostDisputesDisputeClose"
         },
         {
           "target": "com.stripe.api#GetEntitlementsActiveEntitlements"
@@ -408376,19 +408248,7 @@
           "target": "com.stripe.api#GetEntitlementsFeatures"
         },
         {
-          "target": "com.stripe.api#PostEntitlementsFeatures"
-        },
-        {
           "target": "com.stripe.api#GetEntitlementsFeaturesId"
-        },
-        {
-          "target": "com.stripe.api#PostEntitlementsFeaturesId"
-        },
-        {
-          "target": "com.stripe.api#PostEphemeralKeys"
-        },
-        {
-          "target": "com.stripe.api#DeleteEphemeralKeysKey"
         },
         {
           "target": "com.stripe.api#GetEvents"
@@ -408406,19 +408266,10 @@
           "target": "com.stripe.api#GetFileLinks"
         },
         {
-          "target": "com.stripe.api#PostFileLinks"
-        },
-        {
           "target": "com.stripe.api#GetFileLinksLink"
         },
         {
-          "target": "com.stripe.api#PostFileLinksLink"
-        },
-        {
           "target": "com.stripe.api#GetFiles"
-        },
-        {
-          "target": "com.stripe.api#PostFiles"
         },
         {
           "target": "com.stripe.api#GetFilesFile"
@@ -408430,22 +408281,7 @@
           "target": "com.stripe.api#GetFinancialConnectionsAccountsAccount"
         },
         {
-          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountDisconnect"
-        },
-        {
           "target": "com.stripe.api#GetFinancialConnectionsAccountsAccountOwners"
-        },
-        {
-          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountRefresh"
-        },
-        {
-          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountSubscribe"
-        },
-        {
-          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountUnsubscribe"
-        },
-        {
-          "target": "com.stripe.api#PostFinancialConnectionsSessions"
         },
         {
           "target": "com.stripe.api#GetFinancialConnectionsSessionsSession"
@@ -408460,9 +408296,6 @@
           "target": "com.stripe.api#GetForwardingRequests"
         },
         {
-          "target": "com.stripe.api#PostForwardingRequests"
-        },
-        {
           "target": "com.stripe.api#GetForwardingRequestsId"
         },
         {
@@ -408475,19 +408308,13 @@
           "target": "com.stripe.api#GetIdentityVerificationSessions"
         },
         {
-          "target": "com.stripe.api#PostIdentityVerificationSessions"
-        },
-        {
           "target": "com.stripe.api#GetIdentityVerificationSessionsSession"
         },
         {
-          "target": "com.stripe.api#PostIdentityVerificationSessionsSession"
+          "target": "com.stripe.api#GetInvoiceitems"
         },
         {
-          "target": "com.stripe.api#PostIdentityVerificationSessionsSessionCancel"
-        },
-        {
-          "target": "com.stripe.api#PostIdentityVerificationSessionsSessionRedact"
+          "target": "com.stripe.api#GetInvoiceitemsInvoiceitem"
         },
         {
           "target": "com.stripe.api#GetInvoicePayments"
@@ -408502,46 +408329,712 @@
           "target": "com.stripe.api#GetInvoiceRenderingTemplatesTemplate"
         },
         {
+          "target": "com.stripe.api#GetInvoices"
+        },
+        {
+          "target": "com.stripe.api#GetInvoicesInvoice"
+        },
+        {
+          "target": "com.stripe.api#GetInvoicesInvoiceLines"
+        },
+        {
+          "target": "com.stripe.api#GetInvoicesSearch"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingAuthorizations"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingAuthorizationsAuthorization"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingCardholders"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingCardholdersCardholder"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingCards"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingCardsCard"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingDisputes"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingDisputesDispute"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingPersonalizationDesigns"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingPersonalizationDesignsPersonalizationDesign"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingPhysicalBundles"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingPhysicalBundlesPhysicalBundle"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingTokens"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingTokensToken"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingTransactions"
+        },
+        {
+          "target": "com.stripe.api#GetIssuingTransactionsTransaction"
+        },
+        {
+          "target": "com.stripe.api#GetMandatesMandate"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentAttemptRecords"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentAttemptRecordsId"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentIntents"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentIntentsIntent"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentIntentsIntentAmountDetailsLineItems"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentIntentsSearch"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentLinks"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentLinksPaymentLink"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentLinksPaymentLinkLineItems"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentMethodConfigurations"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentMethodConfigurationsConfiguration"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentMethodDomains"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentMethodDomainsPaymentMethodDomain"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentMethods"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentMethodsPaymentMethod"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentRecords"
+        },
+        {
+          "target": "com.stripe.api#GetPaymentRecordsId"
+        },
+        {
+          "target": "com.stripe.api#GetPayouts"
+        },
+        {
+          "target": "com.stripe.api#GetPayoutsPayout"
+        },
+        {
+          "target": "com.stripe.api#GetPlans"
+        },
+        {
+          "target": "com.stripe.api#GetPlansPlan"
+        },
+        {
+          "target": "com.stripe.api#GetPrices"
+        },
+        {
+          "target": "com.stripe.api#GetPricesPrice"
+        },
+        {
+          "target": "com.stripe.api#GetPricesSearch"
+        },
+        {
+          "target": "com.stripe.api#GetProducts"
+        },
+        {
+          "target": "com.stripe.api#GetProductsId"
+        },
+        {
+          "target": "com.stripe.api#GetProductsProductFeatures"
+        },
+        {
+          "target": "com.stripe.api#GetProductsProductFeaturesId"
+        },
+        {
+          "target": "com.stripe.api#GetProductsSearch"
+        },
+        {
+          "target": "com.stripe.api#GetPromotionCodes"
+        },
+        {
+          "target": "com.stripe.api#GetPromotionCodesPromotionCode"
+        },
+        {
+          "target": "com.stripe.api#GetQuotes"
+        },
+        {
+          "target": "com.stripe.api#GetQuotesQuote"
+        },
+        {
+          "target": "com.stripe.api#GetQuotesQuoteComputedUpfrontLineItems"
+        },
+        {
+          "target": "com.stripe.api#GetQuotesQuoteLineItems"
+        },
+        {
+          "target": "com.stripe.api#GetQuotesQuotePdf"
+        },
+        {
+          "target": "com.stripe.api#GetRadarEarlyFraudWarnings"
+        },
+        {
+          "target": "com.stripe.api#GetRadarEarlyFraudWarningsEarlyFraudWarning"
+        },
+        {
+          "target": "com.stripe.api#GetRadarValueListItems"
+        },
+        {
+          "target": "com.stripe.api#GetRadarValueListItemsItem"
+        },
+        {
+          "target": "com.stripe.api#GetRadarValueLists"
+        },
+        {
+          "target": "com.stripe.api#GetRadarValueListsValueList"
+        },
+        {
+          "target": "com.stripe.api#GetRefunds"
+        },
+        {
+          "target": "com.stripe.api#GetRefundsRefund"
+        },
+        {
+          "target": "com.stripe.api#GetReportingReportRuns"
+        },
+        {
+          "target": "com.stripe.api#GetReportingReportRunsReportRun"
+        },
+        {
+          "target": "com.stripe.api#GetReportingReportTypes"
+        },
+        {
+          "target": "com.stripe.api#GetReportingReportTypesReportType"
+        },
+        {
+          "target": "com.stripe.api#GetReviews"
+        },
+        {
+          "target": "com.stripe.api#GetReviewsReview"
+        },
+        {
+          "target": "com.stripe.api#GetSetupAttempts"
+        },
+        {
+          "target": "com.stripe.api#GetSetupIntents"
+        },
+        {
+          "target": "com.stripe.api#GetSetupIntentsIntent"
+        },
+        {
+          "target": "com.stripe.api#GetShippingRates"
+        },
+        {
+          "target": "com.stripe.api#GetShippingRatesShippingRateToken"
+        },
+        {
+          "target": "com.stripe.api#GetSigmaScheduledQueryRuns"
+        },
+        {
+          "target": "com.stripe.api#GetSigmaScheduledQueryRunsScheduledQueryRun"
+        },
+        {
+          "target": "com.stripe.api#GetSourcesSource"
+        },
+        {
+          "target": "com.stripe.api#GetSourcesSourceSourceTransactions"
+        },
+        {
+          "target": "com.stripe.api#GetSubscriptionItems"
+        },
+        {
+          "target": "com.stripe.api#GetSubscriptionItemsItem"
+        },
+        {
+          "target": "com.stripe.api#GetSubscriptions"
+        },
+        {
+          "target": "com.stripe.api#GetSubscriptionSchedules"
+        },
+        {
+          "target": "com.stripe.api#GetSubscriptionSchedulesSchedule"
+        },
+        {
+          "target": "com.stripe.api#GetSubscriptionsSearch"
+        },
+        {
+          "target": "com.stripe.api#GetSubscriptionsSubscriptionExposedId"
+        },
+        {
+          "target": "com.stripe.api#GetTaxAssociationsFind"
+        },
+        {
+          "target": "com.stripe.api#GetTaxCalculationsCalculation"
+        },
+        {
+          "target": "com.stripe.api#GetTaxCalculationsCalculationLineItems"
+        },
+        {
+          "target": "com.stripe.api#GetTaxCodes"
+        },
+        {
+          "target": "com.stripe.api#GetTaxCodesId"
+        },
+        {
+          "target": "com.stripe.api#GetTaxIds"
+        },
+        {
+          "target": "com.stripe.api#GetTaxIdsId"
+        },
+        {
+          "target": "com.stripe.api#GetTaxRates"
+        },
+        {
+          "target": "com.stripe.api#GetTaxRatesTaxRate"
+        },
+        {
+          "target": "com.stripe.api#GetTaxRegistrations"
+        },
+        {
+          "target": "com.stripe.api#GetTaxRegistrationsId"
+        },
+        {
+          "target": "com.stripe.api#GetTaxSettings"
+        },
+        {
+          "target": "com.stripe.api#GetTaxTransactionsTransaction"
+        },
+        {
+          "target": "com.stripe.api#GetTaxTransactionsTransactionLineItems"
+        },
+        {
+          "target": "com.stripe.api#GetTerminalConfigurations"
+        },
+        {
+          "target": "com.stripe.api#GetTerminalConfigurationsConfiguration"
+        },
+        {
+          "target": "com.stripe.api#GetTerminalLocations"
+        },
+        {
+          "target": "com.stripe.api#GetTerminalLocationsLocation"
+        },
+        {
+          "target": "com.stripe.api#GetTerminalReaders"
+        },
+        {
+          "target": "com.stripe.api#GetTerminalReadersReader"
+        },
+        {
+          "target": "com.stripe.api#GetTestHelpersTestClocks"
+        },
+        {
+          "target": "com.stripe.api#GetTestHelpersTestClocksTestClock"
+        },
+        {
+          "target": "com.stripe.api#GetTokensToken"
+        },
+        {
+          "target": "com.stripe.api#GetTopups"
+        },
+        {
+          "target": "com.stripe.api#GetTopupsTopup"
+        },
+        {
+          "target": "com.stripe.api#GetTransfers"
+        },
+        {
+          "target": "com.stripe.api#GetTransfersIdReversals"
+        },
+        {
+          "target": "com.stripe.api#GetTransfersTransfer"
+        },
+        {
+          "target": "com.stripe.api#GetTransfersTransferReversalsId"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryCreditReversals"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryCreditReversalsCreditReversal"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryDebitReversals"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryDebitReversalsDebitReversal"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryFinancialAccounts"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryFinancialAccountsFinancialAccount"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryFinancialAccountsFinancialAccountFeatures"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryInboundTransfers"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryInboundTransfersId"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryOutboundPayments"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryOutboundPaymentsId"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryOutboundTransfers"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryOutboundTransfersOutboundTransfer"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryReceivedCredits"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryReceivedCreditsId"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryReceivedDebits"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryReceivedDebitsId"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryTransactionEntries"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryTransactionEntriesId"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryTransactions"
+        },
+        {
+          "target": "com.stripe.api#GetTreasuryTransactionsId"
+        },
+        {
+          "target": "com.stripe.api#GetV2CommerceProductCatalogImports"
+        },
+        {
+          "target": "com.stripe.api#GetV2CommerceProductCatalogImportsId"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreAccounts"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreAccountsAccountIdPersons"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreAccountsAccountIdPersonsId"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreAccountsAccountIdPersonTokensId"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreAccountsId"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreAccountTokensId"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreEventDestinations"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreEventDestinationsId"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreEvents"
+        },
+        {
+          "target": "com.stripe.api#GetV2CoreEventsId"
+        },
+        {
+          "target": "com.stripe.api#GetWebhookEndpoints"
+        },
+        {
+          "target": "com.stripe.api#GetWebhookEndpointsWebhookEndpoint"
+        },
+        {
+          "target": "com.stripe.api#PostAccountLinks"
+        },
+        {
+          "target": "com.stripe.api#PostAccounts"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccount"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountCapabilitiesCapability"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountExternalAccounts"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountExternalAccountsId"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountLoginLinks"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountPersons"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountPersonsPerson"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountReject"
+        },
+        {
+          "target": "com.stripe.api#PostAccountsAccountUnreject"
+        },
+        {
+          "target": "com.stripe.api#PostAccountSessions"
+        },
+        {
+          "target": "com.stripe.api#PostApplePayDomains"
+        },
+        {
+          "target": "com.stripe.api#PostApplicationFeesFeeRefundsId"
+        },
+        {
+          "target": "com.stripe.api#PostApplicationFeesIdRefunds"
+        },
+        {
+          "target": "com.stripe.api#PostAppsSecrets"
+        },
+        {
+          "target": "com.stripe.api#PostAppsSecretsDelete"
+        },
+        {
+          "target": "com.stripe.api#PostBalanceSettings"
+        },
+        {
+          "target": "com.stripe.api#PostBillingAlerts"
+        },
+        {
+          "target": "com.stripe.api#PostBillingAlertsIdActivate"
+        },
+        {
+          "target": "com.stripe.api#PostBillingAlertsIdArchive"
+        },
+        {
+          "target": "com.stripe.api#PostBillingAlertsIdDeactivate"
+        },
+        {
+          "target": "com.stripe.api#PostBillingCreditGrants"
+        },
+        {
+          "target": "com.stripe.api#PostBillingCreditGrantsId"
+        },
+        {
+          "target": "com.stripe.api#PostBillingCreditGrantsIdExpire"
+        },
+        {
+          "target": "com.stripe.api#PostBillingCreditGrantsIdVoid"
+        },
+        {
+          "target": "com.stripe.api#PostBillingMeterEventAdjustments"
+        },
+        {
+          "target": "com.stripe.api#PostBillingMeterEvents"
+        },
+        {
+          "target": "com.stripe.api#PostBillingMeters"
+        },
+        {
+          "target": "com.stripe.api#PostBillingMetersId"
+        },
+        {
+          "target": "com.stripe.api#PostBillingMetersIdDeactivate"
+        },
+        {
+          "target": "com.stripe.api#PostBillingMetersIdReactivate"
+        },
+        {
+          "target": "com.stripe.api#PostBillingPortalConfigurations"
+        },
+        {
+          "target": "com.stripe.api#PostBillingPortalConfigurationsConfiguration"
+        },
+        {
+          "target": "com.stripe.api#PostBillingPortalSessions"
+        },
+        {
+          "target": "com.stripe.api#PostCharges"
+        },
+        {
+          "target": "com.stripe.api#PostChargesCharge"
+        },
+        {
+          "target": "com.stripe.api#PostChargesChargeCapture"
+        },
+        {
+          "target": "com.stripe.api#PostCheckoutSessions"
+        },
+        {
+          "target": "com.stripe.api#PostCheckoutSessionsSession"
+        },
+        {
+          "target": "com.stripe.api#PostCheckoutSessionsSessionExpire"
+        },
+        {
+          "target": "com.stripe.api#PostClimateOrders"
+        },
+        {
+          "target": "com.stripe.api#PostClimateOrdersOrder"
+        },
+        {
+          "target": "com.stripe.api#PostClimateOrdersOrderCancel"
+        },
+        {
+          "target": "com.stripe.api#PostCoupons"
+        },
+        {
+          "target": "com.stripe.api#PostCouponsCoupon"
+        },
+        {
+          "target": "com.stripe.api#PostCreditNotes"
+        },
+        {
+          "target": "com.stripe.api#PostCreditNotesId"
+        },
+        {
+          "target": "com.stripe.api#PostCreditNotesIdVoid"
+        },
+        {
+          "target": "com.stripe.api#PostCustomers"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomer"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerBalanceTransactions"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerBalanceTransactionsTransaction"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerCashBalance"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerFundingInstructions"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerSources"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerSourcesId"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerSourcesIdVerify"
+        },
+        {
+          "target": "com.stripe.api#PostCustomersCustomerTaxIds"
+        },
+        {
+          "target": "com.stripe.api#PostCustomerSessions"
+        },
+        {
+          "target": "com.stripe.api#PostDisputesDispute"
+        },
+        {
+          "target": "com.stripe.api#PostDisputesDisputeClose"
+        },
+        {
+          "target": "com.stripe.api#PostEntitlementsFeatures"
+        },
+        {
+          "target": "com.stripe.api#PostEntitlementsFeaturesId"
+        },
+        {
+          "target": "com.stripe.api#PostEphemeralKeys"
+        },
+        {
+          "target": "com.stripe.api#PostFileLinks"
+        },
+        {
+          "target": "com.stripe.api#PostFileLinksLink"
+        },
+        {
+          "target": "com.stripe.api#PostFiles"
+        },
+        {
+          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountDisconnect"
+        },
+        {
+          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountRefresh"
+        },
+        {
+          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountSubscribe"
+        },
+        {
+          "target": "com.stripe.api#PostFinancialConnectionsAccountsAccountUnsubscribe"
+        },
+        {
+          "target": "com.stripe.api#PostFinancialConnectionsSessions"
+        },
+        {
+          "target": "com.stripe.api#PostForwardingRequests"
+        },
+        {
+          "target": "com.stripe.api#PostIdentityVerificationSessions"
+        },
+        {
+          "target": "com.stripe.api#PostIdentityVerificationSessionsSession"
+        },
+        {
+          "target": "com.stripe.api#PostIdentityVerificationSessionsSessionCancel"
+        },
+        {
+          "target": "com.stripe.api#PostIdentityVerificationSessionsSessionRedact"
+        },
+        {
+          "target": "com.stripe.api#PostInvoiceitems"
+        },
+        {
+          "target": "com.stripe.api#PostInvoiceitemsInvoiceitem"
+        },
+        {
           "target": "com.stripe.api#PostInvoiceRenderingTemplatesTemplateArchive"
         },
         {
           "target": "com.stripe.api#PostInvoiceRenderingTemplatesTemplateUnarchive"
         },
         {
-          "target": "com.stripe.api#GetInvoiceitems"
-        },
-        {
-          "target": "com.stripe.api#PostInvoiceitems"
-        },
-        {
-          "target": "com.stripe.api#GetInvoiceitemsInvoiceitem"
-        },
-        {
-          "target": "com.stripe.api#PostInvoiceitemsInvoiceitem"
-        },
-        {
-          "target": "com.stripe.api#DeleteInvoiceitemsInvoiceitem"
-        },
-        {
-          "target": "com.stripe.api#GetInvoices"
-        },
-        {
           "target": "com.stripe.api#PostInvoices"
         },
         {
-          "target": "com.stripe.api#CreatePostInvoicePreview"
-        },
-        {
-          "target": "com.stripe.api#GetInvoicesSearch"
-        },
-        {
-          "target": "com.stripe.api#GetInvoicesInvoice"
+          "target": "com.stripe.api#PostInvoicesCreatePreview"
         },
         {
           "target": "com.stripe.api#PostInvoicesInvoice"
-        },
-        {
-          "target": "com.stripe.api#DeleteInvoicesInvoice"
         },
         {
           "target": "com.stripe.api#PostInvoicesInvoiceAddLines"
@@ -408551,9 +409044,6 @@
         },
         {
           "target": "com.stripe.api#PostInvoicesInvoiceFinalize"
-        },
-        {
-          "target": "com.stripe.api#GetInvoicesInvoiceLines"
         },
         {
           "target": "com.stripe.api#PostInvoicesInvoiceLinesLineItemId"
@@ -408571,52 +409061,28 @@
           "target": "com.stripe.api#PostInvoicesInvoiceSend"
         },
         {
-          "target": "com.stripe.api#UpdatePostInvoiceInvoiceLine"
+          "target": "com.stripe.api#PostInvoicesInvoiceUpdateLines"
         },
         {
           "target": "com.stripe.api#PostInvoicesInvoiceVoid"
         },
         {
-          "target": "com.stripe.api#GetIssuingAuthorizations"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingAuthorizationsAuthorization"
-        },
-        {
           "target": "com.stripe.api#PostIssuingAuthorizationsAuthorization"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingCardholders"
         },
         {
           "target": "com.stripe.api#PostIssuingCardholders"
         },
         {
-          "target": "com.stripe.api#GetIssuingCardholdersCardholder"
-        },
-        {
           "target": "com.stripe.api#PostIssuingCardholdersCardholder"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingCards"
         },
         {
           "target": "com.stripe.api#PostIssuingCards"
         },
         {
-          "target": "com.stripe.api#GetIssuingCardsCard"
-        },
-        {
           "target": "com.stripe.api#PostIssuingCardsCard"
         },
         {
-          "target": "com.stripe.api#GetIssuingDisputes"
-        },
-        {
           "target": "com.stripe.api#PostIssuingDisputes"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingDisputesDispute"
         },
         {
           "target": "com.stripe.api#PostIssuingDisputesDispute"
@@ -408625,67 +409091,22 @@
           "target": "com.stripe.api#PostIssuingDisputesDisputeSubmit"
         },
         {
-          "target": "com.stripe.api#GetIssuingPersonalizationDesigns"
-        },
-        {
           "target": "com.stripe.api#PostIssuingPersonalizationDesigns"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingPersonalizationDesignsPersonalizationDesign"
         },
         {
           "target": "com.stripe.api#PostIssuingPersonalizationDesignsPersonalizationDesign"
         },
         {
-          "target": "com.stripe.api#GetIssuingPhysicalBundles"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingPhysicalBundlesPhysicalBundle"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingTokens"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingTokensToken"
-        },
-        {
           "target": "com.stripe.api#PostIssuingTokensToken"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingTransactions"
-        },
-        {
-          "target": "com.stripe.api#GetIssuingTransactionsTransaction"
         },
         {
           "target": "com.stripe.api#PostIssuingTransactionsTransaction"
         },
         {
-          "target": "com.stripe.api#GetMandatesMandate"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentAttemptRecords"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentAttemptRecordsId"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentIntents"
-        },
-        {
           "target": "com.stripe.api#PostPaymentIntents"
         },
         {
-          "target": "com.stripe.api#GetPaymentIntentsSearch"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentIntentsIntent"
-        },
-        {
           "target": "com.stripe.api#PostPaymentIntentsIntent"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentIntentsIntentAmountDetailsLineItems"
         },
         {
           "target": "com.stripe.api#PostPaymentIntentsIntentApplyCustomerBalance"
@@ -408703,43 +409124,22 @@
           "target": "com.stripe.api#PostPaymentIntentsIntentIncrementAuthorization"
         },
         {
-          "target": "com.stripe.api#VerifyPostPaymentIntentIntentMicrodeposit"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentLinks"
+          "target": "com.stripe.api#PostPaymentIntentsIntentVerifyMicrodeposits"
         },
         {
           "target": "com.stripe.api#PostPaymentLinks"
         },
         {
-          "target": "com.stripe.api#GetPaymentLinksPaymentLink"
-        },
-        {
           "target": "com.stripe.api#PostPaymentLinksPaymentLink"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentLinksPaymentLinkLineItems"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentMethodConfigurations"
         },
         {
           "target": "com.stripe.api#PostPaymentMethodConfigurations"
         },
         {
-          "target": "com.stripe.api#GetPaymentMethodConfigurationsConfiguration"
-        },
-        {
           "target": "com.stripe.api#PostPaymentMethodConfigurationsConfiguration"
         },
         {
-          "target": "com.stripe.api#GetPaymentMethodDomains"
-        },
-        {
           "target": "com.stripe.api#PostPaymentMethodDomains"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentMethodDomainsPaymentMethodDomain"
         },
         {
           "target": "com.stripe.api#PostPaymentMethodDomainsPaymentMethodDomain"
@@ -408748,13 +409148,7 @@
           "target": "com.stripe.api#PostPaymentMethodDomainsPaymentMethodDomainValidate"
         },
         {
-          "target": "com.stripe.api#GetPaymentMethods"
-        },
-        {
           "target": "com.stripe.api#PostPaymentMethods"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentMethodsPaymentMethod"
         },
         {
           "target": "com.stripe.api#PostPaymentMethodsPaymentMethod"
@@ -408764,15 +409158,6 @@
         },
         {
           "target": "com.stripe.api#PostPaymentMethodsPaymentMethodDetach"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentRecords"
-        },
-        {
-          "target": "com.stripe.api#PostPaymentRecordsReportPayment"
-        },
-        {
-          "target": "com.stripe.api#GetPaymentRecordsId"
         },
         {
           "target": "com.stripe.api#PostPaymentRecordsIdReportPaymentAttempt"
@@ -408793,13 +409178,10 @@
           "target": "com.stripe.api#PostPaymentRecordsIdReportRefund"
         },
         {
-          "target": "com.stripe.api#GetPayouts"
+          "target": "com.stripe.api#PostPaymentRecordsReportPayment"
         },
         {
           "target": "com.stripe.api#PostPayouts"
-        },
-        {
-          "target": "com.stripe.api#GetPayoutsPayout"
         },
         {
           "target": "com.stripe.api#PostPayoutsPayout"
@@ -408811,85 +409193,34 @@
           "target": "com.stripe.api#PostPayoutsPayoutReverse"
         },
         {
-          "target": "com.stripe.api#GetPlans"
-        },
-        {
           "target": "com.stripe.api#PostPlans"
-        },
-        {
-          "target": "com.stripe.api#GetPlansPlan"
         },
         {
           "target": "com.stripe.api#PostPlansPlan"
         },
         {
-          "target": "com.stripe.api#DeletePlansPlan"
-        },
-        {
-          "target": "com.stripe.api#GetPrices"
-        },
-        {
           "target": "com.stripe.api#PostPrices"
-        },
-        {
-          "target": "com.stripe.api#GetPricesSearch"
-        },
-        {
-          "target": "com.stripe.api#GetPricesPrice"
         },
         {
           "target": "com.stripe.api#PostPricesPrice"
         },
         {
-          "target": "com.stripe.api#GetProducts"
-        },
-        {
           "target": "com.stripe.api#PostProducts"
-        },
-        {
-          "target": "com.stripe.api#GetProductsSearch"
-        },
-        {
-          "target": "com.stripe.api#GetProductsId"
         },
         {
           "target": "com.stripe.api#PostProductsId"
         },
         {
-          "target": "com.stripe.api#DeleteProductsId"
-        },
-        {
-          "target": "com.stripe.api#GetProductsProductFeatures"
-        },
-        {
           "target": "com.stripe.api#PostProductsProductFeatures"
-        },
-        {
-          "target": "com.stripe.api#GetProductsProductFeaturesId"
-        },
-        {
-          "target": "com.stripe.api#DeleteProductsProductFeaturesId"
-        },
-        {
-          "target": "com.stripe.api#GetPromotionCodes"
         },
         {
           "target": "com.stripe.api#PostPromotionCodes"
         },
         {
-          "target": "com.stripe.api#GetPromotionCodesPromotionCode"
-        },
-        {
           "target": "com.stripe.api#PostPromotionCodesPromotionCode"
         },
         {
-          "target": "com.stripe.api#GetQuotes"
-        },
-        {
           "target": "com.stripe.api#PostQuotes"
-        },
-        {
-          "target": "com.stripe.api#GetQuotesQuote"
         },
         {
           "target": "com.stripe.api#PostQuotesQuote"
@@ -408901,61 +409232,22 @@
           "target": "com.stripe.api#PostQuotesQuoteCancel"
         },
         {
-          "target": "com.stripe.api#GetQuotesQuoteComputedUpfrontLineItems"
-        },
-        {
           "target": "com.stripe.api#PostQuotesQuoteFinalize"
-        },
-        {
-          "target": "com.stripe.api#GetQuotesQuoteLineItems"
-        },
-        {
-          "target": "com.stripe.api#GetQuotesQuotePdf"
-        },
-        {
-          "target": "com.stripe.api#GetRadarEarlyFraudWarnings"
-        },
-        {
-          "target": "com.stripe.api#GetRadarEarlyFraudWarningsEarlyFraudWarning"
         },
         {
           "target": "com.stripe.api#PostRadarPaymentEvaluations"
         },
         {
-          "target": "com.stripe.api#GetRadarValueListItems"
-        },
-        {
-          "target": "com.stripe.api#ListPostRadarValueItems"
-        },
-        {
-          "target": "com.stripe.api#GetRadarValueListItemsItem"
-        },
-        {
-          "target": "com.stripe.api#DeleteRadarValueListItemsItem"
-        },
-        {
-          "target": "com.stripe.api#GetRadarValueLists"
+          "target": "com.stripe.api#PostRadarValueListItems"
         },
         {
           "target": "com.stripe.api#PostRadarValueLists"
         },
         {
-          "target": "com.stripe.api#GetRadarValueListsValueList"
-        },
-        {
-          "target": "com.stripe.api#ListPostRadarValueListValue"
-        },
-        {
-          "target": "com.stripe.api#DeleteRadarValueListsValueList"
-        },
-        {
-          "target": "com.stripe.api#GetRefunds"
+          "target": "com.stripe.api#PostRadarValueListsValueList"
         },
         {
           "target": "com.stripe.api#PostRefunds"
-        },
-        {
-          "target": "com.stripe.api#GetRefundsRefund"
         },
         {
           "target": "com.stripe.api#PostRefundsRefund"
@@ -408964,40 +409256,13 @@
           "target": "com.stripe.api#PostRefundsRefundCancel"
         },
         {
-          "target": "com.stripe.api#GetReportingReportRuns"
-        },
-        {
           "target": "com.stripe.api#PostReportingReportRuns"
-        },
-        {
-          "target": "com.stripe.api#GetReportingReportRunsReportRun"
-        },
-        {
-          "target": "com.stripe.api#GetReportingReportTypes"
-        },
-        {
-          "target": "com.stripe.api#GetReportingReportTypesReportType"
-        },
-        {
-          "target": "com.stripe.api#GetReviews"
-        },
-        {
-          "target": "com.stripe.api#GetReviewsReview"
         },
         {
           "target": "com.stripe.api#PostReviewsReviewApprove"
         },
         {
-          "target": "com.stripe.api#GetSetupAttempts"
-        },
-        {
-          "target": "com.stripe.api#GetSetupIntents"
-        },
-        {
           "target": "com.stripe.api#PostSetupIntents"
-        },
-        {
-          "target": "com.stripe.api#GetSetupIntentsIntent"
         },
         {
           "target": "com.stripe.api#PostSetupIntentsIntent"
@@ -409009,64 +409274,34 @@
           "target": "com.stripe.api#PostSetupIntentsIntentConfirm"
         },
         {
-          "target": "com.stripe.api#VerifyPostSetupIntentIntentMicrodeposit"
-        },
-        {
-          "target": "com.stripe.api#GetShippingRates"
+          "target": "com.stripe.api#PostSetupIntentsIntentVerifyMicrodeposits"
         },
         {
           "target": "com.stripe.api#PostShippingRates"
         },
         {
-          "target": "com.stripe.api#GetShippingRatesShippingRateToken"
-        },
-        {
           "target": "com.stripe.api#PostShippingRatesShippingRateToken"
-        },
-        {
-          "target": "com.stripe.api#GetSigmaScheduledQueryRuns"
-        },
-        {
-          "target": "com.stripe.api#GetSigmaScheduledQueryRunsScheduledQueryRun"
         },
         {
           "target": "com.stripe.api#PostSources"
         },
         {
-          "target": "com.stripe.api#GetSourcesSource"
-        },
-        {
           "target": "com.stripe.api#PostSourcesSource"
         },
         {
-          "target": "com.stripe.api#GetSourcesSourceSourceTransactions"
-        },
-        {
-          "target": "com.stripe.api#VerifyPostSourceSource"
-        },
-        {
-          "target": "com.stripe.api#GetSubscriptionItems"
+          "target": "com.stripe.api#PostSourcesSourceVerify"
         },
         {
           "target": "com.stripe.api#PostSubscriptionItems"
         },
         {
-          "target": "com.stripe.api#GetSubscriptionItemsItem"
-        },
-        {
           "target": "com.stripe.api#PostSubscriptionItemsItem"
         },
         {
-          "target": "com.stripe.api#DeleteSubscriptionItemsItem"
-        },
-        {
-          "target": "com.stripe.api#GetSubscriptionSchedules"
+          "target": "com.stripe.api#PostSubscriptions"
         },
         {
           "target": "com.stripe.api#PostSubscriptionSchedules"
-        },
-        {
-          "target": "com.stripe.api#GetSubscriptionSchedulesSchedule"
         },
         {
           "target": "com.stripe.api#PostSubscriptionSchedulesSchedule"
@@ -409075,28 +409310,10 @@
           "target": "com.stripe.api#PostSubscriptionSchedulesScheduleCancel"
         },
         {
-          "target": "com.stripe.api#ReleasePostSubscriptionScheduleSchedule"
-        },
-        {
-          "target": "com.stripe.api#GetSubscriptions"
-        },
-        {
-          "target": "com.stripe.api#PostSubscriptions"
-        },
-        {
-          "target": "com.stripe.api#GetSubscriptionsSearch"
-        },
-        {
-          "target": "com.stripe.api#GetSubscriptionsSubscriptionExposedId"
+          "target": "com.stripe.api#PostSubscriptionSchedulesScheduleRelease"
         },
         {
           "target": "com.stripe.api#PostSubscriptionsSubscriptionExposedId"
-        },
-        {
-          "target": "com.stripe.api#DeleteSubscriptionsSubscriptionExposedId"
-        },
-        {
-          "target": "com.stripe.api#DeleteSubscriptionsSubscriptionExposedIdDiscount"
         },
         {
           "target": "com.stripe.api#PostSubscriptionsSubscriptionMigrate"
@@ -409105,127 +409322,55 @@
           "target": "com.stripe.api#PostSubscriptionsSubscriptionResume"
         },
         {
-          "target": "com.stripe.api#GetTaxAssociationsFind"
-        },
-        {
           "target": "com.stripe.api#PostTaxCalculations"
-        },
-        {
-          "target": "com.stripe.api#GetTaxCalculationsCalculation"
-        },
-        {
-          "target": "com.stripe.api#GetTaxCalculationsCalculationLineItems"
-        },
-        {
-          "target": "com.stripe.api#GetTaxRegistrations"
-        },
-        {
-          "target": "com.stripe.api#PostTaxRegistrations"
-        },
-        {
-          "target": "com.stripe.api#GetTaxRegistrationsId"
-        },
-        {
-          "target": "com.stripe.api#PostTaxRegistrationsId"
-        },
-        {
-          "target": "com.stripe.api#GetTaxSettings"
-        },
-        {
-          "target": "com.stripe.api#PostTaxSettings"
-        },
-        {
-          "target": "com.stripe.api#CreatePostTaxTransactionFromCalculation"
-        },
-        {
-          "target": "com.stripe.api#CreatePostTaxTransactionReversal"
-        },
-        {
-          "target": "com.stripe.api#GetTaxTransactionsTransaction"
-        },
-        {
-          "target": "com.stripe.api#GetTaxTransactionsTransactionLineItems"
-        },
-        {
-          "target": "com.stripe.api#GetTaxCodes"
-        },
-        {
-          "target": "com.stripe.api#GetTaxCodesId"
-        },
-        {
-          "target": "com.stripe.api#GetTaxIds"
         },
         {
           "target": "com.stripe.api#PostTaxIds"
         },
         {
-          "target": "com.stripe.api#GetTaxIdsId"
-        },
-        {
-          "target": "com.stripe.api#DeleteTaxIdsId"
-        },
-        {
-          "target": "com.stripe.api#GetTaxRates"
-        },
-        {
           "target": "com.stripe.api#PostTaxRates"
-        },
-        {
-          "target": "com.stripe.api#GetTaxRatesTaxRate"
         },
         {
           "target": "com.stripe.api#PostTaxRatesTaxRate"
         },
         {
-          "target": "com.stripe.api#GetTerminalConfigurations"
+          "target": "com.stripe.api#PostTaxRegistrations"
+        },
+        {
+          "target": "com.stripe.api#PostTaxRegistrationsId"
+        },
+        {
+          "target": "com.stripe.api#PostTaxSettings"
+        },
+        {
+          "target": "com.stripe.api#PostTaxTransactionsCreateFromCalculation"
+        },
+        {
+          "target": "com.stripe.api#PostTaxTransactionsCreateReversal"
         },
         {
           "target": "com.stripe.api#PostTerminalConfigurations"
         },
         {
-          "target": "com.stripe.api#GetTerminalConfigurationsConfiguration"
-        },
-        {
           "target": "com.stripe.api#PostTerminalConfigurationsConfiguration"
-        },
-        {
-          "target": "com.stripe.api#DeleteTerminalConfigurationsConfiguration"
         },
         {
           "target": "com.stripe.api#PostTerminalConnectionTokens"
         },
         {
-          "target": "com.stripe.api#GetTerminalLocations"
-        },
-        {
           "target": "com.stripe.api#PostTerminalLocations"
-        },
-        {
-          "target": "com.stripe.api#GetTerminalLocationsLocation"
         },
         {
           "target": "com.stripe.api#PostTerminalLocationsLocation"
         },
         {
-          "target": "com.stripe.api#DeleteTerminalLocationsLocation"
-        },
-        {
           "target": "com.stripe.api#PostTerminalOnboardingLinks"
-        },
-        {
-          "target": "com.stripe.api#GetTerminalReaders"
         },
         {
           "target": "com.stripe.api#PostTerminalReaders"
         },
         {
-          "target": "com.stripe.api#GetTerminalReadersReader"
-        },
-        {
           "target": "com.stripe.api#PostTerminalReadersReader"
-        },
-        {
-          "target": "com.stripe.api#DeleteTerminalReadersReader"
         },
         {
           "target": "com.stripe.api#PostTerminalReadersReaderCancelAction"
@@ -409249,7 +409394,7 @@
           "target": "com.stripe.api#PostTerminalReadersReaderRefundPayment"
         },
         {
-          "target": "com.stripe.api#SetPostTerminalReaderReaderReaderDisplay"
+          "target": "com.stripe.api#PostTerminalReadersReaderSetReaderDisplay"
         },
         {
           "target": "com.stripe.api#PostTestHelpersConfirmationTokens"
@@ -409303,10 +409448,10 @@
           "target": "com.stripe.api#PostTestHelpersIssuingPersonalizationDesignsPersonalizationDesignReject"
         },
         {
-          "target": "com.stripe.api#CreatePostTestHelperIssuingTransactionForceCapture"
+          "target": "com.stripe.api#PostTestHelpersIssuingTransactionsCreateForceCapture"
         },
         {
-          "target": "com.stripe.api#CreatePostTestHelperIssuingTransactionUnlinkedRefund"
+          "target": "com.stripe.api#PostTestHelpersIssuingTransactionsCreateUnlinkedRefund"
         },
         {
           "target": "com.stripe.api#PostTestHelpersIssuingTransactionsTransactionRefund"
@@ -409324,16 +409469,7 @@
           "target": "com.stripe.api#PostTestHelpersTerminalReadersReaderTimeoutInputCollection"
         },
         {
-          "target": "com.stripe.api#GetTestHelpersTestClocks"
-        },
-        {
           "target": "com.stripe.api#PostTestHelpersTestClocks"
-        },
-        {
-          "target": "com.stripe.api#GetTestHelpersTestClocksTestClock"
-        },
-        {
-          "target": "com.stripe.api#DeleteTestHelpersTestClocksTestClock"
         },
         {
           "target": "com.stripe.api#PostTestHelpersTestClocksTestClockAdvance"
@@ -409381,16 +409517,7 @@
           "target": "com.stripe.api#PostTokens"
         },
         {
-          "target": "com.stripe.api#GetTokensToken"
-        },
-        {
-          "target": "com.stripe.api#GetTopups"
-        },
-        {
           "target": "com.stripe.api#PostTopups"
-        },
-        {
-          "target": "com.stripe.api#GetTopupsTopup"
         },
         {
           "target": "com.stripe.api#PostTopupsTopup"
@@ -409399,55 +409526,25 @@
           "target": "com.stripe.api#PostTopupsTopupCancel"
         },
         {
-          "target": "com.stripe.api#GetTransfers"
-        },
-        {
           "target": "com.stripe.api#PostTransfers"
-        },
-        {
-          "target": "com.stripe.api#GetTransfersIdReversals"
         },
         {
           "target": "com.stripe.api#PostTransfersIdReversals"
         },
         {
-          "target": "com.stripe.api#GetTransfersTransfer"
-        },
-        {
           "target": "com.stripe.api#PostTransfersTransfer"
-        },
-        {
-          "target": "com.stripe.api#GetTransfersTransferReversalsId"
         },
         {
           "target": "com.stripe.api#PostTransfersTransferReversalsId"
         },
         {
-          "target": "com.stripe.api#GetTreasuryCreditReversals"
-        },
-        {
           "target": "com.stripe.api#PostTreasuryCreditReversals"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryCreditReversalsCreditReversal"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryDebitReversals"
         },
         {
           "target": "com.stripe.api#PostTreasuryDebitReversals"
         },
         {
-          "target": "com.stripe.api#GetTreasuryDebitReversalsDebitReversal"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryFinancialAccounts"
-        },
-        {
           "target": "com.stripe.api#PostTreasuryFinancialAccounts"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryFinancialAccountsFinancialAccount"
         },
         {
           "target": "com.stripe.api#PostTreasuryFinancialAccountsFinancialAccount"
@@ -409456,88 +409553,31 @@
           "target": "com.stripe.api#PostTreasuryFinancialAccountsFinancialAccountClose"
         },
         {
-          "target": "com.stripe.api#GetTreasuryFinancialAccountsFinancialAccountFeatures"
-        },
-        {
           "target": "com.stripe.api#PostTreasuryFinancialAccountsFinancialAccountFeatures"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryInboundTransfers"
         },
         {
           "target": "com.stripe.api#PostTreasuryInboundTransfers"
         },
         {
-          "target": "com.stripe.api#GetTreasuryInboundTransfersId"
-        },
-        {
           "target": "com.stripe.api#PostTreasuryInboundTransfersInboundTransferCancel"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryOutboundPayments"
         },
         {
           "target": "com.stripe.api#PostTreasuryOutboundPayments"
         },
         {
-          "target": "com.stripe.api#GetTreasuryOutboundPaymentsId"
-        },
-        {
           "target": "com.stripe.api#PostTreasuryOutboundPaymentsIdCancel"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryOutboundTransfers"
         },
         {
           "target": "com.stripe.api#PostTreasuryOutboundTransfers"
         },
         {
-          "target": "com.stripe.api#GetTreasuryOutboundTransfersOutboundTransfer"
-        },
-        {
           "target": "com.stripe.api#PostTreasuryOutboundTransfersOutboundTransferCancel"
         },
         {
-          "target": "com.stripe.api#GetTreasuryReceivedCredits"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryReceivedCreditsId"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryReceivedDebits"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryReceivedDebitsId"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryTransactionEntries"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryTransactionEntriesId"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryTransactions"
-        },
-        {
-          "target": "com.stripe.api#GetTreasuryTransactionsId"
-        },
-        {
-          "target": "com.stripe.api#GetWebhookEndpoints"
-        },
-        {
-          "target": "com.stripe.api#PostWebhookEndpoints"
-        },
-        {
-          "target": "com.stripe.api#GetWebhookEndpointsWebhookEndpoint"
-        },
-        {
-          "target": "com.stripe.api#PostWebhookEndpointsWebhookEndpoint"
-        },
-        {
-          "target": "com.stripe.api#DeleteWebhookEndpointsWebhookEndpoint"
-        },
-        {
           "target": "com.stripe.api#PostV2BillingMeterEventAdjustments"
+        },
+        {
+          "target": "com.stripe.api#PostV2BillingMeterEvents"
         },
         {
           "target": "com.stripe.api#PostV2BillingMeterEventSession"
@@ -409546,55 +409586,22 @@
           "target": "com.stripe.api#PostV2BillingMeterEventStream"
         },
         {
-          "target": "com.stripe.api#PostV2BillingMeterEvents"
-        },
-        {
-          "target": "com.stripe.api#GetV2CommerceProductCatalogImports"
-        },
-        {
           "target": "com.stripe.api#PostV2CommerceProductCatalogImports"
-        },
-        {
-          "target": "com.stripe.api#GetV2CommerceProductCatalogImportsId"
         },
         {
           "target": "com.stripe.api#PostV2CoreAccountLinks"
         },
         {
-          "target": "com.stripe.api#PostV2CoreAccountTokens"
-        },
-        {
-          "target": "com.stripe.api#GetV2CoreAccountTokensId"
-        },
-        {
-          "target": "com.stripe.api#GetV2CoreAccounts"
-        },
-        {
           "target": "com.stripe.api#PostV2CoreAccounts"
-        },
-        {
-          "target": "com.stripe.api#PostV2CoreAccountsAccountIdPersonTokens"
-        },
-        {
-          "target": "com.stripe.api#GetV2CoreAccountsAccountIdPersonTokensId"
-        },
-        {
-          "target": "com.stripe.api#GetV2CoreAccountsAccountIdPersons"
         },
         {
           "target": "com.stripe.api#PostV2CoreAccountsAccountIdPersons"
         },
         {
-          "target": "com.stripe.api#GetV2CoreAccountsAccountIdPersonsId"
-        },
-        {
           "target": "com.stripe.api#PostV2CoreAccountsAccountIdPersonsId"
         },
         {
-          "target": "com.stripe.api#DeleteV2CoreAccountsAccountIdPersonsId"
-        },
-        {
-          "target": "com.stripe.api#GetV2CoreAccountsId"
+          "target": "com.stripe.api#PostV2CoreAccountsAccountIdPersonTokens"
         },
         {
           "target": "com.stripe.api#PostV2CoreAccountsId"
@@ -409603,34 +409610,28 @@
           "target": "com.stripe.api#PostV2CoreAccountsIdClose"
         },
         {
-          "target": "com.stripe.api#GetV2CoreEventDestinations"
+          "target": "com.stripe.api#PostV2CoreAccountTokens"
         },
         {
           "target": "com.stripe.api#PostV2CoreEventDestinations"
         },
         {
-          "target": "com.stripe.api#GetV2CoreEventDestinationsId"
-        },
-        {
           "target": "com.stripe.api#PostV2CoreEventDestinationsId"
         },
         {
-          "target": "com.stripe.api#DeleteV2CoreEventDestinationsId"
+          "target": "com.stripe.api#PostV2CoreEventDestinationsIdDisable"
         },
         {
-          "target": "com.stripe.api#DisablePostV2CoreEventDestinationId"
-        },
-        {
-          "target": "com.stripe.api#EnablePostV2CoreEventDestinationId"
+          "target": "com.stripe.api#PostV2CoreEventDestinationsIdEnable"
         },
         {
           "target": "com.stripe.api#PostV2CoreEventDestinationsIdPing"
         },
         {
-          "target": "com.stripe.api#GetV2CoreEvents"
+          "target": "com.stripe.api#PostWebhookEndpoints"
         },
         {
-          "target": "com.stripe.api#GetV2CoreEventsId"
+          "target": "com.stripe.api#PostWebhookEndpointsWebhookEndpoint"
         }
       ],
       "traits": {

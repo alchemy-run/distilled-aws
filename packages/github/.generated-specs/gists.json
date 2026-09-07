@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.gists#ListRequest": {
@@ -2538,40 +2539,37 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.gists#List"
+          "target": "com.github.gists#CheckIsStarred"
         },
         {
           "target": "com.github.gists#Create"
         },
         {
-          "target": "com.github.gists#ListPublic"
-        },
-        {
-          "target": "com.github.gists#ListStarred"
-        },
-        {
-          "target": "com.github.gists#Get"
-        },
-        {
-          "target": "com.github.gists#Update"
+          "target": "com.github.gists#CreateComment"
         },
         {
           "target": "com.github.gists#Delete"
         },
         {
-          "target": "com.github.gists#ListComments"
+          "target": "com.github.gists#DeleteComment"
         },
         {
-          "target": "com.github.gists#CreateComment"
+          "target": "com.github.gists#Fork"
+        },
+        {
+          "target": "com.github.gists#Get"
         },
         {
           "target": "com.github.gists#GetComment"
         },
         {
-          "target": "com.github.gists#UpdateComment"
+          "target": "com.github.gists#GetRevision"
         },
         {
-          "target": "com.github.gists#DeleteComment"
+          "target": "com.github.gists#List"
+        },
+        {
+          "target": "com.github.gists#ListComments"
         },
         {
           "target": "com.github.gists#ListCommits"
@@ -2580,10 +2578,13 @@
           "target": "com.github.gists#ListForks"
         },
         {
-          "target": "com.github.gists#Fork"
+          "target": "com.github.gists#ListForUser"
         },
         {
-          "target": "com.github.gists#CheckIsStarred"
+          "target": "com.github.gists#ListPublic"
+        },
+        {
+          "target": "com.github.gists#ListStarred"
         },
         {
           "target": "com.github.gists#Star"
@@ -2592,10 +2593,10 @@
           "target": "com.github.gists#Unstar"
         },
         {
-          "target": "com.github.gists#GetRevision"
+          "target": "com.github.gists#Update"
         },
         {
-          "target": "com.github.gists#ListForUser"
+          "target": "com.github.gists#UpdateComment"
         }
       ],
       "traits": {

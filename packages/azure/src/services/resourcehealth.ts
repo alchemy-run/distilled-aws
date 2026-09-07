@@ -611,6 +611,111 @@ export const EventFetchDetailsByTenantIdAndTrackingIdResponse =
     identifier: "EventFetchDetailsByTenantIdAndTrackingIdResponse",
   }) as any as S.Schema<EventFetchDetailsByTenantIdAndTrackingIdResponse>;
 
+export interface EventGetBySubscriptionIdAndTrackingIdRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Event Id which uniquely identifies ServiceHealth event. */
+  eventTrackingId: string;
+  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
+  _filter?: string;
+  /** Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020 */
+  queryStartTime?: string;
+}
+export const EventGetBySubscriptionIdAndTrackingIdRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      eventTrackingId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      queryStartTime: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EventGetBySubscriptionIdAndTrackingIdRequest",
+  }) as any as S.Schema<EventGetBySubscriptionIdAndTrackingIdRequest>;
+
+export interface EventGetBySubscriptionIdAndTrackingIdResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of event. */
+  properties?: EventProperties;
+}
+export const EventGetBySubscriptionIdAndTrackingIdResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EventProperties),
+    }),
+  ).annotate({
+    identifier: "EventGetBySubscriptionIdAndTrackingIdResponse",
+  }) as any as S.Schema<EventGetBySubscriptionIdAndTrackingIdResponse>;
+
+export interface EventGetByTenantIdAndTrackingIdRequest {
+  /** Event Id which uniquely identifies ServiceHealth event. */
+  eventTrackingId: string;
+  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
+  _filter?: string;
+  /** Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020 */
+  queryStartTime?: string;
+}
+export const EventGetByTenantIdAndTrackingIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      eventTrackingId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      queryStartTime: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "EventGetByTenantIdAndTrackingIdRequest",
+}) as any as S.Schema<EventGetByTenantIdAndTrackingIdRequest>;
+
+export interface EventGetByTenantIdAndTrackingIdResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of event. */
+  properties?: EventProperties;
+}
+export const EventGetByTenantIdAndTrackingIdResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EventProperties),
+    }),
+).annotate({
+  identifier: "EventGetByTenantIdAndTrackingIdResponse",
+}) as any as S.Schema<EventGetByTenantIdAndTrackingIdResponse>;
+
 export interface GetAvailabilityStatusByResourceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
@@ -916,16 +1021,16 @@ export const GetChildAvailabilityStatusByResourceResponse =
     identifier: "GetChildAvailabilityStatusByResourceResponse",
   }) as any as S.Schema<GetChildAvailabilityStatusByResourceResponse>;
 
-export type EmergingIssuesGetRequestIssueName = "default";
-export const EmergingIssuesGetRequestIssueName = /*@__PURE__*/ S.String;
+export type GetEmergingIssueRequestIssueName = "default";
+export const GetEmergingIssueRequestIssueName = /*@__PURE__*/ S.String;
 
 export interface GetEmergingIssueRequest {
   /** The name of the emerging issue. */
-  issueName: EmergingIssuesGetRequestIssueName | (string & {});
+  issueName: GetEmergingIssueRequestIssueName | (string & {});
 }
 export const GetEmergingIssueRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    issueName: EmergingIssuesGetRequestIssueName.pipe(T.Label()),
+    issueName: GetEmergingIssueRequestIssueName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1103,111 +1208,6 @@ export const GetEmergingIssueResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetEmergingIssueResponse",
 }) as any as S.Schema<GetEmergingIssueResponse>;
-
-export interface GetEventBySubscriptionIdAndTrackingIdRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Event Id which uniquely identifies ServiceHealth event. */
-  eventTrackingId: string;
-  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
-  _filter?: string;
-  /** Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020 */
-  queryStartTime?: string;
-}
-export const GetEventBySubscriptionIdAndTrackingIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      eventTrackingId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      queryStartTime: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetEventBySubscriptionIdAndTrackingIdRequest",
-  }) as any as S.Schema<GetEventBySubscriptionIdAndTrackingIdRequest>;
-
-export interface GetEventBySubscriptionIdAndTrackingIdResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of event. */
-  properties?: EventProperties;
-}
-export const GetEventBySubscriptionIdAndTrackingIdResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(EventProperties),
-    }),
-  ).annotate({
-    identifier: "GetEventBySubscriptionIdAndTrackingIdResponse",
-  }) as any as S.Schema<GetEventBySubscriptionIdAndTrackingIdResponse>;
-
-export interface GetEventByTenantIdAndTrackingIdRequest {
-  /** Event Id which uniquely identifies ServiceHealth event. */
-  eventTrackingId: string;
-  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
-  _filter?: string;
-  /** Specifies from when to return events (default is 3 days), based on the lastUpdateTime property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020 */
-  queryStartTime?: string;
-}
-export const GetEventByTenantIdAndTrackingIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      eventTrackingId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      queryStartTime: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "GetEventByTenantIdAndTrackingIdRequest",
-}) as any as S.Schema<GetEventByTenantIdAndTrackingIdRequest>;
-
-export interface GetEventByTenantIdAndTrackingIdResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of event. */
-  properties?: EventProperties;
-}
-export const GetEventByTenantIdAndTrackingIdResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(EventProperties),
-    }),
-).annotate({
-  identifier: "GetEventByTenantIdAndTrackingIdResponse",
-}) as any as S.Schema<GetEventByTenantIdAndTrackingIdResponse>;
 
 export interface GetImpactedResourceRequest {
   /** The ID of the target subscription. */
@@ -1474,6 +1474,103 @@ export const GetMetadataEntityResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMetadataEntityResponse",
 }) as any as S.Schema<GetMetadataEntityResponse>;
 
+export interface ImpactedResourcesListBySubscriptionIdAndEventIdRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Event Id which uniquely identifies ServiceHealth event. */
+  eventTrackingId: string;
+  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
+  _filter?: string;
+}
+export const ImpactedResourcesListBySubscriptionIdAndEventIdRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      eventTrackingId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ImpactedResourcesListBySubscriptionIdAndEventIdRequest",
+  }) as any as S.Schema<ImpactedResourcesListBySubscriptionIdAndEventIdRequest>;
+
+/** Impacted resource for an event. */
+export interface EventImpactedResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of impacted resource. */
+  properties?: EventImpactedResourceProperties;
+}
+export const EventImpactedResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EventImpactedResourceProperties),
+  }),
+).annotate({
+  identifier: "EventImpactedResource",
+}) as any as S.Schema<EventImpactedResource>;
+
+/** The list of eventImpactedResources. */
+export type EventImpactedResourceListResultValueList =
+  Array<EventImpactedResource>;
+export const EventImpactedResourceListResultValueList = /*@__PURE__*/ S.Array(
+  EventImpactedResource,
+) as any as S.Schema<EventImpactedResourceListResultValueList>;
+
+/** The List of eventImpactedResources operation response. */
+export interface EventImpactedResourceListResult {
+  /** The list of eventImpactedResources. */
+  value: EventImpactedResourceListResultValueList;
+  /** The URI to fetch the next page of events. Call ListNext() with this URI to fetch the next page of impacted resource. */
+  nextLink?: string;
+}
+export const EventImpactedResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EventImpactedResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EventImpactedResourceListResult",
+}) as any as S.Schema<EventImpactedResourceListResult>;
+
+export interface ImpactedResourcesListByTenantIdAndEventIdRequest {
+  /** Event Id which uniquely identifies ServiceHealth event. */
+  eventTrackingId: string;
+  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
+  _filter?: string;
+}
+export const ImpactedResourcesListByTenantIdAndEventIdRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      eventTrackingId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources",
+        code: 200,
+        apiVersion: "2025-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ImpactedResourcesListByTenantIdAndEventIdRequest",
+  }) as any as S.Schema<ImpactedResourcesListByTenantIdAndEventIdRequest>;
+
 export interface ListAvailabilityStatusByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1666,7 +1763,7 @@ export const ListEmergingIssuesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListEmergingIssuesRequest>;
 
 /** The Get EmergingIssues operation response. */
-export interface GetEmergingIssueResult {
+export interface EmergingIssuesGetResult {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1678,7 +1775,7 @@ export interface GetEmergingIssueResult {
   /** The emerging issue entity properties. */
   properties?: EmergingIssue;
 }
-export const GetEmergingIssueResult = /*@__PURE__*/ S.suspend(() =>
+export const EmergingIssuesGetResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1687,13 +1784,13 @@ export const GetEmergingIssueResult = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(EmergingIssue),
   }),
 ).annotate({
-  identifier: "GetEmergingIssueResult",
-}) as any as S.Schema<GetEmergingIssueResult>;
+  identifier: "EmergingIssuesGetResult",
+}) as any as S.Schema<EmergingIssuesGetResult>;
 
 /** The list of emerging issues. */
-export type EmergingIssueListResultValueList = Array<GetEmergingIssueResult>;
+export type EmergingIssueListResultValueList = Array<EmergingIssuesGetResult>;
 export const EmergingIssueListResultValueList = /*@__PURE__*/ S.Array(
-  GetEmergingIssueResult,
+  EmergingIssuesGetResult,
 ) as any as S.Schema<EmergingIssueListResultValueList>;
 
 /** The list of emerging issues. */
@@ -1824,103 +1921,6 @@ export const ListEventByTenantIdRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEventByTenantIdRequest",
 }) as any as S.Schema<ListEventByTenantIdRequest>;
 
-export interface ListImpactedResourceBySubscriptionIdAndEventIdRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Event Id which uniquely identifies ServiceHealth event. */
-  eventTrackingId: string;
-  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
-  _filter?: string;
-}
-export const ListImpactedResourceBySubscriptionIdAndEventIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      eventTrackingId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListImpactedResourceBySubscriptionIdAndEventIdRequest",
-  }) as any as S.Schema<ListImpactedResourceBySubscriptionIdAndEventIdRequest>;
-
-/** Impacted resource for an event. */
-export interface EventImpactedResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of impacted resource. */
-  properties?: EventImpactedResourceProperties;
-}
-export const EventImpactedResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(EventImpactedResourceProperties),
-  }),
-).annotate({
-  identifier: "EventImpactedResource",
-}) as any as S.Schema<EventImpactedResource>;
-
-/** The list of eventImpactedResources. */
-export type EventImpactedResourceListResultValueList =
-  Array<EventImpactedResource>;
-export const EventImpactedResourceListResultValueList = /*@__PURE__*/ S.Array(
-  EventImpactedResource,
-) as any as S.Schema<EventImpactedResourceListResultValueList>;
-
-/** The List of eventImpactedResources operation response. */
-export interface EventImpactedResourceListResult {
-  /** The list of eventImpactedResources. */
-  value: EventImpactedResourceListResultValueList;
-  /** The URI to fetch the next page of events. Call ListNext() with this URI to fetch the next page of impacted resource. */
-  nextLink?: string;
-}
-export const EventImpactedResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: EventImpactedResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EventImpactedResourceListResult",
-}) as any as S.Schema<EventImpactedResourceListResult>;
-
-export interface ListImpactedResourceByTenantIdAndEventIdRequest {
-  /** Event Id which uniquely identifies ServiceHealth event. */
-  eventTrackingId: string;
-  /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
-  _filter?: string;
-}
-export const ListImpactedResourceByTenantIdAndEventIdRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      eventTrackingId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/impactedResources",
-        code: 200,
-        apiVersion: "2025-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListImpactedResourceByTenantIdAndEventIdRequest",
-  }) as any as S.Schema<ListImpactedResourceByTenantIdAndEventIdRequest>;
-
 export interface ListMetadataRequest {}
 export const ListMetadataRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -2049,7 +2049,7 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
-export interface ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdRequest {
+export interface SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** Event Id which uniquely identifies ServiceHealth event. */
@@ -2057,7 +2057,7 @@ export interface ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdR
   /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
   _filter?: string;
 }
-export const ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdRequest =
+export const SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2073,16 +2073,16 @@ export const ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdReque
     ),
   ).annotate({
     identifier:
-      "ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdRequest",
-  }) as any as S.Schema<ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdRequest>;
+      "SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest",
+  }) as any as S.Schema<SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest>;
 
-export interface ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdRequest {
+export interface SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest {
   /** Event Id which uniquely identifies ServiceHealth event. */
   eventTrackingId: string;
   /** The filter to apply on the operation. For more information please see https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN */
   _filter?: string;
 }
-export const ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdRequest =
+export const SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       eventTrackingId: S.String.pipe(T.Label()),
@@ -2097,8 +2097,8 @@ export const ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdRequest =
     ),
   ).annotate({
     identifier:
-      "ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdRequest",
-  }) as any as S.Schema<ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdRequest>;
+      "SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest",
+  }) as any as S.Schema<SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest>;
 
 export type EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingIdError =
   AzureOpError;
@@ -2143,6 +2143,36 @@ export const EventFetchDetailsByTenantIdAndTrackingId: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EventFetchDetailsByTenantIdAndTrackingIdRequest,
   output: EventFetchDetailsByTenantIdAndTrackingIdResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EventGetBySubscriptionIdAndTrackingIdError = AzureOpError;
+/** Service health event in the subscription by event tracking id */
+export const EventGetBySubscriptionIdAndTrackingId: API.OperationMethod<
+  EventGetBySubscriptionIdAndTrackingIdRequest,
+  EventGetBySubscriptionIdAndTrackingIdResponse,
+  EventGetBySubscriptionIdAndTrackingIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EventGetBySubscriptionIdAndTrackingIdRequest,
+  output: EventGetBySubscriptionIdAndTrackingIdResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EventGetByTenantIdAndTrackingIdError = AzureOpError;
+/** Service health event in the tenant by event tracking id */
+export const EventGetByTenantIdAndTrackingId: API.OperationMethod<
+  EventGetByTenantIdAndTrackingIdRequest,
+  EventGetByTenantIdAndTrackingIdResponse,
+  EventGetByTenantIdAndTrackingIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EventGetByTenantIdAndTrackingIdRequest,
+  output: EventGetByTenantIdAndTrackingIdResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2193,36 +2223,6 @@ export const GetEmergingIssue: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetEventBySubscriptionIdAndTrackingIdError = AzureOpError;
-/** Service health event in the subscription by event tracking id */
-export const GetEventBySubscriptionIdAndTrackingId: API.OperationMethod<
-  GetEventBySubscriptionIdAndTrackingIdRequest,
-  GetEventBySubscriptionIdAndTrackingIdResponse,
-  GetEventBySubscriptionIdAndTrackingIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEventBySubscriptionIdAndTrackingIdRequest,
-  output: GetEventBySubscriptionIdAndTrackingIdResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetEventByTenantIdAndTrackingIdError = AzureOpError;
-/** Service health event in the tenant by event tracking id */
-export const GetEventByTenantIdAndTrackingId: API.OperationMethod<
-  GetEventByTenantIdAndTrackingIdRequest,
-  GetEventByTenantIdAndTrackingIdResponse,
-  GetEventByTenantIdAndTrackingIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetEventByTenantIdAndTrackingIdRequest,
-  output: GetEventByTenantIdAndTrackingIdResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetImpactedResourceError = AzureOpError;
 /** Gets the specific impacted resource in the subscription by an event. */
 export const GetImpactedResource: API.OperationMethod<
@@ -2263,6 +2263,36 @@ export const GetMetadataEntity: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetMetadataEntityRequest,
   output: GetMetadataEntityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImpactedResourcesListBySubscriptionIdAndEventIdError = AzureOpError;
+/** Lists impacted resources in the subscription by an event. */
+export const ImpactedResourcesListBySubscriptionIdAndEventId: API.OperationMethod<
+  ImpactedResourcesListBySubscriptionIdAndEventIdRequest,
+  EventImpactedResourceListResult,
+  ImpactedResourcesListBySubscriptionIdAndEventIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImpactedResourcesListBySubscriptionIdAndEventIdRequest,
+  output: EventImpactedResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImpactedResourcesListByTenantIdAndEventIdError = AzureOpError;
+/** Lists impacted resources in the tenant by an event. */
+export const ImpactedResourcesListByTenantIdAndEventId: API.OperationMethod<
+  ImpactedResourcesListByTenantIdAndEventIdRequest,
+  EventImpactedResourceListResult,
+  ImpactedResourcesListByTenantIdAndEventIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImpactedResourcesListByTenantIdAndEventIdRequest,
+  output: EventImpactedResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2403,36 +2433,6 @@ export const ListEventByTenantId: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListImpactedResourceBySubscriptionIdAndEventIdError = AzureOpError;
-/** Lists impacted resources in the subscription by an event. */
-export const ListImpactedResourceBySubscriptionIdAndEventId: API.OperationMethod<
-  ListImpactedResourceBySubscriptionIdAndEventIdRequest,
-  EventImpactedResourceListResult,
-  ListImpactedResourceBySubscriptionIdAndEventIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListImpactedResourceBySubscriptionIdAndEventIdRequest,
-  output: EventImpactedResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListImpactedResourceByTenantIdAndEventIdError = AzureOpError;
-/** Lists impacted resources in the tenant by an event. */
-export const ListImpactedResourceByTenantIdAndEventId: API.OperationMethod<
-  ListImpactedResourceByTenantIdAndEventIdRequest,
-  EventImpactedResourceListResult,
-  ListImpactedResourceByTenantIdAndEventIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListImpactedResourceByTenantIdAndEventIdRequest,
-  output: EventImpactedResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListMetadataError = AzureOpError;
 /** Gets the list of metadata entities. */
 export const ListMetadata: API.OperationMethod<
@@ -2463,32 +2463,32 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdError =
+export type SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdError =
   AzureOpError;
 /** Lists impacted resources in the subscription by an event (Security Advisory). */
-export const ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventId: API.OperationMethod<
-  ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdRequest,
+export const SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventId: API.OperationMethod<
+  SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest,
   EventImpactedResourceListResult,
-  ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdError,
+  SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSecurityAdvisoryImpactedResourceBySubscriptionIdAndEventIdRequest,
+  input: SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventIdRequest,
   output: EventImpactedResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdError =
+export type SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdError =
   AzureOpError;
 /** Lists impacted resources in the tenant by an event (Security Advisory). */
-export const ListSecurityAdvisoryImpactedResourceByTenantIdAndEventId: API.OperationMethod<
-  ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdRequest,
+export const SecurityAdvisoryImpactedResourcesListByTenantIdAndEventId: API.OperationMethod<
+  SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest,
   EventImpactedResourceListResult,
-  ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdError,
+  SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSecurityAdvisoryImpactedResourceByTenantIdAndEventIdRequest,
+  input: SecurityAdvisoryImpactedResourcesListByTenantIdAndEventIdRequest,
   output: EventImpactedResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

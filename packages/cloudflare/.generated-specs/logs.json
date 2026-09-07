@@ -23,7 +23,8 @@
       "objectType": "object_type",
       "timestampField": "timestamp_field",
       "updatedAt": "updated_at"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.logs#RayidGetRequestTimestamps": {
@@ -77,64 +78,64 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.logs#ControlCmbConfigCreate"
+          "target": "com.cloudflare.logs#CreateControlCmbConfig"
         },
         {
-          "target": "com.cloudflare.logs#ControlCmbConfigDelete"
+          "target": "com.cloudflare.logs#CreateControlRetention"
         },
         {
-          "target": "com.cloudflare.logs#ControlCmbConfigGet"
+          "target": "com.cloudflare.logs#CreateLogExplorerDatasetForAccount"
         },
         {
-          "target": "com.cloudflare.logs#ControlRetentionCreate"
+          "target": "com.cloudflare.logs#CreateLogExplorerDatasetForZone"
         },
         {
-          "target": "com.cloudflare.logs#ControlRetentionGet"
+          "target": "com.cloudflare.logs#DeleteControlCmbConfig"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsCreateForAccount"
+          "target": "com.cloudflare.logs#GetControlCmbConfig"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsCreateForZone"
+          "target": "com.cloudflare.logs#GetControlRetention"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsGetForAccount"
+          "target": "com.cloudflare.logs#GetLogExplorerDatasetForAccount"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsGetForZone"
+          "target": "com.cloudflare.logs#GetLogExplorerDatasetForZone"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsListForAccount"
+          "target": "com.cloudflare.logs#GetRayid"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsListForZone"
+          "target": "com.cloudflare.logs#GetReceived"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsUpdateForAccount"
+          "target": "com.cloudflare.logs#GetReceivedField"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsUpdateForZone"
+          "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesForAccount"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsAvailableListForAccount"
+          "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesForZone"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerDatasetsAvailableListForZone"
+          "target": "com.cloudflare.logs#ListLogExplorerDatasetsForAccount"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerQuerySqlForAccount"
+          "target": "com.cloudflare.logs#ListLogExplorerDatasetsForZone"
         },
         {
-          "target": "com.cloudflare.logs#LogExplorerQuerySqlForZone"
+          "target": "com.cloudflare.logs#SqlLogExplorerQueryForAccount"
         },
         {
-          "target": "com.cloudflare.logs#RayidGet"
+          "target": "com.cloudflare.logs#SqlLogExplorerQueryForZone"
         },
         {
-          "target": "com.cloudflare.logs#ReceivedGet"
+          "target": "com.cloudflare.logs#UpdateLogExplorerDatasetForAccount"
         },
         {
-          "target": "com.cloudflare.logs#ReceivedFieldsGet"
+          "target": "com.cloudflare.logs#UpdateLogExplorerDatasetForZone"
         }
       ],
       "traits": {
@@ -345,7 +346,7 @@
         "target": "com.cloudflare.logs#CreateLogExplorerDatasetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#CreateLogExplorerDatasetForAccountResponse"
+        "target": "com.cloudflare.logs#CreateLogExplorerDatasetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -391,7 +392,7 @@
         "target": "com.cloudflare.logs#CreateLogExplorerDatasetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#CreateLogExplorerDatasetForZoneResponse"
+        "target": "com.cloudflare.logs#CreateLogExplorerDatasetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -620,7 +621,7 @@
         "target": "com.cloudflare.logs#GetLogExplorerDatasetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#GetLogExplorerDatasetForAccountResponse"
+        "target": "com.cloudflare.logs#GetLogExplorerDatasetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -661,7 +662,7 @@
         "target": "com.cloudflare.logs#GetLogExplorerDatasetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#GetLogExplorerDatasetForZoneResponse"
+        "target": "com.cloudflare.logs#GetLogExplorerDatasetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -897,7 +898,7 @@
         "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesForAccountResponse"
+        "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -935,7 +936,7 @@
         "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesForZoneResponse"
+        "target": "com.cloudflare.logs#ListLogExplorerDatasetAvailablesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -973,7 +974,7 @@
         "target": "com.cloudflare.logs#ListLogExplorerDatasetsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#ListLogExplorerDatasetsForAccountResponse"
+        "target": "com.cloudflare.logs#ListLogExplorerDatasetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1018,7 +1019,7 @@
         "target": "com.cloudflare.logs#ListLogExplorerDatasetsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#ListLogExplorerDatasetsForZoneResponse"
+        "target": "com.cloudflare.logs#ListLogExplorerDatasetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1063,7 +1064,7 @@
         "target": "com.cloudflare.logs#SqlLogExplorerQueryForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#SqlLogExplorerQueryForAccountResponse"
+        "target": "com.cloudflare.logs#SqlLogExplorerQueryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1100,7 +1101,7 @@
         "target": "com.cloudflare.logs#SqlLogExplorerQueryForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#SqlLogExplorerQueryForZoneResponse"
+        "target": "com.cloudflare.logs#SqlLogExplorerQueryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1137,7 +1138,7 @@
         "target": "com.cloudflare.logs#UpdateLogExplorerDatasetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#UpdateLogExplorerDatasetForAccountResponse"
+        "target": "com.cloudflare.logs#UpdateLogExplorerDatasetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1191,7 +1192,7 @@
         "target": "com.cloudflare.logs#UpdateLogExplorerDatasetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logs#UpdateLogExplorerDatasetForZoneResponse"
+        "target": "com.cloudflare.logs#UpdateLogExplorerDatasetResponse"
       },
       "traits": {
         "smithy.api#http": {

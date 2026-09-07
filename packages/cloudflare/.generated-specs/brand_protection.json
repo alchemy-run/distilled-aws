@@ -43,7 +43,8 @@
       "uploadPath": "upload_path",
       "uploadedAt": "uploaded_at",
       "urlScanId": "url_scan_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.brand_protection#SubmitResponseSkippedUrlsItemMap": {
@@ -481,55 +482,55 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.brand_protection#Submit"
+          "target": "com.cloudflare.brand_protection#BulkQuery"
         },
         {
-          "target": "com.cloudflare.brand_protection#UrlInfo"
+          "target": "com.cloudflare.brand_protection#CreateLogo"
         },
         {
-          "target": "com.cloudflare.brand_protection#LogoMatchesDownload"
+          "target": "com.cloudflare.brand_protection#CreateQuery"
         },
         {
-          "target": "com.cloudflare.brand_protection#LogoMatchesGet"
+          "target": "com.cloudflare.brand_protection#CreateV2Logo"
         },
         {
-          "target": "com.cloudflare.brand_protection#LogosCreate"
+          "target": "com.cloudflare.brand_protection#DeleteLogo"
         },
         {
-          "target": "com.cloudflare.brand_protection#LogosDelete"
+          "target": "com.cloudflare.brand_protection#DeleteQuery"
         },
         {
-          "target": "com.cloudflare.brand_protection#MatchesDownload"
+          "target": "com.cloudflare.brand_protection#DeleteV2Logo"
         },
         {
-          "target": "com.cloudflare.brand_protection#MatchesGet"
+          "target": "com.cloudflare.brand_protection#DownloadLogoMatch"
         },
         {
-          "target": "com.cloudflare.brand_protection#QueriesBulk"
+          "target": "com.cloudflare.brand_protection#DownloadMatch"
         },
         {
-          "target": "com.cloudflare.brand_protection#QueriesCreate"
+          "target": "com.cloudflare.brand_protection#GetLogoMatch"
         },
         {
-          "target": "com.cloudflare.brand_protection#QueriesDelete"
+          "target": "com.cloudflare.brand_protection#GetMatch"
         },
         {
-          "target": "com.cloudflare.brand_protection#V2LogoMatchesGet"
+          "target": "com.cloudflare.brand_protection#GetV2Logo"
         },
         {
-          "target": "com.cloudflare.brand_protection#V2LogosCreate"
+          "target": "com.cloudflare.brand_protection#GetV2LogoMatch"
         },
         {
-          "target": "com.cloudflare.brand_protection#V2LogosDelete"
+          "target": "com.cloudflare.brand_protection#GetV2Match"
         },
         {
-          "target": "com.cloudflare.brand_protection#V2LogosGet"
+          "target": "com.cloudflare.brand_protection#GetV2Query"
         },
         {
-          "target": "com.cloudflare.brand_protection#V2MatchesGet"
+          "target": "com.cloudflare.brand_protection#SubmitBrandProtection"
         },
         {
-          "target": "com.cloudflare.brand_protection#V2QueriesGet"
+          "target": "com.cloudflare.brand_protection#UrlInfoBrandProtection"
         }
       ],
       "traits": {

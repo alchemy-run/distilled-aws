@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.issues#ListRequestFilter": {
@@ -15422,76 +15423,88 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.issues#List"
-        },
-        {
-          "target": "com.github.issues#ListForOrg"
-        },
-        {
-          "target": "com.github.issues#ListAssignees"
-        },
-        {
-          "target": "com.github.issues#CheckUserCanBeAssigned"
-        },
-        {
-          "target": "com.github.issues#ListForRepo"
-        },
-        {
-          "target": "com.github.issues#Create"
-        },
-        {
-          "target": "com.github.issues#ListCommentsForRepo"
-        },
-        {
-          "target": "com.github.issues#GetComment"
-        },
-        {
-          "target": "com.github.issues#UpdateComment"
-        },
-        {
-          "target": "com.github.issues#DeleteComment"
-        },
-        {
-          "target": "com.github.issues#PinComment"
-        },
-        {
-          "target": "com.github.issues#UnpinComment"
-        },
-        {
-          "target": "com.github.issues#ListEventsForRepo"
-        },
-        {
-          "target": "com.github.issues#GetEvent"
-        },
-        {
-          "target": "com.github.issues#Get"
-        },
-        {
-          "target": "com.github.issues#Update"
-        },
-        {
           "target": "com.github.issues#AddAssignees"
-        },
-        {
-          "target": "com.github.issues#RemoveAssignees"
-        },
-        {
-          "target": "com.github.issues#CheckUserCanBeAssignedToIssue"
-        },
-        {
-          "target": "com.github.issues#ListComments"
-        },
-        {
-          "target": "com.github.issues#CreateComment"
-        },
-        {
-          "target": "com.github.issues#ListDependenciesBlockedBy"
         },
         {
           "target": "com.github.issues#AddBlockedByDependency"
         },
         {
-          "target": "com.github.issues#RemoveDependencyBlockedBy"
+          "target": "com.github.issues#AddIssueFieldValues"
+        },
+        {
+          "target": "com.github.issues#AddLabels"
+        },
+        {
+          "target": "com.github.issues#AddSubIssue"
+        },
+        {
+          "target": "com.github.issues#ApproveSuggestion"
+        },
+        {
+          "target": "com.github.issues#CheckUserCanBeAssigned"
+        },
+        {
+          "target": "com.github.issues#CheckUserCanBeAssignedToIssue"
+        },
+        {
+          "target": "com.github.issues#Create"
+        },
+        {
+          "target": "com.github.issues#CreateComment"
+        },
+        {
+          "target": "com.github.issues#CreateLabel"
+        },
+        {
+          "target": "com.github.issues#CreateMilestone"
+        },
+        {
+          "target": "com.github.issues#DeleteComment"
+        },
+        {
+          "target": "com.github.issues#DeleteIssueFieldValue"
+        },
+        {
+          "target": "com.github.issues#DeleteLabel"
+        },
+        {
+          "target": "com.github.issues#DeleteMilestone"
+        },
+        {
+          "target": "com.github.issues#DismissSuggestion"
+        },
+        {
+          "target": "com.github.issues#Get"
+        },
+        {
+          "target": "com.github.issues#GetComment"
+        },
+        {
+          "target": "com.github.issues#GetEvent"
+        },
+        {
+          "target": "com.github.issues#GetLabel"
+        },
+        {
+          "target": "com.github.issues#GetMilestone"
+        },
+        {
+          "target": "com.github.issues#GetParent"
+        },
+        {
+          "target": "com.github.issues#List"
+        },
+        {
+          "target": "com.github.issues#ListAssignees"
+        },
+        {
+          "target": "com.github.issues#ListComments"
+        },
+        {
+          "target": "com.github.issues#ListCommentsForRepo"
+        },
+        {
+          "target": "com.github.issues#ListDependenciesBlockedBy"
         },
         {
           "target": "com.github.issues#ListDependenciesBlocking"
@@ -15500,100 +15513,88 @@
           "target": "com.github.issues#ListEvents"
         },
         {
-          "target": "com.github.issues#ListIssueFieldValuesForIssue"
-        },
-        {
-          "target": "com.github.issues#AddIssueFieldValues"
-        },
-        {
-          "target": "com.github.issues#SetIssueFieldValues"
-        },
-        {
-          "target": "com.github.issues#DeleteIssueFieldValue"
-        },
-        {
-          "target": "com.github.issues#ListLabelsOnIssue"
-        },
-        {
-          "target": "com.github.issues#AddLabels"
-        },
-        {
-          "target": "com.github.issues#SetLabels"
-        },
-        {
-          "target": "com.github.issues#RemoveAllLabels"
-        },
-        {
-          "target": "com.github.issues#RemoveLabel"
-        },
-        {
-          "target": "com.github.issues#Lock"
-        },
-        {
-          "target": "com.github.issues#Unlock"
-        },
-        {
-          "target": "com.github.issues#GetParent"
-        },
-        {
-          "target": "com.github.issues#RemoveSubIssue"
-        },
-        {
-          "target": "com.github.issues#ListSubIssues"
-        },
-        {
-          "target": "com.github.issues#AddSubIssue"
-        },
-        {
-          "target": "com.github.issues#ReprioritizeSubIssue"
-        },
-        {
-          "target": "com.github.issues#ListSuggestions"
-        },
-        {
-          "target": "com.github.issues#ApproveSuggestion"
-        },
-        {
-          "target": "com.github.issues#DismissSuggestion"
+          "target": "com.github.issues#ListEventsForRepo"
         },
         {
           "target": "com.github.issues#ListEventsForTimeline"
         },
         {
-          "target": "com.github.issues#ListLabelsForRepo"
+          "target": "com.github.issues#ListForAuthenticatedUser"
         },
         {
-          "target": "com.github.issues#CreateLabel"
+          "target": "com.github.issues#ListForOrg"
         },
         {
-          "target": "com.github.issues#GetLabel"
+          "target": "com.github.issues#ListForRepo"
         },
         {
-          "target": "com.github.issues#UpdateLabel"
-        },
-        {
-          "target": "com.github.issues#DeleteLabel"
-        },
-        {
-          "target": "com.github.issues#ListMilestones"
-        },
-        {
-          "target": "com.github.issues#CreateMilestone"
-        },
-        {
-          "target": "com.github.issues#GetMilestone"
-        },
-        {
-          "target": "com.github.issues#UpdateMilestone"
-        },
-        {
-          "target": "com.github.issues#DeleteMilestone"
+          "target": "com.github.issues#ListIssueFieldValuesForIssue"
         },
         {
           "target": "com.github.issues#ListLabelsForMilestone"
         },
         {
-          "target": "com.github.issues#ListForAuthenticatedUser"
+          "target": "com.github.issues#ListLabelsForRepo"
+        },
+        {
+          "target": "com.github.issues#ListLabelsOnIssue"
+        },
+        {
+          "target": "com.github.issues#ListMilestones"
+        },
+        {
+          "target": "com.github.issues#ListSubIssues"
+        },
+        {
+          "target": "com.github.issues#ListSuggestions"
+        },
+        {
+          "target": "com.github.issues#Lock"
+        },
+        {
+          "target": "com.github.issues#PinComment"
+        },
+        {
+          "target": "com.github.issues#RemoveAllLabels"
+        },
+        {
+          "target": "com.github.issues#RemoveAssignees"
+        },
+        {
+          "target": "com.github.issues#RemoveDependencyBlockedBy"
+        },
+        {
+          "target": "com.github.issues#RemoveLabel"
+        },
+        {
+          "target": "com.github.issues#RemoveSubIssue"
+        },
+        {
+          "target": "com.github.issues#ReprioritizeSubIssue"
+        },
+        {
+          "target": "com.github.issues#SetIssueFieldValues"
+        },
+        {
+          "target": "com.github.issues#SetLabels"
+        },
+        {
+          "target": "com.github.issues#Unlock"
+        },
+        {
+          "target": "com.github.issues#UnpinComment"
+        },
+        {
+          "target": "com.github.issues#Update"
+        },
+        {
+          "target": "com.github.issues#UpdateComment"
+        },
+        {
+          "target": "com.github.issues#UpdateLabel"
+        },
+        {
+          "target": "com.github.issues#UpdateMilestone"
         }
       ],
       "traits": {

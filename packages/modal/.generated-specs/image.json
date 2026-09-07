@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.image#GetImageBuildChainRequest": {
@@ -194,7 +195,7 @@
         }
       }
     },
-    "com.modal.image#GetImageByTagRequest": {
+    "com.modal.image#ImageGetByTagRequest": {
       "type": "structure",
       "members": {
         "tag": {
@@ -214,7 +215,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.image#GetImageByTagResponse": {
+    "com.modal.image#ImageGetByTagResponse": {
       "type": "structure",
       "members": {
         "imageId": {
@@ -225,13 +226,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.image#GetImageByTag": {
+    "com.modal.image#ImageGetByTag": {
       "type": "operation",
       "input": {
-        "target": "com.modal.image#GetImageByTagRequest"
+        "target": "com.modal.image#ImageGetByTagRequest"
       },
       "output": {
-        "target": "com.modal.image#GetImageByTagResponse"
+        "target": "com.modal.image#ImageGetByTagResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -305,6 +306,12 @@
           "target": "com.modal.image#VolumeMountList",
           "traits": {
             "smithy.api#documentation": "Volume mount for RUN commands"
+          }
+        },
+        "arch": {
+          "target": "com.modal.image#Arch",
+          "traits": {
+            "smithy.api#documentation": "CPU architecture the image is built for. Images with an unspecified arch predate this field and are treated as x86_64."
           }
         }
       }
@@ -586,6 +593,32 @@
         "target": "com.modal.image#VolumeMount"
       }
     },
+    "com.modal.image#Arch": {
+      "type": "enum",
+      "members": {
+        "ARCH_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCH_UNSPECIFIED"
+          }
+        },
+        "ARCH_X86_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCH_X86_64"
+          }
+        },
+        "ARCH_AARCH64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCH_AARCH64"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "CPU architecture an image is built for and must run on."
+      }
+    },
     "com.modal.image#DeploymentNamespace": {
       "type": "enum",
       "members": {
@@ -820,7 +853,7 @@
         }
       }
     },
-    "com.modal.image#ListImageTagsRequest": {
+    "com.modal.image#ImageListTagsRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -875,7 +908,7 @@
         "target": "com.modal.image#ImageListTagsItem"
       }
     },
-    "com.modal.image#ListImageTagsResponse": {
+    "com.modal.image#ImageListTagsResponse": {
       "type": "structure",
       "members": {
         "items": {
@@ -892,13 +925,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.image#ListImageTags": {
+    "com.modal.image#ImageListTags": {
       "type": "operation",
       "input": {
-        "target": "com.modal.image#ListImageTagsRequest"
+        "target": "com.modal.image#ImageListTagsRequest"
       },
       "output": {
-        "target": "com.modal.image#ListImageTagsResponse"
+        "target": "com.modal.image#ImageListTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -908,7 +941,7 @@
         }
       }
     },
-    "com.modal.image#ImagePublishRequest": {
+    "com.modal.image#PublishImageRequest": {
       "type": "structure",
       "members": {
         "imageId": {
@@ -937,7 +970,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.image#ImagePublishResponse": {
+    "com.modal.image#PublishImageResponse": {
       "type": "structure",
       "members": {
         "imageId": {
@@ -951,13 +984,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.image#ImagePublish": {
+    "com.modal.image#PublishImage": {
       "type": "operation",
       "input": {
-        "target": "com.modal.image#ImagePublishRequest"
+        "target": "com.modal.image#PublishImageRequest"
       },
       "output": {
-        "target": "com.modal.image#ImagePublishResponse"
+        "target": "com.modal.image#PublishImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1060,28 +1093,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.image#GetImageBuildChain"
+          "target": "com.modal.image#DeleteImage"
         },
         {
-          "target": "com.modal.image#DeleteImage"
+          "target": "com.modal.image#GetImageBuildChain"
         },
         {
           "target": "com.modal.image#ImageFromId"
         },
         {
-          "target": "com.modal.image#GetImageByTag"
+          "target": "com.modal.image#ImageGetByTag"
         },
         {
           "target": "com.modal.image#ImageGetOrCreate"
         },
         {
-          "target": "com.modal.image#ListImageTags"
-        },
-        {
-          "target": "com.modal.image#ImagePublish"
+          "target": "com.modal.image#ImageListTags"
         },
         {
           "target": "com.modal.image#ImageTagRevisions"
+        },
+        {
+          "target": "com.modal.image#PublishImage"
         }
       ],
       "traits": {

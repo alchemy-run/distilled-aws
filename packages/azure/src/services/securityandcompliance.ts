@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DeletePrivateEndpointConnectionAdtApiRequest {
+export interface DeletePrivateEndpointConnectionsAdtAPIRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -22,7 +22,7 @@ export interface DeletePrivateEndpointConnectionAdtApiRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const DeletePrivateEndpointConnectionAdtApiRequest =
+export const DeletePrivateEndpointConnectionsAdtAPIRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -38,16 +38,16 @@ export const DeletePrivateEndpointConnectionAdtApiRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateEndpointConnectionAdtApiRequest",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionAdtApiRequest>;
+    identifier: "DeletePrivateEndpointConnectionsAdtAPIRequest",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsAdtAPIRequest>;
 
-export interface DeletePrivateEndpointConnectionAdtApiResponse {}
-export const DeletePrivateEndpointConnectionAdtApiResponse =
+export interface DeletePrivateEndpointConnectionsAdtAPIResponse {}
+export const DeletePrivateEndpointConnectionsAdtAPIResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateEndpointConnectionAdtApiResponse",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionAdtApiResponse>;
+    identifier: "DeletePrivateEndpointConnectionsAdtAPIResponse",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsAdtAPIResponse>;
 
-export interface DeletePrivateEndpointConnectionCompRequest {
+export interface DeletePrivateEndpointConnectionsCompRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -57,7 +57,7 @@ export interface DeletePrivateEndpointConnectionCompRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const DeletePrivateEndpointConnectionCompRequest =
+export const DeletePrivateEndpointConnectionsCompRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -73,16 +73,16 @@ export const DeletePrivateEndpointConnectionCompRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateEndpointConnectionCompRequest",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionCompRequest>;
+    identifier: "DeletePrivateEndpointConnectionsCompRequest",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsCompRequest>;
 
-export interface DeletePrivateEndpointConnectionCompResponse {}
-export const DeletePrivateEndpointConnectionCompResponse =
+export interface DeletePrivateEndpointConnectionsCompResponse {}
+export const DeletePrivateEndpointConnectionsCompResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateEndpointConnectionCompResponse",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionCompResponse>;
+    identifier: "DeletePrivateEndpointConnectionsCompResponse",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsCompResponse>;
 
-export interface DeletePrivateEndpointConnectionForEdmRequest {
+export interface DeletePrivateEndpointConnectionsForEDMRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -92,7 +92,7 @@ export interface DeletePrivateEndpointConnectionForEdmRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const DeletePrivateEndpointConnectionForEdmRequest =
+export const DeletePrivateEndpointConnectionsForEDMRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -108,16 +108,16 @@ export const DeletePrivateEndpointConnectionForEdmRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateEndpointConnectionForEdmRequest",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionForEdmRequest>;
+    identifier: "DeletePrivateEndpointConnectionsForEDMRequest",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsForEDMRequest>;
 
-export interface DeletePrivateEndpointConnectionForEdmResponse {}
-export const DeletePrivateEndpointConnectionForEdmResponse =
+export interface DeletePrivateEndpointConnectionsForEDMResponse {}
+export const DeletePrivateEndpointConnectionsForEDMResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateEndpointConnectionForEdmResponse",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionForEdmResponse>;
+    identifier: "DeletePrivateEndpointConnectionsForEDMResponse",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsForEDMResponse>;
 
-export interface DeletePrivateEndpointConnectionForMipPolicySyncRequest {
+export interface DeletePrivateEndpointConnectionsForMIPPolicySyncRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -127,7 +127,7 @@ export interface DeletePrivateEndpointConnectionForMipPolicySyncRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const DeletePrivateEndpointConnectionForMipPolicySyncRequest =
+export const DeletePrivateEndpointConnectionsForMIPPolicySyncRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -143,16 +143,16 @@ export const DeletePrivateEndpointConnectionForMipPolicySyncRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateEndpointConnectionForMipPolicySyncRequest",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionForMipPolicySyncRequest>;
+    identifier: "DeletePrivateEndpointConnectionsForMIPPolicySyncRequest",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsForMIPPolicySyncRequest>;
 
-export interface DeletePrivateEndpointConnectionForMipPolicySyncResponse {}
-export const DeletePrivateEndpointConnectionForMipPolicySyncResponse =
+export interface DeletePrivateEndpointConnectionsForMIPPolicySyncResponse {}
+export const DeletePrivateEndpointConnectionsForMIPPolicySyncResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateEndpointConnectionForMipPolicySyncResponse",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionForMipPolicySyncResponse>;
+    identifier: "DeletePrivateEndpointConnectionsForMIPPolicySyncResponse",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsForMIPPolicySyncResponse>;
 
-export interface DeletePrivateEndpointConnectionForSccPowershellRequest {
+export interface DeletePrivateEndpointConnectionsForSCCPowershellRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -162,7 +162,7 @@ export interface DeletePrivateEndpointConnectionForSccPowershellRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const DeletePrivateEndpointConnectionForSccPowershellRequest =
+export const DeletePrivateEndpointConnectionsForSCCPowershellRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -178,16 +178,16 @@ export const DeletePrivateEndpointConnectionForSccPowershellRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateEndpointConnectionForSccPowershellRequest",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionForSccPowershellRequest>;
+    identifier: "DeletePrivateEndpointConnectionsForSCCPowershellRequest",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsForSCCPowershellRequest>;
 
-export interface DeletePrivateEndpointConnectionForSccPowershellResponse {}
-export const DeletePrivateEndpointConnectionForSccPowershellResponse =
+export interface DeletePrivateEndpointConnectionsForSCCPowershellResponse {}
+export const DeletePrivateEndpointConnectionsForSCCPowershellResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateEndpointConnectionForSccPowershellResponse",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionForSccPowershellResponse>;
+    identifier: "DeletePrivateEndpointConnectionsForSCCPowershellResponse",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsForSCCPowershellResponse>;
 
-export interface DeletePrivateEndpointConnectionSecRequest {
+export interface DeletePrivateEndpointConnectionsSecRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -197,7 +197,7 @@ export interface DeletePrivateEndpointConnectionSecRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const DeletePrivateEndpointConnectionSecRequest =
+export const DeletePrivateEndpointConnectionsSecRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -213,16 +213,16 @@ export const DeletePrivateEndpointConnectionSecRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateEndpointConnectionSecRequest",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionSecRequest>;
+    identifier: "DeletePrivateEndpointConnectionsSecRequest",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsSecRequest>;
 
-export interface DeletePrivateEndpointConnectionSecResponse {}
-export const DeletePrivateEndpointConnectionSecResponse =
+export interface DeletePrivateEndpointConnectionsSecResponse {}
+export const DeletePrivateEndpointConnectionsSecResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateEndpointConnectionSecResponse",
-  }) as any as S.Schema<DeletePrivateEndpointConnectionSecResponse>;
+    identifier: "DeletePrivateEndpointConnectionsSecResponse",
+  }) as any as S.Schema<DeletePrivateEndpointConnectionsSecResponse>;
 
-export interface DeletePrivateLinkServiceForM365ComplianceCenterRequest {
+export interface DeletePrivateLinkServicesForM365ComplianceCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -230,7 +230,7 @@ export interface DeletePrivateLinkServiceForM365ComplianceCenterRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const DeletePrivateLinkServiceForM365ComplianceCenterRequest =
+export const DeletePrivateLinkServicesForM365ComplianceCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -245,16 +245,16 @@ export const DeletePrivateLinkServiceForM365ComplianceCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateLinkServiceForM365ComplianceCenterRequest",
-  }) as any as S.Schema<DeletePrivateLinkServiceForM365ComplianceCenterRequest>;
+    identifier: "DeletePrivateLinkServicesForM365ComplianceCenterRequest",
+  }) as any as S.Schema<DeletePrivateLinkServicesForM365ComplianceCenterRequest>;
 
-export interface DeletePrivateLinkServiceForM365ComplianceCenterResponse {}
-export const DeletePrivateLinkServiceForM365ComplianceCenterResponse =
+export interface DeletePrivateLinkServicesForM365ComplianceCenterResponse {}
+export const DeletePrivateLinkServicesForM365ComplianceCenterResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateLinkServiceForM365ComplianceCenterResponse",
-  }) as any as S.Schema<DeletePrivateLinkServiceForM365ComplianceCenterResponse>;
+    identifier: "DeletePrivateLinkServicesForM365ComplianceCenterResponse",
+  }) as any as S.Schema<DeletePrivateLinkServicesForM365ComplianceCenterResponse>;
 
-export interface DeletePrivateLinkServiceForM365SecurityCenterRequest {
+export interface DeletePrivateLinkServicesForM365SecurityCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -262,7 +262,7 @@ export interface DeletePrivateLinkServiceForM365SecurityCenterRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const DeletePrivateLinkServiceForM365SecurityCenterRequest =
+export const DeletePrivateLinkServicesForM365SecurityCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -277,16 +277,16 @@ export const DeletePrivateLinkServiceForM365SecurityCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateLinkServiceForM365SecurityCenterRequest",
-  }) as any as S.Schema<DeletePrivateLinkServiceForM365SecurityCenterRequest>;
+    identifier: "DeletePrivateLinkServicesForM365SecurityCenterRequest",
+  }) as any as S.Schema<DeletePrivateLinkServicesForM365SecurityCenterRequest>;
 
-export interface DeletePrivateLinkServiceForM365SecurityCenterResponse {}
-export const DeletePrivateLinkServiceForM365SecurityCenterResponse =
+export interface DeletePrivateLinkServicesForM365SecurityCenterResponse {}
+export const DeletePrivateLinkServicesForM365SecurityCenterResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateLinkServiceForM365SecurityCenterResponse",
-  }) as any as S.Schema<DeletePrivateLinkServiceForM365SecurityCenterResponse>;
+    identifier: "DeletePrivateLinkServicesForM365SecurityCenterResponse",
+  }) as any as S.Schema<DeletePrivateLinkServicesForM365SecurityCenterResponse>;
 
-export interface DeletePrivateLinkServiceForMipPolicySyncRequest {
+export interface DeletePrivateLinkServicesForMIPPolicySyncRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -294,7 +294,7 @@ export interface DeletePrivateLinkServiceForMipPolicySyncRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const DeletePrivateLinkServiceForMipPolicySyncRequest =
+export const DeletePrivateLinkServicesForMIPPolicySyncRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -309,16 +309,16 @@ export const DeletePrivateLinkServiceForMipPolicySyncRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateLinkServiceForMipPolicySyncRequest",
-  }) as any as S.Schema<DeletePrivateLinkServiceForMipPolicySyncRequest>;
+    identifier: "DeletePrivateLinkServicesForMIPPolicySyncRequest",
+  }) as any as S.Schema<DeletePrivateLinkServicesForMIPPolicySyncRequest>;
 
-export interface DeletePrivateLinkServiceForMipPolicySyncResponse {}
-export const DeletePrivateLinkServiceForMipPolicySyncResponse =
+export interface DeletePrivateLinkServicesForMIPPolicySyncResponse {}
+export const DeletePrivateLinkServicesForMIPPolicySyncResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateLinkServiceForMipPolicySyncResponse",
-  }) as any as S.Schema<DeletePrivateLinkServiceForMipPolicySyncResponse>;
+    identifier: "DeletePrivateLinkServicesForMIPPolicySyncResponse",
+  }) as any as S.Schema<DeletePrivateLinkServicesForMIPPolicySyncResponse>;
 
-export interface DeletePrivateLinkServiceForO365ManagementActivityApiRequest {
+export interface DeletePrivateLinkServicesForO365ManagementActivityAPIRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -326,7 +326,7 @@ export interface DeletePrivateLinkServiceForO365ManagementActivityApiRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const DeletePrivateLinkServiceForO365ManagementActivityApiRequest =
+export const DeletePrivateLinkServicesForO365ManagementActivityAPIRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -341,16 +341,16 @@ export const DeletePrivateLinkServiceForO365ManagementActivityApiRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateLinkServiceForO365ManagementActivityApiRequest",
-  }) as any as S.Schema<DeletePrivateLinkServiceForO365ManagementActivityApiRequest>;
+    identifier: "DeletePrivateLinkServicesForO365ManagementActivityAPIRequest",
+  }) as any as S.Schema<DeletePrivateLinkServicesForO365ManagementActivityAPIRequest>;
 
-export interface DeletePrivateLinkServiceForO365ManagementActivityApiResponse {}
-export const DeletePrivateLinkServiceForO365ManagementActivityApiResponse =
+export interface DeletePrivateLinkServicesForO365ManagementActivityAPIResponse {}
+export const DeletePrivateLinkServicesForO365ManagementActivityAPIResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateLinkServiceForO365ManagementActivityApiResponse",
-  }) as any as S.Schema<DeletePrivateLinkServiceForO365ManagementActivityApiResponse>;
+    identifier: "DeletePrivateLinkServicesForO365ManagementActivityAPIResponse",
+  }) as any as S.Schema<DeletePrivateLinkServicesForO365ManagementActivityAPIResponse>;
 
-export interface DeletePrivateLinkServiceForSccPowershellRequest {
+export interface DeletePrivateLinkServicesForSCCPowershellRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -358,7 +358,7 @@ export interface DeletePrivateLinkServiceForSccPowershellRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const DeletePrivateLinkServiceForSccPowershellRequest =
+export const DeletePrivateLinkServicesForSCCPowershellRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -373,14 +373,14 @@ export const DeletePrivateLinkServiceForSccPowershellRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeletePrivateLinkServiceForSccPowershellRequest",
-  }) as any as S.Schema<DeletePrivateLinkServiceForSccPowershellRequest>;
+    identifier: "DeletePrivateLinkServicesForSCCPowershellRequest",
+  }) as any as S.Schema<DeletePrivateLinkServicesForSCCPowershellRequest>;
 
-export interface DeletePrivateLinkServiceForSccPowershellResponse {}
-export const DeletePrivateLinkServiceForSccPowershellResponse =
+export interface DeletePrivateLinkServicesForSCCPowershellResponse {}
+export const DeletePrivateLinkServicesForSCCPowershellResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateLinkServiceForSccPowershellResponse",
-  }) as any as S.Schema<DeletePrivateLinkServiceForSccPowershellResponse>;
+    identifier: "DeletePrivateLinkServicesForSCCPowershellResponse",
+  }) as any as S.Schema<DeletePrivateLinkServicesForSCCPowershellResponse>;
 
 export interface DeleteServiceRequest {
   /** The subscription identifier. */
@@ -473,7 +473,7 @@ export const OperationResultsDescription = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationResultsDescription",
 }) as any as S.Schema<OperationResultsDescription>;
 
-export interface GetPrivateEndpointConnectionAdtApiRequest {
+export interface GetPrivateEndpointConnectionsAdtAPIRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -483,7 +483,7 @@ export interface GetPrivateEndpointConnectionAdtApiRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const GetPrivateEndpointConnectionAdtApiRequest =
+export const GetPrivateEndpointConnectionsAdtAPIRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -499,59 +499,59 @@ export const GetPrivateEndpointConnectionAdtApiRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionAdtApiRequest",
-  }) as any as S.Schema<GetPrivateEndpointConnectionAdtApiRequest>;
+    identifier: "GetPrivateEndpointConnectionsAdtAPIRequest",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsAdtAPIRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsAdtAPIGetResponseSystemDataCreatedByType =
+export type GetPrivateEndpointConnectionsAdtAPIResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsAdtAPIGetResponseSystemDataCreatedByType =
+export const GetPrivateEndpointConnectionsAdtAPIResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsAdtAPIGetResponseSystemDataLastModifiedByType =
+export type GetPrivateEndpointConnectionsAdtAPIResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsAdtAPIGetResponseSystemDataLastModifiedByType =
+export const GetPrivateEndpointConnectionsAdtAPIResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsAdtAPIGetResponseSystemData {
+export interface GetPrivateEndpointConnectionsAdtAPIResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsAdtAPIGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateEndpointConnectionsAdtAPIResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsAdtAPIGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateEndpointConnectionsAdtAPIResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateEndpointConnectionsAdtAPIGetResponseSystemData =
+export const GetPrivateEndpointConnectionsAdtAPIResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateEndpointConnectionsAdtAPIGetResponseSystemDataCreatedByType,
+        GetPrivateEndpointConnectionsAdtAPIResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsAdtAPIGetResponseSystemDataLastModifiedByType,
+        GetPrivateEndpointConnectionsAdtAPIResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsAdtAPIGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsAdtAPIGetResponseSystemData>;
+    identifier: "GetPrivateEndpointConnectionsAdtAPIResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsAdtAPIResponseSystemData>;
 
 /** The Private Endpoint resource. */
 export interface PrivateEndpoint {
@@ -620,7 +620,7 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionProperties",
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
-export interface GetPrivateEndpointConnectionAdtApiResponse {
+export interface GetPrivateEndpointConnectionsAdtAPIResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -628,26 +628,26 @@ export interface GetPrivateEndpointConnectionAdtApiResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsAdtAPIGetResponseSystemData;
+  systemData?: GetPrivateEndpointConnectionsAdtAPIResponseSystemData;
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const GetPrivateEndpointConnectionAdtApiResponse =
+export const GetPrivateEndpointConnectionsAdtAPIResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateEndpointConnectionsAdtAPIGetResponseSystemData,
+        GetPrivateEndpointConnectionsAdtAPIResponseSystemData,
       ),
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionAdtApiResponse",
-  }) as any as S.Schema<GetPrivateEndpointConnectionAdtApiResponse>;
+    identifier: "GetPrivateEndpointConnectionsAdtAPIResponse",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsAdtAPIResponse>;
 
-export interface GetPrivateEndpointConnectionCompRequest {
+export interface GetPrivateEndpointConnectionsCompRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -657,7 +657,7 @@ export interface GetPrivateEndpointConnectionCompRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const GetPrivateEndpointConnectionCompRequest = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionsCompRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -673,61 +673,61 @@ export const GetPrivateEndpointConnectionCompRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetPrivateEndpointConnectionCompRequest",
-}) as any as S.Schema<GetPrivateEndpointConnectionCompRequest>;
+  identifier: "GetPrivateEndpointConnectionsCompRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionsCompRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsCompGetResponseSystemDataCreatedByType =
+export type GetPrivateEndpointConnectionsCompResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsCompGetResponseSystemDataCreatedByType =
+export const GetPrivateEndpointConnectionsCompResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsCompGetResponseSystemDataLastModifiedByType =
+export type GetPrivateEndpointConnectionsCompResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsCompGetResponseSystemDataLastModifiedByType =
+export const GetPrivateEndpointConnectionsCompResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsCompGetResponseSystemData {
+export interface GetPrivateEndpointConnectionsCompResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsCompGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateEndpointConnectionsCompResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsCompGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateEndpointConnectionsCompResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateEndpointConnectionsCompGetResponseSystemData =
+export const GetPrivateEndpointConnectionsCompResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateEndpointConnectionsCompGetResponseSystemDataCreatedByType,
+        GetPrivateEndpointConnectionsCompResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsCompGetResponseSystemDataLastModifiedByType,
+        GetPrivateEndpointConnectionsCompResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsCompGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsCompGetResponseSystemData>;
+    identifier: "GetPrivateEndpointConnectionsCompResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsCompResponseSystemData>;
 
-export interface GetPrivateEndpointConnectionCompResponse {
+export interface GetPrivateEndpointConnectionsCompResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -735,26 +735,26 @@ export interface GetPrivateEndpointConnectionCompResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsCompGetResponseSystemData;
+  systemData?: GetPrivateEndpointConnectionsCompResponseSystemData;
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const GetPrivateEndpointConnectionCompResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetPrivateEndpointConnectionsCompResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateEndpointConnectionsCompGetResponseSystemData,
+        GetPrivateEndpointConnectionsCompResponseSystemData,
       ),
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
-).annotate({
-  identifier: "GetPrivateEndpointConnectionCompResponse",
-}) as any as S.Schema<GetPrivateEndpointConnectionCompResponse>;
+  ).annotate({
+    identifier: "GetPrivateEndpointConnectionsCompResponse",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsCompResponse>;
 
-export interface GetPrivateEndpointConnectionForEdmRequest {
+export interface GetPrivateEndpointConnectionsForEDMRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -764,7 +764,7 @@ export interface GetPrivateEndpointConnectionForEdmRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const GetPrivateEndpointConnectionForEdmRequest =
+export const GetPrivateEndpointConnectionsForEDMRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -780,61 +780,61 @@ export const GetPrivateEndpointConnectionForEdmRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionForEdmRequest",
-  }) as any as S.Schema<GetPrivateEndpointConnectionForEdmRequest>;
+    identifier: "GetPrivateEndpointConnectionsForEDMRequest",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForEDMRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsForEDMGetResponseSystemDataCreatedByType =
+export type GetPrivateEndpointConnectionsForEDMResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsForEDMGetResponseSystemDataCreatedByType =
+export const GetPrivateEndpointConnectionsForEDMResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsForEDMGetResponseSystemDataLastModifiedByType =
+export type GetPrivateEndpointConnectionsForEDMResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsForEDMGetResponseSystemDataLastModifiedByType =
+export const GetPrivateEndpointConnectionsForEDMResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsForEDMGetResponseSystemData {
+export interface GetPrivateEndpointConnectionsForEDMResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsForEDMGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateEndpointConnectionsForEDMResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsForEDMGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateEndpointConnectionsForEDMResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateEndpointConnectionsForEDMGetResponseSystemData =
+export const GetPrivateEndpointConnectionsForEDMResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateEndpointConnectionsForEDMGetResponseSystemDataCreatedByType,
+        GetPrivateEndpointConnectionsForEDMResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsForEDMGetResponseSystemDataLastModifiedByType,
+        GetPrivateEndpointConnectionsForEDMResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsForEDMGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsForEDMGetResponseSystemData>;
+    identifier: "GetPrivateEndpointConnectionsForEDMResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForEDMResponseSystemData>;
 
-export interface GetPrivateEndpointConnectionForEdmResponse {
+export interface GetPrivateEndpointConnectionsForEDMResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -842,26 +842,26 @@ export interface GetPrivateEndpointConnectionForEdmResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsForEDMGetResponseSystemData;
+  systemData?: GetPrivateEndpointConnectionsForEDMResponseSystemData;
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const GetPrivateEndpointConnectionForEdmResponse =
+export const GetPrivateEndpointConnectionsForEDMResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateEndpointConnectionsForEDMGetResponseSystemData,
+        GetPrivateEndpointConnectionsForEDMResponseSystemData,
       ),
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionForEdmResponse",
-  }) as any as S.Schema<GetPrivateEndpointConnectionForEdmResponse>;
+    identifier: "GetPrivateEndpointConnectionsForEDMResponse",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForEDMResponse>;
 
-export interface GetPrivateEndpointConnectionForMipPolicySyncRequest {
+export interface GetPrivateEndpointConnectionsForMIPPolicySyncRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -871,7 +871,7 @@ export interface GetPrivateEndpointConnectionForMipPolicySyncRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const GetPrivateEndpointConnectionForMipPolicySyncRequest =
+export const GetPrivateEndpointConnectionsForMIPPolicySyncRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -887,62 +887,62 @@ export const GetPrivateEndpointConnectionForMipPolicySyncRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionForMipPolicySyncRequest",
-  }) as any as S.Schema<GetPrivateEndpointConnectionForMipPolicySyncRequest>;
+    identifier: "GetPrivateEndpointConnectionsForMIPPolicySyncRequest",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForMIPPolicySyncRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataCreatedByType =
+export type GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataCreatedByType =
+export const GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataLastModifiedByType =
+export type GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataLastModifiedByType =
+export const GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemData {
+export interface GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemData =
+export const GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataCreatedByType,
+        GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemDataLastModifiedByType,
+        GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemData>;
+      "GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemData>;
 
-export interface GetPrivateEndpointConnectionForMipPolicySyncResponse {
+export interface GetPrivateEndpointConnectionsForMIPPolicySyncResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -950,26 +950,26 @@ export interface GetPrivateEndpointConnectionForMipPolicySyncResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemData;
+  systemData?: GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemData;
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const GetPrivateEndpointConnectionForMipPolicySyncResponse =
+export const GetPrivateEndpointConnectionsForMIPPolicySyncResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateEndpointConnectionsForMIPPolicySyncGetResponseSystemData,
+        GetPrivateEndpointConnectionsForMIPPolicySyncResponseSystemData,
       ),
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionForMipPolicySyncResponse",
-  }) as any as S.Schema<GetPrivateEndpointConnectionForMipPolicySyncResponse>;
+    identifier: "GetPrivateEndpointConnectionsForMIPPolicySyncResponse",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForMIPPolicySyncResponse>;
 
-export interface GetPrivateEndpointConnectionForSccPowershellRequest {
+export interface GetPrivateEndpointConnectionsForSCCPowershellRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -979,7 +979,7 @@ export interface GetPrivateEndpointConnectionForSccPowershellRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const GetPrivateEndpointConnectionForSccPowershellRequest =
+export const GetPrivateEndpointConnectionsForSCCPowershellRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -995,62 +995,62 @@ export const GetPrivateEndpointConnectionForSccPowershellRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionForSccPowershellRequest",
-  }) as any as S.Schema<GetPrivateEndpointConnectionForSccPowershellRequest>;
+    identifier: "GetPrivateEndpointConnectionsForSCCPowershellRequest",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForSCCPowershellRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataCreatedByType =
+export type GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataCreatedByType =
+export const GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataLastModifiedByType =
+export type GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataLastModifiedByType =
+export const GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsForSCCPowershellGetResponseSystemData {
+export interface GetPrivateEndpointConnectionsForSCCPowershellResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateEndpointConnectionsForSCCPowershellGetResponseSystemData =
+export const GetPrivateEndpointConnectionsForSCCPowershellResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataCreatedByType,
+        GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsForSCCPowershellGetResponseSystemDataLastModifiedByType,
+        GetPrivateEndpointConnectionsForSCCPowershellResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "PrivateEndpointConnectionsForSCCPowershellGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsForSCCPowershellGetResponseSystemData>;
+      "GetPrivateEndpointConnectionsForSCCPowershellResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForSCCPowershellResponseSystemData>;
 
-export interface GetPrivateEndpointConnectionForSccPowershellResponse {
+export interface GetPrivateEndpointConnectionsForSCCPowershellResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1058,26 +1058,26 @@ export interface GetPrivateEndpointConnectionForSccPowershellResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsForSCCPowershellGetResponseSystemData;
+  systemData?: GetPrivateEndpointConnectionsForSCCPowershellResponseSystemData;
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const GetPrivateEndpointConnectionForSccPowershellResponse =
+export const GetPrivateEndpointConnectionsForSCCPowershellResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateEndpointConnectionsForSCCPowershellGetResponseSystemData,
+        GetPrivateEndpointConnectionsForSCCPowershellResponseSystemData,
       ),
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
   ).annotate({
-    identifier: "GetPrivateEndpointConnectionForSccPowershellResponse",
-  }) as any as S.Schema<GetPrivateEndpointConnectionForSccPowershellResponse>;
+    identifier: "GetPrivateEndpointConnectionsForSCCPowershellResponse",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsForSCCPowershellResponse>;
 
-export interface GetPrivateEndpointConnectionSecRequest {
+export interface GetPrivateEndpointConnectionsSecRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -1087,7 +1087,7 @@ export interface GetPrivateEndpointConnectionSecRequest {
   /** The name of the private endpoint connection associated with the Azure resource */
   privateEndpointConnectionName: string;
 }
-export const GetPrivateEndpointConnectionSecRequest = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionsSecRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1103,61 +1103,61 @@ export const GetPrivateEndpointConnectionSecRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetPrivateEndpointConnectionSecRequest",
-}) as any as S.Schema<GetPrivateEndpointConnectionSecRequest>;
+  identifier: "GetPrivateEndpointConnectionsSecRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionsSecRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsSecGetResponseSystemDataCreatedByType =
+export type GetPrivateEndpointConnectionsSecResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsSecGetResponseSystemDataCreatedByType =
+export const GetPrivateEndpointConnectionsSecResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsSecGetResponseSystemDataLastModifiedByType =
+export type GetPrivateEndpointConnectionsSecResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsSecGetResponseSystemDataLastModifiedByType =
+export const GetPrivateEndpointConnectionsSecResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsSecGetResponseSystemData {
+export interface GetPrivateEndpointConnectionsSecResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsSecGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateEndpointConnectionsSecResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsSecGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateEndpointConnectionsSecResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateEndpointConnectionsSecGetResponseSystemData =
+export const GetPrivateEndpointConnectionsSecResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateEndpointConnectionsSecGetResponseSystemDataCreatedByType,
+        GetPrivateEndpointConnectionsSecResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsSecGetResponseSystemDataLastModifiedByType,
+        GetPrivateEndpointConnectionsSecResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsSecGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsSecGetResponseSystemData>;
+    identifier: "GetPrivateEndpointConnectionsSecResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionsSecResponseSystemData>;
 
-export interface GetPrivateEndpointConnectionSecResponse {
+export interface GetPrivateEndpointConnectionsSecResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1165,24 +1165,24 @@ export interface GetPrivateEndpointConnectionSecResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsSecGetResponseSystemData;
+  systemData?: GetPrivateEndpointConnectionsSecResponseSystemData;
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const GetPrivateEndpointConnectionSecResponse = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionsSecResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateEndpointConnectionsSecGetResponseSystemData,
+        GetPrivateEndpointConnectionsSecResponseSystemData,
       ),
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
 ).annotate({
-  identifier: "GetPrivateEndpointConnectionSecResponse",
-}) as any as S.Schema<GetPrivateEndpointConnectionSecResponse>;
+  identifier: "GetPrivateEndpointConnectionsSecResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionsSecResponse>;
 
 export interface GetPrivateLinkResourceRequest {
   /** The subscription identifier. */
@@ -1213,55 +1213,55 @@ export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPrivateLinkResourceRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkResourcesGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkResourceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkResourceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesGetResponseSystemData {
+export interface GetPrivateLinkResourceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkResourceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkResourceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkResourcesGetResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkResourcesGetResponseSystemDataCreatedByType,
+        GetPrivateLinkResourceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkResourcesGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkResourceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesGetResponseSystemData>;
+).annotate({
+  identifier: "GetPrivateLinkResourceResponseSystemData",
+}) as any as S.Schema<GetPrivateLinkResourceResponseSystemData>;
 
 /** The private link resource required member names. */
 export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
@@ -1308,7 +1308,7 @@ export interface GetPrivateLinkResourceResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesGetResponseSystemData;
+  systemData?: GetPrivateLinkResourceResponseSystemData;
   /** Resource properties. */
   properties?: PrivateLinkResourceProperties;
 }
@@ -1317,14 +1317,14 @@ export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(PrivateLinkResourcesGetResponseSystemData),
+    systemData: S.optional(GetPrivateLinkResourceResponseSystemData),
     properties: S.optional(PrivateLinkResourceProperties),
   }),
 ).annotate({
   identifier: "GetPrivateLinkResourceResponse",
 }) as any as S.Schema<GetPrivateLinkResourceResponse>;
 
-export interface GetPrivateLinkResourceAdtApiRequest {
+export interface GetPrivateLinkResourcesAdtAPIRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -1334,76 +1334,77 @@ export interface GetPrivateLinkResourceAdtApiRequest {
   /** The name of the private link resource group. */
   groupName: string;
 }
-export const GetPrivateLinkResourceAdtApiRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    groupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityAndCompliance/privateLinkServicesForO365ManagementActivityAPI/{resourceName}/privateLinkResources/{groupName}",
-      code: 200,
-      apiVersion: "2021-03-08",
-    }),
-  ),
+export const GetPrivateLinkResourcesAdtAPIRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      groupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityAndCompliance/privateLinkServicesForO365ManagementActivityAPI/{resourceName}/privateLinkResources/{groupName}",
+        code: 200,
+        apiVersion: "2021-03-08",
+      }),
+    ),
 ).annotate({
-  identifier: "GetPrivateLinkResourceAdtApiRequest",
-}) as any as S.Schema<GetPrivateLinkResourceAdtApiRequest>;
+  identifier: "GetPrivateLinkResourcesAdtAPIRequest",
+}) as any as S.Schema<GetPrivateLinkResourcesAdtAPIRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkResourcesAdtAPIGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkResourcesAdtAPIResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesAdtAPIGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkResourcesAdtAPIResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesAdtAPIGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkResourcesAdtAPIResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesAdtAPIGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkResourcesAdtAPIResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesAdtAPIGetResponseSystemData {
+export interface GetPrivateLinkResourcesAdtAPIResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesAdtAPIGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkResourcesAdtAPIResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesAdtAPIGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkResourcesAdtAPIResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkResourcesAdtAPIGetResponseSystemData =
+export const GetPrivateLinkResourcesAdtAPIResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkResourcesAdtAPIGetResponseSystemDataCreatedByType,
+        GetPrivateLinkResourcesAdtAPIResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkResourcesAdtAPIGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkResourcesAdtAPIResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkResourcesAdtAPIGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesAdtAPIGetResponseSystemData>;
+    identifier: "GetPrivateLinkResourcesAdtAPIResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkResourcesAdtAPIResponseSystemData>;
 
-export interface GetPrivateLinkResourceAdtApiResponse {
+export interface GetPrivateLinkResourcesAdtAPIResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1411,24 +1412,24 @@ export interface GetPrivateLinkResourceAdtApiResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesAdtAPIGetResponseSystemData;
+  systemData?: GetPrivateLinkResourcesAdtAPIResponseSystemData;
   /** Resource properties. */
   properties?: PrivateLinkResourceProperties;
 }
-export const GetPrivateLinkResourceAdtApiResponse = /*@__PURE__*/ S.suspend(
+export const GetPrivateLinkResourcesAdtAPIResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
-      systemData: S.optional(PrivateLinkResourcesAdtAPIGetResponseSystemData),
+      systemData: S.optional(GetPrivateLinkResourcesAdtAPIResponseSystemData),
       properties: S.optional(PrivateLinkResourceProperties),
     }),
 ).annotate({
-  identifier: "GetPrivateLinkResourceAdtApiResponse",
-}) as any as S.Schema<GetPrivateLinkResourceAdtApiResponse>;
+  identifier: "GetPrivateLinkResourcesAdtAPIResponse",
+}) as any as S.Schema<GetPrivateLinkResourcesAdtAPIResponse>;
 
-export interface GetPrivateLinkResourceCompRequest {
+export interface GetPrivateLinkResourcesCompRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -1438,7 +1439,7 @@ export interface GetPrivateLinkResourceCompRequest {
   /** The name of the private link resource group. */
   groupName: string;
 }
-export const GetPrivateLinkResourceCompRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourcesCompRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1453,61 +1454,61 @@ export const GetPrivateLinkResourceCompRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetPrivateLinkResourceCompRequest",
-}) as any as S.Schema<GetPrivateLinkResourceCompRequest>;
+  identifier: "GetPrivateLinkResourcesCompRequest",
+}) as any as S.Schema<GetPrivateLinkResourcesCompRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkResourcesCompGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkResourcesCompResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesCompGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkResourcesCompResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesCompGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkResourcesCompResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesCompGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkResourcesCompResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesCompGetResponseSystemData {
+export interface GetPrivateLinkResourcesCompResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesCompGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkResourcesCompResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesCompGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkResourcesCompResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkResourcesCompGetResponseSystemData =
+export const GetPrivateLinkResourcesCompResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkResourcesCompGetResponseSystemDataCreatedByType,
+        GetPrivateLinkResourcesCompResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkResourcesCompGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkResourcesCompResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkResourcesCompGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesCompGetResponseSystemData>;
+    identifier: "GetPrivateLinkResourcesCompResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkResourcesCompResponseSystemData>;
 
-export interface GetPrivateLinkResourceCompResponse {
+export interface GetPrivateLinkResourcesCompResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1515,23 +1516,23 @@ export interface GetPrivateLinkResourceCompResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesCompGetResponseSystemData;
+  systemData?: GetPrivateLinkResourcesCompResponseSystemData;
   /** Resource properties. */
   properties?: PrivateLinkResourceProperties;
 }
-export const GetPrivateLinkResourceCompResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourcesCompResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(PrivateLinkResourcesCompGetResponseSystemData),
+    systemData: S.optional(GetPrivateLinkResourcesCompResponseSystemData),
     properties: S.optional(PrivateLinkResourceProperties),
   }),
 ).annotate({
-  identifier: "GetPrivateLinkResourceCompResponse",
-}) as any as S.Schema<GetPrivateLinkResourceCompResponse>;
+  identifier: "GetPrivateLinkResourcesCompResponse",
+}) as any as S.Schema<GetPrivateLinkResourcesCompResponse>;
 
-export interface GetPrivateLinkResourceForMipPolicySyncRequest {
+export interface GetPrivateLinkResourcesForMIPPolicySyncRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -1541,7 +1542,7 @@ export interface GetPrivateLinkResourceForMipPolicySyncRequest {
   /** The name of the private link resource group. */
   groupName: string;
 }
-export const GetPrivateLinkResourceForMipPolicySyncRequest =
+export const GetPrivateLinkResourcesForMIPPolicySyncRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1557,61 +1558,61 @@ export const GetPrivateLinkResourceForMipPolicySyncRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkResourceForMipPolicySyncRequest",
-  }) as any as S.Schema<GetPrivateLinkResourceForMipPolicySyncRequest>;
+    identifier: "GetPrivateLinkResourcesForMIPPolicySyncRequest",
+  }) as any as S.Schema<GetPrivateLinkResourcesForMIPPolicySyncRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesForMIPPolicySyncGetResponseSystemData {
+export interface GetPrivateLinkResourcesForMIPPolicySyncResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkResourcesForMIPPolicySyncGetResponseSystemData =
+export const GetPrivateLinkResourcesForMIPPolicySyncResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataCreatedByType,
+        GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkResourcesForMIPPolicySyncGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkResourcesForMIPPolicySyncResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkResourcesForMIPPolicySyncGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesForMIPPolicySyncGetResponseSystemData>;
+    identifier: "GetPrivateLinkResourcesForMIPPolicySyncResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkResourcesForMIPPolicySyncResponseSystemData>;
 
-export interface GetPrivateLinkResourceForMipPolicySyncResponse {
+export interface GetPrivateLinkResourcesForMIPPolicySyncResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1619,26 +1620,26 @@ export interface GetPrivateLinkResourceForMipPolicySyncResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesForMIPPolicySyncGetResponseSystemData;
+  systemData?: GetPrivateLinkResourcesForMIPPolicySyncResponseSystemData;
   /** Resource properties. */
   properties?: PrivateLinkResourceProperties;
 }
-export const GetPrivateLinkResourceForMipPolicySyncResponse =
+export const GetPrivateLinkResourcesForMIPPolicySyncResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkResourcesForMIPPolicySyncGetResponseSystemData,
+        GetPrivateLinkResourcesForMIPPolicySyncResponseSystemData,
       ),
       properties: S.optional(PrivateLinkResourceProperties),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkResourceForMipPolicySyncResponse",
-  }) as any as S.Schema<GetPrivateLinkResourceForMipPolicySyncResponse>;
+    identifier: "GetPrivateLinkResourcesForMIPPolicySyncResponse",
+  }) as any as S.Schema<GetPrivateLinkResourcesForMIPPolicySyncResponse>;
 
-export interface GetPrivateLinkResourceForSccPowershellRequest {
+export interface GetPrivateLinkResourcesForSCCPowershellRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -1648,7 +1649,7 @@ export interface GetPrivateLinkResourceForSccPowershellRequest {
   /** The name of the private link resource group. */
   groupName: string;
 }
-export const GetPrivateLinkResourceForSccPowershellRequest =
+export const GetPrivateLinkResourcesForSCCPowershellRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1664,61 +1665,61 @@ export const GetPrivateLinkResourceForSccPowershellRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkResourceForSccPowershellRequest",
-  }) as any as S.Schema<GetPrivateLinkResourceForSccPowershellRequest>;
+    identifier: "GetPrivateLinkResourcesForSCCPowershellRequest",
+  }) as any as S.Schema<GetPrivateLinkResourcesForSCCPowershellRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkResourcesForSCCPowershellGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkResourcesForSCCPowershellResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesForSCCPowershellGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkResourcesForSCCPowershellResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesForSCCPowershellGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkResourcesForSCCPowershellResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesForSCCPowershellGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkResourcesForSCCPowershellResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesForSCCPowershellGetResponseSystemData {
+export interface GetPrivateLinkResourcesForSCCPowershellResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesForSCCPowershellGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkResourcesForSCCPowershellResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesForSCCPowershellGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkResourcesForSCCPowershellResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkResourcesForSCCPowershellGetResponseSystemData =
+export const GetPrivateLinkResourcesForSCCPowershellResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkResourcesForSCCPowershellGetResponseSystemDataCreatedByType,
+        GetPrivateLinkResourcesForSCCPowershellResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkResourcesForSCCPowershellGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkResourcesForSCCPowershellResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkResourcesForSCCPowershellGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesForSCCPowershellGetResponseSystemData>;
+    identifier: "GetPrivateLinkResourcesForSCCPowershellResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkResourcesForSCCPowershellResponseSystemData>;
 
-export interface GetPrivateLinkResourceForSccPowershellResponse {
+export interface GetPrivateLinkResourcesForSCCPowershellResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1726,26 +1727,26 @@ export interface GetPrivateLinkResourceForSccPowershellResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesForSCCPowershellGetResponseSystemData;
+  systemData?: GetPrivateLinkResourcesForSCCPowershellResponseSystemData;
   /** Resource properties. */
   properties?: PrivateLinkResourceProperties;
 }
-export const GetPrivateLinkResourceForSccPowershellResponse =
+export const GetPrivateLinkResourcesForSCCPowershellResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkResourcesForSCCPowershellGetResponseSystemData,
+        GetPrivateLinkResourcesForSCCPowershellResponseSystemData,
       ),
       properties: S.optional(PrivateLinkResourceProperties),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkResourceForSccPowershellResponse",
-  }) as any as S.Schema<GetPrivateLinkResourceForSccPowershellResponse>;
+    identifier: "GetPrivateLinkResourcesForSCCPowershellResponse",
+  }) as any as S.Schema<GetPrivateLinkResourcesForSCCPowershellResponse>;
 
-export interface GetPrivateLinkResourceSecRequest {
+export interface GetPrivateLinkResourcesSecRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -1755,7 +1756,7 @@ export interface GetPrivateLinkResourceSecRequest {
   /** The name of the private link resource group. */
   groupName: string;
 }
-export const GetPrivateLinkResourceSecRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourcesSecRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1770,61 +1771,61 @@ export const GetPrivateLinkResourceSecRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetPrivateLinkResourceSecRequest",
-}) as any as S.Schema<GetPrivateLinkResourceSecRequest>;
+  identifier: "GetPrivateLinkResourcesSecRequest",
+}) as any as S.Schema<GetPrivateLinkResourcesSecRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkResourcesSecGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkResourcesSecResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesSecGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkResourcesSecResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesSecGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkResourcesSecResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesSecGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkResourcesSecResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesSecGetResponseSystemData {
+export interface GetPrivateLinkResourcesSecResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesSecGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkResourcesSecResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesSecGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkResourcesSecResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkResourcesSecGetResponseSystemData =
+export const GetPrivateLinkResourcesSecResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkResourcesSecGetResponseSystemDataCreatedByType,
+        GetPrivateLinkResourcesSecResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkResourcesSecGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkResourcesSecResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkResourcesSecGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesSecGetResponseSystemData>;
+    identifier: "GetPrivateLinkResourcesSecResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkResourcesSecResponseSystemData>;
 
-export interface GetPrivateLinkResourceSecResponse {
+export interface GetPrivateLinkResourcesSecResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1832,23 +1833,23 @@ export interface GetPrivateLinkResourceSecResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesSecGetResponseSystemData;
+  systemData?: GetPrivateLinkResourcesSecResponseSystemData;
   /** Resource properties. */
   properties?: PrivateLinkResourceProperties;
 }
-export const GetPrivateLinkResourceSecResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourcesSecResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(PrivateLinkResourcesSecGetResponseSystemData),
+    systemData: S.optional(GetPrivateLinkResourcesSecResponseSystemData),
     properties: S.optional(PrivateLinkResourceProperties),
   }),
 ).annotate({
-  identifier: "GetPrivateLinkResourceSecResponse",
-}) as any as S.Schema<GetPrivateLinkResourceSecResponse>;
+  identifier: "GetPrivateLinkResourcesSecResponse",
+}) as any as S.Schema<GetPrivateLinkResourcesSecResponse>;
 
-export interface GetPrivateLinkServiceForEdmUploadRequest {
+export interface GetPrivateLinkServicesForEDMUploadRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -1856,8 +1857,8 @@ export interface GetPrivateLinkServiceForEdmUploadRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const GetPrivateLinkServiceForEdmUploadRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetPrivateLinkServicesForEDMUploadRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -1870,108 +1871,108 @@ export const GetPrivateLinkServiceForEdmUploadRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2021-03-08",
       }),
     ),
-).annotate({
-  identifier: "GetPrivateLinkServiceForEdmUploadRequest",
-}) as any as S.Schema<GetPrivateLinkServiceForEdmUploadRequest>;
+  ).annotate({
+    identifier: "GetPrivateLinkServicesForEDMUploadRequest",
+  }) as any as S.Schema<GetPrivateLinkServicesForEDMUploadRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForEDMUploadGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForEDMUploadGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForEDMUploadGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForEDMUploadGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForEDMUploadGetResponseSystemData {
+export interface GetPrivateLinkServicesForEDMUploadResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForEDMUploadGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForEDMUploadGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForEDMUploadGetResponseSystemData =
+export const GetPrivateLinkServicesForEDMUploadResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForEDMUploadGetResponseSystemDataCreatedByType,
+        GetPrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForEDMUploadGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForEDMUploadGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForEDMUploadGetResponseSystemData>;
+    identifier: "GetPrivateLinkServicesForEDMUploadResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkServicesForEDMUploadResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForEDMUploadGetResponseKind =
+export type GetPrivateLinkServicesForEDMUploadResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForEDMUploadGetResponseKind =
+export const GetPrivateLinkServicesForEDMUploadResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForEDMUploadGetResponseTagsMap = {
+export type GetPrivateLinkServicesForEDMUploadResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForEDMUploadGetResponseTagsMap =
+export const GetPrivateLinkServicesForEDMUploadResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForEDMUploadGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateLinkServicesForEDMUploadResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForEDMUploadGetResponseIdentityType =
+export type GetPrivateLinkServicesForEDMUploadResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForEDMUploadGetResponseIdentityType =
+export const GetPrivateLinkServicesForEDMUploadResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForEDMUploadGetResponseIdentity {
+export interface GetPrivateLinkServicesForEDMUploadResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForEDMUploadGetResponseIdentityType;
+  type?: GetPrivateLinkServicesForEDMUploadResponseIdentityType;
 }
-export const PrivateLinkServicesForEDMUploadGetResponseIdentity =
+export const GetPrivateLinkServicesForEDMUploadResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
-      type: S.optional(PrivateLinkServicesForEDMUploadGetResponseIdentityType),
+      type: S.optional(GetPrivateLinkServicesForEDMUploadResponseIdentityType),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForEDMUploadGetResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForEDMUploadGetResponseIdentity>;
+    identifier: "GetPrivateLinkServicesForEDMUploadResponseIdentity",
+  }) as any as S.Schema<GetPrivateLinkServicesForEDMUploadResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForEDMUploadGetResponsePropertiesProvisioningState =
+export type GetPrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -1981,7 +1982,7 @@ export type PrivateLinkServicesForEDMUploadGetResponsePropertiesProvisioningStat
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForEDMUploadGetResponsePropertiesProvisioningState =
+export const GetPrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** An access policy entry. */
@@ -2169,24 +2170,24 @@ export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointConnection>;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForEDMUploadGetResponsePropertiesPrivateEndpointConnectionsList =
+export type GetPrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForEDMUploadGetResponsePropertiesPrivateEndpointConnectionsList =
+export const GetPrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForEDMUploadGetResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<GetPrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForEDMUploadGetResponsePropertiesPublicNetworkAccess =
+export type GetPrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForEDMUploadGetResponsePropertiesPublicNetworkAccess =
+export const GetPrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForEDMUploadGetResponseProperties {
+export interface GetPrivateLinkServicesForEDMUploadResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForEDMUploadGetResponsePropertiesProvisioningState;
+  provisioningState?: GetPrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -2198,15 +2199,15 @@ export interface PrivateLinkServicesForEDMUploadGetResponseProperties {
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForEDMUploadGetResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: GetPrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForEDMUploadGetResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: GetPrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForEDMUploadGetResponseProperties =
+export const GetPrivateLinkServicesForEDMUploadResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForEDMUploadGetResponsePropertiesProvisioningState,
+        GetPrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -2216,17 +2217,17 @@ export const PrivateLinkServicesForEDMUploadGetResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForEDMUploadGetResponsePropertiesPrivateEndpointConnectionsList,
+        GetPrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForEDMUploadGetResponsePropertiesPublicNetworkAccess,
+        GetPrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForEDMUploadGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForEDMUploadGetResponseProperties>;
+    identifier: "GetPrivateLinkServicesForEDMUploadResponseProperties",
+  }) as any as S.Schema<GetPrivateLinkServicesForEDMUploadResponseProperties>;
 
-export interface GetPrivateLinkServiceForEdmUploadResponse {
+export interface GetPrivateLinkServicesForEDMUploadResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2234,43 +2235,43 @@ export interface GetPrivateLinkServiceForEdmUploadResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForEDMUploadGetResponseSystemData;
+  systemData?: GetPrivateLinkServicesForEDMUploadResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForEDMUploadGetResponseKind;
+  kind: GetPrivateLinkServicesForEDMUploadResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForEDMUploadGetResponseTagsMap;
+  tags?: GetPrivateLinkServicesForEDMUploadResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForEDMUploadGetResponseIdentity;
+  identity?: GetPrivateLinkServicesForEDMUploadResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForEDMUploadGetResponseProperties;
+  properties?: GetPrivateLinkServicesForEDMUploadResponseProperties;
 }
-export const GetPrivateLinkServiceForEdmUploadResponse =
+export const GetPrivateLinkServicesForEDMUploadResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForEDMUploadGetResponseSystemData,
+        GetPrivateLinkServicesForEDMUploadResponseSystemData,
       ),
-      kind: PrivateLinkServicesForEDMUploadGetResponseKind,
+      kind: GetPrivateLinkServicesForEDMUploadResponseKind,
       location: S.String,
-      tags: S.optional(PrivateLinkServicesForEDMUploadGetResponseTagsMap),
+      tags: S.optional(GetPrivateLinkServicesForEDMUploadResponseTagsMap),
       etag: S.optional(S.String),
-      identity: S.optional(PrivateLinkServicesForEDMUploadGetResponseIdentity),
+      identity: S.optional(GetPrivateLinkServicesForEDMUploadResponseIdentity),
       properties: S.optional(
-        PrivateLinkServicesForEDMUploadGetResponseProperties,
+        GetPrivateLinkServicesForEDMUploadResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForEdmUploadResponse",
-  }) as any as S.Schema<GetPrivateLinkServiceForEdmUploadResponse>;
+    identifier: "GetPrivateLinkServicesForEDMUploadResponse",
+  }) as any as S.Schema<GetPrivateLinkServicesForEDMUploadResponse>;
 
-export interface GetPrivateLinkServiceForM365ComplianceCenterRequest {
+export interface GetPrivateLinkServicesForM365ComplianceCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -2278,7 +2279,7 @@ export interface GetPrivateLinkServiceForM365ComplianceCenterRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const GetPrivateLinkServiceForM365ComplianceCenterRequest =
+export const GetPrivateLinkServicesForM365ComplianceCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2293,110 +2294,110 @@ export const GetPrivateLinkServiceForM365ComplianceCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForM365ComplianceCenterRequest",
-  }) as any as S.Schema<GetPrivateLinkServiceForM365ComplianceCenterRequest>;
+    identifier: "GetPrivateLinkServicesForM365ComplianceCenterRequest",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365ComplianceCenterRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForM365ComplianceCenterGetResponseSystemData {
+export interface GetPrivateLinkServicesForM365ComplianceCenterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseSystemData =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataCreatedByType,
+        GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365ComplianceCenterGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterGetResponseSystemData>;
+      "GetPrivateLinkServicesForM365ComplianceCenterResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365ComplianceCenterResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponseKind =
+export type GetPrivateLinkServicesForM365ComplianceCenterResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseKind =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponseTagsMap = {
+export type GetPrivateLinkServicesForM365ComplianceCenterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseTagsMap =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateLinkServicesForM365ComplianceCenterResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponseIdentityType =
+export type GetPrivateLinkServicesForM365ComplianceCenterResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseIdentityType =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForM365ComplianceCenterGetResponseIdentity {
+export interface GetPrivateLinkServicesForM365ComplianceCenterResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForM365ComplianceCenterGetResponseIdentityType;
+  type?: GetPrivateLinkServicesForM365ComplianceCenterResponseIdentityType;
 }
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseIdentity =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponseIdentityType,
+        GetPrivateLinkServicesForM365ComplianceCenterResponseIdentityType,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForM365ComplianceCenterGetResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterGetResponseIdentity>;
+    identifier: "GetPrivateLinkServicesForM365ComplianceCenterResponseIdentity",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365ComplianceCenterResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesProvisioningState =
+export type GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -2406,28 +2407,28 @@ export type PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesProvi
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesProvisioningState =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPrivateEndpointConnectionsList =
+export type GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPrivateEndpointConnectionsList =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPublicNetworkAccess =
+export type GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPublicNetworkAccess =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForM365ComplianceCenterGetResponseProperties {
+export interface GetPrivateLinkServicesForM365ComplianceCenterResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesProvisioningState;
+  provisioningState?: GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -2439,15 +2440,15 @@ export interface PrivateLinkServicesForM365ComplianceCenterGetResponseProperties
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForM365ComplianceCenterGetResponseProperties =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesProvisioningState,
+        GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -2457,18 +2458,18 @@ export const PrivateLinkServicesForM365ComplianceCenterGetResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPrivateEndpointConnectionsList,
+        GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponsePropertiesPublicNetworkAccess,
+        GetPrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365ComplianceCenterGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterGetResponseProperties>;
+      "GetPrivateLinkServicesForM365ComplianceCenterResponseProperties",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365ComplianceCenterResponseProperties>;
 
-export interface GetPrivateLinkServiceForM365ComplianceCenterResponse {
+export interface GetPrivateLinkServicesForM365ComplianceCenterResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2476,47 +2477,47 @@ export interface GetPrivateLinkServiceForM365ComplianceCenterResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForM365ComplianceCenterGetResponseSystemData;
+  systemData?: GetPrivateLinkServicesForM365ComplianceCenterResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForM365ComplianceCenterGetResponseKind;
+  kind: GetPrivateLinkServicesForM365ComplianceCenterResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForM365ComplianceCenterGetResponseTagsMap;
+  tags?: GetPrivateLinkServicesForM365ComplianceCenterResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForM365ComplianceCenterGetResponseIdentity;
+  identity?: GetPrivateLinkServicesForM365ComplianceCenterResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForM365ComplianceCenterGetResponseProperties;
+  properties?: GetPrivateLinkServicesForM365ComplianceCenterResponseProperties;
 }
-export const GetPrivateLinkServiceForM365ComplianceCenterResponse =
+export const GetPrivateLinkServicesForM365ComplianceCenterResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponseSystemData,
+        GetPrivateLinkServicesForM365ComplianceCenterResponseSystemData,
       ),
-      kind: PrivateLinkServicesForM365ComplianceCenterGetResponseKind,
+      kind: GetPrivateLinkServicesForM365ComplianceCenterResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponseTagsMap,
+        GetPrivateLinkServicesForM365ComplianceCenterResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponseIdentity,
+        GetPrivateLinkServicesForM365ComplianceCenterResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterGetResponseProperties,
+        GetPrivateLinkServicesForM365ComplianceCenterResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForM365ComplianceCenterResponse",
-  }) as any as S.Schema<GetPrivateLinkServiceForM365ComplianceCenterResponse>;
+    identifier: "GetPrivateLinkServicesForM365ComplianceCenterResponse",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365ComplianceCenterResponse>;
 
-export interface GetPrivateLinkServiceForM365SecurityCenterRequest {
+export interface GetPrivateLinkServicesForM365SecurityCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -2524,7 +2525,7 @@ export interface GetPrivateLinkServiceForM365SecurityCenterRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const GetPrivateLinkServiceForM365SecurityCenterRequest =
+export const GetPrivateLinkServicesForM365SecurityCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2539,109 +2540,109 @@ export const GetPrivateLinkServiceForM365SecurityCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForM365SecurityCenterRequest",
-  }) as any as S.Schema<GetPrivateLinkServiceForM365SecurityCenterRequest>;
+    identifier: "GetPrivateLinkServicesForM365SecurityCenterRequest",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365SecurityCenterRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForM365SecurityCenterGetResponseSystemData {
+export interface GetPrivateLinkServicesForM365SecurityCenterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForM365SecurityCenterGetResponseSystemData =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataCreatedByType,
+        GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForM365SecurityCenterGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterGetResponseSystemData>;
+    identifier: "GetPrivateLinkServicesForM365SecurityCenterResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365SecurityCenterResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponseKind =
+export type GetPrivateLinkServicesForM365SecurityCenterResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForM365SecurityCenterGetResponseKind =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponseTagsMap = {
+export type GetPrivateLinkServicesForM365SecurityCenterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForM365SecurityCenterGetResponseTagsMap =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateLinkServicesForM365SecurityCenterResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponseIdentityType =
+export type GetPrivateLinkServicesForM365SecurityCenterResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForM365SecurityCenterGetResponseIdentityType =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForM365SecurityCenterGetResponseIdentity {
+export interface GetPrivateLinkServicesForM365SecurityCenterResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForM365SecurityCenterGetResponseIdentityType;
+  type?: GetPrivateLinkServicesForM365SecurityCenterResponseIdentityType;
 }
-export const PrivateLinkServicesForM365SecurityCenterGetResponseIdentity =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponseIdentityType,
+        GetPrivateLinkServicesForM365SecurityCenterResponseIdentityType,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForM365SecurityCenterGetResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterGetResponseIdentity>;
+    identifier: "GetPrivateLinkServicesForM365SecurityCenterResponseIdentity",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365SecurityCenterResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesProvisioningState =
+export type GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -2651,28 +2652,28 @@ export type PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesProvisi
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesProvisioningState =
+export const GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPrivateEndpointConnectionsList =
+export type GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPrivateEndpointConnectionsList =
+export const GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPublicNetworkAccess =
+export type GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPublicNetworkAccess =
+export const GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForM365SecurityCenterGetResponseProperties {
+export interface GetPrivateLinkServicesForM365SecurityCenterResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesProvisioningState;
+  provisioningState?: GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -2684,15 +2685,15 @@ export interface PrivateLinkServicesForM365SecurityCenterGetResponseProperties {
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForM365SecurityCenterGetResponseProperties =
+export const GetPrivateLinkServicesForM365SecurityCenterResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesProvisioningState,
+        GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -2702,17 +2703,17 @@ export const PrivateLinkServicesForM365SecurityCenterGetResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPrivateEndpointConnectionsList,
+        GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponsePropertiesPublicNetworkAccess,
+        GetPrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForM365SecurityCenterGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterGetResponseProperties>;
+    identifier: "GetPrivateLinkServicesForM365SecurityCenterResponseProperties",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365SecurityCenterResponseProperties>;
 
-export interface GetPrivateLinkServiceForM365SecurityCenterResponse {
+export interface GetPrivateLinkServicesForM365SecurityCenterResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2720,47 +2721,47 @@ export interface GetPrivateLinkServiceForM365SecurityCenterResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForM365SecurityCenterGetResponseSystemData;
+  systemData?: GetPrivateLinkServicesForM365SecurityCenterResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForM365SecurityCenterGetResponseKind;
+  kind: GetPrivateLinkServicesForM365SecurityCenterResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForM365SecurityCenterGetResponseTagsMap;
+  tags?: GetPrivateLinkServicesForM365SecurityCenterResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForM365SecurityCenterGetResponseIdentity;
+  identity?: GetPrivateLinkServicesForM365SecurityCenterResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForM365SecurityCenterGetResponseProperties;
+  properties?: GetPrivateLinkServicesForM365SecurityCenterResponseProperties;
 }
-export const GetPrivateLinkServiceForM365SecurityCenterResponse =
+export const GetPrivateLinkServicesForM365SecurityCenterResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponseSystemData,
+        GetPrivateLinkServicesForM365SecurityCenterResponseSystemData,
       ),
-      kind: PrivateLinkServicesForM365SecurityCenterGetResponseKind,
+      kind: GetPrivateLinkServicesForM365SecurityCenterResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponseTagsMap,
+        GetPrivateLinkServicesForM365SecurityCenterResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponseIdentity,
+        GetPrivateLinkServicesForM365SecurityCenterResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForM365SecurityCenterGetResponseProperties,
+        GetPrivateLinkServicesForM365SecurityCenterResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForM365SecurityCenterResponse",
-  }) as any as S.Schema<GetPrivateLinkServiceForM365SecurityCenterResponse>;
+    identifier: "GetPrivateLinkServicesForM365SecurityCenterResponse",
+  }) as any as S.Schema<GetPrivateLinkServicesForM365SecurityCenterResponse>;
 
-export interface GetPrivateLinkServiceForMipPolicySyncRequest {
+export interface GetPrivateLinkServicesForMIPPolicySyncRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -2768,7 +2769,7 @@ export interface GetPrivateLinkServiceForMipPolicySyncRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const GetPrivateLinkServiceForMipPolicySyncRequest =
+export const GetPrivateLinkServicesForMIPPolicySyncRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2783,109 +2784,109 @@ export const GetPrivateLinkServiceForMipPolicySyncRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForMipPolicySyncRequest",
-  }) as any as S.Schema<GetPrivateLinkServiceForMipPolicySyncRequest>;
+    identifier: "GetPrivateLinkServicesForMIPPolicySyncRequest",
+  }) as any as S.Schema<GetPrivateLinkServicesForMIPPolicySyncRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForMIPPolicySyncGetResponseSystemData {
+export interface GetPrivateLinkServicesForMIPPolicySyncResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForMIPPolicySyncGetResponseSystemData =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataCreatedByType,
+        GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForMIPPolicySyncGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncGetResponseSystemData>;
+    identifier: "GetPrivateLinkServicesForMIPPolicySyncResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkServicesForMIPPolicySyncResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponseKind =
+export type GetPrivateLinkServicesForMIPPolicySyncResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForMIPPolicySyncGetResponseKind =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponseTagsMap = {
+export type GetPrivateLinkServicesForMIPPolicySyncResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForMIPPolicySyncGetResponseTagsMap =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateLinkServicesForMIPPolicySyncResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponseIdentityType =
+export type GetPrivateLinkServicesForMIPPolicySyncResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForMIPPolicySyncGetResponseIdentityType =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForMIPPolicySyncGetResponseIdentity {
+export interface GetPrivateLinkServicesForMIPPolicySyncResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForMIPPolicySyncGetResponseIdentityType;
+  type?: GetPrivateLinkServicesForMIPPolicySyncResponseIdentityType;
 }
-export const PrivateLinkServicesForMIPPolicySyncGetResponseIdentity =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponseIdentityType,
+        GetPrivateLinkServicesForMIPPolicySyncResponseIdentityType,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForMIPPolicySyncGetResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncGetResponseIdentity>;
+    identifier: "GetPrivateLinkServicesForMIPPolicySyncResponseIdentity",
+  }) as any as S.Schema<GetPrivateLinkServicesForMIPPolicySyncResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesProvisioningState =
+export type GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -2895,28 +2896,28 @@ export type PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesProvisioning
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesProvisioningState =
+export const GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPrivateEndpointConnectionsList =
+export type GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPrivateEndpointConnectionsList =
+export const GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPublicNetworkAccess =
+export type GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPublicNetworkAccess =
+export const GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForMIPPolicySyncGetResponseProperties {
+export interface GetPrivateLinkServicesForMIPPolicySyncResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesProvisioningState;
+  provisioningState?: GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -2928,15 +2929,15 @@ export interface PrivateLinkServicesForMIPPolicySyncGetResponseProperties {
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForMIPPolicySyncGetResponseProperties =
+export const GetPrivateLinkServicesForMIPPolicySyncResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesProvisioningState,
+        GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -2946,17 +2947,17 @@ export const PrivateLinkServicesForMIPPolicySyncGetResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPrivateEndpointConnectionsList,
+        GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponsePropertiesPublicNetworkAccess,
+        GetPrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForMIPPolicySyncGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncGetResponseProperties>;
+    identifier: "GetPrivateLinkServicesForMIPPolicySyncResponseProperties",
+  }) as any as S.Schema<GetPrivateLinkServicesForMIPPolicySyncResponseProperties>;
 
-export interface GetPrivateLinkServiceForMipPolicySyncResponse {
+export interface GetPrivateLinkServicesForMIPPolicySyncResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2964,45 +2965,45 @@ export interface GetPrivateLinkServiceForMipPolicySyncResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForMIPPolicySyncGetResponseSystemData;
+  systemData?: GetPrivateLinkServicesForMIPPolicySyncResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForMIPPolicySyncGetResponseKind;
+  kind: GetPrivateLinkServicesForMIPPolicySyncResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForMIPPolicySyncGetResponseTagsMap;
+  tags?: GetPrivateLinkServicesForMIPPolicySyncResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForMIPPolicySyncGetResponseIdentity;
+  identity?: GetPrivateLinkServicesForMIPPolicySyncResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForMIPPolicySyncGetResponseProperties;
+  properties?: GetPrivateLinkServicesForMIPPolicySyncResponseProperties;
 }
-export const GetPrivateLinkServiceForMipPolicySyncResponse =
+export const GetPrivateLinkServicesForMIPPolicySyncResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponseSystemData,
+        GetPrivateLinkServicesForMIPPolicySyncResponseSystemData,
       ),
-      kind: PrivateLinkServicesForMIPPolicySyncGetResponseKind,
+      kind: GetPrivateLinkServicesForMIPPolicySyncResponseKind,
       location: S.String,
-      tags: S.optional(PrivateLinkServicesForMIPPolicySyncGetResponseTagsMap),
+      tags: S.optional(GetPrivateLinkServicesForMIPPolicySyncResponseTagsMap),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponseIdentity,
+        GetPrivateLinkServicesForMIPPolicySyncResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForMIPPolicySyncGetResponseProperties,
+        GetPrivateLinkServicesForMIPPolicySyncResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForMipPolicySyncResponse",
-  }) as any as S.Schema<GetPrivateLinkServiceForMipPolicySyncResponse>;
+    identifier: "GetPrivateLinkServicesForMIPPolicySyncResponse",
+  }) as any as S.Schema<GetPrivateLinkServicesForMIPPolicySyncResponse>;
 
-export interface GetPrivateLinkServiceForO365ManagementActivityApiRequest {
+export interface GetPrivateLinkServicesForO365ManagementActivityAPIRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3010,7 +3011,7 @@ export interface GetPrivateLinkServiceForO365ManagementActivityApiRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const GetPrivateLinkServiceForO365ManagementActivityApiRequest =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3025,110 +3026,110 @@ export const GetPrivateLinkServiceForO365ManagementActivityApiRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForO365ManagementActivityApiRequest",
-  }) as any as S.Schema<GetPrivateLinkServiceForO365ManagementActivityApiRequest>;
+    identifier: "GetPrivateLinkServicesForO365ManagementActivityAPIRequest",
+  }) as any as S.Schema<GetPrivateLinkServicesForO365ManagementActivityAPIRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemData {
+export interface GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemData =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataCreatedByType,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemData>;
+      "GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponseKind =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseKind =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponseTagsMap =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap =
   { [key: string]: string | undefined };
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseTagsMap =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentityType =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentityType =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentity {
+export interface GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentityType;
+  type?: GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType;
 }
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentity =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentityType,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentity>;
+      "GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentity",
+  }) as any as S.Schema<GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesProvisioningState =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -3138,28 +3139,28 @@ export type PrivateLinkServicesForO365ManagementActivityAPIGetResponseProperties
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesProvisioningState =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPrivateEndpointConnectionsList =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPrivateEndpointConnectionsList =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPublicNetworkAccess =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPublicNetworkAccess =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForO365ManagementActivityAPIGetResponseProperties {
+export interface GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesProvisioningState;
+  provisioningState?: GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -3171,15 +3172,15 @@ export interface PrivateLinkServicesForO365ManagementActivityAPIGetResponsePrope
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForO365ManagementActivityAPIGetResponseProperties =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesProvisioningState,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -3189,18 +3190,18 @@ export const PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertie
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPrivateEndpointConnectionsList,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponsePropertiesPublicNetworkAccess,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForO365ManagementActivityAPIGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIGetResponseProperties>;
+      "GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties",
+  }) as any as S.Schema<GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties>;
 
-export interface GetPrivateLinkServiceForO365ManagementActivityApiResponse {
+export interface GetPrivateLinkServicesForO365ManagementActivityAPIResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -3208,47 +3209,47 @@ export interface GetPrivateLinkServiceForO365ManagementActivityApiResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemData;
+  systemData?: GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForO365ManagementActivityAPIGetResponseKind;
+  kind: GetPrivateLinkServicesForO365ManagementActivityAPIResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForO365ManagementActivityAPIGetResponseTagsMap;
+  tags?: GetPrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentity;
+  identity?: GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForO365ManagementActivityAPIGetResponseProperties;
+  properties?: GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties;
 }
-export const GetPrivateLinkServiceForO365ManagementActivityApiResponse =
+export const GetPrivateLinkServicesForO365ManagementActivityAPIResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponseSystemData,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponseSystemData,
       ),
-      kind: PrivateLinkServicesForO365ManagementActivityAPIGetResponseKind,
+      kind: GetPrivateLinkServicesForO365ManagementActivityAPIResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponseTagsMap,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponseIdentity,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIGetResponseProperties,
+        GetPrivateLinkServicesForO365ManagementActivityAPIResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForO365ManagementActivityApiResponse",
-  }) as any as S.Schema<GetPrivateLinkServiceForO365ManagementActivityApiResponse>;
+    identifier: "GetPrivateLinkServicesForO365ManagementActivityAPIResponse",
+  }) as any as S.Schema<GetPrivateLinkServicesForO365ManagementActivityAPIResponse>;
 
-export interface GetPrivateLinkServiceForSccPowershellRequest {
+export interface GetPrivateLinkServicesForSCCPowershellRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3256,7 +3257,7 @@ export interface GetPrivateLinkServiceForSccPowershellRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const GetPrivateLinkServiceForSccPowershellRequest =
+export const GetPrivateLinkServicesForSCCPowershellRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3271,109 +3272,109 @@ export const GetPrivateLinkServiceForSccPowershellRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForSccPowershellRequest",
-  }) as any as S.Schema<GetPrivateLinkServiceForSccPowershellRequest>;
+    identifier: "GetPrivateLinkServicesForSCCPowershellRequest",
+  }) as any as S.Schema<GetPrivateLinkServicesForSCCPowershellRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForSCCPowershellGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForSCCPowershellGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForSCCPowershellGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForSCCPowershellGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForSCCPowershellGetResponseSystemData {
+export interface GetPrivateLinkServicesForSCCPowershellResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForSCCPowershellGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForSCCPowershellGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForSCCPowershellGetResponseSystemData =
+export const GetPrivateLinkServicesForSCCPowershellResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponseSystemDataCreatedByType,
+        GetPrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForSCCPowershellGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForSCCPowershellGetResponseSystemData>;
+    identifier: "GetPrivateLinkServicesForSCCPowershellResponseSystemData",
+  }) as any as S.Schema<GetPrivateLinkServicesForSCCPowershellResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForSCCPowershellGetResponseKind =
+export type GetPrivateLinkServicesForSCCPowershellResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForSCCPowershellGetResponseKind =
+export const GetPrivateLinkServicesForSCCPowershellResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForSCCPowershellGetResponseTagsMap = {
+export type GetPrivateLinkServicesForSCCPowershellResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForSCCPowershellGetResponseTagsMap =
+export const GetPrivateLinkServicesForSCCPowershellResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForSCCPowershellGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateLinkServicesForSCCPowershellResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForSCCPowershellGetResponseIdentityType =
+export type GetPrivateLinkServicesForSCCPowershellResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForSCCPowershellGetResponseIdentityType =
+export const GetPrivateLinkServicesForSCCPowershellResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForSCCPowershellGetResponseIdentity {
+export interface GetPrivateLinkServicesForSCCPowershellResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForSCCPowershellGetResponseIdentityType;
+  type?: GetPrivateLinkServicesForSCCPowershellResponseIdentityType;
 }
-export const PrivateLinkServicesForSCCPowershellGetResponseIdentity =
+export const GetPrivateLinkServicesForSCCPowershellResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponseIdentityType,
+        GetPrivateLinkServicesForSCCPowershellResponseIdentityType,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForSCCPowershellGetResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForSCCPowershellGetResponseIdentity>;
+    identifier: "GetPrivateLinkServicesForSCCPowershellResponseIdentity",
+  }) as any as S.Schema<GetPrivateLinkServicesForSCCPowershellResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForSCCPowershellGetResponsePropertiesProvisioningState =
+export type GetPrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -3383,28 +3384,28 @@ export type PrivateLinkServicesForSCCPowershellGetResponsePropertiesProvisioning
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForSCCPowershellGetResponsePropertiesProvisioningState =
+export const GetPrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForSCCPowershellGetResponsePropertiesPrivateEndpointConnectionsList =
+export type GetPrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForSCCPowershellGetResponsePropertiesPrivateEndpointConnectionsList =
+export const GetPrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForSCCPowershellGetResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<GetPrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForSCCPowershellGetResponsePropertiesPublicNetworkAccess =
+export type GetPrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForSCCPowershellGetResponsePropertiesPublicNetworkAccess =
+export const GetPrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForSCCPowershellGetResponseProperties {
+export interface GetPrivateLinkServicesForSCCPowershellResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForSCCPowershellGetResponsePropertiesProvisioningState;
+  provisioningState?: GetPrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -3416,15 +3417,15 @@ export interface PrivateLinkServicesForSCCPowershellGetResponseProperties {
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForSCCPowershellGetResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: GetPrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForSCCPowershellGetResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: GetPrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForSCCPowershellGetResponseProperties =
+export const GetPrivateLinkServicesForSCCPowershellResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponsePropertiesProvisioningState,
+        GetPrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -3434,17 +3435,17 @@ export const PrivateLinkServicesForSCCPowershellGetResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponsePropertiesPrivateEndpointConnectionsList,
+        GetPrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponsePropertiesPublicNetworkAccess,
+        GetPrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForSCCPowershellGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForSCCPowershellGetResponseProperties>;
+    identifier: "GetPrivateLinkServicesForSCCPowershellResponseProperties",
+  }) as any as S.Schema<GetPrivateLinkServicesForSCCPowershellResponseProperties>;
 
-export interface GetPrivateLinkServiceForSccPowershellResponse {
+export interface GetPrivateLinkServicesForSCCPowershellResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -3452,43 +3453,43 @@ export interface GetPrivateLinkServiceForSccPowershellResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForSCCPowershellGetResponseSystemData;
+  systemData?: GetPrivateLinkServicesForSCCPowershellResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForSCCPowershellGetResponseKind;
+  kind: GetPrivateLinkServicesForSCCPowershellResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForSCCPowershellGetResponseTagsMap;
+  tags?: GetPrivateLinkServicesForSCCPowershellResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForSCCPowershellGetResponseIdentity;
+  identity?: GetPrivateLinkServicesForSCCPowershellResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForSCCPowershellGetResponseProperties;
+  properties?: GetPrivateLinkServicesForSCCPowershellResponseProperties;
 }
-export const GetPrivateLinkServiceForSccPowershellResponse =
+export const GetPrivateLinkServicesForSCCPowershellResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponseSystemData,
+        GetPrivateLinkServicesForSCCPowershellResponseSystemData,
       ),
-      kind: PrivateLinkServicesForSCCPowershellGetResponseKind,
+      kind: GetPrivateLinkServicesForSCCPowershellResponseKind,
       location: S.String,
-      tags: S.optional(PrivateLinkServicesForSCCPowershellGetResponseTagsMap),
+      tags: S.optional(GetPrivateLinkServicesForSCCPowershellResponseTagsMap),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponseIdentity,
+        GetPrivateLinkServicesForSCCPowershellResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForSCCPowershellGetResponseProperties,
+        GetPrivateLinkServicesForSCCPowershellResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "GetPrivateLinkServiceForSccPowershellResponse",
-  }) as any as S.Schema<GetPrivateLinkServiceForSccPowershellResponse>;
+    identifier: "GetPrivateLinkServicesForSCCPowershellResponse",
+  }) as any as S.Schema<GetPrivateLinkServicesForSCCPowershellResponse>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -3568,7 +3569,7 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
-export interface ListPrivateEndpointConnectionAdtApiByServiceRequest {
+export interface ListPrivateEndpointConnectionsAdtAPIByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3576,7 +3577,7 @@ export interface ListPrivateEndpointConnectionAdtApiByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateEndpointConnectionAdtApiByServiceRequest =
+export const ListPrivateEndpointConnectionsAdtAPIByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3591,36 +3592,36 @@ export const ListPrivateEndpointConnectionAdtApiByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionAdtApiByServiceRequest",
-  }) as any as S.Schema<ListPrivateEndpointConnectionAdtApiByServiceRequest>;
+    identifier: "ListPrivateEndpointConnectionsAdtAPIByServiceRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsAdtAPIByServiceRequest>;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsAdtAPIListByServiceResponseValueList =
+export type ListPrivateEndpointConnectionsAdtAPIByServiceResponseValueList =
   Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsAdtAPIListByServiceResponseValueList =
+export const ListPrivateEndpointConnectionsAdtAPIByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionsAdtAPIListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionsAdtAPIByServiceResponseValueList>;
 
-export interface ListPrivateEndpointConnectionAdtApiByServiceResponse {
+export interface ListPrivateEndpointConnectionsAdtAPIByServiceResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsAdtAPIListByServiceResponseValueList;
+  value?: ListPrivateEndpointConnectionsAdtAPIByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateEndpointConnectionAdtApiByServiceResponse =
+export const ListPrivateEndpointConnectionsAdtAPIByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsAdtAPIListByServiceResponseValueList,
+        ListPrivateEndpointConnectionsAdtAPIByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionAdtApiByServiceResponse",
-  }) as any as S.Schema<ListPrivateEndpointConnectionAdtApiByServiceResponse>;
+    identifier: "ListPrivateEndpointConnectionsAdtAPIByServiceResponse",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsAdtAPIByServiceResponse>;
 
-export interface ListPrivateEndpointConnectionCompByServiceRequest {
+export interface ListPrivateEndpointConnectionsCompByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3628,7 +3629,7 @@ export interface ListPrivateEndpointConnectionCompByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateEndpointConnectionCompByServiceRequest =
+export const ListPrivateEndpointConnectionsCompByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3643,36 +3644,36 @@ export const ListPrivateEndpointConnectionCompByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionCompByServiceRequest",
-  }) as any as S.Schema<ListPrivateEndpointConnectionCompByServiceRequest>;
+    identifier: "ListPrivateEndpointConnectionsCompByServiceRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsCompByServiceRequest>;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsCompListByServiceResponseValueList =
+export type ListPrivateEndpointConnectionsCompByServiceResponseValueList =
   Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsCompListByServiceResponseValueList =
+export const ListPrivateEndpointConnectionsCompByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionsCompListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionsCompByServiceResponseValueList>;
 
-export interface ListPrivateEndpointConnectionCompByServiceResponse {
+export interface ListPrivateEndpointConnectionsCompByServiceResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsCompListByServiceResponseValueList;
+  value?: ListPrivateEndpointConnectionsCompByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateEndpointConnectionCompByServiceResponse =
+export const ListPrivateEndpointConnectionsCompByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsCompListByServiceResponseValueList,
+        ListPrivateEndpointConnectionsCompByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionCompByServiceResponse",
-  }) as any as S.Schema<ListPrivateEndpointConnectionCompByServiceResponse>;
+    identifier: "ListPrivateEndpointConnectionsCompByServiceResponse",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsCompByServiceResponse>;
 
-export interface ListPrivateEndpointConnectionForEdmByServiceRequest {
+export interface ListPrivateEndpointConnectionsForEDMByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3680,7 +3681,7 @@ export interface ListPrivateEndpointConnectionForEdmByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateEndpointConnectionForEdmByServiceRequest =
+export const ListPrivateEndpointConnectionsForEDMByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3695,36 +3696,36 @@ export const ListPrivateEndpointConnectionForEdmByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionForEdmByServiceRequest",
-  }) as any as S.Schema<ListPrivateEndpointConnectionForEdmByServiceRequest>;
+    identifier: "ListPrivateEndpointConnectionsForEDMByServiceRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsForEDMByServiceRequest>;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsForEDMListByServiceResponseValueList =
+export type ListPrivateEndpointConnectionsForEDMByServiceResponseValueList =
   Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsForEDMListByServiceResponseValueList =
+export const ListPrivateEndpointConnectionsForEDMByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionsForEDMListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionsForEDMByServiceResponseValueList>;
 
-export interface ListPrivateEndpointConnectionForEdmByServiceResponse {
+export interface ListPrivateEndpointConnectionsForEDMByServiceResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsForEDMListByServiceResponseValueList;
+  value?: ListPrivateEndpointConnectionsForEDMByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateEndpointConnectionForEdmByServiceResponse =
+export const ListPrivateEndpointConnectionsForEDMByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsForEDMListByServiceResponseValueList,
+        ListPrivateEndpointConnectionsForEDMByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionForEdmByServiceResponse",
-  }) as any as S.Schema<ListPrivateEndpointConnectionForEdmByServiceResponse>;
+    identifier: "ListPrivateEndpointConnectionsForEDMByServiceResponse",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsForEDMByServiceResponse>;
 
-export interface ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest {
+export interface ListPrivateEndpointConnectionsForMIPPolicySyncByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3732,7 +3733,7 @@ export interface ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest =
+export const ListPrivateEndpointConnectionsForMIPPolicySyncByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3747,37 +3748,38 @@ export const ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest",
-  }) as any as S.Schema<ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest>;
+    identifier:
+      "ListPrivateEndpointConnectionsForMIPPolicySyncByServiceRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsForMIPPolicySyncByServiceRequest>;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsForMIPPolicySyncListByServiceResponseValueList =
+export type ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponseValueList =
   Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsForMIPPolicySyncListByServiceResponseValueList =
+export const ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionsForMIPPolicySyncListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponseValueList>;
 
-export interface ListPrivateEndpointConnectionForMipPolicySyncByServiceResponse {
+export interface ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsForMIPPolicySyncListByServiceResponseValueList;
+  value?: ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateEndpointConnectionForMipPolicySyncByServiceResponse =
+export const ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsForMIPPolicySyncListByServiceResponseValueList,
+        ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "ListPrivateEndpointConnectionForMipPolicySyncByServiceResponse",
-  }) as any as S.Schema<ListPrivateEndpointConnectionForMipPolicySyncByServiceResponse>;
+      "ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponse",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponse>;
 
-export interface ListPrivateEndpointConnectionForSccPowershellByServiceRequest {
+export interface ListPrivateEndpointConnectionsForSCCPowershellByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3785,7 +3787,7 @@ export interface ListPrivateEndpointConnectionForSccPowershellByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateEndpointConnectionForSccPowershellByServiceRequest =
+export const ListPrivateEndpointConnectionsForSCCPowershellByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3800,37 +3802,38 @@ export const ListPrivateEndpointConnectionForSccPowershellByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionForSccPowershellByServiceRequest",
-  }) as any as S.Schema<ListPrivateEndpointConnectionForSccPowershellByServiceRequest>;
+    identifier:
+      "ListPrivateEndpointConnectionsForSCCPowershellByServiceRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsForSCCPowershellByServiceRequest>;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsForSCCPowershellListByServiceResponseValueList =
+export type ListPrivateEndpointConnectionsForSCCPowershellByServiceResponseValueList =
   Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsForSCCPowershellListByServiceResponseValueList =
+export const ListPrivateEndpointConnectionsForSCCPowershellByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionsForSCCPowershellListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionsForSCCPowershellByServiceResponseValueList>;
 
-export interface ListPrivateEndpointConnectionForSccPowershellByServiceResponse {
+export interface ListPrivateEndpointConnectionsForSCCPowershellByServiceResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsForSCCPowershellListByServiceResponseValueList;
+  value?: ListPrivateEndpointConnectionsForSCCPowershellByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateEndpointConnectionForSccPowershellByServiceResponse =
+export const ListPrivateEndpointConnectionsForSCCPowershellByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsForSCCPowershellListByServiceResponseValueList,
+        ListPrivateEndpointConnectionsForSCCPowershellByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "ListPrivateEndpointConnectionForSccPowershellByServiceResponse",
-  }) as any as S.Schema<ListPrivateEndpointConnectionForSccPowershellByServiceResponse>;
+      "ListPrivateEndpointConnectionsForSCCPowershellByServiceResponse",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsForSCCPowershellByServiceResponse>;
 
-export interface ListPrivateEndpointConnectionSecByServiceRequest {
+export interface ListPrivateEndpointConnectionsSecByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3838,7 +3841,7 @@ export interface ListPrivateEndpointConnectionSecByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateEndpointConnectionSecByServiceRequest =
+export const ListPrivateEndpointConnectionsSecByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3853,36 +3856,36 @@ export const ListPrivateEndpointConnectionSecByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionSecByServiceRequest",
-  }) as any as S.Schema<ListPrivateEndpointConnectionSecByServiceRequest>;
+    identifier: "ListPrivateEndpointConnectionsSecByServiceRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsSecByServiceRequest>;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsSecListByServiceResponseValueList =
+export type ListPrivateEndpointConnectionsSecByServiceResponseValueList =
   Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsSecListByServiceResponseValueList =
+export const ListPrivateEndpointConnectionsSecByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionsSecListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionsSecByServiceResponseValueList>;
 
-export interface ListPrivateEndpointConnectionSecByServiceResponse {
+export interface ListPrivateEndpointConnectionsSecByServiceResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsSecListByServiceResponseValueList;
+  value?: ListPrivateEndpointConnectionsSecByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateEndpointConnectionSecByServiceResponse =
+export const ListPrivateEndpointConnectionsSecByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsSecListByServiceResponseValueList,
+        ListPrivateEndpointConnectionsSecByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateEndpointConnectionSecByServiceResponse",
-  }) as any as S.Schema<ListPrivateEndpointConnectionSecByServiceResponse>;
+    identifier: "ListPrivateEndpointConnectionsSecByServiceResponse",
+  }) as any as S.Schema<ListPrivateEndpointConnectionsSecByServiceResponse>;
 
-export interface ListPrivateLinkResourceAdtApiByServiceRequest {
+export interface ListPrivateLinkResourceByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -3890,8 +3893,8 @@ export interface ListPrivateLinkResourceAdtApiByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateLinkResourceAdtApiByServiceRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListPrivateLinkResourceByServiceRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -3899,14 +3902,14 @@ export const ListPrivateLinkResourceAdtApiByServiceRequest =
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityAndCompliance/privateLinkServicesForO365ManagementActivityAPI/{resourceName}/privateLinkResources",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityAndCompliance/privateLinkServicesForEDMUpload/{resourceName}/privateLinkResources",
         code: 200,
         apiVersion: "2021-03-08",
       }),
     ),
-  ).annotate({
-    identifier: "ListPrivateLinkResourceAdtApiByServiceRequest",
-  }) as any as S.Schema<ListPrivateLinkResourceAdtApiByServiceRequest>;
+).annotate({
+  identifier: "ListPrivateLinkResourceByServiceRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByServiceRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateLinkResourceSystemDataCreatedByType =
@@ -3982,32 +3985,30 @@ export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateLinkResource>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesAdtAPIListByServiceResponseValueList =
+export type ListPrivateLinkResourceByServiceResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesAdtAPIListByServiceResponseValueList =
+export const ListPrivateLinkResourceByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesAdtAPIListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourceByServiceResponseValueList>;
 
-export interface ListPrivateLinkResourceAdtApiByServiceResponse {
+export interface ListPrivateLinkResourceByServiceResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesAdtAPIListByServiceResponseValueList;
+  value?: ListPrivateLinkResourceByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateLinkResourceAdtApiByServiceResponse =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListPrivateLinkResourceByServiceResponse = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
-      value: S.optional(
-        PrivateLinkResourcesAdtAPIListByServiceResponseValueList,
-      ),
+      value: S.optional(ListPrivateLinkResourceByServiceResponseValueList),
       nextLink: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "ListPrivateLinkResourceAdtApiByServiceResponse",
-  }) as any as S.Schema<ListPrivateLinkResourceAdtApiByServiceResponse>;
+).annotate({
+  identifier: "ListPrivateLinkResourceByServiceResponse",
+}) as any as S.Schema<ListPrivateLinkResourceByServiceResponse>;
 
-export interface ListPrivateLinkResourceByServiceRequest {
+export interface ListPrivateLinkResourcesAdtAPIByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -4015,8 +4016,8 @@ export interface ListPrivateLinkResourceByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateLinkResourceByServiceRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListPrivateLinkResourcesAdtAPIByServiceRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -4024,40 +4025,42 @@ export const ListPrivateLinkResourceByServiceRequest = /*@__PURE__*/ S.suspend(
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityAndCompliance/privateLinkServicesForEDMUpload/{resourceName}/privateLinkResources",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityAndCompliance/privateLinkServicesForO365ManagementActivityAPI/{resourceName}/privateLinkResources",
         code: 200,
         apiVersion: "2021-03-08",
       }),
     ),
-).annotate({
-  identifier: "ListPrivateLinkResourceByServiceRequest",
-}) as any as S.Schema<ListPrivateLinkResourceByServiceRequest>;
+  ).annotate({
+    identifier: "ListPrivateLinkResourcesAdtAPIByServiceRequest",
+  }) as any as S.Schema<ListPrivateLinkResourcesAdtAPIByServiceRequest>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesListByServiceResponseValueList =
+export type ListPrivateLinkResourcesAdtAPIByServiceResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesListByServiceResponseValueList =
+export const ListPrivateLinkResourcesAdtAPIByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourcesAdtAPIByServiceResponseValueList>;
 
-export interface ListPrivateLinkResourceByServiceResponse {
+export interface ListPrivateLinkResourcesAdtAPIByServiceResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesListByServiceResponseValueList;
+  value?: ListPrivateLinkResourcesAdtAPIByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateLinkResourceByServiceResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListPrivateLinkResourcesAdtAPIByServiceResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(PrivateLinkResourcesListByServiceResponseValueList),
+      value: S.optional(
+        ListPrivateLinkResourcesAdtAPIByServiceResponseValueList,
+      ),
       nextLink: S.optional(S.String),
     }),
-).annotate({
-  identifier: "ListPrivateLinkResourceByServiceResponse",
-}) as any as S.Schema<ListPrivateLinkResourceByServiceResponse>;
+  ).annotate({
+    identifier: "ListPrivateLinkResourcesAdtAPIByServiceResponse",
+  }) as any as S.Schema<ListPrivateLinkResourcesAdtAPIByServiceResponse>;
 
-export interface ListPrivateLinkResourceCompByServiceRequest {
+export interface ListPrivateLinkResourcesCompByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -4065,7 +4068,7 @@ export interface ListPrivateLinkResourceCompByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateLinkResourceCompByServiceRequest =
+export const ListPrivateLinkResourcesCompByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4080,34 +4083,34 @@ export const ListPrivateLinkResourceCompByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkResourceCompByServiceRequest",
-  }) as any as S.Schema<ListPrivateLinkResourceCompByServiceRequest>;
+    identifier: "ListPrivateLinkResourcesCompByServiceRequest",
+  }) as any as S.Schema<ListPrivateLinkResourcesCompByServiceRequest>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesCompListByServiceResponseValueList =
+export type ListPrivateLinkResourcesCompByServiceResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesCompListByServiceResponseValueList =
+export const ListPrivateLinkResourcesCompByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesCompListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourcesCompByServiceResponseValueList>;
 
-export interface ListPrivateLinkResourceCompByServiceResponse {
+export interface ListPrivateLinkResourcesCompByServiceResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesCompListByServiceResponseValueList;
+  value?: ListPrivateLinkResourcesCompByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateLinkResourceCompByServiceResponse =
+export const ListPrivateLinkResourcesCompByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(PrivateLinkResourcesCompListByServiceResponseValueList),
+      value: S.optional(ListPrivateLinkResourcesCompByServiceResponseValueList),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateLinkResourceCompByServiceResponse",
-  }) as any as S.Schema<ListPrivateLinkResourceCompByServiceResponse>;
+    identifier: "ListPrivateLinkResourcesCompByServiceResponse",
+  }) as any as S.Schema<ListPrivateLinkResourcesCompByServiceResponse>;
 
-export interface ListPrivateLinkResourceForMipPolicySyncByServiceRequest {
+export interface ListPrivateLinkResourcesForMIPPolicySyncByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -4115,7 +4118,7 @@ export interface ListPrivateLinkResourceForMipPolicySyncByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateLinkResourceForMipPolicySyncByServiceRequest =
+export const ListPrivateLinkResourcesForMIPPolicySyncByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4130,36 +4133,36 @@ export const ListPrivateLinkResourceForMipPolicySyncByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkResourceForMipPolicySyncByServiceRequest",
-  }) as any as S.Schema<ListPrivateLinkResourceForMipPolicySyncByServiceRequest>;
+    identifier: "ListPrivateLinkResourcesForMIPPolicySyncByServiceRequest",
+  }) as any as S.Schema<ListPrivateLinkResourcesForMIPPolicySyncByServiceRequest>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesForMIPPolicySyncListByServiceResponseValueList =
+export type ListPrivateLinkResourcesForMIPPolicySyncByServiceResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesForMIPPolicySyncListByServiceResponseValueList =
+export const ListPrivateLinkResourcesForMIPPolicySyncByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesForMIPPolicySyncListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourcesForMIPPolicySyncByServiceResponseValueList>;
 
-export interface ListPrivateLinkResourceForMipPolicySyncByServiceResponse {
+export interface ListPrivateLinkResourcesForMIPPolicySyncByServiceResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesForMIPPolicySyncListByServiceResponseValueList;
+  value?: ListPrivateLinkResourcesForMIPPolicySyncByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateLinkResourceForMipPolicySyncByServiceResponse =
+export const ListPrivateLinkResourcesForMIPPolicySyncByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateLinkResourcesForMIPPolicySyncListByServiceResponseValueList,
+        ListPrivateLinkResourcesForMIPPolicySyncByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateLinkResourceForMipPolicySyncByServiceResponse",
-  }) as any as S.Schema<ListPrivateLinkResourceForMipPolicySyncByServiceResponse>;
+    identifier: "ListPrivateLinkResourcesForMIPPolicySyncByServiceResponse",
+  }) as any as S.Schema<ListPrivateLinkResourcesForMIPPolicySyncByServiceResponse>;
 
-export interface ListPrivateLinkResourceForSccPowershellByServiceRequest {
+export interface ListPrivateLinkResourcesForSCCPowershellByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -4167,7 +4170,7 @@ export interface ListPrivateLinkResourceForSccPowershellByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateLinkResourceForSccPowershellByServiceRequest =
+export const ListPrivateLinkResourcesForSCCPowershellByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4182,36 +4185,36 @@ export const ListPrivateLinkResourceForSccPowershellByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkResourceForSccPowershellByServiceRequest",
-  }) as any as S.Schema<ListPrivateLinkResourceForSccPowershellByServiceRequest>;
+    identifier: "ListPrivateLinkResourcesForSCCPowershellByServiceRequest",
+  }) as any as S.Schema<ListPrivateLinkResourcesForSCCPowershellByServiceRequest>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesForSCCPowershellListByServiceResponseValueList =
+export type ListPrivateLinkResourcesForSCCPowershellByServiceResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesForSCCPowershellListByServiceResponseValueList =
+export const ListPrivateLinkResourcesForSCCPowershellByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesForSCCPowershellListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourcesForSCCPowershellByServiceResponseValueList>;
 
-export interface ListPrivateLinkResourceForSccPowershellByServiceResponse {
+export interface ListPrivateLinkResourcesForSCCPowershellByServiceResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesForSCCPowershellListByServiceResponseValueList;
+  value?: ListPrivateLinkResourcesForSCCPowershellByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateLinkResourceForSccPowershellByServiceResponse =
+export const ListPrivateLinkResourcesForSCCPowershellByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateLinkResourcesForSCCPowershellListByServiceResponseValueList,
+        ListPrivateLinkResourcesForSCCPowershellByServiceResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateLinkResourceForSccPowershellByServiceResponse",
-  }) as any as S.Schema<ListPrivateLinkResourceForSccPowershellByServiceResponse>;
+    identifier: "ListPrivateLinkResourcesForSCCPowershellByServiceResponse",
+  }) as any as S.Schema<ListPrivateLinkResourcesForSCCPowershellByServiceResponse>;
 
-export interface ListPrivateLinkResourceSecByServiceRequest {
+export interface ListPrivateLinkResourcesSecByServiceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -4219,7 +4222,7 @@ export interface ListPrivateLinkResourceSecByServiceRequest {
   /** The name of the service instance. */
   resourceName: string;
 }
-export const ListPrivateLinkResourceSecByServiceRequest =
+export const ListPrivateLinkResourcesSecByServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4234,38 +4237,38 @@ export const ListPrivateLinkResourceSecByServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkResourceSecByServiceRequest",
-  }) as any as S.Schema<ListPrivateLinkResourceSecByServiceRequest>;
+    identifier: "ListPrivateLinkResourcesSecByServiceRequest",
+  }) as any as S.Schema<ListPrivateLinkResourcesSecByServiceRequest>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesSecListByServiceResponseValueList =
+export type ListPrivateLinkResourcesSecByServiceResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesSecListByServiceResponseValueList =
+export const ListPrivateLinkResourcesSecByServiceResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesSecListByServiceResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourcesSecByServiceResponseValueList>;
 
-export interface ListPrivateLinkResourceSecByServiceResponse {
+export interface ListPrivateLinkResourcesSecByServiceResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesSecListByServiceResponseValueList;
+  value?: ListPrivateLinkResourcesSecByServiceResponseValueList;
   /** The URL to get the next set of results. */
   nextLink?: string;
 }
-export const ListPrivateLinkResourceSecByServiceResponse =
+export const ListPrivateLinkResourcesSecByServiceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      value: S.optional(PrivateLinkResourcesSecListByServiceResponseValueList),
+      value: S.optional(ListPrivateLinkResourcesSecByServiceResponseValueList),
       nextLink: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ListPrivateLinkResourceSecByServiceResponse",
-  }) as any as S.Schema<ListPrivateLinkResourceSecByServiceResponse>;
+    identifier: "ListPrivateLinkResourcesSecByServiceResponse",
+  }) as any as S.Schema<ListPrivateLinkResourcesSecByServiceResponse>;
 
-export interface ListPrivateLinkServiceForEdmUploadRequest {
+export interface ListPrivateLinkServicesForEDMUploadRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const ListPrivateLinkServiceForEdmUploadRequest =
+export const ListPrivateLinkServicesForEDMUploadRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4278,8 +4281,8 @@ export const ListPrivateLinkServiceForEdmUploadRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForEdmUploadRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForEdmUploadRequest>;
+    identifier: "ListPrivateLinkServicesForEDMUploadRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForEDMUploadRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateLinkServicesForEDMUploadDescriptionSystemDataCreatedByType =
@@ -4521,13 +4524,13 @@ export const PrivateLinkServicesForEDMUploadDescriptionListResult =
     identifier: "PrivateLinkServicesForEDMUploadDescriptionListResult",
   }) as any as S.Schema<PrivateLinkServicesForEDMUploadDescriptionListResult>;
 
-export interface ListPrivateLinkServiceForEdmUploadByResourceGroupRequest {
+export interface ListPrivateLinkServicesForEDMUploadByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
   resourceGroupName: string;
 }
-export const ListPrivateLinkServiceForEdmUploadByResourceGroupRequest =
+export const ListPrivateLinkServicesForEDMUploadByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4541,14 +4544,14 @@ export const ListPrivateLinkServiceForEdmUploadByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForEdmUploadByResourceGroupRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForEdmUploadByResourceGroupRequest>;
+    identifier: "ListPrivateLinkServicesForEDMUploadByResourceGroupRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForEDMUploadByResourceGroupRequest>;
 
-export interface ListPrivateLinkServiceForM365ComplianceCenterRequest {
+export interface ListPrivateLinkServicesForM365ComplianceCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const ListPrivateLinkServiceForM365ComplianceCenterRequest =
+export const ListPrivateLinkServicesForM365ComplianceCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4561,8 +4564,8 @@ export const ListPrivateLinkServiceForM365ComplianceCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForM365ComplianceCenterRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForM365ComplianceCenterRequest>;
+    identifier: "ListPrivateLinkServicesForM365ComplianceCenterRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForM365ComplianceCenterRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateLinkServicesForM365ComplianceCenterDescriptionSystemDataCreatedByType =
@@ -4813,13 +4816,13 @@ export const PrivateLinkServicesForM365ComplianceCenterDescriptionListResult =
       "PrivateLinkServicesForM365ComplianceCenterDescriptionListResult",
   }) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterDescriptionListResult>;
 
-export interface ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupRequest {
+export interface ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
   resourceGroupName: string;
 }
-export const ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupRequest =
+export const ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4834,14 +4837,14 @@ export const ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupRequest
     ),
   ).annotate({
     identifier:
-      "ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupRequest>;
+      "ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupRequest>;
 
-export interface ListPrivateLinkServiceForM365SecurityCenterRequest {
+export interface ListPrivateLinkServicesForM365SecurityCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const ListPrivateLinkServiceForM365SecurityCenterRequest =
+export const ListPrivateLinkServicesForM365SecurityCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4854,8 +4857,8 @@ export const ListPrivateLinkServiceForM365SecurityCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForM365SecurityCenterRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForM365SecurityCenterRequest>;
+    identifier: "ListPrivateLinkServicesForM365SecurityCenterRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForM365SecurityCenterRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateLinkServicesForM365SecurityCenterDescriptionSystemDataCreatedByType =
@@ -5103,13 +5106,13 @@ export const PrivateLinkServicesForM365SecurityCenterDescriptionListResult =
     identifier: "PrivateLinkServicesForM365SecurityCenterDescriptionListResult",
   }) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterDescriptionListResult>;
 
-export interface ListPrivateLinkServiceForM365SecurityCenterByResourceGroupRequest {
+export interface ListPrivateLinkServicesForM365SecurityCenterByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
   resourceGroupName: string;
 }
-export const ListPrivateLinkServiceForM365SecurityCenterByResourceGroupRequest =
+export const ListPrivateLinkServicesForM365SecurityCenterByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5124,14 +5127,14 @@ export const ListPrivateLinkServiceForM365SecurityCenterByResourceGroupRequest =
     ),
   ).annotate({
     identifier:
-      "ListPrivateLinkServiceForM365SecurityCenterByResourceGroupRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForM365SecurityCenterByResourceGroupRequest>;
+      "ListPrivateLinkServicesForM365SecurityCenterByResourceGroupRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForM365SecurityCenterByResourceGroupRequest>;
 
-export interface ListPrivateLinkServiceForMipPolicySyncRequest {
+export interface ListPrivateLinkServicesForMIPPolicySyncRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const ListPrivateLinkServiceForMipPolicySyncRequest =
+export const ListPrivateLinkServicesForMIPPolicySyncRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5144,8 +5147,8 @@ export const ListPrivateLinkServiceForMipPolicySyncRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForMipPolicySyncRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForMipPolicySyncRequest>;
+    identifier: "ListPrivateLinkServicesForMIPPolicySyncRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForMIPPolicySyncRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateLinkServicesForMIPPolicySyncDescriptionSystemDataCreatedByType =
@@ -5391,13 +5394,13 @@ export const PrivateLinkServicesForMIPPolicySyncDescriptionListResult =
     identifier: "PrivateLinkServicesForMIPPolicySyncDescriptionListResult",
   }) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncDescriptionListResult>;
 
-export interface ListPrivateLinkServiceForMipPolicySyncByResourceGroupRequest {
+export interface ListPrivateLinkServicesForMIPPolicySyncByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
   resourceGroupName: string;
 }
-export const ListPrivateLinkServiceForMipPolicySyncByResourceGroupRequest =
+export const ListPrivateLinkServicesForMIPPolicySyncByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5411,14 +5414,14 @@ export const ListPrivateLinkServiceForMipPolicySyncByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForMipPolicySyncByResourceGroupRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForMipPolicySyncByResourceGroupRequest>;
+    identifier: "ListPrivateLinkServicesForMIPPolicySyncByResourceGroupRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForMIPPolicySyncByResourceGroupRequest>;
 
-export interface ListPrivateLinkServiceForO365ManagementActivityApiRequest {
+export interface ListPrivateLinkServicesForO365ManagementActivityAPIRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const ListPrivateLinkServiceForO365ManagementActivityApiRequest =
+export const ListPrivateLinkServicesForO365ManagementActivityAPIRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5431,8 +5434,8 @@ export const ListPrivateLinkServiceForO365ManagementActivityApiRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForO365ManagementActivityApiRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForO365ManagementActivityApiRequest>;
+    identifier: "ListPrivateLinkServicesForO365ManagementActivityAPIRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForO365ManagementActivityAPIRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateLinkServicesForO365ManagementActivityAPIDescriptionSystemDataCreatedByType =
@@ -5683,13 +5686,13 @@ export const PrivateLinkServicesForO365ManagementActivityAPIDescriptionListResul
       "PrivateLinkServicesForO365ManagementActivityAPIDescriptionListResult",
   }) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIDescriptionListResult>;
 
-export interface ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupRequest {
+export interface ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
   resourceGroupName: string;
 }
-export const ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupRequest =
+export const ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5704,14 +5707,14 @@ export const ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupRe
     ),
   ).annotate({
     identifier:
-      "ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupRequest>;
+      "ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupRequest>;
 
-export interface ListPrivateLinkServiceForSccPowershellRequest {
+export interface ListPrivateLinkServicesForSCCPowershellRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const ListPrivateLinkServiceForSccPowershellRequest =
+export const ListPrivateLinkServicesForSCCPowershellRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5724,8 +5727,8 @@ export const ListPrivateLinkServiceForSccPowershellRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForSccPowershellRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForSccPowershellRequest>;
+    identifier: "ListPrivateLinkServicesForSCCPowershellRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForSCCPowershellRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateLinkServicesForSCCPowershellDescriptionSystemDataCreatedByType =
@@ -5971,13 +5974,13 @@ export const PrivateLinkServicesForSCCPowershellDescriptionListResult =
     identifier: "PrivateLinkServicesForSCCPowershellDescriptionListResult",
   }) as any as S.Schema<PrivateLinkServicesForSCCPowershellDescriptionListResult>;
 
-export interface ListPrivateLinkServiceForSccPowershellByResourceGroupRequest {
+export interface ListPrivateLinkServicesForSCCPowershellByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
   resourceGroupName: string;
 }
-export const ListPrivateLinkServiceForSccPowershellByResourceGroupRequest =
+export const ListPrivateLinkServicesForSCCPowershellByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5991,8 +5994,8 @@ export const ListPrivateLinkServiceForSccPowershellByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateLinkServiceForSccPowershellByResourceGroupRequest",
-  }) as any as S.Schema<ListPrivateLinkServiceForSccPowershellByResourceGroupRequest>;
+    identifier: "ListPrivateLinkServicesForSCCPowershellByResourceGroupRequest",
+  }) as any as S.Schema<ListPrivateLinkServicesForSCCPowershellByResourceGroupRequest>;
 
 /** The Private Endpoint resource. */
 export interface PrivateEndpointInput {}
@@ -8937,14 +8940,14 @@ export const PrivateLinkServicesForSCCPowershellCreateOrUpdateResponse =
   }) as any as S.Schema<PrivateLinkServicesForSCCPowershellCreateOrUpdateResponse>;
 
 /** Instance tags */
-export type PrivateLinkServicesForEDMUploadUpdateRequestTagsMap = {
+export type UpdatePrivateLinkServicesForEDMUploadRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForEDMUploadUpdateRequestTagsMap =
+export const UpdatePrivateLinkServicesForEDMUploadRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForEDMUploadUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadRequestTagsMap>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
 export type ServicesPropertiesUpdateParametersPublicNetworkAccess =
@@ -8970,7 +8973,7 @@ export const ServicesPropertiesUpdateParameters = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesPropertiesUpdateParameters",
 }) as any as S.Schema<ServicesPropertiesUpdateParameters>;
 
-export interface UpdatePrivateLinkServiceForEdmUploadRequest {
+export interface UpdatePrivateLinkServicesForEDMUploadRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -8978,17 +8981,17 @@ export interface UpdatePrivateLinkServiceForEdmUploadRequest {
   /** The name of the service instance. */
   resourceName: string;
   /** Instance tags */
-  tags?: PrivateLinkServicesForEDMUploadUpdateRequestTagsMap;
+  tags?: UpdatePrivateLinkServicesForEDMUploadRequestTagsMap;
   /** The properties for updating a service instance. */
   properties?: ServicesPropertiesUpdateParameters;
 }
-export const UpdatePrivateLinkServiceForEdmUploadRequest =
+export const UpdatePrivateLinkServicesForEDMUploadRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
-      tags: S.optional(PrivateLinkServicesForEDMUploadUpdateRequestTagsMap),
+      tags: S.optional(UpdatePrivateLinkServicesForEDMUploadRequestTagsMap),
       properties: S.optional(ServicesPropertiesUpdateParameters),
     }).pipe(
       T.Http({
@@ -8999,109 +9002,109 @@ export const UpdatePrivateLinkServiceForEdmUploadRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForEdmUploadRequest",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForEdmUploadRequest>;
+    identifier: "UpdatePrivateLinkServicesForEDMUploadRequest",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForEDMUploadUpdateResponseSystemDataCreatedByType =
+export type UpdatePrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForEDMUploadUpdateResponseSystemDataCreatedByType =
+export const UpdatePrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForEDMUploadUpdateResponseSystemDataLastModifiedByType =
+export type UpdatePrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForEDMUploadUpdateResponseSystemDataLastModifiedByType =
+export const UpdatePrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForEDMUploadUpdateResponseSystemData {
+export interface UpdatePrivateLinkServicesForEDMUploadResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForEDMUploadUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdatePrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForEDMUploadUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdatePrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForEDMUploadUpdateResponseSystemData =
+export const UpdatePrivateLinkServicesForEDMUploadResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponseSystemDataCreatedByType,
+        UpdatePrivateLinkServicesForEDMUploadResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponseSystemDataLastModifiedByType,
+        UpdatePrivateLinkServicesForEDMUploadResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForEDMUploadUpdateResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForEDMUploadUpdateResponseSystemData>;
+    identifier: "UpdatePrivateLinkServicesForEDMUploadResponseSystemData",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForEDMUploadUpdateResponseKind =
+export type UpdatePrivateLinkServicesForEDMUploadResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForEDMUploadUpdateResponseKind =
+export const UpdatePrivateLinkServicesForEDMUploadResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForEDMUploadUpdateResponseTagsMap = {
+export type UpdatePrivateLinkServicesForEDMUploadResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForEDMUploadUpdateResponseTagsMap =
+export const UpdatePrivateLinkServicesForEDMUploadResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForEDMUploadUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForEDMUploadUpdateResponseIdentityType =
+export type UpdatePrivateLinkServicesForEDMUploadResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForEDMUploadUpdateResponseIdentityType =
+export const UpdatePrivateLinkServicesForEDMUploadResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForEDMUploadUpdateResponseIdentity {
+export interface UpdatePrivateLinkServicesForEDMUploadResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForEDMUploadUpdateResponseIdentityType;
+  type?: UpdatePrivateLinkServicesForEDMUploadResponseIdentityType;
 }
-export const PrivateLinkServicesForEDMUploadUpdateResponseIdentity =
+export const UpdatePrivateLinkServicesForEDMUploadResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponseIdentityType,
+        UpdatePrivateLinkServicesForEDMUploadResponseIdentityType,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForEDMUploadUpdateResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForEDMUploadUpdateResponseIdentity>;
+    identifier: "UpdatePrivateLinkServicesForEDMUploadResponseIdentity",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForEDMUploadUpdateResponsePropertiesProvisioningState =
+export type UpdatePrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -9111,28 +9114,28 @@ export type PrivateLinkServicesForEDMUploadUpdateResponsePropertiesProvisioningS
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForEDMUploadUpdateResponsePropertiesProvisioningState =
+export const UpdatePrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export type UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export const UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPublicNetworkAccess =
+export type UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPublicNetworkAccess =
+export const UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForEDMUploadUpdateResponseProperties {
+export interface UpdatePrivateLinkServicesForEDMUploadResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForEDMUploadUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdatePrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -9144,15 +9147,15 @@ export interface PrivateLinkServicesForEDMUploadUpdateResponseProperties {
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForEDMUploadUpdateResponseProperties =
+export const UpdatePrivateLinkServicesForEDMUploadResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponsePropertiesProvisioningState,
+        UpdatePrivateLinkServicesForEDMUploadResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -9162,17 +9165,17 @@ export const PrivateLinkServicesForEDMUploadUpdateResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPrivateEndpointConnectionsList,
+        UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponsePropertiesPublicNetworkAccess,
+        UpdatePrivateLinkServicesForEDMUploadResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForEDMUploadUpdateResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForEDMUploadUpdateResponseProperties>;
+    identifier: "UpdatePrivateLinkServicesForEDMUploadResponseProperties",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadResponseProperties>;
 
-export interface UpdatePrivateLinkServiceForEdmUploadResponse {
+export interface UpdatePrivateLinkServicesForEDMUploadResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -9180,55 +9183,55 @@ export interface UpdatePrivateLinkServiceForEdmUploadResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForEDMUploadUpdateResponseSystemData;
+  systemData?: UpdatePrivateLinkServicesForEDMUploadResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForEDMUploadUpdateResponseKind;
+  kind: UpdatePrivateLinkServicesForEDMUploadResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForEDMUploadUpdateResponseTagsMap;
+  tags?: UpdatePrivateLinkServicesForEDMUploadResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForEDMUploadUpdateResponseIdentity;
+  identity?: UpdatePrivateLinkServicesForEDMUploadResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForEDMUploadUpdateResponseProperties;
+  properties?: UpdatePrivateLinkServicesForEDMUploadResponseProperties;
 }
-export const UpdatePrivateLinkServiceForEdmUploadResponse =
+export const UpdatePrivateLinkServicesForEDMUploadResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponseSystemData,
+        UpdatePrivateLinkServicesForEDMUploadResponseSystemData,
       ),
-      kind: PrivateLinkServicesForEDMUploadUpdateResponseKind,
+      kind: UpdatePrivateLinkServicesForEDMUploadResponseKind,
       location: S.String,
-      tags: S.optional(PrivateLinkServicesForEDMUploadUpdateResponseTagsMap),
+      tags: S.optional(UpdatePrivateLinkServicesForEDMUploadResponseTagsMap),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponseIdentity,
+        UpdatePrivateLinkServicesForEDMUploadResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForEDMUploadUpdateResponseProperties,
+        UpdatePrivateLinkServicesForEDMUploadResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForEdmUploadResponse",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForEdmUploadResponse>;
+    identifier: "UpdatePrivateLinkServicesForEDMUploadResponse",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForEDMUploadResponse>;
 
 /** Instance tags */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateRequestTagsMap = {
+export type UpdatePrivateLinkServicesForM365ComplianceCenterRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForM365ComplianceCenterUpdateRequestTagsMap =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterRequestTagsMap>;
 
-export interface UpdatePrivateLinkServiceForM365ComplianceCenterRequest {
+export interface UpdatePrivateLinkServicesForM365ComplianceCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -9236,18 +9239,18 @@ export interface UpdatePrivateLinkServiceForM365ComplianceCenterRequest {
   /** The name of the service instance. */
   resourceName: string;
   /** Instance tags */
-  tags?: PrivateLinkServicesForM365ComplianceCenterUpdateRequestTagsMap;
+  tags?: UpdatePrivateLinkServicesForM365ComplianceCenterRequestTagsMap;
   /** The properties for updating a service instance. */
   properties?: ServicesPropertiesUpdateParameters;
 }
-export const UpdatePrivateLinkServiceForM365ComplianceCenterRequest =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
       tags: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateRequestTagsMap,
+        UpdatePrivateLinkServicesForM365ComplianceCenterRequestTagsMap,
       ),
       properties: S.optional(ServicesPropertiesUpdateParameters),
     }).pipe(
@@ -9259,111 +9262,111 @@ export const UpdatePrivateLinkServiceForM365ComplianceCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForM365ComplianceCenterRequest",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForM365ComplianceCenterRequest>;
+    identifier: "UpdatePrivateLinkServicesForM365ComplianceCenterRequest",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataCreatedByType =
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataCreatedByType =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataLastModifiedByType =
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataLastModifiedByType =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemData {
+export interface UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemData =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataCreatedByType,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemDataLastModifiedByType,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemData>;
+      "UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemData",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponseKind =
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseKind =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponseTagsMap = {
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseTagsMap =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentityType =
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentityType =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentity {
+export interface UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentityType;
+  type?: UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentityType;
 }
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentity =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentityType,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentityType,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentity>;
+      "UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentity",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesProvisioningState =
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -9373,28 +9376,28 @@ export type PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPr
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesProvisioningState =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPublicNetworkAccess =
+export type UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPublicNetworkAccess =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForM365ComplianceCenterUpdateResponseProperties {
+export interface UpdatePrivateLinkServicesForM365ComplianceCenterResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -9406,15 +9409,15 @@ export interface PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropert
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseProperties =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesProvisioningState,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -9424,18 +9427,18 @@ export const PrivateLinkServicesForM365ComplianceCenterUpdateResponseProperties 
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPrivateEndpointConnectionsList,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponsePropertiesPublicNetworkAccess,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365ComplianceCenterUpdateResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForM365ComplianceCenterUpdateResponseProperties>;
+      "UpdatePrivateLinkServicesForM365ComplianceCenterResponseProperties",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterResponseProperties>;
 
-export interface UpdatePrivateLinkServiceForM365ComplianceCenterResponse {
+export interface UpdatePrivateLinkServicesForM365ComplianceCenterResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -9443,57 +9446,57 @@ export interface UpdatePrivateLinkServiceForM365ComplianceCenterResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemData;
+  systemData?: UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForM365ComplianceCenterUpdateResponseKind;
+  kind: UpdatePrivateLinkServicesForM365ComplianceCenterResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForM365ComplianceCenterUpdateResponseTagsMap;
+  tags?: UpdatePrivateLinkServicesForM365ComplianceCenterResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentity;
+  identity?: UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForM365ComplianceCenterUpdateResponseProperties;
+  properties?: UpdatePrivateLinkServicesForM365ComplianceCenterResponseProperties;
 }
-export const UpdatePrivateLinkServiceForM365ComplianceCenterResponse =
+export const UpdatePrivateLinkServicesForM365ComplianceCenterResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponseSystemData,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponseSystemData,
       ),
-      kind: PrivateLinkServicesForM365ComplianceCenterUpdateResponseKind,
+      kind: UpdatePrivateLinkServicesForM365ComplianceCenterResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponseTagsMap,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponseIdentity,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForM365ComplianceCenterUpdateResponseProperties,
+        UpdatePrivateLinkServicesForM365ComplianceCenterResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForM365ComplianceCenterResponse",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForM365ComplianceCenterResponse>;
+    identifier: "UpdatePrivateLinkServicesForM365ComplianceCenterResponse",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365ComplianceCenterResponse>;
 
 /** Instance tags */
-export type PrivateLinkServicesForM365SecurityCenterUpdateRequestTagsMap = {
+export type UpdatePrivateLinkServicesForM365SecurityCenterRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForM365SecurityCenterUpdateRequestTagsMap =
+export const UpdatePrivateLinkServicesForM365SecurityCenterRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterRequestTagsMap>;
 
-export interface UpdatePrivateLinkServiceForM365SecurityCenterRequest {
+export interface UpdatePrivateLinkServicesForM365SecurityCenterRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -9501,18 +9504,18 @@ export interface UpdatePrivateLinkServiceForM365SecurityCenterRequest {
   /** The name of the service instance. */
   resourceName: string;
   /** Instance tags */
-  tags?: PrivateLinkServicesForM365SecurityCenterUpdateRequestTagsMap;
+  tags?: UpdatePrivateLinkServicesForM365SecurityCenterRequestTagsMap;
   /** The properties for updating a service instance. */
   properties?: ServicesPropertiesUpdateParameters;
 }
-export const UpdatePrivateLinkServiceForM365SecurityCenterRequest =
+export const UpdatePrivateLinkServicesForM365SecurityCenterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
       tags: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateRequestTagsMap,
+        UpdatePrivateLinkServicesForM365SecurityCenterRequestTagsMap,
       ),
       properties: S.optional(ServicesPropertiesUpdateParameters),
     }).pipe(
@@ -9524,111 +9527,111 @@ export const UpdatePrivateLinkServiceForM365SecurityCenterRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForM365SecurityCenterRequest",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForM365SecurityCenterRequest>;
+    identifier: "UpdatePrivateLinkServicesForM365SecurityCenterRequest",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataCreatedByType =
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataCreatedByType =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataLastModifiedByType =
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataLastModifiedByType =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemData {
+export interface UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemData =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataCreatedByType,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemDataLastModifiedByType,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemData>;
+      "UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemData",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponseKind =
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseKind =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponseTagsMap = {
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseTagsMap =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentityType =
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentityType =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentity {
+export interface UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentityType;
+  type?: UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentityType;
 }
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentity =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentityType,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentityType,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentity>;
+      "UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentity",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesProvisioningState =
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -9638,28 +9641,28 @@ export type PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesProv
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesProvisioningState =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPublicNetworkAccess =
+export type UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPublicNetworkAccess =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForM365SecurityCenterUpdateResponseProperties {
+export interface UpdatePrivateLinkServicesForM365SecurityCenterResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -9671,15 +9674,15 @@ export interface PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertie
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForM365SecurityCenterUpdateResponseProperties =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesProvisioningState,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -9689,18 +9692,18 @@ export const PrivateLinkServicesForM365SecurityCenterUpdateResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPrivateEndpointConnectionsList,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponsePropertiesPublicNetworkAccess,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForM365SecurityCenterUpdateResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForM365SecurityCenterUpdateResponseProperties>;
+      "UpdatePrivateLinkServicesForM365SecurityCenterResponseProperties",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterResponseProperties>;
 
-export interface UpdatePrivateLinkServiceForM365SecurityCenterResponse {
+export interface UpdatePrivateLinkServicesForM365SecurityCenterResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -9708,57 +9711,57 @@ export interface UpdatePrivateLinkServiceForM365SecurityCenterResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemData;
+  systemData?: UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForM365SecurityCenterUpdateResponseKind;
+  kind: UpdatePrivateLinkServicesForM365SecurityCenterResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForM365SecurityCenterUpdateResponseTagsMap;
+  tags?: UpdatePrivateLinkServicesForM365SecurityCenterResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentity;
+  identity?: UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForM365SecurityCenterUpdateResponseProperties;
+  properties?: UpdatePrivateLinkServicesForM365SecurityCenterResponseProperties;
 }
-export const UpdatePrivateLinkServiceForM365SecurityCenterResponse =
+export const UpdatePrivateLinkServicesForM365SecurityCenterResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponseSystemData,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponseSystemData,
       ),
-      kind: PrivateLinkServicesForM365SecurityCenterUpdateResponseKind,
+      kind: UpdatePrivateLinkServicesForM365SecurityCenterResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponseTagsMap,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponseIdentity,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForM365SecurityCenterUpdateResponseProperties,
+        UpdatePrivateLinkServicesForM365SecurityCenterResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForM365SecurityCenterResponse",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForM365SecurityCenterResponse>;
+    identifier: "UpdatePrivateLinkServicesForM365SecurityCenterResponse",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForM365SecurityCenterResponse>;
 
 /** Instance tags */
-export type PrivateLinkServicesForMIPPolicySyncUpdateRequestTagsMap = {
+export type UpdatePrivateLinkServicesForMIPPolicySyncRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForMIPPolicySyncUpdateRequestTagsMap =
+export const UpdatePrivateLinkServicesForMIPPolicySyncRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncRequestTagsMap>;
 
-export interface UpdatePrivateLinkServiceForMipPolicySyncRequest {
+export interface UpdatePrivateLinkServicesForMIPPolicySyncRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -9766,17 +9769,17 @@ export interface UpdatePrivateLinkServiceForMipPolicySyncRequest {
   /** The name of the service instance. */
   resourceName: string;
   /** Instance tags */
-  tags?: PrivateLinkServicesForMIPPolicySyncUpdateRequestTagsMap;
+  tags?: UpdatePrivateLinkServicesForMIPPolicySyncRequestTagsMap;
   /** The properties for updating a service instance. */
   properties?: ServicesPropertiesUpdateParameters;
 }
-export const UpdatePrivateLinkServiceForMipPolicySyncRequest =
+export const UpdatePrivateLinkServicesForMIPPolicySyncRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
-      tags: S.optional(PrivateLinkServicesForMIPPolicySyncUpdateRequestTagsMap),
+      tags: S.optional(UpdatePrivateLinkServicesForMIPPolicySyncRequestTagsMap),
       properties: S.optional(ServicesPropertiesUpdateParameters),
     }).pipe(
       T.Http({
@@ -9787,109 +9790,109 @@ export const UpdatePrivateLinkServiceForMipPolicySyncRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForMipPolicySyncRequest",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForMipPolicySyncRequest>;
+    identifier: "UpdatePrivateLinkServicesForMIPPolicySyncRequest",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataCreatedByType =
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataCreatedByType =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataLastModifiedByType =
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataLastModifiedByType =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemData {
+export interface UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemData =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataCreatedByType,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemDataLastModifiedByType,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemData>;
+    identifier: "UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemData",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponseKind =
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseKind =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponseTagsMap = {
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseTagsMap =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentityType =
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentityType =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentity {
+export interface UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentityType;
+  type?: UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentityType;
 }
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentity =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentityType,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentityType,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentity>;
+    identifier: "UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentity",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesProvisioningState =
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -9899,28 +9902,28 @@ export type PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesProvision
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesProvisioningState =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPublicNetworkAccess =
+export type UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPublicNetworkAccess =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties {
+export interface UpdatePrivateLinkServicesForMIPPolicySyncResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -9932,15 +9935,15 @@ export interface PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties {
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesProvisioningState,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -9950,17 +9953,17 @@ export const PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPrivateEndpointConnectionsList,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponsePropertiesPublicNetworkAccess,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties>;
+    identifier: "UpdatePrivateLinkServicesForMIPPolicySyncResponseProperties",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncResponseProperties>;
 
-export interface UpdatePrivateLinkServiceForMipPolicySyncResponse {
+export interface UpdatePrivateLinkServicesForMIPPolicySyncResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -9968,56 +9971,56 @@ export interface UpdatePrivateLinkServiceForMipPolicySyncResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemData;
+  systemData?: UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForMIPPolicySyncUpdateResponseKind;
+  kind: UpdatePrivateLinkServicesForMIPPolicySyncResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForMIPPolicySyncUpdateResponseTagsMap;
+  tags?: UpdatePrivateLinkServicesForMIPPolicySyncResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentity;
+  identity?: UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties;
+  properties?: UpdatePrivateLinkServicesForMIPPolicySyncResponseProperties;
 }
-export const UpdatePrivateLinkServiceForMipPolicySyncResponse =
+export const UpdatePrivateLinkServicesForMIPPolicySyncResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponseSystemData,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponseSystemData,
       ),
-      kind: PrivateLinkServicesForMIPPolicySyncUpdateResponseKind,
+      kind: UpdatePrivateLinkServicesForMIPPolicySyncResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponseTagsMap,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponseIdentity,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForMIPPolicySyncUpdateResponseProperties,
+        UpdatePrivateLinkServicesForMIPPolicySyncResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForMipPolicySyncResponse",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForMipPolicySyncResponse>;
+    identifier: "UpdatePrivateLinkServicesForMIPPolicySyncResponse",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForMIPPolicySyncResponse>;
 
 /** Instance tags */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateRequestTagsMap =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIRequestTagsMap =
   { [key: string]: string | undefined };
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateRequestTagsMap =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIRequestTagsMap>;
 
-export interface UpdatePrivateLinkServiceForO365ManagementActivityApiRequest {
+export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -10025,18 +10028,18 @@ export interface UpdatePrivateLinkServiceForO365ManagementActivityApiRequest {
   /** The name of the service instance. */
   resourceName: string;
   /** Instance tags */
-  tags?: PrivateLinkServicesForO365ManagementActivityAPIUpdateRequestTagsMap;
+  tags?: UpdatePrivateLinkServicesForO365ManagementActivityAPIRequestTagsMap;
   /** The properties for updating a service instance. */
   properties?: ServicesPropertiesUpdateParameters;
 }
-export const UpdatePrivateLinkServiceForO365ManagementActivityApiRequest =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
       tags: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateRequestTagsMap,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIRequestTagsMap,
       ),
       properties: S.optional(ServicesPropertiesUpdateParameters),
     }).pipe(
@@ -10048,110 +10051,110 @@ export const UpdatePrivateLinkServiceForO365ManagementActivityApiRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForO365ManagementActivityApiRequest",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForO365ManagementActivityApiRequest>;
+    identifier: "UpdatePrivateLinkServicesForO365ManagementActivityAPIRequest",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataCreatedByType =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataCreatedByType =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataLastModifiedByType =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataLastModifiedByType =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemData {
+export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemData =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataCreatedByType,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemDataLastModifiedByType,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemData>;
+      "UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemData",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseKind =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseKind =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseTagsMap =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap =
   { [key: string]: string | undefined };
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseTagsMap =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentityType =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentityType =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentity {
+export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentityType;
+  type?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType;
 }
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentity =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentityType,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentityType,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentity>;
+      "UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentity",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesProvisioningState =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -10161,28 +10164,28 @@ export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropert
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesProvisioningState =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPublicNetworkAccess =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPublicNetworkAccess =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseProperties {
+export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -10194,15 +10197,15 @@ export interface PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePr
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseProperties =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesProvisioningState,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -10212,18 +10215,18 @@ export const PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseProper
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPrivateEndpointConnectionsList,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponsePropertiesPublicNetworkAccess,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
     identifier:
-      "PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseProperties>;
+      "UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseProperties",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseProperties>;
 
-export interface UpdatePrivateLinkServiceForO365ManagementActivityApiResponse {
+export interface UpdatePrivateLinkServicesForO365ManagementActivityAPIResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -10231,57 +10234,57 @@ export interface UpdatePrivateLinkServiceForO365ManagementActivityApiResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemData;
+  systemData?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseKind;
+  kind: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseTagsMap;
+  tags?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentity;
+  identity?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseProperties;
+  properties?: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseProperties;
 }
-export const UpdatePrivateLinkServiceForO365ManagementActivityApiResponse =
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPIResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseSystemData,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseSystemData,
       ),
-      kind: PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseKind,
+      kind: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseTagsMap,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseIdentity,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForO365ManagementActivityAPIUpdateResponseProperties,
+        UpdatePrivateLinkServicesForO365ManagementActivityAPIResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForO365ManagementActivityApiResponse",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForO365ManagementActivityApiResponse>;
+    identifier: "UpdatePrivateLinkServicesForO365ManagementActivityAPIResponse",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForO365ManagementActivityAPIResponse>;
 
 /** Instance tags */
-export type PrivateLinkServicesForSCCPowershellUpdateRequestTagsMap = {
+export type UpdatePrivateLinkServicesForSCCPowershellRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForSCCPowershellUpdateRequestTagsMap =
+export const UpdatePrivateLinkServicesForSCCPowershellRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForSCCPowershellUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellRequestTagsMap>;
 
-export interface UpdatePrivateLinkServiceForSccPowershellRequest {
+export interface UpdatePrivateLinkServicesForSCCPowershellRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the service instance. */
@@ -10289,17 +10292,17 @@ export interface UpdatePrivateLinkServiceForSccPowershellRequest {
   /** The name of the service instance. */
   resourceName: string;
   /** Instance tags */
-  tags?: PrivateLinkServicesForSCCPowershellUpdateRequestTagsMap;
+  tags?: UpdatePrivateLinkServicesForSCCPowershellRequestTagsMap;
   /** The properties for updating a service instance. */
   properties?: ServicesPropertiesUpdateParameters;
 }
-export const UpdatePrivateLinkServiceForSccPowershellRequest =
+export const UpdatePrivateLinkServicesForSCCPowershellRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
-      tags: S.optional(PrivateLinkServicesForSCCPowershellUpdateRequestTagsMap),
+      tags: S.optional(UpdatePrivateLinkServicesForSCCPowershellRequestTagsMap),
       properties: S.optional(ServicesPropertiesUpdateParameters),
     }).pipe(
       T.Http({
@@ -10310,109 +10313,109 @@ export const UpdatePrivateLinkServiceForSccPowershellRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForSccPowershellRequest",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForSccPowershellRequest>;
+    identifier: "UpdatePrivateLinkServicesForSCCPowershellRequest",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataCreatedByType =
+export type UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataCreatedByType =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataLastModifiedByType =
+export type UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataLastModifiedByType =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkServicesForSCCPowershellUpdateResponseSystemData {
+export interface UpdatePrivateLinkServicesForSCCPowershellResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkServicesForSCCPowershellUpdateResponseSystemData =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataCreatedByType,
+        UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponseSystemDataLastModifiedByType,
+        UpdatePrivateLinkServicesForSCCPowershellResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForSCCPowershellUpdateResponseSystemData",
-  }) as any as S.Schema<PrivateLinkServicesForSCCPowershellUpdateResponseSystemData>;
+    identifier: "UpdatePrivateLinkServicesForSCCPowershellResponseSystemData",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellResponseSystemData>;
 
 /** The kind of the service. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponseKind =
+export type UpdatePrivateLinkServicesForSCCPowershellResponseKind =
   | "fhir"
   | "fhir-Stu3"
   | "fhir-R4";
-export const PrivateLinkServicesForSCCPowershellUpdateResponseKind =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseKind =
   /*@__PURE__*/ S.String;
 
 /** The resource tags. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponseTagsMap = {
+export type UpdatePrivateLinkServicesForSCCPowershellResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkServicesForSCCPowershellUpdateResponseTagsMap =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateLinkServicesForSCCPowershellUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellResponseTagsMap>;
 
 /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponseIdentityType =
+export type UpdatePrivateLinkServicesForSCCPowershellResponseIdentityType =
   | "SystemAssigned"
   | "None";
-export const PrivateLinkServicesForSCCPowershellUpdateResponseIdentityType =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface PrivateLinkServicesForSCCPowershellUpdateResponseIdentity {
+export interface UpdatePrivateLinkServicesForSCCPowershellResponseIdentity {
   /** The principal ID of the resource identity. */
   principalId?: string;
   /** The tenant ID of the resource. */
   tenantId?: string;
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: PrivateLinkServicesForSCCPowershellUpdateResponseIdentityType;
+  type?: UpdatePrivateLinkServicesForSCCPowershellResponseIdentityType;
 }
-export const PrivateLinkServicesForSCCPowershellUpdateResponseIdentity =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponseIdentityType,
+        UpdatePrivateLinkServicesForSCCPowershellResponseIdentityType,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForSCCPowershellUpdateResponseIdentity",
-  }) as any as S.Schema<PrivateLinkServicesForSCCPowershellUpdateResponseIdentity>;
+    identifier: "UpdatePrivateLinkServicesForSCCPowershellResponseIdentity",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellResponseIdentity>;
 
 /** The provisioning state. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesProvisioningState =
+export type UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState =
   | "Deleting"
   | "Succeeded"
   | "Creating"
@@ -10422,28 +10425,28 @@ export type PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesProvision
   | "Failed"
   | "Canceled"
   | "Deprovisioned";
-export const PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesProvisioningState =
+export const UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** The list of private endpoint connections that are set up for this resource. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export type UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList =
   Array<PrivateEndpointConnection>;
-export const PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export const UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
     PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPrivateEndpointConnectionsList>;
+  ) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-export type PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPublicNetworkAccess =
+export type UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPublicNetworkAccess =
+export const UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The properties of a service instance. */
-export interface PrivateLinkServicesForSCCPowershellUpdateResponseProperties {
+export interface UpdatePrivateLinkServicesForSCCPowershellResponseProperties {
   /** The provisioning state. */
-  provisioningState?: PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState;
   /** The access policies of the service instance. */
   accessPolicies?: ServiceAccessPoliciesInfo;
   /** The settings for the Cosmos DB database backing the service. */
@@ -10455,15 +10458,15 @@ export interface PrivateLinkServicesForSCCPowershellUpdateResponseProperties {
   /** The settings for the export operation of the service instance. */
   exportConfiguration?: ServiceExportConfigurationInfo;
   /** The list of private endpoint connections that are set up for this resource. */
-  privateEndpointConnections?: PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList;
   /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
-  publicNetworkAccess?: PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess;
 }
-export const PrivateLinkServicesForSCCPowershellUpdateResponseProperties =
+export const UpdatePrivateLinkServicesForSCCPowershellResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesProvisioningState,
+        UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesProvisioningState,
       ),
       accessPolicies: S.optional(ServiceAccessPoliciesInfo),
       cosmosDbConfiguration: S.optional(ServiceCosmosDbConfigurationInfo),
@@ -10473,17 +10476,17 @@ export const PrivateLinkServicesForSCCPowershellUpdateResponseProperties =
       corsConfiguration: S.optional(ServiceCorsConfigurationInfo),
       exportConfiguration: S.optional(ServiceExportConfigurationInfo),
       privateEndpointConnections: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPrivateEndpointConnectionsList,
+        UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPrivateEndpointConnectionsList,
       ),
       publicNetworkAccess: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponsePropertiesPublicNetworkAccess,
+        UpdatePrivateLinkServicesForSCCPowershellResponsePropertiesPublicNetworkAccess,
       ),
     }),
   ).annotate({
-    identifier: "PrivateLinkServicesForSCCPowershellUpdateResponseProperties",
-  }) as any as S.Schema<PrivateLinkServicesForSCCPowershellUpdateResponseProperties>;
+    identifier: "UpdatePrivateLinkServicesForSCCPowershellResponseProperties",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellResponseProperties>;
 
-export interface UpdatePrivateLinkServiceForSccPowershellResponse {
+export interface UpdatePrivateLinkServicesForSCCPowershellResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -10491,207 +10494,210 @@ export interface UpdatePrivateLinkServiceForSccPowershellResponse {
   /** The resource type. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkServicesForSCCPowershellUpdateResponseSystemData;
+  systemData?: UpdatePrivateLinkServicesForSCCPowershellResponseSystemData;
   /** The kind of the service. */
-  kind: PrivateLinkServicesForSCCPowershellUpdateResponseKind;
+  kind: UpdatePrivateLinkServicesForSCCPowershellResponseKind;
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: PrivateLinkServicesForSCCPowershellUpdateResponseTagsMap;
+  tags?: UpdatePrivateLinkServicesForSCCPowershellResponseTagsMap;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: PrivateLinkServicesForSCCPowershellUpdateResponseIdentity;
+  identity?: UpdatePrivateLinkServicesForSCCPowershellResponseIdentity;
   /** The properties of a service instance. */
-  properties?: PrivateLinkServicesForSCCPowershellUpdateResponseProperties;
+  properties?: UpdatePrivateLinkServicesForSCCPowershellResponseProperties;
 }
-export const UpdatePrivateLinkServiceForSccPowershellResponse =
+export const UpdatePrivateLinkServicesForSCCPowershellResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponseSystemData,
+        UpdatePrivateLinkServicesForSCCPowershellResponseSystemData,
       ),
-      kind: PrivateLinkServicesForSCCPowershellUpdateResponseKind,
+      kind: UpdatePrivateLinkServicesForSCCPowershellResponseKind,
       location: S.String,
       tags: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponseTagsMap,
+        UpdatePrivateLinkServicesForSCCPowershellResponseTagsMap,
       ),
       etag: S.optional(S.String),
       identity: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponseIdentity,
+        UpdatePrivateLinkServicesForSCCPowershellResponseIdentity,
       ),
       properties: S.optional(
-        PrivateLinkServicesForSCCPowershellUpdateResponseProperties,
+        UpdatePrivateLinkServicesForSCCPowershellResponseProperties,
       ),
     }),
   ).annotate({
-    identifier: "UpdatePrivateLinkServiceForSccPowershellResponse",
-  }) as any as S.Schema<UpdatePrivateLinkServiceForSccPowershellResponse>;
+    identifier: "UpdatePrivateLinkServicesForSCCPowershellResponse",
+  }) as any as S.Schema<UpdatePrivateLinkServicesForSCCPowershellResponse>;
 
-export type DeletePrivateEndpointConnectionAdtApiError = AzureOpError;
+export type DeletePrivateEndpointConnectionsAdtAPIError = AzureOpError;
 /** Deletes a private endpoint connection. */
-export const DeletePrivateEndpointConnectionAdtApi: API.OperationMethod<
-  DeletePrivateEndpointConnectionAdtApiRequest,
-  DeletePrivateEndpointConnectionAdtApiResponse,
-  DeletePrivateEndpointConnectionAdtApiError,
+export const DeletePrivateEndpointConnectionsAdtAPI: API.OperationMethod<
+  DeletePrivateEndpointConnectionsAdtAPIRequest,
+  DeletePrivateEndpointConnectionsAdtAPIResponse,
+  DeletePrivateEndpointConnectionsAdtAPIError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateEndpointConnectionAdtApiRequest,
-  output: DeletePrivateEndpointConnectionAdtApiResponse,
+  input: DeletePrivateEndpointConnectionsAdtAPIRequest,
+  output: DeletePrivateEndpointConnectionsAdtAPIResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletePrivateEndpointConnectionCompError = AzureOpError;
+export type DeletePrivateEndpointConnectionsCompError = AzureOpError;
 /** Deletes a private endpoint connection. */
-export const DeletePrivateEndpointConnectionComp: API.OperationMethod<
-  DeletePrivateEndpointConnectionCompRequest,
-  DeletePrivateEndpointConnectionCompResponse,
-  DeletePrivateEndpointConnectionCompError,
+export const DeletePrivateEndpointConnectionsComp: API.OperationMethod<
+  DeletePrivateEndpointConnectionsCompRequest,
+  DeletePrivateEndpointConnectionsCompResponse,
+  DeletePrivateEndpointConnectionsCompError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateEndpointConnectionCompRequest,
-  output: DeletePrivateEndpointConnectionCompResponse,
+  input: DeletePrivateEndpointConnectionsCompRequest,
+  output: DeletePrivateEndpointConnectionsCompResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletePrivateEndpointConnectionForEdmError = AzureOpError;
+export type DeletePrivateEndpointConnectionsForEDMError = AzureOpError;
 /** Deletes a private endpoint connection. */
-export const DeletePrivateEndpointConnectionForEdm: API.OperationMethod<
-  DeletePrivateEndpointConnectionForEdmRequest,
-  DeletePrivateEndpointConnectionForEdmResponse,
-  DeletePrivateEndpointConnectionForEdmError,
+export const DeletePrivateEndpointConnectionsForEDM: API.OperationMethod<
+  DeletePrivateEndpointConnectionsForEDMRequest,
+  DeletePrivateEndpointConnectionsForEDMResponse,
+  DeletePrivateEndpointConnectionsForEDMError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateEndpointConnectionForEdmRequest,
-  output: DeletePrivateEndpointConnectionForEdmResponse,
+  input: DeletePrivateEndpointConnectionsForEDMRequest,
+  output: DeletePrivateEndpointConnectionsForEDMResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletePrivateEndpointConnectionForMipPolicySyncError = AzureOpError;
+export type DeletePrivateEndpointConnectionsForMIPPolicySyncError =
+  AzureOpError;
 /** Deletes a private endpoint connection. */
-export const DeletePrivateEndpointConnectionForMipPolicySync: API.OperationMethod<
-  DeletePrivateEndpointConnectionForMipPolicySyncRequest,
-  DeletePrivateEndpointConnectionForMipPolicySyncResponse,
-  DeletePrivateEndpointConnectionForMipPolicySyncError,
+export const DeletePrivateEndpointConnectionsForMIPPolicySync: API.OperationMethod<
+  DeletePrivateEndpointConnectionsForMIPPolicySyncRequest,
+  DeletePrivateEndpointConnectionsForMIPPolicySyncResponse,
+  DeletePrivateEndpointConnectionsForMIPPolicySyncError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateEndpointConnectionForMipPolicySyncRequest,
-  output: DeletePrivateEndpointConnectionForMipPolicySyncResponse,
+  input: DeletePrivateEndpointConnectionsForMIPPolicySyncRequest,
+  output: DeletePrivateEndpointConnectionsForMIPPolicySyncResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletePrivateEndpointConnectionForSccPowershellError = AzureOpError;
+export type DeletePrivateEndpointConnectionsForSCCPowershellError =
+  AzureOpError;
 /** Deletes a private endpoint connection. */
-export const DeletePrivateEndpointConnectionForSccPowershell: API.OperationMethod<
-  DeletePrivateEndpointConnectionForSccPowershellRequest,
-  DeletePrivateEndpointConnectionForSccPowershellResponse,
-  DeletePrivateEndpointConnectionForSccPowershellError,
+export const DeletePrivateEndpointConnectionsForSCCPowershell: API.OperationMethod<
+  DeletePrivateEndpointConnectionsForSCCPowershellRequest,
+  DeletePrivateEndpointConnectionsForSCCPowershellResponse,
+  DeletePrivateEndpointConnectionsForSCCPowershellError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateEndpointConnectionForSccPowershellRequest,
-  output: DeletePrivateEndpointConnectionForSccPowershellResponse,
+  input: DeletePrivateEndpointConnectionsForSCCPowershellRequest,
+  output: DeletePrivateEndpointConnectionsForSCCPowershellResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletePrivateEndpointConnectionSecError = AzureOpError;
+export type DeletePrivateEndpointConnectionsSecError = AzureOpError;
 /** Deletes a private endpoint connection. */
-export const DeletePrivateEndpointConnectionSec: API.OperationMethod<
-  DeletePrivateEndpointConnectionSecRequest,
-  DeletePrivateEndpointConnectionSecResponse,
-  DeletePrivateEndpointConnectionSecError,
+export const DeletePrivateEndpointConnectionsSec: API.OperationMethod<
+  DeletePrivateEndpointConnectionsSecRequest,
+  DeletePrivateEndpointConnectionsSecResponse,
+  DeletePrivateEndpointConnectionsSecError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateEndpointConnectionSecRequest,
-  output: DeletePrivateEndpointConnectionSecResponse,
+  input: DeletePrivateEndpointConnectionsSecRequest,
+  output: DeletePrivateEndpointConnectionsSecResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletePrivateLinkServiceForM365ComplianceCenterError = AzureOpError;
-/** Delete a service instance. */
-export const DeletePrivateLinkServiceForM365ComplianceCenter: API.OperationMethod<
-  DeletePrivateLinkServiceForM365ComplianceCenterRequest,
-  DeletePrivateLinkServiceForM365ComplianceCenterResponse,
-  DeletePrivateLinkServiceForM365ComplianceCenterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateLinkServiceForM365ComplianceCenterRequest,
-  output: DeletePrivateLinkServiceForM365ComplianceCenterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletePrivateLinkServiceForM365SecurityCenterError = AzureOpError;
-/** Delete a service instance. */
-export const DeletePrivateLinkServiceForM365SecurityCenter: API.OperationMethod<
-  DeletePrivateLinkServiceForM365SecurityCenterRequest,
-  DeletePrivateLinkServiceForM365SecurityCenterResponse,
-  DeletePrivateLinkServiceForM365SecurityCenterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateLinkServiceForM365SecurityCenterRequest,
-  output: DeletePrivateLinkServiceForM365SecurityCenterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletePrivateLinkServiceForMipPolicySyncError = AzureOpError;
-/** Delete a service instance. */
-export const DeletePrivateLinkServiceForMipPolicySync: API.OperationMethod<
-  DeletePrivateLinkServiceForMipPolicySyncRequest,
-  DeletePrivateLinkServiceForMipPolicySyncResponse,
-  DeletePrivateLinkServiceForMipPolicySyncError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateLinkServiceForMipPolicySyncRequest,
-  output: DeletePrivateLinkServiceForMipPolicySyncResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletePrivateLinkServiceForO365ManagementActivityApiError =
+export type DeletePrivateLinkServicesForM365ComplianceCenterError =
   AzureOpError;
 /** Delete a service instance. */
-export const DeletePrivateLinkServiceForO365ManagementActivityApi: API.OperationMethod<
-  DeletePrivateLinkServiceForO365ManagementActivityApiRequest,
-  DeletePrivateLinkServiceForO365ManagementActivityApiResponse,
-  DeletePrivateLinkServiceForO365ManagementActivityApiError,
+export const DeletePrivateLinkServicesForM365ComplianceCenter: API.OperationMethod<
+  DeletePrivateLinkServicesForM365ComplianceCenterRequest,
+  DeletePrivateLinkServicesForM365ComplianceCenterResponse,
+  DeletePrivateLinkServicesForM365ComplianceCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateLinkServiceForO365ManagementActivityApiRequest,
-  output: DeletePrivateLinkServiceForO365ManagementActivityApiResponse,
+  input: DeletePrivateLinkServicesForM365ComplianceCenterRequest,
+  output: DeletePrivateLinkServicesForM365ComplianceCenterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeletePrivateLinkServiceForSccPowershellError = AzureOpError;
+export type DeletePrivateLinkServicesForM365SecurityCenterError = AzureOpError;
 /** Delete a service instance. */
-export const DeletePrivateLinkServiceForSccPowershell: API.OperationMethod<
-  DeletePrivateLinkServiceForSccPowershellRequest,
-  DeletePrivateLinkServiceForSccPowershellResponse,
-  DeletePrivateLinkServiceForSccPowershellError,
+export const DeletePrivateLinkServicesForM365SecurityCenter: API.OperationMethod<
+  DeletePrivateLinkServicesForM365SecurityCenterRequest,
+  DeletePrivateLinkServicesForM365SecurityCenterResponse,
+  DeletePrivateLinkServicesForM365SecurityCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrivateLinkServiceForSccPowershellRequest,
-  output: DeletePrivateLinkServiceForSccPowershellResponse,
+  input: DeletePrivateLinkServicesForM365SecurityCenterRequest,
+  output: DeletePrivateLinkServicesForM365SecurityCenterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateLinkServicesForMIPPolicySyncError = AzureOpError;
+/** Delete a service instance. */
+export const DeletePrivateLinkServicesForMIPPolicySync: API.OperationMethod<
+  DeletePrivateLinkServicesForMIPPolicySyncRequest,
+  DeletePrivateLinkServicesForMIPPolicySyncResponse,
+  DeletePrivateLinkServicesForMIPPolicySyncError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateLinkServicesForMIPPolicySyncRequest,
+  output: DeletePrivateLinkServicesForMIPPolicySyncResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateLinkServicesForO365ManagementActivityAPIError =
+  AzureOpError;
+/** Delete a service instance. */
+export const DeletePrivateLinkServicesForO365ManagementActivityAPI: API.OperationMethod<
+  DeletePrivateLinkServicesForO365ManagementActivityAPIRequest,
+  DeletePrivateLinkServicesForO365ManagementActivityAPIResponse,
+  DeletePrivateLinkServicesForO365ManagementActivityAPIError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateLinkServicesForO365ManagementActivityAPIRequest,
+  output: DeletePrivateLinkServicesForO365ManagementActivityAPIResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateLinkServicesForSCCPowershellError = AzureOpError;
+/** Delete a service instance. */
+export const DeletePrivateLinkServicesForSCCPowershell: API.OperationMethod<
+  DeletePrivateLinkServicesForSCCPowershellRequest,
+  DeletePrivateLinkServicesForSCCPowershellResponse,
+  DeletePrivateLinkServicesForSCCPowershellError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateLinkServicesForSCCPowershellRequest,
+  output: DeletePrivateLinkServicesForSCCPowershellResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10727,91 +10733,91 @@ export const GetOperationResult: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPrivateEndpointConnectionAdtApiError = AzureOpError;
+export type GetPrivateEndpointConnectionsAdtAPIError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the service. */
-export const GetPrivateEndpointConnectionAdtApi: API.OperationMethod<
-  GetPrivateEndpointConnectionAdtApiRequest,
-  GetPrivateEndpointConnectionAdtApiResponse,
-  GetPrivateEndpointConnectionAdtApiError,
+export const GetPrivateEndpointConnectionsAdtAPI: API.OperationMethod<
+  GetPrivateEndpointConnectionsAdtAPIRequest,
+  GetPrivateEndpointConnectionsAdtAPIResponse,
+  GetPrivateEndpointConnectionsAdtAPIError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateEndpointConnectionAdtApiRequest,
-  output: GetPrivateEndpointConnectionAdtApiResponse,
+  input: GetPrivateEndpointConnectionsAdtAPIRequest,
+  output: GetPrivateEndpointConnectionsAdtAPIResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateEndpointConnectionCompError = AzureOpError;
+export type GetPrivateEndpointConnectionsCompError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the service. */
-export const GetPrivateEndpointConnectionComp: API.OperationMethod<
-  GetPrivateEndpointConnectionCompRequest,
-  GetPrivateEndpointConnectionCompResponse,
-  GetPrivateEndpointConnectionCompError,
+export const GetPrivateEndpointConnectionsComp: API.OperationMethod<
+  GetPrivateEndpointConnectionsCompRequest,
+  GetPrivateEndpointConnectionsCompResponse,
+  GetPrivateEndpointConnectionsCompError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateEndpointConnectionCompRequest,
-  output: GetPrivateEndpointConnectionCompResponse,
+  input: GetPrivateEndpointConnectionsCompRequest,
+  output: GetPrivateEndpointConnectionsCompResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateEndpointConnectionForEdmError = AzureOpError;
+export type GetPrivateEndpointConnectionsForEDMError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the service. */
-export const GetPrivateEndpointConnectionForEdm: API.OperationMethod<
-  GetPrivateEndpointConnectionForEdmRequest,
-  GetPrivateEndpointConnectionForEdmResponse,
-  GetPrivateEndpointConnectionForEdmError,
+export const GetPrivateEndpointConnectionsForEDM: API.OperationMethod<
+  GetPrivateEndpointConnectionsForEDMRequest,
+  GetPrivateEndpointConnectionsForEDMResponse,
+  GetPrivateEndpointConnectionsForEDMError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateEndpointConnectionForEdmRequest,
-  output: GetPrivateEndpointConnectionForEdmResponse,
+  input: GetPrivateEndpointConnectionsForEDMRequest,
+  output: GetPrivateEndpointConnectionsForEDMResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateEndpointConnectionForMipPolicySyncError = AzureOpError;
+export type GetPrivateEndpointConnectionsForMIPPolicySyncError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the service. */
-export const GetPrivateEndpointConnectionForMipPolicySync: API.OperationMethod<
-  GetPrivateEndpointConnectionForMipPolicySyncRequest,
-  GetPrivateEndpointConnectionForMipPolicySyncResponse,
-  GetPrivateEndpointConnectionForMipPolicySyncError,
+export const GetPrivateEndpointConnectionsForMIPPolicySync: API.OperationMethod<
+  GetPrivateEndpointConnectionsForMIPPolicySyncRequest,
+  GetPrivateEndpointConnectionsForMIPPolicySyncResponse,
+  GetPrivateEndpointConnectionsForMIPPolicySyncError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateEndpointConnectionForMipPolicySyncRequest,
-  output: GetPrivateEndpointConnectionForMipPolicySyncResponse,
+  input: GetPrivateEndpointConnectionsForMIPPolicySyncRequest,
+  output: GetPrivateEndpointConnectionsForMIPPolicySyncResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateEndpointConnectionForSccPowershellError = AzureOpError;
+export type GetPrivateEndpointConnectionsForSCCPowershellError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the service. */
-export const GetPrivateEndpointConnectionForSccPowershell: API.OperationMethod<
-  GetPrivateEndpointConnectionForSccPowershellRequest,
-  GetPrivateEndpointConnectionForSccPowershellResponse,
-  GetPrivateEndpointConnectionForSccPowershellError,
+export const GetPrivateEndpointConnectionsForSCCPowershell: API.OperationMethod<
+  GetPrivateEndpointConnectionsForSCCPowershellRequest,
+  GetPrivateEndpointConnectionsForSCCPowershellResponse,
+  GetPrivateEndpointConnectionsForSCCPowershellError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateEndpointConnectionForSccPowershellRequest,
-  output: GetPrivateEndpointConnectionForSccPowershellResponse,
+  input: GetPrivateEndpointConnectionsForSCCPowershellRequest,
+  output: GetPrivateEndpointConnectionsForSCCPowershellResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateEndpointConnectionSecError = AzureOpError;
+export type GetPrivateEndpointConnectionsSecError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the service. */
-export const GetPrivateEndpointConnectionSec: API.OperationMethod<
-  GetPrivateEndpointConnectionSecRequest,
-  GetPrivateEndpointConnectionSecResponse,
-  GetPrivateEndpointConnectionSecError,
+export const GetPrivateEndpointConnectionsSec: API.OperationMethod<
+  GetPrivateEndpointConnectionsSecRequest,
+  GetPrivateEndpointConnectionsSecResponse,
+  GetPrivateEndpointConnectionsSecError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateEndpointConnectionSecRequest,
-  output: GetPrivateEndpointConnectionSecResponse,
+  input: GetPrivateEndpointConnectionsSecRequest,
+  output: GetPrivateEndpointConnectionsSecResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10832,167 +10838,167 @@ export const GetPrivateLinkResource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkResourceAdtApiError = AzureOpError;
+export type GetPrivateLinkResourcesAdtAPIError = AzureOpError;
 /** Gets a private link resource that need to be created for a service. */
-export const GetPrivateLinkResourceAdtApi: API.OperationMethod<
-  GetPrivateLinkResourceAdtApiRequest,
-  GetPrivateLinkResourceAdtApiResponse,
-  GetPrivateLinkResourceAdtApiError,
+export const GetPrivateLinkResourcesAdtAPI: API.OperationMethod<
+  GetPrivateLinkResourcesAdtAPIRequest,
+  GetPrivateLinkResourcesAdtAPIResponse,
+  GetPrivateLinkResourcesAdtAPIError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkResourceAdtApiRequest,
-  output: GetPrivateLinkResourceAdtApiResponse,
+  input: GetPrivateLinkResourcesAdtAPIRequest,
+  output: GetPrivateLinkResourcesAdtAPIResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkResourceCompError = AzureOpError;
+export type GetPrivateLinkResourcesCompError = AzureOpError;
 /** Gets a private link resource that need to be created for a service. */
-export const GetPrivateLinkResourceComp: API.OperationMethod<
-  GetPrivateLinkResourceCompRequest,
-  GetPrivateLinkResourceCompResponse,
-  GetPrivateLinkResourceCompError,
+export const GetPrivateLinkResourcesComp: API.OperationMethod<
+  GetPrivateLinkResourcesCompRequest,
+  GetPrivateLinkResourcesCompResponse,
+  GetPrivateLinkResourcesCompError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkResourceCompRequest,
-  output: GetPrivateLinkResourceCompResponse,
+  input: GetPrivateLinkResourcesCompRequest,
+  output: GetPrivateLinkResourcesCompResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkResourceForMipPolicySyncError = AzureOpError;
+export type GetPrivateLinkResourcesForMIPPolicySyncError = AzureOpError;
 /** Gets a private link resource that need to be created for a service. */
-export const GetPrivateLinkResourceForMipPolicySync: API.OperationMethod<
-  GetPrivateLinkResourceForMipPolicySyncRequest,
-  GetPrivateLinkResourceForMipPolicySyncResponse,
-  GetPrivateLinkResourceForMipPolicySyncError,
+export const GetPrivateLinkResourcesForMIPPolicySync: API.OperationMethod<
+  GetPrivateLinkResourcesForMIPPolicySyncRequest,
+  GetPrivateLinkResourcesForMIPPolicySyncResponse,
+  GetPrivateLinkResourcesForMIPPolicySyncError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkResourceForMipPolicySyncRequest,
-  output: GetPrivateLinkResourceForMipPolicySyncResponse,
+  input: GetPrivateLinkResourcesForMIPPolicySyncRequest,
+  output: GetPrivateLinkResourcesForMIPPolicySyncResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkResourceForSccPowershellError = AzureOpError;
+export type GetPrivateLinkResourcesForSCCPowershellError = AzureOpError;
 /** Gets a private link resource that need to be created for a service. */
-export const GetPrivateLinkResourceForSccPowershell: API.OperationMethod<
-  GetPrivateLinkResourceForSccPowershellRequest,
-  GetPrivateLinkResourceForSccPowershellResponse,
-  GetPrivateLinkResourceForSccPowershellError,
+export const GetPrivateLinkResourcesForSCCPowershell: API.OperationMethod<
+  GetPrivateLinkResourcesForSCCPowershellRequest,
+  GetPrivateLinkResourcesForSCCPowershellResponse,
+  GetPrivateLinkResourcesForSCCPowershellError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkResourceForSccPowershellRequest,
-  output: GetPrivateLinkResourceForSccPowershellResponse,
+  input: GetPrivateLinkResourcesForSCCPowershellRequest,
+  output: GetPrivateLinkResourcesForSCCPowershellResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkResourceSecError = AzureOpError;
+export type GetPrivateLinkResourcesSecError = AzureOpError;
 /** Gets a private link resource that need to be created for a service. */
-export const GetPrivateLinkResourceSec: API.OperationMethod<
-  GetPrivateLinkResourceSecRequest,
-  GetPrivateLinkResourceSecResponse,
-  GetPrivateLinkResourceSecError,
+export const GetPrivateLinkResourcesSec: API.OperationMethod<
+  GetPrivateLinkResourcesSecRequest,
+  GetPrivateLinkResourcesSecResponse,
+  GetPrivateLinkResourcesSecError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkResourceSecRequest,
-  output: GetPrivateLinkResourceSecResponse,
+  input: GetPrivateLinkResourcesSecRequest,
+  output: GetPrivateLinkResourcesSecResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkServiceForEdmUploadError = AzureOpError;
+export type GetPrivateLinkServicesForEDMUploadError = AzureOpError;
 /** Get the metadata of a privateLinkServicesForEDMUpload resource. */
-export const GetPrivateLinkServiceForEdmUpload: API.OperationMethod<
-  GetPrivateLinkServiceForEdmUploadRequest,
-  GetPrivateLinkServiceForEdmUploadResponse,
-  GetPrivateLinkServiceForEdmUploadError,
+export const GetPrivateLinkServicesForEDMUpload: API.OperationMethod<
+  GetPrivateLinkServicesForEDMUploadRequest,
+  GetPrivateLinkServicesForEDMUploadResponse,
+  GetPrivateLinkServicesForEDMUploadError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkServiceForEdmUploadRequest,
-  output: GetPrivateLinkServiceForEdmUploadResponse,
+  input: GetPrivateLinkServicesForEDMUploadRequest,
+  output: GetPrivateLinkServicesForEDMUploadResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkServiceForM365ComplianceCenterError = AzureOpError;
+export type GetPrivateLinkServicesForM365ComplianceCenterError = AzureOpError;
 /** Get the metadata of a privateLinkServicesForM365ComplianceCenter resource. */
-export const GetPrivateLinkServiceForM365ComplianceCenter: API.OperationMethod<
-  GetPrivateLinkServiceForM365ComplianceCenterRequest,
-  GetPrivateLinkServiceForM365ComplianceCenterResponse,
-  GetPrivateLinkServiceForM365ComplianceCenterError,
+export const GetPrivateLinkServicesForM365ComplianceCenter: API.OperationMethod<
+  GetPrivateLinkServicesForM365ComplianceCenterRequest,
+  GetPrivateLinkServicesForM365ComplianceCenterResponse,
+  GetPrivateLinkServicesForM365ComplianceCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkServiceForM365ComplianceCenterRequest,
-  output: GetPrivateLinkServiceForM365ComplianceCenterResponse,
+  input: GetPrivateLinkServicesForM365ComplianceCenterRequest,
+  output: GetPrivateLinkServicesForM365ComplianceCenterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkServiceForM365SecurityCenterError = AzureOpError;
+export type GetPrivateLinkServicesForM365SecurityCenterError = AzureOpError;
 /** Get the metadata of a privateLinkServicesForM365SecurityCenter resource. */
-export const GetPrivateLinkServiceForM365SecurityCenter: API.OperationMethod<
-  GetPrivateLinkServiceForM365SecurityCenterRequest,
-  GetPrivateLinkServiceForM365SecurityCenterResponse,
-  GetPrivateLinkServiceForM365SecurityCenterError,
+export const GetPrivateLinkServicesForM365SecurityCenter: API.OperationMethod<
+  GetPrivateLinkServicesForM365SecurityCenterRequest,
+  GetPrivateLinkServicesForM365SecurityCenterResponse,
+  GetPrivateLinkServicesForM365SecurityCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkServiceForM365SecurityCenterRequest,
-  output: GetPrivateLinkServiceForM365SecurityCenterResponse,
+  input: GetPrivateLinkServicesForM365SecurityCenterRequest,
+  output: GetPrivateLinkServicesForM365SecurityCenterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkServiceForMipPolicySyncError = AzureOpError;
+export type GetPrivateLinkServicesForMIPPolicySyncError = AzureOpError;
 /** Get the metadata of a privateLinkServicesForMIPPolicySync resource. */
-export const GetPrivateLinkServiceForMipPolicySync: API.OperationMethod<
-  GetPrivateLinkServiceForMipPolicySyncRequest,
-  GetPrivateLinkServiceForMipPolicySyncResponse,
-  GetPrivateLinkServiceForMipPolicySyncError,
+export const GetPrivateLinkServicesForMIPPolicySync: API.OperationMethod<
+  GetPrivateLinkServicesForMIPPolicySyncRequest,
+  GetPrivateLinkServicesForMIPPolicySyncResponse,
+  GetPrivateLinkServicesForMIPPolicySyncError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkServiceForMipPolicySyncRequest,
-  output: GetPrivateLinkServiceForMipPolicySyncResponse,
+  input: GetPrivateLinkServicesForMIPPolicySyncRequest,
+  output: GetPrivateLinkServicesForMIPPolicySyncResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkServiceForO365ManagementActivityApiError =
+export type GetPrivateLinkServicesForO365ManagementActivityAPIError =
   AzureOpError;
 /** Get the metadata of a privateLinkServicesForO365ManagementActivityAPI resource. */
-export const GetPrivateLinkServiceForO365ManagementActivityApi: API.OperationMethod<
-  GetPrivateLinkServiceForO365ManagementActivityApiRequest,
-  GetPrivateLinkServiceForO365ManagementActivityApiResponse,
-  GetPrivateLinkServiceForO365ManagementActivityApiError,
+export const GetPrivateLinkServicesForO365ManagementActivityAPI: API.OperationMethod<
+  GetPrivateLinkServicesForO365ManagementActivityAPIRequest,
+  GetPrivateLinkServicesForO365ManagementActivityAPIResponse,
+  GetPrivateLinkServicesForO365ManagementActivityAPIError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkServiceForO365ManagementActivityApiRequest,
-  output: GetPrivateLinkServiceForO365ManagementActivityApiResponse,
+  input: GetPrivateLinkServicesForO365ManagementActivityAPIRequest,
+  output: GetPrivateLinkServicesForO365ManagementActivityAPIResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkServiceForSccPowershellError = AzureOpError;
+export type GetPrivateLinkServicesForSCCPowershellError = AzureOpError;
 /** Get the metadata of a privateLinkServicesForSCCPowershell resource. */
-export const GetPrivateLinkServiceForSccPowershell: API.OperationMethod<
-  GetPrivateLinkServiceForSccPowershellRequest,
-  GetPrivateLinkServiceForSccPowershellResponse,
-  GetPrivateLinkServiceForSccPowershellError,
+export const GetPrivateLinkServicesForSCCPowershell: API.OperationMethod<
+  GetPrivateLinkServicesForSCCPowershellRequest,
+  GetPrivateLinkServicesForSCCPowershellResponse,
+  GetPrivateLinkServicesForSCCPowershellError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkServiceForSccPowershellRequest,
-  output: GetPrivateLinkServiceForSccPowershellResponse,
+  input: GetPrivateLinkServicesForSCCPowershellRequest,
+  output: GetPrivateLinkServicesForSCCPowershellResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11013,108 +11019,93 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPrivateEndpointConnectionAdtApiByServiceError = AzureOpError;
+export type ListPrivateEndpointConnectionsAdtAPIByServiceError = AzureOpError;
 /** Lists all private endpoint connections for a service. */
-export const ListPrivateEndpointConnectionAdtApiByService: API.OperationMethod<
-  ListPrivateEndpointConnectionAdtApiByServiceRequest,
-  ListPrivateEndpointConnectionAdtApiByServiceResponse,
-  ListPrivateEndpointConnectionAdtApiByServiceError,
+export const ListPrivateEndpointConnectionsAdtAPIByService: API.OperationMethod<
+  ListPrivateEndpointConnectionsAdtAPIByServiceRequest,
+  ListPrivateEndpointConnectionsAdtAPIByServiceResponse,
+  ListPrivateEndpointConnectionsAdtAPIByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateEndpointConnectionAdtApiByServiceRequest,
-  output: ListPrivateEndpointConnectionAdtApiByServiceResponse,
+  input: ListPrivateEndpointConnectionsAdtAPIByServiceRequest,
+  output: ListPrivateEndpointConnectionsAdtAPIByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateEndpointConnectionCompByServiceError = AzureOpError;
+export type ListPrivateEndpointConnectionsCompByServiceError = AzureOpError;
 /** Lists all private endpoint connections for a service. */
-export const ListPrivateEndpointConnectionCompByService: API.OperationMethod<
-  ListPrivateEndpointConnectionCompByServiceRequest,
-  ListPrivateEndpointConnectionCompByServiceResponse,
-  ListPrivateEndpointConnectionCompByServiceError,
+export const ListPrivateEndpointConnectionsCompByService: API.OperationMethod<
+  ListPrivateEndpointConnectionsCompByServiceRequest,
+  ListPrivateEndpointConnectionsCompByServiceResponse,
+  ListPrivateEndpointConnectionsCompByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateEndpointConnectionCompByServiceRequest,
-  output: ListPrivateEndpointConnectionCompByServiceResponse,
+  input: ListPrivateEndpointConnectionsCompByServiceRequest,
+  output: ListPrivateEndpointConnectionsCompByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateEndpointConnectionForEdmByServiceError = AzureOpError;
+export type ListPrivateEndpointConnectionsForEDMByServiceError = AzureOpError;
 /** Lists all private endpoint connections for a service. */
-export const ListPrivateEndpointConnectionForEdmByService: API.OperationMethod<
-  ListPrivateEndpointConnectionForEdmByServiceRequest,
-  ListPrivateEndpointConnectionForEdmByServiceResponse,
-  ListPrivateEndpointConnectionForEdmByServiceError,
+export const ListPrivateEndpointConnectionsForEDMByService: API.OperationMethod<
+  ListPrivateEndpointConnectionsForEDMByServiceRequest,
+  ListPrivateEndpointConnectionsForEDMByServiceResponse,
+  ListPrivateEndpointConnectionsForEDMByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateEndpointConnectionForEdmByServiceRequest,
-  output: ListPrivateEndpointConnectionForEdmByServiceResponse,
+  input: ListPrivateEndpointConnectionsForEDMByServiceRequest,
+  output: ListPrivateEndpointConnectionsForEDMByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateEndpointConnectionForMipPolicySyncByServiceError =
+export type ListPrivateEndpointConnectionsForMIPPolicySyncByServiceError =
   AzureOpError;
 /** Lists all private endpoint connections for a service. */
-export const ListPrivateEndpointConnectionForMipPolicySyncByService: API.OperationMethod<
-  ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest,
-  ListPrivateEndpointConnectionForMipPolicySyncByServiceResponse,
-  ListPrivateEndpointConnectionForMipPolicySyncByServiceError,
+export const ListPrivateEndpointConnectionsForMIPPolicySyncByService: API.OperationMethod<
+  ListPrivateEndpointConnectionsForMIPPolicySyncByServiceRequest,
+  ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponse,
+  ListPrivateEndpointConnectionsForMIPPolicySyncByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateEndpointConnectionForMipPolicySyncByServiceRequest,
-  output: ListPrivateEndpointConnectionForMipPolicySyncByServiceResponse,
+  input: ListPrivateEndpointConnectionsForMIPPolicySyncByServiceRequest,
+  output: ListPrivateEndpointConnectionsForMIPPolicySyncByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateEndpointConnectionForSccPowershellByServiceError =
+export type ListPrivateEndpointConnectionsForSCCPowershellByServiceError =
   AzureOpError;
 /** Lists all private endpoint connections for a service. */
-export const ListPrivateEndpointConnectionForSccPowershellByService: API.OperationMethod<
-  ListPrivateEndpointConnectionForSccPowershellByServiceRequest,
-  ListPrivateEndpointConnectionForSccPowershellByServiceResponse,
-  ListPrivateEndpointConnectionForSccPowershellByServiceError,
+export const ListPrivateEndpointConnectionsForSCCPowershellByService: API.OperationMethod<
+  ListPrivateEndpointConnectionsForSCCPowershellByServiceRequest,
+  ListPrivateEndpointConnectionsForSCCPowershellByServiceResponse,
+  ListPrivateEndpointConnectionsForSCCPowershellByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateEndpointConnectionForSccPowershellByServiceRequest,
-  output: ListPrivateEndpointConnectionForSccPowershellByServiceResponse,
+  input: ListPrivateEndpointConnectionsForSCCPowershellByServiceRequest,
+  output: ListPrivateEndpointConnectionsForSCCPowershellByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateEndpointConnectionSecByServiceError = AzureOpError;
+export type ListPrivateEndpointConnectionsSecByServiceError = AzureOpError;
 /** Lists all private endpoint connections for a service. */
-export const ListPrivateEndpointConnectionSecByService: API.OperationMethod<
-  ListPrivateEndpointConnectionSecByServiceRequest,
-  ListPrivateEndpointConnectionSecByServiceResponse,
-  ListPrivateEndpointConnectionSecByServiceError,
+export const ListPrivateEndpointConnectionsSecByService: API.OperationMethod<
+  ListPrivateEndpointConnectionsSecByServiceRequest,
+  ListPrivateEndpointConnectionsSecByServiceResponse,
+  ListPrivateEndpointConnectionsSecByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateEndpointConnectionSecByServiceRequest,
-  output: ListPrivateEndpointConnectionSecByServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListPrivateLinkResourceAdtApiByServiceError = AzureOpError;
-/** Gets the private link resources that need to be created for a service. */
-export const ListPrivateLinkResourceAdtApiByService: API.OperationMethod<
-  ListPrivateLinkResourceAdtApiByServiceRequest,
-  ListPrivateLinkResourceAdtApiByServiceResponse,
-  ListPrivateLinkResourceAdtApiByServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkResourceAdtApiByServiceRequest,
-  output: ListPrivateLinkResourceAdtApiByServiceResponse,
+  input: ListPrivateEndpointConnectionsSecByServiceRequest,
+  output: ListPrivateEndpointConnectionsSecByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11135,250 +11126,265 @@ export const ListPrivateLinkResourceByService: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkResourceCompByServiceError = AzureOpError;
+export type ListPrivateLinkResourcesAdtAPIByServiceError = AzureOpError;
 /** Gets the private link resources that need to be created for a service. */
-export const ListPrivateLinkResourceCompByService: API.OperationMethod<
-  ListPrivateLinkResourceCompByServiceRequest,
-  ListPrivateLinkResourceCompByServiceResponse,
-  ListPrivateLinkResourceCompByServiceError,
+export const ListPrivateLinkResourcesAdtAPIByService: API.OperationMethod<
+  ListPrivateLinkResourcesAdtAPIByServiceRequest,
+  ListPrivateLinkResourcesAdtAPIByServiceResponse,
+  ListPrivateLinkResourcesAdtAPIByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkResourceCompByServiceRequest,
-  output: ListPrivateLinkResourceCompByServiceResponse,
+  input: ListPrivateLinkResourcesAdtAPIByServiceRequest,
+  output: ListPrivateLinkResourcesAdtAPIByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkResourceForMipPolicySyncByServiceError =
+export type ListPrivateLinkResourcesCompByServiceError = AzureOpError;
+/** Gets the private link resources that need to be created for a service. */
+export const ListPrivateLinkResourcesCompByService: API.OperationMethod<
+  ListPrivateLinkResourcesCompByServiceRequest,
+  ListPrivateLinkResourcesCompByServiceResponse,
+  ListPrivateLinkResourcesCompByServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourcesCompByServiceRequest,
+  output: ListPrivateLinkResourcesCompByServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourcesForMIPPolicySyncByServiceError =
   AzureOpError;
 /** Gets the private link resources that need to be created for a service. */
-export const ListPrivateLinkResourceForMipPolicySyncByService: API.OperationMethod<
-  ListPrivateLinkResourceForMipPolicySyncByServiceRequest,
-  ListPrivateLinkResourceForMipPolicySyncByServiceResponse,
-  ListPrivateLinkResourceForMipPolicySyncByServiceError,
+export const ListPrivateLinkResourcesForMIPPolicySyncByService: API.OperationMethod<
+  ListPrivateLinkResourcesForMIPPolicySyncByServiceRequest,
+  ListPrivateLinkResourcesForMIPPolicySyncByServiceResponse,
+  ListPrivateLinkResourcesForMIPPolicySyncByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkResourceForMipPolicySyncByServiceRequest,
-  output: ListPrivateLinkResourceForMipPolicySyncByServiceResponse,
+  input: ListPrivateLinkResourcesForMIPPolicySyncByServiceRequest,
+  output: ListPrivateLinkResourcesForMIPPolicySyncByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkResourceForSccPowershellByServiceError =
+export type ListPrivateLinkResourcesForSCCPowershellByServiceError =
   AzureOpError;
 /** Gets the private link resources that need to be created for a service. */
-export const ListPrivateLinkResourceForSccPowershellByService: API.OperationMethod<
-  ListPrivateLinkResourceForSccPowershellByServiceRequest,
-  ListPrivateLinkResourceForSccPowershellByServiceResponse,
-  ListPrivateLinkResourceForSccPowershellByServiceError,
+export const ListPrivateLinkResourcesForSCCPowershellByService: API.OperationMethod<
+  ListPrivateLinkResourcesForSCCPowershellByServiceRequest,
+  ListPrivateLinkResourcesForSCCPowershellByServiceResponse,
+  ListPrivateLinkResourcesForSCCPowershellByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkResourceForSccPowershellByServiceRequest,
-  output: ListPrivateLinkResourceForSccPowershellByServiceResponse,
+  input: ListPrivateLinkResourcesForSCCPowershellByServiceRequest,
+  output: ListPrivateLinkResourcesForSCCPowershellByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkResourceSecByServiceError = AzureOpError;
+export type ListPrivateLinkResourcesSecByServiceError = AzureOpError;
 /** Gets the private link resources that need to be created for a service. */
-export const ListPrivateLinkResourceSecByService: API.OperationMethod<
-  ListPrivateLinkResourceSecByServiceRequest,
-  ListPrivateLinkResourceSecByServiceResponse,
-  ListPrivateLinkResourceSecByServiceError,
+export const ListPrivateLinkResourcesSecByService: API.OperationMethod<
+  ListPrivateLinkResourcesSecByServiceRequest,
+  ListPrivateLinkResourcesSecByServiceResponse,
+  ListPrivateLinkResourcesSecByServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkResourceSecByServiceRequest,
-  output: ListPrivateLinkResourceSecByServiceResponse,
+  input: ListPrivateLinkResourcesSecByServiceRequest,
+  output: ListPrivateLinkResourcesSecByServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForEdmUploadError = AzureOpError;
+export type ListPrivateLinkServicesForEDMUploadError = AzureOpError;
 /** Get all the privateLinkServicesForEDMUpload instances in a subscription. */
-export const ListPrivateLinkServiceForEdmUpload: API.OperationMethod<
-  ListPrivateLinkServiceForEdmUploadRequest,
+export const ListPrivateLinkServicesForEDMUpload: API.OperationMethod<
+  ListPrivateLinkServicesForEDMUploadRequest,
   PrivateLinkServicesForEDMUploadDescriptionListResult,
-  ListPrivateLinkServiceForEdmUploadError,
+  ListPrivateLinkServicesForEDMUploadError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForEdmUploadRequest,
+  input: ListPrivateLinkServicesForEDMUploadRequest,
   output: PrivateLinkServicesForEDMUploadDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForEdmUploadByResourceGroupError =
+export type ListPrivateLinkServicesForEDMUploadByResourceGroupError =
   AzureOpError;
 /** Get all the service instances in a resource group. */
-export const ListPrivateLinkServiceForEdmUploadByResourceGroup: API.OperationMethod<
-  ListPrivateLinkServiceForEdmUploadByResourceGroupRequest,
+export const ListPrivateLinkServicesForEDMUploadByResourceGroup: API.OperationMethod<
+  ListPrivateLinkServicesForEDMUploadByResourceGroupRequest,
   PrivateLinkServicesForEDMUploadDescriptionListResult,
-  ListPrivateLinkServiceForEdmUploadByResourceGroupError,
+  ListPrivateLinkServicesForEDMUploadByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForEdmUploadByResourceGroupRequest,
+  input: ListPrivateLinkServicesForEDMUploadByResourceGroupRequest,
   output: PrivateLinkServicesForEDMUploadDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForM365ComplianceCenterError = AzureOpError;
+export type ListPrivateLinkServicesForM365ComplianceCenterError = AzureOpError;
 /** Get all the privateLinkServicesForM365ComplianceCenter instances in a subscription. */
-export const ListPrivateLinkServiceForM365ComplianceCenter: API.OperationMethod<
-  ListPrivateLinkServiceForM365ComplianceCenterRequest,
+export const ListPrivateLinkServicesForM365ComplianceCenter: API.OperationMethod<
+  ListPrivateLinkServicesForM365ComplianceCenterRequest,
   PrivateLinkServicesForM365ComplianceCenterDescriptionListResult,
-  ListPrivateLinkServiceForM365ComplianceCenterError,
+  ListPrivateLinkServicesForM365ComplianceCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForM365ComplianceCenterRequest,
+  input: ListPrivateLinkServicesForM365ComplianceCenterRequest,
   output: PrivateLinkServicesForM365ComplianceCenterDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupError =
+export type ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupError =
   AzureOpError;
 /** Get all the service instances in a resource group. */
-export const ListPrivateLinkServiceForM365ComplianceCenterByResourceGroup: API.OperationMethod<
-  ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupRequest,
+export const ListPrivateLinkServicesForM365ComplianceCenterByResourceGroup: API.OperationMethod<
+  ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupRequest,
   PrivateLinkServicesForM365ComplianceCenterDescriptionListResult,
-  ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupError,
+  ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForM365ComplianceCenterByResourceGroupRequest,
+  input: ListPrivateLinkServicesForM365ComplianceCenterByResourceGroupRequest,
   output: PrivateLinkServicesForM365ComplianceCenterDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForM365SecurityCenterError = AzureOpError;
+export type ListPrivateLinkServicesForM365SecurityCenterError = AzureOpError;
 /** Get all the privateLinkServicesForM365SecurityCenter instances in a subscription. */
-export const ListPrivateLinkServiceForM365SecurityCenter: API.OperationMethod<
-  ListPrivateLinkServiceForM365SecurityCenterRequest,
+export const ListPrivateLinkServicesForM365SecurityCenter: API.OperationMethod<
+  ListPrivateLinkServicesForM365SecurityCenterRequest,
   PrivateLinkServicesForM365SecurityCenterDescriptionListResult,
-  ListPrivateLinkServiceForM365SecurityCenterError,
+  ListPrivateLinkServicesForM365SecurityCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForM365SecurityCenterRequest,
+  input: ListPrivateLinkServicesForM365SecurityCenterRequest,
   output: PrivateLinkServicesForM365SecurityCenterDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForM365SecurityCenterByResourceGroupError =
+export type ListPrivateLinkServicesForM365SecurityCenterByResourceGroupError =
   AzureOpError;
 /** Get all the service instances in a resource group. */
-export const ListPrivateLinkServiceForM365SecurityCenterByResourceGroup: API.OperationMethod<
-  ListPrivateLinkServiceForM365SecurityCenterByResourceGroupRequest,
+export const ListPrivateLinkServicesForM365SecurityCenterByResourceGroup: API.OperationMethod<
+  ListPrivateLinkServicesForM365SecurityCenterByResourceGroupRequest,
   PrivateLinkServicesForM365SecurityCenterDescriptionListResult,
-  ListPrivateLinkServiceForM365SecurityCenterByResourceGroupError,
+  ListPrivateLinkServicesForM365SecurityCenterByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForM365SecurityCenterByResourceGroupRequest,
+  input: ListPrivateLinkServicesForM365SecurityCenterByResourceGroupRequest,
   output: PrivateLinkServicesForM365SecurityCenterDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForMipPolicySyncError = AzureOpError;
+export type ListPrivateLinkServicesForMIPPolicySyncError = AzureOpError;
 /** Get all the privateLinkServicesForMIPPolicySync instances in a subscription. */
-export const ListPrivateLinkServiceForMipPolicySync: API.OperationMethod<
-  ListPrivateLinkServiceForMipPolicySyncRequest,
+export const ListPrivateLinkServicesForMIPPolicySync: API.OperationMethod<
+  ListPrivateLinkServicesForMIPPolicySyncRequest,
   PrivateLinkServicesForMIPPolicySyncDescriptionListResult,
-  ListPrivateLinkServiceForMipPolicySyncError,
+  ListPrivateLinkServicesForMIPPolicySyncError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForMipPolicySyncRequest,
+  input: ListPrivateLinkServicesForMIPPolicySyncRequest,
   output: PrivateLinkServicesForMIPPolicySyncDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForMipPolicySyncByResourceGroupError =
+export type ListPrivateLinkServicesForMIPPolicySyncByResourceGroupError =
   AzureOpError;
 /** Get all the service instances in a resource group. */
-export const ListPrivateLinkServiceForMipPolicySyncByResourceGroup: API.OperationMethod<
-  ListPrivateLinkServiceForMipPolicySyncByResourceGroupRequest,
+export const ListPrivateLinkServicesForMIPPolicySyncByResourceGroup: API.OperationMethod<
+  ListPrivateLinkServicesForMIPPolicySyncByResourceGroupRequest,
   PrivateLinkServicesForMIPPolicySyncDescriptionListResult,
-  ListPrivateLinkServiceForMipPolicySyncByResourceGroupError,
+  ListPrivateLinkServicesForMIPPolicySyncByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForMipPolicySyncByResourceGroupRequest,
+  input: ListPrivateLinkServicesForMIPPolicySyncByResourceGroupRequest,
   output: PrivateLinkServicesForMIPPolicySyncDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForO365ManagementActivityApiError =
+export type ListPrivateLinkServicesForO365ManagementActivityAPIError =
   AzureOpError;
 /** Get all the privateLinkServicesForO365ManagementActivityAPI instances in a subscription. */
-export const ListPrivateLinkServiceForO365ManagementActivityApi: API.OperationMethod<
-  ListPrivateLinkServiceForO365ManagementActivityApiRequest,
+export const ListPrivateLinkServicesForO365ManagementActivityAPI: API.OperationMethod<
+  ListPrivateLinkServicesForO365ManagementActivityAPIRequest,
   PrivateLinkServicesForO365ManagementActivityAPIDescriptionListResult,
-  ListPrivateLinkServiceForO365ManagementActivityApiError,
+  ListPrivateLinkServicesForO365ManagementActivityAPIError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForO365ManagementActivityApiRequest,
+  input: ListPrivateLinkServicesForO365ManagementActivityAPIRequest,
   output: PrivateLinkServicesForO365ManagementActivityAPIDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupError =
+export type ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupError =
   AzureOpError;
 /** Get all the service instances in a resource group. */
-export const ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroup: API.OperationMethod<
-  ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupRequest,
+export const ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroup: API.OperationMethod<
+  ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupRequest,
   PrivateLinkServicesForO365ManagementActivityAPIDescriptionListResult,
-  ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupError,
+  ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input:
-    ListPrivateLinkServiceForO365ManagementActivityApiByResourceGroupRequest,
+    ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroupRequest,
   output: PrivateLinkServicesForO365ManagementActivityAPIDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForSccPowershellError = AzureOpError;
+export type ListPrivateLinkServicesForSCCPowershellError = AzureOpError;
 /** Get all the privateLinkServicesForSCCPowershell instances in a subscription. */
-export const ListPrivateLinkServiceForSccPowershell: API.OperationMethod<
-  ListPrivateLinkServiceForSccPowershellRequest,
+export const ListPrivateLinkServicesForSCCPowershell: API.OperationMethod<
+  ListPrivateLinkServicesForSCCPowershellRequest,
   PrivateLinkServicesForSCCPowershellDescriptionListResult,
-  ListPrivateLinkServiceForSccPowershellError,
+  ListPrivateLinkServicesForSCCPowershellError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForSccPowershellRequest,
+  input: ListPrivateLinkServicesForSCCPowershellRequest,
   output: PrivateLinkServicesForSCCPowershellDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateLinkServiceForSccPowershellByResourceGroupError =
+export type ListPrivateLinkServicesForSCCPowershellByResourceGroupError =
   AzureOpError;
 /** Get all the service instances in a resource group. */
-export const ListPrivateLinkServiceForSccPowershellByResourceGroup: API.OperationMethod<
-  ListPrivateLinkServiceForSccPowershellByResourceGroupRequest,
+export const ListPrivateLinkServicesForSCCPowershellByResourceGroup: API.OperationMethod<
+  ListPrivateLinkServicesForSCCPowershellByResourceGroupRequest,
   PrivateLinkServicesForSCCPowershellDescriptionListResult,
-  ListPrivateLinkServiceForSccPowershellByResourceGroupError,
+  ListPrivateLinkServicesForSCCPowershellByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateLinkServiceForSccPowershellByResourceGroupRequest,
+  input: ListPrivateLinkServicesForSCCPowershellByResourceGroupRequest,
   output: PrivateLinkServicesForSCCPowershellDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -11572,92 +11578,93 @@ export const PrivateLinkServicesForSCCPowershellCreateOrUpdate: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateLinkServiceForEdmUploadError = AzureOpError;
+export type UpdatePrivateLinkServicesForEDMUploadError = AzureOpError;
 /** Update the metadata of a privateLinkServicesForEDMUpload instance. */
-export const UpdatePrivateLinkServiceForEdmUpload: API.OperationMethod<
-  UpdatePrivateLinkServiceForEdmUploadRequest,
-  UpdatePrivateLinkServiceForEdmUploadResponse,
-  UpdatePrivateLinkServiceForEdmUploadError,
+export const UpdatePrivateLinkServicesForEDMUpload: API.OperationMethod<
+  UpdatePrivateLinkServicesForEDMUploadRequest,
+  UpdatePrivateLinkServicesForEDMUploadResponse,
+  UpdatePrivateLinkServicesForEDMUploadError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateLinkServiceForEdmUploadRequest,
-  output: UpdatePrivateLinkServiceForEdmUploadResponse,
+  input: UpdatePrivateLinkServicesForEDMUploadRequest,
+  output: UpdatePrivateLinkServicesForEDMUploadResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateLinkServiceForM365ComplianceCenterError = AzureOpError;
+export type UpdatePrivateLinkServicesForM365ComplianceCenterError =
+  AzureOpError;
 /** Update the metadata of a privateLinkServicesForM365ComplianceCenter instance. */
-export const UpdatePrivateLinkServiceForM365ComplianceCenter: API.OperationMethod<
-  UpdatePrivateLinkServiceForM365ComplianceCenterRequest,
-  UpdatePrivateLinkServiceForM365ComplianceCenterResponse,
-  UpdatePrivateLinkServiceForM365ComplianceCenterError,
+export const UpdatePrivateLinkServicesForM365ComplianceCenter: API.OperationMethod<
+  UpdatePrivateLinkServicesForM365ComplianceCenterRequest,
+  UpdatePrivateLinkServicesForM365ComplianceCenterResponse,
+  UpdatePrivateLinkServicesForM365ComplianceCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateLinkServiceForM365ComplianceCenterRequest,
-  output: UpdatePrivateLinkServiceForM365ComplianceCenterResponse,
+  input: UpdatePrivateLinkServicesForM365ComplianceCenterRequest,
+  output: UpdatePrivateLinkServicesForM365ComplianceCenterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateLinkServiceForM365SecurityCenterError = AzureOpError;
+export type UpdatePrivateLinkServicesForM365SecurityCenterError = AzureOpError;
 /** Update the metadata of a privateLinkServicesForM365SecurityCenter instance. */
-export const UpdatePrivateLinkServiceForM365SecurityCenter: API.OperationMethod<
-  UpdatePrivateLinkServiceForM365SecurityCenterRequest,
-  UpdatePrivateLinkServiceForM365SecurityCenterResponse,
-  UpdatePrivateLinkServiceForM365SecurityCenterError,
+export const UpdatePrivateLinkServicesForM365SecurityCenter: API.OperationMethod<
+  UpdatePrivateLinkServicesForM365SecurityCenterRequest,
+  UpdatePrivateLinkServicesForM365SecurityCenterResponse,
+  UpdatePrivateLinkServicesForM365SecurityCenterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateLinkServiceForM365SecurityCenterRequest,
-  output: UpdatePrivateLinkServiceForM365SecurityCenterResponse,
+  input: UpdatePrivateLinkServicesForM365SecurityCenterRequest,
+  output: UpdatePrivateLinkServicesForM365SecurityCenterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateLinkServiceForMipPolicySyncError = AzureOpError;
+export type UpdatePrivateLinkServicesForMIPPolicySyncError = AzureOpError;
 /** Update the metadata of a privateLinkServicesForMIPPolicySync instance. */
-export const UpdatePrivateLinkServiceForMipPolicySync: API.OperationMethod<
-  UpdatePrivateLinkServiceForMipPolicySyncRequest,
-  UpdatePrivateLinkServiceForMipPolicySyncResponse,
-  UpdatePrivateLinkServiceForMipPolicySyncError,
+export const UpdatePrivateLinkServicesForMIPPolicySync: API.OperationMethod<
+  UpdatePrivateLinkServicesForMIPPolicySyncRequest,
+  UpdatePrivateLinkServicesForMIPPolicySyncResponse,
+  UpdatePrivateLinkServicesForMIPPolicySyncError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateLinkServiceForMipPolicySyncRequest,
-  output: UpdatePrivateLinkServiceForMipPolicySyncResponse,
+  input: UpdatePrivateLinkServicesForMIPPolicySyncRequest,
+  output: UpdatePrivateLinkServicesForMIPPolicySyncResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateLinkServiceForO365ManagementActivityApiError =
+export type UpdatePrivateLinkServicesForO365ManagementActivityAPIError =
   AzureOpError;
 /** Update the metadata of a privateLinkServicesForO365ManagementActivityAPI instance. */
-export const UpdatePrivateLinkServiceForO365ManagementActivityApi: API.OperationMethod<
-  UpdatePrivateLinkServiceForO365ManagementActivityApiRequest,
-  UpdatePrivateLinkServiceForO365ManagementActivityApiResponse,
-  UpdatePrivateLinkServiceForO365ManagementActivityApiError,
+export const UpdatePrivateLinkServicesForO365ManagementActivityAPI: API.OperationMethod<
+  UpdatePrivateLinkServicesForO365ManagementActivityAPIRequest,
+  UpdatePrivateLinkServicesForO365ManagementActivityAPIResponse,
+  UpdatePrivateLinkServicesForO365ManagementActivityAPIError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateLinkServiceForO365ManagementActivityApiRequest,
-  output: UpdatePrivateLinkServiceForO365ManagementActivityApiResponse,
+  input: UpdatePrivateLinkServicesForO365ManagementActivityAPIRequest,
+  output: UpdatePrivateLinkServicesForO365ManagementActivityAPIResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateLinkServiceForSccPowershellError = AzureOpError;
+export type UpdatePrivateLinkServicesForSCCPowershellError = AzureOpError;
 /** Update the metadata of a privateLinkServicesForSCCPowershell instance. */
-export const UpdatePrivateLinkServiceForSccPowershell: API.OperationMethod<
-  UpdatePrivateLinkServiceForSccPowershellRequest,
-  UpdatePrivateLinkServiceForSccPowershellResponse,
-  UpdatePrivateLinkServiceForSccPowershellError,
+export const UpdatePrivateLinkServicesForSCCPowershell: API.OperationMethod<
+  UpdatePrivateLinkServicesForSCCPowershellRequest,
+  UpdatePrivateLinkServicesForSCCPowershellResponse,
+  UpdatePrivateLinkServicesForSCCPowershellError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateLinkServiceForSccPowershellRequest,
-  output: UpdatePrivateLinkServiceForSccPowershellResponse,
+  input: UpdatePrivateLinkServicesForSCCPowershellRequest,
+  output: UpdatePrivateLinkServicesForSCCPowershellResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

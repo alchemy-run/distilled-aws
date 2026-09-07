@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.llm_skills#ListLlmSkillsRequest": {
@@ -422,7 +423,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#LlmSkillsCreateRequestAllowedToolsList": {
+    "com.posthog.llm_skills#CreateLlmSkillRequestAllowedToolsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -431,7 +432,7 @@
         "smithy.api#documentation": "List of pre-approved tools the skill may use. Tool names cannot contain whitespace."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsCreateRequestMetadataMap": {
+    "com.posthog.llm_skills#CreateLlmSkillRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -443,7 +444,7 @@
         "smithy.api#documentation": "Arbitrary key-value metadata."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsCreateRequestOwnersList": {
+    "com.posthog.llm_skills#CreateLlmSkillRequestOwnersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -476,7 +477,7 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_skills#LlmSkillsCreateRequestFilesList": {
+    "com.posthog.llm_skills#CreateLlmSkillRequestFilesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.llm_skills#LLMSkillFileInput"
@@ -527,25 +528,25 @@
           }
         },
         "allowed_tools": {
-          "target": "com.posthog.llm_skills#LlmSkillsCreateRequestAllowedToolsList",
+          "target": "com.posthog.llm_skills#CreateLlmSkillRequestAllowedToolsList",
           "traits": {
             "smithy.api#documentation": "List of pre-approved tools the skill may use. Tool names cannot contain whitespace."
           }
         },
         "metadata": {
-          "target": "com.posthog.llm_skills#LlmSkillsCreateRequestMetadataMap",
+          "target": "com.posthog.llm_skills#CreateLlmSkillRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Arbitrary key-value metadata."
           }
         },
         "owners": {
-          "target": "com.posthog.llm_skills#LlmSkillsCreateRequestOwnersList",
+          "target": "com.posthog.llm_skills#CreateLlmSkillRequestOwnersList",
           "traits": {
             "smithy.api#documentation": "User UUIDs to set as the skill's owners. Each must be a member of this project. Defaults to the creating user when omitted; pass an empty list to create with no owners."
           }
         },
         "files": {
-          "target": "com.posthog.llm_skills#LlmSkillsCreateRequestFilesList",
+          "target": "com.posthog.llm_skills#CreateLlmSkillRequestFilesList",
           "traits": {
             "smithy.api#documentation": "Bundled files to include with the initial version (scripts, references, assets)."
           }
@@ -756,7 +757,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#LlmSkillsBundleRetrieveRequestContent": {
+    "com.posthog.llm_skills#GetLlmSkillsBundleRequestContent": {
       "type": "enum",
       "members": {
         "STUB": {
@@ -774,7 +775,7 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_skills#LlmSkillsBundleRetrieveRequest": {
+    "com.posthog.llm_skills#GetLlmSkillsBundleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -786,7 +787,7 @@
           }
         },
         "content": {
-          "target": "com.posthog.llm_skills#LlmSkillsBundleRetrieveRequestContent",
+          "target": "com.posthog.llm_skills#GetLlmSkillsBundleRequestContent",
           "traits": {
             "smithy.api#httpQuery": "content",
             "smithy.api#documentation": "What each skill directory in the zip contains. 'stub' (default) writes a SKILL.md with the name, description and instructions to fetch the skill over the PostHog MCP when it is invoked. 'full' writes the rendered SKILL.md, every bundled file and the Codex sidecar.\n\n* `stub` - stub\n* `full` - full"
@@ -804,10 +805,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#LlmSkillsBundleRetrieve": {
+    "com.posthog.llm_skills#GetLlmSkillsBundle": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#LlmSkillsBundleRetrieveRequest"
+        "target": "com.posthog.llm_skills#GetLlmSkillsBundleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -821,7 +822,7 @@
         "smithy.api#documentation": "One zip of the requesting user's store skills, for unpacking into a skills directory."
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillImportRequest": {
+    "com.posthog.llm_skills#LlmSkillsImportCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -844,10 +845,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillImport": {
+    "com.posthog.llm_skills#LlmSkillsImportCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#CreateLlmSkillImportRequest"
+        "target": "com.posthog.llm_skills#LlmSkillsImportCreateRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkill"
@@ -1037,7 +1038,7 @@
         "smithy.api#documentation": "Report whether the user already has a marketplace credential, without minting one.\n\nThe token is unrecoverable, so an existing credential returns its mask only — the UI shows\n\"already connected, existing setups keep working\" and offers an explicit rotate."
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillMarketplaceInstallCommandRequest": {
+    "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1059,10 +1060,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillMarketplaceInstallCommand": {
+    "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#CreateLlmSkillMarketplaceInstallCommandRequest"
+        "target": "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandCreateRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkillMarketplaceCommand"
@@ -1076,7 +1077,7 @@
         "smithy.api#documentation": "Mint the user's read-only marketplace credential (or rotate it) and return the install command.\n\nPer-user: rotating only ever invalidates this user's own credential, never a teammate's."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNameRetrieveRequest": {
+    "com.posthog.llm_skills#GetLlmSkillsNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1120,10 +1121,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNameRetrieve": {
+    "com.posthog.llm_skills#GetLlmSkillsName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#LlmSkillsNameRetrieveRequest"
+        "target": "com.posthog.llm_skills#GetLlmSkillsNameRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkill"
@@ -1154,7 +1155,7 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestEditsList": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestEditsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.llm_skills#LLMSkillEditOperation"
@@ -1163,7 +1164,7 @@
         "smithy.api#documentation": "List of find/replace operations to apply to the current skill body. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with body."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestAllowedToolsList": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestAllowedToolsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1172,7 +1173,7 @@
         "smithy.api#documentation": "List of pre-approved tools the skill may use. Tool names cannot contain whitespace."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestMetadataMap": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1184,7 +1185,7 @@
         "smithy.api#documentation": "Arbitrary key-value metadata."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestFilesList": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestFilesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.llm_skills#LLMSkillFileInput"
@@ -1220,7 +1221,7 @@
         "smithy.api#documentation": "Sequential find/replace operations to apply to this file's content."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestFileEditsList": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestFileEditsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.llm_skills#LLMSkillFileEdit"
@@ -1229,7 +1230,7 @@
         "smithy.api#documentation": "Per-file find/replace updates. Each entry targets one existing file by path and applies sequential edits to its content. Non-targeted files carry forward unchanged. Cannot add, remove, or rename files — use 'files' for that. Mutually exclusive with files."
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestOwnersList": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestOwnersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1238,7 +1239,7 @@
         "smithy.api#documentation": "Replace the skill's owners with these user UUIDs (each a member of this project). Omit to leave owners unchanged; pass an empty list to clear them. Owners are keyed on the logical skill, so setting them is independent of the version being published — a body edit alone never changes ownership."
       }
     },
-    "com.posthog.llm_skills#UpdateLlmSkillNamePartialRequest": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1263,7 +1264,7 @@
           }
         },
         "edits": {
-          "target": "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestEditsList",
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestEditsList",
           "traits": {
             "smithy.api#documentation": "List of find/replace operations to apply to the current skill body. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with body."
           }
@@ -1287,31 +1288,31 @@
           }
         },
         "allowed_tools": {
-          "target": "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestAllowedToolsList",
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestAllowedToolsList",
           "traits": {
             "smithy.api#documentation": "List of pre-approved tools the skill may use. Tool names cannot contain whitespace."
           }
         },
         "metadata": {
-          "target": "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestMetadataMap",
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Arbitrary key-value metadata."
           }
         },
         "files": {
-          "target": "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestFilesList",
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestFilesList",
           "traits": {
             "smithy.api#documentation": "Bundled files to include with this version. Replaces all files from the previous version. Mutually exclusive with file_edits."
           }
         },
         "file_edits": {
-          "target": "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestFileEditsList",
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestFileEditsList",
           "traits": {
             "smithy.api#documentation": "Per-file find/replace updates. Each entry targets one existing file by path and applies sequential edits to its content. Non-targeted files carry forward unchanged. Cannot add, remove, or rename files — use 'files' for that. Mutually exclusive with files."
           }
         },
         "owners": {
-          "target": "com.posthog.llm_skills#LlmSkillsNamePartialUpdateRequestOwnersList",
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequestOwnersList",
           "traits": {
             "smithy.api#documentation": "Replace the skill's owners with these user UUIDs (each a member of this project). Omit to leave owners unchanged; pass an empty list to clear them. Owners are keyed on the logical skill, so setting them is independent of the version being published — a body edit alone never changes ownership."
           }
@@ -1333,10 +1334,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#UpdateLlmSkillNamePartial": {
+    "com.posthog.llm_skills#UpdateLlmSkillsNamePartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#UpdateLlmSkillNamePartialRequest"
+        "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartialRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkill"
@@ -1349,7 +1350,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameArchiveRequest": {
+    "com.posthog.llm_skills#LlmSkillsNameArchiveCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1372,10 +1373,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameArchive": {
+    "com.posthog.llm_skills#LlmSkillsNameArchiveCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#CreateLlmSkillNameArchiveRequest"
+        "target": "com.posthog.llm_skills#LlmSkillsNameArchiveCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1388,7 +1389,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameDuplicateRequest": {
+    "com.posthog.llm_skills#LlmSkillsNameDuplicateCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1417,10 +1418,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameDuplicate": {
+    "com.posthog.llm_skills#LlmSkillsNameDuplicateCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#CreateLlmSkillNameDuplicateRequest"
+        "target": "com.posthog.llm_skills#LlmSkillsNameDuplicateCreateRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkill"
@@ -1479,7 +1480,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameFileRequest": {
+    "com.posthog.llm_skills#CreateLlmSkillsNameFileRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1526,10 +1527,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameFile": {
+    "com.posthog.llm_skills#CreateLlmSkillsNameFile": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#CreateLlmSkillNameFileRequest"
+        "target": "com.posthog.llm_skills#CreateLlmSkillsNameFileRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkill"
@@ -1542,7 +1543,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameFileRenameRequest": {
+    "com.posthog.llm_skills#LlmSkillsNameFilesRenameCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1583,10 +1584,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNameFileRename": {
+    "com.posthog.llm_skills#LlmSkillsNameFilesRenameCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#CreateLlmSkillNameFileRenameRequest"
+        "target": "com.posthog.llm_skills#LlmSkillsNameFilesRenameCreateRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkill"
@@ -1599,7 +1600,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#LlmSkillsNameFilesRetrieveRequest": {
+    "com.posthog.llm_skills#GetLlmSkillsNameFileRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1651,10 +1652,10 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_skills#LlmSkillsNameFilesRetrieve": {
+    "com.posthog.llm_skills#GetLlmSkillsNameFile": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#LlmSkillsNameFilesRetrieveRequest"
+        "target": "com.posthog.llm_skills#GetLlmSkillsNameFileRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkillFile"
@@ -1729,7 +1730,7 @@
         "smithy.api#documentation": "Tags used for filtering and discovery in the marketplace, e.g. ['web-analytics', 'triage']."
       }
     },
-    "com.posthog.llm_skills#CreateLlmSkillNamePublishCommunityRequest": {
+    "com.posthog.llm_skills#LlmSkillsNamePublishCommunityCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1797,10 +1798,10 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_skills#CreateLlmSkillNamePublishCommunity": {
+    "com.posthog.llm_skills#LlmSkillsNamePublishCommunityCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#CreateLlmSkillNamePublishCommunityRequest"
+        "target": "com.posthog.llm_skills#LlmSkillsNamePublishCommunityCreateRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#CommunitySkillPublishResult"
@@ -1813,7 +1814,7 @@
         }
       }
     },
-    "com.posthog.llm_skills#LlmSkillsResolveNameRetrieveRequest": {
+    "com.posthog.llm_skills#GetLlmSkillsResolveNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1923,10 +1924,10 @@
       },
       "traits": {}
     },
-    "com.posthog.llm_skills#LlmSkillsResolveNameRetrieve": {
+    "com.posthog.llm_skills#GetLlmSkillsResolveName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.llm_skills#LlmSkillsResolveNameRetrieveRequest"
+        "target": "com.posthog.llm_skills#GetLlmSkillsResolveNameRequest"
       },
       "output": {
         "target": "com.posthog.llm_skills#LLMSkillResolveResponse"
@@ -1944,55 +1945,55 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.llm_skills#ListLlmSkills"
-        },
-        {
           "target": "com.posthog.llm_skills#CreateLlmSkill"
         },
         {
-          "target": "com.posthog.llm_skills#LlmSkillsBundleRetrieve"
+          "target": "com.posthog.llm_skills#CreateLlmSkillsNameFile"
         },
         {
-          "target": "com.posthog.llm_skills#CreateLlmSkillImport"
+          "target": "com.posthog.llm_skills#GetLlmSkillsBundle"
+        },
+        {
+          "target": "com.posthog.llm_skills#GetLlmSkillsName"
+        },
+        {
+          "target": "com.posthog.llm_skills#GetLlmSkillsNameFile"
+        },
+        {
+          "target": "com.posthog.llm_skills#GetLlmSkillsResolveName"
+        },
+        {
+          "target": "com.posthog.llm_skills#ListLlmSkills"
+        },
+        {
+          "target": "com.posthog.llm_skills#LlmSkillsImportCreate"
+        },
+        {
+          "target": "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandCreate"
         },
         {
           "target": "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandRetrieve"
         },
         {
-          "target": "com.posthog.llm_skills#CreateLlmSkillMarketplaceInstallCommand"
+          "target": "com.posthog.llm_skills#LlmSkillsNameArchiveCreate"
         },
         {
-          "target": "com.posthog.llm_skills#LlmSkillsNameRetrieve"
-        },
-        {
-          "target": "com.posthog.llm_skills#UpdateLlmSkillNamePartial"
-        },
-        {
-          "target": "com.posthog.llm_skills#CreateLlmSkillNameArchive"
-        },
-        {
-          "target": "com.posthog.llm_skills#CreateLlmSkillNameDuplicate"
+          "target": "com.posthog.llm_skills#LlmSkillsNameDuplicateCreate"
         },
         {
           "target": "com.posthog.llm_skills#LlmSkillsNameExportRetrieve"
         },
         {
-          "target": "com.posthog.llm_skills#CreateLlmSkillNameFile"
-        },
-        {
-          "target": "com.posthog.llm_skills#CreateLlmSkillNameFileRename"
-        },
-        {
-          "target": "com.posthog.llm_skills#LlmSkillsNameFilesRetrieve"
-        },
-        {
           "target": "com.posthog.llm_skills#LlmSkillsNameFilesDestroy"
         },
         {
-          "target": "com.posthog.llm_skills#CreateLlmSkillNamePublishCommunity"
+          "target": "com.posthog.llm_skills#LlmSkillsNameFilesRenameCreate"
         },
         {
-          "target": "com.posthog.llm_skills#LlmSkillsResolveNameRetrieve"
+          "target": "com.posthog.llm_skills#LlmSkillsNamePublishCommunityCreate"
+        },
+        {
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartial"
         }
       ],
       "traits": {

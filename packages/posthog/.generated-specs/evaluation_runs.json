@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.evaluation_runs#CreateEvaluationRunRequest": {
@@ -64,7 +65,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.evaluation_runs#EvaluationRunsCreateResponseBodyMap": {
+    "com.posthog.evaluation_runs#CreateEvaluationRunResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -78,7 +79,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.evaluation_runs#EvaluationRunsCreateResponseBodyMap",
+          "target": "com.posthog.evaluation_runs#CreateEvaluationRunResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}

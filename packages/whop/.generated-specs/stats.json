@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.stats#ListMetricsResponseDataItemPropertiesList": {
@@ -149,7 +150,7 @@
         "smithy.api#documentation": "List Metrics\n\nLists every metric you can query, with its unit and the properties you can filter or break it down by."
       }
     },
-    "com.whop.stats#RetrieveMetricRequestInterval": {
+    "com.whop.stats#GetMetricRequestInterval": {
       "type": "enum",
       "members": {
         "MINUTE": {
@@ -203,7 +204,7 @@
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricRequestEventType": {
+    "com.whop.stats#GetMetricRequestEventType": {
       "type": "enum",
       "members": {
         "PAGE_VIEW": {
@@ -227,28 +228,28 @@
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricRequestAdCampaignIdsList": {
+    "com.whop.stats#GetMetricRequestAdCampaignIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricRequestAdGroupIdsList": {
+    "com.whop.stats#GetMetricRequestAdGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricRequestAdIdsList": {
+    "com.whop.stats#GetMetricRequestAdIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricRequestSnapshotWindow": {
+    "com.whop.stats#GetMetricRequestSnapshotWindow": {
       "type": "enum",
       "members": {
         "_7D": {
@@ -272,7 +273,7 @@
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricRequest": {
+    "com.whop.stats#GetMetricRequest": {
       "type": "structure",
       "members": {
         "metric": {
@@ -314,7 +315,7 @@
           }
         },
         "interval": {
-          "target": "com.whop.stats#RetrieveMetricRequestInterval",
+          "target": "com.whop.stats#GetMetricRequestInterval",
           "traits": {
             "smithy.api#httpQuery": "interval",
             "smithy.api#documentation": "How wide each point is. Defaults to day. Snapshot metrics are day-only."
@@ -412,7 +413,7 @@
           }
         },
         "event_type": {
-          "target": "com.whop.stats#RetrieveMetricRequestEventType",
+          "target": "com.whop.stats#GetMetricRequestEventType",
           "traits": {
             "smithy.api#httpQuery": "event_type",
             "smithy.api#documentation": "Filter the events metric to a canonical group of events: page_view (pixel page views plus whop.com store views), checkout_start (hosted and embedded checkout views), or other. Pair with breakdown_by=event_type to split by group."
@@ -489,28 +490,28 @@
           }
         },
         "ad_campaign_ids": {
-          "target": "com.whop.stats#RetrieveMetricRequestAdCampaignIdsList",
+          "target": "com.whop.stats#GetMetricRequestAdCampaignIdsList",
           "traits": {
             "smithy.api#httpQuery": "ad_campaign_ids",
             "smithy.api#documentation": "Ad campaign ids (adcamp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_campaign_ids."
           }
         },
         "ad_group_ids": {
-          "target": "com.whop.stats#RetrieveMetricRequestAdGroupIdsList",
+          "target": "com.whop.stats#GetMetricRequestAdGroupIdsList",
           "traits": {
             "smithy.api#httpQuery": "ad_group_ids",
             "smithy.api#documentation": "Ad group ids (adgrp_...) to scope the report to; stats are summed across them. Available on metrics that list ad_group_ids."
           }
         },
         "ad_ids": {
-          "target": "com.whop.stats#RetrieveMetricRequestAdIdsList",
+          "target": "com.whop.stats#GetMetricRequestAdIdsList",
           "traits": {
             "smithy.api#httpQuery": "ad_ids",
             "smithy.api#documentation": "Ad ids (ad_...) to scope the report to; stats are summed across them. Available on metrics that list ad_ids."
           }
         },
         "snapshot_window": {
-          "target": "com.whop.stats#RetrieveMetricRequestSnapshotWindow",
+          "target": "com.whop.stats#GetMetricRequestSnapshotWindow",
           "traits": {
             "smithy.api#httpQuery": "snapshot_window",
             "smithy.api#documentation": "Window used by a snapshot metric. Ordinary snapshots accept 30d as their trailing activity window. Cohorted dispute metrics accept 7d or 28d as the sales-transaction pool; their attribution window is fixed in the metric name. Each metric lists its accepted values in the catalog."
@@ -528,7 +529,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.stats#RetrieveMetricResponseDataPointsItemBreakdownItem": {
+    "com.whop.stats#GetMetricResponseDataPointsItemBreakdownItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -549,20 +550,20 @@
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricResponseDataPointsItemBreakdownList": {
+    "com.whop.stats#GetMetricResponseDataPointsItemBreakdownList": {
       "type": "list",
       "member": {
-        "target": "com.whop.stats#RetrieveMetricResponseDataPointsItemBreakdownItem"
+        "target": "com.whop.stats#GetMetricResponseDataPointsItemBreakdownItem"
       },
       "traits": {
         "smithy.api#documentation": "Present only when broken down: one entry per property value in this period."
       }
     },
-    "com.whop.stats#RetrieveMetricResponseDataPointsItem": {
+    "com.whop.stats#GetMetricResponseDataPointsItem": {
       "type": "structure",
       "members": {
         "breakdown": {
-          "target": "com.whop.stats#RetrieveMetricResponseDataPointsItemBreakdownList",
+          "target": "com.whop.stats#GetMetricResponseDataPointsItemBreakdownList",
           "traits": {
             "smithy.api#documentation": "Present only when broken down: one entry per property value in this period."
           }
@@ -585,16 +586,16 @@
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricResponseDataPointsList": {
+    "com.whop.stats#GetMetricResponseDataPointsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.stats#RetrieveMetricResponseDataPointsItem"
+        "target": "com.whop.stats#GetMetricResponseDataPointsItem"
       },
       "traits": {
         "smithy.api#documentation": "One entry per period, oldest first."
       }
     },
-    "com.whop.stats#RetrieveMetricResponseDataTotalsItem": {
+    "com.whop.stats#GetMetricResponseDataTotalsItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -615,16 +616,16 @@
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricResponseDataTotalsList": {
+    "com.whop.stats#GetMetricResponseDataTotalsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.stats#RetrieveMetricResponseDataTotalsItem"
+        "target": "com.whop.stats#GetMetricResponseDataTotalsItem"
       },
       "traits": {
         "smithy.api#documentation": "Whole-window aggregates, present when the metric computes them. Don't derive these from `points`: a rate is measured across the whole window, not averaged across its points, and unique-people counts exist only at window level."
       }
     },
-    "com.whop.stats#RetrieveMetricResponseData": {
+    "com.whop.stats#GetMetricResponseData": {
       "type": "structure",
       "members": {
         "currency": {
@@ -635,14 +636,14 @@
           }
         },
         "points": {
-          "target": "com.whop.stats#RetrieveMetricResponseDataPointsList",
+          "target": "com.whop.stats#GetMetricResponseDataPointsList",
           "traits": {
             "smithy.api#documentation": "One entry per period, oldest first.",
             "smithy.api#required": {}
           }
         },
         "totals": {
-          "target": "com.whop.stats#RetrieveMetricResponseDataTotalsList",
+          "target": "com.whop.stats#GetMetricResponseDataTotalsList",
           "traits": {
             "smithy.api#documentation": "Whole-window aggregates, present when the metric computes them. Don't derive these from `points`: a rate is measured across the whole window, not averaged across its points, and unique-people counts exist only at window level.",
             "com.distilled.openapi#nullable": {}
@@ -651,11 +652,11 @@
       },
       "traits": {}
     },
-    "com.whop.stats#RetrieveMetricResponse": {
+    "com.whop.stats#GetMetricResponse": {
       "type": "structure",
       "members": {
         "data": {
-          "target": "com.whop.stats#RetrieveMetricResponseData",
+          "target": "com.whop.stats#GetMetricResponseData",
           "traits": {
             "smithy.api#required": {}
           }
@@ -665,13 +666,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.stats#RetrieveMetric": {
+    "com.whop.stats#GetMetric": {
       "type": "operation",
       "input": {
-        "target": "com.whop.stats#RetrieveMetricRequest"
+        "target": "com.whop.stats#GetMetricRequest"
       },
       "output": {
-        "target": "com.whop.stats#RetrieveMetricResponse"
+        "target": "com.whop.stats#GetMetricResponse"
       },
       "errors": [
         {
@@ -2050,13 +2051,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.stats#ListMetrics"
-        },
-        {
-          "target": "com.whop.stats#RetrieveMetric"
-        },
-        {
           "target": "com.whop.stats#DescribeStats"
+        },
+        {
+          "target": "com.whop.stats#GetMetric"
+        },
+        {
+          "target": "com.whop.stats#ListMetrics"
         },
         {
           "target": "com.whop.stats#MetricStats"

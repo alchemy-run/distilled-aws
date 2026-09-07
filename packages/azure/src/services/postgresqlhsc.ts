@@ -14,9 +14,9 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource type used for verification. */
-export type ClustersCheckNameAvailabilityRequestType =
+export type CheckClusterNameAvailabilityRequestType =
   "Microsoft.DBforPostgreSQL/serverGroupsv2";
-export const ClustersCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckClusterNameAvailabilityRequestType = /*@__PURE__*/ S.String;
 
 export interface CheckClusterNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -24,13 +24,13 @@ export interface CheckClusterNameAvailabilityRequest {
   /** Cluster name to verify. */
   name: string;
   /** Resource type used for verification. */
-  type: ClustersCheckNameAvailabilityRequestType | (string & {});
+  type: CheckClusterNameAvailabilityRequestType | (string & {});
 }
 export const CheckClusterNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     name: S.String,
-    type: ClustersCheckNameAvailabilityRequestType,
+    type: CheckClusterNameAvailabilityRequestType,
   }).pipe(
     T.Http({
       method: "POST",
@@ -98,13 +98,11 @@ export const ClustersPromoteReadReplicaResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClustersPromoteReadReplicaResponse>;
 
 /** Resource tags. */
-export type ClustersCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const CreateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateRequestTagsMap>;
+) as any as S.Schema<CreateClusterRequestTagsMap>;
 
 /** Schedule settings for regular cluster updates. */
 export interface MaintenanceWindow {
@@ -203,7 +201,7 @@ export interface CreateClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
   /** Resource tags. */
-  tags?: ClustersCreateRequestTagsMap;
+  tags?: CreateClusterRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the cluster. */
@@ -214,7 +212,7 @@ export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ClustersCreateRequestTagsMap),
+    tags: S.optional(CreateClusterRequestTagsMap),
     location: S.String,
     properties: S.optional(ClusterPropertiesInput),
   }).pipe(
@@ -272,13 +270,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type ClustersCreateResponseTagsMap = {
+export type CreateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateResponseTagsMap>;
+) as any as S.Schema<CreateClusterResponseTagsMap>;
 
 /** The name object for a server. */
 export interface ServerNameItem {
@@ -512,7 +510,7 @@ export interface CreateClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersCreateResponseTagsMap;
+  tags?: CreateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the cluster. */
@@ -524,7 +522,7 @@ export const CreateClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersCreateResponseTagsMap),
+    tags: S.optional(CreateClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
   }),
@@ -876,11 +874,11 @@ export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetClusterRequest>;
 
 /** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
+) as any as S.Schema<GetClusterResponseTagsMap>;
 
 export interface GetClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -892,7 +890,7 @@ export interface GetClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
+  tags?: GetClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the cluster. */
@@ -904,7 +902,7 @@ export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersGetResponseTagsMap),
+    tags: S.optional(GetClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
   }),
@@ -2513,13 +2511,11 @@ export const ClusterPropertiesForUpdateInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterPropertiesForUpdateInput>;
 
 /** Application-specific metadata in the form of key-value pairs. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
 export interface UpdateClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2531,7 +2527,7 @@ export interface UpdateClusterRequest {
   /** Properties of the cluster. */
   properties?: ClusterPropertiesForUpdateInput;
   /** Application-specific metadata in the form of key-value pairs. */
-  tags?: ClustersUpdateRequestTagsMap;
+  tags?: UpdateClusterRequestTagsMap;
 }
 export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2539,7 +2535,7 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     properties: S.optional(ClusterPropertiesForUpdateInput),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateClusterRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2553,13 +2549,13 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterRequest>;
 
 /** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
+export type UpdateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
 
 export interface UpdateClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2571,7 +2567,7 @@ export interface UpdateClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
+  tags?: UpdateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the cluster. */
@@ -2583,7 +2579,7 @@ export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
   }),

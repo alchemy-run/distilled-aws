@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.recoveryservicesdatareplication#DeletePolicy": {
@@ -5214,7 +5215,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultUpdateResponseTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#UpdateVaultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5233,7 +5234,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultUpdateResponseIdentity",
+          "target": "com.azure.recoveryservicesdatareplication#UpdateVaultResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5243,7 +5244,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultUpdateResponseIdentity": {
+    "com.azure.recoveryservicesdatareplication#UpdateVaultResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5265,7 +5266,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.recoveryservicesdatareplication#UpdateVaultResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -5275,7 +5276,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.recoveryservicesdatareplication#UpdateVaultResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5476,7 +5477,7 @@
         "smithy.api#documentation": "Gets or sets the type of vault."
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultUpdateResponseTagsMap": {
+    "com.azure.recoveryservicesdatareplication#UpdateVaultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5516,7 +5517,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultUpdateRequestTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#UpdateVaultRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the resource tags."
           }
@@ -5599,7 +5600,7 @@
         "smithy.api#documentation": "Vault properties."
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultUpdateRequestTagsMap": {
+    "com.azure.recoveryservicesdatareplication#UpdateVaultRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5658,7 +5659,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultCreateResponseTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#CreateVaultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5677,7 +5678,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultCreateResponseIdentity",
+          "target": "com.azure.recoveryservicesdatareplication#CreateVaultResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5687,7 +5688,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultCreateResponseIdentity": {
+    "com.azure.recoveryservicesdatareplication#CreateVaultResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5709,7 +5710,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.recoveryservicesdatareplication#CreateVaultResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -5719,7 +5720,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.recoveryservicesdatareplication#CreateVaultResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5731,7 +5732,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultCreateResponseTagsMap": {
+    "com.azure.recoveryservicesdatareplication#CreateVaultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5771,7 +5772,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultCreateRequestTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#CreateVaultRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5790,7 +5791,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultCreateRequestIdentity",
+          "target": "com.azure.recoveryservicesdatareplication#CreateVaultRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5800,7 +5801,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultCreateRequestIdentity": {
+    "com.azure.recoveryservicesdatareplication#CreateVaultRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5810,7 +5811,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.recoveryservicesdatareplication#CreateVaultRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -5820,7 +5821,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.recoveryservicesdatareplication#CreateVaultRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5839,7 +5840,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultCreateRequestTagsMap": {
+    "com.azure.recoveryservicesdatareplication#CreateVaultRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5898,7 +5899,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultGetResponseTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#GetVaultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5917,7 +5918,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultGetResponseIdentity",
+          "target": "com.azure.recoveryservicesdatareplication#GetVaultResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5927,7 +5928,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultGetResponseIdentity": {
+    "com.azure.recoveryservicesdatareplication#GetVaultResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5949,7 +5950,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.recoveryservicesdatareplication#VaultGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.recoveryservicesdatareplication#GetVaultResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -5959,7 +5960,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.recoveryservicesdatareplication#GetVaultResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5971,7 +5972,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.recoveryservicesdatareplication#VaultGetResponseTagsMap": {
+    "com.azure.recoveryservicesdatareplication#GetVaultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6873,7 +6874,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#FabricUpdateResponseTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#UpdateFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6965,7 +6966,7 @@
         "smithy.api#documentation": "Gets or sets the list of health errors."
       }
     },
-    "com.azure.recoveryservicesdatareplication#FabricUpdateResponseTagsMap": {
+    "com.azure.recoveryservicesdatareplication#UpdateFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7005,7 +7006,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#FabricUpdateRequestTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#UpdateFabricRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the resource tags."
           }
@@ -7036,7 +7037,7 @@
         "smithy.api#documentation": "Fabric model properties."
       }
     },
-    "com.azure.recoveryservicesdatareplication#FabricUpdateRequestTagsMap": {
+    "com.azure.recoveryservicesdatareplication#UpdateFabricRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7095,7 +7096,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#FabricCreateResponseTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#CreateFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7118,7 +7119,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#FabricCreateResponseTagsMap": {
+    "com.azure.recoveryservicesdatareplication#CreateFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7158,7 +7159,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#FabricCreateRequestTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#CreateFabricRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7181,7 +7182,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#FabricCreateRequestTagsMap": {
+    "com.azure.recoveryservicesdatareplication#CreateFabricRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7240,7 +7241,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.recoveryservicesdatareplication#FabricGetResponseTagsMap",
+          "target": "com.azure.recoveryservicesdatareplication#GetFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7263,7 +7264,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#FabricGetResponseTagsMap": {
+    "com.azure.recoveryservicesdatareplication#GetFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7598,10 +7599,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#DeploymentPreflightPost": {
+    "com.azure.recoveryservicesdatareplication#PostDeploymentPreflight": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicesdatareplication#DeploymentPreflightPostRequest"
+        "target": "com.azure.recoveryservicesdatareplication#PostDeploymentPreflightRequest"
       },
       "output": {
         "target": "com.azure.recoveryservicesdatareplication#DeploymentPreflightModel"
@@ -7678,7 +7679,7 @@
         "smithy.api#documentation": "Deployment preflight resource."
       }
     },
-    "com.azure.recoveryservicesdatareplication#DeploymentPreflightPostRequest": {
+    "com.azure.recoveryservicesdatareplication#PostDeploymentPreflightRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7706,7 +7707,7 @@
           }
         },
         "resources": {
-          "target": "com.azure.recoveryservicesdatareplication#DeploymentPreflightPostRequestResourcesList",
+          "target": "com.azure.recoveryservicesdatareplication#PostDeploymentPreflightRequestResourcesList",
           "traits": {
             "smithy.api#documentation": "Gets or sets the list of resources."
           }
@@ -7716,7 +7717,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#DeploymentPreflightPostRequestResourcesList": {
+    "com.azure.recoveryservicesdatareplication#PostDeploymentPreflightRequestResourcesList": {
       "type": "list",
       "member": {
         "target": "com.azure.recoveryservicesdatareplication#DeploymentPreflightResource"
@@ -7795,10 +7796,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#CheckNameAvailabilityPost": {
+    "com.azure.recoveryservicesdatareplication#PostCheckNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.recoveryservicesdatareplication#CheckNameAvailabilityPostRequest"
+        "target": "com.azure.recoveryservicesdatareplication#PostCheckNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.recoveryservicesdatareplication#CheckNameAvailabilityResponseModel"
@@ -7840,7 +7841,7 @@
         "smithy.api#documentation": "Check name availability response model."
       }
     },
-    "com.azure.recoveryservicesdatareplication#CheckNameAvailabilityPostRequest": {
+    "com.azure.recoveryservicesdatareplication#PostCheckNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7899,7 +7900,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.recoveryservicesdatareplication#OperationsListResponseValueList",
+          "target": "com.azure.recoveryservicesdatareplication#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -7915,7 +7916,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.recoveryservicesdatareplication#OperationsListResponseValueList": {
+    "com.azure.recoveryservicesdatareplication#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.recoveryservicesdatareplication#Operation"
@@ -8039,154 +8040,154 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recoveryservicesdatareplication#DeletePolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreatePolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteReplicationExtension"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateReplicationExtension"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetReplicationExtension"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListReplicationExtension"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ProtectedItemPlannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#UpdateProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#UpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetJob"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListJob"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetEvent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListEvent"
-        },
-        {
           "target": "com.azure.recoveryservicesdatareplication#CreateEmailConfiguration"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetEmailConfiguration"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListEmailConfiguration"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#UpdateVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteFabricAgent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateFabricAgent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetFabricAgent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListFabricAgent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#UpdateFabric"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#CreateFabric"
         },
         {
+          "target": "com.azure.recoveryservicesdatareplication#CreateFabricAgent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreatePolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreateProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreateReplicationExtension"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreateVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteFabricAgent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeletePolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteReplicationExtension"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetEmailConfiguration"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetEvent"
+        },
+        {
           "target": "com.azure.recoveryservicesdatareplication#GetFabric"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#ListFabric"
+          "target": "com.azure.recoveryservicesdatareplication#GetFabricAgent"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#GetOperationResult"
+          "target": "com.azure.recoveryservicesdatareplication#GetJob"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#GetLocationBasedOperationResult"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#DeploymentPreflightPost"
+          "target": "com.azure.recoveryservicesdatareplication#GetOperationResult"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#ListVaultBySubscription"
+          "target": "com.azure.recoveryservicesdatareplication#GetPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetReplicationExtension"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListEmailConfiguration"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListEvent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListFabricAgent"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#ListFabricBySubscription"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#CheckNameAvailabilityPost"
+          "target": "com.azure.recoveryservicesdatareplication#ListJob"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#ListOperations"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListReplicationExtension"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListVaultBySubscription"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#PostCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#PostDeploymentPreflight"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ProtectedItemPlannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#UpdateFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#UpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#UpdateProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#UpdateVault"
         }
       ],
       "traits": {

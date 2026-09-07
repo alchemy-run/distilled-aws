@@ -40,20 +40,23 @@ export class NotFound
   ) {}
 
 /** * `trusted` - Trusted * `full` - Full * `custom` - Custom */
-export type NetworkAccessLevelEnum = "trusted" | "full" | "custom";
-export const NetworkAccessLevelEnum = /*@__PURE__*/ S.String;
+export type SandboxEnvironmentNetworkAccessLevelEnum =
+  | "trusted"
+  | "full"
+  | "custom";
+export const SandboxEnvironmentNetworkAccessLevelEnum = /*@__PURE__*/ S.String;
 
 /** Allowed domains for custom network access. */
-export type SandboxCreateRequestAllowedDomainsList = Array<string>;
-export const SandboxCreateRequestAllowedDomainsList = /*@__PURE__*/ S.Array(
+export type CreateSandboxRequestAllowedDomainsList = Array<string>;
+export const CreateSandboxRequestAllowedDomainsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<SandboxCreateRequestAllowedDomainsList>;
+) as any as S.Schema<CreateSandboxRequestAllowedDomainsList>;
 
 /** Repositories this environment applies to (format: org/repo). */
-export type SandboxCreateRequestRepositoriesList = Array<string>;
-export const SandboxCreateRequestRepositoriesList = /*@__PURE__*/ S.Array(
+export type CreateSandboxRequestRepositoriesList = Array<string>;
+export const CreateSandboxRequestRepositoriesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<SandboxCreateRequestRepositoriesList>;
+) as any as S.Schema<CreateSandboxRequestRepositoriesList>;
 
 export interface CreateSandboxRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -61,13 +64,15 @@ export interface CreateSandboxRequest {
   /** Display name for the environment. */
   name: string;
   /** Network access policy: trusted (default allowlist), full (unrestricted), or custom. * `trusted` - Trusted * `full` - Full * `custom` - Custom */
-  network_access_level?: NetworkAccessLevelEnum | (string & {});
+  network_access_level?:
+    | SandboxEnvironmentNetworkAccessLevelEnum
+    | (string & {});
   /** Allowed domains for custom network access. */
-  allowed_domains?: SandboxCreateRequestAllowedDomainsList;
+  allowed_domains?: CreateSandboxRequestAllowedDomainsList;
   /** Whether to include default trusted domains (GitHub, npm, PyPI). */
   include_default_domains?: boolean;
   /** Repositories this environment applies to (format: org/repo). */
-  repositories?: SandboxCreateRequestRepositoriesList;
+  repositories?: CreateSandboxRequestRepositoriesList;
   /** Encrypted environment variables (write-only, never returned in responses). */
   environment_variables?: unknown;
   /** If true, only the creator can see this environment; otherwise the whole team can. */
@@ -79,10 +84,10 @@ export const CreateSandboxRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String,
-    network_access_level: S.optional(NetworkAccessLevelEnum),
-    allowed_domains: S.optional(SandboxCreateRequestAllowedDomainsList),
+    network_access_level: S.optional(SandboxEnvironmentNetworkAccessLevelEnum),
+    allowed_domains: S.optional(CreateSandboxRequestAllowedDomainsList),
     include_default_domains: S.optional(S.Boolean),
-    repositories: S.optional(SandboxCreateRequestRepositoriesList),
+    repositories: S.optional(CreateSandboxRequestRepositoriesList),
     environment_variables: S.optional(S.Unknown),
     private: S.optional(S.Boolean),
     custom_image_id: S.optional(S.NullOr(S.String)),
@@ -203,6 +208,26 @@ export const SandboxEnvironmentDTO = /*@__PURE__*/ S.suspend(() =>
   identifier: "SandboxEnvironmentDTO",
 }) as any as S.Schema<SandboxEnvironmentDTO>;
 
+export interface GetSandboxRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetSandboxRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/sandbox_environments/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSandboxRequest",
+}) as any as S.Schema<GetSandboxRequest>;
+
 export interface ListSandboxRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -278,39 +303,19 @@ export const SandboxDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SandboxDestroyResponse",
 }) as any as S.Schema<SandboxDestroyResponse>;
 
-export interface SandboxRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const SandboxRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/sandbox_environments/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SandboxRetrieveRequest",
-}) as any as S.Schema<SandboxRetrieveRequest>;
-
 /** Allowed domains for custom network access. */
-export type SandboxPartialUpdateRequestAllowedDomainsList = Array<string>;
-export const SandboxPartialUpdateRequestAllowedDomainsList =
+export type UpdateSandboxPartialRequestAllowedDomainsList = Array<string>;
+export const UpdateSandboxPartialRequestAllowedDomainsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<SandboxPartialUpdateRequestAllowedDomainsList>;
+  ) as any as S.Schema<UpdateSandboxPartialRequestAllowedDomainsList>;
 
 /** Repositories this environment applies to (format: org/repo). */
-export type SandboxPartialUpdateRequestRepositoriesList = Array<string>;
-export const SandboxPartialUpdateRequestRepositoriesList =
+export type UpdateSandboxPartialRequestRepositoriesList = Array<string>;
+export const UpdateSandboxPartialRequestRepositoriesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<SandboxPartialUpdateRequestRepositoriesList>;
+  ) as any as S.Schema<UpdateSandboxPartialRequestRepositoriesList>;
 
 export interface UpdateSandboxPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -319,13 +324,15 @@ export interface UpdateSandboxPartialRequest {
   /** Display name for the environment. */
   name?: string;
   /** Network access policy: trusted (default allowlist), full (unrestricted), or custom. * `trusted` - Trusted * `full` - Full * `custom` - Custom */
-  network_access_level?: NetworkAccessLevelEnum | (string & {});
+  network_access_level?:
+    | SandboxEnvironmentNetworkAccessLevelEnum
+    | (string & {});
   /** Allowed domains for custom network access. */
-  allowed_domains?: SandboxPartialUpdateRequestAllowedDomainsList;
+  allowed_domains?: UpdateSandboxPartialRequestAllowedDomainsList;
   /** Whether to include default trusted domains (GitHub, npm, PyPI). */
   include_default_domains?: boolean;
   /** Repositories this environment applies to (format: org/repo). */
-  repositories?: SandboxPartialUpdateRequestRepositoriesList;
+  repositories?: UpdateSandboxPartialRequestRepositoriesList;
   /** Encrypted environment variables (write-only, never returned in responses). */
   environment_variables?: unknown;
   /** If true, only the creator can see this environment; otherwise the whole team can. */
@@ -338,10 +345,10 @@ export const UpdateSandboxPartialRequest = /*@__PURE__*/ S.suspend(() =>
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
-    network_access_level: S.optional(NetworkAccessLevelEnum),
-    allowed_domains: S.optional(SandboxPartialUpdateRequestAllowedDomainsList),
+    network_access_level: S.optional(SandboxEnvironmentNetworkAccessLevelEnum),
+    allowed_domains: S.optional(UpdateSandboxPartialRequestAllowedDomainsList),
     include_default_domains: S.optional(S.Boolean),
-    repositories: S.optional(SandboxPartialUpdateRequestRepositoriesList),
+    repositories: S.optional(UpdateSandboxPartialRequestRepositoriesList),
     environment_variables: S.optional(S.Unknown),
     private: S.optional(S.Boolean),
     custom_image_id: S.optional(S.NullOr(S.String)),
@@ -375,6 +382,21 @@ export const createSandbox: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSandboxError = Forbidden | NotFound | PosthogOpError;
+/** API for managing sandbox environments that control network access for task runs. */
+export const getSandbox: API.OperationMethod<
+  GetSandboxRequest,
+  SandboxEnvironmentDTO,
+  GetSandboxError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSandboxRequest,
+  output: SandboxEnvironmentDTO,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListSandboxError =
   | BadRequest
   | Forbidden
@@ -404,21 +426,6 @@ export const sandboxDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SandboxDestroyRequest,
   output: SandboxDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SandboxRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** API for managing sandbox environments that control network access for task runs. */
-export const sandboxRetrieve: API.OperationMethod<
-  SandboxRetrieveRequest,
-  SandboxEnvironmentDTO,
-  SandboxRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxRetrieveRequest,
-  output: SandboxEnvironmentDTO,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

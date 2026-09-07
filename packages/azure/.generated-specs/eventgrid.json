@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionFullUrl": {
@@ -98,10 +99,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#NamespacesValidateCustomDomainOwnership": {
+    "com.azure.eventgrid#ValidateNamespaceCustomDomainOwnership": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#NamespacesValidateCustomDomainOwnershipRequest"
+        "target": "com.azure.eventgrid#ValidateNamespaceCustomDomainOwnershipRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#CustomDomainOwnershipValidationResult"
@@ -266,7 +267,7 @@
         "smithy.api#documentation": "List of custom domain configurations for the namespace under topics configuration."
       }
     },
-    "com.azure.eventgrid#NamespacesValidateCustomDomainOwnershipRequest": {
+    "com.azure.eventgrid#ValidateNamespaceCustomDomainOwnershipRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -304,7 +305,7 @@
         "target": "com.azure.eventgrid#ListVerifiedPartnersRequest"
       },
       "output": {
-        "target": "com.azure.eventgrid#ListVerifiedPartnersResult"
+        "target": "com.azure.eventgrid#VerifiedPartnersListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -317,7 +318,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#ListVerifiedPartnersResult": {
+    "com.azure.eventgrid#VerifiedPartnersListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -669,7 +670,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#VerifiedPartnersGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetVerifiedPartnerResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -679,7 +680,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#VerifiedPartnersGetResponseSystemData": {
+    "com.azure.eventgrid#GetVerifiedPartnerResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -689,7 +690,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#VerifiedPartnersGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetVerifiedPartnerResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -707,7 +708,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#VerifiedPartnersGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetVerifiedPartnerResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -723,7 +724,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#VerifiedPartnersGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetVerifiedPartnerResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -755,7 +756,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#VerifiedPartnersGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetVerifiedPartnerResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1199,7 +1200,7 @@
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.eventgrid#ListTopicTypesResult"
+        "target": "com.azure.eventgrid#TopicTypesListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -1212,7 +1213,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#ListTopicTypesResult": {
+    "com.azure.eventgrid#TopicTypesListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -1938,7 +1939,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#TopicSpacesGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetTopicSpaceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1948,7 +1949,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#TopicSpacesGetResponseSystemData": {
+    "com.azure.eventgrid#GetTopicSpaceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1958,7 +1959,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#TopicSpacesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetTopicSpaceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1976,7 +1977,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#TopicSpacesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetTopicSpaceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1992,7 +1993,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#TopicSpacesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetTopicSpaceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2024,7 +2025,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#TopicSpacesGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetTopicSpaceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2143,7 +2144,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#ExtensionTopicsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetExtensionTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2153,7 +2154,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#ExtensionTopicsGetResponseSystemData": {
+    "com.azure.eventgrid#GetExtensionTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2163,7 +2164,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#ExtensionTopicsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetExtensionTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2181,7 +2182,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#ExtensionTopicsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetExtensionTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2197,7 +2198,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#ExtensionTopicsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetExtensionTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2229,7 +2230,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#ExtensionTopicsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetExtensionTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2947,7 +2948,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#SystemTopicsUpdateResponseTagsMap",
+          "target": "com.azure.eventgrid#UpdateSystemTopicResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -2959,7 +2960,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#SystemTopicsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateSystemTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2975,7 +2976,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#SystemTopicsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateSystemTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2985,7 +2986,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#SystemTopicsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateSystemTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3003,7 +3004,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#SystemTopicsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateSystemTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3019,7 +3020,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateSystemTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3051,7 +3052,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateSystemTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3083,7 +3084,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicsUpdateResponseTagsMap": {
+    "com.azure.eventgrid#UpdateSystemTopicResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3123,7 +3124,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#SystemTopicsUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdateSystemTopicRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the system topic."
           }
@@ -3139,7 +3140,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#SystemTopicsUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdateSystemTopicRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3484,7 +3485,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#SystemTopicsGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetSystemTopicResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -3496,7 +3497,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#SystemTopicsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetSystemTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3512,7 +3513,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#SystemTopicsGetResponseSystemData": {
+    "com.azure.eventgrid#GetSystemTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3522,7 +3523,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#SystemTopicsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetSystemTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3540,7 +3541,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#SystemTopicsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetSystemTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3556,7 +3557,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetSystemTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3588,7 +3589,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetSystemTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3620,7 +3621,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicsGetResponseTagsMap": {
+    "com.azure.eventgrid#GetSystemTopicResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4152,7 +4153,7 @@
           }
         },
         "parentType": {
-          "target": "com.azure.eventgrid#PrivateEndpointConnectionsListByResourceRequestParentType",
+          "target": "com.azure.eventgrid#ListPrivateEndpointConnectionByResourceRequestParentType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4186,7 +4187,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PrivateEndpointConnectionsListByResourceRequestParentType": {
+    "com.azure.eventgrid#ListPrivateEndpointConnectionByResourceRequestParentType": {
       "type": "enum",
       "members": {
         "TOPICS": {
@@ -4255,7 +4256,7 @@
           }
         },
         "parentType": {
-          "target": "com.azure.eventgrid#PrivateEndpointConnectionsDeleteRequestParentType",
+          "target": "com.azure.eventgrid#DeletePrivateEndpointConnectionRequestParentType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4283,7 +4284,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PrivateEndpointConnectionsDeleteRequestParentType": {
+    "com.azure.eventgrid#DeletePrivateEndpointConnectionRequestParentType": {
       "type": "enum",
       "members": {
         "TOPICS": {
@@ -4384,7 +4385,7 @@
           }
         },
         "parentType": {
-          "target": "com.azure.eventgrid#PrivateEndpointConnectionsUpdateRequestParentType",
+          "target": "com.azure.eventgrid#UpdatePrivateEndpointConnectionRequestParentType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4418,7 +4419,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PrivateEndpointConnectionsUpdateRequestParentType": {
+    "com.azure.eventgrid#UpdatePrivateEndpointConnectionRequestParentType": {
       "type": "enum",
       "members": {
         "TOPICS": {
@@ -4519,7 +4520,7 @@
           }
         },
         "parentType": {
-          "target": "com.azure.eventgrid#PrivateEndpointConnectionsGetRequestParentType",
+          "target": "com.azure.eventgrid#GetPrivateEndpointConnectionRequestParentType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4547,7 +4548,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PrivateEndpointConnectionsGetRequestParentType": {
+    "com.azure.eventgrid#GetPrivateEndpointConnectionRequestParentType": {
       "type": "enum",
       "members": {
         "TOPICS": {
@@ -5294,7 +5295,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PermissionBindingsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetPermissionBindingResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -5304,7 +5305,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PermissionBindingsGetResponseSystemData": {
+    "com.azure.eventgrid#GetPermissionBindingResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -5314,7 +5315,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PermissionBindingsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetPermissionBindingResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -5332,7 +5333,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PermissionBindingsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetPermissionBindingResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -5348,7 +5349,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PermissionBindingsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetPermissionBindingResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5380,7 +5381,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PermissionBindingsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetPermissionBindingResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5452,13 +5453,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicsDeactivate": {
+    "com.azure.eventgrid#DeactivatePartnerTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#PartnerTopicsDeactivateRequest"
+        "target": "com.azure.eventgrid#DeactivatePartnerTopicRequest"
       },
       "output": {
-        "target": "com.azure.eventgrid#PartnerTopicsDeactivateResponse"
+        "target": "com.azure.eventgrid#DeactivatePartnerTopicResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5471,7 +5472,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#PartnerTopicsDeactivateResponse": {
+    "com.azure.eventgrid#DeactivatePartnerTopicResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5500,7 +5501,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerTopicsDeactivateResponseTagsMap",
+          "target": "com.azure.eventgrid#DeactivatePartnerTopicResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -5512,7 +5513,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerTopicsDeactivateResponseSystemData",
+          "target": "com.azure.eventgrid#DeactivatePartnerTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -5528,7 +5529,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicsDeactivateResponseSystemData": {
+    "com.azure.eventgrid#DeactivatePartnerTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -5538,7 +5539,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerTopicsDeactivateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#DeactivatePartnerTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -5556,7 +5557,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerTopicsDeactivateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#DeactivatePartnerTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -5572,7 +5573,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsDeactivateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#DeactivatePartnerTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5604,7 +5605,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsDeactivateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#DeactivatePartnerTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5846,7 +5847,7 @@
         "smithy.api#documentation": "The kind of event type used."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsDeactivateResponseTagsMap": {
+    "com.azure.eventgrid#DeactivatePartnerTopicResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5858,7 +5859,7 @@
         "smithy.api#documentation": "Tags of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsDeactivateRequest": {
+    "com.azure.eventgrid#DeactivatePartnerTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5890,13 +5891,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicsActivate": {
+    "com.azure.eventgrid#ActivatePartnerTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#PartnerTopicsActivateRequest"
+        "target": "com.azure.eventgrid#ActivatePartnerTopicRequest"
       },
       "output": {
-        "target": "com.azure.eventgrid#PartnerTopicsActivateResponse"
+        "target": "com.azure.eventgrid#ActivatePartnerTopicResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5909,7 +5910,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#PartnerTopicsActivateResponse": {
+    "com.azure.eventgrid#ActivatePartnerTopicResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5938,7 +5939,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerTopicsActivateResponseTagsMap",
+          "target": "com.azure.eventgrid#ActivatePartnerTopicResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -5950,7 +5951,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerTopicsActivateResponseSystemData",
+          "target": "com.azure.eventgrid#ActivatePartnerTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -5966,7 +5967,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicsActivateResponseSystemData": {
+    "com.azure.eventgrid#ActivatePartnerTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -5976,7 +5977,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerTopicsActivateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#ActivatePartnerTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -5994,7 +5995,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerTopicsActivateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#ActivatePartnerTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -6010,7 +6011,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsActivateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#ActivatePartnerTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6042,7 +6043,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsActivateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#ActivatePartnerTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6074,7 +6075,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsActivateResponseTagsMap": {
+    "com.azure.eventgrid#ActivatePartnerTopicResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6086,7 +6087,7 @@
         "smithy.api#documentation": "Tags of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsActivateRequest": {
+    "com.azure.eventgrid#ActivatePartnerTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6528,7 +6529,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerTopicsUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdatePartnerTopicRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the Partner Topic resource."
           }
@@ -6544,7 +6545,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicsUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdatePartnerTopicRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6945,7 +6946,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerTopicsGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetPartnerTopicResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -6957,7 +6958,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerTopicsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetPartnerTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -6973,7 +6974,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicsGetResponseSystemData": {
+    "com.azure.eventgrid#GetPartnerTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -6983,7 +6984,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerTopicsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetPartnerTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -7001,7 +7002,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerTopicsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetPartnerTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -7017,7 +7018,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetPartnerTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -7049,7 +7050,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetPartnerTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -7081,7 +7082,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicsGetResponseTagsMap": {
+    "com.azure.eventgrid#GetPartnerTopicResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7593,7 +7594,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerRegistrationsUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdatePartnerRegistrationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the partner registration resource."
           }
@@ -7603,7 +7604,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PartnerRegistrationsUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdatePartnerRegistrationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7930,7 +7931,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerRegistrationsGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetPartnerRegistrationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -7942,7 +7943,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerRegistrationsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetPartnerRegistrationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -7952,7 +7953,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerRegistrationsGetResponseSystemData": {
+    "com.azure.eventgrid#GetPartnerRegistrationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -7962,7 +7963,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerRegistrationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetPartnerRegistrationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -7980,7 +7981,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerRegistrationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetPartnerRegistrationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -7996,7 +7997,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerRegistrationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetPartnerRegistrationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8028,7 +8029,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerRegistrationsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetPartnerRegistrationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8060,7 +8061,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#PartnerRegistrationsGetResponseTagsMap": {
+    "com.azure.eventgrid#GetPartnerRegistrationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8104,10 +8105,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PartnerNamespacesRegenerateKey": {
+    "com.azure.eventgrid#RegeneratePartnerNamespaceKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#PartnerNamespacesRegenerateKeyRequest"
+        "target": "com.azure.eventgrid#RegeneratePartnerNamespaceKeyRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#PartnerNamespaceSharedAccessKeys"
@@ -8143,7 +8144,7 @@
         "smithy.api#documentation": "Shared access keys of the partner namespace."
       }
     },
-    "com.azure.eventgrid#PartnerNamespacesRegenerateKeyRequest": {
+    "com.azure.eventgrid#RegeneratePartnerNamespaceKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8859,7 +8860,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerNamespacesUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdatePartnerNamespaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the Partner Namespace."
           }
@@ -8962,7 +8963,7 @@
         "smithy.api#documentation": "This determines if traffic is allowed over public network. By default it is enabled. \r\nYou can further restrict to specific IPs by configuring <seealso cref=\"P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.PartnerNamespaceUpdateParameterProperties.InboundIpRules\" />"
       }
     },
-    "com.azure.eventgrid#PartnerNamespacesUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdatePartnerNamespaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9394,7 +9395,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerNamespacesGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetPartnerNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -9406,7 +9407,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerNamespacesGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetPartnerNamespaceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -9416,7 +9417,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerNamespacesGetResponseSystemData": {
+    "com.azure.eventgrid#GetPartnerNamespaceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -9426,7 +9427,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerNamespacesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetPartnerNamespaceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -9444,7 +9445,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerNamespacesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetPartnerNamespaceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -9460,7 +9461,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerNamespacesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetPartnerNamespaceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -9492,7 +9493,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerNamespacesGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetPartnerNamespaceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -9524,7 +9525,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#PartnerNamespacesGetResponseTagsMap": {
+    "com.azure.eventgrid#GetPartnerNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9965,7 +9966,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseSystemData",
+          "target": "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -9977,7 +9978,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseTagsMap",
+          "target": "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -9987,7 +9988,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseTagsMap": {
+    "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9999,7 +10000,7 @@
         "smithy.api#documentation": "Tags of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseSystemData": {
+    "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -10009,7 +10010,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -10027,7 +10028,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -10043,7 +10044,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -10075,7 +10076,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsAuthorizePartnerResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#AuthorizePartnerConfigurationPartnerResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -10530,7 +10531,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdatePartnerConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -10542,7 +10543,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsUpdateResponseTagsMap",
+          "target": "com.azure.eventgrid#UpdatePartnerConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -10552,7 +10553,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsUpdateResponseTagsMap": {
+    "com.azure.eventgrid#UpdatePartnerConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10564,7 +10565,7 @@
         "smithy.api#documentation": "Tags of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdatePartnerConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -10574,7 +10575,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdatePartnerConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -10592,7 +10593,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdatePartnerConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -10608,7 +10609,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdatePartnerConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -10640,7 +10641,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdatePartnerConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -10692,7 +10693,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdatePartnerConfigurationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the partner configuration resource."
           }
@@ -10722,7 +10723,7 @@
         "smithy.api#documentation": "Information of partner configuration update parameter properties."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdatePartnerConfigurationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11024,7 +11025,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetPartnerConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -11036,7 +11037,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetPartnerConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -11046,7 +11047,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsGetResponseTagsMap": {
+    "com.azure.eventgrid#GetPartnerConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11058,7 +11059,7 @@
         "smithy.api#documentation": "Tags of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsGetResponseSystemData": {
+    "com.azure.eventgrid#GetPartnerConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -11068,7 +11069,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetPartnerConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -11086,7 +11087,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerConfigurationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetPartnerConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -11102,7 +11103,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetPartnerConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -11134,7 +11135,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerConfigurationsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetPartnerConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -11190,10 +11191,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#TopicsRegenerateKey": {
+    "com.azure.eventgrid#RegenerateTopicKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#TopicsRegenerateKeyRequest"
+        "target": "com.azure.eventgrid#RegenerateTopicKeyRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#TopicSharedAccessKeys"
@@ -11229,7 +11230,7 @@
         "smithy.api#documentation": "Shared access keys of the Topic"
       }
     },
-    "com.azure.eventgrid#TopicsRegenerateKeyRequest": {
+    "com.azure.eventgrid#RegenerateTopicKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11992,7 +11993,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#TopicsUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdateTopicRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the Topic resource."
           }
@@ -12133,7 +12134,7 @@
         "smithy.api#documentation": "This determines if traffic is allowed over public network. By default it is enabled. \r\nYou can further restrict to specific IPs by configuring <seealso cref=\"P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.TopicUpdateParameterProperties.InboundIpRules\" />"
       }
     },
-    "com.azure.eventgrid#TopicsUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdateTopicRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12615,7 +12616,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#TopicsGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetTopicResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -12633,7 +12634,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#TopicsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -12643,7 +12644,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#TopicsGetResponseSystemData": {
+    "com.azure.eventgrid#GetTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -12653,7 +12654,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#TopicsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -12671,7 +12672,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#TopicsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -12687,7 +12688,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#TopicsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -12719,7 +12720,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#TopicsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -12751,7 +12752,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#TopicsGetResponseTagsMap": {
+    "com.azure.eventgrid#GetTopicResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12801,7 +12802,7 @@
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.eventgrid#ListOperationsResult"
+        "target": "com.azure.eventgrid#OperationsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -12814,7 +12815,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#ListOperationsResult": {
+    "com.azure.eventgrid#OperationsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -12907,10 +12908,10 @@
         "smithy.api#documentation": "Information about an operation"
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsRegenerateKey": {
+    "com.azure.eventgrid#RegenerateNamespaceTopicKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#NamespaceTopicsRegenerateKeyRequest"
+        "target": "com.azure.eventgrid#RegenerateNamespaceTopicKeyRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#TopicSharedAccessKeys"
@@ -12926,7 +12927,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsRegenerateKeyRequest": {
+    "com.azure.eventgrid#RegenerateNamespaceTopicKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13506,7 +13507,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#NamespaceTopicsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -13516,7 +13517,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateNamespaceTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -13526,7 +13527,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -13544,7 +13545,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -13560,7 +13561,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateNamespaceTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -13592,7 +13593,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateNamespaceTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -13996,7 +13997,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#NamespaceTopicsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetNamespaceTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -14006,7 +14007,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsGetResponseSystemData": {
+    "com.azure.eventgrid#GetNamespaceTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -14016,7 +14017,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetNamespaceTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -14034,7 +14035,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetNamespaceTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -14050,7 +14051,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetNamespaceTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -14082,7 +14083,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetNamespaceTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -14154,10 +14155,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#NamespacesRegenerateKey": {
+    "com.azure.eventgrid#RegenerateNamespaceKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#NamespacesRegenerateKeyRequest"
+        "target": "com.azure.eventgrid#RegenerateNamespaceKeyRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#NamespaceSharedAccessKeys"
@@ -14193,7 +14194,7 @@
         "smithy.api#documentation": "Shared access keys of the Namespace."
       }
     },
-    "com.azure.eventgrid#NamespacesRegenerateKeyRequest": {
+    "com.azure.eventgrid#RegenerateNamespaceKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15158,7 +15159,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#NamespacesUpdateResponseTagsMap",
+          "target": "com.azure.eventgrid#UpdateNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -15182,7 +15183,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#NamespacesUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateNamespaceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -15192,7 +15193,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#NamespacesUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateNamespaceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -15202,7 +15203,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#NamespacesUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateNamespaceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -15220,7 +15221,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#NamespacesUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateNamespaceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -15236,7 +15237,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#NamespacesUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateNamespaceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -15268,7 +15269,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#NamespacesUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateNamespaceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -15300,7 +15301,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#NamespacesUpdateResponseTagsMap": {
+    "com.azure.eventgrid#UpdateNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15340,7 +15341,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#NamespacesUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdateNamespaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the namespace resource."
           }
@@ -15531,7 +15532,7 @@
         "smithy.api#documentation": "Indicate if Topic Spaces Configuration is enabled for the namespace. Default is Disabled."
       }
     },
-    "com.azure.eventgrid#NamespacesUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdateNamespaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16096,7 +16097,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#NamespacesGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -16120,7 +16121,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#NamespacesGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetNamespaceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -16130,7 +16131,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#NamespacesGetResponseSystemData": {
+    "com.azure.eventgrid#GetNamespaceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -16140,7 +16141,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#NamespacesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetNamespaceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -16158,7 +16159,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#NamespacesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetNamespaceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -16174,7 +16175,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#NamespacesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetNamespaceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -16206,7 +16207,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#NamespacesGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetNamespaceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -16238,7 +16239,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#NamespacesGetResponseTagsMap": {
+    "com.azure.eventgrid#GetNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16282,10 +16283,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttribute": {
+    "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributeRequest"
+        "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributesRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DeliveryAttributeListResult"
@@ -16365,7 +16366,7 @@
         "smithy.api#documentation": "Type of the delivery attribute or header name."
       }
     },
-    "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributeRequest": {
+    "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16413,10 +16414,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttribute": {
+    "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributeRequest"
+        "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributesRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DeliveryAttributeListResult"
@@ -16432,7 +16433,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributeRequest": {
+    "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17290,10 +17291,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttribute": {
+    "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributeRequest"
+        "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributesRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DeliveryAttributeListResult"
@@ -17309,7 +17310,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributeRequest": {
+    "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17349,10 +17350,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#GetEventSubscriptionDeliveryAttribute": {
+    "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributeRequest"
+        "target": "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributesRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DeliveryAttributeListResult"
@@ -17368,7 +17369,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributeRequest": {
+    "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributesRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -18593,7 +18594,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -18603,7 +18604,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -18613,7 +18614,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -18631,7 +18632,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -18647,7 +18648,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -18679,7 +18680,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -18765,7 +18766,7 @@
           }
         },
         "labels": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateRequestLabelsList",
+          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionRequestLabelsList",
           "traits": {
             "smithy.api#documentation": "List of user defined labels."
           }
@@ -18777,7 +18778,7 @@
           }
         },
         "eventDeliverySchema": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateRequestEventDeliverySchema",
+          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionRequestEventDeliverySchema",
           "traits": {
             "smithy.api#documentation": "The event delivery schema for the event subscription."
           }
@@ -18805,7 +18806,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateRequestEventDeliverySchema": {
+    "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionRequestEventDeliverySchema": {
       "type": "enum",
       "members": {
         "EVENTGRIDSCHEMA": {
@@ -18831,7 +18832,7 @@
         "smithy.api#documentation": "The event delivery schema for the event subscription."
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsUpdateRequestLabelsList": {
+    "com.azure.eventgrid#UpdatePartnerTopicEventSubscriptionRequestLabelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -19195,7 +19196,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -19205,7 +19206,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsGetResponseSystemData": {
+    "com.azure.eventgrid#GetPartnerTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -19215,7 +19216,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -19233,7 +19234,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -19249,7 +19250,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetPartnerTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -19281,7 +19282,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#PartnerTopicEventSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetPartnerTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -19626,7 +19627,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -19636,7 +19637,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -19646,7 +19647,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -19664,7 +19665,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -19680,7 +19681,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -19712,7 +19713,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -19798,7 +19799,7 @@
           }
         },
         "labels": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateRequestLabelsList",
+          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionRequestLabelsList",
           "traits": {
             "smithy.api#documentation": "List of user defined labels."
           }
@@ -19810,7 +19811,7 @@
           }
         },
         "eventDeliverySchema": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateRequestEventDeliverySchema",
+          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionRequestEventDeliverySchema",
           "traits": {
             "smithy.api#documentation": "The event delivery schema for the event subscription."
           }
@@ -19838,7 +19839,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateRequestEventDeliverySchema": {
+    "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionRequestEventDeliverySchema": {
       "type": "enum",
       "members": {
         "EVENTGRIDSCHEMA": {
@@ -19864,7 +19865,7 @@
         "smithy.api#documentation": "The event delivery schema for the event subscription."
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsUpdateRequestLabelsList": {
+    "com.azure.eventgrid#UpdateSystemTopicEventSubscriptionRequestLabelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -20131,7 +20132,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -20141,7 +20142,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsGetResponseSystemData": {
+    "com.azure.eventgrid#GetSystemTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -20151,7 +20152,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -20169,7 +20170,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -20185,7 +20186,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetSystemTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -20217,7 +20218,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#SystemTopicEventSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetSystemTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -20395,7 +20396,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateDomainEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -20405,7 +20406,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateDomainEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -20415,7 +20416,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateDomainEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -20433,7 +20434,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateDomainEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -20449,7 +20450,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateDomainEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -20481,7 +20482,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateDomainEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -20567,7 +20568,7 @@
           }
         },
         "labels": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsUpdateRequestLabelsList",
+          "target": "com.azure.eventgrid#UpdateDomainEventSubscriptionRequestLabelsList",
           "traits": {
             "smithy.api#documentation": "List of user defined labels."
           }
@@ -20579,7 +20580,7 @@
           }
         },
         "eventDeliverySchema": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsUpdateRequestEventDeliverySchema",
+          "target": "com.azure.eventgrid#UpdateDomainEventSubscriptionRequestEventDeliverySchema",
           "traits": {
             "smithy.api#documentation": "The event delivery schema for the event subscription."
           }
@@ -20607,7 +20608,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsUpdateRequestEventDeliverySchema": {
+    "com.azure.eventgrid#UpdateDomainEventSubscriptionRequestEventDeliverySchema": {
       "type": "enum",
       "members": {
         "EVENTGRIDSCHEMA": {
@@ -20633,7 +20634,7 @@
         "smithy.api#documentation": "The event delivery schema for the event subscription."
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsUpdateRequestLabelsList": {
+    "com.azure.eventgrid#UpdateDomainEventSubscriptionRequestLabelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -20900,7 +20901,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetDomainEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -20910,7 +20911,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsGetResponseSystemData": {
+    "com.azure.eventgrid#GetDomainEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -20920,7 +20921,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetDomainEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -20938,7 +20939,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetDomainEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -20954,7 +20955,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetDomainEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -20986,7 +20987,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#DomainEventSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetDomainEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -21164,7 +21165,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -21174,7 +21175,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -21184,7 +21185,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -21202,7 +21203,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -21218,7 +21219,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -21250,7 +21251,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -21336,7 +21337,7 @@
           }
         },
         "labels": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsUpdateRequestLabelsList",
+          "target": "com.azure.eventgrid#UpdateTopicEventSubscriptionRequestLabelsList",
           "traits": {
             "smithy.api#documentation": "List of user defined labels."
           }
@@ -21348,7 +21349,7 @@
           }
         },
         "eventDeliverySchema": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsUpdateRequestEventDeliverySchema",
+          "target": "com.azure.eventgrid#UpdateTopicEventSubscriptionRequestEventDeliverySchema",
           "traits": {
             "smithy.api#documentation": "The event delivery schema for the event subscription."
           }
@@ -21376,7 +21377,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsUpdateRequestEventDeliverySchema": {
+    "com.azure.eventgrid#UpdateTopicEventSubscriptionRequestEventDeliverySchema": {
       "type": "enum",
       "members": {
         "EVENTGRIDSCHEMA": {
@@ -21402,7 +21403,7 @@
         "smithy.api#documentation": "The event delivery schema for the event subscription."
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsUpdateRequestLabelsList": {
+    "com.azure.eventgrid#UpdateTopicEventSubscriptionRequestLabelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -21669,7 +21670,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -21679,7 +21680,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsGetResponseSystemData": {
+    "com.azure.eventgrid#GetTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -21689,7 +21690,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -21707,7 +21708,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -21723,7 +21724,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -21755,7 +21756,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#TopicEventSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -21941,7 +21942,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -21951,7 +21952,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -21961,7 +21962,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -21979,7 +21980,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -21995,7 +21996,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -22027,7 +22028,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -22121,7 +22122,7 @@
           }
         },
         "labels": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateRequestLabelsList",
+          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionRequestLabelsList",
           "traits": {
             "smithy.api#documentation": "List of user defined labels."
           }
@@ -22133,7 +22134,7 @@
           }
         },
         "eventDeliverySchema": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateRequestEventDeliverySchema",
+          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionRequestEventDeliverySchema",
           "traits": {
             "smithy.api#documentation": "The event delivery schema for the event subscription."
           }
@@ -22161,7 +22162,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateRequestEventDeliverySchema": {
+    "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionRequestEventDeliverySchema": {
       "type": "enum",
       "members": {
         "EVENTGRIDSCHEMA": {
@@ -22187,7 +22188,7 @@
         "smithy.api#documentation": "The event delivery schema for the event subscription."
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsUpdateRequestLabelsList": {
+    "com.azure.eventgrid#UpdateDomainTopicEventSubscriptionRequestLabelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -22462,7 +22463,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -22472,7 +22473,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsGetResponseSystemData": {
+    "com.azure.eventgrid#GetDomainTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -22482,7 +22483,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -22500,7 +22501,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -22516,7 +22517,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetDomainTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -22548,7 +22549,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#DomainTopicEventSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetDomainTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -22718,7 +22719,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#EventSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -22728,7 +22729,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -22738,7 +22739,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#EventSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -22756,7 +22757,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#EventSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -22772,7 +22773,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -22804,7 +22805,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -22874,7 +22875,7 @@
           }
         },
         "labels": {
-          "target": "com.azure.eventgrid#EventSubscriptionsUpdateRequestLabelsList",
+          "target": "com.azure.eventgrid#UpdateEventSubscriptionRequestLabelsList",
           "traits": {
             "smithy.api#documentation": "List of user defined labels."
           }
@@ -22886,7 +22887,7 @@
           }
         },
         "eventDeliverySchema": {
-          "target": "com.azure.eventgrid#EventSubscriptionsUpdateRequestEventDeliverySchema",
+          "target": "com.azure.eventgrid#UpdateEventSubscriptionRequestEventDeliverySchema",
           "traits": {
             "smithy.api#documentation": "The event delivery schema for the event subscription."
           }
@@ -22914,7 +22915,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsUpdateRequestEventDeliverySchema": {
+    "com.azure.eventgrid#UpdateEventSubscriptionRequestEventDeliverySchema": {
       "type": "enum",
       "members": {
         "EVENTGRIDSCHEMA": {
@@ -22940,7 +22941,7 @@
         "smithy.api#documentation": "The event delivery schema for the event subscription."
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsUpdateRequestLabelsList": {
+    "com.azure.eventgrid#UpdateEventSubscriptionRequestLabelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -23191,7 +23192,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#EventSubscriptionsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -23201,7 +23202,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsGetResponseSystemData": {
+    "com.azure.eventgrid#GetEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -23211,7 +23212,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#EventSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -23229,7 +23230,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#EventSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -23245,7 +23246,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -23277,7 +23278,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#EventSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -23333,10 +23334,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttribute": {
+    "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributeRequest"
+        "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributesRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DeliveryAttributeListResult"
@@ -23352,7 +23353,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributeRequest": {
+    "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24185,7 +24186,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -24195,7 +24196,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#NamespaceTopicEventSubscriptionsUpdateResponseSystemData": {
+    "com.azure.eventgrid#UpdateNamespaceTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -24205,7 +24206,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -24223,7 +24224,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -24239,7 +24240,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicEventSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#UpdateNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -24271,7 +24272,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicEventSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#UpdateNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -24712,7 +24713,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -24722,7 +24723,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#NamespaceTopicEventSubscriptionsGetResponseSystemData": {
+    "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -24732,7 +24733,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -24750,7 +24751,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -24766,7 +24767,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicEventSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -24798,7 +24799,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#NamespaceTopicEventSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -24878,10 +24879,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttribute": {
+    "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributeRequest"
+        "target": "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributesRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DeliveryAttributeListResult"
@@ -24897,7 +24898,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributeRequest": {
+    "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24937,10 +24938,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttribute": {
+    "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributeRequest"
+        "target": "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributesRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DeliveryAttributeListResult"
@@ -24956,7 +24957,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-15"
       }
     },
-    "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributeRequest": {
+    "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -25605,7 +25606,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#DomainTopicsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetDomainTopicResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -25615,7 +25616,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#DomainTopicsGetResponseSystemData": {
+    "com.azure.eventgrid#GetDomainTopicResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -25625,7 +25626,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#DomainTopicsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetDomainTopicResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -25643,7 +25644,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#DomainTopicsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetDomainTopicResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -25659,7 +25660,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#DomainTopicsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetDomainTopicResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -25691,7 +25692,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#DomainTopicsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetDomainTopicResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -25763,10 +25764,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventgrid#DomainsRegenerateKey": {
+    "com.azure.eventgrid#RegenerateDomainKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventgrid#DomainsRegenerateKeyRequest"
+        "target": "com.azure.eventgrid#RegenerateDomainKeyRequest"
       },
       "output": {
         "target": "com.azure.eventgrid#DomainSharedAccessKeys"
@@ -25802,7 +25803,7 @@
         "smithy.api#documentation": "Shared access keys of the Domain."
       }
     },
-    "com.azure.eventgrid#DomainsRegenerateKeyRequest": {
+    "com.azure.eventgrid#RegenerateDomainKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -26548,7 +26549,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#DomainsUpdateRequestTagsMap",
+          "target": "com.azure.eventgrid#UpdateDomainRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the domains resource."
           }
@@ -26701,7 +26702,7 @@
         "smithy.api#documentation": "This determines if traffic is allowed over public network. By default it is enabled. \r\nYou can further restrict to specific IPs by configuring <seealso cref=\"P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.DomainUpdateParameterProperties.InboundIpRules\" />"
       }
     },
-    "com.azure.eventgrid#DomainsUpdateRequestTagsMap": {
+    "com.azure.eventgrid#UpdateDomainRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -27195,7 +27196,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventgrid#DomainsGetResponseTagsMap",
+          "target": "com.azure.eventgrid#GetDomainResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the resource."
           }
@@ -27213,7 +27214,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#DomainsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetDomainResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -27223,7 +27224,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#DomainsGetResponseSystemData": {
+    "com.azure.eventgrid#GetDomainResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -27233,7 +27234,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#DomainsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetDomainResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -27251,7 +27252,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#DomainsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetDomainResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -27267,7 +27268,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#DomainsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetDomainResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -27299,7 +27300,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#DomainsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetDomainResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -27331,7 +27332,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.eventgrid#DomainsGetResponseTagsMap": {
+    "com.azure.eventgrid#GetDomainResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -28201,7 +28202,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#ClientsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetClientResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -28211,7 +28212,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#ClientsGetResponseSystemData": {
+    "com.azure.eventgrid#GetClientResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -28221,7 +28222,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#ClientsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetClientResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -28239,7 +28240,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#ClientsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetClientResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -28255,7 +28256,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#ClientsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetClientResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -28287,7 +28288,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#ClientsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetClientResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -29012,7 +29013,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#ClientGroupsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetClientGroupResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -29022,7 +29023,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#ClientGroupsGetResponseSystemData": {
+    "com.azure.eventgrid#GetClientGroupResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -29032,7 +29033,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#ClientGroupsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetClientGroupResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -29050,7 +29051,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#ClientGroupsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetClientGroupResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -29066,7 +29067,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#ClientGroupsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetClientGroupResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -29098,7 +29099,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#ClientGroupsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetClientGroupResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -30048,7 +30049,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#ChannelsGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetChannelResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -30058,7 +30059,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#ChannelsGetResponseSystemData": {
+    "com.azure.eventgrid#GetChannelResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -30068,7 +30069,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#ChannelsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetChannelResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -30086,7 +30087,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#ChannelsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetChannelResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -30102,7 +30103,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#ChannelsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetChannelResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -30134,7 +30135,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#ChannelsGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetChannelResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -30871,7 +30872,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.eventgrid#CaCertificatesGetResponseSystemData",
+          "target": "com.azure.eventgrid#GetCaCertificateResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -30881,7 +30882,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventgrid#CaCertificatesGetResponseSystemData": {
+    "com.azure.eventgrid#GetCaCertificateResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -30891,7 +30892,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.eventgrid#CaCertificatesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.eventgrid#GetCaCertificateResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -30909,7 +30910,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.eventgrid#CaCertificatesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.eventgrid#GetCaCertificateResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -30925,7 +30926,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.eventgrid#CaCertificatesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.eventgrid#GetCaCertificateResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -30957,7 +30958,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.eventgrid#CaCertificatesGetResponseSystemDataCreatedByType": {
+    "com.azure.eventgrid#GetCaCertificateResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -31034,442 +31035,253 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespacesValidateCustomDomainOwnership"
-        },
-        {
-          "target": "com.azure.eventgrid#ListVerifiedPartners"
-        },
-        {
-          "target": "com.azure.eventgrid#GetVerifiedPartner"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicTypeEventTypes"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicTypes"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicSpaceByNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteTopicSpace"
-        },
-        {
-          "target": "com.azure.eventgrid#TopicSpacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicSpace"
-        },
-        {
-          "target": "com.azure.eventgrid#GetExtensionTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicEventTypes"
-        },
-        {
-          "target": "com.azure.eventgrid#ListSystemTopicByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListSystemTopicBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteSystemTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateSystemTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#SystemTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPrivateLinkResourceByResource"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPrivateEndpointConnectionByResource"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPermissionBindingByNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePermissionBinding"
-        },
-        {
-          "target": "com.azure.eventgrid#PermissionBindingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPermissionBinding"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerTopicsDeactivate"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerTopicsActivate"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerTopicByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerTopicBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerRegistrationByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerRegistrationBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerRegistration"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerRegistration"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerRegistrationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerRegistration"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerNamespacesRegenerateKey"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerNamespaceSharedAccessKeys"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerNamespaceBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerNamespacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerConfigurationsUnauthorizePartner"
+          "target": "com.azure.eventgrid#ActivatePartnerTopic"
         },
         {
           "target": "com.azure.eventgrid#AuthorizePartnerConfigurationPartner"
         },
         {
-          "target": "com.azure.eventgrid#ListPartnerConfigurationBySubscription"
+          "target": "com.azure.eventgrid#CaCertificatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.eventgrid#ListPartnerConfigurationByResourceGroup"
+          "target": "com.azure.eventgrid#ChannelsCreateOrUpdate"
         },
         {
-          "target": "com.azure.eventgrid#DeletePartnerConfiguration"
+          "target": "com.azure.eventgrid#ClientGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.eventgrid#UpdatePartnerConfiguration"
+          "target": "com.azure.eventgrid#ClientsCreateOrUpdate"
         },
         {
-          "target": "com.azure.eventgrid#PartnerConfigurationsCreateOrUpdate"
+          "target": "com.azure.eventgrid#DeactivatePartnerTopic"
         },
         {
-          "target": "com.azure.eventgrid#GetPartnerConfiguration"
+          "target": "com.azure.eventgrid#DeleteCaCertificate"
         },
         {
-          "target": "com.azure.eventgrid#TopicsRegenerateKey"
+          "target": "com.azure.eventgrid#DeleteChannel"
         },
         {
-          "target": "com.azure.eventgrid#ListTopicSharedAccessKeys"
+          "target": "com.azure.eventgrid#DeleteClient"
         },
         {
-          "target": "com.azure.eventgrid#ListTopicByResourceGroup"
+          "target": "com.azure.eventgrid#DeleteClientGroup"
         },
         {
-          "target": "com.azure.eventgrid#ListTopicBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#TopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListOperations"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespaceTopicsRegenerateKey"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceTopicSharedAccessKeys"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceTopicByNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteNamespaceTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateNamespaceTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespaceTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetNamespaceTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespacesRegenerateKey"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceSharedAccessKeys"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttribute"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttribute"
-        },
-        {
-          "target": "com.azure.eventgrid#ListDomainTopicEventSubscriptions"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttribute"
-        },
-        {
-          "target": "com.azure.eventgrid#GetEventSubscriptionDeliveryAttribute"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionByDomainTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListDomainEventSubscriptions"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicEventSubscriptions"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionByResource"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroupForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscriptionForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroupForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscriptionForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerTopicEventSubscriptionByPartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListSystemTopicEventSubscriptionBySystemTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteSystemTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopicEventSubscription"
+          "target": "com.azure.eventgrid#DeleteDomain"
         },
         {
           "target": "com.azure.eventgrid#DeleteDomainEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#UpdateDomainEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicEventSubscription"
+          "target": "com.azure.eventgrid#DeleteDomainTopic"
         },
         {
           "target": "com.azure.eventgrid#DeleteDomainTopicEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainTopicEventSubscription"
-        },
-        {
           "target": "com.azure.eventgrid#DeleteEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#UpdateEventSubscription"
+          "target": "com.azure.eventgrid#DeleteNamespace"
         },
         {
-          "target": "com.azure.eventgrid#EventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttribute"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceTopicEventSubscriptionByNamespaceTopic"
+          "target": "com.azure.eventgrid#DeleteNamespaceTopic"
         },
         {
           "target": "com.azure.eventgrid#DeleteNamespaceTopicEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#UpdateNamespaceTopicEventSubscription"
+          "target": "com.azure.eventgrid#DeletePartnerConfiguration"
         },
         {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsCreateOrUpdate"
+          "target": "com.azure.eventgrid#DeletePartnerNamespace"
         },
         {
-          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscription"
+          "target": "com.azure.eventgrid#DeletePartnerRegistration"
         },
         {
-          "target": "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttribute"
+          "target": "com.azure.eventgrid#DeletePartnerTopic"
         },
         {
-          "target": "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttribute"
+          "target": "com.azure.eventgrid#DeletePartnerTopicEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#ListDomainTopicByDomain"
+          "target": "com.azure.eventgrid#DeletePermissionBinding"
         },
         {
-          "target": "com.azure.eventgrid#DeleteDomainTopic"
+          "target": "com.azure.eventgrid#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteSystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteSystemTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteTopicSpace"
+        },
+        {
+          "target": "com.azure.eventgrid#DomainEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#DomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsCreateOrUpdate"
         },
         {
           "target": "com.azure.eventgrid#DomainTopicsCreateOrUpdate"
         },
         {
+          "target": "com.azure.eventgrid#EventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetCaCertificate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetChannel"
+        },
+        {
+          "target": "com.azure.eventgrid#GetChannelFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetClient"
+        },
+        {
+          "target": "com.azure.eventgrid#GetClientGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomain"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainEventSubscriptionFullUrl"
+        },
+        {
           "target": "com.azure.eventgrid#GetDomainTopic"
         },
         {
-          "target": "com.azure.eventgrid#DomainsRegenerateKey"
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#ListDomainSharedAccessKeys"
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetExtensionTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespaceTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerConfiguration"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerRegistration"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPermissionBinding"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicSpace"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicType"
+        },
+        {
+          "target": "com.azure.eventgrid#GetVerifiedPartner"
+        },
+        {
+          "target": "com.azure.eventgrid#ListCaCertificateByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#ListChannelByPartnerNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#ListClientByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#ListClientGroupByNamespace"
         },
         {
           "target": "com.azure.eventgrid#ListDomainByResourceGroup"
@@ -31478,70 +31290,259 @@
           "target": "com.azure.eventgrid#ListDomainBySubscription"
         },
         {
-          "target": "com.azure.eventgrid#DeleteDomain"
+          "target": "com.azure.eventgrid#ListDomainEventSubscriptions"
         },
         {
-          "target": "com.azure.eventgrid#UpdateDomain"
+          "target": "com.azure.eventgrid#ListDomainSharedAccessKeys"
         },
         {
-          "target": "com.azure.eventgrid#DomainsCreateOrUpdate"
+          "target": "com.azure.eventgrid#ListDomainTopicByDomain"
         },
         {
-          "target": "com.azure.eventgrid#GetDomain"
+          "target": "com.azure.eventgrid#ListDomainTopicEventSubscriptions"
         },
         {
-          "target": "com.azure.eventgrid#ListClientByNamespace"
+          "target": "com.azure.eventgrid#ListEventSubscriptionByDomainTopic"
         },
         {
-          "target": "com.azure.eventgrid#DeleteClient"
+          "target": "com.azure.eventgrid#ListEventSubscriptionByResource"
         },
         {
-          "target": "com.azure.eventgrid#ClientsCreateOrUpdate"
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroup"
         },
         {
-          "target": "com.azure.eventgrid#GetClient"
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroupForTopicType"
         },
         {
-          "target": "com.azure.eventgrid#ListClientGroupByNamespace"
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscription"
         },
         {
-          "target": "com.azure.eventgrid#DeleteClientGroup"
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscriptionForTopicType"
         },
         {
-          "target": "com.azure.eventgrid#ClientGroupsCreateOrUpdate"
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroup"
         },
         {
-          "target": "com.azure.eventgrid#GetClientGroup"
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroupForTopicType"
         },
         {
-          "target": "com.azure.eventgrid#GetChannelFullUrl"
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscription"
         },
         {
-          "target": "com.azure.eventgrid#ListChannelByPartnerNamespace"
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscriptionForTopicType"
         },
         {
-          "target": "com.azure.eventgrid#DeleteChannel"
+          "target": "com.azure.eventgrid#ListNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceTopicByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceTopicEventSubscriptionByNamespaceTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceTopicSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListOperations"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerConfigurationByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerConfigurationBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerNamespaceBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerNamespaceSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerRegistrationByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerRegistrationBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerTopicByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerTopicBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerTopicEventSubscriptionByPartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPermissionBindingByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPrivateEndpointConnectionByResource"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPrivateLinkResourceByResource"
+        },
+        {
+          "target": "com.azure.eventgrid#ListSystemTopicByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListSystemTopicBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListSystemTopicEventSubscriptionBySystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicEventSubscriptions"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicEventTypes"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicSpaceByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicTypeEventTypes"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicTypes"
+        },
+        {
+          "target": "com.azure.eventgrid#ListVerifiedPartners"
+        },
+        {
+          "target": "com.azure.eventgrid#NamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#NamespaceTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerConfigurationsUnauthorizePartner"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerNamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerRegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#PermissionBindingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateDomainKey"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateNamespaceKey"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateNamespaceTopicKey"
+        },
+        {
+          "target": "com.azure.eventgrid#RegeneratePartnerNamespaceKey"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateTopicKey"
+        },
+        {
+          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#SystemTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#TopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#TopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#TopicSpacesCreateOrUpdate"
         },
         {
           "target": "com.azure.eventgrid#UpdateChannel"
         },
         {
-          "target": "com.azure.eventgrid#ChannelsCreateOrUpdate"
+          "target": "com.azure.eventgrid#UpdateDomain"
         },
         {
-          "target": "com.azure.eventgrid#GetChannel"
+          "target": "com.azure.eventgrid#UpdateDomainEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#ListCaCertificateByNamespace"
+          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#DeleteCaCertificate"
+          "target": "com.azure.eventgrid#UpdateEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#CaCertificatesCreateOrUpdate"
+          "target": "com.azure.eventgrid#UpdateNamespace"
         },
         {
-          "target": "com.azure.eventgrid#GetCaCertificate"
+          "target": "com.azure.eventgrid#UpdateNamespaceTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerConfiguration"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerRegistration"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateSystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ValidateNamespaceCustomDomainOwnership"
         }
       ],
       "traits": {

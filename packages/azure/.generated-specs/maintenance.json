@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.maintenance#ListUpdates": {
@@ -374,7 +375,7 @@
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.maintenance#ListOperationsResult"
+        "target": "com.azure.maintenance#OperationsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -387,7 +388,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.maintenance#ListOperationsResult": {
+    "com.azure.maintenance#OperationsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -480,13 +481,13 @@
         "smithy.api#documentation": "Information about an operation"
       }
     },
-    "com.azure.maintenance#DeleteConfigurationAssignmentForResourceGroup": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#DeleteConfigurationAssignmentForResourceGroupRequest"
+        "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.maintenance#DeleteConfigurationAssignmentForResourceGroupResponse"
+        "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -499,7 +500,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.maintenance#DeleteConfigurationAssignmentForResourceGroupResponse": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -521,7 +522,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupDeleteResponseSystemData",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -702,7 +703,7 @@
         "smithy.api#documentation": "List of allowed resources."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupDeleteResponseSystemData": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -712,7 +713,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupDeleteResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -730,7 +731,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupDeleteResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -746,7 +747,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupDeleteResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -778,7 +779,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupDeleteResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -810,7 +811,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#DeleteConfigurationAssignmentForResourceGroupRequest": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -842,13 +843,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#UpdateConfigurationAssignmentForResourceGroup": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#UpdateConfigurationAssignmentForResourceGroupRequest"
+        "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.maintenance#UpdateConfigurationAssignmentForResourceGroupResponse"
+        "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -861,7 +862,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.maintenance#UpdateConfigurationAssignmentForResourceGroupResponse": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -883,7 +884,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupUpdateResponseSystemData",
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -905,7 +906,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupUpdateResponseSystemData": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -915,7 +916,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -933,7 +934,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -949,7 +950,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -981,7 +982,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupUpdateResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1013,7 +1014,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#UpdateConfigurationAssignmentForResourceGroupRequest": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1272,13 +1273,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#GetConfigurationAssignmentForResourceGroup": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#GetConfigurationAssignmentForResourceGroupRequest"
+        "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.maintenance#GetConfigurationAssignmentForResourceGroupResponse"
+        "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1291,7 +1292,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.maintenance#GetConfigurationAssignmentForResourceGroupResponse": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1313,7 +1314,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupGetResponseSystemData",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1335,7 +1336,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupGetResponseSystemData": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1345,7 +1346,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupGetResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1363,7 +1364,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1379,7 +1380,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupGetResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1411,7 +1412,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupGetResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1443,7 +1444,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#GetConfigurationAssignmentForResourceGroupRequest": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1475,13 +1476,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#DeleteConfigurationAssignmentForSubscription": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#DeleteConfigurationAssignmentForSubscriptionRequest"
+        "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.maintenance#DeleteConfigurationAssignmentForSubscriptionResponse"
+        "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1494,7 +1495,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.maintenance#DeleteConfigurationAssignmentForSubscriptionResponse": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1516,7 +1517,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsDeleteResponseSystemData",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1538,7 +1539,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsDeleteResponseSystemData": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1548,7 +1549,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsDeleteResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1566,7 +1567,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsDeleteResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1582,7 +1583,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsDeleteResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1614,7 +1615,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsDeleteResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1646,7 +1647,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#DeleteConfigurationAssignmentForSubscriptionRequest": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1670,13 +1671,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#UpdateConfigurationAssignmentForSubscription": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#UpdateConfigurationAssignmentForSubscriptionRequest"
+        "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.maintenance#UpdateConfigurationAssignmentForSubscriptionResponse"
+        "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1689,7 +1690,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.maintenance#UpdateConfigurationAssignmentForSubscriptionResponse": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1711,7 +1712,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsUpdateResponseSystemData",
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1733,7 +1734,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsUpdateResponseSystemData": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1743,7 +1744,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1761,7 +1762,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1777,7 +1778,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1809,7 +1810,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1841,7 +1842,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#UpdateConfigurationAssignmentForSubscriptionRequest": {
+    "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2084,13 +2085,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#GetConfigurationAssignmentForSubscription": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#GetConfigurationAssignmentForSubscriptionRequest"
+        "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.maintenance#GetConfigurationAssignmentForSubscriptionResponse"
+        "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2103,7 +2104,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.maintenance#GetConfigurationAssignmentForSubscriptionResponse": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2125,7 +2126,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsGetResponseSystemData",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2147,7 +2148,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsGetResponseSystemData": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2157,7 +2158,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2175,7 +2176,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2191,7 +2192,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2223,7 +2224,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsGetResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2255,7 +2256,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#GetConfigurationAssignmentForSubscriptionRequest": {
+    "com.azure.maintenance#GetConfigurationAssignmentsForSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2279,10 +2280,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#ListConfigurationAssignmentWithinSubscription": {
+    "com.azure.maintenance#ListConfigurationAssignmentsWithinSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#ListConfigurationAssignmentWithinSubscriptionRequest"
+        "target": "com.azure.maintenance#ListConfigurationAssignmentsWithinSubscriptionRequest"
       },
       "output": {
         "target": "com.azure.maintenance#ListConfigurationAssignmentsResult"
@@ -2473,7 +2474,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#ListConfigurationAssignmentWithinSubscriptionRequest": {
+    "com.azure.maintenance#ListConfigurationAssignmentsWithinSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2489,10 +2490,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#ListMaintenanceConfigurationForResourceGroup": {
+    "com.azure.maintenance#ListMaintenanceConfigurationsForResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.maintenance#ListMaintenanceConfigurationForResourceGroupRequest"
+        "target": "com.azure.maintenance#ListMaintenanceConfigurationsForResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.maintenance#ListMaintenanceConfigurationsResult"
@@ -3029,7 +3030,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.maintenance#ListMaintenanceConfigurationForResourceGroupRequest": {
+    "com.azure.maintenance#ListMaintenanceConfigurationsForResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3129,7 +3130,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseSystemData",
+          "target": "com.azure.maintenance#DeleteMaintenanceConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3141,7 +3142,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseTagsMap",
+          "target": "com.azure.maintenance#DeleteMaintenanceConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets tags of the resource"
           }
@@ -3157,7 +3158,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseTagsMap": {
+    "com.azure.maintenance#DeleteMaintenanceConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3169,7 +3170,7 @@
         "smithy.api#documentation": "Gets or sets tags of the resource"
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseSystemData": {
+    "com.azure.maintenance#DeleteMaintenanceConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3179,7 +3180,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#DeleteMaintenanceConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3197,7 +3198,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#DeleteMaintenanceConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3213,7 +3214,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#DeleteMaintenanceConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3245,7 +3246,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsDeleteResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#DeleteMaintenanceConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3350,7 +3351,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseSystemData",
+          "target": "com.azure.maintenance#UpdateMaintenanceConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3362,7 +3363,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseTagsMap",
+          "target": "com.azure.maintenance#UpdateMaintenanceConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets tags of the resource"
           }
@@ -3378,7 +3379,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseTagsMap": {
+    "com.azure.maintenance#UpdateMaintenanceConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3390,7 +3391,7 @@
         "smithy.api#documentation": "Gets or sets tags of the resource"
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseSystemData": {
+    "com.azure.maintenance#UpdateMaintenanceConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3400,7 +3401,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#UpdateMaintenanceConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3418,7 +3419,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#UpdateMaintenanceConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3434,7 +3435,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#UpdateMaintenanceConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3466,7 +3467,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#UpdateMaintenanceConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3532,7 +3533,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsUpdateRequestTagsMap",
+          "target": "com.azure.maintenance#UpdateMaintenanceConfigurationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets tags of the resource"
           }
@@ -3548,7 +3549,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsUpdateRequestTagsMap": {
+    "com.azure.maintenance#UpdateMaintenanceConfigurationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3852,7 +3853,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsGetResponseSystemData",
+          "target": "com.azure.maintenance#GetMaintenanceConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3864,7 +3865,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsGetResponseTagsMap",
+          "target": "com.azure.maintenance#GetMaintenanceConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets tags of the resource"
           }
@@ -3880,7 +3881,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsGetResponseTagsMap": {
+    "com.azure.maintenance#GetMaintenanceConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3892,7 +3893,7 @@
         "smithy.api#documentation": "Gets or sets tags of the resource"
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsGetResponseSystemData": {
+    "com.azure.maintenance#GetMaintenanceConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3902,7 +3903,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetMaintenanceConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3920,7 +3921,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetMaintenanceConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3936,7 +3937,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetMaintenanceConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3968,7 +3969,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#MaintenanceConfigurationsGetResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetMaintenanceConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4223,7 +4224,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsDeleteResponseSystemData",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4245,7 +4246,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsDeleteResponseSystemData": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4255,7 +4256,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsDeleteResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4273,7 +4274,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsDeleteResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4289,7 +4290,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsDeleteResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4321,7 +4322,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsDeleteResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4689,7 +4690,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsGetResponseSystemData",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4711,7 +4712,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsGetResponseSystemData": {
+    "com.azure.maintenance#GetConfigurationAssignmentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4721,7 +4722,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4739,7 +4740,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4755,7 +4756,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4787,7 +4788,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsGetResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4916,7 +4917,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsDeleteParentResponseSystemData",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentParentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4938,7 +4939,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsDeleteParentResponseSystemData": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentParentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4948,7 +4949,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsDeleteParentResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentParentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4966,7 +4967,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsDeleteParentResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentParentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4982,7 +4983,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsDeleteParentResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentParentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5014,7 +5015,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsDeleteParentResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#DeleteConfigurationAssignmentParentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5414,7 +5415,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsGetParentResponseSystemData",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentParentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -5436,7 +5437,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsGetParentResponseSystemData": {
+    "com.azure.maintenance#GetConfigurationAssignmentParentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -5446,7 +5447,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsGetParentResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentParentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -5464,7 +5465,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsGetParentResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetConfigurationAssignmentParentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -5480,7 +5481,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsGetParentResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentParentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -5512,7 +5513,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ConfigurationAssignmentsGetParentResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetConfigurationAssignmentParentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6163,7 +6164,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ApplyUpdatesGetResponseSystemData",
+          "target": "com.azure.maintenance#GetApplyUpdateResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -6179,7 +6180,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ApplyUpdatesGetResponseSystemData": {
+    "com.azure.maintenance#GetApplyUpdateResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -6189,7 +6190,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ApplyUpdatesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetApplyUpdateResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -6207,7 +6208,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ApplyUpdatesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetApplyUpdateResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -6223,7 +6224,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ApplyUpdatesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetApplyUpdateResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6255,7 +6256,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ApplyUpdatesGetResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetApplyUpdateResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6384,7 +6385,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#ApplyUpdatesGetParentResponseSystemData",
+          "target": "com.azure.maintenance#GetApplyUpdateParentResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -6400,7 +6401,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#ApplyUpdatesGetParentResponseSystemData": {
+    "com.azure.maintenance#GetApplyUpdateParentResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -6410,7 +6411,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#ApplyUpdatesGetParentResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetApplyUpdateParentResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -6428,7 +6429,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#ApplyUpdatesGetParentResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetApplyUpdateParentResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -6444,7 +6445,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#ApplyUpdatesGetParentResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetApplyUpdateParentResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6476,7 +6477,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#ApplyUpdatesGetParentResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetApplyUpdateParentResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6621,7 +6622,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseSystemData",
+          "target": "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -6633,7 +6634,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseTagsMap",
+          "target": "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets tags of the resource"
           }
@@ -6649,7 +6650,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseTagsMap": {
+    "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6661,7 +6662,7 @@
         "smithy.api#documentation": "Gets or sets tags of the resource"
       }
     },
-    "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseSystemData": {
+    "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -6671,7 +6672,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -6689,7 +6690,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -6705,7 +6706,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6737,7 +6738,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.maintenance#PublicMaintenanceConfigurationsGetResponseSystemDataCreatedByType": {
+    "com.azure.maintenance#GetPublicMaintenanceConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6833,88 +6834,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.maintenance#ListUpdates"
+          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.maintenance#ListUpdateParent"
-        },
-        {
-          "target": "com.azure.maintenance#ListOperations"
-        },
-        {
-          "target": "com.azure.maintenance#DeleteConfigurationAssignmentForResourceGroup"
-        },
-        {
-          "target": "com.azure.maintenance#UpdateConfigurationAssignmentForResourceGroup"
-        },
-        {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#GetConfigurationAssignmentForResourceGroup"
-        },
-        {
-          "target": "com.azure.maintenance#DeleteConfigurationAssignmentForSubscription"
-        },
-        {
-          "target": "com.azure.maintenance#UpdateConfigurationAssignmentForSubscription"
-        },
-        {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#GetConfigurationAssignmentForSubscription"
-        },
-        {
-          "target": "com.azure.maintenance#ListConfigurationAssignmentWithinSubscription"
-        },
-        {
-          "target": "com.azure.maintenance#ListMaintenanceConfigurationForResourceGroup"
-        },
-        {
-          "target": "com.azure.maintenance#ListMaintenanceConfigurations"
-        },
-        {
-          "target": "com.azure.maintenance#DeleteMaintenanceConfiguration"
-        },
-        {
-          "target": "com.azure.maintenance#UpdateMaintenanceConfiguration"
-        },
-        {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#GetMaintenanceConfiguration"
-        },
-        {
-          "target": "com.azure.maintenance#ListConfigurationAssignments"
-        },
-        {
-          "target": "com.azure.maintenance#ListConfigurationAssignmentParent"
-        },
-        {
-          "target": "com.azure.maintenance#DeleteConfigurationAssignment"
+          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdateParent"
         },
         {
           "target": "com.azure.maintenance#ConfigurationAssignmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.maintenance#GetConfigurationAssignment"
+          "target": "com.azure.maintenance#ConfigurationAssignmentsCreateOrUpdateParent"
+        },
+        {
+          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#DeleteConfigurationAssignment"
         },
         {
           "target": "com.azure.maintenance#DeleteConfigurationAssignmentParent"
         },
         {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsCreateOrUpdateParent"
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroup"
         },
         {
-          "target": "com.azure.maintenance#GetConfigurationAssignmentParent"
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscription"
         },
         {
-          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdateParent"
+          "target": "com.azure.maintenance#DeleteMaintenanceConfiguration"
         },
         {
           "target": "com.azure.maintenance#GetApplyUpdate"
@@ -6923,10 +6873,61 @@
           "target": "com.azure.maintenance#GetApplyUpdateParent"
         },
         {
+          "target": "com.azure.maintenance#GetConfigurationAssignment"
+        },
+        {
+          "target": "com.azure.maintenance#GetConfigurationAssignmentParent"
+        },
+        {
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroup"
+        },
+        {
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscription"
+        },
+        {
+          "target": "com.azure.maintenance#GetMaintenanceConfiguration"
+        },
+        {
           "target": "com.azure.maintenance#GetPublicMaintenanceConfiguration"
         },
         {
+          "target": "com.azure.maintenance#ListConfigurationAssignmentParent"
+        },
+        {
+          "target": "com.azure.maintenance#ListConfigurationAssignments"
+        },
+        {
+          "target": "com.azure.maintenance#ListConfigurationAssignmentsWithinSubscription"
+        },
+        {
+          "target": "com.azure.maintenance#ListMaintenanceConfigurations"
+        },
+        {
+          "target": "com.azure.maintenance#ListMaintenanceConfigurationsForResourceGroup"
+        },
+        {
+          "target": "com.azure.maintenance#ListOperations"
+        },
+        {
           "target": "com.azure.maintenance#ListPublicMaintenanceConfigurations"
+        },
+        {
+          "target": "com.azure.maintenance#ListUpdateParent"
+        },
+        {
+          "target": "com.azure.maintenance#ListUpdates"
+        },
+        {
+          "target": "com.azure.maintenance#MaintenanceConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroup"
+        },
+        {
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscription"
+        },
+        {
+          "target": "com.azure.maintenance#UpdateMaintenanceConfiguration"
         }
       ],
       "traits": {

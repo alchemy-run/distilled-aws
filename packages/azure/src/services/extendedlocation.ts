@@ -310,64 +310,61 @@ export const GetCustomLocationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomLocationRequest>;
 
 /** Resource tags. */
-export type CustomLocationsGetResponseTagsMap = {
+export type GetCustomLocationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CustomLocationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCustomLocationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CustomLocationsGetResponseTagsMap>;
+) as any as S.Schema<GetCustomLocationResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type CustomLocationsGetResponseSystemDataCreatedByType =
+export type GetCustomLocationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CustomLocationsGetResponseSystemDataCreatedByType =
+export const GetCustomLocationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type CustomLocationsGetResponseSystemDataLastModifiedByType =
+export type GetCustomLocationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CustomLocationsGetResponseSystemDataLastModifiedByType =
+export const GetCustomLocationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface CustomLocationsGetResponseSystemData {
+export interface GetCustomLocationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: CustomLocationsGetResponseSystemDataCreatedByType;
+  createdByType?: GetCustomLocationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: CustomLocationsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetCustomLocationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const CustomLocationsGetResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        CustomLocationsGetResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        CustomLocationsGetResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
+export const GetCustomLocationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetCustomLocationResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetCustomLocationResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "CustomLocationsGetResponseSystemData",
-}) as any as S.Schema<CustomLocationsGetResponseSystemData>;
+  identifier: "GetCustomLocationResponseSystemData",
+}) as any as S.Schema<GetCustomLocationResponseSystemData>;
 
 export interface GetCustomLocationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -377,7 +374,7 @@ export interface GetCustomLocationResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: CustomLocationsGetResponseTagsMap;
+  tags?: GetCustomLocationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Identity for the resource. */
@@ -385,18 +382,18 @@ export interface GetCustomLocationResponse {
   /** The set of properties specific to a Custom Location */
   properties?: CustomLocationProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: CustomLocationsGetResponseSystemData;
+  systemData?: GetCustomLocationResponseSystemData;
 }
 export const GetCustomLocationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(CustomLocationsGetResponseTagsMap),
+    tags: S.optional(GetCustomLocationResponseTagsMap),
     location: S.String,
     identity: S.optional(Identity),
     properties: S.optional(CustomLocationProperties),
-    systemData: S.optional(CustomLocationsGetResponseSystemData),
+    systemData: S.optional(GetCustomLocationResponseSystemData),
   }),
 ).annotate({
   identifier: "GetCustomLocationResponse",
@@ -802,13 +799,13 @@ export const CustomLocationOperationsList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomLocationOperationsList>;
 
 /** Resource tags */
-export type CustomLocationsUpdateRequestTagsMap = {
+export type UpdateCustomLocationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CustomLocationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCustomLocationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CustomLocationsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCustomLocationRequestTagsMap>;
 
 export interface UpdateCustomLocationRequest {
   /** The ID of the target subscription. */
@@ -822,7 +819,7 @@ export interface UpdateCustomLocationRequest {
   /** The Custom Locations patchable properties. */
   properties?: CustomLocationProperties;
   /** Resource tags */
-  tags?: CustomLocationsUpdateRequestTagsMap;
+  tags?: UpdateCustomLocationRequestTagsMap;
 }
 export const UpdateCustomLocationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -831,7 +828,7 @@ export const UpdateCustomLocationRequest = /*@__PURE__*/ S.suspend(() =>
     resourceName: S.String.pipe(T.Label()),
     identity: S.optional(IdentityInput),
     properties: S.optional(CustomLocationProperties),
-    tags: S.optional(CustomLocationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateCustomLocationRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -845,64 +842,64 @@ export const UpdateCustomLocationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCustomLocationRequest>;
 
 /** Resource tags. */
-export type CustomLocationsUpdateResponseTagsMap = {
+export type UpdateCustomLocationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CustomLocationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCustomLocationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CustomLocationsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCustomLocationResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type CustomLocationsUpdateResponseSystemDataCreatedByType =
+export type UpdateCustomLocationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CustomLocationsUpdateResponseSystemDataCreatedByType =
+export const UpdateCustomLocationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type CustomLocationsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateCustomLocationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const CustomLocationsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateCustomLocationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface CustomLocationsUpdateResponseSystemData {
+export interface UpdateCustomLocationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: CustomLocationsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateCustomLocationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: CustomLocationsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateCustomLocationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const CustomLocationsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
+export const UpdateCustomLocationResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        CustomLocationsUpdateResponseSystemDataCreatedByType,
+        UpdateCustomLocationResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        CustomLocationsUpdateResponseSystemDataLastModifiedByType,
+        UpdateCustomLocationResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "CustomLocationsUpdateResponseSystemData",
-}) as any as S.Schema<CustomLocationsUpdateResponseSystemData>;
+  identifier: "UpdateCustomLocationResponseSystemData",
+}) as any as S.Schema<UpdateCustomLocationResponseSystemData>;
 
 export interface UpdateCustomLocationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -912,7 +909,7 @@ export interface UpdateCustomLocationResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: CustomLocationsUpdateResponseTagsMap;
+  tags?: UpdateCustomLocationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Identity for the resource. */
@@ -920,18 +917,18 @@ export interface UpdateCustomLocationResponse {
   /** The set of properties specific to a Custom Location */
   properties?: CustomLocationProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: CustomLocationsUpdateResponseSystemData;
+  systemData?: UpdateCustomLocationResponseSystemData;
 }
 export const UpdateCustomLocationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(CustomLocationsUpdateResponseTagsMap),
+    tags: S.optional(UpdateCustomLocationResponseTagsMap),
     location: S.String,
     identity: S.optional(Identity),
     properties: S.optional(CustomLocationProperties),
-    systemData: S.optional(CustomLocationsUpdateResponseSystemData),
+    systemData: S.optional(UpdateCustomLocationResponseSystemData),
   }),
 ).annotate({
   identifier: "UpdateCustomLocationResponse",

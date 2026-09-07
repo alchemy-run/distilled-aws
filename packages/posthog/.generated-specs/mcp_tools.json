@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.mcp_tools#CreateMcpToolRequest": {
@@ -40,7 +41,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.mcp_tools#McpToolsCreateResponseBodyMap": {
+    "com.posthog.mcp_tools#CreateMcpToolResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -54,7 +55,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.mcp_tools#McpToolsCreateResponseBodyMap",
+          "target": "com.posthog.mcp_tools#CreateMcpToolResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}

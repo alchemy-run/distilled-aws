@@ -12,27 +12,27 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface ExtendedZonesRegisterRequest {
+export interface GetExtendedZoneRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the ExtendedZone */
   extendedZoneName: string;
 }
-export const ExtendedZonesRegisterRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExtendedZoneRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     extendedZoneName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeZones/extendedZones/{extendedZoneName}/register",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeZones/extendedZones/{extendedZoneName}",
       code: 200,
       apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "ExtendedZonesRegisterRequest",
-}) as any as S.Schema<ExtendedZonesRegisterRequest>;
+  identifier: "GetExtendedZoneRequest",
+}) as any as S.Schema<GetExtendedZoneRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -137,98 +137,6 @@ export const ExtendedZoneProperties = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ExtendedZoneProperties",
 }) as any as S.Schema<ExtendedZoneProperties>;
-
-export interface ExtendedZonesRegisterResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ExtendedZoneProperties;
-}
-export const ExtendedZonesRegisterResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ExtendedZoneProperties),
-  }),
-).annotate({
-  identifier: "ExtendedZonesRegisterResponse",
-}) as any as S.Schema<ExtendedZonesRegisterResponse>;
-
-export interface ExtendedZonesUnregisterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the ExtendedZone */
-  extendedZoneName: string;
-}
-export const ExtendedZonesUnregisterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    extendedZoneName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeZones/extendedZones/{extendedZoneName}/unregister",
-      code: 200,
-      apiVersion: "2026-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExtendedZonesUnregisterRequest",
-}) as any as S.Schema<ExtendedZonesUnregisterRequest>;
-
-export interface ExtendedZonesUnregisterResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ExtendedZoneProperties;
-}
-export const ExtendedZonesUnregisterResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ExtendedZoneProperties),
-  }),
-).annotate({
-  identifier: "ExtendedZonesUnregisterResponse",
-}) as any as S.Schema<ExtendedZonesUnregisterResponse>;
-
-export interface GetExtendedZoneRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the ExtendedZone */
-  extendedZoneName: string;
-}
-export const GetExtendedZoneRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    extendedZoneName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeZones/extendedZones/{extendedZoneName}",
-      code: 200,
-      apiVersion: "2026-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetExtendedZoneRequest",
-}) as any as S.Schema<GetExtendedZoneRequest>;
 
 export interface GetExtendedZoneResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -387,55 +295,117 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
-export type ExtendedZonesRegisterError = AzureOpError;
-/** Registers a subscription for an Extended Zone */
-export const ExtendedZonesRegister: API.OperationMethod<
-  ExtendedZonesRegisterRequest,
-  ExtendedZonesRegisterResponse,
-  ExtendedZonesRegisterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtendedZonesRegisterRequest,
-  output: ExtendedZonesRegisterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface RegisterExtendedZoneRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the ExtendedZone */
+  extendedZoneName: string;
+}
+export const RegisterExtendedZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    extendedZoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeZones/extendedZones/{extendedZoneName}/register",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegisterExtendedZoneRequest",
+}) as any as S.Schema<RegisterExtendedZoneRequest>;
 
-export type ExtendedZonesUnregisterError = AzureOpError;
-/** Unregisters a subscription for an Extended Zone */
-export const ExtendedZonesUnregister: API.OperationMethod<
-  ExtendedZonesUnregisterRequest,
-  ExtendedZonesUnregisterResponse,
-  ExtendedZonesUnregisterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtendedZonesUnregisterRequest,
-  output: ExtendedZonesUnregisterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface RegisterExtendedZoneResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ExtendedZoneProperties;
+}
+export const RegisterExtendedZoneResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ExtendedZoneProperties),
+  }),
+).annotate({
+  identifier: "RegisterExtendedZoneResponse",
+}) as any as S.Schema<RegisterExtendedZoneResponse>;
+
+export interface UnregisterExtendedZoneRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the ExtendedZone */
+  extendedZoneName: string;
+}
+export const UnregisterExtendedZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    extendedZoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.EdgeZones/extendedZones/{extendedZoneName}/unregister",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "UnregisterExtendedZoneRequest",
+}) as any as S.Schema<UnregisterExtendedZoneRequest>;
+
+export interface UnregisterExtendedZoneResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ExtendedZoneProperties;
+}
+export const UnregisterExtendedZoneResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ExtendedZoneProperties),
+  }),
+).annotate({
+  identifier: "UnregisterExtendedZoneResponse",
+}) as any as S.Schema<UnregisterExtendedZoneResponse>;
 
 export type GetExtendedZoneError = AzureOpError;
 /** Gets an Azure Extended Zone for a subscription */
@@ -477,6 +447,36 @@ export const ListOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOperationsRequest,
   output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegisterExtendedZoneError = AzureOpError;
+/** Registers a subscription for an Extended Zone */
+export const RegisterExtendedZone: API.OperationMethod<
+  RegisterExtendedZoneRequest,
+  RegisterExtendedZoneResponse,
+  RegisterExtendedZoneError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegisterExtendedZoneRequest,
+  output: RegisterExtendedZoneResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UnregisterExtendedZoneError = AzureOpError;
+/** Unregisters a subscription for an Extended Zone */
+export const UnregisterExtendedZone: API.OperationMethod<
+  UnregisterExtendedZoneRequest,
+  UnregisterExtendedZoneResponse,
+  UnregisterExtendedZoneError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnregisterExtendedZoneRequest,
+  output: UnregisterExtendedZoneResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

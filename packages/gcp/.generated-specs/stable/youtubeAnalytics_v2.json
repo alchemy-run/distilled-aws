@@ -4,254 +4,13 @@
     "service": "youtubeAnalytics",
     "version": "v2",
     "title": "YouTube Analytics API",
-    "baseUrl": "https://youtubeanalytics.googleapis.com/"
+    "baseUrl": "https://youtubeanalytics.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.youtubeAnalytics_v2#ListGroupsResponse": {
-      "type": "structure",
-      "members": {
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the API resource's type. The value will be `youtube#groupListResponse`."
-          }
-        },
-        "errors": {
-          "target": "com.gcp.youtubeAnalytics_v2#Errors",
-          "traits": {
-            "smithy.api#documentation": "Apiary error details"
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Etag of this resource."
-          }
-        },
-        "items": {
-          "target": "com.gcp.youtubeAnalytics_v2#GroupList",
-          "traits": {
-            "smithy.api#documentation": "A list of groups that match the API request parameters. Each item in the list represents a `group` resource."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The token that can be used as the value of the `pageToken` parameter to retrieve the next page in the result set."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for GroupsService.ListGroups."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#GroupList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.youtubeAnalytics_v2#Group"
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#GroupSnippet": {
-      "type": "structure",
-      "members": {
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The group name. The value must be a non-empty string."
-          }
-        },
-        "publishedAt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time that the group was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A group snippet."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#GroupContentDetails": {
-      "type": "structure",
-      "members": {
-        "itemType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of resources that the group contains. Valid values for this property are: * `youtube#channel` * `youtube#playlist` * `youtube#video` * `youtubePartner#asset`"
-          }
-        },
-        "itemCount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The number of items in the group."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A group's content details."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#GroupItem": {
-      "type": "structure",
-      "members": {
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the API resource's type. The value will be `youtube#groupItem`."
-          }
-        },
-        "errors": {
-          "target": "com.gcp.youtubeAnalytics_v2#Errors",
-          "traits": {
-            "smithy.api#documentation": "Apiary error details"
-          }
-        },
-        "groupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID that YouTube uses to uniquely identify the group that contains the item."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID that YouTube uses to uniquely identify the `channel`, `video`, `playlist`, or `asset` resource that is included in the group. Note that this ID refers specifically to the inclusion of that resource in a particular group and is different than the channel ID, video ID, playlist ID, or asset ID that uniquely identifies the resource itself. The `resource.id` property's value specifies the unique channel, video, playlist, or asset ID."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Etag of this resource."
-          }
-        },
-        "resource": {
-          "target": "com.gcp.youtubeAnalytics_v2#GroupItemResource",
-          "traits": {
-            "smithy.api#documentation": "The `resource` object contains information that identifies the item being added to the group."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A group item."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#EmptyResponse": {
-      "type": "structure",
-      "members": {
-        "errors": {
-          "target": "com.gcp.youtubeAnalytics_v2#Errors",
-          "traits": {
-            "smithy.api#documentation": "Apiary error details"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Empty response."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#QueryResponse": {
-      "type": "structure",
-      "members": {
-        "errors": {
-          "target": "com.gcp.youtubeAnalytics_v2#Errors",
-          "traits": {
-            "smithy.api#documentation": "When set, indicates that the operation failed."
-          }
-        },
-        "columnHeaders": {
-          "target": "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeaderList",
-          "traits": {
-            "smithy.api#documentation": "This value specifies information about the data returned in the `rows` fields. Each item in the `columnHeaders` list identifies a field returned in the `rows` value, which contains a list of comma-delimited data. The `columnHeaders` list will begin with the dimensions specified in the API request, which will be followed by the metrics specified in the API request. The order of both dimensions and metrics will match the ordering in the API request. For example, if the API request contains the parameters `dimensions=ageGroup,gender&metrics=viewerPercentage`, the API response will return columns in this order: `ageGroup`, `gender`, `viewerPercentage`."
-          }
-        },
-        "rows": {
-          "target": "com.gcp.youtubeAnalytics_v2#DocumentListList",
-          "traits": {
-            "smithy.api#documentation": "The list contains all rows of the result table. Each item in the list is an array that contains comma-delimited data corresponding to a single row of data. The order of the comma-delimited data fields will match the order of the columns listed in the `columnHeaders` field. If no data is available for the given query, the `rows` element will be omitted from the response. The response for a query with the `day` dimension will not contain rows for the most recent days."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This value specifies the type of data included in the API response. For the query method, the kind property value will be `youtubeAnalytics#resultTable`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for TargetedQueriesService.Query."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeaderList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeader"
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#DocumentList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#DocumentListList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.youtubeAnalytics_v2#DocumentList"
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#Group": {
-      "type": "structure",
-      "members": {
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the API resource's type. The value will be `youtube#group`."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID that YouTube uses to uniquely identify the group."
-          }
-        },
-        "contentDetails": {
-          "target": "com.gcp.youtubeAnalytics_v2#GroupContentDetails",
-          "traits": {
-            "smithy.api#documentation": "The `contentDetails` object contains additional information about the group, such as the number and type of items that it contains."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Etag of this resource."
-          }
-        },
-        "errors": {
-          "target": "com.gcp.youtubeAnalytics_v2#Errors",
-          "traits": {
-            "smithy.api#documentation": "Apiary error details"
-          }
-        },
-        "snippet": {
-          "target": "com.gcp.youtubeAnalytics_v2#GroupSnippet",
-          "traits": {
-            "smithy.api#documentation": "The `snippet` object contains basic information about the group, including its creation date and name."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A group."
-      }
-    },
     "com.gcp.youtubeAnalytics_v2#ListGroupItemsResponse": {
       "type": "structure",
       "members": {
-        "items": {
-          "target": "com.gcp.youtubeAnalytics_v2#GroupItemList",
-          "traits": {
-            "smithy.api#documentation": "A list of groups that match the API request parameters. Each item in the list represents a `groupItem` resource."
-          }
-        },
         "errors": {
           "target": "com.gcp.youtubeAnalytics_v2#Errors",
           "traits": {
@@ -262,6 +21,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Identifies the API resource's type. The value will be `youtube#groupItemListResponse`."
+          }
+        },
+        "items": {
+          "target": "com.gcp.youtubeAnalytics_v2#GroupItemList",
+          "traits": {
+            "smithy.api#documentation": "A list of groups that match the API request parameters. Each item in the list represents a `groupItem` resource."
           }
         },
         "etag": {
@@ -281,123 +46,24 @@
         "target": "com.gcp.youtubeAnalytics_v2#GroupItem"
       }
     },
-    "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeader": {
+    "com.gcp.youtubeAnalytics_v2#GroupContentDetails": {
       "type": "structure",
       "members": {
-        "dataType": {
+        "itemCount": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The type of the data in the column (`STRING`, `INTEGER`, `FLOAT`, etc.)."
+            "smithy.api#documentation": "The number of items in the group."
           }
         },
-        "columnType": {
+        "itemType": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The type of the column (`DIMENSION` or `METRIC`)."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the dimension or metric."
+            "smithy.api#documentation": "The type of resources that the group contains. Valid values for this property are: * `youtube#channel` * `youtube#playlist` * `youtube#video` * `youtubePartner#asset`"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The description of a column of the result table."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#ErrorProto": {
-      "type": "structure",
-      "members": {
-        "debugInfo": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Debugging information, which should not be shared externally."
-          }
-        },
-        "argument": {
-          "target": "com.gcp.youtubeAnalytics_v2#StringList",
-          "traits": {
-            "smithy.api#documentation": "Error arguments, to be used when building user-friendly error messages given the error domain and code. Different error codes require different arguments."
-          }
-        },
-        "locationType": {
-          "target": "com.gcp.youtubeAnalytics_v2#ErrorProtoLocationTypeEnum"
-        },
-        "domain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Error domain. RoSy services can define their own domain and error codes. This should normally be the name of an enum type, such as: gdata.CoreErrorDomain"
-          }
-        },
-        "code": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Error code in the error domain. This should correspond to a value of the enum type whose name is in domain. See the core error domain in error_domain.proto."
-          }
-        },
-        "externalErrorMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short explanation for the error, which can be shared outside Google. Please set domain, code and arguments whenever possible instead of this error message so that external APIs can build safe error messages themselves. External messages built in a RoSy interface will most likely refer to information and concepts that are not available externally and should not be exposed. It is safer if external APIs can understand the errors and decide what the error message should look like."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Location of the error, as specified by the location type. If location_type is PATH, this should be a path to a field that's relative to the request, using FieldPath notation (net/proto2/util/public/field_path.h). Examples: authenticated_user.gaia_id resource.address[2].country"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes one specific error."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#ErrorProtoLocationTypeEnum": {
-      "type": "enum",
-      "members": {
-        "PATH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PATH"
-          }
-        },
-        "OTHER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OTHER"
-          }
-        },
-        "PARAMETER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PARAMETER"
-          }
-        }
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#GroupItemResource": {
-      "type": "structure",
-      "members": {
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the type of resource being added to the group. Valid values for this property are: * `youtube#channel` * `youtube#playlist` * `youtube#video` * `youtubePartner#asset`"
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The channel, video, playlist, or asset ID that YouTube uses to uniquely identify the item that is being added to the group."
-          }
-        }
+        "smithy.api#documentation": "A group's content details."
       }
     },
     "com.gcp.youtubeAnalytics_v2#Errors": {
@@ -485,7 +151,342 @@
         "target": "com.gcp.youtubeAnalytics_v2#ErrorProto"
       }
     },
-    "com.gcp.youtubeAnalytics_v2#DeleteGroupsRequest": {
+    "com.gcp.youtubeAnalytics_v2#ErrorProto": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the error, as specified by the location type. If location_type is PATH, this should be a path to a field that's relative to the request, using FieldPath notation (net/proto2/util/public/field_path.h). Examples: authenticated_user.gaia_id resource.address[2].country"
+          }
+        },
+        "debugInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Debugging information, which should not be shared externally."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error domain. RoSy services can define their own domain and error codes. This should normally be the name of an enum type, such as: gdata.CoreErrorDomain"
+          }
+        },
+        "locationType": {
+          "target": "com.gcp.youtubeAnalytics_v2#ErrorProtoLocationTypeEnum"
+        },
+        "argument": {
+          "target": "com.gcp.youtubeAnalytics_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Error arguments, to be used when building user-friendly error messages given the error domain and code. Different error codes require different arguments."
+          }
+        },
+        "externalErrorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short explanation for the error, which can be shared outside Google. Please set domain, code and arguments whenever possible instead of this error message so that external APIs can build safe error messages themselves. External messages built in a RoSy interface will most likely refer to information and concepts that are not available externally and should not be exposed. It is safer if external APIs can understand the errors and decide what the error message should look like."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error code in the error domain. This should correspond to a value of the enum type whose name is in domain. See the core error domain in error_domain.proto."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes one specific error."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#ErrorProtoLocationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATH"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PARAMETER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARAMETER"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#EmptyResponse": {
+      "type": "structure",
+      "members": {
+        "errors": {
+          "target": "com.gcp.youtubeAnalytics_v2#Errors",
+          "traits": {
+            "smithy.api#documentation": "Apiary error details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Empty response."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#QueryResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This value specifies the type of data included in the API response. For the query method, the kind property value will be `youtubeAnalytics#resultTable`."
+          }
+        },
+        "rows": {
+          "target": "com.gcp.youtubeAnalytics_v2#DocumentListList",
+          "traits": {
+            "smithy.api#documentation": "The list contains all rows of the result table. Each item in the list is an array that contains comma-delimited data corresponding to a single row of data. The order of the comma-delimited data fields will match the order of the columns listed in the `columnHeaders` field. If no data is available for the given query, the `rows` element will be omitted from the response. The response for a query with the `day` dimension will not contain rows for the most recent days."
+          }
+        },
+        "errors": {
+          "target": "com.gcp.youtubeAnalytics_v2#Errors",
+          "traits": {
+            "smithy.api#documentation": "When set, indicates that the operation failed."
+          }
+        },
+        "columnHeaders": {
+          "target": "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeaderList",
+          "traits": {
+            "smithy.api#documentation": "This value specifies information about the data returned in the `rows` fields. Each item in the `columnHeaders` list identifies a field returned in the `rows` value, which contains a list of comma-delimited data. The `columnHeaders` list will begin with the dimensions specified in the API request, which will be followed by the metrics specified in the API request. The order of both dimensions and metrics will match the ordering in the API request. For example, if the API request contains the parameters `dimensions=ageGroup,gender&metrics=viewerPercentage`, the API response will return columns in this order: `ageGroup`, `gender`, `viewerPercentage`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for TargetedQueriesService.Query."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#DocumentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#DocumentListList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.youtubeAnalytics_v2#DocumentList"
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeaderList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeader"
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#GroupItem": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID that YouTube uses to uniquely identify the group that contains the item."
+          }
+        },
+        "resource": {
+          "target": "com.gcp.youtubeAnalytics_v2#GroupItemResource",
+          "traits": {
+            "smithy.api#documentation": "The `resource` object contains information that identifies the item being added to the group."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID that YouTube uses to uniquely identify the `channel`, `video`, `playlist`, or `asset` resource that is included in the group. Note that this ID refers specifically to the inclusion of that resource in a particular group and is different than the channel ID, video ID, playlist ID, or asset ID that uniquely identifies the resource itself. The `resource.id` property's value specifies the unique channel, video, playlist, or asset ID."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the API resource's type. The value will be `youtube#groupItem`."
+          }
+        },
+        "errors": {
+          "target": "com.gcp.youtubeAnalytics_v2#Errors",
+          "traits": {
+            "smithy.api#documentation": "Apiary error details"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag of this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A group item."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#GroupItemResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The channel, video, playlist, or asset ID that YouTube uses to uniquely identify the item that is being added to the group."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the type of resource being added to the group. Valid values for this property are: * `youtube#channel` * `youtube#playlist` * `youtube#video` * `youtubePartner#asset`"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#ResultTableColumnHeader": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the dimension or metric."
+          }
+        },
+        "dataType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the data in the column (`STRING`, `INTEGER`, `FLOAT`, etc.)."
+          }
+        },
+        "columnType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the column (`DIMENSION` or `METRIC`)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The description of a column of the result table."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#GroupSnippet": {
+      "type": "structure",
+      "members": {
+        "publishedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time that the group was created. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group name. The value must be a non-empty string."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A group snippet."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#Group": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the API resource's type. The value will be `youtube#group`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag of this resource."
+          }
+        },
+        "contentDetails": {
+          "target": "com.gcp.youtubeAnalytics_v2#GroupContentDetails",
+          "traits": {
+            "smithy.api#documentation": "The `contentDetails` object contains additional information about the group, such as the number and type of items that it contains."
+          }
+        },
+        "snippet": {
+          "target": "com.gcp.youtubeAnalytics_v2#GroupSnippet",
+          "traits": {
+            "smithy.api#documentation": "The `snippet` object contains basic information about the group, including its creation date and name."
+          }
+        },
+        "errors": {
+          "target": "com.gcp.youtubeAnalytics_v2#Errors",
+          "traits": {
+            "smithy.api#documentation": "Apiary error details"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID that YouTube uses to uniquely identify the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A group."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#ListGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Etag of this resource."
+          }
+        },
+        "items": {
+          "target": "com.gcp.youtubeAnalytics_v2#GroupList",
+          "traits": {
+            "smithy.api#documentation": "A list of groups that match the API request parameters. Each item in the list represents a `group` resource."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the API resource's type. The value will be `youtube#groupListResponse`."
+          }
+        },
+        "errors": {
+          "target": "com.gcp.youtubeAnalytics_v2#Errors",
+          "traits": {
+            "smithy.api#documentation": "Apiary error details"
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token that can be used as the value of the `pageToken` parameter to retrieve the next page in the result set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for GroupsService.ListGroups."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#GroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.youtubeAnalytics_v2#Group"
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#ListGroupItemsRequest": {
       "type": "structure",
       "members": {
         "onBehalfOfContentOwner": {
@@ -495,11 +496,11 @@
             "smithy.api#httpQuery": "onBehalfOfContentOwner"
           }
         },
-        "id": {
+        "groupId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The `id` parameter specifies the YouTube group ID of the group that is being deleted.",
-            "smithy.api#httpQuery": "id"
+            "smithy.api#documentation": "The `groupId` parameter specifies the unique ID of the group for which you want to retrieve group items.",
+            "smithy.api#httpQuery": "groupId"
           }
         }
       }
@@ -530,6 +531,49 @@
         ]
       }
     },
+    "com.gcp.youtubeAnalytics_v2#ListGroupItems": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubeAnalytics_v2#ListGroupItemsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubeAnalytics_v2#ListGroupItemsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/groupItems"
+        },
+        "smithy.api#documentation": "Returns a collection of group items that match the API request parameters."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#InsertGroupItemsRequest": {
+      "type": "structure",
+      "members": {
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "body": {
+          "target": "com.gcp.youtubeAnalytics_v2#GroupItem",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.youtubeAnalytics_v2#BadRequest": {
       "type": "structure",
       "members": {},
@@ -556,10 +600,59 @@
         ]
       }
     },
-    "com.gcp.youtubeAnalytics_v2#DeleteGroups": {
+    "com.gcp.youtubeAnalytics_v2#InsertGroupItems": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.youtubeAnalytics_v2#DeleteGroupsRequest"
+        "target": "com.gcp.youtubeAnalytics_v2#InsertGroupItemsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubeAnalytics_v2#GroupItem"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/groupItems"
+        },
+        "smithy.api#documentation": "Creates a group item."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#DeleteGroupItemsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `id` parameter specifies the YouTube group item ID of the group item that is being deleted.",
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#DeleteGroupItems": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubeAnalytics_v2#DeleteGroupItemsRequest"
       },
       "output": {
         "target": "com.gcp.youtubeAnalytics_v2#EmptyResponse"
@@ -581,9 +674,115 @@
       "traits": {
         "smithy.api#http": {
           "method": "DELETE",
-          "uri": "v2/groups"
+          "uri": "v2/groupItems"
         },
-        "smithy.api#documentation": "Deletes a group."
+        "smithy.api#documentation": "Removes an item from a group."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#QueryReportsRequest": {
+      "type": "structure",
+      "members": {
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The '`-`' prefix causes descending sort order.\", pattern: [-0-9a-zA-Z,]+",
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "includeHistoricalChannelData": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true historical data (i.e. channel data from before the linking of the channel to the content owner) will be retrieved.\",",
+            "smithy.api#httpQuery": "includeHistoricalChannelData"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of rows to include in the response.\", minValue: 1",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: [0-9]{4}-[0-9]{2}-[0-9]{2}",
+            "smithy.api#httpQuery": "endDate"
+          }
+        },
+        "ids": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data. - To request data for a YouTube user, set the `ids` parameter value to `channel==CHANNEL_ID`, where `CHANNEL_ID` specifies the unique YouTube channel ID. - To request data for a YouTube CMS content owner, set the `ids` parameter value to `contentOwner==OWNER_NAME`, where `OWNER_NAME` is the CMS name of the content owner. required: true, pattern: [a-zA-Z]+==[a-zA-Z0-9_+-]+",
+            "smithy.api#httpQuery": "ids"
+          }
+        },
+        "metrics": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of YouTube Analytics metrics, such as `views` or `likes,dislikes`. See the [Available Reports](/youtube/analytics/v2/available_reports) document for a list of the reports that you can retrieve and the metrics available in each report, and see the [Metrics](/youtube/analytics/v2/dimsmets/mets) document for definitions of those metrics. required: true, pattern: [0-9a-zA-Z,]+",
+            "smithy.api#httpQuery": "metrics"
+          }
+        },
+        "currency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.\", pattern: [A-Z]{3}",
+            "smithy.api#httpQuery": "currency"
+          }
+        },
+        "dimensions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma-separated list of YouTube Analytics dimensions, such as `views` or `ageGroup,gender`. See the [Available Reports](/youtube/analytics/v2/available_reports) document for a list of the reports that you can retrieve and the dimensions used for those reports. Also see the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document for definitions of those dimensions.\" pattern: [0-9a-zA-Z,]+",
+            "smithy.api#httpQuery": "dimensions"
+          }
+        },
+        "filters": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A list of filters that should be applied when retrieving YouTube Analytics data. The [Available Reports](/youtube/analytics/v2/available_reports) document identifies the dimensions that can be used to filter each report, and the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document defines those dimensions. If a request uses multiple filters, join them together with a semicolon (`;`), and the returned result table will satisfy both filters. For example, a filters parameter value of `video==dMH0bHeiRNg;country==IT` restricts the result set to include data for the given video in Italy.\",",
+            "smithy.api#httpQuery": "filters"
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: \"[0-9]{4}-[0-9]{2}-[0-9]{2}",
+            "smithy.api#httpQuery": "startDate"
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).\", minValue: 1",
+            "smithy.api#httpQuery": "startIndex"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#QueryReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubeAnalytics_v2#QueryReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubeAnalytics_v2#QueryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/reports"
+        },
+        "smithy.api#documentation": "Retrieve your YouTube Analytics reports."
       }
     },
     "com.gcp.youtubeAnalytics_v2#InsertGroupsRequest": {
@@ -635,6 +834,117 @@
         "smithy.api#documentation": "Creates a group."
       }
     },
+    "com.gcp.youtubeAnalytics_v2#DeleteGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `id` parameter specifies the YouTube group ID of the group that is being deleted.",
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#DeleteGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubeAnalytics_v2#DeleteGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubeAnalytics_v2#EmptyResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/groups"
+        },
+        "smithy.api#documentation": "Deletes a group."
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#ListGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "onBehalfOfContentOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
+            "smithy.api#httpQuery": "onBehalfOfContentOwner"
+          }
+        },
+        "mine": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. Set this parameter's value to true to retrieve all groups owned by the authenticated user.",
+            "smithy.api#httpQuery": "mine"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies the next page that can be retrieved.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `id` parameter specifies a comma-separated list of the YouTube group ID(s) for the resource(s) that are being retrieved. Each group must be owned by the authenticated user. In a `group` resource, the `id` property specifies the group's YouTube group ID. Note that if you do not specify a value for the `id` parameter, then you must set the `mine` parameter to `true`.",
+            "smithy.api#httpQuery": "id"
+          }
+        }
+      }
+    },
+    "com.gcp.youtubeAnalytics_v2#ListGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.youtubeAnalytics_v2#ListGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.youtubeAnalytics_v2#ListGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/groups"
+        },
+        "smithy.api#documentation": "Returns a collection of groups that match the API request parameters. For example, you can retrieve all groups that the authenticated user owns, or you can retrieve one or more groups by their unique IDs.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken",
+          "items": "items"
+        }
+      }
+    },
     "com.gcp.youtubeAnalytics_v2#UpdateGroupsRequest": {
       "type": "structure",
       "members": {
@@ -682,315 +992,6 @@
           "uri": "v2/groups"
         },
         "smithy.api#documentation": "Modifies a group. For example, you could change a group's title."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#ListGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `id` parameter specifies a comma-separated list of the YouTube group ID(s) for the resource(s) that are being retrieved. Each group must be owned by the authenticated user. In a `group` resource, the `id` property specifies the group's YouTube group ID. Note that if you do not specify a value for the `id` parameter, then you must set the `mine` parameter to `true`.",
-            "smithy.api#httpQuery": "id"
-          }
-        },
-        "onBehalfOfContentOwner": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
-            "smithy.api#httpQuery": "onBehalfOfContentOwner"
-          }
-        },
-        "mine": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. Set this parameter's value to true to retrieve all groups owned by the authenticated user.",
-            "smithy.api#httpQuery": "mine"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies the next page that can be retrieved.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#ListGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.youtubeAnalytics_v2#ListGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.youtubeAnalytics_v2#ListGroupsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v2/groups"
-        },
-        "smithy.api#documentation": "Returns a collection of groups that match the API request parameters. For example, you can retrieve all groups that the authenticated user owns, or you can retrieve one or more groups by their unique IDs.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken",
-          "items": "items"
-        }
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#QueryReportsRequest": {
-      "type": "structure",
-      "members": {
-        "startDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The start date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: \"[0-9]{4}-[0-9]{2}-[0-9]{2}",
-            "smithy.api#httpQuery": "startDate"
-          }
-        },
-        "ids": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data. - To request data for a YouTube user, set the `ids` parameter value to `channel==CHANNEL_ID`, where `CHANNEL_ID` specifies the unique YouTube channel ID. - To request data for a YouTube CMS content owner, set the `ids` parameter value to `contentOwner==OWNER_NAME`, where `OWNER_NAME` is the CMS name of the content owner. required: true, pattern: [a-zA-Z]+==[a-zA-Z0-9_+-]+",
-            "smithy.api#httpQuery": "ids"
-          }
-        },
-        "currency": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.\", pattern: [A-Z]{3}",
-            "smithy.api#httpQuery": "currency"
-          }
-        },
-        "endDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The end date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: [0-9]{4}-[0-9]{2}-[0-9]{2}",
-            "smithy.api#httpQuery": "endDate"
-          }
-        },
-        "metrics": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A comma-separated list of YouTube Analytics metrics, such as `views` or `likes,dislikes`. See the [Available Reports](/youtube/analytics/v2/available_reports) document for a list of the reports that you can retrieve and the metrics available in each report, and see the [Metrics](/youtube/analytics/v2/dimsmets/mets) document for definitions of those metrics. required: true, pattern: [0-9a-zA-Z,]+",
-            "smithy.api#httpQuery": "metrics"
-          }
-        },
-        "sort": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The '`-`' prefix causes descending sort order.\", pattern: [-0-9a-zA-Z,]+",
-            "smithy.api#httpQuery": "sort"
-          }
-        },
-        "startIndex": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).\", minValue: 1",
-            "smithy.api#httpQuery": "startIndex"
-          }
-        },
-        "maxResults": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of rows to include in the response.\", minValue: 1",
-            "smithy.api#httpQuery": "maxResults"
-          }
-        },
-        "includeHistoricalChannelData": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If set to true historical data (i.e. channel data from before the linking of the channel to the content owner) will be retrieved.\",",
-            "smithy.api#httpQuery": "includeHistoricalChannelData"
-          }
-        },
-        "filters": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A list of filters that should be applied when retrieving YouTube Analytics data. The [Available Reports](/youtube/analytics/v2/available_reports) document identifies the dimensions that can be used to filter each report, and the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document defines those dimensions. If a request uses multiple filters, join them together with a semicolon (`;`), and the returned result table will satisfy both filters. For example, a filters parameter value of `video==dMH0bHeiRNg;country==IT` restricts the result set to include data for the given video in Italy.\",",
-            "smithy.api#httpQuery": "filters"
-          }
-        },
-        "dimensions": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A comma-separated list of YouTube Analytics dimensions, such as `views` or `ageGroup,gender`. See the [Available Reports](/youtube/analytics/v2/available_reports) document for a list of the reports that you can retrieve and the dimensions used for those reports. Also see the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document for definitions of those dimensions.\" pattern: [0-9a-zA-Z,]+",
-            "smithy.api#httpQuery": "dimensions"
-          }
-        }
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#QueryReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.youtubeAnalytics_v2#QueryReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.youtubeAnalytics_v2#QueryResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v2/reports"
-        },
-        "smithy.api#documentation": "Retrieve your YouTube Analytics reports."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#InsertGroupItemsRequest": {
-      "type": "structure",
-      "members": {
-        "onBehalfOfContentOwner": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
-            "smithy.api#httpQuery": "onBehalfOfContentOwner"
-          }
-        },
-        "body": {
-          "target": "com.gcp.youtubeAnalytics_v2#GroupItem",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#InsertGroupItems": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.youtubeAnalytics_v2#InsertGroupItemsRequest"
-      },
-      "output": {
-        "target": "com.gcp.youtubeAnalytics_v2#GroupItem"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#BadRequest"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v2/groupItems"
-        },
-        "smithy.api#documentation": "Creates a group item."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#ListGroupItemsRequest": {
-      "type": "structure",
-      "members": {
-        "onBehalfOfContentOwner": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
-            "smithy.api#httpQuery": "onBehalfOfContentOwner"
-          }
-        },
-        "groupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `groupId` parameter specifies the unique ID of the group for which you want to retrieve group items.",
-            "smithy.api#httpQuery": "groupId"
-          }
-        }
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#ListGroupItems": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.youtubeAnalytics_v2#ListGroupItemsRequest"
-      },
-      "output": {
-        "target": "com.gcp.youtubeAnalytics_v2#ListGroupItemsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v2/groupItems"
-        },
-        "smithy.api#documentation": "Returns a collection of group items that match the API request parameters."
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#DeleteGroupItemsRequest": {
-      "type": "structure",
-      "members": {
-        "onBehalfOfContentOwner": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.",
-            "smithy.api#httpQuery": "onBehalfOfContentOwner"
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `id` parameter specifies the YouTube group item ID of the group item that is being deleted.",
-            "smithy.api#httpQuery": "id"
-          }
-        }
-      }
-    },
-    "com.gcp.youtubeAnalytics_v2#DeleteGroupItems": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.youtubeAnalytics_v2#DeleteGroupItemsRequest"
-      },
-      "output": {
-        "target": "com.gcp.youtubeAnalytics_v2#EmptyResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#Forbidden"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#BadRequest"
-        },
-        {
-          "target": "com.gcp.youtubeAnalytics_v2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v2/groupItems"
-        },
-        "smithy.api#documentation": "Removes an item from a group."
       }
     }
   }

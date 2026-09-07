@@ -345,13 +345,11 @@ export const GetApplianceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplianceRequest>;
 
 /** Resource tags. */
-export type AppliancesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AppliancesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetApplianceResponseTagsMap = { [key: string]: string | undefined };
+export const GetApplianceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppliancesGetResponseTagsMap>;
+) as any as S.Schema<GetApplianceResponseTagsMap>;
 
 export interface GetApplianceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -363,7 +361,7 @@ export interface GetApplianceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AppliancesGetResponseTagsMap;
+  tags?: GetApplianceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The set of properties specific to an Appliance */
@@ -377,7 +375,7 @@ export const GetApplianceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AppliancesGetResponseTagsMap),
+    tags: S.optional(GetApplianceResponseTagsMap),
     location: S.String,
     properties: S.optional(ApplianceProperties),
     identity: S.optional(Identity),
@@ -941,13 +939,13 @@ export const ApplianceOperationsList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplianceOperationsList>;
 
 /** Resource tags */
-export type AppliancesUpdateRequestTagsMap = {
+export type UpdateApplianceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AppliancesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplianceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppliancesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApplianceRequestTagsMap>;
 
 export interface UpdateApplianceRequest {
   /** The ID of the target subscription. */
@@ -957,14 +955,14 @@ export interface UpdateApplianceRequest {
   /** Appliances name. */
   resourceName: string;
   /** Resource tags */
-  tags?: AppliancesUpdateRequestTagsMap;
+  tags?: UpdateApplianceRequestTagsMap;
 }
 export const UpdateApplianceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(AppliancesUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplianceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -978,13 +976,13 @@ export const UpdateApplianceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplianceRequest>;
 
 /** Resource tags. */
-export type AppliancesUpdateResponseTagsMap = {
+export type UpdateApplianceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AppliancesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplianceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppliancesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApplianceResponseTagsMap>;
 
 export interface UpdateApplianceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -996,7 +994,7 @@ export interface UpdateApplianceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AppliancesUpdateResponseTagsMap;
+  tags?: UpdateApplianceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The set of properties specific to an Appliance */
@@ -1010,7 +1008,7 @@ export const UpdateApplianceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AppliancesUpdateResponseTagsMap),
+    tags: S.optional(UpdateApplianceResponseTagsMap),
     location: S.String,
     properties: S.optional(ApplianceProperties),
     identity: S.optional(Identity),

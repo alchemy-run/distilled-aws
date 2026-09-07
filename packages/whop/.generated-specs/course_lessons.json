@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.course_lessons#ListCourseLessonRequest": {
@@ -1017,7 +1018,7 @@
         "smithy.api#documentation": "Create course lesson\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a new lesson within a course chapter. Lessons can contain video, text, or assessment content.\n\nRequired permissions:\n - `courses:update`"
       }
     },
-    "com.whop.course_lessons#RetrieveCourseLessonRequest": {
+    "com.whop.course_lessons#GetCourseLessonRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1033,10 +1034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.course_lessons#RetrieveCourseLesson": {
+    "com.whop.course_lessons#GetCourseLesson": {
       "type": "operation",
       "input": {
-        "target": "com.whop.course_lessons#RetrieveCourseLessonRequest"
+        "target": "com.whop.course_lessons#GetCourseLessonRequest"
       },
       "output": {
         "target": "com.whop.course_lessons#CourseLesson"
@@ -1890,19 +1891,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.course_lessons#ListCourseLesson"
-        },
-        {
           "target": "com.whop.course_lessons#CreateCourseLesson"
         },
         {
-          "target": "com.whop.course_lessons#RetrieveCourseLesson"
-        },
-        {
-          "target": "com.whop.course_lessons#UpdateCourseLesson"
-        },
-        {
           "target": "com.whop.course_lessons#DeleteCourseLesson"
+        },
+        {
+          "target": "com.whop.course_lessons#GetCourseLesson"
+        },
+        {
+          "target": "com.whop.course_lessons#ListCourseLesson"
         },
         {
           "target": "com.whop.course_lessons#MarkAsCompletedCourseLesson"
@@ -1912,6 +1910,9 @@
         },
         {
           "target": "com.whop.course_lessons#SubmitAssessmentCourseLesson"
+        },
+        {
+          "target": "com.whop.course_lessons#UpdateCourseLesson"
         }
       ],
       "traits": {

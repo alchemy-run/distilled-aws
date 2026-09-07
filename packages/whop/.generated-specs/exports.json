@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.exports#ListExportsRequestResource": {
@@ -1103,7 +1104,7 @@
         "smithy.api#documentation": "Create Export\n\nStarts an asynchronous CSV export of a resource for an account. Returns the export in `pending`; poll `GET /exports/{id}` until `download_url` is set."
       }
     },
-    "com.whop.exports#RetrieveExportRequest": {
+    "com.whop.exports#GetExportRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1119,10 +1120,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.exports#RetrieveExport": {
+    "com.whop.exports#GetExport": {
       "type": "operation",
       "input": {
-        "target": "com.whop.exports#RetrieveExportRequest"
+        "target": "com.whop.exports#GetExportRequest"
       },
       "output": {
         "target": "com.whop.exports#Export"
@@ -1201,13 +1202,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.exports#ListExports"
-        },
-        {
           "target": "com.whop.exports#CreateExport"
         },
         {
-          "target": "com.whop.exports#RetrieveExport"
+          "target": "com.whop.exports#GetExport"
+        },
+        {
+          "target": "com.whop.exports#ListExports"
         }
       ],
       "traits": {

@@ -20,7 +20,8 @@
       "modifiedOn": "modified_on",
       "resendEmail": "resend_email",
       "zonePlan": "zone_plan"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.csam_scanner#EditRequestId": {
@@ -233,10 +234,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.csam_scanner#Edit"
+          "target": "com.cloudflare.csam_scanner#GetCsamScanner"
         },
         {
-          "target": "com.cloudflare.csam_scanner#Get"
+          "target": "com.cloudflare.csam_scanner#PatchCsamScanner"
         }
       ],
       "traits": {

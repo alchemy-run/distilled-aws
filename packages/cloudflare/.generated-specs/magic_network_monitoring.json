@@ -26,7 +26,8 @@
       "warpDevices": "warp_devices",
       "zscoreSensitivity": "zscore_sensitivity",
       "zscoreTarget": "zscore_target"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.magic_network_monitoring#ConfigsCreateRequestRouterIpsList": {
@@ -1762,46 +1763,46 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.magic_network_monitoring#ConfigsCreate"
+          "target": "com.cloudflare.magic_network_monitoring#CreateConfig"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#ConfigsDelete"
+          "target": "com.cloudflare.magic_network_monitoring#CreateRule"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#ConfigsEdit"
+          "target": "com.cloudflare.magic_network_monitoring#CreateVpcFlowToken"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#ConfigsGet"
+          "target": "com.cloudflare.magic_network_monitoring#DeleteConfig"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#ConfigsUpdate"
+          "target": "com.cloudflare.magic_network_monitoring#DeleteRule"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#ConfigsFullGet"
+          "target": "com.cloudflare.magic_network_monitoring#GetConfig"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#RulesCreate"
+          "target": "com.cloudflare.magic_network_monitoring#GetConfigFull"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#RulesDelete"
+          "target": "com.cloudflare.magic_network_monitoring#GetRule"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#RulesEdit"
+          "target": "com.cloudflare.magic_network_monitoring#ListRules"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#RulesGet"
+          "target": "com.cloudflare.magic_network_monitoring#PatchConfig"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#RulesList"
+          "target": "com.cloudflare.magic_network_monitoring#PatchRule"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#RulesUpdate"
+          "target": "com.cloudflare.magic_network_monitoring#PatchRuleAdvertisement"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#RulesAdvertisementsEdit"
+          "target": "com.cloudflare.magic_network_monitoring#UpdateConfig"
         },
         {
-          "target": "com.cloudflare.magic_network_monitoring#VpcFlowsTokensCreate"
+          "target": "com.cloudflare.magic_network_monitoring#UpdateRule"
         }
       ],
       "traits": {

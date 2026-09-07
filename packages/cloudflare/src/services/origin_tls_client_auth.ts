@@ -1003,7 +1003,7 @@ export const ListZoneCertificatesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListZoneCertificatesRequest",
 }) as any as S.Schema<ListZoneCertificatesRequest>;
 
-export interface ZoneCertificatesListResultItem {
+export interface ListZoneCertificatesResultItem {
   /** Identifier. */
   id?: string | null;
   /** The zone's leaf certificate. */
@@ -1013,7 +1013,7 @@ export interface ZoneCertificatesListResultItem {
   /** The zone's private key. */
   privateKey?: string | null;
 }
-export const ZoneCertificatesListResultItem = /*@__PURE__*/ S.suspend(() =>
+export const ListZoneCertificatesResultItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.NullOr(S.String)),
     certificate: S.optional(S.NullOr(S.String)),
@@ -1021,24 +1021,24 @@ export const ZoneCertificatesListResultItem = /*@__PURE__*/ S.suspend(() =>
     privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
   }),
 ).annotate({
-  identifier: "ZoneCertificatesListResultItem",
-}) as any as S.Schema<ZoneCertificatesListResultItem>;
+  identifier: "ListZoneCertificatesResultItem",
+}) as any as S.Schema<ListZoneCertificatesResultItem>;
 
-export type ZoneCertificatesListResultList =
-  Array<ZoneCertificatesListResultItem>;
-export const ZoneCertificatesListResultList = /*@__PURE__*/ S.Array(
-  ZoneCertificatesListResultItem,
-) as any as S.Schema<ZoneCertificatesListResultList>;
+export type ListZoneCertificatesResultList =
+  Array<ListZoneCertificatesResultItem>;
+export const ListZoneCertificatesResultList = /*@__PURE__*/ S.Array(
+  ListZoneCertificatesResultItem,
+) as any as S.Schema<ListZoneCertificatesResultList>;
 
 export interface ListZoneCertificatesResponse {
   /** The unwrapped `result` payload of the v4 response envelope. */
-  result: ZoneCertificatesListResultList;
+  result: ListZoneCertificatesResultList;
   /** Pagination info from the envelope's `result_info`. */
   resultInfo?: ResultInfo | null;
 }
 export const ListZoneCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: ZoneCertificatesListResultList.pipe(T.EnvelopePayload()),
+    result: ListZoneCertificatesResultList.pipe(T.EnvelopePayload()),
     resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
@@ -1496,7 +1496,7 @@ export const listZoneCertificates: API.PaginatedOperationMethod<
   ListZoneCertificatesResponse,
   ListZoneCertificatesError,
   CloudflareOpContext,
-  ZoneCertificatesListResultItem
+  ListZoneCertificatesResultItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
     input: ListZoneCertificatesRequest,

@@ -4,7 +4,8 @@
     "service": "deploymentmanager",
     "version": "v2beta",
     "title": "Cloud Deployment Manager V2 API",
-    "baseUrl": "https://deploymentmanager.googleapis.com/"
+    "baseUrl": "https://deploymentmanager.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.deploymentmanager_v2beta#CompositeType": {

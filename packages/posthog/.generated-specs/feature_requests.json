@@ -14,17 +14,18 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.feature_requests#FeatureRequestsListRequestAccountIdsList": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestAccountIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestArchiveState": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestArchiveState": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -48,14 +49,14 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestCreatedByIdsList": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestCreatedByIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestPrioritiesItem": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestPrioritiesItem": {
       "type": "enum",
       "members": {
         "HIGH": {
@@ -87,21 +88,21 @@
         "smithy.api#documentation": "* `high` - High\n* `medium` - Medium\n* `low` - Low\n* `none` - No priority"
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestPrioritiesList": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestPrioritiesList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.feature_requests#FeatureRequestsListRequestPrioritiesItem"
+        "target": "com.posthog.feature_requests#ListFeatureRequestsRequestPrioritiesItem"
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestProductAreaIdsList": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestProductAreaIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestRequestOrdering": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestRequestOrdering": {
       "type": "enum",
       "members": {
         "UPDATED_AT": {
@@ -215,7 +216,7 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestStatusesItem": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestStatusesItem": {
       "type": "enum",
       "members": {
         "REQUESTED": {
@@ -253,10 +254,10 @@
         "smithy.api#documentation": "* `requested` - Requested\n* `planned` - Planned\n* `completed` - Completed\n* `wont_fix` - Won't fix\n* `duplicate` - Duplicate"
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsListRequestStatusesList": {
+    "com.posthog.feature_requests#ListFeatureRequestsRequestStatusesList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.feature_requests#FeatureRequestsListRequestStatusesItem"
+        "target": "com.posthog.feature_requests#ListFeatureRequestsRequestStatusesItem"
       },
       "traits": {}
     },
@@ -272,21 +273,21 @@
           }
         },
         "account_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsListRequestAccountIdsList",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsRequestAccountIdsList",
           "traits": {
             "smithy.api#httpQuery": "account_ids",
             "smithy.api#documentation": "Accessible account IDs to include. Multiple values use OR semantics."
           }
         },
         "archive_state": {
-          "target": "com.posthog.feature_requests#FeatureRequestsListRequestArchiveState",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsRequestArchiveState",
           "traits": {
             "smithy.api#httpQuery": "archive_state",
             "smithy.api#documentation": "Whether to return active requests, archived requests, or all requests.\n\n* `active` - Active\n* `archived` - Archived\n* `all` - All"
           }
         },
         "created_by_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsListRequestCreatedByIdsList",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsRequestCreatedByIdsList",
           "traits": {
             "smithy.api#httpQuery": "created_by_ids",
             "smithy.api#documentation": "Creator user IDs to include. Multiple values use OR semantics."
@@ -307,21 +308,21 @@
           }
         },
         "priorities": {
-          "target": "com.posthog.feature_requests#FeatureRequestsListRequestPrioritiesList",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsRequestPrioritiesList",
           "traits": {
             "smithy.api#httpQuery": "priorities",
             "smithy.api#documentation": "Priorities to include. Use none for requests without a priority."
           }
         },
         "product_area_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsListRequestProductAreaIdsList",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsRequestProductAreaIdsList",
           "traits": {
             "smithy.api#httpQuery": "product_area_ids",
             "smithy.api#documentation": "Product area IDs to include. Multiple values use OR semantics."
           }
         },
         "request_ordering": {
-          "target": "com.posthog.feature_requests#FeatureRequestsListRequestRequestOrdering",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsRequestRequestOrdering",
           "traits": {
             "smithy.api#httpQuery": "request_ordering",
             "smithy.api#documentation": "Stable ordering for the result list.\n\n* `-updated_at` - Last updated: newest\n* `updated_at` - Last updated: oldest\n* `-created_at` - Date created: newest\n* `created_at` - Date created: oldest\n* `-priority` - Priority: high to low\n* `priority` - Priority: low to high\n* `title` - Title: A to Z\n* `-title` - Title: Z to A\n* `account` - Accounts: A to Z\n* `-account` - Accounts: Z to A\n* `product_area` - Product areas: A to Z\n* `-product_area` - Product areas: Z to A\n* `status` - Status: A to Z\n* `-status` - Status: Z to A\n* `created_by` - Created by: A to Z\n* `-created_by` - Created by: Z to A\n* `evidence_count` - Evidence: low to high\n* `-evidence_count` - Evidence: high to low"
@@ -335,7 +336,7 @@
           }
         },
         "statuses": {
-          "target": "com.posthog.feature_requests#FeatureRequestsListRequestStatusesList",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsRequestStatusesList",
           "traits": {
             "smithy.api#httpQuery": "statuses",
             "smithy.api#documentation": "Lifecycle statuses to include. Multiple values use OR semantics."
@@ -408,7 +409,7 @@
           }
         },
         "request_priority": {
-          "target": "com.posthog.feature_requests#RequestPriorityEnum",
+          "target": "com.posthog.feature_requests#FeatureRequestPriorityEnum",
           "traits": {
             "smithy.api#documentation": "Manual request priority. Null means no priority.\n\n* `high` - High\n* `medium` - Medium\n* `low` - Low",
             "smithy.api#required": {},
@@ -551,7 +552,7 @@
         "smithy.api#documentation": "* `requested` - Requested\n* `planned` - Planned\n* `completed` - Completed\n* `wont_fix` - Won't fix\n* `duplicate` - Duplicate"
       }
     },
-    "com.posthog.feature_requests#RequestPriorityEnum": {
+    "com.posthog.feature_requests#FeatureRequestPriorityEnum": {
       "type": "enum",
       "members": {
         "HIGH": {
@@ -837,7 +838,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsCreateRequestProductAreaIdsList": {
+    "com.posthog.feature_requests#CreateFeatureRequestRequestProductAreaIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -931,7 +932,7 @@
           }
         },
         "product_area_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsCreateRequestProductAreaIdsList",
+          "target": "com.posthog.feature_requests#CreateFeatureRequestRequestProductAreaIdsList",
           "traits": {
             "smithy.api#documentation": "One or more active product area IDs. Duplicate IDs are ignored.",
             "smithy.api#required": {}
@@ -972,7 +973,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsRetrieveRequest": {
+    "com.posthog.feature_requests#GetFeatureRequestRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -995,10 +996,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsRetrieve": {
+    "com.posthog.feature_requests#GetFeatureRequest": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#FeatureRequestsRetrieveRequest"
+        "target": "com.posthog.feature_requests#GetFeatureRequestRequest"
       },
       "output": {
         "target": "com.posthog.feature_requests#FeatureRequest"
@@ -1011,7 +1012,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsUpdateRequestAccountIdsList": {
+    "com.posthog.feature_requests#UpdateFeatureRequestRequestAccountIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1020,7 +1021,7 @@
         "smithy.api#documentation": "One or more affected account IDs. Removed accounts are unlinked without deleting their evidence."
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsUpdateRequestProductAreaIdsList": {
+    "com.posthog.feature_requests#UpdateFeatureRequestRequestProductAreaIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1073,13 +1074,13 @@
           }
         },
         "account_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsUpdateRequestAccountIdsList",
+          "target": "com.posthog.feature_requests#UpdateFeatureRequestRequestAccountIdsList",
           "traits": {
             "smithy.api#documentation": "One or more affected account IDs. Removed accounts are unlinked without deleting their evidence."
           }
         },
         "product_area_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsUpdateRequestProductAreaIdsList",
+          "target": "com.posthog.feature_requests#UpdateFeatureRequestRequestProductAreaIdsList",
           "traits": {
             "smithy.api#documentation": "One or more product area IDs. Existing inactive areas can remain linked."
           }
@@ -1091,7 +1092,7 @@
           }
         },
         "request_priority": {
-          "target": "com.posthog.feature_requests#RequestPriorityEnum",
+          "target": "com.posthog.feature_requests#FeatureRequestPriorityEnum",
           "traits": {
             "smithy.api#documentation": "Updated manual priority. Pass null to remove the priority.\n\n* `high` - High\n* `medium` - Medium\n* `low` - Low",
             "com.distilled.openapi#nullable": {}
@@ -1118,7 +1119,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsPartialUpdateRequestAccountIdsList": {
+    "com.posthog.feature_requests#UpdateFeatureRequestsPartialRequestAccountIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1127,7 +1128,7 @@
         "smithy.api#documentation": "One or more affected account IDs. Removed accounts are unlinked without deleting their evidence."
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsPartialUpdateRequestProductAreaIdsList": {
+    "com.posthog.feature_requests#UpdateFeatureRequestsPartialRequestProductAreaIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1136,7 +1137,7 @@
         "smithy.api#documentation": "One or more product area IDs. Existing inactive areas can remain linked."
       }
     },
-    "com.posthog.feature_requests#UpdateFeatureRequestPartialRequest": {
+    "com.posthog.feature_requests#UpdateFeatureRequestsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1179,13 +1180,13 @@
           }
         },
         "account_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsPartialUpdateRequestAccountIdsList",
+          "target": "com.posthog.feature_requests#UpdateFeatureRequestsPartialRequestAccountIdsList",
           "traits": {
             "smithy.api#documentation": "One or more affected account IDs. Removed accounts are unlinked without deleting their evidence."
           }
         },
         "product_area_ids": {
-          "target": "com.posthog.feature_requests#FeatureRequestsPartialUpdateRequestProductAreaIdsList",
+          "target": "com.posthog.feature_requests#UpdateFeatureRequestsPartialRequestProductAreaIdsList",
           "traits": {
             "smithy.api#documentation": "One or more product area IDs. Existing inactive areas can remain linked."
           }
@@ -1197,7 +1198,7 @@
           }
         },
         "request_priority": {
-          "target": "com.posthog.feature_requests#RequestPriorityEnum",
+          "target": "com.posthog.feature_requests#FeatureRequestPriorityEnum",
           "traits": {
             "smithy.api#documentation": "Updated manual priority. Pass null to remove the priority.\n\n* `high` - High\n* `medium` - Medium\n* `low` - Low",
             "com.distilled.openapi#nullable": {}
@@ -1208,10 +1209,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_requests#UpdateFeatureRequestPartial": {
+    "com.posthog.feature_requests#UpdateFeatureRequestsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#UpdateFeatureRequestPartialRequest"
+        "target": "com.posthog.feature_requests#UpdateFeatureRequestsPartialRequest"
       },
       "output": {
         "target": "com.posthog.feature_requests#FeatureRequest"
@@ -1224,7 +1225,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestAddAccountRequest": {
+    "com.posthog.feature_requests#FeatureRequestsAddAccountCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1268,10 +1269,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestAddAccount": {
+    "com.posthog.feature_requests#FeatureRequestsAddAccountCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#CreateFeatureRequestAddAccountRequest"
+        "target": "com.posthog.feature_requests#FeatureRequestsAddAccountCreateRequest"
       },
       "output": {
         "target": "com.posthog.feature_requests#FeatureRequest"
@@ -1293,7 +1294,7 @@
         "smithy.api#documentation": "Uploaded image IDs from this project to attach in display order."
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestAddEvidenceRequest": {
+    "com.posthog.feature_requests#FeatureRequestsAddEvidenceCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1368,10 +1369,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestAddEvidence": {
+    "com.posthog.feature_requests#FeatureRequestsAddEvidenceCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#CreateFeatureRequestAddEvidenceRequest"
+        "target": "com.posthog.feature_requests#FeatureRequestsAddEvidenceCreateRequest"
       },
       "output": {
         "target": "com.posthog.feature_requests#FeatureRequest"
@@ -1384,7 +1385,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestArchiveRequest": {
+    "com.posthog.feature_requests#FeatureRequestsArchiveCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1414,10 +1415,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestArchive": {
+    "com.posthog.feature_requests#FeatureRequestsArchiveCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#CreateFeatureRequestArchiveRequest"
+        "target": "com.posthog.feature_requests#FeatureRequestsArchiveCreateRequest"
       },
       "output": {
         "target": "com.posthog.feature_requests#FeatureRequest"
@@ -1430,7 +1431,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#ListFeatureRequestHistoryRequest": {
+    "com.posthog.feature_requests#ListFeatureRequestsHistoryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1478,7 +1479,7 @@
           }
         },
         "change_source": {
-          "target": "com.posthog.feature_requests#ChangeSourceEnum",
+          "target": "com.posthog.feature_requests#FeatureRequestHistorySourceEnum",
           "traits": {
             "smithy.api#documentation": "System that recorded the request change.\n\n* `manual` - Manual",
             "smithy.api#required": {}
@@ -1874,7 +1875,7 @@
         "smithy.api#documentation": "Tracked fields changed together in one successful save."
       }
     },
-    "com.posthog.feature_requests#ChangeSourceEnum": {
+    "com.posthog.feature_requests#FeatureRequestHistorySourceEnum": {
       "type": "enum",
       "members": {
         "MANUAL": {
@@ -1888,18 +1889,18 @@
         "smithy.api#documentation": "* `manual` - Manual"
       }
     },
-    "com.posthog.feature_requests#FeatureRequestsHistoryListResponseBodyList": {
+    "com.posthog.feature_requests#ListFeatureRequestsHistoryResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.feature_requests#FeatureRequestHistory"
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#ListFeatureRequestHistoryResponse": {
+    "com.posthog.feature_requests#ListFeatureRequestsHistoryResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.feature_requests#FeatureRequestsHistoryListResponseBodyList",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsHistoryResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1910,13 +1911,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.feature_requests#ListFeatureRequestHistory": {
+    "com.posthog.feature_requests#ListFeatureRequestsHistory": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#ListFeatureRequestHistoryRequest"
+        "target": "com.posthog.feature_requests#ListFeatureRequestsHistoryRequest"
       },
       "output": {
-        "target": "com.posthog.feature_requests#ListFeatureRequestHistoryResponse"
+        "target": "com.posthog.feature_requests#ListFeatureRequestsHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1926,7 +1927,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestRemoveEvidenceRequest": {
+    "com.posthog.feature_requests#FeatureRequestsRemoveEvidenceCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1963,10 +1964,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_requests#CreateFeatureRequestRemoveEvidence": {
+    "com.posthog.feature_requests#FeatureRequestsRemoveEvidenceCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#CreateFeatureRequestRemoveEvidenceRequest"
+        "target": "com.posthog.feature_requests#FeatureRequestsRemoveEvidenceCreateRequest"
       },
       "output": {
         "target": "com.posthog.feature_requests#FeatureRequest"
@@ -2025,7 +2026,7 @@
         }
       }
     },
-    "com.posthog.feature_requests#ListFeatureRequestStatusHistoryRequest": {
+    "com.posthog.feature_requests#ListFeatureRequestsStatusHistoryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2074,7 +2075,7 @@
           }
         },
         "change_source": {
-          "target": "com.posthog.feature_requests#ChangeSourceEnum",
+          "target": "com.posthog.feature_requests#FeatureRequestHistorySourceEnum",
           "traits": {
             "smithy.api#documentation": "System that recorded the status change.\n\n* `manual` - Manual",
             "smithy.api#required": {}
@@ -2106,18 +2107,18 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#FeatureRequestsStatusHistoryListResponseBodyList": {
+    "com.posthog.feature_requests#ListFeatureRequestsStatusHistoryResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.feature_requests#FeatureRequestStatusHistory"
       },
       "traits": {}
     },
-    "com.posthog.feature_requests#ListFeatureRequestStatusHistoryResponse": {
+    "com.posthog.feature_requests#ListFeatureRequestsStatusHistoryResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.feature_requests#FeatureRequestsStatusHistoryListResponseBodyList",
+          "target": "com.posthog.feature_requests#ListFeatureRequestsStatusHistoryResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2128,13 +2129,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.feature_requests#ListFeatureRequestStatusHistory": {
+    "com.posthog.feature_requests#ListFeatureRequestsStatusHistory": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_requests#ListFeatureRequestStatusHistoryRequest"
+        "target": "com.posthog.feature_requests#ListFeatureRequestsStatusHistoryRequest"
       },
       "output": {
-        "target": "com.posthog.feature_requests#ListFeatureRequestStatusHistoryResponse"
+        "target": "com.posthog.feature_requests#ListFeatureRequestsStatusHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2249,43 +2250,43 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.feature_requests#ListFeatureRequests"
-        },
-        {
           "target": "com.posthog.feature_requests#CreateFeatureRequest"
         },
         {
-          "target": "com.posthog.feature_requests#FeatureRequestsRetrieve"
+          "target": "com.posthog.feature_requests#FeatureRequestsAddAccountCreate"
         },
         {
-          "target": "com.posthog.feature_requests#UpdateFeatureRequest"
+          "target": "com.posthog.feature_requests#FeatureRequestsAddEvidenceCreate"
         },
         {
-          "target": "com.posthog.feature_requests#UpdateFeatureRequestPartial"
+          "target": "com.posthog.feature_requests#FeatureRequestsArchiveCreate"
         },
         {
-          "target": "com.posthog.feature_requests#CreateFeatureRequestAddAccount"
-        },
-        {
-          "target": "com.posthog.feature_requests#CreateFeatureRequestAddEvidence"
-        },
-        {
-          "target": "com.posthog.feature_requests#CreateFeatureRequestArchive"
-        },
-        {
-          "target": "com.posthog.feature_requests#ListFeatureRequestHistory"
-        },
-        {
-          "target": "com.posthog.feature_requests#CreateFeatureRequestRemoveEvidence"
+          "target": "com.posthog.feature_requests#FeatureRequestsRemoveEvidenceCreate"
         },
         {
           "target": "com.posthog.feature_requests#FeatureRequestsRestoreCreate"
         },
         {
-          "target": "com.posthog.feature_requests#ListFeatureRequestStatusHistory"
+          "target": "com.posthog.feature_requests#FeatureRequestsUpdateEvidenceCreate"
         },
         {
-          "target": "com.posthog.feature_requests#FeatureRequestsUpdateEvidenceCreate"
+          "target": "com.posthog.feature_requests#GetFeatureRequest"
+        },
+        {
+          "target": "com.posthog.feature_requests#ListFeatureRequests"
+        },
+        {
+          "target": "com.posthog.feature_requests#ListFeatureRequestsHistory"
+        },
+        {
+          "target": "com.posthog.feature_requests#ListFeatureRequestsStatusHistory"
+        },
+        {
+          "target": "com.posthog.feature_requests#UpdateFeatureRequest"
+        },
+        {
+          "target": "com.posthog.feature_requests#UpdateFeatureRequestsPartial"
         }
       ],
       "traits": {

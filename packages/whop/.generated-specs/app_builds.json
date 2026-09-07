@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.app_builds#ListAppBuildsRequestPlatform": {
@@ -642,7 +643,7 @@
         "smithy.api#documentation": "Create App Build\n\nUploads a new build artifact for an app. Upload the file first (POST /files or a direct upload), then reference it here; iOS and Android take a .zip bundle, web takes a JavaScript file or a .zip archive of the hosted site."
       }
     },
-    "com.whop.app_builds#RetrieveAppBuildRequest": {
+    "com.whop.app_builds#GetAppBuildRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -658,10 +659,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.app_builds#RetrieveAppBuild": {
+    "com.whop.app_builds#GetAppBuild": {
       "type": "operation",
       "input": {
-        "target": "com.whop.app_builds#RetrieveAppBuildRequest"
+        "target": "com.whop.app_builds#GetAppBuildRequest"
       },
       "output": {
         "target": "com.whop.app_builds#AppBuild"
@@ -794,13 +795,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.app_builds#ListAppBuilds"
-        },
-        {
           "target": "com.whop.app_builds#CreateAppBuild"
         },
         {
-          "target": "com.whop.app_builds#RetrieveAppBuild"
+          "target": "com.whop.app_builds#GetAppBuild"
+        },
+        {
+          "target": "com.whop.app_builds#ListAppBuilds"
         },
         {
           "target": "com.whop.app_builds#PromoteAppBuild"

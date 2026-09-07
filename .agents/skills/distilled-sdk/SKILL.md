@@ -152,20 +152,29 @@ the spec before conversion; Smithy pointers (`/shapes`, `/metadata`) run on
 the model after. generate does not patch — it only compiles the committed
 models.
 
-Operation names default to **verbNoun** (`listApps`, `getApp`,
-`createMachine`) in OpenAPI, GraphQL, and `finalizeConvert`. Pass
-`operationNaming: "as-is"` only to keep upstream ids.
+`finalizeConvert` is **not idempotent** — `move` patches and model transforms
+only make sense on freshly converted models — so it stamps
+`metadata["distilled.finalized"]` and refuses to run over a model that
+already carries it. To re-apply patches or naming, re-run the package's
+`convert`; never post-process a committed `.generated-specs` file. It also
+fails if any `target` in a model points at a shape that does not exist.
 **Stale patch pointers fail the run** (they used to warn-and-skip, which is
 how Fly's whole chain vanished after the spec-mirror prefixed paths with
 `/v1`). Pass `onStalePatch: "warn"` only if you truly want skip.
 
-Operation **names** are convert policy, not patches. Pass
-`operationNaming: "verbNoun"` on `runOpenApiConvert` so go-swagger
-`Apps_list` / `Apps_show` become `listApps` / `getApp` in the Smithy model
-(and the SDK). Irregulars go in `operationNames` (lookup by `"METHOD path"`,
-then operationId) — PUT vs PATCH that share an upstream id need the path
-key. Do not RFC-6902-patch `/paths/~1foo/get/operationId`; those break when
-upstream adds a prefix. Patch the spec, not the generated TypeScript.
+Operation **names** are convert policy, not patches, and default to
+**verbNoun** (`listApps`, `getApp`, `createMachine`) in the OpenAPI and
+GraphQL converters and in `finalizeConvert` (for dialects with no naming
+step of their own). `toVerbNoun` only reorders ids it can recognise —
+go-swagger `Apps_list`, REST `ConfigsList`, GraphQL `projectCreate` — and
+leaves anything already verb-first or ambiguous (`WatchPodList`,
+`AppGetOrCreate`, `accountById`) unchanged. Irregulars go in
+`operationNames` (lookup by `"METHOD path"`, then operationId) — PUT vs
+PATCH that share an upstream id need the path key. Cases live in
+`packages/core/src/codegen/rewrite-operation-ids.test.ts` (`bun test`); add
+one before changing the heuristic. Do not RFC-6902-patch
+`/paths/~1foo/get/operationId`; those break when upstream adds a prefix.
+Patch the spec, not the generated TypeScript.
 
 ## Step 6 — wire the submodule
 
@@ -246,8 +255,10 @@ segment, which is why every package's declared path is
 A path that reads through some other layout resolves to a file the mirror
 does not have, and `resolveSpecPath` says so rather than failing later.
 
-`aws` convert reads the spec-mirror Smithy models, applies `patches/{sdkId}.json`,
-and writes `.generated-specs/<sdkId>.json`. generate compiles those. `cloudflare`
+`aws` convert reads the spec-mirror Smithy models, applies the typed
+`patches/{sdkId}.json` config (`applyAwsSpecPatches`), copies
+`partitions.json`, and writes `.generated-specs/<sdkId>.json`. generate
+compiles those and reads the patch file only for `errorCategories`. `cloudflare`
 takes its spec root as a `--specs` flag and its mirror is `blocked` — see the
 stack README — so it is the one package still reading a stale in-repo snapshot.
 

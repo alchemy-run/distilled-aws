@@ -244,20 +244,20 @@ export const HybridUseBenefitListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<HybridUseBenefitListResultValueList>;
 
 /** List of hybrid use benefits */
-export interface ListHybridUseBenefitResult {
+export interface HybridUseBenefitListResult {
   /** List of hybrid use benefits */
   value?: HybridUseBenefitListResultValueList;
   /** Url to get the next page of items. */
   nextLink?: string;
 }
-export const ListHybridUseBenefitResult = /*@__PURE__*/ S.suspend(() =>
+export const HybridUseBenefitListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(HybridUseBenefitListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListHybridUseBenefitResult",
-}) as any as S.Schema<ListHybridUseBenefitResult>;
+  identifier: "HybridUseBenefitListResult",
+}) as any as S.Schema<HybridUseBenefitListResult>;
 
 export interface ListHybridUseBenefitRevisionRequest {
   /** The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now */
@@ -361,11 +361,11 @@ export const OperationList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
 
-export interface SoftwarePlanRegisterRequest {
+export interface RegisterSoftwarePlanRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const SoftwarePlanRegisterRequest = /*@__PURE__*/ S.suspend(() =>
+export const RegisterSoftwarePlanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -377,15 +377,15 @@ export const SoftwarePlanRegisterRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SoftwarePlanRegisterRequest",
-}) as any as S.Schema<SoftwarePlanRegisterRequest>;
+  identifier: "RegisterSoftwarePlanRequest",
+}) as any as S.Schema<RegisterSoftwarePlanRequest>;
 
-export interface SoftwarePlanRegisterResponse {}
-export const SoftwarePlanRegisterResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RegisterSoftwarePlanResponse {}
+export const RegisterSoftwarePlanResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SoftwarePlanRegisterResponse",
-}) as any as S.Schema<SoftwarePlanRegisterResponse>;
+  identifier: "RegisterSoftwarePlanResponse",
+}) as any as S.Schema<RegisterSoftwarePlanResponse>;
 
 export interface UpdateHybridUseBenefitRequest {
   /** The scope at which the operation is performed. This is limited to Microsoft.Compute/virtualMachines and Microsoft.Compute/hostGroups/hosts for now */
@@ -491,12 +491,12 @@ export type ListHybridUseBenefitError = AzureOpError;
 /** Get all hybrid use benefits associated with an ARM resource. */
 export const ListHybridUseBenefit: API.OperationMethod<
   ListHybridUseBenefitRequest,
-  ListHybridUseBenefitResult,
+  HybridUseBenefitListResult,
   ListHybridUseBenefitError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListHybridUseBenefitRequest,
-  output: ListHybridUseBenefitResult,
+  output: HybridUseBenefitListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -506,12 +506,12 @@ export type ListHybridUseBenefitRevisionError = AzureOpError;
 /** Gets the version history of a hybrid use benefit */
 export const ListHybridUseBenefitRevision: API.OperationMethod<
   ListHybridUseBenefitRevisionRequest,
-  ListHybridUseBenefitResult,
+  HybridUseBenefitListResult,
   ListHybridUseBenefitRevisionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListHybridUseBenefitRevisionRequest,
-  output: ListHybridUseBenefitResult,
+  output: HybridUseBenefitListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -532,16 +532,16 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SoftwarePlanRegisterError = AzureOpError;
+export type RegisterSoftwarePlanError = AzureOpError;
 /** Register to Microsoft.SoftwarePlan resource provider. */
-export const SoftwarePlanRegister: API.OperationMethod<
-  SoftwarePlanRegisterRequest,
-  SoftwarePlanRegisterResponse,
-  SoftwarePlanRegisterError,
+export const RegisterSoftwarePlan: API.OperationMethod<
+  RegisterSoftwarePlanRequest,
+  RegisterSoftwarePlanResponse,
+  RegisterSoftwarePlanError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SoftwarePlanRegisterRequest,
-  output: SoftwarePlanRegisterResponse,
+  input: RegisterSoftwarePlanRequest,
+  output: RegisterSoftwarePlanResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

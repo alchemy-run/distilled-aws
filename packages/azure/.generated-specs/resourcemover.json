@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.resourcemover#ListMoveCollectionRequiredFor": {
@@ -99,10 +100,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcemover#ListMoveCollectionMoveCollectionByResourceGroup": {
+    "com.azure.resourcemover#MoveCollectionsListMoveCollectionsByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcemover#ListMoveCollectionMoveCollectionByResourceGroupRequest"
+        "target": "com.azure.resourcemover#MoveCollectionsListMoveCollectionsByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.resourcemover#MoveCollectionResultList"
@@ -523,7 +524,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.resourcemover#ListMoveCollectionMoveCollectionByResourceGroupRequest": {
+    "com.azure.resourcemover#MoveCollectionsListMoveCollectionsByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -547,10 +548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcemover#ListMoveCollectionMoveCollectionBySubscription": {
+    "com.azure.resourcemover#MoveCollectionsListMoveCollectionsBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcemover#ListMoveCollectionMoveCollectionBySubscriptionRequest"
+        "target": "com.azure.resourcemover#MoveCollectionsListMoveCollectionsBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.resourcemover#MoveCollectionResultList"
@@ -566,7 +567,7 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.resourcemover#ListMoveCollectionMoveCollectionBySubscriptionRequest": {
+    "com.azure.resourcemover#MoveCollectionsListMoveCollectionsBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -582,7 +583,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcemover#GetOperationDiscovery": {
+    "com.azure.resourcemover#GetOperationsDiscovery": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1875,7 +1876,7 @@
           }
         },
         "dependencyLevel": {
-          "target": "com.azure.resourcemover#UnresolvedDependenciesGetRequestDependencyLevel",
+          "target": "com.azure.resourcemover#GetUnresolvedDependencyRequestDependencyLevel",
           "traits": {
             "smithy.api#httpQuery": "dependencyLevel",
             "smithy.api#documentation": "Defines the dependency level."
@@ -1900,7 +1901,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcemover#UnresolvedDependenciesGetRequestDependencyLevel": {
+    "com.azure.resourcemover#GetUnresolvedDependencyRequestDependencyLevel": {
       "type": "enum",
       "members": {
         "DIRECT": {
@@ -2144,10 +2145,10 @@
         "smithy.api#documentation": "Gets or sets the list of resource Id's, by default it accepts move resource id's unless the input type is switched via moveResourceInputType property."
       }
     },
-    "com.azure.resourcemover#MoveCollectionsCommit": {
+    "com.azure.resourcemover#CommitMoveCollection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcemover#MoveCollectionsCommitRequest"
+        "target": "com.azure.resourcemover#CommitMoveCollectionRequest"
       },
       "output": {
         "target": "com.azure.resourcemover#OperationStatus"
@@ -2163,7 +2164,7 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.resourcemover#MoveCollectionsCommitRequest": {
+    "com.azure.resourcemover#CommitMoveCollectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2197,7 +2198,7 @@
           }
         },
         "moveResources": {
-          "target": "com.azure.resourcemover#MoveCollectionsCommitRequestMoveResourcesList",
+          "target": "com.azure.resourcemover#CommitMoveCollectionRequestMoveResourcesList",
           "traits": {
             "smithy.api#documentation": "Gets or sets the list of resource Id's, by default it accepts move resource id's unless the input type is switched via moveResourceInputType property.",
             "smithy.api#required": {}
@@ -2211,7 +2212,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcemover#MoveCollectionsCommitRequestMoveResourcesList": {
+    "com.azure.resourcemover#CommitMoveCollectionRequestMoveResourcesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2470,7 +2471,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourcemover#MoveCollectionsUpdateRequestTagsMap",
+          "target": "com.azure.resourcemover#UpdateMoveCollectionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -2483,7 +2484,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcemover#MoveCollectionsUpdateRequestTagsMap": {
+    "com.azure.resourcemover#UpdateMoveCollectionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2542,7 +2543,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourcemover#MoveCollectionsCreateRequestTagsMap",
+          "target": "com.azure.resourcemover#CreateMoveCollectionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2599,7 +2600,7 @@
         "smithy.api#documentation": "Defines the move collection properties."
       }
     },
-    "com.azure.resourcemover#MoveCollectionsCreateRequestTagsMap": {
+    "com.azure.resourcemover#CreateMoveCollectionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2667,61 +2668,61 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.resourcemover#ListMoveCollectionRequiredFor"
-        },
-        {
-          "target": "com.azure.resourcemover#ListMoveCollectionMoveCollectionByResourceGroup"
-        },
-        {
-          "target": "com.azure.resourcemover#ListMoveCollectionMoveCollectionBySubscription"
-        },
-        {
-          "target": "com.azure.resourcemover#GetOperationDiscovery"
-        },
-        {
-          "target": "com.azure.resourcemover#DeleteMoveResource"
-        },
-        {
-          "target": "com.azure.resourcemover#CreateMoveResource"
-        },
-        {
-          "target": "com.azure.resourcemover#GetMoveResource"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsBulkRemove"
-        },
-        {
-          "target": "com.azure.resourcemover#GetUnresolvedDependency"
-        },
-        {
-          "target": "com.azure.resourcemover#ListMoveResources"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsResolveDependencies"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsDiscard"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsCommit"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsInitiateMove"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsPrepare"
-        },
-        {
-          "target": "com.azure.resourcemover#DeleteMoveCollection"
-        },
-        {
-          "target": "com.azure.resourcemover#UpdateMoveCollection"
+          "target": "com.azure.resourcemover#CommitMoveCollection"
         },
         {
           "target": "com.azure.resourcemover#CreateMoveCollection"
         },
         {
+          "target": "com.azure.resourcemover#CreateMoveResource"
+        },
+        {
+          "target": "com.azure.resourcemover#DeleteMoveCollection"
+        },
+        {
+          "target": "com.azure.resourcemover#DeleteMoveResource"
+        },
+        {
           "target": "com.azure.resourcemover#GetMoveCollection"
+        },
+        {
+          "target": "com.azure.resourcemover#GetMoveResource"
+        },
+        {
+          "target": "com.azure.resourcemover#GetOperationsDiscovery"
+        },
+        {
+          "target": "com.azure.resourcemover#GetUnresolvedDependency"
+        },
+        {
+          "target": "com.azure.resourcemover#ListMoveCollectionRequiredFor"
+        },
+        {
+          "target": "com.azure.resourcemover#ListMoveResources"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsBulkRemove"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsDiscard"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsInitiateMove"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsListMoveCollectionsByResourceGroup"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsListMoveCollectionsBySubscription"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsPrepare"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsResolveDependencies"
+        },
+        {
+          "target": "com.azure.resourcemover#UpdateMoveCollection"
         }
       ],
       "traits": {

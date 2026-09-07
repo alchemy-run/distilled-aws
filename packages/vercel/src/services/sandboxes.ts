@@ -4263,6 +4263,8 @@ export const DeleteDriveRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** This object contains information related to a Vercel Sandbox Drive. */
 export interface Drive {
+  /** The unique drive ID. */
+  id: string;
   /** The unique drive name within the project. */
   name: string;
   /** The project that owns the drive. */
@@ -4282,6 +4284,7 @@ export interface Drive {
 }
 export const Drive = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.String,
     name: S.String,
     projectId: S.String,
     maxSizeBytes: S.Number,
@@ -4827,94 +4830,6 @@ export const ListDrivesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListDrivesResponse",
 }) as any as S.Schema<ListDrivesResponse>;
-
-/** Field to sort by. */
-export type ListSandboxesRequestSortBy =
-  | "createdAt"
-  | "name"
-  | "statusUpdatedAt"
-  | "currentSnapshotId";
-export const ListSandboxesRequestSortBy = /*@__PURE__*/ S.String;
-
-/** Sort direction. Defaults to desc. */
-export type ListSandboxesRequestSortOrder = "asc" | "desc";
-export const ListSandboxesRequestSortOrder = /*@__PURE__*/ S.String;
-
-/** Filter named sandboxes by status. Only valid when sortBy is createdAt. */
-export type ListSandboxesRequestStatus = "running" | "stopping" | "stopped";
-export const ListSandboxesRequestStatus = /*@__PURE__*/ S.String;
-
-export type ListSandboxesRequestTagsCase1List = Array<string>;
-export const ListSandboxesRequestTagsCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ListSandboxesRequestTagsCase1List>;
-
-/** Filter sandboxes by tag. Format: \"key:value\". Only one tag filter is supported at a time. */
-export type ListSandboxesRequestTags =
-  | string
-  | ListSandboxesRequestTagsCase1List;
-export const ListSandboxesRequestTags =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ListSandboxesRequestTags>;
-
-export interface ListSandboxesRequest {
-  /** The unique identifier or name of the project to list named sandboxes for. */
-  project?: string;
-  /** Maximum number of named sandboxes to return in the response. Used for pagination. */
-  limit?: number;
-  /** Field to sort by. */
-  sortBy?: ListSandboxesRequestSortBy | (string & {});
-  /** Filter named sandboxes whose name starts with this prefix. Only valid when sortBy=name. */
-  namePrefix?: string;
-  /** Opaque pagination cursor from a previous response. */
-  cursor?: string;
-  /** Sort direction. Defaults to desc. */
-  sortOrder?: ListSandboxesRequestSortOrder | (string & {});
-  /** Filter named sandboxes by status. Only valid when sortBy is createdAt. */
-  status?: ListSandboxesRequestStatus | (string & {});
-  /** Filter sandboxes by tag. Format: \"key:value\". Only one tag filter is supported at a time. */
-  tags?: ListSandboxesRequestTags;
-  /** The Team identifier to perform the request on behalf of. */
-  teamId?: string;
-  /** The Team slug to perform the request on behalf of. */
-  slug?: string;
-}
-export const ListSandboxesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    sortBy: S.optional(ListSandboxesRequestSortBy.pipe(T.Query())),
-    namePrefix: S.optional(S.String.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    sortOrder: S.optional(ListSandboxesRequestSortOrder.pipe(T.Query())),
-    status: S.optional(ListSandboxesRequestStatus.pipe(T.Query())),
-    tags: S.optional(ListSandboxesRequestTags.pipe(T.Query())),
-    teamId: S.optional(S.String.pipe(T.Query())),
-    slug: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v2/sandboxes", code: 200 })),
-).annotate({
-  identifier: "ListSandboxesRequest",
-}) as any as S.Schema<ListSandboxesRequest>;
-
-export type ListSandboxesResponseSandboxesList = Array<NamedSandbox>;
-export const ListSandboxesResponseSandboxesList = /*@__PURE__*/ S.Array(
-  NamedSandbox,
-) as any as S.Schema<ListSandboxesResponseSandboxesList>;
-
-export type ListSandboxesResponsePagination = ListDrivesResponsePagination;
-export const ListSandboxesResponsePagination = ListDrivesResponsePagination;
-
-export interface ListSandboxesResponse {
-  sandboxes: ListSandboxesResponseSandboxesList;
-  pagination: ListDrivesResponsePagination;
-}
-export const ListSandboxesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sandboxes: ListSandboxesResponseSandboxesList,
-    pagination: ListDrivesResponsePagination,
-  }),
-).annotate({
-  identifier: "ListSandboxesResponse",
-}) as any as S.Schema<ListSandboxesResponse>;
 
 export interface ListSessionCommandsRequest {
   /** The unique identifier of the session to list commands for. */
@@ -6435,7 +6350,7 @@ export const WriteSessionFilesRequest = /*@__PURE__*/ S.suspend(() =>
     sessionId: S.String.pipe(T.Label()),
     teamId: S.optional(S.String.pipe(T.Query())),
     slug: S.optional(S.String.pipe(T.Query())),
-    xCwd: S.optional(S.String.pipe(T.Header("x-Cwd"))),
+    xCwd: S.optional(S.String.pipe(T.Header("x-cwd"))),
   }).pipe(
     T.Http({
       method: "POST",
@@ -6897,25 +6812,6 @@ export const listDrives: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDrivesRequest,
   output: ListDrivesResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: VercelProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListSandboxesError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | VercelOpError;
-/** List sandboxes Retrieves a paginated list of named sandboxes belonging to a specific project. Results can be sorted by creation time or name, and optionally filtered by name prefix or status. */
-export const listSandboxes: API.OperationMethod<
-  ListSandboxesRequest,
-  ListSandboxesResponse,
-  ListSandboxesError,
-  VercelOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSandboxesRequest,
-  output: ListSandboxesResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

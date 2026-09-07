@@ -13906,7 +13906,11 @@
     },
     "aws.patched#NotAuthorizedException": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {}
     }
   }

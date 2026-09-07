@@ -243,14 +243,14 @@ export const CheckinManifestInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckinManifestInfo>;
 
 /** Resource tags. */
-export type ProviderMonitorSettingsCreateRequestTagsMap = {
+export type CreateProviderMonitorSettingsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProviderMonitorSettingsCreateRequestTagsMap =
+export const CreateProviderMonitorSettingsRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProviderMonitorSettingsCreateRequestTagsMap>;
+  ) as any as S.Schema<CreateProviderMonitorSettingsRequestTagsMap>;
 
 export interface ProviderMonitorSettingProperties {
   /** The provisioning state. */
@@ -264,7 +264,7 @@ export const ProviderMonitorSettingProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProviderMonitorSettingProperties",
 }) as any as S.Schema<ProviderMonitorSettingProperties>;
 
-export interface CreateProviderMonitorSettingRequest {
+export interface CreateProviderMonitorSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -272,42 +272,43 @@ export interface CreateProviderMonitorSettingRequest {
   /** The name of the provider monitor setting. */
   providerMonitorSettingName: string;
   /** Resource tags. */
-  tags?: ProviderMonitorSettingsCreateRequestTagsMap;
+  tags?: CreateProviderMonitorSettingsRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: ProviderMonitorSettingProperties;
 }
-export const CreateProviderMonitorSettingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    providerMonitorSettingName: S.String.pipe(T.Label()),
-    tags: S.optional(ProviderMonitorSettingsCreateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(ProviderMonitorSettingProperties),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ProviderHub/providerMonitorSettings/{providerMonitorSettingName}",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
+export const CreateProviderMonitorSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      providerMonitorSettingName: S.String.pipe(T.Label()),
+      tags: S.optional(CreateProviderMonitorSettingsRequestTagsMap),
+      location: S.String,
+      properties: S.optional(ProviderMonitorSettingProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ProviderHub/providerMonitorSettings/{providerMonitorSettingName}",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
 ).annotate({
-  identifier: "CreateProviderMonitorSettingRequest",
-}) as any as S.Schema<CreateProviderMonitorSettingRequest>;
+  identifier: "CreateProviderMonitorSettingsRequest",
+}) as any as S.Schema<CreateProviderMonitorSettingsRequest>;
 
 /** Resource tags. */
-export type ProviderMonitorSettingsCreateResponseTagsMap = {
+export type CreateProviderMonitorSettingsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProviderMonitorSettingsCreateResponseTagsMap =
+export const CreateProviderMonitorSettingsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProviderMonitorSettingsCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateProviderMonitorSettingsResponseTagsMap>;
 
-export interface CreateProviderMonitorSettingResponse {
+export interface CreateProviderMonitorSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -317,25 +318,25 @@ export interface CreateProviderMonitorSettingResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProviderMonitorSettingsCreateResponseTagsMap;
+  tags?: CreateProviderMonitorSettingsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: ProviderMonitorSettingProperties;
 }
-export const CreateProviderMonitorSettingResponse = /*@__PURE__*/ S.suspend(
+export const CreateProviderMonitorSettingsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ProviderMonitorSettingsCreateResponseTagsMap),
+      tags: S.optional(CreateProviderMonitorSettingsResponseTagsMap),
       location: S.String,
       properties: S.optional(ProviderMonitorSettingProperties),
     }),
 ).annotate({
-  identifier: "CreateProviderMonitorSettingResponse",
-}) as any as S.Schema<CreateProviderMonitorSettingResponse>;
+  identifier: "CreateProviderMonitorSettingsResponse",
+}) as any as S.Schema<CreateProviderMonitorSettingsResponse>;
 
 /** The auto provisioning configuration. */
 export interface CustomRolloutSpecificationAutoProvisionConfig {
@@ -610,50 +611,8 @@ export const ResourceProviderManagementAuthorizationOwnersList =
     S.String,
   ) as any as S.Schema<ResourceProviderManagementAuthorizationOwnersList>;
 
-/** The readiness. */
-export type Readiness =
-  | "ClosingDown"
-  | "Deprecated"
-  | "GA"
-  | "InDevelopment"
-  | "InternalOnly"
-  | "PrivatePreview"
-  | "PublicPreview"
-  | "RemovedFromARM"
-  | "Retired";
-export const Readiness = /*@__PURE__*/ S.String;
-
-export interface ServiceTreeInfo {
-  /** The service id. */
-  serviceId?: string;
-  /** The component id. */
-  componentId?: string;
-  /** The readiness. */
-  readiness?: Readiness | (string & {});
-}
-export const ServiceTreeInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceId: S.optional(S.String),
-    componentId: S.optional(S.String),
-    readiness: S.optional(Readiness),
-  }),
-).annotate({
-  identifier: "ServiceTreeInfo",
-}) as any as S.Schema<ServiceTreeInfo>;
-
-/** The service tree infos. */
-export type ResourceProviderManagementServiceTreeInfosList =
-  Array<ServiceTreeInfo>;
-export const ResourceProviderManagementServiceTreeInfosList =
-  /*@__PURE__*/ S.Array(
-    ServiceTreeInfo,
-  ) as any as S.Schema<ResourceProviderManagementServiceTreeInfosList>;
-
 /** The resource access policy. */
-export type ResourceAccessPolicy =
-  | "NotSpecified"
-  | "AcisReadAllowed"
-  | "AcisActionAllowed";
+export type ResourceAccessPolicy = "NotSpecified";
 export const ResourceAccessPolicy = /*@__PURE__*/ S.String;
 
 /** The allowed group claims. */
@@ -772,8 +731,6 @@ export interface ResourceProviderManagement {
   incidentRoutingTeam?: string;
   /** The incident contact email. */
   incidentContactEmail?: string;
-  /** The service tree infos. */
-  serviceTreeInfos?: ResourceProviderManagementServiceTreeInfosList;
   /** The resource access policy. */
   resourceAccessPolicy?: ResourceAccessPolicy | (string & {});
   /** The resource access roles. */
@@ -803,9 +760,6 @@ export const ResourceProviderManagement = /*@__PURE__*/ S.suspend(() =>
     incidentRoutingService: S.optional(S.String),
     incidentRoutingTeam: S.optional(S.String),
     incidentContactEmail: S.optional(S.String),
-    serviceTreeInfos: S.optional(
-      ResourceProviderManagementServiceTreeInfosList,
-    ),
     resourceAccessPolicy: S.optional(ResourceAccessPolicy),
     resourceAccessRoles: S.optional(
       ResourceProviderManagementResourceAccessRolesList,
@@ -1049,21 +1003,6 @@ export const FanoutLinkedNotificationRuleEndpointsList = /*@__PURE__*/ S.Array(
   ResourceProviderEndpoint,
 ) as any as S.Schema<FanoutLinkedNotificationRuleEndpointsList>;
 
-export interface DstsConfiguration {
-  /** The service name. */
-  serviceName: string;
-  /** This is a URI property. */
-  serviceDnsName?: string;
-}
-export const DstsConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceName: S.String,
-    serviceDnsName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DstsConfiguration",
-}) as any as S.Schema<DstsConfiguration>;
-
 export interface FanoutLinkedNotificationRule {
   /** The token auth configuration. */
   tokenAuthConfiguration?: TokenAuthConfiguration;
@@ -1071,15 +1010,12 @@ export interface FanoutLinkedNotificationRule {
   actions?: FanoutLinkedNotificationRuleActionsList;
   /** The endpoints. */
   endpoints?: FanoutLinkedNotificationRuleEndpointsList;
-  /** The dsts configuration. */
-  dstsConfiguration?: DstsConfiguration;
 }
 export const FanoutLinkedNotificationRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tokenAuthConfiguration: S.optional(TokenAuthConfiguration),
     actions: S.optional(FanoutLinkedNotificationRuleActionsList),
     endpoints: S.optional(FanoutLinkedNotificationRuleEndpointsList),
-    dstsConfiguration: S.optional(DstsConfiguration),
   }),
 ).annotate({
   identifier: "FanoutLinkedNotificationRule",
@@ -1526,8 +1462,6 @@ export interface ProviderRegistrationProperties {
   linkedNotificationRules?: ProviderRegistrationPropertiesLinkedNotificationRulesList;
   /** The resource provider authorization rules. */
   resourceProviderAuthorizationRules?: ResourceProviderAuthorizationRules;
-  /** The dsts configuration. */
-  dstsConfiguration?: DstsConfiguration;
   /** Notification options. */
   notificationOptions?: NotificationOptions | (string & {});
   /** resource hydration accounts */
@@ -1595,7 +1529,6 @@ export const ProviderRegistrationProperties = /*@__PURE__*/ S.suspend(() =>
     resourceProviderAuthorizationRules: S.optional(
       ResourceProviderAuthorizationRules,
     ),
-    dstsConfiguration: S.optional(DstsConfiguration),
     notificationOptions: S.optional(NotificationOptions),
     resourceHydrationAccounts: S.optional(
       ProviderRegistrationPropertiesResourceHydrationAccountsList,
@@ -1809,8 +1742,6 @@ export interface ResourceTypeEndpoint {
   apiVersion?: string;
   /** List of zones. */
   zones?: ResourceTypeEndpointZonesList;
-  /** The dsts configuration. */
-  dstsConfiguration?: DstsConfiguration;
   /** The data boundary. */
   dataBoundary?: DataBoundary | (string & {});
 }
@@ -1830,7 +1761,6 @@ export const ResourceTypeEndpoint = /*@__PURE__*/ S.suspend(() =>
     endpointUri: S.optional(S.String),
     apiVersion: S.optional(S.String),
     zones: S.optional(ResourceTypeEndpointZonesList),
-    dstsConfiguration: S.optional(DstsConfiguration),
     dataBoundary: S.optional(DataBoundary),
   }),
 ).annotate({
@@ -2262,14 +2192,6 @@ export const ResourceTypeRegistrationPropertiesDisallowedActionVerbsList =
   /*@__PURE__*/ S.Array(
     S.String,
   ) as any as S.Schema<ResourceTypeRegistrationPropertiesDisallowedActionVerbsList>;
-
-/** The service tree infos. */
-export type ResourceTypeRegistrationPropertiesServiceTreeInfosList =
-  Array<ServiceTreeInfo>;
-export const ResourceTypeRegistrationPropertiesServiceTreeInfosList =
-  /*@__PURE__*/ S.Array(
-    ServiceTreeInfo,
-  ) as any as S.Schema<ResourceTypeRegistrationPropertiesServiceTreeInfosList>;
 
 /** The subscription state. */
 export type SubscriptionState =
@@ -3366,8 +3288,6 @@ export interface ResourceTypeRegistrationProperties {
   checkNameAvailabilitySpecifications?: CheckNameAvailabilitySpecifications;
   /** The disallowed action verbs. */
   disallowedActionVerbs?: ResourceTypeRegistrationPropertiesDisallowedActionVerbsList;
-  /** The service tree infos. */
-  serviceTreeInfos?: ResourceTypeRegistrationPropertiesServiceTreeInfosList;
   /** The request header options. */
   requestHeaderOptions?: RequestHeaderOptions;
   /** The subscription state rules. */
@@ -3428,8 +3348,6 @@ export interface ResourceTypeRegistrationProperties {
   policyExecutionType?: PolicyExecutionType | (string & {});
   /** The availability zone rule. */
   availabilityZoneRule?: ResourceTypeRegistrationPropertiesAvailabilityZoneRule;
-  /** The dsts configuration. */
-  dstsConfiguration?: DstsConfiguration;
   /** Async timeout rules */
   asyncTimeoutRules?: ResourceTypeRegistrationPropertiesAsyncTimeoutRulesList;
   /** Common API versions for the resource type. */
@@ -3526,9 +3444,6 @@ export const ResourceTypeRegistrationProperties = /*@__PURE__*/ S.suspend(() =>
     disallowedActionVerbs: S.optional(
       ResourceTypeRegistrationPropertiesDisallowedActionVerbsList,
     ),
-    serviceTreeInfos: S.optional(
-      ResourceTypeRegistrationPropertiesServiceTreeInfosList,
-    ),
     requestHeaderOptions: S.optional(RequestHeaderOptions),
     subscriptionStateRules: S.optional(
       ResourceTypeRegistrationPropertiesSubscriptionStateRulesList,
@@ -3579,7 +3494,6 @@ export const ResourceTypeRegistrationProperties = /*@__PURE__*/ S.suspend(() =>
     availabilityZoneRule: S.optional(
       ResourceTypeRegistrationPropertiesAvailabilityZoneRule,
     ),
-    dstsConfiguration: S.optional(DstsConfiguration),
     asyncTimeoutRules: S.optional(
       ResourceTypeRegistrationPropertiesAsyncTimeoutRulesList,
     ),
@@ -4713,7 +4627,7 @@ export const DeleteOperationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteOperationResponse",
 }) as any as S.Schema<DeleteOperationResponse>;
 
-export interface DeleteProviderMonitorSettingRequest {
+export interface DeleteProviderMonitorSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4721,29 +4635,30 @@ export interface DeleteProviderMonitorSettingRequest {
   /** The name of the provider monitor setting. */
   providerMonitorSettingName: string;
 }
-export const DeleteProviderMonitorSettingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    providerMonitorSettingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ProviderHub/providerMonitorSettings/{providerMonitorSettingName}",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
+export const DeleteProviderMonitorSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      providerMonitorSettingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ProviderHub/providerMonitorSettings/{providerMonitorSettingName}",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
 ).annotate({
-  identifier: "DeleteProviderMonitorSettingRequest",
-}) as any as S.Schema<DeleteProviderMonitorSettingRequest>;
+  identifier: "DeleteProviderMonitorSettingsRequest",
+}) as any as S.Schema<DeleteProviderMonitorSettingsRequest>;
 
-export interface DeleteProviderMonitorSettingResponse {}
-export const DeleteProviderMonitorSettingResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteProviderMonitorSettingsResponse {}
+export const DeleteProviderMonitorSettingsResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteProviderMonitorSettingResponse",
-}) as any as S.Schema<DeleteProviderMonitorSettingResponse>;
+  identifier: "DeleteProviderMonitorSettingsResponse",
+}) as any as S.Schema<DeleteProviderMonitorSettingsResponse>;
 
 export interface DeleteProviderRegistrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4793,14 +4708,14 @@ export const ResourceManagementEntityInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResourceManagementEntityInput>;
 
 /** resource management action content. */
-export type ResourceActionsDeleteResourcesRequestResourcesList =
+export type DeleteResourceActionResourcesRequestResourcesList =
   Array<ResourceManagementEntityInput>;
-export const ResourceActionsDeleteResourcesRequestResourcesList =
+export const DeleteResourceActionResourcesRequestResourcesList =
   /*@__PURE__*/ S.Array(
     ResourceManagementEntityInput,
-  ) as any as S.Schema<ResourceActionsDeleteResourcesRequestResourcesList>;
+  ) as any as S.Schema<DeleteResourceActionResourcesRequestResourcesList>;
 
-export interface DeleteResourceActionResourceRequest {
+export interface DeleteResourceActionResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource provider hosted within ProviderHub. */
@@ -4808,32 +4723,33 @@ export interface DeleteResourceActionResourceRequest {
   /** The resource action name. */
   resourceActionName: string;
   /** resource management action content. */
-  resources?: ResourceActionsDeleteResourcesRequestResourcesList;
+  resources?: DeleteResourceActionResourcesRequestResourcesList;
 }
-export const DeleteResourceActionResourceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    providerNamespace: S.String.pipe(T.Label()),
-    resourceActionName: S.String.pipe(T.Label()),
-    resources: S.optional(ResourceActionsDeleteResourcesRequestResourcesList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/resourceActions/{resourceActionName}/deleteResources",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
+export const DeleteResourceActionResourcesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      providerNamespace: S.String.pipe(T.Label()),
+      resourceActionName: S.String.pipe(T.Label()),
+      resources: S.optional(DeleteResourceActionResourcesRequestResourcesList),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/resourceActions/{resourceActionName}/deleteResources",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
 ).annotate({
-  identifier: "DeleteResourceActionResourceRequest",
-}) as any as S.Schema<DeleteResourceActionResourceRequest>;
+  identifier: "DeleteResourceActionResourcesRequest",
+}) as any as S.Schema<DeleteResourceActionResourcesRequest>;
 
-export interface DeleteResourceActionResourceResponse {}
-export const DeleteResourceActionResourceResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteResourceActionResourcesResponse {}
+export const DeleteResourceActionResourcesResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteResourceActionResourceResponse",
-}) as any as S.Schema<DeleteResourceActionResourceResponse>;
+  identifier: "DeleteResourceActionResourcesResponse",
+}) as any as S.Schema<DeleteResourceActionResourcesResponse>;
 
 export interface DeleteResourceTypeRegistrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5147,12 +5063,6 @@ export const ResourceTypeSubscriptionStateRulesList = /*@__PURE__*/ S.Array(
   SubscriptionStateRule,
 ) as any as S.Schema<ResourceTypeSubscriptionStateRulesList>;
 
-/** The service tree infos. */
-export type ResourceTypeServiceTreeInfosList = Array<ServiceTreeInfo>;
-export const ResourceTypeServiceTreeInfosList = /*@__PURE__*/ S.Array(
-  ServiceTreeInfo,
-) as any as S.Schema<ResourceTypeServiceTreeInfosList>;
-
 /** The disallowed action verbs. */
 export type ResourceTypeDisallowedActionVerbsList = Array<string>;
 export const ResourceTypeDisallowedActionVerbsList = /*@__PURE__*/ S.Array(
@@ -5230,8 +5140,6 @@ export interface ResourceType {
   featuresRule?: FeaturesRule;
   /** The subscription state rules. */
   subscriptionStateRules?: ResourceTypeSubscriptionStateRulesList;
-  /** The service tree infos. */
-  serviceTreeInfos?: ResourceTypeServiceTreeInfosList;
   /** The request header options. */
   requestHeaderOptions?: RequestHeaderOptions;
   /** The sku link. */
@@ -5284,7 +5192,6 @@ export const ResourceType = /*@__PURE__*/ S.suspend(() =>
     requiredFeatures: S.optional(ResourceTypeRequiredFeaturesList),
     featuresRule: S.optional(FeaturesRule),
     subscriptionStateRules: S.optional(ResourceTypeSubscriptionStateRulesList),
-    serviceTreeInfos: S.optional(ResourceTypeServiceTreeInfosList),
     requestHeaderOptions: S.optional(RequestHeaderOptions),
     skuLink: S.optional(S.String),
     disallowedActionVerbs: S.optional(ResourceTypeDisallowedActionVerbsList),
@@ -5439,13 +5346,13 @@ export const ResourceProviderManifest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceProviderManifest",
 }) as any as S.Schema<ResourceProviderManifest>;
 
-export interface GenerateProviderRegistrationOperationRequest {
+export interface GenerateProviderRegistrationOperationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource provider hosted within ProviderHub. */
   providerNamespace: string;
 }
-export const GenerateProviderRegistrationOperationRequest =
+export const GenerateProviderRegistrationOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5459,8 +5366,8 @@ export const GenerateProviderRegistrationOperationRequest =
       }),
     ),
   ).annotate({
-    identifier: "GenerateProviderRegistrationOperationRequest",
-  }) as any as S.Schema<GenerateProviderRegistrationOperationRequest>;
+    identifier: "GenerateProviderRegistrationOperationsRequest",
+  }) as any as S.Schema<GenerateProviderRegistrationOperationsRequest>;
 
 /** The origin. */
 export type OperationOrigins = "NotSpecified" | "User" | "System";
@@ -5519,23 +5426,23 @@ export const OperationsDefinition = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationsDefinition",
 }) as any as S.Schema<OperationsDefinition>;
 
-export type ProviderRegistrationsGenerateOperationsResponseBodyList =
+export type GenerateProviderRegistrationOperationsResponseBodyList =
   Array<OperationsDefinition>;
-export const ProviderRegistrationsGenerateOperationsResponseBodyList =
+export const GenerateProviderRegistrationOperationsResponseBodyList =
   /*@__PURE__*/ S.Array(
     OperationsDefinition,
-  ) as any as S.Schema<ProviderRegistrationsGenerateOperationsResponseBodyList>;
+  ) as any as S.Schema<GenerateProviderRegistrationOperationsResponseBodyList>;
 
-export type GenerateProviderRegistrationOperationResponse =
-  ProviderRegistrationsGenerateOperationsResponseBodyList;
-export const GenerateProviderRegistrationOperationResponse =
+export type GenerateProviderRegistrationOperationsResponse =
+  GenerateProviderRegistrationOperationsResponseBodyList;
+export const GenerateProviderRegistrationOperationsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    ProviderRegistrationsGenerateOperationsResponseBodyList.pipe(
+    GenerateProviderRegistrationOperationsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "GenerateProviderRegistrationOperationResponse",
-  }) as any as S.Schema<GenerateProviderRegistrationOperationResponse>;
+    identifier: "GenerateProviderRegistrationOperationsResponse",
+  }) as any as S.Schema<GenerateProviderRegistrationOperationsResponse>;
 
 export interface GetAuthorizedApplicationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5872,7 +5779,7 @@ export const GetNotificationRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetNotificationRegistrationResponse",
 }) as any as S.Schema<GetNotificationRegistrationResponse>;
 
-export interface GetProviderMonitorSettingRequest {
+export interface GetProviderMonitorSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5880,7 +5787,7 @@ export interface GetProviderMonitorSettingRequest {
   /** The name of the provider monitor setting. */
   providerMonitorSettingName: string;
 }
-export const GetProviderMonitorSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProviderMonitorSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5894,19 +5801,19 @@ export const GetProviderMonitorSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetProviderMonitorSettingRequest",
-}) as any as S.Schema<GetProviderMonitorSettingRequest>;
+  identifier: "GetProviderMonitorSettingsRequest",
+}) as any as S.Schema<GetProviderMonitorSettingsRequest>;
 
 /** Resource tags. */
-export type ProviderMonitorSettingsGetResponseTagsMap = {
+export type GetProviderMonitorSettingsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProviderMonitorSettingsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetProviderMonitorSettingsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProviderMonitorSettingsGetResponseTagsMap>;
+) as any as S.Schema<GetProviderMonitorSettingsResponseTagsMap>;
 
-export interface GetProviderMonitorSettingResponse {
+export interface GetProviderMonitorSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5916,24 +5823,24 @@ export interface GetProviderMonitorSettingResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProviderMonitorSettingsGetResponseTagsMap;
+  tags?: GetProviderMonitorSettingsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: ProviderMonitorSettingProperties;
 }
-export const GetProviderMonitorSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProviderMonitorSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ProviderMonitorSettingsGetResponseTagsMap),
+    tags: S.optional(GetProviderMonitorSettingsResponseTagsMap),
     location: S.String,
     properties: S.optional(ProviderMonitorSettingProperties),
   }),
 ).annotate({
-  identifier: "GetProviderMonitorSettingResponse",
-}) as any as S.Schema<GetProviderMonitorSettingResponse>;
+  identifier: "GetProviderMonitorSettingsResponse",
+}) as any as S.Schema<GetProviderMonitorSettingsResponse>;
 
 export interface GetProviderRegistrationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5958,11 +5865,11 @@ export const GetProviderRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProviderRegistrationRequest>;
 
 /** Provider registration kind. This Metadata is also used by portal/tooling/etc to render different UX experiences for resources of the same type. */
-export type ProviderRegistrationsGetResponseKind =
+export type GetProviderRegistrationResponseKind =
   | "Managed"
   | "Hybrid"
   | "Direct";
-export const ProviderRegistrationsGetResponseKind = /*@__PURE__*/ S.String;
+export const GetProviderRegistrationResponseKind = /*@__PURE__*/ S.String;
 
 export interface GetProviderRegistrationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5975,7 +5882,7 @@ export interface GetProviderRegistrationResponse {
   systemData?: SystemData;
   properties?: ProviderRegistrationProperties;
   /** Provider registration kind. This Metadata is also used by portal/tooling/etc to render different UX experiences for resources of the same type. */
-  kind?: ProviderRegistrationsGetResponseKind;
+  kind?: GetProviderRegistrationResponseKind;
 }
 export const GetProviderRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5984,7 +5891,7 @@ export const GetProviderRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProviderRegistrationProperties),
-    kind: S.optional(ProviderRegistrationsGetResponseKind),
+    kind: S.optional(GetProviderRegistrationResponseKind),
   }),
 ).annotate({
   identifier: "GetProviderRegistrationResponse",
@@ -6016,11 +5923,11 @@ export const GetResourceTypeRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResourceTypeRegistrationRequest>;
 
 /** Resource type registration kind. This Metadata is also used by portal/tooling/etc to render different UX experiences for resources of the same type. */
-export type ResourceTypeRegistrationsGetResponseKind =
+export type GetResourceTypeRegistrationResponseKind =
   | "Managed"
   | "Hybrid"
   | "Direct";
-export const ResourceTypeRegistrationsGetResponseKind = /*@__PURE__*/ S.String;
+export const GetResourceTypeRegistrationResponseKind = /*@__PURE__*/ S.String;
 
 export interface GetResourceTypeRegistrationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6033,7 +5940,7 @@ export interface GetResourceTypeRegistrationResponse {
   systemData?: SystemData;
   properties?: ResourceTypeRegistrationProperties;
   /** Resource type registration kind. This Metadata is also used by portal/tooling/etc to render different UX experiences for resources of the same type. */
-  kind?: ResourceTypeRegistrationsGetResponseKind;
+  kind?: GetResourceTypeRegistrationResponseKind;
 }
 export const GetResourceTypeRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6042,7 +5949,7 @@ export const GetResourceTypeRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ResourceTypeRegistrationProperties),
-    kind: S.optional(ResourceTypeRegistrationsGetResponseKind),
+    kind: S.optional(GetResourceTypeRegistrationResponseKind),
   }),
 ).annotate({
   identifier: "GetResourceTypeRegistrationResponse",
@@ -6977,13 +6884,13 @@ export const OperationsDefinitionArrayResponseWithContinuation =
     identifier: "OperationsDefinitionArrayResponseWithContinuation",
   }) as any as S.Schema<OperationsDefinitionArrayResponseWithContinuation>;
 
-export interface ListProviderMonitorSettingByResourceGroupRequest {
+export interface ListProviderMonitorSettingsByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListProviderMonitorSettingByResourceGroupRequest =
+export const ListProviderMonitorSettingsByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6997,8 +6904,8 @@ export const ListProviderMonitorSettingByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListProviderMonitorSettingByResourceGroupRequest",
-  }) as any as S.Schema<ListProviderMonitorSettingByResourceGroupRequest>;
+    identifier: "ListProviderMonitorSettingsByResourceGroupRequest",
+  }) as any as S.Schema<ListProviderMonitorSettingsByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ProviderMonitorSettingTagsMap = {
@@ -7064,11 +6971,11 @@ export const ProviderMonitorSettingArrayResponseWithContinuation =
     identifier: "ProviderMonitorSettingArrayResponseWithContinuation",
   }) as any as S.Schema<ProviderMonitorSettingArrayResponseWithContinuation>;
 
-export interface ListProviderMonitorSettingBySubscriptionRequest {
+export interface ListProviderMonitorSettingsBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListProviderMonitorSettingBySubscriptionRequest =
+export const ListProviderMonitorSettingsBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7081,8 +6988,8 @@ export const ListProviderMonitorSettingBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListProviderMonitorSettingBySubscriptionRequest",
-  }) as any as S.Schema<ListProviderMonitorSettingBySubscriptionRequest>;
+    identifier: "ListProviderMonitorSettingsBySubscriptionRequest",
+  }) as any as S.Schema<ListProviderMonitorSettingsBySubscriptionRequest>;
 
 export interface ListProviderRegistrationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7176,35 +7083,31 @@ export const ResourceTypeRegistrationArrayResponseWithContinuation =
     identifier: "ResourceTypeRegistrationArrayResponseWithContinuation",
   }) as any as S.Schema<ResourceTypeRegistrationArrayResponseWithContinuation>;
 
-export interface ListSkusByResourceTypeRegistrationNestedResourceTypeFirstRequest {
+export interface ListSkusByResourceTypeRegistrationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource provider hosted within ProviderHub. */
   providerNamespace: string;
   /** The resource type. */
   resourceType: string;
-  /** The first child resource type. */
-  nestedResourceTypeFirst: string;
 }
-export const ListSkusByResourceTypeRegistrationNestedResourceTypeFirstRequest =
+export const ListSkusByResourceTypeRegistrationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       providerNamespace: S.String.pipe(T.Label()),
       resourceType: S.String.pipe(T.Label()),
-      nestedResourceTypeFirst: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/resourcetypeRegistrations/{resourceType}/resourcetypeRegistrations/{nestedResourceTypeFirst}/skus",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/resourcetypeRegistrations/{resourceType}/skus",
         code: 200,
         apiVersion: "2025-10-01",
       }),
     ),
   ).annotate({
-    identifier:
-      "ListSkusByResourceTypeRegistrationNestedResourceTypeFirstRequest",
-  }) as any as S.Schema<ListSkusByResourceTypeRegistrationNestedResourceTypeFirstRequest>;
+    identifier: "ListSkusByResourceTypeRegistrationsRequest",
+  }) as any as S.Schema<ListSkusByResourceTypeRegistrationsRequest>;
 
 /** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
 export interface SkuResource {
@@ -7253,7 +7156,37 @@ export const SkuResourceArrayResponseWithContinuation = /*@__PURE__*/ S.suspend(
   identifier: "SkuResourceArrayResponseWithContinuation",
 }) as any as S.Schema<SkuResourceArrayResponseWithContinuation>;
 
-export interface ListSkusByResourceTypeRegistrationNestedResourceTypeSecondRequest {
+export interface ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource provider hosted within ProviderHub. */
+  providerNamespace: string;
+  /** The resource type. */
+  resourceType: string;
+  /** The first child resource type. */
+  nestedResourceTypeFirst: string;
+}
+export const ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      providerNamespace: S.String.pipe(T.Label()),
+      resourceType: S.String.pipe(T.Label()),
+      nestedResourceTypeFirst: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/resourcetypeRegistrations/{resourceType}/resourcetypeRegistrations/{nestedResourceTypeFirst}/skus",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstRequest",
+  }) as any as S.Schema<ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstRequest>;
+
+export interface ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource provider hosted within ProviderHub. */
@@ -7265,7 +7198,7 @@ export interface ListSkusByResourceTypeRegistrationNestedResourceTypeSecondReque
   /** The second child resource type. */
   nestedResourceTypeSecond: string;
 }
-export const ListSkusByResourceTypeRegistrationNestedResourceTypeSecondRequest =
+export const ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7283,10 +7216,10 @@ export const ListSkusByResourceTypeRegistrationNestedResourceTypeSecondRequest =
     ),
   ).annotate({
     identifier:
-      "ListSkusByResourceTypeRegistrationNestedResourceTypeSecondRequest",
-  }) as any as S.Schema<ListSkusByResourceTypeRegistrationNestedResourceTypeSecondRequest>;
+      "ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondRequest",
+  }) as any as S.Schema<ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondRequest>;
 
-export interface ListSkusByResourceTypeRegistrationNestedResourceTypeThirdRequest {
+export interface ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource provider hosted within ProviderHub. */
@@ -7300,7 +7233,7 @@ export interface ListSkusByResourceTypeRegistrationNestedResourceTypeThirdReques
   /** The third child resource type. */
   nestedResourceTypeThird: string;
 }
-export const ListSkusByResourceTypeRegistrationNestedResourceTypeThirdRequest =
+export const ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7319,34 +7252,8 @@ export const ListSkusByResourceTypeRegistrationNestedResourceTypeThirdRequest =
     ),
   ).annotate({
     identifier:
-      "ListSkusByResourceTypeRegistrationNestedResourceTypeThirdRequest",
-  }) as any as S.Schema<ListSkusByResourceTypeRegistrationNestedResourceTypeThirdRequest>;
-
-export interface ListSkusByResourceTypeRegistrationsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource provider hosted within ProviderHub. */
-  providerNamespace: string;
-  /** The resource type. */
-  resourceType: string;
-}
-export const ListSkusByResourceTypeRegistrationsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      providerNamespace: S.String.pipe(T.Label()),
-      resourceType: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/resourcetypeRegistrations/{resourceType}/skus",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListSkusByResourceTypeRegistrationsRequest",
-  }) as any as S.Schema<ListSkusByResourceTypeRegistrationsRequest>;
+      "ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdRequest",
+  }) as any as S.Schema<ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdRequest>;
 
 /** The manifest properties. */
 export interface ManifestInfoPropertiesInput {
@@ -7415,337 +7322,6 @@ export const ManifestsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ManifestsCreateOrUpdateResponse",
 }) as any as S.Schema<ManifestsCreateOrUpdateResponse>;
-
-/** The environment type. */
-export type AvailableCheckInManifestEnvironment =
-  | "NotSpecified"
-  | "Canary"
-  | "Prod"
-  | "All"
-  | "Mooncake"
-  | "Fairfax";
-export const AvailableCheckInManifestEnvironment = /*@__PURE__*/ S.String;
-
-/** The service feature flag. */
-export type ServiceFeatureFlagAction = "DoNotCreate" | "Create";
-export const ServiceFeatureFlagAction = /*@__PURE__*/ S.String;
-
-/** The resource types to include. */
-export type FrontloadPayloadPropertiesIncludeResourceTypesList = Array<string>;
-export const FrontloadPayloadPropertiesIncludeResourceTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FrontloadPayloadPropertiesIncludeResourceTypesList>;
-
-/** The resource types to exclude. */
-export type FrontloadPayloadPropertiesExcludeResourceTypesList = Array<string>;
-export const FrontloadPayloadPropertiesExcludeResourceTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FrontloadPayloadPropertiesExcludeResourceTypesList>;
-
-/** The resource hydration accounts. */
-export type ManifestLevelPropertyBagResourceHydrationAccountsList =
-  Array<ResourceHydrationAccount>;
-export const ManifestLevelPropertyBagResourceHydrationAccountsList =
-  /*@__PURE__*/ S.Array(
-    ResourceHydrationAccount,
-  ) as any as S.Schema<ManifestLevelPropertyBagResourceHydrationAccountsList>;
-
-export interface ManifestLevelPropertyBag {
-  /** The resource hydration accounts. */
-  resourceHydrationAccounts?: ManifestLevelPropertyBagResourceHydrationAccountsList;
-}
-export const ManifestLevelPropertyBag = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceHydrationAccounts: S.optional(
-      ManifestLevelPropertyBagResourceHydrationAccountsList,
-    ),
-  }),
-).annotate({
-  identifier: "ManifestLevelPropertyBag",
-}) as any as S.Schema<ManifestLevelPropertyBag>;
-
-/** The api versions. */
-export type ResourceTypeEndpointBaseApiVersionsList = Array<string>;
-export const ResourceTypeEndpointBaseApiVersionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ResourceTypeEndpointBaseApiVersionsList>;
-
-/** The locations. */
-export type ResourceTypeEndpointBaseLocationsList = Array<string>;
-export const ResourceTypeEndpointBaseLocationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ResourceTypeEndpointBaseLocationsList>;
-
-/** The required features. */
-export type ResourceTypeEndpointBaseRequiredFeaturesList = Array<string>;
-export const ResourceTypeEndpointBaseRequiredFeaturesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceTypeEndpointBaseRequiredFeaturesList>;
-
-/** The zones. */
-export type ResourceTypeEndpointBaseZonesList = Array<string>;
-export const ResourceTypeEndpointBaseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ResourceTypeEndpointBaseZonesList>;
-
-export interface ResourceTypeEndpointBase {
-  /** Whether it's enabled. */
-  enabled: boolean;
-  /** The api versions. */
-  apiVersions: ResourceTypeEndpointBaseApiVersionsList;
-  /** The endpoint uri. */
-  endpointUri: string;
-  /** The locations. */
-  locations: ResourceTypeEndpointBaseLocationsList;
-  /** The required features. */
-  requiredFeatures: ResourceTypeEndpointBaseRequiredFeaturesList;
-  /** The features rule. */
-  featuresRule: FeaturesRule;
-  /** This is a TimeSpan property. */
-  timeout: string;
-  /** The endpoint type. */
-  endpointType: EndpointType | (string & {});
-  /** The dsts configuration. */
-  dstsConfiguration: DstsConfiguration;
-  /** The sku link. */
-  skuLink: string;
-  /** The api version. */
-  apiVersion: string;
-  /** The zones. */
-  zones: ResourceTypeEndpointBaseZonesList;
-}
-export const ResourceTypeEndpointBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.Boolean,
-    apiVersions: ResourceTypeEndpointBaseApiVersionsList,
-    endpointUri: S.String,
-    locations: ResourceTypeEndpointBaseLocationsList,
-    requiredFeatures: ResourceTypeEndpointBaseRequiredFeaturesList,
-    featuresRule: FeaturesRule,
-    timeout: S.String,
-    endpointType: EndpointType,
-    dstsConfiguration: DstsConfiguration,
-    skuLink: S.String,
-    apiVersion: S.String,
-    zones: ResourceTypeEndpointBaseZonesList,
-  }),
-).annotate({
-  identifier: "ResourceTypeEndpointBase",
-}) as any as S.Schema<ResourceTypeEndpointBase>;
-
-/** The fields to ignore. */
-export type FrontloadPayloadPropertiesIgnoreFieldsList = Array<string>;
-export const FrontloadPayloadPropertiesIgnoreFieldsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FrontloadPayloadPropertiesIgnoreFieldsList>;
-
-export interface FrontloadPayloadProperties {
-  /** The operation type. */
-  operationType: string;
-  /** The provider namespace. */
-  providerNamespace: string;
-  /** The frontload location. */
-  frontloadLocation: string;
-  /** The copy from location. */
-  copyFromLocation: string;
-  /** The environment type. */
-  environmentType: AvailableCheckInManifestEnvironment | (string & {});
-  /** The service feature flag. */
-  serviceFeatureFlag: ServiceFeatureFlagAction | (string & {});
-  /** The resource types to include. */
-  includeResourceTypes: FrontloadPayloadPropertiesIncludeResourceTypesList;
-  /** The resource types to exclude. */
-  excludeResourceTypes: FrontloadPayloadPropertiesExcludeResourceTypesList;
-  /** The manifest level fields to override. */
-  overrideManifestLevelFields: ManifestLevelPropertyBag;
-  /** The endpoint level fields to override. */
-  overrideEndpointLevelFields: ResourceTypeEndpointBase;
-  /** The fields to ignore. */
-  ignoreFields: FrontloadPayloadPropertiesIgnoreFieldsList;
-}
-export const FrontloadPayloadProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operationType: S.String,
-    providerNamespace: S.String,
-    frontloadLocation: S.String,
-    copyFromLocation: S.String,
-    environmentType: AvailableCheckInManifestEnvironment,
-    serviceFeatureFlag: ServiceFeatureFlagAction,
-    includeResourceTypes: FrontloadPayloadPropertiesIncludeResourceTypesList,
-    excludeResourceTypes: FrontloadPayloadPropertiesExcludeResourceTypesList,
-    overrideManifestLevelFields: ManifestLevelPropertyBag,
-    overrideEndpointLevelFields: ResourceTypeEndpointBase,
-    ignoreFields: FrontloadPayloadPropertiesIgnoreFieldsList,
-  }),
-).annotate({
-  identifier: "FrontloadPayloadProperties",
-}) as any as S.Schema<FrontloadPayloadProperties>;
-
-export interface NewRegionFrontloadReleaseCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource provider hosted within ProviderHub. */
-  providerNamespace: string;
-  /** The name of the release. */
-  releaseName: string;
-  /** Properties of the frontload payload. */
-  properties: FrontloadPayloadProperties;
-}
-export const NewRegionFrontloadReleaseCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      providerNamespace: S.String.pipe(T.Label()),
-      releaseName: S.String.pipe(T.Label()),
-      properties: FrontloadPayloadProperties,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/newRegionFrontloadRelease/{releaseName}",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NewRegionFrontloadReleaseCreateOrUpdateRequest",
-  }) as any as S.Schema<NewRegionFrontloadReleaseCreateOrUpdateRequest>;
-
-export interface NewRegionFrontloadReleaseCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the rollout. */
-  properties?: DefaultRolloutProperties;
-}
-export const NewRegionFrontloadReleaseCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(DefaultRolloutProperties),
-    }),
-  ).annotate({
-    identifier: "NewRegionFrontloadReleaseCreateOrUpdateResponse",
-  }) as any as S.Schema<NewRegionFrontloadReleaseCreateOrUpdateResponse>;
-
-export interface NewRegionFrontloadReleaseGenerateManifestRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource provider hosted within ProviderHub. */
-  providerNamespace: string;
-  /** Properties of the frontload payload. */
-  properties: FrontloadPayloadProperties;
-}
-export const NewRegionFrontloadReleaseGenerateManifestRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      providerNamespace: S.String.pipe(T.Label()),
-      properties: FrontloadPayloadProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/generateNewRegionFrontloadManifest",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NewRegionFrontloadReleaseGenerateManifestRequest",
-  }) as any as S.Schema<NewRegionFrontloadReleaseGenerateManifestRequest>;
-
-export interface NewRegionFrontloadReleaseGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource provider hosted within ProviderHub. */
-  providerNamespace: string;
-  /** The name of the release. */
-  releaseName: string;
-}
-export const NewRegionFrontloadReleaseGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    providerNamespace: S.String.pipe(T.Label()),
-    releaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/newRegionFrontloadRelease/{releaseName}",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "NewRegionFrontloadReleaseGetRequest",
-}) as any as S.Schema<NewRegionFrontloadReleaseGetRequest>;
-
-export interface NewRegionFrontloadReleaseGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the rollout. */
-  properties?: DefaultRolloutProperties;
-}
-export const NewRegionFrontloadReleaseGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(DefaultRolloutProperties),
-    }),
-).annotate({
-  identifier: "NewRegionFrontloadReleaseGetResponse",
-}) as any as S.Schema<NewRegionFrontloadReleaseGetResponse>;
-
-export interface NewRegionFrontloadReleaseStopRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource provider hosted within ProviderHub. */
-  providerNamespace: string;
-  /** The name of the release. */
-  releaseName: string;
-}
-export const NewRegionFrontloadReleaseStopRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      providerNamespace: S.String.pipe(T.Label()),
-      releaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/newRegionFrontloadRelease/{releaseName}/stop",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "NewRegionFrontloadReleaseStopRequest",
-}) as any as S.Schema<NewRegionFrontloadReleaseStopRequest>;
-
-export interface NewRegionFrontloadReleaseStopResponse {}
-export const NewRegionFrontloadReleaseStopResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "NewRegionFrontloadReleaseStopResponse",
-}) as any as S.Schema<NewRegionFrontloadReleaseStopResponse>;
 
 export interface NotificationRegistrationsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8291,7 +7867,7 @@ export const StopDefaultRolloutResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StopDefaultRolloutResponse",
 }) as any as S.Schema<StopDefaultRolloutResponse>;
 
-export interface UpdateProviderMonitorSettingRequest {
+export interface UpdateProviderMonitorSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8299,34 +7875,35 @@ export interface UpdateProviderMonitorSettingRequest {
   /** The name of the provider monitor setting. */
   providerMonitorSettingName: string;
 }
-export const UpdateProviderMonitorSettingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    providerMonitorSettingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ProviderHub/providerMonitorSettings/{providerMonitorSettingName}",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
+export const UpdateProviderMonitorSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      providerMonitorSettingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ProviderHub/providerMonitorSettings/{providerMonitorSettingName}",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
 ).annotate({
-  identifier: "UpdateProviderMonitorSettingRequest",
-}) as any as S.Schema<UpdateProviderMonitorSettingRequest>;
+  identifier: "UpdateProviderMonitorSettingsRequest",
+}) as any as S.Schema<UpdateProviderMonitorSettingsRequest>;
 
 /** Resource tags. */
-export type ProviderMonitorSettingsUpdateResponseTagsMap = {
+export type UpdateProviderMonitorSettingsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProviderMonitorSettingsUpdateResponseTagsMap =
+export const UpdateProviderMonitorSettingsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProviderMonitorSettingsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateProviderMonitorSettingsResponseTagsMap>;
 
-export interface UpdateProviderMonitorSettingResponse {
+export interface UpdateProviderMonitorSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8336,25 +7913,25 @@ export interface UpdateProviderMonitorSettingResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProviderMonitorSettingsUpdateResponseTagsMap;
+  tags?: UpdateProviderMonitorSettingsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: ProviderMonitorSettingProperties;
 }
-export const UpdateProviderMonitorSettingResponse = /*@__PURE__*/ S.suspend(
+export const UpdateProviderMonitorSettingsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ProviderMonitorSettingsUpdateResponseTagsMap),
+      tags: S.optional(UpdateProviderMonitorSettingsResponseTagsMap),
       location: S.String,
       properties: S.optional(ProviderMonitorSettingProperties),
     }),
 ).annotate({
-  identifier: "UpdateProviderMonitorSettingResponse",
-}) as any as S.Schema<UpdateProviderMonitorSettingResponse>;
+  identifier: "UpdateProviderMonitorSettingsResponse",
+}) as any as S.Schema<UpdateProviderMonitorSettingsResponse>;
 
 export type AuthorizedApplicationsCreateOrUpdateError = AzureOpError;
 /** Creates or updates the authorized application. */
@@ -8386,16 +7963,16 @@ export const CheckinManifest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateProviderMonitorSettingError = AzureOpError;
+export type CreateProviderMonitorSettingsError = AzureOpError;
 /** Creates the provider monitor setting. */
-export const CreateProviderMonitorSetting: API.OperationMethod<
-  CreateProviderMonitorSettingRequest,
-  CreateProviderMonitorSettingResponse,
-  CreateProviderMonitorSettingError,
+export const CreateProviderMonitorSettings: API.OperationMethod<
+  CreateProviderMonitorSettingsRequest,
+  CreateProviderMonitorSettingsResponse,
+  CreateProviderMonitorSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateProviderMonitorSettingRequest,
-  output: CreateProviderMonitorSettingResponse,
+  input: CreateProviderMonitorSettingsRequest,
+  output: CreateProviderMonitorSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8506,16 +8083,16 @@ export const DeleteOperation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteProviderMonitorSettingError = AzureOpError;
+export type DeleteProviderMonitorSettingsError = AzureOpError;
 /** Deletes a provider monitor setting. */
-export const DeleteProviderMonitorSetting: API.OperationMethod<
-  DeleteProviderMonitorSettingRequest,
-  DeleteProviderMonitorSettingResponse,
-  DeleteProviderMonitorSettingError,
+export const DeleteProviderMonitorSettings: API.OperationMethod<
+  DeleteProviderMonitorSettingsRequest,
+  DeleteProviderMonitorSettingsResponse,
+  DeleteProviderMonitorSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteProviderMonitorSettingRequest,
-  output: DeleteProviderMonitorSettingResponse,
+  input: DeleteProviderMonitorSettingsRequest,
+  output: DeleteProviderMonitorSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8536,16 +8113,16 @@ export const DeleteProviderRegistration: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteResourceActionResourceError = AzureOpError;
+export type DeleteResourceActionResourcesError = AzureOpError;
 /** Deletes resources. */
-export const DeleteResourceActionResource: API.OperationMethod<
-  DeleteResourceActionResourceRequest,
-  DeleteResourceActionResourceResponse,
-  DeleteResourceActionResourceError,
+export const DeleteResourceActionResources: API.OperationMethod<
+  DeleteResourceActionResourcesRequest,
+  DeleteResourceActionResourcesResponse,
+  DeleteResourceActionResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteResourceActionResourceRequest,
-  output: DeleteResourceActionResourceResponse,
+  input: DeleteResourceActionResourcesRequest,
+  output: DeleteResourceActionResourcesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8641,16 +8218,16 @@ export const GenerateManifest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GenerateProviderRegistrationOperationError = AzureOpError;
+export type GenerateProviderRegistrationOperationsError = AzureOpError;
 /** Generates the operations api for the given provider. */
-export const GenerateProviderRegistrationOperation: API.OperationMethod<
-  GenerateProviderRegistrationOperationRequest,
-  GenerateProviderRegistrationOperationResponse,
-  GenerateProviderRegistrationOperationError,
+export const GenerateProviderRegistrationOperations: API.OperationMethod<
+  GenerateProviderRegistrationOperationsRequest,
+  GenerateProviderRegistrationOperationsResponse,
+  GenerateProviderRegistrationOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateProviderRegistrationOperationRequest,
-  output: GenerateProviderRegistrationOperationResponse,
+  input: GenerateProviderRegistrationOperationsRequest,
+  output: GenerateProviderRegistrationOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8731,16 +8308,16 @@ export const GetNotificationRegistration: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProviderMonitorSettingError = AzureOpError;
+export type GetProviderMonitorSettingsError = AzureOpError;
 /** Gets the provider monitor setting details. */
-export const GetProviderMonitorSetting: API.OperationMethod<
-  GetProviderMonitorSettingRequest,
-  GetProviderMonitorSettingResponse,
-  GetProviderMonitorSettingError,
+export const GetProviderMonitorSettings: API.OperationMethod<
+  GetProviderMonitorSettingsRequest,
+  GetProviderMonitorSettingsResponse,
+  GetProviderMonitorSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProviderMonitorSettingRequest,
-  output: GetProviderMonitorSettingResponse,
+  input: GetProviderMonitorSettingsRequest,
+  output: GetProviderMonitorSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8927,30 +8504,30 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListProviderMonitorSettingByResourceGroupError = AzureOpError;
+export type ListProviderMonitorSettingsByResourceGroupError = AzureOpError;
 /** Gets the list of the provider monitor settings in the resource group. */
-export const ListProviderMonitorSettingByResourceGroup: API.OperationMethod<
-  ListProviderMonitorSettingByResourceGroupRequest,
+export const ListProviderMonitorSettingsByResourceGroup: API.OperationMethod<
+  ListProviderMonitorSettingsByResourceGroupRequest,
   ProviderMonitorSettingArrayResponseWithContinuation,
-  ListProviderMonitorSettingByResourceGroupError,
+  ListProviderMonitorSettingsByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListProviderMonitorSettingByResourceGroupRequest,
+  input: ListProviderMonitorSettingsByResourceGroupRequest,
   output: ProviderMonitorSettingArrayResponseWithContinuation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListProviderMonitorSettingBySubscriptionError = AzureOpError;
+export type ListProviderMonitorSettingsBySubscriptionError = AzureOpError;
 /** Gets the list of the provider monitor settings in the subscription. */
-export const ListProviderMonitorSettingBySubscription: API.OperationMethod<
-  ListProviderMonitorSettingBySubscriptionRequest,
+export const ListProviderMonitorSettingsBySubscription: API.OperationMethod<
+  ListProviderMonitorSettingsBySubscriptionRequest,
   ProviderMonitorSettingArrayResponseWithContinuation,
-  ListProviderMonitorSettingBySubscriptionError,
+  ListProviderMonitorSettingsBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListProviderMonitorSettingBySubscriptionRequest,
+  input: ListProviderMonitorSettingsBySubscriptionRequest,
   output: ProviderMonitorSettingArrayResponseWithContinuation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -8988,54 +8565,6 @@ export const ListResourceTypeRegistrationByProviderRegistration: API.OperationMe
   retry: Retry.Retry,
 }));
 
-export type ListSkusByResourceTypeRegistrationNestedResourceTypeFirstError =
-  AzureOpError;
-/** Gets the list of skus for the given resource type. */
-export const ListSkusByResourceTypeRegistrationNestedResourceTypeFirst: API.OperationMethod<
-  ListSkusByResourceTypeRegistrationNestedResourceTypeFirstRequest,
-  SkuResourceArrayResponseWithContinuation,
-  ListSkusByResourceTypeRegistrationNestedResourceTypeFirstError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSkusByResourceTypeRegistrationNestedResourceTypeFirstRequest,
-  output: SkuResourceArrayResponseWithContinuation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListSkusByResourceTypeRegistrationNestedResourceTypeSecondError =
-  AzureOpError;
-/** Gets the list of skus for the given resource type. */
-export const ListSkusByResourceTypeRegistrationNestedResourceTypeSecond: API.OperationMethod<
-  ListSkusByResourceTypeRegistrationNestedResourceTypeSecondRequest,
-  SkuResourceArrayResponseWithContinuation,
-  ListSkusByResourceTypeRegistrationNestedResourceTypeSecondError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSkusByResourceTypeRegistrationNestedResourceTypeSecondRequest,
-  output: SkuResourceArrayResponseWithContinuation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListSkusByResourceTypeRegistrationNestedResourceTypeThirdError =
-  AzureOpError;
-/** Gets the list of skus for the given resource type. */
-export const ListSkusByResourceTypeRegistrationNestedResourceTypeThird: API.OperationMethod<
-  ListSkusByResourceTypeRegistrationNestedResourceTypeThirdRequest,
-  SkuResourceArrayResponseWithContinuation,
-  ListSkusByResourceTypeRegistrationNestedResourceTypeThirdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSkusByResourceTypeRegistrationNestedResourceTypeThirdRequest,
-  output: SkuResourceArrayResponseWithContinuation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListSkusByResourceTypeRegistrationsError = AzureOpError;
 /** Gets the list of skus for the given resource type. */
 export const ListSkusByResourceTypeRegistrations: API.OperationMethod<
@@ -9045,6 +8574,54 @@ export const ListSkusByResourceTypeRegistrations: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListSkusByResourceTypeRegistrationsRequest,
+  output: SkuResourceArrayResponseWithContinuation,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstError =
+  AzureOpError;
+/** Gets the list of skus for the given resource type. */
+export const ListSkusByResourceTypeRegistrationsNestedResourceTypeFirst: API.OperationMethod<
+  ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstRequest,
+  SkuResourceArrayResponseWithContinuation,
+  ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSkusByResourceTypeRegistrationsNestedResourceTypeFirstRequest,
+  output: SkuResourceArrayResponseWithContinuation,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondError =
+  AzureOpError;
+/** Gets the list of skus for the given resource type. */
+export const ListSkusByResourceTypeRegistrationsNestedResourceTypeSecond: API.OperationMethod<
+  ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondRequest,
+  SkuResourceArrayResponseWithContinuation,
+  ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSkusByResourceTypeRegistrationsNestedResourceTypeSecondRequest,
+  output: SkuResourceArrayResponseWithContinuation,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdError =
+  AzureOpError;
+/** Gets the list of skus for the given resource type. */
+export const ListSkusByResourceTypeRegistrationsNestedResourceTypeThird: API.OperationMethod<
+  ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdRequest,
+  SkuResourceArrayResponseWithContinuation,
+  ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSkusByResourceTypeRegistrationsNestedResourceTypeThirdRequest,
   output: SkuResourceArrayResponseWithContinuation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -9061,66 +8638,6 @@ export const ManifestsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ManifestsCreateOrUpdateRequest,
   output: ManifestsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NewRegionFrontloadReleaseCreateOrUpdateError = AzureOpError;
-/** Creates or updates a new region frontload release. */
-export const NewRegionFrontloadReleaseCreateOrUpdate: API.OperationMethod<
-  NewRegionFrontloadReleaseCreateOrUpdateRequest,
-  NewRegionFrontloadReleaseCreateOrUpdateResponse,
-  NewRegionFrontloadReleaseCreateOrUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NewRegionFrontloadReleaseCreateOrUpdateRequest,
-  output: NewRegionFrontloadReleaseCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NewRegionFrontloadReleaseGenerateManifestError = AzureOpError;
-/** Generates the new region frontload manifest. */
-export const NewRegionFrontloadReleaseGenerateManifest: API.OperationMethod<
-  NewRegionFrontloadReleaseGenerateManifestRequest,
-  ResourceProviderManifest,
-  NewRegionFrontloadReleaseGenerateManifestError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NewRegionFrontloadReleaseGenerateManifestRequest,
-  output: ResourceProviderManifest,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NewRegionFrontloadReleaseGetError = AzureOpError;
-/** Gets a new region frontload release. */
-export const NewRegionFrontloadReleaseGet: API.OperationMethod<
-  NewRegionFrontloadReleaseGetRequest,
-  NewRegionFrontloadReleaseGetResponse,
-  NewRegionFrontloadReleaseGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NewRegionFrontloadReleaseGetRequest,
-  output: NewRegionFrontloadReleaseGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NewRegionFrontloadReleaseStopError = AzureOpError;
-/** Stops a new region frontload release. */
-export const NewRegionFrontloadReleaseStop: API.OperationMethod<
-  NewRegionFrontloadReleaseStopRequest,
-  NewRegionFrontloadReleaseStopResponse,
-  NewRegionFrontloadReleaseStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NewRegionFrontloadReleaseStopRequest,
-  output: NewRegionFrontloadReleaseStopResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9276,16 +8793,16 @@ export const StopDefaultRollout: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateProviderMonitorSettingError = AzureOpError;
+export type UpdateProviderMonitorSettingsError = AzureOpError;
 /** Updates the provider monitor setting properties as specified in the request body. Update fails if the specified provider monitor setting does not already exist. */
-export const UpdateProviderMonitorSetting: API.OperationMethod<
-  UpdateProviderMonitorSettingRequest,
-  UpdateProviderMonitorSettingResponse,
-  UpdateProviderMonitorSettingError,
+export const UpdateProviderMonitorSettings: API.OperationMethod<
+  UpdateProviderMonitorSettingsRequest,
+  UpdateProviderMonitorSettingsResponse,
+  UpdateProviderMonitorSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateProviderMonitorSettingRequest,
-  output: UpdateProviderMonitorSettingResponse,
+  input: UpdateProviderMonitorSettingsRequest,
+  output: UpdateProviderMonitorSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

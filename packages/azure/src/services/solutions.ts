@@ -1142,39 +1142,6 @@ export const ApplicationsCreateOrUpdateByIdResponse = /*@__PURE__*/ S.suspend(
   identifier: "ApplicationsCreateOrUpdateByIdResponse",
 }) as any as S.Schema<ApplicationsCreateOrUpdateByIdResponse>;
 
-export interface ApplicationsRefreshPermissionsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed application. */
-  applicationName: string;
-}
-export const ApplicationsRefreshPermissionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      applicationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/refreshPermissions",
-        code: 200,
-        apiVersion: "2021-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ApplicationsRefreshPermissionsRequest",
-}) as any as S.Schema<ApplicationsRefreshPermissionsRequest>;
-
-export interface ApplicationsRefreshPermissionsResponse {}
-export const ApplicationsRefreshPermissionsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ApplicationsRefreshPermissionsResponse",
-}) as any as S.Schema<ApplicationsRefreshPermissionsResponse>;
-
 export interface DeleteApplicationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1323,61 +1290,61 @@ export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationRequest>;
 
 /** Resource tags */
-export type ApplicationsGetResponseTagsMap = {
+export type GetApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsGetResponseSystemDataCreatedByType =
+export type GetApplicationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetResponseSystemDataCreatedByType =
+export const GetApplicationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsGetResponseSystemDataLastModifiedByType =
+export type GetApplicationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetResponseSystemDataLastModifiedByType =
+export const GetApplicationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsGetResponseSystemData {
+export interface GetApplicationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsGetResponseSystemDataCreatedByType;
+  createdByType?: GetApplicationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApplicationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ApplicationsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetApplicationResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ApplicationsGetResponseSystemDataLastModifiedByType,
+      GetApplicationResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ApplicationsGetResponseSystemData",
-}) as any as S.Schema<ApplicationsGetResponseSystemData>;
+  identifier: "GetApplicationResponseSystemData",
+}) as any as S.Schema<GetApplicationResponseSystemData>;
 
 export interface GetApplicationResponse {
   /** Resource ID */
@@ -1389,9 +1356,9 @@ export interface GetApplicationResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsGetResponseTagsMap;
+  tags?: GetApplicationResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsGetResponseSystemData;
+  systemData?: GetApplicationResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -1411,8 +1378,8 @@ export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
-    systemData: S.optional(ApplicationsGetResponseSystemData),
+    tags: S.optional(GetApplicationResponseTagsMap),
+    systemData: S.optional(GetApplicationResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: ApplicationProperties,
@@ -1444,64 +1411,64 @@ export const GetApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationByIdRequest>;
 
 /** Resource tags */
-export type ApplicationsGetByIdResponseTagsMap = {
+export type GetApplicationByIdResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationByIdResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetByIdResponseTagsMap>;
+) as any as S.Schema<GetApplicationByIdResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsGetByIdResponseSystemDataCreatedByType =
+export type GetApplicationByIdResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetByIdResponseSystemDataCreatedByType =
+export const GetApplicationByIdResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsGetByIdResponseSystemDataLastModifiedByType =
+export type GetApplicationByIdResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetByIdResponseSystemDataLastModifiedByType =
+export const GetApplicationByIdResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsGetByIdResponseSystemData {
+export interface GetApplicationByIdResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsGetByIdResponseSystemDataCreatedByType;
+  createdByType?: GetApplicationByIdResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsGetByIdResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApplicationByIdResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsGetByIdResponseSystemData = /*@__PURE__*/ S.suspend(
+export const GetApplicationByIdResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApplicationsGetByIdResponseSystemDataCreatedByType,
+        GetApplicationByIdResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApplicationsGetByIdResponseSystemDataLastModifiedByType,
+        GetApplicationByIdResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ApplicationsGetByIdResponseSystemData",
-}) as any as S.Schema<ApplicationsGetByIdResponseSystemData>;
+  identifier: "GetApplicationByIdResponseSystemData",
+}) as any as S.Schema<GetApplicationByIdResponseSystemData>;
 
 export interface GetApplicationByIdResponse {
   /** Resource ID */
@@ -1513,9 +1480,9 @@ export interface GetApplicationByIdResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsGetByIdResponseTagsMap;
+  tags?: GetApplicationByIdResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsGetByIdResponseSystemData;
+  systemData?: GetApplicationByIdResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -1535,8 +1502,8 @@ export const GetApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetByIdResponseTagsMap),
-    systemData: S.optional(ApplicationsGetByIdResponseSystemData),
+    tags: S.optional(GetApplicationByIdResponseTagsMap),
+    systemData: S.optional(GetApplicationByIdResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: ApplicationProperties,
@@ -1574,64 +1541,64 @@ export const GetApplicationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationDefinitionRequest>;
 
 /** Resource tags */
-export type ApplicationDefinitionsGetResponseTagsMap = {
+export type GetApplicationDefinitionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationDefinitionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationDefinitionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationDefinitionsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationDefinitionResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationDefinitionsGetResponseSystemDataCreatedByType =
+export type GetApplicationDefinitionResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationDefinitionsGetResponseSystemDataCreatedByType =
+export const GetApplicationDefinitionResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationDefinitionsGetResponseSystemDataLastModifiedByType =
+export type GetApplicationDefinitionResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationDefinitionsGetResponseSystemDataLastModifiedByType =
+export const GetApplicationDefinitionResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationDefinitionsGetResponseSystemData {
+export interface GetApplicationDefinitionResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationDefinitionsGetResponseSystemDataCreatedByType;
+  createdByType?: GetApplicationDefinitionResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationDefinitionsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApplicationDefinitionResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationDefinitionsGetResponseSystemData =
+export const GetApplicationDefinitionResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApplicationDefinitionsGetResponseSystemDataCreatedByType,
+        GetApplicationDefinitionResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApplicationDefinitionsGetResponseSystemDataLastModifiedByType,
+        GetApplicationDefinitionResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ApplicationDefinitionsGetResponseSystemData",
-  }) as any as S.Schema<ApplicationDefinitionsGetResponseSystemData>;
+    identifier: "GetApplicationDefinitionResponseSystemData",
+  }) as any as S.Schema<GetApplicationDefinitionResponseSystemData>;
 
 export interface GetApplicationDefinitionResponse {
   /** Resource ID */
@@ -1643,9 +1610,9 @@ export interface GetApplicationDefinitionResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationDefinitionsGetResponseTagsMap;
+  tags?: GetApplicationDefinitionResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationDefinitionsGetResponseSystemData;
+  systemData?: GetApplicationDefinitionResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -1659,8 +1626,8 @@ export const GetApplicationDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationDefinitionsGetResponseTagsMap),
-    systemData: S.optional(ApplicationDefinitionsGetResponseSystemData),
+    tags: S.optional(GetApplicationDefinitionResponseTagsMap),
+    systemData: S.optional(GetApplicationDefinitionResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: ApplicationDefinitionProperties,
@@ -1695,61 +1662,61 @@ export const GetJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetJitRequestRequest>;
 
 /** Resource tags */
-export type JitRequestsGetResponseTagsMap = {
+export type GetJitRequestResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const JitRequestsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetJitRequestResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JitRequestsGetResponseTagsMap>;
+) as any as S.Schema<GetJitRequestResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type JitRequestsGetResponseSystemDataCreatedByType =
+export type GetJitRequestResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JitRequestsGetResponseSystemDataCreatedByType =
+export const GetJitRequestResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type JitRequestsGetResponseSystemDataLastModifiedByType =
+export type GetJitRequestResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JitRequestsGetResponseSystemDataLastModifiedByType =
+export const GetJitRequestResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface JitRequestsGetResponseSystemData {
+export interface GetJitRequestResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: JitRequestsGetResponseSystemDataCreatedByType;
+  createdByType?: GetJitRequestResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: JitRequestsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetJitRequestResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const JitRequestsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetJitRequestResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(JitRequestsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetJitRequestResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      JitRequestsGetResponseSystemDataLastModifiedByType,
+      GetJitRequestResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "JitRequestsGetResponseSystemData",
-}) as any as S.Schema<JitRequestsGetResponseSystemData>;
+  identifier: "GetJitRequestResponseSystemData",
+}) as any as S.Schema<GetJitRequestResponseSystemData>;
 
 /** The JIT authorization policies. */
 export interface JitAuthorizationPolicies {
@@ -1853,9 +1820,9 @@ export interface GetJitRequestResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: JitRequestsGetResponseTagsMap;
+  tags?: GetJitRequestResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: JitRequestsGetResponseSystemData;
+  systemData?: GetJitRequestResponseSystemData;
   /** The JIT request properties. */
   properties?: JitRequestProperties;
 }
@@ -1865,8 +1832,8 @@ export const GetJitRequestResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(JitRequestsGetResponseTagsMap),
-    systemData: S.optional(JitRequestsGetResponseSystemData),
+    tags: S.optional(GetJitRequestResponseTagsMap),
+    systemData: S.optional(GetJitRequestResponseSystemData),
     properties: S.optional(JitRequestProperties),
   }),
 ).annotate({
@@ -2400,12 +2367,12 @@ export const ListApplicationDefinitionBySubscriptionRequest =
   }) as any as S.Schema<ListApplicationDefinitionBySubscriptionRequest>;
 
 /** The user assigned identities. */
-export type ApplicationsListTokensRequestUserAssignedIdentitiesList =
+export type ListApplicationTokensRequestUserAssignedIdentitiesList =
   Array<string>;
-export const ApplicationsListTokensRequestUserAssignedIdentitiesList =
+export const ListApplicationTokensRequestUserAssignedIdentitiesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ApplicationsListTokensRequestUserAssignedIdentitiesList>;
+  ) as any as S.Schema<ListApplicationTokensRequestUserAssignedIdentitiesList>;
 
 export interface ListApplicationTokensRequest {
   /** The ID of the target subscription. */
@@ -2417,7 +2384,7 @@ export interface ListApplicationTokensRequest {
   /** The authorization audience. */
   authorizationAudience?: string;
   /** The user assigned identities. */
-  userAssignedIdentities?: ApplicationsListTokensRequestUserAssignedIdentitiesList;
+  userAssignedIdentities?: ListApplicationTokensRequestUserAssignedIdentitiesList;
 }
 export const ListApplicationTokensRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2426,7 +2393,7 @@ export const ListApplicationTokensRequest = /*@__PURE__*/ S.suspend(() =>
     applicationName: S.String.pipe(T.Label()),
     authorizationAudience: S.optional(S.String),
     userAssignedIdentities: S.optional(
-      ApplicationsListTokensRequestUserAssignedIdentitiesList,
+      ListApplicationTokensRequestUserAssignedIdentitiesList,
     ),
   }).pipe(
     T.Http({
@@ -2729,14 +2696,47 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
+export interface RefreshApplicationPermissionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application. */
+  applicationName: string;
+}
+export const RefreshApplicationPermissionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      applicationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/refreshPermissions",
+        code: 200,
+        apiVersion: "2021-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshApplicationPermissionsRequest",
+}) as any as S.Schema<RefreshApplicationPermissionsRequest>;
+
+export interface RefreshApplicationPermissionsResponse {}
+export const RefreshApplicationPermissionsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RefreshApplicationPermissionsResponse",
+}) as any as S.Schema<RefreshApplicationPermissionsResponse>;
+
 /** Resource tags */
-export type ApplicationsUpdateRequestTagsMap = {
+export type UpdateApplicationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationRequestTagsMap>;
 
 /** Plan for the managed application. */
 export interface PlanPatchable {
@@ -2771,7 +2771,7 @@ export interface UpdateApplicationRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateRequestTagsMap;
+  tags?: UpdateApplicationRequestTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -2791,7 +2791,7 @@ export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplicationRequestTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: S.optional(ApplicationPropertiesInput),
@@ -2811,64 +2811,61 @@ export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationRequest>;
 
 /** Resource tags */
-export type ApplicationsUpdateResponseTagsMap = {
+export type UpdateApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApplicationResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsUpdateResponseSystemDataCreatedByType =
+export type UpdateApplicationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsUpdateResponseSystemDataCreatedByType =
+export const UpdateApplicationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateApplicationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateApplicationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsUpdateResponseSystemData {
+export interface UpdateApplicationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateApplicationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateApplicationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApplicationsUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApplicationsUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
+export const UpdateApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateApplicationResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateApplicationResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "ApplicationsUpdateResponseSystemData",
-}) as any as S.Schema<ApplicationsUpdateResponseSystemData>;
+  identifier: "UpdateApplicationResponseSystemData",
+}) as any as S.Schema<UpdateApplicationResponseSystemData>;
 
 export interface UpdateApplicationResponse {
   /** Resource ID */
@@ -2880,9 +2877,9 @@ export interface UpdateApplicationResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateResponseTagsMap;
+  tags?: UpdateApplicationResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsUpdateResponseSystemData;
+  systemData?: UpdateApplicationResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -2902,8 +2899,8 @@ export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateResponseTagsMap),
-    systemData: S.optional(ApplicationsUpdateResponseSystemData),
+    tags: S.optional(UpdateApplicationResponseTagsMap),
+    systemData: S.optional(UpdateApplicationResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: S.optional(ApplicationProperties),
@@ -2996,13 +2993,13 @@ export const UpdateApplicationAccessResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationAccessResponse>;
 
 /** Resource tags */
-export type ApplicationsUpdateByIdRequestTagsMap = {
+export type UpdateApplicationByIdRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateByIdRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationByIdRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateByIdRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationByIdRequestTagsMap>;
 
 export interface UpdateApplicationByIdRequest {
   /** The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name} */
@@ -3010,7 +3007,7 @@ export interface UpdateApplicationByIdRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateByIdRequestTagsMap;
+  tags?: UpdateApplicationByIdRequestTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -3028,7 +3025,7 @@ export const UpdateApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     applicationId: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateByIdRequestTagsMap),
+    tags: S.optional(UpdateApplicationByIdRequestTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: S.optional(ApplicationPropertiesInput),
@@ -3048,64 +3045,64 @@ export const UpdateApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationByIdRequest>;
 
 /** Resource tags */
-export type ApplicationsUpdateByIdResponseTagsMap = {
+export type UpdateApplicationByIdResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationByIdResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateByIdResponseTagsMap>;
+) as any as S.Schema<UpdateApplicationByIdResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsUpdateByIdResponseSystemDataCreatedByType =
+export type UpdateApplicationByIdResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsUpdateByIdResponseSystemDataCreatedByType =
+export const UpdateApplicationByIdResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsUpdateByIdResponseSystemDataLastModifiedByType =
+export type UpdateApplicationByIdResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsUpdateByIdResponseSystemDataLastModifiedByType =
+export const UpdateApplicationByIdResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsUpdateByIdResponseSystemData {
+export interface UpdateApplicationByIdResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsUpdateByIdResponseSystemDataCreatedByType;
+  createdByType?: UpdateApplicationByIdResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsUpdateByIdResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateApplicationByIdResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsUpdateByIdResponseSystemData = /*@__PURE__*/ S.suspend(
+export const UpdateApplicationByIdResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApplicationsUpdateByIdResponseSystemDataCreatedByType,
+        UpdateApplicationByIdResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApplicationsUpdateByIdResponseSystemDataLastModifiedByType,
+        UpdateApplicationByIdResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ApplicationsUpdateByIdResponseSystemData",
-}) as any as S.Schema<ApplicationsUpdateByIdResponseSystemData>;
+  identifier: "UpdateApplicationByIdResponseSystemData",
+}) as any as S.Schema<UpdateApplicationByIdResponseSystemData>;
 
 export interface UpdateApplicationByIdResponse {
   /** Resource ID */
@@ -3117,9 +3114,9 @@ export interface UpdateApplicationByIdResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateByIdResponseTagsMap;
+  tags?: UpdateApplicationByIdResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsUpdateByIdResponseSystemData;
+  systemData?: UpdateApplicationByIdResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -3139,8 +3136,8 @@ export const UpdateApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateByIdResponseTagsMap),
-    systemData: S.optional(ApplicationsUpdateByIdResponseSystemData),
+    tags: S.optional(UpdateApplicationByIdResponseTagsMap),
+    systemData: S.optional(UpdateApplicationByIdResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: S.optional(ApplicationProperties),
@@ -3153,14 +3150,13 @@ export const UpdateApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationByIdResponse>;
 
 /** Application definition tags */
-export type ApplicationDefinitionsUpdateRequestTagsMap = {
+export type UpdateApplicationDefinitionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationDefinitionsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ApplicationDefinitionsUpdateRequestTagsMap>;
+export const UpdateApplicationDefinitionRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateApplicationDefinitionRequestTagsMap>;
 
 export interface UpdateApplicationDefinitionRequest {
   /** The ID of the target subscription. */
@@ -3170,14 +3166,14 @@ export interface UpdateApplicationDefinitionRequest {
   /** The name of the managed application definition. */
   applicationDefinitionName: string;
   /** Application definition tags */
-  tags?: ApplicationDefinitionsUpdateRequestTagsMap;
+  tags?: UpdateApplicationDefinitionRequestTagsMap;
 }
 export const UpdateApplicationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     applicationDefinitionName: S.String.pipe(T.Label()),
-    tags: S.optional(ApplicationDefinitionsUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplicationDefinitionRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3191,65 +3187,65 @@ export const UpdateApplicationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationDefinitionRequest>;
 
 /** Resource tags */
-export type ApplicationDefinitionsUpdateResponseTagsMap = {
+export type UpdateApplicationDefinitionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationDefinitionsUpdateResponseTagsMap =
+export const UpdateApplicationDefinitionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ApplicationDefinitionsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateApplicationDefinitionResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationDefinitionsUpdateResponseSystemDataCreatedByType =
+export type UpdateApplicationDefinitionResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationDefinitionsUpdateResponseSystemDataCreatedByType =
+export const UpdateApplicationDefinitionResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateApplicationDefinitionResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateApplicationDefinitionResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationDefinitionsUpdateResponseSystemData {
+export interface UpdateApplicationDefinitionResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationDefinitionsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateApplicationDefinitionResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateApplicationDefinitionResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationDefinitionsUpdateResponseSystemData =
+export const UpdateApplicationDefinitionResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ApplicationDefinitionsUpdateResponseSystemDataCreatedByType,
+        UpdateApplicationDefinitionResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ApplicationDefinitionsUpdateResponseSystemDataLastModifiedByType,
+        UpdateApplicationDefinitionResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ApplicationDefinitionsUpdateResponseSystemData",
-  }) as any as S.Schema<ApplicationDefinitionsUpdateResponseSystemData>;
+    identifier: "UpdateApplicationDefinitionResponseSystemData",
+  }) as any as S.Schema<UpdateApplicationDefinitionResponseSystemData>;
 
 export interface UpdateApplicationDefinitionResponse {
   /** Resource ID */
@@ -3261,9 +3257,9 @@ export interface UpdateApplicationDefinitionResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationDefinitionsUpdateResponseTagsMap;
+  tags?: UpdateApplicationDefinitionResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationDefinitionsUpdateResponseSystemData;
+  systemData?: UpdateApplicationDefinitionResponseSystemData;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -3277,8 +3273,8 @@ export const UpdateApplicationDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationDefinitionsUpdateResponseTagsMap),
-    systemData: S.optional(ApplicationDefinitionsUpdateResponseSystemData),
+    tags: S.optional(UpdateApplicationDefinitionResponseTagsMap),
+    systemData: S.optional(UpdateApplicationDefinitionResponseSystemData),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku),
     properties: ApplicationDefinitionProperties,
@@ -3288,13 +3284,13 @@ export const UpdateApplicationDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationDefinitionResponse>;
 
 /** Jit request tags */
-export type JitRequestsUpdateRequestTagsMap = {
+export type UpdateJitRequestRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const JitRequestsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateJitRequestRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JitRequestsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateJitRequestRequestTagsMap>;
 
 export interface UpdateJitRequestRequest {
   /** The ID of the target subscription. */
@@ -3304,14 +3300,14 @@ export interface UpdateJitRequestRequest {
   /** The name of the JIT request. */
   jitRequestName: string;
   /** Jit request tags */
-  tags?: JitRequestsUpdateRequestTagsMap;
+  tags?: UpdateJitRequestRequestTagsMap;
 }
 export const UpdateJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     jitRequestName: S.String.pipe(T.Label()),
-    tags: S.optional(JitRequestsUpdateRequestTagsMap),
+    tags: S.optional(UpdateJitRequestRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3325,61 +3321,61 @@ export const UpdateJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateJitRequestRequest>;
 
 /** Resource tags */
-export type JitRequestsUpdateResponseTagsMap = {
+export type UpdateJitRequestResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const JitRequestsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateJitRequestResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JitRequestsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateJitRequestResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type JitRequestsUpdateResponseSystemDataCreatedByType =
+export type UpdateJitRequestResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JitRequestsUpdateResponseSystemDataCreatedByType =
+export const UpdateJitRequestResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type JitRequestsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateJitRequestResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const JitRequestsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateJitRequestResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface JitRequestsUpdateResponseSystemData {
+export interface UpdateJitRequestResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: JitRequestsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateJitRequestResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: JitRequestsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateJitRequestResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const JitRequestsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateJitRequestResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(JitRequestsUpdateResponseSystemDataCreatedByType),
+    createdByType: S.optional(UpdateJitRequestResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      JitRequestsUpdateResponseSystemDataLastModifiedByType,
+      UpdateJitRequestResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "JitRequestsUpdateResponseSystemData",
-}) as any as S.Schema<JitRequestsUpdateResponseSystemData>;
+  identifier: "UpdateJitRequestResponseSystemData",
+}) as any as S.Schema<UpdateJitRequestResponseSystemData>;
 
 export interface UpdateJitRequestResponse {
   /** Resource ID */
@@ -3391,9 +3387,9 @@ export interface UpdateJitRequestResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: JitRequestsUpdateResponseTagsMap;
+  tags?: UpdateJitRequestResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: JitRequestsUpdateResponseSystemData;
+  systemData?: UpdateJitRequestResponseSystemData;
   /** The JIT request properties. */
   properties?: JitRequestProperties;
 }
@@ -3403,8 +3399,8 @@ export const UpdateJitRequestResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(JitRequestsUpdateResponseTagsMap),
-    systemData: S.optional(JitRequestsUpdateResponseSystemData),
+    tags: S.optional(UpdateJitRequestResponseTagsMap),
+    systemData: S.optional(UpdateJitRequestResponseSystemData),
     properties: S.optional(JitRequestProperties),
   }),
 ).annotate({
@@ -3451,21 +3447,6 @@ export const ApplicationsCreateOrUpdateById: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApplicationsCreateOrUpdateByIdRequest,
   output: ApplicationsCreateOrUpdateByIdResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsRefreshPermissionsError = AzureOpError;
-/** Refresh Permissions for application. */
-export const ApplicationsRefreshPermissions: API.OperationMethod<
-  ApplicationsRefreshPermissionsRequest,
-  ApplicationsRefreshPermissionsResponse,
-  ApplicationsRefreshPermissionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsRefreshPermissionsRequest,
-  output: ApplicationsRefreshPermissionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3736,6 +3717,21 @@ export const ListOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOperationsRequest,
   output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshApplicationPermissionsError = AzureOpError;
+/** Refresh Permissions for application. */
+export const RefreshApplicationPermissions: API.OperationMethod<
+  RefreshApplicationPermissionsRequest,
+  RefreshApplicationPermissionsResponse,
+  RefreshApplicationPermissionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshApplicationPermissionsRequest,
+  output: RefreshApplicationPermissionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

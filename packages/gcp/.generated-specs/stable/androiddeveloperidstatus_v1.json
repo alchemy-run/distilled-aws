@@ -4,7 +4,8 @@
     "service": "androiddeveloperidstatus",
     "version": "v1",
     "title": "Android Developer ID Status API",
-    "baseUrl": "https://androiddeveloperidstatus.googleapis.com/"
+    "baseUrl": "https://androiddeveloperidstatus.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.androiddeveloperidstatus_v1#PackageRegistrationStatus": {
@@ -16,16 +17,16 @@
             "smithy.api#documentation": "Identifier. The name of the package registration status resource. Format: packages/{package}/packageRegistrationStatus `{package}` must follow the specific format: The fully-qualified Android package name with dots ('.') replaced by hyphens ('-') (e.g., `com-example-app` instead of `com.example.app`)."
           }
         },
-        "certificateFingerprint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`)."
-          }
-        },
         "state": {
           "target": "com.gcp.androiddeveloperidstatus_v1#PackageRegistrationStatusStateEnum",
           "traits": {
             "smithy.api#documentation": "Output only. Registration state of the package, or pair."
+          }
+        },
+        "certificateFingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`)."
           }
         }
       },
@@ -65,19 +66,19 @@
     "com.gcp.androiddeveloperidstatus_v1#CheckPackagesPackageRegistrationStatusRequest": {
       "type": "structure",
       "members": {
-        "certificateFingerprint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`).",
-            "smithy.api#httpQuery": "certificateFingerprint"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The name of the package registration status resource. Format: packages/{package}/packageRegistrationStatus `{package}` must follow the specific format: The fully-qualified Android package name with dots ('.') replaced by hyphens ('-') (e.g., `com-example-app` instead of `com.example.app`).",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "certificateFingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`).",
+            "smithy.api#httpQuery": "certificateFingerprint"
           }
         }
       }

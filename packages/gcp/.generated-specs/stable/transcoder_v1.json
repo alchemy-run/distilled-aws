@@ -4,83 +4,40 @@
     "service": "transcoder",
     "version": "v1",
     "title": "Transcoder API",
-    "baseUrl": "https://transcoder.googleapis.com/"
+    "baseUrl": "https://transcoder.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.transcoder_v1#PreprocessingConfig": {
+    "com.gcp.transcoder_v1#Crop": {
       "type": "structure",
       "members": {
-        "audio": {
-          "target": "com.gcp.transcoder_v1#Audio",
+        "rightPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Audio preprocessing configuration."
+            "smithy.api#documentation": "The number of pixels to crop from the right. The default is 0."
           }
         },
-        "pad": {
-          "target": "com.gcp.transcoder_v1#Pad",
+        "bottomPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Specify the video pad filter configuration."
+            "smithy.api#documentation": "The number of pixels to crop from the bottom. The default is 0."
           }
         },
-        "deblock": {
-          "target": "com.gcp.transcoder_v1#Deblock",
+        "leftPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Deblock preprocessing configuration."
+            "smithy.api#documentation": "The number of pixels to crop from the left. The default is 0."
           }
         },
-        "deinterlace": {
-          "target": "com.gcp.transcoder_v1#Deinterlace",
+        "topPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Specify the video deinterlace configuration."
-          }
-        },
-        "color": {
-          "target": "com.gcp.transcoder_v1#Color",
-          "traits": {
-            "smithy.api#documentation": "Color preprocessing configuration."
-          }
-        },
-        "denoise": {
-          "target": "com.gcp.transcoder_v1#Denoise",
-          "traits": {
-            "smithy.api#documentation": "Denoise preprocessing configuration."
-          }
-        },
-        "crop": {
-          "target": "com.gcp.transcoder_v1#Crop",
-          "traits": {
-            "smithy.api#documentation": "Specify the video cropping configuration."
+            "smithy.api#documentation": "The number of pixels to crop from the top. The default is 0."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Preprocessing configurations."
-      }
-    },
-    "com.gcp.transcoder_v1#Color": {
-      "type": "structure",
-      "members": {
-        "saturation": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Control color saturation of the video. Enter a value between -1 and 1, where -1 is fully desaturated and 1 is maximum saturation. 0 is no change. The default is 0."
-          }
-        },
-        "contrast": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Control black and white contrast of the video. Enter a value between -1 and 1, where -1 is minimum contrast and 1 is maximum contrast. 0 is no change. The default is 0."
-          }
-        },
-        "brightness": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Control brightness of the video. Enter a value between -1 and 1, where -1 is minimum brightness and 1 is maximum brightness. 0 is no change. The default is 0."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Color preprocessing configuration. **Note:** This configuration is not supported."
+        "smithy.api#documentation": "Video cropping configuration for the input video. The cropped input video is scaled to match the output resolution."
       }
     },
     "com.gcp.transcoder_v1#H264ColorFormatSDR": {
@@ -90,320 +47,6 @@
         "smithy.api#documentation": "Convert the input video to a Standard Dynamic Range (SDR) video."
       }
     },
-    "com.gcp.transcoder_v1#AnimationEnd": {
-      "type": "structure",
-      "members": {
-        "startTimeOffset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time to end overlay object, in seconds. Default: 0"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "End previous overlay animation from the video. Without `AnimationEnd`, the overlay object will keep the state of previous animation until the end of the video."
-      }
-    },
-    "com.gcp.transcoder_v1#H265ColorFormatSDR": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Convert the input video to a Standard Dynamic Range (SDR) video."
-      }
-    },
-    "com.gcp.transcoder_v1#MuxStream": {
-      "type": "structure",
-      "members": {
-        "container": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The container format. The default is `mp4` Supported streaming formats: - `ts` - `fmp4`- the corresponding file extension is `.m4s` Supported standalone file formats: - `mp4` - `mp3` - `ogg` - `vtt` See also: [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)"
-          }
-        },
-        "encryptionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of the encryption configuration to use. If omitted, output will be unencrypted."
-          }
-        },
-        "fileName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`."
-          }
-        },
-        "fmp4": {
-          "target": "com.gcp.transcoder_v1#Fmp4Config",
-          "traits": {
-            "smithy.api#documentation": "Optional. `fmp4` container configuration."
-          }
-        },
-        "elementaryStreams": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of ElementaryStream.key values multiplexed in this stream."
-          }
-        },
-        "key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique key for this multiplexed stream."
-          }
-        },
-        "segmentSettings": {
-          "target": "com.gcp.transcoder_v1#SegmentSettings",
-          "traits": {
-            "smithy.api#documentation": "Segment settings for `ts`, `fmp4` and `vtt`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Multiplexing settings for output stream."
-      }
-    },
-    "com.gcp.transcoder_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.transcoder_v1#H264ColorFormatHLG": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Convert the input video to a Hybrid Log Gamma (HLG) video."
-      }
-    },
-    "com.gcp.transcoder_v1#AudioMapping": {
-      "type": "structure",
-      "members": {
-        "inputKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The Input.key that identifies the input file."
-          }
-        },
-        "inputTrack": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The zero-based index of the track in the input file."
-          }
-        },
-        "outputChannel": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The zero-based index of the channel in the output audio stream."
-          }
-        },
-        "atomKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The EditAtom.key that references the atom with audio inputs in the JobConfig.edit_list."
-          }
-        },
-        "inputChannel": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The zero-based index of the channel in the input audio stream."
-          }
-        },
-        "gainDb": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Audio volume control in dB. Negative values decrease volume, positive values increase. The default is 0."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs."
-      }
-    },
-    "com.gcp.transcoder_v1#Audio": {
-      "type": "structure",
-      "members": {
-        "lowBoost": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Enable boosting low frequency components. The default is `false`. **Note:** This field is not supported."
-          }
-        },
-        "lufs": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Specify audio loudness normalization in loudness units relative to full scale (LUFS). Enter a value between -24 and 0 (the default), where: * -24 is the Advanced Television Systems Committee (ATSC A/85) standard * -23 is the EU R128 broadcast standard * -19 is the prior standard for online mono audio * -18 is the ReplayGain standard * -16 is the prior standard for stereo audio * -14 is the new online audio standard recommended by Spotify, as well as Amazon Echo * 0 disables normalization"
-          }
-        },
-        "highBoost": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Enable boosting high frequency components. The default is `false`. **Note:** This field is not supported."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Audio preprocessing configuration."
-      }
-    },
-    "com.gcp.transcoder_v1#JobConfig": {
-      "type": "structure",
-      "members": {
-        "elementaryStreams": {
-          "target": "com.gcp.transcoder_v1#ElementaryStreamList",
-          "traits": {
-            "smithy.api#documentation": "List of elementary streams."
-          }
-        },
-        "inputs": {
-          "target": "com.gcp.transcoder_v1#InputList",
-          "traits": {
-            "smithy.api#documentation": "List of input assets stored in Cloud Storage."
-          }
-        },
-        "output": {
-          "target": "com.gcp.transcoder_v1#Output",
-          "traits": {
-            "smithy.api#documentation": "Output configuration."
-          }
-        },
-        "overlays": {
-          "target": "com.gcp.transcoder_v1#OverlayList",
-          "traits": {
-            "smithy.api#documentation": "List of overlays on the output video, in descending Z-order."
-          }
-        },
-        "muxStreams": {
-          "target": "com.gcp.transcoder_v1#MuxStreamList",
-          "traits": {
-            "smithy.api#documentation": "List of multiplexing settings for output streams."
-          }
-        },
-        "adBreaks": {
-          "target": "com.gcp.transcoder_v1#AdBreakList",
-          "traits": {
-            "smithy.api#documentation": "List of ad breaks. Specifies where to insert ad break tags in the output manifests."
-          }
-        },
-        "encryptions": {
-          "target": "com.gcp.transcoder_v1#EncryptionList",
-          "traits": {
-            "smithy.api#documentation": "List of encryption configurations for the content. Each configuration has an ID. Specify this ID in the MuxStream.encryption_id field to indicate the configuration to use for that `MuxStream` output."
-          }
-        },
-        "manifests": {
-          "target": "com.gcp.transcoder_v1#ManifestList",
-          "traits": {
-            "smithy.api#documentation": "List of output manifests."
-          }
-        },
-        "pubsubDestination": {
-          "target": "com.gcp.transcoder_v1#PubsubDestination",
-          "traits": {
-            "smithy.api#documentation": "Destination on Pub/Sub."
-          }
-        },
-        "editList": {
-          "target": "com.gcp.transcoder_v1#EditAtomList",
-          "traits": {
-            "smithy.api#documentation": "List of edit atoms. Defines the ultimate timeline of the resulting file or manifest."
-          }
-        },
-        "spriteSheets": {
-          "target": "com.gcp.transcoder_v1#SpriteSheetList",
-          "traits": {
-            "smithy.api#documentation": "List of output sprite sheets. Spritesheets require at least one VideoStream in the Jobconfig."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Job configuration"
-      }
-    },
-    "com.gcp.transcoder_v1#ElementaryStreamList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#ElementaryStream"
-      }
-    },
-    "com.gcp.transcoder_v1#InputList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#Input"
-      }
-    },
-    "com.gcp.transcoder_v1#OverlayList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#Overlay"
-      }
-    },
-    "com.gcp.transcoder_v1#MuxStreamList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#MuxStream"
-      }
-    },
-    "com.gcp.transcoder_v1#AdBreakList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#AdBreak"
-      }
-    },
-    "com.gcp.transcoder_v1#EncryptionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#Encryption"
-      }
-    },
-    "com.gcp.transcoder_v1#ManifestList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#Manifest"
-      }
-    },
-    "com.gcp.transcoder_v1#EditAtomList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#EditAtom"
-      }
-    },
-    "com.gcp.transcoder_v1#SpriteSheetList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#SpriteSheet"
-      }
-    },
-    "com.gcp.transcoder_v1#DrmSystems": {
-      "type": "structure",
-      "members": {
-        "fairplay": {
-          "target": "com.gcp.transcoder_v1#Fairplay",
-          "traits": {
-            "smithy.api#documentation": "Fairplay configuration."
-          }
-        },
-        "clearkey": {
-          "target": "com.gcp.transcoder_v1#Clearkey",
-          "traits": {
-            "smithy.api#documentation": "Clearkey configuration."
-          }
-        },
-        "widevine": {
-          "target": "com.gcp.transcoder_v1#Widevine",
-          "traits": {
-            "smithy.api#documentation": "Widevine configuration."
-          }
-        },
-        "playready": {
-          "target": "com.gcp.transcoder_v1#Playready",
-          "traits": {
-            "smithy.api#documentation": "Playready configuration."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines configuration for DRM systems in use."
-      }
-    },
     "com.gcp.transcoder_v1#Clearkey": {
       "type": "structure",
       "members": {},
@@ -411,108 +54,103 @@
         "smithy.api#documentation": "Clearkey configuration."
       }
     },
-    "com.gcp.transcoder_v1#AnimationStatic": {
+    "com.gcp.transcoder_v1#Status": {
       "type": "structure",
       "members": {
-        "xy": {
-          "target": "com.gcp.transcoder_v1#NormalizedCoordinate",
+        "details": {
+          "target": "com.gcp.transcoder_v1#DocumentMapList",
           "traits": {
-            "smithy.api#documentation": "Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object. For example, use the x and y coordinates {0,0} to position the top-left corner of the overlay animation in the top-left corner of the output video."
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
           }
         },
-        "startTimeOffset": {
+        "message": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The time to start displaying the overlay object, in seconds. Default: 0"
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Display static overlay object."
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
       }
     },
-    "com.gcp.transcoder_v1#EditAtom": {
-      "type": "structure",
-      "members": {
-        "startTimeOffset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Start time in seconds for the atom, relative to the input file timeline. The default is `0s`."
-          }
-        },
-        "key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique key for this atom. Must be specified when using advanced mapping."
-          }
-        },
-        "endTimeOffset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "End time in seconds for the atom, relative to the input file timeline. When `end_time_offset` is not specified, the `inputs` are used until the end of the atom."
-          }
-        },
-        "inputs": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of Input.key values identifying files that should be used in this atom. The listed `inputs` must have the same timeline."
-          }
-        }
+    "com.gcp.transcoder_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
       },
-      "traits": {
-        "smithy.api#documentation": "Edit atom."
+      "value": {
+        "target": "smithy.api#Document"
       }
     },
-    "com.gcp.transcoder_v1#SampleAesEncryption": {
+    "com.gcp.transcoder_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#DocumentMap"
+      }
+    },
+    "com.gcp.transcoder_v1#Empty": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "Configuration for SAMPLE-AES encryption."
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
-    "com.gcp.transcoder_v1#InputAttributes": {
+    "com.gcp.transcoder_v1#YadifConfig": {
       "type": "structure",
       "members": {
-        "trackDefinitions": {
-          "target": "com.gcp.transcoder_v1#TrackDefinitionList",
+        "deinterlaceAllFrames": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Optional. A list of track definitions for the input asset."
+            "smithy.api#documentation": "Deinterlace all frames rather than just the frames identified as interlaced. The default is `false`."
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the deinterlacing mode to adopt. The default is `send_frame`. Supported values: - `send_frame`: Output one frame for each frame - `send_field`: Output one frame for each field"
+          }
+        },
+        "disableSpatialInterlacing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Disable spacial interlacing. The default is `false`."
+          }
+        },
+        "parity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The picture field parity assumed for the input interlaced video. The default is `auto`. Supported values: - `tff`: Assume the top field is first - `bff`: Assume the bottom field is first - `auto`: Enable automatic detection of field parity"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Input attributes that provide additional information about the input asset."
+        "smithy.api#documentation": "Yet Another Deinterlacing Filter Configuration."
       }
     },
-    "com.gcp.transcoder_v1#TrackDefinitionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#TrackDefinition"
-      }
-    },
-    "com.gcp.transcoder_v1#H265CodecSettings": {
+    "com.gcp.transcoder_v1#Vp9CodecSettings": {
       "type": "structure",
       "members": {
-        "tune": {
+        "rateControlMode": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Enforces the specified codec tune. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265). Note that certain values for this field may cause the transcoder to override other fields you set in the `H265CodecSettings` message."
+            "smithy.api#documentation": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate"
           }
         },
         "sdr": {
-          "target": "com.gcp.transcoder_v1#H265ColorFormatSDR",
+          "target": "com.gcp.transcoder_v1#Vp9ColorFormatSDR",
           "traits": {
-            "smithy.api#documentation": "Optional. SDR color format setting for H265."
-          }
-        },
-        "vbvFullnessBits": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H265CodecSettings.vbv_size_bits."
+            "smithy.api#documentation": "Optional. SDR color format setting for VP9."
           }
         },
         "frameRateConversionStrategy": {
-          "target": "com.gcp.transcoder_v1#H265CodecSettingsFrameRateConversionStrategyEnum",
+          "target": "com.gcp.transcoder_v1#Vp9CodecSettingsFrameRateConversionStrategyEnum",
           "traits": {
             "smithy.api#documentation": "Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`."
           }
@@ -520,91 +158,7 @@
         "crfLevel": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21."
-          }
-        },
-        "vbvSizeBits": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to `VideoStream.bitrate_bps`."
-          }
-        },
-        "rateControlMode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor"
-          }
-        },
-        "heightPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
-          }
-        },
-        "allowOpenGop": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Specifies whether an open Group of Pictures (GOP) structure should be allowed or not. The default is `false`."
-          }
-        },
-        "hlg": {
-          "target": "com.gcp.transcoder_v1#H265ColorFormatHLG",
-          "traits": {
-            "smithy.api#documentation": "Optional. HLG color format setting for H265."
-          }
-        },
-        "gopFrameCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Select the GOP size based on the specified frame count. Must be greater than zero."
-          }
-        },
-        "hdr10": {
-          "target": "com.gcp.transcoder_v1#H265ColorFormatHDR10",
-          "traits": {
-            "smithy.api#documentation": "Optional. HDR10 color format setting for H265."
-          }
-        },
-        "bitrateBps": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value is 800,000,000."
-          }
-        },
-        "profile": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Enforces the specified codec profile. The following profiles are supported: * 8-bit profiles * `main` (default) * `main-intra` * `mainstillpicture` * 10-bit profiles * `main10` (default) * `main10-intra` * `main422-10` * `main422-10-intra` * `main444-10` * `main444-10-intra` * 12-bit profiles * `main12` (default) * `main12-intra` * `main422-12` * `main422-12-intra` * `main444-12` * `main444-12-intra` The available options are [FFmpeg-compatible](https://x265.readthedocs.io/). Note that certain values for this field may cause the transcoder to override other fields you set in the `H265CodecSettings` message."
-          }
-        },
-        "widthPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
-          }
-        },
-        "preset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Enforces the specified codec preset. The default is `veryfast`. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265). Note that certain values for this field may cause the transcoder to override other fields you set in the `H265CodecSettings` message."
-          }
-        },
-        "frameRate": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120."
-          }
-        },
-        "pixelFormat": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format"
-          }
-        },
-        "bFrameCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H265CodecSettings.gop_frame_count if set. The default is 0."
+            "smithy.api#documentation": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21. **Note:** This field is not supported."
           }
         },
         "gopDuration": {
@@ -613,30 +167,60 @@
             "smithy.api#documentation": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`."
           }
         },
-        "enableTwoPass": {
-          "target": "smithy.api#Boolean",
+        "heightPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Use two-pass encoding strategy to achieve better video quality. H265CodecSettings.rate_control_mode must be `vbr`. The default is `false`."
+            "smithy.api#documentation": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
           }
         },
-        "aqStrength": {
+        "frameRate": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Specify the intensity of the adaptive quantizer (AQ). Must be between 0 and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A higher value equals a lower bitrate but smoother image. The default is 0."
+            "smithy.api#documentation": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120."
           }
         },
-        "bPyramid": {
-          "target": "smithy.api#Boolean",
+        "widthPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Allow B-pyramid for reference frame selection. This may not be supported on all decoders. The default is `false`."
+            "smithy.api#documentation": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+          }
+        },
+        "hlg": {
+          "target": "com.gcp.transcoder_v1#Vp9ColorFormatHLG",
+          "traits": {
+            "smithy.api#documentation": "Optional. HLG color format setting for VP9."
+          }
+        },
+        "gopFrameCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Select the GOP size based on the specified frame count. Must be greater than zero."
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enforces the specified codec profile. The following profiles are supported: * `profile0` (default) * `profile1` * `profile2` * `profile3` The available options are [WebM-compatible](https://www.webmproject.org/vp9/profiles/). Note that certain values for this field may cause the transcoder to override other fields you set in the `Vp9CodecSettings` message."
+          }
+        },
+        "bitrateBps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value is 480,000,000."
+          }
+        },
+        "pixelFormat": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "H265 codec settings."
+        "smithy.api#documentation": "VP9 codec settings."
       }
     },
-    "com.gcp.transcoder_v1#H265CodecSettingsFrameRateConversionStrategyEnum": {
+    "com.gcp.transcoder_v1#Vp9CodecSettingsFrameRateConversionStrategyEnum": {
       "type": "enum",
       "members": {
         "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED": {
@@ -659,110 +243,44 @@
         }
       }
     },
-    "com.gcp.transcoder_v1#Animation": {
+    "com.gcp.transcoder_v1#Image": {
       "type": "structure",
       "members": {
-        "animationStatic": {
-          "target": "com.gcp.transcoder_v1#AnimationStatic",
-          "traits": {
-            "smithy.api#documentation": "Display static overlay object."
-          }
-        },
-        "animationFade": {
-          "target": "com.gcp.transcoder_v1#AnimationFade",
-          "traits": {
-            "smithy.api#documentation": "Display overlay object with fade animation."
-          }
-        },
-        "animationEnd": {
-          "target": "com.gcp.transcoder_v1#AnimationEnd",
-          "traits": {
-            "smithy.api#documentation": "End previous animation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Animation types."
-      }
-    },
-    "com.gcp.transcoder_v1#VideoStream": {
-      "type": "structure",
-      "members": {
-        "h264": {
-          "target": "com.gcp.transcoder_v1#H264CodecSettings",
-          "traits": {
-            "smithy.api#documentation": "H264 codec settings."
-          }
-        },
-        "vp9": {
-          "target": "com.gcp.transcoder_v1#Vp9CodecSettings",
-          "traits": {
-            "smithy.api#documentation": "VP9 codec settings."
-          }
-        },
-        "h265": {
-          "target": "com.gcp.transcoder_v1#H265CodecSettings",
-          "traits": {
-            "smithy.api#documentation": "H265 codec settings."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Video stream resource."
-      }
-    },
-    "com.gcp.transcoder_v1#Fairplay": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Fairplay configuration."
-      }
-    },
-    "com.gcp.transcoder_v1#Denoise": {
-      "type": "structure",
-      "members": {
-        "tune": {
+        "uri": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Set the denoiser mode. The default is `standard`. Supported denoiser modes: - `standard` - `grain`"
+            "smithy.api#documentation": "Required. URI of the image in Cloud Storage. For example, `gs://bucket/inputs/image.png`. Only PNG and JPEG images are supported."
           }
         },
-        "strength": {
+        "resolution": {
+          "target": "com.gcp.transcoder_v1#NormalizedCoordinate",
+          "traits": {
+            "smithy.api#documentation": "Normalized image resolution, based on output video resolution. Valid values: `0.0`–`1.0`. To respect the original image aspect ratio, set either `x` or `y` to `0.0`. To use the original image resolution, set both `x` and `y` to `0.0`."
+          }
+        },
+        "alpha": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Set strength of the denoise. Enter a value between 0 and 1. The higher the value, the smoother the image. 0 is no denoising. The default is 0."
+            "smithy.api#documentation": "Target image opacity. Valid values are from `1.0` (solid, default) to `0.0` (transparent), exclusive. Set this to a value greater than `0.0`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Denoise preprocessing configuration. **Note:** This configuration is not supported."
+        "smithy.api#documentation": "Overlaid image."
       }
     },
-    "com.gcp.transcoder_v1#Aes128Encryption": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Configuration for AES-128 encryption."
-      }
-    },
-    "com.gcp.transcoder_v1#Deinterlace": {
+    "com.gcp.transcoder_v1#AnimationEnd": {
       "type": "structure",
       "members": {
-        "yadif": {
-          "target": "com.gcp.transcoder_v1#YadifConfig",
+        "startTimeOffset": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Specifies the Yet Another Deinterlacing Filter Configuration."
-          }
-        },
-        "bwdif": {
-          "target": "com.gcp.transcoder_v1#BwdifConfig",
-          "traits": {
-            "smithy.api#documentation": "Specifies the Bob Weaver Deinterlacing Filter Configuration."
+            "smithy.api#documentation": "The time to end overlay object, in seconds. Default: 0"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Deinterlace configuration for input video."
+        "smithy.api#documentation": "End previous overlay animation from the video. Without `AnimationEnd`, the overlay object will keep the state of previous animation until the end of the video."
       }
     },
     "com.gcp.transcoder_v1#H264CodecSettings": {
@@ -774,40 +292,10 @@
             "smithy.api#documentation": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format"
           }
         },
-        "bFrameCount": {
+        "crfLevel": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H264CodecSettings.gop_frame_count if set. The default is 0."
-          }
-        },
-        "entropyCoder": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The entropy coder to use. The default is `cabac`. Supported entropy coders: - `cavlc` - `cabac`"
-          }
-        },
-        "aqStrength": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Specify the intensity of the adaptive quantizer (AQ). Must be between 0 and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A higher value equals a lower bitrate but smoother image. The default is 0."
-          }
-        },
-        "gopDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`."
-          }
-        },
-        "enableTwoPass": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Use two-pass encoding strategy to achieve better video quality. H264CodecSettings.rate_control_mode must be `vbr`. The default is `false`."
-          }
-        },
-        "bPyramid": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Allow B-pyramid for reference frame selection. This may not be supported on all decoders. The default is `false`."
+            "smithy.api#documentation": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21."
           }
         },
         "vbvFullnessBits": {
@@ -816,28 +304,28 @@
             "smithy.api#documentation": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H264CodecSettings.vbv_size_bits."
           }
         },
-        "tune": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Enforces the specified codec tune. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune). Note that certain values for this field may cause the transcoder to override other fields you set in the `H264CodecSettings` message."
-          }
-        },
-        "sdr": {
-          "target": "com.gcp.transcoder_v1#H264ColorFormatSDR",
-          "traits": {
-            "smithy.api#documentation": "Optional. SDR color format setting for H264."
-          }
-        },
-        "heightPixels": {
+        "gopFrameCount": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+            "smithy.api#documentation": "Select the GOP size based on the specified frame count. Must be greater than zero."
           }
         },
-        "allowOpenGop": {
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enforces the specified codec profile. The following profiles are supported: * `baseline` * `main` * `high` (default) The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune). Note that certain values for this field may cause the transcoder to override other fields you set in the `H264CodecSettings` message."
+          }
+        },
+        "enableTwoPass": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Specifies whether an open Group of Pictures (GOP) structure should be allowed or not. The default is `false`."
+            "smithy.api#documentation": "Use two-pass encoding strategy to achieve better video quality. H264CodecSettings.rate_control_mode must be `vbr`. The default is `false`."
+          }
+        },
+        "aqStrength": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specify the intensity of the adaptive quantizer (AQ). Must be between 0 and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A higher value equals a lower bitrate but smoother image. The default is 0."
           }
         },
         "hlg": {
@@ -852,6 +340,78 @@
             "smithy.api#documentation": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor"
           }
         },
+        "widthPixels": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+          }
+        },
+        "bitrateBps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value is 800,000,000."
+          }
+        },
+        "allowOpenGop": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether an open Group of Pictures (GOP) structure should be allowed or not. The default is `false`."
+          }
+        },
+        "preset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enforces the specified codec preset. The default is `veryfast`. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.264#Preset). Note that certain values for this field may cause the transcoder to override other fields you set in the `H264CodecSettings` message."
+          }
+        },
+        "frameRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120."
+          }
+        },
+        "bFrameCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H264CodecSettings.gop_frame_count if set. The default is 0."
+          }
+        },
+        "tune": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enforces the specified codec tune. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune). Note that certain values for this field may cause the transcoder to override other fields you set in the `H264CodecSettings` message."
+          }
+        },
+        "entropyCoder": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The entropy coder to use. The default is `cabac`. Supported entropy coders: - `cavlc` - `cabac`"
+          }
+        },
+        "gopDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`."
+          }
+        },
+        "bPyramid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Allow B-pyramid for reference frame selection. This may not be supported on all decoders. The default is `false`."
+          }
+        },
+        "heightPixels": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+          }
+        },
+        "sdr": {
+          "target": "com.gcp.transcoder_v1#H264ColorFormatSDR",
+          "traits": {
+            "smithy.api#documentation": "Optional. SDR color format setting for H264."
+          }
+        },
         "vbvSizeBits": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -862,48 +422,6 @@
           "target": "com.gcp.transcoder_v1#H264CodecSettingsFrameRateConversionStrategyEnum",
           "traits": {
             "smithy.api#documentation": "Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`."
-          }
-        },
-        "crfLevel": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21."
-          }
-        },
-        "bitrateBps": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value is 800,000,000."
-          }
-        },
-        "gopFrameCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Select the GOP size based on the specified frame count. Must be greater than zero."
-          }
-        },
-        "frameRate": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120."
-          }
-        },
-        "widthPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
-          }
-        },
-        "preset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Enforces the specified codec preset. The default is `veryfast`. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.264#Preset). Note that certain values for this field may cause the transcoder to override other fields you set in the `H264CodecSettings` message."
-          }
-        },
-        "profile": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Enforces the specified codec profile. The following profiles are supported: * `baseline` * `main` * `high` (default) The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.264#Tune). Note that certain values for this field may cause the transcoder to override other fields you set in the `H264CodecSettings` message."
           }
         }
       },
@@ -934,26 +452,1211 @@
         }
       }
     },
-    "com.gcp.transcoder_v1#Empty": {
+    "com.gcp.transcoder_v1#Aes128Encryption": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+        "smithy.api#documentation": "Configuration for AES-128 encryption."
+      }
+    },
+    "com.gcp.transcoder_v1#SecretManagerSource": {
+      "type": "structure",
+      "members": {
+        "secretVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Secret Version containing the encryption key in the following format: `projects/{project}/secrets/{secret_id}/versions/{version_number}` Note that only numbered versions are supported. Aliases like \"latest\" are not supported."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for secrets stored in Google Secret Manager."
+      }
+    },
+    "com.gcp.transcoder_v1#MpegCommonEncryption": {
+      "type": "structure",
+      "members": {
+        "scheme": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specify the encryption scheme. Supported encryption schemes: - `cenc` - `cbcs`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for MPEG Common Encryption (MPEG-CENC)."
+      }
+    },
+    "com.gcp.transcoder_v1#Deblock": {
+      "type": "structure",
+      "members": {
+        "strength": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Set strength of the deblocker. Enter a value between 0 and 1. The higher the value, the stronger the block removal. 0 is no deblocking. The default is 0."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable deblocker. The default is `false`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deblock preprocessing configuration. **Note:** This configuration is not supported."
+      }
+    },
+    "com.gcp.transcoder_v1#H265CodecSettings": {
+      "type": "structure",
+      "members": {
+        "bFrameCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H265CodecSettings.gop_frame_count if set. The default is 0."
+          }
+        },
+        "hlg": {
+          "target": "com.gcp.transcoder_v1#H265ColorFormatHLG",
+          "traits": {
+            "smithy.api#documentation": "Optional. HLG color format setting for H265."
+          }
+        },
+        "widthPixels": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enforces the specified codec profile. The following profiles are supported: * 8-bit profiles * `main` (default) * `main-intra` * `mainstillpicture` * 10-bit profiles * `main10` (default) * `main10-intra` * `main422-10` * `main422-10-intra` * `main444-10` * `main444-10-intra` * 12-bit profiles * `main12` (default) * `main12-intra` * `main422-12` * `main422-12-intra` * `main444-12` * `main444-12-intra` The available options are [FFmpeg-compatible](https://x265.readthedocs.io/). Note that certain values for this field may cause the transcoder to override other fields you set in the `H265CodecSettings` message."
+          }
+        },
+        "heightPixels": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+          }
+        },
+        "vbvSizeBits": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to `VideoStream.bitrate_bps`."
+          }
+        },
+        "aqStrength": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specify the intensity of the adaptive quantizer (AQ). Must be between 0 and 1, where 0 disables the quantizer and 1 maximizes the quantizer. A higher value equals a lower bitrate but smoother image. The default is 0."
+          }
+        },
+        "vbvFullnessBits": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H265CodecSettings.vbv_size_bits."
+          }
+        },
+        "gopDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`."
+          }
+        },
+        "crfLevel": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21."
+          }
+        },
+        "allowOpenGop": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specifies whether an open Group of Pictures (GOP) structure should be allowed or not. The default is `false`."
+          }
+        },
+        "bPyramid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Allow B-pyramid for reference frame selection. This may not be supported on all decoders. The default is `false`."
+          }
+        },
+        "bitrateBps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value is 800,000,000."
+          }
+        },
+        "sdr": {
+          "target": "com.gcp.transcoder_v1#H265ColorFormatSDR",
+          "traits": {
+            "smithy.api#documentation": "Optional. SDR color format setting for H265."
+          }
+        },
+        "frameRate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120."
+          }
+        },
+        "frameRateConversionStrategy": {
+          "target": "com.gcp.transcoder_v1#H265CodecSettingsFrameRateConversionStrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`."
+          }
+        },
+        "pixelFormat": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format"
+          }
+        },
+        "tune": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enforces the specified codec tune. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265). Note that certain values for this field may cause the transcoder to override other fields you set in the `H265CodecSettings` message."
+          }
+        },
+        "hdr10": {
+          "target": "com.gcp.transcoder_v1#H265ColorFormatHDR10",
+          "traits": {
+            "smithy.api#documentation": "Optional. HDR10 color format setting for H265."
+          }
+        },
+        "enableTwoPass": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use two-pass encoding strategy to achieve better video quality. H265CodecSettings.rate_control_mode must be `vbr`. The default is `false`."
+          }
+        },
+        "rateControlMode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor"
+          }
+        },
+        "preset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enforces the specified codec preset. The default is `veryfast`. The available options are [FFmpeg-compatible](https://trac.ffmpeg.org/wiki/Encode/H.265). Note that certain values for this field may cause the transcoder to override other fields you set in the `H265CodecSettings` message."
+          }
+        },
+        "gopFrameCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Select the GOP size based on the specified frame count. Must be greater than zero."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "H265 codec settings."
+      }
+    },
+    "com.gcp.transcoder_v1#H265CodecSettingsFrameRateConversionStrategyEnum": {
+      "type": "enum",
+      "members": {
+        "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED"
+          }
+        },
+        "DOWNSAMPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOWNSAMPLE"
+          }
+        },
+        "DROP_DUPLICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DROP_DUPLICATE"
+          }
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#AudioMapping": {
+      "type": "structure",
+      "members": {
+        "inputChannel": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The zero-based index of the channel in the input audio stream."
+          }
+        },
+        "outputChannel": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The zero-based index of the channel in the output audio stream."
+          }
+        },
+        "inputKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Input.key that identifies the input file."
+          }
+        },
+        "inputTrack": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The zero-based index of the track in the input file."
+          }
+        },
+        "gainDb": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Audio volume control in dB. Negative values decrease volume, positive values increase. The default is 0."
+          }
+        },
+        "atomKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The EditAtom.key that references the atom with audio inputs in the JobConfig.edit_list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs."
+      }
+    },
+    "com.gcp.transcoder_v1#SampleAesEncryption": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Configuration for SAMPLE-AES encryption."
+      }
+    },
+    "com.gcp.transcoder_v1#PreprocessingConfig": {
+      "type": "structure",
+      "members": {
+        "color": {
+          "target": "com.gcp.transcoder_v1#Color",
+          "traits": {
+            "smithy.api#documentation": "Color preprocessing configuration."
+          }
+        },
+        "audio": {
+          "target": "com.gcp.transcoder_v1#Audio",
+          "traits": {
+            "smithy.api#documentation": "Audio preprocessing configuration."
+          }
+        },
+        "denoise": {
+          "target": "com.gcp.transcoder_v1#Denoise",
+          "traits": {
+            "smithy.api#documentation": "Denoise preprocessing configuration."
+          }
+        },
+        "deinterlace": {
+          "target": "com.gcp.transcoder_v1#Deinterlace",
+          "traits": {
+            "smithy.api#documentation": "Specify the video deinterlace configuration."
+          }
+        },
+        "crop": {
+          "target": "com.gcp.transcoder_v1#Crop",
+          "traits": {
+            "smithy.api#documentation": "Specify the video cropping configuration."
+          }
+        },
+        "pad": {
+          "target": "com.gcp.transcoder_v1#Pad",
+          "traits": {
+            "smithy.api#documentation": "Specify the video pad filter configuration."
+          }
+        },
+        "deblock": {
+          "target": "com.gcp.transcoder_v1#Deblock",
+          "traits": {
+            "smithy.api#documentation": "Deblock preprocessing configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Preprocessing configurations."
+      }
+    },
+    "com.gcp.transcoder_v1#Deinterlace": {
+      "type": "structure",
+      "members": {
+        "yadif": {
+          "target": "com.gcp.transcoder_v1#YadifConfig",
+          "traits": {
+            "smithy.api#documentation": "Specifies the Yet Another Deinterlacing Filter Configuration."
+          }
+        },
+        "bwdif": {
+          "target": "com.gcp.transcoder_v1#BwdifConfig",
+          "traits": {
+            "smithy.api#documentation": "Specifies the Bob Weaver Deinterlacing Filter Configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deinterlace configuration for input video."
+      }
+    },
+    "com.gcp.transcoder_v1#Input": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)."
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.transcoder_v1#InputAttributes",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input Attributes."
+          }
+        },
+        "preprocessingConfig": {
+          "target": "com.gcp.transcoder_v1#PreprocessingConfig",
+          "traits": {
+            "smithy.api#documentation": "Preprocessing configurations."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique key for this input. Must be specified when using advanced mapping and edit lists."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Input asset."
+      }
+    },
+    "com.gcp.transcoder_v1#AnimationFade": {
+      "type": "structure",
+      "members": {
+        "startTimeOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time to start the fade animation, in seconds. Default: 0"
+          }
+        },
+        "xy": {
+          "target": "com.gcp.transcoder_v1#NormalizedCoordinate",
+          "traits": {
+            "smithy.api#documentation": "Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object. For example, use the x and y coordinates {0,0} to position the top-left corner of the overlay animation in the top-left corner of the output video."
+          }
+        },
+        "fadeType": {
+          "target": "com.gcp.transcoder_v1#AnimationFadeFadeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of fade animation: `FADE_IN` or `FADE_OUT`."
+          }
+        },
+        "endTimeOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time to end the fade animation, in seconds. Default: `start_time_offset` + 1s"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display overlay object with fade animation."
+      }
+    },
+    "com.gcp.transcoder_v1#AnimationFadeFadeTypeEnum": {
+      "type": "enum",
+      "members": {
+        "FADE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FADE_TYPE_UNSPECIFIED"
+          }
+        },
+        "FADE_IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FADE_IN"
+          }
+        },
+        "FADE_OUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FADE_OUT"
+          }
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#Fairplay": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Fairplay configuration."
+      }
+    },
+    "com.gcp.transcoder_v1#Output": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URI for the output file(s). For example, `gs://my-bucket/outputs/`. Must be a directory and not a top-level bucket. If empty, the value is populated from Job.output_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Location of output file(s) in a Cloud Storage bucket."
+      }
+    },
+    "com.gcp.transcoder_v1#Audio": {
+      "type": "structure",
+      "members": {
+        "lowBoost": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable boosting low frequency components. The default is `false`. **Note:** This field is not supported."
+          }
+        },
+        "highBoost": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable boosting high frequency components. The default is `false`. **Note:** This field is not supported."
+          }
+        },
+        "lufs": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Specify audio loudness normalization in loudness units relative to full scale (LUFS). Enter a value between -24 and 0 (the default), where: * -24 is the Advanced Television Systems Committee (ATSC A/85) standard * -23 is the EU R128 broadcast standard * -19 is the prior standard for online mono audio * -18 is the ReplayGain standard * -16 is the prior standard for stereo audio * -14 is the new online audio standard recommended by Spotify, as well as Amazon Echo * 0 disables normalization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Audio preprocessing configuration."
+      }
+    },
+    "com.gcp.transcoder_v1#MuxStream": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique key for this multiplexed stream."
+          }
+        },
+        "fileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`."
+          }
+        },
+        "encryptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the encryption configuration to use. If omitted, output will be unencrypted."
+          }
+        },
+        "container": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The container format. The default is `mp4` Supported streaming formats: - `ts` - `fmp4`- the corresponding file extension is `.m4s` Supported standalone file formats: - `mp4` - `mp3` - `ogg` - `vtt` See also: [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)"
+          }
+        },
+        "segmentSettings": {
+          "target": "com.gcp.transcoder_v1#SegmentSettings",
+          "traits": {
+            "smithy.api#documentation": "Segment settings for `ts`, `fmp4` and `vtt`."
+          }
+        },
+        "fmp4": {
+          "target": "com.gcp.transcoder_v1#Fmp4Config",
+          "traits": {
+            "smithy.api#documentation": "Optional. `fmp4` container configuration."
+          }
+        },
+        "elementaryStreams": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of ElementaryStream.key values multiplexed in this stream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Multiplexing settings for output stream."
+      }
+    },
+    "com.gcp.transcoder_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.transcoder_v1#JobConfig": {
+      "type": "structure",
+      "members": {
+        "editList": {
+          "target": "com.gcp.transcoder_v1#EditAtomList",
+          "traits": {
+            "smithy.api#documentation": "List of edit atoms. Defines the ultimate timeline of the resulting file or manifest."
+          }
+        },
+        "spriteSheets": {
+          "target": "com.gcp.transcoder_v1#SpriteSheetList",
+          "traits": {
+            "smithy.api#documentation": "List of output sprite sheets. Spritesheets require at least one VideoStream in the Jobconfig."
+          }
+        },
+        "pubsubDestination": {
+          "target": "com.gcp.transcoder_v1#PubsubDestination",
+          "traits": {
+            "smithy.api#documentation": "Destination on Pub/Sub."
+          }
+        },
+        "manifests": {
+          "target": "com.gcp.transcoder_v1#ManifestList",
+          "traits": {
+            "smithy.api#documentation": "List of output manifests."
+          }
+        },
+        "adBreaks": {
+          "target": "com.gcp.transcoder_v1#AdBreakList",
+          "traits": {
+            "smithy.api#documentation": "List of ad breaks. Specifies where to insert ad break tags in the output manifests."
+          }
+        },
+        "muxStreams": {
+          "target": "com.gcp.transcoder_v1#MuxStreamList",
+          "traits": {
+            "smithy.api#documentation": "List of multiplexing settings for output streams."
+          }
+        },
+        "encryptions": {
+          "target": "com.gcp.transcoder_v1#EncryptionList",
+          "traits": {
+            "smithy.api#documentation": "List of encryption configurations for the content. Each configuration has an ID. Specify this ID in the MuxStream.encryption_id field to indicate the configuration to use for that `MuxStream` output."
+          }
+        },
+        "elementaryStreams": {
+          "target": "com.gcp.transcoder_v1#ElementaryStreamList",
+          "traits": {
+            "smithy.api#documentation": "List of elementary streams."
+          }
+        },
+        "overlays": {
+          "target": "com.gcp.transcoder_v1#OverlayList",
+          "traits": {
+            "smithy.api#documentation": "List of overlays on the output video, in descending Z-order."
+          }
+        },
+        "output": {
+          "target": "com.gcp.transcoder_v1#Output",
+          "traits": {
+            "smithy.api#documentation": "Output configuration."
+          }
+        },
+        "inputs": {
+          "target": "com.gcp.transcoder_v1#InputList",
+          "traits": {
+            "smithy.api#documentation": "List of input assets stored in Cloud Storage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job configuration"
+      }
+    },
+    "com.gcp.transcoder_v1#EditAtomList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#EditAtom"
+      }
+    },
+    "com.gcp.transcoder_v1#SpriteSheetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#SpriteSheet"
+      }
+    },
+    "com.gcp.transcoder_v1#ManifestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#Manifest"
+      }
+    },
+    "com.gcp.transcoder_v1#AdBreakList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#AdBreak"
+      }
+    },
+    "com.gcp.transcoder_v1#MuxStreamList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#MuxStream"
+      }
+    },
+    "com.gcp.transcoder_v1#EncryptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#Encryption"
+      }
+    },
+    "com.gcp.transcoder_v1#ElementaryStreamList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#ElementaryStream"
+      }
+    },
+    "com.gcp.transcoder_v1#OverlayList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#Overlay"
+      }
+    },
+    "com.gcp.transcoder_v1#InputList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#Input"
+      }
+    },
+    "com.gcp.transcoder_v1#Overlay": {
+      "type": "structure",
+      "members": {
+        "image": {
+          "target": "com.gcp.transcoder_v1#Image",
+          "traits": {
+            "smithy.api#documentation": "Image overlay."
+          }
+        },
+        "animations": {
+          "target": "com.gcp.transcoder_v1#AnimationList",
+          "traits": {
+            "smithy.api#documentation": "List of animations. The list should be chronological, without any time overlap."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Overlay configuration."
+      }
+    },
+    "com.gcp.transcoder_v1#AnimationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#Animation"
+      }
+    },
+    "com.gcp.transcoder_v1#Encryption": {
+      "type": "structure",
+      "members": {
+        "drmSystems": {
+          "target": "com.gcp.transcoder_v1#DrmSystems",
+          "traits": {
+            "smithy.api#documentation": "Required. DRM system(s) to use; at least one must be specified. If a DRM system is omitted, it is considered disabled."
+          }
+        },
+        "mpegCenc": {
+          "target": "com.gcp.transcoder_v1#MpegCommonEncryption",
+          "traits": {
+            "smithy.api#documentation": "Configuration for MPEG Common Encryption (MPEG-CENC)."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Identifier for this set of encryption options."
+          }
+        },
+        "aes128": {
+          "target": "com.gcp.transcoder_v1#Aes128Encryption",
+          "traits": {
+            "smithy.api#documentation": "Configuration for AES-128 encryption."
+          }
+        },
+        "sampleAes": {
+          "target": "com.gcp.transcoder_v1#SampleAesEncryption",
+          "traits": {
+            "smithy.api#documentation": "Configuration for SAMPLE-AES encryption."
+          }
+        },
+        "secretManagerKeySource": {
+          "target": "com.gcp.transcoder_v1#SecretManagerSource",
+          "traits": {
+            "smithy.api#documentation": "Keys are stored in Google Secret Manager."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encryption settings."
+      }
+    },
+    "com.gcp.transcoder_v1#SpriteSheet": {
+      "type": "structure",
+      "members": {
+        "spriteHeightPixels": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+          }
+        },
+        "startTimeOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time in seconds, relative to the output file timeline. Determines the first sprite to pick. The default is `0s`."
+          }
+        },
+        "format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Format type. The default is `jpeg`. Supported formats: - `jpeg`"
+          }
+        },
+        "rowCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of rows per sprite sheet. When the sprite sheet is full, a new sprite sheet is created. The default is 0, which indicates no maximum limit."
+          }
+        },
+        "spriteWidthPixels": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
+          }
+        },
+        "columnCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of sprites per row in a sprite sheet. The default is 0, which indicates no maximum limit."
+          }
+        },
+        "interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Starting from `0s`, create sprites at regular intervals. Specify the interval value in seconds."
+          }
+        },
+        "filePrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. File name prefix for the generated sprite sheets. Each sprite sheet has an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `sprite_sheet0000000123.jpeg`."
+          }
+        },
+        "totalCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of sprites. Create the specified number of sprites distributed evenly across the timeline of the output media. The default is 100."
+          }
+        },
+        "endTimeOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time in seconds, relative to the output file timeline. When `end_time_offset` is not specified, the sprites are generated until the end of the output file."
+          }
+        },
+        "quality": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The quality of the generated sprite sheet. Enter a value between 1 and 100, where 1 is the lowest quality and 100 is the highest quality. The default is 100. A high quality value corresponds to a low image data compression ratio."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sprite sheet configuration."
+      }
+    },
+    "com.gcp.transcoder_v1#Color": {
+      "type": "structure",
+      "members": {
+        "brightness": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Control brightness of the video. Enter a value between -1 and 1, where -1 is minimum brightness and 1 is maximum brightness. 0 is no change. The default is 0."
+          }
+        },
+        "contrast": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Control black and white contrast of the video. Enter a value between -1 and 1, where -1 is minimum contrast and 1 is maximum contrast. 0 is no change. The default is 0."
+          }
+        },
+        "saturation": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Control color saturation of the video. Enter a value between -1 and 1, where -1 is fully desaturated and 1 is maximum saturation. 0 is no change. The default is 0."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Color preprocessing configuration. **Note:** This configuration is not supported."
+      }
+    },
+    "com.gcp.transcoder_v1#AudioStream": {
+      "type": "structure",
+      "members": {
+        "codec": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The codec for this audio stream. The default is `aac`. Supported audio codecs: - `aac` - `aac-he` - `aac-he-v2` - `mp3` - `ac3` - `eac3` - `vorbis`"
+          }
+        },
+        "mapping": {
+          "target": "com.gcp.transcoder_v1#AudioMappingList",
+          "traits": {
+            "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs."
+          }
+        },
+        "bitrateBps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Audio bitrate in bits per second. Must be between 1 and 10,000,000."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name for this particular audio stream that will be added to the HLS/DASH manifest. Not supported in MP4 files."
+          }
+        },
+        "channelLayout": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of channel names specifying layout of the audio channels. This only affects the metadata embedded in the container headers, if supported by the specified format. The default is `[\"fl\", \"fr\"]`. Supported channel names: - `fl` - Front left channel - `fr` - Front right channel - `sl` - Side left channel - `sr` - Side right channel - `fc` - Front center channel - `lfe` - Low frequency"
+          }
+        },
+        "sampleRateHertz": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The audio sample rate in Hertz. The default is 48000 Hertz."
+          }
+        },
+        "channelCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of audio channels. Must be between 1 and 6. The default is 2."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Audio stream resource."
+      }
+    },
+    "com.gcp.transcoder_v1#AudioMappingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#AudioMapping"
+      }
+    },
+    "com.gcp.transcoder_v1#Animation": {
+      "type": "structure",
+      "members": {
+        "animationStatic": {
+          "target": "com.gcp.transcoder_v1#AnimationStatic",
+          "traits": {
+            "smithy.api#documentation": "Display static overlay object."
+          }
+        },
+        "animationFade": {
+          "target": "com.gcp.transcoder_v1#AnimationFade",
+          "traits": {
+            "smithy.api#documentation": "Display overlay object with fade animation."
+          }
+        },
+        "animationEnd": {
+          "target": "com.gcp.transcoder_v1#AnimationEnd",
+          "traits": {
+            "smithy.api#documentation": "End previous animation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Animation types."
+      }
+    },
+    "com.gcp.transcoder_v1#ListJobsResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of regions that could not be reached."
+          }
+        },
+        "jobs": {
+          "target": "com.gcp.transcoder_v1#JobList",
+          "traits": {
+            "smithy.api#documentation": "List of jobs in the specified region."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TranscoderService.ListJobs`."
+      }
+    },
+    "com.gcp.transcoder_v1#JobList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#Job"
+      }
+    },
+    "com.gcp.transcoder_v1#TextMapping": {
+      "type": "structure",
+      "members": {
+        "atomKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The EditAtom.key that references atom with text inputs in the JobConfig.edit_list."
+          }
+        },
+        "inputKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Input.key that identifies the input file."
+          }
+        },
+        "inputTrack": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The zero-based index of the track in the input file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs."
+      }
+    },
+    "com.gcp.transcoder_v1#Manifest": {
+      "type": "structure",
+      "members": {
+        "fileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the generated file. The default is `manifest` with the extension suffix corresponding to the Manifest.type."
+          }
+        },
+        "type": {
+          "target": "com.gcp.transcoder_v1#ManifestTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Type of the manifest."
+          }
+        },
+        "dash": {
+          "target": "com.gcp.transcoder_v1#DashConfig",
+          "traits": {
+            "smithy.api#documentation": "`DASH` manifest configuration."
+          }
+        },
+        "muxStreams": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of user supplied MuxStream.key values that should appear in this manifest. When Manifest.type is `HLS`, a media manifest with name MuxStream.key and `.m3u8` extension is generated for each element in this list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Manifest configuration."
+      }
+    },
+    "com.gcp.transcoder_v1#ManifestTypeEnum": {
+      "type": "enum",
+      "members": {
+        "MANIFEST_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANIFEST_TYPE_UNSPECIFIED"
+          }
+        },
+        "HLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HLS"
+          }
+        },
+        "DASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DASH"
+          }
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#H265ColorFormatHLG": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Convert the input video to a Hybrid Log Gamma (HLG) video."
+      }
+    },
+    "com.gcp.transcoder_v1#TrackDefinition": {
+      "type": "structure",
+      "members": {
+        "languages": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of languages spoken in the input asset, represented by a BCP 47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier."
+          }
+        },
+        "detectLanguages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to automatically detect the languages present in the track. If true, the system will attempt to identify all the languages present in the track and populate the languages field."
+          }
+        },
+        "inputTrack": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The input track."
+          }
+        },
+        "detectedLanguages": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of languages detected in the input asset, represented by a BCP 47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. This field is only populated if the detect_languages field is set to true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Track definition for the input asset."
+      }
+    },
+    "com.gcp.transcoder_v1#ElementaryStream": {
+      "type": "structure",
+      "members": {
+        "audioStream": {
+          "target": "com.gcp.transcoder_v1#AudioStream",
+          "traits": {
+            "smithy.api#documentation": "Encoding of an audio stream."
+          }
+        },
+        "textStream": {
+          "target": "com.gcp.transcoder_v1#TextStream",
+          "traits": {
+            "smithy.api#documentation": "Encoding of a text stream. For example, closed captions or subtitles."
+          }
+        },
+        "videoStream": {
+          "target": "com.gcp.transcoder_v1#VideoStream",
+          "traits": {
+            "smithy.api#documentation": "Encoding of a video stream."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique key for this elementary stream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encoding of an input file such as an audio, video, or text track. Elementary streams must be packaged before mapping and sharing between different output formats."
+      }
+    },
+    "com.gcp.transcoder_v1#ListJobTemplatesResponse": {
+      "type": "structure",
+      "members": {
+        "unreachable": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of regions that could not be reached."
+          }
+        },
+        "jobTemplates": {
+          "target": "com.gcp.transcoder_v1#JobTemplateList",
+          "traits": {
+            "smithy.api#documentation": "List of job templates in the specified region."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TranscoderService.ListJobTemplates`."
+      }
+    },
+    "com.gcp.transcoder_v1#JobTemplateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#JobTemplate"
+      }
+    },
+    "com.gcp.transcoder_v1#JobTemplate": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the job template. Format: `projects/{project_number}/locations/{location}/jobTemplates/{job_template}`"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.transcoder_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The labels associated with this job template. You can use these to organize and group your job templates."
+          }
+        },
+        "config": {
+          "target": "com.gcp.transcoder_v1#JobConfig",
+          "traits": {
+            "smithy.api#documentation": "The configuration for this template."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transcoding job template resource."
+      }
+    },
+    "com.gcp.transcoder_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.transcoder_v1#InputAttributes": {
+      "type": "structure",
+      "members": {
+        "trackDefinitions": {
+          "target": "com.gcp.transcoder_v1#TrackDefinitionList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of track definitions for the input asset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Input attributes that provide additional information about the input asset."
+      }
+    },
+    "com.gcp.transcoder_v1#TrackDefinitionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.transcoder_v1#TrackDefinition"
       }
     },
     "com.gcp.transcoder_v1#NormalizedCoordinate": {
       "type": "structure",
       "members": {
-        "y": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Normalized y coordinate."
-          }
-        },
         "x": {
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#documentation": "Normalized x coordinate."
+          }
+        },
+        "y": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Normalized y coordinate."
           }
         }
       },
@@ -961,45 +1664,122 @@
         "smithy.api#documentation": "2D normalized coordinates. Default: `{0.0, 0.0}`"
       }
     },
-    "com.gcp.transcoder_v1#Status": {
+    "com.gcp.transcoder_v1#Widevine": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Widevine configuration."
+      }
+    },
+    "com.gcp.transcoder_v1#H265ColorFormatHDR10": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Convert the input video to a High Dynamic Range 10 (HDR10) video."
+      }
+    },
+    "com.gcp.transcoder_v1#TextStream": {
       "type": "structure",
       "members": {
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "message": {
+        "codec": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+            "smithy.api#documentation": "The codec for this text stream. The default is `webvtt`. Supported text codecs: - `srt` - `ttml` - `cea608` - `cea708` - `webvtt`"
           }
         },
-        "details": {
-          "target": "com.gcp.transcoder_v1#DocumentMapList",
+        "displayName": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+            "smithy.api#documentation": "The name for this particular text stream that will be added to the HLS/DASH manifest. Not supported in MP4 files."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files."
+          }
+        },
+        "mapping": {
+          "target": "com.gcp.transcoder_v1#TextMappingList",
+          "traits": {
+            "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        "smithy.api#documentation": "Encoding of a text stream. For example, closed captions or subtitles."
       }
     },
-    "com.gcp.transcoder_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.transcoder_v1#DocumentMapList": {
+    "com.gcp.transcoder_v1#TextMappingList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.transcoder_v1#DocumentMap"
+        "target": "com.gcp.transcoder_v1#TextMapping"
+      }
+    },
+    "com.gcp.transcoder_v1#PubsubDestination": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Pub/Sub topic to publish job completion notification to. For example: `projects/{project}/topics/{topic}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Pub/Sub destination."
+      }
+    },
+    "com.gcp.transcoder_v1#DrmSystems": {
+      "type": "structure",
+      "members": {
+        "widevine": {
+          "target": "com.gcp.transcoder_v1#Widevine",
+          "traits": {
+            "smithy.api#documentation": "Widevine configuration."
+          }
+        },
+        "clearkey": {
+          "target": "com.gcp.transcoder_v1#Clearkey",
+          "traits": {
+            "smithy.api#documentation": "Clearkey configuration."
+          }
+        },
+        "fairplay": {
+          "target": "com.gcp.transcoder_v1#Fairplay",
+          "traits": {
+            "smithy.api#documentation": "Fairplay configuration."
+          }
+        },
+        "playready": {
+          "target": "com.gcp.transcoder_v1#Playready",
+          "traits": {
+            "smithy.api#documentation": "Playready configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines configuration for DRM systems in use."
+      }
+    },
+    "com.gcp.transcoder_v1#SegmentSettings": {
+      "type": "structure",
+      "members": {
+        "segmentDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Duration of the segments in seconds. The default is `6.0s`. Note that `segmentDuration` must be greater than or equal to [`gopDuration`](#videostream), and `segmentDuration` must be divisible by [`gopDuration`](#videostream)."
+          }
+        },
+        "individualSegments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Create an individual segment file. The default is `false`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Segment settings for `ts`, `fmp4` and `vtt`."
       }
     },
     "com.gcp.transcoder_v1#DashConfig": {
@@ -1039,6 +1819,60 @@
         }
       }
     },
+    "com.gcp.transcoder_v1#AnimationStatic": {
+      "type": "structure",
+      "members": {
+        "xy": {
+          "target": "com.gcp.transcoder_v1#NormalizedCoordinate",
+          "traits": {
+            "smithy.api#documentation": "Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object. For example, use the x and y coordinates {0,0} to position the top-left corner of the overlay animation in the top-left corner of the output video."
+          }
+        },
+        "startTimeOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time to start displaying the overlay object, in seconds. Default: 0"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display static overlay object."
+      }
+    },
+    "com.gcp.transcoder_v1#Denoise": {
+      "type": "structure",
+      "members": {
+        "strength": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Set strength of the denoise. Enter a value between 0 and 1. The higher the value, the smoother the image. 0 is no denoising. The default is 0."
+          }
+        },
+        "tune": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Set the denoiser mode. The default is `standard`. Supported denoiser modes: - `standard` - `grain`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Denoise preprocessing configuration. **Note:** This configuration is not supported."
+      }
+    },
+    "com.gcp.transcoder_v1#H264ColorFormatHLG": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Convert the input video to a Hybrid Log Gamma (HLG) video."
+      }
+    },
+    "com.gcp.transcoder_v1#H265ColorFormatSDR": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Convert the input video to a Standard Dynamic Range (SDR) video."
+      }
+    },
     "com.gcp.transcoder_v1#Playready": {
       "type": "structure",
       "members": {},
@@ -1046,44 +1880,11 @@
         "smithy.api#documentation": "Playready configuration."
       }
     },
-    "com.gcp.transcoder_v1#BwdifConfig": {
+    "com.gcp.transcoder_v1#Vp9ColorFormatHLG": {
       "type": "structure",
-      "members": {
-        "parity": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The picture field parity assumed for the input interlaced video. The default is `auto`. Supported values: - `tff`: Assume the top field is first - `bff`: Assume the bottom field is first - `auto`: Enable automatic detection of field parity"
-          }
-        },
-        "mode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specifies the deinterlacing mode to adopt. The default is `send_frame`. Supported values: - `send_frame`: Output one frame for each frame - `send_field`: Output one frame for each field"
-          }
-        },
-        "deinterlaceAllFrames": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Deinterlace all frames rather than just the frames identified as interlaced. The default is `false`."
-          }
-        }
-      },
+      "members": {},
       "traits": {
-        "smithy.api#documentation": "Bob Weaver Deinterlacing Filter Configuration."
-      }
-    },
-    "com.gcp.transcoder_v1#PubsubDestination": {
-      "type": "structure",
-      "members": {
-        "topic": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the Pub/Sub topic to publish job completion notification to. For example: `projects/{project}/topics/{topic}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A Pub/Sub destination."
+        "smithy.api#documentation": "Convert the input video to a Hybrid Log Gamma (HLG) video."
       }
     },
     "com.gcp.transcoder_v1#Fmp4Config": {
@@ -1100,39 +1901,36 @@
         "smithy.api#documentation": "`fmp4` container configuration."
       }
     },
-    "com.gcp.transcoder_v1#JobTemplate": {
+    "com.gcp.transcoder_v1#Pad": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
+        "topPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The resource name of the job template. Format: `projects/{project_number}/locations/{location}/jobTemplates/{job_template}`"
+            "smithy.api#documentation": "The number of pixels to add to the top. The default is 0."
           }
         },
-        "config": {
-          "target": "com.gcp.transcoder_v1#JobConfig",
+        "bottomPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The configuration for this template."
+            "smithy.api#documentation": "The number of pixels to add to the bottom. The default is 0."
           }
         },
-        "labels": {
-          "target": "com.gcp.transcoder_v1#StringMap",
+        "leftPixels": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The labels associated with this job template. You can use these to organize and group your job templates."
+            "smithy.api#documentation": "The number of pixels to add to the left. The default is 0."
+          }
+        },
+        "rightPixels": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of pixels to add to the right. The default is 0."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Transcoding job template resource."
-      }
-    },
-    "com.gcp.transcoder_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
+        "smithy.api#documentation": "Pad filter configuration for the input video. The padded input video is scaled after padding with black to match the output resolution."
       }
     },
     "com.gcp.transcoder_v1#Vp9ColorFormatSDR": {
@@ -1142,576 +1940,19 @@
         "smithy.api#documentation": "Convert the input video to a Standard Dynamic Range (SDR) video."
       }
     },
-    "com.gcp.transcoder_v1#Manifest": {
-      "type": "structure",
-      "members": {
-        "dash": {
-          "target": "com.gcp.transcoder_v1#DashConfig",
-          "traits": {
-            "smithy.api#documentation": "`DASH` manifest configuration."
-          }
-        },
-        "type": {
-          "target": "com.gcp.transcoder_v1#ManifestTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Type of the manifest."
-          }
-        },
-        "muxStreams": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. List of user supplied MuxStream.key values that should appear in this manifest. When Manifest.type is `HLS`, a media manifest with name MuxStream.key and `.m3u8` extension is generated for each element in this list."
-          }
-        },
-        "fileName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the generated file. The default is `manifest` with the extension suffix corresponding to the Manifest.type."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Manifest configuration."
-      }
-    },
-    "com.gcp.transcoder_v1#ManifestTypeEnum": {
-      "type": "enum",
-      "members": {
-        "MANIFEST_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MANIFEST_TYPE_UNSPECIFIED"
-          }
-        },
-        "HLS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HLS"
-          }
-        },
-        "DASH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DASH"
-          }
-        }
-      }
-    },
-    "com.gcp.transcoder_v1#Image": {
-      "type": "structure",
-      "members": {
-        "uri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. URI of the image in Cloud Storage. For example, `gs://bucket/inputs/image.png`. Only PNG and JPEG images are supported."
-          }
-        },
-        "resolution": {
-          "target": "com.gcp.transcoder_v1#NormalizedCoordinate",
-          "traits": {
-            "smithy.api#documentation": "Normalized image resolution, based on output video resolution. Valid values: `0.0`–`1.0`. To respect the original image aspect ratio, set either `x` or `y` to `0.0`. To use the original image resolution, set both `x` and `y` to `0.0`."
-          }
-        },
-        "alpha": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Target image opacity. Valid values are from `1.0` (solid, default) to `0.0` (transparent), exclusive. Set this to a value greater than `0.0`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Overlaid image."
-      }
-    },
-    "com.gcp.transcoder_v1#Vp9CodecSettings": {
-      "type": "structure",
-      "members": {
-        "pixelFormat": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Pixel format to use. The default is `yuv420p`. Supported pixel formats: - `yuv420p` pixel format - `yuv422p` pixel format - `yuv444p` pixel format - `yuv420p10` 10-bit HDR pixel format - `yuv422p10` 10-bit HDR pixel format - `yuv444p10` 10-bit HDR pixel format - `yuv420p12` 12-bit HDR pixel format - `yuv422p12` 12-bit HDR pixel format - `yuv444p12` 12-bit HDR pixel format"
-          }
-        },
-        "gopDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Select the GOP size based on the specified duration. The default is `3s`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`."
-          }
-        },
-        "frameRateConversionStrategy": {
-          "target": "com.gcp.transcoder_v1#Vp9CodecSettingsFrameRateConversionStrategyEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Frame rate conversion strategy for desired frame rate. The default is `DOWNSAMPLE`."
-          }
-        },
-        "crfLevel": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21. **Note:** This field is not supported."
-          }
-        },
-        "rateControlMode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate"
-          }
-        },
-        "heightPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
-          }
-        },
-        "hlg": {
-          "target": "com.gcp.transcoder_v1#Vp9ColorFormatHLG",
-          "traits": {
-            "smithy.api#documentation": "Optional. HLG color format setting for VP9."
-          }
-        },
-        "sdr": {
-          "target": "com.gcp.transcoder_v1#Vp9ColorFormatSDR",
-          "traits": {
-            "smithy.api#documentation": "Optional. SDR color format setting for VP9."
-          }
-        },
-        "profile": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Enforces the specified codec profile. The following profiles are supported: * `profile0` (default) * `profile1` * `profile2` * `profile3` The available options are [WebM-compatible](https://www.webmproject.org/vp9/profiles/). Note that certain values for this field may cause the transcoder to override other fields you set in the `Vp9CodecSettings` message."
-          }
-        },
-        "widthPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
-          }
-        },
-        "frameRate": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120."
-          }
-        },
-        "gopFrameCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Select the GOP size based on the specified frame count. Must be greater than zero."
-          }
-        },
-        "bitrateBps": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value is 480,000,000."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "VP9 codec settings."
-      }
-    },
-    "com.gcp.transcoder_v1#Vp9CodecSettingsFrameRateConversionStrategyEnum": {
-      "type": "enum",
-      "members": {
-        "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED"
-          }
-        },
-        "DOWNSAMPLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOWNSAMPLE"
-          }
-        },
-        "DROP_DUPLICATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DROP_DUPLICATE"
-          }
-        }
-      }
-    },
-    "com.gcp.transcoder_v1#H265ColorFormatHLG": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Convert the input video to a Hybrid Log Gamma (HLG) video."
-      }
-    },
-    "com.gcp.transcoder_v1#TextMapping": {
-      "type": "structure",
-      "members": {
-        "atomKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The EditAtom.key that references atom with text inputs in the JobConfig.edit_list."
-          }
-        },
-        "inputKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The Input.key that identifies the input file."
-          }
-        },
-        "inputTrack": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The zero-based index of the track in the input file."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs."
-      }
-    },
-    "com.gcp.transcoder_v1#AnimationFade": {
-      "type": "structure",
-      "members": {
-        "fadeType": {
-          "target": "com.gcp.transcoder_v1#AnimationFadeFadeTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Type of fade animation: `FADE_IN` or `FADE_OUT`."
-          }
-        },
-        "endTimeOffset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time to end the fade animation, in seconds. Default: `start_time_offset` + 1s"
-          }
-        },
-        "xy": {
-          "target": "com.gcp.transcoder_v1#NormalizedCoordinate",
-          "traits": {
-            "smithy.api#documentation": "Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object. For example, use the x and y coordinates {0,0} to position the top-left corner of the overlay animation in the top-left corner of the output video."
-          }
-        },
-        "startTimeOffset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time to start the fade animation, in seconds. Default: 0"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Display overlay object with fade animation."
-      }
-    },
-    "com.gcp.transcoder_v1#AnimationFadeFadeTypeEnum": {
-      "type": "enum",
-      "members": {
-        "FADE_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FADE_TYPE_UNSPECIFIED"
-          }
-        },
-        "FADE_IN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FADE_IN"
-          }
-        },
-        "FADE_OUT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FADE_OUT"
-          }
-        }
-      }
-    },
-    "com.gcp.transcoder_v1#TextStream": {
-      "type": "structure",
-      "members": {
-        "codec": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The codec for this text stream. The default is `webvtt`. Supported text codecs: - `srt` - `ttml` - `cea608` - `cea708` - `webvtt`"
-          }
-        },
-        "mapping": {
-          "target": "com.gcp.transcoder_v1#TextMappingList",
-          "traits": {
-            "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name for this particular text stream that will be added to the HLS/DASH manifest. Not supported in MP4 files."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Encoding of a text stream. For example, closed captions or subtitles."
-      }
-    },
-    "com.gcp.transcoder_v1#TextMappingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#TextMapping"
-      }
-    },
-    "com.gcp.transcoder_v1#ListJobTemplatesResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The pagination token."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of regions that could not be reached."
-          }
-        },
-        "jobTemplates": {
-          "target": "com.gcp.transcoder_v1#JobTemplateList",
-          "traits": {
-            "smithy.api#documentation": "List of job templates in the specified region."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `TranscoderService.ListJobTemplates`."
-      }
-    },
-    "com.gcp.transcoder_v1#JobTemplateList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#JobTemplate"
-      }
-    },
-    "com.gcp.transcoder_v1#Vp9ColorFormatHLG": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Convert the input video to a Hybrid Log Gamma (HLG) video."
-      }
-    },
-    "com.gcp.transcoder_v1#TrackDefinition": {
-      "type": "structure",
-      "members": {
-        "detectLanguages": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Whether to automatically detect the languages present in the track. If true, the system will attempt to identify all the languages present in the track and populate the languages field."
-          }
-        },
-        "detectedLanguages": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Output only. A list of languages detected in the input asset, represented by a BCP 47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. This field is only populated if the detect_languages field is set to true."
-          }
-        },
-        "inputTrack": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The input track."
-          }
-        },
-        "languages": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of languages spoken in the input asset, represented by a BCP 47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Track definition for the input asset."
-      }
-    },
-    "com.gcp.transcoder_v1#YadifConfig": {
-      "type": "structure",
-      "members": {
-        "mode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specifies the deinterlacing mode to adopt. The default is `send_frame`. Supported values: - `send_frame`: Output one frame for each frame - `send_field`: Output one frame for each field"
-          }
-        },
-        "disableSpatialInterlacing": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Disable spacial interlacing. The default is `false`."
-          }
-        },
-        "parity": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The picture field parity assumed for the input interlaced video. The default is `auto`. Supported values: - `tff`: Assume the top field is first - `bff`: Assume the bottom field is first - `auto`: Enable automatic detection of field parity"
-          }
-        },
-        "deinterlaceAllFrames": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Deinterlace all frames rather than just the frames identified as interlaced. The default is `false`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Yet Another Deinterlacing Filter Configuration."
-      }
-    },
-    "com.gcp.transcoder_v1#Input": {
-      "type": "structure",
-      "members": {
-        "uri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.transcoder_v1#InputAttributes",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input Attributes."
-          }
-        },
-        "key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique key for this input. Must be specified when using advanced mapping and edit lists."
-          }
-        },
-        "preprocessingConfig": {
-          "target": "com.gcp.transcoder_v1#PreprocessingConfig",
-          "traits": {
-            "smithy.api#documentation": "Preprocessing configurations."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Input asset."
-      }
-    },
-    "com.gcp.transcoder_v1#SegmentSettings": {
-      "type": "structure",
-      "members": {
-        "segmentDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Duration of the segments in seconds. The default is `6.0s`. Note that `segmentDuration` must be greater than or equal to [`gopDuration`](#videostream), and `segmentDuration` must be divisible by [`gopDuration`](#videostream)."
-          }
-        },
-        "individualSegments": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Create an individual segment file. The default is `false`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Segment settings for `ts`, `fmp4` and `vtt`."
-      }
-    },
-    "com.gcp.transcoder_v1#ElementaryStream": {
-      "type": "structure",
-      "members": {
-        "audioStream": {
-          "target": "com.gcp.transcoder_v1#AudioStream",
-          "traits": {
-            "smithy.api#documentation": "Encoding of an audio stream."
-          }
-        },
-        "key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique key for this elementary stream."
-          }
-        },
-        "textStream": {
-          "target": "com.gcp.transcoder_v1#TextStream",
-          "traits": {
-            "smithy.api#documentation": "Encoding of a text stream. For example, closed captions or subtitles."
-          }
-        },
-        "videoStream": {
-          "target": "com.gcp.transcoder_v1#VideoStream",
-          "traits": {
-            "smithy.api#documentation": "Encoding of a video stream."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Encoding of an input file such as an audio, video, or text track. Elementary streams must be packaged before mapping and sharing between different output formats."
-      }
-    },
     "com.gcp.transcoder_v1#Job": {
       "type": "structure",
       "members": {
-        "ttlAfterCompletionDays": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Job time to live value in days, which will be effective after job completion. Job should be deleted automatically after the given TTL. Enter a value between 1 and 90. The default is 30."
-          }
-        },
-        "batchModePriority": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The processing priority of a batch job. This field can only be set for batch mode jobs. The default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job."
-          }
-        },
-        "optimization": {
-          "target": "com.gcp.transcoder_v1#JobOptimizationEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The optimization strategy of the job. The default is `AUTODETECT`."
-          }
-        },
-        "mode": {
-          "target": "com.gcp.transcoder_v1#JobModeEnum",
-          "traits": {
-            "smithy.api#documentation": "The processing mode of the job. The default is `PROCESSING_MODE_INTERACTIVE`."
-          }
-        },
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the transcoding started."
-          }
-        },
-        "state": {
-          "target": "com.gcp.transcoder_v1#JobStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The current state of the job."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the job was created."
-          }
-        },
-        "outputUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or `JobTemplate.config.output.uri` when using template. URI for the output file(s). For example, `gs://my-bucket/outputs/`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)."
-          }
-        },
-        "config": {
-          "target": "com.gcp.transcoder_v1#JobConfig",
-          "traits": {
-            "smithy.api#documentation": "The configuration for this job."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.transcoder_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "The labels associated with this job. You can use these to organize and group your jobs."
-          }
-        },
         "inputUri": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Input only. Specify the `input_uri` to populate empty `uri` fields in each element of `Job.config.inputs` or `JobTemplate.config.inputs` when using template. URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)."
+          }
+        },
+        "error": {
+          "target": "com.gcp.transcoder_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`."
           }
         },
         "name": {
@@ -1726,10 +1967,34 @@
             "smithy.api#documentation": "Output only. The time the transcoding finished."
           }
         },
+        "mode": {
+          "target": "com.gcp.transcoder_v1#JobModeEnum",
+          "traits": {
+            "smithy.api#documentation": "The processing mode of the job. The default is `PROCESSING_MODE_INTERACTIVE`."
+          }
+        },
         "fillContentGaps": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Optional. Insert silence and duplicate frames when timestamp gaps are detected in a given stream."
+          }
+        },
+        "optimization": {
+          "target": "com.gcp.transcoder_v1#JobOptimizationEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The optimization strategy of the job. The default is `AUTODETECT`."
+          }
+        },
+        "batchModePriority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The processing priority of a batch job. This field can only be set for batch mode jobs. The default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job."
+          }
+        },
+        "outputUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or `JobTemplate.config.output.uri` when using template. URI for the output file(s). For example, `gs://my-bucket/outputs/`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)."
           }
         },
         "templateId": {
@@ -1738,38 +2003,45 @@
             "smithy.api#documentation": "Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`, which is the only supported preset. User defined JobTemplate: `{job_template_id}`"
           }
         },
-        "error": {
-          "target": "com.gcp.transcoder_v1#Status",
+        "labels": {
+          "target": "com.gcp.transcoder_v1#StringMap",
           "traits": {
-            "smithy.api#documentation": "Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`."
+            "smithy.api#documentation": "The labels associated with this job. You can use these to organize and group your jobs."
+          }
+        },
+        "state": {
+          "target": "com.gcp.transcoder_v1#JobStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of the job."
+          }
+        },
+        "config": {
+          "target": "com.gcp.transcoder_v1#JobConfig",
+          "traits": {
+            "smithy.api#documentation": "The configuration for this job."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the transcoding started."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the job was created."
+          }
+        },
+        "ttlAfterCompletionDays": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Job time to live value in days, which will be effective after job completion. Job should be deleted automatically after the given TTL. Enter a value between 1 and 90. The default is 30."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Transcoding job resource."
-      }
-    },
-    "com.gcp.transcoder_v1#JobOptimizationEnum": {
-      "type": "enum",
-      "members": {
-        "OPTIMIZATION_STRATEGY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OPTIMIZATION_STRATEGY_UNSPECIFIED"
-          }
-        },
-        "AUTODETECT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AUTODETECT"
-          }
-        },
-        "DISABLED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISABLED"
-          }
-        }
       }
     },
     "com.gcp.transcoder_v1#JobModeEnum": {
@@ -1791,6 +2063,29 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "PROCESSING_MODE_BATCH"
+          }
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#JobOptimizationEnum": {
+      "type": "enum",
+      "members": {
+        "OPTIMIZATION_STRATEGY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIMIZATION_STRATEGY_UNSPECIFIED"
+          }
+        },
+        "AUTODETECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTODETECT"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
           }
         }
       }
@@ -1830,55 +2125,30 @@
         }
       }
     },
-    "com.gcp.transcoder_v1#Encryption": {
+    "com.gcp.transcoder_v1#VideoStream": {
       "type": "structure",
       "members": {
-        "aes128": {
-          "target": "com.gcp.transcoder_v1#Aes128Encryption",
+        "h265": {
+          "target": "com.gcp.transcoder_v1#H265CodecSettings",
           "traits": {
-            "smithy.api#documentation": "Configuration for AES-128 encryption."
+            "smithy.api#documentation": "H265 codec settings."
           }
         },
-        "drmSystems": {
-          "target": "com.gcp.transcoder_v1#DrmSystems",
+        "vp9": {
+          "target": "com.gcp.transcoder_v1#Vp9CodecSettings",
           "traits": {
-            "smithy.api#documentation": "Required. DRM system(s) to use; at least one must be specified. If a DRM system is omitted, it is considered disabled."
+            "smithy.api#documentation": "VP9 codec settings."
           }
         },
-        "secretManagerKeySource": {
-          "target": "com.gcp.transcoder_v1#SecretManagerSource",
+        "h264": {
+          "target": "com.gcp.transcoder_v1#H264CodecSettings",
           "traits": {
-            "smithy.api#documentation": "Keys are stored in Google Secret Manager."
-          }
-        },
-        "sampleAes": {
-          "target": "com.gcp.transcoder_v1#SampleAesEncryption",
-          "traits": {
-            "smithy.api#documentation": "Configuration for SAMPLE-AES encryption."
-          }
-        },
-        "mpegCenc": {
-          "target": "com.gcp.transcoder_v1#MpegCommonEncryption",
-          "traits": {
-            "smithy.api#documentation": "Configuration for MPEG Common Encryption (MPEG-CENC)."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Identifier for this set of encryption options."
+            "smithy.api#documentation": "H264 codec settings."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Encryption settings."
-      }
-    },
-    "com.gcp.transcoder_v1#Widevine": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Widevine configuration."
+        "smithy.api#documentation": "Video stream resource."
       }
     },
     "com.gcp.transcoder_v1#AdBreak": {
@@ -1895,349 +2165,80 @@
         "smithy.api#documentation": "Ad break."
       }
     },
-    "com.gcp.transcoder_v1#ListJobsResponse": {
+    "com.gcp.transcoder_v1#BwdifConfig": {
       "type": "structure",
       "members": {
-        "jobs": {
-          "target": "com.gcp.transcoder_v1#JobList",
-          "traits": {
-            "smithy.api#documentation": "List of jobs in the specified region."
-          }
-        },
-        "nextPageToken": {
+        "parity": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The pagination token."
+            "smithy.api#documentation": "The picture field parity assumed for the input interlaced video. The default is `auto`. Supported values: - `tff`: Assume the top field is first - `bff`: Assume the bottom field is first - `auto`: Enable automatic detection of field parity"
           }
         },
-        "unreachable": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of regions that could not be reached."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `TranscoderService.ListJobs`."
-      }
-    },
-    "com.gcp.transcoder_v1#JobList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#Job"
-      }
-    },
-    "com.gcp.transcoder_v1#Pad": {
-      "type": "structure",
-      "members": {
-        "bottomPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to add to the bottom. The default is 0."
-          }
-        },
-        "leftPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to add to the left. The default is 0."
-          }
-        },
-        "rightPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to add to the right. The default is 0."
-          }
-        },
-        "topPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to add to the top. The default is 0."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Pad filter configuration for the input video. The padded input video is scaled after padding with black to match the output resolution."
-      }
-    },
-    "com.gcp.transcoder_v1#SecretManagerSource": {
-      "type": "structure",
-      "members": {
-        "secretVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the Secret Version containing the encryption key in the following format: `projects/{project}/secrets/{secret_id}/versions/{version_number}` Note that only numbered versions are supported. Aliases like \"latest\" are not supported."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for secrets stored in Google Secret Manager."
-      }
-    },
-    "com.gcp.transcoder_v1#H265ColorFormatHDR10": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Convert the input video to a High Dynamic Range 10 (HDR10) video."
-      }
-    },
-    "com.gcp.transcoder_v1#Deblock": {
-      "type": "structure",
-      "members": {
-        "strength": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Set strength of the deblocker. Enter a value between 0 and 1. The higher the value, the stronger the block removal. 0 is no deblocking. The default is 0."
-          }
-        },
-        "enabled": {
+        "deinterlaceAllFrames": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Enable deblocker. The default is `false`."
+            "smithy.api#documentation": "Deinterlace all frames rather than just the frames identified as interlaced. The default is `false`."
+          }
+        },
+        "mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the deinterlacing mode to adopt. The default is `send_frame`. Supported values: - `send_frame`: Output one frame for each frame - `send_field`: Output one frame for each field"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Deblock preprocessing configuration. **Note:** This configuration is not supported."
+        "smithy.api#documentation": "Bob Weaver Deinterlacing Filter Configuration."
       }
     },
-    "com.gcp.transcoder_v1#SpriteSheet": {
+    "com.gcp.transcoder_v1#EditAtom": {
       "type": "structure",
       "members": {
-        "format": {
+        "inputs": {
+          "target": "com.gcp.transcoder_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of Input.key values identifying files that should be used in this atom. The listed `inputs` must have the same timeline."
+          }
+        },
+        "key": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Format type. The default is `jpeg`. Supported formats: - `jpeg`"
-          }
-        },
-        "quality": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The quality of the generated sprite sheet. Enter a value between 1 and 100, where 1 is the lowest quality and 100 is the highest quality. The default is 100. A high quality value corresponds to a low image data compression ratio."
-          }
-        },
-        "totalCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Total number of sprites. Create the specified number of sprites distributed evenly across the timeline of the output media. The default is 100."
-          }
-        },
-        "filePrefix": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. File name prefix for the generated sprite sheets. Each sprite sheet has an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `sprite_sheet0000000123.jpeg`."
-          }
-        },
-        "spriteHeightPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
-          }
-        },
-        "columnCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of sprites per row in a sprite sheet. The default is 0, which indicates no maximum limit."
-          }
-        },
-        "spriteWidthPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output."
-          }
-        },
-        "startTimeOffset": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Start time in seconds, relative to the output file timeline. Determines the first sprite to pick. The default is `0s`."
-          }
-        },
-        "rowCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of rows per sprite sheet. When the sprite sheet is full, a new sprite sheet is created. The default is 0, which indicates no maximum limit."
-          }
-        },
-        "interval": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Starting from `0s`, create sprites at regular intervals. Specify the interval value in seconds."
+            "smithy.api#documentation": "A unique key for this atom. Must be specified when using advanced mapping."
           }
         },
         "endTimeOffset": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "End time in seconds, relative to the output file timeline. When `end_time_offset` is not specified, the sprites are generated until the end of the output file."
+            "smithy.api#documentation": "End time in seconds for the atom, relative to the input file timeline. When `end_time_offset` is not specified, the `inputs` are used until the end of the atom."
+          }
+        },
+        "startTimeOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time in seconds for the atom, relative to the input file timeline. The default is `0s`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Sprite sheet configuration."
+        "smithy.api#documentation": "Edit atom."
       }
     },
-    "com.gcp.transcoder_v1#Overlay": {
+    "com.gcp.transcoder_v1#CreateProjectsLocationsJobsRequest": {
       "type": "structure",
       "members": {
-        "image": {
-          "target": "com.gcp.transcoder_v1#Image",
-          "traits": {
-            "smithy.api#documentation": "Image overlay."
-          }
-        },
-        "animations": {
-          "target": "com.gcp.transcoder_v1#AnimationList",
-          "traits": {
-            "smithy.api#documentation": "List of animations. The list should be chronological, without any time overlap."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Overlay configuration."
-      }
-    },
-    "com.gcp.transcoder_v1#AnimationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#Animation"
-      }
-    },
-    "com.gcp.transcoder_v1#Output": {
-      "type": "structure",
-      "members": {
-        "uri": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "URI for the output file(s). For example, `gs://my-bucket/outputs/`. Must be a directory and not a top-level bucket. If empty, the value is populated from Job.output_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Location of output file(s) in a Cloud Storage bucket."
-      }
-    },
-    "com.gcp.transcoder_v1#MpegCommonEncryption": {
-      "type": "structure",
-      "members": {
-        "scheme": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Specify the encryption scheme. Supported encryption schemes: - `cenc` - `cbcs`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for MPEG Common Encryption (MPEG-CENC)."
-      }
-    },
-    "com.gcp.transcoder_v1#Crop": {
-      "type": "structure",
-      "members": {
-        "topPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to crop from the top. The default is 0."
-          }
-        },
-        "bottomPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to crop from the bottom. The default is 0."
-          }
-        },
-        "leftPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to crop from the left. The default is 0."
-          }
-        },
-        "rightPixels": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of pixels to crop from the right. The default is 0."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Video cropping configuration for the input video. The cropped input video is scaled to match the output resolution."
-      }
-    },
-    "com.gcp.transcoder_v1#AudioStream": {
-      "type": "structure",
-      "members": {
-        "bitrateBps": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. Audio bitrate in bits per second. Must be between 1 and 10,000,000."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files."
-          }
-        },
-        "channelCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Number of audio channels. Must be between 1 and 6. The default is 2."
-          }
-        },
-        "mapping": {
-          "target": "com.gcp.transcoder_v1#AudioMappingList",
-          "traits": {
-            "smithy.api#documentation": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name for this particular audio stream that will be added to the HLS/DASH manifest. Not supported in MP4 files."
-          }
-        },
-        "channelLayout": {
-          "target": "com.gcp.transcoder_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of channel names specifying layout of the audio channels. This only affects the metadata embedded in the container headers, if supported by the specified format. The default is `[\"fl\", \"fr\"]`. Supported channel names: - `fl` - Front left channel - `fr` - Front right channel - `sl` - Side left channel - `sr` - Side right channel - `fc` - Front center channel - `lfe` - Low frequency"
-          }
-        },
-        "sampleRateHertz": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The audio sample rate in Hertz. The default is 48000 Hertz."
-          }
-        },
-        "codec": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The codec for this audio stream. The default is `aac`. Supported audio codecs: - `aac` - `aac-he` - `aac-he-v2` - `mp3` - `ac3` - `eac3` - `vorbis`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Audio stream resource."
-      }
-    },
-    "com.gcp.transcoder_v1#AudioMappingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.transcoder_v1#AudioMapping"
-      }
-    },
-    "com.gcp.transcoder_v1#DeleteProjectsLocationsJobTemplatesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the job template to delete. `projects/{project}/locations/{location}/jobTemplates/{job_template}`",
+            "smithy.api#documentation": "Required. The parent location to create and process this job. Format: `projects/{project}/locations/{location}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "allowMissing": {
-          "target": "smithy.api#Boolean",
+        "body": {
+          "target": "com.gcp.transcoder_v1#Job",
           "traits": {
-            "smithy.api#documentation": "If set to true, and the job template is not found, the request will succeed but no action will be taken on the server.",
-            "smithy.api#httpQuery": "allowMissing"
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -2292,6 +2293,212 @@
             "status": 409
           }
         ]
+      }
+    },
+    "com.gcp.transcoder_v1#CreateProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.transcoder_v1#CreateProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.transcoder_v1#Job"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.transcoder_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/jobs"
+        },
+        "smithy.api#documentation": "Creates a job in the specified region."
+      }
+    },
+    "com.gcp.transcoder_v1#ListProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `next_page_token` value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression, following the syntax outlined in https://google.aip.dev/160.",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#ListProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.transcoder_v1#ListProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.transcoder_v1#ListJobsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.transcoder_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/jobs"
+        },
+        "smithy.api#documentation": "Lists jobs in the specified region.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#GetProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the job to retrieve. Format: `projects/{project}/locations/{location}/jobs/{job}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#GetProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.transcoder_v1#GetProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.transcoder_v1#Job"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.transcoder_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Returns the job data."
+      }
+    },
+    "com.gcp.transcoder_v1#DeleteProjectsLocationsJobsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the job to delete. Format: `projects/{project}/locations/{location}/jobs/{job}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, and the job is not found, the request will succeed but no action will be taken on the server.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        }
+      }
+    },
+    "com.gcp.transcoder_v1#DeleteProjectsLocationsJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.transcoder_v1#DeleteProjectsLocationsJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.transcoder_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.transcoder_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.transcoder_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a job."
+      }
+    },
+    "com.gcp.transcoder_v1#DeleteProjectsLocationsJobTemplatesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the job template to delete. `projects/{project}/locations/{location}/jobTemplates/{job_template}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "allowMissing": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, and the job template is not found, the request will succeed but no action will be taken on the server.",
+            "smithy.api#httpQuery": "allowMissing"
+          }
+        }
       }
     },
     "com.gcp.transcoder_v1#DeleteProjectsLocationsJobTemplates": {
@@ -2364,19 +2571,19 @@
     "com.gcp.transcoder_v1#ListProjectsLocationsJobTemplatesRequest": {
       "type": "structure",
       "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `next_page_token` value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The parent location from which to retrieve the collection of job templates. Format: `projects/{project}/locations/{location}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `next_page_token` value returned from a previous List request, if any.",
-            "smithy.api#httpQuery": "pageToken"
           }
         },
         "orderBy": {
@@ -2485,212 +2692,6 @@
           "uri": "v1/{+parent}/jobTemplates"
         },
         "smithy.api#documentation": "Creates a job template in the specified region."
-      }
-    },
-    "com.gcp.transcoder_v1#GetProjectsLocationsJobsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the job to retrieve. Format: `projects/{project}/locations/{location}/jobs/{job}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.transcoder_v1#GetProjectsLocationsJobs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.transcoder_v1#GetProjectsLocationsJobsRequest"
-      },
-      "output": {
-        "target": "com.gcp.transcoder_v1#Job"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.transcoder_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Returns the job data."
-      }
-    },
-    "com.gcp.transcoder_v1#DeleteProjectsLocationsJobsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the job to delete. Format: `projects/{project}/locations/{location}/jobs/{job}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "allowMissing": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If set to true, and the job is not found, the request will succeed but no action will be taken on the server.",
-            "smithy.api#httpQuery": "allowMissing"
-          }
-        }
-      }
-    },
-    "com.gcp.transcoder_v1#DeleteProjectsLocationsJobs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.transcoder_v1#DeleteProjectsLocationsJobsRequest"
-      },
-      "output": {
-        "target": "com.gcp.transcoder_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.transcoder_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a job."
-      }
-    },
-    "com.gcp.transcoder_v1#CreateProjectsLocationsJobsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent location to create and process this job. Format: `projects/{project}/locations/{location}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.transcoder_v1#Job",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.transcoder_v1#CreateProjectsLocationsJobs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.transcoder_v1#CreateProjectsLocationsJobsRequest"
-      },
-      "output": {
-        "target": "com.gcp.transcoder_v1#Job"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.transcoder_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/jobs"
-        },
-        "smithy.api#documentation": "Creates a job in the specified region."
-      }
-    },
-    "com.gcp.transcoder_v1#ListProjectsLocationsJobsRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The filter expression, following the syntax outlined in https://google.aip.dev/160.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of items to return.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `next_page_token` value returned from a previous List request, if any.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        }
-      }
-    },
-    "com.gcp.transcoder_v1#ListProjectsLocationsJobs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.transcoder_v1#ListProjectsLocationsJobsRequest"
-      },
-      "output": {
-        "target": "com.gcp.transcoder_v1#ListJobsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.transcoder_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.transcoder_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/jobs"
-        },
-        "smithy.api#documentation": "Lists jobs in the specified region.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
       }
     }
   }

@@ -192,33 +192,33 @@ export const SecretGetOrCreateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecretGetOrCreateResponse",
 }) as any as S.Schema<SecretGetOrCreateResponse>;
 
-export interface SecretUpdateRequestUpdate {
+export interface UpdateSecretRequestUpdate {
   key?: string;
   value?: string;
 }
-export const SecretUpdateRequestUpdate = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSecretRequestUpdate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     key: S.optional(S.String),
     value: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SecretUpdateRequestUpdate",
-}) as any as S.Schema<SecretUpdateRequestUpdate>;
+  identifier: "UpdateSecretRequestUpdate",
+}) as any as S.Schema<UpdateSecretRequestUpdate>;
 
-export type SecretUpdateRequestUpdateList = Array<SecretUpdateRequestUpdate>;
-export const SecretUpdateRequestUpdateList = /*@__PURE__*/ S.Array(
-  SecretUpdateRequestUpdate,
-) as any as S.Schema<SecretUpdateRequestUpdateList>;
+export type UpdateSecretRequestUpdateList = Array<UpdateSecretRequestUpdate>;
+export const UpdateSecretRequestUpdateList = /*@__PURE__*/ S.Array(
+  UpdateSecretRequestUpdate,
+) as any as S.Schema<UpdateSecretRequestUpdateList>;
 
 export interface UpdateSecretRequest {
   /** If not set, the key is removed. */
   secretId?: string;
-  updates?: SecretUpdateRequestUpdateList;
+  updates?: UpdateSecretRequestUpdateList;
 }
 export const UpdateSecretRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     secretId: S.optional(S.String),
-    updates: S.optional(SecretUpdateRequestUpdateList),
+    updates: S.optional(UpdateSecretRequestUpdateList),
   }).pipe(
     T.Http({
       method: "POST",

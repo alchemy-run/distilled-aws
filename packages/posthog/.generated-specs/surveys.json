@@ -14,17 +14,18 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.surveys#SurveysListRequestIdsList": {
+    "com.posthog.surveys#ListSurveysRequestIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.surveys#SurveysListRequestStatus": {
+    "com.posthog.surveys#ListSurveysRequestStatus": {
       "type": "enum",
       "members": {
         "COMPLETE": {
@@ -48,7 +49,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#SurveysListRequestType": {
+    "com.posthog.surveys#ListSurveysRequestType": {
       "type": "enum",
       "members": {
         "API": {
@@ -103,7 +104,7 @@
           }
         },
         "ids": {
-          "target": "com.posthog.surveys#SurveysListRequestIdsList",
+          "target": "com.posthog.surveys#ListSurveysRequestIdsList",
           "traits": {
             "smithy.api#httpQuery": "ids",
             "smithy.api#documentation": "Multiple values may be separated by commas."
@@ -131,14 +132,14 @@
           }
         },
         "status": {
-          "target": "com.posthog.surveys#SurveysListRequestStatus",
+          "target": "com.posthog.surveys#ListSurveysRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Filter surveys by their current status.\n\n* `draft` - Draft\n* `running` - Running\n* `complete` - Complete"
           }
         },
         "type": {
-          "target": "com.posthog.surveys#SurveysListRequestType",
+          "target": "com.posthog.surveys#ListSurveysRequestType",
           "traits": {
             "smithy.api#httpQuery": "type",
             "smithy.api#documentation": "* `popover` - popover\n* `widget` - widget\n* `external_survey` - external survey\n* `api` - api"
@@ -186,7 +187,7 @@
           "target": "smithy.api#String"
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType"
+          "target": "com.posthog.surveys#SurveyTypeEnum"
         },
         "schedule": {
           "target": "smithy.api#String",
@@ -363,7 +364,7 @@
         "smithy.api#documentation": "Mixin for serializers to add user access control fields"
       }
     },
-    "com.posthog.surveys#SurveyType": {
+    "com.posthog.surveys#SurveyTypeEnum": {
       "type": "enum",
       "members": {
         "POPOVER": {
@@ -717,7 +718,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#ResponseSamplingIntervalTypeEnum": {
+    "com.posthog.surveys#SurveySamplingIntervalTypeEnum": {
       "type": "enum",
       "members": {
         "DAY": {
@@ -746,8 +747,8 @@
     "com.posthog.surveys#SurveyResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -807,7 +808,7 @@
         }
       }
     },
-    "com.posthog.surveys#ScheduleEnum": {
+    "com.posthog.surveys#SurveyScheduleEnum": {
       "type": "enum",
       "members": {
         "ONCE": {
@@ -2259,7 +2260,7 @@
         "smithy.api#documentation": "Array of choice options. Multiple selections allowed. No branching logic supported."
       }
     },
-    "com.posthog.surveys#SurveysCreateRequestQuestionsList": {
+    "com.posthog.surveys#CreateSurveysRequestQuestionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.surveys#SurveyQuestionInputSchema"
@@ -2562,18 +2563,18 @@
         "smithy.api#documentation": "* `button` - button\n* `tab` - tab\n* `selector` - selector"
       }
     },
-    "com.posthog.surveys#SurveysCreateRequestIterationStartDatesList": {
+    "com.posthog.surveys#CreateSurveysRequestIterationStartDatesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.surveys#SurveysCreateRequestResponseSamplingIntervalType": {
+    "com.posthog.surveys#CreateSurveysRequestResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -2581,7 +2582,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#CreateSurveyRequest": {
+    "com.posthog.surveys#CreateSurveysRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2605,13 +2606,13 @@
           }
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType",
+          "target": "com.posthog.surveys#SurveyTypeEnum",
           "traits": {
             "smithy.api#documentation": "Survey type.\n\n* `popover` - popover\n* `widget` - widget\n* `external_survey` - external survey\n* `api` - api"
           }
         },
         "schedule": {
-          "target": "com.posthog.surveys#ScheduleEnum",
+          "target": "com.posthog.surveys#SurveyScheduleEnum",
           "traits": {
             "smithy.api#documentation": "Survey scheduling behavior: 'once' = show once per user (default), 'recurring' = repeat based on iteration_count and iteration_frequency_days settings, 'always' = show every time conditions are met (mainly for widget surveys)\n\n* `once` - once\n* `recurring` - recurring\n* `always` - always",
             "com.distilled.openapi#nullable": {}
@@ -2651,7 +2652,7 @@
           }
         },
         "questions": {
-          "target": "com.posthog.surveys#SurveysCreateRequestQuestionsList",
+          "target": "com.posthog.surveys#CreateSurveysRequestQuestionsList",
           "traits": {
             "smithy.api#documentation": "\n        The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice.\n\n        Basic (open-ended question)\n        - `id`: The question ID\n        - `type`: `open`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Link (a question with a link)\n        - `id`: The question ID\n        - `type`: `link`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `link`: The URL associated with the question.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Rating (a question with a rating scale)\n        - `id`: The question ID\n        - `type`: `rating`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `display`: Display style of the rating (`number` or `emoji`).\n        - `scale`: The scale of the rating (`number`).\n        - `lowerBoundLabel`: Label for the lower bound of the scale.\n        - `upperBoundLabel`: Label for the upper bound of the scale.\n        - `isNpsQuestion`: Whether the question is an NPS rating.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Multiple choice\n        - `id`: The question ID\n        - `type`: `single_choice` or `multiple_choice`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `choices`: An array of choices for the question.\n        - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`).\n        - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`).\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Branching logic can be one of the following types:\n\n        Next question: Proceeds to the next question\n        ```json\n        {\n            \"type\": \"next_question\"\n        }\n        ```\n\n        End: Ends the survey, optionally displaying a confirmation message.\n        ```json\n        {\n            \"type\": \"end\"\n        }\n        ```\n\n        Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types.\n        ```json\n        {\n            \"type\": \"response_based\",\n            \"responseValues\": {\n                \"responseKey\": \"value\"\n            }\n        }\n        ```\n\n        Specific question: Proceeds to a specific question by index.\n        ```json\n        {\n            \"type\": \"specific_question\",\n            \"index\": 2\n        }\n        ```\n\n        Translations: Each question can include inline translations.\n        - `translations`: Object mapping language codes to translated fields.\n        - Language codes: Canonical BCP-47-ish strings (e.g., \"es\", \"es-MX\", \"zh-CN\"). Aliases like \"english\" or \"default\" are rejected. The survey's `base_language` (default \"en\") declares the language of the untranslated text and cannot also appear as a translation key.\n        - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link`\n\n        Example with translations:\n        ```json\n        {\n            \"id\": \"uuid\",\n            \"type\": \"rating\",\n            \"question\": \"How satisfied are you?\",\n            \"lowerBoundLabel\": \"Not satisfied\",\n            \"upperBoundLabel\": \"Very satisfied\",\n            \"translations\": {\n                \"es\": {\n                    \"question\": \"¿Qué tan satisfecho estás?\",\n                    \"lowerBoundLabel\": \"No satisfecho\",\n                    \"upperBoundLabel\": \"Muy satisfecho\"\n                },\n                \"fr\": {\n                    \"question\": \"Dans quelle mesure êtes-vous satisfait?\"\n                }\n            }\n        }\n        ```\n        ",
             "com.distilled.openapi#nullable": {}
@@ -2713,7 +2714,7 @@
           }
         },
         "iteration_start_dates": {
-          "target": "com.posthog.surveys#SurveysCreateRequestIterationStartDatesList",
+          "target": "com.posthog.surveys#CreateSurveysRequestIterationStartDatesList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -2737,7 +2738,7 @@
           }
         },
         "response_sampling_interval_type": {
-          "target": "com.posthog.surveys#SurveysCreateRequestResponseSamplingIntervalType",
+          "target": "com.posthog.surveys#CreateSurveysRequestResponseSamplingIntervalType",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -2803,7 +2804,7 @@
           "target": "smithy.api#String"
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType"
+          "target": "com.posthog.surveys#SurveyTypeEnum"
         },
         "schedule": {
           "target": "smithy.api#String",
@@ -2956,8 +2957,8 @@
     "com.posthog.surveys#SurveySerializerCreateUpdateOnlyOutputResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -2965,10 +2966,10 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#CreateSurvey": {
+    "com.posthog.surveys#CreateSurveys": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#CreateSurveyRequest"
+        "target": "com.posthog.surveys#CreateSurveysRequest"
       },
       "output": {
         "target": "com.posthog.surveys#SurveySerializerCreateUpdateOnlyOutput"
@@ -2992,7 +2993,7 @@
         }
       }
     },
-    "com.posthog.surveys#SurveysRetrieveRequest": {
+    "com.posthog.surveys#GetSurveysRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3016,10 +3017,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#SurveysRetrieve": {
+    "com.posthog.surveys#GetSurveys": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#SurveysRetrieveRequest"
+        "target": "com.posthog.surveys#GetSurveysRequest"
       },
       "output": {
         "target": "com.posthog.surveys#Survey"
@@ -3040,215 +3041,7 @@
         }
       }
     },
-    "com.posthog.surveys#SurveysUpdateRequestIterationStartDatesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      },
-      "traits": {}
-    },
-    "com.posthog.surveys#SurveysUpdateRequestResponseSamplingIntervalType": {
-      "type": "union",
-      "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
-        },
-        "BlankEnum": {
-          "target": "com.posthog.surveys#BlankEnum"
-        }
-      },
-      "traits": {}
-    },
-    "com.posthog.surveys#UpdateSurveyRequest": {
-      "type": "structure",
-      "members": {
-        "project_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "A UUID string identifying this survey."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String"
-        },
-        "description": {
-          "target": "smithy.api#String"
-        },
-        "type": {
-          "target": "com.posthog.surveys#SurveyType"
-        },
-        "schedule": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "linked_flag_id": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "linked_insight_id": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "questions": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "\n        The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice.\n\n        Basic (open-ended question)\n        - `id`: The question ID\n        - `type`: `open`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Link (a question with a link)\n        - `id`: The question ID\n        - `type`: `link`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `link`: The URL associated with the question.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Rating (a question with a rating scale)\n        - `id`: The question ID\n        - `type`: `rating`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `display`: Display style of the rating (`number` or `emoji`).\n        - `scale`: The scale of the rating (`number`).\n        - `lowerBoundLabel`: Label for the lower bound of the scale.\n        - `upperBoundLabel`: Label for the upper bound of the scale.\n        - `isNpsQuestion`: Whether the question is an NPS rating.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Multiple choice\n        - `id`: The question ID\n        - `type`: `single_choice` or `multiple_choice`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `choices`: An array of choices for the question.\n        - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`).\n        - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`).\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Branching logic can be one of the following types:\n\n        Next question: Proceeds to the next question\n        ```json\n        {\n            \"type\": \"next_question\"\n        }\n        ```\n\n        End: Ends the survey, optionally displaying a confirmation message.\n        ```json\n        {\n            \"type\": \"end\"\n        }\n        ```\n\n        Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types.\n        ```json\n        {\n            \"type\": \"response_based\",\n            \"responseValues\": {\n                \"responseKey\": \"value\"\n            }\n        }\n        ```\n\n        Specific question: Proceeds to a specific question by index.\n        ```json\n        {\n            \"type\": \"specific_question\",\n            \"index\": 2\n        }\n        ```\n\n        Translations: Each question can include inline translations.\n        - `translations`: Object mapping language codes to translated fields.\n        - Language codes: Canonical BCP-47-ish strings (e.g., \"es\", \"es-MX\", \"zh-CN\"). Aliases like \"english\" or \"default\" are rejected. The survey's `base_language` (default \"en\") declares the language of the untranslated text and cannot also appear as a translation key.\n        - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link`\n\n        Example with translations:\n        ```json\n        {\n            \"id\": \"uuid\",\n            \"type\": \"rating\",\n            \"question\": \"How satisfied are you?\",\n            \"lowerBoundLabel\": \"Not satisfied\",\n            \"upperBoundLabel\": \"Very satisfied\",\n            \"translations\": {\n                \"es\": {\n                    \"question\": \"¿Qué tan satisfecho estás?\",\n                    \"lowerBoundLabel\": \"No satisfecho\",\n                    \"upperBoundLabel\": \"Muy satisfecho\"\n                },\n                \"fr\": {\n                    \"question\": \"Dans quelle mesure êtes-vous satisfait?\"\n                }\n            }\n        }\n        ```\n        "
-          }
-        },
-        "appearance": {
-          "target": "smithy.api#Document"
-        },
-        "start_date": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "end_date": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "archived": {
-          "target": "smithy.api#Boolean"
-        },
-        "responses_limit": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "iteration_count": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "iteration_frequency_days": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "iteration_start_dates": {
-          "target": "com.posthog.surveys#SurveysUpdateRequestIterationStartDatesList",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "current_iteration": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "current_iteration_start_date": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "response_sampling_start_date": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "response_sampling_interval_type": {
-          "target": "com.posthog.surveys#SurveysUpdateRequestResponseSamplingIntervalType",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "response_sampling_interval": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "response_sampling_limit": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "response_sampling_daily_limits": {
-          "target": "smithy.api#Document"
-        },
-        "enable_partial_responses": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "enable_iframe_embedding": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "base_language": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "BCP-47 language code (e.g. 'en', 'es', 'es-MX') describing the language of the survey's untranslated text. Defaults to 'en'. Cannot also appear as a key in `translations`."
-          }
-        },
-        "translations": {
-          "target": "smithy.api#Document"
-        },
-        "form_content": {
-          "target": "smithy.api#Document"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.posthog.surveys#UpdateSurvey": {
-      "type": "operation",
-      "input": {
-        "target": "com.posthog.surveys#UpdateSurveyRequest"
-      },
-      "output": {
-        "target": "com.posthog.surveys#Survey"
-      },
-      "errors": [
-        {
-          "target": "com.posthog.surveys#BadRequest"
-        },
-        {
-          "target": "com.posthog.surveys#Forbidden"
-        },
-        {
-          "target": "com.posthog.surveys#NotFound"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/api/projects/{project_id}/surveys/{id}/",
-          "code": 200
-        }
-      }
-    },
-    "com.posthog.surveys#SurveysPartialUpdateRequestQuestionsList": {
+    "com.posthog.surveys#UpdateSurveysRequestQuestionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.surveys#SurveyQuestionInputSchema"
@@ -3257,18 +3050,18 @@
         "smithy.api#documentation": "\n        The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice.\n\n        Basic (open-ended question)\n        - `id`: The question ID\n        - `type`: `open`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Link (a question with a link)\n        - `id`: The question ID\n        - `type`: `link`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `link`: The URL associated with the question.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Rating (a question with a rating scale)\n        - `id`: The question ID\n        - `type`: `rating`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `display`: Display style of the rating (`number` or `emoji`).\n        - `scale`: The scale of the rating (`number`).\n        - `lowerBoundLabel`: Label for the lower bound of the scale.\n        - `upperBoundLabel`: Label for the upper bound of the scale.\n        - `isNpsQuestion`: Whether the question is an NPS rating.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Multiple choice\n        - `id`: The question ID\n        - `type`: `single_choice` or `multiple_choice`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `choices`: An array of choices for the question.\n        - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`).\n        - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`).\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Branching logic can be one of the following types:\n\n        Next question: Proceeds to the next question\n        ```json\n        {\n            \"type\": \"next_question\"\n        }\n        ```\n\n        End: Ends the survey, optionally displaying a confirmation message.\n        ```json\n        {\n            \"type\": \"end\"\n        }\n        ```\n\n        Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types.\n        ```json\n        {\n            \"type\": \"response_based\",\n            \"responseValues\": {\n                \"responseKey\": \"value\"\n            }\n        }\n        ```\n\n        Specific question: Proceeds to a specific question by index.\n        ```json\n        {\n            \"type\": \"specific_question\",\n            \"index\": 2\n        }\n        ```\n\n        Translations: Each question can include inline translations.\n        - `translations`: Object mapping language codes to translated fields.\n        - Language codes: Canonical BCP-47-ish strings (e.g., \"es\", \"es-MX\", \"zh-CN\"). Aliases like \"english\" or \"default\" are rejected. The survey's `base_language` (default \"en\") declares the language of the untranslated text and cannot also appear as a translation key.\n        - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link`\n\n        Example with translations:\n        ```json\n        {\n            \"id\": \"uuid\",\n            \"type\": \"rating\",\n            \"question\": \"How satisfied are you?\",\n            \"lowerBoundLabel\": \"Not satisfied\",\n            \"upperBoundLabel\": \"Very satisfied\",\n            \"translations\": {\n                \"es\": {\n                    \"question\": \"¿Qué tan satisfecho estás?\",\n                    \"lowerBoundLabel\": \"No satisfecho\",\n                    \"upperBoundLabel\": \"Muy satisfecho\"\n                },\n                \"fr\": {\n                    \"question\": \"Dans quelle mesure êtes-vous satisfait?\"\n                }\n            }\n        }\n        ```\n        "
       }
     },
-    "com.posthog.surveys#SurveysPartialUpdateRequestIterationStartDatesList": {
+    "com.posthog.surveys#UpdateSurveysRequestIterationStartDatesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.surveys#SurveysPartialUpdateRequestResponseSamplingIntervalType": {
+    "com.posthog.surveys#UpdateSurveysRequestResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -3276,7 +3069,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#UpdateSurveyPartialRequest": {
+    "com.posthog.surveys#UpdateSurveysRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3308,13 +3101,13 @@
           }
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType",
+          "target": "com.posthog.surveys#SurveyTypeEnum",
           "traits": {
             "smithy.api#documentation": "Survey type.\n\n* `popover` - popover\n* `widget` - widget\n* `external_survey` - external survey\n* `api` - api"
           }
         },
         "schedule": {
-          "target": "com.posthog.surveys#ScheduleEnum",
+          "target": "com.posthog.surveys#SurveyScheduleEnum",
           "traits": {
             "smithy.api#documentation": "Survey scheduling behavior: 'once' = show once per user (default), 'recurring' = repeat based on iteration_count and iteration_frequency_days settings, 'always' = show every time conditions are met (mainly for widget surveys)\n\n* `once` - once\n* `recurring` - recurring\n* `always` - always",
             "com.distilled.openapi#nullable": {}
@@ -3354,7 +3147,7 @@
           }
         },
         "questions": {
-          "target": "com.posthog.surveys#SurveysPartialUpdateRequestQuestionsList",
+          "target": "com.posthog.surveys#UpdateSurveysRequestQuestionsList",
           "traits": {
             "smithy.api#documentation": "\n        The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice.\n\n        Basic (open-ended question)\n        - `id`: The question ID\n        - `type`: `open`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Link (a question with a link)\n        - `id`: The question ID\n        - `type`: `link`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `link`: The URL associated with the question.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Rating (a question with a rating scale)\n        - `id`: The question ID\n        - `type`: `rating`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `display`: Display style of the rating (`number` or `emoji`).\n        - `scale`: The scale of the rating (`number`).\n        - `lowerBoundLabel`: Label for the lower bound of the scale.\n        - `upperBoundLabel`: Label for the upper bound of the scale.\n        - `isNpsQuestion`: Whether the question is an NPS rating.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Multiple choice\n        - `id`: The question ID\n        - `type`: `single_choice` or `multiple_choice`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `choices`: An array of choices for the question.\n        - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`).\n        - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`).\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Branching logic can be one of the following types:\n\n        Next question: Proceeds to the next question\n        ```json\n        {\n            \"type\": \"next_question\"\n        }\n        ```\n\n        End: Ends the survey, optionally displaying a confirmation message.\n        ```json\n        {\n            \"type\": \"end\"\n        }\n        ```\n\n        Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types.\n        ```json\n        {\n            \"type\": \"response_based\",\n            \"responseValues\": {\n                \"responseKey\": \"value\"\n            }\n        }\n        ```\n\n        Specific question: Proceeds to a specific question by index.\n        ```json\n        {\n            \"type\": \"specific_question\",\n            \"index\": 2\n        }\n        ```\n\n        Translations: Each question can include inline translations.\n        - `translations`: Object mapping language codes to translated fields.\n        - Language codes: Canonical BCP-47-ish strings (e.g., \"es\", \"es-MX\", \"zh-CN\"). Aliases like \"english\" or \"default\" are rejected. The survey's `base_language` (default \"en\") declares the language of the untranslated text and cannot also appear as a translation key.\n        - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link`\n\n        Example with translations:\n        ```json\n        {\n            \"id\": \"uuid\",\n            \"type\": \"rating\",\n            \"question\": \"How satisfied are you?\",\n            \"lowerBoundLabel\": \"Not satisfied\",\n            \"upperBoundLabel\": \"Very satisfied\",\n            \"translations\": {\n                \"es\": {\n                    \"question\": \"¿Qué tan satisfecho estás?\",\n                    \"lowerBoundLabel\": \"No satisfecho\",\n                    \"upperBoundLabel\": \"Muy satisfecho\"\n                },\n                \"fr\": {\n                    \"question\": \"Dans quelle mesure êtes-vous satisfait?\"\n                }\n            }\n        }\n        ```\n        ",
             "com.distilled.openapi#nullable": {}
@@ -3416,7 +3209,7 @@
           }
         },
         "iteration_start_dates": {
-          "target": "com.posthog.surveys#SurveysPartialUpdateRequestIterationStartDatesList",
+          "target": "com.posthog.surveys#UpdateSurveysRequestIterationStartDatesList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -3440,7 +3233,7 @@
           }
         },
         "response_sampling_interval_type": {
-          "target": "com.posthog.surveys#SurveysPartialUpdateRequestResponseSamplingIntervalType",
+          "target": "com.posthog.surveys#UpdateSurveysRequestResponseSamplingIntervalType",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -3493,10 +3286,282 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#UpdateSurveyPartial": {
+    "com.posthog.surveys#UpdateSurveys": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#UpdateSurveyPartialRequest"
+        "target": "com.posthog.surveys#UpdateSurveysRequest"
+      },
+      "output": {
+        "target": "com.posthog.surveys#SurveySerializerCreateUpdateOnlyOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.surveys#BadRequest"
+        },
+        {
+          "target": "com.posthog.surveys#Forbidden"
+        },
+        {
+          "target": "com.posthog.surveys#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/surveys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.surveys#UpdateSurveysPartialRequestQuestionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.surveys#SurveyQuestionInputSchema"
+      },
+      "traits": {
+        "smithy.api#documentation": "\n        The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice.\n\n        Basic (open-ended question)\n        - `id`: The question ID\n        - `type`: `open`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Link (a question with a link)\n        - `id`: The question ID\n        - `type`: `link`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `link`: The URL associated with the question.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Rating (a question with a rating scale)\n        - `id`: The question ID\n        - `type`: `rating`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `display`: Display style of the rating (`number` or `emoji`).\n        - `scale`: The scale of the rating (`number`).\n        - `lowerBoundLabel`: Label for the lower bound of the scale.\n        - `upperBoundLabel`: Label for the upper bound of the scale.\n        - `isNpsQuestion`: Whether the question is an NPS rating.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Multiple choice\n        - `id`: The question ID\n        - `type`: `single_choice` or `multiple_choice`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `choices`: An array of choices for the question.\n        - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`).\n        - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`).\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Branching logic can be one of the following types:\n\n        Next question: Proceeds to the next question\n        ```json\n        {\n            \"type\": \"next_question\"\n        }\n        ```\n\n        End: Ends the survey, optionally displaying a confirmation message.\n        ```json\n        {\n            \"type\": \"end\"\n        }\n        ```\n\n        Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types.\n        ```json\n        {\n            \"type\": \"response_based\",\n            \"responseValues\": {\n                \"responseKey\": \"value\"\n            }\n        }\n        ```\n\n        Specific question: Proceeds to a specific question by index.\n        ```json\n        {\n            \"type\": \"specific_question\",\n            \"index\": 2\n        }\n        ```\n\n        Translations: Each question can include inline translations.\n        - `translations`: Object mapping language codes to translated fields.\n        - Language codes: Canonical BCP-47-ish strings (e.g., \"es\", \"es-MX\", \"zh-CN\"). Aliases like \"english\" or \"default\" are rejected. The survey's `base_language` (default \"en\") declares the language of the untranslated text and cannot also appear as a translation key.\n        - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link`\n\n        Example with translations:\n        ```json\n        {\n            \"id\": \"uuid\",\n            \"type\": \"rating\",\n            \"question\": \"How satisfied are you?\",\n            \"lowerBoundLabel\": \"Not satisfied\",\n            \"upperBoundLabel\": \"Very satisfied\",\n            \"translations\": {\n                \"es\": {\n                    \"question\": \"¿Qué tan satisfecho estás?\",\n                    \"lowerBoundLabel\": \"No satisfecho\",\n                    \"upperBoundLabel\": \"Muy satisfecho\"\n                },\n                \"fr\": {\n                    \"question\": \"Dans quelle mesure êtes-vous satisfait?\"\n                }\n            }\n        }\n        ```\n        "
+      }
+    },
+    "com.posthog.surveys#UpdateSurveysPartialRequestIterationStartDatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.surveys#UpdateSurveysPartialRequestResponseSamplingIntervalType": {
+      "type": "union",
+      "members": {
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.surveys#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.surveys#UpdateSurveysPartialRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this survey."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Survey name. Anyone can read it. In-app surveys send it to every visitor's browser alongside the questions and appearance text, and a hosted survey shows it on its public page. Keep customer names and other private details out of it."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Survey description. Internal only: unlike the name and questions, it is never delivered to visitors."
+          }
+        },
+        "type": {
+          "target": "com.posthog.surveys#SurveyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Survey type.\n\n* `popover` - popover\n* `widget` - widget\n* `external_survey` - external survey\n* `api` - api"
+          }
+        },
+        "schedule": {
+          "target": "com.posthog.surveys#SurveyScheduleEnum",
+          "traits": {
+            "smithy.api#documentation": "Survey scheduling behavior: 'once' = show once per user (default), 'recurring' = repeat based on iteration_count and iteration_frequency_days settings, 'always' = show every time conditions are met (mainly for widget surveys)\n\n* `once` - once\n* `recurring` - recurring\n* `always` - always",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linked_flag_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The feature flag linked to this survey.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "linked_insight_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "targeting_flag_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "An existing targeting flag to use for this survey."
+          }
+        },
+        "targeting_flag_filters": {
+          "target": "com.posthog.surveys#FeatureFlagFiltersSchema",
+          "traits": {
+            "smithy.api#documentation": "Target specific users based on their properties. Example: {groups: [{properties: [{key: 'email', value: ['@company.com'], operator: 'icontains'}], rollout_percentage: 100}]}",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "remove_targeting_flag": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to completely remove all targeting filters from the survey, making it visible to all users (subject to other display conditions like URL matching).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "questions": {
+          "target": "com.posthog.surveys#UpdateSurveysPartialRequestQuestionsList",
+          "traits": {
+            "smithy.api#documentation": "\n        The `array` of questions included in the survey. Each question must conform to one of the defined question types: Basic, Link, Rating, or Multiple Choice.\n\n        Basic (open-ended question)\n        - `id`: The question ID\n        - `type`: `open`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Link (a question with a link)\n        - `id`: The question ID\n        - `type`: `link`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `link`: The URL associated with the question.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Rating (a question with a rating scale)\n        - `id`: The question ID\n        - `type`: `rating`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `display`: Display style of the rating (`number` or `emoji`).\n        - `scale`: The scale of the rating (`number`).\n        - `lowerBoundLabel`: Label for the lower bound of the scale.\n        - `upperBoundLabel`: Label for the upper bound of the scale.\n        - `isNpsQuestion`: Whether the question is an NPS rating.\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Multiple choice\n        - `id`: The question ID\n        - `type`: `single_choice` or `multiple_choice`\n        - `question`: The text of the question.\n        - `description`: Optional description of the question.\n        - `descriptionContentType`: Content type of the description (`html` or `text`).\n        - `optional`: Whether the question is optional (`boolean`).\n        - `buttonText`: Text displayed on the submit button.\n        - `choices`: An array of choices for the question.\n        - `shuffleOptions`: Whether to shuffle the order of the choices (`boolean`).\n        - `hasOpenChoice`: Whether the question allows an open-ended response (`boolean`).\n        - `branching`: Branching logic for the question. See branching types below for details.\n\n        Branching logic can be one of the following types:\n\n        Next question: Proceeds to the next question\n        ```json\n        {\n            \"type\": \"next_question\"\n        }\n        ```\n\n        End: Ends the survey, optionally displaying a confirmation message.\n        ```json\n        {\n            \"type\": \"end\"\n        }\n        ```\n\n        Response-based: Branches based on the response values. Available for the `rating` and `single_choice` question types.\n        ```json\n        {\n            \"type\": \"response_based\",\n            \"responseValues\": {\n                \"responseKey\": \"value\"\n            }\n        }\n        ```\n\n        Specific question: Proceeds to a specific question by index.\n        ```json\n        {\n            \"type\": \"specific_question\",\n            \"index\": 2\n        }\n        ```\n\n        Translations: Each question can include inline translations.\n        - `translations`: Object mapping language codes to translated fields.\n        - Language codes: Canonical BCP-47-ish strings (e.g., \"es\", \"es-MX\", \"zh-CN\"). Aliases like \"english\" or \"default\" are rejected. The survey's `base_language` (default \"en\") declares the language of the untranslated text and cannot also appear as a translation key.\n        - Translatable fields: `question`, `description`, `buttonText`, `choices`, `lowerBoundLabel`, `upperBoundLabel`, `link`\n\n        Example with translations:\n        ```json\n        {\n            \"id\": \"uuid\",\n            \"type\": \"rating\",\n            \"question\": \"How satisfied are you?\",\n            \"lowerBoundLabel\": \"Not satisfied\",\n            \"upperBoundLabel\": \"Very satisfied\",\n            \"translations\": {\n                \"es\": {\n                    \"question\": \"¿Qué tan satisfecho estás?\",\n                    \"lowerBoundLabel\": \"No satisfecho\",\n                    \"upperBoundLabel\": \"Muy satisfecho\"\n                },\n                \"fr\": {\n                    \"question\": \"Dans quelle mesure êtes-vous satisfait?\"\n                }\n            }\n        }\n        ```\n        ",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conditions": {
+          "target": "com.posthog.surveys#SurveyConditionsSchema",
+          "traits": {
+            "smithy.api#documentation": "Display and targeting conditions for the survey.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "appearance": {
+          "target": "com.posthog.surveys#SurveyAppearanceSchema",
+          "traits": {
+            "smithy.api#documentation": "Survey appearance customization.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Setting this will launch the survey immediately. Don't add a start_date unless explicitly requested to do so.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "end_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the survey stopped being shown to users. Setting this will complete the survey.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Archive state for the survey."
+          }
+        },
+        "responses_limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of responses before automatically stopping the survey.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iteration_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For a recurring schedule, this field specifies the number of times the survey should be shown to the user. Use 1 for 'once every X days', higher numbers for multiple repetitions. Works together with iteration_frequency_days to determine the overall survey schedule.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iteration_frequency_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For a recurring schedule, this field specifies the interval in days between each survey instance shown to the user, used alongside iteration_count for precise scheduling.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iteration_start_dates": {
+          "target": "com.posthog.surveys#UpdateSurveysPartialRequestIterationStartDatesList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "current_iteration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "current_iteration_start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "response_sampling_start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "response_sampling_interval_type": {
+          "target": "com.posthog.surveys#UpdateSurveysPartialRequestResponseSamplingIntervalType",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "response_sampling_interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "response_sampling_limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "response_sampling_daily_limits": {
+          "target": "smithy.api#Document"
+        },
+        "enable_partial_responses": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When at least one question is answered, the response is stored (true). The response is stored when all questions are answered (false).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enable_iframe_embedding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "base_language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "BCP-47 language code (e.g. 'en', 'es', 'es-MX') describing the language of the survey's untranslated text. Defaults to 'en'. Cannot also appear as a key in `translations`."
+          }
+        },
+        "translations": {
+          "target": "smithy.api#Document"
+        },
+        "_create_in_folder": {
+          "target": "smithy.api#String"
+        },
+        "form_content": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.surveys#UpdateSurveysPartial": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.surveys#UpdateSurveysPartialRequest"
       },
       "output": {
         "target": "com.posthog.surveys#SurveySerializerCreateUpdateOnlyOutput"
@@ -3568,7 +3633,7 @@
         }
       }
     },
-    "com.posthog.surveys#SurveysActivityRetrieveRequest": {
+    "com.posthog.surveys#GetSurveysActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3592,10 +3657,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#SurveysActivityRetrieve": {
+    "com.posthog.surveys#GetSurveysActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#SurveysActivityRetrieveRequest"
+        "target": "com.posthog.surveys#GetSurveysActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3616,7 +3681,7 @@
         }
       }
     },
-    "com.posthog.surveys#SurveysArchivedResponseUuidsRetrieveRequest": {
+    "com.posthog.surveys#GetSurveysArchivedResponseUuidRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3640,10 +3705,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#SurveysArchivedResponseUuidsRetrieve": {
+    "com.posthog.surveys#GetSurveysArchivedResponseUuid": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#SurveysArchivedResponseUuidsRetrieveRequest"
+        "target": "com.posthog.surveys#GetSurveysArchivedResponseUuidRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3675,8 +3740,8 @@
     "com.posthog.surveys#SurveysDuplicateToProjectsCreateRequestResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -3684,7 +3749,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#CreateSurveyDuplicateToProjectRequest": {
+    "com.posthog.surveys#SurveysDuplicateToProjectsCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3710,7 +3775,7 @@
           "target": "smithy.api#String"
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType"
+          "target": "com.posthog.surveys#SurveyTypeEnum"
         },
         "schedule": {
           "target": "smithy.api#String",
@@ -3864,10 +3929,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#CreateSurveyDuplicateToProject": {
+    "com.posthog.surveys#SurveysDuplicateToProjectsCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#CreateSurveyDuplicateToProjectRequest"
+        "target": "com.posthog.surveys#SurveysDuplicateToProjectsCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4193,7 +4258,7 @@
         "smithy.api#documentation": "Launch a survey by setting `start_date` to the current time. No-op if the survey is already launched (start_date set in the past) — returns the existing state unchanged. Does not affect archived surveys or surveys with an end_date in the past; unarchive or extend the end_date first."
       }
     },
-    "com.posthog.surveys#ListSurveyResponsesRequest": {
+    "com.posthog.surveys#ListSurveysResponsesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4477,10 +4542,10 @@
         "smithy.api#documentation": "Survey response rows for the requested page."
       }
     },
-    "com.posthog.surveys#ListSurveyResponses": {
+    "com.posthog.surveys#ListSurveysResponses": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#ListSurveyResponsesRequest"
+        "target": "com.posthog.surveys#ListSurveysResponsesRequest"
       },
       "output": {
         "target": "com.posthog.surveys#SurveyResponsesList"
@@ -4504,8 +4569,8 @@
     "com.posthog.surveys#SurveysResponsesArchiveCreateRequestResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -4513,7 +4578,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#CreateSurveyResponseArchiveRequest": {
+    "com.posthog.surveys#SurveysResponsesArchiveCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4546,7 +4611,7 @@
           "target": "smithy.api#String"
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType"
+          "target": "com.posthog.surveys#SurveyTypeEnum"
         },
         "schedule": {
           "target": "smithy.api#String",
@@ -4700,10 +4765,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#CreateSurveyResponseArchive": {
+    "com.posthog.surveys#SurveysResponsesArchiveCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#CreateSurveyResponseArchiveRequest"
+        "target": "com.posthog.surveys#SurveysResponsesArchiveCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4738,8 +4803,8 @@
     "com.posthog.surveys#SurveysResponsesUnarchiveCreateRequestResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -4747,7 +4812,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#CreateSurveyResponseUnarchiveRequest": {
+    "com.posthog.surveys#SurveysResponsesUnarchiveCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4780,7 +4845,7 @@
           "target": "smithy.api#String"
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType"
+          "target": "com.posthog.surveys#SurveyTypeEnum"
         },
         "schedule": {
           "target": "smithy.api#String",
@@ -4934,10 +4999,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#CreateSurveyResponseUnarchive": {
+    "com.posthog.surveys#SurveysResponsesUnarchiveCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#CreateSurveyResponseUnarchiveRequest"
+        "target": "com.posthog.surveys#SurveysResponsesUnarchiveCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4962,7 +5027,7 @@
         "smithy.api#documentation": "Unarchive a single survey response."
       }
     },
-    "com.posthog.surveys#SurveysStatsRetrieveRequest": {
+    "com.posthog.surveys#GetSurveysStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5084,10 +5149,10 @@
         "smithy.api#documentation": "Per-question response counts and distributions. Only present when include_per_question_stats=true was passed. For rating questions includes `average`; for choice/rating questions `distribution` maps answer value to count; for open questions `distribution` is empty (use surveys-responses-list to read free-text)."
       }
     },
-    "com.posthog.surveys#SurveysStatsRetrieve": {
+    "com.posthog.surveys#GetSurveysStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#SurveysStatsRetrieveRequest"
+        "target": "com.posthog.surveys#GetSurveysStatRequest"
       },
       "output": {
         "target": "com.posthog.surveys#SurveyStatsResponse"
@@ -5112,7 +5177,7 @@
         "smithy.api#documentation": "Get survey response statistics for a specific survey.\n\nArgs:\n    date_from: Optional ISO timestamp for start date (e.g. 2024-01-01T00:00:00Z)\n    date_to: Optional ISO timestamp for end date (e.g. 2024-01-31T23:59:59Z)\n    exclude_archived: Optional boolean to exclude archived responses (default: false, includes archived)\n    include_per_question_stats: Optional boolean to include per-question response counts and distributions\n\nReturns:\n    Survey statistics including event counts, unique respondents, and conversion rates"
       }
     },
-    "com.posthog.surveys#StopSurveyRequest": {
+    "com.posthog.surveys#StopSurveysRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5136,10 +5201,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#StopSurvey": {
+    "com.posthog.surveys#StopSurveys": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#StopSurveyRequest"
+        "target": "com.posthog.surveys#StopSurveysRequest"
       },
       "output": {
         "target": "com.posthog.surveys#Survey"
@@ -5153,7 +5218,7 @@
         "smithy.api#documentation": "Stop a survey by setting `end_date` to the current time. No new responses are accepted after this; existing responses remain available. No-op if the survey already has an end_date in the past."
       }
     },
-    "com.posthog.surveys#CreateSurveySummarizeResponseRequest": {
+    "com.posthog.surveys#CreateSurveysSummarizeResponseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5197,10 +5262,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#CreateSurveySummarizeResponse": {
+    "com.posthog.surveys#CreateSurveysSummarizeResponse": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#CreateSurveySummarizeResponseRequest"
+        "target": "com.posthog.surveys#CreateSurveysSummarizeResponseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5225,18 +5290,18 @@
         "smithy.api#documentation": "Summarize survey responses. When `question_index` or `question_id` is provided, returns a per-question theme summary using cached `survey.question_summaries` when fresh. When neither is provided, returns the survey-wide headline summary (delegates to summary_headline). Pass `force_refresh=true` in the body to bypass caches."
       }
     },
-    "com.posthog.surveys#SurveysSummaryHeadlineCreateRequestIterationStartDatesList": {
+    "com.posthog.surveys#CreateSurveysSummaryHeadlineRequestIterationStartDatesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.surveys#SurveysSummaryHeadlineCreateRequestResponseSamplingIntervalType": {
+    "com.posthog.surveys#CreateSurveysSummaryHeadlineRequestResponseSamplingIntervalType": {
       "type": "union",
       "members": {
-        "ResponseSamplingIntervalTypeEnum": {
-          "target": "com.posthog.surveys#ResponseSamplingIntervalTypeEnum"
+        "SurveySamplingIntervalTypeEnum": {
+          "target": "com.posthog.surveys#SurveySamplingIntervalTypeEnum"
         },
         "BlankEnum": {
           "target": "com.posthog.surveys#BlankEnum"
@@ -5244,7 +5309,7 @@
       },
       "traits": {}
     },
-    "com.posthog.surveys#CreateSurveySummaryHeadlineRequest": {
+    "com.posthog.surveys#CreateSurveysSummaryHeadlineRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5270,7 +5335,7 @@
           "target": "smithy.api#String"
         },
         "type": {
-          "target": "com.posthog.surveys#SurveyType"
+          "target": "com.posthog.surveys#SurveyTypeEnum"
         },
         "schedule": {
           "target": "smithy.api#String",
@@ -5348,7 +5413,7 @@
           }
         },
         "iteration_start_dates": {
-          "target": "com.posthog.surveys#SurveysSummaryHeadlineCreateRequestIterationStartDatesList",
+          "target": "com.posthog.surveys#CreateSurveysSummaryHeadlineRequestIterationStartDatesList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5372,7 +5437,7 @@
           }
         },
         "response_sampling_interval_type": {
-          "target": "com.posthog.surveys#SurveysSummaryHeadlineCreateRequestResponseSamplingIntervalType",
+          "target": "com.posthog.surveys#CreateSurveysSummaryHeadlineRequestResponseSamplingIntervalType",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -5424,10 +5489,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#CreateSurveySummaryHeadline": {
+    "com.posthog.surveys#CreateSurveysSummaryHeadline": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#CreateSurveySummaryHeadlineRequest"
+        "target": "com.posthog.surveys#CreateSurveysSummaryHeadlineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5451,7 +5516,7 @@
         }
       }
     },
-    "com.posthog.surveys#SurveysAllActivityRetrieveRequest": {
+    "com.posthog.surveys#GetSurveysAllActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5467,10 +5532,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#SurveysAllActivityRetrieve": {
+    "com.posthog.surveys#GetSurveysAllActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#SurveysAllActivityRetrieveRequest"
+        "target": "com.posthog.surveys#GetSurveysAllActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5587,7 +5652,7 @@
         "smithy.api#documentation": "Return a slim list of question labels for the team's surveys. Used by the frontend to resolve `$survey_response_<question_id>` property keys into human-readable question text without loading the full survey payload."
       }
     },
-    "com.posthog.surveys#SurveysResponsesCountRetrieveRequest": {
+    "com.posthog.surveys#GetSurveysResponsesCountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5603,10 +5668,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.surveys#SurveysResponsesCountRetrieve": {
+    "com.posthog.surveys#GetSurveysResponsesCount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#SurveysResponsesCountRetrieveRequest"
+        "target": "com.posthog.surveys#GetSurveysResponsesCountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5628,7 +5693,7 @@
         "smithy.api#documentation": "Get response counts for all surveys.\n\nArgs:\n    exclude_archived: Optional boolean to exclude archived responses (default: false, includes archived)\n    survey_ids: Optional comma-separated list of survey IDs to filter by\n\nReturns:\n    Dictionary mapping survey IDs to response counts"
       }
     },
-    "com.posthog.surveys#SurveysGlobalStatsRetrieveRequest": {
+    "com.posthog.surveys#GetSurveysGlobalStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5700,10 +5765,10 @@
         "smithy.api#documentation": "Calculated response and dismissal rates."
       }
     },
-    "com.posthog.surveys#SurveysGlobalStatsRetrieve": {
+    "com.posthog.surveys#GetSurveysGlobalStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.surveys#SurveysGlobalStatsRetrieveRequest"
+        "target": "com.posthog.surveys#GetSurveysGlobalStatRequest"
       },
       "output": {
         "target": "com.posthog.surveys#SurveyGlobalStatsResponse"
@@ -5772,31 +5837,49 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.surveys#CreateSurveys"
+        },
+        {
+          "target": "com.posthog.surveys#CreateSurveysSummarizeResponse"
+        },
+        {
+          "target": "com.posthog.surveys#CreateSurveysSummaryHeadline"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveys"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysActivity"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysAllActivity"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysArchivedResponseUuid"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysGlobalStat"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysResponsesCount"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysStat"
+        },
+        {
           "target": "com.posthog.surveys#ListSurveys"
         },
         {
-          "target": "com.posthog.surveys#CreateSurvey"
+          "target": "com.posthog.surveys#ListSurveysResponses"
         },
         {
-          "target": "com.posthog.surveys#SurveysRetrieve"
-        },
-        {
-          "target": "com.posthog.surveys#UpdateSurvey"
-        },
-        {
-          "target": "com.posthog.surveys#UpdateSurveyPartial"
+          "target": "com.posthog.surveys#StopSurveys"
         },
         {
           "target": "com.posthog.surveys#SurveysDestroy"
         },
         {
-          "target": "com.posthog.surveys#SurveysActivityRetrieve"
-        },
-        {
-          "target": "com.posthog.surveys#SurveysArchivedResponseUuidsRetrieve"
-        },
-        {
-          "target": "com.posthog.surveys#CreateSurveyDuplicateToProject"
+          "target": "com.posthog.surveys#SurveysDuplicateToProjectsCreate"
         },
         {
           "target": "com.posthog.surveys#SurveysGenerateTranslationsCreate"
@@ -5805,37 +5888,19 @@
           "target": "com.posthog.surveys#SurveysLaunch"
         },
         {
-          "target": "com.posthog.surveys#ListSurveyResponses"
-        },
-        {
-          "target": "com.posthog.surveys#CreateSurveyResponseArchive"
-        },
-        {
-          "target": "com.posthog.surveys#CreateSurveyResponseUnarchive"
-        },
-        {
-          "target": "com.posthog.surveys#SurveysStatsRetrieve"
-        },
-        {
-          "target": "com.posthog.surveys#StopSurvey"
-        },
-        {
-          "target": "com.posthog.surveys#CreateSurveySummarizeResponse"
-        },
-        {
-          "target": "com.posthog.surveys#CreateSurveySummaryHeadline"
-        },
-        {
-          "target": "com.posthog.surveys#SurveysAllActivityRetrieve"
-        },
-        {
           "target": "com.posthog.surveys#SurveysQuestionLabels"
         },
         {
-          "target": "com.posthog.surveys#SurveysResponsesCountRetrieve"
+          "target": "com.posthog.surveys#SurveysResponsesArchiveCreate"
         },
         {
-          "target": "com.posthog.surveys#SurveysGlobalStatsRetrieve"
+          "target": "com.posthog.surveys#SurveysResponsesUnarchiveCreate"
+        },
+        {
+          "target": "com.posthog.surveys#UpdateSurveys"
+        },
+        {
+          "target": "com.posthog.surveys#UpdateSurveysPartial"
         }
       ],
       "traits": {

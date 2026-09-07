@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.authorization#ListDenyAssignmentForScope": {
@@ -635,13 +636,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.authorization#GetProviderOperationMetadata": {
+    "com.azure.authorization#GetProviderOperationsMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.authorization#GetProviderOperationMetadataRequest"
+        "target": "com.azure.authorization#GetProviderOperationsMetadataRequest"
       },
       "output": {
-        "target": "com.azure.authorization#GetProviderOperationMetadataResponse"
+        "target": "com.azure.authorization#GetProviderOperationsMetadataResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -654,7 +655,7 @@
         "com.distilled.openapi#apiVersion": "2022-04-01"
       }
     },
-    "com.azure.authorization#GetProviderOperationMetadataResponse": {
+    "com.azure.authorization#GetProviderOperationsMetadataResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -682,13 +683,13 @@
           }
         },
         "resourceTypes": {
-          "target": "com.azure.authorization#ProviderOperationsMetadataGetResponseResourceTypesList",
+          "target": "com.azure.authorization#GetProviderOperationsMetadataResponseResourceTypesList",
           "traits": {
             "smithy.api#documentation": "The provider resource types"
           }
         },
         "operations": {
-          "target": "com.azure.authorization#ProviderOperationsMetadataGetResponseOperationsList",
+          "target": "com.azure.authorization#GetProviderOperationsMetadataResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The provider operations."
           }
@@ -698,7 +699,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.authorization#ProviderOperationsMetadataGetResponseOperationsList": {
+    "com.azure.authorization#GetProviderOperationsMetadataResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.authorization#ProviderOperation"
@@ -751,7 +752,7 @@
         "smithy.api#documentation": "Operation"
       }
     },
-    "com.azure.authorization#ProviderOperationsMetadataGetResponseResourceTypesList": {
+    "com.azure.authorization#GetProviderOperationsMetadataResponseResourceTypesList": {
       "type": "list",
       "member": {
         "target": "com.azure.authorization#ResourceType"
@@ -795,7 +796,7 @@
         "smithy.api#documentation": "The resource type operations."
       }
     },
-    "com.azure.authorization#GetProviderOperationMetadataRequest": {
+    "com.azure.authorization#GetProviderOperationsMetadataRequest": {
       "type": "structure",
       "members": {
         "resourceProviderNamespace": {
@@ -818,13 +819,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.authorization#ListProviderOperationMetadata": {
+    "com.azure.authorization#ListProviderOperationsMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.authorization#ListProviderOperationMetadataRequest"
+        "target": "com.azure.authorization#ListProviderOperationsMetadataRequest"
       },
       "output": {
-        "target": "com.azure.authorization#ListProviderOperationMetadataResult"
+        "target": "com.azure.authorization#ProviderOperationsMetadataListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -837,7 +838,7 @@
         "com.distilled.openapi#apiVersion": "2022-04-01"
       }
     },
-    "com.azure.authorization#ListProviderOperationMetadataResult": {
+    "com.azure.authorization#ProviderOperationsMetadataListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -929,7 +930,7 @@
         "smithy.api#documentation": "The provider resource types"
       }
     },
-    "com.azure.authorization#ListProviderOperationMetadataRequest": {
+    "com.azure.authorization#ListProviderOperationsMetadataRequest": {
       "type": "structure",
       "members": {
         "_expand": {
@@ -2543,10 +2544,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.authorization#ListPermissionForResource": {
+    "com.azure.authorization#ListPermissionsForResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.authorization#ListPermissionForResourceRequest"
+        "target": "com.azure.authorization#ListPermissionsForResourceRequest"
       },
       "output": {
         "target": "com.azure.authorization#PermissionGetResult"
@@ -2591,7 +2592,7 @@
         "smithy.api#documentation": "An array of permissions."
       }
     },
-    "com.azure.authorization#ListPermissionForResourceRequest": {
+    "com.azure.authorization#ListPermissionsForResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2647,10 +2648,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.authorization#ListPermissionForResourceGroup": {
+    "com.azure.authorization#ListPermissionsForResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.authorization#ListPermissionForResourceGroupRequest"
+        "target": "com.azure.authorization#ListPermissionsForResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.authorization#PermissionGetResult"
@@ -2666,7 +2667,7 @@
         "com.distilled.openapi#apiVersion": "2022-04-01"
       }
     },
-    "com.azure.authorization#ListPermissionForResourceGroupRequest": {
+    "com.azure.authorization#ListPermissionsForResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2695,76 +2696,76 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.authorization#ListDenyAssignmentForScope"
-        },
-        {
-          "target": "com.azure.authorization#GetDenyAssignmentById"
-        },
-        {
-          "target": "com.azure.authorization#GetDenyAssignment"
-        },
-        {
-          "target": "com.azure.authorization#ListDenyAssignments"
-        },
-        {
-          "target": "com.azure.authorization#ListDenyAssignmentForResourceGroup"
-        },
-        {
-          "target": "com.azure.authorization#ListDenyAssignmentForResource"
-        },
-        {
-          "target": "com.azure.authorization#GetProviderOperationMetadata"
-        },
-        {
-          "target": "com.azure.authorization#ListProviderOperationMetadata"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForResourceGroup"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForResource"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForSubscription"
-        },
-        {
-          "target": "com.azure.authorization#DeleteRoleAssignment"
-        },
-        {
           "target": "com.azure.authorization#CreateRoleAssignment"
-        },
-        {
-          "target": "com.azure.authorization#GetRoleAssignment"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForScope"
-        },
-        {
-          "target": "com.azure.authorization#DeleteRoleAssignmentById"
         },
         {
           "target": "com.azure.authorization#CreateRoleAssignmentById"
         },
         {
-          "target": "com.azure.authorization#GetRoleAssignmentById"
+          "target": "com.azure.authorization#DeleteRoleAssignment"
         },
         {
-          "target": "com.azure.authorization#ListRoleDefinitions"
+          "target": "com.azure.authorization#DeleteRoleAssignmentById"
         },
         {
           "target": "com.azure.authorization#DeleteRoleDefinition"
         },
         {
-          "target": "com.azure.authorization#RoleDefinitionsCreateOrUpdate"
+          "target": "com.azure.authorization#GetDenyAssignment"
+        },
+        {
+          "target": "com.azure.authorization#GetDenyAssignmentById"
+        },
+        {
+          "target": "com.azure.authorization#GetProviderOperationsMetadata"
+        },
+        {
+          "target": "com.azure.authorization#GetRoleAssignment"
+        },
+        {
+          "target": "com.azure.authorization#GetRoleAssignmentById"
         },
         {
           "target": "com.azure.authorization#GetRoleDefinition"
         },
         {
-          "target": "com.azure.authorization#ListPermissionForResource"
+          "target": "com.azure.authorization#ListDenyAssignmentForResource"
         },
         {
-          "target": "com.azure.authorization#ListPermissionForResourceGroup"
+          "target": "com.azure.authorization#ListDenyAssignmentForResourceGroup"
+        },
+        {
+          "target": "com.azure.authorization#ListDenyAssignmentForScope"
+        },
+        {
+          "target": "com.azure.authorization#ListDenyAssignments"
+        },
+        {
+          "target": "com.azure.authorization#ListPermissionsForResource"
+        },
+        {
+          "target": "com.azure.authorization#ListPermissionsForResourceGroup"
+        },
+        {
+          "target": "com.azure.authorization#ListProviderOperationsMetadata"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForResource"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForResourceGroup"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForScope"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForSubscription"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleDefinitions"
+        },
+        {
+          "target": "com.azure.authorization#RoleDefinitionsCreateOrUpdate"
         }
       ],
       "traits": {

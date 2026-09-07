@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.oauth#RegisterNewOAuthAppRequestRedirectUrisList": {
@@ -1186,16 +1187,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.oauth#RegisterNewOAuthApp"
+          "target": "com.huggingface.oauth#GetUserInfo"
         },
         {
           "target": "com.huggingface.oauth#InitiateDeviceAuthorization"
         },
         {
-          "target": "com.huggingface.oauth#GetUserInfo"
+          "target": "com.huggingface.oauth#PostUserInfo"
         },
         {
-          "target": "com.huggingface.oauth#PostUserInfo"
+          "target": "com.huggingface.oauth#RegisterNewOAuthApp"
         }
       ],
       "traits": {

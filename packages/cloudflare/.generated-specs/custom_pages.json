@@ -25,7 +25,8 @@
       "resultInfo": "result_info",
       "sizeBytes": "size_bytes",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.custom_pages#CustomPages": {
@@ -33,52 +34,52 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.custom_pages#GetForAccount"
+          "target": "com.cloudflare.custom_pages#CreateAssetForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#GetForZone"
+          "target": "com.cloudflare.custom_pages#CreateAssetForZone"
         },
         {
-          "target": "com.cloudflare.custom_pages#ListForAccount"
+          "target": "com.cloudflare.custom_pages#DeleteAssetForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#ListForZone"
+          "target": "com.cloudflare.custom_pages#DeleteAssetForZone"
         },
         {
-          "target": "com.cloudflare.custom_pages#UpdateForAccount"
+          "target": "com.cloudflare.custom_pages#GetAssetForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#UpdateForZone"
+          "target": "com.cloudflare.custom_pages#GetAssetForZone"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsCreateForAccount"
+          "target": "com.cloudflare.custom_pages#GetCustomPageForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsCreateForZone"
+          "target": "com.cloudflare.custom_pages#GetCustomPageForZone"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsDeleteForAccount"
+          "target": "com.cloudflare.custom_pages#ListAssetsForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsDeleteForZone"
+          "target": "com.cloudflare.custom_pages#ListAssetsForZone"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsGetForAccount"
+          "target": "com.cloudflare.custom_pages#ListCustomPagesForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsGetForZone"
+          "target": "com.cloudflare.custom_pages#ListCustomPagesForZone"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsListForAccount"
+          "target": "com.cloudflare.custom_pages#PutCustomPageForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsListForZone"
+          "target": "com.cloudflare.custom_pages#PutCustomPageForZone"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsUpdateForAccount"
+          "target": "com.cloudflare.custom_pages#UpdateAssetForAccount"
         },
         {
-          "target": "com.cloudflare.custom_pages#AssetsUpdateForZone"
+          "target": "com.cloudflare.custom_pages#UpdateAssetForZone"
         }
       ],
       "traits": {
@@ -93,7 +94,7 @@
         "target": "com.cloudflare.custom_pages#CreateAssetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#CreateAssetForAccountResponse"
+        "target": "com.cloudflare.custom_pages#CreateAssetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -147,7 +148,7 @@
         "target": "com.cloudflare.custom_pages#CreateAssetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#CreateAssetForZoneResponse"
+        "target": "com.cloudflare.custom_pages#CreateAssetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -285,7 +286,7 @@
         "target": "com.cloudflare.custom_pages#GetAssetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#GetAssetForAccountResponse"
+        "target": "com.cloudflare.custom_pages#GetAssetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -327,7 +328,7 @@
         "target": "com.cloudflare.custom_pages#GetAssetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#GetAssetForZoneResponse"
+        "target": "com.cloudflare.custom_pages#GetAssetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -369,7 +370,7 @@
         "target": "com.cloudflare.custom_pages#GetCustomPageForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#GetCustomPageForAccountResponse"
+        "target": "com.cloudflare.custom_pages#GetCustomPageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -411,7 +412,7 @@
         "target": "com.cloudflare.custom_pages#GetCustomPageForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#GetCustomPageForZoneResponse"
+        "target": "com.cloudflare.custom_pages#GetCustomPageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -453,7 +454,7 @@
         "target": "com.cloudflare.custom_pages#ListAssetsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#ListAssetsForAccountResponse"
+        "target": "com.cloudflare.custom_pages#ListAssetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -506,7 +507,7 @@
         "target": "com.cloudflare.custom_pages#ListAssetsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#ListAssetsForZoneResponse"
+        "target": "com.cloudflare.custom_pages#ListAssetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -559,7 +560,7 @@
         "target": "com.cloudflare.custom_pages#ListCustomPagesForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#ListCustomPagesForAccountResponse"
+        "target": "com.cloudflare.custom_pages#ListCustomPagesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -597,7 +598,7 @@
         "target": "com.cloudflare.custom_pages#ListCustomPagesForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#ListCustomPagesForZoneResponse"
+        "target": "com.cloudflare.custom_pages#ListCustomPagesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -635,7 +636,7 @@
         "target": "com.cloudflare.custom_pages#PutCustomPageForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#PutCustomPageForAccountResponse"
+        "target": "com.cloudflare.custom_pages#PutCustomPageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -691,7 +692,7 @@
         "target": "com.cloudflare.custom_pages#PutCustomPageForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#PutCustomPageForZoneResponse"
+        "target": "com.cloudflare.custom_pages#PutCustomPageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -747,7 +748,7 @@
         "target": "com.cloudflare.custom_pages#UpdateAssetForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#UpdateAssetForAccountResponse"
+        "target": "com.cloudflare.custom_pages#UpdateAssetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -803,7 +804,7 @@
         "target": "com.cloudflare.custom_pages#UpdateAssetForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.custom_pages#UpdateAssetForZoneResponse"
+        "target": "com.cloudflare.custom_pages#UpdateAssetResponse"
       },
       "traits": {
         "smithy.api#http": {

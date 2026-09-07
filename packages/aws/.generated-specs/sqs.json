@@ -4418,7 +4418,11 @@
     },
     "aws.patched#InvalidParameterValueException": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {}
     },
     "aws.patched#CommonServiceException": {

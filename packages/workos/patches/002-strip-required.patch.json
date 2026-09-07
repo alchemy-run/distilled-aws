@@ -55,10 +55,6 @@
     },
     {
       "op": "remove",
-      "path": "/components/schemas/UpdateAuditLogsRetentionDto/required"
-    },
-    {
-      "op": "remove",
       "path": "/components/schemas/AuditLogSchemaActorDto/required"
     },
     {
@@ -171,10 +167,6 @@
     },
     {
       "op": "remove",
-      "path": "/components/schemas/WidgetSessionTokenDto/required"
-    },
-    {
-      "op": "remove",
       "path": "/components/schemas/TokenQueryDto/required"
     },
     {
@@ -263,14 +255,6 @@
     },
     {
       "op": "remove",
-      "path": "/components/schemas/RoleAssignment/required"
-    },
-    {
-      "op": "remove",
-      "path": "/components/schemas/RoleAssignmentList/required"
-    },
-    {
-      "op": "remove",
       "path": "/components/schemas/Role/required"
     },
     {
@@ -347,10 +331,6 @@
     },
     {
       "op": "remove",
-      "path": "/components/schemas/JwtTemplateResponse/required"
-    },
-    {
-      "op": "remove",
       "path": "/components/schemas/OrganizationDomainStandAlone/required"
     },
     {
@@ -360,14 +340,6 @@
     {
       "op": "remove",
       "path": "/components/schemas/FlagList/required"
-    },
-    {
-      "op": "remove",
-      "path": "/components/schemas/ApiKeyList/required"
-    },
-    {
-      "op": "remove",
-      "path": "/components/schemas/ApiKeyWithValue/required"
     },
     {
       "op": "remove",

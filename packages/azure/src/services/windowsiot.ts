@@ -86,13 +86,13 @@ export const DeleteServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteServiceRequest>;
 
 /** Resource tags. */
-export type ServicesDeleteResponseTagsMap = {
+export type DeleteServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServicesDeleteResponseTagsMap = /*@__PURE__*/ S.Record(
+export const DeleteServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesDeleteResponseTagsMap>;
+) as any as S.Schema<DeleteServiceResponseTagsMap>;
 
 /** The properties of a Windows IoT Device Service. */
 export interface DeviceServiceProperties {
@@ -127,7 +127,7 @@ export interface DeleteServiceResponse {
   /** The type of the resource. */
   type?: string;
   /** Resource tags. */
-  tags?: ServicesDeleteResponseTagsMap;
+  tags?: DeleteServiceResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
@@ -140,7 +140,7 @@ export const DeleteServiceResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ServicesDeleteResponseTagsMap),
+    tags: S.optional(DeleteServiceResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     properties: S.optional(DeviceServiceProperties),
@@ -175,11 +175,11 @@ export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServiceRequest>;
 
 /** Resource tags. */
-export type ServicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetServiceResponseTagsMap = { [key: string]: string | undefined };
+export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesGetResponseTagsMap>;
+) as any as S.Schema<GetServiceResponseTagsMap>;
 
 export interface GetServiceResponse {
   /** Fully qualified resource Id for the resource */
@@ -189,7 +189,7 @@ export interface GetServiceResponse {
   /** The type of the resource. */
   type?: string;
   /** Resource tags. */
-  tags?: ServicesGetResponseTagsMap;
+  tags?: GetServiceResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
@@ -202,7 +202,7 @@ export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ServicesGetResponseTagsMap),
+    tags: S.optional(GetServiceResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     properties: S.optional(DeviceServiceProperties),
@@ -499,13 +499,11 @@ export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServicesCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type ServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateServiceRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServiceRequestTagsMap>;
 
 export interface UpdateServiceRequest {
   /** The subscription identifier. */
@@ -515,7 +513,7 @@ export interface UpdateServiceRequest {
   /** The name of the Windows IoT Device Service. */
   deviceName: string;
   /** Resource tags. */
-  tags?: ServicesUpdateRequestTagsMap;
+  tags?: UpdateServiceRequestTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
@@ -528,7 +526,7 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    tags: S.optional(ServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateServiceRequestTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     properties: S.optional(DeviceServicePropertiesInput),
@@ -545,13 +543,13 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateServiceRequest>;
 
 /** Resource tags. */
-export type ServicesUpdateResponseTagsMap = {
+export type UpdateServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateServiceResponseTagsMap>;
 
 export interface UpdateServiceResponse {
   /** Fully qualified resource Id for the resource */
@@ -561,7 +559,7 @@ export interface UpdateServiceResponse {
   /** The type of the resource. */
   type?: string;
   /** Resource tags. */
-  tags?: ServicesUpdateResponseTagsMap;
+  tags?: UpdateServiceResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
@@ -574,7 +572,7 @@ export const UpdateServiceResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ServicesUpdateResponseTagsMap),
+    tags: S.optional(UpdateServiceResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     properties: S.optional(DeviceServiceProperties),

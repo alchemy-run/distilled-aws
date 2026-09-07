@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.sphere#CatalogsUploadImage": {
+    "com.azure.sphere#UploadCatalogImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sphere#CatalogsUploadImageRequest"
+        "target": "com.azure.sphere#UploadCatalogImageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-01"
       }
     },
-    "com.azure.sphere#CatalogsUploadImageRequest": {
+    "com.azure.sphere#UploadCatalogImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -120,10 +121,10 @@
         "smithy.api#documentation": "Regional data boundary values."
       }
     },
-    "com.azure.sphere#GenerateProductDefaultDeviceGroup": {
+    "com.azure.sphere#GenerateProductDefaultDeviceGroups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sphere#GenerateProductDefaultDeviceGroupRequest"
+        "target": "com.azure.sphere#GenerateProductDefaultDeviceGroupsRequest"
       },
       "output": {
         "target": "com.azure.sphere#DeviceGroupListResult"
@@ -475,7 +476,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.sphere#GenerateProductDefaultDeviceGroupRequest": {
+    "com.azure.sphere#GenerateProductDefaultDeviceGroupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -600,7 +601,7 @@
           }
         },
         "capabilities": {
-          "target": "com.azure.sphere#DevicesGenerateCapabilityImageRequestCapabilitiesList",
+          "target": "com.azure.sphere#GenerateDeviceCapabilityImageRequestCapabilitiesList",
           "traits": {
             "smithy.api#documentation": "List of capabilities to create",
             "smithy.api#required": {}
@@ -611,7 +612,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sphere#DevicesGenerateCapabilityImageRequestCapabilitiesList": {
+    "com.azure.sphere#GenerateDeviceCapabilityImageRequestCapabilitiesList": {
       "type": "list",
       "member": {
         "target": "com.azure.sphere#CapabilityType"
@@ -2167,10 +2168,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sphere#DeviceGroupsClaimDevices": {
+    "com.azure.sphere#ClaimDeviceGroupDevices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sphere#DeviceGroupsClaimDevicesRequest"
+        "target": "com.azure.sphere#ClaimDeviceGroupDevicesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2186,7 +2187,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-01"
       }
     },
-    "com.azure.sphere#DeviceGroupsClaimDevicesRequest": {
+    "com.azure.sphere#ClaimDeviceGroupDevicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2230,7 +2231,7 @@
           }
         },
         "deviceIdentifiers": {
-          "target": "com.azure.sphere#DeviceGroupsClaimDevicesRequestDeviceIdentifiersList",
+          "target": "com.azure.sphere#ClaimDeviceGroupDevicesRequestDeviceIdentifiersList",
           "traits": {
             "smithy.api#documentation": "Device identifiers of the devices to be claimed.",
             "smithy.api#required": {}
@@ -2241,7 +2242,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sphere#DeviceGroupsClaimDevicesRequestDeviceIdentifiersList": {
+    "com.azure.sphere#ClaimDeviceGroupDevicesRequestDeviceIdentifiersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4246,13 +4247,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonce": {
+    "com.azure.sphere#GetCertificateProofOfPossessionNonce": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceRequest"
+        "target": "com.azure.sphere#GetCertificateProofOfPossessionNonceRequest"
       },
       "output": {
-        "target": "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceResponse"
+        "target": "com.azure.sphere#GetCertificateProofOfPossessionNonceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4265,7 +4266,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-01"
       }
     },
-    "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceResponse": {
+    "com.azure.sphere#GetCertificateProofOfPossessionNonceResponse": {
       "type": "structure",
       "members": {
         "certificate": {
@@ -4347,7 +4348,7 @@
         "smithy.api#documentation": "Certificate status values."
       }
     },
-    "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonceRequest": {
+    "com.azure.sphere#GetCertificateProofOfPossessionNonceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4394,10 +4395,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sphere#CertificatesRetrieveCertChain": {
+    "com.azure.sphere#GetCertificateCertChain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sphere#CertificatesRetrieveCertChainRequest"
+        "target": "com.azure.sphere#GetCertificateCertChainRequest"
       },
       "output": {
         "target": "com.azure.sphere#CertificateChainResponse"
@@ -4427,7 +4428,7 @@
         "smithy.api#documentation": "The certificate chain response."
       }
     },
-    "com.azure.sphere#CertificatesRetrieveCertChainRequest": {
+    "com.azure.sphere#GetCertificateCertChainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4859,7 +4860,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sphere#CatalogsUpdateResponseTagsMap",
+          "target": "com.azure.sphere#UpdateCatalogResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4902,7 +4903,7 @@
         "smithy.api#documentation": "Catalog properties"
       }
     },
-    "com.azure.sphere#CatalogsUpdateResponseTagsMap": {
+    "com.azure.sphere#UpdateCatalogResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4942,7 +4943,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sphere#CatalogsUpdateRequestTagsMap",
+          "target": "com.azure.sphere#UpdateCatalogRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4952,7 +4953,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sphere#CatalogsUpdateRequestTagsMap": {
+    "com.azure.sphere#UpdateCatalogRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5163,7 +5164,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sphere#CatalogsGetResponseTagsMap",
+          "target": "com.azure.sphere#GetCatalogResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5186,7 +5187,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.sphere#CatalogsGetResponseTagsMap": {
+    "com.azure.sphere#GetCatalogResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5424,7 +5425,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.sphere#OperationsListResponseValueList",
+          "target": "com.azure.sphere#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -5440,7 +5441,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.sphere#OperationsListResponseValueList": {
+    "com.azure.sphere#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.sphere#Operation"
@@ -5564,130 +5565,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.sphere#CatalogsUploadImage"
-        },
-        {
-          "target": "com.azure.sphere#GenerateProductDefaultDeviceGroup"
-        },
-        {
-          "target": "com.azure.sphere#GenerateDeviceCapabilityImage"
-        },
-        {
-          "target": "com.azure.sphere#DeleteDevice"
-        },
-        {
-          "target": "com.azure.sphere#UpdateDevice"
-        },
-        {
-          "target": "com.azure.sphere#DevicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sphere#GetDevice"
-        },
-        {
-          "target": "com.azure.sphere#ListDeviceByDeviceGroup"
-        },
-        {
-          "target": "com.azure.sphere#DeleteDeployment"
-        },
-        {
-          "target": "com.azure.sphere#DeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sphere#GetDeployment"
-        },
-        {
-          "target": "com.azure.sphere#ListDeploymentByDeviceGroup"
-        },
-        {
-          "target": "com.azure.sphere#DeviceGroupsCountDevices"
-        },
-        {
-          "target": "com.azure.sphere#DeviceGroupsClaimDevices"
-        },
-        {
-          "target": "com.azure.sphere#DeleteDeviceGroup"
-        },
-        {
-          "target": "com.azure.sphere#UpdateDeviceGroup"
-        },
-        {
-          "target": "com.azure.sphere#DeviceGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sphere#GetDeviceGroup"
-        },
-        {
-          "target": "com.azure.sphere#ListDeviceGroupByProduct"
-        },
-        {
-          "target": "com.azure.sphere#ProductsCountDevices"
-        },
-        {
-          "target": "com.azure.sphere#DeleteProduct"
-        },
-        {
-          "target": "com.azure.sphere#UpdateProduct"
-        },
-        {
-          "target": "com.azure.sphere#ProductsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sphere#GetProduct"
-        },
-        {
-          "target": "com.azure.sphere#ListProductByCatalog"
-        },
-        {
-          "target": "com.azure.sphere#ListCatalogDevices"
-        },
-        {
-          "target": "com.azure.sphere#ListCatalogDeviceInsights"
-        },
-        {
-          "target": "com.azure.sphere#ListCatalogDeviceGroups"
-        },
-        {
-          "target": "com.azure.sphere#ListCatalogDeployments"
-        },
-        {
-          "target": "com.azure.sphere#DeleteImage"
-        },
-        {
-          "target": "com.azure.sphere#ImagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sphere#GetImage"
-        },
-        {
-          "target": "com.azure.sphere#ListImageByCatalog"
-        },
-        {
           "target": "com.azure.sphere#CatalogsCountDevices"
-        },
-        {
-          "target": "com.azure.sphere#CertificatesRetrieveProofOfPossessionNonce"
-        },
-        {
-          "target": "com.azure.sphere#CertificatesRetrieveCertChain"
-        },
-        {
-          "target": "com.azure.sphere#GetCertificate"
-        },
-        {
-          "target": "com.azure.sphere#ListCertificateByCatalog"
-        },
-        {
-          "target": "com.azure.sphere#DeleteCatalog"
-        },
-        {
-          "target": "com.azure.sphere#UpdateCatalog"
         },
         {
           "target": "com.azure.sphere#CatalogsCreateOrUpdate"
         },
         {
+          "target": "com.azure.sphere#ClaimDeviceGroupDevices"
+        },
+        {
+          "target": "com.azure.sphere#DeleteCatalog"
+        },
+        {
+          "target": "com.azure.sphere#DeleteDeployment"
+        },
+        {
+          "target": "com.azure.sphere#DeleteDevice"
+        },
+        {
+          "target": "com.azure.sphere#DeleteDeviceGroup"
+        },
+        {
+          "target": "com.azure.sphere#DeleteImage"
+        },
+        {
+          "target": "com.azure.sphere#DeleteProduct"
+        },
+        {
+          "target": "com.azure.sphere#DeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsCountDevices"
+        },
+        {
+          "target": "com.azure.sphere#DeviceGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#DevicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#GenerateDeviceCapabilityImage"
+        },
+        {
+          "target": "com.azure.sphere#GenerateProductDefaultDeviceGroups"
+        },
+        {
           "target": "com.azure.sphere#GetCatalog"
+        },
+        {
+          "target": "com.azure.sphere#GetCertificate"
+        },
+        {
+          "target": "com.azure.sphere#GetCertificateCertChain"
+        },
+        {
+          "target": "com.azure.sphere#GetCertificateProofOfPossessionNonce"
+        },
+        {
+          "target": "com.azure.sphere#GetDeployment"
+        },
+        {
+          "target": "com.azure.sphere#GetDevice"
+        },
+        {
+          "target": "com.azure.sphere#GetDeviceGroup"
+        },
+        {
+          "target": "com.azure.sphere#GetImage"
+        },
+        {
+          "target": "com.azure.sphere#GetProduct"
+        },
+        {
+          "target": "com.azure.sphere#ImagesCreateOrUpdate"
         },
         {
           "target": "com.azure.sphere#ListCatalogByResourceGroup"
@@ -5696,7 +5646,58 @@
           "target": "com.azure.sphere#ListCatalogBySubscription"
         },
         {
+          "target": "com.azure.sphere#ListCatalogDeployments"
+        },
+        {
+          "target": "com.azure.sphere#ListCatalogDeviceGroups"
+        },
+        {
+          "target": "com.azure.sphere#ListCatalogDeviceInsights"
+        },
+        {
+          "target": "com.azure.sphere#ListCatalogDevices"
+        },
+        {
+          "target": "com.azure.sphere#ListCertificateByCatalog"
+        },
+        {
+          "target": "com.azure.sphere#ListDeploymentByDeviceGroup"
+        },
+        {
+          "target": "com.azure.sphere#ListDeviceByDeviceGroup"
+        },
+        {
+          "target": "com.azure.sphere#ListDeviceGroupByProduct"
+        },
+        {
+          "target": "com.azure.sphere#ListImageByCatalog"
+        },
+        {
           "target": "com.azure.sphere#ListOperations"
+        },
+        {
+          "target": "com.azure.sphere#ListProductByCatalog"
+        },
+        {
+          "target": "com.azure.sphere#ProductsCountDevices"
+        },
+        {
+          "target": "com.azure.sphere#ProductsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sphere#UpdateCatalog"
+        },
+        {
+          "target": "com.azure.sphere#UpdateDevice"
+        },
+        {
+          "target": "com.azure.sphere#UpdateDeviceGroup"
+        },
+        {
+          "target": "com.azure.sphere#UpdateProduct"
+        },
+        {
+          "target": "com.azure.sphere#UploadCatalogImage"
         }
       ],
       "traits": {

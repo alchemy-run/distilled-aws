@@ -26,7 +26,8 @@
       "validationDefaultMitigationAction": "validation_default_mitigation_action",
       "validationEnabled": "validation_enabled",
       "validationOverrideMitigationAction": "validation_override_mitigation_action"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.schema_validation#SchemasCreateRequestKind": {
@@ -521,43 +522,43 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.schema_validation#SchemasCreate"
+          "target": "com.cloudflare.schema_validation#BulkPatchSettingOperations"
         },
         {
-          "target": "com.cloudflare.schema_validation#SchemasDelete"
+          "target": "com.cloudflare.schema_validation#CreateSchema"
         },
         {
-          "target": "com.cloudflare.schema_validation#SchemasEdit"
+          "target": "com.cloudflare.schema_validation#DeleteSchema"
         },
         {
-          "target": "com.cloudflare.schema_validation#SchemasGet"
+          "target": "com.cloudflare.schema_validation#DeleteSettingOperation"
         },
         {
-          "target": "com.cloudflare.schema_validation#SchemasList"
+          "target": "com.cloudflare.schema_validation#GetSchema"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsEdit"
+          "target": "com.cloudflare.schema_validation#GetSetting"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsGet"
+          "target": "com.cloudflare.schema_validation#GetSettingOperation"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsUpdate"
+          "target": "com.cloudflare.schema_validation#ListSchemas"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEdit"
+          "target": "com.cloudflare.schema_validation#ListSettingOperations"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsDelete"
+          "target": "com.cloudflare.schema_validation#PatchSchema"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsGet"
+          "target": "com.cloudflare.schema_validation#PatchSetting"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsList"
+          "target": "com.cloudflare.schema_validation#PutSetting"
         },
         {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsUpdate"
+          "target": "com.cloudflare.schema_validation#PutSettingOperation"
         }
       ],
       "traits": {

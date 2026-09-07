@@ -1363,14 +1363,14 @@ export const DeleteAutoscalingV2NamespacedHorizontalPodAutoscalerRequest =
     identifier: "DeleteAutoscalingV2NamespacedHorizontalPodAutoscalerRequest",
   }) as any as S.Schema<DeleteAutoscalingV2NamespacedHorizontalPodAutoscalerRequest>;
 
-export interface GetAutoscalingApiGroupRequest {}
-export const GetAutoscalingApiGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAutoscalingAPIGroupRequest {}
+export const GetAutoscalingAPIGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/apis/autoscaling/", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetAutoscalingApiGroupRequest",
-}) as any as S.Schema<GetAutoscalingApiGroupRequest>;
+  identifier: "GetAutoscalingAPIGroupRequest",
+}) as any as S.Schema<GetAutoscalingAPIGroupRequest>;
 
 /** GroupVersion contains the "group/version" and "version" string of a version. It is made a struct to keep extensibility. */
 export interface IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery {
@@ -1455,14 +1455,14 @@ export const IoK8sApimachineryPkgApisMetaV1APIGroup = /*@__PURE__*/ S.suspend(
   identifier: "IoK8sApimachineryPkgApisMetaV1APIGroup",
 }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1APIGroup>;
 
-export interface GetAutoscalingV1ApiResourcesRequest {}
-export const GetAutoscalingV1ApiResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAutoscalingV1APIResourcesRequest {}
+export const GetAutoscalingV1APIResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/apis/autoscaling/v1/", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetAutoscalingV1ApiResourcesRequest",
-}) as any as S.Schema<GetAutoscalingV1ApiResourcesRequest>;
+  identifier: "GetAutoscalingV1APIResourcesRequest",
+}) as any as S.Schema<GetAutoscalingV1APIResourcesRequest>;
 
 /** categories is a list of the grouped resources this resource belongs to (e.g. 'all') */
 export type IoK8sApimachineryPkgApisMetaV1APIResourceCategoriesList =
@@ -1563,14 +1563,14 @@ export const IoK8sApimachineryPkgApisMetaV1APIResourceList =
     identifier: "IoK8sApimachineryPkgApisMetaV1APIResourceList",
   }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1APIResourceList>;
 
-export interface GetAutoscalingV2ApiResourcesRequest {}
-export const GetAutoscalingV2ApiResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAutoscalingV2APIResourcesRequest {}
+export const GetAutoscalingV2APIResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/apis/autoscaling/v2/", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetAutoscalingV2ApiResourcesRequest",
-}) as any as S.Schema<GetAutoscalingV2ApiResourcesRequest>;
+  identifier: "GetAutoscalingV2APIResourcesRequest",
+}) as any as S.Schema<GetAutoscalingV2APIResourcesRequest>;
 
 export interface ListAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest {
   /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
@@ -1849,240 +1849,6 @@ export const ListAutoscalingV2NamespacedHorizontalPodAutoscalerRequest =
   ).annotate({
     identifier: "ListAutoscalingV2NamespacedHorizontalPodAutoscalerRequest",
   }) as any as S.Schema<ListAutoscalingV2NamespacedHorizontalPodAutoscalerRequest>;
-
-export interface ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/autoscaling/v1/watch/horizontalpodautoscalers",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest",
-  }) as any as S.Schema<ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest>;
-
-/** Event represents a single event to a watched resource. */
-export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
-  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
-  object: unknown;
-  type: string;
-}
-export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      object: S.Unknown,
-      type: S.String,
-    }),
-).annotate({
-  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
-}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
-
-export interface ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/autoscaling/v1/watch/namespaces/{namespace}/horizontalpodautoscalers",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest",
-  }) as any as S.Schema<ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest>;
-
-export interface ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/autoscaling/v2/watch/horizontalpodautoscalers",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest",
-  }) as any as S.Schema<ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest>;
-
-export interface ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest",
-  }) as any as S.Schema<ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest>;
 
 export interface PatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
   /** object name and auth scope, such as for teams and projects */
@@ -2534,6 +2300,75 @@ export const ReplaceAutoscalingV2NamespacedHorizontalPodAutoscalerStatusRequest 
       "ReplaceAutoscalingV2NamespacedHorizontalPodAutoscalerStatusRequest",
   }) as any as S.Schema<ReplaceAutoscalingV2NamespacedHorizontalPodAutoscalerStatusRequest>;
 
+export interface WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/autoscaling/v1/watch/horizontalpodautoscalers",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest",
+  }) as any as S.Schema<WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest>;
+
+/** Event represents a single event to a watched resource. */
+export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
+  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
+  object: unknown;
+  type: string;
+}
+export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      object: S.Unknown,
+      type: S.String,
+    }),
+).annotate({
+  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
+}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
+
 export interface WatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
@@ -2592,6 +2427,115 @@ export const WatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest =
     identifier: "WatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest",
   }) as any as S.Schema<WatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest>;
 
+export interface WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/autoscaling/v1/watch/namespaces/{namespace}/horizontalpodautoscalers",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest",
+  }) as any as S.Schema<WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest>;
+
+export interface WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/autoscaling/v2/watch/horizontalpodautoscalers",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest",
+  }) as any as S.Schema<WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest>;
+
 export interface WatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
@@ -2649,6 +2593,62 @@ export const WatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest =
   ).annotate({
     identifier: "WatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest",
   }) as any as S.Schema<WatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest>;
+
+export interface WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/autoscaling/v2/watch/namespaces/{namespace}/horizontalpodautoscalers",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest",
+  }) as any as S.Schema<WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest>;
 
 export type CreateAutoscalingV1NamespacedHorizontalPodAutoscalerError =
   | Conflict
@@ -2754,45 +2754,45 @@ export const deleteAutoscalingV2NamespacedHorizontalPodAutoscaler: API.Operation
   retry: Retry.Retry,
 }));
 
-export type GetAutoscalingApiGroupError = KubernetesOpError;
+export type GetAutoscalingAPIGroupError = KubernetesOpError;
 /** get information of a group */
-export const getAutoscalingApiGroup: API.OperationMethod<
-  GetAutoscalingApiGroupRequest,
+export const getAutoscalingAPIGroup: API.OperationMethod<
+  GetAutoscalingAPIGroupRequest,
   IoK8sApimachineryPkgApisMetaV1APIGroup,
-  GetAutoscalingApiGroupError,
+  GetAutoscalingAPIGroupError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAutoscalingApiGroupRequest,
+  input: GetAutoscalingAPIGroupRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIGroup,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetAutoscalingV1ApiResourcesError = KubernetesOpError;
+export type GetAutoscalingV1APIResourcesError = KubernetesOpError;
 /** get available resources */
-export const getAutoscalingV1ApiResources: API.OperationMethod<
-  GetAutoscalingV1ApiResourcesRequest,
+export const getAutoscalingV1APIResources: API.OperationMethod<
+  GetAutoscalingV1APIResourcesRequest,
   IoK8sApimachineryPkgApisMetaV1APIResourceList,
-  GetAutoscalingV1ApiResourcesError,
+  GetAutoscalingV1APIResourcesError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAutoscalingV1ApiResourcesRequest,
+  input: GetAutoscalingV1APIResourcesRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIResourceList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetAutoscalingV2ApiResourcesError = KubernetesOpError;
+export type GetAutoscalingV2APIResourcesError = KubernetesOpError;
 /** get available resources */
-export const getAutoscalingV2ApiResources: API.OperationMethod<
-  GetAutoscalingV2ApiResourcesRequest,
+export const getAutoscalingV2APIResources: API.OperationMethod<
+  GetAutoscalingV2APIResourcesRequest,
   IoK8sApimachineryPkgApisMetaV1APIResourceList,
-  GetAutoscalingV2ApiResourcesError,
+  GetAutoscalingV2APIResourcesError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAutoscalingV2ApiResourcesRequest,
+  input: GetAutoscalingV2APIResourcesRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIResourceList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -2858,70 +2858,6 @@ export const listAutoscalingV2NamespacedHorizontalPodAutoscaler: API.OperationMe
 > = /*@__PURE__*/ API.make(() => ({
   input: ListAutoscalingV2NamespacedHorizontalPodAutoscalerRequest,
   output: IoK8sApiAutoscalingV2HorizontalPodAutoscalerList,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesError =
-  KubernetesOpError;
-/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespaces: API.OperationMethod<
-  ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerError =
-  KubernetesOpError;
-/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAutoscalingV1NamespacedHorizontalPodAutoscaler: API.OperationMethod<
-  ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesError =
-  KubernetesOpError;
-/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespaces: API.OperationMethod<
-  ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerError =
-  KubernetesOpError;
-/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAutoscalingV2NamespacedHorizontalPodAutoscaler: API.OperationMethod<
-  ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
@@ -3147,6 +3083,22 @@ export const replaceAutoscalingV2NamespacedHorizontalPodAutoscalerStatus: API.Op
   retry: Retry.Retry,
 }));
 
+export type WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesError =
+  KubernetesOpError;
+/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAutoscalingV1HorizontalPodAutoscalerListForAllNamespaces: API.OperationMethod<
+  WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WatchAutoscalingV1NamespacedHorizontalPodAutoscalerError =
   KubernetesOpError;
 /** watch changes to an object of kind HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
@@ -3163,6 +3115,38 @@ export const watchAutoscalingV1NamespacedHorizontalPodAutoscaler: API.OperationM
   retry: Retry.Retry,
 }));
 
+export type WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListError =
+  KubernetesOpError;
+/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAutoscalingV1NamespacedHorizontalPodAutoscalerList: API.OperationMethod<
+  WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesError =
+  KubernetesOpError;
+/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAutoscalingV2HorizontalPodAutoscalerListForAllNamespaces: API.OperationMethod<
+  WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WatchAutoscalingV2NamespacedHorizontalPodAutoscalerError =
   KubernetesOpError;
 /** watch changes to an object of kind HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
@@ -3173,6 +3157,22 @@ export const watchAutoscalingV2NamespacedHorizontalPodAutoscaler: API.OperationM
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListError =
+  KubernetesOpError;
+/** watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAutoscalingV2NamespacedHorizontalPodAutoscalerList: API.OperationMethod<
+  WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,

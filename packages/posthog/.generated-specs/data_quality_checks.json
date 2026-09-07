@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.data_quality_checks#ListDataQualityChecksRequest": {
@@ -190,7 +191,15 @@
         "last_succeeded_at": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When the check last passed, so a failing check can say how long it has been failing. Null means it has not passed within the run retention window.",
+            "smithy.api#documentation": "When the check last passed. Read failing_since for how long a failing check has been failing. Null means it has not passed within the run retention window.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "failing_since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the current streak of failing runs started, so a failing check can say how long it has been failing. Null when the check is not failing.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -572,7 +581,7 @@
         "smithy.api#documentation": "Every check in the project, and the health of every subject that has one.\n\nThe per-subject surfaces answer \"what is wrong with this table\". This answers \"what is wrong\nacross the project\", which they cannot: each is nested under one parent. Read-only -- authoring\nstill happens against the subject that owns the check."
       }
     },
-    "com.posthog.data_quality_checks#ListDataQualityCheckHealthRequest": {
+    "com.posthog.data_quality_checks#ListDataQualityChecksHealthRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -631,18 +640,18 @@
         "smithy.api#documentation": "Per-subject rollup, the same rule the information_schema.data_quality_health table uses."
       }
     },
-    "com.posthog.data_quality_checks#DataQualityChecksHealthListResponseBodyList": {
+    "com.posthog.data_quality_checks#ListDataQualityChecksHealthResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.data_quality_checks#DataQualitySubjectHealth"
       },
       "traits": {}
     },
-    "com.posthog.data_quality_checks#ListDataQualityCheckHealthResponse": {
+    "com.posthog.data_quality_checks#ListDataQualityChecksHealthResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.data_quality_checks#DataQualityChecksHealthListResponseBodyList",
+          "target": "com.posthog.data_quality_checks#ListDataQualityChecksHealthResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -653,13 +662,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.data_quality_checks#ListDataQualityCheckHealth": {
+    "com.posthog.data_quality_checks#ListDataQualityChecksHealth": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_quality_checks#ListDataQualityCheckHealthRequest"
+        "target": "com.posthog.data_quality_checks#ListDataQualityChecksHealthRequest"
       },
       "output": {
-        "target": "com.posthog.data_quality_checks#ListDataQualityCheckHealthResponse"
+        "target": "com.posthog.data_quality_checks#ListDataQualityChecksHealthResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -678,7 +687,7 @@
           "target": "com.posthog.data_quality_checks#ListDataQualityChecks"
         },
         {
-          "target": "com.posthog.data_quality_checks#ListDataQualityCheckHealth"
+          "target": "com.posthog.data_quality_checks#ListDataQualityChecksHealth"
         }
       ],
       "traits": {

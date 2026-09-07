@@ -49899,7 +49899,23 @@
     },
     "aws.patched#PermanentRedirect": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "BucketRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "x-amz-bucket-region"
+          }
+        },
+        "Endpoint": {
+          "target": "smithy.api#String"
+        },
+        "Bucket": {
+          "target": "smithy.api#String"
+        },
+        "Message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {}
     },
     "aws.patched#MalformedXML": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.edge#UpdateTargetExternalValidationStatus": {
@@ -906,7 +907,7 @@
           }
         },
         "errorDetails": {
-          "target": "com.azure.edge#TargetsUpdateExternalValidationStatusRequestErrorDetails",
+          "target": "com.azure.edge#UpdateTargetExternalValidationStatusRequestErrorDetails",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
@@ -950,7 +951,7 @@
         "smithy.api#documentation": "Solution Instance Validation Status"
       }
     },
-    "com.azure.edge#TargetsUpdateExternalValidationStatusRequestErrorDetails": {
+    "com.azure.edge#UpdateTargetExternalValidationStatusRequestErrorDetails": {
       "type": "structure",
       "members": {},
       "traits": {
@@ -1065,10 +1066,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#TargetsUninstallSolution": {
+    "com.azure.edge#UninstallTargetSolution": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#TargetsUninstallSolutionRequest"
+        "target": "com.azure.edge#UninstallTargetSolutionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1084,7 +1085,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#TargetsUninstallSolutionRequest": {
+    "com.azure.edge#UninstallTargetSolutionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3696,13 +3697,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#TargetsReviewSolutionVersion": {
+    "com.azure.edge#ReviewTargetSolutionVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#TargetsReviewSolutionVersionRequest"
+        "target": "com.azure.edge#ReviewTargetSolutionVersionRequest"
       },
       "output": {
-        "target": "com.azure.edge#TargetsReviewSolutionVersionResponse"
+        "target": "com.azure.edge#ReviewTargetSolutionVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3715,7 +3716,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#TargetsReviewSolutionVersionResponse": {
+    "com.azure.edge#ReviewTargetSolutionVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3765,7 +3766,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#TargetsReviewSolutionVersionRequest": {
+    "com.azure.edge#ReviewTargetSolutionVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3806,7 +3807,7 @@
           }
         },
         "solutionDependencies": {
-          "target": "com.azure.edge#TargetsReviewSolutionVersionRequestSolutionDependenciesList",
+          "target": "com.azure.edge#ReviewTargetSolutionVersionRequestSolutionDependenciesList",
           "traits": {
             "smithy.api#documentation": "Solution Dependencies"
           }
@@ -3816,7 +3817,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#TargetsReviewSolutionVersionRequestSolutionDependenciesList": {
+    "com.azure.edge#ReviewTargetSolutionVersionRequestSolutionDependenciesList": {
       "type": "list",
       "member": {
         "target": "com.azure.edge#SolutionDependencyParameter"
@@ -3972,10 +3973,10 @@
         "smithy.api#documentation": "Solution Dependencies"
       }
     },
-    "com.azure.edge#TargetsRemoveRevision": {
+    "com.azure.edge#RemoveTargetRevision": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#TargetsRemoveRevisionRequest"
+        "target": "com.azure.edge#RemoveTargetRevisionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3991,7 +3992,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#TargetsRemoveRevisionRequest": {
+    "com.azure.edge#RemoveTargetRevisionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4037,13 +4038,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#TargetsPublishSolutionVersion": {
+    "com.azure.edge#PublishTargetSolutionVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#TargetsPublishSolutionVersionRequest"
+        "target": "com.azure.edge#PublishTargetSolutionVersionRequest"
       },
       "output": {
-        "target": "com.azure.edge#TargetsPublishSolutionVersionResponse"
+        "target": "com.azure.edge#PublishTargetSolutionVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4056,7 +4057,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#TargetsPublishSolutionVersionResponse": {
+    "com.azure.edge#PublishTargetSolutionVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4106,7 +4107,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#TargetsPublishSolutionVersionRequest": {
+    "com.azure.edge#PublishTargetSolutionVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4145,10 +4146,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#TargetsInstallSolution": {
+    "com.azure.edge#InstallTargetSolution": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#TargetsInstallSolutionRequest"
+        "target": "com.azure.edge#InstallTargetSolutionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4164,7 +4165,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#TargetsInstallSolutionRequest": {
+    "com.azure.edge#InstallTargetSolutionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4308,7 +4309,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#TargetsUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateTargetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4458,7 +4459,7 @@
         "smithy.api#documentation": "target spec"
       }
     },
-    "com.azure.edge#TargetsUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateTargetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4498,7 +4499,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#TargetsUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateTargetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4591,7 +4592,7 @@
         "smithy.api#documentation": "target spec"
       }
     },
-    "com.azure.edge#TargetsUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateTargetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4896,7 +4897,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#TargetsGetResponseTagsMap",
+          "target": "com.azure.edge#GetTargetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4931,7 +4932,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#TargetsGetResponseTagsMap": {
+    "com.azure.edge#GetTargetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5399,10 +5400,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#SolutionTemplateVersionsBulkReviewSolution": {
+    "com.azure.edge#BulkSolutionTemplateVersionReviewSolution": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#SolutionTemplateVersionsBulkReviewSolutionRequest"
+        "target": "com.azure.edge#BulkSolutionTemplateVersionReviewSolutionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5418,7 +5419,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#SolutionTemplateVersionsBulkReviewSolutionRequest": {
+    "com.azure.edge#BulkSolutionTemplateVersionReviewSolutionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5454,7 +5455,7 @@
           }
         },
         "targets": {
-          "target": "com.azure.edge#SolutionTemplateVersionsBulkReviewSolutionRequestTargetsList",
+          "target": "com.azure.edge#BulkSolutionTemplateVersionReviewSolutionRequestTargetsList",
           "traits": {
             "smithy.api#documentation": "Targets to which solution needs to be published",
             "smithy.api#required": {}
@@ -5467,7 +5468,7 @@
           }
         },
         "solutionDependencies": {
-          "target": "com.azure.edge#SolutionTemplateVersionsBulkReviewSolutionRequestSolutionDependenciesList",
+          "target": "com.azure.edge#BulkSolutionTemplateVersionReviewSolutionRequestSolutionDependenciesList",
           "traits": {
             "smithy.api#documentation": "Solution dependencies"
           }
@@ -5483,7 +5484,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#SolutionTemplateVersionsBulkReviewSolutionRequestSolutionDependenciesList": {
+    "com.azure.edge#BulkSolutionTemplateVersionReviewSolutionRequestSolutionDependenciesList": {
       "type": "list",
       "member": {
         "target": "com.azure.edge#SolutionDependencyParameter"
@@ -5492,7 +5493,7 @@
         "smithy.api#documentation": "Solution dependencies"
       }
     },
-    "com.azure.edge#SolutionTemplateVersionsBulkReviewSolutionRequestTargetsList": {
+    "com.azure.edge#BulkSolutionTemplateVersionReviewSolutionRequestTargetsList": {
       "type": "list",
       "member": {
         "target": "com.azure.edge#BulkReviewTargetDetails"
@@ -6464,10 +6465,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#SolutionTemplatesRemoveVersion": {
+    "com.azure.edge#RemoveSolutionTemplateVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#SolutionTemplatesRemoveVersionRequest"
+        "target": "com.azure.edge#RemoveSolutionTemplateVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6483,7 +6484,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#SolutionTemplatesRemoveVersionRequest": {
+    "com.azure.edge#RemoveSolutionTemplateVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6774,7 +6775,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#SolutionTemplatesUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateSolutionTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6864,7 +6865,7 @@
         "smithy.api#documentation": "List of capabilities"
       }
     },
-    "com.azure.edge#SolutionTemplatesUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateSolutionTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6904,7 +6905,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#SolutionTemplatesUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateSolutionTemplateRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6961,7 +6962,7 @@
         "smithy.api#documentation": "List of capabilities"
       }
     },
-    "com.azure.edge#SolutionTemplatesUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateSolutionTemplateRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7214,7 +7215,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#SolutionTemplatesGetResponseTagsMap",
+          "target": "com.azure.edge#GetSolutionTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7243,7 +7244,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#SolutionTemplatesGetResponseTagsMap": {
+    "com.azure.edge#GetSolutionTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7984,10 +7985,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#SchemasRemoveVersion": {
+    "com.azure.edge#RemoveSchemaVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#SchemasRemoveVersionRequest"
+        "target": "com.azure.edge#RemoveSchemaVersionRequest"
       },
       "output": {
         "target": "com.azure.edge#RemoveVersionResponse"
@@ -8018,7 +8019,7 @@
         "smithy.api#documentation": "Remove Version response"
       }
     },
-    "com.azure.edge#SchemasRemoveVersionRequest": {
+    "com.azure.edge#RemoveSchemaVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9412,7 +9413,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#SchemasUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateSchemaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9461,7 +9462,7 @@
         "smithy.api#documentation": "Schema Properties"
       }
     },
-    "com.azure.edge#SchemasUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateSchemaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9507,7 +9508,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#SchemasUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateSchemaRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9517,7 +9518,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#SchemasUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateSchemaRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9741,7 +9742,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#SchemasGetResponseTagsMap",
+          "target": "com.azure.edge#GetSchemaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9770,7 +9771,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#SchemasGetResponseTagsMap": {
+    "com.azure.edge#GetSchemaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10054,7 +10055,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#DiagnosticsUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateDiagnosticResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10103,7 +10104,7 @@
         "smithy.api#documentation": "The properties of a Diagnostic resource."
       }
     },
-    "com.azure.edge#DiagnosticsUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateDiagnosticResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10149,7 +10150,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#DiagnosticsUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateDiagnosticRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10159,7 +10160,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#DiagnosticsUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateDiagnosticRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10395,7 +10396,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#DiagnosticsGetResponseTagsMap",
+          "target": "com.azure.edge#GetDiagnosticResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10430,7 +10431,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#DiagnosticsGetResponseTagsMap": {
+    "com.azure.edge#GetDiagnosticResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13549,7 +13550,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ContextsUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateContextResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13674,7 +13675,7 @@
         "smithy.api#documentation": "Capability, to match in Solution Templates & Targets"
       }
     },
-    "com.azure.edge#ContextsUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateContextResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13714,7 +13715,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ContextsUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateContextRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13768,7 +13769,7 @@
         "smithy.api#documentation": "List of Capabilities"
       }
     },
-    "com.azure.edge#ContextsUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateContextRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14012,7 +14013,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ContextsGetResponseTagsMap",
+          "target": "com.azure.edge#GetContextResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14035,7 +14036,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#ContextsGetResponseTagsMap": {
+    "com.azure.edge#GetContextResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15119,10 +15120,10 @@
         "smithy.api#documentation": "Hierarchy Ids"
       }
     },
-    "com.azure.edge#ConfigTemplatesRemoveVersion": {
+    "com.azure.edge#RemoveConfigTemplateVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ConfigTemplatesRemoveVersionRequest"
+        "target": "com.azure.edge#RemoveConfigTemplateVersionRequest"
       },
       "output": {
         "target": "com.azure.edge#RemoveVersionResponse"
@@ -15138,7 +15139,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#ConfigTemplatesRemoveVersionRequest": {
+    "com.azure.edge#RemoveConfigTemplateVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15384,10 +15385,10 @@
         "smithy.api#documentation": "Config Template Version Resource"
       }
     },
-    "com.azure.edge#DeleteConfigTemplateMetadata": {
+    "com.azure.edge#DeleteConfigTemplateMetadatas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#DeleteConfigTemplateMetadataRequest"
+        "target": "com.azure.edge#DeleteConfigTemplateMetadatasRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15403,7 +15404,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#DeleteConfigTemplateMetadataRequest": {
+    "com.azure.edge#DeleteConfigTemplateMetadatasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15443,13 +15444,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#UpdateConfigTemplateMetadata": {
+    "com.azure.edge#UpdateConfigTemplateMetadatas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#UpdateConfigTemplateMetadataRequest"
+        "target": "com.azure.edge#UpdateConfigTemplateMetadatasRequest"
       },
       "output": {
-        "target": "com.azure.edge#UpdateConfigTemplateMetadataResponse"
+        "target": "com.azure.edge#UpdateConfigTemplateMetadatasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15462,7 +15463,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#UpdateConfigTemplateMetadataResponse": {
+    "com.azure.edge#UpdateConfigTemplateMetadatasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15591,7 +15592,7 @@
         "smithy.api#documentation": "Hierarchy ARM Ids"
       }
     },
-    "com.azure.edge#UpdateConfigTemplateMetadataRequest": {
+    "com.azure.edge#UpdateConfigTemplateMetadatasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15834,13 +15835,13 @@
         "smithy.api#documentation": "Hierarchy ARM Ids"
       }
     },
-    "com.azure.edge#GetConfigTemplateMetadata": {
+    "com.azure.edge#GetConfigTemplateMetadatas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#GetConfigTemplateMetadataRequest"
+        "target": "com.azure.edge#GetConfigTemplateMetadatasRequest"
       },
       "output": {
-        "target": "com.azure.edge#GetConfigTemplateMetadataResponse"
+        "target": "com.azure.edge#GetConfigTemplateMetadatasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15853,7 +15854,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#GetConfigTemplateMetadataResponse": {
+    "com.azure.edge#GetConfigTemplateMetadatasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15897,7 +15898,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#GetConfigTemplateMetadataRequest": {
+    "com.azure.edge#GetConfigTemplateMetadatasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15937,10 +15938,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListConfigTemplateMetadataByConfigTemplate": {
+    "com.azure.edge#ListConfigTemplateMetadatasByConfigTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListConfigTemplateMetadataByConfigTemplateRequest"
+        "target": "com.azure.edge#ListConfigTemplateMetadatasByConfigTemplateRequest"
       },
       "output": {
         "target": "com.azure.edge#ConfigTemplateMetadataListResult"
@@ -16030,7 +16031,7 @@
         "smithy.api#documentation": "ConfigTemplateMetadata Resource"
       }
     },
-    "com.azure.edge#ListConfigTemplateMetadataByConfigTemplateRequest": {
+    "com.azure.edge#ListConfigTemplateMetadatasByConfigTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16160,7 +16161,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ConfigTemplatesUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateConfigTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16222,7 +16223,7 @@
         "smithy.api#documentation": "Config Template Properties"
       }
     },
-    "com.azure.edge#ConfigTemplatesUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateConfigTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16262,7 +16263,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ConfigTemplatesUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateConfigTemplateRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16292,7 +16293,7 @@
         "smithy.api#documentation": "The updatable properties of the ConfigTemplate."
       }
     },
-    "com.azure.edge#ConfigTemplatesUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateConfigTemplateRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16517,7 +16518,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ConfigTemplatesGetResponseTagsMap",
+          "target": "com.azure.edge#GetConfigTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16546,7 +16547,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#ConfigTemplatesGetResponseTagsMap": {
+    "com.azure.edge#GetConfigTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17200,13 +17201,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#GetSolutionMetadata": {
+    "com.azure.edge#GetSolutionMetadatas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#GetSolutionMetadataRequest"
+        "target": "com.azure.edge#GetSolutionMetadatasRequest"
       },
       "output": {
-        "target": "com.azure.edge#GetSolutionMetadataResponse"
+        "target": "com.azure.edge#GetSolutionMetadatasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17219,7 +17220,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#GetSolutionMetadataResponse": {
+    "com.azure.edge#GetSolutionMetadatasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17289,7 +17290,7 @@
         "smithy.api#documentation": "Solution Metadata Properties"
       }
     },
-    "com.azure.edge#GetSolutionMetadataRequest": {
+    "com.azure.edge#GetSolutionMetadatasRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -17313,10 +17314,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListSolutionMetadataByParent": {
+    "com.azure.edge#ListSolutionMetadatasByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListSolutionMetadataByParentRequest"
+        "target": "com.azure.edge#ListSolutionMetadatasByParentRequest"
       },
       "output": {
         "target": "com.azure.edge#SolutionMetadataListResult"
@@ -17400,7 +17401,7 @@
         "smithy.api#documentation": "Solution Metadata Resource attached to a Target or Site"
       }
     },
-    "com.azure.edge#ListSolutionMetadataByParentRequest": {
+    "com.azure.edge#ListSolutionMetadatasByParentRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -18685,13 +18686,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#GetHierarchyConfigurationMetadata": {
+    "com.azure.edge#GetHierarchyConfigurationMetadatas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#GetHierarchyConfigurationMetadataRequest"
+        "target": "com.azure.edge#GetHierarchyConfigurationMetadatasRequest"
       },
       "output": {
-        "target": "com.azure.edge#GetHierarchyConfigurationMetadataResponse"
+        "target": "com.azure.edge#GetHierarchyConfigurationMetadatasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18704,7 +18705,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.edge#GetHierarchyConfigurationMetadataResponse": {
+    "com.azure.edge#GetHierarchyConfigurationMetadatasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18762,7 +18763,7 @@
         "smithy.api#documentation": "Hierarchy Configuration Metadata Properties"
       }
     },
-    "com.azure.edge#GetHierarchyConfigurationMetadataRequest": {
+    "com.azure.edge#GetHierarchyConfigurationMetadatasRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -18786,10 +18787,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListHierarchyConfigurationMetadataByParent": {
+    "com.azure.edge#ListHierarchyConfigurationMetadatasByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListHierarchyConfigurationMetadataByParentRequest"
+        "target": "com.azure.edge#ListHierarchyConfigurationMetadatasByParentRequest"
       },
       "output": {
         "target": "com.azure.edge#HierarchyConfigurationMetadataListResult"
@@ -18873,7 +18874,7 @@
         "smithy.api#documentation": "Hierarchy Configuration Metadata Resource attached to a Target or Site"
       }
     },
-    "com.azure.edge#ListHierarchyConfigurationMetadataByParentRequest": {
+    "com.azure.edge#ListHierarchyConfigurationMetadatasByParentRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -20131,7 +20132,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ConfigurationsUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20194,7 +20195,7 @@
         "smithy.api#documentation": "The provisioning state of a resource type."
       }
     },
-    "com.azure.edge#ConfigurationsUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20234,7 +20235,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ConfigurationsUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateConfigurationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20257,7 +20258,7 @@
         "smithy.api#documentation": "Configuration Properties"
       }
     },
-    "com.azure.edge#ConfigurationsUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateConfigurationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20461,7 +20462,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#ConfigurationsGetResponseTagsMap",
+          "target": "com.azure.edge#GetConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20484,7 +20485,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#ConfigurationsGetResponseTagsMap": {
+    "com.azure.edge#GetConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21462,10 +21463,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListImageDownloadUri": {
+    "com.azure.edge#ImagesListDownloadUri": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListImageDownloadUriRequest"
+        "target": "com.azure.edge#ImagesListDownloadUriRequest"
       },
       "output": {
         "target": "com.azure.edge#ImageDownloadResult"
@@ -21655,7 +21656,7 @@
         "smithy.api#documentation": "Release Type"
       }
     },
-    "com.azure.edge#ListImageDownloadUriRequest": {
+    "com.azure.edge#ImagesListDownloadUriRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21695,10 +21696,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListArtifactDownloadUri": {
+    "com.azure.edge#ArtifactsListDownloadUri": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListArtifactDownloadUriRequest"
+        "target": "com.azure.edge#ArtifactsListDownloadUriRequest"
       },
       "output": {
         "target": "com.azure.edge#ArtifactDownloadResult"
@@ -21769,7 +21770,7 @@
         "smithy.api#documentation": "The artifact download properties"
       }
     },
-    "com.azure.edge#ListArtifactDownloadUriRequest": {
+    "com.azure.edge#ArtifactsListDownloadUriRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22397,10 +22398,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#DeleteHardwareSetting": {
+    "com.azure.edge#DeleteHardwareSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#DeleteHardwareSettingRequest"
+        "target": "com.azure.edge#DeleteHardwareSettingsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -22416,7 +22417,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-15"
       }
     },
-    "com.azure.edge#DeleteHardwareSettingRequest": {
+    "com.azure.edge#DeleteHardwareSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22707,13 +22708,13 @@
         "smithy.api#documentation": "The hardware setting properties"
       }
     },
-    "com.azure.edge#GetHardwareSetting": {
+    "com.azure.edge#GetHardwareSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#GetHardwareSettingRequest"
+        "target": "com.azure.edge#GetHardwareSettingsRequest"
       },
       "output": {
-        "target": "com.azure.edge#GetHardwareSettingResponse"
+        "target": "com.azure.edge#GetHardwareSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22726,7 +22727,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-15"
       }
     },
-    "com.azure.edge#GetHardwareSettingResponse": {
+    "com.azure.edge#GetHardwareSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22764,7 +22765,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#GetHardwareSettingRequest": {
+    "com.azure.edge#GetHardwareSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22804,10 +22805,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListHardwareSettingByParent": {
+    "com.azure.edge#ListHardwareSettingsByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListHardwareSettingByParentRequest"
+        "target": "com.azure.edge#ListHardwareSettingsByParentRequest"
       },
       "output": {
         "target": "com.azure.edge#HardwareSettingListResult"
@@ -22891,7 +22892,7 @@
         "smithy.api#documentation": "Hardware settings resource."
       }
     },
-    "com.azure.edge#ListHardwareSettingByParentRequest": {
+    "com.azure.edge#ListHardwareSettingsByParentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23021,7 +23022,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#DisconnectedOperationsUpdateResponseTagsMap",
+          "target": "com.azure.edge#UpdateDisconnectedOperationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -23149,7 +23150,7 @@
         "smithy.api#documentation": "Connection status"
       }
     },
-    "com.azure.edge#DisconnectedOperationsUpdateResponseTagsMap": {
+    "com.azure.edge#UpdateDisconnectedOperationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23189,7 +23190,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#DisconnectedOperationsUpdateRequestTagsMap",
+          "target": "com.azure.edge#UpdateDisconnectedOperationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -23289,7 +23290,7 @@
         "smithy.api#documentation": "The billing period"
       }
     },
-    "com.azure.edge#DisconnectedOperationsUpdateRequestTagsMap": {
+    "com.azure.edge#UpdateDisconnectedOperationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23582,7 +23583,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edge#DisconnectedOperationsGetResponseTagsMap",
+          "target": "com.azure.edge#GetDisconnectedOperationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -23605,7 +23606,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#DisconnectedOperationsGetResponseTagsMap": {
+    "com.azure.edge#GetDisconnectedOperationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23843,7 +23844,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.edge#OperationsListResponseValueList",
+          "target": "com.azure.edge#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -23859,7 +23860,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#OperationsListResponseValueList": {
+    "com.azure.edge#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.edge#Operation"
@@ -24601,10 +24602,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#DeleteSiteBySubscription": {
+    "com.azure.edge#DeleteSitesBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#DeleteSiteBySubscriptionRequest"
+        "target": "com.azure.edge#DeleteSitesBySubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -24620,7 +24621,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#DeleteSiteBySubscriptionRequest": {
+    "com.azure.edge#DeleteSitesBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24644,13 +24645,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#UpdateSiteBySubscription": {
+    "com.azure.edge#UpdateSitesBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#UpdateSiteBySubscriptionRequest"
+        "target": "com.azure.edge#UpdateSitesBySubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.edge#UpdateSiteBySubscriptionResponse"
+        "target": "com.azure.edge#UpdateSitesBySubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -24663,7 +24664,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#UpdateSiteBySubscriptionResponse": {
+    "com.azure.edge#UpdateSitesBySubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -24701,7 +24702,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#UpdateSiteBySubscriptionRequest": {
+    "com.azure.edge#UpdateSitesBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24818,13 +24819,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#GetSiteBySubscription": {
+    "com.azure.edge#GetSitesBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#GetSiteBySubscriptionRequest"
+        "target": "com.azure.edge#GetSitesBySubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.edge#GetSiteBySubscriptionResponse"
+        "target": "com.azure.edge#GetSitesBySubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -24837,7 +24838,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#GetSiteBySubscriptionResponse": {
+    "com.azure.edge#GetSitesBySubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -24875,7 +24876,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#GetSiteBySubscriptionRequest": {
+    "com.azure.edge#GetSitesBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24899,10 +24900,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListSiteBySubscription": {
+    "com.azure.edge#ListSitesBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListSiteBySubscriptionRequest"
+        "target": "com.azure.edge#ListSitesBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.edge#SiteListResult"
@@ -24918,7 +24919,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#ListSiteBySubscriptionRequest": {
+    "com.azure.edge#ListSitesBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24934,10 +24935,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#DeleteSiteByServiceGroup": {
+    "com.azure.edge#DeleteSitesByServiceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#DeleteSiteByServiceGroupRequest"
+        "target": "com.azure.edge#DeleteSitesByServiceGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -24953,7 +24954,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#DeleteSiteByServiceGroupRequest": {
+    "com.azure.edge#DeleteSitesByServiceGroupRequest": {
       "type": "structure",
       "members": {
         "servicegroupName": {
@@ -24977,13 +24978,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#UpdateSiteByServiceGroup": {
+    "com.azure.edge#UpdateSitesByServiceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#UpdateSiteByServiceGroupRequest"
+        "target": "com.azure.edge#UpdateSitesByServiceGroupRequest"
       },
       "output": {
-        "target": "com.azure.edge#UpdateSiteByServiceGroupResponse"
+        "target": "com.azure.edge#UpdateSitesByServiceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -24996,7 +24997,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#UpdateSiteByServiceGroupResponse": {
+    "com.azure.edge#UpdateSitesByServiceGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -25034,7 +25035,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#UpdateSiteByServiceGroupRequest": {
+    "com.azure.edge#UpdateSitesByServiceGroupRequest": {
       "type": "structure",
       "members": {
         "servicegroupName": {
@@ -25151,13 +25152,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#GetSiteByServiceGroup": {
+    "com.azure.edge#GetSitesByServiceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#GetSiteByServiceGroupRequest"
+        "target": "com.azure.edge#GetSitesByServiceGroupRequest"
       },
       "output": {
-        "target": "com.azure.edge#GetSiteByServiceGroupResponse"
+        "target": "com.azure.edge#GetSitesByServiceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -25170,7 +25171,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#GetSiteByServiceGroupResponse": {
+    "com.azure.edge#GetSitesByServiceGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -25208,7 +25209,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edge#GetSiteByServiceGroupRequest": {
+    "com.azure.edge#GetSitesByServiceGroupRequest": {
       "type": "structure",
       "members": {
         "servicegroupName": {
@@ -25232,10 +25233,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edge#ListSiteByServiceGroupByServiceGroup": {
+    "com.azure.edge#ListSitesByServiceGroupByServiceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edge#ListSiteByServiceGroupByServiceGroupRequest"
+        "target": "com.azure.edge#ListSitesByServiceGroupByServiceGroupRequest"
       },
       "output": {
         "target": "com.azure.edge#SiteListResult"
@@ -25251,7 +25252,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-01"
       }
     },
-    "com.azure.edge#ListSiteByServiceGroupByServiceGroupRequest": {
+    "com.azure.edge#ListSitesByServiceGroupByServiceGroupRequest": {
       "type": "structure",
       "members": {
         "servicegroupName": {
@@ -25272,469 +25273,298 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.edge#UpdateTargetExternalValidationStatus"
+          "target": "com.azure.edge#ArtifactsListDownloadUri"
         },
         {
-          "target": "com.azure.edge#TargetsUnstageSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#TargetsUninstallSolution"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#SolutionVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionVersionBySolution"
-        },
-        {
-          "target": "com.azure.edge#GetInstanceHistory"
-        },
-        {
-          "target": "com.azure.edge#ListInstanceHistoryByInstance"
-        },
-        {
-          "target": "com.azure.edge#DeleteInstance"
-        },
-        {
-          "target": "com.azure.edge#UpdateInstance"
-        },
-        {
-          "target": "com.azure.edge#InstancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetInstance"
-        },
-        {
-          "target": "com.azure.edge#ListInstanceBySolution"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolution"
-        },
-        {
-          "target": "com.azure.edge#UpdateSolution"
-        },
-        {
-          "target": "com.azure.edge#SolutionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSolution"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionByTarget"
-        },
-        {
-          "target": "com.azure.edge#TargetsReviewSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#TargetsResolveConfiguration"
-        },
-        {
-          "target": "com.azure.edge#TargetsRemoveRevision"
-        },
-        {
-          "target": "com.azure.edge#TargetsPublishSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#TargetsInstallSolution"
-        },
-        {
-          "target": "com.azure.edge#DeleteTarget"
-        },
-        {
-          "target": "com.azure.edge#UpdateTarget"
-        },
-        {
-          "target": "com.azure.edge#TargetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetTarget"
-        },
-        {
-          "target": "com.azure.edge#ListTargetByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionSchema"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionSchemaBySolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplateVersionsBulkReviewSolution"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplateVersionsBulkPublishSolution"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplateVersionsBulkDeploySolution"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplateVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionTemplateVersionBySolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplatesRemoveVersion"
-        },
-        {
-          "target": "com.azure.edge#CreateSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#UpdateSolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionTemplateByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#DeleteSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#SchemaVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaVersionBySchema"
-        },
-        {
-          "target": "com.azure.edge#SchemasRemoveVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#DynamicSchemaVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicSchemaVersionByDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#DynamicSchemasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicSchemaBySchema"
-        },
-        {
-          "target": "com.azure.edge#CreateSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteSchema"
-        },
-        {
-          "target": "com.azure.edge#UpdateSchema"
-        },
-        {
-          "target": "com.azure.edge#SchemasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSchema"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#DeleteDiagnostic"
-        },
-        {
-          "target": "com.azure.edge#UpdateDiagnostic"
-        },
-        {
-          "target": "com.azure.edge#DiagnosticsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetDiagnostic"
-        },
-        {
-          "target": "com.azure.edge#ListDiagnosticByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#DeleteExecution"
-        },
-        {
-          "target": "com.azure.edge#UpdateExecution"
-        },
-        {
-          "target": "com.azure.edge#ExecutionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetExecution"
-        },
-        {
-          "target": "com.azure.edge#ListExecutionByWorkflowVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteWorkflowVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateWorkflowVersion"
-        },
-        {
-          "target": "com.azure.edge#WorkflowVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetWorkflowVersion"
-        },
-        {
-          "target": "com.azure.edge#ListWorkflowVersionByWorkflow"
-        },
-        {
-          "target": "com.azure.edge#DeleteWorkflow"
-        },
-        {
-          "target": "com.azure.edge#UpdateWorkflow"
-        },
-        {
-          "target": "com.azure.edge#WorkflowsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetWorkflow"
-        },
-        {
-          "target": "com.azure.edge#ListWorkflowByContext"
-        },
-        {
-          "target": "com.azure.edge#DeleteSiteReference"
-        },
-        {
-          "target": "com.azure.edge#UpdateSiteReference"
-        },
-        {
-          "target": "com.azure.edge#SiteReferencesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSiteReference"
-        },
-        {
-          "target": "com.azure.edge#ListSiteReferenceByContext"
-        },
-        {
-          "target": "com.azure.edge#DeleteContext"
-        },
-        {
-          "target": "com.azure.edge#UpdateContext"
-        },
-        {
-          "target": "com.azure.edge#ContextsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetContext"
-        },
-        {
-          "target": "com.azure.edge#ListContextByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#GetConfigTemplateSchema"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateSchemaByConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplateVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateVersionByConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplatesUnLinkFromHierarchies"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplatesRemoveVersion"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplatesLinkToHierarchies"
-        },
-        {
-          "target": "com.azure.edge#CreateConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfigTemplateMetadata"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfigTemplateMetadata"
+          "target": "com.azure.edge#BulkSolutionTemplateVersionReviewSolution"
         },
         {
           "target": "com.azure.edge#ConfigTemplateMetadatasCreateOrUpdate"
         },
         {
-          "target": "com.azure.edge#GetConfigTemplateMetadata"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateMetadataByConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfigTemplate"
-        },
-        {
           "target": "com.azure.edge#ConfigTemplatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.edge#GetConfigTemplate"
+          "target": "com.azure.edge#ConfigTemplatesLinkToHierarchies"
         },
         {
-          "target": "com.azure.edge#ListConfigTemplateByResourceGroup"
+          "target": "com.azure.edge#ConfigTemplatesUnLinkFromHierarchies"
         },
         {
-          "target": "com.azure.edge#ListTargetBySubscription"
+          "target": "com.azure.edge#ConfigTemplateVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.edge#ListSolutionTemplateBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListDiagnosticBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListContextBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateBySubscription"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionMetadataVersion"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionMetadataVersionByParent"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionMetadata"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionMetadataByParent"
-        },
-        {
-          "target": "com.azure.edge#DeleteSchemaReference"
-        },
-        {
-          "target": "com.azure.edge#UpdateSchemaReference"
-        },
-        {
-          "target": "com.azure.edge#SchemaReferencesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetSchemaReference"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaReferenceByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#GetJob"
-        },
-        {
-          "target": "com.azure.edge#ListJobByTarget"
-        },
-        {
-          "target": "com.azure.edge#GetHierarchyConfigurationMetadataVersion"
-        },
-        {
-          "target": "com.azure.edge#ListHierarchyConfigurationMetadataVersionByParent"
-        },
-        {
-          "target": "com.azure.edge#GetHierarchyConfigurationMetadata"
-        },
-        {
-          "target": "com.azure.edge#ListHierarchyConfigurationMetadataByParent"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicConfigurationVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicConfigurationVersion"
-        },
-        {
-          "target": "com.azure.edge#DynamicConfigurationVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicConfigurationVersion"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicConfigurationVersionByDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#DynamicConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicConfigurationByConfiguration"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfiguration"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfiguration"
+          "target": "com.azure.edge#ConfigurationReferencesCreateOrUpdate"
         },
         {
           "target": "com.azure.edge#ConfigurationsCreateOrUpdate"
         },
         {
+          "target": "com.azure.edge#ContextsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#CreateConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#CreateSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#CreateSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigTemplateMetadatas"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfiguration"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigurationReference"
+        },
+        {
+          "target": "com.azure.edge#DeleteContext"
+        },
+        {
+          "target": "com.azure.edge#DeleteDiagnostic"
+        },
+        {
+          "target": "com.azure.edge#DeleteDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicConfigurationVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteExecution"
+        },
+        {
+          "target": "com.azure.edge#DeleteHardwareSettings"
+        },
+        {
+          "target": "com.azure.edge#DeleteInstance"
+        },
+        {
+          "target": "com.azure.edge#DeleteSchema"
+        },
+        {
+          "target": "com.azure.edge#DeleteSchemaReference"
+        },
+        {
+          "target": "com.azure.edge#DeleteSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteSite"
+        },
+        {
+          "target": "com.azure.edge#DeleteSiteReference"
+        },
+        {
+          "target": "com.azure.edge#DeleteSitesByServiceGroup"
+        },
+        {
+          "target": "com.azure.edge#DeleteSitesBySubscription"
+        },
+        {
+          "target": "com.azure.edge#DeleteSolution"
+        },
+        {
+          "target": "com.azure.edge#DeleteSolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#DeleteSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteTarget"
+        },
+        {
+          "target": "com.azure.edge#DeleteWorkflow"
+        },
+        {
+          "target": "com.azure.edge#DeleteWorkflowVersion"
+        },
+        {
+          "target": "com.azure.edge#DiagnosticsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#DisconnectedOperationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#DynamicConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#DynamicConfigurationVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#DynamicSchemasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#DynamicSchemaVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#ExecutionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetArtifact"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplateMetadatas"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplateSchema"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplateVersion"
+        },
+        {
           "target": "com.azure.edge#GetConfiguration"
+        },
+        {
+          "target": "com.azure.edge#GetConfigurationReference"
+        },
+        {
+          "target": "com.azure.edge#GetContext"
+        },
+        {
+          "target": "com.azure.edge#GetDiagnostic"
+        },
+        {
+          "target": "com.azure.edge#GetDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicConfigurationVersion"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#GetExecution"
+        },
+        {
+          "target": "com.azure.edge#GetHardwareSettings"
+        },
+        {
+          "target": "com.azure.edge#GetHierarchyConfigurationMetadatas"
+        },
+        {
+          "target": "com.azure.edge#GetHierarchyConfigurationMetadataVersion"
+        },
+        {
+          "target": "com.azure.edge#GetImage"
+        },
+        {
+          "target": "com.azure.edge#GetInstance"
+        },
+        {
+          "target": "com.azure.edge#GetInstanceHistory"
+        },
+        {
+          "target": "com.azure.edge#GetJob"
+        },
+        {
+          "target": "com.azure.edge#GetSchema"
+        },
+        {
+          "target": "com.azure.edge#GetSchemaReference"
+        },
+        {
+          "target": "com.azure.edge#GetSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#GetSite"
+        },
+        {
+          "target": "com.azure.edge#GetSiteReference"
+        },
+        {
+          "target": "com.azure.edge#GetSitesByServiceGroup"
+        },
+        {
+          "target": "com.azure.edge#GetSitesBySubscription"
+        },
+        {
+          "target": "com.azure.edge#GetSolution"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionMetadatas"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionMetadataVersion"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionSchema"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#GetTarget"
+        },
+        {
+          "target": "com.azure.edge#GetWorkflow"
+        },
+        {
+          "target": "com.azure.edge#GetWorkflowVersion"
+        },
+        {
+          "target": "com.azure.edge#HardwareSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#ImagesListDownloadUri"
+        },
+        {
+          "target": "com.azure.edge#InstallTargetSolution"
+        },
+        {
+          "target": "com.azure.edge#InstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#ListArtifactByParent"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateMetadatasByConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateSchemaByConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateVersionByConfigTemplate"
         },
         {
           "target": "com.azure.edge#ListConfigurationByResourceGroup"
@@ -25743,64 +25573,19 @@
           "target": "com.azure.edge#ListConfigurationBySubscription"
         },
         {
-          "target": "com.azure.edge#DeleteConfigurationReference"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfigurationReference"
-        },
-        {
-          "target": "com.azure.edge#ConfigurationReferencesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetConfigurationReference"
-        },
-        {
           "target": "com.azure.edge#ListConfigurationReferences"
         },
         {
-          "target": "com.azure.edge#ListDisconnectedOperationDeploymentManifest"
+          "target": "com.azure.edge#ListContextByResourceGroup"
         },
         {
-          "target": "com.azure.edge#ListImageDownloadUri"
+          "target": "com.azure.edge#ListContextBySubscription"
         },
         {
-          "target": "com.azure.edge#ListArtifactDownloadUri"
+          "target": "com.azure.edge#ListDiagnosticByResourceGroup"
         },
         {
-          "target": "com.azure.edge#GetArtifact"
-        },
-        {
-          "target": "com.azure.edge#ListArtifactByParent"
-        },
-        {
-          "target": "com.azure.edge#GetImage"
-        },
-        {
-          "target": "com.azure.edge#ListImageByDisconnectedOperation"
-        },
-        {
-          "target": "com.azure.edge#DeleteHardwareSetting"
-        },
-        {
-          "target": "com.azure.edge#HardwareSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetHardwareSetting"
-        },
-        {
-          "target": "com.azure.edge#ListHardwareSettingByParent"
-        },
-        {
-          "target": "com.azure.edge#DeleteDisconnectedOperation"
-        },
-        {
-          "target": "com.azure.edge#UpdateDisconnectedOperation"
-        },
-        {
-          "target": "com.azure.edge#DisconnectedOperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetDisconnectedOperation"
+          "target": "com.azure.edge#ListDiagnosticBySubscription"
         },
         {
           "target": "com.azure.edge#ListDisconnectedOperationByResourceGroup"
@@ -25809,52 +25594,268 @@
           "target": "com.azure.edge#ListDisconnectedOperationBySubscription"
         },
         {
+          "target": "com.azure.edge#ListDisconnectedOperationDeploymentManifest"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicConfigurationByConfiguration"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicConfigurationVersionByDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicSchemaBySchema"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicSchemaVersionByDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#ListExecutionByWorkflowVersion"
+        },
+        {
+          "target": "com.azure.edge#ListHardwareSettingsByParent"
+        },
+        {
+          "target": "com.azure.edge#ListHierarchyConfigurationMetadatasByParent"
+        },
+        {
+          "target": "com.azure.edge#ListHierarchyConfigurationMetadataVersionByParent"
+        },
+        {
+          "target": "com.azure.edge#ListImageByDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#ListInstanceBySolution"
+        },
+        {
+          "target": "com.azure.edge#ListInstanceHistoryByInstance"
+        },
+        {
+          "target": "com.azure.edge#ListJobByTarget"
+        },
+        {
           "target": "com.azure.edge#ListOperations"
         },
         {
-          "target": "com.azure.edge#DeleteSite"
+          "target": "com.azure.edge#ListSchemaByResourceGroup"
         },
         {
-          "target": "com.azure.edge#UpdateSite"
+          "target": "com.azure.edge#ListSchemaBySubscription"
         },
         {
-          "target": "com.azure.edge#SitesCreateOrUpdate"
+          "target": "com.azure.edge#ListSchemaReferenceByResourceGroup"
         },
         {
-          "target": "com.azure.edge#GetSite"
+          "target": "com.azure.edge#ListSchemaVersionBySchema"
         },
         {
           "target": "com.azure.edge#ListSiteByResourceGroup"
         },
         {
-          "target": "com.azure.edge#DeleteSiteBySubscription"
+          "target": "com.azure.edge#ListSiteReferenceByContext"
         },
         {
-          "target": "com.azure.edge#UpdateSiteBySubscription"
+          "target": "com.azure.edge#ListSitesByServiceGroupByServiceGroup"
         },
         {
-          "target": "com.azure.edge#SitesBySubscriptionCreateOrUpdate"
+          "target": "com.azure.edge#ListSitesBySubscription"
         },
         {
-          "target": "com.azure.edge#GetSiteBySubscription"
+          "target": "com.azure.edge#ListSolutionByTarget"
         },
         {
-          "target": "com.azure.edge#ListSiteBySubscription"
+          "target": "com.azure.edge#ListSolutionMetadatasByParent"
         },
         {
-          "target": "com.azure.edge#DeleteSiteByServiceGroup"
+          "target": "com.azure.edge#ListSolutionMetadataVersionByParent"
         },
         {
-          "target": "com.azure.edge#UpdateSiteByServiceGroup"
+          "target": "com.azure.edge#ListSolutionSchemaBySolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionTemplateByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionTemplateBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionTemplateVersionBySolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionVersionBySolution"
+        },
+        {
+          "target": "com.azure.edge#ListTargetByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#ListTargetBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListWorkflowByContext"
+        },
+        {
+          "target": "com.azure.edge#ListWorkflowVersionByWorkflow"
+        },
+        {
+          "target": "com.azure.edge#PublishTargetSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#RemoveConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#RemoveSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#RemoveSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#RemoveTargetRevision"
+        },
+        {
+          "target": "com.azure.edge#ReviewTargetSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#SchemaReferencesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#SchemasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#SchemaVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#SiteReferencesCreateOrUpdate"
         },
         {
           "target": "com.azure.edge#SitesByServiceGroupCreateOrUpdate"
         },
         {
-          "target": "com.azure.edge#GetSiteByServiceGroup"
+          "target": "com.azure.edge#SitesBySubscriptionCreateOrUpdate"
         },
         {
-          "target": "com.azure.edge#ListSiteByServiceGroupByServiceGroup"
+          "target": "com.azure.edge#SitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#SolutionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplateVersionsBulkDeploySolution"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplateVersionsBulkPublishSolution"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplateVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#SolutionVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#TargetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#TargetsResolveConfiguration"
+        },
+        {
+          "target": "com.azure.edge#TargetsUnstageSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#UninstallTargetSolution"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigTemplateMetadatas"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfiguration"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigurationReference"
+        },
+        {
+          "target": "com.azure.edge#UpdateContext"
+        },
+        {
+          "target": "com.azure.edge#UpdateDiagnostic"
+        },
+        {
+          "target": "com.azure.edge#UpdateDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicConfigurationVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateExecution"
+        },
+        {
+          "target": "com.azure.edge#UpdateInstance"
+        },
+        {
+          "target": "com.azure.edge#UpdateSchema"
+        },
+        {
+          "target": "com.azure.edge#UpdateSchemaReference"
+        },
+        {
+          "target": "com.azure.edge#UpdateSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateSite"
+        },
+        {
+          "target": "com.azure.edge#UpdateSiteReference"
+        },
+        {
+          "target": "com.azure.edge#UpdateSitesByServiceGroup"
+        },
+        {
+          "target": "com.azure.edge#UpdateSitesBySubscription"
+        },
+        {
+          "target": "com.azure.edge#UpdateSolution"
+        },
+        {
+          "target": "com.azure.edge#UpdateSolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#UpdateSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateTarget"
+        },
+        {
+          "target": "com.azure.edge#UpdateTargetExternalValidationStatus"
+        },
+        {
+          "target": "com.azure.edge#UpdateWorkflow"
+        },
+        {
+          "target": "com.azure.edge#UpdateWorkflowVersion"
+        },
+        {
+          "target": "com.azure.edge#WorkflowsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#WorkflowVersionsCreateOrUpdate"
         }
       ],
       "traits": {

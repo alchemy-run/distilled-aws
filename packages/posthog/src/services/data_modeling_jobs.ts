@@ -11,24 +11,26 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface DataModelingJobsRecentRetrieveRequest {
+export interface GetDataModelingJobRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
+  /** A UUID string identifying this data modeling job. */
+  id: string;
 }
-export const DataModelingJobsRecentRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_modeling_jobs/recent/",
-        code: 200,
-      }),
-    ),
+export const GetDataModelingJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_modeling_jobs/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DataModelingJobsRecentRetrieveRequest",
-}) as any as S.Schema<DataModelingJobsRecentRetrieveRequest>;
+  identifier: "GetDataModelingJobRequest",
+}) as any as S.Schema<GetDataModelingJobRequest>;
 
 /** * `Cancelled` - Cancelled * `Completed` - Completed * `Failed` - Failed * `Running` - Running * `Skipped` - Skipped */
 export type DataModelingJobStatusEnum =
@@ -79,45 +81,41 @@ export const DataModelingJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataModelingJob",
 }) as any as S.Schema<DataModelingJob>;
 
-export interface DataModelingJobsRetrieveRequest {
+export interface GetDataModelingJobsRecentRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this data modeling job. */
-  id: string;
 }
-export const DataModelingJobsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDataModelingJobsRecentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/data_modeling_jobs/{id}/",
+      uri: "/api/projects/{project_id}/data_modeling_jobs/recent/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DataModelingJobsRetrieveRequest",
-}) as any as S.Schema<DataModelingJobsRetrieveRequest>;
+  identifier: "GetDataModelingJobsRecentRequest",
+}) as any as S.Schema<GetDataModelingJobsRecentRequest>;
 
-export interface DataModelingJobsRunningRetrieveRequest {
+export interface GetDataModelingJobsRunningRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const DataModelingJobsRunningRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_modeling_jobs/running/",
-        code: 200,
-      }),
-    ),
+export const GetDataModelingJobsRunningRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_modeling_jobs/running/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DataModelingJobsRunningRetrieveRequest",
-}) as any as S.Schema<DataModelingJobsRunningRetrieveRequest>;
+  identifier: "GetDataModelingJobsRunningRequest",
+}) as any as S.Schema<GetDataModelingJobsRunningRequest>;
 
 export interface ListDataModelingJobsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -167,45 +165,45 @@ export const PaginatedDataModelingJobList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDataModelingJobList",
 }) as any as S.Schema<PaginatedDataModelingJobList>;
 
-export type DataModelingJobsRecentRetrieveError = PosthogOpError;
-/** Get the most recent non-running job for each saved query from the v2 backend. */
-export const dataModelingJobsRecentRetrieve: API.OperationMethod<
-  DataModelingJobsRecentRetrieveRequest,
-  DataModelingJob,
-  DataModelingJobsRecentRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataModelingJobsRecentRetrieveRequest,
-  output: DataModelingJob,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataModelingJobsRetrieveError = PosthogOpError;
+export type GetDataModelingJobError = PosthogOpError;
 /** List data modeling jobs which are "runs" for our saved queries. */
-export const dataModelingJobsRetrieve: API.OperationMethod<
-  DataModelingJobsRetrieveRequest,
+export const getDataModelingJob: API.OperationMethod<
+  GetDataModelingJobRequest,
   DataModelingJob,
-  DataModelingJobsRetrieveError,
+  GetDataModelingJobError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataModelingJobsRetrieveRequest,
+  input: GetDataModelingJobRequest,
   output: DataModelingJob,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataModelingJobsRunningRetrieveError = PosthogOpError;
-/** Get all currently running jobs from the v2 backend. */
-export const dataModelingJobsRunningRetrieve: API.OperationMethod<
-  DataModelingJobsRunningRetrieveRequest,
+export type GetDataModelingJobsRecentError = PosthogOpError;
+/** Get the most recent non-running job for each saved query from the v2 backend. */
+export const getDataModelingJobsRecent: API.OperationMethod<
+  GetDataModelingJobsRecentRequest,
   DataModelingJob,
-  DataModelingJobsRunningRetrieveError,
+  GetDataModelingJobsRecentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataModelingJobsRunningRetrieveRequest,
+  input: GetDataModelingJobsRecentRequest,
+  output: DataModelingJob,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataModelingJobsRunningError = PosthogOpError;
+/** Get all currently running jobs from the v2 backend. */
+export const getDataModelingJobsRunning: API.OperationMethod<
+  GetDataModelingJobsRunningRequest,
+  DataModelingJob,
+  GetDataModelingJobsRunningError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataModelingJobsRunningRequest,
   output: DataModelingJob,
   errors: [],
   protocol: PosthogProtocol,

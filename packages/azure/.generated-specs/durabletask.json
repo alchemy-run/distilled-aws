@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.durabletask#DeleteTaskHub": {
@@ -831,13 +832,13 @@
         "smithy.api#documentation": "The orchestration retention policies"
       }
     },
-    "com.azure.durabletask#CreateRetentionPolicyOrReplace": {
+    "com.azure.durabletask#RetentionPoliciesCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#CreateRetentionPolicyOrReplaceRequest"
+        "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#CreateRetentionPolicyOrReplaceResponse"
+        "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -850,7 +851,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#CreateRetentionPolicyOrReplaceResponse": {
+    "com.azure.durabletask#RetentionPoliciesCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -888,7 +889,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#CreateRetentionPolicyOrReplaceRequest": {
+    "com.azure.durabletask#RetentionPoliciesCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1686,7 +1687,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestProperties",
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestProperties",
           "traits": {
             "smithy.api#documentation": "The private endpoint connection properties"
           }
@@ -1696,17 +1697,17 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestProperties": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestProperties": {
       "type": "structure",
       "members": {
         "privateEndpoint": {
-          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint",
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint",
           "traits": {
             "smithy.api#documentation": "The private endpoint resource."
           }
         },
         "privateLinkServiceConnectionState": {
-          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState",
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState",
           "traits": {
             "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
           }
@@ -1716,7 +1717,7 @@
         "smithy.api#documentation": "The private endpoint connection properties"
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState": {
       "type": "structure",
       "members": {
         "status": {
@@ -1742,7 +1743,7 @@
         "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint": {
       "type": "structure",
       "members": {},
       "traits": {
@@ -2194,7 +2195,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.durabletask#SchedulersUpdateResponseTagsMap",
+          "target": "com.azure.durabletask#UpdateSchedulerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2406,7 +2407,7 @@
         "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR"
       }
     },
-    "com.azure.durabletask#SchedulersUpdateResponseTagsMap": {
+    "com.azure.durabletask#UpdateSchedulerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2452,7 +2453,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.durabletask#SchedulersUpdateRequestTagsMap",
+          "target": "com.azure.durabletask#UpdateSchedulerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2462,7 +2463,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersUpdateRequestTagsMap": {
+    "com.azure.durabletask#UpdateSchedulerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2758,7 +2759,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.durabletask#SchedulersGetResponseTagsMap",
+          "target": "com.azure.durabletask#GetSchedulerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2781,7 +2782,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#SchedulersGetResponseTagsMap": {
+    "com.azure.durabletask#GetSchedulerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3019,7 +3020,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.durabletask#OperationsListResponseValueList",
+          "target": "com.azure.durabletask#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3035,7 +3036,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#OperationsListResponseValueList": {
+    "com.azure.durabletask#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.durabletask#Operation"
@@ -3159,64 +3160,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.durabletask#DeleteTaskHub"
-        },
-        {
-          "target": "com.azure.durabletask#TaskHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.durabletask#GetTaskHub"
-        },
-        {
-          "target": "com.azure.durabletask#ListTaskHubByScheduler"
-        },
-        {
           "target": "com.azure.durabletask#DeleteRetentionPolicy"
-        },
-        {
-          "target": "com.azure.durabletask#UpdateRetentionPolicy"
-        },
-        {
-          "target": "com.azure.durabletask#CreateRetentionPolicyOrReplace"
-        },
-        {
-          "target": "com.azure.durabletask#GetRetentionPolicy"
-        },
-        {
-          "target": "com.azure.durabletask#ListRetentionPolicyByScheduler"
-        },
-        {
-          "target": "com.azure.durabletask#GetSchedulerPrivateLink"
-        },
-        {
-          "target": "com.azure.durabletask#ListSchedulerPrivateLinks"
-        },
-        {
-          "target": "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.durabletask#GetSchedulerPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.durabletask#ListSchedulerPrivateEndpointConnections"
         },
         {
           "target": "com.azure.durabletask#DeleteScheduler"
         },
         {
-          "target": "com.azure.durabletask#UpdateScheduler"
+          "target": "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.durabletask#SchedulersCreateOrUpdate"
+          "target": "com.azure.durabletask#DeleteTaskHub"
+        },
+        {
+          "target": "com.azure.durabletask#GetRetentionPolicy"
         },
         {
           "target": "com.azure.durabletask#GetScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#GetSchedulerPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#GetSchedulerPrivateLink"
+        },
+        {
+          "target": "com.azure.durabletask#GetTaskHub"
+        },
+        {
+          "target": "com.azure.durabletask#ListOperations"
+        },
+        {
+          "target": "com.azure.durabletask#ListRetentionPolicyByScheduler"
         },
         {
           "target": "com.azure.durabletask#ListSchedulerByResourceGroup"
@@ -3225,7 +3199,34 @@
           "target": "com.azure.durabletask#ListSchedulerBySubscription"
         },
         {
-          "target": "com.azure.durabletask#ListOperations"
+          "target": "com.azure.durabletask#ListSchedulerPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.durabletask#ListSchedulerPrivateLinks"
+        },
+        {
+          "target": "com.azure.durabletask#ListTaskHubByScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#TaskHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.durabletask#UpdateRetentionPolicy"
+        },
+        {
+          "target": "com.azure.durabletask#UpdateScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnection"
         }
       ],
       "traits": {

@@ -191,6 +191,18 @@ export const AppBuild = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AppBuild" }) as any as S.Schema<AppBuild>;
 
+export interface GetAppBuildRequest {
+  /** App build ID, prefixed `abld_`. */
+  id: string;
+}
+export const GetAppBuildRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/app_builds/{id}", code: 200 })),
+).annotate({
+  identifier: "GetAppBuildRequest",
+}) as any as S.Schema<GetAppBuildRequest>;
+
 export type ListAppBuildsRequestPlatform = "ios" | "android" | "web";
 export const ListAppBuildsRequestPlatform = /*@__PURE__*/ S.String;
 
@@ -289,18 +301,6 @@ export const PromoteAppBuildRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PromoteAppBuildRequest",
 }) as any as S.Schema<PromoteAppBuildRequest>;
 
-export interface RetrieveAppBuildRequest {
-  /** App build ID, prefixed `abld_`. */
-  id: string;
-}
-export const RetrieveAppBuildRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/app_builds/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAppBuildRequest",
-}) as any as S.Schema<RetrieveAppBuildRequest>;
-
 export type CreateAppBuildError =
   | BadRequest
   | Forbidden
@@ -316,6 +316,21 @@ export const createAppBuild: API.OperationMethod<
   input: CreateAppBuildRequest,
   output: AppBuild,
   errors: [BadRequest, Forbidden, Conflict],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAppBuildError = Forbidden | NotFound | WhopOpError;
+/** Retrieve App Build Retrieves the details of an existing app build. */
+export const getAppBuild: API.OperationMethod<
+  GetAppBuildRequest,
+  AppBuild,
+  GetAppBuildError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAppBuildRequest,
+  output: AppBuild,
+  errors: [Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));
@@ -367,21 +382,6 @@ export const promoteAppBuild: API.OperationMethod<
   input: PromoteAppBuildRequest,
   output: AppBuild,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAppBuildError = Forbidden | NotFound | WhopOpError;
-/** Retrieve App Build Retrieves the details of an existing app build. */
-export const retrieveAppBuild: API.OperationMethod<
-  RetrieveAppBuildRequest,
-  AppBuild,
-  RetrieveAppBuildError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAppBuildRequest,
-  output: AppBuild,
-  errors: [Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

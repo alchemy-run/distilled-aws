@@ -18,7 +18,8 @@
     "keyDictionary": {
       "createdAt": "created_at",
       "updatedAt": "updated_at"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.hostnames#SettingsTlsDeleteRequestSettingId": {
@@ -368,13 +369,13 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.hostnames#SettingsTlsDelete"
+          "target": "com.cloudflare.hostnames#DeleteSettingTls"
         },
         {
-          "target": "com.cloudflare.hostnames#SettingsTlsGet"
+          "target": "com.cloudflare.hostnames#GetSettingTls"
         },
         {
-          "target": "com.cloudflare.hostnames#SettingsTlsUpdate"
+          "target": "com.cloudflare.hostnames#PutSettingTls"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.pulse#ListPulseBriefConfigsRequest": {
@@ -464,7 +465,7 @@
         }
       }
     },
-    "com.posthog.pulse#PulseBriefConfigsRetrieveRequest": {
+    "com.posthog.pulse#GetPulseBriefConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -488,10 +489,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.pulse#PulseBriefConfigsRetrieve": {
+    "com.posthog.pulse#GetPulseBriefConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.pulse#PulseBriefConfigsRetrieveRequest"
+        "target": "com.posthog.pulse#GetPulseBriefConfigRequest"
       },
       "output": {
         "target": "com.posthog.pulse#BriefConfig"
@@ -581,7 +582,7 @@
         }
       }
     },
-    "com.posthog.pulse#UpdatePulseBriefConfigPartialRequest": {
+    "com.posthog.pulse#UpdatePulseBriefConfigsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -641,10 +642,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.pulse#UpdatePulseBriefConfigPartial": {
+    "com.posthog.pulse#UpdatePulseBriefConfigsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.pulse#UpdatePulseBriefConfigPartialRequest"
+        "target": "com.posthog.pulse#UpdatePulseBriefConfigsPartialRequest"
       },
       "output": {
         "target": "com.posthog.pulse#BriefConfig"
@@ -957,7 +958,7 @@
         }
       }
     },
-    "com.posthog.pulse#PulseBriefsRetrieveRequest": {
+    "com.posthog.pulse#GetPulseBriefRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1167,10 +1168,10 @@
         "smithy.api#documentation": "Names of the brief sources that contributed items."
       }
     },
-    "com.posthog.pulse#PulseBriefsRetrieve": {
+    "com.posthog.pulse#GetPulseBrief": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.pulse#PulseBriefsRetrieveRequest"
+        "target": "com.posthog.pulse#GetPulseBriefRequest"
       },
       "output": {
         "target": "com.posthog.pulse#ProductBrief"
@@ -1251,31 +1252,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.pulse#ListPulseBriefConfigs"
-        },
-        {
           "target": "com.posthog.pulse#CreatePulseBriefConfig"
         },
         {
-          "target": "com.posthog.pulse#PulseBriefConfigsRetrieve"
+          "target": "com.posthog.pulse#GetPulseBrief"
         },
         {
-          "target": "com.posthog.pulse#UpdatePulseBriefConfig"
+          "target": "com.posthog.pulse#GetPulseBriefConfig"
         },
         {
-          "target": "com.posthog.pulse#UpdatePulseBriefConfigPartial"
-        },
-        {
-          "target": "com.posthog.pulse#PulseBriefConfigsDestroy"
+          "target": "com.posthog.pulse#ListPulseBriefConfigs"
         },
         {
           "target": "com.posthog.pulse#ListPulseBriefs"
         },
         {
-          "target": "com.posthog.pulse#PulseBriefsRetrieve"
+          "target": "com.posthog.pulse#PulseBriefConfigsDestroy"
         },
         {
           "target": "com.posthog.pulse#PulseBriefsGenerateCreate"
+        },
+        {
+          "target": "com.posthog.pulse#UpdatePulseBriefConfig"
+        },
+        {
+          "target": "com.posthog.pulse#UpdatePulseBriefConfigsPartial"
         }
       ],
       "traits": {

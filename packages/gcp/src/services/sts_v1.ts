@@ -87,27 +87,27 @@ export const GetJwksOrganizationsLocationsWorkloadIdentityPoolsOpenidRequest =
 
 /** A JSON web key set (JWK) See also https://datatracker.ietf.org/doc/html/rfc7517 and https://github.com/spiffe/spiffe/blob/main/standards/JWT-SVID.md#6-representation-in-the-spiffe-bundle */
 export interface GoogleIdentityStsV1Jwk {
-  /** Key type. Currently "RSA". */
-  kty?: string;
-  /** Key ID. */
-  kid?: string;
-  /** Modulus value for kty="RSA". */
-  n?: string;
   /** Exponent value for kty="RSA". */
   e?: string;
-  /** Algorithm intended for use with the key. Currently "RS256". */
-  alg?: string;
+  /** Key type. Currently "RSA". */
+  kty?: string;
   /** Public key use. Currently "sig". */
   use?: string;
+  /** Key ID. */
+  kid?: string;
+  /** Algorithm intended for use with the key. Currently "RS256". */
+  alg?: string;
+  /** Modulus value for kty="RSA". */
+  n?: string;
 }
 export const GoogleIdentityStsV1Jwk = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kty: S.optional(S.String),
-    kid: S.optional(S.String),
-    n: S.optional(S.String),
     e: S.optional(S.String),
-    alg: S.optional(S.String),
+    kty: S.optional(S.String),
     use: S.optional(S.String),
+    kid: S.optional(S.String),
+    alg: S.optional(S.String),
+    n: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GoogleIdentityStsV1Jwk",
@@ -150,11 +150,11 @@ export const GetJwksProjectsLocationsWorkloadIdentityPoolsOpenidRequest =
     identifier: "GetJwksProjectsLocationsWorkloadIdentityPoolsOpenidRequest",
   }) as any as S.Schema<GetJwksProjectsLocationsWorkloadIdentityPoolsOpenidRequest>;
 
-export interface GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownRequest {
+export interface GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownRequest {
   /** Required. The name of the pool whose OpenID provider configuration to retrieve. Format: 'organizations/{ORGANIZATION_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' 'projects/{PROJECT_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' Example: 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog' */
   name: string;
 }
-export const GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownRequest =
+export const GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String.pipe(T.Label()),
@@ -167,8 +167,8 @@ export const GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWe
     ),
   ).annotate({
     identifier:
-      "GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownRequest",
-  }) as any as S.Schema<GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownRequest>;
+      "GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownRequest",
+  }) as any as S.Schema<GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownRequest>;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -177,41 +177,41 @@ export const StringList = /*@__PURE__*/ S.Array(
 
 /** Response message for GetOpenIdProviderConfig. Message fields are defined in https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse */
 export interface GoogleIdentityStsV1OpenIdProviderConfig {
-  /** URL pointing to an authorization endpoint under this issuer. Note: Currently this endpoint returns a 404. */
-  authorization_endpoint?: string;
-  /** URL using the https scheme with no query or fragment components that the OP asserts as its issuer identifier. */
-  issuer?: string;
+  /** JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID token to encode the claims in a JWT [JWT]. Note: Currently always "["RS256"]". */
+  id_token_signing_alg_values_supported?: StringList;
   /** JSON array containing a list of the subject identifier types that this OP supports. Note: Currently always "["public"]". */
   subject_types_supported?: StringList;
   /** URL of the OP's JWK Set [JWK] document, which MUST use the https scheme. */
   jwks_uri?: string;
-  /** JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for the ID token to encode the claims in a JWT [JWT]. Note: Currently always "["RS256"]". */
-  id_token_signing_alg_values_supported?: StringList;
   /** JSON array containing a list of the OAuth 2.0 response_type values that this OP supports. Note: Currently always "["id_token"]". */
   response_types_supported?: StringList;
+  /** URL pointing to an authorization endpoint under this issuer. Note: Currently this endpoint returns a 404. */
+  authorization_endpoint?: string;
+  /** URL using the https scheme with no query or fragment components that the OP asserts as its issuer identifier. */
+  issuer?: string;
   /** URL pointing to a token endpoint under this issuer. Note: Currently this endpoint returns a 404. */
   token_endpoint?: string;
 }
 export const GoogleIdentityStsV1OpenIdProviderConfig = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      authorization_endpoint: S.optional(S.String),
-      issuer: S.optional(S.String),
+      id_token_signing_alg_values_supported: S.optional(StringList),
       subject_types_supported: S.optional(StringList),
       jwks_uri: S.optional(S.String),
-      id_token_signing_alg_values_supported: S.optional(StringList),
       response_types_supported: S.optional(StringList),
+      authorization_endpoint: S.optional(S.String),
+      issuer: S.optional(S.String),
       token_endpoint: S.optional(S.String),
     }),
 ).annotate({
   identifier: "GoogleIdentityStsV1OpenIdProviderConfig",
 }) as any as S.Schema<GoogleIdentityStsV1OpenIdProviderConfig>;
 
-export interface GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownRequest {
+export interface GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownRequest {
   /** Required. The name of the pool whose OpenID provider configuration to retrieve. Format: 'organizations/{ORGANIZATION_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' 'projects/{PROJECT_NUMBER}/locations/global/workloadIdentityPools/{POOL_ID}' Example: 'organizations/1234/locations/global/workloadIdentityPools/agents.global.org-1234.system.id.goog' 'projects/12345678/locations/global/workloadIdentityPools/agents.global.proj-12345678.system.id.goog' */
   name: string;
 }
-export const GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownRequest =
+export const GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String.pipe(T.Label()),
@@ -224,36 +224,36 @@ export const GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKno
     ),
   ).annotate({
     identifier:
-      "GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownRequest",
-  }) as any as S.Schema<GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownRequest>;
+      "GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownRequest",
+  }) as any as S.Schema<GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownRequest>;
 
 /** Request message for ExchangeToken. */
 export interface GoogleIdentityStsV1ExchangeTokenRequest {
   /** Required. The input token. This token is either an external credential issued by a workload identity pool provider, or a short-lived access token issued by Google. If the token is an OIDC JWT, it must use the JWT format defined in [RFC 7523](https://tools.ietf.org/html/rfc7523), and the `subject_token_type` must be either `urn:ietf:params:oauth:token-type:jwt` or `urn:ietf:params:oauth:token-type:id_token`. The following headers are required: - `kid`: The identifier of the signing key securing the JWT. - `alg`: The cryptographic algorithm securing the JWT. Must be `RS256` or `ES256`. The following payload fields are required. For more information, see [RFC 7523, Section 3](https://tools.ietf.org/html/rfc7523#section-3): - `iss`: The issuer of the token. The issuer must provide a discovery document at the URL `/.well-known/openid-configuration`, where `` is the value of this field. The document must be formatted according to section 4.2 of the [OIDC 1.0 Discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse). - `iat`: The issue time, in seconds, since the Unix epoch. This timestamp must be in the past and no more than 24 hours in the past, or the token will be rejected. Note that this implies the token is only acceptable within a time window of at most 24 hours. - `exp`: The expiration time, in seconds, since the Unix epoch. Shorter expiration times are more secure. If possible, we recommend setting an expiration time less than 6 hours. - `sub`: The identity asserted in the JWT. - `aud`: For workload identity pools, this must be a value specified in the allowed audiences for the workload identity pool provider, or one of the audiences allowed by default if no audiences were specified. See https://cloud.google.com/iam/docs/reference/rest/v1/projects.locations.workloadIdentityPools.providers#oidc. For workforce pools, this must match the client ID specified in the provider configuration. See https://cloud.google.com/iam/docs/reference/rest/v1/locations.workforcePools.providers#oidc. Example header: ``` { "alg": "RS256", "kid": "us-east-11" } ``` Example payload: ``` { "iss": "https://accounts.google.com", "iat": 1517963104, "exp": 1517966704, "aud": "//iam.googleapis.com/projects/1234567890123/locations/global/workloadIdentityPools/my-pool/providers/my-provider", "sub": "113475438248934895348", "my_claims": { "additional_claim": "value" } } ``` If `subject_token` is for AWS, it must be a serialized `GetCallerIdentity` token. This token contains the same information as a request to the AWS [`GetCallerIdentity()`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity) method, as well as the AWS [signature](https://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html) for the request information. Use Signature Version 4. Format the request as URL-encoded JSON, and set the `subject_token_type` parameter to `urn:ietf:params:aws:token-type:aws4_request`. The following parameters are required: - `url`: The URL of the AWS STS endpoint for `GetCallerIdentity()`, such as `https://sts.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15`. Regional endpoints are also supported. - `method`: The HTTP request method: `POST`. - `headers`: The HTTP request headers, which must include: - `Authorization`: The request signature. - `x-amz-date`: The time you will send the request, formatted as an [ISO8601 Basic](https://docs.aws.amazon.com/general/latest/gr/sigv4_elements.html#sigv4_elements_date) string. This value is typically set to the current time and is used to help prevent replay attacks. - `host`: The hostname of the `url` field; for example, `sts.amazonaws.com`. - `x-goog-cloud-target-resource`: The full, canonical resource name of the workload identity pool provider, with or without an `https:` prefix. To help ensure data integrity, we recommend including this header in the `SignedHeaders` field of the signed request. For example: //iam.googleapis.com/projects//locations/global/workloadIdentityPools//providers/ https://iam.googleapis.com/projects//locations/global/workloadIdentityPools//providers/ If you are using temporary security credentials provided by AWS, you must also include the header `x-amz-security-token`, with the value set to the session token. The following example shows a `GetCallerIdentity` token: ``` { "headers": [ {"key": "x-amz-date", "value": "20200815T015049Z"}, {"key": "Authorization", "value": "AWS4-HMAC-SHA256+Credential=$credential,+SignedHeaders=host;x-amz-date;x-goog-cloud-target-resource,+Signature=$signature"}, {"key": "x-goog-cloud-target-resource", "value": "//iam.googleapis.com/projects//locations/global/workloadIdentityPools//providers/"}, {"key": "host", "value": "sts.amazonaws.com"} . ], "method": "POST", "url": "https://sts.amazonaws.com?Action=GetCallerIdentity&Version=2011-06-15" } ``` If the token is a SAML 2.0 assertion, it must use the format defined in [the SAML 2.0 spec](https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.pdf), and the `subject_token_type` must be `urn:ietf:params:oauth:token-type:saml2`. See [Verification of external credentials](https://cloud.google.com/iam/docs/using-workload-identity-federation#verification_of_external_credentials) for details on how SAML 2.0 assertions are validated during token exchanges. You can also use a Google-issued OAuth 2.0 access token with this field to obtain an access token with new security attributes applied, such as a Credential Access Boundary. In this case, set `subject_token_type` to `urn:ietf:params:oauth:token-type:access_token`. If an access token already contains security attributes, you cannot apply additional security attributes. If the request is for X.509 certificate-based authentication, the `subject_token` must be a JSON-formatted list of X.509 certificates in DER format, as defined in [RFC 7515](https://www.rfc-editor.org/rfc/rfc7515#section-4.1.6). `subject_token_type` must be `urn:ietf:params:oauth:token-type:mtls`. The following example shows a JSON-formatted list of X.509 certificate in DER format: ``` [\"MIIEYDCCA0i...\", \"MCIFFGAGTT0...\"] ``` */
   subjectToken?: string;
-  /** The full resource name of the identity provider; for example: `//iam.googleapis.com/projects//locations/global/workloadIdentityPools//providers/` for workload identity pool providers, or `//iam.googleapis.com/locations/global/workforcePools//providers/` for workforce pool providers. Required when exchanging an external credential for a Google access token. */
-  audience?: string;
+  /** Required. An identifier for the type of requested security token. Can be `urn:ietf:params:oauth:token-type:access_token` or `urn:ietf:params:oauth:token-type:access_boundary_intermediary_token`. */
+  requestedTokenType?: string;
   /** Required. The grant type. Must be `urn:ietf:params:oauth:grant-type:token-exchange`, which indicates a token exchange. */
   grantType?: string;
+  /** The full resource name of the identity provider; for example: `//iam.googleapis.com/projects//locations/global/workloadIdentityPools//providers/` for workload identity pool providers, or `//iam.googleapis.com/locations/global/workforcePools//providers/` for workforce pool providers. Required when exchanging an external credential for a Google access token. */
+  audience?: string;
+  /** The OAuth 2.0 scopes to include on the resulting access token, formatted as a list of space-delimited, case-sensitive strings; for example, `https://www.googleapis.com/auth/cloud-platform`. Required when exchanging an external credential for a Google access token. For a list of OAuth 2.0 scopes, see [OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes). */
+  scope?: string;
   /** A set of features that Security Token Service supports, in addition to the standard OAuth 2.0 token exchange, formatted as a serialized JSON object of Options. The size of the parameter value must not exceed 4 * 1024 * 1024 characters (4 MB). */
   options?: string;
   /** Required. An identifier that indicates the type of the security token in the `subject_token` parameter. Supported values are `urn:ietf:params:oauth:token-type:jwt`, `urn:ietf:params:oauth:token-type:id_token`, `urn:ietf:params:aws:token-type:aws4_request`, `urn:ietf:params:oauth:token-type:access_token`, `urn:ietf:params:oauth:token-type:mtls`, and `urn:ietf:params:oauth:token-type:saml2`. */
   subjectTokenType?: string;
-  /** Required. An identifier for the type of requested security token. Can be `urn:ietf:params:oauth:token-type:access_token` or `urn:ietf:params:oauth:token-type:access_boundary_intermediary_token`. */
-  requestedTokenType?: string;
-  /** The OAuth 2.0 scopes to include on the resulting access token, formatted as a list of space-delimited, case-sensitive strings; for example, `https://www.googleapis.com/auth/cloud-platform`. Required when exchanging an external credential for a Google access token. For a list of OAuth 2.0 scopes, see [OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes). */
-  scope?: string;
 }
 export const GoogleIdentityStsV1ExchangeTokenRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subjectToken: S.optional(S.String),
-      audience: S.optional(S.String),
+      requestedTokenType: S.optional(S.String),
       grantType: S.optional(S.String),
+      audience: S.optional(S.String),
+      scope: S.optional(S.String),
       options: S.optional(S.String),
       subjectTokenType: S.optional(S.String),
-      requestedTokenType: S.optional(S.String),
-      scope: S.optional(S.String),
     }),
 ).annotate({
   identifier: "GoogleIdentityStsV1ExchangeTokenRequest",
@@ -279,24 +279,24 @@ export const TokenV1Request = /*@__PURE__*/ S.suspend(() =>
 
 /** Response message for ExchangeToken. */
 export interface GoogleIdentityStsV1ExchangeTokenResponse {
-  /** The access boundary session key. This key is used along with the access boundary intermediary token to generate Credential Access Boundary tokens at client side. This field is absent when the `requested_token_type` from the request is not `urn:ietf:params:oauth:token-type:access_boundary_intermediary_token`. */
-  access_boundary_session_key?: string;
   /** The type of access token. Always has the value `Bearer`. */
   token_type?: string;
-  /** An OAuth 2.0 security token, issued by Google, in response to the token exchange request. Tokens can vary in size, depending in part on the size of mapped claims, up to a maximum of 12288 bytes (12 KB). Google reserves the right to change the token size and the maximum length at any time. */
-  access_token?: string;
   /** The token type. Always matches the value of `requested_token_type` from the request. */
   issued_token_type?: string;
+  /** An OAuth 2.0 security token, issued by Google, in response to the token exchange request. Tokens can vary in size, depending in part on the size of mapped claims, up to a maximum of 12288 bytes (12 KB). Google reserves the right to change the token size and the maximum length at any time. */
+  access_token?: string;
+  /** The access boundary session key. This key is used along with the access boundary intermediary token to generate Credential Access Boundary tokens at client side. This field is absent when the `requested_token_type` from the request is not `urn:ietf:params:oauth:token-type:access_boundary_intermediary_token`. */
+  access_boundary_session_key?: string;
   /** The amount of time, in seconds, between the time when the access token was issued and the time when the access token will expire. This field is absent when the `subject_token` in the request is a a short-lived access token for a Cloud Identity or Google Workspace user account. In this case, the access token has the same expiration time as the `subject_token`. */
   expires_in?: number;
 }
 export const GoogleIdentityStsV1ExchangeTokenResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      access_boundary_session_key: S.optional(S.String),
       token_type: S.optional(S.String),
-      access_token: S.optional(S.String),
       issued_token_type: S.optional(S.String),
+      access_token: S.optional(S.String),
+      access_boundary_session_key: S.optional(S.String),
       expires_in: S.optional(S.Number),
     }),
 ).annotate({
@@ -339,38 +339,38 @@ export const getJwksProjectsLocationsWorkloadIdentityPoolsOpenid: API.OperationM
   retry: Retry.Retry,
 }));
 
-export type GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownError =
+export type GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownError =
   | NotFound
   | Forbidden
   | GcpOpError;
 /** Gets the OIDC provider configuration for an agentic or managed workload identity pool following [the OIDC 1.0 discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). */
-export const getOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnown: API.OperationMethod<
-  GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownRequest,
+export const getOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_known: API.OperationMethod<
+  GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownRequest,
   GoogleIdentityStsV1OpenIdProviderConfig,
-  GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownError,
+  GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownError,
   GcpOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input:
-    GetOpenidConfigurationOrganizationsLocationsWorkloadIdentityPoolsWellKnownRequest,
+    GetOpenid_configurationOrganizationsLocationsWorkloadIdentityPoolsWell_knownRequest,
   output: GoogleIdentityStsV1OpenIdProviderConfig,
   errors: [NotFound, Forbidden, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownError =
+export type GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownError =
   | NotFound
   | Forbidden
   | GcpOpError;
 /** Gets the OIDC provider configuration for an agentic or managed workload identity pool following [the OIDC 1.0 discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfigurationResponse). For now, only agentic system pools are supported. **Preview** This feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](https://cloud.google.com/terms/service-terms#1). Pre-GA features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). */
-export const getOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnown: API.OperationMethod<
-  GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownRequest,
+export const getOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_known: API.OperationMethod<
+  GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownRequest,
   GoogleIdentityStsV1OpenIdProviderConfig,
-  GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownError,
+  GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownError,
   GcpOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input:
-    GetOpenidConfigurationProjectsLocationsWorkloadIdentityPoolsWellKnownRequest,
+    GetOpenid_configurationProjectsLocationsWorkloadIdentityPoolsWell_knownRequest,
   output: GoogleIdentityStsV1OpenIdProviderConfig,
   errors: [NotFound, Forbidden, UnknownGCPError],
   protocol: GcpProtocol,

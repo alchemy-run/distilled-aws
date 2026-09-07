@@ -42,7 +42,8 @@
       "tryBlock": "try_block",
       "versionId": "version_id",
       "workflowId": "workflow_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.workflows#DeleteResponseStatus": {
@@ -3109,46 +3110,46 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.workflows#Delete"
+          "target": "com.cloudflare.workflows#BulkInstance"
         },
         {
-          "target": "com.cloudflare.workflows#Get"
+          "target": "com.cloudflare.workflows#CreateInstance"
         },
         {
-          "target": "com.cloudflare.workflows#List"
+          "target": "com.cloudflare.workflows#CreateInstanceEvent"
         },
         {
-          "target": "com.cloudflare.workflows#Update"
+          "target": "com.cloudflare.workflows#DeleteWorkflow"
         },
         {
-          "target": "com.cloudflare.workflows#InstancesBulk"
+          "target": "com.cloudflare.workflows#GetInstance"
         },
         {
-          "target": "com.cloudflare.workflows#InstancesCreate"
+          "target": "com.cloudflare.workflows#GetVersion"
         },
         {
-          "target": "com.cloudflare.workflows#InstancesGet"
+          "target": "com.cloudflare.workflows#GetWorkflow"
         },
         {
-          "target": "com.cloudflare.workflows#InstancesList"
+          "target": "com.cloudflare.workflows#GraphVersion"
         },
         {
-          "target": "com.cloudflare.workflows#InstancesStep"
+          "target": "com.cloudflare.workflows#ListInstances"
         },
         {
-          "target": "com.cloudflare.workflows#InstancesEventsCreate"
+          "target": "com.cloudflare.workflows#ListVersions"
         },
         {
-          "target": "com.cloudflare.workflows#InstancesStatusEdit"
+          "target": "com.cloudflare.workflows#ListWorkflows"
         },
         {
-          "target": "com.cloudflare.workflows#VersionsGet"
+          "target": "com.cloudflare.workflows#PatchInstanceStatus"
         },
         {
-          "target": "com.cloudflare.workflows#VersionsGraph"
+          "target": "com.cloudflare.workflows#PutWorkflow"
         },
         {
-          "target": "com.cloudflare.workflows#VersionsList"
+          "target": "com.cloudflare.workflows#StepInstance"
         }
       ],
       "traits": {

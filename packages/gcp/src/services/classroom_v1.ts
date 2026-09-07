@@ -89,155 +89,6 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
-export type CourseCourseStateEnum =
-  | "COURSE_STATE_UNSPECIFIED"
-  | "ACTIVE"
-  | "ARCHIVED"
-  | "PROVISIONED"
-  | "DECLINED"
-  | "SUSPENDED";
-export const CourseCourseStateEnum = /*@__PURE__*/ S.String;
-
-/** YouTube video item. */
-export interface YouTubeVideo {
-  /** Title of the YouTube video. Read-only. */
-  title?: string;
-  /** URL that can be used to view the YouTube video. Read-only. */
-  alternateLink?: string;
-  /** URL of a thumbnail image of the YouTube video. Read-only. */
-  thumbnailUrl?: string;
-  /** YouTube API resource ID. */
-  id?: string;
-}
-export const YouTubeVideo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.optional(S.String),
-    alternateLink: S.optional(S.String),
-    thumbnailUrl: S.optional(S.String),
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "YouTubeVideo" }) as any as S.Schema<YouTubeVideo>;
-
-/** Representation of a Google Drive file. */
-export interface DriveFile {
-  /** Title of the Drive item. Read-only. */
-  title?: string;
-  /** URL that can be used to access the Drive item. Read-only. */
-  alternateLink?: string;
-  /** URL of a thumbnail image of the Drive item. Read-only. */
-  thumbnailUrl?: string;
-  /** Drive API resource ID. */
-  id?: string;
-}
-export const DriveFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.optional(S.String),
-    alternateLink: S.optional(S.String),
-    thumbnailUrl: S.optional(S.String),
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "DriveFile" }) as any as S.Schema<DriveFile>;
-
-/** URL item. */
-export interface Link {
-  /** URL of a thumbnail image of the target URL. Read-only. */
-  thumbnailUrl?: string;
-  /** Title of the target of the URL. Read-only. */
-  title?: string;
-  /** URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters. */
-  url?: string;
-}
-export const Link = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    thumbnailUrl: S.optional(S.String),
-    title: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({ identifier: "Link" }) as any as S.Schema<Link>;
-
-/** Google Forms item. */
-export interface Form {
-  /** Title of the Form. Read-only. */
-  title?: string;
-  /** URL of the form responses document. Only set if responses have been recorded and only when the requesting user is an editor of the form. Read-only. */
-  responseUrl?: string;
-  /** URL of a thumbnail image of the Form. Read-only. */
-  thumbnailUrl?: string;
-  /** URL of the form. */
-  formUrl?: string;
-}
-export const Form = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.optional(S.String),
-    responseUrl: S.optional(S.String),
-    thumbnailUrl: S.optional(S.String),
-    formUrl: S.optional(S.String),
-  }),
-).annotate({ identifier: "Form" }) as any as S.Schema<Form>;
-
-/** A material attached to a course as part of a material set. */
-export interface CourseMaterial {
-  /** Youtube video attachment. */
-  youTubeVideo?: YouTubeVideo;
-  /** Google Drive file attachment. */
-  driveFile?: DriveFile;
-  /** Link atatchment. */
-  link?: Link;
-  /** Google Forms attachment. */
-  form?: Form;
-}
-export const CourseMaterial = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    youTubeVideo: S.optional(YouTubeVideo),
-    driveFile: S.optional(DriveFile),
-    link: S.optional(Link),
-    form: S.optional(Form),
-  }),
-).annotate({ identifier: "CourseMaterial" }) as any as S.Schema<CourseMaterial>;
-
-export type CourseMaterialList = Array<CourseMaterial>;
-export const CourseMaterialList = /*@__PURE__*/ S.Array(
-  CourseMaterial,
-) as any as S.Schema<CourseMaterialList>;
-
-/** A set of materials that appears on the "About" page of the course. These materials might include a syllabus, schedule, or other background information relating to the course as a whole. */
-export interface CourseMaterialSet {
-  /** Materials attached to this set. */
-  materials?: CourseMaterialList;
-  /** Title for this set. */
-  title?: string;
-}
-export const CourseMaterialSet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    materials: S.optional(CourseMaterialList),
-    title: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CourseMaterialSet",
-}) as any as S.Schema<CourseMaterialSet>;
-
-export type CourseMaterialSetList = Array<CourseMaterialSet>;
-export const CourseMaterialSetList = /*@__PURE__*/ S.Array(
-  CourseMaterialSet,
-) as any as S.Schema<CourseMaterialSetList>;
-
-/** Representation of a Google Drive folder. */
-export interface DriveFolder {
-  /** Title of the Drive folder. Read-only. */
-  title?: string;
-  /** URL that can be used to access the Drive folder. Read-only. */
-  alternateLink?: string;
-  /** Drive API resource ID. */
-  id?: string;
-}
-export const DriveFolder = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.optional(S.String),
-    alternateLink: S.optional(S.String),
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "DriveFolder" }) as any as S.Schema<DriveFolder>;
-
 export type GradebookSettingsDisplaySettingEnum =
   | "DISPLAY_SETTING_UNSPECIFIED"
   | "SHOW_OVERALL_GRADE"
@@ -249,19 +100,19 @@ export const GradebookSettingsDisplaySettingEnum = /*@__PURE__*/ S.String;
 export interface GradeCategory {
   /** ID of the grade category. */
   id?: string;
-  /** Default value of denominator. Only applicable when grade calculation type is TOTAL_POINTS. */
-  defaultGradeDenominator?: number;
-  /** The weight of the category average as part of overall average. A weight of 12.34% is represented as 123400 (100% is 1,000,000). The last two digits should always be zero since we use two decimal precision. Only applicable when grade calculation type is WEIGHTED_CATEGORIES. */
-  weight?: number;
   /** Name of the grade category. */
   name?: string;
+  /** The weight of the category average as part of overall average. A weight of 12.34% is represented as 123400 (100% is 1,000,000). The last two digits should always be zero since we use two decimal precision. Only applicable when grade calculation type is WEIGHTED_CATEGORIES. */
+  weight?: number;
+  /** Default value of denominator. Only applicable when grade calculation type is TOTAL_POINTS. */
+  defaultGradeDenominator?: number;
 }
 export const GradeCategory = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
-    defaultGradeDenominator: S.optional(S.Number),
-    weight: S.optional(S.Number),
     name: S.optional(S.String),
+    weight: S.optional(S.Number),
+    defaultGradeDenominator: S.optional(S.Number),
   }),
 ).annotate({ identifier: "GradeCategory" }) as any as S.Schema<GradeCategory>;
 
@@ -295,74 +146,223 @@ export const GradebookSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "GradebookSettings",
 }) as any as S.Schema<GradebookSettings>;
 
+export type CourseCourseStateEnum =
+  | "COURSE_STATE_UNSPECIFIED"
+  | "ACTIVE"
+  | "ARCHIVED"
+  | "PROVISIONED"
+  | "DECLINED"
+  | "SUSPENDED";
+export const CourseCourseStateEnum = /*@__PURE__*/ S.String;
+
+/** Representation of a Google Drive file. */
+export interface DriveFile {
+  /** URL that can be used to access the Drive item. Read-only. */
+  alternateLink?: string;
+  /** Drive API resource ID. */
+  id?: string;
+  /** Title of the Drive item. Read-only. */
+  title?: string;
+  /** URL of a thumbnail image of the Drive item. Read-only. */
+  thumbnailUrl?: string;
+}
+export const DriveFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alternateLink: S.optional(S.String),
+    id: S.optional(S.String),
+    title: S.optional(S.String),
+    thumbnailUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "DriveFile" }) as any as S.Schema<DriveFile>;
+
+/** Google Forms item. */
+export interface Form {
+  /** URL of a thumbnail image of the Form. Read-only. */
+  thumbnailUrl?: string;
+  /** URL of the form. */
+  formUrl?: string;
+  /** URL of the form responses document. Only set if responses have been recorded and only when the requesting user is an editor of the form. Read-only. */
+  responseUrl?: string;
+  /** Title of the Form. Read-only. */
+  title?: string;
+}
+export const Form = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    thumbnailUrl: S.optional(S.String),
+    formUrl: S.optional(S.String),
+    responseUrl: S.optional(S.String),
+    title: S.optional(S.String),
+  }),
+).annotate({ identifier: "Form" }) as any as S.Schema<Form>;
+
+/** URL item. */
+export interface Link {
+  /** Title of the target of the URL. Read-only. */
+  title?: string;
+  /** URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters. */
+  url?: string;
+  /** URL of a thumbnail image of the target URL. Read-only. */
+  thumbnailUrl?: string;
+}
+export const Link = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.optional(S.String),
+    url: S.optional(S.String),
+    thumbnailUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "Link" }) as any as S.Schema<Link>;
+
+/** YouTube video item. */
+export interface YouTubeVideo {
+  /** YouTube API resource ID. */
+  id?: string;
+  /** URL of a thumbnail image of the YouTube video. Read-only. */
+  thumbnailUrl?: string;
+  /** Title of the YouTube video. Read-only. */
+  title?: string;
+  /** URL that can be used to view the YouTube video. Read-only. */
+  alternateLink?: string;
+}
+export const YouTubeVideo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    thumbnailUrl: S.optional(S.String),
+    title: S.optional(S.String),
+    alternateLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "YouTubeVideo" }) as any as S.Schema<YouTubeVideo>;
+
+/** A material attached to a course as part of a material set. */
+export interface CourseMaterial {
+  /** Google Drive file attachment. */
+  driveFile?: DriveFile;
+  /** Google Forms attachment. */
+  form?: Form;
+  /** Link atatchment. */
+  link?: Link;
+  /** Youtube video attachment. */
+  youTubeVideo?: YouTubeVideo;
+}
+export const CourseMaterial = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    driveFile: S.optional(DriveFile),
+    form: S.optional(Form),
+    link: S.optional(Link),
+    youTubeVideo: S.optional(YouTubeVideo),
+  }),
+).annotate({ identifier: "CourseMaterial" }) as any as S.Schema<CourseMaterial>;
+
+export type CourseMaterialList = Array<CourseMaterial>;
+export const CourseMaterialList = /*@__PURE__*/ S.Array(
+  CourseMaterial,
+) as any as S.Schema<CourseMaterialList>;
+
+/** A set of materials that appears on the "About" page of the course. These materials might include a syllabus, schedule, or other background information relating to the course as a whole. */
+export interface CourseMaterialSet {
+  /** Materials attached to this set. */
+  materials?: CourseMaterialList;
+  /** Title for this set. */
+  title?: string;
+}
+export const CourseMaterialSet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    materials: S.optional(CourseMaterialList),
+    title: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CourseMaterialSet",
+}) as any as S.Schema<CourseMaterialSet>;
+
+export type CourseMaterialSetList = Array<CourseMaterialSet>;
+export const CourseMaterialSetList = /*@__PURE__*/ S.Array(
+  CourseMaterialSet,
+) as any as S.Schema<CourseMaterialSetList>;
+
+/** Representation of a Google Drive folder. */
+export interface DriveFolder {
+  /** Drive API resource ID. */
+  id?: string;
+  /** Title of the Drive folder. Read-only. */
+  title?: string;
+  /** URL that can be used to access the Drive folder. Read-only. */
+  alternateLink?: string;
+}
+export const DriveFolder = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    title: S.optional(S.String),
+    alternateLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "DriveFolder" }) as any as S.Schema<DriveFolder>;
+
 /** A Course in Classroom. */
 export interface Course {
-  /** Optional. Levels for the course. Examples: "9th grade", "Middle school", "4th - 5th", "K-2", "3000". If set, this field must be a valid UTF-8 string and fewer than 1000 characters. This field can only be cleared using the `PatchCourse` method. */
-  levels?: string;
+  /** Identifier for this course assigned by Classroom. When creating a course, you may optionally set this identifier to an alias string in the request to create a corresponding alias. The `id` is still assigned by Classroom and cannot be updated after the course is created. Specifying this field in a course update mask results in an error. */
+  id?: string;
+  /** Optional description. For example, "We'll be learning about the structure of living creatures from a combination of textbooks, guest lectures, and lab work. Expect to be excited!" If set, this field must be a valid UTF-8 string and no longer than 30,000 characters. */
+  description?: string;
   /** Creation time of the course. Specifying this field in a course update mask results in an error. Read-only. */
   creationTime?: string;
+  /** Optional room location. For example, "301". If set, this field must be a valid UTF-8 string and no longer than 650 characters. */
+  room?: string;
+  /** Whether or not guardian notifications are enabled for this course. Read-only. */
+  guardiansEnabled?: boolean;
+  /** The email address of a Google group containing all teachers of the course. This group does not accept email and can only be used for permissions. Read-only. */
+  teacherGroupEmail?: string;
+  /** Time of the most recent update to this course. Specifying this field in a course update mask results in an error. Read-only. */
+  updateTime?: string;
+  /** The gradebook settings that specify how a student's overall grade for the course will be calculated and who it will be displayed to. Read-only. */
+  gradebookSettings?: GradebookSettings;
   /** State of the course. If unspecified, the default state is `PROVISIONED`. */
   courseState?: CourseCourseStateEnum | (string & {});
+  /** Absolute link to this course in the Classroom web UI. Read-only. */
+  alternateLink?: string;
+  /** The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course. The Calendar for a course is created asynchronously when the course is set to `CourseState.ACTIVE` for the first time (at creation time or when it is updated to `ACTIVE` through the UI or the API). The Calendar ID will not be populated until the creation process is completed. Read-only. */
+  calendarId?: string;
+  /** Optional. Levels for the course. Examples: "9th grade", "Middle school", "4th - 5th", "K-2", "3000". If set, this field must be a valid UTF-8 string and fewer than 1000 characters. This field can only be cleared using the `PatchCourse` method. */
+  levels?: string;
+  /** Optional. The subject of the course. */
+  subject?: string;
+  /** The identifier of the owner of a course. When specified as a parameter of a create course request, this field is required. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user This must be set in a create request. Admins can also specify this field in a patch course request to transfer ownership. In other contexts, it is read-only. */
+  ownerId?: string;
   /** Enrollment code to use when joining this course. Specifying this field in a course update mask results in an error. Read-only. */
   enrollmentCode?: string;
   /** Name of the course. For example, "10th Grade Biology". The name is required. It must be between 1 and 750 characters and a valid UTF-8 string. */
   name?: string;
-  /** The email address of a Google group containing all members of the course. This group does not accept email and can only be used for permissions. Read-only. */
-  courseGroupEmail?: string;
   /** Sets of materials that appear on the "about" page of this course. Read-only. */
   courseMaterialSets?: CourseMaterialSetList;
+  /** The email address of a Google group containing all members of the course. This group does not accept email and can only be used for permissions. Read-only. */
+  courseGroupEmail?: string;
   /** Information about a Drive Folder that is shared with all teachers of the course. This field will only be set for teachers of the course and domain administrators. Read-only. */
   teacherFolder?: DriveFolder;
   /** Section of the course. For example, "Period 2". If set, this field must be a valid UTF-8 string and no longer than 2800 characters. */
   section?: string;
-  /** Optional. The subject of the course. */
-  subject?: string;
-  /** Optional room location. For example, "301". If set, this field must be a valid UTF-8 string and no longer than 650 characters. */
-  room?: string;
   /** Optional heading for the description. For example, "Welcome to 10th Grade Biology." If set, this field must be a valid UTF-8 string and no longer than 3600 characters. */
   descriptionHeading?: string;
-  /** The identifier of the owner of a course. When specified as a parameter of a create course request, this field is required. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user This must be set in a create request. Admins can also specify this field in a patch course request to transfer ownership. In other contexts, it is read-only. */
-  ownerId?: string;
-  /** Whether or not guardian notifications are enabled for this course. Read-only. */
-  guardiansEnabled?: boolean;
-  /** Absolute link to this course in the Classroom web UI. Read-only. */
-  alternateLink?: string;
-  /** The email address of a Google group containing all teachers of the course. This group does not accept email and can only be used for permissions. Read-only. */
-  teacherGroupEmail?: string;
-  /** Optional description. For example, "We'll be learning about the structure of living creatures from a combination of textbooks, guest lectures, and lab work. Expect to be excited!" If set, this field must be a valid UTF-8 string and no longer than 30,000 characters. */
-  description?: string;
-  /** Identifier for this course assigned by Classroom. When creating a course, you may optionally set this identifier to an alias string in the request to create a corresponding alias. The `id` is still assigned by Classroom and cannot be updated after the course is created. Specifying this field in a course update mask results in an error. */
-  id?: string;
-  /** The gradebook settings that specify how a student's overall grade for the course will be calculated and who it will be displayed to. Read-only. */
-  gradebookSettings?: GradebookSettings;
-  /** Time of the most recent update to this course. Specifying this field in a course update mask results in an error. Read-only. */
-  updateTime?: string;
-  /** The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course. The Calendar for a course is created asynchronously when the course is set to `CourseState.ACTIVE` for the first time (at creation time or when it is updated to `ACTIVE` through the UI or the API). The Calendar ID will not be populated until the creation process is completed. Read-only. */
-  calendarId?: string;
 }
 export const Course = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    levels: S.optional(S.String),
+    id: S.optional(S.String),
+    description: S.optional(S.String),
     creationTime: S.optional(S.String),
+    room: S.optional(S.String),
+    guardiansEnabled: S.optional(S.Boolean),
+    teacherGroupEmail: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    gradebookSettings: S.optional(GradebookSettings),
     courseState: S.optional(CourseCourseStateEnum),
+    alternateLink: S.optional(S.String),
+    calendarId: S.optional(S.String),
+    levels: S.optional(S.String),
+    subject: S.optional(S.String),
+    ownerId: S.optional(S.String),
     enrollmentCode: S.optional(S.String),
     name: S.optional(S.String),
-    courseGroupEmail: S.optional(S.String),
     courseMaterialSets: S.optional(CourseMaterialSetList),
+    courseGroupEmail: S.optional(S.String),
     teacherFolder: S.optional(DriveFolder),
     section: S.optional(S.String),
-    subject: S.optional(S.String),
-    room: S.optional(S.String),
     descriptionHeading: S.optional(S.String),
-    ownerId: S.optional(S.String),
-    guardiansEnabled: S.optional(S.Boolean),
-    alternateLink: S.optional(S.String),
-    teacherGroupEmail: S.optional(S.String),
-    description: S.optional(S.String),
-    id: S.optional(S.String),
-    gradebookSettings: S.optional(GradebookSettings),
-    updateTime: S.optional(S.String),
-    calendarId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Course" }) as any as S.Schema<Course>;
 
@@ -423,44 +423,37 @@ export type AnnouncementStateEnum =
   | "DELETED";
 export const AnnouncementStateEnum = /*@__PURE__*/ S.String;
 
-export type AnnouncementAssigneeModeEnum =
-  | "ASSIGNEE_MODE_UNSPECIFIED"
-  | "ALL_STUDENTS"
-  | "INDIVIDUAL_STUDENTS";
-export const AnnouncementAssigneeModeEnum = /*@__PURE__*/ S.String;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Assignee details about a coursework/announcement. This field is set if and only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. */
-export interface IndividualStudentsOptions {
-  /** Identifiers for the students that have access to the coursework/announcement. */
-  studentIds?: StringList;
+/** Gemini Gem link. */
+export interface GeminiGem {
+  /** URL that can be used to access the Gem. */
+  url?: string;
+  /** Gems resource id. */
+  id?: string;
+  /** Title of the Gem. */
+  title?: string;
 }
-export const IndividualStudentsOptions = /*@__PURE__*/ S.suspend(() =>
+export const GeminiGem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    studentIds: S.optional(StringList),
+    url: S.optional(S.String),
+    id: S.optional(S.String),
+    title: S.optional(S.String),
   }),
-).annotate({
-  identifier: "IndividualStudentsOptions",
-}) as any as S.Schema<IndividualStudentsOptions>;
+).annotate({ identifier: "GeminiGem" }) as any as S.Schema<GeminiGem>;
 
 /** NotebookLM Notebook link. */
 export interface NotebookLmNotebook {
   /** Title of the Notebook. */
   title?: string;
-  /** URL that can be used to access the Notebook. */
-  url?: string;
   /** Notebook resource id. */
   id?: string;
+  /** URL that can be used to access the Notebook. */
+  url?: string;
 }
 export const NotebookLmNotebook = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     title: S.optional(S.String),
-    url: S.optional(S.String),
     id: S.optional(S.String),
+    url: S.optional(S.String),
   }),
 ).annotate({
   identifier: "NotebookLmNotebook",
@@ -489,46 +482,29 @@ export const SharedDriveFile = /*@__PURE__*/ S.suspend(() =>
   identifier: "SharedDriveFile",
 }) as any as S.Schema<SharedDriveFile>;
 
-/** Gemini Gem link. */
-export interface GeminiGem {
-  /** Gems resource id. */
-  id?: string;
-  /** URL that can be used to access the Gem. */
-  url?: string;
-  /** Title of the Gem. */
-  title?: string;
-}
-export const GeminiGem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    url: S.optional(S.String),
-    title: S.optional(S.String),
-  }),
-).annotate({ identifier: "GeminiGem" }) as any as S.Schema<GeminiGem>;
-
 /** Material attached to course work. When creating attachments, setting the `form`, `gem`, or `notebook` field is not supported. */
 export interface Material {
-  /** NotebookLM Notebook material. Read-only. */
-  notebook?: NotebookLmNotebook;
-  /** Google Drive file material. */
-  driveFile?: SharedDriveFile;
-  /** Link material. On creation, this is upgraded to a more appropriate type if possible, and this is reflected in the response. */
-  link?: Link;
-  /** YouTube video material. */
-  youtubeVideo?: YouTubeVideo;
-  /** Google Forms material. Read-only. */
-  form?: Form;
   /** Gemini Gem material. Read-only. */
   gem?: GeminiGem;
+  /** YouTube video material. */
+  youtubeVideo?: YouTubeVideo;
+  /** Link material. On creation, this is upgraded to a more appropriate type if possible, and this is reflected in the response. */
+  link?: Link;
+  /** NotebookLM Notebook material. Read-only. */
+  notebook?: NotebookLmNotebook;
+  /** Google Forms material. Read-only. */
+  form?: Form;
+  /** Google Drive file material. */
+  driveFile?: SharedDriveFile;
 }
 export const Material = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    notebook: S.optional(NotebookLmNotebook),
-    driveFile: S.optional(SharedDriveFile),
-    link: S.optional(Link),
-    youtubeVideo: S.optional(YouTubeVideo),
-    form: S.optional(Form),
     gem: S.optional(GeminiGem),
+    youtubeVideo: S.optional(YouTubeVideo),
+    link: S.optional(Link),
+    notebook: S.optional(NotebookLmNotebook),
+    form: S.optional(Form),
+    driveFile: S.optional(SharedDriveFile),
   }),
 ).annotate({ identifier: "Material" }) as any as S.Schema<Material>;
 
@@ -537,47 +513,71 @@ export const MaterialList = /*@__PURE__*/ S.Array(
   Material,
 ) as any as S.Schema<MaterialList>;
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+/** Assignee details about a coursework/announcement. This field is set if and only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. */
+export interface IndividualStudentsOptions {
+  /** Identifiers for the students that have access to the coursework/announcement. */
+  studentIds?: StringList;
+}
+export const IndividualStudentsOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    studentIds: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "IndividualStudentsOptions",
+}) as any as S.Schema<IndividualStudentsOptions>;
+
+export type AnnouncementAssigneeModeEnum =
+  | "ASSIGNEE_MODE_UNSPECIFIED"
+  | "ALL_STUDENTS"
+  | "INDIVIDUAL_STUDENTS";
+export const AnnouncementAssigneeModeEnum = /*@__PURE__*/ S.String;
+
 /** Announcement created by a teacher for students of the course */
 export interface Announcement {
-  /** Timestamp when this announcement was created. Read-only. */
-  creationTime?: string;
-  /** Absolute link to this announcement in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only. */
-  alternateLink?: string;
-  /** Status of this announcement. If unspecified, the default state is `DRAFT`. */
-  state?: AnnouncementStateEnum | (string & {});
-  /** Assignee mode of the announcement. If unspecified, the default value is `ALL_STUDENTS`. */
-  assigneeMode?: AnnouncementAssigneeModeEnum | (string & {});
   /** Description of this announcement. The text must be a valid UTF-8 string containing no more than 30,000 characters. */
   text?: string;
-  /** Classroom-assigned identifier of this announcement, unique per course. Read-only. */
-  id?: string;
-  /** Identifiers of students with access to the announcement. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field can see the announcement. */
-  individualStudentsOptions?: IndividualStudentsOptions;
+  /** Status of this announcement. If unspecified, the default state is `DRAFT`. */
+  state?: AnnouncementStateEnum | (string & {});
   /** Identifier for the user that created the announcement. Read-only. */
   creatorUserId?: string;
-  /** Additional materials. Announcements must have no more than 20 material items. */
-  materials?: MaterialList;
-  /** Identifier of the course. Read-only. */
-  courseId?: string;
-  /** Timestamp of the most recent change to this announcement. Read-only. */
-  updateTime?: string;
   /** Optional timestamp when this announcement is scheduled to be published. */
   scheduledTime?: string;
+  /** Timestamp when this announcement was created. Read-only. */
+  creationTime?: string;
+  /** Classroom-assigned identifier of this announcement, unique per course. Read-only. */
+  id?: string;
+  /** Additional materials. Announcements must have no more than 20 material items. */
+  materials?: MaterialList;
+  /** Identifiers of students with access to the announcement. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field can see the announcement. */
+  individualStudentsOptions?: IndividualStudentsOptions;
+  /** Timestamp of the most recent change to this announcement. Read-only. */
+  updateTime?: string;
+  /** Assignee mode of the announcement. If unspecified, the default value is `ALL_STUDENTS`. */
+  assigneeMode?: AnnouncementAssigneeModeEnum | (string & {});
+  /** Absolute link to this announcement in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only. */
+  alternateLink?: string;
+  /** Identifier of the course. Read-only. */
+  courseId?: string;
 }
 export const Announcement = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    creationTime: S.optional(S.String),
-    alternateLink: S.optional(S.String),
-    state: S.optional(AnnouncementStateEnum),
-    assigneeMode: S.optional(AnnouncementAssigneeModeEnum),
     text: S.optional(S.String),
-    id: S.optional(S.String),
-    individualStudentsOptions: S.optional(IndividualStudentsOptions),
+    state: S.optional(AnnouncementStateEnum),
     creatorUserId: S.optional(S.String),
-    materials: S.optional(MaterialList),
-    courseId: S.optional(S.String),
-    updateTime: S.optional(S.String),
     scheduledTime: S.optional(S.String),
+    creationTime: S.optional(S.String),
+    id: S.optional(S.String),
+    materials: S.optional(MaterialList),
+    individualStudentsOptions: S.optional(IndividualStudentsOptions),
+    updateTime: S.optional(S.String),
+    assigneeMode: S.optional(AnnouncementAssigneeModeEnum),
+    alternateLink: S.optional(S.String),
+    courseId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Announcement" }) as any as S.Schema<Announcement>;
 
@@ -602,23 +602,6 @@ export const CreateCoursesAnnouncementsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCoursesAnnouncementsRequest",
 }) as any as S.Schema<CreateCoursesAnnouncementsRequest>;
 
-/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
-export interface Classroom_Date {
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
-  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
-  year?: number;
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-}
-export const Classroom_Date = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    day: S.optional(S.Number),
-    year: S.optional(S.Number),
-    month: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Classroom_Date" }) as any as S.Schema<Classroom_Date>;
-
 /** URI to be iframed after being populated with query parameters. */
 export interface EmbedUri {
   /** Required. URI to be iframed after being populated with query parameters. This must be a valid UTF-8 string containing between 1 and 1800 characters. */
@@ -630,43 +613,23 @@ export const EmbedUri = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "EmbedUri" }) as any as S.Schema<EmbedUri>;
 
-/** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
-export interface TimeOfDay {
-  /** Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59. */
-  minutes?: number;
-  /** Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds. */
-  seconds?: number;
-  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
-  hours?: number;
-  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
-  nanos?: number;
-}
-export const TimeOfDay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minutes: S.optional(S.Number),
-    seconds: S.optional(S.Number),
-    hours: S.optional(S.Number),
-    nanos: S.optional(S.Number),
-  }),
-).annotate({ identifier: "TimeOfDay" }) as any as S.Schema<TimeOfDay>;
-
 /** Identifier of a previous copy of a given attachment. */
 export interface CopyHistory {
+  /** Immutable. Deprecated, use `item_id` instead. */
+  postId?: string;
+  /** Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. */
+  itemId?: string;
   /** Immutable. Identifier of the course. */
   courseId?: string;
   /** Immutable. Identifier of the attachment. */
   attachmentId?: string;
-  /** Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. */
-  itemId?: string;
-  /** Immutable. Deprecated, use `item_id` instead. */
-  postId?: string;
 }
 export const CopyHistory = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    postId: S.optional(S.String),
+    itemId: S.optional(S.String),
     courseId: S.optional(S.String),
     attachmentId: S.optional(S.String),
-    itemId: S.optional(S.String),
-    postId: S.optional(S.String),
   }),
 ).annotate({ identifier: "CopyHistory" }) as any as S.Schema<CopyHistory>;
 
@@ -675,57 +638,94 @@ export const CopyHistoryList = /*@__PURE__*/ S.Array(
   CopyHistory,
 ) as any as S.Schema<CopyHistoryList>;
 
+/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
+export interface Classroom_Date {
+  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
+  year?: number;
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
+}
+export const Classroom_Date = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    year: S.optional(S.Number),
+    day: S.optional(S.Number),
+    month: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Classroom_Date" }) as any as S.Schema<Classroom_Date>;
+
+/** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
+export interface TimeOfDay {
+  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
+  nanos?: number;
+  /** Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59. */
+  minutes?: number;
+  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
+  hours?: number;
+  /** Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds. */
+  seconds?: number;
+}
+export const TimeOfDay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nanos: S.optional(S.Number),
+    minutes: S.optional(S.Number),
+    hours: S.optional(S.Number),
+    seconds: S.optional(S.Number),
+  }),
+).annotate({ identifier: "TimeOfDay" }) as any as S.Schema<TimeOfDay>;
+
 /** An add-on attachment on a post. */
 export interface AddOnAttachment {
-  /** Required. Title of this attachment. The title must be between 1 and 1000 characters. */
-  title?: string;
-  /** Date, in UTC, that work on this attachment is due. This must be specified if `due_time` is specified. */
-  dueDate?: Classroom_Date;
-  /** Maximum grade for this attachment. Can only be set if `studentWorkReviewUri` is set. Set to a non-zero value to indicate that the attachment supports grade passback. If set, this must be a non-negative integer value. When set to zero, the attachment will not support grade passback. */
-  maxPoints?: number;
-  /** Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, and `attachmentId` query parameters set. */
-  teacherViewUri?: EmbedUri;
-  /** URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](/workspace/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded. */
-  studentWorkReviewUri?: EmbedUri;
-  /** Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. Unique per course. */
-  itemId?: string;
   /** Required. URI to show the student view of the attachment. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, and `attachmentId` query parameters set. */
   studentViewUri?: EmbedUri;
-  /** Immutable. Deprecated, use `item_id` instead. */
-  postId?: string;
-  /** Time of day, in UTC, that work on this attachment is due. This must be specified if `due_date` is specified. */
-  dueTime?: TimeOfDay;
-  /** Output only. Identifiers of attachments that were previous copies of this attachment. If the attachment was previously copied by virtue of its parent post being copied, this enumerates the identifiers of attachments that were its previous copies in ascending chronological order of copy. */
-  copyHistory?: CopyHistoryList;
-  /** Immutable. Identifier of the course. */
-  courseId?: string;
+  /** URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](/workspace/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded. */
+  studentWorkReviewUri?: EmbedUri;
+  /** Maximum grade for this attachment. Can only be set if `studentWorkReviewUri` is set. Set to a non-zero value to indicate that the attachment supports grade passback. If set, this must be a non-negative integer value. When set to zero, the attachment will not support grade passback. */
+  maxPoints?: number;
   /** Immutable. Classroom-assigned identifier for this attachment, unique per post. */
   id?: string;
+  /** Required. Title of this attachment. The title must be between 1 and 1000 characters. */
+  title?: string;
+  /** Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, and `attachmentId` query parameters set. */
+  teacherViewUri?: EmbedUri;
+  /** Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. Unique per course. */
+  itemId?: string;
+  /** Immutable. Deprecated, use `item_id` instead. */
+  postId?: string;
+  /** Immutable. Identifier of the course. */
+  courseId?: string;
+  /** Output only. Identifiers of attachments that were previous copies of this attachment. If the attachment was previously copied by virtue of its parent post being copied, this enumerates the identifiers of attachments that were its previous copies in ascending chronological order of copy. */
+  copyHistory?: CopyHistoryList;
+  /** Date, in UTC, that work on this attachment is due. This must be specified if `due_time` is specified. */
+  dueDate?: Classroom_Date;
+  /** Time of day, in UTC, that work on this attachment is due. This must be specified if `due_date` is specified. */
+  dueTime?: TimeOfDay;
 }
 export const AddOnAttachment = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    title: S.optional(S.String),
-    dueDate: S.optional(Classroom_Date),
-    maxPoints: S.optional(S.Number),
-    teacherViewUri: S.optional(EmbedUri),
-    studentWorkReviewUri: S.optional(EmbedUri),
-    itemId: S.optional(S.String),
     studentViewUri: S.optional(EmbedUri),
-    postId: S.optional(S.String),
-    dueTime: S.optional(TimeOfDay),
-    copyHistory: S.optional(CopyHistoryList),
-    courseId: S.optional(S.String),
+    studentWorkReviewUri: S.optional(EmbedUri),
+    maxPoints: S.optional(S.Number),
     id: S.optional(S.String),
+    title: S.optional(S.String),
+    teacherViewUri: S.optional(EmbedUri),
+    itemId: S.optional(S.String),
+    postId: S.optional(S.String),
+    courseId: S.optional(S.String),
+    copyHistory: S.optional(CopyHistoryList),
+    dueDate: S.optional(Classroom_Date),
+    dueTime: S.optional(TimeOfDay),
   }),
 ).annotate({
   identifier: "AddOnAttachment",
 }) as any as S.Schema<AddOnAttachment>;
 
 export interface CreateCoursesAnnouncementsAddOnAttachmentsRequest {
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId?: string;
   /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match. */
   addOnToken?: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId?: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id. */
@@ -736,8 +736,8 @@ export interface CreateCoursesAnnouncementsAddOnAttachmentsRequest {
 export const CreateCoursesAnnouncementsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      postId: S.optional(S.String.pipe(T.Query())),
       addOnToken: S.optional(S.String.pipe(T.Query())),
+      postId: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
       itemId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
@@ -752,13 +752,6 @@ export const CreateCoursesAnnouncementsAddOnAttachmentsRequest =
     identifier: "CreateCoursesAnnouncementsAddOnAttachmentsRequest",
   }) as any as S.Schema<CreateCoursesAnnouncementsAddOnAttachmentsRequest>;
 
-export type CourseWorkWorkTypeEnum =
-  | "COURSE_WORK_TYPE_UNSPECIFIED"
-  | "ASSIGNMENT"
-  | "SHORT_ANSWER_QUESTION"
-  | "MULTIPLE_CHOICE_QUESTION";
-export const CourseWorkWorkTypeEnum = /*@__PURE__*/ S.String;
-
 export type CourseWorkSubmissionModificationModeEnum =
   | "SUBMISSION_MODIFICATION_MODE_UNSPECIFIED"
   | "MODIFIABLE_UNTIL_TURNED_IN"
@@ -770,24 +763,6 @@ export type CourseWorkAssigneeModeEnum =
   | "ALL_STUDENTS"
   | "INDIVIDUAL_STUDENTS";
 export const CourseWorkAssigneeModeEnum = /*@__PURE__*/ S.String;
-
-export type CourseWorkStateEnum =
-  | "COURSE_WORK_STATE_UNSPECIFIED"
-  | "PUBLISHED"
-  | "DRAFT"
-  | "DELETED";
-export const CourseWorkStateEnum = /*@__PURE__*/ S.String;
-
-/** Additional details for assignments. */
-export interface Assignment {
-  /** Drive folder where attachments from student submissions are placed. This is only populated for course teachers and administrators. */
-  studentWorkFolder?: DriveFolder;
-}
-export const Assignment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    studentWorkFolder: S.optional(DriveFolder),
-  }),
-).annotate({ identifier: "Assignment" }) as any as S.Schema<Assignment>;
 
 /** Additional details for multiple-choice questions. */
 export interface MultipleChoiceQuestion {
@@ -802,87 +777,112 @@ export const MultipleChoiceQuestion = /*@__PURE__*/ S.suspend(() =>
   identifier: "MultipleChoiceQuestion",
 }) as any as S.Schema<MultipleChoiceQuestion>;
 
+/** Additional details for assignments. */
+export interface Assignment {
+  /** Drive folder where attachments from student submissions are placed. This is only populated for course teachers and administrators. */
+  studentWorkFolder?: DriveFolder;
+}
+export const Assignment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    studentWorkFolder: S.optional(DriveFolder),
+  }),
+).annotate({ identifier: "Assignment" }) as any as S.Schema<Assignment>;
+
+export type CourseWorkStateEnum =
+  | "COURSE_WORK_STATE_UNSPECIFIED"
+  | "PUBLISHED"
+  | "DRAFT"
+  | "DELETED";
+export const CourseWorkStateEnum = /*@__PURE__*/ S.String;
+
+export type CourseWorkWorkTypeEnum =
+  | "COURSE_WORK_TYPE_UNSPECIFIED"
+  | "ASSIGNMENT"
+  | "SHORT_ANSWER_QUESTION"
+  | "MULTIPLE_CHOICE_QUESTION";
+export const CourseWorkWorkTypeEnum = /*@__PURE__*/ S.String;
+
 /** Course work created by a teacher for students of the course. */
 export interface CourseWork {
-  /** Optional timestamp when this course work is scheduled to be published. */
-  scheduledTime?: string;
-  /** Identifier for the user that created the coursework. Read-only. */
-  creatorUserId?: string;
-  /** Additional materials. CourseWork must have no more than 20 material items. */
-  materials?: MaterialList;
-  /** Identifier for the topic that this coursework is associated with. Must match an existing topic in the course. */
-  topicId?: string;
-  /** Classroom-assigned identifier of this course work, unique per course. Read-only. */
-  id?: string;
-  /** Identifiers of students with access to the coursework. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field are assigned the coursework. */
-  individualStudentsOptions?: IndividualStudentsOptions;
-  /** Type of this course work. The type is set when the course work is created and cannot be changed. */
-  workType?: CourseWorkWorkTypeEnum | (string & {});
   /** Setting to determine when students are allowed to modify submissions. If unspecified, the default value is `MODIFIABLE_UNTIL_TURNED_IN`. */
   submissionModificationMode?:
     | CourseWorkSubmissionModificationModeEnum
     | (string & {});
-  /** Title of this course work. The title must be a valid UTF-8 string containing between 1 and 3000 characters. */
-  title?: string;
-  /** Absolute link to this course work in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only. */
-  alternateLink?: string;
-  /** Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be a non-negative integer value. */
-  maxPoints?: number;
-  /** The category that this coursework's grade contributes to. Present only when a category has been chosen for the coursework. May be used in calculating the overall grade. Read-only. */
-  gradeCategory?: GradeCategory;
-  /** Optional date, in UTC, that submissions for this course work are due. This must be specified if `due_time` is specified. */
-  dueDate?: Classroom_Date;
-  /** Optional description of this course work. If set, the description must be a valid UTF-8 string containing no more than 30,000 characters. */
-  description?: string;
   /** Whether this course work item is associated with the Developer Console project making the request. See CreateCourseWork for more details. Read-only. */
   associatedWithDeveloper?: boolean;
-  /** Assignee mode of the coursework. If unspecified, the default value is `ALL_STUDENTS`. */
-  assigneeMode?: CourseWorkAssigneeModeEnum | (string & {});
-  /** Timestamp when this course work was created. Read-only. */
-  creationTime?: string;
+  /** Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be a non-negative integer value. */
+  maxPoints?: number;
+  /** Optional date, in UTC, that submissions for this course work are due. This must be specified if `due_time` is specified. */
+  dueDate?: Classroom_Date;
+  /** Identifier of the grading period associated with the coursework. * At creation, if unspecified, the grading period ID will be set based on the `dueDate` (or `scheduledTime` if no `dueDate` is set). * To indicate no association to any grading period, set this field to an empty string (""). * If specified, it must match an existing grading period ID in the course. */
+  gradingPeriodId?: string;
   /** Identifier of the course. Read-only. */
   courseId?: string;
   /** Optional time of day, in UTC, that submissions for this course work are due. This must be specified if `due_date` is specified. */
   dueTime?: TimeOfDay;
-  /** Status of this course work. If unspecified, the default state is `DRAFT`. */
-  state?: CourseWorkStateEnum | (string & {});
-  /** Identifier of the grading period associated with the coursework. * At creation, if unspecified, the grading period ID will be set based on the `dueDate` (or `scheduledTime` if no `dueDate` is set). * To indicate no association to any grading period, set this field to an empty string (""). * If specified, it must match an existing grading period ID in the course. */
-  gradingPeriodId?: string;
-  /** Assignment details. This is populated only when `work_type` is `ASSIGNMENT`. Read-only. */
-  assignment?: Assignment;
-  /** Timestamp of the most recent change to this course work. Read-only. */
-  updateTime?: string;
+  /** Assignee mode of the coursework. If unspecified, the default value is `ALL_STUDENTS`. */
+  assigneeMode?: CourseWorkAssigneeModeEnum | (string & {});
+  /** Identifier for the topic that this coursework is associated with. Must match an existing topic in the course. */
+  topicId?: string;
   /** Multiple choice question details. For read operations, this field is populated only when `work_type` is `MULTIPLE_CHOICE_QUESTION`. For write operations, this field must be specified when creating course work with a `work_type` of `MULTIPLE_CHOICE_QUESTION`, and it must not be set otherwise. */
   multipleChoiceQuestion?: MultipleChoiceQuestion;
+  /** Assignment details. This is populated only when `work_type` is `ASSIGNMENT`. Read-only. */
+  assignment?: Assignment;
+  /** Identifier for the user that created the coursework. Read-only. */
+  creatorUserId?: string;
+  /** Optional timestamp when this course work is scheduled to be published. */
+  scheduledTime?: string;
+  /** Identifiers of students with access to the coursework. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field are assigned the coursework. */
+  individualStudentsOptions?: IndividualStudentsOptions;
+  /** Classroom-assigned identifier of this course work, unique per course. Read-only. */
+  id?: string;
+  /** Title of this course work. The title must be a valid UTF-8 string containing between 1 and 3000 characters. */
+  title?: string;
+  /** Optional description of this course work. If set, the description must be a valid UTF-8 string containing no more than 30,000 characters. */
+  description?: string;
+  /** Timestamp when this course work was created. Read-only. */
+  creationTime?: string;
+  /** Additional materials. CourseWork must have no more than 20 material items. */
+  materials?: MaterialList;
+  /** Status of this course work. If unspecified, the default state is `DRAFT`. */
+  state?: CourseWorkStateEnum | (string & {});
+  /** Type of this course work. The type is set when the course work is created and cannot be changed. */
+  workType?: CourseWorkWorkTypeEnum | (string & {});
+  /** Absolute link to this course work in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only. */
+  alternateLink?: string;
+  /** Timestamp of the most recent change to this course work. Read-only. */
+  updateTime?: string;
+  /** The category that this coursework's grade contributes to. Present only when a category has been chosen for the coursework. May be used in calculating the overall grade. Read-only. */
+  gradeCategory?: GradeCategory;
 }
 export const CourseWork = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scheduledTime: S.optional(S.String),
-    creatorUserId: S.optional(S.String),
-    materials: S.optional(MaterialList),
-    topicId: S.optional(S.String),
-    id: S.optional(S.String),
-    individualStudentsOptions: S.optional(IndividualStudentsOptions),
-    workType: S.optional(CourseWorkWorkTypeEnum),
     submissionModificationMode: S.optional(
       CourseWorkSubmissionModificationModeEnum,
     ),
-    title: S.optional(S.String),
-    alternateLink: S.optional(S.String),
-    maxPoints: S.optional(S.Number),
-    gradeCategory: S.optional(GradeCategory),
-    dueDate: S.optional(Classroom_Date),
-    description: S.optional(S.String),
     associatedWithDeveloper: S.optional(S.Boolean),
-    assigneeMode: S.optional(CourseWorkAssigneeModeEnum),
-    creationTime: S.optional(S.String),
+    maxPoints: S.optional(S.Number),
+    dueDate: S.optional(Classroom_Date),
+    gradingPeriodId: S.optional(S.String),
     courseId: S.optional(S.String),
     dueTime: S.optional(TimeOfDay),
-    state: S.optional(CourseWorkStateEnum),
-    gradingPeriodId: S.optional(S.String),
-    assignment: S.optional(Assignment),
-    updateTime: S.optional(S.String),
+    assigneeMode: S.optional(CourseWorkAssigneeModeEnum),
+    topicId: S.optional(S.String),
     multipleChoiceQuestion: S.optional(MultipleChoiceQuestion),
+    assignment: S.optional(Assignment),
+    creatorUserId: S.optional(S.String),
+    scheduledTime: S.optional(S.String),
+    individualStudentsOptions: S.optional(IndividualStudentsOptions),
+    id: S.optional(S.String),
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+    creationTime: S.optional(S.String),
+    materials: S.optional(MaterialList),
+    state: S.optional(CourseWorkStateEnum),
+    workType: S.optional(CourseWorkWorkTypeEnum),
+    alternateLink: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    gradeCategory: S.optional(GradeCategory),
   }),
 ).annotate({ identifier: "CourseWork" }) as any as S.Schema<CourseWork>;
 
@@ -908,24 +908,24 @@ export const CreateCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCoursesCourseWorkRequest>;
 
 export interface CreateCoursesCourseWorkAddOnAttachmentsRequest {
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId?: string;
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match. */
   addOnToken?: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId?: string;
   /** Request body */
   body?: AddOnAttachment;
 }
 export const CreateCoursesCourseWorkAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      postId: S.optional(S.String.pipe(T.Query())),
-      itemId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
       addOnToken: S.optional(S.String.pipe(T.Query())),
+      itemId: S.String.pipe(T.Label()),
+      postId: S.optional(S.String.pipe(T.Query())),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -938,6 +938,12 @@ export const CreateCoursesCourseWorkAddOnAttachmentsRequest =
     identifier: "CreateCoursesCourseWorkAddOnAttachmentsRequest",
   }) as any as S.Schema<CreateCoursesCourseWorkAddOnAttachmentsRequest>;
 
+export type CourseWorkMaterialAssigneeModeEnum =
+  | "ASSIGNEE_MODE_UNSPECIFIED"
+  | "ALL_STUDENTS"
+  | "INDIVIDUAL_STUDENTS";
+export const CourseWorkMaterialAssigneeModeEnum = /*@__PURE__*/ S.String;
+
 export type CourseWorkMaterialStateEnum =
   | "COURSEWORK_MATERIAL_STATE_UNSPECIFIED"
   | "PUBLISHED"
@@ -945,59 +951,53 @@ export type CourseWorkMaterialStateEnum =
   | "DELETED";
 export const CourseWorkMaterialStateEnum = /*@__PURE__*/ S.String;
 
-export type CourseWorkMaterialAssigneeModeEnum =
-  | "ASSIGNEE_MODE_UNSPECIFIED"
-  | "ALL_STUDENTS"
-  | "INDIVIDUAL_STUDENTS";
-export const CourseWorkMaterialAssigneeModeEnum = /*@__PURE__*/ S.String;
-
 /** Course work material created by a teacher for students of the course */
 export interface CourseWorkMaterial {
-  /** Optional description of this course work material. The text must be a valid UTF-8 string containing no more than 30,000 characters. */
-  description?: string;
+  /** Timestamp when this course work material was created. Read-only. */
+  creationTime?: string;
   /** Identifiers of students with access to the course work material. This field is set only if `assigneeMode` is `INDIVIDUAL_STUDENTS`. If the `assigneeMode` is `INDIVIDUAL_STUDENTS`, then only students specified in this field can see the course work material. */
   individualStudentsOptions?: IndividualStudentsOptions;
   /** Identifier for the topic that this course work material is associated with. Must match an existing topic in the course. */
   topicId?: string;
-  /** Title of this course work material. The title must be a valid UTF-8 string containing between 1 and 3000 characters. */
-  title?: string;
-  /** Classroom-assigned identifier of this course work material, unique per course. Read-only. */
-  id?: string;
-  /** Optional timestamp when this course work material is scheduled to be published. */
-  scheduledTime?: string;
-  /** Identifier for the user that created the course work material. Read-only. */
-  creatorUserId?: string;
-  /** Absolute link to this course work material in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only. */
-  alternateLink?: string;
-  /** Timestamp when this course work material was created. Read-only. */
-  creationTime?: string;
-  /** Additional materials. A course work material must have no more than 20 material items. */
-  materials?: MaterialList;
-  /** Status of this course work material. If unspecified, the default state is `DRAFT`. */
-  state?: CourseWorkMaterialStateEnum | (string & {});
-  /** Identifier of the course. Read-only. */
-  courseId?: string;
   /** Assignee mode of the course work material. If unspecified, the default value is `ALL_STUDENTS`. */
   assigneeMode?: CourseWorkMaterialAssigneeModeEnum | (string & {});
   /** Timestamp of the most recent change to this course work material. Read-only. */
   updateTime?: string;
+  /** Absolute link to this course work material in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only. */
+  alternateLink?: string;
+  /** Optional description of this course work material. The text must be a valid UTF-8 string containing no more than 30,000 characters. */
+  description?: string;
+  /** Classroom-assigned identifier of this course work material, unique per course. Read-only. */
+  id?: string;
+  /** Identifier of the course. Read-only. */
+  courseId?: string;
+  /** Additional materials. A course work material must have no more than 20 material items. */
+  materials?: MaterialList;
+  /** Status of this course work material. If unspecified, the default state is `DRAFT`. */
+  state?: CourseWorkMaterialStateEnum | (string & {});
+  /** Optional timestamp when this course work material is scheduled to be published. */
+  scheduledTime?: string;
+  /** Title of this course work material. The title must be a valid UTF-8 string containing between 1 and 3000 characters. */
+  title?: string;
+  /** Identifier for the user that created the course work material. Read-only. */
+  creatorUserId?: string;
 }
 export const CourseWorkMaterial = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    description: S.optional(S.String),
+    creationTime: S.optional(S.String),
     individualStudentsOptions: S.optional(IndividualStudentsOptions),
     topicId: S.optional(S.String),
-    title: S.optional(S.String),
-    id: S.optional(S.String),
-    scheduledTime: S.optional(S.String),
-    creatorUserId: S.optional(S.String),
-    alternateLink: S.optional(S.String),
-    creationTime: S.optional(S.String),
-    materials: S.optional(MaterialList),
-    state: S.optional(CourseWorkMaterialStateEnum),
-    courseId: S.optional(S.String),
     assigneeMode: S.optional(CourseWorkMaterialAssigneeModeEnum),
     updateTime: S.optional(S.String),
+    alternateLink: S.optional(S.String),
+    description: S.optional(S.String),
+    id: S.optional(S.String),
+    courseId: S.optional(S.String),
+    materials: S.optional(MaterialList),
+    state: S.optional(CourseWorkMaterialStateEnum),
+    scheduledTime: S.optional(S.String),
+    title: S.optional(S.String),
+    creatorUserId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CourseWorkMaterial",
@@ -1028,12 +1028,12 @@ export const CreateCoursesCourseWorkMaterialsRequest = /*@__PURE__*/ S.suspend(
 export interface CreateCoursesCourseWorkMaterialsAddOnAttachmentsRequest {
   /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match. */
   addOnToken?: string;
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
   /** Required. Identifier of the course. */
   courseId: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId: string;
   /** Request body */
   body?: AddOnAttachment;
 }
@@ -1041,9 +1041,9 @@ export const CreateCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       addOnToken: S.optional(S.String.pipe(T.Query())),
-      itemId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
+      itemId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1062,17 +1062,17 @@ export interface Level {
   id?: string;
   /** The title of the level. If the level has no points set, title must be set. */
   title?: string;
-  /** The description of the level. */
-  description?: string;
   /** Optional points associated with this level. If set, all levels within the rubric must specify points and the value must be distinct across all levels within a single criterion. 0 is distinct from no points. */
   points?: number;
+  /** The description of the level. */
+  description?: string;
 }
 export const Level = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     title: S.optional(S.String),
-    description: S.optional(S.String),
     points: S.optional(S.Number),
+    description: S.optional(S.String),
   }),
 ).annotate({ identifier: "Level" }) as any as S.Schema<Level>;
 
@@ -1083,21 +1083,21 @@ export const LevelList = /*@__PURE__*/ S.Array(
 
 /** A rubric criterion. Each criterion is a dimension on which performance is rated. */
 export interface Criterion {
+  /** The title of the criterion. */
+  title?: string;
   /** The list of levels within this criterion. */
   levels?: LevelList;
   /** The description of the criterion. */
   description?: string;
   /** The criterion ID. On creation, an ID is assigned. */
   id?: string;
-  /** The title of the criterion. */
-  title?: string;
 }
 export const Criterion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    title: S.optional(S.String),
     levels: S.optional(LevelList),
     description: S.optional(S.String),
     id: S.optional(S.String),
-    title: S.optional(S.String),
   }),
 ).annotate({ identifier: "Criterion" }) as any as S.Schema<Criterion>;
 
@@ -1108,46 +1108,46 @@ export const CriterionList = /*@__PURE__*/ S.Array(
 
 /** The rubric of the course work. A rubric is a scoring guide used to evaluate student work and give feedback. For further details, see [Rubrics structure and known limitations](/classroom/rubrics/limitations). */
 export interface Rubric {
+  /** Output only. Timestamp of the most recent change to this rubric. Read-only. */
+  updateTime?: string;
+  /** Identifier for the course work this corresponds to. Read-only. */
+  courseWorkId?: string;
   /** Output only. Timestamp when this rubric was created. Read-only. */
   creationTime?: string;
+  /** Input only. Immutable. Google Sheets ID of the spreadsheet. This spreadsheet must contain formatted rubric settings. See [Create or reuse a rubric for an assignment](https://support.google.com/edu/classroom/answer/9335069). Use of this field requires the `https://www.googleapis.com/auth/spreadsheets.readonly` or `https://www.googleapis.com/auth/spreadsheets` scope. */
+  sourceSpreadsheetId?: string;
+  /** Classroom-assigned identifier for the rubric. This is unique among rubrics for the relevant course work. Read-only. */
+  id?: string;
   /** Identifier of the course. Read-only. */
   courseId?: string;
   /** List of criteria. Each criterion is a dimension on which performance is rated. */
   criteria?: CriterionList;
-  /** Output only. Timestamp of the most recent change to this rubric. Read-only. */
-  updateTime?: string;
-  /** Classroom-assigned identifier for the rubric. This is unique among rubrics for the relevant course work. Read-only. */
-  id?: string;
-  /** Identifier for the course work this corresponds to. Read-only. */
-  courseWorkId?: string;
-  /** Input only. Immutable. Google Sheets ID of the spreadsheet. This spreadsheet must contain formatted rubric settings. See [Create or reuse a rubric for an assignment](https://support.google.com/edu/classroom/answer/9335069). Use of this field requires the `https://www.googleapis.com/auth/spreadsheets.readonly` or `https://www.googleapis.com/auth/spreadsheets` scope. */
-  sourceSpreadsheetId?: string;
 }
 export const Rubric = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    updateTime: S.optional(S.String),
+    courseWorkId: S.optional(S.String),
     creationTime: S.optional(S.String),
+    sourceSpreadsheetId: S.optional(S.String),
+    id: S.optional(S.String),
     courseId: S.optional(S.String),
     criteria: S.optional(CriterionList),
-    updateTime: S.optional(S.String),
-    id: S.optional(S.String),
-    courseWorkId: S.optional(S.String),
-    sourceSpreadsheetId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Rubric" }) as any as S.Schema<Rubric>;
 
 export interface CreateCoursesCourseWorkRubricsRequest {
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Required. Identifier of the course work. */
   courseWorkId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
   /** Request body */
   body?: Rubric;
 }
 export const CreateCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      courseId: S.String.pipe(T.Label()),
       courseWorkId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
       body: S.optional(Rubric.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1161,24 +1161,24 @@ export const CreateCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateCoursesCourseWorkRubricsRequest>;
 
 export interface CreateCoursesPostsAddOnAttachmentsRequest {
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId: string;
+  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match. */
+  addOnToken?: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId?: string;
   /** Required. Identifier of the course. */
   courseId: string;
-  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. This authorization token is required for in-Classroom attachment creation but optional for partner-first attachment creation. Returns an error if not provided for partner-first attachment creation and the developer projects that created the attachment and its parent stream item do not match. */
-  addOnToken?: string;
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId: string;
   /** Request body */
   body?: AddOnAttachment;
 }
 export const CreateCoursesPostsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      postId: S.String.pipe(T.Label()),
+      addOnToken: S.optional(S.String.pipe(T.Query())),
       itemId: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
-      addOnToken: S.optional(S.String.pipe(T.Query())),
-      postId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1195,16 +1195,16 @@ export const CreateCoursesPostsAddOnAttachmentsRequest =
 export interface StudentGroup {
   /** The identifier of the student group. */
   id?: string;
-  /** The identifier of the course. */
-  courseId?: string;
   /** The title of the student group. */
   title?: string;
+  /** The identifier of the course. */
+  courseId?: string;
 }
 export const StudentGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
-    courseId: S.optional(S.String),
     title: S.optional(S.String),
+    courseId: S.optional(S.String),
   }),
 ).annotate({ identifier: "StudentGroup" }) as any as S.Schema<StudentGroup>;
 
@@ -1231,18 +1231,18 @@ export const CreateCoursesStudentGroupsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A student member in a student group. */
 export interface StudentGroupMember {
-  /** Identifier of the student. */
-  userId?: string;
   /** The identifier of the student group. */
   studentGroupId?: string;
   /** The identifier of the course. */
   courseId?: string;
+  /** Identifier of the student. */
+  userId?: string;
 }
 export const StudentGroupMember = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.optional(S.String),
     studentGroupId: S.optional(S.String),
     courseId: S.optional(S.String),
+    userId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "StudentGroupMember",
@@ -1273,6 +1273,23 @@ export const CreateCoursesStudentGroupsStudentGroupMembersRequest =
     identifier: "CreateCoursesStudentGroupsStudentGroupMembersRequest",
   }) as any as S.Schema<CreateCoursesStudentGroupsStudentGroupMembersRequest>;
 
+/** Details of the user's name. */
+export interface Name {
+  /** The user's full name formed by concatenating the first and last name values. Read-only. */
+  fullName?: string;
+  /** The user's first name. Read-only. */
+  givenName?: string;
+  /** The user's last name. Read-only. */
+  familyName?: string;
+}
+export const Name = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fullName: S.optional(S.String),
+    givenName: S.optional(S.String),
+    familyName: S.optional(S.String),
+  }),
+).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
+
 export type GlobalPermissionPermissionEnum =
   | "PERMISSION_UNSPECIFIED"
   | "CREATE_COURSE";
@@ -1296,81 +1313,64 @@ export const GlobalPermissionList = /*@__PURE__*/ S.Array(
   GlobalPermission,
 ) as any as S.Schema<GlobalPermissionList>;
 
-/** Details of the user's name. */
-export interface Name {
-  /** The user's first name. Read-only. */
-  givenName?: string;
-  /** The user's last name. Read-only. */
-  familyName?: string;
-  /** The user's full name formed by concatenating the first and last name values. Read-only. */
-  fullName?: string;
-}
-export const Name = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    givenName: S.optional(S.String),
-    familyName: S.optional(S.String),
-    fullName: S.optional(S.String),
-  }),
-).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
-
 /** Global information for a user. */
 export interface UserProfile {
   /** URL of user's profile photo. Must request `https://www.googleapis.com/auth/classroom.profile.photos` scope for this field to be populated in a response body. Read-only. */
   photoUrl?: string;
   /** Email address of the user. Must request `https://www.googleapis.com/auth/classroom.profile.emails` scope for this field to be populated in a response body. Read-only. */
   emailAddress?: string;
-  /** Global permissions of the user. Read-only. */
-  permissions?: GlobalPermissionList;
   /** Represents whether a Google Workspace for Education user's domain administrator has explicitly verified them as being a teacher. This field is always false if the user is not a member of a Google Workspace for Education domain. Read-only */
   verifiedTeacher?: boolean;
-  /** Name of the user. Read-only. */
-  name?: Name;
   /** Identifier of the user. Read-only. */
   id?: string;
+  /** Name of the user. Read-only. */
+  name?: Name;
+  /** Global permissions of the user. Read-only. */
+  permissions?: GlobalPermissionList;
 }
 export const UserProfile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     photoUrl: S.optional(S.String),
     emailAddress: S.optional(S.String),
-    permissions: S.optional(GlobalPermissionList),
     verifiedTeacher: S.optional(S.Boolean),
-    name: S.optional(Name),
     id: S.optional(S.String),
+    name: S.optional(Name),
+    permissions: S.optional(GlobalPermissionList),
   }),
 ).annotate({ identifier: "UserProfile" }) as any as S.Schema<UserProfile>;
 
 /** Student in a course. */
 export interface Student {
+  /** Global user information for the student. Read-only. */
+  profile?: UserProfile;
+  /** Information about a Drive Folder for this student's work in this course. Only visible to the student and domain administrators. Read-only. */
+  studentWorkFolder?: DriveFolder;
   /** Identifier of the user. When specified as a parameter of a request, this identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
   userId?: string;
   /** Identifier of the course. Read-only. */
   courseId?: string;
-  /** Information about a Drive Folder for this student's work in this course. Only visible to the student and domain administrators. Read-only. */
-  studentWorkFolder?: DriveFolder;
-  /** Global user information for the student. Read-only. */
-  profile?: UserProfile;
 }
 export const Student = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    profile: S.optional(UserProfile),
+    studentWorkFolder: S.optional(DriveFolder),
     userId: S.optional(S.String),
     courseId: S.optional(S.String),
-    studentWorkFolder: S.optional(DriveFolder),
-    profile: S.optional(UserProfile),
   }),
 ).annotate({ identifier: "Student" }) as any as S.Schema<Student>;
 
 export interface CreateCoursesStudentsRequest {
-  /** Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
   /** Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user. */
   enrollmentCode?: string;
+  /** Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
   /** Request body */
   body?: Student;
 }
 export const CreateCoursesStudentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
     enrollmentCode: S.optional(S.String.pipe(T.Query())),
+    courseId: S.String.pipe(T.Label()),
     body: S.optional(Student.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -1385,18 +1385,18 @@ export const CreateCoursesStudentsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Teacher of a course. */
 export interface Teacher {
-  /** Global user information for the teacher. Read-only. */
-  profile?: UserProfile;
-  /** Identifier of the course. Read-only. */
-  courseId?: string;
   /** Identifier of the user. When specified as a parameter of a request, this identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
   userId?: string;
+  /** Identifier of the course. Read-only. */
+  courseId?: string;
+  /** Global user information for the teacher. Read-only. */
+  profile?: UserProfile;
 }
 export const Teacher = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    profile: S.optional(UserProfile),
-    courseId: S.optional(S.String),
     userId: S.optional(S.String),
+    courseId: S.optional(S.String),
+    profile: S.optional(UserProfile),
   }),
 ).annotate({ identifier: "Teacher" }) as any as S.Schema<Teacher>;
 
@@ -1423,21 +1423,21 @@ export const CreateCoursesTeachersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Topic created by a teacher for the course */
 export interface Topic {
-  /** The name of the topic, generated by the user. Leading and trailing whitespaces, if any, are trimmed. Also, multiple consecutive whitespaces are collapsed into one inside the name. The result must be a non-empty string. Topic names are case sensitive, and must be no longer than 100 characters. */
-  name?: string;
-  /** The time the topic was last updated by the system. Read-only. */
-  updateTime?: string;
   /** Unique identifier for the topic. Read-only. */
   topicId?: string;
   /** Identifier of the course. Read-only. */
   courseId?: string;
+  /** The time the topic was last updated by the system. Read-only. */
+  updateTime?: string;
+  /** The name of the topic, generated by the user. Leading and trailing whitespaces, if any, are trimmed. Also, multiple consecutive whitespaces are collapsed into one inside the name. The result must be a non-empty string. Topic names are case sensitive, and must be no longer than 100 characters. */
+  name?: string;
 }
 export const Topic = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    updateTime: S.optional(S.String),
     topicId: S.optional(S.String),
     courseId: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Topic" }) as any as S.Schema<Topic>;
 
@@ -1471,21 +1471,21 @@ export const InvitationRoleEnum = /*@__PURE__*/ S.String;
 
 /** An invitation to join a course. */
 export interface Invitation {
-  /** Identifier assigned by Classroom. Read-only. */
-  id?: string;
   /** Role to invite the user to have. Must not be `COURSE_ROLE_UNSPECIFIED`. */
   role?: InvitationRoleEnum | (string & {});
-  /** Identifier of the invited user. When specified as a parameter of a request, this identifier can be set to one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
-  userId?: string;
   /** Identifier of the course to invite the user to. */
   courseId?: string;
+  /** Identifier of the invited user. When specified as a parameter of a request, this identifier can be set to one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
+  userId?: string;
+  /** Identifier assigned by Classroom. Read-only. */
+  id?: string;
 }
 export const Invitation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
     role: S.optional(InvitationRoleEnum),
-    userId: S.optional(S.String),
     courseId: S.optional(S.String),
+    userId: S.optional(S.String),
+    id: S.optional(S.String),
   }),
 ).annotate({ identifier: "Invitation" }) as any as S.Schema<Invitation>;
 
@@ -1520,6 +1520,13 @@ export const CourseWorkChangesInfo = /*@__PURE__*/ S.suspend(() =>
   identifier: "CourseWorkChangesInfo",
 }) as any as S.Schema<CourseWorkChangesInfo>;
 
+export type FeedFeedTypeEnum =
+  | "FEED_TYPE_UNSPECIFIED"
+  | "DOMAIN_ROSTER_CHANGES"
+  | "COURSE_ROSTER_CHANGES"
+  | "COURSE_WORK_CHANGES";
+export const FeedFeedTypeEnum = /*@__PURE__*/ S.String;
+
 /** Information about a `Feed` with a `feed_type` of `COURSE_ROSTER_CHANGES`. */
 export interface CourseRosterChangesInfo {
   /** The `course_id` of the course to subscribe to roster changes for. */
@@ -1533,27 +1540,20 @@ export const CourseRosterChangesInfo = /*@__PURE__*/ S.suspend(() =>
   identifier: "CourseRosterChangesInfo",
 }) as any as S.Schema<CourseRosterChangesInfo>;
 
-export type FeedFeedTypeEnum =
-  | "FEED_TYPE_UNSPECIFIED"
-  | "DOMAIN_ROSTER_CHANGES"
-  | "COURSE_ROSTER_CHANGES"
-  | "COURSE_WORK_CHANGES";
-export const FeedFeedTypeEnum = /*@__PURE__*/ S.String;
-
 /** A class of notifications that an application can register to receive. For example: "all roster changes for a domain". */
 export interface Feed {
   /** Information about a `Feed` with a `feed_type` of `COURSE_WORK_CHANGES`. This field must be specified if `feed_type` is `COURSE_WORK_CHANGES`. */
   courseWorkChangesInfo?: CourseWorkChangesInfo;
-  /** Information about a `Feed` with a `feed_type` of `COURSE_ROSTER_CHANGES`. This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`. */
-  courseRosterChangesInfo?: CourseRosterChangesInfo;
   /** The type of feed. */
   feedType?: FeedFeedTypeEnum | (string & {});
+  /** Information about a `Feed` with a `feed_type` of `COURSE_ROSTER_CHANGES`. This field must be specified if `feed_type` is `COURSE_ROSTER_CHANGES`. */
+  courseRosterChangesInfo?: CourseRosterChangesInfo;
 }
 export const Feed = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     courseWorkChangesInfo: S.optional(CourseWorkChangesInfo),
-    courseRosterChangesInfo: S.optional(CourseRosterChangesInfo),
     feedType: S.optional(FeedFeedTypeEnum),
+    courseRosterChangesInfo: S.optional(CourseRosterChangesInfo),
   }),
 ).annotate({ identifier: "Feed" }) as any as S.Schema<Feed>;
 
@@ -1616,24 +1616,24 @@ export const GuardianInvitationStateEnum = /*@__PURE__*/ S.String;
 
 /** An invitation to become the guardian of a specified user, sent to a specified email address. */
 export interface GuardianInvitation {
+  /** The time that this invitation was created. Read-only. */
+  creationTime?: string;
+  /** The state that this invitation is in. */
+  state?: GuardianInvitationStateEnum | (string & {});
   /** Email address that the invitation was sent to. This field is only visible to domain administrators. */
   invitedEmailAddress?: string;
   /** ID of the student (in standard format) */
   studentId?: string;
-  /** The state that this invitation is in. */
-  state?: GuardianInvitationStateEnum | (string & {});
   /** Unique identifier for this invitation. Read-only. */
   invitationId?: string;
-  /** The time that this invitation was created. Read-only. */
-  creationTime?: string;
 }
 export const GuardianInvitation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    creationTime: S.optional(S.String),
+    state: S.optional(GuardianInvitationStateEnum),
     invitedEmailAddress: S.optional(S.String),
     studentId: S.optional(S.String),
-    state: S.optional(GuardianInvitationStateEnum),
     invitationId: S.optional(S.String),
-    creationTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GuardianInvitation",
@@ -1701,15 +1701,15 @@ export const DeleteCoursesAliasesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCoursesAliasesRequest>;
 
 export interface DeleteCoursesAnnouncementsRequest {
-  /** Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier. */
-  id: string;
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
+  /** Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier. */
+  id: string;
 }
 export const DeleteCoursesAnnouncementsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.String.pipe(T.Label()),
     courseId: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1722,22 +1722,22 @@ export const DeleteCoursesAnnouncementsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCoursesAnnouncementsRequest>;
 
 export interface DeleteCoursesAnnouncementsAddOnAttachmentsRequest {
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId: string;
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
 }
 export const DeleteCoursesAnnouncementsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      itemId: S.String.pipe(T.Label()),
-      attachmentId: S.String.pipe(T.Label()),
-      courseId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
+      attachmentId: S.String.pipe(T.Label()),
+      itemId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1750,15 +1750,15 @@ export const DeleteCoursesAnnouncementsAddOnAttachmentsRequest =
   }) as any as S.Schema<DeleteCoursesAnnouncementsAddOnAttachmentsRequest>;
 
 export interface DeleteCoursesCourseWorkRequest {
-  /** Identifier of the course work to delete. This identifier is a Classroom-assigned identifier. */
-  id: string;
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
+  /** Identifier of the course work to delete. This identifier is a Classroom-assigned identifier. */
+  id: string;
 }
 export const DeleteCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.String.pipe(T.Label()),
     courseId: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1771,22 +1771,22 @@ export const DeleteCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCoursesCourseWorkRequest>;
 
 export interface DeleteCoursesCourseWorkAddOnAttachmentsRequest {
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId?: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
   /** Required. Identifier of the attachment. */
   attachmentId: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId?: string;
 }
 export const DeleteCoursesCourseWorkAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      postId: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
       itemId: S.String.pipe(T.Label()),
       attachmentId: S.String.pipe(T.Label()),
+      postId: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1823,20 +1823,20 @@ export const DeleteCoursesCourseWorkMaterialsRequest = /*@__PURE__*/ S.suspend(
 export interface DeleteCoursesCourseWorkMaterialsAddOnAttachmentsRequest {
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Required. Identifier of the attachment. */
   attachmentId: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
 }
 export const DeleteCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       itemId: S.String.pipe(T.Label()),
-      courseId: S.String.pipe(T.Label()),
       attachmentId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
+      courseId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1849,19 +1849,19 @@ export const DeleteCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   }) as any as S.Schema<DeleteCoursesCourseWorkMaterialsAddOnAttachmentsRequest>;
 
 export interface DeleteCoursesCourseWorkRubricsRequest {
+  /** Required. Identifier of the course. */
+  courseId: string;
   /** Required. Identifier of the course work. */
   courseWorkId: string;
   /** Required. Identifier of the rubric. */
   id: string;
-  /** Required. Identifier of the course. */
-  courseId: string;
 }
 export const DeleteCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      courseId: S.String.pipe(T.Label()),
       courseWorkId: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
-      courseId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1874,22 +1874,22 @@ export const DeleteCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteCoursesCourseWorkRubricsRequest>;
 
 export interface DeleteCoursesPostsAddOnAttachmentsRequest {
-  /** Required. Identifier of the course. */
-  courseId: string;
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId: string;
   /** Required. Identifier of the attachment. */
   attachmentId: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId?: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
 }
 export const DeleteCoursesPostsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      courseId: S.String.pipe(T.Label()),
-      postId: S.String.pipe(T.Label()),
       attachmentId: S.String.pipe(T.Label()),
       itemId: S.optional(S.String.pipe(T.Query())),
+      postId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1923,19 +1923,19 @@ export const DeleteCoursesStudentGroupsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCoursesStudentGroupsRequest>;
 
 export interface DeleteCoursesStudentGroupsStudentGroupMembersRequest {
-  /** Required. The identifier of the student group member to delete. */
-  userId: string;
   /** Required. The identifier of the course containing the relevant student group. */
   courseId: string;
   /** Required. The identifier of the student group containing the student group member to delete. */
   studentGroupId: string;
+  /** Required. The identifier of the student group member to delete. */
+  userId: string;
 }
 export const DeleteCoursesStudentGroupsStudentGroupMembersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      userId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
       studentGroupId: S.String.pipe(T.Label()),
+      userId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1948,15 +1948,15 @@ export const DeleteCoursesStudentGroupsStudentGroupMembersRequest =
   }) as any as S.Schema<DeleteCoursesStudentGroupsStudentGroupMembersRequest>;
 
 export interface DeleteCoursesStudentsRequest {
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
   /** Identifier of the student to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
   userId: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
 }
 export const DeleteCoursesStudentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
     userId: S.String.pipe(T.Label()),
+    courseId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1969,15 +1969,15 @@ export const DeleteCoursesStudentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCoursesStudentsRequest>;
 
 export interface DeleteCoursesTeachersRequest {
-  /** Identifier of the teacher to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
-  userId: string;
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
+  /** Identifier of the teacher to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
+  userId: string;
 }
 export const DeleteCoursesTeachersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     courseId: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1990,15 +1990,15 @@ export const DeleteCoursesTeachersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteCoursesTeachersRequest>;
 
 export interface DeleteCoursesTopicsRequest {
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
   /** Identifier of the topic to delete. */
   id: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
 }
 export const DeleteCoursesTopicsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    courseId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -2072,21 +2072,21 @@ export interface GetAddOnContextCoursesAnnouncementsRequest {
   postId?: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
-  /** Optional. The identifier of the attachment. This field is required for all requests except when the user is in the [Attachment Discovery iframe](https://developers.google.com/workspace/classroom/add-ons/get-started/iframes/attachment-discovery-iframe). */
-  attachmentId?: string;
-  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post. */
-  addOnToken?: string;
   /** Required. Identifier of the course. */
   courseId: string;
+  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post. */
+  addOnToken?: string;
+  /** Optional. The identifier of the attachment. This field is required for all requests except when the user is in the [Attachment Discovery iframe](https://developers.google.com/workspace/classroom/add-ons/get-started/iframes/attachment-discovery-iframe). */
+  attachmentId?: string;
 }
 export const GetAddOnContextCoursesAnnouncementsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       postId: S.optional(S.String.pipe(T.Query())),
       itemId: S.String.pipe(T.Label()),
-      attachmentId: S.optional(S.String.pipe(T.Query())),
-      addOnToken: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
+      addOnToken: S.optional(S.String.pipe(T.Query())),
+      attachmentId: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2117,50 +2117,50 @@ export const TeacherContext = /*@__PURE__*/ S.suspend(() =>
 
 /** Attachment-relevant metadata for Classroom add-ons in the context of a specific post. */
 export interface AddOnContext {
+  /** Immutable. Identifier of the course. */
+  courseId?: string;
   /** Immutable. Deprecated, use `item_id` instead. */
   postId?: string;
   /** Optional. Whether the post allows the teacher to see student work and passback grades. */
   supportsStudentWork?: boolean;
   /** Add-on context corresponding to the requesting user's role as a student. Its presence implies that the requesting user is a student in the course. */
   studentContext?: StudentContext;
-  /** Add-on context corresponding to the requesting user's role as a teacher. Its presence implies that the requesting user is a teacher in the course. */
-  teacherContext?: TeacherContext;
   /** Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. */
   itemId?: string;
-  /** Immutable. Identifier of the course. */
-  courseId?: string;
+  /** Add-on context corresponding to the requesting user's role as a teacher. Its presence implies that the requesting user is a teacher in the course. */
+  teacherContext?: TeacherContext;
 }
 export const AddOnContext = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    courseId: S.optional(S.String),
     postId: S.optional(S.String),
     supportsStudentWork: S.optional(S.Boolean),
     studentContext: S.optional(StudentContext),
-    teacherContext: S.optional(TeacherContext),
     itemId: S.optional(S.String),
-    courseId: S.optional(S.String),
+    teacherContext: S.optional(TeacherContext),
   }),
 ).annotate({ identifier: "AddOnContext" }) as any as S.Schema<AddOnContext>;
 
 export interface GetAddOnContextCoursesCourseWorkRequest {
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId: string;
   /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post. */
   addOnToken?: string;
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId?: string;
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Optional. The identifier of the attachment. This field is required for all requests except when the user is in the [Attachment Discovery iframe](https://developers.google.com/workspace/classroom/add-ons/get-started/iframes/attachment-discovery-iframe). */
   attachmentId?: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId?: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
 }
 export const GetAddOnContextCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      itemId: S.String.pipe(T.Label()),
       addOnToken: S.optional(S.String.pipe(T.Query())),
-      postId: S.optional(S.String.pipe(T.Query())),
-      courseId: S.String.pipe(T.Label()),
       attachmentId: S.optional(S.String.pipe(T.Query())),
+      postId: S.optional(S.String.pipe(T.Query())),
+      itemId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2173,25 +2173,25 @@ export const GetAddOnContextCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetAddOnContextCoursesCourseWorkRequest>;
 
 export interface GetAddOnContextCoursesCourseWorkMaterialsRequest {
-  /** Optional. The identifier of the attachment. This field is required for all requests except when the user is in the [Attachment Discovery iframe](https://developers.google.com/workspace/classroom/add-ons/get-started/iframes/attachment-discovery-iframe). */
-  attachmentId?: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId: string;
-  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post. */
-  addOnToken?: string;
   /** Required. Identifier of the course. */
   courseId: string;
+  /** Optional. The identifier of the attachment. This field is required for all requests except when the user is in the [Attachment Discovery iframe](https://developers.google.com/workspace/classroom/add-ons/get-started/iframes/attachment-discovery-iframe). */
+  attachmentId?: string;
+  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post. */
+  addOnToken?: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId: string;
 }
 export const GetAddOnContextCoursesCourseWorkMaterialsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      attachmentId: S.optional(S.String.pipe(T.Query())),
       postId: S.optional(S.String.pipe(T.Query())),
-      itemId: S.String.pipe(T.Label()),
-      addOnToken: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
+      attachmentId: S.optional(S.String.pipe(T.Query())),
+      addOnToken: S.optional(S.String.pipe(T.Query())),
+      itemId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2204,24 +2204,24 @@ export const GetAddOnContextCoursesCourseWorkMaterialsRequest =
   }) as any as S.Schema<GetAddOnContextCoursesCourseWorkMaterialsRequest>;
 
 export interface GetAddOnContextCoursesPostsRequest {
-  /** Required. Identifier of the course. */
-  courseId: string;
-  /** Optional. The identifier of the attachment. This field is required for all requests except when the user is in the [Attachment Discovery iframe](https://developers.google.com/workspace/classroom/add-ons/get-started/iframes/attachment-discovery-iframe). */
-  attachmentId?: string;
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId?: string;
-  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post. */
-  addOnToken?: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId: string;
+  /** Optional. The identifier of the attachment. This field is required for all requests except when the user is in the [Attachment Discovery iframe](https://developers.google.com/workspace/classroom/add-ons/get-started/iframes/attachment-discovery-iframe). */
+  attachmentId?: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
+  /** Optional. Token that authorizes the request. The token is passed as a query parameter when the user is redirected from Classroom to the add-on's URL. The authorization token is required when neither of the following is true: * The add-on has attachments on the post. * The developer project issuing the request is the same project that created the post. */
+  addOnToken?: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId?: string;
 }
 export const GetAddOnContextCoursesPostsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
-    attachmentId: S.optional(S.String.pipe(T.Query())),
-    itemId: S.optional(S.String.pipe(T.Query())),
-    addOnToken: S.optional(S.String.pipe(T.Query())),
     postId: S.String.pipe(T.Label()),
+    attachmentId: S.optional(S.String.pipe(T.Query())),
+    courseId: S.String.pipe(T.Label()),
+    addOnToken: S.optional(S.String.pipe(T.Query())),
+    itemId: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2273,22 +2273,22 @@ export const GetCoursesAnnouncementsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCoursesAnnouncementsRequest>;
 
 export interface GetCoursesAnnouncementsAddOnAttachmentsRequest {
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
   /** Required. Identifier of the course. */
   courseId: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId: string;
 }
 export const GetCoursesAnnouncementsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      itemId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
-      attachmentId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
+      attachmentId: S.String.pipe(T.Label()),
+      itemId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2350,25 +2350,25 @@ export const GetCoursesCourseWorkAddOnAttachmentsRequest =
   }) as any as S.Schema<GetCoursesCourseWorkAddOnAttachmentsRequest>;
 
 export interface GetCoursesCourseWorkAddOnAttachmentsStudentSubmissionsRequest {
-  /** Required. Identifier of the course. */
-  courseId: string;
+  /** Required. Identifier of the student’s submission. */
+  submissionId: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
   /** Required. Identifier of the attachment. */
   attachmentId: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
-  /** Required. Identifier of the student’s submission. */
-  submissionId: string;
 }
 export const GetCoursesCourseWorkAddOnAttachmentsStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      courseId: S.String.pipe(T.Label()),
+      submissionId: S.String.pipe(T.Label()),
       itemId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
       attachmentId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
-      submissionId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2392,28 +2392,28 @@ export const AddOnAttachmentStudentSubmissionPostSubmissionStateEnum =
 
 /** Payload for grade update requests. */
 export interface AddOnAttachmentStudentSubmission {
-  /** Identifier for the student that owns this submission. Requires the user to be a teacher in the course and have permission to read student submissions. See [`courseWork.studentSubmissions.get`](/workspace/classroom/reference/rest/v1/courses.courseWork.studentSubmissions/get#authorization-scopes) for the list of acceptable OAuth scopes for this field. Read-only. */
-  userId?: string;
   /** Output only. Classroom-assigned identifier for this student submission. This is unique among submissions for the relevant course work and add-on attachment combination. */
   id?: string;
-  /** Output only. Identifier of the course work submission under which this attachment submission was made. */
-  courseWorkSubmissionId?: string;
   /** Submission state of add-on attachment's parent post (i.e. assignment). */
   postSubmissionState?:
     | AddOnAttachmentStudentSubmissionPostSubmissionStateEnum
     | (string & {});
   /** Student grade on this attachment. If unset, no grade was set. */
   pointsEarned?: number;
+  /** Identifier for the student that owns this submission. Requires the user to be a teacher in the course and have permission to read student submissions. See [`courseWork.studentSubmissions.get`](/workspace/classroom/reference/rest/v1/courses.courseWork.studentSubmissions/get#authorization-scopes) for the list of acceptable OAuth scopes for this field. Read-only. */
+  userId?: string;
+  /** Output only. Identifier of the course work submission under which this attachment submission was made. */
+  courseWorkSubmissionId?: string;
 }
 export const AddOnAttachmentStudentSubmission = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.optional(S.String),
     id: S.optional(S.String),
-    courseWorkSubmissionId: S.optional(S.String),
     postSubmissionState: S.optional(
       AddOnAttachmentStudentSubmissionPostSubmissionStateEnum,
     ),
     pointsEarned: S.optional(S.Number),
+    userId: S.optional(S.String),
+    courseWorkSubmissionId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AddOnAttachmentStudentSubmission",
@@ -2442,22 +2442,22 @@ export const GetCoursesCourseWorkMaterialsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetCoursesCourseWorkMaterialsRequest>;
 
 export interface GetCoursesCourseWorkMaterialsAddOnAttachmentsRequest {
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
   /** Required. Identifier of the course. */
   courseId: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
 }
 export const GetCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      attachmentId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
       itemId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
+      attachmentId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2472,16 +2472,16 @@ export const GetCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
 export interface GetCoursesCourseWorkRubricsRequest {
   /** Required. Identifier of the course work. */
   courseWorkId: string;
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Required. Identifier of the rubric. */
   id: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
 }
 export const GetCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     courseWorkId: S.String.pipe(T.Label()),
-    courseId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    courseId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2494,18 +2494,18 @@ export const GetCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCoursesCourseWorkRubricsRequest>;
 
 export interface GetCoursesCourseWorkStudentSubmissionsRequest {
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
   /** Identifier of the course work. */
   courseWorkId: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
   /** Identifier of the student submission. */
   id: string;
 }
 export const GetCoursesCourseWorkStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      courseId: S.String.pipe(T.Label()),
       courseWorkId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -2517,6 +2517,42 @@ export const GetCoursesCourseWorkStudentSubmissionsRequest =
   ).annotate({
     identifier: "GetCoursesCourseWorkStudentSubmissionsRequest",
   }) as any as S.Schema<GetCoursesCourseWorkStudentSubmissionsRequest>;
+
+/** Student work for a multiple-choice question. */
+export interface MultipleChoiceSubmission {
+  /** Student's select choice. */
+  answer?: string;
+}
+export const MultipleChoiceSubmission = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    answer: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MultipleChoiceSubmission",
+}) as any as S.Schema<MultipleChoiceSubmission>;
+
+/** A rubric grade set for the student submission. There is at most one entry per rubric criterion. */
+export interface RubricGrade {
+  /** Optional. Optional points assigned for this criterion, typically based on the level. Levels might or might not have points. If unset, no points were set for this criterion. */
+  points?: number;
+  /** Optional. Optional level ID of the selected level. If empty, no level was selected. */
+  levelId?: string;
+  /** Optional. Criterion ID. */
+  criterionId?: string;
+}
+export const RubricGrade = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    points: S.optional(S.Number),
+    levelId: S.optional(S.String),
+    criterionId: S.optional(S.String),
+  }),
+).annotate({ identifier: "RubricGrade" }) as any as S.Schema<RubricGrade>;
+
+export type RubricGradeMap = { [key: string]: RubricGrade | undefined };
+export const RubricGradeMap = /*@__PURE__*/ S.Record(
+  S.String,
+  RubricGrade,
+) as any as S.Schema<RubricGradeMap>;
 
 /** Student work for a short answer question. */
 export interface ShortAnswerSubmission {
@@ -2531,75 +2567,42 @@ export const ShortAnswerSubmission = /*@__PURE__*/ S.suspend(() =>
   identifier: "ShortAnswerSubmission",
 }) as any as S.Schema<ShortAnswerSubmission>;
 
-/** Attachment added to student assignment work. When creating attachments, setting the `form` field is not supported. */
-export interface Attachment {
-  /** Youtube video attachment. */
-  youTubeVideo?: YouTubeVideo;
-  /** Link attachment. */
-  link?: Link;
-  /** Google Forms attachment. */
-  form?: Form;
-  /** Google Drive file attachment. */
-  driveFile?: DriveFile;
+export type StudentSubmissionCourseWorkTypeEnum =
+  | "COURSE_WORK_TYPE_UNSPECIFIED"
+  | "ASSIGNMENT"
+  | "SHORT_ANSWER_QUESTION"
+  | "MULTIPLE_CHOICE_QUESTION";
+export const StudentSubmissionCourseWorkTypeEnum = /*@__PURE__*/ S.String;
+
+export type GradeHistoryGradeChangeTypeEnum =
+  | "UNKNOWN_GRADE_CHANGE_TYPE"
+  | "DRAFT_GRADE_POINTS_EARNED_CHANGE"
+  | "ASSIGNED_GRADE_POINTS_EARNED_CHANGE"
+  | "MAX_POINTS_CHANGE";
+export const GradeHistoryGradeChangeTypeEnum = /*@__PURE__*/ S.String;
+
+/** The history of each grade on this submission. */
+export interface GradeHistory {
+  /** The numerator of the grade at this time in the submission grade history. */
+  pointsEarned?: number;
+  /** The denominator of the grade at this time in the submission grade history. */
+  maxPoints?: number;
+  /** The teacher who made the grade change. */
+  actorUserId?: string;
+  /** The type of grade change at this time in the submission grade history. */
+  gradeChangeType?: GradeHistoryGradeChangeTypeEnum | (string & {});
+  /** When the grade of the submission was changed. */
+  gradeTimestamp?: string;
 }
-export const Attachment = /*@__PURE__*/ S.suspend(() =>
+export const GradeHistory = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    youTubeVideo: S.optional(YouTubeVideo),
-    link: S.optional(Link),
-    form: S.optional(Form),
-    driveFile: S.optional(DriveFile),
+    pointsEarned: S.optional(S.Number),
+    maxPoints: S.optional(S.Number),
+    actorUserId: S.optional(S.String),
+    gradeChangeType: S.optional(GradeHistoryGradeChangeTypeEnum),
+    gradeTimestamp: S.optional(S.String),
   }),
-).annotate({ identifier: "Attachment" }) as any as S.Schema<Attachment>;
-
-export type AttachmentList = Array<Attachment>;
-export const AttachmentList = /*@__PURE__*/ S.Array(
-  Attachment,
-) as any as S.Schema<AttachmentList>;
-
-/** Student work for an assignment. */
-export interface AssignmentSubmission {
-  /** Attachments added by the student. Drive files that correspond to materials with a share mode of STUDENT_COPY may not exist yet if the student has not accessed the assignment in Classroom. Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are always available, but others (for example, title) may not be. */
-  attachments?: AttachmentList;
-}
-export const AssignmentSubmission = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachments: S.optional(AttachmentList),
-  }),
-).annotate({
-  identifier: "AssignmentSubmission",
-}) as any as S.Schema<AssignmentSubmission>;
-
-/** A rubric grade set for the student submission. There is at most one entry per rubric criterion. */
-export interface RubricGrade {
-  /** Optional. Optional points assigned for this criterion, typically based on the level. Levels might or might not have points. If unset, no points were set for this criterion. */
-  points?: number;
-  /** Optional. Criterion ID. */
-  criterionId?: string;
-  /** Optional. Optional level ID of the selected level. If empty, no level was selected. */
-  levelId?: string;
-}
-export const RubricGrade = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    points: S.optional(S.Number),
-    criterionId: S.optional(S.String),
-    levelId: S.optional(S.String),
-  }),
-).annotate({ identifier: "RubricGrade" }) as any as S.Schema<RubricGrade>;
-
-export type RubricGradeMap = { [key: string]: RubricGrade | undefined };
-export const RubricGradeMap = /*@__PURE__*/ S.Record(
-  S.String,
-  RubricGrade,
-) as any as S.Schema<RubricGradeMap>;
-
-export type StudentSubmissionStateEnum =
-  | "SUBMISSION_STATE_UNSPECIFIED"
-  | "NEW"
-  | "CREATED"
-  | "TURNED_IN"
-  | "RETURNED"
-  | "RECLAIMED_BY_STUDENT";
-export const StudentSubmissionStateEnum = /*@__PURE__*/ S.String;
+).annotate({ identifier: "GradeHistory" }) as any as S.Schema<GradeHistory>;
 
 export type StateHistoryStateEnum =
   | "STATE_UNSPECIFIED"
@@ -2627,47 +2630,17 @@ export const StateHistory = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "StateHistory" }) as any as S.Schema<StateHistory>;
 
-export type GradeHistoryGradeChangeTypeEnum =
-  | "UNKNOWN_GRADE_CHANGE_TYPE"
-  | "DRAFT_GRADE_POINTS_EARNED_CHANGE"
-  | "ASSIGNED_GRADE_POINTS_EARNED_CHANGE"
-  | "MAX_POINTS_CHANGE";
-export const GradeHistoryGradeChangeTypeEnum = /*@__PURE__*/ S.String;
-
-/** The history of each grade on this submission. */
-export interface GradeHistory {
-  /** The teacher who made the grade change. */
-  actorUserId?: string;
-  /** The denominator of the grade at this time in the submission grade history. */
-  maxPoints?: number;
-  /** The type of grade change at this time in the submission grade history. */
-  gradeChangeType?: GradeHistoryGradeChangeTypeEnum | (string & {});
-  /** When the grade of the submission was changed. */
-  gradeTimestamp?: string;
-  /** The numerator of the grade at this time in the submission grade history. */
-  pointsEarned?: number;
-}
-export const GradeHistory = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actorUserId: S.optional(S.String),
-    maxPoints: S.optional(S.Number),
-    gradeChangeType: S.optional(GradeHistoryGradeChangeTypeEnum),
-    gradeTimestamp: S.optional(S.String),
-    pointsEarned: S.optional(S.Number),
-  }),
-).annotate({ identifier: "GradeHistory" }) as any as S.Schema<GradeHistory>;
-
 /** The history of the submission. This currently includes state and grade histories. */
 export interface SubmissionHistory {
-  /** The state history information of the submission, if present. */
-  stateHistory?: StateHistory;
   /** The grade history information of the submission, if present. */
   gradeHistory?: GradeHistory;
+  /** The state history information of the submission, if present. */
+  stateHistory?: StateHistory;
 }
 export const SubmissionHistory = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    stateHistory: S.optional(StateHistory),
     gradeHistory: S.optional(GradeHistory),
+    stateHistory: S.optional(StateHistory),
   }),
 ).annotate({
   identifier: "SubmissionHistory",
@@ -2678,110 +2651,137 @@ export const SubmissionHistoryList = /*@__PURE__*/ S.Array(
   SubmissionHistory,
 ) as any as S.Schema<SubmissionHistoryList>;
 
-export type StudentSubmissionCourseWorkTypeEnum =
-  | "COURSE_WORK_TYPE_UNSPECIFIED"
-  | "ASSIGNMENT"
-  | "SHORT_ANSWER_QUESTION"
-  | "MULTIPLE_CHOICE_QUESTION";
-export const StudentSubmissionCourseWorkTypeEnum = /*@__PURE__*/ S.String;
-
-/** Student work for a multiple-choice question. */
-export interface MultipleChoiceSubmission {
-  /** Student's select choice. */
-  answer?: string;
+/** Attachment added to student assignment work. When creating attachments, setting the `form` field is not supported. */
+export interface Attachment {
+  /** Link attachment. */
+  link?: Link;
+  /** Google Drive file attachment. */
+  driveFile?: DriveFile;
+  /** Google Forms attachment. */
+  form?: Form;
+  /** Youtube video attachment. */
+  youTubeVideo?: YouTubeVideo;
 }
-export const MultipleChoiceSubmission = /*@__PURE__*/ S.suspend(() =>
+export const Attachment = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    answer: S.optional(S.String),
+    link: S.optional(Link),
+    driveFile: S.optional(DriveFile),
+    form: S.optional(Form),
+    youTubeVideo: S.optional(YouTubeVideo),
+  }),
+).annotate({ identifier: "Attachment" }) as any as S.Schema<Attachment>;
+
+export type AttachmentList = Array<Attachment>;
+export const AttachmentList = /*@__PURE__*/ S.Array(
+  Attachment,
+) as any as S.Schema<AttachmentList>;
+
+/** Student work for an assignment. */
+export interface AssignmentSubmission {
+  /** Attachments added by the student. Drive files that correspond to materials with a share mode of STUDENT_COPY may not exist yet if the student has not accessed the assignment in Classroom. Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are always available, but others (for example, title) may not be. */
+  attachments?: AttachmentList;
+}
+export const AssignmentSubmission = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachments: S.optional(AttachmentList),
   }),
 ).annotate({
-  identifier: "MultipleChoiceSubmission",
-}) as any as S.Schema<MultipleChoiceSubmission>;
+  identifier: "AssignmentSubmission",
+}) as any as S.Schema<AssignmentSubmission>;
+
+export type StudentSubmissionStateEnum =
+  | "SUBMISSION_STATE_UNSPECIFIED"
+  | "NEW"
+  | "CREATED"
+  | "TURNED_IN"
+  | "RETURNED"
+  | "RECLAIMED_BY_STUDENT";
+export const StudentSubmissionStateEnum = /*@__PURE__*/ S.String;
 
 /** Student submission for course work. `StudentSubmission` items are generated when a `CourseWork` item is created. Student submissions that have never been accessed (i.e. with `state` = NEW) may not have a creation time or update time. */
 export interface StudentSubmission {
-  /** Last update time of this submission. This may be unset if the student has not accessed this item. Read-only. */
-  updateTime?: string;
-  /** Submission content when course_work_type is SHORT_ANSWER_QUESTION. */
-  shortAnswerSubmission?: ShortAnswerSubmission;
-  /** Submission content when course_work_type is ASSIGNMENT. Students can modify this content using ModifyAttachments. */
-  assignmentSubmission?: AssignmentSubmission;
-  /** Pending rubric grades based on the rubric's criteria. This map is empty if there is no rubric attached to this course work or if a rubric is attached, but no grades have been set on any criteria. Entries are only populated for grades that have been set. Key: The rubric's criterion ID. Read-only. */
-  draftRubricGrades?: RubricGradeMap;
-  /** State of this submission. Read-only. */
-  state?: StudentSubmissionStateEnum | (string & {});
-  /** Creation time of this submission. This may be unset if the student has not accessed this item. Read-only. */
-  creationTime?: string;
-  /** The history of the submission (includes state and grade histories). Read-only. */
-  submissionHistory?: SubmissionHistoryList;
-  /** Type of course work this submission is for. Read-only. */
-  courseWorkType?: StudentSubmissionCourseWorkTypeEnum | (string & {});
-  /** Whether this student submission is associated with the Developer Console project making the request. See CreateCourseWork for more details. Read-only. */
-  associatedWithDeveloper?: boolean;
-  /** Identifier for the student that owns this submission. Read-only. */
-  userId?: string;
-  /** Absolute link to the submission in the Classroom web UI. Read-only. */
-  alternateLink?: string;
-  /** Classroom-assigned Identifier for the student submission. This is unique among submissions for the relevant course work. Read-only. */
-  id?: string;
-  /** Optional grade. If unset, no grade was set. This value must be non-negative. Decimal (that is, non-integer) values are allowed, but are rounded to two decimal places. This may be modified only by course teachers. */
-  assignedGrade?: number;
-  /** Assigned rubric grades based on the rubric's Criteria. This map is empty if there is no rubric attached to this course work or if a rubric is attached, but no grades have been set on any Criteria. Entries are only populated for grades that have been set. Key: The rubric's criterion ID. Read-only. */
-  assignedRubricGrades?: RubricGradeMap;
-  /** Whether this submission is late. Read-only. */
-  late?: boolean;
-  /** Submission content when course_work_type is MULTIPLE_CHOICE_QUESTION. */
-  multipleChoiceSubmission?: MultipleChoiceSubmission;
   /** Identifier for the course work this corresponds to. Read-only. */
   courseWorkId?: string;
-  /** Identifier of the course. Read-only. */
-  courseId?: string;
+  /** Submission content when course_work_type is MULTIPLE_CHOICE_QUESTION. */
+  multipleChoiceSubmission?: MultipleChoiceSubmission;
+  /** Identifier for the student that owns this submission. Read-only. */
+  userId?: string;
+  /** Assigned rubric grades based on the rubric's Criteria. This map is empty if there is no rubric attached to this course work or if a rubric is attached, but no grades have been set on any Criteria. Entries are only populated for grades that have been set. Key: The rubric's criterion ID. Read-only. */
+  assignedRubricGrades?: RubricGradeMap;
+  /** Submission content when course_work_type is SHORT_ANSWER_QUESTION. */
+  shortAnswerSubmission?: ShortAnswerSubmission;
+  /** Optional grade. If unset, no grade was set. This value must be non-negative. Decimal (that is, non-integer) values are allowed, but are rounded to two decimal places. This may be modified only by course teachers. */
+  assignedGrade?: number;
+  /** Classroom-assigned Identifier for the student submission. This is unique among submissions for the relevant course work. Read-only. */
+  id?: string;
+  /** Type of course work this submission is for. Read-only. */
+  courseWorkType?: StudentSubmissionCourseWorkTypeEnum | (string & {});
+  /** Pending rubric grades based on the rubric's criteria. This map is empty if there is no rubric attached to this course work or if a rubric is attached, but no grades have been set on any criteria. Entries are only populated for grades that have been set. Key: The rubric's criterion ID. Read-only. */
+  draftRubricGrades?: RubricGradeMap;
+  /** The history of the submission (includes state and grade histories). Read-only. */
+  submissionHistory?: SubmissionHistoryList;
+  /** Creation time of this submission. This may be unset if the student has not accessed this item. Read-only. */
+  creationTime?: string;
   /** Optional pending grade. If unset, no grade was set. This value must be non-negative. Decimal (that is, non-integer) values are allowed, but are rounded to two decimal places. This is only visible to and modifiable by course teachers. */
   draftGrade?: number;
+  /** Last update time of this submission. This may be unset if the student has not accessed this item. Read-only. */
+  updateTime?: string;
+  /** Identifier of the course. Read-only. */
+  courseId?: string;
+  /** Whether this submission is late. Read-only. */
+  late?: boolean;
+  /** Submission content when course_work_type is ASSIGNMENT. Students can modify this content using ModifyAttachments. */
+  assignmentSubmission?: AssignmentSubmission;
+  /** State of this submission. Read-only. */
+  state?: StudentSubmissionStateEnum | (string & {});
+  /** Absolute link to the submission in the Classroom web UI. Read-only. */
+  alternateLink?: string;
+  /** Whether this student submission is associated with the Developer Console project making the request. See CreateCourseWork for more details. Read-only. */
+  associatedWithDeveloper?: boolean;
 }
 export const StudentSubmission = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateTime: S.optional(S.String),
-    shortAnswerSubmission: S.optional(ShortAnswerSubmission),
-    assignmentSubmission: S.optional(AssignmentSubmission),
-    draftRubricGrades: S.optional(RubricGradeMap),
-    state: S.optional(StudentSubmissionStateEnum),
-    creationTime: S.optional(S.String),
-    submissionHistory: S.optional(SubmissionHistoryList),
-    courseWorkType: S.optional(StudentSubmissionCourseWorkTypeEnum),
-    associatedWithDeveloper: S.optional(S.Boolean),
-    userId: S.optional(S.String),
-    alternateLink: S.optional(S.String),
-    id: S.optional(S.String),
-    assignedGrade: S.optional(S.Number),
-    assignedRubricGrades: S.optional(RubricGradeMap),
-    late: S.optional(S.Boolean),
-    multipleChoiceSubmission: S.optional(MultipleChoiceSubmission),
     courseWorkId: S.optional(S.String),
-    courseId: S.optional(S.String),
+    multipleChoiceSubmission: S.optional(MultipleChoiceSubmission),
+    userId: S.optional(S.String),
+    assignedRubricGrades: S.optional(RubricGradeMap),
+    shortAnswerSubmission: S.optional(ShortAnswerSubmission),
+    assignedGrade: S.optional(S.Number),
+    id: S.optional(S.String),
+    courseWorkType: S.optional(StudentSubmissionCourseWorkTypeEnum),
+    draftRubricGrades: S.optional(RubricGradeMap),
+    submissionHistory: S.optional(SubmissionHistoryList),
+    creationTime: S.optional(S.String),
     draftGrade: S.optional(S.Number),
+    updateTime: S.optional(S.String),
+    courseId: S.optional(S.String),
+    late: S.optional(S.Boolean),
+    assignmentSubmission: S.optional(AssignmentSubmission),
+    state: S.optional(StudentSubmissionStateEnum),
+    alternateLink: S.optional(S.String),
+    associatedWithDeveloper: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "StudentSubmission",
 }) as any as S.Schema<StudentSubmission>;
 
 export interface GetCoursesPostsAddOnAttachmentsRequest {
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId?: string;
   /** Required. Identifier of the attachment. */
   attachmentId: string;
   /** Required. Identifier of the course. */
   courseId: string;
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId?: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId: string;
 }
 export const GetCoursesPostsAddOnAttachmentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      postId: S.String.pipe(T.Label()),
+      itemId: S.optional(S.String.pipe(T.Query())),
       attachmentId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
-      itemId: S.optional(S.String.pipe(T.Query())),
+      postId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2794,25 +2794,25 @@ export const GetCoursesPostsAddOnAttachmentsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetCoursesPostsAddOnAttachmentsRequest>;
 
 export interface GetCoursesPostsAddOnAttachmentsStudentSubmissionsRequest {
-  /** Required. Identifier of the student’s submission. */
-  submissionId: string;
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId: string;
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId?: string;
   /** Required. Identifier of the course. */
   courseId: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId?: string;
+  /** Required. Identifier of the student’s submission. */
+  submissionId: string;
 }
 export const GetCoursesPostsAddOnAttachmentsStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      submissionId: S.String.pipe(T.Label()),
-      postId: S.String.pipe(T.Label()),
-      attachmentId: S.String.pipe(T.Label()),
-      itemId: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
+      attachmentId: S.String.pipe(T.Label()),
+      postId: S.String.pipe(T.Label()),
+      itemId: S.optional(S.String.pipe(T.Query())),
+      submissionId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -2825,15 +2825,15 @@ export const GetCoursesPostsAddOnAttachmentsStudentSubmissionsRequest =
   }) as any as S.Schema<GetCoursesPostsAddOnAttachmentsStudentSubmissionsRequest>;
 
 export interface GetCoursesStudentsRequest {
-  /** Identifier of the student to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
-  userId: string;
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
+  /** Identifier of the student to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
+  userId: string;
 }
 export const GetCoursesStudentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     courseId: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2846,15 +2846,15 @@ export const GetCoursesStudentsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCoursesStudentsRequest>;
 
 export interface GetCoursesTeachersRequest {
-  /** Identifier of the teacher to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
-  userId: string;
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
+  /** Identifier of the teacher to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
+  userId: string;
 }
 export const GetCoursesTeachersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     courseId: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2908,21 +2908,21 @@ export const GetGradingPeriodSettingsCoursesRequest = /*@__PURE__*/ S.suspend(
 
 /** An individual grading period. Grading periods must not have overlapping date ranges and must be listed in chronological order. For example, if the end_date of a grading period is 2024-01-25, then the start_date of the next grading period must be 2024-01-26 or later. Each grading period must have a unique title within a course. */
 export interface GradingPeriod {
-  /** Required. Title of the grading period. For example, “Semester 1”. */
-  title?: string;
-  /** Required. End date, in UTC, of the grading period. Inclusive. */
-  endDate?: Classroom_Date;
   /** Required. Start date, in UTC, of the grading period. Inclusive. */
   startDate?: Classroom_Date;
   /** Output only. System generated grading period ID. Read-only. */
   id?: string;
+  /** Required. End date, in UTC, of the grading period. Inclusive. */
+  endDate?: Classroom_Date;
+  /** Required. Title of the grading period. For example, “Semester 1”. */
+  title?: string;
 }
 export const GradingPeriod = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    title: S.optional(S.String),
-    endDate: S.optional(Classroom_Date),
     startDate: S.optional(Classroom_Date),
     id: S.optional(S.String),
+    endDate: S.optional(Classroom_Date),
+    title: S.optional(S.String),
   }),
 ).annotate({ identifier: "GradingPeriod" }) as any as S.Schema<GradingPeriod>;
 
@@ -2984,16 +2984,16 @@ export const GetUserProfilesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUserProfilesRequest>;
 
 export interface GetUserProfilesGuardianInvitationsRequest {
-  /** The `id` field of the `GuardianInvitation` being requested. */
-  invitationId: string;
   /** The ID of the student whose guardian invitation is being requested. */
   studentId: string;
+  /** The `id` field of the `GuardianInvitation` being requested. */
+  invitationId: string;
 }
 export const GetUserProfilesGuardianInvitationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      invitationId: S.String.pipe(T.Label()),
       studentId: S.String.pipe(T.Label()),
+      invitationId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3028,21 +3028,21 @@ export const GetUserProfilesGuardiansRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Association between a student and a guardian of that student. The guardian may receive information about the student's course work. */
 export interface Guardian {
-  /** User profile for the guardian. */
-  guardianProfile?: UserProfile;
-  /** Identifier for the guardian. */
-  guardianId?: string;
   /** Identifier for the student to whom the guardian relationship applies. */
   studentId?: string;
+  /** Identifier for the guardian. */
+  guardianId?: string;
   /** The email address to which the initial guardian invitation was sent. This field is only visible to domain administrators. */
   invitedEmailAddress?: string;
+  /** User profile for the guardian. */
+  guardianProfile?: UserProfile;
 }
 export const Guardian = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    guardianProfile: S.optional(UserProfile),
-    guardianId: S.optional(S.String),
     studentId: S.optional(S.String),
+    guardianId: S.optional(S.String),
     invitedEmailAddress: S.optional(S.String),
+    guardianProfile: S.optional(UserProfile),
   }),
 ).annotate({ identifier: "Guardian" }) as any as S.Schema<Guardian>;
 
@@ -3065,22 +3065,22 @@ export const ListCoursesCourseStatesEnumList = /*@__PURE__*/ S.Array(
 export interface ListCoursesRequest {
   /** Restricts returned courses to those in one of the specified states. If unspecified, Courses in any state are returned. */
   courseStates?: ListCoursesCourseStatesEnumList;
-  /** Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user If specified, `teacher_id` must be empty. */
-  studentId?: string;
-  /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
-  pageSize?: number;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
+  /** Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user If specified, `teacher_id` must be empty. */
+  studentId?: string;
   /** Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user If specified, `student_id` must be empty. */
   teacherId?: string;
+  /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
+  pageSize?: number;
 }
 export const ListCoursesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     courseStates: S.optional(ListCoursesCourseStatesEnumList.pipe(T.Query())),
-    studentId: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    studentId: S.optional(S.String.pipe(T.Query())),
     teacherId: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3099,32 +3099,32 @@ export const CourseList = /*@__PURE__*/ S.Array(
 
 /** Response when listing courses. */
 export interface ListCoursesResponse {
-  /** Token identifying the next page of results to return. If empty, no further results are available. */
-  nextPageToken?: string;
   /** Courses that match the list request. */
   courses?: CourseList;
+  /** Token identifying the next page of results to return. If empty, no further results are available. */
+  nextPageToken?: string;
 }
 export const ListCoursesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     courses: S.optional(CourseList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListCoursesResponse",
 }) as any as S.Schema<ListCoursesResponse>;
 
 export interface ListCoursesAliasesRequest {
-  /** The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
+  /** The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
 }
 export const ListCoursesAliasesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    courseId: S.String.pipe(T.Label()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -3175,26 +3175,26 @@ export const ListCoursesAnnouncementsAnnouncementStatesEnumList =
   ) as any as S.Schema<ListCoursesAnnouncementsAnnouncementStatesEnumList>;
 
 export interface ListCoursesAnnouncementsRequest {
-  /** Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`. */
-  announcementStates?: ListCoursesAnnouncementsAnnouncementStatesEnumList;
-  /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
-  pageToken?: string;
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
-  /** Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime` */
-  orderBy?: string;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
+  /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
+  pageToken?: string;
+  /** Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`. */
+  announcementStates?: ListCoursesAnnouncementsAnnouncementStatesEnumList;
+  /** Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime` */
+  orderBy?: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
 }
 export const ListCoursesAnnouncementsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
     announcementStates: S.optional(
       ListCoursesAnnouncementsAnnouncementStatesEnumList.pipe(T.Query()),
     ),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    courseId: S.String.pipe(T.Label()),
     orderBy: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
+    courseId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3230,12 +3230,12 @@ export const ListAnnouncementsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListCoursesAnnouncementsAddOnAttachmentsRequest {
   /** Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead. */
   postId?: string;
+  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
+  pageSize?: number;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
-  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
-  pageSize?: number;
   /** A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token. */
   pageToken?: string;
 }
@@ -3243,9 +3243,9 @@ export const ListCoursesAnnouncementsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       postId: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
       itemId: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -3295,26 +3295,26 @@ export const ListCoursesCourseWorkCourseWorkStatesEnumList =
   ) as any as S.Schema<ListCoursesCourseWorkCourseWorkStatesEnumList>;
 
 export interface ListCoursesCourseWorkRequest {
-  /** Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc` */
-  orderBy?: string;
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
-  /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
-  pageToken?: string;
   /** Restriction on the work status to return. Only courseWork that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned. */
   courseWorkStates?: ListCoursesCourseWorkCourseWorkStatesEnumList;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
+  /** Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc` */
+  orderBy?: string;
+  /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
+  pageToken?: string;
 }
 export const ListCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    orderBy: S.optional(S.String.pipe(T.Query())),
-    courseId: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     courseWorkStates: S.optional(
       ListCoursesCourseWorkCourseWorkStatesEnumList.pipe(T.Query()),
     ),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    courseId: S.String.pipe(T.Label()),
+    orderBy: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3348,10 +3348,10 @@ export const ListCourseWorkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCourseWorkResponse>;
 
 export interface ListCoursesCourseWorkAddOnAttachmentsRequest {
-  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
-  pageSize?: number;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
+  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
+  pageSize?: number;
   /** A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token. */
   pageToken?: string;
   /** Required. Identifier of the course. */
@@ -3362,8 +3362,8 @@ export interface ListCoursesCourseWorkAddOnAttachmentsRequest {
 export const ListCoursesCourseWorkAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       itemId: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
@@ -3396,28 +3396,24 @@ export const ListCoursesCourseWorkMaterialsCourseWorkMaterialStatesEnumList =
   ) as any as S.Schema<ListCoursesCourseWorkMaterialsCourseWorkMaterialStatesEnumList>;
 
 export interface ListCoursesCourseWorkMaterialsRequest {
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
-  /** Optional filtering for course work material with at least one link material whose URL partially matches the provided string. */
-  materialLink?: string;
-  /** Optional filtering for course work material with at least one Drive material whose ID matches the provided string. If `material_link` is also specified, course work material must have materials matching both filters. */
-  materialDriveId?: string;
-  /** Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime` */
-  orderBy?: string;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
   /** Restriction on the work status to return. Only course work material that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned. */
   courseWorkMaterialStates?: ListCoursesCourseWorkMaterialsCourseWorkMaterialStatesEnumList;
+  /** Optional filtering for course work material with at least one Drive material whose ID matches the provided string. If `material_link` is also specified, course work material must have materials matching both filters. */
+  materialDriveId?: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
+  /** Optional filtering for course work material with at least one link material whose URL partially matches the provided string. */
+  materialLink?: string;
+  /** Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime` */
+  orderBy?: string;
 }
 export const ListCoursesCourseWorkMaterialsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      courseId: S.String.pipe(T.Label()),
-      materialLink: S.optional(S.String.pipe(T.Query())),
-      materialDriveId: S.optional(S.String.pipe(T.Query())),
-      orderBy: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       courseWorkMaterialStates: S.optional(
@@ -3425,6 +3421,10 @@ export const ListCoursesCourseWorkMaterialsRequest = /*@__PURE__*/ S.suspend(
           T.Query(),
         ),
       ),
+      materialDriveId: S.optional(S.String.pipe(T.Query())),
+      courseId: S.String.pipe(T.Label()),
+      materialLink: S.optional(S.String.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3458,25 +3458,25 @@ export const ListCourseWorkMaterialResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCourseWorkMaterialResponse>;
 
 export interface ListCoursesCourseWorkMaterialsAddOnAttachmentsRequest {
-  /** Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead. */
-  postId?: string;
   /** A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token. */
   pageToken?: string;
   /** Required. Identifier of the course. */
   courseId: string;
-  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
-  pageSize?: number;
+  /** Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead. */
+  postId?: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
+  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
+  pageSize?: number;
 }
 export const ListCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      postId: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
+      postId: S.optional(S.String.pipe(T.Query())),
       itemId: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3489,10 +3489,10 @@ export const ListCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   }) as any as S.Schema<ListCoursesCourseWorkMaterialsAddOnAttachmentsRequest>;
 
 export interface ListCoursesCourseWorkRubricsRequest {
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Required. Identifier of the course work. */
   courseWorkId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
   /** The maximum number of rubrics to return. If unspecified, at most 1 rubric is returned. The maximum value is 1; values above 1 are coerced to 1. */
@@ -3500,8 +3500,8 @@ export interface ListCoursesCourseWorkRubricsRequest {
 }
 export const ListCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
     courseWorkId: S.String.pipe(T.Label()),
+    courseId: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
@@ -3536,6 +3536,13 @@ export const ListRubricsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRubricsResponse",
 }) as any as S.Schema<ListRubricsResponse>;
 
+export type ListCoursesCourseWorkStudentSubmissionsLateEnum =
+  | "LATE_VALUES_UNSPECIFIED"
+  | "LATE_ONLY"
+  | "NOT_LATE_ONLY";
+export const ListCoursesCourseWorkStudentSubmissionsLateEnum =
+  /*@__PURE__*/ S.String;
+
 export type ListCoursesCourseWorkStudentSubmissionsStatesEnum =
   | "SUBMISSION_STATE_UNSPECIFIED"
   | "NEW"
@@ -3554,43 +3561,36 @@ export const ListCoursesCourseWorkStudentSubmissionsStatesEnumList =
     ListCoursesCourseWorkStudentSubmissionsStatesEnum,
   ) as any as S.Schema<ListCoursesCourseWorkStudentSubmissionsStatesEnumList>;
 
-export type ListCoursesCourseWorkStudentSubmissionsLateEnum =
-  | "LATE_VALUES_UNSPECIFIED"
-  | "LATE_ONLY"
-  | "NOT_LATE_ONLY";
-export const ListCoursesCourseWorkStudentSubmissionsLateEnum =
-  /*@__PURE__*/ S.String;
-
 export interface ListCoursesCourseWorkStudentSubmissionsRequest {
-  /** Requested submission states. If specified, returned student submissions match one of the specified submission states. */
-  states?: ListCoursesCourseWorkStudentSubmissionsStatesEnumList;
-  /** Identifier of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course. */
-  courseWorkId: string;
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
   /** Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value. */
   late?: ListCoursesCourseWorkStudentSubmissionsLateEnum | (string & {});
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
+  /** Identifier of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course. */
+  courseWorkId: string;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
   /** Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
   userId?: string;
+  /** Requested submission states. If specified, returned student submissions match one of the specified submission states. */
+  states?: ListCoursesCourseWorkStudentSubmissionsStatesEnumList;
 }
 export const ListCoursesCourseWorkStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      states: S.optional(
-        ListCoursesCourseWorkStudentSubmissionsStatesEnumList.pipe(T.Query()),
-      ),
-      courseWorkId: S.String.pipe(T.Label()),
-      courseId: S.String.pipe(T.Label()),
       late: S.optional(
         ListCoursesCourseWorkStudentSubmissionsLateEnum.pipe(T.Query()),
       ),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      courseWorkId: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      courseId: S.String.pipe(T.Label()),
       userId: S.optional(S.String.pipe(T.Query())),
+      states: S.optional(
+        ListCoursesCourseWorkStudentSubmissionsStatesEnumList.pipe(T.Query()),
+      ),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3624,25 +3624,25 @@ export const ListStudentSubmissionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListStudentSubmissionsResponse>;
 
 export interface ListCoursesPostsAddOnAttachmentsRequest {
-  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id. */
-  itemId?: string;
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** A page token, received from a previous `ListAddOnAttachments` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAddOnAttachments` must match the call that provided the page token. */
   pageToken?: string;
-  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
-  pageSize?: number;
   /** Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead. */
   postId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
+  /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id. */
+  itemId?: string;
+  /** The maximum number of attachments to return. The service may return fewer than this value. If unspecified, at most 20 attachments will be returned. The maximum value is 20; values above 20 will be coerced to 20. */
+  pageSize?: number;
 }
 export const ListCoursesPostsAddOnAttachmentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      itemId: S.optional(S.String.pipe(T.Query())),
-      courseId: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       postId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
+      itemId: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3655,17 +3655,17 @@ export const ListCoursesPostsAddOnAttachmentsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListCoursesPostsAddOnAttachmentsRequest>;
 
 export interface ListCoursesStudentGroupsRequest {
-  /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum, which is currently set to 75 items. The server may return fewer than the specified number of results. */
-  pageSize?: number;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
+  /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum, which is currently set to 75 items. The server may return fewer than the specified number of results. */
+  pageSize?: number;
   /** Required. The identifier of the course. */
   courseId: string;
 }
 export const ListCoursesStudentGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
     courseId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -3685,15 +3685,15 @@ export const StudentGroupList = /*@__PURE__*/ S.Array(
 
 /** Response when listing student groups. */
 export interface ListStudentGroupsResponse {
-  /** Token identifying the next page of results to return. If empty, no further results are available. */
-  nextPageToken?: string;
   /** The student groups. */
   studentGroups?: StudentGroupList;
+  /** Token identifying the next page of results to return. If empty, no further results are available. */
+  nextPageToken?: string;
 }
 export const ListStudentGroupsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     studentGroups: S.optional(StudentGroupList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListStudentGroupsResponse",
@@ -3702,20 +3702,20 @@ export const ListStudentGroupsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListCoursesStudentGroupsStudentGroupMembersRequest {
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
-  /** Required. The identifier of the student group. */
-  studentGroupId: string;
-  /** Required. The identifier of the course. */
-  courseId: string;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
+  /** Required. The identifier of the course. */
+  courseId: string;
+  /** Required. The identifier of the student group. */
+  studentGroupId: string;
 }
 export const ListCoursesStudentGroupsStudentGroupMembersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       pageToken: S.optional(S.String.pipe(T.Query())),
-      studentGroupId: S.String.pipe(T.Label()),
-      courseId: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      courseId: S.String.pipe(T.Label()),
+      studentGroupId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3751,16 +3751,16 @@ export const ListStudentGroupMembersResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListCoursesStudentsRequest {
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
-  /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
-  pageToken?: string;
   /** Maximum number of items to return. The default is 30 if unspecified or `0`. The server may return fewer than the specified number of results. */
   pageSize?: number;
+  /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
+  pageToken?: string;
 }
 export const ListCoursesStudentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     courseId: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3839,18 +3839,18 @@ export const ListTeachersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTeachersResponse>;
 
 export interface ListCoursesTopicsRequest {
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
 }
 export const ListCoursesTopicsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    courseId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3869,36 +3869,36 @@ export const TopicList = /*@__PURE__*/ S.Array(
 
 /** Response when listing topics. */
 export interface ListTopicResponse {
-  /** Topic items that match the request. */
-  topic?: TopicList;
   /** Token identifying the next page of results to return. If empty, no further results are available. */
   nextPageToken?: string;
+  /** Topic items that match the request. */
+  topic?: TopicList;
 }
 export const ListTopicResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    topic: S.optional(TopicList),
     nextPageToken: S.optional(S.String),
+    topic: S.optional(TopicList),
   }),
 ).annotate({
   identifier: "ListTopicResponse",
 }) as any as S.Schema<ListTopicResponse>;
 
 export interface ListInvitationsRequest {
-  /** Restricts returned invitations to those for a course with the specified identifier. */
-  courseId?: string;
-  /** Restricts returned invitations to those for a specific user. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
-  userId?: string;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
+  /** Restricts returned invitations to those for a specific user. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user */
+  userId?: string;
   /** Maximum number of items to return. The default is 500 if unspecified or `0`. The server may return fewer than the specified number of results. */
   pageSize?: number;
+  /** Restricts returned invitations to those for a course with the specified identifier. */
+  courseId?: string;
 }
 export const ListInvitationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.optional(S.String.pipe(T.Query())),
-    userId: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    userId: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    courseId: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3917,15 +3917,15 @@ export const InvitationList = /*@__PURE__*/ S.Array(
 
 /** Response when listing invitations. */
 export interface ListInvitationsResponse {
-  /** Invitations that match the list request. */
-  invitations?: InvitationList;
   /** Token identifying the next page of results to return. If empty, no further results are available. */
   nextPageToken?: string;
+  /** Invitations that match the list request. */
+  invitations?: InvitationList;
 }
 export const ListInvitationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    invitations: S.optional(InvitationList),
     nextPageToken: S.optional(S.String),
+    invitations: S.optional(InvitationList),
   }),
 ).annotate({
   identifier: "ListInvitationsResponse",
@@ -3947,27 +3947,27 @@ export const ListUserProfilesGuardianInvitationsStatesEnumList =
   ) as any as S.Schema<ListUserProfilesGuardianInvitationsStatesEnumList>;
 
 export interface ListUserProfilesGuardianInvitationsRequest {
+  /** The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user is permitted to view guardian invitations. */
+  studentId: string;
+  /** If specified, only results with the specified `invited_email_address` are returned. */
+  invitedEmailAddress?: string;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
   /** If specified, only results with the specified `state` values are returned. Otherwise, results with a `state` of `PENDING` are returned. */
   states?: ListUserProfilesGuardianInvitationsStatesEnumList;
-  /** The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user is permitted to view guardian invitations. */
-  studentId: string;
-  /** If specified, only results with the specified `invited_email_address` are returned. */
-  invitedEmailAddress?: string;
 }
 export const ListUserProfilesGuardianInvitationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      studentId: S.String.pipe(T.Label()),
+      invitedEmailAddress: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
       states: S.optional(
         ListUserProfilesGuardianInvitationsStatesEnumList.pipe(T.Query()),
       ),
-      studentId: S.String.pipe(T.Label()),
-      invitedEmailAddress: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -3986,36 +3986,36 @@ export const GuardianInvitationList = /*@__PURE__*/ S.Array(
 
 /** Response when listing guardian invitations. */
 export interface ListGuardianInvitationsResponse {
-  /** Guardian invitations that matched the list request. */
-  guardianInvitations?: GuardianInvitationList;
   /** Token identifying the next page of results to return. If empty, no further results are available. */
   nextPageToken?: string;
+  /** Guardian invitations that matched the list request. */
+  guardianInvitations?: GuardianInvitationList;
 }
 export const ListGuardianInvitationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    guardianInvitations: S.optional(GuardianInvitationList),
     nextPageToken: S.optional(S.String),
+    guardianInvitations: S.optional(GuardianInvitationList),
   }),
 ).annotate({
   identifier: "ListGuardianInvitationsResponse",
 }) as any as S.Schema<ListGuardianInvitationsResponse>;
 
 export interface ListUserProfilesGuardiansRequest {
-  /** Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators. */
-  invitedEmailAddress?: string;
+  /** Filter results by the student who the guardian is linked to. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user has access to view. */
+  studentId: string;
   /** nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token. */
   pageToken?: string;
   /** Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results. */
   pageSize?: number;
-  /** Filter results by the student who the guardian is linked to. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user has access to view. */
-  studentId: string;
+  /** Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators. */
+  invitedEmailAddress?: string;
 }
 export const ListUserProfilesGuardiansRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    invitedEmailAddress: S.optional(S.String.pipe(T.Query())),
+    studentId: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
-    studentId: S.String.pipe(T.Label()),
+    invitedEmailAddress: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -4034,15 +4034,15 @@ export const GuardianList = /*@__PURE__*/ S.Array(
 
 /** Response when listing guardians. */
 export interface ListGuardiansResponse {
-  /** Guardians on this page of results that met the criteria specified in the request. */
-  guardians?: GuardianList;
   /** Token identifying the next page of results to return. If empty, no further results are available. */
   nextPageToken?: string;
+  /** Guardians on this page of results that met the criteria specified in the request. */
+  guardians?: GuardianList;
 }
 export const ListGuardiansResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    guardians: S.optional(GuardianList),
     nextPageToken: S.optional(S.String),
+    guardians: S.optional(GuardianList),
   }),
 ).annotate({
   identifier: "ListGuardiansResponse",
@@ -4127,19 +4127,19 @@ export const ModifyCourseWorkAssigneesRequestAssigneeModeEnum =
 
 /** Request to modify assignee mode and options of a coursework. */
 export interface ModifyCourseWorkAssigneesRequest {
-  /** Set which students are assigned or not assigned to the coursework. Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`. */
-  modifyIndividualStudentsOptions?: ModifyIndividualStudentsOptions;
   /** Mode of the coursework describing whether it will be assigned to all students or specified individual students. */
   assigneeMode?:
     | ModifyCourseWorkAssigneesRequestAssigneeModeEnum
     | (string & {});
+  /** Set which students are assigned or not assigned to the coursework. Must be specified only when `assigneeMode` is `INDIVIDUAL_STUDENTS`. */
+  modifyIndividualStudentsOptions?: ModifyIndividualStudentsOptions;
 }
 export const ModifyCourseWorkAssigneesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    assigneeMode: S.optional(ModifyCourseWorkAssigneesRequestAssigneeModeEnum),
     modifyIndividualStudentsOptions: S.optional(
       ModifyIndividualStudentsOptions,
     ),
-    assigneeMode: S.optional(ModifyCourseWorkAssigneesRequestAssigneeModeEnum),
   }),
 ).annotate({
   identifier: "ModifyCourseWorkAssigneesRequest",
@@ -4186,10 +4186,10 @@ export const ModifyAttachmentsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface ModifyAttachmentsCoursesCourseWorkStudentSubmissionsRequest {
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
-  /** Identifier of the student submission. */
-  id: string;
   /** Identifier of the course work. */
   courseWorkId: string;
+  /** Identifier of the student submission. */
+  id: string;
   /** Request body */
   body?: ModifyAttachmentsRequest;
 }
@@ -4197,8 +4197,8 @@ export const ModifyAttachmentsCoursesCourseWorkStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       courseId: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
       courseWorkId: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
       body: S.optional(ModifyAttachmentsRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4236,20 +4236,20 @@ export const PatchCoursesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCoursesRequest>;
 
 export interface PatchCoursesAnnouncementsRequest {
-  /** Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `text` * `state` * `scheduled_time` */
-  updateMask?: string;
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
   /** Identifier of the announcement. */
   id: string;
+  /** Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `text` * `state` * `scheduled_time` */
+  updateMask?: string;
   /** Request body */
   body?: Announcement;
 }
 export const PatchCoursesAnnouncementsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String.pipe(T.Query())),
     courseId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    updateMask: S.optional(S.String.pipe(T.Query())),
     body: S.optional(Announcement.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -4263,27 +4263,27 @@ export const PatchCoursesAnnouncementsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCoursesAnnouncementsRequest>;
 
 export interface PatchCoursesAnnouncementsAddOnAttachmentsRequest {
-  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points` */
-  updateMask?: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
   /** Required. Identifier of the post under which the attachment is attached. */
   postId?: string;
+  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points` */
+  updateMask?: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Identifier of the post under which the attachment is attached. */
   itemId: string;
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
   /** Request body */
   body?: AddOnAttachment;
 }
 export const PatchCoursesAnnouncementsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      updateMask: S.optional(S.String.pipe(T.Query())),
+      attachmentId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
       itemId: S.String.pipe(T.Label()),
-      attachmentId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4324,27 +4324,27 @@ export const PatchCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCoursesCourseWorkRequest>;
 
 export interface PatchCoursesCourseWorkAddOnAttachmentsRequest {
-  /** Identifier of the post under which the attachment is attached. */
-  itemId: string;
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
   /** Required. Identifier of the post under which the attachment is attached. */
   postId?: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points` */
   updateMask?: string;
+  /** Identifier of the post under which the attachment is attached. */
+  itemId: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
   /** Request body */
   body?: AddOnAttachment;
 }
 export const PatchCoursesCourseWorkAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      itemId: S.String.pipe(T.Label()),
-      attachmentId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
+      itemId: S.String.pipe(T.Label()),
+      attachmentId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4358,30 +4358,30 @@ export const PatchCoursesCourseWorkAddOnAttachmentsRequest =
   }) as any as S.Schema<PatchCoursesCourseWorkAddOnAttachmentsRequest>;
 
 export interface PatchCoursesCourseWorkAddOnAttachmentsStudentSubmissionsRequest {
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
   /** Optional. Deprecated, use `item_id` instead. */
   postId?: string;
-  /** Required. Identifier of the student's submission. */
-  submissionId: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachmentStudentSubmission` object. The following fields may be specified by teachers: * `points_earned` */
   updateMask?: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId: string;
+  /** Required. Identifier of the student's submission. */
+  submissionId: string;
   /** Request body */
   body?: AddOnAttachmentStudentSubmission;
 }
 export const PatchCoursesCourseWorkAddOnAttachmentsStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      attachmentId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
-      submissionId: S.String.pipe(T.Label()),
+      attachmentId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
       itemId: S.String.pipe(T.Label()),
+      submissionId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachmentStudentSubmission.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4424,27 +4424,27 @@ export const PatchCoursesCourseWorkMaterialsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchCoursesCourseWorkMaterialsRequest>;
 
 export interface PatchCoursesCourseWorkMaterialsAddOnAttachmentsRequest {
-  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points` */
-  updateMask?: string;
   /** Identifier of the post under which the attachment is attached. */
   itemId: string;
   /** Required. Identifier of the post under which the attachment is attached. */
   postId?: string;
-  /** Required. Identifier of the attachment. */
-  attachmentId: string;
+  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points` */
+  updateMask?: string;
   /** Required. Identifier of the course. */
   courseId: string;
+  /** Required. Identifier of the attachment. */
+  attachmentId: string;
   /** Request body */
   body?: AddOnAttachment;
 }
 export const PatchCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      updateMask: S.optional(S.String.pipe(T.Query())),
       itemId: S.String.pipe(T.Label()),
       postId: S.optional(S.String.pipe(T.Query())),
-      attachmentId: S.String.pipe(T.Label()),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
+      attachmentId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4458,12 +4458,12 @@ export const PatchCoursesCourseWorkMaterialsAddOnAttachmentsRequest =
   }) as any as S.Schema<PatchCoursesCourseWorkMaterialsAddOnAttachmentsRequest>;
 
 export interface PatchCoursesCourseWorkRubricsRequest {
+  /** Optional. Identifier of the rubric. */
+  id: string;
   /** Required. Identifier of the course work. */
   courseWorkId: string;
   /** Required. Identifier of the course. */
   courseId: string;
-  /** Optional. Identifier of the rubric. */
-  id: string;
   /** Optional. Mask that identifies which fields on the rubric to update. This field is required to do an update. The update fails if invalid fields are specified. There are multiple options to define the criteria of a rubric: the `source_spreadsheet_id` and the `criteria` list. Only one of these can be used at a time to define a rubric. The rubric `criteria` list is fully replaced by the rubric criteria specified in the update request. For example, if a criterion or level is missing from the request, it is deleted. New criteria and levels are added and an ID is assigned. Existing criteria and levels retain the previously assigned ID if the ID is specified in the request. The following fields can be specified by teachers: * `criteria` * `source_spreadsheet_id` */
   updateMask?: string;
   /** Request body */
@@ -4472,9 +4472,9 @@ export interface PatchCoursesCourseWorkRubricsRequest {
 export const PatchCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      id: S.String.pipe(T.Label()),
       courseWorkId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Rubric.pipe(T.HttpBody())),
     }).pipe(
@@ -4489,24 +4489,24 @@ export const PatchCoursesCourseWorkRubricsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchCoursesCourseWorkRubricsRequest>;
 
 export interface PatchCoursesCourseWorkStudentSubmissionsRequest {
-  /** Identifier of the student submission. */
-  id: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
   /** Identifier of the course work. */
   courseWorkId: string;
   /** Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields may be specified by teachers: * `draft_grade` * `assigned_grade` */
   updateMask?: string;
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
+  /** Identifier of the student submission. */
+  id: string;
   /** Request body */
   body?: StudentSubmission;
 }
 export const PatchCoursesCourseWorkStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      id: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
       courseWorkId: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
-      courseId: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
       body: S.optional(StudentSubmission.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4522,14 +4522,14 @@ export const PatchCoursesCourseWorkStudentSubmissionsRequest =
 export interface PatchCoursesPostsAddOnAttachmentsRequest {
   /** Identifier of the post under which the attachment is attached. */
   itemId?: string;
-  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points` */
-  updateMask?: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Required. Identifier of the attachment. */
   attachmentId: string;
   /** Required. Identifier of the post under which the attachment is attached. */
   postId: string;
+  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachment` object. If a field that does not support empty values is included in the update mask and not set in the `AddOnAttachment` object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `teacher_view_uri` * `student_view_uri` * `student_work_review_uri` * `due_date` * `due_time` * `max_points` */
+  updateMask?: string;
   /** Request body */
   body?: AddOnAttachment;
 }
@@ -4537,10 +4537,10 @@ export const PatchCoursesPostsAddOnAttachmentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       itemId: S.optional(S.String.pipe(T.Query())),
-      updateMask: S.optional(S.String.pipe(T.Query())),
       courseId: S.String.pipe(T.Label()),
       attachmentId: S.String.pipe(T.Label()),
       postId: S.String.pipe(T.Label()),
+      updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(AddOnAttachment.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4554,30 +4554,30 @@ export const PatchCoursesPostsAddOnAttachmentsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PatchCoursesPostsAddOnAttachmentsRequest>;
 
 export interface PatchCoursesPostsAddOnAttachmentsStudentSubmissionsRequest {
-  /** Optional. Deprecated, use `item_id` instead. */
-  postId: string;
-  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachmentStudentSubmission` object. The following fields may be specified by teachers: * `points_earned` */
-  updateMask?: string;
   /** Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id. */
   itemId?: string;
-  /** Required. Identifier of the student's submission. */
-  submissionId: string;
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Required. Identifier of the attachment. */
   attachmentId: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
+  /** Required. Mask that identifies which fields on the attachment to update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the `AddOnAttachmentStudentSubmission` object. The following fields may be specified by teachers: * `points_earned` */
+  updateMask?: string;
+  /** Required. Identifier of the student's submission. */
+  submissionId: string;
+  /** Optional. Deprecated, use `item_id` instead. */
+  postId: string;
   /** Request body */
   body?: AddOnAttachmentStudentSubmission;
 }
 export const PatchCoursesPostsAddOnAttachmentsStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      postId: S.String.pipe(T.Label()),
-      updateMask: S.optional(S.String.pipe(T.Query())),
       itemId: S.optional(S.String.pipe(T.Query())),
-      submissionId: S.String.pipe(T.Label()),
-      courseId: S.String.pipe(T.Label()),
       attachmentId: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
+      updateMask: S.optional(S.String.pipe(T.Query())),
+      submissionId: S.String.pipe(T.Label()),
+      postId: S.String.pipe(T.Label()),
       body: S.optional(AddOnAttachmentStudentSubmission.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4591,20 +4591,20 @@ export const PatchCoursesPostsAddOnAttachmentsStudentSubmissionsRequest =
   }) as any as S.Schema<PatchCoursesPostsAddOnAttachmentsStudentSubmissionsRequest>;
 
 export interface PatchCoursesStudentGroupsRequest {
-  /** Required. Identifier of the course. */
-  courseId: string;
   /** Required. Mask that identifies which fields on the student group to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields can be specified by teachers: * `title` */
   updateMask?: string;
   /** Required. Identifier of the student group. */
   id: string;
+  /** Required. Identifier of the course. */
+  courseId: string;
   /** Request body */
   body?: StudentGroup;
 }
 export const PatchCoursesStudentGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    courseId: S.String.pipe(T.Label()),
     updateMask: S.optional(S.String.pipe(T.Query())),
     id: S.String.pipe(T.Label()),
+    courseId: S.String.pipe(T.Label()),
     body: S.optional(StudentGroup.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -4620,18 +4620,18 @@ export const PatchCoursesStudentGroupsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface PatchCoursesTopicsRequest {
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
-  /** Identifier of the topic. */
-  id: string;
   /** Mask that identifies which fields on the topic to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Topic object. If a field that does not support empty values is included in the update mask and not set in the Topic object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified: * `name` */
   updateMask?: string;
+  /** Identifier of the topic. */
+  id: string;
   /** Request body */
   body?: Topic;
 }
 export const PatchCoursesTopicsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     courseId: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
     updateMask: S.optional(S.String.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
     body: S.optional(Topic.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -4645,21 +4645,21 @@ export const PatchCoursesTopicsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchCoursesTopicsRequest>;
 
 export interface PatchUserProfilesGuardianInvitationsRequest {
-  /** The `id` field of the `GuardianInvitation` to be modified. */
-  invitationId: string;
-  /** The ID of the student whose guardian invitation is to be modified. */
-  studentId: string;
   /** Mask that identifies which fields on the course to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields are valid: * `state` When set in a query parameter, this field should be specified as `updateMask=,,...` */
   updateMask?: string;
+  /** The ID of the student whose guardian invitation is to be modified. */
+  studentId: string;
+  /** The `id` field of the `GuardianInvitation` to be modified. */
+  invitationId: string;
   /** Request body */
   body?: GuardianInvitation;
 }
 export const PatchUserProfilesGuardianInvitationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      invitationId: S.String.pipe(T.Label()),
-      studentId: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
+      studentId: S.String.pipe(T.Label()),
+      invitationId: S.String.pipe(T.Label()),
       body: S.optional(GuardianInvitation.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4677,21 +4677,21 @@ export type ReclaimStudentSubmissionRequest = TeacherContext;
 export const ReclaimStudentSubmissionRequest = TeacherContext;
 
 export interface ReclaimCoursesCourseWorkStudentSubmissionsRequest {
-  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
-  courseId: string;
-  /** Identifier of the student submission. */
-  id: string;
   /** Identifier of the course work. */
   courseWorkId: string;
+  /** Identifier of the student submission. */
+  id: string;
+  /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
+  courseId: string;
   /** Request body */
   body?: TeacherContext;
 }
 export const ReclaimCoursesCourseWorkStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      courseId: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
       courseWorkId: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      courseId: S.String.pipe(T.Label()),
       body: S.optional(TeacherContext.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4709,21 +4709,21 @@ export type ReturnStudentSubmissionRequest = TeacherContext;
 export const ReturnStudentSubmissionRequest = TeacherContext;
 
 export interface ReturnCoursesCourseWorkStudentSubmissionsRequest {
-  /** Identifier of the course work. */
-  courseWorkId: string;
   /** Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias. */
   courseId: string;
   /** Identifier of the student submission. */
   id: string;
+  /** Identifier of the course work. */
+  courseWorkId: string;
   /** Request body */
   body?: TeacherContext;
 }
 export const ReturnCoursesCourseWorkStudentSubmissionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      courseWorkId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
+      courseWorkId: S.String.pipe(T.Label()),
       body: S.optional(TeacherContext.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -4815,12 +4815,12 @@ export const UpdateGradingPeriodSettingsCoursesRequest =
   }) as any as S.Schema<UpdateGradingPeriodSettingsCoursesRequest>;
 
 export interface UpdateRubricCoursesCourseWorkRequest {
-  /** Required. Identifier of the course work. */
-  courseWorkId: string;
   /** Required. Identifier of the course. */
   courseId: string;
   /** Optional. Identifier of the rubric. */
   id?: string;
+  /** Required. Identifier of the course work. */
+  courseWorkId: string;
   /** Optional. Mask that identifies which fields on the rubric to update. This field is required to do an update. The update fails if invalid fields are specified. There are multiple options to define the criteria of a rubric: the `source_spreadsheet_id` and the `criteria` list. Only one of these can be used at a time to define a rubric. The rubric `criteria` list is fully replaced by the rubric criteria specified in the update request. For example, if a criterion or level is missing from the request, it is deleted. New criteria and levels are added and an ID is assigned. Existing criteria and levels retain the previously assigned ID if the ID is specified in the request. The following fields can be specified by teachers: * `criteria` * `source_spreadsheet_id` */
   updateMask?: string;
   /** Request body */
@@ -4829,9 +4829,9 @@ export interface UpdateRubricCoursesCourseWorkRequest {
 export const UpdateRubricCoursesCourseWorkRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      courseWorkId: S.String.pipe(T.Label()),
       courseId: S.String.pipe(T.Label()),
       id: S.optional(S.String.pipe(T.Query())),
+      courseWorkId: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
       body: S.optional(Rubric.pipe(T.HttpBody())),
     }).pipe(

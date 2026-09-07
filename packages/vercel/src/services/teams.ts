@@ -441,6 +441,8 @@ export type TeamDefaultRolesTeamPermissionsItem =
   | "AiGatewayBudgetManager"
   | "AiGatewayCredits"
   | "AiGatewaySettings"
+  | "AiGatewayTranscriptsManager"
+  | "AiGatewayTranscriptsViewer"
   | "ConnectorManager"
   | "CreateProject"
   | "EnvVariableManager"
@@ -799,6 +801,10 @@ export type TeamStrictPasswordProtectionSettings =
 export const TeamStrictPasswordProtectionSettings =
   TeamStrictDeploymentProtectionSettings;
 
+/** When enabled, creating and managing connectors requires Owner role or the ConnectorManager permission. */
+export type TeamStrictConnectors = TeamStrictDeploymentProtectionSettings;
+export const TeamStrictConnectors = TeamStrictDeploymentProtectionSettings;
+
 export type TeamNsnbConfigPreference =
   | "auto-approval"
   | "block"
@@ -1116,6 +1122,8 @@ export type TeamMembershipTeamPermissionsItem =
   | "AiGatewayBudgetManager"
   | "AiGatewayCredits"
   | "AiGatewaySettings"
+  | "AiGatewayTranscriptsManager"
+  | "AiGatewayTranscriptsViewer"
   | "ConnectorManager"
   | "CreateProject"
   | "EnvVariableManager"
@@ -1286,6 +1294,8 @@ export interface Team {
   strictShareableLinks?: TeamStrictDeploymentProtectionSettings;
   /** When enabled, adding, changing, or removing project password protection requires Owner role. */
   strictPasswordProtectionSettings?: TeamStrictDeploymentProtectionSettings;
+  /** When enabled, creating and managing connectors requires Owner role or the ConnectorManager permission. */
+  strictConnectors?: TeamStrictDeploymentProtectionSettings;
   /** NSNB configuration for the team. */
   nsnbConfig?: TeamNsnbConfig;
   /** Composable deployment-time policy for the team. Used as the default for every project on the team, with optional per-project overrides on `project.deploymentPolicy`. */
@@ -1359,6 +1369,7 @@ export const Team = /*@__PURE__*/ S.suspend(() =>
     strictPasswordProtectionSettings: S.optional(
       TeamStrictDeploymentProtectionSettings,
     ),
+    strictConnectors: S.optional(TeamStrictDeploymentProtectionSettings),
     nsnbConfig: S.optional(TeamNsnbConfig),
     deploymentPolicy: S.optional(TeamDeploymentPolicy),
     personalAccessTokensInvalidatedAt: S.optional(S.Number),
@@ -1792,6 +1803,8 @@ export type GetTeamMembersResponseEmailInviteCodesItemTeamPermissionsItem =
   | "AiGatewayBudgetManager"
   | "AiGatewayCredits"
   | "AiGatewaySettings"
+  | "AiGatewayTranscriptsManager"
+  | "AiGatewayTranscriptsViewer"
   | "ConnectorManager"
   | "CreateProject"
   | "EnvVariableManager"
@@ -2079,6 +2092,8 @@ export type TeamLimitedMembershipTeamPermissionsItem =
   | "AiGatewayBudgetManager"
   | "AiGatewayCredits"
   | "AiGatewaySettings"
+  | "AiGatewayTranscriptsManager"
+  | "AiGatewayTranscriptsViewer"
   | "ConnectorManager"
   | "CreateProject"
   | "EnvVariableManager"
@@ -2391,6 +2406,8 @@ export type InvitedTeamMemberTeamPermissionsItem =
   | "AiGatewayBudgetManager"
   | "AiGatewayCredits"
   | "AiGatewaySettings"
+  | "AiGatewayTranscriptsManager"
+  | "AiGatewayTranscriptsViewer"
   | "ConnectorManager"
   | "CreateProject"
   | "EnvVariableManager"
@@ -3078,6 +3095,19 @@ export const PatchTeamRequestStrictPasswordProtectionSettings =
     identifier: "PatchTeamRequestStrictPasswordProtectionSettings",
   }) as any as S.Schema<PatchTeamRequestStrictPasswordProtectionSettings>;
 
+/** When enabled, creating and managing connectors requires Owner role. */
+export interface PatchTeamRequestStrictConnectors {
+  /** Enable or disable requiring Owner role to manage connectors. */
+  enabled: boolean;
+}
+export const PatchTeamRequestStrictConnectors = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "PatchTeamRequestStrictConnectors",
+}) as any as S.Schema<PatchTeamRequestStrictConnectors>;
+
 /** The NSNB preference for the team. */
 export type PatchTeamRequestNsnbConfigCase0Preference =
   | "auto-approval"
@@ -3249,6 +3279,8 @@ export interface PatchTeamRequest {
   strictShareableLinks?: PatchTeamRequestStrictShareableLinks;
   /** When enabled, adding, changing, or removing project password protection requires Owner role. */
   strictPasswordProtectionSettings?: PatchTeamRequestStrictPasswordProtectionSettings;
+  /** When enabled, creating and managing connectors requires Owner role. */
+  strictConnectors?: PatchTeamRequestStrictConnectors;
   nsnbConfig?: PatchTeamRequestNsnbConfig;
   defaultProjectJobs?: PatchTeamRequestDefaultProjectJobs;
   /** Resource configuration for the team. */
@@ -3290,6 +3322,7 @@ export const PatchTeamRequest = /*@__PURE__*/ S.suspend(() =>
     strictPasswordProtectionSettings: S.optional(
       PatchTeamRequestStrictPasswordProtectionSettings,
     ),
+    strictConnectors: S.optional(PatchTeamRequestStrictConnectors),
     nsnbConfig: S.optional(PatchTeamRequestNsnbConfig),
     defaultProjectJobs: S.optional(PatchTeamRequestDefaultProjectJobs),
     resourceConfig: S.optional(PatchTeamRequestResourceConfig),
@@ -3635,6 +3668,8 @@ export type UpdateTeamMemberRequestTeamPermissionsItem =
   | "AiGatewayCredits"
   | "AiGatewayApiKeyOwnedBySelf"
   | "AiGatewayBudgetManager"
+  | "AiGatewayTranscriptsManager"
+  | "AiGatewayTranscriptsViewer"
   | "V0Builder"
   | "V0Chatter"
   | "V0Viewer";

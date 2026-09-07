@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.integrations#GitNamespacesRequestProvider": {
@@ -1734,6 +1735,12 @@
           "traits": {
             "smithy.api#documentation": "Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external'"
           }
+        },
+        "acceptedPoliciesInheritedFromInstallationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth."
+          }
         }
       },
       "traits": {
@@ -2316,6 +2323,12 @@
           "target": "com.vercel.integrations#GetConfigurationsResponseBodyCase1ItemInstallationType",
           "traits": {
             "smithy.api#documentation": "Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external'"
+          }
+        },
+        "acceptedPoliciesInheritedFromInstallationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth."
           }
         }
       },
@@ -3112,6 +3125,12 @@
           "traits": {
             "smithy.api#documentation": "Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external'"
           }
+        },
+        "acceptedPoliciesInheritedFromInstallationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth."
+          }
         }
       },
       "traits": {}
@@ -3457,6 +3476,12 @@
           "traits": {
             "smithy.api#documentation": "Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external'"
           }
+        },
+        "acceptedPoliciesInheritedFromInstallationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth."
+          }
         }
       },
       "traits": {
@@ -3792,6 +3817,12 @@
           "target": "com.vercel.integrations#GetConfigurationResponseBodyCase2InstallationType",
           "traits": {
             "smithy.api#documentation": "Defines the installation type. - 'external' integrations are installed via the existing integrations flow - 'marketplace' integrations are natively installed: - when accepting the TOS of a partner during the store creation process - if undefined, assume 'external'"
+          }
+        },
+        "acceptedPoliciesInheritedFromInstallationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Historical parent installation from which acceptedPolicies were inherited. This is immutable provenance, not current authorization or relationship truth."
           }
         }
       },
@@ -9864,6 +9895,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -17238,31 +17275,31 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.integrations#GitNamespaces"
-        },
-        {
-          "target": "com.vercel.integrations#SearchRepo"
-        },
-        {
-          "target": "com.vercel.integrations#GetBillingPlans"
-        },
-        {
           "target": "com.vercel.integrations#ConnectIntegrationResourceToProject"
         },
         {
-          "target": "com.vercel.integrations#GetConfigurations"
-        },
-        {
-          "target": "com.vercel.integrations#GetConfiguration"
+          "target": "com.vercel.integrations#CreateIntegrationStoreDirect"
         },
         {
           "target": "com.vercel.integrations#DeleteConfiguration"
         },
         {
+          "target": "com.vercel.integrations#GetBillingPlans"
+        },
+        {
+          "target": "com.vercel.integrations#GetConfiguration"
+        },
+        {
           "target": "com.vercel.integrations#GetConfigurationProducts"
         },
         {
-          "target": "com.vercel.integrations#CreateIntegrationStoreDirect"
+          "target": "com.vercel.integrations#GetConfigurations"
+        },
+        {
+          "target": "com.vercel.integrations#GitNamespaces"
+        },
+        {
+          "target": "com.vercel.integrations#SearchRepo"
         }
       ],
       "traits": {

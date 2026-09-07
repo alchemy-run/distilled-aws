@@ -19,7 +19,8 @@
       "perPage": "per_page",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.speed#AvailabilitiesListResponseQuotaQuotasPerPlanValue": {
@@ -3547,34 +3548,34 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.speed#AvailabilitiesList"
+          "target": "com.cloudflare.speed#CreatePageTest"
         },
         {
-          "target": "com.cloudflare.speed#PagesList"
+          "target": "com.cloudflare.speed#CreateSchedule"
         },
         {
-          "target": "com.cloudflare.speed#PagesTrend"
+          "target": "com.cloudflare.speed#DeletePageTest"
         },
         {
-          "target": "com.cloudflare.speed#PagesTestsCreate"
+          "target": "com.cloudflare.speed#DeleteSchedule"
         },
         {
-          "target": "com.cloudflare.speed#PagesTestsDelete"
+          "target": "com.cloudflare.speed#GetPageTest"
         },
         {
-          "target": "com.cloudflare.speed#PagesTestsGet"
+          "target": "com.cloudflare.speed#GetSchedule"
         },
         {
-          "target": "com.cloudflare.speed#PagesTestsList"
+          "target": "com.cloudflare.speed#ListAvailabilities"
         },
         {
-          "target": "com.cloudflare.speed#ScheduleCreate"
+          "target": "com.cloudflare.speed#ListPages"
         },
         {
-          "target": "com.cloudflare.speed#ScheduleDelete"
+          "target": "com.cloudflare.speed#ListPageTests"
         },
         {
-          "target": "com.cloudflare.speed#ScheduleGet"
+          "target": "com.cloudflare.speed#TrendPage"
         }
       ],
       "traits": {

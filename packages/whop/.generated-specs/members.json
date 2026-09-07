@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.members#ListMembersRequestAccessLevel": {
@@ -449,7 +450,7 @@
         }
       }
     },
-    "com.whop.members#RetrieveMemberRequest": {
+    "com.whop.members#GetMemberRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -465,10 +466,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.members#RetrieveMember": {
+    "com.whop.members#GetMember": {
       "type": "operation",
       "input": {
-        "target": "com.whop.members#RetrieveMemberRequest"
+        "target": "com.whop.members#GetMemberRequest"
       },
       "output": {
         "target": "com.whop.members#Member"
@@ -720,13 +721,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.members#ListMembers"
-        },
-        {
-          "target": "com.whop.members#RetrieveMember"
+          "target": "com.whop.members#GetMember"
         },
         {
           "target": "com.whop.members#ListMemberLogs"
+        },
+        {
+          "target": "com.whop.members#ListMembers"
         }
       ],
       "traits": {

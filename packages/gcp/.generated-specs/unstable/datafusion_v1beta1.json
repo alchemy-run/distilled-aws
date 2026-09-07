@@ -4,297 +4,28 @@
     "service": "datafusion",
     "version": "v1beta1",
     "title": "Cloud Data Fusion API",
-    "baseUrl": "https://datafusion.googleapis.com/"
+    "baseUrl": "https://datafusion.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.datafusion_v1beta1#Operation": {
+    "com.gcp.datafusion_v1beta1#TestIamPermissionsResponse": {
       "type": "structure",
       "members": {
-        "done": {
-          "target": "smithy.api#Boolean",
+        "permissions": {
+          "target": "com.gcp.datafusion_v1beta1#StringList",
           "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.datafusion_v1beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "response": {
-          "target": "com.gcp.datafusion_v1beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "error": {
-          "target": "com.gcp.datafusion_v1beta1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
       }
     },
-    "com.gcp.datafusion_v1beta1#DocumentMap": {
-      "type": "map",
-      "key": {
+    "com.gcp.datafusion_v1beta1#StringList": {
+      "type": "list",
+      "member": {
         "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#RecurringTimeWindow": {
-      "type": "structure",
-      "members": {
-        "recurrence": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. An RRULE with format [RFC-5545](https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time. The only supported FREQ value is \"WEEKLY\". To have something repeat every weekday, use: \"FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\". This specifies how frequently the window starts. To have a 9 am - 5 pm UTC-4 window every weekday, use something like: ``` start time = 2019-01-01T09:00:00-0400 end time = 2019-01-01T17:00:00-0400 recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR ```"
-          }
-        },
-        "window": {
-          "target": "com.gcp.datafusion_v1beta1#TimeWindow",
-          "traits": {
-            "smithy.api#documentation": "Required. The window representing the start and end time of recurrences. This field ignores the date components of the provided timestamps. Only the time of day and duration between start and end time are relevant."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents an arbitrary window of time that recurs."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#Policy": {
-      "type": "structure",
-      "members": {
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
-          }
-        },
-        "auditConfigs": {
-          "target": "com.gcp.datafusion_v1beta1#AuditConfigList",
-          "traits": {
-            "smithy.api#documentation": "Specifies cloud audit logging configuration for this policy."
-          }
-        },
-        "bindings": {
-          "target": "com.gcp.datafusion_v1beta1#BindingList",
-          "traits": {
-            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
-          }
-        },
-        "version": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#AuditConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datafusion_v1beta1#AuditConfig"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#BindingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datafusion_v1beta1#Binding"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#EventPublishConfig": {
-      "type": "structure",
-      "members": {
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Option to enable Event Publishing."
-          }
-        },
-        "topic": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the Pub/Sub topic. Format: projects/{project_id}/topics/{topic_id}"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Confirguration of PubSubEventWriter."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#Namespace": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the given namespace."
-          }
-        },
-        "iamPolicy": {
-          "target": "com.gcp.datafusion_v1beta1#IAMPolicy",
-          "traits": {
-            "smithy.api#documentation": "IAM policy associated with this namespace."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents the information of a namespace"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#LoggingConfig": {
-      "type": "structure",
-      "members": {
-        "instanceCloudLoggingDisabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Option to determine whether instance logs should be written to Cloud Logging. By default, instance logs are written to Cloud Logging."
-          }
-        },
-        "enableInstanceV2Logs": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Option to enable the InstanceV2 logging for this instance. This field is supported only in CDF patch revision versions 6.11.1.1 and above."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Logging configuration for a Data Fusion instance."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#RemoveIamPolicyResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Response message for RemoveIamPolicy method."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListAvailableVersionsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token to retrieve the next page of results or empty if there are no more results in the list."
-          }
-        },
-        "availableVersions": {
-          "target": "com.gcp.datafusion_v1beta1#VersionList",
-          "traits": {
-            "smithy.api#documentation": "Represents a list of versions that are supported. Deprecated: Use versions field instead."
-          }
-        },
-        "versions": {
-          "target": "com.gcp.datafusion_v1beta1#VersionList",
-          "traits": {
-            "smithy.api#documentation": "Represents a list of all versions."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for the list available versions request."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#VersionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datafusion_v1beta1#Version"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#UpgradeInstanceRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for upgrading a Data Fusion instance. To change the instance properties, instance update should be used."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#PrivateServiceConnectConfig": {
-      "type": "structure",
-      "members": {
-        "unreachableCidrBlock": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. The CIDR block to which the CDF instance can't route traffic to in the consumer project VPC. The size of this block should be at least /25. This range should not overlap with the primary address range of any subnetwork used by the network attachment. This range can be used for other purposes in the consumer VPC as long as there is no requirement for CDF to reach destinations using these addresses. If this value is not provided, the server chooses a non RFC 1918 address range. The format of this field is governed by RFC 4632. Example: 192.168.0.0/25"
-          }
-        },
-        "effectiveUnreachableCidrBlock": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The CIDR block to which the CDF instance can't route traffic to in the consumer project VPC. The size of this block is /25. The format of this field is governed by RFC 4632. Example: 240.0.0.0/25"
-          }
-        },
-        "networkAttachment": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The reference to the network attachment used to establish private connectivity. It will be of the form projects/{project-id}/regions/{region}/networkAttachments/{network-attachment-id}."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for using Private Service Connect to establish connectivity between the Data Fusion consumer project and the corresponding tenant project."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#MaintenancePolicy": {
-      "type": "structure",
-      "members": {
-        "maintenanceExclusionWindow": {
-          "target": "com.gcp.datafusion_v1beta1#TimeWindow",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maintenance exclusion window of the instance."
-          }
-        },
-        "maintenanceWindow": {
-          "target": "com.gcp.datafusion_v1beta1#MaintenanceWindow",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maintenance window of the instance."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Maintenance policy of the instance."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#TimeWindow": {
-      "type": "structure",
-      "members": {
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The end time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The end time should take place after the start time. Example: \"2024-01-02T12:04:06-06:00\""
-          }
-        },
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The start time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-01T12:04:06-04:00\""
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents an arbitrary window of time."
       }
     },
     "com.gcp.datafusion_v1beta1#NetworkConfig": {
@@ -304,12 +35,6 @@
           "target": "com.gcp.datafusion_v1beta1#NetworkConfigConnectionTypeEnum",
           "traits": {
             "smithy.api#documentation": "Optional. Type of connection for establishing private IP connectivity between the Data Fusion customer project VPC and the corresponding tenant project from a predefined list of available connection modes. If this field is unspecified for a private instance, VPC peering is used."
-          }
-        },
-        "network": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id}/global/networks/{network}. This is only required for connectivity type VPC_PEERING."
           }
         },
         "privateServiceConnectConfig": {
@@ -322,6 +47,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. The IP range in CIDR notation to use for the managed Data Fusion instance nodes. This range must not overlap with any other ranges used in the Data Fusion instance network. This is required only when using connection type VPC_PEERING. Format: a.b.c.d/22 Example: 192.168.0.0/22"
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the network in the customer project with which the Tenant Project will be peered for executing pipelines. In case of shared VPC where the network resides in another host project the network should specified in the form of projects/{host-project-id}/global/networks/{network}. This is only required for connectivity type VPC_PEERING."
           }
         }
       },
@@ -352,133 +83,127 @@
         }
       }
     },
-    "com.gcp.datafusion_v1beta1#TestIamPermissionsRequest": {
+    "com.gcp.datafusion_v1beta1#LoggingConfig": {
       "type": "structure",
       "members": {
-        "permissions": {
-          "target": "com.gcp.datafusion_v1beta1#StringList",
+        "instanceCloudLoggingDisabled": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+            "smithy.api#documentation": "Optional. Option to determine whether instance logs should be written to Cloud Logging. By default, instance logs are written to Cloud Logging."
+          }
+        },
+        "enableInstanceV2Logs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Option to enable the InstanceV2 logging for this instance. This field is supported only in CDF patch revision versions 6.11.1.1 and above."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
+        "smithy.api#documentation": "Logging configuration for a Data Fusion instance."
       }
     },
-    "com.gcp.datafusion_v1beta1#StringList": {
+    "com.gcp.datafusion_v1beta1#Policy": {
+      "type": "structure",
+      "members": {
+        "bindings": {
+          "target": "com.gcp.datafusion_v1beta1#BindingList",
+          "traits": {
+            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+          }
+        },
+        "auditConfigs": {
+          "target": "com.gcp.datafusion_v1beta1#AuditConfigList",
+          "traits": {
+            "smithy.api#documentation": "Specifies cloud audit logging configuration for this policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#BindingList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "com.gcp.datafusion_v1beta1#Binding"
       }
     },
-    "com.gcp.datafusion_v1beta1#MaintenanceEvent": {
-      "type": "structure",
-      "members": {
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The start time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-01T12:04:06-04:00\""
-          }
-        },
-        "state": {
-          "target": "com.gcp.datafusion_v1beta1#MaintenanceEventStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The state of the maintenance event."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The end time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-02T12:04:06-06:00\" This field will be empty if the maintenance event is not yet complete."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a maintenance event."
+    "com.gcp.datafusion_v1beta1#AuditConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datafusion_v1beta1#AuditConfig"
       }
     },
-    "com.gcp.datafusion_v1beta1#MaintenanceEventStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "SCHEDULED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SCHEDULED"
-          }
-        },
-        "STARTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STARTED"
-          }
-        },
-        "COMPLETED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COMPLETED"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#RestartInstanceRequest": {
+    "com.gcp.datafusion_v1beta1#Empty": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "Request message for restarting a Data Fusion instance."
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
-    "com.gcp.datafusion_v1beta1#Location": {
+    "com.gcp.datafusion_v1beta1#Expr": {
       "type": "structure",
       "members": {
-        "name": {
+        "location": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
           }
         },
-        "locationId": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
           }
         },
-        "metadata": {
-          "target": "com.gcp.datafusion_v1beta1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.datafusion_v1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "displayName": {
+        "title": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
       }
     },
-    "com.gcp.datafusion_v1beta1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
+    "com.gcp.datafusion_v1beta1#EventPublishConfig": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Option to enable Event Publishing."
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the Pub/Sub topic. Format: projects/{project_id}/topics/{topic_id}"
+          }
+        }
       },
-      "value": {
-        "target": "smithy.api#String"
+      "traits": {
+        "smithy.api#documentation": "Confirguration of PubSubEventWriter."
       }
     },
     "com.gcp.datafusion_v1beta1#Status": {
@@ -490,16 +215,16 @@
             "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
           }
         },
-        "details": {
-          "target": "com.gcp.datafusion_v1beta1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        },
         "message": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.datafusion_v1beta1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
           }
         }
       },
@@ -507,24 +232,19 @@
         "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
       }
     },
+    "com.gcp.datafusion_v1beta1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
     "com.gcp.datafusion_v1beta1#DocumentMapList": {
       "type": "list",
       "member": {
         "target": "com.gcp.datafusion_v1beta1#DocumentMap"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#CancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#RemoveIamPolicyRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for RemoveIamPolicy method."
       }
     },
     "com.gcp.datafusion_v1beta1#ListDnsPeeringsResponse": {
@@ -553,19 +273,162 @@
         "target": "com.gcp.datafusion_v1beta1#DnsPeering"
       }
     },
+    "com.gcp.datafusion_v1beta1#Binding": {
+      "type": "structure",
+      "members": {
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
+          }
+        },
+        "condition": {
+          "target": "com.gcp.datafusion_v1beta1#Expr",
+          "traits": {
+            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "members": {
+          "target": "com.gcp.datafusion_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#MonitoringConfig": {
+      "type": "structure",
+      "members": {
+        "enableInstanceV2Metrics": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Option to enable the instance v2 metrics for this instance. This field is supported only in CDF versions 6.11.1.1 and above."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monitoring configuration for a Data Fusion instance."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.datafusion_v1beta1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.datafusion_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datafusion_v1beta1#Operation"
+      }
+    },
+    "com.gcp.datafusion_v1beta1#PrivateServiceConnectConfig": {
+      "type": "structure",
+      "members": {
+        "unreachableCidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. The CIDR block to which the CDF instance can't route traffic to in the consumer project VPC. The size of this block should be at least /25. This range should not overlap with the primary address range of any subnetwork used by the network attachment. This range can be used for other purposes in the consumer VPC as long as there is no requirement for CDF to reach destinations using these addresses. If this value is not provided, the server chooses a non RFC 1918 address range. The format of this field is governed by RFC 4632. Example: 192.168.0.0/25"
+          }
+        },
+        "effectiveUnreachableCidrBlock": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The CIDR block to which the CDF instance can't route traffic to in the consumer project VPC. The size of this block is /25. The format of this field is governed by RFC 4632. Example: 240.0.0.0/25"
+          }
+        },
+        "networkAttachment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The reference to the network attachment used to establish private connectivity. It will be of the form projects/{project-id}/regions/{region}/networkAttachments/{network-attachment-id}."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for using Private Service Connect to establish connectivity between the Data Fusion consumer project and the corresponding tenant project."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#Operation": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "com.gcp.datafusion_v1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "response": {
+          "target": "com.gcp.datafusion_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.datafusion_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#UpgradeInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for upgrading a Data Fusion instance. To change the instance properties, instance update should be used."
+      }
+    },
     "com.gcp.datafusion_v1beta1#AuditLogConfig": {
       "type": "structure",
       "members": {
-        "exemptedMembers": {
-          "target": "com.gcp.datafusion_v1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
-          }
-        },
         "logType": {
           "target": "com.gcp.datafusion_v1beta1#AuditLogConfigLogTypeEnum",
           "traits": {
             "smithy.api#documentation": "The log type that this config enables."
+          }
+        },
+        "exemptedMembers": {
+          "target": "com.gcp.datafusion_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
           }
         }
       },
@@ -602,88 +465,36 @@
         }
       }
     },
-    "com.gcp.datafusion_v1beta1#ListLocationsResponse": {
+    "com.gcp.datafusion_v1beta1#ListAvailableVersionsResponse": {
       "type": "structure",
       "members": {
-        "locations": {
-          "target": "com.gcp.datafusion_v1beta1#LocationList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
+            "smithy.api#documentation": "Token to retrieve the next page of results or empty if there are no more results in the list."
+          }
+        },
+        "versions": {
+          "target": "com.gcp.datafusion_v1beta1#VersionList",
+          "traits": {
+            "smithy.api#documentation": "Represents a list of all versions."
+          }
+        },
+        "availableVersions": {
+          "target": "com.gcp.datafusion_v1beta1#VersionList",
+          "traits": {
+            "smithy.api#documentation": "Represents a list of versions that are supported. Deprecated: Use versions field instead."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
+        "smithy.api#documentation": "Response message for the list available versions request."
       }
     },
-    "com.gcp.datafusion_v1beta1#LocationList": {
+    "com.gcp.datafusion_v1beta1#VersionList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.datafusion_v1beta1#Location"
-      }
-    },
-    "com.gcp.datafusion_v1beta1#Binding": {
-      "type": "structure",
-      "members": {
-        "condition": {
-          "target": "com.gcp.datafusion_v1beta1#Expr",
-          "traits": {
-            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        },
-        "members": {
-          "target": "com.gcp.datafusion_v1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
-          }
-        },
-        "role": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "operations": {
-          "target": "com.gcp.datafusion_v1beta1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.datafusion_v1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datafusion_v1beta1#Operation"
+        "target": "com.gcp.datafusion_v1beta1#Version"
       }
     },
     "com.gcp.datafusion_v1beta1#ListNamespacesResponse": {
@@ -712,97 +523,53 @@
         "target": "com.gcp.datafusion_v1beta1#Namespace"
       }
     },
-    "com.gcp.datafusion_v1beta1#TestIamPermissionsResponse": {
+    "com.gcp.datafusion_v1beta1#IAMPolicy": {
       "type": "structure",
       "members": {
-        "permissions": {
-          "target": "com.gcp.datafusion_v1beta1#StringList",
+        "policy": {
+          "target": "com.gcp.datafusion_v1beta1#Policy",
           "traits": {
-            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+            "smithy.api#documentation": "Policy definition if IAM policy fetching is successful, otherwise empty."
+          }
+        },
+        "status": {
+          "target": "com.gcp.datafusion_v1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "Status of iam policy fetching."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
+        "smithy.api#documentation": "IAMPolicy encapsulates the IAM policy name, definition and status of policy fetching."
       }
     },
-    "com.gcp.datafusion_v1beta1#OperationMetadata": {
+    "com.gcp.datafusion_v1beta1#SetIamPolicyRequest": {
       "type": "structure",
       "members": {
-        "createTime": {
+        "updateMask": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The time the operation was created."
+            "smithy.api#documentation": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
           }
         },
-        "verb": {
-          "target": "smithy.api#String",
+        "policy": {
+          "target": "com.gcp.datafusion_v1beta1#Policy",
           "traits": {
-            "smithy.api#documentation": "Name of the verb executed by the operation."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Server-defined resource path for the target of the operation."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "API version used to start the operation."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
-          }
-        },
-        "additionalStatus": {
-          "target": "com.gcp.datafusion_v1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Map to hold any additional status info for the operation If there is an accelerator being enabled/disabled/deleted, this will be populated with accelerator name as key and status as ENABLING, DISABLING or DELETING"
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time the operation finished running."
-          }
-        },
-        "statusDetail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Human-readable status of the operation if any."
+            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents the metadata of a long-running operation."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#MaintenanceWindow": {
-      "type": "structure",
-      "members": {
-        "recurringTimeWindow": {
-          "target": "com.gcp.datafusion_v1beta1#RecurringTimeWindow",
-          "traits": {
-            "smithy.api#documentation": "Required. The recurring time window of the maintenance window."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Maintenance window of the instance."
+        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
       }
     },
     "com.gcp.datafusion_v1beta1#Version": {
       "type": "structure",
       "members": {
-        "availableFeatures": {
-          "target": "com.gcp.datafusion_v1beta1#StringList",
+        "versionNumber": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Represents a list of available feature names for a given version."
+            "smithy.api#documentation": "The version number of the Data Fusion instance, such as '6.0.1.0'."
           }
         },
         "type": {
@@ -811,10 +578,10 @@
             "smithy.api#documentation": "Type represents the release availability of the version"
           }
         },
-        "versionNumber": {
-          "target": "smithy.api#String",
+        "availableFeatures": {
+          "target": "com.gcp.datafusion_v1beta1#StringList",
           "traits": {
-            "smithy.api#documentation": "The version number of the Data Fusion instance, such as '6.0.1.0'."
+            "smithy.api#documentation": "Represents a list of available feature names for a given version."
           }
         },
         "defaultVersion": {
@@ -857,116 +624,88 @@
         }
       }
     },
-    "com.gcp.datafusion_v1beta1#IAMPolicy": {
+    "com.gcp.datafusion_v1beta1#ListInstancesResponse": {
       "type": "structure",
       "members": {
-        "policy": {
-          "target": "com.gcp.datafusion_v1beta1#Policy",
+        "instances": {
+          "target": "com.gcp.datafusion_v1beta1#InstanceList",
           "traits": {
-            "smithy.api#documentation": "Policy definition if IAM policy fetching is successful, otherwise empty."
+            "smithy.api#documentation": "Represents a list of Data Fusion instances."
           }
         },
-        "status": {
-          "target": "com.gcp.datafusion_v1beta1#Status",
-          "traits": {
-            "smithy.api#documentation": "Status of iam policy fetching."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "IAMPolicy encapsulates the IAM policy name, definition and status of policy fetching."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#AuditConfig": {
-      "type": "structure",
-      "members": {
-        "service": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services."
+            "smithy.api#documentation": "Token to retrieve the next page of results or empty if there are no more results in the list."
           }
         },
-        "auditLogConfigs": {
-          "target": "com.gcp.datafusion_v1beta1#AuditLogConfigList",
+        "unreachable": {
+          "target": "com.gcp.datafusion_v1beta1#StringList",
           "traits": {
-            "smithy.api#documentation": "The configuration for logging of each type of permission."
+            "smithy.api#documentation": "Locations that could not be reached."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging."
+        "smithy.api#documentation": "Response message for the list instance request."
       }
     },
-    "com.gcp.datafusion_v1beta1#AuditLogConfigList": {
+    "com.gcp.datafusion_v1beta1#InstanceList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.datafusion_v1beta1#AuditLogConfig"
+        "target": "com.gcp.datafusion_v1beta1#Instance"
       }
     },
-    "com.gcp.datafusion_v1beta1#MonitoringConfig": {
+    "com.gcp.datafusion_v1beta1#DnsPeering": {
       "type": "structure",
       "members": {
-        "enableInstanceV2Metrics": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Option to enable the instance v2 metrics for this instance. This field is supported only in CDF versions 6.11.1.1 and above."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Monitoring configuration for a Data Fusion instance."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#Expr": {
-      "type": "structure",
-      "members": {
-        "expression": {
+        "targetProject": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+            "smithy.api#documentation": "Optional. Optional target project to which dns peering should happen."
           }
         },
-        "location": {
+        "targetNetwork": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+            "smithy.api#documentation": "Optional. Optional target network to which dns peering should happen."
           }
         },
-        "title": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+            "smithy.api#documentation": "Identifier. The resource name of the dns peering zone. Format: projects/{project}/locations/{location}/instances/{instance}/dnsPeerings/{dns_peering}"
           }
         },
         "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#SetIamPolicyRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
+            "smithy.api#documentation": "Optional. Optional description of the dns zone."
           }
         },
-        "policy": {
-          "target": "com.gcp.datafusion_v1beta1#Policy",
+        "domain": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+            "smithy.api#documentation": "Required. The dns name suffix of the zone."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
+        "smithy.api#documentation": "DNS peering configuration. These configurations are used to create DNS peering with the customer Cloud DNS."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#TestIamPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.datafusion_v1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
       }
     },
     "com.gcp.datafusion_v1beta1#Accelerator": {
@@ -1053,153 +792,121 @@
         }
       }
     },
-    "com.gcp.datafusion_v1beta1#DnsPeering": {
+    "com.gcp.datafusion_v1beta1#RemoveIamPolicyResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response message for RemoveIamPolicy method."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#AuditConfig": {
       "type": "structure",
       "members": {
-        "targetProject": {
-          "target": "smithy.api#String",
+        "auditLogConfigs": {
+          "target": "com.gcp.datafusion_v1beta1#AuditLogConfigList",
           "traits": {
-            "smithy.api#documentation": "Optional. Optional target project to which dns peering should happen."
+            "smithy.api#documentation": "The configuration for logging of each type of permission."
           }
         },
-        "domain": {
+        "service": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The dns name suffix of the zone."
+            "smithy.api#documentation": "Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#AuditLogConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datafusion_v1beta1#AuditLogConfig"
+      }
+    },
+    "com.gcp.datafusion_v1beta1#Namespace": {
+      "type": "structure",
+      "members": {
+        "iamPolicy": {
+          "target": "com.gcp.datafusion_v1beta1#IAMPolicy",
+          "traits": {
+            "smithy.api#documentation": "IAM policy associated with this namespace."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the dns peering zone. Format: projects/{project}/locations/{location}/instances/{instance}/dnsPeerings/{dns_peering}"
-          }
-        },
-        "targetNetwork": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Optional target network to which dns peering should happen."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Optional description of the dns zone."
+            "smithy.api#documentation": "Name of the given namespace."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "DNS peering configuration. These configurations are used to create DNS peering with the customer Cloud DNS."
+        "smithy.api#documentation": "Represents the information of a namespace"
+      }
+    },
+    "com.gcp.datafusion_v1beta1#MaintenanceEvent": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The start time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-01T12:04:06-04:00\""
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The end time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-02T12:04:06-06:00\" This field will be empty if the maintenance event is not yet complete."
+          }
+        },
+        "state": {
+          "target": "com.gcp.datafusion_v1beta1#MaintenanceEventStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the maintenance event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a maintenance event."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#MaintenanceEventStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULED"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTED"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETED"
+          }
+        }
       }
     },
     "com.gcp.datafusion_v1beta1#Instance": {
       "type": "structure",
       "members": {
-        "maintenancePolicy": {
-          "target": "com.gcp.datafusion_v1beta1#MaintenancePolicy",
-          "traits": {
-            "smithy.api#documentation": "Optional. Configure the maintenance policy for this instance."
-          }
-        },
-        "enableZoneSeparation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Option to enable zone separation."
-          }
-        },
-        "networkConfig": {
-          "target": "com.gcp.datafusion_v1beta1#NetworkConfig",
-          "traits": {
-            "smithy.api#documentation": "Optional. Network configuration options. These are required when a private Data Fusion instance is to be created."
-          }
-        },
-        "description": {
+        "tenantProjectId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. A description of this instance."
-          }
-        },
-        "tags": {
-          "target": "com.gcp.datafusion_v1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the instance was created."
-          }
-        },
-        "state": {
-          "target": "com.gcp.datafusion_v1beta1#InstanceStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The current state of this Data Fusion instance."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Display name for an instance."
-          }
-        },
-        "dataprocServiceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources."
-          }
-        },
-        "availableVersion": {
-          "target": "com.gcp.datafusion_v1beta1#VersionList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Available versions that the instance can be upgraded to using UpdateInstanceRequest."
-          }
-        },
-        "options": {
-          "target": "com.gcp.datafusion_v1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Map of additional options used to configure the behavior of Data Fusion instance."
-          }
-        },
-        "privateInstance": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have private IP addresses and will not be able to access the public internet."
-          }
-        },
-        "satisfiesPzi": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Reserved for future use."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the instance was last updated."
-          }
-        },
-        "type": {
-          "target": "com.gcp.datafusion_v1beta1#InstanceTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Instance type."
-          }
-        },
-        "zone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field."
-          }
-        },
-        "p4ServiceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Service agent for the customer project."
-          }
-        },
-        "serviceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Deprecated. Use tenant_project_id instead to extract the tenant project ID."
+            "smithy.api#documentation": "Output only. The name of the tenant project."
           }
         },
         "loggingConfig": {
@@ -1208,94 +915,10 @@
             "smithy.api#documentation": "Optional. The logging configuration for this instance. This field is supported only in CDF versions 6.11.0 and above."
           }
         },
-        "cryptoKeyConfig": {
-          "target": "com.gcp.datafusion_v1beta1#CryptoKeyConfig",
-          "traits": {
-            "smithy.api#documentation": "Optional. The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature."
-          }
-        },
-        "apiEndpoint": {
+        "workforceIdentityServiceEndpoint": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Endpoint on which the REST APIs is accessible."
-          }
-        },
-        "enableStackdriverMonitoring": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Option to enable Stackdriver Monitoring."
-          }
-        },
-        "enableRbac": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Option to enable granular role-based access control."
-          }
-        },
-        "serviceEndpoint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Endpoint on which the Data Fusion UI is accessible."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.datafusion_v1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels."
-          }
-        },
-        "enableStackdriverLogging": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Option to enable Dataproc Stackdriver Logging."
-          }
-        },
-        "tenantProjectId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of the tenant project."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}."
-          }
-        },
-        "accelerators": {
-          "target": "com.gcp.datafusion_v1beta1#AcceleratorList",
-          "traits": {
-            "smithy.api#documentation": "Output only. List of accelerators enabled for this CDF instance."
-          }
-        },
-        "stateMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Additional information about the current state of this Data Fusion instance if available."
-          }
-        },
-        "gcsBucket": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Cloud Storage bucket generated by Data Fusion in the customer project."
-          }
-        },
-        "disabledReason": {
-          "target": "com.gcp.datafusion_v1beta1#InstanceDisabledReasonItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Output only. If the instance state is DISABLED, the reason for disabling the instance."
-          }
-        },
-        "satisfiesPzs": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Reserved for future use."
-          }
-        },
-        "patchRevision": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Current patch revision of the Data Fusion."
+            "smithy.api#documentation": "Output only. Endpoint on which the Data Fusion UI is accessible to third-party users."
           }
         },
         "dataplexDataLineageIntegrationEnabled": {
@@ -1304,22 +927,94 @@
             "smithy.api#documentation": "Optional. Option to enable the Dataplex Lineage Integration feature."
           }
         },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the instance was last updated."
+          }
+        },
+        "gcsBucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Cloud Storage bucket generated by Data Fusion in the customer project."
+          }
+        },
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Deprecated. Use tenant_project_id instead to extract the tenant project ID."
+          }
+        },
+        "accelerators": {
+          "target": "com.gcp.datafusion_v1beta1#AcceleratorList",
+          "traits": {
+            "smithy.api#documentation": "Output only. List of accelerators enabled for this CDF instance."
+          }
+        },
+        "networkConfig": {
+          "target": "com.gcp.datafusion_v1beta1#NetworkConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Network configuration options. These are required when a private Data Fusion instance is to be created."
+          }
+        },
+        "zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field."
+          }
+        },
+        "cryptoKeyConfig": {
+          "target": "com.gcp.datafusion_v1beta1#CryptoKeyConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature."
+          }
+        },
+        "maintenancePolicy": {
+          "target": "com.gcp.datafusion_v1beta1#MaintenancePolicy",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configure the maintenance policy for this instance."
+          }
+        },
+        "type": {
+          "target": "com.gcp.datafusion_v1beta1#InstanceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Instance type."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Current version of Data Fusion."
+          }
+        },
         "maintenanceEvents": {
           "target": "com.gcp.datafusion_v1beta1#MaintenanceEventList",
           "traits": {
             "smithy.api#documentation": "Output only. The maintenance events for this instance."
           }
         },
-        "monitoringConfig": {
-          "target": "com.gcp.datafusion_v1beta1#MonitoringConfig",
-          "traits": {
-            "smithy.api#documentation": "Optional. The monitoring configuration for this instance."
-          }
-        },
-        "workforceIdentityServiceEndpoint": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Endpoint on which the Data Fusion UI is accessible to third-party users."
+            "smithy.api#documentation": "Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}."
+          }
+        },
+        "availableVersion": {
+          "target": "com.gcp.datafusion_v1beta1#VersionList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Available versions that the instance can be upgraded to using UpdateInstanceRequest."
+          }
+        },
+        "patchRevision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Current patch revision of the Data Fusion."
+          }
+        },
+        "state": {
+          "target": "com.gcp.datafusion_v1beta1#InstanceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of this Data Fusion instance."
           }
         },
         "eventPublishConfig": {
@@ -1328,15 +1023,170 @@
             "smithy.api#documentation": "Optional. Option to enable and pass metadata for event publishing."
           }
         },
-        "version": {
+        "disabledReason": {
+          "target": "com.gcp.datafusion_v1beta1#InstanceDisabledReasonItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. If the instance state is DISABLED, the reason for disabling the instance."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.datafusion_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\""
+          }
+        },
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "enableRbac": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Option to enable granular role-based access control."
+          }
+        },
+        "dataprocServiceAccount": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Current version of Data Fusion."
+            "smithy.api#documentation": "Optional. User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources."
+          }
+        },
+        "p4ServiceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Service agent for the customer project."
+          }
+        },
+        "monitoringConfig": {
+          "target": "com.gcp.datafusion_v1beta1#MonitoringConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. The monitoring configuration for this instance."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the instance was created."
+          }
+        },
+        "stateMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Additional information about the current state of this Data Fusion instance if available."
+          }
+        },
+        "satisfiesPzi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A description of this instance."
+          }
+        },
+        "enableZoneSeparation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Option to enable zone separation."
+          }
+        },
+        "privateInstance": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have private IP addresses and will not be able to access the public internet."
+          }
+        },
+        "enableStackdriverLogging": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Option to enable Dataproc Stackdriver Logging."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Display name for an instance."
+          }
+        },
+        "serviceEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Endpoint on which the Data Fusion UI is accessible."
+          }
+        },
+        "options": {
+          "target": "com.gcp.datafusion_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Map of additional options used to configure the behavior of Data Fusion instance."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.datafusion_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels."
+          }
+        },
+        "enableStackdriverMonitoring": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Option to enable Stackdriver Monitoring."
+          }
+        },
+        "apiEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Endpoint on which the REST APIs is accessible."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Represents a Data Fusion instance."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#AcceleratorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datafusion_v1beta1#Accelerator"
+      }
+    },
+    "com.gcp.datafusion_v1beta1#InstanceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BASIC"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTERPRISE"
+          }
+        },
+        "DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVELOPER"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#MaintenanceEventList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datafusion_v1beta1#MaintenanceEvent"
       }
     },
     "com.gcp.datafusion_v1beta1#InstanceStateEnum": {
@@ -1416,41 +1266,6 @@
         }
       }
     },
-    "com.gcp.datafusion_v1beta1#InstanceTypeEnum": {
-      "type": "enum",
-      "members": {
-        "TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
-          }
-        },
-        "BASIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "BASIC"
-          }
-        },
-        "ENTERPRISE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ENTERPRISE"
-          }
-        },
-        "DEVELOPER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEVELOPER"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#AcceleratorList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datafusion_v1beta1#Accelerator"
-      }
-    },
     "com.gcp.datafusion_v1beta1#InstanceDisabledReasonItemEnum": {
       "type": "enum",
       "members": {
@@ -1480,10 +1295,228 @@
         "target": "com.gcp.datafusion_v1beta1#InstanceDisabledReasonItemEnum"
       }
     },
-    "com.gcp.datafusion_v1beta1#MaintenanceEventList": {
+    "com.gcp.datafusion_v1beta1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.datafusion_v1beta1#MaintenancePolicy": {
+      "type": "structure",
+      "members": {
+        "maintenanceExclusionWindow": {
+          "target": "com.gcp.datafusion_v1beta1#TimeWindow",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maintenance exclusion window of the instance."
+          }
+        },
+        "maintenanceWindow": {
+          "target": "com.gcp.datafusion_v1beta1#MaintenanceWindow",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maintenance window of the instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Maintenance policy of the instance."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#TimeWindow": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The start time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: \"2024-01-01T12:04:06-04:00\""
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The end time of the time window provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The end time should take place after the start time. Example: \"2024-01-02T12:04:06-06:00\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an arbitrary window of time."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#RestartInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for restarting a Data Fusion instance."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation finished running."
+          }
+        },
+        "additionalStatus": {
+          "target": "com.gcp.datafusion_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Map to hold any additional status info for the operation If there is an accelerator being enabled/disabled/deleted, this will be populated with accelerator name as key and status as ENABLING, DISABLING or DELETING"
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server-defined resource path for the target of the operation."
+          }
+        },
+        "statusDetail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable status of the operation if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API version used to start the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the verb executed by the operation."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation was created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of a long-running operation."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#RecurringTimeWindow": {
+      "type": "structure",
+      "members": {
+        "window": {
+          "target": "com.gcp.datafusion_v1beta1#TimeWindow",
+          "traits": {
+            "smithy.api#documentation": "Required. The window representing the start and end time of recurrences. This field ignores the date components of the provided timestamps. Only the time of day and duration between start and end time are relevant."
+          }
+        },
+        "recurrence": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. An RRULE with format [RFC-5545](https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time. The only supported FREQ value is \"WEEKLY\". To have something repeat every weekday, use: \"FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR\". This specifies how frequently the window starts. To have a 9 am - 5 pm UTC-4 window every weekday, use something like: ``` start time = 2019-01-01T09:00:00-0400 end time = 2019-01-01T17:00:00-0400 recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR ```"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an arbitrary window of time that recurs."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#RemoveIamPolicyRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for RemoveIamPolicy method."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.datafusion_v1beta1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#LocationList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.datafusion_v1beta1#MaintenanceEvent"
+        "target": "com.gcp.datafusion_v1beta1#Location"
+      }
+    },
+    "com.gcp.datafusion_v1beta1#Location": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.gcp.datafusion_v1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.datafusion_v1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#MaintenanceWindow": {
+      "type": "structure",
+      "members": {
+        "recurringTimeWindow": {
+          "target": "com.gcp.datafusion_v1beta1#RecurringTimeWindow",
+          "traits": {
+            "smithy.api#documentation": "Required. The recurring time window of the maintenance window."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Maintenance window of the instance."
       }
     },
     "com.gcp.datafusion_v1beta1#CryptoKeyConfig": {
@@ -1500,38 +1533,6 @@
         "smithy.api#documentation": "The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature."
       }
     },
-    "com.gcp.datafusion_v1beta1#ListInstancesResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token to retrieve the next page of results or empty if there are no more results in the list."
-          }
-        },
-        "instances": {
-          "target": "com.gcp.datafusion_v1beta1#InstanceList",
-          "traits": {
-            "smithy.api#documentation": "Represents a list of Data Fusion instances."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.datafusion_v1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for the list instance request."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#InstanceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datafusion_v1beta1#Instance"
-      }
-    },
     "com.gcp.datafusion_v1beta1#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
@@ -1543,18 +1544,11 @@
             "smithy.api#required": {}
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "extraLocationTypes": {
@@ -1564,11 +1558,18 @@
             "smithy.api#httpQuery": "extraLocationTypes"
           }
         },
-        "filter": {
+        "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -1625,43 +1626,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#GetProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Location"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Gets information about a location."
       }
     },
     "com.gcp.datafusion_v1beta1#RemoveIamPolicyProjectsLocationsRequest": {
@@ -1740,95 +1704,26 @@
         "smithy.api#documentation": "Remove IAM policy that is currently set on the given resource."
       }
     },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Sort results. Supported values are \"name\", \"name desc\", or \"\" (unsorted).",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The next_page_token value to use if there are additional results to retrieve for this list request.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of items to return.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location for which to retrieve instance information in the format projects/{project}/locations/{location}. If the location is specified as '-' (wildcard), then all regions available to the project are queried, and the results are aggregated.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "List filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#ListInstancesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+parent}/instances"
-        },
-        "smithy.api#documentation": "Lists Data Fusion instances in the specified project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetProjectsLocationsInstancesRequest": {
+    "com.gcp.datafusion_v1beta1#GetProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The instance resource name in the format projects/{project}/locations/{location}/instances/{instance}.",
+            "smithy.api#documentation": "Resource name for the location.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.datafusion_v1beta1#GetProjectsLocationsInstances": {
+    "com.gcp.datafusion_v1beta1#GetProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.datafusion_v1beta1#GetProjectsLocationsInstancesRequest"
+        "target": "com.gcp.datafusion_v1beta1#GetProjectsLocationsRequest"
       },
       "output": {
-        "target": "com.gcp.datafusion_v1beta1#Instance"
+        "target": "com.gcp.datafusion_v1beta1#Location"
       },
       "errors": [
         {
@@ -1843,960 +1738,12 @@
           "method": "GET",
           "uri": "v1beta1/{+name}"
         },
-        "smithy.api#documentation": "Gets details of a single Data Fusion instance."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The instance resource name in the format projects/{project}/locations/{location}/instances/{instance}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "force": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If set to true, any nested resources from this instance will also be deleted.",
-            "smithy.api#httpQuery": "force"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a single Data Fusion instance."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#RestartProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the Data Fusion instance which need to be restarted in the form of projects/{project}/locations/{location}/instances/{instance}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#RestartInstanceRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#RestartProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#RestartProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+name}:restart"
-        },
-        "smithy.api#documentation": "Restart a single Data Fusion instance. At the end of an operation instance is fully restarted."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The instance's project and location in the format projects/{project}/locations/{location}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "instanceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the instance to create. Instance name can only contain lowercase alphanumeric characters and hyphens. It must start with a letter and must not end with a hyphen. It can have a maximum of 30 characters.",
-            "smithy.api#httpQuery": "instanceId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#Instance",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+parent}/instances"
-        },
-        "smithy.api#documentation": "Creates a new Data Fusion instance in the specified project and location."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#PatchProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels and options currently) will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#Instance",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#PatchProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#PatchProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Updates a single Data Fusion instance."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+resource}:testIamPermissions"
-        },
-        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#SetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+resource}:setIamPolicy"
-        },
-        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#UpgradeProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the Data Fusion instance which need to be upgraded in the form of projects/{project}/locations/{location}/instances/{instance} Instance will be upgraded with the latest stable version of the Data Fusion.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#UpgradeInstanceRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#UpgradeProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#UpgradeProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+name}:upgrade"
-        },
-        "smithy.api#documentation": "Upgrade a single Data Fusion instance. At the end of an operation instance is fully upgraded."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "options.requestedPolicyVersion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-            "smithy.api#httpQuery": "options.requestedPolicyVersion"
-          }
-        },
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+resource}:getIamPolicy"
-        },
-        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesViewEnum": {
-      "type": "enum",
-      "members": {
-        "NAMESPACE_VIEW_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NAMESPACE_VIEW_UNSPECIFIED"
-          }
-        },
-        "NAMESPACE_VIEW_BASIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NAMESPACE_VIEW_BASIC"
-          }
-        },
-        "NAMESPACE_VIEW_FULL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NAMESPACE_VIEW_FULL"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesRequest": {
-      "type": "structure",
-      "members": {
-        "view": {
-          "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesViewEnum",
-          "traits": {
-            "smithy.api#documentation": "By default, only basic information about a namespace is returned (e.g. name). When `NAMESPACE_VIEW_FULL` is specified, additional information associated with a namespace gets returned (e.g. IAM policy set on the namespace)",
-            "smithy.api#httpQuery": "view"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of items to return.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The instance to list its namespaces.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The next_page_token value to use if there are additional results to retrieve for this list request.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespaces": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#ListNamespacesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+parent}/namespaces"
-        },
-        "smithy.api#documentation": "List namespaces in a given instance",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesNamespacesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#SetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesNamespaces": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesNamespacesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+resource}:setIamPolicy"
-        },
-        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesNamespacesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesNamespaces": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesNamespacesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+resource}:testIamPermissions"
-        },
-        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesNamespacesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "options.requestedPolicyVersion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-            "smithy.api#httpQuery": "options.requestedPolicyVersion"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesNamespaces": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesNamespacesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+resource}:getIamPolicy"
-        },
-        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesDnsPeeringsRequest": {
-      "type": "structure",
-      "members": {
-        "dnsPeeringId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the peering to create.",
-            "smithy.api#httpQuery": "dnsPeeringId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource on which DNS peering will be created.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#DnsPeering",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesDnsPeerings": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesDnsPeeringsRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#DnsPeering"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+parent}/dnsPeerings"
-        },
-        "smithy.api#documentation": "Creates DNS peering on the given resource."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesDnsPeeringsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListDnsPeerings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDnsPeerings` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of dns peerings. Format: projects/{project}/locations/{location}/instances/{instance}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 50 dns peerings will be returned. The maximum value is 200; values above 200 will be coerced to 200.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesDnsPeerings": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesDnsPeeringsRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#ListDnsPeeringsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+parent}/dnsPeerings"
-        },
-        "smithy.api#documentation": "Lists DNS peerings for a given resource.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesDnsPeeringsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the DNS peering zone to delete. Format: projects/{project}/locations/{location}/instances/{instance}/dnsPeerings/{dns_peering}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesDnsPeerings": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesDnsPeeringsRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes DNS peering on the given resource."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsVersionsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The project and location for which to retrieve instance information in the format projects/{project}/locations/{location}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The next_page_token value to use if there are additional results to retrieve for this list request.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of items to return.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "latestPatchOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether or not to return the latest patch of every available minor version. If true, only the latest patch will be returned. Ex. if allowed versions is [6.1.1, 6.1.2, 6.2.0] then response will be [6.1.2, 6.2.0]",
-            "smithy.api#httpQuery": "latestPatchOnly"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#ListProjectsLocationsVersions": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsVersionsRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#ListAvailableVersionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+parent}/versions"
-        },
-        "smithy.api#documentation": "Lists possible versions for Data Fusion instances in the specified project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.datafusion_v1beta1#CancelProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datafusion_v1beta1#CancelOperationRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datafusion_v1beta1#CancelProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datafusion_v1beta1#CancelProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.datafusion_v1beta1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datafusion_v1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datafusion_v1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta1/{+name}:cancel"
-        },
-        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+        "smithy.api#documentation": "Gets information about a location."
       }
     },
     "com.gcp.datafusion_v1beta1#ListProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
@@ -2812,6 +1759,13 @@
             "smithy.api#required": {}
           }
         },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "returnPartialSuccess": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -2819,11 +1773,11 @@
             "smithy.api#httpQuery": "returnPartialSuccess"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "filter": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -2897,6 +1851,1053 @@
           "uri": "v1beta1/{+name}"
         },
         "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location for which to retrieve instance information in the format projects/{project}/locations/{location}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "latestPatchOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not to return the latest patch of every available minor version. If true, only the latest patch will be returned. Ex. if allowed versions is [6.1.1, 6.1.2, 6.2.0] then response will be [6.1.2, 6.2.0]",
+            "smithy.api#httpQuery": "latestPatchOnly"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsVersions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsVersionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#ListAvailableVersionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/versions"
+        },
+        "smithy.api#documentation": "Lists possible versions for Data Fusion instances in the specified project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#SetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The instance's project and location in the format projects/{project}/locations/{location}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the instance to create. Instance name can only contain lowercase alphanumeric characters and hyphens. It must start with a letter and must not end with a hyphen. It can have a maximum of 30 characters.",
+            "smithy.api#httpQuery": "instanceId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Creates a new Data Fusion instance in the specified project and location."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#RestartProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the Data Fusion instance which need to be restarted in the form of projects/{project}/locations/{location}/instances/{instance}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#RestartInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#RestartProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#RestartProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:restart"
+        },
+        "smithy.api#documentation": "Restart a single Data Fusion instance. At the end of an operation instance is fully restarted."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sort results. Supported values are \"name\", \"name desc\", or \"\" (unsorted).",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "List filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project and location for which to retrieve instance information in the format projects/{project}/locations/{location}. If the location is specified as '-' (wildcard), then all regions available to the project are queried, and the results are aggregated.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#ListInstancesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Lists Data Fusion instances in the specified project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The instance resource name in the format projects/{project}/locations/{location}/instances/{instance}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, any nested resources from this instance will also be deleted.",
+            "smithy.api#httpQuery": "force"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single Data Fusion instance."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#UpgradeProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the Data Fusion instance which need to be upgraded in the form of projects/{project}/locations/{location}/instances/{instance} Instance will be upgraded with the latest stable version of the Data Fusion.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#UpgradeInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#UpgradeProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#UpgradeProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+name}:upgrade"
+        },
+        "smithy.api#documentation": "Upgrade a single Data Fusion instance. At the end of an operation instance is fully upgraded."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The instance resource name in the format projects/{project}/locations/{location}/instances/{instance}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#GetProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Instance"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Data Fusion instance."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#PatchProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of this instance is in the form of projects/{project}/locations/{location}/instances/{instance}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask is used to specify the fields that the update will overwrite in an instance resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, all the supported fields (labels and options currently) will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#PatchProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#PatchProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a single Data Fusion instance."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesViewEnum": {
+      "type": "enum",
+      "members": {
+        "NAMESPACE_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAMESPACE_VIEW_UNSPECIFIED"
+          }
+        },
+        "NAMESPACE_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAMESPACE_VIEW_BASIC"
+          }
+        },
+        "NAMESPACE_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NAMESPACE_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The instance to list its namespaces.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "view": {
+          "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesViewEnum",
+          "traits": {
+            "smithy.api#documentation": "By default, only basic information about a namespace is returned (e.g. name). When `NAMESPACE_VIEW_FULL` is specified, additional information associated with a namespace gets returned (e.g. IAM policy set on the namespace)",
+            "smithy.api#httpQuery": "view"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesNamespacesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#ListNamespacesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/namespaces"
+        },
+        "smithy.api#documentation": "List namespaces in a given instance",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#GetIamPolicyProjectsLocationsInstancesNamespacesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsProjectsLocationsInstancesNamespacesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#TestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#SetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#SetIamPolicyProjectsLocationsInstancesNamespacesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesDnsPeeringsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource on which DNS peering will be created.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dnsPeeringId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the peering to create.",
+            "smithy.api#httpQuery": "dnsPeeringId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datafusion_v1beta1#DnsPeering",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesDnsPeerings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#CreateProjectsLocationsInstancesDnsPeeringsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#DnsPeering"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta1/{+parent}/dnsPeerings"
+        },
+        "smithy.api#documentation": "Creates DNS peering on the given resource."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesDnsPeeringsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the DNS peering zone to delete. Format: projects/{project}/locations/{location}/instances/{instance}/dnsPeerings/{dns_peering}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesDnsPeerings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#DeleteProjectsLocationsInstancesDnsPeeringsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes DNS peering on the given resource."
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesDnsPeeringsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListDnsPeerings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDnsPeerings` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 50 dns peerings will be returned. The maximum value is 200; values above 200 will be coerced to 200.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent, which owns this collection of dns peerings. Format: projects/{project}/locations/{location}/instances/{instance}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesDnsPeerings": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datafusion_v1beta1#ListProjectsLocationsInstancesDnsPeeringsRequest"
+      },
+      "output": {
+        "target": "com.gcp.datafusion_v1beta1#ListDnsPeeringsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datafusion_v1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.datafusion_v1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta1/{+parent}/dnsPeerings"
+        },
+        "smithy.api#documentation": "Lists DNS peerings for a given resource.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     }
   }

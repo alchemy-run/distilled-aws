@@ -321,11 +321,11 @@ export const CreateOrUpdateServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateOrUpdateServiceGroupResponse",
 }) as any as S.Schema<CreateOrUpdateServiceGroupResponse>;
 
-export interface DeleteHierarchySettingRequest {
+export interface DeleteHierarchySettingsRequest {
   /** Management Group ID. */
   groupId: string;
 }
-export const DeleteHierarchySettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteHierarchySettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     groupId: S.String.pipe(T.Label()),
   }).pipe(
@@ -337,15 +337,15 @@ export const DeleteHierarchySettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteHierarchySettingRequest",
-}) as any as S.Schema<DeleteHierarchySettingRequest>;
+  identifier: "DeleteHierarchySettingsRequest",
+}) as any as S.Schema<DeleteHierarchySettingsRequest>;
 
-export interface DeleteHierarchySettingResponse {}
-export const DeleteHierarchySettingResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteHierarchySettingsResponse {}
+export const DeleteHierarchySettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteHierarchySettingResponse",
-}) as any as S.Schema<DeleteHierarchySettingResponse>;
+  identifier: "DeleteHierarchySettingsResponse",
+}) as any as S.Schema<DeleteHierarchySettingsResponse>;
 
 export interface DeleteManagementGroupRequest {
   /** Management Group ID. */
@@ -428,11 +428,11 @@ export const DeleteServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteServiceGroupResponse",
 }) as any as S.Schema<DeleteServiceGroupResponse>;
 
-export interface GetHierarchySettingRequest {
+export interface GetHierarchySettingsRequest {
   /** Management Group ID. */
   groupId: string;
 }
-export const GetHierarchySettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHierarchySettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     groupId: S.String.pipe(T.Label()),
   }).pipe(
@@ -444,8 +444,8 @@ export const GetHierarchySettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetHierarchySettingRequest",
-}) as any as S.Schema<GetHierarchySettingRequest>;
+  identifier: "GetHierarchySettingsRequest",
+}) as any as S.Schema<GetHierarchySettingsRequest>;
 
 /** The generic properties of hierarchy settings. */
 export interface HierarchySettingsProperties {
@@ -466,7 +466,7 @@ export const HierarchySettingsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "HierarchySettingsProperties",
 }) as any as S.Schema<HierarchySettingsProperties>;
 
-export interface GetHierarchySettingResponse {
+export interface GetHierarchySettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -478,7 +478,7 @@ export interface GetHierarchySettingResponse {
   /** The generic properties of hierarchy settings. */
   properties?: HierarchySettingsProperties;
 }
-export const GetHierarchySettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHierarchySettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -487,20 +487,17 @@ export const GetHierarchySettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(HierarchySettingsProperties),
   }),
 ).annotate({
-  identifier: "GetHierarchySettingResponse",
-}) as any as S.Schema<GetHierarchySettingResponse>;
+  identifier: "GetHierarchySettingsResponse",
+}) as any as S.Schema<GetHierarchySettingsResponse>;
 
-export type ManagementGroupsGetRequestExpand =
-  | "children"
-  | "path"
-  | "ancestors";
-export const ManagementGroupsGetRequestExpand = /*@__PURE__*/ S.String;
+export type GetManagementGroupRequestExpand = "children" | "path" | "ancestors";
+export const GetManagementGroupRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetManagementGroupRequest {
   /** Management Group ID. */
   groupId: string;
   /** The $expand=children query string parameter allows clients to request inclusion of children in the response payload. $expand=path includes the path from the root group to the current group. $expand=ancestors includes the ancestor Ids of the current group. */
-  _expand?: ManagementGroupsGetRequestExpand | (string & {});
+  _expand?: GetManagementGroupRequestExpand | (string & {});
   /** The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload. Note that $expand=children must be passed up if $recurse is set to true. */
   _recurse?: boolean;
   /** A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType ne Subscription') */
@@ -510,7 +507,7 @@ export const GetManagementGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     groupId: S.String.pipe(T.Label()),
     _expand: S.optional(
-      ManagementGroupsGetRequestExpand.pipe(T.Query("$expand")),
+      GetManagementGroupRequestExpand.pipe(T.Query("$expand")),
     ),
     _recurse: S.optional(S.Boolean.pipe(T.Query("$recurse"))),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -708,7 +705,7 @@ export const GetManagementGroupResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetManagementGroupResponse",
 }) as any as S.Schema<GetManagementGroupResponse>;
 
-export interface GetManagementGroupDescendantRequest {
+export interface GetManagementGroupDescendantsRequest {
   /** Management Group ID. */
   groupId: string;
   /** Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls. */
@@ -716,22 +713,23 @@ export interface GetManagementGroupDescendantRequest {
   /** Number of elements to return when retrieving results. Passing this in will override $skipToken. */
   _top?: number;
 }
-export const GetManagementGroupDescendantRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.String.pipe(T.Label()),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Management/managementGroups/{groupId}/descendants",
-      code: 200,
-      apiVersion: "2023-04-01",
-    }),
-  ),
+export const GetManagementGroupDescendantsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      groupId: S.String.pipe(T.Label()),
+      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{groupId}/descendants",
+        code: 200,
+        apiVersion: "2023-04-01",
+      }),
+    ),
 ).annotate({
-  identifier: "GetManagementGroupDescendantRequest",
-}) as any as S.Schema<GetManagementGroupDescendantRequest>;
+  identifier: "GetManagementGroupDescendantsRequest",
+}) as any as S.Schema<GetManagementGroupDescendantsRequest>;
 
 /** The generic properties of an descendant. */
 export interface DescendantInfoProperties {
@@ -839,13 +837,13 @@ export const GetManagementGroupSubscriptionSubscriptionResponse =
     identifier: "GetManagementGroupSubscriptionSubscriptionResponse",
   }) as any as S.Schema<GetManagementGroupSubscriptionSubscriptionResponse>;
 
-export interface GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest {
+export interface GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest {
   /** Management Group ID. */
   groupId: string;
   /** Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls. */
   _skiptoken?: string;
 }
-export const GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest =
+export const GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupId: S.String.pipe(T.Label()),
@@ -860,8 +858,8 @@ export const GetManagementGroupSubscriptionSubscriptionUnderManagementGroupReque
     ),
   ).annotate({
     identifier:
-      "GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest",
-  }) as any as S.Schema<GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest>;
+      "GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest",
+  }) as any as S.Schema<GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest>;
 
 /** The details of subscription under management group. */
 export interface SubscriptionUnderManagementGroup {
@@ -933,13 +931,13 @@ export const GetServiceGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServiceGroupRequest>;
 
 /** The serviceGroup tags. */
-export type ServiceGroupsGetResponseTagsMap = {
+export type GetServiceGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServiceGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetServiceGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServiceGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetServiceGroupResponseTagsMap>;
 
 export interface GetServiceGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -955,7 +953,7 @@ export interface GetServiceGroupResponse {
   /** The kind of the serviceGroup. */
   kind?: string;
   /** The serviceGroup tags. */
-  tags?: ServiceGroupsGetResponseTagsMap;
+  tags?: GetServiceGroupResponseTagsMap;
 }
 export const GetServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -965,7 +963,7 @@ export const GetServiceGroupResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ServiceGroupProperties),
     kind: S.optional(S.String),
-    tags: S.optional(ServiceGroupsGetResponseTagsMap),
+    tags: S.optional(GetServiceGroupResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetServiceGroupResponse",
@@ -1035,83 +1033,20 @@ export const HierarchySettingsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "HierarchySettingsCreateOrUpdateResponse",
 }) as any as S.Schema<HierarchySettingsCreateOrUpdateResponse>;
 
-export interface HierarchySettingsListRequest {
-  /** Management Group ID. */
-  groupId: string;
-}
-export const HierarchySettingsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Management/managementGroups/{groupId}/settings",
-      code: 200,
-      apiVersion: "2023-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "HierarchySettingsListRequest",
-}) as any as S.Schema<HierarchySettingsListRequest>;
-
-/** The hierarchy settings resource. */
-export interface HierarchySettingsInfo {
-  /** The fully qualified ID for the settings object. For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000/settings/default. */
-  id?: string;
-  /** The type of the resource. For example, Microsoft.Management/managementGroups/settings. */
-  type?: string;
-  /** The name of the object. In this case, default. */
-  name?: string;
-  /** The generic properties of hierarchy settings. */
-  properties?: HierarchySettingsProperties;
-}
-export const HierarchySettingsInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    type: S.optional(S.String),
-    name: S.optional(S.String),
-    properties: S.optional(HierarchySettingsProperties),
-  }),
-).annotate({
-  identifier: "HierarchySettingsInfo",
-}) as any as S.Schema<HierarchySettingsInfo>;
-
-/** The list of hierarchy settings. */
-export type HierarchySettingsListValueList = Array<HierarchySettingsInfo>;
-export const HierarchySettingsListValueList = /*@__PURE__*/ S.Array(
-  HierarchySettingsInfo,
-) as any as S.Schema<HierarchySettingsListValueList>;
-
-/** Lists all hierarchy settings. */
-export interface HierarchySettingsList {
-  /** The list of hierarchy settings. */
-  value?: HierarchySettingsListValueList;
-  /** The URL to use for getting the next set of results. */
-  _nextLink?: string;
-}
-export const HierarchySettingsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(HierarchySettingsListValueList),
-    _nextLink: S.optional(S.String.pipe(T.Body("@nextLink"))),
-  }),
-).annotate({
-  identifier: "HierarchySettingsList",
-}) as any as S.Schema<HierarchySettingsList>;
-
-export type EntitiesListRequestSearch =
+export type ListEntitiesRequestSearch =
   | "AllowedParents"
   | "AllowedChildren"
   | "ParentAndFirstLevelChildren"
   | "ParentOnly"
   | "ChildrenOnly";
-export const EntitiesListRequestSearch = /*@__PURE__*/ S.String;
+export const ListEntitiesRequestSearch = /*@__PURE__*/ S.String;
 
-export type EntitiesListRequestView =
+export type ListEntitiesRequestView =
   | "FullHierarchy"
   | "GroupsOnly"
   | "SubscriptionsOnly"
   | "Audit";
-export const EntitiesListRequestView = /*@__PURE__*/ S.String;
+export const ListEntitiesRequestView = /*@__PURE__*/ S.String;
 
 export interface ListEntitiesRequest {
   /** Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls. */
@@ -1123,11 +1058,11 @@ export interface ListEntitiesRequest {
   /** This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken. */
   _select?: string;
   /** The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in. With $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions. With $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity. With $search=ParentAndFirstLevelChildren the API will return the parent and first level of children that the user has either direct access to or indirect access via one of their descendants. With $search=ParentOnly the API will return only the group if the user has access to at least one of the descendants of the group. With $search=ChildrenOnly the API will return only the first level of children of the group entity info specified in $filter. The user must have direct access to the children entities or one of it's descendants for it to show up in the results. */
-  _search?: EntitiesListRequestSearch | (string & {});
+  _search?: ListEntitiesRequestSearch | (string & {});
   /** The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}') and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively. */
   _filter?: string;
   /** The view parameter allows clients to filter the type of data that is returned by the getEntities call. */
-  _view?: EntitiesListRequestView | (string & {});
+  _view?: ListEntitiesRequestView | (string & {});
   /** A filter which allows the get entities call to focus on a particular group (i.e. "$filter=name eq 'groupName'") */
   groupName?: string;
 }
@@ -1137,9 +1072,9 @@ export const ListEntitiesRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _select: S.optional(S.String.pipe(T.Query("$select"))),
-    _search: S.optional(EntitiesListRequestSearch.pipe(T.Query("$search"))),
+    _search: S.optional(ListEntitiesRequestSearch.pipe(T.Query("$search"))),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _view: S.optional(EntitiesListRequestView.pipe(T.Query("$view"))),
+    _view: S.optional(ListEntitiesRequestView.pipe(T.Query("$view"))),
     groupName: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -1262,6 +1197,69 @@ export const EntityListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EntityListResult",
 }) as any as S.Schema<EntityListResult>;
+
+export interface ListHierarchySettingsRequest {
+  /** Management Group ID. */
+  groupId: string;
+}
+export const ListHierarchySettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Management/managementGroups/{groupId}/settings",
+      code: 200,
+      apiVersion: "2023-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListHierarchySettingsRequest",
+}) as any as S.Schema<ListHierarchySettingsRequest>;
+
+/** The hierarchy settings resource. */
+export interface HierarchySettingsInfo {
+  /** The fully qualified ID for the settings object. For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000/settings/default. */
+  id?: string;
+  /** The type of the resource. For example, Microsoft.Management/managementGroups/settings. */
+  type?: string;
+  /** The name of the object. In this case, default. */
+  name?: string;
+  /** The generic properties of hierarchy settings. */
+  properties?: HierarchySettingsProperties;
+}
+export const HierarchySettingsInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+    name: S.optional(S.String),
+    properties: S.optional(HierarchySettingsProperties),
+  }),
+).annotate({
+  identifier: "HierarchySettingsInfo",
+}) as any as S.Schema<HierarchySettingsInfo>;
+
+/** The list of hierarchy settings. */
+export type HierarchySettingsListValueList = Array<HierarchySettingsInfo>;
+export const HierarchySettingsListValueList = /*@__PURE__*/ S.Array(
+  HierarchySettingsInfo,
+) as any as S.Schema<HierarchySettingsListValueList>;
+
+/** Lists all hierarchy settings. */
+export interface HierarchySettingsList {
+  /** The list of hierarchy settings. */
+  value?: HierarchySettingsListValueList;
+  /** The URL to use for getting the next set of results. */
+  _nextLink?: string;
+}
+export const HierarchySettingsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(HierarchySettingsListValueList),
+    _nextLink: S.optional(S.String.pipe(T.Body("@nextLink"))),
+  }),
+).annotate({
+  identifier: "HierarchySettingsList",
+}) as any as S.Schema<HierarchySettingsList>;
 
 export interface ListManagementGroupsRequest {
   /** Page continuation token is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls. */
@@ -1410,20 +1408,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1569,13 +1567,13 @@ export const TenantBackfillStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "TenantBackfillStatusRequest",
 }) as any as S.Schema<TenantBackfillStatusRequest>;
 
-export interface UpdateHierarchySettingRequest {
+export interface UpdateHierarchySettingsRequest {
   /** Management Group ID. */
   groupId: string;
   /** The properties of the request to create or update Management Group settings */
   properties?: CreateOrUpdateSettingsProperties;
 }
-export const UpdateHierarchySettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateHierarchySettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     groupId: S.String.pipe(T.Label()),
     properties: S.optional(CreateOrUpdateSettingsProperties),
@@ -1588,10 +1586,10 @@ export const UpdateHierarchySettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateHierarchySettingRequest",
-}) as any as S.Schema<UpdateHierarchySettingRequest>;
+  identifier: "UpdateHierarchySettingsRequest",
+}) as any as S.Schema<UpdateHierarchySettingsRequest>;
 
-export interface UpdateHierarchySettingResponse {
+export interface UpdateHierarchySettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1603,7 +1601,7 @@ export interface UpdateHierarchySettingResponse {
   /** The generic properties of hierarchy settings. */
   properties?: HierarchySettingsProperties;
 }
-export const UpdateHierarchySettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateHierarchySettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1612,8 +1610,8 @@ export const UpdateHierarchySettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(HierarchySettingsProperties),
   }),
 ).annotate({
-  identifier: "UpdateHierarchySettingResponse",
-}) as any as S.Schema<UpdateHierarchySettingResponse>;
+  identifier: "UpdateHierarchySettingsResponse",
+}) as any as S.Schema<UpdateHierarchySettingsResponse>;
 
 export interface UpdateManagementGroupRequest {
   /** Management Group ID. */
@@ -1785,16 +1783,16 @@ export const CreateOrUpdateServiceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteHierarchySettingError = AzureOpError;
+export type DeleteHierarchySettingsError = AzureOpError;
 /** Deletes the hierarchy settings defined at the Management Group level. */
-export const DeleteHierarchySetting: API.OperationMethod<
-  DeleteHierarchySettingRequest,
-  DeleteHierarchySettingResponse,
-  DeleteHierarchySettingError,
+export const DeleteHierarchySettings: API.OperationMethod<
+  DeleteHierarchySettingsRequest,
+  DeleteHierarchySettingsResponse,
+  DeleteHierarchySettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteHierarchySettingRequest,
-  output: DeleteHierarchySettingResponse,
+  input: DeleteHierarchySettingsRequest,
+  output: DeleteHierarchySettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1845,16 +1843,16 @@ export const DeleteServiceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetHierarchySettingError = AzureOpError;
+export type GetHierarchySettingsError = AzureOpError;
 /** Gets the hierarchy settings defined at the Management Group level. Settings can only be set on the root Management Group of the hierarchy. */
-export const GetHierarchySetting: API.OperationMethod<
-  GetHierarchySettingRequest,
-  GetHierarchySettingResponse,
-  GetHierarchySettingError,
+export const GetHierarchySettings: API.OperationMethod<
+  GetHierarchySettingsRequest,
+  GetHierarchySettingsResponse,
+  GetHierarchySettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetHierarchySettingRequest,
-  output: GetHierarchySettingResponse,
+  input: GetHierarchySettingsRequest,
+  output: GetHierarchySettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1875,15 +1873,15 @@ export const GetManagementGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagementGroupDescendantError = AzureOpError;
+export type GetManagementGroupDescendantsError = AzureOpError;
 /** List all entities that descend from a management group. */
-export const GetManagementGroupDescendant: API.OperationMethod<
-  GetManagementGroupDescendantRequest,
+export const GetManagementGroupDescendants: API.OperationMethod<
+  GetManagementGroupDescendantsRequest,
   DescendantListResult,
-  GetManagementGroupDescendantError,
+  GetManagementGroupDescendantsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagementGroupDescendantRequest,
+  input: GetManagementGroupDescendantsRequest,
   output: DescendantListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1905,16 +1903,16 @@ export const GetManagementGroupSubscriptionSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagementGroupSubscriptionSubscriptionUnderManagementGroupError =
+export type GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupError =
   AzureOpError;
 /** Retrieves details about all subscriptions which are associated with the management group. */
-export const GetManagementGroupSubscriptionSubscriptionUnderManagementGroup: API.OperationMethod<
-  GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest,
+export const GetManagementGroupSubscriptionSubscriptionsUnderManagementGroup: API.OperationMethod<
+  GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest,
   ListSubscriptionUnderManagementGroup,
-  GetManagementGroupSubscriptionSubscriptionUnderManagementGroupError,
+  GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest,
+  input: GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest,
   output: ListSubscriptionUnderManagementGroup,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1951,21 +1949,6 @@ export const HierarchySettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HierarchySettingsList2Error = AzureOpError;
-/** Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root Management Group of the hierarchy. */
-export const HierarchySettingsList2: API.OperationMethod<
-  HierarchySettingsListRequest,
-  HierarchySettingsList,
-  HierarchySettingsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HierarchySettingsListRequest,
-  output: HierarchySettingsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListEntitiesError = AzureOpError;
 /** List all entities (Management Groups, Subscriptions, etc.) for the authenticated user. */
 export const ListEntities: API.OperationMethod<
@@ -1976,6 +1959,21 @@ export const ListEntities: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListEntitiesRequest,
   output: EntityListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHierarchySettingsError = AzureOpError;
+/** Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root Management Group of the hierarchy. */
+export const ListHierarchySettings: API.OperationMethod<
+  ListHierarchySettingsRequest,
+  HierarchySettingsList,
+  ListHierarchySettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHierarchySettingsRequest,
+  output: HierarchySettingsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2056,16 +2054,16 @@ export const TenantBackfillStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateHierarchySettingError = AzureOpError;
+export type UpdateHierarchySettingsError = AzureOpError;
 /** Updates the hierarchy settings defined at the Management Group level. */
-export const UpdateHierarchySetting: API.OperationMethod<
-  UpdateHierarchySettingRequest,
-  UpdateHierarchySettingResponse,
-  UpdateHierarchySettingError,
+export const UpdateHierarchySettings: API.OperationMethod<
+  UpdateHierarchySettingsRequest,
+  UpdateHierarchySettingsResponse,
+  UpdateHierarchySettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateHierarchySettingRequest,
-  output: UpdateHierarchySettingResponse,
+  input: UpdateHierarchySettingsRequest,
+  output: UpdateHierarchySettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

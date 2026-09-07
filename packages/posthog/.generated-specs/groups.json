@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.groups#ListGroupsRequest": {
@@ -80,7 +81,7 @@
       },
       "traits": {}
     },
-    "com.posthog.groups#GroupsListResponseBodyList": {
+    "com.posthog.groups#ListGroupsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.groups#Group"
@@ -91,7 +92,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.groups#GroupsListResponseBodyList",
+          "target": "com.posthog.groups#ListGroupsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -182,7 +183,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsActivityRetrieveRequest": {
+    "com.posthog.groups#GetGroupsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -214,10 +215,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsActivityRetrieve": {
+    "com.posthog.groups#GetGroupsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsActivityRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -303,7 +304,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsFindRetrieveRequest": {
+    "com.posthog.groups#GetGroupsFindRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -342,10 +343,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsFindRetrieve": {
+    "com.posthog.groups#GetGroupsFind": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsFindRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsFindRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -369,7 +370,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsPropertyValuesRetrieveRequest": {
+    "com.posthog.groups#GetGroupsPropertyValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -385,10 +386,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsPropertyValuesRetrieve": {
+    "com.posthog.groups#GetGroupsPropertyValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsPropertyValuesRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsPropertyValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -409,7 +410,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsRelatedRetrieveRequest": {
+    "com.posthog.groups#GetGroupsRelatedRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -441,10 +442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsRelatedRetrieve": {
+    "com.posthog.groups#GetGroupsRelated": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsRelatedRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsRelatedRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -574,28 +575,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.groups#ListGroups"
-        },
-        {
           "target": "com.posthog.groups#CreateGroup"
         },
         {
-          "target": "com.posthog.groups#GroupsActivityRetrieve"
+          "target": "com.posthog.groups#GetGroupsActivity"
+        },
+        {
+          "target": "com.posthog.groups#GetGroupsFind"
+        },
+        {
+          "target": "com.posthog.groups#GetGroupsPropertyValue"
+        },
+        {
+          "target": "com.posthog.groups#GetGroupsRelated"
         },
         {
           "target": "com.posthog.groups#GroupsDeletePropertyCreate"
         },
         {
-          "target": "com.posthog.groups#GroupsFindRetrieve"
-        },
-        {
-          "target": "com.posthog.groups#GroupsPropertyValuesRetrieve"
-        },
-        {
-          "target": "com.posthog.groups#GroupsRelatedRetrieve"
-        },
-        {
           "target": "com.posthog.groups#GroupsUpdatePropertyCreate"
+        },
+        {
+          "target": "com.posthog.groups#ListGroups"
         }
       ],
       "traits": {

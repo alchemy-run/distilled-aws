@@ -4,29 +4,10 @@
     "service": "oslogin",
     "version": "v1",
     "title": "Cloud OS Login API",
-    "baseUrl": "https://oslogin.googleapis.com/"
+    "baseUrl": "https://oslogin.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.oslogin_v1#ImportSshPublicKeyResponse": {
-      "type": "structure",
-      "members": {
-        "details": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Detailed information about import results."
-          }
-        },
-        "loginProfile": {
-          "target": "com.gcp.oslogin_v1#LoginProfile",
-          "traits": {
-            "smithy.api#documentation": "The login profile information for the user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A response message for importing an SSH public key."
-      }
-    },
     "com.gcp.oslogin_v1#SignSshPublicKeyRequest": {
       "type": "structure",
       "members": {
@@ -36,22 +17,10 @@
             "smithy.api#documentation": "Optional. The service account for the instance. If the instance in question does not have a service account, this field should be left empty. If the wrong service account is provided, this operation will return a signed certificate that will not be accepted by the VM."
           }
         },
-        "cloudRunResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The Cloud Run resource to sign the SSH public key for. Expected formats: - `projects/{project}/locations/{location}/services/{service}` - `projects/{project}/locations/{location}/workerPools/{worker_pool}` - `projects/{project}/locations/{location}/jobs/{job}` - `projects/{project}/locations/{location}/instances/{instance}`"
-          }
-        },
         "sshPublicKey": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The SSH public key to sign."
-          }
-        },
-        "computeInstance": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Compute instance to sign the SSH public key for. Expected format: projects/{project}/zones/{zone}/instances/{numeric_instance_id}"
           }
         },
         "appEngineInstance": {
@@ -59,19 +28,38 @@
           "traits": {
             "smithy.api#documentation": "The App Engine instance to sign the SSH public key for. Expected format: apps/{app}/services/{service}/versions/{version}/instances/{instance}"
           }
+        },
+        "cloudRunResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Cloud Run resource to sign the SSH public key for. Expected formats: - `projects/{project}/locations/{location}/services/{service}` - `projects/{project}/locations/{location}/workerPools/{worker_pool}` - `projects/{project}/locations/{location}/jobs/{job}` - `projects/{project}/locations/{location}/instances/{instance}`"
+          }
+        },
+        "computeInstance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute instance to sign the SSH public key for. Expected format: projects/{project}/zones/{zone}/instances/{numeric_instance_id}"
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "A request message for signing an SSH public key."
       }
     },
+    "com.gcp.oslogin_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
     "com.gcp.oslogin_v1#SshPublicKey": {
       "type": "structure",
       "members": {
-        "name": {
+        "expirationTimeUsec": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The canonical resource name."
+            "smithy.api#documentation": "An expiration time in microseconds since epoch."
           }
         },
         "key": {
@@ -80,41 +68,21 @@
             "smithy.api#documentation": "Required. Public key text in SSH format, defined by [RFC4253](https://www.ietf.org/rfc/rfc4253.txt) section 6.6."
           }
         },
-        "expirationTimeUsec": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An expiration time in microseconds since epoch."
-          }
-        },
         "fingerprint": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The SHA-256 fingerprint of the SSH public key."
           }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The SSH public key information associated with a Google account."
-      }
-    },
-    "com.gcp.oslogin_v1#ProvisionPosixAccountRequest": {
-      "type": "structure",
-      "members": {
-        "regions": {
-          "target": "com.gcp.oslogin_v1#StringList",
+        },
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region."
+            "smithy.api#documentation": "Output only. The canonical resource name."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A request message for creating a POSIX account entry."
-      }
-    },
-    "com.gcp.oslogin_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+        "smithy.api#documentation": "The SSH public key information associated with a Google account."
       }
     },
     "com.gcp.oslogin_v1#SignSshPublicKeyResponse": {
@@ -134,28 +102,16 @@
     "com.gcp.oslogin_v1#PosixAccount": {
       "type": "structure",
       "members": {
-        "gid": {
+        "shell": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The default group ID."
-          }
-        },
-        "gecos": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GECOS (user information) entry for this account."
+            "smithy.api#documentation": "The path to the logic shell for this account."
           }
         },
         "operatingSystemType": {
           "target": "com.gcp.oslogin_v1#PosixAccountOperatingSystemTypeEnum",
           "traits": {
             "smithy.api#documentation": "The operating system type where this account applies."
-          }
-        },
-        "systemId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "System identifier for which account the username or uid applies to. By default, the empty value is used."
           }
         },
         "primary": {
@@ -170,10 +126,22 @@
             "smithy.api#documentation": "The user ID."
           }
         },
-        "accountId": {
+        "gecos": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. A POSIX account identifier."
+            "smithy.api#documentation": "The GECOS (user information) entry for this account."
+          }
+        },
+        "systemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System identifier for which account the username or uid applies to. By default, the empty value is used."
+          }
+        },
+        "homeDirectory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path to the home directory for this account."
           }
         },
         "name": {
@@ -188,16 +156,16 @@
             "smithy.api#documentation": "The username of the POSIX account."
           }
         },
-        "shell": {
+        "accountId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The path to the logic shell for this account."
+            "smithy.api#documentation": "Output only. A POSIX account identifier."
           }
         },
-        "homeDirectory": {
+        "gid": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The path to the home directory for this account."
+            "smithy.api#documentation": "The default group ID."
           }
         }
       },
@@ -228,26 +196,59 @@
         }
       }
     },
-    "com.gcp.oslogin_v1#Empty": {
+    "com.gcp.oslogin_v1#ImportSshPublicKeyResponse": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed information about import results."
+          }
+        },
+        "loginProfile": {
+          "target": "com.gcp.oslogin_v1#LoginProfile",
+          "traits": {
+            "smithy.api#documentation": "The login profile information for the user."
+          }
+        }
+      },
       "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+        "smithy.api#documentation": "A response message for importing an SSH public key."
+      }
+    },
+    "com.gcp.oslogin_v1#ProvisionPosixAccountRequest": {
+      "type": "structure",
+      "members": {
+        "regions": {
+          "target": "com.gcp.oslogin_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request message for creating a POSIX account entry."
+      }
+    },
+    "com.gcp.oslogin_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.oslogin_v1#LoginProfile": {
       "type": "structure",
       "members": {
-        "sshPublicKeys": {
-          "target": "com.gcp.oslogin_v1#SshPublicKeyMap",
-          "traits": {
-            "smithy.api#documentation": "A map from SSH public key fingerprint to the associated key object."
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. A unique user ID."
+          }
+        },
+        "sshPublicKeys": {
+          "target": "com.gcp.oslogin_v1#SshPublicKeyMap",
+          "traits": {
+            "smithy.api#documentation": "A map from SSH public key fingerprint to the associated key object."
           }
         },
         "posixAccounts": {
@@ -276,10 +277,24 @@
         "target": "com.gcp.oslogin_v1#PosixAccount"
       }
     },
-    "com.gcp.oslogin_v1#GetLoginProfileUsersRequest": {
+    "com.gcp.oslogin_v1#ImportSshPublicKeyUsersRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "regions": {
+          "target": "com.gcp.oslogin_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The regions to which to assert that the key was written. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.",
+            "smithy.api#httpQuery": "regions"
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID of the Google Cloud Platform project.",
+            "smithy.api#httpQuery": "projectId"
+          }
+        },
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The unique ID for the user in format `users/{user}`.",
@@ -287,18 +302,11 @@
             "smithy.api#required": {}
           }
         },
-        "projectId": {
-          "target": "smithy.api#String",
+        "body": {
+          "target": "com.gcp.oslogin_v1#SshPublicKey",
           "traits": {
-            "smithy.api#documentation": "Required. The project ID of the Google Cloud Platform project.",
-            "smithy.api#httpQuery": "projectId"
-          }
-        },
-        "systemId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A system ID for filtering the results of the request.",
-            "smithy.api#httpQuery": "systemId"
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -327,64 +335,6 @@
             "status": 403
           }
         ]
-      }
-    },
-    "com.gcp.oslogin_v1#GetLoginProfileUsers": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.oslogin_v1#GetLoginProfileUsersRequest"
-      },
-      "output": {
-        "target": "com.gcp.oslogin_v1#LoginProfile"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.oslogin_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.oslogin_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}/loginProfile"
-        },
-        "smithy.api#documentation": "Retrieves the profile information used for logging in to a virtual machine on Google Compute Engine."
-      }
-    },
-    "com.gcp.oslogin_v1#ImportSshPublicKeyUsersRequest": {
-      "type": "structure",
-      "members": {
-        "projectId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The project ID of the Google Cloud Platform project.",
-            "smithy.api#httpQuery": "projectId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The unique ID for the user in format `users/{user}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "regions": {
-          "target": "com.gcp.oslogin_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. The regions to which to assert that the key was written. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.",
-            "smithy.api#httpQuery": "regions"
-          }
-        },
-        "body": {
-          "target": "com.gcp.oslogin_v1#SshPublicKey",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
       }
     },
     "com.gcp.oslogin_v1#BadRequest": {
@@ -443,26 +393,40 @@
         "smithy.api#documentation": "Adds an SSH public key and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile."
       }
     },
-    "com.gcp.oslogin_v1#GetUsersSshPublicKeysRequest": {
+    "com.gcp.oslogin_v1#GetLoginProfileUsersRequest": {
       "type": "structure",
       "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project ID of the Google Cloud Platform project.",
+            "smithy.api#httpQuery": "projectId"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
+            "smithy.api#documentation": "Required. The unique ID for the user in format `users/{user}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "systemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A system ID for filtering the results of the request.",
+            "smithy.api#httpQuery": "systemId"
           }
         }
       }
     },
-    "com.gcp.oslogin_v1#GetUsersSshPublicKeys": {
+    "com.gcp.oslogin_v1#GetLoginProfileUsers": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.oslogin_v1#GetUsersSshPublicKeysRequest"
+        "target": "com.gcp.oslogin_v1#GetLoginProfileUsersRequest"
       },
       "output": {
-        "target": "com.gcp.oslogin_v1#SshPublicKey"
+        "target": "com.gcp.oslogin_v1#LoginProfile"
       },
       "errors": [
         {
@@ -475,52 +439,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+name}"
+          "uri": "v1/{+name}/loginProfile"
         },
-        "smithy.api#documentation": "Retrieves an SSH public key."
-      }
-    },
-    "com.gcp.oslogin_v1#DeleteUsersSshPublicKeysRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.oslogin_v1#DeleteUsersSshPublicKeys": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.oslogin_v1#DeleteUsersSshPublicKeysRequest"
-      },
-      "output": {
-        "target": "com.gcp.oslogin_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.oslogin_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.oslogin_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.oslogin_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.oslogin_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes an SSH public key."
+        "smithy.api#documentation": "Retrieves the profile information used for logging in to a virtual machine on Google Compute Engine."
       }
     },
     "com.gcp.oslogin_v1#PatchUsersSshPublicKeysRequest": {
@@ -580,6 +501,86 @@
         "smithy.api#documentation": "Updates an SSH public key and returns the profile information. This method supports patch semantics."
       }
     },
+    "com.gcp.oslogin_v1#DeleteUsersSshPublicKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fingerprint of the public key to update. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.oslogin_v1#DeleteUsersSshPublicKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.oslogin_v1#DeleteUsersSshPublicKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.oslogin_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.oslogin_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.oslogin_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.oslogin_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.oslogin_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an SSH public key."
+      }
+    },
+    "com.gcp.oslogin_v1#GetUsersSshPublicKeysRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fingerprint of the public key to retrieve. Public keys are identified by their SHA-256 fingerprint. The fingerprint of the public key is in format `users/{user}/sshPublicKeys/{fingerprint}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.oslogin_v1#GetUsersSshPublicKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.oslogin_v1#GetUsersSshPublicKeysRequest"
+      },
+      "output": {
+        "target": "com.gcp.oslogin_v1#SshPublicKey"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.oslogin_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.oslogin_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves an SSH public key."
+      }
+    },
     "com.gcp.oslogin_v1#CreateUsersSshPublicKeysRequest": {
       "type": "structure",
       "members": {
@@ -630,49 +631,6 @@
         "smithy.api#documentation": "Create an SSH public key"
       }
     },
-    "com.gcp.oslogin_v1#DeleteUsersProjectsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.oslogin_v1#DeleteUsersProjects": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.oslogin_v1#DeleteUsersProjectsRequest"
-      },
-      "output": {
-        "target": "com.gcp.oslogin_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.oslogin_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.oslogin_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.oslogin_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.oslogin_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a POSIX account."
-      }
-    },
     "com.gcp.oslogin_v1#ProvisionPosixAccountUsersProjectsRequest": {
       "type": "structure",
       "members": {
@@ -721,6 +679,49 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Adds a POSIX account and returns the profile information. Default POSIX account information is set when no username and UID exist as part of the login profile."
+      }
+    },
+    "com.gcp.oslogin_v1#DeleteUsersProjectsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.oslogin_v1#DeleteUsersProjects": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.oslogin_v1#DeleteUsersProjectsRequest"
+      },
+      "output": {
+        "target": "com.gcp.oslogin_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.oslogin_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.oslogin_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.oslogin_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.oslogin_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a POSIX account."
       }
     },
     "com.gcp.oslogin_v1#SignSshPublicKeyProjectsLocationsRequest": {

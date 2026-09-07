@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.monitor#DataCollectionRuleConfigurationMetadataFetch": {
+    "com.azure.monitor#FetchDataCollectionRuleConfigurationMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.monitor#DataCollectionRuleConfigurationMetadataFetchRequest"
+        "target": "com.azure.monitor#FetchDataCollectionRuleConfigurationMetadataRequest"
       },
       "output": {
         "target": "com.azure.monitor#DataCollectionRuleConfigurationMetadataResponse"
@@ -265,7 +266,7 @@
         "smithy.api#documentation": "List of supported destination resource types."
       }
     },
-    "com.azure.monitor#DataCollectionRuleConfigurationMetadataFetchRequest": {
+    "com.azure.monitor#FetchDataCollectionRuleConfigurationMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -330,7 +331,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.monitor#OperationsListResponseValueList",
+          "target": "com.azure.monitor#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -346,7 +347,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.monitor#OperationsListResponseValueList": {
+    "com.azure.monitor#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.monitor#Operation"
@@ -1431,7 +1432,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.monitor#ScheduledQueryRulesUpdateRequestTagsMap",
+          "target": "com.azure.monitor#UpdateScheduledQueryRuleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -1607,7 +1608,7 @@
         "smithy.api#documentation": "Severity of the alert. Should be an integer between [0-4]. Value of 0 is severest. Relevant and required only for rules of the kind LogAlert."
       }
     },
-    "com.azure.monitor#ScheduledQueryRulesUpdateRequestTagsMap": {
+    "com.azure.monitor#UpdateScheduledQueryRuleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1969,28 +1970,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.monitor#DataCollectionRuleConfigurationMetadataFetch"
-        },
-        {
-          "target": "com.azure.monitor#ListOperations"
-        },
-        {
           "target": "com.azure.monitor#DeleteScheduledQueryRule"
         },
         {
-          "target": "com.azure.monitor#UpdateScheduledQueryRule"
-        },
-        {
-          "target": "com.azure.monitor#ScheduledQueryRulesCreateOrUpdate"
+          "target": "com.azure.monitor#FetchDataCollectionRuleConfigurationMetadata"
         },
         {
           "target": "com.azure.monitor#GetScheduledQueryRule"
+        },
+        {
+          "target": "com.azure.monitor#ListOperations"
         },
         {
           "target": "com.azure.monitor#ListScheduledQueryRuleByResourceGroup"
         },
         {
           "target": "com.azure.monitor#ListScheduledQueryRuleBySubscription"
+        },
+        {
+          "target": "com.azure.monitor#ScheduledQueryRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.monitor#UpdateScheduledQueryRule"
         }
       ],
       "traits": {

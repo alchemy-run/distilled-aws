@@ -45,7 +45,8 @@
       "validationDefaultMitigationAction": "validation_default_mitigation_action",
       "validationEnabled": "validation_enabled",
       "validationOverrideMitigationAction": "validation_override_mitigation_action"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.api_gateway#ConfigurationsGetResponseAuthIdCharacteristicsItemAPIShieldAuthIDCharacteristicType": {
@@ -5497,130 +5498,130 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.api_gateway#ConfigurationsGet"
+          "target": "com.cloudflare.api_gateway#BulkCreateLabelUsers"
         },
         {
-          "target": "com.cloudflare.api_gateway#ConfigurationsUpdate"
+          "target": "com.cloudflare.api_gateway#BulkCreateOperationLabels"
         },
         {
-          "target": "com.cloudflare.api_gateway#DiscoveryGet"
+          "target": "com.cloudflare.api_gateway#BulkCreateOperations"
         },
         {
-          "target": "com.cloudflare.api_gateway#DiscoveryOperationsBulkEdit"
+          "target": "com.cloudflare.api_gateway#BulkDeleteLabelUsers"
         },
         {
-          "target": "com.cloudflare.api_gateway#DiscoveryOperationsList"
+          "target": "com.cloudflare.api_gateway#BulkDeleteOperationLabels"
         },
         {
-          "target": "com.cloudflare.api_gateway#ExpressionTemplateFallthroughCreate"
+          "target": "com.cloudflare.api_gateway#BulkDeleteOperations"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsList"
+          "target": "com.cloudflare.api_gateway#BulkPatchDiscoveryOperations"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsManagedGet"
+          "target": "com.cloudflare.api_gateway#BulkUpdateOperationLabels"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsManagedResourcesOperationUpdate"
+          "target": "com.cloudflare.api_gateway#CreateExpressionTemplateFallthrough"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsUserBulkCreate"
+          "target": "com.cloudflare.api_gateway#CreateOperation"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsUserBulkDelete"
+          "target": "com.cloudflare.api_gateway#CreateOperationLabel"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsUserDelete"
+          "target": "com.cloudflare.api_gateway#CreateUserSchema"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsUserEdit"
+          "target": "com.cloudflare.api_gateway#DeleteLabelUser"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsUserGet"
+          "target": "com.cloudflare.api_gateway#DeleteOperation"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsUserUpdate"
+          "target": "com.cloudflare.api_gateway#DeleteOperationLabel"
         },
         {
-          "target": "com.cloudflare.api_gateway#LabelsUserResourcesOperationUpdate"
+          "target": "com.cloudflare.api_gateway#DeleteUserSchema"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsBulkCreate"
+          "target": "com.cloudflare.api_gateway#GetConfiguration"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsBulkDelete"
+          "target": "com.cloudflare.api_gateway#GetDiscovery"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsCreate"
+          "target": "com.cloudflare.api_gateway#GetLabelManaged"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsDelete"
+          "target": "com.cloudflare.api_gateway#GetLabelUser"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsGet"
+          "target": "com.cloudflare.api_gateway#GetOperation"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsList"
+          "target": "com.cloudflare.api_gateway#GetOperationSchemaValidation"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsLabelsBulkCreate"
+          "target": "com.cloudflare.api_gateway#GetSettingSchemaValidation"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsLabelsBulkDelete"
+          "target": "com.cloudflare.api_gateway#GetUserSchema"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsLabelsBulkUpdate"
+          "target": "com.cloudflare.api_gateway#ListDiscoveryOperations"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsLabelsCreate"
+          "target": "com.cloudflare.api_gateway#ListLabels"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsLabelsDelete"
+          "target": "com.cloudflare.api_gateway#ListOperations"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsLabelsUpdate"
+          "target": "com.cloudflare.api_gateway#ListSchemas"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsSchemaValidationEdit"
+          "target": "com.cloudflare.api_gateway#ListUserSchemaHosts"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsSchemaValidationGet"
+          "target": "com.cloudflare.api_gateway#ListUserSchemaOperations"
         },
         {
-          "target": "com.cloudflare.api_gateway#OperationsSchemaValidationUpdate"
+          "target": "com.cloudflare.api_gateway#ListUserSchemas"
         },
         {
-          "target": "com.cloudflare.api_gateway#SchemasList"
+          "target": "com.cloudflare.api_gateway#PatchLabelUser"
         },
         {
-          "target": "com.cloudflare.api_gateway#SettingsSchemaValidationEdit"
+          "target": "com.cloudflare.api_gateway#PatchOperationSchemaValidation"
         },
         {
-          "target": "com.cloudflare.api_gateway#SettingsSchemaValidationGet"
+          "target": "com.cloudflare.api_gateway#PatchSettingSchemaValidation"
         },
         {
-          "target": "com.cloudflare.api_gateway#SettingsSchemaValidationUpdate"
+          "target": "com.cloudflare.api_gateway#PatchUserSchema"
         },
         {
-          "target": "com.cloudflare.api_gateway#UserSchemasCreate"
+          "target": "com.cloudflare.api_gateway#PutConfiguration"
         },
         {
-          "target": "com.cloudflare.api_gateway#UserSchemasDelete"
+          "target": "com.cloudflare.api_gateway#PutLabelManagedResourceOperation"
         },
         {
-          "target": "com.cloudflare.api_gateway#UserSchemasEdit"
+          "target": "com.cloudflare.api_gateway#PutLabelUser"
         },
         {
-          "target": "com.cloudflare.api_gateway#UserSchemasGet"
+          "target": "com.cloudflare.api_gateway#PutLabelUserResourceOperation"
         },
         {
-          "target": "com.cloudflare.api_gateway#UserSchemasList"
+          "target": "com.cloudflare.api_gateway#PutOperationSchemaValidation"
         },
         {
-          "target": "com.cloudflare.api_gateway#UserSchemasHostsList"
+          "target": "com.cloudflare.api_gateway#PutSettingSchemaValidation"
         },
         {
-          "target": "com.cloudflare.api_gateway#UserSchemasOperationsList"
+          "target": "com.cloudflare.api_gateway#UpdateOperationLabel"
         }
       ],
       "traits": {
@@ -5803,13 +5804,13 @@
         ]
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkLabelUser": {
+    "com.cloudflare.api_gateway#BulkCreateLabelUsers": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.api_gateway#CreateBulkLabelUserRequest"
+        "target": "com.cloudflare.api_gateway#BulkCreateLabelUsersRequest"
       },
       "output": {
-        "target": "com.cloudflare.api_gateway#CreateBulkLabelUserResponse"
+        "target": "com.cloudflare.api_gateway#BulkCreateLabelUsersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5832,7 +5833,7 @@
         }
       ]
     },
-    "com.cloudflare.api_gateway#CreateBulkLabelUserRequest": {
+    "com.cloudflare.api_gateway#BulkCreateLabelUsersRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -5855,7 +5856,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkLabelUserResponse": {
+    "com.cloudflare.api_gateway#BulkCreateLabelUsersResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -5870,13 +5871,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkOperationLabel": {
+    "com.cloudflare.api_gateway#BulkCreateOperationLabels": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.api_gateway#CreateBulkOperationLabelRequest"
+        "target": "com.cloudflare.api_gateway#BulkCreateOperationLabelsRequest"
       },
       "output": {
-        "target": "com.cloudflare.api_gateway#CreateBulkOperationLabelResponse"
+        "target": "com.cloudflare.api_gateway#BulkCreateOperationLabelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5891,7 +5892,7 @@
         }
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkOperationLabelRequest": {
+    "com.cloudflare.api_gateway#BulkCreateOperationLabelsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -5920,7 +5921,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkOperationLabelResponse": {
+    "com.cloudflare.api_gateway#BulkCreateOperationLabelsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -5935,13 +5936,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkOperation": {
+    "com.cloudflare.api_gateway#BulkCreateOperations": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.api_gateway#CreateBulkOperationRequest"
+        "target": "com.cloudflare.api_gateway#BulkCreateOperationsRequest"
       },
       "output": {
-        "target": "com.cloudflare.api_gateway#CreateBulkOperationResponse"
+        "target": "com.cloudflare.api_gateway#BulkCreateOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5956,7 +5957,7 @@
         }
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkOperationRequest": {
+    "com.cloudflare.api_gateway#BulkCreateOperationsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -5979,7 +5980,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.api_gateway#CreateBulkOperationResponse": {
+    "com.cloudflare.api_gateway#BulkCreateOperationsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -5994,13 +5995,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.api_gateway#DeleteBulkLabelUser": {
+    "com.cloudflare.api_gateway#BulkDeleteLabelUsers": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.api_gateway#DeleteBulkLabelUserRequest"
+        "target": "com.cloudflare.api_gateway#BulkDeleteLabelUsersRequest"
       },
       "output": {
-        "target": "com.cloudflare.api_gateway#DeleteBulkLabelUserResponse"
+        "target": "com.cloudflare.api_gateway#BulkDeleteLabelUsersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6016,7 +6017,7 @@
         }
       }
     },
-    "com.cloudflare.api_gateway#DeleteBulkLabelUserRequest": {
+    "com.cloudflare.api_gateway#BulkDeleteLabelUsersRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -6032,7 +6033,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.api_gateway#DeleteBulkLabelUserResponse": {
+    "com.cloudflare.api_gateway#BulkDeleteLabelUsersResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -6047,13 +6048,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.api_gateway#DeleteBulkOperationLabel": {
+    "com.cloudflare.api_gateway#BulkDeleteOperationLabels": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.api_gateway#DeleteBulkOperationLabelRequest"
+        "target": "com.cloudflare.api_gateway#BulkDeleteOperationLabelsRequest"
       },
       "output": {
-        "target": "com.cloudflare.api_gateway#DeleteBulkOperationLabelResponse"
+        "target": "com.cloudflare.api_gateway#BulkDeleteOperationLabelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6069,7 +6070,7 @@
         }
       }
     },
-    "com.cloudflare.api_gateway#DeleteBulkOperationLabelRequest": {
+    "com.cloudflare.api_gateway#BulkDeleteOperationLabelsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -6085,7 +6086,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.api_gateway#DeleteBulkOperationLabelResponse": {
+    "com.cloudflare.api_gateway#BulkDeleteOperationLabelsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -6100,10 +6101,10 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.api_gateway#DeleteBulkOperation": {
+    "com.cloudflare.api_gateway#BulkDeleteOperations": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.api_gateway#DeleteBulkOperationRequest"
+        "target": "com.cloudflare.api_gateway#BulkDeleteOperationsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6123,7 +6124,7 @@
         }
       ]
     },
-    "com.cloudflare.api_gateway#DeleteBulkOperationRequest": {
+    "com.cloudflare.api_gateway#BulkDeleteOperationsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -6202,13 +6203,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.api_gateway#UpdateBulkOperationLabel": {
+    "com.cloudflare.api_gateway#BulkUpdateOperationLabels": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.api_gateway#UpdateBulkOperationLabelRequest"
+        "target": "com.cloudflare.api_gateway#BulkUpdateOperationLabelsRequest"
       },
       "output": {
-        "target": "com.cloudflare.api_gateway#UpdateBulkOperationLabelResponse"
+        "target": "com.cloudflare.api_gateway#BulkUpdateOperationLabelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6224,7 +6225,7 @@
         }
       }
     },
-    "com.cloudflare.api_gateway#UpdateBulkOperationLabelRequest": {
+    "com.cloudflare.api_gateway#BulkUpdateOperationLabelsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -6261,7 +6262,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.api_gateway#UpdateBulkOperationLabelResponse": {
+    "com.cloudflare.api_gateway#BulkUpdateOperationLabelsResponse": {
       "type": "structure",
       "members": {
         "result": {

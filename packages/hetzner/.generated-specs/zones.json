@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.zones#ListZonesRequestMode": {
@@ -1888,22 +1889,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.zones#ListZones"
-        },
-        {
           "target": "com.hetzner.zones#CreateZone"
-        },
-        {
-          "target": "com.hetzner.zones#GetZone"
-        },
-        {
-          "target": "com.hetzner.zones#UpdateZone"
         },
         {
           "target": "com.hetzner.zones#DeleteZone"
         },
         {
+          "target": "com.hetzner.zones#GetZone"
+        },
+        {
           "target": "com.hetzner.zones#GetZoneZonefile"
+        },
+        {
+          "target": "com.hetzner.zones#ListZones"
+        },
+        {
+          "target": "com.hetzner.zones#UpdateZone"
         }
       ],
       "traits": {

@@ -312,13 +312,13 @@ export const EarlyAccessFeatureDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EarlyAccessFeatureDestroyResponse",
 }) as any as S.Schema<EarlyAccessFeatureDestroyResponse>;
 
-export interface EarlyAccessFeatureRetrieveRequest {
+export interface GetEarlyAccessFeatureRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this early access feature. */
   id: string;
 }
-export const EarlyAccessFeatureRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEarlyAccessFeatureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -330,8 +330,8 @@ export const EarlyAccessFeatureRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EarlyAccessFeatureRetrieveRequest",
-}) as any as S.Schema<EarlyAccessFeatureRetrieveRequest>;
+  identifier: "GetEarlyAccessFeatureRequest",
+}) as any as S.Schema<GetEarlyAccessFeatureRequest>;
 
 /** Feature flag payload for this early access feature */
 export type EarlyAccessFeaturePayloadMap = {
@@ -552,17 +552,14 @@ export const earlyAccessFeatureDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EarlyAccessFeatureRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const earlyAccessFeatureRetrieve: API.OperationMethod<
-  EarlyAccessFeatureRetrieveRequest,
+export type GetEarlyAccessFeatureError = Forbidden | NotFound | PosthogOpError;
+export const getEarlyAccessFeature: API.OperationMethod<
+  GetEarlyAccessFeatureRequest,
   EarlyAccessFeature2,
-  EarlyAccessFeatureRetrieveError,
+  GetEarlyAccessFeatureError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EarlyAccessFeatureRetrieveRequest,
+  input: GetEarlyAccessFeatureRequest,
   output: EarlyAccessFeature2,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,

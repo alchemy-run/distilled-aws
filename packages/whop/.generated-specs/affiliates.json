@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.affiliates#Direction": {
@@ -639,7 +640,7 @@
         "smithy.api#documentation": "Create affiliate\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreates or finds an affiliate for a company and user.\n\nRequired permissions:\n - `affiliate:create`"
       }
     },
-    "com.whop.affiliates#RetrieveAffiliateRequest": {
+    "com.whop.affiliates#GetAffiliateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -655,10 +656,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.affiliates#RetrieveAffiliate": {
+    "com.whop.affiliates#GetAffiliate": {
       "type": "operation",
       "input": {
-        "target": "com.whop.affiliates#RetrieveAffiliateRequest"
+        "target": "com.whop.affiliates#GetAffiliateRequest"
       },
       "output": {
         "target": "com.whop.affiliates#Affiliate"
@@ -1328,7 +1329,7 @@
         "smithy.api#documentation": "Create override\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreates a commission override for an affiliate.\n\nRequired permissions:\n - `affiliate:create`"
       }
     },
-    "com.whop.affiliates#RetrieveOverrideAffiliateRequest": {
+    "com.whop.affiliates#GetOverrideAffiliateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1352,7 +1353,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.affiliates#RetrieveOverrideAffiliateResponse": {
+    "com.whop.affiliates#GetOverrideAffiliateResponse": {
       "type": "structure",
       "members": {
         "applies_to_payments": {
@@ -1451,13 +1452,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.affiliates#RetrieveOverrideAffiliate": {
+    "com.whop.affiliates#GetOverrideAffiliate": {
       "type": "operation",
       "input": {
-        "target": "com.whop.affiliates#RetrieveOverrideAffiliateRequest"
+        "target": "com.whop.affiliates#GetOverrideAffiliateRequest"
       },
       "output": {
-        "target": "com.whop.affiliates#RetrieveOverrideAffiliateResponse"
+        "target": "com.whop.affiliates#GetOverrideAffiliateResponse"
       },
       "errors": [
         {
@@ -1853,34 +1854,34 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.affiliates#ListAffiliate"
+          "target": "com.whop.affiliates#ArchiveAffiliate"
         },
         {
           "target": "com.whop.affiliates#CreateAffiliate"
         },
         {
-          "target": "com.whop.affiliates#RetrieveAffiliate"
-        },
-        {
-          "target": "com.whop.affiliates#ArchiveAffiliate"
-        },
-        {
-          "target": "com.whop.affiliates#ListOverridesAffiliate"
-        },
-        {
           "target": "com.whop.affiliates#CreateOverrideAffiliate"
-        },
-        {
-          "target": "com.whop.affiliates#RetrieveOverrideAffiliate"
-        },
-        {
-          "target": "com.whop.affiliates#UpdateOverrideAffiliate"
         },
         {
           "target": "com.whop.affiliates#DeleteOverrideAffiliate"
         },
         {
+          "target": "com.whop.affiliates#GetAffiliate"
+        },
+        {
+          "target": "com.whop.affiliates#GetOverrideAffiliate"
+        },
+        {
+          "target": "com.whop.affiliates#ListAffiliate"
+        },
+        {
+          "target": "com.whop.affiliates#ListOverridesAffiliate"
+        },
+        {
           "target": "com.whop.affiliates#UnarchiveAffiliate"
+        },
+        {
+          "target": "com.whop.affiliates#UpdateOverrideAffiliate"
         }
       ],
       "traits": {

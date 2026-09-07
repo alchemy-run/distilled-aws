@@ -67,30 +67,63 @@ export const AnnotationsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AnnotationsDestroyResponse",
 }) as any as S.Schema<AnnotationsDestroyResponse>;
 
-export interface AnnotationsRetrieveRequest {
+/** * `USR` - user * `GIT` - GitHub */
+export type AnnotationCreationTypeEnum = "USR" | "GIT";
+export const AnnotationCreationTypeEnum = /*@__PURE__*/ S.String;
+
+/** * `dashboard_item` - insight * `dashboard` - dashboard * `project` - project * `organization` - organization * `recording` - recording */
+export type AnnotationScopeEnum =
+  | "dashboard_item"
+  | "dashboard"
+  | "project"
+  | "organization"
+  | "recording";
+export const AnnotationScopeEnum = /*@__PURE__*/ S.String;
+
+export interface CreateAnnotationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A unique integer value identifying this annotation. */
-  id: number;
+  /** Annotation text shown on charts to describe the change, release, or incident. */
+  content?: string | null;
+  /** When this annotation happened (ISO 8601 timestamp). Used to position it on charts. */
+  date_marker?: string | null;
+  /** Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes. * `USR` - user * `GIT` - GitHub */
+  creation_type?: AnnotationCreationTypeEnum | (string & {});
+  /** Optional insight ID to attach this annotation to. Must belong to the current project. */
+  dashboard_item?: number | null;
+  /** Optional dashboard ID to attach this annotation to. Must belong to the current project. */
+  dashboard_id?: number | null;
+  /** Soft-delete flag. Set to true to hide the annotation, or false to restore it. */
+  deleted?: boolean;
+  /** Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected. * `dashboard_item` - insight * `dashboard` - dashboard * `project` - project * `organization` - organization * `recording` - recording */
+  scope?: AnnotationScopeEnum | (string & {});
+  /** Optional emoji shown in place of the default badge when this annotation is surfaced on a chart. */
+  emoji?: string | null;
+  /** When true, the annotation is hidden from the PostHog UI (charts and the annotations list) but still readable over the API and MCP. Use for high-frequency markers like deployments that would otherwise crowd the UI. Null (the default) means the annotation is shown. */
+  hidden_in_user_interface?: boolean | null;
 }
-export const AnnotationsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
+    content: S.optional(S.NullOr(S.String)),
+    date_marker: S.optional(S.NullOr(S.String)),
+    creation_type: S.optional(AnnotationCreationTypeEnum),
+    dashboard_item: S.optional(S.NullOr(S.Number)),
+    dashboard_id: S.optional(S.NullOr(S.Number)),
+    deleted: S.optional(S.Boolean),
+    scope: S.optional(AnnotationScopeEnum),
+    emoji: S.optional(S.NullOr(S.String)),
+    hidden_in_user_interface: S.optional(S.NullOr(S.Boolean)),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/annotations/{id}/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/annotations/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "AnnotationsRetrieveRequest",
-}) as any as S.Schema<AnnotationsRetrieveRequest>;
-
-/** * `USR` - user * `GIT` - GitHub */
-export type CreationTypeEnum = "USR" | "GIT";
-export const CreationTypeEnum = /*@__PURE__*/ S.String;
+  identifier: "CreateAnnotationRequest",
+}) as any as S.Schema<CreateAnnotationRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -143,15 +176,6 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "UserBasic" }) as any as S.Schema<UserBasic>;
 
-/** * `dashboard_item` - insight * `dashboard` - dashboard * `project` - project * `organization` - organization * `recording` - recording */
-export type AnnotationScopeEnum =
-  | "dashboard_item"
-  | "dashboard"
-  | "project"
-  | "organization"
-  | "recording";
-export const AnnotationScopeEnum = /*@__PURE__*/ S.String;
-
 export interface Annotation {
   id?: number;
   /** Annotation text shown on charts to describe the change, release, or incident. */
@@ -159,7 +183,7 @@ export interface Annotation {
   /** When this annotation happened (ISO 8601 timestamp). Used to position it on charts. */
   date_marker?: string | null;
   /** Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes. * `USR` - user * `GIT` - GitHub */
-  creation_type?: CreationTypeEnum;
+  creation_type?: AnnotationCreationTypeEnum;
   /** Optional insight ID to attach this annotation to. Must belong to the current project. */
   dashboard_item?: number | null;
   /** Optional dashboard ID to attach this annotation to. Must belong to the current project. */
@@ -185,7 +209,7 @@ export const Annotation = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.Number),
     content: S.optional(S.NullOr(S.String)),
     date_marker: S.optional(S.NullOr(S.String)),
-    creation_type: S.optional(CreationTypeEnum),
+    creation_type: S.optional(AnnotationCreationTypeEnum),
     dashboard_item: S.optional(S.NullOr(S.Number)),
     dashboard_id: S.optional(S.NullOr(S.Number)),
     dashboard_name: S.optional(S.NullOr(S.String)),
@@ -202,50 +226,26 @@ export const Annotation = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Annotation" }) as any as S.Schema<Annotation>;
 
-export interface CreateAnnotationRequest {
+export interface GetAnnotationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Annotation text shown on charts to describe the change, release, or incident. */
-  content?: string | null;
-  /** When this annotation happened (ISO 8601 timestamp). Used to position it on charts. */
-  date_marker?: string | null;
-  /** Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes. * `USR` - user * `GIT` - GitHub */
-  creation_type?: CreationTypeEnum | (string & {});
-  /** Optional insight ID to attach this annotation to. Must belong to the current project. */
-  dashboard_item?: number | null;
-  /** Optional dashboard ID to attach this annotation to. Must belong to the current project. */
-  dashboard_id?: number | null;
-  /** Soft-delete flag. Set to true to hide the annotation, or false to restore it. */
-  deleted?: boolean;
-  /** Annotation visibility scope: `project`, `organization`, `dashboard`, or `dashboard_item`. `recording` is deprecated and rejected. * `dashboard_item` - insight * `dashboard` - dashboard * `project` - project * `organization` - organization * `recording` - recording */
-  scope?: AnnotationScopeEnum | (string & {});
-  /** Optional emoji shown in place of the default badge when this annotation is surfaced on a chart. */
-  emoji?: string | null;
-  /** When true, the annotation is hidden from the PostHog UI (charts and the annotations list) but still readable over the API and MCP. Use for high-frequency markers like deployments that would otherwise crowd the UI. Null (the default) means the annotation is shown. */
-  hidden_in_user_interface?: boolean | null;
+  /** A unique integer value identifying this annotation. */
+  id: number;
 }
-export const CreateAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    content: S.optional(S.NullOr(S.String)),
-    date_marker: S.optional(S.NullOr(S.String)),
-    creation_type: S.optional(CreationTypeEnum),
-    dashboard_item: S.optional(S.NullOr(S.Number)),
-    dashboard_id: S.optional(S.NullOr(S.Number)),
-    deleted: S.optional(S.Boolean),
-    scope: S.optional(AnnotationScopeEnum),
-    emoji: S.optional(S.NullOr(S.String)),
-    hidden_in_user_interface: S.optional(S.NullOr(S.Boolean)),
+    id: S.Number.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/annotations/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/annotations/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateAnnotationRequest",
-}) as any as S.Schema<CreateAnnotationRequest>;
+  identifier: "GetAnnotationRequest",
+}) as any as S.Schema<GetAnnotationRequest>;
 
 export interface ListAnnotationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -306,7 +306,7 @@ export interface UpdateAnnotationRequest {
   /** When this annotation happened (ISO 8601 timestamp). Used to position it on charts. */
   date_marker?: string | null;
   /** Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes. * `USR` - user * `GIT` - GitHub */
-  creation_type?: CreationTypeEnum | (string & {});
+  creation_type?: AnnotationCreationTypeEnum | (string & {});
   /** Optional insight ID to attach this annotation to. Must belong to the current project. */
   dashboard_item?: number | null;
   /** Optional dashboard ID to attach this annotation to. Must belong to the current project. */
@@ -326,7 +326,7 @@ export const UpdateAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
     id: S.Number.pipe(T.Label()),
     content: S.optional(S.NullOr(S.String)),
     date_marker: S.optional(S.NullOr(S.String)),
-    creation_type: S.optional(CreationTypeEnum),
+    creation_type: S.optional(AnnotationCreationTypeEnum),
     dashboard_item: S.optional(S.NullOr(S.Number)),
     dashboard_id: S.optional(S.NullOr(S.Number)),
     deleted: S.optional(S.Boolean),
@@ -344,7 +344,7 @@ export const UpdateAnnotationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateAnnotationRequest",
 }) as any as S.Schema<UpdateAnnotationRequest>;
 
-export interface UpdateAnnotationPartialRequest {
+export interface UpdateAnnotationsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this annotation. */
@@ -354,7 +354,7 @@ export interface UpdateAnnotationPartialRequest {
   /** When this annotation happened (ISO 8601 timestamp). Used to position it on charts. */
   date_marker?: string | null;
   /** Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes. * `USR` - user * `GIT` - GitHub */
-  creation_type?: CreationTypeEnum | (string & {});
+  creation_type?: AnnotationCreationTypeEnum | (string & {});
   /** Optional insight ID to attach this annotation to. Must belong to the current project. */
   dashboard_item?: number | null;
   /** Optional dashboard ID to attach this annotation to. Must belong to the current project. */
@@ -368,13 +368,13 @@ export interface UpdateAnnotationPartialRequest {
   /** When true, the annotation is hidden from the PostHog UI (charts and the annotations list) but still readable over the API and MCP. Use for high-frequency markers like deployments that would otherwise crowd the UI. Null (the default) means the annotation is shown. */
   hidden_in_user_interface?: boolean | null;
 }
-export const UpdateAnnotationPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAnnotationsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
     content: S.optional(S.NullOr(S.String)),
     date_marker: S.optional(S.NullOr(S.String)),
-    creation_type: S.optional(CreationTypeEnum),
+    creation_type: S.optional(AnnotationCreationTypeEnum),
     dashboard_item: S.optional(S.NullOr(S.Number)),
     dashboard_id: S.optional(S.NullOr(S.Number)),
     deleted: S.optional(S.Boolean),
@@ -389,8 +389,8 @@ export const UpdateAnnotationPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateAnnotationPartialRequest",
-}) as any as S.Schema<UpdateAnnotationPartialRequest>;
+  identifier: "UpdateAnnotationsPartialRequest",
+}) as any as S.Schema<UpdateAnnotationsPartialRequest>;
 
 export type AnnotationsDestroyError = Forbidden | NotFound | PosthogOpError;
 /** Hard delete of this model is not allowed. Use a patch API call to set "deleted" to true */
@@ -402,21 +402,6 @@ export const annotationsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AnnotationsDestroyRequest,
   output: AnnotationsDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AnnotationsRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations. */
-export const annotationsRetrieve: API.OperationMethod<
-  AnnotationsRetrieveRequest,
-  Annotation,
-  AnnotationsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AnnotationsRetrieveRequest,
-  output: Annotation,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -437,6 +422,21 @@ export const createAnnotation: API.OperationMethod<
   input: CreateAnnotationRequest,
   output: Annotation,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAnnotationError = Forbidden | NotFound | PosthogOpError;
+/** Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations. */
+export const getAnnotation: API.OperationMethod<
+  GetAnnotationRequest,
+  Annotation,
+  GetAnnotationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAnnotationRequest,
+  output: Annotation,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -479,19 +479,19 @@ export const updateAnnotation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateAnnotationPartialError =
+export type UpdateAnnotationsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations. */
-export const updateAnnotationPartial: API.OperationMethod<
-  UpdateAnnotationPartialRequest,
+export const updateAnnotationsPartial: API.OperationMethod<
+  UpdateAnnotationsPartialRequest,
   Annotation,
-  UpdateAnnotationPartialError,
+  UpdateAnnotationsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateAnnotationPartialRequest,
+  input: UpdateAnnotationsPartialRequest,
   output: Annotation,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

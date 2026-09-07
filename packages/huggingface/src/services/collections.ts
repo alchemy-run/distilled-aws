@@ -2774,6 +2774,158 @@ export const AddItemBySlugResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddItemBySlugResponse",
 }) as any as S.Schema<AddItemBySlugResponse>;
 
+export type BatchUpdateItemsRequestBodyItemAction = "update";
+export const BatchUpdateItemsRequestBodyItemAction = /*@__PURE__*/ S.String;
+
+export type BatchUpdateItemsRequestBodyItemDataGalleryList = Array<string>;
+export const BatchUpdateItemsRequestBodyItemDataGalleryList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BatchUpdateItemsRequestBodyItemDataGalleryList>;
+
+export interface BatchUpdateItemsRequestBodyItemData {
+  gallery?: BatchUpdateItemsRequestBodyItemDataGalleryList;
+  note?: string;
+  position?: number;
+}
+export const BatchUpdateItemsRequestBodyItemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    gallery: S.optional(BatchUpdateItemsRequestBodyItemDataGalleryList),
+    note: S.optional(S.String),
+    position: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "BatchUpdateItemsRequestBodyItemData",
+}) as any as S.Schema<BatchUpdateItemsRequestBodyItemData>;
+
+export interface BatchUpdateItemsRequestBodyItem {
+  action: BatchUpdateItemsRequestBodyItemAction | (string & {});
+  _id: string;
+  data: BatchUpdateItemsRequestBodyItemData;
+}
+export const BatchUpdateItemsRequestBodyItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: BatchUpdateItemsRequestBodyItemAction,
+    _id: S.String,
+    data: BatchUpdateItemsRequestBodyItemData,
+  }),
+).annotate({
+  identifier: "BatchUpdateItemsRequestBodyItem",
+}) as any as S.Schema<BatchUpdateItemsRequestBodyItem>;
+
+export type BatchUpdateItemsRequestBodyList =
+  Array<BatchUpdateItemsRequestBodyItem>;
+export const BatchUpdateItemsRequestBodyList = /*@__PURE__*/ S.Array(
+  BatchUpdateItemsRequestBodyItem,
+) as any as S.Schema<BatchUpdateItemsRequestBodyList>;
+
+export interface BatchUpdateItemsRequest {
+  namespace: string;
+  slug: string;
+  id: string;
+  body?: BatchUpdateItemsRequestBodyList;
+}
+export const BatchUpdateItemsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    slug: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    body: S.optional(BatchUpdateItemsRequestBodyList.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/collections/{namespace}/{slug}-{id}/items/batch",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BatchUpdateItemsRequest",
+}) as any as S.Schema<BatchUpdateItemsRequest>;
+
+export interface BatchUpdateItemsResponse {}
+export const BatchUpdateItemsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BatchUpdateItemsResponse",
+}) as any as S.Schema<BatchUpdateItemsResponse>;
+
+export type BatchUpdateItemsBySlugRequestBodyItemAction = "update";
+export const BatchUpdateItemsBySlugRequestBodyItemAction =
+  /*@__PURE__*/ S.String;
+
+export type BatchUpdateItemsBySlugRequestBodyItemDataGalleryList =
+  Array<string>;
+export const BatchUpdateItemsBySlugRequestBodyItemDataGalleryList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyItemDataGalleryList>;
+
+export interface BatchUpdateItemsBySlugRequestBodyItemData {
+  gallery?: BatchUpdateItemsBySlugRequestBodyItemDataGalleryList;
+  note?: string;
+  position?: number;
+}
+export const BatchUpdateItemsBySlugRequestBodyItemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      gallery: S.optional(BatchUpdateItemsBySlugRequestBodyItemDataGalleryList),
+      note: S.optional(S.String),
+      position: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "BatchUpdateItemsBySlugRequestBodyItemData",
+  }) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyItemData>;
+
+export interface BatchUpdateItemsBySlugRequestBodyItem {
+  action: BatchUpdateItemsBySlugRequestBodyItemAction | (string & {});
+  _id: string;
+  data: BatchUpdateItemsBySlugRequestBodyItemData;
+}
+export const BatchUpdateItemsBySlugRequestBodyItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      action: BatchUpdateItemsBySlugRequestBodyItemAction,
+      _id: S.String,
+      data: BatchUpdateItemsBySlugRequestBodyItemData,
+    }),
+).annotate({
+  identifier: "BatchUpdateItemsBySlugRequestBodyItem",
+}) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyItem>;
+
+export type BatchUpdateItemsBySlugRequestBodyList =
+  Array<BatchUpdateItemsBySlugRequestBodyItem>;
+export const BatchUpdateItemsBySlugRequestBodyList = /*@__PURE__*/ S.Array(
+  BatchUpdateItemsBySlugRequestBodyItem,
+) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyList>;
+
+export interface BatchUpdateItemsBySlugRequest {
+  namespace: string;
+  slug: string;
+  body?: BatchUpdateItemsBySlugRequestBodyList;
+}
+export const BatchUpdateItemsBySlugRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    slug: S.String.pipe(T.Label()),
+    body: S.optional(BatchUpdateItemsBySlugRequestBodyList.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/collections/{namespace}/{slug}/items/batch",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BatchUpdateItemsBySlugRequest",
+}) as any as S.Schema<BatchUpdateItemsBySlugRequest>;
+
+export interface BatchUpdateItemsBySlugResponse {}
+export const BatchUpdateItemsBySlugResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BatchUpdateItemsBySlugResponse",
+}) as any as S.Schema<BatchUpdateItemsBySlugResponse>;
+
 export type CreateCollectionRequestItemType =
   | "paper"
   | "collection"
@@ -8672,158 +8824,6 @@ export const SetCollectionResourceGroupBySlugResponse = /*@__PURE__*/ S.suspend(
   identifier: "SetCollectionResourceGroupBySlugResponse",
 }) as any as S.Schema<SetCollectionResourceGroupBySlugResponse>;
 
-export type BatchUpdateItemsRequestBodyItemAction = "update";
-export const BatchUpdateItemsRequestBodyItemAction = /*@__PURE__*/ S.String;
-
-export type BatchUpdateItemsRequestBodyItemDataGalleryList = Array<string>;
-export const BatchUpdateItemsRequestBodyItemDataGalleryList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BatchUpdateItemsRequestBodyItemDataGalleryList>;
-
-export interface BatchUpdateItemsRequestBodyItemData {
-  gallery?: BatchUpdateItemsRequestBodyItemDataGalleryList;
-  note?: string;
-  position?: number;
-}
-export const BatchUpdateItemsRequestBodyItemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    gallery: S.optional(BatchUpdateItemsRequestBodyItemDataGalleryList),
-    note: S.optional(S.String),
-    position: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "BatchUpdateItemsRequestBodyItemData",
-}) as any as S.Schema<BatchUpdateItemsRequestBodyItemData>;
-
-export interface BatchUpdateItemsRequestBodyItem {
-  action: BatchUpdateItemsRequestBodyItemAction | (string & {});
-  _id: string;
-  data: BatchUpdateItemsRequestBodyItemData;
-}
-export const BatchUpdateItemsRequestBodyItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: BatchUpdateItemsRequestBodyItemAction,
-    _id: S.String,
-    data: BatchUpdateItemsRequestBodyItemData,
-  }),
-).annotate({
-  identifier: "BatchUpdateItemsRequestBodyItem",
-}) as any as S.Schema<BatchUpdateItemsRequestBodyItem>;
-
-export type BatchUpdateItemsRequestBodyList =
-  Array<BatchUpdateItemsRequestBodyItem>;
-export const BatchUpdateItemsRequestBodyList = /*@__PURE__*/ S.Array(
-  BatchUpdateItemsRequestBodyItem,
-) as any as S.Schema<BatchUpdateItemsRequestBodyList>;
-
-export interface UpdateBatchItemRequest {
-  namespace: string;
-  slug: string;
-  id: string;
-  body?: BatchUpdateItemsRequestBodyList;
-}
-export const UpdateBatchItemRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: S.String.pipe(T.Label()),
-    slug: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    body: S.optional(BatchUpdateItemsRequestBodyList.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/collections/{namespace}/{slug}-{id}/items/batch",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "UpdateBatchItemRequest",
-}) as any as S.Schema<UpdateBatchItemRequest>;
-
-export interface UpdateBatchItemResponse {}
-export const UpdateBatchItemResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpdateBatchItemResponse",
-}) as any as S.Schema<UpdateBatchItemResponse>;
-
-export type BatchUpdateItemsBySlugRequestBodyItemAction = "update";
-export const BatchUpdateItemsBySlugRequestBodyItemAction =
-  /*@__PURE__*/ S.String;
-
-export type BatchUpdateItemsBySlugRequestBodyItemDataGalleryList =
-  Array<string>;
-export const BatchUpdateItemsBySlugRequestBodyItemDataGalleryList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyItemDataGalleryList>;
-
-export interface BatchUpdateItemsBySlugRequestBodyItemData {
-  gallery?: BatchUpdateItemsBySlugRequestBodyItemDataGalleryList;
-  note?: string;
-  position?: number;
-}
-export const BatchUpdateItemsBySlugRequestBodyItemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      gallery: S.optional(BatchUpdateItemsBySlugRequestBodyItemDataGalleryList),
-      note: S.optional(S.String),
-      position: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "BatchUpdateItemsBySlugRequestBodyItemData",
-  }) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyItemData>;
-
-export interface BatchUpdateItemsBySlugRequestBodyItem {
-  action: BatchUpdateItemsBySlugRequestBodyItemAction | (string & {});
-  _id: string;
-  data: BatchUpdateItemsBySlugRequestBodyItemData;
-}
-export const BatchUpdateItemsBySlugRequestBodyItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      action: BatchUpdateItemsBySlugRequestBodyItemAction,
-      _id: S.String,
-      data: BatchUpdateItemsBySlugRequestBodyItemData,
-    }),
-).annotate({
-  identifier: "BatchUpdateItemsBySlugRequestBodyItem",
-}) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyItem>;
-
-export type BatchUpdateItemsBySlugRequestBodyList =
-  Array<BatchUpdateItemsBySlugRequestBodyItem>;
-export const BatchUpdateItemsBySlugRequestBodyList = /*@__PURE__*/ S.Array(
-  BatchUpdateItemsBySlugRequestBodyItem,
-) as any as S.Schema<BatchUpdateItemsBySlugRequestBodyList>;
-
-export interface UpdateBatchItemBySlugRequest {
-  namespace: string;
-  slug: string;
-  body?: BatchUpdateItemsBySlugRequestBodyList;
-}
-export const UpdateBatchItemBySlugRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: S.String.pipe(T.Label()),
-    slug: S.String.pipe(T.Label()),
-    body: S.optional(BatchUpdateItemsBySlugRequestBodyList.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/collections/{namespace}/{slug}/items/batch",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "UpdateBatchItemBySlugRequest",
-}) as any as S.Schema<UpdateBatchItemBySlugRequest>;
-
-export interface UpdateBatchItemBySlugResponse {}
-export const UpdateBatchItemBySlugResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpdateBatchItemBySlugResponse",
-}) as any as S.Schema<UpdateBatchItemBySlugResponse>;
-
 export type UpdateCollectionRequestTheme =
   | "orange"
   | "blue"
@@ -11892,6 +11892,36 @@ export const addItemBySlug: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type BatchUpdateItemsError = HuggingFaceOpError;
+/** Batch update items Batch update items in a collection */
+export const batchUpdateItems: API.OperationMethod<
+  BatchUpdateItemsRequest,
+  BatchUpdateItemsResponse,
+  BatchUpdateItemsError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateItemsRequest,
+  output: BatchUpdateItemsResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BatchUpdateItemsBySlugError = HuggingFaceOpError;
+/** Batch update items Batch update items in a collection */
+export const batchUpdateItemsBySlug: API.OperationMethod<
+  BatchUpdateItemsBySlugRequest,
+  BatchUpdateItemsBySlugResponse,
+  BatchUpdateItemsBySlugError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BatchUpdateItemsBySlugRequest,
+  output: BatchUpdateItemsBySlugResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateCollectionError = Conflict | HuggingFaceOpError;
 /** Create a collection */
 export const createCollection: API.OperationMethod<
@@ -12067,36 +12097,6 @@ export const setCollectionResourceGroupBySlug: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SetCollectionResourceGroupBySlugRequest,
   output: SetCollectionResourceGroupBySlugResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchItemError = HuggingFaceOpError;
-/** Batch update items Batch update items in a collection */
-export const updateBatchItem: API.OperationMethod<
-  UpdateBatchItemRequest,
-  UpdateBatchItemResponse,
-  UpdateBatchItemError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchItemRequest,
-  output: UpdateBatchItemResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBatchItemBySlugError = HuggingFaceOpError;
-/** Batch update items Batch update items in a collection */
-export const updateBatchItemBySlug: API.OperationMethod<
-  UpdateBatchItemBySlugRequest,
-  UpdateBatchItemBySlugResponse,
-  UpdateBatchItemBySlugError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBatchItemBySlugRequest,
-  output: UpdateBatchItemBySlugResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

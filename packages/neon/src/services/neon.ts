@@ -60,6 +60,37 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface AcceptProjectTransferRequestRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon project transfer request ID */
+  request_id: string;
+  /** The Neon organization ID to transfer the project to. If not provided, the project will be transferred to the current user or organization account. */
+  org_id?: string;
+}
+export const AcceptProjectTransferRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    request_id: S.String.pipe(T.Label()),
+    org_id: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/projects/{project_id}/transfer_requests/{request_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AcceptProjectTransferRequestRequest",
+}) as any as S.Schema<AcceptProjectTransferRequestRequest>;
+
+export interface AcceptProjectTransferRequestResponse {}
+export const AcceptProjectTransferRequestResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "AcceptProjectTransferRequestResponse",
+}) as any as S.Schema<AcceptProjectTransferRequestResponse>;
+
 export type NeonAuthOauthProviderId =
   | "google"
   | "github"
@@ -529,7 +560,7 @@ export const NeonAuthCreateNewUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NeonAuthCreateNewUserResponse",
 }) as any as S.Schema<NeonAuthCreateNewUserResponse>;
 
-/** A single capability a credential may exercise. A credential is granted a set of these; it may only perform actions explicitly listed in its scopes. */
+/** A single capability you may request when issuing a credential. A credential is granted a set of these; it may only perform actions explicitly listed in its scopes. This is the *requestable* set. Responses describing an existing credential use `GrantedCredentialScope`, which is deliberately wider: a credential may have been granted a scope that this endpoint does not offer, and a response must be able to report it. */
 export type CredentialScope =
   | "storage:read"
   | "storage:write"
@@ -577,9 +608,18 @@ export const CreateCredentialRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCredentialRequest",
 }) as any as S.Schema<CreateCredentialRequest>;
 
-export type CreateCredentialResponseScopesList = Array<CredentialScope>;
+/** A single capability a credential actually carries, as reported by responses that describe an existing credential. This set is a superset of `CredentialScope` (the requestable set) because a credential's scopes are not limited to what this API offers: the platform accepts additional scopes for customer-managed (`user`) credentials, so one may exist on your branch that was not issued through this endpoint. Responses must be able to report such a credential rather than fail to describe it — a client that rejected the value would, on rotate, discard the replacement secret after the rotation had already committed. Treat unknown values as opaque. */
+export type GrantedCredentialScope =
+  | "storage:read"
+  | "storage:write"
+  | "ai_gateway:invoke"
+  | "telemetry:write"
+  | "functions:invoke";
+export const GrantedCredentialScope = /*@__PURE__*/ S.String;
+
+export type CreateCredentialResponseScopesList = Array<GrantedCredentialScope>;
 export const CreateCredentialResponseScopesList = /*@__PURE__*/ S.Array(
-  CredentialScope,
+  GrantedCredentialScope,
 ) as any as S.Schema<CreateCredentialResponseScopesList>;
 
 export interface CreateCredentialResponse {
@@ -673,20 +713,20 @@ export const NeonAuthCreateIntegrationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NeonAuthCreateIntegrationResponse",
 }) as any as S.Schema<NeonAuthCreateIntegrationResponse>;
 
-export interface CreateNeonAuthProviderSdkKeysRequest {
+export interface CreateNeonAuthProviderSDKKeysRequest {
   /** The Neon project ID. Returned as `id` from `GET /projects`. */
   project_id: string;
   auth_provider: NeonAuthSupportedAuthProvider | (string & {});
 }
-export const CreateNeonAuthProviderSdkKeysRequest = /*@__PURE__*/ S.suspend(
+export const CreateNeonAuthProviderSDKKeysRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String,
       auth_provider: NeonAuthSupportedAuthProvider,
     }).pipe(T.Http({ method: "POST", uri: "/projects/auth/keys", code: 200 })),
 ).annotate({
-  identifier: "CreateNeonAuthProviderSdkKeysRequest",
-}) as any as S.Schema<CreateNeonAuthProviderSdkKeysRequest>;
+  identifier: "CreateNeonAuthProviderSDKKeysRequest",
+}) as any as S.Schema<CreateNeonAuthProviderSDKKeysRequest>;
 
 /** Organization member's role. `admin`: full administrative access. `editor` (and its legacy alias `member`): standard access governed by project permissions. `viewer` and `collaborator`: additional scoped project roles. Some values may not be available for all organizations. */
 export type MemberRole =
@@ -2069,7 +2109,7 @@ export const DataAPISettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataAPISettings",
 }) as any as S.Schema<DataAPISettings>;
 
-export interface CreateProjectBranchDataApiRequest {
+export interface CreateProjectBranchDataAPIRequest {
   /** The Neon project ID */
   project_id: string;
   /** The Neon branch ID */
@@ -2091,7 +2131,7 @@ export interface CreateProjectBranchDataApiRequest {
   /** Auth and schema configuration for the Data API. */
   settings?: DataAPISettings;
 }
-export const CreateProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectBranchDataAPIRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     branch_id: S.String.pipe(T.Label()),
@@ -2111,8 +2151,8 @@ export const CreateProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateProjectBranchDataApiRequest",
-}) as any as S.Schema<CreateProjectBranchDataApiRequest>;
+  identifier: "CreateProjectBranchDataAPIRequest",
+}) as any as S.Schema<CreateProjectBranchDataAPIRequest>;
 
 /** Neon Data API created successfully */
 export interface DataAPICreateResponse {
@@ -2711,7 +2751,7 @@ export const DeleteOrganizationSpendingLimitResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteOrganizationSpendingLimitResponse",
 }) as any as S.Schema<DeleteOrganizationSpendingLimitResponse>;
 
-export interface DeleteOrganizationVpcEndpointRequest {
+export interface DeleteOrganizationVPCEndpointRequest {
   /** The Neon organization ID */
   org_id: string;
   /** The Neon region ID. Azure regions are currently not supported. */
@@ -2719,7 +2759,7 @@ export interface DeleteOrganizationVpcEndpointRequest {
   /** The VPC endpoint ID */
   vpc_endpoint_id: string;
 }
-export const DeleteOrganizationVpcEndpointRequest = /*@__PURE__*/ S.suspend(
+export const DeleteOrganizationVPCEndpointRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       org_id: S.String.pipe(T.Label()),
@@ -2733,15 +2773,15 @@ export const DeleteOrganizationVpcEndpointRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteOrganizationVpcEndpointRequest",
-}) as any as S.Schema<DeleteOrganizationVpcEndpointRequest>;
+  identifier: "DeleteOrganizationVPCEndpointRequest",
+}) as any as S.Schema<DeleteOrganizationVPCEndpointRequest>;
 
-export interface DeleteOrganizationVpcEndpointResponse {}
-export const DeleteOrganizationVpcEndpointResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteOrganizationVPCEndpointResponse {}
+export const DeleteOrganizationVPCEndpointResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteOrganizationVpcEndpointResponse",
-}) as any as S.Schema<DeleteOrganizationVpcEndpointResponse>;
+  identifier: "DeleteOrganizationVPCEndpointResponse",
+}) as any as S.Schema<DeleteOrganizationVPCEndpointResponse>;
 
 export interface DeleteProjectRequest {
   /** The Neon project ID */
@@ -2918,7 +2958,39 @@ export const BucketObjectsDeletePrefixResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BucketObjectsDeletePrefixResponse",
 }) as any as S.Schema<BucketObjectsDeletePrefixResponse>;
 
-export interface DeleteProjectBranchDataApiRequest {
+export interface DeleteProjectBranchCustomDomainRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The registered custom domain (case-insensitive). */
+  domain: string;
+}
+export const DeleteProjectBranchCustomDomainRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      branch_id: S.String.pipe(T.Label()),
+      domain: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/projects/{project_id}/branches/{branch_id}/custom-domains/{domain}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteProjectBranchCustomDomainRequest",
+}) as any as S.Schema<DeleteProjectBranchCustomDomainRequest>;
+
+export interface DeleteProjectBranchCustomDomainResponse {}
+export const DeleteProjectBranchCustomDomainResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteProjectBranchCustomDomainResponse",
+}) as any as S.Schema<DeleteProjectBranchCustomDomainResponse>;
+
+export interface DeleteProjectBranchDataAPIRequest {
   /** The Neon project ID */
   project_id: string;
   /** The Neon branch ID */
@@ -2926,7 +2998,7 @@ export interface DeleteProjectBranchDataApiRequest {
   /** The database name */
   database_name: string;
 }
-export const DeleteProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProjectBranchDataAPIRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     branch_id: S.String.pipe(T.Label()),
@@ -2939,15 +3011,15 @@ export const DeleteProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteProjectBranchDataApiRequest",
-}) as any as S.Schema<DeleteProjectBranchDataApiRequest>;
+  identifier: "DeleteProjectBranchDataAPIRequest",
+}) as any as S.Schema<DeleteProjectBranchDataAPIRequest>;
 
-export type DeleteProjectBranchDataApiResponse = unknown;
-export const DeleteProjectBranchDataApiResponse = /*@__PURE__*/ S.suspend(() =>
+export type DeleteProjectBranchDataAPIResponse = unknown;
+export const DeleteProjectBranchDataAPIResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "DeleteProjectBranchDataApiResponse",
-}) as any as S.Schema<DeleteProjectBranchDataApiResponse>;
+  identifier: "DeleteProjectBranchDataAPIResponse",
+}) as any as S.Schema<DeleteProjectBranchDataAPIResponse>;
 
 export interface DeleteProjectBranchDatabaseRequest {
   /** The Neon project ID */
@@ -3110,13 +3182,13 @@ export const DeleteProjectEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteProjectEndpointResponse",
 }) as any as S.Schema<DeleteProjectEndpointResponse>;
 
-export interface DeleteProjectJwksRequest {
+export interface DeleteProjectJWKSRequest {
   /** The Neon project ID */
   project_id: string;
   /** The JWKS ID */
   jwks_id: string;
 }
-export const DeleteProjectJwksRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProjectJWKSRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     jwks_id: S.String.pipe(T.Label()),
@@ -3128,16 +3200,16 @@ export const DeleteProjectJwksRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteProjectJwksRequest",
-}) as any as S.Schema<DeleteProjectJwksRequest>;
+  identifier: "DeleteProjectJWKSRequest",
+}) as any as S.Schema<DeleteProjectJWKSRequest>;
 
-export interface DeleteProjectVpcEndpointRequest {
+export interface DeleteProjectVPCEndpointRequest {
   /** The Neon project ID */
   project_id: string;
   /** The VPC endpoint ID */
   vpc_endpoint_id: string;
 }
-export const DeleteProjectVpcEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProjectVPCEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     vpc_endpoint_id: S.String.pipe(T.Label()),
@@ -3149,15 +3221,15 @@ export const DeleteProjectVpcEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteProjectVpcEndpointRequest",
-}) as any as S.Schema<DeleteProjectVpcEndpointRequest>;
+  identifier: "DeleteProjectVPCEndpointRequest",
+}) as any as S.Schema<DeleteProjectVPCEndpointRequest>;
 
-export interface DeleteProjectVpcEndpointResponse {}
-export const DeleteProjectVpcEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteProjectVPCEndpointResponse {}
+export const DeleteProjectVPCEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteProjectVpcEndpointResponse",
-}) as any as S.Schema<DeleteProjectVpcEndpointResponse>;
+  identifier: "DeleteProjectVPCEndpointResponse",
+}) as any as S.Schema<DeleteProjectVPCEndpointResponse>;
 
 export interface DeleteSnapshotRequest {
   /** The Neon project ID */
@@ -3217,6 +3289,46 @@ export const DisableNeonAuthResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DisableNeonAuthResponse",
 }) as any as S.Schema<DisableNeonAuthResponse>;
+
+export interface FinalizeRestoreBranchRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The branch ID */
+  branch_id: string;
+  /** Name for the replaced branch. If omitted, a unique name is generated. */
+  name?: string;
+}
+export const FinalizeRestoreBranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    branch_id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/projects/{project_id}/branches/{branch_id}/finalize_restore",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "FinalizeRestoreBranchRequest",
+}) as any as S.Schema<FinalizeRestoreBranchRequest>;
+
+export type OperationsResponseOperationsList = Array<Operation>;
+export const OperationsResponseOperationsList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationsResponseOperationsList>;
+
+export interface OperationsResponse {
+  operations: OperationsResponseOperationsList;
+}
+export const OperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operations: OperationsResponseOperationsList,
+  }),
+).annotate({
+  identifier: "OperationsResponse",
+}) as any as S.Schema<OperationsResponse>;
 
 export interface GetActiveRegionsRequest {
   /** Organization ID. When provided, returns only regions available to this organization. Recommended for accurate region availability. */
@@ -3441,7 +3553,7 @@ export const AvailablePreloadLibraries = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvailablePreloadLibraries",
 }) as any as S.Schema<AvailablePreloadLibraries>;
 
-export interface GetConnectionUriRequest {
+export interface GetConnectionURIRequest {
   /** The Neon project ID */
   project_id: string;
   /** The branch ID. Defaults to your project's default `branch_id` if not specified. */
@@ -3455,7 +3567,7 @@ export interface GetConnectionUriRequest {
   /** Adds the `-pooler` option to the connection URI when set to `true`, creating a pooled connection URI. */
   pooled?: boolean;
 }
-export const GetConnectionUriRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetConnectionURIRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     branch_id: S.optional(S.String.pipe(T.Query())),
@@ -3471,8 +3583,8 @@ export const GetConnectionUriRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetConnectionUriRequest",
-}) as any as S.Schema<GetConnectionUriRequest>;
+  identifier: "GetConnectionURIRequest",
+}) as any as S.Schema<GetConnectionURIRequest>;
 
 export interface ConnectionURIResponse {
   /** The connection URI. */
@@ -4942,7 +5054,7 @@ export const SpendingLimitResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SpendingLimitResponse",
 }) as any as S.Schema<SpendingLimitResponse>;
 
-export interface GetOrganizationVpcEndpointDetailsRequest {
+export interface GetOrganizationVPCEndpointDetailsRequest {
   /** The Neon organization ID */
   org_id: string;
   /** The Neon region ID. Azure regions are currently not supported. */
@@ -4950,7 +5062,7 @@ export interface GetOrganizationVpcEndpointDetailsRequest {
   /** The VPC endpoint ID */
   vpc_endpoint_id: string;
 }
-export const GetOrganizationVpcEndpointDetailsRequest = /*@__PURE__*/ S.suspend(
+export const GetOrganizationVPCEndpointDetailsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       org_id: S.String.pipe(T.Label()),
@@ -4964,8 +5076,8 @@ export const GetOrganizationVpcEndpointDetailsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetOrganizationVpcEndpointDetailsRequest",
-}) as any as S.Schema<GetOrganizationVpcEndpointDetailsRequest>;
+  identifier: "GetOrganizationVPCEndpointDetailsRequest",
+}) as any as S.Schema<GetOrganizationVPCEndpointDetailsRequest>;
 
 /** A list of example projects that are restricted to use this VPC endpoint. There are at most 3 projects in the list, even if more projects are restricted. */
 export type VPCEndpointDetailsExampleRestrictedProjectsList = Array<string>;
@@ -5269,7 +5381,7 @@ export const GetProjectBranchBucketObjectResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetProjectBranchBucketObjectResponse",
 }) as any as S.Schema<GetProjectBranchBucketObjectResponse>;
 
-export interface GetProjectBranchDataApiRequest {
+export interface GetProjectBranchDataAPIRequest {
   /** The Neon project ID */
   project_id: string;
   /** The Neon branch ID */
@@ -5277,7 +5389,7 @@ export interface GetProjectBranchDataApiRequest {
   /** The database name */
   database_name: string;
 }
-export const GetProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectBranchDataAPIRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     branch_id: S.String.pipe(T.Label()),
@@ -5290,8 +5402,8 @@ export const GetProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetProjectBranchDataApiRequest",
-}) as any as S.Schema<GetProjectBranchDataApiRequest>;
+  identifier: "GetProjectBranchDataAPIRequest",
+}) as any as S.Schema<GetProjectBranchDataAPIRequest>;
 
 /** List of available database schemas (SubZero only) */
 export type DataAPIReponseAvailableSchemasList = Array<string>;
@@ -5796,19 +5908,19 @@ export const EndpointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointResponse",
 }) as any as S.Schema<EndpointResponse>;
 
-export interface GetProjectJwksRequest {
+export interface GetProjectJWKSRequest {
   /** The Neon project ID */
   project_id: string;
 }
-export const GetProjectJwksRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectJWKSRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/projects/{project_id}/jwks", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetProjectJwksRequest",
-}) as any as S.Schema<GetProjectJwksRequest>;
+  identifier: "GetProjectJWKSRequest",
+}) as any as S.Schema<GetProjectJWKSRequest>;
 
 /** JWKS configurations associated with the project. */
 export type ProjectJWKSResponseJwksList = Array<JWKS>;
@@ -6147,9 +6259,9 @@ export const ListCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCredentialsRequest",
 }) as any as S.Schema<ListCredentialsRequest>;
 
-export type CredentialMetaScopesList = Array<CredentialScope>;
+export type CredentialMetaScopesList = Array<GrantedCredentialScope>;
 export const CredentialMetaScopesList = /*@__PURE__*/ S.Array(
-  CredentialScope,
+  GrantedCredentialScope,
 ) as any as S.Schema<CredentialMetaScopesList>;
 
 export interface CredentialMeta {
@@ -6200,13 +6312,13 @@ export const ListCredentialsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCredentialsResponse",
 }) as any as S.Schema<ListCredentialsResponse>;
 
-export interface ListOrganizationVpcEndpointsRequest {
+export interface ListOrganizationVPCEndpointsRequest {
   /** The Neon organization ID */
   org_id: string;
   /** The Neon region ID */
   region_id: string;
 }
-export const ListOrganizationVpcEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOrganizationVPCEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org_id: S.String.pipe(T.Label()),
     region_id: S.String.pipe(T.Label()),
@@ -6218,8 +6330,8 @@ export const ListOrganizationVpcEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListOrganizationVpcEndpointsRequest",
-}) as any as S.Schema<ListOrganizationVpcEndpointsRequest>;
+  identifier: "ListOrganizationVPCEndpointsRequest",
+}) as any as S.Schema<ListOrganizationVPCEndpointsRequest>;
 
 export interface VPCEndpoint {
   /** Cloud provider identifier for the VPC endpoint. */
@@ -6252,11 +6364,11 @@ export const VPCEndpointsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VPCEndpointsResponse",
 }) as any as S.Schema<VPCEndpointsResponse>;
 
-export interface ListOrganizationVpcEndpointsAllRegionsRequest {
+export interface ListOrganizationVPCEndpointsAllRegionsRequest {
   /** The Neon organization ID */
   org_id: string;
 }
-export const ListOrganizationVpcEndpointsAllRegionsRequest =
+export const ListOrganizationVPCEndpointsAllRegionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       org_id: S.String.pipe(T.Label()),
@@ -6268,8 +6380,8 @@ export const ListOrganizationVpcEndpointsAllRegionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListOrganizationVpcEndpointsAllRegionsRequest",
-  }) as any as S.Schema<ListOrganizationVpcEndpointsAllRegionsRequest>;
+    identifier: "ListOrganizationVPCEndpointsAllRegionsRequest",
+  }) as any as S.Schema<ListOrganizationVPCEndpointsAllRegionsRequest>;
 
 export interface VPCEndpointWithRegion {
   /** Cloud provider identifier for the VPC endpoint. */
@@ -6496,6 +6608,86 @@ export const BucketsListResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BucketsListResponse",
 }) as any as S.Schema<BucketsListResponse>;
+
+export interface ListProjectBranchCustomDomainsRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** A cursor to use in pagination. A cursor defines your place in the data list. Include `response.pagination.next` in subsequent API calls to fetch next page of the list. */
+  cursor?: string;
+  /** Specify a value from 1 to 1000 to limit number of domains in the response */
+  limit?: number;
+}
+export const ListProjectBranchCustomDomainsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      branch_id: S.String.pipe(T.Label()),
+      cursor: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/projects/{project_id}/branches/{branch_id}/custom-domains",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListProjectBranchCustomDomainsRequest",
+}) as any as S.Schema<ListProjectBranchCustomDomainsRequest>;
+
+export interface CustomDomain {
+  /** The registered custom domain (normalized, lowercase). */
+  domain: string;
+  /** The kind of branch entity the domain targets. Possible values: `function` (v1 supports only `function`). Not an `enum`: new values may ship in later spec versions — treat any undocumented value as unknown. */
+  entity_type: string;
+  /** The target entity's identifier within the branch. For `function` this is the function slug. */
+  entity_id: string;
+  /** The hostname the customer must point their custom domain at with a CNAME record. Empty when the serving region has no custom-domains front door configured. This is the activation input: point DNS here and the domain goes live (see `status`) once a certificate is issued on the first request. */
+  cname_target: string;
+  /** The domain's current validity, computed by a background check: `pending` (still converging — point your CNAME at `cname_target` and wait), `active` (live: DNS resolves to the edge, the CA is authorized, and routing is published), or `error` (a fixable problem — see `status_reason`). Not an `enum`: treat any undocumented value as unknown. May be absent briefly right after registration. */
+  status?: string;
+  /** The DNS + CAA portion of the check: `pending` (no records yet), `ok` (resolves to our edge and the CA is authorized), `misconfigured` (your CNAME does not resolve to our edge), or `caa_blocked` (your CAA records forbid Let's Encrypt). Not an `enum`. */
+  dns_status?: string;
+  /** Whether Neon's internal routing for the domain is published: `pending`, `present`, or `missing`. `missing` is an internal fault surfaced for support. Not an `enum`. */
+  binding_status?: string;
+  /** A short, stable machine-readable reason for a non-active `status` (e.g. `cname-not-pointing-at-edge`, `caa-blocks-lets-encrypt`, `binding-missing`), suitable for keying an actionable hint. Empty when active or pending. */
+  status_reason?: string;
+}
+export const CustomDomain = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String,
+    entity_type: S.String,
+    entity_id: S.String,
+    cname_target: S.String,
+    status: S.optional(S.String),
+    dns_status: S.optional(S.String),
+    binding_status: S.optional(S.String),
+    status_reason: S.optional(S.String),
+  }),
+).annotate({ identifier: "CustomDomain" }) as any as S.Schema<CustomDomain>;
+
+export type ListProjectBranchCustomDomainsResponseCustomDomainsList =
+  Array<CustomDomain>;
+export const ListProjectBranchCustomDomainsResponseCustomDomainsList =
+  /*@__PURE__*/ S.Array(
+    CustomDomain,
+  ) as any as S.Schema<ListProjectBranchCustomDomainsResponseCustomDomainsList>;
+
+export interface ListProjectBranchCustomDomainsResponse {
+  custom_domains: ListProjectBranchCustomDomainsResponseCustomDomainsList;
+  pagination?: CursorPagination;
+}
+export const ListProjectBranchCustomDomainsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      custom_domains: ListProjectBranchCustomDomainsResponseCustomDomainsList,
+      pagination: S.optional(CursorPagination),
+    }),
+).annotate({
+  identifier: "ListProjectBranchCustomDomainsResponse",
+}) as any as S.Schema<ListProjectBranchCustomDomainsResponse>;
 
 export interface ListProjectBranchDatabasesRequest {
   /** The Neon project ID */
@@ -7211,11 +7403,11 @@ export const ListProjectsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListProjectsResponse",
 }) as any as S.Schema<ListProjectsResponse>;
 
-export interface ListProjectVpcEndpointsRequest {
+export interface ListProjectVPCEndpointsRequest {
   /** The Neon project ID */
   project_id: string;
 }
-export const ListProjectVpcEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListProjectVPCEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -7226,8 +7418,8 @@ export const ListProjectVpcEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListProjectVpcEndpointsRequest",
-}) as any as S.Schema<ListProjectVpcEndpointsRequest>;
+  identifier: "ListProjectVPCEndpointsRequest",
+}) as any as S.Schema<ListProjectVPCEndpointsRequest>;
 
 export interface ListSharedProjectsRequest {
   /** Specify the cursor value from the previous response to get the next batch of projects. */
@@ -7575,6 +7767,37 @@ export const RecoverProjectResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecoverProjectResponse",
 }) as any as S.Schema<RecoverProjectResponse>;
 
+export interface RegisterProjectBranchCustomDomainRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The custom domain to register (for example `dashboard.acme.com`). Case-insensitive; normalized to lowercase (a trailing root dot is stripped, so the 254-char bound admits a fully-qualified name whose normalized form is 253 chars). Neon-managed and internal hostnames are rejected. */
+  domain: string;
+  /** The kind of branch entity to point the domain at. v1 supports only `function`; any other value is rejected with `invalid_entity_type`. */
+  entity_type: string;
+  /** The target entity's identifier within the branch. For `function` this is the function slug (which must already exist on the branch). */
+  entity_id: string;
+}
+export const RegisterProjectBranchCustomDomainRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      branch_id: S.String.pipe(T.Label()),
+      domain: S.String,
+      entity_type: S.String,
+      entity_id: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/projects/{project_id}/branches/{branch_id}/custom-domains",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "RegisterProjectBranchCustomDomainRequest",
+}) as any as S.Schema<RegisterProjectBranchCustomDomainRequest>;
+
 export interface RemoveOrganizationMemberRequest {
   /** The Neon organization ID */
   org_id: string;
@@ -7661,37 +7884,6 @@ export const ProjectMemberRoleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ProjectMemberRoleResponse",
 }) as any as S.Schema<ProjectMemberRoleResponse>;
-
-export interface RequestAcceptProjectTransferRequest {
-  /** The Neon project ID */
-  project_id: string;
-  /** The Neon project transfer request ID */
-  request_id: string;
-  /** The Neon organization ID to transfer the project to. If not provided, the project will be transferred to the current user or organization account. */
-  org_id?: string;
-}
-export const RequestAcceptProjectTransferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    request_id: S.String.pipe(T.Label()),
-    org_id: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/projects/{project_id}/transfer_requests/{request_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RequestAcceptProjectTransferRequest",
-}) as any as S.Schema<RequestAcceptProjectTransferRequest>;
-
-export interface RequestAcceptProjectTransferResponse {}
-export const RequestAcceptProjectTransferResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "RequestAcceptProjectTransferResponse",
-}) as any as S.Schema<RequestAcceptProjectTransferResponse>;
 
 export interface ResetProjectBranchRolePasswordRequest {
   /** The Neon project ID */
@@ -7780,46 +7972,6 @@ export const RestartProjectEndpointResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RestartProjectEndpointResponse",
 }) as any as S.Schema<RestartProjectEndpointResponse>;
-
-export interface RestoreFinalizeBranchRequest {
-  /** The Neon project ID */
-  project_id: string;
-  /** The branch ID */
-  branch_id: string;
-  /** Name for the replaced branch. If omitted, a unique name is generated. */
-  name?: string;
-}
-export const RestoreFinalizeBranchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    branch_id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/projects/{project_id}/branches/{branch_id}/finalize_restore",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RestoreFinalizeBranchRequest",
-}) as any as S.Schema<RestoreFinalizeBranchRequest>;
-
-export type OperationsResponseOperationsList = Array<Operation>;
-export const OperationsResponseOperationsList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsResponseOperationsList>;
-
-export interface OperationsResponse {
-  operations: OperationsResponseOperationsList;
-}
-export const OperationsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operations: OperationsResponseOperationsList,
-  }),
-).annotate({
-  identifier: "OperationsResponse",
-}) as any as S.Schema<OperationsResponse>;
 
 export interface RestoreProjectBranchRequest {
   /** The Neon project ID */
@@ -7930,6 +8082,49 @@ export const RestoreSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RestoreSnapshotResponse",
 }) as any as S.Schema<RestoreSnapshotResponse>;
+
+export interface RevealCredentialRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The opaque credential id (e.g. nak_live_<32hex>). */
+  token_id: string;
+}
+export const RevealCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    branch_id: S.String.pipe(T.Label()),
+    token_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/reveal",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RevealCredentialRequest",
+}) as any as S.Schema<RevealCredentialRequest>;
+
+/** The live secrets of an existing credential, recovered on demand by the reveal endpoint. `api_token` and `s3_secret_access_key` are the same values handed back once at issuance. The field set is deliberately narrower than `CreateCredentialResponse`: it carries only what reveal can actually recover. `token_id_short`, `scopes`, `principal_type`, `created_at` and `expires_at` are metadata, not secrets — read them from the list endpoint instead. No `branch_id` is returned. Reveal is scoped by `(project_id, token_id)`, so the branch in the request path authorizes the call but is not proven to be the branch the credential was issued on. Echoing it back would assert an anchor this endpoint never verified. For a credential's true anchor branch, read `branch_id` from the list endpoint, which is branch-exact. */
+export interface CredentialSecret {
+  /** Opaque credential id (e.g. nak_live_<32hex>). */
+  token_id: string;
+  /** Bearer token. */
+  api_token: string | Redacted.Redacted<string>;
+  /** nsk_live_<64 hex>; the AWS_SECRET_ACCESS_KEY. */
+  s3_secret_access_key: string;
+}
+export const CredentialSecret = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token_id: S.String,
+    api_token: S.String.pipe(T.SensitiveValue({})),
+    s3_secret_access_key: S.String,
+  }),
+).annotate({
+  identifier: "CredentialSecret",
+}) as any as S.Schema<CredentialSecret>;
 
 export interface RevokeApiKeyRequest {
   /** The API key ID */
@@ -8076,6 +8271,77 @@ export const RevokePermissionFromProjectRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RevokePermissionFromProjectRequest",
 }) as any as S.Schema<RevokePermissionFromProjectRequest>;
+
+export interface RotateCredentialRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The opaque credential id (e.g. nak_live_<32hex>). */
+  token_id: string;
+}
+export const RotateCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    branch_id: S.String.pipe(T.Label()),
+    token_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/rotate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RotateCredentialRequest",
+}) as any as S.Schema<RotateCredentialRequest>;
+
+export type RotateCredentialResponseScopesList = Array<GrantedCredentialScope>;
+export const RotateCredentialResponseScopesList = /*@__PURE__*/ S.Array(
+  GrantedCredentialScope,
+) as any as S.Schema<RotateCredentialResponseScopesList>;
+
+/** Always `user`: only customer-managed credentials are rotatable through this endpoint. */
+export type RotateCredentialResponsePrincipalType = "user";
+export const RotateCredentialResponsePrincipalType = /*@__PURE__*/ S.String;
+
+/** The replacement secret material for an existing credential, returned exactly once. `token_id`, `scopes`, `branch_id` and `created_at` are unchanged by the rotation — only `api_token` and `s3_secret_access_key` are new. */
+export interface RotateCredentialResponse {
+  /** Opaque credential id (e.g. nak_live_<32hex>), unchanged by the rotation. Doubles as the `AWS_ACCESS_KEY_ID` for SigV4. */
+  token_id: string;
+  /** First 12 hex chars of token_id; safe to log. */
+  token_id_short: string;
+  /** Customer-supplied label carried on the credential. Absent when none was set at issuance. */
+  name?: string;
+  /** The new Bearer token; returned exactly once. */
+  api_token: string | Redacted.Redacted<string>;
+  /** The new nsk_live_<64 hex> AWS_SECRET_ACCESS_KEY; returned exactly once. */
+  s3_secret_access_key: string;
+  scopes: RotateCredentialResponseScopesList;
+  branch_id: string;
+  /** Always `user`: only customer-managed credentials are rotatable through this endpoint. */
+  principal_type: RotateCredentialResponsePrincipalType;
+  /** When the credential was originally issued. Rotation replaces the secrets in place and does not reset this. */
+  created_at: string;
+  /** When the credential expires; absent means never expires. Rotation does not extend it. */
+  expires_at?: string;
+}
+export const RotateCredentialResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token_id: S.String,
+    token_id_short: S.String,
+    name: S.optional(S.String),
+    api_token: S.String.pipe(T.SensitiveValue({})),
+    s3_secret_access_key: S.String,
+    scopes: RotateCredentialResponseScopesList,
+    branch_id: S.String,
+    principal_type: RotateCredentialResponsePrincipalType,
+    created_at: S.String,
+    expires_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RotateCredentialResponse",
+}) as any as S.Schema<RotateCredentialResponse>;
 
 export interface SendNeonAuthEmailProviderTestRequest {
   /** The Neon project ID */
@@ -9000,7 +9266,7 @@ export const UpdateProjectBranchResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateProjectBranchResponse",
 }) as any as S.Schema<UpdateProjectBranchResponse>;
 
-export interface UpdateProjectBranchDataApiRequest {
+export interface UpdateProjectBranchDataAPIRequest {
   /** The Neon project ID */
   project_id: string;
   /** The Neon branch ID */
@@ -9010,7 +9276,7 @@ export interface UpdateProjectBranchDataApiRequest {
   /** Configuration settings for the Neon Data API. */
   settings?: DataAPISettings;
 }
-export const UpdateProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProjectBranchDataAPIRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     branch_id: S.String.pipe(T.Label()),
@@ -9024,15 +9290,15 @@ export const UpdateProjectBranchDataApiRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateProjectBranchDataApiRequest",
-}) as any as S.Schema<UpdateProjectBranchDataApiRequest>;
+  identifier: "UpdateProjectBranchDataAPIRequest",
+}) as any as S.Schema<UpdateProjectBranchDataAPIRequest>;
 
-export type UpdateProjectBranchDataApiResponse = unknown;
-export const UpdateProjectBranchDataApiResponse = /*@__PURE__*/ S.suspend(() =>
+export type UpdateProjectBranchDataAPIResponse = unknown;
+export const UpdateProjectBranchDataAPIResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "UpdateProjectBranchDataApiResponse",
-}) as any as S.Schema<UpdateProjectBranchDataApiResponse>;
+  identifier: "UpdateProjectBranchDataAPIResponse",
+}) as any as S.Schema<UpdateProjectBranchDataAPIResponse>;
 
 /** Properties to update on the database. */
 export interface UpdateProjectBranchDatabaseRequestDatabase {
@@ -9264,6 +9530,21 @@ export const UpdateSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSnapshotResponse",
 }) as any as S.Schema<UpdateSnapshotResponse>;
 
+export type AcceptProjectTransferRequestError = NeonOpError;
+/** Accept a project transfer request Accepts a transfer request for the specified project, transferring it to the specified organization or user. If org_id is not passed, the project will be transferred to the current user or organization account. */
+export const acceptProjectTransferRequest: API.OperationMethod<
+  AcceptProjectTransferRequestRequest,
+  AcceptProjectTransferRequestResponse,
+  AcceptProjectTransferRequestError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AcceptProjectTransferRequestRequest,
+  output: AcceptProjectTransferRequestResponse,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
 export type AddBranchNeonAuthOauthProviderError = NeonOpError;
 /** Add an OAuth provider Adds an OAuth provider configuration to the specified branch's Neon Auth integration. After adding, users can authenticate using the configured provider. */
 export const addBranchNeonAuthOauthProvider: API.OperationMethod<
@@ -9414,15 +9695,15 @@ export const createNeonAuth: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateNeonAuthProviderSdkKeysError = NeonOpError;
+export type CreateNeonAuthProviderSDKKeysError = NeonOpError;
 /** Create Auth Provider SDK keys Generates SDK or API Keys for the auth provider. These might be called different things depending on the auth provider you're using, but are generally used for setting up the frontend and backend SDKs. */
-export const createNeonAuthProviderSdkKeys: API.OperationMethod<
-  CreateNeonAuthProviderSdkKeysRequest,
+export const createNeonAuthProviderSDKKeys: API.OperationMethod<
+  CreateNeonAuthProviderSDKKeysRequest,
   NeonAuthCreateIntegrationResponse,
-  CreateNeonAuthProviderSdkKeysError,
+  CreateNeonAuthProviderSDKKeysError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateNeonAuthProviderSdkKeysRequest,
+  input: CreateNeonAuthProviderSDKKeysRequest,
   output: NeonAuthCreateIntegrationResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
@@ -9519,15 +9800,15 @@ export const createProjectBranchBucket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateProjectBranchDataApiError = NeonOpError;
+export type CreateProjectBranchDataAPIError = NeonOpError;
 /** Create Neon Data API Creates a new instance of Neon Data API in the specified branch. The Data API exposes a REST interface over the branch database. The `database_name` path parameter determines which database the API serves. */
-export const createProjectBranchDataApi: API.OperationMethod<
-  CreateProjectBranchDataApiRequest,
+export const createProjectBranchDataAPI: API.OperationMethod<
+  CreateProjectBranchDataAPIRequest,
   DataAPICreateResponse,
-  CreateProjectBranchDataApiError,
+  CreateProjectBranchDataAPIError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateProjectBranchDataApiRequest,
+  input: CreateProjectBranchDataAPIRequest,
   output: DataAPICreateResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
@@ -9695,16 +9976,16 @@ export const deleteOrganizationSpendingLimit: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteOrganizationVpcEndpointError = NeonOpError;
+export type DeleteOrganizationVPCEndpointError = NeonOpError;
 /** Delete VPC endpoint Deletes the VPC endpoint from the specified Neon organization. If you delete a VPC endpoint from a Neon organization, that VPC endpoint cannot be added back to the Neon organization. */
-export const deleteOrganizationVpcEndpoint: API.OperationMethod<
-  DeleteOrganizationVpcEndpointRequest,
-  DeleteOrganizationVpcEndpointResponse,
-  DeleteOrganizationVpcEndpointError,
+export const deleteOrganizationVPCEndpoint: API.OperationMethod<
+  DeleteOrganizationVPCEndpointRequest,
+  DeleteOrganizationVPCEndpointResponse,
+  DeleteOrganizationVPCEndpointError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOrganizationVpcEndpointRequest,
-  output: DeleteOrganizationVpcEndpointResponse,
+  input: DeleteOrganizationVPCEndpointRequest,
+  output: DeleteOrganizationVPCEndpointResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
@@ -9790,16 +10071,31 @@ export const deleteProjectBranchBucketObjectsByPrefix: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteProjectBranchDataApiError = NeonOpError;
-/** Delete Neon Data API Deletes the Neon Data API for the specified branch. Existing connections using the Data API endpoint will fail after deletion. */
-export const deleteProjectBranchDataApi: API.OperationMethod<
-  DeleteProjectBranchDataApiRequest,
-  DeleteProjectBranchDataApiResponse,
-  DeleteProjectBranchDataApiError,
+export type DeleteProjectBranchCustomDomainError = NeonOpError;
+/** Delete a custom domain from a branch Removes a custom domain registered on the branch and stops routing it. **Note**: This endpoint is currently in Beta. */
+export const deleteProjectBranchCustomDomain: API.OperationMethod<
+  DeleteProjectBranchCustomDomainRequest,
+  DeleteProjectBranchCustomDomainResponse,
+  DeleteProjectBranchCustomDomainError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteProjectBranchDataApiRequest,
-  output: DeleteProjectBranchDataApiResponse,
+  input: DeleteProjectBranchCustomDomainRequest,
+  output: DeleteProjectBranchCustomDomainResponse,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectBranchDataAPIError = NeonOpError;
+/** Delete Neon Data API Deletes the Neon Data API for the specified branch. Existing connections using the Data API endpoint will fail after deletion. */
+export const deleteProjectBranchDataAPI: API.OperationMethod<
+  DeleteProjectBranchDataAPIRequest,
+  DeleteProjectBranchDataAPIResponse,
+  DeleteProjectBranchDataAPIError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectBranchDataAPIRequest,
+  output: DeleteProjectBranchDataAPIResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
@@ -9868,31 +10164,31 @@ export const deleteProjectEndpoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteProjectJwksError = NeonOpError;
+export type DeleteProjectJWKSError = NeonOpError;
 /** Delete JWKS URL Removes the specified JWKS URL from the project. JWTs signed by keys from the removed URL can no longer authenticate to the project's endpoints. */
-export const deleteProjectJwks: API.OperationMethod<
-  DeleteProjectJwksRequest,
+export const deleteProjectJWKS: API.OperationMethod<
+  DeleteProjectJWKSRequest,
   JWKS,
-  DeleteProjectJwksError,
+  DeleteProjectJWKSError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteProjectJwksRequest,
+  input: DeleteProjectJWKSRequest,
   output: JWKS,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteProjectVpcEndpointError = NeonOpError;
+export type DeleteProjectVPCEndpointError = NeonOpError;
 /** Delete VPC endpoint restriction Removes the specified VPC endpoint restriction from a Neon project. */
-export const deleteProjectVpcEndpoint: API.OperationMethod<
-  DeleteProjectVpcEndpointRequest,
-  DeleteProjectVpcEndpointResponse,
-  DeleteProjectVpcEndpointError,
+export const deleteProjectVPCEndpoint: API.OperationMethod<
+  DeleteProjectVPCEndpointRequest,
+  DeleteProjectVPCEndpointResponse,
+  DeleteProjectVPCEndpointError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteProjectVpcEndpointRequest,
-  output: DeleteProjectVpcEndpointResponse,
+  input: DeleteProjectVPCEndpointRequest,
+  output: DeleteProjectVPCEndpointResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
@@ -9923,6 +10219,21 @@ export const disableNeonAuth: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DisableNeonAuthRequest,
   output: DisableNeonAuthResponse,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FinalizeRestoreBranchError = NeonOpError;
+/** Finalize branch restore from snapshot Finalize the restore operation for a branch created from a snapshot. This operation updates the branch so it functions as the original branch it replaced. This includes: - Reassigning any computes from the original branch to the restored branch (this will restart the computes) - Renaming the restored branch to the original branch's name - Renaming the original branch so it no longer uses the original name This operation only applies to branches created using the `restoreSnapshot` endpoint with `finalize_restore: false`. */
+export const finalizeRestoreBranch: API.OperationMethod<
+  FinalizeRestoreBranchRequest,
+  OperationsResponse,
+  FinalizeRestoreBranchError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FinalizeRestoreBranchRequest,
+  output: OperationsResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
@@ -9988,15 +10299,15 @@ export const getAvailablePreloadLibraries: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetConnectionUriError = NotFound | NeonOpError;
+export type GetConnectionURIError = NotFound | NeonOpError;
 /** Retrieve connection URI Retrieves a connection URI for the specified database. The URI uses the standard PostgreSQL connection string format. Set `pooled=true` to include the `-pooler` suffix for a connection pooler URI. */
-export const getConnectionUri: API.OperationMethod<
-  GetConnectionUriRequest,
+export const getConnectionURI: API.OperationMethod<
+  GetConnectionURIRequest,
   ConnectionURIResponse,
-  GetConnectionUriError,
+  GetConnectionURIError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConnectionUriRequest,
+  input: GetConnectionURIRequest,
   output: ConnectionURIResponse,
   errors: [NotFound, UnknownNeonError],
   protocol: NeonProtocol,
@@ -10322,15 +10633,15 @@ export const getOrganizationSpendingLimit: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOrganizationVpcEndpointDetailsError = NeonOpError;
+export type GetOrganizationVPCEndpointDetailsError = NeonOpError;
 /** Retrieve VPC endpoint details Retrieves the current state and configuration details of a specified VPC endpoint. */
-export const getOrganizationVpcEndpointDetails: API.OperationMethod<
-  GetOrganizationVpcEndpointDetailsRequest,
+export const getOrganizationVPCEndpointDetails: API.OperationMethod<
+  GetOrganizationVPCEndpointDetailsRequest,
   VPCEndpointDetails,
-  GetOrganizationVpcEndpointDetailsError,
+  GetOrganizationVPCEndpointDetailsError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetOrganizationVpcEndpointDetailsRequest,
+  input: GetOrganizationVPCEndpointDetailsRequest,
   output: VPCEndpointDetails,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
@@ -10412,15 +10723,15 @@ export const getProjectBranchBucketObject: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProjectBranchDataApiError = NeonOpError;
+export type GetProjectBranchDataAPIError = NeonOpError;
 /** Retrieve Neon Data API configuration Retrieves the Neon Data API configuration for the specified branch, including endpoint URL, enabled state, and database settings. */
-export const getProjectBranchDataApi: API.OperationMethod<
-  GetProjectBranchDataApiRequest,
+export const getProjectBranchDataAPI: API.OperationMethod<
+  GetProjectBranchDataAPIRequest,
   DataAPIReponse,
-  GetProjectBranchDataApiError,
+  GetProjectBranchDataAPIError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectBranchDataApiRequest,
+  input: GetProjectBranchDataAPIRequest,
   output: DataAPIReponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
@@ -10547,15 +10858,15 @@ export const getProjectEndpoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProjectJwksError = NeonOpError;
+export type GetProjectJWKSError = NeonOpError;
 /** List JWKS URLs Returns the JWKS URLs available for verifying JWTs used as the authentication mechanism for the specified project. */
-export const getProjectJwks: API.OperationMethod<
-  GetProjectJwksRequest,
+export const getProjectJWKS: API.OperationMethod<
+  GetProjectJWKSRequest,
   ProjectJWKSResponse,
-  GetProjectJwksError,
+  GetProjectJWKSError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectJwksRequest,
+  input: GetProjectJWKSRequest,
   output: ProjectJWKSResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
@@ -10667,30 +10978,30 @@ export const listCredentials: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListOrganizationVpcEndpointsError = NeonOpError;
+export type ListOrganizationVPCEndpointsError = NeonOpError;
 /** List VPC endpoints Retrieves the list of VPC endpoints for the specified Neon organization. */
-export const listOrganizationVpcEndpoints: API.OperationMethod<
-  ListOrganizationVpcEndpointsRequest,
+export const listOrganizationVPCEndpoints: API.OperationMethod<
+  ListOrganizationVPCEndpointsRequest,
   VPCEndpointsResponse,
-  ListOrganizationVpcEndpointsError,
+  ListOrganizationVPCEndpointsError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListOrganizationVpcEndpointsRequest,
+  input: ListOrganizationVPCEndpointsRequest,
   output: VPCEndpointsResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListOrganizationVpcEndpointsAllRegionsError = NeonOpError;
+export type ListOrganizationVPCEndpointsAllRegionsError = NeonOpError;
 /** List VPC endpoints across all regions Retrieves the list of VPC endpoints for the specified Neon organization across all regions. */
-export const listOrganizationVpcEndpointsAllRegions: API.OperationMethod<
-  ListOrganizationVpcEndpointsAllRegionsRequest,
+export const listOrganizationVPCEndpointsAllRegions: API.OperationMethod<
+  ListOrganizationVPCEndpointsAllRegionsRequest,
   VPCEndpointsWithRegionResponse,
-  ListOrganizationVpcEndpointsAllRegionsError,
+  ListOrganizationVPCEndpointsAllRegionsError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListOrganizationVpcEndpointsAllRegionsRequest,
+  input: ListOrganizationVPCEndpointsAllRegionsRequest,
   output: VPCEndpointsWithRegionResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
@@ -10741,6 +11052,31 @@ export const listProjectBranchBuckets: API.OperationMethod<
   protocol: NeonProtocol,
   retry: Retry.Retry,
 }));
+
+export type ListProjectBranchCustomDomainsError = NeonOpError;
+/** List the custom domains on a branch Lists all custom domains registered on the branch, across every target entity. **Note**: This endpoint is currently in Beta. */
+export const listProjectBranchCustomDomains: API.PaginatedOperationMethod<
+  ListProjectBranchCustomDomainsRequest,
+  ListProjectBranchCustomDomainsResponse,
+  ListProjectBranchCustomDomainsError,
+  NeonOpContext,
+  CustomDomain
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListProjectBranchCustomDomainsRequest,
+    output: ListProjectBranchCustomDomainsResponse,
+    errors: [UnknownNeonError],
+    protocol: NeonProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "pagination.next",
+      items: "custom_domains",
+    } as const,
+  }),
+  paginateCursor,
+) as any;
 
 export type ListProjectBranchDatabasesError = NotFound | NeonOpError;
 /** List databases Retrieves a list of databases for the specified branch. A branch can have multiple databases. For related information, see [Manage databases](https://neon.com/docs/manage/databases/). */
@@ -10975,15 +11311,15 @@ export const listProjects: API.PaginatedOperationMethod<
   paginateCursor,
 ) as any;
 
-export type ListProjectVpcEndpointsError = NeonOpError;
+export type ListProjectVPCEndpointsError = NeonOpError;
 /** List VPC endpoint restrictions Lists VPC endpoint restrictions for the specified Neon project. */
-export const listProjectVpcEndpoints: API.OperationMethod<
-  ListProjectVpcEndpointsRequest,
+export const listProjectVPCEndpoints: API.OperationMethod<
+  ListProjectVPCEndpointsRequest,
   VPCEndpointsResponse,
-  ListProjectVpcEndpointsError,
+  ListProjectVPCEndpointsError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListProjectVpcEndpointsRequest,
+  input: ListProjectVPCEndpointsRequest,
   output: VPCEndpointsResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
@@ -11075,6 +11411,21 @@ export const recoverProject: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RegisterProjectBranchCustomDomainError = NeonOpError;
+/** Register a custom domain on a branch Registers a customer-owned domain (for example `dashboard.acme.com`) on the branch and points it at a target entity, chosen by `entity_type` + `entity_id`. In v1 only `entity_type: function` is supported (an unsupported type is rejected with `400`), where `entity_id` is the function slug and the function must already exist on the branch (else `404`). The response includes the `cname_target` the customer must point their domain at with a CNAME record; the domain goes live only once that DNS resolves and a certificate is issued on the first request. A domain already registered to another resource is rejected with `409` and no detail about the owner. Re-registering the same domain for the same entity is idempotent. **Note**: This endpoint is currently in Beta. */
+export const registerProjectBranchCustomDomain: API.OperationMethod<
+  RegisterProjectBranchCustomDomainRequest,
+  CustomDomain,
+  RegisterProjectBranchCustomDomainError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegisterProjectBranchCustomDomainRequest,
+  output: CustomDomain,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RemoveOrganizationMemberError = NeonOpError;
 /** Remove organization member Removes the specified member from the organization. Only organization admins can perform this action. The last admin in an organization cannot be removed. */
 export const removeOrganizationMember: API.OperationMethod<
@@ -11100,21 +11451,6 @@ export const removeProjectMemberRole: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RemoveProjectMemberRoleRequest,
   output: ProjectMemberRoleResponse,
-  errors: [UnknownNeonError],
-  protocol: NeonProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RequestAcceptProjectTransferError = NeonOpError;
-/** Accept a project transfer request Accepts a transfer request for the specified project, transferring it to the specified organization or user. If org_id is not passed, the project will be transferred to the current user or organization account. */
-export const requestAcceptProjectTransfer: API.OperationMethod<
-  RequestAcceptProjectTransferRequest,
-  RequestAcceptProjectTransferResponse,
-  RequestAcceptProjectTransferError,
-  NeonOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestAcceptProjectTransferRequest,
-  output: RequestAcceptProjectTransferResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
@@ -11150,21 +11486,6 @@ export const restartProjectEndpoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestoreFinalizeBranchError = NeonOpError;
-/** Finalize branch restore from snapshot Finalize the restore operation for a branch created from a snapshot. This operation updates the branch so it functions as the original branch it replaced. This includes: - Reassigning any computes from the original branch to the restored branch (this will restart the computes) - Renaming the restored branch to the original branch's name - Renaming the original branch so it no longer uses the original name This operation only applies to branches created using the `restoreSnapshot` endpoint with `finalize_restore: false`. */
-export const restoreFinalizeBranch: API.OperationMethod<
-  RestoreFinalizeBranchRequest,
-  OperationsResponse,
-  RestoreFinalizeBranchError,
-  NeonOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestoreFinalizeBranchRequest,
-  output: OperationsResponse,
-  errors: [UnknownNeonError],
-  protocol: NeonProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RestoreProjectBranchError = NotFound | NeonOpError;
 /** Restore branch to a historical state Restores a branch to an earlier state in its own or another branch's history by specifying an LSN or timestamp. Creates a new branch from the historical state. */
 export const restoreProjectBranch: API.OperationMethod<
@@ -11191,6 +11512,21 @@ export const restoreSnapshot: API.OperationMethod<
   input: RestoreSnapshotRequest,
   output: RestoreSnapshotResponse,
   errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RevealCredentialError = NotFound | Conflict | NeonOpError;
+/** Reveal a credential's secrets Returns the live `api_token` and `s3_secret_access_key` of an existing credential, so a credential whose issuance response was lost can be recovered without minting a new one. This is a POST with an explicit `/reveal` verb so the secrets never ride a GET, where they would land in access logs, browser history and proxy caches. Revoked and expired credentials return 404, as does a `token_id` that does not belong to this project. A credential issued before secret retrieval was supported has no recoverable secret and returns 409 — rotate it to obtain one. **Note**: This endpoint is currently in Beta. */
+export const revealCredential: API.OperationMethod<
+  RevealCredentialRequest,
+  CredentialSecret,
+  RevealCredentialError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RevealCredentialRequest,
+  output: CredentialSecret,
+  errors: [NotFound, Conflict, UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
 }));
@@ -11250,6 +11586,21 @@ export const revokePermissionFromProject: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RevokePermissionFromProjectRequest,
   output: ProjectPermission,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateCredentialError = NeonOpError;
+/** Rotate a credential's secrets Replaces the secret material on an existing scoped credential in place. `token_id` is preserved — it is the `AWS_ACCESS_KEY_ID` for S3-compatible clients, so the access key id your application already holds keeps working and only the secret changes. This is the analog of resetting a Postgres password, not of issuing a second credential. The response carries the new `api_token` and `s3_secret_access_key` exactly once. Rotation is **not** idempotent: retrying after an ambiguous timeout mints another secret and supersedes the previous replacement, so a retry does not recover a lost response — it only invalidates the secret you did not receive. If you lose the response, issue a replacement credential and revoke this one. The old secret stops authenticating as soon as the rotation commits. Where a region caches credentials on its data-plane verifiers, a replica may briefly keep accepting the old secret — and rejecting the new one — until its cache entry expires; where it does not, the cutover is immediate apart from requests already in flight. Either way the changeover is not atomic across replicas, so retry an unexpected authentication failure right after rotating rather than treating the new secret as bad. `last_used_at` continues to report the logical credential's prior usage and says nothing about whether the new secret has been used yet. Only a live, unexpired, unrevoked customer-managed (`user`) credential on a live project and live branch is eligible. Anything else — including the platform-internal `function` and `system` credentials — is reported as not found, indistinguishable from an unknown `token_id`. **Note**: This endpoint is currently in Beta. */
+export const rotateCredential: API.OperationMethod<
+  RotateCredentialRequest,
+  RotateCredentialResponse,
+  RotateCredentialError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateCredentialRequest,
+  output: RotateCredentialResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,
@@ -11617,16 +11968,16 @@ export const updateProjectBranch: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateProjectBranchDataApiError = NeonOpError;
+export type UpdateProjectBranchDataAPIError = NeonOpError;
 /** Update Neon Data API Updates the Neon Data API configuration for the specified branch. You can optionally provide settings to update the Data API configuration. The schema cache is always refreshed as part of this operation. */
-export const updateProjectBranchDataApi: API.OperationMethod<
-  UpdateProjectBranchDataApiRequest,
-  UpdateProjectBranchDataApiResponse,
-  UpdateProjectBranchDataApiError,
+export const updateProjectBranchDataAPI: API.OperationMethod<
+  UpdateProjectBranchDataAPIRequest,
+  UpdateProjectBranchDataAPIResponse,
+  UpdateProjectBranchDataAPIError,
   NeonOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateProjectBranchDataApiRequest,
-  output: UpdateProjectBranchDataApiResponse,
+  input: UpdateProjectBranchDataAPIRequest,
+  output: UpdateProjectBranchDataAPIResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,

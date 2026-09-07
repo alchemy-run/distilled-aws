@@ -9826,7 +9826,11 @@
     },
     "aws.synthetic#PlaybackConfigurationNotFound": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {
         "aws.codegen#synthetic": {
           "from": "NotFoundException",
@@ -9838,7 +9842,11 @@
     },
     "aws.synthetic#PrefetchScheduleNotFound": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {
         "aws.codegen#synthetic": {
           "from": "NotFoundException",
@@ -9850,7 +9858,11 @@
     },
     "aws.synthetic#ChannelNotFound": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {
         "aws.codegen#synthetic": {
           "from": "NotFoundException",
@@ -9862,7 +9874,11 @@
     },
     "aws.synthetic#ProgramNotFound": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {
         "aws.codegen#synthetic": {
           "from": "NotFoundException",

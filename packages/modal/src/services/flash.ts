@@ -36,42 +36,32 @@ export const FlashContainerDeregisterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FlashContainerDeregisterResponse",
 }) as any as S.Schema<FlashContainerDeregisterResponse>;
 
-export interface FlashContainerRegisterRequest {
-  serviceName?: string;
-  /** not used? */
-  priority?: number;
-  weight?: number;
-  host?: string;
-  port?: number;
+export interface FlashSetTargetSlotsMetricsRequest {
+  /** TODO(claudia): add other metrics to use in autoscaling decisions */
+  functionId?: string;
+  targetSlots?: number;
 }
-export const FlashContainerRegisterRequest = /*@__PURE__*/ S.suspend(() =>
+export const FlashSetTargetSlotsMetricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    serviceName: S.optional(S.String),
-    priority: S.optional(S.Number),
-    weight: S.optional(S.Number),
-    host: S.optional(S.String),
-    port: S.optional(S.Number),
+    functionId: S.optional(S.String),
+    targetSlots: S.optional(S.Number),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/FlashContainerRegister",
+      uri: "/modal.client.ModalClient/FlashSetTargetSlotsMetrics",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "FlashContainerRegisterRequest",
-}) as any as S.Schema<FlashContainerRegisterRequest>;
+  identifier: "FlashSetTargetSlotsMetricsRequest",
+}) as any as S.Schema<FlashSetTargetSlotsMetricsRequest>;
 
-export interface FlashContainerRegisterResponse {
-  url?: string;
-}
-export const FlashContainerRegisterResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-  }),
+export interface FlashSetTargetSlotsMetricsResponse {}
+export const FlashSetTargetSlotsMetricsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "FlashContainerRegisterResponse",
-}) as any as S.Schema<FlashContainerRegisterResponse>;
+  identifier: "FlashSetTargetSlotsMetricsResponse",
+}) as any as S.Schema<FlashSetTargetSlotsMetricsResponse>;
 
 export interface ListFlashContainerRequest {
   functionId?: string;
@@ -90,64 +80,74 @@ export const ListFlashContainerRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListFlashContainerRequest",
 }) as any as S.Schema<ListFlashContainerRequest>;
 
-export interface FlashContainerListResponseContainer {
+export interface ListFlashContainerResponseContainer {
   taskId?: string;
   host?: string;
   port?: number;
 }
-export const FlashContainerListResponseContainer = /*@__PURE__*/ S.suspend(() =>
+export const ListFlashContainerResponseContainer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     taskId: S.optional(S.String),
     host: S.optional(S.String),
     port: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "FlashContainerListResponseContainer",
-}) as any as S.Schema<FlashContainerListResponseContainer>;
+  identifier: "ListFlashContainerResponseContainer",
+}) as any as S.Schema<ListFlashContainerResponseContainer>;
 
-export type FlashContainerListResponseContainerList =
-  Array<FlashContainerListResponseContainer>;
-export const FlashContainerListResponseContainerList = /*@__PURE__*/ S.Array(
-  FlashContainerListResponseContainer,
-) as any as S.Schema<FlashContainerListResponseContainerList>;
+export type ListFlashContainerResponseContainerList =
+  Array<ListFlashContainerResponseContainer>;
+export const ListFlashContainerResponseContainerList = /*@__PURE__*/ S.Array(
+  ListFlashContainerResponseContainer,
+) as any as S.Schema<ListFlashContainerResponseContainerList>;
 
 export interface ListFlashContainerResponse {
-  containers?: FlashContainerListResponseContainerList;
+  containers?: ListFlashContainerResponseContainerList;
 }
 export const ListFlashContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    containers: S.optional(FlashContainerListResponseContainerList),
+    containers: S.optional(ListFlashContainerResponseContainerList),
   }),
 ).annotate({
   identifier: "ListFlashContainerResponse",
 }) as any as S.Schema<ListFlashContainerResponse>;
 
-export interface SetFlashTargetSlotMetricRequest {
-  /** TODO(claudia): add other metrics to use in autoscaling decisions */
-  functionId?: string;
-  targetSlots?: number;
+export interface RegisterFlashContainerRequest {
+  serviceName?: string;
+  /** not used? */
+  priority?: number;
+  weight?: number;
+  host?: string;
+  port?: number;
 }
-export const SetFlashTargetSlotMetricRequest = /*@__PURE__*/ S.suspend(() =>
+export const RegisterFlashContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    functionId: S.optional(S.String),
-    targetSlots: S.optional(S.Number),
+    serviceName: S.optional(S.String),
+    priority: S.optional(S.Number),
+    weight: S.optional(S.Number),
+    host: S.optional(S.String),
+    port: S.optional(S.Number),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/FlashSetTargetSlotsMetrics",
+      uri: "/modal.client.ModalClient/FlashContainerRegister",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SetFlashTargetSlotMetricRequest",
-}) as any as S.Schema<SetFlashTargetSlotMetricRequest>;
+  identifier: "RegisterFlashContainerRequest",
+}) as any as S.Schema<RegisterFlashContainerRequest>;
 
-export interface SetFlashTargetSlotMetricResponse {}
-export const SetFlashTargetSlotMetricResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface RegisterFlashContainerResponse {
+  url?: string;
+}
+export const RegisterFlashContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "SetFlashTargetSlotMetricResponse",
-}) as any as S.Schema<SetFlashTargetSlotMetricResponse>;
+  identifier: "RegisterFlashContainerResponse",
+}) as any as S.Schema<RegisterFlashContainerResponse>;
 
 export type FlashContainerDeregisterError = ModalOpError;
 /** Modal Flash (experimental) */
@@ -164,15 +164,15 @@ export const flashContainerDeregister: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FlashContainerRegisterError = ModalOpError;
-export const flashContainerRegister: API.OperationMethod<
-  FlashContainerRegisterRequest,
-  FlashContainerRegisterResponse,
-  FlashContainerRegisterError,
+export type FlashSetTargetSlotsMetricsError = ModalOpError;
+export const flashSetTargetSlotsMetrics: API.OperationMethod<
+  FlashSetTargetSlotsMetricsRequest,
+  FlashSetTargetSlotsMetricsResponse,
+  FlashSetTargetSlotsMetricsError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FlashContainerRegisterRequest,
-  output: FlashContainerRegisterResponse,
+  input: FlashSetTargetSlotsMetricsRequest,
+  output: FlashSetTargetSlotsMetricsResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -192,15 +192,15 @@ export const listFlashContainer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SetFlashTargetSlotMetricError = ModalOpError;
-export const setFlashTargetSlotMetric: API.OperationMethod<
-  SetFlashTargetSlotMetricRequest,
-  SetFlashTargetSlotMetricResponse,
-  SetFlashTargetSlotMetricError,
+export type RegisterFlashContainerError = ModalOpError;
+export const registerFlashContainer: API.OperationMethod<
+  RegisterFlashContainerRequest,
+  RegisterFlashContainerResponse,
+  RegisterFlashContainerError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetFlashTargetSlotMetricRequest,
-  output: SetFlashTargetSlotMetricResponse,
+  input: RegisterFlashContainerRequest,
+  output: RegisterFlashContainerResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

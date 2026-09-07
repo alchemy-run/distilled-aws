@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.campaigns#ListOrgCampaignsRequestDirection": {
@@ -1177,19 +1178,19 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.campaigns#ListOrgCampaigns"
+          "target": "com.github.campaigns#CreateCampaign"
         },
         {
-          "target": "com.github.campaigns#CreateCampaign"
+          "target": "com.github.campaigns#DeleteCampaign"
         },
         {
           "target": "com.github.campaigns#GetCampaignSummary"
         },
         {
-          "target": "com.github.campaigns#UpdateCampaign"
+          "target": "com.github.campaigns#ListOrgCampaigns"
         },
         {
-          "target": "com.github.campaigns#DeleteCampaign"
+          "target": "com.github.campaigns#UpdateCampaign"
         }
       ],
       "traits": {

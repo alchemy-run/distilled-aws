@@ -85,21 +85,21 @@ export const StringList = /*@__PURE__*/ S.Array(
 
 /** Place type filters. Only Place types from [Table a](https://developers.google.com/maps/documentation/places/web-service/place-types#table-a) are supported. A place can only have a single primary type associated with it. For example, the primary type might be "mexican_restaurant" or "steak_house". Use included_primary_types and excluded_primary_types to filter the results on a place's primary type. A place can also have multiple type values associated with it. For example a restaurant might have the following types: "seafood_restaurant", "restaurant", "food", "point_of_interest", "establishment". Use included_types and excluded_types to filter the results on the list of types associated with a place. If a search is specified with multiple type restrictions, only places that satisfy all of the restrictions are returned. For example, if you specify {"included_types": ["restaurant"], "excluded_primary_types": ["steak_house"]}, the returned places provide "restaurant" related services but do not operate primarily as a "steak_house". If there are any conflicting types, i.e. a type appears in both included_types and excluded_types types or included_primary_types and excluded_primary_types, an INVALID_ARGUMENT error is returned. One of included_types or included_primary_types must be set. */
 export interface TypeFilter {
-  /** Optional. Included primary Place types. */
-  includedPrimaryTypes?: StringList;
-  /** Optional. Included Place types. */
-  includedTypes?: StringList;
   /** Optional. Excluded primary Place types. */
   excludedPrimaryTypes?: StringList;
+  /** Optional. Included Place types. */
+  includedTypes?: StringList;
   /** Optional. Excluded Place types. */
   excludedTypes?: StringList;
+  /** Optional. Included primary Place types. */
+  includedPrimaryTypes?: StringList;
 }
 export const TypeFilter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    includedPrimaryTypes: S.optional(StringList),
-    includedTypes: S.optional(StringList),
     excludedPrimaryTypes: S.optional(StringList),
+    includedTypes: S.optional(StringList),
     excludedTypes: S.optional(StringList),
+    includedPrimaryTypes: S.optional(StringList),
   }),
 ).annotate({ identifier: "TypeFilter" }) as any as S.Schema<TypeFilter>;
 
@@ -119,17 +119,34 @@ export const FilterOperatingStatusItemEnumList = /*@__PURE__*/ S.Array(
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
-  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
-  longitude?: number;
   /** The latitude in degrees. It must be in the range [-90.0, +90.0]. */
   latitude?: number;
+  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
+  longitude?: number;
 }
 export const LatLng = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    longitude: S.optional(S.Number),
     latitude: S.optional(S.Number),
+    longitude: S.optional(S.Number),
   }),
 ).annotate({ identifier: "LatLng" }) as any as S.Schema<LatLng>;
+
+/** A circle is defined by a center point and radius in meters. */
+export interface Circle {
+  /** **Format:** Must be in the format `places/PLACE_ID`, where `PLACE_ID` is the unique identifier of a place. For example: `places/ChIJgUbEo8cfqokR5lP9_Wh_DaM`. */
+  place?: string;
+  /** Optional. The radius of the circle in meters */
+  radius?: number;
+  /** The latitude and longitude of the center of the circle. */
+  latLng?: LatLng;
+}
+export const Circle = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    place: S.optional(S.String),
+    radius: S.optional(S.Number),
+    latLng: S.optional(LatLng),
+  }),
+).annotate({ identifier: "Circle" }) as any as S.Schema<Circle>;
 
 export type LatLngList = Array<LatLng>;
 export const LatLngList = /*@__PURE__*/ S.Array(
@@ -169,37 +186,20 @@ export const Region = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Region" }) as any as S.Schema<Region>;
 
-/** A circle is defined by a center point and radius in meters. */
-export interface Circle {
-  /** **Format:** Must be in the format `places/PLACE_ID`, where `PLACE_ID` is the unique identifier of a place. For example: `places/ChIJgUbEo8cfqokR5lP9_Wh_DaM`. */
-  place?: string;
-  /** The latitude and longitude of the center of the circle. */
-  latLng?: LatLng;
-  /** Optional. The radius of the circle in meters */
-  radius?: number;
-}
-export const Circle = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    place: S.optional(S.String),
-    latLng: S.optional(LatLng),
-    radius: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Circle" }) as any as S.Schema<Circle>;
-
 /** Location filters. Specifies the area of interest for the insight. */
 export interface LocationFilter {
+  /** Area as a circle. */
+  circle?: Circle;
   /** Custom area specified by a polygon. */
   customArea?: CustomArea;
   /** Area as region. */
   region?: Region;
-  /** Area as a circle. */
-  circle?: Circle;
 }
 export const LocationFilter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    circle: S.optional(Circle),
     customArea: S.optional(CustomArea),
     region: S.optional(Region),
-    circle: S.optional(Circle),
   }),
 ).annotate({ identifier: "LocationFilter" }) as any as S.Schema<LocationFilter>;
 

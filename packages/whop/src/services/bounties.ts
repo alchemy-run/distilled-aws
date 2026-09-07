@@ -638,6 +638,124 @@ export const CreateBountyRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateBountyRequest",
 }) as any as S.Schema<CreateBountyRequest>;
 
+export interface GetBountyRequest {
+  /** Bounty ID (`bnty_` tag). */
+  id: string;
+}
+export const GetBountyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/bounties/{id}", code: 200 })),
+).annotate({
+  identifier: "GetBountyRequest",
+}) as any as S.Schema<GetBountyRequest>;
+
+export interface GetPublicBountySubmissionRequest {
+  /** The bounty the submission belongs to (`bnty_` tag). */
+  bounty_id: string;
+  /** The submission to retrieve (`btys_` tag). */
+  id: string;
+}
+export const GetPublicBountySubmissionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bounty_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/bounties/{bounty_id}/submissions/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetPublicBountySubmissionRequest",
+}) as any as S.Schema<GetPublicBountySubmissionRequest>;
+
+/** Recording lifecycle state. */
+export type BountySubmissionLivestreamFeedRecordingStatus =
+  | "recording"
+  | "processing"
+  | "completed"
+  | "failed";
+export const BountySubmissionLivestreamFeedRecordingStatus =
+  /*@__PURE__*/ S.String;
+
+export interface BountySubmissionLivestreamFeed {
+  /** When the proof livestream ended, as an ISO 8601 timestamp. `null` while it is still live — a feed with a `started_at` and no `ended_at` is streaming right now. */
+  ended_at: string | null;
+  /** Livestream feed ID. */
+  id: string;
+  /** Recording lifecycle state. */
+  recording_status: BountySubmissionLivestreamFeedRecordingStatus | null;
+  /** Playback URL for a completed proof recording, when available. */
+  recording_url: string | null;
+  /** When the proof livestream went live, as an ISO 8601 timestamp. `null` before it starts. */
+  started_at: string | null;
+  /** Current proof thumbnail URL, when available. */
+  thumbnail_url: string | null;
+  /** Display title for the proof livestream. */
+  title: string;
+}
+export const BountySubmissionLivestreamFeed = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ended_at: S.NullOr(S.String),
+    id: S.String,
+    recording_status: S.NullOr(BountySubmissionLivestreamFeedRecordingStatus),
+    recording_url: S.NullOr(S.String),
+    started_at: S.NullOr(S.String),
+    thumbnail_url: S.NullOr(S.String),
+    title: S.String,
+  }),
+).annotate({
+  identifier: "BountySubmissionLivestreamFeed",
+}) as any as S.Schema<BountySubmissionLivestreamFeed>;
+
+/** Lifecycle state. `submitted` submissions await review; `approved` submissions were accepted and paid; `denied` submissions were rejected. In-progress attempts never appear on the public list. */
+export type PublicBountySubmissionStatus = "submitted" | "approved" | "denied";
+export const PublicBountySubmissionStatus = /*@__PURE__*/ S.String;
+
+export interface PublicBountySubmission {
+  /** The bounty the work was submitted to, prefixed `bnty_`. */
+  bounty_id: string;
+  /** When the worker claimed the submission, as an ISO 8601 timestamp. */
+  claimed_at: string | null;
+  /** When the submission was created, as an ISO 8601 timestamp. */
+  created_at: string;
+  /** Why the submission was denied, when a presentable reason exists. Always `null` unless `status` is `denied`. */
+  denial_reason: string | null;
+  /** Submission ID, prefixed `btys_`. */
+  id: string;
+  /** Latest public proof livestream attached to the submission. */
+  latest_proof_livestream_feed: BountySubmissionLivestreamFeed | null;
+  /** When the submission was approved or denied, as an ISO 8601 timestamp. `null` until then. */
+  resolved_at: string | null;
+  /** Lifecycle state. `submitted` submissions await review; `approved` submissions were accepted and paid; `denied` submissions were rejected. In-progress attempts never appear on the public list. */
+  status: PublicBountySubmissionStatus;
+  /** When proof was submitted for review, as an ISO 8601 timestamp. */
+  submitted_at: string | null;
+  /** When the submission was last updated, as an ISO 8601 timestamp. */
+  updated_at: string;
+  /** User who submitted the work. */
+  worker: UserSummary;
+}
+export const PublicBountySubmission = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bounty_id: S.String,
+    claimed_at: S.NullOr(S.String),
+    created_at: S.String,
+    denial_reason: S.NullOr(S.String),
+    id: S.String,
+    latest_proof_livestream_feed: S.NullOr(BountySubmissionLivestreamFeed),
+    resolved_at: S.NullOr(S.String),
+    status: PublicBountySubmissionStatus,
+    submitted_at: S.NullOr(S.String),
+    updated_at: S.String,
+    worker: UserSummary,
+  }),
+).annotate({
+  identifier: "PublicBountySubmission",
+}) as any as S.Schema<PublicBountySubmission>;
+
 export type ListBountiesRequestStatus =
   | "scheduled"
   | "open"
@@ -969,91 +1087,6 @@ export const ListPublicBountySubmissionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPublicBountySubmissionsRequest",
 }) as any as S.Schema<ListPublicBountySubmissionsRequest>;
 
-/** Recording lifecycle state. */
-export type BountySubmissionLivestreamFeedRecordingStatus =
-  | "recording"
-  | "processing"
-  | "completed"
-  | "failed";
-export const BountySubmissionLivestreamFeedRecordingStatus =
-  /*@__PURE__*/ S.String;
-
-export interface BountySubmissionLivestreamFeed {
-  /** When the proof livestream ended, as an ISO 8601 timestamp. `null` while it is still live — a feed with a `started_at` and no `ended_at` is streaming right now. */
-  ended_at: string | null;
-  /** Livestream feed ID. */
-  id: string;
-  /** Recording lifecycle state. */
-  recording_status: BountySubmissionLivestreamFeedRecordingStatus | null;
-  /** Playback URL for a completed proof recording, when available. */
-  recording_url: string | null;
-  /** When the proof livestream went live, as an ISO 8601 timestamp. `null` before it starts. */
-  started_at: string | null;
-  /** Current proof thumbnail URL, when available. */
-  thumbnail_url: string | null;
-  /** Display title for the proof livestream. */
-  title: string;
-}
-export const BountySubmissionLivestreamFeed = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ended_at: S.NullOr(S.String),
-    id: S.String,
-    recording_status: S.NullOr(BountySubmissionLivestreamFeedRecordingStatus),
-    recording_url: S.NullOr(S.String),
-    started_at: S.NullOr(S.String),
-    thumbnail_url: S.NullOr(S.String),
-    title: S.String,
-  }),
-).annotate({
-  identifier: "BountySubmissionLivestreamFeed",
-}) as any as S.Schema<BountySubmissionLivestreamFeed>;
-
-/** Lifecycle state. `submitted` submissions await review; `approved` submissions were accepted and paid; `denied` submissions were rejected. In-progress attempts never appear on the public list. */
-export type PublicBountySubmissionStatus = "submitted" | "approved" | "denied";
-export const PublicBountySubmissionStatus = /*@__PURE__*/ S.String;
-
-export interface PublicBountySubmission {
-  /** The bounty the work was submitted to, prefixed `bnty_`. */
-  bounty_id: string;
-  /** When the worker claimed the submission, as an ISO 8601 timestamp. */
-  claimed_at: string | null;
-  /** When the submission was created, as an ISO 8601 timestamp. */
-  created_at: string;
-  /** Why the submission was denied, when a presentable reason exists. Always `null` unless `status` is `denied`. */
-  denial_reason: string | null;
-  /** Submission ID, prefixed `btys_`. */
-  id: string;
-  /** Latest public proof livestream attached to the submission. */
-  latest_proof_livestream_feed: BountySubmissionLivestreamFeed | null;
-  /** When the submission was approved or denied, as an ISO 8601 timestamp. `null` until then. */
-  resolved_at: string | null;
-  /** Lifecycle state. `submitted` submissions await review; `approved` submissions were accepted and paid; `denied` submissions were rejected. In-progress attempts never appear on the public list. */
-  status: PublicBountySubmissionStatus;
-  /** When proof was submitted for review, as an ISO 8601 timestamp. */
-  submitted_at: string | null;
-  /** When the submission was last updated, as an ISO 8601 timestamp. */
-  updated_at: string;
-  /** User who submitted the work. */
-  worker: UserSummary;
-}
-export const PublicBountySubmission = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bounty_id: S.String,
-    claimed_at: S.NullOr(S.String),
-    created_at: S.String,
-    denial_reason: S.NullOr(S.String),
-    id: S.String,
-    latest_proof_livestream_feed: S.NullOr(BountySubmissionLivestreamFeed),
-    resolved_at: S.NullOr(S.String),
-    status: PublicBountySubmissionStatus,
-    submitted_at: S.NullOr(S.String),
-    updated_at: S.String,
-    worker: UserSummary,
-  }),
-).annotate({
-  identifier: "PublicBountySubmission",
-}) as any as S.Schema<PublicBountySubmission>;
-
 export type ListPublicBountySubmissionsResponseDataList =
   Array<PublicBountySubmission>;
 export const ListPublicBountySubmissionsResponseDataList =
@@ -1078,40 +1111,6 @@ export const ListPublicBountySubmissionsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListPublicBountySubmissionsResponse",
 }) as any as S.Schema<ListPublicBountySubmissionsResponse>;
-
-export interface RetrieveBountyRequest {
-  /** Bounty ID (`bnty_` tag). */
-  id: string;
-}
-export const RetrieveBountyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/bounties/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveBountyRequest",
-}) as any as S.Schema<RetrieveBountyRequest>;
-
-export interface RetrievePublicBountySubmissionRequest {
-  /** The bounty the submission belongs to (`bnty_` tag). */
-  bounty_id: string;
-  /** The submission to retrieve (`btys_` tag). */
-  id: string;
-}
-export const RetrievePublicBountySubmissionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      bounty_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/bounties/{bounty_id}/submissions/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RetrievePublicBountySubmissionRequest",
-}) as any as S.Schema<RetrievePublicBountySubmissionRequest>;
 
 /** Replace the countries whose residents can work the bounty, as ISO 3166 alpha-2 codes. Empty means worldwide. */
 export type UpdateBountyRequestAllowedCountryCodesList = Array<string>;
@@ -1218,6 +1217,36 @@ export const createBounty: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetBountyError = NotFound | WhopOpError;
+/** Retrieve Bounty Retrieves a bounty by ID. Authentication is optional: a request with no credential reads the bounty when it is publicly visible — published or completed, and not restricted to a private experience's members. Bounties outside the caller's scope, and bounties not publicly visible to an anonymous caller, return `404`. */
+export const getBounty: API.OperationMethod<
+  GetBountyRequest,
+  Bounty,
+  GetBountyError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBountyRequest,
+  output: Bounty,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPublicBountySubmissionError = NotFound | WhopOpError;
+/** Retrieve Public Submission Retrieves one of a bounty's publicly visible submissions in the reduced public shape — the read behind a shared proof link, whose submission is usually outside the bounty page's capped preview. Authentication is optional; a bounty that is not publicly visible, and a submission that is not publicly visible work on it, both return `404`. */
+export const getPublicBountySubmission: API.OperationMethod<
+  GetPublicBountySubmissionRequest,
+  PublicBountySubmission,
+  GetPublicBountySubmissionError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPublicBountySubmissionRequest,
+  output: PublicBountySubmission,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListBountiesError = BadRequest | Forbidden | WhopOpError;
 /** List Bounties Lists bounties visible to the credential — for an account API key, the account's bounties including scheduled drafts; for a user token, the bounties the user can see and work. */
 export const listBounties: API.PaginatedOperationMethod<
@@ -1274,36 +1303,6 @@ export const listPublicBountySubmissions: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveBountyError = NotFound | WhopOpError;
-/** Retrieve Bounty Retrieves a bounty by ID. Authentication is optional: a request with no credential reads the bounty when it is publicly visible — published or completed, and not restricted to a private experience's members. Bounties outside the caller's scope, and bounties not publicly visible to an anonymous caller, return `404`. */
-export const retrieveBounty: API.OperationMethod<
-  RetrieveBountyRequest,
-  Bounty,
-  RetrieveBountyError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveBountyRequest,
-  output: Bounty,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrievePublicBountySubmissionError = NotFound | WhopOpError;
-/** Retrieve Public Submission Retrieves one of a bounty's publicly visible submissions in the reduced public shape — the read behind a shared proof link, whose submission is usually outside the bounty page's capped preview. Authentication is optional; a bounty that is not publicly visible, and a submission that is not publicly visible work on it, both return `404`. */
-export const retrievePublicBountySubmission: API.OperationMethod<
-  RetrievePublicBountySubmissionRequest,
-  PublicBountySubmission,
-  RetrievePublicBountySubmissionError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePublicBountySubmissionRequest,
-  output: PublicBountySubmission,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateBountyError = NotFound | WhopOpError;
 /** Update Bounty Updates a bounty. A published bounty accepts title, description, and country targeting while it is still open with nothing under review. A scheduled (not-yet-published) draft additionally accepts the reward, winner slots, and schedule. */

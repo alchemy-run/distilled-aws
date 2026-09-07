@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.early_access_feature#ListEarlyAccessFeatureRequest": {
@@ -755,7 +756,7 @@
         }
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureRetrieveRequest": {
+    "com.posthog.early_access_feature#GetEarlyAccessFeatureRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -779,10 +780,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureRetrieve": {
+    "com.posthog.early_access_feature#GetEarlyAccessFeature": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.early_access_feature#EarlyAccessFeatureRetrieveRequest"
+        "target": "com.posthog.early_access_feature#GetEarlyAccessFeatureRequest"
       },
       "output": {
         "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
@@ -1045,22 +1046,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.early_access_feature#ListEarlyAccessFeature"
-        },
-        {
           "target": "com.posthog.early_access_feature#CreateEarlyAccessFeature"
         },
         {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeatureRetrieve"
+          "target": "com.posthog.early_access_feature#EarlyAccessFeatureDestroy"
+        },
+        {
+          "target": "com.posthog.early_access_feature#GetEarlyAccessFeature"
+        },
+        {
+          "target": "com.posthog.early_access_feature#ListEarlyAccessFeature"
         },
         {
           "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeature"
         },
         {
           "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeaturePartial"
-        },
-        {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeatureDestroy"
         }
       ],
       "traits": {

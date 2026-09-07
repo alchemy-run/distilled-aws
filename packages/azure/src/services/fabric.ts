@@ -42,17 +42,17 @@ export const CheckFabricCapacityNameAvailabilityRequest =
   }) as any as S.Schema<CheckFabricCapacityNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type FabricCapacitiesCheckNameAvailabilityResponseReason =
+export type CheckFabricCapacityNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const FabricCapacitiesCheckNameAvailabilityResponseReason =
+export const CheckFabricCapacityNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckFabricCapacityNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: FabricCapacitiesCheckNameAvailabilityResponseReason;
+  reason?: CheckFabricCapacityNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -60,7 +60,7 @@ export const CheckFabricCapacityNameAvailabilityResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(FabricCapacitiesCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckFabricCapacityNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
   ).annotate({
@@ -328,38 +328,6 @@ export const FabricCapacitiesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "FabricCapacitiesCreateOrUpdateResponse",
 }) as any as S.Schema<FabricCapacitiesCreateOrUpdateResponse>;
 
-export interface FabricCapacitiesResumeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
-  capacityName: string;
-}
-export const FabricCapacitiesResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    capacityName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/resume",
-      code: 200,
-      apiVersion: "2023-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricCapacitiesResumeRequest",
-}) as any as S.Schema<FabricCapacitiesResumeRequest>;
-
-export interface FabricCapacitiesResumeResponse {}
-export const FabricCapacitiesResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FabricCapacitiesResumeResponse",
-}) as any as S.Schema<FabricCapacitiesResumeResponse>;
-
 export interface GetFabricCapacityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -386,13 +354,13 @@ export const GetFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFabricCapacityRequest>;
 
 /** Resource tags. */
-export type FabricCapacitiesGetResponseTagsMap = {
+export type GetFabricCapacityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FabricCapacitiesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetFabricCapacityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricCapacitiesGetResponseTagsMap>;
+) as any as S.Schema<GetFabricCapacityResponseTagsMap>;
 
 export interface GetFabricCapacityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -404,7 +372,7 @@ export interface GetFabricCapacityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricCapacitiesGetResponseTagsMap;
+  tags?: GetFabricCapacityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -418,7 +386,7 @@ export const GetFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricCapacitiesGetResponseTagsMap),
+    tags: S.optional(GetFabricCapacityResponseTagsMap),
     location: S.String,
     properties: FabricCapacityProperties,
     sku: RpSku,
@@ -735,25 +703,57 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
+
+export interface ResumeFabricCapacityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Microsoft Fabric capacity. It must be a minimum of 3 characters, and a maximum of 63. */
+  capacityName: string;
+}
+export const ResumeFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    capacityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Fabric/capacities/{capacityName}/resume",
+      code: 200,
+      apiVersion: "2023-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeFabricCapacityRequest",
+}) as any as S.Schema<ResumeFabricCapacityRequest>;
+
+export interface ResumeFabricCapacityResponse {}
+export const ResumeFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResumeFabricCapacityResponse",
+}) as any as S.Schema<ResumeFabricCapacityResponse>;
 
 export interface SuspendFabricCapacityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -788,13 +788,13 @@ export const SuspendFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SuspendFabricCapacityResponse>;
 
 /** Resource tags. */
-export type FabricCapacitiesUpdateRequestTagsMap = {
+export type UpdateFabricCapacityRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const FabricCapacitiesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateFabricCapacityRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricCapacitiesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFabricCapacityRequestTagsMap>;
 
 /** The updatable properties of the FabricCapacity. */
 export interface FabricCapacityUpdateProperties {
@@ -819,7 +819,7 @@ export interface UpdateFabricCapacityRequest {
   /** The SKU details */
   sku?: RpSku;
   /** Resource tags. */
-  tags?: FabricCapacitiesUpdateRequestTagsMap;
+  tags?: UpdateFabricCapacityRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: FabricCapacityUpdateProperties;
 }
@@ -829,7 +829,7 @@ export const UpdateFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     capacityName: S.String.pipe(T.Label()),
     sku: S.optional(RpSku),
-    tags: S.optional(FabricCapacitiesUpdateRequestTagsMap),
+    tags: S.optional(UpdateFabricCapacityRequestTagsMap),
     properties: S.optional(FabricCapacityUpdateProperties),
   }).pipe(
     T.Http({
@@ -844,13 +844,13 @@ export const UpdateFabricCapacityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFabricCapacityRequest>;
 
 /** Resource tags. */
-export type FabricCapacitiesUpdateResponseTagsMap = {
+export type UpdateFabricCapacityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FabricCapacitiesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateFabricCapacityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricCapacitiesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFabricCapacityResponseTagsMap>;
 
 export interface UpdateFabricCapacityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -862,7 +862,7 @@ export interface UpdateFabricCapacityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricCapacitiesUpdateResponseTagsMap;
+  tags?: UpdateFabricCapacityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -876,7 +876,7 @@ export const UpdateFabricCapacityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricCapacitiesUpdateResponseTagsMap),
+    tags: S.optional(UpdateFabricCapacityResponseTagsMap),
     location: S.String,
     properties: FabricCapacityProperties,
     sku: RpSku,
@@ -925,21 +925,6 @@ export const FabricCapacitiesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: FabricCapacitiesCreateOrUpdateRequest,
   output: FabricCapacitiesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricCapacitiesResumeError = AzureOpError;
-/** Resume operation of the specified Fabric capacity instance. */
-export const FabricCapacitiesResume: API.OperationMethod<
-  FabricCapacitiesResumeRequest,
-  FabricCapacitiesResumeResponse,
-  FabricCapacitiesResumeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricCapacitiesResumeRequest,
-  output: FabricCapacitiesResumeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1030,6 +1015,21 @@ export const ListOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOperationsRequest,
   output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeFabricCapacityError = AzureOpError;
+/** Resume operation of the specified Fabric capacity instance. */
+export const ResumeFabricCapacity: API.OperationMethod<
+  ResumeFabricCapacityRequest,
+  ResumeFabricCapacityResponse,
+  ResumeFabricCapacityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeFabricCapacityRequest,
+  output: ResumeFabricCapacityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

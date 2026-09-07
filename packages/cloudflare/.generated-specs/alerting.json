@@ -59,7 +59,8 @@
       "tunnelId": "tunnel_id",
       "tunnelName": "tunnel_name",
       "updatedAt": "updated_at"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.alerting#AvailableAlertsListResultValueItemFilterOptionsList": {
@@ -4851,70 +4852,70 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.alerting#AvailableAlertsList"
+          "target": "com.cloudflare.alerting#CreateDestinationPagerduty"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsEligibleGet"
+          "target": "com.cloudflare.alerting#CreateDestinationWebhook"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyCreate"
+          "target": "com.cloudflare.alerting#CreatePolicy"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyDelete"
+          "target": "com.cloudflare.alerting#CreateSilence"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyGet"
+          "target": "com.cloudflare.alerting#DeleteDestinationPagerduty"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyLink"
+          "target": "com.cloudflare.alerting#DeleteDestinationWebhook"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksCreate"
+          "target": "com.cloudflare.alerting#DeletePolicy"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksDelete"
+          "target": "com.cloudflare.alerting#DeleteSilence"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksGet"
+          "target": "com.cloudflare.alerting#GetDestinationEligible"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksList"
+          "target": "com.cloudflare.alerting#GetDestinationPagerduty"
         },
         {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksUpdate"
+          "target": "com.cloudflare.alerting#GetDestinationWebhook"
         },
         {
-          "target": "com.cloudflare.alerting#HistoryList"
+          "target": "com.cloudflare.alerting#GetPolicy"
         },
         {
-          "target": "com.cloudflare.alerting#PoliciesCreate"
+          "target": "com.cloudflare.alerting#GetSilence"
         },
         {
-          "target": "com.cloudflare.alerting#PoliciesDelete"
+          "target": "com.cloudflare.alerting#LinkDestinationPagerduty"
         },
         {
-          "target": "com.cloudflare.alerting#PoliciesGet"
+          "target": "com.cloudflare.alerting#ListAvailableAlerts"
         },
         {
-          "target": "com.cloudflare.alerting#PoliciesList"
+          "target": "com.cloudflare.alerting#ListDestinationWebhooks"
         },
         {
-          "target": "com.cloudflare.alerting#PoliciesUpdate"
+          "target": "com.cloudflare.alerting#ListHistories"
         },
         {
-          "target": "com.cloudflare.alerting#SilencesCreate"
+          "target": "com.cloudflare.alerting#ListPolicies"
         },
         {
-          "target": "com.cloudflare.alerting#SilencesDelete"
+          "target": "com.cloudflare.alerting#ListSilences"
         },
         {
-          "target": "com.cloudflare.alerting#SilencesGet"
+          "target": "com.cloudflare.alerting#UpdateDestinationWebhook"
         },
         {
-          "target": "com.cloudflare.alerting#SilencesList"
+          "target": "com.cloudflare.alerting#UpdatePolicy"
         },
         {
-          "target": "com.cloudflare.alerting#SilencesUpdate"
+          "target": "com.cloudflare.alerting#UpdateSilence"
         }
       ],
       "traits": {

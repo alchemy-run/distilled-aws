@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByHostPool": {
@@ -123,7 +124,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByHostPoolResponseProperties",
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPoolResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -133,11 +134,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByHostPoolResponseProperties": {
+    "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPoolResponseProperties": {
       "type": "structure",
       "members": {
         "groupIds": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByHostPoolResponsePropertiesGroupIdsList",
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList",
           "traits": {
             "smithy.api#documentation": "The group ids for the private endpoint resource."
           }
@@ -264,7 +265,7 @@
         "smithy.api#documentation": "The private endpoint resource."
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByHostPoolResponsePropertiesGroupIdsList": {
+    "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -417,7 +418,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByHostPoolRequestProperties",
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPoolRequestProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -427,7 +428,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByHostPoolRequestProperties": {
+    "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPoolRequestProperties": {
       "type": "structure",
       "members": {
         "privateEndpoint": {
@@ -502,7 +503,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByHostPoolResponseProperties",
+          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByHostPoolResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -512,11 +513,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByHostPoolResponseProperties": {
+    "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByHostPoolResponseProperties": {
       "type": "structure",
       "members": {
         "groupIds": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByHostPoolResponsePropertiesGroupIdsList",
+          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList",
           "traits": {
             "smithy.api#documentation": "The group ids for the private endpoint resource."
           }
@@ -545,7 +546,7 @@
         "smithy.api#documentation": "Properties of the private endpoint connection."
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByHostPoolResponsePropertiesGroupIdsList": {
+    "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1535,10 +1536,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#UserSessionsSendMessage": {
+    "com.azure.desktopvirtualization#SendUserSessionMessage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#UserSessionsSendMessageRequest"
+        "target": "com.azure.desktopvirtualization#SendUserSessionMessageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1554,7 +1555,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-10"
       }
     },
-    "com.azure.desktopvirtualization#UserSessionsSendMessageRequest": {
+    "com.azure.desktopvirtualization#SendUserSessionMessageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1614,10 +1615,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#UserSessionsDisconnect": {
+    "com.azure.desktopvirtualization#DisconnectUserSession": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#UserSessionsDisconnectRequest"
+        "target": "com.azure.desktopvirtualization#DisconnectUserSessionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1633,7 +1634,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-10"
       }
     },
-    "com.azure.desktopvirtualization#UserSessionsDisconnectRequest": {
+    "com.azure.desktopvirtualization#DisconnectUserSessionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2726,7 +2727,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#AppAttachPackageUpdateResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateAppAttachPackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2750,7 +2751,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#AppAttachPackageUpdateResponseTagsMap": {
+    "com.azure.desktopvirtualization#UpdateAppAttachPackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3076,7 +3077,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#AppAttachPackageGetResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#GetAppAttachPackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3100,7 +3101,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#AppAttachPackageGetResponseTagsMap": {
+    "com.azure.desktopvirtualization#GetAppAttachPackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3388,10 +3389,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#AppAttachPackageInfoImport": {
+    "com.azure.desktopvirtualization#ImportAppAttachPackageInfo": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#AppAttachPackageInfoImportRequest"
+        "target": "com.azure.desktopvirtualization#ImportAppAttachPackageInfoRequest"
       },
       "output": {
         "target": "com.azure.desktopvirtualization#AppAttachPackageList"
@@ -3407,7 +3408,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-10"
       }
     },
-    "com.azure.desktopvirtualization#AppAttachPackageInfoImportRequest": {
+    "com.azure.desktopvirtualization#ImportAppAttachPackageInfoRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3441,7 +3442,7 @@
           }
         },
         "packageArchitecture": {
-          "target": "com.azure.desktopvirtualization#AppAttachPackageInfoImportRequestPackageArchitecture",
+          "target": "com.azure.desktopvirtualization#ImportAppAttachPackageInfoRequestPackageArchitecture",
           "traits": {
             "smithy.api#documentation": "Possible device architectures that an app attach package can be configured for",
             "com.distilled.openapi#nullable": {}
@@ -3452,7 +3453,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#AppAttachPackageInfoImportRequestPackageArchitecture": {
+    "com.azure.desktopvirtualization#ImportAppAttachPackageInfoRequestPackageArchitecture": {
       "type": "enum",
       "members": {
         "ARM": {
@@ -3502,10 +3503,10 @@
         "smithy.api#documentation": "Possible device architectures that an app attach package can be configured for"
       }
     },
-    "com.azure.desktopvirtualization#ListMsixPackages": {
+    "com.azure.desktopvirtualization#ListMSIXPackages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#ListMsixPackagesRequest"
+        "target": "com.azure.desktopvirtualization#ListMSIXPackagesRequest"
       },
       "output": {
         "target": "com.azure.desktopvirtualization#MSIXPackageList"
@@ -3682,7 +3683,7 @@
         "smithy.api#documentation": "List of package dependencies. "
       }
     },
-    "com.azure.desktopvirtualization#ListMsixPackagesRequest": {
+    "com.azure.desktopvirtualization#ListMSIXPackagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3735,10 +3736,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#DeleteMsixPackage": {
+    "com.azure.desktopvirtualization#DeleteMSIXPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#DeleteMsixPackageRequest"
+        "target": "com.azure.desktopvirtualization#DeleteMSIXPackageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3754,7 +3755,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-10"
       }
     },
-    "com.azure.desktopvirtualization#DeleteMsixPackageRequest": {
+    "com.azure.desktopvirtualization#DeleteMSIXPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3794,13 +3795,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#UpdateMsixPackage": {
+    "com.azure.desktopvirtualization#UpdateMSIXPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#UpdateMsixPackageRequest"
+        "target": "com.azure.desktopvirtualization#UpdateMSIXPackageRequest"
       },
       "output": {
-        "target": "com.azure.desktopvirtualization#UpdateMsixPackageResponse"
+        "target": "com.azure.desktopvirtualization#UpdateMSIXPackageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3813,7 +3814,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-10"
       }
     },
-    "com.azure.desktopvirtualization#UpdateMsixPackageResponse": {
+    "com.azure.desktopvirtualization#UpdateMSIXPackageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3852,7 +3853,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#UpdateMsixPackageRequest": {
+    "com.azure.desktopvirtualization#UpdateMSIXPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4029,13 +4030,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#GetMsixPackage": {
+    "com.azure.desktopvirtualization#GetMSIXPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#GetMsixPackageRequest"
+        "target": "com.azure.desktopvirtualization#GetMSIXPackageRequest"
       },
       "output": {
-        "target": "com.azure.desktopvirtualization#GetMsixPackageResponse"
+        "target": "com.azure.desktopvirtualization#GetMSIXPackageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4048,7 +4049,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-10"
       }
     },
-    "com.azure.desktopvirtualization#GetMsixPackageResponse": {
+    "com.azure.desktopvirtualization#GetMSIXPackageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4087,7 +4088,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#GetMsixPackageRequest": {
+    "com.azure.desktopvirtualization#GetMSIXPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5140,10 +5141,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsRetrieveRegistrationToken": {
+    "com.azure.desktopvirtualization#GetHostPoolRegistrationToken": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#HostPoolsRetrieveRegistrationTokenRequest"
+        "target": "com.azure.desktopvirtualization#GetHostPoolRegistrationTokenRequest"
       },
       "output": {
         "target": "com.azure.desktopvirtualization#RegistrationInfo"
@@ -5212,7 +5213,7 @@
         "smithy.api#documentation": "The type of resetting the token."
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsRetrieveRegistrationTokenRequest": {
+    "com.azure.desktopvirtualization#GetHostPoolRegistrationTokenRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6459,7 +6460,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#HostPoolsUpdateResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateHostPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6490,19 +6491,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#HostPoolsUpdateResponseIdentity",
+          "target": "com.azure.desktopvirtualization#UpdateHostPoolResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#HostPoolsUpdateResponseSku",
+          "target": "com.azure.desktopvirtualization#UpdateHostPoolResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#HostPoolsUpdateResponsePlan",
+          "target": "com.azure.desktopvirtualization#UpdateHostPoolResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -6519,7 +6520,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsUpdateResponsePlan": {
+    "com.azure.desktopvirtualization#UpdateHostPoolResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -6560,7 +6561,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsUpdateResponseSku": {
+    "com.azure.desktopvirtualization#UpdateHostPoolResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -6596,7 +6597,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsUpdateResponseIdentity": {
+    "com.azure.desktopvirtualization#UpdateHostPoolResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -6622,7 +6623,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsUpdateResponseTagsMap": {
+    "com.azure.desktopvirtualization#UpdateHostPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6662,7 +6663,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#HostPoolsUpdateRequestTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateHostPoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "tags to be updated",
             "com.distilled.openapi#nullable": {}
@@ -6675,7 +6676,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#HostPoolsUpdateRequestIdentity",
+          "target": "com.azure.desktopvirtualization#UpdateHostPoolRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -6685,7 +6686,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsUpdateRequestIdentity": {
+    "com.azure.desktopvirtualization#UpdateHostPoolRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -7146,7 +7147,7 @@
         "smithy.api#documentation": "PersonalDesktopAssignment type for HostPool."
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsUpdateRequestTagsMap": {
+    "com.azure.desktopvirtualization#UpdateHostPoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7915,7 +7916,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#HostPoolsGetResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#GetHostPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7946,19 +7947,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#HostPoolsGetResponseIdentity",
+          "target": "com.azure.desktopvirtualization#GetHostPoolResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#HostPoolsGetResponseSku",
+          "target": "com.azure.desktopvirtualization#GetHostPoolResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#HostPoolsGetResponsePlan",
+          "target": "com.azure.desktopvirtualization#GetHostPoolResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -7975,7 +7976,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsGetResponsePlan": {
+    "com.azure.desktopvirtualization#GetHostPoolResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -8016,7 +8017,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsGetResponseSku": {
+    "com.azure.desktopvirtualization#GetHostPoolResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -8052,7 +8053,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsGetResponseIdentity": {
+    "com.azure.desktopvirtualization#GetHostPoolResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -8078,7 +8079,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#HostPoolsGetResponseTagsMap": {
+    "com.azure.desktopvirtualization#GetHostPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9411,10 +9412,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#StartMenuItemsList": {
+    "com.azure.desktopvirtualization#ListStartMenuItems": {
       "type": "operation",
       "input": {
-        "target": "com.azure.desktopvirtualization#StartMenuItemsListRequest"
+        "target": "com.azure.desktopvirtualization#ListStartMenuItemsRequest"
       },
       "output": {
         "target": "com.azure.desktopvirtualization#StartMenuItemList"
@@ -9535,7 +9536,7 @@
         "smithy.api#documentation": "Schema for StartMenuItem properties."
       }
     },
-    "com.azure.desktopvirtualization#StartMenuItemsListRequest": {
+    "com.azure.desktopvirtualization#ListStartMenuItemsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10110,7 +10111,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateApplicationGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10141,19 +10142,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponseIdentity",
+          "target": "com.azure.desktopvirtualization#UpdateApplicationGroupResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponseSku",
+          "target": "com.azure.desktopvirtualization#UpdateApplicationGroupResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponsePlan",
+          "target": "com.azure.desktopvirtualization#UpdateApplicationGroupResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -10170,7 +10171,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponsePlan": {
+    "com.azure.desktopvirtualization#UpdateApplicationGroupResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -10211,7 +10212,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponseSku": {
+    "com.azure.desktopvirtualization#UpdateApplicationGroupResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -10247,7 +10248,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponseIdentity": {
+    "com.azure.desktopvirtualization#UpdateApplicationGroupResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10273,7 +10274,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsUpdateResponseTagsMap": {
+    "com.azure.desktopvirtualization#UpdateApplicationGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10313,7 +10314,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsUpdateRequestTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateApplicationGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "tags to be updated",
             "com.distilled.openapi#nullable": {}
@@ -10356,7 +10357,7 @@
         "smithy.api#documentation": "ApplicationGroup properties that can be patched."
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsUpdateRequestTagsMap": {
+    "com.azure.desktopvirtualization#UpdateApplicationGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10882,7 +10883,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsGetResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#GetApplicationGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10913,19 +10914,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsGetResponseIdentity",
+          "target": "com.azure.desktopvirtualization#GetApplicationGroupResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsGetResponseSku",
+          "target": "com.azure.desktopvirtualization#GetApplicationGroupResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsGetResponsePlan",
+          "target": "com.azure.desktopvirtualization#GetApplicationGroupResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -10942,7 +10943,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsGetResponsePlan": {
+    "com.azure.desktopvirtualization#GetApplicationGroupResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -10983,7 +10984,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsGetResponseSku": {
+    "com.azure.desktopvirtualization#GetApplicationGroupResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -11019,7 +11020,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsGetResponseIdentity": {
+    "com.azure.desktopvirtualization#GetApplicationGroupResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -11045,7 +11046,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#ApplicationGroupsGetResponseTagsMap": {
+    "com.azure.desktopvirtualization#GetApplicationGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13091,7 +13092,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansUpdateResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13122,19 +13123,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansUpdateResponseIdentity",
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlanResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansUpdateResponseSku",
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlanResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansUpdateResponsePlan",
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlanResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -13151,7 +13152,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansUpdateResponsePlan": {
+    "com.azure.desktopvirtualization#UpdateScalingPlanResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -13192,7 +13193,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansUpdateResponseSku": {
+    "com.azure.desktopvirtualization#UpdateScalingPlanResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -13228,7 +13229,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansUpdateResponseIdentity": {
+    "com.azure.desktopvirtualization#UpdateScalingPlanResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -13254,7 +13255,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansUpdateResponseTagsMap": {
+    "com.azure.desktopvirtualization#UpdateScalingPlanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13294,7 +13295,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansUpdateRequestTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlanRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "tags to be updated",
             "com.distilled.openapi#nullable": {}
@@ -13373,7 +13374,7 @@
         "smithy.api#documentation": "List of ScalingSchedule definitions."
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansUpdateRequestTagsMap": {
+    "com.azure.desktopvirtualization#UpdateScalingPlanRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13432,7 +13433,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13463,19 +13464,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateResponseIdentity",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateResponseSku",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateResponsePlan",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -13492,7 +13493,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateResponsePlan": {
+    "com.azure.desktopvirtualization#CreateScalingPlanResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -13533,7 +13534,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateResponseSku": {
+    "com.azure.desktopvirtualization#CreateScalingPlanResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -13569,7 +13570,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateResponseIdentity": {
+    "com.azure.desktopvirtualization#CreateScalingPlanResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -13595,7 +13596,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateResponseTagsMap": {
+    "com.azure.desktopvirtualization#CreateScalingPlanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13635,7 +13636,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateRequestTagsMap",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13660,19 +13661,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateRequestIdentity",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateRequestSku",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanRequestSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansCreateRequestPlan",
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanRequestPlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -13772,7 +13773,7 @@
         "smithy.api#documentation": "HostPool type for desktop."
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateRequestPlan": {
+    "com.azure.desktopvirtualization#CreateScalingPlanRequestPlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -13813,7 +13814,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateRequestSku": {
+    "com.azure.desktopvirtualization#CreateScalingPlanRequestSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -13849,7 +13850,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateRequestIdentity": {
+    "com.azure.desktopvirtualization#CreateScalingPlanRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -13863,7 +13864,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansCreateRequestTagsMap": {
+    "com.azure.desktopvirtualization#CreateScalingPlanRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13922,7 +13923,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansGetResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#GetScalingPlanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13953,19 +13954,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansGetResponseIdentity",
+          "target": "com.azure.desktopvirtualization#GetScalingPlanResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansGetResponseSku",
+          "target": "com.azure.desktopvirtualization#GetScalingPlanResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#ScalingPlansGetResponsePlan",
+          "target": "com.azure.desktopvirtualization#GetScalingPlanResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -13982,7 +13983,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansGetResponsePlan": {
+    "com.azure.desktopvirtualization#GetScalingPlanResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -14023,7 +14024,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansGetResponseSku": {
+    "com.azure.desktopvirtualization#GetScalingPlanResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -14059,7 +14060,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansGetResponseIdentity": {
+    "com.azure.desktopvirtualization#GetScalingPlanResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -14085,7 +14086,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#ScalingPlansGetResponseTagsMap": {
+    "com.azure.desktopvirtualization#GetScalingPlanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14767,7 +14768,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties",
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspaceResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -14777,11 +14778,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties": {
+    "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspaceResponseProperties": {
       "type": "structure",
       "members": {
         "groupIds": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByWorkspaceResponsePropertiesGroupIdsList",
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList",
           "traits": {
             "smithy.api#documentation": "The group ids for the private endpoint resource."
           }
@@ -14810,7 +14811,7 @@
         "smithy.api#documentation": "Properties of the private endpoint connection."
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByWorkspaceResponsePropertiesGroupIdsList": {
+    "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -14855,7 +14856,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByWorkspaceRequestProperties",
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspaceRequestProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -14865,7 +14866,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsUpdateByWorkspaceRequestProperties": {
+    "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspaceRequestProperties": {
       "type": "structure",
       "members": {
         "privateEndpoint": {
@@ -14933,7 +14934,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByWorkspaceResponseProperties",
+          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspaceResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -14943,11 +14944,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByWorkspaceResponseProperties": {
+    "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspaceResponseProperties": {
       "type": "structure",
       "members": {
         "groupIds": {
-          "target": "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByWorkspaceResponsePropertiesGroupIdsList",
+          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList",
           "traits": {
             "smithy.api#documentation": "The group ids for the private endpoint resource."
           }
@@ -14976,7 +14977,7 @@
         "smithy.api#documentation": "Properties of the private endpoint connection."
       }
     },
-    "com.azure.desktopvirtualization#PrivateEndpointConnectionsGetByWorkspaceResponsePropertiesGroupIdsList": {
+    "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -15174,7 +15175,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15205,19 +15206,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#WorkspacesUpdateResponseIdentity",
+          "target": "com.azure.desktopvirtualization#UpdateWorkspaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#WorkspacesUpdateResponseSku",
+          "target": "com.azure.desktopvirtualization#UpdateWorkspaceResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#WorkspacesUpdateResponsePlan",
+          "target": "com.azure.desktopvirtualization#UpdateWorkspaceResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -15233,7 +15234,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesUpdateResponsePlan": {
+    "com.azure.desktopvirtualization#UpdateWorkspaceResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -15274,7 +15275,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesUpdateResponseSku": {
+    "com.azure.desktopvirtualization#UpdateWorkspaceResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -15310,7 +15311,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesUpdateResponseIdentity": {
+    "com.azure.desktopvirtualization#UpdateWorkspaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -15336,7 +15337,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.desktopvirtualization#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15376,7 +15377,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.desktopvirtualization#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "tags to be updated",
             "com.distilled.openapi#nullable": {}
@@ -15456,7 +15457,7 @@
         "smithy.api#documentation": "List of applicationGroup links."
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.desktopvirtualization#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15983,7 +15984,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.desktopvirtualization#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.desktopvirtualization#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16014,19 +16015,19 @@
           }
         },
         "identity": {
-          "target": "com.azure.desktopvirtualization#WorkspacesGetResponseIdentity",
+          "target": "com.azure.desktopvirtualization#GetWorkspaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "sku": {
-          "target": "com.azure.desktopvirtualization#WorkspacesGetResponseSku",
+          "target": "com.azure.desktopvirtualization#GetWorkspaceResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "plan": {
-          "target": "com.azure.desktopvirtualization#WorkspacesGetResponsePlan",
+          "target": "com.azure.desktopvirtualization#GetWorkspaceResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -16042,7 +16043,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesGetResponsePlan": {
+    "com.azure.desktopvirtualization#GetWorkspaceResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -16083,7 +16084,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesGetResponseSku": {
+    "com.azure.desktopvirtualization#GetWorkspaceResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -16119,7 +16120,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesGetResponseIdentity": {
+    "com.azure.desktopvirtualization#GetWorkspaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -16145,7 +16146,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.desktopvirtualization#WorkspacesGetResponseTagsMap": {
+    "com.azure.desktopvirtualization#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16364,160 +16365,166 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListPrivateEndpointConnectionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListScalingPlanByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UserSessionsSendMessage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UserSessionsDisconnect"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListUserSessions"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteUserSession"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetUserSession"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListAppAttachPackageBySubscription"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListAppAttachPackageByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteAppAttachPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateAppAttachPackage"
-        },
-        {
           "target": "com.azure.desktopvirtualization#AppAttachPackageCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetAppAttachPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#MsixImagesExpand"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#AppAttachPackageInfoImport"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListMsixPackages"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteMsixPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateMsixPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#MSIXPackagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetMsixPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListSessionHosts"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteSessionHost"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateSessionHost"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetSessionHost"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListUserSessionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListHostPoolRegistrationTokens"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#HostPoolsRetrieveRegistrationToken"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListHostPools"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListHostPoolByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#HostPoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListDesktops"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateDesktop"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetDesktop"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListApplications"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteApplication"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateApplication"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ApplicationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetApplication"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#StartMenuItemsList"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListApplicationGroupBySubscription"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListApplicationGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteApplicationGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateApplicationGroup"
         },
         {
           "target": "com.azure.desktopvirtualization#ApplicationGroupsCreateOrUpdate"
         },
         {
+          "target": "com.azure.desktopvirtualization#ApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#CreateScalingPlan"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanPersonalSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanPooledSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteAppAttachPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteApplication"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteApplicationGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteMSIXPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteScalingPlan"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPersonalSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPooledSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteSessionHost"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteUserSession"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DisconnectUserSession"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetAppAttachPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetApplication"
+        },
+        {
           "target": "com.azure.desktopvirtualization#GetApplicationGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetDesktop"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetHostPoolRegistrationToken"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetMSIXPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetScalingPlan"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetScalingPlanPersonalSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetScalingPlanPooledSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetSessionHost"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetUserSession"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#HostPoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ImportAppAttachPackageInfo"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListAppAttachPackageByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListAppAttachPackageBySubscription"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListApplicationGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListApplicationGroupBySubscription"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListApplications"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListDesktops"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListHostPoolByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListHostPoolRegistrationTokens"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListHostPools"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListMSIXPackages"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListOperations"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListPrivateEndpointConnectionByHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListPrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListScalingPlanByHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListScalingPlanByResourceGroup"
         },
         {
           "target": "com.azure.desktopvirtualization#ListScalingPlanBySubscription"
@@ -16526,82 +16533,76 @@
           "target": "com.azure.desktopvirtualization#ListScalingPlanPersonalSchedules"
         },
         {
-          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPersonalSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateScalingPlanPersonalSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#CreateScalingPlanPersonalSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetScalingPlanPersonalSchedule"
-        },
-        {
           "target": "com.azure.desktopvirtualization#ListScalingPlanPooledSchedules"
         },
         {
-          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPooledSchedule"
+          "target": "com.azure.desktopvirtualization#ListSessionHosts"
         },
         {
-          "target": "com.azure.desktopvirtualization#UpdateScalingPlanPooledSchedule"
+          "target": "com.azure.desktopvirtualization#ListStartMenuItems"
         },
         {
-          "target": "com.azure.desktopvirtualization#CreateScalingPlanPooledSchedule"
+          "target": "com.azure.desktopvirtualization#ListUserSessionByHostPool"
         },
         {
-          "target": "com.azure.desktopvirtualization#GetScalingPlanPooledSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListScalingPlanByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteScalingPlan"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateScalingPlan"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#CreateScalingPlan"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetScalingPlan"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListWorkspaceBySubscription"
+          "target": "com.azure.desktopvirtualization#ListUserSessions"
         },
         {
           "target": "com.azure.desktopvirtualization#ListWorkspaceByResourceGroup"
         },
         {
-          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByWorkspace"
+          "target": "com.azure.desktopvirtualization#ListWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByWorkspace"
+          "target": "com.azure.desktopvirtualization#MsixImagesExpand"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#MSIXPackagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#SendUserSessionMessage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateAppAttachPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateApplication"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateApplicationGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateDesktop"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateMSIXPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPool"
         },
         {
           "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspace"
         },
         {
-          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspace"
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlan"
         },
         {
-          "target": "com.azure.desktopvirtualization#ListPrivateEndpointConnectionByWorkspace"
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlanPersonalSchedule"
         },
         {
-          "target": "com.azure.desktopvirtualization#DeleteWorkspace"
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlanPooledSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateSessionHost"
         },
         {
           "target": "com.azure.desktopvirtualization#UpdateWorkspace"
         },
         {
           "target": "com.azure.desktopvirtualization#WorkspacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetWorkspace"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListOperations"
         }
       ],
       "traits": {

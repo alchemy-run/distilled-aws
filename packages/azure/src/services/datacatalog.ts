@@ -233,7 +233,7 @@ export const ADCCatalogsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ADCCatalogsListResult",
 }) as any as S.Schema<ADCCatalogsListResult>;
 
-export interface DeleteAdcCatalogRequest {
+export interface DeleteADCCatalogRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group within the user's subscription. The name is case insensitive. */
@@ -241,7 +241,7 @@ export interface DeleteAdcCatalogRequest {
   /** The name of the data catalog in the specified subscription and resource group. */
   catalogName: string;
 }
-export const DeleteAdcCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteADCCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -255,17 +255,17 @@ export const DeleteAdcCatalogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAdcCatalogRequest",
-}) as any as S.Schema<DeleteAdcCatalogRequest>;
+  identifier: "DeleteADCCatalogRequest",
+}) as any as S.Schema<DeleteADCCatalogRequest>;
 
-export interface DeleteAdcCatalogResponse {}
-export const DeleteAdcCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteADCCatalogResponse {}
+export const DeleteADCCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAdcCatalogResponse",
-}) as any as S.Schema<DeleteAdcCatalogResponse>;
+  identifier: "DeleteADCCatalogResponse",
+}) as any as S.Schema<DeleteADCCatalogResponse>;
 
-export interface GetAdcCatalogRequest {
+export interface GetADCCatalogRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group within the user's subscription. The name is case insensitive. */
@@ -273,7 +273,7 @@ export interface GetAdcCatalogRequest {
   /** The name of the data catalog in the specified subscription and resource group. */
   catalogName: string;
 }
-export const GetAdcCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetADCCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -287,19 +287,19 @@ export const GetAdcCatalogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAdcCatalogRequest",
-}) as any as S.Schema<GetAdcCatalogRequest>;
+  identifier: "GetADCCatalogRequest",
+}) as any as S.Schema<GetADCCatalogRequest>;
 
 /** Resource tags */
-export type ADCCatalogsGetResponseTagsMap = {
+export type GetADCCatalogResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ADCCatalogsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetADCCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ADCCatalogsGetResponseTagsMap>;
+) as any as S.Schema<GetADCCatalogResponseTagsMap>;
 
-export interface GetAdcCatalogResponse {
+export interface GetADCCatalogResponse {
   /** Resource Id */
   id?: string;
   /** Resource name */
@@ -309,28 +309,28 @@ export interface GetAdcCatalogResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ADCCatalogsGetResponseTagsMap;
+  tags?: GetADCCatalogResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Azure Data Catalog properties. */
   properties?: ADCCatalogProperties;
 }
-export const GetAdcCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetADCCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ADCCatalogsGetResponseTagsMap),
+    tags: S.optional(GetADCCatalogResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(ADCCatalogProperties),
   }),
 ).annotate({
-  identifier: "GetAdcCatalogResponse",
-}) as any as S.Schema<GetAdcCatalogResponse>;
+  identifier: "GetADCCatalogResponse",
+}) as any as S.Schema<GetADCCatalogResponse>;
 
-export interface ListAdcOperationsRequest {}
-export const ListAdcOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListADCOperationsRequest {}
+export const ListADCOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -340,8 +340,8 @@ export const ListAdcOperationsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListAdcOperationsRequest",
-}) as any as S.Schema<ListAdcOperationsRequest>;
+  identifier: "ListADCOperationsRequest",
+}) as any as S.Schema<ListADCOperationsRequest>;
 
 /** The operation supported by Azure Data Catalog Service. */
 export interface OperationDisplayInfo {
@@ -401,15 +401,15 @@ export const OperationEntityListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationEntityListResult>;
 
 /** Resource tags */
-export type ADCCatalogsUpdateRequestTagsMap = {
+export type UpdateADCCatalogRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ADCCatalogsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateADCCatalogRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ADCCatalogsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateADCCatalogRequestTagsMap>;
 
-export interface UpdateAdcCatalogRequest {
+export interface UpdateADCCatalogRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group within the user's subscription. The name is case insensitive. */
@@ -419,19 +419,19 @@ export interface UpdateAdcCatalogRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ADCCatalogsUpdateRequestTagsMap;
+  tags?: UpdateADCCatalogRequestTagsMap;
   /** Resource etag */
   etag?: string;
   /** Azure Data Catalog properties. */
   properties?: ADCCatalogProperties;
 }
-export const UpdateAdcCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateADCCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ADCCatalogsUpdateRequestTagsMap),
+    tags: S.optional(UpdateADCCatalogRequestTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(ADCCatalogProperties),
   }).pipe(
@@ -443,19 +443,19 @@ export const UpdateAdcCatalogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateAdcCatalogRequest",
-}) as any as S.Schema<UpdateAdcCatalogRequest>;
+  identifier: "UpdateADCCatalogRequest",
+}) as any as S.Schema<UpdateADCCatalogRequest>;
 
 /** Resource tags */
-export type ADCCatalogsUpdateResponseTagsMap = {
+export type UpdateADCCatalogResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ADCCatalogsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateADCCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ADCCatalogsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateADCCatalogResponseTagsMap>;
 
-export interface UpdateAdcCatalogResponse {
+export interface UpdateADCCatalogResponse {
   /** Resource Id */
   id?: string;
   /** Resource name */
@@ -465,25 +465,25 @@ export interface UpdateAdcCatalogResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ADCCatalogsUpdateResponseTagsMap;
+  tags?: UpdateADCCatalogResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Azure Data Catalog properties. */
   properties?: ADCCatalogProperties;
 }
-export const UpdateAdcCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateADCCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ADCCatalogsUpdateResponseTagsMap),
+    tags: S.optional(UpdateADCCatalogResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(ADCCatalogProperties),
   }),
 ).annotate({
-  identifier: "UpdateAdcCatalogResponse",
-}) as any as S.Schema<UpdateAdcCatalogResponse>;
+  identifier: "UpdateADCCatalogResponse",
+}) as any as S.Schema<UpdateADCCatalogResponse>;
 
 export type ADCCatalogsCreateOrUpdateError = AzureOpError;
 /** Create or Update Azure Data Catalog service (PUT Resource) The Create Azure Data Catalog service operation creates a new data catalog service with the specified parameters. If the specific service already exists, then any patchable properties will be updated and any immutable properties will remain unchanged. */
@@ -515,61 +515,61 @@ export const ADCCatalogsListtByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAdcCatalogError = AzureOpError;
+export type DeleteADCCatalogError = AzureOpError;
 /** Delete Azure Data Catalog Service (DELETE Resource) The Delete Azure Data Catalog Service operation deletes an existing data catalog. */
-export const DeleteAdcCatalog: API.OperationMethod<
-  DeleteAdcCatalogRequest,
-  DeleteAdcCatalogResponse,
-  DeleteAdcCatalogError,
+export const DeleteADCCatalog: API.OperationMethod<
+  DeleteADCCatalogRequest,
+  DeleteADCCatalogResponse,
+  DeleteADCCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAdcCatalogRequest,
-  output: DeleteAdcCatalogResponse,
+  input: DeleteADCCatalogRequest,
+  output: DeleteADCCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetAdcCatalogError = AzureOpError;
+export type GetADCCatalogError = AzureOpError;
 /** Get Azure Data Catalog service (GET Resources) The Get Azure Data Catalog Service operation retrieves a json representation of the data catalog. */
-export const GetAdcCatalog: API.OperationMethod<
-  GetAdcCatalogRequest,
-  GetAdcCatalogResponse,
-  GetAdcCatalogError,
+export const GetADCCatalog: API.OperationMethod<
+  GetADCCatalogRequest,
+  GetADCCatalogResponse,
+  GetADCCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAdcCatalogRequest,
-  output: GetAdcCatalogResponse,
+  input: GetADCCatalogRequest,
+  output: GetADCCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAdcOperationsError = AzureOpError;
+export type ListADCOperationsError = AzureOpError;
 /** Lists all the available Azure Data Catalog service operations. */
-export const ListAdcOperations: API.OperationMethod<
-  ListAdcOperationsRequest,
+export const ListADCOperations: API.OperationMethod<
+  ListADCOperationsRequest,
   OperationEntityListResult,
-  ListAdcOperationsError,
+  ListADCOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAdcOperationsRequest,
+  input: ListADCOperationsRequest,
   output: OperationEntityListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateAdcCatalogError = AzureOpError;
+export type UpdateADCCatalogError = AzureOpError;
 /** Update Azure Data Catalog Service (PATCH Resource) The Update Azure Data Catalog Service operation can be used to update the existing deployment. The update call only supports the properties listed in the PATCH body. */
-export const UpdateAdcCatalog: API.OperationMethod<
-  UpdateAdcCatalogRequest,
-  UpdateAdcCatalogResponse,
-  UpdateAdcCatalogError,
+export const UpdateADCCatalog: API.OperationMethod<
+  UpdateADCCatalogRequest,
+  UpdateADCCatalogResponse,
+  UpdateADCCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateAdcCatalogRequest,
-  output: UpdateAdcCatalogResponse,
+  input: UpdateADCCatalogRequest,
+  output: UpdateADCCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

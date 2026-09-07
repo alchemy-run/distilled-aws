@@ -131,92 +131,6 @@ export class ZonePurged
     [{ code: 10410 }],
   ) {}
 
-export type DiscoveryOperationsBulkEditRequestBodyValueState =
-  | "review"
-  | "ignored";
-export const DiscoveryOperationsBulkEditRequestBodyValueState =
-  /*@__PURE__*/ S.String;
-
-export interface DiscoveryOperationsBulkEditRequestBodyValue {
-  /** Mark state of operation in API Discovery */
-  state?: DiscoveryOperationsBulkEditRequestBodyValueState | (string & {});
-}
-export const DiscoveryOperationsBulkEditRequestBodyValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      state: S.optional(DiscoveryOperationsBulkEditRequestBodyValueState),
-    }),
-  ).annotate({
-    identifier: "DiscoveryOperationsBulkEditRequestBodyValue",
-  }) as any as S.Schema<DiscoveryOperationsBulkEditRequestBodyValue>;
-
-export type DiscoveryOperationsBulkEditRequestBodyMap = {
-  [key: string]: DiscoveryOperationsBulkEditRequestBodyValue | undefined;
-};
-export const DiscoveryOperationsBulkEditRequestBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  DiscoveryOperationsBulkEditRequestBodyValue,
-) as any as S.Schema<DiscoveryOperationsBulkEditRequestBodyMap>;
-
-export interface BulkPatchDiscoveryOperationsRequest {
-  /** Identifier. */
-  zoneId: string;
-  body: DiscoveryOperationsBulkEditRequestBodyMap;
-}
-export const BulkPatchDiscoveryOperationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    body: DiscoveryOperationsBulkEditRequestBodyMap.pipe(T.HttpBody()),
-  })
-    .pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/zones/{zone_id}/api_gateway/discovery/operations",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "BulkPatchDiscoveryOperationsRequest",
-}) as any as S.Schema<BulkPatchDiscoveryOperationsRequest>;
-
-export type DiscoveryOperationsBulkEditResultValueState = "review" | "ignored";
-export const DiscoveryOperationsBulkEditResultValueState =
-  /*@__PURE__*/ S.String;
-
-export interface DiscoveryOperationsBulkEditResultValue {
-  /** Mark state of operation in API Discovery */
-  state?: DiscoveryOperationsBulkEditResultValueState | null;
-}
-export const DiscoveryOperationsBulkEditResultValue = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      state: S.optional(S.NullOr(DiscoveryOperationsBulkEditResultValueState)),
-    }),
-).annotate({
-  identifier: "DiscoveryOperationsBulkEditResultValue",
-}) as any as S.Schema<DiscoveryOperationsBulkEditResultValue>;
-
-export type DiscoveryOperationsBulkEditResultMap = {
-  [key: string]: DiscoveryOperationsBulkEditResultValue | undefined;
-};
-export const DiscoveryOperationsBulkEditResultMap = /*@__PURE__*/ S.Record(
-  S.String,
-  DiscoveryOperationsBulkEditResultValue,
-) as any as S.Schema<DiscoveryOperationsBulkEditResultMap>;
-
-export type BulkPatchDiscoveryOperationsResponse =
-  DiscoveryOperationsBulkEditResultMap;
-export const BulkPatchDiscoveryOperationsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    DiscoveryOperationsBulkEditResultMap.pipe(
-      T.EnvelopePayloadRoot(),
-      T.KeyDictionary(KEY_DICTIONARY),
-    ),
-).annotate({
-  identifier: "BulkPatchDiscoveryOperationsResponse",
-}) as any as S.Schema<BulkPatchDiscoveryOperationsResponse>;
-
 export interface LabelsUserBulkCreateRequestBodyItem {
   /** The name of the label */
   name: string;
@@ -241,12 +155,12 @@ export const LabelsUserBulkCreateRequestBodyList = /*@__PURE__*/ S.Array(
   LabelsUserBulkCreateRequestBodyItem,
 ) as any as S.Schema<LabelsUserBulkCreateRequestBodyList>;
 
-export interface CreateBulkLabelUserRequest {
+export interface BulkCreateLabelUsersRequest {
   /** Identifier. */
   zoneId: string;
   body: LabelsUserBulkCreateRequestBodyList;
 }
-export const CreateBulkLabelUserRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateLabelUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneId: S.String.pipe(T.Label("zone_id")),
     body: LabelsUserBulkCreateRequestBodyList.pipe(T.HttpBody()),
@@ -260,8 +174,8 @@ export const CreateBulkLabelUserRequest = /*@__PURE__*/ S.suspend(() =>
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkLabelUserRequest",
-}) as any as S.Schema<CreateBulkLabelUserRequest>;
+  identifier: "BulkCreateLabelUsersRequest",
+}) as any as S.Schema<BulkCreateLabelUsersRequest>;
 
 export type LabelsUserBulkCreateResultItemSource = "user" | "managed";
 export const LabelsUserBulkCreateResultItemSource = /*@__PURE__*/ S.String;
@@ -297,20 +211,220 @@ export const LabelsUserBulkCreateResultList = /*@__PURE__*/ S.Array(
   LabelsUserBulkCreateResultItem,
 ) as any as S.Schema<LabelsUserBulkCreateResultList>;
 
-export interface CreateBulkLabelUserResponse {
+export interface BulkCreateLabelUsersResponse {
   /** The unwrapped `result` payload of the v4 response envelope. */
   result: LabelsUserBulkCreateResultList;
   /** Pagination info from the envelope's `result_info`. */
   resultInfo?: ResultInfo | null;
 }
-export const CreateBulkLabelUserResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateLabelUsersResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     result: LabelsUserBulkCreateResultList.pipe(T.EnvelopePayload()),
     resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkLabelUserResponse",
-}) as any as S.Schema<CreateBulkLabelUserResponse>;
+  identifier: "BulkCreateLabelUsersResponse",
+}) as any as S.Schema<BulkCreateLabelUsersResponse>;
+
+export type OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList =
+  Array<string>;
+export const OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList>;
+
+export interface OperationsLabelsBulkCreateRequestSelectorInclude {
+  operationIds: OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList;
+}
+export const OperationsLabelsBulkCreateRequestSelectorInclude =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      operationIds:
+        OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList.pipe(
+          T.Body("operation_ids"),
+        ),
+    }),
+  ).annotate({
+    identifier: "OperationsLabelsBulkCreateRequestSelectorInclude",
+  }) as any as S.Schema<OperationsLabelsBulkCreateRequestSelectorInclude>;
+
+export interface OperationsLabelsBulkCreateRequestSelector {
+  include: OperationsLabelsBulkCreateRequestSelectorInclude;
+}
+export const OperationsLabelsBulkCreateRequestSelector =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      include: OperationsLabelsBulkCreateRequestSelectorInclude,
+    }),
+  ).annotate({
+    identifier: "OperationsLabelsBulkCreateRequestSelector",
+  }) as any as S.Schema<OperationsLabelsBulkCreateRequestSelector>;
+
+export type OperationsLabelsBulkCreateRequestManagedLabelsList = Array<string>;
+export const OperationsLabelsBulkCreateRequestManagedLabelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<OperationsLabelsBulkCreateRequestManagedLabelsList>;
+
+export interface OperationsLabelsBulkCreateRequestManaged {
+  /** List of managed label names. */
+  labels?: OperationsLabelsBulkCreateRequestManagedLabelsList;
+}
+export const OperationsLabelsBulkCreateRequestManaged = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      labels: S.optional(OperationsLabelsBulkCreateRequestManagedLabelsList),
+    }),
+).annotate({
+  identifier: "OperationsLabelsBulkCreateRequestManaged",
+}) as any as S.Schema<OperationsLabelsBulkCreateRequestManaged>;
+
+export type OperationsLabelsBulkCreateRequestUserLabelsList = Array<string>;
+export const OperationsLabelsBulkCreateRequestUserLabelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<OperationsLabelsBulkCreateRequestUserLabelsList>;
+
+export interface OperationsLabelsBulkCreateRequestUser {
+  /** List of user label names. */
+  labels?: OperationsLabelsBulkCreateRequestUserLabelsList;
+}
+export const OperationsLabelsBulkCreateRequestUser = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      labels: S.optional(OperationsLabelsBulkCreateRequestUserLabelsList),
+    }),
+).annotate({
+  identifier: "OperationsLabelsBulkCreateRequestUser",
+}) as any as S.Schema<OperationsLabelsBulkCreateRequestUser>;
+
+export interface BulkCreateOperationLabelsRequest {
+  /** Identifier. */
+  zoneId: string;
+  /** Operation IDs selector */
+  selector: OperationsLabelsBulkCreateRequestSelector;
+  managed?: OperationsLabelsBulkCreateRequestManaged;
+  user?: OperationsLabelsBulkCreateRequestUser;
+}
+export const BulkCreateOperationLabelsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    selector: OperationsLabelsBulkCreateRequestSelector,
+    managed: S.optional(OperationsLabelsBulkCreateRequestManaged),
+    user: S.optional(OperationsLabelsBulkCreateRequestUser),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/zones/{zone_id}/api_gateway/operations/labels",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkCreateOperationLabelsRequest",
+}) as any as S.Schema<BulkCreateOperationLabelsRequest>;
+
+export type OperationsLabelsBulkCreateResultItemMethod =
+  | "GET"
+  | "POST"
+  | "HEAD"
+  | "OPTIONS"
+  | "PUT"
+  | "DELETE"
+  | "CONNECT"
+  | "PATCH"
+  | "TRACE";
+export const OperationsLabelsBulkCreateResultItemMethod =
+  /*@__PURE__*/ S.String;
+
+export type OperationsLabelsBulkCreateResultItemLabelsItemSource =
+  | "user"
+  | "managed";
+export const OperationsLabelsBulkCreateResultItemLabelsItemSource =
+  /*@__PURE__*/ S.String;
+
+export interface OperationsLabelsBulkCreateResultItemLabelsItem {
+  createdAt: string;
+  /** The description of the label */
+  description: string;
+  lastUpdated: string;
+  /** Metadata for the label */
+  metadata: unknown;
+  /** The name of the label */
+  name: string;
+  /** * `user` - label is owned by the user */
+  source: OperationsLabelsBulkCreateResultItemLabelsItemSource;
+}
+export const OperationsLabelsBulkCreateResultItemLabelsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String.pipe(T.Body("created_at")),
+      description: S.String,
+      lastUpdated: S.String.pipe(T.Body("last_updated")),
+      metadata: S.Unknown,
+      name: S.String,
+      source: OperationsLabelsBulkCreateResultItemLabelsItemSource,
+    }),
+  ).annotate({
+    identifier: "OperationsLabelsBulkCreateResultItemLabelsItem",
+  }) as any as S.Schema<OperationsLabelsBulkCreateResultItemLabelsItem>;
+
+export type OperationsLabelsBulkCreateResultItemLabelsList =
+  Array<OperationsLabelsBulkCreateResultItemLabelsItem>;
+export const OperationsLabelsBulkCreateResultItemLabelsList =
+  /*@__PURE__*/ S.Array(
+    OperationsLabelsBulkCreateResultItemLabelsItem,
+  ) as any as S.Schema<OperationsLabelsBulkCreateResultItemLabelsList>;
+
+export interface OperationsLabelsBulkCreateResultItem {
+  /** The endpoint which can contain path parameter templates in curly braces, each will be replaced from left to right with {varN}, starting with {var1}, during insertion. This will further be Cloudflare-normalized upon insertion. See: https://developers.cloudflare.com/rules/normalization/how-it-works/. */
+  endpoint: string;
+  /** RFC3986-compliant host. */
+  host: string;
+  lastUpdated: string;
+  /** The HTTP method used to access the endpoint. */
+  method: OperationsLabelsBulkCreateResultItemMethod;
+  /** UUID. */
+  operationId: string;
+  labels?: OperationsLabelsBulkCreateResultItemLabelsList | null;
+}
+export const OperationsLabelsBulkCreateResultItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      endpoint: S.String,
+      host: S.String,
+      lastUpdated: S.String.pipe(T.Body("last_updated")),
+      method: OperationsLabelsBulkCreateResultItemMethod,
+      operationId: S.String.pipe(T.Body("operation_id")),
+      labels: S.optional(
+        S.NullOr(OperationsLabelsBulkCreateResultItemLabelsList),
+      ),
+    }),
+).annotate({
+  identifier: "OperationsLabelsBulkCreateResultItem",
+}) as any as S.Schema<OperationsLabelsBulkCreateResultItem>;
+
+export type OperationsLabelsBulkCreateResultList =
+  Array<OperationsLabelsBulkCreateResultItem>;
+export const OperationsLabelsBulkCreateResultList = /*@__PURE__*/ S.Array(
+  OperationsLabelsBulkCreateResultItem,
+) as any as S.Schema<OperationsLabelsBulkCreateResultList>;
+
+export interface BulkCreateOperationLabelsResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: OperationsLabelsBulkCreateResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const BulkCreateOperationLabelsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: OperationsLabelsBulkCreateResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkCreateOperationLabelsResponse",
+}) as any as S.Schema<BulkCreateOperationLabelsResponse>;
 
 export type OperationsBulkCreateRequestBodyItemMethod =
   | "GET"
@@ -348,12 +462,12 @@ export const OperationsBulkCreateRequestBodyList = /*@__PURE__*/ S.Array(
   OperationsBulkCreateRequestBodyItem,
 ) as any as S.Schema<OperationsBulkCreateRequestBodyList>;
 
-export interface CreateBulkOperationRequest {
+export interface BulkCreateOperationsRequest {
   /** Identifier. */
   zoneId: string;
   body: OperationsBulkCreateRequestBodyList;
 }
-export const CreateBulkOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneId: S.String.pipe(T.Label("zone_id")),
     body: OperationsBulkCreateRequestBodyList.pipe(T.HttpBody()),
@@ -367,8 +481,8 @@ export const CreateBulkOperationRequest = /*@__PURE__*/ S.suspend(() =>
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkOperationRequest",
-}) as any as S.Schema<CreateBulkOperationRequest>;
+  identifier: "BulkCreateOperationsRequest",
+}) as any as S.Schema<BulkCreateOperationsRequest>;
 
 export type OperationsBulkCreateResultItemMethod =
   | "GET"
@@ -779,140 +893,45 @@ export const OperationsBulkCreateResultList = /*@__PURE__*/ S.Array(
   OperationsBulkCreateResultItem,
 ) as any as S.Schema<OperationsBulkCreateResultList>;
 
-export interface CreateBulkOperationResponse {
+export interface BulkCreateOperationsResponse {
   /** The unwrapped `result` payload of the v4 response envelope. */
   result: OperationsBulkCreateResultList;
   /** Pagination info from the envelope's `result_info`. */
   resultInfo?: ResultInfo | null;
 }
-export const CreateBulkOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     result: OperationsBulkCreateResultList.pipe(T.EnvelopePayload()),
     resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkOperationResponse",
-}) as any as S.Schema<CreateBulkOperationResponse>;
+  identifier: "BulkCreateOperationsResponse",
+}) as any as S.Schema<BulkCreateOperationsResponse>;
 
-export type OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList =
-  Array<string>;
-export const OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList>;
-
-export interface OperationsLabelsBulkCreateRequestSelectorInclude {
-  operationIds: OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList;
-}
-export const OperationsLabelsBulkCreateRequestSelectorInclude =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operationIds:
-        OperationsLabelsBulkCreateRequestSelectorIncludeOperationIdsList.pipe(
-          T.Body("operation_ids"),
-        ),
-    }),
-  ).annotate({
-    identifier: "OperationsLabelsBulkCreateRequestSelectorInclude",
-  }) as any as S.Schema<OperationsLabelsBulkCreateRequestSelectorInclude>;
-
-export interface OperationsLabelsBulkCreateRequestSelector {
-  include: OperationsLabelsBulkCreateRequestSelectorInclude;
-}
-export const OperationsLabelsBulkCreateRequestSelector =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      include: OperationsLabelsBulkCreateRequestSelectorInclude,
-    }),
-  ).annotate({
-    identifier: "OperationsLabelsBulkCreateRequestSelector",
-  }) as any as S.Schema<OperationsLabelsBulkCreateRequestSelector>;
-
-export type OperationsLabelsBulkCreateRequestManagedLabelsList = Array<string>;
-export const OperationsLabelsBulkCreateRequestManagedLabelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<OperationsLabelsBulkCreateRequestManagedLabelsList>;
-
-export interface OperationsLabelsBulkCreateRequestManaged {
-  /** List of managed label names. */
-  labels?: OperationsLabelsBulkCreateRequestManagedLabelsList;
-}
-export const OperationsLabelsBulkCreateRequestManaged = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      labels: S.optional(OperationsLabelsBulkCreateRequestManagedLabelsList),
-    }),
-).annotate({
-  identifier: "OperationsLabelsBulkCreateRequestManaged",
-}) as any as S.Schema<OperationsLabelsBulkCreateRequestManaged>;
-
-export type OperationsLabelsBulkCreateRequestUserLabelsList = Array<string>;
-export const OperationsLabelsBulkCreateRequestUserLabelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<OperationsLabelsBulkCreateRequestUserLabelsList>;
-
-export interface OperationsLabelsBulkCreateRequestUser {
-  /** List of user label names. */
-  labels?: OperationsLabelsBulkCreateRequestUserLabelsList;
-}
-export const OperationsLabelsBulkCreateRequestUser = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      labels: S.optional(OperationsLabelsBulkCreateRequestUserLabelsList),
-    }),
-).annotate({
-  identifier: "OperationsLabelsBulkCreateRequestUser",
-}) as any as S.Schema<OperationsLabelsBulkCreateRequestUser>;
-
-export interface CreateBulkOperationLabelRequest {
+export interface BulkDeleteLabelUsersRequest {
   /** Identifier. */
   zoneId: string;
-  /** Operation IDs selector */
-  selector: OperationsLabelsBulkCreateRequestSelector;
-  managed?: OperationsLabelsBulkCreateRequestManaged;
-  user?: OperationsLabelsBulkCreateRequestUser;
 }
-export const CreateBulkOperationLabelRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkDeleteLabelUsersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneId: S.String.pipe(T.Label("zone_id")),
-    selector: OperationsLabelsBulkCreateRequestSelector,
-    managed: S.optional(OperationsLabelsBulkCreateRequestManaged),
-    user: S.optional(OperationsLabelsBulkCreateRequestUser),
   })
     .pipe(
       T.Http({
-        method: "POST",
-        uri: "/zones/{zone_id}/api_gateway/operations/labels",
+        method: "DELETE",
+        uri: "/zones/{zone_id}/api_gateway/labels/user",
         code: 200,
       }),
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkOperationLabelRequest",
-}) as any as S.Schema<CreateBulkOperationLabelRequest>;
+  identifier: "BulkDeleteLabelUsersRequest",
+}) as any as S.Schema<BulkDeleteLabelUsersRequest>;
 
-export type OperationsLabelsBulkCreateResultItemMethod =
-  | "GET"
-  | "POST"
-  | "HEAD"
-  | "OPTIONS"
-  | "PUT"
-  | "DELETE"
-  | "CONNECT"
-  | "PATCH"
-  | "TRACE";
-export const OperationsLabelsBulkCreateResultItemMethod =
-  /*@__PURE__*/ S.String;
+export type LabelsUserBulkDeleteResultItemSource = "user" | "managed";
+export const LabelsUserBulkDeleteResultItemSource = /*@__PURE__*/ S.String;
 
-export type OperationsLabelsBulkCreateResultItemLabelsItemSource =
-  | "user"
-  | "managed";
-export const OperationsLabelsBulkCreateResultItemLabelsItemSource =
-  /*@__PURE__*/ S.String;
-
-export interface OperationsLabelsBulkCreateResultItemLabelsItem {
+export interface LabelsUserBulkDeleteResultItem {
   createdAt: string;
   /** The description of the label */
   description: string;
@@ -922,9 +941,94 @@ export interface OperationsLabelsBulkCreateResultItemLabelsItem {
   /** The name of the label */
   name: string;
   /** * `user` - label is owned by the user */
-  source: OperationsLabelsBulkCreateResultItemLabelsItemSource;
+  source: LabelsUserBulkDeleteResultItemSource;
 }
-export const OperationsLabelsBulkCreateResultItemLabelsItem =
+export const LabelsUserBulkDeleteResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.String.pipe(T.Body("created_at")),
+    description: S.String,
+    lastUpdated: S.String.pipe(T.Body("last_updated")),
+    metadata: S.Unknown,
+    name: S.String,
+    source: LabelsUserBulkDeleteResultItemSource,
+  }),
+).annotate({
+  identifier: "LabelsUserBulkDeleteResultItem",
+}) as any as S.Schema<LabelsUserBulkDeleteResultItem>;
+
+export type LabelsUserBulkDeleteResultList =
+  Array<LabelsUserBulkDeleteResultItem>;
+export const LabelsUserBulkDeleteResultList = /*@__PURE__*/ S.Array(
+  LabelsUserBulkDeleteResultItem,
+) as any as S.Schema<LabelsUserBulkDeleteResultList>;
+
+export interface BulkDeleteLabelUsersResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: LabelsUserBulkDeleteResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const BulkDeleteLabelUsersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: LabelsUserBulkDeleteResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteLabelUsersResponse",
+}) as any as S.Schema<BulkDeleteLabelUsersResponse>;
+
+export interface BulkDeleteOperationLabelsRequest {
+  /** Identifier. */
+  zoneId: string;
+}
+export const BulkDeleteOperationLabelsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/zones/{zone_id}/api_gateway/operations/labels",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteOperationLabelsRequest",
+}) as any as S.Schema<BulkDeleteOperationLabelsRequest>;
+
+export type OperationsLabelsBulkDeleteResultItemMethod =
+  | "GET"
+  | "POST"
+  | "HEAD"
+  | "OPTIONS"
+  | "PUT"
+  | "DELETE"
+  | "CONNECT"
+  | "PATCH"
+  | "TRACE";
+export const OperationsLabelsBulkDeleteResultItemMethod =
+  /*@__PURE__*/ S.String;
+
+export type OperationsLabelsBulkDeleteResultItemLabelsItemSource =
+  | "user"
+  | "managed";
+export const OperationsLabelsBulkDeleteResultItemLabelsItemSource =
+  /*@__PURE__*/ S.String;
+
+export interface OperationsLabelsBulkDeleteResultItemLabelsItem {
+  createdAt: string;
+  /** The description of the label */
+  description: string;
+  lastUpdated: string;
+  /** Metadata for the label */
+  metadata: unknown;
+  /** The name of the label */
+  name: string;
+  /** * `user` - label is owned by the user */
+  source: OperationsLabelsBulkDeleteResultItemLabelsItemSource;
+}
+export const OperationsLabelsBulkDeleteResultItemLabelsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdAt: S.String.pipe(T.Body("created_at")),
@@ -932,67 +1036,382 @@ export const OperationsLabelsBulkCreateResultItemLabelsItem =
       lastUpdated: S.String.pipe(T.Body("last_updated")),
       metadata: S.Unknown,
       name: S.String,
-      source: OperationsLabelsBulkCreateResultItemLabelsItemSource,
+      source: OperationsLabelsBulkDeleteResultItemLabelsItemSource,
     }),
   ).annotate({
-    identifier: "OperationsLabelsBulkCreateResultItemLabelsItem",
-  }) as any as S.Schema<OperationsLabelsBulkCreateResultItemLabelsItem>;
+    identifier: "OperationsLabelsBulkDeleteResultItemLabelsItem",
+  }) as any as S.Schema<OperationsLabelsBulkDeleteResultItemLabelsItem>;
 
-export type OperationsLabelsBulkCreateResultItemLabelsList =
-  Array<OperationsLabelsBulkCreateResultItemLabelsItem>;
-export const OperationsLabelsBulkCreateResultItemLabelsList =
+export type OperationsLabelsBulkDeleteResultItemLabelsList =
+  Array<OperationsLabelsBulkDeleteResultItemLabelsItem>;
+export const OperationsLabelsBulkDeleteResultItemLabelsList =
   /*@__PURE__*/ S.Array(
-    OperationsLabelsBulkCreateResultItemLabelsItem,
-  ) as any as S.Schema<OperationsLabelsBulkCreateResultItemLabelsList>;
+    OperationsLabelsBulkDeleteResultItemLabelsItem,
+  ) as any as S.Schema<OperationsLabelsBulkDeleteResultItemLabelsList>;
 
-export interface OperationsLabelsBulkCreateResultItem {
+export interface OperationsLabelsBulkDeleteResultItem {
   /** The endpoint which can contain path parameter templates in curly braces, each will be replaced from left to right with {varN}, starting with {var1}, during insertion. This will further be Cloudflare-normalized upon insertion. See: https://developers.cloudflare.com/rules/normalization/how-it-works/. */
   endpoint: string;
   /** RFC3986-compliant host. */
   host: string;
   lastUpdated: string;
   /** The HTTP method used to access the endpoint. */
-  method: OperationsLabelsBulkCreateResultItemMethod;
+  method: OperationsLabelsBulkDeleteResultItemMethod;
   /** UUID. */
   operationId: string;
-  labels?: OperationsLabelsBulkCreateResultItemLabelsList | null;
+  labels?: OperationsLabelsBulkDeleteResultItemLabelsList | null;
 }
-export const OperationsLabelsBulkCreateResultItem = /*@__PURE__*/ S.suspend(
+export const OperationsLabelsBulkDeleteResultItem = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       endpoint: S.String,
       host: S.String,
       lastUpdated: S.String.pipe(T.Body("last_updated")),
-      method: OperationsLabelsBulkCreateResultItemMethod,
+      method: OperationsLabelsBulkDeleteResultItemMethod,
       operationId: S.String.pipe(T.Body("operation_id")),
       labels: S.optional(
-        S.NullOr(OperationsLabelsBulkCreateResultItemLabelsList),
+        S.NullOr(OperationsLabelsBulkDeleteResultItemLabelsList),
       ),
     }),
 ).annotate({
-  identifier: "OperationsLabelsBulkCreateResultItem",
-}) as any as S.Schema<OperationsLabelsBulkCreateResultItem>;
+  identifier: "OperationsLabelsBulkDeleteResultItem",
+}) as any as S.Schema<OperationsLabelsBulkDeleteResultItem>;
 
-export type OperationsLabelsBulkCreateResultList =
-  Array<OperationsLabelsBulkCreateResultItem>;
-export const OperationsLabelsBulkCreateResultList = /*@__PURE__*/ S.Array(
-  OperationsLabelsBulkCreateResultItem,
-) as any as S.Schema<OperationsLabelsBulkCreateResultList>;
+export type OperationsLabelsBulkDeleteResultList =
+  Array<OperationsLabelsBulkDeleteResultItem>;
+export const OperationsLabelsBulkDeleteResultList = /*@__PURE__*/ S.Array(
+  OperationsLabelsBulkDeleteResultItem,
+) as any as S.Schema<OperationsLabelsBulkDeleteResultList>;
 
-export interface CreateBulkOperationLabelResponse {
+export interface BulkDeleteOperationLabelsResponse {
   /** The unwrapped `result` payload of the v4 response envelope. */
-  result: OperationsLabelsBulkCreateResultList;
+  result: OperationsLabelsBulkDeleteResultList;
   /** Pagination info from the envelope's `result_info`. */
   resultInfo?: ResultInfo | null;
 }
-export const CreateBulkOperationLabelResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkDeleteOperationLabelsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: OperationsLabelsBulkCreateResultList.pipe(T.EnvelopePayload()),
+    result: OperationsLabelsBulkDeleteResultList.pipe(T.EnvelopePayload()),
     resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkOperationLabelResponse",
-}) as any as S.Schema<CreateBulkOperationLabelResponse>;
+  identifier: "BulkDeleteOperationLabelsResponse",
+}) as any as S.Schema<BulkDeleteOperationLabelsResponse>;
+
+export interface BulkDeleteOperationsRequest {
+  /** Identifier. */
+  zoneId: string;
+}
+export const BulkDeleteOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/zones/{zone_id}/api_gateway/operations",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteOperationsRequest",
+}) as any as S.Schema<BulkDeleteOperationsRequest>;
+
+export interface BulkDeleteOperationsResponse {}
+export const BulkDeleteOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteOperationsResponse",
+}) as any as S.Schema<BulkDeleteOperationsResponse>;
+
+export type DiscoveryOperationsBulkEditRequestBodyValueState =
+  | "review"
+  | "ignored";
+export const DiscoveryOperationsBulkEditRequestBodyValueState =
+  /*@__PURE__*/ S.String;
+
+export interface DiscoveryOperationsBulkEditRequestBodyValue {
+  /** Mark state of operation in API Discovery */
+  state?: DiscoveryOperationsBulkEditRequestBodyValueState | (string & {});
+}
+export const DiscoveryOperationsBulkEditRequestBodyValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      state: S.optional(DiscoveryOperationsBulkEditRequestBodyValueState),
+    }),
+  ).annotate({
+    identifier: "DiscoveryOperationsBulkEditRequestBodyValue",
+  }) as any as S.Schema<DiscoveryOperationsBulkEditRequestBodyValue>;
+
+export type DiscoveryOperationsBulkEditRequestBodyMap = {
+  [key: string]: DiscoveryOperationsBulkEditRequestBodyValue | undefined;
+};
+export const DiscoveryOperationsBulkEditRequestBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  DiscoveryOperationsBulkEditRequestBodyValue,
+) as any as S.Schema<DiscoveryOperationsBulkEditRequestBodyMap>;
+
+export interface BulkPatchDiscoveryOperationsRequest {
+  /** Identifier. */
+  zoneId: string;
+  body: DiscoveryOperationsBulkEditRequestBodyMap;
+}
+export const BulkPatchDiscoveryOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    body: DiscoveryOperationsBulkEditRequestBodyMap.pipe(T.HttpBody()),
+  })
+    .pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/zones/{zone_id}/api_gateway/discovery/operations",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkPatchDiscoveryOperationsRequest",
+}) as any as S.Schema<BulkPatchDiscoveryOperationsRequest>;
+
+export type DiscoveryOperationsBulkEditResultValueState = "review" | "ignored";
+export const DiscoveryOperationsBulkEditResultValueState =
+  /*@__PURE__*/ S.String;
+
+export interface DiscoveryOperationsBulkEditResultValue {
+  /** Mark state of operation in API Discovery */
+  state?: DiscoveryOperationsBulkEditResultValueState | null;
+}
+export const DiscoveryOperationsBulkEditResultValue = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      state: S.optional(S.NullOr(DiscoveryOperationsBulkEditResultValueState)),
+    }),
+).annotate({
+  identifier: "DiscoveryOperationsBulkEditResultValue",
+}) as any as S.Schema<DiscoveryOperationsBulkEditResultValue>;
+
+export type DiscoveryOperationsBulkEditResultMap = {
+  [key: string]: DiscoveryOperationsBulkEditResultValue | undefined;
+};
+export const DiscoveryOperationsBulkEditResultMap = /*@__PURE__*/ S.Record(
+  S.String,
+  DiscoveryOperationsBulkEditResultValue,
+) as any as S.Schema<DiscoveryOperationsBulkEditResultMap>;
+
+export type BulkPatchDiscoveryOperationsResponse =
+  DiscoveryOperationsBulkEditResultMap;
+export const BulkPatchDiscoveryOperationsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    DiscoveryOperationsBulkEditResultMap.pipe(
+      T.EnvelopePayloadRoot(),
+      T.KeyDictionary(KEY_DICTIONARY),
+    ),
+).annotate({
+  identifier: "BulkPatchDiscoveryOperationsResponse",
+}) as any as S.Schema<BulkPatchDiscoveryOperationsResponse>;
+
+export type OperationsLabelsBulkUpdateRequestManagedLabelsList = Array<string>;
+export const OperationsLabelsBulkUpdateRequestManagedLabelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<OperationsLabelsBulkUpdateRequestManagedLabelsList>;
+
+export interface OperationsLabelsBulkUpdateRequestManaged {
+  /** List of managed label names. Providing an empty array will result in all managed labels being removed from all affected operations */
+  labels: OperationsLabelsBulkUpdateRequestManagedLabelsList;
+}
+export const OperationsLabelsBulkUpdateRequestManaged = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      labels: OperationsLabelsBulkUpdateRequestManagedLabelsList,
+    }),
+).annotate({
+  identifier: "OperationsLabelsBulkUpdateRequestManaged",
+}) as any as S.Schema<OperationsLabelsBulkUpdateRequestManaged>;
+
+export type OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList =
+  Array<string>;
+export const OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList>;
+
+export interface OperationsLabelsBulkUpdateRequestSelectorInclude {
+  operationIds: OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList;
+}
+export const OperationsLabelsBulkUpdateRequestSelectorInclude =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      operationIds:
+        OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList.pipe(
+          T.Body("operation_ids"),
+        ),
+    }),
+  ).annotate({
+    identifier: "OperationsLabelsBulkUpdateRequestSelectorInclude",
+  }) as any as S.Schema<OperationsLabelsBulkUpdateRequestSelectorInclude>;
+
+export interface OperationsLabelsBulkUpdateRequestSelector {
+  include: OperationsLabelsBulkUpdateRequestSelectorInclude;
+}
+export const OperationsLabelsBulkUpdateRequestSelector =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      include: OperationsLabelsBulkUpdateRequestSelectorInclude,
+    }),
+  ).annotate({
+    identifier: "OperationsLabelsBulkUpdateRequestSelector",
+  }) as any as S.Schema<OperationsLabelsBulkUpdateRequestSelector>;
+
+export type OperationsLabelsBulkUpdateRequestUserLabelsList = Array<string>;
+export const OperationsLabelsBulkUpdateRequestUserLabelsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<OperationsLabelsBulkUpdateRequestUserLabelsList>;
+
+export interface OperationsLabelsBulkUpdateRequestUser {
+  /** List of user label names. Providing an empty array will result in all user labels being removed from all affected operations */
+  labels: OperationsLabelsBulkUpdateRequestUserLabelsList;
+}
+export const OperationsLabelsBulkUpdateRequestUser = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      labels: OperationsLabelsBulkUpdateRequestUserLabelsList,
+    }),
+).annotate({
+  identifier: "OperationsLabelsBulkUpdateRequestUser",
+}) as any as S.Schema<OperationsLabelsBulkUpdateRequestUser>;
+
+export interface BulkUpdateOperationLabelsRequest {
+  /** Identifier. */
+  zoneId: string;
+  /** Managed labels to replace for all affected operations */
+  managed: OperationsLabelsBulkUpdateRequestManaged;
+  /** Operation IDs selector */
+  selector: OperationsLabelsBulkUpdateRequestSelector;
+  /** User labels to replace for all affected operations */
+  user: OperationsLabelsBulkUpdateRequestUser;
+}
+export const BulkUpdateOperationLabelsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    managed: OperationsLabelsBulkUpdateRequestManaged,
+    selector: OperationsLabelsBulkUpdateRequestSelector,
+    user: OperationsLabelsBulkUpdateRequestUser,
+  })
+    .pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/zones/{zone_id}/api_gateway/operations/labels",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkUpdateOperationLabelsRequest",
+}) as any as S.Schema<BulkUpdateOperationLabelsRequest>;
+
+export type OperationsLabelsBulkUpdateResultItemMethod =
+  | "GET"
+  | "POST"
+  | "HEAD"
+  | "OPTIONS"
+  | "PUT"
+  | "DELETE"
+  | "CONNECT"
+  | "PATCH"
+  | "TRACE";
+export const OperationsLabelsBulkUpdateResultItemMethod =
+  /*@__PURE__*/ S.String;
+
+export type OperationsLabelsBulkUpdateResultItemLabelsItemSource =
+  | "user"
+  | "managed";
+export const OperationsLabelsBulkUpdateResultItemLabelsItemSource =
+  /*@__PURE__*/ S.String;
+
+export interface OperationsLabelsBulkUpdateResultItemLabelsItem {
+  createdAt: string;
+  /** The description of the label */
+  description: string;
+  lastUpdated: string;
+  /** Metadata for the label */
+  metadata: unknown;
+  /** The name of the label */
+  name: string;
+  /** * `user` - label is owned by the user */
+  source: OperationsLabelsBulkUpdateResultItemLabelsItemSource;
+}
+export const OperationsLabelsBulkUpdateResultItemLabelsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdAt: S.String.pipe(T.Body("created_at")),
+      description: S.String,
+      lastUpdated: S.String.pipe(T.Body("last_updated")),
+      metadata: S.Unknown,
+      name: S.String,
+      source: OperationsLabelsBulkUpdateResultItemLabelsItemSource,
+    }),
+  ).annotate({
+    identifier: "OperationsLabelsBulkUpdateResultItemLabelsItem",
+  }) as any as S.Schema<OperationsLabelsBulkUpdateResultItemLabelsItem>;
+
+export type OperationsLabelsBulkUpdateResultItemLabelsList =
+  Array<OperationsLabelsBulkUpdateResultItemLabelsItem>;
+export const OperationsLabelsBulkUpdateResultItemLabelsList =
+  /*@__PURE__*/ S.Array(
+    OperationsLabelsBulkUpdateResultItemLabelsItem,
+  ) as any as S.Schema<OperationsLabelsBulkUpdateResultItemLabelsList>;
+
+export interface OperationsLabelsBulkUpdateResultItem {
+  /** The endpoint which can contain path parameter templates in curly braces, each will be replaced from left to right with {varN}, starting with {var1}, during insertion. This will further be Cloudflare-normalized upon insertion. See: https://developers.cloudflare.com/rules/normalization/how-it-works/. */
+  endpoint: string;
+  /** RFC3986-compliant host. */
+  host: string;
+  lastUpdated: string;
+  /** The HTTP method used to access the endpoint. */
+  method: OperationsLabelsBulkUpdateResultItemMethod;
+  /** UUID. */
+  operationId: string;
+  labels?: OperationsLabelsBulkUpdateResultItemLabelsList | null;
+}
+export const OperationsLabelsBulkUpdateResultItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      endpoint: S.String,
+      host: S.String,
+      lastUpdated: S.String.pipe(T.Body("last_updated")),
+      method: OperationsLabelsBulkUpdateResultItemMethod,
+      operationId: S.String.pipe(T.Body("operation_id")),
+      labels: S.optional(
+        S.NullOr(OperationsLabelsBulkUpdateResultItemLabelsList),
+      ),
+    }),
+).annotate({
+  identifier: "OperationsLabelsBulkUpdateResultItem",
+}) as any as S.Schema<OperationsLabelsBulkUpdateResultItem>;
+
+export type OperationsLabelsBulkUpdateResultList =
+  Array<OperationsLabelsBulkUpdateResultItem>;
+export const OperationsLabelsBulkUpdateResultList = /*@__PURE__*/ S.Array(
+  OperationsLabelsBulkUpdateResultItem,
+) as any as S.Schema<OperationsLabelsBulkUpdateResultList>;
+
+export interface BulkUpdateOperationLabelsResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: OperationsLabelsBulkUpdateResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const BulkUpdateOperationLabelsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: OperationsLabelsBulkUpdateResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkUpdateOperationLabelsResponse",
+}) as any as S.Schema<BulkUpdateOperationLabelsResponse>;
 
 export type ExpressionTemplateFallthroughCreateRequestHostsList = Array<string>;
 export const ExpressionTemplateFallthroughCreateRequestHostsList =
@@ -1668,223 +2087,6 @@ export const CreateUserSchemaResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateUserSchemaResponse",
 }) as any as S.Schema<CreateUserSchemaResponse>;
-
-export interface DeleteBulkLabelUserRequest {
-  /** Identifier. */
-  zoneId: string;
-}
-export const DeleteBulkLabelUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/zones/{zone_id}/api_gateway/labels/user",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkLabelUserRequest",
-}) as any as S.Schema<DeleteBulkLabelUserRequest>;
-
-export type LabelsUserBulkDeleteResultItemSource = "user" | "managed";
-export const LabelsUserBulkDeleteResultItemSource = /*@__PURE__*/ S.String;
-
-export interface LabelsUserBulkDeleteResultItem {
-  createdAt: string;
-  /** The description of the label */
-  description: string;
-  lastUpdated: string;
-  /** Metadata for the label */
-  metadata: unknown;
-  /** The name of the label */
-  name: string;
-  /** * `user` - label is owned by the user */
-  source: LabelsUserBulkDeleteResultItemSource;
-}
-export const LabelsUserBulkDeleteResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.String.pipe(T.Body("created_at")),
-    description: S.String,
-    lastUpdated: S.String.pipe(T.Body("last_updated")),
-    metadata: S.Unknown,
-    name: S.String,
-    source: LabelsUserBulkDeleteResultItemSource,
-  }),
-).annotate({
-  identifier: "LabelsUserBulkDeleteResultItem",
-}) as any as S.Schema<LabelsUserBulkDeleteResultItem>;
-
-export type LabelsUserBulkDeleteResultList =
-  Array<LabelsUserBulkDeleteResultItem>;
-export const LabelsUserBulkDeleteResultList = /*@__PURE__*/ S.Array(
-  LabelsUserBulkDeleteResultItem,
-) as any as S.Schema<LabelsUserBulkDeleteResultList>;
-
-export interface DeleteBulkLabelUserResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: LabelsUserBulkDeleteResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const DeleteBulkLabelUserResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: LabelsUserBulkDeleteResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkLabelUserResponse",
-}) as any as S.Schema<DeleteBulkLabelUserResponse>;
-
-export interface DeleteBulkOperationRequest {
-  /** Identifier. */
-  zoneId: string;
-}
-export const DeleteBulkOperationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/zones/{zone_id}/api_gateway/operations",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkOperationRequest",
-}) as any as S.Schema<DeleteBulkOperationRequest>;
-
-export interface DeleteBulkOperationResponse {}
-export const DeleteBulkOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkOperationResponse",
-}) as any as S.Schema<DeleteBulkOperationResponse>;
-
-export interface DeleteBulkOperationLabelRequest {
-  /** Identifier. */
-  zoneId: string;
-}
-export const DeleteBulkOperationLabelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/zones/{zone_id}/api_gateway/operations/labels",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkOperationLabelRequest",
-}) as any as S.Schema<DeleteBulkOperationLabelRequest>;
-
-export type OperationsLabelsBulkDeleteResultItemMethod =
-  | "GET"
-  | "POST"
-  | "HEAD"
-  | "OPTIONS"
-  | "PUT"
-  | "DELETE"
-  | "CONNECT"
-  | "PATCH"
-  | "TRACE";
-export const OperationsLabelsBulkDeleteResultItemMethod =
-  /*@__PURE__*/ S.String;
-
-export type OperationsLabelsBulkDeleteResultItemLabelsItemSource =
-  | "user"
-  | "managed";
-export const OperationsLabelsBulkDeleteResultItemLabelsItemSource =
-  /*@__PURE__*/ S.String;
-
-export interface OperationsLabelsBulkDeleteResultItemLabelsItem {
-  createdAt: string;
-  /** The description of the label */
-  description: string;
-  lastUpdated: string;
-  /** Metadata for the label */
-  metadata: unknown;
-  /** The name of the label */
-  name: string;
-  /** * `user` - label is owned by the user */
-  source: OperationsLabelsBulkDeleteResultItemLabelsItemSource;
-}
-export const OperationsLabelsBulkDeleteResultItemLabelsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String.pipe(T.Body("created_at")),
-      description: S.String,
-      lastUpdated: S.String.pipe(T.Body("last_updated")),
-      metadata: S.Unknown,
-      name: S.String,
-      source: OperationsLabelsBulkDeleteResultItemLabelsItemSource,
-    }),
-  ).annotate({
-    identifier: "OperationsLabelsBulkDeleteResultItemLabelsItem",
-  }) as any as S.Schema<OperationsLabelsBulkDeleteResultItemLabelsItem>;
-
-export type OperationsLabelsBulkDeleteResultItemLabelsList =
-  Array<OperationsLabelsBulkDeleteResultItemLabelsItem>;
-export const OperationsLabelsBulkDeleteResultItemLabelsList =
-  /*@__PURE__*/ S.Array(
-    OperationsLabelsBulkDeleteResultItemLabelsItem,
-  ) as any as S.Schema<OperationsLabelsBulkDeleteResultItemLabelsList>;
-
-export interface OperationsLabelsBulkDeleteResultItem {
-  /** The endpoint which can contain path parameter templates in curly braces, each will be replaced from left to right with {varN}, starting with {var1}, during insertion. This will further be Cloudflare-normalized upon insertion. See: https://developers.cloudflare.com/rules/normalization/how-it-works/. */
-  endpoint: string;
-  /** RFC3986-compliant host. */
-  host: string;
-  lastUpdated: string;
-  /** The HTTP method used to access the endpoint. */
-  method: OperationsLabelsBulkDeleteResultItemMethod;
-  /** UUID. */
-  operationId: string;
-  labels?: OperationsLabelsBulkDeleteResultItemLabelsList | null;
-}
-export const OperationsLabelsBulkDeleteResultItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      endpoint: S.String,
-      host: S.String,
-      lastUpdated: S.String.pipe(T.Body("last_updated")),
-      method: OperationsLabelsBulkDeleteResultItemMethod,
-      operationId: S.String.pipe(T.Body("operation_id")),
-      labels: S.optional(
-        S.NullOr(OperationsLabelsBulkDeleteResultItemLabelsList),
-      ),
-    }),
-).annotate({
-  identifier: "OperationsLabelsBulkDeleteResultItem",
-}) as any as S.Schema<OperationsLabelsBulkDeleteResultItem>;
-
-export type OperationsLabelsBulkDeleteResultList =
-  Array<OperationsLabelsBulkDeleteResultItem>;
-export const OperationsLabelsBulkDeleteResultList = /*@__PURE__*/ S.Array(
-  OperationsLabelsBulkDeleteResultItem,
-) as any as S.Schema<OperationsLabelsBulkDeleteResultList>;
-
-export interface DeleteBulkOperationLabelResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: OperationsLabelsBulkDeleteResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const DeleteBulkOperationLabelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: OperationsLabelsBulkDeleteResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkOperationLabelResponse",
-}) as any as S.Schema<DeleteBulkOperationLabelResponse>;
 
 export interface DeleteLabelUserRequest {
   /** Identifier. */
@@ -4923,208 +5125,6 @@ export const PutSettingSchemaValidationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutSettingSchemaValidationResponse",
 }) as any as S.Schema<PutSettingSchemaValidationResponse>;
 
-export type OperationsLabelsBulkUpdateRequestManagedLabelsList = Array<string>;
-export const OperationsLabelsBulkUpdateRequestManagedLabelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<OperationsLabelsBulkUpdateRequestManagedLabelsList>;
-
-export interface OperationsLabelsBulkUpdateRequestManaged {
-  /** List of managed label names. Providing an empty array will result in all managed labels being removed from all affected operations */
-  labels: OperationsLabelsBulkUpdateRequestManagedLabelsList;
-}
-export const OperationsLabelsBulkUpdateRequestManaged = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      labels: OperationsLabelsBulkUpdateRequestManagedLabelsList,
-    }),
-).annotate({
-  identifier: "OperationsLabelsBulkUpdateRequestManaged",
-}) as any as S.Schema<OperationsLabelsBulkUpdateRequestManaged>;
-
-export type OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList =
-  Array<string>;
-export const OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList>;
-
-export interface OperationsLabelsBulkUpdateRequestSelectorInclude {
-  operationIds: OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList;
-}
-export const OperationsLabelsBulkUpdateRequestSelectorInclude =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operationIds:
-        OperationsLabelsBulkUpdateRequestSelectorIncludeOperationIdsList.pipe(
-          T.Body("operation_ids"),
-        ),
-    }),
-  ).annotate({
-    identifier: "OperationsLabelsBulkUpdateRequestSelectorInclude",
-  }) as any as S.Schema<OperationsLabelsBulkUpdateRequestSelectorInclude>;
-
-export interface OperationsLabelsBulkUpdateRequestSelector {
-  include: OperationsLabelsBulkUpdateRequestSelectorInclude;
-}
-export const OperationsLabelsBulkUpdateRequestSelector =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      include: OperationsLabelsBulkUpdateRequestSelectorInclude,
-    }),
-  ).annotate({
-    identifier: "OperationsLabelsBulkUpdateRequestSelector",
-  }) as any as S.Schema<OperationsLabelsBulkUpdateRequestSelector>;
-
-export type OperationsLabelsBulkUpdateRequestUserLabelsList = Array<string>;
-export const OperationsLabelsBulkUpdateRequestUserLabelsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<OperationsLabelsBulkUpdateRequestUserLabelsList>;
-
-export interface OperationsLabelsBulkUpdateRequestUser {
-  /** List of user label names. Providing an empty array will result in all user labels being removed from all affected operations */
-  labels: OperationsLabelsBulkUpdateRequestUserLabelsList;
-}
-export const OperationsLabelsBulkUpdateRequestUser = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      labels: OperationsLabelsBulkUpdateRequestUserLabelsList,
-    }),
-).annotate({
-  identifier: "OperationsLabelsBulkUpdateRequestUser",
-}) as any as S.Schema<OperationsLabelsBulkUpdateRequestUser>;
-
-export interface UpdateBulkOperationLabelRequest {
-  /** Identifier. */
-  zoneId: string;
-  /** Managed labels to replace for all affected operations */
-  managed: OperationsLabelsBulkUpdateRequestManaged;
-  /** Operation IDs selector */
-  selector: OperationsLabelsBulkUpdateRequestSelector;
-  /** User labels to replace for all affected operations */
-  user: OperationsLabelsBulkUpdateRequestUser;
-}
-export const UpdateBulkOperationLabelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    managed: OperationsLabelsBulkUpdateRequestManaged,
-    selector: OperationsLabelsBulkUpdateRequestSelector,
-    user: OperationsLabelsBulkUpdateRequestUser,
-  })
-    .pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/zones/{zone_id}/api_gateway/operations/labels",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "UpdateBulkOperationLabelRequest",
-}) as any as S.Schema<UpdateBulkOperationLabelRequest>;
-
-export type OperationsLabelsBulkUpdateResultItemMethod =
-  | "GET"
-  | "POST"
-  | "HEAD"
-  | "OPTIONS"
-  | "PUT"
-  | "DELETE"
-  | "CONNECT"
-  | "PATCH"
-  | "TRACE";
-export const OperationsLabelsBulkUpdateResultItemMethod =
-  /*@__PURE__*/ S.String;
-
-export type OperationsLabelsBulkUpdateResultItemLabelsItemSource =
-  | "user"
-  | "managed";
-export const OperationsLabelsBulkUpdateResultItemLabelsItemSource =
-  /*@__PURE__*/ S.String;
-
-export interface OperationsLabelsBulkUpdateResultItemLabelsItem {
-  createdAt: string;
-  /** The description of the label */
-  description: string;
-  lastUpdated: string;
-  /** Metadata for the label */
-  metadata: unknown;
-  /** The name of the label */
-  name: string;
-  /** * `user` - label is owned by the user */
-  source: OperationsLabelsBulkUpdateResultItemLabelsItemSource;
-}
-export const OperationsLabelsBulkUpdateResultItemLabelsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdAt: S.String.pipe(T.Body("created_at")),
-      description: S.String,
-      lastUpdated: S.String.pipe(T.Body("last_updated")),
-      metadata: S.Unknown,
-      name: S.String,
-      source: OperationsLabelsBulkUpdateResultItemLabelsItemSource,
-    }),
-  ).annotate({
-    identifier: "OperationsLabelsBulkUpdateResultItemLabelsItem",
-  }) as any as S.Schema<OperationsLabelsBulkUpdateResultItemLabelsItem>;
-
-export type OperationsLabelsBulkUpdateResultItemLabelsList =
-  Array<OperationsLabelsBulkUpdateResultItemLabelsItem>;
-export const OperationsLabelsBulkUpdateResultItemLabelsList =
-  /*@__PURE__*/ S.Array(
-    OperationsLabelsBulkUpdateResultItemLabelsItem,
-  ) as any as S.Schema<OperationsLabelsBulkUpdateResultItemLabelsList>;
-
-export interface OperationsLabelsBulkUpdateResultItem {
-  /** The endpoint which can contain path parameter templates in curly braces, each will be replaced from left to right with {varN}, starting with {var1}, during insertion. This will further be Cloudflare-normalized upon insertion. See: https://developers.cloudflare.com/rules/normalization/how-it-works/. */
-  endpoint: string;
-  /** RFC3986-compliant host. */
-  host: string;
-  lastUpdated: string;
-  /** The HTTP method used to access the endpoint. */
-  method: OperationsLabelsBulkUpdateResultItemMethod;
-  /** UUID. */
-  operationId: string;
-  labels?: OperationsLabelsBulkUpdateResultItemLabelsList | null;
-}
-export const OperationsLabelsBulkUpdateResultItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      endpoint: S.String,
-      host: S.String,
-      lastUpdated: S.String.pipe(T.Body("last_updated")),
-      method: OperationsLabelsBulkUpdateResultItemMethod,
-      operationId: S.String.pipe(T.Body("operation_id")),
-      labels: S.optional(
-        S.NullOr(OperationsLabelsBulkUpdateResultItemLabelsList),
-      ),
-    }),
-).annotate({
-  identifier: "OperationsLabelsBulkUpdateResultItem",
-}) as any as S.Schema<OperationsLabelsBulkUpdateResultItem>;
-
-export type OperationsLabelsBulkUpdateResultList =
-  Array<OperationsLabelsBulkUpdateResultItem>;
-export const OperationsLabelsBulkUpdateResultList = /*@__PURE__*/ S.Array(
-  OperationsLabelsBulkUpdateResultItem,
-) as any as S.Schema<OperationsLabelsBulkUpdateResultList>;
-
-export interface UpdateBulkOperationLabelResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: OperationsLabelsBulkUpdateResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const UpdateBulkOperationLabelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: OperationsLabelsBulkUpdateResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "UpdateBulkOperationLabelResponse",
-}) as any as S.Schema<UpdateBulkOperationLabelResponse>;
-
 export type OperationsLabelsUpdateRequestManagedList = Array<string>;
 export const OperationsLabelsUpdateRequestManagedList = /*@__PURE__*/ S.Array(
   S.String,
@@ -5238,6 +5238,131 @@ export const UpdateOperationLabelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateOperationLabelResponse",
 }) as any as S.Schema<UpdateOperationLabelResponse>;
 
+export type BulkCreateLabelUsersError =
+  | LabelAlreadyExists
+  | Forbidden
+  | CloudflareOpError;
+/** Create user labels */
+export const bulkCreateLabelUsers: API.PaginatedOperationMethod<
+  BulkCreateLabelUsersRequest,
+  BulkCreateLabelUsersResponse,
+  BulkCreateLabelUsersError,
+  CloudflareOpContext,
+  LabelsUserBulkCreateResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkCreateLabelUsersRequest,
+    output: BulkCreateLabelUsersResponse,
+    errors: [
+      LabelAlreadyExists,
+      Forbidden,
+      CloudflareRateLimited,
+      CloudflareError,
+    ],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type BulkCreateOperationLabelsError = CloudflareOpError;
+/** Bulk attach label(s) on operation(s) in endpoint management */
+export const bulkCreateOperationLabels: API.PaginatedOperationMethod<
+  BulkCreateOperationLabelsRequest,
+  BulkCreateOperationLabelsResponse,
+  BulkCreateOperationLabelsError,
+  CloudflareOpContext,
+  OperationsLabelsBulkCreateResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkCreateOperationLabelsRequest,
+    output: BulkCreateOperationLabelsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type BulkCreateOperationsError = CloudflareOpError;
+/** Add one or more operations to a zone. Endpoints can contain path variables. Host, method, endpoint will be normalized to a canoncial form when creating an operation and must be unique on the zone. Inserting an operation that matches an existing one will return the record of the already existing operation and update its last_updated date. */
+export const bulkCreateOperations: API.PaginatedOperationMethod<
+  BulkCreateOperationsRequest,
+  BulkCreateOperationsResponse,
+  BulkCreateOperationsError,
+  CloudflareOpContext,
+  OperationsBulkCreateResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkCreateOperationsRequest,
+    output: BulkCreateOperationsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type BulkDeleteLabelUsersError = CloudflareOpError;
+/** Delete user labels */
+export const bulkDeleteLabelUsers: API.PaginatedOperationMethod<
+  BulkDeleteLabelUsersRequest,
+  BulkDeleteLabelUsersResponse,
+  BulkDeleteLabelUsersError,
+  CloudflareOpContext,
+  LabelsUserBulkDeleteResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkDeleteLabelUsersRequest,
+    output: BulkDeleteLabelUsersResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type BulkDeleteOperationLabelsError = CloudflareOpError;
+/** Bulk remove label(s) on operation(s) in endpoint management */
+export const bulkDeleteOperationLabels: API.PaginatedOperationMethod<
+  BulkDeleteOperationLabelsRequest,
+  BulkDeleteOperationLabelsResponse,
+  BulkDeleteOperationLabelsError,
+  CloudflareOpContext,
+  OperationsLabelsBulkDeleteResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkDeleteOperationLabelsRequest,
+    output: BulkDeleteOperationLabelsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type BulkDeleteOperationsError =
+  | InvalidObjectIdentifier
+  | CloudflareOpError;
+/** Bulk removes multiple API operations from API Shield endpoint management in a single request. Efficient for cleaning up unused endpoints. */
+export const bulkDeleteOperations: API.OperationMethod<
+  BulkDeleteOperationsRequest,
+  BulkDeleteOperationsResponse,
+  BulkDeleteOperationsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteOperationsRequest,
+  output: BulkDeleteOperationsResponse,
+  errors: [InvalidObjectIdentifier, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type BulkPatchDiscoveryOperationsError =
   | InvalidObjectIdentifier
   | NotEntitled
@@ -5261,66 +5386,18 @@ export const bulkPatchDiscoveryOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateBulkLabelUserError =
-  | LabelAlreadyExists
-  | Forbidden
-  | CloudflareOpError;
-/** Create user labels */
-export const createBulkLabelUser: API.PaginatedOperationMethod<
-  CreateBulkLabelUserRequest,
-  CreateBulkLabelUserResponse,
-  CreateBulkLabelUserError,
+export type BulkUpdateOperationLabelsError = CloudflareOpError;
+/** Bulk replace label(s) on operation(s) in endpoint management */
+export const bulkUpdateOperationLabels: API.PaginatedOperationMethod<
+  BulkUpdateOperationLabelsRequest,
+  BulkUpdateOperationLabelsResponse,
+  BulkUpdateOperationLabelsError,
   CloudflareOpContext,
-  LabelsUserBulkCreateResultItem
+  OperationsLabelsBulkUpdateResultItem
 > = /*@__PURE__*/ API.makePaginated(
   () => ({
-    input: CreateBulkLabelUserRequest,
-    output: CreateBulkLabelUserResponse,
-    errors: [
-      LabelAlreadyExists,
-      Forbidden,
-      CloudflareRateLimited,
-      CloudflareError,
-    ],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
-export type CreateBulkOperationError = CloudflareOpError;
-/** Add one or more operations to a zone. Endpoints can contain path variables. Host, method, endpoint will be normalized to a canoncial form when creating an operation and must be unique on the zone. Inserting an operation that matches an existing one will return the record of the already existing operation and update its last_updated date. */
-export const createBulkOperation: API.PaginatedOperationMethod<
-  CreateBulkOperationRequest,
-  CreateBulkOperationResponse,
-  CreateBulkOperationError,
-  CloudflareOpContext,
-  OperationsBulkCreateResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: CreateBulkOperationRequest,
-    output: CreateBulkOperationResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
-export type CreateBulkOperationLabelError = CloudflareOpError;
-/** Bulk attach label(s) on operation(s) in endpoint management */
-export const createBulkOperationLabel: API.PaginatedOperationMethod<
-  CreateBulkOperationLabelRequest,
-  CreateBulkOperationLabelResponse,
-  CreateBulkOperationLabelError,
-  CloudflareOpContext,
-  OperationsLabelsBulkCreateResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: CreateBulkOperationLabelRequest,
-    output: CreateBulkOperationLabelResponse,
+    input: BulkUpdateOperationLabelsRequest,
+    output: BulkUpdateOperationLabelsResponse,
     errors: [CloudflareRateLimited, CloudflareError],
     protocol: CloudflarePaginatedProtocol,
     retry: Retry.Retry,
@@ -5406,63 +5483,6 @@ export const createUserSchema: API.OperationMethod<
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
-
-export type DeleteBulkLabelUserError = CloudflareOpError;
-/** Delete user labels */
-export const deleteBulkLabelUser: API.PaginatedOperationMethod<
-  DeleteBulkLabelUserRequest,
-  DeleteBulkLabelUserResponse,
-  DeleteBulkLabelUserError,
-  CloudflareOpContext,
-  LabelsUserBulkDeleteResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: DeleteBulkLabelUserRequest,
-    output: DeleteBulkLabelUserResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
-export type DeleteBulkOperationError =
-  | InvalidObjectIdentifier
-  | CloudflareOpError;
-/** Bulk removes multiple API operations from API Shield endpoint management in a single request. Efficient for cleaning up unused endpoints. */
-export const deleteBulkOperation: API.OperationMethod<
-  DeleteBulkOperationRequest,
-  DeleteBulkOperationResponse,
-  DeleteBulkOperationError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkOperationRequest,
-  output: DeleteBulkOperationResponse,
-  errors: [InvalidObjectIdentifier, CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkOperationLabelError = CloudflareOpError;
-/** Bulk remove label(s) on operation(s) in endpoint management */
-export const deleteBulkOperationLabel: API.PaginatedOperationMethod<
-  DeleteBulkOperationLabelRequest,
-  DeleteBulkOperationLabelResponse,
-  DeleteBulkOperationLabelError,
-  CloudflareOpContext,
-  OperationsLabelsBulkDeleteResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: DeleteBulkOperationLabelRequest,
-    output: DeleteBulkOperationLabelResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
 
 export type DeleteLabelUserError =
   | LabelNotFound
@@ -6079,26 +6099,6 @@ export const putSettingSchemaValidation: API.OperationMethod<
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
-
-export type UpdateBulkOperationLabelError = CloudflareOpError;
-/** Bulk replace label(s) on operation(s) in endpoint management */
-export const updateBulkOperationLabel: API.PaginatedOperationMethod<
-  UpdateBulkOperationLabelRequest,
-  UpdateBulkOperationLabelResponse,
-  UpdateBulkOperationLabelError,
-  CloudflareOpContext,
-  OperationsLabelsBulkUpdateResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: UpdateBulkOperationLabelRequest,
-    output: UpdateBulkOperationLabelResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
 
 export type UpdateOperationLabelError = CloudflareOpError;
 /** Replace label(s) on an operation in endpoint management */

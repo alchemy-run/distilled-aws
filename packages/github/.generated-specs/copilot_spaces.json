@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.copilot_spaces#ListForOrgRequest": {
@@ -3906,88 +3907,88 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.copilot_spaces#ListForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#CreateForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#GetForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#UpdateForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#DeleteForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#ListCollaboratorsForOrg"
-        },
-        {
           "target": "com.github.copilot_spaces#AddCollaboratorForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#UpdateCollaboratorForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#RemoveCollaboratorForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#ListResourcesForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#CreateResourceForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#GetResourceForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#UpdateResourceForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#DeleteResourceForOrg"
-        },
-        {
-          "target": "com.github.copilot_spaces#ListForUser"
-        },
-        {
-          "target": "com.github.copilot_spaces#CreateForUser"
-        },
-        {
-          "target": "com.github.copilot_spaces#GetForUser"
-        },
-        {
-          "target": "com.github.copilot_spaces#UpdateForUser"
-        },
-        {
-          "target": "com.github.copilot_spaces#DeleteForUser"
-        },
-        {
-          "target": "com.github.copilot_spaces#ListCollaboratorsForUser"
         },
         {
           "target": "com.github.copilot_spaces#AddCollaboratorForUser"
         },
         {
-          "target": "com.github.copilot_spaces#UpdateCollaboratorForUser"
+          "target": "com.github.copilot_spaces#CreateForOrg"
         },
         {
-          "target": "com.github.copilot_spaces#RemoveCollaboratorForUser"
+          "target": "com.github.copilot_spaces#CreateForUser"
         },
         {
-          "target": "com.github.copilot_spaces#ListResourcesForUser"
+          "target": "com.github.copilot_spaces#CreateResourceForOrg"
         },
         {
           "target": "com.github.copilot_spaces#CreateResourceForUser"
         },
         {
-          "target": "com.github.copilot_spaces#GetResourceForUser"
+          "target": "com.github.copilot_spaces#DeleteForOrg"
         },
         {
-          "target": "com.github.copilot_spaces#UpdateResourceForUser"
+          "target": "com.github.copilot_spaces#DeleteForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#DeleteResourceForOrg"
         },
         {
           "target": "com.github.copilot_spaces#DeleteResourceForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetResourceForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetResourceForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListCollaboratorsForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListCollaboratorsForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListResourcesForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListResourcesForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#RemoveCollaboratorForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#RemoveCollaboratorForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateResourceForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateResourceForUser"
         }
       ],
       "traits": {

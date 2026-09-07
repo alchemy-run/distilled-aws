@@ -5376,12 +5376,12 @@ export const DeleteAppsV1NamespacedStatefulSetRequest = /*@__PURE__*/ S.suspend(
   identifier: "DeleteAppsV1NamespacedStatefulSetRequest",
 }) as any as S.Schema<DeleteAppsV1NamespacedStatefulSetRequest>;
 
-export interface GetAppsApiGroupRequest {}
-export const GetAppsApiGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAppsAPIGroupRequest {}
+export const GetAppsAPIGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/apis/apps/", code: 200 })),
 ).annotate({
-  identifier: "GetAppsApiGroupRequest",
-}) as any as S.Schema<GetAppsApiGroupRequest>;
+  identifier: "GetAppsAPIGroupRequest",
+}) as any as S.Schema<GetAppsAPIGroupRequest>;
 
 /** GroupVersion contains the "group/version" and "version" string of a version. It is made a struct to keep extensibility. */
 export interface IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery {
@@ -5466,14 +5466,14 @@ export const IoK8sApimachineryPkgApisMetaV1APIGroup = /*@__PURE__*/ S.suspend(
   identifier: "IoK8sApimachineryPkgApisMetaV1APIGroup",
 }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1APIGroup>;
 
-export interface GetAppsV1ApiResourcesRequest {}
-export const GetAppsV1ApiResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAppsV1APIResourcesRequest {}
+export const GetAppsV1APIResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/apis/apps/v1/", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetAppsV1ApiResourcesRequest",
-}) as any as S.Schema<GetAppsV1ApiResourcesRequest>;
+  identifier: "GetAppsV1APIResourcesRequest",
+}) as any as S.Schema<GetAppsV1APIResourcesRequest>;
 
 /** categories is a list of the grouped resources this resource belongs to (e.g. 'all') */
 export type IoK8sApimachineryPkgApisMetaV1APIResourceCategoriesList =
@@ -6240,236 +6240,6 @@ export const ListAppsV1StatefulSetForAllNamespacesRequest =
     identifier: "ListAppsV1StatefulSetForAllNamespacesRequest",
   }) as any as S.Schema<ListAppsV1StatefulSetForAllNamespacesRequest>;
 
-export interface ListWatchAppV1ControllerRevisionForAllNamespacesRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAppV1ControllerRevisionForAllNamespacesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/watch/controllerrevisions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchAppV1ControllerRevisionForAllNamespacesRequest",
-  }) as any as S.Schema<ListWatchAppV1ControllerRevisionForAllNamespacesRequest>;
-
-/** Event represents a single event to a watched resource. */
-export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
-  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
-  object: unknown;
-  type: string;
-}
-export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      object: S.Unknown,
-      type: S.String,
-    }),
-).annotate({
-  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
-}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
-
-export interface ListWatchAppV1DeploymentForAllNamespacesRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAppV1DeploymentForAllNamespacesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/watch/deployments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchAppV1DeploymentForAllNamespacesRequest",
-  }) as any as S.Schema<ListWatchAppV1DeploymentForAllNamespacesRequest>;
-
-export interface ListWatchAppV1NamespacedControllerRevisionRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAppV1NamespacedControllerRevisionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchAppV1NamespacedControllerRevisionRequest",
-  }) as any as S.Schema<ListWatchAppV1NamespacedControllerRevisionRequest>;
-
-export interface ListWatchAppV1NamespacedDeploymentRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchAppV1NamespacedDeploymentRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/watch/namespaces/{namespace}/deployments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchAppV1NamespacedDeploymentRequest",
-  }) as any as S.Schema<ListWatchAppV1NamespacedDeploymentRequest>;
-
 export interface PatchAppsV1NamespacedControllerRevisionRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
@@ -6993,6 +6763,56 @@ export const ReadAppsV1NamespacedControllerRevisionRequest =
     identifier: "ReadAppsV1NamespacedControllerRevisionRequest",
   }) as any as S.Schema<ReadAppsV1NamespacedControllerRevisionRequest>;
 
+export interface ReadAppsV1NamespacedDaemonSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the DaemonSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedDaemonSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ReadAppsV1NamespacedDaemonSetRequest",
+}) as any as S.Schema<ReadAppsV1NamespacedDaemonSetRequest>;
+
+export interface ReadAppsV1NamespacedDaemonSetStatusRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the DaemonSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedDaemonSetStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReadAppsV1NamespacedDaemonSetStatusRequest",
+  }) as any as S.Schema<ReadAppsV1NamespacedDaemonSetStatusRequest>;
+
 export interface ReadAppsV1NamespacedDeploymentRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
@@ -7068,6 +6888,156 @@ export const ReadAppsV1NamespacedDeploymentStatusRequest =
     identifier: "ReadAppsV1NamespacedDeploymentStatusRequest",
   }) as any as S.Schema<ReadAppsV1NamespacedDeploymentStatusRequest>;
 
+export interface ReadAppsV1NamespacedReplicaSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the ReplicaSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedReplicaSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ReadAppsV1NamespacedReplicaSetRequest",
+}) as any as S.Schema<ReadAppsV1NamespacedReplicaSetRequest>;
+
+export interface ReadAppsV1NamespacedReplicaSetScaleRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the Scale */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedReplicaSetScaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReadAppsV1NamespacedReplicaSetScaleRequest",
+  }) as any as S.Schema<ReadAppsV1NamespacedReplicaSetScaleRequest>;
+
+export interface ReadAppsV1NamespacedReplicaSetStatusRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the ReplicaSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedReplicaSetStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReadAppsV1NamespacedReplicaSetStatusRequest",
+  }) as any as S.Schema<ReadAppsV1NamespacedReplicaSetStatusRequest>;
+
+export interface ReadAppsV1NamespacedStatefulSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the StatefulSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedStatefulSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ReadAppsV1NamespacedStatefulSetRequest",
+}) as any as S.Schema<ReadAppsV1NamespacedStatefulSetRequest>;
+
+export interface ReadAppsV1NamespacedStatefulSetScaleRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the Scale */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedStatefulSetScaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReadAppsV1NamespacedStatefulSetScaleRequest",
+  }) as any as S.Schema<ReadAppsV1NamespacedStatefulSetScaleRequest>;
+
+export interface ReadAppsV1NamespacedStatefulSetStatusRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the StatefulSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+}
+export const ReadAppsV1NamespacedStatefulSetStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReadAppsV1NamespacedStatefulSetStatusRequest",
+  }) as any as S.Schema<ReadAppsV1NamespacedStatefulSetStatusRequest>;
+
 export interface ReplaceAppsV1NamespacedControllerRevisionRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
@@ -7116,6 +7086,104 @@ export const ReplaceAppsV1NamespacedControllerRevisionRequest =
   ).annotate({
     identifier: "ReplaceAppsV1NamespacedControllerRevisionRequest",
   }) as any as S.Schema<ReplaceAppsV1NamespacedControllerRevisionRequest>;
+
+export interface ReplaceAppsV1NamespacedDaemonSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the DaemonSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  spec: IoK8sApiAppsV1DaemonSetSpec;
+  /** The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  status?: IoK8sApiAppsV1DaemonSetStatus;
+}
+export const ReplaceAppsV1NamespacedDaemonSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: IoK8sApiAppsV1DaemonSetSpec,
+      status: S.optional(IoK8sApiAppsV1DaemonSetStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ReplaceAppsV1NamespacedDaemonSetRequest",
+}) as any as S.Schema<ReplaceAppsV1NamespacedDaemonSetRequest>;
+
+export interface ReplaceAppsV1NamespacedDaemonSetStatusRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the DaemonSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  spec: IoK8sApiAppsV1DaemonSetSpec;
+  /** The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  status?: IoK8sApiAppsV1DaemonSetStatus;
+}
+export const ReplaceAppsV1NamespacedDaemonSetStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: IoK8sApiAppsV1DaemonSetSpec,
+      status: S.optional(IoK8sApiAppsV1DaemonSetStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReplaceAppsV1NamespacedDaemonSetStatusRequest",
+  }) as any as S.Schema<ReplaceAppsV1NamespacedDaemonSetStatusRequest>;
 
 export interface ReplaceAppsV1NamespacedDeploymentRequest {
   /** object name and auth scope, such as for teams and projects */
@@ -7264,770 +7332,367 @@ export const ReplaceAppsV1NamespacedDeploymentStatusRequest =
     identifier: "ReplaceAppsV1NamespacedDeploymentStatusRequest",
   }) as any as S.Schema<ReplaceAppsV1NamespacedDeploymentStatusRequest>;
 
-export interface SetReadAppV1NamespacedDaemonRequest {
+export interface ReplaceAppsV1NamespacedReplicaSetRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
-  /** name of the DaemonSet */
+  /** name of the ReplicaSet */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  spec: IoK8sApiAppsV1ReplicaSetSpec;
+  /** Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  status?: IoK8sApiAppsV1ReplicaSetStatus;
 }
-export const SetReadAppV1NamespacedDaemonRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    pretty: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}",
-      code: 200,
+export const ReplaceAppsV1NamespacedReplicaSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: IoK8sApiAppsV1ReplicaSetSpec,
+      status: S.optional(IoK8sApiAppsV1ReplicaSetStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ReplaceAppsV1NamespacedReplicaSetRequest",
+}) as any as S.Schema<ReplaceAppsV1NamespacedReplicaSetRequest>;
+
+export interface ReplaceAppsV1NamespacedReplicaSetScaleRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the Scale */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** metadata is the standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. */
+  spec?: IoK8sApiAutoscalingV1ScaleSpec;
+  /** status is the current status of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. Read-only. */
+  status?: IoK8sApiAutoscalingV1ScaleStatus;
+}
+export const ReplaceAppsV1NamespacedReplicaSetScaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: S.optional(IoK8sApiAutoscalingV1ScaleSpec),
+      status: S.optional(IoK8sApiAutoscalingV1ScaleStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReplaceAppsV1NamespacedReplicaSetScaleRequest",
+  }) as any as S.Schema<ReplaceAppsV1NamespacedReplicaSetScaleRequest>;
+
+export interface ReplaceAppsV1NamespacedReplicaSetStatusRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the ReplicaSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  spec: IoK8sApiAppsV1ReplicaSetSpec;
+  /** Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
+  status?: IoK8sApiAppsV1ReplicaSetStatus;
+}
+export const ReplaceAppsV1NamespacedReplicaSetStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: IoK8sApiAppsV1ReplicaSetSpec,
+      status: S.optional(IoK8sApiAppsV1ReplicaSetStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReplaceAppsV1NamespacedReplicaSetStatusRequest",
+  }) as any as S.Schema<ReplaceAppsV1NamespacedReplicaSetStatusRequest>;
+
+export interface ReplaceAppsV1NamespacedStatefulSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the StatefulSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** Spec defines the desired identities of pods in this set. */
+  spec: IoK8sApiAppsV1StatefulSetSpec;
+  /** Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time. */
+  status?: IoK8sApiAppsV1StatefulSetStatus;
+}
+export const ReplaceAppsV1NamespacedStatefulSetRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: IoK8sApiAppsV1StatefulSetSpec,
+      status: S.optional(IoK8sApiAppsV1StatefulSetStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReplaceAppsV1NamespacedStatefulSetRequest",
+  }) as any as S.Schema<ReplaceAppsV1NamespacedStatefulSetRequest>;
+
+export interface ReplaceAppsV1NamespacedStatefulSetScaleRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the Scale */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** metadata is the standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. */
+  spec?: IoK8sApiAutoscalingV1ScaleSpec;
+  /** status is the current status of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. Read-only. */
+  status?: IoK8sApiAutoscalingV1ScaleStatus;
+}
+export const ReplaceAppsV1NamespacedStatefulSetScaleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: S.optional(IoK8sApiAutoscalingV1ScaleSpec),
+      status: S.optional(IoK8sApiAutoscalingV1ScaleStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReplaceAppsV1NamespacedStatefulSetScaleRequest",
+  }) as any as S.Schema<ReplaceAppsV1NamespacedStatefulSetScaleRequest>;
+
+export interface ReplaceAppsV1NamespacedStatefulSetStatusRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the StatefulSet */
+  name: string;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
+  dryRun?: string;
+  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
+  fieldManager?: string;
+  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
+  fieldValidation?: string;
+  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
+  apiVersion?: string;
+  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
+  kind?: string;
+  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
+  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
+  /** Spec defines the desired identities of pods in this set. */
+  spec: IoK8sApiAppsV1StatefulSetSpec;
+  /** Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time. */
+  status?: IoK8sApiAppsV1StatefulSetStatus;
+}
+export const ReplaceAppsV1NamespacedStatefulSetStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      dryRun: S.optional(S.String.pipe(T.Query())),
+      fieldManager: S.optional(S.String.pipe(T.Query())),
+      fieldValidation: S.optional(S.String.pipe(T.Query())),
+      apiVersion: S.optional(S.String),
+      kind: S.optional(S.String),
+      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
+      spec: IoK8sApiAppsV1StatefulSetSpec,
+      status: S.optional(IoK8sApiAppsV1StatefulSetStatus),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ReplaceAppsV1NamespacedStatefulSetStatusRequest",
+  }) as any as S.Schema<ReplaceAppsV1NamespacedStatefulSetStatusRequest>;
+
+export interface WatchAppsV1ControllerRevisionListForAllNamespacesRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAppsV1ControllerRevisionListForAllNamespacesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/watch/controllerrevisions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchAppsV1ControllerRevisionListForAllNamespacesRequest",
+  }) as any as S.Schema<WatchAppsV1ControllerRevisionListForAllNamespacesRequest>;
+
+/** Event represents a single event to a watched resource. */
+export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
+  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
+  object: unknown;
+  type: string;
+}
+export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      object: S.Unknown,
+      type: S.String,
     }),
-  ),
 ).annotate({
-  identifier: "SetReadAppV1NamespacedDaemonRequest",
-}) as any as S.Schema<SetReadAppV1NamespacedDaemonRequest>;
-
-export interface SetReadAppV1NamespacedDaemonStatusRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the DaemonSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-}
-export const SetReadAppV1NamespacedDaemonStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReadAppV1NamespacedDaemonStatusRequest",
-  }) as any as S.Schema<SetReadAppV1NamespacedDaemonStatusRequest>;
-
-export interface SetReadAppV1NamespacedReplicaRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the ReplicaSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-}
-export const SetReadAppV1NamespacedReplicaRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetReadAppV1NamespacedReplicaRequest",
-}) as any as S.Schema<SetReadAppV1NamespacedReplicaRequest>;
-
-export interface SetReadAppV1NamespacedReplicaScaleRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the Scale */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-}
-export const SetReadAppV1NamespacedReplicaScaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReadAppV1NamespacedReplicaScaleRequest",
-  }) as any as S.Schema<SetReadAppV1NamespacedReplicaScaleRequest>;
-
-export interface SetReadAppV1NamespacedReplicaStatusRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the ReplicaSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-}
-export const SetReadAppV1NamespacedReplicaStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReadAppV1NamespacedReplicaStatusRequest",
-  }) as any as S.Schema<SetReadAppV1NamespacedReplicaStatusRequest>;
-
-export interface SetReadAppV1NamespacedStatefulRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the StatefulSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-}
-export const SetReadAppV1NamespacedStatefulRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetReadAppV1NamespacedStatefulRequest",
-}) as any as S.Schema<SetReadAppV1NamespacedStatefulRequest>;
-
-export interface SetReadAppV1NamespacedStatefulScaleRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the Scale */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-}
-export const SetReadAppV1NamespacedStatefulScaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReadAppV1NamespacedStatefulScaleRequest",
-  }) as any as S.Schema<SetReadAppV1NamespacedStatefulScaleRequest>;
-
-export interface SetReadAppV1NamespacedStatefulStatusRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the StatefulSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-}
-export const SetReadAppV1NamespacedStatefulStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReadAppV1NamespacedStatefulStatusRequest",
-  }) as any as S.Schema<SetReadAppV1NamespacedStatefulStatusRequest>;
-
-export interface SetReplaceAppV1NamespacedDaemonRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the DaemonSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  spec: IoK8sApiAppsV1DaemonSetSpec;
-  /** The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  status?: IoK8sApiAppsV1DaemonSetStatus;
-}
-export const SetReplaceAppV1NamespacedDaemonRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: IoK8sApiAppsV1DaemonSetSpec,
-      status: S.optional(IoK8sApiAppsV1DaemonSetStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetReplaceAppV1NamespacedDaemonRequest",
-}) as any as S.Schema<SetReplaceAppV1NamespacedDaemonRequest>;
-
-export interface SetReplaceAppV1NamespacedDaemonStatusRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the DaemonSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** The desired behavior of this daemon set. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  spec: IoK8sApiAppsV1DaemonSetSpec;
-  /** The current status of this daemon set. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  status?: IoK8sApiAppsV1DaemonSetStatus;
-}
-export const SetReplaceAppV1NamespacedDaemonStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: IoK8sApiAppsV1DaemonSetSpec,
-      status: S.optional(IoK8sApiAppsV1DaemonSetStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/daemonsets/{name}/status",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReplaceAppV1NamespacedDaemonStatusRequest",
-  }) as any as S.Schema<SetReplaceAppV1NamespacedDaemonStatusRequest>;
-
-export interface SetReplaceAppV1NamespacedReplicaRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the ReplicaSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  spec: IoK8sApiAppsV1ReplicaSetSpec;
-  /** Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  status?: IoK8sApiAppsV1ReplicaSetStatus;
-}
-export const SetReplaceAppV1NamespacedReplicaRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: IoK8sApiAppsV1ReplicaSetSpec,
-      status: S.optional(IoK8sApiAppsV1ReplicaSetStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetReplaceAppV1NamespacedReplicaRequest",
-}) as any as S.Schema<SetReplaceAppV1NamespacedReplicaRequest>;
-
-export interface SetReplaceAppV1NamespacedReplicaScaleRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the Scale */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** metadata is the standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. */
-  spec?: IoK8sApiAutoscalingV1ScaleSpec;
-  /** status is the current status of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. Read-only. */
-  status?: IoK8sApiAutoscalingV1ScaleStatus;
-}
-export const SetReplaceAppV1NamespacedReplicaScaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: S.optional(IoK8sApiAutoscalingV1ScaleSpec),
-      status: S.optional(IoK8sApiAutoscalingV1ScaleStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/scale",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReplaceAppV1NamespacedReplicaScaleRequest",
-  }) as any as S.Schema<SetReplaceAppV1NamespacedReplicaScaleRequest>;
-
-export interface SetReplaceAppV1NamespacedReplicaStatusRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the ReplicaSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** If the Labels of a ReplicaSet are empty, they are defaulted to be the same as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** Spec defines the specification of the desired behavior of the ReplicaSet. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  spec: IoK8sApiAppsV1ReplicaSetSpec;
-  /** Status is the most recently observed status of the ReplicaSet. This data may be out of date by some window of time. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status */
-  status?: IoK8sApiAppsV1ReplicaSetStatus;
-}
-export const SetReplaceAppV1NamespacedReplicaStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: IoK8sApiAppsV1ReplicaSetSpec,
-      status: S.optional(IoK8sApiAppsV1ReplicaSetStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReplaceAppV1NamespacedReplicaStatusRequest",
-  }) as any as S.Schema<SetReplaceAppV1NamespacedReplicaStatusRequest>;
-
-export interface SetReplaceAppV1NamespacedStatefulRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the StatefulSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** Spec defines the desired identities of pods in this set. */
-  spec: IoK8sApiAppsV1StatefulSetSpec;
-  /** Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time. */
-  status?: IoK8sApiAppsV1StatefulSetStatus;
-}
-export const SetReplaceAppV1NamespacedStatefulRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: IoK8sApiAppsV1StatefulSetSpec,
-      status: S.optional(IoK8sApiAppsV1StatefulSetStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetReplaceAppV1NamespacedStatefulRequest",
-}) as any as S.Schema<SetReplaceAppV1NamespacedStatefulRequest>;
-
-export interface SetReplaceAppV1NamespacedStatefulScaleRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the Scale */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** metadata is the standard object metadata; More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata. */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** spec defines the behavior of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. */
-  spec?: IoK8sApiAutoscalingV1ScaleSpec;
-  /** status is the current status of the scale. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status. Read-only. */
-  status?: IoK8sApiAutoscalingV1ScaleStatus;
-}
-export const SetReplaceAppV1NamespacedStatefulScaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: S.optional(IoK8sApiAutoscalingV1ScaleSpec),
-      status: S.optional(IoK8sApiAutoscalingV1ScaleStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/scale",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReplaceAppV1NamespacedStatefulScaleRequest",
-  }) as any as S.Schema<SetReplaceAppV1NamespacedStatefulScaleRequest>;
-
-export interface SetReplaceAppV1NamespacedStatefulStatusRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the StatefulSet */
-  name: string;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
-  dryRun?: string;
-  /** fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. */
-  fieldManager?: string;
-  /** fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. */
-  fieldValidation?: string;
-  /** APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources */
-  apiVersion?: string;
-  /** Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds */
-  kind?: string;
-  /** Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata */
-  metadata?: IoK8sApimachineryPkgApisMetaV1ObjectMeta;
-  /** Spec defines the desired identities of pods in this set. */
-  spec: IoK8sApiAppsV1StatefulSetSpec;
-  /** Status is the current status of Pods in this StatefulSet. This data may be out of date by some window of time. */
-  status?: IoK8sApiAppsV1StatefulSetStatus;
-}
-export const SetReplaceAppV1NamespacedStatefulStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      dryRun: S.optional(S.String.pipe(T.Query())),
-      fieldManager: S.optional(S.String.pipe(T.Query())),
-      fieldValidation: S.optional(S.String.pipe(T.Query())),
-      apiVersion: S.optional(S.String),
-      kind: S.optional(S.String),
-      metadata: S.optional(IoK8sApimachineryPkgApisMetaV1ObjectMeta),
-      spec: IoK8sApiAppsV1StatefulSetSpec,
-      status: S.optional(IoK8sApiAppsV1StatefulSetStatus),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/apis/apps/v1/namespaces/{namespace}/statefulsets/{name}/status",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SetReplaceAppV1NamespacedStatefulStatusRequest",
-  }) as any as S.Schema<SetReplaceAppV1NamespacedStatefulStatusRequest>;
-
-export interface SetWatchAppV1NamespacedDaemonRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the DaemonSet */
-  name: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const SetWatchAppV1NamespacedDaemonRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/watch/namespaces/{namespace}/daemonsets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetWatchAppV1NamespacedDaemonRequest",
-}) as any as S.Schema<SetWatchAppV1NamespacedDaemonRequest>;
-
-export interface SetWatchAppV1NamespacedReplicaRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the ReplicaSet */
-  name: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const SetWatchAppV1NamespacedReplicaRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/watch/namespaces/{namespace}/replicasets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetWatchAppV1NamespacedReplicaRequest",
-}) as any as S.Schema<SetWatchAppV1NamespacedReplicaRequest>;
-
-export interface SetWatchAppV1NamespacedStatefulRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** name of the StatefulSet */
-  name: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const SetWatchAppV1NamespacedStatefulRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apps/v1/watch/namespaces/{namespace}/statefulsets/{name}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SetWatchAppV1NamespacedStatefulRequest",
-}) as any as S.Schema<SetWatchAppV1NamespacedStatefulRequest>;
+  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
+}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
 
 export interface WatchAppsV1DaemonSetListForAllNamespacesRequest {
   /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
@@ -8080,6 +7745,58 @@ export const WatchAppsV1DaemonSetListForAllNamespacesRequest =
   ).annotate({
     identifier: "WatchAppsV1DaemonSetListForAllNamespacesRequest",
   }) as any as S.Schema<WatchAppsV1DaemonSetListForAllNamespacesRequest>;
+
+export interface WatchAppsV1DeploymentListForAllNamespacesRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAppsV1DeploymentListForAllNamespacesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/watch/deployments",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchAppsV1DeploymentListForAllNamespacesRequest",
+  }) as any as S.Schema<WatchAppsV1DeploymentListForAllNamespacesRequest>;
 
 export interface WatchAppsV1NamespacedControllerRevisionRequest {
   /** object name and auth scope, such as for teams and projects */
@@ -8138,6 +7855,119 @@ export const WatchAppsV1NamespacedControllerRevisionRequest =
   ).annotate({
     identifier: "WatchAppsV1NamespacedControllerRevisionRequest",
   }) as any as S.Schema<WatchAppsV1NamespacedControllerRevisionRequest>;
+
+export interface WatchAppsV1NamespacedControllerRevisionListRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAppsV1NamespacedControllerRevisionListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/watch/namespaces/{namespace}/controllerrevisions",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchAppsV1NamespacedControllerRevisionListRequest",
+  }) as any as S.Schema<WatchAppsV1NamespacedControllerRevisionListRequest>;
+
+export interface WatchAppsV1NamespacedDaemonSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the DaemonSet */
+  name: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAppsV1NamespacedDaemonSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/watch/namespaces/{namespace}/daemonsets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "WatchAppsV1NamespacedDaemonSetRequest",
+}) as any as S.Schema<WatchAppsV1NamespacedDaemonSetRequest>;
 
 export interface WatchAppsV1NamespacedDaemonSetListRequest {
   /** object name and auth scope, such as for teams and projects */
@@ -8252,6 +8082,119 @@ export const WatchAppsV1NamespacedDeploymentRequest = /*@__PURE__*/ S.suspend(
   identifier: "WatchAppsV1NamespacedDeploymentRequest",
 }) as any as S.Schema<WatchAppsV1NamespacedDeploymentRequest>;
 
+export interface WatchAppsV1NamespacedDeploymentListRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAppsV1NamespacedDeploymentListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/watch/namespaces/{namespace}/deployments",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchAppsV1NamespacedDeploymentListRequest",
+  }) as any as S.Schema<WatchAppsV1NamespacedDeploymentListRequest>;
+
+export interface WatchAppsV1NamespacedReplicaSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the ReplicaSet */
+  name: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAppsV1NamespacedReplicaSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/watch/namespaces/{namespace}/replicasets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "WatchAppsV1NamespacedReplicaSetRequest",
+}) as any as S.Schema<WatchAppsV1NamespacedReplicaSetRequest>;
+
 export interface WatchAppsV1NamespacedReplicaSetListRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
@@ -8306,6 +8249,64 @@ export const WatchAppsV1NamespacedReplicaSetListRequest =
   ).annotate({
     identifier: "WatchAppsV1NamespacedReplicaSetListRequest",
   }) as any as S.Schema<WatchAppsV1NamespacedReplicaSetListRequest>;
+
+export interface WatchAppsV1NamespacedStatefulSetRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** name of the StatefulSet */
+  name: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchAppsV1NamespacedStatefulSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apps/v1/watch/namespaces/{namespace}/statefulsets/{name}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "WatchAppsV1NamespacedStatefulSetRequest",
+}) as any as S.Schema<WatchAppsV1NamespacedStatefulSetRequest>;
 
 export interface WatchAppsV1NamespacedStatefulSetListRequest {
   /** object name and auth scope, such as for teams and projects */
@@ -8723,30 +8724,30 @@ export const deleteAppsV1NamespacedStatefulSet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAppsApiGroupError = KubernetesOpError;
+export type GetAppsAPIGroupError = KubernetesOpError;
 /** get information of a group */
-export const getAppsApiGroup: API.OperationMethod<
-  GetAppsApiGroupRequest,
+export const getAppsAPIGroup: API.OperationMethod<
+  GetAppsAPIGroupRequest,
   IoK8sApimachineryPkgApisMetaV1APIGroup,
-  GetAppsApiGroupError,
+  GetAppsAPIGroupError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAppsApiGroupRequest,
+  input: GetAppsAPIGroupRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIGroup,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetAppsV1ApiResourcesError = KubernetesOpError;
+export type GetAppsV1APIResourcesError = KubernetesOpError;
 /** get available resources */
-export const getAppsV1ApiResources: API.OperationMethod<
-  GetAppsV1ApiResourcesRequest,
+export const getAppsV1APIResources: API.OperationMethod<
+  GetAppsV1APIResourcesRequest,
   IoK8sApimachineryPkgApisMetaV1APIResourceList,
-  GetAppsV1ApiResourcesError,
+  GetAppsV1APIResourcesError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAppsV1ApiResourcesRequest,
+  input: GetAppsV1APIResourcesRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIResourceList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -8899,67 +8900,6 @@ export const listAppsV1StatefulSetForAllNamespaces: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListAppsV1StatefulSetForAllNamespacesRequest,
   output: IoK8sApiAppsV1StatefulSetList,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAppV1ControllerRevisionForAllNamespacesError =
-  KubernetesOpError;
-/** watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAppV1ControllerRevisionForAllNamespaces: API.OperationMethod<
-  ListWatchAppV1ControllerRevisionForAllNamespacesRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAppV1ControllerRevisionForAllNamespacesError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAppV1ControllerRevisionForAllNamespacesRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAppV1DeploymentForAllNamespacesError = KubernetesOpError;
-/** watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAppV1DeploymentForAllNamespaces: API.OperationMethod<
-  ListWatchAppV1DeploymentForAllNamespacesRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAppV1DeploymentForAllNamespacesError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAppV1DeploymentForAllNamespacesRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAppV1NamespacedControllerRevisionError = KubernetesOpError;
-/** watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAppV1NamespacedControllerRevision: API.OperationMethod<
-  ListWatchAppV1NamespacedControllerRevisionRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAppV1NamespacedControllerRevisionError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAppV1NamespacedControllerRevisionRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchAppV1NamespacedDeploymentError = KubernetesOpError;
-/** watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchAppV1NamespacedDeployment: API.OperationMethod<
-  ListWatchAppV1NamespacedDeploymentRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchAppV1NamespacedDeploymentError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchAppV1NamespacedDeploymentRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
@@ -9210,6 +9150,38 @@ export const readAppsV1NamespacedControllerRevision: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ReadAppsV1NamespacedDaemonSetError = NotFound | KubernetesOpError;
+/** read the specified DaemonSet */
+export const readAppsV1NamespacedDaemonSet: API.OperationMethod<
+  ReadAppsV1NamespacedDaemonSetRequest,
+  IoK8sApiAppsV1DaemonSet,
+  ReadAppsV1NamespacedDaemonSetError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedDaemonSetRequest,
+  output: IoK8sApiAppsV1DaemonSet,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadAppsV1NamespacedDaemonSetStatusError =
+  | NotFound
+  | KubernetesOpError;
+/** read status of the specified DaemonSet */
+export const readAppsV1NamespacedDaemonSetStatus: API.OperationMethod<
+  ReadAppsV1NamespacedDaemonSetStatusRequest,
+  IoK8sApiAppsV1DaemonSet,
+  ReadAppsV1NamespacedDaemonSetStatusError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedDaemonSetStatusRequest,
+  output: IoK8sApiAppsV1DaemonSet,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ReadAppsV1NamespacedDeploymentError = NotFound | KubernetesOpError;
 /** read the specified Deployment */
 export const readAppsV1NamespacedDeployment: API.OperationMethod<
@@ -9259,6 +9231,104 @@ export const readAppsV1NamespacedDeploymentStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ReadAppsV1NamespacedReplicaSetError = NotFound | KubernetesOpError;
+/** read the specified ReplicaSet */
+export const readAppsV1NamespacedReplicaSet: API.OperationMethod<
+  ReadAppsV1NamespacedReplicaSetRequest,
+  IoK8sApiAppsV1ReplicaSet,
+  ReadAppsV1NamespacedReplicaSetError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedReplicaSetRequest,
+  output: IoK8sApiAppsV1ReplicaSet,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadAppsV1NamespacedReplicaSetScaleError =
+  | NotFound
+  | KubernetesOpError;
+/** read scale of the specified ReplicaSet */
+export const readAppsV1NamespacedReplicaSetScale: API.OperationMethod<
+  ReadAppsV1NamespacedReplicaSetScaleRequest,
+  IoK8sApiAutoscalingV1Scale,
+  ReadAppsV1NamespacedReplicaSetScaleError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedReplicaSetScaleRequest,
+  output: IoK8sApiAutoscalingV1Scale,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadAppsV1NamespacedReplicaSetStatusError =
+  | NotFound
+  | KubernetesOpError;
+/** read status of the specified ReplicaSet */
+export const readAppsV1NamespacedReplicaSetStatus: API.OperationMethod<
+  ReadAppsV1NamespacedReplicaSetStatusRequest,
+  IoK8sApiAppsV1ReplicaSet,
+  ReadAppsV1NamespacedReplicaSetStatusError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedReplicaSetStatusRequest,
+  output: IoK8sApiAppsV1ReplicaSet,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadAppsV1NamespacedStatefulSetError = NotFound | KubernetesOpError;
+/** read the specified StatefulSet */
+export const readAppsV1NamespacedStatefulSet: API.OperationMethod<
+  ReadAppsV1NamespacedStatefulSetRequest,
+  IoK8sApiAppsV1StatefulSet,
+  ReadAppsV1NamespacedStatefulSetError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedStatefulSetRequest,
+  output: IoK8sApiAppsV1StatefulSet,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadAppsV1NamespacedStatefulSetScaleError =
+  | NotFound
+  | KubernetesOpError;
+/** read scale of the specified StatefulSet */
+export const readAppsV1NamespacedStatefulSetScale: API.OperationMethod<
+  ReadAppsV1NamespacedStatefulSetScaleRequest,
+  IoK8sApiAutoscalingV1Scale,
+  ReadAppsV1NamespacedStatefulSetScaleError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedStatefulSetScaleRequest,
+  output: IoK8sApiAutoscalingV1Scale,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadAppsV1NamespacedStatefulSetStatusError =
+  | NotFound
+  | KubernetesOpError;
+/** read status of the specified StatefulSet */
+export const readAppsV1NamespacedStatefulSetStatus: API.OperationMethod<
+  ReadAppsV1NamespacedStatefulSetStatusRequest,
+  IoK8sApiAppsV1StatefulSet,
+  ReadAppsV1NamespacedStatefulSetStatusError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadAppsV1NamespacedStatefulSetStatusRequest,
+  output: IoK8sApiAppsV1StatefulSet,
+  errors: [NotFound, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ReplaceAppsV1NamespacedControllerRevisionError =
   | NotFound
   | Conflict
@@ -9273,6 +9343,44 @@ export const replaceAppsV1NamespacedControllerRevision: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ReplaceAppsV1NamespacedControllerRevisionRequest,
   output: IoK8sApiAppsV1ControllerRevision,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReplaceAppsV1NamespacedDaemonSetError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | KubernetesOpError;
+/** replace the specified DaemonSet */
+export const replaceAppsV1NamespacedDaemonSet: API.OperationMethod<
+  ReplaceAppsV1NamespacedDaemonSetRequest,
+  IoK8sApiAppsV1DaemonSet,
+  ReplaceAppsV1NamespacedDaemonSetError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReplaceAppsV1NamespacedDaemonSetRequest,
+  output: IoK8sApiAppsV1DaemonSet,
+  errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReplaceAppsV1NamespacedDaemonSetStatusError =
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | KubernetesOpError;
+/** replace status of the specified DaemonSet */
+export const replaceAppsV1NamespacedDaemonSetStatus: API.OperationMethod<
+  ReplaceAppsV1NamespacedDaemonSetStatusRequest,
+  IoK8sApiAppsV1DaemonSet,
+  ReplaceAppsV1NamespacedDaemonSetStatusError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReplaceAppsV1NamespacedDaemonSetStatusRequest,
+  output: IoK8sApiAppsV1DaemonSet,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
@@ -9335,327 +9443,130 @@ export const replaceAppsV1NamespacedDeploymentStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SetReadAppV1NamespacedDaemonError = NotFound | KubernetesOpError;
-/** read the specified DaemonSet */
-export const setReadAppV1NamespacedDaemon: API.OperationMethod<
-  SetReadAppV1NamespacedDaemonRequest,
-  IoK8sApiAppsV1DaemonSet,
-  SetReadAppV1NamespacedDaemonError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedDaemonRequest,
-  output: IoK8sApiAppsV1DaemonSet,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReadAppV1NamespacedDaemonStatusError =
-  | NotFound
-  | KubernetesOpError;
-/** read status of the specified DaemonSet */
-export const setReadAppV1NamespacedDaemonStatus: API.OperationMethod<
-  SetReadAppV1NamespacedDaemonStatusRequest,
-  IoK8sApiAppsV1DaemonSet,
-  SetReadAppV1NamespacedDaemonStatusError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedDaemonStatusRequest,
-  output: IoK8sApiAppsV1DaemonSet,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReadAppV1NamespacedReplicaError = NotFound | KubernetesOpError;
-/** read the specified ReplicaSet */
-export const setReadAppV1NamespacedReplica: API.OperationMethod<
-  SetReadAppV1NamespacedReplicaRequest,
-  IoK8sApiAppsV1ReplicaSet,
-  SetReadAppV1NamespacedReplicaError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedReplicaRequest,
-  output: IoK8sApiAppsV1ReplicaSet,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReadAppV1NamespacedReplicaScaleError =
-  | NotFound
-  | KubernetesOpError;
-/** read scale of the specified ReplicaSet */
-export const setReadAppV1NamespacedReplicaScale: API.OperationMethod<
-  SetReadAppV1NamespacedReplicaScaleRequest,
-  IoK8sApiAutoscalingV1Scale,
-  SetReadAppV1NamespacedReplicaScaleError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedReplicaScaleRequest,
-  output: IoK8sApiAutoscalingV1Scale,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReadAppV1NamespacedReplicaStatusError =
-  | NotFound
-  | KubernetesOpError;
-/** read status of the specified ReplicaSet */
-export const setReadAppV1NamespacedReplicaStatus: API.OperationMethod<
-  SetReadAppV1NamespacedReplicaStatusRequest,
-  IoK8sApiAppsV1ReplicaSet,
-  SetReadAppV1NamespacedReplicaStatusError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedReplicaStatusRequest,
-  output: IoK8sApiAppsV1ReplicaSet,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReadAppV1NamespacedStatefulError = NotFound | KubernetesOpError;
-/** read the specified StatefulSet */
-export const setReadAppV1NamespacedStateful: API.OperationMethod<
-  SetReadAppV1NamespacedStatefulRequest,
-  IoK8sApiAppsV1StatefulSet,
-  SetReadAppV1NamespacedStatefulError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedStatefulRequest,
-  output: IoK8sApiAppsV1StatefulSet,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReadAppV1NamespacedStatefulScaleError =
-  | NotFound
-  | KubernetesOpError;
-/** read scale of the specified StatefulSet */
-export const setReadAppV1NamespacedStatefulScale: API.OperationMethod<
-  SetReadAppV1NamespacedStatefulScaleRequest,
-  IoK8sApiAutoscalingV1Scale,
-  SetReadAppV1NamespacedStatefulScaleError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedStatefulScaleRequest,
-  output: IoK8sApiAutoscalingV1Scale,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReadAppV1NamespacedStatefulStatusError =
-  | NotFound
-  | KubernetesOpError;
-/** read status of the specified StatefulSet */
-export const setReadAppV1NamespacedStatefulStatus: API.OperationMethod<
-  SetReadAppV1NamespacedStatefulStatusRequest,
-  IoK8sApiAppsV1StatefulSet,
-  SetReadAppV1NamespacedStatefulStatusError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReadAppV1NamespacedStatefulStatusRequest,
-  output: IoK8sApiAppsV1StatefulSet,
-  errors: [NotFound, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReplaceAppV1NamespacedDaemonError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | KubernetesOpError;
-/** replace the specified DaemonSet */
-export const setReplaceAppV1NamespacedDaemon: API.OperationMethod<
-  SetReplaceAppV1NamespacedDaemonRequest,
-  IoK8sApiAppsV1DaemonSet,
-  SetReplaceAppV1NamespacedDaemonError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedDaemonRequest,
-  output: IoK8sApiAppsV1DaemonSet,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReplaceAppV1NamespacedDaemonStatusError =
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | KubernetesOpError;
-/** replace status of the specified DaemonSet */
-export const setReplaceAppV1NamespacedDaemonStatus: API.OperationMethod<
-  SetReplaceAppV1NamespacedDaemonStatusRequest,
-  IoK8sApiAppsV1DaemonSet,
-  SetReplaceAppV1NamespacedDaemonStatusError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedDaemonStatusRequest,
-  output: IoK8sApiAppsV1DaemonSet,
-  errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetReplaceAppV1NamespacedReplicaError =
+export type ReplaceAppsV1NamespacedReplicaSetError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** replace the specified ReplicaSet */
-export const setReplaceAppV1NamespacedReplica: API.OperationMethod<
-  SetReplaceAppV1NamespacedReplicaRequest,
+export const replaceAppsV1NamespacedReplicaSet: API.OperationMethod<
+  ReplaceAppsV1NamespacedReplicaSetRequest,
   IoK8sApiAppsV1ReplicaSet,
-  SetReplaceAppV1NamespacedReplicaError,
+  ReplaceAppsV1NamespacedReplicaSetError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedReplicaRequest,
+  input: ReplaceAppsV1NamespacedReplicaSetRequest,
   output: IoK8sApiAppsV1ReplicaSet,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type SetReplaceAppV1NamespacedReplicaScaleError =
+export type ReplaceAppsV1NamespacedReplicaSetScaleError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** replace scale of the specified ReplicaSet */
-export const setReplaceAppV1NamespacedReplicaScale: API.OperationMethod<
-  SetReplaceAppV1NamespacedReplicaScaleRequest,
+export const replaceAppsV1NamespacedReplicaSetScale: API.OperationMethod<
+  ReplaceAppsV1NamespacedReplicaSetScaleRequest,
   IoK8sApiAutoscalingV1Scale,
-  SetReplaceAppV1NamespacedReplicaScaleError,
+  ReplaceAppsV1NamespacedReplicaSetScaleError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedReplicaScaleRequest,
+  input: ReplaceAppsV1NamespacedReplicaSetScaleRequest,
   output: IoK8sApiAutoscalingV1Scale,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type SetReplaceAppV1NamespacedReplicaStatusError =
+export type ReplaceAppsV1NamespacedReplicaSetStatusError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** replace status of the specified ReplicaSet */
-export const setReplaceAppV1NamespacedReplicaStatus: API.OperationMethod<
-  SetReplaceAppV1NamespacedReplicaStatusRequest,
+export const replaceAppsV1NamespacedReplicaSetStatus: API.OperationMethod<
+  ReplaceAppsV1NamespacedReplicaSetStatusRequest,
   IoK8sApiAppsV1ReplicaSet,
-  SetReplaceAppV1NamespacedReplicaStatusError,
+  ReplaceAppsV1NamespacedReplicaSetStatusError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedReplicaStatusRequest,
+  input: ReplaceAppsV1NamespacedReplicaSetStatusRequest,
   output: IoK8sApiAppsV1ReplicaSet,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type SetReplaceAppV1NamespacedStatefulError =
+export type ReplaceAppsV1NamespacedStatefulSetError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** replace the specified StatefulSet */
-export const setReplaceAppV1NamespacedStateful: API.OperationMethod<
-  SetReplaceAppV1NamespacedStatefulRequest,
+export const replaceAppsV1NamespacedStatefulSet: API.OperationMethod<
+  ReplaceAppsV1NamespacedStatefulSetRequest,
   IoK8sApiAppsV1StatefulSet,
-  SetReplaceAppV1NamespacedStatefulError,
+  ReplaceAppsV1NamespacedStatefulSetError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedStatefulRequest,
+  input: ReplaceAppsV1NamespacedStatefulSetRequest,
   output: IoK8sApiAppsV1StatefulSet,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type SetReplaceAppV1NamespacedStatefulScaleError =
+export type ReplaceAppsV1NamespacedStatefulSetScaleError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** replace scale of the specified StatefulSet */
-export const setReplaceAppV1NamespacedStatefulScale: API.OperationMethod<
-  SetReplaceAppV1NamespacedStatefulScaleRequest,
+export const replaceAppsV1NamespacedStatefulSetScale: API.OperationMethod<
+  ReplaceAppsV1NamespacedStatefulSetScaleRequest,
   IoK8sApiAutoscalingV1Scale,
-  SetReplaceAppV1NamespacedStatefulScaleError,
+  ReplaceAppsV1NamespacedStatefulSetScaleError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedStatefulScaleRequest,
+  input: ReplaceAppsV1NamespacedStatefulSetScaleRequest,
   output: IoK8sApiAutoscalingV1Scale,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type SetReplaceAppV1NamespacedStatefulStatusError =
+export type ReplaceAppsV1NamespacedStatefulSetStatusError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** replace status of the specified StatefulSet */
-export const setReplaceAppV1NamespacedStatefulStatus: API.OperationMethod<
-  SetReplaceAppV1NamespacedStatefulStatusRequest,
+export const replaceAppsV1NamespacedStatefulSetStatus: API.OperationMethod<
+  ReplaceAppsV1NamespacedStatefulSetStatusRequest,
   IoK8sApiAppsV1StatefulSet,
-  SetReplaceAppV1NamespacedStatefulStatusError,
+  ReplaceAppsV1NamespacedStatefulSetStatusError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetReplaceAppV1NamespacedStatefulStatusRequest,
+  input: ReplaceAppsV1NamespacedStatefulSetStatusRequest,
   output: IoK8sApiAppsV1StatefulSet,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type SetWatchAppV1NamespacedDaemonError = KubernetesOpError;
-/** watch changes to an object of kind DaemonSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-export const setWatchAppV1NamespacedDaemon: API.OperationMethod<
-  SetWatchAppV1NamespacedDaemonRequest,
+export type WatchAppsV1ControllerRevisionListForAllNamespacesError =
+  KubernetesOpError;
+/** watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAppsV1ControllerRevisionListForAllNamespaces: API.OperationMethod<
+  WatchAppsV1ControllerRevisionListForAllNamespacesRequest,
   IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  SetWatchAppV1NamespacedDaemonError,
+  WatchAppsV1ControllerRevisionListForAllNamespacesError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetWatchAppV1NamespacedDaemonRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetWatchAppV1NamespacedReplicaError = KubernetesOpError;
-/** watch changes to an object of kind ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-export const setWatchAppV1NamespacedReplica: API.OperationMethod<
-  SetWatchAppV1NamespacedReplicaRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  SetWatchAppV1NamespacedReplicaError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetWatchAppV1NamespacedReplicaRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetWatchAppV1NamespacedStatefulError = KubernetesOpError;
-/** watch changes to an object of kind StatefulSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
-export const setWatchAppV1NamespacedStateful: API.OperationMethod<
-  SetWatchAppV1NamespacedStatefulRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  SetWatchAppV1NamespacedStatefulError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetWatchAppV1NamespacedStatefulRequest,
+  input: WatchAppsV1ControllerRevisionListForAllNamespacesRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -9677,6 +9588,21 @@ export const watchAppsV1DaemonSetListForAllNamespaces: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type WatchAppsV1DeploymentListForAllNamespacesError = KubernetesOpError;
+/** watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAppsV1DeploymentListForAllNamespaces: API.OperationMethod<
+  WatchAppsV1DeploymentListForAllNamespacesRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAppsV1DeploymentListForAllNamespacesError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAppsV1DeploymentListForAllNamespacesRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WatchAppsV1NamespacedControllerRevisionError = KubernetesOpError;
 /** watch changes to an object of kind ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
 export const watchAppsV1NamespacedControllerRevision: API.OperationMethod<
@@ -9686,6 +9612,37 @@ export const watchAppsV1NamespacedControllerRevision: API.OperationMethod<
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchAppsV1NamespacedControllerRevisionRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchAppsV1NamespacedControllerRevisionListError =
+  KubernetesOpError;
+/** watch individual changes to a list of ControllerRevision. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAppsV1NamespacedControllerRevisionList: API.OperationMethod<
+  WatchAppsV1NamespacedControllerRevisionListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAppsV1NamespacedControllerRevisionListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAppsV1NamespacedControllerRevisionListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchAppsV1NamespacedDaemonSetError = KubernetesOpError;
+/** watch changes to an object of kind DaemonSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
+export const watchAppsV1NamespacedDaemonSet: API.OperationMethod<
+  WatchAppsV1NamespacedDaemonSetRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAppsV1NamespacedDaemonSetError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAppsV1NamespacedDaemonSetRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -9722,6 +9679,36 @@ export const watchAppsV1NamespacedDeployment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type WatchAppsV1NamespacedDeploymentListError = KubernetesOpError;
+/** watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchAppsV1NamespacedDeploymentList: API.OperationMethod<
+  WatchAppsV1NamespacedDeploymentListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAppsV1NamespacedDeploymentListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAppsV1NamespacedDeploymentListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchAppsV1NamespacedReplicaSetError = KubernetesOpError;
+/** watch changes to an object of kind ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
+export const watchAppsV1NamespacedReplicaSet: API.OperationMethod<
+  WatchAppsV1NamespacedReplicaSetRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAppsV1NamespacedReplicaSetError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAppsV1NamespacedReplicaSetRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WatchAppsV1NamespacedReplicaSetListError = KubernetesOpError;
 /** watch individual changes to a list of ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead. */
 export const watchAppsV1NamespacedReplicaSetList: API.OperationMethod<
@@ -9731,6 +9718,21 @@ export const watchAppsV1NamespacedReplicaSetList: API.OperationMethod<
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchAppsV1NamespacedReplicaSetListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchAppsV1NamespacedStatefulSetError = KubernetesOpError;
+/** watch changes to an object of kind StatefulSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
+export const watchAppsV1NamespacedStatefulSet: API.OperationMethod<
+  WatchAppsV1NamespacedStatefulSetRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchAppsV1NamespacedStatefulSetError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchAppsV1NamespacedStatefulSetRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,

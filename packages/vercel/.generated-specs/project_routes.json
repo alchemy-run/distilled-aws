@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.project_routes#GetRoutesRequestFilter": {
@@ -8394,13 +8395,7 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.project_routes#GetRoutes"
-        },
-        {
           "target": "com.vercel.project_routes#AddRoute"
-        },
-        {
-          "target": "com.vercel.project_routes#StageRoutes"
         },
         {
           "target": "com.vercel.project_routes#DeleteRoutes"
@@ -8412,7 +8407,13 @@
           "target": "com.vercel.project_routes#GenerateRoute"
         },
         {
+          "target": "com.vercel.project_routes#GetRoutes"
+        },
+        {
           "target": "com.vercel.project_routes#GetRouteVersions"
+        },
+        {
+          "target": "com.vercel.project_routes#StageRoutes"
         },
         {
           "target": "com.vercel.project_routes#UpdateRouteVersions"

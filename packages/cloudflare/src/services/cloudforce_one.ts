@@ -43,44 +43,6 @@ export class ScanConfigNotFound
     [{ status: 404 }],
   ) {}
 
-export interface CreateBinaryStorageRequest {
-  /** Account ID. */
-  accountId: string;
-}
-export const CreateBinaryStorageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/cloudforce-one/binary",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CreateBinaryStorageRequest",
-}) as any as S.Schema<CreateBinaryStorageRequest>;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CreateBinaryStorageResponse {
-  contentType: string;
-  md5: string;
-  sha1: string;
-  sha256: string;
-}
-export const CreateBinaryStorageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contentType: S.String.pipe(T.Body("content_type")),
-    md5: S.String,
-    sha1: S.String,
-    sha256: S.String,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CreateBinaryStorageResponse",
-}) as any as S.Schema<CreateBinaryStorageResponse>;
-
 export type ThreatEventsBulkCreateRequestDataItemRawDataMap = {
   [key: string]: unknown | undefined;
 };
@@ -186,7 +148,7 @@ export const ThreatEventsBulkCreateRequestDataList = /*@__PURE__*/ S.Array(
   ThreatEventsBulkCreateRequestDataItem,
 ) as any as S.Schema<ThreatEventsBulkCreateRequestDataList>;
 
-export interface CreateBulkThreatEventRequest {
+export interface BulkCreateThreatEventsRequest {
   /** Account ID. */
   accountId: string;
   data: ThreatEventsBulkCreateRequestDataList;
@@ -194,7 +156,7 @@ export interface CreateBulkThreatEventRequest {
   /** When true, response includes array of created event UUIDs and shard IDs. Useful for tracking which events were created and where. */
   includeCreatedEvents?: boolean;
 }
-export const CreateBulkThreatEventRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateThreatEventsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     accountId: S.String.pipe(T.Label("account_id")),
     data: ThreatEventsBulkCreateRequestDataList,
@@ -210,8 +172,8 @@ export const CreateBulkThreatEventRequest = /*@__PURE__*/ S.suspend(() =>
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkThreatEventRequest",
-}) as any as S.Schema<CreateBulkThreatEventRequest>;
+  identifier: "BulkCreateThreatEventsRequest",
+}) as any as S.Schema<BulkCreateThreatEventsRequest>;
 
 export interface ThreatEventsBulkCreateResponseCreatedEventsItem {
   /** Original index in the input data array */
@@ -240,7 +202,7 @@ export const ThreatEventsBulkCreateResponseCreatedEventsList =
   ) as any as S.Schema<ThreatEventsBulkCreateResponseCreatedEventsList>;
 
 /** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface CreateBulkThreatEventResponse {
+export interface BulkCreateThreatEventsResponse {
   /** Number of events created */
   createdEventsCount: number;
   /** Number of new tags created in SoT */
@@ -254,7 +216,7 @@ export interface CreateBulkThreatEventResponse {
   /** Array of created events with UUIDs and shard locations. Only present when includeCreatedEvents=true */
   createdEvents?: ThreatEventsBulkCreateResponseCreatedEventsList | null;
 }
-export const CreateBulkThreatEventResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateThreatEventsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdEventsCount: S.Number,
     createdTagsCount: S.Number,
@@ -266,8 +228,46 @@ export const CreateBulkThreatEventResponse = /*@__PURE__*/ S.suspend(() =>
     ),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkThreatEventResponse",
-}) as any as S.Schema<CreateBulkThreatEventResponse>;
+  identifier: "BulkCreateThreatEventsResponse",
+}) as any as S.Schema<BulkCreateThreatEventsResponse>;
+
+export interface CreateBinaryStorageRequest {
+  /** Account ID. */
+  accountId: string;
+}
+export const CreateBinaryStorageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/cloudforce-one/binary",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateBinaryStorageRequest",
+}) as any as S.Schema<CreateBinaryStorageRequest>;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface CreateBinaryStorageResponse {
+  contentType: string;
+  md5: string;
+  sha1: string;
+  sha256: string;
+}
+export const CreateBinaryStorageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentType: S.String.pipe(T.Body("content_type")),
+    md5: S.String,
+    sha1: S.String,
+    sha256: S.String,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateBinaryStorageResponse",
+}) as any as S.Schema<CreateBinaryStorageResponse>;
 
 export type RequestsCreateRequestTlp =
   | "clear"
@@ -1803,50 +1803,6 @@ export const GetRequestResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRequestResponse",
 }) as any as S.Schema<GetRequestResponse>;
 
-export interface GetRequestAssetRequest {
-  /** Identifier. */
-  accountId: string;
-  /** UUID. */
-  requestId: string;
-  /** UUID. */
-  assetId: string;
-}
-export const GetRequestAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    requestId: S.String.pipe(T.Label("request_id")),
-    assetId: S.String.pipe(T.Label("asset_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GetRequestAssetRequest",
-}) as any as S.Schema<GetRequestAssetRequest>;
-
-export type RequestsAssetsGetResultItem = RequestsAssetsCreateResultItem;
-export const RequestsAssetsGetResultItem = RequestsAssetsCreateResultItem;
-
-export type RequestsAssetsGetResultList = Array<RequestsAssetsCreateResultItem>;
-export const RequestsAssetsGetResultList = /*@__PURE__*/ S.Array(
-  RequestsAssetsCreateResultItem,
-) as any as S.Schema<RequestsAssetsGetResultList>;
-
-export type GetRequestAssetResponse = RequestsAssetsGetResultList;
-export const GetRequestAssetResponse = /*@__PURE__*/ S.suspend(() =>
-  RequestsAssetsGetResultList.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "GetRequestAssetResponse",
-}) as any as S.Schema<GetRequestAssetResponse>;
-
 export type RequestsMessageGetRequestSortOrder = "asc" | "desc";
 export const RequestsMessageGetRequestSortOrder = /*@__PURE__*/ S.String;
 
@@ -2026,6 +1982,50 @@ export const GetRequestPriorityResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetRequestPriorityResponse",
 }) as any as S.Schema<GetRequestPriorityResponse>;
+
+export interface GetRequestsAssetRequest {
+  /** Identifier. */
+  accountId: string;
+  /** UUID. */
+  requestId: string;
+  /** UUID. */
+  assetId: string;
+}
+export const GetRequestsAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    requestId: S.String.pipe(T.Label("request_id")),
+    assetId: S.String.pipe(T.Label("asset_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/cloudforce-one/requests/{request_id}/asset/{asset_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetRequestsAssetRequest",
+}) as any as S.Schema<GetRequestsAssetRequest>;
+
+export type GetRequestsAssetResultItem = RequestsAssetsCreateResultItem;
+export const GetRequestsAssetResultItem = RequestsAssetsCreateResultItem;
+
+export type GetRequestsAssetResultList = Array<RequestsAssetsCreateResultItem>;
+export const GetRequestsAssetResultList = /*@__PURE__*/ S.Array(
+  RequestsAssetsCreateResultItem,
+) as any as S.Schema<GetRequestsAssetResultList>;
+
+export type GetRequestsAssetResponse = GetRequestsAssetResultList;
+export const GetRequestsAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  GetRequestsAssetResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "GetRequestsAssetResponse",
+}) as any as S.Schema<GetRequestsAssetResponse>;
 
 export interface GetScanResultRequest {
   /** Defines the Account ID. */
@@ -2359,17 +2359,17 @@ export const GetThreatEventRawResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetThreatEventRawResponse",
 }) as any as S.Schema<GetThreatEventRawResponse>;
 
-export type RequestsListRequestSortOrder = "asc" | "desc";
-export const RequestsListRequestSortOrder = /*@__PURE__*/ S.String;
+export type ListRequestsRequestSortOrder = "asc" | "desc";
+export const ListRequestsRequestSortOrder = /*@__PURE__*/ S.String;
 
-export type RequestsListRequestStatus =
+export type ListRequestsRequestStatus =
   | "open"
   | "accepted"
   | "reported"
   | "approved"
   | "completed"
   | "declined";
-export const RequestsListRequestStatus = /*@__PURE__*/ S.String;
+export const ListRequestsRequestStatus = /*@__PURE__*/ S.String;
 
 export interface ListRequestsRequest {
   /** Identifier. */
@@ -2391,9 +2391,9 @@ export interface ListRequestsRequest {
   /** Field to sort results by. */
   sortBy?: string;
   /** Sort order (asc or desc). */
-  sortOrder?: RequestsListRequestSortOrder | (string & {});
+  sortOrder?: ListRequestsRequestSortOrder | (string & {});
   /** Request Status. */
-  status?: RequestsListRequestStatus | (string & {});
+  status?: ListRequestsRequestStatus | (string & {});
 }
 export const ListRequestsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2407,9 +2407,9 @@ export const ListRequestsRequest = /*@__PURE__*/ S.suspend(() =>
     requestType: S.optional(S.String.pipe(T.Body("request_type"))),
     sortBy: S.optional(S.String.pipe(T.Body("sort_by"))),
     sortOrder: S.optional(
-      RequestsListRequestSortOrder.pipe(T.Body("sort_order")),
+      ListRequestsRequestSortOrder.pipe(T.Body("sort_order")),
     ),
-    status: S.optional(RequestsListRequestStatus),
+    status: S.optional(ListRequestsRequestStatus),
   })
     .pipe(
       T.Http({
@@ -2423,38 +2423,38 @@ export const ListRequestsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRequestsRequest",
 }) as any as S.Schema<ListRequestsRequest>;
 
-export type RequestsListResultItemPriority = "routine" | "high" | "urgent";
-export const RequestsListResultItemPriority = /*@__PURE__*/ S.String;
+export type ListRequestsResultItemPriority = "routine" | "high" | "urgent";
+export const ListRequestsResultItemPriority = /*@__PURE__*/ S.String;
 
-export type RequestsListResultItemTlp =
+export type ListRequestsResultItemTlp =
   | "clear"
   | "amber"
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsListResultItemTlp = /*@__PURE__*/ S.String;
+export const ListRequestsResultItemTlp = /*@__PURE__*/ S.String;
 
-export type RequestsListResultItemStatus =
+export type ListRequestsResultItemStatus =
   | "open"
   | "accepted"
   | "reported"
   | "approved"
   | "completed"
   | "declined";
-export const RequestsListResultItemStatus = /*@__PURE__*/ S.String;
+export const ListRequestsResultItemStatus = /*@__PURE__*/ S.String;
 
-export interface RequestsListResultItem {
+export interface ListRequestsResultItem {
   /** UUID. */
   id: string;
   /** Request creation time. */
   created: string;
-  priority: RequestsListResultItemPriority;
+  priority: ListRequestsResultItemPriority;
   /** Requested information from request. */
   request: string;
   /** Brief description of the request. */
   summary: string;
   /** The CISA defined Traffic Light Protocol (TLP). */
-  tlp: RequestsListResultItemTlp;
+  tlp: ListRequestsResultItemTlp;
   /** Request last updated time. */
   updated: string;
   /** Request completion time. */
@@ -2464,39 +2464,39 @@ export interface RequestsListResultItem {
   /** Readable Request ID. */
   readableId?: string | null;
   /** Request Status. */
-  status?: RequestsListResultItemStatus | null;
+  status?: ListRequestsResultItemStatus | null;
   /** Tokens for the request. */
   tokens?: number | null;
 }
-export const RequestsListResultItem = /*@__PURE__*/ S.suspend(() =>
+export const ListRequestsResultItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     created: S.String,
-    priority: RequestsListResultItemPriority,
+    priority: ListRequestsResultItemPriority,
     request: S.String,
     summary: S.String,
-    tlp: RequestsListResultItemTlp,
+    tlp: ListRequestsResultItemTlp,
     updated: S.String,
     completed: S.optional(S.NullOr(S.String)),
     messageTokens: S.optional(
       S.NullOr(S.Number).pipe(T.Body("message_tokens")),
     ),
     readableId: S.optional(S.NullOr(S.String).pipe(T.Body("readable_id"))),
-    status: S.optional(S.NullOr(RequestsListResultItemStatus)),
+    status: S.optional(S.NullOr(ListRequestsResultItemStatus)),
     tokens: S.optional(S.NullOr(S.Number)),
   }),
 ).annotate({
-  identifier: "RequestsListResultItem",
-}) as any as S.Schema<RequestsListResultItem>;
+  identifier: "ListRequestsResultItem",
+}) as any as S.Schema<ListRequestsResultItem>;
 
-export type RequestsListResultList = Array<RequestsListResultItem>;
-export const RequestsListResultList = /*@__PURE__*/ S.Array(
-  RequestsListResultItem,
-) as any as S.Schema<RequestsListResultList>;
+export type ListRequestsResultList = Array<ListRequestsResultItem>;
+export const ListRequestsResultList = /*@__PURE__*/ S.Array(
+  ListRequestsResultItem,
+) as any as S.Schema<ListRequestsResultList>;
 
-export type ListRequestsResponse = RequestsListResultList;
+export type ListRequestsResponse = ListRequestsResultList;
 export const ListRequestsResponse = /*@__PURE__*/ S.suspend(() =>
-  RequestsListResultList.pipe(
+  ListRequestsResultList.pipe(
     T.EnvelopePayloadRoot(),
     T.KeyDictionary(KEY_DICTIONARY),
   ),
@@ -3487,6 +3487,52 @@ export const PatchThreatEventRawResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchThreatEventRawResponse",
 }) as any as S.Schema<PatchThreatEventRawResponse>;
 
+export interface QuotaRequestPriorityRequest {
+  /** Identifier. */
+  accountId: string;
+}
+export const QuotaRequestPriorityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/cloudforce-one/requests/priority/quota",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "QuotaRequestPriorityRequest",
+}) as any as S.Schema<QuotaRequestPriorityRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface QuotaRequestPriorityResponse {
+  /** Anniversary date is when annual quota limit is refreshed. */
+  anniversaryDate?: string | null;
+  /** Quarter anniversary date is when quota limit is refreshed each quarter. */
+  quarterAnniversaryDate?: string | null;
+  /** Tokens for the quarter. */
+  quota?: number | null;
+  /** Tokens remaining for the quarter. */
+  remaining?: number | null;
+}
+export const QuotaRequestPriorityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    anniversaryDate: S.optional(
+      S.NullOr(S.String).pipe(T.Body("anniversary_date")),
+    ),
+    quarterAnniversaryDate: S.optional(
+      S.NullOr(S.String).pipe(T.Body("quarter_anniversary_date")),
+    ),
+    quota: S.optional(S.NullOr(S.Number)),
+    remaining: S.optional(S.NullOr(S.Number)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "QuotaRequestPriorityResponse",
+}) as any as S.Schema<QuotaRequestPriorityResponse>;
+
 export interface RawThreatEventDatasetRequest {
   /** Account ID. */
   accountId: string;
@@ -3534,52 +3580,6 @@ export const RawThreatEventDatasetResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RawThreatEventDatasetResponse",
 }) as any as S.Schema<RawThreatEventDatasetResponse>;
-
-export interface RequestQuotaPriorityRequest {
-  /** Identifier. */
-  accountId: string;
-}
-export const RequestQuotaPriorityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/cloudforce-one/requests/priority/quota",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RequestQuotaPriorityRequest",
-}) as any as S.Schema<RequestQuotaPriorityRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface RequestQuotaPriorityResponse {
-  /** Anniversary date is when annual quota limit is refreshed. */
-  anniversaryDate?: string | null;
-  /** Quarter anniversary date is when quota limit is refreshed each quarter. */
-  quarterAnniversaryDate?: string | null;
-  /** Tokens for the quarter. */
-  quota?: number | null;
-  /** Tokens remaining for the quarter. */
-  remaining?: number | null;
-}
-export const RequestQuotaPriorityResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    anniversaryDate: S.optional(
-      S.NullOr(S.String).pipe(T.Body("anniversary_date")),
-    ),
-    quarterAnniversaryDate: S.optional(
-      S.NullOr(S.String).pipe(T.Body("quarter_anniversary_date")),
-    ),
-    quota: S.optional(S.NullOr(S.Number)),
-    remaining: S.optional(S.NullOr(S.Number)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RequestQuotaPriorityResponse",
-}) as any as S.Schema<RequestQuotaPriorityResponse>;
 
 export interface RequestsConstantsRequest {
   /** Identifier. */
@@ -3731,13 +3731,13 @@ export const RequestsTypesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RequestsTypesResponse",
 }) as any as S.Schema<RequestsTypesResponse>;
 
-export type RequestsUpdateRequestTlp =
+export type UpdateRequestRequestTlp =
   | "clear"
   | "amber"
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsUpdateRequestTlp = /*@__PURE__*/ S.String;
+export const UpdateRequestRequestTlp = /*@__PURE__*/ S.String;
 
 export interface UpdateRequestRequest {
   /** Identifier. */
@@ -3753,7 +3753,7 @@ export interface UpdateRequestRequest {
   /** Brief description of the request. */
   summary?: string;
   /** The CISA defined Traffic Light Protocol (TLP). */
-  tlp?: RequestsUpdateRequestTlp | (string & {});
+  tlp?: UpdateRequestRequestTlp | (string & {});
 }
 export const UpdateRequestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3763,7 +3763,7 @@ export const UpdateRequestRequest = /*@__PURE__*/ S.suspend(() =>
     priority: S.optional(S.String),
     requestType: S.optional(S.String.pipe(T.Body("request_type"))),
     summary: S.optional(S.String),
-    tlp: S.optional(RequestsUpdateRequestTlp),
+    tlp: S.optional(UpdateRequestRequestTlp),
   })
     .pipe(
       T.Http({
@@ -3777,22 +3777,22 @@ export const UpdateRequestRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRequestRequest",
 }) as any as S.Schema<UpdateRequestRequest>;
 
-export type RequestsUpdateResponseTlp =
+export type UpdateRequestResponseTlp =
   | "clear"
   | "amber"
   | "amber-strict"
   | "green"
   | "red";
-export const RequestsUpdateResponseTlp = /*@__PURE__*/ S.String;
+export const UpdateRequestResponseTlp = /*@__PURE__*/ S.String;
 
-export type RequestsUpdateResponseStatus =
+export type UpdateRequestResponseStatus =
   | "open"
   | "accepted"
   | "reported"
   | "approved"
   | "completed"
   | "declined";
-export const RequestsUpdateResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateRequestResponseStatus = /*@__PURE__*/ S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateRequestResponse {
@@ -3807,7 +3807,7 @@ export interface UpdateRequestResponse {
   /** Brief description of the request. */
   summary: string;
   /** The CISA defined Traffic Light Protocol (TLP). */
-  tlp: RequestsUpdateResponseTlp;
+  tlp: UpdateRequestResponseTlp;
   updated: string;
   completed?: string | null;
   /** Tokens for the request messages. */
@@ -3815,7 +3815,7 @@ export interface UpdateRequestResponse {
   /** Readable Request ID. */
   readableId?: string | null;
   /** Request Status. */
-  status?: RequestsUpdateResponseStatus | null;
+  status?: UpdateRequestResponseStatus | null;
   /** Tokens for the request. */
   tokens?: number | null;
 }
@@ -3827,14 +3827,14 @@ export const UpdateRequestResponse = /*@__PURE__*/ S.suspend(() =>
     priority: S.String,
     request: S.String,
     summary: S.String,
-    tlp: RequestsUpdateResponseTlp,
+    tlp: UpdateRequestResponseTlp,
     updated: S.String,
     completed: S.optional(S.NullOr(S.String)),
     messageTokens: S.optional(
       S.NullOr(S.Number).pipe(T.Body("message_tokens")),
     ),
     readableId: S.optional(S.NullOr(S.String).pipe(T.Body("readable_id"))),
-    status: S.optional(S.NullOr(RequestsUpdateResponseStatus)),
+    status: S.optional(S.NullOr(UpdateRequestResponseStatus)),
     tokens: S.optional(S.NullOr(S.Number)),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
@@ -4063,6 +4063,21 @@ export const UpdateRequestPriorityResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRequestPriorityResponse",
 }) as any as S.Schema<UpdateRequestPriorityResponse>;
 
+export type BulkCreateThreatEventsError = CloudflareOpError;
+/** The `datasetId` parameter must be defined. To list existing datasets (and their IDs) in your account, use the [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/) endpoint. */
+export const bulkCreateThreatEvents: API.OperationMethod<
+  BulkCreateThreatEventsRequest,
+  BulkCreateThreatEventsResponse,
+  BulkCreateThreatEventsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkCreateThreatEventsRequest,
+  output: BulkCreateThreatEventsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateBinaryStorageError = CloudflareOpError;
 /** Uploads a binary file to Cloudforce One's binary database for malware analysis and threat intelligence correlation. */
 export const createBinaryStorage: API.OperationMethod<
@@ -4073,21 +4088,6 @@ export const createBinaryStorage: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateBinaryStorageRequest,
   output: CreateBinaryStorageResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateBulkThreatEventError = CloudflareOpError;
-/** The `datasetId` parameter must be defined. To list existing datasets (and their IDs) in your account, use the [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/) endpoint. */
-export const createBulkThreatEvent: API.OperationMethod<
-  CreateBulkThreatEventRequest,
-  CreateBulkThreatEventResponse,
-  CreateBulkThreatEventError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateBulkThreatEventRequest,
-  output: CreateBulkThreatEventResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -4398,21 +4398,6 @@ export const getRequest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetRequestAssetError = CloudflareOpError;
-/** Retrieves an asset attached to a Cloudforce One intelligence request. */
-export const getRequestAsset: API.OperationMethod<
-  GetRequestAssetRequest,
-  GetRequestAssetResponse,
-  GetRequestAssetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetRequestAssetRequest,
-  output: GetRequestAssetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetRequestMessageError = CloudflareOpError;
 /** Lists messages in a Cloudforce One intelligence request conversation. */
 export const getRequestMessage: API.PaginatedOperationMethod<
@@ -4443,6 +4428,21 @@ export const getRequestPriority: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetRequestPriorityRequest,
   output: GetRequestPriorityResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRequestsAssetError = CloudflareOpError;
+/** Retrieves an asset attached to a Cloudforce One intelligence request. */
+export const getRequestsAsset: API.OperationMethod<
+  GetRequestsAssetRequest,
+  GetRequestsAssetResponse,
+  GetRequestsAssetError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRequestsAssetRequest,
+  output: GetRequestsAssetResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -4738,6 +4738,21 @@ export const patchThreatEventRaw: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type QuotaRequestPriorityError = CloudflareOpError;
+/** Retrieves quota usage for Cloudforce One priority requests. */
+export const quotaRequestPriority: API.OperationMethod<
+  QuotaRequestPriorityRequest,
+  QuotaRequestPriorityResponse,
+  QuotaRequestPriorityError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: QuotaRequestPriorityRequest,
+  output: QuotaRequestPriorityResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RawThreatEventDatasetError = CloudflareOpError;
 /** Retrieves the raw data associated with an event. Searches across all shards in the dataset. */
 export const rawThreatEventDataset: API.OperationMethod<
@@ -4748,21 +4763,6 @@ export const rawThreatEventDataset: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RawThreatEventDatasetRequest,
   output: RawThreatEventDatasetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RequestQuotaPriorityError = CloudflareOpError;
-/** Retrieves quota usage for Cloudforce One priority requests. */
-export const requestQuotaPriority: API.OperationMethod<
-  RequestQuotaPriorityRequest,
-  RequestQuotaPriorityResponse,
-  RequestQuotaPriorityError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestQuotaPriorityRequest,
-  output: RequestQuotaPriorityResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

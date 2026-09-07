@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.networking#ListNetworksRequest": {
@@ -107,18 +108,6 @@
         "egressIpAddresses": {
           "target": "com.vercel.networking#NetworkEgressIpAddressesList"
         },
-        "reservedEgressIpAddresses": {
-          "target": "com.vercel.networking#NetworkReservedEgressIpAddressesList",
-          "traits": {
-            "smithy.api#documentation": "The BYOIP egress (NAT gateway) IP addresses pre-allocated for this network from the region's egress IPAM pool. Present in regions that have an egress pool. Customers can allowlist these addresses before egress is switched over to them, since they are reserved ahead of the switch."
-          }
-        },
-        "egressCidrBlock": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The single contiguous CIDR block from which all egress (NAT gateway) IP addresses are allocated. Present only for networks created with the egress CIDR block feature enabled. Customers can allowlist this range instead of individual egress IPs so it keeps working when AZs are added."
-          }
-        },
         "hostedZones": {
           "target": "com.vercel.networking#NetworkHostedZones",
           "traits": {
@@ -195,15 +184,6 @@
         "target": "smithy.api#String"
       },
       "traits": {}
-    },
-    "com.vercel.networking#NetworkReservedEgressIpAddressesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      },
-      "traits": {
-        "smithy.api#documentation": "The BYOIP egress (NAT gateway) IP addresses pre-allocated for this network from the region's egress IPAM pool. Present in regions that have an egress pool. Customers can allowlist these addresses before egress is switched over to them, since they are reserved ahead of the switch."
-      }
     },
     "com.vercel.networking#NetworkHostedZones": {
       "type": "structure",
@@ -603,6 +583,568 @@
         "smithy.api#documentation": "Delete a Secure Compute network\n\nAllows to delete a Secure Compute network."
       }
     },
+    "com.vercel.networking#ListPrivateLinkEndpointsRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The project ID to list PrivateLink endpoints for."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.networking#PrivateLinkEndpoint": {
+      "type": "structure",
+      "members": {
+        "endpointId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the PrivateLink endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the PrivateLink endpoint, shown in the Vercel dashboard.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the team that owns the PrivateLink endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the project the PrivateLink endpoint belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "vercelRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Vercel region the endpoint is provisioned in.",
+            "smithy.api#required": {}
+          }
+        },
+        "awsServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS VPC endpoint service the endpoint connects to.",
+            "smithy.api#required": {}
+          }
+        },
+        "vpcEndpointId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the underlying AWS VPC endpoint. Absent until AWS has created the endpoint."
+          }
+        },
+        "awsDnsEntries": {
+          "target": "com.vercel.networking#PrivateLinkEndpointAwsDnsEntriesList",
+          "traits": {
+            "smithy.api#documentation": "The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled."
+          }
+        },
+        "privateDnsNames": {
+          "target": "com.vercel.networking#PrivateLinkEndpointPrivateDnsNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint."
+          }
+        },
+        "status": {
+          "target": "com.vercel.networking#PrivateLinkEndpointStatus",
+          "traits": {
+            "smithy.api#documentation": "The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted.",
+            "smithy.api#required": {}
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable explanation of why the endpoint could not be provisioned. Only set when `status` is `failed`, and absent for every other status including `rejected`, since AWS does not report a rejection reason."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds since the UNIX epoch for when the endpoint was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds since the UNIX epoch for when the endpoint was last updated.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A PrivateLink endpoint, which connects a project to an AWS VPC endpoint service in a single region so that traffic reaches the service over AWS PrivateLink rather than the public internet."
+      }
+    },
+    "com.vercel.networking#PrivateLinkEndpointAwsDnsEntriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The regional DNS names assigned to the endpoint by AWS. Use these to reach the service when private DNS is not enabled."
+      }
+    },
+    "com.vercel.networking#PrivateLinkEndpointPrivateDnsNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private DNS names of the endpoint service, populated when private DNS is enabled for the endpoint."
+      }
+    },
+    "com.vercel.networking#PrivateLinkEndpointStatus": {
+      "type": "enum",
+      "members": {
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "available"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "PENDING_ACCEPTANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending-acceptance"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "provisioning"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rejected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current state of the endpoint. - `creating`: the endpoint is being created. - `pending-acceptance`: waiting for the endpoint service owner to accept the connection. Only occurs for services that require manual acceptance. - `provisioning`: the connection was accepted and AWS is finishing setup. - `available`: the endpoint is fully provisioned and ready to use. - `rejected`: the endpoint service owner rejected the connection. - `failed`: the endpoint could not be provisioned. - `deleting`: the endpoint is being deleted."
+      }
+    },
+    "com.vercel.networking#ListPrivateLinkEndpointsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.networking#PrivateLinkEndpoint"
+      },
+      "traits": {}
+    },
+    "com.vercel.networking#ListPrivateLinkEndpointsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.networking#ListPrivateLinkEndpointsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.networking#ListPrivateLinkEndpoints": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.networking#ListPrivateLinkEndpointsRequest"
+      },
+      "output": {
+        "target": "com.vercel.networking#ListPrivateLinkEndpointsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.networking#BadRequest"
+        },
+        {
+          "target": "com.vercel.networking#Forbidden"
+        },
+        {
+          "target": "com.vercel.networking#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/networking/privatelink/endpoints",
+          "code": 200
+        },
+        "smithy.api#documentation": "List PrivateLink endpoints\n\nLists all PrivateLink endpoints for a project."
+      }
+    },
+    "com.vercel.networking#CreatePrivateLinkEndpointRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID to create the PrivateLink endpoint for.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the PrivateLink endpoint, used as its label in the Vercel dashboard.",
+            "smithy.api#required": {}
+          }
+        },
+        "vercelRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Vercel region to provision the endpoint in. Advanced Networking must be enabled for the project in that region. The endpoint service itself may live in another AWS region.",
+            "smithy.api#required": {}
+          }
+        },
+        "awsServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the AWS VPC endpoint service to connect to. Its AWS region is read from the name; when that region differs from the one behind `vercelRegion`, the service must allow cross-region access.",
+            "smithy.api#required": {}
+          }
+        },
+        "enablePrivateDns": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to resolve the endpoint service through its private DNS names, which are then returned in `privateDnsNames`. Defaults to `false`, in which case the endpoint is reachable through the DNS names in `awsDnsEntries`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.networking#CreatePrivateLinkEndpoint": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.networking#CreatePrivateLinkEndpointRequest"
+      },
+      "output": {
+        "target": "com.vercel.networking#PrivateLinkEndpoint"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.networking#BadRequest"
+        },
+        {
+          "target": "com.vercel.networking#Forbidden"
+        },
+        {
+          "target": "com.vercel.networking#NotFound"
+        },
+        {
+          "target": "com.vercel.networking#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/networking/privatelink/endpoints",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a PrivateLink endpoint\n\nCreates a PrivateLink endpoint for a project."
+      }
+    },
+    "com.vercel.networking#ReadPrivateLinkEndpointRequest": {
+      "type": "structure",
+      "members": {
+        "endpointId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the PrivateLink endpoint."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The project ID the PrivateLink endpoint belongs to."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.networking#ReadPrivateLinkEndpoint": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.networking#ReadPrivateLinkEndpointRequest"
+      },
+      "output": {
+        "target": "com.vercel.networking#PrivateLinkEndpoint"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.networking#BadRequest"
+        },
+        {
+          "target": "com.vercel.networking#Forbidden"
+        },
+        {
+          "target": "com.vercel.networking#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/networking/privatelink/endpoints/{endpointId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read a PrivateLink endpoint\n\nReads a single PrivateLink endpoint."
+      }
+    },
+    "com.vercel.networking#UpdatePrivateLinkEndpointRequest": {
+      "type": "structure",
+      "members": {
+        "endpointId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the PrivateLink endpoint."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The project ID the PrivateLink endpoint belongs to."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A new name for the PrivateLink endpoint. When omitted, the current name is kept."
+          }
+        },
+        "enablePrivateDns": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When `true`, resolves the endpoint service through its private DNS names, which are then returned in `privateDnsNames`. When `false`, clears them. When omitted, the current setting is kept. At least one of `name` or `enablePrivateDns` must be provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.networking#UpdatePrivateLinkEndpoint": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.networking#UpdatePrivateLinkEndpointRequest"
+      },
+      "output": {
+        "target": "com.vercel.networking#PrivateLinkEndpoint"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.networking#BadRequest"
+        },
+        {
+          "target": "com.vercel.networking#Forbidden"
+        },
+        {
+          "target": "com.vercel.networking#NotFound"
+        },
+        {
+          "target": "com.vercel.networking#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/networking/privatelink/endpoints/{endpointId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a PrivateLink endpoint\n\nUpdates a PrivateLink endpoint (name, privateDns)."
+      }
+    },
+    "com.vercel.networking#DeletePrivateLinkEndpointRequest": {
+      "type": "structure",
+      "members": {
+        "endpointId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the PrivateLink endpoint."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The project ID the PrivateLink endpoint belongs to."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.networking#DeletePrivateLinkEndpointResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.networking#DeletePrivateLinkEndpoint": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.networking#DeletePrivateLinkEndpointRequest"
+      },
+      "output": {
+        "target": "com.vercel.networking#DeletePrivateLinkEndpointResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.networking#BadRequest"
+        },
+        {
+          "target": "com.vercel.networking#Forbidden"
+        },
+        {
+          "target": "com.vercel.networking#NotFound"
+        },
+        {
+          "target": "com.vercel.networking#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/networking/privatelink/endpoints/{endpointId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a PrivateLink endpoint\n\nDeletes a PrivateLink endpoint."
+      }
+    },
     "com.vercel.networking#UpdateStaticIpsRequestRegionsList": {
       "type": "list",
       "member": {
@@ -875,19 +1417,34 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.vercel.networking#CreateNetwork"
+        },
+        {
+          "target": "com.vercel.networking#CreatePrivateLinkEndpoint"
+        },
+        {
+          "target": "com.vercel.networking#DeleteNetwork"
+        },
+        {
+          "target": "com.vercel.networking#DeletePrivateLinkEndpoint"
+        },
+        {
           "target": "com.vercel.networking#ListNetworks"
         },
         {
-          "target": "com.vercel.networking#CreateNetwork"
+          "target": "com.vercel.networking#ListPrivateLinkEndpoints"
         },
         {
           "target": "com.vercel.networking#ReadNetwork"
         },
         {
+          "target": "com.vercel.networking#ReadPrivateLinkEndpoint"
+        },
+        {
           "target": "com.vercel.networking#UpdateNetwork"
         },
         {
-          "target": "com.vercel.networking#DeleteNetwork"
+          "target": "com.vercel.networking#UpdatePrivateLinkEndpoint"
         },
         {
           "target": "com.vercel.networking#UpdateStaticIps"

@@ -19,7 +19,8 @@
       "acceptAll": "accept_all",
       "confirmMyChoices": "confirm_my_choices",
       "rejectAll": "reject_all"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.zaraz#UpdateRequestWorkflow": {
@@ -11829,34 +11830,34 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.zaraz#Update"
+          "target": "com.cloudflare.zaraz#CreatePublish"
         },
         {
-          "target": "com.cloudflare.zaraz#ConfigGet"
+          "target": "com.cloudflare.zaraz#GetConfig"
         },
         {
-          "target": "com.cloudflare.zaraz#ConfigUpdate"
+          "target": "com.cloudflare.zaraz#GetDefault"
         },
         {
-          "target": "com.cloudflare.zaraz#DefaultGet"
+          "target": "com.cloudflare.zaraz#GetExport"
         },
         {
-          "target": "com.cloudflare.zaraz#ExportGet"
+          "target": "com.cloudflare.zaraz#GetHistoryConfig"
         },
         {
-          "target": "com.cloudflare.zaraz#HistoryList"
+          "target": "com.cloudflare.zaraz#GetWorkflow"
         },
         {
-          "target": "com.cloudflare.zaraz#HistoryUpdate"
+          "target": "com.cloudflare.zaraz#ListHistories"
         },
         {
-          "target": "com.cloudflare.zaraz#HistoryConfigsGet"
+          "target": "com.cloudflare.zaraz#PutConfig"
         },
         {
-          "target": "com.cloudflare.zaraz#PublishCreate"
+          "target": "com.cloudflare.zaraz#PutHistory"
         },
         {
-          "target": "com.cloudflare.zaraz#WorkflowGet"
+          "target": "com.cloudflare.zaraz#PutZaraz"
         }
       ],
       "traits": {

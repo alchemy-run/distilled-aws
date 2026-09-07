@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.marketing_analytics#MarketingAnalyticsApplySetupOpsCreateRequestOpsList": {
@@ -52,7 +53,7 @@
         "smithy.api#documentation": "* `setup_tab` - setup_tab\n* `apply_all_safe` - apply_all_safe\n* `mcp` - mcp"
       }
     },
-    "com.posthog.marketing_analytics#CreateMarketingAnalyticApplySetupOpsRequest": {
+    "com.posthog.marketing_analytics#MarketingAnalyticsApplySetupOpsCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -126,10 +127,10 @@
         "smithy.api#documentation": "Operations that reverse this batch, in the order they should be sent. Computed server-side from the pre-change state — POST them back to undo."
       }
     },
-    "com.posthog.marketing_analytics#CreateMarketingAnalyticApplySetupOps": {
+    "com.posthog.marketing_analytics#MarketingAnalyticsApplySetupOpsCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticApplySetupOpsRequest"
+        "target": "com.posthog.marketing_analytics#MarketingAnalyticsApplySetupOpsCreateRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#ApplySetupOpsResponse"
@@ -151,7 +152,7 @@
         "smithy.api#documentation": "Apply setup operations\n\nApply one or more setup operations from the setup plan, atomically. Either every operation lands or none does — a partially-applied batch has no well-defined undo. Returns `undo_ops`, computed from the pre-change state, which can be POSTed back to reverse the batch. Only send `apply` payloads returned by setup_plan."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsConversionGoalRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -347,10 +348,10 @@
         "smithy.api#documentation": "One summary entry per configured conversion goal"
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsConversionGoal": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsConversionGoalRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#ConversionGoalsListResponse"
@@ -364,7 +365,7 @@
         "smithy.api#documentation": "List conversion goals\n\nRead the configured conversion goals for the current project — each with its kind, target, last-30d count, integrated vs non-integrated split, and a misconfiguration flag. Read-only."
       }
     },
-    "com.posthog.marketing_analytics#DeleteMarketingAnalyticConversionGoalDestroyRequest": {
+    "com.posthog.marketing_analytics#DeleteMarketingAnalyticsConversionGoalDestroyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4832,10 +4833,10 @@
       },
       "traits": {}
     },
-    "com.posthog.marketing_analytics#DeleteMarketingAnalyticConversionGoalDestroy": {
+    "com.posthog.marketing_analytics#DeleteMarketingAnalyticsConversionGoalDestroy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#DeleteMarketingAnalyticConversionGoalDestroyRequest"
+        "target": "com.posthog.marketing_analytics#DeleteMarketingAnalyticsConversionGoalDestroyRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#ConversionGoalWriteResponse"
@@ -6124,7 +6125,7 @@
         "smithy.api#documentation": "Create conversion goal\n\nAdd one conversion goal to the project. The server assigns conversion_goal_id and appends the goal to the end of the list, leaving existing goals untouched."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsDataSourceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6398,10 +6399,10 @@
         "smithy.api#documentation": "Short human-readable summary of detected issues"
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsDataSource": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsDataSourceRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#DataSourceHealthResponse"
@@ -6415,7 +6416,7 @@
         "smithy.api#documentation": "List marketing data sources\n\nCheck the platform → data-warehouse side of every native marketing integration: connection state, sync recency, row counts, required-table status, and schema-mapping coverage. Read-only."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsDiagnoseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6731,10 +6732,10 @@
         "smithy.api#documentation": "Top global recommended actions across all integrations"
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsDiagnose": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsDiagnoseRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#MarketingDiagnosticResponse"
@@ -6748,7 +6749,7 @@
         "smithy.api#documentation": "Diagnose marketing analytics\n\nAggregate data-source sync health, UTM attribution health, and conversion-goal config into a single per-integration diagnostic with recommended actions. Read-only."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsExplainConversionGoalRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7033,10 +7034,10 @@
         "smithy.api#documentation": "Caveats about the breakdown (sampling, attribution, etc.)"
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsExplainConversionGoal": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsExplainConversionGoalRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#GoalExplanation"
@@ -7050,7 +7051,7 @@
         "smithy.api#documentation": "Explain a conversion goal\n\nBreak down a single conversion goal's events over a period by event name, utm_source, and matched integration, with a small sample of events. Read-only."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsSetupPlanRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsSetupPlanRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7337,10 +7338,10 @@
         "smithy.api#documentation": "Sub-services that failed. Their suggestions are missing, so do NOT present the plan as a complete clean bill of health when this is non-empty."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsSetupPlanRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsSetupPlan": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsSetupPlanRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsSetupPlanRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#SetupPlanResponse"
@@ -7359,7 +7360,7 @@
         "smithy.api#documentation": "Get the marketing analytics setup plan\n\nRank everything wrong with a team's marketing analytics setup into concrete suggestions, each carrying the evidence behind it and — where one exists — an `apply` operation to pass straight to apply_setup_ops, plus a `readiness` block saying which capabilities (cost, ROAS, cost per customer, retention by channel) are unlocked and which suggestion is blocking each. Prefer this over `diagnose` when the question is 'what should I fix next': diagnose explains what is wrong, setup_plan says what to do about it in a form you can act on. Read-only."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestConversionGoalRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7510,10 +7511,10 @@
         "smithy.api#documentation": "Ranked candidate events for conversion goals"
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestConversionGoal": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestConversionGoalRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#EventSuggestionsResponse"
@@ -7527,7 +7528,7 @@
         "smithy.api#documentation": "Suggest conversion goals\n\nRank existing custom events as conversion-goal candidates by volume, UTM-tag coverage, and unique users, excluding system/autocaptured events. Read-only."
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestUtmMappingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7898,10 +7899,10 @@
         "smithy.api#documentation": "Caveats and guidance about the suggestions"
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestUtmMapping": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestUtmMappingRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#UtmMappingSuggestionsResponse"
@@ -7915,7 +7916,7 @@
         "smithy.api#documentation": "Suggest UTM source mappings\n\nDetect unmatched utm_source values from recent events and propose custom_source_mappings entries, alongside the full utm_source catalogue and current mappings. Read-only."
       }
     },
-    "com.posthog.marketing_analytics#CreateMarketingAnalyticTestMappingRequest": {
+    "com.posthog.marketing_analytics#CreateMarketingAnalyticsTestMappingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7931,10 +7932,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.marketing_analytics#CreateMarketingAnalyticTestMapping": {
+    "com.posthog.marketing_analytics#CreateMarketingAnalyticsTestMapping": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticTestMappingRequest"
+        "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticsTestMappingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7947,7 +7948,7 @@
         }
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieveRequest": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsUtmAuditRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8402,10 +8403,10 @@
         "smithy.api#documentation": "All UTM events with match status"
       }
     },
-    "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieve": {
+    "com.posthog.marketing_analytics#GetMarketingAnalyticsUtmAudit": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieveRequest"
+        "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsUtmAuditRequest"
       },
       "output": {
         "target": "com.posthog.marketing_analytics#UtmAuditResponse"
@@ -8463,43 +8464,43 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticApplySetupOps"
+          "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticsTestMapping"
         },
         {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsRetrieve"
+          "target": "com.posthog.marketing_analytics#DeleteMarketingAnalyticsConversionGoalDestroy"
         },
         {
-          "target": "com.posthog.marketing_analytics#DeleteMarketingAnalyticConversionGoalDestroy"
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsConversionGoal"
         },
         {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsUpdatePartialUpdate"
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsDataSource"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsDiagnose"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsExplainConversionGoal"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsSetupPlan"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestConversionGoal"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestUtmMapping"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsUtmAudit"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsApplySetupOpsCreate"
         },
         {
           "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsCreateCreate"
         },
         {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsDataSourcesRetrieve"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsDiagnoseRetrieve"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsExplainConversionGoalRetrieve"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsSetupPlanRetrieve"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestConversionGoalsRetrieve"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsSuggestUtmMappingsRetrieve"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticTestMapping"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsUtmAuditRetrieve"
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsUpdatePartialUpdate"
         }
       ],
       "traits": {

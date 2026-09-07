@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.media#GenerateMediaAssetRequestDurationSeconds": {
@@ -429,7 +430,7 @@
         "smithy.api#documentation": "Generate Media Asset\n\nStarts an AI media generation job billed from the account's balance. Generation is asynchronous — poll `GET /media/{id}` until the asset is `ready`, then use `file.id` anywhere attachments are accepted."
       }
     },
-    "com.whop.media#RetrieveMediaAssetRequest": {
+    "com.whop.media#GetMediaAssetRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -445,10 +446,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.media#RetrieveMediaAsset": {
+    "com.whop.media#GetMediaAsset": {
       "type": "operation",
       "input": {
-        "target": "com.whop.media#RetrieveMediaAssetRequest"
+        "target": "com.whop.media#GetMediaAssetRequest"
       },
       "output": {
         "target": "com.whop.media#MediaAsset"
@@ -540,7 +541,7 @@
           "target": "com.whop.media#GenerateMediaAsset"
         },
         {
-          "target": "com.whop.media#RetrieveMediaAsset"
+          "target": "com.whop.media#GetMediaAsset"
         }
       ],
       "traits": {

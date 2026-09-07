@@ -519,9 +519,9 @@ export const AccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountsCreateOrUpdateResponse>;
 
 /** The type of resource, Microsoft.VideoIndexer/accounts */
-export type AccountsCheckNameAvailabilityRequestType =
+export type CheckAccountNameAvailabilityRequestType =
   "Microsoft.VideoIndexer/accounts";
-export const AccountsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
 
 export interface CheckAccountNameAvailabilityRequest {
   /** The ID of the target subscription. */
@@ -529,13 +529,13 @@ export interface CheckAccountNameAvailabilityRequest {
   /** The VideoIndexer account name. */
   name: string;
   /** The type of resource, Microsoft.VideoIndexer/accounts */
-  type: AccountsCheckNameAvailabilityRequestType | (string & {});
+  type: CheckAccountNameAvailabilityRequestType | (string & {});
 }
 export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     name: S.String,
-    type: AccountsCheckNameAvailabilityRequestType,
+    type: CheckAccountNameAvailabilityRequestType,
   }).pipe(
     T.Http({
       method: "POST",
@@ -868,16 +868,15 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsGetResponseIdentity =
-  AccountsCreateOrUpdateResponseIdentity;
-export const AccountsGetResponseIdentity =
+export type GetAccountResponseIdentity = AccountsCreateOrUpdateResponseIdentity;
+export const GetAccountResponseIdentity =
   AccountsCreateOrUpdateResponseIdentity;
 
 export interface GetAccountResponse {
@@ -890,7 +889,7 @@ export interface GetAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** List of account properties */
@@ -904,7 +903,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AccountPropertiesForPutRequest),
     identity: S.optional(AccountsCreateOrUpdateResponseIdentity),
@@ -1273,16 +1272,16 @@ export const PrivateEndpointConnection =
   AccountPropertiesForPutRequestPrivateEndpointConnectionsItem;
 
 /** Array of private endpoint connections. */
-export type PrivateEndpointConnectionsListByAccountResponseValueList =
+export type ListPrivateEndpointConnectionByAccountResponseValueList =
   Array<AccountPropertiesForPutRequestPrivateEndpointConnectionsItem>;
-export const PrivateEndpointConnectionsListByAccountResponseValueList =
+export const ListPrivateEndpointConnectionByAccountResponseValueList =
   /*@__PURE__*/ S.Array(
     AccountPropertiesForPutRequestPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<PrivateEndpointConnectionsListByAccountResponseValueList>;
+  ) as any as S.Schema<ListPrivateEndpointConnectionByAccountResponseValueList>;
 
 export interface ListPrivateEndpointConnectionByAccountResponse {
   /** Array of private endpoint connections. */
-  value?: PrivateEndpointConnectionsListByAccountResponseValueList;
+  value?: ListPrivateEndpointConnectionByAccountResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
@@ -1290,7 +1289,7 @@ export const ListPrivateEndpointConnectionByAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsListByAccountResponseValueList,
+        ListPrivateEndpointConnectionByAccountResponseValueList,
       ),
       nextLink: S.optional(S.String),
     }),
@@ -1350,23 +1349,23 @@ export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateLinkResource>;
 
 /** Array of private link resources */
-export type PrivateLinkResourcesListByAccountResponseValueList =
+export type ListPrivateLinkResourceByAccountResponseValueList =
   Array<PrivateLinkResource>;
-export const PrivateLinkResourcesListByAccountResponseValueList =
+export const ListPrivateLinkResourceByAccountResponseValueList =
   /*@__PURE__*/ S.Array(
     PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesListByAccountResponseValueList>;
+  ) as any as S.Schema<ListPrivateLinkResourceByAccountResponseValueList>;
 
 export interface ListPrivateLinkResourceByAccountResponse {
   /** Array of private link resources */
-  value?: PrivateLinkResourcesListByAccountResponseValueList;
+  value?: ListPrivateLinkResourceByAccountResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListPrivateLinkResourceByAccountResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: S.optional(PrivateLinkResourcesListByAccountResponseValueList),
+      value: S.optional(ListPrivateLinkResourceByAccountResponseValueList),
       nextLink: S.optional(S.String),
     }),
 ).annotate({
@@ -1431,13 +1430,11 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
 /** Resource tags */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** The storage services details */
 export interface StorageServicesForPatchRequest {
@@ -1507,9 +1504,9 @@ export const AccountPropertiesForPatchRequestInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AccountPropertiesForPatchRequestInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsUpdateRequestIdentity =
+export type UpdateAccountRequestIdentity =
   AccountsCreateOrUpdateRequestIdentity;
-export const AccountsUpdateRequestIdentity =
+export const UpdateAccountRequestIdentity =
   AccountsCreateOrUpdateRequestIdentity;
 
 export interface UpdateAccountRequest {
@@ -1520,7 +1517,7 @@ export interface UpdateAccountRequest {
   /** The name of the Azure Video Indexer account. */
   accountName: string;
   /** Resource tags */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** List of account properties */
   properties?: AccountPropertiesForPatchRequestInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
@@ -1531,7 +1528,7 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     properties: S.optional(AccountPropertiesForPatchRequestInput),
     identity: S.optional(AccountsCreateOrUpdateRequestIdentity),
   }).pipe(
@@ -1547,18 +1544,18 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsUpdateResponseIdentity =
+export type UpdateAccountResponseIdentity =
   AccountsCreateOrUpdateResponseIdentity;
-export const AccountsUpdateResponseIdentity =
+export const UpdateAccountResponseIdentity =
   AccountsCreateOrUpdateResponseIdentity;
 
 export interface UpdateAccountResponse {
@@ -1571,7 +1568,7 @@ export interface UpdateAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** List of account properties */
@@ -1585,7 +1582,7 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AccountPropertiesForPutRequest),
     identity: S.optional(AccountsCreateOrUpdateResponseIdentity),

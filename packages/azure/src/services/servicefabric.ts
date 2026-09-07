@@ -1707,13 +1707,13 @@ export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationRequest>;
 
 /** Azure resource tags. */
-export type ApplicationsGetResponseTagsMap = {
+export type GetApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationResponseTagsMap>;
 
 export interface UserAssignedIdentity {
   /** The principal id of user assigned identity. */
@@ -1814,7 +1814,7 @@ export interface GetApplicationResponse {
   /** It will be deprecated in New API, resource location depends on the parent resource. */
   location?: string;
   /** Azure resource tags. */
-  tags?: ApplicationsGetResponseTagsMap;
+  tags?: GetApplicationResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
@@ -1827,7 +1827,7 @@ export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
+    tags: S.optional(GetApplicationResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     identity: S.optional(ManagedIdentity),
@@ -1866,13 +1866,13 @@ export const GetApplicationTypeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationTypeRequest>;
 
 /** Azure resource tags. */
-export type ApplicationTypesGetResponseTagsMap = {
+export type GetApplicationTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationTypesGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationTypeResponseTagsMap>;
 
 export interface GetApplicationTypeResponse {
   /** Azure resource identifier. */
@@ -1884,7 +1884,7 @@ export interface GetApplicationTypeResponse {
   /** It will be deprecated in New API, resource location depends on the parent resource. */
   location?: string;
   /** Azure resource tags. */
-  tags?: ApplicationTypesGetResponseTagsMap;
+  tags?: GetApplicationTypeResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
@@ -1896,7 +1896,7 @@ export const GetApplicationTypeResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationTypesGetResponseTagsMap),
+    tags: S.optional(GetApplicationTypeResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationTypeResourceProperties),
@@ -1937,13 +1937,13 @@ export const GetApplicationTypeVersionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationTypeVersionRequest>;
 
 /** Azure resource tags. */
-export type ApplicationTypeVersionsGetResponseTagsMap = {
+export type GetApplicationTypeVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypeVersionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationTypeVersionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationTypeVersionsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationTypeVersionResponseTagsMap>;
 
 /** List of application type parameters that can be overridden when creating or updating the application. */
 export type ApplicationTypeParameterList = {
@@ -1983,7 +1983,7 @@ export interface GetApplicationTypeVersionResponse {
   /** It will be deprecated in New API, resource location depends on the parent resource. */
   location?: string;
   /** Azure resource tags. */
-  tags?: ApplicationTypeVersionsGetResponseTagsMap;
+  tags?: GetApplicationTypeVersionResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
@@ -1995,7 +1995,7 @@ export const GetApplicationTypeVersionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationTypeVersionsGetResponseTagsMap),
+    tags: S.optional(GetApplicationTypeVersionResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationTypeVersionResourceProperties),
@@ -2030,11 +2030,11 @@ export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetClusterRequest>;
 
 /** Azure resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
+) as any as S.Schema<GetClusterResponseTagsMap>;
 
 export interface GetClusterResponse {
   /** Azure resource identifier. */
@@ -2046,7 +2046,7 @@ export interface GetClusterResponse {
   /** Azure resource location. */
   location: string;
   /** Azure resource tags. */
-  tags?: ClustersGetResponseTagsMap;
+  tags?: GetClusterResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
@@ -2059,7 +2059,7 @@ export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(ClustersGetResponseTagsMap),
+    tags: S.optional(GetClusterResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ClusterProperties),
@@ -2135,10 +2135,10 @@ export const ClusterCodeVersionsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterCodeVersionsListResult",
 }) as any as S.Schema<ClusterCodeVersionsListResult>;
 
-export type ClusterVersionsGetByEnvironmentRequestEnvironment =
+export type GetClusterVersionByEnvironmentRequestEnvironment =
   | "Windows"
   | "Linux";
-export const ClusterVersionsGetByEnvironmentRequestEnvironment =
+export const GetClusterVersionByEnvironmentRequestEnvironment =
   /*@__PURE__*/ S.String;
 
 export interface GetClusterVersionByEnvironmentRequest {
@@ -2147,9 +2147,7 @@ export interface GetClusterVersionByEnvironmentRequest {
   /** The location for the cluster code versions. This is different from cluster location. */
   location: string;
   /** The operating system of the cluster. The default means all. */
-  environment:
-    | ClusterVersionsGetByEnvironmentRequestEnvironment
-    | (string & {});
+  environment: GetClusterVersionByEnvironmentRequestEnvironment | (string & {});
   /** The cluster code version. */
   clusterVersion: string;
 }
@@ -2158,7 +2156,7 @@ export const GetClusterVersionByEnvironmentRequest = /*@__PURE__*/ S.suspend(
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
-      environment: ClusterVersionsGetByEnvironmentRequestEnvironment.pipe(
+      environment: GetClusterVersionByEnvironmentRequestEnvironment.pipe(
         T.Label(),
       ),
       clusterVersion: S.String.pipe(T.Label()),
@@ -2206,11 +2204,11 @@ export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServiceRequest>;
 
 /** Azure resource tags. */
-export type ServicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetServiceResponseTagsMap = { [key: string]: string | undefined };
+export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesGetResponseTagsMap>;
+) as any as S.Schema<GetServiceResponseTagsMap>;
 
 /** The service correlation scheme. */
 export type ServiceCorrelationScheme =
@@ -2391,7 +2389,7 @@ export interface GetServiceResponse {
   /** It will be deprecated in New API, resource location depends on the parent resource. */
   location?: string;
   /** Azure resource tags. */
-  tags?: ServicesGetResponseTagsMap;
+  tags?: GetServiceResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
@@ -2403,7 +2401,7 @@ export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ServicesGetResponseTagsMap),
+    tags: S.optional(GetServiceResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ServiceResourceProperties),
@@ -2822,10 +2820,10 @@ export const UpgradableVersionPathResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpgradableVersionPathResult",
 }) as any as S.Schema<UpgradableVersionPathResult>;
 
-export type ClusterVersionsListByEnvironmentRequestEnvironment =
+export type ListClusterVersionByEnvironmentRequestEnvironment =
   | "Windows"
   | "Linux";
-export const ClusterVersionsListByEnvironmentRequestEnvironment =
+export const ListClusterVersionByEnvironmentRequestEnvironment =
   /*@__PURE__*/ S.String;
 
 export interface ListClusterVersionByEnvironmentRequest {
@@ -2835,7 +2833,7 @@ export interface ListClusterVersionByEnvironmentRequest {
   location: string;
   /** The operating system of the cluster. The default means all. */
   environment:
-    | ClusterVersionsListByEnvironmentRequestEnvironment
+    | ListClusterVersionByEnvironmentRequestEnvironment
     | (string & {});
 }
 export const ListClusterVersionByEnvironmentRequest = /*@__PURE__*/ S.suspend(
@@ -2843,7 +2841,7 @@ export const ListClusterVersionByEnvironmentRequest = /*@__PURE__*/ S.suspend(
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
-      environment: ClusterVersionsListByEnvironmentRequestEnvironment.pipe(
+      environment: ListClusterVersionByEnvironmentRequestEnvironment.pipe(
         T.Label(),
       ),
     }).pipe(
@@ -3151,13 +3149,13 @@ export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServicesCreateOrUpdateResponse>;
 
 /** Azure resource tags. */
-export type ApplicationsUpdateRequestTagsMap = {
+export type UpdateApplicationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationRequestTagsMap>;
 
 /** List of user assigned identities for the application, each mapped to a friendly name. */
 export type ApplicationResourceUpdatePropertiesManagedIdentitiesList =
@@ -3211,7 +3209,7 @@ export interface UpdateApplicationRequest {
   /** It will be deprecated in New API, resource location depends on the parent resource. */
   location?: string;
   /** Azure resource tags. */
-  tags?: ApplicationsUpdateRequestTagsMap;
+  tags?: UpdateApplicationRequestTagsMap;
   properties?: ApplicationResourceUpdateProperties;
 }
 export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
@@ -3221,7 +3219,7 @@ export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
     clusterName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplicationRequestTagsMap),
     properties: S.optional(ApplicationResourceUpdateProperties),
   }).pipe(
     T.Http({
@@ -3375,13 +3373,11 @@ export const ClusterPropertiesUpdateParameters = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterPropertiesUpdateParameters>;
 
 /** Cluster update parameters */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
 export interface UpdateClusterRequest {
   /** The customer subscription identifier. */
@@ -3392,7 +3388,7 @@ export interface UpdateClusterRequest {
   clusterName: string;
   properties?: ClusterPropertiesUpdateParameters;
   /** Cluster update parameters */
-  tags?: ClustersUpdateRequestTagsMap;
+  tags?: UpdateClusterRequestTagsMap;
 }
 export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3400,7 +3396,7 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     properties: S.optional(ClusterPropertiesUpdateParameters),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateClusterRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3414,13 +3410,13 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterRequest>;
 
 /** Azure resource tags. */
-export type ClustersUpdateResponseTagsMap = {
+export type UpdateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
 
 export interface UpdateClusterResponse {
   /** Azure resource identifier. */
@@ -3432,7 +3428,7 @@ export interface UpdateClusterResponse {
   /** Azure resource location. */
   location: string;
   /** Azure resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
+  tags?: UpdateClusterResponseTagsMap;
   /** Azure resource etag. */
   etag?: string;
   systemData?: SystemData;
@@ -3445,7 +3441,7 @@ export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(ClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateClusterResponseTagsMap),
     etag: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ClusterProperties),
@@ -3455,13 +3451,11 @@ export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterResponse>;
 
 /** Azure resource tags. */
-export type ServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateServiceRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServiceRequestTagsMap>;
 
 /** The service resource properties for patch operations. */
 export interface ServiceResourceUpdateProperties {
@@ -3500,7 +3494,7 @@ export interface UpdateServiceRequest {
   /** It will be deprecated in New API, resource location depends on the parent resource. */
   location?: string;
   /** Azure resource tags. */
-  tags?: ServicesUpdateRequestTagsMap;
+  tags?: UpdateServiceRequestTagsMap;
   properties?: ServiceResourceUpdateProperties;
 }
 export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
@@ -3511,7 +3505,7 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
     applicationName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateServiceRequestTagsMap),
     properties: S.optional(ServiceResourceUpdateProperties),
   }).pipe(
     T.Http({

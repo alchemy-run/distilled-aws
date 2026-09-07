@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.warehouse_view_link#ListWarehouseViewLinkRequest": {
@@ -402,7 +403,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete View Columns."
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieveRequest": {
+    "com.posthog.warehouse_view_link#GetWarehouseViewLinkRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -426,10 +427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieve": {
+    "com.posthog.warehouse_view_link#GetWarehouseViewLink": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieveRequest"
+        "target": "com.posthog.warehouse_view_link#GetWarehouseViewLinkRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_view_link#ViewLink"
@@ -657,7 +658,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete View Columns."
       }
     },
-    "com.posthog.warehouse_view_link#CreateWarehouseViewLinkValidateRequest": {
+    "com.posthog.warehouse_view_link#WarehouseViewLinkValidateCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -793,10 +794,10 @@
         "smithy.api#documentation": "Distinct source and joining key pairs from the joined result, at most 5."
       }
     },
-    "com.posthog.warehouse_view_link#CreateWarehouseViewLinkValidate": {
+    "com.posthog.warehouse_view_link#WarehouseViewLinkValidateCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_view_link#CreateWarehouseViewLinkValidateRequest"
+        "target": "com.posthog.warehouse_view_link#WarehouseViewLinkValidateCreateRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_view_link#ViewLinkValidationResponse"
@@ -833,13 +834,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.warehouse_view_link#ListWarehouseViewLink"
-        },
-        {
           "target": "com.posthog.warehouse_view_link#CreateWarehouseViewLink"
         },
         {
-          "target": "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieve"
+          "target": "com.posthog.warehouse_view_link#GetWarehouseViewLink"
+        },
+        {
+          "target": "com.posthog.warehouse_view_link#ListWarehouseViewLink"
         },
         {
           "target": "com.posthog.warehouse_view_link#UpdateWarehouseViewLink"
@@ -851,7 +852,7 @@
           "target": "com.posthog.warehouse_view_link#WarehouseViewLinkDestroy"
         },
         {
-          "target": "com.posthog.warehouse_view_link#CreateWarehouseViewLinkValidate"
+          "target": "com.posthog.warehouse_view_link#WarehouseViewLinkValidateCreate"
         }
       ],
       "traits": {

@@ -114,15 +114,15 @@ export const Cursor = /*@__PURE__*/ S.suspend(() =>
 
 /** Request for CommitCursor. */
 export interface CommitCursorRequest {
-  /** The partition for which to update the cursor. Partitions are zero indexed, so `partition` must be in the range [0, topic.num_partitions). */
-  partition?: string;
   /** The new value for the committed cursor. */
   cursor?: Cursor;
+  /** The partition for which to update the cursor. Partitions are zero indexed, so `partition` must be in the range [0, topic.num_partitions). */
+  partition?: string;
 }
 export const CommitCursorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    partition: S.optional(S.String),
     cursor: S.optional(Cursor),
+    partition: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CommitCursorRequest",
@@ -208,18 +208,18 @@ export const ComputeHeadCursorResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Compute statistics about a range of messages in a given topic and partition. */
 export interface ComputeMessageStatsRequest {
-  /** The inclusive start of the range. */
-  startCursor?: Cursor;
   /** Required. The partition for which we should compute message stats. */
   partition?: string;
   /** The exclusive end of the range. The range is empty if end_cursor <= start_cursor. Specifying a start_cursor before the first message and an end_cursor after the last message will retrieve all messages. */
   endCursor?: Cursor;
+  /** The inclusive start of the range. */
+  startCursor?: Cursor;
 }
 export const ComputeMessageStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    startCursor: S.optional(Cursor),
     partition: S.optional(S.String),
     endCursor: S.optional(Cursor),
+    startCursor: S.optional(Cursor),
   }),
 ).annotate({
   identifier: "ComputeMessageStatsRequest",
@@ -249,21 +249,21 @@ export const ComputeMessageStatsTopicStatsProjectsLocationsTopicsRequest =
 
 /** Response containing stats for messages in the requested topic and partition. */
 export interface ComputeMessageStatsResponse {
+  /** The minimum event timestamp across these messages. For the purposes of this computation, if a message does not have an event time, we use the publish time. The timestamp will be unset if there are no messages. */
+  minimumEventTime?: string;
   /** The number of quota bytes accounted to these messages. */
   messageBytes?: string;
   /** The minimum publish timestamp across these messages. Note that publish timestamps within a partition are not guaranteed to be non-decreasing. The timestamp will be unset if there are no messages. */
   minimumPublishTime?: string;
   /** The count of messages. */
   messageCount?: string;
-  /** The minimum event timestamp across these messages. For the purposes of this computation, if a message does not have an event time, we use the publish time. The timestamp will be unset if there are no messages. */
-  minimumEventTime?: string;
 }
 export const ComputeMessageStatsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    minimumEventTime: S.optional(S.String),
     messageBytes: S.optional(S.String),
     minimumPublishTime: S.optional(S.String),
     messageCount: S.optional(S.String),
-    minimumEventTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ComputeMessageStatsResponse",
@@ -285,15 +285,15 @@ export const TimeTarget = /*@__PURE__*/ S.suspend(() =>
 
 /** Compute the corresponding cursor for a publish or event time in a topic partition. */
 export interface ComputeTimeCursorRequest {
-  /** Required. The target publish or event time. Specifying a future time will return an unset cursor. */
-  target?: TimeTarget;
   /** Required. The partition for which we should compute the cursor. */
   partition?: string;
+  /** Required. The target publish or event time. Specifying a future time will return an unset cursor. */
+  target?: TimeTarget;
 }
 export const ComputeTimeCursorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    target: S.optional(TimeTarget),
     partition: S.optional(S.String),
+    target: S.optional(TimeTarget),
   }),
 ).annotate({
   identifier: "ComputeTimeCursorRequest",
@@ -336,15 +336,15 @@ export const ComputeTimeCursorResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Metadata about a reservation resource. */
 export interface Reservation {
-  /** The name of the reservation. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id} */
-  name?: string;
   /** The reserved throughput capacity. Every unit of throughput capacity is equivalent to 1 MiB/s of published messages or 2 MiB/s of subscribed messages. Any topics which are declared as using capacity from a Reservation will consume resources from this reservation instead of being charged individually. */
   throughputCapacity?: string;
+  /** The name of the reservation. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id} */
+  name?: string;
 }
 export const Reservation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     throughputCapacity: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Reservation" }) as any as S.Schema<Reservation>;
 
@@ -373,6 +373,53 @@ export const CreateAdminProjectsLocationsReservationsRequest =
     identifier: "CreateAdminProjectsLocationsReservationsRequest",
   }) as any as S.Schema<CreateAdminProjectsLocationsReservationsRequest>;
 
+export type ExportConfigDesiredStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "ACTIVE"
+  | "PAUSED"
+  | "PERMISSION_DENIED"
+  | "NOT_FOUND";
+export const ExportConfigDesiredStateEnum = /*@__PURE__*/ S.String;
+
+/** Configuration for exporting to a Pub/Sub topic. */
+export interface PubSubConfig {
+  /** The name of the Pub/Sub topic. Structured like: projects/{project_number}/topics/{topic_id}. The topic may be changed. */
+  topic?: string;
+}
+export const PubSubConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    topic: S.optional(S.String),
+  }),
+).annotate({ identifier: "PubSubConfig" }) as any as S.Schema<PubSubConfig>;
+
+export type ExportConfigCurrentStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "ACTIVE"
+  | "PAUSED"
+  | "PERMISSION_DENIED"
+  | "NOT_FOUND";
+export const ExportConfigCurrentStateEnum = /*@__PURE__*/ S.String;
+
+/** Configuration for a Pub/Sub Lite subscription that writes messages to a destination. User subscriber clients must not connect to this subscription. */
+export interface ExportConfig {
+  /** The desired state of this export. Setting this to values other than `ACTIVE` and `PAUSED` will result in an error. */
+  desiredState?: ExportConfigDesiredStateEnum | (string & {});
+  /** Messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a Pub/Sub topic. */
+  pubsubConfig?: PubSubConfig;
+  /** Optional. The name of an optional Pub/Sub Lite topic to publish messages that can not be exported to the destination. For example, the message can not be published to the Pub/Sub service because it does not satisfy the constraints documented at https://cloud.google.com/pubsub/docs/publisher. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}. Must be within the same project and location as the subscription. The topic may be changed or removed. */
+  deadLetterTopic?: string;
+  /** Output only. The current state of the export, which may be different to the desired state due to errors. This field is output only. */
+  currentState?: ExportConfigCurrentStateEnum | (string & {});
+}
+export const ExportConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    desiredState: S.optional(ExportConfigDesiredStateEnum),
+    pubsubConfig: S.optional(PubSubConfig),
+    deadLetterTopic: S.optional(S.String),
+    currentState: S.optional(ExportConfigCurrentStateEnum),
+  }),
+).annotate({ identifier: "ExportConfig" }) as any as S.Schema<ExportConfig>;
+
 export type DeliveryConfigDeliveryRequirementEnum =
   | "DELIVERY_REQUIREMENT_UNSPECIFIED"
   | "DELIVER_IMMEDIATELY"
@@ -390,70 +437,23 @@ export const DeliveryConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DeliveryConfig" }) as any as S.Schema<DeliveryConfig>;
 
-/** Configuration for exporting to a Pub/Sub topic. */
-export interface PubSubConfig {
-  /** The name of the Pub/Sub topic. Structured like: projects/{project_number}/topics/{topic_id}. The topic may be changed. */
-  topic?: string;
-}
-export const PubSubConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    topic: S.optional(S.String),
-  }),
-).annotate({ identifier: "PubSubConfig" }) as any as S.Schema<PubSubConfig>;
-
-export type ExportConfigDesiredStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "ACTIVE"
-  | "PAUSED"
-  | "PERMISSION_DENIED"
-  | "NOT_FOUND";
-export const ExportConfigDesiredStateEnum = /*@__PURE__*/ S.String;
-
-export type ExportConfigCurrentStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "ACTIVE"
-  | "PAUSED"
-  | "PERMISSION_DENIED"
-  | "NOT_FOUND";
-export const ExportConfigCurrentStateEnum = /*@__PURE__*/ S.String;
-
-/** Configuration for a Pub/Sub Lite subscription that writes messages to a destination. User subscriber clients must not connect to this subscription. */
-export interface ExportConfig {
-  /** Messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a Pub/Sub topic. */
-  pubsubConfig?: PubSubConfig;
-  /** Optional. The name of an optional Pub/Sub Lite topic to publish messages that can not be exported to the destination. For example, the message can not be published to the Pub/Sub service because it does not satisfy the constraints documented at https://cloud.google.com/pubsub/docs/publisher. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}. Must be within the same project and location as the subscription. The topic may be changed or removed. */
-  deadLetterTopic?: string;
-  /** The desired state of this export. Setting this to values other than `ACTIVE` and `PAUSED` will result in an error. */
-  desiredState?: ExportConfigDesiredStateEnum | (string & {});
-  /** Output only. The current state of the export, which may be different to the desired state due to errors. This field is output only. */
-  currentState?: ExportConfigCurrentStateEnum | (string & {});
-}
-export const ExportConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pubsubConfig: S.optional(PubSubConfig),
-    deadLetterTopic: S.optional(S.String),
-    desiredState: S.optional(ExportConfigDesiredStateEnum),
-    currentState: S.optional(ExportConfigCurrentStateEnum),
-  }),
-).annotate({ identifier: "ExportConfig" }) as any as S.Schema<ExportConfig>;
-
 /** Metadata about a subscription resource. */
 export interface Subscription {
-  /** The settings for this subscription's message delivery. */
-  deliveryConfig?: DeliveryConfig;
+  /** If present, messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a destination. */
+  exportConfig?: ExportConfig;
   /** The name of the topic this subscription is attached to. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id} */
   topic?: string;
   /** The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id} */
   name?: string;
-  /** If present, messages are automatically written from the Pub/Sub Lite topic associated with this subscription to a destination. */
-  exportConfig?: ExportConfig;
+  /** The settings for this subscription's message delivery. */
+  deliveryConfig?: DeliveryConfig;
 }
 export const Subscription = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    deliveryConfig: S.optional(DeliveryConfig),
+    exportConfig: S.optional(ExportConfig),
     topic: S.optional(S.String),
     name: S.optional(S.String),
-    exportConfig: S.optional(ExportConfig),
+    deliveryConfig: S.optional(DeliveryConfig),
   }),
 ).annotate({ identifier: "Subscription" }) as any as S.Schema<Subscription>;
 
@@ -501,22 +501,35 @@ export const Capacity = /*@__PURE__*/ S.suspend(() =>
 
 /** The settings for a topic's partitions. */
 export interface PartitionConfig {
-  /** DEPRECATED: Use capacity instead which can express a superset of configurations. Every partition in the topic is allocated throughput equivalent to `scale` times the standard partition throughput (4 MiB/s). This is also reflected in the cost of this topic; a topic with `scale` of 2 and count of 10 is charged for 20 partitions. This value must be in the range [1,4]. */
-  scale?: number;
-  /** The number of partitions in the topic. Must be at least 1. Once a topic has been created the number of partitions can be increased but not decreased. Message ordering is not guaranteed across a topic resize. For more information see https://cloud.google.com/pubsub/lite/docs/topics#scaling_capacity */
-  count?: string;
   /** The capacity configuration. */
   capacity?: Capacity;
+  /** The number of partitions in the topic. Must be at least 1. Once a topic has been created the number of partitions can be increased but not decreased. Message ordering is not guaranteed across a topic resize. For more information see https://cloud.google.com/pubsub/lite/docs/topics#scaling_capacity */
+  count?: string;
+  /** DEPRECATED: Use capacity instead which can express a superset of configurations. Every partition in the topic is allocated throughput equivalent to `scale` times the standard partition throughput (4 MiB/s). This is also reflected in the cost of this topic; a topic with `scale` of 2 and count of 10 is charged for 20 partitions. This value must be in the range [1,4]. */
+  scale?: number;
 }
 export const PartitionConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scale: S.optional(S.Number),
-    count: S.optional(S.String),
     capacity: S.optional(Capacity),
+    count: S.optional(S.String),
+    scale: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "PartitionConfig",
 }) as any as S.Schema<PartitionConfig>;
+
+/** The settings for this topic's Reservation usage. */
+export interface ReservationConfig {
+  /** The Reservation to use for this topic's throughput capacity. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id} */
+  throughputReservation?: string;
+}
+export const ReservationConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    throughputReservation: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationConfig",
+}) as any as S.Schema<ReservationConfig>;
 
 /** The settings for a topic's message retention. */
 export interface RetentionConfig {
@@ -534,52 +547,39 @@ export const RetentionConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "RetentionConfig",
 }) as any as S.Schema<RetentionConfig>;
 
-/** The settings for this topic's Reservation usage. */
-export interface ReservationConfig {
-  /** The Reservation to use for this topic's throughput capacity. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id} */
-  throughputReservation?: string;
-}
-export const ReservationConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    throughputReservation: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationConfig",
-}) as any as S.Schema<ReservationConfig>;
-
 /** Metadata about a topic resource. */
 export interface Topic {
   /** The settings for this topic's partitions. */
   partitionConfig?: PartitionConfig;
-  /** The settings for this topic's message retention. */
-  retentionConfig?: RetentionConfig;
   /** The settings for this topic's Reservation usage. */
   reservationConfig?: ReservationConfig;
+  /** The settings for this topic's message retention. */
+  retentionConfig?: RetentionConfig;
   /** The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id} */
   name?: string;
 }
 export const Topic = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     partitionConfig: S.optional(PartitionConfig),
-    retentionConfig: S.optional(RetentionConfig),
     reservationConfig: S.optional(ReservationConfig),
+    retentionConfig: S.optional(RetentionConfig),
     name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Topic" }) as any as S.Schema<Topic>;
 
 export interface CreateAdminProjectsLocationsTopicsRequest {
-  /** Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`. */
-  parent: string;
   /** Required. The ID to use for the topic, which will become the final component of the topic's name. This value is structured like: `my-topic-name`. */
   topicId?: string;
+  /** Required. The parent location in which to create the topic. Structured like `projects/{project_number}/locations/{location}`. */
+  parent: string;
   /** Request body */
   body?: Topic;
 }
 export const CreateAdminProjectsLocationsTopicsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
       topicId: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       body: S.optional(Topic.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -702,23 +702,21 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 export interface Status {
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
-  /** The status code, which should be an enum value of google.rpc.Code. */
-  code?: number;
   /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
   details?: DocumentMapList;
+  /** The status code, which should be an enum value of google.rpc.Code. */
+  code?: number;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
-    code: S.optional(S.Number),
     details: S.optional(DocumentMapList),
+    code: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
   /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
   response?: DocumentMap;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
@@ -727,14 +725,16 @@ export interface Operation {
   done?: boolean;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     response: S.optional(DocumentMap),
     metadata: S.optional(DocumentMap),
     done: S.optional(S.Boolean),
     error: S.optional(Status),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
@@ -830,23 +830,23 @@ export const TopicPartitions = /*@__PURE__*/ S.suspend(() =>
 export interface ListAdminProjectsLocationsOperationsRequest {
   /** The standard list page token. */
   pageToken?: string;
-  /** The name of the operation's parent resource. */
-  name: string;
-  /** The standard list filter. */
-  filter?: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
+  /** The standard list filter. */
+  filter?: string;
   /** The standard list page size. */
   pageSize?: number;
+  /** The name of the operation's parent resource. */
+  name: string;
 }
 export const ListAdminProjectsLocationsOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       pageToken: S.optional(S.String.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
-      filter: S.optional(S.String.pipe(T.Query())),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -888,19 +888,19 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOperationsResponse>;
 
 export interface ListAdminProjectsLocationsReservationsRequest {
-  /** Required. The parent whose reservations are to be listed. Structured like `projects/{project_number}/locations/{location}`. */
-  parent: string;
-  /** The maximum number of reservations to return. The service may return fewer than this value. If unset or zero, all reservations for the parent will be returned. */
-  pageSize?: number;
   /** A page token, received from a previous `ListReservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservations` must match the call that provided the page token. */
   pageToken?: string;
+  /** The maximum number of reservations to return. The service may return fewer than this value. If unset or zero, all reservations for the parent will be returned. */
+  pageSize?: number;
+  /** Required. The parent whose reservations are to be listed. Structured like `projects/{project_number}/locations/{location}`. */
+  parent: string;
 }
 export const ListAdminProjectsLocationsReservationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -919,33 +919,33 @@ export const ReservationList = /*@__PURE__*/ S.Array(
 
 /** Response for ListReservations. */
 export interface ListReservationsResponse {
-  /** A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results. */
-  nextPageToken?: string;
   /** The list of reservation in the requested parent. The order of the reservations is unspecified. */
   reservations?: ReservationList;
+  /** A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results. */
+  nextPageToken?: string;
 }
 export const ListReservationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     reservations: S.optional(ReservationList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListReservationsResponse",
 }) as any as S.Schema<ListReservationsResponse>;
 
 export interface ListAdminProjectsLocationsReservationsTopicsRequest {
-  /** Required. The name of the reservation whose topics to list. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id} */
-  name: string;
   /** The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the given reservation will be returned. */
   pageSize?: number;
+  /** Required. The name of the reservation whose topics to list. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id} */
+  name: string;
   /** A page token, received from a previous `ListReservationTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservationTopics` must match the call that provided the page token. */
   pageToken?: string;
 }
 export const ListAdminProjectsLocationsReservationsTopicsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -1021,18 +1021,18 @@ export const ListSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSubscriptionsResponse>;
 
 export interface ListAdminProjectsLocationsTopicsRequest {
-  /** A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token. */
-  pageToken?: string;
   /** The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the parent will be returned. */
   pageSize?: number;
+  /** A page token, received from a previous `ListTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopics` must match the call that provided the page token. */
+  pageToken?: string;
   /** Required. The parent whose topics are to be listed. Structured like `projects/{project_number}/locations/{location}`. */
   parent: string;
 }
 export const ListAdminProjectsLocationsTopicsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageToken: S.optional(S.String.pipe(T.Query())),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -1052,34 +1052,34 @@ export const TopicList = /*@__PURE__*/ S.Array(
 
 /** Response for ListTopics. */
 export interface ListTopicsResponse {
-  /** A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results. */
-  nextPageToken?: string;
   /** The list of topic in the requested parent. The order of the topics is unspecified. */
   topics?: TopicList;
+  /** A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results. */
+  nextPageToken?: string;
 }
 export const ListTopicsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     topics: S.optional(TopicList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListTopicsResponse",
 }) as any as S.Schema<ListTopicsResponse>;
 
 export interface ListAdminProjectsLocationsTopicsSubscriptionsRequest {
+  /** A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token. */
+  pageToken?: string;
   /** Required. The name of the topic whose subscriptions to list. */
   name: string;
   /** The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the given topic will be returned. */
   pageSize?: number;
-  /** A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token. */
-  pageToken?: string;
 }
 export const ListAdminProjectsLocationsTopicsSubscriptionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      pageToken: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1108,19 +1108,19 @@ export const ListTopicSubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListTopicSubscriptionsResponse>;
 
 export interface ListCursorProjectsLocationsSubscriptionsCursorsRequest {
-  /** A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token. */
-  pageToken?: string;
-  /** The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned. */
-  pageSize?: number;
   /** Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number}/locations/{location}/subscriptions/{subscription_id}`. */
   parent: string;
+  /** The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned. */
+  pageSize?: number;
+  /** A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token. */
+  pageToken?: string;
 }
 export const ListCursorProjectsLocationsSubscriptionsCursorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1155,15 +1155,15 @@ export const PartitionCursorList = /*@__PURE__*/ S.Array(
 
 /** Response for ListPartitionCursors */
 export interface ListPartitionCursorsResponse {
-  /** The partition cursors from this request. */
-  partitionCursors?: PartitionCursorList;
   /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
   nextPageToken?: string;
+  /** The partition cursors from this request. */
+  partitionCursors?: PartitionCursorList;
 }
 export const ListPartitionCursorsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    partitionCursors: S.optional(PartitionCursorList),
     nextPageToken: S.optional(S.String),
+    partitionCursors: S.optional(PartitionCursorList),
   }),
 ).annotate({
   identifier: "ListPartitionCursorsResponse",
@@ -1195,18 +1195,18 @@ export const PatchAdminProjectsLocationsReservationsRequest =
   }) as any as S.Schema<PatchAdminProjectsLocationsReservationsRequest>;
 
 export interface PatchAdminProjectsLocationsSubscriptionsRequest {
-  /** The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id} */
-  name: string;
   /** Required. A mask specifying the subscription fields to change. */
   updateMask?: string;
+  /** The name of the subscription. Structured like: projects/{project_number}/locations/{location}/subscriptions/{subscription_id} */
+  name: string;
   /** Request body */
   body?: Subscription;
 }
 export const PatchAdminProjectsLocationsSubscriptionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       body: S.optional(Subscription.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1220,18 +1220,18 @@ export const PatchAdminProjectsLocationsSubscriptionsRequest =
   }) as any as S.Schema<PatchAdminProjectsLocationsSubscriptionsRequest>;
 
 export interface PatchAdminProjectsLocationsTopicsRequest {
-  /** The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id} */
-  name: string;
   /** Required. A mask specifying the topic fields to change. */
   updateMask?: string;
+  /** The name of the topic. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id} */
+  name: string;
   /** Request body */
   body?: Topic;
 }
 export const PatchAdminProjectsLocationsTopicsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      name: S.String.pipe(T.Label()),
       updateMask: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
       body: S.optional(Topic.pipe(T.HttpBody())),
     }).pipe(
       T.Http({

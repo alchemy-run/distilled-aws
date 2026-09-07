@@ -238,6 +238,272 @@ export class VectorizeIndexNotFound
     [{ code: 10159 }],
   ) {}
 
+export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
+  "secret_text";
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
+  /*@__PURE__*/ S.String;
+
+export interface DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText {
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The secret value to use. */
+  text: string;
+  /** The kind of resource that the binding provides. */
+  type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType;
+}
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      text: S.String,
+      type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType,
+    }),
+  ).annotate({
+    identifier:
+      "DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText",
+  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText>;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
+  | "raw"
+  | "pkcs8"
+  | "spki"
+  | "jwk";
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
+  /*@__PURE__*/ S.String;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
+  "secret_key";
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
+  /*@__PURE__*/ S.String;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
+  | "encrypt"
+  | "decrypt"
+  | "sign"
+  | "verify"
+  | "deriveKey"
+  | "deriveBits"
+  | "wrapKey"
+  | "unwrapKey";
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
+  /*@__PURE__*/ S.String;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList =
+  Array<
+    | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem
+    | (string & {})
+  >;
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList =
+  /*@__PURE__*/ S.Array(
+    DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem,
+  ) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList>;
+
+export interface DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey {
+  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
+  algorithm: unknown;
+  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
+  format:
+    | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat
+    | (string & {});
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The kind of resource that the binding provides. */
+  type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType;
+  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
+  usages: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList;
+  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
+  keyBase64?: string;
+  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
+  keyJwk?: unknown;
+}
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      algorithm: S.Unknown,
+      format:
+        DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat,
+      name: S.String,
+      type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType,
+      usages:
+        DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList,
+      keyBase64: S.optional(S.String.pipe(T.Body("key_base64"))),
+      keyJwk: S.optional(S.Unknown.pipe(T.Body("key_jwk"))),
+    }),
+  ).annotate({
+    identifier:
+      "DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey",
+  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey>;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets =
+  | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText
+  | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey;
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["name", "text", "type"],
+      ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
+    ]),
+  );
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap = {
+  [key: string]: unknown | undefined;
+};
+export const DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap>;
+
+export interface BulkUpdateDispatchNamespaceScriptSecretsRequest {
+  /** Identifier. */
+  accountId: string;
+  /** Name of the Workers for Platforms dispatch namespace. */
+  dispatchNamespace: string;
+  /** Name of the script, used in URLs and route configuration. */
+  scriptName: string;
+  /** Map of secret names to secret values: */
+  secrets?: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets;
+  /** Optional version tags to apply to the new script version. */
+  versionTags?: DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap;
+}
+export const BulkUpdateDispatchNamespaceScriptSecretsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.String.pipe(T.Label("account_id")),
+      dispatchNamespace: S.String.pipe(T.Label("dispatch_namespace")),
+      scriptName: S.String.pipe(T.Label("script_name")),
+      secrets: S.optional(
+        DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets,
+      ),
+      versionTags: S.optional(
+        DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap.pipe(
+          T.Body("version_tags"),
+        ),
+      ),
+    })
+      .pipe(
+        T.Http({
+          method: "PATCH",
+          uri: "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets-bulk",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+  ).annotate({
+    identifier: "BulkUpdateDispatchNamespaceScriptSecretsRequest",
+  }) as any as S.Schema<BulkUpdateDispatchNamespaceScriptSecretsRequest>;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType =
+  "secret_text";
+export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType =
+  /*@__PURE__*/ S.String;
+
+export interface DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText {
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The secret value to use. */
+  text: string;
+  /** The kind of resource that the binding provides. */
+  type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType;
+}
+export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      text: S.String,
+      type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType,
+    }),
+  ).annotate({
+    identifier: "DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText",
+  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText>;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat =
+  | "raw"
+  | "pkcs8"
+  | "spki"
+  | "jwk";
+export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat =
+  /*@__PURE__*/ S.String;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType =
+  "secret_key";
+export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType =
+  /*@__PURE__*/ S.String;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
+  | "encrypt"
+  | "decrypt"
+  | "sign"
+  | "verify"
+  | "deriveKey"
+  | "deriveBits"
+  | "wrapKey"
+  | "unwrapKey";
+export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
+  /*@__PURE__*/ S.String;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
+  Array<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem>;
+export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
+  /*@__PURE__*/ S.Array(
+    DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem,
+  ) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList>;
+
+export interface DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey {
+  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
+  algorithm: unknown;
+  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
+  format: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat;
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The kind of resource that the binding provides. */
+  type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType;
+  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
+  usages: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList;
+  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
+  keyBase64?: string | null;
+  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
+  keyJwk?: unknown | null;
+}
+export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      algorithm: S.Unknown,
+      format: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat,
+      name: S.String,
+      type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType,
+      usages:
+        DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList,
+      keyBase64: S.optional(S.NullOr(S.String).pipe(T.Body("key_base64"))),
+      keyJwk: S.optional(S.NullOr(S.Unknown).pipe(T.Body("key_jwk"))),
+    }),
+  ).annotate({
+    identifier: "DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey",
+  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey>;
+
+export type DispatchNamespacesScriptsSecretsBulkUpdateResult =
+  | DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText
+  | DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey;
+export const DispatchNamespacesScriptsSecretsBulkUpdateResult =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["name", "text", "type"],
+      ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
+    ]),
+  );
+
+export type BulkUpdateDispatchNamespaceScriptSecretsResponse =
+  DispatchNamespacesScriptsSecretsBulkUpdateResult;
+export const BulkUpdateDispatchNamespaceScriptSecretsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    DispatchNamespacesScriptsSecretsBulkUpdateResult.pipe(
+      T.EnvelopePayloadRoot(),
+      T.KeyDictionary(KEY_DICTIONARY),
+    ),
+  ).annotate({
+    identifier: "BulkUpdateDispatchNamespaceScriptSecretsResponse",
+  }) as any as S.Schema<BulkUpdateDispatchNamespaceScriptSecretsResponse>;
+
 export interface CreateDispatchNamespaceRequest {
   /** Identifier. */
   accountId: string;
@@ -9663,271 +9929,20 @@ export const PutDispatchNamespaceScriptTagResponse = /*@__PURE__*/ S.suspend(
   identifier: "PutDispatchNamespaceScriptTagResponse",
 }) as any as S.Schema<PutDispatchNamespaceScriptTagResponse>;
 
-export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
-  "secret_text";
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
-  /*@__PURE__*/ S.String;
-
-export interface DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText {
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The secret value to use. */
-  text: string;
-  /** The kind of resource that the binding provides. */
-  type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType;
-}
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      text: S.String,
-      type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretTextType,
-    }),
-  ).annotate({
-    identifier:
-      "DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText",
-  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText>;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
-  | "raw"
-  | "pkcs8"
-  | "spki"
-  | "jwk";
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
-  /*@__PURE__*/ S.String;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
-  "secret_key";
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
-  /*@__PURE__*/ S.String;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
-  | "encrypt"
-  | "decrypt"
-  | "sign"
-  | "verify"
-  | "deriveKey"
-  | "deriveBits"
-  | "wrapKey"
-  | "unwrapKey";
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList =
-  Array<
-    | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem
-    | (string & {})
-  >;
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList =
-  /*@__PURE__*/ S.Array(
-    DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem,
-  ) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList>;
-
-export interface DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey {
-  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
-  algorithm: unknown;
-  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
-  format:
-    | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat
-    | (string & {});
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The kind of resource that the binding provides. */
-  type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType;
-  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
-  usages: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList;
-  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
-  keyBase64?: string;
-  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
-  keyJwk?: unknown;
-}
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      algorithm: S.Unknown,
-      format:
-        DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat,
-      name: S.String,
-      type: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyType,
-      usages:
-        DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList,
-      keyBase64: S.optional(S.String.pipe(T.Body("key_base64"))),
-      keyJwk: S.optional(S.Unknown.pipe(T.Body("key_jwk"))),
-    }),
-  ).annotate({
-    identifier:
-      "DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey",
-  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey>;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets =
-  | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretText
-  | DispatchNamespacesScriptsSecretsBulkUpdateRequestSecretsSecretKey;
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["name", "text", "type"],
-      ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
-    ]),
-  );
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap = {
-  [key: string]: unknown | undefined;
-};
-export const DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap>;
-
-export interface UpdateBulkDispatchNamespaceScriptSecretRequest {
-  /** Identifier. */
-  accountId: string;
-  /** Name of the Workers for Platforms dispatch namespace. */
-  dispatchNamespace: string;
-  /** Name of the script, used in URLs and route configuration. */
-  scriptName: string;
-  /** Map of secret names to secret values: */
-  secrets?: DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets;
-  /** Optional version tags to apply to the new script version. */
-  versionTags?: DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap;
-}
-export const UpdateBulkDispatchNamespaceScriptSecretRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.String.pipe(T.Label("account_id")),
-      dispatchNamespace: S.String.pipe(T.Label("dispatch_namespace")),
-      scriptName: S.String.pipe(T.Label("script_name")),
-      secrets: S.optional(
-        DispatchNamespacesScriptsSecretsBulkUpdateRequestSecrets,
-      ),
-      versionTags: S.optional(
-        DispatchNamespacesScriptsSecretsBulkUpdateRequestVersionTagsMap.pipe(
-          T.Body("version_tags"),
-        ),
-      ),
-    })
-      .pipe(
-        T.Http({
-          method: "PATCH",
-          uri: "/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets-bulk",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-  ).annotate({
-    identifier: "UpdateBulkDispatchNamespaceScriptSecretRequest",
-  }) as any as S.Schema<UpdateBulkDispatchNamespaceScriptSecretRequest>;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType =
-  "secret_text";
-export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType =
-  /*@__PURE__*/ S.String;
-
-export interface DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText {
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The secret value to use. */
-  text: string;
-  /** The kind of resource that the binding provides. */
-  type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType;
-}
-export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      text: S.String,
-      type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretTextType,
-    }),
-  ).annotate({
-    identifier: "DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText",
-  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText>;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat =
-  | "raw"
-  | "pkcs8"
-  | "spki"
-  | "jwk";
-export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat =
-  /*@__PURE__*/ S.String;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType =
-  "secret_key";
-export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType =
-  /*@__PURE__*/ S.String;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
-  | "encrypt"
-  | "decrypt"
-  | "sign"
-  | "verify"
-  | "deriveKey"
-  | "deriveBits"
-  | "wrapKey"
-  | "unwrapKey";
-export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
-  Array<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem>;
-export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
-  /*@__PURE__*/ S.Array(
-    DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesItem,
-  ) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList>;
-
-export interface DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey {
-  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
-  algorithm: unknown;
-  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
-  format: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat;
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The kind of resource that the binding provides. */
-  type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType;
-  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
-  usages: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList;
-  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
-  keyBase64?: string | null;
-  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
-  keyJwk?: unknown | null;
-}
-export const DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      algorithm: S.Unknown,
-      format: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyFormat,
-      name: S.String,
-      type: DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyType,
-      usages:
-        DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKeyUsagesList,
-      keyBase64: S.optional(S.NullOr(S.String).pipe(T.Body("key_base64"))),
-      keyJwk: S.optional(S.NullOr(S.Unknown).pipe(T.Body("key_jwk"))),
-    }),
-  ).annotate({
-    identifier: "DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey",
-  }) as any as S.Schema<DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey>;
-
-export type DispatchNamespacesScriptsSecretsBulkUpdateResult =
-  | DispatchNamespacesScriptsSecretsBulkUpdateResultSecretText
-  | DispatchNamespacesScriptsSecretsBulkUpdateResultSecretKey;
-export const DispatchNamespacesScriptsSecretsBulkUpdateResult =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["name", "text", "type"],
-      ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
-    ]),
-  );
-
-export type UpdateBulkDispatchNamespaceScriptSecretResponse =
-  DispatchNamespacesScriptsSecretsBulkUpdateResult;
-export const UpdateBulkDispatchNamespaceScriptSecretResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    DispatchNamespacesScriptsSecretsBulkUpdateResult.pipe(
-      T.EnvelopePayloadRoot(),
-      T.KeyDictionary(KEY_DICTIONARY),
-    ),
-  ).annotate({
-    identifier: "UpdateBulkDispatchNamespaceScriptSecretResponse",
-  }) as any as S.Schema<UpdateBulkDispatchNamespaceScriptSecretResponse>;
+export type BulkUpdateDispatchNamespaceScriptSecretsError = CloudflareOpError;
+/** Create, update, or delete multiple secrets on a script in a single operation using JSON Merge Patch (RFC 7396). Usage: - To create or update a secret, set its value to a secret object. - To delete a secret, set its value to `null`. - Secrets not included in the request are left unchanged. */
+export const bulkUpdateDispatchNamespaceScriptSecrets: API.OperationMethod<
+  BulkUpdateDispatchNamespaceScriptSecretsRequest,
+  BulkUpdateDispatchNamespaceScriptSecretsResponse,
+  BulkUpdateDispatchNamespaceScriptSecretsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkUpdateDispatchNamespaceScriptSecretsRequest,
+  output: BulkUpdateDispatchNamespaceScriptSecretsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CreateDispatchNamespaceError =
   | DispatchNamespaceAlreadyExists
@@ -10335,18 +10350,3 @@ export const putDispatchNamespaceScriptTag: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
-
-export type UpdateBulkDispatchNamespaceScriptSecretError = CloudflareOpError;
-/** Create, update, or delete multiple secrets on a script in a single operation using JSON Merge Patch (RFC 7396). Usage: - To create or update a secret, set its value to a secret object. - To delete a secret, set its value to `null`. - Secrets not included in the request are left unchanged. */
-export const updateBulkDispatchNamespaceScriptSecret: API.OperationMethod<
-  UpdateBulkDispatchNamespaceScriptSecretRequest,
-  UpdateBulkDispatchNamespaceScriptSecretResponse,
-  UpdateBulkDispatchNamespaceScriptSecretError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBulkDispatchNamespaceScriptSecretRequest,
-  output: UpdateBulkDispatchNamespaceScriptSecretResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));

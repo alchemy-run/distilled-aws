@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.aliases#ListDeploymentAliasesRequest": {
@@ -2313,19 +2314,19 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.aliases#ListDeploymentAliases"
-        },
-        {
           "target": "com.vercel.aliases#AssignAlias"
         },
         {
-          "target": "com.vercel.aliases#ListAliases"
+          "target": "com.vercel.aliases#DeleteAlias"
         },
         {
           "target": "com.vercel.aliases#GetAlias"
         },
         {
-          "target": "com.vercel.aliases#DeleteAlias"
+          "target": "com.vercel.aliases#ListAliases"
+        },
+        {
+          "target": "com.vercel.aliases#ListDeploymentAliases"
         },
         {
           "target": "com.vercel.aliases#PatchUrlProtectionBypass"

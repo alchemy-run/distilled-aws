@@ -72,36 +72,13 @@ export const ActionsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActionsDestroyResponse",
 }) as any as S.Schema<ActionsDestroyResponse>;
 
-export type ActionsRetrieveRequestFormat = "csv" | "json";
-export const ActionsRetrieveRequestFormat = /*@__PURE__*/ S.String;
+export type CreateActionRequestFormat = "csv" | "json";
+export const CreateActionRequestFormat = /*@__PURE__*/ S.String;
 
-export interface ActionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this action. */
-  id: number;
-  format?: ActionsRetrieveRequestFormat | (string & {});
-}
-export const ActionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(ActionsRetrieveRequestFormat.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/actions/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ActionsRetrieveRequest",
-}) as any as S.Schema<ActionsRetrieveRequest>;
-
-export type ActionOutputTagsList = Array<unknown>;
-export const ActionOutputTagsList = /*@__PURE__*/ S.Array(
+export type CreateActionRequestTagsList = Array<unknown>;
+export const CreateActionRequestTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ActionOutputTagsList>;
+) as any as S.Schema<CreateActionRequestTagsList>;
 
 /** * `event` - event * `event_metadata` - event_metadata * `feature` - feature * `person` - person * `person_metadata` - person_metadata * `cohort` - cohort * `element` - element * `static-cohort` - static-cohort * `dynamic-cohort` - dynamic-cohort * `precalculated-cohort` - precalculated-cohort * `group` - group * `recording` - recording * `log_entry` - log_entry * `behavioral` - behavioral * `session` - session * `hogql` - hogql * `data_warehouse` - data_warehouse * `data_warehouse_person_property` - data_warehouse_person_property * `error_tracking_issue` - error_tracking_issue * `log` - log * `log_attribute` - log_attribute * `log_resource_attribute` - log_resource_attribute * `metric_attribute` - metric_attribute * `span` - span * `span_attribute` - span_attribute * `span_resource_attribute` - span_resource_attribute * `revenue_analytics` - revenue_analytics * `account_custom_property` - account_custom_property * `flag` - flag * `workflow_variable` - workflow_variable */
 export type PropertyFilterTypeEnum =
@@ -303,14 +280,116 @@ export const ActionStepPropertyFilter =
   /*@__PURE__*/ S.Unknown as any as S.Schema<ActionStepPropertyFilter>;
 
 /** Event or person property filters. Each item should have 'key' (string), 'value' (string, number, boolean, or array), optional 'operator' (exact, is_not, is_set, is_not_set, icontains, not_icontains, regex, not_regex, gt, gte, lt, lte), and optional 'type' (event, person). */
-export type ActionStepJSONPropertiesList = Array<ActionStepPropertyFilter>;
-export const ActionStepJSONPropertiesList = /*@__PURE__*/ S.Array(
+export type ActionStepJSONInputPropertiesList = Array<ActionStepPropertyFilter>;
+export const ActionStepJSONInputPropertiesList = /*@__PURE__*/ S.Array(
   ActionStepPropertyFilter,
-) as any as S.Schema<ActionStepJSONPropertiesList>;
+) as any as S.Schema<ActionStepJSONInputPropertiesList>;
 
 /** * `contains` - contains * `regex` - regex * `exact` - exact */
 export type ActionStepMatchingEnum = "contains" | "regex" | "exact";
 export const ActionStepMatchingEnum = /*@__PURE__*/ S.String;
+
+export interface ActionStepJSONInput {
+  /** Event name to match (e.g. '$pageview', '$autocapture', or a custom event name). */
+  event?: string | null;
+  /** Event or person property filters. Each item should have 'key' (string), 'value' (string, number, boolean, or array), optional 'operator' (exact, is_not, is_set, is_not_set, icontains, not_icontains, regex, not_regex, gt, gte, lt, lte), and optional 'type' (event, person). */
+  properties?: ActionStepJSONInputPropertiesList | null;
+  /** CSS selector to match the target element (e.g. 'div > button.cta'). */
+  selector?: string | null;
+  /** HTML tag name to match (e.g. "button", "a", "input"). */
+  tag_name?: string | null;
+  /** Element text content to match. */
+  text?: string | null;
+  /** How to match the text value. Defaults to exact. * `contains` - contains * `regex` - regex * `exact` - exact */
+  text_matching?: ActionStepMatchingEnum | (string & {}) | null;
+  /** Link href attribute to match. */
+  href?: string | null;
+  /** How to match the href value. Defaults to exact. * `contains` - contains * `regex` - regex * `exact` - exact */
+  href_matching?: ActionStepMatchingEnum | (string & {}) | null;
+  /** Page URL to match. */
+  url?: string | null;
+  /** How to match the URL value. Defaults to contains. * `contains` - contains * `regex` - regex * `exact` - exact */
+  url_matching?: ActionStepMatchingEnum | (string & {}) | null;
+}
+export const ActionStepJSONInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event: S.optional(S.NullOr(S.String)),
+    properties: S.optional(S.NullOr(ActionStepJSONInputPropertiesList)),
+    selector: S.optional(S.NullOr(S.String)),
+    tag_name: S.optional(S.NullOr(S.String)),
+    text: S.optional(S.NullOr(S.String)),
+    text_matching: S.optional(S.NullOr(ActionStepMatchingEnum)),
+    href: S.optional(S.NullOr(S.String)),
+    href_matching: S.optional(S.NullOr(ActionStepMatchingEnum)),
+    url: S.optional(S.NullOr(S.String)),
+    url_matching: S.optional(S.NullOr(ActionStepMatchingEnum)),
+  }),
+).annotate({
+  identifier: "ActionStepJSONInput",
+}) as any as S.Schema<ActionStepJSONInput>;
+
+/** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
+export type CreateActionRequestStepsList = Array<ActionStepJSONInput>;
+export const CreateActionRequestStepsList = /*@__PURE__*/ S.Array(
+  ActionStepJSONInput,
+) as any as S.Schema<CreateActionRequestStepsList>;
+
+export interface CreateActionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  format?: CreateActionRequestFormat | (string & {});
+  /** Name of the action (must be unique within the project). */
+  name?: string | null;
+  /** Human-readable description of what this action represents. */
+  description?: string;
+  tags?: CreateActionRequestTagsList;
+  /** Whether to post a notification to Slack when this action is triggered. */
+  post_to_slack?: boolean;
+  /** Custom Slack message format. Supports templates with event properties. */
+  slack_message_format?: string;
+  /** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
+  steps?: CreateActionRequestStepsList;
+  deleted?: boolean;
+  last_calculated_at?: string;
+  /** ISO 8601 timestamp when the action was pinned, or null if not pinned. Set any value to pin, null to unpin. */
+  pinned_at?: string | null;
+  _create_in_folder?: string;
+}
+export const CreateActionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    format: S.optional(CreateActionRequestFormat.pipe(T.Query())),
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    tags: S.optional(CreateActionRequestTagsList),
+    post_to_slack: S.optional(S.Boolean),
+    slack_message_format: S.optional(S.String),
+    steps: S.optional(CreateActionRequestStepsList),
+    deleted: S.optional(S.Boolean),
+    last_calculated_at: S.optional(S.String),
+    pinned_at: S.optional(S.NullOr(S.String)),
+    _create_in_folder: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/actions/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateActionRequest",
+}) as any as S.Schema<CreateActionRequest>;
+
+export type ActionOutputTagsList = Array<unknown>;
+export const ActionOutputTagsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<ActionOutputTagsList>;
+
+/** Event or person property filters. Each item should have 'key' (string), 'value' (string, number, boolean, or array), optional 'operator' (exact, is_not, is_set, is_not_set, icontains, not_icontains, regex, not_regex, gt, gte, lt, lte), and optional 'type' (event, person). */
+export type ActionStepJSONPropertiesList = Array<ActionStepPropertyFilter>;
+export const ActionStepJSONPropertiesList = /*@__PURE__*/ S.Array(
+  ActionStepPropertyFilter,
+) as any as S.Schema<ActionStepJSONPropertiesList>;
 
 export interface ActionStepJSON {
   /** Event name to match (e.g. '$pageview', '$autocapture', or a custom event name). */
@@ -459,186 +538,41 @@ export const ActionOutput = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ActionOutput" }) as any as S.Schema<ActionOutput>;
 
-export type ActionsCreateRequestFormat = "csv" | "json";
-export const ActionsCreateRequestFormat = /*@__PURE__*/ S.String;
+export type GetActionRequestFormat = "csv" | "json";
+export const GetActionRequestFormat = /*@__PURE__*/ S.String;
 
-export type ActionsCreateRequestTagsList = Array<unknown>;
-export const ActionsCreateRequestTagsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ActionsCreateRequestTagsList>;
-
-/** Event or person property filters. Each item should have 'key' (string), 'value' (string, number, boolean, or array), optional 'operator' (exact, is_not, is_set, is_not_set, icontains, not_icontains, regex, not_regex, gt, gte, lt, lte), and optional 'type' (event, person). */
-export type ActionStepJSONInputPropertiesList = Array<ActionStepPropertyFilter>;
-export const ActionStepJSONInputPropertiesList = /*@__PURE__*/ S.Array(
-  ActionStepPropertyFilter,
-) as any as S.Schema<ActionStepJSONInputPropertiesList>;
-
-export interface ActionStepJSONInput {
-  /** Event name to match (e.g. '$pageview', '$autocapture', or a custom event name). */
-  event?: string | null;
-  /** Event or person property filters. Each item should have 'key' (string), 'value' (string, number, boolean, or array), optional 'operator' (exact, is_not, is_set, is_not_set, icontains, not_icontains, regex, not_regex, gt, gte, lt, lte), and optional 'type' (event, person). */
-  properties?: ActionStepJSONInputPropertiesList | null;
-  /** CSS selector to match the target element (e.g. 'div > button.cta'). */
-  selector?: string | null;
-  /** HTML tag name to match (e.g. "button", "a", "input"). */
-  tag_name?: string | null;
-  /** Element text content to match. */
-  text?: string | null;
-  /** How to match the text value. Defaults to exact. * `contains` - contains * `regex` - regex * `exact` - exact */
-  text_matching?: ActionStepMatchingEnum | (string & {}) | null;
-  /** Link href attribute to match. */
-  href?: string | null;
-  /** How to match the href value. Defaults to exact. * `contains` - contains * `regex` - regex * `exact` - exact */
-  href_matching?: ActionStepMatchingEnum | (string & {}) | null;
-  /** Page URL to match. */
-  url?: string | null;
-  /** How to match the URL value. Defaults to contains. * `contains` - contains * `regex` - regex * `exact` - exact */
-  url_matching?: ActionStepMatchingEnum | (string & {}) | null;
-}
-export const ActionStepJSONInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event: S.optional(S.NullOr(S.String)),
-    properties: S.optional(S.NullOr(ActionStepJSONInputPropertiesList)),
-    selector: S.optional(S.NullOr(S.String)),
-    tag_name: S.optional(S.NullOr(S.String)),
-    text: S.optional(S.NullOr(S.String)),
-    text_matching: S.optional(S.NullOr(ActionStepMatchingEnum)),
-    href: S.optional(S.NullOr(S.String)),
-    href_matching: S.optional(S.NullOr(ActionStepMatchingEnum)),
-    url: S.optional(S.NullOr(S.String)),
-    url_matching: S.optional(S.NullOr(ActionStepMatchingEnum)),
-  }),
-).annotate({
-  identifier: "ActionStepJSONInput",
-}) as any as S.Schema<ActionStepJSONInput>;
-
-/** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
-export type ActionsCreateRequestStepsList = Array<ActionStepJSONInput>;
-export const ActionsCreateRequestStepsList = /*@__PURE__*/ S.Array(
-  ActionStepJSONInput,
-) as any as S.Schema<ActionsCreateRequestStepsList>;
-
-export interface CreateActionRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  format?: ActionsCreateRequestFormat | (string & {});
-  /** Name of the action (must be unique within the project). */
-  name?: string | null;
-  /** Human-readable description of what this action represents. */
-  description?: string;
-  tags?: ActionsCreateRequestTagsList;
-  /** Whether to post a notification to Slack when this action is triggered. */
-  post_to_slack?: boolean;
-  /** Custom Slack message format. Supports templates with event properties. */
-  slack_message_format?: string;
-  /** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
-  steps?: ActionsCreateRequestStepsList;
-  deleted?: boolean;
-  last_calculated_at?: string;
-  /** ISO 8601 timestamp when the action was pinned, or null if not pinned. Set any value to pin, null to unpin. */
-  pinned_at?: string | null;
-  _create_in_folder?: string;
-}
-export const CreateActionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    format: S.optional(ActionsCreateRequestFormat.pipe(T.Query())),
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    tags: S.optional(ActionsCreateRequestTagsList),
-    post_to_slack: S.optional(S.Boolean),
-    slack_message_format: S.optional(S.String),
-    steps: S.optional(ActionsCreateRequestStepsList),
-    deleted: S.optional(S.Boolean),
-    last_calculated_at: S.optional(S.String),
-    pinned_at: S.optional(S.NullOr(S.String)),
-    _create_in_folder: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/actions/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateActionRequest",
-}) as any as S.Schema<CreateActionRequest>;
-
-export type ActionsReferencesListRequestFormat = "csv" | "json";
-export const ActionsReferencesListRequestFormat = /*@__PURE__*/ S.String;
-
-export interface ListActionReferencesRequest {
+export interface GetActionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this action. */
   id: number;
-  format?: ActionsReferencesListRequestFormat | (string & {});
+  format?: GetActionRequestFormat | (string & {});
 }
-export const ListActionReferencesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetActionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
-    format: S.optional(ActionsReferencesListRequestFormat.pipe(T.Query())),
+    format: S.optional(GetActionRequestFormat.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/actions/{id}/references/",
+      uri: "/api/projects/{project_id}/actions/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListActionReferencesRequest",
-}) as any as S.Schema<ListActionReferencesRequest>;
+  identifier: "GetActionRequest",
+}) as any as S.Schema<GetActionRequest>;
 
-export interface ActionReference {
-  /** Resource type: insight, experiment, cohort, or hog_function */
-  type?: string;
-  /** Resource ID (integer or UUID depending on type) */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Relative URL to the resource */
-  url?: string;
-  /** When the resource was created */
-  created_at?: string | null;
-  /** User who created the resource */
-  created_by?: UserBasic | null;
-}
-export const ActionReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    url: S.optional(S.String),
-    created_at: S.optional(S.NullOr(S.String)),
-    created_by: S.optional(S.NullOr(UserBasic)),
-  }),
-).annotate({
-  identifier: "ActionReference",
-}) as any as S.Schema<ActionReference>;
-
-export type ActionsReferencesListResponseBodyList = Array<ActionReference>;
-export const ActionsReferencesListResponseBodyList = /*@__PURE__*/ S.Array(
-  ActionReference,
-) as any as S.Schema<ActionsReferencesListResponseBodyList>;
-
-export type ListActionReferencesResponse =
-  ActionsReferencesListResponseBodyList;
-export const ListActionReferencesResponse = /*@__PURE__*/ S.suspend(() =>
-  ActionsReferencesListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListActionReferencesResponse",
-}) as any as S.Schema<ListActionReferencesResponse>;
-
-export type ActionsListRequestFormat = "csv" | "json";
-export const ActionsListRequestFormat = /*@__PURE__*/ S.String;
+export type ListActionsRequestFormat = "csv" | "json";
+export const ListActionsRequestFormat = /*@__PURE__*/ S.String;
 
 export interface ListActionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Comma-separated list of creator user ids. Returns only actions created by these users. */
   created_by?: string;
-  format?: ActionsListRequestFormat | (string & {});
+  format?: ListActionsRequestFormat | (string & {});
   /** Maximum number of actions to return. Omit to return all. */
   limit?: number;
   /** Number of actions to skip before returning results. */
@@ -654,7 +588,7 @@ export const ListActionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     created_by: S.optional(S.String.pipe(T.Query())),
-    format: S.optional(ActionsListRequestFormat.pipe(T.Query())),
+    format: S.optional(ListActionsRequestFormat.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
     ordering: S.optional(S.String.pipe(T.Query())),
@@ -693,37 +627,103 @@ export const PaginatedActionListOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedActionListOutput",
 }) as any as S.Schema<PaginatedActionListOutput>;
 
-export type ActionsUpdateRequestFormat = "csv" | "json";
-export const ActionsUpdateRequestFormat = /*@__PURE__*/ S.String;
+export type ListActionsReferencesRequestFormat = "csv" | "json";
+export const ListActionsReferencesRequestFormat = /*@__PURE__*/ S.String;
 
-export type ActionsUpdateRequestTagsList = Array<unknown>;
-export const ActionsUpdateRequestTagsList = /*@__PURE__*/ S.Array(
+export interface ListActionsReferencesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this action. */
+  id: number;
+  format?: ListActionsReferencesRequestFormat | (string & {});
+}
+export const ListActionsReferencesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(ListActionsReferencesRequestFormat.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/actions/{id}/references/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListActionsReferencesRequest",
+}) as any as S.Schema<ListActionsReferencesRequest>;
+
+export interface ActionReference {
+  /** Resource type: insight, experiment, cohort, or hog_function */
+  type?: string;
+  /** Resource ID (integer or UUID depending on type) */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Relative URL to the resource */
+  url?: string;
+  /** When the resource was created */
+  created_at?: string | null;
+  /** User who created the resource */
+  created_by?: UserBasic | null;
+}
+export const ActionReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    url: S.optional(S.String),
+    created_at: S.optional(S.NullOr(S.String)),
+    created_by: S.optional(S.NullOr(UserBasic)),
+  }),
+).annotate({
+  identifier: "ActionReference",
+}) as any as S.Schema<ActionReference>;
+
+export type ListActionsReferencesResponseBodyList = Array<ActionReference>;
+export const ListActionsReferencesResponseBodyList = /*@__PURE__*/ S.Array(
+  ActionReference,
+) as any as S.Schema<ListActionsReferencesResponseBodyList>;
+
+export type ListActionsReferencesResponse =
+  ListActionsReferencesResponseBodyList;
+export const ListActionsReferencesResponse = /*@__PURE__*/ S.suspend(() =>
+  ListActionsReferencesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListActionsReferencesResponse",
+}) as any as S.Schema<ListActionsReferencesResponse>;
+
+export type UpdateActionRequestFormat = "csv" | "json";
+export const UpdateActionRequestFormat = /*@__PURE__*/ S.String;
+
+export type UpdateActionRequestTagsList = Array<unknown>;
+export const UpdateActionRequestTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ActionsUpdateRequestTagsList>;
+) as any as S.Schema<UpdateActionRequestTagsList>;
 
 /** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
-export type ActionsUpdateRequestStepsList = Array<ActionStepJSONInput>;
-export const ActionsUpdateRequestStepsList = /*@__PURE__*/ S.Array(
+export type UpdateActionRequestStepsList = Array<ActionStepJSONInput>;
+export const UpdateActionRequestStepsList = /*@__PURE__*/ S.Array(
   ActionStepJSONInput,
-) as any as S.Schema<ActionsUpdateRequestStepsList>;
+) as any as S.Schema<UpdateActionRequestStepsList>;
 
 export interface UpdateActionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this action. */
   id: number;
-  format?: ActionsUpdateRequestFormat | (string & {});
+  format?: UpdateActionRequestFormat | (string & {});
   /** Name of the action (must be unique within the project). */
   name?: string | null;
   /** Human-readable description of what this action represents. */
   description?: string;
-  tags?: ActionsUpdateRequestTagsList;
+  tags?: UpdateActionRequestTagsList;
   /** Whether to post a notification to Slack when this action is triggered. */
   post_to_slack?: boolean;
   /** Custom Slack message format. Supports templates with event properties. */
   slack_message_format?: string;
   /** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
-  steps?: ActionsUpdateRequestStepsList;
+  steps?: UpdateActionRequestStepsList;
   deleted?: boolean;
   last_calculated_at?: string;
   /** ISO 8601 timestamp when the action was pinned, or null if not pinned. Set any value to pin, null to unpin. */
@@ -734,13 +734,13 @@ export const UpdateActionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
-    format: S.optional(ActionsUpdateRequestFormat.pipe(T.Query())),
+    format: S.optional(UpdateActionRequestFormat.pipe(T.Query())),
     name: S.optional(S.NullOr(S.String)),
     description: S.optional(S.String),
-    tags: S.optional(ActionsUpdateRequestTagsList),
+    tags: S.optional(UpdateActionRequestTagsList),
     post_to_slack: S.optional(S.Boolean),
     slack_message_format: S.optional(S.String),
-    steps: S.optional(ActionsUpdateRequestStepsList),
+    steps: S.optional(UpdateActionRequestStepsList),
     deleted: S.optional(S.Boolean),
     last_calculated_at: S.optional(S.String),
     pinned_at: S.optional(S.NullOr(S.String)),
@@ -756,54 +756,54 @@ export const UpdateActionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateActionRequest",
 }) as any as S.Schema<UpdateActionRequest>;
 
-export type ActionsPartialUpdateRequestFormat = "csv" | "json";
-export const ActionsPartialUpdateRequestFormat = /*@__PURE__*/ S.String;
+export type UpdateActionsPartialRequestFormat = "csv" | "json";
+export const UpdateActionsPartialRequestFormat = /*@__PURE__*/ S.String;
 
-export type ActionsPartialUpdateRequestTagsList = Array<unknown>;
-export const ActionsPartialUpdateRequestTagsList = /*@__PURE__*/ S.Array(
+export type UpdateActionsPartialRequestTagsList = Array<unknown>;
+export const UpdateActionsPartialRequestTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<ActionsPartialUpdateRequestTagsList>;
+) as any as S.Schema<UpdateActionsPartialRequestTagsList>;
 
 /** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
-export type ActionsPartialUpdateRequestStepsList = Array<ActionStepJSONInput>;
-export const ActionsPartialUpdateRequestStepsList = /*@__PURE__*/ S.Array(
+export type UpdateActionsPartialRequestStepsList = Array<ActionStepJSONInput>;
+export const UpdateActionsPartialRequestStepsList = /*@__PURE__*/ S.Array(
   ActionStepJSONInput,
-) as any as S.Schema<ActionsPartialUpdateRequestStepsList>;
+) as any as S.Schema<UpdateActionsPartialRequestStepsList>;
 
-export interface UpdateActionPartialRequest {
+export interface UpdateActionsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this action. */
   id: number;
-  format?: ActionsPartialUpdateRequestFormat | (string & {});
+  format?: UpdateActionsPartialRequestFormat | (string & {});
   /** Name of the action (must be unique within the project). */
   name?: string | null;
   /** Human-readable description of what this action represents. */
   description?: string;
-  tags?: ActionsPartialUpdateRequestTagsList;
+  tags?: UpdateActionsPartialRequestTagsList;
   /** Whether to post a notification to Slack when this action is triggered. */
   post_to_slack?: boolean;
   /** Custom Slack message format. Supports templates with event properties. */
   slack_message_format?: string;
   /** Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together. */
-  steps?: ActionsPartialUpdateRequestStepsList;
+  steps?: UpdateActionsPartialRequestStepsList;
   deleted?: boolean;
   last_calculated_at?: string;
   /** ISO 8601 timestamp when the action was pinned, or null if not pinned. Set any value to pin, null to unpin. */
   pinned_at?: string | null;
   _create_in_folder?: string;
 }
-export const UpdateActionPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateActionsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
-    format: S.optional(ActionsPartialUpdateRequestFormat.pipe(T.Query())),
+    format: S.optional(UpdateActionsPartialRequestFormat.pipe(T.Query())),
     name: S.optional(S.NullOr(S.String)),
     description: S.optional(S.String),
-    tags: S.optional(ActionsPartialUpdateRequestTagsList),
+    tags: S.optional(UpdateActionsPartialRequestTagsList),
     post_to_slack: S.optional(S.Boolean),
     slack_message_format: S.optional(S.String),
-    steps: S.optional(ActionsPartialUpdateRequestStepsList),
+    steps: S.optional(UpdateActionsPartialRequestStepsList),
     deleted: S.optional(S.Boolean),
     last_calculated_at: S.optional(S.String),
     pinned_at: S.optional(S.NullOr(S.String)),
@@ -816,8 +816,8 @@ export const UpdateActionPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateActionPartialRequest",
-}) as any as S.Schema<UpdateActionPartialRequest>;
+  identifier: "UpdateActionsPartialRequest",
+}) as any as S.Schema<UpdateActionsPartialRequest>;
 
 export type ActionsDestroyError =
   | BadRequest
@@ -833,24 +833,6 @@ export const actionsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ActionsDestroyRequest,
   output: ActionsDestroyResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ActionsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const actionsRetrieve: API.OperationMethod<
-  ActionsRetrieveRequest,
-  ActionOutput,
-  ActionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ActionsRetrieveRequest,
-  output: ActionOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -874,19 +856,15 @@ export const createAction: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListActionReferencesError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const listActionReferences: API.OperationMethod<
-  ListActionReferencesRequest,
-  ListActionReferencesResponse,
-  ListActionReferencesError,
+export type GetActionError = BadRequest | Forbidden | NotFound | PosthogOpError;
+export const getAction: API.OperationMethod<
+  GetActionRequest,
+  ActionOutput,
+  GetActionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListActionReferencesRequest,
-  output: ListActionReferencesResponse,
+  input: GetActionRequest,
+  output: ActionOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -910,6 +888,24 @@ export const listActions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListActionsReferencesError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const listActionsReferences: API.OperationMethod<
+  ListActionsReferencesRequest,
+  ListActionsReferencesResponse,
+  ListActionsReferencesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListActionsReferencesRequest,
+  output: ListActionsReferencesResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateActionError =
   | BadRequest
   | Forbidden
@@ -928,18 +924,18 @@ export const updateAction: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateActionPartialError =
+export type UpdateActionsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateActionPartial: API.OperationMethod<
-  UpdateActionPartialRequest,
+export const updateActionsPartial: API.OperationMethod<
+  UpdateActionsPartialRequest,
   ActionOutput,
-  UpdateActionPartialError,
+  UpdateActionsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateActionPartialRequest,
+  input: UpdateActionsPartialRequest,
   output: ActionOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

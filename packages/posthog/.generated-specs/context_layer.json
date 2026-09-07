@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.context_layer#ContextLayerChannelPagesRetrieveRequest": {
+    "com.posthog.context_layer#GetContextLayerChannelPageRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -61,10 +62,10 @@
         "smithy.api#documentation": "Response shape for a channel's page identity in the wiki."
       }
     },
-    "com.posthog.context_layer#ContextLayerChannelPagesRetrieve": {
+    "com.posthog.context_layer#GetContextLayerChannelPage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.context_layer#ContextLayerChannelPagesRetrieveRequest"
+        "target": "com.posthog.context_layer#GetContextLayerChannelPageRequest"
       },
       "output": {
         "target": "com.posthog.context_layer#ChannelWikiPage"
@@ -161,6 +162,325 @@
         "com.distilled.openapi#contentType": "form-urlencoded"
       }
     },
+    "com.posthog.context_layer#ListContextLayerDreamsRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.context_layer#DreamRunList": {
+      "type": "structure",
+      "members": {
+        "head_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commit sha of the wiki's current head.",
+            "smithy.api#required": {}
+          }
+        },
+        "active_run": {
+          "target": "com.posthog.context_layer#ActiveDreamRun",
+          "traits": {
+            "smithy.api#documentation": "The organization's active dreaming task, or null when no dream is running.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dreams": {
+          "target": "com.posthog.context_layer#DreamRunListDreamsList",
+          "traits": {
+            "smithy.api#documentation": "Every landed dream run, newest first.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response shape for the wiki's dream run listing."
+      }
+    },
+    "com.posthog.context_layer#ActiveDreamRun": {
+      "type": "structure",
+      "members": {
+        "run_status": {
+          "target": "com.posthog.context_layer#ActiveDreamRunRunStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The current task-run state for the active dream.\n\n* `not_started` - not_started\n* `queued` - queued\n* `in_progress` - in_progress",
+            "smithy.api#required": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the active dream task was created.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A dreaming task that has not reached a terminal state yet."
+      }
+    },
+    "com.posthog.context_layer#ActiveDreamRunRunStatusEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_started"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `not_started` - not_started\n* `queued` - queued\n* `in_progress` - in_progress"
+      }
+    },
+    "com.posthog.context_layer#DreamRun": {
+      "type": "structure",
+      "members": {
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merge commit sha the run landed as; pass back as `sha` on the detail read.",
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The run's date, `YYYY-MM-DD`.",
+            "smithy.api#required": {}
+          }
+        },
+        "committed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the run landed.",
+            "smithy.api#required": {}
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The run summary the dreaming agent wrote.",
+            "smithy.api#required": {}
+          }
+        },
+        "pages_added": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pages the run created.",
+            "smithy.api#required": {}
+          }
+        },
+        "pages_modified": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pages the run edited.",
+            "smithy.api#required": {}
+          }
+        },
+        "pages_deleted": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pages the run removed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One dreaming run: the merge commit it landed as, plus what it changed."
+      }
+    },
+    "com.posthog.context_layer#DreamRunListDreamsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.context_layer#DreamRun"
+      },
+      "traits": {
+        "smithy.api#documentation": "Every landed dream run, newest first."
+      }
+    },
+    "com.posthog.context_layer#ListContextLayerDreams": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.context_layer#ListContextLayerDreamsRequest"
+      },
+      "output": {
+        "target": "com.posthog.context_layer#DreamRunList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.context_layer#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{organization_id}/context_layer/dreams/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List dream runs\n\nThe active dreaming task, when present, plus every landed run newest first. A landed run is one merge commit `dream: <date>` whose body is the summary; its changes are on the detail read."
+      }
+    },
+    "com.posthog.context_layer#GetContextLayerDreamRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/."
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.context_layer#DreamRunDetail": {
+      "type": "structure",
+      "members": {
+        "run": {
+          "target": "com.posthog.context_layer#DreamRun",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.posthog.context_layer#DreamRunDetailFilesList",
+          "traits": {
+            "smithy.api#documentation": "Per-file patches, in diff order.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response shape for one dream run: the run plus the diff it landed."
+      }
+    },
+    "com.posthog.context_layer#DreamFileDiff": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repo-relative path of the changed page.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.context_layer#DreamFileDiffStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "How the run changed the page.\n\n* `added` - added\n* `modified` - modified\n* `deleted` - deleted",
+            "smithy.api#required": {}
+          }
+        },
+        "patch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unified git patch for this file.",
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the patch was cut off for size.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One file a dream run changed, with its unified patch."
+      }
+    },
+    "com.posthog.context_layer#DreamFileDiffStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "added"
+          }
+        },
+        "MODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "modified"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `added` - added\n* `modified` - modified\n* `deleted` - deleted"
+      }
+    },
+    "com.posthog.context_layer#DreamRunDetailFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.context_layer#DreamFileDiff"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-file patches, in diff order."
+      }
+    },
+    "com.posthog.context_layer#GetContextLayerDream": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.context_layer#GetContextLayerDreamRequest"
+      },
+      "output": {
+        "target": "com.posthog.context_layer#DreamRunDetail"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.context_layer#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/organizations/{organization_id}/context_layer/dreams/{sha}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read one dream run\n\nOne dreaming run with the per-file unified patches it landed."
+      }
+    },
     "com.posthog.context_layer#ContextLayerEnableCreateRequest": {
       "type": "structure",
       "members": {
@@ -249,7 +569,7 @@
         "smithy.api#documentation": "Export the wiki\n\nA short-lived download URL for the wiki's current bundle: the whole repo and its history, one file, standard git."
       }
     },
-    "com.posthog.context_layer#ContextLayerPagesRetrieveRequest": {
+    "com.posthog.context_layer#GetContextLayerPageRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -309,10 +629,10 @@
         "smithy.api#documentation": "Response shape for one wiki page."
       }
     },
-    "com.posthog.context_layer#ContextLayerPagesRetrieve": {
+    "com.posthog.context_layer#GetContextLayerPage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.context_layer#ContextLayerPagesRetrieveRequest"
+        "target": "com.posthog.context_layer#GetContextLayerPageRequest"
       },
       "output": {
         "target": "com.posthog.context_layer#WikiPage"
@@ -396,7 +716,7 @@
         "smithy.api#documentation": "Create or replace a wiki page\n\nThe organization's context wiki: a git repo of Markdown pages hosted by PostHog."
       }
     },
-    "com.posthog.context_layer#ContextLayerStatusRetrieveRequest": {
+    "com.posthog.context_layer#GetContextLayerStatusRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -412,10 +732,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.context_layer#ContextLayerStatusRetrieve": {
+    "com.posthog.context_layer#GetContextLayerStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.context_layer#ContextLayerStatusRetrieveRequest"
+        "target": "com.posthog.context_layer#GetContextLayerStatusRequest"
       },
       "output": {
         "target": "com.posthog.context_layer#ContextLayerStatus"
@@ -434,7 +754,7 @@
         "smithy.api#documentation": "Get the wiki head\n\nThe organization's context wiki: a git repo of Markdown pages hosted by PostHog."
       }
     },
-    "com.posthog.context_layer#ContextLayerTreeRetrieveRequest": {
+    "com.posthog.context_layer#GetContextLayerTreeRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -481,10 +801,10 @@
         "smithy.api#documentation": "Repo-relative path of every Markdown page at the current head."
       }
     },
-    "com.posthog.context_layer#ContextLayerTreeRetrieve": {
+    "com.posthog.context_layer#GetContextLayerTree": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.context_layer#ContextLayerTreeRetrieveRequest"
+        "target": "com.posthog.context_layer#GetContextLayerTreeRequest"
       },
       "output": {
         "target": "com.posthog.context_layer#WikiTree"
@@ -503,7 +823,7 @@
         "smithy.api#documentation": "List wiki pages\n\nThe organization's context wiki: a git repo of Markdown pages hosted by PostHog."
       }
     },
-    "com.posthog.context_layer#ContextLayerWikiReportRetrieveRequest": {
+    "com.posthog.context_layer#GetContextLayerWikiReportRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -575,10 +895,10 @@
         "smithy.api#documentation": "Health findings for the current wiki head."
       }
     },
-    "com.posthog.context_layer#ContextLayerWikiReportRetrieve": {
+    "com.posthog.context_layer#GetContextLayerWikiReport": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.context_layer#ContextLayerWikiReportRetrieveRequest"
+        "target": "com.posthog.context_layer#GetContextLayerWikiReportRequest"
       },
       "output": {
         "target": "com.posthog.context_layer#WikiHealthReport"
@@ -649,31 +969,37 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.context_layer#ContextLayerChannelPagesRetrieve"
-        },
-        {
-          "target": "com.posthog.context_layer#CreateContextLayerCommit"
-        },
-        {
           "target": "com.posthog.context_layer#ContextLayerEnableCreate"
         },
         {
           "target": "com.posthog.context_layer#ContextLayerExportRetrieve"
         },
         {
-          "target": "com.posthog.context_layer#ContextLayerPagesRetrieve"
+          "target": "com.posthog.context_layer#CreateContextLayerCommit"
+        },
+        {
+          "target": "com.posthog.context_layer#GetContextLayerChannelPage"
+        },
+        {
+          "target": "com.posthog.context_layer#GetContextLayerDream"
+        },
+        {
+          "target": "com.posthog.context_layer#GetContextLayerPage"
+        },
+        {
+          "target": "com.posthog.context_layer#GetContextLayerStatus"
+        },
+        {
+          "target": "com.posthog.context_layer#GetContextLayerTree"
+        },
+        {
+          "target": "com.posthog.context_layer#GetContextLayerWikiReport"
+        },
+        {
+          "target": "com.posthog.context_layer#ListContextLayerDreams"
         },
         {
           "target": "com.posthog.context_layer#UpdateContextLayerPage"
-        },
-        {
-          "target": "com.posthog.context_layer#ContextLayerStatusRetrieve"
-        },
-        {
-          "target": "com.posthog.context_layer#ContextLayerTreeRetrieve"
-        },
-        {
-          "target": "com.posthog.context_layer#ContextLayerWikiReportRetrieve"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.botservice#ListPrivateLinkResourceByBotResource": {
@@ -40,7 +41,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.botservice#PrivateLinkResourcesListByBotResourceResponseValueList",
+          "target": "com.azure.botservice#ListPrivateLinkResourceByBotResourceResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of private link resources"
           }
@@ -50,7 +51,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#PrivateLinkResourcesListByBotResourceResponseValueList": {
+    "com.azure.botservice#ListPrivateLinkResourceByBotResourceResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.botservice#PrivateLinkResource"
@@ -620,7 +621,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.botservice#PrivateEndpointConnectionsListResponseValueList",
+          "target": "com.azure.botservice#ListPrivateEndpointConnectionsResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of private endpoint connections"
           }
@@ -630,7 +631,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#PrivateEndpointConnectionsListResponseValueList": {
+    "com.azure.botservice#ListPrivateEndpointConnectionsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.botservice#PrivateEndpointConnection"
@@ -816,10 +817,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#GetHostSetting": {
+    "com.azure.botservice#GetHostSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.botservice#GetHostSettingRequest"
+        "target": "com.azure.botservice#GetHostSettingsRequest"
       },
       "output": {
         "target": "com.azure.botservice#HostSettingsResponse"
@@ -891,7 +892,7 @@
         "smithy.api#documentation": "The response body returned for a request to Bot Service Management to check per subscription hostSettings"
       }
     },
-    "com.azure.botservice#GetHostSettingRequest": {
+    "com.azure.botservice#GetHostSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1381,7 +1382,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotConnectionUpdateResponseTagsMap",
+          "target": "com.azure.botservice#UpdateBotConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -1406,7 +1407,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#BotConnectionUpdateResponseZonesList",
+          "target": "com.azure.botservice#UpdateBotConnectionResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -1422,7 +1423,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#BotConnectionUpdateResponseZonesList": {
+    "com.azure.botservice#UpdateBotConnectionResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1431,7 +1432,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#BotConnectionUpdateResponseTagsMap": {
+    "com.azure.botservice#UpdateBotConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1485,7 +1486,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotConnectionUpdateRequestTagsMap",
+          "target": "com.azure.botservice#UpdateBotConnectionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -1607,7 +1608,7 @@
         "smithy.api#documentation": "The SKU of the cognitive services account."
       }
     },
-    "com.azure.botservice#BotConnectionUpdateRequestTagsMap": {
+    "com.azure.botservice#UpdateBotConnectionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1666,7 +1667,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotConnectionCreateResponseTagsMap",
+          "target": "com.azure.botservice#CreateBotConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -1691,7 +1692,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#BotConnectionCreateResponseZonesList",
+          "target": "com.azure.botservice#CreateBotConnectionResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -1707,7 +1708,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#BotConnectionCreateResponseZonesList": {
+    "com.azure.botservice#CreateBotConnectionResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1716,7 +1717,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#BotConnectionCreateResponseTagsMap": {
+    "com.azure.botservice#CreateBotConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1770,7 +1771,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotConnectionCreateRequestTagsMap",
+          "target": "com.azure.botservice#CreateBotConnectionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -1805,7 +1806,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#BotConnectionCreateRequestTagsMap": {
+    "com.azure.botservice#CreateBotConnectionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1864,7 +1865,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotConnectionGetResponseTagsMap",
+          "target": "com.azure.botservice#GetBotConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -1889,7 +1890,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#BotConnectionGetResponseZonesList",
+          "target": "com.azure.botservice#GetBotConnectionResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -1905,7 +1906,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#BotConnectionGetResponseZonesList": {
+    "com.azure.botservice#GetBotConnectionResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1914,7 +1915,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#BotConnectionGetResponseTagsMap": {
+    "com.azure.botservice#GetBotConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2013,7 +2014,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotConnectionListWithSecretsResponseTagsMap",
+          "target": "com.azure.botservice#ListBotConnectionWithSecretsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -2038,7 +2039,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#BotConnectionListWithSecretsResponseZonesList",
+          "target": "com.azure.botservice#ListBotConnectionWithSecretsResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -2054,7 +2055,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#BotConnectionListWithSecretsResponseZonesList": {
+    "com.azure.botservice#ListBotConnectionWithSecretsResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2063,7 +2064,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#BotConnectionListWithSecretsResponseTagsMap": {
+    "com.azure.botservice#ListBotConnectionWithSecretsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2115,10 +2116,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#GetQnAMakerEndpointKey": {
+    "com.azure.botservice#GetQnAMakerEndpointKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.botservice#GetQnAMakerEndpointKeyRequest"
+        "target": "com.azure.botservice#GetQnAMakerEndpointKeysRequest"
       },
       "output": {
         "target": "com.azure.botservice#QnAMakerEndpointKeysResponse"
@@ -2166,7 +2167,7 @@
         "smithy.api#documentation": "Schema for EndpointKeys generate/refresh operations."
       }
     },
-    "com.azure.botservice#GetQnAMakerEndpointKeyRequest": {
+    "com.azure.botservice#GetQnAMakerEndpointKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2515,10 +2516,10 @@
         "smithy.api#documentation": "The operation supported by Bot Service Management."
       }
     },
-    "com.azure.botservice#BotsGetCheckNameAvailability": {
+    "com.azure.botservice#GetBotCheckNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.botservice#BotsGetCheckNameAvailabilityRequest"
+        "target": "com.azure.botservice#GetBotCheckNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.botservice#CheckNameAvailabilityResponseBody"
@@ -2560,7 +2561,7 @@
         "smithy.api#documentation": "The response body returned for a request to Bot Service Management to check availability of a bot name."
       }
     },
-    "com.azure.botservice#BotsGetCheckNameAvailabilityRequest": {
+    "com.azure.botservice#GetBotCheckNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2671,13 +2672,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#DirectLineRegenerateKeys": {
+    "com.azure.botservice#RegenerateDirectLineKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.botservice#DirectLineRegenerateKeysRequest"
+        "target": "com.azure.botservice#RegenerateDirectLineKeysRequest"
       },
       "output": {
-        "target": "com.azure.botservice#DirectLineRegenerateKeysResponse"
+        "target": "com.azure.botservice#RegenerateDirectLineKeysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2690,7 +2691,7 @@
         "com.distilled.openapi#apiVersion": "2022-09-15"
       }
     },
-    "com.azure.botservice#DirectLineRegenerateKeysResponse": {
+    "com.azure.botservice#RegenerateDirectLineKeysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2718,7 +2719,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#DirectLineRegenerateKeysResponseTagsMap",
+          "target": "com.azure.botservice#RegenerateDirectLineKeysResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -2743,7 +2744,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#DirectLineRegenerateKeysResponseZonesList",
+          "target": "com.azure.botservice#RegenerateDirectLineKeysResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -2793,7 +2794,7 @@
         "smithy.api#documentation": "Channel definition"
       }
     },
-    "com.azure.botservice#DirectLineRegenerateKeysResponseZonesList": {
+    "com.azure.botservice#RegenerateDirectLineKeysResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2802,7 +2803,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#DirectLineRegenerateKeysResponseTagsMap": {
+    "com.azure.botservice#RegenerateDirectLineKeysResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2814,7 +2815,7 @@
         "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
       }
     },
-    "com.azure.botservice#DirectLineRegenerateKeysRequest": {
+    "com.azure.botservice#RegenerateDirectLineKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2842,7 +2843,7 @@
           }
         },
         "channelName": {
-          "target": "com.azure.botservice#DirectLineRegenerateKeysRequestChannelName",
+          "target": "com.azure.botservice#RegenerateDirectLineKeysRequestChannelName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2857,7 +2858,7 @@
           }
         },
         "key": {
-          "target": "com.azure.botservice#DirectLineRegenerateKeysRequestKey",
+          "target": "com.azure.botservice#RegenerateDirectLineKeysRequestKey",
           "traits": {
             "smithy.api#documentation": "Determines which key is to be regenerated",
             "smithy.api#required": {}
@@ -2868,7 +2869,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#DirectLineRegenerateKeysRequestKey": {
+    "com.azure.botservice#RegenerateDirectLineKeysRequestKey": {
       "type": "enum",
       "members": {
         "KEY1": {
@@ -2888,7 +2889,7 @@
         "smithy.api#documentation": "Determines which key is to be regenerated"
       }
     },
-    "com.azure.botservice#DirectLineRegenerateKeysRequestChannelName": {
+    "com.azure.botservice#RegenerateDirectLineKeysRequestChannelName": {
       "type": "enum",
       "members": {
         "WEBCHATCHANNEL": {
@@ -3123,7 +3124,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#ChannelsListWithKeysResponseTagsMap",
+          "target": "com.azure.botservice#ListChannelWithKeysResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -3148,7 +3149,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#ChannelsListWithKeysResponseZonesList",
+          "target": "com.azure.botservice#ListChannelWithKeysResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -3405,7 +3406,7 @@
         "smithy.api#documentation": "List of Trusted Origin URLs for this site. This field is applicable only if isSecureSiteEnabled is True."
       }
     },
-    "com.azure.botservice#ChannelsListWithKeysResponseZonesList": {
+    "com.azure.botservice#ListChannelWithKeysResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3414,7 +3415,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#ChannelsListWithKeysResponseTagsMap": {
+    "com.azure.botservice#ListChannelWithKeysResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3454,7 +3455,7 @@
           }
         },
         "channelName": {
-          "target": "com.azure.botservice#ChannelsListWithKeysRequestChannelName",
+          "target": "com.azure.botservice#ListChannelWithKeysRequestChannelName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -3466,7 +3467,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#ChannelsListWithKeysRequestChannelName": {
+    "com.azure.botservice#ListChannelWithKeysRequestChannelName": {
       "type": "enum",
       "members": {
         "ALEXACHANNEL": {
@@ -3692,7 +3693,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#ChannelsUpdateResponseTagsMap",
+          "target": "com.azure.botservice#UpdateChannelResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -3717,7 +3718,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#ChannelsUpdateResponseZonesList",
+          "target": "com.azure.botservice#UpdateChannelResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -3733,7 +3734,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#ChannelsUpdateResponseZonesList": {
+    "com.azure.botservice#UpdateChannelResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3742,7 +3743,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#ChannelsUpdateResponseTagsMap": {
+    "com.azure.botservice#UpdateChannelResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3782,7 +3783,7 @@
           }
         },
         "channelName": {
-          "target": "com.azure.botservice#ChannelsUpdateRequestChannelName",
+          "target": "com.azure.botservice#UpdateChannelRequestChannelName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -3796,7 +3797,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#ChannelsUpdateRequestTagsMap",
+          "target": "com.azure.botservice#UpdateChannelRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -3859,7 +3860,7 @@
         "smithy.api#documentation": "Channel definition"
       }
     },
-    "com.azure.botservice#ChannelsUpdateRequestTagsMap": {
+    "com.azure.botservice#UpdateChannelRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3871,7 +3872,7 @@
         "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
       }
     },
-    "com.azure.botservice#ChannelsUpdateRequestChannelName": {
+    "com.azure.botservice#UpdateChannelRequestChannelName": {
       "type": "enum",
       "members": {
         "ALEXACHANNEL": {
@@ -4038,7 +4039,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#ChannelsCreateResponseTagsMap",
+          "target": "com.azure.botservice#CreateChannelResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -4063,7 +4064,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#ChannelsCreateResponseZonesList",
+          "target": "com.azure.botservice#CreateChannelResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -4079,7 +4080,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#ChannelsCreateResponseZonesList": {
+    "com.azure.botservice#CreateChannelResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4088,7 +4089,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#ChannelsCreateResponseTagsMap": {
+    "com.azure.botservice#CreateChannelResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4128,7 +4129,7 @@
           }
         },
         "channelName": {
-          "target": "com.azure.botservice#ChannelsCreateRequestChannelName",
+          "target": "com.azure.botservice#CreateChannelRequestChannelName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4142,7 +4143,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#ChannelsCreateRequestTagsMap",
+          "target": "com.azure.botservice#CreateChannelRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -4177,7 +4178,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#ChannelsCreateRequestTagsMap": {
+    "com.azure.botservice#CreateChannelRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4189,7 +4190,7 @@
         "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
       }
     },
-    "com.azure.botservice#ChannelsCreateRequestChannelName": {
+    "com.azure.botservice#CreateChannelRequestChannelName": {
       "type": "enum",
       "members": {
         "ALEXACHANNEL": {
@@ -4356,7 +4357,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#ChannelsGetResponseTagsMap",
+          "target": "com.azure.botservice#GetChannelResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -4381,7 +4382,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#ChannelsGetResponseZonesList",
+          "target": "com.azure.botservice#GetChannelResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -4397,7 +4398,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#ChannelsGetResponseZonesList": {
+    "com.azure.botservice#GetChannelResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4406,7 +4407,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#ChannelsGetResponseTagsMap": {
+    "com.azure.botservice#GetChannelResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5115,7 +5116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotsUpdateResponseTagsMap",
+          "target": "com.azure.botservice#UpdateBotResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -5140,7 +5141,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#BotsUpdateResponseZonesList",
+          "target": "com.azure.botservice#UpdateBotResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -5156,7 +5157,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#BotsUpdateResponseZonesList": {
+    "com.azure.botservice#UpdateBotResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5165,7 +5166,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#BotsUpdateResponseTagsMap": {
+    "com.azure.botservice#UpdateBotResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5211,7 +5212,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotsUpdateRequestTagsMap",
+          "target": "com.azure.botservice#UpdateBotRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -5501,7 +5502,7 @@
         "smithy.api#documentation": "Contains resource all settings defined as key/value pairs."
       }
     },
-    "com.azure.botservice#BotsUpdateRequestTagsMap": {
+    "com.azure.botservice#UpdateBotRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5560,7 +5561,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotsCreateResponseTagsMap",
+          "target": "com.azure.botservice#CreateBotResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -5585,7 +5586,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#BotsCreateResponseZonesList",
+          "target": "com.azure.botservice#CreateBotResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -5601,7 +5602,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#BotsCreateResponseZonesList": {
+    "com.azure.botservice#CreateBotResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5610,7 +5611,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#BotsCreateResponseTagsMap": {
+    "com.azure.botservice#CreateBotResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5656,7 +5657,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotsCreateRequestTagsMap",
+          "target": "com.azure.botservice#CreateBotRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -5691,7 +5692,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.botservice#BotsCreateRequestTagsMap": {
+    "com.azure.botservice#CreateBotRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5750,7 +5751,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.botservice#BotsGetResponseTagsMap",
+          "target": "com.azure.botservice#GetBotResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Contains resource tags defined as key/value pairs."
           }
@@ -5775,7 +5776,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.botservice#BotsGetResponseZonesList",
+          "target": "com.azure.botservice#GetBotResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Entity zones"
           }
@@ -5791,7 +5792,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.botservice#BotsGetResponseZonesList": {
+    "com.azure.botservice#GetBotResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5800,7 +5801,7 @@
         "smithy.api#documentation": "Entity zones"
       }
     },
-    "com.azure.botservice#BotsGetResponseTagsMap": {
+    "com.azure.botservice#GetBotResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5849,61 +5850,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.botservice#ListPrivateLinkResourceByBotResource"
-        },
-        {
-          "target": "com.azure.botservice#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.botservice#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.botservice#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.botservice#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.botservice#GetOperationResult"
-        },
-        {
-          "target": "com.azure.botservice#GetHostSetting"
-        },
-        {
-          "target": "com.azure.botservice#ListBotConnectionByBotService"
-        },
-        {
-          "target": "com.azure.botservice#DeleteBotConnection"
-        },
-        {
-          "target": "com.azure.botservice#UpdateBotConnection"
+          "target": "com.azure.botservice#CreateBot"
         },
         {
           "target": "com.azure.botservice#CreateBotConnection"
         },
         {
-          "target": "com.azure.botservice#GetBotConnection"
+          "target": "com.azure.botservice#CreateChannel"
         },
         {
-          "target": "com.azure.botservice#ListBotConnectionWithSecrets"
+          "target": "com.azure.botservice#CreatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.botservice#GetQnAMakerEndpointKey"
+          "target": "com.azure.botservice#DeleteBot"
         },
         {
-          "target": "com.azure.botservice#ListBotConnectionServiceProviders"
+          "target": "com.azure.botservice#DeleteBotConnection"
         },
         {
-          "target": "com.azure.botservice#ListOperations"
+          "target": "com.azure.botservice#DeleteChannel"
         },
         {
-          "target": "com.azure.botservice#BotsGetCheckNameAvailability"
+          "target": "com.azure.botservice#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.botservice#EmailCreateSignInUrl"
         },
         {
-          "target": "com.azure.botservice#DirectLineRegenerateKeys"
+          "target": "com.azure.botservice#GetBot"
+        },
+        {
+          "target": "com.azure.botservice#GetBotCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.botservice#GetBotConnection"
+        },
+        {
+          "target": "com.azure.botservice#GetChannel"
+        },
+        {
+          "target": "com.azure.botservice#GetHostSettings"
+        },
+        {
+          "target": "com.azure.botservice#GetOperationResult"
+        },
+        {
+          "target": "com.azure.botservice#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.botservice#GetQnAMakerEndpointKeys"
+        },
+        {
+          "target": "com.azure.botservice#ListBotByResourceGroup"
+        },
+        {
+          "target": "com.azure.botservice#ListBotConnectionByBotService"
+        },
+        {
+          "target": "com.azure.botservice#ListBotConnectionServiceProviders"
+        },
+        {
+          "target": "com.azure.botservice#ListBotConnectionWithSecrets"
+        },
+        {
+          "target": "com.azure.botservice#ListBots"
         },
         {
           "target": "com.azure.botservice#ListChannelByResourceGroup"
@@ -5912,34 +5922,25 @@
           "target": "com.azure.botservice#ListChannelWithKeys"
         },
         {
-          "target": "com.azure.botservice#DeleteChannel"
+          "target": "com.azure.botservice#ListOperations"
         },
         {
-          "target": "com.azure.botservice#UpdateChannel"
+          "target": "com.azure.botservice#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.botservice#CreateChannel"
+          "target": "com.azure.botservice#ListPrivateLinkResourceByBotResource"
         },
         {
-          "target": "com.azure.botservice#GetChannel"
-        },
-        {
-          "target": "com.azure.botservice#ListBots"
-        },
-        {
-          "target": "com.azure.botservice#ListBotByResourceGroup"
-        },
-        {
-          "target": "com.azure.botservice#DeleteBot"
+          "target": "com.azure.botservice#RegenerateDirectLineKeys"
         },
         {
           "target": "com.azure.botservice#UpdateBot"
         },
         {
-          "target": "com.azure.botservice#CreateBot"
+          "target": "com.azure.botservice#UpdateBotConnection"
         },
         {
-          "target": "com.azure.botservice#GetBot"
+          "target": "com.azure.botservice#UpdateChannel"
         }
       ],
       "traits": {

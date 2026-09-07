@@ -61,131 +61,14 @@ export const NameAvailabilityCheckResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "NameAvailabilityCheckResult",
 }) as any as S.Schema<NameAvailabilityCheckResult>;
 
-/** The list of roles where script will be executed. */
-export type RuntimeScriptActionInputRolesList = Array<string>;
-export const RuntimeScriptActionInputRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RuntimeScriptActionInputRolesList>;
-
-/** Describes a script action on a running cluster. */
-export interface RuntimeScriptActionInput {
-  /** The name of the script action. */
-  name: string;
-  /** The URI to the script. */
-  uri: string;
-  /** The parameters for the script */
-  parameters?: string;
-  /** The list of roles where script will be executed. */
-  roles: RuntimeScriptActionInputRolesList;
-}
-export const RuntimeScriptActionInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    uri: S.String,
-    parameters: S.optional(S.String),
-    roles: RuntimeScriptActionInputRolesList,
-  }),
-).annotate({
-  identifier: "RuntimeScriptActionInput",
-}) as any as S.Schema<RuntimeScriptActionInput>;
-
-/** The list of run time script actions. */
-export type ClustersExecuteScriptActionsRequestScriptActionsList =
-  Array<RuntimeScriptActionInput>;
-export const ClustersExecuteScriptActionsRequestScriptActionsList =
-  /*@__PURE__*/ S.Array(
-    RuntimeScriptActionInput,
-  ) as any as S.Schema<ClustersExecuteScriptActionsRequestScriptActionsList>;
-
-export interface ClustersExecuteScriptActionsRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The list of run time script actions. */
-  scriptActions?: ClustersExecuteScriptActionsRequestScriptActionsList;
-  /** Gets or sets if the scripts needs to be persisted. */
-  persistOnSuccess: boolean;
-}
-export const ClustersExecuteScriptActionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    scriptActions: S.optional(
-      ClustersExecuteScriptActionsRequestScriptActionsList,
-    ),
-    persistOnSuccess: S.Boolean,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/executeScriptActions",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersExecuteScriptActionsRequest",
-}) as any as S.Schema<ClustersExecuteScriptActionsRequest>;
-
-export interface ClustersExecuteScriptActionsResponse {}
-export const ClustersExecuteScriptActionsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ClustersExecuteScriptActionsResponse",
-}) as any as S.Schema<ClustersExecuteScriptActionsResponse>;
-
-export type ClustersResizeRequestRoleName = "workernode";
-export const ClustersResizeRequestRoleName = /*@__PURE__*/ S.String;
-
-export interface ClustersResizeRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The constant value for the roleName */
-  roleName: ClustersResizeRequestRoleName | (string & {});
-  /** The target instance count for the operation. */
-  targetInstanceCount?: number;
-}
-export const ClustersResizeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    roleName: ClustersResizeRequestRoleName.pipe(T.Label()),
-    targetInstanceCount: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/roles/{roleName}/resize",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersResizeRequest",
-}) as any as S.Schema<ClustersResizeRequest>;
-
-export interface ClustersResizeResponse {}
-export const ClustersResizeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersResizeResponse",
-}) as any as S.Schema<ClustersResizeResponse>;
-
 /** The tags for the application. */
-export type ApplicationsCreateRequestTagsMap = {
+export type CreateApplicationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsCreateRequestTagsMap>;
+) as any as S.Schema<CreateApplicationRequestTagsMap>;
 
 /** The load-based autoscale request parameters */
 export interface AutoscaleCapacity {
@@ -820,7 +703,7 @@ export interface CreateApplicationRequest {
   /** The ETag for the application */
   etag?: string;
   /** The tags for the application. */
-  tags?: ApplicationsCreateRequestTagsMap;
+  tags?: CreateApplicationRequestTagsMap;
   /** The properties of the application. */
   properties?: ApplicationPropertiesInput;
 }
@@ -831,7 +714,7 @@ export const CreateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
     clusterName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
     etag: S.optional(S.String),
-    tags: S.optional(ApplicationsCreateRequestTagsMap),
+    tags: S.optional(CreateApplicationRequestTagsMap),
     properties: S.optional(ApplicationPropertiesInput),
   }).pipe(
     T.Http({
@@ -846,13 +729,13 @@ export const CreateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateApplicationRequest>;
 
 /** The tags for the application. */
-export type ApplicationsCreateResponseTagsMap = {
+export type CreateApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsCreateResponseTagsMap>;
+) as any as S.Schema<CreateApplicationResponseTagsMap>;
 
 /** The data disks groups for the role. */
 export interface DataDisksGroups {
@@ -1287,55 +1170,52 @@ export const ApplicationProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplicationProperties>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsCreateResponseSystemDataCreatedByType =
+export type CreateApplicationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsCreateResponseSystemDataCreatedByType =
+export const CreateApplicationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsCreateResponseSystemDataLastModifiedByType =
+export type CreateApplicationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsCreateResponseSystemDataLastModifiedByType =
+export const CreateApplicationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsCreateResponseSystemData {
+export interface CreateApplicationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsCreateResponseSystemDataCreatedByType;
+  createdByType?: CreateApplicationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsCreateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: CreateApplicationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsCreateResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApplicationsCreateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApplicationsCreateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
+export const CreateApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(CreateApplicationResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      CreateApplicationResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "ApplicationsCreateResponseSystemData",
-}) as any as S.Schema<ApplicationsCreateResponseSystemData>;
+  identifier: "CreateApplicationResponseSystemData",
+}) as any as S.Schema<CreateApplicationResponseSystemData>;
 
 export interface CreateApplicationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1347,11 +1227,11 @@ export interface CreateApplicationResponse {
   /** The ETag for the application */
   etag?: string;
   /** The tags for the application. */
-  tags?: ApplicationsCreateResponseTagsMap;
+  tags?: CreateApplicationResponseTagsMap;
   /** The properties of the application. */
   properties?: ApplicationProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsCreateResponseSystemData;
+  systemData?: CreateApplicationResponseSystemData;
 }
 export const CreateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1359,28 +1239,26 @@ export const CreateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     etag: S.optional(S.String),
-    tags: S.optional(ApplicationsCreateResponseTagsMap),
+    tags: S.optional(CreateApplicationResponseTagsMap),
     properties: S.optional(ApplicationProperties),
-    systemData: S.optional(ApplicationsCreateResponseSystemData),
+    systemData: S.optional(CreateApplicationResponseSystemData),
   }),
 ).annotate({
   identifier: "CreateApplicationResponse",
 }) as any as S.Schema<CreateApplicationResponse>;
 
 /** The resource tags. */
-export type ClustersCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const CreateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateRequestTagsMap>;
+) as any as S.Schema<CreateClusterRequestTagsMap>;
 
 /** The availability zones. */
-export type ClustersCreateRequestZonesList = Array<string>;
-export const ClustersCreateRequestZonesList = /*@__PURE__*/ S.Array(
+export type CreateClusterRequestZonesList = Array<string>;
+export const CreateClusterRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClustersCreateRequestZonesList>;
+) as any as S.Schema<CreateClusterRequestZonesList>;
 
 /** The type of operating system. */
 export type ClusterCreatePropertiesInputOsType = "Windows" | "Linux";
@@ -1816,9 +1694,9 @@ export interface CreateClusterRequest {
   /** The location of the cluster. */
   location?: string;
   /** The resource tags. */
-  tags?: ClustersCreateRequestTagsMap;
+  tags?: CreateClusterRequestTagsMap;
   /** The availability zones. */
-  zones?: ClustersCreateRequestZonesList;
+  zones?: CreateClusterRequestZonesList;
   /** The cluster create parameters. */
   properties?: ClusterCreatePropertiesInput;
   /** The identity of the cluster, if configured. */
@@ -1830,8 +1708,8 @@ export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ClustersCreateRequestTagsMap),
-    zones: S.optional(ClustersCreateRequestZonesList),
+    tags: S.optional(CreateClusterRequestTagsMap),
+    zones: S.optional(CreateClusterRequestZonesList),
     properties: S.optional(ClusterCreatePropertiesInput),
     identity: S.optional(ClusterIdentityInput),
   }).pipe(
@@ -1847,19 +1725,19 @@ export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateClusterRequest>;
 
 /** Resource tags. */
-export type ClustersCreateResponseTagsMap = {
+export type CreateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateResponseTagsMap>;
+) as any as S.Schema<CreateClusterResponseTagsMap>;
 
 /** The availability zones. */
-export type ClustersCreateResponseZonesList = Array<string>;
-export const ClustersCreateResponseZonesList = /*@__PURE__*/ S.Array(
+export type CreateClusterResponseZonesList = Array<string>;
+export const CreateClusterResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClustersCreateResponseZonesList>;
+) as any as S.Schema<CreateClusterResponseZonesList>;
 
 /** The type of operating system. */
 export type ClusterGetPropertiesOsType = "Windows" | "Linux";
@@ -2291,52 +2169,52 @@ export const ClusterIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterIdentity>;
 
 /** The type of identity that created the resource. */
-export type ClustersCreateResponseSystemDataCreatedByType =
+export type CreateClusterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersCreateResponseSystemDataCreatedByType =
+export const CreateClusterResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ClustersCreateResponseSystemDataLastModifiedByType =
+export type CreateClusterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersCreateResponseSystemDataLastModifiedByType =
+export const CreateClusterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ClustersCreateResponseSystemData {
+export interface CreateClusterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ClustersCreateResponseSystemDataCreatedByType;
+  createdByType?: CreateClusterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ClustersCreateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: CreateClusterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ClustersCreateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ClustersCreateResponseSystemDataCreatedByType),
+    createdByType: S.optional(CreateClusterResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ClustersCreateResponseSystemDataLastModifiedByType,
+      CreateClusterResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ClustersCreateResponseSystemData",
-}) as any as S.Schema<ClustersCreateResponseSystemData>;
+  identifier: "CreateClusterResponseSystemData",
+}) as any as S.Schema<CreateClusterResponseSystemData>;
 
 export interface CreateClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2346,32 +2224,32 @@ export interface CreateClusterResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ClustersCreateResponseTagsMap;
+  tags?: CreateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The ETag for the resource */
   etag?: string;
   /** The availability zones. */
-  zones?: ClustersCreateResponseZonesList;
+  zones?: CreateClusterResponseZonesList;
   /** The properties of the cluster. */
   properties?: ClusterGetProperties;
   /** The identity of the cluster, if configured. */
   identity?: ClusterIdentity;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ClustersCreateResponseSystemData;
+  systemData?: CreateClusterResponseSystemData;
 }
 export const CreateClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ClustersCreateResponseTagsMap),
+    tags: S.optional(CreateClusterResponseTagsMap),
     location: S.String,
     etag: S.optional(S.String),
-    zones: S.optional(ClustersCreateResponseZonesList),
+    zones: S.optional(CreateClusterResponseZonesList),
     properties: S.optional(ClusterGetProperties),
     identity: S.optional(ClusterIdentity),
-    systemData: S.optional(ClustersCreateResponseSystemData),
+    systemData: S.optional(CreateClusterResponseSystemData),
   }),
 ).annotate({
   identifier: "CreateClusterResponse",
@@ -2786,6 +2664,82 @@ export const EnableExtensionMonitoringResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EnableExtensionMonitoringResponse",
 }) as any as S.Schema<EnableExtensionMonitoringResponse>;
 
+/** The list of roles where script will be executed. */
+export type RuntimeScriptActionInputRolesList = Array<string>;
+export const RuntimeScriptActionInputRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RuntimeScriptActionInputRolesList>;
+
+/** Describes a script action on a running cluster. */
+export interface RuntimeScriptActionInput {
+  /** The name of the script action. */
+  name: string;
+  /** The URI to the script. */
+  uri: string;
+  /** The parameters for the script */
+  parameters?: string;
+  /** The list of roles where script will be executed. */
+  roles: RuntimeScriptActionInputRolesList;
+}
+export const RuntimeScriptActionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    uri: S.String,
+    parameters: S.optional(S.String),
+    roles: RuntimeScriptActionInputRolesList,
+  }),
+).annotate({
+  identifier: "RuntimeScriptActionInput",
+}) as any as S.Schema<RuntimeScriptActionInput>;
+
+/** The list of run time script actions. */
+export type ExecuteClusterScriptActionsRequestScriptActionsList =
+  Array<RuntimeScriptActionInput>;
+export const ExecuteClusterScriptActionsRequestScriptActionsList =
+  /*@__PURE__*/ S.Array(
+    RuntimeScriptActionInput,
+  ) as any as S.Schema<ExecuteClusterScriptActionsRequestScriptActionsList>;
+
+export interface ExecuteClusterScriptActionsRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The list of run time script actions. */
+  scriptActions?: ExecuteClusterScriptActionsRequestScriptActionsList;
+  /** Gets or sets if the scripts needs to be persisted. */
+  persistOnSuccess: boolean;
+}
+export const ExecuteClusterScriptActionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    scriptActions: S.optional(
+      ExecuteClusterScriptActionsRequestScriptActionsList,
+    ),
+    persistOnSuccess: S.Boolean,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/executeScriptActions",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExecuteClusterScriptActionsRequest",
+}) as any as S.Schema<ExecuteClusterScriptActionsRequest>;
+
+export interface ExecuteClusterScriptActionsResponse {}
+export const ExecuteClusterScriptActionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ExecuteClusterScriptActionsResponse",
+}) as any as S.Schema<ExecuteClusterScriptActionsResponse>;
+
 export interface GetApplicationRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -2815,61 +2769,61 @@ export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationRequest>;
 
 /** The tags for the application. */
-export type ApplicationsGetResponseTagsMap = {
+export type GetApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsGetResponseSystemDataCreatedByType =
+export type GetApplicationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetResponseSystemDataCreatedByType =
+export const GetApplicationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsGetResponseSystemDataLastModifiedByType =
+export type GetApplicationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsGetResponseSystemDataLastModifiedByType =
+export const GetApplicationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsGetResponseSystemData {
+export interface GetApplicationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsGetResponseSystemDataCreatedByType;
+  createdByType?: GetApplicationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetApplicationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ApplicationsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetApplicationResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ApplicationsGetResponseSystemDataLastModifiedByType,
+      GetApplicationResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ApplicationsGetResponseSystemData",
-}) as any as S.Schema<ApplicationsGetResponseSystemData>;
+  identifier: "GetApplicationResponseSystemData",
+}) as any as S.Schema<GetApplicationResponseSystemData>;
 
 export interface GetApplicationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2881,11 +2835,11 @@ export interface GetApplicationResponse {
   /** The ETag for the application */
   etag?: string;
   /** The tags for the application. */
-  tags?: ApplicationsGetResponseTagsMap;
+  tags?: GetApplicationResponseTagsMap;
   /** The properties of the application. */
   properties?: ApplicationProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsGetResponseSystemData;
+  systemData?: GetApplicationResponseSystemData;
 }
 export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2893,9 +2847,9 @@ export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     etag: S.optional(S.String),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
+    tags: S.optional(GetApplicationResponseTagsMap),
     properties: S.optional(ApplicationProperties),
-    systemData: S.optional(ApplicationsGetResponseSystemData),
+    systemData: S.optional(GetApplicationResponseSystemData),
   }),
 ).annotate({
   identifier: "GetApplicationResponse",
@@ -2934,25 +2888,23 @@ export const GetApplicationAzureAsyncOperationStatusRequest =
   }) as any as S.Schema<GetApplicationAzureAsyncOperationStatusRequest>;
 
 /** The async operation state. */
-export type ApplicationsGetAzureAsyncOperationStatusResponseStatus =
+export type GetApplicationAzureAsyncOperationStatusResponseStatus =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const ApplicationsGetAzureAsyncOperationStatusResponseStatus =
+export const GetApplicationAzureAsyncOperationStatusResponseStatus =
   /*@__PURE__*/ S.String;
 
 export interface GetApplicationAzureAsyncOperationStatusResponse {
   /** The async operation state. */
-  status?: ApplicationsGetAzureAsyncOperationStatusResponseStatus;
+  status?: GetApplicationAzureAsyncOperationStatusResponseStatus;
   /** The operation error information. */
   error?: ApplicationPropertiesInputErrorsItem;
 }
 export const GetApplicationAzureAsyncOperationStatusResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      status: S.optional(
-        ApplicationsGetAzureAsyncOperationStatusResponseStatus,
-      ),
+      status: S.optional(GetApplicationAzureAsyncOperationStatusResponseStatus),
       error: S.optional(ApplicationPropertiesInputErrorsItem),
     }),
   ).annotate({
@@ -2985,65 +2937,64 @@ export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetClusterRequest>;
 
 /** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
+) as any as S.Schema<GetClusterResponseTagsMap>;
 
 /** The availability zones. */
-export type ClustersGetResponseZonesList = Array<string>;
-export const ClustersGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetClusterResponseZonesList = Array<string>;
+export const GetClusterResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClustersGetResponseZonesList>;
+) as any as S.Schema<GetClusterResponseZonesList>;
 
 /** The type of identity that created the resource. */
-export type ClustersGetResponseSystemDataCreatedByType =
+export type GetClusterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetClusterResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ClustersGetResponseSystemDataLastModifiedByType =
+export type GetClusterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersGetResponseSystemDataLastModifiedByType =
+export const GetClusterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ClustersGetResponseSystemData {
+export interface GetClusterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ClustersGetResponseSystemDataCreatedByType;
+  createdByType?: GetClusterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ClustersGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetClusterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ClustersGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ClustersGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetClusterResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ClustersGetResponseSystemDataLastModifiedByType,
+      GetClusterResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ClustersGetResponseSystemData",
-}) as any as S.Schema<ClustersGetResponseSystemData>;
+  identifier: "GetClusterResponseSystemData",
+}) as any as S.Schema<GetClusterResponseSystemData>;
 
 export interface GetClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3053,32 +3004,32 @@ export interface GetClusterResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
+  tags?: GetClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The ETag for the resource */
   etag?: string;
   /** The availability zones. */
-  zones?: ClustersGetResponseZonesList;
+  zones?: GetClusterResponseZonesList;
   /** The properties of the cluster. */
   properties?: ClusterGetProperties;
   /** The identity of the cluster, if configured. */
   identity?: ClusterIdentity;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ClustersGetResponseSystemData;
+  systemData?: GetClusterResponseSystemData;
 }
 export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ClustersGetResponseTagsMap),
+    tags: S.optional(GetClusterResponseTagsMap),
     location: S.String,
     etag: S.optional(S.String),
-    zones: S.optional(ClustersGetResponseZonesList),
+    zones: S.optional(GetClusterResponseZonesList),
     properties: S.optional(ClusterGetProperties),
     identity: S.optional(ClusterIdentity),
-    systemData: S.optional(ClustersGetResponseSystemData),
+    systemData: S.optional(GetClusterResponseSystemData),
   }),
 ).annotate({
   identifier: "GetClusterResponse",
@@ -3133,7 +3084,7 @@ export const AsyncOperationResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AsyncOperationResult",
 }) as any as S.Schema<AsyncOperationResult>;
 
-export interface GetClusterGatewaySettingRequest {
+export interface GetClusterGatewaySettingsRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3141,7 +3092,7 @@ export interface GetClusterGatewaySettingRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const GetClusterGatewaySettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterGatewaySettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3155,8 +3106,8 @@ export const GetClusterGatewaySettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetClusterGatewaySettingRequest",
-}) as any as S.Schema<GetClusterGatewaySettingRequest>;
+  identifier: "GetClusterGatewaySettingsRequest",
+}) as any as S.Schema<GetClusterGatewaySettingsRequest>;
 
 /** Gateway settings. */
 export interface GatewaySettings {
@@ -3305,23 +3256,23 @@ export const GetExtensionAzureAsyncOperationStatusRequest =
   }) as any as S.Schema<GetExtensionAzureAsyncOperationStatusRequest>;
 
 /** The async operation state. */
-export type ExtensionsGetAzureAsyncOperationStatusResponseStatus =
+export type GetExtensionAzureAsyncOperationStatusResponseStatus =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const ExtensionsGetAzureAsyncOperationStatusResponseStatus =
+export const GetExtensionAzureAsyncOperationStatusResponseStatus =
   /*@__PURE__*/ S.String;
 
 export interface GetExtensionAzureAsyncOperationStatusResponse {
   /** The async operation state. */
-  status?: ExtensionsGetAzureAsyncOperationStatusResponseStatus;
+  status?: GetExtensionAzureAsyncOperationStatusResponseStatus;
   /** The operation error information. */
   error?: ApplicationPropertiesInputErrorsItem;
 }
 export const GetExtensionAzureAsyncOperationStatusResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      status: S.optional(ExtensionsGetAzureAsyncOperationStatusResponseStatus),
+      status: S.optional(GetExtensionAzureAsyncOperationStatusResponseStatus),
       error: S.optional(ApplicationPropertiesInputErrorsItem),
     }),
   ).annotate({
@@ -3425,36 +3376,36 @@ export const GetLocationAzureAsyncOperationStatusRequest =
   }) as any as S.Schema<GetLocationAzureAsyncOperationStatusRequest>;
 
 /** The async operation state. */
-export type LocationsGetAzureAsyncOperationStatusResponseStatus =
+export type GetLocationAzureAsyncOperationStatusResponseStatus =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const LocationsGetAzureAsyncOperationStatusResponseStatus =
+export const GetLocationAzureAsyncOperationStatusResponseStatus =
   /*@__PURE__*/ S.String;
 
 export interface GetLocationAzureAsyncOperationStatusResponse {
   /** The async operation state. */
-  status?: LocationsGetAzureAsyncOperationStatusResponseStatus;
+  status?: GetLocationAzureAsyncOperationStatusResponseStatus;
   /** The operation error information. */
   error?: ApplicationPropertiesInputErrorsItem;
 }
 export const GetLocationAzureAsyncOperationStatusResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      status: S.optional(LocationsGetAzureAsyncOperationStatusResponseStatus),
+      status: S.optional(GetLocationAzureAsyncOperationStatusResponseStatus),
       error: S.optional(ApplicationPropertiesInputErrorsItem),
     }),
   ).annotate({
     identifier: "GetLocationAzureAsyncOperationStatusResponse",
   }) as any as S.Schema<GetLocationAzureAsyncOperationStatusResponse>;
 
-export interface GetLocationCapabilityRequest {
+export interface GetLocationCapabilitiesRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The Azure location (region) for which to make the request. */
   location: string;
 }
-export const GetLocationCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLocationCapabilitiesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -3467,8 +3418,8 @@ export const GetLocationCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetLocationCapabilityRequest",
-}) as any as S.Schema<GetLocationCapabilityRequest>;
+  identifier: "GetLocationCapabilitiesRequest",
+}) as any as S.Schema<GetLocationCapabilitiesRequest>;
 
 /** The component version property. */
 export type VersionSpecComponentVersionsMap = {
@@ -3656,55 +3607,55 @@ export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
 
 /** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsGetResponseSystemDataCreatedByType =
+export type GetPrivateEndpointConnectionResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsGetResponseSystemDataCreatedByType =
+export const GetPrivateEndpointConnectionResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType =
+export type GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType =
+export const GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsGetResponseSystemData {
+export interface GetPrivateEndpointConnectionResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateEndpointConnectionResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateEndpointConnectionsGetResponseSystemData =
+export const GetPrivateEndpointConnectionResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateEndpointConnectionsGetResponseSystemDataCreatedByType,
+        GetPrivateEndpointConnectionResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType,
+        GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsGetResponseSystemData>;
+    identifier: "GetPrivateEndpointConnectionResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionResponseSystemData>;
 
 export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3716,7 +3667,7 @@ export interface GetPrivateEndpointConnectionResponse {
   /** The private endpoint connection properties. */
   properties: PrivateEndpointConnectionProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsGetResponseSystemData;
+  systemData?: GetPrivateEndpointConnectionResponseSystemData;
 }
 export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -3725,7 +3676,7 @@ export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       properties: PrivateEndpointConnectionProperties,
-      systemData: S.optional(PrivateEndpointConnectionsGetResponseSystemData),
+      systemData: S.optional(GetPrivateEndpointConnectionResponseSystemData),
     }),
 ).annotate({
   identifier: "GetPrivateEndpointConnectionResponse",
@@ -3760,95 +3711,95 @@ export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPrivateLinkResourceRequest>;
 
 /** The private link resource required member names. */
-export type PrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export type GetPrivateLinkResourceResponsePropertiesRequiredMembersList =
   Array<string>;
-export const PrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export const GetPrivateLinkResourceResponsePropertiesRequiredMembersList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateLinkResourcesGetResponsePropertiesRequiredMembersList>;
+  ) as any as S.Schema<GetPrivateLinkResourceResponsePropertiesRequiredMembersList>;
 
 /** The private link resource Private link DNS zone name. */
-export type PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export type GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   Array<string>;
-export const PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export const GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList>;
+  ) as any as S.Schema<GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList>;
 
 /** Properties of a private link resource. */
-export interface PrivateLinkResourcesGetResponseProperties {
+export interface GetPrivateLinkResourceResponseProperties {
   /** The private link resource group id. */
   groupId?: string;
   /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcesGetResponsePropertiesRequiredMembersList;
+  requiredMembers?: GetPrivateLinkResourceResponsePropertiesRequiredMembersList;
   /** The private link resource Private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList;
+  requiredZoneNames?: GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList;
 }
-export const PrivateLinkResourcesGetResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceResponseProperties = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       groupId: S.optional(S.String),
       requiredMembers: S.optional(
-        PrivateLinkResourcesGetResponsePropertiesRequiredMembersList,
+        GetPrivateLinkResourceResponsePropertiesRequiredMembersList,
       ),
       requiredZoneNames: S.optional(
-        PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList,
+        GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList,
       ),
     }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkResourcesGetResponseProperties>;
+).annotate({
+  identifier: "GetPrivateLinkResourceResponseProperties",
+}) as any as S.Schema<GetPrivateLinkResourceResponseProperties>;
 
 /** The type of identity that created the resource. */
-export type PrivateLinkResourcesGetResponseSystemDataCreatedByType =
+export type GetPrivateLinkResourceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesGetResponseSystemDataCreatedByType =
+export const GetPrivateLinkResourceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesGetResponseSystemDataLastModifiedByType =
+export type GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const PrivateLinkResourcesGetResponseSystemDataLastModifiedByType =
+export const GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesGetResponseSystemData {
+export interface GetPrivateLinkResourceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesGetResponseSystemDataCreatedByType;
+  createdByType?: GetPrivateLinkResourceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetPrivateLinkResourceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const PrivateLinkResourcesGetResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        PrivateLinkResourcesGetResponseSystemDataCreatedByType,
+        GetPrivateLinkResourceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        PrivateLinkResourcesGetResponseSystemDataLastModifiedByType,
+        GetPrivateLinkResourceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesGetResponseSystemData>;
+).annotate({
+  identifier: "GetPrivateLinkResourceResponseSystemData",
+}) as any as S.Schema<GetPrivateLinkResourceResponseSystemData>;
 
 export interface GetPrivateLinkResourceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3858,17 +3809,17 @@ export interface GetPrivateLinkResourceResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Properties of a private link resource. */
-  properties?: PrivateLinkResourcesGetResponseProperties;
+  properties?: GetPrivateLinkResourceResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesGetResponseSystemData;
+  systemData?: GetPrivateLinkResourceResponseSystemData;
 }
 export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    properties: S.optional(PrivateLinkResourcesGetResponseProperties),
-    systemData: S.optional(PrivateLinkResourcesGetResponseSystemData),
+    properties: S.optional(GetPrivateLinkResourceResponseProperties),
+    systemData: S.optional(GetPrivateLinkResourceResponseSystemData),
   }),
 ).annotate({
   identifier: "GetPrivateLinkResourceResponse",
@@ -3904,16 +3855,16 @@ export const GetScriptActionExecutionAsyncOperationStatusRequest =
   }) as any as S.Schema<GetScriptActionExecutionAsyncOperationStatusRequest>;
 
 /** The async operation state. */
-export type ScriptActionsGetExecutionAsyncOperationStatusResponseStatus =
+export type GetScriptActionExecutionAsyncOperationStatusResponseStatus =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const ScriptActionsGetExecutionAsyncOperationStatusResponseStatus =
+export const GetScriptActionExecutionAsyncOperationStatusResponseStatus =
   /*@__PURE__*/ S.String;
 
 export interface GetScriptActionExecutionAsyncOperationStatusResponse {
   /** The async operation state. */
-  status?: ScriptActionsGetExecutionAsyncOperationStatusResponseStatus;
+  status?: GetScriptActionExecutionAsyncOperationStatusResponseStatus;
   /** The operation error information. */
   error?: ApplicationPropertiesInputErrorsItem;
 }
@@ -3921,7 +3872,7 @@ export const GetScriptActionExecutionAsyncOperationStatusResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       status: S.optional(
-        ScriptActionsGetExecutionAsyncOperationStatusResponseStatus,
+        GetScriptActionExecutionAsyncOperationStatusResponseStatus,
       ),
       error: S.optional(ApplicationPropertiesInputErrorsItem),
     }),
@@ -3959,11 +3910,11 @@ export const GetScriptActionExecutionDetailRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetScriptActionExecutionDetailRequest>;
 
 /** The list of roles where script will be executed. */
-export type ScriptActionsGetExecutionDetailResponseRolesList = Array<string>;
-export const ScriptActionsGetExecutionDetailResponseRolesList =
+export type GetScriptActionExecutionDetailResponseRolesList = Array<string>;
+export const GetScriptActionExecutionDetailResponseRolesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ScriptActionsGetExecutionDetailResponseRolesList>;
+  ) as any as S.Schema<GetScriptActionExecutionDetailResponseRolesList>;
 
 /** The execution summary of a script action. */
 export interface ScriptActionExecutionSummary {
@@ -3982,12 +3933,12 @@ export const ScriptActionExecutionSummary = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ScriptActionExecutionSummary>;
 
 /** The summary of script action execution result. */
-export type ScriptActionsGetExecutionDetailResponseExecutionSummaryList =
+export type GetScriptActionExecutionDetailResponseExecutionSummaryList =
   Array<ScriptActionExecutionSummary>;
-export const ScriptActionsGetExecutionDetailResponseExecutionSummaryList =
+export const GetScriptActionExecutionDetailResponseExecutionSummaryList =
   /*@__PURE__*/ S.Array(
     ScriptActionExecutionSummary,
-  ) as any as S.Schema<ScriptActionsGetExecutionDetailResponseExecutionSummaryList>;
+  ) as any as S.Schema<GetScriptActionExecutionDetailResponseExecutionSummaryList>;
 
 export interface GetScriptActionExecutionDetailResponse {
   /** The name of the script action. */
@@ -3997,7 +3948,7 @@ export interface GetScriptActionExecutionDetailResponse {
   /** The parameters for the script */
   parameters?: string;
   /** The list of roles where script will be executed. */
-  roles: ScriptActionsGetExecutionDetailResponseRolesList;
+  roles: GetScriptActionExecutionDetailResponseRolesList;
   /** The application name of the script action, if any. */
   applicationName?: string;
   /** The execution id of the script action. */
@@ -4011,7 +3962,7 @@ export interface GetScriptActionExecutionDetailResponse {
   /** The reason why the script action was executed. */
   operation?: string;
   /** The summary of script action execution result. */
-  executionSummary?: ScriptActionsGetExecutionDetailResponseExecutionSummaryList;
+  executionSummary?: GetScriptActionExecutionDetailResponseExecutionSummaryList;
   /** The script action execution debug information. */
   debugInformation?: string;
 }
@@ -4021,7 +3972,7 @@ export const GetScriptActionExecutionDetailResponse = /*@__PURE__*/ S.suspend(
       name: S.String,
       uri: S.String,
       parameters: S.optional(S.String),
-      roles: ScriptActionsGetExecutionDetailResponseRolesList,
+      roles: GetScriptActionExecutionDetailResponseRolesList,
       applicationName: S.optional(S.String),
       scriptExecutionId: S.optional(S.Number),
       startTime: S.optional(S.String),
@@ -4029,7 +3980,7 @@ export const GetScriptActionExecutionDetailResponse = /*@__PURE__*/ S.suspend(
       status: S.optional(S.String),
       operation: S.optional(S.String),
       executionSummary: S.optional(
-        ScriptActionsGetExecutionDetailResponseExecutionSummaryList,
+        GetScriptActionExecutionDetailResponseExecutionSummaryList,
       ),
       debugInformation: S.optional(S.String),
     }),
@@ -4067,23 +4018,23 @@ export const GetVirtualMachineAsyncOperationStatusRequest =
   }) as any as S.Schema<GetVirtualMachineAsyncOperationStatusRequest>;
 
 /** The async operation state. */
-export type VirtualMachinesGetAsyncOperationStatusResponseStatus =
+export type GetVirtualMachineAsyncOperationStatusResponseStatus =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const VirtualMachinesGetAsyncOperationStatusResponseStatus =
+export const GetVirtualMachineAsyncOperationStatusResponseStatus =
   /*@__PURE__*/ S.String;
 
 export interface GetVirtualMachineAsyncOperationStatusResponse {
   /** The async operation state. */
-  status?: VirtualMachinesGetAsyncOperationStatusResponseStatus;
+  status?: GetVirtualMachineAsyncOperationStatusResponseStatus;
   /** The operation error information. */
   error?: ApplicationPropertiesInputErrorsItem;
 }
 export const GetVirtualMachineAsyncOperationStatusResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      status: S.optional(VirtualMachinesGetAsyncOperationStatusResponseStatus),
+      status: S.optional(GetVirtualMachineAsyncOperationStatusResponseStatus),
       error: S.optional(ApplicationPropertiesInputErrorsItem),
     }),
   ).annotate({
@@ -5850,13 +5801,90 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
+export interface PromoteScriptExecutionHistoryRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The script execution Id */
+  scriptExecutionId: string;
+}
+export const PromoteScriptExecutionHistoryRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      scriptExecutionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptExecutionHistory/{scriptExecutionId}/promote",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "PromoteScriptExecutionHistoryRequest",
+}) as any as S.Schema<PromoteScriptExecutionHistoryRequest>;
+
+export interface PromoteScriptExecutionHistoryResponse {}
+export const PromoteScriptExecutionHistoryResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PromoteScriptExecutionHistoryResponse",
+}) as any as S.Schema<PromoteScriptExecutionHistoryResponse>;
+
+export type ResizeClusterRequestRoleName = "workernode";
+export const ResizeClusterRequestRoleName = /*@__PURE__*/ S.String;
+
+export interface ResizeClusterRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The constant value for the roleName */
+  roleName: ResizeClusterRequestRoleName | (string & {});
+  /** The target instance count for the operation. */
+  targetInstanceCount?: number;
+}
+export const ResizeClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    roleName: ResizeClusterRequestRoleName.pipe(T.Label()),
+    targetInstanceCount: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/roles/{roleName}/resize",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResizeClusterRequest",
+}) as any as S.Schema<ResizeClusterRequest>;
+
+export interface ResizeClusterResponse {}
+export const ResizeClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResizeClusterResponse",
+}) as any as S.Schema<ResizeClusterResponse>;
+
 /** The list of hosts which need to be restarted. */
 export type RestartHostsParameters = Array<string>;
 export const RestartHostsParameters = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<RestartHostsParameters>;
 
-export interface RestartVirtualMachineHostRequest {
+export interface RestartVirtualMachineHostsRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -5865,7 +5893,7 @@ export interface RestartVirtualMachineHostRequest {
   clusterName: string;
   body: RestartHostsParameters;
 }
-export const RestartVirtualMachineHostRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestartVirtualMachineHostsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5880,15 +5908,15 @@ export const RestartVirtualMachineHostRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestartVirtualMachineHostRequest",
-}) as any as S.Schema<RestartVirtualMachineHostRequest>;
+  identifier: "RestartVirtualMachineHostsRequest",
+}) as any as S.Schema<RestartVirtualMachineHostsRequest>;
 
-export interface RestartVirtualMachineHostResponse {}
-export const RestartVirtualMachineHostResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RestartVirtualMachineHostsResponse {}
+export const RestartVirtualMachineHostsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestartVirtualMachineHostResponse",
-}) as any as S.Schema<RestartVirtualMachineHostResponse>;
+  identifier: "RestartVirtualMachineHostsResponse",
+}) as any as S.Schema<RestartVirtualMachineHostsResponse>;
 
 export interface RotateClusterDiskEncryptionKeyRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -5932,50 +5960,12 @@ export const RotateClusterDiskEncryptionKeyResponse = /*@__PURE__*/ S.suspend(
   identifier: "RotateClusterDiskEncryptionKeyResponse",
 }) as any as S.Schema<RotateClusterDiskEncryptionKeyResponse>;
 
-export interface ScriptExecutionHistoryPromoteRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The script execution Id */
-  scriptExecutionId: string;
-}
-export const ScriptExecutionHistoryPromoteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      scriptExecutionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptExecutionHistory/{scriptExecutionId}/promote",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ScriptExecutionHistoryPromoteRequest",
-}) as any as S.Schema<ScriptExecutionHistoryPromoteRequest>;
-
-export interface ScriptExecutionHistoryPromoteResponse {}
-export const ScriptExecutionHistoryPromoteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ScriptExecutionHistoryPromoteResponse",
-}) as any as S.Schema<ScriptExecutionHistoryPromoteResponse>;
-
 /** The resource tags. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
 export interface UpdateClusterRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -5985,14 +5975,14 @@ export interface UpdateClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
   /** The resource tags. */
-  tags?: ClustersUpdateRequestTagsMap | null;
+  tags?: UpdateClusterRequestTagsMap | null;
 }
 export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(S.NullOr(ClustersUpdateRequestTagsMap)),
+    tags: S.optional(S.NullOr(UpdateClusterRequestTagsMap)),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -6006,67 +5996,67 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterRequest>;
 
 /** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
+export type UpdateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
 
 /** The availability zones. */
-export type ClustersUpdateResponseZonesList = Array<string>;
-export const ClustersUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateClusterResponseZonesList = Array<string>;
+export const UpdateClusterResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClustersUpdateResponseZonesList>;
+) as any as S.Schema<UpdateClusterResponseZonesList>;
 
 /** The type of identity that created the resource. */
-export type ClustersUpdateResponseSystemDataCreatedByType =
+export type UpdateClusterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersUpdateResponseSystemDataCreatedByType =
+export const UpdateClusterResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ClustersUpdateResponseSystemDataLastModifiedByType =
+export type UpdateClusterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersUpdateResponseSystemDataLastModifiedByType =
+export const UpdateClusterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ClustersUpdateResponseSystemData {
+export interface UpdateClusterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ClustersUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateClusterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ClustersUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateClusterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ClustersUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateClusterResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ClustersUpdateResponseSystemDataCreatedByType),
+    createdByType: S.optional(UpdateClusterResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ClustersUpdateResponseSystemDataLastModifiedByType,
+      UpdateClusterResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ClustersUpdateResponseSystemData",
-}) as any as S.Schema<ClustersUpdateResponseSystemData>;
+  identifier: "UpdateClusterResponseSystemData",
+}) as any as S.Schema<UpdateClusterResponseSystemData>;
 
 export interface UpdateClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6076,39 +6066,39 @@ export interface UpdateClusterResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
+  tags?: UpdateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The ETag for the resource */
   etag?: string;
   /** The availability zones. */
-  zones?: ClustersUpdateResponseZonesList;
+  zones?: UpdateClusterResponseZonesList;
   /** The properties of the cluster. */
   properties?: ClusterGetProperties;
   /** The identity of the cluster, if configured. */
   identity?: ClusterIdentity;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ClustersUpdateResponseSystemData;
+  systemData?: UpdateClusterResponseSystemData;
 }
 export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateClusterResponseTagsMap),
     location: S.String,
     etag: S.optional(S.String),
-    zones: S.optional(ClustersUpdateResponseZonesList),
+    zones: S.optional(UpdateClusterResponseZonesList),
     properties: S.optional(ClusterGetProperties),
     identity: S.optional(ClusterIdentity),
-    systemData: S.optional(ClustersUpdateResponseSystemData),
+    systemData: S.optional(UpdateClusterResponseSystemData),
   }),
 ).annotate({
   identifier: "UpdateClusterResponse",
 }) as any as S.Schema<UpdateClusterResponse>;
 
-export type ClustersUpdateAutoScaleConfigurationRequestRoleName = "workernode";
-export const ClustersUpdateAutoScaleConfigurationRequestRoleName =
+export type UpdateClusterAutoScaleConfigurationRequestRoleName = "workernode";
+export const UpdateClusterAutoScaleConfigurationRequestRoleName =
   /*@__PURE__*/ S.String;
 
 export interface UpdateClusterAutoScaleConfigurationRequest {
@@ -6119,7 +6109,7 @@ export interface UpdateClusterAutoScaleConfigurationRequest {
   /** The name of the cluster. */
   clusterName: string;
   /** The constant value for the roleName */
-  roleName: ClustersUpdateAutoScaleConfigurationRequestRoleName | (string & {});
+  roleName: UpdateClusterAutoScaleConfigurationRequestRoleName | (string & {});
   /** The autoscale configuration. */
   autoscale?: Autoscale;
 }
@@ -6129,7 +6119,7 @@ export const UpdateClusterAutoScaleConfigurationRequest =
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       clusterName: S.String.pipe(T.Label()),
-      roleName: ClustersUpdateAutoScaleConfigurationRequestRoleName.pipe(
+      roleName: UpdateClusterAutoScaleConfigurationRequestRoleName.pipe(
         T.Label(),
       ),
       autoscale: S.optional(Autoscale),
@@ -6151,7 +6141,7 @@ export const UpdateClusterAutoScaleConfigurationResponse =
     identifier: "UpdateClusterAutoScaleConfigurationResponse",
   }) as any as S.Schema<UpdateClusterAutoScaleConfigurationResponse>;
 
-export interface UpdateClusterGatewaySettingRequest {
+export interface UpdateClusterGatewaySettingsRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -6165,7 +6155,7 @@ export interface UpdateClusterGatewaySettingRequest {
   /** The gateway settings user password. */
   restAuthCredential_password?: string | Redacted.Redacted<string>;
 }
-export const UpdateClusterGatewaySettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateClusterGatewaySettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6191,15 +6181,15 @@ export const UpdateClusterGatewaySettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateClusterGatewaySettingRequest",
-}) as any as S.Schema<UpdateClusterGatewaySettingRequest>;
+  identifier: "UpdateClusterGatewaySettingsRequest",
+}) as any as S.Schema<UpdateClusterGatewaySettingsRequest>;
 
-export interface UpdateClusterGatewaySettingResponse {}
-export const UpdateClusterGatewaySettingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface UpdateClusterGatewaySettingsResponse {}
+export const UpdateClusterGatewaySettingsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "UpdateClusterGatewaySettingResponse",
-}) as any as S.Schema<UpdateClusterGatewaySettingResponse>;
+  identifier: "UpdateClusterGatewaySettingsResponse",
+}) as any as S.Schema<UpdateClusterGatewaySettingsResponse>;
 
 export interface UpdateClusterIdentityCertificateRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -6253,36 +6243,6 @@ export const CheckLocationNameAvailability: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CheckLocationNameAvailabilityRequest,
   output: NameAvailabilityCheckResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersExecuteScriptActionsError = AzureOpError;
-/** Executes script actions on the specified HDInsight cluster. */
-export const ClustersExecuteScriptActions: API.OperationMethod<
-  ClustersExecuteScriptActionsRequest,
-  ClustersExecuteScriptActionsResponse,
-  ClustersExecuteScriptActionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersExecuteScriptActionsRequest,
-  output: ClustersExecuteScriptActionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersResizeError = AzureOpError;
-/** Resizes the specified HDInsight cluster to the specified size. */
-export const ClustersResize: API.OperationMethod<
-  ClustersResizeRequest,
-  ClustersResizeResponse,
-  ClustersResizeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersResizeRequest,
-  output: ClustersResizeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6468,6 +6428,21 @@ export const EnableExtensionMonitoring: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ExecuteClusterScriptActionsError = AzureOpError;
+/** Executes script actions on the specified HDInsight cluster. */
+export const ExecuteClusterScriptActions: API.OperationMethod<
+  ExecuteClusterScriptActionsRequest,
+  ExecuteClusterScriptActionsResponse,
+  ExecuteClusterScriptActionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteClusterScriptActionsRequest,
+  output: ExecuteClusterScriptActionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetApplicationError = AzureOpError;
 /** Gets properties of the specified application. */
 export const GetApplication: API.OperationMethod<
@@ -6528,15 +6503,15 @@ export const GetClusterAzureAsyncOperationStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetClusterGatewaySettingError = AzureOpError;
+export type GetClusterGatewaySettingsError = AzureOpError;
 /** Gets the gateway settings for the specified cluster. */
-export const GetClusterGatewaySetting: API.OperationMethod<
-  GetClusterGatewaySettingRequest,
+export const GetClusterGatewaySettings: API.OperationMethod<
+  GetClusterGatewaySettingsRequest,
   GatewaySettings,
-  GetClusterGatewaySettingError,
+  GetClusterGatewaySettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetClusterGatewaySettingRequest,
+  input: GetClusterGatewaySettingsRequest,
   output: GatewaySettings,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -6633,15 +6608,15 @@ export const GetLocationAzureAsyncOperationStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetLocationCapabilityError = AzureOpError;
+export type GetLocationCapabilitiesError = AzureOpError;
 /** Gets the capabilities for the specified location. */
-export const GetLocationCapability: API.OperationMethod<
-  GetLocationCapabilityRequest,
+export const GetLocationCapabilities: API.OperationMethod<
+  GetLocationCapabilitiesRequest,
   CapabilitiesResult,
-  GetLocationCapabilityError,
+  GetLocationCapabilitiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetLocationCapabilityRequest,
+  input: GetLocationCapabilitiesRequest,
   output: CapabilitiesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -6933,16 +6908,46 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestartVirtualMachineHostError = AzureOpError;
-/** Restarts the specified HDInsight cluster hosts. */
-export const RestartVirtualMachineHost: API.OperationMethod<
-  RestartVirtualMachineHostRequest,
-  RestartVirtualMachineHostResponse,
-  RestartVirtualMachineHostError,
+export type PromoteScriptExecutionHistoryError = AzureOpError;
+/** Promotes the specified ad-hoc script execution to a persisted script. */
+export const PromoteScriptExecutionHistory: API.OperationMethod<
+  PromoteScriptExecutionHistoryRequest,
+  PromoteScriptExecutionHistoryResponse,
+  PromoteScriptExecutionHistoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestartVirtualMachineHostRequest,
-  output: RestartVirtualMachineHostResponse,
+  input: PromoteScriptExecutionHistoryRequest,
+  output: PromoteScriptExecutionHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResizeClusterError = AzureOpError;
+/** Resizes the specified HDInsight cluster to the specified size. */
+export const ResizeCluster: API.OperationMethod<
+  ResizeClusterRequest,
+  ResizeClusterResponse,
+  ResizeClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResizeClusterRequest,
+  output: ResizeClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestartVirtualMachineHostsError = AzureOpError;
+/** Restarts the specified HDInsight cluster hosts. */
+export const RestartVirtualMachineHosts: API.OperationMethod<
+  RestartVirtualMachineHostsRequest,
+  RestartVirtualMachineHostsResponse,
+  RestartVirtualMachineHostsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartVirtualMachineHostsRequest,
+  output: RestartVirtualMachineHostsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6958,21 +6963,6 @@ export const RotateClusterDiskEncryptionKey: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RotateClusterDiskEncryptionKeyRequest,
   output: RotateClusterDiskEncryptionKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptExecutionHistoryPromoteError = AzureOpError;
-/** Promotes the specified ad-hoc script execution to a persisted script. */
-export const ScriptExecutionHistoryPromote: API.OperationMethod<
-  ScriptExecutionHistoryPromoteRequest,
-  ScriptExecutionHistoryPromoteResponse,
-  ScriptExecutionHistoryPromoteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptExecutionHistoryPromoteRequest,
-  output: ScriptExecutionHistoryPromoteResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7008,16 +6998,16 @@ export const UpdateClusterAutoScaleConfiguration: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateClusterGatewaySettingError = AzureOpError;
+export type UpdateClusterGatewaySettingsError = AzureOpError;
 /** Configures the gateway settings on the specified cluster. */
-export const UpdateClusterGatewaySetting: API.OperationMethod<
-  UpdateClusterGatewaySettingRequest,
-  UpdateClusterGatewaySettingResponse,
-  UpdateClusterGatewaySettingError,
+export const UpdateClusterGatewaySettings: API.OperationMethod<
+  UpdateClusterGatewaySettingsRequest,
+  UpdateClusterGatewaySettingsResponse,
+  UpdateClusterGatewaySettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateClusterGatewaySettingRequest,
-  output: UpdateClusterGatewaySettingResponse,
+  input: UpdateClusterGatewaySettingsRequest,
+  output: UpdateClusterGatewaySettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

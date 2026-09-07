@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.dashboard_templates#DashboardTemplatesListRequestOrdering": {
+    "com.posthog.dashboard_templates#ListDashboardTemplatesRequestOrdering": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -47,7 +48,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesListRequestScope": {
+    "com.posthog.dashboard_templates#ListDashboardTemplatesRequestScope": {
       "type": "enum",
       "members": {
         "FEATURE_FLAG": {
@@ -110,14 +111,14 @@
           }
         },
         "ordering": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesListRequestOrdering",
+          "target": "com.posthog.dashboard_templates#ListDashboardTemplatesRequestOrdering",
           "traits": {
             "smithy.api#httpQuery": "ordering",
             "smithy.api#documentation": "Optional. When not using `search`, results are sorted with featured templates first (`is_featured=true`), then by `template_name` (case-insensitive A–Z; `-template_name` for Z–A) or by `created_at` (`-created_at` for newest first). When `search` is set, order is featured first, then relevance rank, then case-insensitive name for ties."
           }
         },
         "scope": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesListRequestScope",
+          "target": "com.posthog.dashboard_templates#ListDashboardTemplatesRequestScope",
           "traits": {
             "smithy.api#httpQuery": "scope",
             "smithy.api#documentation": "Optional. `global`: official templates only. `team`: this project's saved templates only (`scope=team` rows for the current project). `organization`: templates shared across all projects in this organization. `feature_flag`: feature-flag dashboard templates only. Omit for official, organization, and this project's templates (default dashboard template picker behavior)."
@@ -518,14 +519,14 @@
         }
       }
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestTagsList": {
+    "com.posthog.dashboard_templates#CreateDashboardTemplateRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestScope": {
+    "com.posthog.dashboard_templates#CreateDashboardTemplateRequestScope": {
       "type": "union",
       "members": {
         "DashboardTemplateScopeEnum": {
@@ -537,7 +538,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestAvailabilityContextsList": {
+    "com.posthog.dashboard_templates#CreateDashboardTemplateRequestAvailabilityContextsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -571,7 +572,7 @@
           "target": "smithy.api#Document"
         },
         "tags": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestTagsList",
+          "target": "com.posthog.dashboard_templates#CreateDashboardTemplateRequestTagsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -595,13 +596,13 @@
           }
         },
         "scope": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestScope",
+          "target": "com.posthog.dashboard_templates#CreateDashboardTemplateRequestScope",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "availability_contexts": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesCreateRequestAvailabilityContextsList",
+          "target": "com.posthog.dashboard_templates#CreateDashboardTemplateRequestAvailabilityContextsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -644,7 +645,7 @@
         }
       }
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesRetrieveRequest": {
+    "com.posthog.dashboard_templates#GetDashboardTemplateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -668,10 +669,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesRetrieve": {
+    "com.posthog.dashboard_templates#GetDashboardTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboard_templates#DashboardTemplatesRetrieveRequest"
+        "target": "com.posthog.dashboard_templates#GetDashboardTemplateRequest"
       },
       "output": {
         "target": "com.posthog.dashboard_templates#DashboardTemplate"
@@ -692,14 +693,14 @@
         }
       }
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestTagsList": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplateRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestScope": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplateRequestScope": {
       "type": "union",
       "members": {
         "DashboardTemplateScopeEnum": {
@@ -711,7 +712,7 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestAvailabilityContextsList": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplateRequestAvailabilityContextsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -753,7 +754,7 @@
           "target": "smithy.api#Document"
         },
         "tags": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestTagsList",
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplateRequestTagsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -777,13 +778,13 @@
           }
         },
         "scope": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestScope",
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplateRequestScope",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "availability_contexts": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesUpdateRequestAvailabilityContextsList",
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplateRequestAvailabilityContextsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -826,14 +827,14 @@
         }
       }
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestTagsList": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestScope": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequestScope": {
       "type": "union",
       "members": {
         "DashboardTemplateScopeEnum": {
@@ -845,14 +846,14 @@
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestAvailabilityContextsList": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequestAvailabilityContextsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.dashboard_templates#UpdateDashboardTemplatePartialRequest": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -887,7 +888,7 @@
           "target": "smithy.api#Document"
         },
         "tags": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestTagsList",
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequestTagsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -911,13 +912,13 @@
           }
         },
         "scope": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestScope",
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequestScope",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "availability_contexts": {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesPartialUpdateRequestAvailabilityContextsList",
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequestAvailabilityContextsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -933,10 +934,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboard_templates#UpdateDashboardTemplatePartial": {
+    "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatePartialRequest"
+        "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartialRequest"
       },
       "output": {
         "target": "com.posthog.dashboard_templates#DashboardTemplate"
@@ -1009,7 +1010,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.dashboard_templates#CreateDashboardTemplateCopyBetweenProjectRequest": {
+    "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1031,10 +1032,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.dashboard_templates#CreateDashboardTemplateCopyBetweenProject": {
+    "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.dashboard_templates#CreateDashboardTemplateCopyBetweenProjectRequest"
+        "target": "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreateRequest"
       },
       "output": {
         "target": "com.posthog.dashboard_templates#DashboardTemplate"
@@ -1103,25 +1104,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.dashboard_templates#ListDashboardTemplates"
-        },
-        {
           "target": "com.posthog.dashboard_templates#CreateDashboardTemplate"
         },
         {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesRetrieve"
-        },
-        {
-          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplate"
-        },
-        {
-          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatePartial"
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreate"
         },
         {
           "target": "com.posthog.dashboard_templates#DashboardTemplatesDestroy"
         },
         {
-          "target": "com.posthog.dashboard_templates#CreateDashboardTemplateCopyBetweenProject"
+          "target": "com.posthog.dashboard_templates#GetDashboardTemplate"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#ListDashboardTemplates"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplate"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartial"
         }
       ],
       "traits": {

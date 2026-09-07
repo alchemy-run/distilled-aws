@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.jobs#CheckNamespaceAccessRequestPerms": {
@@ -12429,25 +12430,52 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.jobs#CheckNamespaceAccess"
+          "target": "com.huggingface.jobs#CancelJob"
         },
         {
           "target": "com.huggingface.jobs#CheckJobAccess"
         },
         {
-          "target": "com.huggingface.jobs#GetJobHardware"
-        },
-        {
-          "target": "com.huggingface.jobs#ListJobs"
-        },
-        {
-          "target": "com.huggingface.jobs#StartJob"
+          "target": "com.huggingface.jobs#CheckNamespaceAccess"
         },
         {
           "target": "com.huggingface.jobs#CountJobs"
         },
         {
+          "target": "com.huggingface.jobs#CreateScheduledJob"
+        },
+        {
+          "target": "com.huggingface.jobs#DeleteScheduledJob"
+        },
+        {
+          "target": "com.huggingface.jobs#DuplicateJob"
+        },
+        {
           "target": "com.huggingface.jobs#GetJob"
+        },
+        {
+          "target": "com.huggingface.jobs#GetJobHardware"
+        },
+        {
+          "target": "com.huggingface.jobs#GetScheduledJob"
+        },
+        {
+          "target": "com.huggingface.jobs#ListJobs"
+        },
+        {
+          "target": "com.huggingface.jobs#ListScheduledJobs"
+        },
+        {
+          "target": "com.huggingface.jobs#ResumeScheduledJob"
+        },
+        {
+          "target": "com.huggingface.jobs#RunJob"
+        },
+        {
+          "target": "com.huggingface.jobs#StartJob"
+        },
+        {
+          "target": "com.huggingface.jobs#StreamJobEvents"
         },
         {
           "target": "com.huggingface.jobs#StreamJobLogs"
@@ -12456,40 +12484,13 @@
           "target": "com.huggingface.jobs#StreamJobMetrics"
         },
         {
-          "target": "com.huggingface.jobs#StreamJobEvents"
-        },
-        {
-          "target": "com.huggingface.jobs#CancelJob"
-        },
-        {
-          "target": "com.huggingface.jobs#DuplicateJob"
-        },
-        {
-          "target": "com.huggingface.jobs#UpdateJobLabels"
+          "target": "com.huggingface.jobs#SuspendScheduledJob"
         },
         {
           "target": "com.huggingface.jobs#UpdateJobExposedPorts"
         },
         {
-          "target": "com.huggingface.jobs#ListScheduledJobs"
-        },
-        {
-          "target": "com.huggingface.jobs#CreateScheduledJob"
-        },
-        {
-          "target": "com.huggingface.jobs#GetScheduledJob"
-        },
-        {
-          "target": "com.huggingface.jobs#DeleteScheduledJob"
-        },
-        {
-          "target": "com.huggingface.jobs#SuspendScheduledJob"
-        },
-        {
-          "target": "com.huggingface.jobs#ResumeScheduledJob"
-        },
-        {
-          "target": "com.huggingface.jobs#RunJob"
+          "target": "com.huggingface.jobs#UpdateJobLabels"
         },
         {
           "target": "com.huggingface.jobs#UpdateJobSchedule"

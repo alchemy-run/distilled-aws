@@ -121,7 +121,8 @@
       "wranglerSessionConfig": "wrangler-session-config",
       "zoneId": "zone_id",
       "zoneName": "zone_name"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.workers#BetaWorkersCreateRequestObservabilityLogsDestinationsList": {
@@ -41932,214 +41933,226 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.workers#AccountSettingsGet"
+          "target": "com.cloudflare.workers#BulkUpdateScriptSecrets"
         },
         {
-          "target": "com.cloudflare.workers#AccountSettingsUpdate"
+          "target": "com.cloudflare.workers#CreateAssetUpload"
         },
         {
-          "target": "com.cloudflare.workers#AssetsUploadCreate"
+          "target": "com.cloudflare.workers#CreateBetaWorker"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersCreate"
+          "target": "com.cloudflare.workers#CreateBetaWorkerVersion"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersDelete"
+          "target": "com.cloudflare.workers#CreateObservabilityDestination"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersEdit"
+          "target": "com.cloudflare.workers#CreateObservabilityQuery"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersGet"
+          "target": "com.cloudflare.workers#CreateObservabilitySharedQuery"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersList"
+          "target": "com.cloudflare.workers#CreateRoute"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersUpdate"
+          "target": "com.cloudflare.workers#CreateScriptAssetUpload"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersVersionsCreate"
+          "target": "com.cloudflare.workers#CreateScriptDeployment"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersVersionsDelete"
+          "target": "com.cloudflare.workers#CreateScriptEdgePreview"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersVersionsGet"
+          "target": "com.cloudflare.workers#CreateScriptSubdomain"
         },
         {
-          "target": "com.cloudflare.workers#BetaWorkersVersionsList"
+          "target": "com.cloudflare.workers#CreateScriptTail"
         },
         {
-          "target": "com.cloudflare.workers#DomainsDelete"
+          "target": "com.cloudflare.workers#CreateScriptVersion"
         },
         {
-          "target": "com.cloudflare.workers#DomainsGet"
+          "target": "com.cloudflare.workers#CreateServiceEdgePreview"
         },
         {
-          "target": "com.cloudflare.workers#DomainsList"
+          "target": "com.cloudflare.workers#CreateSubdomainEdgePreviewSession"
         },
         {
-          "target": "com.cloudflare.workers#DomainsUpdate"
+          "target": "com.cloudflare.workers#CreateZoneEdgePreviewSession"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityDestinationsCreate"
+          "target": "com.cloudflare.workers#DeleteBetaWorker"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityDestinationsDelete"
+          "target": "com.cloudflare.workers#DeleteBetaWorkerVersion"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityDestinationsList"
+          "target": "com.cloudflare.workers#DeleteDomain"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityDestinationsUpdate"
+          "target": "com.cloudflare.workers#DeleteObservabilityDestination"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityQueriesCreate"
+          "target": "com.cloudflare.workers#DeleteRoute"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityQueriesList"
+          "target": "com.cloudflare.workers#DeleteScript"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilitySharedQueriesCreate"
+          "target": "com.cloudflare.workers#DeleteScriptDeployment"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilitySharedQueriesGet"
+          "target": "com.cloudflare.workers#DeleteScriptSecret"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityTelemetryKeys"
+          "target": "com.cloudflare.workers#DeleteScriptSubdomain"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityTelemetryLiveTail"
+          "target": "com.cloudflare.workers#DeleteScriptTail"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityTelemetryLiveTailHeartbeat"
+          "target": "com.cloudflare.workers#DeleteSubdomain"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityTelemetryQuery"
+          "target": "com.cloudflare.workers#GetAccountSetting"
         },
         {
-          "target": "com.cloudflare.workers#ObservabilityTelemetryValues"
+          "target": "com.cloudflare.workers#GetBetaWorker"
         },
         {
-          "target": "com.cloudflare.workers#RoutesCreate"
+          "target": "com.cloudflare.workers#GetBetaWorkerVersion"
         },
         {
-          "target": "com.cloudflare.workers#RoutesDelete"
+          "target": "com.cloudflare.workers#GetDomain"
         },
         {
-          "target": "com.cloudflare.workers#RoutesGet"
+          "target": "com.cloudflare.workers#GetObservabilitySharedQuery"
         },
         {
-          "target": "com.cloudflare.workers#RoutesList"
+          "target": "com.cloudflare.workers#GetRoute"
         },
         {
-          "target": "com.cloudflare.workers#RoutesUpdate"
+          "target": "com.cloudflare.workers#GetScript"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsDelete"
+          "target": "com.cloudflare.workers#GetScriptContent"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsGet"
+          "target": "com.cloudflare.workers#GetScriptDeployment"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsList"
+          "target": "com.cloudflare.workers#GetScriptSchedule"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSearch"
+          "target": "com.cloudflare.workers#GetScriptScriptAndVersionSetting"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsUpdate"
+          "target": "com.cloudflare.workers#GetScriptSecret"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsAssetsUploadCreate"
+          "target": "com.cloudflare.workers#GetScriptSetting"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsContentGet"
+          "target": "com.cloudflare.workers#GetScriptSubdomain"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsContentUpdate"
+          "target": "com.cloudflare.workers#GetScriptTail"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsDeploymentsCreate"
+          "target": "com.cloudflare.workers#GetScriptVersion"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsDeploymentsDelete"
+          "target": "com.cloudflare.workers#GetSubdomain"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsDeploymentsGet"
+          "target": "com.cloudflare.workers#KeysObservabilityTelemetry"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsDeploymentsList"
+          "target": "com.cloudflare.workers#ListBetaWorkers"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSchedulesGet"
+          "target": "com.cloudflare.workers#ListBetaWorkerVersions"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSchedulesUpdate"
+          "target": "com.cloudflare.workers#ListDomains"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsScriptAndVersionSettingsEdit"
+          "target": "com.cloudflare.workers#ListObservabilityDestinations"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsScriptAndVersionSettingsGet"
+          "target": "com.cloudflare.workers#ListObservabilityQueries"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSecretsBulkUpdate"
+          "target": "com.cloudflare.workers#ListRoutes"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSecretsDelete"
+          "target": "com.cloudflare.workers#ListScriptDeployments"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSecretsGet"
+          "target": "com.cloudflare.workers#ListScripts"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSecretsList"
+          "target": "com.cloudflare.workers#ListScriptSecrets"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSecretsUpdate"
+          "target": "com.cloudflare.workers#ListScriptVersions"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSettingsEdit"
+          "target": "com.cloudflare.workers#LiveTailHeartbeatObservabilityTelemetry"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSettingsGet"
+          "target": "com.cloudflare.workers#LiveTailObservabilityTelemetry"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSubdomainCreate"
+          "target": "com.cloudflare.workers#PatchBetaWorker"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSubdomainDelete"
+          "target": "com.cloudflare.workers#PatchObservabilityDestination"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsSubdomainGet"
+          "target": "com.cloudflare.workers#PatchScriptScriptAndVersionSetting"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsTailCreate"
+          "target": "com.cloudflare.workers#PatchScriptSetting"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsTailDelete"
+          "target": "com.cloudflare.workers#PutAccountSetting"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsTailGet"
+          "target": "com.cloudflare.workers#PutDomain"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsVersionsCreate"
+          "target": "com.cloudflare.workers#PutScript"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsVersionsGet"
+          "target": "com.cloudflare.workers#PutScriptContent"
         },
         {
-          "target": "com.cloudflare.workers#ScriptsVersionsList"
+          "target": "com.cloudflare.workers#PutScriptSchedule"
         },
         {
-          "target": "com.cloudflare.workers#SubdomainsDelete"
+          "target": "com.cloudflare.workers#PutScriptSecret"
         },
         {
-          "target": "com.cloudflare.workers#SubdomainsGet"
+          "target": "com.cloudflare.workers#PutSubdomain"
         },
         {
-          "target": "com.cloudflare.workers#SubdomainsUpdate"
+          "target": "com.cloudflare.workers#QueryObservabilityTelemetry"
+        },
+        {
+          "target": "com.cloudflare.workers#SearchScript"
+        },
+        {
+          "target": "com.cloudflare.workers#UpdateBetaWorker"
+        },
+        {
+          "target": "com.cloudflare.workers#UpdateRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#ValuesObservabilityTelemetry"
         }
       ],
       "traits": {
@@ -42874,13 +42887,13 @@
         ]
       }
     },
-    "com.cloudflare.workers#UpdateBulkScriptSecret": {
+    "com.cloudflare.workers#BulkUpdateScriptSecrets": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers#UpdateBulkScriptSecretRequest"
+        "target": "com.cloudflare.workers#BulkUpdateScriptSecretsRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers#UpdateBulkScriptSecretResponse"
+        "target": "com.cloudflare.workers#BulkUpdateScriptSecretsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -42891,7 +42904,7 @@
         "smithy.api#documentation": "Create, update, or delete multiple secrets on a script in a single operation using JSON Merge Patch (RFC 7396). Usage: - To create or update a secret, set its value to a secret object. - To delete a secret, set its value to `null`. - Secrets not included in the request are left unchanged."
       }
     },
-    "com.cloudflare.workers#UpdateBulkScriptSecretRequest": {
+    "com.cloudflare.workers#BulkUpdateScriptSecretsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -42927,7 +42940,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers#UpdateBulkScriptSecretResponse": {
+    "com.cloudflare.workers#BulkUpdateScriptSecretsResponse": {
       "type": "structure",
       "members": {
         "result": {

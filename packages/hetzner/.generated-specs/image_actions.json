@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.image_actions#ListImagesActionsRequestIdList": {
@@ -1288,7 +1289,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.image_actions#ListImagesActions"
+          "target": "com.hetzner.image_actions#ChangeImageProtection"
         },
         {
           "target": "com.hetzner.image_actions#GetImagesAction"
@@ -1297,7 +1298,7 @@
           "target": "com.hetzner.image_actions#ListImageActions"
         },
         {
-          "target": "com.hetzner.image_actions#ChangeImageProtection"
+          "target": "com.hetzner.image_actions#ListImagesActions"
         }
       ],
       "traits": {

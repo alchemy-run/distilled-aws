@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluation": {
+    "com.azure.appcomplianceautomation#TriggerProviderActionEvaluation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequest"
+        "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#TriggerEvaluationResponse"
@@ -170,11 +171,11 @@
         "smithy.api#documentation": "List of resource ids to be evaluated"
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequest": {
+    "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequest": {
       "type": "structure",
       "members": {
         "resourceIds": {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequestResourceIdsList",
+          "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequestResourceIdsList",
           "traits": {
             "smithy.api#documentation": "List of resource ids to be evaluated",
             "smithy.api#required": {}
@@ -185,7 +186,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequestResourceIdsList": {
+    "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequestResourceIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1226,10 +1227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportSyncCertRecord": {
+    "com.azure.appcomplianceautomation#SyncReportCertRecord": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportSyncCertRecordRequest"
+        "target": "com.azure.appcomplianceautomation#SyncReportCertRecordRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#SyncCertRecordResponse"
@@ -1320,7 +1321,7 @@
         "smithy.api#documentation": "A class represent the control record synchronized from app compliance."
       }
     },
-    "com.azure.appcomplianceautomation#ReportSyncCertRecordRequest": {
+    "com.azure.appcomplianceautomation#SyncReportCertRecordRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -1343,10 +1344,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotDownload": {
+    "com.azure.appcomplianceautomation#DownloadSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#SnapshotDownloadRequest"
+        "target": "com.azure.appcomplianceautomation#DownloadSnapshotRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#DownloadResponse"
@@ -1610,7 +1611,7 @@
         "smithy.api#documentation": "Resource Id."
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotDownloadRequest": {
+    "com.azure.appcomplianceautomation#DownloadSnapshotRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -3363,10 +3364,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#GetReportScopingQuestion": {
+    "com.azure.appcomplianceautomation#GetReportScopingQuestions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#GetReportScopingQuestionRequest"
+        "target": "com.azure.appcomplianceautomation#GetReportScopingQuestionsRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#ScopingQuestions"
@@ -3679,7 +3680,7 @@
         "smithy.api#documentation": "Question input type."
       }
     },
-    "com.azure.appcomplianceautomation#GetReportScopingQuestionRequest": {
+    "com.azure.appcomplianceautomation#GetReportScopingQuestionsRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -3750,10 +3751,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceDownload": {
+    "com.azure.appcomplianceautomation#DownloadEvidence": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#EvidenceDownloadRequest"
+        "target": "com.azure.appcomplianceautomation#DownloadEvidenceRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#EvidenceFileDownloadResponse"
@@ -3797,7 +3798,7 @@
         "smithy.api#documentation": "The uri of evidence file"
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceDownloadRequest": {
+    "com.azure.appcomplianceautomation#DownloadEvidenceRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4324,13 +4325,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#CheckReportNestedResourceNameAvailability": {
+    "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#CheckReportNestedResourceNameAvailabilityRequest"
+        "target": "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailabilityRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#CheckReportNestedResourceNameAvailabilityResponse"
+        "target": "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4343,7 +4344,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#CheckReportNestedResourceNameAvailabilityResponse": {
+    "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailabilityResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -4389,7 +4390,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.appcomplianceautomation#CheckReportNestedResourceNameAvailabilityRequest": {
+    "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4952,7 +4953,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.appcomplianceautomation#OperationsListResponseValueList",
+          "target": "com.azure.appcomplianceautomation#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4968,7 +4969,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#OperationsListResponseValueList": {
+    "com.azure.appcomplianceautomation#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.appcomplianceautomation#Operation"
@@ -5199,7 +5200,7 @@
       "type": "structure",
       "members": {
         "subscriptionIds": {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList",
+          "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList",
           "traits": {
             "smithy.api#documentation": "List of subscription ids to be query. If the list is null or empty, the API will query all the subscriptions of the user."
           }
@@ -5209,7 +5210,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList": {
+    "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5370,7 +5371,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityResponseReason",
+          "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -5386,7 +5387,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityResponseReason": {
+    "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -5431,61 +5432,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluation"
+          "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailability"
         },
         {
-          "target": "com.azure.appcomplianceautomation#DeleteWebhook"
+          "target": "com.azure.appcomplianceautomation#DeleteEvidence"
         },
         {
-          "target": "com.azure.appcomplianceautomation#UpdateWebhook"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#WebhookCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetWebhook"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListWebhook"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#VerifyReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ReportSyncCertRecord"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#SnapshotDownload"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetSnapshot"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListSnapshot"
+          "target": "com.azure.appcomplianceautomation#DeleteReport"
         },
         {
           "target": "com.azure.appcomplianceautomation#DeleteScopingConfiguration"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ScopingConfigurationCreateOrUpdate"
+          "target": "com.azure.appcomplianceautomation#DeleteWebhook"
         },
         {
-          "target": "com.azure.appcomplianceautomation#GetScopingConfiguration"
+          "target": "com.azure.appcomplianceautomation#DownloadEvidence"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ListScopingConfiguration"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetReportScopingQuestion"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ReportFix"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#EvidenceDownload"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#DeleteEvidence"
+          "target": "com.azure.appcomplianceautomation#DownloadSnapshot"
         },
         {
           "target": "com.azure.appcomplianceautomation#EvidenceCreateOrUpdate"
@@ -5494,43 +5459,79 @@
           "target": "com.azure.appcomplianceautomation#GetEvidence"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ListEvidenceByReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#CheckReportNestedResourceNameAvailability"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#DeleteReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#UpdateReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ReportCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListOperations"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsOnboard"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccounts"
+          "target": "com.azure.appcomplianceautomation#GetProviderActionCollectionCount"
         },
         {
           "target": "com.azure.appcomplianceautomation#GetProviderActionOverviewStatus"
         },
         {
-          "target": "com.azure.appcomplianceautomation#GetProviderActionCollectionCount"
+          "target": "com.azure.appcomplianceautomation#GetReport"
         },
         {
-          "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailability"
+          "target": "com.azure.appcomplianceautomation#GetReportScopingQuestions"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetScopingConfiguration"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetSnapshot"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetWebhook"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListEvidenceByReport"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListOperations"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccounts"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListReport"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListScopingConfiguration"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListSnapshot"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListWebhook"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ProviderActionsOnboard"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ReportCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ReportFix"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ScopingConfigurationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#SyncReportCertRecord"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluation"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#UpdateReport"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#UpdateWebhook"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#VerifyReport"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#WebhookCreateOrUpdate"
         }
       ],
       "traits": {

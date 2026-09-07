@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.search#ServicesUpgrade": {
@@ -1631,10 +1632,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.search#AdminKeysRegenerate": {
+    "com.azure.search#RegenerateAdminKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.search#AdminKeysRegenerateRequest"
+        "target": "com.azure.search#RegenerateAdminKeysRequest"
       },
       "output": {
         "target": "com.azure.search#AdminKeyResult"
@@ -1670,7 +1671,7 @@
         "smithy.api#documentation": "Response containing the primary and secondary admin API keys for a given Azure AI Search service."
       }
     },
-    "com.azure.search#AdminKeysRegenerateRequest": {
+    "com.azure.search#RegenerateAdminKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1698,7 +1699,7 @@
           }
         },
         "keyKind": {
-          "target": "com.azure.search#AdminKeysRegenerateRequestKeyKind",
+          "target": "com.azure.search#RegenerateAdminKeysRequestKeyKind",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -1710,7 +1711,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.search#AdminKeysRegenerateRequestKeyKind": {
+    "com.azure.search#RegenerateAdminKeysRequestKeyKind": {
       "type": "enum",
       "members": {
         "PRIMARY": {
@@ -3084,10 +3085,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.search#ListQueryKeyBySearchService": {
+    "com.azure.search#QueryKeysListBySearchService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.search#ListQueryKeyBySearchServiceRequest"
+        "target": "com.azure.search#QueryKeysListBySearchServiceRequest"
       },
       "output": {
         "target": "com.azure.search#ListQueryKeysResult"
@@ -3152,7 +3153,7 @@
         "smithy.api#documentation": "Describes an API key for a given Azure AI Search service that conveys read-only permissions on the docs collection of an index."
       }
     },
-    "com.azure.search#ListQueryKeyBySearchServiceRequest": {
+    "com.azure.search#QueryKeysListBySearchServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3184,10 +3185,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.search#GetAdminKey": {
+    "com.azure.search#GetAdminKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.search#GetAdminKeyRequest"
+        "target": "com.azure.search#GetAdminKeysRequest"
       },
       "output": {
         "target": "com.azure.search#AdminKeyResult"
@@ -3203,7 +3204,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.search#GetAdminKeyRequest": {
+    "com.azure.search#GetAdminKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3235,10 +3236,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.search#DeleteQueryKey": {
+    "com.azure.search#DeleteQueryKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.search#DeleteQueryKeyRequest"
+        "target": "com.azure.search#DeleteQueryKeysRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3254,7 +3255,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.search#DeleteQueryKeyRequest": {
+    "com.azure.search#DeleteQueryKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3294,10 +3295,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.search#CreateQueryKey": {
+    "com.azure.search#CreateQueryKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.search#CreateQueryKeyRequest"
+        "target": "com.azure.search#CreateQueryKeysRequest"
       },
       "output": {
         "target": "com.azure.search#QueryKey"
@@ -3313,7 +3314,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.search#CreateQueryKeyRequest": {
+    "com.azure.search#CreateQueryKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3451,7 +3452,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.search#ServicesUpdateResponseTagsMap",
+          "target": "com.azure.search#UpdateServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3486,7 +3487,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.search#ServicesUpdateResponseTagsMap": {
+    "com.azure.search#UpdateServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3544,7 +3545,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.search#ServicesUpdateRequestTagsMap",
+          "target": "com.azure.search#UpdateServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags to help categorize the resource in the Azure portal."
           }
@@ -3600,7 +3601,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.search#ServicesUpdateRequestTagsMap": {
+    "com.azure.search#UpdateServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3971,7 +3972,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.search#ServicesGetResponseTagsMap",
+          "target": "com.azure.search#GetServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4006,7 +4007,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.search#ServicesGetResponseTagsMap": {
+    "com.azure.search#GetServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4497,7 +4498,7 @@
           }
         },
         "type": {
-          "target": "com.azure.search#ServicesCheckNameAvailabilityRequestType",
+          "target": "com.azure.search#CheckServiceNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of the resource whose name is to be validated. This value must always be 'searchServices'.",
             "smithy.api#required": {}
@@ -4508,7 +4509,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.search#ServicesCheckNameAvailabilityRequestType": {
+    "com.azure.search#CheckServiceNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "SEARCHSERVICES": {
@@ -4685,70 +4686,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.search#ServicesUpgrade"
+          "target": "com.azure.search#CheckServiceNameAvailability"
         },
         {
-          "target": "com.azure.search#DeleteSharedPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.search#SharedPrivateLinkResourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.search#GetSharedPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.search#ListSharedPrivateLinkResourceByService"
-        },
-        {
-          "target": "com.azure.search#AdminKeysRegenerate"
-        },
-        {
-          "target": "com.azure.search#ListPrivateLinkResourceSupported"
+          "target": "com.azure.search#CreateQueryKeys"
         },
         {
           "target": "com.azure.search#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.search#UpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.search#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.search#ListPrivateEndpointConnectionByService"
-        },
-        {
-          "target": "com.azure.search#NetworkSecurityPerimeterConfigurationsReconcile"
-        },
-        {
-          "target": "com.azure.search#GetNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.search#ListNetworkSecurityPerimeterConfigurationByService"
-        },
-        {
-          "target": "com.azure.search#ListQueryKeyBySearchService"
-        },
-        {
-          "target": "com.azure.search#GetAdminKey"
-        },
-        {
-          "target": "com.azure.search#DeleteQueryKey"
-        },
-        {
-          "target": "com.azure.search#CreateQueryKey"
+          "target": "com.azure.search#DeleteQueryKeys"
         },
         {
           "target": "com.azure.search#DeleteService"
         },
         {
-          "target": "com.azure.search#UpdateService"
+          "target": "com.azure.search#DeleteSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.search#ServicesCreateOrUpdate"
+          "target": "com.azure.search#GetAdminKeys"
+        },
+        {
+          "target": "com.azure.search#GetNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.search#GetPrivateEndpointConnection"
         },
         {
           "target": "com.azure.search#GetService"
+        },
+        {
+          "target": "com.azure.search#GetSharedPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.search#ListNetworkSecurityPerimeterConfigurationByService"
+        },
+        {
+          "target": "com.azure.search#ListOperations"
+        },
+        {
+          "target": "com.azure.search#ListPrivateEndpointConnectionByService"
+        },
+        {
+          "target": "com.azure.search#ListPrivateLinkResourceSupported"
         },
         {
           "target": "com.azure.search#ListServiceByResourceGroup"
@@ -4757,16 +4737,37 @@
           "target": "com.azure.search#ListServiceBySubscription"
         },
         {
-          "target": "com.azure.search#UsageBySubscriptionSku"
+          "target": "com.azure.search#ListSharedPrivateLinkResourceByService"
         },
         {
           "target": "com.azure.search#ListUsageBySubscription"
         },
         {
-          "target": "com.azure.search#CheckServiceNameAvailability"
+          "target": "com.azure.search#NetworkSecurityPerimeterConfigurationsReconcile"
         },
         {
-          "target": "com.azure.search#ListOperations"
+          "target": "com.azure.search#QueryKeysListBySearchService"
+        },
+        {
+          "target": "com.azure.search#RegenerateAdminKeys"
+        },
+        {
+          "target": "com.azure.search#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.search#ServicesUpgrade"
+        },
+        {
+          "target": "com.azure.search#SharedPrivateLinkResourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.search#UpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.search#UpdateService"
+        },
+        {
+          "target": "com.azure.search#UsageBySubscriptionSku"
         }
       ],
       "traits": {

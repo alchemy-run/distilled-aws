@@ -42,17 +42,17 @@ export const CheckFileShareNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CheckFileShareNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type FileSharesCheckNameAvailabilityResponseReason =
+export type CheckFileShareNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const FileSharesCheckNameAvailabilityResponseReason =
+export const CheckFileShareNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckFileShareNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: FileSharesCheckNameAvailabilityResponseReason;
+  reason?: CheckFileShareNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -60,7 +60,7 @@ export const CheckFileShareNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(FileSharesCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckFileShareNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
 ).annotate({
@@ -759,13 +759,11 @@ export const GetFileShareRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFileShareRequest>;
 
 /** Resource tags. */
-export type FileSharesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FileSharesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFileShareResponseTagsMap = { [key: string]: string | undefined };
+export const GetFileShareResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FileSharesGetResponseTagsMap>;
+) as any as S.Schema<GetFileShareResponseTagsMap>;
 
 export interface GetFileShareResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -777,7 +775,7 @@ export interface GetFileShareResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FileSharesGetResponseTagsMap;
+  tags?: GetFileShareResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -789,7 +787,7 @@ export const GetFileShareResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FileSharesGetResponseTagsMap),
+    tags: S.optional(GetFileShareResponseTagsMap),
     location: S.String,
     properties: S.optional(FileShareProperties),
   }),
@@ -797,13 +795,13 @@ export const GetFileShareResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetFileShareResponse",
 }) as any as S.Schema<GetFileShareResponse>;
 
-export interface GetFileShareLimitRequest {
+export interface GetFileShareLimitsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
 }
-export const GetFileShareLimitRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFileShareLimitsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -816,8 +814,8 @@ export const GetFileShareLimitRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetFileShareLimitRequest",
-}) as any as S.Schema<GetFileShareLimitRequest>;
+  identifier: "GetFileShareLimitsRequest",
+}) as any as S.Schema<GetFileShareLimitsRequest>;
 
 /** File share-related limits in the specified subscription/location. */
 export interface FileShareLimits {
@@ -1438,20 +1436,20 @@ export const FileShareSnapshotListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FileShareSnapshotListResultValueList>;
 
 /** The response of a FileShareSnapshot list operation. */
-export interface ListFileShareSnapshotResult {
+export interface FileShareSnapshotListResult {
   /** The FileShareSnapshot items on this page */
   value: FileShareSnapshotListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListFileShareSnapshotResult = /*@__PURE__*/ S.suspend(() =>
+export const FileShareSnapshotListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: FileShareSnapshotListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListFileShareSnapshotResult",
-}) as any as S.Schema<ListFileShareSnapshotResult>;
+  identifier: "FileShareSnapshotListResult",
+}) as any as S.Schema<FileShareSnapshotListResult>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -1521,20 +1519,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1670,13 +1668,13 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
 /** Resource tags. */
-export type FileSharesUpdateRequestTagsMap = {
+export type UpdateFileShareRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const FileSharesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateFileShareRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FileSharesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFileShareRequestTagsMap>;
 
 /** The updatable properties of the FileShare. */
 export interface FileShareUpdateProperties {
@@ -1714,7 +1712,7 @@ export interface UpdateFileShareRequest {
   /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
   resourceName: string;
   /** Resource tags. */
-  tags?: FileSharesUpdateRequestTagsMap;
+  tags?: UpdateFileShareRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: FileShareUpdateProperties;
 }
@@ -1723,7 +1721,7 @@ export const UpdateFileShareRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(FileSharesUpdateRequestTagsMap),
+    tags: S.optional(UpdateFileShareRequestTagsMap),
     properties: S.optional(FileShareUpdateProperties),
   }).pipe(
     T.Http({
@@ -1738,13 +1736,13 @@ export const UpdateFileShareRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFileShareRequest>;
 
 /** Resource tags. */
-export type FileSharesUpdateResponseTagsMap = {
+export type UpdateFileShareResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FileSharesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateFileShareResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FileSharesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFileShareResponseTagsMap>;
 
 export interface UpdateFileShareResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1756,7 +1754,7 @@ export interface UpdateFileShareResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FileSharesUpdateResponseTagsMap;
+  tags?: UpdateFileShareResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1768,7 +1766,7 @@ export const UpdateFileShareResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FileSharesUpdateResponseTagsMap),
+    tags: S.optional(UpdateFileShareResponseTagsMap),
     location: S.String,
     properties: S.optional(FileShareProperties),
   }),
@@ -1974,15 +1972,15 @@ export const GetFileShare: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetFileShareLimitError = AzureOpError;
+export type GetFileShareLimitsError = AzureOpError;
 /** Get file shares limits. */
-export const GetFileShareLimit: API.OperationMethod<
-  GetFileShareLimitRequest,
+export const GetFileShareLimits: API.OperationMethod<
+  GetFileShareLimitsRequest,
   FileShareLimitsResponse,
-  GetFileShareLimitError,
+  GetFileShareLimitsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetFileShareLimitRequest,
+  input: GetFileShareLimitsRequest,
   output: FileShareLimitsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2098,12 +2096,12 @@ export type ListFileShareSnapshotError = AzureOpError;
 /** List FileShareSnapshot by FileShare. */
 export const ListFileShareSnapshot: API.OperationMethod<
   ListFileShareSnapshotRequest,
-  ListFileShareSnapshotResult,
+  FileShareSnapshotListResult,
   ListFileShareSnapshotError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListFileShareSnapshotRequest,
-  output: ListFileShareSnapshotResult,
+  output: FileShareSnapshotListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

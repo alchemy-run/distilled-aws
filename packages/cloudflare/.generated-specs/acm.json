@@ -30,7 +30,8 @@
         "alias": "editTotalTl",
         "target": "updateTotalTl"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.acm#CustomTrustStoreCreateResponseStatus": {
@@ -314,7 +315,7 @@
         }
       }
     },
-    "com.cloudflare.acm#TotalTlsUpdateRequestCertificateAuthority": {
+    "com.cloudflare.acm#UpdateTotalTlsRequestCertificateAuthority": {
       "type": "enum",
       "members": {
         "GOOGLE": {
@@ -356,7 +357,7 @@
           }
         },
         "certificate_authority": {
-          "target": "com.cloudflare.acm#TotalTlsUpdateRequestCertificateAuthority",
+          "target": "com.cloudflare.acm#UpdateTotalTlsRequestCertificateAuthority",
           "traits": {
             "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
           }
@@ -366,7 +367,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.acm#TotalTlsUpdateResponseCertificateAuthority": {
+    "com.cloudflare.acm#UpdateTotalTlsResponseCertificateAuthority": {
       "type": "enum",
       "members": {
         "GOOGLE": {
@@ -389,7 +390,7 @@
         }
       }
     },
-    "com.cloudflare.acm#TotalTlsUpdateResponseValidityPeriod": {
+    "com.cloudflare.acm#UpdateTotalTlsResponseValidityPeriod": {
       "type": "intEnum",
       "members": {
         "_90": {
@@ -404,7 +405,7 @@
       "type": "structure",
       "members": {
         "certificate_authority": {
-          "target": "com.cloudflare.acm#TotalTlsUpdateResponseCertificateAuthority",
+          "target": "com.cloudflare.acm#UpdateTotalTlsResponseCertificateAuthority",
           "traits": {
             "smithy.api#documentation": "The Certificate Authority that Total TLS certificates will be issued through."
           }
@@ -416,7 +417,7 @@
           }
         },
         "validity_period": {
-          "target": "com.cloudflare.acm#TotalTlsUpdateResponseValidityPeriod",
+          "target": "com.cloudflare.acm#UpdateTotalTlsResponseValidityPeriod",
           "traits": {
             "smithy.api#documentation": "The validity period in days for the certificates ordered via Total TLS."
           }
@@ -466,22 +467,22 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.acm#CustomTrustStoreCreate"
+          "target": "com.cloudflare.acm#CreateCustomTrustStore"
         },
         {
-          "target": "com.cloudflare.acm#CustomTrustStoreDelete"
+          "target": "com.cloudflare.acm#DeleteCustomTrustStore"
         },
         {
-          "target": "com.cloudflare.acm#CustomTrustStoreGet"
+          "target": "com.cloudflare.acm#GetCustomTrustStore"
         },
         {
-          "target": "com.cloudflare.acm#CustomTrustStoreList"
+          "target": "com.cloudflare.acm#GetTotalTl"
         },
         {
-          "target": "com.cloudflare.acm#TotalTlsEdit"
+          "target": "com.cloudflare.acm#ListCustomTrustStores"
         },
         {
-          "target": "com.cloudflare.acm#TotalTlsGet"
+          "target": "com.cloudflare.acm#UpdateTotalTl"
         },
         {
           "target": "com.cloudflare.acm#UpdateTotalTls"

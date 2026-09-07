@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.dm_members#ListDmMemberRequest": {
@@ -376,7 +377,7 @@
         "smithy.api#documentation": "Create dm member\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nAdd a new user to an existing DM channel. Only an admin of the channel can add members.\n\nRequired permissions (one of):\n - `dms:message:manage`\n - `support_chat:message:create`"
       }
     },
-    "com.whop.dm_members#RetrieveDmMemberRequest": {
+    "com.whop.dm_members#GetDmMemberRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -392,10 +393,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.dm_members#RetrieveDmMember": {
+    "com.whop.dm_members#GetDmMember": {
       "type": "operation",
       "input": {
-        "target": "com.whop.dm_members#RetrieveDmMemberRequest"
+        "target": "com.whop.dm_members#GetDmMemberRequest"
       },
       "output": {
         "target": "com.whop.dm_members#DmMember"
@@ -603,19 +604,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.dm_members#ListDmMember"
-        },
-        {
           "target": "com.whop.dm_members#CreateDmMember"
         },
         {
-          "target": "com.whop.dm_members#RetrieveDmMember"
+          "target": "com.whop.dm_members#DeleteDmMember"
+        },
+        {
+          "target": "com.whop.dm_members#GetDmMember"
+        },
+        {
+          "target": "com.whop.dm_members#ListDmMember"
         },
         {
           "target": "com.whop.dm_members#UpdateDmMember"
-        },
-        {
-          "target": "com.whop.dm_members#DeleteDmMember"
         }
       ],
       "traits": {

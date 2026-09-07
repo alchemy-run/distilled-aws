@@ -180,27 +180,6 @@ export const FileSystemDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileSystemDestroyResponse",
 }) as any as S.Schema<FileSystemDestroyResponse>;
 
-export interface FileSystemRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this file system. */
-  id: string;
-}
-export const FileSystemRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/file_system/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FileSystemRetrieveRequest",
-}) as any as S.Schema<FileSystemRetrieveRequest>;
-
 export interface FileSystemUndoDeleteCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -237,6 +216,27 @@ export const FileSystemUndoDeleteCreateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "FileSystemUndoDeleteCreateResponse",
 }) as any as S.Schema<FileSystemUndoDeleteCreateResponse>;
+
+export interface GetFileSystemRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this file system. */
+  id: string;
+}
+export const GetFileSystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/file_system/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetFileSystemRequest",
+}) as any as S.Schema<GetFileSystemRequest>;
 
 export interface ListFileSystemRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -385,20 +385,6 @@ export const fileSystemDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FileSystemRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const fileSystemRetrieve: API.OperationMethod<
-  FileSystemRetrieveRequest,
-  FileSystem2,
-  FileSystemRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSystemRetrieveRequest,
-  output: FileSystem2,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type FileSystemUndoDeleteCreateError =
   | BadRequest
   | Forbidden
@@ -413,6 +399,20 @@ export const fileSystemUndoDeleteCreate: API.OperationMethod<
   input: FileSystemUndoDeleteCreateRequest,
   output: FileSystemUndoDeleteCreateResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFileSystemError = Forbidden | NotFound | PosthogOpError;
+export const getFileSystem: API.OperationMethod<
+  GetFileSystemRequest,
+  FileSystem2,
+  GetFileSystemError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFileSystemRequest,
+  output: FileSystem2,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

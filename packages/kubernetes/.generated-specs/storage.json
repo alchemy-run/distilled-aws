@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.storage#GetStorageApiGroup": {
+    "com.kubernetes.storage#GetStorageAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.storage#GetStorageV1ApiResources": {
+    "com.kubernetes.storage#GetStorageV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -302,7 +303,7 @@
         "smithy.api#documentation": "get available resources"
       }
     },
-    "com.kubernetes.storage#ListStorageV1CsiDriverRequest": {
+    "com.kubernetes.storage#ListStorageV1CSIDriverRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -882,10 +883,10 @@
         "smithy.api#documentation": "ShardInfo describes the shard selector that was applied to produce a list response. Its presence on a list response indicates the list is a filtered subset."
       }
     },
-    "com.kubernetes.storage#ListStorageV1CsiDriver": {
+    "com.kubernetes.storage#ListStorageV1CSIDriver": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListStorageV1CsiDriverRequest"
+        "target": "com.kubernetes.storage#ListStorageV1CSIDriverRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIDriverList"
@@ -899,7 +900,7 @@
         "smithy.api#documentation": "list or watch objects of kind CSIDriver"
       }
     },
-    "com.kubernetes.storage#CreateStorageV1CsiDriverRequest": {
+    "com.kubernetes.storage#CreateStorageV1CSIDriverRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -960,10 +961,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#CreateStorageV1CsiDriver": {
+    "com.kubernetes.storage#CreateStorageV1CSIDriver": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#CreateStorageV1CsiDriverRequest"
+        "target": "com.kubernetes.storage#CreateStorageV1CSIDriverRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIDriver"
@@ -1014,7 +1015,7 @@
         "smithy.api#documentation": "Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out."
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CollectionCsiDriverRequest": {
+    "com.kubernetes.storage#DeleteStorageV1CollectionCSIDriverRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -1280,10 +1281,10 @@
         "smithy.api#documentation": "The Causes array includes more details associated with the StatusReason failure. Not all StatusReasons may provide detailed causes."
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CollectionCsiDriver": {
+    "com.kubernetes.storage#DeleteStorageV1CollectionCSIDriver": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#DeleteStorageV1CollectionCsiDriverRequest"
+        "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSIDriverRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1Status"
@@ -1439,7 +1440,7 @@
         "smithy.api#documentation": "replace the specified CSIDriver"
       }
     },
-    "com.kubernetes.storage#PatchStorageV1CsiDriverRequest": {
+    "com.kubernetes.storage#PatchStorageV1CSIDriverRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -1490,10 +1491,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#PatchStorageV1CsiDriver": {
+    "com.kubernetes.storage#PatchStorageV1CSIDriver": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#PatchStorageV1CsiDriverRequest"
+        "target": "com.kubernetes.storage#PatchStorageV1CSIDriverRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIDriver"
@@ -1527,7 +1528,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CsiDriverRequest": {
+    "com.kubernetes.storage#DeleteStorageV1CSIDriverRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -1603,10 +1604,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CsiDriver": {
+    "com.kubernetes.storage#DeleteStorageV1CSIDriver": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#DeleteStorageV1CsiDriverRequest"
+        "target": "com.kubernetes.storage#DeleteStorageV1CSIDriverRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIDriver"
@@ -1628,7 +1629,7 @@
         "smithy.api#documentation": "delete a CSIDriver"
       }
     },
-    "com.kubernetes.storage#ListStorageV1CsiNodeRequest": {
+    "com.kubernetes.storage#ListStorageV1CSINodeRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -1981,10 +1982,10 @@
         "smithy.api#documentation": "items is the list of CSINode"
       }
     },
-    "com.kubernetes.storage#ListStorageV1CsiNode": {
+    "com.kubernetes.storage#ListStorageV1CSINode": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListStorageV1CsiNodeRequest"
+        "target": "com.kubernetes.storage#ListStorageV1CSINodeRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSINodeList"
@@ -1998,7 +1999,7 @@
         "smithy.api#documentation": "list or watch objects of kind CSINode"
       }
     },
-    "com.kubernetes.storage#CreateStorageV1CsiNodeRequest": {
+    "com.kubernetes.storage#CreateStorageV1CSINodeRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -2065,10 +2066,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#CreateStorageV1CsiNode": {
+    "com.kubernetes.storage#CreateStorageV1CSINode": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#CreateStorageV1CsiNodeRequest"
+        "target": "com.kubernetes.storage#CreateStorageV1CSINodeRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSINode"
@@ -2099,7 +2100,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CollectionCsiNodeRequest": {
+    "com.kubernetes.storage#DeleteStorageV1CollectionCSINodeRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -2230,10 +2231,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CollectionCsiNode": {
+    "com.kubernetes.storage#DeleteStorageV1CollectionCSINode": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#DeleteStorageV1CollectionCsiNodeRequest"
+        "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSINodeRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1Status"
@@ -2395,7 +2396,7 @@
         "smithy.api#documentation": "replace the specified CSINode"
       }
     },
-    "com.kubernetes.storage#PatchStorageV1CsiNodeRequest": {
+    "com.kubernetes.storage#PatchStorageV1CSINodeRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2446,10 +2447,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#PatchStorageV1CsiNode": {
+    "com.kubernetes.storage#PatchStorageV1CSINode": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#PatchStorageV1CsiNodeRequest"
+        "target": "com.kubernetes.storage#PatchStorageV1CSINodeRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSINode"
@@ -2483,7 +2484,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CsiNodeRequest": {
+    "com.kubernetes.storage#DeleteStorageV1CSINodeRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2559,10 +2560,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CsiNode": {
+    "com.kubernetes.storage#DeleteStorageV1CSINode": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#DeleteStorageV1CsiNodeRequest"
+        "target": "com.kubernetes.storage#DeleteStorageV1CSINodeRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSINode"
@@ -2716,7 +2717,7 @@
         "smithy.api#documentation": "replace status of the specified CSINode"
       }
     },
-    "com.kubernetes.storage#PatchStorageV1CsiNodeStatusRequest": {
+    "com.kubernetes.storage#PatchStorageV1CSINodeStatusRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2767,10 +2768,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#PatchStorageV1CsiNodeStatus": {
+    "com.kubernetes.storage#PatchStorageV1CSINodeStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#PatchStorageV1CsiNodeStatusRequest"
+        "target": "com.kubernetes.storage#PatchStorageV1CSINodeStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSINode"
@@ -2784,7 +2785,7 @@
         "smithy.api#documentation": "partially update status of the specified CSINode"
       }
     },
-    "com.kubernetes.storage#ListStorageV1CsiStorageCapacityForAllNamespacesRequest": {
+    "com.kubernetes.storage#ListStorageV1CSIStorageCapacityForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -3047,10 +3048,10 @@
         "smithy.api#documentation": "items is the list of CSIStorageCapacity objects."
       }
     },
-    "com.kubernetes.storage#ListStorageV1CsiStorageCapacityForAllNamespaces": {
+    "com.kubernetes.storage#ListStorageV1CSIStorageCapacityForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListStorageV1CsiStorageCapacityForAllNamespacesRequest"
+        "target": "com.kubernetes.storage#ListStorageV1CSIStorageCapacityForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIStorageCapacityList"
@@ -3064,7 +3065,7 @@
         "smithy.api#documentation": "list or watch objects of kind CSIStorageCapacity"
       }
     },
-    "com.kubernetes.storage#ListStorageV1NamespacedCsiStorageCapacityRequest": {
+    "com.kubernetes.storage#ListStorageV1NamespacedCSIStorageCapacityRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -3164,10 +3165,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#ListStorageV1NamespacedCsiStorageCapacity": {
+    "com.kubernetes.storage#ListStorageV1NamespacedCSIStorageCapacity": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListStorageV1NamespacedCsiStorageCapacityRequest"
+        "target": "com.kubernetes.storage#ListStorageV1NamespacedCSIStorageCapacityRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIStorageCapacityList"
@@ -3181,7 +3182,7 @@
         "smithy.api#documentation": "list or watch objects of kind CSIStorageCapacity"
       }
     },
-    "com.kubernetes.storage#CreateStorageV1NamespacedCsiStorageCapacityRequest": {
+    "com.kubernetes.storage#CreateStorageV1NamespacedCSIStorageCapacityRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -3268,10 +3269,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#CreateStorageV1NamespacedCsiStorageCapacity": {
+    "com.kubernetes.storage#CreateStorageV1NamespacedCSIStorageCapacity": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#CreateStorageV1NamespacedCsiStorageCapacityRequest"
+        "target": "com.kubernetes.storage#CreateStorageV1NamespacedCSIStorageCapacityRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIStorageCapacity"
@@ -3302,7 +3303,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest": {
+    "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -3441,10 +3442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCsiStorageCapacity": {
+    "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCSIStorageCapacity": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest"
+        "target": "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1Status"
@@ -3634,7 +3635,7 @@
         "smithy.api#documentation": "replace the specified CSIStorageCapacity"
       }
     },
-    "com.kubernetes.storage#PatchStorageV1NamespacedCsiStorageCapacityRequest": {
+    "com.kubernetes.storage#PatchStorageV1NamespacedCSIStorageCapacityRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -3693,10 +3694,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#PatchStorageV1NamespacedCsiStorageCapacity": {
+    "com.kubernetes.storage#PatchStorageV1NamespacedCSIStorageCapacity": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#PatchStorageV1NamespacedCsiStorageCapacityRequest"
+        "target": "com.kubernetes.storage#PatchStorageV1NamespacedCSIStorageCapacityRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApiStorageV1CSIStorageCapacity"
@@ -3730,7 +3731,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1NamespacedCsiStorageCapacityRequest": {
+    "com.kubernetes.storage#DeleteStorageV1NamespacedCSIStorageCapacityRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -3814,10 +3815,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#DeleteStorageV1NamespacedCsiStorageCapacity": {
+    "com.kubernetes.storage#DeleteStorageV1NamespacedCSIStorageCapacity": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#DeleteStorageV1NamespacedCsiStorageCapacityRequest"
+        "target": "com.kubernetes.storage#DeleteStorageV1NamespacedCSIStorageCapacityRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1Status"
@@ -8126,7 +8127,7 @@
         "smithy.api#documentation": "delete a VolumeAttributesClass"
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1CsiDriverRequest": {
+    "com.kubernetes.storage#WatchStorageV1CSIDriverListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -8239,10 +8240,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1CsiDriver": {
+    "com.kubernetes.storage#WatchStorageV1CSIDriverList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListWatchStorageV1CsiDriverRequest"
+        "target": "com.kubernetes.storage#WatchStorageV1CSIDriverListRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -8373,7 +8374,7 @@
         "smithy.api#documentation": "watch changes to an object of kind CSIDriver. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1CsiNodeRequest": {
+    "com.kubernetes.storage#WatchStorageV1CSINodeListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -8465,10 +8466,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1CsiNode": {
+    "com.kubernetes.storage#WatchStorageV1CSINodeList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListWatchStorageV1CsiNodeRequest"
+        "target": "com.kubernetes.storage#WatchStorageV1CSINodeListRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -8599,7 +8600,7 @@
         "smithy.api#documentation": "watch changes to an object of kind CSINode. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest": {
+    "com.kubernetes.storage#WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -8691,10 +8692,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1CsiStorageCapacityForAllNamespaces": {
+    "com.kubernetes.storage#WatchStorageV1CSIStorageCapacityListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest"
+        "target": "com.kubernetes.storage#WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -8708,7 +8709,7 @@
         "smithy.api#documentation": "watch individual changes to a list of CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1NamespacedCsiStorageCapacityRequest": {
+    "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacityListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -8808,10 +8809,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1NamespacedCsiStorageCapacity": {
+    "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacityList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListWatchStorageV1NamespacedCsiStorageCapacityRequest"
+        "target": "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacityListRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -8950,7 +8951,7 @@
         "smithy.api#documentation": "watch changes to an object of kind CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1StorageClassRequest": {
+    "com.kubernetes.storage#WatchStorageV1StorageClassListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -9042,10 +9043,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1StorageClass": {
+    "com.kubernetes.storage#WatchStorageV1StorageClassList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListWatchStorageV1StorageClassRequest"
+        "target": "com.kubernetes.storage#WatchStorageV1StorageClassListRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -9176,7 +9177,7 @@
         "smithy.api#documentation": "watch changes to an object of kind StorageClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1VolumeAttachmentRequest": {
+    "com.kubernetes.storage#WatchStorageV1VolumeAttachmentListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -9268,10 +9269,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1VolumeAttachment": {
+    "com.kubernetes.storage#WatchStorageV1VolumeAttachmentList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListWatchStorageV1VolumeAttachmentRequest"
+        "target": "com.kubernetes.storage#WatchStorageV1VolumeAttachmentListRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -9402,7 +9403,7 @@
         "smithy.api#documentation": "watch changes to an object of kind VolumeAttachment. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1VolumeAttributeClassRequest": {
+    "com.kubernetes.storage#WatchStorageV1VolumeAttributesClassListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -9494,10 +9495,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.storage#ListWatchStorageV1VolumeAttributeClass": {
+    "com.kubernetes.storage#WatchStorageV1VolumeAttributesClassList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.storage#ListWatchStorageV1VolumeAttributeClassRequest"
+        "target": "com.kubernetes.storage#WatchStorageV1VolumeAttributesClassListRequest"
       },
       "output": {
         "target": "com.kubernetes.storage#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -9672,196 +9673,196 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.storage#GetStorageApiGroup"
+          "target": "com.kubernetes.storage#CreateStorageV1CSIDriver"
         },
         {
-          "target": "com.kubernetes.storage#GetStorageV1ApiResources"
+          "target": "com.kubernetes.storage#CreateStorageV1CSINode"
         },
         {
-          "target": "com.kubernetes.storage#ListStorageV1CsiDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1CsiDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCsiDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1CSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1CSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1CsiDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CsiDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#ListStorageV1CsiNode"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1CsiNode"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCsiNode"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1CSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1CSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1CsiNode"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CsiNode"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1CSINodeStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1CSINodeStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1CsiNodeStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#ListStorageV1CsiStorageCapacityForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.storage#ListStorageV1NamespacedCsiStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1NamespacedCsiStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCsiStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1NamespacedCSIStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1NamespacedCSIStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1NamespacedCsiStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1NamespacedCsiStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#ListStorageV1StorageClass"
+          "target": "com.kubernetes.storage#CreateStorageV1NamespacedCSIStorageCapacity"
         },
         {
           "target": "com.kubernetes.storage#CreateStorageV1StorageClass"
         },
         {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionStorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#ListStorageV1VolumeAttachment"
-        },
-        {
           "target": "com.kubernetes.storage#CreateStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionVolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachmentStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttachmentStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachmentStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#ListStorageV1VolumeAttributesClass"
         },
         {
           "target": "com.kubernetes.storage#CreateStorageV1VolumeAttributesClass"
         },
         {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionStorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionVolumeAttachment"
+        },
+        {
           "target": "com.kubernetes.storage#DeleteStorageV1CollectionVolumeAttributesClass"
         },
         {
-          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttributesClass"
+          "target": "com.kubernetes.storage#DeleteStorageV1CSIDriver"
         },
         {
-          "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttributesClass"
+          "target": "com.kubernetes.storage#DeleteStorageV1CSINode"
         },
         {
-          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttributesClass"
+          "target": "com.kubernetes.storage#DeleteStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1VolumeAttachment"
         },
         {
           "target": "com.kubernetes.storage#DeleteStorageV1VolumeAttributesClass"
         },
         {
-          "target": "com.kubernetes.storage#ListWatchStorageV1CsiDriver"
+          "target": "com.kubernetes.storage#GetStorageAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.storage#GetStorageV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1CSIStorageCapacityForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1VolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1CSINodeStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachmentStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1CSINodeStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachmentStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1CSINodeStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttachmentStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttributesClass"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1CSIDriver"
         },
         {
-          "target": "com.kubernetes.storage#ListWatchStorageV1CsiNode"
+          "target": "com.kubernetes.storage#WatchStorageV1CSIDriverList"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1CSINode"
         },
         {
-          "target": "com.kubernetes.storage#ListWatchStorageV1CsiStorageCapacityForAllNamespaces"
+          "target": "com.kubernetes.storage#WatchStorageV1CSINodeList"
         },
         {
-          "target": "com.kubernetes.storage#ListWatchStorageV1NamespacedCsiStorageCapacity"
+          "target": "com.kubernetes.storage#WatchStorageV1CSIStorageCapacityListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacity"
         },
         {
-          "target": "com.kubernetes.storage#ListWatchStorageV1StorageClass"
+          "target": "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacityList"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1StorageClass"
         },
         {
-          "target": "com.kubernetes.storage#ListWatchStorageV1VolumeAttachment"
+          "target": "com.kubernetes.storage#WatchStorageV1StorageClassList"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1VolumeAttachment"
         },
         {
-          "target": "com.kubernetes.storage#ListWatchStorageV1VolumeAttributeClass"
+          "target": "com.kubernetes.storage#WatchStorageV1VolumeAttachmentList"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1VolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#WatchStorageV1VolumeAttributesClassList"
         }
       ],
       "traits": {

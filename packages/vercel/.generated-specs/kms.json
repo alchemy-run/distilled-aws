@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.kms#ListKmsIssuersRequest": {
@@ -4593,10 +4594,31 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.kms#ListKmsIssuers"
+          "target": "com.vercel.kms#ActivateKmsSigningKey"
         },
         {
           "target": "com.vercel.kms#CreateKmsIssuer"
+        },
+        {
+          "target": "com.vercel.kms#CreateKmsIssuerPolicy"
+        },
+        {
+          "target": "com.vercel.kms#CreateKmsSigningKey"
+        },
+        {
+          "target": "com.vercel.kms#DeleteKmsIssuer"
+        },
+        {
+          "target": "com.vercel.kms#DeleteKmsIssuerPolicy"
+        },
+        {
+          "target": "com.vercel.kms#GetKmsIssuer"
+        },
+        {
+          "target": "com.vercel.kms#ListKmsIssuers"
+        },
+        {
+          "target": "com.vercel.kms#RevokeKmsSigningKey"
         },
         {
           "target": "com.vercel.kms#SignKmsMessage"
@@ -4605,31 +4627,10 @@
           "target": "com.vercel.kms#SignKmsToken"
         },
         {
-          "target": "com.vercel.kms#CreateKmsSigningKey"
-        },
-        {
-          "target": "com.vercel.kms#ActivateKmsSigningKey"
-        },
-        {
-          "target": "com.vercel.kms#RevokeKmsSigningKey"
-        },
-        {
-          "target": "com.vercel.kms#GetKmsIssuer"
-        },
-        {
           "target": "com.vercel.kms#UpdateKmsIssuer"
         },
         {
-          "target": "com.vercel.kms#DeleteKmsIssuer"
-        },
-        {
-          "target": "com.vercel.kms#CreateKmsIssuerPolicy"
-        },
-        {
           "target": "com.vercel.kms#UpdateKmsIssuerPolicy"
-        },
-        {
-          "target": "com.vercel.kms#DeleteKmsIssuerPolicy"
         }
       ],
       "traits": {

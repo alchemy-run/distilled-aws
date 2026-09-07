@@ -37,7 +37,8 @@
         "alias": "bulkPutNamespaceKeys",
         "target": "bulkPutNamespaces"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.kv#NamespacesBulkDeleteRequestBodyList": {
@@ -294,7 +295,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.kv#DeleteNamespaceKeyBulkRequest": {
+    "com.cloudflare.kv#NamespacesKeysBulkDeleteRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -331,7 +332,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.kv#DeleteNamespaceKeyBulkResponse": {
+    "com.cloudflare.kv#NamespacesKeysBulkDeleteResponse": {
       "type": "structure",
       "members": {
         "successful_key_count": {
@@ -352,13 +353,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.kv#DeleteNamespaceKeyBulk": {
+    "com.cloudflare.kv#NamespacesKeysBulkDelete": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.kv#DeleteNamespaceKeyBulkRequest"
+        "target": "com.cloudflare.kv#NamespacesKeysBulkDeleteRequest"
       },
       "output": {
-        "target": "com.cloudflare.kv#DeleteNamespaceKeyBulkResponse"
+        "target": "com.cloudflare.kv#NamespacesKeysBulkDeleteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -403,7 +404,7 @@
         }
       }
     },
-    "com.cloudflare.kv#GetNamespaceKeyBulkRequest": {
+    "com.cloudflare.kv#NamespacesKeysBulkGetRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -528,7 +529,7 @@
         }
       }
     },
-    "com.cloudflare.kv#GetNamespaceKeyBulkResult": {
+    "com.cloudflare.kv#NamespacesKeysBulkGetResult": {
       "type": "union",
       "members": {
         "WorkersKVBulkGetResult": {
@@ -539,11 +540,11 @@
         }
       }
     },
-    "com.cloudflare.kv#GetNamespaceKeyBulkResponse": {
+    "com.cloudflare.kv#NamespacesKeysBulkGetResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.kv#GetNamespaceKeyBulkResult",
+          "target": "com.cloudflare.kv#NamespacesKeysBulkGetResult",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -554,13 +555,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.kv#GetNamespaceKeyBulk": {
+    "com.cloudflare.kv#NamespacesKeysBulkGet": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.kv#GetNamespaceKeyBulkRequest"
+        "target": "com.cloudflare.kv#NamespacesKeysBulkGetRequest"
       },
       "output": {
-        "target": "com.cloudflare.kv#GetNamespaceKeyBulkResponse"
+        "target": "com.cloudflare.kv#NamespacesKeysBulkGetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -634,7 +635,7 @@
         "target": "com.cloudflare.kv#NamespacesKeysBulkUpdateRequestBodyItem"
       }
     },
-    "com.cloudflare.kv#UpdateNamespaceKeyBulkRequest": {
+    "com.cloudflare.kv#NamespacesKeysBulkUpdateRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -671,7 +672,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.kv#UpdateNamespaceKeyBulkResponse": {
+    "com.cloudflare.kv#NamespacesKeysBulkUpdateResponse": {
       "type": "structure",
       "members": {
         "successful_key_count": {
@@ -692,13 +693,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.kv#UpdateNamespaceKeyBulk": {
+    "com.cloudflare.kv#NamespacesKeysBulkUpdate": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.kv#UpdateNamespaceKeyBulkRequest"
+        "target": "com.cloudflare.kv#NamespacesKeysBulkUpdateRequest"
       },
       "output": {
-        "target": "com.cloudflare.kv#UpdateNamespaceKeyBulkResponse"
+        "target": "com.cloudflare.kv#NamespacesKeysBulkUpdateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -756,52 +757,52 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.kv#NamespacesBulkDelete"
+          "target": "com.cloudflare.kv#BulkDeleteNamespaces"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesBulkGet"
+          "target": "com.cloudflare.kv#BulkGetNamespaces"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesBulkUpdate"
+          "target": "com.cloudflare.kv#BulkPutNamespaces"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesCreate"
+          "target": "com.cloudflare.kv#CreateNamespace"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesDelete"
+          "target": "com.cloudflare.kv#DeleteNamespace"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesGet"
+          "target": "com.cloudflare.kv#DeleteNamespaceValue"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesList"
+          "target": "com.cloudflare.kv#GetNamespace"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesUpdate"
+          "target": "com.cloudflare.kv#GetNamespaceMetadata"
         },
         {
-          "target": "com.cloudflare.kv#DeleteNamespaceKeyBulk"
+          "target": "com.cloudflare.kv#GetNamespaceValue"
         },
         {
-          "target": "com.cloudflare.kv#GetNamespaceKeyBulk"
+          "target": "com.cloudflare.kv#ListNamespaceKeys"
         },
         {
-          "target": "com.cloudflare.kv#UpdateNamespaceKeyBulk"
+          "target": "com.cloudflare.kv#ListNamespaces"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesKeysList"
+          "target": "com.cloudflare.kv#NamespacesKeysBulkDelete"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesMetadataGet"
+          "target": "com.cloudflare.kv#NamespacesKeysBulkGet"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesValuesDelete"
+          "target": "com.cloudflare.kv#NamespacesKeysBulkUpdate"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesValuesGet"
+          "target": "com.cloudflare.kv#PutNamespaceValue"
         },
         {
-          "target": "com.cloudflare.kv#NamespacesValuesUpdate"
+          "target": "com.cloudflare.kv#UpdateNamespace"
         }
       ],
       "traits": {
@@ -990,13 +991,13 @@
         ]
       }
     },
-    "com.cloudflare.kv#DeleteBulkNamespace": {
+    "com.cloudflare.kv#BulkDeleteNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.kv#DeleteBulkNamespaceRequest"
+        "target": "com.cloudflare.kv#BulkDeleteNamespacesRequest"
       },
       "output": {
-        "target": "com.cloudflare.kv#DeleteBulkNamespaceResponse"
+        "target": "com.cloudflare.kv#BulkDeleteNamespacesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1018,7 +1019,7 @@
         }
       ]
     },
-    "com.cloudflare.kv#DeleteBulkNamespaceRequest": {
+    "com.cloudflare.kv#BulkDeleteNamespacesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1049,7 +1050,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.kv#DeleteBulkNamespaceResponse": {
+    "com.cloudflare.kv#BulkDeleteNamespacesResponse": {
       "type": "structure",
       "members": {
         "successful_key_count": {
@@ -1070,13 +1071,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.kv#GetBulkNamespace": {
+    "com.cloudflare.kv#BulkGetNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.kv#GetBulkNamespaceRequest"
+        "target": "com.cloudflare.kv#BulkGetNamespacesRequest"
       },
       "output": {
-        "target": "com.cloudflare.kv#GetBulkNamespaceResponse"
+        "target": "com.cloudflare.kv#BulkGetNamespacesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1101,7 +1102,7 @@
         }
       ]
     },
-    "com.cloudflare.kv#GetBulkNamespaceRequest": {
+    "com.cloudflare.kv#BulkGetNamespacesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1144,7 +1145,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.kv#GetBulkNamespaceResponse": {
+    "com.cloudflare.kv#BulkGetNamespacesResponse": {
       "type": "structure",
       "members": {
         "result": {

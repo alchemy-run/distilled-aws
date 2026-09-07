@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.queue#QueueClearRequest": {
+    "com.modal.queue#ClearQueueRequest": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -34,10 +35,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.queue#QueueClear": {
+    "com.modal.queue#ClearQueue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#QueueClearRequest"
+        "target": "com.modal.queue#ClearQueueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -131,7 +132,7 @@
         }
       }
     },
-    "com.modal.queue#GetQueueByIdRequest": {
+    "com.modal.queue#QueueGetByIdRequest": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -170,7 +171,7 @@
         }
       }
     },
-    "com.modal.queue#GetQueueByIdResponse": {
+    "com.modal.queue#QueueGetByIdResponse": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -184,13 +185,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.queue#GetQueueById": {
+    "com.modal.queue#QueueGetById": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#GetQueueByIdRequest"
+        "target": "com.modal.queue#QueueGetByIdRequest"
       },
       "output": {
-        "target": "com.modal.queue#GetQueueByIdResponse"
+        "target": "com.modal.queue#QueueGetByIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -395,7 +396,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.queue#QueueListResponseQueueInfo": {
+    "com.modal.queue#ListQueueResponseQueueInfo": {
       "type": "structure",
       "members": {
         "name": {
@@ -421,17 +422,17 @@
         }
       }
     },
-    "com.modal.queue#QueueListResponseQueueInfoList": {
+    "com.modal.queue#ListQueueResponseQueueInfoList": {
       "type": "list",
       "member": {
-        "target": "com.modal.queue#QueueListResponseQueueInfo"
+        "target": "com.modal.queue#ListQueueResponseQueueInfo"
       }
     },
     "com.modal.queue#ListQueueResponse": {
       "type": "structure",
       "members": {
         "queues": {
-          "target": "com.modal.queue#QueueListResponseQueueInfoList"
+          "target": "com.modal.queue#ListQueueResponseQueueInfoList"
         },
         "environmentName": {
           "target": "smithy.api#String"
@@ -521,7 +522,7 @@
         }
       }
     },
-    "com.modal.queue#QueuePutRequest": {
+    "com.modal.queue#PutQueueRequest": {
       "type": "structure",
       "members": {
         "queueId": {
@@ -541,10 +542,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.queue#QueuePut": {
+    "com.modal.queue#PutQueue": {
       "type": "operation",
       "input": {
-        "target": "com.modal.queue#QueuePutRequest"
+        "target": "com.modal.queue#PutQueueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -562,7 +563,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.queue#QueueClear"
+          "target": "com.modal.queue#ClearQueue"
         },
         {
           "target": "com.modal.queue#DeleteQueue"
@@ -571,7 +572,13 @@
           "target": "com.modal.queue#GetQueue"
         },
         {
-          "target": "com.modal.queue#GetQueueById"
+          "target": "com.modal.queue#ListQueue"
+        },
+        {
+          "target": "com.modal.queue#PutQueue"
+        },
+        {
+          "target": "com.modal.queue#QueueGetById"
         },
         {
           "target": "com.modal.queue#QueueGetOrCreate"
@@ -583,13 +590,7 @@
           "target": "com.modal.queue#QueueLen"
         },
         {
-          "target": "com.modal.queue#ListQueue"
-        },
-        {
           "target": "com.modal.queue#QueueNextItems"
-        },
-        {
-          "target": "com.modal.queue#QueuePut"
         }
       ],
       "traits": {

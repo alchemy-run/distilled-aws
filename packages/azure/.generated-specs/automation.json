@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.automation#GenerateWebhookUri": {
@@ -1130,7 +1131,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#WatcherUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdateWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1146,7 +1147,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#WatcherUpdateResponseTagsMap": {
+    "com.azure.automation#UpdateWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1570,7 +1571,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#WatcherGetResponseTagsMap",
+          "target": "com.azure.automation#GetWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1586,7 +1587,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#WatcherGetResponseTagsMap": {
+    "com.azure.automation#GetWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2515,10 +2516,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#ListStatisticByAutomationAccount": {
+    "com.azure.automation#ListStatisticsByAutomationAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#ListStatisticByAutomationAccountRequest"
+        "target": "com.azure.automation#ListStatisticsByAutomationAccountRequest"
       },
       "output": {
         "target": "com.azure.automation#StatisticsListResult"
@@ -2599,7 +2600,7 @@
         "smithy.api#documentation": "Definition of the statistic."
       }
     },
-    "com.azure.automation#ListStatisticByAutomationAccountRequest": {
+    "com.azure.automation#ListStatisticsByAutomationAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2810,10 +2811,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#ListSourceControlSyncJobStreamBySyncJob2": {
+    "com.azure.automation#ListSourceControlSyncJobStreamBySyncJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SourceControlSyncJobStreamsListBySyncJobRequest"
+        "target": "com.azure.automation#ListSourceControlSyncJobStreamBySyncJobRequest"
       },
       "output": {
         "target": "com.azure.automation#SourceControlSyncJobStreamsListBySyncJob"
@@ -2912,7 +2913,7 @@
         "smithy.api#documentation": "Definition of source control sync job stream properties."
       }
     },
-    "com.azure.automation#SourceControlSyncJobStreamsListBySyncJobRequest": {
+    "com.azure.automation#ListSourceControlSyncJobStreamBySyncJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4138,10 +4139,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsDelete": {
+    "com.azure.automation#DeleteSoftwareUpdateConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationsDeleteRequest"
+        "target": "com.azure.automation#DeleteSoftwareUpdateConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4157,7 +4158,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsDeleteRequest": {
+    "com.azure.automation#DeleteSoftwareUpdateConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4197,13 +4198,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsCreate": {
+    "com.azure.automation#CreateSoftwareUpdateConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationsCreateRequest"
+        "target": "com.azure.automation#CreateSoftwareUpdateConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationsCreateResponse"
+        "target": "com.azure.automation#CreateSoftwareUpdateConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4216,7 +4217,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsCreateResponse": {
+    "com.azure.automation#CreateSoftwareUpdateConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5096,7 +5097,7 @@
         "smithy.api#documentation": "Target operating system for the software update configuration."
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsCreateRequest": {
+    "com.azure.automation#CreateSoftwareUpdateConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5265,13 +5266,13 @@
         "smithy.api#documentation": "Definition of schedule parameters."
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsGetByName": {
+    "com.azure.automation#GetSoftwareUpdateConfigurationByName": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationsGetByNameRequest"
+        "target": "com.azure.automation#GetSoftwareUpdateConfigurationByNameRequest"
       },
       "output": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationsGetByNameResponse"
+        "target": "com.azure.automation#GetSoftwareUpdateConfigurationByNameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5284,7 +5285,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsGetByNameResponse": {
+    "com.azure.automation#GetSoftwareUpdateConfigurationByNameResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5323,7 +5324,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsGetByNameRequest": {
+    "com.azure.automation#GetSoftwareUpdateConfigurationByNameRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5363,10 +5364,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsList": {
+    "com.azure.automation#ListSoftwareUpdateConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationsListRequest"
+        "target": "com.azure.automation#ListSoftwareUpdateConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.automation#SoftwareUpdateConfigurationListResult"
@@ -5489,7 +5490,7 @@
         "smithy.api#documentation": "Software update configuration collection item properties."
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationsListRequest": {
+    "com.azure.automation#ListSoftwareUpdateConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5528,10 +5529,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationRunsGetById": {
+    "com.azure.automation#GetSoftwareUpdateConfigurationRunById": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationRunsGetByIdRequest"
+        "target": "com.azure.automation#GetSoftwareUpdateConfigurationRunByIdRequest"
       },
       "output": {
         "target": "com.azure.automation#SoftwareUpdateConfigurationRun"
@@ -5720,7 +5721,7 @@
         "smithy.api#documentation": "Software update configuration Run Navigation model."
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationRunsGetByIdRequest": {
+    "com.azure.automation#GetSoftwareUpdateConfigurationRunByIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5760,10 +5761,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationRunsList": {
+    "com.azure.automation#ListSoftwareUpdateConfigurationRuns": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationRunsListRequest"
+        "target": "com.azure.automation#ListSoftwareUpdateConfigurationRunsRequest"
       },
       "output": {
         "target": "com.azure.automation#SoftwareUpdateConfigurationRunListResult"
@@ -5809,7 +5810,7 @@
         "smithy.api#documentation": "The softwareUpdateConfigurationRun items on this page"
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationRunsListRequest": {
+    "com.azure.automation#ListSoftwareUpdateConfigurationRunsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5862,10 +5863,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationMachineRunsGetById": {
+    "com.azure.automation#GetSoftwareUpdateConfigurationMachineRunById": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationMachineRunsGetByIdRequest"
+        "target": "com.azure.automation#GetSoftwareUpdateConfigurationMachineRunByIdRequest"
       },
       "output": {
         "target": "com.azure.automation#SoftwareUpdateConfigurationMachineRun"
@@ -6026,7 +6027,7 @@
         "smithy.api#documentation": "Software update configuration machine run job navigation properties."
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationMachineRunsGetByIdRequest": {
+    "com.azure.automation#GetSoftwareUpdateConfigurationMachineRunByIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6066,10 +6067,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationMachineRunsList": {
+    "com.azure.automation#ListSoftwareUpdateConfigurationMachineRuns": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#SoftwareUpdateConfigurationMachineRunsListRequest"
+        "target": "com.azure.automation#ListSoftwareUpdateConfigurationMachineRunsRequest"
       },
       "output": {
         "target": "com.azure.automation#SoftwareUpdateConfigurationMachineRunListResult"
@@ -6115,7 +6116,7 @@
         "smithy.api#documentation": "The softwareUpdateConfigurationMachineRun items on this page"
       }
     },
-    "com.azure.automation#SoftwareUpdateConfigurationMachineRunsListRequest": {
+    "com.azure.automation#ListSoftwareUpdateConfigurationMachineRunsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6944,7 +6945,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#PackageUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdatePackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7297,7 +7298,7 @@
         "smithy.api#documentation": "Gets or sets the provisioning state of the Package."
       }
     },
-    "com.azure.automation#PackageUpdateResponseTagsMap": {
+    "com.azure.automation#UpdatePackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7359,7 +7360,7 @@
           }
         },
         "allOf": {
-          "target": "com.azure.automation#PackageUpdateRequestAllOf",
+          "target": "com.azure.automation#UpdatePackageRequestAllOf",
           "traits": {
             "smithy.api#documentation": "The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location'"
           }
@@ -7369,11 +7370,11 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#PackageUpdateRequestAllOf": {
+    "com.azure.automation#UpdatePackageRequestAllOf": {
       "type": "structure",
       "members": {
         "tags": {
-          "target": "com.azure.automation#PackageUpdateRequestAllOfTagsMap",
+          "target": "com.azure.automation#UpdatePackageRequestAllOfTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7390,7 +7391,7 @@
         "smithy.api#documentation": "The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location'"
       }
     },
-    "com.azure.automation#PackageUpdateRequestAllOfTagsMap": {
+    "com.azure.automation#UpdatePackageRequestAllOfTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7654,7 +7655,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#PackageGetResponseTagsMap",
+          "target": "com.azure.automation#GetPackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7677,7 +7678,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#PackageGetResponseTagsMap": {
+    "com.azure.automation#GetPackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7995,7 +7996,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#RuntimeEnvironmentsUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdateRuntimeEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8076,7 +8077,7 @@
         "smithy.api#documentation": "Runtime properties."
       }
     },
-    "com.azure.automation#RuntimeEnvironmentsUpdateResponseTagsMap": {
+    "com.azure.automation#UpdateRuntimeEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8207,7 +8208,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#RuntimeEnvironmentsCreateResponseTagsMap",
+          "target": "com.azure.automation#CreateRuntimeEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8230,7 +8231,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#RuntimeEnvironmentsCreateResponseTagsMap": {
+    "com.azure.automation#CreateRuntimeEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8278,7 +8279,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#RuntimeEnvironmentsCreateRequestTagsMap",
+          "target": "com.azure.automation#CreateRuntimeEnvironmentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8301,7 +8302,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#RuntimeEnvironmentsCreateRequestTagsMap": {
+    "com.azure.automation#CreateRuntimeEnvironmentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8360,7 +8361,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#RuntimeEnvironmentsGetResponseTagsMap",
+          "target": "com.azure.automation#GetRuntimeEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8383,7 +8384,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#RuntimeEnvironmentsGetResponseTagsMap": {
+    "com.azure.automation#GetRuntimeEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8579,10 +8580,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#RunbookPublish": {
+    "com.azure.automation#PublishRunbook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#RunbookPublishRequest"
+        "target": "com.azure.automation#PublishRunbookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8598,7 +8599,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#RunbookPublishRequest": {
+    "com.azure.automation#PublishRunbookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8638,13 +8639,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#RunbookDraftUndoEdit": {
+    "com.azure.automation#EditRunbookDraftUndo": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#RunbookDraftUndoEditRequest"
+        "target": "com.azure.automation#EditRunbookDraftUndoRequest"
       },
       "output": {
-        "target": "com.azure.automation#RunbookDraftUndoEditResult"
+        "target": "com.azure.automation#EditRunbookDraftUndoResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -8657,7 +8658,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#RunbookDraftUndoEditResult": {
+    "com.azure.automation#EditRunbookDraftUndoResult": {
       "type": "structure",
       "members": {
         "statusCode": {
@@ -8959,7 +8960,7 @@
       },
       "traits": {}
     },
-    "com.azure.automation#RunbookDraftUndoEditRequest": {
+    "com.azure.automation#EditRunbookDraftUndoRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9407,10 +9408,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#TestJobResume": {
+    "com.azure.automation#ResumeTestJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#TestJobResumeRequest"
+        "target": "com.azure.automation#ResumeTestJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9426,7 +9427,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#TestJobResumeRequest": {
+    "com.azure.automation#ResumeTestJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9610,7 +9611,7 @@
           }
         },
         "parameters": {
-          "target": "com.azure.automation#TestJobCreateRequestParametersMap",
+          "target": "com.azure.automation#CreateTestJobRequestParametersMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the parameters of the test job."
           }
@@ -9632,7 +9633,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#TestJobCreateRequestParametersMap": {
+    "com.azure.automation#CreateTestJobRequestParametersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9703,10 +9704,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#RunbookDraftReplaceContent": {
+    "com.azure.automation#ReplaceRunbookDraftContent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#RunbookDraftReplaceContentRequest"
+        "target": "com.azure.automation#ReplaceRunbookDraftContentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9722,7 +9723,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#RunbookDraftReplaceContentRequest": {
+    "com.azure.automation#ReplaceRunbookDraftContentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10177,7 +10178,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#RunbookUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdateRunbookResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10439,7 +10440,7 @@
         "smithy.api#documentation": "Gets or sets the type of the runbook."
       }
     },
-    "com.azure.automation#RunbookUpdateResponseTagsMap": {
+    "com.azure.automation#UpdateRunbookResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10505,7 +10506,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#RunbookUpdateRequestTagsMap",
+          "target": "com.azure.automation#UpdateRunbookRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags attached to the resource."
           }
@@ -10515,7 +10516,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#RunbookUpdateRequestTagsMap": {
+    "com.azure.automation#UpdateRunbookRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10828,7 +10829,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#RunbookGetResponseTagsMap",
+          "target": "com.azure.automation#GetRunbookResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10857,7 +10858,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#RunbookGetResponseTagsMap": {
+    "com.azure.automation#GetRunbookResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11165,7 +11166,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#Python3PackageUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdatePython3PackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11392,7 +11393,7 @@
         "smithy.api#documentation": "Gets or sets the provisioning state of the module."
       }
     },
-    "com.azure.automation#Python3PackageUpdateResponseTagsMap": {
+    "com.azure.automation#UpdatePython3PackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11440,7 +11441,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#Python3PackageUpdateRequestTagsMap",
+          "target": "com.azure.automation#UpdatePython3PackageRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags attached to the resource."
           }
@@ -11450,7 +11451,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#Python3PackageUpdateRequestTagsMap": {
+    "com.azure.automation#UpdatePython3PackageRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11677,7 +11678,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#Python3PackageGetResponseTagsMap",
+          "target": "com.azure.automation#GetPython3PackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11706,7 +11707,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#Python3PackageGetResponseTagsMap": {
+    "com.azure.automation#GetPython3PackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12014,7 +12015,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#Python2PackageUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdatePython2PackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12043,7 +12044,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#Python2PackageUpdateResponseTagsMap": {
+    "com.azure.automation#UpdatePython2PackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12091,7 +12092,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#Python2PackageUpdateRequestTagsMap",
+          "target": "com.azure.automation#UpdatePython2PackageRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags attached to the resource."
           }
@@ -12101,7 +12102,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#Python2PackageUpdateRequestTagsMap": {
+    "com.azure.automation#UpdatePython2PackageRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12313,7 +12314,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#Python2PackageGetResponseTagsMap",
+          "target": "com.azure.automation#GetPython2PackageResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12342,7 +12343,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#Python2PackageGetResponseTagsMap": {
+    "com.azure.automation#GetPython2PackageResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13093,10 +13094,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#ListObjectDataTypeFieldByType": {
+    "com.azure.automation#ListObjectDataTypeFieldsByType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#ListObjectDataTypeFieldByTypeRequest"
+        "target": "com.azure.automation#ListObjectDataTypeFieldsByTypeRequest"
       },
       "output": {
         "target": "com.azure.automation#TypeFieldListResult"
@@ -13158,7 +13159,7 @@
         "smithy.api#documentation": "Information about a field of a type."
       }
     },
-    "com.azure.automation#ListObjectDataTypeFieldByTypeRequest": {
+    "com.azure.automation#ListObjectDataTypeFieldsByTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14425,7 +14426,7 @@
           }
         },
         "countType": {
-          "target": "com.azure.automation#NodeCountInformationGetRequestCountType",
+          "target": "com.azure.automation#GetNodeCountInformationRequestCountType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -14437,7 +14438,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#NodeCountInformationGetRequestCountType": {
+    "com.azure.automation#GetNodeCountInformationRequestCountType": {
       "type": "enum",
       "members": {
         "STATUS": {
@@ -15057,10 +15058,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#ListObjectDataTypeFieldByModuleAndType": {
+    "com.azure.automation#ObjectDataTypesListFieldsByModuleAndType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#ListObjectDataTypeFieldByModuleAndTypeRequest"
+        "target": "com.azure.automation#ObjectDataTypesListFieldsByModuleAndTypeRequest"
       },
       "output": {
         "target": "com.azure.automation#TypeFieldListResult"
@@ -15076,7 +15077,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#ListObjectDataTypeFieldByModuleAndTypeRequest": {
+    "com.azure.automation#ObjectDataTypesListFieldsByModuleAndTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15614,7 +15615,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#ModuleUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdateModuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15643,7 +15644,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#ModuleUpdateResponseTagsMap": {
+    "com.azure.automation#UpdateModuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15697,7 +15698,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#ModuleUpdateRequestTagsMap",
+          "target": "com.azure.automation#UpdateModuleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags attached to the resource."
           }
@@ -15707,7 +15708,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#ModuleUpdateRequestTagsMap": {
+    "com.azure.automation#UpdateModuleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15960,7 +15961,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#ModuleGetResponseTagsMap",
+          "target": "com.azure.automation#GetModuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15989,7 +15990,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#ModuleGetResponseTagsMap": {
+    "com.azure.automation#GetModuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16092,10 +16093,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#ListKeyByAutomationAccount": {
+    "com.azure.automation#ListKeysByAutomationAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#ListKeyByAutomationAccountRequest"
+        "target": "com.azure.automation#ListKeysByAutomationAccountRequest"
       },
       "output": {
         "target": "com.azure.automation#KeyListResult"
@@ -16198,7 +16199,7 @@
         "smithy.api#documentation": "Automation key name."
       }
     },
-    "com.azure.automation#ListKeyByAutomationAccountRequest": {
+    "com.azure.automation#ListKeysByAutomationAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16778,10 +16779,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#JobResume": {
+    "com.azure.automation#ResumeJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#JobResumeRequest"
+        "target": "com.azure.automation#ResumeJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16797,7 +16798,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#JobResumeRequest": {
+    "com.azure.automation#ResumeJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18095,10 +18096,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#HybridRunbookWorkersMove": {
+    "com.azure.automation#MoveHybridRunbookWorker": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#HybridRunbookWorkersMoveRequest"
+        "target": "com.azure.automation#MoveHybridRunbookWorkerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18114,7 +18115,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#HybridRunbookWorkersMoveRequest": {
+    "com.azure.automation#MoveHybridRunbookWorkerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18276,7 +18277,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#HybridRunbookWorkersPatchResponseTagsMap",
+          "target": "com.azure.automation#PatchHybridRunbookWorkerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18363,7 +18364,7 @@
         "smithy.api#documentation": "Type of the HybridWorker."
       }
     },
-    "com.azure.automation#HybridRunbookWorkersPatchResponseTagsMap": {
+    "com.azure.automation#PatchHybridRunbookWorkerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18490,7 +18491,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#HybridRunbookWorkersCreateResponseTagsMap",
+          "target": "com.azure.automation#CreateHybridRunbookWorkerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18513,7 +18514,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#HybridRunbookWorkersCreateResponseTagsMap": {
+    "com.azure.automation#CreateHybridRunbookWorkerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18626,7 +18627,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#HybridRunbookWorkersGetResponseTagsMap",
+          "target": "com.azure.automation#GetHybridRunbookWorkerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18649,7 +18650,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#HybridRunbookWorkersGetResponseTagsMap": {
+    "com.azure.automation#GetHybridRunbookWorkerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18974,7 +18975,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#HybridRunbookWorkerGroupUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdateHybridRunbookWorkerGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19051,7 +19052,7 @@
         "smithy.api#documentation": "Type of the HybridWorkerGroup."
       }
     },
-    "com.azure.automation#HybridRunbookWorkerGroupUpdateResponseTagsMap": {
+    "com.azure.automation#UpdateHybridRunbookWorkerGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19176,7 +19177,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#HybridRunbookWorkerGroupCreateResponseTagsMap",
+          "target": "com.azure.automation#CreateHybridRunbookWorkerGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19199,7 +19200,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#HybridRunbookWorkerGroupCreateResponseTagsMap": {
+    "com.azure.automation#CreateHybridRunbookWorkerGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19310,7 +19311,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#HybridRunbookWorkerGroupGetResponseTagsMap",
+          "target": "com.azure.automation#GetHybridRunbookWorkerGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19333,7 +19334,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#HybridRunbookWorkerGroupGetResponseTagsMap": {
+    "com.azure.automation#GetHybridRunbookWorkerGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21558,7 +21559,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#DscConfigurationUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdateDscConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -21739,7 +21740,7 @@
         "smithy.api#documentation": "Gets or sets the provisioning state of the configuration."
       }
     },
-    "com.azure.automation#DscConfigurationUpdateResponseTagsMap": {
+    "com.azure.automation#UpdateDscConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21799,7 +21800,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#DscConfigurationUpdateRequestTagsMap",
+          "target": "com.azure.automation#UpdateDscConfigurationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags attached to the resource."
           }
@@ -21809,7 +21810,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#DscConfigurationUpdateRequestTagsMap": {
+    "com.azure.automation#UpdateDscConfigurationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22084,7 +22085,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#DscConfigurationGetResponseTagsMap",
+          "target": "com.azure.automation#GetDscConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -22113,7 +22114,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#DscConfigurationGetResponseTagsMap": {
+    "com.azure.automation#GetDscConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22934,10 +22935,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#AgentRegistrationInformationRegenerateKey": {
+    "com.azure.automation#RegenerateAgentRegistrationInformationKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.automation#AgentRegistrationInformationRegenerateKeyRequest"
+        "target": "com.azure.automation#RegenerateAgentRegistrationInformationKeyRequest"
       },
       "output": {
         "target": "com.azure.automation#AgentRegistration"
@@ -23005,7 +23006,7 @@
         "smithy.api#documentation": "Definition of the agent registration keys."
       }
     },
-    "com.azure.automation#AgentRegistrationInformationRegenerateKeyRequest": {
+    "com.azure.automation#RegenerateAgentRegistrationInformationKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23213,7 +23214,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#AutomationAccountUpdateResponseTagsMap",
+          "target": "com.azure.automation#UpdateAutomationAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -23584,7 +23585,7 @@
         "smithy.api#documentation": "Gets or sets the SKU name of the account."
       }
     },
-    "com.azure.automation#AutomationAccountUpdateResponseTagsMap": {
+    "com.azure.automation#UpdateAutomationAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23648,7 +23649,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#AutomationAccountUpdateRequestTagsMap",
+          "target": "com.azure.automation#UpdateAutomationAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the tags attached to the resource."
           }
@@ -23658,7 +23659,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.automation#AutomationAccountUpdateRequestTagsMap": {
+    "com.azure.automation#UpdateAutomationAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23986,7 +23987,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.automation#AutomationAccountGetResponseTagsMap",
+          "target": "com.azure.automation#GetAutomationAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -24021,7 +24022,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.automation#AutomationAccountGetResponseTagsMap": {
+    "com.azure.automation#GetAutomationAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -24071,7 +24072,7 @@
         "target": "com.azure.automation#ListAutomationAccountByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.automation#ListAutomationAccountResult"
+        "target": "com.azure.automation#AutomationAccountListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -24084,7 +24085,7 @@
         "com.distilled.openapi#apiVersion": "2024-10-23"
       }
     },
-    "com.azure.automation#ListAutomationAccountResult": {
+    "com.azure.automation#AutomationAccountListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -24347,7 +24348,7 @@
         "target": "com.azure.automation#ListAutomationAccountRequest"
       },
       "output": {
-        "target": "com.azure.automation#ListAutomationAccountResult"
+        "target": "com.azure.automation#AutomationAccountListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -24645,298 +24646,295 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.automation#GenerateWebhookUri"
+          "target": "com.azure.automation#AutomationAccountCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#DeleteWebhook"
+          "target": "com.azure.automation#CertificateCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#UpdateWebhook"
+          "target": "com.azure.automation#ConnectionCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#WebhookCreateOrUpdate"
+          "target": "com.azure.automation#ConnectionTypeCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#GetWebhook"
+          "target": "com.azure.automation#ConvertGraphRunbookContent"
         },
         {
-          "target": "com.azure.automation#ListWebhookByAutomationAccount"
+          "target": "com.azure.automation#CreateHybridRunbookWorker"
         },
         {
-          "target": "com.azure.automation#StopWatcher"
+          "target": "com.azure.automation#CreateHybridRunbookWorkerGroup"
         },
         {
-          "target": "com.azure.automation#StartWatcher"
+          "target": "com.azure.automation#CreateJob"
         },
         {
-          "target": "com.azure.automation#DeleteWatcher"
-        },
-        {
-          "target": "com.azure.automation#UpdateWatcher"
-        },
-        {
-          "target": "com.azure.automation#WatcherCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetWatcher"
-        },
-        {
-          "target": "com.azure.automation#ListWatcherByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#DeleteVariable"
-        },
-        {
-          "target": "com.azure.automation#UpdateVariable"
-        },
-        {
-          "target": "com.azure.automation#VariableCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetVariable"
-        },
-        {
-          "target": "com.azure.automation#ListVariableByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListUsageByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListStatisticByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#GetSourceControlSyncJobStream"
-        },
-        {
-          "target": "com.azure.automation#ListSourceControlSyncJobStreamBySyncJob2"
-        },
-        {
-          "target": "com.azure.automation#CreateSourceControlSyncJob"
-        },
-        {
-          "target": "com.azure.automation#GetSourceControlSyncJob"
-        },
-        {
-          "target": "com.azure.automation#ListSourceControlSyncJobByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#DeleteSourceControl"
-        },
-        {
-          "target": "com.azure.automation#UpdateSourceControl"
-        },
-        {
-          "target": "com.azure.automation#SourceControlCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetSourceControl"
-        },
-        {
-          "target": "com.azure.automation#ListSourceControlByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationsDelete"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationsCreate"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationsGetByName"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationsList"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationRunsGetById"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationRunsList"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationMachineRunsGetById"
-        },
-        {
-          "target": "com.azure.automation#SoftwareUpdateConfigurationMachineRunsList"
-        },
-        {
-          "target": "com.azure.automation#DeleteSchedule"
-        },
-        {
-          "target": "com.azure.automation#UpdateSchedule"
-        },
-        {
-          "target": "com.azure.automation#ScheduleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetSchedule"
-        },
-        {
-          "target": "com.azure.automation#ListScheduleByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#DeletePackage"
-        },
-        {
-          "target": "com.azure.automation#UpdatePackage"
-        },
-        {
-          "target": "com.azure.automation#PackageCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetPackage"
-        },
-        {
-          "target": "com.azure.automation#ListPackageByRuntimeEnvironment"
-        },
-        {
-          "target": "com.azure.automation#DeleteRuntimeEnvironment"
-        },
-        {
-          "target": "com.azure.automation#UpdateRuntimeEnvironment"
+          "target": "com.azure.automation#CreateJobSchedule"
         },
         {
           "target": "com.azure.automation#CreateRuntimeEnvironment"
         },
         {
-          "target": "com.azure.automation#GetRuntimeEnvironment"
+          "target": "com.azure.automation#CreateSoftwareUpdateConfiguration"
         },
         {
-          "target": "com.azure.automation#ListRuntimeEnvironmentByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#RunbookPublish"
-        },
-        {
-          "target": "com.azure.automation#RunbookDraftUndoEdit"
-        },
-        {
-          "target": "com.azure.automation#SuspendTestJob"
-        },
-        {
-          "target": "com.azure.automation#GetTestJobStream"
-        },
-        {
-          "target": "com.azure.automation#ListTestJobStreamByTestJob"
-        },
-        {
-          "target": "com.azure.automation#StopTestJob"
-        },
-        {
-          "target": "com.azure.automation#TestJobResume"
+          "target": "com.azure.automation#CreateSourceControlSyncJob"
         },
         {
           "target": "com.azure.automation#CreateTestJob"
         },
         {
-          "target": "com.azure.automation#GetTestJob"
+          "target": "com.azure.automation#CredentialCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#RunbookDraftReplaceContent"
+          "target": "com.azure.automation#DeleteAutomationAccount"
         },
         {
-          "target": "com.azure.automation#GetRunbookDraftContent"
+          "target": "com.azure.automation#DeleteCertificate"
         },
         {
-          "target": "com.azure.automation#GetRunbookDraft"
+          "target": "com.azure.automation#DeleteConnection"
         },
         {
-          "target": "com.azure.automation#GetRunbookContent"
+          "target": "com.azure.automation#DeleteConnectionType"
         },
         {
-          "target": "com.azure.automation#DeleteRunbook"
+          "target": "com.azure.automation#DeleteCredential"
         },
         {
-          "target": "com.azure.automation#UpdateRunbook"
-        },
-        {
-          "target": "com.azure.automation#RunbookCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetRunbook"
-        },
-        {
-          "target": "com.azure.automation#ListRunbookByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#DeletePython3Package"
-        },
-        {
-          "target": "com.azure.automation#UpdatePython3Package"
-        },
-        {
-          "target": "com.azure.automation#Python3PackageCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetPython3Package"
-        },
-        {
-          "target": "com.azure.automation#ListPython3PackageByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#DeletePython2Package"
-        },
-        {
-          "target": "com.azure.automation#UpdatePython2Package"
-        },
-        {
-          "target": "com.azure.automation#Python2PackageCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetPython2Package"
-        },
-        {
-          "target": "com.azure.automation#ListPython2PackageByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#PrivateLinkResourcesAutomation"
-        },
-        {
-          "target": "com.azure.automation#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.automation#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.automation#ListPrivateEndpointConnectionByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListObjectDataTypeFieldByType"
-        },
-        {
-          "target": "com.azure.automation#GetNodeReportContent"
-        },
-        {
-          "target": "com.azure.automation#GetNodeReport"
-        },
-        {
-          "target": "com.azure.automation#ListNodeReportByNode"
+          "target": "com.azure.automation#DeleteDscConfiguration"
         },
         {
           "target": "com.azure.automation#DeleteDscNode"
         },
         {
-          "target": "com.azure.automation#UpdateDscNode"
-        },
-        {
-          "target": "com.azure.automation#GetDscNode"
-        },
-        {
-          "target": "com.azure.automation#ListDscNodeByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#GetNodeCountInformation"
-        },
-        {
           "target": "com.azure.automation#DeleteDscNodeConfiguration"
+        },
+        {
+          "target": "com.azure.automation#DeleteHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#DeleteHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#DeleteJobSchedule"
+        },
+        {
+          "target": "com.azure.automation#DeleteModule"
+        },
+        {
+          "target": "com.azure.automation#DeletePackage"
+        },
+        {
+          "target": "com.azure.automation#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.automation#DeletePython2Package"
+        },
+        {
+          "target": "com.azure.automation#DeletePython3Package"
+        },
+        {
+          "target": "com.azure.automation#DeleteRunbook"
+        },
+        {
+          "target": "com.azure.automation#DeleteRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#DeleteSchedule"
+        },
+        {
+          "target": "com.azure.automation#DeleteSoftwareUpdateConfiguration"
+        },
+        {
+          "target": "com.azure.automation#DeleteSourceControl"
+        },
+        {
+          "target": "com.azure.automation#DeleteVariable"
+        },
+        {
+          "target": "com.azure.automation#DeleteWatcher"
+        },
+        {
+          "target": "com.azure.automation#DeleteWebhook"
+        },
+        {
+          "target": "com.azure.automation#DscConfigurationCreateOrUpdate"
         },
         {
           "target": "com.azure.automation#DscNodeConfigurationCreateOrUpdate"
         },
         {
+          "target": "com.azure.automation#EditRunbookDraftUndo"
+        },
+        {
+          "target": "com.azure.automation#GenerateWebhookUri"
+        },
+        {
+          "target": "com.azure.automation#GetActivity"
+        },
+        {
+          "target": "com.azure.automation#GetAgentRegistrationInformation"
+        },
+        {
+          "target": "com.azure.automation#GetAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#GetCertificate"
+        },
+        {
+          "target": "com.azure.automation#GetConnection"
+        },
+        {
+          "target": "com.azure.automation#GetConnectionType"
+        },
+        {
+          "target": "com.azure.automation#GetCredential"
+        },
+        {
+          "target": "com.azure.automation#GetDscConfiguration"
+        },
+        {
+          "target": "com.azure.automation#GetDscConfigurationContent"
+        },
+        {
+          "target": "com.azure.automation#GetDscNode"
+        },
+        {
           "target": "com.azure.automation#GetDscNodeConfiguration"
+        },
+        {
+          "target": "com.azure.automation#GetHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#GetHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#GetJob"
+        },
+        {
+          "target": "com.azure.automation#GetJobOutput"
+        },
+        {
+          "target": "com.azure.automation#GetJobRunbookContent"
+        },
+        {
+          "target": "com.azure.automation#GetJobSchedule"
+        },
+        {
+          "target": "com.azure.automation#GetJobStream"
+        },
+        {
+          "target": "com.azure.automation#GetLinkedWorkspace"
+        },
+        {
+          "target": "com.azure.automation#GetModule"
+        },
+        {
+          "target": "com.azure.automation#GetNodeCountInformation"
+        },
+        {
+          "target": "com.azure.automation#GetNodeReport"
+        },
+        {
+          "target": "com.azure.automation#GetNodeReportContent"
+        },
+        {
+          "target": "com.azure.automation#GetPackage"
+        },
+        {
+          "target": "com.azure.automation#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.automation#GetPython2Package"
+        },
+        {
+          "target": "com.azure.automation#GetPython3Package"
+        },
+        {
+          "target": "com.azure.automation#GetRunbook"
+        },
+        {
+          "target": "com.azure.automation#GetRunbookContent"
+        },
+        {
+          "target": "com.azure.automation#GetRunbookDraft"
+        },
+        {
+          "target": "com.azure.automation#GetRunbookDraftContent"
+        },
+        {
+          "target": "com.azure.automation#GetRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#GetSchedule"
+        },
+        {
+          "target": "com.azure.automation#GetSoftwareUpdateConfigurationByName"
+        },
+        {
+          "target": "com.azure.automation#GetSoftwareUpdateConfigurationMachineRunById"
+        },
+        {
+          "target": "com.azure.automation#GetSoftwareUpdateConfigurationRunById"
+        },
+        {
+          "target": "com.azure.automation#GetSourceControl"
+        },
+        {
+          "target": "com.azure.automation#GetSourceControlSyncJob"
+        },
+        {
+          "target": "com.azure.automation#GetSourceControlSyncJobStream"
+        },
+        {
+          "target": "com.azure.automation#GetTestJob"
+        },
+        {
+          "target": "com.azure.automation#GetTestJobStream"
+        },
+        {
+          "target": "com.azure.automation#GetVariable"
+        },
+        {
+          "target": "com.azure.automation#GetWatcher"
+        },
+        {
+          "target": "com.azure.automation#GetWebhook"
+        },
+        {
+          "target": "com.azure.automation#ListActivityByModule"
+        },
+        {
+          "target": "com.azure.automation#ListAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListAutomationAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.automation#ListAutomationAccountDeletedRunbooks"
+        },
+        {
+          "target": "com.azure.automation#ListCertificateByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListConnectionByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListConnectionTypeByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListCredentialByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListDeletedAutomationAccountBySubscription"
+        },
+        {
+          "target": "com.azure.automation#ListDscConfigurationByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListDscNodeByAutomationAccount"
         },
         {
           "target": "com.azure.automation#ListDscNodeConfigurationByAutomationAccount"
@@ -24945,220 +24943,223 @@
           "target": "com.azure.automation#ListFieldByType"
         },
         {
-          "target": "com.azure.automation#ListObjectDataTypeFieldByModuleAndType"
-        },
-        {
-          "target": "com.azure.automation#GetActivity"
-        },
-        {
-          "target": "com.azure.automation#ListActivityByModule"
-        },
-        {
-          "target": "com.azure.automation#DeleteModule"
-        },
-        {
-          "target": "com.azure.automation#UpdateModule"
-        },
-        {
-          "target": "com.azure.automation#ModuleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#GetModule"
-        },
-        {
-          "target": "com.azure.automation#ListModuleByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListKeyByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListAutomationAccountDeletedRunbooks"
-        },
-        {
-          "target": "com.azure.automation#GetLinkedWorkspace"
-        },
-        {
-          "target": "com.azure.automation#SuspendJob"
-        },
-        {
-          "target": "com.azure.automation#GetJobStream"
-        },
-        {
-          "target": "com.azure.automation#ListJobStreamByJob"
-        },
-        {
-          "target": "com.azure.automation#StopJob"
-        },
-        {
-          "target": "com.azure.automation#GetJobRunbookContent"
-        },
-        {
-          "target": "com.azure.automation#JobResume"
-        },
-        {
-          "target": "com.azure.automation#GetJobOutput"
-        },
-        {
-          "target": "com.azure.automation#CreateJob"
-        },
-        {
-          "target": "com.azure.automation#GetJob"
-        },
-        {
-          "target": "com.azure.automation#ListJobByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#DeleteJobSchedule"
-        },
-        {
-          "target": "com.azure.automation#CreateJobSchedule"
-        },
-        {
-          "target": "com.azure.automation#GetJobSchedule"
-        },
-        {
-          "target": "com.azure.automation#ListJobScheduleByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#HybridRunbookWorkersMove"
-        },
-        {
-          "target": "com.azure.automation#DeleteHybridRunbookWorker"
-        },
-        {
-          "target": "com.azure.automation#PatchHybridRunbookWorker"
-        },
-        {
-          "target": "com.azure.automation#CreateHybridRunbookWorker"
-        },
-        {
-          "target": "com.azure.automation#GetHybridRunbookWorker"
-        },
-        {
           "target": "com.azure.automation#ListHybridRunbookWorkerByHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#DeleteHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#UpdateHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#CreateHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#GetHybridRunbookWorkerGroup"
         },
         {
           "target": "com.azure.automation#ListHybridRunbookWorkerGroupByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#DeleteCredential"
+          "target": "com.azure.automation#ListJobByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#UpdateCredential"
+          "target": "com.azure.automation#ListJobScheduleByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#CredentialCreateOrUpdate"
+          "target": "com.azure.automation#ListJobStreamByJob"
         },
         {
-          "target": "com.azure.automation#GetCredential"
+          "target": "com.azure.automation#ListKeysByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListCredentialByAutomationAccount"
+          "target": "com.azure.automation#ListModuleByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ConvertGraphRunbookContent"
+          "target": "com.azure.automation#ListNodeReportByNode"
         },
         {
-          "target": "com.azure.automation#DeleteConnection"
+          "target": "com.azure.automation#ListObjectDataTypeFieldsByType"
         },
         {
-          "target": "com.azure.automation#UpdateConnection"
+          "target": "com.azure.automation#ListOperations"
         },
         {
-          "target": "com.azure.automation#ConnectionCreateOrUpdate"
+          "target": "com.azure.automation#ListPackageByRuntimeEnvironment"
         },
         {
-          "target": "com.azure.automation#GetConnection"
+          "target": "com.azure.automation#ListPrivateEndpointConnectionByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListConnectionByAutomationAccount"
+          "target": "com.azure.automation#ListPython2PackageByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#DeleteConnectionType"
+          "target": "com.azure.automation#ListPython3PackageByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ConnectionTypeCreateOrUpdate"
+          "target": "com.azure.automation#ListRunbookByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#GetConnectionType"
+          "target": "com.azure.automation#ListRuntimeEnvironmentByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListConnectionTypeByAutomationAccount"
+          "target": "com.azure.automation#ListScheduleByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#GetDscConfigurationContent"
+          "target": "com.azure.automation#ListSoftwareUpdateConfigurationMachineRuns"
         },
         {
-          "target": "com.azure.automation#DeleteDscConfiguration"
+          "target": "com.azure.automation#ListSoftwareUpdateConfigurationRuns"
         },
         {
-          "target": "com.azure.automation#UpdateDscConfiguration"
+          "target": "com.azure.automation#ListSoftwareUpdateConfigurations"
         },
         {
-          "target": "com.azure.automation#DscConfigurationCreateOrUpdate"
+          "target": "com.azure.automation#ListSourceControlByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#GetDscConfiguration"
+          "target": "com.azure.automation#ListSourceControlSyncJobByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListDscConfigurationByAutomationAccount"
+          "target": "com.azure.automation#ListSourceControlSyncJobStreamBySyncJob"
         },
         {
-          "target": "com.azure.automation#DeleteCertificate"
+          "target": "com.azure.automation#ListStatisticsByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#UpdateCertificate"
+          "target": "com.azure.automation#ListTestJobStreamByTestJob"
         },
         {
-          "target": "com.azure.automation#CertificateCreateOrUpdate"
+          "target": "com.azure.automation#ListUsageByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#GetCertificate"
+          "target": "com.azure.automation#ListVariableByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListCertificateByAutomationAccount"
+          "target": "com.azure.automation#ListWatcherByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#AgentRegistrationInformationRegenerateKey"
+          "target": "com.azure.automation#ListWebhookByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#GetAgentRegistrationInformation"
+          "target": "com.azure.automation#ModuleCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#DeleteAutomationAccount"
+          "target": "com.azure.automation#MoveHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#ObjectDataTypesListFieldsByModuleAndType"
+        },
+        {
+          "target": "com.azure.automation#PackageCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#PatchHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#PrivateLinkResourcesAutomation"
+        },
+        {
+          "target": "com.azure.automation#PublishRunbook"
+        },
+        {
+          "target": "com.azure.automation#Python2PackageCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#Python3PackageCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#RegenerateAgentRegistrationInformationKey"
+        },
+        {
+          "target": "com.azure.automation#ReplaceRunbookDraftContent"
+        },
+        {
+          "target": "com.azure.automation#ResumeJob"
+        },
+        {
+          "target": "com.azure.automation#ResumeTestJob"
+        },
+        {
+          "target": "com.azure.automation#RunbookCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#ScheduleCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#SourceControlCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#StartWatcher"
+        },
+        {
+          "target": "com.azure.automation#StopJob"
+        },
+        {
+          "target": "com.azure.automation#StopTestJob"
+        },
+        {
+          "target": "com.azure.automation#StopWatcher"
+        },
+        {
+          "target": "com.azure.automation#SuspendJob"
+        },
+        {
+          "target": "com.azure.automation#SuspendTestJob"
         },
         {
           "target": "com.azure.automation#UpdateAutomationAccount"
         },
         {
-          "target": "com.azure.automation#AutomationAccountCreateOrUpdate"
+          "target": "com.azure.automation#UpdateCertificate"
         },
         {
-          "target": "com.azure.automation#GetAutomationAccount"
+          "target": "com.azure.automation#UpdateConnection"
         },
         {
-          "target": "com.azure.automation#ListAutomationAccountByResourceGroup"
+          "target": "com.azure.automation#UpdateCredential"
         },
         {
-          "target": "com.azure.automation#ListDeletedAutomationAccountBySubscription"
+          "target": "com.azure.automation#UpdateDscConfiguration"
         },
         {
-          "target": "com.azure.automation#ListAutomationAccount"
+          "target": "com.azure.automation#UpdateDscNode"
         },
         {
-          "target": "com.azure.automation#ListOperations"
+          "target": "com.azure.automation#UpdateHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#UpdateModule"
+        },
+        {
+          "target": "com.azure.automation#UpdatePackage"
+        },
+        {
+          "target": "com.azure.automation#UpdatePython2Package"
+        },
+        {
+          "target": "com.azure.automation#UpdatePython3Package"
+        },
+        {
+          "target": "com.azure.automation#UpdateRunbook"
+        },
+        {
+          "target": "com.azure.automation#UpdateRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#UpdateSchedule"
+        },
+        {
+          "target": "com.azure.automation#UpdateSourceControl"
+        },
+        {
+          "target": "com.azure.automation#UpdateVariable"
+        },
+        {
+          "target": "com.azure.automation#UpdateWatcher"
+        },
+        {
+          "target": "com.azure.automation#UpdateWebhook"
+        },
+        {
+          "target": "com.azure.automation#VariableCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#WatcherCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#WebhookCreateOrUpdate"
         }
       ],
       "traits": {

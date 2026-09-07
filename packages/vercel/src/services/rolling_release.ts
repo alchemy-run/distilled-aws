@@ -57,6 +57,618 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface ApproveRollingReleaseStageRequest {
+  /** Project ID or project name (URL-encoded) */
+  idOrName: string;
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+  /** The index of the stage to transition to */
+  nextStageIndex: number;
+  /** The id of the canary deployment to approve for the next stage */
+  canaryDeploymentId: string;
+}
+export const ApproveRollingReleaseStageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    idOrName: S.String.pipe(T.Label()),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+    nextStageIndex: S.Number,
+    canaryDeploymentId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{idOrName}/rolling-release/approve-stage",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ApproveRollingReleaseStageRequest",
+}) as any as S.Schema<ApproveRollingReleaseStageRequest>;
+
+/** The current state of the rolling release */
+export type ApproveRollingReleaseStageResponseRollingReleaseState =
+  | "ABORTED"
+  | "ACTIVE"
+  | "COMPLETE";
+export const ApproveRollingReleaseStageResponseRollingReleaseState =
+  /*@__PURE__*/ S.String;
+
+/** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
+export type ApproveRollingReleaseStageResponseRollingReleaseSubstate = "PAUSED";
+export const ApproveRollingReleaseStageResponseRollingReleaseSubstate =
+  /*@__PURE__*/ S.String;
+
+/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState =
+  | "BLOCKED"
+  | "BUILDING"
+  | "CANCELED"
+  | "ERROR"
+  | "INITIALIZING"
+  | "QUEUED"
+  | "READY";
+export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState =
+  /*@__PURE__*/ S.String;
+
+/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget =
+  | "production"
+  | "staging";
+export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget =
+  /*@__PURE__*/ S.String;
+
+/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource =
+  | "api-trigger-git-deploy"
+  | "cli"
+  | "clone/repo"
+  | "drop"
+  | "git"
+  | "git-deploy-hook"
+  | "import"
+  | "import/repo"
+  | "redeploy"
+  | "v0-web";
+export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource =
+  /*@__PURE__*/ S.String;
+
+/** The current deployment receiving production traffic */
+export interface ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment {
+  /** The name of the project associated with the deployment at the time that the deployment was created */
+  name: string;
+  /** A number containing the date when the deployment was created in milliseconds */
+  createdAt: number;
+  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+  readyState: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState;
+  /** A string holding the unique ID of the deployment */
+  id: string;
+  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+  target?: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget | null;
+  readyStateAt?: number;
+  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+  source?: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource;
+  /** A string with the unique URL of the deployment */
+  url: string;
+}
+export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      createdAt: S.Number,
+      readyState:
+        ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState,
+      id: S.String,
+      target: S.optional(
+        S.NullOr(
+          ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget,
+        ),
+      ),
+      readyStateAt: S.optional(S.Number),
+      source: S.optional(
+        ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource,
+      ),
+      url: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment",
+  }) as any as S.Schema<ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment>;
+
+/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState =
+  | "BLOCKED"
+  | "BUILDING"
+  | "CANCELED"
+  | "ERROR"
+  | "INITIALIZING"
+  | "QUEUED"
+  | "READY";
+export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState =
+  /*@__PURE__*/ S.String;
+
+/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget =
+  | "production"
+  | "staging";
+export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget =
+  /*@__PURE__*/ S.String;
+
+/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource =
+  | "api-trigger-git-deploy"
+  | "cli"
+  | "clone/repo"
+  | "drop"
+  | "git"
+  | "git-deploy-hook"
+  | "import"
+  | "import/repo"
+  | "redeploy"
+  | "v0-web";
+export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource =
+  /*@__PURE__*/ S.String;
+
+/** The canary deployment being rolled out */
+export interface ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment {
+  /** The name of the project associated with the deployment at the time that the deployment was created */
+  name: string;
+  /** A number containing the date when the deployment was created in milliseconds */
+  createdAt: number;
+  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+  readyState: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState;
+  /** A string holding the unique ID of the deployment */
+  id: string;
+  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+  target?: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget | null;
+  readyStateAt?: number;
+  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+  source?: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource;
+  /** A string with the unique URL of the deployment */
+  url: string;
+}
+export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      createdAt: S.Number,
+      readyState:
+        ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState,
+      id: S.String,
+      target: S.optional(
+        S.NullOr(
+          ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget,
+        ),
+      ),
+      readyStateAt: S.optional(S.Number),
+      source: S.optional(
+        ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource,
+      ),
+      url: S.String,
+    }),
+  ).annotate({
+    identifier:
+      "ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment",
+  }) as any as S.Schema<ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment>;
+
+/** The advancement type of the rolling release */
+export type ApproveRollingReleaseStageResponseRollingReleaseAdvancementType =
+  | "automatic"
+  | "manual-approval";
+export const ApproveRollingReleaseStageResponseRollingReleaseAdvancementType =
+  /*@__PURE__*/ S.String;
+
+/** All stages configured for this rolling release */
+export interface ApproveRollingReleaseStageResponseRollingReleaseStagesItem {
+  /** The zero-based index of the stage */
+  index: number;
+  /** Whether or not this stage is the final stage (targetPercentage === 100) */
+  isFinalStage: boolean;
+  /** The percentage of traffic to serve to the canary deployment (0-100) */
+  targetPercentage: number;
+  /** Whether or not this stage requires manual approval to proceed */
+  requireApproval: boolean;
+  /** Duration in seconds for automatic advancement, null for manual stages or the final stage */
+  duration: number | null;
+  /** Whether to linearly shift traffic over the duration of this stage */
+  linearShift?: boolean;
+}
+export const ApproveRollingReleaseStageResponseRollingReleaseStagesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      index: S.Number,
+      isFinalStage: S.Boolean,
+      targetPercentage: S.Number,
+      requireApproval: S.Boolean,
+      duration: S.NullOr(S.Number),
+      linearShift: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "ApproveRollingReleaseStageResponseRollingReleaseStagesItem",
+  }) as any as S.Schema<ApproveRollingReleaseStageResponseRollingReleaseStagesItem>;
+
+/** All stages configured for this rolling release */
+export type ApproveRollingReleaseStageResponseRollingReleaseStagesList =
+  Array<ApproveRollingReleaseStageResponseRollingReleaseStagesItem>;
+export const ApproveRollingReleaseStageResponseRollingReleaseStagesList =
+  /*@__PURE__*/ S.Array(
+    ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+  ) as any as S.Schema<ApproveRollingReleaseStageResponseRollingReleaseStagesList>;
+
+/** The currently active stage, null if the rollout is aborted */
+export type ApproveRollingReleaseStageResponseRollingReleaseActiveStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+export const ApproveRollingReleaseStageResponseRollingReleaseActiveStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+
+/** The next stage to be activated, null if not in ACTIVE state */
+export type ApproveRollingReleaseStageResponseRollingReleaseNextStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+export const ApproveRollingReleaseStageResponseRollingReleaseNextStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+
+/** Rolling release information including configuration and document details, or null if no rolling release exists */
+export interface ApproveRollingReleaseStageResponseRollingRelease {
+  /** The current state of the rolling release */
+  state: ApproveRollingReleaseStageResponseRollingReleaseState;
+  /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
+  substate: ApproveRollingReleaseStageResponseRollingReleaseSubstate | null;
+  /** The current deployment receiving production traffic */
+  currentDeployment: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment | null;
+  /** The canary deployment being rolled out */
+  canaryDeployment: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment | null;
+  /** The ID of a deployment queued for the next rolling release */
+  queuedDeploymentId: string | null;
+  /** The advancement type of the rolling release */
+  advancementType: ApproveRollingReleaseStageResponseRollingReleaseAdvancementType;
+  /** All stages configured for this rolling release */
+  stages: ApproveRollingReleaseStageResponseRollingReleaseStagesList;
+  /** The currently active stage, null if the rollout is aborted */
+  activeStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
+  /** The next stage to be activated, null if not in ACTIVE state */
+  nextStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
+  /** Unix timestamp in milliseconds when the rolling release started */
+  startedAt: number;
+  /** Unix timestamp in milliseconds when the rolling release was last updated */
+  updatedAt: number;
+  /** When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active. */
+  currentCanaryPercentage?: number;
+}
+export const ApproveRollingReleaseStageResponseRollingRelease =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      state: ApproveRollingReleaseStageResponseRollingReleaseState,
+      substate: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseSubstate,
+      ),
+      currentDeployment: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment,
+      ),
+      canaryDeployment: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment,
+      ),
+      queuedDeploymentId: S.NullOr(S.String),
+      advancementType:
+        ApproveRollingReleaseStageResponseRollingReleaseAdvancementType,
+      stages: ApproveRollingReleaseStageResponseRollingReleaseStagesList,
+      activeStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
+      nextStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
+      startedAt: S.Number,
+      updatedAt: S.Number,
+      currentCanaryPercentage: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "ApproveRollingReleaseStageResponseRollingRelease",
+  }) as any as S.Schema<ApproveRollingReleaseStageResponseRollingRelease>;
+
+export interface ApproveRollingReleaseStageResponse {
+  /** Rolling release information including configuration and document details, or null if no rolling release exists */
+  rollingRelease: ApproveRollingReleaseStageResponseRollingRelease | null;
+}
+export const ApproveRollingReleaseStageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rollingRelease: S.NullOr(ApproveRollingReleaseStageResponseRollingRelease),
+  }),
+).annotate({
+  identifier: "ApproveRollingReleaseStageResponse",
+}) as any as S.Schema<ApproveRollingReleaseStageResponse>;
+
+export interface CompleteRollingReleaseRequest {
+  /** Project ID or project name (URL-encoded) */
+  idOrName: string;
+  /** The Team identifier to perform the request on behalf of. */
+  teamId?: string;
+  /** The Team slug to perform the request on behalf of. */
+  slug?: string;
+  /** The ID of the canary deployment to complete */
+  canaryDeploymentId: string;
+}
+export const CompleteRollingReleaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    idOrName: S.String.pipe(T.Label()),
+    teamId: S.optional(S.String.pipe(T.Query())),
+    slug: S.optional(S.String.pipe(T.Query())),
+    canaryDeploymentId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/projects/{idOrName}/rolling-release/complete",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CompleteRollingReleaseRequest",
+}) as any as S.Schema<CompleteRollingReleaseRequest>;
+
+/** The current state of the rolling release */
+export type CompleteRollingReleaseResponseRollingReleaseState =
+  | "ABORTED"
+  | "ACTIVE"
+  | "COMPLETE";
+export const CompleteRollingReleaseResponseRollingReleaseState =
+  /*@__PURE__*/ S.String;
+
+/** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
+export type CompleteRollingReleaseResponseRollingReleaseSubstate = "PAUSED";
+export const CompleteRollingReleaseResponseRollingReleaseSubstate =
+  /*@__PURE__*/ S.String;
+
+/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
+  | "BLOCKED"
+  | "BUILDING"
+  | "CANCELED"
+  | "ERROR"
+  | "INITIALIZING"
+  | "QUEUED"
+  | "READY";
+export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
+  /*@__PURE__*/ S.String;
+
+/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
+  | "production"
+  | "staging";
+export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
+  /*@__PURE__*/ S.String;
+
+/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
+  | "api-trigger-git-deploy"
+  | "cli"
+  | "clone/repo"
+  | "drop"
+  | "git"
+  | "git-deploy-hook"
+  | "import"
+  | "import/repo"
+  | "redeploy"
+  | "v0-web";
+export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
+  /*@__PURE__*/ S.String;
+
+/** The current deployment receiving production traffic */
+export interface CompleteRollingReleaseResponseRollingReleaseCurrentDeployment {
+  /** The name of the project associated with the deployment at the time that the deployment was created */
+  name: string;
+  /** A number containing the date when the deployment was created in milliseconds */
+  createdAt: number;
+  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+  readyState: CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState;
+  /** A string holding the unique ID of the deployment */
+  id: string;
+  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+  target?: CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget | null;
+  readyStateAt?: number;
+  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+  source?: CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource;
+  /** A string with the unique URL of the deployment */
+  url: string;
+}
+export const CompleteRollingReleaseResponseRollingReleaseCurrentDeployment =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      createdAt: S.Number,
+      readyState:
+        CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState,
+      id: S.String,
+      target: S.optional(
+        S.NullOr(
+          CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget,
+        ),
+      ),
+      readyStateAt: S.optional(S.Number),
+      source: S.optional(
+        CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource,
+      ),
+      url: S.String,
+    }),
+  ).annotate({
+    identifier: "CompleteRollingReleaseResponseRollingReleaseCurrentDeployment",
+  }) as any as S.Schema<CompleteRollingReleaseResponseRollingReleaseCurrentDeployment>;
+
+/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
+  | "BLOCKED"
+  | "BUILDING"
+  | "CANCELED"
+  | "ERROR"
+  | "INITIALIZING"
+  | "QUEUED"
+  | "READY";
+export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
+  /*@__PURE__*/ S.String;
+
+/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
+  | "production"
+  | "staging";
+export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
+  /*@__PURE__*/ S.String;
+
+/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
+  | "api-trigger-git-deploy"
+  | "cli"
+  | "clone/repo"
+  | "drop"
+  | "git"
+  | "git-deploy-hook"
+  | "import"
+  | "import/repo"
+  | "redeploy"
+  | "v0-web";
+export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
+  /*@__PURE__*/ S.String;
+
+/** The canary deployment being rolled out */
+export interface CompleteRollingReleaseResponseRollingReleaseCanaryDeployment {
+  /** The name of the project associated with the deployment at the time that the deployment was created */
+  name: string;
+  /** A number containing the date when the deployment was created in milliseconds */
+  createdAt: number;
+  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
+  readyState: CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState;
+  /** A string holding the unique ID of the deployment */
+  id: string;
+  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
+  target?: CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget | null;
+  readyStateAt?: number;
+  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
+  source?: CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource;
+  /** A string with the unique URL of the deployment */
+  url: string;
+}
+export const CompleteRollingReleaseResponseRollingReleaseCanaryDeployment =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      createdAt: S.Number,
+      readyState:
+        CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState,
+      id: S.String,
+      target: S.optional(
+        S.NullOr(
+          CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget,
+        ),
+      ),
+      readyStateAt: S.optional(S.Number),
+      source: S.optional(
+        CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource,
+      ),
+      url: S.String,
+    }),
+  ).annotate({
+    identifier: "CompleteRollingReleaseResponseRollingReleaseCanaryDeployment",
+  }) as any as S.Schema<CompleteRollingReleaseResponseRollingReleaseCanaryDeployment>;
+
+/** The advancement type of the rolling release */
+export type CompleteRollingReleaseResponseRollingReleaseAdvancementType =
+  | "automatic"
+  | "manual-approval";
+export const CompleteRollingReleaseResponseRollingReleaseAdvancementType =
+  /*@__PURE__*/ S.String;
+
+/** All stages configured for this rolling release */
+export type CompleteRollingReleaseResponseRollingReleaseStagesItem =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+export const CompleteRollingReleaseResponseRollingReleaseStagesItem =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+
+/** All stages configured for this rolling release */
+export type CompleteRollingReleaseResponseRollingReleaseStagesList =
+  Array<ApproveRollingReleaseStageResponseRollingReleaseStagesItem>;
+export const CompleteRollingReleaseResponseRollingReleaseStagesList =
+  /*@__PURE__*/ S.Array(
+    ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+  ) as any as S.Schema<CompleteRollingReleaseResponseRollingReleaseStagesList>;
+
+/** The currently active stage, null if the rollout is aborted */
+export type CompleteRollingReleaseResponseRollingReleaseActiveStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+export const CompleteRollingReleaseResponseRollingReleaseActiveStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+
+/** The next stage to be activated, null if not in ACTIVE state */
+export type CompleteRollingReleaseResponseRollingReleaseNextStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+export const CompleteRollingReleaseResponseRollingReleaseNextStage =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
+
+/** Rolling release information including configuration and document details, or null if no rolling release exists */
+export interface CompleteRollingReleaseResponseRollingRelease {
+  /** The current state of the rolling release */
+  state: CompleteRollingReleaseResponseRollingReleaseState;
+  /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
+  substate: CompleteRollingReleaseResponseRollingReleaseSubstate | null;
+  /** The current deployment receiving production traffic */
+  currentDeployment: CompleteRollingReleaseResponseRollingReleaseCurrentDeployment | null;
+  /** The canary deployment being rolled out */
+  canaryDeployment: CompleteRollingReleaseResponseRollingReleaseCanaryDeployment | null;
+  /** The ID of a deployment queued for the next rolling release */
+  queuedDeploymentId: string | null;
+  /** The advancement type of the rolling release */
+  advancementType: CompleteRollingReleaseResponseRollingReleaseAdvancementType;
+  /** All stages configured for this rolling release */
+  stages: CompleteRollingReleaseResponseRollingReleaseStagesList;
+  /** The currently active stage, null if the rollout is aborted */
+  activeStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
+  /** The next stage to be activated, null if not in ACTIVE state */
+  nextStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
+  /** Unix timestamp in milliseconds when the rolling release started */
+  startedAt: number;
+  /** Unix timestamp in milliseconds when the rolling release was last updated */
+  updatedAt: number;
+  /** When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active. */
+  currentCanaryPercentage?: number;
+}
+export const CompleteRollingReleaseResponseRollingRelease =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      state: CompleteRollingReleaseResponseRollingReleaseState,
+      substate: S.NullOr(CompleteRollingReleaseResponseRollingReleaseSubstate),
+      currentDeployment: S.NullOr(
+        CompleteRollingReleaseResponseRollingReleaseCurrentDeployment,
+      ),
+      canaryDeployment: S.NullOr(
+        CompleteRollingReleaseResponseRollingReleaseCanaryDeployment,
+      ),
+      queuedDeploymentId: S.NullOr(S.String),
+      advancementType:
+        CompleteRollingReleaseResponseRollingReleaseAdvancementType,
+      stages: CompleteRollingReleaseResponseRollingReleaseStagesList,
+      activeStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
+      nextStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
+      startedAt: S.Number,
+      updatedAt: S.Number,
+      currentCanaryPercentage: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "CompleteRollingReleaseResponseRollingRelease",
+  }) as any as S.Schema<CompleteRollingReleaseResponseRollingRelease>;
+
+export interface CompleteRollingReleaseResponse {
+  /** Rolling release information including configuration and document details, or null if no rolling release exists */
+  rollingRelease: CompleteRollingReleaseResponseRollingRelease | null;
+}
+export const CompleteRollingReleaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rollingRelease: S.NullOr(CompleteRollingReleaseResponseRollingRelease),
+  }),
+).annotate({
+  identifier: "CompleteRollingReleaseResponse",
+}) as any as S.Schema<CompleteRollingReleaseResponse>;
+
 export interface DeleteRollingReleaseConfigRequest {
   /** Project ID or project name (URL-encoded) */
   idOrName: string;
@@ -292,53 +904,30 @@ export const GetRollingReleaseResponseRollingReleaseAdvancementType =
   /*@__PURE__*/ S.String;
 
 /** All stages configured for this rolling release */
-export interface GetRollingReleaseResponseRollingReleaseStagesItem {
-  /** The zero-based index of the stage */
-  index: number;
-  /** Whether or not this stage is the final stage (targetPercentage === 100) */
-  isFinalStage: boolean;
-  /** The percentage of traffic to serve to the canary deployment (0-100) */
-  targetPercentage: number;
-  /** Whether or not this stage requires manual approval to proceed */
-  requireApproval: boolean;
-  /** Duration in seconds for automatic advancement, null for manual stages or the final stage */
-  duration: number | null;
-  /** Whether to linearly shift traffic over the duration of this stage */
-  linearShift?: boolean;
-}
+export type GetRollingReleaseResponseRollingReleaseStagesItem =
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 export const GetRollingReleaseResponseRollingReleaseStagesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      index: S.Number,
-      isFinalStage: S.Boolean,
-      targetPercentage: S.Number,
-      requireApproval: S.Boolean,
-      duration: S.NullOr(S.Number),
-      linearShift: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "GetRollingReleaseResponseRollingReleaseStagesItem",
-  }) as any as S.Schema<GetRollingReleaseResponseRollingReleaseStagesItem>;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 
 /** All stages configured for this rolling release */
 export type GetRollingReleaseResponseRollingReleaseStagesList =
-  Array<GetRollingReleaseResponseRollingReleaseStagesItem>;
+  Array<ApproveRollingReleaseStageResponseRollingReleaseStagesItem>;
 export const GetRollingReleaseResponseRollingReleaseStagesList =
   /*@__PURE__*/ S.Array(
-    GetRollingReleaseResponseRollingReleaseStagesItem,
+    ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
   ) as any as S.Schema<GetRollingReleaseResponseRollingReleaseStagesList>;
 
 /** The currently active stage, null if the rollout is aborted */
 export type GetRollingReleaseResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 export const GetRollingReleaseResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 
 /** The next stage to be activated, null if not in ACTIVE state */
 export type GetRollingReleaseResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 export const GetRollingReleaseResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 
 /** Rolling release information including configuration and document details, or null if no rolling release exists */
 export interface GetRollingReleaseResponseRollingRelease {
@@ -357,9 +946,9 @@ export interface GetRollingReleaseResponseRollingRelease {
   /** All stages configured for this rolling release */
   stages: GetRollingReleaseResponseRollingReleaseStagesList;
   /** The currently active stage, null if the rollout is aborted */
-  activeStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
+  activeStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
   /** The next stage to be activated, null if not in ACTIVE state */
-  nextStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
+  nextStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
   /** Unix timestamp in milliseconds when the rolling release started */
   startedAt: number;
   /** Unix timestamp in milliseconds when the rolling release was last updated */
@@ -381,8 +970,12 @@ export const GetRollingReleaseResponseRollingRelease = /*@__PURE__*/ S.suspend(
       queuedDeploymentId: S.NullOr(S.String),
       advancementType: GetRollingReleaseResponseRollingReleaseAdvancementType,
       stages: GetRollingReleaseResponseRollingReleaseStagesList,
-      activeStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
-      nextStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
+      activeStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
+      nextStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
       startedAt: S.Number,
       updatedAt: S.Number,
       currentCanaryPercentage: S.optional(S.Number),
@@ -742,587 +1335,6 @@ export const GetRollingReleaseConfigResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRollingReleaseConfigResponse",
 }) as any as S.Schema<GetRollingReleaseConfigResponse>;
 
-export interface ReleaseApproveRollingStageRequest {
-  /** Project ID or project name (URL-encoded) */
-  idOrName: string;
-  /** The Team identifier to perform the request on behalf of. */
-  teamId?: string;
-  /** The Team slug to perform the request on behalf of. */
-  slug?: string;
-  /** The index of the stage to transition to */
-  nextStageIndex: number;
-  /** The id of the canary deployment to approve for the next stage */
-  canaryDeploymentId: string;
-}
-export const ReleaseApproveRollingStageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    idOrName: S.String.pipe(T.Label()),
-    teamId: S.optional(S.String.pipe(T.Query())),
-    slug: S.optional(S.String.pipe(T.Query())),
-    nextStageIndex: S.Number,
-    canaryDeploymentId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{idOrName}/rolling-release/approve-stage",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReleaseApproveRollingStageRequest",
-}) as any as S.Schema<ReleaseApproveRollingStageRequest>;
-
-/** The current state of the rolling release */
-export type ApproveRollingReleaseStageResponseRollingReleaseState =
-  | "ABORTED"
-  | "ACTIVE"
-  | "COMPLETE";
-export const ApproveRollingReleaseStageResponseRollingReleaseState =
-  /*@__PURE__*/ S.String;
-
-/** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
-export type ApproveRollingReleaseStageResponseRollingReleaseSubstate = "PAUSED";
-export const ApproveRollingReleaseStageResponseRollingReleaseSubstate =
-  /*@__PURE__*/ S.String;
-
-/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState =
-  | "BLOCKED"
-  | "BUILDING"
-  | "CANCELED"
-  | "ERROR"
-  | "INITIALIZING"
-  | "QUEUED"
-  | "READY";
-export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState =
-  /*@__PURE__*/ S.String;
-
-/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget =
-  | "production"
-  | "staging";
-export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget =
-  /*@__PURE__*/ S.String;
-
-/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-export type ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource =
-  | "api-trigger-git-deploy"
-  | "cli"
-  | "clone/repo"
-  | "drop"
-  | "git"
-  | "git-deploy-hook"
-  | "import"
-  | "import/repo"
-  | "redeploy"
-  | "v0-web";
-export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource =
-  /*@__PURE__*/ S.String;
-
-/** The current deployment receiving production traffic */
-export interface ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment {
-  /** The name of the project associated with the deployment at the time that the deployment was created */
-  name: string;
-  /** A number containing the date when the deployment was created in milliseconds */
-  createdAt: number;
-  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-  readyState: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState;
-  /** A string holding the unique ID of the deployment */
-  id: string;
-  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-  target?: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget | null;
-  readyStateAt?: number;
-  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-  source?: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource;
-  /** A string with the unique URL of the deployment */
-  url: string;
-}
-export const ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      createdAt: S.Number,
-      readyState:
-        ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentReadyState,
-      id: S.String,
-      target: S.optional(
-        S.NullOr(
-          ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentTarget,
-        ),
-      ),
-      readyStateAt: S.optional(S.Number),
-      source: S.optional(
-        ApproveRollingReleaseStageResponseRollingReleaseCurrentDeploymentSource,
-      ),
-      url: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment",
-  }) as any as S.Schema<ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment>;
-
-/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState =
-  | "BLOCKED"
-  | "BUILDING"
-  | "CANCELED"
-  | "ERROR"
-  | "INITIALIZING"
-  | "QUEUED"
-  | "READY";
-export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState =
-  /*@__PURE__*/ S.String;
-
-/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget =
-  | "production"
-  | "staging";
-export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget =
-  /*@__PURE__*/ S.String;
-
-/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-export type ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource =
-  | "api-trigger-git-deploy"
-  | "cli"
-  | "clone/repo"
-  | "drop"
-  | "git"
-  | "git-deploy-hook"
-  | "import"
-  | "import/repo"
-  | "redeploy"
-  | "v0-web";
-export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource =
-  /*@__PURE__*/ S.String;
-
-/** The canary deployment being rolled out */
-export interface ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment {
-  /** The name of the project associated with the deployment at the time that the deployment was created */
-  name: string;
-  /** A number containing the date when the deployment was created in milliseconds */
-  createdAt: number;
-  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-  readyState: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState;
-  /** A string holding the unique ID of the deployment */
-  id: string;
-  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-  target?: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget | null;
-  readyStateAt?: number;
-  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-  source?: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource;
-  /** A string with the unique URL of the deployment */
-  url: string;
-}
-export const ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      createdAt: S.Number,
-      readyState:
-        ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentReadyState,
-      id: S.String,
-      target: S.optional(
-        S.NullOr(
-          ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentTarget,
-        ),
-      ),
-      readyStateAt: S.optional(S.Number),
-      source: S.optional(
-        ApproveRollingReleaseStageResponseRollingReleaseCanaryDeploymentSource,
-      ),
-      url: S.String,
-    }),
-  ).annotate({
-    identifier:
-      "ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment",
-  }) as any as S.Schema<ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment>;
-
-/** The advancement type of the rolling release */
-export type ApproveRollingReleaseStageResponseRollingReleaseAdvancementType =
-  | "automatic"
-  | "manual-approval";
-export const ApproveRollingReleaseStageResponseRollingReleaseAdvancementType =
-  /*@__PURE__*/ S.String;
-
-/** All stages configured for this rolling release */
-export type ApproveRollingReleaseStageResponseRollingReleaseStagesItem =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-export const ApproveRollingReleaseStageResponseRollingReleaseStagesItem =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-
-/** All stages configured for this rolling release */
-export type ApproveRollingReleaseStageResponseRollingReleaseStagesList =
-  Array<GetRollingReleaseResponseRollingReleaseStagesItem>;
-export const ApproveRollingReleaseStageResponseRollingReleaseStagesList =
-  /*@__PURE__*/ S.Array(
-    GetRollingReleaseResponseRollingReleaseStagesItem,
-  ) as any as S.Schema<ApproveRollingReleaseStageResponseRollingReleaseStagesList>;
-
-/** The currently active stage, null if the rollout is aborted */
-export type ApproveRollingReleaseStageResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-export const ApproveRollingReleaseStageResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-
-/** The next stage to be activated, null if not in ACTIVE state */
-export type ApproveRollingReleaseStageResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-export const ApproveRollingReleaseStageResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-
-/** Rolling release information including configuration and document details, or null if no rolling release exists */
-export interface ApproveRollingReleaseStageResponseRollingRelease {
-  /** The current state of the rolling release */
-  state: ApproveRollingReleaseStageResponseRollingReleaseState;
-  /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
-  substate: ApproveRollingReleaseStageResponseRollingReleaseSubstate | null;
-  /** The current deployment receiving production traffic */
-  currentDeployment: ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment | null;
-  /** The canary deployment being rolled out */
-  canaryDeployment: ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment | null;
-  /** The ID of a deployment queued for the next rolling release */
-  queuedDeploymentId: string | null;
-  /** The advancement type of the rolling release */
-  advancementType: ApproveRollingReleaseStageResponseRollingReleaseAdvancementType;
-  /** All stages configured for this rolling release */
-  stages: ApproveRollingReleaseStageResponseRollingReleaseStagesList;
-  /** The currently active stage, null if the rollout is aborted */
-  activeStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
-  /** The next stage to be activated, null if not in ACTIVE state */
-  nextStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
-  /** Unix timestamp in milliseconds when the rolling release started */
-  startedAt: number;
-  /** Unix timestamp in milliseconds when the rolling release was last updated */
-  updatedAt: number;
-  /** When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active. */
-  currentCanaryPercentage?: number;
-}
-export const ApproveRollingReleaseStageResponseRollingRelease =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      state: ApproveRollingReleaseStageResponseRollingReleaseState,
-      substate: S.NullOr(
-        ApproveRollingReleaseStageResponseRollingReleaseSubstate,
-      ),
-      currentDeployment: S.NullOr(
-        ApproveRollingReleaseStageResponseRollingReleaseCurrentDeployment,
-      ),
-      canaryDeployment: S.NullOr(
-        ApproveRollingReleaseStageResponseRollingReleaseCanaryDeployment,
-      ),
-      queuedDeploymentId: S.NullOr(S.String),
-      advancementType:
-        ApproveRollingReleaseStageResponseRollingReleaseAdvancementType,
-      stages: ApproveRollingReleaseStageResponseRollingReleaseStagesList,
-      activeStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
-      nextStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
-      startedAt: S.Number,
-      updatedAt: S.Number,
-      currentCanaryPercentage: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "ApproveRollingReleaseStageResponseRollingRelease",
-  }) as any as S.Schema<ApproveRollingReleaseStageResponseRollingRelease>;
-
-export interface ReleaseApproveRollingStageResponse {
-  /** Rolling release information including configuration and document details, or null if no rolling release exists */
-  rollingRelease: ApproveRollingReleaseStageResponseRollingRelease | null;
-}
-export const ReleaseApproveRollingStageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rollingRelease: S.NullOr(ApproveRollingReleaseStageResponseRollingRelease),
-  }),
-).annotate({
-  identifier: "ReleaseApproveRollingStageResponse",
-}) as any as S.Schema<ReleaseApproveRollingStageResponse>;
-
-export interface ReleaseCompleteRollingRequest {
-  /** Project ID or project name (URL-encoded) */
-  idOrName: string;
-  /** The Team identifier to perform the request on behalf of. */
-  teamId?: string;
-  /** The Team slug to perform the request on behalf of. */
-  slug?: string;
-  /** The ID of the canary deployment to complete */
-  canaryDeploymentId: string;
-}
-export const ReleaseCompleteRollingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    idOrName: S.String.pipe(T.Label()),
-    teamId: S.optional(S.String.pipe(T.Query())),
-    slug: S.optional(S.String.pipe(T.Query())),
-    canaryDeploymentId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/projects/{idOrName}/rolling-release/complete",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReleaseCompleteRollingRequest",
-}) as any as S.Schema<ReleaseCompleteRollingRequest>;
-
-/** The current state of the rolling release */
-export type CompleteRollingReleaseResponseRollingReleaseState =
-  | "ABORTED"
-  | "ACTIVE"
-  | "COMPLETE";
-export const CompleteRollingReleaseResponseRollingReleaseState =
-  /*@__PURE__*/ S.String;
-
-/** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
-export type CompleteRollingReleaseResponseRollingReleaseSubstate = "PAUSED";
-export const CompleteRollingReleaseResponseRollingReleaseSubstate =
-  /*@__PURE__*/ S.String;
-
-/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
-  | "BLOCKED"
-  | "BUILDING"
-  | "CANCELED"
-  | "ERROR"
-  | "INITIALIZING"
-  | "QUEUED"
-  | "READY";
-export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState =
-  /*@__PURE__*/ S.String;
-
-/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
-  | "production"
-  | "staging";
-export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget =
-  /*@__PURE__*/ S.String;
-
-/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-export type CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
-  | "api-trigger-git-deploy"
-  | "cli"
-  | "clone/repo"
-  | "drop"
-  | "git"
-  | "git-deploy-hook"
-  | "import"
-  | "import/repo"
-  | "redeploy"
-  | "v0-web";
-export const CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource =
-  /*@__PURE__*/ S.String;
-
-/** The current deployment receiving production traffic */
-export interface CompleteRollingReleaseResponseRollingReleaseCurrentDeployment {
-  /** The name of the project associated with the deployment at the time that the deployment was created */
-  name: string;
-  /** A number containing the date when the deployment was created in milliseconds */
-  createdAt: number;
-  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-  readyState: CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState;
-  /** A string holding the unique ID of the deployment */
-  id: string;
-  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-  target?: CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget | null;
-  readyStateAt?: number;
-  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-  source?: CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource;
-  /** A string with the unique URL of the deployment */
-  url: string;
-}
-export const CompleteRollingReleaseResponseRollingReleaseCurrentDeployment =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      createdAt: S.Number,
-      readyState:
-        CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentReadyState,
-      id: S.String,
-      target: S.optional(
-        S.NullOr(
-          CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentTarget,
-        ),
-      ),
-      readyStateAt: S.optional(S.Number),
-      source: S.optional(
-        CompleteRollingReleaseResponseRollingReleaseCurrentDeploymentSource,
-      ),
-      url: S.String,
-    }),
-  ).annotate({
-    identifier: "CompleteRollingReleaseResponseRollingReleaseCurrentDeployment",
-  }) as any as S.Schema<CompleteRollingReleaseResponseRollingReleaseCurrentDeployment>;
-
-/** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
-  | "BLOCKED"
-  | "BUILDING"
-  | "CANCELED"
-  | "ERROR"
-  | "INITIALIZING"
-  | "QUEUED"
-  | "READY";
-export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState =
-  /*@__PURE__*/ S.String;
-
-/** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
-  | "production"
-  | "staging";
-export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget =
-  /*@__PURE__*/ S.String;
-
-/** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-export type CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
-  | "api-trigger-git-deploy"
-  | "cli"
-  | "clone/repo"
-  | "drop"
-  | "git"
-  | "git-deploy-hook"
-  | "import"
-  | "import/repo"
-  | "redeploy"
-  | "v0-web";
-export const CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource =
-  /*@__PURE__*/ S.String;
-
-/** The canary deployment being rolled out */
-export interface CompleteRollingReleaseResponseRollingReleaseCanaryDeployment {
-  /** The name of the project associated with the deployment at the time that the deployment was created */
-  name: string;
-  /** A number containing the date when the deployment was created in milliseconds */
-  createdAt: number;
-  /** The state of the deployment depending on the process of deploying, or if it is ready or in an error state */
-  readyState: CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState;
-  /** A string holding the unique ID of the deployment */
-  id: string;
-  /** If defined, either `staging` if a staging alias in the format `<project>.<team>.now.sh` was assigned upon creation, or `production` if the aliases from `alias` were assigned. `null` value indicates the "preview" deployment. */
-  target?: CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget | null;
-  readyStateAt?: number;
-  /** Where was the deployment created from. Best-effort guess for metrics only — not authoritative; do not gate behavior on it. */
-  source?: CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource;
-  /** A string with the unique URL of the deployment */
-  url: string;
-}
-export const CompleteRollingReleaseResponseRollingReleaseCanaryDeployment =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      createdAt: S.Number,
-      readyState:
-        CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentReadyState,
-      id: S.String,
-      target: S.optional(
-        S.NullOr(
-          CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentTarget,
-        ),
-      ),
-      readyStateAt: S.optional(S.Number),
-      source: S.optional(
-        CompleteRollingReleaseResponseRollingReleaseCanaryDeploymentSource,
-      ),
-      url: S.String,
-    }),
-  ).annotate({
-    identifier: "CompleteRollingReleaseResponseRollingReleaseCanaryDeployment",
-  }) as any as S.Schema<CompleteRollingReleaseResponseRollingReleaseCanaryDeployment>;
-
-/** The advancement type of the rolling release */
-export type CompleteRollingReleaseResponseRollingReleaseAdvancementType =
-  | "automatic"
-  | "manual-approval";
-export const CompleteRollingReleaseResponseRollingReleaseAdvancementType =
-  /*@__PURE__*/ S.String;
-
-/** All stages configured for this rolling release */
-export type CompleteRollingReleaseResponseRollingReleaseStagesItem =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-export const CompleteRollingReleaseResponseRollingReleaseStagesItem =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-
-/** All stages configured for this rolling release */
-export type CompleteRollingReleaseResponseRollingReleaseStagesList =
-  Array<GetRollingReleaseResponseRollingReleaseStagesItem>;
-export const CompleteRollingReleaseResponseRollingReleaseStagesList =
-  /*@__PURE__*/ S.Array(
-    GetRollingReleaseResponseRollingReleaseStagesItem,
-  ) as any as S.Schema<CompleteRollingReleaseResponseRollingReleaseStagesList>;
-
-/** The currently active stage, null if the rollout is aborted */
-export type CompleteRollingReleaseResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-export const CompleteRollingReleaseResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-
-/** The next stage to be activated, null if not in ACTIVE state */
-export type CompleteRollingReleaseResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-export const CompleteRollingReleaseResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
-
-/** Rolling release information including configuration and document details, or null if no rolling release exists */
-export interface CompleteRollingReleaseResponseRollingRelease {
-  /** The current state of the rolling release */
-  state: CompleteRollingReleaseResponseRollingReleaseState;
-  /** When set to `PAUSED`, the rollout is frozen at the current percentage until continued. */
-  substate: CompleteRollingReleaseResponseRollingReleaseSubstate | null;
-  /** The current deployment receiving production traffic */
-  currentDeployment: CompleteRollingReleaseResponseRollingReleaseCurrentDeployment | null;
-  /** The canary deployment being rolled out */
-  canaryDeployment: CompleteRollingReleaseResponseRollingReleaseCanaryDeployment | null;
-  /** The ID of a deployment queued for the next rolling release */
-  queuedDeploymentId: string | null;
-  /** The advancement type of the rolling release */
-  advancementType: CompleteRollingReleaseResponseRollingReleaseAdvancementType;
-  /** All stages configured for this rolling release */
-  stages: CompleteRollingReleaseResponseRollingReleaseStagesList;
-  /** The currently active stage, null if the rollout is aborted */
-  activeStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
-  /** The next stage to be activated, null if not in ACTIVE state */
-  nextStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
-  /** Unix timestamp in milliseconds when the rolling release started */
-  startedAt: number;
-  /** Unix timestamp in milliseconds when the rolling release was last updated */
-  updatedAt: number;
-  /** When set (for example while {@link substate} is `PAUSED`), the canary traffic percentage persisted on the rollout document — use for dashboard display when linear shift is active. */
-  currentCanaryPercentage?: number;
-}
-export const CompleteRollingReleaseResponseRollingRelease =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      state: CompleteRollingReleaseResponseRollingReleaseState,
-      substate: S.NullOr(CompleteRollingReleaseResponseRollingReleaseSubstate),
-      currentDeployment: S.NullOr(
-        CompleteRollingReleaseResponseRollingReleaseCurrentDeployment,
-      ),
-      canaryDeployment: S.NullOr(
-        CompleteRollingReleaseResponseRollingReleaseCanaryDeployment,
-      ),
-      queuedDeploymentId: S.NullOr(S.String),
-      advancementType:
-        CompleteRollingReleaseResponseRollingReleaseAdvancementType,
-      stages: CompleteRollingReleaseResponseRollingReleaseStagesList,
-      activeStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
-      nextStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
-      startedAt: S.Number,
-      updatedAt: S.Number,
-      currentCanaryPercentage: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "CompleteRollingReleaseResponseRollingRelease",
-  }) as any as S.Schema<CompleteRollingReleaseResponseRollingRelease>;
-
-export interface ReleaseCompleteRollingResponse {
-  /** Rolling release information including configuration and document details, or null if no rolling release exists */
-  rollingRelease: CompleteRollingReleaseResponseRollingRelease | null;
-}
-export const ReleaseCompleteRollingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rollingRelease: S.NullOr(CompleteRollingReleaseResponseRollingRelease),
-  }),
-).annotate({
-  identifier: "ReleaseCompleteRollingResponse",
-}) as any as S.Schema<ReleaseCompleteRollingResponse>;
-
 export interface StartRollingReleaseRequest {
   /** Project ID or project name (URL-encoded) */
   idOrName: string;
@@ -1522,29 +1534,29 @@ export const StartRollingReleaseResponseRollingReleaseAdvancementType =
 
 /** All stages configured for this rolling release */
 export type StartRollingReleaseResponseRollingReleaseStagesItem =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 export const StartRollingReleaseResponseRollingReleaseStagesItem =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 
 /** All stages configured for this rolling release */
 export type StartRollingReleaseResponseRollingReleaseStagesList =
-  Array<GetRollingReleaseResponseRollingReleaseStagesItem>;
+  Array<ApproveRollingReleaseStageResponseRollingReleaseStagesItem>;
 export const StartRollingReleaseResponseRollingReleaseStagesList =
   /*@__PURE__*/ S.Array(
-    GetRollingReleaseResponseRollingReleaseStagesItem,
+    ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
   ) as any as S.Schema<StartRollingReleaseResponseRollingReleaseStagesList>;
 
 /** The currently active stage, null if the rollout is aborted */
 export type StartRollingReleaseResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 export const StartRollingReleaseResponseRollingReleaseActiveStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 
 /** The next stage to be activated, null if not in ACTIVE state */
 export type StartRollingReleaseResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 export const StartRollingReleaseResponseRollingReleaseNextStage =
-  GetRollingReleaseResponseRollingReleaseStagesItem;
+  ApproveRollingReleaseStageResponseRollingReleaseStagesItem;
 
 /** Rolling release information including configuration and document details, or null if no rolling release exists */
 export interface StartRollingReleaseResponseRollingRelease {
@@ -1563,9 +1575,9 @@ export interface StartRollingReleaseResponseRollingRelease {
   /** All stages configured for this rolling release */
   stages: StartRollingReleaseResponseRollingReleaseStagesList;
   /** The currently active stage, null if the rollout is aborted */
-  activeStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
+  activeStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
   /** The next stage to be activated, null if not in ACTIVE state */
-  nextStage: GetRollingReleaseResponseRollingReleaseStagesItem | null;
+  nextStage: ApproveRollingReleaseStageResponseRollingReleaseStagesItem | null;
   /** Unix timestamp in milliseconds when the rolling release started */
   startedAt: number;
   /** Unix timestamp in milliseconds when the rolling release was last updated */
@@ -1587,8 +1599,12 @@ export const StartRollingReleaseResponseRollingRelease =
       queuedDeploymentId: S.NullOr(S.String),
       advancementType: StartRollingReleaseResponseRollingReleaseAdvancementType,
       stages: StartRollingReleaseResponseRollingReleaseStagesList,
-      activeStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
-      nextStage: S.NullOr(GetRollingReleaseResponseRollingReleaseStagesItem),
+      activeStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
+      nextStage: S.NullOr(
+        ApproveRollingReleaseStageResponseRollingReleaseStagesItem,
+      ),
       startedAt: S.Number,
       updatedAt: S.Number,
       currentCanaryPercentage: S.optional(S.Number),
@@ -1702,6 +1718,44 @@ export const UpdateRollingReleaseConfigResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRollingReleaseConfigResponse",
 }) as any as S.Schema<UpdateRollingReleaseConfigResponse>;
 
+export type ApproveRollingReleaseStageError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | VercelOpError;
+/** Update the active rolling release to the next stage for a project Advance a rollout to the next stage. This is only needed when rolling releases is configured to require manual approval. */
+export const approveRollingReleaseStage: API.OperationMethod<
+  ApproveRollingReleaseStageRequest,
+  ApproveRollingReleaseStageResponse,
+  ApproveRollingReleaseStageError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApproveRollingReleaseStageRequest,
+  output: ApproveRollingReleaseStageResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CompleteRollingReleaseError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | VercelOpError;
+/** Complete the rolling release for the project Force-complete a Rolling Release. The canary deployment will begin serving 100% of the traffic. */
+export const completeRollingRelease: API.OperationMethod<
+  CompleteRollingReleaseRequest,
+  CompleteRollingReleaseResponse,
+  CompleteRollingReleaseError,
+  VercelOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CompleteRollingReleaseRequest,
+  output: CompleteRollingReleaseResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: VercelProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteRollingReleaseConfigError =
   | BadRequest
   | Forbidden
@@ -1773,44 +1827,6 @@ export const getRollingReleaseConfig: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetRollingReleaseConfigRequest,
   output: GetRollingReleaseConfigResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: VercelProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReleaseApproveRollingStageError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | VercelOpError;
-/** Update the active rolling release to the next stage for a project Advance a rollout to the next stage. This is only needed when rolling releases is configured to require manual approval. */
-export const releaseApproveRollingStage: API.OperationMethod<
-  ReleaseApproveRollingStageRequest,
-  ReleaseApproveRollingStageResponse,
-  ReleaseApproveRollingStageError,
-  VercelOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReleaseApproveRollingStageRequest,
-  output: ReleaseApproveRollingStageResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: VercelProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReleaseCompleteRollingError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | VercelOpError;
-/** Complete the rolling release for the project Force-complete a Rolling Release. The canary deployment will begin serving 100% of the traffic. */
-export const releaseCompleteRolling: API.OperationMethod<
-  ReleaseCompleteRollingRequest,
-  ReleaseCompleteRollingResponse,
-  ReleaseCompleteRollingError,
-  VercelOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReleaseCompleteRollingRequest,
-  output: ReleaseCompleteRollingResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

@@ -14,13 +14,11 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource tags. */
-export type MonitorsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MonitorsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateMonitorRequestTagsMap = { [key: string]: string | undefined };
+export const CreateMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsCreateRequestTagsMap>;
+) as any as S.Schema<CreateMonitorRequestTagsMap>;
 
 /** Flag specifying if the resource monitoring is enabled or disabled. */
 export type MonitorPropertiesInputMonitoringStatus = "Enabled" | "Disabled";
@@ -136,7 +134,7 @@ export interface CreateMonitorRequest {
   /** Monitor resource name */
   monitorName: string;
   /** Resource tags. */
-  tags?: MonitorsCreateRequestTagsMap;
+  tags?: CreateMonitorRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the monitor resource. */
@@ -149,7 +147,7 @@ export const CreateMonitorRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     monitorName: S.String.pipe(T.Label()),
-    tags: S.optional(MonitorsCreateRequestTagsMap),
+    tags: S.optional(CreateMonitorRequestTagsMap),
     location: S.String,
     properties: S.optional(MonitorPropertiesInput),
     sku: S.optional(ResourceSku),
@@ -209,13 +207,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type MonitorsCreateResponseTagsMap = {
+export type CreateMonitorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MonitorsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsCreateResponseTagsMap>;
+) as any as S.Schema<CreateMonitorResponseTagsMap>;
 
 export type ProvisioningState =
   | "Accepted"
@@ -301,7 +299,7 @@ export interface CreateMonitorResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MonitorsCreateResponseTagsMap;
+  tags?: CreateMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the monitor resource. */
@@ -315,7 +313,7 @@ export const CreateMonitorResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MonitorsCreateResponseTagsMap),
+    tags: S.optional(CreateMonitorResponseTagsMap),
     location: S.String,
     properties: S.optional(MonitorProperties),
     sku: S.optional(ResourceSku),
@@ -554,11 +552,11 @@ export const GetMonitorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMonitorRequest>;
 
 /** Resource tags. */
-export type MonitorsGetResponseTagsMap = { [key: string]: string | undefined };
-export const MonitorsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetMonitorResponseTagsMap = { [key: string]: string | undefined };
+export const GetMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsGetResponseTagsMap>;
+) as any as S.Schema<GetMonitorResponseTagsMap>;
 
 export interface GetMonitorResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -570,7 +568,7 @@ export interface GetMonitorResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MonitorsGetResponseTagsMap;
+  tags?: GetMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the monitor resource. */
@@ -584,7 +582,7 @@ export const GetMonitorResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MonitorsGetResponseTagsMap),
+    tags: S.optional(GetMonitorResponseTagsMap),
     location: S.String,
     properties: S.optional(MonitorProperties),
     sku: S.optional(ResourceSku),
@@ -861,6 +859,82 @@ export const GetMonitoredSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetMonitoredSubscriptionResponse",
 }) as any as S.Schema<GetMonitoredSubscriptionResponse>;
+
+export interface GetSingleSignOnConfigurationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** Configuration name */
+  configurationName: string;
+}
+export const GetSingleSignOnConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Datadog/monitors/{monitorName}/singleSignOnConfigurations/{configurationName}",
+      code: 200,
+      apiVersion: "2025-06-11",
+    }),
+  ),
+).annotate({
+  identifier: "GetSingleSignOnConfigurationRequest",
+}) as any as S.Schema<GetSingleSignOnConfigurationRequest>;
+
+/** Various states of the SSO resource */
+export type SingleSignOnStates = "Initial" | "Enable" | "Disable" | "Existing";
+export const SingleSignOnStates = /*@__PURE__*/ S.String;
+
+export interface DatadogSingleSignOnProperties {
+  provisioningState?: ProvisioningState;
+  /** Various states of the SSO resource */
+  singleSignOnState?: SingleSignOnStates;
+  /** The Id of the Enterprise App used for Single sign-on. */
+  enterpriseAppId?: string;
+  /** The login URL specific to this Datadog Organization. */
+  singleSignOnUrl?: string;
+}
+export const DatadogSingleSignOnProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    singleSignOnState: S.optional(SingleSignOnStates),
+    enterpriseAppId: S.optional(S.String),
+    singleSignOnUrl: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatadogSingleSignOnProperties",
+}) as any as S.Schema<DatadogSingleSignOnProperties>;
+
+export interface GetSingleSignOnConfigurationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: DatadogSingleSignOnProperties;
+}
+export const GetSingleSignOnConfigurationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DatadogSingleSignOnProperties),
+    }),
+).annotate({
+  identifier: "GetSingleSignOnConfigurationResponse",
+}) as any as S.Schema<GetSingleSignOnConfigurationResponse>;
 
 export interface GetTagRuleRequest {
   /** The ID of the target subscription. */
@@ -1674,6 +1748,81 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
+export interface ListSingleSignOnConfigurationsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListSingleSignOnConfigurationsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      monitorName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Datadog/monitors/{monitorName}/singleSignOnConfigurations",
+        code: 200,
+        apiVersion: "2025-06-11",
+      }),
+    ),
+).annotate({
+  identifier: "ListSingleSignOnConfigurationsRequest",
+}) as any as S.Schema<ListSingleSignOnConfigurationsRequest>;
+
+/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
+export interface DatadogSingleSignOnResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: DatadogSingleSignOnProperties;
+}
+export const DatadogSingleSignOnResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DatadogSingleSignOnProperties),
+  }),
+).annotate({
+  identifier: "DatadogSingleSignOnResource",
+}) as any as S.Schema<DatadogSingleSignOnResource>;
+
+/** The DatadogSingleSignOnResource items on this page */
+export type DatadogSingleSignOnResourceListResponseValueList =
+  Array<DatadogSingleSignOnResource>;
+export const DatadogSingleSignOnResourceListResponseValueList =
+  /*@__PURE__*/ S.Array(
+    DatadogSingleSignOnResource,
+  ) as any as S.Schema<DatadogSingleSignOnResourceListResponseValueList>;
+
+/** Response of a list operation. */
+export interface DatadogSingleSignOnResourceListResponse {
+  /** The DatadogSingleSignOnResource items on this page */
+  value: DatadogSingleSignOnResourceListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DatadogSingleSignOnResourceListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: DatadogSingleSignOnResourceListResponseValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DatadogSingleSignOnResourceListResponse",
+}) as any as S.Schema<DatadogSingleSignOnResourceListResponse>;
+
 export interface ListTagRulesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1845,6 +1994,43 @@ export const OrganizationsResubscribeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrganizationsResubscribeResponse",
 }) as any as S.Schema<OrganizationsResubscribeResponse>;
 
+export interface RefreshMonitorSetPasswordLinkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const RefreshMonitorSetPasswordLinkRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      monitorName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Datadog/monitors/{monitorName}/refreshSetPasswordLink",
+        code: 200,
+        apiVersion: "2025-06-11",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshMonitorSetPasswordLinkRequest",
+}) as any as S.Schema<RefreshMonitorSetPasswordLinkRequest>;
+
+export interface DatadogSetPasswordLink {
+  setPasswordLink?: string | Redacted.Redacted<string>;
+}
+export const DatadogSetPasswordLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    setPasswordLink: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "DatadogSetPasswordLink",
+}) as any as S.Schema<DatadogSetPasswordLink>;
+
 export interface SetMonitorDefaultKeyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1888,47 +2074,6 @@ export const SetMonitorDefaultKeyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SetMonitorDefaultKeyResponse",
 }) as any as S.Schema<SetMonitorDefaultKeyResponse>;
-
-export interface SetMonitorRefreshPasswordLinkRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const SetMonitorRefreshPasswordLinkRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      monitorName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Datadog/monitors/{monitorName}/refreshSetPasswordLink",
-        code: 200,
-        apiVersion: "2025-06-11",
-      }),
-    ),
-).annotate({
-  identifier: "SetMonitorRefreshPasswordLinkRequest",
-}) as any as S.Schema<SetMonitorRefreshPasswordLinkRequest>;
-
-export interface DatadogSetPasswordLink {
-  setPasswordLink?: string | Redacted.Redacted<string>;
-}
-export const DatadogSetPasswordLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    setPasswordLink: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "DatadogSetPasswordLink",
-}) as any as S.Schema<DatadogSetPasswordLink>;
-
-/** Various states of the SSO resource */
-export type SingleSignOnStates = "Initial" | "Enable" | "Disable" | "Existing";
-export const SingleSignOnStates = /*@__PURE__*/ S.String;
 
 export interface DatadogSingleSignOnPropertiesInput {
   /** Various states of the SSO resource */
@@ -1976,26 +2121,6 @@ export const SingleSignOnConfigurationsCreateOrUpdateRequest =
     identifier: "SingleSignOnConfigurationsCreateOrUpdateRequest",
   }) as any as S.Schema<SingleSignOnConfigurationsCreateOrUpdateRequest>;
 
-export interface DatadogSingleSignOnProperties {
-  provisioningState?: ProvisioningState;
-  /** Various states of the SSO resource */
-  singleSignOnState?: SingleSignOnStates;
-  /** The Id of the Enterprise App used for Single sign-on. */
-  enterpriseAppId?: string;
-  /** The login URL specific to this Datadog Organization. */
-  singleSignOnUrl?: string;
-}
-export const DatadogSingleSignOnProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    singleSignOnState: S.optional(SingleSignOnStates),
-    enterpriseAppId: S.optional(S.String),
-    singleSignOnUrl: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatadogSingleSignOnProperties",
-}) as any as S.Schema<DatadogSingleSignOnProperties>;
-
 export interface SingleSignOnConfigurationsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -2019,134 +2144,6 @@ export const SingleSignOnConfigurationsCreateOrUpdateResponse =
   ).annotate({
     identifier: "SingleSignOnConfigurationsCreateOrUpdateResponse",
   }) as any as S.Schema<SingleSignOnConfigurationsCreateOrUpdateResponse>;
-
-export interface SingleSignOnConfigurationsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** Configuration name */
-  configurationName: string;
-}
-export const SingleSignOnConfigurationsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      monitorName: S.String.pipe(T.Label()),
-      configurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Datadog/monitors/{monitorName}/singleSignOnConfigurations/{configurationName}",
-        code: 200,
-        apiVersion: "2025-06-11",
-      }),
-    ),
-).annotate({
-  identifier: "SingleSignOnConfigurationsGetRequest",
-}) as any as S.Schema<SingleSignOnConfigurationsGetRequest>;
-
-export interface SingleSignOnConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: DatadogSingleSignOnProperties;
-}
-export const SingleSignOnConfigurationsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(DatadogSingleSignOnProperties),
-    }),
-).annotate({
-  identifier: "SingleSignOnConfigurationsGetResponse",
-}) as any as S.Schema<SingleSignOnConfigurationsGetResponse>;
-
-export interface SingleSignOnConfigurationsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const SingleSignOnConfigurationsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      monitorName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Datadog/monitors/{monitorName}/singleSignOnConfigurations",
-        code: 200,
-        apiVersion: "2025-06-11",
-      }),
-    ),
-).annotate({
-  identifier: "SingleSignOnConfigurationsListRequest",
-}) as any as S.Schema<SingleSignOnConfigurationsListRequest>;
-
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface DatadogSingleSignOnResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: DatadogSingleSignOnProperties;
-}
-export const DatadogSingleSignOnResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DatadogSingleSignOnProperties),
-  }),
-).annotate({
-  identifier: "DatadogSingleSignOnResource",
-}) as any as S.Schema<DatadogSingleSignOnResource>;
-
-/** The DatadogSingleSignOnResource items on this page */
-export type DatadogSingleSignOnResourceListResponseValueList =
-  Array<DatadogSingleSignOnResource>;
-export const DatadogSingleSignOnResourceListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    DatadogSingleSignOnResource,
-  ) as any as S.Schema<DatadogSingleSignOnResourceListResponseValueList>;
-
-/** Response of a list operation. */
-export interface DatadogSingleSignOnResourceListResponse {
-  /** The DatadogSingleSignOnResource items on this page */
-  value: DatadogSingleSignOnResourceListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DatadogSingleSignOnResourceListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: DatadogSingleSignOnResourceListResponseValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DatadogSingleSignOnResourceListResponse",
-}) as any as S.Schema<DatadogSingleSignOnResourceListResponse>;
 
 /** Definition of the properties for a TagRules resource. */
 export interface MonitoringTagRulesPropertiesInput {
@@ -2252,13 +2249,11 @@ export const MonitorUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MonitorUpdateProperties>;
 
 /** The new tags of the monitor resource. */
-export type MonitorsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MonitorsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateMonitorRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateMonitorRequestTagsMap>;
 
 export interface UpdateMonitorRequest {
   /** The ID of the target subscription. */
@@ -2270,7 +2265,7 @@ export interface UpdateMonitorRequest {
   /** The set of properties that can be update in a PATCH request to a monitor resource. */
   properties?: MonitorUpdateProperties;
   /** The new tags of the monitor resource. */
-  tags?: MonitorsUpdateRequestTagsMap;
+  tags?: UpdateMonitorRequestTagsMap;
   sku?: ResourceSku;
 }
 export const UpdateMonitorRequest = /*@__PURE__*/ S.suspend(() =>
@@ -2279,7 +2274,7 @@ export const UpdateMonitorRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     monitorName: S.String.pipe(T.Label()),
     properties: S.optional(MonitorUpdateProperties),
-    tags: S.optional(MonitorsUpdateRequestTagsMap),
+    tags: S.optional(UpdateMonitorRequestTagsMap),
     sku: S.optional(ResourceSku),
   }).pipe(
     T.Http({
@@ -2294,13 +2289,13 @@ export const UpdateMonitorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMonitorRequest>;
 
 /** Resource tags. */
-export type MonitorsUpdateResponseTagsMap = {
+export type UpdateMonitorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MonitorsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateMonitorResponseTagsMap>;
 
 export interface UpdateMonitorResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2312,7 +2307,7 @@ export interface UpdateMonitorResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MonitorsUpdateResponseTagsMap;
+  tags?: UpdateMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the monitor resource. */
@@ -2326,7 +2321,7 @@ export const UpdateMonitorResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MonitorsUpdateResponseTagsMap),
+    tags: S.optional(UpdateMonitorResponseTagsMap),
     location: S.String,
     properties: S.optional(MonitorProperties),
     sku: S.optional(ResourceSku),
@@ -2439,7 +2434,7 @@ export const UpdateMonitoredSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateMonitoredSubscriptionResponse",
 }) as any as S.Schema<UpdateMonitoredSubscriptionResponse>;
 
-export interface UpdateMonitoredSubscriptionCreateorRequest {
+export interface UpdateMonitoredSubscriptionsCreateorRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2451,7 +2446,7 @@ export interface UpdateMonitoredSubscriptionCreateorRequest {
   /** The request to update subscriptions needed to be monitored by the Datadog monitor resource. */
   properties?: SubscriptionListInput;
 }
-export const UpdateMonitoredSubscriptionCreateorRequest =
+export const UpdateMonitoredSubscriptionsCreateorRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2468,10 +2463,10 @@ export const UpdateMonitoredSubscriptionCreateorRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateMonitoredSubscriptionCreateorRequest",
-  }) as any as S.Schema<UpdateMonitoredSubscriptionCreateorRequest>;
+    identifier: "UpdateMonitoredSubscriptionsCreateorRequest",
+  }) as any as S.Schema<UpdateMonitoredSubscriptionsCreateorRequest>;
 
-export interface UpdateMonitoredSubscriptionCreateorResponse {
+export interface UpdateMonitoredSubscriptionsCreateorResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2483,7 +2478,7 @@ export interface UpdateMonitoredSubscriptionCreateorResponse {
   /** The request to update subscriptions needed to be monitored by the Datadog monitor resource. */
   properties?: SubscriptionList;
 }
-export const UpdateMonitoredSubscriptionCreateorResponse =
+export const UpdateMonitoredSubscriptionsCreateorResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -2493,8 +2488,8 @@ export const UpdateMonitoredSubscriptionCreateorResponse =
       properties: S.optional(SubscriptionList),
     }),
   ).annotate({
-    identifier: "UpdateMonitoredSubscriptionCreateorResponse",
-  }) as any as S.Schema<UpdateMonitoredSubscriptionCreateorResponse>;
+    identifier: "UpdateMonitoredSubscriptionsCreateorResponse",
+  }) as any as S.Schema<UpdateMonitoredSubscriptionsCreateorResponse>;
 
 export type CreateMonitorError = AzureOpError;
 /** Create a monitor resource. Create a monitor resource. */
@@ -2611,6 +2606,21 @@ export const GetMonitoredSubscription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetMonitoredSubscriptionRequest,
   output: GetMonitoredSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSingleSignOnConfigurationError = AzureOpError;
+/** Gets the datadog single sign-on resource for the given Monitor. Gets the datadog single sign-on resource for the given Monitor. */
+export const GetSingleSignOnConfiguration: API.OperationMethod<
+  GetSingleSignOnConfigurationRequest,
+  GetSingleSignOnConfigurationResponse,
+  GetSingleSignOnConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSingleSignOnConfigurationRequest,
+  output: GetSingleSignOnConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2781,6 +2791,21 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListSingleSignOnConfigurationsError = AzureOpError;
+/** List the single sign-on configurations for a given monitor resource. List the single sign-on configurations for a given monitor resource. */
+export const ListSingleSignOnConfigurations: API.OperationMethod<
+  ListSingleSignOnConfigurationsRequest,
+  DatadogSingleSignOnResourceListResponse,
+  ListSingleSignOnConfigurationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSingleSignOnConfigurationsRequest,
+  output: DatadogSingleSignOnResourceListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListTagRulesError = AzureOpError;
 /** List the tag rules for a given monitor resource. List the tag rules for a given monitor resource. */
 export const ListTagRules: API.OperationMethod<
@@ -2826,6 +2851,21 @@ export const OrganizationsResubscribe: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RefreshMonitorSetPasswordLinkError = AzureOpError;
+/** Refresh the set password link and return a latest one. Refresh the set password link and return a latest one. */
+export const RefreshMonitorSetPasswordLink: API.OperationMethod<
+  RefreshMonitorSetPasswordLinkRequest,
+  DatadogSetPasswordLink,
+  RefreshMonitorSetPasswordLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshMonitorSetPasswordLinkRequest,
+  output: DatadogSetPasswordLink,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SetMonitorDefaultKeyError = AzureOpError;
 /** Set the default api key. Set the default api key. */
 export const SetMonitorDefaultKey: API.OperationMethod<
@@ -2841,21 +2881,6 @@ export const SetMonitorDefaultKey: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SetMonitorRefreshPasswordLinkError = AzureOpError;
-/** Refresh the set password link and return a latest one. Refresh the set password link and return a latest one. */
-export const SetMonitorRefreshPasswordLink: API.OperationMethod<
-  SetMonitorRefreshPasswordLinkRequest,
-  DatadogSetPasswordLink,
-  SetMonitorRefreshPasswordLinkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetMonitorRefreshPasswordLinkRequest,
-  output: DatadogSetPasswordLink,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SingleSignOnConfigurationsCreateOrUpdateError = AzureOpError;
 /** Configures single-sign-on for this resource. Configures single-sign-on for this resource. */
 export const SingleSignOnConfigurationsCreateOrUpdate: API.OperationMethod<
@@ -2866,36 +2891,6 @@ export const SingleSignOnConfigurationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SingleSignOnConfigurationsCreateOrUpdateRequest,
   output: SingleSignOnConfigurationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SingleSignOnConfigurationsGetError = AzureOpError;
-/** Gets the datadog single sign-on resource for the given Monitor. Gets the datadog single sign-on resource for the given Monitor. */
-export const SingleSignOnConfigurationsGet: API.OperationMethod<
-  SingleSignOnConfigurationsGetRequest,
-  SingleSignOnConfigurationsGetResponse,
-  SingleSignOnConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SingleSignOnConfigurationsGetRequest,
-  output: SingleSignOnConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SingleSignOnConfigurationsListError = AzureOpError;
-/** List the single sign-on configurations for a given monitor resource. List the single sign-on configurations for a given monitor resource. */
-export const SingleSignOnConfigurationsList: API.OperationMethod<
-  SingleSignOnConfigurationsListRequest,
-  DatadogSingleSignOnResourceListResponse,
-  SingleSignOnConfigurationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SingleSignOnConfigurationsListRequest,
-  output: DatadogSingleSignOnResourceListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2946,16 +2941,16 @@ export const UpdateMonitoredSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateMonitoredSubscriptionCreateorError = AzureOpError;
+export type UpdateMonitoredSubscriptionsCreateorError = AzureOpError;
 /** Add the subscriptions that should be monitored by the Datadog monitor resource. Add the subscriptions that should be monitored by the Datadog monitor resource. */
-export const UpdateMonitoredSubscriptionCreateor: API.OperationMethod<
-  UpdateMonitoredSubscriptionCreateorRequest,
-  UpdateMonitoredSubscriptionCreateorResponse,
-  UpdateMonitoredSubscriptionCreateorError,
+export const UpdateMonitoredSubscriptionsCreateor: API.OperationMethod<
+  UpdateMonitoredSubscriptionsCreateorRequest,
+  UpdateMonitoredSubscriptionsCreateorResponse,
+  UpdateMonitoredSubscriptionsCreateorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateMonitoredSubscriptionCreateorRequest,
-  output: UpdateMonitoredSubscriptionCreateorResponse,
+  input: UpdateMonitoredSubscriptionsCreateorRequest,
+  output: UpdateMonitoredSubscriptionsCreateorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

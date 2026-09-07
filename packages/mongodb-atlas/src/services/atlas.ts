@@ -2065,6 +2065,44 @@ export type CloudProviderAccessRole =
 export const CloudProviderAccessRole =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CloudProviderAccessRole>;
 
+export interface CancelGroupClusterBackupRestoreJobRequest {
+  /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
+  groupId: string;
+  /** Human-readable label that identifies the cluster. */
+  clusterName: string;
+  /** Unique 24-hexadecimal digit string that identifies the restore job to remove. */
+  restoreJobId: string;
+  /** Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. */
+  envelope?: boolean;
+  /** Flag that indicates whether the response body should be in the prettyprint format. */
+  pretty?: boolean;
+}
+export const CancelGroupClusterBackupRestoreJobRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupId: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      restoreJobId: S.String.pipe(T.Label()),
+      envelope: S.optional(S.Boolean.pipe(T.Query())),
+      pretty: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/restoreJobs/{restoreJobId}",
+        code: 200,
+        accept: "application/vnd.atlas.2023-01-01+json",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelGroupClusterBackupRestoreJobRequest",
+  }) as any as S.Schema<CancelGroupClusterBackupRestoreJobRequest>;
+
+export interface CancelGroupClusterBackupRestoreJobResponse {}
+export const CancelGroupClusterBackupRestoreJobResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CancelGroupClusterBackupRestoreJobResponse",
+  }) as any as S.Schema<CancelGroupClusterBackupRestoreJobResponse>;
+
 export interface ConnectedOrgConfigRoleAssignment {
   /** Unique 24-hexadecimal digit string that identifies the project to which this role belongs. Each element within `roleAssignments` can have a value for `groupId` or `orgId`, but not both. */
   groupId?: string;
@@ -28613,14 +28651,18 @@ export type ApiStreamsAzureRegionView =
   | "eastus2"
   | "westeurope"
   | "brazilsouth"
-  | "australiaeast";
+  | "australiaeast"
+  | "northeurope"
+  | "eastasia"
+  | "southeastasia";
 export const ApiStreamsAzureRegionView = /*@__PURE__*/ S.String;
 
 /** Atlas Streams GCP Regions. */
 export type ApiStreamsGCPRegionView =
   | "US_CENTRAL1"
   | "EUROPE_WEST1"
-  | "US_EAST4";
+  | "US_EAST4"
+  | "US_WEST1";
 export const ApiStreamsGCPRegionView = /*@__PURE__*/ S.String;
 
 /** Name of the cloud provider region hosting Atlas Stream Processing. */
@@ -54784,44 +54826,6 @@ export const RestartGroupClusterPrimariesResponse = /*@__PURE__*/ S.suspend(
   identifier: "RestartGroupClusterPrimariesResponse",
 }) as any as S.Schema<RestartGroupClusterPrimariesResponse>;
 
-export interface RestoreCancelGroupClusterBackupJobRequest {
-  /** Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](#tag/Projects/operation/listProjects) endpoint to retrieve all projects to which the authenticated user has access. **NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group/project id remains the same. The resource and corresponding endpoints use the term groups. */
-  groupId: string;
-  /** Human-readable label that identifies the cluster. */
-  clusterName: string;
-  /** Unique 24-hexadecimal digit string that identifies the restore job to remove. */
-  restoreJobId: string;
-  /** Flag that indicates whether Application wraps the response in an `envelope` JSON object. Some API clients cannot access the HTTP response headers or status code. To remediate this, set envelope=true in the query. Endpoints that return a list of results use the results object as an envelope. Application adds the status parameter to the response body. */
-  envelope?: boolean;
-  /** Flag that indicates whether the response body should be in the prettyprint format. */
-  pretty?: boolean;
-}
-export const RestoreCancelGroupClusterBackupJobRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupId: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      restoreJobId: S.String.pipe(T.Label()),
-      envelope: S.optional(S.Boolean.pipe(T.Query())),
-      pretty: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/atlas/v2/groups/{groupId}/clusters/{clusterName}/backup/restoreJobs/{restoreJobId}",
-        code: 200,
-        accept: "application/vnd.atlas.2023-01-01+json",
-      }),
-    ),
-  ).annotate({
-    identifier: "RestoreCancelGroupClusterBackupJobRequest",
-  }) as any as S.Schema<RestoreCancelGroupClusterBackupJobRequest>;
-
-export interface RestoreCancelGroupClusterBackupJobResponse {}
-export const RestoreCancelGroupClusterBackupJobResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "RestoreCancelGroupClusterBackupJobResponse",
-  }) as any as S.Schema<RestoreCancelGroupClusterBackupJobResponse>;
-
 export interface RevokeFederationSettingIdentityProviderJwksRequest {
   /** Unique 24-hexadecimal digit string that identifies your federation. */
   federationSettingsId: string;
@@ -62559,6 +62563,25 @@ export const authorizeGroupCloudProviderAccessRole: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CancelGroupClusterBackupRestoreJobError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | MongodbAtlasOpError;
+/** Cancel One Restore Job for One Cluster Cancels one cloud backup restore job of one cluster from the specified project. */
+export const cancelGroupClusterBackupRestoreJob: API.OperationMethod<
+  CancelGroupClusterBackupRestoreJobRequest,
+  CancelGroupClusterBackupRestoreJobResponse,
+  CancelGroupClusterBackupRestoreJobError,
+  MongodbAtlasOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelGroupClusterBackupRestoreJobRequest,
+  output: CancelGroupClusterBackupRestoreJobResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownMongodbAtlasError],
+  protocol: MongodbAtlasProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateFederationSettingConnectedOrgConfigRoleMappingError =
   | BadRequest
   | Forbidden
@@ -69553,25 +69576,6 @@ export const restartGroupClusterPrimaries: API.OperationMethod<
   input: RestartGroupClusterPrimariesRequest,
   output: RestartGroupClusterPrimariesResponse,
   errors: [Forbidden, NotFound, UnknownMongodbAtlasError],
-  protocol: MongodbAtlasProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestoreCancelGroupClusterBackupJobError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | MongodbAtlasOpError;
-/** Cancel One Restore Job for One Cluster Cancels one cloud backup restore job of one cluster from the specified project. */
-export const restoreCancelGroupClusterBackupJob: API.OperationMethod<
-  RestoreCancelGroupClusterBackupJobRequest,
-  RestoreCancelGroupClusterBackupJobResponse,
-  RestoreCancelGroupClusterBackupJobError,
-  MongodbAtlasOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestoreCancelGroupClusterBackupJobRequest,
-  output: RestoreCancelGroupClusterBackupJobResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownMongodbAtlasError],
   protocol: MongodbAtlasProtocol,
   retry: Retry.Retry,
 }));

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.vmware#DeleteWorkloadNetworkVmGroup": {
+    "com.azure.vmware#DeleteWorkloadNetworkVMGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#DeleteWorkloadNetworkVmGroupRequest"
+        "target": "com.azure.vmware#DeleteWorkloadNetworkVMGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -30,13 +31,13 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a WorkloadNetworkVMGroup",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#DeleteWorkloadNetworkVmGroupRequest": {
+    "com.azure.vmware#DeleteWorkloadNetworkVMGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -76,26 +77,26 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#UpdateWorkloadNetworkVmGroup": {
+    "com.azure.vmware#UpdateWorkloadNetworkVMGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#UpdateWorkloadNetworkVmGroupRequest"
+        "target": "com.azure.vmware#UpdateWorkloadNetworkVMGroupRequest"
       },
       "output": {
-        "target": "com.azure.vmware#UpdateWorkloadNetworkVmGroupResponse"
+        "target": "com.azure.vmware#UpdateWorkloadNetworkVMGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a WorkloadNetworkVMGroup",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#UpdateWorkloadNetworkVmGroupResponse": {
+    "com.azure.vmware#UpdateWorkloadNetworkVMGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -352,7 +353,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.vmware#UpdateWorkloadNetworkVmGroupRequest": {
+    "com.azure.vmware#UpdateWorkloadNetworkVMGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -433,26 +434,26 @@
         "smithy.api#documentation": "Virtual machine members of this group."
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkVmGroup": {
+    "com.azure.vmware#CreateWorkloadNetworkVMGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#CreateWorkloadNetworkVmGroupRequest"
+        "target": "com.azure.vmware#CreateWorkloadNetworkVMGroupRequest"
       },
       "output": {
-        "target": "com.azure.vmware#CreateWorkloadNetworkVmGroupResponse"
+        "target": "com.azure.vmware#CreateWorkloadNetworkVMGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a WorkloadNetworkVMGroup",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkVmGroupResponse": {
+    "com.azure.vmware#CreateWorkloadNetworkVMGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -490,7 +491,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkVmGroupRequest": {
+    "com.azure.vmware#CreateWorkloadNetworkVMGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -536,26 +537,26 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#GetWorkloadNetworkVmGroup": {
+    "com.azure.vmware#GetWorkloadNetworkVMGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#GetWorkloadNetworkVmGroupRequest"
+        "target": "com.azure.vmware#GetWorkloadNetworkVMGroupRequest"
       },
       "output": {
-        "target": "com.azure.vmware#GetWorkloadNetworkVmGroupResponse"
+        "target": "com.azure.vmware#GetWorkloadNetworkVMGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkVMGroup",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#GetWorkloadNetworkVmGroupResponse": {
+    "com.azure.vmware#GetWorkloadNetworkVMGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -593,7 +594,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#GetWorkloadNetworkVmGroupRequest": {
+    "com.azure.vmware#GetWorkloadNetworkVMGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -633,10 +634,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#ListWorkloadNetworkVmGroups": {
+    "com.azure.vmware#ListWorkloadNetworkVMGroups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#ListWorkloadNetworkVmGroupsRequest"
+        "target": "com.azure.vmware#ListWorkloadNetworkVMGroupsRequest"
       },
       "output": {
         "target": "com.azure.vmware#WorkloadNetworkVMGroupsList"
@@ -646,10 +647,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkVMGroup resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkVMGroupsList": {
@@ -720,7 +721,7 @@
         "smithy.api#documentation": "NSX VM Group"
       }
     },
-    "com.azure.vmware#ListWorkloadNetworkVmGroupsRequest": {
+    "com.azure.vmware#ListWorkloadNetworkVMGroupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -765,10 +766,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines/{virtualMachineId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkVirtualMachine",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkVirtualMachineResponse": {
@@ -958,10 +959,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkVirtualMachine resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkVirtualMachinesList": {
@@ -1077,10 +1078,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a WorkloadNetworkSegment",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteWorkloadNetworkSegmentRequest": {
@@ -1123,26 +1124,26 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#UpdateWorkloadNetworkSegment": {
+    "com.azure.vmware#UpdateWorkloadNetworkSegments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#UpdateWorkloadNetworkSegmentRequest"
+        "target": "com.azure.vmware#UpdateWorkloadNetworkSegmentsRequest"
       },
       "output": {
-        "target": "com.azure.vmware#UpdateWorkloadNetworkSegmentResponse"
+        "target": "com.azure.vmware#UpdateWorkloadNetworkSegmentsResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a WorkloadNetworkSegment",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#UpdateWorkloadNetworkSegmentResponse": {
+    "com.azure.vmware#UpdateWorkloadNetworkSegmentsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1346,7 +1347,7 @@
         "smithy.api#documentation": "DHCP Range assigned for subnet."
       }
     },
-    "com.azure.vmware#UpdateWorkloadNetworkSegmentRequest": {
+    "com.azure.vmware#UpdateWorkloadNetworkSegmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1424,26 +1425,26 @@
         "smithy.api#documentation": "NSX Segment Properties"
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkSegment": {
+    "com.azure.vmware#CreateWorkloadNetworkSegments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#CreateWorkloadNetworkSegmentRequest"
+        "target": "com.azure.vmware#CreateWorkloadNetworkSegmentsRequest"
       },
       "output": {
-        "target": "com.azure.vmware#CreateWorkloadNetworkSegmentResponse"
+        "target": "com.azure.vmware#CreateWorkloadNetworkSegmentsResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a WorkloadNetworkSegment",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkSegmentResponse": {
+    "com.azure.vmware#CreateWorkloadNetworkSegmentsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1481,7 +1482,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkSegmentRequest": {
+    "com.azure.vmware#CreateWorkloadNetworkSegmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1540,10 +1541,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkSegment",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkSegmentResponse": {
@@ -1637,10 +1638,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkSegment resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkSegmentsList": {
@@ -1743,10 +1744,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#DeleteWorkloadNetworkPublicIp": {
+    "com.azure.vmware#DeleteWorkloadNetworkPublicIP": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#DeleteWorkloadNetworkPublicIpRequest"
+        "target": "com.azure.vmware#DeleteWorkloadNetworkPublicIPRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1756,13 +1757,13 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a WorkloadNetworkPublicIP",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#DeleteWorkloadNetworkPublicIpRequest": {
+    "com.azure.vmware#DeleteWorkloadNetworkPublicIPRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1802,26 +1803,26 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkPublicIp": {
+    "com.azure.vmware#CreateWorkloadNetworkPublicIP": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#CreateWorkloadNetworkPublicIpRequest"
+        "target": "com.azure.vmware#CreateWorkloadNetworkPublicIPRequest"
       },
       "output": {
-        "target": "com.azure.vmware#CreateWorkloadNetworkPublicIpResponse"
+        "target": "com.azure.vmware#CreateWorkloadNetworkPublicIPResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a WorkloadNetworkPublicIP",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkPublicIpResponse": {
+    "com.azure.vmware#CreateWorkloadNetworkPublicIPResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1935,7 +1936,7 @@
         "smithy.api#documentation": "Workload Network Public IP provisioning state"
       }
     },
-    "com.azure.vmware#CreateWorkloadNetworkPublicIpRequest": {
+    "com.azure.vmware#CreateWorkloadNetworkPublicIPRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2001,26 +2002,26 @@
         "smithy.api#documentation": "NSX Public IP Block Properties"
       }
     },
-    "com.azure.vmware#GetWorkloadNetworkPublicIp": {
+    "com.azure.vmware#GetWorkloadNetworkPublicIP": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#GetWorkloadNetworkPublicIpRequest"
+        "target": "com.azure.vmware#GetWorkloadNetworkPublicIPRequest"
       },
       "output": {
-        "target": "com.azure.vmware#GetWorkloadNetworkPublicIpResponse"
+        "target": "com.azure.vmware#GetWorkloadNetworkPublicIPResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkPublicIP",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#GetWorkloadNetworkPublicIpResponse": {
+    "com.azure.vmware#GetWorkloadNetworkPublicIPResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2058,7 +2059,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#GetWorkloadNetworkPublicIpRequest": {
+    "com.azure.vmware#GetWorkloadNetworkPublicIPRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2111,10 +2112,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkPublicIP resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkPublicIPsList": {
@@ -2230,10 +2231,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a WorkloadNetworkPortMirroring",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteWorkloadNetworkPortMirroringRequest": {
@@ -2289,10 +2290,10 @@
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a WorkloadNetworkPortMirroring",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#UpdateWorkloadNetworkPortMirroringResponse": {
@@ -2570,10 +2571,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a WorkloadNetworkPortMirroring",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#CreateWorkloadNetworkPortMirroringResponse": {
@@ -2673,10 +2674,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkPortMirroring",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkPortMirroringResponse": {
@@ -2770,10 +2771,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkPortMirroring resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkPortMirroringList": {
@@ -2889,10 +2890,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways/{gatewayId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkGateway",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkGatewayResponse": {
@@ -3012,10 +3013,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkGateway resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkGatewayList": {
@@ -3131,10 +3132,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a WorkloadNetworkDnsZone",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteWorkloadNetworkDnsZoneRequest": {
@@ -3190,10 +3191,10 @@
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a WorkloadNetworkDnsZone",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#UpdateWorkloadNetworkDnsZoneResponse": {
@@ -3467,10 +3468,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a WorkloadNetworkDnsZone",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#CreateWorkloadNetworkDnsZoneResponse": {
@@ -3570,10 +3571,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkDnsZone",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkDnsZoneResponse": {
@@ -3667,10 +3668,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkDnsZone resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkDnsZonesList": {
@@ -3786,10 +3787,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a WorkloadNetworkDnsService",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteWorkloadNetworkDnsServiceRequest": {
@@ -3845,10 +3846,10 @@
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a WorkloadNetworkDnsService",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#UpdateWorkloadNetworkDnsServiceResponse": {
@@ -4168,10 +4169,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a WorkloadNetworkDnsService",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#CreateWorkloadNetworkDnsServiceResponse": {
@@ -4271,10 +4272,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkDnsService",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkDnsServiceResponse": {
@@ -4368,10 +4369,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkDnsService resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkDnsServicesList": {
@@ -4487,10 +4488,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a WorkloadNetworkDhcp",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteWorkloadNetworkDhcpRequest": {
@@ -4546,10 +4547,10 @@
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a WorkloadNetworkDhcp",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#UpdateWorkloadNetworkDhcpResponse": {
@@ -4788,10 +4789,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a WorkloadNetworkDhcp",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#CreateWorkloadNetworkDhcpResponse": {
@@ -4891,10 +4892,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetworkDhcp",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkDhcpResponse": {
@@ -4988,10 +4989,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetworkDhcp resources by WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkDhcpList": {
@@ -5107,10 +5108,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a WorkloadNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetWorkloadNetworkResponse": {
@@ -5210,10 +5211,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List WorkloadNetwork resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#WorkloadNetworkList": {
@@ -5329,10 +5330,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}/scriptCmdlets/{scriptCmdletName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a ScriptCmdlet",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetScriptCmdletResponse": {
@@ -5636,10 +5637,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#ScriptCmdletsList2": {
+    "com.azure.vmware#ListScriptCmdlets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#ScriptCmdletsListRequest"
+        "target": "com.azure.vmware#ListScriptCmdletsRequest"
       },
       "output": {
         "target": "com.azure.vmware#ScriptCmdletsList"
@@ -5649,10 +5650,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}/scriptCmdlets",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List ScriptCmdlet resources by ScriptPackage",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ScriptCmdletsList": {
@@ -5723,7 +5724,7 @@
         "smithy.api#documentation": "A cmdlet available for script execution"
       }
     },
-    "com.azure.vmware#ScriptCmdletsListRequest": {
+    "com.azure.vmware#ListScriptCmdletsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5776,10 +5777,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a ScriptPackage",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetScriptPackageResponse": {
@@ -5924,10 +5925,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#ScriptPackagesList2": {
+    "com.azure.vmware#ListScriptPackages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#ScriptPackagesListRequest"
+        "target": "com.azure.vmware#ListScriptPackagesRequest"
       },
       "output": {
         "target": "com.azure.vmware#ScriptPackagesList"
@@ -5937,10 +5938,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List ScriptPackage resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ScriptPackagesList": {
@@ -6011,7 +6012,7 @@
         "smithy.api#documentation": "Script Package resources available for execution"
       }
     },
-    "com.azure.vmware#ScriptPackagesListRequest": {
+    "com.azure.vmware#ListScriptPackagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6043,26 +6044,26 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#GetScriptExecutionExecutionLog": {
+    "com.azure.vmware#GetScriptExecutionExecutionLogs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#GetScriptExecutionExecutionLogRequest"
+        "target": "com.azure.vmware#GetScriptExecutionExecutionLogsRequest"
       },
       "output": {
-        "target": "com.azure.vmware#GetScriptExecutionExecutionLogResponse"
+        "target": "com.azure.vmware#GetScriptExecutionExecutionLogsResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}/getExecutionLogs",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Return the logs for a script execution resource",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#GetScriptExecutionExecutionLogResponse": {
+    "com.azure.vmware#GetScriptExecutionExecutionLogsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6369,7 +6370,7 @@
         "smithy.api#documentation": "Parameters the script will accept"
       }
     },
-    "com.azure.vmware#GetScriptExecutionExecutionLogRequest": {
+    "com.azure.vmware#GetScriptExecutionExecutionLogsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6405,7 +6406,7 @@
           }
         },
         "body": {
-          "target": "com.azure.vmware#ScriptExecutionsGetExecutionLogsRequestBodyList",
+          "target": "com.azure.vmware#GetScriptExecutionExecutionLogsRequestBodyList",
           "traits": {
             "smithy.api#httpPayload": {}
           }
@@ -6415,7 +6416,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#ScriptExecutionsGetExecutionLogsRequestBodyList": {
+    "com.azure.vmware#GetScriptExecutionExecutionLogsRequestBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.vmware#ScriptOutputStreamType"
@@ -6467,10 +6468,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a ScriptExecution",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteScriptExecutionRequest": {
@@ -6526,10 +6527,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a ScriptExecution",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ScriptExecutionsCreateOrUpdateResponse": {
@@ -6725,10 +6726,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a ScriptExecution",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetScriptExecutionResponse": {
@@ -6809,10 +6810,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#ScriptExecutionsList2": {
+    "com.azure.vmware#ListScriptExecutions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#ScriptExecutionsListRequest"
+        "target": "com.azure.vmware#ListScriptExecutionsRequest"
       },
       "output": {
         "target": "com.azure.vmware#ScriptExecutionsList"
@@ -6822,10 +6823,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List ScriptExecution resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ScriptExecutionsList": {
@@ -6896,7 +6897,7 @@
         "smithy.api#documentation": "An instance of a script executed by a user - custom or AVS"
       }
     },
-    "com.azure.vmware#ScriptExecutionsListRequest": {
+    "com.azure.vmware#ListScriptExecutionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6941,10 +6942,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/rotateVcenterPassword",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Rotate the vCenter password",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#RotatePrivateCloudVcenterPasswordRequest": {
@@ -6992,10 +6993,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/rotateNsxtPassword",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Rotate the NSX-T Manager password",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#RotatePrivateCloudNsxtPasswordRequest": {
@@ -7043,10 +7044,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a PureStoragePolicy",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeletePureStoragePolicyRequest": {
@@ -7102,10 +7103,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a PureStoragePolicy",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#PureStoragePoliciesCreateOrUpdateResponse": {
@@ -7293,10 +7294,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a PureStoragePolicy",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetPureStoragePolicyResponse": {
@@ -7390,10 +7391,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List PureStoragePolicy resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#PureStoragePolicyListResult": {
@@ -7509,10 +7510,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/provisionedNetworks/{provisionedNetworkName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a ProvisionedNetwork",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetProvisionedNetworkResponse": {
@@ -7708,10 +7709,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/provisionedNetworks",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List ProvisionedNetwork resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ProvisionedNetworkListResult": {
@@ -7827,10 +7828,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/schedule",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Schedule a maintenance",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#MaintenancesScheduleResponse": {
@@ -7890,6 +7891,24 @@
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Cluster ID for on which maintenance will be applied. Empty if maintenance is at private cloud level"
+          }
+        },
+        "activities": {
+          "target": "com.azure.vmware#MaintenancePropertiesActivitiesList",
+          "traits": {
+            "smithy.api#documentation": "Activities performed as part of maintenance"
+          }
+        },
+        "group": {
+          "target": "com.azure.vmware#MaintenanceGroup",
+          "traits": {
+            "smithy.api#documentation": "Group details if maintenance is part of a group"
+          }
+        },
+        "relationships": {
+          "target": "com.azure.vmware#MaintenanceRelationships",
+          "traits": {
+            "smithy.api#documentation": "Relationships with other maintenances like dependencies and prerequisites"
           }
         },
         "infoLink": {
@@ -8315,6 +8334,175 @@
         "smithy.api#documentation": "Customer presentable maintenance state"
       }
     },
+    "com.azure.vmware#MaintenanceRelationships": {
+      "type": "structure",
+      "members": {
+        "dependencies": {
+          "target": "com.azure.vmware#MaintenanceRelationshipsDependenciesList",
+          "traits": {
+            "smithy.api#documentation": "List of dependent group identifiers"
+          }
+        },
+        "prerequisites": {
+          "target": "com.azure.vmware#MaintenanceRelationshipsPrerequisitesList",
+          "traits": {
+            "smithy.api#documentation": "List of prerequisite group identifiers"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines relationship details between maintenance groups"
+      }
+    },
+    "com.azure.vmware#MaintenanceRelationshipsPrerequisitesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of prerequisite group identifiers"
+      }
+    },
+    "com.azure.vmware#MaintenanceRelationshipsDependenciesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dependent group identifiers"
+      }
+    },
+    "com.azure.vmware#MaintenanceGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the group",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the group",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.vmware#MaintenanceGroupKind",
+          "traits": {
+            "smithy.api#documentation": "Type of the group",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a maintenance group"
+      }
+    },
+    "com.azure.vmware#MaintenanceGroupKind": {
+      "type": "enum",
+      "members": {
+        "LOGICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Logical"
+          }
+        },
+        "CONSOLIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Consolidation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the kind of group"
+      }
+    },
+    "com.azure.vmware#MaintenancePropertiesActivitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmware#MaintenanceActivity"
+      },
+      "traits": {
+        "smithy.api#documentation": "Activities performed as part of maintenance"
+      }
+    },
+    "com.azure.vmware#MaintenanceActivity": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.azure.vmware#MaintenanceActivityKind",
+          "traits": {
+            "smithy.api#documentation": "The type of activity",
+            "smithy.api#required": {}
+          }
+        },
+        "component": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The component on which the activity is performed",
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target version of the component",
+            "smithy.api#required": {}
+          }
+        },
+        "infoLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional link containing more details about the activity"
+          }
+        },
+        "impact": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Describes impact of the activity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a maintenance activity performed as part of an operation"
+      }
+    },
+    "com.azure.vmware#MaintenanceActivityKind": {
+      "type": "enum",
+      "members": {
+        "UPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Upgrade"
+          }
+        },
+        "DOWNGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Downgrade"
+          }
+        },
+        "CERTIFICATEROTATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CertificateRotation"
+          }
+        },
+        "BACKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Backup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the type of maintenance activity"
+      }
+    },
     "com.azure.vmware#MaintenanceType": {
       "type": "enum",
       "members": {
@@ -8406,10 +8594,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/reschedule",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Reschedule a maintenance",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#MaintenancesRescheduleResponse": {
@@ -8515,10 +8703,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/initiateChecks",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Initiate maintenance readiness checks",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#MaintenancesInitiateChecksResponse": {
@@ -8612,10 +8800,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a Maintenance",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetMaintenanceResponse": {
@@ -8709,10 +8897,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List Maintenance resources by subscription ID",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#MaintenanceListResult": {
@@ -8811,14 +8999,14 @@
           }
         },
         "stateName": {
-          "target": "com.azure.vmware#MaintenancesListRequestStateName",
+          "target": "com.azure.vmware#ListMaintenancesRequestStateName",
           "traits": {
             "smithy.api#httpQuery": "stateName",
             "smithy.api#documentation": "Filter maintenances based on state"
           }
         },
         "status": {
-          "target": "com.azure.vmware#MaintenancesListRequestStatus",
+          "target": "com.azure.vmware#ListMaintenancesRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Filter active or inactive maintenances"
@@ -8843,7 +9031,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#MaintenancesListRequestStatus": {
+    "com.azure.vmware#ListMaintenancesRequestStatus": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -8861,7 +9049,7 @@
       },
       "traits": {}
     },
-    "com.azure.vmware#MaintenancesListRequestStateName": {
+    "com.azure.vmware#ListMaintenancesRequestStateName": {
       "type": "enum",
       "members": {
         "NOTSCHEDULED": {
@@ -8916,10 +9104,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/listAdminCredentials",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List the admin credentials for the private cloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#AdminCredentials": {
@@ -8988,10 +9176,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#GetLicenseProperty": {
+    "com.azure.vmware#GetLicenseProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#GetLicensePropertyRequest"
+        "target": "com.azure.vmware#GetLicensePropertiesRequest"
       },
       "output": {
         "target": "com.azure.vmware#LicenseProperties"
@@ -9001,10 +9189,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}/getProperties",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Just like ArmResourceActionSync, but with no request body.",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#LicenseProperties": {
@@ -9068,7 +9256,7 @@
         "smithy.api#documentation": "The kind of license."
       }
     },
-    "com.azure.vmware#GetLicensePropertyRequest": {
+    "com.azure.vmware#GetLicensePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9096,7 +9284,7 @@
           }
         },
         "licenseName": {
-          "target": "com.azure.vmware#LicensesGetPropertiesRequestLicenseName",
+          "target": "com.azure.vmware#GetLicensePropertiesRequestLicenseName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -9108,7 +9296,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#LicensesGetPropertiesRequestLicenseName": {
+    "com.azure.vmware#GetLicensePropertiesRequestLicenseName": {
       "type": "enum",
       "members": {
         "VMWAREFIREWALL": {
@@ -9133,10 +9321,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a License",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteLicenseRequest": {
@@ -9167,7 +9355,7 @@
           }
         },
         "licenseName": {
-          "target": "com.azure.vmware#LicensesDeleteRequestLicenseName",
+          "target": "com.azure.vmware#DeleteLicenseRequestLicenseName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -9179,7 +9367,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#LicensesDeleteRequestLicenseName": {
+    "com.azure.vmware#DeleteLicenseRequestLicenseName": {
       "type": "enum",
       "members": {
         "VMWAREFIREWALL": {
@@ -9204,10 +9392,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a License",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#LicensesCreateOrUpdateResponse": {
@@ -9334,10 +9522,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a License",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetLicenseResponse": {
@@ -9406,7 +9594,7 @@
           }
         },
         "licenseName": {
-          "target": "com.azure.vmware#LicensesGetRequestLicenseName",
+          "target": "com.azure.vmware#GetLicenseRequestLicenseName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -9418,7 +9606,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#LicensesGetRequestLicenseName": {
+    "com.azure.vmware#GetLicenseRequestLicenseName": {
       "type": "enum",
       "members": {
         "VMWAREFIREWALL": {
@@ -9443,10 +9631,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List License resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#LicenseListResult": {
@@ -9562,10 +9750,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a IscsiPath",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteIscsiPathRequest": {
@@ -9613,10 +9801,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a IscsiPath",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#IscsiPathsCreateOrUpdateResponse": {
@@ -9794,10 +9982,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a IscsiPath",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetIscsiPathResponse": {
@@ -9883,10 +10071,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List IscsiPath resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#IscsiPathListResult": {
@@ -10002,10 +10190,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a HcxEnterpriseSite",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteHcxEnterpriseSiteRequest": {
@@ -10061,10 +10249,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a HcxEnterpriseSite",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#HcxEnterpriseSitesCreateOrUpdateResponse": {
@@ -10255,10 +10443,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a HcxEnterpriseSite",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetHcxEnterpriseSiteResponse": {
@@ -10352,10 +10540,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List HcxEnterpriseSite resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#HcxEnterpriseSiteList": {
@@ -10471,10 +10659,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a GlobalReachConnection",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteGlobalReachConnectionRequest": {
@@ -10530,10 +10718,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a GlobalReachConnection",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GlobalReachConnectionsCreateOrUpdateResponse": {
@@ -10761,10 +10949,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a GlobalReachConnection",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetGlobalReachConnectionResponse": {
@@ -10858,10 +11046,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List GlobalReachConnection resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GlobalReachConnectionList": {
@@ -10977,10 +11165,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/getVcfLicense",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get the license for the private cloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#VcfLicense": {
@@ -11063,10 +11251,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines/{virtualMachineId}/restrictMovement",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Enable or disable DRS-driven VM movement restriction",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#VirtualMachinesRestrictMovementRequest": {
@@ -11156,10 +11344,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines/{virtualMachineId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a VirtualMachine",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetVirtualMachineResponse": {
@@ -11312,10 +11500,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#VirtualMachinesList2": {
+    "com.azure.vmware#ListVirtualMachines": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#VirtualMachinesListRequest"
+        "target": "com.azure.vmware#ListVirtualMachinesRequest"
       },
       "output": {
         "target": "com.azure.vmware#VirtualMachinesList"
@@ -11325,10 +11513,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List VirtualMachine resources by Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#VirtualMachinesList": {
@@ -11399,7 +11587,7 @@
         "smithy.api#documentation": "Virtual Machine"
       }
     },
-    "com.azure.vmware#VirtualMachinesListRequest": {
+    "com.azure.vmware#ListVirtualMachinesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11452,10 +11640,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a PlacementPolicy",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeletePlacementPolicyRequest": {
@@ -11519,10 +11707,10 @@
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a PlacementPolicy",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#UpdatePlacementPolicyResponse": {
@@ -11843,10 +12031,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a PlacementPolicy",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#PlacementPoliciesCreateOrUpdateResponse": {
@@ -11981,10 +12169,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a PlacementPolicy",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetPlacementPolicyResponse": {
@@ -12073,10 +12261,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#PlacementPoliciesList2": {
+    "com.azure.vmware#ListPlacementPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#PlacementPoliciesListRequest"
+        "target": "com.azure.vmware#ListPlacementPoliciesRequest"
       },
       "output": {
         "target": "com.azure.vmware#PlacementPoliciesList"
@@ -12086,10 +12274,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List PlacementPolicy resources by Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#PlacementPoliciesList": {
@@ -12160,7 +12348,7 @@
         "smithy.api#documentation": "A vSphere Distributed Resource Scheduler (DRS) placement policy"
       }
     },
-    "com.azure.vmware#PlacementPoliciesListRequest": {
+    "com.azure.vmware#ListPlacementPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12213,10 +12401,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/listZones",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List hosts by zone in a cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ClusterZoneList": {
@@ -12311,26 +12499,26 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.vmware#GetHost": {
+    "com.azure.vmware#UpdateHost": {
       "type": "operation",
       "input": {
-        "target": "com.azure.vmware#GetHostRequest"
+        "target": "com.azure.vmware#UpdateHostRequest"
       },
       "output": {
-        "target": "com.azure.vmware#GetHostResponse"
+        "target": "com.azure.vmware#UpdateHostResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
+          "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/hosts/{hostId}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
-        "smithy.api#documentation": "Get a Host",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "smithy.api#documentation": "Update a Host",
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
-    "com.azure.vmware#GetHostResponse": {
+    "com.azure.vmware#UpdateHostResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12364,13 +12552,13 @@
           }
         },
         "zones": {
-          "target": "com.azure.vmware#HostsGetResponseZonesList",
+          "target": "com.azure.vmware#UpdateHostResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
         },
         "sku": {
-          "target": "com.azure.vmware#HostsGetResponseSku",
+          "target": "com.azure.vmware#UpdateHostResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -12380,7 +12568,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#HostsGetResponseSku": {
+    "com.azure.vmware#UpdateHostResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -12448,7 +12636,7 @@
         "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
       }
     },
-    "com.azure.vmware#HostsGetResponseZonesList": {
+    "com.azure.vmware#UpdateHostResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -12499,10 +12687,54 @@
         },
         "faultDomain": {
           "target": "smithy.api#String"
+        },
+        "licenses": {
+          "target": "com.azure.vmware#HostPropertiesLicensesList",
+          "traits": {
+            "smithy.api#documentation": "The licenses assigned to the host."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "The properties of a host."
+      }
+    },
+    "com.azure.vmware#HostPropertiesLicensesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmware#HostLicense"
+      },
+      "traits": {
+        "smithy.api#documentation": "The licenses assigned to the host."
+      }
+    },
+    "com.azure.vmware#HostLicense": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.azure.vmware#HostLicenseKind",
+          "traits": {
+            "smithy.api#documentation": "License kind",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A license assigned to a host."
+      }
+    },
+    "com.azure.vmware#HostLicenseKind": {
+      "type": "enum",
+      "members": {
+        "WINDOWSSERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WindowsServer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The kind of host license."
       }
     },
     "com.azure.vmware#HostMaintenance": {
@@ -12571,6 +12803,197 @@
         "smithy.api#documentation": "The kind of host."
       }
     },
+    "com.azure.vmware#UpdateHostRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "privateCloudName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the private cloud"
+          }
+        },
+        "clusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the cluster"
+          }
+        },
+        "hostId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The host identifier."
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmware#HostUpdateProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of a host resource that may be updated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.vmware#HostUpdateProperties": {
+      "type": "structure",
+      "members": {
+        "licenses": {
+          "target": "com.azure.vmware#HostUpdatePropertiesLicensesList",
+          "traits": {
+            "smithy.api#documentation": "The licenses assigned to the host."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties for updating a host."
+      }
+    },
+    "com.azure.vmware#HostUpdatePropertiesLicensesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.vmware#HostLicense"
+      },
+      "traits": {
+        "smithy.api#documentation": "The licenses assigned to the host."
+      }
+    },
+    "com.azure.vmware#GetHost": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.vmware#GetHostRequest"
+      },
+      "output": {
+        "target": "com.azure.vmware#GetHostResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/hosts/{hostId}",
+          "code": 200,
+          "apiVersion": "2026-03-01"
+        },
+        "smithy.api#documentation": "Get a Host",
+        "com.distilled.openapi#apiVersion": "2026-03-01"
+      }
+    },
+    "com.azure.vmware#GetHostResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.vmware#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.vmware#HostProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "zones": {
+          "target": "com.azure.vmware#GetHostResponseZonesList",
+          "traits": {
+            "smithy.api#documentation": "The availability zones."
+          }
+        },
+        "sku": {
+          "target": "com.azure.vmware#GetHostResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.vmware#GetHostResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.vmware#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.vmware#GetHostResponseZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The availability zones."
+      }
+    },
     "com.azure.vmware#GetHostRequest": {
       "type": "structure",
       "members": {
@@ -12632,10 +13055,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/hosts",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List Host resources by Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#HostListResult": {
@@ -12816,10 +13239,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a Datastore",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteDatastoreRequest": {
@@ -12883,10 +13306,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a Datastore",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DatastoresCreateOrUpdateResponse": {
@@ -13330,10 +13753,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a Datastore",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetDatastoreResponse": {
@@ -13435,10 +13858,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List Datastore resources by Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DatastoreList": {
@@ -13562,10 +13985,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteClusterRequest": {
@@ -13621,10 +14044,10 @@
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#UpdateClusterResponse": {
@@ -13661,7 +14084,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.vmware#ClustersUpdateResponseSku",
+          "target": "com.azure.vmware#UpdateClusterResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU",
             "smithy.api#required": {}
@@ -13672,7 +14095,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#ClustersUpdateResponseSku": {
+    "com.azure.vmware#UpdateClusterResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -13835,7 +14258,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.vmware#ClustersUpdateRequestSku",
+          "target": "com.azure.vmware#UpdateClusterRequestSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -13880,7 +14303,7 @@
         "smithy.api#documentation": "The hosts"
       }
     },
-    "com.azure.vmware#ClustersUpdateRequestSku": {
+    "com.azure.vmware#UpdateClusterRequestSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -13929,10 +14352,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ClustersCreateOrUpdateResponse": {
@@ -14153,10 +14576,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a Cluster",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetClusterResponse": {
@@ -14193,7 +14616,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.vmware#ClustersGetResponseSku",
+          "target": "com.azure.vmware#GetClusterResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU",
             "smithy.api#required": {}
@@ -14204,7 +14627,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#ClustersGetResponseSku": {
+    "com.azure.vmware#GetClusterResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -14293,10 +14716,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List Cluster resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ClusterList": {
@@ -14455,10 +14878,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a CloudLink",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteCloudLinkRequest": {
@@ -14514,10 +14937,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a CloudLink",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#CloudLinksCreateOrUpdateResponse": {
@@ -14721,10 +15144,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a CloudLink",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetCloudLinkResponse": {
@@ -14818,10 +15241,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List CloudLink resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#CloudLinkList": {
@@ -14937,10 +15360,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a ExpressRouteAuthorization",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteAuthorizationRequest": {
@@ -14996,10 +15419,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a ExpressRouteAuthorization",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#AuthorizationsCreateOrUpdateResponse": {
@@ -15177,10 +15600,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a ExpressRouteAuthorization",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetAuthorizationResponse": {
@@ -15274,10 +15697,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List ExpressRouteAuthorization resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ExpressRouteAuthorizationList": {
@@ -15393,10 +15816,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a Addon",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeleteAddonRequest": {
@@ -15452,10 +15875,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a Addon",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#AddonsCreateOrUpdateResponse": {
@@ -15673,10 +16096,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a Addon",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetAddonResponse": {
@@ -15770,10 +16193,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List Addon resources by PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#AddonList": {
@@ -15889,10 +16312,10 @@
           "method": "DELETE",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Delete a PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#DeletePrivateCloudRequest": {
@@ -15940,10 +16363,10 @@
           "method": "PATCH",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Update a PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#UpdatePrivateCloudResponse": {
@@ -15974,7 +16397,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.vmware#PrivateCloudsUpdateResponseTagsMap",
+          "target": "com.azure.vmware#UpdatePrivateCloudResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15993,20 +16416,20 @@
           }
         },
         "sku": {
-          "target": "com.azure.vmware#PrivateCloudsUpdateResponseSku",
+          "target": "com.azure.vmware#UpdatePrivateCloudResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU",
             "smithy.api#required": {}
           }
         },
         "identity": {
-          "target": "com.azure.vmware#PrivateCloudsUpdateResponseIdentity",
+          "target": "com.azure.vmware#UpdatePrivateCloudResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "zones": {
-          "target": "com.azure.vmware#PrivateCloudsUpdateResponseZonesList",
+          "target": "com.azure.vmware#UpdatePrivateCloudResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -16016,7 +16439,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#PrivateCloudsUpdateResponseZonesList": {
+    "com.azure.vmware#UpdatePrivateCloudResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -16025,7 +16448,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.vmware#PrivateCloudsUpdateResponseIdentity": {
+    "com.azure.vmware#UpdatePrivateCloudResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -16071,7 +16494,7 @@
         "smithy.api#documentation": "Type of managed service identity (either system assigned, or none)."
       }
     },
-    "com.azure.vmware#PrivateCloudsUpdateResponseSku": {
+    "com.azure.vmware#UpdatePrivateCloudResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -16782,7 +17205,7 @@
         "smithy.api#documentation": "The hosts"
       }
     },
-    "com.azure.vmware#PrivateCloudsUpdateResponseTagsMap": {
+    "com.azure.vmware#UpdatePrivateCloudResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16822,19 +17245,19 @@
           }
         },
         "tags": {
-          "target": "com.azure.vmware#PrivateCloudsUpdateRequestTagsMap",
+          "target": "com.azure.vmware#UpdatePrivateCloudRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "sku": {
-          "target": "com.azure.vmware#PrivateCloudsUpdateRequestSku",
+          "target": "com.azure.vmware#UpdatePrivateCloudRequestSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
         },
         "identity": {
-          "target": "com.azure.vmware#PrivateCloudsUpdateRequestIdentity",
+          "target": "com.azure.vmware#UpdatePrivateCloudRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -17019,7 +17442,7 @@
         "smithy.api#documentation": "The hosts"
       }
     },
-    "com.azure.vmware#PrivateCloudsUpdateRequestIdentity": {
+    "com.azure.vmware#UpdatePrivateCloudRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -17033,7 +17456,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.vmware#PrivateCloudsUpdateRequestSku": {
+    "com.azure.vmware#UpdatePrivateCloudRequestSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -17069,7 +17492,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.vmware#PrivateCloudsUpdateRequestTagsMap": {
+    "com.azure.vmware#UpdatePrivateCloudRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17094,10 +17517,10 @@
           "method": "PUT",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Create a PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#PrivateCloudsCreateOrUpdateResponse": {
@@ -17563,10 +17986,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Get a PrivateCloud",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#GetPrivateCloudResponse": {
@@ -17597,7 +18020,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.vmware#PrivateCloudsGetResponseTagsMap",
+          "target": "com.azure.vmware#GetPrivateCloudResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17616,20 +18039,20 @@
           }
         },
         "sku": {
-          "target": "com.azure.vmware#PrivateCloudsGetResponseSku",
+          "target": "com.azure.vmware#GetPrivateCloudResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU",
             "smithy.api#required": {}
           }
         },
         "identity": {
-          "target": "com.azure.vmware#PrivateCloudsGetResponseIdentity",
+          "target": "com.azure.vmware#GetPrivateCloudResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "zones": {
-          "target": "com.azure.vmware#PrivateCloudsGetResponseZonesList",
+          "target": "com.azure.vmware#GetPrivateCloudResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -17639,7 +18062,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#PrivateCloudsGetResponseZonesList": {
+    "com.azure.vmware#GetPrivateCloudResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -17648,7 +18071,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.vmware#PrivateCloudsGetResponseIdentity": {
+    "com.azure.vmware#GetPrivateCloudResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -17674,7 +18097,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.vmware#PrivateCloudsGetResponseSku": {
+    "com.azure.vmware#GetPrivateCloudResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -17710,7 +18133,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.vmware#PrivateCloudsGetResponseTagsMap": {
+    "com.azure.vmware#GetPrivateCloudResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17767,10 +18190,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List PrivateCloud resources by resource group",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#PrivateCloudList": {
@@ -17993,10 +18416,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/skus",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "A list of SKUs.",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#PagedResourceSku": {
@@ -18411,10 +18834,10 @@
           "method": "GET",
           "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/privateClouds",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List PrivateCloud resources by subscription ID",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ListPrivateCloudInSubscriptionRequest": {
@@ -18446,10 +18869,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/serviceComponents/{serviceComponentName}/checkAvailability",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Return service component availability",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#CheckServiceComponentAvailabilityRequest": {
@@ -18497,10 +18920,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkTrialAvailability",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Return trial status for subscription by region",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#Trial": {
@@ -18614,10 +19037,10 @@
           "method": "POST",
           "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkQuotaAvailability",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "Return quota for subscription by region",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#Quota": {
@@ -18709,17 +19132,17 @@
           "method": "GET",
           "uri": "/providers/Microsoft.AVS/operations",
           "code": 200,
-          "apiVersion": "2025-09-01"
+          "apiVersion": "2026-03-01"
         },
         "smithy.api#documentation": "List the operations for the provider",
-        "com.distilled.openapi#apiVersion": "2025-09-01"
+        "com.distilled.openapi#apiVersion": "2026-03-01"
       }
     },
     "com.azure.vmware#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.vmware#OperationsListResponseValueList",
+          "target": "com.azure.vmware#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -18735,7 +19158,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.vmware#OperationsListResponseValueList": {
+    "com.azure.vmware#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.vmware#Operation"
@@ -18859,376 +19282,379 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkVmGroup"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkVmGroup"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkVmGroup"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkVmGroup"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkVmGroups"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkVirtualMachine"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkVirtualMachines"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkSegment"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkSegment"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkSegment"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkSegment"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkSegments"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkPublicIp"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkPublicIp"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkPublicIp"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkPublicIPs"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkGateway"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkGateways"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkDnsZones"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkDnsServices"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetwork"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworks"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptCmdlet"
-        },
-        {
-          "target": "com.azure.vmware#ScriptCmdletsList2"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptPackage"
-        },
-        {
-          "target": "com.azure.vmware#ScriptPackagesList2"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptExecutionExecutionLog"
-        },
-        {
-          "target": "com.azure.vmware#DeleteScriptExecution"
-        },
-        {
-          "target": "com.azure.vmware#ScriptExecutionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptExecution"
-        },
-        {
-          "target": "com.azure.vmware#ScriptExecutionsList2"
-        },
-        {
-          "target": "com.azure.vmware#RotatePrivateCloudVcenterPassword"
-        },
-        {
-          "target": "com.azure.vmware#RotatePrivateCloudNsxtPassword"
-        },
-        {
-          "target": "com.azure.vmware#DeletePureStoragePolicy"
-        },
-        {
-          "target": "com.azure.vmware#PureStoragePoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetPureStoragePolicy"
-        },
-        {
-          "target": "com.azure.vmware#ListPureStoragePolicies"
-        },
-        {
-          "target": "com.azure.vmware#GetProvisionedNetwork"
-        },
-        {
-          "target": "com.azure.vmware#ListProvisionedNetworks"
-        },
-        {
-          "target": "com.azure.vmware#MaintenancesSchedule"
-        },
-        {
-          "target": "com.azure.vmware#MaintenancesReschedule"
-        },
-        {
-          "target": "com.azure.vmware#MaintenancesInitiateChecks"
-        },
-        {
-          "target": "com.azure.vmware#GetMaintenance"
-        },
-        {
-          "target": "com.azure.vmware#ListMaintenances"
-        },
-        {
-          "target": "com.azure.vmware#ListPrivateCloudAdminCredentials"
-        },
-        {
-          "target": "com.azure.vmware#GetLicenseProperty"
-        },
-        {
-          "target": "com.azure.vmware#DeleteLicense"
-        },
-        {
-          "target": "com.azure.vmware#LicensesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetLicense"
-        },
-        {
-          "target": "com.azure.vmware#ListLicenses"
-        },
-        {
-          "target": "com.azure.vmware#DeleteIscsiPath"
-        },
-        {
-          "target": "com.azure.vmware#IscsiPathsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetIscsiPath"
-        },
-        {
-          "target": "com.azure.vmware#ListIscsiPathByPrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#DeleteHcxEnterpriseSite"
-        },
-        {
-          "target": "com.azure.vmware#HcxEnterpriseSitesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetHcxEnterpriseSite"
-        },
-        {
-          "target": "com.azure.vmware#ListHcxEnterpriseSites"
-        },
-        {
-          "target": "com.azure.vmware#DeleteGlobalReachConnection"
-        },
-        {
-          "target": "com.azure.vmware#GlobalReachConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetGlobalReachConnection"
-        },
-        {
-          "target": "com.azure.vmware#ListGlobalReachConnections"
-        },
-        {
-          "target": "com.azure.vmware#GetPrivateCloudVcfLicense"
-        },
-        {
-          "target": "com.azure.vmware#VirtualMachinesRestrictMovement"
-        },
-        {
-          "target": "com.azure.vmware#GetVirtualMachine"
-        },
-        {
-          "target": "com.azure.vmware#VirtualMachinesList2"
-        },
-        {
-          "target": "com.azure.vmware#DeletePlacementPolicy"
-        },
-        {
-          "target": "com.azure.vmware#UpdatePlacementPolicy"
-        },
-        {
-          "target": "com.azure.vmware#PlacementPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetPlacementPolicy"
-        },
-        {
-          "target": "com.azure.vmware#PlacementPoliciesList2"
-        },
-        {
-          "target": "com.azure.vmware#ListClusterZones"
-        },
-        {
-          "target": "com.azure.vmware#GetHost"
-        },
-        {
-          "target": "com.azure.vmware#ListHosts"
-        },
-        {
-          "target": "com.azure.vmware#DeleteDatastore"
-        },
-        {
-          "target": "com.azure.vmware#DatastoresCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetDatastore"
-        },
-        {
-          "target": "com.azure.vmware#ListDatastores"
-        },
-        {
-          "target": "com.azure.vmware#DeleteCluster"
-        },
-        {
-          "target": "com.azure.vmware#UpdateCluster"
-        },
-        {
-          "target": "com.azure.vmware#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetCluster"
-        },
-        {
-          "target": "com.azure.vmware#ListClusters"
-        },
-        {
-          "target": "com.azure.vmware#DeleteCloudLink"
-        },
-        {
-          "target": "com.azure.vmware#CloudLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetCloudLink"
-        },
-        {
-          "target": "com.azure.vmware#ListCloudLinks"
-        },
-        {
-          "target": "com.azure.vmware#DeleteAuthorization"
+          "target": "com.azure.vmware#AddonsCreateOrUpdate"
         },
         {
           "target": "com.azure.vmware#AuthorizationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.vmware#GetAuthorization"
-        },
-        {
-          "target": "com.azure.vmware#ListAuthorizations"
-        },
-        {
-          "target": "com.azure.vmware#DeleteAddon"
-        },
-        {
-          "target": "com.azure.vmware#AddonsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetAddon"
-        },
-        {
-          "target": "com.azure.vmware#ListAddons"
-        },
-        {
-          "target": "com.azure.vmware#DeletePrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#UpdatePrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#PrivateCloudsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#GetPrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#ListPrivateClouds"
-        },
-        {
-          "target": "com.azure.vmware#ListSkus"
-        },
-        {
-          "target": "com.azure.vmware#ListPrivateCloudInSubscription"
-        },
-        {
-          "target": "com.azure.vmware#CheckServiceComponentAvailability"
+          "target": "com.azure.vmware#CheckLocationQuotaAvailability"
         },
         {
           "target": "com.azure.vmware#CheckLocationTrialAvailability"
         },
         {
-          "target": "com.azure.vmware#CheckLocationQuotaAvailability"
+          "target": "com.azure.vmware#CheckServiceComponentAvailability"
+        },
+        {
+          "target": "com.azure.vmware#CloudLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkPublicIP"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkSegments"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkVMGroup"
+        },
+        {
+          "target": "com.azure.vmware#DatastoresCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#DeleteAddon"
+        },
+        {
+          "target": "com.azure.vmware#DeleteAuthorization"
+        },
+        {
+          "target": "com.azure.vmware#DeleteCloudLink"
+        },
+        {
+          "target": "com.azure.vmware#DeleteCluster"
+        },
+        {
+          "target": "com.azure.vmware#DeleteDatastore"
+        },
+        {
+          "target": "com.azure.vmware#DeleteGlobalReachConnection"
+        },
+        {
+          "target": "com.azure.vmware#DeleteHcxEnterpriseSite"
+        },
+        {
+          "target": "com.azure.vmware#DeleteIscsiPath"
+        },
+        {
+          "target": "com.azure.vmware#DeleteLicense"
+        },
+        {
+          "target": "com.azure.vmware#DeletePlacementPolicy"
+        },
+        {
+          "target": "com.azure.vmware#DeletePrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#DeletePureStoragePolicy"
+        },
+        {
+          "target": "com.azure.vmware#DeleteScriptExecution"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkPublicIP"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkSegment"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkVMGroup"
+        },
+        {
+          "target": "com.azure.vmware#GetAddon"
+        },
+        {
+          "target": "com.azure.vmware#GetAuthorization"
+        },
+        {
+          "target": "com.azure.vmware#GetCloudLink"
+        },
+        {
+          "target": "com.azure.vmware#GetCluster"
+        },
+        {
+          "target": "com.azure.vmware#GetDatastore"
+        },
+        {
+          "target": "com.azure.vmware#GetGlobalReachConnection"
+        },
+        {
+          "target": "com.azure.vmware#GetHcxEnterpriseSite"
+        },
+        {
+          "target": "com.azure.vmware#GetHost"
+        },
+        {
+          "target": "com.azure.vmware#GetIscsiPath"
+        },
+        {
+          "target": "com.azure.vmware#GetLicense"
+        },
+        {
+          "target": "com.azure.vmware#GetLicenseProperties"
+        },
+        {
+          "target": "com.azure.vmware#GetMaintenance"
+        },
+        {
+          "target": "com.azure.vmware#GetPlacementPolicy"
+        },
+        {
+          "target": "com.azure.vmware#GetPrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#GetPrivateCloudVcfLicense"
+        },
+        {
+          "target": "com.azure.vmware#GetProvisionedNetwork"
+        },
+        {
+          "target": "com.azure.vmware#GetPureStoragePolicy"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptCmdlet"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptExecution"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptExecutionExecutionLogs"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptPackage"
+        },
+        {
+          "target": "com.azure.vmware#GetVirtualMachine"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetwork"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkGateway"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkPublicIP"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkSegment"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkVirtualMachine"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkVMGroup"
+        },
+        {
+          "target": "com.azure.vmware#GlobalReachConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#HcxEnterpriseSitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#IscsiPathsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#LicensesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#ListAddons"
+        },
+        {
+          "target": "com.azure.vmware#ListAuthorizations"
+        },
+        {
+          "target": "com.azure.vmware#ListCloudLinks"
+        },
+        {
+          "target": "com.azure.vmware#ListClusters"
+        },
+        {
+          "target": "com.azure.vmware#ListClusterZones"
+        },
+        {
+          "target": "com.azure.vmware#ListDatastores"
+        },
+        {
+          "target": "com.azure.vmware#ListGlobalReachConnections"
+        },
+        {
+          "target": "com.azure.vmware#ListHcxEnterpriseSites"
+        },
+        {
+          "target": "com.azure.vmware#ListHosts"
+        },
+        {
+          "target": "com.azure.vmware#ListIscsiPathByPrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#ListLicenses"
+        },
+        {
+          "target": "com.azure.vmware#ListMaintenances"
         },
         {
           "target": "com.azure.vmware#ListOperations"
+        },
+        {
+          "target": "com.azure.vmware#ListPlacementPolicies"
+        },
+        {
+          "target": "com.azure.vmware#ListPrivateCloudAdminCredentials"
+        },
+        {
+          "target": "com.azure.vmware#ListPrivateCloudInSubscription"
+        },
+        {
+          "target": "com.azure.vmware#ListPrivateClouds"
+        },
+        {
+          "target": "com.azure.vmware#ListProvisionedNetworks"
+        },
+        {
+          "target": "com.azure.vmware#ListPureStoragePolicies"
+        },
+        {
+          "target": "com.azure.vmware#ListScriptCmdlets"
+        },
+        {
+          "target": "com.azure.vmware#ListScriptExecutions"
+        },
+        {
+          "target": "com.azure.vmware#ListScriptPackages"
+        },
+        {
+          "target": "com.azure.vmware#ListSkus"
+        },
+        {
+          "target": "com.azure.vmware#ListVirtualMachines"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkDnsServices"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkDnsZones"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkGateways"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkPublicIPs"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworks"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkSegments"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkVirtualMachines"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkVMGroups"
+        },
+        {
+          "target": "com.azure.vmware#MaintenancesInitiateChecks"
+        },
+        {
+          "target": "com.azure.vmware#MaintenancesReschedule"
+        },
+        {
+          "target": "com.azure.vmware#MaintenancesSchedule"
+        },
+        {
+          "target": "com.azure.vmware#PlacementPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#PrivateCloudsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#PureStoragePoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#RotatePrivateCloudNsxtPassword"
+        },
+        {
+          "target": "com.azure.vmware#RotatePrivateCloudVcenterPassword"
+        },
+        {
+          "target": "com.azure.vmware#ScriptExecutionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#UpdateCluster"
+        },
+        {
+          "target": "com.azure.vmware#UpdateHost"
+        },
+        {
+          "target": "com.azure.vmware#UpdatePlacementPolicy"
+        },
+        {
+          "target": "com.azure.vmware#UpdatePrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkSegments"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkVMGroup"
+        },
+        {
+          "target": "com.azure.vmware#VirtualMachinesRestrictMovement"
         }
       ],
       "traits": {

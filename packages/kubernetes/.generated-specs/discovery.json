@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.discovery#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.discovery#GetDiscoveryApiGroup": {
+    "com.kubernetes.discovery#GetDiscoveryAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.discovery#GetDiscoveryV1ApiResources": {
+    "com.kubernetes.discovery#GetDiscoveryV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2024,7 +2025,7 @@
         "smithy.api#documentation": "delete an EndpointSlice"
       }
     },
-    "com.kubernetes.discovery#ListWatchDiscoveryV1EndpointSliceForAllNamespacesRequest": {
+    "com.kubernetes.discovery#WatchDiscoveryV1EndpointSliceListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -2137,10 +2138,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.discovery#ListWatchDiscoveryV1EndpointSliceForAllNamespaces": {
+    "com.kubernetes.discovery#WatchDiscoveryV1EndpointSliceListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.discovery#ListWatchDiscoveryV1EndpointSliceForAllNamespacesRequest"
+        "target": "com.kubernetes.discovery#WatchDiscoveryV1EndpointSliceListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.discovery#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2154,7 +2155,7 @@
         "smithy.api#documentation": "watch individual changes to a list of EndpointSlice. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.discovery#ListWatchDiscoveryV1NamespacedEndpointSliceRequest": {
+    "com.kubernetes.discovery#WatchDiscoveryV1NamespacedEndpointSliceListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2254,10 +2255,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.discovery#ListWatchDiscoveryV1NamespacedEndpointSlice": {
+    "com.kubernetes.discovery#WatchDiscoveryV1NamespacedEndpointSliceList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.discovery#ListWatchDiscoveryV1NamespacedEndpointSliceRequest"
+        "target": "com.kubernetes.discovery#WatchDiscoveryV1NamespacedEndpointSliceListRequest"
       },
       "output": {
         "target": "com.kubernetes.discovery#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2440,10 +2441,19 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.discovery#GetDiscoveryApiGroup"
+          "target": "com.kubernetes.discovery#CreateDiscoveryV1NamespacedEndpointSlice"
         },
         {
-          "target": "com.kubernetes.discovery#GetDiscoveryV1ApiResources"
+          "target": "com.kubernetes.discovery#DeleteDiscoveryV1CollectionNamespacedEndpointSlice"
+        },
+        {
+          "target": "com.kubernetes.discovery#DeleteDiscoveryV1NamespacedEndpointSlice"
+        },
+        {
+          "target": "com.kubernetes.discovery#GetDiscoveryAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.discovery#GetDiscoveryV1APIResources"
         },
         {
           "target": "com.kubernetes.discovery#ListDiscoveryV1EndpointSliceForAllNamespaces"
@@ -2452,10 +2462,7 @@
           "target": "com.kubernetes.discovery#ListDiscoveryV1NamespacedEndpointSlice"
         },
         {
-          "target": "com.kubernetes.discovery#CreateDiscoveryV1NamespacedEndpointSlice"
-        },
-        {
-          "target": "com.kubernetes.discovery#DeleteDiscoveryV1CollectionNamespacedEndpointSlice"
+          "target": "com.kubernetes.discovery#PatchDiscoveryV1NamespacedEndpointSlice"
         },
         {
           "target": "com.kubernetes.discovery#ReadDiscoveryV1NamespacedEndpointSlice"
@@ -2464,19 +2471,13 @@
           "target": "com.kubernetes.discovery#ReplaceDiscoveryV1NamespacedEndpointSlice"
         },
         {
-          "target": "com.kubernetes.discovery#PatchDiscoveryV1NamespacedEndpointSlice"
-        },
-        {
-          "target": "com.kubernetes.discovery#DeleteDiscoveryV1NamespacedEndpointSlice"
-        },
-        {
-          "target": "com.kubernetes.discovery#ListWatchDiscoveryV1EndpointSliceForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.discovery#ListWatchDiscoveryV1NamespacedEndpointSlice"
+          "target": "com.kubernetes.discovery#WatchDiscoveryV1EndpointSliceListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.discovery#WatchDiscoveryV1NamespacedEndpointSlice"
+        },
+        {
+          "target": "com.kubernetes.discovery#WatchDiscoveryV1NamespacedEndpointSliceList"
         }
       ],
       "traits": {

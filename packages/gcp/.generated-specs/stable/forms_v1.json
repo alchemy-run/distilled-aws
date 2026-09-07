@@ -4,67 +4,42 @@
     "service": "forms",
     "version": "v1",
     "title": "Google Forms API",
-    "baseUrl": "https://forms.googleapis.com/"
+    "baseUrl": "https://forms.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.forms_v1#FileUploadAnswers": {
+    "com.gcp.forms_v1#UpdateSettingsRequest": {
       "type": "structure",
       "members": {
-        "answers": {
-          "target": "com.gcp.forms_v1#FileUploadAnswerList",
-          "traits": {
-            "smithy.api#documentation": "Output only. All submitted files for a FileUpload question."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "All submitted files for a FileUpload question."
-      }
-    },
-    "com.gcp.forms_v1#FileUploadAnswerList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#FileUploadAnswer"
-      }
-    },
-    "com.gcp.forms_v1#CloudPubsubTopic": {
-      "type": "structure",
-      "members": {
-        "topicName": {
+        "updateMask": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. A fully qualified Pub/Sub topic name to publish the events to. This topic must be owned by the calling project and already exist in Pub/Sub."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A Pub/Sub topic."
-      }
-    },
-    "com.gcp.forms_v1#Info": {
-      "type": "structure",
-      "members": {
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The title of the form which is visible to responders."
+            "smithy.api#documentation": "Required. Only values named in this mask are changed. At least one field must be specified. The root `settings` is implied and should not be specified. A single `\"*\"` can be used as short-hand for updating every field."
           }
         },
-        "documentTitle": {
-          "target": "smithy.api#String",
+        "settings": {
+          "target": "com.gcp.forms_v1#FormSettings",
           "traits": {
-            "smithy.api#documentation": "Output only. The title of the document which is visible in Drive. If Info.title is empty, `document_title` may appear in its place in the Google Forms UI and be visible to responders. `document_title` can be set on create, but cannot be modified by a batchUpdate request. Please use the [Google Drive API](https://developers.google.com/drive/api/v3/reference/files/update) if you need to programmatically update `document_title`."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The description of the form."
+            "smithy.api#documentation": "Required. The settings to update with."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The general information for a form."
+        "smithy.api#documentation": "Update Form's FormSettings."
+      }
+    },
+    "com.gcp.forms_v1#TextQuestion": {
+      "type": "structure",
+      "members": {
+        "paragraph": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the question is a paragraph question or not. If not, the question is a short text question."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A text-based question."
       }
     },
     "com.gcp.forms_v1#FormResponse": {
@@ -76,10 +51,16 @@
             "smithy.api#documentation": "Output only. The form ID."
           }
         },
-        "totalScore": {
-          "target": "smithy.api#Double",
+        "lastSubmittedTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The total number of points the respondent received for their submission Only set if the form was a quiz and the response was graded. This includes points automatically awarded via autograding adjusted by any manual corrections entered by the form owner."
+            "smithy.api#documentation": "Output only. Timestamp for the most recent time the response was submitted. Does not track changes to grades."
+          }
+        },
+        "answers": {
+          "target": "com.gcp.forms_v1#AnswerMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. The actual answers to the questions, keyed by question_id."
           }
         },
         "responseId": {
@@ -94,22 +75,16 @@
             "smithy.api#documentation": "Output only. Timestamp for the first time the response was submitted."
           }
         },
-        "lastSubmittedTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Timestamp for the most recent time the response was submitted. Does not track changes to grades."
-          }
-        },
         "respondentEmail": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The email address (if collected) for the respondent."
           }
         },
-        "answers": {
-          "target": "com.gcp.forms_v1#AnswerMap",
+        "totalScore": {
+          "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Output only. The actual answers to the questions, keyed by question_id."
+            "smithy.api#documentation": "Output only. The total number of points the respondent received for their submission Only set if the form was a quiz and the response was graded. This includes points automatically awarded via autograding adjusted by any manual corrections entered by the form owner."
           }
         }
       },
@@ -126,106 +101,44 @@
         "target": "com.gcp.forms_v1#Answer"
       }
     },
-    "com.gcp.forms_v1#CreateItemRequest": {
+    "com.gcp.forms_v1#UpdateFormInfoRequest": {
       "type": "structure",
       "members": {
-        "location": {
-          "target": "com.gcp.forms_v1#Location",
+        "info": {
+          "target": "com.gcp.forms_v1#Info",
           "traits": {
-            "smithy.api#documentation": "Required. Where to place the new item."
+            "smithy.api#documentation": "The info to update."
           }
         },
-        "item": {
-          "target": "com.gcp.forms_v1#Item",
+        "updateMask": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The item to create."
+            "smithy.api#documentation": "Required. Only values named in this mask are changed. At least one field must be specified. The root `info` is implied and should not be specified. A single `\"*\"` can be used as short-hand for updating every field."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Create an item in a form."
+        "smithy.api#documentation": "Update Form's Info."
       }
     },
-    "com.gcp.forms_v1#Item": {
+    "com.gcp.forms_v1#ListWatchesResponse": {
       "type": "structure",
       "members": {
-        "pageBreakItem": {
-          "target": "com.gcp.forms_v1#PageBreakItem",
+        "watches": {
+          "target": "com.gcp.forms_v1#WatchList",
           "traits": {
-            "smithy.api#documentation": "Starts a new page with a title."
-          }
-        },
-        "videoItem": {
-          "target": "com.gcp.forms_v1#VideoItem",
-          "traits": {
-            "smithy.api#documentation": "Displays a video on the page."
-          }
-        },
-        "questionGroupItem": {
-          "target": "com.gcp.forms_v1#QuestionGroupItem",
-          "traits": {
-            "smithy.api#documentation": "Poses one or more questions to the user with a single major prompt."
-          }
-        },
-        "questionItem": {
-          "target": "com.gcp.forms_v1#QuestionItem",
-          "traits": {
-            "smithy.api#documentation": "Poses a question to the user."
-          }
-        },
-        "imageItem": {
-          "target": "com.gcp.forms_v1#ImageItem",
-          "traits": {
-            "smithy.api#documentation": "Displays an image on the page."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The title of the item."
-          }
-        },
-        "itemId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The item ID. On creation, it can be provided but the ID must not be already used in the form. If not provided, a new ID is assigned."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The description of the item."
-          }
-        },
-        "textItem": {
-          "target": "com.gcp.forms_v1#TextItem",
-          "traits": {
-            "smithy.api#documentation": "Displays a title and description on the page."
+            "smithy.api#documentation": "The returned watches."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A single item of the form. `kind` defines which kind of item it is."
+        "smithy.api#documentation": "The response of a ListWatchesRequest."
       }
     },
-    "com.gcp.forms_v1#WriteControl": {
-      "type": "structure",
-      "members": {
-        "targetRevisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The target revision ID of the form that the write request is applied to. If changes have occurred after this revision, the changes in this update request are transformed against those changes. This results in a new revision of the form that incorporates both the changes in the request and the intervening changes, with the server resolving conflicting changes. The target revision ID may only be used to write to recent versions of a form. If the target revision is too far behind the latest revision, the request is not processed and returns a 400 (Bad Request Error). The request may be retried after reading the latest version of the form. In most cases a target revision ID remains valid for several minutes after it is read, but for frequently-edited forms this window may be shorter."
-          }
-        },
-        "requiredRevisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The revision ID of the form that the write request is applied to. If this is not the latest revision of the form, the request is not processed and returns a 400 bad request error."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Provides control over how write requests are executed."
+    "com.gcp.forms_v1#WatchList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#Watch"
       }
     },
     "com.gcp.forms_v1#Question": {
@@ -237,16 +150,10 @@
             "smithy.api#documentation": "Grading setup for the question."
           }
         },
-        "required": {
-          "target": "smithy.api#Boolean",
+        "questionId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Whether the question must be answered in order for a respondent to submit their response."
-          }
-        },
-        "ratingQuestion": {
-          "target": "com.gcp.forms_v1#RatingQuestion",
-          "traits": {
-            "smithy.api#documentation": "A respondent can choose a rating from a pre-defined set of icons."
+            "smithy.api#documentation": "Read only. The question ID. On creation, it can be provided but the ID must not be already used in the form. If not provided, a new ID is assigned."
           }
         },
         "scaleQuestion": {
@@ -255,28 +162,28 @@
             "smithy.api#documentation": "A respondent can choose a number from a range."
           }
         },
+        "dateQuestion": {
+          "target": "com.gcp.forms_v1#DateQuestion",
+          "traits": {
+            "smithy.api#documentation": "A respondent can enter a date."
+          }
+        },
         "textQuestion": {
           "target": "com.gcp.forms_v1#TextQuestion",
           "traits": {
             "smithy.api#documentation": "A respondent can enter a free text response."
           }
         },
+        "ratingQuestion": {
+          "target": "com.gcp.forms_v1#RatingQuestion",
+          "traits": {
+            "smithy.api#documentation": "A respondent can choose a rating from a pre-defined set of icons."
+          }
+        },
         "fileUploadQuestion": {
           "target": "com.gcp.forms_v1#FileUploadQuestion",
           "traits": {
             "smithy.api#documentation": "A respondent can upload one or more files."
-          }
-        },
-        "rowQuestion": {
-          "target": "com.gcp.forms_v1#RowQuestion",
-          "traits": {
-            "smithy.api#documentation": "A row of a QuestionGroupItem."
-          }
-        },
-        "dateQuestion": {
-          "target": "com.gcp.forms_v1#DateQuestion",
-          "traits": {
-            "smithy.api#documentation": "A respondent can enter a date."
           }
         },
         "choiceQuestion": {
@@ -291,196 +198,21 @@
             "smithy.api#documentation": "A respondent can enter a time."
           }
         },
-        "questionId": {
-          "target": "smithy.api#String",
+        "rowQuestion": {
+          "target": "com.gcp.forms_v1#RowQuestion",
           "traits": {
-            "smithy.api#documentation": "Read only. The question ID. On creation, it can be provided but the ID must not be already used in the form. If not provided, a new ID is assigned."
+            "smithy.api#documentation": "A row of a QuestionGroupItem."
+          }
+        },
+        "required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the question must be answered in order for a respondent to submit their response."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Any question. The specific type of question is known by its `kind`."
-      }
-    },
-    "com.gcp.forms_v1#ScaleQuestion": {
-      "type": "structure",
-      "members": {
-        "low": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The lowest possible value for the scale."
-          }
-        },
-        "highLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The label to display describing the highest point on the scale."
-          }
-        },
-        "high": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The highest possible value for the scale."
-          }
-        },
-        "lowLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The label to display describing the lowest point on the scale."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A scale question. The user has a range of numeric values to choose from."
-      }
-    },
-    "com.gcp.forms_v1#QuizSettings": {
-      "type": "structure",
-      "members": {
-        "isQuiz": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this form is a quiz or not. When true, responses are graded based on question Grading. Upon setting to false, all question Grading is deleted."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Settings related to quiz forms and grading. These must be updated with the UpdateSettingsRequest."
-      }
-    },
-    "com.gcp.forms_v1#BatchUpdateFormResponse": {
-      "type": "structure",
-      "members": {
-        "replies": {
-          "target": "com.gcp.forms_v1#ResponseList",
-          "traits": {
-            "smithy.api#documentation": "The reply of the updates. This maps 1:1 with the update requests, although replies to some requests may be empty."
-          }
-        },
-        "form": {
-          "target": "com.gcp.forms_v1#Form",
-          "traits": {
-            "smithy.api#documentation": "Based on the bool request field `include_form_in_response`, a form with all applied mutations/updates is returned or not. This may be later than the revision ID created by these changes."
-          }
-        },
-        "writeControl": {
-          "target": "com.gcp.forms_v1#WriteControl",
-          "traits": {
-            "smithy.api#documentation": "The updated write control after applying the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response to a BatchUpdateFormRequest."
-      }
-    },
-    "com.gcp.forms_v1#ResponseList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#Response"
-      }
-    },
-    "com.gcp.forms_v1#ListFormResponsesResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If set, there are more responses. To get the next page of responses, provide this as `page_token` in a future request."
-          }
-        },
-        "responses": {
-          "target": "com.gcp.forms_v1#FormResponseList",
-          "traits": {
-            "smithy.api#documentation": "The returned form responses. Note: The `formId` field is not returned in the `FormResponse` object for list requests."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response to a ListFormResponsesRequest."
-      }
-    },
-    "com.gcp.forms_v1#FormResponseList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#FormResponse"
-      }
-    },
-    "com.gcp.forms_v1#TextItem": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A text item."
-      }
-    },
-    "com.gcp.forms_v1#TextAnswer": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The answer value. Formatting used for different kinds of question: * ChoiceQuestion * `RADIO` or `DROP_DOWN`: A single string corresponding to the option that was selected. * `CHECKBOX`: Multiple strings corresponding to each option that was selected. * TextQuestion: The text that the user entered. * ScaleQuestion: A string containing the number that was selected. * DateQuestion * Without time or year: MM-DD e.g. \"05-19\" * With year: YYYY-MM-DD e.g. \"1986-05-19\" * With time: MM-DD HH:MM e.g. \"05-19 14:51\" * With year and time: YYYY-MM-DD HH:MM e.g. \"1986-05-19 14:51\" * TimeQuestion: String with time or duration in HH:MM format e.g. \"14:51\" * RowQuestion within QuestionGroupItem: The answer for each row of a QuestionGroupItem is represented as a separate Answer. Each will contain one string for `RADIO`-type choices or multiple strings for `CHECKBOX` choices."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An answer to a question represented as text."
-      }
-    },
-    "com.gcp.forms_v1#RatingQuestion": {
-      "type": "structure",
-      "members": {
-        "iconType": {
-          "target": "com.gcp.forms_v1#RatingQuestionIconTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The icon type to use for the rating."
-          }
-        },
-        "ratingScaleLevel": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The rating scale level of the rating question."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A rating question. The user has a range of icons to choose from."
-      }
-    },
-    "com.gcp.forms_v1#RatingQuestionIconTypeEnum": {
-      "type": "enum",
-      "members": {
-        "RATING_ICON_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RATING_ICON_TYPE_UNSPECIFIED"
-          }
-        },
-        "STAR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STAR"
-          }
-        },
-        "HEART": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HEART"
-          }
-        },
-        "THUMB_UP": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THUMB_UP"
-          }
-        }
-      }
-    },
-    "com.gcp.forms_v1#RenewWatchRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Renew an existing Watch for seven days."
       }
     },
     "com.gcp.forms_v1#Option": {
@@ -498,10 +230,10 @@
             "smithy.api#documentation": "Required. The choice as presented to the user."
           }
         },
-        "isOther": {
-          "target": "smithy.api#Boolean",
+        "goToSectionId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Whether the option is \"other\". Currently only applies to `RADIO` and `CHECKBOX` choice types, but is not allowed in a QuestionGroupItem."
+            "smithy.api#documentation": "Item ID of section header to go to."
           }
         },
         "image": {
@@ -510,10 +242,10 @@
             "smithy.api#documentation": "Display image as an option."
           }
         },
-        "goToSectionId": {
-          "target": "smithy.api#String",
+        "isOther": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Item ID of section header to go to."
+            "smithy.api#documentation": "Whether the option is \"other\". Currently only applies to `RADIO` and `CHECKBOX` choice types, but is not allowed in a QuestionGroupItem."
           }
         }
       },
@@ -550,36 +282,144 @@
         }
       }
     },
-    "com.gcp.forms_v1#Image": {
+    "com.gcp.forms_v1#WriteControl": {
       "type": "structure",
       "members": {
-        "altText": {
+        "requiredRevisionId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A description of the image that is shown on hover and read by screenreaders."
+            "smithy.api#documentation": "The revision ID of the form that the write request is applied to. If this is not the latest revision of the form, the request is not processed and returns a 400 bad request error."
           }
         },
-        "properties": {
-          "target": "com.gcp.forms_v1#MediaProperties",
-          "traits": {
-            "smithy.api#documentation": "Properties of an image."
-          }
-        },
-        "sourceUri": {
+        "targetRevisionId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Input only. The source URI is the URI used to insert the image. The source URI can be empty when fetched."
-          }
-        },
-        "contentUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A URI from which you can download the image; this is valid only for a limited time."
+            "smithy.api#documentation": "The target revision ID of the form that the write request is applied to. If changes have occurred after this revision, the changes in this update request are transformed against those changes. This results in a new revision of the form that incorporates both the changes in the request and the intervening changes, with the server resolving conflicting changes. The target revision ID may only be used to write to recent versions of a form. If the target revision is too far behind the latest revision, the request is not processed and returns a 400 (Bad Request Error). The request may be retried after reading the latest version of the form. In most cases a target revision ID remains valid for several minutes after it is read, but for frequently-edited forms this window may be shorter."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Data representing an image."
+        "smithy.api#documentation": "Provides control over how write requests are executed."
+      }
+    },
+    "com.gcp.forms_v1#MoveItemRequest": {
+      "type": "structure",
+      "members": {
+        "newLocation": {
+          "target": "com.gcp.forms_v1#Location",
+          "traits": {
+            "smithy.api#documentation": "Required. The new location for the item."
+          }
+        },
+        "originalLocation": {
+          "target": "com.gcp.forms_v1#Location",
+          "traits": {
+            "smithy.api#documentation": "Required. The location of the item to move."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Move an item in a form."
+      }
+    },
+    "com.gcp.forms_v1#CreateWatchRequest": {
+      "type": "structure",
+      "members": {
+        "watchId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID to use for the watch. If specified, the ID must not already be in use. If not specified, an ID is generated. This value should be 4-63 characters, and valid characters are /a-z-/."
+          }
+        },
+        "watch": {
+          "target": "com.gcp.forms_v1#Watch",
+          "traits": {
+            "smithy.api#documentation": "Required. The watch object. No ID should be set on this object; use `watch_id` instead."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Create a new watch."
+      }
+    },
+    "com.gcp.forms_v1#QuestionItem": {
+      "type": "structure",
+      "members": {
+        "question": {
+          "target": "com.gcp.forms_v1#Question",
+          "traits": {
+            "smithy.api#documentation": "Required. The displayed question."
+          }
+        },
+        "image": {
+          "target": "com.gcp.forms_v1#Image",
+          "traits": {
+            "smithy.api#documentation": "The image displayed within the question."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A form item containing a single question."
+      }
+    },
+    "com.gcp.forms_v1#CorrectAnswers": {
+      "type": "structure",
+      "members": {
+        "answers": {
+          "target": "com.gcp.forms_v1#CorrectAnswerList",
+          "traits": {
+            "smithy.api#documentation": "A list of correct answers. A quiz response can be automatically graded based on these answers. For single-valued questions, a response is marked correct if it matches any value in this list (in other words, multiple correct answers are possible). For multiple-valued (`CHECKBOX`) questions, a response is marked correct if it contains exactly the values in this list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The answer key for a question."
+      }
+    },
+    "com.gcp.forms_v1#CorrectAnswerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#CorrectAnswer"
+      }
+    },
+    "com.gcp.forms_v1#TextAnswers": {
+      "type": "structure",
+      "members": {
+        "answers": {
+          "target": "com.gcp.forms_v1#TextAnswerList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Answers to a question. For multiple-value ChoiceQuestions, each answer is a separate value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A question's answers as text."
+      }
+    },
+    "com.gcp.forms_v1#TextAnswerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#TextAnswer"
+      }
+    },
+    "com.gcp.forms_v1#TextLink": {
+      "type": "structure",
+      "members": {
+        "displayText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display text for the URI."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The URI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Link for text."
       }
     },
     "com.gcp.forms_v1#RowQuestion": {
@@ -596,169 +436,24 @@
         "smithy.api#documentation": "Configuration for a question that is part of a question group."
       }
     },
-    "com.gcp.forms_v1#Request": {
+    "com.gcp.forms_v1#SetPublishSettingsRequest": {
       "type": "structure",
       "members": {
-        "createItem": {
-          "target": "com.gcp.forms_v1#CreateItemRequest",
-          "traits": {
-            "smithy.api#documentation": "Create a new item."
-          }
-        },
-        "deleteItem": {
-          "target": "com.gcp.forms_v1#DeleteItemRequest",
-          "traits": {
-            "smithy.api#documentation": "Delete an item."
-          }
-        },
-        "updateItem": {
-          "target": "com.gcp.forms_v1#UpdateItemRequest",
-          "traits": {
-            "smithy.api#documentation": "Update an item."
-          }
-        },
-        "updateFormInfo": {
-          "target": "com.gcp.forms_v1#UpdateFormInfoRequest",
-          "traits": {
-            "smithy.api#documentation": "Update Form's Info."
-          }
-        },
-        "updateSettings": {
-          "target": "com.gcp.forms_v1#UpdateSettingsRequest",
-          "traits": {
-            "smithy.api#documentation": "Updates the Form's settings."
-          }
-        },
-        "moveItem": {
-          "target": "com.gcp.forms_v1#MoveItemRequest",
-          "traits": {
-            "smithy.api#documentation": "Move an item to a specified location."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The kinds of update requests that can be made."
-      }
-    },
-    "com.gcp.forms_v1#VideoItem": {
-      "type": "structure",
-      "members": {
-        "caption": {
+        "updateMask": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The text displayed below the video."
+            "smithy.api#documentation": "Optional. The `publish_settings` fields to update. This field mask accepts the following values: * `publish_state`: Updates or replaces all `publish_state` settings. * `\"*\"`: Updates or replaces all `publish_settings` fields."
           }
         },
-        "video": {
-          "target": "com.gcp.forms_v1#Video",
+        "publishSettings": {
+          "target": "com.gcp.forms_v1#PublishSettings",
           "traits": {
-            "smithy.api#documentation": "Required. The video displayed in the item."
+            "smithy.api#documentation": "Required. The desired publish settings to apply to the form."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "An item containing a video."
-      }
-    },
-    "com.gcp.forms_v1#Feedback": {
-      "type": "structure",
-      "members": {
-        "material": {
-          "target": "com.gcp.forms_v1#ExtraMaterialList",
-          "traits": {
-            "smithy.api#documentation": "Additional information provided as part of the feedback, often used to point the respondent to more reading and resources."
-          }
-        },
-        "text": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The main text of the feedback."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Feedback for a respondent about their response to a question."
-      }
-    },
-    "com.gcp.forms_v1#ExtraMaterialList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#ExtraMaterial"
-      }
-    },
-    "com.gcp.forms_v1#VideoLink": {
-      "type": "structure",
-      "members": {
-        "youtubeUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URI of a YouTube video."
-          }
-        },
-        "displayText": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The display text for the link."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Link to a video."
-      }
-    },
-    "com.gcp.forms_v1#Video": {
-      "type": "structure",
-      "members": {
-        "youtubeUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A YouTube URI."
-          }
-        },
-        "properties": {
-          "target": "com.gcp.forms_v1#MediaProperties",
-          "traits": {
-            "smithy.api#documentation": "Properties of a video."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Data representing a video."
-      }
-    },
-    "com.gcp.forms_v1#PublishSettings": {
-      "type": "structure",
-      "members": {
-        "publishState": {
-          "target": "com.gcp.forms_v1#PublishState",
-          "traits": {
-            "smithy.api#documentation": "Optional. The publishing state of a form. When updating `publish_state`, both `is_published` and `is_accepting_responses` must be set. However, setting `is_accepting_responses` to `true` and `is_published` to `false` isn't supported and returns an error."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The publishing settings of a form."
-      }
-    },
-    "com.gcp.forms_v1#PageBreakItem": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A page break. The title and description of this item are shown at the top of the new page."
-      }
-    },
-    "com.gcp.forms_v1#TimeQuestion": {
-      "type": "structure",
-      "members": {
-        "duration": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "`true` if the question is about an elapsed time. Otherwise it is about a time of day."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A time question."
+        "smithy.api#documentation": "Updates the publish settings of a Form."
       }
     },
     "com.gcp.forms_v1#FileUploadAnswer": {
@@ -787,451 +482,19 @@
         "smithy.api#documentation": "Info for a single file submitted to a file upload question."
       }
     },
-    "com.gcp.forms_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.forms_v1#MoveItemRequest": {
-      "type": "structure",
-      "members": {
-        "originalLocation": {
-          "target": "com.gcp.forms_v1#Location",
-          "traits": {
-            "smithy.api#documentation": "Required. The location of the item to move."
-          }
-        },
-        "newLocation": {
-          "target": "com.gcp.forms_v1#Location",
-          "traits": {
-            "smithy.api#documentation": "Required. The new location for the item."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Move an item in a form."
-      }
-    },
-    "com.gcp.forms_v1#Location": {
-      "type": "structure",
-      "members": {
-        "index": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The index of an item in the form. This must be in the range [0..*N*), where *N* is the number of items in the form."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A specific location in a form."
-      }
-    },
-    "com.gcp.forms_v1#ChoiceQuestion": {
-      "type": "structure",
-      "members": {
-        "options": {
-          "target": "com.gcp.forms_v1#OptionList",
-          "traits": {
-            "smithy.api#documentation": "Required. List of options that a respondent must choose from."
-          }
-        },
-        "shuffle": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the options should be displayed in random order for different instances of the quiz. This is often used to prevent cheating by respondents who might be looking at another respondent's screen, or to address bias in a survey that might be introduced by always putting the same options first or last."
-          }
-        },
-        "type": {
-          "target": "com.gcp.forms_v1#ChoiceQuestionTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The type of choice question."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A radio/checkbox/dropdown question."
-      }
-    },
-    "com.gcp.forms_v1#OptionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#Option"
-      }
-    },
-    "com.gcp.forms_v1#ChoiceQuestionTypeEnum": {
-      "type": "enum",
-      "members": {
-        "CHOICE_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHOICE_TYPE_UNSPECIFIED"
-          }
-        },
-        "RADIO": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RADIO"
-          }
-        },
-        "CHECKBOX": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHECKBOX"
-          }
-        },
-        "DROP_DOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DROP_DOWN"
-          }
-        }
-      }
-    },
-    "com.gcp.forms_v1#PublishState": {
-      "type": "structure",
-      "members": {
-        "isAcceptingResponses": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Whether the form accepts responses. If `is_published` is set to `false`, this field is forced to `false`."
-          }
-        },
-        "isPublished": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Required. Whether the form is published and visible to others."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The publishing state of a form."
-      }
-    },
-    "com.gcp.forms_v1#SetPublishSettingsResponse": {
-      "type": "structure",
-      "members": {
-        "publishSettings": {
-          "target": "com.gcp.forms_v1#PublishSettings",
-          "traits": {
-            "smithy.api#documentation": "The publish settings of the form."
-          }
-        },
-        "formId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID of the Form. This is same as the Form.form_id field."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response of a SetPublishSettings request."
-      }
-    },
-    "com.gcp.forms_v1#UpdateFormInfoRequest": {
-      "type": "structure",
-      "members": {
-        "info": {
-          "target": "com.gcp.forms_v1#Info",
-          "traits": {
-            "smithy.api#documentation": "The info to update."
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Only values named in this mask are changed. At least one field must be specified. The root `info` is implied and should not be specified. A single `\"*\"` can be used as short-hand for updating every field."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Update Form's Info."
-      }
-    },
-    "com.gcp.forms_v1#DateQuestion": {
-      "type": "structure",
-      "members": {
-        "includeTime": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to include the time as part of the question."
-          }
-        },
-        "includeYear": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to include the year as part of the question."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A date question. Date questions default to just month + day."
-      }
-    },
-    "com.gcp.forms_v1#CreateWatchRequest": {
-      "type": "structure",
-      "members": {
-        "watchId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID to use for the watch. If specified, the ID must not already be in use. If not specified, an ID is generated. This value should be 4-63 characters, and valid characters are /a-z-/."
-          }
-        },
-        "watch": {
-          "target": "com.gcp.forms_v1#Watch",
-          "traits": {
-            "smithy.api#documentation": "Required. The watch object. No ID should be set on this object; use `watch_id` instead."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Create a new watch."
-      }
-    },
-    "com.gcp.forms_v1#Response": {
-      "type": "structure",
-      "members": {
-        "createItem": {
-          "target": "com.gcp.forms_v1#CreateItemResponse",
-          "traits": {
-            "smithy.api#documentation": "The result of creating an item."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single response from an update."
-      }
-    },
-    "com.gcp.forms_v1#ExtraMaterial": {
-      "type": "structure",
-      "members": {
-        "video": {
-          "target": "com.gcp.forms_v1#VideoLink",
-          "traits": {
-            "smithy.api#documentation": "Video feedback."
-          }
-        },
-        "link": {
-          "target": "com.gcp.forms_v1#TextLink",
-          "traits": {
-            "smithy.api#documentation": "Text feedback."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Supplementary material to the feedback."
-      }
-    },
-    "com.gcp.forms_v1#Grade": {
-      "type": "structure",
-      "members": {
-        "feedback": {
-          "target": "com.gcp.forms_v1#Feedback",
-          "traits": {
-            "smithy.api#documentation": "Output only. Additional feedback given for an answer."
-          }
-        },
-        "score": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Output only. The numeric score awarded for the answer."
-          }
-        },
-        "correct": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether the question was answered correctly or not. A zero-point score is not enough to infer incorrectness, since a correctly answered question could be worth zero points."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Grade information associated with a respondent's answer to a question."
-      }
-    },
-    "com.gcp.forms_v1#TextAnswers": {
-      "type": "structure",
-      "members": {
-        "answers": {
-          "target": "com.gcp.forms_v1#TextAnswerList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Answers to a question. For multiple-value ChoiceQuestions, each answer is a separate value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A question's answers as text."
-      }
-    },
-    "com.gcp.forms_v1#TextAnswerList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#TextAnswer"
-      }
-    },
-    "com.gcp.forms_v1#Grading": {
-      "type": "structure",
-      "members": {
-        "whenWrong": {
-          "target": "com.gcp.forms_v1#Feedback",
-          "traits": {
-            "smithy.api#documentation": "The feedback displayed for incorrect responses. This feedback can only be set for multiple choice questions that have correct answers provided."
-          }
-        },
-        "generalFeedback": {
-          "target": "com.gcp.forms_v1#Feedback",
-          "traits": {
-            "smithy.api#documentation": "The feedback displayed for all answers. This is commonly used for short answer questions when a quiz owner wants to quickly give respondents some sense of whether they answered the question correctly before they've had a chance to officially grade the response. General feedback cannot be set for automatically graded multiple choice questions."
-          }
-        },
-        "whenRight": {
-          "target": "com.gcp.forms_v1#Feedback",
-          "traits": {
-            "smithy.api#documentation": "The feedback displayed for correct responses. This feedback can only be set for multiple choice questions that have correct answers provided."
-          }
-        },
-        "correctAnswers": {
-          "target": "com.gcp.forms_v1#CorrectAnswers",
-          "traits": {
-            "smithy.api#documentation": "Required. The answer key for the question. Responses are automatically graded based on this field."
-          }
-        },
-        "pointValue": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. The maximum number of points a respondent can automatically get for a correct answer. This must not be negative."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Grading for a single question"
-      }
-    },
-    "com.gcp.forms_v1#TextLink": {
-      "type": "structure",
-      "members": {
-        "displayText": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Display text for the URI."
-          }
-        },
-        "uri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The URI."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Link for text."
-      }
-    },
-    "com.gcp.forms_v1#SetPublishSettingsRequest": {
-      "type": "structure",
-      "members": {
-        "publishSettings": {
-          "target": "com.gcp.forms_v1#PublishSettings",
-          "traits": {
-            "smithy.api#documentation": "Required. The desired publish settings to apply to the form."
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The `publish_settings` fields to update. This field mask accepts the following values: * `publish_state`: Updates or replaces all `publish_state` settings. * `\"*\"`: Updates or replaces all `publish_settings` fields."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Updates the publish settings of a Form."
-      }
-    },
-    "com.gcp.forms_v1#ListWatchesResponse": {
-      "type": "structure",
-      "members": {
-        "watches": {
-          "target": "com.gcp.forms_v1#WatchList",
-          "traits": {
-            "smithy.api#documentation": "The returned watches."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response of a ListWatchesRequest."
-      }
-    },
-    "com.gcp.forms_v1#WatchList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#Watch"
-      }
-    },
-    "com.gcp.forms_v1#Answer": {
-      "type": "structure",
-      "members": {
-        "questionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The question's ID. See also Question.question_id."
-          }
-        },
-        "textAnswers": {
-          "target": "com.gcp.forms_v1#TextAnswers",
-          "traits": {
-            "smithy.api#documentation": "Output only. The specific answers as text."
-          }
-        },
-        "grade": {
-          "target": "com.gcp.forms_v1#Grade",
-          "traits": {
-            "smithy.api#documentation": "Output only. The grade for the answer if the form was a quiz."
-          }
-        },
-        "fileUploadAnswers": {
-          "target": "com.gcp.forms_v1#FileUploadAnswers",
-          "traits": {
-            "smithy.api#documentation": "Output only. The answers to a file upload question."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The submitted answer for a question."
-      }
-    },
-    "com.gcp.forms_v1#UpdateSettingsRequest": {
-      "type": "structure",
-      "members": {
-        "settings": {
-          "target": "com.gcp.forms_v1#FormSettings",
-          "traits": {
-            "smithy.api#documentation": "Required. The settings to update with."
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Only values named in this mask are changed. At least one field must be specified. The root `settings` is implied and should not be specified. A single `\"*\"` can be used as short-hand for updating every field."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Update Form's FormSettings."
-      }
-    },
     "com.gcp.forms_v1#MediaProperties": {
       "type": "structure",
       "members": {
-        "alignment": {
-          "target": "com.gcp.forms_v1#MediaPropertiesAlignmentEnum",
-          "traits": {
-            "smithy.api#documentation": "Position of the media."
-          }
-        },
         "width": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The width of the media in pixels. When the media is displayed, it is scaled to the smaller of this value or the width of the displayed form. The original aspect ratio of the media is preserved. If a width is not specified when the media is added to the form, it is set to the width of the media source. Width must be between 0 and 740, inclusive. Setting width to 0 or unspecified is only permitted when updating the media source."
+          }
+        },
+        "alignment": {
+          "target": "com.gcp.forms_v1#MediaPropertiesAlignmentEnum",
+          "traits": {
+            "smithy.api#documentation": "Position of the media."
           }
         }
       },
@@ -1268,39 +531,155 @@
         }
       }
     },
-    "com.gcp.forms_v1#QuestionItem": {
+    "com.gcp.forms_v1#FileUploadAnswers": {
       "type": "structure",
       "members": {
-        "image": {
-          "target": "com.gcp.forms_v1#Image",
+        "answers": {
+          "target": "com.gcp.forms_v1#FileUploadAnswerList",
           "traits": {
-            "smithy.api#documentation": "The image displayed within the question."
-          }
-        },
-        "question": {
-          "target": "com.gcp.forms_v1#Question",
-          "traits": {
-            "smithy.api#documentation": "Required. The displayed question."
+            "smithy.api#documentation": "Output only. All submitted files for a FileUpload question."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A form item containing a single question."
+        "smithy.api#documentation": "All submitted files for a FileUpload question."
+      }
+    },
+    "com.gcp.forms_v1#FileUploadAnswerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#FileUploadAnswer"
+      }
+    },
+    "com.gcp.forms_v1#Grading": {
+      "type": "structure",
+      "members": {
+        "whenRight": {
+          "target": "com.gcp.forms_v1#Feedback",
+          "traits": {
+            "smithy.api#documentation": "The feedback displayed for correct responses. This feedback can only be set for multiple choice questions that have correct answers provided."
+          }
+        },
+        "generalFeedback": {
+          "target": "com.gcp.forms_v1#Feedback",
+          "traits": {
+            "smithy.api#documentation": "The feedback displayed for all answers. This is commonly used for short answer questions when a quiz owner wants to quickly give respondents some sense of whether they answered the question correctly before they've had a chance to officially grade the response. General feedback cannot be set for automatically graded multiple choice questions."
+          }
+        },
+        "pointValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The maximum number of points a respondent can automatically get for a correct answer. This must not be negative."
+          }
+        },
+        "whenWrong": {
+          "target": "com.gcp.forms_v1#Feedback",
+          "traits": {
+            "smithy.api#documentation": "The feedback displayed for incorrect responses. This feedback can only be set for multiple choice questions that have correct answers provided."
+          }
+        },
+        "correctAnswers": {
+          "target": "com.gcp.forms_v1#CorrectAnswers",
+          "traits": {
+            "smithy.api#documentation": "Required. The answer key for the question. Responses are automatically graded based on this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Grading for a single question"
+      }
+    },
+    "com.gcp.forms_v1#WatchTarget": {
+      "type": "structure",
+      "members": {
+        "topic": {
+          "target": "com.gcp.forms_v1#CloudPubsubTopic",
+          "traits": {
+            "smithy.api#documentation": "A Pub/Sub topic. To receive notifications, the topic must grant publish privileges to the Forms service account `serviceAccount:forms-notifications@system.gserviceaccount.com`. Only the project that owns a topic may create a watch with it. Pub/Sub delivery guarantees should be considered."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The target for notification delivery."
+      }
+    },
+    "com.gcp.forms_v1#Location": {
+      "type": "structure",
+      "members": {
+        "index": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The index of an item in the form. This must be in the range [0..*N*), where *N* is the number of items in the form."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A specific location in a form."
+      }
+    },
+    "com.gcp.forms_v1#Answer": {
+      "type": "structure",
+      "members": {
+        "textAnswers": {
+          "target": "com.gcp.forms_v1#TextAnswers",
+          "traits": {
+            "smithy.api#documentation": "Output only. The specific answers as text."
+          }
+        },
+        "fileUploadAnswers": {
+          "target": "com.gcp.forms_v1#FileUploadAnswers",
+          "traits": {
+            "smithy.api#documentation": "Output only. The answers to a file upload question."
+          }
+        },
+        "questionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The question's ID. See also Question.question_id."
+          }
+        },
+        "grade": {
+          "target": "com.gcp.forms_v1#Grade",
+          "traits": {
+            "smithy.api#documentation": "Output only. The grade for the answer if the form was a quiz."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The submitted answer for a question."
       }
     },
     "com.gcp.forms_v1#Watch": {
       "type": "structure",
       "members": {
-        "state": {
-          "target": "com.gcp.forms_v1#WatchStateEnum",
+        "id": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The current state of the watch. Additional details about suspended watches can be found by checking the `error_type`."
+            "smithy.api#documentation": "Output only. The ID of this watch. See notes on CreateWatchRequest.watch_id."
+          }
+        },
+        "target": {
+          "target": "com.gcp.forms_v1#WatchTarget",
+          "traits": {
+            "smithy.api#documentation": "Required. Where to send the notification."
           }
         },
         "eventType": {
           "target": "com.gcp.forms_v1#WatchEventTypeEnum",
           "traits": {
             "smithy.api#documentation": "Required. Which event type to watch for."
+          }
+        },
+        "errorType": {
+          "target": "com.gcp.forms_v1#WatchErrorTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The most recent error type for an attempted delivery. To begin watching the form again a call can be made to watches.renew which also clears this error information."
+          }
+        },
+        "state": {
+          "target": "com.gcp.forms_v1#WatchStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current state of the watch. Additional details about suspended watches can be found by checking the `error_type`."
           }
         },
         "expireTime": {
@@ -1314,51 +693,10 @@
           "traits": {
             "smithy.api#documentation": "Output only. Timestamp of when this was created."
           }
-        },
-        "target": {
-          "target": "com.gcp.forms_v1#WatchTarget",
-          "traits": {
-            "smithy.api#documentation": "Required. Where to send the notification."
-          }
-        },
-        "errorType": {
-          "target": "com.gcp.forms_v1#WatchErrorTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The most recent error type for an attempted delivery. To begin watching the form again a call can be made to watches.renew which also clears this error information."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The ID of this watch. See notes on CreateWatchRequest.watch_id."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "A watch for events for a form. When the designated event happens, a notification will be published to the specified target. The notification's attributes will include a `formId` key that has the ID of the watched form and an `eventType` key that has the string of the type. Messages are sent with at-least-once delivery and are only dropped in extraordinary circumstances. Typically all notifications should be reliably delivered within a few seconds; however, in some situations notifications may be delayed. A watch expires seven days after it is created unless it is renewed with watches.renew"
-      }
-    },
-    "com.gcp.forms_v1#WatchStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "SUSPENDED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUSPENDED"
-          }
-        }
       }
     },
     "com.gcp.forms_v1#WatchEventTypeEnum": {
@@ -1413,33 +751,277 @@
         }
       }
     },
-    "com.gcp.forms_v1#ImageItem": {
+    "com.gcp.forms_v1#WatchStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        }
+      }
+    },
+    "com.gcp.forms_v1#Request": {
       "type": "structure",
       "members": {
-        "image": {
-          "target": "com.gcp.forms_v1#Image",
+        "updateSettings": {
+          "target": "com.gcp.forms_v1#UpdateSettingsRequest",
           "traits": {
-            "smithy.api#documentation": "Required. The image displayed in the item."
+            "smithy.api#documentation": "Updates the Form's settings."
+          }
+        },
+        "updateItem": {
+          "target": "com.gcp.forms_v1#UpdateItemRequest",
+          "traits": {
+            "smithy.api#documentation": "Update an item."
+          }
+        },
+        "moveItem": {
+          "target": "com.gcp.forms_v1#MoveItemRequest",
+          "traits": {
+            "smithy.api#documentation": "Move an item to a specified location."
+          }
+        },
+        "deleteItem": {
+          "target": "com.gcp.forms_v1#DeleteItemRequest",
+          "traits": {
+            "smithy.api#documentation": "Delete an item."
+          }
+        },
+        "updateFormInfo": {
+          "target": "com.gcp.forms_v1#UpdateFormInfoRequest",
+          "traits": {
+            "smithy.api#documentation": "Update Form's Info."
+          }
+        },
+        "createItem": {
+          "target": "com.gcp.forms_v1#CreateItemRequest",
+          "traits": {
+            "smithy.api#documentation": "Create a new item."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "An item containing an image."
+        "smithy.api#documentation": "The kinds of update requests that can be made."
+      }
+    },
+    "com.gcp.forms_v1#Grade": {
+      "type": "structure",
+      "members": {
+        "correct": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the question was answered correctly or not. A zero-point score is not enough to infer incorrectness, since a correctly answered question could be worth zero points."
+          }
+        },
+        "feedback": {
+          "target": "com.gcp.forms_v1#Feedback",
+          "traits": {
+            "smithy.api#documentation": "Output only. Additional feedback given for an answer."
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. The numeric score awarded for the answer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Grade information associated with a respondent's answer to a question."
+      }
+    },
+    "com.gcp.forms_v1#RenewWatchRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Renew an existing Watch for seven days."
+      }
+    },
+    "com.gcp.forms_v1#ExtraMaterial": {
+      "type": "structure",
+      "members": {
+        "link": {
+          "target": "com.gcp.forms_v1#TextLink",
+          "traits": {
+            "smithy.api#documentation": "Text feedback."
+          }
+        },
+        "video": {
+          "target": "com.gcp.forms_v1#VideoLink",
+          "traits": {
+            "smithy.api#documentation": "Video feedback."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Supplementary material to the feedback."
+      }
+    },
+    "com.gcp.forms_v1#QuizSettings": {
+      "type": "structure",
+      "members": {
+        "isQuiz": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this form is a quiz or not. When true, responses are graded based on question Grading. Upon setting to false, all question Grading is deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings related to quiz forms and grading. These must be updated with the UpdateSettingsRequest."
+      }
+    },
+    "com.gcp.forms_v1#ChoiceQuestion": {
+      "type": "structure",
+      "members": {
+        "options": {
+          "target": "com.gcp.forms_v1#OptionList",
+          "traits": {
+            "smithy.api#documentation": "Required. List of options that a respondent must choose from."
+          }
+        },
+        "type": {
+          "target": "com.gcp.forms_v1#ChoiceQuestionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of choice question."
+          }
+        },
+        "shuffle": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the options should be displayed in random order for different instances of the quiz. This is often used to prevent cheating by respondents who might be looking at another respondent's screen, or to address bias in a survey that might be introduced by always putting the same options first or last."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A radio/checkbox/dropdown question."
+      }
+    },
+    "com.gcp.forms_v1#OptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#Option"
+      }
+    },
+    "com.gcp.forms_v1#ChoiceQuestionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CHOICE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHOICE_TYPE_UNSPECIFIED"
+          }
+        },
+        "RADIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RADIO"
+          }
+        },
+        "CHECKBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECKBOX"
+          }
+        },
+        "DROP_DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DROP_DOWN"
+          }
+        }
+      }
+    },
+    "com.gcp.forms_v1#CloudPubsubTopic": {
+      "type": "structure",
+      "members": {
+        "topicName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A fully qualified Pub/Sub topic name to publish the events to. This topic must be owned by the calling project and already exist in Pub/Sub."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Pub/Sub topic."
+      }
+    },
+    "com.gcp.forms_v1#RatingQuestion": {
+      "type": "structure",
+      "members": {
+        "ratingScaleLevel": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The rating scale level of the rating question."
+          }
+        },
+        "iconType": {
+          "target": "com.gcp.forms_v1#RatingQuestionIconTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The icon type to use for the rating."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A rating question. The user has a range of icons to choose from."
+      }
+    },
+    "com.gcp.forms_v1#RatingQuestionIconTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RATING_ICON_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RATING_ICON_TYPE_UNSPECIFIED"
+          }
+        },
+        "STAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STAR"
+          }
+        },
+        "HEART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEART"
+          }
+        },
+        "THUMB_UP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THUMB_UP"
+          }
+        }
       }
     },
     "com.gcp.forms_v1#FormSettings": {
       "type": "structure",
       "members": {
-        "quizSettings": {
-          "target": "com.gcp.forms_v1#QuizSettings",
-          "traits": {
-            "smithy.api#documentation": "Settings related to quiz forms and grading."
-          }
-        },
         "emailCollectionType": {
           "target": "com.gcp.forms_v1#FormSettingsEmailCollectionTypeEnum",
           "traits": {
             "smithy.api#documentation": "Optional. The setting that determines whether the form collects email addresses from respondents."
+          }
+        },
+        "quizSettings": {
+          "target": "com.gcp.forms_v1#QuizSettings",
+          "traits": {
+            "smithy.api#documentation": "Settings related to quiz forms and grading."
           }
         }
       },
@@ -1476,47 +1058,41 @@
         }
       }
     },
-    "com.gcp.forms_v1#QuestionGroupItem": {
+    "com.gcp.forms_v1#BatchUpdateFormResponse": {
       "type": "structure",
       "members": {
-        "grid": {
-          "target": "com.gcp.forms_v1#Grid",
+        "replies": {
+          "target": "com.gcp.forms_v1#ResponseList",
           "traits": {
-            "smithy.api#documentation": "The question group is a grid with rows of multiple choice questions that share the same options. When `grid` is set, all questions in the group must be of kind `row`."
+            "smithy.api#documentation": "The reply of the updates. This maps 1:1 with the update requests, although replies to some requests may be empty."
           }
         },
-        "image": {
-          "target": "com.gcp.forms_v1#Image",
+        "writeControl": {
+          "target": "com.gcp.forms_v1#WriteControl",
           "traits": {
-            "smithy.api#documentation": "The image displayed within the question group above the specific questions."
+            "smithy.api#documentation": "The updated write control after applying the request."
           }
         },
-        "questions": {
-          "target": "com.gcp.forms_v1#QuestionList",
+        "form": {
+          "target": "com.gcp.forms_v1#Form",
           "traits": {
-            "smithy.api#documentation": "Required. A list of questions that belong in this question group. A question must only belong to one group. The `kind` of the group may affect what types of questions are allowed."
+            "smithy.api#documentation": "Based on the bool request field `include_form_in_response`, a form with all applied mutations/updates is returned or not. This may be later than the revision ID created by these changes."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Defines a question that comprises multiple questions grouped together."
+        "smithy.api#documentation": "Response to a BatchUpdateFormRequest."
       }
     },
-    "com.gcp.forms_v1#QuestionList": {
+    "com.gcp.forms_v1#ResponseList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.forms_v1#Question"
+        "target": "com.gcp.forms_v1#Response"
       }
     },
     "com.gcp.forms_v1#UpdateItemRequest": {
       "type": "structure",
       "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Only values named in this mask are changed."
-          }
-        },
         "item": {
           "target": "com.gcp.forms_v1#Item",
           "traits": {
@@ -1528,30 +1104,134 @@
           "traits": {
             "smithy.api#documentation": "Required. The location identifying the item to update."
           }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Only values named in this mask are changed."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Update an item in a form."
       }
     },
-    "com.gcp.forms_v1#Grid": {
+    "com.gcp.forms_v1#Form": {
       "type": "structure",
       "members": {
-        "columns": {
-          "target": "com.gcp.forms_v1#ChoiceQuestion",
+        "info": {
+          "target": "com.gcp.forms_v1#Info",
           "traits": {
-            "smithy.api#documentation": "Required. The choices shared by each question in the grid. In other words, the values of the columns. Only `CHECK_BOX` and `RADIO` choices are allowed."
+            "smithy.api#documentation": "Required. The title and description of the form."
           }
         },
-        "shuffleQuestions": {
-          "target": "smithy.api#Boolean",
+        "items": {
+          "target": "com.gcp.forms_v1#ItemList",
           "traits": {
-            "smithy.api#documentation": "If `true`, the questions are randomly ordered. In other words, the rows appear in a different order for every respondent."
+            "smithy.api#documentation": "Required. A list of the form's items, which can include section headers, questions, embedded media, etc."
+          }
+        },
+        "formId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The form ID."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The revision ID of the form. Used in the WriteControl in update requests to identify the revision on which the changes are based. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the form *content* has not changed. Conversely, a changed ID (for the same form and user) usually means the form *content* has been updated; however, a changed ID can also be due to internal factors such as ID format changes. Form content excludes form metadata, including: * sharing settings (who has access to the form) * publish_settings (if the form supports publishing and if it is published)"
+          }
+        },
+        "publishSettings": {
+          "target": "com.gcp.forms_v1#PublishSettings",
+          "traits": {
+            "smithy.api#documentation": "Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the publish_settings field. All newly created forms support publish settings. Forms with publish_settings value set can call SetPublishSettings API to publish or unpublish the form."
+          }
+        },
+        "linkedSheetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The ID of the linked Google Sheet which is accumulating responses from this Form (if such a Sheet exists)."
+          }
+        },
+        "settings": {
+          "target": "com.gcp.forms_v1#FormSettings",
+          "traits": {
+            "smithy.api#documentation": "The form's settings. This must be updated with UpdateSettingsRequest; it is ignored during CreateForm and UpdateFormInfoRequest."
+          }
+        },
+        "responderUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions. For forms that have publish_settings value set, this is the published form URI."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A grid of choices (radio or check boxes) with each row constituting a separate question. Each row has the same choices, which are shown as the columns."
+        "smithy.api#documentation": "A Google Forms document. A form is created in Drive, and deleting a form or changing its access protections is done via the [Drive API](https://developers.google.com/drive/api/v3/about-sdk)."
+      }
+    },
+    "com.gcp.forms_v1#ItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#Item"
+      }
+    },
+    "com.gcp.forms_v1#ImageItem": {
+      "type": "structure",
+      "members": {
+        "image": {
+          "target": "com.gcp.forms_v1#Image",
+          "traits": {
+            "smithy.api#documentation": "Required. The image displayed in the item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An item containing an image."
+      }
+    },
+    "com.gcp.forms_v1#Response": {
+      "type": "structure",
+      "members": {
+        "createItem": {
+          "target": "com.gcp.forms_v1#CreateItemResponse",
+          "traits": {
+            "smithy.api#documentation": "The result of creating an item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single response from an update."
+      }
+    },
+    "com.gcp.forms_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.forms_v1#TextItem": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A text item."
+      }
+    },
+    "com.gcp.forms_v1#PublishSettings": {
+      "type": "structure",
+      "members": {
+        "publishState": {
+          "target": "com.gcp.forms_v1#PublishState",
+          "traits": {
+            "smithy.api#documentation": "Optional. The publishing state of a form. When updating `publish_state`, both `is_published` and `is_accepting_responses` must be set. However, setting `is_accepting_responses` to `true` and `is_published` to `false` isn't supported and returns an error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The publishing settings of a form."
       }
     },
     "com.gcp.forms_v1#CreateItemResponse": {
@@ -1580,126 +1260,44 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.forms_v1#BatchUpdateFormRequest": {
+    "com.gcp.forms_v1#TimeQuestion": {
       "type": "structure",
       "members": {
-        "requests": {
-          "target": "com.gcp.forms_v1#RequestList",
-          "traits": {
-            "smithy.api#documentation": "Required. The update requests of this batch."
-          }
-        },
-        "includeFormInResponse": {
+        "duration": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Whether to return an updated version of the model in the response."
-          }
-        },
-        "writeControl": {
-          "target": "com.gcp.forms_v1#WriteControl",
-          "traits": {
-            "smithy.api#documentation": "Provides control over how write requests are executed."
+            "smithy.api#documentation": "`true` if the question is about an elapsed time. Otherwise it is about a time of day."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A batch of updates to perform on a form. All the specified updates are made or none of them are."
+        "smithy.api#documentation": "A time question."
       }
     },
-    "com.gcp.forms_v1#RequestList": {
+    "com.gcp.forms_v1#Feedback": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The main text of the feedback."
+          }
+        },
+        "material": {
+          "target": "com.gcp.forms_v1#ExtraMaterialList",
+          "traits": {
+            "smithy.api#documentation": "Additional information provided as part of the feedback, often used to point the respondent to more reading and resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Feedback for a respondent about their response to a question."
+      }
+    },
+    "com.gcp.forms_v1#ExtraMaterialList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.forms_v1#Request"
-      }
-    },
-    "com.gcp.forms_v1#Form": {
-      "type": "structure",
-      "members": {
-        "items": {
-          "target": "com.gcp.forms_v1#ItemList",
-          "traits": {
-            "smithy.api#documentation": "Required. A list of the form's items, which can include section headers, questions, embedded media, etc."
-          }
-        },
-        "settings": {
-          "target": "com.gcp.forms_v1#FormSettings",
-          "traits": {
-            "smithy.api#documentation": "The form's settings. This must be updated with UpdateSettingsRequest; it is ignored during CreateForm and UpdateFormInfoRequest."
-          }
-        },
-        "responderUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The form URI to share with responders. This opens a page that allows the user to submit responses but not edit the questions. For forms that have publish_settings value set, this is the published form URI."
-          }
-        },
-        "revisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The revision ID of the form. Used in the WriteControl in update requests to identify the revision on which the changes are based. The format of the revision ID may change over time, so it should be treated opaquely. A returned revision ID is only guaranteed to be valid for 24 hours after it has been returned and cannot be shared across users. If the revision ID is unchanged between calls, then the form *content* has not changed. Conversely, a changed ID (for the same form and user) usually means the form *content* has been updated; however, a changed ID can also be due to internal factors such as ID format changes. Form content excludes form metadata, including: * sharing settings (who has access to the form) * publish_settings (if the form supports publishing and if it is published)"
-          }
-        },
-        "info": {
-          "target": "com.gcp.forms_v1#Info",
-          "traits": {
-            "smithy.api#documentation": "Required. The title and description of the form."
-          }
-        },
-        "formId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The form ID."
-          }
-        },
-        "linkedSheetId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The ID of the linked Google Sheet which is accumulating responses from this Form (if such a Sheet exists)."
-          }
-        },
-        "publishSettings": {
-          "target": "com.gcp.forms_v1#PublishSettings",
-          "traits": {
-            "smithy.api#documentation": "Output only. The publishing settings for a form. This field isn't set for legacy forms because they don't have the publish_settings field. All newly created forms support publish settings. Forms with publish_settings value set can call SetPublishSettings API to publish or unpublish the form."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A Google Forms document. A form is created in Drive, and deleting a form or changing its access protections is done via the [Drive API](https://developers.google.com/drive/api/v3/about-sdk)."
-      }
-    },
-    "com.gcp.forms_v1#ItemList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#Item"
-      }
-    },
-    "com.gcp.forms_v1#CorrectAnswer": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The correct answer value. See the documentation for TextAnswer.value for details on how various value types are formatted."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single correct answer for a question. For multiple-valued (`CHECKBOX`) questions, several `CorrectAnswer`s may be needed to represent a single correct response option."
-      }
-    },
-    "com.gcp.forms_v1#WatchTarget": {
-      "type": "structure",
-      "members": {
-        "topic": {
-          "target": "com.gcp.forms_v1#CloudPubsubTopic",
-          "traits": {
-            "smithy.api#documentation": "A Pub/Sub topic. To receive notifications, the topic must grant publish privileges to the Forms service account `serviceAccount:forms-notifications@system.gserviceaccount.com`. Only the project that owns a topic may create a watch with it. Pub/Sub delivery guarantees should be considered."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The target for notification delivery."
+        "target": "com.gcp.forms_v1#ExtraMaterial"
       }
     },
     "com.gcp.forms_v1#DeleteItemRequest": {
@@ -1716,49 +1314,133 @@
         "smithy.api#documentation": "Delete an item in a form."
       }
     },
-    "com.gcp.forms_v1#CorrectAnswers": {
+    "com.gcp.forms_v1#Grid": {
       "type": "structure",
       "members": {
-        "answers": {
-          "target": "com.gcp.forms_v1#CorrectAnswerList",
-          "traits": {
-            "smithy.api#documentation": "A list of correct answers. A quiz response can be automatically graded based on these answers. For single-valued questions, a response is marked correct if it matches any value in this list (in other words, multiple correct answers are possible). For multiple-valued (`CHECKBOX`) questions, a response is marked correct if it contains exactly the values in this list."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The answer key for a question."
-      }
-    },
-    "com.gcp.forms_v1#CorrectAnswerList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.forms_v1#CorrectAnswer"
-      }
-    },
-    "com.gcp.forms_v1#TextQuestion": {
-      "type": "structure",
-      "members": {
-        "paragraph": {
+        "shuffleQuestions": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Whether the question is a paragraph question or not. If not, the question is a short text question."
+            "smithy.api#documentation": "If `true`, the questions are randomly ordered. In other words, the rows appear in a different order for every respondent."
+          }
+        },
+        "columns": {
+          "target": "com.gcp.forms_v1#ChoiceQuestion",
+          "traits": {
+            "smithy.api#documentation": "Required. The choices shared by each question in the grid. In other words, the values of the columns. Only `CHECK_BOX` and `RADIO` choices are allowed."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A text-based question."
+        "smithy.api#documentation": "A grid of choices (radio or check boxes) with each row constituting a separate question. Each row has the same choices, which are shown as the columns."
+      }
+    },
+    "com.gcp.forms_v1#VideoItem": {
+      "type": "structure",
+      "members": {
+        "video": {
+          "target": "com.gcp.forms_v1#Video",
+          "traits": {
+            "smithy.api#documentation": "Required. The video displayed in the item."
+          }
+        },
+        "caption": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The text displayed below the video."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An item containing a video."
+      }
+    },
+    "com.gcp.forms_v1#ScaleQuestion": {
+      "type": "structure",
+      "members": {
+        "lowLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label to display describing the lowest point on the scale."
+          }
+        },
+        "high": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The highest possible value for the scale."
+          }
+        },
+        "low": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The lowest possible value for the scale."
+          }
+        },
+        "highLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label to display describing the highest point on the scale."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A scale question. The user has a range of numeric values to choose from."
+      }
+    },
+    "com.gcp.forms_v1#DateQuestion": {
+      "type": "structure",
+      "members": {
+        "includeTime": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include the time as part of the question."
+          }
+        },
+        "includeYear": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include the year as part of the question."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A date question. Date questions default to just month + day."
+      }
+    },
+    "com.gcp.forms_v1#BatchUpdateFormRequest": {
+      "type": "structure",
+      "members": {
+        "writeControl": {
+          "target": "com.gcp.forms_v1#WriteControl",
+          "traits": {
+            "smithy.api#documentation": "Provides control over how write requests are executed."
+          }
+        },
+        "requests": {
+          "target": "com.gcp.forms_v1#RequestList",
+          "traits": {
+            "smithy.api#documentation": "Required. The update requests of this batch."
+          }
+        },
+        "includeFormInResponse": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to return an updated version of the model in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A batch of updates to perform on a form. All the specified updates are made or none of them are."
+      }
+    },
+    "com.gcp.forms_v1#RequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#Request"
       }
     },
     "com.gcp.forms_v1#FileUploadQuestion": {
       "type": "structure",
       "members": {
-        "maxFiles": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of files that can be uploaded for this question in a single response."
-          }
-        },
         "folderId": {
           "target": "smithy.api#String",
           "traits": {
@@ -1769,6 +1451,12 @@
           "target": "com.gcp.forms_v1#FileUploadQuestionTypesItemEnumList",
           "traits": {
             "smithy.api#documentation": "File types accepted by this question."
+          }
+        },
+        "maxFiles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of files that can be uploaded for this question in a single response."
           }
         },
         "maxFileSize": {
@@ -1853,6 +1541,319 @@
         "target": "com.gcp.forms_v1#FileUploadQuestionTypesItemEnum"
       }
     },
+    "com.gcp.forms_v1#Video": {
+      "type": "structure",
+      "members": {
+        "youtubeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A YouTube URI."
+          }
+        },
+        "properties": {
+          "target": "com.gcp.forms_v1#MediaProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a video."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data representing a video."
+      }
+    },
+    "com.gcp.forms_v1#QuestionGroupItem": {
+      "type": "structure",
+      "members": {
+        "questions": {
+          "target": "com.gcp.forms_v1#QuestionList",
+          "traits": {
+            "smithy.api#documentation": "Required. A list of questions that belong in this question group. A question must only belong to one group. The `kind` of the group may affect what types of questions are allowed."
+          }
+        },
+        "grid": {
+          "target": "com.gcp.forms_v1#Grid",
+          "traits": {
+            "smithy.api#documentation": "The question group is a grid with rows of multiple choice questions that share the same options. When `grid` is set, all questions in the group must be of kind `row`."
+          }
+        },
+        "image": {
+          "target": "com.gcp.forms_v1#Image",
+          "traits": {
+            "smithy.api#documentation": "The image displayed within the question group above the specific questions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a question that comprises multiple questions grouped together."
+      }
+    },
+    "com.gcp.forms_v1#QuestionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#Question"
+      }
+    },
+    "com.gcp.forms_v1#Item": {
+      "type": "structure",
+      "members": {
+        "questionItem": {
+          "target": "com.gcp.forms_v1#QuestionItem",
+          "traits": {
+            "smithy.api#documentation": "Poses a question to the user."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the item."
+          }
+        },
+        "questionGroupItem": {
+          "target": "com.gcp.forms_v1#QuestionGroupItem",
+          "traits": {
+            "smithy.api#documentation": "Poses one or more questions to the user with a single major prompt."
+          }
+        },
+        "pageBreakItem": {
+          "target": "com.gcp.forms_v1#PageBreakItem",
+          "traits": {
+            "smithy.api#documentation": "Starts a new page with a title."
+          }
+        },
+        "itemId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item ID. On creation, it can be provided but the ID must not be already used in the form. If not provided, a new ID is assigned."
+          }
+        },
+        "videoItem": {
+          "target": "com.gcp.forms_v1#VideoItem",
+          "traits": {
+            "smithy.api#documentation": "Displays a video on the page."
+          }
+        },
+        "imageItem": {
+          "target": "com.gcp.forms_v1#ImageItem",
+          "traits": {
+            "smithy.api#documentation": "Displays an image on the page."
+          }
+        },
+        "textItem": {
+          "target": "com.gcp.forms_v1#TextItem",
+          "traits": {
+            "smithy.api#documentation": "Displays a title and description on the page."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single item of the form. `kind` defines which kind of item it is."
+      }
+    },
+    "com.gcp.forms_v1#SetPublishSettingsResponse": {
+      "type": "structure",
+      "members": {
+        "formId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Form. This is same as the Form.form_id field."
+          }
+        },
+        "publishSettings": {
+          "target": "com.gcp.forms_v1#PublishSettings",
+          "traits": {
+            "smithy.api#documentation": "The publish settings of the form."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a SetPublishSettings request."
+      }
+    },
+    "com.gcp.forms_v1#TextAnswer": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The answer value. Formatting used for different kinds of question: * ChoiceQuestion * `RADIO` or `DROP_DOWN`: A single string corresponding to the option that was selected. * `CHECKBOX`: Multiple strings corresponding to each option that was selected. * TextQuestion: The text that the user entered. * ScaleQuestion: A string containing the number that was selected. * DateQuestion * Without time or year: MM-DD e.g. \"05-19\" * With year: YYYY-MM-DD e.g. \"1986-05-19\" * With time: MM-DD HH:MM e.g. \"05-19 14:51\" * With year and time: YYYY-MM-DD HH:MM e.g. \"1986-05-19 14:51\" * TimeQuestion: String with time or duration in HH:MM format e.g. \"14:51\" * RowQuestion within QuestionGroupItem: The answer for each row of a QuestionGroupItem is represented as a separate Answer. Each will contain one string for `RADIO`-type choices or multiple strings for `CHECKBOX` choices."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An answer to a question represented as text."
+      }
+    },
+    "com.gcp.forms_v1#ListFormResponsesResponse": {
+      "type": "structure",
+      "members": {
+        "responses": {
+          "target": "com.gcp.forms_v1#FormResponseList",
+          "traits": {
+            "smithy.api#documentation": "The returned form responses. Note: The `formId` field is not returned in the `FormResponse` object for list requests."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If set, there are more responses. To get the next page of responses, provide this as `page_token` in a future request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to a ListFormResponsesRequest."
+      }
+    },
+    "com.gcp.forms_v1#FormResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.forms_v1#FormResponse"
+      }
+    },
+    "com.gcp.forms_v1#VideoLink": {
+      "type": "structure",
+      "members": {
+        "youtubeUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of a YouTube video."
+          }
+        },
+        "displayText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The display text for the link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Link to a video."
+      }
+    },
+    "com.gcp.forms_v1#CreateItemRequest": {
+      "type": "structure",
+      "members": {
+        "item": {
+          "target": "com.gcp.forms_v1#Item",
+          "traits": {
+            "smithy.api#documentation": "Required. The item to create."
+          }
+        },
+        "location": {
+          "target": "com.gcp.forms_v1#Location",
+          "traits": {
+            "smithy.api#documentation": "Required. Where to place the new item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Create an item in a form."
+      }
+    },
+    "com.gcp.forms_v1#PageBreakItem": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A page break. The title and description of this item are shown at the top of the new page."
+      }
+    },
+    "com.gcp.forms_v1#Image": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.gcp.forms_v1#MediaProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of an image."
+          }
+        },
+        "altText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the image that is shown on hover and read by screenreaders."
+          }
+        },
+        "sourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. The source URI is the URI used to insert the image. The source URI can be empty when fetched."
+          }
+        },
+        "contentUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A URI from which you can download the image; this is valid only for a limited time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data representing an image."
+      }
+    },
+    "com.gcp.forms_v1#CorrectAnswer": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The correct answer value. See the documentation for TextAnswer.value for details on how various value types are formatted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single correct answer for a question. For multiple-valued (`CHECKBOX`) questions, several `CorrectAnswer`s may be needed to represent a single correct response option."
+      }
+    },
+    "com.gcp.forms_v1#PublishState": {
+      "type": "structure",
+      "members": {
+        "isPublished": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Whether the form is published and visible to others."
+          }
+        },
+        "isAcceptingResponses": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. Whether the form accepts responses. If `is_published` is set to `false`, this field is forced to `false`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The publishing state of a form."
+      }
+    },
+    "com.gcp.forms_v1#Info": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the form."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The title of the form which is visible to responders."
+          }
+        },
+        "documentTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The title of the document which is visible in Drive. If Info.title is empty, `document_title` may appear in its place in the Google Forms UI and be visible to responders. `document_title` can be set on create, but cannot be modified by a batchUpdate request. Please use the [Google Drive API](https://developers.google.com/drive/api/v3/reference/files/update) if you need to programmatically update `document_title`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The general information for a form."
+      }
+    },
     "com.gcp.forms_v1#GetFormsRequest": {
       "type": "structure",
       "members": {
@@ -1916,7 +1917,7 @@
         "smithy.api#documentation": "Get a form."
       }
     },
-    "com.gcp.forms_v1#UpdateBatchFormRequest": {
+    "com.gcp.forms_v1#BatchUpdateFormsRequest": {
       "type": "structure",
       "members": {
         "formId": {
@@ -1962,10 +1963,10 @@
         ]
       }
     },
-    "com.gcp.forms_v1#UpdateBatchForm": {
+    "com.gcp.forms_v1#BatchUpdateForms": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.forms_v1#UpdateBatchFormRequest"
+        "target": "com.gcp.forms_v1#BatchUpdateFormsRequest"
       },
       "output": {
         "target": "com.gcp.forms_v1#BatchUpdateFormResponse"
@@ -1990,6 +1991,55 @@
           "uri": "v1/forms/{formId}:batchUpdate"
         },
         "smithy.api#documentation": "Change the form with a batch of updates."
+      }
+    },
+    "com.gcp.forms_v1#CreateFormsRequest": {
+      "type": "structure",
+      "members": {
+        "unpublished": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the form is unpublished. If set to `true`, the form doesn't accept responses. If set to `false` or unset, the form is published and accepts responses.",
+            "smithy.api#httpQuery": "unpublished"
+          }
+        },
+        "body": {
+          "target": "com.gcp.forms_v1#Form",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.forms_v1#CreateForms": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.forms_v1#CreateFormsRequest"
+      },
+      "output": {
+        "target": "com.gcp.forms_v1#Form"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.forms_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.forms_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.forms_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.forms_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/forms"
+        },
+        "smithy.api#documentation": "Create a new form using the title given in the provided form message in the request. *Important:* Only the form.info.title and form.info.document_title fields are copied to the new form. All other fields including the form description, items and settings are disallowed. To create a new form and add items, you must first call forms.create to create an empty form with a title and (optional) document title, and then call forms.update to add the items."
       }
     },
     "com.gcp.forms_v1#SetPublishSettingsFormsRequest": {
@@ -2042,162 +2092,6 @@
         "smithy.api#documentation": "Updates the publish settings of a form. Legacy forms aren't supported because they don't have the `publish_settings` field."
       }
     },
-    "com.gcp.forms_v1#CreateFormsRequest": {
-      "type": "structure",
-      "members": {
-        "unpublished": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Whether the form is unpublished. If set to `true`, the form doesn't accept responses. If set to `false` or unset, the form is published and accepts responses.",
-            "smithy.api#httpQuery": "unpublished"
-          }
-        },
-        "body": {
-          "target": "com.gcp.forms_v1#Form",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.forms_v1#CreateForms": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.forms_v1#CreateFormsRequest"
-      },
-      "output": {
-        "target": "com.gcp.forms_v1#Form"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.forms_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.forms_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.forms_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.forms_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/forms"
-        },
-        "smithy.api#documentation": "Create a new form using the title given in the provided form message in the request. *Important:* Only the form.info.title and form.info.document_title fields are copied to the new form. All other fields including the form description, items and settings are disallowed. To create a new form and add items, you must first call forms.create to create an empty form with a title and (optional) document title, and then call forms.update to add the items."
-      }
-    },
-    "com.gcp.forms_v1#GetFormsResponsesRequest": {
-      "type": "structure",
-      "members": {
-        "responseId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The response ID within the form.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "formId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The form ID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.forms_v1#GetFormsResponses": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.forms_v1#GetFormsResponsesRequest"
-      },
-      "output": {
-        "target": "com.gcp.forms_v1#FormResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.forms_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.forms_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/forms/{formId}/responses/{responseId}"
-        },
-        "smithy.api#documentation": "Get one response from the form."
-      }
-    },
-    "com.gcp.forms_v1#ListFormsResponsesRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Which form responses to return. Currently, the only supported filters are: * timestamp > *N* which means to get all form responses submitted after (but not at) timestamp *N*. * timestamp >= *N* which means to get all form responses submitted at and after timestamp *N*. For both supported filters, timestamp must be formatted in RFC3339 UTC \"Zulu\" format. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "formId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. ID of the Form whose responses to list.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token returned by a previous list response. If this field is set, the form and the values of the filter must be the same as for the original request.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of responses to return. The service may return fewer than this value. If unspecified or zero, at most 5000 responses are returned.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.forms_v1#ListFormsResponses": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.forms_v1#ListFormsResponsesRequest"
-      },
-      "output": {
-        "target": "com.gcp.forms_v1#ListFormResponsesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.forms_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.forms_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/forms/{formId}/responses"
-        },
-        "smithy.api#documentation": "List a form's responses.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.forms_v1#CreateFormsWatchesRequest": {
       "type": "structure",
       "members": {
@@ -2246,57 +2140,6 @@
           "uri": "v1/forms/{formId}/watches"
         },
         "smithy.api#documentation": "Create a new watch. If a watch ID is provided, it must be unused. For each invoking project, the per form limit is one watch per Watch.EventType. A watch expires seven days after it is created (see Watch.expire_time)."
-      }
-    },
-    "com.gcp.forms_v1#DeleteFormsWatchesRequest": {
-      "type": "structure",
-      "members": {
-        "formId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID of the Form.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "watchId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID of the Watch to delete.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.forms_v1#DeleteFormsWatches": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.forms_v1#DeleteFormsWatchesRequest"
-      },
-      "output": {
-        "target": "com.gcp.forms_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.forms_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.forms_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.forms_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.forms_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/forms/{formId}/watches/{watchId}"
-        },
-        "smithy.api#documentation": "Delete a watch."
       }
     },
     "com.gcp.forms_v1#RenewFormsWatchesRequest": {
@@ -2392,6 +2235,164 @@
           "uri": "v1/forms/{formId}/watches"
         },
         "smithy.api#documentation": "Return a list of the watches owned by the invoking project. The maximum number of watches is two: For each invoker, the limit is one for each event type per form."
+      }
+    },
+    "com.gcp.forms_v1#DeleteFormsWatchesRequest": {
+      "type": "structure",
+      "members": {
+        "watchId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Watch to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "formId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Form.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.forms_v1#DeleteFormsWatches": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.forms_v1#DeleteFormsWatchesRequest"
+      },
+      "output": {
+        "target": "com.gcp.forms_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.forms_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.forms_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.forms_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.forms_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/forms/{formId}/watches/{watchId}"
+        },
+        "smithy.api#documentation": "Delete a watch."
+      }
+    },
+    "com.gcp.forms_v1#GetFormsResponsesRequest": {
+      "type": "structure",
+      "members": {
+        "responseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The response ID within the form.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "formId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The form ID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.forms_v1#GetFormsResponses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.forms_v1#GetFormsResponsesRequest"
+      },
+      "output": {
+        "target": "com.gcp.forms_v1#FormResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.forms_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.forms_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/forms/{formId}/responses/{responseId}"
+        },
+        "smithy.api#documentation": "Get one response from the form."
+      }
+    },
+    "com.gcp.forms_v1#ListFormsResponsesRequest": {
+      "type": "structure",
+      "members": {
+        "formId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID of the Form whose responses to list.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token returned by a previous list response. If this field is set, the form and the values of the filter must be the same as for the original request.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of responses to return. The service may return fewer than this value. If unspecified or zero, at most 5000 responses are returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Which form responses to return. Currently, the only supported filters are: * timestamp > *N* which means to get all form responses submitted after (but not at) timestamp *N*. * timestamp >= *N* which means to get all form responses submitted at and after timestamp *N*. For both supported filters, timestamp must be formatted in RFC3339 UTC \"Zulu\" format. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.forms_v1#ListFormsResponses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.forms_v1#ListFormsResponsesRequest"
+      },
+      "output": {
+        "target": "com.gcp.forms_v1#ListFormResponsesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.forms_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.forms_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/forms/{formId}/responses"
+        },
+        "smithy.api#documentation": "List a form's responses.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     }
   }

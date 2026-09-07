@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#DeploymentRestartRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#RestartDeploymentRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation deploymentRestart($id: String!) {\n  deploymentRestart(id: $id)\n}"
     }
   ]

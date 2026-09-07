@@ -25,7 +25,8 @@
       "p2pIp": "p2p_ip",
       "pairingKey": "pairing_key",
       "slotId": "slot_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.network_interconnects#CnisCreateRequestMagic": {
@@ -789,49 +790,49 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.network_interconnects#CnisCreate"
+          "target": "com.cloudflare.network_interconnects#CreateCni"
         },
         {
-          "target": "com.cloudflare.network_interconnects#CnisDelete"
+          "target": "com.cloudflare.network_interconnects#CreateInterconnect"
         },
         {
-          "target": "com.cloudflare.network_interconnects#CnisGet"
+          "target": "com.cloudflare.network_interconnects#DeleteCni"
         },
         {
-          "target": "com.cloudflare.network_interconnects#CnisList"
+          "target": "com.cloudflare.network_interconnects#DeleteInterconnect"
         },
         {
-          "target": "com.cloudflare.network_interconnects#CnisUpdate"
+          "target": "com.cloudflare.network_interconnects#GetCni"
         },
         {
-          "target": "com.cloudflare.network_interconnects#InterconnectsCreate"
+          "target": "com.cloudflare.network_interconnects#GetInterconnect"
         },
         {
-          "target": "com.cloudflare.network_interconnects#InterconnectsDelete"
+          "target": "com.cloudflare.network_interconnects#GetSetting"
         },
         {
-          "target": "com.cloudflare.network_interconnects#InterconnectsGet"
+          "target": "com.cloudflare.network_interconnects#GetSlot"
         },
         {
-          "target": "com.cloudflare.network_interconnects#InterconnectsList"
+          "target": "com.cloudflare.network_interconnects#ListCnis"
         },
         {
-          "target": "com.cloudflare.network_interconnects#InterconnectsLoa"
+          "target": "com.cloudflare.network_interconnects#ListInterconnects"
         },
         {
-          "target": "com.cloudflare.network_interconnects#InterconnectsStatus"
+          "target": "com.cloudflare.network_interconnects#ListSlots"
         },
         {
-          "target": "com.cloudflare.network_interconnects#SettingsGet"
+          "target": "com.cloudflare.network_interconnects#LoaInterconnect"
         },
         {
-          "target": "com.cloudflare.network_interconnects#SettingsUpdate"
+          "target": "com.cloudflare.network_interconnects#PutSetting"
         },
         {
-          "target": "com.cloudflare.network_interconnects#SlotsGet"
+          "target": "com.cloudflare.network_interconnects#StatusInterconnect"
         },
         {
-          "target": "com.cloudflare.network_interconnects#SlotsList"
+          "target": "com.cloudflare.network_interconnects#UpdateCni"
         }
       ],
       "traits": {

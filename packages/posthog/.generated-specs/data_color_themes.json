@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.data_color_themes#ListDataColorThemesRequest": {
@@ -325,7 +326,7 @@
         }
       }
     },
-    "com.posthog.data_color_themes#DataColorThemesRetrieveRequest": {
+    "com.posthog.data_color_themes#GetDataColorThemeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -349,10 +350,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_color_themes#DataColorThemesRetrieve": {
+    "com.posthog.data_color_themes#GetDataColorTheme": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_color_themes#DataColorThemesRetrieveRequest"
+        "target": "com.posthog.data_color_themes#GetDataColorThemeRequest"
       },
       "output": {
         "target": "com.posthog.data_color_themes#DataColorTheme"
@@ -430,7 +431,7 @@
         }
       }
     },
-    "com.posthog.data_color_themes#UpdateDataColorThemePartialRequest": {
+    "com.posthog.data_color_themes#UpdateDataColorThemesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -460,10 +461,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_color_themes#UpdateDataColorThemePartial": {
+    "com.posthog.data_color_themes#UpdateDataColorThemesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_color_themes#UpdateDataColorThemePartialRequest"
+        "target": "com.posthog.data_color_themes#UpdateDataColorThemesPartialRequest"
       },
       "output": {
         "target": "com.posthog.data_color_themes#DataColorTheme"
@@ -579,22 +580,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.data_color_themes#ListDataColorThemes"
-        },
-        {
           "target": "com.posthog.data_color_themes#CreateDataColorTheme"
         },
         {
-          "target": "com.posthog.data_color_themes#DataColorThemesRetrieve"
+          "target": "com.posthog.data_color_themes#DataColorThemesDestroy"
+        },
+        {
+          "target": "com.posthog.data_color_themes#GetDataColorTheme"
+        },
+        {
+          "target": "com.posthog.data_color_themes#ListDataColorThemes"
         },
         {
           "target": "com.posthog.data_color_themes#UpdateDataColorTheme"
         },
         {
-          "target": "com.posthog.data_color_themes#UpdateDataColorThemePartial"
-        },
-        {
-          "target": "com.posthog.data_color_themes#DataColorThemesDestroy"
+          "target": "com.posthog.data_color_themes#UpdateDataColorThemesPartial"
         }
       ],
       "traits": {

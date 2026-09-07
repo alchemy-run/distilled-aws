@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.zone_rrsets#ListZoneRrsetsRequestTypeItem": {
@@ -2300,19 +2301,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.zone_rrsets#ListZoneRrsets"
+          "target": "com.hetzner.zone_rrsets#CreateZoneRrset"
         },
         {
-          "target": "com.hetzner.zone_rrsets#CreateZoneRrset"
+          "target": "com.hetzner.zone_rrsets#DeleteZoneRrset"
         },
         {
           "target": "com.hetzner.zone_rrsets#GetZoneRrset"
         },
         {
-          "target": "com.hetzner.zone_rrsets#UpdateZoneRrset"
+          "target": "com.hetzner.zone_rrsets#ListZoneRrsets"
         },
         {
-          "target": "com.hetzner.zone_rrsets#DeleteZoneRrset"
+          "target": "com.hetzner.zone_rrsets#UpdateZoneRrset"
         }
       ],
       "traits": {

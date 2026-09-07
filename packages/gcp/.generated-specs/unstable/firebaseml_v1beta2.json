@@ -4,40 +4,281 @@
     "service": "firebaseml",
     "version": "v1beta2",
     "title": "Firebase ML API",
-    "baseUrl": "https://firebaseml.googleapis.com/"
+    "baseUrl": "https://firebaseml.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.firebaseml_v1beta2#ModelState": {
+    "com.gcp.firebaseml_v1beta2#Operation": {
       "type": "structure",
       "members": {
-        "published": {
+        "done": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Indicates if this model has been published."
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
           }
         },
-        "validationError": {
+        "metadata": {
+          "target": "com.gcp.firebaseml_v1beta2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
           "target": "com.gcp.firebaseml_v1beta2#Status",
           "traits": {
-            "smithy.api#documentation": "Output only. Indicates the latest validation error on the model if any. A model may have validation errors if there were problems during the model creation/update. e.g. in the case of a TfLiteModel, if a tflite model file was missing or in the wrong format. This field will be empty for valid models."
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "response": {
+          "target": "com.gcp.firebaseml_v1beta2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "State common to all model types. Includes publishing and validation information."
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.firebaseml_v1beta2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseml_v1beta2#DocumentMap"
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#ListModelsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
+          }
+        },
+        "models": {
+          "target": "com.gcp.firebaseml_v1beta2#ModelList",
+          "traits": {
+            "smithy.api#documentation": "The list of models"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for list models"
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#ModelList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseml_v1beta2#Model"
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#TfLiteModel": {
+      "type": "structure",
+      "members": {
+        "gcsTfliteUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The TfLite file containing the model. (Stored in Google Cloud). The gcs_tflite_uri should have form: gs://some-bucket/some-model.tflite Note: If you update the file in the original location, it is necessary to call UpdateModel for ML to pick up and validate the updated file."
+          }
+        },
+        "sizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The size of the TFLite model"
+          }
+        },
+        "automlModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AutoML model id referencing a model you created with the AutoML API. The name should have format 'projects//locations//models/' (This is the model resource name returned from the AutoML API)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information that is specific to TfLite models."
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#DownloadModelResponse": {
+      "type": "structure",
+      "members": {
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the download URI link expires. If the link has expired, the REST call must be repeated."
+          }
+        },
+        "sizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The size of the file(s), if this information is available."
+          }
+        },
+        "downloadUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A download URI for the model/zip file."
+          }
+        },
+        "modelFormat": {
+          "target": "com.gcp.firebaseml_v1beta2#DownloadModelResponseModelFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The format of the model being downloaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response for downloading a model to device."
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#DownloadModelResponseModelFormatEnum": {
+      "type": "enum",
+      "members": {
+        "MODEL_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODEL_FORMAT_UNSPECIFIED"
+          }
+        },
+        "TFLITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TFLITE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#Model": {
+      "type": "structure",
+      "members": {
+        "tfliteModel": {
+          "target": "com.gcp.firebaseml_v1beta2#TfLiteModel",
+          "traits": {
+            "smithy.api#documentation": "A TFLite Model"
+          }
+        },
+        "modelHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The model_hash will change if a new file is available for download."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the model to create. The name can be up to 32 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscores(_) and ASCII digits 0-9. It must start with a letter."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. See RFC7232 https://tools.ietf.org/html/rfc7232#section-2.3"
+          }
+        },
+        "tags": {
+          "target": "com.gcp.firebaseml_v1beta2#StringList",
+          "traits": {
+            "smithy.api#documentation": "User defined tags which can be used to group/filter models during listing"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when this model was updated in Firebase ML."
+          }
+        },
+        "state": {
+          "target": "com.gcp.firebaseml_v1beta2#ModelState",
+          "traits": {
+            "smithy.api#documentation": "State common to all model types. Includes publishing and validation information."
+          }
+        },
+        "activeOperations": {
+          "target": "com.gcp.firebaseml_v1beta2#OperationList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Lists operation ids associated with this model whose status is NOT done."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when this model was created in Firebase ML."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An ML model hosted in Firebase ML"
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseml_v1beta2#Operation"
       }
     },
     "com.gcp.firebaseml_v1beta2#ModelOperationMetadata": {
       "type": "structure",
       "members": {
-        "basicOperationStatus": {
-          "target": "com.gcp.firebaseml_v1beta2#ModelOperationMetadataBasicOperationStatusEnum"
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The name of the model we are creating/updating The name must have the form `projects/{project_id}/models/{model_id}`"
           }
+        },
+        "basicOperationStatus": {
+          "target": "com.gcp.firebaseml_v1beta2#ModelOperationMetadataBasicOperationStatusEnum"
         }
       },
       "traits": {
@@ -67,238 +308,24 @@
         }
       }
     },
-    "com.gcp.firebaseml_v1beta2#Operation": {
+    "com.gcp.firebaseml_v1beta2#ModelState": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "done": {
+        "published": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            "smithy.api#documentation": "Indicates if this model has been published."
           }
         },
-        "error": {
+        "validationError": {
           "target": "com.gcp.firebaseml_v1beta2#Status",
           "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.firebaseml_v1beta2#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "response": {
-          "target": "com.gcp.firebaseml_v1beta2#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+            "smithy.api#documentation": "Output only. Indicates the latest validation error on the model if any. A model may have validation errors if there were problems during the model creation/update. e.g. in the case of a TfLiteModel, if a tflite model file was missing or in the wrong format. This field will be empty for valid models."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#Status": {
-      "type": "structure",
-      "members": {
-        "details": {
-          "target": "com.gcp.firebaseml_v1beta2#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        },
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebaseml_v1beta2#DocumentMap"
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#DownloadModelResponse": {
-      "type": "structure",
-      "members": {
-        "expireTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time that the download URI link expires. If the link has expired, the REST call must be repeated."
-          }
-        },
-        "modelFormat": {
-          "target": "com.gcp.firebaseml_v1beta2#DownloadModelResponseModelFormatEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The format of the model being downloaded."
-          }
-        },
-        "sizeBytes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The size of the file(s), if this information is available."
-          }
-        },
-        "downloadUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A download URI for the model/zip file."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response for downloading a model to device."
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#DownloadModelResponseModelFormatEnum": {
-      "type": "enum",
-      "members": {
-        "MODEL_FORMAT_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MODEL_FORMAT_UNSPECIFIED"
-          }
-        },
-        "TFLITE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TFLITE"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#ListModelsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token to retrieve the next page of results, or empty if there are no more results in the list."
-          }
-        },
-        "models": {
-          "target": "com.gcp.firebaseml_v1beta2#ModelList",
-          "traits": {
-            "smithy.api#documentation": "The list of models"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response for list models"
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#ModelList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebaseml_v1beta2#Model"
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#Model": {
-      "type": "structure",
-      "members": {
-        "tfliteModel": {
-          "target": "com.gcp.firebaseml_v1beta2#TfLiteModel",
-          "traits": {
-            "smithy.api#documentation": "A TFLite Model"
-          }
-        },
-        "activeOperations": {
-          "target": "com.gcp.firebaseml_v1beta2#OperationList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Lists operation ids associated with this model whose status is NOT done."
-          }
-        },
-        "state": {
-          "target": "com.gcp.firebaseml_v1beta2#ModelState",
-          "traits": {
-            "smithy.api#documentation": "State common to all model types. Includes publishing and validation information."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Timestamp when this model was created in Firebase ML."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the model to create. The name can be up to 32 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscores(_) and ASCII digits 0-9. It must start with a letter."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Timestamp when this model was updated in Firebase ML."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model."
-          }
-        },
-        "modelHash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The model_hash will change if a new file is available for download."
-          }
-        },
-        "tags": {
-          "target": "com.gcp.firebaseml_v1beta2#StringList",
-          "traits": {
-            "smithy.api#documentation": "User defined tags which can be used to group/filter models during listing"
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. See RFC7232 https://tools.ietf.org/html/rfc7232#section-2.3"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An ML model hosted in Firebase ML"
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebaseml_v1beta2#Operation"
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+        "smithy.api#documentation": "State common to all model types. Includes publishing and validation information."
       }
     },
     "com.gcp.firebaseml_v1beta2#Empty": {
@@ -308,39 +335,13 @@
         "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
-    "com.gcp.firebaseml_v1beta2#TfLiteModel": {
-      "type": "structure",
-      "members": {
-        "automlModel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The AutoML model id referencing a model you created with the AutoML API. The name should have format 'projects//locations//models/' (This is the model resource name returned from the AutoML API)"
-          }
-        },
-        "gcsTfliteUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The TfLite file containing the model. (Stored in Google Cloud). The gcs_tflite_uri should have form: gs://some-bucket/some-model.tflite Note: If you update the file in the original location, it is necessary to call UpdateModel for ML to pick up and validate the updated file."
-          }
-        },
-        "sizeBytes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The size of the TFLite model"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information that is specific to TfLite models."
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#GetProjectsModelsRequest": {
+    "com.gcp.firebaseml_v1beta2#GetProjectsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The name of the model to get. The name must have the form `projects/{project_id}/models/{model_id}`",
+            "smithy.api#documentation": "The name of the operation resource.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -373,6 +374,43 @@
         ]
       }
     },
+    "com.gcp.firebaseml_v1beta2#GetProjectsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseml_v1beta2#GetProjectsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseml_v1beta2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseml_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseml_v1beta2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#GetProjectsModelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the model to get. The name must have the form `projects/{project_id}/models/{model_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
     "com.gcp.firebaseml_v1beta2#GetProjectsModels": {
       "type": "operation",
       "input": {
@@ -397,22 +435,15 @@
         "smithy.api#documentation": "Gets a model resource."
       }
     },
-    "com.gcp.firebaseml_v1beta2#CreateProjectsModelsRequest": {
+    "com.gcp.firebaseml_v1beta2#DeleteProjectsModelsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id}`",
+            "smithy.api#documentation": "Required. The name of the model to delete. The name must have the form `projects/{project_id}/models/{model_id}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebaseml_v1beta2#Model",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -441,6 +472,113 @@
             "status": 409
           }
         ]
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#DeleteProjectsModels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseml_v1beta2#DeleteProjectsModelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseml_v1beta2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseml_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseml_v1beta2#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseml_v1beta2#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseml_v1beta2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a model"
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#PatchProjectsModelsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The update mask",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseml_v1beta2#Model",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#PatchProjectsModels": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseml_v1beta2#PatchProjectsModelsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseml_v1beta2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseml_v1beta2#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseml_v1beta2#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseml_v1beta2#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseml_v1beta2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta2/{+name}"
+        },
+        "smithy.api#documentation": "Updates a model. The longrunning operation will eventually return a Model."
+      }
+    },
+    "com.gcp.firebaseml_v1beta2#CreateProjectsModelsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseml_v1beta2#Model",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
       }
     },
     "com.gcp.firebaseml_v1beta2#CreateProjectsModels": {
@@ -520,11 +658,11 @@
             "smithy.api#httpQuery": "pageSize"
           }
         },
-        "filter": {
+        "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A filter for the list e.g. 'tags: abc' to list models which are tagged with \"abc\"",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "parent": {
@@ -535,11 +673,11 @@
             "smithy.api#required": {}
           }
         },
-        "pageToken": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The next_page_token value returned from a previous List request, if any.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "A filter for the list e.g. 'tags: abc' to list models which are tagged with \"abc\"",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -570,143 +708,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#PatchProjectsModelsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The update mask",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebaseml_v1beta2#Model",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#PatchProjectsModels": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseml_v1beta2#PatchProjectsModelsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseml_v1beta2#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseml_v1beta2#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseml_v1beta2#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseml_v1beta2#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseml_v1beta2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1beta2/{+name}"
-        },
-        "smithy.api#documentation": "Updates a model. The longrunning operation will eventually return a Model."
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#DeleteProjectsModelsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the model to delete. The name must have the form `projects/{project_id}/models/{model_id}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#DeleteProjectsModels": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseml_v1beta2#DeleteProjectsModelsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseml_v1beta2#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseml_v1beta2#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseml_v1beta2#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseml_v1beta2#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseml_v1beta2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta2/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a model"
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#GetProjectsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseml_v1beta2#GetProjectsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseml_v1beta2#GetProjectsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseml_v1beta2#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseml_v1beta2#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseml_v1beta2#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta2/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     }
   }

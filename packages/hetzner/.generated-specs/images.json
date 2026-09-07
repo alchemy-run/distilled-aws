@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.images#ListImagesRequestSortItem": {
@@ -1512,16 +1513,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.images#ListImages"
+          "target": "com.hetzner.images#DeleteImage"
         },
         {
           "target": "com.hetzner.images#GetImage"
         },
         {
-          "target": "com.hetzner.images#UpdateImage"
+          "target": "com.hetzner.images#ListImages"
         },
         {
-          "target": "com.hetzner.images#DeleteImage"
+          "target": "com.hetzner.images#UpdateImage"
         }
       ],
       "traits": {

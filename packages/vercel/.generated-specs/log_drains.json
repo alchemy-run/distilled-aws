@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.log_drains#GetConfigurableLogDrainRequest": {
@@ -161,6 +162,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -799,6 +806,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -4859,25 +4872,25 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.log_drains#GetConfigurableLogDrain"
-        },
-        {
-          "target": "com.vercel.log_drains#DeleteConfigurableLogDrain"
-        },
-        {
-          "target": "com.vercel.log_drains#GetAllLogDrains"
-        },
-        {
           "target": "com.vercel.log_drains#CreateConfigurableLogDrain"
-        },
-        {
-          "target": "com.vercel.log_drains#GetIntegrationLogDrains"
         },
         {
           "target": "com.vercel.log_drains#CreateLogDrain"
         },
         {
+          "target": "com.vercel.log_drains#DeleteConfigurableLogDrain"
+        },
+        {
           "target": "com.vercel.log_drains#DeleteIntegrationLogDrain"
+        },
+        {
+          "target": "com.vercel.log_drains#GetAllLogDrains"
+        },
+        {
+          "target": "com.vercel.log_drains#GetConfigurableLogDrain"
+        },
+        {
+          "target": "com.vercel.log_drains#GetIntegrationLogDrains"
         }
       ],
       "traits": {

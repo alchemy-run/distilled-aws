@@ -39,7 +39,8 @@
       "sampleRate": "sample_rate",
       "sessionId": "session_id",
       "timestampFormat": "timestamp_format"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.logpush#EdgeGetResultItem": {
@@ -88,82 +89,82 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.logpush#DatasetsFieldsGetForAccount"
+          "target": "com.cloudflare.logpush#CreateEdge"
         },
         {
-          "target": "com.cloudflare.logpush#DatasetsFieldsGetForZone"
+          "target": "com.cloudflare.logpush#CreateJobForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#DatasetsJobsGetForAccount"
+          "target": "com.cloudflare.logpush#CreateJobForZone"
         },
         {
-          "target": "com.cloudflare.logpush#DatasetsJobsGetForZone"
+          "target": "com.cloudflare.logpush#CreateOwnershipForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#EdgeCreate"
+          "target": "com.cloudflare.logpush#CreateOwnershipForZone"
         },
         {
-          "target": "com.cloudflare.logpush#EdgeGet"
+          "target": "com.cloudflare.logpush#DeleteJobForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#JobsCreateForAccount"
+          "target": "com.cloudflare.logpush#DeleteJobForZone"
         },
         {
-          "target": "com.cloudflare.logpush#JobsCreateForZone"
+          "target": "com.cloudflare.logpush#DestinationExistsValidateForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#JobsDeleteForAccount"
+          "target": "com.cloudflare.logpush#DestinationExistsValidateForZone"
         },
         {
-          "target": "com.cloudflare.logpush#JobsDeleteForZone"
+          "target": "com.cloudflare.logpush#DestinationValidateForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#JobsGetForAccount"
+          "target": "com.cloudflare.logpush#DestinationValidateForZone"
         },
         {
-          "target": "com.cloudflare.logpush#JobsGetForZone"
+          "target": "com.cloudflare.logpush#GetDatasetFieldForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#JobsListForAccount"
+          "target": "com.cloudflare.logpush#GetDatasetFieldForZone"
         },
         {
-          "target": "com.cloudflare.logpush#JobsListForZone"
+          "target": "com.cloudflare.logpush#GetDatasetJobForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#JobsUpdateForAccount"
+          "target": "com.cloudflare.logpush#GetDatasetJobForZone"
         },
         {
-          "target": "com.cloudflare.logpush#JobsUpdateForZone"
+          "target": "com.cloudflare.logpush#GetEdge"
         },
         {
-          "target": "com.cloudflare.logpush#OwnershipCreateForAccount"
+          "target": "com.cloudflare.logpush#GetJobForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#OwnershipCreateForZone"
+          "target": "com.cloudflare.logpush#GetJobForZone"
         },
         {
-          "target": "com.cloudflare.logpush#OwnershipValidateForAccount"
+          "target": "com.cloudflare.logpush#ListJobsForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#OwnershipValidateForZone"
+          "target": "com.cloudflare.logpush#ListJobsForZone"
         },
         {
-          "target": "com.cloudflare.logpush#ValidateDestinationForAccount"
+          "target": "com.cloudflare.logpush#OriginValidateForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#ValidateDestinationForZone"
+          "target": "com.cloudflare.logpush#OriginValidateForZone"
         },
         {
-          "target": "com.cloudflare.logpush#ValidateDestinationExistsForAccount"
+          "target": "com.cloudflare.logpush#UpdateJobForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#ValidateDestinationExistsForZone"
+          "target": "com.cloudflare.logpush#UpdateJobForZone"
         },
         {
-          "target": "com.cloudflare.logpush#ValidateOriginForAccount"
+          "target": "com.cloudflare.logpush#ValidateOwnershipForAccount"
         },
         {
-          "target": "com.cloudflare.logpush#ValidateOriginForZone"
+          "target": "com.cloudflare.logpush#ValidateOwnershipForZone"
         }
       ],
       "traits": {
@@ -331,7 +332,7 @@
         "target": "com.cloudflare.logpush#CreateJobForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#CreateJobForAccountResponse"
+        "target": "com.cloudflare.logpush#CreateJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -443,7 +444,7 @@
         "target": "com.cloudflare.logpush#CreateJobForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#CreateJobForZoneResponse"
+        "target": "com.cloudflare.logpush#CreateJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -555,7 +556,7 @@
         "target": "com.cloudflare.logpush#CreateOwnershipForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#CreateOwnershipForAccountResponse"
+        "target": "com.cloudflare.logpush#CreateOwnershipResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -595,7 +596,7 @@
         "target": "com.cloudflare.logpush#CreateOwnershipForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#CreateOwnershipForZoneResponse"
+        "target": "com.cloudflare.logpush#CreateOwnershipResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -635,7 +636,7 @@
         "target": "com.cloudflare.logpush#DeleteJobForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#DeleteJobForAccountResponse"
+        "target": "com.cloudflare.logpush#DeleteJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -682,7 +683,7 @@
         "target": "com.cloudflare.logpush#DeleteJobForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#DeleteJobForZoneResponse"
+        "target": "com.cloudflare.logpush#DeleteJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -729,7 +730,7 @@
         "target": "com.cloudflare.logpush#DestinationExistsValidateForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#DestinationExistsValidateForAccountResponse"
+        "target": "com.cloudflare.logpush#DestinationExistsValidateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -769,7 +770,7 @@
         "target": "com.cloudflare.logpush#DestinationExistsValidateForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#DestinationExistsValidateForZoneResponse"
+        "target": "com.cloudflare.logpush#DestinationExistsValidateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -809,7 +810,7 @@
         "target": "com.cloudflare.logpush#DestinationValidateForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#DestinationValidateForAccountResponse"
+        "target": "com.cloudflare.logpush#DestinationValidateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -849,7 +850,7 @@
         "target": "com.cloudflare.logpush#DestinationValidateForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#DestinationValidateForZoneResponse"
+        "target": "com.cloudflare.logpush#DestinationValidateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -889,7 +890,7 @@
         "target": "com.cloudflare.logpush#GetDatasetFieldForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#GetDatasetFieldForAccountResponse"
+        "target": "com.cloudflare.logpush#GetDatasetFieldResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -931,7 +932,7 @@
         "target": "com.cloudflare.logpush#GetDatasetFieldForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#GetDatasetFieldForZoneResponse"
+        "target": "com.cloudflare.logpush#GetDatasetFieldResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -973,7 +974,7 @@
         "target": "com.cloudflare.logpush#GetDatasetJobForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#GetDatasetJobForAccountResponse"
+        "target": "com.cloudflare.logpush#GetDatasetJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1019,7 +1020,7 @@
         "target": "com.cloudflare.logpush#GetDatasetJobForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#GetDatasetJobForZoneResponse"
+        "target": "com.cloudflare.logpush#GetDatasetJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1118,7 +1119,7 @@
         "target": "com.cloudflare.logpush#GetJobForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#GetJobForAccountResponse"
+        "target": "com.cloudflare.logpush#GetJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1168,7 +1169,7 @@
         "target": "com.cloudflare.logpush#GetJobForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#GetJobForZoneResponse"
+        "target": "com.cloudflare.logpush#GetJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1218,7 +1219,7 @@
         "target": "com.cloudflare.logpush#ListJobsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#ListJobsForAccountResponse"
+        "target": "com.cloudflare.logpush#ListJobsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1264,7 +1265,7 @@
         "target": "com.cloudflare.logpush#ListJobsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#ListJobsForZoneResponse"
+        "target": "com.cloudflare.logpush#ListJobsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1310,7 +1311,7 @@
         "target": "com.cloudflare.logpush#OriginValidateForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#OriginValidateForAccountResponse"
+        "target": "com.cloudflare.logpush#OriginValidateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1350,7 +1351,7 @@
         "target": "com.cloudflare.logpush#OriginValidateForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#OriginValidateForZoneResponse"
+        "target": "com.cloudflare.logpush#OriginValidateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1390,7 +1391,7 @@
         "target": "com.cloudflare.logpush#UpdateJobForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#UpdateJobForAccountResponse"
+        "target": "com.cloudflare.logpush#UpdateJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1504,7 +1505,7 @@
         "target": "com.cloudflare.logpush#UpdateJobForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#UpdateJobForZoneResponse"
+        "target": "com.cloudflare.logpush#UpdateJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1618,7 +1619,7 @@
         "target": "com.cloudflare.logpush#ValidateOwnershipForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#ValidateOwnershipForAccountResponse"
+        "target": "com.cloudflare.logpush#ValidateOwnershipResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1665,7 +1666,7 @@
         "target": "com.cloudflare.logpush#ValidateOwnershipForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.logpush#ValidateOwnershipForZoneResponse"
+        "target": "com.cloudflare.logpush#ValidateOwnershipResponse"
       },
       "traits": {
         "smithy.api#http": {

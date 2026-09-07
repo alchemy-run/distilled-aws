@@ -117,7 +117,7 @@ export const ExtendedLocation = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExtendedLocation",
 }) as any as S.Schema<ExtendedLocation>;
 
-export interface CreateAssetEndpointProfileOrReplaceRequest {
+export interface AssetEndpointProfilesCreateOrReplaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -133,7 +133,7 @@ export interface CreateAssetEndpointProfileOrReplaceRequest {
   /** The extended location. */
   extendedLocation: ExtendedLocation;
 }
-export const CreateAssetEndpointProfileOrReplaceRequest =
+export const AssetEndpointProfilesCreateOrReplaceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -152,8 +152,8 @@ export const CreateAssetEndpointProfileOrReplaceRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateAssetEndpointProfileOrReplaceRequest",
-  }) as any as S.Schema<CreateAssetEndpointProfileOrReplaceRequest>;
+    identifier: "AssetEndpointProfilesCreateOrReplaceRequest",
+  }) as any as S.Schema<AssetEndpointProfilesCreateOrReplaceRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -286,7 +286,7 @@ export const AssetEndpointProfileProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssetEndpointProfileProperties",
 }) as any as S.Schema<AssetEndpointProfileProperties>;
 
-export interface CreateAssetEndpointProfileOrReplaceResponse {
+export interface AssetEndpointProfilesCreateOrReplaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -304,7 +304,7 @@ export interface CreateAssetEndpointProfileOrReplaceResponse {
   /** The extended location. */
   extendedLocation: ExtendedLocation;
 }
-export const CreateAssetEndpointProfileOrReplaceResponse =
+export const AssetEndpointProfilesCreateOrReplaceResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -317,8 +317,8 @@ export const CreateAssetEndpointProfileOrReplaceResponse =
       extendedLocation: ExtendedLocation,
     }),
   ).annotate({
-    identifier: "CreateAssetEndpointProfileOrReplaceResponse",
-  }) as any as S.Schema<CreateAssetEndpointProfileOrReplaceResponse>;
+    identifier: "AssetEndpointProfilesCreateOrReplaceResponse",
+  }) as any as S.Schema<AssetEndpointProfilesCreateOrReplaceResponse>;
 
 /** Resource tags. */
 export type AssetsCreateOrReplaceRequestTagsMap = {
@@ -529,7 +529,7 @@ export const AssetPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssetPropertiesInput",
 }) as any as S.Schema<AssetPropertiesInput>;
 
-export interface CreateAssetOrReplaceRequest {
+export interface AssetsCreateOrReplaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -545,7 +545,7 @@ export interface CreateAssetOrReplaceRequest {
   /** The extended location. */
   extendedLocation: ExtendedLocation;
 }
-export const CreateAssetOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const AssetsCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -563,8 +563,8 @@ export const CreateAssetOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateAssetOrReplaceRequest",
-}) as any as S.Schema<CreateAssetOrReplaceRequest>;
+  identifier: "AssetsCreateOrReplaceRequest",
+}) as any as S.Schema<AssetsCreateOrReplaceRequest>;
 
 /** Resource tags. */
 export type AssetsCreateOrReplaceResponseTagsMap = {
@@ -789,7 +789,7 @@ export const AssetProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AssetProperties",
 }) as any as S.Schema<AssetProperties>;
 
-export interface CreateAssetOrReplaceResponse {
+export interface AssetsCreateOrReplaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -807,7 +807,7 @@ export interface CreateAssetOrReplaceResponse {
   /** The extended location. */
   extendedLocation: ExtendedLocation;
 }
-export const CreateAssetOrReplaceResponse = /*@__PURE__*/ S.suspend(() =>
+export const AssetsCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -819,18 +819,898 @@ export const CreateAssetOrReplaceResponse = /*@__PURE__*/ S.suspend(() =>
     extendedLocation: ExtendedLocation,
   }),
 ).annotate({
-  identifier: "CreateAssetOrReplaceResponse",
-}) as any as S.Schema<CreateAssetOrReplaceResponse>;
+  identifier: "AssetsCreateOrReplaceResponse",
+}) as any as S.Schema<AssetsCreateOrReplaceResponse>;
 
-/** Resource tags. */
-export type NamespaceAssetsCreateOrReplaceRequestTagsMap = {
-  [key: string]: string | undefined;
+export interface DeleteAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Asset name parameter. */
+  assetName: string;
+}
+export const DeleteAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    assetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAssetRequest",
+}) as any as S.Schema<DeleteAssetRequest>;
+
+export interface DeleteAssetResponse {}
+export const DeleteAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAssetResponse",
+}) as any as S.Schema<DeleteAssetResponse>;
+
+export interface DeleteAssetEndpointProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Asset Endpoint Profile name parameter. */
+  assetEndpointProfileName: string;
+}
+export const DeleteAssetEndpointProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    assetEndpointProfileName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assetEndpointProfiles/{assetEndpointProfileName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAssetEndpointProfileRequest",
+}) as any as S.Schema<DeleteAssetEndpointProfileRequest>;
+
+export interface DeleteAssetEndpointProfileResponse {}
+export const DeleteAssetEndpointProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAssetEndpointProfileResponse",
+}) as any as S.Schema<DeleteAssetEndpointProfileResponse>;
+
+export interface DeleteNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+}
+export const DeleteNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteNamespaceRequest",
+}) as any as S.Schema<DeleteNamespaceRequest>;
+
+export interface DeleteNamespaceResponse {}
+export const DeleteNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceResponse",
+}) as any as S.Schema<DeleteNamespaceResponse>;
+
+export interface DeleteNamespaceAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the asset. */
+  assetName: string;
+}
+export const DeleteNamespaceAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    assetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteNamespaceAssetRequest",
+}) as any as S.Schema<DeleteNamespaceAssetRequest>;
+
+export interface DeleteNamespaceAssetResponse {}
+export const DeleteNamespaceAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceAssetResponse",
+}) as any as S.Schema<DeleteNamespaceAssetResponse>;
+
+export interface DeleteNamespaceDeviceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the device. */
+  deviceName: string;
+}
+export const DeleteNamespaceDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/devices/{deviceName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteNamespaceDeviceRequest",
+}) as any as S.Schema<DeleteNamespaceDeviceRequest>;
+
+export interface DeleteNamespaceDeviceResponse {}
+export const DeleteNamespaceDeviceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceDeviceResponse",
+}) as any as S.Schema<DeleteNamespaceDeviceResponse>;
+
+export interface DeleteNamespaceDiscoveredAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the discovered asset. */
+  discoveredAssetName: string;
+}
+export const DeleteNamespaceDiscoveredAssetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      discoveredAssetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredAssets/{discoveredAssetName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteNamespaceDiscoveredAssetRequest",
+}) as any as S.Schema<DeleteNamespaceDiscoveredAssetRequest>;
+
+export interface DeleteNamespaceDiscoveredAssetResponse {}
+export const DeleteNamespaceDiscoveredAssetResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceDiscoveredAssetResponse",
+}) as any as S.Schema<DeleteNamespaceDiscoveredAssetResponse>;
+
+export interface DeleteNamespaceDiscoveredDeviceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the discovered device. */
+  discoveredDeviceName: string;
+}
+export const DeleteNamespaceDiscoveredDeviceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      discoveredDeviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredDevices/{discoveredDeviceName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteNamespaceDiscoveredDeviceRequest",
+}) as any as S.Schema<DeleteNamespaceDiscoveredDeviceRequest>;
+
+export interface DeleteNamespaceDiscoveredDeviceResponse {}
+export const DeleteNamespaceDiscoveredDeviceResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceDiscoveredDeviceResponse",
+}) as any as S.Schema<DeleteNamespaceDiscoveredDeviceResponse>;
+
+export interface DeleteSchemaRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Schema registry name parameter. */
+  schemaRegistryName: string;
+  /** Schema name parameter. */
+  schemaName: string;
+}
+export const DeleteSchemaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schemaRegistryName: S.String.pipe(T.Label()),
+    schemaName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSchemaRequest",
+}) as any as S.Schema<DeleteSchemaRequest>;
+
+export interface DeleteSchemaResponse {}
+export const DeleteSchemaResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSchemaResponse",
+}) as any as S.Schema<DeleteSchemaResponse>;
+
+export interface DeleteSchemaRegistryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Schema registry name parameter. */
+  schemaRegistryName: string;
+}
+export const DeleteSchemaRegistryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schemaRegistryName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSchemaRegistryRequest",
+}) as any as S.Schema<DeleteSchemaRegistryRequest>;
+
+export interface DeleteSchemaRegistryResponse {}
+export const DeleteSchemaRegistryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSchemaRegistryResponse",
+}) as any as S.Schema<DeleteSchemaRegistryResponse>;
+
+export interface DeleteSchemaVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Schema registry name parameter. */
+  schemaRegistryName: string;
+  /** Schema name parameter. */
+  schemaName: string;
+  /** Schema version name parameter. */
+  schemaVersionName: string;
+}
+export const DeleteSchemaVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schemaRegistryName: S.String.pipe(T.Label()),
+    schemaName: S.String.pipe(T.Label()),
+    schemaVersionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}/schemaVersions/{schemaVersionName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSchemaVersionRequest",
+}) as any as S.Schema<DeleteSchemaVersionRequest>;
+
+export interface DeleteSchemaVersionResponse {}
+export const DeleteSchemaVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSchemaVersionResponse",
+}) as any as S.Schema<DeleteSchemaVersionResponse>;
+
+/** Payload required for executing the management action. */
+export type ExecuteNamespaceAssetActionRequestPayloadMap = {
+  [key: string]: unknown | undefined;
 };
-export const NamespaceAssetsCreateOrReplaceRequestTagsMap =
+export const ExecuteNamespaceAssetActionRequestPayloadMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceAssetsCreateOrReplaceRequestTagsMap>;
+    S.Unknown,
+  ) as any as S.Schema<ExecuteNamespaceAssetActionRequestPayloadMap>;
+
+export interface ExecuteNamespaceAssetActionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the asset. */
+  assetName: string;
+  /** Name of the management action to be executed. */
+  managementActionName: string;
+  /** Name of the management group under which the action is to be executed. */
+  managementGroupName: string;
+  /** Payload required for executing the management action. */
+  payload?: ExecuteNamespaceAssetActionRequestPayloadMap;
+}
+export const ExecuteNamespaceAssetActionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    assetName: S.String.pipe(T.Label()),
+    managementActionName: S.String,
+    managementGroupName: S.String,
+    payload: S.optional(ExecuteNamespaceAssetActionRequestPayloadMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}/executeAction",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExecuteNamespaceAssetActionRequest",
+}) as any as S.Schema<ExecuteNamespaceAssetActionRequest>;
+
+/** Status of the management action execution. */
+export type ManagementActionExecutionStatus =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "InProgress";
+export const ManagementActionExecutionStatus = /*@__PURE__*/ S.String;
+
+/** Defines the error details properties. */
+export interface ErrorDetails {
+  /** Multi-part error code for classification and root causing of errors (ex: 400.200.100.432). */
+  code?: string;
+  /** Human-readable helpful error message to provide additional context for error (ex: “Authentication method not supported”). */
+  message?: string;
+  /** Human-readable helpful detailed text context for debugging (ex: “The following mechanisms are supported...”). */
+  info?: string;
+  /** Unique identifier for the transaction to aid in debugging. */
+  correlationId?: string;
+}
+export const ErrorDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    info: S.optional(S.String),
+    correlationId: S.optional(S.String),
+  }),
+).annotate({ identifier: "ErrorDetails" }) as any as S.Schema<ErrorDetails>;
+
+/** Array of error details that describe the status of each error. */
+export type ErrorDetailsList = Array<ErrorDetails>;
+export const ErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetails,
+) as any as S.Schema<ErrorDetailsList>;
+
+/** Defines the error object with properties. */
+export interface Error {
+  /** Error code for classification of errors (ex: '400', '404', '500', etc.). */
+  code?: string;
+  /** Human-readable helpful error message to provide additional context for error (e.g.,: “Capability ID 'foo' does not exist”). */
+  message?: string;
+  /** Array of error details that describe the status of each error. */
+  details?: ErrorDetailsList;
+}
+export const Error = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    details: S.optional(ErrorDetailsList),
+  }),
+).annotate({ identifier: "Error" }) as any as S.Schema<Error>;
+
+/** The response body for the executeAction operation on NamespaceAsset. */
+export interface NamespaceAssetExecuteActionResponse {
+  /** Status of the management action execution. */
+  status: ManagementActionExecutionStatus;
+  /** Name of the management action that was executed. */
+  managementActionName: string;
+  /** Name of the management group under which the action was executed. */
+  managementGroupName: string;
+  /** Resource ID of the asset on which the management action was executed. */
+  assetResourceId: string;
+  /** Response from the asset regarding the management action execution. */
+  response?: string;
+  /** Error if the execute action operation is not successful. */
+  error?: Error;
+}
+export const NamespaceAssetExecuteActionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: ManagementActionExecutionStatus,
+    managementActionName: S.String,
+    managementGroupName: S.String,
+    assetResourceId: S.String,
+    response: S.optional(S.String),
+    error: S.optional(Error),
+  }),
+).annotate({
+  identifier: "NamespaceAssetExecuteActionResponse",
+}) as any as S.Schema<NamespaceAssetExecuteActionResponse>;
+
+export interface GetAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Asset name parameter. */
+  assetName: string;
+}
+export const GetAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    assetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAssetRequest",
+}) as any as S.Schema<GetAssetRequest>;
+
+/** Resource tags. */
+export type GetAssetResponseTagsMap = { [key: string]: string | undefined };
+export const GetAssetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAssetResponseTagsMap>;
+
+export interface GetAssetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAssetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: AssetProperties;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const GetAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetAssetResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AssetProperties),
+    extendedLocation: ExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetAssetResponse",
+}) as any as S.Schema<GetAssetResponse>;
+
+export interface GetAssetEndpointProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Asset Endpoint Profile name parameter. */
+  assetEndpointProfileName: string;
+}
+export const GetAssetEndpointProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    assetEndpointProfileName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assetEndpointProfiles/{assetEndpointProfileName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAssetEndpointProfileRequest",
+}) as any as S.Schema<GetAssetEndpointProfileRequest>;
+
+/** Resource tags. */
+export type GetAssetEndpointProfileResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAssetEndpointProfileResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAssetEndpointProfileResponseTagsMap>;
+
+export interface GetAssetEndpointProfileResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAssetEndpointProfileResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: AssetEndpointProfileProperties;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const GetAssetEndpointProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetAssetEndpointProfileResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AssetEndpointProfileProperties),
+    extendedLocation: ExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetAssetEndpointProfileResponse",
+}) as any as S.Schema<GetAssetEndpointProfileResponse>;
+
+export interface GetBillingContainerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** Name of the billing container. */
+  billingContainerName: string;
+}
+export const GetBillingContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    billingContainerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DeviceRegistry/billingContainers/{billingContainerName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBillingContainerRequest",
+}) as any as S.Schema<GetBillingContainerRequest>;
+
+/** Defines the billingContainer properties. */
+export interface BillingContainerProperties {
+  /** Provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+}
+export const BillingContainerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "BillingContainerProperties",
+}) as any as S.Schema<BillingContainerProperties>;
+
+export interface GetBillingContainerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: BillingContainerProperties;
+  /** Resource ETag */
+  etag?: string;
+}
+export const GetBillingContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BillingContainerProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetBillingContainerResponse",
+}) as any as S.Schema<GetBillingContainerResponse>;
+
+export interface GetNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+}
+export const GetNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceRequest",
+}) as any as S.Schema<GetNamespaceRequest>;
+
+/** Resource tags. */
+export type GetNamespaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetNamespaceResponseTagsMap>;
+
+/** Namespace messaging endpoint model used by a device to connect to a service. */
+export interface MessagingEndpoint {
+  /** Type of connection used for messaging endpoint. */
+  endpointType?: string;
+  /** The endpoint address to connect to. */
+  address: string;
+  /** The messaging endpoint Azure resource Id. */
+  resourceId?: string;
+}
+export const MessagingEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpointType: S.optional(S.String),
+    address: S.String,
+    resourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MessagingEndpoint",
+}) as any as S.Schema<MessagingEndpoint>;
+
+/** Dictionary of messaging endpoints. */
+export type MessagingEndpointsMap = {
+  [key: string]: MessagingEndpoint | undefined;
+};
+export const MessagingEndpointsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  MessagingEndpoint,
+) as any as S.Schema<MessagingEndpointsMap>;
+
+/** The namespace messaging endpoints model. */
+export interface Messaging {
+  /** Dictionary of messaging endpoints. */
+  endpoints?: MessagingEndpointsMap;
+}
+export const Messaging = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpoints: S.optional(MessagingEndpointsMap),
+  }),
+).annotate({ identifier: "Messaging" }) as any as S.Schema<Messaging>;
+
+/** Namespace management endpoint model used by service to connect to device. */
+export interface ManagementEndpoint {
+  /** Type of connection used for management endpoint. */
+  endpointType: string;
+  /** The endpoint address to connect to. */
+  address: string;
+  /** The scope ID for the management endpoint. */
+  scopeId: string;
+  /** The messaging endpoint Azure resource Id. */
+  resourceId: string;
+}
+export const ManagementEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpointType: S.String,
+    address: S.String,
+    scopeId: S.String,
+    resourceId: S.String,
+  }),
+).annotate({
+  identifier: "ManagementEndpoint",
+}) as any as S.Schema<ManagementEndpoint>;
+
+/** Dictionary of management endpoints. */
+export type ManagementEndpointsMap = {
+  [key: string]: ManagementEndpoint | undefined;
+};
+export const ManagementEndpointsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ManagementEndpoint,
+) as any as S.Schema<ManagementEndpointsMap>;
+
+/** The namespace management endpoints model. */
+export interface Management {
+  /** Dictionary of management endpoints. */
+  endpoints?: ManagementEndpointsMap;
+}
+export const Management = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpoints: S.optional(ManagementEndpointsMap),
+  }),
+).annotate({ identifier: "Management" }) as any as S.Schema<Management>;
+
+/** The namespace properties model. */
+export interface NamespaceProperties {
+  /** Globally unique, immutable, non-reusable ID. */
+  uuid?: string;
+  /** Assigned and unassigned messaging endpoints. */
+  messaging?: Messaging;
+  /** Assigned and unassigned management endpoints. */
+  management?: Management;
+  /** Provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+}
+export const NamespaceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.optional(S.String),
+    messaging: S.optional(Messaging),
+    management: S.optional(Management),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "NamespaceProperties",
+}) as any as S.Schema<NamespaceProperties>;
+
+/** Type of managed service identity (either system assigned, or none). */
+export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
+export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
+
+/** Managed service identity (either system assigned, or none) */
+export interface GetNamespaceResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: SystemAssignedServiceIdentityType;
+}
+export const GetNamespaceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: SystemAssignedServiceIdentityType,
+  }),
+).annotate({
+  identifier: "GetNamespaceResponseIdentity",
+}) as any as S.Schema<GetNamespaceResponseIdentity>;
+
+export interface GetNamespaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNamespaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceProperties;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetNamespaceResponseIdentity;
+}
+export const GetNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetNamespaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NamespaceProperties),
+    identity: S.optional(GetNamespaceResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetNamespaceResponse",
+}) as any as S.Schema<GetNamespaceResponse>;
+
+export interface GetNamespaceAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the asset. */
+  assetName: string;
+}
+export const GetNamespaceAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    assetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceAssetRequest",
+}) as any as S.Schema<GetNamespaceAssetRequest>;
+
+/** Resource tags. */
+export type GetNamespaceAssetResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetNamespaceAssetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetNamespaceAssetResponseTagsMap>;
 
 /** Defines which device and endpoint to use for this asset */
 export interface DeviceRef {
@@ -847,29 +1727,26 @@ export const DeviceRef = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "DeviceRef" }) as any as S.Schema<DeviceRef>;
 
 /** URIs or type definition IDs. */
-export type NamespaceAssetPropertiesInputAssetTypeRefsList = Array<string>;
-export const NamespaceAssetPropertiesInputAssetTypeRefsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputAssetTypeRefsList>;
+export type NamespaceAssetPropertiesAssetTypeRefsList = Array<string>;
+export const NamespaceAssetPropertiesAssetTypeRefsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NamespaceAssetPropertiesAssetTypeRefsList>;
 
 /** A set of key-value pairs that contain custom attributes set by the customer. */
-export type NamespaceAssetPropertiesInputAttributesMap = {
+export type NamespaceAssetPropertiesAttributesMap = {
   [key: string]: unknown | undefined;
 };
-export const NamespaceAssetPropertiesInputAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputAttributesMap>;
+export const NamespaceAssetPropertiesAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<NamespaceAssetPropertiesAttributesMap>;
 
 /** Reference to a list of discovered assets. Populated only if the asset has been created from discovery flow. Discovered asset names must be provided. */
-export type NamespaceAssetPropertiesInputDiscoveredAssetRefsList =
-  Array<string>;
-export const NamespaceAssetPropertiesInputDiscoveredAssetRefsList =
+export type NamespaceAssetPropertiesDiscoveredAssetRefsList = Array<string>;
+export const NamespaceAssetPropertiesDiscoveredAssetRefsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputDiscoveredAssetRefsList>;
+  ) as any as S.Schema<NamespaceAssetPropertiesDiscoveredAssetRefsList>;
 
 /** The set of supported dataset destinations for an asset. */
 export type DatasetDestinationTarget = "Mqtt" | "BrokerStateStore" | "Storage";
@@ -889,12 +1766,12 @@ export const DatasetDestination = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DatasetDestination>;
 
 /** Default destinations for a dataset. */
-export type NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList =
+export type NamespaceAssetPropertiesDefaultDatasetsDestinationsList =
   Array<DatasetDestination>;
-export const NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList =
+export const NamespaceAssetPropertiesDefaultDatasetsDestinationsList =
   /*@__PURE__*/ S.Array(
     DatasetDestination,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList>;
+  ) as any as S.Schema<NamespaceAssetPropertiesDefaultDatasetsDestinationsList>;
 
 /** The set of supported event destinations for an asset. */
 export type EventDestinationTarget = "Mqtt" | "Storage";
@@ -914,12 +1791,12 @@ export const EventDestination = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EventDestination>;
 
 /** Default destinations for an event. */
-export type NamespaceAssetPropertiesInputDefaultEventsDestinationsList =
+export type NamespaceAssetPropertiesDefaultEventsDestinationsList =
   Array<EventDestination>;
-export const NamespaceAssetPropertiesInputDefaultEventsDestinationsList =
+export const NamespaceAssetPropertiesDefaultEventsDestinationsList =
   /*@__PURE__*/ S.Array(
     EventDestination,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputDefaultEventsDestinationsList>;
+  ) as any as S.Schema<NamespaceAssetPropertiesDefaultEventsDestinationsList>;
 
 /** The set of supported stream destinations for an asset. */
 export type StreamDestinationTarget = "Mqtt" | "Storage";
@@ -939,12 +1816,12 @@ export const StreamDestination = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StreamDestination>;
 
 /** Default destinations for a stream. */
-export type NamespaceAssetPropertiesInputDefaultStreamsDestinationsList =
+export type NamespaceAssetPropertiesDefaultStreamsDestinationsList =
   Array<StreamDestination>;
-export const NamespaceAssetPropertiesInputDefaultStreamsDestinationsList =
+export const NamespaceAssetPropertiesDefaultStreamsDestinationsList =
   /*@__PURE__*/ S.Array(
     StreamDestination,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputDefaultStreamsDestinationsList>;
+  ) as any as S.Schema<NamespaceAssetPropertiesDefaultStreamsDestinationsList>;
 
 /** Destinations for a dataset. */
 export type NamespaceDatasetDestinationsList = Array<DatasetDestination>;
@@ -1009,10 +1886,10 @@ export const NamespaceDataset = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamespaceDataset>;
 
 /** Array of datasets that are part of the asset. Each dataset describes the data points that make up the set. */
-export type NamespaceAssetPropertiesInputDatasetsList = Array<NamespaceDataset>;
-export const NamespaceAssetPropertiesInputDatasetsList = /*@__PURE__*/ S.Array(
+export type NamespaceAssetPropertiesDatasetsList = Array<NamespaceDataset>;
+export const NamespaceAssetPropertiesDatasetsList = /*@__PURE__*/ S.Array(
   NamespaceDataset,
-) as any as S.Schema<NamespaceAssetPropertiesInputDatasetsList>;
+) as any as S.Schema<NamespaceAssetPropertiesDatasetsList>;
 
 /** Destinations for events. Default destinations when destinations is not defined at the event level. */
 export type NamespaceEventGroupDefaultDestinationsList =
@@ -1085,12 +1962,11 @@ export const NamespaceEventGroup = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamespaceEventGroup>;
 
 /** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
-export type NamespaceAssetPropertiesInputEventGroupsList =
+export type NamespaceAssetPropertiesEventGroupsList =
   Array<NamespaceEventGroup>;
-export const NamespaceAssetPropertiesInputEventGroupsList =
-  /*@__PURE__*/ S.Array(
-    NamespaceEventGroup,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputEventGroupsList>;
+export const NamespaceAssetPropertiesEventGroupsList = /*@__PURE__*/ S.Array(
+  NamespaceEventGroup,
+) as any as S.Schema<NamespaceAssetPropertiesEventGroupsList>;
 
 /** Destinations for a stream. */
 export type NamespaceStreamDestinationsList = Array<StreamDestination>;
@@ -1121,10 +1997,10 @@ export const NamespaceStream = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamespaceStream>;
 
 /** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
-export type NamespaceAssetPropertiesInputStreamsList = Array<NamespaceStream>;
-export const NamespaceAssetPropertiesInputStreamsList = /*@__PURE__*/ S.Array(
+export type NamespaceAssetPropertiesStreamsList = Array<NamespaceStream>;
+export const NamespaceAssetPropertiesStreamsList = /*@__PURE__*/ S.Array(
   NamespaceStream,
-) as any as S.Schema<NamespaceAssetPropertiesInputStreamsList>;
+) as any as S.Schema<NamespaceAssetPropertiesStreamsList>;
 
 /** The type of the action. */
 export type ManagementActionActionType = "Call" | "Read" | "Write";
@@ -1199,257 +2075,12 @@ export const ManagementGroup = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagementGroup>;
 
 /** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
-export type NamespaceAssetPropertiesInputManagementGroupsList =
-  Array<ManagementGroup>;
-export const NamespaceAssetPropertiesInputManagementGroupsList =
-  /*@__PURE__*/ S.Array(
-    ManagementGroup,
-  ) as any as S.Schema<NamespaceAssetPropertiesInputManagementGroupsList>;
-
-/** Defines the asset properties. */
-export interface NamespaceAssetPropertiesInput {
-  /** Enabled/disabled status of the asset. */
-  enabled?: boolean;
-  /** Asset ID provided by the customer. */
-  externalAssetId?: string;
-  /** Human-readable display name. */
-  displayName?: string;
-  /** Human-readable description of the asset. */
-  description?: string;
-  /** Reference to the device that provides data for this asset. Must provide device name & endpoint on the device to use. */
-  deviceRef: DeviceRef;
-  /** URIs or type definition IDs. */
-  assetTypeRefs?: NamespaceAssetPropertiesInputAssetTypeRefsList;
-  /** Asset manufacturer. */
-  manufacturer?: string;
-  /** Asset manufacturer URI. */
-  manufacturerUri?: string;
-  /** Asset model. */
-  model?: string;
-  /** Asset product code. */
-  productCode?: string;
-  /** Asset hardware revision number. */
-  hardwareRevision?: string;
-  /** Asset software revision number. */
-  softwareRevision?: string;
-  /** Asset documentation reference. */
-  documentationUri?: string;
-  /** Asset serial number. */
-  serialNumber?: string;
-  /** A set of key-value pairs that contain custom attributes set by the customer. */
-  attributes?: NamespaceAssetPropertiesInputAttributesMap;
-  /** Reference to a list of discovered assets. Populated only if the asset has been created from discovery flow. Discovered asset names must be provided. */
-  discoveredAssetRefs?: NamespaceAssetPropertiesInputDiscoveredAssetRefsList;
-  /** Stringified JSON that contains connector-specific default configuration for all datasets. Each dataset can have its own configuration that overrides the default settings here. */
-  defaultDatasetsConfiguration?: string;
-  /** Stringified JSON that contains connector-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here. */
-  defaultEventsConfiguration?: string;
-  /** Stringified JSON that contains connector-specific default configuration for all streams. Each stream can have its own configuration that overrides the default settings here. */
-  defaultStreamsConfiguration?: string;
-  /** Stringified JSON that contains connector-specific default configuration for all management groups. Each management group can have its own configuration that overrides the default settings here. */
-  defaultManagementGroupsConfiguration?: string;
-  /** Default destinations for a dataset. */
-  defaultDatasetsDestinations?: NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList;
-  /** Default destinations for an event. */
-  defaultEventsDestinations?: NamespaceAssetPropertiesInputDefaultEventsDestinationsList;
-  /** Default destinations for a stream. */
-  defaultStreamsDestinations?: NamespaceAssetPropertiesInputDefaultStreamsDestinationsList;
-  /** Array of datasets that are part of the asset. Each dataset describes the data points that make up the set. */
-  datasets?: NamespaceAssetPropertiesInputDatasetsList;
-  /** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
-  eventGroups?: NamespaceAssetPropertiesInputEventGroupsList;
-  /** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
-  streams?: NamespaceAssetPropertiesInputStreamsList;
-  /** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
-  managementGroups?: NamespaceAssetPropertiesInputManagementGroupsList;
-}
-export const NamespaceAssetPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    externalAssetId: S.optional(S.String),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    deviceRef: DeviceRef,
-    assetTypeRefs: S.optional(NamespaceAssetPropertiesInputAssetTypeRefsList),
-    manufacturer: S.optional(S.String),
-    manufacturerUri: S.optional(S.String),
-    model: S.optional(S.String),
-    productCode: S.optional(S.String),
-    hardwareRevision: S.optional(S.String),
-    softwareRevision: S.optional(S.String),
-    documentationUri: S.optional(S.String),
-    serialNumber: S.optional(S.String),
-    attributes: S.optional(NamespaceAssetPropertiesInputAttributesMap),
-    discoveredAssetRefs: S.optional(
-      NamespaceAssetPropertiesInputDiscoveredAssetRefsList,
-    ),
-    defaultDatasetsConfiguration: S.optional(S.String),
-    defaultEventsConfiguration: S.optional(S.String),
-    defaultStreamsConfiguration: S.optional(S.String),
-    defaultManagementGroupsConfiguration: S.optional(S.String),
-    defaultDatasetsDestinations: S.optional(
-      NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList,
-    ),
-    defaultEventsDestinations: S.optional(
-      NamespaceAssetPropertiesInputDefaultEventsDestinationsList,
-    ),
-    defaultStreamsDestinations: S.optional(
-      NamespaceAssetPropertiesInputDefaultStreamsDestinationsList,
-    ),
-    datasets: S.optional(NamespaceAssetPropertiesInputDatasetsList),
-    eventGroups: S.optional(NamespaceAssetPropertiesInputEventGroupsList),
-    streams: S.optional(NamespaceAssetPropertiesInputStreamsList),
-    managementGroups: S.optional(
-      NamespaceAssetPropertiesInputManagementGroupsList,
-    ),
-  }),
-).annotate({
-  identifier: "NamespaceAssetPropertiesInput",
-}) as any as S.Schema<NamespaceAssetPropertiesInput>;
-
-export interface CreateNamespaceAssetOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the asset. */
-  assetName: string;
-  /** Resource tags. */
-  tags?: NamespaceAssetsCreateOrReplaceRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceAssetPropertiesInput;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const CreateNamespaceAssetOrReplaceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      assetName: S.String.pipe(T.Label()),
-      tags: S.optional(NamespaceAssetsCreateOrReplaceRequestTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceAssetPropertiesInput),
-      extendedLocation: ExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "CreateNamespaceAssetOrReplaceRequest",
-}) as any as S.Schema<CreateNamespaceAssetOrReplaceRequest>;
-
-/** Resource tags. */
-export type NamespaceAssetsCreateOrReplaceResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceAssetsCreateOrReplaceResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceAssetsCreateOrReplaceResponseTagsMap>;
-
-/** URIs or type definition IDs. */
-export type NamespaceAssetPropertiesAssetTypeRefsList = Array<string>;
-export const NamespaceAssetPropertiesAssetTypeRefsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NamespaceAssetPropertiesAssetTypeRefsList>;
-
-/** A set of key-value pairs that contain custom attributes set by the customer. */
-export type NamespaceAssetPropertiesAttributesMap = {
-  [key: string]: unknown | undefined;
-};
-export const NamespaceAssetPropertiesAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<NamespaceAssetPropertiesAttributesMap>;
-
-/** Reference to a list of discovered assets. Populated only if the asset has been created from discovery flow. Discovered asset names must be provided. */
-export type NamespaceAssetPropertiesDiscoveredAssetRefsList = Array<string>;
-export const NamespaceAssetPropertiesDiscoveredAssetRefsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NamespaceAssetPropertiesDiscoveredAssetRefsList>;
-
-/** Default destinations for a dataset. */
-export type NamespaceAssetPropertiesDefaultDatasetsDestinationsList =
-  Array<DatasetDestination>;
-export const NamespaceAssetPropertiesDefaultDatasetsDestinationsList =
-  /*@__PURE__*/ S.Array(
-    DatasetDestination,
-  ) as any as S.Schema<NamespaceAssetPropertiesDefaultDatasetsDestinationsList>;
-
-/** Default destinations for an event. */
-export type NamespaceAssetPropertiesDefaultEventsDestinationsList =
-  Array<EventDestination>;
-export const NamespaceAssetPropertiesDefaultEventsDestinationsList =
-  /*@__PURE__*/ S.Array(
-    EventDestination,
-  ) as any as S.Schema<NamespaceAssetPropertiesDefaultEventsDestinationsList>;
-
-/** Default destinations for a stream. */
-export type NamespaceAssetPropertiesDefaultStreamsDestinationsList =
-  Array<StreamDestination>;
-export const NamespaceAssetPropertiesDefaultStreamsDestinationsList =
-  /*@__PURE__*/ S.Array(
-    StreamDestination,
-  ) as any as S.Schema<NamespaceAssetPropertiesDefaultStreamsDestinationsList>;
-
-/** Array of datasets that are part of the asset. Each dataset describes the data points that make up the set. */
-export type NamespaceAssetPropertiesDatasetsList = Array<NamespaceDataset>;
-export const NamespaceAssetPropertiesDatasetsList = /*@__PURE__*/ S.Array(
-  NamespaceDataset,
-) as any as S.Schema<NamespaceAssetPropertiesDatasetsList>;
-
-/** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
-export type NamespaceAssetPropertiesEventGroupsList =
-  Array<NamespaceEventGroup>;
-export const NamespaceAssetPropertiesEventGroupsList = /*@__PURE__*/ S.Array(
-  NamespaceEventGroup,
-) as any as S.Schema<NamespaceAssetPropertiesEventGroupsList>;
-
-/** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
-export type NamespaceAssetPropertiesStreamsList = Array<NamespaceStream>;
-export const NamespaceAssetPropertiesStreamsList = /*@__PURE__*/ S.Array(
-  NamespaceStream,
-) as any as S.Schema<NamespaceAssetPropertiesStreamsList>;
-
-/** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
 export type NamespaceAssetPropertiesManagementGroupsList =
   Array<ManagementGroup>;
 export const NamespaceAssetPropertiesManagementGroupsList =
   /*@__PURE__*/ S.Array(
     ManagementGroup,
   ) as any as S.Schema<NamespaceAssetPropertiesManagementGroupsList>;
-
-/** Defines the error details properties. */
-export interface ErrorDetails {
-  /** Multi-part error code for classification and root causing of errors (ex: 400.200.100.432). */
-  code?: string;
-  /** Human-readable helpful error message to provide additional context for error (ex: “Authentication method not supported”). */
-  message?: string;
-  /** Human-readable helpful detailed text context for debugging (ex: “The following mechanisms are supported...”). */
-  info?: string;
-  /** Unique identifier for the transaction to aid in debugging. */
-  correlationId?: string;
-}
-export const ErrorDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    info: S.optional(S.String),
-    correlationId: S.optional(S.String),
-  }),
-).annotate({ identifier: "ErrorDetails" }) as any as S.Schema<ErrorDetails>;
 
 /** Array of error details that describe the status of each error. */
 export type StatusErrorDetailsList = Array<ErrorDetails>;
@@ -1818,7 +2449,7 @@ export const NamespaceAssetProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "NamespaceAssetProperties",
 }) as any as S.Schema<NamespaceAssetProperties>;
 
-export interface CreateNamespaceAssetOrReplaceResponse {
+export interface GetNamespaceAssetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1828,7 +2459,7 @@ export interface CreateNamespaceAssetOrReplaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceAssetsCreateOrReplaceResponseTagsMap;
+  tags?: GetNamespaceAssetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1836,31 +2467,57 @@ export interface CreateNamespaceAssetOrReplaceResponse {
   /** The extended location. */
   extendedLocation: ExtendedLocation;
 }
-export const CreateNamespaceAssetOrReplaceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NamespaceAssetsCreateOrReplaceResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceAssetProperties),
-      extendedLocation: ExtendedLocation,
-    }),
+export const GetNamespaceAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetNamespaceAssetResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NamespaceAssetProperties),
+    extendedLocation: ExtendedLocation,
+  }),
 ).annotate({
-  identifier: "CreateNamespaceAssetOrReplaceResponse",
-}) as any as S.Schema<CreateNamespaceAssetOrReplaceResponse>;
+  identifier: "GetNamespaceAssetResponse",
+}) as any as S.Schema<GetNamespaceAssetResponse>;
+
+export interface GetNamespaceDeviceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the device. */
+  deviceName: string;
+}
+export const GetNamespaceDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/devices/{deviceName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceDeviceRequest",
+}) as any as S.Schema<GetNamespaceDeviceRequest>;
 
 /** Resource tags. */
-export type NamespaceDevicesCreateOrReplaceRequestTagsMap = {
+export type GetNamespaceDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDevicesCreateOrReplaceRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceDevicesCreateOrReplaceRequestTagsMap>;
+export const GetNamespaceDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetNamespaceDeviceResponseTagsMap>;
 
 /** Defines the method to authenticate the user of the client at the server. */
 export type HostAuthenticationMethod =
@@ -2022,104 +2679,6 @@ export const MessagingEndpoints = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MessagingEndpoints>;
 
 /** A set of key-value pairs that contain custom attributes set by the customer. */
-export type NamespaceDevicePropertiesInputAttributesMap = {
-  [key: string]: unknown | undefined;
-};
-export const NamespaceDevicePropertiesInputAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<NamespaceDevicePropertiesInputAttributesMap>;
-
-/** Defines the device properties. */
-export interface NamespaceDevicePropertiesInput {
-  /** Indicates if the resource is enabled or not. */
-  enabled?: boolean;
-  /** The Device ID provided by the customer. */
-  externalDeviceId?: string;
-  /** Reference to a device. Populated only if the device had been created from discovery flow. Discovered device name must be provided. */
-  discoveredDeviceRef?: string;
-  /** Device manufacturer. */
-  manufacturer?: string;
-  /** Device model. */
-  model?: string;
-  /** Device operating system. */
-  operatingSystem?: string;
-  /** Device operating system version. */
-  operatingSystemVersion?: string;
-  /** Property bag containing the device's unassigned and assigned endpoints. */
-  endpoints?: MessagingEndpoints;
-  /** A set of key-value pairs that contain custom attributes set by the customer. */
-  attributes?: NamespaceDevicePropertiesInputAttributesMap;
-}
-export const NamespaceDevicePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    externalDeviceId: S.optional(S.String),
-    discoveredDeviceRef: S.optional(S.String),
-    manufacturer: S.optional(S.String),
-    model: S.optional(S.String),
-    operatingSystem: S.optional(S.String),
-    operatingSystemVersion: S.optional(S.String),
-    endpoints: S.optional(MessagingEndpoints),
-    attributes: S.optional(NamespaceDevicePropertiesInputAttributesMap),
-  }),
-).annotate({
-  identifier: "NamespaceDevicePropertiesInput",
-}) as any as S.Schema<NamespaceDevicePropertiesInput>;
-
-export interface CreateNamespaceDeviceOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the device. */
-  deviceName: string;
-  /** Resource tags. */
-  tags?: NamespaceDevicesCreateOrReplaceRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceDevicePropertiesInput;
-  /** The extended location. */
-  extendedLocation?: ExtendedLocation;
-}
-export const CreateNamespaceDeviceOrReplaceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      deviceName: S.String.pipe(T.Label()),
-      tags: S.optional(NamespaceDevicesCreateOrReplaceRequestTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceDevicePropertiesInput),
-      extendedLocation: S.optional(ExtendedLocation),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/devices/{deviceName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "CreateNamespaceDeviceOrReplaceRequest",
-}) as any as S.Schema<CreateNamespaceDeviceOrReplaceRequest>;
-
-/** Resource tags. */
-export type NamespaceDevicesCreateOrReplaceResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceDevicesCreateOrReplaceResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceDevicesCreateOrReplaceResponseTagsMap>;
-
-/** A set of key-value pairs that contain custom attributes set by the customer. */
 export type NamespaceDevicePropertiesAttributesMap = {
   [key: string]: unknown | undefined;
 };
@@ -2232,7 +2791,7 @@ export const NamespaceDeviceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "NamespaceDeviceProperties",
 }) as any as S.Schema<NamespaceDeviceProperties>;
 
-export interface CreateNamespaceDeviceOrReplaceResponse {
+export interface GetNamespaceDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2242,7 +2801,7 @@ export interface CreateNamespaceDeviceOrReplaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceDevicesCreateOrReplaceResponseTagsMap;
+  tags?: GetNamespaceDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2252,74 +2811,100 @@ export interface CreateNamespaceDeviceOrReplaceResponse {
   /** The extended location. */
   extendedLocation?: ExtendedLocation;
 }
-export const CreateNamespaceDeviceOrReplaceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NamespaceDevicesCreateOrReplaceResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceDeviceProperties),
-      etag: S.optional(S.String),
-      extendedLocation: S.optional(ExtendedLocation),
-    }),
+export const GetNamespaceDeviceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetNamespaceDeviceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NamespaceDeviceProperties),
+    etag: S.optional(S.String),
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
 ).annotate({
-  identifier: "CreateNamespaceDeviceOrReplaceResponse",
-}) as any as S.Schema<CreateNamespaceDeviceOrReplaceResponse>;
+  identifier: "GetNamespaceDeviceResponse",
+}) as any as S.Schema<GetNamespaceDeviceResponse>;
+
+export interface GetNamespaceDiscoveredAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the discovered asset. */
+  discoveredAssetName: string;
+}
+export const GetNamespaceDiscoveredAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    discoveredAssetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredAssets/{discoveredAssetName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceDiscoveredAssetRequest",
+}) as any as S.Schema<GetNamespaceDiscoveredAssetRequest>;
 
 /** Resource tags. */
-export type NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap = {
+export type GetNamespaceDiscoveredAssetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap =
+export const GetNamespaceDiscoveredAssetResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap>;
+  ) as any as S.Schema<GetNamespaceDiscoveredAssetResponseTagsMap>;
 
 /** URIs or type definition IDs. */
-export type NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList =
-  Array<string>;
-export const NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList =
+export type NamespaceDiscoveredAssetPropertiesAssetTypeRefsList = Array<string>;
+export const NamespaceDiscoveredAssetPropertiesAssetTypeRefsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesAssetTypeRefsList>;
 
 /** A set of key-value pairs that contain custom attributes. */
-export type NamespaceDiscoveredAssetPropertiesInputAttributesMap = {
+export type NamespaceDiscoveredAssetPropertiesAttributesMap = {
   [key: string]: unknown | undefined;
 };
-export const NamespaceDiscoveredAssetPropertiesInputAttributesMap =
+export const NamespaceDiscoveredAssetPropertiesAttributesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputAttributesMap>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesAttributesMap>;
 
 /** Default destinations for a dataset. */
-export type NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList =
+export type NamespaceDiscoveredAssetPropertiesDefaultDatasetsDestinationsList =
   Array<DatasetDestination>;
-export const NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList =
+export const NamespaceDiscoveredAssetPropertiesDefaultDatasetsDestinationsList =
   /*@__PURE__*/ S.Array(
     DatasetDestination,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDefaultDatasetsDestinationsList>;
 
 /** Default destinations for an event. */
-export type NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList =
+export type NamespaceDiscoveredAssetPropertiesDefaultEventsDestinationsList =
   Array<EventDestination>;
-export const NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList =
+export const NamespaceDiscoveredAssetPropertiesDefaultEventsDestinationsList =
   /*@__PURE__*/ S.Array(
     EventDestination,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDefaultEventsDestinationsList>;
 
 /** Default destinations for a stream. */
-export type NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList =
+export type NamespaceDiscoveredAssetPropertiesDefaultStreamsDestinationsList =
   Array<StreamDestination>;
-export const NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList =
+export const NamespaceDiscoveredAssetPropertiesDefaultStreamsDestinationsList =
   /*@__PURE__*/ S.Array(
     StreamDestination,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDefaultStreamsDestinationsList>;
 
 /** Destinations for a dataset. */
 export type NamespaceDiscoveredDatasetDestinationsList =
@@ -2392,12 +2977,12 @@ export const NamespaceDiscoveredDataset = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamespaceDiscoveredDataset>;
 
 /** Array of datasets that are part of the asset. Each dataset spec describes the data points that make up the set. */
-export type NamespaceDiscoveredAssetPropertiesInputDatasetsList =
+export type NamespaceDiscoveredAssetPropertiesDatasetsList =
   Array<NamespaceDiscoveredDataset>;
-export const NamespaceDiscoveredAssetPropertiesInputDatasetsList =
+export const NamespaceDiscoveredAssetPropertiesDatasetsList =
   /*@__PURE__*/ S.Array(
     NamespaceDiscoveredDataset,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDatasetsList>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDatasetsList>;
 
 /** Destinations for events. Default destinations when destinations is not defined at the event level. */
 export type NamespaceDiscoveredEventGroupDefaultDestinationsList =
@@ -2479,12 +3064,12 @@ export const NamespaceDiscoveredEventGroup = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamespaceDiscoveredEventGroup>;
 
 /** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
-export type NamespaceDiscoveredAssetPropertiesInputEventGroupsList =
+export type NamespaceDiscoveredAssetPropertiesEventGroupsList =
   Array<NamespaceDiscoveredEventGroup>;
-export const NamespaceDiscoveredAssetPropertiesInputEventGroupsList =
+export const NamespaceDiscoveredAssetPropertiesEventGroupsList =
   /*@__PURE__*/ S.Array(
     NamespaceDiscoveredEventGroup,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputEventGroupsList>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesEventGroupsList>;
 
 /** Destinations for a stream. */
 export type NamespaceDiscoveredStreamDestinationsList =
@@ -2519,12 +3104,12 @@ export const NamespaceDiscoveredStream = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamespaceDiscoveredStream>;
 
 /** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
-export type NamespaceDiscoveredAssetPropertiesInputStreamsList =
+export type NamespaceDiscoveredAssetPropertiesStreamsList =
   Array<NamespaceDiscoveredStream>;
-export const NamespaceDiscoveredAssetPropertiesInputStreamsList =
+export const NamespaceDiscoveredAssetPropertiesStreamsList =
   /*@__PURE__*/ S.Array(
     NamespaceDiscoveredStream,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputStreamsList>;
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesStreamsList>;
 
 /** The type of the action. */
 export type NamespaceDiscoveredManagementActionActionType =
@@ -2609,236 +3194,6 @@ export const NamespaceDiscoveredManagementGroup = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "NamespaceDiscoveredManagementGroup",
 }) as any as S.Schema<NamespaceDiscoveredManagementGroup>;
-
-/** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
-export type NamespaceDiscoveredAssetPropertiesInputManagementGroupsList =
-  Array<NamespaceDiscoveredManagementGroup>;
-export const NamespaceDiscoveredAssetPropertiesInputManagementGroupsList =
-  /*@__PURE__*/ S.Array(
-    NamespaceDiscoveredManagementGroup,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputManagementGroupsList>;
-
-/** Defines the discovered asset properties. */
-export interface NamespaceDiscoveredAssetPropertiesInput {
-  /** Reference to the device that provides data for this asset. Must provide device name & endpoint on the device to use. */
-  deviceRef: DeviceRef;
-  /** Human-readable display name. */
-  displayName?: string;
-  /** URIs or type definition IDs. */
-  assetTypeRefs?: NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList;
-  /** Human-readable description of the asset. */
-  description?: string;
-  /** Identifier used to detect changes in the asset. */
-  discoveryId: string;
-  /** Asset ID provided by the customer. */
-  externalAssetId?: string;
-  /** An integer that is incremented each time the resource is modified. */
-  version: number;
-  /** Asset manufacturer. */
-  manufacturer?: string;
-  /** Asset manufacturer URI. */
-  manufacturerUri?: string;
-  /** Asset model. */
-  model?: string;
-  /** Asset product code. */
-  productCode?: string;
-  /** Asset hardware revision number. */
-  hardwareRevision?: string;
-  /** Asset software revision number. */
-  softwareRevision?: string;
-  /** Asset documentation reference. */
-  documentationUri?: string;
-  /** Asset serial number. */
-  serialNumber?: string;
-  /** A set of key-value pairs that contain custom attributes. */
-  attributes?: NamespaceDiscoveredAssetPropertiesInputAttributesMap;
-  /** Stringified JSON that contains connector-specific default configuration for all datasets. Each dataset can have its own configuration that overrides the default settings here. */
-  defaultDatasetsConfiguration?: string;
-  /** Stringified JSON that contains connector-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here. */
-  defaultEventsConfiguration?: string;
-  /** Stringified JSON that contains connector-specific default configuration for all streams. Each stream can have its own configuration that overrides the default settings here. */
-  defaultStreamsConfiguration?: string;
-  /** Stringified JSON that contains connector-specific default configuration for all management groups. Each management group can have its own configuration that overrides the default settings here. */
-  defaultManagementGroupsConfiguration?: string;
-  /** Default destinations for a dataset. */
-  defaultDatasetsDestinations?: NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList;
-  /** Default destinations for an event. */
-  defaultEventsDestinations?: NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList;
-  /** Default destinations for a stream. */
-  defaultStreamsDestinations?: NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList;
-  /** Array of datasets that are part of the asset. Each dataset spec describes the data points that make up the set. */
-  datasets?: NamespaceDiscoveredAssetPropertiesInputDatasetsList;
-  /** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
-  eventGroups?: NamespaceDiscoveredAssetPropertiesInputEventGroupsList;
-  /** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
-  streams?: NamespaceDiscoveredAssetPropertiesInputStreamsList;
-  /** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
-  managementGroups?: NamespaceDiscoveredAssetPropertiesInputManagementGroupsList;
-}
-export const NamespaceDiscoveredAssetPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      deviceRef: DeviceRef,
-      displayName: S.optional(S.String),
-      assetTypeRefs: S.optional(
-        NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList,
-      ),
-      description: S.optional(S.String),
-      discoveryId: S.String,
-      externalAssetId: S.optional(S.String),
-      version: S.Number,
-      manufacturer: S.optional(S.String),
-      manufacturerUri: S.optional(S.String),
-      model: S.optional(S.String),
-      productCode: S.optional(S.String),
-      hardwareRevision: S.optional(S.String),
-      softwareRevision: S.optional(S.String),
-      documentationUri: S.optional(S.String),
-      serialNumber: S.optional(S.String),
-      attributes: S.optional(
-        NamespaceDiscoveredAssetPropertiesInputAttributesMap,
-      ),
-      defaultDatasetsConfiguration: S.optional(S.String),
-      defaultEventsConfiguration: S.optional(S.String),
-      defaultStreamsConfiguration: S.optional(S.String),
-      defaultManagementGroupsConfiguration: S.optional(S.String),
-      defaultDatasetsDestinations: S.optional(
-        NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList,
-      ),
-      defaultEventsDestinations: S.optional(
-        NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList,
-      ),
-      defaultStreamsDestinations: S.optional(
-        NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList,
-      ),
-      datasets: S.optional(NamespaceDiscoveredAssetPropertiesInputDatasetsList),
-      eventGroups: S.optional(
-        NamespaceDiscoveredAssetPropertiesInputEventGroupsList,
-      ),
-      streams: S.optional(NamespaceDiscoveredAssetPropertiesInputStreamsList),
-      managementGroups: S.optional(
-        NamespaceDiscoveredAssetPropertiesInputManagementGroupsList,
-      ),
-    }),
-).annotate({
-  identifier: "NamespaceDiscoveredAssetPropertiesInput",
-}) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInput>;
-
-export interface CreateNamespaceDiscoveredAssetOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the discovered asset. */
-  discoveredAssetName: string;
-  /** Resource tags. */
-  tags?: NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceDiscoveredAssetPropertiesInput;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const CreateNamespaceDiscoveredAssetOrReplaceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      discoveredAssetName: S.String.pipe(T.Label()),
-      tags: S.optional(NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceDiscoveredAssetPropertiesInput),
-      extendedLocation: ExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredAssets/{discoveredAssetName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateNamespaceDiscoveredAssetOrReplaceRequest",
-  }) as any as S.Schema<CreateNamespaceDiscoveredAssetOrReplaceRequest>;
-
-/** Resource tags. */
-export type NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap>;
-
-/** URIs or type definition IDs. */
-export type NamespaceDiscoveredAssetPropertiesAssetTypeRefsList = Array<string>;
-export const NamespaceDiscoveredAssetPropertiesAssetTypeRefsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesAssetTypeRefsList>;
-
-/** A set of key-value pairs that contain custom attributes. */
-export type NamespaceDiscoveredAssetPropertiesAttributesMap = {
-  [key: string]: unknown | undefined;
-};
-export const NamespaceDiscoveredAssetPropertiesAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesAttributesMap>;
-
-/** Default destinations for a dataset. */
-export type NamespaceDiscoveredAssetPropertiesDefaultDatasetsDestinationsList =
-  Array<DatasetDestination>;
-export const NamespaceDiscoveredAssetPropertiesDefaultDatasetsDestinationsList =
-  /*@__PURE__*/ S.Array(
-    DatasetDestination,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDefaultDatasetsDestinationsList>;
-
-/** Default destinations for an event. */
-export type NamespaceDiscoveredAssetPropertiesDefaultEventsDestinationsList =
-  Array<EventDestination>;
-export const NamespaceDiscoveredAssetPropertiesDefaultEventsDestinationsList =
-  /*@__PURE__*/ S.Array(
-    EventDestination,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDefaultEventsDestinationsList>;
-
-/** Default destinations for a stream. */
-export type NamespaceDiscoveredAssetPropertiesDefaultStreamsDestinationsList =
-  Array<StreamDestination>;
-export const NamespaceDiscoveredAssetPropertiesDefaultStreamsDestinationsList =
-  /*@__PURE__*/ S.Array(
-    StreamDestination,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDefaultStreamsDestinationsList>;
-
-/** Array of datasets that are part of the asset. Each dataset spec describes the data points that make up the set. */
-export type NamespaceDiscoveredAssetPropertiesDatasetsList =
-  Array<NamespaceDiscoveredDataset>;
-export const NamespaceDiscoveredAssetPropertiesDatasetsList =
-  /*@__PURE__*/ S.Array(
-    NamespaceDiscoveredDataset,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesDatasetsList>;
-
-/** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
-export type NamespaceDiscoveredAssetPropertiesEventGroupsList =
-  Array<NamespaceDiscoveredEventGroup>;
-export const NamespaceDiscoveredAssetPropertiesEventGroupsList =
-  /*@__PURE__*/ S.Array(
-    NamespaceDiscoveredEventGroup,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesEventGroupsList>;
-
-/** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
-export type NamespaceDiscoveredAssetPropertiesStreamsList =
-  Array<NamespaceDiscoveredStream>;
-export const NamespaceDiscoveredAssetPropertiesStreamsList =
-  /*@__PURE__*/ S.Array(
-    NamespaceDiscoveredStream,
-  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesStreamsList>;
 
 /** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
 export type NamespaceDiscoveredAssetPropertiesManagementGroupsList =
@@ -2952,7 +3307,7 @@ export const NamespaceDiscoveredAssetProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "NamespaceDiscoveredAssetProperties",
 }) as any as S.Schema<NamespaceDiscoveredAssetProperties>;
 
-export interface CreateNamespaceDiscoveredAssetOrReplaceResponse {
+export interface GetNamespaceDiscoveredAssetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2962,7 +3317,7 @@ export interface CreateNamespaceDiscoveredAssetOrReplaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap;
+  tags?: GetNamespaceDiscoveredAssetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2970,31 +3325,58 @@ export interface CreateNamespaceDiscoveredAssetOrReplaceResponse {
   /** The extended location. */
   extendedLocation: ExtendedLocation;
 }
-export const CreateNamespaceDiscoveredAssetOrReplaceResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceDiscoveredAssetProperties),
-      extendedLocation: ExtendedLocation,
+export const GetNamespaceDiscoveredAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetNamespaceDiscoveredAssetResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NamespaceDiscoveredAssetProperties),
+    extendedLocation: ExtendedLocation,
+  }),
+).annotate({
+  identifier: "GetNamespaceDiscoveredAssetResponse",
+}) as any as S.Schema<GetNamespaceDiscoveredAssetResponse>;
+
+export interface GetNamespaceDiscoveredDeviceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the discovered device. */
+  discoveredDeviceName: string;
+}
+export const GetNamespaceDiscoveredDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    discoveredDeviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredDevices/{discoveredDeviceName}",
+      code: 200,
+      apiVersion: "2026-04-01",
     }),
-  ).annotate({
-    identifier: "CreateNamespaceDiscoveredAssetOrReplaceResponse",
-  }) as any as S.Schema<CreateNamespaceDiscoveredAssetOrReplaceResponse>;
+  ),
+).annotate({
+  identifier: "GetNamespaceDiscoveredDeviceRequest",
+}) as any as S.Schema<GetNamespaceDiscoveredDeviceRequest>;
 
 /** Resource tags. */
-export type NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap = {
+export type GetNamespaceDiscoveredDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap =
+export const GetNamespaceDiscoveredDeviceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap>;
+  ) as any as S.Schema<GetNamespaceDiscoveredDeviceResponseTagsMap>;
 
 /** The method to authenticate the user of the client at the server. */
 export type AuthenticationMethod2 =
@@ -3089,107 +3471,6 @@ export const DiscoveredMessagingEndpoints = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiscoveredMessagingEndpoints>;
 
 /** A set of key-value pairs that contain custom attributes. */
-export type NamespaceDiscoveredDevicePropertiesInputAttributesMap = {
-  [key: string]: unknown | undefined;
-};
-export const NamespaceDiscoveredDevicePropertiesInputAttributesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<NamespaceDiscoveredDevicePropertiesInputAttributesMap>;
-
-/** Defines the discovered device properties. */
-export interface NamespaceDiscoveredDevicePropertiesInput {
-  /** A device ID that represents the device in a system external to Azure. Unique within scope of an Azure tenant. */
-  externalDeviceId?: string;
-  /** Endpoints for discovered devices. */
-  endpoints?: DiscoveredMessagingEndpoints;
-  /** Device manufacturer. */
-  manufacturer?: string;
-  /** Device model. */
-  model?: string;
-  /** Device operating system name. */
-  operatingSystem?: string;
-  /** Device operating system version. */
-  operatingSystemVersion?: string;
-  /** A set of key-value pairs that contain custom attributes. */
-  attributes?: NamespaceDiscoveredDevicePropertiesInputAttributesMap;
-  /** Identifier used to detect changes in the discovered device. */
-  discoveryId: string;
-  /** An integer that is incremented each time the resource is modified. */
-  version: number;
-}
-export const NamespaceDiscoveredDevicePropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      externalDeviceId: S.optional(S.String),
-      endpoints: S.optional(DiscoveredMessagingEndpoints),
-      manufacturer: S.optional(S.String),
-      model: S.optional(S.String),
-      operatingSystem: S.optional(S.String),
-      operatingSystemVersion: S.optional(S.String),
-      attributes: S.optional(
-        NamespaceDiscoveredDevicePropertiesInputAttributesMap,
-      ),
-      discoveryId: S.String,
-      version: S.Number,
-    }),
-).annotate({
-  identifier: "NamespaceDiscoveredDevicePropertiesInput",
-}) as any as S.Schema<NamespaceDiscoveredDevicePropertiesInput>;
-
-export interface CreateNamespaceDiscoveredDeviceOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the discovered device. */
-  discoveredDeviceName: string;
-  /** Resource tags. */
-  tags?: NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceDiscoveredDevicePropertiesInput;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const CreateNamespaceDiscoveredDeviceOrReplaceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      discoveredDeviceName: S.String.pipe(T.Label()),
-      tags: S.optional(NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceDiscoveredDevicePropertiesInput),
-      extendedLocation: ExtendedLocation,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredDevices/{discoveredDeviceName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateNamespaceDiscoveredDeviceOrReplaceRequest",
-  }) as any as S.Schema<CreateNamespaceDiscoveredDeviceOrReplaceRequest>;
-
-/** Resource tags. */
-export type NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap>;
-
-/** A set of key-value pairs that contain custom attributes. */
 export type NamespaceDiscoveredDevicePropertiesAttributesMap = {
   [key: string]: unknown | undefined;
 };
@@ -3239,1536 +3520,6 @@ export const NamespaceDiscoveredDeviceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "NamespaceDiscoveredDeviceProperties",
 }) as any as S.Schema<NamespaceDiscoveredDeviceProperties>;
 
-export interface CreateNamespaceDiscoveredDeviceOrReplaceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceDiscoveredDeviceProperties;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const CreateNamespaceDiscoveredDeviceOrReplaceResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(NamespaceDiscoveredDeviceProperties),
-      extendedLocation: ExtendedLocation,
-    }),
-  ).annotate({
-    identifier: "CreateNamespaceDiscoveredDeviceOrReplaceResponse",
-  }) as any as S.Schema<CreateNamespaceDiscoveredDeviceOrReplaceResponse>;
-
-/** Resource tags. */
-export type NamespacesCreateOrReplaceRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesCreateOrReplaceRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesCreateOrReplaceRequestTagsMap>;
-
-/** Namespace messaging endpoint model used by a device to connect to a service. */
-export interface MessagingEndpoint {
-  /** Type of connection used for messaging endpoint. */
-  endpointType?: string;
-  /** The endpoint address to connect to. */
-  address: string;
-  /** The messaging endpoint Azure resource Id. */
-  resourceId?: string;
-}
-export const MessagingEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpointType: S.optional(S.String),
-    address: S.String,
-    resourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MessagingEndpoint",
-}) as any as S.Schema<MessagingEndpoint>;
-
-/** Dictionary of messaging endpoints. */
-export type MessagingEndpointsMap = {
-  [key: string]: MessagingEndpoint | undefined;
-};
-export const MessagingEndpointsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  MessagingEndpoint,
-) as any as S.Schema<MessagingEndpointsMap>;
-
-/** The namespace messaging endpoints model. */
-export interface Messaging {
-  /** Dictionary of messaging endpoints. */
-  endpoints?: MessagingEndpointsMap;
-}
-export const Messaging = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpoints: S.optional(MessagingEndpointsMap),
-  }),
-).annotate({ identifier: "Messaging" }) as any as S.Schema<Messaging>;
-
-/** Namespace management endpoint model used by service to connect to device. */
-export interface ManagementEndpoint {
-  /** Type of connection used for management endpoint. */
-  endpointType: string;
-  /** The endpoint address to connect to. */
-  address: string;
-  /** The scope ID for the management endpoint. */
-  scopeId: string;
-  /** The messaging endpoint Azure resource Id. */
-  resourceId: string;
-}
-export const ManagementEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpointType: S.String,
-    address: S.String,
-    scopeId: S.String,
-    resourceId: S.String,
-  }),
-).annotate({
-  identifier: "ManagementEndpoint",
-}) as any as S.Schema<ManagementEndpoint>;
-
-/** Dictionary of management endpoints. */
-export type ManagementEndpointsMap = {
-  [key: string]: ManagementEndpoint | undefined;
-};
-export const ManagementEndpointsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ManagementEndpoint,
-) as any as S.Schema<ManagementEndpointsMap>;
-
-/** The namespace management endpoints model. */
-export interface Management {
-  /** Dictionary of management endpoints. */
-  endpoints?: ManagementEndpointsMap;
-}
-export const Management = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpoints: S.optional(ManagementEndpointsMap),
-  }),
-).annotate({ identifier: "Management" }) as any as S.Schema<Management>;
-
-/** The namespace properties model. */
-export interface NamespacePropertiesInput {
-  /** Assigned and unassigned messaging endpoints. */
-  messaging?: Messaging;
-  /** Assigned and unassigned management endpoints. */
-  management?: Management;
-}
-export const NamespacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    messaging: S.optional(Messaging),
-    management: S.optional(Management),
-  }),
-).annotate({
-  identifier: "NamespacePropertiesInput",
-}) as any as S.Schema<NamespacePropertiesInput>;
-
-/** Type of managed service identity (either system assigned, or none). */
-export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
-export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
-
-/** Managed service identity (either system assigned, or none) */
-export interface NamespacesCreateOrReplaceRequestIdentity {
-  type: SystemAssignedServiceIdentityType | (string & {});
-}
-export const NamespacesCreateOrReplaceRequestIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: SystemAssignedServiceIdentityType,
-    }),
-).annotate({
-  identifier: "NamespacesCreateOrReplaceRequestIdentity",
-}) as any as S.Schema<NamespacesCreateOrReplaceRequestIdentity>;
-
-export interface CreateNamespaceOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** Resource tags. */
-  tags?: NamespacesCreateOrReplaceRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespacePropertiesInput;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceRequestIdentity;
-}
-export const CreateNamespaceOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    tags: S.optional(NamespacesCreateOrReplaceRequestTagsMap),
-    location: S.String,
-    properties: S.optional(NamespacePropertiesInput),
-    identity: S.optional(NamespacesCreateOrReplaceRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CreateNamespaceOrReplaceRequest",
-}) as any as S.Schema<CreateNamespaceOrReplaceRequest>;
-
-/** Resource tags. */
-export type NamespacesCreateOrReplaceResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesCreateOrReplaceResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesCreateOrReplaceResponseTagsMap>;
-
-/** The namespace properties model. */
-export interface NamespaceProperties {
-  /** Globally unique, immutable, non-reusable ID. */
-  uuid?: string;
-  /** Assigned and unassigned messaging endpoints. */
-  messaging?: Messaging;
-  /** Assigned and unassigned management endpoints. */
-  management?: Management;
-  /** Provisioning state of the resource. */
-  provisioningState?: ProvisioningState;
-}
-export const NamespaceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.optional(S.String),
-    messaging: S.optional(Messaging),
-    management: S.optional(Management),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "NamespaceProperties",
-}) as any as S.Schema<NamespaceProperties>;
-
-/** Managed service identity (either system assigned, or none) */
-export interface NamespacesCreateOrReplaceResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: SystemAssignedServiceIdentityType;
-}
-export const NamespacesCreateOrReplaceResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: SystemAssignedServiceIdentityType,
-    }),
-  ).annotate({
-    identifier: "NamespacesCreateOrReplaceResponseIdentity",
-  }) as any as S.Schema<NamespacesCreateOrReplaceResponseIdentity>;
-
-export interface CreateNamespaceOrReplaceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespacesCreateOrReplaceResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceProperties;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
-}
-export const CreateNamespaceOrReplaceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesCreateOrReplaceResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NamespaceProperties),
-    identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
-  }),
-).annotate({
-  identifier: "CreateNamespaceOrReplaceResponse",
-}) as any as S.Schema<CreateNamespaceOrReplaceResponse>;
-
-/** Defines the schema format. */
-export type Format = "JsonSchema/draft-07" | "Delta/1.0";
-export const Format = /*@__PURE__*/ S.String;
-
-/** Defines the schema type. */
-export type SchemaType = "MessageSchema";
-export const SchemaType = /*@__PURE__*/ S.String;
-
-/** Schema tags. */
-export type SchemaPropertiesInputTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchemaPropertiesInputTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SchemaPropertiesInputTagsMap>;
-
-/** Defines the schema properties. */
-export interface SchemaPropertiesInput {
-  /** Human-readable display name. */
-  displayName?: string;
-  /** Human-readable description of the schema. */
-  description?: string;
-  /** Format of the schema. */
-  format: Format | (string & {});
-  /** Type of the schema. */
-  schemaType: SchemaType | (string & {});
-  /** Schema tags. */
-  tags?: SchemaPropertiesInputTagsMap;
-}
-export const SchemaPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    format: Format,
-    schemaType: SchemaType,
-    tags: S.optional(SchemaPropertiesInputTagsMap),
-  }),
-).annotate({
-  identifier: "SchemaPropertiesInput",
-}) as any as S.Schema<SchemaPropertiesInput>;
-
-export interface CreateSchemaOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Schema registry name parameter. */
-  schemaRegistryName: string;
-  /** Schema name parameter. */
-  schemaName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SchemaPropertiesInput;
-}
-export const CreateSchemaOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schemaRegistryName: S.String.pipe(T.Label()),
-    schemaName: S.String.pipe(T.Label()),
-    properties: S.optional(SchemaPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CreateSchemaOrReplaceRequest",
-}) as any as S.Schema<CreateSchemaOrReplaceRequest>;
-
-/** Schema tags. */
-export type SchemaPropertiesTagsMap = { [key: string]: string | undefined };
-export const SchemaPropertiesTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SchemaPropertiesTagsMap>;
-
-/** Defines the schema properties. */
-export interface SchemaProperties {
-  /** Globally unique, immutable, non-reusable id. */
-  uuid?: string;
-  /** Human-readable display name. */
-  displayName?: string;
-  /** Human-readable description of the schema. */
-  description?: string;
-  /** Format of the schema. */
-  format: Format;
-  /** Type of the schema. */
-  schemaType: SchemaType;
-  /** Provisioning state of the resource. */
-  provisioningState?: ProvisioningState;
-  /** Schema tags. */
-  tags?: SchemaPropertiesTagsMap;
-}
-export const SchemaProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.optional(S.String),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    format: Format,
-    schemaType: SchemaType,
-    provisioningState: S.optional(ProvisioningState),
-    tags: S.optional(SchemaPropertiesTagsMap),
-  }),
-).annotate({
-  identifier: "SchemaProperties",
-}) as any as S.Schema<SchemaProperties>;
-
-export interface CreateSchemaOrReplaceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SchemaProperties;
-}
-export const CreateSchemaOrReplaceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SchemaProperties),
-  }),
-).annotate({
-  identifier: "CreateSchemaOrReplaceResponse",
-}) as any as S.Schema<CreateSchemaOrReplaceResponse>;
-
-/** Resource tags. */
-export type SchemaRegistriesCreateOrReplaceRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchemaRegistriesCreateOrReplaceRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SchemaRegistriesCreateOrReplaceRequestTagsMap>;
-
-/** Defines the schema registry properties. */
-export interface SchemaRegistryPropertiesInput {
-  /** Schema registry namespace. Uniquely identifies a schema registry within a tenant. */
-  namespace: string;
-  /** Human-readable display name. */
-  displayName?: string;
-  /** Human-readable description of the schema registry. */
-  description?: string;
-  /** The Storage Account's Container URL where schemas will be stored. */
-  storageAccountContainerUrl: string;
-}
-export const SchemaRegistryPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: S.String,
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    storageAccountContainerUrl: S.String,
-  }),
-).annotate({
-  identifier: "SchemaRegistryPropertiesInput",
-}) as any as S.Schema<SchemaRegistryPropertiesInput>;
-
-/** Managed service identity (either system assigned, or none) */
-export type SchemaRegistriesCreateOrReplaceRequestIdentity =
-  NamespacesCreateOrReplaceRequestIdentity;
-export const SchemaRegistriesCreateOrReplaceRequestIdentity =
-  NamespacesCreateOrReplaceRequestIdentity;
-
-export interface CreateSchemaRegistryOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Schema registry name parameter. */
-  schemaRegistryName: string;
-  /** Resource tags. */
-  tags?: SchemaRegistriesCreateOrReplaceRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SchemaRegistryPropertiesInput;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceRequestIdentity;
-}
-export const CreateSchemaRegistryOrReplaceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      schemaRegistryName: S.String.pipe(T.Label()),
-      tags: S.optional(SchemaRegistriesCreateOrReplaceRequestTagsMap),
-      location: S.String,
-      properties: S.optional(SchemaRegistryPropertiesInput),
-      identity: S.optional(NamespacesCreateOrReplaceRequestIdentity),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "CreateSchemaRegistryOrReplaceRequest",
-}) as any as S.Schema<CreateSchemaRegistryOrReplaceRequest>;
-
-/** Resource tags. */
-export type SchemaRegistriesCreateOrReplaceResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchemaRegistriesCreateOrReplaceResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SchemaRegistriesCreateOrReplaceResponseTagsMap>;
-
-/** Defines the schema registry properties. */
-export interface SchemaRegistryProperties {
-  /** Globally unique, immutable, non-reusable id. */
-  uuid?: string;
-  /** Schema registry namespace. Uniquely identifies a schema registry within a tenant. */
-  namespace: string;
-  /** Human-readable display name. */
-  displayName?: string;
-  /** Human-readable description of the schema registry. */
-  description?: string;
-  /** The Storage Account's Container URL where schemas will be stored. */
-  storageAccountContainerUrl: string;
-  /** Provisioning state of the resource. */
-  provisioningState?: ProvisioningState;
-}
-export const SchemaRegistryProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.optional(S.String),
-    namespace: S.String,
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    storageAccountContainerUrl: S.String,
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "SchemaRegistryProperties",
-}) as any as S.Schema<SchemaRegistryProperties>;
-
-/** Managed service identity (either system assigned, or none) */
-export type SchemaRegistriesCreateOrReplaceResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
-export const SchemaRegistriesCreateOrReplaceResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
-
-export interface CreateSchemaRegistryOrReplaceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SchemaRegistriesCreateOrReplaceResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SchemaRegistryProperties;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
-}
-export const CreateSchemaRegistryOrReplaceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(SchemaRegistriesCreateOrReplaceResponseTagsMap),
-      location: S.String,
-      properties: S.optional(SchemaRegistryProperties),
-      identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
-    }),
-).annotate({
-  identifier: "CreateSchemaRegistryOrReplaceResponse",
-}) as any as S.Schema<CreateSchemaRegistryOrReplaceResponse>;
-
-/** Defines the schema version properties. */
-export interface SchemaVersionPropertiesInput {
-  /** Human-readable description of the schema. */
-  description?: string;
-  /** Schema content. */
-  schemaContent: string;
-}
-export const SchemaVersionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    schemaContent: S.String,
-  }),
-).annotate({
-  identifier: "SchemaVersionPropertiesInput",
-}) as any as S.Schema<SchemaVersionPropertiesInput>;
-
-export interface CreateSchemaVersionOrReplaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Schema registry name parameter. */
-  schemaRegistryName: string;
-  /** Schema name parameter. */
-  schemaName: string;
-  /** Schema version name parameter. */
-  schemaVersionName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SchemaVersionPropertiesInput;
-}
-export const CreateSchemaVersionOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schemaRegistryName: S.String.pipe(T.Label()),
-    schemaName: S.String.pipe(T.Label()),
-    schemaVersionName: S.String.pipe(T.Label()),
-    properties: S.optional(SchemaVersionPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}/schemaVersions/{schemaVersionName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CreateSchemaVersionOrReplaceRequest",
-}) as any as S.Schema<CreateSchemaVersionOrReplaceRequest>;
-
-/** Defines the schema version properties. */
-export interface SchemaVersionProperties {
-  /** Globally unique, immutable, non-reusable id. */
-  uuid?: string;
-  /** Human-readable description of the schema. */
-  description?: string;
-  /** Schema content. */
-  schemaContent: string;
-  /** Hash of the schema content. */
-  hash?: string;
-  /** Provisioning state of the resource. */
-  provisioningState?: ProvisioningState;
-}
-export const SchemaVersionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.optional(S.String),
-    description: S.optional(S.String),
-    schemaContent: S.String,
-    hash: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "SchemaVersionProperties",
-}) as any as S.Schema<SchemaVersionProperties>;
-
-export interface CreateSchemaVersionOrReplaceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SchemaVersionProperties;
-}
-export const CreateSchemaVersionOrReplaceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SchemaVersionProperties),
-    }),
-).annotate({
-  identifier: "CreateSchemaVersionOrReplaceResponse",
-}) as any as S.Schema<CreateSchemaVersionOrReplaceResponse>;
-
-export interface DeleteAssetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Asset name parameter. */
-  assetName: string;
-}
-export const DeleteAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    assetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteAssetRequest",
-}) as any as S.Schema<DeleteAssetRequest>;
-
-export interface DeleteAssetResponse {}
-export const DeleteAssetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteAssetResponse",
-}) as any as S.Schema<DeleteAssetResponse>;
-
-export interface DeleteAssetEndpointProfileRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Asset Endpoint Profile name parameter. */
-  assetEndpointProfileName: string;
-}
-export const DeleteAssetEndpointProfileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    assetEndpointProfileName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assetEndpointProfiles/{assetEndpointProfileName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteAssetEndpointProfileRequest",
-}) as any as S.Schema<DeleteAssetEndpointProfileRequest>;
-
-export interface DeleteAssetEndpointProfileResponse {}
-export const DeleteAssetEndpointProfileResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteAssetEndpointProfileResponse",
-}) as any as S.Schema<DeleteAssetEndpointProfileResponse>;
-
-export interface DeleteNamespaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-}
-export const DeleteNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteNamespaceRequest",
-}) as any as S.Schema<DeleteNamespaceRequest>;
-
-export interface DeleteNamespaceResponse {}
-export const DeleteNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteNamespaceResponse",
-}) as any as S.Schema<DeleteNamespaceResponse>;
-
-export interface DeleteNamespaceAssetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the asset. */
-  assetName: string;
-}
-export const DeleteNamespaceAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    assetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteNamespaceAssetRequest",
-}) as any as S.Schema<DeleteNamespaceAssetRequest>;
-
-export interface DeleteNamespaceAssetResponse {}
-export const DeleteNamespaceAssetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteNamespaceAssetResponse",
-}) as any as S.Schema<DeleteNamespaceAssetResponse>;
-
-export interface DeleteNamespaceDeviceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the device. */
-  deviceName: string;
-}
-export const DeleteNamespaceDeviceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/devices/{deviceName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteNamespaceDeviceRequest",
-}) as any as S.Schema<DeleteNamespaceDeviceRequest>;
-
-export interface DeleteNamespaceDeviceResponse {}
-export const DeleteNamespaceDeviceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteNamespaceDeviceResponse",
-}) as any as S.Schema<DeleteNamespaceDeviceResponse>;
-
-export interface DeleteNamespaceDiscoveredAssetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the discovered asset. */
-  discoveredAssetName: string;
-}
-export const DeleteNamespaceDiscoveredAssetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      discoveredAssetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredAssets/{discoveredAssetName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeleteNamespaceDiscoveredAssetRequest",
-}) as any as S.Schema<DeleteNamespaceDiscoveredAssetRequest>;
-
-export interface DeleteNamespaceDiscoveredAssetResponse {}
-export const DeleteNamespaceDiscoveredAssetResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteNamespaceDiscoveredAssetResponse",
-}) as any as S.Schema<DeleteNamespaceDiscoveredAssetResponse>;
-
-export interface DeleteNamespaceDiscoveredDeviceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the discovered device. */
-  discoveredDeviceName: string;
-}
-export const DeleteNamespaceDiscoveredDeviceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      discoveredDeviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredDevices/{discoveredDeviceName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeleteNamespaceDiscoveredDeviceRequest",
-}) as any as S.Schema<DeleteNamespaceDiscoveredDeviceRequest>;
-
-export interface DeleteNamespaceDiscoveredDeviceResponse {}
-export const DeleteNamespaceDiscoveredDeviceResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeleteNamespaceDiscoveredDeviceResponse",
-}) as any as S.Schema<DeleteNamespaceDiscoveredDeviceResponse>;
-
-export interface DeleteSchemaRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Schema registry name parameter. */
-  schemaRegistryName: string;
-  /** Schema name parameter. */
-  schemaName: string;
-}
-export const DeleteSchemaRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schemaRegistryName: S.String.pipe(T.Label()),
-    schemaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteSchemaRequest",
-}) as any as S.Schema<DeleteSchemaRequest>;
-
-export interface DeleteSchemaResponse {}
-export const DeleteSchemaResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteSchemaResponse",
-}) as any as S.Schema<DeleteSchemaResponse>;
-
-export interface DeleteSchemaRegistryRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Schema registry name parameter. */
-  schemaRegistryName: string;
-}
-export const DeleteSchemaRegistryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schemaRegistryName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteSchemaRegistryRequest",
-}) as any as S.Schema<DeleteSchemaRegistryRequest>;
-
-export interface DeleteSchemaRegistryResponse {}
-export const DeleteSchemaRegistryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteSchemaRegistryResponse",
-}) as any as S.Schema<DeleteSchemaRegistryResponse>;
-
-export interface DeleteSchemaVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Schema registry name parameter. */
-  schemaRegistryName: string;
-  /** Schema name parameter. */
-  schemaName: string;
-  /** Schema version name parameter. */
-  schemaVersionName: string;
-}
-export const DeleteSchemaVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schemaRegistryName: S.String.pipe(T.Label()),
-    schemaName: S.String.pipe(T.Label()),
-    schemaVersionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}/schemaVersions/{schemaVersionName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteSchemaVersionRequest",
-}) as any as S.Schema<DeleteSchemaVersionRequest>;
-
-export interface DeleteSchemaVersionResponse {}
-export const DeleteSchemaVersionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteSchemaVersionResponse",
-}) as any as S.Schema<DeleteSchemaVersionResponse>;
-
-export interface GetAssetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Asset name parameter. */
-  assetName: string;
-}
-export const GetAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    assetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assets/{assetName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetAssetRequest",
-}) as any as S.Schema<GetAssetRequest>;
-
-/** Resource tags. */
-export type AssetsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AssetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AssetsGetResponseTagsMap>;
-
-export interface GetAssetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AssetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: AssetProperties;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const GetAssetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AssetsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AssetProperties),
-    extendedLocation: ExtendedLocation,
-  }),
-).annotate({
-  identifier: "GetAssetResponse",
-}) as any as S.Schema<GetAssetResponse>;
-
-export interface GetAssetEndpointProfileRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Asset Endpoint Profile name parameter. */
-  assetEndpointProfileName: string;
-}
-export const GetAssetEndpointProfileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    assetEndpointProfileName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/assetEndpointProfiles/{assetEndpointProfileName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetAssetEndpointProfileRequest",
-}) as any as S.Schema<GetAssetEndpointProfileRequest>;
-
-/** Resource tags. */
-export type AssetEndpointProfilesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AssetEndpointProfilesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AssetEndpointProfilesGetResponseTagsMap>;
-
-export interface GetAssetEndpointProfileResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AssetEndpointProfilesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: AssetEndpointProfileProperties;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const GetAssetEndpointProfileResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AssetEndpointProfilesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AssetEndpointProfileProperties),
-    extendedLocation: ExtendedLocation,
-  }),
-).annotate({
-  identifier: "GetAssetEndpointProfileResponse",
-}) as any as S.Schema<GetAssetEndpointProfileResponse>;
-
-export interface GetBillingContainerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** Name of the billing container. */
-  billingContainerName: string;
-}
-export const GetBillingContainerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    billingContainerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DeviceRegistry/billingContainers/{billingContainerName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetBillingContainerRequest",
-}) as any as S.Schema<GetBillingContainerRequest>;
-
-/** Defines the billingContainer properties. */
-export interface BillingContainerProperties {
-  /** Provisioning state of the resource. */
-  provisioningState?: ProvisioningState;
-}
-export const BillingContainerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "BillingContainerProperties",
-}) as any as S.Schema<BillingContainerProperties>;
-
-export interface GetBillingContainerResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: BillingContainerProperties;
-  /** Resource ETag */
-  etag?: string;
-}
-export const GetBillingContainerResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BillingContainerProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetBillingContainerResponse",
-}) as any as S.Schema<GetBillingContainerResponse>;
-
-export interface GetNamespaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-}
-export const GetNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetNamespaceRequest",
-}) as any as S.Schema<GetNamespaceRequest>;
-
-/** Resource tags. */
-export type NamespacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesGetResponseTagsMap>;
-
-/** Managed service identity (either system assigned, or none) */
-export type NamespacesGetResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
-export const NamespacesGetResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
-
-export interface GetNamespaceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceProperties;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
-}
-export const GetNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NamespaceProperties),
-    identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
-  }),
-).annotate({
-  identifier: "GetNamespaceResponse",
-}) as any as S.Schema<GetNamespaceResponse>;
-
-export interface GetNamespaceAssetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the asset. */
-  assetName: string;
-}
-export const GetNamespaceAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    assetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetNamespaceAssetRequest",
-}) as any as S.Schema<GetNamespaceAssetRequest>;
-
-/** Resource tags. */
-export type NamespaceAssetsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceAssetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespaceAssetsGetResponseTagsMap>;
-
-export interface GetNamespaceAssetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespaceAssetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceAssetProperties;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const GetNamespaceAssetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespaceAssetsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NamespaceAssetProperties),
-    extendedLocation: ExtendedLocation,
-  }),
-).annotate({
-  identifier: "GetNamespaceAssetResponse",
-}) as any as S.Schema<GetNamespaceAssetResponse>;
-
-export interface GetNamespaceDeviceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the device. */
-  deviceName: string;
-}
-export const GetNamespaceDeviceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/devices/{deviceName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetNamespaceDeviceRequest",
-}) as any as S.Schema<GetNamespaceDeviceRequest>;
-
-/** Resource tags. */
-export type NamespaceDevicesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceDevicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespaceDevicesGetResponseTagsMap>;
-
-export interface GetNamespaceDeviceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespaceDevicesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceDeviceProperties;
-  /** Resource Tag. */
-  etag?: string;
-  /** The extended location. */
-  extendedLocation?: ExtendedLocation;
-}
-export const GetNamespaceDeviceResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespaceDevicesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NamespaceDeviceProperties),
-    etag: S.optional(S.String),
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "GetNamespaceDeviceResponse",
-}) as any as S.Schema<GetNamespaceDeviceResponse>;
-
-export interface GetNamespaceDiscoveredAssetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the discovered asset. */
-  discoveredAssetName: string;
-}
-export const GetNamespaceDiscoveredAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    discoveredAssetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredAssets/{discoveredAssetName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetNamespaceDiscoveredAssetRequest",
-}) as any as S.Schema<GetNamespaceDiscoveredAssetRequest>;
-
-/** Resource tags. */
-export type NamespaceDiscoveredAssetsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceDiscoveredAssetsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceDiscoveredAssetsGetResponseTagsMap>;
-
-export interface GetNamespaceDiscoveredAssetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespaceDiscoveredAssetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NamespaceDiscoveredAssetProperties;
-  /** The extended location. */
-  extendedLocation: ExtendedLocation;
-}
-export const GetNamespaceDiscoveredAssetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespaceDiscoveredAssetsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NamespaceDiscoveredAssetProperties),
-    extendedLocation: ExtendedLocation,
-  }),
-).annotate({
-  identifier: "GetNamespaceDiscoveredAssetResponse",
-}) as any as S.Schema<GetNamespaceDiscoveredAssetResponse>;
-
-export interface GetNamespaceDiscoveredDeviceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the discovered device. */
-  discoveredDeviceName: string;
-}
-export const GetNamespaceDiscoveredDeviceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    discoveredDeviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredDevices/{discoveredDeviceName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetNamespaceDiscoveredDeviceRequest",
-}) as any as S.Schema<GetNamespaceDiscoveredDeviceRequest>;
-
-/** Resource tags. */
-export type NamespaceDiscoveredDevicesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespaceDiscoveredDevicesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NamespaceDiscoveredDevicesGetResponseTagsMap>;
-
 export interface GetNamespaceDiscoveredDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -4779,7 +3530,7 @@ export interface GetNamespaceDiscoveredDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceDiscoveredDevicesGetResponseTagsMap;
+  tags?: GetNamespaceDiscoveredDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4794,7 +3545,7 @@ export const GetNamespaceDiscoveredDeviceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(NamespaceDiscoveredDevicesGetResponseTagsMap),
+      tags: S.optional(GetNamespaceDiscoveredDeviceResponseTagsMap),
       location: S.String,
       properties: S.optional(NamespaceDiscoveredDeviceProperties),
       extendedLocation: ExtendedLocation,
@@ -4923,11 +3674,11 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type OperationStatusGetResponseOperationsList =
+export type GetOperationStatusResponseOperationsList =
   Array<OperationStatusResult>;
-export const OperationStatusGetResponseOperationsList = /*@__PURE__*/ S.Array(
+export const GetOperationStatusResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<OperationStatusGetResponseOperationsList>;
+) as any as S.Schema<GetOperationStatusResponseOperationsList>;
 
 export interface GetOperationStatusResponse {
   /** Fully qualified ID for the async operation. */
@@ -4945,7 +3696,7 @@ export interface GetOperationStatusResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: OperationStatusGetResponseOperationsList;
+  operations?: GetOperationStatusResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
@@ -4958,7 +3709,7 @@ export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusGetResponseOperationsList),
+    operations: S.optional(GetOperationStatusResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
@@ -4992,6 +3743,52 @@ export const GetSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSchemaRequest",
 }) as any as S.Schema<GetSchemaRequest>;
+
+/** Defines the schema format. */
+export type Format = "JsonSchema/draft-07" | "Delta/1.0";
+export const Format = /*@__PURE__*/ S.String;
+
+/** Defines the schema type. */
+export type SchemaType = "MessageSchema";
+export const SchemaType = /*@__PURE__*/ S.String;
+
+/** Schema tags. */
+export type SchemaPropertiesTagsMap = { [key: string]: string | undefined };
+export const SchemaPropertiesTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SchemaPropertiesTagsMap>;
+
+/** Defines the schema properties. */
+export interface SchemaProperties {
+  /** Globally unique, immutable, non-reusable id. */
+  uuid?: string;
+  /** Human-readable display name. */
+  displayName?: string;
+  /** Human-readable description of the schema. */
+  description?: string;
+  /** Format of the schema. */
+  format: Format;
+  /** Type of the schema. */
+  schemaType: SchemaType;
+  /** Provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+  /** Schema tags. */
+  tags?: SchemaPropertiesTagsMap;
+}
+export const SchemaProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.optional(S.String),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    format: Format,
+    schemaType: SchemaType,
+    provisioningState: S.optional(ProvisioningState),
+    tags: S.optional(SchemaPropertiesTagsMap),
+  }),
+).annotate({
+  identifier: "SchemaProperties",
+}) as any as S.Schema<SchemaProperties>;
 
 export interface GetSchemaResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5043,19 +3840,45 @@ export const GetSchemaRegistryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSchemaRegistryRequest>;
 
 /** Resource tags. */
-export type SchemaRegistriesGetResponseTagsMap = {
+export type GetSchemaRegistryResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SchemaRegistriesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSchemaRegistryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchemaRegistriesGetResponseTagsMap>;
+) as any as S.Schema<GetSchemaRegistryResponseTagsMap>;
+
+/** Defines the schema registry properties. */
+export interface SchemaRegistryProperties {
+  /** Globally unique, immutable, non-reusable id. */
+  uuid?: string;
+  /** Schema registry namespace. Uniquely identifies a schema registry within a tenant. */
+  namespace: string;
+  /** Human-readable display name. */
+  displayName?: string;
+  /** Human-readable description of the schema registry. */
+  description?: string;
+  /** The Storage Account's Container URL where schemas will be stored. */
+  storageAccountContainerUrl: string;
+  /** Provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+}
+export const SchemaRegistryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.optional(S.String),
+    namespace: S.String,
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    storageAccountContainerUrl: S.String,
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "SchemaRegistryProperties",
+}) as any as S.Schema<SchemaRegistryProperties>;
 
 /** Managed service identity (either system assigned, or none) */
-export type SchemaRegistriesGetResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
-export const SchemaRegistriesGetResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
+export type GetSchemaRegistryResponseIdentity = GetNamespaceResponseIdentity;
+export const GetSchemaRegistryResponseIdentity = GetNamespaceResponseIdentity;
 
 export interface GetSchemaRegistryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5067,13 +3890,13 @@ export interface GetSchemaRegistryResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SchemaRegistriesGetResponseTagsMap;
+  tags?: GetSchemaRegistryResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SchemaRegistryProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
+  identity?: GetNamespaceResponseIdentity;
 }
 export const GetSchemaRegistryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5081,10 +3904,10 @@ export const GetSchemaRegistryResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchemaRegistriesGetResponseTagsMap),
+    tags: S.optional(GetSchemaRegistryResponseTagsMap),
     location: S.String,
     properties: S.optional(SchemaRegistryProperties),
-    identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
+    identity: S.optional(GetNamespaceResponseIdentity),
   }),
 ).annotate({
   identifier: "GetSchemaRegistryResponse",
@@ -5120,6 +3943,31 @@ export const GetSchemaVersionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSchemaVersionRequest",
 }) as any as S.Schema<GetSchemaVersionRequest>;
+
+/** Defines the schema version properties. */
+export interface SchemaVersionProperties {
+  /** Globally unique, immutable, non-reusable id. */
+  uuid?: string;
+  /** Human-readable description of the schema. */
+  description?: string;
+  /** Schema content. */
+  schemaContent: string;
+  /** Hash of the schema content. */
+  hash?: string;
+  /** Provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+}
+export const SchemaVersionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.optional(S.String),
+    description: S.optional(S.String),
+    schemaContent: S.String,
+    hash: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "SchemaVersionProperties",
+}) as any as S.Schema<SchemaVersionProperties>;
 
 export interface GetSchemaVersionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5541,8 +4389,8 @@ export const NamespaceTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NamespaceTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type NamespaceIdentity = NamespacesCreateOrReplaceResponseIdentity;
-export const NamespaceIdentity = NamespacesCreateOrReplaceResponseIdentity;
+export type NamespaceIdentity = GetNamespaceResponseIdentity;
+export const NamespaceIdentity = GetNamespaceResponseIdentity;
 
 /** Namespace definition. */
 export interface Namespace {
@@ -5561,7 +4409,7 @@ export interface Namespace {
   /** The resource-specific properties for this resource. */
   properties?: NamespaceProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
+  identity?: GetNamespaceResponseIdentity;
 }
 export const Namespace = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5572,7 +4420,7 @@ export const Namespace = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NamespaceTagsMap),
     location: S.String,
     properties: S.optional(NamespaceProperties),
-    identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
+    identity: S.optional(GetNamespaceResponseIdentity),
   }),
 ).annotate({ identifier: "Namespace" }) as any as S.Schema<Namespace>;
 
@@ -5963,20 +4811,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -6084,8 +4932,8 @@ export const SchemaRegistryTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<SchemaRegistryTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type SchemaRegistryIdentity = NamespacesCreateOrReplaceResponseIdentity;
-export const SchemaRegistryIdentity = NamespacesCreateOrReplaceResponseIdentity;
+export type SchemaRegistryIdentity = GetNamespaceResponseIdentity;
+export const SchemaRegistryIdentity = GetNamespaceResponseIdentity;
 
 /** Schema registry definition. */
 export interface SchemaRegistry {
@@ -6104,7 +4952,7 @@ export interface SchemaRegistry {
   /** The resource-specific properties for this resource. */
   properties?: SchemaRegistryProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
+  identity?: GetNamespaceResponseIdentity;
 }
 export const SchemaRegistry = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6115,7 +4963,7 @@ export const SchemaRegistry = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(SchemaRegistryTagsMap),
     location: S.String,
     properties: S.optional(SchemaRegistryProperties),
-    identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
+    identity: S.optional(GetNamespaceResponseIdentity),
   }),
 ).annotate({ identifier: "SchemaRegistry" }) as any as S.Schema<SchemaRegistry>;
 
@@ -6234,123 +5082,17 @@ export const SchemaVersionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SchemaVersionListResult",
 }) as any as S.Schema<SchemaVersionListResult>;
 
-/** Payload required for executing the management action. */
-export type NamespaceAssetsExecuteActionRequestPayloadMap = {
-  [key: string]: unknown | undefined;
-};
-export const NamespaceAssetsExecuteActionRequestPayloadMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<NamespaceAssetsExecuteActionRequestPayloadMap>;
-
-export interface NamespaceAssetsExecuteActionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the namespace. */
-  namespaceName: string;
-  /** The name of the asset. */
-  assetName: string;
-  /** Name of the management action to be executed. */
-  managementActionName: string;
-  /** Name of the management group under which the action is to be executed. */
-  managementGroupName: string;
-  /** Payload required for executing the management action. */
-  payload?: NamespaceAssetsExecuteActionRequestPayloadMap;
-}
-export const NamespaceAssetsExecuteActionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    assetName: S.String.pipe(T.Label()),
-    managementActionName: S.String,
-    managementGroupName: S.String,
-    payload: S.optional(NamespaceAssetsExecuteActionRequestPayloadMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}/executeAction",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespaceAssetsExecuteActionRequest",
-}) as any as S.Schema<NamespaceAssetsExecuteActionRequest>;
-
-/** Status of the management action execution. */
-export type ManagementActionExecutionStatus =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "InProgress";
-export const ManagementActionExecutionStatus = /*@__PURE__*/ S.String;
-
-/** Array of error details that describe the status of each error. */
-export type ErrorDetailsList = Array<ErrorDetails>;
-export const ErrorDetailsList = /*@__PURE__*/ S.Array(
-  ErrorDetails,
-) as any as S.Schema<ErrorDetailsList>;
-
-/** Defines the error object with properties. */
-export interface Error {
-  /** Error code for classification of errors (ex: '400', '404', '500', etc.). */
-  code?: string;
-  /** Human-readable helpful error message to provide additional context for error (e.g.,: “Capability ID 'foo' does not exist”). */
-  message?: string;
-  /** Array of error details that describe the status of each error. */
-  details?: ErrorDetailsList;
-}
-export const Error = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    details: S.optional(ErrorDetailsList),
-  }),
-).annotate({ identifier: "Error" }) as any as S.Schema<Error>;
-
-/** The response body for the executeAction operation on NamespaceAsset. */
-export interface NamespaceAssetExecuteActionResponse {
-  /** Status of the management action execution. */
-  status: ManagementActionExecutionStatus;
-  /** Name of the management action that was executed. */
-  managementActionName: string;
-  /** Name of the management group under which the action was executed. */
-  managementGroupName: string;
-  /** Resource ID of the asset on which the management action was executed. */
-  assetResourceId: string;
-  /** Response from the asset regarding the management action execution. */
-  response?: string;
-  /** Error if the execute action operation is not successful. */
-  error?: Error;
-}
-export const NamespaceAssetExecuteActionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: ManagementActionExecutionStatus,
-    managementActionName: S.String,
-    managementGroupName: S.String,
-    assetResourceId: S.String,
-    response: S.optional(S.String),
-    error: S.optional(Error),
-  }),
-).annotate({
-  identifier: "NamespaceAssetExecuteActionResponse",
-}) as any as S.Schema<NamespaceAssetExecuteActionResponse>;
-
 /** Scope of the migrate resources operation. */
 export type Scope = "Resources";
 export const Scope = /*@__PURE__*/ S.String;
 
 /** List of asset resources to be migrated. */
-export type NamespacesMigrateRequestResourceIdsList = Array<string>;
-export const NamespacesMigrateRequestResourceIdsList = /*@__PURE__*/ S.Array(
+export type MigrateNamespaceRequestResourceIdsList = Array<string>;
+export const MigrateNamespaceRequestResourceIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<NamespacesMigrateRequestResourceIdsList>;
+) as any as S.Schema<MigrateNamespaceRequestResourceIdsList>;
 
-export interface NamespacesMigrateRequest {
+export interface MigrateNamespaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6360,15 +5102,15 @@ export interface NamespacesMigrateRequest {
   /** Scope of the migrate resources operation. */
   scope?: Scope | (string & {});
   /** List of asset resources to be migrated. */
-  resourceIds?: NamespacesMigrateRequestResourceIdsList;
+  resourceIds?: MigrateNamespaceRequestResourceIdsList;
 }
-export const NamespacesMigrateRequest = /*@__PURE__*/ S.suspend(() =>
+export const MigrateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
     scope: S.optional(Scope),
-    resourceIds: S.optional(NamespacesMigrateRequestResourceIdsList),
+    resourceIds: S.optional(MigrateNamespaceRequestResourceIdsList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -6378,8 +5120,8 @@ export const NamespacesMigrateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "NamespacesMigrateRequest",
-}) as any as S.Schema<NamespacesMigrateRequest>;
+  identifier: "MigrateNamespaceRequest",
+}) as any as S.Schema<MigrateNamespaceRequest>;
 
 /** Result Type of Migrate Operation. */
 export type MigrateResultType = "Succeeded" | "Failed";
@@ -6422,11 +5164,1265 @@ export const NamespaceMigrateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NamespaceMigrateResponse>;
 
 /** Resource tags. */
-export type AssetsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const AssetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type NamespaceAssetsCreateOrReplaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceAssetsCreateOrReplaceRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceAssetsCreateOrReplaceRequestTagsMap>;
+
+/** URIs or type definition IDs. */
+export type NamespaceAssetPropertiesInputAssetTypeRefsList = Array<string>;
+export const NamespaceAssetPropertiesInputAssetTypeRefsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputAssetTypeRefsList>;
+
+/** A set of key-value pairs that contain custom attributes set by the customer. */
+export type NamespaceAssetPropertiesInputAttributesMap = {
+  [key: string]: unknown | undefined;
+};
+export const NamespaceAssetPropertiesInputAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputAttributesMap>;
+
+/** Reference to a list of discovered assets. Populated only if the asset has been created from discovery flow. Discovered asset names must be provided. */
+export type NamespaceAssetPropertiesInputDiscoveredAssetRefsList =
+  Array<string>;
+export const NamespaceAssetPropertiesInputDiscoveredAssetRefsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputDiscoveredAssetRefsList>;
+
+/** Default destinations for a dataset. */
+export type NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList =
+  Array<DatasetDestination>;
+export const NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList =
+  /*@__PURE__*/ S.Array(
+    DatasetDestination,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList>;
+
+/** Default destinations for an event. */
+export type NamespaceAssetPropertiesInputDefaultEventsDestinationsList =
+  Array<EventDestination>;
+export const NamespaceAssetPropertiesInputDefaultEventsDestinationsList =
+  /*@__PURE__*/ S.Array(
+    EventDestination,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputDefaultEventsDestinationsList>;
+
+/** Default destinations for a stream. */
+export type NamespaceAssetPropertiesInputDefaultStreamsDestinationsList =
+  Array<StreamDestination>;
+export const NamespaceAssetPropertiesInputDefaultStreamsDestinationsList =
+  /*@__PURE__*/ S.Array(
+    StreamDestination,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputDefaultStreamsDestinationsList>;
+
+/** Array of datasets that are part of the asset. Each dataset describes the data points that make up the set. */
+export type NamespaceAssetPropertiesInputDatasetsList = Array<NamespaceDataset>;
+export const NamespaceAssetPropertiesInputDatasetsList = /*@__PURE__*/ S.Array(
+  NamespaceDataset,
+) as any as S.Schema<NamespaceAssetPropertiesInputDatasetsList>;
+
+/** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
+export type NamespaceAssetPropertiesInputEventGroupsList =
+  Array<NamespaceEventGroup>;
+export const NamespaceAssetPropertiesInputEventGroupsList =
+  /*@__PURE__*/ S.Array(
+    NamespaceEventGroup,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputEventGroupsList>;
+
+/** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
+export type NamespaceAssetPropertiesInputStreamsList = Array<NamespaceStream>;
+export const NamespaceAssetPropertiesInputStreamsList = /*@__PURE__*/ S.Array(
+  NamespaceStream,
+) as any as S.Schema<NamespaceAssetPropertiesInputStreamsList>;
+
+/** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
+export type NamespaceAssetPropertiesInputManagementGroupsList =
+  Array<ManagementGroup>;
+export const NamespaceAssetPropertiesInputManagementGroupsList =
+  /*@__PURE__*/ S.Array(
+    ManagementGroup,
+  ) as any as S.Schema<NamespaceAssetPropertiesInputManagementGroupsList>;
+
+/** Defines the asset properties. */
+export interface NamespaceAssetPropertiesInput {
+  /** Enabled/disabled status of the asset. */
+  enabled?: boolean;
+  /** Asset ID provided by the customer. */
+  externalAssetId?: string;
+  /** Human-readable display name. */
+  displayName?: string;
+  /** Human-readable description of the asset. */
+  description?: string;
+  /** Reference to the device that provides data for this asset. Must provide device name & endpoint on the device to use. */
+  deviceRef: DeviceRef;
+  /** URIs or type definition IDs. */
+  assetTypeRefs?: NamespaceAssetPropertiesInputAssetTypeRefsList;
+  /** Asset manufacturer. */
+  manufacturer?: string;
+  /** Asset manufacturer URI. */
+  manufacturerUri?: string;
+  /** Asset model. */
+  model?: string;
+  /** Asset product code. */
+  productCode?: string;
+  /** Asset hardware revision number. */
+  hardwareRevision?: string;
+  /** Asset software revision number. */
+  softwareRevision?: string;
+  /** Asset documentation reference. */
+  documentationUri?: string;
+  /** Asset serial number. */
+  serialNumber?: string;
+  /** A set of key-value pairs that contain custom attributes set by the customer. */
+  attributes?: NamespaceAssetPropertiesInputAttributesMap;
+  /** Reference to a list of discovered assets. Populated only if the asset has been created from discovery flow. Discovered asset names must be provided. */
+  discoveredAssetRefs?: NamespaceAssetPropertiesInputDiscoveredAssetRefsList;
+  /** Stringified JSON that contains connector-specific default configuration for all datasets. Each dataset can have its own configuration that overrides the default settings here. */
+  defaultDatasetsConfiguration?: string;
+  /** Stringified JSON that contains connector-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here. */
+  defaultEventsConfiguration?: string;
+  /** Stringified JSON that contains connector-specific default configuration for all streams. Each stream can have its own configuration that overrides the default settings here. */
+  defaultStreamsConfiguration?: string;
+  /** Stringified JSON that contains connector-specific default configuration for all management groups. Each management group can have its own configuration that overrides the default settings here. */
+  defaultManagementGroupsConfiguration?: string;
+  /** Default destinations for a dataset. */
+  defaultDatasetsDestinations?: NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList;
+  /** Default destinations for an event. */
+  defaultEventsDestinations?: NamespaceAssetPropertiesInputDefaultEventsDestinationsList;
+  /** Default destinations for a stream. */
+  defaultStreamsDestinations?: NamespaceAssetPropertiesInputDefaultStreamsDestinationsList;
+  /** Array of datasets that are part of the asset. Each dataset describes the data points that make up the set. */
+  datasets?: NamespaceAssetPropertiesInputDatasetsList;
+  /** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
+  eventGroups?: NamespaceAssetPropertiesInputEventGroupsList;
+  /** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
+  streams?: NamespaceAssetPropertiesInputStreamsList;
+  /** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
+  managementGroups?: NamespaceAssetPropertiesInputManagementGroupsList;
+}
+export const NamespaceAssetPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    externalAssetId: S.optional(S.String),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    deviceRef: DeviceRef,
+    assetTypeRefs: S.optional(NamespaceAssetPropertiesInputAssetTypeRefsList),
+    manufacturer: S.optional(S.String),
+    manufacturerUri: S.optional(S.String),
+    model: S.optional(S.String),
+    productCode: S.optional(S.String),
+    hardwareRevision: S.optional(S.String),
+    softwareRevision: S.optional(S.String),
+    documentationUri: S.optional(S.String),
+    serialNumber: S.optional(S.String),
+    attributes: S.optional(NamespaceAssetPropertiesInputAttributesMap),
+    discoveredAssetRefs: S.optional(
+      NamespaceAssetPropertiesInputDiscoveredAssetRefsList,
+    ),
+    defaultDatasetsConfiguration: S.optional(S.String),
+    defaultEventsConfiguration: S.optional(S.String),
+    defaultStreamsConfiguration: S.optional(S.String),
+    defaultManagementGroupsConfiguration: S.optional(S.String),
+    defaultDatasetsDestinations: S.optional(
+      NamespaceAssetPropertiesInputDefaultDatasetsDestinationsList,
+    ),
+    defaultEventsDestinations: S.optional(
+      NamespaceAssetPropertiesInputDefaultEventsDestinationsList,
+    ),
+    defaultStreamsDestinations: S.optional(
+      NamespaceAssetPropertiesInputDefaultStreamsDestinationsList,
+    ),
+    datasets: S.optional(NamespaceAssetPropertiesInputDatasetsList),
+    eventGroups: S.optional(NamespaceAssetPropertiesInputEventGroupsList),
+    streams: S.optional(NamespaceAssetPropertiesInputStreamsList),
+    managementGroups: S.optional(
+      NamespaceAssetPropertiesInputManagementGroupsList,
+    ),
+  }),
+).annotate({
+  identifier: "NamespaceAssetPropertiesInput",
+}) as any as S.Schema<NamespaceAssetPropertiesInput>;
+
+export interface NamespaceAssetsCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the asset. */
+  assetName: string;
+  /** Resource tags. */
+  tags?: NamespaceAssetsCreateOrReplaceRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceAssetPropertiesInput;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const NamespaceAssetsCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      assetName: S.String.pipe(T.Label()),
+      tags: S.optional(NamespaceAssetsCreateOrReplaceRequestTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceAssetPropertiesInput),
+      extendedLocation: ExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/assets/{assetName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "NamespaceAssetsCreateOrReplaceRequest",
+}) as any as S.Schema<NamespaceAssetsCreateOrReplaceRequest>;
+
+/** Resource tags. */
+export type NamespaceAssetsCreateOrReplaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceAssetsCreateOrReplaceResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceAssetsCreateOrReplaceResponseTagsMap>;
+
+export interface NamespaceAssetsCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NamespaceAssetsCreateOrReplaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceAssetProperties;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const NamespaceAssetsCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(NamespaceAssetsCreateOrReplaceResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceAssetProperties),
+      extendedLocation: ExtendedLocation,
+    }),
+).annotate({
+  identifier: "NamespaceAssetsCreateOrReplaceResponse",
+}) as any as S.Schema<NamespaceAssetsCreateOrReplaceResponse>;
+
+/** Resource tags. */
+export type NamespaceDevicesCreateOrReplaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceDevicesCreateOrReplaceRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceDevicesCreateOrReplaceRequestTagsMap>;
+
+/** A set of key-value pairs that contain custom attributes set by the customer. */
+export type NamespaceDevicePropertiesInputAttributesMap = {
+  [key: string]: unknown | undefined;
+};
+export const NamespaceDevicePropertiesInputAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<NamespaceDevicePropertiesInputAttributesMap>;
+
+/** Defines the device properties. */
+export interface NamespaceDevicePropertiesInput {
+  /** Indicates if the resource is enabled or not. */
+  enabled?: boolean;
+  /** The Device ID provided by the customer. */
+  externalDeviceId?: string;
+  /** Reference to a device. Populated only if the device had been created from discovery flow. Discovered device name must be provided. */
+  discoveredDeviceRef?: string;
+  /** Device manufacturer. */
+  manufacturer?: string;
+  /** Device model. */
+  model?: string;
+  /** Device operating system. */
+  operatingSystem?: string;
+  /** Device operating system version. */
+  operatingSystemVersion?: string;
+  /** Property bag containing the device's unassigned and assigned endpoints. */
+  endpoints?: MessagingEndpoints;
+  /** A set of key-value pairs that contain custom attributes set by the customer. */
+  attributes?: NamespaceDevicePropertiesInputAttributesMap;
+}
+export const NamespaceDevicePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    externalDeviceId: S.optional(S.String),
+    discoveredDeviceRef: S.optional(S.String),
+    manufacturer: S.optional(S.String),
+    model: S.optional(S.String),
+    operatingSystem: S.optional(S.String),
+    operatingSystemVersion: S.optional(S.String),
+    endpoints: S.optional(MessagingEndpoints),
+    attributes: S.optional(NamespaceDevicePropertiesInputAttributesMap),
+  }),
+).annotate({
+  identifier: "NamespaceDevicePropertiesInput",
+}) as any as S.Schema<NamespaceDevicePropertiesInput>;
+
+export interface NamespaceDevicesCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the device. */
+  deviceName: string;
+  /** Resource tags. */
+  tags?: NamespaceDevicesCreateOrReplaceRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceDevicePropertiesInput;
+  /** The extended location. */
+  extendedLocation?: ExtendedLocation;
+}
+export const NamespaceDevicesCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      deviceName: S.String.pipe(T.Label()),
+      tags: S.optional(NamespaceDevicesCreateOrReplaceRequestTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceDevicePropertiesInput),
+      extendedLocation: S.optional(ExtendedLocation),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/devices/{deviceName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "NamespaceDevicesCreateOrReplaceRequest",
+}) as any as S.Schema<NamespaceDevicesCreateOrReplaceRequest>;
+
+/** Resource tags. */
+export type NamespaceDevicesCreateOrReplaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceDevicesCreateOrReplaceResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceDevicesCreateOrReplaceResponseTagsMap>;
+
+export interface NamespaceDevicesCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NamespaceDevicesCreateOrReplaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceDeviceProperties;
+  /** Resource Tag. */
+  etag?: string;
+  /** The extended location. */
+  extendedLocation?: ExtendedLocation;
+}
+export const NamespaceDevicesCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(NamespaceDevicesCreateOrReplaceResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceDeviceProperties),
+      etag: S.optional(S.String),
+      extendedLocation: S.optional(ExtendedLocation),
+    }),
+).annotate({
+  identifier: "NamespaceDevicesCreateOrReplaceResponse",
+}) as any as S.Schema<NamespaceDevicesCreateOrReplaceResponse>;
+
+/** Resource tags. */
+export type NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap>;
+
+/** URIs or type definition IDs. */
+export type NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList =
+  Array<string>;
+export const NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList>;
+
+/** A set of key-value pairs that contain custom attributes. */
+export type NamespaceDiscoveredAssetPropertiesInputAttributesMap = {
+  [key: string]: unknown | undefined;
+};
+export const NamespaceDiscoveredAssetPropertiesInputAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputAttributesMap>;
+
+/** Default destinations for a dataset. */
+export type NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList =
+  Array<DatasetDestination>;
+export const NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList =
+  /*@__PURE__*/ S.Array(
+    DatasetDestination,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList>;
+
+/** Default destinations for an event. */
+export type NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList =
+  Array<EventDestination>;
+export const NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList =
+  /*@__PURE__*/ S.Array(
+    EventDestination,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList>;
+
+/** Default destinations for a stream. */
+export type NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList =
+  Array<StreamDestination>;
+export const NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList =
+  /*@__PURE__*/ S.Array(
+    StreamDestination,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList>;
+
+/** Array of datasets that are part of the asset. Each dataset spec describes the data points that make up the set. */
+export type NamespaceDiscoveredAssetPropertiesInputDatasetsList =
+  Array<NamespaceDiscoveredDataset>;
+export const NamespaceDiscoveredAssetPropertiesInputDatasetsList =
+  /*@__PURE__*/ S.Array(
+    NamespaceDiscoveredDataset,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputDatasetsList>;
+
+/** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
+export type NamespaceDiscoveredAssetPropertiesInputEventGroupsList =
+  Array<NamespaceDiscoveredEventGroup>;
+export const NamespaceDiscoveredAssetPropertiesInputEventGroupsList =
+  /*@__PURE__*/ S.Array(
+    NamespaceDiscoveredEventGroup,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputEventGroupsList>;
+
+/** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
+export type NamespaceDiscoveredAssetPropertiesInputStreamsList =
+  Array<NamespaceDiscoveredStream>;
+export const NamespaceDiscoveredAssetPropertiesInputStreamsList =
+  /*@__PURE__*/ S.Array(
+    NamespaceDiscoveredStream,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputStreamsList>;
+
+/** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
+export type NamespaceDiscoveredAssetPropertiesInputManagementGroupsList =
+  Array<NamespaceDiscoveredManagementGroup>;
+export const NamespaceDiscoveredAssetPropertiesInputManagementGroupsList =
+  /*@__PURE__*/ S.Array(
+    NamespaceDiscoveredManagementGroup,
+  ) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInputManagementGroupsList>;
+
+/** Defines the discovered asset properties. */
+export interface NamespaceDiscoveredAssetPropertiesInput {
+  /** Reference to the device that provides data for this asset. Must provide device name & endpoint on the device to use. */
+  deviceRef: DeviceRef;
+  /** Human-readable display name. */
+  displayName?: string;
+  /** URIs or type definition IDs. */
+  assetTypeRefs?: NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList;
+  /** Human-readable description of the asset. */
+  description?: string;
+  /** Identifier used to detect changes in the asset. */
+  discoveryId: string;
+  /** Asset ID provided by the customer. */
+  externalAssetId?: string;
+  /** An integer that is incremented each time the resource is modified. */
+  version: number;
+  /** Asset manufacturer. */
+  manufacturer?: string;
+  /** Asset manufacturer URI. */
+  manufacturerUri?: string;
+  /** Asset model. */
+  model?: string;
+  /** Asset product code. */
+  productCode?: string;
+  /** Asset hardware revision number. */
+  hardwareRevision?: string;
+  /** Asset software revision number. */
+  softwareRevision?: string;
+  /** Asset documentation reference. */
+  documentationUri?: string;
+  /** Asset serial number. */
+  serialNumber?: string;
+  /** A set of key-value pairs that contain custom attributes. */
+  attributes?: NamespaceDiscoveredAssetPropertiesInputAttributesMap;
+  /** Stringified JSON that contains connector-specific default configuration for all datasets. Each dataset can have its own configuration that overrides the default settings here. */
+  defaultDatasetsConfiguration?: string;
+  /** Stringified JSON that contains connector-specific default configuration for all events. Each event can have its own configuration that overrides the default settings here. */
+  defaultEventsConfiguration?: string;
+  /** Stringified JSON that contains connector-specific default configuration for all streams. Each stream can have its own configuration that overrides the default settings here. */
+  defaultStreamsConfiguration?: string;
+  /** Stringified JSON that contains connector-specific default configuration for all management groups. Each management group can have its own configuration that overrides the default settings here. */
+  defaultManagementGroupsConfiguration?: string;
+  /** Default destinations for a dataset. */
+  defaultDatasetsDestinations?: NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList;
+  /** Default destinations for an event. */
+  defaultEventsDestinations?: NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList;
+  /** Default destinations for a stream. */
+  defaultStreamsDestinations?: NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList;
+  /** Array of datasets that are part of the asset. Each dataset spec describes the data points that make up the set. */
+  datasets?: NamespaceDiscoveredAssetPropertiesInputDatasetsList;
+  /** Array of event groups that are part of the asset. Each event group can have per-event group configuration. */
+  eventGroups?: NamespaceDiscoveredAssetPropertiesInputEventGroupsList;
+  /** Array of streams that are part of the asset. Each stream can have a per-stream configuration. */
+  streams?: NamespaceDiscoveredAssetPropertiesInputStreamsList;
+  /** Array of management groups that are part of the asset. Each management group can have a per-group configuration. */
+  managementGroups?: NamespaceDiscoveredAssetPropertiesInputManagementGroupsList;
+}
+export const NamespaceDiscoveredAssetPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      deviceRef: DeviceRef,
+      displayName: S.optional(S.String),
+      assetTypeRefs: S.optional(
+        NamespaceDiscoveredAssetPropertiesInputAssetTypeRefsList,
+      ),
+      description: S.optional(S.String),
+      discoveryId: S.String,
+      externalAssetId: S.optional(S.String),
+      version: S.Number,
+      manufacturer: S.optional(S.String),
+      manufacturerUri: S.optional(S.String),
+      model: S.optional(S.String),
+      productCode: S.optional(S.String),
+      hardwareRevision: S.optional(S.String),
+      softwareRevision: S.optional(S.String),
+      documentationUri: S.optional(S.String),
+      serialNumber: S.optional(S.String),
+      attributes: S.optional(
+        NamespaceDiscoveredAssetPropertiesInputAttributesMap,
+      ),
+      defaultDatasetsConfiguration: S.optional(S.String),
+      defaultEventsConfiguration: S.optional(S.String),
+      defaultStreamsConfiguration: S.optional(S.String),
+      defaultManagementGroupsConfiguration: S.optional(S.String),
+      defaultDatasetsDestinations: S.optional(
+        NamespaceDiscoveredAssetPropertiesInputDefaultDatasetsDestinationsList,
+      ),
+      defaultEventsDestinations: S.optional(
+        NamespaceDiscoveredAssetPropertiesInputDefaultEventsDestinationsList,
+      ),
+      defaultStreamsDestinations: S.optional(
+        NamespaceDiscoveredAssetPropertiesInputDefaultStreamsDestinationsList,
+      ),
+      datasets: S.optional(NamespaceDiscoveredAssetPropertiesInputDatasetsList),
+      eventGroups: S.optional(
+        NamespaceDiscoveredAssetPropertiesInputEventGroupsList,
+      ),
+      streams: S.optional(NamespaceDiscoveredAssetPropertiesInputStreamsList),
+      managementGroups: S.optional(
+        NamespaceDiscoveredAssetPropertiesInputManagementGroupsList,
+      ),
+    }),
+).annotate({
+  identifier: "NamespaceDiscoveredAssetPropertiesInput",
+}) as any as S.Schema<NamespaceDiscoveredAssetPropertiesInput>;
+
+export interface NamespaceDiscoveredAssetsCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the discovered asset. */
+  discoveredAssetName: string;
+  /** Resource tags. */
+  tags?: NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceDiscoveredAssetPropertiesInput;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const NamespaceDiscoveredAssetsCreateOrReplaceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      discoveredAssetName: S.String.pipe(T.Label()),
+      tags: S.optional(NamespaceDiscoveredAssetsCreateOrReplaceRequestTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceDiscoveredAssetPropertiesInput),
+      extendedLocation: ExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredAssets/{discoveredAssetName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "NamespaceDiscoveredAssetsCreateOrReplaceRequest",
+  }) as any as S.Schema<NamespaceDiscoveredAssetsCreateOrReplaceRequest>;
+
+/** Resource tags. */
+export type NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap>;
+
+export interface NamespaceDiscoveredAssetsCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceDiscoveredAssetProperties;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const NamespaceDiscoveredAssetsCreateOrReplaceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(NamespaceDiscoveredAssetsCreateOrReplaceResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceDiscoveredAssetProperties),
+      extendedLocation: ExtendedLocation,
+    }),
+  ).annotate({
+    identifier: "NamespaceDiscoveredAssetsCreateOrReplaceResponse",
+  }) as any as S.Schema<NamespaceDiscoveredAssetsCreateOrReplaceResponse>;
+
+/** Resource tags. */
+export type NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap>;
+
+/** A set of key-value pairs that contain custom attributes. */
+export type NamespaceDiscoveredDevicePropertiesInputAttributesMap = {
+  [key: string]: unknown | undefined;
+};
+export const NamespaceDiscoveredDevicePropertiesInputAttributesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<NamespaceDiscoveredDevicePropertiesInputAttributesMap>;
+
+/** Defines the discovered device properties. */
+export interface NamespaceDiscoveredDevicePropertiesInput {
+  /** A device ID that represents the device in a system external to Azure. Unique within scope of an Azure tenant. */
+  externalDeviceId?: string;
+  /** Endpoints for discovered devices. */
+  endpoints?: DiscoveredMessagingEndpoints;
+  /** Device manufacturer. */
+  manufacturer?: string;
+  /** Device model. */
+  model?: string;
+  /** Device operating system name. */
+  operatingSystem?: string;
+  /** Device operating system version. */
+  operatingSystemVersion?: string;
+  /** A set of key-value pairs that contain custom attributes. */
+  attributes?: NamespaceDiscoveredDevicePropertiesInputAttributesMap;
+  /** Identifier used to detect changes in the discovered device. */
+  discoveryId: string;
+  /** An integer that is incremented each time the resource is modified. */
+  version: number;
+}
+export const NamespaceDiscoveredDevicePropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      externalDeviceId: S.optional(S.String),
+      endpoints: S.optional(DiscoveredMessagingEndpoints),
+      manufacturer: S.optional(S.String),
+      model: S.optional(S.String),
+      operatingSystem: S.optional(S.String),
+      operatingSystemVersion: S.optional(S.String),
+      attributes: S.optional(
+        NamespaceDiscoveredDevicePropertiesInputAttributesMap,
+      ),
+      discoveryId: S.String,
+      version: S.Number,
+    }),
+).annotate({
+  identifier: "NamespaceDiscoveredDevicePropertiesInput",
+}) as any as S.Schema<NamespaceDiscoveredDevicePropertiesInput>;
+
+export interface NamespaceDiscoveredDevicesCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** The name of the discovered device. */
+  discoveredDeviceName: string;
+  /** Resource tags. */
+  tags?: NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceDiscoveredDevicePropertiesInput;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const NamespaceDiscoveredDevicesCreateOrReplaceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      discoveredDeviceName: S.String.pipe(T.Label()),
+      tags: S.optional(NamespaceDiscoveredDevicesCreateOrReplaceRequestTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceDiscoveredDevicePropertiesInput),
+      extendedLocation: ExtendedLocation,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}/discoveredDevices/{discoveredDeviceName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "NamespaceDiscoveredDevicesCreateOrReplaceRequest",
+  }) as any as S.Schema<NamespaceDiscoveredDevicesCreateOrReplaceRequest>;
+
+/** Resource tags. */
+export type NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap>;
+
+export interface NamespaceDiscoveredDevicesCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceDiscoveredDeviceProperties;
+  /** The extended location. */
+  extendedLocation: ExtendedLocation;
+}
+export const NamespaceDiscoveredDevicesCreateOrReplaceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        NamespaceDiscoveredDevicesCreateOrReplaceResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(NamespaceDiscoveredDeviceProperties),
+      extendedLocation: ExtendedLocation,
+    }),
+  ).annotate({
+    identifier: "NamespaceDiscoveredDevicesCreateOrReplaceResponse",
+  }) as any as S.Schema<NamespaceDiscoveredDevicesCreateOrReplaceResponse>;
+
+/** Resource tags. */
+export type NamespacesCreateOrReplaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespacesCreateOrReplaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AssetsUpdateRequestTagsMap>;
+) as any as S.Schema<NamespacesCreateOrReplaceRequestTagsMap>;
+
+/** The namespace properties model. */
+export interface NamespacePropertiesInput {
+  /** Assigned and unassigned messaging endpoints. */
+  messaging?: Messaging;
+  /** Assigned and unassigned management endpoints. */
+  management?: Management;
+}
+export const NamespacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    messaging: S.optional(Messaging),
+    management: S.optional(Management),
+  }),
+).annotate({
+  identifier: "NamespacePropertiesInput",
+}) as any as S.Schema<NamespacePropertiesInput>;
+
+/** Managed service identity (either system assigned, or none) */
+export interface NamespacesCreateOrReplaceRequestIdentity {
+  type: SystemAssignedServiceIdentityType | (string & {});
+}
+export const NamespacesCreateOrReplaceRequestIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: SystemAssignedServiceIdentityType,
+    }),
+).annotate({
+  identifier: "NamespacesCreateOrReplaceRequestIdentity",
+}) as any as S.Schema<NamespacesCreateOrReplaceRequestIdentity>;
+
+export interface NamespacesCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the namespace. */
+  namespaceName: string;
+  /** Resource tags. */
+  tags?: NamespacesCreateOrReplaceRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespacePropertiesInput;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: NamespacesCreateOrReplaceRequestIdentity;
+}
+export const NamespacesCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    tags: S.optional(NamespacesCreateOrReplaceRequestTagsMap),
+    location: S.String,
+    properties: S.optional(NamespacePropertiesInput),
+    identity: S.optional(NamespacesCreateOrReplaceRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/namespaces/{namespaceName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "NamespacesCreateOrReplaceRequest",
+}) as any as S.Schema<NamespacesCreateOrReplaceRequest>;
+
+/** Resource tags. */
+export type NamespacesCreateOrReplaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespacesCreateOrReplaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NamespacesCreateOrReplaceResponseTagsMap>;
+
+/** Managed service identity (either system assigned, or none) */
+export type NamespacesCreateOrReplaceResponseIdentity =
+  GetNamespaceResponseIdentity;
+export const NamespacesCreateOrReplaceResponseIdentity =
+  GetNamespaceResponseIdentity;
+
+export interface NamespacesCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NamespacesCreateOrReplaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NamespaceProperties;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetNamespaceResponseIdentity;
+}
+export const NamespacesCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(NamespacesCreateOrReplaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NamespaceProperties),
+    identity: S.optional(GetNamespaceResponseIdentity),
+  }),
+).annotate({
+  identifier: "NamespacesCreateOrReplaceResponse",
+}) as any as S.Schema<NamespacesCreateOrReplaceResponse>;
+
+/** Resource tags. */
+export type SchemaRegistriesCreateOrReplaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SchemaRegistriesCreateOrReplaceRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SchemaRegistriesCreateOrReplaceRequestTagsMap>;
+
+/** Defines the schema registry properties. */
+export interface SchemaRegistryPropertiesInput {
+  /** Schema registry namespace. Uniquely identifies a schema registry within a tenant. */
+  namespace: string;
+  /** Human-readable display name. */
+  displayName?: string;
+  /** Human-readable description of the schema registry. */
+  description?: string;
+  /** The Storage Account's Container URL where schemas will be stored. */
+  storageAccountContainerUrl: string;
+}
+export const SchemaRegistryPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String,
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    storageAccountContainerUrl: S.String,
+  }),
+).annotate({
+  identifier: "SchemaRegistryPropertiesInput",
+}) as any as S.Schema<SchemaRegistryPropertiesInput>;
+
+/** Managed service identity (either system assigned, or none) */
+export type SchemaRegistriesCreateOrReplaceRequestIdentity =
+  NamespacesCreateOrReplaceRequestIdentity;
+export const SchemaRegistriesCreateOrReplaceRequestIdentity =
+  NamespacesCreateOrReplaceRequestIdentity;
+
+export interface SchemaRegistriesCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Schema registry name parameter. */
+  schemaRegistryName: string;
+  /** Resource tags. */
+  tags?: SchemaRegistriesCreateOrReplaceRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SchemaRegistryPropertiesInput;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: NamespacesCreateOrReplaceRequestIdentity;
+}
+export const SchemaRegistriesCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      schemaRegistryName: S.String.pipe(T.Label()),
+      tags: S.optional(SchemaRegistriesCreateOrReplaceRequestTagsMap),
+      location: S.String,
+      properties: S.optional(SchemaRegistryPropertiesInput),
+      identity: S.optional(NamespacesCreateOrReplaceRequestIdentity),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "SchemaRegistriesCreateOrReplaceRequest",
+}) as any as S.Schema<SchemaRegistriesCreateOrReplaceRequest>;
+
+/** Resource tags. */
+export type SchemaRegistriesCreateOrReplaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SchemaRegistriesCreateOrReplaceResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SchemaRegistriesCreateOrReplaceResponseTagsMap>;
+
+/** Managed service identity (either system assigned, or none) */
+export type SchemaRegistriesCreateOrReplaceResponseIdentity =
+  GetNamespaceResponseIdentity;
+export const SchemaRegistriesCreateOrReplaceResponseIdentity =
+  GetNamespaceResponseIdentity;
+
+export interface SchemaRegistriesCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SchemaRegistriesCreateOrReplaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SchemaRegistryProperties;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetNamespaceResponseIdentity;
+}
+export const SchemaRegistriesCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(SchemaRegistriesCreateOrReplaceResponseTagsMap),
+      location: S.String,
+      properties: S.optional(SchemaRegistryProperties),
+      identity: S.optional(GetNamespaceResponseIdentity),
+    }),
+).annotate({
+  identifier: "SchemaRegistriesCreateOrReplaceResponse",
+}) as any as S.Schema<SchemaRegistriesCreateOrReplaceResponse>;
+
+/** Schema tags. */
+export type SchemaPropertiesInputTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SchemaPropertiesInputTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SchemaPropertiesInputTagsMap>;
+
+/** Defines the schema properties. */
+export interface SchemaPropertiesInput {
+  /** Human-readable display name. */
+  displayName?: string;
+  /** Human-readable description of the schema. */
+  description?: string;
+  /** Format of the schema. */
+  format: Format | (string & {});
+  /** Type of the schema. */
+  schemaType: SchemaType | (string & {});
+  /** Schema tags. */
+  tags?: SchemaPropertiesInputTagsMap;
+}
+export const SchemaPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    format: Format,
+    schemaType: SchemaType,
+    tags: S.optional(SchemaPropertiesInputTagsMap),
+  }),
+).annotate({
+  identifier: "SchemaPropertiesInput",
+}) as any as S.Schema<SchemaPropertiesInput>;
+
+export interface SchemasCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Schema registry name parameter. */
+  schemaRegistryName: string;
+  /** Schema name parameter. */
+  schemaName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SchemaPropertiesInput;
+}
+export const SchemasCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schemaRegistryName: S.String.pipe(T.Label()),
+    schemaName: S.String.pipe(T.Label()),
+    properties: S.optional(SchemaPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "SchemasCreateOrReplaceRequest",
+}) as any as S.Schema<SchemasCreateOrReplaceRequest>;
+
+export interface SchemasCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SchemaProperties;
+}
+export const SchemasCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SchemaProperties),
+  }),
+).annotate({
+  identifier: "SchemasCreateOrReplaceResponse",
+}) as any as S.Schema<SchemasCreateOrReplaceResponse>;
+
+/** Defines the schema version properties. */
+export interface SchemaVersionPropertiesInput {
+  /** Human-readable description of the schema. */
+  description?: string;
+  /** Schema content. */
+  schemaContent: string;
+}
+export const SchemaVersionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    schemaContent: S.String,
+  }),
+).annotate({
+  identifier: "SchemaVersionPropertiesInput",
+}) as any as S.Schema<SchemaVersionPropertiesInput>;
+
+export interface SchemaVersionsCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Schema registry name parameter. */
+  schemaRegistryName: string;
+  /** Schema name parameter. */
+  schemaName: string;
+  /** Schema version name parameter. */
+  schemaVersionName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SchemaVersionPropertiesInput;
+}
+export const SchemaVersionsCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      schemaRegistryName: S.String.pipe(T.Label()),
+      schemaName: S.String.pipe(T.Label()),
+      schemaVersionName: S.String.pipe(T.Label()),
+      properties: S.optional(SchemaVersionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceRegistry/schemaRegistries/{schemaRegistryName}/schemas/{schemaName}/schemaVersions/{schemaVersionName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "SchemaVersionsCreateOrReplaceRequest",
+}) as any as S.Schema<SchemaVersionsCreateOrReplaceRequest>;
+
+export interface SchemaVersionsCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SchemaVersionProperties;
+}
+export const SchemaVersionsCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SchemaVersionProperties),
+    }),
+).annotate({
+  identifier: "SchemaVersionsCreateOrReplaceResponse",
+}) as any as S.Schema<SchemaVersionsCreateOrReplaceResponse>;
+
+/** Resource tags. */
+export type UpdateAssetRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAssetRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAssetRequestTagsMap>;
 
 /** A set of key-value pairs that contain custom attributes set by the customer. */
 export type AssetUpdatePropertiesAttributesMap = {
@@ -6536,7 +6532,7 @@ export interface UpdateAssetRequest {
   /** Asset name parameter. */
   assetName: string;
   /** Resource tags. */
-  tags?: AssetsUpdateRequestTagsMap;
+  tags?: UpdateAssetRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: AssetUpdateProperties;
 }
@@ -6545,7 +6541,7 @@ export const UpdateAssetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     assetName: S.String.pipe(T.Label()),
-    tags: S.optional(AssetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAssetRequestTagsMap),
     properties: S.optional(AssetUpdateProperties),
   }).pipe(
     T.Http({
@@ -6560,11 +6556,11 @@ export const UpdateAssetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAssetRequest>;
 
 /** Resource tags. */
-export type AssetsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const AssetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAssetResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateAssetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AssetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAssetResponseTagsMap>;
 
 export interface UpdateAssetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6576,7 +6572,7 @@ export interface UpdateAssetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AssetsUpdateResponseTagsMap;
+  tags?: UpdateAssetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -6590,7 +6586,7 @@ export const UpdateAssetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AssetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAssetResponseTagsMap),
     location: S.String,
     properties: S.optional(AssetProperties),
     extendedLocation: ExtendedLocation,
@@ -6600,13 +6596,13 @@ export const UpdateAssetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAssetResponse>;
 
 /** Resource tags. */
-export type AssetEndpointProfilesUpdateRequestTagsMap = {
+export type UpdateAssetEndpointProfileRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AssetEndpointProfilesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAssetEndpointProfileRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AssetEndpointProfilesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAssetEndpointProfileRequestTagsMap>;
 
 /** Defines the method to authenticate the user of the client at the server. */
 export type AuthenticationUpdateMethod =
@@ -6694,7 +6690,7 @@ export interface UpdateAssetEndpointProfileRequest {
   /** Asset Endpoint Profile name parameter. */
   assetEndpointProfileName: string;
   /** Resource tags. */
-  tags?: AssetEndpointProfilesUpdateRequestTagsMap;
+  tags?: UpdateAssetEndpointProfileRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: AssetEndpointProfileUpdateProperties;
 }
@@ -6703,7 +6699,7 @@ export const UpdateAssetEndpointProfileRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     assetEndpointProfileName: S.String.pipe(T.Label()),
-    tags: S.optional(AssetEndpointProfilesUpdateRequestTagsMap),
+    tags: S.optional(UpdateAssetEndpointProfileRequestTagsMap),
     properties: S.optional(AssetEndpointProfileUpdateProperties),
   }).pipe(
     T.Http({
@@ -6718,14 +6714,13 @@ export const UpdateAssetEndpointProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAssetEndpointProfileRequest>;
 
 /** Resource tags. */
-export type AssetEndpointProfilesUpdateResponseTagsMap = {
+export type UpdateAssetEndpointProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AssetEndpointProfilesUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AssetEndpointProfilesUpdateResponseTagsMap>;
+export const UpdateAssetEndpointProfileResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAssetEndpointProfileResponseTagsMap>;
 
 export interface UpdateAssetEndpointProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6737,7 +6732,7 @@ export interface UpdateAssetEndpointProfileResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AssetEndpointProfilesUpdateResponseTagsMap;
+  tags?: UpdateAssetEndpointProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -6751,7 +6746,7 @@ export const UpdateAssetEndpointProfileResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AssetEndpointProfilesUpdateResponseTagsMap),
+    tags: S.optional(UpdateAssetEndpointProfileResponseTagsMap),
     location: S.String,
     properties: S.optional(AssetEndpointProfileProperties),
     extendedLocation: ExtendedLocation,
@@ -6761,19 +6756,19 @@ export const UpdateAssetEndpointProfileResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAssetEndpointProfileResponse>;
 
 /** Managed service identity (either system assigned, or none) */
-export type NamespacesUpdateRequestIdentity =
+export type UpdateNamespaceRequestIdentity =
   NamespacesCreateOrReplaceRequestIdentity;
-export const NamespacesUpdateRequestIdentity =
+export const UpdateNamespaceRequestIdentity =
   NamespacesCreateOrReplaceRequestIdentity;
 
 /** Resource tags. */
-export type NamespacesUpdateRequestTagsMap = {
+export type UpdateNamespaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNamespaceRequestTagsMap>;
 
 /** The updatable properties of the Namespace. */
 export type NamespaceUpdateProperties = NamespacePropertiesInput;
@@ -6789,7 +6784,7 @@ export interface UpdateNamespaceRequest {
   /** Managed service identity (either system assigned, or none) */
   identity?: NamespacesCreateOrReplaceRequestIdentity;
   /** Resource tags. */
-  tags?: NamespacesUpdateRequestTagsMap;
+  tags?: UpdateNamespaceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: NamespacePropertiesInput;
 }
@@ -6799,7 +6794,7 @@ export const UpdateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
     identity: S.optional(NamespacesCreateOrReplaceRequestIdentity),
-    tags: S.optional(NamespacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateNamespaceRequestTagsMap),
     properties: S.optional(NamespacePropertiesInput),
   }).pipe(
     T.Http({
@@ -6814,19 +6809,17 @@ export const UpdateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNamespaceRequest>;
 
 /** Resource tags. */
-export type NamespacesUpdateResponseTagsMap = {
+export type UpdateNamespaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNamespaceResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type NamespacesUpdateResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
-export const NamespacesUpdateResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
+export type UpdateNamespaceResponseIdentity = GetNamespaceResponseIdentity;
+export const UpdateNamespaceResponseIdentity = GetNamespaceResponseIdentity;
 
 export interface UpdateNamespaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6838,13 +6831,13 @@ export interface UpdateNamespaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespacesUpdateResponseTagsMap;
+  tags?: UpdateNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: NamespaceProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
+  identity?: GetNamespaceResponseIdentity;
 }
 export const UpdateNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6852,23 +6845,23 @@ export const UpdateNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateNamespaceResponseTagsMap),
     location: S.String,
     properties: S.optional(NamespaceProperties),
-    identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
+    identity: S.optional(GetNamespaceResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNamespaceResponse",
 }) as any as S.Schema<UpdateNamespaceResponse>;
 
 /** Resource tags. */
-export type NamespaceAssetsUpdateRequestTagsMap = {
+export type UpdateNamespaceAssetRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceAssetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNamespaceAssetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespaceAssetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNamespaceAssetRequestTagsMap>;
 
 /** URIs or type definition IDs. */
 export type NamespaceAssetUpdatePropertiesAssetTypeRefsList = Array<string>;
@@ -7040,7 +7033,7 @@ export interface UpdateNamespaceAssetRequest {
   /** The name of the asset. */
   assetName: string;
   /** Resource tags. */
-  tags?: NamespaceAssetsUpdateRequestTagsMap;
+  tags?: UpdateNamespaceAssetRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: NamespaceAssetUpdateProperties;
 }
@@ -7050,7 +7043,7 @@ export const UpdateNamespaceAssetRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
     assetName: S.String.pipe(T.Label()),
-    tags: S.optional(NamespaceAssetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateNamespaceAssetRequestTagsMap),
     properties: S.optional(NamespaceAssetUpdateProperties),
   }).pipe(
     T.Http({
@@ -7065,13 +7058,13 @@ export const UpdateNamespaceAssetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNamespaceAssetRequest>;
 
 /** Resource tags. */
-export type NamespaceAssetsUpdateResponseTagsMap = {
+export type UpdateNamespaceAssetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceAssetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNamespaceAssetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespaceAssetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNamespaceAssetResponseTagsMap>;
 
 export interface UpdateNamespaceAssetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7083,7 +7076,7 @@ export interface UpdateNamespaceAssetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceAssetsUpdateResponseTagsMap;
+  tags?: UpdateNamespaceAssetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -7097,7 +7090,7 @@ export const UpdateNamespaceAssetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NamespaceAssetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNamespaceAssetResponseTagsMap),
     location: S.String,
     properties: S.optional(NamespaceAssetProperties),
     extendedLocation: ExtendedLocation,
@@ -7107,13 +7100,13 @@ export const UpdateNamespaceAssetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNamespaceAssetResponse>;
 
 /** Resource tags. */
-export type NamespaceDevicesUpdateRequestTagsMap = {
+export type UpdateNamespaceDeviceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDevicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNamespaceDeviceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespaceDevicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNamespaceDeviceRequestTagsMap>;
 
 /** Defines the method to authenticate the user of the client at the server. */
 export type HostAuthenticationUpdateMethod =
@@ -7305,7 +7298,7 @@ export interface UpdateNamespaceDeviceRequest {
   /** The name of the device. */
   deviceName: string;
   /** Resource tags. */
-  tags?: NamespaceDevicesUpdateRequestTagsMap;
+  tags?: UpdateNamespaceDeviceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: NamespaceDeviceUpdateProperties;
 }
@@ -7315,7 +7308,7 @@ export const UpdateNamespaceDeviceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
     deviceName: S.String.pipe(T.Label()),
-    tags: S.optional(NamespaceDevicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateNamespaceDeviceRequestTagsMap),
     properties: S.optional(NamespaceDeviceUpdateProperties),
   }).pipe(
     T.Http({
@@ -7330,13 +7323,13 @@ export const UpdateNamespaceDeviceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNamespaceDeviceRequest>;
 
 /** Resource tags. */
-export type NamespaceDevicesUpdateResponseTagsMap = {
+export type UpdateNamespaceDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDevicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNamespaceDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespaceDevicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNamespaceDeviceResponseTagsMap>;
 
 export interface UpdateNamespaceDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7348,7 +7341,7 @@ export interface UpdateNamespaceDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceDevicesUpdateResponseTagsMap;
+  tags?: UpdateNamespaceDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -7364,7 +7357,7 @@ export const UpdateNamespaceDeviceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NamespaceDevicesUpdateResponseTagsMap),
+    tags: S.optional(UpdateNamespaceDeviceResponseTagsMap),
     location: S.String,
     properties: S.optional(NamespaceDeviceProperties),
     etag: S.optional(S.String),
@@ -7375,14 +7368,14 @@ export const UpdateNamespaceDeviceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNamespaceDeviceResponse>;
 
 /** Resource tags. */
-export type NamespaceDiscoveredAssetsUpdateRequestTagsMap = {
+export type UpdateNamespaceDiscoveredAssetRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDiscoveredAssetsUpdateRequestTagsMap =
+export const UpdateNamespaceDiscoveredAssetRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NamespaceDiscoveredAssetsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateNamespaceDiscoveredAssetRequestTagsMap>;
 
 /** Defines which device and endpoint to use for this asset */
 export interface DeviceRefUpdate {
@@ -7589,7 +7582,7 @@ export interface UpdateNamespaceDiscoveredAssetRequest {
   /** The name of the discovered asset. */
   discoveredAssetName: string;
   /** Resource tags. */
-  tags?: NamespaceDiscoveredAssetsUpdateRequestTagsMap;
+  tags?: UpdateNamespaceDiscoveredAssetRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: NamespaceDiscoveredAssetUpdateProperties;
 }
@@ -7600,7 +7593,7 @@ export const UpdateNamespaceDiscoveredAssetRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       namespaceName: S.String.pipe(T.Label()),
       discoveredAssetName: S.String.pipe(T.Label()),
-      tags: S.optional(NamespaceDiscoveredAssetsUpdateRequestTagsMap),
+      tags: S.optional(UpdateNamespaceDiscoveredAssetRequestTagsMap),
       properties: S.optional(NamespaceDiscoveredAssetUpdateProperties),
     }).pipe(
       T.Http({
@@ -7615,14 +7608,14 @@ export const UpdateNamespaceDiscoveredAssetRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNamespaceDiscoveredAssetRequest>;
 
 /** Resource tags. */
-export type NamespaceDiscoveredAssetsUpdateResponseTagsMap = {
+export type UpdateNamespaceDiscoveredAssetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDiscoveredAssetsUpdateResponseTagsMap =
+export const UpdateNamespaceDiscoveredAssetResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NamespaceDiscoveredAssetsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateNamespaceDiscoveredAssetResponseTagsMap>;
 
 export interface UpdateNamespaceDiscoveredAssetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7634,7 +7627,7 @@ export interface UpdateNamespaceDiscoveredAssetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceDiscoveredAssetsUpdateResponseTagsMap;
+  tags?: UpdateNamespaceDiscoveredAssetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -7649,7 +7642,7 @@ export const UpdateNamespaceDiscoveredAssetResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(NamespaceDiscoveredAssetsUpdateResponseTagsMap),
+      tags: S.optional(UpdateNamespaceDiscoveredAssetResponseTagsMap),
       location: S.String,
       properties: S.optional(NamespaceDiscoveredAssetProperties),
       extendedLocation: ExtendedLocation,
@@ -7659,14 +7652,14 @@ export const UpdateNamespaceDiscoveredAssetResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNamespaceDiscoveredAssetResponse>;
 
 /** Resource tags. */
-export type NamespaceDiscoveredDevicesUpdateRequestTagsMap = {
+export type UpdateNamespaceDiscoveredDeviceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDiscoveredDevicesUpdateRequestTagsMap =
+export const UpdateNamespaceDiscoveredDeviceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NamespaceDiscoveredDevicesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateNamespaceDiscoveredDeviceRequestTagsMap>;
 
 /** List of supported authentication methods supported by device for Inbound connections. */
 export type DiscoveredInboundEndpointsUpdateSupportedAuthenticationMethodsList =
@@ -7806,7 +7799,7 @@ export interface UpdateNamespaceDiscoveredDeviceRequest {
   /** The name of the discovered device. */
   discoveredDeviceName: string;
   /** Resource tags. */
-  tags?: NamespaceDiscoveredDevicesUpdateRequestTagsMap;
+  tags?: UpdateNamespaceDiscoveredDeviceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: NamespaceDiscoveredDeviceUpdateProperties;
 }
@@ -7817,7 +7810,7 @@ export const UpdateNamespaceDiscoveredDeviceRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       namespaceName: S.String.pipe(T.Label()),
       discoveredDeviceName: S.String.pipe(T.Label()),
-      tags: S.optional(NamespaceDiscoveredDevicesUpdateRequestTagsMap),
+      tags: S.optional(UpdateNamespaceDiscoveredDeviceRequestTagsMap),
       properties: S.optional(NamespaceDiscoveredDeviceUpdateProperties),
     }).pipe(
       T.Http({
@@ -7832,14 +7825,14 @@ export const UpdateNamespaceDiscoveredDeviceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNamespaceDiscoveredDeviceRequest>;
 
 /** Resource tags. */
-export type NamespaceDiscoveredDevicesUpdateResponseTagsMap = {
+export type UpdateNamespaceDiscoveredDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NamespaceDiscoveredDevicesUpdateResponseTagsMap =
+export const UpdateNamespaceDiscoveredDeviceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NamespaceDiscoveredDevicesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateNamespaceDiscoveredDeviceResponseTagsMap>;
 
 export interface UpdateNamespaceDiscoveredDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7851,7 +7844,7 @@ export interface UpdateNamespaceDiscoveredDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespaceDiscoveredDevicesUpdateResponseTagsMap;
+  tags?: UpdateNamespaceDiscoveredDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -7866,7 +7859,7 @@ export const UpdateNamespaceDiscoveredDeviceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(NamespaceDiscoveredDevicesUpdateResponseTagsMap),
+      tags: S.optional(UpdateNamespaceDiscoveredDeviceResponseTagsMap),
       location: S.String,
       properties: S.optional(NamespaceDiscoveredDeviceProperties),
       extendedLocation: ExtendedLocation,
@@ -7876,19 +7869,19 @@ export const UpdateNamespaceDiscoveredDeviceResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNamespaceDiscoveredDeviceResponse>;
 
 /** Managed service identity (either system assigned, or none) */
-export type SchemaRegistriesUpdateRequestIdentity =
+export type UpdateSchemaRegistryRequestIdentity =
   NamespacesCreateOrReplaceRequestIdentity;
-export const SchemaRegistriesUpdateRequestIdentity =
+export const UpdateSchemaRegistryRequestIdentity =
   NamespacesCreateOrReplaceRequestIdentity;
 
 /** Resource tags. */
-export type SchemaRegistriesUpdateRequestTagsMap = {
+export type UpdateSchemaRegistryRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SchemaRegistriesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSchemaRegistryRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchemaRegistriesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSchemaRegistryRequestTagsMap>;
 
 /** The updatable properties of the SchemaRegistry. */
 export interface SchemaRegistryUpdateProperties {
@@ -7916,7 +7909,7 @@ export interface UpdateSchemaRegistryRequest {
   /** Managed service identity (either system assigned, or none) */
   identity?: NamespacesCreateOrReplaceRequestIdentity;
   /** Resource tags. */
-  tags?: SchemaRegistriesUpdateRequestTagsMap;
+  tags?: UpdateSchemaRegistryRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: SchemaRegistryUpdateProperties;
 }
@@ -7926,7 +7919,7 @@ export const UpdateSchemaRegistryRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     schemaRegistryName: S.String.pipe(T.Label()),
     identity: S.optional(NamespacesCreateOrReplaceRequestIdentity),
-    tags: S.optional(SchemaRegistriesUpdateRequestTagsMap),
+    tags: S.optional(UpdateSchemaRegistryRequestTagsMap),
     properties: S.optional(SchemaRegistryUpdateProperties),
   }).pipe(
     T.Http({
@@ -7941,19 +7934,18 @@ export const UpdateSchemaRegistryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSchemaRegistryRequest>;
 
 /** Resource tags. */
-export type SchemaRegistriesUpdateResponseTagsMap = {
+export type UpdateSchemaRegistryResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SchemaRegistriesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSchemaRegistryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchemaRegistriesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSchemaRegistryResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type SchemaRegistriesUpdateResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
-export const SchemaRegistriesUpdateResponseIdentity =
-  NamespacesCreateOrReplaceResponseIdentity;
+export type UpdateSchemaRegistryResponseIdentity = GetNamespaceResponseIdentity;
+export const UpdateSchemaRegistryResponseIdentity =
+  GetNamespaceResponseIdentity;
 
 export interface UpdateSchemaRegistryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7965,13 +7957,13 @@ export interface UpdateSchemaRegistryResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SchemaRegistriesUpdateResponseTagsMap;
+  tags?: UpdateSchemaRegistryResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SchemaRegistryProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: NamespacesCreateOrReplaceResponseIdentity;
+  identity?: GetNamespaceResponseIdentity;
 }
 export const UpdateSchemaRegistryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7979,160 +7971,40 @@ export const UpdateSchemaRegistryResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchemaRegistriesUpdateResponseTagsMap),
+    tags: S.optional(UpdateSchemaRegistryResponseTagsMap),
     location: S.String,
     properties: S.optional(SchemaRegistryProperties),
-    identity: S.optional(NamespacesCreateOrReplaceResponseIdentity),
+    identity: S.optional(GetNamespaceResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateSchemaRegistryResponse",
 }) as any as S.Schema<UpdateSchemaRegistryResponse>;
 
-export type CreateAssetEndpointProfileOrReplaceError = AzureOpError;
+export type AssetEndpointProfilesCreateOrReplaceError = AzureOpError;
 /** Create a AssetEndpointProfile */
-export const CreateAssetEndpointProfileOrReplace: API.OperationMethod<
-  CreateAssetEndpointProfileOrReplaceRequest,
-  CreateAssetEndpointProfileOrReplaceResponse,
-  CreateAssetEndpointProfileOrReplaceError,
+export const AssetEndpointProfilesCreateOrReplace: API.OperationMethod<
+  AssetEndpointProfilesCreateOrReplaceRequest,
+  AssetEndpointProfilesCreateOrReplaceResponse,
+  AssetEndpointProfilesCreateOrReplaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAssetEndpointProfileOrReplaceRequest,
-  output: CreateAssetEndpointProfileOrReplaceResponse,
+  input: AssetEndpointProfilesCreateOrReplaceRequest,
+  output: AssetEndpointProfilesCreateOrReplaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateAssetOrReplaceError = AzureOpError;
+export type AssetsCreateOrReplaceError = AzureOpError;
 /** Create a Asset */
-export const CreateAssetOrReplace: API.OperationMethod<
-  CreateAssetOrReplaceRequest,
-  CreateAssetOrReplaceResponse,
-  CreateAssetOrReplaceError,
+export const AssetsCreateOrReplace: API.OperationMethod<
+  AssetsCreateOrReplaceRequest,
+  AssetsCreateOrReplaceResponse,
+  AssetsCreateOrReplaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAssetOrReplaceRequest,
-  output: CreateAssetOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateNamespaceAssetOrReplaceError = AzureOpError;
-/** Create a NamespaceAsset */
-export const CreateNamespaceAssetOrReplace: API.OperationMethod<
-  CreateNamespaceAssetOrReplaceRequest,
-  CreateNamespaceAssetOrReplaceResponse,
-  CreateNamespaceAssetOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateNamespaceAssetOrReplaceRequest,
-  output: CreateNamespaceAssetOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateNamespaceDeviceOrReplaceError = AzureOpError;
-/** Create a NamespaceDevice */
-export const CreateNamespaceDeviceOrReplace: API.OperationMethod<
-  CreateNamespaceDeviceOrReplaceRequest,
-  CreateNamespaceDeviceOrReplaceResponse,
-  CreateNamespaceDeviceOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateNamespaceDeviceOrReplaceRequest,
-  output: CreateNamespaceDeviceOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateNamespaceDiscoveredAssetOrReplaceError = AzureOpError;
-/** Create a NamespaceDiscoveredAsset */
-export const CreateNamespaceDiscoveredAssetOrReplace: API.OperationMethod<
-  CreateNamespaceDiscoveredAssetOrReplaceRequest,
-  CreateNamespaceDiscoveredAssetOrReplaceResponse,
-  CreateNamespaceDiscoveredAssetOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateNamespaceDiscoveredAssetOrReplaceRequest,
-  output: CreateNamespaceDiscoveredAssetOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateNamespaceDiscoveredDeviceOrReplaceError = AzureOpError;
-/** Create a NamespaceDiscoveredDevice */
-export const CreateNamespaceDiscoveredDeviceOrReplace: API.OperationMethod<
-  CreateNamespaceDiscoveredDeviceOrReplaceRequest,
-  CreateNamespaceDiscoveredDeviceOrReplaceResponse,
-  CreateNamespaceDiscoveredDeviceOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateNamespaceDiscoveredDeviceOrReplaceRequest,
-  output: CreateNamespaceDiscoveredDeviceOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateNamespaceOrReplaceError = AzureOpError;
-/** Create a Namespace */
-export const CreateNamespaceOrReplace: API.OperationMethod<
-  CreateNamespaceOrReplaceRequest,
-  CreateNamespaceOrReplaceResponse,
-  CreateNamespaceOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateNamespaceOrReplaceRequest,
-  output: CreateNamespaceOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateSchemaOrReplaceError = AzureOpError;
-/** Create a Schema */
-export const CreateSchemaOrReplace: API.OperationMethod<
-  CreateSchemaOrReplaceRequest,
-  CreateSchemaOrReplaceResponse,
-  CreateSchemaOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateSchemaOrReplaceRequest,
-  output: CreateSchemaOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateSchemaRegistryOrReplaceError = AzureOpError;
-/** Create a SchemaRegistry */
-export const CreateSchemaRegistryOrReplace: API.OperationMethod<
-  CreateSchemaRegistryOrReplaceRequest,
-  CreateSchemaRegistryOrReplaceResponse,
-  CreateSchemaRegistryOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateSchemaRegistryOrReplaceRequest,
-  output: CreateSchemaRegistryOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateSchemaVersionOrReplaceError = AzureOpError;
-/** Create a SchemaVersion */
-export const CreateSchemaVersionOrReplace: API.OperationMethod<
-  CreateSchemaVersionOrReplaceRequest,
-  CreateSchemaVersionOrReplaceResponse,
-  CreateSchemaVersionOrReplaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateSchemaVersionOrReplaceRequest,
-  output: CreateSchemaVersionOrReplaceResponse,
+  input: AssetsCreateOrReplaceRequest,
+  output: AssetsCreateOrReplaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8283,6 +8155,21 @@ export const DeleteSchemaVersion: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteSchemaVersionRequest,
   output: DeleteSchemaVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecuteNamespaceAssetActionError = AzureOpError;
+/** A long-running resource action. */
+export const ExecuteNamespaceAssetAction: API.OperationMethod<
+  ExecuteNamespaceAssetActionRequest,
+  NamespaceAssetExecuteActionResponse,
+  ExecuteNamespaceAssetActionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteNamespaceAssetActionRequest,
+  output: NamespaceAssetExecuteActionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8708,31 +8595,136 @@ export const ListSchemaVersionBySchema: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NamespaceAssetsExecuteActionError = AzureOpError;
-/** A long-running resource action. */
-export const NamespaceAssetsExecuteAction: API.OperationMethod<
-  NamespaceAssetsExecuteActionRequest,
-  NamespaceAssetExecuteActionResponse,
-  NamespaceAssetsExecuteActionError,
+export type MigrateNamespaceError = AzureOpError;
+/** Migrate the resources into Namespace */
+export const MigrateNamespace: API.OperationMethod<
+  MigrateNamespaceRequest,
+  NamespaceMigrateResponse,
+  MigrateNamespaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NamespaceAssetsExecuteActionRequest,
-  output: NamespaceAssetExecuteActionResponse,
+  input: MigrateNamespaceRequest,
+  output: NamespaceMigrateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NamespacesMigrateError = AzureOpError;
-/** Migrate the resources into Namespace */
-export const NamespacesMigrate: API.OperationMethod<
-  NamespacesMigrateRequest,
-  NamespaceMigrateResponse,
-  NamespacesMigrateError,
+export type NamespaceAssetsCreateOrReplaceError = AzureOpError;
+/** Create a NamespaceAsset */
+export const NamespaceAssetsCreateOrReplace: API.OperationMethod<
+  NamespaceAssetsCreateOrReplaceRequest,
+  NamespaceAssetsCreateOrReplaceResponse,
+  NamespaceAssetsCreateOrReplaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesMigrateRequest,
-  output: NamespaceMigrateResponse,
+  input: NamespaceAssetsCreateOrReplaceRequest,
+  output: NamespaceAssetsCreateOrReplaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type NamespaceDevicesCreateOrReplaceError = AzureOpError;
+/** Create a NamespaceDevice */
+export const NamespaceDevicesCreateOrReplace: API.OperationMethod<
+  NamespaceDevicesCreateOrReplaceRequest,
+  NamespaceDevicesCreateOrReplaceResponse,
+  NamespaceDevicesCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: NamespaceDevicesCreateOrReplaceRequest,
+  output: NamespaceDevicesCreateOrReplaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type NamespaceDiscoveredAssetsCreateOrReplaceError = AzureOpError;
+/** Create a NamespaceDiscoveredAsset */
+export const NamespaceDiscoveredAssetsCreateOrReplace: API.OperationMethod<
+  NamespaceDiscoveredAssetsCreateOrReplaceRequest,
+  NamespaceDiscoveredAssetsCreateOrReplaceResponse,
+  NamespaceDiscoveredAssetsCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: NamespaceDiscoveredAssetsCreateOrReplaceRequest,
+  output: NamespaceDiscoveredAssetsCreateOrReplaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type NamespaceDiscoveredDevicesCreateOrReplaceError = AzureOpError;
+/** Create a NamespaceDiscoveredDevice */
+export const NamespaceDiscoveredDevicesCreateOrReplace: API.OperationMethod<
+  NamespaceDiscoveredDevicesCreateOrReplaceRequest,
+  NamespaceDiscoveredDevicesCreateOrReplaceResponse,
+  NamespaceDiscoveredDevicesCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: NamespaceDiscoveredDevicesCreateOrReplaceRequest,
+  output: NamespaceDiscoveredDevicesCreateOrReplaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type NamespacesCreateOrReplaceError = AzureOpError;
+/** Create a Namespace */
+export const NamespacesCreateOrReplace: API.OperationMethod<
+  NamespacesCreateOrReplaceRequest,
+  NamespacesCreateOrReplaceResponse,
+  NamespacesCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: NamespacesCreateOrReplaceRequest,
+  output: NamespacesCreateOrReplaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SchemaRegistriesCreateOrReplaceError = AzureOpError;
+/** Create a SchemaRegistry */
+export const SchemaRegistriesCreateOrReplace: API.OperationMethod<
+  SchemaRegistriesCreateOrReplaceRequest,
+  SchemaRegistriesCreateOrReplaceResponse,
+  SchemaRegistriesCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SchemaRegistriesCreateOrReplaceRequest,
+  output: SchemaRegistriesCreateOrReplaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SchemasCreateOrReplaceError = AzureOpError;
+/** Create a Schema */
+export const SchemasCreateOrReplace: API.OperationMethod<
+  SchemasCreateOrReplaceRequest,
+  SchemasCreateOrReplaceResponse,
+  SchemasCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SchemasCreateOrReplaceRequest,
+  output: SchemasCreateOrReplaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SchemaVersionsCreateOrReplaceError = AzureOpError;
+/** Create a SchemaVersion */
+export const SchemaVersionsCreateOrReplace: API.OperationMethod<
+  SchemaVersionsCreateOrReplaceRequest,
+  SchemaVersionsCreateOrReplaceResponse,
+  SchemaVersionsCreateOrReplaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SchemaVersionsCreateOrReplaceRequest,
+  output: SchemaVersionsCreateOrReplaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

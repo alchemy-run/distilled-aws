@@ -21,7 +21,8 @@
       "originFallback": "origin_fallback",
       "tokenPublishSubscribe": "token_publish_subscribe",
       "tokenSubscribe": "token_subscribe"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.moq#RelaysCreateResponseConfigLingeringSubscribe": {
@@ -356,22 +357,22 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.moq#RelaysCreate"
+          "target": "com.cloudflare.moq#CreateRelay"
         },
         {
-          "target": "com.cloudflare.moq#RelaysDelete"
+          "target": "com.cloudflare.moq#DeleteRelay"
         },
         {
-          "target": "com.cloudflare.moq#RelaysGet"
+          "target": "com.cloudflare.moq#GetRelay"
         },
         {
-          "target": "com.cloudflare.moq#RelaysList"
+          "target": "com.cloudflare.moq#ListRelays"
         },
         {
-          "target": "com.cloudflare.moq#RelaysUpdate"
+          "target": "com.cloudflare.moq#RotateRelayToken"
         },
         {
-          "target": "com.cloudflare.moq#RelaysTokensRotate"
+          "target": "com.cloudflare.moq#UpdateRelay"
         }
       ],
       "traits": {

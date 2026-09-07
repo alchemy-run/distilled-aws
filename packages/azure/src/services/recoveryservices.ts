@@ -175,132 +175,6 @@ export const VaultCertificateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VaultCertificateResponse",
 }) as any as S.Schema<VaultCertificateResponse>;
 
-/** Input definition for DeletedVault undelete properties. */
-export interface DeletedVaultUndeleteInputProperties {
-  /** Recovery resource group Id. */
-  recoveryResourceGroupId: string;
-}
-export const DeletedVaultUndeleteInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    recoveryResourceGroupId: S.String,
-  }),
-).annotate({
-  identifier: "DeletedVaultUndeleteInputProperties",
-}) as any as S.Schema<DeletedVaultUndeleteInputProperties>;
-
-export interface DeletedVaultsUndeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the DeletedVault */
-  deletedVaultName: string;
-  /** Undelete input properties. */
-  properties: DeletedVaultUndeleteInputProperties;
-}
-export const DeletedVaultsUndeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    deletedVaultName: S.String.pipe(T.Label()),
-    properties: DeletedVaultUndeleteInputProperties,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults/{deletedVaultName}/undelete",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletedVaultsUndeleteRequest",
-}) as any as S.Schema<DeletedVaultsUndeleteRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** Properties of the DeletedVault. */
-export interface DeletedVaultProperties {
-  /** ARM Id of the Vault which was deleted. */
-  vaultId?: string;
-  /** Time in UTC at which the Vault was deleted. */
-  vaultDeletionTime?: string;
-  /** Time in UTC at which the DeletedVault will be purged. */
-  purgeAt?: string;
-}
-export const DeletedVaultProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vaultId: S.optional(S.String),
-    vaultDeletionTime: S.optional(S.String),
-    purgeAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeletedVaultProperties",
-}) as any as S.Schema<DeletedVaultProperties>;
-
-export interface DeletedVaultsUndeleteResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeletedVaultProperties;
-}
-export const DeletedVaultsUndeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeletedVaultProperties),
-  }),
-).annotate({
-  identifier: "DeletedVaultsUndeleteResponse",
-}) as any as S.Schema<DeletedVaultsUndeleteResponse>;
-
 export interface DeleteRegisteredIdentityRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -392,6 +266,67 @@ export const GetDeletedVaultRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetDeletedVaultRequest",
 }) as any as S.Schema<GetDeletedVaultRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** Properties of the DeletedVault. */
+export interface DeletedVaultProperties {
+  /** ARM Id of the Vault which was deleted. */
+  vaultId?: string;
+  /** Time in UTC at which the Vault was deleted. */
+  vaultDeletionTime?: string;
+  /** Time in UTC at which the DeletedVault will be purged. */
+  purgeAt?: string;
+}
+export const DeletedVaultProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vaultId: S.optional(S.String),
+    vaultDeletionTime: S.optional(S.String),
+    purgeAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeletedVaultProperties",
+}) as any as S.Schema<DeletedVaultProperties>;
 
 export interface GetDeletedVaultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1439,11 +1374,11 @@ export const GetVaultRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVaultRequest>;
 
 /** Resource tags. */
-export type VaultsGetResponseTagsMap = { [key: string]: string | undefined };
-export const VaultsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetVaultResponseTagsMap = { [key: string]: string | undefined };
+export const GetVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultsGetResponseTagsMap>;
+) as any as S.Schema<GetVaultResponseTagsMap>;
 
 export interface GetVaultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1455,7 +1390,7 @@ export interface GetVaultResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VaultsGetResponseTagsMap;
+  tags?: GetVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the vault. */
@@ -1473,7 +1408,7 @@ export const GetVaultResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VaultsGetResponseTagsMap),
+    tags: S.optional(GetVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(VaultProperties),
     identity: S.optional(IdentityData),
@@ -2265,12 +2200,77 @@ export const RecoveryServicesCapabilitiesResponse = /*@__PURE__*/ S.suspend(
   identifier: "RecoveryServicesCapabilitiesResponse",
 }) as any as S.Schema<RecoveryServicesCapabilitiesResponse>;
 
+/** Input definition for DeletedVault undelete properties. */
+export interface DeletedVaultUndeleteInputProperties {
+  /** Recovery resource group Id. */
+  recoveryResourceGroupId: string;
+}
+export const DeletedVaultUndeleteInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    recoveryResourceGroupId: S.String,
+  }),
+).annotate({
+  identifier: "DeletedVaultUndeleteInputProperties",
+}) as any as S.Schema<DeletedVaultUndeleteInputProperties>;
+
+export interface UndeleteDeletedVaultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of the DeletedVault */
+  deletedVaultName: string;
+  /** Undelete input properties. */
+  properties: DeletedVaultUndeleteInputProperties;
+}
+export const UndeleteDeletedVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    deletedVaultName: S.String.pipe(T.Label()),
+    properties: DeletedVaultUndeleteInputProperties,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RecoveryServices/locations/{location}/deletedVaults/{deletedVaultName}/undelete",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UndeleteDeletedVaultRequest",
+}) as any as S.Schema<UndeleteDeletedVaultRequest>;
+
+export interface UndeleteDeletedVaultResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeletedVaultProperties;
+}
+export const UndeleteDeletedVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeletedVaultProperties),
+  }),
+).annotate({
+  identifier: "UndeleteDeletedVaultResponse",
+}) as any as S.Schema<UndeleteDeletedVaultResponse>;
+
 /** Resource tags. */
-export type VaultsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const VaultsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVaultRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVaultRequestTagsMap>;
 
 /** Details for upgrading vault. */
 export interface UpgradeDetailsInput {}
@@ -2379,7 +2379,7 @@ export interface UpdateVaultRequest {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: VaultsUpdateRequestTagsMap;
+  tags?: UpdateVaultRequestTagsMap;
   /** Optional ETag. */
   etag?: string;
   /** Properties of the vault. */
@@ -2395,7 +2395,7 @@ export const UpdateVaultRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(VaultsUpdateRequestTagsMap),
+    tags: S.optional(UpdateVaultRequestTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(VaultPropertiesInput),
     sku: S.optional(Sku),
@@ -2413,11 +2413,11 @@ export const UpdateVaultRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVaultRequest>;
 
 /** Resource tags. */
-export type VaultsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const VaultsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVaultResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVaultResponseTagsMap>;
 
 export interface UpdateVaultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2429,7 +2429,7 @@ export interface UpdateVaultResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VaultsUpdateResponseTagsMap;
+  tags?: UpdateVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the vault. */
@@ -2447,7 +2447,7 @@ export const UpdateVaultResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VaultsUpdateResponseTagsMap),
+    tags: S.optional(UpdateVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(VaultProperties),
     identity: S.optional(IdentityData),
@@ -2706,21 +2706,6 @@ export const CreateVaultCertificate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeletedVaultsUndeleteError = AzureOpError;
-/** Start undelete of a deleted vault. */
-export const DeletedVaultsUndelete: API.OperationMethod<
-  DeletedVaultsUndeleteRequest,
-  DeletedVaultsUndeleteResponse,
-  DeletedVaultsUndeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedVaultsUndeleteRequest,
-  output: DeletedVaultsUndeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteRegisteredIdentityError = AzureOpError;
 /** Unregisters the given container from your Recovery Services vault. */
 export const DeleteRegisteredIdentity: API.OperationMethod<
@@ -2971,6 +2956,21 @@ export const RecoveryServicesCapabilities: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RecoveryServicesCapabilitiesRequest,
   output: RecoveryServicesCapabilitiesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UndeleteDeletedVaultError = AzureOpError;
+/** Start undelete of a deleted vault. */
+export const UndeleteDeletedVault: API.OperationMethod<
+  UndeleteDeletedVaultRequest,
+  UndeleteDeletedVaultResponse,
+  UndeleteDeletedVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UndeleteDeletedVaultRequest,
+  output: UndeleteDeletedVaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

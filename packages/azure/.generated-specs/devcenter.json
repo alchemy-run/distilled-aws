@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetail": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailResponse": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -64,7 +65,7 @@
           }
         },
         "imageReference": {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseImageReference",
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseImageReference",
           "traits": {
             "smithy.api#documentation": "Image reference information"
           }
@@ -94,7 +95,7 @@
           }
         },
         "taskGroups": {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList",
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList",
           "traits": {
             "smithy.api#documentation": "The list of task groups executed during the image definition build."
           }
@@ -104,7 +105,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#ImageDefinitionBuildTaskGroup"
@@ -307,7 +308,7 @@
         "smithy.api#documentation": "Image creation error details"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseImageReference": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseImageReference": {
       "type": "structure",
       "members": {
         "id": {
@@ -435,7 +436,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailRequest": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -491,10 +492,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancel": {
+    "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuild": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancelRequest"
+        "target": "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuildRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -510,7 +511,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancelRequest": {
+    "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuildRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -938,13 +939,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetail": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -957,11 +958,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailResponse": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -971,7 +972,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -1000,7 +1001,7 @@
         "smithy.api#documentation": "Catalog error details"
       }
     },
-    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailRequest": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1524,13 +1525,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetail": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailRequest"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailResponse"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1543,11 +1544,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailResponse": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -1557,7 +1558,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -1566,7 +1567,7 @@
         "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
       }
     },
-    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailRequest": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2013,13 +2014,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetCustomizationTaskErrorDetail": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailRequest"
+        "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailResponse"
+        "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2032,11 +2033,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GetCustomizationTaskErrorDetailResponse": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#CustomizationTasksGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -2046,7 +2047,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#CustomizationTasksGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -2055,7 +2056,7 @@
         "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
       }
     },
-    "com.azure.devcenter#GetCustomizationTaskErrorDetailRequest": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2463,13 +2464,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecute": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecuteRequest"
+        "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponse"
+        "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2482,7 +2483,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponse": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -2492,7 +2493,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponseReason",
+          "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -2508,7 +2509,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponseReason": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -2528,7 +2529,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecuteRequest": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2562,13 +2563,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecute": {
+    "com.azure.devcenter#ExecuteCheckNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CheckNameAvailabilityExecuteRequest"
+        "target": "com.azure.devcenter#ExecuteCheckNameAvailabilityRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CheckNameAvailabilityExecuteResponse"
+        "target": "com.azure.devcenter#ExecuteCheckNameAvailabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2581,7 +2582,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecuteResponse": {
+    "com.azure.devcenter#ExecuteCheckNameAvailabilityResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -2591,7 +2592,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.devcenter#CheckNameAvailabilityExecuteResponseReason",
+          "target": "com.azure.devcenter#ExecuteCheckNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -2607,7 +2608,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecuteResponseReason": {
+    "com.azure.devcenter#ExecuteCheckNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -2627,7 +2628,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecuteRequest": {
+    "com.azure.devcenter#ExecuteCheckNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2865,7 +2866,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.devcenter#OperationStatusesGetResponseOperationsList",
+          "target": "com.azure.devcenter#GetOperationStatusResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2963,7 +2964,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.devcenter#OperationStatusesGetResponseOperationsList": {
+    "com.azure.devcenter#GetOperationStatusResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#OperationStatusResult"
@@ -3099,7 +3100,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.devcenter#OperationsListResponseValueList",
+          "target": "com.azure.devcenter#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3115,7 +3116,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#OperationsListResponseValueList": {
+    "com.azure.devcenter#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#Operation"
@@ -3281,7 +3282,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevBoxDefinitionsGetByProjectResponseTagsMap",
+          "target": "com.azure.devcenter#GetDevBoxDefinitionByProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3690,7 +3691,7 @@
         "smithy.api#documentation": "Image reference information"
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetByProjectResponseTagsMap": {
+    "com.azure.devcenter#GetDevBoxDefinitionByProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3998,7 +3999,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevBoxDefinitionsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateDevBoxDefinitionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4021,7 +4022,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateDevBoxDefinitionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4597,7 +4598,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevBoxDefinitionsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetDevBoxDefinitionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4620,7 +4621,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetResponseTagsMap": {
+    "com.azure.devcenter#GetDevBoxDefinitionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4842,13 +4843,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseIdentity",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4864,7 +4865,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseIdentity": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4957,7 +4958,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5269,13 +5270,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestTagsMap",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestIdentity",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5285,7 +5286,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestIdentity": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5321,7 +5322,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestTagsMap": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5780,13 +5781,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetProjectEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesGetResponseIdentity",
+          "target": "com.azure.devcenter#GetProjectEnvironmentTypeResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5802,7 +5803,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesGetResponseIdentity": {
+    "com.azure.devcenter#GetProjectEnvironmentTypeResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5831,7 +5832,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesGetResponseTagsMap": {
+    "com.azure.devcenter#GetProjectEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6525,7 +6526,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#EnvironmentTypesUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6535,7 +6536,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6713,7 +6714,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#EnvironmentTypesUpdateRequestTagsMap",
+          "target": "com.azure.devcenter#UpdateEnvironmentTypeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6723,7 +6724,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesUpdateRequestTagsMap": {
+    "com.azure.devcenter#UpdateEnvironmentTypeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6955,7 +6956,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#EnvironmentTypesGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6965,7 +6966,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesGetResponseTagsMap": {
+    "com.azure.devcenter#GetEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7160,10 +7161,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsConnect": {
+    "com.azure.devcenter#ConnectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsConnectRequest"
+        "target": "com.azure.devcenter#ConnectCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7179,7 +7180,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CatalogsConnectRequest": {
+    "com.azure.devcenter#ConnectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7219,10 +7220,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsSync": {
+    "com.azure.devcenter#SyncCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsSyncRequest"
+        "target": "com.azure.devcenter#SyncCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7238,7 +7239,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CatalogsSyncRequest": {
+    "com.azure.devcenter#SyncCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7278,10 +7279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetCatalogSyncErrorDetail": {
+    "com.azure.devcenter#GetCatalogSyncErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetCatalogSyncErrorDetailRequest"
+        "target": "com.azure.devcenter#GetCatalogSyncErrorDetailsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#SyncErrorDetails"
@@ -7430,7 +7431,7 @@
         "smithy.api#documentation": "Catalog error details"
       }
     },
-    "com.azure.devcenter#GetCatalogSyncErrorDetailRequest": {
+    "com.azure.devcenter#GetCatalogSyncErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9181,7 +9182,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.devcenter#SkusListByProjectResponseValueList",
+          "target": "com.azure.devcenter#ListSkusByProjectResponseValueList",
           "traits": {
             "smithy.api#documentation": "Current page of results."
           }
@@ -9197,16 +9198,16 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueList": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueList": {
       "type": "list",
       "member": {
-        "target": "com.azure.devcenter#SkusListByProjectResponseValueItem"
+        "target": "com.azure.devcenter#ListSkusByProjectResponseValueItem"
       },
       "traits": {
         "smithy.api#documentation": "Current page of results."
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueItem": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -9244,13 +9245,13 @@
           }
         },
         "locations": {
-          "target": "com.azure.devcenter#SkusListByProjectResponseValueItemLocationsList",
+          "target": "com.azure.devcenter#ListSkusByProjectResponseValueItemLocationsList",
           "traits": {
             "smithy.api#documentation": "SKU supported locations."
           }
         },
         "capabilities": {
-          "target": "com.azure.devcenter#SkusListByProjectResponseValueItemCapabilitiesList",
+          "target": "com.azure.devcenter#ListSkusByProjectResponseValueItemCapabilitiesList",
           "traits": {
             "smithy.api#documentation": "Collection of name/value pairs to describe the SKU capabilities."
           }
@@ -9260,7 +9261,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU for DevCenter resources"
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueItemCapabilitiesList": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueItemCapabilitiesList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#Capability"
@@ -9289,7 +9290,7 @@
         "smithy.api#documentation": "A name/value pair to describe a capability."
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueItemLocationsList": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueItemLocationsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -11045,10 +11046,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsConnect": {
+    "com.azure.devcenter#ConnectProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsConnectRequest"
+        "target": "com.azure.devcenter#ConnectProjectCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11064,7 +11065,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsConnectRequest": {
+    "com.azure.devcenter#ConnectProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11104,10 +11105,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsSync": {
+    "com.azure.devcenter#SyncProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsSyncRequest"
+        "target": "com.azure.devcenter#SyncProjectCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11123,7 +11124,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsSyncRequest": {
+    "com.azure.devcenter#SyncProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11163,10 +11164,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetProjectCatalogSyncErrorDetail": {
+    "com.azure.devcenter#GetProjectCatalogSyncErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetailRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetailsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#SyncErrorDetails"
@@ -11182,7 +11183,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GetProjectCatalogSyncErrorDetailRequest": {
+    "com.azure.devcenter#GetProjectCatalogSyncErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11222,13 +11223,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetail": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11241,11 +11242,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailResponse": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -11255,7 +11256,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -11264,7 +11265,7 @@
         "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
       }
     },
-    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailRequest": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12051,10 +12052,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetProjectInheritedSetting": {
+    "com.azure.devcenter#GetProjectInheritedSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetProjectInheritedSettingRequest"
+        "target": "com.azure.devcenter#GetProjectInheritedSettingsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#InheritedSettingsForProject"
@@ -12155,7 +12156,7 @@
         "smithy.api#documentation": "Catalog item sync types enable or disable status. Indicates whether project catalogs are allowed to sync catalog items under projects associated to this dev center."
       }
     },
-    "com.azure.devcenter#GetProjectInheritedSettingRequest": {
+    "com.azure.devcenter#GetProjectInheritedSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12285,7 +12286,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12304,7 +12305,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectsUpdateResponseIdentity",
+          "target": "com.azure.devcenter#UpdateProjectResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -12314,7 +12315,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectsUpdateResponseIdentity": {
+    "com.azure.devcenter#UpdateProjectResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -12520,7 +12521,7 @@
         "smithy.api#documentation": "Indicates catalog item types that can be synced."
       }
     },
-    "com.azure.devcenter#ProjectsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12578,7 +12579,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectsUpdateRequestIdentity",
+          "target": "com.azure.devcenter#UpdateProjectRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -12588,7 +12589,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectsUpdateRequestIdentity": {
+    "com.azure.devcenter#UpdateProjectRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -12931,7 +12932,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12950,7 +12951,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectsGetResponseIdentity",
+          "target": "com.azure.devcenter#GetProjectResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -12960,7 +12961,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectsGetResponseIdentity": {
+    "com.azure.devcenter#GetProjectResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -12989,7 +12990,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.devcenter#ProjectsGetResponseTagsMap": {
+    "com.azure.devcenter#GetProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14139,7 +14140,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevCentersUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateDevCenterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14158,7 +14159,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#DevCentersUpdateResponseIdentity",
+          "target": "com.azure.devcenter#UpdateDevCenterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -14168,7 +14169,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevCentersUpdateResponseIdentity": {
+    "com.azure.devcenter#UpdateDevCenterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -14480,7 +14481,7 @@
         "smithy.api#documentation": "Values can be systemAssignedIdentity or userAssignedIdentity"
       }
     },
-    "com.azure.devcenter#DevCentersUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateDevCenterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14532,7 +14533,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#DevCentersUpdateRequestIdentity",
+          "target": "com.azure.devcenter#UpdateDevCenterRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -14586,7 +14587,7 @@
         "smithy.api#documentation": "Properties of the devcenter. These properties can be updated after the resource has been created."
       }
     },
-    "com.azure.devcenter#DevCentersUpdateRequestIdentity": {
+    "com.azure.devcenter#UpdateDevCenterRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -14891,7 +14892,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevCentersGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetDevCenterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14910,7 +14911,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#DevCentersGetResponseIdentity",
+          "target": "com.azure.devcenter#GetDevCenterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -14920,7 +14921,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevCentersGetResponseIdentity": {
+    "com.azure.devcenter#GetDevCenterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -14949,7 +14950,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.devcenter#DevCentersGetResponseTagsMap": {
+    "com.azure.devcenter#GetDevCenterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15212,10 +15213,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependencyEndpoints": {
+    "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest"
+        "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#OutboundEnvironmentEndpointCollection"
@@ -15338,7 +15339,7 @@
         "smithy.api#documentation": "Details about the connection between the Batch service and the endpoint."
       }
     },
-    "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependencyEndpointsRequest": {
+    "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15377,10 +15378,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsRunHealthChecks": {
+    "com.azure.devcenter#RunNetworkConnectionHealthChecks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsRunHealthChecksRequest"
+        "target": "com.azure.devcenter#RunNetworkConnectionHealthChecksRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15396,7 +15397,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsRunHealthChecksRequest": {
+    "com.azure.devcenter#RunNetworkConnectionHealthChecksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15428,13 +15429,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GetNetworkConnectionHealthDetail": {
+    "com.azure.devcenter#GetNetworkConnectionHealthDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GetNetworkConnectionHealthDetailRequest"
+        "target": "com.azure.devcenter#GetNetworkConnectionHealthDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#GetNetworkConnectionHealthDetailResponse"
+        "target": "com.azure.devcenter#GetNetworkConnectionHealthDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15447,7 +15448,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GetNetworkConnectionHealthDetailResponse": {
+    "com.azure.devcenter#GetNetworkConnectionHealthDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15620,7 +15621,7 @@
         "smithy.api#documentation": "Health check status values"
       }
     },
-    "com.azure.devcenter#GetNetworkConnectionHealthDetailRequest": {
+    "com.azure.devcenter#GetNetworkConnectionHealthDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15875,7 +15876,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#NetworkConnectionsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateNetworkConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16143,7 +16144,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateNetworkConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16571,7 +16572,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#NetworkConnectionsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetNetworkConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16594,7 +16595,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGetResponseTagsMap": {
+    "com.azure.devcenter#GetNetworkConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17693,10 +17694,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#PoolsRunHealthChecks": {
+    "com.azure.devcenter#RunPoolHealthChecks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#PoolsRunHealthChecksRequest"
+        "target": "com.azure.devcenter#RunPoolHealthChecksRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17712,7 +17713,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#PoolsRunHealthChecksRequest": {
+    "com.azure.devcenter#RunPoolHealthChecksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17858,7 +17859,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#PoolsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdatePoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18445,7 +18446,7 @@
         "smithy.api#documentation": "Indicates if the pool is created from an existing Dev Box Definition or if one is provided directly."
       }
     },
-    "com.azure.devcenter#PoolsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdatePoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18987,7 +18988,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#PoolsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19010,7 +19011,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#PoolsGetResponseTagsMap": {
+    "com.azure.devcenter#GetPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19360,283 +19361,199 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetail"
+          "target": "com.azure.devcenter#AttachedNetworksCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancel"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuild"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsBuildImage"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetail"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetail"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#ListEnvironmentDefinitionByCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#GetCustomizationTaskErrorDetail"
-        },
-        {
-          "target": "com.azure.devcenter#GetCustomizationTask"
-        },
-        {
-          "target": "com.azure.devcenter#ListCustomizationTaskByCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecute"
-        },
-        {
-          "target": "com.azure.devcenter#CheckNameAvailabilityExecute"
-        },
-        {
-          "target": "com.azure.devcenter#ListUsageByLocation"
-        },
-        {
-          "target": "com.azure.devcenter#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.devcenter#ListOperations"
-        },
-        {
-          "target": "com.azure.devcenter#GetDevBoxDefinitionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListDevBoxDefinitionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteDevBoxDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateDevBoxDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#DevBoxDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetDevBoxDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#ListDevBoxDefinitionByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProjectEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateProjectEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectEnvironmentTypes"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectAllowedEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectAllowedEnvironmentTypes"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#EnvironmentTypesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#ListEnvironmentTypeByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#CatalogsConnect"
-        },
-        {
-          "target": "com.azure.devcenter#CatalogsSync"
-        },
-        {
-          "target": "com.azure.devcenter#GetCatalogSyncErrorDetail"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateCatalog"
+          "target": "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuild"
         },
         {
           "target": "com.azure.devcenter#CatalogsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#GetCatalog"
+          "target": "com.azure.devcenter#ConnectCatalog"
         },
         {
-          "target": "com.azure.devcenter#ListCatalogByDevCenter"
+          "target": "com.azure.devcenter#ConnectProjectCatalog"
         },
         {
           "target": "com.azure.devcenter#DeleteAttachedNetwork"
         },
         {
-          "target": "com.azure.devcenter#AttachedNetworksCreateOrUpdate"
+          "target": "com.azure.devcenter#DeleteCatalog"
         },
         {
-          "target": "com.azure.devcenter#GetAttachedNetworkByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#ListAttachedNetworkByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#ListSkusByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetImageVersionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListImageVersionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetImageByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListImageByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetImageVersion"
-        },
-        {
-          "target": "com.azure.devcenter#ListImageVersionByImage"
-        },
-        {
-          "target": "com.azure.devcenter#GetImage"
-        },
-        {
-          "target": "com.azure.devcenter#ListImageByGallery"
-        },
-        {
-          "target": "com.azure.devcenter#ListImageByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteGallery"
-        },
-        {
-          "target": "com.azure.devcenter#GalleriesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetGallery"
-        },
-        {
-          "target": "com.azure.devcenter#ListGalleryByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectCatalogsConnect"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectCatalogsSync"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetail"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetail"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#PatchProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectCatalogsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectCatalogs"
-        },
-        {
-          "target": "com.azure.devcenter#GetAttachedNetworkByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListAttachedNetworkByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectInheritedSetting"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProject"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateProject"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectByResourceGroup"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectBySubscription"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProjectPolicy"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateProjectPolicy"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectPolicy"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectPolicyByDevCenter"
+          "target": "com.azure.devcenter#DeleteDevBoxDefinition"
         },
         {
           "target": "com.azure.devcenter#DeleteDevCenter"
         },
         {
-          "target": "com.azure.devcenter#UpdateDevCenter"
+          "target": "com.azure.devcenter#DeleteEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteGallery"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteNetworkConnection"
+        },
+        {
+          "target": "com.azure.devcenter#DeletePool"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteProject"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteProjectEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteProjectPolicy"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteSchedule"
+        },
+        {
+          "target": "com.azure.devcenter#DevBoxDefinitionsCreateOrUpdate"
         },
         {
           "target": "com.azure.devcenter#DevCentersCreateOrUpdate"
         },
         {
+          "target": "com.azure.devcenter#EnvironmentTypesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#ExecuteCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailability"
+        },
+        {
+          "target": "com.azure.devcenter#GalleriesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetAttachedNetworkByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#GetAttachedNetworkByProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#GetCatalogSyncErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetCustomizationTask"
+        },
+        {
+          "target": "com.azure.devcenter#GetCustomizationTaskErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetDevBoxDefinition"
+        },
+        {
+          "target": "com.azure.devcenter#GetDevBoxDefinitionByProject"
+        },
+        {
           "target": "com.azure.devcenter#GetDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#GetEnvironmentDefinition"
+        },
+        {
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#GetGallery"
+        },
+        {
+          "target": "com.azure.devcenter#GetImage"
+        },
+        {
+          "target": "com.azure.devcenter#GetImageByProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetImageVersion"
+        },
+        {
+          "target": "com.azure.devcenter#GetImageVersionByProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetNetworkConnection"
+        },
+        {
+          "target": "com.azure.devcenter#GetNetworkConnectionHealthDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.devcenter#GetPool"
+        },
+        {
+          "target": "com.azure.devcenter#GetProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectAllowedEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuild"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectInheritedSettings"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectPolicy"
+        },
+        {
+          "target": "com.azure.devcenter#GetSchedule"
+        },
+        {
+          "target": "com.azure.devcenter#ListAttachedNetworkByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ListAttachedNetworkByProject"
+        },
+        {
+          "target": "com.azure.devcenter#ListCatalogByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ListCustomizationTaskByCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#ListDevBoxDefinitionByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ListDevBoxDefinitionByProject"
         },
         {
           "target": "com.azure.devcenter#ListDevCenterByResourceGroup"
@@ -19645,28 +19562,31 @@
           "target": "com.azure.devcenter#ListDevCenterBySubscription"
         },
         {
-          "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependencyEndpoints"
+          "target": "com.azure.devcenter#ListEnvironmentDefinitionByCatalog"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsRunHealthChecks"
+          "target": "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#GetNetworkConnectionHealthDetail"
+          "target": "com.azure.devcenter#ListEnvironmentTypeByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#ListNetworkConnectionHealthDetails"
+          "target": "com.azure.devcenter#ListGalleryByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#DeleteNetworkConnection"
+          "target": "com.azure.devcenter#ListImageByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#UpdateNetworkConnection"
+          "target": "com.azure.devcenter#ListImageByGallery"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsCreateOrUpdate"
+          "target": "com.azure.devcenter#ListImageByProject"
         },
         {
-          "target": "com.azure.devcenter#GetNetworkConnection"
+          "target": "com.azure.devcenter#ListImageVersionByImage"
+        },
+        {
+          "target": "com.azure.devcenter#ListImageVersionByProject"
         },
         {
           "target": "com.azure.devcenter#ListNetworkConnectionByResourceGroup"
@@ -19675,40 +19595,121 @@
           "target": "com.azure.devcenter#ListNetworkConnectionBySubscription"
         },
         {
-          "target": "com.azure.devcenter#DeleteSchedule"
+          "target": "com.azure.devcenter#ListNetworkConnectionHealthDetails"
         },
         {
-          "target": "com.azure.devcenter#UpdateSchedule"
+          "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpoints"
         },
         {
-          "target": "com.azure.devcenter#SchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetSchedule"
-        },
-        {
-          "target": "com.azure.devcenter#ListScheduleByPool"
-        },
-        {
-          "target": "com.azure.devcenter#PoolsRunHealthChecks"
-        },
-        {
-          "target": "com.azure.devcenter#DeletePool"
-        },
-        {
-          "target": "com.azure.devcenter#UpdatePool"
-        },
-        {
-          "target": "com.azure.devcenter#PoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetPool"
+          "target": "com.azure.devcenter#ListOperations"
         },
         {
           "target": "com.azure.devcenter#ListPoolByProject"
         },
         {
+          "target": "com.azure.devcenter#ListProjectAllowedEnvironmentTypes"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectByResourceGroup"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectBySubscription"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinition"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectCatalogs"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectEnvironmentTypes"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectPolicyByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ListScheduleByPool"
+        },
+        {
+          "target": "com.azure.devcenter#ListSkusByProject"
+        },
+        {
           "target": "com.azure.devcenter#ListSkusBySubscription"
+        },
+        {
+          "target": "com.azure.devcenter#ListUsageByLocation"
+        },
+        {
+          "target": "com.azure.devcenter#NetworkConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#PatchProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#PoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsBuildImage"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectCatalogsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectEnvironmentTypesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#RunNetworkConnectionHealthChecks"
+        },
+        {
+          "target": "com.azure.devcenter#RunPoolHealthChecks"
+        },
+        {
+          "target": "com.azure.devcenter#SchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#SyncCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#SyncProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateDevBoxDefinition"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateNetworkConnection"
+        },
+        {
+          "target": "com.azure.devcenter#UpdatePool"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateProject"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateProjectPolicy"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateSchedule"
         }
       ],
       "traits": {

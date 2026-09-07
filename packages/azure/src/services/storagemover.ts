@@ -961,9 +961,9 @@ export const GetEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEndpointRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type EndpointsGetResponseIdentity =
+export type GetEndpointResponseIdentity =
   EndpointsCreateOrUpdateResponseIdentity;
-export const EndpointsGetResponseIdentity =
+export const GetEndpointResponseIdentity =
   EndpointsCreateOrUpdateResponseIdentity;
 
 export interface GetEndpointResponse {
@@ -1648,13 +1648,13 @@ export const GetStorageMoverRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStorageMoverRequest>;
 
 /** Resource tags. */
-export type StorageMoversGetResponseTagsMap = {
+export type GetStorageMoverResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageMoversGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetStorageMoverResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageMoversGetResponseTagsMap>;
+) as any as S.Schema<GetStorageMoverResponseTagsMap>;
 
 /** The resource specific properties for the Storage Mover resource. */
 export interface StorageMoverProperties {
@@ -1682,7 +1682,7 @@ export interface GetStorageMoverResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageMoversGetResponseTagsMap;
+  tags?: GetStorageMoverResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource specific properties for the Storage Mover resource. */
@@ -1694,7 +1694,7 @@ export const GetStorageMoverResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageMoversGetResponseTagsMap),
+    tags: S.optional(GetStorageMoverResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageMoverProperties),
   }),
@@ -2326,20 +2326,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2825,9 +2825,9 @@ export const EndpointBaseUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EndpointBaseUpdateProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type EndpointsUpdateRequestIdentity =
+export type UpdateEndpointRequestIdentity =
   EndpointsCreateOrUpdateRequestIdentity;
-export const EndpointsUpdateRequestIdentity =
+export const UpdateEndpointRequestIdentity =
   EndpointsCreateOrUpdateRequestIdentity;
 
 export interface UpdateEndpointRequest {
@@ -2865,9 +2865,9 @@ export const UpdateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEndpointRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type EndpointsUpdateResponseIdentity =
+export type UpdateEndpointResponseIdentity =
   EndpointsCreateOrUpdateResponseIdentity;
-export const EndpointsUpdateResponseIdentity =
+export const UpdateEndpointResponseIdentity =
   EndpointsCreateOrUpdateResponseIdentity;
 
 export interface UpdateEndpointResponse {
@@ -3067,13 +3067,13 @@ export type StorageMoverUpdateProperties = StorageMoverPropertiesInput;
 export const StorageMoverUpdateProperties = StorageMoverPropertiesInput;
 
 /** Resource tags. */
-export type StorageMoversUpdateRequestTagsMap = {
+export type UpdateStorageMoverRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageMoversUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageMoverRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageMoversUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateStorageMoverRequestTagsMap>;
 
 export interface UpdateStorageMoverRequest {
   /** The ID of the target subscription. */
@@ -3085,7 +3085,7 @@ export interface UpdateStorageMoverRequest {
   /** The resource specific properties for the Storage Mover resource. */
   properties?: StorageMoverPropertiesInput;
   /** Resource tags. */
-  tags?: StorageMoversUpdateRequestTagsMap;
+  tags?: UpdateStorageMoverRequestTagsMap;
 }
 export const UpdateStorageMoverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3093,7 +3093,7 @@ export const UpdateStorageMoverRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     storageMoverName: S.String.pipe(T.Label()),
     properties: S.optional(StorageMoverPropertiesInput),
-    tags: S.optional(StorageMoversUpdateRequestTagsMap),
+    tags: S.optional(UpdateStorageMoverRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3107,13 +3107,13 @@ export const UpdateStorageMoverRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateStorageMoverRequest>;
 
 /** Resource tags. */
-export type StorageMoversUpdateResponseTagsMap = {
+export type UpdateStorageMoverResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageMoversUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageMoverResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageMoversUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateStorageMoverResponseTagsMap>;
 
 export interface UpdateStorageMoverResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3125,7 +3125,7 @@ export interface UpdateStorageMoverResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageMoversUpdateResponseTagsMap;
+  tags?: UpdateStorageMoverResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource specific properties for the Storage Mover resource. */
@@ -3137,7 +3137,7 @@ export const UpdateStorageMoverResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageMoversUpdateResponseTagsMap),
+    tags: S.optional(UpdateStorageMoverResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageMoverProperties),
   }),

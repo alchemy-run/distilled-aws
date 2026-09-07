@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.web_analytics#CreateSpeedInsightsToggleRequest": {
@@ -2581,6 +2582,9 @@
         },
         {
           "target": "com.vercel.web_analytics#Forbidden"
+        },
+        {
+          "target": "com.vercel.web_analytics#NotFound"
         }
       ],
       "traits": {
@@ -5059,6 +5063,9 @@
         },
         {
           "target": "com.vercel.web_analytics#Forbidden"
+        },
+        {
+          "target": "com.vercel.web_analytics#NotFound"
         }
       ],
       "traits": {
@@ -6569,6 +6576,9 @@
         },
         {
           "target": "com.vercel.web_analytics#Forbidden"
+        },
+        {
+          "target": "com.vercel.web_analytics#NotFound"
         }
       ],
       "traits": {
@@ -8079,6 +8089,9 @@
         },
         {
           "target": "com.vercel.web_analytics#Forbidden"
+        },
+        {
+          "target": "com.vercel.web_analytics#NotFound"
         }
       ],
       "traits": {
@@ -8129,27 +8142,40 @@
         ]
       }
     },
+    "com.vercel.web_analytics#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
     "com.vercel.web_analytics#WebAnalytics": {
       "type": "service",
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.web_analytics#CreateSpeedInsightsToggle"
-        },
-        {
-          "target": "com.vercel.web_analytics#CreateWebInsightsToggle"
+          "target": "com.vercel.web_analytics#AggregateEvents"
         },
         {
           "target": "com.vercel.web_analytics#AggregatePageviews"
         },
         {
-          "target": "com.vercel.web_analytics#AggregateEvents"
+          "target": "com.vercel.web_analytics#CountEvents"
         },
         {
           "target": "com.vercel.web_analytics#CountPageviews"
         },
         {
-          "target": "com.vercel.web_analytics#CountEvents"
+          "target": "com.vercel.web_analytics#CreateSpeedInsightsToggle"
+        },
+        {
+          "target": "com.vercel.web_analytics#CreateWebInsightsToggle"
         }
       ],
       "traits": {

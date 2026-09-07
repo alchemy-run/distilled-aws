@@ -2,6 +2,7 @@
 export * as agenticProvisioning from "./agentic_provisioning.ts";
 export * as agents from "./agents.ts";
 export * as auth from "./auth.ts";
+export * as blogs from "./blogs.ts";
 export * as buckets from "./buckets.ts";
 export * as collections from "./collections.ts";
 export * as container from "./container.ts";

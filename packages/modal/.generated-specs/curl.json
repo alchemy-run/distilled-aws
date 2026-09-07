@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.curl#GetCurlAuthTokenRequest": {
+    "com.modal.curl#CurlGetAuthTokenRequest": {
       "type": "structure",
       "members": {
         "url": {
@@ -28,7 +29,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.curl#GetCurlAuthTokenResponse": {
+    "com.modal.curl#CurlGetAuthTokenResponse": {
       "type": "structure",
       "members": {
         "token": {
@@ -39,13 +40,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.curl#GetCurlAuthToken": {
+    "com.modal.curl#CurlGetAuthToken": {
       "type": "operation",
       "input": {
-        "target": "com.modal.curl#GetCurlAuthTokenRequest"
+        "target": "com.modal.curl#CurlGetAuthTokenRequest"
       },
       "output": {
-        "target": "com.modal.curl#GetCurlAuthTokenResponse"
+        "target": "com.modal.curl#CurlGetAuthTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -61,7 +62,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.curl#GetCurlAuthToken"
+          "target": "com.modal.curl#CurlGetAuthToken"
         }
       ],
       "traits": {

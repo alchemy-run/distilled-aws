@@ -30,6 +30,103 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export interface GetRecommendedActionRequest {
+  /** Chain ID from the list endpoint, e.g. `rac_seed_start_selling_9f2c1a7b04`. */
+  id: string;
+  /** Account ID, prefixed `biz_`. Defaults to the API key's own account. */
+  account_id?: string;
+}
+export const GetRecommendedActionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/recommended_actions/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetRecommendedActionRequest",
+}) as any as S.Schema<GetRecommendedActionRequest>;
+
+/** Where the run step currently stands, or `null` when the chain has not been run */
+export type AccountRecommendedActionChainStepStatus =
+  | "pending"
+  | "redirected"
+  | "running"
+  | "succeeded"
+  | "failed";
+export const AccountRecommendedActionChainStepStatus = /*@__PURE__*/ S.String;
+
+export interface AccountRecommendedActionChainStep {
+  /** The action definition key this step runs; new values may be added, so handle unknown actions gracefully */
+  action: string;
+  /** The URL where this step is done by hand */
+  cta: string;
+  /** Button label */
+  cta_label: string;
+  /** Supporting copy, or empty */
+  description: string;
+  /** Why the step failed, or `null` */
+  error: string | null;
+  /** The filled-in request body for the step's endpoint, or `null` when it was not recorded */
+  input: unknown | null;
+  /** The API response the step produced, or `null` until it succeeds */
+  output: unknown | null;
+  /** Zero-based order of this step within the chain */
+  position: number;
+  /** Why the generator filled the step this way, or `null` for seeded chains */
+  reasoning: unknown | null;
+  /** Where the run step currently stands, or `null` when the chain has not been run */
+  status: AccountRecommendedActionChainStepStatus | null;
+  /** Headline for the step */
+  title: string;
+}
+export const AccountRecommendedActionChainStep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: S.String,
+    cta: S.String,
+    cta_label: S.String,
+    description: S.String,
+    error: S.NullOr(S.String),
+    input: S.NullOr(S.Unknown),
+    output: S.NullOr(S.Unknown),
+    position: S.Number,
+    reasoning: S.NullOr(S.Unknown),
+    status: S.NullOr(AccountRecommendedActionChainStepStatus),
+    title: S.String,
+  }),
+).annotate({
+  identifier: "AccountRecommendedActionChainStep",
+}) as any as S.Schema<AccountRecommendedActionChainStep>;
+
+export type AccountRecommendedActionChainActionsList =
+  Array<AccountRecommendedActionChainStep>;
+export const AccountRecommendedActionChainActionsList = /*@__PURE__*/ S.Array(
+  AccountRecommendedActionChainStep,
+) as any as S.Schema<AccountRecommendedActionChainActionsList>;
+
+export interface AccountRecommendedActionChain {
+  actions: AccountRecommendedActionChainActionsList;
+  /** What running the chain accomplishes */
+  description: string;
+  /** Chain ID — `rac_seed_<chain>_<nonce>` for seeded chains, `rac_chain_*` for generated ones */
+  id: string;
+  /** Why the generator proposed this chain, or `null` for seeded chains */
+  reasoning: unknown | null;
+  /** Headline for the chain */
+  title: string;
+}
+export const AccountRecommendedActionChain = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actions: AccountRecommendedActionChainActionsList,
+    description: S.String,
+    id: S.String,
+    reasoning: S.NullOr(S.Unknown),
+    title: S.String,
+  }),
+).annotate({
+  identifier: "AccountRecommendedActionChain",
+}) as any as S.Schema<AccountRecommendedActionChain>;
+
 export interface ListRecommendedActionExecutionsRequest {
   /** Chain ID from the list endpoint. */
   id: string;
@@ -127,86 +224,6 @@ export const ListRecommendedActionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRecommendedActionsRequest",
 }) as any as S.Schema<ListRecommendedActionsRequest>;
 
-/** Where the run step currently stands, or `null` when the chain has not been run */
-export type AccountRecommendedActionChainStepStatus =
-  | "pending"
-  | "redirected"
-  | "running"
-  | "succeeded"
-  | "failed";
-export const AccountRecommendedActionChainStepStatus = /*@__PURE__*/ S.String;
-
-export interface AccountRecommendedActionChainStep {
-  /** The action definition key this step runs; new values may be added, so handle unknown actions gracefully */
-  action: string;
-  /** The URL where this step is done by hand */
-  cta: string;
-  /** Button label */
-  cta_label: string;
-  /** Supporting copy, or empty */
-  description: string;
-  /** Why the step failed, or `null` */
-  error: string | null;
-  /** The filled-in request body for the step's endpoint, or `null` when it was not recorded */
-  input: unknown | null;
-  /** The API response the step produced, or `null` until it succeeds */
-  output: unknown | null;
-  /** Zero-based order of this step within the chain */
-  position: number;
-  /** Why the generator filled the step this way, or `null` for seeded chains */
-  reasoning: unknown | null;
-  /** Where the run step currently stands, or `null` when the chain has not been run */
-  status: AccountRecommendedActionChainStepStatus | null;
-  /** Headline for the step */
-  title: string;
-}
-export const AccountRecommendedActionChainStep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: S.String,
-    cta: S.String,
-    cta_label: S.String,
-    description: S.String,
-    error: S.NullOr(S.String),
-    input: S.NullOr(S.Unknown),
-    output: S.NullOr(S.Unknown),
-    position: S.Number,
-    reasoning: S.NullOr(S.Unknown),
-    status: S.NullOr(AccountRecommendedActionChainStepStatus),
-    title: S.String,
-  }),
-).annotate({
-  identifier: "AccountRecommendedActionChainStep",
-}) as any as S.Schema<AccountRecommendedActionChainStep>;
-
-export type AccountRecommendedActionChainActionsList =
-  Array<AccountRecommendedActionChainStep>;
-export const AccountRecommendedActionChainActionsList = /*@__PURE__*/ S.Array(
-  AccountRecommendedActionChainStep,
-) as any as S.Schema<AccountRecommendedActionChainActionsList>;
-
-export interface AccountRecommendedActionChain {
-  actions: AccountRecommendedActionChainActionsList;
-  /** What running the chain accomplishes */
-  description: string;
-  /** Chain ID — `rac_seed_<chain>_<nonce>` for seeded chains, `rac_chain_*` for generated ones */
-  id: string;
-  /** Why the generator proposed this chain, or `null` for seeded chains */
-  reasoning: unknown | null;
-  /** Headline for the chain */
-  title: string;
-}
-export const AccountRecommendedActionChain = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actions: AccountRecommendedActionChainActionsList,
-    description: S.String,
-    id: S.String,
-    reasoning: S.NullOr(S.Unknown),
-    title: S.String,
-  }),
-).annotate({
-  identifier: "AccountRecommendedActionChain",
-}) as any as S.Schema<AccountRecommendedActionChain>;
-
 export type ListRecommendedActionsResponseDataList =
   Array<AccountRecommendedActionChain>;
 export const ListRecommendedActionsResponseDataList = /*@__PURE__*/ S.Array(
@@ -223,23 +240,6 @@ export const ListRecommendedActionsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListRecommendedActionsResponse",
 }) as any as S.Schema<ListRecommendedActionsResponse>;
-
-export interface RetrieveRecommendedActionRequest {
-  /** Chain ID from the list endpoint, e.g. `rac_seed_start_selling_9f2c1a7b04`. */
-  id: string;
-  /** Account ID, prefixed `biz_`. Defaults to the API key's own account. */
-  account_id?: string;
-}
-export const RetrieveRecommendedActionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/recommended_actions/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveRecommendedActionRequest",
-}) as any as S.Schema<RetrieveRecommendedActionRequest>;
 
 export interface RunRecommendedActionRequest {
   /** Chain ID from the list endpoint, e.g. `rac_seed_start_selling_9f2c1a7b04`. */
@@ -277,6 +277,21 @@ export const RunRecommendedActionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunRecommendedActionResponse",
 }) as any as S.Schema<RunRecommendedActionResponse>;
 
+export type GetRecommendedActionError = NotFound | WhopOpError;
+/** Retrieve Action Chain Retrieves a recommended action chain by id, including chains that have already been run. Seeded chains are reconstructed from their hard-coded chain; generated chains are read from the account's stored chain, with each step's filled-in input. */
+export const getRecommendedAction: API.OperationMethod<
+  GetRecommendedActionRequest,
+  AccountRecommendedActionChain,
+  GetRecommendedActionError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRecommendedActionRequest,
+  output: AccountRecommendedActionChain,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListRecommendedActionExecutionsError = NotFound | WhopOpError;
 /** List Recommended Action Executions Lists the per-step record of a recommended action chain the server ran — one entry per step in position order, each carrying its current status and, once the step completed, the API response it produced. A chain that was never run server-side returns an empty list. */
 export const listRecommendedActionExecutions: API.OperationMethod<
@@ -302,21 +317,6 @@ export const listRecommendedActions: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRecommendedActionsRequest,
   output: ListRecommendedActionsResponse,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveRecommendedActionError = NotFound | WhopOpError;
-/** Retrieve Action Chain Retrieves a recommended action chain by id, including chains that have already been run. Seeded chains are reconstructed from their hard-coded chain; generated chains are read from the account's stored chain, with each step's filled-in input. */
-export const retrieveRecommendedAction: API.OperationMethod<
-  RetrieveRecommendedActionRequest,
-  AccountRecommendedActionChain,
-  RetrieveRecommendedActionError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveRecommendedActionRequest,
-  output: AccountRecommendedActionChain,
   errors: [NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,

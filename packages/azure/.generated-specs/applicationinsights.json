@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.applicationinsights#GetWorkbookRevision": {
+    "com.azure.applicationinsights#GetWorkbooksRevision": {
       "type": "operation",
       "input": {
-        "target": "com.azure.applicationinsights#GetWorkbookRevisionRequest"
+        "target": "com.azure.applicationinsights#GetWorkbooksRevisionRequest"
       },
       "output": {
-        "target": "com.azure.applicationinsights#GetWorkbookRevisionResponse"
+        "target": "com.azure.applicationinsights#GetWorkbooksRevisionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-01"
       }
     },
-    "com.azure.applicationinsights#GetWorkbookRevisionResponse": {
+    "com.azure.applicationinsights#GetWorkbooksRevisionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -64,7 +65,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.applicationinsights#WorkbooksRevisionGetResponseTagsMap",
+          "target": "com.azure.applicationinsights#GetWorkbooksRevisionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -302,7 +303,7 @@
         "smithy.api#documentation": "Being deprecated, please use the other tags field"
       }
     },
-    "com.azure.applicationinsights#WorkbooksRevisionGetResponseTagsMap": {
+    "com.azure.applicationinsights#GetWorkbooksRevisionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -422,7 +423,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.applicationinsights#GetWorkbookRevisionRequest": {
+    "com.azure.applicationinsights#GetWorkbooksRevisionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -462,10 +463,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.applicationinsights#ListWorkbookRevisions": {
+    "com.azure.applicationinsights#ListWorkbooksRevisions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.applicationinsights#ListWorkbookRevisionsRequest"
+        "target": "com.azure.applicationinsights#ListWorkbooksRevisionsRequest"
       },
       "output": {
         "target": "com.azure.applicationinsights#WorkbooksListResult"
@@ -591,7 +592,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.applicationinsights#ListWorkbookRevisionsRequest": {
+    "com.azure.applicationinsights#ListWorkbooksRevisionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -721,7 +722,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.applicationinsights#WorkbooksUpdateResponseTagsMap",
+          "target": "com.azure.applicationinsights#UpdateWorkbookResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -762,7 +763,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.applicationinsights#WorkbooksUpdateResponseTagsMap": {
+    "com.azure.applicationinsights#UpdateWorkbookResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -815,7 +816,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.applicationinsights#WorkbooksUpdateRequestTagsMap",
+          "target": "com.azure.applicationinsights#UpdateWorkbookRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -886,7 +887,7 @@
         "smithy.api#documentation": "A list of 0 or more tags that are associated with this workbook definition"
       }
     },
-    "com.azure.applicationinsights#WorkbooksUpdateRequestTagsMap": {
+    "com.azure.applicationinsights#UpdateWorkbookRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1254,7 +1255,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.applicationinsights#WorkbooksGetResponseTagsMap",
+          "target": "com.azure.applicationinsights#GetWorkbookResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1295,7 +1296,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.applicationinsights#WorkbooksGetResponseTagsMap": {
+    "com.azure.applicationinsights#GetWorkbookResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1385,7 +1386,7 @@
           }
         },
         "category": {
-          "target": "com.azure.applicationinsights#WorkbooksListByResourceGroupRequestCategory",
+          "target": "com.azure.applicationinsights#ListWorkbookByResourceGroupRequestCategory",
           "traits": {
             "smithy.api#httpQuery": "category",
             "smithy.api#required": {},
@@ -1393,7 +1394,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.applicationinsights#WorkbooksListByResourceGroupRequestTagsList",
+          "target": "com.azure.applicationinsights#ListWorkbookByResourceGroupRequestTagsList",
           "traits": {
             "smithy.api#httpQuery": "tags",
             "smithy.api#documentation": "Tags presents on each workbook returned."
@@ -1418,14 +1419,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.applicationinsights#WorkbooksListByResourceGroupRequestTagsList": {
+    "com.azure.applicationinsights#ListWorkbookByResourceGroupRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.applicationinsights#WorkbooksListByResourceGroupRequestCategory": {
+    "com.azure.applicationinsights#ListWorkbookByResourceGroupRequestCategory": {
       "type": "enum",
       "members": {
         "WORKBOOK": {
@@ -1486,7 +1487,7 @@
           }
         },
         "category": {
-          "target": "com.azure.applicationinsights#WorkbooksListBySubscriptionRequestCategory",
+          "target": "com.azure.applicationinsights#ListWorkbookBySubscriptionRequestCategory",
           "traits": {
             "smithy.api#httpQuery": "category",
             "smithy.api#required": {},
@@ -1494,7 +1495,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.applicationinsights#WorkbooksListBySubscriptionRequestTagsList",
+          "target": "com.azure.applicationinsights#ListWorkbookBySubscriptionRequestTagsList",
           "traits": {
             "smithy.api#httpQuery": "tags",
             "smithy.api#documentation": "Tags presents on each workbook returned."
@@ -1512,14 +1513,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.applicationinsights#WorkbooksListBySubscriptionRequestTagsList": {
+    "com.azure.applicationinsights#ListWorkbookBySubscriptionRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.applicationinsights#WorkbooksListBySubscriptionRequestCategory": {
+    "com.azure.applicationinsights#ListWorkbookBySubscriptionRequestCategory": {
       "type": "enum",
       "members": {
         "WORKBOOK": {
@@ -1554,28 +1555,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.applicationinsights#GetWorkbookRevision"
-        },
-        {
-          "target": "com.azure.applicationinsights#ListWorkbookRevisions"
-        },
-        {
           "target": "com.azure.applicationinsights#DeleteWorkbook"
         },
         {
-          "target": "com.azure.applicationinsights#UpdateWorkbook"
-        },
-        {
-          "target": "com.azure.applicationinsights#WorkbooksCreateOrUpdate"
-        },
-        {
           "target": "com.azure.applicationinsights#GetWorkbook"
+        },
+        {
+          "target": "com.azure.applicationinsights#GetWorkbooksRevision"
         },
         {
           "target": "com.azure.applicationinsights#ListWorkbookByResourceGroup"
         },
         {
           "target": "com.azure.applicationinsights#ListWorkbookBySubscription"
+        },
+        {
+          "target": "com.azure.applicationinsights#ListWorkbooksRevisions"
+        },
+        {
+          "target": "com.azure.applicationinsights#UpdateWorkbook"
+        },
+        {
+          "target": "com.azure.applicationinsights#WorkbooksCreateOrUpdate"
         }
       ],
       "traits": {

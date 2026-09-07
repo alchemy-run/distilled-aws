@@ -368,114 +368,6 @@ export const AppAttachPackageCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AppAttachPackageCreateOrUpdateResponse",
 }) as any as S.Schema<AppAttachPackageCreateOrUpdateResponse>;
 
-/** Possible device architectures that an app attach package can be configured for */
-export type AppAttachPackageInfoImportRequestPackageArchitecture =
-  | "ARM"
-  | "ARM64"
-  | "x86"
-  | "x64"
-  | "Neutral"
-  | "x86a64"
-  | "ALL";
-export const AppAttachPackageInfoImportRequestPackageArchitecture =
-  /*@__PURE__*/ S.String;
-
-export interface AppAttachPackageInfoImportRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the host pool within the specified resource group */
-  hostPoolName: string;
-  /** URI to Image */
-  path?: string;
-  /** Possible device architectures that an app attach package can be configured for */
-  packageArchitecture?:
-    | AppAttachPackageInfoImportRequestPackageArchitecture
-    | (string & {})
-    | null;
-}
-export const AppAttachPackageInfoImportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    hostPoolName: S.String.pipe(T.Label()),
-    path: S.optional(S.String),
-    packageArchitecture: S.optional(
-      S.NullOr(AppAttachPackageInfoImportRequestPackageArchitecture),
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/importAppAttachPackageInfo",
-      code: 200,
-      apiVersion: "2025-10-10",
-    }),
-  ),
-).annotate({
-  identifier: "AppAttachPackageInfoImportRequest",
-}) as any as S.Schema<AppAttachPackageInfoImportRequest>;
-
-/** Resource tags. */
-export type AppAttachPackageTagsMap = { [key: string]: string | undefined };
-export const AppAttachPackageTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AppAttachPackageTagsMap>;
-
-/** Schema for App Attach Package properties. */
-export interface AppAttachPackage {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AppAttachPackageTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Detailed properties for App Attach Package */
-  properties: AppAttachPackageProperties;
-}
-export const AppAttachPackage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AppAttachPackageTagsMap),
-    location: S.String,
-    properties: AppAttachPackageProperties,
-  }),
-).annotate({
-  identifier: "AppAttachPackage",
-}) as any as S.Schema<AppAttachPackage>;
-
-/** List of App Attach Package definitions. */
-export type AppAttachPackageListValueList = Array<AppAttachPackage>;
-export const AppAttachPackageListValueList = /*@__PURE__*/ S.Array(
-  AppAttachPackage,
-) as any as S.Schema<AppAttachPackageListValueList>;
-
-/** List of App Attach Package definitions. */
-export interface AppAttachPackageList {
-  /** List of App Attach Package definitions. */
-  value?: AppAttachPackageListValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const AppAttachPackageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AppAttachPackageListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppAttachPackageList",
-}) as any as S.Schema<AppAttachPackageList>;
-
 /** Resource tags. */
 export type ApplicationGroupsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -972,30 +864,30 @@ export const ApplicationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplicationsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type ScalingPlansCreateRequestTagsMap = {
+export type CreateScalingPlanRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScalingPlansCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateScalingPlanRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ScalingPlansCreateRequestTagsMap>;
+) as any as S.Schema<CreateScalingPlanRequestTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type ScalingPlansCreateRequestIdentity =
+export type CreateScalingPlanRequestIdentity =
   ApplicationGroupsCreateOrUpdateRequestIdentity;
-export const ScalingPlansCreateRequestIdentity =
+export const CreateScalingPlanRequestIdentity =
   ApplicationGroupsCreateOrUpdateRequestIdentity;
 
 /** The resource model definition representing SKU */
-export type ScalingPlansCreateRequestSku =
+export type CreateScalingPlanRequestSku =
   ApplicationGroupsCreateOrUpdateRequestSku;
-export const ScalingPlansCreateRequestSku =
+export const CreateScalingPlanRequestSku =
   ApplicationGroupsCreateOrUpdateRequestSku;
 
 /** Plan for the resource. */
-export type ScalingPlansCreateRequestPlan =
+export type CreateScalingPlanRequestPlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const ScalingPlansCreateRequestPlan =
+export const CreateScalingPlanRequestPlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 /** HostPool type for desktop. */
@@ -1218,7 +1110,7 @@ export interface CreateScalingPlanRequest {
   /** The name of the scaling plan. */
   scalingPlanName: string;
   /** Resource tags. */
-  tags?: ScalingPlansCreateRequestTagsMap;
+  tags?: CreateScalingPlanRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -1239,7 +1131,7 @@ export const CreateScalingPlanRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     scalingPlanName: S.String.pipe(T.Label()),
-    tags: S.optional(ScalingPlansCreateRequestTagsMap),
+    tags: S.optional(CreateScalingPlanRequestTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -1260,30 +1152,30 @@ export const CreateScalingPlanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateScalingPlanRequest>;
 
 /** Resource tags. */
-export type ScalingPlansCreateResponseTagsMap = {
+export type CreateScalingPlanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScalingPlansCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateScalingPlanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ScalingPlansCreateResponseTagsMap>;
+) as any as S.Schema<CreateScalingPlanResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type ScalingPlansCreateResponseIdentity =
+export type CreateScalingPlanResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const ScalingPlansCreateResponseIdentity =
+export const CreateScalingPlanResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ScalingPlansCreateResponseSku =
+export type CreateScalingPlanResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const ScalingPlansCreateResponseSku =
+export const CreateScalingPlanResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type ScalingPlansCreateResponsePlan =
+export type CreateScalingPlanResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const ScalingPlansCreateResponsePlan =
+export const CreateScalingPlanResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 /** HostPool type for desktop. */
@@ -1348,7 +1240,7 @@ export interface CreateScalingPlanResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ScalingPlansCreateResponseTagsMap;
+  tags?: CreateScalingPlanResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -1372,7 +1264,7 @@ export const CreateScalingPlanResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ScalingPlansCreateResponseTagsMap),
+    tags: S.optional(CreateScalingPlanResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -2028,7 +1920,7 @@ export const DeleteHostPoolResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteHostPoolResponse",
 }) as any as S.Schema<DeleteHostPoolResponse>;
 
-export interface DeleteMsixPackageRequest {
+export interface DeleteMSIXPackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2038,7 +1930,7 @@ export interface DeleteMsixPackageRequest {
   /** The version specific package full name of the MSIX package within specified hostpool */
   msixPackageFullName: string;
 }
-export const DeleteMsixPackageRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteMSIXPackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2053,15 +1945,15 @@ export const DeleteMsixPackageRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteMsixPackageRequest",
-}) as any as S.Schema<DeleteMsixPackageRequest>;
+  identifier: "DeleteMSIXPackageRequest",
+}) as any as S.Schema<DeleteMSIXPackageRequest>;
 
-export interface DeleteMsixPackageResponse {}
-export const DeleteMsixPackageResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteMSIXPackageResponse {}
+export const DeleteMSIXPackageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteMsixPackageResponse",
-}) as any as S.Schema<DeleteMsixPackageResponse>;
+  identifier: "DeleteMSIXPackageResponse",
+}) as any as S.Schema<DeleteMSIXPackageResponse>;
 
 export interface DeletePrivateEndpointConnectionByHostPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2347,6 +2239,44 @@ export const DeleteWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteWorkspaceResponse",
 }) as any as S.Schema<DeleteWorkspaceResponse>;
 
+export interface DisconnectUserSessionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the host pool within the specified resource group */
+  hostPoolName: string;
+  /** The name of the session host within the specified host pool */
+  sessionHostName: string;
+  /** The name of the user session within the specified session host */
+  userSessionId: string;
+}
+export const DisconnectUserSessionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    hostPoolName: S.String.pipe(T.Label()),
+    sessionHostName: S.String.pipe(T.Label()),
+    userSessionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/sessionHosts/{sessionHostName}/userSessions/{userSessionId}/disconnect",
+      code: 200,
+      apiVersion: "2025-10-10",
+    }),
+  ),
+).annotate({
+  identifier: "DisconnectUserSessionRequest",
+}) as any as S.Schema<DisconnectUserSessionRequest>;
+
+export interface DisconnectUserSessionResponse {}
+export const DisconnectUserSessionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DisconnectUserSessionResponse",
+}) as any as S.Schema<DisconnectUserSessionResponse>;
+
 export interface GetAppAttachPackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -2373,13 +2303,13 @@ export const GetAppAttachPackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAppAttachPackageRequest>;
 
 /** Resource tags. */
-export type AppAttachPackageGetResponseTagsMap = {
+export type GetAppAttachPackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AppAttachPackageGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAppAttachPackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppAttachPackageGetResponseTagsMap>;
+) as any as S.Schema<GetAppAttachPackageResponseTagsMap>;
 
 export interface GetAppAttachPackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2391,7 +2321,7 @@ export interface GetAppAttachPackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AppAttachPackageGetResponseTagsMap;
+  tags?: GetAppAttachPackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Detailed properties for App Attach Package */
@@ -2403,7 +2333,7 @@ export const GetAppAttachPackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AppAttachPackageGetResponseTagsMap),
+    tags: S.optional(GetAppAttachPackageResponseTagsMap),
     location: S.String,
     properties: AppAttachPackageProperties,
   }),
@@ -2489,30 +2419,30 @@ export const GetApplicationGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationGroupRequest>;
 
 /** Resource tags. */
-export type ApplicationGroupsGetResponseTagsMap = {
+export type GetApplicationGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationGroupResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type ApplicationGroupsGetResponseIdentity =
+export type GetApplicationGroupResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const ApplicationGroupsGetResponseIdentity =
+export const GetApplicationGroupResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ApplicationGroupsGetResponseSku =
+export type GetApplicationGroupResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const ApplicationGroupsGetResponseSku =
+export const GetApplicationGroupResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type ApplicationGroupsGetResponsePlan =
+export type GetApplicationGroupResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const ApplicationGroupsGetResponsePlan =
+export const GetApplicationGroupResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 export interface GetApplicationGroupResponse {
@@ -2525,7 +2455,7 @@ export interface GetApplicationGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ApplicationGroupsGetResponseTagsMap;
+  tags?: GetApplicationGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -2549,7 +2479,7 @@ export const GetApplicationGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ApplicationGroupsGetResponseTagsMap),
+    tags: S.optional(GetApplicationGroupResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -2666,28 +2596,27 @@ export const GetHostPoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetHostPoolRequest>;
 
 /** Resource tags. */
-export type HostPoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const HostPoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetHostPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetHostPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HostPoolsGetResponseTagsMap>;
+) as any as S.Schema<GetHostPoolResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type HostPoolsGetResponseIdentity =
+export type GetHostPoolResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const HostPoolsGetResponseIdentity =
+export const GetHostPoolResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type HostPoolsGetResponseSku =
-  ApplicationGroupsCreateOrUpdateResponseSku;
-export const HostPoolsGetResponseSku =
+export type GetHostPoolResponseSku = ApplicationGroupsCreateOrUpdateResponseSku;
+export const GetHostPoolResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type HostPoolsGetResponsePlan =
+export type GetHostPoolResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const HostPoolsGetResponsePlan =
+export const GetHostPoolResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 /** HostPool type for desktop. */
@@ -3058,7 +2987,7 @@ export interface GetHostPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HostPoolsGetResponseTagsMap;
+  tags?: GetHostPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -3082,7 +3011,7 @@ export const GetHostPoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HostPoolsGetResponseTagsMap),
+    tags: S.optional(GetHostPoolResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -3096,7 +3025,32 @@ export const GetHostPoolResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetHostPoolResponse",
 }) as any as S.Schema<GetHostPoolResponse>;
 
-export interface GetMsixPackageRequest {
+export interface GetHostPoolRegistrationTokenRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the host pool within the specified resource group */
+  hostPoolName: string;
+}
+export const GetHostPoolRegistrationTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    hostPoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/retrieveRegistrationToken",
+      code: 200,
+      apiVersion: "2025-10-10",
+    }),
+  ),
+).annotate({
+  identifier: "GetHostPoolRegistrationTokenRequest",
+}) as any as S.Schema<GetHostPoolRegistrationTokenRequest>;
+
+export interface GetMSIXPackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3106,7 +3060,7 @@ export interface GetMsixPackageRequest {
   /** The version specific package full name of the MSIX package within specified hostpool */
   msixPackageFullName: string;
 }
-export const GetMsixPackageRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMSIXPackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3121,8 +3075,8 @@ export const GetMsixPackageRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMsixPackageRequest",
-}) as any as S.Schema<GetMsixPackageRequest>;
+  identifier: "GetMSIXPackageRequest",
+}) as any as S.Schema<GetMSIXPackageRequest>;
 
 /** List of package dependencies. */
 export type MSIXPackagePropertiesPackageDependenciesList =
@@ -3187,7 +3141,7 @@ export const MSIXPackageProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MSIXPackageProperties",
 }) as any as S.Schema<MSIXPackageProperties>;
 
-export interface GetMsixPackageResponse {
+export interface GetMSIXPackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3199,7 +3153,7 @@ export interface GetMsixPackageResponse {
   /** Detailed properties for MSIX Package */
   properties: MSIXPackageProperties;
 }
-export const GetMsixPackageResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMSIXPackageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3208,8 +3162,8 @@ export const GetMsixPackageResponse = /*@__PURE__*/ S.suspend(() =>
     properties: MSIXPackageProperties,
   }),
 ).annotate({
-  identifier: "GetMsixPackageResponse",
-}) as any as S.Schema<GetMsixPackageResponse>;
+  identifier: "GetMSIXPackageResponse",
+}) as any as S.Schema<GetMSIXPackageResponse>;
 
 export interface GetPrivateEndpointConnectionByHostPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3241,17 +3195,17 @@ export const GetPrivateEndpointConnectionByHostPoolRequest =
   }) as any as S.Schema<GetPrivateEndpointConnectionByHostPoolRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionsGetByHostPoolResponsePropertiesGroupIdsList =
+export type GetPrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionsGetByHostPoolResponsePropertiesGroupIdsList =
+export const GetPrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsGetByHostPoolResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<GetPrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsGetByHostPoolResponseProperties {
+export interface GetPrivateEndpointConnectionByHostPoolResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionsGetByHostPoolResponsePropertiesGroupIdsList;
+  groupIds?: GetPrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -3259,19 +3213,19 @@ export interface PrivateEndpointConnectionsGetByHostPoolResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionsGetByHostPoolResponseProperties =
+export const GetPrivateEndpointConnectionByHostPoolResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionsGetByHostPoolResponsePropertiesGroupIdsList,
+        GetPrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsGetByHostPoolResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsGetByHostPoolResponseProperties>;
+    identifier: "GetPrivateEndpointConnectionByHostPoolResponseProperties",
+  }) as any as S.Schema<GetPrivateEndpointConnectionByHostPoolResponseProperties>;
 
 export interface GetPrivateEndpointConnectionByHostPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3283,7 +3237,7 @@ export interface GetPrivateEndpointConnectionByHostPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsGetByHostPoolResponseProperties;
+  properties?: GetPrivateEndpointConnectionByHostPoolResponseProperties;
 }
 export const GetPrivateEndpointConnectionByHostPoolResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -3293,7 +3247,7 @@ export const GetPrivateEndpointConnectionByHostPoolResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        PrivateEndpointConnectionsGetByHostPoolResponseProperties,
+        GetPrivateEndpointConnectionByHostPoolResponseProperties,
       ),
     }),
   ).annotate({
@@ -3330,17 +3284,17 @@ export const GetPrivateEndpointConnectionByWorkspaceRequest =
   }) as any as S.Schema<GetPrivateEndpointConnectionByWorkspaceRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionsGetByWorkspaceResponsePropertiesGroupIdsList =
+export type GetPrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionsGetByWorkspaceResponsePropertiesGroupIdsList =
+export const GetPrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsGetByWorkspaceResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<GetPrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsGetByWorkspaceResponseProperties {
+export interface GetPrivateEndpointConnectionByWorkspaceResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionsGetByWorkspaceResponsePropertiesGroupIdsList;
+  groupIds?: GetPrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -3348,19 +3302,19 @@ export interface PrivateEndpointConnectionsGetByWorkspaceResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionsGetByWorkspaceResponseProperties =
+export const GetPrivateEndpointConnectionByWorkspaceResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionsGetByWorkspaceResponsePropertiesGroupIdsList,
+        GetPrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsGetByWorkspaceResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsGetByWorkspaceResponseProperties>;
+    identifier: "GetPrivateEndpointConnectionByWorkspaceResponseProperties",
+  }) as any as S.Schema<GetPrivateEndpointConnectionByWorkspaceResponseProperties>;
 
 export interface GetPrivateEndpointConnectionByWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3372,7 +3326,7 @@ export interface GetPrivateEndpointConnectionByWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsGetByWorkspaceResponseProperties;
+  properties?: GetPrivateEndpointConnectionByWorkspaceResponseProperties;
 }
 export const GetPrivateEndpointConnectionByWorkspaceResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -3382,7 +3336,7 @@ export const GetPrivateEndpointConnectionByWorkspaceResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        PrivateEndpointConnectionsGetByWorkspaceResponseProperties,
+        GetPrivateEndpointConnectionByWorkspaceResponseProperties,
       ),
     }),
   ).annotate({
@@ -3415,30 +3369,30 @@ export const GetScalingPlanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetScalingPlanRequest>;
 
 /** Resource tags. */
-export type ScalingPlansGetResponseTagsMap = {
+export type GetScalingPlanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScalingPlansGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetScalingPlanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ScalingPlansGetResponseTagsMap>;
+) as any as S.Schema<GetScalingPlanResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type ScalingPlansGetResponseIdentity =
+export type GetScalingPlanResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const ScalingPlansGetResponseIdentity =
+export const GetScalingPlanResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ScalingPlansGetResponseSku =
+export type GetScalingPlanResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const ScalingPlansGetResponseSku =
+export const GetScalingPlanResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type ScalingPlansGetResponsePlan =
+export type GetScalingPlanResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const ScalingPlansGetResponsePlan =
+export const GetScalingPlanResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 export interface GetScalingPlanResponse {
@@ -3451,7 +3405,7 @@ export interface GetScalingPlanResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ScalingPlansGetResponseTagsMap;
+  tags?: GetScalingPlanResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -3475,7 +3429,7 @@ export const GetScalingPlanResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ScalingPlansGetResponseTagsMap),
+    tags: S.optional(GetScalingPlanResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -3933,30 +3887,28 @@ export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type WorkspacesGetResponseIdentity =
+export type GetWorkspaceResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const WorkspacesGetResponseIdentity =
+export const GetWorkspaceResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type WorkspacesGetResponseSku =
+export type GetWorkspaceResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const WorkspacesGetResponseSku =
+export const GetWorkspaceResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type WorkspacesGetResponsePlan =
+export type GetWorkspaceResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const WorkspacesGetResponsePlan =
+export const GetWorkspaceResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 /** List of applicationGroup resource Ids. */
@@ -4031,7 +3983,7 @@ export interface GetWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkspacesGetResponseTagsMap;
+  tags?: GetWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -4055,7 +4007,7 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -4348,31 +4300,113 @@ export const HostPoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "HostPoolsCreateOrUpdateResponse",
 }) as any as S.Schema<HostPoolsCreateOrUpdateResponse>;
 
-export interface HostPoolsRetrieveRegistrationTokenRequest {
+/** Possible device architectures that an app attach package can be configured for */
+export type ImportAppAttachPackageInfoRequestPackageArchitecture =
+  | "ARM"
+  | "ARM64"
+  | "x86"
+  | "x64"
+  | "Neutral"
+  | "x86a64"
+  | "ALL";
+export const ImportAppAttachPackageInfoRequestPackageArchitecture =
+  /*@__PURE__*/ S.String;
+
+export interface ImportAppAttachPackageInfoRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the host pool within the specified resource group */
   hostPoolName: string;
+  /** URI to Image */
+  path?: string;
+  /** Possible device architectures that an app attach package can be configured for */
+  packageArchitecture?:
+    | ImportAppAttachPackageInfoRequestPackageArchitecture
+    | (string & {})
+    | null;
 }
-export const HostPoolsRetrieveRegistrationTokenRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      hostPoolName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/retrieveRegistrationToken",
-        code: 200,
-        apiVersion: "2025-10-10",
-      }),
+export const ImportAppAttachPackageInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    hostPoolName: S.String.pipe(T.Label()),
+    path: S.optional(S.String),
+    packageArchitecture: S.optional(
+      S.NullOr(ImportAppAttachPackageInfoRequestPackageArchitecture),
     ),
-  ).annotate({
-    identifier: "HostPoolsRetrieveRegistrationTokenRequest",
-  }) as any as S.Schema<HostPoolsRetrieveRegistrationTokenRequest>;
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/importAppAttachPackageInfo",
+      code: 200,
+      apiVersion: "2025-10-10",
+    }),
+  ),
+).annotate({
+  identifier: "ImportAppAttachPackageInfoRequest",
+}) as any as S.Schema<ImportAppAttachPackageInfoRequest>;
+
+/** Resource tags. */
+export type AppAttachPackageTagsMap = { [key: string]: string | undefined };
+export const AppAttachPackageTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AppAttachPackageTagsMap>;
+
+/** Schema for App Attach Package properties. */
+export interface AppAttachPackage {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AppAttachPackageTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Detailed properties for App Attach Package */
+  properties: AppAttachPackageProperties;
+}
+export const AppAttachPackage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AppAttachPackageTagsMap),
+    location: S.String,
+    properties: AppAttachPackageProperties,
+  }),
+).annotate({
+  identifier: "AppAttachPackage",
+}) as any as S.Schema<AppAttachPackage>;
+
+/** List of App Attach Package definitions. */
+export type AppAttachPackageListValueList = Array<AppAttachPackage>;
+export const AppAttachPackageListValueList = /*@__PURE__*/ S.Array(
+  AppAttachPackage,
+) as any as S.Schema<AppAttachPackageListValueList>;
+
+/** List of App Attach Package definitions. */
+export interface AppAttachPackageList {
+  /** List of App Attach Package definitions. */
+  value?: AppAttachPackageListValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const AppAttachPackageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AppAttachPackageListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppAttachPackageList",
+}) as any as S.Schema<AppAttachPackageList>;
 
 export interface ListAppAttachPackageByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4938,7 +4972,7 @@ export const ListHostPoolsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListHostPoolsRequest",
 }) as any as S.Schema<ListHostPoolsRequest>;
 
-export interface ListMsixPackagesRequest {
+export interface ListMSIXPackagesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4952,7 +4986,7 @@ export interface ListMsixPackagesRequest {
   /** Initial number of items to skip. */
   initialSkip?: number;
 }
-export const ListMsixPackagesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMSIXPackagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4969,8 +5003,8 @@ export const ListMsixPackagesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListMsixPackagesRequest",
-}) as any as S.Schema<ListMsixPackagesRequest>;
+  identifier: "ListMSIXPackagesRequest",
+}) as any as S.Schema<ListMSIXPackagesRequest>;
 
 /** Schema for MSIX Package properties. */
 export interface MSIXPackage {
@@ -5879,6 +5913,110 @@ export const SessionHostList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SessionHostList",
 }) as any as S.Schema<SessionHostList>;
 
+export interface ListStartMenuItemsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the application group */
+  applicationGroupName: string;
+  /** Number of items per page. */
+  pageSize?: number;
+  /** Indicates whether the collection is descending. */
+  isDescending?: boolean;
+  /** Initial number of items to skip. */
+  initialSkip?: number;
+}
+export const ListStartMenuItemsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    applicationGroupName: S.String.pipe(T.Label()),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    isDescending: S.optional(S.Boolean.pipe(T.Query())),
+    initialSkip: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/startMenuItems",
+      code: 200,
+      apiVersion: "2025-10-10",
+    }),
+  ),
+).annotate({
+  identifier: "ListStartMenuItemsRequest",
+}) as any as S.Schema<ListStartMenuItemsRequest>;
+
+/** Schema for StartMenuItem properties. */
+export interface StartMenuItemProperties {
+  /** Alias of StartMenuItem. */
+  appAlias?: string;
+  /** Path to the file of StartMenuItem. */
+  filePath?: string;
+  /** Command line arguments for StartMenuItem. */
+  commandLineArguments?: string;
+  /** Path to the icon. */
+  iconPath?: string;
+  /** Index of the icon. */
+  iconIndex?: number;
+}
+export const StartMenuItemProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    appAlias: S.optional(S.String),
+    filePath: S.optional(S.String),
+    commandLineArguments: S.optional(S.String),
+    iconPath: S.optional(S.String),
+    iconIndex: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "StartMenuItemProperties",
+}) as any as S.Schema<StartMenuItemProperties>;
+
+/** Represents a StartMenuItem definition. */
+export interface StartMenuItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Detailed properties for StartMenuItem */
+  properties?: StartMenuItemProperties;
+}
+export const StartMenuItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(StartMenuItemProperties),
+  }),
+).annotate({ identifier: "StartMenuItem" }) as any as S.Schema<StartMenuItem>;
+
+/** List of StartMenuItem definitions. */
+export type StartMenuItemListValueList = Array<StartMenuItem>;
+export const StartMenuItemListValueList = /*@__PURE__*/ S.Array(
+  StartMenuItem,
+) as any as S.Schema<StartMenuItemListValueList>;
+
+/** List of StartMenuItem definitions. */
+export interface StartMenuItemList {
+  /** List of StartMenuItem definitions. */
+  value?: StartMenuItemListValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const StartMenuItemList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(StartMenuItemListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StartMenuItemList",
+}) as any as S.Schema<StartMenuItemList>;
+
 export interface ListUserSessionByHostPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6340,109 +6478,49 @@ export const MSIXPackagesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "MSIXPackagesCreateOrUpdateResponse",
 }) as any as S.Schema<MSIXPackagesCreateOrUpdateResponse>;
 
-export interface StartMenuItemsListRequest {
+export interface SendUserSessionMessageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the application group */
-  applicationGroupName: string;
-  /** Number of items per page. */
-  pageSize?: number;
-  /** Indicates whether the collection is descending. */
-  isDescending?: boolean;
-  /** Initial number of items to skip. */
-  initialSkip?: number;
+  /** The name of the host pool within the specified resource group */
+  hostPoolName: string;
+  /** The name of the session host within the specified host pool */
+  sessionHostName: string;
+  /** The name of the user session within the specified session host */
+  userSessionId: string;
+  /** Title of message. */
+  messageTitle?: string;
+  /** Body of message. */
+  messageBody?: string;
 }
-export const StartMenuItemsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const SendUserSessionMessageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    applicationGroupName: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    isDescending: S.optional(S.Boolean.pipe(T.Query())),
-    initialSkip: S.optional(S.Number.pipe(T.Query())),
+    hostPoolName: S.String.pipe(T.Label()),
+    sessionHostName: S.String.pipe(T.Label()),
+    userSessionId: S.String.pipe(T.Label()),
+    messageTitle: S.optional(S.String),
+    messageBody: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/startMenuItems",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/sessionHosts/{sessionHostName}/userSessions/{userSessionId}/sendMessage",
       code: 200,
       apiVersion: "2025-10-10",
     }),
   ),
 ).annotate({
-  identifier: "StartMenuItemsListRequest",
-}) as any as S.Schema<StartMenuItemsListRequest>;
+  identifier: "SendUserSessionMessageRequest",
+}) as any as S.Schema<SendUserSessionMessageRequest>;
 
-/** Schema for StartMenuItem properties. */
-export interface StartMenuItemProperties {
-  /** Alias of StartMenuItem. */
-  appAlias?: string;
-  /** Path to the file of StartMenuItem. */
-  filePath?: string;
-  /** Command line arguments for StartMenuItem. */
-  commandLineArguments?: string;
-  /** Path to the icon. */
-  iconPath?: string;
-  /** Index of the icon. */
-  iconIndex?: number;
-}
-export const StartMenuItemProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    appAlias: S.optional(S.String),
-    filePath: S.optional(S.String),
-    commandLineArguments: S.optional(S.String),
-    iconPath: S.optional(S.String),
-    iconIndex: S.optional(S.Number),
-  }),
+export interface SendUserSessionMessageResponse {}
+export const SendUserSessionMessageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "StartMenuItemProperties",
-}) as any as S.Schema<StartMenuItemProperties>;
-
-/** Represents a StartMenuItem definition. */
-export interface StartMenuItem {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Detailed properties for StartMenuItem */
-  properties?: StartMenuItemProperties;
-}
-export const StartMenuItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(StartMenuItemProperties),
-  }),
-).annotate({ identifier: "StartMenuItem" }) as any as S.Schema<StartMenuItem>;
-
-/** List of StartMenuItem definitions. */
-export type StartMenuItemListValueList = Array<StartMenuItem>;
-export const StartMenuItemListValueList = /*@__PURE__*/ S.Array(
-  StartMenuItem,
-) as any as S.Schema<StartMenuItemListValueList>;
-
-/** List of StartMenuItem definitions. */
-export interface StartMenuItemList {
-  /** List of StartMenuItem definitions. */
-  value?: StartMenuItemListValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const StartMenuItemList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(StartMenuItemListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StartMenuItemList",
-}) as any as S.Schema<StartMenuItemList>;
+  identifier: "SendUserSessionMessageResponse",
+}) as any as S.Schema<SendUserSessionMessageResponse>;
 
 /** List of Hostpool resource Ids. */
 export type AppAttachPackagePatchPropertiesHostPoolReferencesList =
@@ -6509,13 +6587,13 @@ export const UpdateAppAttachPackageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAppAttachPackageRequest>;
 
 /** Resource tags. */
-export type AppAttachPackageUpdateResponseTagsMap = {
+export type UpdateAppAttachPackageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AppAttachPackageUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAppAttachPackageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppAttachPackageUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAppAttachPackageResponseTagsMap>;
 
 export interface UpdateAppAttachPackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6527,7 +6605,7 @@ export interface UpdateAppAttachPackageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AppAttachPackageUpdateResponseTagsMap;
+  tags?: UpdateAppAttachPackageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Detailed properties for App Attach Package */
@@ -6539,7 +6617,7 @@ export const UpdateAppAttachPackageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AppAttachPackageUpdateResponseTagsMap),
+    tags: S.optional(UpdateAppAttachPackageResponseTagsMap),
     location: S.String,
     properties: AppAttachPackageProperties,
   }),
@@ -6664,13 +6742,13 @@ export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationResponse>;
 
 /** tags to be updated */
-export type ApplicationGroupsUpdateRequestTagsMap = {
+export type UpdateApplicationGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationGroupRequestTagsMap>;
 
 /** ApplicationGroup properties that can be patched. */
 export interface ApplicationGroupPatchProperties {
@@ -6699,7 +6777,7 @@ export interface UpdateApplicationGroupRequest {
   /** The name of the application group */
   applicationGroupName: string;
   /** tags to be updated */
-  tags?: ApplicationGroupsUpdateRequestTagsMap | null;
+  tags?: UpdateApplicationGroupRequestTagsMap | null;
   /** ApplicationGroup properties that can be patched. */
   properties?: ApplicationGroupPatchProperties;
 }
@@ -6708,7 +6786,7 @@ export const UpdateApplicationGroupRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     applicationGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(S.NullOr(ApplicationGroupsUpdateRequestTagsMap)),
+    tags: S.optional(S.NullOr(UpdateApplicationGroupRequestTagsMap)),
     properties: S.optional(ApplicationGroupPatchProperties),
   }).pipe(
     T.Http({
@@ -6723,30 +6801,30 @@ export const UpdateApplicationGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationGroupRequest>;
 
 /** Resource tags. */
-export type ApplicationGroupsUpdateResponseTagsMap = {
+export type UpdateApplicationGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApplicationGroupResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type ApplicationGroupsUpdateResponseIdentity =
+export type UpdateApplicationGroupResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const ApplicationGroupsUpdateResponseIdentity =
+export const UpdateApplicationGroupResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ApplicationGroupsUpdateResponseSku =
+export type UpdateApplicationGroupResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const ApplicationGroupsUpdateResponseSku =
+export const UpdateApplicationGroupResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type ApplicationGroupsUpdateResponsePlan =
+export type UpdateApplicationGroupResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const ApplicationGroupsUpdateResponsePlan =
+export const UpdateApplicationGroupResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 export interface UpdateApplicationGroupResponse {
@@ -6759,7 +6837,7 @@ export interface UpdateApplicationGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ApplicationGroupsUpdateResponseTagsMap;
+  tags?: UpdateApplicationGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -6783,7 +6861,7 @@ export const UpdateApplicationGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ApplicationGroupsUpdateResponseTagsMap),
+    tags: S.optional(UpdateApplicationGroupResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -6869,13 +6947,13 @@ export const UpdateDesktopResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDesktopResponse>;
 
 /** tags to be updated */
-export type HostPoolsUpdateRequestTagsMap = {
+export type UpdateHostPoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const HostPoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateHostPoolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HostPoolsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateHostPoolRequestTagsMap>;
 
 /** PersonalDesktopAssignment type for HostPool. */
 export type HostPoolPatchPropertiesPersonalDesktopAssignmentType =
@@ -7089,9 +7167,9 @@ export const HostPoolPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HostPoolPatchProperties>;
 
 /** Managed service identity (either system assigned, or none) */
-export type HostPoolsUpdateRequestIdentity =
+export type UpdateHostPoolRequestIdentity =
   ApplicationGroupsCreateOrUpdateRequestIdentity;
-export const HostPoolsUpdateRequestIdentity =
+export const UpdateHostPoolRequestIdentity =
   ApplicationGroupsCreateOrUpdateRequestIdentity;
 
 export interface UpdateHostPoolRequest {
@@ -7102,7 +7180,7 @@ export interface UpdateHostPoolRequest {
   /** The name of the host pool within the specified resource group */
   hostPoolName: string;
   /** tags to be updated */
-  tags?: HostPoolsUpdateRequestTagsMap | null;
+  tags?: UpdateHostPoolRequestTagsMap | null;
   /** HostPool properties that can be patched. */
   properties?: HostPoolPatchProperties;
   /** Managed service identity (either system assigned, or none) */
@@ -7113,7 +7191,7 @@ export const UpdateHostPoolRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     hostPoolName: S.String.pipe(T.Label()),
-    tags: S.optional(S.NullOr(HostPoolsUpdateRequestTagsMap)),
+    tags: S.optional(S.NullOr(UpdateHostPoolRequestTagsMap)),
     properties: S.optional(HostPoolPatchProperties),
     identity: S.optional(ApplicationGroupsCreateOrUpdateRequestIdentity),
   }).pipe(
@@ -7129,30 +7207,30 @@ export const UpdateHostPoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateHostPoolRequest>;
 
 /** Resource tags. */
-export type HostPoolsUpdateResponseTagsMap = {
+export type UpdateHostPoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const HostPoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateHostPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HostPoolsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateHostPoolResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type HostPoolsUpdateResponseIdentity =
+export type UpdateHostPoolResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const HostPoolsUpdateResponseIdentity =
+export const UpdateHostPoolResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type HostPoolsUpdateResponseSku =
+export type UpdateHostPoolResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const HostPoolsUpdateResponseSku =
+export const UpdateHostPoolResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type HostPoolsUpdateResponsePlan =
+export type UpdateHostPoolResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const HostPoolsUpdateResponsePlan =
+export const UpdateHostPoolResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 export interface UpdateHostPoolResponse {
@@ -7165,7 +7243,7 @@ export interface UpdateHostPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: HostPoolsUpdateResponseTagsMap;
+  tags?: UpdateHostPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -7189,7 +7267,7 @@ export const UpdateHostPoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(HostPoolsUpdateResponseTagsMap),
+    tags: S.optional(UpdateHostPoolResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -7222,7 +7300,7 @@ export const MSIXPackagePatchProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MSIXPackagePatchProperties",
 }) as any as S.Schema<MSIXPackagePatchProperties>;
 
-export interface UpdateMsixPackageRequest {
+export interface UpdateMSIXPackageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7234,7 +7312,7 @@ export interface UpdateMsixPackageRequest {
   /** Detailed properties for MSIX Package */
   properties?: MSIXPackagePatchProperties;
 }
-export const UpdateMsixPackageRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMSIXPackageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7250,10 +7328,10 @@ export const UpdateMsixPackageRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateMsixPackageRequest",
-}) as any as S.Schema<UpdateMsixPackageRequest>;
+  identifier: "UpdateMSIXPackageRequest",
+}) as any as S.Schema<UpdateMSIXPackageRequest>;
 
-export interface UpdateMsixPackageResponse {
+export interface UpdateMSIXPackageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7265,7 +7343,7 @@ export interface UpdateMsixPackageResponse {
   /** Detailed properties for MSIX Package */
   properties: MSIXPackageProperties;
 }
-export const UpdateMsixPackageResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMSIXPackageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -7274,8 +7352,8 @@ export const UpdateMsixPackageResponse = /*@__PURE__*/ S.suspend(() =>
     properties: MSIXPackageProperties,
   }),
 ).annotate({
-  identifier: "UpdateMsixPackageResponse",
-}) as any as S.Schema<UpdateMsixPackageResponse>;
+  identifier: "UpdateMSIXPackageResponse",
+}) as any as S.Schema<UpdateMSIXPackageResponse>;
 
 /** The private endpoint resource. */
 export interface PrivateEndpointInput {}
@@ -7286,21 +7364,21 @@ export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointInput>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsUpdateByHostPoolRequestProperties {
+export interface UpdatePrivateEndpointConnectionByHostPoolRequestProperties {
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpointInput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
 }
-export const PrivateEndpointConnectionsUpdateByHostPoolRequestProperties =
+export const UpdatePrivateEndpointConnectionByHostPoolRequestProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateEndpoint: S.optional(PrivateEndpointInput),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsUpdateByHostPoolRequestProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsUpdateByHostPoolRequestProperties>;
+    identifier: "UpdatePrivateEndpointConnectionByHostPoolRequestProperties",
+  }) as any as S.Schema<UpdatePrivateEndpointConnectionByHostPoolRequestProperties>;
 
 export interface UpdatePrivateEndpointConnectionByHostPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7312,7 +7390,7 @@ export interface UpdatePrivateEndpointConnectionByHostPoolRequest {
   /** The name of the private endpoint connection associated with the Azure resource. */
   privateEndpointConnectionName: string;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsUpdateByHostPoolRequestProperties;
+  properties?: UpdatePrivateEndpointConnectionByHostPoolRequestProperties;
 }
 export const UpdatePrivateEndpointConnectionByHostPoolRequest =
   /*@__PURE__*/ S.suspend(() =>
@@ -7322,7 +7400,7 @@ export const UpdatePrivateEndpointConnectionByHostPoolRequest =
       hostPoolName: S.String.pipe(T.Label()),
       privateEndpointConnectionName: S.String.pipe(T.Label()),
       properties: S.optional(
-        PrivateEndpointConnectionsUpdateByHostPoolRequestProperties,
+        UpdatePrivateEndpointConnectionByHostPoolRequestProperties,
       ),
     }).pipe(
       T.Http({
@@ -7337,17 +7415,17 @@ export const UpdatePrivateEndpointConnectionByHostPoolRequest =
   }) as any as S.Schema<UpdatePrivateEndpointConnectionByHostPoolRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionsUpdateByHostPoolResponsePropertiesGroupIdsList =
+export type UpdatePrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionsUpdateByHostPoolResponsePropertiesGroupIdsList =
+export const UpdatePrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsUpdateByHostPoolResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<UpdatePrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsUpdateByHostPoolResponseProperties {
+export interface UpdatePrivateEndpointConnectionByHostPoolResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionsUpdateByHostPoolResponsePropertiesGroupIdsList;
+  groupIds?: UpdatePrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -7355,19 +7433,19 @@ export interface PrivateEndpointConnectionsUpdateByHostPoolResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionsUpdateByHostPoolResponseProperties =
+export const UpdatePrivateEndpointConnectionByHostPoolResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionsUpdateByHostPoolResponsePropertiesGroupIdsList,
+        UpdatePrivateEndpointConnectionByHostPoolResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsUpdateByHostPoolResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsUpdateByHostPoolResponseProperties>;
+    identifier: "UpdatePrivateEndpointConnectionByHostPoolResponseProperties",
+  }) as any as S.Schema<UpdatePrivateEndpointConnectionByHostPoolResponseProperties>;
 
 export interface UpdatePrivateEndpointConnectionByHostPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7379,7 +7457,7 @@ export interface UpdatePrivateEndpointConnectionByHostPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsUpdateByHostPoolResponseProperties;
+  properties?: UpdatePrivateEndpointConnectionByHostPoolResponseProperties;
 }
 export const UpdatePrivateEndpointConnectionByHostPoolResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -7389,7 +7467,7 @@ export const UpdatePrivateEndpointConnectionByHostPoolResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        PrivateEndpointConnectionsUpdateByHostPoolResponseProperties,
+        UpdatePrivateEndpointConnectionByHostPoolResponseProperties,
       ),
     }),
   ).annotate({
@@ -7397,10 +7475,10 @@ export const UpdatePrivateEndpointConnectionByHostPoolResponse =
   }) as any as S.Schema<UpdatePrivateEndpointConnectionByHostPoolResponse>;
 
 /** Properties of the private endpoint connection. */
-export type PrivateEndpointConnectionsUpdateByWorkspaceRequestProperties =
-  PrivateEndpointConnectionsUpdateByHostPoolRequestProperties;
-export const PrivateEndpointConnectionsUpdateByWorkspaceRequestProperties =
-  PrivateEndpointConnectionsUpdateByHostPoolRequestProperties;
+export type UpdatePrivateEndpointConnectionByWorkspaceRequestProperties =
+  UpdatePrivateEndpointConnectionByHostPoolRequestProperties;
+export const UpdatePrivateEndpointConnectionByWorkspaceRequestProperties =
+  UpdatePrivateEndpointConnectionByHostPoolRequestProperties;
 
 export interface UpdatePrivateEndpointConnectionByWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7412,7 +7490,7 @@ export interface UpdatePrivateEndpointConnectionByWorkspaceRequest {
   /** The name of the private endpoint connection associated with the Azure resource. */
   privateEndpointConnectionName: string;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsUpdateByHostPoolRequestProperties;
+  properties?: UpdatePrivateEndpointConnectionByHostPoolRequestProperties;
 }
 export const UpdatePrivateEndpointConnectionByWorkspaceRequest =
   /*@__PURE__*/ S.suspend(() =>
@@ -7422,7 +7500,7 @@ export const UpdatePrivateEndpointConnectionByWorkspaceRequest =
       workspaceName: S.String.pipe(T.Label()),
       privateEndpointConnectionName: S.String.pipe(T.Label()),
       properties: S.optional(
-        PrivateEndpointConnectionsUpdateByHostPoolRequestProperties,
+        UpdatePrivateEndpointConnectionByHostPoolRequestProperties,
       ),
     }).pipe(
       T.Http({
@@ -7437,17 +7515,17 @@ export const UpdatePrivateEndpointConnectionByWorkspaceRequest =
   }) as any as S.Schema<UpdatePrivateEndpointConnectionByWorkspaceRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionsUpdateByWorkspaceResponsePropertiesGroupIdsList =
+export type UpdatePrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionsUpdateByWorkspaceResponsePropertiesGroupIdsList =
+export const UpdatePrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsUpdateByWorkspaceResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<UpdatePrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties {
+export interface UpdatePrivateEndpointConnectionByWorkspaceResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionsUpdateByWorkspaceResponsePropertiesGroupIdsList;
+  groupIds?: UpdatePrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -7455,19 +7533,19 @@ export interface PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties =
+export const UpdatePrivateEndpointConnectionByWorkspaceResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionsUpdateByWorkspaceResponsePropertiesGroupIdsList,
+        UpdatePrivateEndpointConnectionByWorkspaceResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties>;
+    identifier: "UpdatePrivateEndpointConnectionByWorkspaceResponseProperties",
+  }) as any as S.Schema<UpdatePrivateEndpointConnectionByWorkspaceResponseProperties>;
 
 export interface UpdatePrivateEndpointConnectionByWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7479,7 +7557,7 @@ export interface UpdatePrivateEndpointConnectionByWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties;
+  properties?: UpdatePrivateEndpointConnectionByWorkspaceResponseProperties;
 }
 export const UpdatePrivateEndpointConnectionByWorkspaceResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -7489,7 +7567,7 @@ export const UpdatePrivateEndpointConnectionByWorkspaceResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        PrivateEndpointConnectionsUpdateByWorkspaceResponseProperties,
+        UpdatePrivateEndpointConnectionByWorkspaceResponseProperties,
       ),
     }),
   ).annotate({
@@ -7497,13 +7575,13 @@ export const UpdatePrivateEndpointConnectionByWorkspaceResponse =
   }) as any as S.Schema<UpdatePrivateEndpointConnectionByWorkspaceResponse>;
 
 /** tags to be updated */
-export type ScalingPlansUpdateRequestTagsMap = {
+export type UpdateScalingPlanRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScalingPlansUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateScalingPlanRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ScalingPlansUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateScalingPlanRequestTagsMap>;
 
 /** List of ScalingSchedule definitions. */
 export type ScalingPlanPatchPropertiesSchedulesList = Array<ScalingSchedule>;
@@ -7557,7 +7635,7 @@ export interface UpdateScalingPlanRequest {
   /** The name of the scaling plan. */
   scalingPlanName: string;
   /** tags to be updated */
-  tags?: ScalingPlansUpdateRequestTagsMap | null;
+  tags?: UpdateScalingPlanRequestTagsMap | null;
   /** Detailed properties for scaling plan */
   properties?: ScalingPlanPatchProperties;
 }
@@ -7566,7 +7644,7 @@ export const UpdateScalingPlanRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     scalingPlanName: S.String.pipe(T.Label()),
-    tags: S.optional(S.NullOr(ScalingPlansUpdateRequestTagsMap)),
+    tags: S.optional(S.NullOr(UpdateScalingPlanRequestTagsMap)),
     properties: S.optional(ScalingPlanPatchProperties),
   }).pipe(
     T.Http({
@@ -7581,30 +7659,30 @@ export const UpdateScalingPlanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateScalingPlanRequest>;
 
 /** Resource tags. */
-export type ScalingPlansUpdateResponseTagsMap = {
+export type UpdateScalingPlanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ScalingPlansUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateScalingPlanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ScalingPlansUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateScalingPlanResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type ScalingPlansUpdateResponseIdentity =
+export type UpdateScalingPlanResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const ScalingPlansUpdateResponseIdentity =
+export const UpdateScalingPlanResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ScalingPlansUpdateResponseSku =
+export type UpdateScalingPlanResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const ScalingPlansUpdateResponseSku =
+export const UpdateScalingPlanResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type ScalingPlansUpdateResponsePlan =
+export type UpdateScalingPlanResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const ScalingPlansUpdateResponsePlan =
+export const UpdateScalingPlanResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 export interface UpdateScalingPlanResponse {
@@ -7617,7 +7695,7 @@ export interface UpdateScalingPlanResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ScalingPlansUpdateResponseTagsMap;
+  tags?: UpdateScalingPlanResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -7641,7 +7719,7 @@ export const UpdateScalingPlanResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ScalingPlansUpdateResponseTagsMap),
+    tags: S.optional(UpdateScalingPlanResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -7847,13 +7925,13 @@ export const UpdateSessionHostResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSessionHostResponse>;
 
 /** tags to be updated */
-export type WorkspacesUpdateRequestTagsMap = {
+export type UpdateWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
 
 /** List of applicationGroup links. */
 export type WorkspacePatchPropertiesApplicationGroupReferencesList =
@@ -7907,7 +7985,7 @@ export interface UpdateWorkspaceRequest {
   /** The name of the workspace */
   workspaceName: string;
   /** tags to be updated */
-  tags?: WorkspacesUpdateRequestTagsMap | null;
+  tags?: UpdateWorkspaceRequestTagsMap | null;
   /** Detailed properties for Workspace */
   properties?: WorkspacePatchProperties;
 }
@@ -7916,7 +7994,7 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(S.NullOr(WorkspacesUpdateRequestTagsMap)),
+    tags: S.optional(S.NullOr(UpdateWorkspaceRequestTagsMap)),
     properties: S.optional(WorkspacePatchProperties),
   }).pipe(
     T.Http({
@@ -7931,30 +8009,30 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesUpdateResponseTagsMap = {
+export type UpdateWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type WorkspacesUpdateResponseIdentity =
+export type UpdateWorkspaceResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
-export const WorkspacesUpdateResponseIdentity =
+export const UpdateWorkspaceResponseIdentity =
   ApplicationGroupsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type WorkspacesUpdateResponseSku =
+export type UpdateWorkspaceResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
-export const WorkspacesUpdateResponseSku =
+export const UpdateWorkspaceResponseSku =
   ApplicationGroupsCreateOrUpdateResponseSku;
 
 /** Plan for the resource. */
-export type WorkspacesUpdateResponsePlan =
+export type UpdateWorkspaceResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
-export const WorkspacesUpdateResponsePlan =
+export const UpdateWorkspaceResponsePlan =
   ApplicationGroupsCreateOrUpdateRequestPlan;
 
 export interface UpdateWorkspaceResponse {
@@ -7967,7 +8045,7 @@ export interface UpdateWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkspacesUpdateResponseTagsMap;
+  tags?: UpdateWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource. */
@@ -7991,7 +8069,7 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
     location: S.String,
     managedBy: S.optional(S.String),
     kind: S.optional(S.String),
@@ -8004,88 +8082,6 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateWorkspaceResponse",
 }) as any as S.Schema<UpdateWorkspaceResponse>;
-
-export interface UserSessionsDisconnectRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the host pool within the specified resource group */
-  hostPoolName: string;
-  /** The name of the session host within the specified host pool */
-  sessionHostName: string;
-  /** The name of the user session within the specified session host */
-  userSessionId: string;
-}
-export const UserSessionsDisconnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    hostPoolName: S.String.pipe(T.Label()),
-    sessionHostName: S.String.pipe(T.Label()),
-    userSessionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/sessionHosts/{sessionHostName}/userSessions/{userSessionId}/disconnect",
-      code: 200,
-      apiVersion: "2025-10-10",
-    }),
-  ),
-).annotate({
-  identifier: "UserSessionsDisconnectRequest",
-}) as any as S.Schema<UserSessionsDisconnectRequest>;
-
-export interface UserSessionsDisconnectResponse {}
-export const UserSessionsDisconnectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserSessionsDisconnectResponse",
-}) as any as S.Schema<UserSessionsDisconnectResponse>;
-
-export interface UserSessionsSendMessageRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the host pool within the specified resource group */
-  hostPoolName: string;
-  /** The name of the session host within the specified host pool */
-  sessionHostName: string;
-  /** The name of the user session within the specified session host */
-  userSessionId: string;
-  /** Title of message. */
-  messageTitle?: string;
-  /** Body of message. */
-  messageBody?: string;
-}
-export const UserSessionsSendMessageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    hostPoolName: S.String.pipe(T.Label()),
-    sessionHostName: S.String.pipe(T.Label()),
-    userSessionId: S.String.pipe(T.Label()),
-    messageTitle: S.optional(S.String),
-    messageBody: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/sessionHosts/{sessionHostName}/userSessions/{userSessionId}/sendMessage",
-      code: 200,
-      apiVersion: "2025-10-10",
-    }),
-  ),
-).annotate({
-  identifier: "UserSessionsSendMessageRequest",
-}) as any as S.Schema<UserSessionsSendMessageRequest>;
-
-export interface UserSessionsSendMessageResponse {}
-export const UserSessionsSendMessageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserSessionsSendMessageResponse",
-}) as any as S.Schema<UserSessionsSendMessageResponse>;
 
 /** Resource tags. */
 export type WorkspacesCreateOrUpdateRequestTagsMap = {
@@ -8297,21 +8293,6 @@ export const AppAttachPackageCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AppAttachPackageInfoImportError = AzureOpError;
-/** Gets information from a package given the path to the package. */
-export const AppAttachPackageInfoImport: API.OperationMethod<
-  AppAttachPackageInfoImportRequest,
-  AppAttachPackageList,
-  AppAttachPackageInfoImportError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AppAttachPackageInfoImportRequest,
-  output: AppAttachPackageList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ApplicationGroupsCreateOrUpdateError = AzureOpError;
 /** Create or update an applicationGroup. */
 export const ApplicationGroupsCreateOrUpdate: API.OperationMethod<
@@ -8447,16 +8428,16 @@ export const DeleteHostPool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteMsixPackageError = AzureOpError;
+export type DeleteMSIXPackageError = AzureOpError;
 /** Remove an MSIX Package. */
-export const DeleteMsixPackage: API.OperationMethod<
-  DeleteMsixPackageRequest,
-  DeleteMsixPackageResponse,
-  DeleteMsixPackageError,
+export const DeleteMSIXPackage: API.OperationMethod<
+  DeleteMSIXPackageRequest,
+  DeleteMSIXPackageResponse,
+  DeleteMSIXPackageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteMsixPackageRequest,
-  output: DeleteMsixPackageResponse,
+  input: DeleteMSIXPackageRequest,
+  output: DeleteMSIXPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8582,6 +8563,21 @@ export const DeleteWorkspace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DisconnectUserSessionError = AzureOpError;
+/** Disconnect a userSession. */
+export const DisconnectUserSession: API.OperationMethod<
+  DisconnectUserSessionRequest,
+  DisconnectUserSessionResponse,
+  DisconnectUserSessionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisconnectUserSessionRequest,
+  output: DisconnectUserSessionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetAppAttachPackageError = AzureOpError;
 /** Get an app attach package. */
 export const GetAppAttachPackage: API.OperationMethod<
@@ -8657,16 +8653,31 @@ export const GetHostPool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetMsixPackageError = AzureOpError;
-/** Get a msixpackage. */
-export const GetMsixPackage: API.OperationMethod<
-  GetMsixPackageRequest,
-  GetMsixPackageResponse,
-  GetMsixPackageError,
+export type GetHostPoolRegistrationTokenError = AzureOpError;
+/** Registration token of the host pool. */
+export const GetHostPoolRegistrationToken: API.OperationMethod<
+  GetHostPoolRegistrationTokenRequest,
+  RegistrationInfo,
+  GetHostPoolRegistrationTokenError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMsixPackageRequest,
-  output: GetMsixPackageResponse,
+  input: GetHostPoolRegistrationTokenRequest,
+  output: RegistrationInfo,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMSIXPackageError = AzureOpError;
+/** Get a msixpackage. */
+export const GetMSIXPackage: API.OperationMethod<
+  GetMSIXPackageRequest,
+  GetMSIXPackageResponse,
+  GetMSIXPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMSIXPackageRequest,
+  output: GetMSIXPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8807,16 +8818,16 @@ export const HostPoolsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HostPoolsRetrieveRegistrationTokenError = AzureOpError;
-/** Registration token of the host pool. */
-export const HostPoolsRetrieveRegistrationToken: API.OperationMethod<
-  HostPoolsRetrieveRegistrationTokenRequest,
-  RegistrationInfo,
-  HostPoolsRetrieveRegistrationTokenError,
+export type ImportAppAttachPackageInfoError = AzureOpError;
+/** Gets information from a package given the path to the package. */
+export const ImportAppAttachPackageInfo: API.OperationMethod<
+  ImportAppAttachPackageInfoRequest,
+  AppAttachPackageList,
+  ImportAppAttachPackageInfoError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HostPoolsRetrieveRegistrationTokenRequest,
-  output: RegistrationInfo,
+  input: ImportAppAttachPackageInfoRequest,
+  output: AppAttachPackageList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8957,15 +8968,15 @@ export const ListHostPools: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListMsixPackagesError = AzureOpError;
+export type ListMSIXPackagesError = AzureOpError;
 /** List MSIX packages in hostpool. */
-export const ListMsixPackages: API.OperationMethod<
-  ListMsixPackagesRequest,
+export const ListMSIXPackages: API.OperationMethod<
+  ListMSIXPackagesRequest,
   MSIXPackageList,
-  ListMsixPackagesError,
+  ListMSIXPackagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMsixPackagesRequest,
+  input: ListMSIXPackagesRequest,
   output: MSIXPackageList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -9137,6 +9148,21 @@ export const ListSessionHosts: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListStartMenuItemsError = AzureOpError;
+/** List start menu items in the given application group. */
+export const ListStartMenuItems: API.OperationMethod<
+  ListStartMenuItemsRequest,
+  StartMenuItemList,
+  ListStartMenuItemsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStartMenuItemsRequest,
+  output: StartMenuItemList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListUserSessionByHostPoolError = AzureOpError;
 /** List userSessions. */
 export const ListUserSessionByHostPool: API.OperationMethod<
@@ -9227,16 +9253,16 @@ export const MSIXPackagesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StartMenuItemsListError = AzureOpError;
-/** List start menu items in the given application group. */
-export const StartMenuItemsList: API.OperationMethod<
-  StartMenuItemsListRequest,
-  StartMenuItemList,
-  StartMenuItemsListError,
+export type SendUserSessionMessageError = AzureOpError;
+/** Send a message to a user. */
+export const SendUserSessionMessage: API.OperationMethod<
+  SendUserSessionMessageRequest,
+  SendUserSessionMessageResponse,
+  SendUserSessionMessageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartMenuItemsListRequest,
-  output: StartMenuItemList,
+  input: SendUserSessionMessageRequest,
+  output: SendUserSessionMessageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9317,16 +9343,16 @@ export const UpdateHostPool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateMsixPackageError = AzureOpError;
+export type UpdateMSIXPackageError = AzureOpError;
 /** Update an MSIX Package. */
-export const UpdateMsixPackage: API.OperationMethod<
-  UpdateMsixPackageRequest,
-  UpdateMsixPackageResponse,
-  UpdateMsixPackageError,
+export const UpdateMSIXPackage: API.OperationMethod<
+  UpdateMSIXPackageRequest,
+  UpdateMSIXPackageResponse,
+  UpdateMSIXPackageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateMsixPackageRequest,
-  output: UpdateMsixPackageResponse,
+  input: UpdateMSIXPackageRequest,
+  output: UpdateMSIXPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9432,36 +9458,6 @@ export const UpdateWorkspace: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateWorkspaceRequest,
   output: UpdateWorkspaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UserSessionsDisconnectError = AzureOpError;
-/** Disconnect a userSession. */
-export const UserSessionsDisconnect: API.OperationMethod<
-  UserSessionsDisconnectRequest,
-  UserSessionsDisconnectResponse,
-  UserSessionsDisconnectError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserSessionsDisconnectRequest,
-  output: UserSessionsDisconnectResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UserSessionsSendMessageError = AzureOpError;
-/** Send a message to a user. */
-export const UserSessionsSendMessage: API.OperationMethod<
-  UserSessionsSendMessageRequest,
-  UserSessionsSendMessageResponse,
-  UserSessionsSendMessageError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserSessionsSendMessageRequest,
-  output: UserSessionsSendMessageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

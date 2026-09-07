@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.migrations#ListForOrgRequestExcludeItem": {
@@ -3185,46 +3186,46 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.migrations#ListForOrg"
-        },
-        {
-          "target": "com.github.migrations#StartForOrg"
-        },
-        {
-          "target": "com.github.migrations#GetStatusForOrg"
-        },
-        {
-          "target": "com.github.migrations#DownloadArchiveForOrg"
+          "target": "com.github.migrations#DeleteArchiveForAuthenticatedUser"
         },
         {
           "target": "com.github.migrations#DeleteArchiveForOrg"
         },
         {
-          "target": "com.github.migrations#UnlockRepoForOrg"
-        },
-        {
-          "target": "com.github.migrations#ListReposForOrg"
-        },
-        {
-          "target": "com.github.migrations#ListForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.migrations#StartForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.migrations#GetStatusForAuthenticatedUser"
+          "target": "com.github.migrations#DownloadArchiveForOrg"
         },
         {
           "target": "com.github.migrations#GetArchiveForAuthenticatedUser"
         },
         {
-          "target": "com.github.migrations#DeleteArchiveForAuthenticatedUser"
+          "target": "com.github.migrations#GetStatusForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#GetStatusForOrg"
+        },
+        {
+          "target": "com.github.migrations#ListForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#ListForOrg"
+        },
+        {
+          "target": "com.github.migrations#ListReposForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#ListReposForOrg"
+        },
+        {
+          "target": "com.github.migrations#StartForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.migrations#StartForOrg"
         },
         {
           "target": "com.github.migrations#UnlockRepoForAuthenticatedUser"
         },
         {
-          "target": "com.github.migrations#ListReposForAuthenticatedUser"
+          "target": "com.github.migrations#UnlockRepoForOrg"
         }
       ],
       "traits": {

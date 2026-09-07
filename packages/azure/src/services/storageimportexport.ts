@@ -954,13 +954,13 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOperationsResponse>;
 
 /** List of drives that comprise the job. */
-export type JobsUpdateRequestPropertiesDriveListList = Array<DriveStatus>;
-export const JobsUpdateRequestPropertiesDriveListList = /*@__PURE__*/ S.Array(
+export type UpdateJobRequestPropertiesDriveListList = Array<DriveStatus>;
+export const UpdateJobRequestPropertiesDriveListList = /*@__PURE__*/ S.Array(
   DriveStatus,
-) as any as S.Schema<JobsUpdateRequestPropertiesDriveListList>;
+) as any as S.Schema<UpdateJobRequestPropertiesDriveListList>;
 
 /** Specifies the properties of a UpdateJob. */
-export interface JobsUpdateRequestProperties {
+export interface UpdateJobRequestProperties {
   /** If specified, the value must be true. The service will attempt to cancel the job. */
   cancelRequested?: boolean;
   /** If specified, the value must be Shipping, which tells the Import/Export service that the package for the job has been shipped. The ReturnAddress and DeliveryPackage properties must have been set either in this request or in a previous request, otherwise the request will fail. */
@@ -976,9 +976,9 @@ export interface JobsUpdateRequestProperties {
   /** Indicates whether the manifest files on the drives should be copied to block blobs. */
   backupDriveManifest?: boolean;
   /** List of drives that comprise the job. */
-  driveList?: JobsUpdateRequestPropertiesDriveListList;
+  driveList?: UpdateJobRequestPropertiesDriveListList;
 }
-export const JobsUpdateRequestProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateJobRequestProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     cancelRequested: S.optional(S.Boolean),
     state: S.optional(S.String),
@@ -987,11 +987,11 @@ export const JobsUpdateRequestProperties = /*@__PURE__*/ S.suspend(() =>
     deliveryPackage: S.optional(DeliveryPackageInformation),
     logLevel: S.optional(S.String),
     backupDriveManifest: S.optional(S.Boolean),
-    driveList: S.optional(JobsUpdateRequestPropertiesDriveListList),
+    driveList: S.optional(UpdateJobRequestPropertiesDriveListList),
   }),
 ).annotate({
-  identifier: "JobsUpdateRequestProperties",
-}) as any as S.Schema<JobsUpdateRequestProperties>;
+  identifier: "UpdateJobRequestProperties",
+}) as any as S.Schema<UpdateJobRequestProperties>;
 
 export interface UpdateJobRequest {
   /** The subscription ID for the Azure user. */
@@ -1003,7 +1003,7 @@ export interface UpdateJobRequest {
   /** Specifies the tags that will be assigned to the job */
   tags?: unknown;
   /** Specifies the properties of a UpdateJob. */
-  properties?: JobsUpdateRequestProperties;
+  properties?: UpdateJobRequestProperties;
 }
 export const UpdateJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1011,7 +1011,7 @@ export const UpdateJobRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     jobName: S.String.pipe(T.Label()),
     tags: S.optional(S.Unknown),
-    properties: S.optional(JobsUpdateRequestProperties),
+    properties: S.optional(UpdateJobRequestProperties),
   }).pipe(
     T.Http({
       method: "PATCH",

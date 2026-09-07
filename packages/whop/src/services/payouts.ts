@@ -690,6 +690,197 @@ export const DeletePayoutMethodResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePayoutMethodResponse",
 }) as any as S.Schema<DeletePayoutMethodResponse>;
 
+export interface GetPayoutRequest {
+  /** Payout ID, prefixed `wdrl_` for a payout returned by `GET /payouts` or `cofr_` for the payout request returned by `POST /payouts`. */
+  id: string;
+  /** Owning account ID, prefixed `biz_`. Provide exactly one of `account_id` or `user_id`. */
+  account_id?: string;
+  /** Owning user ID, prefixed `user_`. Provide exactly one of `account_id` or `user_id`. */
+  user_id?: string;
+}
+export const GetPayoutRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+    user_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/payouts/{id}", code: 200 })),
+).annotate({
+  identifier: "GetPayoutRequest",
+}) as any as S.Schema<GetPayoutRequest>;
+
+/** Why the payout ended without paying, or why it reversed after settlement. Present on failed, canceled, denied, and reversed payouts; `null` otherwise. */
+export type GetPayoutResponseFailure = CancelPayoutResponseFailure;
+export const GetPayoutResponseFailure = CancelPayoutResponseFailure;
+
+/** Who bore the payout fee: the account itself, or its parent platform. */
+export type GetPayoutResponseFeePaidBy = "self" | "platform";
+export const GetPayoutResponseFeePaidBy = /*@__PURE__*/ S.String;
+
+/** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
+export type GetPayoutResponseMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const GetPayoutResponseMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetPayoutResponseMetadataMap>;
+
+export type GetPayoutResponseObject = "payout";
+export const GetPayoutResponseObject = /*@__PURE__*/ S.String;
+
+/** How the funds are delivered to the recipient. */
+export type GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
+  | "cash_pickup"
+  | "bank_deposit"
+  | "home_delivery"
+  | "mobile_wallet"
+  | "card"
+  | "check"
+  | "bill"
+  | "cryptocurrency"
+  | "unknown";
+export const GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
+  /*@__PURE__*/ S.String;
+
+/** Supported payout method display details. */
+export interface GetPayoutResponsePayoutMethodSupportedPayoutMethod {
+  /** How the funds are delivered to the recipient. */
+  delivery_type: GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType;
+  /** Supported payout method icon URL. */
+  icon_url: string | null;
+  /** Supported payout method display name. */
+  payer_name: string | null;
+}
+export const GetPayoutResponsePayoutMethodSupportedPayoutMethod =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      delivery_type:
+        GetPayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType,
+      icon_url: S.NullOr(S.String),
+      payer_name: S.NullOr(S.String),
+    }),
+  ).annotate({
+    identifier: "GetPayoutResponsePayoutMethodSupportedPayoutMethod",
+  }) as any as S.Schema<GetPayoutResponsePayoutMethodSupportedPayoutMethod>;
+
+/** The saved payout method used. Requires payout:destination:read; null without it. */
+export interface GetPayoutResponsePayoutMethod {
+  /** Saved payout method nickname. */
+  nickname: string | null;
+  /** Supported payout method display details. */
+  supported_payout_method: GetPayoutResponsePayoutMethodSupportedPayoutMethod | null;
+}
+export const GetPayoutResponsePayoutMethod = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nickname: S.NullOr(S.String),
+    supported_payout_method: S.NullOr(
+      GetPayoutResponsePayoutMethodSupportedPayoutMethod,
+    ),
+  }),
+).annotate({
+  identifier: "GetPayoutResponsePayoutMethod",
+}) as any as S.Schema<GetPayoutResponsePayoutMethod>;
+
+/** How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling. */
+export type GetPayoutResponseSource = "api" | "dashboard" | "automatic";
+export const GetPayoutResponseSource = /*@__PURE__*/ S.String;
+
+/** Payout delivery speed. */
+export type GetPayoutResponseSpeed = "standard" | "instant";
+export const GetPayoutResponseSpeed = /*@__PURE__*/ S.String;
+
+/** Current payout status. */
+export type GetPayoutResponseStatus =
+  | "requested"
+  | "in_review"
+  | "processing"
+  | "completed"
+  | "reversed"
+  | "canceled"
+  | "failed"
+  | "denied";
+export const GetPayoutResponseStatus = /*@__PURE__*/ S.String;
+
+export interface GetPayoutResponse {
+  /** The payout amount in whole currency units, as a decimal string. */
+  amount: string;
+  /** When the payout was created. */
+  created_at: string;
+  /** Payout currency. */
+  currency: string;
+  /** The amount delivered in the destination currency, as a decimal string. Assigned when the payout is processed, so it is `null` before then and on payouts without a recorded conversion. */
+  destination_amount: string | null;
+  /** Currency the funds are delivered in, taken from the payout method when the payout is created. On a stablecoin payout it follows the settlement payout minted alongside it — the `GET /payouts` row carrying this payout's id as `payout_request_id` — and is `null` only when no settlement payout exists. */
+  destination_currency: string | null;
+  /** Estimated time the funds become available in the destination account. */
+  estimated_arrival: string | null;
+  /** Exchange rate from the payout currency to the destination currency. Assigned when the payout is processed, so it is `null` before then and on payouts without a recorded rate. */
+  exchange_rate: number | null;
+  /** Why the payout ended without paying, or why it reversed after settlement. Present on failed, canceled, denied, and reversed payouts; `null` otherwise. */
+  failure: CancelPayoutResponseFailure | null;
+  /** The fee charged for the payout, in the payout currency, as a decimal string. */
+  fee_amount: string;
+  /** Who bore the payout fee: the account itself, or its parent platform. */
+  fee_paid_by: GetPayoutResponseFeePaidBy;
+  /** Payout ID, prefixed `wdrl_` for a payout returned by `GET /payouts` or `cofr_` for a payout request returned by `POST /payouts`. */
+  id: string;
+  /** Whop's markup on the provider fee, in the payout currency, as a decimal string. `"0.0"` when none applies. */
+  markup_fee: string;
+  /** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
+  metadata: GetPayoutResponseMetadataMap;
+  /** The planned net for the destination, in the payout currency: amount minus fee_amount minus markup_fee when fee_paid_by is `self`; equal to amount when the platform covers the fees. A payout that ends denied, canceled, or failed delivered nothing — most keep the planned figure and `failure` says where the funds are, but a canceled stablecoin payout can report the settled outcome instead: `amount` carries what stayed in the balance, fees are zero because none were charged, and `net_amount` is 0 because nothing was delivered. */
+  net_amount: string;
+  /** Free-form notes attached by the payout creator, or `null` when none were provided. Maximum 255 characters. */
+  notes: string | null;
+  object: GetPayoutResponseObject;
+  /** Name of the entity processing the payout. */
+  payer_name: string | null;
+  /** The saved payout method used. Requires payout:destination:read; null without it. */
+  payout_method: GetPayoutResponsePayoutMethod | null;
+  /** Payout request ID, prefixed `cofr_`, returned by `POST /payouts`. For a request retrieved by its own `cofr_` ID, this equals `id`. Returns `null` for payouts not created by `POST /payouts`. */
+  payout_request_id: string | null;
+  /** How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling. */
+  source: GetPayoutResponseSource | null;
+  /** Payout delivery speed. */
+  speed: GetPayoutResponseSpeed;
+  /** Current payout status. */
+  status: GetPayoutResponseStatus;
+  /** The finest machine phase under `status` — for example `awaiting_provider_acceptance` vs `in_transit` under `processing`, or the stablecoin conversion phase under `requested`. Informational vocabulary: values can be added without a version bump; `status` is the versioned contract. */
+  status_detail: string;
+  /** ACH trace number the recipient's bank can use to locate this payout. Assigned when the payout is submitted to the bank, so it is `null` before then and on payouts not sent over ACH. */
+  trace_code: string | null;
+}
+export const GetPayoutResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.String,
+    created_at: S.String,
+    currency: S.String,
+    destination_amount: S.NullOr(S.String),
+    destination_currency: S.NullOr(S.String),
+    estimated_arrival: S.NullOr(S.String),
+    exchange_rate: S.NullOr(S.Number),
+    failure: S.NullOr(CancelPayoutResponseFailure),
+    fee_amount: S.String,
+    fee_paid_by: GetPayoutResponseFeePaidBy,
+    id: S.String,
+    markup_fee: S.String,
+    metadata: GetPayoutResponseMetadataMap,
+    net_amount: S.String,
+    notes: S.NullOr(S.String),
+    object: GetPayoutResponseObject,
+    payer_name: S.NullOr(S.String),
+    payout_method: S.NullOr(GetPayoutResponsePayoutMethod),
+    payout_request_id: S.NullOr(S.String),
+    source: S.NullOr(GetPayoutResponseSource),
+    speed: GetPayoutResponseSpeed,
+    status: GetPayoutResponseStatus,
+    status_detail: S.String,
+    trace_code: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetPayoutResponse",
+}) as any as S.Schema<GetPayoutResponse>;
+
 export type ListPayoutMethodsRequestStatus = "created" | "active" | "broken";
 export const ListPayoutMethodsRequestStatus = /*@__PURE__*/ S.String;
 
@@ -1597,197 +1788,6 @@ export const ListSupportedPayoutMethodsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSupportedPayoutMethodsResponse",
 }) as any as S.Schema<ListSupportedPayoutMethodsResponse>;
 
-export interface RetrievePayoutRequest {
-  /** Payout ID, prefixed `wdrl_` for a payout returned by `GET /payouts` or `cofr_` for the payout request returned by `POST /payouts`. */
-  id: string;
-  /** Owning account ID, prefixed `biz_`. Provide exactly one of `account_id` or `user_id`. */
-  account_id?: string;
-  /** Owning user ID, prefixed `user_`. Provide exactly one of `account_id` or `user_id`. */
-  user_id?: string;
-}
-export const RetrievePayoutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-    user_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/payouts/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrievePayoutRequest",
-}) as any as S.Schema<RetrievePayoutRequest>;
-
-/** Why the payout ended without paying, or why it reversed after settlement. Present on failed, canceled, denied, and reversed payouts; `null` otherwise. */
-export type RetrievePayoutResponseFailure = CancelPayoutResponseFailure;
-export const RetrievePayoutResponseFailure = CancelPayoutResponseFailure;
-
-/** Who bore the payout fee: the account itself, or its parent platform. */
-export type RetrievePayoutResponseFeePaidBy = "self" | "platform";
-export const RetrievePayoutResponseFeePaidBy = /*@__PURE__*/ S.String;
-
-/** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
-export type RetrievePayoutResponseMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const RetrievePayoutResponseMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RetrievePayoutResponseMetadataMap>;
-
-export type RetrievePayoutResponseObject = "payout";
-export const RetrievePayoutResponseObject = /*@__PURE__*/ S.String;
-
-/** How the funds are delivered to the recipient. */
-export type RetrievePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
-  | "cash_pickup"
-  | "bank_deposit"
-  | "home_delivery"
-  | "mobile_wallet"
-  | "card"
-  | "check"
-  | "bill"
-  | "cryptocurrency"
-  | "unknown";
-export const RetrievePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType =
-  /*@__PURE__*/ S.String;
-
-/** Supported payout method display details. */
-export interface RetrievePayoutResponsePayoutMethodSupportedPayoutMethod {
-  /** How the funds are delivered to the recipient. */
-  delivery_type: RetrievePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType;
-  /** Supported payout method icon URL. */
-  icon_url: string | null;
-  /** Supported payout method display name. */
-  payer_name: string | null;
-}
-export const RetrievePayoutResponsePayoutMethodSupportedPayoutMethod =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      delivery_type:
-        RetrievePayoutResponsePayoutMethodSupportedPayoutMethodDeliveryType,
-      icon_url: S.NullOr(S.String),
-      payer_name: S.NullOr(S.String),
-    }),
-  ).annotate({
-    identifier: "RetrievePayoutResponsePayoutMethodSupportedPayoutMethod",
-  }) as any as S.Schema<RetrievePayoutResponsePayoutMethodSupportedPayoutMethod>;
-
-/** The saved payout method used. Requires payout:destination:read; null without it. */
-export interface RetrievePayoutResponsePayoutMethod {
-  /** Saved payout method nickname. */
-  nickname: string | null;
-  /** Supported payout method display details. */
-  supported_payout_method: RetrievePayoutResponsePayoutMethodSupportedPayoutMethod | null;
-}
-export const RetrievePayoutResponsePayoutMethod = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nickname: S.NullOr(S.String),
-    supported_payout_method: S.NullOr(
-      RetrievePayoutResponsePayoutMethodSupportedPayoutMethod,
-    ),
-  }),
-).annotate({
-  identifier: "RetrievePayoutResponsePayoutMethod",
-}) as any as S.Schema<RetrievePayoutResponsePayoutMethod>;
-
-/** How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling. */
-export type RetrievePayoutResponseSource = "api" | "dashboard" | "automatic";
-export const RetrievePayoutResponseSource = /*@__PURE__*/ S.String;
-
-/** Payout delivery speed. */
-export type RetrievePayoutResponseSpeed = "standard" | "instant";
-export const RetrievePayoutResponseSpeed = /*@__PURE__*/ S.String;
-
-/** Current payout status. */
-export type RetrievePayoutResponseStatus =
-  | "requested"
-  | "in_review"
-  | "processing"
-  | "completed"
-  | "reversed"
-  | "canceled"
-  | "failed"
-  | "denied";
-export const RetrievePayoutResponseStatus = /*@__PURE__*/ S.String;
-
-export interface RetrievePayoutResponse {
-  /** The payout amount in whole currency units, as a decimal string. */
-  amount: string;
-  /** When the payout was created. */
-  created_at: string;
-  /** Payout currency. */
-  currency: string;
-  /** The amount delivered in the destination currency, as a decimal string. Assigned when the payout is processed, so it is `null` before then and on payouts without a recorded conversion. */
-  destination_amount: string | null;
-  /** Currency the funds are delivered in, taken from the payout method when the payout is created. On a stablecoin payout it follows the settlement payout minted alongside it — the `GET /payouts` row carrying this payout's id as `payout_request_id` — and is `null` only when no settlement payout exists. */
-  destination_currency: string | null;
-  /** Estimated time the funds become available in the destination account. */
-  estimated_arrival: string | null;
-  /** Exchange rate from the payout currency to the destination currency. Assigned when the payout is processed, so it is `null` before then and on payouts without a recorded rate. */
-  exchange_rate: number | null;
-  /** Why the payout ended without paying, or why it reversed after settlement. Present on failed, canceled, denied, and reversed payouts; `null` otherwise. */
-  failure: CancelPayoutResponseFailure | null;
-  /** The fee charged for the payout, in the payout currency, as a decimal string. */
-  fee_amount: string;
-  /** Who bore the payout fee: the account itself, or its parent platform. */
-  fee_paid_by: RetrievePayoutResponseFeePaidBy;
-  /** Payout ID, prefixed `wdrl_` for a payout returned by `GET /payouts` or `cofr_` for a payout request returned by `POST /payouts`. */
-  id: string;
-  /** Whop's markup on the provider fee, in the payout currency, as a decimal string. `"0.0"` when none applies. */
-  markup_fee: string;
-  /** Key-value data attached at creation and echoed on every read. At most 50 keys, key names up to 40 characters, string values up to 500 characters. */
-  metadata: RetrievePayoutResponseMetadataMap;
-  /** The planned net for the destination, in the payout currency: amount minus fee_amount minus markup_fee when fee_paid_by is `self`; equal to amount when the platform covers the fees. A payout that ends denied, canceled, or failed delivered nothing — most keep the planned figure and `failure` says where the funds are, but a canceled stablecoin payout can report the settled outcome instead: `amount` carries what stayed in the balance, fees are zero because none were charged, and `net_amount` is 0 because nothing was delivered. */
-  net_amount: string;
-  /** Free-form notes attached by the payout creator, or `null` when none were provided. Maximum 255 characters. */
-  notes: string | null;
-  object: RetrievePayoutResponseObject;
-  /** Name of the entity processing the payout. */
-  payer_name: string | null;
-  /** The saved payout method used. Requires payout:destination:read; null without it. */
-  payout_method: RetrievePayoutResponsePayoutMethod | null;
-  /** Payout request ID, prefixed `cofr_`, returned by `POST /payouts`. For a request retrieved by its own `cofr_` ID, this equals `id`. Returns `null` for payouts not created by `POST /payouts`. */
-  payout_request_id: string | null;
-  /** How the payout was created. `automatic` means a scheduled auto-payout; `null` on payouts created before source tracking or through internal tooling. */
-  source: RetrievePayoutResponseSource | null;
-  /** Payout delivery speed. */
-  speed: RetrievePayoutResponseSpeed;
-  /** Current payout status. */
-  status: RetrievePayoutResponseStatus;
-  /** The finest machine phase under `status` — for example `awaiting_provider_acceptance` vs `in_transit` under `processing`, or the stablecoin conversion phase under `requested`. Informational vocabulary: values can be added without a version bump; `status` is the versioned contract. */
-  status_detail: string;
-  /** ACH trace number the recipient's bank can use to locate this payout. Assigned when the payout is submitted to the bank, so it is `null` before then and on payouts not sent over ACH. */
-  trace_code: string | null;
-}
-export const RetrievePayoutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.String,
-    created_at: S.String,
-    currency: S.String,
-    destination_amount: S.NullOr(S.String),
-    destination_currency: S.NullOr(S.String),
-    estimated_arrival: S.NullOr(S.String),
-    exchange_rate: S.NullOr(S.Number),
-    failure: S.NullOr(CancelPayoutResponseFailure),
-    fee_amount: S.String,
-    fee_paid_by: RetrievePayoutResponseFeePaidBy,
-    id: S.String,
-    markup_fee: S.String,
-    metadata: RetrievePayoutResponseMetadataMap,
-    net_amount: S.String,
-    notes: S.NullOr(S.String),
-    object: RetrievePayoutResponseObject,
-    payer_name: S.NullOr(S.String),
-    payout_method: S.NullOr(RetrievePayoutResponsePayoutMethod),
-    payout_request_id: S.NullOr(S.String),
-    source: S.NullOr(RetrievePayoutResponseSource),
-    speed: RetrievePayoutResponseSpeed,
-    status: RetrievePayoutResponseStatus,
-    status_detail: S.String,
-    trace_code: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RetrievePayoutResponse",
-}) as any as S.Schema<RetrievePayoutResponse>;
-
 export interface UpdatePayoutMethodRequest {
   /** Payout method ID, prefixed `potk_`. */
   id: string;
@@ -2006,6 +2006,21 @@ export const deletePayoutMethod: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetPayoutError = BadRequest | Forbidden | NotFound | WhopOpError;
+/** Retrieve Payout Fetches one payout by its `wdrl_` ID, or by the `cofr_` conversion request ID a stablecoin payout carries as `payout_request_id` — both ids answer with the same payout object. */
+export const getPayout: API.OperationMethod<
+  GetPayoutRequest,
+  GetPayoutResponse,
+  GetPayoutError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPayoutRequest,
+  output: GetPayoutResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListPayoutMethodsError =
   | BadRequest
   | Forbidden
@@ -2094,25 +2109,6 @@ export const listSupportedPayoutMethods: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePayoutError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | WhopOpError;
-/** Retrieve Payout Fetches one payout by its `wdrl_` ID, or by the `cofr_` conversion request ID a stablecoin payout carries as `payout_request_id` — both ids answer with the same payout object. */
-export const retrievePayout: API.OperationMethod<
-  RetrievePayoutRequest,
-  RetrievePayoutResponse,
-  RetrievePayoutError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePayoutRequest,
-  output: RetrievePayoutResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdatePayoutMethodError =
   | BadRequest

@@ -12,41 +12,41 @@ import * as Retry from "../retry.ts";
 export type { PosthogOpError, PosthogOpContext };
 
 /** Email addresses of people to interview. May be combined with interviewee_distinct_ids. */
-export type UserInterviewTopicsCreateRequestIntervieweeEmailsList =
+export type CreateUserInterviewTopicRequestIntervieweeEmailsList =
   Array<string>;
-export const UserInterviewTopicsCreateRequestIntervieweeEmailsList =
+export const CreateUserInterviewTopicRequestIntervieweeEmailsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsCreateRequestIntervieweeEmailsList>;
+  ) as any as S.Schema<CreateUserInterviewTopicRequestIntervieweeEmailsList>;
 
 /** PostHog distinct IDs of people to interview. May be combined with interviewee_emails. */
-export type UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList =
+export type CreateUserInterviewTopicRequestIntervieweeDistinctIdsList =
   Array<string>;
-export const UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList =
+export const CreateUserInterviewTopicRequestIntervieweeDistinctIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList>;
+  ) as any as S.Schema<CreateUserInterviewTopicRequestIntervieweeDistinctIdsList>;
 
 /** Ordered list of questions the voice agent should work through during the interview. */
-export type UserInterviewTopicsCreateRequestQuestionsList = Array<string>;
-export const UserInterviewTopicsCreateRequestQuestionsList =
+export type CreateUserInterviewTopicRequestQuestionsList = Array<string>;
+export const CreateUserInterviewTopicRequestQuestionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsCreateRequestQuestionsList>;
+  ) as any as S.Schema<CreateUserInterviewTopicRequestQuestionsList>;
 
 export interface CreateUserInterviewTopicRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Email addresses of people to interview. May be combined with interviewee_distinct_ids. */
-  interviewee_emails?: UserInterviewTopicsCreateRequestIntervieweeEmailsList;
+  interviewee_emails?: CreateUserInterviewTopicRequestIntervieweeEmailsList;
   /** PostHog distinct IDs of people to interview. May be combined with interviewee_emails. */
-  interviewee_distinct_ids?: UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList;
+  interviewee_distinct_ids?: CreateUserInterviewTopicRequestIntervieweeDistinctIdsList;
   /** The product, feature, or idea you want to ask interviewees about. */
   topic: string;
   /** Optional additional system prompt for the voice agent — extra background, tone, or constraints. */
   agent_context?: string;
   /** Ordered list of questions the voice agent should work through during the interview. */
-  questions?: UserInterviewTopicsCreateRequestQuestionsList;
+  questions?: CreateUserInterviewTopicRequestQuestionsList;
   /** Subject line for the invitation email. Plain text only — URLs, angle brackets, and control characters are rejected. Leave blank to use the default subject. Personalization is handled by the email template, so do not include placeholders. */
   invite_subject?: string;
   /** Intro message shown in the invitation email body, above the interview link. Plain prose only — URLs, angle brackets, and control characters are rejected (line breaks are allowed). Leave blank to use the default copy. */
@@ -56,14 +56,14 @@ export const CreateUserInterviewTopicRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     interviewee_emails: S.optional(
-      UserInterviewTopicsCreateRequestIntervieweeEmailsList,
+      CreateUserInterviewTopicRequestIntervieweeEmailsList,
     ),
     interviewee_distinct_ids: S.optional(
-      UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList,
+      CreateUserInterviewTopicRequestIntervieweeDistinctIdsList,
     ),
     topic: S.String,
     agent_context: S.optional(S.String),
-    questions: S.optional(UserInterviewTopicsCreateRequestQuestionsList),
+    questions: S.optional(CreateUserInterviewTopicRequestQuestionsList),
     invite_subject: S.optional(S.String),
     invite_message: S.optional(S.String),
   }).pipe(
@@ -185,32 +185,7 @@ export const UserInterviewTopic = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserInterviewTopic",
 }) as any as S.Schema<UserInterviewTopic>;
 
-export interface CreateUserInterviewTopicAddIntervieweeRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this user interview topic. */
-  id: string;
-  /** Email address or PostHog distinct ID for the interviewee. Email-shaped values (including the `Display Name <email@host>` form) are routed to `interviewee_emails`; everything else lands in `interviewee_distinct_ids`. */
-  identifier: string;
-}
-export const CreateUserInterviewTopicAddIntervieweeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      identifier: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/user_interview_topics/{id}/add_interviewee/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateUserInterviewTopicAddIntervieweeRequest",
-  }) as any as S.Schema<CreateUserInterviewTopicAddIntervieweeRequest>;
-
-export interface CreateUserInterviewTopicIntervieweeRequest {
+export interface CreateUserInterviewTopicsIntervieweeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   topic_id: string;
@@ -219,7 +194,7 @@ export interface CreateUserInterviewTopicIntervieweeRequest {
   /** Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'. */
   agent_context: string;
 }
-export const CreateUserInterviewTopicIntervieweeRequest =
+export const CreateUserInterviewTopicsIntervieweeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -234,8 +209,8 @@ export const CreateUserInterviewTopicIntervieweeRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateUserInterviewTopicIntervieweeRequest",
-  }) as any as S.Schema<CreateUserInterviewTopicIntervieweeRequest>;
+    identifier: "CreateUserInterviewTopicsIntervieweeRequest",
+  }) as any as S.Schema<CreateUserInterviewTopicsIntervieweeRequest>;
 
 export interface IntervieweeContext {
   id: string;
@@ -258,86 +233,13 @@ export const IntervieweeContext = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntervieweeContext",
 }) as any as S.Schema<IntervieweeContext>;
 
-export interface BulkIntervieweeContextItem {
-  /** Identifier for the interviewee — typically an email address or PostHog distinct ID. Must match a value in the parent topic's interviewee_emails or interviewee_distinct_ids. */
-  interviewee_identifier: string;
-  /** Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'. */
-  agent_context: string;
-}
-export const BulkIntervieweeContextItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    interviewee_identifier: S.String,
-    agent_context: S.String,
-  }),
-).annotate({
-  identifier: "BulkIntervieweeContextItem",
-}) as any as S.Schema<BulkIntervieweeContextItem>;
-
-/** List of interviewee context rows to create. Each item has an `interviewee_identifier` and an `agent_context`. At most 500 items per request. */
-export type UserInterviewTopicsIntervieweesBulkCreateRequestItemsList =
-  Array<BulkIntervieweeContextItem>;
-export const UserInterviewTopicsIntervieweesBulkCreateRequestItemsList =
-  /*@__PURE__*/ S.Array(
-    BulkIntervieweeContextItem,
-  ) as any as S.Schema<UserInterviewTopicsIntervieweesBulkCreateRequestItemsList>;
-
-export interface CreateUserInterviewTopicIntervieweeBulkRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  topic_id: string;
-  /** List of interviewee context rows to create. Each item has an `interviewee_identifier` and an `agent_context`. At most 500 items per request. */
-  items: UserInterviewTopicsIntervieweesBulkCreateRequestItemsList;
-}
-export const CreateUserInterviewTopicIntervieweeBulkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      topic_id: S.String.pipe(T.Label()),
-      items: UserInterviewTopicsIntervieweesBulkCreateRequestItemsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/bulk/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateUserInterviewTopicIntervieweeBulkRequest",
-  }) as any as S.Schema<CreateUserInterviewTopicIntervieweeBulkRequest>;
-
-/** Identifiers from the request whose rows were skipped because a row for that (topic, interviewee_identifier) already existed. */
-export type BulkIntervieweeContextResponseSkippedIdentifiersList =
-  Array<string>;
-export const BulkIntervieweeContextResponseSkippedIdentifiersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BulkIntervieweeContextResponseSkippedIdentifiersList>;
-
-export interface BulkIntervieweeContextResponse {
-  /** Number of rows inserted by this request. */
-  inserted_count: number;
-  /** Number of items skipped because a row for that (topic, interviewee_identifier) already existed. */
-  skipped_count: number;
-  /** Identifiers from the request whose rows were skipped because a row for that (topic, interviewee_identifier) already existed. */
-  skipped_identifiers: BulkIntervieweeContextResponseSkippedIdentifiersList;
-}
-export const BulkIntervieweeContextResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    inserted_count: S.Number,
-    skipped_count: S.Number,
-    skipped_identifiers: BulkIntervieweeContextResponseSkippedIdentifiersList,
-  }),
-).annotate({
-  identifier: "BulkIntervieweeContextResponse",
-}) as any as S.Schema<BulkIntervieweeContextResponse>;
-
-export interface CreateUserInterviewTopicLinkCsvRequest {
+export interface CreateUserInterviewTopicsLinksCsvRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this user interview topic. */
   id: string;
 }
-export const CreateUserInterviewTopicLinkCsvRequest = /*@__PURE__*/ S.suspend(
+export const CreateUserInterviewTopicsLinksCsvRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -350,17 +252,16 @@ export const CreateUserInterviewTopicLinkCsvRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateUserInterviewTopicLinkCsvRequest",
-}) as any as S.Schema<CreateUserInterviewTopicLinkCsvRequest>;
+  identifier: "CreateUserInterviewTopicsLinksCsvRequest",
+}) as any as S.Schema<CreateUserInterviewTopicsLinksCsvRequest>;
 
-export interface CreateUserInterviewTopicLinkCsvResponse {}
-export const CreateUserInterviewTopicLinkCsvResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "CreateUserInterviewTopicLinkCsvResponse",
-}) as any as S.Schema<CreateUserInterviewTopicLinkCsvResponse>;
+export interface CreateUserInterviewTopicsLinksCsvResponse {}
+export const CreateUserInterviewTopicsLinksCsvResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateUserInterviewTopicsLinksCsvResponse",
+  }) as any as S.Schema<CreateUserInterviewTopicsLinksCsvResponse>;
 
-export interface CreateUserInterviewTopicPreviewInviteRequest {
+export interface CreateUserInterviewTopicsPreviewInviteRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this user interview topic. */
@@ -368,7 +269,7 @@ export interface CreateUserInterviewTopicPreviewInviteRequest {
   /** Which targeted interviewee to render the preview for (an email or PostHog distinct ID already on the topic). Leave blank to preview for the first targeted interviewee. */
   interviewee_identifier?: string;
 }
-export const CreateUserInterviewTopicPreviewInviteRequest =
+export const CreateUserInterviewTopicsPreviewInviteRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -382,8 +283,8 @@ export const CreateUserInterviewTopicPreviewInviteRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateUserInterviewTopicPreviewInviteRequest",
-  }) as any as S.Schema<CreateUserInterviewTopicPreviewInviteRequest>;
+    identifier: "CreateUserInterviewTopicsPreviewInviteRequest",
+  }) as any as S.Schema<CreateUserInterviewTopicsPreviewInviteRequest>;
 
 export interface PreviewInviteResult {
   /** The identifier (email or distinct ID) the preview was rendered for. */
@@ -418,117 +319,13 @@ export const PreviewInviteResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PreviewInviteResult",
 }) as any as S.Schema<PreviewInviteResult>;
 
-export interface CreateUserInterviewTopicRemoveIntervieweeRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this user interview topic. */
-  id: string;
-  /** Email address or PostHog distinct ID for the interviewee. Email-shaped values (including the `Display Name <email@host>` form) are routed to `interviewee_emails`; everything else lands in `interviewee_distinct_ids`. */
-  identifier: string;
-}
-export const CreateUserInterviewTopicRemoveIntervieweeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      identifier: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/user_interview_topics/{id}/remove_interviewee/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateUserInterviewTopicRemoveIntervieweeRequest",
-  }) as any as S.Schema<CreateUserInterviewTopicRemoveIntervieweeRequest>;
-
-export interface CreateUserInterviewTopicSendInviteRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this user interview topic. */
-  id: string;
-  /** Override the email subject line for this send. Plain text only — URLs, angle brackets, and control characters are rejected. Falls back to the topic's saved subject, then a default. */
-  subject?: string;
-  /** Email address replies should go to. Defaults to the topic creator's email if blank. */
-  reply_to?: string;
-  /** If true (default), queue delivery via Celery. If false, send synchronously and surface errors immediately. */
-  send_async?: boolean;
-}
-export const CreateUserInterviewTopicSendInviteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      subject: S.optional(S.String),
-      reply_to: S.optional(S.String),
-      send_async: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/user_interview_topics/{id}/send_invites/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateUserInterviewTopicSendInviteRequest",
-  }) as any as S.Schema<CreateUserInterviewTopicSendInviteRequest>;
-
-export interface InterviewInviteResult {
-  /** The original identifier (email or distinct ID) from the topic targeting. */
-  interviewee_identifier: string;
-  /** Email used for delivery. Null when the identifier was not an email (e.g., a distinct ID). */
-  email?: string | null;
-  /** The personalized public interview URL embedded in the email body. */
-  interview_url: string;
-  /** True if an email was queued for delivery. False when the recipient was skipped — see `reason`. */
-  sent: boolean;
-  /** Why the email was skipped (e.g., `not_an_email`, `duplicate_recipient`, `already_sent`). Empty when sent=true. */
-  reason?: string;
-}
-export const InterviewInviteResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    interviewee_identifier: S.String,
-    email: S.optional(S.NullOr(S.String)),
-    interview_url: S.String,
-    sent: S.Boolean,
-    reason: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InterviewInviteResult",
-}) as any as S.Schema<InterviewInviteResult>;
-
-export type PaginatedInterviewInviteResultListResultsList =
-  Array<InterviewInviteResult>;
-export const PaginatedInterviewInviteResultListResultsList =
-  /*@__PURE__*/ S.Array(
-    InterviewInviteResult,
-  ) as any as S.Schema<PaginatedInterviewInviteResultListResultsList>;
-
-export interface PaginatedInterviewInviteResultList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedInterviewInviteResultListResultsList;
-}
-export const PaginatedInterviewInviteResultList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedInterviewInviteResultListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedInterviewInviteResultList",
-}) as any as S.Schema<PaginatedInterviewInviteResultList>;
-
-export interface CreateUserInterviewTopicSharedLinkRequest {
+export interface CreateUserInterviewTopicsSharedLinkRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this user interview topic. */
   id: string;
 }
-export const CreateUserInterviewTopicSharedLinkRequest =
+export const CreateUserInterviewTopicsSharedLinkRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -541,8 +338,8 @@ export const CreateUserInterviewTopicSharedLinkRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateUserInterviewTopicSharedLinkRequest",
-  }) as any as S.Schema<CreateUserInterviewTopicSharedLinkRequest>;
+    identifier: "CreateUserInterviewTopicsSharedLinkRequest",
+  }) as any as S.Schema<CreateUserInterviewTopicsSharedLinkRequest>;
 
 export interface SharedInterviewLink {
   /** Public, unauthenticated URL any respondent can open to start a new interview for this topic. Backed by a topic-level SharingConfiguration access token — not tied to any specific interviewee. Each visit is a new anonymous respondent who self-identifies with a name; `distinct_id` and `session_id` query params on the URL are captured as best-effort person/session linkage. */
@@ -556,55 +353,105 @@ export const SharedInterviewLink = /*@__PURE__*/ S.suspend(() =>
   identifier: "SharedInterviewLink",
 }) as any as S.Schema<SharedInterviewLink>;
 
-export interface ListUserInterviewTopicIntervieweesRequest {
+export interface GetUserInterviewTopicRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this user interview topic. */
+  id: string;
+}
+export const GetUserInterviewTopicRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/user_interview_topics/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserInterviewTopicRequest",
+}) as any as S.Schema<GetUserInterviewTopicRequest>;
+
+export interface GetUserInterviewTopicsIntervieweeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   topic_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
+  /** A UUID string identifying this interviewee context. */
+  id: string;
 }
-export const ListUserInterviewTopicIntervieweesRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetUserInterviewTopicsIntervieweeRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       topic_id: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
+      id: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/",
+        uri: "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/{id}/",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "ListUserInterviewTopicIntervieweesRequest",
-  }) as any as S.Schema<ListUserInterviewTopicIntervieweesRequest>;
+).annotate({
+  identifier: "GetUserInterviewTopicsIntervieweeRequest",
+}) as any as S.Schema<GetUserInterviewTopicsIntervieweeRequest>;
 
-export type PaginatedIntervieweeContextListResultsList =
-  Array<IntervieweeContext>;
-export const PaginatedIntervieweeContextListResultsList = /*@__PURE__*/ S.Array(
-  IntervieweeContext,
-) as any as S.Schema<PaginatedIntervieweeContextListResultsList>;
-
-export interface PaginatedIntervieweeContextList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedIntervieweeContextListResultsList;
+export interface GetUserInterviewTopicsTestLinkRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this user interview topic. */
+  id: string;
 }
-export const PaginatedIntervieweeContextList = /*@__PURE__*/ S.suspend(() =>
+export const GetUserInterviewTopicsTestLinkRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/user_interview_topics/{id}/test_link/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetUserInterviewTopicsTestLinkRequest",
+}) as any as S.Schema<GetUserInterviewTopicsTestLinkRequest>;
+
+export interface LatestTestInterview {
+  /** When the test interview was completed. */
+  completed_at: string;
+  /** Full transcript of the test call, if Vapi delivered one. May be empty. */
+  transcript: string;
+  /** AI-generated summary of the test call, if Vapi delivered one. May be empty. */
+  summary: string;
+}
+export const LatestTestInterview = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedIntervieweeContextListResultsList,
+    completed_at: S.String,
+    transcript: S.String,
+    summary: S.String,
   }),
 ).annotate({
-  identifier: "PaginatedIntervieweeContextList",
-}) as any as S.Schema<PaginatedIntervieweeContextList>;
+  identifier: "LatestTestInterview",
+}) as any as S.Schema<LatestTestInterview>;
+
+export interface TestInterviewLink {
+  /** Public, unauthenticated URL the topic author opens to dogfood the voice interview themselves — does not count against the targeted interviewees. */
+  interview_url: string;
+  /** Most recent test interview completed by the topic author, or null if none yet. */
+  latest_test_interview: LatestTestInterview | null;
+}
+export const TestInterviewLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    interview_url: S.String,
+    latest_test_interview: S.NullOr(LatestTestInterview),
+  }),
+).annotate({
+  identifier: "TestInterviewLink",
+}) as any as S.Schema<TestInterviewLink>;
 
 export interface ListUserInterviewTopicsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -656,28 +503,78 @@ export const PaginatedUserInterviewTopicList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedUserInterviewTopicList",
 }) as any as S.Schema<PaginatedUserInterviewTopicList>;
 
+export interface ListUserInterviewTopicsIntervieweesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  topic_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListUserInterviewTopicsIntervieweesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      topic_id: S.String.pipe(T.Label()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListUserInterviewTopicsIntervieweesRequest",
+  }) as any as S.Schema<ListUserInterviewTopicsIntervieweesRequest>;
+
+export type PaginatedIntervieweeContextListResultsList =
+  Array<IntervieweeContext>;
+export const PaginatedIntervieweeContextListResultsList = /*@__PURE__*/ S.Array(
+  IntervieweeContext,
+) as any as S.Schema<PaginatedIntervieweeContextListResultsList>;
+
+export interface PaginatedIntervieweeContextList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedIntervieweeContextListResultsList;
+}
+export const PaginatedIntervieweeContextList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedIntervieweeContextListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedIntervieweeContextList",
+}) as any as S.Schema<PaginatedIntervieweeContextList>;
+
 /** Email addresses of people to interview. May be combined with interviewee_distinct_ids. */
-export type UserInterviewTopicsUpdateRequestIntervieweeEmailsList =
+export type UpdateUserInterviewTopicRequestIntervieweeEmailsList =
   Array<string>;
-export const UserInterviewTopicsUpdateRequestIntervieweeEmailsList =
+export const UpdateUserInterviewTopicRequestIntervieweeEmailsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsUpdateRequestIntervieweeEmailsList>;
+  ) as any as S.Schema<UpdateUserInterviewTopicRequestIntervieweeEmailsList>;
 
 /** PostHog distinct IDs of people to interview. May be combined with interviewee_emails. */
-export type UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList =
+export type UpdateUserInterviewTopicRequestIntervieweeDistinctIdsList =
   Array<string>;
-export const UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList =
+export const UpdateUserInterviewTopicRequestIntervieweeDistinctIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList>;
+  ) as any as S.Schema<UpdateUserInterviewTopicRequestIntervieweeDistinctIdsList>;
 
 /** Ordered list of questions the voice agent should work through during the interview. */
-export type UserInterviewTopicsUpdateRequestQuestionsList = Array<string>;
-export const UserInterviewTopicsUpdateRequestQuestionsList =
+export type UpdateUserInterviewTopicRequestQuestionsList = Array<string>;
+export const UpdateUserInterviewTopicRequestQuestionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsUpdateRequestQuestionsList>;
+  ) as any as S.Schema<UpdateUserInterviewTopicRequestQuestionsList>;
 
 export interface UpdateUserInterviewTopicRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -685,15 +582,15 @@ export interface UpdateUserInterviewTopicRequest {
   /** A UUID string identifying this user interview topic. */
   id: string;
   /** Email addresses of people to interview. May be combined with interviewee_distinct_ids. */
-  interviewee_emails?: UserInterviewTopicsUpdateRequestIntervieweeEmailsList;
+  interviewee_emails?: UpdateUserInterviewTopicRequestIntervieweeEmailsList;
   /** PostHog distinct IDs of people to interview. May be combined with interviewee_emails. */
-  interviewee_distinct_ids?: UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList;
+  interviewee_distinct_ids?: UpdateUserInterviewTopicRequestIntervieweeDistinctIdsList;
   /** The product, feature, or idea you want to ask interviewees about. */
   topic: string;
   /** Optional additional system prompt for the voice agent — extra background, tone, or constraints. */
   agent_context?: string;
   /** Ordered list of questions the voice agent should work through during the interview. */
-  questions?: UserInterviewTopicsUpdateRequestQuestionsList;
+  questions?: UpdateUserInterviewTopicRequestQuestionsList;
   /** Subject line for the invitation email. Plain text only — URLs, angle brackets, and control characters are rejected. Leave blank to use the default subject. Personalization is handled by the email template, so do not include placeholders. */
   invite_subject?: string;
   /** Intro message shown in the invitation email body, above the interview link. Plain prose only — URLs, angle brackets, and control characters are rejected (line breaks are allowed). Leave blank to use the default copy. */
@@ -704,14 +601,14 @@ export const UpdateUserInterviewTopicRequest = /*@__PURE__*/ S.suspend(() =>
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     interviewee_emails: S.optional(
-      UserInterviewTopicsUpdateRequestIntervieweeEmailsList,
+      UpdateUserInterviewTopicRequestIntervieweeEmailsList,
     ),
     interviewee_distinct_ids: S.optional(
-      UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList,
+      UpdateUserInterviewTopicRequestIntervieweeDistinctIdsList,
     ),
     topic: S.String,
     agent_context: S.optional(S.String),
-    questions: S.optional(UserInterviewTopicsUpdateRequestQuestionsList),
+    questions: S.optional(UpdateUserInterviewTopicRequestQuestionsList),
     invite_subject: S.optional(S.String),
     invite_message: S.optional(S.String),
   }).pipe(
@@ -725,7 +622,7 @@ export const UpdateUserInterviewTopicRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateUserInterviewTopicRequest",
 }) as any as S.Schema<UpdateUserInterviewTopicRequest>;
 
-export interface UpdateUserInterviewTopicIntervieweeRequest {
+export interface UpdateUserInterviewTopicsIntervieweeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   topic_id: string;
@@ -736,7 +633,7 @@ export interface UpdateUserInterviewTopicIntervieweeRequest {
   /** Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'. */
   agent_context: string;
 }
-export const UpdateUserInterviewTopicIntervieweeRequest =
+export const UpdateUserInterviewTopicsIntervieweeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -752,10 +649,10 @@ export const UpdateUserInterviewTopicIntervieweeRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateUserInterviewTopicIntervieweeRequest",
-  }) as any as S.Schema<UpdateUserInterviewTopicIntervieweeRequest>;
+    identifier: "UpdateUserInterviewTopicsIntervieweeRequest",
+  }) as any as S.Schema<UpdateUserInterviewTopicsIntervieweeRequest>;
 
-export interface UpdateUserInterviewTopicIntervieweePartialRequest {
+export interface UpdateUserInterviewTopicsIntervieweesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   topic_id: string;
@@ -766,7 +663,7 @@ export interface UpdateUserInterviewTopicIntervieweePartialRequest {
   /** Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'. */
   agent_context?: string;
 }
-export const UpdateUserInterviewTopicIntervieweePartialRequest =
+export const UpdateUserInterviewTopicsIntervieweesPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -782,68 +679,68 @@ export const UpdateUserInterviewTopicIntervieweePartialRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateUserInterviewTopicIntervieweePartialRequest",
-  }) as any as S.Schema<UpdateUserInterviewTopicIntervieweePartialRequest>;
+    identifier: "UpdateUserInterviewTopicsIntervieweesPartialRequest",
+  }) as any as S.Schema<UpdateUserInterviewTopicsIntervieweesPartialRequest>;
 
 /** Email addresses of people to interview. May be combined with interviewee_distinct_ids. */
-export type UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList =
+export type UpdateUserInterviewTopicsPartialRequestIntervieweeEmailsList =
   Array<string>;
-export const UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList =
+export const UpdateUserInterviewTopicsPartialRequestIntervieweeEmailsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList>;
+  ) as any as S.Schema<UpdateUserInterviewTopicsPartialRequestIntervieweeEmailsList>;
 
 /** PostHog distinct IDs of people to interview. May be combined with interviewee_emails. */
-export type UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList =
+export type UpdateUserInterviewTopicsPartialRequestIntervieweeDistinctIdsList =
   Array<string>;
-export const UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList =
+export const UpdateUserInterviewTopicsPartialRequestIntervieweeDistinctIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList>;
+  ) as any as S.Schema<UpdateUserInterviewTopicsPartialRequestIntervieweeDistinctIdsList>;
 
 /** Ordered list of questions the voice agent should work through during the interview. */
-export type UserInterviewTopicsPartialUpdateRequestQuestionsList =
+export type UpdateUserInterviewTopicsPartialRequestQuestionsList =
   Array<string>;
-export const UserInterviewTopicsPartialUpdateRequestQuestionsList =
+export const UpdateUserInterviewTopicsPartialRequestQuestionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewTopicsPartialUpdateRequestQuestionsList>;
+  ) as any as S.Schema<UpdateUserInterviewTopicsPartialRequestQuestionsList>;
 
-export interface UpdateUserInterviewTopicPartialRequest {
+export interface UpdateUserInterviewTopicsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this user interview topic. */
   id: string;
   /** Email addresses of people to interview. May be combined with interviewee_distinct_ids. */
-  interviewee_emails?: UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList;
+  interviewee_emails?: UpdateUserInterviewTopicsPartialRequestIntervieweeEmailsList;
   /** PostHog distinct IDs of people to interview. May be combined with interviewee_emails. */
-  interviewee_distinct_ids?: UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList;
+  interviewee_distinct_ids?: UpdateUserInterviewTopicsPartialRequestIntervieweeDistinctIdsList;
   /** The product, feature, or idea you want to ask interviewees about. */
   topic?: string;
   /** Optional additional system prompt for the voice agent — extra background, tone, or constraints. */
   agent_context?: string;
   /** Ordered list of questions the voice agent should work through during the interview. */
-  questions?: UserInterviewTopicsPartialUpdateRequestQuestionsList;
+  questions?: UpdateUserInterviewTopicsPartialRequestQuestionsList;
   /** Subject line for the invitation email. Plain text only — URLs, angle brackets, and control characters are rejected. Leave blank to use the default subject. Personalization is handled by the email template, so do not include placeholders. */
   invite_subject?: string;
   /** Intro message shown in the invitation email body, above the interview link. Plain prose only — URLs, angle brackets, and control characters are rejected (line breaks are allowed). Leave blank to use the default copy. */
   invite_message?: string;
 }
-export const UpdateUserInterviewTopicPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateUserInterviewTopicsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
       interviewee_emails: S.optional(
-        UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList,
+        UpdateUserInterviewTopicsPartialRequestIntervieweeEmailsList,
       ),
       interviewee_distinct_ids: S.optional(
-        UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList,
+        UpdateUserInterviewTopicsPartialRequestIntervieweeDistinctIdsList,
       ),
       topic: S.optional(S.String),
       agent_context: S.optional(S.String),
       questions: S.optional(
-        UserInterviewTopicsPartialUpdateRequestQuestionsList,
+        UpdateUserInterviewTopicsPartialRequestQuestionsList,
       ),
       invite_subject: S.optional(S.String),
       invite_message: S.optional(S.String),
@@ -855,8 +752,33 @@ export const UpdateUserInterviewTopicPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateUserInterviewTopicPartialRequest",
-}) as any as S.Schema<UpdateUserInterviewTopicPartialRequest>;
+  identifier: "UpdateUserInterviewTopicsPartialRequest",
+}) as any as S.Schema<UpdateUserInterviewTopicsPartialRequest>;
+
+export interface UserInterviewTopicsAddIntervieweeCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this user interview topic. */
+  id: string;
+  /** Email address or PostHog distinct ID for the interviewee. Email-shaped values (including the `Display Name <email@host>` form) are routed to `interviewee_emails`; everything else lands in `interviewee_distinct_ids`. */
+  identifier: string;
+}
+export const UserInterviewTopicsAddIntervieweeCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      identifier: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/user_interview_topics/{id}/add_interviewee/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UserInterviewTopicsAddIntervieweeCreateRequest",
+  }) as any as S.Schema<UserInterviewTopicsAddIntervieweeCreateRequest>;
 
 export interface UserInterviewTopicsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -949,6 +871,79 @@ export const PaginatedInterviewLinkList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedInterviewLinkList",
 }) as any as S.Schema<PaginatedInterviewLinkList>;
 
+export interface BulkIntervieweeContextItem {
+  /** Identifier for the interviewee — typically an email address or PostHog distinct ID. Must match a value in the parent topic's interviewee_emails or interviewee_distinct_ids. */
+  interviewee_identifier: string;
+  /** Extra context the voice agent should know about this specific interviewee — e.g. 'uses the replay product but has never used summarization'. */
+  agent_context: string;
+}
+export const BulkIntervieweeContextItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    interviewee_identifier: S.String,
+    agent_context: S.String,
+  }),
+).annotate({
+  identifier: "BulkIntervieweeContextItem",
+}) as any as S.Schema<BulkIntervieweeContextItem>;
+
+/** List of interviewee context rows to create. Each item has an `interviewee_identifier` and an `agent_context`. At most 500 items per request. */
+export type UserInterviewTopicsIntervieweesBulkCreateRequestItemsList =
+  Array<BulkIntervieweeContextItem>;
+export const UserInterviewTopicsIntervieweesBulkCreateRequestItemsList =
+  /*@__PURE__*/ S.Array(
+    BulkIntervieweeContextItem,
+  ) as any as S.Schema<UserInterviewTopicsIntervieweesBulkCreateRequestItemsList>;
+
+export interface UserInterviewTopicsIntervieweesBulkCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  topic_id: string;
+  /** List of interviewee context rows to create. Each item has an `interviewee_identifier` and an `agent_context`. At most 500 items per request. */
+  items: UserInterviewTopicsIntervieweesBulkCreateRequestItemsList;
+}
+export const UserInterviewTopicsIntervieweesBulkCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      topic_id: S.String.pipe(T.Label()),
+      items: UserInterviewTopicsIntervieweesBulkCreateRequestItemsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/bulk/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UserInterviewTopicsIntervieweesBulkCreateRequest",
+  }) as any as S.Schema<UserInterviewTopicsIntervieweesBulkCreateRequest>;
+
+/** Identifiers from the request whose rows were skipped because a row for that (topic, interviewee_identifier) already existed. */
+export type BulkIntervieweeContextResponseSkippedIdentifiersList =
+  Array<string>;
+export const BulkIntervieweeContextResponseSkippedIdentifiersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BulkIntervieweeContextResponseSkippedIdentifiersList>;
+
+export interface BulkIntervieweeContextResponse {
+  /** Number of rows inserted by this request. */
+  inserted_count: number;
+  /** Number of items skipped because a row for that (topic, interviewee_identifier) already existed. */
+  skipped_count: number;
+  /** Identifiers from the request whose rows were skipped because a row for that (topic, interviewee_identifier) already existed. */
+  skipped_identifiers: BulkIntervieweeContextResponseSkippedIdentifiersList;
+}
+export const BulkIntervieweeContextResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    inserted_count: S.Number,
+    skipped_count: S.Number,
+    skipped_identifiers: BulkIntervieweeContextResponseSkippedIdentifiersList,
+  }),
+).annotate({
+  identifier: "BulkIntervieweeContextResponse",
+}) as any as S.Schema<BulkIntervieweeContextResponse>;
+
 export interface UserInterviewTopicsIntervieweesDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -979,50 +974,109 @@ export const UserInterviewTopicsIntervieweesDestroyResponse =
     identifier: "UserInterviewTopicsIntervieweesDestroyResponse",
   }) as any as S.Schema<UserInterviewTopicsIntervieweesDestroyResponse>;
 
-export interface UserInterviewTopicsIntervieweesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  topic_id: string;
-  /** A UUID string identifying this interviewee context. */
-  id: string;
-}
-export const UserInterviewTopicsIntervieweesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      topic_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/user_interview_topics/{topic_id}/interviewees/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "UserInterviewTopicsIntervieweesRetrieveRequest",
-  }) as any as S.Schema<UserInterviewTopicsIntervieweesRetrieveRequest>;
-
-export interface UserInterviewTopicsRetrieveRequest {
+export interface UserInterviewTopicsRemoveIntervieweeCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this user interview topic. */
   id: string;
+  /** Email address or PostHog distinct ID for the interviewee. Email-shaped values (including the `Display Name <email@host>` form) are routed to `interviewee_emails`; everything else lands in `interviewee_distinct_ids`. */
+  identifier: string;
 }
-export const UserInterviewTopicsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const UserInterviewTopicsRemoveIntervieweeCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      identifier: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/user_interview_topics/{id}/remove_interviewee/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UserInterviewTopicsRemoveIntervieweeCreateRequest",
+  }) as any as S.Schema<UserInterviewTopicsRemoveIntervieweeCreateRequest>;
+
+export interface UserInterviewTopicsSendInvitesCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this user interview topic. */
+  id: string;
+  /** Override the email subject line for this send. Plain text only — URLs, angle brackets, and control characters are rejected. Falls back to the topic's saved subject, then a default. */
+  subject?: string;
+  /** Email address replies should go to. Defaults to the topic creator's email if blank. */
+  reply_to?: string;
+  /** If true (default), queue delivery via Celery. If false, send synchronously and surface errors immediately. */
+  send_async?: boolean;
+}
+export const UserInterviewTopicsSendInvitesCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      subject: S.optional(S.String),
+      reply_to: S.optional(S.String),
+      send_async: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/user_interview_topics/{id}/send_invites/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UserInterviewTopicsSendInvitesCreateRequest",
+  }) as any as S.Schema<UserInterviewTopicsSendInvitesCreateRequest>;
+
+export interface InterviewInviteResult {
+  /** The original identifier (email or distinct ID) from the topic targeting. */
+  interviewee_identifier: string;
+  /** Email used for delivery. Null when the identifier was not an email (e.g., a distinct ID). */
+  email?: string | null;
+  /** The personalized public interview URL embedded in the email body. */
+  interview_url: string;
+  /** True if an email was queued for delivery. False when the recipient was skipped — see `reason`. */
+  sent: boolean;
+  /** Why the email was skipped (e.g., `not_an_email`, `duplicate_recipient`, `already_sent`). Empty when sent=true. */
+  reason?: string;
+}
+export const InterviewInviteResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/user_interview_topics/{id}/",
-      code: 200,
-    }),
-  ),
+    interviewee_identifier: S.String,
+    email: S.optional(S.NullOr(S.String)),
+    interview_url: S.String,
+    sent: S.Boolean,
+    reason: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "UserInterviewTopicsRetrieveRequest",
-}) as any as S.Schema<UserInterviewTopicsRetrieveRequest>;
+  identifier: "InterviewInviteResult",
+}) as any as S.Schema<InterviewInviteResult>;
+
+export type PaginatedInterviewInviteResultListResultsList =
+  Array<InterviewInviteResult>;
+export const PaginatedInterviewInviteResultListResultsList =
+  /*@__PURE__*/ S.Array(
+    InterviewInviteResult,
+  ) as any as S.Schema<PaginatedInterviewInviteResultListResultsList>;
+
+export interface PaginatedInterviewInviteResultList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedInterviewInviteResultListResultsList;
+}
+export const PaginatedInterviewInviteResultList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedInterviewInviteResultListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedInterviewInviteResultList",
+}) as any as S.Schema<PaginatedInterviewInviteResultList>;
 
 export interface UserInterviewTopicsSharedLinkDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1052,61 +1106,6 @@ export const UserInterviewTopicsSharedLinkDestroyResponse =
     identifier: "UserInterviewTopicsSharedLinkDestroyResponse",
   }) as any as S.Schema<UserInterviewTopicsSharedLinkDestroyResponse>;
 
-export interface UserInterviewTopicsTestLinkRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this user interview topic. */
-  id: string;
-}
-export const UserInterviewTopicsTestLinkRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/user_interview_topics/{id}/test_link/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "UserInterviewTopicsTestLinkRetrieveRequest",
-  }) as any as S.Schema<UserInterviewTopicsTestLinkRetrieveRequest>;
-
-export interface LatestTestInterview {
-  /** When the test interview was completed. */
-  completed_at: string;
-  /** Full transcript of the test call, if Vapi delivered one. May be empty. */
-  transcript: string;
-  /** AI-generated summary of the test call, if Vapi delivered one. May be empty. */
-  summary: string;
-}
-export const LatestTestInterview = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    completed_at: S.String,
-    transcript: S.String,
-    summary: S.String,
-  }),
-).annotate({
-  identifier: "LatestTestInterview",
-}) as any as S.Schema<LatestTestInterview>;
-
-export interface TestInterviewLink {
-  /** Public, unauthenticated URL the topic author opens to dogfood the voice interview themselves — does not count against the targeted interviewees. */
-  interview_url: string;
-  /** Most recent test interview completed by the topic author, or null if none yet. */
-  latest_test_interview: LatestTestInterview | null;
-}
-export const TestInterviewLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    interview_url: S.String,
-    latest_test_interview: S.NullOr(LatestTestInterview),
-  }),
-).annotate({
-  identifier: "TestInterviewLink",
-}) as any as S.Schema<TestInterviewLink>;
-
 export type CreateUserInterviewTopicError = PosthogOpError;
 /** Planned user interview topics: who we want to target and what we want to ask about. */
 export const createUserInterviewTopic: API.OperationMethod<
@@ -1122,136 +1121,106 @@ export const createUserInterviewTopic: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateUserInterviewTopicAddIntervieweeError = PosthogOpError;
-/** Add a single interviewee to this topic. Email-shaped identifiers (including the `Display Name <email@host>` form) are appended to `interviewee_emails`; everything else is appended to `interviewee_distinct_ids`. Idempotent — adding an identifier that's already present leaves the topic unchanged. Returns the updated topic. */
-export const createUserInterviewTopicAddInterviewee: API.OperationMethod<
-  CreateUserInterviewTopicAddIntervieweeRequest,
-  UserInterviewTopic,
-  CreateUserInterviewTopicAddIntervieweeError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicAddIntervieweeRequest,
-  output: UserInterviewTopic,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateUserInterviewTopicIntervieweeError = PosthogOpError;
+export type CreateUserInterviewTopicsIntervieweeError = PosthogOpError;
 /** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
-export const createUserInterviewTopicInterviewee: API.OperationMethod<
-  CreateUserInterviewTopicIntervieweeRequest,
+export const createUserInterviewTopicsInterviewee: API.OperationMethod<
+  CreateUserInterviewTopicsIntervieweeRequest,
   IntervieweeContext,
-  CreateUserInterviewTopicIntervieweeError,
+  CreateUserInterviewTopicsIntervieweeError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicIntervieweeRequest,
+  input: CreateUserInterviewTopicsIntervieweeRequest,
   output: IntervieweeContext,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateUserInterviewTopicIntervieweeBulkError = PosthogOpError;
-/** Create up to 500 interviewee context rows for a topic in a single request. Rows whose (topic, interviewee_identifier) already exists are skipped — the response surfaces an `inserted_count`, a `skipped_count`, and the `skipped_identifiers` so the caller can reconcile. Items must have unique `interviewee_identifier` values within the batch. */
-export const createUserInterviewTopicIntervieweeBulk: API.OperationMethod<
-  CreateUserInterviewTopicIntervieweeBulkRequest,
-  BulkIntervieweeContextResponse,
-  CreateUserInterviewTopicIntervieweeBulkError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicIntervieweeBulkRequest,
-  output: BulkIntervieweeContextResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateUserInterviewTopicLinkCsvError = PosthogOpError;
+export type CreateUserInterviewTopicsLinksCsvError = PosthogOpError;
 /** Same materialization as generate_links, returned as a downloadable CSV. Intended for users who want to mail-merge the per-person interview links into their own email tooling. */
-export const createUserInterviewTopicLinkCsv: API.OperationMethod<
-  CreateUserInterviewTopicLinkCsvRequest,
-  CreateUserInterviewTopicLinkCsvResponse,
-  CreateUserInterviewTopicLinkCsvError,
+export const createUserInterviewTopicsLinksCsv: API.OperationMethod<
+  CreateUserInterviewTopicsLinksCsvRequest,
+  CreateUserInterviewTopicsLinksCsvResponse,
+  CreateUserInterviewTopicsLinksCsvError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicLinkCsvRequest,
-  output: CreateUserInterviewTopicLinkCsvResponse,
+  input: CreateUserInterviewTopicsLinksCsvRequest,
+  output: CreateUserInterviewTopicsLinksCsvResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateUserInterviewTopicPreviewInviteError = PosthogOpError;
+export type CreateUserInterviewTopicsPreviewInviteError = PosthogOpError;
 /** Render the invite email exactly as a specific targeted interviewee would receive it — personalized subject and body — without sending anything and without creating or reading any share links. Pass `interviewee_identifier` to preview for a particular person, or omit it to preview for the first targeted interviewee. The body always shows an illustrative placeholder link (`is_preview_link: true`), never a live interview URL. */
-export const createUserInterviewTopicPreviewInvite: API.OperationMethod<
-  CreateUserInterviewTopicPreviewInviteRequest,
+export const createUserInterviewTopicsPreviewInvite: API.OperationMethod<
+  CreateUserInterviewTopicsPreviewInviteRequest,
   PreviewInviteResult,
-  CreateUserInterviewTopicPreviewInviteError,
+  CreateUserInterviewTopicsPreviewInviteError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicPreviewInviteRequest,
+  input: CreateUserInterviewTopicsPreviewInviteRequest,
   output: PreviewInviteResult,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateUserInterviewTopicRemoveIntervieweeError = PosthogOpError;
-/** Remove an interviewee from this topic. Drops the identifier from both `interviewee_emails` and `interviewee_distinct_ids`, and disables any active SharingConfiguration linked to an IntervieweeContext for that identifier on this topic so the removed person can no longer open their interview link. Idempotent — removing an identifier that isn't present is a no-op. Returns the updated topic. */
-export const createUserInterviewTopicRemoveInterviewee: API.OperationMethod<
-  CreateUserInterviewTopicRemoveIntervieweeRequest,
-  UserInterviewTopic,
-  CreateUserInterviewTopicRemoveIntervieweeError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicRemoveIntervieweeRequest,
-  output: UserInterviewTopic,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateUserInterviewTopicSendInviteError = PosthogOpError;
-/** Generate (if needed) and email a personalized public interview link to every targeted interviewee on this topic whose identifier is an email address. Distinct-ID-only interviewees are skipped and surfaced in the response. Each invite is keyed on the underlying SharingConfiguration so re-runs after token rotation produce a fresh send. */
-export const createUserInterviewTopicSendInvite: API.OperationMethod<
-  CreateUserInterviewTopicSendInviteRequest,
-  PaginatedInterviewInviteResultList,
-  CreateUserInterviewTopicSendInviteError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicSendInviteRequest,
-  output: PaginatedInterviewInviteResultList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateUserInterviewTopicSharedLinkError = PosthogOpError;
+export type CreateUserInterviewTopicsSharedLinkError = PosthogOpError;
 /** Get-or-create a single non-personalised (shared) interview link for this topic. Unlike generate_links, the returned URL is not tied to a specific interviewee — every visitor becomes a new anonymous respondent who self-identifies with a name. Idempotent: repeated calls return the same active link. `distinct_id` and `session_id` query params appended to the URL are captured as best-effort person/session linkage. */
-export const createUserInterviewTopicSharedLink: API.OperationMethod<
-  CreateUserInterviewTopicSharedLinkRequest,
+export const createUserInterviewTopicsSharedLink: API.OperationMethod<
+  CreateUserInterviewTopicsSharedLinkRequest,
   SharedInterviewLink,
-  CreateUserInterviewTopicSharedLinkError,
+  CreateUserInterviewTopicsSharedLinkError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewTopicSharedLinkRequest,
+  input: CreateUserInterviewTopicsSharedLinkRequest,
   output: SharedInterviewLink,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListUserInterviewTopicIntervieweesError = PosthogOpError;
-/** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
-export const listUserInterviewTopicInterviewees: API.OperationMethod<
-  ListUserInterviewTopicIntervieweesRequest,
-  PaginatedIntervieweeContextList,
-  ListUserInterviewTopicIntervieweesError,
+export type GetUserInterviewTopicError = PosthogOpError;
+/** Planned user interview topics: who we want to target and what we want to ask about. */
+export const getUserInterviewTopic: API.OperationMethod<
+  GetUserInterviewTopicRequest,
+  UserInterviewTopic,
+  GetUserInterviewTopicError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListUserInterviewTopicIntervieweesRequest,
-  output: PaginatedIntervieweeContextList,
+  input: GetUserInterviewTopicRequest,
+  output: UserInterviewTopic,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserInterviewTopicsIntervieweeError = PosthogOpError;
+/** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
+export const getUserInterviewTopicsInterviewee: API.OperationMethod<
+  GetUserInterviewTopicsIntervieweeRequest,
+  IntervieweeContext,
+  GetUserInterviewTopicsIntervieweeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserInterviewTopicsIntervieweeRequest,
+  output: IntervieweeContext,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserInterviewTopicsTestLinkError = PosthogOpError;
+/** Return the calling user's personal dogfood interview link for this topic, plus the latest test interview they have recorded against it. Lazily get-or-creates a per-caller IntervieweeContext + enabled SharingConfiguration the first time it's called, then returns the same stable URL on subsequent calls. The caller's identifier is intentionally not added to the topic's targeting arrays — each user dogfoods under their own row, so test calls never mint a public share token on someone else's behalf. */
+export const getUserInterviewTopicsTestLink: API.OperationMethod<
+  GetUserInterviewTopicsTestLinkRequest,
+  TestInterviewLink,
+  GetUserInterviewTopicsTestLinkError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserInterviewTopicsTestLinkRequest,
+  output: TestInterviewLink,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1272,6 +1241,21 @@ export const listUserInterviewTopics: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListUserInterviewTopicsIntervieweesError = PosthogOpError;
+/** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
+export const listUserInterviewTopicsInterviewees: API.OperationMethod<
+  ListUserInterviewTopicsIntervieweesRequest,
+  PaginatedIntervieweeContextList,
+  ListUserInterviewTopicsIntervieweesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUserInterviewTopicsIntervieweesRequest,
+  output: PaginatedIntervieweeContextList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateUserInterviewTopicError = PosthogOpError;
 /** Planned user interview topics: who we want to target and what we want to ask about. */
 export const updateUserInterviewTopic: API.OperationMethod<
@@ -1287,45 +1271,60 @@ export const updateUserInterviewTopic: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateUserInterviewTopicIntervieweeError = PosthogOpError;
+export type UpdateUserInterviewTopicsIntervieweeError = PosthogOpError;
 /** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
-export const updateUserInterviewTopicInterviewee: API.OperationMethod<
-  UpdateUserInterviewTopicIntervieweeRequest,
+export const updateUserInterviewTopicsInterviewee: API.OperationMethod<
+  UpdateUserInterviewTopicsIntervieweeRequest,
   IntervieweeContext,
-  UpdateUserInterviewTopicIntervieweeError,
+  UpdateUserInterviewTopicsIntervieweeError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateUserInterviewTopicIntervieweeRequest,
+  input: UpdateUserInterviewTopicsIntervieweeRequest,
   output: IntervieweeContext,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateUserInterviewTopicIntervieweePartialError = PosthogOpError;
+export type UpdateUserInterviewTopicsIntervieweesPartialError = PosthogOpError;
 /** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
-export const updateUserInterviewTopicIntervieweePartial: API.OperationMethod<
-  UpdateUserInterviewTopicIntervieweePartialRequest,
+export const updateUserInterviewTopicsIntervieweesPartial: API.OperationMethod<
+  UpdateUserInterviewTopicsIntervieweesPartialRequest,
   IntervieweeContext,
-  UpdateUserInterviewTopicIntervieweePartialError,
+  UpdateUserInterviewTopicsIntervieweesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateUserInterviewTopicIntervieweePartialRequest,
+  input: UpdateUserInterviewTopicsIntervieweesPartialRequest,
   output: IntervieweeContext,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateUserInterviewTopicPartialError = PosthogOpError;
+export type UpdateUserInterviewTopicsPartialError = PosthogOpError;
 /** Planned user interview topics: who we want to target and what we want to ask about. */
-export const updateUserInterviewTopicPartial: API.OperationMethod<
-  UpdateUserInterviewTopicPartialRequest,
+export const updateUserInterviewTopicsPartial: API.OperationMethod<
+  UpdateUserInterviewTopicsPartialRequest,
   UserInterviewTopic,
-  UpdateUserInterviewTopicPartialError,
+  UpdateUserInterviewTopicsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateUserInterviewTopicPartialRequest,
+  input: UpdateUserInterviewTopicsPartialRequest,
+  output: UserInterviewTopic,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UserInterviewTopicsAddIntervieweeCreateError = PosthogOpError;
+/** Add a single interviewee to this topic. Email-shaped identifiers (including the `Display Name <email@host>` form) are appended to `interviewee_emails`; everything else is appended to `interviewee_distinct_ids`. Idempotent — adding an identifier that's already present leaves the topic unchanged. Returns the updated topic. */
+export const userInterviewTopicsAddIntervieweeCreate: API.OperationMethod<
+  UserInterviewTopicsAddIntervieweeCreateRequest,
+  UserInterviewTopic,
+  UserInterviewTopicsAddIntervieweeCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UserInterviewTopicsAddIntervieweeCreateRequest,
   output: UserInterviewTopic,
   errors: [],
   protocol: PosthogProtocol,
@@ -1362,6 +1361,21 @@ export const userInterviewTopicsGenerateLinksCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UserInterviewTopicsIntervieweesBulkCreateError = PosthogOpError;
+/** Create up to 500 interviewee context rows for a topic in a single request. Rows whose (topic, interviewee_identifier) already exists are skipped — the response surfaces an `inserted_count`, a `skipped_count`, and the `skipped_identifiers` so the caller can reconcile. Items must have unique `interviewee_identifier` values within the batch. */
+export const userInterviewTopicsIntervieweesBulkCreate: API.OperationMethod<
+  UserInterviewTopicsIntervieweesBulkCreateRequest,
+  BulkIntervieweeContextResponse,
+  UserInterviewTopicsIntervieweesBulkCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UserInterviewTopicsIntervieweesBulkCreateRequest,
+  output: BulkIntervieweeContextResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UserInterviewTopicsIntervieweesDestroyError = PosthogOpError;
 /** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
 export const userInterviewTopicsIntervieweesDestroy: API.OperationMethod<
@@ -1377,31 +1391,31 @@ export const userInterviewTopicsIntervieweesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UserInterviewTopicsIntervieweesRetrieveError = PosthogOpError;
-/** Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier). */
-export const userInterviewTopicsIntervieweesRetrieve: API.OperationMethod<
-  UserInterviewTopicsIntervieweesRetrieveRequest,
-  IntervieweeContext,
-  UserInterviewTopicsIntervieweesRetrieveError,
+export type UserInterviewTopicsRemoveIntervieweeCreateError = PosthogOpError;
+/** Remove an interviewee from this topic. Drops the identifier from both `interviewee_emails` and `interviewee_distinct_ids`, and disables any active SharingConfiguration linked to an IntervieweeContext for that identifier on this topic so the removed person can no longer open their interview link. Idempotent — removing an identifier that isn't present is a no-op. Returns the updated topic. */
+export const userInterviewTopicsRemoveIntervieweeCreate: API.OperationMethod<
+  UserInterviewTopicsRemoveIntervieweeCreateRequest,
+  UserInterviewTopic,
+  UserInterviewTopicsRemoveIntervieweeCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UserInterviewTopicsIntervieweesRetrieveRequest,
-  output: IntervieweeContext,
+  input: UserInterviewTopicsRemoveIntervieweeCreateRequest,
+  output: UserInterviewTopic,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UserInterviewTopicsRetrieveError = PosthogOpError;
-/** Planned user interview topics: who we want to target and what we want to ask about. */
-export const userInterviewTopicsRetrieve: API.OperationMethod<
-  UserInterviewTopicsRetrieveRequest,
-  UserInterviewTopic,
-  UserInterviewTopicsRetrieveError,
+export type UserInterviewTopicsSendInvitesCreateError = PosthogOpError;
+/** Generate (if needed) and email a personalized public interview link to every targeted interviewee on this topic whose identifier is an email address. Distinct-ID-only interviewees are skipped and surfaced in the response. Each invite is keyed on the underlying SharingConfiguration so re-runs after token rotation produce a fresh send. */
+export const userInterviewTopicsSendInvitesCreate: API.OperationMethod<
+  UserInterviewTopicsSendInvitesCreateRequest,
+  PaginatedInterviewInviteResultList,
+  UserInterviewTopicsSendInvitesCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UserInterviewTopicsRetrieveRequest,
-  output: UserInterviewTopic,
+  input: UserInterviewTopicsSendInvitesCreateRequest,
+  output: PaginatedInterviewInviteResultList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1417,21 +1431,6 @@ export const userInterviewTopicsSharedLinkDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UserInterviewTopicsSharedLinkDestroyRequest,
   output: UserInterviewTopicsSharedLinkDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UserInterviewTopicsTestLinkRetrieveError = PosthogOpError;
-/** Return the calling user's personal dogfood interview link for this topic, plus the latest test interview they have recorded against it. Lazily get-or-creates a per-caller IntervieweeContext + enabled SharingConfiguration the first time it's called, then returns the same stable URL on subsequent calls. The caller's identifier is intentionally not added to the topic's targeting arrays — each user dogfoods under their own row, so test calls never mint a public share token on someone else's behalf. */
-export const userInterviewTopicsTestLinkRetrieve: API.OperationMethod<
-  UserInterviewTopicsTestLinkRetrieveRequest,
-  TestInterviewLink,
-  UserInterviewTopicsTestLinkRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserInterviewTopicsTestLinkRetrieveRequest,
-  output: TestInterviewLink,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

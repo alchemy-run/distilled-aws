@@ -599,8 +599,8 @@ export const GetAutomaticUpgraderRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAutomaticUpgraderRequest",
 }) as any as S.Schema<GetAutomaticUpgraderRequest>;
 
-export type AutomaticUpgraderGetResponseValue = "auto" | "custom";
-export const AutomaticUpgraderGetResponseValue = /*@__PURE__*/ S.String;
+export type GetAutomaticUpgraderResponseValue = "auto" | "custom";
+export const GetAutomaticUpgraderResponseValue = /*@__PURE__*/ S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetAutomaticUpgraderResponse {
@@ -610,7 +610,7 @@ export interface GetAutomaticUpgraderResponse {
   /** Last time this setting was modified. */
   modifiedOn: string;
   /** Current setting of the automatic SSL/TLS. */
-  value: AutomaticUpgraderGetResponseValue;
+  value: GetAutomaticUpgraderResponseValue;
   /** Next time this zone will be scanned by the Automatic SSL/TLS. */
   nextScheduledScan?: string | null;
 }
@@ -619,7 +619,7 @@ export const GetAutomaticUpgraderResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
     editable: S.Boolean,
     modifiedOn: S.String.pipe(T.Body("modified_on")),
-    value: AutomaticUpgraderGetResponseValue,
+    value: GetAutomaticUpgraderResponseValue,
     nextScheduledScan: S.optional(
       S.NullOr(S.String).pipe(T.Body("next_scheduled_scan")),
     ),
@@ -1654,18 +1654,18 @@ export const ListCertificatePacksResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCertificatePacksResponse",
 }) as any as S.Schema<ListCertificatePacksResponse>;
 
-export type AutomaticUpgraderPatchRequestValue = "auto" | "custom";
-export const AutomaticUpgraderPatchRequestValue = /*@__PURE__*/ S.String;
+export type PatchAutomaticUpgraderRequestValue = "auto" | "custom";
+export const PatchAutomaticUpgraderRequestValue = /*@__PURE__*/ S.String;
 
 export interface PatchAutomaticUpgraderRequest {
   zoneId: string;
   /** Controls enablement of Automatic SSL/TLS. */
-  value: AutomaticUpgraderPatchRequestValue | (string & {});
+  value: PatchAutomaticUpgraderRequestValue | (string & {});
 }
 export const PatchAutomaticUpgraderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneId: S.String.pipe(T.Label("zone_id")),
-    value: AutomaticUpgraderPatchRequestValue,
+    value: PatchAutomaticUpgraderRequestValue,
   })
     .pipe(
       T.Http({
@@ -1679,8 +1679,8 @@ export const PatchAutomaticUpgraderRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchAutomaticUpgraderRequest",
 }) as any as S.Schema<PatchAutomaticUpgraderRequest>;
 
-export type AutomaticUpgraderPatchResponseValue = "auto" | "custom";
-export const AutomaticUpgraderPatchResponseValue = /*@__PURE__*/ S.String;
+export type PatchAutomaticUpgraderResponseValue = "auto" | "custom";
+export const PatchAutomaticUpgraderResponseValue = /*@__PURE__*/ S.String;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface PatchAutomaticUpgraderResponse {
@@ -1690,7 +1690,7 @@ export interface PatchAutomaticUpgraderResponse {
   /** Last time this setting was modified. */
   modifiedOn: string;
   /** Current setting of the automatic SSL/TLS. */
-  value: AutomaticUpgraderPatchResponseValue;
+  value: PatchAutomaticUpgraderResponseValue;
   /** Next time this zone will be scanned by the Automatic SSL/TLS. */
   nextScheduledScan?: string | null;
 }
@@ -1699,7 +1699,7 @@ export const PatchAutomaticUpgraderResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
     editable: S.Boolean,
     modifiedOn: S.String.pipe(T.Body("modified_on")),
-    value: AutomaticUpgraderPatchResponseValue,
+    value: PatchAutomaticUpgraderResponseValue,
     nextScheduledScan: S.optional(
       S.NullOr(S.String).pipe(T.Body("next_scheduled_scan")),
     ),

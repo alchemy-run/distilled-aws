@@ -288,11 +288,11 @@ export const GetContentScanningResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetContentScanningResponse",
 }) as any as S.Schema<GetContentScanningResponse>;
 
-export interface GetSettingRequest {
+export interface GetSettingsRequest {
   /** Defines an identifier. */
   zoneId: string;
 }
-export const GetSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneId: S.String.pipe(T.Label("zone_id")),
   }).pipe(
@@ -303,24 +303,24 @@ export const GetSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSettingRequest",
-}) as any as S.Schema<GetSettingRequest>;
+  identifier: "GetSettingsRequest",
+}) as any as S.Schema<GetSettingsRequest>;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface GetSettingResponse {
+export interface GetSettingsResponse {
   /** Defines the last modification date (ISO 8601) of the Content Scanning status. */
   modified?: string | null;
   /** Defines the status of Content Scanning. */
   value?: string | null;
 }
-export const GetSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     modified: S.optional(S.NullOr(S.String)),
     value: S.optional(S.NullOr(S.String)),
   }),
 ).annotate({
-  identifier: "GetSettingResponse",
-}) as any as S.Schema<GetSettingResponse>;
+  identifier: "GetSettingsResponse",
+}) as any as S.Schema<GetSettingsResponse>;
 
 export interface ListPayloadsRequest {
   /** Defines an identifier. */
@@ -525,16 +525,16 @@ export const getContentScanning: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSettingError = Forbidden | CloudflareOpError;
+export type GetSettingsError = Forbidden | CloudflareOpError;
 /** Retrieve the current status of Content Scanning. */
-export const getSetting: API.OperationMethod<
-  GetSettingRequest,
-  GetSettingResponse,
-  GetSettingError,
+export const getSettings: API.OperationMethod<
+  GetSettingsRequest,
+  GetSettingsResponse,
+  GetSettingsError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSettingRequest,
-  output: GetSettingResponse,
+  input: GetSettingsRequest,
+  output: GetSettingsResponse,
   errors: [Forbidden, CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -590,6 +590,12 @@ export const update: API.OperationMethod<
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
+
+// Alias of getContentScanning (same route, alternate export name upstream).
+export const getSetting = getContentScanning;
+export type GetSettingRequest = GetContentScanningRequest;
+export type GetSettingResponse = GetContentScanningResponse;
+export type GetSettingError = GetContentScanningError;
 
 // Alias of createContentScanning (same route, alternate export name upstream).
 export const putContentScanning = createContentScanning;

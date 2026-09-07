@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.marketplace#UpdateInstallationRequestStatus": {
@@ -4637,37 +4638,52 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.marketplace#UpdateInstallation"
+          "target": "com.vercel.marketplace#CreateEvent"
+        },
+        {
+          "target": "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItems"
+        },
+        {
+          "target": "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId"
+        },
+        {
+          "target": "com.vercel.marketplace#DeleteIntegrationResource"
+        },
+        {
+          "target": "com.vercel.marketplace#FinalizeInstallation"
         },
         {
           "target": "com.vercel.marketplace#GetAccountInfo"
         },
         {
-          "target": "com.vercel.marketplace#GetMember"
-        },
-        {
-          "target": "com.vercel.marketplace#RotateInstallationCredential"
-        },
-        {
-          "target": "com.vercel.marketplace#RevokeInstallationCredential"
-        },
-        {
-          "target": "com.vercel.marketplace#CreateEvent"
-        },
-        {
-          "target": "com.vercel.marketplace#GetIntegrationResources"
+          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
         },
         {
           "target": "com.vercel.marketplace#GetIntegrationResource"
         },
         {
+          "target": "com.vercel.marketplace#GetIntegrationResources"
+        },
+        {
+          "target": "com.vercel.marketplace#GetInvoice"
+        },
+        {
+          "target": "com.vercel.marketplace#GetMember"
+        },
+        {
+          "target": "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+        },
+        {
           "target": "com.vercel.marketplace#ImportResource"
         },
         {
-          "target": "com.vercel.marketplace#UpdateResource"
+          "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
         },
         {
-          "target": "com.vercel.marketplace#DeleteIntegrationResource"
+          "target": "com.vercel.marketplace#RevokeInstallationCredential"
+        },
+        {
+          "target": "com.vercel.marketplace#RotateInstallationCredential"
         },
         {
           "target": "com.vercel.marketplace#SubmitBillingData"
@@ -4676,37 +4692,22 @@
           "target": "com.vercel.marketplace#SubmitInvoice"
         },
         {
-          "target": "com.vercel.marketplace#FinalizeInstallation"
-        },
-        {
-          "target": "com.vercel.marketplace#GetInvoice"
-        },
-        {
-          "target": "com.vercel.marketplace#UpdateInvoice"
-        },
-        {
           "target": "com.vercel.marketplace#SubmitPrepaymentBalances"
         },
         {
-          "target": "com.vercel.marketplace#UpdateResourceSecretsById"
-        },
-        {
-          "target": "com.vercel.marketplace#CreateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItems"
+          "target": "com.vercel.marketplace#UpdateInstallation"
         },
         {
           "target": "com.vercel.marketplace#UpdateInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId"
         },
         {
-          "target": "com.vercel.marketplace#DeleteInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationItemsByItemId"
+          "target": "com.vercel.marketplace#UpdateInvoice"
         },
         {
-          "target": "com.vercel.marketplace#GetInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+          "target": "com.vercel.marketplace#UpdateResource"
         },
         {
-          "target": "com.vercel.marketplace#ReplaceInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
-        },
-        {
-          "target": "com.vercel.marketplace#HeadInstallationsByIntegrationConfigurationIdResourcesByResourceIdExperimentationGlobalConfig"
+          "target": "com.vercel.marketplace#UpdateResourceSecretsById"
         }
       ],
       "traits": {

@@ -26,7 +26,8 @@
       "originConnectionLimit": "origin_connection_limit",
       "serviceId": "service_id",
       "staleWhileRevalidate": "stale_while_revalidate"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.hyperdrive#ConfigsCreateRequestOriginPublicDatabaseScheme": {
@@ -2225,22 +2226,22 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreate"
+          "target": "com.cloudflare.hyperdrive#CreateConfig"
         },
         {
-          "target": "com.cloudflare.hyperdrive#ConfigsDelete"
+          "target": "com.cloudflare.hyperdrive#DeleteConfig"
         },
         {
-          "target": "com.cloudflare.hyperdrive#ConfigsEdit"
+          "target": "com.cloudflare.hyperdrive#GetConfig"
         },
         {
-          "target": "com.cloudflare.hyperdrive#ConfigsGet"
+          "target": "com.cloudflare.hyperdrive#ListConfigs"
         },
         {
-          "target": "com.cloudflare.hyperdrive#ConfigsList"
+          "target": "com.cloudflare.hyperdrive#PatchConfig"
         },
         {
-          "target": "com.cloudflare.hyperdrive#ConfigsUpdate"
+          "target": "com.cloudflare.hyperdrive#UpdateConfig"
         }
       ],
       "traits": {

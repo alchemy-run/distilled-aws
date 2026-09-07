@@ -49,6 +49,75 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface GetForumRequest {
+  /** The unique identifier of the forum or experience to retrieve. */
+  id: string;
+}
+export const GetForumRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/forums/{id}", code: 200 })),
+).annotate({
+  identifier: "GetForumRequest",
+}) as any as S.Schema<GetForumRequest>;
+
+/** Email notification preference option for a forum feed */
+export type ForumEmailNotificationPreferences =
+  | "all_admin_posts"
+  | "only_weekly_summary"
+  | "none";
+export const ForumEmailNotificationPreferences = /*@__PURE__*/ S.String;
+
+/** The parent experience that this forum belongs to. */
+export interface ForumExperience {
+  /** The unique identifier for the experience. */
+  id: string;
+  /** Whether this experience is publicly visible to all users, including those without a membership. */
+  is_public: boolean;
+  /** The display name of this experience shown to users in the product navigation. Maximum 255 characters. */
+  name: string;
+}
+export const ForumExperience = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    is_public: S.Boolean,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "ForumExperience",
+}) as any as S.Schema<ForumExperience>;
+
+/** Who can comment on a forum feed */
+export type ForumWhoCanCommentTypes = "everyone" | "admins";
+export const ForumWhoCanCommentTypes = /*@__PURE__*/ S.String;
+
+/** Who can post on a forum feed */
+export type ForumWhoCanPostTypes = "everyone" | "admins";
+export const ForumWhoCanPostTypes = /*@__PURE__*/ S.String;
+
+/** A discussion forum where members can create posts, comment, and react, belonging to an experience. */
+export interface Forum {
+  /** The email notification setting that controls which posts trigger email alerts. One of: all_admin_posts, only_weekly_summary, none. */
+  email_notification_preference: ForumEmailNotificationPreferences;
+  /** The parent experience that this forum belongs to. */
+  experience: ForumExperience;
+  /** The unique identifier for the entity */
+  id: string;
+  /** The permission level controlling who can comment on posts. One of: everyone, admins. */
+  who_can_comment: ForumWhoCanCommentTypes;
+  /** The permission level controlling who can create new posts. One of: everyone, admins. */
+  who_can_post: ForumWhoCanPostTypes;
+}
+export const Forum = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email_notification_preference: ForumEmailNotificationPreferences,
+    experience: ForumExperience,
+    id: S.String,
+    who_can_comment: ForumWhoCanCommentTypes,
+    who_can_post: ForumWhoCanPostTypes,
+  }),
+).annotate({ identifier: "Forum" }) as any as S.Schema<Forum>;
+
 export interface ListForumRequest {
   after?: string;
   before?: string;
@@ -70,46 +139,16 @@ export const ListForumRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListForumRequest",
 }) as any as S.Schema<ListForumRequest>;
 
-/** Email notification preference option for a forum feed */
-export type ForumEmailNotificationPreferences =
-  | "all_admin_posts"
-  | "only_weekly_summary"
-  | "none";
-export const ForumEmailNotificationPreferences = /*@__PURE__*/ S.String;
-
 /** The parent experience that this forum belongs to. */
-export interface ForumListItemExperience {
-  /** The unique identifier for the experience. */
-  id: string;
-  /** Whether this experience is publicly visible to all users, including those without a membership. */
-  is_public: boolean;
-  /** The display name of this experience shown to users in the product navigation. Maximum 255 characters. */
-  name: string;
-}
-export const ForumListItemExperience = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    is_public: S.Boolean,
-    name: S.String,
-  }),
-).annotate({
-  identifier: "ForumListItemExperience",
-}) as any as S.Schema<ForumListItemExperience>;
-
-/** Who can comment on a forum feed */
-export type ForumWhoCanCommentTypes = "everyone" | "admins";
-export const ForumWhoCanCommentTypes = /*@__PURE__*/ S.String;
-
-/** Who can post on a forum feed */
-export type ForumWhoCanPostTypes = "everyone" | "admins";
-export const ForumWhoCanPostTypes = /*@__PURE__*/ S.String;
+export type ForumListItemExperience = ForumExperience;
+export const ForumListItemExperience = ForumExperience;
 
 /** A discussion forum where members can create posts, comment, and react, belonging to an experience. */
 export interface ForumListItem {
   /** The email notification setting that controls which posts trigger email alerts. One of: all_admin_posts, only_weekly_summary, none. */
   email_notification_preference: ForumEmailNotificationPreferences;
   /** The parent experience that this forum belongs to. */
-  experience: ForumListItemExperience;
+  experience: ForumExperience;
   /** The unique identifier for the entity */
   id: string;
   /** The permission level controlling who can comment on posts. One of: everyone, admins. */
@@ -120,7 +159,7 @@ export interface ForumListItem {
 export const ForumListItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     email_notification_preference: ForumEmailNotificationPreferences,
-    experience: ForumListItemExperience,
+    experience: ForumExperience,
     id: S.String,
     who_can_comment: ForumWhoCanCommentTypes,
     who_can_post: ForumWhoCanPostTypes,
@@ -167,45 +206,6 @@ export const ListForumResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListForumResponse",
 }) as any as S.Schema<ListForumResponse>;
-
-export interface RetrieveForumRequest {
-  /** The unique identifier of the forum or experience to retrieve. */
-  id: string;
-}
-export const RetrieveForumRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/forums/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveForumRequest",
-}) as any as S.Schema<RetrieveForumRequest>;
-
-/** The parent experience that this forum belongs to. */
-export type ForumExperience = ForumListItemExperience;
-export const ForumExperience = ForumListItemExperience;
-
-/** A discussion forum where members can create posts, comment, and react, belonging to an experience. */
-export interface Forum {
-  /** The email notification setting that controls which posts trigger email alerts. One of: all_admin_posts, only_weekly_summary, none. */
-  email_notification_preference: ForumEmailNotificationPreferences;
-  /** The parent experience that this forum belongs to. */
-  experience: ForumListItemExperience;
-  /** The unique identifier for the entity */
-  id: string;
-  /** The permission level controlling who can comment on posts. One of: everyone, admins. */
-  who_can_comment: ForumWhoCanCommentTypes;
-  /** The permission level controlling who can create new posts. One of: everyone, admins. */
-  who_can_post: ForumWhoCanPostTypes;
-}
-export const Forum = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email_notification_preference: ForumEmailNotificationPreferences,
-    experience: ForumListItemExperience,
-    id: S.String,
-    who_can_comment: ForumWhoCanCommentTypes,
-    who_can_post: ForumWhoCanPostTypes,
-  }),
-).annotate({ identifier: "Forum" }) as any as S.Schema<Forum>;
 
 /** A list of words that are automatically blocked from posts in this forum. For example, ['spam', 'scam']. */
 export type UpdateForumRequestBannedWordsList = Array<string>;
@@ -258,6 +258,26 @@ export const UpdateForumRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateForumRequest",
 }) as any as S.Schema<UpdateForumRequest>;
 
+export type GetForumError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve forum [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing forum. Required permissions: - `forum:read` */
+export const getForum: API.OperationMethod<
+  GetForumRequest,
+  Forum,
+  GetForumError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetForumRequest,
+  output: Forum,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListForumError =
   | BadRequest
   | Forbidden
@@ -289,26 +309,6 @@ export const listForum: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveForumError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve forum [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing forum. Required permissions: - `forum:read` */
-export const retrieveForum: API.OperationMethod<
-  RetrieveForumRequest,
-  Forum,
-  RetrieveForumError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveForumRequest,
-  output: Forum,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateForumError =
   | BadRequest

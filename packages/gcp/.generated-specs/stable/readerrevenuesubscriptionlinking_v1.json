@@ -4,9 +4,87 @@
     "service": "readerrevenuesubscriptionlinking",
     "version": "v1",
     "title": "Reader Revenue Subscription Linking API",
-    "baseUrl": "https://readerrevenuesubscriptionlinking.googleapis.com/"
+    "baseUrl": "https://readerrevenuesubscriptionlinking.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.readerrevenuesubscriptionlinking_v1#Entitlement": {
+      "type": "structure",
+      "members": {
+        "subscriptionToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A source-specific subscription token. This is an opaque string that the publisher provides to Google. This token is opaque and has no meaning to Google."
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The detail field can carry a description of the SKU that corresponds to what the user has been granted access to. This description, which is opaque to Google, can be displayed in the Google user subscription console for users who linked the subscription to a Google Account. Max 80 character limit."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Expiration time of the entitlement. If unset, the entitlement does not expire (indefinite entitlement). We need to support indefinite entitlements for platform publishers. dd: go/rrm-sl-notedotcom Entitlements that have expired over 30 days will be purged."
+          }
+        },
+        "productId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The publication's product ID that the user has access to. This is the same product ID as can be found in Schema.org markup (http://schema.org/productID). E.g. \"dailybugle.com:basic\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single entitlement for a publication reader"
+      }
+    },
+    "com.gcp.readerrevenuesubscriptionlinking_v1#Reader": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource name of the reader. The last part of ppid in the resource name is the publisher provided id."
+          }
+        },
+        "ppid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The publisher provided id of the reader."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time the publication reader was created and associated with a Google user."
+          }
+        },
+        "publicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The SwG publication id that the reader has linked their subscription to."
+          }
+        },
+        "originatingPublicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The SwG publication id that the reader's subscription linking was originating from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A reader of a publication."
+      }
+    },
+    "com.gcp.readerrevenuesubscriptionlinking_v1#DeleteReaderResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response to deleting a reader of a publication."
+      }
+    },
     "com.gcp.readerrevenuesubscriptionlinking_v1#ReaderEntitlements": {
       "type": "structure",
       "members": {
@@ -33,93 +111,9 @@
         "target": "com.gcp.readerrevenuesubscriptionlinking_v1#Entitlement"
       }
     },
-    "com.gcp.readerrevenuesubscriptionlinking_v1#Entitlement": {
+    "com.gcp.readerrevenuesubscriptionlinking_v1#GetPublicationsReadersRequest": {
       "type": "structure",
       "members": {
-        "expireTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Expiration time of the entitlement. If unset, the entitlement does not expire (indefinite entitlement). We need to support indefinite entitlements for platform publishers. dd: go/rrm-sl-notedotcom Entitlements that have expired over 30 days will be purged."
-          }
-        },
-        "subscriptionToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A source-specific subscription token. This is an opaque string that the publisher provides to Google. This token is opaque and has no meaning to Google."
-          }
-        },
-        "detail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The detail field can carry a description of the SKU that corresponds to what the user has been granted access to. This description, which is opaque to Google, can be displayed in the Google user subscription console for users who linked the subscription to a Google Account. Max 80 character limit."
-          }
-        },
-        "productId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The publication's product ID that the user has access to. This is the same product ID as can be found in Schema.org markup (http://schema.org/productID). E.g. \"dailybugle.com:basic\""
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single entitlement for a publication reader"
-      }
-    },
-    "com.gcp.readerrevenuesubscriptionlinking_v1#Reader": {
-      "type": "structure",
-      "members": {
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time the publication reader was created and associated with a Google user."
-          }
-        },
-        "originatingPublicationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The SwG publication id that the reader's subscription linking was originating from."
-          }
-        },
-        "publicationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The SwG publication id that the reader has linked their subscription to."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The resource name of the reader. The last part of ppid in the resource name is the publisher provided id."
-          }
-        },
-        "ppid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The publisher provided id of the reader."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A reader of a publication."
-      }
-    },
-    "com.gcp.readerrevenuesubscriptionlinking_v1#DeleteReaderResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Response to deleting a reader of a publication."
-      }
-    },
-    "com.gcp.readerrevenuesubscriptionlinking_v1#DeletePublicationsReadersRequest": {
-      "type": "structure",
-      "members": {
-        "force": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If set to true, any entitlements under the reader will also be purged.",
-            "smithy.api#httpQuery": "force"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
@@ -154,6 +148,50 @@
             "status": 403
           }
         ]
+      }
+    },
+    "com.gcp.readerrevenuesubscriptionlinking_v1#GetPublicationsReaders": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.readerrevenuesubscriptionlinking_v1#GetPublicationsReadersRequest"
+      },
+      "output": {
+        "target": "com.gcp.readerrevenuesubscriptionlinking_v1#Reader"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.readerrevenuesubscriptionlinking_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.readerrevenuesubscriptionlinking_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a reader of a publication. Returns NOT_FOUND if the reader does not exist."
+      }
+    },
+    "com.gcp.readerrevenuesubscriptionlinking_v1#DeletePublicationsReadersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the reader. Format: publications/{publication_id}/readers/{ppid}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "force": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If set to true, any entitlements under the reader will also be purged.",
+            "smithy.api#httpQuery": "force"
+          }
+        }
       }
     },
     "com.gcp.readerrevenuesubscriptionlinking_v1#BadRequest": {
@@ -212,43 +250,6 @@
         "smithy.api#documentation": "Removes a publication reader, effectively severing the association with a Google user. If `force` is set to true, any entitlements for this reader will also be deleted. (Otherwise, the request will only work if the reader has no entitlements.) - If the reader does not exist, return NOT_FOUND. - Return FAILED_PRECONDITION if the force field is false (or unset) and entitlements are present."
       }
     },
-    "com.gcp.readerrevenuesubscriptionlinking_v1#GetPublicationsReadersRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the reader. Format: publications/{publication_id}/readers/{ppid}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.readerrevenuesubscriptionlinking_v1#GetPublicationsReaders": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.readerrevenuesubscriptionlinking_v1#GetPublicationsReadersRequest"
-      },
-      "output": {
-        "target": "com.gcp.readerrevenuesubscriptionlinking_v1#Reader"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.readerrevenuesubscriptionlinking_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.readerrevenuesubscriptionlinking_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets a reader of a publication. Returns NOT_FOUND if the reader does not exist."
-      }
-    },
     "com.gcp.readerrevenuesubscriptionlinking_v1#GetEntitlementsPublicationsReadersRequest": {
       "type": "structure",
       "members": {
@@ -289,19 +290,19 @@
     "com.gcp.readerrevenuesubscriptionlinking_v1#UpdateEntitlementsPublicationsReadersRequest": {
       "type": "structure",
       "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update. Defaults to all fields.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The resource name of the singleton.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update. Defaults to all fields.",
-            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {

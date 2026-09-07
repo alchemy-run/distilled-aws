@@ -20,7 +20,8 @@
       "resultInfo": "result_info",
       "totalCount": "total_count",
       "useSqlite": "use_sqlite"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.durable_objects#NamespacesListResultItem": {
@@ -77,10 +78,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.durable_objects#NamespacesList"
+          "target": "com.cloudflare.durable_objects#ListNamespaceObjects"
         },
         {
-          "target": "com.cloudflare.durable_objects#NamespacesObjectsList"
+          "target": "com.cloudflare.durable_objects#ListNamespaces"
         }
       ],
       "traits": {

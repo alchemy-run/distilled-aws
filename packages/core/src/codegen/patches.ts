@@ -85,7 +85,7 @@ export const applyRfc6902Files = async (
       } catch (e) {
         const msg = e instanceof Error ? e.message : String(e);
         const line = `${label} [${patchOp.op} ${patchOp.path}]`;
-        if (isStaleTargetError(msg)) {
+        if (isStaleTargetError(e)) {
           result.stale++;
           if (onStalePatch === "fail") {
             result.errors.push(`${line}: stale target (${msg})`);
@@ -102,59 +102,75 @@ export const applyRfc6902Files = async (
 };
 
 /**
- * Apply `patches/<resource>/*.json` to each Smithy model in `specsDir` and
- * write the models back. Used by convert pipelines whose patches target
- * Smithy (Cloudflare, Discord, GraphQL) so generate never sees them.
+ * An RFC-6902 `move` that renames an operation shape leaves the service's
+ * `operations` list pointing at the old id. Rebuild it from the operation
+ * shapes that exist (sorted, one entry each). Returns the number of
+ * services whose list changed.
  */
-export const bakeSmithyPatches = async (o: {
-  readonly specsDir: string;
-  readonly patchesDir: string;
-  readonly exclude?: (file: string) => boolean;
-  readonly include?: (resource: string) => boolean;
-  readonly transform?: (model: any, resource: string) => string | void;
-  readonly onStalePatch?: OnStalePatch;
-}): Promise<void> => {
-  const names = (await fs.readdir(o.specsDir))
-    .filter((f) => f.endsWith(".json") && !(o.exclude?.(f) ?? false))
+export const syncServiceOperations = (model: {
+  shapes?: Record<string, any>;
+}): number => {
+  const shapes = model.shapes ?? {};
+  const opIds = Object.keys(shapes)
+    .filter((id) => shapes[id]?.type === "operation")
     .sort((a, b) => a.localeCompare(b));
-  for (const file of names) {
-    const resource = file.replace(/\.json$/, "");
-    if (o.include && !o.include(resource)) continue;
-    const modelPath = path.join(o.specsDir, file);
-    const model = JSON.parse(await fs.readFile(modelPath, "utf8"));
-    const files = await listRfc6902PatchFiles(
-      path.join(o.patchesDir, resource),
-    );
-    const applied = await applyRfc6902Files(model, files, {
-      onStalePatch: o.onStalePatch,
-      include: (op) => isSmithyPatchPath(op.path),
-      label: (f) => `${resource}/${path.basename(f)}`,
-    });
-    if (applied.errors.length) {
-      for (const err of applied.errors) console.error(`❌ bad patch: ${err}`);
-      throw new Error(
-        `${applied.errors.length} patch operation(s) failed for ${resource} — fix the pointers or delete the patch`,
-      );
-    }
-    const note = o.transform?.(model, resource);
-    if (note) console.log(`   ${note}`);
-    if (applied.files > 0 || o.transform) {
-      await fs.writeFile(modelPath, `${JSON.stringify(model, null, 2)}\n`);
-    }
-    if (applied.files > 0) {
-      console.log(
-        `   patched ${resource}: ${applied.files} file(s), ${applied.applied} op(s)` +
-          (applied.stale ? `, ${applied.stale} stale` : ""),
-      );
+  let changed = 0;
+  for (const def of Object.values(shapes)) {
+    if (def?.type !== "service") continue;
+    const before = JSON.stringify(def.operations ?? []);
+    const after = opIds.map((target) => ({ target }));
+    if (before !== JSON.stringify(after)) {
+      def.operations = after;
+      changed++;
     }
   }
+  return changed;
+};
+
+/**
+ * Every `target` in a Smithy model must resolve to a shape or a prelude
+ * (`smithy.api#…`) id. Returns the dangling ones as `"<owner> → <target>"`.
+ * A convert that produces any is broken — generate would emit references
+ * to types that do not exist.
+ */
+export const danglingTargets = (model: {
+  shapes?: Record<string, any>;
+}): string[] => {
+  const shapes = model.shapes ?? {};
+  const ids = new Set(Object.keys(shapes));
+  const out: string[] = [];
+  const walk = (owner: string, node: unknown): void => {
+    if (Array.isArray(node)) {
+      for (const item of node) walk(owner, item);
+      return;
+    }
+    if (node === null || typeof node !== "object") return;
+    for (const [key, value] of Object.entries(
+      node as Record<string, unknown>,
+    )) {
+      if (key === "target" && typeof value === "string") {
+        if (!value.startsWith("smithy.") && !ids.has(value)) {
+          out.push(`${owner} → ${value}`);
+        }
+      } else {
+        walk(owner, value);
+      }
+    }
+  };
+  for (const [id, def] of Object.entries(shapes)) walk(id, def);
+  return out;
 };
 
 /**
  * Last step of every convert: Smithy RFC-6902 patches, then verbNoun
- * operation names, then an optional model transform. Writes models back so
- * `.generated-specs` is what generate compiles. `outDir` may be nested
- * (GCP `stable/` / `unstable/`).
+ * operation names, then an optional model transform, then a reference
+ * check. Writes models back so `.generated-specs` is what generate
+ * compiles. `outDir` may be nested (GCP `stable/` / `unstable/`).
+ *
+ * Input must be FRESHLY converted models. Smithy patches are `move`/`add`
+ * ops that are not idempotent, and a `transform` may not be either, so
+ * running this over a model that already went through it is an error —
+ * re-run the package's `convert` instead.
  */
 export const finalizeConvert = async (o: {
   readonly root: string;
@@ -191,10 +207,16 @@ export const finalizeConvert = async (o: {
   };
 
   const files = (await walk(specsDir)).sort((a, b) => a.localeCompare(b));
+  const broken: string[] = [];
   for (const modelPath of files) {
     const resource = path.basename(modelPath, ".json");
     if (o.include && !o.include(resource)) continue;
     const model = JSON.parse(await fs.readFile(modelPath, "utf8"));
+    if (model.metadata?.[FINALIZED_KEY]) {
+      throw new Error(
+        `${path.relative(o.root, modelPath)} was already finalized — finalizeConvert is not idempotent; re-run this package's convert from the spec instead`,
+      );
+    }
     let dirty = false;
 
     if (patchesDir) {
@@ -240,8 +262,33 @@ export const finalizeConvert = async (o: {
       console.log(`   ${note}`);
     }
 
+    if (syncServiceOperations(model) > 0) dirty = true;
+
+    const dangling = danglingTargets(model);
+    if (dangling.length) {
+      broken.push(`${resource}: ${dangling.length} dangling target(s)`);
+      for (const d of dangling.slice(0, 5)) console.error(`   ❌ ${d}`);
+      if (dangling.length > 5) {
+        console.error(`   … ${dangling.length - 5} more`);
+      }
+    }
+
+    model.metadata = { ...model.metadata, [FINALIZED_KEY]: true };
+    dirty = true;
+
     if (dirty) {
       await fs.writeFile(modelPath, `${JSON.stringify(model, null, 2)}\n`);
     }
   }
+  if (broken.length) {
+    throw new Error(
+      `finalizeConvert: ${broken.length} model(s) reference shapes that do not exist:\n  ${broken.join("\n  ")}`,
+    );
+  }
 };
+
+/**
+ * Metadata marker stamped by {@link finalizeConvert}. Guards against a
+ * second pass over the same file (see the note on finalizeConvert).
+ */
+export const FINALIZED_KEY = "distilled.finalized";

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.models#GetFolderSizeRequest": {
@@ -8339,7 +8340,7 @@
         "smithy.api#documentation": "Export access report\n\nExport a report of all access requests for a gated repository"
       }
     },
-    "com.huggingface.models#RequestCancelAccessRequest": {
+    "com.huggingface.models#CancelAccessRequestRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -8361,10 +8362,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.huggingface.models#RequestCancelAccess": {
+    "com.huggingface.models#CancelAccessRequest": {
       "type": "operation",
       "input": {
-        "target": "com.huggingface.models#RequestCancelAccessRequest"
+        "target": "com.huggingface.models#CancelAccessRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8943,7 +8944,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.models#RequestHandleAccessRequest": {
+    "com.huggingface.models#HandleAccessRequestRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -8986,10 +8987,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.huggingface.models#RequestHandleAccess": {
+    "com.huggingface.models#HandleAccessRequest": {
       "type": "operation",
       "input": {
-        "target": "com.huggingface.models#RequestHandleAccessRequest"
+        "target": "com.huggingface.models#HandleAccessRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9230,85 +9231,94 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.models#GetFolderSize"
+          "target": "com.huggingface.models#AddResourceGroup"
         },
         {
-          "target": "com.huggingface.models#ListLargeFiles"
+          "target": "com.huggingface.models#BatchHandleAccessRequests"
         },
         {
-          "target": "com.huggingface.models#DeleteLargeFiles"
-        },
-        {
-          "target": "com.huggingface.models#DeleteLargeFile"
-        },
-        {
-          "target": "com.huggingface.models#DuplicateXetFiles"
-        },
-        {
-          "target": "com.huggingface.models#ListCommits"
-        },
-        {
-          "target": "com.huggingface.models#ListReferences"
-        },
-        {
-          "target": "com.huggingface.models#GetCompareRev"
-        },
-        {
-          "target": "com.huggingface.models#ListPathsInfo"
+          "target": "com.huggingface.models#CancelAccessRequest"
         },
         {
           "target": "com.huggingface.models#CheckUploadMethod"
         },
         {
-          "target": "com.huggingface.models#XetWriteToken"
-        },
-        {
-          "target": "com.huggingface.models#XetReadToken"
-        },
-        {
           "target": "com.huggingface.models#Commit"
-        },
-        {
-          "target": "com.huggingface.models#CreateTag"
-        },
-        {
-          "target": "com.huggingface.models#DeleteTag"
         },
         {
           "target": "com.huggingface.models#CreateBranch"
         },
         {
+          "target": "com.huggingface.models#CreateTag"
+        },
+        {
           "target": "com.huggingface.models#DeleteBranch"
         },
         {
-          "target": "com.huggingface.models#GetResourceGroup"
+          "target": "com.huggingface.models#DeleteLargeFile"
         },
         {
-          "target": "com.huggingface.models#AddResourceGroup"
+          "target": "com.huggingface.models#DeleteLargeFiles"
         },
         {
-          "target": "com.huggingface.models#SquashRef"
+          "target": "com.huggingface.models#DeleteTag"
         },
         {
-          "target": "com.huggingface.models#UpdateRepoSettings"
+          "target": "com.huggingface.models#DuplicateXetFiles"
         },
         {
-          "target": "com.huggingface.models#ListFolderContent"
-        },
-        {
-          "target": "com.huggingface.models#GetNotebookUrl"
-        },
-        {
-          "target": "com.huggingface.models#GetSecurityStatus"
+          "target": "com.huggingface.models#ExportAccessReport"
         },
         {
           "target": "com.huggingface.models#GenerateJwt"
         },
         {
+          "target": "com.huggingface.models#GetCompareRev"
+        },
+        {
+          "target": "com.huggingface.models#GetFolderSize"
+        },
+        {
           "target": "com.huggingface.models#GetModelTags"
         },
         {
+          "target": "com.huggingface.models#GetNotebookUrl"
+        },
+        {
+          "target": "com.huggingface.models#GetResourceGroup"
+        },
+        {
+          "target": "com.huggingface.models#GetSecurityStatus"
+        },
+        {
           "target": "com.huggingface.models#GetTrending"
+        },
+        {
+          "target": "com.huggingface.models#GrantAccess"
+        },
+        {
+          "target": "com.huggingface.models#HandleAccessRequest"
+        },
+        {
+          "target": "com.huggingface.models#ListAccessRequests"
+        },
+        {
+          "target": "com.huggingface.models#ListCommits"
+        },
+        {
+          "target": "com.huggingface.models#ListFolderContent"
+        },
+        {
+          "target": "com.huggingface.models#ListLargeFiles"
+        },
+        {
+          "target": "com.huggingface.models#ListPathsInfo"
+        },
+        {
+          "target": "com.huggingface.models#ListReferences"
+        },
+        {
+          "target": "com.huggingface.models#RequestAccess"
         },
         {
           "target": "com.huggingface.models#ResolveFile"
@@ -9317,25 +9327,16 @@
           "target": "com.huggingface.models#ResolveFileCached"
         },
         {
-          "target": "com.huggingface.models#RequestAccess"
+          "target": "com.huggingface.models#SquashRef"
         },
         {
-          "target": "com.huggingface.models#ExportAccessReport"
+          "target": "com.huggingface.models#UpdateRepoSettings"
         },
         {
-          "target": "com.huggingface.models#RequestCancelAccess"
+          "target": "com.huggingface.models#XetReadToken"
         },
         {
-          "target": "com.huggingface.models#ListAccessRequests"
-        },
-        {
-          "target": "com.huggingface.models#RequestHandleAccess"
-        },
-        {
-          "target": "com.huggingface.models#BatchHandleAccessRequests"
-        },
-        {
-          "target": "com.huggingface.models#GrantAccess"
+          "target": "com.huggingface.models#XetWriteToken"
         }
       ],
       "traits": {

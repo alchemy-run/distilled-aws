@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.flyio.machines#ListAppsRequest": {
@@ -1228,7 +1229,7 @@
         "smithy.api#documentation": "Create App deploy token"
       }
     },
-    "com.flyio.machines#ListAppIpAssignmentsRequest": {
+    "com.flyio.machines#ListAppIPAssignmentsRequest": {
       "type": "structure",
       "members": {
         "app_name": {
@@ -1287,10 +1288,10 @@
       },
       "traits": {}
     },
-    "com.flyio.machines#ListAppIpAssignments": {
+    "com.flyio.machines#ListAppIPAssignments": {
       "type": "operation",
       "input": {
-        "target": "com.flyio.machines#ListAppIpAssignmentsRequest"
+        "target": "com.flyio.machines#ListAppIPAssignmentsRequest"
       },
       "output": {
         "target": "com.flyio.machines#ListIPAssignmentsResponse"
@@ -1362,7 +1363,7 @@
         "smithy.api#documentation": "Type of IP address to allocate. \"egress-pair\" allocates both v4 and v6 egress IP addresses (recommended when using egress IPs)."
       }
     },
-    "com.flyio.machines#CreateAppIpAssignmentRequest": {
+    "com.flyio.machines#CreateAppIPAssignmentRequest": {
       "type": "structure",
       "members": {
         "app_name": {
@@ -1435,10 +1436,10 @@
       },
       "traits": {}
     },
-    "com.flyio.machines#CreateAppIpAssignment": {
+    "com.flyio.machines#CreateAppIPAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.flyio.machines#CreateAppIpAssignmentRequest"
+        "target": "com.flyio.machines#CreateAppIPAssignmentRequest"
       },
       "output": {
         "target": "com.flyio.machines#AssignIPResponse"
@@ -1466,7 +1467,7 @@
         "smithy.api#documentation": "Assign new IP address to app"
       }
     },
-    "com.flyio.machines#DeleteAppIpAssignmentRequest": {
+    "com.flyio.machines#DeleteAppIPAssignmentRequest": {
       "type": "structure",
       "members": {
         "app_name": {
@@ -1490,10 +1491,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.flyio.machines#DeleteAppIpAssignment": {
+    "com.flyio.machines#DeleteAppIPAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.flyio.machines#DeleteAppIpAssignmentRequest"
+        "target": "com.flyio.machines#DeleteAppIPAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4210,7 +4211,7 @@
         "smithy.api#documentation": "Create Lease\n\nCreate a lease for a specific Machine within an app using the details provided in the request body. Machine leases can be used to obtain an exclusive lock on modifying a Machine."
       }
     },
-    "com.flyio.machines#ReleaseMachineLeaseRequest": {
+    "com.flyio.machines#MachinesReleaseLeaseRequest": {
       "type": "structure",
       "members": {
         "app_name": {
@@ -4234,10 +4235,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.flyio.machines#ReleaseMachineLease": {
+    "com.flyio.machines#MachinesReleaseLease": {
       "type": "operation",
       "input": {
-        "target": "com.flyio.machines#ReleaseMachineLeaseRequest"
+        "target": "com.flyio.machines#MachinesReleaseLeaseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7450,7 +7451,7 @@
         "smithy.api#documentation": "Create Snapshot\n\nCreate a snapshot for a specific volume within an app."
       }
     },
-    "com.flyio.machines#ListOrgMachinesRequest": {
+    "com.flyio.machines#ListMachinesOrgRequest": {
       "type": "structure",
       "members": {
         "org_slug": {
@@ -7611,10 +7612,10 @@
       },
       "traits": {}
     },
-    "com.flyio.machines#ListOrgMachines": {
+    "com.flyio.machines#ListMachinesOrg": {
       "type": "operation",
       "input": {
-        "target": "com.flyio.machines#ListOrgMachinesRequest"
+        "target": "com.flyio.machines#ListMachinesOrgRequest"
       },
       "output": {
         "target": "com.flyio.machines#OrgMachinesResponse"
@@ -7636,7 +7637,7 @@
         "smithy.api#documentation": "List All Machines\n\nList all Machines associated with a specific organization. Machines are sorted by their `updated_at` timestamps, oldest to newest.\n\nThis API call represents \"a point in time\". Recent machine changes, including creations and destructions, may take time to propagate. When polling with `updated_after`, offset your timestamps to catch late-arriving events."
       }
     },
-    "com.flyio.machines#ListOrgVolumesRequest": {
+    "com.flyio.machines#ListVolumesOrgRequest": {
       "type": "structure",
       "members": {
         "org_slug": {
@@ -7843,10 +7844,10 @@
       },
       "traits": {}
     },
-    "com.flyio.machines#ListOrgVolumes": {
+    "com.flyio.machines#ListVolumesOrg": {
       "type": "operation",
       "input": {
-        "target": "com.flyio.machines#ListOrgVolumesRequest"
+        "target": "com.flyio.machines#ListVolumesOrgRequest"
       },
       "output": {
         "target": "com.flyio.machines#OrgVolumesResponse"
@@ -10753,19 +10754,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.flyio.machines#ListApps"
+          "target": "com.flyio.machines#AuthenticateToken"
+        },
+        {
+          "target": "com.flyio.machines#AuthorizeToken"
+        },
+        {
+          "target": "com.flyio.machines#CheckAppCertificate"
+        },
+        {
+          "target": "com.flyio.machines#CordonMachine"
         },
         {
           "target": "com.flyio.machines#CreateApp"
-        },
-        {
-          "target": "com.flyio.machines#GetApp"
-        },
-        {
-          "target": "com.flyio.machines#DeleteApp"
-        },
-        {
-          "target": "com.flyio.machines#ListAppCertificates"
         },
         {
           "target": "com.flyio.machines#CreateAppAcmeCertificate"
@@ -10774,100 +10775,241 @@
           "target": "com.flyio.machines#CreateAppCustomCertificate"
         },
         {
-          "target": "com.flyio.machines#GetAppCertificate"
-        },
-        {
-          "target": "com.flyio.machines#DeleteAppCertificate"
-        },
-        {
-          "target": "com.flyio.machines#DeleteAppAcmeCertificate"
-        },
-        {
-          "target": "com.flyio.machines#CheckAppCertificate"
-        },
-        {
-          "target": "com.flyio.machines#DeleteAppCustomCertificate"
-        },
-        {
           "target": "com.flyio.machines#CreateAppDeployToken"
         },
         {
-          "target": "com.flyio.machines#ListAppIpAssignments"
-        },
-        {
-          "target": "com.flyio.machines#CreateAppIpAssignment"
-        },
-        {
-          "target": "com.flyio.machines#DeleteAppIpAssignment"
-        },
-        {
-          "target": "com.flyio.machines#ListMachines"
+          "target": "com.flyio.machines#CreateAppIPAssignment"
         },
         {
           "target": "com.flyio.machines#CreateMachine"
         },
         {
-          "target": "com.flyio.machines#GetMachine"
+          "target": "com.flyio.machines#CreateMachineLease"
         },
         {
-          "target": "com.flyio.machines#UpdateMachine"
+          "target": "com.flyio.machines#CreatePostgres"
+        },
+        {
+          "target": "com.flyio.machines#CreatePostgresAttachment"
+        },
+        {
+          "target": "com.flyio.machines#CreatePostgresBackup"
+        },
+        {
+          "target": "com.flyio.machines#CreatePostgresDatabase"
+        },
+        {
+          "target": "com.flyio.machines#CreatePostgresUser"
+        },
+        {
+          "target": "com.flyio.machines#CreateSecret"
+        },
+        {
+          "target": "com.flyio.machines#CreateVolume"
+        },
+        {
+          "target": "com.flyio.machines#CreateVolumeSnapshot"
+        },
+        {
+          "target": "com.flyio.machines#DecryptSecretKey"
+        },
+        {
+          "target": "com.flyio.machines#DeleteApp"
+        },
+        {
+          "target": "com.flyio.machines#DeleteAppAcmeCertificate"
+        },
+        {
+          "target": "com.flyio.machines#DeleteAppCertificate"
+        },
+        {
+          "target": "com.flyio.machines#DeleteAppCustomCertificate"
+        },
+        {
+          "target": "com.flyio.machines#DeleteAppIPAssignment"
         },
         {
           "target": "com.flyio.machines#DeleteMachine"
         },
         {
-          "target": "com.flyio.machines#CordonMachine"
+          "target": "com.flyio.machines#DeleteMachineMetadata"
         },
         {
-          "target": "com.flyio.machines#ListMachineEvents"
+          "target": "com.flyio.machines#DeletePostgres"
+        },
+        {
+          "target": "com.flyio.machines#DeletePostgresAttachment"
+        },
+        {
+          "target": "com.flyio.machines#DeletePostgresDatabase"
+        },
+        {
+          "target": "com.flyio.machines#DeletePostgresUser"
+        },
+        {
+          "target": "com.flyio.machines#DeleteSecret"
+        },
+        {
+          "target": "com.flyio.machines#DeleteSecretKey"
+        },
+        {
+          "target": "com.flyio.machines#DeleteVolume"
+        },
+        {
+          "target": "com.flyio.machines#DisablePostgresExtension"
+        },
+        {
+          "target": "com.flyio.machines#EnablePostgresExtension"
+        },
+        {
+          "target": "com.flyio.machines#EncryptSecretKey"
         },
         {
           "target": "com.flyio.machines#ExecMachine"
         },
         {
+          "target": "com.flyio.machines#ExtendVolume"
+        },
+        {
+          "target": "com.flyio.machines#ForkPostgres"
+        },
+        {
+          "target": "com.flyio.machines#GenerateSecretKey"
+        },
+        {
+          "target": "com.flyio.machines#GetApp"
+        },
+        {
+          "target": "com.flyio.machines#GetAppCertificate"
+        },
+        {
+          "target": "com.flyio.machines#GetCurrentToken"
+        },
+        {
+          "target": "com.flyio.machines#GetMachine"
+        },
+        {
           "target": "com.flyio.machines#GetMachineLease"
-        },
-        {
-          "target": "com.flyio.machines#CreateMachineLease"
-        },
-        {
-          "target": "com.flyio.machines#ReleaseMachineLease"
         },
         {
           "target": "com.flyio.machines#GetMachineMemory"
         },
         {
-          "target": "com.flyio.machines#SetMachineMemoryLimit"
-        },
-        {
-          "target": "com.flyio.machines#ReclaimMachineMemory"
-        },
-        {
           "target": "com.flyio.machines#GetMachineMetadata"
-        },
-        {
-          "target": "com.flyio.machines#UpdateMachineMetadata"
-        },
-        {
-          "target": "com.flyio.machines#PatchMachineMetadata"
         },
         {
           "target": "com.flyio.machines#GetMachineMetadataKey"
         },
         {
-          "target": "com.flyio.machines#UpsertMachineMetadata"
+          "target": "com.flyio.machines#GetPlacements"
         },
         {
-          "target": "com.flyio.machines#DeleteMachineMetadata"
+          "target": "com.flyio.machines#GetPostgres"
+        },
+        {
+          "target": "com.flyio.machines#GetRegions"
+        },
+        {
+          "target": "com.flyio.machines#GetSecret"
+        },
+        {
+          "target": "com.flyio.machines#GetSecretKey"
+        },
+        {
+          "target": "com.flyio.machines#GetVolumeById"
+        },
+        {
+          "target": "com.flyio.machines#ListAppCertificates"
+        },
+        {
+          "target": "com.flyio.machines#ListAppIPAssignments"
+        },
+        {
+          "target": "com.flyio.machines#ListApps"
+        },
+        {
+          "target": "com.flyio.machines#ListMachineEvents"
         },
         {
           "target": "com.flyio.machines#ListMachineProcesses"
         },
         {
+          "target": "com.flyio.machines#ListMachines"
+        },
+        {
+          "target": "com.flyio.machines#ListMachinesOrg"
+        },
+        {
+          "target": "com.flyio.machines#ListMachineVersions"
+        },
+        {
+          "target": "com.flyio.machines#ListPostgres"
+        },
+        {
+          "target": "com.flyio.machines#ListPostgresBackups"
+        },
+        {
+          "target": "com.flyio.machines#ListPostgresDatabases"
+        },
+        {
+          "target": "com.flyio.machines#ListPostgresExtensions"
+        },
+        {
+          "target": "com.flyio.machines#ListPostgresUsers"
+        },
+        {
+          "target": "com.flyio.machines#ListSecretKeys"
+        },
+        {
+          "target": "com.flyio.machines#ListSecrets"
+        },
+        {
+          "target": "com.flyio.machines#ListVolumes"
+        },
+        {
+          "target": "com.flyio.machines#ListVolumeSnapshots"
+        },
+        {
+          "target": "com.flyio.machines#ListVolumesOrg"
+        },
+        {
+          "target": "com.flyio.machines#MachinesReleaseLease"
+        },
+        {
+          "target": "com.flyio.machines#PatchMachineMetadata"
+        },
+        {
+          "target": "com.flyio.machines#PostgresUsersCredentials"
+        },
+        {
+          "target": "com.flyio.machines#ReclaimMachineMemory"
+        },
+        {
+          "target": "com.flyio.machines#RequestKmsToken"
+        },
+        {
+          "target": "com.flyio.machines#RequestOidcToken"
+        },
+        {
           "target": "com.flyio.machines#RestartMachine"
         },
         {
+          "target": "com.flyio.machines#RestorePostgres"
+        },
+        {
+          "target": "com.flyio.machines#RotatePostgresUserPassword"
+        },
+        {
+          "target": "com.flyio.machines#SetMachineMemoryLimit"
+        },
+        {
+          "target": "com.flyio.machines#SetSecretKey"
+        },
+        {
           "target": "com.flyio.machines#SignalMachine"
+        },
+        {
+          "target": "com.flyio.machines#SignSecretKey"
         },
         {
           "target": "com.flyio.machines#StartMachine"
@@ -10882,169 +11024,28 @@
           "target": "com.flyio.machines#UncordonMachine"
         },
         {
-          "target": "com.flyio.machines#ListMachineVersions"
+          "target": "com.flyio.machines#UpdateMachine"
         },
         {
-          "target": "com.flyio.machines#WaitMachine"
-        },
-        {
-          "target": "com.flyio.machines#ListSecretKeys"
-        },
-        {
-          "target": "com.flyio.machines#GetSecretKey"
-        },
-        {
-          "target": "com.flyio.machines#SetSecretKey"
-        },
-        {
-          "target": "com.flyio.machines#DeleteSecretKey"
-        },
-        {
-          "target": "com.flyio.machines#DecryptSecretKey"
-        },
-        {
-          "target": "com.flyio.machines#EncryptSecretKey"
-        },
-        {
-          "target": "com.flyio.machines#GenerateSecretKey"
-        },
-        {
-          "target": "com.flyio.machines#SignSecretKey"
-        },
-        {
-          "target": "com.flyio.machines#VerifySecretKey"
-        },
-        {
-          "target": "com.flyio.machines#ListSecrets"
-        },
-        {
-          "target": "com.flyio.machines#UpdateSecrets"
-        },
-        {
-          "target": "com.flyio.machines#GetSecret"
-        },
-        {
-          "target": "com.flyio.machines#CreateSecret"
-        },
-        {
-          "target": "com.flyio.machines#DeleteSecret"
-        },
-        {
-          "target": "com.flyio.machines#ListVolumes"
-        },
-        {
-          "target": "com.flyio.machines#CreateVolume"
-        },
-        {
-          "target": "com.flyio.machines#GetVolumeById"
-        },
-        {
-          "target": "com.flyio.machines#UpdateVolume"
-        },
-        {
-          "target": "com.flyio.machines#DeleteVolume"
-        },
-        {
-          "target": "com.flyio.machines#ExtendVolume"
-        },
-        {
-          "target": "com.flyio.machines#ListVolumeSnapshots"
-        },
-        {
-          "target": "com.flyio.machines#CreateVolumeSnapshot"
-        },
-        {
-          "target": "com.flyio.machines#ListOrgMachines"
-        },
-        {
-          "target": "com.flyio.machines#ListOrgVolumes"
-        },
-        {
-          "target": "com.flyio.machines#GetPlacements"
-        },
-        {
-          "target": "com.flyio.machines#GetRegions"
-        },
-        {
-          "target": "com.flyio.machines#ListPostgres"
-        },
-        {
-          "target": "com.flyio.machines#CreatePostgres"
-        },
-        {
-          "target": "com.flyio.machines#GetPostgres"
-        },
-        {
-          "target": "com.flyio.machines#DeletePostgres"
-        },
-        {
-          "target": "com.flyio.machines#CreatePostgresAttachment"
-        },
-        {
-          "target": "com.flyio.machines#DeletePostgresAttachment"
-        },
-        {
-          "target": "com.flyio.machines#ListPostgresBackups"
-        },
-        {
-          "target": "com.flyio.machines#CreatePostgresBackup"
-        },
-        {
-          "target": "com.flyio.machines#ListPostgresDatabases"
-        },
-        {
-          "target": "com.flyio.machines#CreatePostgresDatabase"
-        },
-        {
-          "target": "com.flyio.machines#DeletePostgresDatabase"
-        },
-        {
-          "target": "com.flyio.machines#ListPostgresExtensions"
-        },
-        {
-          "target": "com.flyio.machines#EnablePostgresExtension"
-        },
-        {
-          "target": "com.flyio.machines#DisablePostgresExtension"
-        },
-        {
-          "target": "com.flyio.machines#ForkPostgres"
-        },
-        {
-          "target": "com.flyio.machines#RestorePostgres"
-        },
-        {
-          "target": "com.flyio.machines#ListPostgresUsers"
-        },
-        {
-          "target": "com.flyio.machines#CreatePostgresUser"
+          "target": "com.flyio.machines#UpdateMachineMetadata"
         },
         {
           "target": "com.flyio.machines#UpdatePostgresUserRole"
         },
         {
-          "target": "com.flyio.machines#DeletePostgresUser"
+          "target": "com.flyio.machines#UpdateSecrets"
         },
         {
-          "target": "com.flyio.machines#PostgresUsersCredentials"
+          "target": "com.flyio.machines#UpdateVolume"
         },
         {
-          "target": "com.flyio.machines#RotatePostgresUserPassword"
+          "target": "com.flyio.machines#UpsertMachineMetadata"
         },
         {
-          "target": "com.flyio.machines#AuthenticateToken"
+          "target": "com.flyio.machines#VerifySecretKey"
         },
         {
-          "target": "com.flyio.machines#AuthorizeToken"
-        },
-        {
-          "target": "com.flyio.machines#GetCurrentToken"
-        },
-        {
-          "target": "com.flyio.machines#RequestKmsToken"
-        },
-        {
-          "target": "com.flyio.machines#RequestOidcToken"
+          "target": "com.flyio.machines#WaitMachine"
         }
       ],
       "traits": {

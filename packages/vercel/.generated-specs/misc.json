@@ -1,0 +1,814 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.vercel.misc#GetSandboxesRequestSortBy": {
+      "type": "enum",
+      "members": {
+        "CREATEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "createdAt"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "STATUSUPDATEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "statusUpdatedAt"
+          }
+        },
+        "CURRENTSNAPSHOTID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "currentSnapshotId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Field to sort by."
+      }
+    },
+    "com.vercel.misc#GetSandboxesRequestSortOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sort direction. Defaults to desc."
+      }
+    },
+    "com.vercel.misc#GetSandboxesRequestStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopping"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter named sandboxes by status. Only valid when sortBy is createdAt."
+      }
+    },
+    "com.vercel.misc#GetSandboxesRequestTagsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#GetSandboxesRequestTags": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.vercel.misc#GetSandboxesRequestTagsCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter sandboxes by tag. Format: \\\"key:value\\\". Only one tag filter is supported at a time."
+      }
+    },
+    "com.vercel.misc#GetSandboxesRequest": {
+      "type": "structure",
+      "members": {
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "project",
+            "smithy.api#documentation": "The unique identifier or name of the project to list named sandboxes for."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of named sandboxes to return in the response. Used for pagination."
+          }
+        },
+        "sortBy": {
+          "target": "com.vercel.misc#GetSandboxesRequestSortBy",
+          "traits": {
+            "smithy.api#httpQuery": "sortBy",
+            "smithy.api#documentation": "Field to sort by."
+          }
+        },
+        "namePrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "namePrefix",
+            "smithy.api#documentation": "Filter named sandboxes whose name starts with this prefix. Only valid when sortBy=name."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Opaque pagination cursor from a previous response."
+          }
+        },
+        "sortOrder": {
+          "target": "com.vercel.misc#GetSandboxesRequestSortOrder",
+          "traits": {
+            "smithy.api#httpQuery": "sortOrder",
+            "smithy.api#documentation": "Sort direction. Defaults to desc."
+          }
+        },
+        "status": {
+          "target": "com.vercel.misc#GetSandboxesRequestStatus",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter named sandboxes by status. Only valid when sortBy is createdAt."
+          }
+        },
+        "tags": {
+          "target": "com.vercel.misc#GetSandboxesRequestTags",
+          "traits": {
+            "smithy.api#httpQuery": "tags",
+            "smithy.api#documentation": "Filter sandboxes by tag. Format: \\\"key:value\\\". Only one tag filter is supported at a time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.misc#NamedSandbox": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the sandbox.",
+            "smithy.api#required": {}
+          }
+        },
+        "currentSnapshotId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current snapshot ID that the named sandbox is pointing to."
+          }
+        },
+        "currentSessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current session ID the sandbox is pointing to.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.vercel.misc#NamedSandboxStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the current sandbox.",
+            "smithy.api#required": {}
+          }
+        },
+        "statusUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time when the sandbox status was last updated, in milliseconds since the epoch.",
+            "smithy.api#required": {}
+          }
+        },
+        "persistent": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the sandbox persists its state across restarts via automatic snapshots.",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region the sandbox is pinned to: the region stored on the sandbox, otherwise the platform default. Where a running session actually landed is reported by `session.region`."
+          }
+        },
+        "failoverRegions": {
+          "target": "com.vercel.misc#NamedSandboxFailoverRegionsList",
+          "traits": {
+            "smithy.api#documentation": "The regions the sandbox fails over to. Empty when it does not fail over."
+          }
+        },
+        "vcpus": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of virtual CPUs allocated."
+          }
+        },
+        "memory": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Memory allocated in MB."
+          }
+        },
+        "runtime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Runtime identifier."
+          }
+        },
+        "image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Digest-pinned reference of the container image the sandbox was created from, when it was created from an image (\"{repository}@{manifestDigest}\")."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timeout in milliseconds."
+          }
+        },
+        "snapshotExpiration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Default snapshot expiration time in milliseconds. 0 means no expiration."
+          }
+        },
+        "keepLastSnapshots": {
+          "target": "com.vercel.misc#NamedSandboxKeepLastSnapshots",
+          "traits": {
+            "smithy.api#documentation": "Keep-last snapshot configuration."
+          }
+        },
+        "networkPolicy": {
+          "target": "com.vercel.misc#NamedSandboxNetworkPolicy",
+          "traits": {
+            "smithy.api#documentation": "Network policy configuration."
+          }
+        },
+        "totalEgressBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative egress bytes across all sandbox runs."
+          }
+        },
+        "totalIngressBytes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative ingress bytes across all sandbox runs."
+          }
+        },
+        "totalActiveCpuDurationMs": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative active CPU duration in milliseconds across all sandbox runs."
+          }
+        },
+        "totalDurationMs": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Cumulative wall-clock duration in milliseconds across all sandbox runs."
+          }
+        },
+        "cwd": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The working directory of the sandbox."
+          }
+        },
+        "tags": {
+          "target": "com.vercel.misc#NamedSandboxTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value tags attached to the named sandbox."
+          }
+        },
+        "mounts": {
+          "target": "com.vercel.misc#NamedSandboxMountsMap",
+          "traits": {
+            "smithy.api#documentation": "Key-value pairs of mount path and drive."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time when the named sandbox was created, in milliseconds since the epoch.",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time when the named sandbox was last updated, in milliseconds since the epoch.",
+            "smithy.api#required": {}
+          }
+        },
+        "expiresAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time at which the currently running sandbox will time out, in milliseconds since the epoch. Only present while a session is running."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object contains information related to a Vercel NamedSandbox."
+      }
+    },
+    "com.vercel.misc#NamedSandboxStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopping"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the current sandbox."
+      }
+    },
+    "com.vercel.misc#NamedSandboxFailoverRegionsItem": {
+      "type": "enum",
+      "members": {
+        "ARN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arn1"
+          }
+        },
+        "BOM1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bom1"
+          }
+        },
+        "CDG1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cdg1"
+          }
+        },
+        "CLE1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cle1"
+          }
+        },
+        "CPT1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cpt1"
+          }
+        },
+        "DUB1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dub1"
+          }
+        },
+        "FRA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fra1"
+          }
+        },
+        "GRU1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gru1"
+          }
+        },
+        "HKG1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hkg1"
+          }
+        },
+        "HND1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hnd1"
+          }
+        },
+        "IAD1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "iad1"
+          }
+        },
+        "ICN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "icn1"
+          }
+        },
+        "KIX1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kix1"
+          }
+        },
+        "LHR1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lhr1"
+          }
+        },
+        "PDX1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pdx1"
+          }
+        },
+        "SFO1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sfo1"
+          }
+        },
+        "SIN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sin1"
+          }
+        },
+        "SYD1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "syd1"
+          }
+        },
+        "YUL1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yul1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The regions the sandbox fails over to. Empty when it does not fail over."
+      }
+    },
+    "com.vercel.misc#NamedSandboxFailoverRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.misc#NamedSandboxFailoverRegionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The regions the sandbox fails over to. Empty when it does not fail over."
+      }
+    },
+    "com.vercel.misc#NamedSandboxKeepLastSnapshots": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of most recent snapshots to keep.",
+            "smithy.api#required": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Expiration time in milliseconds for kept snapshots."
+          }
+        },
+        "deleteEvicted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to immediately delete evicted snapshots.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Keep-last snapshot configuration."
+      }
+    },
+    "com.vercel.misc#NamedSandboxNetworkPolicyMode": {
+      "type": "enum",
+      "members": {
+        "ALLOW_ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "allow-all"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "custom"
+          }
+        },
+        "DEFAULT_ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default-allow"
+          }
+        },
+        "DEFAULT_DENY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default-deny"
+          }
+        },
+        "DENY_ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deny-all"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#NamedSandboxNetworkPolicyAllowedDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#NamedSandboxNetworkPolicyAllowedCIDRsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#NamedSandboxNetworkPolicyDeniedCIDRsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#NamedSandboxNetworkPolicy": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.vercel.misc#NamedSandboxNetworkPolicyMode",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "allowedDomains": {
+          "target": "com.vercel.misc#NamedSandboxNetworkPolicyAllowedDomainsList"
+        },
+        "allowedCIDRs": {
+          "target": "com.vercel.misc#NamedSandboxNetworkPolicyAllowedCIDRsList"
+        },
+        "deniedCIDRs": {
+          "target": "com.vercel.misc#NamedSandboxNetworkPolicyDeniedCIDRsList"
+        },
+        "s3Key": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Network policy configuration."
+      }
+    },
+    "com.vercel.misc#NamedSandboxTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value tags attached to the named sandbox."
+      }
+    },
+    "com.vercel.misc#NamedSandboxMountsValueMode": {
+      "type": "enum",
+      "members": {
+        "READ_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read-only"
+          }
+        },
+        "READ_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read-write"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#NamedSandboxMountsValue": {
+      "type": "structure",
+      "members": {
+        "drive": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.vercel.misc#NamedSandboxMountsValueMode"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of mount path and drive."
+      }
+    },
+    "com.vercel.misc#NamedSandboxMountsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.vercel.misc#NamedSandboxMountsValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "Key-value pairs of mount path and drive."
+      }
+    },
+    "com.vercel.misc#GetSandboxesResponseSandboxesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.misc#NamedSandbox"
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#GetSandboxesResponsePagination": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.misc#GetSandboxesResponse": {
+      "type": "structure",
+      "members": {
+        "sandboxes": {
+          "target": "com.vercel.misc#GetSandboxesResponseSandboxesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.misc#GetSandboxesResponsePagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.misc#GetSandboxes": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.misc#GetSandboxesRequest"
+      },
+      "output": {
+        "target": "com.vercel.misc#GetSandboxesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.misc#BadRequest"
+        },
+        {
+          "target": "com.vercel.misc#Forbidden"
+        },
+        {
+          "target": "com.vercel.misc#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/sandboxes",
+          "code": 200
+        },
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "pagination.next",
+          "items": "sandboxes"
+        }
+      }
+    },
+    "com.vercel.misc#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.misc#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.misc#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.vercel.misc#Misc": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.misc#GetSandboxes"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

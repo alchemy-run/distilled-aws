@@ -108,13 +108,13 @@ export const ProxyRecord = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ProxyRecord" }) as any as S.Schema<ProxyRecord>;
 
-export interface CreateProxyRecordDiagnoseRequest {
+export interface CreateProxyRecordsDiagnoseRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
   /** A UUID string identifying this proxy record. */
   id: string;
 }
-export const CreateProxyRecordDiagnoseRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProxyRecordsDiagnoseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -126,8 +126,8 @@ export const CreateProxyRecordDiagnoseRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateProxyRecordDiagnoseRequest",
-}) as any as S.Schema<CreateProxyRecordDiagnoseRequest>;
+  identifier: "CreateProxyRecordsDiagnoseRequest",
+}) as any as S.Schema<CreateProxyRecordsDiagnoseRequest>;
 
 /** * `healthy` - healthy * `warn` - warn * `fail` - fail */
 export type DiagnosticReportSummaryStatusEnum = "healthy" | "warn" | "fail";
@@ -253,26 +253,26 @@ export const DiagnosticReport = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiagnosticReport",
 }) as any as S.Schema<DiagnosticReport>;
 
-export interface CreateProxyRecordRetryRequest {
+export interface GetProxyRecordRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
   /** A UUID string identifying this proxy record. */
   id: string;
 }
-export const CreateProxyRecordRetryRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProxyRecordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/organizations/{organization_id}/proxy_records/{id}/retry/",
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/proxy_records/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateProxyRecordRetryRequest",
-}) as any as S.Schema<CreateProxyRecordRetryRequest>;
+  identifier: "GetProxyRecordRequest",
+}) as any as S.Schema<GetProxyRecordRequest>;
 
 export interface ListProxyRecordsRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -339,40 +339,40 @@ export const ProxyRecordsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProxyRecordsDestroyResponse",
 }) as any as S.Schema<ProxyRecordsDestroyResponse>;
 
-export interface ProxyRecordsRetrieveRequest {
+export interface ProxyRecordsRetryCreateRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
   /** A UUID string identifying this proxy record. */
   id: string;
 }
-export const ProxyRecordsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const ProxyRecordsRetryCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/organizations/{organization_id}/proxy_records/{id}/",
+      method: "POST",
+      uri: "/api/organizations/{organization_id}/proxy_records/{id}/retry/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ProxyRecordsRetrieveRequest",
-}) as any as S.Schema<ProxyRecordsRetrieveRequest>;
+  identifier: "ProxyRecordsRetryCreateRequest",
+}) as any as S.Schema<ProxyRecordsRetryCreateRequest>;
 
-export interface UpdateProxyRecordPartialRequest {
+export interface UpdateProxyRecordsPartialRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
   /** A UUID string identifying this proxy record. */
   id: string;
   /** HTTPS URL that requests to the proxy domain root redirect to, or null to disable the redirect. The URL must use the same registrable domain as the managed proxy. */
-  root_redirect_url?: string | null;
+  root_redirect_url?: string;
 }
-export const UpdateProxyRecordPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProxyRecordsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
-    root_redirect_url: S.optional(S.NullOr(S.String)),
+    root_redirect_url: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -381,8 +381,8 @@ export const UpdateProxyRecordPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateProxyRecordPartialRequest",
-}) as any as S.Schema<UpdateProxyRecordPartialRequest>;
+  identifier: "UpdateProxyRecordsPartialRequest",
+}) as any as S.Schema<UpdateProxyRecordsPartialRequest>;
 
 export type CreateProxyRecordError =
   | BadRequest
@@ -403,30 +403,30 @@ export const createProxyRecord: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateProxyRecordDiagnoseError = PosthogOpError;
+export type CreateProxyRecordsDiagnoseError = PosthogOpError;
 /** Run a deep diagnostic on a reverse proxy. Inspects DNS CNAME alignment, the certificate provider's hostname state, CAA records walked up the customer's DNS tree, HTTP-01 challenge reachability, a live event probe, and certificate expiry. Returns a structured report with each check's status and concrete remediation steps (e.g. exact DNS records to add). Use this to debug why a proxy is stuck or erroring. */
-export const createProxyRecordDiagnose: API.OperationMethod<
-  CreateProxyRecordDiagnoseRequest,
+export const createProxyRecordsDiagnose: API.OperationMethod<
+  CreateProxyRecordsDiagnoseRequest,
   DiagnosticReport,
-  CreateProxyRecordDiagnoseError,
+  CreateProxyRecordsDiagnoseError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateProxyRecordDiagnoseRequest,
+  input: CreateProxyRecordsDiagnoseRequest,
   output: DiagnosticReport,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateProxyRecordRetryError = Forbidden | NotFound | PosthogOpError;
-/** Retry provisioning a failed reverse proxy. Only available for proxies in 'erroring' or 'timed_out' status. Resets the proxy to 'waiting' status and restarts the provisioning workflow. */
-export const createProxyRecordRetry: API.OperationMethod<
-  CreateProxyRecordRetryRequest,
+export type GetProxyRecordError = Forbidden | NotFound | PosthogOpError;
+/** Get details of a specific reverse proxy by ID. Returns the full configuration including domain, CNAME target, and current provisioning status. */
+export const getProxyRecord: API.OperationMethod<
+  GetProxyRecordRequest,
   ProxyRecord,
-  CreateProxyRecordRetryError,
+  GetProxyRecordError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateProxyRecordRetryRequest,
+  input: GetProxyRecordRequest,
   output: ProxyRecord,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -463,30 +463,33 @@ export const proxyRecordsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProxyRecordsRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Get details of a specific reverse proxy by ID. Returns the full configuration including domain, CNAME target, and current provisioning status. */
-export const proxyRecordsRetrieve: API.OperationMethod<
-  ProxyRecordsRetrieveRequest,
+export type ProxyRecordsRetryCreateError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Retry provisioning a failed reverse proxy. Only available for proxies in 'erroring' or 'timed_out' status. Resets the proxy to 'waiting' status and restarts the provisioning workflow. */
+export const proxyRecordsRetryCreate: API.OperationMethod<
+  ProxyRecordsRetryCreateRequest,
   ProxyRecord,
-  ProxyRecordsRetrieveError,
+  ProxyRecordsRetryCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProxyRecordsRetrieveRequest,
+  input: ProxyRecordsRetryCreateRequest,
   output: ProxyRecord,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateProxyRecordPartialError = PosthogOpError;
+export type UpdateProxyRecordsPartialError = PosthogOpError;
 /** Set or clear the HTTPS redirect for requests to the managed proxy domain root. */
-export const updateProxyRecordPartial: API.OperationMethod<
-  UpdateProxyRecordPartialRequest,
+export const updateProxyRecordsPartial: API.OperationMethod<
+  UpdateProxyRecordsPartialRequest,
   ProxyRecord,
-  UpdateProxyRecordPartialError,
+  UpdateProxyRecordsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateProxyRecordPartialRequest,
+  input: UpdateProxyRecordsPartialRequest,
   output: ProxyRecord,
   errors: [],
   protocol: PosthogProtocol,

@@ -221,11 +221,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type WorkflowGetResponseTagsMap = { [key: string]: string | undefined };
-export const WorkflowGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkflowResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkflowResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkflowGetResponseTagsMap>;
+) as any as S.Schema<GetWorkflowResponseTagsMap>;
 
 /** Determines the type of manifests within the repository. */
 export type ManifestType = "helm" | "kube" | "kustomize";
@@ -458,7 +458,7 @@ export interface GetWorkflowResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkflowGetResponseTagsMap;
+  tags?: GetWorkflowResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a workflow. */
@@ -470,7 +470,7 @@ export const GetWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkflowGetResponseTagsMap),
+    tags: S.optional(GetWorkflowResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkflowProperties),
   }),
@@ -718,20 +718,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -800,20 +800,20 @@ export const WorkflowListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<WorkflowListResultValueList>;
 
 /** The response from List Workflows operation. */
-export interface ListWorkflowResult {
+export interface WorkflowListResult {
   /** The list of workflows. */
   value?: WorkflowListResultValueList;
   /** The URL to the next set of workflow results. */
   nextLink?: string;
 }
-export const ListWorkflowResult = /*@__PURE__*/ S.suspend(() =>
+export const WorkflowListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(WorkflowListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListWorkflowResult",
-}) as any as S.Schema<ListWorkflowResult>;
+  identifier: "WorkflowListResult",
+}) as any as S.Schema<WorkflowListResult>;
 
 export interface ListWorkflowByResourceGroupRequest {
   /** The ID of the target subscription. */
@@ -840,29 +840,29 @@ export const ListWorkflowByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWorkflowByResourceGroupRequest",
 }) as any as S.Schema<ListWorkflowByResourceGroupRequest>;
 
-export type WorkflowUpdateTagsRequestTagsMap = {
+export type UpdateWorkflowTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkflowUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkflowTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkflowUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateWorkflowTagsRequestTagsMap>;
 
-export interface UpdateWorkflowTagRequest {
+export interface UpdateWorkflowTagsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the workflow resource. */
   workflowName: string;
-  tags?: WorkflowUpdateTagsRequestTagsMap;
+  tags?: UpdateWorkflowTagsRequestTagsMap;
 }
-export const UpdateWorkflowTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkflowTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workflowName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkflowUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateWorkflowTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -872,19 +872,19 @@ export const UpdateWorkflowTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateWorkflowTagRequest",
-}) as any as S.Schema<UpdateWorkflowTagRequest>;
+  identifier: "UpdateWorkflowTagsRequest",
+}) as any as S.Schema<UpdateWorkflowTagsRequest>;
 
 /** Resource tags. */
-export type WorkflowUpdateTagsResponseTagsMap = {
+export type UpdateWorkflowTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkflowUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkflowTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkflowUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateWorkflowTagsResponseTagsMap>;
 
-export interface UpdateWorkflowTagResponse {
+export interface UpdateWorkflowTagsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -894,25 +894,25 @@ export interface UpdateWorkflowTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkflowUpdateTagsResponseTagsMap;
+  tags?: UpdateWorkflowTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a workflow. */
   properties?: WorkflowProperties;
 }
-export const UpdateWorkflowTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkflowTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkflowUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateWorkflowTagsResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkflowProperties),
   }),
 ).annotate({
-  identifier: "UpdateWorkflowTagResponse",
-}) as any as S.Schema<UpdateWorkflowTagResponse>;
+  identifier: "UpdateWorkflowTagsResponse",
+}) as any as S.Schema<UpdateWorkflowTagsResponse>;
 
 /** Resource tags. */
 export type WorkflowCreateOrUpdateRequestTagsMap = {
@@ -1178,12 +1178,12 @@ export type ListWorkflowError = AzureOpError;
 /** Gets a list of workflows associated with the specified subscription. */
 export const ListWorkflow: API.OperationMethod<
   ListWorkflowRequest,
-  ListWorkflowResult,
+  WorkflowListResult,
   ListWorkflowError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWorkflowRequest,
-  output: ListWorkflowResult,
+  output: WorkflowListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1193,27 +1193,27 @@ export type ListWorkflowByResourceGroupError = AzureOpError;
 /** Gets a list of workflows within a resource group. */
 export const ListWorkflowByResourceGroup: API.OperationMethod<
   ListWorkflowByResourceGroupRequest,
-  ListWorkflowResult,
+  WorkflowListResult,
   ListWorkflowByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWorkflowByResourceGroupRequest,
-  output: ListWorkflowResult,
+  output: WorkflowListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateWorkflowTagError = AzureOpError;
+export type UpdateWorkflowTagsError = AzureOpError;
 /** Updates tags on a workflow. */
-export const UpdateWorkflowTag: API.OperationMethod<
-  UpdateWorkflowTagRequest,
-  UpdateWorkflowTagResponse,
-  UpdateWorkflowTagError,
+export const UpdateWorkflowTags: API.OperationMethod<
+  UpdateWorkflowTagsRequest,
+  UpdateWorkflowTagsResponse,
+  UpdateWorkflowTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWorkflowTagRequest,
-  output: UpdateWorkflowTagResponse,
+  input: UpdateWorkflowTagsRequest,
+  output: UpdateWorkflowTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.servicefabric#ListServices": {
@@ -736,7 +737,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ServicesUpdateRequestTagsMap",
+          "target": "com.azure.servicefabric#UpdateServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -781,7 +782,7 @@
         "smithy.api#documentation": "The service resource properties for patch operations."
       }
     },
-    "com.azure.servicefabric#ServicesUpdateRequestTagsMap": {
+    "com.azure.servicefabric#UpdateServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1007,7 +1008,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ServicesGetResponseTagsMap",
+          "target": "com.azure.servicefabric#GetServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -1029,7 +1030,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabric#ServicesGetResponseTagsMap": {
+    "com.azure.servicefabric#GetServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1755,7 +1756,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ApplicationsUpdateRequestTagsMap",
+          "target": "com.azure.servicefabric#UpdateApplicationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -1821,7 +1822,7 @@
         "smithy.api#documentation": "List of user assigned identities for the application, each mapped to a friendly name."
       }
     },
-    "com.azure.servicefabric#ApplicationsUpdateRequestTagsMap": {
+    "com.azure.servicefabric#UpdateApplicationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2056,7 +2057,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ApplicationsGetResponseTagsMap",
+          "target": "com.azure.servicefabric#GetApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -2081,7 +2082,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabric#ApplicationsGetResponseTagsMap": {
+    "com.azure.servicefabric#GetApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2537,7 +2538,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ApplicationTypeVersionsGetResponseTagsMap",
+          "target": "com.azure.servicefabric#GetApplicationTypeVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -2559,7 +2560,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabric#ApplicationTypeVersionsGetResponseTagsMap": {
+    "com.azure.servicefabric#GetApplicationTypeVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3031,7 +3032,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ApplicationTypesGetResponseTagsMap",
+          "target": "com.azure.servicefabric#GetApplicationTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -3053,7 +3054,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabric#ApplicationTypesGetResponseTagsMap": {
+    "com.azure.servicefabric#GetApplicationTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3437,7 +3438,7 @@
           }
         },
         "environment": {
-          "target": "com.azure.servicefabric#ClusterVersionsListByEnvironmentRequestEnvironment",
+          "target": "com.azure.servicefabric#ListClusterVersionByEnvironmentRequestEnvironment",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -3449,7 +3450,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabric#ClusterVersionsListByEnvironmentRequestEnvironment": {
+    "com.azure.servicefabric#ListClusterVersionByEnvironmentRequestEnvironment": {
       "type": "enum",
       "members": {
         "WINDOWS": {
@@ -3549,7 +3550,7 @@
           }
         },
         "environment": {
-          "target": "com.azure.servicefabric#ClusterVersionsGetByEnvironmentRequestEnvironment",
+          "target": "com.azure.servicefabric#GetClusterVersionByEnvironmentRequestEnvironment",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -3569,7 +3570,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabric#ClusterVersionsGetByEnvironmentRequestEnvironment": {
+    "com.azure.servicefabric#GetClusterVersionByEnvironmentRequestEnvironment": {
       "type": "enum",
       "members": {
         "WINDOWS": {
@@ -5261,7 +5262,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ClustersUpdateResponseTagsMap",
+          "target": "com.azure.servicefabric#UpdateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -5286,7 +5287,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabric#ClustersUpdateResponseTagsMap": {
+    "com.azure.servicefabric#UpdateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5329,7 +5330,7 @@
           "target": "com.azure.servicefabric#ClusterPropertiesUpdateParameters"
         },
         "tags": {
-          "target": "com.azure.servicefabric#ClustersUpdateRequestTagsMap",
+          "target": "com.azure.servicefabric#UpdateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Cluster update parameters"
           }
@@ -5339,7 +5340,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabric#ClustersUpdateRequestTagsMap": {
+    "com.azure.servicefabric#UpdateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5934,7 +5935,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabric#ClustersGetResponseTagsMap",
+          "target": "com.azure.servicefabric#GetClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Azure resource tags."
           }
@@ -5959,7 +5960,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabric#ClustersGetResponseTagsMap": {
+    "com.azure.servicefabric#GetClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6008,16 +6009,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.servicefabric#ListServices"
+          "target": "com.azure.servicefabric#ApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#ApplicationTypesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#ApplicationTypeVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#DeleteApplication"
+        },
+        {
+          "target": "com.azure.servicefabric#DeleteApplicationType"
+        },
+        {
+          "target": "com.azure.servicefabric#DeleteApplicationTypeVersion"
+        },
+        {
+          "target": "com.azure.servicefabric#DeleteCluster"
         },
         {
           "target": "com.azure.servicefabric#DeleteService"
         },
         {
-          "target": "com.azure.servicefabric#UpdateService"
+          "target": "com.azure.servicefabric#GetApplication"
         },
         {
-          "target": "com.azure.servicefabric#ServicesCreateOrUpdate"
+          "target": "com.azure.servicefabric#GetApplicationType"
+        },
+        {
+          "target": "com.azure.servicefabric#GetApplicationTypeVersion"
+        },
+        {
+          "target": "com.azure.servicefabric#GetCluster"
+        },
+        {
+          "target": "com.azure.servicefabric#GetClusterVersion"
+        },
+        {
+          "target": "com.azure.servicefabric#GetClusterVersionByEnvironment"
         },
         {
           "target": "com.azure.servicefabric#GetService"
@@ -6026,43 +6060,16 @@
           "target": "com.azure.servicefabric#ListApplications"
         },
         {
-          "target": "com.azure.servicefabric#DeleteApplication"
-        },
-        {
-          "target": "com.azure.servicefabric#UpdateApplication"
-        },
-        {
-          "target": "com.azure.servicefabric#ApplicationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#GetApplication"
+          "target": "com.azure.servicefabric#ListApplicationTypes"
         },
         {
           "target": "com.azure.servicefabric#ListApplicationTypeVersions"
         },
         {
-          "target": "com.azure.servicefabric#DeleteApplicationTypeVersion"
+          "target": "com.azure.servicefabric#ListClusterByResourceGroup"
         },
         {
-          "target": "com.azure.servicefabric#ApplicationTypeVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#GetApplicationTypeVersion"
-        },
-        {
-          "target": "com.azure.servicefabric#ListApplicationTypes"
-        },
-        {
-          "target": "com.azure.servicefabric#DeleteApplicationType"
-        },
-        {
-          "target": "com.azure.servicefabric#ApplicationTypesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#GetApplicationType"
-        },
-        {
-          "target": "com.azure.servicefabric#ListOperations"
+          "target": "com.azure.servicefabric#ListClusters"
         },
         {
           "target": "com.azure.servicefabric#ListClusterUpgradableVersions"
@@ -6074,28 +6081,22 @@
           "target": "com.azure.servicefabric#ListClusterVersions"
         },
         {
-          "target": "com.azure.servicefabric#GetClusterVersionByEnvironment"
+          "target": "com.azure.servicefabric#ListOperations"
         },
         {
-          "target": "com.azure.servicefabric#GetClusterVersion"
+          "target": "com.azure.servicefabric#ListServices"
         },
         {
-          "target": "com.azure.servicefabric#ListClusters"
+          "target": "com.azure.servicefabric#ServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicefabric#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.servicefabric#DeleteCluster"
+          "target": "com.azure.servicefabric#UpdateApplication"
         },
         {
           "target": "com.azure.servicefabric#UpdateCluster"
         },
         {
-          "target": "com.azure.servicefabric#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#GetCluster"
+          "target": "com.azure.servicefabric#UpdateService"
         }
       ],
       "traits": {

@@ -61,7 +61,8 @@
       "vanityNameServers": "vanity_name_servers",
       "verificationKey": "verification_key",
       "wpPlugin": "wp_plugin"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.zones#CreateRequestAccount": {
@@ -19150,7 +19151,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZeroRTTId": {
+    "com.cloudflare.zones#ListSettingsResultItemZeroRTTId": {
       "type": "enum",
       "members": {
         "_0RTT": {
@@ -19161,7 +19162,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZeroRTTValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZeroRTTValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -19178,18 +19179,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZeroRTT": {
+    "com.cloudflare.zones#ListSettingsResultItemZeroRTT": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZeroRTTId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZeroRTTId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZeroRTTValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZeroRTTValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19209,7 +19210,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemAdvancedDDoSId": {
+    "com.cloudflare.zones#ListSettingsResultItemAdvancedDDoSId": {
       "type": "enum",
       "members": {
         "ADVANCED_DDOS": {
@@ -19220,7 +19221,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemAdvancedDDoSValue": {
+    "com.cloudflare.zones#ListSettingsResultItemAdvancedDDoSValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -19237,18 +19238,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemAdvancedDDoS": {
+    "com.cloudflare.zones#ListSettingsResultItemAdvancedDDoS": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemAdvancedDDoSId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemAdvancedDDoSId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemAdvancedDDoSValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemAdvancedDDoSValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19268,7 +19269,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesAegisId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesAegisId": {
       "type": "enum",
       "members": {
         "AEGIS": {
@@ -19279,7 +19280,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesAegisValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesAegisValue": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -19296,11 +19297,11 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesAegis": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesAegis": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesAegisId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesAegisId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
@@ -19313,14 +19314,14 @@
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesAegisValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesAegisValue",
           "traits": {
             "smithy.api#documentation": "Value of the zone setting."
           }
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemAlwaysOnlineId": {
+    "com.cloudflare.zones#ListSettingsResultItemAlwaysOnlineId": {
       "type": "enum",
       "members": {
         "ALWAYS_ONLINE": {
@@ -19331,7 +19332,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemAlwaysOnlineValue": {
+    "com.cloudflare.zones#ListSettingsResultItemAlwaysOnlineValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -19348,18 +19349,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemAlwaysOnline": {
+    "com.cloudflare.zones#ListSettingsResultItemAlwaysOnline": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemAlwaysOnlineId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemAlwaysOnlineId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemAlwaysOnlineValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemAlwaysOnlineValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19379,7 +19380,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAlwaysUseHTTPSId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAlwaysUseHTTPSId": {
       "type": "enum",
       "members": {
         "ALWAYS_USE_HTTPS": {
@@ -19390,7 +19391,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAlwaysUseHTTPSValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAlwaysUseHTTPSValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -19407,18 +19408,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAlwaysUseHTTPS": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAlwaysUseHTTPS": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAlwaysUseHTTPSId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAlwaysUseHTTPSId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAlwaysUseHTTPSValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAlwaysUseHTTPSValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19438,7 +19439,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticHTTPSRewritesId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticHTTPSRewritesId": {
       "type": "enum",
       "members": {
         "AUTOMATIC_HTTPS_REWRITES": {
@@ -19449,7 +19450,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticHTTPSRewritesValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticHTTPSRewritesValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -19466,18 +19467,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticHTTPSRewrites": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticHTTPSRewrites": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticHTTPSRewritesId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticHTTPSRewritesId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticHTTPSRewritesValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticHTTPSRewritesValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19497,7 +19498,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemBrotliId": {
+    "com.cloudflare.zones#ListSettingsResultItemBrotliId": {
       "type": "enum",
       "members": {
         "BROTLI": {
@@ -19508,7 +19509,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemBrotliValue": {
+    "com.cloudflare.zones#ListSettingsResultItemBrotliValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -19525,18 +19526,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemBrotli": {
+    "com.cloudflare.zones#ListSettingsResultItemBrotli": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemBrotliId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemBrotliId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemBrotliValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemBrotliValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19556,7 +19557,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCacheTTLId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCacheTTLId": {
       "type": "enum",
       "members": {
         "BROWSER_CACHE_TTL": {
@@ -19567,11 +19568,11 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCacheTTL": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCacheTTL": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCacheTTLId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCacheTTLId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
@@ -19598,7 +19599,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCheckId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCheckId": {
       "type": "enum",
       "members": {
         "BROWSER_CHECK": {
@@ -19609,7 +19610,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCheckValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCheckValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -19626,18 +19627,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCheck": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCheck": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCheckId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCheckId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCheckValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCheckValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19657,7 +19658,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasCacheLevelId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasCacheLevelId": {
       "type": "enum",
       "members": {
         "CACHE_LEVEL": {
@@ -19668,7 +19669,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasCacheLevelValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasCacheLevelValue": {
       "type": "enum",
       "members": {
         "AGGRESSIVE": {
@@ -19691,18 +19692,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasCacheLevel": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasCacheLevel": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasCacheLevelId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasCacheLevelId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasCacheLevelValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasCacheLevelValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19722,7 +19723,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemChallengeTTLId": {
+    "com.cloudflare.zones#ListSettingsResultItemChallengeTTLId": {
       "type": "enum",
       "members": {
         "CHALLENGE_TTL": {
@@ -19733,7 +19734,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemChallengeTTLValue": {
+    "com.cloudflare.zones#ListSettingsResultItemChallengeTTLValue": {
       "type": "intEnum",
       "members": {
         "_300": {
@@ -19822,18 +19823,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemChallengeTTL": {
+    "com.cloudflare.zones#ListSettingsResultItemChallengeTTL": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemChallengeTTLId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemChallengeTTLId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemChallengeTTLValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemChallengeTTLValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19853,7 +19854,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemCiphersId": {
+    "com.cloudflare.zones#ListSettingsResultItemCiphersId": {
       "type": "enum",
       "members": {
         "CIPHERS": {
@@ -19864,24 +19865,24 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemCiphersValueList": {
+    "com.cloudflare.zones#ListSettingsResultItemCiphersValueList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemCiphers": {
+    "com.cloudflare.zones#ListSettingsResultItemCiphers": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemCiphersId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemCiphersId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemCiphersValueList",
+          "target": "com.cloudflare.zones#ListSettingsResultItemCiphersValueList",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19901,7 +19902,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesContentConverterId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesContentConverterId": {
       "type": "enum",
       "members": {
         "CONTENT_CONVERTER": {
@@ -19912,7 +19913,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesContentConverterValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesContentConverterValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -19929,18 +19930,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesContentConverter": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesContentConverter": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesContentConverterId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesContentConverterId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesContentConverterValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesContentConverterValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -19960,7 +19961,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCNAMEFlatteningId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCNAMEFlatteningId": {
       "type": "enum",
       "members": {
         "CNAME_FLATTENING": {
@@ -19971,7 +19972,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCNAMEFlatteningValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCNAMEFlatteningValue": {
       "type": "enum",
       "members": {
         "FLATTEN_AT_ROOT": {
@@ -19988,18 +19989,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCNAMEFlattening": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCNAMEFlattening": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCNAMEFlatteningId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCNAMEFlatteningId",
           "traits": {
             "smithy.api#documentation": "How to flatten the cname destination.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCNAMEFlatteningValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCNAMEFlatteningValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20019,7 +20020,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemDevelopmentModeId": {
+    "com.cloudflare.zones#ListSettingsResultItemDevelopmentModeId": {
       "type": "enum",
       "members": {
         "DEVELOPMENT_MODE": {
@@ -20030,7 +20031,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemDevelopmentModeValue": {
+    "com.cloudflare.zones#ListSettingsResultItemDevelopmentModeValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20047,18 +20048,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemDevelopmentMode": {
+    "com.cloudflare.zones#ListSettingsResultItemDevelopmentMode": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemDevelopmentModeId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemDevelopmentModeId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemDevelopmentModeValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemDevelopmentModeValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20084,7 +20085,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemEarlyHintsId": {
+    "com.cloudflare.zones#ListSettingsResultItemEarlyHintsId": {
       "type": "enum",
       "members": {
         "EARLY_HINTS": {
@@ -20095,7 +20096,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemEarlyHintsValue": {
+    "com.cloudflare.zones#ListSettingsResultItemEarlyHintsValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20112,18 +20113,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemEarlyHints": {
+    "com.cloudflare.zones#ListSettingsResultItemEarlyHints": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemEarlyHintsId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemEarlyHintsId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemEarlyHintsValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemEarlyHintsValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20143,7 +20144,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasEdgeCacheTTLId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEdgeCacheTTLId": {
       "type": "enum",
       "members": {
         "EDGE_CACHE_TTL": {
@@ -20154,7 +20155,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasEdgeCacheTTLValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEdgeCacheTTLValue": {
       "type": "intEnum",
       "members": {
         "_30": {
@@ -20285,18 +20286,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasEdgeCacheTTL": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEdgeCacheTTL": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasEdgeCacheTTLId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEdgeCacheTTLId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasEdgeCacheTTLValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEdgeCacheTTLValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20316,7 +20317,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasEmailObfuscationId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEmailObfuscationId": {
       "type": "enum",
       "members": {
         "EMAIL_OBFUSCATION": {
@@ -20327,7 +20328,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasEmailObfuscationValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEmailObfuscationValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20344,18 +20345,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasEmailObfuscation": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEmailObfuscation": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasEmailObfuscationId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEmailObfuscationId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasEmailObfuscationValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEmailObfuscationValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20375,7 +20376,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemH2PrioritizationId": {
+    "com.cloudflare.zones#ListSettingsResultItemH2PrioritizationId": {
       "type": "enum",
       "members": {
         "H2_PRIORITIZATION": {
@@ -20386,7 +20387,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemH2PrioritizationValue": {
+    "com.cloudflare.zones#ListSettingsResultItemH2PrioritizationValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20409,18 +20410,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemH2Prioritization": {
+    "com.cloudflare.zones#ListSettingsResultItemH2Prioritization": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemH2PrioritizationId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemH2PrioritizationId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemH2PrioritizationValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemH2PrioritizationValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20440,7 +20441,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHotlinkProtectionId": {
+    "com.cloudflare.zones#ListSettingsResultItemHotlinkProtectionId": {
       "type": "enum",
       "members": {
         "HOTLINK_PROTECTION": {
@@ -20451,7 +20452,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHotlinkProtectionValue": {
+    "com.cloudflare.zones#ListSettingsResultItemHotlinkProtectionValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20468,18 +20469,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHotlinkProtection": {
+    "com.cloudflare.zones#ListSettingsResultItemHotlinkProtection": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHotlinkProtectionId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemHotlinkProtectionId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHotlinkProtectionValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemHotlinkProtectionValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20499,7 +20500,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHTTP2Id": {
+    "com.cloudflare.zones#ListSettingsResultItemHTTP2Id": {
       "type": "enum",
       "members": {
         "HTTP2": {
@@ -20510,7 +20511,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHTTP2Value": {
+    "com.cloudflare.zones#ListSettingsResultItemHTTP2Value": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20527,18 +20528,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHTTP2": {
+    "com.cloudflare.zones#ListSettingsResultItemHTTP2": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHTTP2Id",
+          "target": "com.cloudflare.zones#ListSettingsResultItemHTTP2Id",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHTTP2Value",
+          "target": "com.cloudflare.zones#ListSettingsResultItemHTTP2Value",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20558,7 +20559,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHTTP3Id": {
+    "com.cloudflare.zones#ListSettingsResultItemHTTP3Id": {
       "type": "enum",
       "members": {
         "HTTP3": {
@@ -20569,7 +20570,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHTTP3Value": {
+    "com.cloudflare.zones#ListSettingsResultItemHTTP3Value": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20586,18 +20587,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemHTTP3": {
+    "com.cloudflare.zones#ListSettingsResultItemHTTP3": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHTTP3Id",
+          "target": "com.cloudflare.zones#ListSettingsResultItemHTTP3Id",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHTTP3Value",
+          "target": "com.cloudflare.zones#ListSettingsResultItemHTTP3Value",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20617,7 +20618,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemImageResizingId": {
+    "com.cloudflare.zones#ListSettingsResultItemImageResizingId": {
       "type": "enum",
       "members": {
         "IMAGE_RESIZING": {
@@ -20628,7 +20629,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemImageResizingValue": {
+    "com.cloudflare.zones#ListSettingsResultItemImageResizingValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20651,18 +20652,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemImageResizing": {
+    "com.cloudflare.zones#ListSettingsResultItemImageResizing": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemImageResizingId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemImageResizingId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemImageResizingValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemImageResizingValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20682,7 +20683,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasIPGeolocationId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasIPGeolocationId": {
       "type": "enum",
       "members": {
         "IP_GEOLOCATION": {
@@ -20693,7 +20694,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasIPGeolocationValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasIPGeolocationValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -20710,18 +20711,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasIPGeolocation": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasIPGeolocation": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasIPGeolocationId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasIPGeolocationId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasIPGeolocationValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasIPGeolocationValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20741,7 +20742,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemIPV6Id": {
+    "com.cloudflare.zones#ListSettingsResultItemIPV6Id": {
       "type": "enum",
       "members": {
         "IPV6": {
@@ -20752,7 +20753,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemIPV6Value": {
+    "com.cloudflare.zones#ListSettingsResultItemIPV6Value": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -20769,18 +20770,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemIPV6": {
+    "com.cloudflare.zones#ListSettingsResultItemIPV6": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemIPV6Id",
+          "target": "com.cloudflare.zones#ListSettingsResultItemIPV6Id",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemIPV6Value",
+          "target": "com.cloudflare.zones#ListSettingsResultItemIPV6Value",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20800,7 +20801,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesMaxUploadId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesMaxUploadId": {
       "type": "enum",
       "members": {
         "MAX_UPLOAD": {
@@ -20811,7 +20812,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesMaxUploadValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesMaxUploadValue": {
       "type": "intEnum",
       "members": {
         "_100": {
@@ -20924,18 +20925,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesMaxUpload": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesMaxUpload": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesMaxUploadId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesMaxUploadId",
           "traits": {
             "smithy.api#documentation": "identifier of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesMaxUploadValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesMaxUploadValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -20955,7 +20956,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemMinTLSVersionId": {
+    "com.cloudflare.zones#ListSettingsResultItemMinTLSVersionId": {
       "type": "enum",
       "members": {
         "MIN_TLS_VERSION": {
@@ -20966,7 +20967,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemMinTLSVersionValue": {
+    "com.cloudflare.zones#ListSettingsResultItemMinTLSVersionValue": {
       "type": "enum",
       "members": {
         "_1_0": {
@@ -20995,18 +20996,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemMinTLSVersion": {
+    "com.cloudflare.zones#ListSettingsResultItemMinTLSVersion": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemMinTLSVersionId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemMinTLSVersionId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemMinTLSVersionValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemMinTLSVersionValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21026,7 +21027,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasMirageId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasMirageId": {
       "type": "enum",
       "members": {
         "MIRAGE": {
@@ -21037,7 +21038,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasMirageValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasMirageValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21054,18 +21055,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasMirage": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasMirage": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasMirageId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasMirageId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasMirageValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasMirageValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21085,7 +21086,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemNELId": {
+    "com.cloudflare.zones#ListSettingsResultItemNELId": {
       "type": "enum",
       "members": {
         "NEL": {
@@ -21096,7 +21097,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemNELValue": {
+    "com.cloudflare.zones#ListSettingsResultItemNELValue": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -21104,18 +21105,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemNEL": {
+    "com.cloudflare.zones#ListSettingsResultItemNEL": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemNELId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemNELId",
           "traits": {
             "smithy.api#documentation": "Zone setting identifier.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemNELValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemNELValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21135,7 +21136,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasOpportunisticEncryptionId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOpportunisticEncryptionId": {
       "type": "enum",
       "members": {
         "OPPORTUNISTIC_ENCRYPTION": {
@@ -21146,7 +21147,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasOpportunisticEncryptionValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOpportunisticEncryptionValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21163,18 +21164,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasOpportunisticEncryption": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOpportunisticEncryption": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasOpportunisticEncryptionId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOpportunisticEncryptionId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasOpportunisticEncryptionValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOpportunisticEncryptionValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21194,7 +21195,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemOpportunisticOnionId": {
+    "com.cloudflare.zones#ListSettingsResultItemOpportunisticOnionId": {
       "type": "enum",
       "members": {
         "OPPORTUNISTIC_ONION": {
@@ -21205,7 +21206,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemOpportunisticOnionValue": {
+    "com.cloudflare.zones#ListSettingsResultItemOpportunisticOnionValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21222,18 +21223,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemOpportunisticOnion": {
+    "com.cloudflare.zones#ListSettingsResultItemOpportunisticOnion": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemOpportunisticOnionId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemOpportunisticOnionId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemOpportunisticOnionValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemOpportunisticOnionValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21253,7 +21254,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemOrangeToOrangeId": {
+    "com.cloudflare.zones#ListSettingsResultItemOrangeToOrangeId": {
       "type": "enum",
       "members": {
         "ORANGE_TO_ORANGE": {
@@ -21264,7 +21265,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemOrangeToOrangeValue": {
+    "com.cloudflare.zones#ListSettingsResultItemOrangeToOrangeValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21281,18 +21282,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemOrangeToOrange": {
+    "com.cloudflare.zones#ListSettingsResultItemOrangeToOrange": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemOrangeToOrangeId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemOrangeToOrangeId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemOrangeToOrangeValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemOrangeToOrangeValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21312,7 +21313,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasOriginErrorPagePassThruId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOriginErrorPagePassThruId": {
       "type": "enum",
       "members": {
         "ORIGIN_ERROR_PAGE_PASS_THRU": {
@@ -21323,7 +21324,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasOriginErrorPagePassThruValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOriginErrorPagePassThruValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21340,18 +21341,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasOriginErrorPagePassThru": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOriginErrorPagePassThru": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasOriginErrorPagePassThruId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOriginErrorPagePassThruId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasOriginErrorPagePassThruValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOriginErrorPagePassThruValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21371,7 +21372,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginH2MaxStreamsId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginH2MaxStreamsId": {
       "type": "enum",
       "members": {
         "ORIGIN_H2_MAX_STREAMS": {
@@ -21382,11 +21383,11 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginH2MaxStreams": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginH2MaxStreams": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginH2MaxStreamsId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginH2MaxStreamsId",
           "traits": {
             "smithy.api#documentation": "Value of the zone setting.",
             "smithy.api#required": {}
@@ -21406,7 +21407,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginMaxHTTPVersionId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginMaxHTTPVersionId": {
       "type": "enum",
       "members": {
         "ORIGIN_MAX_HTTP_VERSION": {
@@ -21417,7 +21418,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginMaxHTTPVersionValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginMaxHTTPVersionValue": {
       "type": "enum",
       "members": {
         "_2": {
@@ -21434,11 +21435,11 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginMaxHTTPVersion": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginMaxHTTPVersion": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginMaxHTTPVersionId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginMaxHTTPVersionId",
           "traits": {
             "smithy.api#documentation": "Value of the zone setting.",
             "smithy.api#required": {}
@@ -21451,14 +21452,14 @@
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginMaxHTTPVersionValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginMaxHTTPVersionValue",
           "traits": {
             "smithy.api#documentation": "Value of the Origin Max HTTP Version Setting."
           }
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasPolishId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasPolishId": {
       "type": "enum",
       "members": {
         "POLISH": {
@@ -21469,7 +21470,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasPolishValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasPolishValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -21492,18 +21493,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasPolish": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasPolish": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasPolishId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasPolishId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasPolishValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasPolishValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21523,7 +21524,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemPrefetchPreloadId": {
+    "com.cloudflare.zones#ListSettingsResultItemPrefetchPreloadId": {
       "type": "enum",
       "members": {
         "PREFETCH_PRELOAD": {
@@ -21534,7 +21535,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemPrefetchPreloadValue": {
+    "com.cloudflare.zones#ListSettingsResultItemPrefetchPreloadValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21551,18 +21552,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemPrefetchPreload": {
+    "com.cloudflare.zones#ListSettingsResultItemPrefetchPreload": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemPrefetchPreloadId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemPrefetchPreloadId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemPrefetchPreloadValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemPrefetchPreloadValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21582,7 +21583,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesPrivacyPassId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesPrivacyPassId": {
       "type": "enum",
       "members": {
         "PRIVACY_PASS": {
@@ -21593,7 +21594,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesPrivacyPassValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesPrivacyPassValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21610,18 +21611,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesPrivacyPass": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesPrivacyPass": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesPrivacyPassId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesPrivacyPassId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesPrivacyPassValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesPrivacyPassValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21641,7 +21642,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemProxyReadTimeoutId": {
+    "com.cloudflare.zones#ListSettingsResultItemProxyReadTimeoutId": {
       "type": "enum",
       "members": {
         "PROXY_READ_TIMEOUT": {
@@ -21652,11 +21653,11 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemProxyReadTimeout": {
+    "com.cloudflare.zones#ListSettingsResultItemProxyReadTimeout": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemProxyReadTimeoutId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemProxyReadTimeoutId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
@@ -21683,7 +21684,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemPseudoIPV4Id": {
+    "com.cloudflare.zones#ListSettingsResultItemPseudoIPV4Id": {
       "type": "enum",
       "members": {
         "PSEUDO_IPV4": {
@@ -21694,7 +21695,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemPseudoIPV4Value": {
+    "com.cloudflare.zones#ListSettingsResultItemPseudoIPV4Value": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -21717,18 +21718,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemPseudoIPV4": {
+    "com.cloudflare.zones#ListSettingsResultItemPseudoIPV4": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemPseudoIPV4Id",
+          "target": "com.cloudflare.zones#ListSettingsResultItemPseudoIPV4Id",
           "traits": {
             "smithy.api#documentation": "Value of the Pseudo IPv4 setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemPseudoIPV4Value",
+          "target": "com.cloudflare.zones#ListSettingsResultItemPseudoIPV4Value",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21748,7 +21749,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesRedirectsForAITrainingId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesRedirectsForAITrainingId": {
       "type": "enum",
       "members": {
         "REDIRECTS_FOR_AI_TRAINING": {
@@ -21759,7 +21760,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesRedirectsForAITrainingValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesRedirectsForAITrainingValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -21776,18 +21777,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesRedirectsForAITraining": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesRedirectsForAITraining": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesRedirectsForAITrainingId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesRedirectsForAITrainingId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesRedirectsForAITrainingValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesRedirectsForAITrainingValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21807,7 +21808,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesReplaceInsecureJSId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesReplaceInsecureJSId": {
       "type": "enum",
       "members": {
         "REPLACE_INSECURE_JS": {
@@ -21818,7 +21819,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesReplaceInsecureJSValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesReplaceInsecureJSValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21835,18 +21836,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesReplaceInsecureJS": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesReplaceInsecureJS": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesReplaceInsecureJSId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesReplaceInsecureJSId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesReplaceInsecureJSValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesReplaceInsecureJSValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21866,7 +21867,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasResponseBufferingId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasResponseBufferingId": {
       "type": "enum",
       "members": {
         "RESPONSE_BUFFERING": {
@@ -21877,7 +21878,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasResponseBufferingValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasResponseBufferingValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21894,18 +21895,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasResponseBuffering": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasResponseBuffering": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasResponseBufferingId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasResponseBufferingId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasResponseBufferingValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasResponseBufferingValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21925,7 +21926,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasRocketLoaderId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasRocketLoaderId": {
       "type": "enum",
       "members": {
         "ROCKET_LOADER": {
@@ -21936,7 +21937,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasRocketLoaderValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasRocketLoaderValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -21953,18 +21954,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasRocketLoader": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasRocketLoader": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasRocketLoaderId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasRocketLoaderId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasRocketLoaderValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasRocketLoaderValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -21984,7 +21985,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimizationId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimizationId": {
       "type": "enum",
       "members": {
         "AUTOMATIC_PLATFORM_OPTIMIZATION": {
@@ -21995,13 +21996,13 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimizationValueHostnamesList": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimizationValueHostnamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimizationValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimizationValue": {
       "type": "structure",
       "members": {
         "cache_by_device_type": {
@@ -22026,7 +22027,7 @@
           }
         },
         "hostnames": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimizationValueHostnamesList",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimizationValueHostnamesList",
           "traits": {
             "smithy.api#documentation": "An array of hostnames where Automatic Platform Optimization for WordPress is activated.",
             "smithy.api#required": {}
@@ -22048,18 +22049,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimization": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimization": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimizationId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimizationId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimizationValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimizationValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22079,7 +22080,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSearchForAgentsId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSearchForAgentsId": {
       "type": "enum",
       "members": {
         "SEARCH_FOR_AGENTS": {
@@ -22090,7 +22091,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSearchForAgentsValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSearchForAgentsValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -22107,18 +22108,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSearchForAgents": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSearchForAgents": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSearchForAgentsId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSearchForAgentsId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSearchForAgentsValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSearchForAgentsValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22138,7 +22139,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemSecurityHeadersId": {
+    "com.cloudflare.zones#ListSettingsResultItemSecurityHeadersId": {
       "type": "enum",
       "members": {
         "SECURITY_HEADER": {
@@ -22149,7 +22150,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemSecurityHeadersValueStrictTransportSecurity": {
+    "com.cloudflare.zones#ListSettingsResultItemSecurityHeadersValueStrictTransportSecurity": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -22184,29 +22185,29 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemSecurityHeadersValue": {
+    "com.cloudflare.zones#ListSettingsResultItemSecurityHeadersValue": {
       "type": "structure",
       "members": {
         "strict_transport_security": {
-          "target": "com.cloudflare.zones#SettingsListResultItemSecurityHeadersValueStrictTransportSecurity",
+          "target": "com.cloudflare.zones#ListSettingsResultItemSecurityHeadersValueStrictTransportSecurity",
           "traits": {
             "smithy.api#documentation": "Strict Transport Security."
           }
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemSecurityHeaders": {
+    "com.cloudflare.zones#ListSettingsResultItemSecurityHeaders": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemSecurityHeadersId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemSecurityHeadersId",
           "traits": {
             "smithy.api#documentation": "ID of the zone's security header.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemSecurityHeadersValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemSecurityHeadersValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22226,7 +22227,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSecurityLevelId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSecurityLevelId": {
       "type": "enum",
       "members": {
         "SECURITY_LEVEL": {
@@ -22237,7 +22238,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSecurityLevelValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSecurityLevelValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -22278,18 +22279,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSecurityLevel": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSecurityLevel": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSecurityLevelId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSecurityLevelId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSecurityLevelValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSecurityLevelValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22309,7 +22310,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemServerSideExcludesId": {
+    "com.cloudflare.zones#ListSettingsResultItemServerSideExcludesId": {
       "type": "enum",
       "members": {
         "SERVER_SIDE_EXCLUDE": {
@@ -22320,7 +22321,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemServerSideExcludesValue": {
+    "com.cloudflare.zones#ListSettingsResultItemServerSideExcludesValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -22337,18 +22338,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemServerSideExcludes": {
+    "com.cloudflare.zones#ListSettingsResultItemServerSideExcludes": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemServerSideExcludesId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemServerSideExcludesId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemServerSideExcludesValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemServerSideExcludesValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22368,7 +22369,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSha1SupportId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSha1SupportId": {
       "type": "enum",
       "members": {
         "SHA1_SUPPORT": {
@@ -22379,7 +22380,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSha1SupportValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSha1SupportValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -22396,18 +22397,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSha1Support": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSha1Support": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSha1SupportId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSha1SupportId",
           "traits": {
             "smithy.api#documentation": "Zone setting identifier.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSha1SupportValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSha1SupportValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22427,7 +22428,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSortQueryStringForCacheId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSortQueryStringForCacheId": {
       "type": "enum",
       "members": {
         "SORT_QUERY_STRING_FOR_CACHE": {
@@ -22438,7 +22439,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSortQueryStringForCacheValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSortQueryStringForCacheValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -22455,18 +22456,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSortQueryStringForCache": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSortQueryStringForCache": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSortQueryStringForCacheId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSortQueryStringForCacheId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSortQueryStringForCacheValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSortQueryStringForCacheValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22486,7 +22487,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSSLId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSSLId": {
       "type": "enum",
       "members": {
         "SSL": {
@@ -22497,7 +22498,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSSLValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSSLValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -22526,18 +22527,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasSSL": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSSL": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSSLId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSSLId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSSLValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSSLValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22557,7 +22558,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemSSLRecommenderId": {
+    "com.cloudflare.zones#ListSettingsResultItemSSLRecommenderId": {
       "type": "enum",
       "members": {
         "SSL_RECOMMENDER": {
@@ -22568,11 +22569,11 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemSSLRecommender": {
+    "com.cloudflare.zones#ListSettingsResultItemSSLRecommender": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemSSLRecommenderId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemSSLRecommenderId",
           "traits": {
             "smithy.api#documentation": "Enrollment value for SSL/TLS Recommender."
           }
@@ -22585,7 +22586,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTLS12OnlyId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTLS12OnlyId": {
       "type": "enum",
       "members": {
         "TLS_1_2_ONLY": {
@@ -22596,7 +22597,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTLS12OnlyValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTLS12OnlyValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -22613,18 +22614,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTLS12Only": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTLS12Only": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTLS12OnlyId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTLS12OnlyId",
           "traits": {
             "smithy.api#documentation": "Zone setting identifier.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTLS12OnlyValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTLS12OnlyValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22644,7 +22645,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemTLS13Id": {
+    "com.cloudflare.zones#ListSettingsResultItemTLS13Id": {
       "type": "enum",
       "members": {
         "TLS_1_3": {
@@ -22655,7 +22656,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemTLS13Value": {
+    "com.cloudflare.zones#ListSettingsResultItemTLS13Value": {
       "type": "enum",
       "members": {
         "ON": {
@@ -22678,18 +22679,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemTLS13": {
+    "com.cloudflare.zones#ListSettingsResultItemTLS13": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemTLS13Id",
+          "target": "com.cloudflare.zones#ListSettingsResultItemTLS13Id",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemTLS13Value",
+          "target": "com.cloudflare.zones#ListSettingsResultItemTLS13Value",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22709,7 +22710,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemTLSClientAuthId": {
+    "com.cloudflare.zones#ListSettingsResultItemTLSClientAuthId": {
       "type": "enum",
       "members": {
         "TLS_CLIENT_AUTH": {
@@ -22720,7 +22721,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemTLSClientAuthValue": {
+    "com.cloudflare.zones#ListSettingsResultItemTLSClientAuthValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -22737,18 +22738,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemTLSClientAuth": {
+    "com.cloudflare.zones#ListSettingsResultItemTLSClientAuth": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemTLSClientAuthId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemTLSClientAuthId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemTLSClientAuthValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemTLSClientAuthValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22768,7 +22769,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTransformationsId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsId": {
       "type": "enum",
       "members": {
         "TRANSFORMATIONS": {
@@ -22779,7 +22780,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTransformationsValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -22802,18 +22803,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTransformations": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTransformations": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTransformationsId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting. Shared between Image Transformations and Video Transformations.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTransformationsValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22833,7 +22834,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTransformationsAllowedOriginsId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsAllowedOriginsId": {
       "type": "enum",
       "members": {
         "TRANSFORMATIONS_ALLOWED_ORIGINS": {
@@ -22844,11 +22845,11 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesTransformationsAllowedOrigins": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsAllowedOrigins": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTransformationsAllowedOriginsId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsAllowedOriginsId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting. Shared between Image Transformations and Video Transformations.",
             "smithy.api#required": {}
@@ -22875,7 +22876,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasTrueClientIPHeaderId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasTrueClientIPHeaderId": {
       "type": "enum",
       "members": {
         "TRUE_CLIENT_IP_HEADER": {
@@ -22886,7 +22887,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasTrueClientIPHeaderValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasTrueClientIPHeaderValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -22903,18 +22904,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasTrueClientIPHeader": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasTrueClientIPHeader": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasTrueClientIPHeaderId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasTrueClientIPHeaderId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasTrueClientIPHeaderValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasTrueClientIPHeaderValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22934,7 +22935,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasWAFId": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasWAFId": {
       "type": "enum",
       "members": {
         "WAF": {
@@ -22945,7 +22946,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasWAFValue": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasWAFValue": {
       "type": "enum",
       "members": {
         "ON": {
@@ -22962,18 +22963,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemZonesSchemasWAF": {
+    "com.cloudflare.zones#ListSettingsResultItemZonesSchemasWAF": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasWAFId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasWAFId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasWAFValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasWAFValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -22993,7 +22994,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemWebPId": {
+    "com.cloudflare.zones#ListSettingsResultItemWebPId": {
       "type": "enum",
       "members": {
         "WEBP": {
@@ -23004,7 +23005,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemWebPValue": {
+    "com.cloudflare.zones#ListSettingsResultItemWebPValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -23021,18 +23022,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemWebP": {
+    "com.cloudflare.zones#ListSettingsResultItemWebP": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemWebPId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemWebPId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemWebPValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemWebPValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -23052,7 +23053,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemWebsocketId": {
+    "com.cloudflare.zones#ListSettingsResultItemWebsocketId": {
       "type": "enum",
       "members": {
         "WEBSOCKETS": {
@@ -23063,7 +23064,7 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemWebsocketValue": {
+    "com.cloudflare.zones#ListSettingsResultItemWebsocketValue": {
       "type": "enum",
       "members": {
         "OFF": {
@@ -23080,18 +23081,18 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItemWebsocket": {
+    "com.cloudflare.zones#ListSettingsResultItemWebsocket": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.zones#SettingsListResultItemWebsocketId",
+          "target": "com.cloudflare.zones#ListSettingsResultItemWebsocketId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
           }
         },
         "value": {
-          "target": "com.cloudflare.zones#SettingsListResultItemWebsocketValue",
+          "target": "com.cloudflare.zones#ListSettingsResultItemWebsocketValue",
           "traits": {
             "smithy.api#documentation": "Current value of the zone setting.",
             "smithy.api#required": {}
@@ -23111,208 +23112,208 @@
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultItem": {
+    "com.cloudflare.zones#ListSettingsResultItem": {
       "type": "union",
       "members": {
         "ZeroRTT": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZeroRTT"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZeroRTT"
         },
         "AdvancedDDoS": {
-          "target": "com.cloudflare.zones#SettingsListResultItemAdvancedDDoS"
+          "target": "com.cloudflare.zones#ListSettingsResultItemAdvancedDDoS"
         },
         "ZonesCacheRulesAegis": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesAegis"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesAegis"
         },
         "AlwaysOnline": {
-          "target": "com.cloudflare.zones#SettingsListResultItemAlwaysOnline"
+          "target": "com.cloudflare.zones#ListSettingsResultItemAlwaysOnline"
         },
         "ZonesSchemasAlwaysUseHTTPS": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAlwaysUseHTTPS"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAlwaysUseHTTPS"
         },
         "ZonesSchemasAutomaticHTTPSRewrites": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticHTTPSRewrites"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticHTTPSRewrites"
         },
         "Brotli": {
-          "target": "com.cloudflare.zones#SettingsListResultItemBrotli"
+          "target": "com.cloudflare.zones#ListSettingsResultItemBrotli"
         },
         "ZonesSchemasBrowserCacheTTL": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCacheTTL"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCacheTTL"
         },
         "ZonesSchemasBrowserCheck": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasBrowserCheck"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasBrowserCheck"
         },
         "ZonesSchemasCacheLevel": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasCacheLevel"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasCacheLevel"
         },
         "ChallengeTTL": {
-          "target": "com.cloudflare.zones#SettingsListResultItemChallengeTTL"
+          "target": "com.cloudflare.zones#ListSettingsResultItemChallengeTTL"
         },
         "Ciphers": {
-          "target": "com.cloudflare.zones#SettingsListResultItemCiphers"
+          "target": "com.cloudflare.zones#ListSettingsResultItemCiphers"
         },
         "ZonesContentConverter": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesContentConverter"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesContentConverter"
         },
         "ZonesCNAMEFlattening": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCNAMEFlattening"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCNAMEFlattening"
         },
         "DevelopmentMode": {
-          "target": "com.cloudflare.zones#SettingsListResultItemDevelopmentMode"
+          "target": "com.cloudflare.zones#ListSettingsResultItemDevelopmentMode"
         },
         "EarlyHints": {
-          "target": "com.cloudflare.zones#SettingsListResultItemEarlyHints"
+          "target": "com.cloudflare.zones#ListSettingsResultItemEarlyHints"
         },
         "ZonesSchemasEdgeCacheTTL": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasEdgeCacheTTL"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEdgeCacheTTL"
         },
         "ZonesSchemasEmailObfuscation": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasEmailObfuscation"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasEmailObfuscation"
         },
         "H2Prioritization": {
-          "target": "com.cloudflare.zones#SettingsListResultItemH2Prioritization"
+          "target": "com.cloudflare.zones#ListSettingsResultItemH2Prioritization"
         },
         "HotlinkProtection": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHotlinkProtection"
+          "target": "com.cloudflare.zones#ListSettingsResultItemHotlinkProtection"
         },
         "HTTP2": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHTTP2"
+          "target": "com.cloudflare.zones#ListSettingsResultItemHTTP2"
         },
         "HTTP3": {
-          "target": "com.cloudflare.zones#SettingsListResultItemHTTP3"
+          "target": "com.cloudflare.zones#ListSettingsResultItemHTTP3"
         },
         "ImageResizing": {
-          "target": "com.cloudflare.zones#SettingsListResultItemImageResizing"
+          "target": "com.cloudflare.zones#ListSettingsResultItemImageResizing"
         },
         "ZonesSchemasIPGeolocation": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasIPGeolocation"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasIPGeolocation"
         },
         "IPV6": {
-          "target": "com.cloudflare.zones#SettingsListResultItemIPV6"
+          "target": "com.cloudflare.zones#ListSettingsResultItemIPV6"
         },
         "ZonesMaxUpload": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesMaxUpload"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesMaxUpload"
         },
         "MinTLSVersion": {
-          "target": "com.cloudflare.zones#SettingsListResultItemMinTLSVersion"
+          "target": "com.cloudflare.zones#ListSettingsResultItemMinTLSVersion"
         },
         "ZonesSchemasMirage": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasMirage"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasMirage"
         },
         "NEL": {
-          "target": "com.cloudflare.zones#SettingsListResultItemNEL"
+          "target": "com.cloudflare.zones#ListSettingsResultItemNEL"
         },
         "ZonesSchemasOpportunisticEncryption": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasOpportunisticEncryption"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOpportunisticEncryption"
         },
         "OpportunisticOnion": {
-          "target": "com.cloudflare.zones#SettingsListResultItemOpportunisticOnion"
+          "target": "com.cloudflare.zones#ListSettingsResultItemOpportunisticOnion"
         },
         "OrangeToOrange": {
-          "target": "com.cloudflare.zones#SettingsListResultItemOrangeToOrange"
+          "target": "com.cloudflare.zones#ListSettingsResultItemOrangeToOrange"
         },
         "ZonesSchemasOriginErrorPagePassThru": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasOriginErrorPagePassThru"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasOriginErrorPagePassThru"
         },
         "ZonesCacheRulesOriginH2MaxStreams": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginH2MaxStreams"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginH2MaxStreams"
         },
         "ZonesCacheRulesOriginMaxHTTPVersion": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesCacheRulesOriginMaxHTTPVersion"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesCacheRulesOriginMaxHTTPVersion"
         },
         "ZonesSchemasPolish": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasPolish"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasPolish"
         },
         "PrefetchPreload": {
-          "target": "com.cloudflare.zones#SettingsListResultItemPrefetchPreload"
+          "target": "com.cloudflare.zones#ListSettingsResultItemPrefetchPreload"
         },
         "ZonesPrivacyPass": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesPrivacyPass"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesPrivacyPass"
         },
         "ProxyReadTimeout": {
-          "target": "com.cloudflare.zones#SettingsListResultItemProxyReadTimeout"
+          "target": "com.cloudflare.zones#ListSettingsResultItemProxyReadTimeout"
         },
         "PseudoIPV4": {
-          "target": "com.cloudflare.zones#SettingsListResultItemPseudoIPV4"
+          "target": "com.cloudflare.zones#ListSettingsResultItemPseudoIPV4"
         },
         "ZonesRedirectsForAITraining": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesRedirectsForAITraining"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesRedirectsForAITraining"
         },
         "ZonesReplaceInsecureJS": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesReplaceInsecureJS"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesReplaceInsecureJS"
         },
         "ZonesSchemasResponseBuffering": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasResponseBuffering"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasResponseBuffering"
         },
         "ZonesSchemasRocketLoader": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasRocketLoader"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasRocketLoader"
         },
         "ZonesSchemasAutomaticPlatformOptimization": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasAutomaticPlatformOptimization"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasAutomaticPlatformOptimization"
         },
         "ZonesSearchForAgents": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSearchForAgents"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSearchForAgents"
         },
         "SecurityHeaders": {
-          "target": "com.cloudflare.zones#SettingsListResultItemSecurityHeaders"
+          "target": "com.cloudflare.zones#ListSettingsResultItemSecurityHeaders"
         },
         "ZonesSchemasSecurityLevel": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSecurityLevel"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSecurityLevel"
         },
         "ServerSideExcludes": {
-          "target": "com.cloudflare.zones#SettingsListResultItemServerSideExcludes"
+          "target": "com.cloudflare.zones#ListSettingsResultItemServerSideExcludes"
         },
         "ZonesSha1Support": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSha1Support"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSha1Support"
         },
         "ZonesSchemasSortQueryStringForCache": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSortQueryStringForCache"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSortQueryStringForCache"
         },
         "ZonesSchemasSSL": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasSSL"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasSSL"
         },
         "SSLRecommender": {
-          "target": "com.cloudflare.zones#SettingsListResultItemSSLRecommender"
+          "target": "com.cloudflare.zones#ListSettingsResultItemSSLRecommender"
         },
         "ZonesTLS12Only": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTLS12Only"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTLS12Only"
         },
         "TLS13": {
-          "target": "com.cloudflare.zones#SettingsListResultItemTLS13"
+          "target": "com.cloudflare.zones#ListSettingsResultItemTLS13"
         },
         "TLSClientAuth": {
-          "target": "com.cloudflare.zones#SettingsListResultItemTLSClientAuth"
+          "target": "com.cloudflare.zones#ListSettingsResultItemTLSClientAuth"
         },
         "ZonesTransformations": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTransformations"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTransformations"
         },
         "ZonesTransformationsAllowedOrigins": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesTransformationsAllowedOrigins"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesTransformationsAllowedOrigins"
         },
         "ZonesSchemasTrueClientIPHeader": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasTrueClientIPHeader"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasTrueClientIPHeader"
         },
         "ZonesSchemasWAF": {
-          "target": "com.cloudflare.zones#SettingsListResultItemZonesSchemasWAF"
+          "target": "com.cloudflare.zones#ListSettingsResultItemZonesSchemasWAF"
         },
         "WebP": {
-          "target": "com.cloudflare.zones#SettingsListResultItemWebP"
+          "target": "com.cloudflare.zones#ListSettingsResultItemWebP"
         },
         "Websocket": {
-          "target": "com.cloudflare.zones#SettingsListResultItemWebsocket"
+          "target": "com.cloudflare.zones#ListSettingsResultItemWebsocket"
         }
       }
     },
-    "com.cloudflare.zones#SettingsListResultList": {
+    "com.cloudflare.zones#ListSettingsResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.zones#SettingsListResultItem"
+        "target": "com.cloudflare.zones#ListSettingsResultItem"
       }
     },
     "com.cloudflare.zones#ListSettingsResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.zones#SettingsListResultList",
+          "target": "com.cloudflare.zones#ListSettingsResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -24240,94 +24241,94 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.zones#Create"
+          "target": "com.cloudflare.zones#CreateEnvironment"
         },
         {
-          "target": "com.cloudflare.zones#Delete"
+          "target": "com.cloudflare.zones#CreateHold"
         },
         {
-          "target": "com.cloudflare.zones#Edit"
+          "target": "com.cloudflare.zones#CreateSubscription"
         },
         {
-          "target": "com.cloudflare.zones#Get"
+          "target": "com.cloudflare.zones#CreateZone"
         },
         {
-          "target": "com.cloudflare.zones#List"
+          "target": "com.cloudflare.zones#DeleteEnvironment"
         },
         {
-          "target": "com.cloudflare.zones#ActivationCheckTrigger"
+          "target": "com.cloudflare.zones#DeleteHold"
         },
         {
-          "target": "com.cloudflare.zones#CtAlertingEdit"
+          "target": "com.cloudflare.zones#DeleteZone"
         },
         {
-          "target": "com.cloudflare.zones#CtAlertingGet"
+          "target": "com.cloudflare.zones#GetCtAlerting"
         },
         {
-          "target": "com.cloudflare.zones#CustomNameserversGet"
+          "target": "com.cloudflare.zones#GetCustomNameserver"
         },
         {
-          "target": "com.cloudflare.zones#CustomNameserversUpdate"
+          "target": "com.cloudflare.zones#GetHold"
         },
         {
-          "target": "com.cloudflare.zones#EnvironmentsCreate"
+          "target": "com.cloudflare.zones#GetPlan"
         },
         {
-          "target": "com.cloudflare.zones#EnvironmentsDelete"
+          "target": "com.cloudflare.zones#GetRatePlan"
         },
         {
-          "target": "com.cloudflare.zones#EnvironmentsEdit"
+          "target": "com.cloudflare.zones#GetSetting"
         },
         {
-          "target": "com.cloudflare.zones#EnvironmentsList"
+          "target": "com.cloudflare.zones#GetSubscription"
         },
         {
-          "target": "com.cloudflare.zones#EnvironmentsRollback"
+          "target": "com.cloudflare.zones#GetZone"
         },
         {
-          "target": "com.cloudflare.zones#EnvironmentsUpdate"
+          "target": "com.cloudflare.zones#ListEnvironments"
         },
         {
-          "target": "com.cloudflare.zones#HoldsCreate"
-        },
-        {
-          "target": "com.cloudflare.zones#HoldsDelete"
-        },
-        {
-          "target": "com.cloudflare.zones#HoldsEdit"
-        },
-        {
-          "target": "com.cloudflare.zones#HoldsGet"
-        },
-        {
-          "target": "com.cloudflare.zones#PlansGet"
-        },
-        {
-          "target": "com.cloudflare.zones#PlansList"
-        },
-        {
-          "target": "com.cloudflare.zones#RatePlansGet"
-        },
-        {
-          "target": "com.cloudflare.zones#SettingsBulkEdit"
-        },
-        {
-          "target": "com.cloudflare.zones#SettingsEdit"
-        },
-        {
-          "target": "com.cloudflare.zones#SettingsGet"
+          "target": "com.cloudflare.zones#ListPlans"
         },
         {
           "target": "com.cloudflare.zones#ListSettings"
         },
         {
-          "target": "com.cloudflare.zones#SubscriptionsCreate"
+          "target": "com.cloudflare.zones#ListZones"
         },
         {
-          "target": "com.cloudflare.zones#SubscriptionsGet"
+          "target": "com.cloudflare.zones#PatchCtAlerting"
         },
         {
-          "target": "com.cloudflare.zones#SubscriptionsUpdate"
+          "target": "com.cloudflare.zones#PatchEnvironment"
+        },
+        {
+          "target": "com.cloudflare.zones#PatchHold"
+        },
+        {
+          "target": "com.cloudflare.zones#PatchSetting"
+        },
+        {
+          "target": "com.cloudflare.zones#PatchZone"
+        },
+        {
+          "target": "com.cloudflare.zones#PutCustomNameserver"
+        },
+        {
+          "target": "com.cloudflare.zones#RollbackEnvironment"
+        },
+        {
+          "target": "com.cloudflare.zones#SettingsBulkEdit"
+        },
+        {
+          "target": "com.cloudflare.zones#TriggerActivationCheck"
+        },
+        {
+          "target": "com.cloudflare.zones#UpdateEnvironment"
+        },
+        {
+          "target": "com.cloudflare.zones#UpdateSubscription"
         }
       ],
       "traits": {
@@ -26692,13 +26693,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.zones#CheckTriggerActivation": {
+    "com.cloudflare.zones#TriggerActivationCheck": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.zones#CheckTriggerActivationRequest"
+        "target": "com.cloudflare.zones#TriggerActivationCheckRequest"
       },
       "output": {
-        "target": "com.cloudflare.zones#CheckTriggerActivationResponse"
+        "target": "com.cloudflare.zones#TriggerActivationCheckResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -26710,7 +26711,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.zones#CheckTriggerActivationRequest": {
+    "com.cloudflare.zones#TriggerActivationCheckRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -26726,7 +26727,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.zones#CheckTriggerActivationResponse": {
+    "com.cloudflare.zones#TriggerActivationCheckResponse": {
       "type": "structure",
       "members": {
         "id": {

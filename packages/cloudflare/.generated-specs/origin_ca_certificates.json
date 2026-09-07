@@ -23,7 +23,8 @@
       "resultInfo": "result_info",
       "revokedAt": "revoked_at",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.origin_ca_certificates#CreateRequestHostnamesList": {
@@ -398,16 +399,16 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.origin_ca_certificates#Create"
+          "target": "com.cloudflare.origin_ca_certificates#CreateOriginCaCertificate"
         },
         {
-          "target": "com.cloudflare.origin_ca_certificates#Delete"
+          "target": "com.cloudflare.origin_ca_certificates#DeleteOriginCaCertificate"
         },
         {
-          "target": "com.cloudflare.origin_ca_certificates#Get"
+          "target": "com.cloudflare.origin_ca_certificates#GetOriginCaCertificate"
         },
         {
-          "target": "com.cloudflare.origin_ca_certificates#List"
+          "target": "com.cloudflare.origin_ca_certificates#ListOriginCaCertificates"
         }
       ],
       "traits": {

@@ -144,6 +144,54 @@ export const BlockUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BlockUserResponse",
 }) as any as S.Schema<BlockUserResponse>;
 
+/** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
+export type BulkReviewPatGrantRequestsInRequestPatRequestIdsList =
+  Array<number>;
+export const BulkReviewPatGrantRequestsInRequestPatRequestIdsList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<BulkReviewPatGrantRequestsInRequestPatRequestIdsList>;
+
+/** Action to apply to the requests. */
+export type BulkReviewPatGrantRequestsInRequestAction = "approve" | "deny";
+export const BulkReviewPatGrantRequestsInRequestAction = /*@__PURE__*/ S.String;
+
+export interface BulkReviewPatGrantRequestsInRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
+  pat_request_ids?: BulkReviewPatGrantRequestsInRequestPatRequestIdsList;
+  /** Action to apply to the requests. */
+  action: BulkReviewPatGrantRequestsInRequestAction | (string & {});
+  /** Reason for approving or denying the requests. Max 1024 characters. */
+  reason?: string | null;
+}
+export const BulkReviewPatGrantRequestsInRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    pat_request_ids: S.optional(
+      BulkReviewPatGrantRequestsInRequestPatRequestIdsList,
+    ),
+    action: BulkReviewPatGrantRequestsInRequestAction,
+    reason: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/orgs/{org}/personal-access-token-requests",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BulkReviewPatGrantRequestsInRequest",
+}) as any as S.Schema<BulkReviewPatGrantRequestsInRequest>;
+
+export interface BulkReviewPatGrantRequestsInResponse {}
+export const BulkReviewPatGrantRequestsInResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "BulkReviewPatGrantRequestsInResponse",
+}) as any as S.Schema<BulkReviewPatGrantRequestsInResponse>;
+
 export interface CancelInvitationRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
@@ -1478,6 +1526,34 @@ export const CustomPropertiesForReposCreateOrUpdateOrganizationValuesResponse =
       "CustomPropertiesForReposCreateOrUpdateOrganizationValuesResponse",
   }) as any as S.Schema<CustomPropertiesForReposCreateOrUpdateOrganizationValuesResponse>;
 
+export interface CustomPropertiesForReposDeleteOrganizationDefinitionRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The custom property name */
+  custom_property_name: string;
+}
+export const CustomPropertiesForReposDeleteOrganizationDefinitionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      custom_property_name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/orgs/{org}/properties/schema/{custom_property_name}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CustomPropertiesForReposDeleteOrganizationDefinitionRequest",
+  }) as any as S.Schema<CustomPropertiesForReposDeleteOrganizationDefinitionRequest>;
+
+export interface CustomPropertiesForReposDeleteOrganizationDefinitionResponse {}
+export const CustomPropertiesForReposDeleteOrganizationDefinitionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CustomPropertiesForReposDeleteOrganizationDefinitionResponse",
+  }) as any as S.Schema<CustomPropertiesForReposDeleteOrganizationDefinitionResponse>;
+
 export interface CustomPropertiesForReposGetOrganizationDefinitionRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
@@ -1499,6 +1575,115 @@ export const CustomPropertiesForReposGetOrganizationDefinitionRequest =
   ).annotate({
     identifier: "CustomPropertiesForReposGetOrganizationDefinitionRequest",
   }) as any as S.Schema<CustomPropertiesForReposGetOrganizationDefinitionRequest>;
+
+export interface CustomPropertiesForReposGetOrganizationDefinitionsRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+}
+export const CustomPropertiesForReposGetOrganizationDefinitionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/properties/schema",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CustomPropertiesForReposGetOrganizationDefinitionsRequest",
+  }) as any as S.Schema<CustomPropertiesForReposGetOrganizationDefinitionsRequest>;
+
+export type CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList =
+  Array<CustomProperty>;
+export const CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CustomProperty,
+  ) as any as S.Schema<CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList>;
+
+export type CustomPropertiesForReposGetOrganizationDefinitionsResponse =
+  CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList;
+export const CustomPropertiesForReposGetOrganizationDefinitionsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "CustomPropertiesForReposGetOrganizationDefinitionsResponse",
+  }) as any as S.Schema<CustomPropertiesForReposGetOrganizationDefinitionsResponse>;
+
+export interface CustomPropertiesForReposGetOrganizationValuesRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  per_page?: number;
+  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  page?: number;
+  /** Finds repositories in the organization with a query containing one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching for repositories](https://docs.github.com/articles/searching-for-repositories/)" for a detailed list of qualifiers. */
+  repository_query?: string;
+}
+export const CustomPropertiesForReposGetOrganizationValuesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      per_page: S.optional(S.Number.pipe(T.Query())),
+      page: S.optional(S.Number.pipe(T.Query())),
+      repository_query: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/properties/values",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CustomPropertiesForReposGetOrganizationValuesRequest",
+  }) as any as S.Schema<CustomPropertiesForReposGetOrganizationValuesRequest>;
+
+/** List of custom property names and associated values */
+export type OrgRepoCustomPropertyValuesPropertiesList =
+  Array<CustomPropertyValue>;
+export const OrgRepoCustomPropertyValuesPropertiesList = /*@__PURE__*/ S.Array(
+  CustomPropertyValue,
+) as any as S.Schema<OrgRepoCustomPropertyValuesPropertiesList>;
+
+/** List of custom property values for a repository */
+export interface OrgRepoCustomPropertyValues {
+  repository_id: number;
+  repository_name: string;
+  repository_full_name: string;
+  /** List of custom property names and associated values */
+  properties: OrgRepoCustomPropertyValuesPropertiesList;
+}
+export const OrgRepoCustomPropertyValues = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repository_id: S.Number,
+    repository_name: S.String,
+    repository_full_name: S.String,
+    properties: OrgRepoCustomPropertyValuesPropertiesList,
+  }),
+).annotate({
+  identifier: "OrgRepoCustomPropertyValues",
+}) as any as S.Schema<OrgRepoCustomPropertyValues>;
+
+export type CustomPropertiesForReposGetOrganizationValuesResponseBodyList =
+  Array<OrgRepoCustomPropertyValues>;
+export const CustomPropertiesForReposGetOrganizationValuesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    OrgRepoCustomPropertyValues,
+  ) as any as S.Schema<CustomPropertiesForReposGetOrganizationValuesResponseBodyList>;
+
+export type CustomPropertiesForReposGetOrganizationValuesResponse =
+  CustomPropertiesForReposGetOrganizationValuesResponseBodyList;
+export const CustomPropertiesForReposGetOrganizationValuesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    CustomPropertiesForReposGetOrganizationValuesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "CustomPropertiesForReposGetOrganizationValuesResponse",
+  }) as any as S.Schema<CustomPropertiesForReposGetOrganizationValuesResponse>;
 
 export interface DeleteRequest {
   /** The organization name. The name is not case sensitive. */
@@ -1646,34 +1831,6 @@ export const DeleteAttestationsBySubjectDigestResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "DeleteAttestationsBySubjectDigestResponse",
   }) as any as S.Schema<DeleteAttestationsBySubjectDigestResponse>;
-
-export interface DeleteCustomPropertyForReposOrganizationDefinitionRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The custom property name */
-  custom_property_name: string;
-}
-export const DeleteCustomPropertyForReposOrganizationDefinitionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      custom_property_name: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/orgs/{org}/properties/schema/{custom_property_name}",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteCustomPropertyForReposOrganizationDefinitionRequest",
-  }) as any as S.Schema<DeleteCustomPropertyForReposOrganizationDefinitionRequest>;
-
-export interface DeleteCustomPropertyForReposOrganizationDefinitionResponse {}
-export const DeleteCustomPropertyForReposOrganizationDefinitionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteCustomPropertyForReposOrganizationDefinitionResponse",
-  }) as any as S.Schema<DeleteCustomPropertyForReposOrganizationDefinitionResponse>;
 
 export interface DeleteIssueFieldRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2000,42 +2157,42 @@ export const OrganizationFull = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrganizationFull",
 }) as any as S.Schema<OrganizationFull>;
 
-export type ApiInsightsGetRouteStatsByActorRequestActorType =
+export type GetApiInsightRouteStatsByActorRequestActorType =
   | "installation"
   | "classic_pat"
   | "fine_grained_pat"
   | "oauth_app"
   | "github_app_user_to_server";
-export const ApiInsightsGetRouteStatsByActorRequestActorType =
+export const GetApiInsightRouteStatsByActorRequestActorType =
   /*@__PURE__*/ S.String;
 
-export type ApiInsightsGetRouteStatsByActorRequestDirection = "asc" | "desc";
-export const ApiInsightsGetRouteStatsByActorRequestDirection =
+export type GetApiInsightRouteStatsByActorRequestDirection = "asc" | "desc";
+export const GetApiInsightRouteStatsByActorRequestDirection =
   /*@__PURE__*/ S.String;
 
-export type ApiInsightsGetRouteStatsByActorRequestSortItem =
+export type GetApiInsightRouteStatsByActorRequestSortItem =
   | "last_rate_limited_timestamp"
   | "last_request_timestamp"
   | "rate_limited_request_count"
   | "http_method"
   | "api_route"
   | "total_request_count";
-export const ApiInsightsGetRouteStatsByActorRequestSortItem =
+export const GetApiInsightRouteStatsByActorRequestSortItem =
   /*@__PURE__*/ S.String;
 
-export type ApiInsightsGetRouteStatsByActorRequestSortList = Array<
-  ApiInsightsGetRouteStatsByActorRequestSortItem | (string & {})
+export type GetApiInsightRouteStatsByActorRequestSortList = Array<
+  GetApiInsightRouteStatsByActorRequestSortItem | (string & {})
 >;
-export const ApiInsightsGetRouteStatsByActorRequestSortList =
+export const GetApiInsightRouteStatsByActorRequestSortList =
   /*@__PURE__*/ S.Array(
-    ApiInsightsGetRouteStatsByActorRequestSortItem,
-  ) as any as S.Schema<ApiInsightsGetRouteStatsByActorRequestSortList>;
+    GetApiInsightRouteStatsByActorRequestSortItem,
+  ) as any as S.Schema<GetApiInsightRouteStatsByActorRequestSortList>;
 
-export interface GetApiInsightRouteStatByActorRequest {
+export interface GetApiInsightRouteStatsByActorRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The type of the actor */
-  actor_type: ApiInsightsGetRouteStatsByActorRequestActorType | (string & {});
+  actor_type: GetApiInsightRouteStatsByActorRequestActorType | (string & {});
   /** The ID of the actor */
   actor_id: number;
   /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
@@ -2047,17 +2204,17 @@ export interface GetApiInsightRouteStatByActorRequest {
   /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
   per_page?: number;
   /** The direction to sort the results by. */
-  direction?: ApiInsightsGetRouteStatsByActorRequestDirection | (string & {});
+  direction?: GetApiInsightRouteStatsByActorRequestDirection | (string & {});
   /** The property to sort the results by. */
-  sort?: ApiInsightsGetRouteStatsByActorRequestSortList;
+  sort?: GetApiInsightRouteStatsByActorRequestSortList;
   /** Providing a substring will filter results where the API route contains the substring. This is a case-insensitive search. */
   api_route_substring?: string;
 }
-export const GetApiInsightRouteStatByActorRequest = /*@__PURE__*/ S.suspend(
+export const GetApiInsightRouteStatsByActorRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       org: S.String.pipe(T.Label()),
-      actor_type: ApiInsightsGetRouteStatsByActorRequestActorType.pipe(
+      actor_type: GetApiInsightRouteStatsByActorRequestActorType.pipe(
         T.Label(),
       ),
       actor_id: S.Number.pipe(T.Label()),
@@ -2066,10 +2223,10 @@ export const GetApiInsightRouteStatByActorRequest = /*@__PURE__*/ S.suspend(
       page: S.optional(S.Number.pipe(T.Query())),
       per_page: S.optional(S.Number.pipe(T.Query())),
       direction: S.optional(
-        ApiInsightsGetRouteStatsByActorRequestDirection.pipe(T.Query()),
+        GetApiInsightRouteStatsByActorRequestDirection.pipe(T.Query()),
       ),
       sort: S.optional(
-        ApiInsightsGetRouteStatsByActorRequestSortList.pipe(T.Query()),
+        GetApiInsightRouteStatsByActorRequestSortList.pipe(T.Query()),
       ),
       api_route_substring: S.optional(S.String.pipe(T.Query())),
     }).pipe(
@@ -2080,8 +2237,8 @@ export const GetApiInsightRouteStatByActorRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetApiInsightRouteStatByActorRequest",
-}) as any as S.Schema<GetApiInsightRouteStatByActorRequest>;
+  identifier: "GetApiInsightRouteStatsByActorRequest",
+}) as any as S.Schema<GetApiInsightRouteStatsByActorRequest>;
 
 export interface ApiInsightsRouteStatsItem {
   /** The HTTP method */
@@ -2114,33 +2271,32 @@ export const ApiInsightsRouteStats = /*@__PURE__*/ S.Array(
   ApiInsightsRouteStatsItem,
 ) as any as S.Schema<ApiInsightsRouteStats>;
 
-export type GetApiInsightRouteStatByActorResponse = ApiInsightsRouteStats;
-export const GetApiInsightRouteStatByActorResponse = /*@__PURE__*/ S.suspend(
+export type GetApiInsightRouteStatsByActorResponse = ApiInsightsRouteStats;
+export const GetApiInsightRouteStatsByActorResponse = /*@__PURE__*/ S.suspend(
   () => ApiInsightsRouteStats.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetApiInsightRouteStatByActorResponse",
-}) as any as S.Schema<GetApiInsightRouteStatByActorResponse>;
+  identifier: "GetApiInsightRouteStatsByActorResponse",
+}) as any as S.Schema<GetApiInsightRouteStatsByActorResponse>;
 
-export type ApiInsightsGetSubjectStatsRequestDirection = "asc" | "desc";
-export const ApiInsightsGetSubjectStatsRequestDirection =
-  /*@__PURE__*/ S.String;
+export type GetApiInsightSubjectStatsRequestDirection = "asc" | "desc";
+export const GetApiInsightSubjectStatsRequestDirection = /*@__PURE__*/ S.String;
 
-export type ApiInsightsGetSubjectStatsRequestSortItem =
+export type GetApiInsightSubjectStatsRequestSortItem =
   | "last_rate_limited_timestamp"
   | "last_request_timestamp"
   | "rate_limited_request_count"
   | "subject_name"
   | "total_request_count";
-export const ApiInsightsGetSubjectStatsRequestSortItem = /*@__PURE__*/ S.String;
+export const GetApiInsightSubjectStatsRequestSortItem = /*@__PURE__*/ S.String;
 
-export type ApiInsightsGetSubjectStatsRequestSortList = Array<
-  ApiInsightsGetSubjectStatsRequestSortItem | (string & {})
+export type GetApiInsightSubjectStatsRequestSortList = Array<
+  GetApiInsightSubjectStatsRequestSortItem | (string & {})
 >;
-export const ApiInsightsGetSubjectStatsRequestSortList = /*@__PURE__*/ S.Array(
-  ApiInsightsGetSubjectStatsRequestSortItem,
-) as any as S.Schema<ApiInsightsGetSubjectStatsRequestSortList>;
+export const GetApiInsightSubjectStatsRequestSortList = /*@__PURE__*/ S.Array(
+  GetApiInsightSubjectStatsRequestSortItem,
+) as any as S.Schema<GetApiInsightSubjectStatsRequestSortList>;
 
-export interface GetApiInsightSubjectStatRequest {
+export interface GetApiInsightSubjectStatsRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
@@ -2152,13 +2308,13 @@ export interface GetApiInsightSubjectStatRequest {
   /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
   per_page?: number;
   /** The direction to sort the results by. */
-  direction?: ApiInsightsGetSubjectStatsRequestDirection | (string & {});
+  direction?: GetApiInsightSubjectStatsRequestDirection | (string & {});
   /** The property to sort the results by. */
-  sort?: ApiInsightsGetSubjectStatsRequestSortList;
+  sort?: GetApiInsightSubjectStatsRequestSortList;
   /** Providing a substring will filter results where the subject name contains the substring. This is a case-insensitive search. */
   subject_name_substring?: string;
 }
-export const GetApiInsightSubjectStatRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApiInsightSubjectStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org: S.String.pipe(T.Label()),
     min_timestamp: S.String.pipe(T.Query()),
@@ -2166,9 +2322,9 @@ export const GetApiInsightSubjectStatRequest = /*@__PURE__*/ S.suspend(() =>
     page: S.optional(S.Number.pipe(T.Query())),
     per_page: S.optional(S.Number.pipe(T.Query())),
     direction: S.optional(
-      ApiInsightsGetSubjectStatsRequestDirection.pipe(T.Query()),
+      GetApiInsightSubjectStatsRequestDirection.pipe(T.Query()),
     ),
-    sort: S.optional(ApiInsightsGetSubjectStatsRequestSortList.pipe(T.Query())),
+    sort: S.optional(GetApiInsightSubjectStatsRequestSortList.pipe(T.Query())),
     subject_name_substring: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -2178,8 +2334,8 @@ export const GetApiInsightSubjectStatRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetApiInsightSubjectStatRequest",
-}) as any as S.Schema<GetApiInsightSubjectStatRequest>;
+  identifier: "GetApiInsightSubjectStatsRequest",
+}) as any as S.Schema<GetApiInsightSubjectStatsRequest>;
 
 export interface ApiInsightsSubjectStatsItem {
   subject_type?: string;
@@ -2210,14 +2366,14 @@ export const ApiInsightsSubjectStats = /*@__PURE__*/ S.Array(
   ApiInsightsSubjectStatsItem,
 ) as any as S.Schema<ApiInsightsSubjectStats>;
 
-export type GetApiInsightSubjectStatResponse = ApiInsightsSubjectStats;
-export const GetApiInsightSubjectStatResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetApiInsightSubjectStatsResponse = ApiInsightsSubjectStats;
+export const GetApiInsightSubjectStatsResponse = /*@__PURE__*/ S.suspend(() =>
   ApiInsightsSubjectStats.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetApiInsightSubjectStatResponse",
-}) as any as S.Schema<GetApiInsightSubjectStatResponse>;
+  identifier: "GetApiInsightSubjectStatsResponse",
+}) as any as S.Schema<GetApiInsightSubjectStatsResponse>;
 
-export interface GetApiInsightSummaryStatRequest {
+export interface GetApiInsightSummaryStatsRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
@@ -2225,7 +2381,7 @@ export interface GetApiInsightSummaryStatRequest {
   /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
   max_timestamp?: string;
 }
-export const GetApiInsightSummaryStatRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApiInsightSummaryStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org: S.String.pipe(T.Label()),
     min_timestamp: S.String.pipe(T.Query()),
@@ -2238,8 +2394,8 @@ export const GetApiInsightSummaryStatRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetApiInsightSummaryStatRequest",
-}) as any as S.Schema<GetApiInsightSummaryStatRequest>;
+  identifier: "GetApiInsightSummaryStatsRequest",
+}) as any as S.Schema<GetApiInsightSummaryStatsRequest>;
 
 /** API Insights usage summary stats for an organization */
 export interface ApiInsightsSummaryStats {
@@ -2257,20 +2413,20 @@ export const ApiInsightsSummaryStats = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApiInsightsSummaryStats",
 }) as any as S.Schema<ApiInsightsSummaryStats>;
 
-export type ApiInsightsGetSummaryStatsByActorRequestActorType =
+export type GetApiInsightSummaryStatsByActorRequestActorType =
   | "installation"
   | "classic_pat"
   | "fine_grained_pat"
   | "oauth_app"
   | "github_app_user_to_server";
-export const ApiInsightsGetSummaryStatsByActorRequestActorType =
+export const GetApiInsightSummaryStatsByActorRequestActorType =
   /*@__PURE__*/ S.String;
 
-export interface GetApiInsightSummaryStatByActorRequest {
+export interface GetApiInsightSummaryStatsByActorRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The type of the actor */
-  actor_type: ApiInsightsGetSummaryStatsByActorRequestActorType | (string & {});
+  actor_type: GetApiInsightSummaryStatsByActorRequestActorType | (string & {});
   /** The ID of the actor */
   actor_id: number;
   /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
@@ -2278,11 +2434,11 @@ export interface GetApiInsightSummaryStatByActorRequest {
   /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
   max_timestamp?: string;
 }
-export const GetApiInsightSummaryStatByActorRequest = /*@__PURE__*/ S.suspend(
+export const GetApiInsightSummaryStatsByActorRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       org: S.String.pipe(T.Label()),
-      actor_type: ApiInsightsGetSummaryStatsByActorRequestActorType.pipe(
+      actor_type: GetApiInsightSummaryStatsByActorRequestActorType.pipe(
         T.Label(),
       ),
       actor_id: S.Number.pipe(T.Label()),
@@ -2296,10 +2452,10 @@ export const GetApiInsightSummaryStatByActorRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetApiInsightSummaryStatByActorRequest",
-}) as any as S.Schema<GetApiInsightSummaryStatByActorRequest>;
+  identifier: "GetApiInsightSummaryStatsByActorRequest",
+}) as any as S.Schema<GetApiInsightSummaryStatsByActorRequest>;
 
-export interface GetApiInsightSummaryStatByUserRequest {
+export interface GetApiInsightSummaryStatsByUserRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The ID of the user to query for stats */
@@ -2309,7 +2465,7 @@ export interface GetApiInsightSummaryStatByUserRequest {
   /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
   max_timestamp?: string;
 }
-export const GetApiInsightSummaryStatByUserRequest = /*@__PURE__*/ S.suspend(
+export const GetApiInsightSummaryStatsByUserRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       org: S.String.pipe(T.Label()),
@@ -2324,10 +2480,10 @@ export const GetApiInsightSummaryStatByUserRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetApiInsightSummaryStatByUserRequest",
-}) as any as S.Schema<GetApiInsightSummaryStatByUserRequest>;
+  identifier: "GetApiInsightSummaryStatsByUserRequest",
+}) as any as S.Schema<GetApiInsightSummaryStatsByUserRequest>;
 
-export interface GetApiInsightTimeStatRequest {
+export interface GetApiInsightTimeStatsRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
@@ -2337,7 +2493,7 @@ export interface GetApiInsightTimeStatRequest {
   /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
   timestamp_increment: string;
 }
-export const GetApiInsightTimeStatRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApiInsightTimeStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org: S.String.pipe(T.Label()),
     min_timestamp: S.String.pipe(T.Query()),
@@ -2351,8 +2507,8 @@ export const GetApiInsightTimeStatRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetApiInsightTimeStatRequest",
-}) as any as S.Schema<GetApiInsightTimeStatRequest>;
+  identifier: "GetApiInsightTimeStatsRequest",
+}) as any as S.Schema<GetApiInsightTimeStatsRequest>;
 
 export interface ApiInsightsTimeStatsItem {
   timestamp?: string;
@@ -2375,27 +2531,27 @@ export const ApiInsightsTimeStats = /*@__PURE__*/ S.Array(
   ApiInsightsTimeStatsItem,
 ) as any as S.Schema<ApiInsightsTimeStats>;
 
-export type GetApiInsightTimeStatResponse = ApiInsightsTimeStats;
-export const GetApiInsightTimeStatResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetApiInsightTimeStatsResponse = ApiInsightsTimeStats;
+export const GetApiInsightTimeStatsResponse = /*@__PURE__*/ S.suspend(() =>
   ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetApiInsightTimeStatResponse",
-}) as any as S.Schema<GetApiInsightTimeStatResponse>;
+  identifier: "GetApiInsightTimeStatsResponse",
+}) as any as S.Schema<GetApiInsightTimeStatsResponse>;
 
-export type ApiInsightsGetTimeStatsByActorRequestActorType =
+export type GetApiInsightTimeStatsByActorRequestActorType =
   | "installation"
   | "classic_pat"
   | "fine_grained_pat"
   | "oauth_app"
   | "github_app_user_to_server";
-export const ApiInsightsGetTimeStatsByActorRequestActorType =
+export const GetApiInsightTimeStatsByActorRequestActorType =
   /*@__PURE__*/ S.String;
 
-export interface GetApiInsightTimeStatByActorRequest {
+export interface GetApiInsightTimeStatsByActorRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The type of the actor */
-  actor_type: ApiInsightsGetTimeStatsByActorRequestActorType | (string & {});
+  actor_type: GetApiInsightTimeStatsByActorRequestActorType | (string & {});
   /** The ID of the actor */
   actor_id: number;
   /** The minimum timestamp to query for stats. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
@@ -2405,33 +2561,34 @@ export interface GetApiInsightTimeStatByActorRequest {
   /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
   timestamp_increment: string;
 }
-export const GetApiInsightTimeStatByActorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    actor_type: ApiInsightsGetTimeStatsByActorRequestActorType.pipe(T.Label()),
-    actor_id: S.Number.pipe(T.Label()),
-    min_timestamp: S.String.pipe(T.Query()),
-    max_timestamp: S.optional(S.String.pipe(T.Query())),
-    timestamp_increment: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/orgs/{org}/insights/api/time-stats/{actor_type}/{actor_id}",
-      code: 200,
-    }),
-  ),
+export const GetApiInsightTimeStatsByActorRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      actor_type: GetApiInsightTimeStatsByActorRequestActorType.pipe(T.Label()),
+      actor_id: S.Number.pipe(T.Label()),
+      min_timestamp: S.String.pipe(T.Query()),
+      max_timestamp: S.optional(S.String.pipe(T.Query())),
+      timestamp_increment: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/insights/api/time-stats/{actor_type}/{actor_id}",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "GetApiInsightTimeStatByActorRequest",
-}) as any as S.Schema<GetApiInsightTimeStatByActorRequest>;
+  identifier: "GetApiInsightTimeStatsByActorRequest",
+}) as any as S.Schema<GetApiInsightTimeStatsByActorRequest>;
 
-export type GetApiInsightTimeStatByActorResponse = ApiInsightsTimeStats;
-export const GetApiInsightTimeStatByActorResponse = /*@__PURE__*/ S.suspend(
+export type GetApiInsightTimeStatsByActorResponse = ApiInsightsTimeStats;
+export const GetApiInsightTimeStatsByActorResponse = /*@__PURE__*/ S.suspend(
   () => ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetApiInsightTimeStatByActorResponse",
-}) as any as S.Schema<GetApiInsightTimeStatByActorResponse>;
+  identifier: "GetApiInsightTimeStatsByActorResponse",
+}) as any as S.Schema<GetApiInsightTimeStatsByActorResponse>;
 
-export interface GetApiInsightTimeStatByUserRequest {
+export interface GetApiInsightTimeStatsByUserRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The ID of the user to query for stats */
@@ -2443,7 +2600,7 @@ export interface GetApiInsightTimeStatByUserRequest {
   /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
   timestamp_increment: string;
 }
-export const GetApiInsightTimeStatByUserRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApiInsightTimeStatsByUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org: S.String.pipe(T.Label()),
     user_id: S.String.pipe(T.Label()),
@@ -2458,35 +2615,35 @@ export const GetApiInsightTimeStatByUserRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetApiInsightTimeStatByUserRequest",
-}) as any as S.Schema<GetApiInsightTimeStatByUserRequest>;
+  identifier: "GetApiInsightTimeStatsByUserRequest",
+}) as any as S.Schema<GetApiInsightTimeStatsByUserRequest>;
 
-export type GetApiInsightTimeStatByUserResponse = ApiInsightsTimeStats;
-export const GetApiInsightTimeStatByUserResponse = /*@__PURE__*/ S.suspend(() =>
-  ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
+export type GetApiInsightTimeStatsByUserResponse = ApiInsightsTimeStats;
+export const GetApiInsightTimeStatsByUserResponse = /*@__PURE__*/ S.suspend(
+  () => ApiInsightsTimeStats.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetApiInsightTimeStatByUserResponse",
-}) as any as S.Schema<GetApiInsightTimeStatByUserResponse>;
+  identifier: "GetApiInsightTimeStatsByUserResponse",
+}) as any as S.Schema<GetApiInsightTimeStatsByUserResponse>;
 
-export type ApiInsightsGetUserStatsRequestDirection = "asc" | "desc";
-export const ApiInsightsGetUserStatsRequestDirection = /*@__PURE__*/ S.String;
+export type GetApiInsightUserStatsRequestDirection = "asc" | "desc";
+export const GetApiInsightUserStatsRequestDirection = /*@__PURE__*/ S.String;
 
-export type ApiInsightsGetUserStatsRequestSortItem =
+export type GetApiInsightUserStatsRequestSortItem =
   | "last_rate_limited_timestamp"
   | "last_request_timestamp"
   | "rate_limited_request_count"
   | "subject_name"
   | "total_request_count";
-export const ApiInsightsGetUserStatsRequestSortItem = /*@__PURE__*/ S.String;
+export const GetApiInsightUserStatsRequestSortItem = /*@__PURE__*/ S.String;
 
-export type ApiInsightsGetUserStatsRequestSortList = Array<
-  ApiInsightsGetUserStatsRequestSortItem | (string & {})
+export type GetApiInsightUserStatsRequestSortList = Array<
+  GetApiInsightUserStatsRequestSortItem | (string & {})
 >;
-export const ApiInsightsGetUserStatsRequestSortList = /*@__PURE__*/ S.Array(
-  ApiInsightsGetUserStatsRequestSortItem,
-) as any as S.Schema<ApiInsightsGetUserStatsRequestSortList>;
+export const GetApiInsightUserStatsRequestSortList = /*@__PURE__*/ S.Array(
+  GetApiInsightUserStatsRequestSortItem,
+) as any as S.Schema<GetApiInsightUserStatsRequestSortList>;
 
-export interface GetApiInsightUserStatRequest {
+export interface GetApiInsightUserStatsRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** The ID of the user to query for stats */
@@ -2500,13 +2657,13 @@ export interface GetApiInsightUserStatRequest {
   /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
   per_page?: number;
   /** The direction to sort the results by. */
-  direction?: ApiInsightsGetUserStatsRequestDirection | (string & {});
+  direction?: GetApiInsightUserStatsRequestDirection | (string & {});
   /** The property to sort the results by. */
-  sort?: ApiInsightsGetUserStatsRequestSortList;
+  sort?: GetApiInsightUserStatsRequestSortList;
   /** Providing a substring will filter results where the actor name contains the substring. This is a case-insensitive search. */
   actor_name_substring?: string;
 }
-export const GetApiInsightUserStatRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApiInsightUserStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org: S.String.pipe(T.Label()),
     user_id: S.String.pipe(T.Label()),
@@ -2515,9 +2672,9 @@ export const GetApiInsightUserStatRequest = /*@__PURE__*/ S.suspend(() =>
     page: S.optional(S.Number.pipe(T.Query())),
     per_page: S.optional(S.Number.pipe(T.Query())),
     direction: S.optional(
-      ApiInsightsGetUserStatsRequestDirection.pipe(T.Query()),
+      GetApiInsightUserStatsRequestDirection.pipe(T.Query()),
     ),
-    sort: S.optional(ApiInsightsGetUserStatsRequestSortList.pipe(T.Query())),
+    sort: S.optional(GetApiInsightUserStatsRequestSortList.pipe(T.Query())),
     actor_name_substring: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -2527,8 +2684,8 @@ export const GetApiInsightUserStatRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetApiInsightUserStatRequest",
-}) as any as S.Schema<GetApiInsightUserStatRequest>;
+  identifier: "GetApiInsightUserStatsRequest",
+}) as any as S.Schema<GetApiInsightUserStatsRequest>;
 
 export interface ApiInsightsUserStatsItem {
   actor_type?: string;
@@ -2563,12 +2720,12 @@ export const ApiInsightsUserStats = /*@__PURE__*/ S.Array(
   ApiInsightsUserStatsItem,
 ) as any as S.Schema<ApiInsightsUserStats>;
 
-export type GetApiInsightUserStatResponse = ApiInsightsUserStats;
-export const GetApiInsightUserStatResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetApiInsightUserStatsResponse = ApiInsightsUserStats;
+export const GetApiInsightUserStatsResponse = /*@__PURE__*/ S.suspend(() =>
   ApiInsightsUserStats.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetApiInsightUserStatResponse",
-}) as any as S.Schema<GetApiInsightUserStatResponse>;
+  identifier: "GetApiInsightUserStatsResponse",
+}) as any as S.Schema<GetApiInsightUserStatsResponse>;
 
 export interface GetClusterDeploymentRecordsJobRequest {
   /** The organization name. The name is not case sensitive. */
@@ -2635,115 +2792,6 @@ export const GetClusterDeploymentRecordsJobResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "GetClusterDeploymentRecordsJobResponse",
 }) as any as S.Schema<GetClusterDeploymentRecordsJobResponse>;
-
-export interface GetCustomPropertyForReposOrganizationDefinitionRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-}
-export const GetCustomPropertyForReposOrganizationDefinitionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/orgs/{org}/properties/schema",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetCustomPropertyForReposOrganizationDefinitionRequest",
-  }) as any as S.Schema<GetCustomPropertyForReposOrganizationDefinitionRequest>;
-
-export type CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList =
-  Array<CustomProperty>;
-export const CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CustomProperty,
-  ) as any as S.Schema<CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList>;
-
-export type GetCustomPropertyForReposOrganizationDefinitionResponse =
-  CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList;
-export const GetCustomPropertyForReposOrganizationDefinitionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    CustomPropertiesForReposGetOrganizationDefinitionsResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetCustomPropertyForReposOrganizationDefinitionResponse",
-  }) as any as S.Schema<GetCustomPropertyForReposOrganizationDefinitionResponse>;
-
-export interface GetCustomPropertyForReposOrganizationValueRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  per_page?: number;
-  /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
-  page?: number;
-  /** Finds repositories in the organization with a query containing one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching for repositories](https://docs.github.com/articles/searching-for-repositories/)" for a detailed list of qualifiers. */
-  repository_query?: string;
-}
-export const GetCustomPropertyForReposOrganizationValueRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      per_page: S.optional(S.Number.pipe(T.Query())),
-      page: S.optional(S.Number.pipe(T.Query())),
-      repository_query: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/orgs/{org}/properties/values",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetCustomPropertyForReposOrganizationValueRequest",
-  }) as any as S.Schema<GetCustomPropertyForReposOrganizationValueRequest>;
-
-/** List of custom property names and associated values */
-export type OrgRepoCustomPropertyValuesPropertiesList =
-  Array<CustomPropertyValue>;
-export const OrgRepoCustomPropertyValuesPropertiesList = /*@__PURE__*/ S.Array(
-  CustomPropertyValue,
-) as any as S.Schema<OrgRepoCustomPropertyValuesPropertiesList>;
-
-/** List of custom property values for a repository */
-export interface OrgRepoCustomPropertyValues {
-  repository_id: number;
-  repository_name: string;
-  repository_full_name: string;
-  /** List of custom property names and associated values */
-  properties: OrgRepoCustomPropertyValuesPropertiesList;
-}
-export const OrgRepoCustomPropertyValues = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repository_id: S.Number,
-    repository_name: S.String,
-    repository_full_name: S.String,
-    properties: OrgRepoCustomPropertyValuesPropertiesList,
-  }),
-).annotate({
-  identifier: "OrgRepoCustomPropertyValues",
-}) as any as S.Schema<OrgRepoCustomPropertyValues>;
-
-export type CustomPropertiesForReposGetOrganizationValuesResponseBodyList =
-  Array<OrgRepoCustomPropertyValues>;
-export const CustomPropertiesForReposGetOrganizationValuesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    OrgRepoCustomPropertyValues,
-  ) as any as S.Schema<CustomPropertiesForReposGetOrganizationValuesResponseBodyList>;
-
-export type GetCustomPropertyForReposOrganizationValueResponse =
-  CustomPropertiesForReposGetOrganizationValuesResponseBodyList;
-export const GetCustomPropertyForReposOrganizationValueResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    CustomPropertiesForReposGetOrganizationValuesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetCustomPropertyForReposOrganizationValueResponse",
-  }) as any as S.Schema<GetCustomPropertyForReposOrganizationValueResponse>;
 
 export interface GetImmutableReleasesSettingsRequest {
   /** The organization name. The name is not case sensitive. */
@@ -6550,7 +6598,7 @@ export const RemovePublicMembershipForAuthenticatedUserResponse =
 export type ReviewPatGrantRequestRequestAction = "approve" | "deny";
 export const ReviewPatGrantRequestRequestAction = /*@__PURE__*/ S.String;
 
-export interface RequestReviewPatGrantRequest {
+export interface ReviewPatGrantRequestRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
   /** Unique identifier of the request for access via fine-grained personal access token. */
@@ -6560,7 +6608,7 @@ export interface RequestReviewPatGrantRequest {
   /** Reason for approving or denying the request. Max 1024 characters. */
   reason?: string | null;
 }
-export const RequestReviewPatGrantRequest = /*@__PURE__*/ S.suspend(() =>
+export const ReviewPatGrantRequestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org: S.String.pipe(T.Label()),
     pat_request_id: S.Number.pipe(T.Label()),
@@ -6574,63 +6622,15 @@ export const RequestReviewPatGrantRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RequestReviewPatGrantRequest",
-}) as any as S.Schema<RequestReviewPatGrantRequest>;
+  identifier: "ReviewPatGrantRequestRequest",
+}) as any as S.Schema<ReviewPatGrantRequestRequest>;
 
-export interface RequestReviewPatGrantResponse {}
-export const RequestReviewPatGrantResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ReviewPatGrantRequestResponse {}
+export const ReviewPatGrantRequestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RequestReviewPatGrantResponse",
-}) as any as S.Schema<RequestReviewPatGrantResponse>;
-
-/** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
-export type ReviewPatGrantRequestsInBulkRequestPatRequestIdsList =
-  Array<number>;
-export const ReviewPatGrantRequestsInBulkRequestPatRequestIdsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<ReviewPatGrantRequestsInBulkRequestPatRequestIdsList>;
-
-/** Action to apply to the requests. */
-export type ReviewPatGrantRequestsInBulkRequestAction = "approve" | "deny";
-export const ReviewPatGrantRequestsInBulkRequestAction = /*@__PURE__*/ S.String;
-
-export interface ReviewPatGrantRequestsInBulkRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values. */
-  pat_request_ids?: ReviewPatGrantRequestsInBulkRequestPatRequestIdsList;
-  /** Action to apply to the requests. */
-  action: ReviewPatGrantRequestsInBulkRequestAction | (string & {});
-  /** Reason for approving or denying the requests. Max 1024 characters. */
-  reason?: string | null;
-}
-export const ReviewPatGrantRequestsInBulkRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    pat_request_ids: S.optional(
-      ReviewPatGrantRequestsInBulkRequestPatRequestIdsList,
-    ),
-    action: ReviewPatGrantRequestsInBulkRequestAction,
-    reason: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/orgs/{org}/personal-access-token-requests",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReviewPatGrantRequestsInBulkRequest",
-}) as any as S.Schema<ReviewPatGrantRequestsInBulkRequest>;
-
-export interface ReviewPatGrantRequestsInBulkResponse {}
-export const ReviewPatGrantRequestsInBulkResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ReviewPatGrantRequestsInBulkResponse",
-}) as any as S.Schema<ReviewPatGrantRequestsInBulkResponse>;
+  identifier: "ReviewPatGrantRequestResponse",
+}) as any as S.Schema<ReviewPatGrantRequestResponse>;
 
 export interface RevokeAllOrgRolesTeamRequest {
   /** The organization name. The name is not case sensitive. */
@@ -7557,6 +7557,25 @@ export const blockUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type BulkReviewPatGrantRequestsInError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | GithubOpError;
+/** Review requests to access organization resources with fine-grained personal access tokens Approves or denies multiple pending requests to access organization resources via a fine-grained personal access token. Only GitHub Apps can use this endpoint. */
+export const bulkReviewPatGrantRequestsIn: API.OperationMethod<
+  BulkReviewPatGrantRequestsInRequest,
+  BulkReviewPatGrantRequestsInResponse,
+  BulkReviewPatGrantRequestsInError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkReviewPatGrantRequestsInRequest,
+  output: BulkReviewPatGrantRequestsInResponse,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CancelInvitationError =
   | NotFound
   | UnprocessableEntity
@@ -7818,6 +7837,24 @@ export const customPropertiesForReposCreateOrUpdateOrganizationValues: API.Opera
   retry: Retry.Retry,
 }));
 
+export type CustomPropertiesForReposDeleteOrganizationDefinitionError =
+  | Forbidden
+  | NotFound
+  | GithubOpError;
+/** Remove a custom property for an organization Removes a custom property that is defined for an organization. To use this endpoint, the authenticated user must be one of: - An administrator for the organization. - A user, or a user on a team, with the fine-grained permission of `custom_properties_org_definitions_manager` in the organization. */
+export const customPropertiesForReposDeleteOrganizationDefinition: API.OperationMethod<
+  CustomPropertiesForReposDeleteOrganizationDefinitionRequest,
+  CustomPropertiesForReposDeleteOrganizationDefinitionResponse,
+  CustomPropertiesForReposDeleteOrganizationDefinitionError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CustomPropertiesForReposDeleteOrganizationDefinitionRequest,
+  output: CustomPropertiesForReposDeleteOrganizationDefinitionResponse,
+  errors: [Forbidden, NotFound],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CustomPropertiesForReposGetOrganizationDefinitionError =
   | Forbidden
   | NotFound
@@ -7831,6 +7868,42 @@ export const customPropertiesForReposGetOrganizationDefinition: API.OperationMet
 > = /*@__PURE__*/ API.make(() => ({
   input: CustomPropertiesForReposGetOrganizationDefinitionRequest,
   output: CustomProperty,
+  errors: [Forbidden, NotFound],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CustomPropertiesForReposGetOrganizationDefinitionsError =
+  | Forbidden
+  | NotFound
+  | GithubOpError;
+/** Get all custom properties for an organization Gets all custom properties defined for an organization. Organization members can read these properties. */
+export const customPropertiesForReposGetOrganizationDefinitions: API.OperationMethod<
+  CustomPropertiesForReposGetOrganizationDefinitionsRequest,
+  CustomPropertiesForReposGetOrganizationDefinitionsResponse,
+  CustomPropertiesForReposGetOrganizationDefinitionsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CustomPropertiesForReposGetOrganizationDefinitionsRequest,
+  output: CustomPropertiesForReposGetOrganizationDefinitionsResponse,
+  errors: [Forbidden, NotFound],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CustomPropertiesForReposGetOrganizationValuesError =
+  | Forbidden
+  | NotFound
+  | GithubOpError;
+/** List custom property values for organization repositories Lists organization repositories with all of their custom property values. Organization members can read these properties. */
+export const customPropertiesForReposGetOrganizationValues: API.OperationMethod<
+  CustomPropertiesForReposGetOrganizationValuesRequest,
+  CustomPropertiesForReposGetOrganizationValuesResponse,
+  CustomPropertiesForReposGetOrganizationValuesError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CustomPropertiesForReposGetOrganizationValuesRequest,
+  output: CustomPropertiesForReposGetOrganizationValuesResponse,
   errors: [Forbidden, NotFound],
   protocol: GithubProtocol,
   retry: Retry.Retry,
@@ -7892,24 +7965,6 @@ export const deleteAttestationsBySubjectDigest: API.OperationMethod<
   input: DeleteAttestationsBySubjectDigestRequest,
   output: DeleteAttestationsBySubjectDigestResponse,
   errors: [NotFound],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteCustomPropertyForReposOrganizationDefinitionError =
-  | Forbidden
-  | NotFound
-  | GithubOpError;
-/** Remove a custom property for an organization Removes a custom property that is defined for an organization. To use this endpoint, the authenticated user must be one of: - An administrator for the organization. - A user, or a user on a team, with the fine-grained permission of `custom_properties_org_definitions_manager` in the organization. */
-export const deleteCustomPropertyForReposOrganizationDefinition: API.OperationMethod<
-  DeleteCustomPropertyForReposOrganizationDefinitionRequest,
-  DeleteCustomPropertyForReposOrganizationDefinitionResponse,
-  DeleteCustomPropertyForReposOrganizationDefinitionError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCustomPropertyForReposOrganizationDefinitionRequest,
-  output: DeleteCustomPropertyForReposOrganizationDefinitionResponse,
-  errors: [Forbidden, NotFound],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -8012,136 +8067,136 @@ export const get: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightRouteStatByActorError = GithubOpError;
+export type GetApiInsightRouteStatsByActorError = GithubOpError;
 /** Get route stats by actor Get API request count statistics for an actor broken down by route within a specified time frame. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightRouteStatByActor: API.OperationMethod<
-  GetApiInsightRouteStatByActorRequest,
-  GetApiInsightRouteStatByActorResponse,
-  GetApiInsightRouteStatByActorError,
+export const getApiInsightRouteStatsByActor: API.OperationMethod<
+  GetApiInsightRouteStatsByActorRequest,
+  GetApiInsightRouteStatsByActorResponse,
+  GetApiInsightRouteStatsByActorError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightRouteStatByActorRequest,
-  output: GetApiInsightRouteStatByActorResponse,
+  input: GetApiInsightRouteStatsByActorRequest,
+  output: GetApiInsightRouteStatsByActorResponse,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightSubjectStatError = GithubOpError;
+export type GetApiInsightSubjectStatsError = GithubOpError;
 /** Get subject stats Get API request statistics for all subjects within an organization within a specified time frame. Subjects can be users or GitHub Apps. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightSubjectStat: API.OperationMethod<
-  GetApiInsightSubjectStatRequest,
-  GetApiInsightSubjectStatResponse,
-  GetApiInsightSubjectStatError,
+export const getApiInsightSubjectStats: API.OperationMethod<
+  GetApiInsightSubjectStatsRequest,
+  GetApiInsightSubjectStatsResponse,
+  GetApiInsightSubjectStatsError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightSubjectStatRequest,
-  output: GetApiInsightSubjectStatResponse,
+  input: GetApiInsightSubjectStatsRequest,
+  output: GetApiInsightSubjectStatsResponse,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightSummaryStatError = GithubOpError;
+export type GetApiInsightSummaryStatsError = GithubOpError;
 /** Get summary stats Get overall statistics of API requests made within an organization by all users and apps within a specified time frame. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightSummaryStat: API.OperationMethod<
-  GetApiInsightSummaryStatRequest,
+export const getApiInsightSummaryStats: API.OperationMethod<
+  GetApiInsightSummaryStatsRequest,
   ApiInsightsSummaryStats,
-  GetApiInsightSummaryStatError,
+  GetApiInsightSummaryStatsError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightSummaryStatRequest,
+  input: GetApiInsightSummaryStatsRequest,
   output: ApiInsightsSummaryStats,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightSummaryStatByActorError = GithubOpError;
+export type GetApiInsightSummaryStatsByActorError = GithubOpError;
 /** Get summary stats by actor Get overall statistics of API requests within the organization made by a specific actor. Actors can be GitHub App installations, OAuth apps or other tokens on behalf of a user. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightSummaryStatByActor: API.OperationMethod<
-  GetApiInsightSummaryStatByActorRequest,
+export const getApiInsightSummaryStatsByActor: API.OperationMethod<
+  GetApiInsightSummaryStatsByActorRequest,
   ApiInsightsSummaryStats,
-  GetApiInsightSummaryStatByActorError,
+  GetApiInsightSummaryStatsByActorError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightSummaryStatByActorRequest,
+  input: GetApiInsightSummaryStatsByActorRequest,
   output: ApiInsightsSummaryStats,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightSummaryStatByUserError = GithubOpError;
+export type GetApiInsightSummaryStatsByUserError = GithubOpError;
 /** Get summary stats by user Get overall statistics of API requests within the organization for a user. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightSummaryStatByUser: API.OperationMethod<
-  GetApiInsightSummaryStatByUserRequest,
+export const getApiInsightSummaryStatsByUser: API.OperationMethod<
+  GetApiInsightSummaryStatsByUserRequest,
   ApiInsightsSummaryStats,
-  GetApiInsightSummaryStatByUserError,
+  GetApiInsightSummaryStatsByUserError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightSummaryStatByUserRequest,
+  input: GetApiInsightSummaryStatsByUserRequest,
   output: ApiInsightsSummaryStats,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightTimeStatError = GithubOpError;
+export type GetApiInsightTimeStatsError = GithubOpError;
 /** Get time stats Get the number of API requests and rate-limited requests made within an organization over a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightTimeStat: API.OperationMethod<
-  GetApiInsightTimeStatRequest,
-  GetApiInsightTimeStatResponse,
-  GetApiInsightTimeStatError,
+export const getApiInsightTimeStats: API.OperationMethod<
+  GetApiInsightTimeStatsRequest,
+  GetApiInsightTimeStatsResponse,
+  GetApiInsightTimeStatsError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightTimeStatRequest,
-  output: GetApiInsightTimeStatResponse,
+  input: GetApiInsightTimeStatsRequest,
+  output: GetApiInsightTimeStatsResponse,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightTimeStatByActorError = GithubOpError;
+export type GetApiInsightTimeStatsByActorError = GithubOpError;
 /** Get time stats by actor Get the number of API requests and rate-limited requests made within an organization by a specific actor within a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightTimeStatByActor: API.OperationMethod<
-  GetApiInsightTimeStatByActorRequest,
-  GetApiInsightTimeStatByActorResponse,
-  GetApiInsightTimeStatByActorError,
+export const getApiInsightTimeStatsByActor: API.OperationMethod<
+  GetApiInsightTimeStatsByActorRequest,
+  GetApiInsightTimeStatsByActorResponse,
+  GetApiInsightTimeStatsByActorError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightTimeStatByActorRequest,
-  output: GetApiInsightTimeStatByActorResponse,
+  input: GetApiInsightTimeStatsByActorRequest,
+  output: GetApiInsightTimeStatsByActorResponse,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightTimeStatByUserError = GithubOpError;
+export type GetApiInsightTimeStatsByUserError = GithubOpError;
 /** Get time stats by user Get the number of API requests and rate-limited requests made within an organization by a specific user over a specified time period. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightTimeStatByUser: API.OperationMethod<
-  GetApiInsightTimeStatByUserRequest,
-  GetApiInsightTimeStatByUserResponse,
-  GetApiInsightTimeStatByUserError,
+export const getApiInsightTimeStatsByUser: API.OperationMethod<
+  GetApiInsightTimeStatsByUserRequest,
+  GetApiInsightTimeStatsByUserResponse,
+  GetApiInsightTimeStatsByUserError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightTimeStatByUserRequest,
-  output: GetApiInsightTimeStatByUserResponse,
+  input: GetApiInsightTimeStatsByUserRequest,
+  output: GetApiInsightTimeStatsByUserResponse,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiInsightUserStatError = GithubOpError;
+export type GetApiInsightUserStatsError = GithubOpError;
 /** Get user stats Get API usage statistics within an organization for a user broken down by the type of access. Under normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up. */
-export const getApiInsightUserStat: API.OperationMethod<
-  GetApiInsightUserStatRequest,
-  GetApiInsightUserStatResponse,
-  GetApiInsightUserStatError,
+export const getApiInsightUserStats: API.OperationMethod<
+  GetApiInsightUserStatsRequest,
+  GetApiInsightUserStatsResponse,
+  GetApiInsightUserStatsError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiInsightUserStatRequest,
-  output: GetApiInsightUserStatResponse,
+  input: GetApiInsightUserStatsRequest,
+  output: GetApiInsightUserStatsResponse,
   errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
@@ -8158,42 +8213,6 @@ export const getClusterDeploymentRecordsJob: API.OperationMethod<
   input: GetClusterDeploymentRecordsJobRequest,
   output: GetClusterDeploymentRecordsJobResponse,
   errors: [NotFound],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetCustomPropertyForReposOrganizationDefinitionError =
-  | Forbidden
-  | NotFound
-  | GithubOpError;
-/** Get all custom properties for an organization Gets all custom properties defined for an organization. Organization members can read these properties. */
-export const getCustomPropertyForReposOrganizationDefinition: API.OperationMethod<
-  GetCustomPropertyForReposOrganizationDefinitionRequest,
-  GetCustomPropertyForReposOrganizationDefinitionResponse,
-  GetCustomPropertyForReposOrganizationDefinitionError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetCustomPropertyForReposOrganizationDefinitionRequest,
-  output: GetCustomPropertyForReposOrganizationDefinitionResponse,
-  errors: [Forbidden, NotFound],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetCustomPropertyForReposOrganizationValueError =
-  | Forbidden
-  | NotFound
-  | GithubOpError;
-/** List custom property values for organization repositories Lists organization repositories with all of their custom property values. Organization members can read these properties. */
-export const getCustomPropertyForReposOrganizationValue: API.OperationMethod<
-  GetCustomPropertyForReposOrganizationValueRequest,
-  GetCustomPropertyForReposOrganizationValueResponse,
-  GetCustomPropertyForReposOrganizationValueError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetCustomPropertyForReposOrganizationValueRequest,
-  output: GetCustomPropertyForReposOrganizationValueResponse,
-  errors: [Forbidden, NotFound],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -8895,39 +8914,20 @@ export const removePublicMembershipForAuthenticatedUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RequestReviewPatGrantError =
+export type ReviewPatGrantRequestError =
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | GithubOpError;
 /** Review a request to access organization resources with a fine-grained personal access token Approves or denies a pending request to access organization resources via a fine-grained personal access token. Only GitHub Apps can use this endpoint. */
-export const requestReviewPatGrant: API.OperationMethod<
-  RequestReviewPatGrantRequest,
-  RequestReviewPatGrantResponse,
-  RequestReviewPatGrantError,
+export const reviewPatGrantRequest: API.OperationMethod<
+  ReviewPatGrantRequestRequest,
+  ReviewPatGrantRequestResponse,
+  ReviewPatGrantRequestError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RequestReviewPatGrantRequest,
-  output: RequestReviewPatGrantResponse,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReviewPatGrantRequestsInBulkError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | GithubOpError;
-/** Review requests to access organization resources with fine-grained personal access tokens Approves or denies multiple pending requests to access organization resources via a fine-grained personal access token. Only GitHub Apps can use this endpoint. */
-export const reviewPatGrantRequestsInBulk: API.OperationMethod<
-  ReviewPatGrantRequestsInBulkRequest,
-  ReviewPatGrantRequestsInBulkResponse,
-  ReviewPatGrantRequestsInBulkError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReviewPatGrantRequestsInBulkRequest,
-  output: ReviewPatGrantRequestsInBulkResponse,
+  input: ReviewPatGrantRequestRequest,
+  output: ReviewPatGrantRequestResponse,
   errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: GithubProtocol,
   retry: Retry.Retry,

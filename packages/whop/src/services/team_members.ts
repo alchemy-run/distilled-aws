@@ -207,6 +207,18 @@ export const DeleteTeamMemberResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteTeamMemberResponse",
 }) as any as S.Schema<DeleteTeamMemberResponse>;
 
+export interface GetTeamMemberRequest {
+  /** Team member ID — `ausr_` for accepted members, `ausri_` for pending invites. */
+  id: string;
+}
+export const GetTeamMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/team_members/{id}", code: 200 })),
+).annotate({
+  identifier: "GetTeamMemberRequest",
+}) as any as S.Schema<GetTeamMemberRequest>;
+
 export type ListTeamMembersRequestStatus = "joined" | "pending";
 export const ListTeamMembersRequestStatus = /*@__PURE__*/ S.String;
 
@@ -309,18 +321,6 @@ export const ListTeamMembersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTeamMembersResponse",
 }) as any as S.Schema<ListTeamMembersResponse>;
 
-export interface RetrieveTeamMemberRequest {
-  /** Team member ID — `ausr_` for accepted members, `ausri_` for pending invites. */
-  id: string;
-}
-export const RetrieveTeamMemberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/team_members/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveTeamMemberRequest",
-}) as any as S.Schema<RetrieveTeamMemberRequest>;
-
 /** The system role to grant. */
 export type UpdateTeamMemberRequestRole =
   | "owner"
@@ -380,6 +380,21 @@ export const deleteTeamMember: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetTeamMemberError = NotFound | WhopOpError;
+/** Retrieve Team Member Retrieves a team member by ID. `email` requires the `company:authorized_user:email:read` scope and is `null` otherwise. */
+export const getTeamMember: API.OperationMethod<
+  GetTeamMemberRequest,
+  TeamMember,
+  GetTeamMemberError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTeamMemberRequest,
+  output: TeamMember,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListTeamMembersError =
   | BadRequest
   | Forbidden
@@ -410,21 +425,6 @@ export const listTeamMembers: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveTeamMemberError = NotFound | WhopOpError;
-/** Retrieve Team Member Retrieves a team member by ID. `email` requires the `company:authorized_user:email:read` scope and is `null` otherwise. */
-export const retrieveTeamMember: API.OperationMethod<
-  RetrieveTeamMemberRequest,
-  TeamMember,
-  RetrieveTeamMemberError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveTeamMemberRequest,
-  output: TeamMember,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateTeamMemberError = BadRequest | NotFound | WhopOpError;
 /** Update Team Member Changes a team member's system role. Requires a user session — account API keys cannot change member roles. The account owner's role cannot be changed, and you cannot change your own role. */

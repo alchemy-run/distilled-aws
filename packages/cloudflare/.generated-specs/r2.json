@@ -42,7 +42,8 @@
         "alias": "putObject",
         "target": "uploadBucketObject"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.r2#BucketsCreateRequestCfR2Jurisdiction": {
@@ -4810,133 +4811,136 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.r2#BucketsCreate"
+          "target": "com.cloudflare.r2#AbortAllSuperSlurperJob"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDelete"
+          "target": "com.cloudflare.r2#AbortSuperSlurperJob"
         },
         {
-          "target": "com.cloudflare.r2#BucketsEdit"
+          "target": "com.cloudflare.r2#CreateBucket"
         },
         {
-          "target": "com.cloudflare.r2#BucketsGet"
+          "target": "com.cloudflare.r2#CreateBucketDomainCustom"
         },
         {
-          "target": "com.cloudflare.r2#BucketsList"
+          "target": "com.cloudflare.r2#CreateSuperSlurperJob"
         },
         {
-          "target": "com.cloudflare.r2#BucketsCorsDelete"
+          "target": "com.cloudflare.r2#CreateTemporaryCredential"
         },
         {
-          "target": "com.cloudflare.r2#BucketsCorsGet"
+          "target": "com.cloudflare.r2#DeleteBucket"
         },
         {
-          "target": "com.cloudflare.r2#BucketsCorsUpdate"
+          "target": "com.cloudflare.r2#DeleteBucketCors"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDomainsCustomCreate"
+          "target": "com.cloudflare.r2#DeleteBucketDomainCustom"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDomainsCustomDelete"
+          "target": "com.cloudflare.r2#DeleteBucketEventNotification"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDomainsCustomGet"
+          "target": "com.cloudflare.r2#DeleteBucketObject"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDomainsCustomList"
+          "target": "com.cloudflare.r2#DeleteBucketSippy"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDomainsCustomUpdate"
+          "target": "com.cloudflare.r2#DeleteObjects"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDomainsManagedList"
+          "target": "com.cloudflare.r2#GetBucket"
         },
         {
-          "target": "com.cloudflare.r2#BucketsDomainsManagedUpdate"
+          "target": "com.cloudflare.r2#GetBucketCors"
         },
         {
-          "target": "com.cloudflare.r2#BucketsEventNotificationsDelete"
+          "target": "com.cloudflare.r2#GetBucketDomainCustom"
         },
         {
-          "target": "com.cloudflare.r2#BucketsEventNotificationsGet"
+          "target": "com.cloudflare.r2#GetBucketEventNotification"
         },
         {
-          "target": "com.cloudflare.r2#BucketsEventNotificationsList"
+          "target": "com.cloudflare.r2#GetBucketLifecycle"
         },
         {
-          "target": "com.cloudflare.r2#BucketsEventNotificationsUpdate"
+          "target": "com.cloudflare.r2#GetBucketLock"
         },
         {
-          "target": "com.cloudflare.r2#BucketsLifecycleGet"
+          "target": "com.cloudflare.r2#GetBucketObject"
         },
         {
-          "target": "com.cloudflare.r2#BucketsLifecycleUpdate"
+          "target": "com.cloudflare.r2#GetBucketSippy"
         },
         {
-          "target": "com.cloudflare.r2#BucketsLocksGet"
+          "target": "com.cloudflare.r2#GetSuperSlurperJob"
         },
         {
-          "target": "com.cloudflare.r2#BucketsLocksUpdate"
+          "target": "com.cloudflare.r2#ListBucketDomainCustoms"
         },
         {
-          "target": "com.cloudflare.r2#BucketsMetricsList"
+          "target": "com.cloudflare.r2#ListBucketDomainManageds"
         },
         {
-          "target": "com.cloudflare.r2#BucketsObjectsDelete"
+          "target": "com.cloudflare.r2#ListBucketEventNotifications"
         },
         {
-          "target": "com.cloudflare.r2#BucketsObjectsGet"
+          "target": "com.cloudflare.r2#ListBucketMetrics"
         },
         {
-          "target": "com.cloudflare.r2#BucketsObjectsList"
+          "target": "com.cloudflare.r2#ListBucketObjects"
         },
         {
-          "target": "com.cloudflare.r2#BucketsObjectsUpload"
+          "target": "com.cloudflare.r2#ListBuckets"
         },
         {
-          "target": "com.cloudflare.r2#BucketsSippyDelete"
+          "target": "com.cloudflare.r2#ListSuperSlurperJobLogs"
         },
         {
-          "target": "com.cloudflare.r2#BucketsSippyGet"
+          "target": "com.cloudflare.r2#ListSuperSlurperJobs"
         },
         {
-          "target": "com.cloudflare.r2#BucketsSippyUpdate"
+          "target": "com.cloudflare.r2#PatchBucket"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperConnectivityPrecheckSource"
+          "target": "com.cloudflare.r2#PauseSuperSlurperJob"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperConnectivityPrecheckTarget"
+          "target": "com.cloudflare.r2#ProgressSuperSlurperJob"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsAbort"
+          "target": "com.cloudflare.r2#PutBucketCors"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsAbortAll"
+          "target": "com.cloudflare.r2#PutBucketDomainManaged"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsCreate"
+          "target": "com.cloudflare.r2#PutBucketEventNotification"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsGet"
+          "target": "com.cloudflare.r2#PutBucketLifecycle"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsList"
+          "target": "com.cloudflare.r2#PutBucketLock"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsPause"
+          "target": "com.cloudflare.r2#PutBucketSippy"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsProgress"
+          "target": "com.cloudflare.r2#ResumeSuperSlurperJob"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsResume"
+          "target": "com.cloudflare.r2#SourceSuperSlurperConnectivityPrecheck"
         },
         {
-          "target": "com.cloudflare.r2#SuperSlurperJobsLogsList"
+          "target": "com.cloudflare.r2#TargetSuperSlurperConnectivityPrecheck"
         },
         {
-          "target": "com.cloudflare.r2#TemporaryCredentialsCreate"
+          "target": "com.cloudflare.r2#UpdateBucketDomainCustom"
+        },
+        {
+          "target": "com.cloudflare.r2#UploadBucketObject"
         }
       ],
       "traits": {
@@ -8789,10 +8793,10 @@
           }
         },
         "cfR2StorageClass": {
-          "target": "smithy.api#String",
+          "target": "com.cloudflare.r2#BucketsObjectsUploadRequestCfR2StorageClass",
           "traits": {
-            "smithy.api#httpHeader": "cf-r2-storage-class",
-            "smithy.api#documentation": "Storage class for the object."
+            "smithy.api#documentation": "Storage class for newly uploaded objects, unless specified otherwise.",
+            "smithy.api#httpHeader": "cf-r2-storage-class"
           }
         },
         "object_name": {

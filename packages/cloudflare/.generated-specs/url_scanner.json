@@ -23,7 +23,8 @@
       "ipv6Percentage": "IPv6Percentage",
       "phishingV2": "phishing_v2",
       "superCategoryId": "super_category_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.url_scanner#ScansBulkCreateRequestBodyItemCustomHeadersMap": {
@@ -7292,28 +7293,28 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.url_scanner#ResponsesGet"
+          "target": "com.cloudflare.url_scanner#BulkCreateScans"
         },
         {
-          "target": "com.cloudflare.url_scanner#ScansBulkCreate"
+          "target": "com.cloudflare.url_scanner#CreateScan"
         },
         {
-          "target": "com.cloudflare.url_scanner#ScansCreate"
+          "target": "com.cloudflare.url_scanner#DomScan"
         },
         {
-          "target": "com.cloudflare.url_scanner#ScansDom"
+          "target": "com.cloudflare.url_scanner#GetRespons"
         },
         {
-          "target": "com.cloudflare.url_scanner#ScansGet"
+          "target": "com.cloudflare.url_scanner#GetScan"
         },
         {
-          "target": "com.cloudflare.url_scanner#ScansHar"
+          "target": "com.cloudflare.url_scanner#HarScan"
         },
         {
-          "target": "com.cloudflare.url_scanner#ScansList"
+          "target": "com.cloudflare.url_scanner#ListScans"
         },
         {
-          "target": "com.cloudflare.url_scanner#ScansScreenshot"
+          "target": "com.cloudflare.url_scanner#ScreenshotScan"
         }
       ],
       "traits": {
@@ -7322,13 +7323,13 @@
         "smithy.api#documentation": "Cloudflare API — url_scanner resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     },
-    "com.cloudflare.url_scanner#CreateBulkScan": {
+    "com.cloudflare.url_scanner#BulkCreateScans": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.url_scanner#CreateBulkScanRequest"
+        "target": "com.cloudflare.url_scanner#BulkCreateScansRequest"
       },
       "output": {
-        "target": "com.cloudflare.url_scanner#CreateBulkScanResponse"
+        "target": "com.cloudflare.url_scanner#BulkCreateScansResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7339,7 +7340,7 @@
         "smithy.api#documentation": "Submit URLs to scan. Check limits at https://developers.cloudflare.com/security-center/investigate/scan-limits/ and take into account scans submitted in bulk have lower priority and may take longer to finish."
       }
     },
-    "com.cloudflare.url_scanner#CreateBulkScanRequest": {
+    "com.cloudflare.url_scanner#BulkCreateScansRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -7362,7 +7363,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.url_scanner#CreateBulkScanResponse": {
+    "com.cloudflare.url_scanner#BulkCreateScansResponse": {
       "type": "structure",
       "members": {
         "result": {

@@ -12,100 +12,84 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DeletePrivateStoreRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
+/** Gets or sets added plans */
+export type AcknowledgeOfferNotificationDetailsAddPlansList = Array<string>;
+export const AcknowledgeOfferNotificationDetailsAddPlansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AcknowledgeOfferNotificationDetailsAddPlansList>;
+
+/** Gets or sets remove plans */
+export type AcknowledgeOfferNotificationDetailsRemovePlansList = Array<string>;
+export const AcknowledgeOfferNotificationDetailsRemovePlansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AcknowledgeOfferNotificationDetailsRemovePlansList>;
+
+/** Notification update request payload details */
+export interface AcknowledgeOfferNotificationDetails {
+  /** Gets or sets a value indicating whether acknowledge action flag is enabled */
+  acknowledge?: boolean;
+  /** Gets or sets a value indicating whether dismiss action flag is enabled */
+  dismiss?: boolean;
+  /** Gets or sets a value indicating whether remove offer action flag is enabled */
+  removeOffer?: boolean;
+  /** Gets or sets added plans */
+  addPlans?: AcknowledgeOfferNotificationDetailsAddPlansList;
+  /** Gets or sets remove plans */
+  removePlans?: AcknowledgeOfferNotificationDetailsRemovePlansList;
 }
-export const DeletePrivateStoreRequest = /*@__PURE__*/ S.suspend(() =>
+export const AcknowledgeOfferNotificationDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    privateStoreId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
+    acknowledge: S.optional(S.Boolean),
+    dismiss: S.optional(S.Boolean),
+    removeOffer: S.optional(S.Boolean),
+    addPlans: S.optional(AcknowledgeOfferNotificationDetailsAddPlansList),
+    removePlans: S.optional(AcknowledgeOfferNotificationDetailsRemovePlansList),
+  }),
 ).annotate({
-  identifier: "DeletePrivateStoreRequest",
-}) as any as S.Schema<DeletePrivateStoreRequest>;
+  identifier: "AcknowledgeOfferNotificationDetails",
+}) as any as S.Schema<AcknowledgeOfferNotificationDetails>;
 
-export interface DeletePrivateStoreResponse {}
-export const DeletePrivateStoreResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeletePrivateStoreResponse",
-}) as any as S.Schema<DeletePrivateStoreResponse>;
-
-export interface DeletePrivateStoreCollectionRequest {
+export interface AcknowledgePrivateStoreOfferNotificationRequest {
   /** The store ID - must use the tenant ID */
   privateStoreId: string;
-  /** The collection ID */
-  collectionId: string;
-}
-export const DeletePrivateStoreCollectionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateStoreId: S.String.pipe(T.Label()),
-    collectionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletePrivateStoreCollectionRequest",
-}) as any as S.Schema<DeletePrivateStoreCollectionRequest>;
-
-export interface DeletePrivateStoreCollectionResponse {}
-export const DeletePrivateStoreCollectionResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeletePrivateStoreCollectionResponse",
-}) as any as S.Schema<DeletePrivateStoreCollectionResponse>;
-
-export interface DeletePrivateStoreCollectionOfferRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The collection ID */
-  collectionId: string;
   /** The offer ID to update or delete */
   offerId: string;
+  /** Notification update request payload details */
+  properties?: AcknowledgeOfferNotificationDetails;
 }
-export const DeletePrivateStoreCollectionOfferRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const AcknowledgePrivateStoreOfferNotificationRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateStoreId: S.String.pipe(T.Label()),
-      collectionId: S.String.pipe(T.Label()),
       offerId: S.String.pipe(T.Label()),
+      properties: S.optional(AcknowledgeOfferNotificationDetails),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/offers/{offerId}",
+        method: "POST",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/offers/{offerId}/acknowledgeNotification",
         code: 200,
         apiVersion: "2025-01-01",
       }),
     ),
-).annotate({
-  identifier: "DeletePrivateStoreCollectionOfferRequest",
-}) as any as S.Schema<DeletePrivateStoreCollectionOfferRequest>;
+  ).annotate({
+    identifier: "AcknowledgePrivateStoreOfferNotificationRequest",
+  }) as any as S.Schema<AcknowledgePrivateStoreOfferNotificationRequest>;
 
-export interface DeletePrivateStoreCollectionOfferResponse {}
-export const DeletePrivateStoreCollectionOfferResponse =
+export interface AcknowledgePrivateStoreOfferNotificationResponse {}
+export const AcknowledgePrivateStoreOfferNotificationResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeletePrivateStoreCollectionOfferResponse",
-  }) as any as S.Schema<DeletePrivateStoreCollectionOfferResponse>;
+    identifier: "AcknowledgePrivateStoreOfferNotificationResponse",
+  }) as any as S.Schema<AcknowledgePrivateStoreOfferNotificationResponse>;
 
-export interface DisablePrivateStoreCollectionApproveAllItemRequest {
+export interface ApprovePrivateStoreCollectionAllItemsRequest {
   /** The store ID - must use the tenant ID */
   privateStoreId: string;
   /** The collection ID */
   collectionId: string;
 }
-export const DisablePrivateStoreCollectionApproveAllItemRequest =
+export const ApprovePrivateStoreCollectionAllItemsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateStoreId: S.String.pipe(T.Label()),
@@ -113,14 +97,14 @@ export const DisablePrivateStoreCollectionApproveAllItemRequest =
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/disableApproveAllItems",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/approveAllItems",
         code: 200,
         apiVersion: "2025-01-01",
       }),
     ),
   ).annotate({
-    identifier: "DisablePrivateStoreCollectionApproveAllItemRequest",
-  }) as any as S.Schema<DisablePrivateStoreCollectionApproveAllItemRequest>;
+    identifier: "ApprovePrivateStoreCollectionAllItemsRequest",
+  }) as any as S.Schema<ApprovePrivateStoreCollectionAllItemsRequest>;
 
 /** The type of identity that creates/modifies resources */
 export type IdentityType = "User" | "Application" | "ManagedIdentity" | "Key";
@@ -225,7 +209,7 @@ export const CollectionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "CollectionProperties",
 }) as any as S.Schema<CollectionProperties>;
 
-export interface DisablePrivateStoreCollectionApproveAllItemResponse {
+export interface ApprovePrivateStoreCollectionAllItemsResponse {
   /** The resource ID. */
   id?: string;
   /** The name of the resource. */
@@ -237,7 +221,7 @@ export interface DisablePrivateStoreCollectionApproveAllItemResponse {
   /** The collection data structure. */
   properties?: CollectionProperties;
 }
-export const DisablePrivateStoreCollectionApproveAllItemResponse =
+export const ApprovePrivateStoreCollectionAllItemsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -247,8 +231,425 @@ export const DisablePrivateStoreCollectionApproveAllItemResponse =
       properties: S.optional(CollectionProperties),
     }),
   ).annotate({
-    identifier: "DisablePrivateStoreCollectionApproveAllItemResponse",
-  }) as any as S.Schema<DisablePrivateStoreCollectionApproveAllItemResponse>;
+    identifier: "ApprovePrivateStoreCollectionAllItemsResponse",
+  }) as any as S.Schema<ApprovePrivateStoreCollectionAllItemsResponse>;
+
+/** collection ids list that the action is performed on */
+export type BulkCollectionsDetailsCollectionIdsList = Array<string>;
+export const BulkCollectionsDetailsCollectionIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BulkCollectionsDetailsCollectionIdsList>;
+
+/** Bulk collection details */
+export interface BulkCollectionsDetails {
+  /** collection ids list that the action is performed on */
+  collectionIds?: BulkCollectionsDetailsCollectionIdsList;
+  /** Action to perform (For example: EnableCollections, DisableCollections) */
+  action?: string;
+}
+export const BulkCollectionsDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collectionIds: S.optional(BulkCollectionsDetailsCollectionIdsList),
+    action: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BulkCollectionsDetails",
+}) as any as S.Schema<BulkCollectionsDetails>;
+
+export interface BulkPrivateStoreCollectionsActionRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** bulk collections properties details */
+  properties?: BulkCollectionsDetails;
+}
+export const BulkPrivateStoreCollectionsActionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      properties: S.optional(BulkCollectionsDetails),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/bulkCollectionsAction",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "BulkPrivateStoreCollectionsActionRequest",
+}) as any as S.Schema<BulkPrivateStoreCollectionsActionRequest>;
+
+/** Collection name and id. */
+export interface CollectionsDetails {
+  /** Collection name. */
+  collectionName?: string;
+  /** Collection id. */
+  collectionId?: string;
+}
+export const CollectionsDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collectionName: S.optional(S.String),
+    collectionId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CollectionsDetails",
+}) as any as S.Schema<CollectionsDetails>;
+
+/** Succeeded collections */
+export type BulkCollectionsResponseSucceededList = Array<CollectionsDetails>;
+export const BulkCollectionsResponseSucceededList = /*@__PURE__*/ S.Array(
+  CollectionsDetails,
+) as any as S.Schema<BulkCollectionsResponseSucceededList>;
+
+/** Failed collections */
+export type BulkCollectionsResponseFailedList = Array<CollectionsDetails>;
+export const BulkCollectionsResponseFailedList = /*@__PURE__*/ S.Array(
+  CollectionsDetails,
+) as any as S.Schema<BulkCollectionsResponseFailedList>;
+
+/** The bulk collections response. The response contains two lists that indicate for each collection whether the operation succeeded or failed */
+export interface BulkCollectionsResponse {
+  /** Succeeded collections */
+  succeeded?: BulkCollectionsResponseSucceededList;
+  /** Failed collections */
+  failed?: BulkCollectionsResponseFailedList;
+}
+export const BulkCollectionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    succeeded: S.optional(BulkCollectionsResponseSucceededList),
+    failed: S.optional(BulkCollectionsResponseFailedList),
+  }),
+).annotate({
+  identifier: "BulkCollectionsResponse",
+}) as any as S.Schema<BulkCollectionsResponse>;
+
+/** Return plan with request details */
+export interface PlanDetailsInput {
+  /** Gets or sets Plan Id */
+  planId?: string;
+  /** Gets or sets user's justification for the plan's request */
+  justification?: string;
+  /** Gets or sets the subscription id that the user is requesting to add the plan to */
+  subscriptionId?: string;
+  /** Gets or sets the subscription name that the user is requesting to add the plan to */
+  subscriptionName?: string;
+}
+export const PlanDetailsInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    planId: S.optional(S.String),
+    justification: S.optional(S.String),
+    subscriptionId: S.optional(S.String),
+    subscriptionName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PlanDetailsInput",
+}) as any as S.Schema<PlanDetailsInput>;
+
+/** Gets or sets the plans details */
+export type RequestApprovalPropertiesInputPlansDetailsList =
+  Array<PlanDetailsInput>;
+export const RequestApprovalPropertiesInputPlansDetailsList =
+  /*@__PURE__*/ S.Array(
+    PlanDetailsInput,
+  ) as any as S.Schema<RequestApprovalPropertiesInputPlansDetailsList>;
+
+/** Approval request resource properties */
+export interface RequestApprovalPropertiesInput {
+  /** Gets or sets unique offer id. */
+  offerId?: string;
+  /** The offer's publisher id */
+  publisherId?: string;
+  /** Gets or sets the plans details */
+  plansDetails?: RequestApprovalPropertiesInputPlansDetailsList;
+  /** Gets or sets the request approval message code */
+  messageCode?: number;
+}
+export const RequestApprovalPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    offerId: S.optional(S.String),
+    publisherId: S.optional(S.String),
+    plansDetails: S.optional(RequestApprovalPropertiesInputPlansDetailsList),
+    messageCode: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RequestApprovalPropertiesInput",
+}) as any as S.Schema<RequestApprovalPropertiesInput>;
+
+export interface CreatePrivateStoreApprovalRequestRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The request approval ID to get create or update */
+  requestApprovalId: string;
+  /** The privateStore approval request data structure. */
+  properties?: RequestApprovalPropertiesInput;
+}
+export const CreatePrivateStoreApprovalRequestRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      requestApprovalId: S.String.pipe(T.Label()),
+      properties: S.optional(RequestApprovalPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/requestApprovals/{requestApprovalId}",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "CreatePrivateStoreApprovalRequestRequest",
+}) as any as S.Schema<CreatePrivateStoreApprovalRequestRequest>;
+
+/** Gets the plan status */
+export type Status = "Pending" | "Rejected" | "Approved" | "None";
+export const Status = /*@__PURE__*/ S.String;
+
+/** Return plan with request details */
+export interface PlanDetails {
+  /** Gets or sets Plan Id */
+  planId?: string;
+  /** Gets the plan status */
+  status?: Status;
+  /** Gets request date */
+  requestDate?: unknown;
+  /** Gets or sets user's justification for the plan's request */
+  justification?: string;
+  /** Gets or sets the subscription id that the user is requesting to add the plan to */
+  subscriptionId?: string;
+  /** Gets or sets the subscription name that the user is requesting to add the plan to */
+  subscriptionName?: string;
+}
+export const PlanDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    planId: S.optional(S.String),
+    status: S.optional(Status),
+    requestDate: S.optional(S.Unknown),
+    justification: S.optional(S.String),
+    subscriptionId: S.optional(S.String),
+    subscriptionName: S.optional(S.String),
+  }),
+).annotate({ identifier: "PlanDetails" }) as any as S.Schema<PlanDetails>;
+
+/** Gets or sets the plans details */
+export type RequestApprovalPropertiesPlansDetailsList = Array<PlanDetails>;
+export const RequestApprovalPropertiesPlansDetailsList = /*@__PURE__*/ S.Array(
+  PlanDetails,
+) as any as S.Schema<RequestApprovalPropertiesPlansDetailsList>;
+
+/** Approval request resource properties */
+export interface RequestApprovalProperties {
+  /** Gets or sets unique offer id. */
+  offerId?: string;
+  /** Gets offer display name */
+  offerDisplayName?: string;
+  /** The offer's publisher id */
+  publisherId?: string;
+  /** Gets or sets the plans details */
+  plansDetails?: RequestApprovalPropertiesPlansDetailsList;
+  /** Gets a value indicating whether the request is closed */
+  isClosed?: boolean;
+  /** Gets or sets the request approval message code */
+  messageCode?: number;
+}
+export const RequestApprovalProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    offerId: S.optional(S.String),
+    offerDisplayName: S.optional(S.String),
+    publisherId: S.optional(S.String),
+    plansDetails: S.optional(RequestApprovalPropertiesPlansDetailsList),
+    isClosed: S.optional(S.Boolean),
+    messageCode: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RequestApprovalProperties",
+}) as any as S.Schema<RequestApprovalProperties>;
+
+export interface CreatePrivateStoreApprovalRequestResponse {
+  /** The resource ID. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource */
+  systemData?: SystemData;
+  /** The privateStore approval request data structure. */
+  properties?: RequestApprovalProperties;
+}
+export const CreatePrivateStoreApprovalRequestResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RequestApprovalProperties),
+    }),
+  ).annotate({
+    identifier: "CreatePrivateStoreApprovalRequestResponse",
+  }) as any as S.Schema<CreatePrivateStoreApprovalRequestResponse>;
+
+export interface DeletePrivateStoreRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+}
+export const DeletePrivateStoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateStoreId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePrivateStoreRequest",
+}) as any as S.Schema<DeletePrivateStoreRequest>;
+
+export interface DeletePrivateStoreResponse {}
+export const DeletePrivateStoreResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateStoreResponse",
+}) as any as S.Schema<DeletePrivateStoreResponse>;
+
+export interface DeletePrivateStoreCollectionRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The collection ID */
+  collectionId: string;
+}
+export const DeletePrivateStoreCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateStoreId: S.String.pipe(T.Label()),
+    collectionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePrivateStoreCollectionRequest",
+}) as any as S.Schema<DeletePrivateStoreCollectionRequest>;
+
+export interface DeletePrivateStoreCollectionResponse {}
+export const DeletePrivateStoreCollectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateStoreCollectionResponse",
+}) as any as S.Schema<DeletePrivateStoreCollectionResponse>;
+
+export interface DeletePrivateStoreCollectionOfferRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The collection ID */
+  collectionId: string;
+  /** The offer ID to update or delete */
+  offerId: string;
+}
+export const DeletePrivateStoreCollectionOfferRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      collectionId: S.String.pipe(T.Label()),
+      offerId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/offers/{offerId}",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateStoreCollectionOfferRequest",
+}) as any as S.Schema<DeletePrivateStoreCollectionOfferRequest>;
+
+export interface DeletePrivateStoreCollectionOfferResponse {}
+export const DeletePrivateStoreCollectionOfferResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeletePrivateStoreCollectionOfferResponse",
+  }) as any as S.Schema<DeletePrivateStoreCollectionOfferResponse>;
+
+export interface FetchPrivateStoreAllSubscriptionsInTenantRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+}
+export const FetchPrivateStoreAllSubscriptionsInTenantRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/fetchAllSubscriptionsInTenant",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "FetchPrivateStoreAllSubscriptionsInTenantRequest",
+  }) as any as S.Schema<FetchPrivateStoreAllSubscriptionsInTenantRequest>;
+
+/** The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted. */
+export type SubscriptionState =
+  | "Enabled"
+  | "Warned"
+  | "PastDue"
+  | "Disabled"
+  | "Deleted";
+export const SubscriptionState = /*@__PURE__*/ S.String;
+
+/** Subscription information. */
+export interface Subscription {
+  /** The fully qualified ID for the subscription. For example, /subscriptions/00000000-0000-0000-0000-000000000000. */
+  id?: string;
+  /** The subscription ID. */
+  subscriptionId?: string;
+  /** The subscription display name. */
+  displayName?: string;
+  /** The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted. */
+  state?: SubscriptionState;
+}
+export const Subscription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    subscriptionId: S.optional(S.String),
+    displayName: S.optional(S.String),
+    state: S.optional(SubscriptionState),
+  }),
+).annotate({ identifier: "Subscription" }) as any as S.Schema<Subscription>;
+
+/** An array of subscriptions. */
+export type SubscriptionsResponseValueList = Array<Subscription>;
+export const SubscriptionsResponseValueList = /*@__PURE__*/ S.Array(
+  Subscription,
+) as any as S.Schema<SubscriptionsResponseValueList>;
+
+/** Subscription list operation response. */
+export interface SubscriptionsResponse {
+  /** An array of subscriptions. */
+  value?: SubscriptionsResponseValueList;
+  /** The skip token to retrieve the next page. */
+  skipToken?: string;
+  /** Number of subscriptions on the page */
+  count?: number;
+}
+export const SubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SubscriptionsResponseValueList),
+    skipToken: S.optional(S.String),
+    count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SubscriptionsResponse",
+}) as any as S.Schema<SubscriptionsResponse>;
 
 export interface GetPrivateStoreRequest {
   /** The store ID - must use the tenant ID */
@@ -388,6 +789,172 @@ export const GetPrivateStoreResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetPrivateStoreResponse",
 }) as any as S.Schema<GetPrivateStoreResponse>;
+
+export interface GetPrivateStoreAdminRequestApprovalRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The admin request approval ID to get create or update */
+  adminRequestApprovalId: string;
+  /** The publisher id of this offer. */
+  publisherId: string;
+}
+export const GetPrivateStoreAdminRequestApprovalRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      adminRequestApprovalId: S.String.pipe(T.Label()),
+      publisherId: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/adminRequestApprovals/{adminRequestApprovalId}",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPrivateStoreAdminRequestApprovalRequest",
+  }) as any as S.Schema<GetPrivateStoreAdminRequestApprovalRequest>;
+
+/** Gets or sets admin action */
+export type AdminAction = "Approved" | "Rejected";
+export const AdminAction = /*@__PURE__*/ S.String;
+
+/** Gets or sets Approved plans ids, empty in case of rejected */
+export type AdminRequestApprovalPropertiesApprovedPlansList = Array<string>;
+export const AdminRequestApprovalPropertiesApprovedPlansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AdminRequestApprovalPropertiesApprovedPlansList>;
+
+/** user request details */
+export interface UserRequestDetails {
+  /** Gets user id */
+  user?: string;
+  /** Gets request date */
+  date?: string;
+  /** Gets justification */
+  justification?: string;
+  /** Gets the subscription id that the user is requesting to add the plan to */
+  subscriptionId?: string;
+  /** Gets the subscription name that the user is requesting to add the plan to */
+  subscriptionName?: string;
+}
+export const UserRequestDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user: S.optional(S.String),
+    date: S.optional(S.String),
+    justification: S.optional(S.String),
+    subscriptionId: S.optional(S.String),
+    subscriptionName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserRequestDetails",
+}) as any as S.Schema<UserRequestDetails>;
+
+/** Gets requesters details list */
+export type PlanRequesterDetailsRequestersList = Array<UserRequestDetails>;
+export const PlanRequesterDetailsRequestersList = /*@__PURE__*/ S.Array(
+  UserRequestDetails,
+) as any as S.Schema<PlanRequesterDetailsRequestersList>;
+
+/** Plan with requesters details */
+export interface PlanRequesterDetails {
+  /** Gets the plan id */
+  planId?: string;
+  /** Gets the plan display name */
+  planDisplayName?: string;
+  /** Gets requesters details list */
+  requesters?: PlanRequesterDetailsRequestersList;
+}
+export const PlanRequesterDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    planId: S.optional(S.String),
+    planDisplayName: S.optional(S.String),
+    requesters: S.optional(PlanRequesterDetailsRequestersList),
+  }),
+).annotate({
+  identifier: "PlanRequesterDetails",
+}) as any as S.Schema<PlanRequesterDetails>;
+
+/** Gets list of plans with requesters details */
+export type AdminRequestApprovalPropertiesPlansList =
+  Array<PlanRequesterDetails>;
+export const AdminRequestApprovalPropertiesPlansList = /*@__PURE__*/ S.Array(
+  PlanRequesterDetails,
+) as any as S.Schema<AdminRequestApprovalPropertiesPlansList>;
+
+/** Gets or sets list of associated collection ids */
+export type AdminRequestApprovalPropertiesCollectionIdsList = Array<string>;
+export const AdminRequestApprovalPropertiesCollectionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AdminRequestApprovalPropertiesCollectionIdsList>;
+
+/** Admin approval request resource properties */
+export interface AdminRequestApprovalProperties {
+  /** Gets or sets offer Id */
+  offerId?: string;
+  /** Gets display name */
+  displayName?: string;
+  /** Gets or sets publisher Id */
+  publisherId?: string;
+  /** Gets or sets admin action */
+  adminAction?: AdminAction;
+  /** Gets or sets Approved plans ids, empty in case of rejected */
+  approvedPlans?: AdminRequestApprovalPropertiesApprovedPlansList;
+  /** Gets or sets admin comment */
+  comment?: string;
+  /** Gets or sets admin details */
+  administrator?: string;
+  /** Gets list of plans with requesters details */
+  plans?: AdminRequestApprovalPropertiesPlansList;
+  /** Gets or sets list of associated collection ids */
+  collectionIds?: AdminRequestApprovalPropertiesCollectionIdsList;
+  /** The offer icon url. */
+  icon?: string;
+}
+export const AdminRequestApprovalProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    offerId: S.optional(S.String),
+    displayName: S.optional(S.String),
+    publisherId: S.optional(S.String),
+    adminAction: S.optional(AdminAction),
+    approvedPlans: S.optional(AdminRequestApprovalPropertiesApprovedPlansList),
+    comment: S.optional(S.String),
+    administrator: S.optional(S.String),
+    plans: S.optional(AdminRequestApprovalPropertiesPlansList),
+    collectionIds: S.optional(AdminRequestApprovalPropertiesCollectionIdsList),
+    icon: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AdminRequestApprovalProperties",
+}) as any as S.Schema<AdminRequestApprovalProperties>;
+
+export interface GetPrivateStoreAdminRequestApprovalResponse {
+  /** The resource ID. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource */
+  systemData?: SystemData;
+  /** The privateStore admin Approval request data structure. */
+  properties?: AdminRequestApprovalProperties;
+}
+export const GetPrivateStoreAdminRequestApprovalResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AdminRequestApprovalProperties),
+    }),
+  ).annotate({
+    identifier: "GetPrivateStoreAdminRequestApprovalResponse",
+  }) as any as S.Schema<GetPrivateStoreAdminRequestApprovalResponse>;
 
 export interface GetPrivateStoreCollectionRequest {
   /** The store ID - must use the tenant ID */
@@ -591,6 +1158,54 @@ export const GetPrivateStoreCollectionOfferResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetPrivateStoreCollectionOfferResponse",
 }) as any as S.Schema<GetPrivateStoreCollectionOfferResponse>;
 
+export interface GetPrivateStoreRequestApprovalRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The request approval ID to get create or update */
+  requestApprovalId: string;
+}
+export const GetPrivateStoreRequestApprovalRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      requestApprovalId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/requestApprovals/{requestApprovalId}",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetPrivateStoreRequestApprovalRequest",
+}) as any as S.Schema<GetPrivateStoreRequestApprovalRequest>;
+
+export interface GetPrivateStoreRequestApprovalResponse {
+  /** The resource ID. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource */
+  systemData?: SystemData;
+  /** The privateStore approval request data structure. */
+  properties?: RequestApprovalProperties;
+}
+export const GetPrivateStoreRequestApprovalResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RequestApprovalProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateStoreRequestApprovalResponse",
+}) as any as S.Schema<GetPrivateStoreRequestApprovalResponse>;
+
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -676,6 +1291,136 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
+
+export interface ListPrivateStoreRequest {
+  /** Determines if to use cache or DB for serving this request */
+  use_cache?: string;
+}
+export const ListPrivateStoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    use_cache: S.optional(S.String.pipe(T.Query("use-cache"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Marketplace/privateStores",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateStoreRequest",
+}) as any as S.Schema<ListPrivateStoreRequest>;
+
+/** The PrivateStore data structure. */
+export interface PrivateStore {
+  /** The resource ID. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource */
+  systemData?: SystemData;
+  /** The PrivateStore data structure. */
+  properties?: PrivateStoreProperties;
+}
+export const PrivateStore = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateStoreProperties),
+  }),
+).annotate({ identifier: "PrivateStore" }) as any as S.Schema<PrivateStore>;
+
+/** The PrivateStore items on this page */
+export type PrivateStoreListValueList = Array<PrivateStore>;
+export const PrivateStoreListValueList = /*@__PURE__*/ S.Array(
+  PrivateStore,
+) as any as S.Schema<PrivateStoreListValueList>;
+
+/** Describes the json payload for the list of available private stores (between zero and one, inclusive) */
+export interface PrivateStoreList {
+  /** The PrivateStore items on this page */
+  value: PrivateStoreListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateStoreList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateStoreListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateStoreList",
+}) as any as S.Schema<PrivateStoreList>;
+
+export interface ListPrivateStoreAdminRequestApprovalsRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+}
+export const ListPrivateStoreAdminRequestApprovalsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/adminRequestApprovals",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateStoreAdminRequestApprovalsRequest",
+  }) as any as S.Schema<ListPrivateStoreAdminRequestApprovalsRequest>;
+
+/** Admin request approval resource. */
+export interface AdminRequestApprovalsResource {
+  /** The resource ID. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource */
+  systemData?: SystemData;
+  /** The privateStore admin Approval request data structure. */
+  properties?: AdminRequestApprovalProperties;
+}
+export const AdminRequestApprovalsResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AdminRequestApprovalProperties),
+  }),
+).annotate({
+  identifier: "AdminRequestApprovalsResource",
+}) as any as S.Schema<AdminRequestApprovalsResource>;
+
+export type AdminRequestApprovalsListValueList =
+  Array<AdminRequestApprovalsResource>;
+export const AdminRequestApprovalsListValueList = /*@__PURE__*/ S.Array(
+  AdminRequestApprovalsResource,
+) as any as S.Schema<AdminRequestApprovalsListValueList>;
+
+/** List of admin request approval resources */
+export interface AdminRequestApprovalsList {
+  value?: AdminRequestApprovalsListValueList;
+  /** URL to get the next set of notifications list results if there are any. */
+  nextLink?: string;
+}
+export const AdminRequestApprovalsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AdminRequestApprovalsListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AdminRequestApprovalsList",
+}) as any as S.Schema<AdminRequestApprovalsList>;
 
 export interface ListPrivateStoreCollectionRequest {
   /** The store ID - must use the tenant ID */
@@ -910,11 +1655,11 @@ export const CollectionOffersByContextList = /*@__PURE__*/ S.suspend(() =>
   identifier: "CollectionOffersByContextList",
 }) as any as S.Schema<CollectionOffersByContextList>;
 
-export interface ListPrivateStoreNewPlanNotificationsRequest {
+export interface ListPrivateStoreNewPlansNotificationsRequest {
   /** The store ID - must use the tenant ID */
   privateStoreId: string;
 }
-export const ListPrivateStoreNewPlanNotificationsRequest =
+export const ListPrivateStoreNewPlansNotificationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateStoreId: S.String.pipe(T.Label()),
@@ -927,8 +1672,8 @@ export const ListPrivateStoreNewPlanNotificationsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateStoreNewPlanNotificationsRequest",
-  }) as any as S.Schema<ListPrivateStoreNewPlanNotificationsRequest>;
+    identifier: "ListPrivateStoreNewPlansNotificationsRequest",
+  }) as any as S.Schema<ListPrivateStoreNewPlansNotificationsRequest>;
 
 /** Plan notification details */
 export interface PlanNotificationDetails {
@@ -1001,11 +1746,11 @@ export const NewPlansNotificationsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "NewPlansNotificationsList",
 }) as any as S.Schema<NewPlansNotificationsList>;
 
-export interface ListPrivateStoreSubscriptionContextRequest {
+export interface ListPrivateStoreSubscriptionsContextRequest {
   /** The store ID - must use the tenant ID */
   privateStoreId: string;
 }
-export const ListPrivateStoreSubscriptionContextRequest =
+export const ListPrivateStoreSubscriptionsContextRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateStoreId: S.String.pipe(T.Label()),
@@ -1018,8 +1763,8 @@ export const ListPrivateStoreSubscriptionContextRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListPrivateStoreSubscriptionContextRequest",
-  }) as any as S.Schema<ListPrivateStoreSubscriptionContextRequest>;
+    identifier: "ListPrivateStoreSubscriptionsContextRequest",
+  }) as any as S.Schema<ListPrivateStoreSubscriptionsContextRequest>;
 
 export type SubscriptionsContextListSubscriptionsIdsList = Array<string>;
 export const SubscriptionsContextListSubscriptionsIdsList =
@@ -1039,257 +1784,79 @@ export const SubscriptionsContextList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SubscriptionsContextList",
 }) as any as S.Schema<SubscriptionsContextList>;
 
-/** Gets or sets added plans */
-export type AcknowledgeOfferNotificationDetailsAddPlansList = Array<string>;
-export const AcknowledgeOfferNotificationDetailsAddPlansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AcknowledgeOfferNotificationDetailsAddPlansList>;
+/** Set the Operation for the POST method. Ping or Delete */
+export type Operation =
+  | "DeletePrivateStoreOffer"
+  | "DeletePrivateStoreCollection"
+  | "DeletePrivateStoreCollectionOffer"
+  | "Ping";
+export const Operation = /*@__PURE__*/ S.String;
 
-/** Gets or sets remove plans */
-export type AcknowledgeOfferNotificationDetailsRemovePlansList = Array<string>;
-export const AcknowledgeOfferNotificationDetailsRemovePlansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AcknowledgeOfferNotificationDetailsRemovePlansList>;
-
-/** Notification update request payload details */
-export interface AcknowledgeOfferNotificationDetails {
-  /** Gets or sets a value indicating whether acknowledge action flag is enabled */
-  acknowledge?: boolean;
-  /** Gets or sets a value indicating whether dismiss action flag is enabled */
-  dismiss?: boolean;
-  /** Gets or sets a value indicating whether remove offer action flag is enabled */
-  removeOffer?: boolean;
-  /** Gets or sets added plans */
-  addPlans?: AcknowledgeOfferNotificationDetailsAddPlansList;
-  /** Gets or sets remove plans */
-  removePlans?: AcknowledgeOfferNotificationDetailsRemovePlansList;
-}
-export const AcknowledgeOfferNotificationDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    acknowledge: S.optional(S.Boolean),
-    dismiss: S.optional(S.Boolean),
-    removeOffer: S.optional(S.Boolean),
-    addPlans: S.optional(AcknowledgeOfferNotificationDetailsAddPlansList),
-    removePlans: S.optional(AcknowledgeOfferNotificationDetailsRemovePlansList),
-  }),
-).annotate({
-  identifier: "AcknowledgeOfferNotificationDetails",
-}) as any as S.Schema<AcknowledgeOfferNotificationDetails>;
-
-export interface PrivateStoreAcknowledgeOfferNotificationRequest {
+export interface PostPrivateStoreCollectionRequest {
   /** The store ID - must use the tenant ID */
   privateStoreId: string;
+  /** The collection ID */
+  collectionId: string;
+  body?: Operation | (string & {});
+}
+export const PostPrivateStoreCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateStoreId: S.String.pipe(T.Label()),
+    collectionId: S.String.pipe(T.Label()),
+    body: S.optional(Operation.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostPrivateStoreCollectionRequest",
+}) as any as S.Schema<PostPrivateStoreCollectionRequest>;
+
+export interface PostPrivateStoreCollectionResponse {}
+export const PostPrivateStoreCollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PostPrivateStoreCollectionResponse",
+}) as any as S.Schema<PostPrivateStoreCollectionResponse>;
+
+export interface PostPrivateStoreCollectionOfferRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The collection ID */
+  collectionId: string;
   /** The offer ID to update or delete */
   offerId: string;
-  /** Notification update request payload details */
-  properties?: AcknowledgeOfferNotificationDetails;
+  body?: Operation | (string & {});
 }
-export const PrivateStoreAcknowledgeOfferNotificationRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const PostPrivateStoreCollectionOfferRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       privateStoreId: S.String.pipe(T.Label()),
+      collectionId: S.String.pipe(T.Label()),
       offerId: S.String.pipe(T.Label()),
-      properties: S.optional(AcknowledgeOfferNotificationDetails),
+      body: S.optional(Operation.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/offers/{offerId}/acknowledgeNotification",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/offers/{offerId}",
         code: 200,
         apiVersion: "2025-01-01",
       }),
     ),
-  ).annotate({
-    identifier: "PrivateStoreAcknowledgeOfferNotificationRequest",
-  }) as any as S.Schema<PrivateStoreAcknowledgeOfferNotificationRequest>;
-
-export interface PrivateStoreAcknowledgeOfferNotificationResponse {}
-export const PrivateStoreAcknowledgeOfferNotificationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PrivateStoreAcknowledgeOfferNotificationResponse",
-  }) as any as S.Schema<PrivateStoreAcknowledgeOfferNotificationResponse>;
-
-export interface PrivateStoreAdminRequestApprovalsListRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-}
-export const PrivateStoreAdminRequestApprovalsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/adminRequestApprovals",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateStoreAdminRequestApprovalsListRequest",
-  }) as any as S.Schema<PrivateStoreAdminRequestApprovalsListRequest>;
-
-/** Gets or sets admin action */
-export type AdminAction = "Approved" | "Rejected";
-export const AdminAction = /*@__PURE__*/ S.String;
-
-/** Gets or sets Approved plans ids, empty in case of rejected */
-export type AdminRequestApprovalPropertiesApprovedPlansList = Array<string>;
-export const AdminRequestApprovalPropertiesApprovedPlansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AdminRequestApprovalPropertiesApprovedPlansList>;
-
-/** user request details */
-export interface UserRequestDetails {
-  /** Gets user id */
-  user?: string;
-  /** Gets request date */
-  date?: string;
-  /** Gets justification */
-  justification?: string;
-  /** Gets the subscription id that the user is requesting to add the plan to */
-  subscriptionId?: string;
-  /** Gets the subscription name that the user is requesting to add the plan to */
-  subscriptionName?: string;
-}
-export const UserRequestDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user: S.optional(S.String),
-    date: S.optional(S.String),
-    justification: S.optional(S.String),
-    subscriptionId: S.optional(S.String),
-    subscriptionName: S.optional(S.String),
-  }),
 ).annotate({
-  identifier: "UserRequestDetails",
-}) as any as S.Schema<UserRequestDetails>;
+  identifier: "PostPrivateStoreCollectionOfferRequest",
+}) as any as S.Schema<PostPrivateStoreCollectionOfferRequest>;
 
-/** Gets requesters details list */
-export type PlanRequesterDetailsRequestersList = Array<UserRequestDetails>;
-export const PlanRequesterDetailsRequestersList = /*@__PURE__*/ S.Array(
-  UserRequestDetails,
-) as any as S.Schema<PlanRequesterDetailsRequestersList>;
-
-/** Plan with requesters details */
-export interface PlanRequesterDetails {
-  /** Gets the plan id */
-  planId?: string;
-  /** Gets the plan display name */
-  planDisplayName?: string;
-  /** Gets requesters details list */
-  requesters?: PlanRequesterDetailsRequestersList;
-}
-export const PlanRequesterDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    planId: S.optional(S.String),
-    planDisplayName: S.optional(S.String),
-    requesters: S.optional(PlanRequesterDetailsRequestersList),
-  }),
+export interface PostPrivateStoreCollectionOfferResponse {}
+export const PostPrivateStoreCollectionOfferResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "PlanRequesterDetails",
-}) as any as S.Schema<PlanRequesterDetails>;
-
-/** Gets list of plans with requesters details */
-export type AdminRequestApprovalPropertiesPlansList =
-  Array<PlanRequesterDetails>;
-export const AdminRequestApprovalPropertiesPlansList = /*@__PURE__*/ S.Array(
-  PlanRequesterDetails,
-) as any as S.Schema<AdminRequestApprovalPropertiesPlansList>;
-
-/** Gets or sets list of associated collection ids */
-export type AdminRequestApprovalPropertiesCollectionIdsList = Array<string>;
-export const AdminRequestApprovalPropertiesCollectionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AdminRequestApprovalPropertiesCollectionIdsList>;
-
-/** Admin approval request resource properties */
-export interface AdminRequestApprovalProperties {
-  /** Gets or sets offer Id */
-  offerId?: string;
-  /** Gets display name */
-  displayName?: string;
-  /** Gets or sets publisher Id */
-  publisherId?: string;
-  /** Gets or sets admin action */
-  adminAction?: AdminAction;
-  /** Gets or sets Approved plans ids, empty in case of rejected */
-  approvedPlans?: AdminRequestApprovalPropertiesApprovedPlansList;
-  /** Gets or sets admin comment */
-  comment?: string;
-  /** Gets or sets admin details */
-  administrator?: string;
-  /** Gets list of plans with requesters details */
-  plans?: AdminRequestApprovalPropertiesPlansList;
-  /** Gets or sets list of associated collection ids */
-  collectionIds?: AdminRequestApprovalPropertiesCollectionIdsList;
-  /** The offer icon url. */
-  icon?: string;
-}
-export const AdminRequestApprovalProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerId: S.optional(S.String),
-    displayName: S.optional(S.String),
-    publisherId: S.optional(S.String),
-    adminAction: S.optional(AdminAction),
-    approvedPlans: S.optional(AdminRequestApprovalPropertiesApprovedPlansList),
-    comment: S.optional(S.String),
-    administrator: S.optional(S.String),
-    plans: S.optional(AdminRequestApprovalPropertiesPlansList),
-    collectionIds: S.optional(AdminRequestApprovalPropertiesCollectionIdsList),
-    icon: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AdminRequestApprovalProperties",
-}) as any as S.Schema<AdminRequestApprovalProperties>;
-
-/** Admin request approval resource. */
-export interface AdminRequestApprovalsResource {
-  /** The resource ID. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource */
-  systemData?: SystemData;
-  /** The privateStore admin Approval request data structure. */
-  properties?: AdminRequestApprovalProperties;
-}
-export const AdminRequestApprovalsResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AdminRequestApprovalProperties),
-  }),
-).annotate({
-  identifier: "AdminRequestApprovalsResource",
-}) as any as S.Schema<AdminRequestApprovalsResource>;
-
-export type AdminRequestApprovalsListValueList =
-  Array<AdminRequestApprovalsResource>;
-export const AdminRequestApprovalsListValueList = /*@__PURE__*/ S.Array(
-  AdminRequestApprovalsResource,
-) as any as S.Schema<AdminRequestApprovalsListValueList>;
-
-/** List of admin request approval resources */
-export interface AdminRequestApprovalsList {
-  value?: AdminRequestApprovalsListValueList;
-  /** URL to get the next set of notifications list results if there are any. */
-  nextLink?: string;
-}
-export const AdminRequestApprovalsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AdminRequestApprovalsListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AdminRequestApprovalsList",
-}) as any as S.Schema<AdminRequestApprovalsList>;
+  identifier: "PostPrivateStoreCollectionOfferResponse",
+}) as any as S.Schema<PostPrivateStoreCollectionOfferResponse>;
 
 export interface PrivateStoreAnyExistingOffersInTheCollectionsRequest {
   /** The store ID - must use the tenant ID */
@@ -1362,143 +1929,6 @@ export const BillingAccountsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BillingAccountsResponse",
 }) as any as S.Schema<BillingAccountsResponse>;
-
-/** collection ids list that the action is performed on */
-export type BulkCollectionsDetailsCollectionIdsList = Array<string>;
-export const BulkCollectionsDetailsCollectionIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BulkCollectionsDetailsCollectionIdsList>;
-
-/** Bulk collection details */
-export interface BulkCollectionsDetails {
-  /** collection ids list that the action is performed on */
-  collectionIds?: BulkCollectionsDetailsCollectionIdsList;
-  /** Action to perform (For example: EnableCollections, DisableCollections) */
-  action?: string;
-}
-export const BulkCollectionsDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collectionIds: S.optional(BulkCollectionsDetailsCollectionIdsList),
-    action: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BulkCollectionsDetails",
-}) as any as S.Schema<BulkCollectionsDetails>;
-
-export interface PrivateStoreBulkCollectionsActionRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** bulk collections properties details */
-  properties?: BulkCollectionsDetails;
-}
-export const PrivateStoreBulkCollectionsActionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      properties: S.optional(BulkCollectionsDetails),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/bulkCollectionsAction",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateStoreBulkCollectionsActionRequest",
-}) as any as S.Schema<PrivateStoreBulkCollectionsActionRequest>;
-
-/** Collection name and id. */
-export interface CollectionsDetails {
-  /** Collection name. */
-  collectionName?: string;
-  /** Collection id. */
-  collectionId?: string;
-}
-export const CollectionsDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collectionName: S.optional(S.String),
-    collectionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CollectionsDetails",
-}) as any as S.Schema<CollectionsDetails>;
-
-/** Succeeded collections */
-export type BulkCollectionsResponseSucceededList = Array<CollectionsDetails>;
-export const BulkCollectionsResponseSucceededList = /*@__PURE__*/ S.Array(
-  CollectionsDetails,
-) as any as S.Schema<BulkCollectionsResponseSucceededList>;
-
-/** Failed collections */
-export type BulkCollectionsResponseFailedList = Array<CollectionsDetails>;
-export const BulkCollectionsResponseFailedList = /*@__PURE__*/ S.Array(
-  CollectionsDetails,
-) as any as S.Schema<BulkCollectionsResponseFailedList>;
-
-/** The bulk collections response. The response contains two lists that indicate for each collection whether the operation succeeded or failed */
-export interface BulkCollectionsResponse {
-  /** Succeeded collections */
-  succeeded?: BulkCollectionsResponseSucceededList;
-  /** Failed collections */
-  failed?: BulkCollectionsResponseFailedList;
-}
-export const BulkCollectionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    succeeded: S.optional(BulkCollectionsResponseSucceededList),
-    failed: S.optional(BulkCollectionsResponseFailedList),
-  }),
-).annotate({
-  identifier: "BulkCollectionsResponse",
-}) as any as S.Schema<BulkCollectionsResponse>;
-
-export interface PrivateStoreCollectionApproveAllItemsRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The collection ID */
-  collectionId: string;
-}
-export const PrivateStoreCollectionApproveAllItemsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      collectionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/approveAllItems",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateStoreCollectionApproveAllItemsRequest",
-  }) as any as S.Schema<PrivateStoreCollectionApproveAllItemsRequest>;
-
-export interface PrivateStoreCollectionApproveAllItemsResponse {
-  /** The resource ID. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource */
-  systemData?: SystemData;
-  /** The collection data structure. */
-  properties?: CollectionProperties;
-}
-export const PrivateStoreCollectionApproveAllItemsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(CollectionProperties),
-    }),
-  ).annotate({
-    identifier: "PrivateStoreCollectionApproveAllItemsResponse",
-  }) as any as S.Schema<PrivateStoreCollectionApproveAllItemsResponse>;
 
 /** Gets or sets subscription ids list. Empty list indicates all subscriptions are selected, null indicates no update is done, explicit list indicates the explicit selected subscriptions. On insert, null is considered as bad request */
 export type CollectionPropertiesInputSubscriptionsListList = Array<string>;
@@ -1584,6 +2014,54 @@ export const PrivateStoreCollectionCreateOrUpdateResponse =
   ).annotate({
     identifier: "PrivateStoreCollectionCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateStoreCollectionCreateOrUpdateResponse>;
+
+export interface PrivateStoreCollectionDisableApproveAllItemsRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The collection ID */
+  collectionId: string;
+}
+export const PrivateStoreCollectionDisableApproveAllItemsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      collectionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/disableApproveAllItems",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PrivateStoreCollectionDisableApproveAllItemsRequest",
+  }) as any as S.Schema<PrivateStoreCollectionDisableApproveAllItemsRequest>;
+
+export interface PrivateStoreCollectionDisableApproveAllItemsResponse {
+  /** The resource ID. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource */
+  systemData?: SystemData;
+  /** The collection data structure. */
+  properties?: CollectionProperties;
+}
+export const PrivateStoreCollectionDisableApproveAllItemsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CollectionProperties),
+    }),
+  ).annotate({
+    identifier: "PrivateStoreCollectionDisableApproveAllItemsResponse",
+  }) as any as S.Schema<PrivateStoreCollectionDisableApproveAllItemsResponse>;
 
 export interface PrivateStoreCollectionOfferContextsViewRequest {
   /** The store ID - must use the tenant ID */
@@ -1751,80 +2229,6 @@ export const PrivateStoreCollectionOfferCreateOrUpdateResponse =
     identifier: "PrivateStoreCollectionOfferCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateStoreCollectionOfferCreateOrUpdateResponse>;
 
-/** Set the Operation for the POST method. Ping or Delete */
-export type Operation =
-  | "DeletePrivateStoreOffer"
-  | "DeletePrivateStoreCollection"
-  | "DeletePrivateStoreCollectionOffer"
-  | "Ping";
-export const Operation = /*@__PURE__*/ S.String;
-
-export interface PrivateStoreCollectionOfferPostRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The collection ID */
-  collectionId: string;
-  /** The offer ID to update or delete */
-  offerId: string;
-  body?: Operation | (string & {});
-}
-export const PrivateStoreCollectionOfferPostRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      collectionId: S.String.pipe(T.Label()),
-      offerId: S.String.pipe(T.Label()),
-      body: S.optional(Operation.pipe(T.HttpBody())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/offers/{offerId}",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateStoreCollectionOfferPostRequest",
-}) as any as S.Schema<PrivateStoreCollectionOfferPostRequest>;
-
-export interface PrivateStoreCollectionOfferPostResponse {}
-export const PrivateStoreCollectionOfferPostResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateStoreCollectionOfferPostResponse",
-}) as any as S.Schema<PrivateStoreCollectionOfferPostResponse>;
-
-export interface PrivateStoreCollectionPostRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The collection ID */
-  collectionId: string;
-  body?: Operation | (string & {});
-}
-export const PrivateStoreCollectionPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateStoreId: S.String.pipe(T.Label()),
-    collectionId: S.String.pipe(T.Label()),
-    body: S.optional(Operation.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateStoreCollectionPostRequest",
-}) as any as S.Schema<PrivateStoreCollectionPostRequest>;
-
-export interface PrivateStoreCollectionPostResponse {}
-export const PrivateStoreCollectionPostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrivateStoreCollectionPostResponse",
-}) as any as S.Schema<PrivateStoreCollectionPostResponse>;
-
 /** Subscriptions ids list */
 export type CollectionsToSubscriptionsMappingPropertiesSubscriptionIdsList =
   Array<string>;
@@ -1922,258 +2326,6 @@ export const CollectionsToSubscriptionsMappingResponse =
   ).annotate({
     identifier: "CollectionsToSubscriptionsMappingResponse",
   }) as any as S.Schema<CollectionsToSubscriptionsMappingResponse>;
-
-/** Target collections ids */
-export type TransferOffersDetailsTargetCollectionsList = Array<string>;
-export const TransferOffersDetailsTargetCollectionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TransferOffersDetailsTargetCollectionsList>;
-
-/** Offers ids list to transfer from source collection to target collection(s) */
-export type TransferOffersDetailsOfferIdsListList = Array<string>;
-export const TransferOffersDetailsOfferIdsListList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TransferOffersDetailsOfferIdsListList>;
-
-/** Transfer offers response details */
-export interface TransferOffersDetails {
-  /** Target collections ids */
-  targetCollections?: TransferOffersDetailsTargetCollectionsList;
-  /** Operation to perform (For example: Copy or Move) */
-  operation?: string;
-  /** Offers ids list to transfer from source collection to target collection(s) */
-  offerIdsList?: TransferOffersDetailsOfferIdsListList;
-}
-export const TransferOffersDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetCollections: S.optional(TransferOffersDetailsTargetCollectionsList),
-    operation: S.optional(S.String),
-    offerIdsList: S.optional(TransferOffersDetailsOfferIdsListList),
-  }),
-).annotate({
-  identifier: "TransferOffersDetails",
-}) as any as S.Schema<TransferOffersDetails>;
-
-export interface PrivateStoreCollectionTransferOffersRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The collection ID */
-  collectionId: string;
-  /** transfer offers properties details */
-  properties?: TransferOffersDetails;
-}
-export const PrivateStoreCollectionTransferOffersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      collectionId: S.String.pipe(T.Label()),
-      properties: S.optional(TransferOffersDetails),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/transferOffers",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateStoreCollectionTransferOffersRequest",
-  }) as any as S.Schema<PrivateStoreCollectionTransferOffersRequest>;
-
-/** Succeeded collections */
-export type TransferOffersResponseSucceededList = Array<CollectionsDetails>;
-export const TransferOffersResponseSucceededList = /*@__PURE__*/ S.Array(
-  CollectionsDetails,
-) as any as S.Schema<TransferOffersResponseSucceededList>;
-
-/** Failed collections */
-export type TransferOffersResponseFailedList = Array<CollectionsDetails>;
-export const TransferOffersResponseFailedList = /*@__PURE__*/ S.Array(
-  CollectionsDetails,
-) as any as S.Schema<TransferOffersResponseFailedList>;
-
-/** The transfer items response. The response contains two lists that indicate for each collection whether the operation succeeded or failed */
-export interface TransferOffersResponse {
-  /** Succeeded collections */
-  succeeded?: TransferOffersResponseSucceededList;
-  /** Failed collections */
-  failed?: TransferOffersResponseFailedList;
-}
-export const TransferOffersResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    succeeded: S.optional(TransferOffersResponseSucceededList),
-    failed: S.optional(TransferOffersResponseFailedList),
-  }),
-).annotate({
-  identifier: "TransferOffersResponse",
-}) as any as S.Schema<TransferOffersResponse>;
-
-/** Return plan with request details */
-export interface PlanDetailsInput {
-  /** Gets or sets Plan Id */
-  planId?: string;
-  /** Gets or sets user's justification for the plan's request */
-  justification?: string;
-  /** Gets or sets the subscription id that the user is requesting to add the plan to */
-  subscriptionId?: string;
-  /** Gets or sets the subscription name that the user is requesting to add the plan to */
-  subscriptionName?: string;
-}
-export const PlanDetailsInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    planId: S.optional(S.String),
-    justification: S.optional(S.String),
-    subscriptionId: S.optional(S.String),
-    subscriptionName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PlanDetailsInput",
-}) as any as S.Schema<PlanDetailsInput>;
-
-/** Gets or sets the plans details */
-export type RequestApprovalPropertiesInputPlansDetailsList =
-  Array<PlanDetailsInput>;
-export const RequestApprovalPropertiesInputPlansDetailsList =
-  /*@__PURE__*/ S.Array(
-    PlanDetailsInput,
-  ) as any as S.Schema<RequestApprovalPropertiesInputPlansDetailsList>;
-
-/** Approval request resource properties */
-export interface RequestApprovalPropertiesInput {
-  /** Gets or sets unique offer id. */
-  offerId?: string;
-  /** The offer's publisher id */
-  publisherId?: string;
-  /** Gets or sets the plans details */
-  plansDetails?: RequestApprovalPropertiesInputPlansDetailsList;
-  /** Gets or sets the request approval message code */
-  messageCode?: number;
-}
-export const RequestApprovalPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerId: S.optional(S.String),
-    publisherId: S.optional(S.String),
-    plansDetails: S.optional(RequestApprovalPropertiesInputPlansDetailsList),
-    messageCode: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "RequestApprovalPropertiesInput",
-}) as any as S.Schema<RequestApprovalPropertiesInput>;
-
-export interface PrivateStoreCreateApprovalRequestRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The request approval ID to get create or update */
-  requestApprovalId: string;
-  /** The privateStore approval request data structure. */
-  properties?: RequestApprovalPropertiesInput;
-}
-export const PrivateStoreCreateApprovalRequestRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      requestApprovalId: S.String.pipe(T.Label()),
-      properties: S.optional(RequestApprovalPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/requestApprovals/{requestApprovalId}",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateStoreCreateApprovalRequestRequest",
-}) as any as S.Schema<PrivateStoreCreateApprovalRequestRequest>;
-
-/** Gets the plan status */
-export type Status = "Pending" | "Rejected" | "Approved" | "None";
-export const Status = /*@__PURE__*/ S.String;
-
-/** Return plan with request details */
-export interface PlanDetails {
-  /** Gets or sets Plan Id */
-  planId?: string;
-  /** Gets the plan status */
-  status?: Status;
-  /** Gets request date */
-  requestDate?: unknown;
-  /** Gets or sets user's justification for the plan's request */
-  justification?: string;
-  /** Gets or sets the subscription id that the user is requesting to add the plan to */
-  subscriptionId?: string;
-  /** Gets or sets the subscription name that the user is requesting to add the plan to */
-  subscriptionName?: string;
-}
-export const PlanDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    planId: S.optional(S.String),
-    status: S.optional(Status),
-    requestDate: S.optional(S.Unknown),
-    justification: S.optional(S.String),
-    subscriptionId: S.optional(S.String),
-    subscriptionName: S.optional(S.String),
-  }),
-).annotate({ identifier: "PlanDetails" }) as any as S.Schema<PlanDetails>;
-
-/** Gets or sets the plans details */
-export type RequestApprovalPropertiesPlansDetailsList = Array<PlanDetails>;
-export const RequestApprovalPropertiesPlansDetailsList = /*@__PURE__*/ S.Array(
-  PlanDetails,
-) as any as S.Schema<RequestApprovalPropertiesPlansDetailsList>;
-
-/** Approval request resource properties */
-export interface RequestApprovalProperties {
-  /** Gets or sets unique offer id. */
-  offerId?: string;
-  /** Gets offer display name */
-  offerDisplayName?: string;
-  /** The offer's publisher id */
-  publisherId?: string;
-  /** Gets or sets the plans details */
-  plansDetails?: RequestApprovalPropertiesPlansDetailsList;
-  /** Gets a value indicating whether the request is closed */
-  isClosed?: boolean;
-  /** Gets or sets the request approval message code */
-  messageCode?: number;
-}
-export const RequestApprovalProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerId: S.optional(S.String),
-    offerDisplayName: S.optional(S.String),
-    publisherId: S.optional(S.String),
-    plansDetails: S.optional(RequestApprovalPropertiesPlansDetailsList),
-    isClosed: S.optional(S.Boolean),
-    messageCode: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "RequestApprovalProperties",
-}) as any as S.Schema<RequestApprovalProperties>;
-
-export interface PrivateStoreCreateApprovalRequestResponse {
-  /** The resource ID. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource */
-  systemData?: SystemData;
-  /** The privateStore approval request data structure. */
-  properties?: RequestApprovalProperties;
-}
-export const PrivateStoreCreateApprovalRequestResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RequestApprovalProperties),
-    }),
-  ).annotate({
-    identifier: "PrivateStoreCreateApprovalRequestResponse",
-  }) as any as S.Schema<PrivateStoreCreateApprovalRequestResponse>;
 
 /** Gets or sets list of branding characteristics */
 export type PrivateStorePropertiesInputBrandingMap = {
@@ -2282,131 +2434,6 @@ export const PrivateStoreCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateStoreCreateOrUpdateResponse",
 }) as any as S.Schema<PrivateStoreCreateOrUpdateResponse>;
 
-export interface PrivateStoreFetchAllSubscriptionsInTenantRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-}
-export const PrivateStoreFetchAllSubscriptionsInTenantRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/fetchAllSubscriptionsInTenant",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateStoreFetchAllSubscriptionsInTenantRequest",
-  }) as any as S.Schema<PrivateStoreFetchAllSubscriptionsInTenantRequest>;
-
-/** The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted. */
-export type SubscriptionState =
-  | "Enabled"
-  | "Warned"
-  | "PastDue"
-  | "Disabled"
-  | "Deleted";
-export const SubscriptionState = /*@__PURE__*/ S.String;
-
-/** Subscription information. */
-export interface Subscription {
-  /** The fully qualified ID for the subscription. For example, /subscriptions/00000000-0000-0000-0000-000000000000. */
-  id?: string;
-  /** The subscription ID. */
-  subscriptionId?: string;
-  /** The subscription display name. */
-  displayName?: string;
-  /** The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted. */
-  state?: SubscriptionState;
-}
-export const Subscription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    subscriptionId: S.optional(S.String),
-    displayName: S.optional(S.String),
-    state: S.optional(SubscriptionState),
-  }),
-).annotate({ identifier: "Subscription" }) as any as S.Schema<Subscription>;
-
-/** An array of subscriptions. */
-export type SubscriptionsResponseValueList = Array<Subscription>;
-export const SubscriptionsResponseValueList = /*@__PURE__*/ S.Array(
-  Subscription,
-) as any as S.Schema<SubscriptionsResponseValueList>;
-
-/** Subscription list operation response. */
-export interface SubscriptionsResponse {
-  /** An array of subscriptions. */
-  value?: SubscriptionsResponseValueList;
-  /** The skip token to retrieve the next page. */
-  skipToken?: string;
-  /** Number of subscriptions on the page */
-  count?: number;
-}
-export const SubscriptionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SubscriptionsResponseValueList),
-    skipToken: S.optional(S.String),
-    count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SubscriptionsResponse",
-}) as any as S.Schema<SubscriptionsResponse>;
-
-export interface PrivateStoreGetAdminRequestApprovalRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The admin request approval ID to get create or update */
-  adminRequestApprovalId: string;
-  /** The publisher id of this offer. */
-  publisherId: string;
-}
-export const PrivateStoreGetAdminRequestApprovalRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      adminRequestApprovalId: S.String.pipe(T.Label()),
-      publisherId: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/adminRequestApprovals/{adminRequestApprovalId}",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateStoreGetAdminRequestApprovalRequest",
-  }) as any as S.Schema<PrivateStoreGetAdminRequestApprovalRequest>;
-
-export interface PrivateStoreGetAdminRequestApprovalResponse {
-  /** The resource ID. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource */
-  systemData?: SystemData;
-  /** The privateStore admin Approval request data structure. */
-  properties?: AdminRequestApprovalProperties;
-}
-export const PrivateStoreGetAdminRequestApprovalResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AdminRequestApprovalProperties),
-    }),
-  ).annotate({
-    identifier: "PrivateStoreGetAdminRequestApprovalResponse",
-  }) as any as S.Schema<PrivateStoreGetAdminRequestApprovalResponse>;
-
 export interface PrivateStoreGetApprovalRequestsListRequest {
   /** The store ID - must use the tenant ID */
   privateStoreId: string;
@@ -2471,118 +2498,6 @@ export const RequestApprovalsList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RequestApprovalsList",
 }) as any as S.Schema<RequestApprovalsList>;
-
-export interface PrivateStoreGetRequestApprovalRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The request approval ID to get create or update */
-  requestApprovalId: string;
-}
-export const PrivateStoreGetRequestApprovalRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      requestApprovalId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/requestApprovals/{requestApprovalId}",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateStoreGetRequestApprovalRequest",
-}) as any as S.Schema<PrivateStoreGetRequestApprovalRequest>;
-
-export interface PrivateStoreGetRequestApprovalResponse {
-  /** The resource ID. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource */
-  systemData?: SystemData;
-  /** The privateStore approval request data structure. */
-  properties?: RequestApprovalProperties;
-}
-export const PrivateStoreGetRequestApprovalResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RequestApprovalProperties),
-    }),
-).annotate({
-  identifier: "PrivateStoreGetRequestApprovalResponse",
-}) as any as S.Schema<PrivateStoreGetRequestApprovalResponse>;
-
-export interface PrivateStoreListRequest {
-  /** Determines if to use cache or DB for serving this request */
-  use_cache?: string;
-}
-export const PrivateStoreListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    use_cache: S.optional(S.String.pipe(T.Query("use-cache"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Marketplace/privateStores",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateStoreListRequest",
-}) as any as S.Schema<PrivateStoreListRequest>;
-
-/** The PrivateStore data structure. */
-export interface PrivateStore {
-  /** The resource ID. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource */
-  systemData?: SystemData;
-  /** The PrivateStore data structure. */
-  properties?: PrivateStoreProperties;
-}
-export const PrivateStore = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateStoreProperties),
-  }),
-).annotate({ identifier: "PrivateStore" }) as any as S.Schema<PrivateStore>;
-
-/** The PrivateStore items on this page */
-export type PrivateStoreListValueList = Array<PrivateStore>;
-export const PrivateStoreListValueList = /*@__PURE__*/ S.Array(
-  PrivateStore,
-) as any as S.Schema<PrivateStoreListValueList>;
-
-/** Describes the json payload for the list of available private stores (between zero and one, inclusive) */
-export interface PrivateStoreList {
-  /** The PrivateStore items on this page */
-  value: PrivateStoreListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateStoreList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateStoreListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateStoreList",
-}) as any as S.Schema<PrivateStoreList>;
 
 export type PrivateStoreListStopSellOffersPlansNotificationsRequestSubscriptionsList =
   Array<string>;
@@ -2960,6 +2875,86 @@ export const QueryOffers = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "QueryOffers" }) as any as S.Schema<QueryOffers>;
 
+/** Current plans list */
+export type RequestDetailsPlanIdsList = Array<string>;
+export const RequestDetailsPlanIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RequestDetailsPlanIdsList>;
+
+/** Request details needed to get the plans statuses */
+export interface RequestDetails {
+  /** The offer's publisher id */
+  publisherId?: string;
+  /** Current plans list */
+  planIds?: RequestDetailsPlanIdsList;
+  /** Gets or sets the subscription id */
+  subscriptionId?: string;
+}
+export const RequestDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publisherId: S.optional(S.String),
+    planIds: S.optional(RequestDetailsPlanIdsList),
+    subscriptionId: S.optional(S.String),
+  }),
+).annotate({ identifier: "RequestDetails" }) as any as S.Schema<RequestDetails>;
+
+export interface PrivateStoreQueryRequestApprovalRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The request approval ID to get create or update */
+  requestApprovalId: string;
+  /** The details to get the request plans statuses */
+  properties?: RequestDetails;
+}
+export const PrivateStoreQueryRequestApprovalRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      requestApprovalId: S.String.pipe(T.Label()),
+      properties: S.optional(RequestDetails),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/requestApprovals/{requestApprovalId}/query",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "PrivateStoreQueryRequestApprovalRequest",
+}) as any as S.Schema<PrivateStoreQueryRequestApprovalRequest>;
+
+/** Gets or sets the plans details */
+export type QueryRequestApprovalPlansDetailsMap = {
+  [key: string]: PlanDetails | undefined;
+};
+export const QueryRequestApprovalPlansDetailsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  PlanDetails,
+) as any as S.Schema<QueryRequestApprovalPlansDetailsMap>;
+
+/** Gets the request plans with indication on each plan whether is approved by the admin, has pending request or not requested yet */
+export interface QueryRequestApproval {
+  /** Gets or sets unique offer id. */
+  uniqueOfferId?: string;
+  /** Gets or sets the plans details */
+  plansDetails?: QueryRequestApprovalPlansDetailsMap;
+  /** Gets or sets e-tag field */
+  etag?: string;
+  /** Gets or sets the notification message id */
+  messageCode?: number;
+}
+export const QueryRequestApproval = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uniqueOfferId: S.optional(S.String),
+    plansDetails: S.optional(QueryRequestApprovalPlansDetailsMap),
+    etag: S.optional(S.String),
+    messageCode: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "QueryRequestApproval",
+}) as any as S.Schema<QueryRequestApproval>;
+
 /** List of offer IDs */
 export type QueryUserOffersDetailsOfferIdsList = Array<string>;
 export const QueryUserOffersDetailsOfferIdsList = /*@__PURE__*/ S.Array(
@@ -3009,108 +3004,6 @@ export const PrivateStoreQueryUserOffersRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PrivateStoreQueryUserOffersRequest",
 }) as any as S.Schema<PrivateStoreQueryUserOffersRequest>;
-
-/** Gets or sets Approved plans ids, empty in case of rejected */
-export type AdminRequestApprovalPropertiesInputApprovedPlansList =
-  Array<string>;
-export const AdminRequestApprovalPropertiesInputApprovedPlansList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AdminRequestApprovalPropertiesInputApprovedPlansList>;
-
-/** Gets or sets list of associated collection ids */
-export type AdminRequestApprovalPropertiesInputCollectionIdsList =
-  Array<string>;
-export const AdminRequestApprovalPropertiesInputCollectionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AdminRequestApprovalPropertiesInputCollectionIdsList>;
-
-/** Admin approval request resource properties */
-export interface AdminRequestApprovalPropertiesInput {
-  /** Gets or sets offer Id */
-  offerId?: string;
-  /** Gets or sets publisher Id */
-  publisherId?: string;
-  /** Gets or sets admin action */
-  adminAction?: AdminAction | (string & {});
-  /** Gets or sets Approved plans ids, empty in case of rejected */
-  approvedPlans?: AdminRequestApprovalPropertiesInputApprovedPlansList;
-  /** Gets or sets admin comment */
-  comment?: string;
-  /** Gets or sets admin details */
-  administrator?: string;
-  /** Gets or sets list of associated collection ids */
-  collectionIds?: AdminRequestApprovalPropertiesInputCollectionIdsList;
-}
-export const AdminRequestApprovalPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    offerId: S.optional(S.String),
-    publisherId: S.optional(S.String),
-    adminAction: S.optional(AdminAction),
-    approvedPlans: S.optional(
-      AdminRequestApprovalPropertiesInputApprovedPlansList,
-    ),
-    comment: S.optional(S.String),
-    administrator: S.optional(S.String),
-    collectionIds: S.optional(
-      AdminRequestApprovalPropertiesInputCollectionIdsList,
-    ),
-  }),
-).annotate({
-  identifier: "AdminRequestApprovalPropertiesInput",
-}) as any as S.Schema<AdminRequestApprovalPropertiesInput>;
-
-export interface PrivateStoreUpdateAdminRequestApprovalRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The admin request approval ID to get create or update */
-  adminRequestApprovalId: string;
-  /** The privateStore admin Approval request data structure. */
-  properties?: AdminRequestApprovalPropertiesInput;
-}
-export const PrivateStoreUpdateAdminRequestApprovalRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      adminRequestApprovalId: S.String.pipe(T.Label()),
-      properties: S.optional(AdminRequestApprovalPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/adminRequestApprovals/{adminRequestApprovalId}",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateStoreUpdateAdminRequestApprovalRequest",
-  }) as any as S.Schema<PrivateStoreUpdateAdminRequestApprovalRequest>;
-
-export interface PrivateStoreUpdateAdminRequestApprovalResponse {
-  /** The resource ID. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource */
-  systemData?: SystemData;
-  /** The privateStore admin Approval request data structure. */
-  properties?: AdminRequestApprovalProperties;
-}
-export const PrivateStoreUpdateAdminRequestApprovalResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AdminRequestApprovalProperties),
-    }),
-  ).annotate({
-    identifier: "PrivateStoreUpdateAdminRequestApprovalResponse",
-  }) as any as S.Schema<PrivateStoreUpdateAdminRequestApprovalResponse>;
 
 /** Withdraw properties details */
 export interface WithdrawDetails {
@@ -3242,86 +3135,6 @@ export const QueryUserRulesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "QueryUserRulesRequest",
 }) as any as S.Schema<QueryUserRulesRequest>;
 
-/** Current plans list */
-export type RequestDetailsPlanIdsList = Array<string>;
-export const RequestDetailsPlanIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RequestDetailsPlanIdsList>;
-
-/** Request details needed to get the plans statuses */
-export interface RequestDetails {
-  /** The offer's publisher id */
-  publisherId?: string;
-  /** Current plans list */
-  planIds?: RequestDetailsPlanIdsList;
-  /** Gets or sets the subscription id */
-  subscriptionId?: string;
-}
-export const RequestDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publisherId: S.optional(S.String),
-    planIds: S.optional(RequestDetailsPlanIdsList),
-    subscriptionId: S.optional(S.String),
-  }),
-).annotate({ identifier: "RequestDetails" }) as any as S.Schema<RequestDetails>;
-
-export interface RequestPrivateStoreQueryApprovalRequest {
-  /** The store ID - must use the tenant ID */
-  privateStoreId: string;
-  /** The request approval ID to get create or update */
-  requestApprovalId: string;
-  /** The details to get the request plans statuses */
-  properties?: RequestDetails;
-}
-export const RequestPrivateStoreQueryApprovalRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateStoreId: S.String.pipe(T.Label()),
-      requestApprovalId: S.String.pipe(T.Label()),
-      properties: S.optional(RequestDetails),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/requestApprovals/{requestApprovalId}/query",
-        code: 200,
-        apiVersion: "2025-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "RequestPrivateStoreQueryApprovalRequest",
-}) as any as S.Schema<RequestPrivateStoreQueryApprovalRequest>;
-
-/** Gets or sets the plans details */
-export type QueryRequestApprovalPlansDetailsMap = {
-  [key: string]: PlanDetails | undefined;
-};
-export const QueryRequestApprovalPlansDetailsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  PlanDetails,
-) as any as S.Schema<QueryRequestApprovalPlansDetailsMap>;
-
-/** Gets the request plans with indication on each plan whether is approved by the admin, has pending request or not requested yet */
-export interface QueryRequestApproval {
-  /** Gets or sets unique offer id. */
-  uniqueOfferId?: string;
-  /** Gets or sets the plans details */
-  plansDetails?: QueryRequestApprovalPlansDetailsMap;
-  /** Gets or sets e-tag field */
-  etag?: string;
-  /** Gets or sets the notification message id */
-  messageCode?: number;
-}
-export const QueryRequestApproval = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uniqueOfferId: S.optional(S.String),
-    plansDetails: S.optional(QueryRequestApprovalPlansDetailsMap),
-    etag: S.optional(S.String),
-    messageCode: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "QueryRequestApproval",
-}) as any as S.Schema<QueryRequestApproval>;
-
 export type SetCollectionRulesRequestValueList = Array<Rule>;
 export const SetCollectionRulesRequestValueList = /*@__PURE__*/ S.Array(
   Rule,
@@ -3360,6 +3173,193 @@ export const SetCollectionRulesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SetCollectionRulesResponse",
 }) as any as S.Schema<SetCollectionRulesResponse>;
+
+/** Target collections ids */
+export type TransferOffersDetailsTargetCollectionsList = Array<string>;
+export const TransferOffersDetailsTargetCollectionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TransferOffersDetailsTargetCollectionsList>;
+
+/** Offers ids list to transfer from source collection to target collection(s) */
+export type TransferOffersDetailsOfferIdsListList = Array<string>;
+export const TransferOffersDetailsOfferIdsListList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TransferOffersDetailsOfferIdsListList>;
+
+/** Transfer offers response details */
+export interface TransferOffersDetails {
+  /** Target collections ids */
+  targetCollections?: TransferOffersDetailsTargetCollectionsList;
+  /** Operation to perform (For example: Copy or Move) */
+  operation?: string;
+  /** Offers ids list to transfer from source collection to target collection(s) */
+  offerIdsList?: TransferOffersDetailsOfferIdsListList;
+}
+export const TransferOffersDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetCollections: S.optional(TransferOffersDetailsTargetCollectionsList),
+    operation: S.optional(S.String),
+    offerIdsList: S.optional(TransferOffersDetailsOfferIdsListList),
+  }),
+).annotate({
+  identifier: "TransferOffersDetails",
+}) as any as S.Schema<TransferOffersDetails>;
+
+export interface TransferPrivateStoreCollectionOffersRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The collection ID */
+  collectionId: string;
+  /** transfer offers properties details */
+  properties?: TransferOffersDetails;
+}
+export const TransferPrivateStoreCollectionOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      collectionId: S.String.pipe(T.Label()),
+      properties: S.optional(TransferOffersDetails),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/collections/{collectionId}/transferOffers",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TransferPrivateStoreCollectionOffersRequest",
+  }) as any as S.Schema<TransferPrivateStoreCollectionOffersRequest>;
+
+/** Succeeded collections */
+export type TransferOffersResponseSucceededList = Array<CollectionsDetails>;
+export const TransferOffersResponseSucceededList = /*@__PURE__*/ S.Array(
+  CollectionsDetails,
+) as any as S.Schema<TransferOffersResponseSucceededList>;
+
+/** Failed collections */
+export type TransferOffersResponseFailedList = Array<CollectionsDetails>;
+export const TransferOffersResponseFailedList = /*@__PURE__*/ S.Array(
+  CollectionsDetails,
+) as any as S.Schema<TransferOffersResponseFailedList>;
+
+/** The transfer items response. The response contains two lists that indicate for each collection whether the operation succeeded or failed */
+export interface TransferOffersResponse {
+  /** Succeeded collections */
+  succeeded?: TransferOffersResponseSucceededList;
+  /** Failed collections */
+  failed?: TransferOffersResponseFailedList;
+}
+export const TransferOffersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    succeeded: S.optional(TransferOffersResponseSucceededList),
+    failed: S.optional(TransferOffersResponseFailedList),
+  }),
+).annotate({
+  identifier: "TransferOffersResponse",
+}) as any as S.Schema<TransferOffersResponse>;
+
+/** Gets or sets Approved plans ids, empty in case of rejected */
+export type AdminRequestApprovalPropertiesInputApprovedPlansList =
+  Array<string>;
+export const AdminRequestApprovalPropertiesInputApprovedPlansList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AdminRequestApprovalPropertiesInputApprovedPlansList>;
+
+/** Gets or sets list of associated collection ids */
+export type AdminRequestApprovalPropertiesInputCollectionIdsList =
+  Array<string>;
+export const AdminRequestApprovalPropertiesInputCollectionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AdminRequestApprovalPropertiesInputCollectionIdsList>;
+
+/** Admin approval request resource properties */
+export interface AdminRequestApprovalPropertiesInput {
+  /** Gets or sets offer Id */
+  offerId?: string;
+  /** Gets or sets publisher Id */
+  publisherId?: string;
+  /** Gets or sets admin action */
+  adminAction?: AdminAction | (string & {});
+  /** Gets or sets Approved plans ids, empty in case of rejected */
+  approvedPlans?: AdminRequestApprovalPropertiesInputApprovedPlansList;
+  /** Gets or sets admin comment */
+  comment?: string;
+  /** Gets or sets admin details */
+  administrator?: string;
+  /** Gets or sets list of associated collection ids */
+  collectionIds?: AdminRequestApprovalPropertiesInputCollectionIdsList;
+}
+export const AdminRequestApprovalPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    offerId: S.optional(S.String),
+    publisherId: S.optional(S.String),
+    adminAction: S.optional(AdminAction),
+    approvedPlans: S.optional(
+      AdminRequestApprovalPropertiesInputApprovedPlansList,
+    ),
+    comment: S.optional(S.String),
+    administrator: S.optional(S.String),
+    collectionIds: S.optional(
+      AdminRequestApprovalPropertiesInputCollectionIdsList,
+    ),
+  }),
+).annotate({
+  identifier: "AdminRequestApprovalPropertiesInput",
+}) as any as S.Schema<AdminRequestApprovalPropertiesInput>;
+
+export interface UpdatePrivateStoreAdminRequestApprovalRequest {
+  /** The store ID - must use the tenant ID */
+  privateStoreId: string;
+  /** The admin request approval ID to get create or update */
+  adminRequestApprovalId: string;
+  /** The privateStore admin Approval request data structure. */
+  properties?: AdminRequestApprovalPropertiesInput;
+}
+export const UpdatePrivateStoreAdminRequestApprovalRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateStoreId: S.String.pipe(T.Label()),
+      adminRequestApprovalId: S.String.pipe(T.Label()),
+      properties: S.optional(AdminRequestApprovalPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/providers/Microsoft.Marketplace/privateStores/{privateStoreId}/adminRequestApprovals/{adminRequestApprovalId}",
+        code: 200,
+        apiVersion: "2025-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdatePrivateStoreAdminRequestApprovalRequest",
+  }) as any as S.Schema<UpdatePrivateStoreAdminRequestApprovalRequest>;
+
+export interface UpdatePrivateStoreAdminRequestApprovalResponse {
+  /** The resource ID. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource */
+  systemData?: SystemData;
+  /** The privateStore admin Approval request data structure. */
+  properties?: AdminRequestApprovalProperties;
+}
+export const UpdatePrivateStoreAdminRequestApprovalResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AdminRequestApprovalProperties),
+    }),
+  ).annotate({
+    identifier: "UpdatePrivateStoreAdminRequestApprovalResponse",
+  }) as any as S.Schema<UpdatePrivateStoreAdminRequestApprovalResponse>;
 
 /** List of plan IDs. */
 export type ContextAndPlansDetailsPlanIdsList = Array<string>;
@@ -3463,6 +3463,66 @@ export const UpsertPrivateStoreCollectionOfferOfferWithMultiContextResponse =
       "UpsertPrivateStoreCollectionOfferOfferWithMultiContextResponse",
   }) as any as S.Schema<UpsertPrivateStoreCollectionOfferOfferWithMultiContextResponse>;
 
+export type AcknowledgePrivateStoreOfferNotificationError = AzureOpError;
+/** Acknowledge notification for offer */
+export const AcknowledgePrivateStoreOfferNotification: API.OperationMethod<
+  AcknowledgePrivateStoreOfferNotificationRequest,
+  AcknowledgePrivateStoreOfferNotificationResponse,
+  AcknowledgePrivateStoreOfferNotificationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AcknowledgePrivateStoreOfferNotificationRequest,
+  output: AcknowledgePrivateStoreOfferNotificationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ApprovePrivateStoreCollectionAllItemsError = AzureOpError;
+/** Delete all existing offers from the collection and enable approve all items. */
+export const ApprovePrivateStoreCollectionAllItems: API.OperationMethod<
+  ApprovePrivateStoreCollectionAllItemsRequest,
+  ApprovePrivateStoreCollectionAllItemsResponse,
+  ApprovePrivateStoreCollectionAllItemsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApprovePrivateStoreCollectionAllItemsRequest,
+  output: ApprovePrivateStoreCollectionAllItemsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkPrivateStoreCollectionsActionError = AzureOpError;
+/** Perform an action on bulk collections */
+export const BulkPrivateStoreCollectionsAction: API.OperationMethod<
+  BulkPrivateStoreCollectionsActionRequest,
+  BulkCollectionsResponse,
+  BulkPrivateStoreCollectionsActionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkPrivateStoreCollectionsActionRequest,
+  output: BulkCollectionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePrivateStoreApprovalRequestError = AzureOpError;
+/** Create approval request */
+export const CreatePrivateStoreApprovalRequest: API.OperationMethod<
+  CreatePrivateStoreApprovalRequestRequest,
+  CreatePrivateStoreApprovalRequestResponse,
+  CreatePrivateStoreApprovalRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePrivateStoreApprovalRequestRequest,
+  output: CreatePrivateStoreApprovalRequestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeletePrivateStoreError = AzureOpError;
 /** Deletes the private store. All that is not saved will be lost. */
 export const DeletePrivateStore: API.OperationMethod<
@@ -3508,16 +3568,16 @@ export const DeletePrivateStoreCollectionOffer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DisablePrivateStoreCollectionApproveAllItemError = AzureOpError;
-/** Disable approve all items for the collection. */
-export const DisablePrivateStoreCollectionApproveAllItem: API.OperationMethod<
-  DisablePrivateStoreCollectionApproveAllItemRequest,
-  DisablePrivateStoreCollectionApproveAllItemResponse,
-  DisablePrivateStoreCollectionApproveAllItemError,
+export type FetchPrivateStoreAllSubscriptionsInTenantError = AzureOpError;
+/** Fetch all subscriptions in tenant, only for marketplace admin */
+export const FetchPrivateStoreAllSubscriptionsInTenant: API.OperationMethod<
+  FetchPrivateStoreAllSubscriptionsInTenantRequest,
+  SubscriptionsResponse,
+  FetchPrivateStoreAllSubscriptionsInTenantError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisablePrivateStoreCollectionApproveAllItemRequest,
-  output: DisablePrivateStoreCollectionApproveAllItemResponse,
+  input: FetchPrivateStoreAllSubscriptionsInTenantRequest,
+  output: SubscriptionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3533,6 +3593,21 @@ export const GetPrivateStore: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetPrivateStoreRequest,
   output: GetPrivateStoreResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateStoreAdminRequestApprovalError = AzureOpError;
+/** Get open approval requests */
+export const GetPrivateStoreAdminRequestApproval: API.OperationMethod<
+  GetPrivateStoreAdminRequestApprovalRequest,
+  GetPrivateStoreAdminRequestApprovalResponse,
+  GetPrivateStoreAdminRequestApprovalError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateStoreAdminRequestApprovalRequest,
+  output: GetPrivateStoreAdminRequestApprovalResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3568,6 +3643,21 @@ export const GetPrivateStoreCollectionOffer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetPrivateStoreRequestApprovalError = AzureOpError;
+/** Get open request approval details */
+export const GetPrivateStoreRequestApproval: API.OperationMethod<
+  GetPrivateStoreRequestApprovalRequest,
+  GetPrivateStoreRequestApprovalResponse,
+  GetPrivateStoreRequestApprovalError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateStoreRequestApprovalRequest,
+  output: GetPrivateStoreRequestApprovalResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListOperationsError = AzureOpError;
 /** Lists all of the available Microsoft.Marketplace REST API operations. */
 export const ListOperations: API.OperationMethod<
@@ -3578,6 +3668,36 @@ export const ListOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOperationsRequest,
   output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateStoreError = AzureOpError;
+/** Gets the list of available private stores. */
+export const ListPrivateStore: API.OperationMethod<
+  ListPrivateStoreRequest,
+  PrivateStoreList,
+  ListPrivateStoreError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateStoreRequest,
+  output: PrivateStoreList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateStoreAdminRequestApprovalsError = AzureOpError;
+/** Get list of admin request approvals */
+export const ListPrivateStoreAdminRequestApprovals: API.OperationMethod<
+  ListPrivateStoreAdminRequestApprovalsRequest,
+  AdminRequestApprovalsList,
+  ListPrivateStoreAdminRequestApprovalsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateStoreAdminRequestApprovalsRequest,
+  output: AdminRequestApprovalsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3628,61 +3748,61 @@ export const ListPrivateStoreCollectionOfferByContexts: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPrivateStoreNewPlanNotificationsError = AzureOpError;
+export type ListPrivateStoreNewPlansNotificationsError = AzureOpError;
 /** List new plans notifications */
-export const ListPrivateStoreNewPlanNotifications: API.OperationMethod<
-  ListPrivateStoreNewPlanNotificationsRequest,
+export const ListPrivateStoreNewPlansNotifications: API.OperationMethod<
+  ListPrivateStoreNewPlansNotificationsRequest,
   NewPlansNotificationsList,
-  ListPrivateStoreNewPlanNotificationsError,
+  ListPrivateStoreNewPlansNotificationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateStoreNewPlanNotificationsRequest,
+  input: ListPrivateStoreNewPlansNotificationsRequest,
   output: NewPlansNotificationsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListPrivateStoreSubscriptionContextError = AzureOpError;
+export type ListPrivateStoreSubscriptionsContextError = AzureOpError;
 /** List all the subscriptions in the private store context */
-export const ListPrivateStoreSubscriptionContext: API.OperationMethod<
-  ListPrivateStoreSubscriptionContextRequest,
+export const ListPrivateStoreSubscriptionsContext: API.OperationMethod<
+  ListPrivateStoreSubscriptionsContextRequest,
   SubscriptionsContextList,
-  ListPrivateStoreSubscriptionContextError,
+  ListPrivateStoreSubscriptionsContextError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrivateStoreSubscriptionContextRequest,
+  input: ListPrivateStoreSubscriptionsContextRequest,
   output: SubscriptionsContextList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateStoreAcknowledgeOfferNotificationError = AzureOpError;
-/** Acknowledge notification for offer */
-export const PrivateStoreAcknowledgeOfferNotification: API.OperationMethod<
-  PrivateStoreAcknowledgeOfferNotificationRequest,
-  PrivateStoreAcknowledgeOfferNotificationResponse,
-  PrivateStoreAcknowledgeOfferNotificationError,
+export type PostPrivateStoreCollectionError = AzureOpError;
+/** Delete Private store collection. This is a workaround. */
+export const PostPrivateStoreCollection: API.OperationMethod<
+  PostPrivateStoreCollectionRequest,
+  PostPrivateStoreCollectionResponse,
+  PostPrivateStoreCollectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreAcknowledgeOfferNotificationRequest,
-  output: PrivateStoreAcknowledgeOfferNotificationResponse,
+  input: PostPrivateStoreCollectionRequest,
+  output: PostPrivateStoreCollectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateStoreAdminRequestApprovalsListError = AzureOpError;
-/** Get list of admin request approvals */
-export const PrivateStoreAdminRequestApprovalsList: API.OperationMethod<
-  PrivateStoreAdminRequestApprovalsListRequest,
-  AdminRequestApprovalsList,
-  PrivateStoreAdminRequestApprovalsListError,
+export type PostPrivateStoreCollectionOfferError = AzureOpError;
+/** Delete Private store offer. This is a workaround. */
+export const PostPrivateStoreCollectionOffer: API.OperationMethod<
+  PostPrivateStoreCollectionOfferRequest,
+  PostPrivateStoreCollectionOfferResponse,
+  PostPrivateStoreCollectionOfferError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreAdminRequestApprovalsListRequest,
-  output: AdminRequestApprovalsList,
+  input: PostPrivateStoreCollectionOfferRequest,
+  output: PostPrivateStoreCollectionOfferResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3718,36 +3838,6 @@ export const PrivateStoreBillingAccounts: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateStoreBulkCollectionsActionError = AzureOpError;
-/** Perform an action on bulk collections */
-export const PrivateStoreBulkCollectionsAction: API.OperationMethod<
-  PrivateStoreBulkCollectionsActionRequest,
-  BulkCollectionsResponse,
-  PrivateStoreBulkCollectionsActionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreBulkCollectionsActionRequest,
-  output: BulkCollectionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreCollectionApproveAllItemsError = AzureOpError;
-/** Delete all existing offers from the collection and enable approve all items. */
-export const PrivateStoreCollectionApproveAllItems: API.OperationMethod<
-  PrivateStoreCollectionApproveAllItemsRequest,
-  PrivateStoreCollectionApproveAllItemsResponse,
-  PrivateStoreCollectionApproveAllItemsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreCollectionApproveAllItemsRequest,
-  output: PrivateStoreCollectionApproveAllItemsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateStoreCollectionCreateOrUpdateError = AzureOpError;
 /** Create or update private store collection */
 export const PrivateStoreCollectionCreateOrUpdate: API.OperationMethod<
@@ -3758,6 +3848,21 @@ export const PrivateStoreCollectionCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateStoreCollectionCreateOrUpdateRequest,
   output: PrivateStoreCollectionCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PrivateStoreCollectionDisableApproveAllItemsError = AzureOpError;
+/** Disable approve all items for the collection. */
+export const PrivateStoreCollectionDisableApproveAllItems: API.OperationMethod<
+  PrivateStoreCollectionDisableApproveAllItemsRequest,
+  PrivateStoreCollectionDisableApproveAllItemsResponse,
+  PrivateStoreCollectionDisableApproveAllItemsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PrivateStoreCollectionDisableApproveAllItemsRequest,
+  output: PrivateStoreCollectionDisableApproveAllItemsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3793,36 +3898,6 @@ export const PrivateStoreCollectionOfferCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateStoreCollectionOfferPostError = AzureOpError;
-/** Delete Private store offer. This is a workaround. */
-export const PrivateStoreCollectionOfferPost: API.OperationMethod<
-  PrivateStoreCollectionOfferPostRequest,
-  PrivateStoreCollectionOfferPostResponse,
-  PrivateStoreCollectionOfferPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreCollectionOfferPostRequest,
-  output: PrivateStoreCollectionOfferPostResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreCollectionPostError = AzureOpError;
-/** Delete Private store collection. This is a workaround. */
-export const PrivateStoreCollectionPost: API.OperationMethod<
-  PrivateStoreCollectionPostRequest,
-  PrivateStoreCollectionPostResponse,
-  PrivateStoreCollectionPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreCollectionPostRequest,
-  output: PrivateStoreCollectionPostResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateStoreCollectionsToSubscriptionsMappingError = AzureOpError;
 /** For a given subscriptions list, the API will return a map of collections and the related subscriptions from the supplied list. */
 export const PrivateStoreCollectionsToSubscriptionsMapping: API.OperationMethod<
@@ -3833,36 +3908,6 @@ export const PrivateStoreCollectionsToSubscriptionsMapping: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateStoreCollectionsToSubscriptionsMappingRequest,
   output: CollectionsToSubscriptionsMappingResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreCollectionTransferOffersError = AzureOpError;
-/** transferring offers (copy or move) from source collection to target collection(s) */
-export const PrivateStoreCollectionTransferOffers: API.OperationMethod<
-  PrivateStoreCollectionTransferOffersRequest,
-  TransferOffersResponse,
-  PrivateStoreCollectionTransferOffersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreCollectionTransferOffersRequest,
-  output: TransferOffersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreCreateApprovalRequestError = AzureOpError;
-/** Create approval request */
-export const PrivateStoreCreateApprovalRequest: API.OperationMethod<
-  PrivateStoreCreateApprovalRequestRequest,
-  PrivateStoreCreateApprovalRequestResponse,
-  PrivateStoreCreateApprovalRequestError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreCreateApprovalRequestRequest,
-  output: PrivateStoreCreateApprovalRequestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3883,36 +3928,6 @@ export const PrivateStoreCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateStoreFetchAllSubscriptionsInTenantError = AzureOpError;
-/** Fetch all subscriptions in tenant, only for marketplace admin */
-export const PrivateStoreFetchAllSubscriptionsInTenant: API.OperationMethod<
-  PrivateStoreFetchAllSubscriptionsInTenantRequest,
-  SubscriptionsResponse,
-  PrivateStoreFetchAllSubscriptionsInTenantError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreFetchAllSubscriptionsInTenantRequest,
-  output: SubscriptionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreGetAdminRequestApprovalError = AzureOpError;
-/** Get open approval requests */
-export const PrivateStoreGetAdminRequestApproval: API.OperationMethod<
-  PrivateStoreGetAdminRequestApprovalRequest,
-  PrivateStoreGetAdminRequestApprovalResponse,
-  PrivateStoreGetAdminRequestApprovalError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreGetAdminRequestApprovalRequest,
-  output: PrivateStoreGetAdminRequestApprovalResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateStoreGetApprovalRequestsListError = AzureOpError;
 /** Get all open approval requests of current user */
 export const PrivateStoreGetApprovalRequestsList: API.OperationMethod<
@@ -3923,36 +3938,6 @@ export const PrivateStoreGetApprovalRequestsList: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateStoreGetApprovalRequestsListRequest,
   output: RequestApprovalsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreGetRequestApprovalError = AzureOpError;
-/** Get open request approval details */
-export const PrivateStoreGetRequestApproval: API.OperationMethod<
-  PrivateStoreGetRequestApprovalRequest,
-  PrivateStoreGetRequestApprovalResponse,
-  PrivateStoreGetRequestApprovalError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreGetRequestApprovalRequest,
-  output: PrivateStoreGetRequestApprovalResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreList2Error = AzureOpError;
-/** Gets the list of available private stores. */
-export const PrivateStoreList2: API.OperationMethod<
-  PrivateStoreListRequest,
-  PrivateStoreList,
-  PrivateStoreList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreListRequest,
-  output: PrivateStoreList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4019,6 +4004,21 @@ export const PrivateStoreQueryOffers: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PrivateStoreQueryRequestApprovalError = AzureOpError;
+/** Get request statuses foreach plan, this api is used as a complex GET action. */
+export const PrivateStoreQueryRequestApproval: API.OperationMethod<
+  PrivateStoreQueryRequestApprovalRequest,
+  QueryRequestApproval,
+  PrivateStoreQueryRequestApprovalError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PrivateStoreQueryRequestApprovalRequest,
+  output: QueryRequestApproval,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PrivateStoreQueryUserOffersError = AzureOpError;
 /** List of user's approved offers for the provided offers and subscriptions */
 export const PrivateStoreQueryUserOffers: API.OperationMethod<
@@ -4029,21 +4029,6 @@ export const PrivateStoreQueryUserOffers: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateStoreQueryUserOffersRequest,
   output: QueryOffers,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateStoreUpdateAdminRequestApprovalError = AzureOpError;
-/** Update the admin action, weather the request is approved or rejected and the approved plans */
-export const PrivateStoreUpdateAdminRequestApproval: API.OperationMethod<
-  PrivateStoreUpdateAdminRequestApprovalRequest,
-  PrivateStoreUpdateAdminRequestApprovalResponse,
-  PrivateStoreUpdateAdminRequestApprovalError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateStoreUpdateAdminRequestApprovalRequest,
-  output: PrivateStoreUpdateAdminRequestApprovalResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4094,21 +4079,6 @@ export const QueryUserRules: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RequestPrivateStoreQueryApprovalError = AzureOpError;
-/** Get request statuses foreach plan, this api is used as a complex GET action. */
-export const RequestPrivateStoreQueryApproval: API.OperationMethod<
-  RequestPrivateStoreQueryApprovalRequest,
-  QueryRequestApproval,
-  RequestPrivateStoreQueryApprovalError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestPrivateStoreQueryApprovalRequest,
-  output: QueryRequestApproval,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SetCollectionRulesError = AzureOpError;
 /** Set rule for specific private store and collection */
 export const SetCollectionRules: API.OperationMethod<
@@ -4119,6 +4089,36 @@ export const SetCollectionRules: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SetCollectionRulesRequest,
   output: SetCollectionRulesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TransferPrivateStoreCollectionOffersError = AzureOpError;
+/** transferring offers (copy or move) from source collection to target collection(s) */
+export const TransferPrivateStoreCollectionOffers: API.OperationMethod<
+  TransferPrivateStoreCollectionOffersRequest,
+  TransferOffersResponse,
+  TransferPrivateStoreCollectionOffersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TransferPrivateStoreCollectionOffersRequest,
+  output: TransferOffersResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePrivateStoreAdminRequestApprovalError = AzureOpError;
+/** Update the admin action, weather the request is approved or rejected and the approved plans */
+export const UpdatePrivateStoreAdminRequestApproval: API.OperationMethod<
+  UpdatePrivateStoreAdminRequestApprovalRequest,
+  UpdatePrivateStoreAdminRequestApprovalResponse,
+  UpdatePrivateStoreAdminRequestApprovalError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePrivateStoreAdminRequestApprovalRequest,
+  output: UpdatePrivateStoreAdminRequestApprovalResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

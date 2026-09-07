@@ -35,7 +35,7 @@ export const ArcSettingsConsentAndInstallDefaultExtensionsRequest =
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/consentAndInstallDefaultExtensions",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
   ).annotate({
@@ -310,6 +310,41 @@ export const ArcSettingsConsentAndInstallDefaultExtensionsResponse =
     identifier: "ArcSettingsConsentAndInstallDefaultExtensionsResponse",
   }) as any as S.Schema<ArcSettingsConsentAndInstallDefaultExtensionsResponse>;
 
+export interface ArcSettingsInitializeDisableProcessRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the proxy resource holding details of HCI ArcSetting information. */
+  arcSettingName: string;
+}
+export const ArcSettingsInitializeDisableProcessRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      arcSettingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/initializeDisableProcess",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ArcSettingsInitializeDisableProcessRequest",
+  }) as any as S.Schema<ArcSettingsInitializeDisableProcessRequest>;
+
+export interface ArcSettingsInitializeDisableProcessResponse {}
+export const ArcSettingsInitializeDisableProcessResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ArcSettingsInitializeDisableProcessResponse",
+  }) as any as S.Schema<ArcSettingsInitializeDisableProcessResponse>;
+
 export type ReconcileArcSettingsRequestPropertiesClusterNodesList =
   Array<string>;
 export const ReconcileArcSettingsRequestPropertiesClusterNodesList =
@@ -356,7 +391,7 @@ export const ArcSettingsReconcileRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/reconcile",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -386,6 +421,420 @@ export const ArcSettingsReconcileResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ArcSettingsReconcileResponse",
 }) as any as S.Schema<ArcSettingsReconcileResponse>;
+
+export interface CheckUpdateSummariesOperationGroupHealthRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const CheckUpdateSummariesOperationGroupHealthRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default/checkHealth",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckUpdateSummariesOperationGroupHealthRequest",
+  }) as any as S.Schema<CheckUpdateSummariesOperationGroupHealthRequest>;
+
+export interface CheckUpdateSummariesOperationGroupHealthResponse {}
+export const CheckUpdateSummariesOperationGroupHealthResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CheckUpdateSummariesOperationGroupHealthResponse",
+  }) as any as S.Schema<CheckUpdateSummariesOperationGroupHealthResponse>;
+
+export interface CheckUpdateSummariesOperationGroupUpdatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Name of update */
+  updateName?: string;
+}
+export const CheckUpdateSummariesOperationGroupUpdatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      updateName: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default/checkUpdates",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckUpdateSummariesOperationGroupUpdatesRequest",
+  }) as any as S.Schema<CheckUpdateSummariesOperationGroupUpdatesRequest>;
+
+export interface CheckUpdateSummariesOperationGroupUpdatesResponse {}
+export const CheckUpdateSummariesOperationGroupUpdatesResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CheckUpdateSummariesOperationGroupUpdatesResponse",
+  }) as any as S.Schema<CheckUpdateSummariesOperationGroupUpdatesResponse>;
+
+/** ClusterJob Type supported. */
+export type HciJobType =
+  | "AddServer"
+  | "RepairServer"
+  | "ConfigureSdnIntegration";
+export const HciJobType = /*@__PURE__*/ S.String;
+
+/** Deployment mode to trigger job. */
+export type ClusterJobPropertiesInputDeploymentMode = "Validate" | "Deploy";
+export const ClusterJobPropertiesInputDeploymentMode = /*@__PURE__*/ S.String;
+
+/** Cluster Job properties */
+export interface ClusterJobPropertiesInput {
+  /** Job Type to support polymorphic resource. */
+  jobType: HciJobType | (string & {});
+  /** Deployment mode to trigger job. */
+  deploymentMode?: ClusterJobPropertiesInputDeploymentMode | (string & {});
+}
+export const ClusterJobPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobType: HciJobType,
+    deploymentMode: S.optional(ClusterJobPropertiesInputDeploymentMode),
+  }),
+).annotate({
+  identifier: "ClusterJobPropertiesInput",
+}) as any as S.Schema<ClusterJobPropertiesInput>;
+
+export interface ClusterJobsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Name of ClusterJob */
+  jobsName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ClusterJobPropertiesInput;
+}
+export const ClusterJobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    jobsName: S.String.pipe(T.Label()),
+    properties: S.optional(ClusterJobPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/jobs/{jobsName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ClusterJobsCreateOrUpdateRequest",
+}) as any as S.Schema<ClusterJobsCreateOrUpdateRequest>;
+
+/** Deployment mode to trigger job. */
+export type ClusterJobPropertiesDeploymentMode = "Validate" | "Deploy";
+export const ClusterJobPropertiesDeploymentMode = /*@__PURE__*/ S.String;
+
+/** Represents the various statuses a job can have throughout its lifecycle. */
+export type JobStatus =
+  | "NotSpecified"
+  | "ValidationInProgress"
+  | "ValidationSuccess"
+  | "ValidationFailed"
+  | "DeploymentInProgress"
+  | "DeploymentFailed"
+  | "DeploymentSuccess"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Paused"
+  | "Scheduled";
+export const JobStatus = /*@__PURE__*/ S.String;
+
+/** List of nested steps of AzureStackHCI Cluster Deployment. */
+export type DeploymentStepStepsList = Array<DeploymentStep>;
+export const DeploymentStepStepsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => DeploymentStep),
+) as any as S.Schema<DeploymentStepStepsList>;
+
+/** List of exceptions in AzureStackHCI Cluster Deployment. */
+export type DeploymentStepExceptionList = Array<string>;
+export const DeploymentStepExceptionList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeploymentStepExceptionList>;
+
+/** The error details. */
+export type ErrorDetailDetailsList = Array<ErrorDetail>;
+export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => ErrorDetail),
+) as any as S.Schema<ErrorDetailDetailsList>;
+
+/** The resource management error additional info. */
+export interface ErrorAdditionalInfo {
+  /** The additional info type. */
+  type?: string;
+  /** The additional info. */
+  info?: unknown;
+}
+export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    info: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ErrorAdditionalInfo",
+}) as any as S.Schema<ErrorAdditionalInfo>;
+
+/** The error additional info. */
+export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<ErrorDetailAdditionalInfoList>;
+
+/** The error detail. */
+export interface ErrorDetail {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: ErrorDetailDetailsList;
+  /** The error additional info. */
+  additionalInfo?: ErrorDetailAdditionalInfoList;
+}
+export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(ErrorDetailDetailsList),
+    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
+  }),
+).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
+
+/** The error details. */
+export type DeploymentStepErrorDetailsList = Array<ErrorDetail>;
+export const DeploymentStepErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetail,
+) as any as S.Schema<DeploymentStepErrorDetailsList>;
+
+/** The error additional info. */
+export type DeploymentStepErrorAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const DeploymentStepErrorAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<DeploymentStepErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface DeploymentStepError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: DeploymentStepErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: DeploymentStepErrorAdditionalInfoList;
+}
+export const DeploymentStepError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(DeploymentStepErrorDetailsList),
+    additionalInfo: S.optional(DeploymentStepErrorAdditionalInfoList),
+  }),
+).annotate({
+  identifier: "DeploymentStepError",
+}) as any as S.Schema<DeploymentStepError>;
+
+/** Metadata associated with a deployment step. */
+export interface Metadata {
+  /** The key of the metadata entry. */
+  key: string;
+  /** The value of the metadata entry. */
+  value: string;
+}
+export const Metadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    value: S.String,
+  }),
+).annotate({ identifier: "Metadata" }) as any as S.Schema<Metadata>;
+
+/** Additional metadata associated with the step. */
+export type DeploymentStepAdditionalDataList = Array<Metadata>;
+export const DeploymentStepAdditionalDataList = /*@__PURE__*/ S.Array(
+  Metadata,
+) as any as S.Schema<DeploymentStepAdditionalDataList>;
+
+/** Recommended steps to resolve failures in this step. */
+export type DeploymentStepRecommendedStepsList = Array<string>;
+export const DeploymentStepRecommendedStepsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeploymentStepRecommendedStepsList>;
+
+/** The Step of AzureStackHCI Cluster. */
+export interface DeploymentStep {
+  /** Name of step. */
+  name?: string;
+  /** Description of step. */
+  description?: string;
+  /** FullStepIndex of step. */
+  fullStepIndex?: string;
+  /** Start time of step. */
+  startTimeUtc?: string;
+  /** End time of step. */
+  endTimeUtc?: string;
+  /** Status of step. Allowed values are 'Error', 'Success', 'InProgress' */
+  status?: string;
+  /** List of nested steps of AzureStackHCI Cluster Deployment. */
+  steps?: DeploymentStepStepsList;
+  /** List of exceptions in AzureStackHCI Cluster Deployment. */
+  exception?: DeploymentStepExceptionList;
+  /** The error detail. */
+  error?: DeploymentStepError;
+  /** The progress percentage of the step. */
+  percentComplete?: number;
+  /** Additional metadata associated with the step. */
+  additionalData?: DeploymentStepAdditionalDataList;
+  /** Recommended steps to resolve failures in this step. */
+  recommendedSteps?: DeploymentStepRecommendedStepsList;
+}
+export const DeploymentStep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    fullStepIndex: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    status: S.optional(S.String),
+    steps: S.optional(DeploymentStepStepsList),
+    exception: S.optional(DeploymentStepExceptionList),
+    error: S.optional(DeploymentStepError),
+    percentComplete: S.optional(S.Number),
+    additionalData: S.optional(DeploymentStepAdditionalDataList),
+    recommendedSteps: S.optional(DeploymentStepRecommendedStepsList),
+  }),
+).annotate({ identifier: "DeploymentStep" }) as any as S.Schema<DeploymentStep>;
+
+/** List of steps of AzureStackHCI Cluster Deployment. */
+export type EceActionStatusStepsList = Array<DeploymentStep>;
+export const EceActionStatusStepsList = /*@__PURE__*/ S.Array(
+  DeploymentStep,
+) as any as S.Schema<EceActionStatusStepsList>;
+
+/** The ECE action plan deployment status for AzureStackHCI Cluster. */
+export interface EceActionStatus {
+  /** Status of ECE action AzureStackHCI Cluster Deployment. */
+  status?: string;
+  /** List of steps of AzureStackHCI Cluster Deployment. */
+  steps?: EceActionStatusStepsList;
+}
+export const EceActionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    steps: S.optional(EceActionStatusStepsList),
+  }),
+).annotate({
+  identifier: "EceActionStatus",
+}) as any as S.Schema<EceActionStatus>;
+
+/** Reported Properties for job triggered from cloud. */
+export interface JobReportedProperties {
+  /** The percentage of the job that is complete. */
+  percentComplete?: number;
+  /** Validation status of job. */
+  validationStatus?: EceActionStatus;
+  /** Deployment status of job. */
+  deploymentStatus?: EceActionStatus;
+}
+export const JobReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    percentComplete: S.optional(S.Number),
+    validationStatus: S.optional(EceActionStatus),
+    deploymentStatus: S.optional(EceActionStatus),
+  }),
+).annotate({
+  identifier: "JobReportedProperties",
+}) as any as S.Schema<JobReportedProperties>;
+
+/** Cluster Job properties */
+export interface ClusterJobProperties {
+  /** Job Type to support polymorphic resource. */
+  jobType: HciJobType;
+  /** Deployment mode to trigger job. */
+  deploymentMode?: ClusterJobPropertiesDeploymentMode;
+  /** Job provisioning state */
+  provisioningState?: ProvisioningState;
+  /** Unique, immutable job id. */
+  jobId?: string;
+  /** The UTC date and time at which the job started. */
+  startTimeUtc?: string;
+  /** The UTC date and time at which the job completed. */
+  endTimeUtc?: string;
+  /** Status of Cluster job. */
+  status?: JobStatus;
+  /** Reported properties for job */
+  reportedProperties?: JobReportedProperties;
+}
+export const ClusterJobProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobType: HciJobType,
+    deploymentMode: S.optional(ClusterJobPropertiesDeploymentMode),
+    provisioningState: S.optional(ProvisioningState),
+    jobId: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    status: S.optional(JobStatus),
+    reportedProperties: S.optional(JobReportedProperties),
+  }),
+).annotate({
+  identifier: "ClusterJobProperties",
+}) as any as S.Schema<ClusterJobProperties>;
+
+export interface ClusterJobsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ClusterJobProperties;
+}
+export const ClusterJobsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterJobProperties),
+  }),
+).annotate({
+  identifier: "ClusterJobsCreateOrUpdateResponse",
+}) as any as S.Schema<ClusterJobsCreateOrUpdateResponse>;
 
 /** Remote Support Type for cluster */
 export type RemoteSupportType = "Enable" | "Revoke";
@@ -429,7 +878,7 @@ export const ClustersConfigureRemoteSupportRequest = /*@__PURE__*/ S.suspend(
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/configureRemoteSupport",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
 ).annotate({
@@ -958,6 +1407,36 @@ export const ClusterPropertiesSecretsLocationsList = /*@__PURE__*/ S.Array(
 export type ClusterPattern = "Standard" | "RackAware";
 export const ClusterPattern = /*@__PURE__*/ S.String;
 
+/** Indicates the current Software Defined Networking (SDN) status of the resource, which may be an individual device or a cluster. */
+export type SdnStatus = "Unknown" | "Disabled" | "Enabled";
+export const SdnStatus = /*@__PURE__*/ S.String;
+
+/** Indicates whether Software Defined Networking (SDN) integration should be enabled or disabled for this deployment. */
+export type SdnIntegrationIntent = "Enable" | "Disable";
+export const SdnIntegrationIntent = /*@__PURE__*/ S.String;
+
+/** Represents the Software Defined Networking (SDN) configuration state of the Azure Stack HCI cluster. */
+export interface ClusterSdnProperties {
+  /** Indicates the current Software Defined Networking (SDN) status of the resource, which may be an individual device or a cluster. */
+  sdnStatus?: SdnStatus;
+  /** The fully qualified domain name (FQDN) associated with the SDN deployment. This value is propagated from the Device Management Extension to the cluster resource. It is typically in the format `<sdnPrefix>-nc.<domain>` when SDN is enabled. May be null or absent in unsupported or disabled states. */
+  sdnDomainName?: string;
+  /** Represents the API address for the SDN deployment. */
+  sdnApiAddress?: string;
+  /** Indicates whether Software Defined Networking (SDN) integration should be enabled or disabled for this deployment. */
+  sdnIntegrationIntent?: SdnIntegrationIntent;
+}
+export const ClusterSdnProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sdnStatus: S.optional(SdnStatus),
+    sdnDomainName: S.optional(S.String),
+    sdnApiAddress: S.optional(S.String),
+    sdnIntegrationIntent: S.optional(SdnIntegrationIntent),
+  }),
+).annotate({
+  identifier: "ClusterSdnProperties",
+}) as any as S.Schema<ClusterSdnProperties>;
+
 /** Nodes belonging to a particular zone */
 export type LocalAvailabilityZonesNodesList = Array<string>;
 export const LocalAvailabilityZonesNodesList = /*@__PURE__*/ S.Array(
@@ -1052,6 +1531,8 @@ export interface ClusterProperties {
   secretsLocations?: ClusterPropertiesSecretsLocationsList;
   /** Supported Storage Type for HCI Cluster */
   clusterPattern?: ClusterPattern;
+  /** Software Defined Networking Properties of the cluster */
+  sdnProperties?: ClusterSdnProperties;
   /** Local Availability Zone information for HCI cluster */
   localAvailabilityZones?: ClusterPropertiesLocalAvailabilityZonesList;
   /** Identity Provider for the cluster */
@@ -1089,6 +1570,7 @@ export const ClusterProperties = /*@__PURE__*/ S.suspend(() =>
     resourceProviderObjectId: S.optional(S.String),
     secretsLocations: S.optional(ClusterPropertiesSecretsLocationsList),
     clusterPattern: S.optional(ClusterPattern),
+    sdnProperties: S.optional(ClusterSdnProperties),
     localAvailabilityZones: S.optional(
       ClusterPropertiesLocalAvailabilityZonesList,
     ),
@@ -1193,180 +1675,6 @@ export const ClustersConfigureRemoteSupportResponse = /*@__PURE__*/ S.suspend(
   identifier: "ClustersConfigureRemoteSupportResponse",
 }) as any as S.Schema<ClustersConfigureRemoteSupportResponse>;
 
-/** Properties for Log Collection Request */
-export interface LogCollectionRequestProperties {
-  /** From DateTimeStamp from when logs need to be connected */
-  fromDate: string;
-  /** To DateTimeStamp till when logs need to be connected */
-  toDate: string;
-}
-export const LogCollectionRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fromDate: S.String,
-    toDate: S.String,
-  }),
-).annotate({
-  identifier: "LogCollectionRequestProperties",
-}) as any as S.Schema<LogCollectionRequestProperties>;
-
-export interface ClustersTriggerLogCollectionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Properties for Log Collection Request */
-  properties?: LogCollectionRequestProperties;
-}
-export const ClustersTriggerLogCollectionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    properties: S.optional(LogCollectionRequestProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/triggerLogCollection",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersTriggerLogCollectionRequest",
-}) as any as S.Schema<ClustersTriggerLogCollectionRequest>;
-
-/** Resource tags. */
-export type ClustersTriggerLogCollectionResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersTriggerLogCollectionResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ClustersTriggerLogCollectionResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersTriggerLogCollectionResponseIdentityUserAssignedIdentitiesMap =
-  { [key: string]: UserAssignedIdentity | undefined };
-export const ClustersTriggerLogCollectionResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<ClustersTriggerLogCollectionResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersTriggerLogCollectionResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersTriggerLogCollectionResponseIdentityUserAssignedIdentitiesMap;
-}
-export const ClustersTriggerLogCollectionResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        ClustersTriggerLogCollectionResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-  ).annotate({
-    identifier: "ClustersTriggerLogCollectionResponseIdentity",
-  }) as any as S.Schema<ClustersTriggerLogCollectionResponseIdentity>;
-
-export interface ClustersTriggerLogCollectionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClustersTriggerLogCollectionResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Cluster properties. */
-  properties?: ClusterProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersTriggerLogCollectionResponseIdentity;
-  /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
-  kind?: string;
-}
-export const ClustersTriggerLogCollectionResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ClustersTriggerLogCollectionResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ClusterProperties),
-      identity: S.optional(ClustersTriggerLogCollectionResponseIdentity),
-      kind: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ClustersTriggerLogCollectionResponse",
-}) as any as S.Schema<ClustersTriggerLogCollectionResponse>;
-
-export type RawCertificateDataCertificatesList = Array<string>;
-export const RawCertificateDataCertificatesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RawCertificateDataCertificatesList>;
-
-export interface RawCertificateData {
-  certificates?: RawCertificateDataCertificatesList;
-}
-export const RawCertificateData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certificates: S.optional(RawCertificateDataCertificatesList),
-  }),
-).annotate({
-  identifier: "RawCertificateData",
-}) as any as S.Schema<RawCertificateData>;
-
-export interface ClustersUploadCertificateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  properties?: RawCertificateData;
-}
-export const ClustersUploadCertificateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    properties: S.optional(RawCertificateData),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/uploadCertificate",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersUploadCertificateRequest",
-}) as any as S.Schema<ClustersUploadCertificateRequest>;
-
-export interface ClustersUploadCertificateResponse {}
-export const ClustersUploadCertificateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersUploadCertificateResponse",
-}) as any as S.Schema<ClustersUploadCertificateResponse>;
-
 /** ArcSetting properties. */
 export interface ArcSettingPropertiesInput {
   /** The resource group that hosts the Arc agents, ie. Hybrid Compute Machine resources. */
@@ -1395,7 +1703,7 @@ export const ArcSettingPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ArcSettingPropertiesInput",
 }) as any as S.Schema<ArcSettingPropertiesInput>;
 
-export interface CreateArcSettingRequest {
+export interface CreateArcSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1407,7 +1715,7 @@ export interface CreateArcSettingRequest {
   /** ArcSetting properties. */
   properties?: ArcSettingPropertiesInput;
 }
-export const CreateArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateArcSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1419,14 +1727,14 @@ export const CreateArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "CreateArcSettingRequest",
-}) as any as S.Schema<CreateArcSettingRequest>;
+  identifier: "CreateArcSettingsRequest",
+}) as any as S.Schema<CreateArcSettingsRequest>;
 
-export interface CreateArcSettingResponse {
+export interface CreateArcSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1438,7 +1746,7 @@ export interface CreateArcSettingResponse {
   /** ArcSetting properties. */
   properties?: ArcSettingProperties;
 }
-export const CreateArcSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateArcSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1447,10 +1755,10 @@ export const CreateArcSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ArcSettingProperties),
   }),
 ).annotate({
-  identifier: "CreateArcSettingResponse",
-}) as any as S.Schema<CreateArcSettingResponse>;
+  identifier: "CreateArcSettingsResponse",
+}) as any as S.Schema<CreateArcSettingsResponse>;
 
-export interface CreateArcSettingIdentityRequest {
+export interface CreateArcSettingsIdentityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1460,7 +1768,7 @@ export interface CreateArcSettingIdentityRequest {
   /** The name of the proxy resource holding details of HCI ArcSetting information. */
   arcSettingName: string;
 }
-export const CreateArcSettingIdentityRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateArcSettingsIdentityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1471,12 +1779,12 @@ export const CreateArcSettingIdentityRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/createArcIdentity",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "CreateArcSettingIdentityRequest",
-}) as any as S.Schema<CreateArcSettingIdentityRequest>;
+  identifier: "CreateArcSettingsIdentityRequest",
+}) as any as S.Schema<CreateArcSettingsIdentityRequest>;
 
 export interface ArcIdentityResponseProperties {
   arcApplicationClientId?: string;
@@ -1509,13 +1817,11 @@ export const ArcIdentityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ArcIdentityResponse>;
 
 /** Resource tags. */
-export type ClustersCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const CreateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateRequestTagsMap>;
+) as any as S.Schema<CreateClusterRequestTagsMap>;
 
 /** Software Assurance properties of the cluster. */
 export interface SoftwareAssurancePropertiesInput {
@@ -1607,31 +1913,31 @@ export type UserAssignedIdentityInput = LogCollectionPropertiesInput;
 export const UserAssignedIdentityInput = LogCollectionPropertiesInput;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersCreateRequestIdentityUserAssignedIdentitiesMap = {
+export type CreateClusterRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]: LogCollectionPropertiesInput | undefined;
 };
-export const ClustersCreateRequestIdentityUserAssignedIdentitiesMap =
+export const CreateClusterRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     LogCollectionPropertiesInput,
-  ) as any as S.Schema<ClustersCreateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<CreateClusterRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersCreateRequestIdentity {
+export interface CreateClusterRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersCreateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: CreateClusterRequestIdentityUserAssignedIdentitiesMap;
 }
-export const ClustersCreateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      ClustersCreateRequestIdentityUserAssignedIdentitiesMap,
+      CreateClusterRequestIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "ClustersCreateRequestIdentity",
-}) as any as S.Schema<ClustersCreateRequestIdentity>;
+  identifier: "CreateClusterRequestIdentity",
+}) as any as S.Schema<CreateClusterRequestIdentity>;
 
 export interface CreateClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1641,13 +1947,13 @@ export interface CreateClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
   /** Resource tags. */
-  tags?: ClustersCreateRequestTagsMap;
+  tags?: CreateClusterRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cluster properties. */
   properties?: ClusterPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersCreateRequestIdentity;
+  identity?: CreateClusterRequestIdentity;
   /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
   kind?: string;
 }
@@ -1656,17 +1962,17 @@ export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ClustersCreateRequestTagsMap),
+    tags: S.optional(CreateClusterRequestTagsMap),
     location: S.String,
     properties: S.optional(ClusterPropertiesInput),
-    identity: S.optional(ClustersCreateRequestIdentity),
+    identity: S.optional(CreateClusterRequestIdentity),
     kind: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -1674,46 +1980,46 @@ export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateClusterRequest>;
 
 /** Resource tags. */
-export type ClustersCreateResponseTagsMap = {
+export type CreateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateResponseTagsMap>;
+) as any as S.Schema<CreateClusterResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersCreateResponseIdentityUserAssignedIdentitiesMap = {
+export type CreateClusterResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const ClustersCreateResponseIdentityUserAssignedIdentitiesMap =
+export const CreateClusterResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<ClustersCreateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<CreateClusterResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersCreateResponseIdentity {
+export interface CreateClusterResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersCreateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: CreateClusterResponseIdentityUserAssignedIdentitiesMap;
 }
-export const ClustersCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      ClustersCreateResponseIdentityUserAssignedIdentitiesMap,
+      CreateClusterResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "ClustersCreateResponseIdentity",
-}) as any as S.Schema<ClustersCreateResponseIdentity>;
+  identifier: "CreateClusterResponseIdentity",
+}) as any as S.Schema<CreateClusterResponseIdentity>;
 
 export interface CreateClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1725,13 +2031,13 @@ export interface CreateClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersCreateResponseTagsMap;
+  tags?: CreateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cluster properties. */
   properties?: ClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersCreateResponseIdentity;
+  identity?: CreateClusterResponseIdentity;
   /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
   kind?: string;
 }
@@ -1741,10 +2047,10 @@ export const CreateClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersCreateResponseTagsMap),
+    tags: S.optional(CreateClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
-    identity: S.optional(ClustersCreateResponseIdentity),
+    identity: S.optional(CreateClusterResponseIdentity),
     kind: S.optional(S.String),
   }),
 ).annotate({
@@ -1769,7 +2075,7 @@ export const CreateClusterIdentityRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/createClusterIdentity",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -1880,7 +2186,7 @@ export const CreateExtensionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/extensions/{extensionName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -2173,7 +2479,7 @@ export const CreateGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateGuestAgentResponse",
 }) as any as S.Schema<CreateGuestAgentResponse>;
 
-export interface DeleteArcSettingRequest {
+export interface DeleteArcSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2183,7 +2489,7 @@ export interface DeleteArcSettingRequest {
   /** The name of the proxy resource holding details of HCI ArcSetting information. */
   arcSettingName: string;
 }
-export const DeleteArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteArcSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2194,19 +2500,19 @@ export const DeleteArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "DeleteArcSettingRequest",
-}) as any as S.Schema<DeleteArcSettingRequest>;
+  identifier: "DeleteArcSettingsRequest",
+}) as any as S.Schema<DeleteArcSettingsRequest>;
 
-export interface DeleteArcSettingResponse {}
-export const DeleteArcSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteArcSettingsResponse {}
+export const DeleteArcSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteArcSettingResponse",
-}) as any as S.Schema<DeleteArcSettingResponse>;
+  identifier: "DeleteArcSettingsResponse",
+}) as any as S.Schema<DeleteArcSettingsResponse>;
 
 export interface DeleteClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2226,7 +2532,7 @@ export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -2240,7 +2546,42 @@ export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteClusterResponse",
 }) as any as S.Schema<DeleteClusterResponse>;
 
-export interface DeleteDeploymentSettingRequest {
+export interface DeleteClusterJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Name of ClusterJob */
+  jobsName: string;
+}
+export const DeleteClusterJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    jobsName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/jobs/{jobsName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteClusterJobRequest",
+}) as any as S.Schema<DeleteClusterJobRequest>;
+
+export interface DeleteClusterJobResponse {}
+export const DeleteClusterJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterJobResponse",
+}) as any as S.Schema<DeleteClusterJobResponse>;
+
+export interface DeleteDeploymentSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2250,7 +2591,7 @@ export interface DeleteDeploymentSettingRequest {
   /** Name of Deployment Setting */
   deploymentSettingsName: string;
 }
-export const DeleteDeploymentSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDeploymentSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2261,19 +2602,19 @@ export const DeleteDeploymentSettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/deploymentSettings/{deploymentSettingsName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "DeleteDeploymentSettingRequest",
-}) as any as S.Schema<DeleteDeploymentSettingRequest>;
+  identifier: "DeleteDeploymentSettingsRequest",
+}) as any as S.Schema<DeleteDeploymentSettingsRequest>;
 
-export interface DeleteDeploymentSettingResponse {}
-export const DeleteDeploymentSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDeploymentSettingsResponse {}
+export const DeleteDeploymentSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteDeploymentSettingResponse",
-}) as any as S.Schema<DeleteDeploymentSettingResponse>;
+  identifier: "DeleteDeploymentSettingsResponse",
+}) as any as S.Schema<DeleteDeploymentSettingsResponse>;
 
 export interface DeleteEdgeDeviceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -2290,7 +2631,7 @@ export const DeleteEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -2322,7 +2663,7 @@ export const DeleteEdgeDeviceJobRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}/jobs/{jobsName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -2335,6 +2676,327 @@ export const DeleteEdgeDeviceJobResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteEdgeDeviceJobResponse",
 }) as any as S.Schema<DeleteEdgeDeviceJobResponse>;
+
+export interface DeleteEdgeMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const DeleteEdgeMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEdgeMachineRequest",
+}) as any as S.Schema<DeleteEdgeMachineRequest>;
+
+export interface DeleteEdgeMachineResponse {}
+export const DeleteEdgeMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEdgeMachineResponse",
+}) as any as S.Schema<DeleteEdgeMachineResponse>;
+
+export interface DeleteEdgeMachineDeploymentSettingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of Edge Machine Deployment Setting. */
+  deploymentSettingName: string;
+}
+export const DeleteEdgeMachineDeploymentSettingsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      deploymentSettingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/deploymentSettings/{deploymentSettingName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteEdgeMachineDeploymentSettingsRequest",
+  }) as any as S.Schema<DeleteEdgeMachineDeploymentSettingsRequest>;
+
+export interface DeleteEdgeMachineDeploymentSettingsResponse {}
+export const DeleteEdgeMachineDeploymentSettingsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteEdgeMachineDeploymentSettingsResponse",
+  }) as any as S.Schema<DeleteEdgeMachineDeploymentSettingsResponse>;
+
+export interface DeleteEdgeMachineDiskRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+}
+export const DeleteEdgeMachineDiskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    diskName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEdgeMachineDiskRequest",
+}) as any as S.Schema<DeleteEdgeMachineDiskRequest>;
+
+export interface DeleteEdgeMachineDiskResponse {}
+export const DeleteEdgeMachineDiskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEdgeMachineDiskResponse",
+}) as any as S.Schema<DeleteEdgeMachineDiskResponse>;
+
+export interface DeleteEdgeMachineDiskJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+  /** The name of the EdgeMachineDiskJob */
+  jobName: string;
+}
+export const DeleteEdgeMachineDiskJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    diskName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/jobs/{jobName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEdgeMachineDiskJobRequest",
+}) as any as S.Schema<DeleteEdgeMachineDiskJobRequest>;
+
+export interface DeleteEdgeMachineDiskJobResponse {}
+export const DeleteEdgeMachineDiskJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEdgeMachineDiskJobResponse",
+}) as any as S.Schema<DeleteEdgeMachineDiskJobResponse>;
+
+export interface DeleteEdgeMachineDiskPrivilegedJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+  /** The name of the EdgeMachineDiskPrivilegedJob */
+  privilegedJobName: string;
+}
+export const DeleteEdgeMachineDiskPrivilegedJobRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      diskName: S.String.pipe(T.Label()),
+      privilegedJobName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/privilegedJobs/{privilegedJobName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteEdgeMachineDiskPrivilegedJobRequest",
+  }) as any as S.Schema<DeleteEdgeMachineDiskPrivilegedJobRequest>;
+
+export interface DeleteEdgeMachineDiskPrivilegedJobResponse {}
+export const DeleteEdgeMachineDiskPrivilegedJobResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteEdgeMachineDiskPrivilegedJobResponse",
+  }) as any as S.Schema<DeleteEdgeMachineDiskPrivilegedJobResponse>;
+
+export interface DeleteEdgeMachineJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of EdgeMachineJob */
+  jobsName: string;
+}
+export const DeleteEdgeMachineJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    jobsName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/jobs/{jobsName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEdgeMachineJobRequest",
+}) as any as S.Schema<DeleteEdgeMachineJobRequest>;
+
+export interface DeleteEdgeMachineJobResponse {}
+export const DeleteEdgeMachineJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEdgeMachineJobResponse",
+}) as any as S.Schema<DeleteEdgeMachineJobResponse>;
+
+export interface DeleteEdgeMachineNetworkAdapterJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineNetworkAdapter */
+  networkAdapterName: string;
+  /** The name of the EdgeMachineNetworkAdapterJob */
+  jobName: string;
+}
+export const DeleteEdgeMachineNetworkAdapterJobRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      networkAdapterName: S.String.pipe(T.Label()),
+      jobName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/networkAdapters/{networkAdapterName}/jobs/{jobName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteEdgeMachineNetworkAdapterJobRequest",
+  }) as any as S.Schema<DeleteEdgeMachineNetworkAdapterJobRequest>;
+
+export interface DeleteEdgeMachineNetworkAdapterJobResponse {}
+export const DeleteEdgeMachineNetworkAdapterJobResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteEdgeMachineNetworkAdapterJobResponse",
+  }) as any as S.Schema<DeleteEdgeMachineNetworkAdapterJobResponse>;
+
+export interface DeleteEdgeMachineSecuritySettingsOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of the security settings resource */
+  securitySettingsName: string;
+}
+export const DeleteEdgeMachineSecuritySettingsOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      securitySettingsName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/securitySettings/{securitySettingsName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteEdgeMachineSecuritySettingsOperationRequest",
+  }) as any as S.Schema<DeleteEdgeMachineSecuritySettingsOperationRequest>;
+
+export interface DeleteEdgeMachineSecuritySettingsOperationResponse {}
+export const DeleteEdgeMachineSecuritySettingsOperationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteEdgeMachineSecuritySettingsOperationResponse",
+  }) as any as S.Schema<DeleteEdgeMachineSecuritySettingsOperationResponse>;
+
+export interface DeleteEdgeMachineVolumeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineVolume */
+  volumeName: string;
+}
+export const DeleteEdgeMachineVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEdgeMachineVolumeRequest",
+}) as any as S.Schema<DeleteEdgeMachineVolumeRequest>;
+
+export interface DeleteEdgeMachineVolumeResponse {}
+export const DeleteEdgeMachineVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEdgeMachineVolumeResponse",
+}) as any as S.Schema<DeleteEdgeMachineVolumeResponse>;
 
 export interface DeleteExtensionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2360,7 +3022,7 @@ export const DeleteExtensionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/extensions/{extensionName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -2529,7 +3191,7 @@ export const DeleteNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteNetworkInterfaceResponse",
 }) as any as S.Schema<DeleteNetworkInterfaceResponse>;
 
-export interface DeleteSecuritySettingRequest {
+export interface DeleteSecuritySettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2539,7 +3201,7 @@ export interface DeleteSecuritySettingRequest {
   /** Name of security setting */
   securitySettingsName: string;
 }
-export const DeleteSecuritySettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSecuritySettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2550,19 +3212,19 @@ export const DeleteSecuritySettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/securitySettings/{securitySettingsName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "DeleteSecuritySettingRequest",
-}) as any as S.Schema<DeleteSecuritySettingRequest>;
+  identifier: "DeleteSecuritySettingsRequest",
+}) as any as S.Schema<DeleteSecuritySettingsRequest>;
 
-export interface DeleteSecuritySettingResponse {}
-export const DeleteSecuritySettingResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSecuritySettingsResponse {}
+export const DeleteSecuritySettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteSecuritySettingResponse",
-}) as any as S.Schema<DeleteSecuritySettingResponse>;
+  identifier: "DeleteSecuritySettingsResponse",
+}) as any as S.Schema<DeleteSecuritySettingsResponse>;
 
 export interface DeleteStorageContainerRequest {
   /** The ID of the target subscription. */
@@ -2617,7 +3279,7 @@ export const DeleteUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -2630,6 +3292,76 @@ export const DeleteUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteUpdateResponse",
 }) as any as S.Schema<DeleteUpdateResponse>;
+
+export interface DeleteUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the Update */
+  updateName: string;
+  /** The name of the Update Run */
+  updateRunName: string;
+}
+export const DeleteUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    updateName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns/{updateRunName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteUpdateRunRequest",
+}) as any as S.Schema<DeleteUpdateRunRequest>;
+
+export interface DeleteUpdateRunResponse {}
+export const DeleteUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteUpdateRunResponse",
+}) as any as S.Schema<DeleteUpdateRunResponse>;
+
+export interface DeleteUpdateSummaryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const DeleteUpdateSummaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteUpdateSummaryRequest",
+}) as any as S.Schema<DeleteUpdateSummaryRequest>;
+
+export interface DeleteUpdateSummaryResponse {}
+export const DeleteUpdateSummaryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteUpdateSummaryResponse",
+}) as any as S.Schema<DeleteUpdateSummaryResponse>;
 
 export interface DeleteVirtualHardDiskRequest {
   /** The ID of the target subscription. */
@@ -3290,7 +4022,9 @@ export type EceSecrets =
   | "AzureStackLCMUserCredential"
   | "DefaultARBApplication"
   | "LocalAdminCredential"
-  | "WitnessStorageKey";
+  | "WitnessStorageKey"
+  | "chapCredential"
+  | "mutualChapCredential";
 export const EceSecrets = /*@__PURE__*/ S.String;
 
 /** Protected parameters list stored in keyvault. */
@@ -3585,7 +4319,7 @@ export const DeploymentSettingsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/deploymentSettings/{deploymentSettingsName}",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
 ).annotate({
@@ -3808,72 +4542,6 @@ export const DeploymentConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeploymentConfiguration",
 }) as any as S.Schema<DeploymentConfiguration>;
 
-/** List of nested steps of AzureStackHCI Cluster Deployment. */
-export type DeploymentStepStepsList = Array<DeploymentStep>;
-export const DeploymentStepStepsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => DeploymentStep),
-) as any as S.Schema<DeploymentStepStepsList>;
-
-/** List of exceptions in AzureStackHCI Cluster Deployment. */
-export type DeploymentStepExceptionList = Array<string>;
-export const DeploymentStepExceptionList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DeploymentStepExceptionList>;
-
-/** The Step of AzureStackHCI Cluster. */
-export interface DeploymentStep {
-  /** Name of step. */
-  name?: string;
-  /** Description of step. */
-  description?: string;
-  /** FullStepIndex of step. */
-  fullStepIndex?: string;
-  /** Start time of step. */
-  startTimeUtc?: string;
-  /** End time of step. */
-  endTimeUtc?: string;
-  /** Status of step. Allowed values are 'Error', 'Success', 'InProgress' */
-  status?: string;
-  /** List of nested steps of AzureStackHCI Cluster Deployment. */
-  steps?: DeploymentStepStepsList;
-  /** List of exceptions in AzureStackHCI Cluster Deployment. */
-  exception?: DeploymentStepExceptionList;
-}
-export const DeploymentStep = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    fullStepIndex: S.optional(S.String),
-    startTimeUtc: S.optional(S.String),
-    endTimeUtc: S.optional(S.String),
-    status: S.optional(S.String),
-    steps: S.optional(DeploymentStepStepsList),
-    exception: S.optional(DeploymentStepExceptionList),
-  }),
-).annotate({ identifier: "DeploymentStep" }) as any as S.Schema<DeploymentStep>;
-
-/** List of steps of AzureStackHCI Cluster Deployment. */
-export type EceActionStatusStepsList = Array<DeploymentStep>;
-export const EceActionStatusStepsList = /*@__PURE__*/ S.Array(
-  DeploymentStep,
-) as any as S.Schema<EceActionStatusStepsList>;
-
-/** The ECE action plan deployment status for AzureStackHCI Cluster. */
-export interface EceActionStatus {
-  /** Status of ECE action AzureStackHCI Cluster Deployment. */
-  status?: string;
-  /** List of steps of AzureStackHCI Cluster Deployment. */
-  steps?: EceActionStatusStepsList;
-}
-export const EceActionStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    steps: S.optional(EceActionStatusStepsList),
-  }),
-).annotate({
-  identifier: "EceActionStatus",
-}) as any as S.Schema<EceActionStatus>;
-
 /** The DeploymentStatus of AzureStackHCI Cluster. */
 export interface EceReportedProperties {
   /** validation status of AzureStackHCI Cluster Deployment. */
@@ -3943,41 +4611,6 @@ export const DeploymentSettingsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeploymentSettingsCreateOrUpdateResponse",
 }) as any as S.Schema<DeploymentSettingsCreateOrUpdateResponse>;
 
-export interface DisableArcSettingInitializeProcessRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the proxy resource holding details of HCI ArcSetting information. */
-  arcSettingName: string;
-}
-export const DisableArcSettingInitializeProcessRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      arcSettingName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/initializeDisableProcess",
-        code: 200,
-        apiVersion: "2026-04-30",
-      }),
-    ),
-  ).annotate({
-    identifier: "DisableArcSettingInitializeProcessRequest",
-  }) as any as S.Schema<DisableArcSettingInitializeProcessRequest>;
-
-export interface DisableArcSettingInitializeProcessResponse {}
-export const DisableArcSettingInitializeProcessResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DisableArcSettingInitializeProcessResponse",
-  }) as any as S.Schema<DisableArcSettingInitializeProcessResponse>;
-
 /** Edge device kind. */
 export type EdgeDeviceKind = "HCI";
 export const EdgeDeviceKind = /*@__PURE__*/ S.String;
@@ -4003,7 +4636,7 @@ export const EdgeDeviceJobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}/jobs/{jobsName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -4057,7 +4690,7 @@ export const EdgeDevicesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -4088,53 +4721,3150 @@ export const EdgeDevicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EdgeDevicesCreateOrUpdateResponse",
 }) as any as S.Schema<EdgeDevicesCreateOrUpdateResponse>;
 
-/** Node Ids against which, current node has to be validated. */
-export type EdgeDevicesValidateRequestEdgeDeviceIdsList = Array<string>;
-export const EdgeDevicesValidateRequestEdgeDeviceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EdgeDevicesValidateRequestEdgeDeviceIdsList>;
+/** Node storage type for an edge machine. */
+export type NodeStorageType = "S2D" | "SANISCSI" | "SANFC";
+export const NodeStorageType = /*@__PURE__*/ S.String;
 
-export interface EdgeDevicesValidateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** Name of Device */
-  edgeDeviceName: string;
-  /** Node Ids against which, current node has to be validated. */
-  edgeDeviceIds: EdgeDevicesValidateRequestEdgeDeviceIdsList;
-  /** Additional info required for validation. */
-  additionalInfo?: string;
+/** Common properties applied to iSCSI network adapters. */
+export interface IscsiAdapterProperties {
+  /** 802.1p priority value for iSCSI traffic. */
+  priorityValue8021ActionIscsi?: number;
+  /** iSCSI bandwidth percentage. */
+  bandwidthPercentageIscsi?: number;
+  /** Jumbo frame size in bytes. */
+  jumboPacket?: number;
 }
-export const EdgeDevicesValidateRequest = /*@__PURE__*/ S.suspend(() =>
+export const IscsiAdapterProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    edgeDeviceName: S.String.pipe(T.Label()),
-    edgeDeviceIds: EdgeDevicesValidateRequestEdgeDeviceIdsList,
-    additionalInfo: S.optional(S.String),
+    priorityValue8021ActionIscsi: S.optional(S.Number),
+    bandwidthPercentageIscsi: S.optional(S.Number),
+    jumboPacket: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "IscsiAdapterProperties",
+}) as any as S.Schema<IscsiAdapterProperties>;
+
+/** iSCSI target portal address. */
+export interface IscsiTargetPortalAddress {
+  /** IP address of the iSCSI target portal. */
+  ipAddress?: string;
+  /** Next hop IP address used to reach the target portal. */
+  nextHop?: string;
+}
+export const IscsiTargetPortalAddress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAddress: S.optional(S.String),
+    nextHop: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IscsiTargetPortalAddress",
+}) as any as S.Schema<IscsiTargetPortalAddress>;
+
+/** Target portal addresses reachable through this adapter. */
+export type IscsiAdapterIPConfigTargetPortalAddressesList =
+  Array<IscsiTargetPortalAddress>;
+export const IscsiAdapterIPConfigTargetPortalAddressesList =
+  /*@__PURE__*/ S.Array(
+    IscsiTargetPortalAddress,
+  ) as any as S.Schema<IscsiAdapterIPConfigTargetPortalAddressesList>;
+
+/** IP configuration for a single iSCSI network adapter. */
+export interface IscsiAdapterIPConfig {
+  /** Name of the iSCSI network adapter. */
+  networkAdapterName?: string;
+  /** VLAN ID associated with the iSCSI network adapter. */
+  vlanId?: number;
+  /** Address prefix in CIDR notation. */
+  addressPrefix?: string;
+  /** Target portal addresses reachable through this adapter. */
+  targetPortalAddresses?: IscsiAdapterIPConfigTargetPortalAddressesList;
+}
+export const IscsiAdapterIPConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    networkAdapterName: S.optional(S.String),
+    vlanId: S.optional(S.Number),
+    addressPrefix: S.optional(S.String),
+    targetPortalAddresses: S.optional(
+      IscsiAdapterIPConfigTargetPortalAddressesList,
+    ),
+  }),
+).annotate({
+  identifier: "IscsiAdapterIPConfig",
+}) as any as S.Schema<IscsiAdapterIPConfig>;
+
+/** Per-adapter IP configuration for the iSCSI network adapters. */
+export type IscsiNetworkConfigAdapterIPConfigList = Array<IscsiAdapterIPConfig>;
+export const IscsiNetworkConfigAdapterIPConfigList = /*@__PURE__*/ S.Array(
+  IscsiAdapterIPConfig,
+) as any as S.Schema<IscsiNetworkConfigAdapterIPConfigList>;
+
+/** iSCSI network configuration. */
+export interface IscsiNetworkConfig {
+  /** Common adapter properties applied to all iSCSI network adapters. */
+  adapterProperties?: IscsiAdapterProperties;
+  /** Per-adapter IP configuration for the iSCSI network adapters. */
+  adapterIPConfig?: IscsiNetworkConfigAdapterIPConfigList;
+}
+export const IscsiNetworkConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adapterProperties: S.optional(IscsiAdapterProperties),
+    adapterIPConfig: S.optional(IscsiNetworkConfigAdapterIPConfigList),
+  }),
+).annotate({
+  identifier: "IscsiNetworkConfig",
+}) as any as S.Schema<IscsiNetworkConfig>;
+
+/** The CHAP authentication mode for an iSCSI connection. */
+export type IscsiChapType = "NoChap" | "OneWay" | "Bidirectional";
+export const IscsiChapType = /*@__PURE__*/ S.String;
+
+/** CHAP authentication settings for an iSCSI connection. */
+export interface IscsiChapSettings {
+  /** The CHAP authentication mode to use. */
+  chapType?: IscsiChapType | (string & {});
+}
+export const IscsiChapSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    chapType: S.optional(IscsiChapType),
+  }),
+).annotate({
+  identifier: "IscsiChapSettings",
+}) as any as S.Schema<IscsiChapSettings>;
+
+/** iSCSI configuration. */
+export interface IscsiConfig {
+  /** iSCSI network configuration. */
+  iScsiNetworkConfig?: IscsiNetworkConfig;
+  /** CHAP authentication settings. */
+  chapSettings?: IscsiChapSettings;
+  /** iSCSI Qualified Name of the initiator. */
+  initiatorIqn?: string;
+}
+export const IscsiConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    iScsiNetworkConfig: S.optional(IscsiNetworkConfig),
+    chapSettings: S.optional(IscsiChapSettings),
+    initiatorIqn: S.optional(S.String),
+  }),
+).annotate({ identifier: "IscsiConfig" }) as any as S.Schema<IscsiConfig>;
+
+/** Protected parameters stored in Key Vault and applied during edge machine node preparation. */
+export type EdgeMachineDeploymentDataSecretsList = Array<EceDeploymentSecrets>;
+export const EdgeMachineDeploymentDataSecretsList = /*@__PURE__*/ S.Array(
+  EceDeploymentSecrets,
+) as any as S.Schema<EdgeMachineDeploymentDataSecretsList>;
+
+/** The deployment data of an edge machine. */
+export interface EdgeMachineDeploymentData {
+  /** Storage type for the edge machine node. */
+  storageType: NodeStorageType | (string & {});
+  /** iSCSI configuration for the edge machine. */
+  iScsiConfig?: IscsiConfig;
+  /** Protected parameters stored in Key Vault and applied during edge machine node preparation. */
+  secrets?: EdgeMachineDeploymentDataSecretsList;
+}
+export const EdgeMachineDeploymentData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    storageType: NodeStorageType,
+    iScsiConfig: S.optional(IscsiConfig),
+    secrets: S.optional(EdgeMachineDeploymentDataSecretsList),
+  }),
+).annotate({
+  identifier: "EdgeMachineDeploymentData",
+}) as any as S.Schema<EdgeMachineDeploymentData>;
+
+/** A scale unit containing deployment data. */
+export interface EdgeMachineScaleUnits {
+  /** Deployment data to configure the edge machine. */
+  deploymentData: EdgeMachineDeploymentData;
+}
+export const EdgeMachineScaleUnits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentData: EdgeMachineDeploymentData,
+  }),
+).annotate({
+  identifier: "EdgeMachineScaleUnits",
+}) as any as S.Schema<EdgeMachineScaleUnits>;
+
+/** The list of deployment data. */
+export type EdgeMachineDeploymentConfigurationScaleUnitsList =
+  Array<EdgeMachineScaleUnits>;
+export const EdgeMachineDeploymentConfigurationScaleUnitsList =
+  /*@__PURE__*/ S.Array(
+    EdgeMachineScaleUnits,
+  ) as any as S.Schema<EdgeMachineDeploymentConfigurationScaleUnitsList>;
+
+/** Edge Machine Deployment Configuration. */
+export interface EdgeMachineDeploymentConfiguration {
+  /** Deployment template version. */
+  version?: string;
+  /** The list of deployment data. */
+  scaleUnits: EdgeMachineDeploymentConfigurationScaleUnitsList;
+}
+export const EdgeMachineDeploymentConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+    scaleUnits: EdgeMachineDeploymentConfigurationScaleUnitsList,
+  }),
+).annotate({
+  identifier: "EdgeMachineDeploymentConfiguration",
+}) as any as S.Schema<EdgeMachineDeploymentConfiguration>;
+
+/** The properties of an Edge Machine Deployment Setting. */
+export interface EdgeMachineDeploymentSettingPropertiesInput {
+  /** The deployment configuration for the edge machine. */
+  deploymentConfiguration: EdgeMachineDeploymentConfiguration;
+}
+export const EdgeMachineDeploymentSettingPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      deploymentConfiguration: EdgeMachineDeploymentConfiguration,
+    }),
+  ).annotate({
+    identifier: "EdgeMachineDeploymentSettingPropertiesInput",
+  }) as any as S.Schema<EdgeMachineDeploymentSettingPropertiesInput>;
+
+export interface EdgeMachineDeploymentSettingsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of Edge Machine Deployment Setting. */
+  deploymentSettingName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDeploymentSettingPropertiesInput;
+}
+export const EdgeMachineDeploymentSettingsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      deploymentSettingName: S.String.pipe(T.Label()),
+      properties: S.optional(EdgeMachineDeploymentSettingPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/deploymentSettings/{deploymentSettingName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EdgeMachineDeploymentSettingsCreateOrUpdateRequest",
+  }) as any as S.Schema<EdgeMachineDeploymentSettingsCreateOrUpdateRequest>;
+
+/** The properties of an Edge Machine Deployment Setting. */
+export interface EdgeMachineDeploymentSettingProperties {
+  /** The provisioning state of the deployment setting resource. */
+  provisioningState?: ProvisioningState;
+  /** The deployment configuration for the edge machine. */
+  deploymentConfiguration: EdgeMachineDeploymentConfiguration;
+  /** Deployment status reported from the edge machine. */
+  reportedProperties?: EceReportedProperties;
+}
+export const EdgeMachineDeploymentSettingProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      provisioningState: S.optional(ProvisioningState),
+      deploymentConfiguration: EdgeMachineDeploymentConfiguration,
+      reportedProperties: S.optional(EceReportedProperties),
+    }),
+).annotate({
+  identifier: "EdgeMachineDeploymentSettingProperties",
+}) as any as S.Schema<EdgeMachineDeploymentSettingProperties>;
+
+export interface EdgeMachineDeploymentSettingsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDeploymentSettingProperties;
+}
+export const EdgeMachineDeploymentSettingsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineDeploymentSettingProperties),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineDeploymentSettingsCreateOrUpdateResponse",
+  }) as any as S.Schema<EdgeMachineDeploymentSettingsCreateOrUpdateResponse>;
+
+/** Job Type supported for disk operations. */
+export type DiskJobType = "CreateVolume" | "SyncConfiguration";
+export const DiskJobType = /*@__PURE__*/ S.String;
+
+/** The error detail. */
+export type EdgeMachineDiskJobPropertiesInputError =
+  LogCollectionPropertiesInput;
+export const EdgeMachineDiskJobPropertiesInputError =
+  LogCollectionPropertiesInput;
+
+/** Disk Job properties. */
+export interface EdgeMachineDiskJobPropertiesInput {
+  /** Job Type to support polymorphic resource. */
+  jobType: DiskJobType | (string & {});
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode | (string & {});
+  /** The error detail. */
+  error?: LogCollectionPropertiesInput;
+}
+export const EdgeMachineDiskJobPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobType: DiskJobType,
+    deploymentMode: S.optional(DeploymentMode),
+    error: S.optional(LogCollectionPropertiesInput),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskJobPropertiesInput",
+}) as any as S.Schema<EdgeMachineDiskJobPropertiesInput>;
+
+export interface EdgeMachineDiskJobsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+  /** The name of the EdgeMachineDiskJob */
+  jobName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskJobPropertiesInput;
+}
+export const EdgeMachineDiskJobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      diskName: S.String.pipe(T.Label()),
+      jobName: S.String.pipe(T.Label()),
+      properties: S.optional(EdgeMachineDiskJobPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/jobs/{jobName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "EdgeMachineDiskJobsCreateOrUpdateRequest",
+}) as any as S.Schema<EdgeMachineDiskJobsCreateOrUpdateRequest>;
+
+/** The error details. */
+export type EdgeMachineDiskJobPropertiesErrorDetailsList = Array<ErrorDetail>;
+export const EdgeMachineDiskJobPropertiesErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<EdgeMachineDiskJobPropertiesErrorDetailsList>;
+
+/** The error additional info. */
+export type EdgeMachineDiskJobPropertiesErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const EdgeMachineDiskJobPropertiesErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<EdgeMachineDiskJobPropertiesErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface EdgeMachineDiskJobPropertiesError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: EdgeMachineDiskJobPropertiesErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: EdgeMachineDiskJobPropertiesErrorAdditionalInfoList;
+}
+export const EdgeMachineDiskJobPropertiesError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(EdgeMachineDiskJobPropertiesErrorDetailsList),
+    additionalInfo: S.optional(
+      EdgeMachineDiskJobPropertiesErrorAdditionalInfoList,
+    ),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskJobPropertiesError",
+}) as any as S.Schema<EdgeMachineDiskJobPropertiesError>;
+
+/** List of nested steps. */
+export type DiskDeploymentStepStepsList = Array<DiskDeploymentStep>;
+export const DiskDeploymentStepStepsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => DiskDeploymentStep),
+) as any as S.Schema<DiskDeploymentStepStepsList>;
+
+/** List of exceptions. */
+export type DiskDeploymentStepExceptionList = Array<string>;
+export const DiskDeploymentStepExceptionList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DiskDeploymentStepExceptionList>;
+
+/** The Step of Disk Job. */
+export interface DiskDeploymentStep {
+  /** Name of step. */
+  name?: string;
+  /** Description of step. */
+  description?: string;
+  /** FullStepIndex of step. */
+  fullStepIndex?: string;
+  /** Start time of step. */
+  startTimeUtc?: string;
+  /** End time of step. */
+  endTimeUtc?: string;
+  /** Status of step (Error, Success, InProgress). */
+  status?: string;
+  /** List of nested steps. */
+  steps?: DiskDeploymentStepStepsList;
+  /** List of exceptions. */
+  exception?: DiskDeploymentStepExceptionList;
+}
+export const DiskDeploymentStep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    fullStepIndex: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    status: S.optional(S.String),
+    steps: S.optional(DiskDeploymentStepStepsList),
+    exception: S.optional(DiskDeploymentStepExceptionList),
+  }),
+).annotate({
+  identifier: "DiskDeploymentStep",
+}) as any as S.Schema<DiskDeploymentStep>;
+
+/** List of steps of Disk Job. */
+export type DiskActionStatusStepsList = Array<DiskDeploymentStep>;
+export const DiskActionStatusStepsList = /*@__PURE__*/ S.Array(
+  DiskDeploymentStep,
+) as any as S.Schema<DiskActionStatusStepsList>;
+
+/** The action plan deployment status for Disk Job. */
+export interface DiskActionStatus {
+  /** Status of ECE action Disk Job. */
+  status?: string;
+  /** List of steps of Disk Job. */
+  steps?: DiskActionStatusStepsList;
+}
+export const DiskActionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    steps: S.optional(DiskActionStatusStepsList),
+  }),
+).annotate({
+  identifier: "DiskActionStatus",
+}) as any as S.Schema<DiskActionStatus>;
+
+/** Reported properties of a disk job. */
+export interface DiskJobReportedProperties {
+  /** Percentage of job completion. */
+  percentComplete?: number;
+  /** Validation status of Disk Job. */
+  validationStatus?: DiskActionStatus;
+  /** Deployment status of Disk Job. */
+  deploymentStatus?: DiskActionStatus;
+}
+export const DiskJobReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    percentComplete: S.optional(S.Number),
+    validationStatus: S.optional(DiskActionStatus),
+    deploymentStatus: S.optional(DiskActionStatus),
+  }),
+).annotate({
+  identifier: "DiskJobReportedProperties",
+}) as any as S.Schema<DiskJobReportedProperties>;
+
+/** Disk Job properties. */
+export interface EdgeMachineDiskJobProperties {
+  /** Job Type to support polymorphic resource. */
+  jobType: DiskJobType;
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode;
+  /** Job provisioning state. */
+  provisioningState?: ProvisioningState;
+  /** Unique, immutable job id. */
+  jobId?: string;
+  /** The UTC date and time at which the job started. */
+  startTimeUtc?: string;
+  /** The UTC date and time at which the job completed. */
+  endTimeUtc?: string;
+  /** Status of disk job. */
+  status?: JobStatus;
+  /** The error detail. */
+  error?: EdgeMachineDiskJobPropertiesError;
+  /** Properties reported by the job execution. */
+  reportedProperties?: DiskJobReportedProperties;
+}
+export const EdgeMachineDiskJobProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobType: DiskJobType,
+    deploymentMode: S.optional(DeploymentMode),
+    provisioningState: S.optional(ProvisioningState),
+    jobId: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    status: S.optional(JobStatus),
+    error: S.optional(EdgeMachineDiskJobPropertiesError),
+    reportedProperties: S.optional(DiskJobReportedProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskJobProperties",
+}) as any as S.Schema<EdgeMachineDiskJobProperties>;
+
+export interface EdgeMachineDiskJobsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskJobProperties;
+}
+export const EdgeMachineDiskJobsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineDiskJobProperties),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineDiskJobsCreateOrUpdateResponse",
+  }) as any as S.Schema<EdgeMachineDiskJobsCreateOrUpdateResponse>;
+
+/** Job Type supported for disk privileged operations. */
+export type PrivilegedJobType = "DeleteVolume";
+export const PrivilegedJobType = /*@__PURE__*/ S.String;
+
+/** The error detail. */
+export type EdgeMachineDiskPrivilegedJobPropertiesInputError =
+  LogCollectionPropertiesInput;
+export const EdgeMachineDiskPrivilegedJobPropertiesInputError =
+  LogCollectionPropertiesInput;
+
+/** Disk Privileged Job properties. */
+export interface EdgeMachineDiskPrivilegedJobPropertiesInput {
+  /** Privileged Job Type to support polymorphic resource. */
+  jobType: PrivilegedJobType | (string & {});
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode | (string & {});
+  /** The error detail. */
+  error?: LogCollectionPropertiesInput;
+}
+export const EdgeMachineDiskPrivilegedJobPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      jobType: PrivilegedJobType,
+      deploymentMode: S.optional(DeploymentMode),
+      error: S.optional(LogCollectionPropertiesInput),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineDiskPrivilegedJobPropertiesInput",
+  }) as any as S.Schema<EdgeMachineDiskPrivilegedJobPropertiesInput>;
+
+export interface EdgeMachineDiskPrivilegedJobsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+  /** The name of the EdgeMachineDiskPrivilegedJob */
+  privilegedJobName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskPrivilegedJobPropertiesInput;
+}
+export const EdgeMachineDiskPrivilegedJobsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      diskName: S.String.pipe(T.Label()),
+      privilegedJobName: S.String.pipe(T.Label()),
+      properties: S.optional(EdgeMachineDiskPrivilegedJobPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/privilegedJobs/{privilegedJobName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EdgeMachineDiskPrivilegedJobsCreateOrUpdateRequest",
+  }) as any as S.Schema<EdgeMachineDiskPrivilegedJobsCreateOrUpdateRequest>;
+
+/** The error details. */
+export type EdgeMachineDiskPrivilegedJobPropertiesErrorDetailsList =
+  Array<ErrorDetail>;
+export const EdgeMachineDiskPrivilegedJobPropertiesErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<EdgeMachineDiskPrivilegedJobPropertiesErrorDetailsList>;
+
+/** The error additional info. */
+export type EdgeMachineDiskPrivilegedJobPropertiesErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const EdgeMachineDiskPrivilegedJobPropertiesErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<EdgeMachineDiskPrivilegedJobPropertiesErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface EdgeMachineDiskPrivilegedJobPropertiesError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: EdgeMachineDiskPrivilegedJobPropertiesErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: EdgeMachineDiskPrivilegedJobPropertiesErrorAdditionalInfoList;
+}
+export const EdgeMachineDiskPrivilegedJobPropertiesError =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(
+        EdgeMachineDiskPrivilegedJobPropertiesErrorDetailsList,
+      ),
+      additionalInfo: S.optional(
+        EdgeMachineDiskPrivilegedJobPropertiesErrorAdditionalInfoList,
+      ),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineDiskPrivilegedJobPropertiesError",
+  }) as any as S.Schema<EdgeMachineDiskPrivilegedJobPropertiesError>;
+
+/** Disk Privileged Job properties. */
+export interface EdgeMachineDiskPrivilegedJobProperties {
+  /** Privileged Job Type to support polymorphic resource. */
+  jobType: PrivilegedJobType;
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode;
+  /** Job provisioning state. */
+  provisioningState?: ProvisioningState;
+  /** Unique, immutable job id. */
+  jobId?: string;
+  /** The UTC date and time at which the job started. */
+  startTimeUtc?: string;
+  /** The UTC date and time at which the job completed. */
+  endTimeUtc?: string;
+  /** Status of disk job. */
+  status?: JobStatus;
+  /** The error detail. */
+  error?: EdgeMachineDiskPrivilegedJobPropertiesError;
+  /** Properties reported by the job execution. */
+  reportedProperties?: DiskJobReportedProperties;
+}
+export const EdgeMachineDiskPrivilegedJobProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      jobType: PrivilegedJobType,
+      deploymentMode: S.optional(DeploymentMode),
+      provisioningState: S.optional(ProvisioningState),
+      jobId: S.optional(S.String),
+      startTimeUtc: S.optional(S.String),
+      endTimeUtc: S.optional(S.String),
+      status: S.optional(JobStatus),
+      error: S.optional(EdgeMachineDiskPrivilegedJobPropertiesError),
+      reportedProperties: S.optional(DiskJobReportedProperties),
+    }),
+).annotate({
+  identifier: "EdgeMachineDiskPrivilegedJobProperties",
+}) as any as S.Schema<EdgeMachineDiskPrivilegedJobProperties>;
+
+export interface EdgeMachineDiskPrivilegedJobsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskPrivilegedJobProperties;
+}
+export const EdgeMachineDiskPrivilegedJobsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineDiskPrivilegedJobProperties),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineDiskPrivilegedJobsCreateOrUpdateResponse",
+  }) as any as S.Schema<EdgeMachineDiskPrivilegedJobsCreateOrUpdateResponse>;
+
+/** File system types supported for volumes. */
+export type DiskFileSystemType =
+  | "ext4"
+  | "xfs"
+  | "NTFS"
+  | "ReFS"
+  | "vfat"
+  | "fat32"
+  | "fat";
+export const DiskFileSystemType = /*@__PURE__*/ S.String;
+
+/** Configuration for a volume on a disk. */
+export interface DiskVolumeConfiguration {
+  /** Size of the volume in bytes. */
+  sizeInBytes: string;
+  /** Mount path for the volume (e.g., /data or D:\data). */
+  path: string;
+  /** File system type to format the volume with. */
+  fileSystem?: DiskFileSystemType | (string & {});
+}
+export const DiskVolumeConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sizeInBytes: S.String,
+    path: S.String,
+    fileSystem: S.optional(DiskFileSystemType),
+  }),
+).annotate({
+  identifier: "DiskVolumeConfiguration",
+}) as any as S.Schema<DiskVolumeConfiguration>;
+
+/** List of desired volumes on this disk. */
+export type DiskConfigurationVolumesList = Array<DiskVolumeConfiguration>;
+export const DiskConfigurationVolumesList = /*@__PURE__*/ S.Array(
+  DiskVolumeConfiguration,
+) as any as S.Schema<DiskConfigurationVolumesList>;
+
+/** Desired configuration for a disk. */
+export interface DiskConfiguration {
+  /** List of desired volumes on this disk. */
+  volumes?: DiskConfigurationVolumesList;
+}
+export const DiskConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    volumes: S.optional(DiskConfigurationVolumesList),
+  }),
+).annotate({
+  identifier: "DiskConfiguration",
+}) as any as S.Schema<DiskConfiguration>;
+
+/** Properties of a disk. */
+export interface EdgeMachineDiskPropertiesInput {
+  /** The authoritative desired configuration for this disk. */
+  diskConfiguration?: DiskConfiguration;
+}
+export const EdgeMachineDiskPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskConfiguration: S.optional(DiskConfiguration),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskPropertiesInput",
+}) as any as S.Schema<EdgeMachineDiskPropertiesInput>;
+
+export interface EdgeMachineDisksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskPropertiesInput;
+}
+export const EdgeMachineDisksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      diskName: S.String.pipe(T.Label()),
+      properties: S.optional(EdgeMachineDiskPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "EdgeMachineDisksCreateOrUpdateRequest",
+}) as any as S.Schema<EdgeMachineDisksCreateOrUpdateRequest>;
+
+/** Storage type of the disk. */
+export type DiskStorageType = "SAN" | "S2D";
+export const DiskStorageType = /*@__PURE__*/ S.String;
+
+/** Type of disk. */
+export type DiskType =
+  | "Unknown"
+  | "SCM"
+  | "NVMe"
+  | "SATA"
+  | "SSD"
+  | "HDD"
+  | "Virtual"
+  | "Other";
+export const DiskType = /*@__PURE__*/ S.String;
+
+/** State of the disk. */
+export type DiskState = "Online" | "Offline" | "Failed" | "Missing" | "Unknown";
+export const DiskState = /*@__PURE__*/ S.String;
+
+/** Reported properties of a volume on the disk. */
+export interface DiskVolumeReportedProperties {
+  /** Size of the volume in bytes. */
+  sizeInBytes?: string;
+  /** Mount path for the volume. */
+  path?: string;
+  /** File system type. */
+  fileSystem?: string;
+  /** Unique identifier for the partition. */
+  partitionId?: string;
+  /** Partition number. */
+  partitionNumber?: number;
+  /** Byte offset of the partition start. */
+  offsetInBytes?: number;
+  /** Name of the volume. */
+  name?: string;
+  /** Indicates if this volume is a boot volume. */
+  isBoot?: boolean;
+  /** Available space on the volume in bytes. */
+  sizeRemainingInBytes?: string;
+  /** Resource name of the volume. */
+  resourceName?: string;
+}
+export const DiskVolumeReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sizeInBytes: S.optional(S.String),
+    path: S.optional(S.String),
+    fileSystem: S.optional(S.String),
+    partitionId: S.optional(S.String),
+    partitionNumber: S.optional(S.Number),
+    offsetInBytes: S.optional(S.Number),
+    name: S.optional(S.String),
+    isBoot: S.optional(S.Boolean),
+    sizeRemainingInBytes: S.optional(S.String),
+    resourceName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DiskVolumeReportedProperties",
+}) as any as S.Schema<DiskVolumeReportedProperties>;
+
+/** List of volumes on this disk. */
+export type DiskReportedPropertiesVolumesList =
+  Array<DiskVolumeReportedProperties>;
+export const DiskReportedPropertiesVolumesList = /*@__PURE__*/ S.Array(
+  DiskVolumeReportedProperties,
+) as any as S.Schema<DiskReportedPropertiesVolumesList>;
+
+/** The actual state of the disk as reported by the device. */
+export interface DiskReportedProperties {
+  /** The actual disk name as reported by the OS. */
+  diskName?: string;
+  /** Model number of the hardware. */
+  model?: string;
+  /** The manufacturer of the disk. */
+  manufacturer?: string;
+  /** Indicates whether the disk manufacturer is supported for the validated solution recipe ring. Defaults to true. Set to false when the SAN vendor is not in the allowed vendor list for the current ring. */
+  isSupported?: boolean;
+  /** Serial number. */
+  serialNumber?: string;
+  /** Firmware version. */
+  firmwareVersion?: string;
+  /** Size in bytes. */
+  sizeInBytes?: string;
+  /** Storage type of the disk. */
+  storageType?: DiskStorageType;
+  /** Type of the disk. */
+  diskType?: DiskType;
+  /** Bus location of the disk. */
+  busLocation?: string;
+  /** Unallocated space on the disk in bytes. */
+  unallocatedSizeInBytes?: string;
+  /** Current state of the disk. */
+  state?: DiskState;
+  /** List of volumes on this disk. */
+  volumes?: DiskReportedPropertiesVolumesList;
+}
+export const DiskReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskName: S.optional(S.String),
+    model: S.optional(S.String),
+    manufacturer: S.optional(S.String),
+    isSupported: S.optional(S.Boolean),
+    serialNumber: S.optional(S.String),
+    firmwareVersion: S.optional(S.String),
+    sizeInBytes: S.optional(S.String),
+    storageType: S.optional(DiskStorageType),
+    diskType: S.optional(DiskType),
+    busLocation: S.optional(S.String),
+    unallocatedSizeInBytes: S.optional(S.String),
+    state: S.optional(DiskState),
+    volumes: S.optional(DiskReportedPropertiesVolumesList),
+  }),
+).annotate({
+  identifier: "DiskReportedProperties",
+}) as any as S.Schema<DiskReportedProperties>;
+
+/** Properties of a disk. */
+export interface EdgeMachineDiskProperties {
+  /** The authoritative desired configuration for this disk. */
+  diskConfiguration?: DiskConfiguration;
+  /** The actual state of the disk as reported by the device. */
+  reportedProperties?: DiskReportedProperties;
+  /** Provisioning state of the disk resource. */
+  provisioningState?: ProvisioningState;
+}
+export const EdgeMachineDiskProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskConfiguration: S.optional(DiskConfiguration),
+    reportedProperties: S.optional(DiskReportedProperties),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskProperties",
+}) as any as S.Schema<EdgeMachineDiskProperties>;
+
+export interface EdgeMachineDisksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskProperties;
+}
+export const EdgeMachineDisksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineDiskProperties),
+    }),
+).annotate({
+  identifier: "EdgeMachineDisksCreateOrUpdateResponse",
+}) as any as S.Schema<EdgeMachineDisksCreateOrUpdateResponse>;
+
+/** Job Type supported. */
+export type EdgeMachineJobType =
+  | "CollectLog"
+  | "RemoteSupport"
+  | "ProvisionOs"
+  | "DownloadOs";
+export const EdgeMachineJobType = /*@__PURE__*/ S.String;
+
+/** The error detail. */
+export type EdgeMachineJobPropertiesInputError = LogCollectionPropertiesInput;
+export const EdgeMachineJobPropertiesInputError = LogCollectionPropertiesInput;
+
+/** EdgeMachine Job properties */
+export interface EdgeMachineJobPropertiesInput {
+  /** Job Type to support polymorphic resource. */
+  jobType: EdgeMachineJobType | (string & {});
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode | (string & {});
+  /** The error detail. */
+  error?: LogCollectionPropertiesInput;
+}
+export const EdgeMachineJobPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobType: EdgeMachineJobType,
+    deploymentMode: S.optional(DeploymentMode),
+    error: S.optional(LogCollectionPropertiesInput),
+  }),
+).annotate({
+  identifier: "EdgeMachineJobPropertiesInput",
+}) as any as S.Schema<EdgeMachineJobPropertiesInput>;
+
+export interface EdgeMachineJobsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of EdgeMachineJob */
+  jobsName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineJobPropertiesInput;
+}
+export const EdgeMachineJobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      jobsName: S.String.pipe(T.Label()),
+      properties: S.optional(EdgeMachineJobPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/jobs/{jobsName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "EdgeMachineJobsCreateOrUpdateRequest",
+}) as any as S.Schema<EdgeMachineJobsCreateOrUpdateRequest>;
+
+/** The error details. */
+export type EdgeMachineJobPropertiesErrorDetailsList = Array<ErrorDetail>;
+export const EdgeMachineJobPropertiesErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetail,
+) as any as S.Schema<EdgeMachineJobPropertiesErrorDetailsList>;
+
+/** The error additional info. */
+export type EdgeMachineJobPropertiesErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const EdgeMachineJobPropertiesErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<EdgeMachineJobPropertiesErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface EdgeMachineJobPropertiesError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: EdgeMachineJobPropertiesErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: EdgeMachineJobPropertiesErrorAdditionalInfoList;
+}
+export const EdgeMachineJobPropertiesError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(EdgeMachineJobPropertiesErrorDetailsList),
+    additionalInfo: S.optional(EdgeMachineJobPropertiesErrorAdditionalInfoList),
+  }),
+).annotate({
+  identifier: "EdgeMachineJobPropertiesError",
+}) as any as S.Schema<EdgeMachineJobPropertiesError>;
+
+/** EdgeMachine Job properties */
+export interface EdgeMachineJobProperties {
+  /** Job Type to support polymorphic resource. */
+  jobType: EdgeMachineJobType;
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode;
+  /** Job provisioning state */
+  provisioningState?: ProvisioningState;
+  /** Unique, immutable job id. */
+  jobId?: string;
+  /** The UTC date and time at which the job started. */
+  startTimeUtc?: string;
+  /** The UTC date and time at which the job completed. */
+  endTimeUtc?: string;
+  /** Status of Edge device job. */
+  status?: JobStatus;
+  /** The error detail. */
+  error?: EdgeMachineJobPropertiesError;
+}
+export const EdgeMachineJobProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    jobType: EdgeMachineJobType,
+    deploymentMode: S.optional(DeploymentMode),
+    provisioningState: S.optional(ProvisioningState),
+    jobId: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    status: S.optional(JobStatus),
+    error: S.optional(EdgeMachineJobPropertiesError),
+  }),
+).annotate({
+  identifier: "EdgeMachineJobProperties",
+}) as any as S.Schema<EdgeMachineJobProperties>;
+
+export interface EdgeMachineJobsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineJobProperties;
+}
+export const EdgeMachineJobsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineJobProperties),
+    }),
+).annotate({
+  identifier: "EdgeMachineJobsCreateOrUpdateResponse",
+}) as any as S.Schema<EdgeMachineJobsCreateOrUpdateResponse>;
+
+/** Type of network adapter job operation. */
+export type NetworkAdapterJobType =
+  | "ApplyConfiguration"
+  | "ForcePush"
+  | "SyncConfiguration";
+export const NetworkAdapterJobType = /*@__PURE__*/ S.String;
+
+/** The error detail. */
+export type EdgeMachineNetworkAdapterJobPropertiesInputError =
+  LogCollectionPropertiesInput;
+export const EdgeMachineNetworkAdapterJobPropertiesInputError =
+  LogCollectionPropertiesInput;
+
+/** Properties of the Network Adapter Job. */
+export interface EdgeMachineNetworkAdapterJobPropertiesInput {
+  /** Type of operation. */
+  jobType: NetworkAdapterJobType | (string & {});
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode | (string & {});
+  /** The error detail. */
+  error?: LogCollectionPropertiesInput;
+}
+export const EdgeMachineNetworkAdapterJobPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      jobType: NetworkAdapterJobType,
+      deploymentMode: S.optional(DeploymentMode),
+      error: S.optional(LogCollectionPropertiesInput),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineNetworkAdapterJobPropertiesInput",
+  }) as any as S.Schema<EdgeMachineNetworkAdapterJobPropertiesInput>;
+
+export interface EdgeMachineNetworkAdapterJobsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineNetworkAdapter */
+  networkAdapterName: string;
+  /** The name of the EdgeMachineNetworkAdapterJob */
+  jobName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineNetworkAdapterJobPropertiesInput;
+}
+export const EdgeMachineNetworkAdapterJobsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      networkAdapterName: S.String.pipe(T.Label()),
+      jobName: S.String.pipe(T.Label()),
+      properties: S.optional(EdgeMachineNetworkAdapterJobPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/networkAdapters/{networkAdapterName}/jobs/{jobName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EdgeMachineNetworkAdapterJobsCreateOrUpdateRequest",
+  }) as any as S.Schema<EdgeMachineNetworkAdapterJobsCreateOrUpdateRequest>;
+
+/** The error details. */
+export type EdgeMachineNetworkAdapterJobPropertiesErrorDetailsList =
+  Array<ErrorDetail>;
+export const EdgeMachineNetworkAdapterJobPropertiesErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<EdgeMachineNetworkAdapterJobPropertiesErrorDetailsList>;
+
+/** The error additional info. */
+export type EdgeMachineNetworkAdapterJobPropertiesErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const EdgeMachineNetworkAdapterJobPropertiesErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<EdgeMachineNetworkAdapterJobPropertiesErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface EdgeMachineNetworkAdapterJobPropertiesError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: EdgeMachineNetworkAdapterJobPropertiesErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: EdgeMachineNetworkAdapterJobPropertiesErrorAdditionalInfoList;
+}
+export const EdgeMachineNetworkAdapterJobPropertiesError =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(
+        EdgeMachineNetworkAdapterJobPropertiesErrorDetailsList,
+      ),
+      additionalInfo: S.optional(
+        EdgeMachineNetworkAdapterJobPropertiesErrorAdditionalInfoList,
+      ),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineNetworkAdapterJobPropertiesError",
+  }) as any as S.Schema<EdgeMachineNetworkAdapterJobPropertiesError>;
+
+/** List of nested steps. */
+export type NetworkAdapterDeploymentStepStepsList =
+  Array<NetworkAdapterDeploymentStep>;
+export const NetworkAdapterDeploymentStepStepsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => NetworkAdapterDeploymentStep),
+) as any as S.Schema<NetworkAdapterDeploymentStepStepsList>;
+
+/** List of exceptions. */
+export type NetworkAdapterDeploymentStepExceptionList = Array<string>;
+export const NetworkAdapterDeploymentStepExceptionList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NetworkAdapterDeploymentStepExceptionList>;
+
+/** The Step of Network Adapter Job. */
+export interface NetworkAdapterDeploymentStep {
+  /** Name of step. */
+  name?: string;
+  /** Description of step. */
+  description?: string;
+  /** FullStepIndex of step. */
+  fullStepIndex?: string;
+  /** Start time of step. */
+  startTimeUtc?: string;
+  /** End time of step. */
+  endTimeUtc?: string;
+  /** Status of step (Error, Success, InProgress). */
+  status?: string;
+  /** List of nested steps. */
+  steps?: NetworkAdapterDeploymentStepStepsList;
+  /** List of exceptions. */
+  exception?: NetworkAdapterDeploymentStepExceptionList;
+}
+export const NetworkAdapterDeploymentStep = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    fullStepIndex: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    status: S.optional(S.String),
+    steps: S.optional(NetworkAdapterDeploymentStepStepsList),
+    exception: S.optional(NetworkAdapterDeploymentStepExceptionList),
+  }),
+).annotate({
+  identifier: "NetworkAdapterDeploymentStep",
+}) as any as S.Schema<NetworkAdapterDeploymentStep>;
+
+/** List of steps of Network Adapter Job. */
+export type NetworkAdapterActionStatusStepsList =
+  Array<NetworkAdapterDeploymentStep>;
+export const NetworkAdapterActionStatusStepsList = /*@__PURE__*/ S.Array(
+  NetworkAdapterDeploymentStep,
+) as any as S.Schema<NetworkAdapterActionStatusStepsList>;
+
+/** The action plan deployment status for Network Adapter Job. */
+export interface NetworkAdapterActionStatus {
+  /** Status of ECE action Network Adapter Job. */
+  status?: string;
+  /** List of steps of Network Adapter Job. */
+  steps?: NetworkAdapterActionStatusStepsList;
+}
+export const NetworkAdapterActionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    steps: S.optional(NetworkAdapterActionStatusStepsList),
+  }),
+).annotate({
+  identifier: "NetworkAdapterActionStatus",
+}) as any as S.Schema<NetworkAdapterActionStatus>;
+
+/** Reported properties for Network Adapter Job. */
+export interface NetworkAdapterJobReportedProperties {
+  /** The percentage of the job that is complete. */
+  percentComplete?: number;
+  /** Validation status of Network Adapter Job. */
+  validationStatus?: NetworkAdapterActionStatus;
+  /** Deployment status of Network Adapter Job. */
+  deploymentStatus?: NetworkAdapterActionStatus;
+}
+export const NetworkAdapterJobReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    percentComplete: S.optional(S.Number),
+    validationStatus: S.optional(NetworkAdapterActionStatus),
+    deploymentStatus: S.optional(NetworkAdapterActionStatus),
+  }),
+).annotate({
+  identifier: "NetworkAdapterJobReportedProperties",
+}) as any as S.Schema<NetworkAdapterJobReportedProperties>;
+
+/** Properties of the Network Adapter Job. */
+export interface EdgeMachineNetworkAdapterJobProperties {
+  /** Type of operation. */
+  jobType: NetworkAdapterJobType;
+  /** Deployment mode to trigger job. */
+  deploymentMode?: DeploymentMode;
+  /** Provisioning state of the job. */
+  provisioningState?: ProvisioningState;
+  /** Unique, immutable job id. */
+  jobId?: string;
+  /** The UTC date and time at which the job started. */
+  startTimeUtc?: string;
+  /** The UTC date and time at which the job completed. */
+  endTimeUtc?: string;
+  /** Status of Edge device job. */
+  status?: JobStatus;
+  /** The error detail. */
+  error?: EdgeMachineNetworkAdapterJobPropertiesError;
+  /** Reported properties for Network Adapter Job. */
+  reportedProperties?: NetworkAdapterJobReportedProperties;
+}
+export const EdgeMachineNetworkAdapterJobProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      jobType: NetworkAdapterJobType,
+      deploymentMode: S.optional(DeploymentMode),
+      provisioningState: S.optional(ProvisioningState),
+      jobId: S.optional(S.String),
+      startTimeUtc: S.optional(S.String),
+      endTimeUtc: S.optional(S.String),
+      status: S.optional(JobStatus),
+      error: S.optional(EdgeMachineNetworkAdapterJobPropertiesError),
+      reportedProperties: S.optional(NetworkAdapterJobReportedProperties),
+    }),
+).annotate({
+  identifier: "EdgeMachineNetworkAdapterJobProperties",
+}) as any as S.Schema<EdgeMachineNetworkAdapterJobProperties>;
+
+export interface EdgeMachineNetworkAdapterJobsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineNetworkAdapterJobProperties;
+}
+export const EdgeMachineNetworkAdapterJobsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineNetworkAdapterJobProperties),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineNetworkAdapterJobsCreateOrUpdateResponse",
+  }) as any as S.Schema<EdgeMachineNetworkAdapterJobsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type EdgeMachinesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EdgeMachinesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EdgeMachinesCreateOrUpdateRequestTagsMap>;
+
+/** Edge Machine Kind. */
+export type EdgeMachineKind = "Standard" | "Dedicated";
+export const EdgeMachineKind = /*@__PURE__*/ S.String;
+
+/** IP assignment types */
+export type IpAssignmentType = "Automatic" | "Manual";
+export const IpAssignmentType = /*@__PURE__*/ S.String;
+
+/** IP address range configuration. */
+export interface IpAddressRange {
+  /** Start IP address. */
+  startIp: string;
+  /** End IP address. */
+  endIp: string;
+}
+export const IpAddressRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startIp: S.String,
+    endIp: S.String,
+  }),
+).annotate({ identifier: "IpAddressRange" }) as any as S.Schema<IpAddressRange>;
+
+/** Array of DNS addresses. */
+export type NetworkAdapterDnsAddressArrayList = Array<string>;
+export const NetworkAdapterDnsAddressArrayList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NetworkAdapterDnsAddressArrayList>;
+
+/** Network adapter configuration. */
+export interface NetworkAdapter {
+  /** Type of IP assignment. */
+  ipAssignmentType: IpAssignmentType | (string & {});
+  /** IP address. */
+  ipAddress?: string;
+  /** Adapter Name. */
+  adapterName?: string;
+  /** MAC address. */
+  macAddress?: string;
+  /** IP address range. */
+  ipAddressRange?: IpAddressRange;
+  /** Gateway id. */
+  gateway?: string;
+  /** Subnet mask. */
+  subnetMask?: string;
+  /** Array of DNS addresses. */
+  dnsAddressArray?: NetworkAdapterDnsAddressArrayList;
+  /** VLAN ID for the network setup. */
+  vlanId?: string;
+}
+export const NetworkAdapter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAssignmentType: IpAssignmentType,
+    ipAddress: S.optional(S.String),
+    adapterName: S.optional(S.String),
+    macAddress: S.optional(S.String),
+    ipAddressRange: S.optional(IpAddressRange),
+    gateway: S.optional(S.String),
+    subnetMask: S.optional(S.String),
+    dnsAddressArray: S.optional(NetworkAdapterDnsAddressArrayList),
+    vlanId: S.optional(S.String),
+  }),
+).annotate({ identifier: "NetworkAdapter" }) as any as S.Schema<NetworkAdapter>;
+
+/** List of network adapters. */
+export type NetworkConfigurationNetworkAdaptersList = Array<NetworkAdapter>;
+export const NetworkConfigurationNetworkAdaptersList = /*@__PURE__*/ S.Array(
+  NetworkAdapter,
+) as any as S.Schema<NetworkConfigurationNetworkAdaptersList>;
+
+/** Network configuration. */
+export interface NetworkConfiguration {
+  /** List of network adapters. */
+  networkAdapters?: NetworkConfigurationNetworkAdaptersList;
+}
+export const NetworkConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    networkAdapters: S.optional(NetworkConfigurationNetworkAdaptersList),
+  }),
+).annotate({
+  identifier: "NetworkConfiguration",
+}) as any as S.Schema<NetworkConfiguration>;
+
+/** Bypass list for the web proxy. */
+export type WebProxyConfigurationBypassListList = Array<string>;
+export const WebProxyConfigurationBypassListList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WebProxyConfigurationBypassListList>;
+
+/** Web proxy configuration. */
+export interface WebProxyConfiguration {
+  /** Connection URI of the web proxy. */
+  connectionUri?: string | Redacted.Redacted<string>;
+  /** Port of the web proxy. */
+  port?: string;
+  /** Bypass list for the web proxy. */
+  bypassList?: WebProxyConfigurationBypassListList;
+}
+export const WebProxyConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionUri: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    port: S.optional(S.String),
+    bypassList: S.optional(WebProxyConfigurationBypassListList),
+  }),
+).annotate({
+  identifier: "WebProxyConfiguration",
+}) as any as S.Schema<WebProxyConfiguration>;
+
+/** Time configuration. */
+export interface TimeConfiguration {
+  /** Primary NTP server. */
+  primaryTimeServer?: string;
+  /** Secondary NTP server. */
+  secondaryTimeServer?: string;
+  /** Time zone. */
+  timeZone?: string;
+}
+export const TimeConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primaryTimeServer: S.optional(S.String),
+    secondaryTimeServer: S.optional(S.String),
+    timeZone: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TimeConfiguration",
+}) as any as S.Schema<TimeConfiguration>;
+
+/** Storage configuration. */
+export interface StorageConfiguration {
+  /** Partition size. */
+  partitionSize?: string;
+}
+export const StorageConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    partitionSize: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageConfiguration",
+}) as any as S.Schema<StorageConfiguration>;
+
+/** Device configuration. */
+export interface TargetDeviceConfiguration {
+  /** Network configuration. */
+  network?: NetworkConfiguration;
+  /** Hostname of the device. */
+  hostName?: string;
+  /** Web proxy configuration. */
+  webProxy?: WebProxyConfiguration;
+  /** Time configuration. */
+  time?: TimeConfiguration;
+  /** Storage configuration. */
+  storage?: StorageConfiguration;
+}
+export const TargetDeviceConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    network: S.optional(NetworkConfiguration),
+    hostName: S.optional(S.String),
+    webProxy: S.optional(WebProxyConfiguration),
+    time: S.optional(TimeConfiguration),
+    storage: S.optional(StorageConfiguration),
+  }),
+).annotate({
+  identifier: "TargetDeviceConfiguration",
+}) as any as S.Schema<TargetDeviceConfiguration>;
+
+/** Site Details consists of common configurations. */
+export interface SiteDetails {
+  /** Site resource Id to be set during Edge Machine resource creation. */
+  siteResourceId: string;
+  /** Edge Device configuration received from site common configuration. */
+  deviceConfiguration?: TargetDeviceConfiguration;
+}
+export const SiteDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    siteResourceId: S.String,
+    deviceConfiguration: S.optional(TargetDeviceConfiguration),
+  }),
+).annotate({ identifier: "SiteDetails" }) as any as S.Schema<SiteDetails>;
+
+/** Type of owner key in the voucher */
+export type OwnerKeyType = "MicrosoftManaged";
+export const OwnerKeyType = /*@__PURE__*/ S.String;
+
+/** Details for ownership voucher. */
+export interface OwnershipVoucherDetailsInput {
+  /** Ownership voucher in base64 encoded format */
+  ownershipVoucher: string;
+  /** Owner key type */
+  ownerKeyType: OwnerKeyType | (string & {});
+}
+export const OwnershipVoucherDetailsInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownershipVoucher: S.String,
+    ownerKeyType: OwnerKeyType,
+  }),
+).annotate({
+  identifier: "OwnershipVoucherDetailsInput",
+}) as any as S.Schema<OwnershipVoucherDetailsInput>;
+
+/** Operation sub type of OS Provisioning */
+export type OsProvisionProfileOperationType =
+  | "Provision"
+  | "Update"
+  | "ReImage"
+  | "Reset";
+export const OsProvisionProfileOperationType = /*@__PURE__*/ S.String;
+
+/** Operating system profile. */
+export interface OsProvisionProfile {
+  /** Name of the operating system. */
+  osName?: string;
+  /** Type of the operating system. */
+  osType?: string;
+  /** Version of the operating system. */
+  osVersion?: string;
+  /** Location of the operating system image. */
+  osImageLocation?: string;
+  /** Validated Solution Recipe version to be used for the job */
+  vsrVersion?: string;
+  /** Hash of the OS package downloaded */
+  imageHash?: string;
+  /** GPG Public Key used for package verification */
+  gpgPubKey?: string;
+  /** Operation sub type of OS Provisioning */
+  operationType?: OsProvisionProfileOperationType | (string & {});
+}
+export const OsProvisionProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    osName: S.optional(S.String),
+    osType: S.optional(S.String),
+    osVersion: S.optional(S.String),
+    osImageLocation: S.optional(S.String),
+    vsrVersion: S.optional(S.String),
+    imageHash: S.optional(S.String),
+    gpgPubKey: S.optional(S.String),
+    operationType: S.optional(OsProvisionProfileOperationType),
+  }),
+).annotate({
+  identifier: "OsProvisionProfile",
+}) as any as S.Schema<OsProvisionProfile>;
+
+/** Type of secret used for authentication. */
+export type SecretType = "KeyVault" | "SshPubKey";
+export const SecretType = /*@__PURE__*/ S.String;
+
+/** SSH Public Key for the user. */
+export type UserDetailsSshPubKeyList = Array<string>;
+export const UserDetailsSshPubKeyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UserDetailsSshPubKeyList>;
+
+/** User configuration. */
+export interface UserDetails {
+  /** Name of the user. */
+  userName: string;
+  /** Type of the secret used for authentication. */
+  secretType: SecretType | (string & {});
+  /** Location of the secret used for authentication. */
+  secretLocation?: string;
+  /** SSH Public Key for the user. */
+  sshPubKey?: UserDetailsSshPubKeyList;
+}
+export const UserDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userName: S.String,
+    secretType: SecretType,
+    secretLocation: S.optional(S.String),
+    sshPubKey: S.optional(UserDetailsSshPubKeyList),
+  }),
+).annotate({ identifier: "UserDetails" }) as any as S.Schema<UserDetails>;
+
+/** User configuration. */
+export type ProvisioningDetailsUserDetailsList = Array<UserDetails>;
+export const ProvisioningDetailsUserDetailsList = /*@__PURE__*/ S.Array(
+  UserDetails,
+) as any as S.Schema<ProvisioningDetailsUserDetailsList>;
+
+/** Details for device provisioning. */
+export interface ProvisioningDetails {
+  /** Operating system profile. */
+  osProfile: OsProvisionProfile;
+  /** User configuration. */
+  userDetails?: ProvisioningDetailsUserDetailsList;
+}
+export const ProvisioningDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    osProfile: OsProvisionProfile,
+    userDetails: S.optional(ProvisioningDetailsUserDetailsList),
+  }),
+).annotate({
+  identifier: "ProvisioningDetails",
+}) as any as S.Schema<ProvisioningDetails>;
+
+/** Properties for edge machine. */
+export interface EdgeMachinePropertiesInput {
+  /** Edge Machine type. */
+  edgeMachineKind?: EdgeMachineKind | (string & {});
+  /** Optional property to create arc machine in custom resource group. */
+  arcMachineResourceGroupId?: string;
+  /** Arc machine instance resource id. */
+  arcMachineResourceId?: string;
+  /** Link to Arc Gateway ARM resource Id */
+  arcGatewayResourceId?: string;
+  /** Service fetches common configuration from site. */
+  siteDetails?: SiteDetails;
+  /** Ownership voucher details for provisioned machine. */
+  ownershipVoucherDetails?: OwnershipVoucherDetailsInput;
+  /** Details for device provisioning. */
+  provisioningDetails?: ProvisioningDetails;
+}
+export const EdgeMachinePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    edgeMachineKind: S.optional(EdgeMachineKind),
+    arcMachineResourceGroupId: S.optional(S.String),
+    arcMachineResourceId: S.optional(S.String),
+    arcGatewayResourceId: S.optional(S.String),
+    siteDetails: S.optional(SiteDetails),
+    ownershipVoucherDetails: S.optional(OwnershipVoucherDetailsInput),
+    provisioningDetails: S.optional(ProvisioningDetails),
+  }),
+).annotate({
+  identifier: "EdgeMachinePropertiesInput",
+}) as any as S.Schema<EdgeMachinePropertiesInput>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type EdgeMachinesCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap =
+  { [key: string]: LogCollectionPropertiesInput | undefined };
+export const EdgeMachinesCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    LogCollectionPropertiesInput,
+  ) as any as S.Schema<EdgeMachinesCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface EdgeMachinesCreateOrUpdateRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: EdgeMachinesCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap;
+}
+export const EdgeMachinesCreateOrUpdateRequestIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        EdgeMachinesCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+  ).annotate({
+    identifier: "EdgeMachinesCreateOrUpdateRequestIdentity",
+  }) as any as S.Schema<EdgeMachinesCreateOrUpdateRequestIdentity>;
+
+export interface EdgeMachinesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Resource tags. */
+  tags?: EdgeMachinesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachinePropertiesInput;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: EdgeMachinesCreateOrUpdateRequestIdentity;
+}
+export const EdgeMachinesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    tags: S.optional(EdgeMachinesCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(EdgeMachinePropertiesInput),
+    identity: S.optional(EdgeMachinesCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}/validate",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "EdgeDevicesValidateRequest",
-}) as any as S.Schema<EdgeDevicesValidateRequest>;
+  identifier: "EdgeMachinesCreateOrUpdateRequest",
+}) as any as S.Schema<EdgeMachinesCreateOrUpdateRequest>;
 
-/** An Accepted response with an Operation-Location header. */
-export interface ValidateResponse {
-  /** edge device validation status */
-  status?: string;
+/** Resource tags. */
+export type EdgeMachinesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EdgeMachinesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EdgeMachinesCreateOrUpdateResponseTagsMap>;
+
+/** Lifecycle status of an Edge Machine. */
+export type EdgeMachineLifecycleStatus =
+  | "Creating"
+  | "AwaitingConnection"
+  | "Provisioning"
+  | "ReadyForOs"
+  | "InstallingOs"
+  | "Provisioned"
+  | "UpdatingOs"
+  | "ResettingOs"
+  | "Deleting"
+  | "Failed";
+export const EdgeMachineLifecycleStatus = /*@__PURE__*/ S.String;
+
+/** Recommended steps to resolve failures. */
+export type LifecycleStatusRecommendedStepsList = Array<string>;
+export const LifecycleStatusRecommendedStepsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LifecycleStatusRecommendedStepsList>;
+
+/** Summary lifecycle status for a resource. */
+export interface LifecycleStatus {
+  /** Overall lifecycle status of the edge machine. */
+  status: EdgeMachineLifecycleStatus;
+  /** Depicts what is the current ongoing stage. */
+  stage?: string;
+  /** Last time the lifecycle status was updated. */
+  lastUpdatedUtc: string;
+  /** Message to provide more details on lifecycle status, especially in case of failures. */
+  message?: string;
+  /** Recommended steps to resolve failures. */
+  recommendedSteps?: LifecycleStatusRecommendedStepsList;
 }
-export const ValidateResponse = /*@__PURE__*/ S.suspend(() =>
+export const LifecycleStatus = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(S.String),
+    status: EdgeMachineLifecycleStatus,
+    stage: S.optional(S.String),
+    lastUpdatedUtc: S.String,
+    message: S.optional(S.String),
+    recommendedSteps: S.optional(LifecycleStatusRecommendedStepsList),
   }),
 ).annotate({
-  identifier: "ValidateResponse",
-}) as any as S.Schema<ValidateResponse>;
+  identifier: "LifecycleStatus",
+}) as any as S.Schema<LifecycleStatus>;
+
+/** Status of an operation. Maps to Steps.Status / SubSteps.Status. */
+export type LifecycleOperationStatus =
+  | "NotStarted"
+  | "InProgress"
+  | "Completed"
+  | "Failed";
+export const LifecycleOperationStatus = /*@__PURE__*/ S.String;
+
+/** The error details. */
+export type LifecycleStageErrorDetailsList = Array<ErrorDetail>;
+export const LifecycleStageErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetail,
+) as any as S.Schema<LifecycleStageErrorDetailsList>;
+
+/** The error additional info. */
+export type LifecycleStageErrorAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const LifecycleStageErrorAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<LifecycleStageErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface LifecycleStageError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: LifecycleStageErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: LifecycleStageErrorAdditionalInfoList;
+}
+export const LifecycleStageError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(LifecycleStageErrorDetailsList),
+    additionalInfo: S.optional(LifecycleStageErrorAdditionalInfoList),
+  }),
+).annotate({
+  identifier: "LifecycleStageError",
+}) as any as S.Schema<LifecycleStageError>;
+
+/** Sub-stages for this stage. */
+export type LifecycleStageSubStagesList = Array<LifecycleStage>;
+export const LifecycleStageSubStagesList = /*@__PURE__*/ S.Array(
+  S.suspend(() => LifecycleStage),
+) as any as S.Schema<LifecycleStageSubStagesList>;
+
+/** Lifecycle stage details for a resource. */
+export interface LifecycleStage {
+  /** Name of the stage. */
+  name: string;
+  /** Description of the stage. */
+  description: string;
+  /** Status of the stage. */
+  status: LifecycleOperationStatus;
+  /** Start time of the stage. */
+  startTimeUtc?: string;
+  /** End time of the stage. */
+  endTimeUtc?: string;
+  /** Last time the stage was updated. */
+  lastUpdatedUtc?: string;
+  /** The error detail. */
+  error?: LifecycleStageError;
+  /** Sub-stages for this stage. */
+  subStages?: LifecycleStageSubStagesList;
+}
+export const LifecycleStage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.String,
+    status: LifecycleOperationStatus,
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    lastUpdatedUtc: S.optional(S.String),
+    error: S.optional(LifecycleStageError),
+    subStages: S.optional(LifecycleStageSubStagesList),
+  }),
+).annotate({ identifier: "LifecycleStage" }) as any as S.Schema<LifecycleStage>;
+
+/** List of lifecycle stages for the edge machine. */
+export type LifecycleDetailsLifecycleStagesList = Array<LifecycleStage>;
+export const LifecycleDetailsLifecycleStagesList = /*@__PURE__*/ S.Array(
+  LifecycleStage,
+) as any as S.Schema<LifecycleDetailsLifecycleStagesList>;
+
+/** Overall Lifecycle details for a resource. */
+export interface LifecycleDetails {
+  /** Overall lifecycle status of the edge machine. */
+  lifecycleStatus?: LifecycleStatus;
+  /** List of lifecycle stages for the edge machine. */
+  lifecycleStages: LifecycleDetailsLifecycleStagesList;
+}
+export const LifecycleDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lifecycleStatus: S.optional(LifecycleStatus),
+    lifecycleStages: LifecycleDetailsLifecycleStagesList,
+  }),
+).annotate({
+  identifier: "LifecycleDetails",
+}) as any as S.Schema<LifecycleDetails>;
+
+/** Ownership Voucher validation Status. */
+export type OwnershipVoucherValidationStatus = "Valid" | "Invalid";
+export const OwnershipVoucherValidationStatus = /*@__PURE__*/ S.String;
+
+/** Represents the CPU architecture of a machine or an OS image. */
+export type Architecture = "amd64" | "arm64";
+export const Architecture = /*@__PURE__*/ S.String;
+
+/** The error details. */
+export type OwnershipVoucherValidationDetailsErrorDetailsList =
+  Array<ErrorDetail>;
+export const OwnershipVoucherValidationDetailsErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<OwnershipVoucherValidationDetailsErrorDetailsList>;
+
+/** The error additional info. */
+export type OwnershipVoucherValidationDetailsErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const OwnershipVoucherValidationDetailsErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<OwnershipVoucherValidationDetailsErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface OwnershipVoucherValidationDetailsError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: OwnershipVoucherValidationDetailsErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: OwnershipVoucherValidationDetailsErrorAdditionalInfoList;
+}
+export const OwnershipVoucherValidationDetailsError = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(OwnershipVoucherValidationDetailsErrorDetailsList),
+      additionalInfo: S.optional(
+        OwnershipVoucherValidationDetailsErrorAdditionalInfoList,
+      ),
+    }),
+).annotate({
+  identifier: "OwnershipVoucherValidationDetailsError",
+}) as any as S.Schema<OwnershipVoucherValidationDetailsError>;
+
+/** Ownership Voucher Validation Details */
+export interface OwnershipVoucherValidationDetails {
+  /** The ownership voucher validation status. */
+  validationStatus?: OwnershipVoucherValidationStatus;
+  /** Serial number of the device. */
+  serialNumber?: string;
+  /** FDO guid of the Ownership Voucher. */
+  id?: string;
+  /** Name of the manufacturer. */
+  manufacturer?: string;
+  /** Name of the model. */
+  modelName?: string;
+  /** Version of the Ownership Voucher format */
+  version?: string;
+  /** Azure Machine Id of the Ownership voucher */
+  azureMachineId?: string;
+  /** CPU architecture of the device, for example amd64 or arm64. */
+  architecture?: Architecture;
+  /** The error detail. */
+  error?: OwnershipVoucherValidationDetailsError;
+}
+export const OwnershipVoucherValidationDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    validationStatus: S.optional(OwnershipVoucherValidationStatus),
+    serialNumber: S.optional(S.String),
+    id: S.optional(S.String),
+    manufacturer: S.optional(S.String),
+    modelName: S.optional(S.String),
+    version: S.optional(S.String),
+    azureMachineId: S.optional(S.String),
+    architecture: S.optional(Architecture),
+    error: S.optional(OwnershipVoucherValidationDetailsError),
+  }),
+).annotate({
+  identifier: "OwnershipVoucherValidationDetails",
+}) as any as S.Schema<OwnershipVoucherValidationDetails>;
+
+/** Details for ownership voucher. */
+export interface OwnershipVoucherDetails {
+  /** Ownership voucher in base64 encoded format */
+  ownershipVoucher: string;
+  /** Owner key type */
+  ownerKeyType: OwnerKeyType;
+  /** Ownership Voucher Validation Details */
+  validationDetails?: OwnershipVoucherValidationDetails;
+}
+export const OwnershipVoucherDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownershipVoucher: S.String,
+    ownerKeyType: OwnerKeyType,
+    validationDetails: S.optional(OwnershipVoucherValidationDetails),
+  }),
+).annotate({
+  identifier: "OwnershipVoucherDetails",
+}) as any as S.Schema<OwnershipVoucherDetails>;
+
+/** OS State */
+export type EdgeMachineState =
+  | "Created"
+  | "Registering"
+  | "Unpurposed"
+  | "Transitioning"
+  | "Purposed"
+  | "Updating"
+  | "Resetting"
+  | "Failed"
+  | "Preparing";
+export const EdgeMachineState = /*@__PURE__*/ S.String;
+
+/** Overall connectivity status for the machine resource. */
+export type EdgeMachineConnectivityStatus =
+  | "NotSpecified"
+  | "Disconnected"
+  | "Connected";
+export const EdgeMachineConnectivityStatus = /*@__PURE__*/ S.String;
+
+/** DNS Servers for NIC */
+export type EdgeMachineNicDetailDnsServersList = Array<string>;
+export const EdgeMachineNicDetailDnsServersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EdgeMachineNicDetailDnsServersList>;
+
+/** Describes the RDMA capability of the network adapter. */
+export type EdgeMachineNicDetailRdmaCapability = "Enabled" | "Disabled";
+export const EdgeMachineNicDetailRdmaCapability = /*@__PURE__*/ S.String;
+
+/** Network Interface Card (NIC) Details of edge machine. */
+export interface EdgeMachineNicDetail {
+  /** Adapter Name of NIC */
+  adapterName?: string;
+  /** Interface Description of NIC */
+  interfaceDescription?: string;
+  /** Component Id of NIC */
+  componentId?: string;
+  /** Driver Version of NIC */
+  driverVersion?: string;
+  /** Subnet Mask of NIC */
+  ip4Address?: string;
+  /** Subnet Mask of NIC */
+  subnetMask?: string;
+  /** Default Gateway of NIC */
+  defaultGateway?: string;
+  /** DNS Servers for NIC */
+  dnsServers?: EdgeMachineNicDetailDnsServersList;
+  /** Default Isolation of Management NIC */
+  defaultIsolationId?: string;
+  /** MAC address information of NIC. */
+  macAddress?: string;
+  /** The slot attached to the NIC. */
+  slot?: string;
+  /** The switch attached to the NIC, if any. */
+  switchName?: string;
+  /** The type of NIC, physical, virtual, management. */
+  nicType?: string;
+  /** The VLAN ID of the physical NIC. */
+  vlanId?: string;
+  /** The status of NIC, up, disconnected. */
+  nicStatus?: string;
+  /** Describes the RDMA capability of the network adapter. */
+  rdmaCapability?: EdgeMachineNicDetailRdmaCapability;
+}
+export const EdgeMachineNicDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adapterName: S.optional(S.String),
+    interfaceDescription: S.optional(S.String),
+    componentId: S.optional(S.String),
+    driverVersion: S.optional(S.String),
+    ip4Address: S.optional(S.String),
+    subnetMask: S.optional(S.String),
+    defaultGateway: S.optional(S.String),
+    dnsServers: S.optional(EdgeMachineNicDetailDnsServersList),
+    defaultIsolationId: S.optional(S.String),
+    macAddress: S.optional(S.String),
+    slot: S.optional(S.String),
+    switchName: S.optional(S.String),
+    nicType: S.optional(S.String),
+    vlanId: S.optional(S.String),
+    nicStatus: S.optional(S.String),
+    rdmaCapability: S.optional(EdgeMachineNicDetailRdmaCapability),
+  }),
+).annotate({
+  identifier: "EdgeMachineNicDetail",
+}) as any as S.Schema<EdgeMachineNicDetail>;
+
+/** List of Network Interface Card (NIC) Details of edge machine. */
+export type EdgeMachineNetworkProfileNicDetailsList =
+  Array<EdgeMachineNicDetail>;
+export const EdgeMachineNetworkProfileNicDetailsList = /*@__PURE__*/ S.Array(
+  EdgeMachineNicDetail,
+) as any as S.Schema<EdgeMachineNetworkProfileNicDetailsList>;
+
+/** This represents extensions installed on virtualSwitch. */
+export interface SwitchExtension {
+  /** Unique identifier for virtualSwitch. */
+  switchId?: string;
+  /** This will show extension name for virtualSwitch. */
+  extensionName?: string;
+  /** This represents whether extension is enabled on virtualSwitch. */
+  extensionEnabled?: boolean;
+}
+export const SwitchExtension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    switchId: S.optional(S.String),
+    extensionName: S.optional(S.String),
+    extensionEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SwitchExtension",
+}) as any as S.Schema<SwitchExtension>;
+
+/** This represents extensions installed on virtualSwitch. */
+export type SwitchDetailExtensionsList = Array<SwitchExtension>;
+export const SwitchDetailExtensionsList = /*@__PURE__*/ S.Array(
+  SwitchExtension,
+) as any as S.Schema<SwitchDetailExtensionsList>;
+
+/** List of switch details for edge device. */
+export interface SwitchDetail {
+  /** The name of the switch. */
+  switchName?: string;
+  /** The type of the switch. e.g. external, internal. */
+  switchType?: string;
+  /** This represents extensions installed on virtualSwitch. */
+  extensions?: SwitchDetailExtensionsList;
+}
+export const SwitchDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    switchName: S.optional(S.String),
+    switchType: S.optional(S.String),
+    extensions: S.optional(SwitchDetailExtensionsList),
+  }),
+).annotate({ identifier: "SwitchDetail" }) as any as S.Schema<SwitchDetail>;
+
+/** List of switch Details of edge machine. */
+export type EdgeMachineNetworkProfileSwitchDetailsList = Array<SwitchDetail>;
+export const EdgeMachineNetworkProfileSwitchDetailsList = /*@__PURE__*/ S.Array(
+  SwitchDetail,
+) as any as S.Schema<EdgeMachineNetworkProfileSwitchDetailsList>;
+
+/** Array of adapters used for the network intent. */
+export type EdgeMachineHostNetworkIntentIntentAdaptersList = Array<string>;
+export const EdgeMachineHostNetworkIntentIntentAdaptersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EdgeMachineHostNetworkIntentIntentAdaptersList>;
+
+/** The VirtualSwitchConfigurationOverrides reported for the edge machine. */
+export type EdgeMachineVirtualSwitchConfigurationOverrides =
+  DeploymentSettingVirtualSwitchConfigurationOverrides;
+export const EdgeMachineVirtualSwitchConfigurationOverrides =
+  DeploymentSettingVirtualSwitchConfigurationOverrides;
+
+/** The AdapterPropertyOverrides reported for the edge machine. */
+export type EdgeMachineAdapterPropertyOverrides =
+  DeploymentSettingAdapterPropertyOverrides;
+export const EdgeMachineAdapterPropertyOverrides =
+  DeploymentSettingAdapterPropertyOverrides;
+
+/** The network intent reported for the edge machine. */
+export interface EdgeMachineHostNetworkIntent {
+  /** Scope for host network intent. */
+  scope?: number;
+  /** IntentType for host network intent. */
+  intentType?: number;
+  /** IsComputeIntentSet for host network intent. */
+  isComputeIntentSet?: boolean;
+  /** IsStorageIntentSet for host network intent. */
+  isStorageIntentSet?: boolean;
+  /** IntentType for host network intent. */
+  isOnlyStorage?: boolean;
+  /** IsManagementIntentSet for host network intent. */
+  isManagementIntentSet?: boolean;
+  /** IsStretchIntentSet for host network intent. */
+  isStretchIntentSet?: boolean;
+  /** IsOnlyStretch for host network intent. */
+  isOnlyStretch?: boolean;
+  /** IsNetworkIntentType for host network intent. */
+  isNetworkIntentType?: boolean;
+  /** Name of the network intent you wish to create. */
+  intentName?: string;
+  /** Array of adapters used for the network intent. */
+  intentAdapters?: EdgeMachineHostNetworkIntentIntentAdaptersList;
+  /** This parameter should only be modified based on your OEM guidance. Do not modify this parameter without OEM validation. */
+  overrideVirtualSwitchConfiguration?: boolean;
+  /** Set virtualSwitch ConfigurationOverrides for cluster. */
+  virtualSwitchConfigurationOverrides?: DeploymentSettingVirtualSwitchConfigurationOverrides;
+  /** This parameter should only be modified based on your OEM guidance. Do not modify this parameter without OEM validation. */
+  overrideQosPolicy?: boolean;
+  /** Set QoS PolicyOverrides for cluster. */
+  qosPolicyOverrides?: QosPolicyOverrides;
+  /** This parameter should only be modified based on your OEM guidance. Do not modify this parameter without OEM validation. */
+  overrideAdapterProperty?: boolean;
+  /** Set Adapter PropertyOverrides for cluster. */
+  adapterPropertyOverrides?: DeploymentSettingAdapterPropertyOverrides;
+}
+export const EdgeMachineHostNetworkIntent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.optional(S.Number),
+    intentType: S.optional(S.Number),
+    isComputeIntentSet: S.optional(S.Boolean),
+    isStorageIntentSet: S.optional(S.Boolean),
+    isOnlyStorage: S.optional(S.Boolean),
+    isManagementIntentSet: S.optional(S.Boolean),
+    isStretchIntentSet: S.optional(S.Boolean),
+    isOnlyStretch: S.optional(S.Boolean),
+    isNetworkIntentType: S.optional(S.Boolean),
+    intentName: S.optional(S.String),
+    intentAdapters: S.optional(EdgeMachineHostNetworkIntentIntentAdaptersList),
+    overrideVirtualSwitchConfiguration: S.optional(S.Boolean),
+    virtualSwitchConfigurationOverrides: S.optional(
+      DeploymentSettingVirtualSwitchConfigurationOverrides,
+    ),
+    overrideQosPolicy: S.optional(S.Boolean),
+    qosPolicyOverrides: S.optional(QosPolicyOverrides),
+    overrideAdapterProperty: S.optional(S.Boolean),
+    adapterPropertyOverrides: S.optional(
+      DeploymentSettingAdapterPropertyOverrides,
+    ),
+  }),
+).annotate({
+  identifier: "EdgeMachineHostNetworkIntent",
+}) as any as S.Schema<EdgeMachineHostNetworkIntent>;
+
+/** The network intents assigned to the network reference pattern used for the deployment. Each intent will define its own name, traffic type, adapter names, and overrides as recommended by your OEM. */
+export type EdgeMachineHostNetworkIntentsList =
+  Array<EdgeMachineHostNetworkIntent>;
+export const EdgeMachineHostNetworkIntentsList = /*@__PURE__*/ S.Array(
+  EdgeMachineHostNetworkIntent,
+) as any as S.Schema<EdgeMachineHostNetworkIntentsList>;
+
+/** The StorageAdapter physical nodes reported for the edge machine. */
+export type EdgeMachineStorageAdapterIpInfo =
+  DeploymentSettingStorageAdapterIPInfo;
+export const EdgeMachineStorageAdapterIpInfo =
+  DeploymentSettingStorageAdapterIPInfo;
+
+/** List of Storage adapter physical nodes config to deploy AzureStackHCI Cluster. */
+export type EdgeMachineStorageNetworkStorageAdapterIPInfoList =
+  Array<DeploymentSettingStorageAdapterIPInfo>;
+export const EdgeMachineStorageNetworkStorageAdapterIPInfoList =
+  /*@__PURE__*/ S.Array(
+    DeploymentSettingStorageAdapterIPInfo,
+  ) as any as S.Schema<EdgeMachineStorageNetworkStorageAdapterIPInfoList>;
+
+/** The StorageNetworks reported for the edge machine. */
+export interface EdgeMachineStorageNetwork {
+  /** Name of the storage network. */
+  name?: string;
+  /** Name of the storage network adapter. */
+  networkAdapterName?: string;
+  /** ID specified for the VLAN storage network. This setting is applied to the network interfaces that route the storage and VM migration traffic. */
+  storageVlanId?: string;
+  /** List of Storage adapter physical nodes config to deploy AzureStackHCI Cluster. */
+  storageAdapterIPInfo?: EdgeMachineStorageNetworkStorageAdapterIPInfoList;
+}
+export const EdgeMachineStorageNetwork = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    networkAdapterName: S.optional(S.String),
+    storageVlanId: S.optional(S.String),
+    storageAdapterIPInfo: S.optional(
+      EdgeMachineStorageNetworkStorageAdapterIPInfoList,
+    ),
+  }),
+).annotate({
+  identifier: "EdgeMachineStorageNetwork",
+}) as any as S.Schema<EdgeMachineStorageNetwork>;
+
+/** List of StorageNetworks config to deploy AzureStackHCI Cluster. */
+export type EdgeMachineHostNetworkStorageNetworksList =
+  Array<EdgeMachineStorageNetwork>;
+export const EdgeMachineHostNetworkStorageNetworksList = /*@__PURE__*/ S.Array(
+  EdgeMachineStorageNetwork,
+) as any as S.Schema<EdgeMachineHostNetworkStorageNetworksList>;
+
+/** HostNetwork configuration reported for the edge machine. */
+export interface EdgeMachineHostNetwork {
+  /** The network intents assigned to the network reference pattern used for the deployment. Each intent will define its own name, traffic type, adapter names, and overrides as recommended by your OEM. */
+  intents?: EdgeMachineHostNetworkIntentsList;
+  /** List of StorageNetworks config to deploy AzureStackHCI Cluster. */
+  storageNetworks?: EdgeMachineHostNetworkStorageNetworksList;
+  /** Defines how the storage adapters between nodes are connected either switch or switch less. */
+  storageConnectivitySwitchless?: boolean;
+  /** Optional parameter required only for 3 Nodes Switchless deployments. This allows users to specify IPs and Mask for Storage NICs when Network ATC is not assigning the IPs for storage automatically. */
+  enableStorageAutoIp?: boolean;
+}
+export const EdgeMachineHostNetwork = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    intents: S.optional(EdgeMachineHostNetworkIntentsList),
+    storageNetworks: S.optional(EdgeMachineHostNetworkStorageNetworksList),
+    storageConnectivitySwitchless: S.optional(S.Boolean),
+    enableStorageAutoIp: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "EdgeMachineHostNetwork",
+}) as any as S.Schema<EdgeMachineHostNetwork>;
+
+/** Represents the Software Defined Networking (SDN) configuration state. */
+export interface SdnProperties {
+  /** Indicates the current Software Defined Networking (SDN) status of the resource, which may be an individual device or a cluster. */
+  sdnStatus?: SdnStatus;
+  /** The fully qualified domain name (FQDN) associated with the SDN deployment. This value is propagated from the Device Management Extension to the cluster resource. It is typically in the format `<sdnPrefix>-nc.<domain>` when SDN is enabled. May be null or absent in unsupported or disabled states. */
+  sdnDomainName?: string;
+  /** Represents the API address for the SDN deployment. */
+  sdnApiAddress?: string;
+}
+export const SdnProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sdnStatus: S.optional(SdnStatus),
+    sdnDomainName: S.optional(S.String),
+    sdnApiAddress: S.optional(S.String),
+  }),
+).annotate({ identifier: "SdnProperties" }) as any as S.Schema<SdnProperties>;
+
+/** NetworkProfile of edge machine. */
+export interface EdgeMachineNetworkProfile {
+  /** List of Network Interface Card (NIC) Details of edge machine. */
+  nicDetails?: EdgeMachineNetworkProfileNicDetailsList;
+  /** List of switch Details of edge machine. */
+  switchDetails?: EdgeMachineNetworkProfileSwitchDetailsList;
+  /** HostNetwork configuration reported for the edge machine. */
+  hostNetwork?: EdgeMachineHostNetwork;
+  /** Software Defined Networking (SDN) properties reported for the edge machine. */
+  sdnProperties?: SdnProperties;
+}
+export const EdgeMachineNetworkProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nicDetails: S.optional(EdgeMachineNetworkProfileNicDetailsList),
+    switchDetails: S.optional(EdgeMachineNetworkProfileSwitchDetailsList),
+    hostNetwork: S.optional(EdgeMachineHostNetwork),
+    sdnProperties: S.optional(SdnProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineNetworkProfile",
+}) as any as S.Schema<EdgeMachineNetworkProfile>;
+
+/** OS configurations for HCI device. */
+export interface OsProfile {
+  /** The boot type of the device. e.g. UEFI, Legacy etc */
+  bootType?: string;
+  /** Version of assembly present on device */
+  assemblyVersion?: string;
+  /** OS type (“windows", “linux”) */
+  osType?: string;
+  /** OS SKU (e.g., “ Microsoft Azure Linux ROE“, “Azure Stack HCI", "Microsoft Azure Linux 3.0") */
+  osSku?: string;
+  /** OS Version */
+  osVersion?: string;
+  /** OS Build Number */
+  buildNumber?: string;
+  /** OS Base Image Version */
+  baseImageVersion?: string;
+  /** OS Image Version */
+  imageVersion?: string;
+}
+export const OsProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bootType: S.optional(S.String),
+    assemblyVersion: S.optional(S.String),
+    osType: S.optional(S.String),
+    osSku: S.optional(S.String),
+    osVersion: S.optional(S.String),
+    buildNumber: S.optional(S.String),
+    baseImageVersion: S.optional(S.String),
+    imageVersion: S.optional(S.String),
+  }),
+).annotate({ identifier: "OsProfile" }) as any as S.Schema<OsProfile>;
+
+/** Hardware profile for the machine */
+export interface HardwareProfile {
+  /** Number of cpu cores in the machine */
+  cpuCores?: number;
+  /** Number of cpu sockets in the machine */
+  cpuSockets?: number;
+  /** Memory capacity of the machine */
+  memoryCapacityInGb?: number;
+  /** Model info of the machine */
+  model?: string;
+  /** manufacturer info of the machine */
+  manufacturer?: string;
+  /** Serial number of the machine */
+  serialNumber?: string;
+  /** Process type of the machine */
+  processorType?: string;
+  /** CPU architecture of the machine, for example amd64 or arm64. */
+  architecture?: Architecture;
+}
+export const HardwareProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cpuCores: S.optional(S.Number),
+    cpuSockets: S.optional(S.Number),
+    memoryCapacityInGb: S.optional(S.Number),
+    model: S.optional(S.String),
+    manufacturer: S.optional(S.String),
+    serialNumber: S.optional(S.String),
+    processorType: S.optional(S.String),
+    architecture: S.optional(Architecture),
+  }),
+).annotate({
+  identifier: "HardwareProfile",
+}) as any as S.Schema<HardwareProfile>;
+
+/** StorageProfile of edge machine. */
+export interface StorageProfile {
+  /** Number of storage disks in the device with $CanPool as true. */
+  poolableDisksCount?: number;
+}
+export const StorageProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    poolableDisksCount: S.optional(S.Number),
+  }),
+).annotate({ identifier: "StorageProfile" }) as any as S.Schema<StorageProfile>;
+
+/** Solution builder extension (SBE) deployment package information. */
+export interface SbeDeploymentPackageInfo {
+  /** SBE deployment validation code. */
+  code?: string;
+  /** A detailed message that explains the SBE package validation result. */
+  message?: string;
+  /** This represents discovered update results for matching updates and store it as SBE manifest. */
+  sbeManifest?: string;
+}
+export const SbeDeploymentPackageInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    sbeManifest: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SbeDeploymentPackageInfo",
+}) as any as S.Schema<SbeDeploymentPackageInfo>;
+
+/** Arc extension installation state. */
+export type ArcExtensionState =
+  | "NotSpecified"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Accepted"
+  | "Creating"
+  | "Updating"
+  | "Moving"
+  | "Deleting"
+  | "Deleted";
+export const ArcExtensionState = /*@__PURE__*/ S.String;
+
+/** details of validation failure */
+export interface HciValidationFailureDetail {
+  /** Exception details while installing extension. */
+  exception?: string;
+}
+export const HciValidationFailureDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    exception: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HciValidationFailureDetail",
+}) as any as S.Schema<HciValidationFailureDetail>;
+
+/** Error details while installing Arc extension. */
+export type HciEdgeDeviceArcExtensionErrorDetailsList =
+  Array<HciValidationFailureDetail>;
+export const HciEdgeDeviceArcExtensionErrorDetailsList = /*@__PURE__*/ S.Array(
+  HciValidationFailureDetail,
+) as any as S.Schema<HciEdgeDeviceArcExtensionErrorDetailsList>;
+
+/** Arc extension installed on edge device. */
+export interface HciEdgeDeviceArcExtension {
+  /** Arc extension name installed on edge device. */
+  extensionName?: string;
+  /** Arc extension state from arc machine extension. */
+  state?: ArcExtensionState;
+  /** Error details while installing Arc extension. */
+  errorDetails?: HciEdgeDeviceArcExtensionErrorDetailsList;
+  /** Arc Extension Azure resource id. */
+  extensionResourceId?: string;
+  /** Extension version installed. */
+  typeHandlerVersion?: string;
+  /** Indicates whether the extension is managed by the user or by Azure. */
+  managedBy?: ExtensionManagedBy;
+}
+export const HciEdgeDeviceArcExtension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    extensionName: S.optional(S.String),
+    state: S.optional(ArcExtensionState),
+    errorDetails: S.optional(HciEdgeDeviceArcExtensionErrorDetailsList),
+    extensionResourceId: S.optional(S.String),
+    typeHandlerVersion: S.optional(S.String),
+    managedBy: S.optional(ExtensionManagedBy),
+  }),
+).annotate({
+  identifier: "HciEdgeDeviceArcExtension",
+}) as any as S.Schema<HciEdgeDeviceArcExtension>;
+
+/** List of Arc extensions installed on edge device. */
+export type ExtensionProfileExtensionsList = Array<HciEdgeDeviceArcExtension>;
+export const ExtensionProfileExtensionsList = /*@__PURE__*/ S.Array(
+  HciEdgeDeviceArcExtension,
+) as any as S.Schema<ExtensionProfileExtensionsList>;
+
+/** Extensions details for edge device. */
+export interface ExtensionProfile {
+  /** List of Arc extensions installed on edge device. */
+  extensions?: ExtensionProfileExtensionsList;
+}
+export const ExtensionProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    extensions: S.optional(ExtensionProfileExtensionsList),
+  }),
+).annotate({
+  identifier: "ExtensionProfile",
+}) as any as S.Schema<ExtensionProfile>;
+
+/** Represents a single workload (Hyper-V VM) inventory entry reported by the device management extension running on the edge machine. */
+export interface EdgeMachineWorkloadInventoryItem {
+  /** Stable device-reported workload identifier, such as the Hyper-V VM ID when available. */
+  workloadId?: string;
+  /** Hyper-V VM name. */
+  name?: string;
+  /** Optional ARM resource ID when the service can map the local VM to an ARM resource. */
+  resourceId?: string;
+  /** Workload type. For v1 this should be VirtualMachine. */
+  workloadType?: string;
+  /** Hyper-V VM state reported by the node. */
+  state?: string;
+  /** Configured virtual processor count from Hyper-V. */
+  virtualProcessorCount?: string;
+  /** Maximum memory the VM can consume, in bytes. */
+  memoryInBytes?: string;
+}
+export const EdgeMachineWorkloadInventoryItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workloadId: S.optional(S.String),
+    name: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    workloadType: S.optional(S.String),
+    state: S.optional(S.String),
+    virtualProcessorCount: S.optional(S.String),
+    memoryInBytes: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineWorkloadInventoryItem",
+}) as any as S.Schema<EdgeMachineWorkloadInventoryItem>;
+
+/** Read-only Hyper-V VM inventory reported by the device management extension for VMs visible on this node. */
+export type EdgeMachineReportedPropertiesWorkloadInventoryList =
+  Array<EdgeMachineWorkloadInventoryItem>;
+export const EdgeMachineReportedPropertiesWorkloadInventoryList =
+  /*@__PURE__*/ S.Array(
+    EdgeMachineWorkloadInventoryItem,
+  ) as any as S.Schema<EdgeMachineReportedPropertiesWorkloadInventoryList>;
+
+/** Transport type of a storage fabric initiator port on the edge machine. */
+export type StorageInitiatorType = "iSCSI" | "FibreChannel" | "Unknown";
+export const StorageInitiatorType = /*@__PURE__*/ S.String;
+
+/** A storage fabric initiator port (iSCSI or Fibre Channel) discovered on the edge machine. */
+export interface StorageInitiator {
+  /** Transport type of the initiator port. */
+  initiatorType: StorageInitiatorType;
+  /** Node identifier of the initiator. IQN for iSCSI or node WWN (WWNN) for Fibre Channel. Corresponds to the NodeAddress reported by Get-InitiatorPort. */
+  initiatorIdentifier: string;
+  /** Fibre Channel port World Wide Name (WWPN). Populated for FibreChannel initiators only; corresponds to the PortAddress reported by Get-InitiatorPort. */
+  portWorldWideName?: string;
+  /** Name of the Ethernet adapter the iSCSI initiator is bound to. Populated for iSCSI initiators only; matches EdgeMachineNicDetail.adapterName. */
+  ethernetAdapterName?: string;
+  /** MAC address of the Ethernet adapter the iSCSI initiator is bound to. Populated for iSCSI initiators only; matches EdgeMachineNicDetail.macAddress. */
+  ethernetAdapterMacAddress?: string;
+  /** Operational status of the initiator port as reported by the host. Corresponds to OperationalStatus from Get-InitiatorPort. */
+  operationalStatus?: string;
+}
+export const StorageInitiator = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    initiatorType: StorageInitiatorType,
+    initiatorIdentifier: S.String,
+    portWorldWideName: S.optional(S.String),
+    ethernetAdapterName: S.optional(S.String),
+    ethernetAdapterMacAddress: S.optional(S.String),
+    operationalStatus: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageInitiator",
+}) as any as S.Schema<StorageInitiator>;
+
+/** Storage fabric initiator ports (iSCSI or Fibre Channel) discovered on the edge machine. */
+export type EdgeMachineReportedPropertiesStorageInitiatorsList =
+  Array<StorageInitiator>;
+export const EdgeMachineReportedPropertiesStorageInitiatorsList =
+  /*@__PURE__*/ S.Array(
+    StorageInitiator,
+  ) as any as S.Schema<EdgeMachineReportedPropertiesStorageInitiatorsList>;
+
+/** Reported properties for edge machine. */
+export interface EdgeMachineReportedProperties {
+  /** Last time data reported. */
+  lastUpdated?: string;
+  /** Network details for edge machine. */
+  networkProfile?: EdgeMachineNetworkProfile;
+  /** OS Properties for edge machine. */
+  osProfile?: OsProfile;
+  /** Hardware related information for edge machine. */
+  hardwareProfile?: HardwareProfile;
+  /** Storage related information for edge machine. */
+  storageProfile?: StorageProfile;
+  /** Solution builder extension (SBE) deployment package information. */
+  sbeDeploymentPackageInfo?: SbeDeploymentPackageInfo;
+  /** Extension details for edge machine. */
+  extensionProfile?: ExtensionProfile;
+  /** Read-only Hyper-V VM inventory reported by the device management extension for VMs visible on this node. */
+  workloadInventory?: EdgeMachineReportedPropertiesWorkloadInventoryList;
+  /** Last time the device management extension refreshed the local Hyper-V workload inventory. */
+  workloadInventoryLastUpdated?: string;
+  /** Storage fabric initiator ports (iSCSI or Fibre Channel) discovered on the edge machine. */
+  storageInitiators?: EdgeMachineReportedPropertiesStorageInitiatorsList;
+}
+export const EdgeMachineReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lastUpdated: S.optional(S.String),
+    networkProfile: S.optional(EdgeMachineNetworkProfile),
+    osProfile: S.optional(OsProfile),
+    hardwareProfile: S.optional(HardwareProfile),
+    storageProfile: S.optional(StorageProfile),
+    sbeDeploymentPackageInfo: S.optional(SbeDeploymentPackageInfo),
+    extensionProfile: S.optional(ExtensionProfile),
+    workloadInventory: S.optional(
+      EdgeMachineReportedPropertiesWorkloadInventoryList,
+    ),
+    workloadInventoryLastUpdated: S.optional(S.String),
+    storageInitiators: S.optional(
+      EdgeMachineReportedPropertiesStorageInitiatorsList,
+    ),
+  }),
+).annotate({
+  identifier: "EdgeMachineReportedProperties",
+}) as any as S.Schema<EdgeMachineReportedProperties>;
+
+/** The error details. */
+export type OperationDetailErrorDetailsList = Array<ErrorDetail>;
+export const OperationDetailErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetail,
+) as any as S.Schema<OperationDetailErrorDetailsList>;
+
+/** The error additional info. */
+export type OperationDetailErrorAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const OperationDetailErrorAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<OperationDetailErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface OperationDetailError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: OperationDetailErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: OperationDetailErrorAdditionalInfoList;
+}
+export const OperationDetailError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(OperationDetailErrorDetailsList),
+    additionalInfo: S.optional(OperationDetailErrorAdditionalInfoList),
+  }),
+).annotate({
+  identifier: "OperationDetailError",
+}) as any as S.Schema<OperationDetailError>;
+
+/** operation detail. */
+export interface OperationDetail {
+  /** operation name. */
+  name?: string;
+  /** operation id. */
+  id?: string;
+  /** operation type. */
+  type?: string;
+  /** operation resource id. */
+  resourceId?: string;
+  /** operation description. */
+  description?: string;
+  /** operation status. */
+  status?: string;
+  /** The error detail. */
+  error?: OperationDetailError;
+}
+export const OperationDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    description: S.optional(S.String),
+    status: S.optional(S.String),
+    error: S.optional(OperationDetailError),
+  }),
+).annotate({
+  identifier: "OperationDetail",
+}) as any as S.Schema<OperationDetail>;
+
+/** operation status details for edge machine. */
+export type EdgeMachinePropertiesOperationDetailsList = Array<OperationDetail>;
+export const EdgeMachinePropertiesOperationDetailsList = /*@__PURE__*/ S.Array(
+  OperationDetail,
+) as any as S.Schema<EdgeMachinePropertiesOperationDetailsList>;
+
+/** Properties for edge machine. */
+export interface EdgeMachineProperties {
+  /** Edge Machine type. */
+  edgeMachineKind?: EdgeMachineKind;
+  /** The provisioning state of a resource. */
+  provisioningState?: ProvisioningState;
+  /** Unique, immutable resource id. */
+  cloudId?: string;
+  /** Optional property to create arc machine in custom resource group. */
+  arcMachineResourceGroupId?: string;
+  /** Arc machine instance resource id. */
+  arcMachineResourceId?: string;
+  /** Lifecycle details of the resource */
+  lifecycleDetails?: LifecycleDetails;
+  /** Link to Arc Gateway ARM resource Id */
+  arcGatewayResourceId?: string;
+  /** Service fetches common configuration from site. */
+  siteDetails?: SiteDetails;
+  /** Ownership voucher details for provisioned machine. */
+  ownershipVoucherDetails?: OwnershipVoucherDetails;
+  /** Details for device provisioning. */
+  provisioningDetails?: ProvisioningDetails;
+  /** A machine can only be assigned to single device pool */
+  devicePoolResourceId?: string;
+  /** OS configuration status details */
+  machineState?: EdgeMachineState;
+  /** machine connectivity status */
+  connectivityStatus?: EdgeMachineConnectivityStatus;
+  /** Tracks the ID of the consuming resource, setting the machine as in-use. */
+  claimedBy?: string;
+  /** Reported properties for edge machine. */
+  reportedProperties?: EdgeMachineReportedProperties;
+  /** operation status details for edge machine. */
+  operationDetails?: EdgeMachinePropertiesOperationDetailsList;
+  /** Last time data updated to service. */
+  lastSyncTimestamp?: string;
+}
+export const EdgeMachineProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    edgeMachineKind: S.optional(EdgeMachineKind),
+    provisioningState: S.optional(ProvisioningState),
+    cloudId: S.optional(S.String),
+    arcMachineResourceGroupId: S.optional(S.String),
+    arcMachineResourceId: S.optional(S.String),
+    lifecycleDetails: S.optional(LifecycleDetails),
+    arcGatewayResourceId: S.optional(S.String),
+    siteDetails: S.optional(SiteDetails),
+    ownershipVoucherDetails: S.optional(OwnershipVoucherDetails),
+    provisioningDetails: S.optional(ProvisioningDetails),
+    devicePoolResourceId: S.optional(S.String),
+    machineState: S.optional(EdgeMachineState),
+    connectivityStatus: S.optional(EdgeMachineConnectivityStatus),
+    claimedBy: S.optional(S.String),
+    reportedProperties: S.optional(EdgeMachineReportedProperties),
+    operationDetails: S.optional(EdgeMachinePropertiesOperationDetailsList),
+    lastSyncTimestamp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineProperties",
+}) as any as S.Schema<EdgeMachineProperties>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type EdgeMachinesCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap =
+  { [key: string]: UserAssignedIdentity | undefined };
+export const EdgeMachinesCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<EdgeMachinesCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface EdgeMachinesCreateOrUpdateResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: EdgeMachinesCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap;
+}
+export const EdgeMachinesCreateOrUpdateResponseIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        EdgeMachinesCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+  ).annotate({
+    identifier: "EdgeMachinesCreateOrUpdateResponseIdentity",
+  }) as any as S.Schema<EdgeMachinesCreateOrUpdateResponseIdentity>;
+
+export interface EdgeMachinesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: EdgeMachinesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: EdgeMachinesCreateOrUpdateResponseIdentity;
+}
+export const EdgeMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(EdgeMachinesCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(EdgeMachineProperties),
+    identity: S.optional(EdgeMachinesCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "EdgeMachinesCreateOrUpdateResponse",
+}) as any as S.Schema<EdgeMachinesCreateOrUpdateResponse>;
+
+/** Properties of an Edge Machine Security Settings resource. */
+export type EdgeMachineSecurityPropertiesInput = LogCollectionPropertiesInput;
+export const EdgeMachineSecurityPropertiesInput = LogCollectionPropertiesInput;
+
+export interface EdgeMachineSecuritySettingsOperationsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of the security settings resource */
+  securitySettingsName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: LogCollectionPropertiesInput;
+}
+export const EdgeMachineSecuritySettingsOperationsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      securitySettingsName: S.String.pipe(T.Label()),
+      properties: S.optional(LogCollectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/securitySettings/{securitySettingsName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EdgeMachineSecuritySettingsOperationsCreateOrUpdateRequest",
+  }) as any as S.Schema<EdgeMachineSecuritySettingsOperationsCreateOrUpdateRequest>;
+
+/** Represents the compliance status of a resource. */
+export type ComplianceStatus = "Compliant" | "NonCompliant" | "Pending";
+export const ComplianceStatus = /*@__PURE__*/ S.String;
+
+/** Compliance status payload for edge machine security settings. */
+export interface EdgeMachineSecurityComplianceStatus {
+  /** FIPS compliance status. */
+  fipsStatus?: ComplianceStatus;
+  /** Secure Boot compliance status. */
+  secureBootStatus?: ComplianceStatus;
+  /** Encryption at rest compliance status. */
+  encryptionAtRestStatus?: ComplianceStatus;
+  /** SELinux policy compliance status. */
+  seLinuxPolicyStatus?: ComplianceStatus;
+  /** Security baseline compliance status. */
+  securityBaselineStatus?: ComplianceStatus;
+}
+export const EdgeMachineSecurityComplianceStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fipsStatus: S.optional(ComplianceStatus),
+    secureBootStatus: S.optional(ComplianceStatus),
+    encryptionAtRestStatus: S.optional(ComplianceStatus),
+    seLinuxPolicyStatus: S.optional(ComplianceStatus),
+    securityBaselineStatus: S.optional(ComplianceStatus),
+  }),
+).annotate({
+  identifier: "EdgeMachineSecurityComplianceStatus",
+}) as any as S.Schema<EdgeMachineSecurityComplianceStatus>;
+
+/** Properties of an Edge Machine Security Settings resource. */
+export interface EdgeMachineSecurityProperties {
+  /** The provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+  /** Compliance status values synchronized from Guest Configuration. */
+  securityComplianceStatus?: EdgeMachineSecurityComplianceStatus;
+  /** First synchronization timestamp in UTC. */
+  registrationTimestamp?: string;
+  /** Most recent synchronization timestamp in UTC. */
+  lastSyncTimestamp?: string;
+}
+export const EdgeMachineSecurityProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    securityComplianceStatus: S.optional(EdgeMachineSecurityComplianceStatus),
+    registrationTimestamp: S.optional(S.String),
+    lastSyncTimestamp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineSecurityProperties",
+}) as any as S.Schema<EdgeMachineSecurityProperties>;
+
+export interface EdgeMachineSecuritySettingsOperationsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineSecurityProperties;
+}
+export const EdgeMachineSecuritySettingsOperationsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineSecurityProperties),
+    }),
+  ).annotate({
+    identifier: "EdgeMachineSecuritySettingsOperationsCreateOrUpdateResponse",
+  }) as any as S.Schema<EdgeMachineSecuritySettingsOperationsCreateOrUpdateResponse>;
+
+/** Desired configuration for a volume. Reserved for future use. */
+export interface VolumeConfiguration {
+  /** Reserved for future volume configuration options. */
+  reserved?: string;
+}
+export const VolumeConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reserved: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VolumeConfiguration",
+}) as any as S.Schema<VolumeConfiguration>;
+
+/** Properties of a volume. */
+export interface EdgeMachineVolumePropertiesInput {
+  /** Desired configuration for this volume. */
+  volumeConfiguration?: VolumeConfiguration;
+}
+export const EdgeMachineVolumePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    volumeConfiguration: S.optional(VolumeConfiguration),
+  }),
+).annotate({
+  identifier: "EdgeMachineVolumePropertiesInput",
+}) as any as S.Schema<EdgeMachineVolumePropertiesInput>;
+
+export interface EdgeMachineVolumesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineVolume */
+  volumeName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineVolumePropertiesInput;
+}
+export const EdgeMachineVolumesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      volumeName: S.String.pipe(T.Label()),
+      properties: S.optional(EdgeMachineVolumePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/volumes/{volumeName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "EdgeMachineVolumesCreateOrUpdateRequest",
+}) as any as S.Schema<EdgeMachineVolumesCreateOrUpdateRequest>;
+
+/** The actual state of the volume as reported by the device. */
+export interface VolumeReportedProperties {
+  /** Unique identifier for the partition. */
+  partitionId?: string;
+  /** Byte offset of the partition start. */
+  offsetInBytes?: number;
+  /** Label of the volume. */
+  name?: string;
+  /** Access path for the volume. */
+  path?: string;
+  /** ARM resource ID of the parent disk. */
+  parentDiskId?: string;
+  /** Indicates if this volume is a boot volume. */
+  isBoot?: boolean;
+  /** Total size of the volume in bytes. */
+  sizeInBytes?: string;
+  /** Available space on the volume in bytes. */
+  sizeRemainingInBytes?: string;
+  /** File system on the volume. */
+  fileSystem?: string;
+}
+export const VolumeReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    partitionId: S.optional(S.String),
+    offsetInBytes: S.optional(S.Number),
+    name: S.optional(S.String),
+    path: S.optional(S.String),
+    parentDiskId: S.optional(S.String),
+    isBoot: S.optional(S.Boolean),
+    sizeInBytes: S.optional(S.String),
+    sizeRemainingInBytes: S.optional(S.String),
+    fileSystem: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VolumeReportedProperties",
+}) as any as S.Schema<VolumeReportedProperties>;
+
+/** Properties of a volume. */
+export interface EdgeMachineVolumeProperties {
+  /** Desired configuration for this volume. */
+  volumeConfiguration?: VolumeConfiguration;
+  /** The actual state of the volume as reported by the device. */
+  reportedProperties?: VolumeReportedProperties;
+  /** Provisioning state of the volume resource. */
+  provisioningState?: ProvisioningState;
+}
+export const EdgeMachineVolumeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    volumeConfiguration: S.optional(VolumeConfiguration),
+    reportedProperties: S.optional(VolumeReportedProperties),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "EdgeMachineVolumeProperties",
+}) as any as S.Schema<EdgeMachineVolumeProperties>;
+
+export interface EdgeMachineVolumesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineVolumeProperties;
+}
+export const EdgeMachineVolumesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineVolumeProperties),
+    }),
+).annotate({
+  identifier: "EdgeMachineVolumesCreateOrUpdateResponse",
+}) as any as S.Schema<EdgeMachineVolumesCreateOrUpdateResponse>;
 
 export interface SoftwareAssuranceChangeRequestProperties {
   /** Customer Intent for Software Assurance Benefit. This indicates whether the customer wishes to opt in or out of the Software Assurance program, which provides licensing and support benefits. */
@@ -4170,7 +7900,7 @@ export const ExtendClusterSoftwareAssuranceBenefitRequest =
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/extendSoftwareAssuranceBenefit",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
   ).annotate({
@@ -4178,47 +7908,47 @@ export const ExtendClusterSoftwareAssuranceBenefitRequest =
   }) as any as S.Schema<ExtendClusterSoftwareAssuranceBenefitRequest>;
 
 /** Resource tags. */
-export type ClustersExtendSoftwareAssuranceBenefitResponseTagsMap = {
+export type ExtendClusterSoftwareAssuranceBenefitResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersExtendSoftwareAssuranceBenefitResponseTagsMap =
+export const ExtendClusterSoftwareAssuranceBenefitResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ClustersExtendSoftwareAssuranceBenefitResponseTagsMap>;
+  ) as any as S.Schema<ExtendClusterSoftwareAssuranceBenefitResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersExtendSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap =
+export type ExtendClusterSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap =
   { [key: string]: UserAssignedIdentity | undefined };
-export const ClustersExtendSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap =
+export const ExtendClusterSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<ClustersExtendSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<ExtendClusterSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersExtendSoftwareAssuranceBenefitResponseIdentity {
+export interface ExtendClusterSoftwareAssuranceBenefitResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersExtendSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: ExtendClusterSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap;
 }
-export const ClustersExtendSoftwareAssuranceBenefitResponseIdentity =
+export const ExtendClusterSoftwareAssuranceBenefitResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(
-        ClustersExtendSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap,
+        ExtendClusterSoftwareAssuranceBenefitResponseIdentityUserAssignedIdentitiesMap,
       ),
     }),
   ).annotate({
-    identifier: "ClustersExtendSoftwareAssuranceBenefitResponseIdentity",
-  }) as any as S.Schema<ClustersExtendSoftwareAssuranceBenefitResponseIdentity>;
+    identifier: "ExtendClusterSoftwareAssuranceBenefitResponseIdentity",
+  }) as any as S.Schema<ExtendClusterSoftwareAssuranceBenefitResponseIdentity>;
 
 export interface ExtendClusterSoftwareAssuranceBenefitResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4230,13 +7960,13 @@ export interface ExtendClusterSoftwareAssuranceBenefitResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersExtendSoftwareAssuranceBenefitResponseTagsMap;
+  tags?: ExtendClusterSoftwareAssuranceBenefitResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cluster properties. */
   properties?: ClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersExtendSoftwareAssuranceBenefitResponseIdentity;
+  identity?: ExtendClusterSoftwareAssuranceBenefitResponseIdentity;
   /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
   kind?: string;
 }
@@ -4247,11 +7977,11 @@ export const ExtendClusterSoftwareAssuranceBenefitResponse =
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ClustersExtendSoftwareAssuranceBenefitResponseTagsMap),
+      tags: S.optional(ExtendClusterSoftwareAssuranceBenefitResponseTagsMap),
       location: S.String,
       properties: S.optional(ClusterProperties),
       identity: S.optional(
-        ClustersExtendSoftwareAssuranceBenefitResponseIdentity,
+        ExtendClusterSoftwareAssuranceBenefitResponseIdentity,
       ),
       kind: S.optional(S.String),
     }),
@@ -4286,7 +8016,7 @@ export const ExtensionsUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/extensions/{extensionName}/upgrade",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -4712,7 +8442,7 @@ export const GalleryImagesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GalleryImagesCreateOrUpdateResponse",
 }) as any as S.Schema<GalleryImagesCreateOrUpdateResponse>;
 
-export interface GenerateArcSettingPasswordRequest {
+export interface GenerateArcSettingsPasswordRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4722,7 +8452,7 @@ export interface GenerateArcSettingPasswordRequest {
   /** The name of the proxy resource holding details of HCI ArcSetting information. */
   arcSettingName: string;
 }
-export const GenerateArcSettingPasswordRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateArcSettingsPasswordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4733,12 +8463,12 @@ export const GenerateArcSettingPasswordRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/generatePassword",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "GenerateArcSettingPasswordRequest",
-}) as any as S.Schema<GenerateArcSettingPasswordRequest>;
+  identifier: "GenerateArcSettingsPasswordRequest",
+}) as any as S.Schema<GenerateArcSettingsPasswordRequest>;
 
 export interface PasswordCredential {
   secretText?: string;
@@ -4757,7 +8487,7 @@ export const PasswordCredential = /*@__PURE__*/ S.suspend(() =>
   identifier: "PasswordCredential",
 }) as any as S.Schema<PasswordCredential>;
 
-export interface GetArcSettingRequest {
+export interface GetArcSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4767,7 +8497,7 @@ export interface GetArcSettingRequest {
   /** The name of the proxy resource holding details of HCI ArcSetting information. */
   arcSettingName: string;
 }
-export const GetArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetArcSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4778,14 +8508,14 @@ export const GetArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "GetArcSettingRequest",
-}) as any as S.Schema<GetArcSettingRequest>;
+  identifier: "GetArcSettingsRequest",
+}) as any as S.Schema<GetArcSettingsRequest>;
 
-export interface GetArcSettingResponse {
+export interface GetArcSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4797,7 +8527,7 @@ export interface GetArcSettingResponse {
   /** ArcSetting properties. */
   properties?: ArcSettingProperties;
 }
-export const GetArcSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetArcSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4806,8 +8536,8 @@ export const GetArcSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ArcSettingProperties),
   }),
 ).annotate({
-  identifier: "GetArcSettingResponse",
-}) as any as S.Schema<GetArcSettingResponse>;
+  identifier: "GetArcSettingsResponse",
+}) as any as S.Schema<GetArcSettingsResponse>;
 
 export interface GetClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4827,7 +8557,7 @@ export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -4835,44 +8565,44 @@ export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetClusterRequest>;
 
 /** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
+) as any as S.Schema<GetClusterResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersGetResponseIdentityUserAssignedIdentitiesMap = {
+export type GetClusterResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const ClustersGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetClusterResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<ClustersGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetClusterResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersGetResponseIdentity {
+export interface GetClusterResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetClusterResponseIdentityUserAssignedIdentitiesMap;
 }
-export const ClustersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      ClustersGetResponseIdentityUserAssignedIdentitiesMap,
+      GetClusterResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "ClustersGetResponseIdentity",
-}) as any as S.Schema<ClustersGetResponseIdentity>;
+  identifier: "GetClusterResponseIdentity",
+}) as any as S.Schema<GetClusterResponseIdentity>;
 
 export interface GetClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4884,13 +8614,13 @@ export interface GetClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
+  tags?: GetClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cluster properties. */
   properties?: ClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersGetResponseIdentity;
+  identity?: GetClusterResponseIdentity;
   /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
   kind?: string;
 }
@@ -4900,17 +8630,69 @@ export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersGetResponseTagsMap),
+    tags: S.optional(GetClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
-    identity: S.optional(ClustersGetResponseIdentity),
+    identity: S.optional(GetClusterResponseIdentity),
     kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GetClusterResponse",
 }) as any as S.Schema<GetClusterResponse>;
 
-export interface GetDeploymentSettingRequest {
+export interface GetClusterJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Name of ClusterJob */
+  jobsName: string;
+}
+export const GetClusterJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    jobsName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/jobs/{jobsName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetClusterJobRequest",
+}) as any as S.Schema<GetClusterJobRequest>;
+
+export interface GetClusterJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ClusterJobProperties;
+}
+export const GetClusterJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterJobProperties),
+  }),
+).annotate({
+  identifier: "GetClusterJobResponse",
+}) as any as S.Schema<GetClusterJobResponse>;
+
+export interface GetDeploymentSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4920,7 +8702,7 @@ export interface GetDeploymentSettingRequest {
   /** Name of Deployment Setting */
   deploymentSettingsName: string;
 }
-export const GetDeploymentSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeploymentSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4931,14 +8713,14 @@ export const GetDeploymentSettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/deploymentSettings/{deploymentSettingsName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "GetDeploymentSettingRequest",
-}) as any as S.Schema<GetDeploymentSettingRequest>;
+  identifier: "GetDeploymentSettingsRequest",
+}) as any as S.Schema<GetDeploymentSettingsRequest>;
 
-export interface GetDeploymentSettingResponse {
+export interface GetDeploymentSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4950,7 +8732,7 @@ export interface GetDeploymentSettingResponse {
   /** The resource-specific properties for this resource. */
   properties?: DeploymentSettingsProperties;
 }
-export const GetDeploymentSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDeploymentSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4959,8 +8741,8 @@ export const GetDeploymentSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeploymentSettingsProperties),
   }),
 ).annotate({
-  identifier: "GetDeploymentSettingResponse",
-}) as any as S.Schema<GetDeploymentSettingResponse>;
+  identifier: "GetDeploymentSettingsResponse",
+}) as any as S.Schema<GetDeploymentSettingsResponse>;
 
 export interface GetEdgeDeviceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -4977,7 +8759,7 @@ export const GetEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -5026,7 +8808,7 @@ export const GetEdgeDeviceJobRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}/jobs/{jobsName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -5057,6 +8839,901 @@ export const GetEdgeDeviceJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEdgeDeviceJobResponse",
 }) as any as S.Schema<GetEdgeDeviceJobResponse>;
 
+export interface GetEdgeMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const GetEdgeMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEdgeMachineRequest",
+}) as any as S.Schema<GetEdgeMachineRequest>;
+
+/** Resource tags. */
+export type GetEdgeMachineResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetEdgeMachineResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetEdgeMachineResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type GetEdgeMachineResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const GetEdgeMachineResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<GetEdgeMachineResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetEdgeMachineResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: GetEdgeMachineResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetEdgeMachineResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      GetEdgeMachineResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "GetEdgeMachineResponseIdentity",
+}) as any as S.Schema<GetEdgeMachineResponseIdentity>;
+
+export interface GetEdgeMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetEdgeMachineResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetEdgeMachineResponseIdentity;
+}
+export const GetEdgeMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetEdgeMachineResponseTagsMap),
+    location: S.String,
+    properties: S.optional(EdgeMachineProperties),
+    identity: S.optional(GetEdgeMachineResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetEdgeMachineResponse",
+}) as any as S.Schema<GetEdgeMachineResponse>;
+
+export interface GetEdgeMachineDeploymentSettingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of Edge Machine Deployment Setting. */
+  deploymentSettingName: string;
+}
+export const GetEdgeMachineDeploymentSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      deploymentSettingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/deploymentSettings/{deploymentSettingName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetEdgeMachineDeploymentSettingsRequest",
+}) as any as S.Schema<GetEdgeMachineDeploymentSettingsRequest>;
+
+export interface GetEdgeMachineDeploymentSettingsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDeploymentSettingProperties;
+}
+export const GetEdgeMachineDeploymentSettingsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineDeploymentSettingProperties),
+    }),
+).annotate({
+  identifier: "GetEdgeMachineDeploymentSettingsResponse",
+}) as any as S.Schema<GetEdgeMachineDeploymentSettingsResponse>;
+
+export interface GetEdgeMachineDiskRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+}
+export const GetEdgeMachineDiskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    diskName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEdgeMachineDiskRequest",
+}) as any as S.Schema<GetEdgeMachineDiskRequest>;
+
+export interface GetEdgeMachineDiskResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskProperties;
+}
+export const GetEdgeMachineDiskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineDiskProperties),
+  }),
+).annotate({
+  identifier: "GetEdgeMachineDiskResponse",
+}) as any as S.Schema<GetEdgeMachineDiskResponse>;
+
+export interface GetEdgeMachineDiskJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+  /** The name of the EdgeMachineDiskJob */
+  jobName: string;
+}
+export const GetEdgeMachineDiskJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    diskName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/jobs/{jobName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEdgeMachineDiskJobRequest",
+}) as any as S.Schema<GetEdgeMachineDiskJobRequest>;
+
+export interface GetEdgeMachineDiskJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskJobProperties;
+}
+export const GetEdgeMachineDiskJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineDiskJobProperties),
+  }),
+).annotate({
+  identifier: "GetEdgeMachineDiskJobResponse",
+}) as any as S.Schema<GetEdgeMachineDiskJobResponse>;
+
+export interface GetEdgeMachineDiskPrivilegedJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+  /** The name of the EdgeMachineDiskPrivilegedJob */
+  privilegedJobName: string;
+}
+export const GetEdgeMachineDiskPrivilegedJobRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      diskName: S.String.pipe(T.Label()),
+      privilegedJobName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/privilegedJobs/{privilegedJobName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetEdgeMachineDiskPrivilegedJobRequest",
+}) as any as S.Schema<GetEdgeMachineDiskPrivilegedJobRequest>;
+
+export interface GetEdgeMachineDiskPrivilegedJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskPrivilegedJobProperties;
+}
+export const GetEdgeMachineDiskPrivilegedJobResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineDiskPrivilegedJobProperties),
+    }),
+).annotate({
+  identifier: "GetEdgeMachineDiskPrivilegedJobResponse",
+}) as any as S.Schema<GetEdgeMachineDiskPrivilegedJobResponse>;
+
+export interface GetEdgeMachineJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of EdgeMachineJob */
+  jobsName: string;
+}
+export const GetEdgeMachineJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    jobsName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/jobs/{jobsName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEdgeMachineJobRequest",
+}) as any as S.Schema<GetEdgeMachineJobRequest>;
+
+export interface GetEdgeMachineJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineJobProperties;
+}
+export const GetEdgeMachineJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineJobProperties),
+  }),
+).annotate({
+  identifier: "GetEdgeMachineJobResponse",
+}) as any as S.Schema<GetEdgeMachineJobResponse>;
+
+export interface GetEdgeMachineNetworkAdapterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineNetworkAdapter */
+  networkAdapterName: string;
+}
+export const GetEdgeMachineNetworkAdapterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    networkAdapterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/networkAdapters/{networkAdapterName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEdgeMachineNetworkAdapterRequest",
+}) as any as S.Schema<GetEdgeMachineNetworkAdapterRequest>;
+
+/** List of DNS servers. */
+export type NetworkAdapterConfigurationDnsServersList = Array<string>;
+export const NetworkAdapterConfigurationDnsServersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NetworkAdapterConfigurationDnsServersList>;
+
+/** IP configuration type. */
+export type IpInterfaceType = "Dhcp" | "Static";
+export const IpInterfaceType = /*@__PURE__*/ S.String;
+
+/** Current state of the interface. */
+export type InterfaceState = "up" | "down";
+export const InterfaceState = /*@__PURE__*/ S.String;
+
+/** WiFi authentication type. */
+export type AuthenticationType =
+  | "WPA2-Personal"
+  | "WPA2-Enterprise"
+  | "WPA3-Personal"
+  | "WPA3-Enterprise"
+  | "Open";
+export const AuthenticationType = /*@__PURE__*/ S.String;
+
+/** EAP authentication method. */
+export type EAPMethod = "PEAP" | "EAP-TLS" | "EAP-TTLS" | "EAP-FAST";
+export const EAPMethod = /*@__PURE__*/ S.String;
+
+/** Type of WiFi secret. */
+export type WifiSecretType =
+  | "WiFiPassword"
+  | "WiFiCertificate"
+  | "WiFiCACertificate";
+export const WifiSecretType = /*@__PURE__*/ S.String;
+
+/** WiFi secret reference for storing credentials. */
+export interface WifiSecret {
+  /** Name of the secret. */
+  secretName?: string;
+  /** Location of the secret. */
+  secretLocation?: string;
+  /** Type of the WiFi secret. */
+  secretType?: WifiSecretType;
+}
+export const WifiSecret = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    secretName: S.optional(S.String),
+    secretLocation: S.optional(S.String),
+    secretType: S.optional(WifiSecretType),
+  }),
+).annotate({ identifier: "WifiSecret" }) as any as S.Schema<WifiSecret>;
+
+/** WiFi configuration desired properties. */
+export interface WifiConfigurationDesiredProperties {
+  /** WiFi SSID. */
+  ssid?: string;
+  /** WiFi authentication type. */
+  authenticationType?: AuthenticationType;
+  /** EAP method used for authentication. */
+  eapMethod?: EAPMethod;
+  /** Username for enterprise WiFi authentication. */
+  username?: string;
+  /** WiFi secret reference. */
+  wifiSecret?: WifiSecret;
+}
+export const WifiConfigurationDesiredProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ssid: S.optional(S.String),
+    authenticationType: S.optional(AuthenticationType),
+    eapMethod: S.optional(EAPMethod),
+    username: S.optional(S.String),
+    wifiSecret: S.optional(WifiSecret),
+  }),
+).annotate({
+  identifier: "WifiConfigurationDesiredProperties",
+}) as any as S.Schema<WifiConfigurationDesiredProperties>;
+
+/** Network adapter configuration. */
+export interface NetworkAdapterConfiguration {
+  /** Adapter name. */
+  adapterName?: string;
+  /** IP address. */
+  ip4Address?: string;
+  /** Subnet mask. */
+  subnetMask?: string;
+  /** Default gateway. */
+  defaultGateway?: string;
+  /** List of DNS servers. */
+  dnsServers?: NetworkAdapterConfigurationDnsServersList;
+  /** IP configuration type (Dhcp or Static). */
+  ipInterfaceType?: IpInterfaceType;
+  /** VLAN identifier for network segmentation. */
+  vlanId?: number;
+  /** Administrative state of the interface (up or down). */
+  interfaceState?: InterfaceState;
+  /** WiFi configuration desired properties. */
+  wifiConfiguration?: WifiConfigurationDesiredProperties;
+}
+export const NetworkAdapterConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adapterName: S.optional(S.String),
+    ip4Address: S.optional(S.String),
+    subnetMask: S.optional(S.String),
+    defaultGateway: S.optional(S.String),
+    dnsServers: S.optional(NetworkAdapterConfigurationDnsServersList),
+    ipInterfaceType: S.optional(IpInterfaceType),
+    vlanId: S.optional(S.Number),
+    interfaceState: S.optional(InterfaceState),
+    wifiConfiguration: S.optional(WifiConfigurationDesiredProperties),
+  }),
+).annotate({
+  identifier: "NetworkAdapterConfiguration",
+}) as any as S.Schema<NetworkAdapterConfiguration>;
+
+/** List of DNS servers. */
+export type NetworkAdapterReportedPropertiesDnsServersList = Array<string>;
+export const NetworkAdapterReportedPropertiesDnsServersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkAdapterReportedPropertiesDnsServersList>;
+
+/** Type of network interface. */
+export type NetworkInterfaceType = "Eth" | "wifi";
+export const NetworkInterfaceType = /*@__PURE__*/ S.String;
+
+/** Describes the RDMA capability of the network adapter. */
+export type RdmaCapability = "Enabled" | "Disabled";
+export const RdmaCapability = /*@__PURE__*/ S.String;
+
+/** Status of network adapter operation. */
+export type NetworkAdapterOperationStatus =
+  | "Succeeded"
+  | "Failed"
+  | "InProgress";
+export const NetworkAdapterOperationStatus = /*@__PURE__*/ S.String;
+
+/** Network adapter provisioning status. */
+export interface NetworkAdapterProvisioningStatus {
+  /** The ID of the operation performed on the network adapter. */
+  operationId?: string;
+  /** The status of the operation performed on the network adapter. */
+  status?: NetworkAdapterOperationStatus;
+}
+export const NetworkAdapterProvisioningStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operationId: S.optional(S.String),
+    status: S.optional(NetworkAdapterOperationStatus),
+  }),
+).annotate({
+  identifier: "NetworkAdapterProvisioningStatus",
+}) as any as S.Schema<NetworkAdapterProvisioningStatus>;
+
+/** The observed state of network adapters. */
+export interface NetworkAdapterStatus {
+  /** Network adapter provisioning error code. */
+  errorCode?: string;
+  /** Descriptive error message. */
+  errorMessage?: string;
+  /** Network adapter provisioning status. */
+  provisioningStatus?: NetworkAdapterProvisioningStatus;
+}
+export const NetworkAdapterStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errorCode: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    provisioningStatus: S.optional(NetworkAdapterProvisioningStatus),
+  }),
+).annotate({
+  identifier: "NetworkAdapterStatus",
+}) as any as S.Schema<NetworkAdapterStatus>;
+
+/** WiFi connection state. */
+export type ConnectionState =
+  | "NotConfigured"
+  | "Connected"
+  | "Disconnected"
+  | "Connecting"
+  | "Disconnecting"
+  | "AuthenticationFailed";
+export const ConnectionState = /*@__PURE__*/ S.String;
+
+/** WiFi configuration reported properties. */
+export interface WifiConfigurationReportedProperties {
+  /** WiFi SSID. */
+  ssid?: string;
+  /** WiFi authentication type. */
+  authenticationType?: AuthenticationType;
+  /** EAP method used for authentication. */
+  eapMethod?: EAPMethod;
+  /** WiFi signal strength. */
+  signalStrength?: number;
+  /** Last successful WiFi connection timestamp. */
+  lastSuccessfulConnectionTimestamp?: string;
+  /** Current WiFi connection state. */
+  connectionState?: ConnectionState;
+  /** Username for enterprise WiFi authentication. */
+  username?: string;
+}
+export const WifiConfigurationReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ssid: S.optional(S.String),
+    authenticationType: S.optional(AuthenticationType),
+    eapMethod: S.optional(EAPMethod),
+    signalStrength: S.optional(S.Number),
+    lastSuccessfulConnectionTimestamp: S.optional(S.String),
+    connectionState: S.optional(ConnectionState),
+    username: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WifiConfigurationReportedProperties",
+}) as any as S.Schema<WifiConfigurationReportedProperties>;
+
+/** Reported properties of a network adapter. */
+export interface NetworkAdapterReportedProperties {
+  /** Adapter name. */
+  adapterName?: string;
+  /** IP address. */
+  ip4Address?: string;
+  /** Subnet mask. */
+  subnetMask?: string;
+  /** Default gateway. */
+  defaultGateway?: string;
+  /** List of DNS servers. */
+  dnsServers?: NetworkAdapterReportedPropertiesDnsServersList;
+  /** Interface description of NIC. */
+  interfaceDescription?: string;
+  /** Component ID of NIC. */
+  componentId?: string;
+  /** Driver version of NIC. */
+  driverVersion?: string;
+  /** Default isolation of management NIC. */
+  defaultIsolationId?: string;
+  /** MAC address. */
+  macAddress?: string;
+  /** The slot attached to the NIC. */
+  slot?: string;
+  /** The switch attached to the NIC, if any. */
+  switchName?: string;
+  /** Type of network interface. */
+  interfaceType?: NetworkInterfaceType;
+  /** Interface speed in Mbps. */
+  interfaceSpeed?: number;
+  /** Current state of the interface. */
+  interfaceState?: InterfaceState;
+  /** The type of NIC (physical, virtual, management). */
+  nicType?: string;
+  /** The status of NIC (up, disconnected). */
+  nicStatus?: string;
+  /** IP configuration type. */
+  ipInterfaceType?: IpInterfaceType;
+  /** VLAN identifier (0-4096). */
+  vlanId?: number;
+  /** Indicates if this is a management interface. */
+  managementInterface?: boolean;
+  /** RDMA capability of the network adapter. */
+  rdmaCapability?: RdmaCapability;
+  /** The observed state of network adapter. */
+  networkAdapterStatus?: NetworkAdapterStatus;
+  /** WiFi configuration reported properties. */
+  wifiConfiguration?: WifiConfigurationReportedProperties;
+}
+export const NetworkAdapterReportedProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adapterName: S.optional(S.String),
+    ip4Address: S.optional(S.String),
+    subnetMask: S.optional(S.String),
+    defaultGateway: S.optional(S.String),
+    dnsServers: S.optional(NetworkAdapterReportedPropertiesDnsServersList),
+    interfaceDescription: S.optional(S.String),
+    componentId: S.optional(S.String),
+    driverVersion: S.optional(S.String),
+    defaultIsolationId: S.optional(S.String),
+    macAddress: S.optional(S.String),
+    slot: S.optional(S.String),
+    switchName: S.optional(S.String),
+    interfaceType: S.optional(NetworkInterfaceType),
+    interfaceSpeed: S.optional(S.Number),
+    interfaceState: S.optional(InterfaceState),
+    nicType: S.optional(S.String),
+    nicStatus: S.optional(S.String),
+    ipInterfaceType: S.optional(IpInterfaceType),
+    vlanId: S.optional(S.Number),
+    managementInterface: S.optional(S.Boolean),
+    rdmaCapability: S.optional(RdmaCapability),
+    networkAdapterStatus: S.optional(NetworkAdapterStatus),
+    wifiConfiguration: S.optional(WifiConfigurationReportedProperties),
+  }),
+).annotate({
+  identifier: "NetworkAdapterReportedProperties",
+}) as any as S.Schema<NetworkAdapterReportedProperties>;
+
+/** Properties of the Network Adapter resource. */
+export interface EdgeMachineNetworkAdapterProperties {
+  /** The authoritative desired configuration for this specific interface. */
+  networkConfiguration?: NetworkAdapterConfiguration;
+  /** The actual applied configuration reported by the device. */
+  reportedProperties?: NetworkAdapterReportedProperties;
+  /** Provisioning state of the network adapter resource. */
+  provisioningState?: ProvisioningState;
+}
+export const EdgeMachineNetworkAdapterProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    networkConfiguration: S.optional(NetworkAdapterConfiguration),
+    reportedProperties: S.optional(NetworkAdapterReportedProperties),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "EdgeMachineNetworkAdapterProperties",
+}) as any as S.Schema<EdgeMachineNetworkAdapterProperties>;
+
+export interface GetEdgeMachineNetworkAdapterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineNetworkAdapterProperties;
+}
+export const GetEdgeMachineNetworkAdapterResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineNetworkAdapterProperties),
+    }),
+).annotate({
+  identifier: "GetEdgeMachineNetworkAdapterResponse",
+}) as any as S.Schema<GetEdgeMachineNetworkAdapterResponse>;
+
+export interface GetEdgeMachineNetworkAdapterJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineNetworkAdapter */
+  networkAdapterName: string;
+  /** The name of the EdgeMachineNetworkAdapterJob */
+  jobName: string;
+}
+export const GetEdgeMachineNetworkAdapterJobRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      networkAdapterName: S.String.pipe(T.Label()),
+      jobName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/networkAdapters/{networkAdapterName}/jobs/{jobName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetEdgeMachineNetworkAdapterJobRequest",
+}) as any as S.Schema<GetEdgeMachineNetworkAdapterJobRequest>;
+
+export interface GetEdgeMachineNetworkAdapterJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineNetworkAdapterJobProperties;
+}
+export const GetEdgeMachineNetworkAdapterJobResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineNetworkAdapterJobProperties),
+    }),
+).annotate({
+  identifier: "GetEdgeMachineNetworkAdapterJobResponse",
+}) as any as S.Schema<GetEdgeMachineNetworkAdapterJobResponse>;
+
+export interface GetEdgeMachineSecuritySettingsOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Name of the security settings resource */
+  securitySettingsName: string;
+}
+export const GetEdgeMachineSecuritySettingsOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      securitySettingsName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/securitySettings/{securitySettingsName}",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetEdgeMachineSecuritySettingsOperationRequest",
+  }) as any as S.Schema<GetEdgeMachineSecuritySettingsOperationRequest>;
+
+export interface GetEdgeMachineSecuritySettingsOperationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineSecurityProperties;
+}
+export const GetEdgeMachineSecuritySettingsOperationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(EdgeMachineSecurityProperties),
+    }),
+  ).annotate({
+    identifier: "GetEdgeMachineSecuritySettingsOperationResponse",
+  }) as any as S.Schema<GetEdgeMachineSecuritySettingsOperationResponse>;
+
+export interface GetEdgeMachineVolumeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineVolume */
+  volumeName: string;
+}
+export const GetEdgeMachineVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEdgeMachineVolumeRequest",
+}) as any as S.Schema<GetEdgeMachineVolumeRequest>;
+
+export interface GetEdgeMachineVolumeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineVolumeProperties;
+}
+export const GetEdgeMachineVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineVolumeProperties),
+  }),
+).annotate({
+  identifier: "GetEdgeMachineVolumeResponse",
+}) as any as S.Schema<GetEdgeMachineVolumeResponse>;
+
 export interface GetExtensionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5081,7 +9758,7 @@ export const GetExtensionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/extensions/{extensionName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -5138,18 +9815,18 @@ export const GetGalleryImageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGalleryImageRequest>;
 
 /** Resource tags. */
-export type GalleryImagesGetResponseTagsMap = {
+export type GetGalleryImageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GalleryImagesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetGalleryImageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GalleryImagesGetResponseTagsMap>;
+) as any as S.Schema<GetGalleryImageResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type GalleryImagesGetResponseExtendedLocation =
+export type GetGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const GalleryImagesGetResponseExtendedLocation =
+export const GetGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface GetGalleryImageResponse {
@@ -5162,7 +9839,7 @@ export interface GetGalleryImageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GalleryImagesGetResponseTagsMap;
+  tags?: GetGalleryImageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: GalleryImageProperties;
@@ -5175,7 +9852,7 @@ export const GetGalleryImageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GalleryImagesGetResponseTagsMap),
+    tags: S.optional(GetGalleryImageResponseTagsMap),
     location: S.String,
     properties: S.optional(GalleryImageProperties),
     extendedLocation: S.optional(
@@ -5345,13 +10022,13 @@ export const GetLogicalNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLogicalNetworkRequest>;
 
 /** Resource tags. */
-export type LogicalNetworksGetResponseTagsMap = {
+export type GetLogicalNetworkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LogicalNetworksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetLogicalNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LogicalNetworksGetResponseTagsMap>;
+) as any as S.Schema<GetLogicalNetworkResponseTagsMap>;
 
 /** The list of DNS servers IP addresses. */
 export type LogicalNetworkPropertiesDhcpOptionsDnsServersList = Array<string>;
@@ -5646,9 +10323,9 @@ export const LogicalNetworkProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LogicalNetworkProperties>;
 
 /** The complex type of the extended location. */
-export type LogicalNetworksGetResponseExtendedLocation =
+export type GetLogicalNetworkResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const LogicalNetworksGetResponseExtendedLocation =
+export const GetLogicalNetworkResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface GetLogicalNetworkResponse {
@@ -5661,7 +10338,7 @@ export interface GetLogicalNetworkResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LogicalNetworksGetResponseTagsMap;
+  tags?: GetLogicalNetworkResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: LogicalNetworkProperties;
@@ -5674,7 +10351,7 @@ export const GetLogicalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LogicalNetworksGetResponseTagsMap),
+    tags: S.optional(GetLogicalNetworkResponseTagsMap),
     location: S.String,
     properties: S.optional(LogicalNetworkProperties),
     extendedLocation: S.optional(
@@ -5711,14 +10388,13 @@ export const GetMarketplaceGalleryImageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMarketplaceGalleryImageRequest>;
 
 /** Resource tags. */
-export type MarketplaceGalleryImagesGetResponseTagsMap = {
+export type GetMarketplaceGalleryImageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MarketplaceGalleryImagesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MarketplaceGalleryImagesGetResponseTagsMap>;
+export const GetMarketplaceGalleryImageResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetMarketplaceGalleryImageResponseTagsMap>;
 
 /** Operating system type that the gallery image uses [Windows, Linux] */
 export type MarketplaceGalleryImagePropertiesOsType = "Windows" | "Linux";
@@ -5841,9 +10517,9 @@ export const MarketplaceGalleryImageProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MarketplaceGalleryImageProperties>;
 
 /** The complex type of the extended location. */
-export type MarketplaceGalleryImagesGetResponseExtendedLocation =
+export type GetMarketplaceGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const MarketplaceGalleryImagesGetResponseExtendedLocation =
+export const GetMarketplaceGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface GetMarketplaceGalleryImageResponse {
@@ -5856,7 +10532,7 @@ export interface GetMarketplaceGalleryImageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MarketplaceGalleryImagesGetResponseTagsMap;
+  tags?: GetMarketplaceGalleryImageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: MarketplaceGalleryImageProperties;
@@ -5869,7 +10545,7 @@ export const GetMarketplaceGalleryImageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MarketplaceGalleryImagesGetResponseTagsMap),
+    tags: S.optional(GetMarketplaceGalleryImageResponseTagsMap),
     location: S.String,
     properties: S.optional(MarketplaceGalleryImageProperties),
     extendedLocation: S.optional(
@@ -5906,13 +10582,13 @@ export const GetNetworkInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkInterfaceRequest>;
 
 /** Resource tags. */
-export type NetworkInterfacesGetResponseTagsMap = {
+export type GetNetworkInterfaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkInterfacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkInterfaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkInterfacesGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkInterfaceResponseTagsMap>;
 
 /** Subnet - Name of Subnet bound to the IP configuration. */
 export interface IPConfigurationPropertiesSubnet {
@@ -6071,9 +10747,9 @@ export const NetworkInterfaceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkInterfaceProperties>;
 
 /** The complex type of the extended location. */
-export type NetworkInterfacesGetResponseExtendedLocation =
+export type GetNetworkInterfaceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const NetworkInterfacesGetResponseExtendedLocation =
+export const GetNetworkInterfaceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface GetNetworkInterfaceResponse {
@@ -6086,7 +10762,7 @@ export interface GetNetworkInterfaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkInterfacesGetResponseTagsMap;
+  tags?: GetNetworkInterfaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: NetworkInterfaceProperties;
@@ -6099,7 +10775,7 @@ export const GetNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkInterfacesGetResponseTagsMap),
+    tags: S.optional(GetNetworkInterfaceResponseTagsMap),
     location: S.String,
     properties: S.optional(NetworkInterfaceProperties),
     extendedLocation: S.optional(
@@ -6137,7 +10813,7 @@ export const GetOfferRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/publishers/{publisherName}/offers/{offerName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -6222,7 +10898,88 @@ export const GetOfferResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetOfferResponse",
 }) as any as S.Schema<GetOfferResponse>;
 
-export interface GetSecuritySettingRequest {
+export interface GetOsImageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the OsImage */
+  osImageName: string;
+}
+export const GetOsImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    osImageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/locations/{location}/osImages/{osImageName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOsImageRequest",
+}) as any as S.Schema<GetOsImageRequest>;
+
+/** Represents the solution type (OS family) of an OS image. */
+export type SolutionType = "AzureLinux" | "HCI";
+export const SolutionType = /*@__PURE__*/ S.String;
+
+/** Represents properties of a os image resource. */
+export interface OsImageProperties {
+  /** Represents validated solution recipe version of a os image. */
+  validatedSolutionRecipeVersion?: string;
+  /** Represents composed image version of a os image. */
+  composedImageVersion?: string;
+  /** Represents composed image iso download url of a os image. */
+  composedImageIsoUrl?: string;
+  /** Represents composed image iso hash of a os image. */
+  composedImageIsoHash?: string;
+  /** Represents the CPU architecture of an OS image, for example amd64 or arm64. */
+  architecture?: Architecture;
+  /** The solution type (OS family) of the OS image, for example AzureLinux or HCI. */
+  solutionType?: SolutionType;
+}
+export const OsImageProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    validatedSolutionRecipeVersion: S.optional(S.String),
+    composedImageVersion: S.optional(S.String),
+    composedImageIsoUrl: S.optional(S.String),
+    composedImageIsoHash: S.optional(S.String),
+    architecture: S.optional(Architecture),
+    solutionType: S.optional(SolutionType),
+  }),
+).annotate({
+  identifier: "OsImageProperties",
+}) as any as S.Schema<OsImageProperties>;
+
+export interface GetOsImageResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: OsImageProperties;
+}
+export const GetOsImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(OsImageProperties),
+  }),
+).annotate({
+  identifier: "GetOsImageResponse",
+}) as any as S.Schema<GetOsImageResponse>;
+
+export interface GetSecuritySettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6232,7 +10989,7 @@ export interface GetSecuritySettingRequest {
   /** Name of security setting */
   securitySettingsName: string;
 }
-export const GetSecuritySettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSecuritySettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6243,12 +11000,12 @@ export const GetSecuritySettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/securitySettings/{securitySettingsName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "GetSecuritySettingRequest",
-}) as any as S.Schema<GetSecuritySettingRequest>;
+  identifier: "GetSecuritySettingsRequest",
+}) as any as S.Schema<GetSecuritySettingsRequest>;
 
 /** Secured Core Compliance Assignment */
 export type SecurityPropertiesSecuredCoreComplianceAssignment =
@@ -6270,10 +11027,6 @@ export type SecurityPropertiesSmbEncryptionForIntraClusterTrafficComplianceAssig
   | "ApplyAndAutoCorrect";
 export const SecurityPropertiesSmbEncryptionForIntraClusterTrafficComplianceAssignment =
   /*@__PURE__*/ S.String;
-
-/** Represents the compliance status of a resource. */
-export type ComplianceStatus = "Compliant" | "NonCompliant" | "Pending";
-export const ComplianceStatus = /*@__PURE__*/ S.String;
 
 /** Security compliance properties of the resource */
 export interface SecurityComplianceStatus {
@@ -6331,7 +11084,7 @@ export const SecurityProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecurityProperties",
 }) as any as S.Schema<SecurityProperties>;
 
-export interface GetSecuritySettingResponse {
+export interface GetSecuritySettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6343,7 +11096,7 @@ export interface GetSecuritySettingResponse {
   /** The resource-specific properties for this resource. */
   properties?: SecurityProperties;
 }
-export const GetSecuritySettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSecuritySettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -6352,8 +11105,8 @@ export const GetSecuritySettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SecurityProperties),
   }),
 ).annotate({
-  identifier: "GetSecuritySettingResponse",
-}) as any as S.Schema<GetSecuritySettingResponse>;
+  identifier: "GetSecuritySettingsResponse",
+}) as any as S.Schema<GetSecuritySettingsResponse>;
 
 export interface GetSkusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6385,7 +11138,7 @@ export const GetSkusRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/publishers/{publisherName}/offers/{offerName}/skus/{skuName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({ identifier: "GetSkusRequest" }) as any as S.Schema<GetSkusRequest>;
@@ -6472,13 +11225,13 @@ export const GetStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStorageContainerRequest>;
 
 /** Resource tags. */
-export type StorageContainersGetResponseTagsMap = {
+export type GetStorageContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageContainersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetStorageContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageContainersGetResponseTagsMap>;
+) as any as S.Schema<GetStorageContainerResponseTagsMap>;
 
 /** Provisioning state of the storage container. */
 export type StorageContainerPropertiesProvisioningState =
@@ -6558,9 +11311,9 @@ export const StorageContainerProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StorageContainerProperties>;
 
 /** The complex type of the extended location. */
-export type StorageContainersGetResponseExtendedLocation =
+export type GetStorageContainerResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const StorageContainersGetResponseExtendedLocation =
+export const GetStorageContainerResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface GetStorageContainerResponse {
@@ -6573,7 +11326,7 @@ export interface GetStorageContainerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageContainersGetResponseTagsMap;
+  tags?: GetStorageContainerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: StorageContainerProperties;
@@ -6586,7 +11339,7 @@ export const GetStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageContainersGetResponseTagsMap),
+    tags: S.optional(GetStorageContainerResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageContainerProperties),
     extendedLocation: S.optional(
@@ -6618,7 +11371,7 @@ export const GetUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -6912,6 +11665,272 @@ export const GetUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetUpdateResponse",
 }) as any as S.Schema<GetUpdateResponse>;
 
+export interface GetUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the Update */
+  updateName: string;
+  /** The name of the Update Run */
+  updateRunName: string;
+}
+export const GetUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    updateName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns/{updateRunName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetUpdateRunRequest",
+}) as any as S.Schema<GetUpdateRunRequest>;
+
+/** Represents the current state of the update run. Indicates whether the update is in progress, has completed successfully, failed, or is in an unknown state. */
+export type UpdateRunPropertiesState =
+  | "Unknown"
+  | "Succeeded"
+  | "InProgress"
+  | "Failed";
+export const UpdateRunPropertiesState = /*@__PURE__*/ S.String;
+
+/** Recursive model for child steps of this step. */
+export type StepStepsList = Array<Step>;
+export const StepStepsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => Step),
+) as any as S.Schema<StepStepsList>;
+
+/** Progress representation of the update run steps. */
+export interface Step {
+  /** Name of the step. */
+  name?: string;
+  /** More detailed description of the step. */
+  description?: string;
+  /** Error message, specified if the step is in a failed state. */
+  errorMessage?: string;
+  /** Status of the step, bubbled up from the ECE action plan for installation attempts. Values are: 'Success', 'Error', 'InProgress', and 'Unknown status'. */
+  status?: string;
+  /** When the step started, or empty if it has not started executing. */
+  startTimeUtc?: string;
+  /** When the step reached a terminal state. */
+  endTimeUtc?: string;
+  /** Completion time of this step or the last completed sub-step. */
+  lastUpdatedTimeUtc?: string;
+  /** Expected execution time of a given step. This is optionally authored in the update action plan and can be empty. */
+  expectedExecutionTime?: string;
+  /** Recursive model for child steps of this step. */
+  steps?: StepStepsList;
+}
+export const Step = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    status: S.optional(S.String),
+    startTimeUtc: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    lastUpdatedTimeUtc: S.optional(S.String),
+    expectedExecutionTime: S.optional(S.String),
+    steps: S.optional(StepStepsList),
+  }),
+).annotate({ identifier: "Step" }) as any as S.Schema<Step>;
+
+/** Details of an Update run */
+export interface UpdateRunProperties {
+  /** Provisioning state of the UpdateRuns proxy resource. Indicates the current lifecycle status of the update operation, such as whether it has been accepted, is in progress, or has completed. */
+  provisioningState?: ProvisioningState;
+  /** Timestamp of the update run was started. */
+  timeStarted?: string;
+  /** Timestamp of the most recently completed step in the update run. */
+  lastUpdatedTime?: string;
+  /** Duration of the update run. */
+  duration?: string;
+  /** Represents the current state of the update run. Indicates whether the update is in progress, has completed successfully, failed, or is in an unknown state. */
+  state?: UpdateRunPropertiesState;
+  /** Progress representation of the update run steps. */
+  progress?: Step;
+}
+export const UpdateRunProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    timeStarted: S.optional(S.String),
+    lastUpdatedTime: S.optional(S.String),
+    duration: S.optional(S.String),
+    state: S.optional(UpdateRunPropertiesState),
+    progress: S.optional(Step),
+  }),
+).annotate({
+  identifier: "UpdateRunProperties",
+}) as any as S.Schema<UpdateRunProperties>;
+
+export interface GetUpdateRunResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Describes Update Run Properties. */
+  properties?: UpdateRunProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetUpdateRunResponse",
+}) as any as S.Schema<GetUpdateRunResponse>;
+
+export interface GetUpdateSummaryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const GetUpdateSummaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetUpdateSummaryRequest",
+}) as any as S.Schema<GetUpdateSummaryRequest>;
+
+/** Current version of each updatable component. */
+export type UpdateSummariesPropertiesPackageVersionsList =
+  Array<PackageVersionInfo>;
+export const UpdateSummariesPropertiesPackageVersionsList =
+  /*@__PURE__*/ S.Array(
+    PackageVersionInfo,
+  ) as any as S.Schema<UpdateSummariesPropertiesPackageVersionsList>;
+
+/** An array of pre-check result objects. */
+export type UpdateSummariesPropertiesHealthCheckResultList =
+  Array<PrecheckResult>;
+export const UpdateSummariesPropertiesHealthCheckResultList =
+  /*@__PURE__*/ S.Array(
+    PrecheckResult,
+  ) as any as S.Schema<UpdateSummariesPropertiesHealthCheckResultList>;
+
+/** Overall update state of the stamp. Indicates the current status of update deployment across the stamp, including preparation, application, and any issues encountered. */
+export type UpdateSummariesPropertiesState =
+  | "Unknown"
+  | "AppliedSuccessfully"
+  | "UpdateAvailable"
+  | "UpdateInProgress"
+  | "UpdateFailed"
+  | "NeedsAttention"
+  | "PreparationInProgress"
+  | "PreparationFailed";
+export const UpdateSummariesPropertiesState = /*@__PURE__*/ S.String;
+
+/** Properties of Update summaries */
+export interface UpdateSummariesProperties {
+  /** Provisioning state of the UpdateSummaries proxy resource. Indicates the current lifecycle status of the update summary operation, such as whether it has been accepted, is in progress, or has completed. */
+  provisioningState?: ProvisioningState;
+  /** OEM family name. */
+  oemFamily?: string;
+  /** Current OEM Version. */
+  currentOemVersion?: string;
+  /** Name of the hardware model. */
+  hardwareModel?: string;
+  /** Current version of each updatable component. */
+  packageVersions?: UpdateSummariesPropertiesPackageVersionsList;
+  /** Current Solution Bundle version of the stamp. */
+  currentVersion?: string;
+  /** Current Sbe version of the stamp. */
+  currentSbeVersion?: string;
+  /** Last time an update installation completed successfully. */
+  lastUpdated?: string;
+  /** Last time the update service successfully checked for updates */
+  lastChecked?: string;
+  /** Overall health state for update-specific health checks. */
+  healthState?: HealthState;
+  /** An array of pre-check result objects. */
+  healthCheckResult?: UpdateSummariesPropertiesHealthCheckResultList;
+  /** Last time the package-specific checks were run. */
+  healthCheckDate?: string;
+  /** Overall update state of the stamp. Indicates the current status of update deployment across the stamp, including preparation, application, and any issues encountered. */
+  state?: UpdateSummariesPropertiesState;
+}
+export const UpdateSummariesProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    oemFamily: S.optional(S.String),
+    currentOemVersion: S.optional(S.String),
+    hardwareModel: S.optional(S.String),
+    packageVersions: S.optional(UpdateSummariesPropertiesPackageVersionsList),
+    currentVersion: S.optional(S.String),
+    currentSbeVersion: S.optional(S.String),
+    lastUpdated: S.optional(S.String),
+    lastChecked: S.optional(S.String),
+    healthState: S.optional(HealthState),
+    healthCheckResult: S.optional(
+      UpdateSummariesPropertiesHealthCheckResultList,
+    ),
+    healthCheckDate: S.optional(S.String),
+    state: S.optional(UpdateSummariesPropertiesState),
+  }),
+).annotate({
+  identifier: "UpdateSummariesProperties",
+}) as any as S.Schema<UpdateSummariesProperties>;
+
+export interface GetUpdateSummaryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Update summaries properties */
+  properties?: UpdateSummariesProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetUpdateSummaryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateSummariesProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetUpdateSummaryResponse",
+}) as any as S.Schema<GetUpdateSummaryResponse>;
+
 export interface GetValidatedSolutionRecipeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6930,7 +11949,7 @@ export const GetValidatedSolutionRecipeRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/locations/{location}/validatedSolutionRecipes/{validatedSolutionRecipeName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -7204,13 +12223,13 @@ export const GetVirtualHardDiskRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualHardDiskRequest>;
 
 /** Resource tags. */
-export type VirtualHardDisksGetResponseTagsMap = {
+export type GetVirtualHardDiskResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualHardDisksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualHardDiskResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualHardDisksGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualHardDiskResponseTagsMap>;
 
 /** The hypervisor generation of the Virtual Machine [V1, V2] */
 export type VirtualHardDiskPropertiesHyperVGeneration = "V1" | "V2";
@@ -7310,9 +12329,9 @@ export const VirtualHardDiskProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualHardDiskProperties>;
 
 /** The complex type of the extended location. */
-export type VirtualHardDisksGetResponseExtendedLocation =
+export type GetVirtualHardDiskResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const VirtualHardDisksGetResponseExtendedLocation =
+export const GetVirtualHardDiskResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface GetVirtualHardDiskResponse {
@@ -7325,7 +12344,7 @@ export interface GetVirtualHardDiskResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualHardDisksGetResponseTagsMap;
+  tags?: GetVirtualHardDiskResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: VirtualHardDiskProperties;
@@ -7338,7 +12357,7 @@ export const GetVirtualHardDiskResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualHardDisksGetResponseTagsMap),
+    tags: S.optional(GetVirtualHardDiskResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualHardDiskProperties),
     extendedLocation: S.optional(
@@ -7888,57 +12907,6 @@ export type GuestAgentInstallStatusStatus =
 export const GuestAgentInstallStatusStatus = /*@__PURE__*/ S.String;
 
 /** The error details. */
-export type ErrorDetailDetailsList = Array<ErrorDetail>;
-export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => ErrorDetail),
-) as any as S.Schema<ErrorDetailDetailsList>;
-
-/** The resource management error additional info. */
-export interface ErrorAdditionalInfo {
-  /** The additional info type. */
-  type?: string;
-  /** The additional info. */
-  info?: unknown;
-}
-export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    info: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ErrorAdditionalInfo",
-}) as any as S.Schema<ErrorAdditionalInfo>;
-
-/** The error additional info. */
-export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
-export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
-  ErrorAdditionalInfo,
-) as any as S.Schema<ErrorDetailAdditionalInfoList>;
-
-/** The error detail. */
-export interface ErrorDetail {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: ErrorDetailDetailsList;
-  /** The error additional info. */
-  additionalInfo?: ErrorDetailAdditionalInfoList;
-}
-export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(ErrorDetailDetailsList),
-    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
-  }),
-).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
-
-/** The error details. */
 export type GuestAgentInstallStatusErrorDetailsItemDetailsList =
   Array<ErrorDetail>;
 export const GuestAgentInstallStatusErrorDetailsItemDetailsList =
@@ -8066,35 +13034,35 @@ export const VirtualMachineInstanceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualMachineInstanceProperties>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineInstancesGetResponseExtendedLocation =
+export type GetVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const VirtualMachineInstancesGetResponseExtendedLocation =
+export const GetVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 /** The identity type. */
-export type VirtualMachineInstancesGetResponseIdentityType = "SystemAssigned";
-export const VirtualMachineInstancesGetResponseIdentityType =
+export type GetVirtualMachineInstanceResponseIdentityType = "SystemAssigned";
+export const GetVirtualMachineInstanceResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Identity for the resource. */
-export interface VirtualMachineInstancesGetResponseIdentity {
+export interface GetVirtualMachineInstanceResponseIdentity {
   /** The principal ID of resource identity. */
   principalId?: string;
   /** The tenant ID of resource. */
   tenantId?: string;
   /** The identity type. */
-  type?: VirtualMachineInstancesGetResponseIdentityType;
+  type?: GetVirtualMachineInstanceResponseIdentityType;
 }
-export const VirtualMachineInstancesGetResponseIdentity =
+export const GetVirtualMachineInstanceResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
-      type: S.optional(VirtualMachineInstancesGetResponseIdentityType),
+      type: S.optional(GetVirtualMachineInstanceResponseIdentityType),
     }),
   ).annotate({
-    identifier: "VirtualMachineInstancesGetResponseIdentity",
-  }) as any as S.Schema<VirtualMachineInstancesGetResponseIdentity>;
+    identifier: "GetVirtualMachineInstanceResponseIdentity",
+  }) as any as S.Schema<GetVirtualMachineInstanceResponseIdentity>;
 
 export interface GetVirtualMachineInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -8109,7 +13077,7 @@ export interface GetVirtualMachineInstanceResponse {
   /** The complex type of the extended location. */
   extendedLocation?: GalleryImagesCreateOrUpdateResponseExtendedLocation;
   /** Identity for the resource. */
-  identity?: VirtualMachineInstancesGetResponseIdentity;
+  identity?: GetVirtualMachineInstanceResponseIdentity;
 }
 export const GetVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8121,79 +13089,13 @@ export const GetVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     extendedLocation: S.optional(
       GalleryImagesCreateOrUpdateResponseExtendedLocation,
     ),
-    identity: S.optional(VirtualMachineInstancesGetResponseIdentity),
+    identity: S.optional(GetVirtualMachineInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "GetVirtualMachineInstanceResponse",
 }) as any as S.Schema<GetVirtualMachineInstanceResponse>;
 
-export interface HybridIdentityMetadataListRequest {
-  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
-  resourceUri: string;
-}
-export const HybridIdentityMetadataListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/hybridIdentityMetadata",
-      code: 200,
-      apiVersion: "2024-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "HybridIdentityMetadataListRequest",
-}) as any as S.Schema<HybridIdentityMetadataListRequest>;
-
-/** Defines the HybridIdentityMetadata. */
-export interface HybridIdentityMetadata {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties: HybridIdentityMetadataProperties;
-}
-export const HybridIdentityMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: HybridIdentityMetadataProperties,
-  }),
-).annotate({
-  identifier: "HybridIdentityMetadata",
-}) as any as S.Schema<HybridIdentityMetadata>;
-
-/** Array of HybridIdentityMetadata */
-export type HybridIdentityMetadataListValueList = Array<HybridIdentityMetadata>;
-export const HybridIdentityMetadataListValueList = /*@__PURE__*/ S.Array(
-  HybridIdentityMetadata,
-) as any as S.Schema<HybridIdentityMetadataListValueList>;
-
-/** List of HybridIdentityMetadata. */
-export interface HybridIdentityMetadataList {
-  /** Url to follow for getting next page of HybridIdentityMetadata. */
-  nextLink?: string;
-  /** Array of HybridIdentityMetadata */
-  value: HybridIdentityMetadataListValueList;
-}
-export const HybridIdentityMetadataList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: HybridIdentityMetadataListValueList,
-  }),
-).annotate({
-  identifier: "HybridIdentityMetadataList",
-}) as any as S.Schema<HybridIdentityMetadataList>;
-
-export interface ListArcSettingByClusterRequest {
+export interface ListArcSettingsByClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8201,7 +13103,7 @@ export interface ListArcSettingByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ListArcSettingByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListArcSettingsByClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8211,12 +13113,12 @@ export const ListArcSettingByClusterRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "ListArcSettingByClusterRequest",
-}) as any as S.Schema<ListArcSettingByClusterRequest>;
+  identifier: "ListArcSettingsByClusterRequest",
+}) as any as S.Schema<ListArcSettingsByClusterRequest>;
 
 /** ArcSetting details. */
 export interface ArcSetting {
@@ -8276,7 +13178,7 @@ export const ListClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -8389,14 +13291,14 @@ export const ListClusterBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/clusters",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
   identifier: "ListClusterBySubscriptionRequest",
 }) as any as S.Schema<ListClusterBySubscriptionRequest>;
 
-export interface ListDeploymentSettingByClustersRequest {
+export interface ListClusterJobsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8404,7 +13306,77 @@ export interface ListDeploymentSettingByClustersRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ListDeploymentSettingByClustersRequest = /*@__PURE__*/ S.suspend(
+export const ListClusterJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/jobs",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterJobsRequest",
+}) as any as S.Schema<ListClusterJobsRequest>;
+
+/** Cluster Jobs resource */
+export interface ClusterJob {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ClusterJobProperties;
+}
+export const ClusterJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterJobProperties),
+  }),
+).annotate({ identifier: "ClusterJob" }) as any as S.Schema<ClusterJob>;
+
+/** The ClusterJob items on this page */
+export type ClusterJobListResultValueList = Array<ClusterJob>;
+export const ClusterJobListResultValueList = /*@__PURE__*/ S.Array(
+  ClusterJob,
+) as any as S.Schema<ClusterJobListResultValueList>;
+
+/** List of Cluster Job resources for the HCI cluster. */
+export interface ClusterJobListResult {
+  /** The ClusterJob items on this page */
+  value: ClusterJobListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ClusterJobListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ClusterJobListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterJobListResult",
+}) as any as S.Schema<ClusterJobListResult>;
+
+export interface ListDeploymentSettingsByClustersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListDeploymentSettingsByClustersRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8415,12 +13387,12 @@ export const ListDeploymentSettingByClustersRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/deploymentSettings",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
 ).annotate({
-  identifier: "ListDeploymentSettingByClustersRequest",
-}) as any as S.Schema<ListDeploymentSettingByClustersRequest>;
+  identifier: "ListDeploymentSettingsByClustersRequest",
+}) as any as S.Schema<ListDeploymentSettingsByClustersRequest>;
 
 /** Edge device resource */
 export interface DeploymentSetting {
@@ -8485,7 +13457,7 @@ export const ListEdgeDeviceJobByEdgeDeviceRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}/jobs",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
 ).annotate({
@@ -8549,7 +13521,7 @@ export const ListEdgeDevicesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -8601,6 +13573,817 @@ export const EdgeDeviceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "EdgeDeviceListResult",
 }) as any as S.Schema<EdgeDeviceListResult>;
 
+export interface ListEdgeMachineByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListEdgeMachineByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListEdgeMachineByResourceGroupRequest",
+}) as any as S.Schema<ListEdgeMachineByResourceGroupRequest>;
+
+/** Resource tags. */
+export type EdgeMachineTagsMap = { [key: string]: string | undefined };
+export const EdgeMachineTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EdgeMachineTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type EdgeMachineIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const EdgeMachineIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<EdgeMachineIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface EdgeMachineIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: EdgeMachineIdentityUserAssignedIdentitiesMap;
+}
+export const EdgeMachineIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      EdgeMachineIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "EdgeMachineIdentity",
+}) as any as S.Schema<EdgeMachineIdentity>;
+
+/** EdgeMachine details. */
+export interface EdgeMachine {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: EdgeMachineTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: EdgeMachineIdentity;
+}
+export const EdgeMachine = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(EdgeMachineTagsMap),
+    location: S.String,
+    properties: S.optional(EdgeMachineProperties),
+    identity: S.optional(EdgeMachineIdentity),
+  }),
+).annotate({ identifier: "EdgeMachine" }) as any as S.Schema<EdgeMachine>;
+
+/** The EdgeMachine items on this page */
+export type EdgeMachineListResultValueList = Array<EdgeMachine>;
+export const EdgeMachineListResultValueList = /*@__PURE__*/ S.Array(
+  EdgeMachine,
+) as any as S.Schema<EdgeMachineListResultValueList>;
+
+/** The response of a EdgeMachine list operation. */
+export interface EdgeMachineListResult {
+  /** The EdgeMachine items on this page */
+  value: EdgeMachineListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EdgeMachineListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineListResult",
+}) as any as S.Schema<EdgeMachineListResult>;
+
+export interface ListEdgeMachineBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListEdgeMachineBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/edgeMachines",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListEdgeMachineBySubscriptionRequest",
+}) as any as S.Schema<ListEdgeMachineBySubscriptionRequest>;
+
+export interface ListEdgeMachineDeploymentSettingsByEdgeMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const ListEdgeMachineDeploymentSettingsByEdgeMachineRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/deploymentSettings",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEdgeMachineDeploymentSettingsByEdgeMachineRequest",
+  }) as any as S.Schema<ListEdgeMachineDeploymentSettingsByEdgeMachineRequest>;
+
+/** Deployment setting resource for an Edge Machine. */
+export interface EdgeMachineDeploymentSetting {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDeploymentSettingProperties;
+}
+export const EdgeMachineDeploymentSetting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineDeploymentSettingProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineDeploymentSetting",
+}) as any as S.Schema<EdgeMachineDeploymentSetting>;
+
+/** The EdgeMachineDeploymentSetting items on this page */
+export type EdgeMachineDeploymentSettingListResultValueList =
+  Array<EdgeMachineDeploymentSetting>;
+export const EdgeMachineDeploymentSettingListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EdgeMachineDeploymentSetting,
+  ) as any as S.Schema<EdgeMachineDeploymentSettingListResultValueList>;
+
+/** The response of a EdgeMachineDeploymentSetting list operation. */
+export interface EdgeMachineDeploymentSettingListResult {
+  /** The EdgeMachineDeploymentSetting items on this page */
+  value: EdgeMachineDeploymentSettingListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineDeploymentSettingListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: EdgeMachineDeploymentSettingListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EdgeMachineDeploymentSettingListResult",
+}) as any as S.Schema<EdgeMachineDeploymentSettingListResult>;
+
+export interface ListEdgeMachineDiskJobsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+}
+export const ListEdgeMachineDiskJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    diskName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/jobs",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEdgeMachineDiskJobsRequest",
+}) as any as S.Schema<ListEdgeMachineDiskJobsRequest>;
+
+/** Disk Job resource for managing operations on disks. */
+export interface EdgeMachineDiskJob {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskJobProperties;
+}
+export const EdgeMachineDiskJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineDiskJobProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskJob",
+}) as any as S.Schema<EdgeMachineDiskJob>;
+
+/** The EdgeMachineDiskJob items on this page */
+export type EdgeMachineDiskJobListResultValueList = Array<EdgeMachineDiskJob>;
+export const EdgeMachineDiskJobListResultValueList = /*@__PURE__*/ S.Array(
+  EdgeMachineDiskJob,
+) as any as S.Schema<EdgeMachineDiskJobListResultValueList>;
+
+/** The response of a EdgeMachineDiskJob list operation. */
+export interface EdgeMachineDiskJobListResult {
+  /** The EdgeMachineDiskJob items on this page */
+  value: EdgeMachineDiskJobListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineDiskJobListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EdgeMachineDiskJobListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskJobListResult",
+}) as any as S.Schema<EdgeMachineDiskJobListResult>;
+
+export interface ListEdgeMachineDiskPrivilegedJobsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineDisk */
+  diskName: string;
+}
+export const ListEdgeMachineDiskPrivilegedJobsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      diskName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks/{diskName}/privilegedJobs",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListEdgeMachineDiskPrivilegedJobsRequest",
+}) as any as S.Schema<ListEdgeMachineDiskPrivilegedJobsRequest>;
+
+/** Disk Privileged Job resource for managing privileged operations on disk volumes. */
+export interface EdgeMachineDiskPrivilegedJob {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskPrivilegedJobProperties;
+}
+export const EdgeMachineDiskPrivilegedJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineDiskPrivilegedJobProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskPrivilegedJob",
+}) as any as S.Schema<EdgeMachineDiskPrivilegedJob>;
+
+/** The EdgeMachineDiskPrivilegedJob items on this page */
+export type EdgeMachineDiskPrivilegedJobListResultValueList =
+  Array<EdgeMachineDiskPrivilegedJob>;
+export const EdgeMachineDiskPrivilegedJobListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EdgeMachineDiskPrivilegedJob,
+  ) as any as S.Schema<EdgeMachineDiskPrivilegedJobListResultValueList>;
+
+/** List of Disk Privileged Job resources. */
+export interface EdgeMachineDiskPrivilegedJobListResult {
+  /** The EdgeMachineDiskPrivilegedJob items on this page */
+  value: EdgeMachineDiskPrivilegedJobListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineDiskPrivilegedJobListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: EdgeMachineDiskPrivilegedJobListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EdgeMachineDiskPrivilegedJobListResult",
+}) as any as S.Schema<EdgeMachineDiskPrivilegedJobListResult>;
+
+export interface ListEdgeMachineDisksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const ListEdgeMachineDisksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/disks",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEdgeMachineDisksRequest",
+}) as any as S.Schema<ListEdgeMachineDisksRequest>;
+
+/** Disk resource representing a physical disk on an Edge Machine. */
+export interface EdgeMachineDisk {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineDiskProperties;
+}
+export const EdgeMachineDisk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineDiskProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineDisk",
+}) as any as S.Schema<EdgeMachineDisk>;
+
+/** The EdgeMachineDisk items on this page */
+export type EdgeMachineDiskListResultValueList = Array<EdgeMachineDisk>;
+export const EdgeMachineDiskListResultValueList = /*@__PURE__*/ S.Array(
+  EdgeMachineDisk,
+) as any as S.Schema<EdgeMachineDiskListResultValueList>;
+
+/** The response of a EdgeMachineDisk list operation. */
+export interface EdgeMachineDiskListResult {
+  /** The EdgeMachineDisk items on this page */
+  value: EdgeMachineDiskListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineDiskListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EdgeMachineDiskListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineDiskListResult",
+}) as any as S.Schema<EdgeMachineDiskListResult>;
+
+export interface ListEdgeMachineJobsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const ListEdgeMachineJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/jobs",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEdgeMachineJobsRequest",
+}) as any as S.Schema<ListEdgeMachineJobsRequest>;
+
+/** Cluster Jobs resource */
+export interface EdgeMachineJob {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineJobProperties;
+}
+export const EdgeMachineJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineJobProperties),
+  }),
+).annotate({ identifier: "EdgeMachineJob" }) as any as S.Schema<EdgeMachineJob>;
+
+/** The EdgeMachineJob items on this page */
+export type EdgeMachineJobListResultValueList = Array<EdgeMachineJob>;
+export const EdgeMachineJobListResultValueList = /*@__PURE__*/ S.Array(
+  EdgeMachineJob,
+) as any as S.Schema<EdgeMachineJobListResultValueList>;
+
+/** The response of a EdgeMachineJob list operation. */
+export interface EdgeMachineJobListResult {
+  /** The EdgeMachineJob items on this page */
+  value: EdgeMachineJobListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineJobListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EdgeMachineJobListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineJobListResult",
+}) as any as S.Schema<EdgeMachineJobListResult>;
+
+export interface ListEdgeMachineNetworkAdapterJobsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** The name of the EdgeMachineNetworkAdapter */
+  networkAdapterName: string;
+}
+export const ListEdgeMachineNetworkAdapterJobsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+      networkAdapterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/networkAdapters/{networkAdapterName}/jobs",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListEdgeMachineNetworkAdapterJobsRequest",
+}) as any as S.Schema<ListEdgeMachineNetworkAdapterJobsRequest>;
+
+/** Job for an Edge Machine Network Adapter. */
+export interface EdgeMachineNetworkAdapterJob {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineNetworkAdapterJobProperties;
+}
+export const EdgeMachineNetworkAdapterJob = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineNetworkAdapterJobProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineNetworkAdapterJob",
+}) as any as S.Schema<EdgeMachineNetworkAdapterJob>;
+
+/** The EdgeMachineNetworkAdapterJob items on this page */
+export type EdgeMachineNetworkAdapterJobListResultValueList =
+  Array<EdgeMachineNetworkAdapterJob>;
+export const EdgeMachineNetworkAdapterJobListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EdgeMachineNetworkAdapterJob,
+  ) as any as S.Schema<EdgeMachineNetworkAdapterJobListResultValueList>;
+
+/** The response of a EdgeMachineNetworkAdapterJob list operation. */
+export interface EdgeMachineNetworkAdapterJobListResult {
+  /** The EdgeMachineNetworkAdapterJob items on this page */
+  value: EdgeMachineNetworkAdapterJobListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineNetworkAdapterJobListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: EdgeMachineNetworkAdapterJobListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EdgeMachineNetworkAdapterJobListResult",
+}) as any as S.Schema<EdgeMachineNetworkAdapterJobListResult>;
+
+export interface ListEdgeMachineNetworkAdaptersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const ListEdgeMachineNetworkAdaptersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/networkAdapters",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListEdgeMachineNetworkAdaptersRequest",
+}) as any as S.Schema<ListEdgeMachineNetworkAdaptersRequest>;
+
+/** Edge Machine Network Adapter Resource. */
+export interface EdgeMachineNetworkAdapter {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineNetworkAdapterProperties;
+}
+export const EdgeMachineNetworkAdapter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineNetworkAdapterProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineNetworkAdapter",
+}) as any as S.Schema<EdgeMachineNetworkAdapter>;
+
+/** The EdgeMachineNetworkAdapter items on this page */
+export type EdgeMachineNetworkAdapterListResultValueList =
+  Array<EdgeMachineNetworkAdapter>;
+export const EdgeMachineNetworkAdapterListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EdgeMachineNetworkAdapter,
+  ) as any as S.Schema<EdgeMachineNetworkAdapterListResultValueList>;
+
+/** The response of a EdgeMachineNetworkAdapter list operation. */
+export interface EdgeMachineNetworkAdapterListResult {
+  /** The EdgeMachineNetworkAdapter items on this page */
+  value: EdgeMachineNetworkAdapterListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineNetworkAdapterListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EdgeMachineNetworkAdapterListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineNetworkAdapterListResult",
+}) as any as S.Schema<EdgeMachineNetworkAdapterListResult>;
+
+export interface ListEdgeMachineSecuritySettingsOperationByEdgeMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const ListEdgeMachineSecuritySettingsOperationByEdgeMachineRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/securitySettings",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEdgeMachineSecuritySettingsOperationByEdgeMachineRequest",
+  }) as any as S.Schema<ListEdgeMachineSecuritySettingsOperationByEdgeMachineRequest>;
+
+/** Edge Machine Security Settings proxy resource */
+export interface EdgeMachineSecuritySettings {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineSecurityProperties;
+}
+export const EdgeMachineSecuritySettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineSecurityProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineSecuritySettings",
+}) as any as S.Schema<EdgeMachineSecuritySettings>;
+
+/** The EdgeMachineSecuritySettings items on this page */
+export type EdgeMachineSecuritySettingsListResultValueList =
+  Array<EdgeMachineSecuritySettings>;
+export const EdgeMachineSecuritySettingsListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EdgeMachineSecuritySettings,
+  ) as any as S.Schema<EdgeMachineSecuritySettingsListResultValueList>;
+
+/** The response of a EdgeMachineSecuritySettings list operation. */
+export interface EdgeMachineSecuritySettingsListResult {
+  /** The EdgeMachineSecuritySettings items on this page */
+  value: EdgeMachineSecuritySettingsListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineSecuritySettingsListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: EdgeMachineSecuritySettingsListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EdgeMachineSecuritySettingsListResult",
+}) as any as S.Schema<EdgeMachineSecuritySettingsListResult>;
+
+export interface ListEdgeMachineVolumesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const ListEdgeMachineVolumesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/volumes",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEdgeMachineVolumesRequest",
+}) as any as S.Schema<ListEdgeMachineVolumesRequest>;
+
+/** Volume resource representing a storage volume on an Edge Machine. */
+export interface EdgeMachineVolume {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineVolumeProperties;
+}
+export const EdgeMachineVolume = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EdgeMachineVolumeProperties),
+  }),
+).annotate({
+  identifier: "EdgeMachineVolume",
+}) as any as S.Schema<EdgeMachineVolume>;
+
+/** The EdgeMachineVolume items on this page */
+export type EdgeMachineVolumeListResultValueList = Array<EdgeMachineVolume>;
+export const EdgeMachineVolumeListResultValueList = /*@__PURE__*/ S.Array(
+  EdgeMachineVolume,
+) as any as S.Schema<EdgeMachineVolumeListResultValueList>;
+
+/** The response of a EdgeMachineVolume list operation. */
+export interface EdgeMachineVolumeListResult {
+  /** The EdgeMachineVolume items on this page */
+  value: EdgeMachineVolumeListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EdgeMachineVolumeListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EdgeMachineVolumeListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineVolumeListResult",
+}) as any as S.Schema<EdgeMachineVolumeListResult>;
+
 export interface ListExtensionByArcSettingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -8622,7 +14405,7 @@ export const ListExtensionByArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/extensions",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -8743,19 +14526,19 @@ export const GalleryImagesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<GalleryImagesListResultValueList>;
 
 /** List of gallery images. */
-export interface ListGalleryImagesResult {
+export interface GalleryImagesListResult {
   value?: GalleryImagesListResultValueList;
   /** Link to the next set of results. */
   nextLink?: string;
 }
-export const ListGalleryImagesResult = /*@__PURE__*/ S.suspend(() =>
+export const GalleryImagesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(GalleryImagesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListGalleryImagesResult",
-}) as any as S.Schema<ListGalleryImagesResult>;
+  identifier: "GalleryImagesListResult",
+}) as any as S.Schema<GalleryImagesListResult>;
 
 export interface ListGalleryImagesRequest {
   /** The ID of the target subscription. */
@@ -8841,6 +14624,72 @@ export const GuestAgentList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "GuestAgentList" }) as any as S.Schema<GuestAgentList>;
 
+export interface ListHybridIdentityMetadataRequest {
+  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
+  resourceUri: string;
+}
+export const ListHybridIdentityMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default/hybridIdentityMetadata",
+      code: 200,
+      apiVersion: "2024-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListHybridIdentityMetadataRequest",
+}) as any as S.Schema<ListHybridIdentityMetadataRequest>;
+
+/** Defines the HybridIdentityMetadata. */
+export interface HybridIdentityMetadata {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties: HybridIdentityMetadataProperties;
+}
+export const HybridIdentityMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: HybridIdentityMetadataProperties,
+  }),
+).annotate({
+  identifier: "HybridIdentityMetadata",
+}) as any as S.Schema<HybridIdentityMetadata>;
+
+/** Array of HybridIdentityMetadata */
+export type HybridIdentityMetadataListValueList = Array<HybridIdentityMetadata>;
+export const HybridIdentityMetadataListValueList = /*@__PURE__*/ S.Array(
+  HybridIdentityMetadata,
+) as any as S.Schema<HybridIdentityMetadataListValueList>;
+
+/** List of HybridIdentityMetadata. */
+export interface HybridIdentityMetadataList {
+  /** Url to follow for getting next page of HybridIdentityMetadata. */
+  nextLink?: string;
+  /** Array of HybridIdentityMetadata */
+  value: HybridIdentityMetadataListValueList;
+}
+export const HybridIdentityMetadataList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: HybridIdentityMetadataListValueList,
+  }),
+).annotate({
+  identifier: "HybridIdentityMetadataList",
+}) as any as S.Schema<HybridIdentityMetadataList>;
+
 export interface ListLogicalNetworkAllRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -8913,18 +14762,18 @@ export const LogicalNetworksListResultValueList = /*@__PURE__*/ S.Array(
   LogicalNetworks,
 ) as any as S.Schema<LogicalNetworksListResultValueList>;
 
-export interface ListLogicalNetworksResult {
+export interface LogicalNetworksListResult {
   value?: LogicalNetworksListResultValueList;
   nextLink?: string;
 }
-export const ListLogicalNetworksResult = /*@__PURE__*/ S.suspend(() =>
+export const LogicalNetworksListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(LogicalNetworksListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListLogicalNetworksResult",
-}) as any as S.Schema<ListLogicalNetworksResult>;
+  identifier: "LogicalNetworksListResult",
+}) as any as S.Schema<LogicalNetworksListResult>;
 
 export interface ListLogicalNetworksRequest {
   /** The ID of the target subscription. */
@@ -9025,18 +14874,18 @@ export const MarketplaceGalleryImagesListResultValueList =
     MarketplaceGalleryImages,
   ) as any as S.Schema<MarketplaceGalleryImagesListResultValueList>;
 
-export interface ListMarketplaceGalleryImagesResult {
+export interface MarketplaceGalleryImagesListResult {
   value?: MarketplaceGalleryImagesListResultValueList;
   nextLink?: string;
 }
-export const ListMarketplaceGalleryImagesResult = /*@__PURE__*/ S.suspend(() =>
+export const MarketplaceGalleryImagesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(MarketplaceGalleryImagesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListMarketplaceGalleryImagesResult",
-}) as any as S.Schema<ListMarketplaceGalleryImagesResult>;
+  identifier: "MarketplaceGalleryImagesListResult",
+}) as any as S.Schema<MarketplaceGalleryImagesListResult>;
 
 export interface ListMarketplaceGalleryImagesRequest {
   /** The ID of the target subscription. */
@@ -9132,18 +14981,18 @@ export const NetworkInterfacesListResultValueList = /*@__PURE__*/ S.Array(
   NetworkInterfaces,
 ) as any as S.Schema<NetworkInterfacesListResultValueList>;
 
-export interface ListNetworkInterfacesResult {
+export interface NetworkInterfacesListResult {
   value?: NetworkInterfacesListResultValueList;
   nextLink?: string;
 }
-export const ListNetworkInterfacesResult = /*@__PURE__*/ S.suspend(() =>
+export const NetworkInterfacesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(NetworkInterfacesListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListNetworkInterfacesResult",
-}) as any as S.Schema<ListNetworkInterfacesResult>;
+  identifier: "NetworkInterfacesListResult",
+}) as any as S.Schema<NetworkInterfacesListResult>;
 
 export interface ListNetworkInterfacesRequest {
   /** The ID of the target subscription. */
@@ -9188,7 +15037,7 @@ export const ListOfferByClusterRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/offers",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -9262,7 +15111,7 @@ export const ListOfferByPublisherRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/publishers/{publisherName}/offers",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -9276,7 +15125,7 @@ export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/providers/Microsoft.AzureStackHCI/operations",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -9337,27 +15186,95 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
-export interface ListSecuritySettingByClustersRequest {
+export interface ListOsImageBySubscriptionLocationResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListOsImageBySubscriptionLocationResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/locations/{location}/osImages",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListOsImageBySubscriptionLocationResourceRequest",
+  }) as any as S.Schema<ListOsImageBySubscriptionLocationResourceRequest>;
+
+/** Represents a os image resource. */
+export interface OsImage {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: OsImageProperties;
+}
+export const OsImage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(OsImageProperties),
+  }),
+).annotate({ identifier: "OsImage" }) as any as S.Schema<OsImage>;
+
+/** The OsImage items on this page */
+export type OsImageListResultValueList = Array<OsImage>;
+export const OsImageListResultValueList = /*@__PURE__*/ S.Array(
+  OsImage,
+) as any as S.Schema<OsImageListResultValueList>;
+
+/** The response of a OsImage list operation. */
+export interface OsImageListResult {
+  /** The OsImage items on this page */
+  value: OsImageListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OsImageListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OsImageListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OsImageListResult",
+}) as any as S.Schema<OsImageListResult>;
+
+export interface ListSecuritySettingsByClustersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9365,7 +15282,7 @@ export interface ListSecuritySettingByClustersRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ListSecuritySettingByClustersRequest = /*@__PURE__*/ S.suspend(
+export const ListSecuritySettingsByClustersRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9376,12 +15293,12 @@ export const ListSecuritySettingByClustersRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/securitySettings",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
 ).annotate({
-  identifier: "ListSecuritySettingByClustersRequest",
-}) as any as S.Schema<ListSecuritySettingByClustersRequest>;
+  identifier: "ListSecuritySettingsByClustersRequest",
+}) as any as S.Schema<ListSecuritySettingsByClustersRequest>;
 
 /** Security settings proxy resource */
 export interface SecuritySetting {
@@ -9457,7 +15374,7 @@ export const ListSkusByOfferRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/publishers/{publisherName}/offers/{offerName}/skus",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -9579,18 +15496,18 @@ export const StorageContainersListResultValueList = /*@__PURE__*/ S.Array(
   StorageContainers,
 ) as any as S.Schema<StorageContainersListResultValueList>;
 
-export interface ListStorageContainersResult {
+export interface StorageContainersListResult {
   value?: StorageContainersListResultValueList;
   nextLink?: string;
 }
-export const ListStorageContainersResult = /*@__PURE__*/ S.suspend(() =>
+export const StorageContainersListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(StorageContainersListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListStorageContainersResult",
-}) as any as S.Schema<ListStorageContainersResult>;
+  identifier: "StorageContainersListResult",
+}) as any as S.Schema<StorageContainersListResult>;
 
 export interface ListStorageContainersRequest {
   /** The ID of the target subscription. */
@@ -9614,6 +15531,80 @@ export const ListStorageContainersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListStorageContainersRequest",
 }) as any as S.Schema<ListStorageContainersRequest>;
 
+export interface ListUpdateRunsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the Update */
+  updateName: string;
+}
+export const ListUpdateRunsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    updateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUpdateRunsRequest",
+}) as any as S.Schema<ListUpdateRunsRequest>;
+
+/** Details of an Update run */
+export interface UpdateRun {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Describes Update Run Properties. */
+  properties?: UpdateRunProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const UpdateRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "UpdateRun" }) as any as S.Schema<UpdateRun>;
+
+/** The UpdateRun items on this page */
+export type UpdateRunListValueList = Array<UpdateRun>;
+export const UpdateRunListValueList = /*@__PURE__*/ S.Array(
+  UpdateRun,
+) as any as S.Schema<UpdateRunListValueList>;
+
+/** List of Update runs */
+export interface UpdateRunList {
+  /** The UpdateRun items on this page */
+  value: UpdateRunListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const UpdateRunList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: UpdateRunListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "UpdateRunList" }) as any as S.Schema<UpdateRunList>;
+
 export interface ListUpdatesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -9632,7 +15623,7 @@ export const ListUpdatesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -9685,6 +15676,81 @@ export const UpdateList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "UpdateList" }) as any as S.Schema<UpdateList>;
 
+export interface ListUpdateSummariesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListUpdateSummariesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUpdateSummariesRequest",
+}) as any as S.Schema<ListUpdateSummariesRequest>;
+
+/** Get the update summaries for the cluster */
+export interface UpdateSummaries {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Update summaries properties */
+  properties?: UpdateSummariesProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const UpdateSummaries = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateSummariesProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateSummaries",
+}) as any as S.Schema<UpdateSummaries>;
+
+/** The UpdateSummaries items on this page */
+export type UpdateSummariesListValueList = Array<UpdateSummaries>;
+export const UpdateSummariesListValueList = /*@__PURE__*/ S.Array(
+  UpdateSummaries,
+) as any as S.Schema<UpdateSummariesListValueList>;
+
+/** List of Update Summaries */
+export interface UpdateSummariesList {
+  /** The UpdateSummaries items on this page */
+  value: UpdateSummariesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const UpdateSummariesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: UpdateSummariesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateSummariesList",
+}) as any as S.Schema<UpdateSummariesList>;
+
 export interface ListValidatedSolutionRecipeBySubscriptionLocationResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -9701,7 +15767,7 @@ export const ListValidatedSolutionRecipeBySubscriptionLocationResourceRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/locations/{location}/validatedSolutionRecipes",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
   ).annotate({
@@ -9829,18 +15895,18 @@ export const VirtualHardDisksListResultValueList = /*@__PURE__*/ S.Array(
   VirtualHardDisks,
 ) as any as S.Schema<VirtualHardDisksListResultValueList>;
 
-export interface ListVirtualHardDisksResult {
+export interface VirtualHardDisksListResult {
   value?: VirtualHardDisksListResultValueList;
   nextLink?: string;
 }
-export const ListVirtualHardDisksResult = /*@__PURE__*/ S.suspend(() =>
+export const VirtualHardDisksListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(VirtualHardDisksListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListVirtualHardDisksResult",
-}) as any as S.Schema<ListVirtualHardDisksResult>;
+  identifier: "VirtualHardDisksListResult",
+}) as any as S.Schema<VirtualHardDisksListResult>;
 
 export interface ListVirtualHardDisksRequest {
   /** The ID of the target subscription. */
@@ -10575,6 +16641,465 @@ export const NetworkInterfacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "NetworkInterfacesCreateOrUpdateResponse",
 }) as any as S.Schema<NetworkInterfacesCreateOrUpdateResponse>;
 
+export interface PostUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the Update */
+  updateName: string;
+}
+export const PostUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    updateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/apply",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostUpdateRequest",
+}) as any as S.Schema<PostUpdateRequest>;
+
+export interface PostUpdateResponse {}
+export const PostUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PostUpdateResponse",
+}) as any as S.Schema<PostUpdateResponse>;
+
+/** If update State is HasPrerequisite, this property contains an array of objects describing prerequisite updates before installing this update. Otherwise, it is empty. */
+export type UpdatePropertiesInputPrerequisitesList = Array<UpdatePrerequisite>;
+export const UpdatePropertiesInputPrerequisitesList = /*@__PURE__*/ S.Array(
+  UpdatePrerequisite,
+) as any as S.Schema<UpdatePropertiesInputPrerequisitesList>;
+
+/** An array of component versions for a Solution Bundle update, and an empty array otherwise. */
+export type UpdatePropertiesInputComponentVersionsList =
+  Array<PackageVersionInfo>;
+export const UpdatePropertiesInputComponentVersionsList = /*@__PURE__*/ S.Array(
+  PackageVersionInfo,
+) as any as S.Schema<UpdatePropertiesInputComponentVersionsList>;
+
+/** An array of PrecheckResult objects. */
+export type UpdatePropertiesInputHealthCheckResultList = Array<PrecheckResult>;
+export const UpdatePropertiesInputHealthCheckResultList = /*@__PURE__*/ S.Array(
+  PrecheckResult,
+) as any as S.Schema<UpdatePropertiesInputHealthCheckResultList>;
+
+/** Details of a singular Update in HCI Cluster */
+export interface UpdatePropertiesInput {
+  /** Date that the update was installed. */
+  installedDate?: string;
+  /** Description of the update. */
+  description?: string;
+  /** Minimum Sbe Version of the update. */
+  minSbeVersionRequired?: string;
+  /** Represents the current state of the update as it relates to this stamp. This includes phases such as preparation, installation, scanning, and error handling, providing insight into the update's progress and any issues encountered. */
+  state?: State | (string & {});
+  /** If update State is HasPrerequisite, this property contains an array of objects describing prerequisite updates before installing this update. Otherwise, it is empty. */
+  prerequisites?: UpdatePropertiesInputPrerequisitesList;
+  /** An array of component versions for a Solution Bundle update, and an empty array otherwise. */
+  componentVersions?: UpdatePropertiesInputComponentVersionsList;
+  /** Indicates whether a reboot is required after the update or operation. Helps determine if a system restart is necessary to complete the process. */
+  rebootRequired?: RebootRequirement | (string & {});
+  /** Overall health state for update-specific health checks. */
+  healthState?: HealthState | (string & {});
+  /** An array of PrecheckResult objects. */
+  healthCheckResult?: UpdatePropertiesInputHealthCheckResultList;
+  /** Last time the package-specific checks were run. */
+  healthCheckDate?: string;
+  /** Path where the update package is available. */
+  packagePath?: string;
+  /** Size of the package. This value is a combination of the size from update metadata and size of the payload that results from the live scan operation for OS update content. */
+  packageSizeInMb?: number;
+  /** Display name of the Update */
+  displayName?: string;
+  /** Version of the update. */
+  version?: string;
+  /** Publisher of the update package. */
+  publisher?: string;
+  /** Link to release notes for the update. */
+  releaseLink?: string;
+  /** Indicates how the update content is made available for download. This determines whether the update is sourced locally, from an online repository, or requires user notification. */
+  availabilityType?: AvailabilityType | (string & {});
+  /** Customer-visible type of the update. */
+  packageType?: string;
+  /** Extensible KV pairs serialized as a string. This is currently used to report the stamp OEM family and hardware model information when an update is flagged as Invalid for the stamp based on OEM type. */
+  additionalProperties?: string;
+  /** Additional information regarding the state of the update. See definition of UpdateStateProperties type below for more details on this property. */
+  updateStateProperties?: UpdateStateProperties;
+}
+export const UpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    installedDate: S.optional(S.String),
+    description: S.optional(S.String),
+    minSbeVersionRequired: S.optional(S.String),
+    state: S.optional(State),
+    prerequisites: S.optional(UpdatePropertiesInputPrerequisitesList),
+    componentVersions: S.optional(UpdatePropertiesInputComponentVersionsList),
+    rebootRequired: S.optional(RebootRequirement),
+    healthState: S.optional(HealthState),
+    healthCheckResult: S.optional(UpdatePropertiesInputHealthCheckResultList),
+    healthCheckDate: S.optional(S.String),
+    packagePath: S.optional(S.String),
+    packageSizeInMb: S.optional(S.Number),
+    displayName: S.optional(S.String),
+    version: S.optional(S.String),
+    publisher: S.optional(S.String),
+    releaseLink: S.optional(S.String),
+    availabilityType: S.optional(AvailabilityType),
+    packageType: S.optional(S.String),
+    additionalProperties: S.optional(S.String),
+    updateStateProperties: S.optional(UpdateStateProperties),
+  }),
+).annotate({
+  identifier: "UpdatePropertiesInput",
+}) as any as S.Schema<UpdatePropertiesInput>;
+
+export interface PutUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the Update */
+  updateName: string;
+  /** Update properties */
+  properties?: UpdatePropertiesInput;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PutUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    updateName: S.String.pipe(T.Label()),
+    properties: S.optional(UpdatePropertiesInput),
+    location: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutUpdateRequest",
+}) as any as S.Schema<PutUpdateRequest>;
+
+export interface PutUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Update properties */
+  properties?: UpdateProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PutUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PutUpdateResponse",
+}) as any as S.Schema<PutUpdateResponse>;
+
+/** Details of an Update run */
+export interface UpdateRunPropertiesInput {
+  /** Timestamp of the update run was started. */
+  timeStarted?: string;
+  /** Timestamp of the most recently completed step in the update run. */
+  lastUpdatedTime?: string;
+  /** Duration of the update run. */
+  duration?: string;
+  /** Progress representation of the update run steps. */
+  progress?: Step;
+}
+export const UpdateRunPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timeStarted: S.optional(S.String),
+    lastUpdatedTime: S.optional(S.String),
+    duration: S.optional(S.String),
+    progress: S.optional(Step),
+  }),
+).annotate({
+  identifier: "UpdateRunPropertiesInput",
+}) as any as S.Schema<UpdateRunPropertiesInput>;
+
+export interface PutUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the Update */
+  updateName: string;
+  /** The name of the Update Run */
+  updateRunName: string;
+  /** Describes Update Run Properties. */
+  properties?: UpdateRunPropertiesInput;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PutUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    updateName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+    properties: S.optional(UpdateRunPropertiesInput),
+    location: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns/{updateRunName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutUpdateRunRequest",
+}) as any as S.Schema<PutUpdateRunRequest>;
+
+export interface PutUpdateRunResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Describes Update Run Properties. */
+  properties?: UpdateRunProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PutUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PutUpdateRunResponse",
+}) as any as S.Schema<PutUpdateRunResponse>;
+
+/** Current version of each updatable component. */
+export type UpdateSummariesPropertiesInputPackageVersionsList =
+  Array<PackageVersionInfo>;
+export const UpdateSummariesPropertiesInputPackageVersionsList =
+  /*@__PURE__*/ S.Array(
+    PackageVersionInfo,
+  ) as any as S.Schema<UpdateSummariesPropertiesInputPackageVersionsList>;
+
+/** An array of pre-check result objects. */
+export type UpdateSummariesPropertiesInputHealthCheckResultList =
+  Array<PrecheckResult>;
+export const UpdateSummariesPropertiesInputHealthCheckResultList =
+  /*@__PURE__*/ S.Array(
+    PrecheckResult,
+  ) as any as S.Schema<UpdateSummariesPropertiesInputHealthCheckResultList>;
+
+/** Properties of Update summaries */
+export interface UpdateSummariesPropertiesInput {
+  /** OEM family name. */
+  oemFamily?: string;
+  /** Current OEM Version. */
+  currentOemVersion?: string;
+  /** Name of the hardware model. */
+  hardwareModel?: string;
+  /** Current version of each updatable component. */
+  packageVersions?: UpdateSummariesPropertiesInputPackageVersionsList;
+  /** Current Solution Bundle version of the stamp. */
+  currentVersion?: string;
+  /** Current Sbe version of the stamp. */
+  currentSbeVersion?: string;
+  /** Last time an update installation completed successfully. */
+  lastUpdated?: string;
+  /** Last time the update service successfully checked for updates */
+  lastChecked?: string;
+  /** Overall health state for update-specific health checks. */
+  healthState?: HealthState | (string & {});
+  /** An array of pre-check result objects. */
+  healthCheckResult?: UpdateSummariesPropertiesInputHealthCheckResultList;
+  /** Last time the package-specific checks were run. */
+  healthCheckDate?: string;
+  /** Overall update state of the stamp. Indicates the current status of update deployment across the stamp, including preparation, application, and any issues encountered. */
+  state?: UpdateSummariesPropertiesState | (string & {});
+}
+export const UpdateSummariesPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    oemFamily: S.optional(S.String),
+    currentOemVersion: S.optional(S.String),
+    hardwareModel: S.optional(S.String),
+    packageVersions: S.optional(
+      UpdateSummariesPropertiesInputPackageVersionsList,
+    ),
+    currentVersion: S.optional(S.String),
+    currentSbeVersion: S.optional(S.String),
+    lastUpdated: S.optional(S.String),
+    lastChecked: S.optional(S.String),
+    healthState: S.optional(HealthState),
+    healthCheckResult: S.optional(
+      UpdateSummariesPropertiesInputHealthCheckResultList,
+    ),
+    healthCheckDate: S.optional(S.String),
+    state: S.optional(UpdateSummariesPropertiesState),
+  }),
+).annotate({
+  identifier: "UpdateSummariesPropertiesInput",
+}) as any as S.Schema<UpdateSummariesPropertiesInput>;
+
+export interface PutUpdateSummaryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Update summaries properties */
+  properties?: UpdateSummariesPropertiesInput;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PutUpdateSummaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    properties: S.optional(UpdateSummariesPropertiesInput),
+    location: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutUpdateSummaryRequest",
+}) as any as S.Schema<PutUpdateSummaryRequest>;
+
+export interface PutUpdateSummaryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Update summaries properties */
+  properties?: UpdateSummariesProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PutUpdateSummaryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateSummariesProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PutUpdateSummaryResponse",
+}) as any as S.Schema<PutUpdateSummaryResponse>;
+
+export interface RefreshEdgeMachineApplicableUpdatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const RefreshEdgeMachineApplicableUpdatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/refreshApplicableUpdates",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RefreshEdgeMachineApplicableUpdatesRequest",
+  }) as any as S.Schema<RefreshEdgeMachineApplicableUpdatesRequest>;
+
+export interface RefreshEdgeMachineApplicableUpdatesResponse {}
+export const RefreshEdgeMachineApplicableUpdatesResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RefreshEdgeMachineApplicableUpdatesResponse",
+  }) as any as S.Schema<RefreshEdgeMachineApplicableUpdatesResponse>;
+
+export interface RefreshEdgeMachineSecuritySettingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+}
+export const RefreshEdgeMachineSecuritySettingsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      edgeMachineName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/refreshSecuritySettings",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RefreshEdgeMachineSecuritySettingsRequest",
+  }) as any as S.Schema<RefreshEdgeMachineSecuritySettingsRequest>;
+
+export interface RefreshEdgeMachineSecuritySettingsResponse {}
+export const RefreshEdgeMachineSecuritySettingsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RefreshEdgeMachineSecuritySettingsResponse",
+  }) as any as S.Schema<RefreshEdgeMachineSecuritySettingsResponse>;
+
 export interface RestartVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
   resourceUri: string;
@@ -10596,36 +17121,36 @@ export const RestartVirtualMachineInstanceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RestartVirtualMachineInstanceRequest>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineInstancesRestartResponseExtendedLocation =
+export type RestartVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const VirtualMachineInstancesRestartResponseExtendedLocation =
+export const RestartVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 /** The identity type. */
-export type VirtualMachineInstancesRestartResponseIdentityType =
+export type RestartVirtualMachineInstanceResponseIdentityType =
   "SystemAssigned";
-export const VirtualMachineInstancesRestartResponseIdentityType =
+export const RestartVirtualMachineInstanceResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Identity for the resource. */
-export interface VirtualMachineInstancesRestartResponseIdentity {
+export interface RestartVirtualMachineInstanceResponseIdentity {
   /** The principal ID of resource identity. */
   principalId?: string;
   /** The tenant ID of resource. */
   tenantId?: string;
   /** The identity type. */
-  type?: VirtualMachineInstancesRestartResponseIdentityType;
+  type?: RestartVirtualMachineInstanceResponseIdentityType;
 }
-export const VirtualMachineInstancesRestartResponseIdentity =
+export const RestartVirtualMachineInstanceResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
-      type: S.optional(VirtualMachineInstancesRestartResponseIdentityType),
+      type: S.optional(RestartVirtualMachineInstanceResponseIdentityType),
     }),
   ).annotate({
-    identifier: "VirtualMachineInstancesRestartResponseIdentity",
-  }) as any as S.Schema<VirtualMachineInstancesRestartResponseIdentity>;
+    identifier: "RestartVirtualMachineInstanceResponseIdentity",
+  }) as any as S.Schema<RestartVirtualMachineInstanceResponseIdentity>;
 
 export interface RestartVirtualMachineInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -10640,7 +17165,7 @@ export interface RestartVirtualMachineInstanceResponse {
   /** The complex type of the extended location. */
   extendedLocation?: GalleryImagesCreateOrUpdateResponseExtendedLocation;
   /** Identity for the resource. */
-  identity?: VirtualMachineInstancesRestartResponseIdentity;
+  identity?: RestartVirtualMachineInstanceResponseIdentity;
 }
 export const RestartVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -10653,7 +17178,7 @@ export const RestartVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(
       extendedLocation: S.optional(
         GalleryImagesCreateOrUpdateResponseExtendedLocation,
       ),
-      identity: S.optional(VirtualMachineInstancesRestartResponseIdentity),
+      identity: S.optional(RestartVirtualMachineInstanceResponseIdentity),
     }),
 ).annotate({
   identifier: "RestartVirtualMachineInstanceResponse",
@@ -10736,7 +17261,7 @@ export const SecuritySettingsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/securitySettings/{securitySettingsName}",
         code: 200,
-        apiVersion: "2026-04-30",
+        apiVersion: "2026-10-01",
       }),
     ),
 ).annotate({
@@ -10788,35 +17313,35 @@ export const StartVirtualMachineInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartVirtualMachineInstanceRequest>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineInstancesStartResponseExtendedLocation =
+export type StartVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const VirtualMachineInstancesStartResponseExtendedLocation =
+export const StartVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 /** The identity type. */
-export type VirtualMachineInstancesStartResponseIdentityType = "SystemAssigned";
-export const VirtualMachineInstancesStartResponseIdentityType =
+export type StartVirtualMachineInstanceResponseIdentityType = "SystemAssigned";
+export const StartVirtualMachineInstanceResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Identity for the resource. */
-export interface VirtualMachineInstancesStartResponseIdentity {
+export interface StartVirtualMachineInstanceResponseIdentity {
   /** The principal ID of resource identity. */
   principalId?: string;
   /** The tenant ID of resource. */
   tenantId?: string;
   /** The identity type. */
-  type?: VirtualMachineInstancesStartResponseIdentityType;
+  type?: StartVirtualMachineInstanceResponseIdentityType;
 }
-export const VirtualMachineInstancesStartResponseIdentity =
+export const StartVirtualMachineInstanceResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
-      type: S.optional(VirtualMachineInstancesStartResponseIdentityType),
+      type: S.optional(StartVirtualMachineInstanceResponseIdentityType),
     }),
   ).annotate({
-    identifier: "VirtualMachineInstancesStartResponseIdentity",
-  }) as any as S.Schema<VirtualMachineInstancesStartResponseIdentity>;
+    identifier: "StartVirtualMachineInstanceResponseIdentity",
+  }) as any as S.Schema<StartVirtualMachineInstanceResponseIdentity>;
 
 export interface StartVirtualMachineInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -10831,7 +17356,7 @@ export interface StartVirtualMachineInstanceResponse {
   /** The complex type of the extended location. */
   extendedLocation?: GalleryImagesCreateOrUpdateResponseExtendedLocation;
   /** Identity for the resource. */
-  identity?: VirtualMachineInstancesStartResponseIdentity;
+  identity?: StartVirtualMachineInstanceResponseIdentity;
 }
 export const StartVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10843,7 +17368,7 @@ export const StartVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     extendedLocation: S.optional(
       GalleryImagesCreateOrUpdateResponseExtendedLocation,
     ),
-    identity: S.optional(VirtualMachineInstancesStartResponseIdentity),
+    identity: S.optional(StartVirtualMachineInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "StartVirtualMachineInstanceResponse",
@@ -10869,35 +17394,35 @@ export const StopVirtualMachineInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopVirtualMachineInstanceRequest>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineInstancesStopResponseExtendedLocation =
+export type StopVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const VirtualMachineInstancesStopResponseExtendedLocation =
+export const StopVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 /** The identity type. */
-export type VirtualMachineInstancesStopResponseIdentityType = "SystemAssigned";
-export const VirtualMachineInstancesStopResponseIdentityType =
+export type StopVirtualMachineInstanceResponseIdentityType = "SystemAssigned";
+export const StopVirtualMachineInstanceResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Identity for the resource. */
-export interface VirtualMachineInstancesStopResponseIdentity {
+export interface StopVirtualMachineInstanceResponseIdentity {
   /** The principal ID of resource identity. */
   principalId?: string;
   /** The tenant ID of resource. */
   tenantId?: string;
   /** The identity type. */
-  type?: VirtualMachineInstancesStopResponseIdentityType;
+  type?: StopVirtualMachineInstanceResponseIdentityType;
 }
-export const VirtualMachineInstancesStopResponseIdentity =
+export const StopVirtualMachineInstanceResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
-      type: S.optional(VirtualMachineInstancesStopResponseIdentityType),
+      type: S.optional(StopVirtualMachineInstanceResponseIdentityType),
     }),
   ).annotate({
-    identifier: "VirtualMachineInstancesStopResponseIdentity",
-  }) as any as S.Schema<VirtualMachineInstancesStopResponseIdentity>;
+    identifier: "StopVirtualMachineInstanceResponseIdentity",
+  }) as any as S.Schema<StopVirtualMachineInstanceResponseIdentity>;
 
 export interface StopVirtualMachineInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -10912,7 +17437,7 @@ export interface StopVirtualMachineInstanceResponse {
   /** The complex type of the extended location. */
   extendedLocation?: GalleryImagesCreateOrUpdateResponseExtendedLocation;
   /** Identity for the resource. */
-  identity?: VirtualMachineInstancesStopResponseIdentity;
+  identity?: StopVirtualMachineInstanceResponseIdentity;
 }
 export const StopVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10924,7 +17449,7 @@ export const StopVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     extendedLocation: S.optional(
       GalleryImagesCreateOrUpdateResponseExtendedLocation,
     ),
-    identity: S.optional(VirtualMachineInstancesStopResponseIdentity),
+    identity: S.optional(StopVirtualMachineInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "StopVirtualMachineInstanceResponse",
@@ -11049,14 +17574,137 @@ export const StorageContainersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "StorageContainersCreateOrUpdateResponse",
 }) as any as S.Schema<StorageContainersCreateOrUpdateResponse>;
 
+/** Properties for Log Collection Request */
+export interface LogCollectionRequestProperties {
+  /** From DateTimeStamp from when logs need to be connected */
+  fromDate: string;
+  /** To DateTimeStamp till when logs need to be connected */
+  toDate: string;
+}
+export const LogCollectionRequestProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromDate: S.String,
+    toDate: S.String,
+  }),
+).annotate({
+  identifier: "LogCollectionRequestProperties",
+}) as any as S.Schema<LogCollectionRequestProperties>;
+
+export interface TriggerClusterLogCollectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Properties for Log Collection Request */
+  properties?: LogCollectionRequestProperties;
+}
+export const TriggerClusterLogCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    properties: S.optional(LogCollectionRequestProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/triggerLogCollection",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "TriggerClusterLogCollectionRequest",
+}) as any as S.Schema<TriggerClusterLogCollectionRequest>;
+
 /** Resource tags. */
-export type ArcSettingsUpdateRequestTagsMap = {
+export type TriggerClusterLogCollectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ArcSettingsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const TriggerClusterLogCollectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<TriggerClusterLogCollectionResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type TriggerClusterLogCollectionResponseIdentityUserAssignedIdentitiesMap =
+  { [key: string]: UserAssignedIdentity | undefined };
+export const TriggerClusterLogCollectionResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<TriggerClusterLogCollectionResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface TriggerClusterLogCollectionResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: TriggerClusterLogCollectionResponseIdentityUserAssignedIdentitiesMap;
+}
+export const TriggerClusterLogCollectionResponseIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        TriggerClusterLogCollectionResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+  ).annotate({
+    identifier: "TriggerClusterLogCollectionResponseIdentity",
+  }) as any as S.Schema<TriggerClusterLogCollectionResponseIdentity>;
+
+export interface TriggerClusterLogCollectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: TriggerClusterLogCollectionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Cluster properties. */
+  properties?: ClusterProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: TriggerClusterLogCollectionResponseIdentity;
+  /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
+  kind?: string;
+}
+export const TriggerClusterLogCollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(TriggerClusterLogCollectionResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ClusterProperties),
+    identity: S.optional(TriggerClusterLogCollectionResponseIdentity),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TriggerClusterLogCollectionResponse",
+}) as any as S.Schema<TriggerClusterLogCollectionResponse>;
+
+/** Resource tags. */
+export type UpdateArcSettingsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateArcSettingsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ArcSettingsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateArcSettingsRequestTagsMap>;
 
 /** ArcSettings properties. */
 export interface ArcSettingsPatchProperties {
@@ -11071,7 +17719,7 @@ export const ArcSettingsPatchProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ArcSettingsPatchProperties",
 }) as any as S.Schema<ArcSettingsPatchProperties>;
 
-export interface UpdateArcSettingRequest {
+export interface UpdateArcSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11081,31 +17729,31 @@ export interface UpdateArcSettingRequest {
   /** The name of the proxy resource holding details of HCI ArcSetting information. */
   arcSettingName: string;
   /** Resource tags. */
-  tags?: ArcSettingsUpdateRequestTagsMap;
+  tags?: UpdateArcSettingsRequestTagsMap;
   /** ArcSettings properties. */
   properties?: ArcSettingsPatchProperties;
 }
-export const UpdateArcSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateArcSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     arcSettingName: S.String.pipe(T.Label()),
-    tags: S.optional(ArcSettingsUpdateRequestTagsMap),
+    tags: S.optional(UpdateArcSettingsRequestTagsMap),
     properties: S.optional(ArcSettingsPatchProperties),
   }).pipe(
     T.Http({
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
-  identifier: "UpdateArcSettingRequest",
-}) as any as S.Schema<UpdateArcSettingRequest>;
+  identifier: "UpdateArcSettingsRequest",
+}) as any as S.Schema<UpdateArcSettingsRequest>;
 
-export interface UpdateArcSettingResponse {
+export interface UpdateArcSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11117,7 +17765,7 @@ export interface UpdateArcSettingResponse {
   /** ArcSetting properties. */
   properties?: ArcSettingProperties;
 }
-export const UpdateArcSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateArcSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -11126,44 +17774,42 @@ export const UpdateArcSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ArcSettingProperties),
   }),
 ).annotate({
-  identifier: "UpdateArcSettingResponse",
-}) as any as S.Schema<UpdateArcSettingResponse>;
+  identifier: "UpdateArcSettingsResponse",
+}) as any as S.Schema<UpdateArcSettingsResponse>;
 
 /** Resource tags. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersUpdateRequestIdentityUserAssignedIdentitiesMap = {
+export type UpdateClusterRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]: LogCollectionPropertiesInput | undefined;
 };
-export const ClustersUpdateRequestIdentityUserAssignedIdentitiesMap =
+export const UpdateClusterRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     LogCollectionPropertiesInput,
-  ) as any as S.Schema<ClustersUpdateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateClusterRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersUpdateRequestIdentity {
+export interface UpdateClusterRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersUpdateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateClusterRequestIdentityUserAssignedIdentitiesMap;
 }
-export const ClustersUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateClusterRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      ClustersUpdateRequestIdentityUserAssignedIdentitiesMap,
+      UpdateClusterRequestIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "ClustersUpdateRequestIdentity",
-}) as any as S.Schema<ClustersUpdateRequestIdentity>;
+  identifier: "UpdateClusterRequestIdentity",
+}) as any as S.Schema<UpdateClusterRequestIdentity>;
 
 /** Cluster properties. */
 export interface ClusterPatchProperties {
@@ -11195,9 +17841,9 @@ export interface UpdateClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
   /** Resource tags. */
-  tags?: ClustersUpdateRequestTagsMap;
+  tags?: UpdateClusterRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersUpdateRequestIdentity;
+  identity?: UpdateClusterRequestIdentity;
   /** Cluster properties. */
   properties?: ClusterPatchProperties;
 }
@@ -11206,15 +17852,15 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
-    identity: S.optional(ClustersUpdateRequestIdentity),
+    tags: S.optional(UpdateClusterRequestTagsMap),
+    identity: S.optional(UpdateClusterRequestIdentity),
     properties: S.optional(ClusterPatchProperties),
   }).pipe(
     T.Http({
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -11222,46 +17868,46 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterRequest>;
 
 /** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
+export type UpdateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateClusterResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const ClustersUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateClusterResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<ClustersUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateClusterResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersUpdateResponseIdentity {
+export interface UpdateClusterResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateClusterResponseIdentityUserAssignedIdentitiesMap;
 }
-export const ClustersUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      ClustersUpdateResponseIdentityUserAssignedIdentitiesMap,
+      UpdateClusterResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "ClustersUpdateResponseIdentity",
-}) as any as S.Schema<ClustersUpdateResponseIdentity>;
+  identifier: "UpdateClusterResponseIdentity",
+}) as any as S.Schema<UpdateClusterResponseIdentity>;
 
 export interface UpdateClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -11273,13 +17919,13 @@ export interface UpdateClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
+  tags?: UpdateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cluster properties. */
   properties?: ClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersUpdateResponseIdentity;
+  identity?: UpdateClusterResponseIdentity;
   /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
   kind?: string;
 }
@@ -11289,10 +17935,10 @@ export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
-    identity: S.optional(ClustersUpdateResponseIdentity),
+    identity: S.optional(UpdateClusterResponseIdentity),
     kind: S.optional(S.String),
   }),
 ).annotate({
@@ -11300,14 +17946,14 @@ export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterResponse>;
 
 /** List of secret locations */
-export type ClustersUpdateSecretsLocationsRequestPropertiesList =
+export type UpdateClusterSecretsLocationsRequestPropertiesList =
   Array<SecretsLocationDetails>;
-export const ClustersUpdateSecretsLocationsRequestPropertiesList =
+export const UpdateClusterSecretsLocationsRequestPropertiesList =
   /*@__PURE__*/ S.Array(
     SecretsLocationDetails,
-  ) as any as S.Schema<ClustersUpdateSecretsLocationsRequestPropertiesList>;
+  ) as any as S.Schema<UpdateClusterSecretsLocationsRequestPropertiesList>;
 
-export interface UpdateClusterSecretLocationRequest {
+export interface UpdateClusterSecretsLocationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11315,70 +17961,73 @@ export interface UpdateClusterSecretLocationRequest {
   /** The name of the cluster. */
   clusterName: string;
   /** List of secret locations */
-  properties?: ClustersUpdateSecretsLocationsRequestPropertiesList;
+  properties?: UpdateClusterSecretsLocationsRequestPropertiesList;
 }
-export const UpdateClusterSecretLocationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    properties: S.optional(ClustersUpdateSecretsLocationsRequestPropertiesList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSecretsLocations",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
+export const UpdateClusterSecretsLocationsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      properties: S.optional(
+        UpdateClusterSecretsLocationsRequestPropertiesList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSecretsLocations",
+        code: 200,
+        apiVersion: "2026-10-01",
+      }),
+    ),
 ).annotate({
-  identifier: "UpdateClusterSecretLocationRequest",
-}) as any as S.Schema<UpdateClusterSecretLocationRequest>;
+  identifier: "UpdateClusterSecretsLocationsRequest",
+}) as any as S.Schema<UpdateClusterSecretsLocationsRequest>;
 
 /** Resource tags. */
-export type ClustersUpdateSecretsLocationsResponseTagsMap = {
+export type UpdateClusterSecretsLocationsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersUpdateSecretsLocationsResponseTagsMap =
+export const UpdateClusterSecretsLocationsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ClustersUpdateSecretsLocationsResponseTagsMap>;
+  ) as any as S.Schema<UpdateClusterSecretsLocationsResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ClustersUpdateSecretsLocationsResponseIdentityUserAssignedIdentitiesMap =
+export type UpdateClusterSecretsLocationsResponseIdentityUserAssignedIdentitiesMap =
   { [key: string]: UserAssignedIdentity | undefined };
-export const ClustersUpdateSecretsLocationsResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateClusterSecretsLocationsResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<ClustersUpdateSecretsLocationsResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateClusterSecretsLocationsResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ClustersUpdateSecretsLocationsResponseIdentity {
+export interface UpdateClusterSecretsLocationsResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ClustersUpdateSecretsLocationsResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateClusterSecretsLocationsResponseIdentityUserAssignedIdentitiesMap;
 }
-export const ClustersUpdateSecretsLocationsResponseIdentity =
+export const UpdateClusterSecretsLocationsResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(
-        ClustersUpdateSecretsLocationsResponseIdentityUserAssignedIdentitiesMap,
+        UpdateClusterSecretsLocationsResponseIdentityUserAssignedIdentitiesMap,
       ),
     }),
   ).annotate({
-    identifier: "ClustersUpdateSecretsLocationsResponseIdentity",
-  }) as any as S.Schema<ClustersUpdateSecretsLocationsResponseIdentity>;
+    identifier: "UpdateClusterSecretsLocationsResponseIdentity",
+  }) as any as S.Schema<UpdateClusterSecretsLocationsResponseIdentity>;
 
-export interface UpdateClusterSecretLocationResponse {
+export interface UpdateClusterSecretsLocationsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11388,31 +18037,174 @@ export interface UpdateClusterSecretLocationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersUpdateSecretsLocationsResponseTagsMap;
+  tags?: UpdateClusterSecretsLocationsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cluster properties. */
   properties?: ClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ClustersUpdateSecretsLocationsResponseIdentity;
+  identity?: UpdateClusterSecretsLocationsResponseIdentity;
   /** This property identifies the purpose of the Cluster deployment. For example, a valid value is AzureLocal */
   kind?: string;
 }
-export const UpdateClusterSecretLocationResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateClusterSecretsLocationsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateClusterSecretsLocationsResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ClusterProperties),
+      identity: S.optional(UpdateClusterSecretsLocationsResponseIdentity),
+      kind: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "UpdateClusterSecretsLocationsResponse",
+}) as any as S.Schema<UpdateClusterSecretsLocationsResponse>;
+
+/** Resource tags. */
+export type UpdateEdgeMachineRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEdgeMachineRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEdgeMachineRequestTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateEdgeMachineRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: LogCollectionPropertiesInput | undefined;
+};
+export const UpdateEdgeMachineRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    LogCollectionPropertiesInput,
+  ) as any as S.Schema<UpdateEdgeMachineRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateEdgeMachineRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateEdgeMachineRequestIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateEdgeMachineRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdateEdgeMachineRequestIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateEdgeMachineRequestIdentity",
+}) as any as S.Schema<UpdateEdgeMachineRequestIdentity>;
+
+export interface UpdateEdgeMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Resource tags. */
+  tags?: UpdateEdgeMachineRequestTagsMap;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateEdgeMachineRequestIdentity;
+}
+export const UpdateEdgeMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateEdgeMachineRequestTagsMap),
+    identity: S.optional(UpdateEdgeMachineRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEdgeMachineRequest",
+}) as any as S.Schema<UpdateEdgeMachineRequest>;
+
+/** Resource tags. */
+export type UpdateEdgeMachineResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEdgeMachineResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEdgeMachineResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateEdgeMachineResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UpdateEdgeMachineResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<UpdateEdgeMachineResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateEdgeMachineResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateEdgeMachineResponseIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateEdgeMachineResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdateEdgeMachineResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdateEdgeMachineResponseIdentity",
+}) as any as S.Schema<UpdateEdgeMachineResponseIdentity>;
+
+export interface UpdateEdgeMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateEdgeMachineResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EdgeMachineProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateEdgeMachineResponseIdentity;
+}
+export const UpdateEdgeMachineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersUpdateSecretsLocationsResponseTagsMap),
+    tags: S.optional(UpdateEdgeMachineResponseTagsMap),
     location: S.String,
-    properties: S.optional(ClusterProperties),
-    identity: S.optional(ClustersUpdateSecretsLocationsResponseIdentity),
-    kind: S.optional(S.String),
+    properties: S.optional(EdgeMachineProperties),
+    identity: S.optional(UpdateEdgeMachineResponseIdentity),
   }),
 ).annotate({
-  identifier: "UpdateClusterSecretLocationResponse",
-}) as any as S.Schema<UpdateClusterSecretLocationResponse>;
+  identifier: "UpdateEdgeMachineResponse",
+}) as any as S.Schema<UpdateEdgeMachineResponse>;
 
 /** Describes the properties of a Machine Extension that can be updated. */
 export interface ExtensionPatchParameters {
@@ -11476,7 +18268,7 @@ export const UpdateExtensionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/arcSettings/{arcSettingName}/extensions/{extensionName}",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -11508,13 +18300,13 @@ export const UpdateExtensionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateExtensionResponse>;
 
 /** Resource tags */
-export type GalleryImagesUpdateRequestTagsMap = {
+export type UpdateGalleryImageRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GalleryImagesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGalleryImageRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GalleryImagesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateGalleryImageRequestTagsMap>;
 
 export interface UpdateGalleryImageRequest {
   /** The ID of the target subscription. */
@@ -11524,14 +18316,14 @@ export interface UpdateGalleryImageRequest {
   /** Name of the gallery image */
   galleryImageName: string;
   /** Resource tags */
-  tags?: GalleryImagesUpdateRequestTagsMap;
+  tags?: UpdateGalleryImageRequestTagsMap;
 }
 export const UpdateGalleryImageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     galleryImageName: S.String.pipe(T.Label()),
-    tags: S.optional(GalleryImagesUpdateRequestTagsMap),
+    tags: S.optional(UpdateGalleryImageRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -11545,18 +18337,18 @@ export const UpdateGalleryImageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateGalleryImageRequest>;
 
 /** Resource tags. */
-export type GalleryImagesUpdateResponseTagsMap = {
+export type UpdateGalleryImageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GalleryImagesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGalleryImageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GalleryImagesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateGalleryImageResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type GalleryImagesUpdateResponseExtendedLocation =
+export type UpdateGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const GalleryImagesUpdateResponseExtendedLocation =
+export const UpdateGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface UpdateGalleryImageResponse {
@@ -11569,7 +18361,7 @@ export interface UpdateGalleryImageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GalleryImagesUpdateResponseTagsMap;
+  tags?: UpdateGalleryImageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: GalleryImageProperties;
@@ -11582,7 +18374,7 @@ export const UpdateGalleryImageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GalleryImagesUpdateResponseTagsMap),
+    tags: S.optional(UpdateGalleryImageResponseTagsMap),
     location: S.String,
     properties: S.optional(GalleryImageProperties),
     extendedLocation: S.optional(
@@ -11594,13 +18386,13 @@ export const UpdateGalleryImageResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateGalleryImageResponse>;
 
 /** Resource tags */
-export type LogicalNetworksUpdateRequestTagsMap = {
+export type UpdateLogicalNetworkRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const LogicalNetworksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateLogicalNetworkRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LogicalNetworksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateLogicalNetworkRequestTagsMap>;
 
 export interface UpdateLogicalNetworkRequest {
   /** The ID of the target subscription. */
@@ -11610,14 +18402,14 @@ export interface UpdateLogicalNetworkRequest {
   /** Name of the logical network */
   logicalNetworkName: string;
   /** Resource tags */
-  tags?: LogicalNetworksUpdateRequestTagsMap;
+  tags?: UpdateLogicalNetworkRequestTagsMap;
 }
 export const UpdateLogicalNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     logicalNetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(LogicalNetworksUpdateRequestTagsMap),
+    tags: S.optional(UpdateLogicalNetworkRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -11631,18 +18423,18 @@ export const UpdateLogicalNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLogicalNetworkRequest>;
 
 /** Resource tags. */
-export type LogicalNetworksUpdateResponseTagsMap = {
+export type UpdateLogicalNetworkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LogicalNetworksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateLogicalNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LogicalNetworksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateLogicalNetworkResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type LogicalNetworksUpdateResponseExtendedLocation =
+export type UpdateLogicalNetworkResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const LogicalNetworksUpdateResponseExtendedLocation =
+export const UpdateLogicalNetworkResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface UpdateLogicalNetworkResponse {
@@ -11655,7 +18447,7 @@ export interface UpdateLogicalNetworkResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LogicalNetworksUpdateResponseTagsMap;
+  tags?: UpdateLogicalNetworkResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: LogicalNetworkProperties;
@@ -11668,7 +18460,7 @@ export const UpdateLogicalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LogicalNetworksUpdateResponseTagsMap),
+    tags: S.optional(UpdateLogicalNetworkResponseTagsMap),
     location: S.String,
     properties: S.optional(LogicalNetworkProperties),
     extendedLocation: S.optional(
@@ -11680,14 +18472,14 @@ export const UpdateLogicalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLogicalNetworkResponse>;
 
 /** Resource tags */
-export type MarketplaceGalleryImagesUpdateRequestTagsMap = {
+export type UpdateMarketplaceGalleryImageRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MarketplaceGalleryImagesUpdateRequestTagsMap =
+export const UpdateMarketplaceGalleryImageRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MarketplaceGalleryImagesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateMarketplaceGalleryImageRequestTagsMap>;
 
 export interface UpdateMarketplaceGalleryImageRequest {
   /** The ID of the target subscription. */
@@ -11697,7 +18489,7 @@ export interface UpdateMarketplaceGalleryImageRequest {
   /** Name of the marketplace gallery image */
   marketplaceGalleryImageName: string;
   /** Resource tags */
-  tags?: MarketplaceGalleryImagesUpdateRequestTagsMap;
+  tags?: UpdateMarketplaceGalleryImageRequestTagsMap;
 }
 export const UpdateMarketplaceGalleryImageRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -11705,7 +18497,7 @@ export const UpdateMarketplaceGalleryImageRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       marketplaceGalleryImageName: S.String.pipe(T.Label()),
-      tags: S.optional(MarketplaceGalleryImagesUpdateRequestTagsMap),
+      tags: S.optional(UpdateMarketplaceGalleryImageRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -11719,19 +18511,19 @@ export const UpdateMarketplaceGalleryImageRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateMarketplaceGalleryImageRequest>;
 
 /** Resource tags. */
-export type MarketplaceGalleryImagesUpdateResponseTagsMap = {
+export type UpdateMarketplaceGalleryImageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MarketplaceGalleryImagesUpdateResponseTagsMap =
+export const UpdateMarketplaceGalleryImageResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<MarketplaceGalleryImagesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateMarketplaceGalleryImageResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type MarketplaceGalleryImagesUpdateResponseExtendedLocation =
+export type UpdateMarketplaceGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const MarketplaceGalleryImagesUpdateResponseExtendedLocation =
+export const UpdateMarketplaceGalleryImageResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface UpdateMarketplaceGalleryImageResponse {
@@ -11744,7 +18536,7 @@ export interface UpdateMarketplaceGalleryImageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MarketplaceGalleryImagesUpdateResponseTagsMap;
+  tags?: UpdateMarketplaceGalleryImageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: MarketplaceGalleryImageProperties;
@@ -11758,7 +18550,7 @@ export const UpdateMarketplaceGalleryImageResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(MarketplaceGalleryImagesUpdateResponseTagsMap),
+      tags: S.optional(UpdateMarketplaceGalleryImageResponseTagsMap),
       location: S.String,
       properties: S.optional(MarketplaceGalleryImageProperties),
       extendedLocation: S.optional(
@@ -11770,13 +18562,13 @@ export const UpdateMarketplaceGalleryImageResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateMarketplaceGalleryImageResponse>;
 
 /** Resource tags */
-export type NetworkInterfacesUpdateRequestTagsMap = {
+export type UpdateNetworkInterfaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkInterfacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkInterfaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkInterfacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkInterfaceRequestTagsMap>;
 
 export interface UpdateNetworkInterfaceRequest {
   /** The ID of the target subscription. */
@@ -11786,14 +18578,14 @@ export interface UpdateNetworkInterfaceRequest {
   /** Name of the network interface */
   networkInterfaceName: string;
   /** Resource tags */
-  tags?: NetworkInterfacesUpdateRequestTagsMap;
+  tags?: UpdateNetworkInterfaceRequestTagsMap;
 }
 export const UpdateNetworkInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkInterfaceName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkInterfacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkInterfaceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -11807,18 +18599,18 @@ export const UpdateNetworkInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkInterfaceRequest>;
 
 /** Resource tags. */
-export type NetworkInterfacesUpdateResponseTagsMap = {
+export type UpdateNetworkInterfaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkInterfacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkInterfaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkInterfacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkInterfaceResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type NetworkInterfacesUpdateResponseExtendedLocation =
+export type UpdateNetworkInterfaceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const NetworkInterfacesUpdateResponseExtendedLocation =
+export const UpdateNetworkInterfaceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface UpdateNetworkInterfaceResponse {
@@ -11831,7 +18623,7 @@ export interface UpdateNetworkInterfaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkInterfacesUpdateResponseTagsMap;
+  tags?: UpdateNetworkInterfaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: NetworkInterfaceProperties;
@@ -11844,7 +18636,7 @@ export const UpdateNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkInterfacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkInterfaceResponseTagsMap),
     location: S.String,
     properties: S.optional(NetworkInterfaceProperties),
     extendedLocation: S.optional(
@@ -11854,374 +18646,6 @@ export const UpdateNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateNetworkInterfaceResponse",
 }) as any as S.Schema<UpdateNetworkInterfaceResponse>;
-
-export interface UpdateRunsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the Update */
-  updateName: string;
-  /** The name of the Update Run */
-  updateRunName: string;
-}
-export const UpdateRunsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    updateName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns/{updateRunName}",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsDeleteRequest",
-}) as any as S.Schema<UpdateRunsDeleteRequest>;
-
-export interface UpdateRunsDeleteResponse {}
-export const UpdateRunsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpdateRunsDeleteResponse",
-}) as any as S.Schema<UpdateRunsDeleteResponse>;
-
-export interface UpdateRunsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the Update */
-  updateName: string;
-  /** The name of the Update Run */
-  updateRunName: string;
-}
-export const UpdateRunsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    updateName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns/{updateRunName}",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsGetRequest",
-}) as any as S.Schema<UpdateRunsGetRequest>;
-
-/** Represents the current state of the update run. Indicates whether the update is in progress, has completed successfully, failed, or is in an unknown state. */
-export type UpdateRunPropertiesState =
-  | "Unknown"
-  | "Succeeded"
-  | "InProgress"
-  | "Failed";
-export const UpdateRunPropertiesState = /*@__PURE__*/ S.String;
-
-/** Recursive model for child steps of this step. */
-export type StepStepsList = Array<Step>;
-export const StepStepsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => Step),
-) as any as S.Schema<StepStepsList>;
-
-/** Progress representation of the update run steps. */
-export interface Step {
-  /** Name of the step. */
-  name?: string;
-  /** More detailed description of the step. */
-  description?: string;
-  /** Error message, specified if the step is in a failed state. */
-  errorMessage?: string;
-  /** Status of the step, bubbled up from the ECE action plan for installation attempts. Values are: 'Success', 'Error', 'InProgress', and 'Unknown status'. */
-  status?: string;
-  /** When the step started, or empty if it has not started executing. */
-  startTimeUtc?: string;
-  /** When the step reached a terminal state. */
-  endTimeUtc?: string;
-  /** Completion time of this step or the last completed sub-step. */
-  lastUpdatedTimeUtc?: string;
-  /** Expected execution time of a given step. This is optionally authored in the update action plan and can be empty. */
-  expectedExecutionTime?: string;
-  /** Recursive model for child steps of this step. */
-  steps?: StepStepsList;
-}
-export const Step = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    errorMessage: S.optional(S.String),
-    status: S.optional(S.String),
-    startTimeUtc: S.optional(S.String),
-    endTimeUtc: S.optional(S.String),
-    lastUpdatedTimeUtc: S.optional(S.String),
-    expectedExecutionTime: S.optional(S.String),
-    steps: S.optional(StepStepsList),
-  }),
-).annotate({ identifier: "Step" }) as any as S.Schema<Step>;
-
-/** Details of an Update run */
-export interface UpdateRunProperties {
-  /** Provisioning state of the UpdateRuns proxy resource. Indicates the current lifecycle status of the update operation, such as whether it has been accepted, is in progress, or has completed. */
-  provisioningState?: ProvisioningState;
-  /** Timestamp of the update run was started. */
-  timeStarted?: string;
-  /** Timestamp of the most recently completed step in the update run. */
-  lastUpdatedTime?: string;
-  /** Duration of the update run. */
-  duration?: string;
-  /** Represents the current state of the update run. Indicates whether the update is in progress, has completed successfully, failed, or is in an unknown state. */
-  state?: UpdateRunPropertiesState;
-  /** Progress representation of the update run steps. */
-  progress?: Step;
-}
-export const UpdateRunProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    timeStarted: S.optional(S.String),
-    lastUpdatedTime: S.optional(S.String),
-    duration: S.optional(S.String),
-    state: S.optional(UpdateRunPropertiesState),
-    progress: S.optional(Step),
-  }),
-).annotate({
-  identifier: "UpdateRunProperties",
-}) as any as S.Schema<UpdateRunProperties>;
-
-export interface UpdateRunsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Describes Update Run Properties. */
-  properties?: UpdateRunProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateRunsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunsGetResponse",
-}) as any as S.Schema<UpdateRunsGetResponse>;
-
-export interface UpdateRunsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the Update */
-  updateName: string;
-}
-export const UpdateRunsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    updateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsListRequest",
-}) as any as S.Schema<UpdateRunsListRequest>;
-
-/** Details of an Update run */
-export interface UpdateRun {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Describes Update Run Properties. */
-  properties?: UpdateRunProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "UpdateRun" }) as any as S.Schema<UpdateRun>;
-
-/** The UpdateRun items on this page */
-export type UpdateRunListValueList = Array<UpdateRun>;
-export const UpdateRunListValueList = /*@__PURE__*/ S.Array(
-  UpdateRun,
-) as any as S.Schema<UpdateRunListValueList>;
-
-/** List of Update runs */
-export interface UpdateRunList {
-  /** The UpdateRun items on this page */
-  value: UpdateRunListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const UpdateRunList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: UpdateRunListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "UpdateRunList" }) as any as S.Schema<UpdateRunList>;
-
-/** Details of an Update run */
-export interface UpdateRunPropertiesInput {
-  /** Timestamp of the update run was started. */
-  timeStarted?: string;
-  /** Timestamp of the most recently completed step in the update run. */
-  lastUpdatedTime?: string;
-  /** Duration of the update run. */
-  duration?: string;
-  /** Progress representation of the update run steps. */
-  progress?: Step;
-}
-export const UpdateRunPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timeStarted: S.optional(S.String),
-    lastUpdatedTime: S.optional(S.String),
-    duration: S.optional(S.String),
-    progress: S.optional(Step),
-  }),
-).annotate({
-  identifier: "UpdateRunPropertiesInput",
-}) as any as S.Schema<UpdateRunPropertiesInput>;
-
-export interface UpdateRunsPutRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the Update */
-  updateName: string;
-  /** The name of the Update Run */
-  updateRunName: string;
-  /** Describes Update Run Properties. */
-  properties?: UpdateRunPropertiesInput;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateRunsPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    updateName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-    properties: S.optional(UpdateRunPropertiesInput),
-    location: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/updateRuns/{updateRunName}",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsPutRequest",
-}) as any as S.Schema<UpdateRunsPutRequest>;
-
-export interface UpdateRunsPutResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Describes Update Run Properties. */
-  properties?: UpdateRunProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateRunsPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunsPutResponse",
-}) as any as S.Schema<UpdateRunsPutResponse>;
-
-export interface UpdatesPostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the Update */
-  updateName: string;
-}
-export const UpdatesPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    updateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/apply",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdatesPostRequest",
-}) as any as S.Schema<UpdatesPostRequest>;
-
-export interface UpdatesPostResponse {}
-export const UpdatesPostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpdatesPostResponse",
-}) as any as S.Schema<UpdatesPostResponse>;
 
 export interface UpdatesPrepareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12244,7 +18668,7 @@ export const UpdatesPrepareRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}/prepare",
       code: 200,
-      apiVersion: "2026-04-30",
+      apiVersion: "2026-10-01",
     }),
   ),
 ).annotate({
@@ -12258,164 +18682,14 @@ export const UpdatesPrepareResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdatesPrepareResponse",
 }) as any as S.Schema<UpdatesPrepareResponse>;
 
-/** If update State is HasPrerequisite, this property contains an array of objects describing prerequisite updates before installing this update. Otherwise, it is empty. */
-export type UpdatePropertiesInputPrerequisitesList = Array<UpdatePrerequisite>;
-export const UpdatePropertiesInputPrerequisitesList = /*@__PURE__*/ S.Array(
-  UpdatePrerequisite,
-) as any as S.Schema<UpdatePropertiesInputPrerequisitesList>;
-
-/** An array of component versions for a Solution Bundle update, and an empty array otherwise. */
-export type UpdatePropertiesInputComponentVersionsList =
-  Array<PackageVersionInfo>;
-export const UpdatePropertiesInputComponentVersionsList = /*@__PURE__*/ S.Array(
-  PackageVersionInfo,
-) as any as S.Schema<UpdatePropertiesInputComponentVersionsList>;
-
-/** An array of PrecheckResult objects. */
-export type UpdatePropertiesInputHealthCheckResultList = Array<PrecheckResult>;
-export const UpdatePropertiesInputHealthCheckResultList = /*@__PURE__*/ S.Array(
-  PrecheckResult,
-) as any as S.Schema<UpdatePropertiesInputHealthCheckResultList>;
-
-/** Details of a singular Update in HCI Cluster */
-export interface UpdatePropertiesInput {
-  /** Date that the update was installed. */
-  installedDate?: string;
-  /** Description of the update. */
-  description?: string;
-  /** Minimum Sbe Version of the update. */
-  minSbeVersionRequired?: string;
-  /** Represents the current state of the update as it relates to this stamp. This includes phases such as preparation, installation, scanning, and error handling, providing insight into the update's progress and any issues encountered. */
-  state?: State | (string & {});
-  /** If update State is HasPrerequisite, this property contains an array of objects describing prerequisite updates before installing this update. Otherwise, it is empty. */
-  prerequisites?: UpdatePropertiesInputPrerequisitesList;
-  /** An array of component versions for a Solution Bundle update, and an empty array otherwise. */
-  componentVersions?: UpdatePropertiesInputComponentVersionsList;
-  /** Indicates whether a reboot is required after the update or operation. Helps determine if a system restart is necessary to complete the process. */
-  rebootRequired?: RebootRequirement | (string & {});
-  /** Overall health state for update-specific health checks. */
-  healthState?: HealthState | (string & {});
-  /** An array of PrecheckResult objects. */
-  healthCheckResult?: UpdatePropertiesInputHealthCheckResultList;
-  /** Last time the package-specific checks were run. */
-  healthCheckDate?: string;
-  /** Path where the update package is available. */
-  packagePath?: string;
-  /** Size of the package. This value is a combination of the size from update metadata and size of the payload that results from the live scan operation for OS update content. */
-  packageSizeInMb?: number;
-  /** Display name of the Update */
-  displayName?: string;
-  /** Version of the update. */
-  version?: string;
-  /** Publisher of the update package. */
-  publisher?: string;
-  /** Link to release notes for the update. */
-  releaseLink?: string;
-  /** Indicates how the update content is made available for download. This determines whether the update is sourced locally, from an online repository, or requires user notification. */
-  availabilityType?: AvailabilityType | (string & {});
-  /** Customer-visible type of the update. */
-  packageType?: string;
-  /** Extensible KV pairs serialized as a string. This is currently used to report the stamp OEM family and hardware model information when an update is flagged as Invalid for the stamp based on OEM type. */
-  additionalProperties?: string;
-  /** Additional information regarding the state of the update. See definition of UpdateStateProperties type below for more details on this property. */
-  updateStateProperties?: UpdateStateProperties;
-}
-export const UpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    installedDate: S.optional(S.String),
-    description: S.optional(S.String),
-    minSbeVersionRequired: S.optional(S.String),
-    state: S.optional(State),
-    prerequisites: S.optional(UpdatePropertiesInputPrerequisitesList),
-    componentVersions: S.optional(UpdatePropertiesInputComponentVersionsList),
-    rebootRequired: S.optional(RebootRequirement),
-    healthState: S.optional(HealthState),
-    healthCheckResult: S.optional(UpdatePropertiesInputHealthCheckResultList),
-    healthCheckDate: S.optional(S.String),
-    packagePath: S.optional(S.String),
-    packageSizeInMb: S.optional(S.Number),
-    displayName: S.optional(S.String),
-    version: S.optional(S.String),
-    publisher: S.optional(S.String),
-    releaseLink: S.optional(S.String),
-    availabilityType: S.optional(AvailabilityType),
-    packageType: S.optional(S.String),
-    additionalProperties: S.optional(S.String),
-    updateStateProperties: S.optional(UpdateStateProperties),
-  }),
-).annotate({
-  identifier: "UpdatePropertiesInput",
-}) as any as S.Schema<UpdatePropertiesInput>;
-
-export interface UpdatesPutRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the Update */
-  updateName: string;
-  /** Update properties */
-  properties?: UpdatePropertiesInput;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdatesPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    updateName: S.String.pipe(T.Label()),
-    properties: S.optional(UpdatePropertiesInput),
-    location: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updates/{updateName}",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdatesPutRequest",
-}) as any as S.Schema<UpdatesPutRequest>;
-
-export interface UpdatesPutResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Update properties */
-  properties?: UpdateProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdatesPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdatesPutResponse",
-}) as any as S.Schema<UpdatesPutResponse>;
-
 /** Resource tags */
-export type StorageContainersUpdateRequestTagsMap = {
+export type UpdateStorageContainerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageContainersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageContainerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageContainersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateStorageContainerRequestTagsMap>;
 
 export interface UpdateStorageContainerRequest {
   /** The ID of the target subscription. */
@@ -12425,14 +18699,14 @@ export interface UpdateStorageContainerRequest {
   /** Name of the storage container */
   storageContainerName: string;
   /** Resource tags */
-  tags?: StorageContainersUpdateRequestTagsMap;
+  tags?: UpdateStorageContainerRequestTagsMap;
 }
 export const UpdateStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     storageContainerName: S.String.pipe(T.Label()),
-    tags: S.optional(StorageContainersUpdateRequestTagsMap),
+    tags: S.optional(UpdateStorageContainerRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12446,18 +18720,18 @@ export const UpdateStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateStorageContainerRequest>;
 
 /** Resource tags. */
-export type StorageContainersUpdateResponseTagsMap = {
+export type UpdateStorageContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageContainersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageContainersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateStorageContainerResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type StorageContainersUpdateResponseExtendedLocation =
+export type UpdateStorageContainerResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const StorageContainersUpdateResponseExtendedLocation =
+export const UpdateStorageContainerResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface UpdateStorageContainerResponse {
@@ -12470,7 +18744,7 @@ export interface UpdateStorageContainerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageContainersUpdateResponseTagsMap;
+  tags?: UpdateStorageContainerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: StorageContainerProperties;
@@ -12483,7 +18757,7 @@ export const UpdateStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageContainersUpdateResponseTagsMap),
+    tags: S.optional(UpdateStorageContainerResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageContainerProperties),
     extendedLocation: S.optional(
@@ -12494,443 +18768,14 @@ export const UpdateStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateStorageContainerResponse",
 }) as any as S.Schema<UpdateStorageContainerResponse>;
 
-export interface UpdateSummariesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const UpdateSummariesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateSummariesDeleteRequest",
-}) as any as S.Schema<UpdateSummariesDeleteRequest>;
-
-export interface UpdateSummariesDeleteResponse {}
-export const UpdateSummariesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpdateSummariesDeleteResponse",
-}) as any as S.Schema<UpdateSummariesDeleteResponse>;
-
-export interface UpdateSummariesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const UpdateSummariesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateSummariesGetRequest",
-}) as any as S.Schema<UpdateSummariesGetRequest>;
-
-/** Current version of each updatable component. */
-export type UpdateSummariesPropertiesPackageVersionsList =
-  Array<PackageVersionInfo>;
-export const UpdateSummariesPropertiesPackageVersionsList =
-  /*@__PURE__*/ S.Array(
-    PackageVersionInfo,
-  ) as any as S.Schema<UpdateSummariesPropertiesPackageVersionsList>;
-
-/** An array of pre-check result objects. */
-export type UpdateSummariesPropertiesHealthCheckResultList =
-  Array<PrecheckResult>;
-export const UpdateSummariesPropertiesHealthCheckResultList =
-  /*@__PURE__*/ S.Array(
-    PrecheckResult,
-  ) as any as S.Schema<UpdateSummariesPropertiesHealthCheckResultList>;
-
-/** Overall update state of the stamp. Indicates the current status of update deployment across the stamp, including preparation, application, and any issues encountered. */
-export type UpdateSummariesPropertiesState =
-  | "Unknown"
-  | "AppliedSuccessfully"
-  | "UpdateAvailable"
-  | "UpdateInProgress"
-  | "UpdateFailed"
-  | "NeedsAttention"
-  | "PreparationInProgress"
-  | "PreparationFailed";
-export const UpdateSummariesPropertiesState = /*@__PURE__*/ S.String;
-
-/** Properties of Update summaries */
-export interface UpdateSummariesProperties {
-  /** Provisioning state of the UpdateSummaries proxy resource. Indicates the current lifecycle status of the update summary operation, such as whether it has been accepted, is in progress, or has completed. */
-  provisioningState?: ProvisioningState;
-  /** OEM family name. */
-  oemFamily?: string;
-  /** Current OEM Version. */
-  currentOemVersion?: string;
-  /** Name of the hardware model. */
-  hardwareModel?: string;
-  /** Current version of each updatable component. */
-  packageVersions?: UpdateSummariesPropertiesPackageVersionsList;
-  /** Current Solution Bundle version of the stamp. */
-  currentVersion?: string;
-  /** Current Sbe version of the stamp. */
-  currentSbeVersion?: string;
-  /** Last time an update installation completed successfully. */
-  lastUpdated?: string;
-  /** Last time the update service successfully checked for updates */
-  lastChecked?: string;
-  /** Overall health state for update-specific health checks. */
-  healthState?: HealthState;
-  /** An array of pre-check result objects. */
-  healthCheckResult?: UpdateSummariesPropertiesHealthCheckResultList;
-  /** Last time the package-specific checks were run. */
-  healthCheckDate?: string;
-  /** Overall update state of the stamp. Indicates the current status of update deployment across the stamp, including preparation, application, and any issues encountered. */
-  state?: UpdateSummariesPropertiesState;
-}
-export const UpdateSummariesProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    oemFamily: S.optional(S.String),
-    currentOemVersion: S.optional(S.String),
-    hardwareModel: S.optional(S.String),
-    packageVersions: S.optional(UpdateSummariesPropertiesPackageVersionsList),
-    currentVersion: S.optional(S.String),
-    currentSbeVersion: S.optional(S.String),
-    lastUpdated: S.optional(S.String),
-    lastChecked: S.optional(S.String),
-    healthState: S.optional(HealthState),
-    healthCheckResult: S.optional(
-      UpdateSummariesPropertiesHealthCheckResultList,
-    ),
-    healthCheckDate: S.optional(S.String),
-    state: S.optional(UpdateSummariesPropertiesState),
-  }),
-).annotate({
-  identifier: "UpdateSummariesProperties",
-}) as any as S.Schema<UpdateSummariesProperties>;
-
-export interface UpdateSummariesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Update summaries properties */
-  properties?: UpdateSummariesProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateSummariesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateSummariesProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateSummariesGetResponse",
-}) as any as S.Schema<UpdateSummariesGetResponse>;
-
-export interface UpdateSummariesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const UpdateSummariesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateSummariesListRequest",
-}) as any as S.Schema<UpdateSummariesListRequest>;
-
-/** Get the update summaries for the cluster */
-export interface UpdateSummaries {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Update summaries properties */
-  properties?: UpdateSummariesProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateSummaries = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateSummariesProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateSummaries",
-}) as any as S.Schema<UpdateSummaries>;
-
-/** The UpdateSummaries items on this page */
-export type UpdateSummariesListValueList = Array<UpdateSummaries>;
-export const UpdateSummariesListValueList = /*@__PURE__*/ S.Array(
-  UpdateSummaries,
-) as any as S.Schema<UpdateSummariesListValueList>;
-
-/** List of Update Summaries */
-export interface UpdateSummariesList {
-  /** The UpdateSummaries items on this page */
-  value: UpdateSummariesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const UpdateSummariesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: UpdateSummariesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateSummariesList",
-}) as any as S.Schema<UpdateSummariesList>;
-
-export interface UpdateSummariesOperationGroupCheckHealthRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const UpdateSummariesOperationGroupCheckHealthRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default/checkHealth",
-        code: 200,
-        apiVersion: "2026-04-30",
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateSummariesOperationGroupCheckHealthRequest",
-  }) as any as S.Schema<UpdateSummariesOperationGroupCheckHealthRequest>;
-
-export interface UpdateSummariesOperationGroupCheckHealthResponse {}
-export const UpdateSummariesOperationGroupCheckHealthResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "UpdateSummariesOperationGroupCheckHealthResponse",
-  }) as any as S.Schema<UpdateSummariesOperationGroupCheckHealthResponse>;
-
-export interface UpdateSummariesOperationGroupCheckUpdatesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Name of update */
-  updateName?: string;
-}
-export const UpdateSummariesOperationGroupCheckUpdatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      updateName: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default/checkUpdates",
-        code: 200,
-        apiVersion: "2026-04-30",
-      }),
-    ),
-  ).annotate({
-    identifier: "UpdateSummariesOperationGroupCheckUpdatesRequest",
-  }) as any as S.Schema<UpdateSummariesOperationGroupCheckUpdatesRequest>;
-
-export interface UpdateSummariesOperationGroupCheckUpdatesResponse {}
-export const UpdateSummariesOperationGroupCheckUpdatesResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "UpdateSummariesOperationGroupCheckUpdatesResponse",
-  }) as any as S.Schema<UpdateSummariesOperationGroupCheckUpdatesResponse>;
-
-/** Current version of each updatable component. */
-export type UpdateSummariesPropertiesInputPackageVersionsList =
-  Array<PackageVersionInfo>;
-export const UpdateSummariesPropertiesInputPackageVersionsList =
-  /*@__PURE__*/ S.Array(
-    PackageVersionInfo,
-  ) as any as S.Schema<UpdateSummariesPropertiesInputPackageVersionsList>;
-
-/** An array of pre-check result objects. */
-export type UpdateSummariesPropertiesInputHealthCheckResultList =
-  Array<PrecheckResult>;
-export const UpdateSummariesPropertiesInputHealthCheckResultList =
-  /*@__PURE__*/ S.Array(
-    PrecheckResult,
-  ) as any as S.Schema<UpdateSummariesPropertiesInputHealthCheckResultList>;
-
-/** Properties of Update summaries */
-export interface UpdateSummariesPropertiesInput {
-  /** OEM family name. */
-  oemFamily?: string;
-  /** Current OEM Version. */
-  currentOemVersion?: string;
-  /** Name of the hardware model. */
-  hardwareModel?: string;
-  /** Current version of each updatable component. */
-  packageVersions?: UpdateSummariesPropertiesInputPackageVersionsList;
-  /** Current Solution Bundle version of the stamp. */
-  currentVersion?: string;
-  /** Current Sbe version of the stamp. */
-  currentSbeVersion?: string;
-  /** Last time an update installation completed successfully. */
-  lastUpdated?: string;
-  /** Last time the update service successfully checked for updates */
-  lastChecked?: string;
-  /** Overall health state for update-specific health checks. */
-  healthState?: HealthState | (string & {});
-  /** An array of pre-check result objects. */
-  healthCheckResult?: UpdateSummariesPropertiesInputHealthCheckResultList;
-  /** Last time the package-specific checks were run. */
-  healthCheckDate?: string;
-  /** Overall update state of the stamp. Indicates the current status of update deployment across the stamp, including preparation, application, and any issues encountered. */
-  state?: UpdateSummariesPropertiesState | (string & {});
-}
-export const UpdateSummariesPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oemFamily: S.optional(S.String),
-    currentOemVersion: S.optional(S.String),
-    hardwareModel: S.optional(S.String),
-    packageVersions: S.optional(
-      UpdateSummariesPropertiesInputPackageVersionsList,
-    ),
-    currentVersion: S.optional(S.String),
-    currentSbeVersion: S.optional(S.String),
-    lastUpdated: S.optional(S.String),
-    lastChecked: S.optional(S.String),
-    healthState: S.optional(HealthState),
-    healthCheckResult: S.optional(
-      UpdateSummariesPropertiesInputHealthCheckResultList,
-    ),
-    healthCheckDate: S.optional(S.String),
-    state: S.optional(UpdateSummariesPropertiesState),
-  }),
-).annotate({
-  identifier: "UpdateSummariesPropertiesInput",
-}) as any as S.Schema<UpdateSummariesPropertiesInput>;
-
-export interface UpdateSummariesPutRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Update summaries properties */
-  properties?: UpdateSummariesPropertiesInput;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateSummariesPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    properties: S.optional(UpdateSummariesPropertiesInput),
-    location: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/updateSummaries/default",
-      code: 200,
-      apiVersion: "2026-04-30",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateSummariesPutRequest",
-}) as any as S.Schema<UpdateSummariesPutRequest>;
-
-export interface UpdateSummariesPutResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Update summaries properties */
-  properties?: UpdateSummariesProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const UpdateSummariesPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateSummariesProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateSummariesPutResponse",
-}) as any as S.Schema<UpdateSummariesPutResponse>;
-
 /** Resource tags */
-export type VirtualHardDisksUpdateRequestTagsMap = {
+export type UpdateVirtualHardDiskRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualHardDisksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualHardDiskRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualHardDisksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVirtualHardDiskRequestTagsMap>;
 
 export interface UpdateVirtualHardDiskRequest {
   /** The ID of the target subscription. */
@@ -12940,14 +18785,14 @@ export interface UpdateVirtualHardDiskRequest {
   /** Name of the virtual hard disk */
   virtualHardDiskName: string;
   /** Resource tags */
-  tags?: VirtualHardDisksUpdateRequestTagsMap;
+  tags?: UpdateVirtualHardDiskRequestTagsMap;
 }
 export const UpdateVirtualHardDiskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualHardDiskName: S.String.pipe(T.Label()),
-    tags: S.optional(VirtualHardDisksUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualHardDiskRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12961,18 +18806,18 @@ export const UpdateVirtualHardDiskRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualHardDiskRequest>;
 
 /** Resource tags. */
-export type VirtualHardDisksUpdateResponseTagsMap = {
+export type UpdateVirtualHardDiskResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualHardDisksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualHardDiskResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualHardDisksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVirtualHardDiskResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type VirtualHardDisksUpdateResponseExtendedLocation =
+export type UpdateVirtualHardDiskResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const VirtualHardDisksUpdateResponseExtendedLocation =
+export const UpdateVirtualHardDiskResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 export interface UpdateVirtualHardDiskResponse {
@@ -12985,7 +18830,7 @@ export interface UpdateVirtualHardDiskResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualHardDisksUpdateResponseTagsMap;
+  tags?: UpdateVirtualHardDiskResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: VirtualHardDiskProperties;
@@ -12998,7 +18843,7 @@ export const UpdateVirtualHardDiskResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualHardDisksUpdateResponseTagsMap),
+    tags: S.optional(UpdateVirtualHardDiskResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualHardDiskProperties),
     extendedLocation: S.optional(
@@ -13173,36 +19018,36 @@ export const VirtualMachineInstanceUpdateProperties = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VirtualMachineInstanceUpdateProperties>;
 
 /** The identity type. */
-export type VirtualMachineInstancesUpdateRequestIdentityType = "SystemAssigned";
-export const VirtualMachineInstancesUpdateRequestIdentityType =
+export type UpdateVirtualMachineInstanceRequestIdentityType = "SystemAssigned";
+export const UpdateVirtualMachineInstanceRequestIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Identity for the resource. */
-export interface VirtualMachineInstancesUpdateRequestIdentity {
+export interface UpdateVirtualMachineInstanceRequestIdentity {
   /** The identity type. */
-  type?: VirtualMachineInstancesUpdateRequestIdentityType | (string & {});
+  type?: UpdateVirtualMachineInstanceRequestIdentityType | (string & {});
 }
-export const VirtualMachineInstancesUpdateRequestIdentity =
+export const UpdateVirtualMachineInstanceRequestIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: S.optional(VirtualMachineInstancesUpdateRequestIdentityType),
+      type: S.optional(UpdateVirtualMachineInstanceRequestIdentityType),
     }),
   ).annotate({
-    identifier: "VirtualMachineInstancesUpdateRequestIdentity",
-  }) as any as S.Schema<VirtualMachineInstancesUpdateRequestIdentity>;
+    identifier: "UpdateVirtualMachineInstanceRequestIdentity",
+  }) as any as S.Schema<UpdateVirtualMachineInstanceRequestIdentity>;
 
 export interface UpdateVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
   resourceUri: string;
   properties?: VirtualMachineInstanceUpdateProperties;
   /** Identity for the resource. */
-  identity?: VirtualMachineInstancesUpdateRequestIdentity;
+  identity?: UpdateVirtualMachineInstanceRequestIdentity;
 }
 export const UpdateVirtualMachineInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     properties: S.optional(VirtualMachineInstanceUpdateProperties),
-    identity: S.optional(VirtualMachineInstancesUpdateRequestIdentity),
+    identity: S.optional(UpdateVirtualMachineInstanceRequestIdentity),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -13216,36 +19061,35 @@ export const UpdateVirtualMachineInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualMachineInstanceRequest>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineInstancesUpdateResponseExtendedLocation =
+export type UpdateVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
-export const VirtualMachineInstancesUpdateResponseExtendedLocation =
+export const UpdateVirtualMachineInstanceResponseExtendedLocation =
   GalleryImagesCreateOrUpdateResponseExtendedLocation;
 
 /** The identity type. */
-export type VirtualMachineInstancesUpdateResponseIdentityType =
-  "SystemAssigned";
-export const VirtualMachineInstancesUpdateResponseIdentityType =
+export type UpdateVirtualMachineInstanceResponseIdentityType = "SystemAssigned";
+export const UpdateVirtualMachineInstanceResponseIdentityType =
   /*@__PURE__*/ S.String;
 
 /** Identity for the resource. */
-export interface VirtualMachineInstancesUpdateResponseIdentity {
+export interface UpdateVirtualMachineInstanceResponseIdentity {
   /** The principal ID of resource identity. */
   principalId?: string;
   /** The tenant ID of resource. */
   tenantId?: string;
   /** The identity type. */
-  type?: VirtualMachineInstancesUpdateResponseIdentityType;
+  type?: UpdateVirtualMachineInstanceResponseIdentityType;
 }
-export const VirtualMachineInstancesUpdateResponseIdentity =
+export const UpdateVirtualMachineInstanceResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
-      type: S.optional(VirtualMachineInstancesUpdateResponseIdentityType),
+      type: S.optional(UpdateVirtualMachineInstanceResponseIdentityType),
     }),
   ).annotate({
-    identifier: "VirtualMachineInstancesUpdateResponseIdentity",
-  }) as any as S.Schema<VirtualMachineInstancesUpdateResponseIdentity>;
+    identifier: "UpdateVirtualMachineInstanceResponseIdentity",
+  }) as any as S.Schema<UpdateVirtualMachineInstanceResponseIdentity>;
 
 export interface UpdateVirtualMachineInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -13260,7 +19104,7 @@ export interface UpdateVirtualMachineInstanceResponse {
   /** The complex type of the extended location. */
   extendedLocation?: GalleryImagesCreateOrUpdateResponseExtendedLocation;
   /** Identity for the resource. */
-  identity?: VirtualMachineInstancesUpdateResponseIdentity;
+  identity?: UpdateVirtualMachineInstanceResponseIdentity;
 }
 export const UpdateVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -13273,11 +19117,218 @@ export const UpdateVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(
       extendedLocation: S.optional(
         GalleryImagesCreateOrUpdateResponseExtendedLocation,
       ),
-      identity: S.optional(VirtualMachineInstancesUpdateResponseIdentity),
+      identity: S.optional(UpdateVirtualMachineInstanceResponseIdentity),
     }),
 ).annotate({
   identifier: "UpdateVirtualMachineInstanceResponse",
 }) as any as S.Schema<UpdateVirtualMachineInstanceResponse>;
+
+export type RawCertificateDataCertificatesList = Array<string>;
+export const RawCertificateDataCertificatesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RawCertificateDataCertificatesList>;
+
+export interface RawCertificateData {
+  certificates?: RawCertificateDataCertificatesList;
+}
+export const RawCertificateData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificates: S.optional(RawCertificateDataCertificatesList),
+  }),
+).annotate({
+  identifier: "RawCertificateData",
+}) as any as S.Schema<RawCertificateData>;
+
+export interface UploadClusterCertificateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  properties?: RawCertificateData;
+}
+export const UploadClusterCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    properties: S.optional(RawCertificateData),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/clusters/{clusterName}/uploadCertificate",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "UploadClusterCertificateRequest",
+}) as any as S.Schema<UploadClusterCertificateRequest>;
+
+export interface UploadClusterCertificateResponse {}
+export const UploadClusterCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UploadClusterCertificateResponse",
+}) as any as S.Schema<UploadClusterCertificateResponse>;
+
+/** Node Ids against which, current node has to be validated. */
+export type ValidateEdgeDeviceRequestEdgeDeviceIdsList = Array<string>;
+export const ValidateEdgeDeviceRequestEdgeDeviceIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ValidateEdgeDeviceRequestEdgeDeviceIdsList>;
+
+export interface ValidateEdgeDeviceRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** Name of Device */
+  edgeDeviceName: string;
+  /** Node Ids against which, current node has to be validated. */
+  edgeDeviceIds: ValidateEdgeDeviceRequestEdgeDeviceIdsList;
+  /** Additional info required for validation. */
+  additionalInfo?: string;
+}
+export const ValidateEdgeDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    edgeDeviceName: S.String.pipe(T.Label()),
+    edgeDeviceIds: ValidateEdgeDeviceRequestEdgeDeviceIdsList,
+    additionalInfo: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{resourceUri}/providers/Microsoft.AzureStackHCI/edgeDevices/{edgeDeviceName}/validate",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateEdgeDeviceRequest",
+}) as any as S.Schema<ValidateEdgeDeviceRequest>;
+
+/** An Accepted response with an Operation-Location header. */
+export interface ValidateResponse {
+  /** edge device validation status */
+  status?: string;
+}
+export const ValidateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ValidateResponse",
+}) as any as S.Schema<ValidateResponse>;
+
+/** Machine Ids against which, current machine has to be validated. */
+export type ValidateEdgeMachineRequestEdgeMachineIdsList = Array<string>;
+export const ValidateEdgeMachineRequestEdgeMachineIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ValidateEdgeMachineRequestEdgeMachineIdsList>;
+
+export interface ValidateEdgeMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Device */
+  edgeMachineName: string;
+  /** Machine Ids against which, current machine has to be validated. */
+  edgeMachineIds: ValidateEdgeMachineRequestEdgeMachineIdsList;
+  /** Additional info required for validation. */
+  additionalInfo?: string;
+}
+export const ValidateEdgeMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeMachineName: S.String.pipe(T.Label()),
+    edgeMachineIds: ValidateEdgeMachineRequestEdgeMachineIdsList,
+    additionalInfo: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/edgeMachines/{edgeMachineName}/validate",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateEdgeMachineRequest",
+}) as any as S.Schema<ValidateEdgeMachineRequest>;
+
+/** The validate response for Edge Machine. */
+export interface EdgeMachineValidateResponse {
+  /** Edge machine validation status. */
+  status?: string;
+}
+export const EdgeMachineValidateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EdgeMachineValidateResponse",
+}) as any as S.Schema<EdgeMachineValidateResponse>;
+
+/** Ownership Voucher Details. */
+export type ValidateOwnershipVoucherRequestOwnershipVoucherDetailsList =
+  Array<OwnershipVoucherDetailsInput>;
+export const ValidateOwnershipVoucherRequestOwnershipVoucherDetailsList =
+  /*@__PURE__*/ S.Array(
+    OwnershipVoucherDetailsInput,
+  ) as any as S.Schema<ValidateOwnershipVoucherRequestOwnershipVoucherDetailsList>;
+
+export interface ValidateOwnershipVoucherRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** Ownership Voucher Details. */
+  ownershipVoucherDetails: ValidateOwnershipVoucherRequestOwnershipVoucherDetailsList;
+}
+export const ValidateOwnershipVoucherRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    ownershipVoucherDetails:
+      ValidateOwnershipVoucherRequestOwnershipVoucherDetailsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/locations/{location}/validateOwnershipVouchers",
+      code: 200,
+      apiVersion: "2026-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateOwnershipVoucherRequest",
+}) as any as S.Schema<ValidateOwnershipVoucherRequest>;
+
+/** Ownership Voucher Validation Details. */
+export type ValidateOwnershipVouchersResponseOwnershipVoucherValidationDetailsList =
+  Array<OwnershipVoucherValidationDetails>;
+export const ValidateOwnershipVouchersResponseOwnershipVoucherValidationDetailsList =
+  /*@__PURE__*/ S.Array(
+    OwnershipVoucherValidationDetails,
+  ) as any as S.Schema<ValidateOwnershipVouchersResponseOwnershipVoucherValidationDetailsList>;
+
+/** Validate Ownership Voucher Response */
+export interface ValidateOwnershipVouchersResponse {
+  /** Ownership Voucher Validation Details. */
+  ownershipVoucherValidationDetails: ValidateOwnershipVouchersResponseOwnershipVoucherValidationDetailsList;
+}
+export const ValidateOwnershipVouchersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownershipVoucherValidationDetails:
+      ValidateOwnershipVouchersResponseOwnershipVoucherValidationDetailsList,
+  }),
+).annotate({
+  identifier: "ValidateOwnershipVouchersResponse",
+}) as any as S.Schema<ValidateOwnershipVouchersResponse>;
 
 /** Resource tags. */
 export type VirtualHardDisksCreateOrUpdateRequestTagsMap = {
@@ -13840,6 +19891,21 @@ export const ArcSettingsConsentAndInstallDefaultExtensions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ArcSettingsInitializeDisableProcessError = AzureOpError;
+/** Initializes ARC Disable process on the cluster */
+export const ArcSettingsInitializeDisableProcess: API.OperationMethod<
+  ArcSettingsInitializeDisableProcessRequest,
+  ArcSettingsInitializeDisableProcessResponse,
+  ArcSettingsInitializeDisableProcessError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ArcSettingsInitializeDisableProcessRequest,
+  output: ArcSettingsInitializeDisableProcessResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ArcSettingsReconcileError = AzureOpError;
 /** Reconcile Arc Settings with information related to all nodes. */
 export const ArcSettingsReconcile: API.OperationMethod<
@@ -13850,6 +19916,51 @@ export const ArcSettingsReconcile: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ArcSettingsReconcileRequest,
   output: ArcSettingsReconcileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckUpdateSummariesOperationGroupHealthError = AzureOpError;
+/** Check health of UpdateSummaries */
+export const CheckUpdateSummariesOperationGroupHealth: API.OperationMethod<
+  CheckUpdateSummariesOperationGroupHealthRequest,
+  CheckUpdateSummariesOperationGroupHealthResponse,
+  CheckUpdateSummariesOperationGroupHealthError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckUpdateSummariesOperationGroupHealthRequest,
+  output: CheckUpdateSummariesOperationGroupHealthResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckUpdateSummariesOperationGroupUpdatesError = AzureOpError;
+/** Check for updates */
+export const CheckUpdateSummariesOperationGroupUpdates: API.OperationMethod<
+  CheckUpdateSummariesOperationGroupUpdatesRequest,
+  CheckUpdateSummariesOperationGroupUpdatesResponse,
+  CheckUpdateSummariesOperationGroupUpdatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckUpdateSummariesOperationGroupUpdatesRequest,
+  output: CheckUpdateSummariesOperationGroupUpdatesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ClusterJobsCreateOrUpdateError = AzureOpError;
+/** Create a ClusterJob */
+export const ClusterJobsCreateOrUpdate: API.OperationMethod<
+  ClusterJobsCreateOrUpdateRequest,
+  ClusterJobsCreateOrUpdateResponse,
+  ClusterJobsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ClusterJobsCreateOrUpdateRequest,
+  output: ClusterJobsCreateOrUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13870,60 +19981,30 @@ export const ClustersConfigureRemoteSupport: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClustersTriggerLogCollectionError = AzureOpError;
-/** Trigger Log Collection on a cluster */
-export const ClustersTriggerLogCollection: API.OperationMethod<
-  ClustersTriggerLogCollectionRequest,
-  ClustersTriggerLogCollectionResponse,
-  ClustersTriggerLogCollectionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersTriggerLogCollectionRequest,
-  output: ClustersTriggerLogCollectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersUploadCertificateError = AzureOpError;
-/** Upload certificate. */
-export const ClustersUploadCertificate: API.OperationMethod<
-  ClustersUploadCertificateRequest,
-  ClustersUploadCertificateResponse,
-  ClustersUploadCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUploadCertificateRequest,
-  output: ClustersUploadCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateArcSettingError = AzureOpError;
+export type CreateArcSettingsError = AzureOpError;
 /** Create ArcSetting for HCI cluster. */
-export const CreateArcSetting: API.OperationMethod<
-  CreateArcSettingRequest,
-  CreateArcSettingResponse,
-  CreateArcSettingError,
+export const CreateArcSettings: API.OperationMethod<
+  CreateArcSettingsRequest,
+  CreateArcSettingsResponse,
+  CreateArcSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateArcSettingRequest,
-  output: CreateArcSettingResponse,
+  input: CreateArcSettingsRequest,
+  output: CreateArcSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateArcSettingIdentityError = AzureOpError;
+export type CreateArcSettingsIdentityError = AzureOpError;
 /** Create Aad identity for arc settings. */
-export const CreateArcSettingIdentity: API.OperationMethod<
-  CreateArcSettingIdentityRequest,
+export const CreateArcSettingsIdentity: API.OperationMethod<
+  CreateArcSettingsIdentityRequest,
   ArcIdentityResponse,
-  CreateArcSettingIdentityError,
+  CreateArcSettingsIdentityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateArcSettingIdentityRequest,
+  input: CreateArcSettingsIdentityRequest,
   output: ArcIdentityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -13990,16 +20071,16 @@ export const CreateGuestAgent: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteArcSettingError = AzureOpError;
+export type DeleteArcSettingsError = AzureOpError;
 /** Delete ArcSetting resource details of HCI Cluster. */
-export const DeleteArcSetting: API.OperationMethod<
-  DeleteArcSettingRequest,
-  DeleteArcSettingResponse,
-  DeleteArcSettingError,
+export const DeleteArcSettings: API.OperationMethod<
+  DeleteArcSettingsRequest,
+  DeleteArcSettingsResponse,
+  DeleteArcSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteArcSettingRequest,
-  output: DeleteArcSettingResponse,
+  input: DeleteArcSettingsRequest,
+  output: DeleteArcSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14020,16 +20101,31 @@ export const DeleteCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteDeploymentSettingError = AzureOpError;
-/** Delete a DeploymentSetting */
-export const DeleteDeploymentSetting: API.OperationMethod<
-  DeleteDeploymentSettingRequest,
-  DeleteDeploymentSettingResponse,
-  DeleteDeploymentSettingError,
+export type DeleteClusterJobError = AzureOpError;
+/** Delete a ClusterJob */
+export const DeleteClusterJob: API.OperationMethod<
+  DeleteClusterJobRequest,
+  DeleteClusterJobResponse,
+  DeleteClusterJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDeploymentSettingRequest,
-  output: DeleteDeploymentSettingResponse,
+  input: DeleteClusterJobRequest,
+  output: DeleteClusterJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDeploymentSettingsError = AzureOpError;
+/** Delete a DeploymentSetting */
+export const DeleteDeploymentSettings: API.OperationMethod<
+  DeleteDeploymentSettingsRequest,
+  DeleteDeploymentSettingsResponse,
+  DeleteDeploymentSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDeploymentSettingsRequest,
+  output: DeleteDeploymentSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14060,6 +20156,141 @@ export const DeleteEdgeDeviceJob: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteEdgeDeviceJobRequest,
   output: DeleteEdgeDeviceJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineError = AzureOpError;
+/** Delete an edge machine. */
+export const DeleteEdgeMachine: API.OperationMethod<
+  DeleteEdgeMachineRequest,
+  DeleteEdgeMachineResponse,
+  DeleteEdgeMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineRequest,
+  output: DeleteEdgeMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineDeploymentSettingsError = AzureOpError;
+/** Delete an Edge Machine Deployment Setting. */
+export const DeleteEdgeMachineDeploymentSettings: API.OperationMethod<
+  DeleteEdgeMachineDeploymentSettingsRequest,
+  DeleteEdgeMachineDeploymentSettingsResponse,
+  DeleteEdgeMachineDeploymentSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineDeploymentSettingsRequest,
+  output: DeleteEdgeMachineDeploymentSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineDiskError = AzureOpError;
+/** Delete a disk from an Edge Machine. */
+export const DeleteEdgeMachineDisk: API.OperationMethod<
+  DeleteEdgeMachineDiskRequest,
+  DeleteEdgeMachineDiskResponse,
+  DeleteEdgeMachineDiskError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineDiskRequest,
+  output: DeleteEdgeMachineDiskResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineDiskJobError = AzureOpError;
+/** Delete a disk job. */
+export const DeleteEdgeMachineDiskJob: API.OperationMethod<
+  DeleteEdgeMachineDiskJobRequest,
+  DeleteEdgeMachineDiskJobResponse,
+  DeleteEdgeMachineDiskJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineDiskJobRequest,
+  output: DeleteEdgeMachineDiskJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineDiskPrivilegedJobError = AzureOpError;
+/** Delete a privileged job. */
+export const DeleteEdgeMachineDiskPrivilegedJob: API.OperationMethod<
+  DeleteEdgeMachineDiskPrivilegedJobRequest,
+  DeleteEdgeMachineDiskPrivilegedJobResponse,
+  DeleteEdgeMachineDiskPrivilegedJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineDiskPrivilegedJobRequest,
+  output: DeleteEdgeMachineDiskPrivilegedJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineJobError = AzureOpError;
+/** Delete a EdgeMachineJob */
+export const DeleteEdgeMachineJob: API.OperationMethod<
+  DeleteEdgeMachineJobRequest,
+  DeleteEdgeMachineJobResponse,
+  DeleteEdgeMachineJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineJobRequest,
+  output: DeleteEdgeMachineJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineNetworkAdapterJobError = AzureOpError;
+/** Delete a network adapter job. */
+export const DeleteEdgeMachineNetworkAdapterJob: API.OperationMethod<
+  DeleteEdgeMachineNetworkAdapterJobRequest,
+  DeleteEdgeMachineNetworkAdapterJobResponse,
+  DeleteEdgeMachineNetworkAdapterJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineNetworkAdapterJobRequest,
+  output: DeleteEdgeMachineNetworkAdapterJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineSecuritySettingsOperationError = AzureOpError;
+/** Delete an EdgeMachineSecuritySettings */
+export const DeleteEdgeMachineSecuritySettingsOperation: API.OperationMethod<
+  DeleteEdgeMachineSecuritySettingsOperationRequest,
+  DeleteEdgeMachineSecuritySettingsOperationResponse,
+  DeleteEdgeMachineSecuritySettingsOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineSecuritySettingsOperationRequest,
+  output: DeleteEdgeMachineSecuritySettingsOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEdgeMachineVolumeError = AzureOpError;
+/** Delete a volume from an Edge Machine. */
+export const DeleteEdgeMachineVolume: API.OperationMethod<
+  DeleteEdgeMachineVolumeRequest,
+  DeleteEdgeMachineVolumeResponse,
+  DeleteEdgeMachineVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEdgeMachineVolumeRequest,
+  output: DeleteEdgeMachineVolumeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14155,16 +20386,16 @@ export const DeleteNetworkInterface: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSecuritySettingError = AzureOpError;
+export type DeleteSecuritySettingsError = AzureOpError;
 /** Delete a SecuritySetting */
-export const DeleteSecuritySetting: API.OperationMethod<
-  DeleteSecuritySettingRequest,
-  DeleteSecuritySettingResponse,
-  DeleteSecuritySettingError,
+export const DeleteSecuritySettings: API.OperationMethod<
+  DeleteSecuritySettingsRequest,
+  DeleteSecuritySettingsResponse,
+  DeleteSecuritySettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSecuritySettingRequest,
-  output: DeleteSecuritySettingResponse,
+  input: DeleteSecuritySettingsRequest,
+  output: DeleteSecuritySettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14195,6 +20426,36 @@ export const DeleteUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteUpdateRequest,
   output: DeleteUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteUpdateRunError = AzureOpError;
+/** Delete specified Update Run */
+export const DeleteUpdateRun: API.OperationMethod<
+  DeleteUpdateRunRequest,
+  DeleteUpdateRunResponse,
+  DeleteUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUpdateRunRequest,
+  output: DeleteUpdateRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteUpdateSummaryError = AzureOpError;
+/** Delete Update Summaries */
+export const DeleteUpdateSummary: API.OperationMethod<
+  DeleteUpdateSummaryRequest,
+  DeleteUpdateSummaryResponse,
+  DeleteUpdateSummaryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUpdateSummaryRequest,
+  output: DeleteUpdateSummaryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14245,21 +20506,6 @@ export const DeploymentSettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DisableArcSettingInitializeProcessError = AzureOpError;
-/** Initializes ARC Disable process on the cluster */
-export const DisableArcSettingInitializeProcess: API.OperationMethod<
-  DisableArcSettingInitializeProcessRequest,
-  DisableArcSettingInitializeProcessResponse,
-  DisableArcSettingInitializeProcessError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisableArcSettingInitializeProcessRequest,
-  output: DisableArcSettingInitializeProcessResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EdgeDeviceJobsCreateOrUpdateError = AzureOpError;
 /** Create a EdgeDeviceJob */
 export const EdgeDeviceJobsCreateOrUpdate: API.OperationMethod<
@@ -14290,16 +20536,137 @@ export const EdgeDevicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EdgeDevicesValidateError = AzureOpError;
-/** A long-running resource action. */
-export const EdgeDevicesValidate: API.OperationMethod<
-  EdgeDevicesValidateRequest,
-  ValidateResponse,
-  EdgeDevicesValidateError,
+export type EdgeMachineDeploymentSettingsCreateOrUpdateError = AzureOpError;
+/** Create or update an Edge Machine Deployment Setting. */
+export const EdgeMachineDeploymentSettingsCreateOrUpdate: API.OperationMethod<
+  EdgeMachineDeploymentSettingsCreateOrUpdateRequest,
+  EdgeMachineDeploymentSettingsCreateOrUpdateResponse,
+  EdgeMachineDeploymentSettingsCreateOrUpdateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EdgeDevicesValidateRequest,
-  output: ValidateResponse,
+  input: EdgeMachineDeploymentSettingsCreateOrUpdateRequest,
+  output: EdgeMachineDeploymentSettingsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachineDiskJobsCreateOrUpdateError = AzureOpError;
+/** Create or update a disk job. */
+export const EdgeMachineDiskJobsCreateOrUpdate: API.OperationMethod<
+  EdgeMachineDiskJobsCreateOrUpdateRequest,
+  EdgeMachineDiskJobsCreateOrUpdateResponse,
+  EdgeMachineDiskJobsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachineDiskJobsCreateOrUpdateRequest,
+  output: EdgeMachineDiskJobsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachineDiskPrivilegedJobsCreateOrUpdateError = AzureOpError;
+/** Create or update a privileged job. */
+export const EdgeMachineDiskPrivilegedJobsCreateOrUpdate: API.OperationMethod<
+  EdgeMachineDiskPrivilegedJobsCreateOrUpdateRequest,
+  EdgeMachineDiskPrivilegedJobsCreateOrUpdateResponse,
+  EdgeMachineDiskPrivilegedJobsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachineDiskPrivilegedJobsCreateOrUpdateRequest,
+  output: EdgeMachineDiskPrivilegedJobsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachineDisksCreateOrUpdateError = AzureOpError;
+/** Create or update a disk on an Edge Machine. */
+export const EdgeMachineDisksCreateOrUpdate: API.OperationMethod<
+  EdgeMachineDisksCreateOrUpdateRequest,
+  EdgeMachineDisksCreateOrUpdateResponse,
+  EdgeMachineDisksCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachineDisksCreateOrUpdateRequest,
+  output: EdgeMachineDisksCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachineJobsCreateOrUpdateError = AzureOpError;
+/** Create a EdgeMachineJob */
+export const EdgeMachineJobsCreateOrUpdate: API.OperationMethod<
+  EdgeMachineJobsCreateOrUpdateRequest,
+  EdgeMachineJobsCreateOrUpdateResponse,
+  EdgeMachineJobsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachineJobsCreateOrUpdateRequest,
+  output: EdgeMachineJobsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachineNetworkAdapterJobsCreateOrUpdateError = AzureOpError;
+/** Create or update a network adapter job. */
+export const EdgeMachineNetworkAdapterJobsCreateOrUpdate: API.OperationMethod<
+  EdgeMachineNetworkAdapterJobsCreateOrUpdateRequest,
+  EdgeMachineNetworkAdapterJobsCreateOrUpdateResponse,
+  EdgeMachineNetworkAdapterJobsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachineNetworkAdapterJobsCreateOrUpdateRequest,
+  output: EdgeMachineNetworkAdapterJobsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachinesCreateOrUpdateError = AzureOpError;
+/** Create or update an edge machine. */
+export const EdgeMachinesCreateOrUpdate: API.OperationMethod<
+  EdgeMachinesCreateOrUpdateRequest,
+  EdgeMachinesCreateOrUpdateResponse,
+  EdgeMachinesCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachinesCreateOrUpdateRequest,
+  output: EdgeMachinesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachineSecuritySettingsOperationsCreateOrUpdateError =
+  AzureOpError;
+/** Create or update an EdgeMachineSecuritySettings */
+export const EdgeMachineSecuritySettingsOperationsCreateOrUpdate: API.OperationMethod<
+  EdgeMachineSecuritySettingsOperationsCreateOrUpdateRequest,
+  EdgeMachineSecuritySettingsOperationsCreateOrUpdateResponse,
+  EdgeMachineSecuritySettingsOperationsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachineSecuritySettingsOperationsCreateOrUpdateRequest,
+  output: EdgeMachineSecuritySettingsOperationsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EdgeMachineVolumesCreateOrUpdateError = AzureOpError;
+/** Create or update a volume on an Edge Machine. */
+export const EdgeMachineVolumesCreateOrUpdate: API.OperationMethod<
+  EdgeMachineVolumesCreateOrUpdateRequest,
+  EdgeMachineVolumesCreateOrUpdateResponse,
+  EdgeMachineVolumesCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EdgeMachineVolumesCreateOrUpdateRequest,
+  output: EdgeMachineVolumesCreateOrUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14350,31 +20717,31 @@ export const GalleryImagesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GenerateArcSettingPasswordError = AzureOpError;
+export type GenerateArcSettingsPasswordError = AzureOpError;
 /** Generate password for arc settings. */
-export const GenerateArcSettingPassword: API.OperationMethod<
-  GenerateArcSettingPasswordRequest,
+export const GenerateArcSettingsPassword: API.OperationMethod<
+  GenerateArcSettingsPasswordRequest,
   PasswordCredential,
-  GenerateArcSettingPasswordError,
+  GenerateArcSettingsPasswordError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateArcSettingPasswordRequest,
+  input: GenerateArcSettingsPasswordRequest,
   output: PasswordCredential,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetArcSettingError = AzureOpError;
+export type GetArcSettingsError = AzureOpError;
 /** Get ArcSetting resource details of HCI Cluster. */
-export const GetArcSetting: API.OperationMethod<
-  GetArcSettingRequest,
-  GetArcSettingResponse,
-  GetArcSettingError,
+export const GetArcSettings: API.OperationMethod<
+  GetArcSettingsRequest,
+  GetArcSettingsResponse,
+  GetArcSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetArcSettingRequest,
-  output: GetArcSettingResponse,
+  input: GetArcSettingsRequest,
+  output: GetArcSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14395,16 +20762,31 @@ export const GetCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDeploymentSettingError = AzureOpError;
-/** Get a DeploymentSetting */
-export const GetDeploymentSetting: API.OperationMethod<
-  GetDeploymentSettingRequest,
-  GetDeploymentSettingResponse,
-  GetDeploymentSettingError,
+export type GetClusterJobError = AzureOpError;
+/** Get a ClusterJob */
+export const GetClusterJob: API.OperationMethod<
+  GetClusterJobRequest,
+  GetClusterJobResponse,
+  GetClusterJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDeploymentSettingRequest,
-  output: GetDeploymentSettingResponse,
+  input: GetClusterJobRequest,
+  output: GetClusterJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeploymentSettingsError = AzureOpError;
+/** Get a DeploymentSetting */
+export const GetDeploymentSettings: API.OperationMethod<
+  GetDeploymentSettingsRequest,
+  GetDeploymentSettingsResponse,
+  GetDeploymentSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeploymentSettingsRequest,
+  output: GetDeploymentSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14435,6 +20817,156 @@ export const GetEdgeDeviceJob: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetEdgeDeviceJobRequest,
   output: GetEdgeDeviceJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineError = AzureOpError;
+/** Get an edge machine. */
+export const GetEdgeMachine: API.OperationMethod<
+  GetEdgeMachineRequest,
+  GetEdgeMachineResponse,
+  GetEdgeMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineRequest,
+  output: GetEdgeMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineDeploymentSettingsError = AzureOpError;
+/** Get an Edge Machine Deployment Setting. */
+export const GetEdgeMachineDeploymentSettings: API.OperationMethod<
+  GetEdgeMachineDeploymentSettingsRequest,
+  GetEdgeMachineDeploymentSettingsResponse,
+  GetEdgeMachineDeploymentSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineDeploymentSettingsRequest,
+  output: GetEdgeMachineDeploymentSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineDiskError = AzureOpError;
+/** Get a specific disk on an Edge Machine. */
+export const GetEdgeMachineDisk: API.OperationMethod<
+  GetEdgeMachineDiskRequest,
+  GetEdgeMachineDiskResponse,
+  GetEdgeMachineDiskError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineDiskRequest,
+  output: GetEdgeMachineDiskResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineDiskJobError = AzureOpError;
+/** Get a specific disk job. */
+export const GetEdgeMachineDiskJob: API.OperationMethod<
+  GetEdgeMachineDiskJobRequest,
+  GetEdgeMachineDiskJobResponse,
+  GetEdgeMachineDiskJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineDiskJobRequest,
+  output: GetEdgeMachineDiskJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineDiskPrivilegedJobError = AzureOpError;
+/** Get a specific privileged job. */
+export const GetEdgeMachineDiskPrivilegedJob: API.OperationMethod<
+  GetEdgeMachineDiskPrivilegedJobRequest,
+  GetEdgeMachineDiskPrivilegedJobResponse,
+  GetEdgeMachineDiskPrivilegedJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineDiskPrivilegedJobRequest,
+  output: GetEdgeMachineDiskPrivilegedJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineJobError = AzureOpError;
+/** Get a EdgeMachineJob */
+export const GetEdgeMachineJob: API.OperationMethod<
+  GetEdgeMachineJobRequest,
+  GetEdgeMachineJobResponse,
+  GetEdgeMachineJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineJobRequest,
+  output: GetEdgeMachineJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineNetworkAdapterError = AzureOpError;
+/** Get a specific network adapter on an Edge Machine. */
+export const GetEdgeMachineNetworkAdapter: API.OperationMethod<
+  GetEdgeMachineNetworkAdapterRequest,
+  GetEdgeMachineNetworkAdapterResponse,
+  GetEdgeMachineNetworkAdapterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineNetworkAdapterRequest,
+  output: GetEdgeMachineNetworkAdapterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineNetworkAdapterJobError = AzureOpError;
+/** Get a specific network adapter job. */
+export const GetEdgeMachineNetworkAdapterJob: API.OperationMethod<
+  GetEdgeMachineNetworkAdapterJobRequest,
+  GetEdgeMachineNetworkAdapterJobResponse,
+  GetEdgeMachineNetworkAdapterJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineNetworkAdapterJobRequest,
+  output: GetEdgeMachineNetworkAdapterJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineSecuritySettingsOperationError = AzureOpError;
+/** Get an EdgeMachineSecuritySettings */
+export const GetEdgeMachineSecuritySettingsOperation: API.OperationMethod<
+  GetEdgeMachineSecuritySettingsOperationRequest,
+  GetEdgeMachineSecuritySettingsOperationResponse,
+  GetEdgeMachineSecuritySettingsOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineSecuritySettingsOperationRequest,
+  output: GetEdgeMachineSecuritySettingsOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeMachineVolumeError = AzureOpError;
+/** Get a specific volume on an Edge Machine. */
+export const GetEdgeMachineVolume: API.OperationMethod<
+  GetEdgeMachineVolumeRequest,
+  GetEdgeMachineVolumeResponse,
+  GetEdgeMachineVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEdgeMachineVolumeRequest,
+  output: GetEdgeMachineVolumeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14559,16 +21091,31 @@ export const GetOffer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSecuritySettingError = AzureOpError;
-/** Get a SecuritySetting */
-export const GetSecuritySetting: API.OperationMethod<
-  GetSecuritySettingRequest,
-  GetSecuritySettingResponse,
-  GetSecuritySettingError,
+export type GetOsImageError = AzureOpError;
+/** Get a os image. */
+export const GetOsImage: API.OperationMethod<
+  GetOsImageRequest,
+  GetOsImageResponse,
+  GetOsImageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSecuritySettingRequest,
-  output: GetSecuritySettingResponse,
+  input: GetOsImageRequest,
+  output: GetOsImageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSecuritySettingsError = AzureOpError;
+/** Get a SecuritySetting */
+export const GetSecuritySettings: API.OperationMethod<
+  GetSecuritySettingsRequest,
+  GetSecuritySettingsResponse,
+  GetSecuritySettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSecuritySettingsRequest,
+  output: GetSecuritySettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14619,6 +21166,36 @@ export const GetUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetUpdateRunError = AzureOpError;
+/** Get the Update run for a specified update */
+export const GetUpdateRun: API.OperationMethod<
+  GetUpdateRunRequest,
+  GetUpdateRunResponse,
+  GetUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUpdateRunRequest,
+  output: GetUpdateRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUpdateSummaryError = AzureOpError;
+/** Get all Update summaries under the HCI cluster */
+export const GetUpdateSummary: API.OperationMethod<
+  GetUpdateSummaryRequest,
+  GetUpdateSummaryResponse,
+  GetUpdateSummaryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUpdateSummaryRequest,
+  output: GetUpdateSummaryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetValidatedSolutionRecipeError = AzureOpError;
 /** Get a validated solution recipe. */
 export const GetValidatedSolutionRecipe: API.OperationMethod<
@@ -14664,30 +21241,15 @@ export const GetVirtualMachineInstance: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HybridIdentityMetadataList2Error = AzureOpError;
-/** Implements GET HybridIdentityMetadata in a vm. Returns the list of HybridIdentityMetadata of the given vm. */
-export const HybridIdentityMetadataList2: API.OperationMethod<
-  HybridIdentityMetadataListRequest,
-  HybridIdentityMetadataList,
-  HybridIdentityMetadataList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HybridIdentityMetadataListRequest,
-  output: HybridIdentityMetadataList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListArcSettingByClusterError = AzureOpError;
+export type ListArcSettingsByClusterError = AzureOpError;
 /** Get ArcSetting resources of HCI Cluster. */
-export const ListArcSettingByCluster: API.OperationMethod<
-  ListArcSettingByClusterRequest,
+export const ListArcSettingsByCluster: API.OperationMethod<
+  ListArcSettingsByClusterRequest,
   ArcSettingList,
-  ListArcSettingByClusterError,
+  ListArcSettingsByClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListArcSettingByClusterRequest,
+  input: ListArcSettingsByClusterRequest,
   output: ArcSettingList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14724,15 +21286,30 @@ export const ListClusterBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListDeploymentSettingByClustersError = AzureOpError;
-/** List DeploymentSetting resources by Clusters */
-export const ListDeploymentSettingByClusters: API.OperationMethod<
-  ListDeploymentSettingByClustersRequest,
-  DeploymentSettingListResult,
-  ListDeploymentSettingByClustersError,
+export type ListClusterJobsError = AzureOpError;
+/** List ClusterJob resources by Clusters */
+export const ListClusterJobs: API.OperationMethod<
+  ListClusterJobsRequest,
+  ClusterJobListResult,
+  ListClusterJobsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDeploymentSettingByClustersRequest,
+  input: ListClusterJobsRequest,
+  output: ClusterJobListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeploymentSettingsByClustersError = AzureOpError;
+/** List DeploymentSetting resources by Clusters */
+export const ListDeploymentSettingsByClusters: API.OperationMethod<
+  ListDeploymentSettingsByClustersRequest,
+  DeploymentSettingListResult,
+  ListDeploymentSettingsByClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeploymentSettingsByClustersRequest,
   output: DeploymentSettingListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14769,6 +21346,172 @@ export const ListEdgeDevices: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListEdgeMachineByResourceGroupError = AzureOpError;
+/** List all edge machines in a resource group. */
+export const ListEdgeMachineByResourceGroup: API.OperationMethod<
+  ListEdgeMachineByResourceGroupRequest,
+  EdgeMachineListResult,
+  ListEdgeMachineByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineByResourceGroupRequest,
+  output: EdgeMachineListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineBySubscriptionError = AzureOpError;
+/** List all edge machines in a subscription. */
+export const ListEdgeMachineBySubscription: API.OperationMethod<
+  ListEdgeMachineBySubscriptionRequest,
+  EdgeMachineListResult,
+  ListEdgeMachineBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineBySubscriptionRequest,
+  output: EdgeMachineListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineDeploymentSettingsByEdgeMachineError = AzureOpError;
+/** List Edge Machine Deployment Setting resources by Edge Machine. */
+export const ListEdgeMachineDeploymentSettingsByEdgeMachine: API.OperationMethod<
+  ListEdgeMachineDeploymentSettingsByEdgeMachineRequest,
+  EdgeMachineDeploymentSettingListResult,
+  ListEdgeMachineDeploymentSettingsByEdgeMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineDeploymentSettingsByEdgeMachineRequest,
+  output: EdgeMachineDeploymentSettingListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineDiskJobsError = AzureOpError;
+/** List all jobs for a disk. */
+export const ListEdgeMachineDiskJobs: API.OperationMethod<
+  ListEdgeMachineDiskJobsRequest,
+  EdgeMachineDiskJobListResult,
+  ListEdgeMachineDiskJobsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineDiskJobsRequest,
+  output: EdgeMachineDiskJobListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineDiskPrivilegedJobsError = AzureOpError;
+/** List all privileged jobs for a disk. */
+export const ListEdgeMachineDiskPrivilegedJobs: API.OperationMethod<
+  ListEdgeMachineDiskPrivilegedJobsRequest,
+  EdgeMachineDiskPrivilegedJobListResult,
+  ListEdgeMachineDiskPrivilegedJobsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineDiskPrivilegedJobsRequest,
+  output: EdgeMachineDiskPrivilegedJobListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineDisksError = AzureOpError;
+/** List all disks on an Edge Machine. */
+export const ListEdgeMachineDisks: API.OperationMethod<
+  ListEdgeMachineDisksRequest,
+  EdgeMachineDiskListResult,
+  ListEdgeMachineDisksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineDisksRequest,
+  output: EdgeMachineDiskListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineJobsError = AzureOpError;
+/** List EdgeMachineJob resources by EdgeMachines */
+export const ListEdgeMachineJobs: API.OperationMethod<
+  ListEdgeMachineJobsRequest,
+  EdgeMachineJobListResult,
+  ListEdgeMachineJobsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineJobsRequest,
+  output: EdgeMachineJobListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineNetworkAdapterJobsError = AzureOpError;
+/** List all jobs for a network adapter. */
+export const ListEdgeMachineNetworkAdapterJobs: API.OperationMethod<
+  ListEdgeMachineNetworkAdapterJobsRequest,
+  EdgeMachineNetworkAdapterJobListResult,
+  ListEdgeMachineNetworkAdapterJobsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineNetworkAdapterJobsRequest,
+  output: EdgeMachineNetworkAdapterJobListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineNetworkAdaptersError = AzureOpError;
+/** List all network adapters on an Edge Machine. */
+export const ListEdgeMachineNetworkAdapters: API.OperationMethod<
+  ListEdgeMachineNetworkAdaptersRequest,
+  EdgeMachineNetworkAdapterListResult,
+  ListEdgeMachineNetworkAdaptersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineNetworkAdaptersRequest,
+  output: EdgeMachineNetworkAdapterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineSecuritySettingsOperationByEdgeMachineError =
+  AzureOpError;
+/** List EdgeMachineSecuritySettings by EdgeMachine */
+export const ListEdgeMachineSecuritySettingsOperationByEdgeMachine: API.OperationMethod<
+  ListEdgeMachineSecuritySettingsOperationByEdgeMachineRequest,
+  EdgeMachineSecuritySettingsListResult,
+  ListEdgeMachineSecuritySettingsOperationByEdgeMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineSecuritySettingsOperationByEdgeMachineRequest,
+  output: EdgeMachineSecuritySettingsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeMachineVolumesError = AzureOpError;
+/** List all volumes on an Edge Machine. */
+export const ListEdgeMachineVolumes: API.OperationMethod<
+  ListEdgeMachineVolumesRequest,
+  EdgeMachineVolumeListResult,
+  ListEdgeMachineVolumesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeMachineVolumesRequest,
+  output: EdgeMachineVolumeListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListExtensionByArcSettingError = AzureOpError;
 /** List all Extensions under ArcSetting resource. */
 export const ListExtensionByArcSetting: API.OperationMethod<
@@ -14788,12 +21531,12 @@ export type ListGalleryImageAllError = AzureOpError;
 /** Lists all of the gallery images in the specified subscription. Use the nextLink property in the response to get the next page of gallery images. */
 export const ListGalleryImageAll: API.OperationMethod<
   ListGalleryImageAllRequest,
-  ListGalleryImagesResult,
+  GalleryImagesListResult,
   ListGalleryImageAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListGalleryImageAllRequest,
-  output: ListGalleryImagesResult,
+  output: GalleryImagesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14803,12 +21546,12 @@ export type ListGalleryImagesError = AzureOpError;
 /** Lists all of the gallery images in the specified resource group. Use the nextLink property in the response to get the next page of gallery images. */
 export const ListGalleryImages: API.OperationMethod<
   ListGalleryImagesRequest,
-  ListGalleryImagesResult,
+  GalleryImagesListResult,
   ListGalleryImagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListGalleryImagesRequest,
-  output: ListGalleryImagesResult,
+  output: GalleryImagesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14829,16 +21572,31 @@ export const ListGuestAgents: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListHybridIdentityMetadataError = AzureOpError;
+/** Implements GET HybridIdentityMetadata in a vm. Returns the list of HybridIdentityMetadata of the given vm. */
+export const ListHybridIdentityMetadata: API.OperationMethod<
+  ListHybridIdentityMetadataRequest,
+  HybridIdentityMetadataList,
+  ListHybridIdentityMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHybridIdentityMetadataRequest,
+  output: HybridIdentityMetadataList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListLogicalNetworkAllError = AzureOpError;
 /** Lists all of the logical networks in the specified subscription. Use the nextLink property in the response to get the next page of logical networks. */
 export const ListLogicalNetworkAll: API.OperationMethod<
   ListLogicalNetworkAllRequest,
-  ListLogicalNetworksResult,
+  LogicalNetworksListResult,
   ListLogicalNetworkAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListLogicalNetworkAllRequest,
-  output: ListLogicalNetworksResult,
+  output: LogicalNetworksListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14848,12 +21606,12 @@ export type ListLogicalNetworksError = AzureOpError;
 /** Lists all of the logical networks in the specified resource group. Use the nextLink property in the response to get the next page of logical networks. */
 export const ListLogicalNetworks: API.OperationMethod<
   ListLogicalNetworksRequest,
-  ListLogicalNetworksResult,
+  LogicalNetworksListResult,
   ListLogicalNetworksError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListLogicalNetworksRequest,
-  output: ListLogicalNetworksResult,
+  output: LogicalNetworksListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14863,12 +21621,12 @@ export type ListMarketplaceGalleryImageAllError = AzureOpError;
 /** Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the response to get the next page of marketplace gallery images. */
 export const ListMarketplaceGalleryImageAll: API.OperationMethod<
   ListMarketplaceGalleryImageAllRequest,
-  ListMarketplaceGalleryImagesResult,
+  MarketplaceGalleryImagesListResult,
   ListMarketplaceGalleryImageAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListMarketplaceGalleryImageAllRequest,
-  output: ListMarketplaceGalleryImagesResult,
+  output: MarketplaceGalleryImagesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14878,12 +21636,12 @@ export type ListMarketplaceGalleryImagesError = AzureOpError;
 /** Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the response to get the next page of marketplace gallery images. */
 export const ListMarketplaceGalleryImages: API.OperationMethod<
   ListMarketplaceGalleryImagesRequest,
-  ListMarketplaceGalleryImagesResult,
+  MarketplaceGalleryImagesListResult,
   ListMarketplaceGalleryImagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListMarketplaceGalleryImagesRequest,
-  output: ListMarketplaceGalleryImagesResult,
+  output: MarketplaceGalleryImagesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14893,12 +21651,12 @@ export type ListNetworkInterfaceAllError = AzureOpError;
 /** Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to get the next page of network interfaces. */
 export const ListNetworkInterfaceAll: API.OperationMethod<
   ListNetworkInterfaceAllRequest,
-  ListNetworkInterfacesResult,
+  NetworkInterfacesListResult,
   ListNetworkInterfaceAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListNetworkInterfaceAllRequest,
-  output: ListNetworkInterfacesResult,
+  output: NetworkInterfacesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14908,12 +21666,12 @@ export type ListNetworkInterfacesError = AzureOpError;
 /** Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to get the next page of network interfaces. */
 export const ListNetworkInterfaces: API.OperationMethod<
   ListNetworkInterfacesRequest,
-  ListNetworkInterfacesResult,
+  NetworkInterfacesListResult,
   ListNetworkInterfacesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListNetworkInterfacesRequest,
-  output: ListNetworkInterfacesResult,
+  output: NetworkInterfacesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14964,15 +21722,30 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSecuritySettingByClustersError = AzureOpError;
-/** List SecuritySetting resources by Clusters */
-export const ListSecuritySettingByClusters: API.OperationMethod<
-  ListSecuritySettingByClustersRequest,
-  SecuritySettingListResult,
-  ListSecuritySettingByClustersError,
+export type ListOsImageBySubscriptionLocationResourceError = AzureOpError;
+/** List all os images. */
+export const ListOsImageBySubscriptionLocationResource: API.OperationMethod<
+  ListOsImageBySubscriptionLocationResourceRequest,
+  OsImageListResult,
+  ListOsImageBySubscriptionLocationResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSecuritySettingByClustersRequest,
+  input: ListOsImageBySubscriptionLocationResourceRequest,
+  output: OsImageListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSecuritySettingsByClustersError = AzureOpError;
+/** List SecuritySetting resources by Clusters */
+export const ListSecuritySettingsByClusters: API.OperationMethod<
+  ListSecuritySettingsByClustersRequest,
+  SecuritySettingListResult,
+  ListSecuritySettingsByClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSecuritySettingsByClustersRequest,
   output: SecuritySettingListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14998,12 +21771,12 @@ export type ListStorageContainerAllError = AzureOpError;
 /** Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to get the next page of storage containers. */
 export const ListStorageContainerAll: API.OperationMethod<
   ListStorageContainerAllRequest,
-  ListStorageContainersResult,
+  StorageContainersListResult,
   ListStorageContainerAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListStorageContainerAllRequest,
-  output: ListStorageContainersResult,
+  output: StorageContainersListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15013,12 +21786,27 @@ export type ListStorageContainersError = AzureOpError;
 /** Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to get the next page of storage containers. */
 export const ListStorageContainers: API.OperationMethod<
   ListStorageContainersRequest,
-  ListStorageContainersResult,
+  StorageContainersListResult,
   ListStorageContainersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListStorageContainersRequest,
-  output: ListStorageContainersResult,
+  output: StorageContainersListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUpdateRunsError = AzureOpError;
+/** List all Update runs for a specified update */
+export const ListUpdateRuns: API.OperationMethod<
+  ListUpdateRunsRequest,
+  UpdateRunList,
+  ListUpdateRunsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUpdateRunsRequest,
+  output: UpdateRunList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15034,6 +21822,21 @@ export const ListUpdates: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListUpdatesRequest,
   output: UpdateList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUpdateSummariesError = AzureOpError;
+/** List all Update summaries under the HCI cluster */
+export const ListUpdateSummaries: API.OperationMethod<
+  ListUpdateSummariesRequest,
+  UpdateSummariesList,
+  ListUpdateSummariesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUpdateSummariesRequest,
+  output: UpdateSummariesList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15059,12 +21862,12 @@ export type ListVirtualHardDiskAllError = AzureOpError;
 /** Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to get the next page of virtual hard disks. */
 export const ListVirtualHardDiskAll: API.OperationMethod<
   ListVirtualHardDiskAllRequest,
-  ListVirtualHardDisksResult,
+  VirtualHardDisksListResult,
   ListVirtualHardDiskAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVirtualHardDiskAllRequest,
-  output: ListVirtualHardDisksResult,
+  output: VirtualHardDisksListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15074,12 +21877,12 @@ export type ListVirtualHardDisksError = AzureOpError;
 /** Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to get the next page of virtual hard disks. */
 export const ListVirtualHardDisks: API.OperationMethod<
   ListVirtualHardDisksRequest,
-  ListVirtualHardDisksResult,
+  VirtualHardDisksListResult,
   ListVirtualHardDisksError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVirtualHardDisksRequest,
-  output: ListVirtualHardDisksResult,
+  output: VirtualHardDisksListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15140,6 +21943,96 @@ export const NetworkInterfacesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NetworkInterfacesCreateOrUpdateRequest,
   output: NetworkInterfacesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostUpdateError = AzureOpError;
+/** Apply Update */
+export const PostUpdate: API.OperationMethod<
+  PostUpdateRequest,
+  PostUpdateResponse,
+  PostUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostUpdateRequest,
+  output: PostUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutUpdateError = AzureOpError;
+/** Put specified Update */
+export const PutUpdate: API.OperationMethod<
+  PutUpdateRequest,
+  PutUpdateResponse,
+  PutUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutUpdateRequest,
+  output: PutUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutUpdateRunError = AzureOpError;
+/** Put Update runs for a specified update */
+export const PutUpdateRun: API.OperationMethod<
+  PutUpdateRunRequest,
+  PutUpdateRunResponse,
+  PutUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutUpdateRunRequest,
+  output: PutUpdateRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutUpdateSummaryError = AzureOpError;
+/** Put Update summaries under the HCI cluster */
+export const PutUpdateSummary: API.OperationMethod<
+  PutUpdateSummaryRequest,
+  PutUpdateSummaryResponse,
+  PutUpdateSummaryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutUpdateSummaryRequest,
+  output: PutUpdateSummaryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshEdgeMachineApplicableUpdatesError = AzureOpError;
+/** Trigger an on-demand refresh of applicable updates for the edge machine. Creates or updates the default EdgeMachineUpdate child resource with the latest set of applicable updates. */
+export const RefreshEdgeMachineApplicableUpdates: API.OperationMethod<
+  RefreshEdgeMachineApplicableUpdatesRequest,
+  RefreshEdgeMachineApplicableUpdatesResponse,
+  RefreshEdgeMachineApplicableUpdatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshEdgeMachineApplicableUpdatesRequest,
+  output: RefreshEdgeMachineApplicableUpdatesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshEdgeMachineSecuritySettingsError = AzureOpError;
+/** Trigger an on-demand sync of edge machine security settings from Guest Configuration. Creates the default security settings child resource if it does not already exist. */
+export const RefreshEdgeMachineSecuritySettings: API.OperationMethod<
+  RefreshEdgeMachineSecuritySettingsRequest,
+  RefreshEdgeMachineSecuritySettingsResponse,
+  RefreshEdgeMachineSecuritySettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshEdgeMachineSecuritySettingsRequest,
+  output: RefreshEdgeMachineSecuritySettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15220,16 +22113,31 @@ export const StorageContainersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateArcSettingError = AzureOpError;
-/** Update ArcSettings for HCI cluster. */
-export const UpdateArcSetting: API.OperationMethod<
-  UpdateArcSettingRequest,
-  UpdateArcSettingResponse,
-  UpdateArcSettingError,
+export type TriggerClusterLogCollectionError = AzureOpError;
+/** Trigger Log Collection on a cluster */
+export const TriggerClusterLogCollection: API.OperationMethod<
+  TriggerClusterLogCollectionRequest,
+  TriggerClusterLogCollectionResponse,
+  TriggerClusterLogCollectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateArcSettingRequest,
-  output: UpdateArcSettingResponse,
+  input: TriggerClusterLogCollectionRequest,
+  output: TriggerClusterLogCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateArcSettingsError = AzureOpError;
+/** Update ArcSettings for HCI cluster. */
+export const UpdateArcSettings: API.OperationMethod<
+  UpdateArcSettingsRequest,
+  UpdateArcSettingsResponse,
+  UpdateArcSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateArcSettingsRequest,
+  output: UpdateArcSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15250,16 +22158,31 @@ export const UpdateCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateClusterSecretLocationError = AzureOpError;
+export type UpdateClusterSecretsLocationsError = AzureOpError;
 /** Update cluster secrets locations. */
-export const UpdateClusterSecretLocation: API.OperationMethod<
-  UpdateClusterSecretLocationRequest,
-  UpdateClusterSecretLocationResponse,
-  UpdateClusterSecretLocationError,
+export const UpdateClusterSecretsLocations: API.OperationMethod<
+  UpdateClusterSecretsLocationsRequest,
+  UpdateClusterSecretsLocationsResponse,
+  UpdateClusterSecretsLocationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateClusterSecretLocationRequest,
-  output: UpdateClusterSecretLocationResponse,
+  input: UpdateClusterSecretsLocationsRequest,
+  output: UpdateClusterSecretsLocationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEdgeMachineError = AzureOpError;
+/** Update an edge machine. */
+export const UpdateEdgeMachine: API.OperationMethod<
+  UpdateEdgeMachineRequest,
+  UpdateEdgeMachineResponse,
+  UpdateEdgeMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEdgeMachineRequest,
+  output: UpdateEdgeMachineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15340,81 +22263,6 @@ export const UpdateNetworkInterface: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateRunsDeleteError = AzureOpError;
-/** Delete specified Update Run */
-export const UpdateRunsDelete: API.OperationMethod<
-  UpdateRunsDeleteRequest,
-  UpdateRunsDeleteResponse,
-  UpdateRunsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsDeleteRequest,
-  output: UpdateRunsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsGetError = AzureOpError;
-/** Get the Update run for a specified update */
-export const UpdateRunsGet: API.OperationMethod<
-  UpdateRunsGetRequest,
-  UpdateRunsGetResponse,
-  UpdateRunsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsGetRequest,
-  output: UpdateRunsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsListError = AzureOpError;
-/** List all Update runs for a specified update */
-export const UpdateRunsList: API.OperationMethod<
-  UpdateRunsListRequest,
-  UpdateRunList,
-  UpdateRunsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsListRequest,
-  output: UpdateRunList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsPutError = AzureOpError;
-/** Put Update runs for a specified update */
-export const UpdateRunsPut: API.OperationMethod<
-  UpdateRunsPutRequest,
-  UpdateRunsPutResponse,
-  UpdateRunsPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsPutRequest,
-  output: UpdateRunsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdatesPostError = AzureOpError;
-/** Apply Update */
-export const UpdatesPost: API.OperationMethod<
-  UpdatesPostRequest,
-  UpdatesPostResponse,
-  UpdatesPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdatesPostRequest,
-  output: UpdatesPostResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdatesPrepareError = AzureOpError;
 /** Prepare Update */
 export const UpdatesPrepare: API.OperationMethod<
@@ -15430,21 +22278,6 @@ export const UpdatesPrepare: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdatesPutError = AzureOpError;
-/** Put specified Update */
-export const UpdatesPut: API.OperationMethod<
-  UpdatesPutRequest,
-  UpdatesPutResponse,
-  UpdatesPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdatesPutRequest,
-  output: UpdatesPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateStorageContainerError = AzureOpError;
 /** The operation to update a storage container. */
 export const UpdateStorageContainer: API.OperationMethod<
@@ -15455,96 +22288,6 @@ export const UpdateStorageContainer: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateStorageContainerRequest,
   output: UpdateStorageContainerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSummariesDeleteError = AzureOpError;
-/** Delete Update Summaries */
-export const UpdateSummariesDelete: API.OperationMethod<
-  UpdateSummariesDeleteRequest,
-  UpdateSummariesDeleteResponse,
-  UpdateSummariesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSummariesDeleteRequest,
-  output: UpdateSummariesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSummariesGetError = AzureOpError;
-/** Get all Update summaries under the HCI cluster */
-export const UpdateSummariesGet: API.OperationMethod<
-  UpdateSummariesGetRequest,
-  UpdateSummariesGetResponse,
-  UpdateSummariesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSummariesGetRequest,
-  output: UpdateSummariesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSummariesList2Error = AzureOpError;
-/** List all Update summaries under the HCI cluster */
-export const UpdateSummariesList2: API.OperationMethod<
-  UpdateSummariesListRequest,
-  UpdateSummariesList,
-  UpdateSummariesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSummariesListRequest,
-  output: UpdateSummariesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSummariesOperationGroupCheckHealthError = AzureOpError;
-/** Check health of UpdateSummaries */
-export const UpdateSummariesOperationGroupCheckHealth: API.OperationMethod<
-  UpdateSummariesOperationGroupCheckHealthRequest,
-  UpdateSummariesOperationGroupCheckHealthResponse,
-  UpdateSummariesOperationGroupCheckHealthError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSummariesOperationGroupCheckHealthRequest,
-  output: UpdateSummariesOperationGroupCheckHealthResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSummariesOperationGroupCheckUpdatesError = AzureOpError;
-/** Check for updates */
-export const UpdateSummariesOperationGroupCheckUpdates: API.OperationMethod<
-  UpdateSummariesOperationGroupCheckUpdatesRequest,
-  UpdateSummariesOperationGroupCheckUpdatesResponse,
-  UpdateSummariesOperationGroupCheckUpdatesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSummariesOperationGroupCheckUpdatesRequest,
-  output: UpdateSummariesOperationGroupCheckUpdatesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSummariesPutError = AzureOpError;
-/** Put Update summaries under the HCI cluster */
-export const UpdateSummariesPut: API.OperationMethod<
-  UpdateSummariesPutRequest,
-  UpdateSummariesPutResponse,
-  UpdateSummariesPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSummariesPutRequest,
-  output: UpdateSummariesPutResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15575,6 +22318,66 @@ export const UpdateVirtualMachineInstance: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateVirtualMachineInstanceRequest,
   output: UpdateVirtualMachineInstanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadClusterCertificateError = AzureOpError;
+/** Upload certificate. */
+export const UploadClusterCertificate: API.OperationMethod<
+  UploadClusterCertificateRequest,
+  UploadClusterCertificateResponse,
+  UploadClusterCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadClusterCertificateRequest,
+  output: UploadClusterCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateEdgeDeviceError = AzureOpError;
+/** A long-running resource action. */
+export const ValidateEdgeDevice: API.OperationMethod<
+  ValidateEdgeDeviceRequest,
+  ValidateResponse,
+  ValidateEdgeDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateEdgeDeviceRequest,
+  output: ValidateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateEdgeMachineError = AzureOpError;
+/** A long-running resource action to validate the edge machine. */
+export const ValidateEdgeMachine: API.OperationMethod<
+  ValidateEdgeMachineRequest,
+  EdgeMachineValidateResponse,
+  ValidateEdgeMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateEdgeMachineRequest,
+  output: EdgeMachineValidateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateOwnershipVoucherError = AzureOpError;
+/** Validates ownership vouchers. */
+export const ValidateOwnershipVoucher: API.OperationMethod<
+  ValidateOwnershipVoucherRequest,
+  ValidateOwnershipVouchersResponse,
+  ValidateOwnershipVoucherError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateOwnershipVoucherRequest,
+  output: ValidateOwnershipVouchersResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

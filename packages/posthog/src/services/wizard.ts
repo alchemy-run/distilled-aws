@@ -85,28 +85,28 @@ export const WizardTaskDTO = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WizardTaskDTO" }) as any as S.Schema<WizardTaskDTO>;
 
-export type WizardSessionsCreateRequestTasksList = Array<WizardTaskDTO>;
-export const WizardSessionsCreateRequestTasksList = /*@__PURE__*/ S.Array(
+export type CreateWizardSessionRequestTasksList = Array<WizardTaskDTO>;
+export const CreateWizardSessionRequestTasksList = /*@__PURE__*/ S.Array(
   WizardTaskDTO,
-) as any as S.Schema<WizardSessionsCreateRequestTasksList>;
+) as any as S.Schema<CreateWizardSessionRequestTasksList>;
 
 /** Optional structured plan of events the wizard intends to instrument. Schema is workflow-specific. */
-export type WizardSessionsCreateRequestEventPlanMap = {
+export type CreateWizardSessionRequestEventPlanMap = {
   [key: string]: unknown | undefined;
 };
-export const WizardSessionsCreateRequestEventPlanMap = /*@__PURE__*/ S.Record(
+export const CreateWizardSessionRequestEventPlanMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<WizardSessionsCreateRequestEventPlanMap>;
+) as any as S.Schema<CreateWizardSessionRequestEventPlanMap>;
 
 /** Populated when run_phase='error'. Shape: { type: string, message: string }. */
-export type WizardSessionsCreateRequestErrorMap = {
+export type CreateWizardSessionRequestErrorMap = {
   [key: string]: unknown | undefined;
 };
-export const WizardSessionsCreateRequestErrorMap = /*@__PURE__*/ S.Record(
+export const CreateWizardSessionRequestErrorMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<WizardSessionsCreateRequestErrorMap>;
+) as any as S.Schema<CreateWizardSessionRequestErrorMap>;
 
 export interface CreateWizardSessionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -125,11 +125,11 @@ export interface CreateWizardSessionRequest {
   started_at: string;
   /** Lifecycle stage of the wizard run. * `idle` - IDLE * `running` - RUNNING * `completed` - COMPLETED * `error` - ERROR */
   run_phase: RunPhaseEnum | (string & {});
-  tasks: WizardSessionsCreateRequestTasksList;
+  tasks: CreateWizardSessionRequestTasksList;
   /** Optional structured plan of events the wizard intends to instrument. Schema is workflow-specific. */
-  event_plan?: WizardSessionsCreateRequestEventPlanMap | null;
+  event_plan?: CreateWizardSessionRequestEventPlanMap | null;
   /** Populated when run_phase='error'. Shape: { type: string, message: string }. */
-  error?: WizardSessionsCreateRequestErrorMap | null;
+  error?: CreateWizardSessionRequestErrorMap | null;
 }
 export const CreateWizardSessionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -141,9 +141,9 @@ export const CreateWizardSessionRequest = /*@__PURE__*/ S.suspend(() =>
     skill_id: S.String,
     started_at: S.String,
     run_phase: RunPhaseEnum,
-    tasks: WizardSessionsCreateRequestTasksList,
-    event_plan: S.optional(S.NullOr(WizardSessionsCreateRequestEventPlanMap)),
-    error: S.optional(S.NullOr(WizardSessionsCreateRequestErrorMap)),
+    tasks: CreateWizardSessionRequestTasksList,
+    event_plan: S.optional(S.NullOr(CreateWizardSessionRequestEventPlanMap)),
+    error: S.optional(S.NullOr(CreateWizardSessionRequestErrorMap)),
   }).pipe(
     T.Http({
       method: "POST",
@@ -232,6 +232,79 @@ export const WizardSessionDTO = /*@__PURE__*/ S.suspend(() =>
   identifier: "WizardSessionDTO",
 }) as any as S.Schema<WizardSessionDTO>;
 
+export interface GetWizardSessionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  session_id: string;
+}
+export const GetWizardSessionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    session_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/wizard/sessions/{session_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWizardSessionRequest",
+}) as any as S.Schema<GetWizardSessionRequest>;
+
+export interface GetWizardSessionsLatestRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Filter to a single skill within the workflow (e.g. 'nextjs'). */
+  skill_id?: string;
+  /** Filter to a single workflow (e.g. 'posthog-integration'). */
+  workflow_id: string;
+}
+export const GetWizardSessionsLatestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    skill_id: S.optional(S.String.pipe(T.Query())),
+    workflow_id: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/wizard/sessions/latest/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWizardSessionsLatestRequest",
+}) as any as S.Schema<GetWizardSessionsLatestRequest>;
+
+export interface GetWizardSessionsStreamRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  skill_id?: string;
+  workflow_id: string;
+}
+export const GetWizardSessionsStreamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    skill_id: S.optional(S.String.pipe(T.Query())),
+    workflow_id: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/wizard/sessions/stream/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWizardSessionsStreamRequest",
+}) as any as S.Schema<GetWizardSessionsStreamRequest>;
+
+export interface GetWizardSessionsStreamResponse {}
+export const GetWizardSessionsStreamResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetWizardSessionsStreamResponse",
+}) as any as S.Schema<GetWizardSessionsStreamResponse>;
+
 export interface ListWizardSessionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -284,79 +357,6 @@ export const PaginatedWizardSessionDTOList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedWizardSessionDTOList",
 }) as any as S.Schema<PaginatedWizardSessionDTOList>;
 
-export interface WizardSessionsLatestRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Filter to a single skill within the workflow (e.g. 'nextjs'). */
-  skill_id?: string;
-  /** Filter to a single workflow (e.g. 'posthog-integration'). */
-  workflow_id: string;
-}
-export const WizardSessionsLatestRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    skill_id: S.optional(S.String.pipe(T.Query())),
-    workflow_id: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/wizard/sessions/latest/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WizardSessionsLatestRetrieveRequest",
-}) as any as S.Schema<WizardSessionsLatestRetrieveRequest>;
-
-export interface WizardSessionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  session_id: string;
-}
-export const WizardSessionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    session_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/wizard/sessions/{session_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WizardSessionsRetrieveRequest",
-}) as any as S.Schema<WizardSessionsRetrieveRequest>;
-
-export interface WizardSessionsStreamRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  skill_id?: string;
-  workflow_id: string;
-}
-export const WizardSessionsStreamRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    skill_id: S.optional(S.String.pipe(T.Query())),
-    workflow_id: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/wizard/sessions/stream/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WizardSessionsStreamRetrieveRequest",
-}) as any as S.Schema<WizardSessionsStreamRetrieveRequest>;
-
-export interface WizardSessionsStreamRetrieveResponse {}
-export const WizardSessionsStreamRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WizardSessionsStreamRetrieveResponse",
-}) as any as S.Schema<WizardSessionsStreamRetrieveResponse>;
-
 export type CreateWizardSessionError = Forbidden | PosthogOpError;
 /** Upsert a wizard session. The `session_id` key is the idempotency anchor — reposting the same `session_id` replaces the existing row. Returns 201 on create, 200 on update. */
 export const createWizardSession: API.OperationMethod<
@@ -372,6 +372,51 @@ export const createWizardSession: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetWizardSessionError = NotFound | PosthogOpError;
+/** Retrieve a single wizard session by its session_id. */
+export const getWizardSession: API.OperationMethod<
+  GetWizardSessionRequest,
+  WizardSessionDTO,
+  GetWizardSessionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWizardSessionRequest,
+  output: WizardSessionDTO,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWizardSessionsLatestError = PosthogOpError;
+/** Return the single most-recent wizard session for a workflow (and optional skill), or 204 if none exists. Unlike `list`, this is a point lookup the app shell uses to decide whether to open the live SSE stream — it never returns a collection, and 'no run' is a 204 rather than a 404 so clients don't conflate it with a missing endpoint. */
+export const getWizardSessionsLatest: API.OperationMethod<
+  GetWizardSessionsLatestRequest,
+  WizardSessionDTO,
+  GetWizardSessionsLatestError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWizardSessionsLatestRequest,
+  output: WizardSessionDTO,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWizardSessionsStreamError = PosthogOpError;
+/** Server-Sent Events stream of wizard session updates for a (workflow_id, skill_id) pair. On connect, the current latest session (if any) is emitted as the first event; subsequent upserts are streamed in real time. The server closes the connection after 900 seconds with an `event: end` line so the client (EventSource) can reconnect. **SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire infinite stream. Use the URL builder (`getWizardSessionsStreamRetrieveUrl`) with the browser's `EventSource` API instead. */
+export const getWizardSessionsStream: API.OperationMethod<
+  GetWizardSessionsStreamRequest,
+  GetWizardSessionsStreamResponse,
+  GetWizardSessionsStreamError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWizardSessionsStreamRequest,
+  output: GetWizardSessionsStreamResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListWizardSessionsError = PosthogOpError;
 /** List wizard sessions for the project, ordered by started_at desc. This should only be called by the PostHog Wizard. Optional filters: ?workflow_id=<id> and ?skill_id=<id>. */
 export const listWizardSessions: API.OperationMethod<
@@ -382,51 +427,6 @@ export const listWizardSessions: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWizardSessionsRequest,
   output: PaginatedWizardSessionDTOList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WizardSessionsLatestRetrieveError = PosthogOpError;
-/** Return the single most-recent wizard session for a workflow (and optional skill), or 204 if none exists. Unlike `list`, this is a point lookup the app shell uses to decide whether to open the live SSE stream — it never returns a collection, and 'no run' is a 204 rather than a 404 so clients don't conflate it with a missing endpoint. */
-export const wizardSessionsLatestRetrieve: API.OperationMethod<
-  WizardSessionsLatestRetrieveRequest,
-  WizardSessionDTO,
-  WizardSessionsLatestRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WizardSessionsLatestRetrieveRequest,
-  output: WizardSessionDTO,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WizardSessionsRetrieveError = NotFound | PosthogOpError;
-/** Retrieve a single wizard session by its session_id. */
-export const wizardSessionsRetrieve: API.OperationMethod<
-  WizardSessionsRetrieveRequest,
-  WizardSessionDTO,
-  WizardSessionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WizardSessionsRetrieveRequest,
-  output: WizardSessionDTO,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WizardSessionsStreamRetrieveError = PosthogOpError;
-/** Server-Sent Events stream of wizard session updates for a (workflow_id, skill_id) pair. On connect, the current latest session (if any) is emitted as the first event; subsequent upserts are streamed in real time. The server closes the connection after 900 seconds with an `event: end` line so the client (EventSource) can reconnect. **SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire infinite stream. Use the URL builder (`getWizardSessionsStreamRetrieveUrl`) with the browser's `EventSource` API instead. */
-export const wizardSessionsStreamRetrieve: API.OperationMethod<
-  WizardSessionsStreamRetrieveRequest,
-  WizardSessionsStreamRetrieveResponse,
-  WizardSessionsStreamRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WizardSessionsStreamRetrieveRequest,
-  output: WizardSessionsStreamRetrieveResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -44,7 +44,7 @@ export const DeletePrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePrivateZoneResponse",
 }) as any as S.Schema<DeletePrivateZoneResponse>;
 
-export type RecordSetsDeleteRequestRecordType =
+export type DeleteRecordSetRequestRecordType =
   | "A"
   | "AAAA"
   | "CNAME"
@@ -53,7 +53,7 @@ export type RecordSetsDeleteRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsDeleteRequestRecordType = /*@__PURE__*/ S.String;
+export const DeleteRecordSetRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface DeleteRecordSetRequest {
   /** The ID of the target subscription. */
@@ -63,7 +63,7 @@ export interface DeleteRecordSetRequest {
   /** The name of the DNS zone (without a terminating dot). */
   privateZoneName: string;
   /** The type of DNS record in this record set. */
-  recordType: RecordSetsDeleteRequestRecordType | (string & {});
+  recordType: DeleteRecordSetRequestRecordType | (string & {});
   /** The name of the record set, relative to the name of the zone. */
   relativeRecordSetName: string;
 }
@@ -72,7 +72,7 @@ export const DeleteRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsDeleteRequestRecordType.pipe(T.Label()),
+    recordType: DeleteRecordSetRequestRecordType.pipe(T.Label()),
     relativeRecordSetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -240,13 +240,13 @@ export const PrivateZoneProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateZoneProperties>;
 
 /** Resource tags. */
-export type PrivateZonesGetResponseTagsMap = {
+export type GetPrivateZoneResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateZonesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPrivateZoneResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateZonesGetResponseTagsMap>;
+) as any as S.Schema<GetPrivateZoneResponseTagsMap>;
 
 export interface GetPrivateZoneResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -260,7 +260,7 @@ export interface GetPrivateZoneResponse {
   /** Properties of the Private DNS zone. */
   properties?: PrivateZoneProperties;
   /** Resource tags. */
-  tags?: PrivateZonesGetResponseTagsMap;
+  tags?: GetPrivateZoneResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the zone. */
@@ -273,7 +273,7 @@ export const GetPrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(PrivateZoneProperties),
-    tags: S.optional(PrivateZonesGetResponseTagsMap),
+    tags: S.optional(GetPrivateZoneResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
@@ -281,7 +281,7 @@ export const GetPrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPrivateZoneResponse",
 }) as any as S.Schema<GetPrivateZoneResponse>;
 
-export type RecordSetsGetRequestRecordType =
+export type GetRecordSetRequestRecordType =
   | "A"
   | "AAAA"
   | "CNAME"
@@ -290,7 +290,7 @@ export type RecordSetsGetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsGetRequestRecordType = /*@__PURE__*/ S.String;
+export const GetRecordSetRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface GetRecordSetRequest {
   /** The ID of the target subscription. */
@@ -300,7 +300,7 @@ export interface GetRecordSetRequest {
   /** The name of the DNS zone (without a terminating dot). */
   privateZoneName: string;
   /** The type of DNS record in this record set. */
-  recordType: RecordSetsGetRequestRecordType | (string & {});
+  recordType: GetRecordSetRequestRecordType | (string & {});
   /** The name of the record set, relative to the name of the zone. */
   relativeRecordSetName: string;
 }
@@ -309,7 +309,7 @@ export const GetRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsGetRequestRecordType.pipe(T.Label()),
+    recordType: GetRecordSetRequestRecordType.pipe(T.Label()),
     relativeRecordSetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -638,13 +638,13 @@ export const VirtualNetworkLinkProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualNetworkLinkProperties>;
 
 /** Resource tags. */
-export type VirtualNetworkLinksGetResponseTagsMap = {
+export type GetVirtualNetworkLinkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworkLinksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualNetworkLinkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworkLinksGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualNetworkLinkResponseTagsMap>;
 
 export interface GetVirtualNetworkLinkResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -658,7 +658,7 @@ export interface GetVirtualNetworkLinkResponse {
   /** Properties of the virtual network link to the Private DNS zone. */
   properties?: VirtualNetworkLinkProperties;
   /** Resource tags. */
-  tags?: VirtualNetworkLinksGetResponseTagsMap;
+  tags?: GetVirtualNetworkLinkResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the virtual network link. */
@@ -671,7 +671,7 @@ export const GetVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(VirtualNetworkLinkProperties),
-    tags: S.optional(VirtualNetworkLinksGetResponseTagsMap),
+    tags: S.optional(GetVirtualNetworkLinkResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
@@ -788,7 +788,7 @@ export const ListPrivateZonesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPrivateZonesRequest",
 }) as any as S.Schema<ListPrivateZonesRequest>;
 
-export type RecordSetsListByTypeRequestRecordType =
+export type ListRecordSetByTypeRequestRecordType =
   | "A"
   | "AAAA"
   | "CNAME"
@@ -797,7 +797,7 @@ export type RecordSetsListByTypeRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsListByTypeRequestRecordType = /*@__PURE__*/ S.String;
+export const ListRecordSetByTypeRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface ListRecordSetByTypeRequest {
   /** The ID of the target subscription. */
@@ -807,7 +807,7 @@ export interface ListRecordSetByTypeRequest {
   /** The name of the DNS zone (without a terminating dot). */
   privateZoneName: string;
   /** The type of DNS record in this record set. */
-  recordType: RecordSetsListByTypeRequestRecordType | (string & {});
+  recordType: ListRecordSetByTypeRequestRecordType | (string & {});
   /** The maximum number of record sets to return. If not specified, returns up to 100 record sets. */
   _top?: number;
   /** The suffix label of the record set name to be used to filter the record set enumeration. If this parameter is specified, the returned enumeration will only contain records that end with ".<recordsetnamesuffix>". */
@@ -818,7 +818,7 @@ export const ListRecordSetByTypeRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsListByTypeRequestRecordType.pipe(T.Label()),
+    recordType: ListRecordSetByTypeRequestRecordType.pipe(T.Label()),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _recordsetnamesuffix: S.optional(
       S.String.pipe(T.Query("$recordsetnamesuffix")),
@@ -1264,13 +1264,13 @@ export const RecordSetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RecordSetsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type PrivateZonesUpdateRequestTagsMap = {
+export type UpdatePrivateZoneRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateZonesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePrivateZoneRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateZonesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePrivateZoneRequestTagsMap>;
 
 export interface UpdatePrivateZoneRequest {
   /** The ID of the target subscription. */
@@ -1282,7 +1282,7 @@ export interface UpdatePrivateZoneRequest {
   /** Properties of the Private DNS zone. */
   properties?: PrivateZonePropertiesInput;
   /** Resource tags. */
-  tags?: PrivateZonesUpdateRequestTagsMap;
+  tags?: UpdatePrivateZoneRequestTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the zone. */
@@ -1294,7 +1294,7 @@ export const UpdatePrivateZoneRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
     properties: S.optional(PrivateZonePropertiesInput),
-    tags: S.optional(PrivateZonesUpdateRequestTagsMap),
+    tags: S.optional(UpdatePrivateZoneRequestTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }).pipe(
@@ -1310,13 +1310,13 @@ export const UpdatePrivateZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePrivateZoneRequest>;
 
 /** Resource tags. */
-export type PrivateZonesUpdateResponseTagsMap = {
+export type UpdatePrivateZoneResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateZonesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePrivateZoneResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateZonesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePrivateZoneResponseTagsMap>;
 
 export interface UpdatePrivateZoneResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1330,7 +1330,7 @@ export interface UpdatePrivateZoneResponse {
   /** Properties of the Private DNS zone. */
   properties?: PrivateZoneProperties;
   /** Resource tags. */
-  tags?: PrivateZonesUpdateResponseTagsMap;
+  tags?: UpdatePrivateZoneResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the zone. */
@@ -1343,7 +1343,7 @@ export const UpdatePrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(PrivateZoneProperties),
-    tags: S.optional(PrivateZonesUpdateResponseTagsMap),
+    tags: S.optional(UpdatePrivateZoneResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
@@ -1351,7 +1351,7 @@ export const UpdatePrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdatePrivateZoneResponse",
 }) as any as S.Schema<UpdatePrivateZoneResponse>;
 
-export type RecordSetsUpdateRequestRecordType =
+export type UpdateRecordSetRequestRecordType =
   | "A"
   | "AAAA"
   | "CNAME"
@@ -1360,7 +1360,7 @@ export type RecordSetsUpdateRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsUpdateRequestRecordType = /*@__PURE__*/ S.String;
+export const UpdateRecordSetRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface UpdateRecordSetRequest {
   /** The ID of the target subscription. */
@@ -1370,7 +1370,7 @@ export interface UpdateRecordSetRequest {
   /** The name of the DNS zone (without a terminating dot). */
   privateZoneName: string;
   /** The type of DNS record in this record set. */
-  recordType: RecordSetsUpdateRequestRecordType | (string & {});
+  recordType: UpdateRecordSetRequestRecordType | (string & {});
   /** The name of the record set, relative to the name of the zone. */
   relativeRecordSetName: string;
   /** The properties of the record set. */
@@ -1383,7 +1383,7 @@ export const UpdateRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsUpdateRequestRecordType.pipe(T.Label()),
+    recordType: UpdateRecordSetRequestRecordType.pipe(T.Label()),
     relativeRecordSetName: S.String.pipe(T.Label()),
     properties: S.optional(RecordSetPropertiesInput),
     etag: S.optional(S.String),
@@ -1446,13 +1446,13 @@ export const VirtualNetworkLinkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualNetworkLinkPropertiesInput>;
 
 /** Resource tags. */
-export type VirtualNetworkLinksUpdateRequestTagsMap = {
+export type UpdateVirtualNetworkLinkRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworkLinksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualNetworkLinkRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworkLinksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVirtualNetworkLinkRequestTagsMap>;
 
 export interface UpdateVirtualNetworkLinkRequest {
   /** The ID of the target subscription. */
@@ -1466,7 +1466,7 @@ export interface UpdateVirtualNetworkLinkRequest {
   /** Properties of the virtual network link to the Private DNS zone. */
   properties?: VirtualNetworkLinkPropertiesInput;
   /** Resource tags. */
-  tags?: VirtualNetworkLinksUpdateRequestTagsMap;
+  tags?: UpdateVirtualNetworkLinkRequestTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the virtual network link. */
@@ -1479,7 +1479,7 @@ export const UpdateVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
     privateZoneName: S.String.pipe(T.Label()),
     virtualNetworkLinkName: S.String.pipe(T.Label()),
     properties: S.optional(VirtualNetworkLinkPropertiesInput),
-    tags: S.optional(VirtualNetworkLinksUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualNetworkLinkRequestTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }).pipe(
@@ -1495,13 +1495,13 @@ export const UpdateVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualNetworkLinkRequest>;
 
 /** Resource tags. */
-export type VirtualNetworkLinksUpdateResponseTagsMap = {
+export type UpdateVirtualNetworkLinkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworkLinksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualNetworkLinkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworkLinksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVirtualNetworkLinkResponseTagsMap>;
 
 export interface UpdateVirtualNetworkLinkResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1515,7 +1515,7 @@ export interface UpdateVirtualNetworkLinkResponse {
   /** Properties of the virtual network link to the Private DNS zone. */
   properties?: VirtualNetworkLinkProperties;
   /** Resource tags. */
-  tags?: VirtualNetworkLinksUpdateResponseTagsMap;
+  tags?: UpdateVirtualNetworkLinkResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the virtual network link. */
@@ -1528,7 +1528,7 @@ export const UpdateVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(VirtualNetworkLinkProperties),
-    tags: S.optional(VirtualNetworkLinksUpdateResponseTagsMap),
+    tags: S.optional(UpdateVirtualNetworkLinkResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),

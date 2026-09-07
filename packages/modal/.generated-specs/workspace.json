@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.workspace#WorkspaceBillingRatesRequest": {
@@ -302,7 +303,7 @@
         }
       }
     },
-    "com.modal.workspace#WorkspaceNameLookupResponse": {
+    "com.modal.workspace#LookupWorkspaceNameResponse": {
       "type": "structure",
       "members": {
         "workspaceName": {
@@ -319,13 +320,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.workspace#WorkspaceNameLookup": {
+    "com.modal.workspace#LookupWorkspaceName": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modal.workspace#WorkspaceNameLookupResponse"
+        "target": "com.modal.workspace#LookupWorkspaceNameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -335,7 +336,7 @@
         }
       }
     },
-    "com.modal.workspace#SetWorkspaceDefaultEnvironmentRequest": {
+    "com.modal.workspace#WorkspaceSetDefaultEnvironmentRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -346,10 +347,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.workspace#SetWorkspaceDefaultEnvironment": {
+    "com.modal.workspace#WorkspaceSetDefaultEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.modal.workspace#SetWorkspaceDefaultEnvironmentRequest"
+        "target": "com.modal.workspace#WorkspaceSetDefaultEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -362,7 +363,7 @@
         }
       }
     },
-    "com.modal.workspace#SetWorkspaceImageBuilderVersionRequest": {
+    "com.modal.workspace#WorkspaceSetImageBuilderVersionRequest": {
       "type": "structure",
       "members": {
         "newImageBuilderVersion": {
@@ -373,7 +374,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.workspace#SetWorkspaceImageBuilderVersionResponse": {
+    "com.modal.workspace#WorkspaceSetImageBuilderVersionResponse": {
       "type": "structure",
       "members": {
         "imageBuilderVersion": {
@@ -384,13 +385,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.workspace#SetWorkspaceImageBuilderVersion": {
+    "com.modal.workspace#WorkspaceSetImageBuilderVersion": {
       "type": "operation",
       "input": {
-        "target": "com.modal.workspace#SetWorkspaceImageBuilderVersionRequest"
+        "target": "com.modal.workspace#WorkspaceSetImageBuilderVersionRequest"
       },
       "output": {
-        "target": "com.modal.workspace#SetWorkspaceImageBuilderVersionResponse"
+        "target": "com.modal.workspace#WorkspaceSetImageBuilderVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -435,25 +436,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.workspace#WorkspaceBillingRates"
-        },
-        {
-          "target": "com.modal.workspace#WorkspaceBillingSummary"
-        },
-        {
           "target": "com.modal.workspace#GetWorkspaceDashboardUrl"
         },
         {
           "target": "com.modal.workspace#ListWorkspaceMembers"
         },
         {
-          "target": "com.modal.workspace#WorkspaceNameLookup"
+          "target": "com.modal.workspace#LookupWorkspaceName"
         },
         {
-          "target": "com.modal.workspace#SetWorkspaceDefaultEnvironment"
+          "target": "com.modal.workspace#WorkspaceBillingRates"
         },
         {
-          "target": "com.modal.workspace#SetWorkspaceImageBuilderVersion"
+          "target": "com.modal.workspace#WorkspaceBillingSummary"
+        },
+        {
+          "target": "com.modal.workspace#WorkspaceSetDefaultEnvironment"
+        },
+        {
+          "target": "com.modal.workspace#WorkspaceSetImageBuilderVersion"
         },
         {
           "target": "com.modal.workspace#WorkspaceSettings"

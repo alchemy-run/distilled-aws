@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.cloudshell#KeepAlive": {
@@ -1221,52 +1222,52 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cloudshell#KeepAlive"
-        },
-        {
           "target": "com.azure.cloudshell#DeleteConsole"
-        },
-        {
-          "target": "com.azure.cloudshell#PutConsole"
-        },
-        {
-          "target": "com.azure.cloudshell#GetConsole"
-        },
-        {
-          "target": "com.azure.cloudshell#DeleteUserSettings"
-        },
-        {
-          "target": "com.azure.cloudshell#PatchUserSettings"
-        },
-        {
-          "target": "com.azure.cloudshell#PutUserSettings"
-        },
-        {
-          "target": "com.azure.cloudshell#GetUserSettings"
-        },
-        {
-          "target": "com.azure.cloudshell#KeepAliveWithLocation"
         },
         {
           "target": "com.azure.cloudshell#DeleteConsoleWithLocation"
         },
         {
-          "target": "com.azure.cloudshell#PutConsoleWithLocation"
-        },
-        {
-          "target": "com.azure.cloudshell#GetConsoleWithLocation"
+          "target": "com.azure.cloudshell#DeleteUserSettings"
         },
         {
           "target": "com.azure.cloudshell#DeleteUserSettingsWithLocation"
         },
         {
-          "target": "com.azure.cloudshell#PatchUserSettingsWithLocation"
+          "target": "com.azure.cloudshell#GetConsole"
         },
         {
-          "target": "com.azure.cloudshell#PutUserSettingsWithLocation"
+          "target": "com.azure.cloudshell#GetConsoleWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#GetUserSettings"
         },
         {
           "target": "com.azure.cloudshell#GetUserSettingsWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#KeepAlive"
+        },
+        {
+          "target": "com.azure.cloudshell#KeepAliveWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#PatchUserSettings"
+        },
+        {
+          "target": "com.azure.cloudshell#PatchUserSettingsWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#PutConsole"
+        },
+        {
+          "target": "com.azure.cloudshell#PutConsoleWithLocation"
+        },
+        {
+          "target": "com.azure.cloudshell#PutUserSettings"
+        },
+        {
+          "target": "com.azure.cloudshell#PutUserSettingsWithLocation"
         }
       ],
       "traits": {

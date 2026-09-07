@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.scheduling#GetSchedulingApiGroup": {
+    "com.kubernetes.scheduling#GetSchedulingAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.scheduling#GetSchedulingV1ApiResources": {
+    "com.kubernetes.scheduling#GetSchedulingV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1566,7 +1567,7 @@
         "smithy.api#documentation": "delete a PriorityClass"
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1PriorityClassRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1PriorityClassListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -1679,10 +1680,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1PriorityClass": {
+    "com.kubernetes.scheduling#WatchSchedulingV1PriorityClassList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1PriorityClassRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClassListRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -1813,7 +1814,7 @@
         "smithy.api#documentation": "watch changes to an object of kind PriorityClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.scheduling#GetSchedulingV1alpha3ApiResources": {
+    "com.kubernetes.scheduling#GetSchedulingV1alpha3APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2194,8 +2195,7 @@
         "message": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string."
           }
         },
         "observedGeneration": {
@@ -5547,7 +5547,7 @@
         "smithy.api#documentation": "list or watch objects of kind PodGroup"
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3CompositePodGroupForAllNamespacesRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3CompositePodGroupListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -5639,10 +5639,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3CompositePodGroupForAllNamespaces": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3CompositePodGroupListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3CompositePodGroupForAllNamespacesRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3CompositePodGroupListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -5656,7 +5656,7 @@
         "smithy.api#documentation": "watch individual changes to a list of CompositePodGroup. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedCompositePodGroupRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroupListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -5756,10 +5756,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedCompositePodGroup": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroupList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedCompositePodGroupRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroupListRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -5898,7 +5898,7 @@
         "smithy.api#documentation": "watch changes to an object of kind CompositePodGroup. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedPodGroupRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroupListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -5998,10 +5998,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedPodGroup": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroupList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedPodGroupRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroupListRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6140,7 +6140,7 @@
         "smithy.api#documentation": "watch changes to an object of kind PodGroup. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedWorkloadRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkloadListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -6240,10 +6240,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedWorkload": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkloadList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedWorkloadRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkloadListRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6382,7 +6382,7 @@
         "smithy.api#documentation": "watch changes to an object of kind Workload. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3PodGroupForAllNamespacesRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3PodGroupListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -6474,10 +6474,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3PodGroupForAllNamespaces": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3PodGroupListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3PodGroupForAllNamespacesRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3PodGroupListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6491,7 +6491,7 @@
         "smithy.api#documentation": "watch individual changes to a list of PodGroup. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3WorkloadForAllNamespacesRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3WorkloadListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -6583,10 +6583,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3WorkloadForAllNamespaces": {
+    "com.kubernetes.scheduling#WatchSchedulingV1alpha3WorkloadListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3WorkloadForAllNamespacesRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3WorkloadListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6709,7 +6709,7 @@
         "smithy.api#documentation": "list or watch objects of kind Workload"
       }
     },
-    "com.kubernetes.scheduling#GetSchedulingV1beta1ApiResources": {
+    "com.kubernetes.scheduling#GetSchedulingV1beta1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -9191,7 +9191,7 @@
         "smithy.api#documentation": "list or watch objects of kind PodGroup"
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedPodGroupRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroupListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -9291,10 +9291,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedPodGroup": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroupList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedPodGroupRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroupListRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -9433,7 +9433,7 @@
         "smithy.api#documentation": "watch changes to an object of kind PodGroup. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedWorkloadRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkloadListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -9533,10 +9533,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedWorkload": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkloadList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedWorkloadRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkloadListRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -9675,7 +9675,7 @@
         "smithy.api#documentation": "watch changes to an object of kind Workload. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1PodGroupForAllNamespacesRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1PodGroupListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -9767,10 +9767,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1PodGroupForAllNamespaces": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1PodGroupListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1PodGroupForAllNamespacesRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1PodGroupListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -9784,7 +9784,7 @@
         "smithy.api#documentation": "watch individual changes to a list of PodGroup. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1WorkloadForAllNamespacesRequest": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1WorkloadListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -9876,10 +9876,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.scheduling#ListWatchSchedulingV1beta1WorkloadForAllNamespaces": {
+    "com.kubernetes.scheduling#WatchSchedulingV1beta1WorkloadListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1WorkloadForAllNamespacesRequest"
+        "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1WorkloadListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.scheduling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -10046,40 +10046,70 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.scheduling#GetSchedulingApiGroup"
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedCompositePodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#GetSchedulingV1ApiResources"
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedPodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1PriorityClass"
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedWorkload"
         },
         {
           "target": "com.kubernetes.scheduling#CreateSchedulingV1PriorityClass"
         },
         {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedWorkload"
+        },
+        {
           "target": "com.kubernetes.scheduling#DeleteSchedulingV1CollectionPriorityClass"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1PriorityClass"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1PriorityClass"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1PriorityClass"
         },
         {
           "target": "com.kubernetes.scheduling#DeleteSchedulingV1PriorityClass"
         },
         {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1PriorityClass"
+          "target": "com.kubernetes.scheduling#GetSchedulingAPIGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClass"
+          "target": "com.kubernetes.scheduling#GetSchedulingV1alpha3APIResources"
         },
         {
-          "target": "com.kubernetes.scheduling#GetSchedulingV1alpha3ApiResources"
+          "target": "com.kubernetes.scheduling#GetSchedulingV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.scheduling#GetSchedulingV1beta1APIResources"
         },
         {
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3CompositePodGroupForAllNamespaces"
@@ -10088,193 +10118,163 @@
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedCompositePodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedCompositePodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedCompositePodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroupStatus"
-        },
-        {
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroupStatus"
         },
         {
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedWorkload"
         },
         {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3PodGroupForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3CompositePodGroupForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3PodGroupForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1alpha3WorkloadForAllNamespaces"
         },
         {
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3WorkloadForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.scheduling#GetSchedulingV1beta1ApiResources"
-        },
-        {
           "target": "com.kubernetes.scheduling#ListSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroupStatus"
         },
         {
           "target": "com.kubernetes.scheduling#ListSchedulingV1beta1NamespacedWorkload"
         },
         {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedWorkload"
+          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1PodGroupForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedWorkload"
+          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1WorkloadForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedWorkload"
+          "target": "com.kubernetes.scheduling#ListSchedulingV1PriorityClass"
         },
         {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedWorkload"
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroupStatus"
         },
         {
           "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedWorkload"
         },
         {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedWorkload"
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1PriorityClass"
         },
         {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1PodGroupForAllNamespaces"
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedCompositePodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedPodGroup"
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedCompositePodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedCompositePodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3CompositePodGroupListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroupList"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroupList"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkloadList"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3PodGroupListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3WorkloadListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1NamespacedWorkload"
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroupList"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkload"
         },
         {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1PodGroupForAllNamespaces"
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkloadList"
         },
         {
-          "target": "com.kubernetes.scheduling#ListWatchSchedulingV1beta1WorkloadForAllNamespaces"
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1PodGroupListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1WorkloadForAllNamespaces"
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1WorkloadListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClassList"
         }
       ],
       "traits": {

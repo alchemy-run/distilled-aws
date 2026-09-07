@@ -84,7 +84,8 @@
       "xZoneName": "x_ZoneName",
       "zoneId": "ZoneId",
       "zoneName": "ZoneName"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.billing#UsageGetResultItemChargeCategory": {
@@ -459,13 +460,13 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.billing#ProfilesGet"
+          "target": "com.cloudflare.billing#GetProfile"
         },
         {
-          "target": "com.cloudflare.billing#UsageGet"
+          "target": "com.cloudflare.billing#GetUsage"
         },
         {
-          "target": "com.cloudflare.billing#UsagePaygo"
+          "target": "com.cloudflare.billing#PaygoUsage"
         }
       ],
       "traits": {

@@ -12,15 +12,16 @@ import * as Retry from "../retry.ts";
 export type { PosthogOpError, PosthogOpContext };
 
 /** * `results` - Results * `usability` - Usability * `bug` - Bug * `docs` - Docs * `other` - Other */
-export type MCPFeedbackCreateCategoryEnum =
+export type MCPAnalyticsSubmissionFeedbackCategoryEnum =
   | "results"
   | "usability"
   | "bug"
   | "docs"
   | "other";
-export const MCPFeedbackCreateCategoryEnum = /*@__PURE__*/ S.String;
+export const MCPAnalyticsSubmissionFeedbackCategoryEnum =
+  /*@__PURE__*/ S.String;
 
-export interface CreateMcpAnalyticFeedbackRequest {
+export interface CreateMcpAnalyticsFeedbackRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The tool the user tried before leaving feedback, if known. */
@@ -42,9 +43,9 @@ export interface CreateMcpAnalyticFeedbackRequest {
   /** Concrete feedback about the MCP experience, tool result, or workflow friction. */
   feedback: string;
   /** High-level category for the feedback. * `results` - Results * `usability` - Usability * `bug` - Bug * `docs` - Docs * `other` - Other */
-  category?: MCPFeedbackCreateCategoryEnum | (string & {});
+  category?: MCPAnalyticsSubmissionFeedbackCategoryEnum | (string & {});
 }
-export const CreateMcpAnalyticFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateMcpAnalyticsFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     attempted_tool: S.optional(S.String),
@@ -56,7 +57,7 @@ export const CreateMcpAnalyticFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
     mcp_trace_id: S.optional(S.String),
     goal: S.String,
     feedback: S.String,
-    category: S.optional(MCPFeedbackCreateCategoryEnum),
+    category: S.optional(MCPAnalyticsSubmissionFeedbackCategoryEnum),
   }).pipe(
     T.Http({
       method: "POST",
@@ -65,8 +66,8 @@ export const CreateMcpAnalyticFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateMcpAnalyticFeedbackRequest",
-}) as any as S.Schema<CreateMcpAnalyticFeedbackRequest>;
+  identifier: "CreateMcpAnalyticsFeedbackRequest",
+}) as any as S.Schema<CreateMcpAnalyticsFeedbackRequest>;
 
 /** * `feedback` - Feedback * `missing_capability` - Missing capability */
 export type MCPAnalyticsSubmissionKindEnum = "feedback" | "missing_capability";
@@ -126,7 +127,7 @@ export const MCPAnalyticsSubmission = /*@__PURE__*/ S.suspend(() =>
   identifier: "MCPAnalyticsSubmission",
 }) as any as S.Schema<MCPAnalyticsSubmission>;
 
-export interface CreateMcpAnalyticMissingCapabilityRequest {
+export interface CreateMcpAnalyticsMissingCapabilityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The tool the user tried before leaving feedback, if known. */
@@ -150,7 +151,7 @@ export interface CreateMcpAnalyticMissingCapabilityRequest {
   /** Whether the missing capability blocked the user's progress. */
   blocked?: boolean;
 }
-export const CreateMcpAnalyticMissingCapabilityRequest =
+export const CreateMcpAnalyticsMissingCapabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -172,10 +173,10 @@ export const CreateMcpAnalyticMissingCapabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateMcpAnalyticMissingCapabilityRequest",
-  }) as any as S.Schema<CreateMcpAnalyticMissingCapabilityRequest>;
+    identifier: "CreateMcpAnalyticsMissingCapabilityRequest",
+  }) as any as S.Schema<CreateMcpAnalyticsMissingCapabilityRequest>;
 
-export interface GenerateMcpAnalyticSessionIntentRequest {
+export interface GenerateMcpAnalyticsSessionIntentRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this mcp analytics submission. */
@@ -183,7 +184,7 @@ export interface GenerateMcpAnalyticSessionIntentRequest {
   /** Absolute ISO timestamp lower bound for the intent scan — pass the session's start so older sessions resolve. Defaults to a 7-day lookback when omitted. */
   date_from?: string;
 }
-export const GenerateMcpAnalyticSessionIntentRequest = /*@__PURE__*/ S.suspend(
+export const GenerateMcpAnalyticsSessionIntentRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -197,8 +198,8 @@ export const GenerateMcpAnalyticSessionIntentRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GenerateMcpAnalyticSessionIntentRequest",
-}) as any as S.Schema<GenerateMcpAnalyticSessionIntentRequest>;
+  identifier: "GenerateMcpAnalyticsSessionIntentRequest",
+}) as any as S.Schema<GenerateMcpAnalyticsSessionIntentRequest>;
 
 export interface MCPSessionIntent {
   /** $mcp_session_id the intent summary was generated for. */
@@ -215,226 +216,26 @@ export const MCPSessionIntent = /*@__PURE__*/ S.suspend(() =>
   identifier: "MCPSessionIntent",
 }) as any as S.Schema<MCPSessionIntent>;
 
-export interface ListMcpAnalyticFeedbackRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const ListMcpAnalyticFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/mcp_analytics/feedback/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListMcpAnalyticFeedbackRequest",
-}) as any as S.Schema<ListMcpAnalyticFeedbackRequest>;
-
-export type PaginatedMCPAnalyticsSubmissionListResultsList =
-  Array<MCPAnalyticsSubmission>;
-export const PaginatedMCPAnalyticsSubmissionListResultsList =
-  /*@__PURE__*/ S.Array(
-    MCPAnalyticsSubmission,
-  ) as any as S.Schema<PaginatedMCPAnalyticsSubmissionListResultsList>;
-
-export interface PaginatedMCPAnalyticsSubmissionList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedMCPAnalyticsSubmissionListResultsList;
-}
-export const PaginatedMCPAnalyticsSubmissionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedMCPAnalyticsSubmissionListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedMCPAnalyticsSubmissionList",
-}) as any as S.Schema<PaginatedMCPAnalyticsSubmissionList>;
-
-export interface ListMcpAnalyticMissingCapabilitiesRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const ListMcpAnalyticMissingCapabilitiesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/mcp_analytics/missing_capabilities/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListMcpAnalyticMissingCapabilitiesRequest",
-  }) as any as S.Schema<ListMcpAnalyticMissingCapabilitiesRequest>;
-
-export interface ListMcpAnalyticSessionsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Start of the window to aggregate sessions over. PostHog date string — relative (e.g. '-7d', '-24h') or an absolute ISO timestamp. Defaults to '-7d'. */
-  date_from?: string;
-  /** End of the window. PostHog date string or absolute ISO timestamp. Defaults to now. */
-  date_to?: string;
-  /** Maximum number of sessions to return per page. Defaults to 100; values above 500 are rejected. */
-  limit?: number;
-  /** Number of sessions to skip before returning results. Combine with limit to page through sessions; the response's has_next flag indicates whether more remain. */
-  offset?: number;
-  /** Sort column. Allowed: session_id, session_start, session_end, duration_seconds, tool_call_count, mcp_client_name, distinct_id. Prefix with '-' for descending. Defaults to '-session_start' (newest sessions first). */
-  order_by?: string;
-  /** Case-insensitive substring filter matched against session_id, distinct_id, mcp_client_name, and tools_used. */
-  search?: string;
-}
-export const ListMcpAnalyticSessionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    date_from: S.optional(S.String.pipe(T.Query())),
-    date_to: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    order_by: S.optional(S.String.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/mcp_analytics/sessions/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListMcpAnalyticSessionsRequest",
-}) as any as S.Schema<ListMcpAnalyticSessionsRequest>;
-
-/** Distinct $mcp_tool_name values seen in the session. */
-export type MCPSessionToolsUsedList = Array<string>;
-export const MCPSessionToolsUsedList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MCPSessionToolsUsedList>;
-
-export interface MCPSession {
-  /** $mcp_session_id grouping all $mcp_tool_call events in the session. */
-  session_id: string;
-  /** Total number of $mcp_tool_call events in the session. */
-  tool_calls: number;
-  /** Timestamp of the first $mcp_tool_call event in the session. */
-  session_start: string;
-  /** Timestamp of the most recent $mcp_tool_call event in the session. */
-  session_end: string;
-  /** Number of distinct PostHog distinct_ids that produced events in the session. */
-  distinct_id_count: number;
-  /** Distinct $mcp_tool_name values seen in the session. */
-  tools_used: MCPSessionToolsUsedList;
-  /** Most recent $mcp_client_name observed in the session. */
-  mcp_client_name: string;
-  /** Most recent distinct_id observed for the session. Stable identifier the SDK tagged the events with. */
-  distinct_id: string;
-  /** email property of the Person resolved from distinct_id; empty when no Person is mapped. */
-  person_email: string;
-  /** name property of the Person resolved from distinct_id; empty when no Person is mapped. */
-  person_name: string;
-  /** LLM-generated summary (at most two sentences) of the agent's overall goal for the session. Empty until generated on demand via the generate_intent endpoint. */
-  intent: string;
-}
-export const MCPSession = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    session_id: S.String,
-    tool_calls: S.Number,
-    session_start: S.String,
-    session_end: S.String,
-    distinct_id_count: S.Number,
-    tools_used: MCPSessionToolsUsedList,
-    mcp_client_name: S.String,
-    distinct_id: S.String,
-    person_email: S.String,
-    person_name: S.String,
-    intent: S.String,
-  }),
-).annotate({ identifier: "MCPSession" }) as any as S.Schema<MCPSession>;
-
-export type PaginatedMCPSessionListResultsList = Array<MCPSession>;
-export const PaginatedMCPSessionListResultsList = /*@__PURE__*/ S.Array(
-  MCPSession,
-) as any as S.Schema<PaginatedMCPSessionListResultsList>;
-
-export interface PaginatedMCPSessionList {
-  results: PaginatedMCPSessionListResultsList;
-  /** Whether more results exist beyond this page; the client fetches the next page with a larger offset. */
-  has_next: boolean;
-}
-export const PaginatedMCPSessionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: PaginatedMCPSessionListResultsList,
-    has_next: S.Boolean,
-  }),
-).annotate({
-  identifier: "PaginatedMCPSessionList",
-}) as any as S.Schema<PaginatedMCPSessionList>;
-
-export interface McpAnalyticsIntentClustersRecomputeRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const McpAnalyticsIntentClustersRecomputeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/mcp_analytics/intent_clusters/recompute/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "McpAnalyticsIntentClustersRecomputeRequest",
-  }) as any as S.Schema<McpAnalyticsIntentClustersRecomputeRequest>;
-
-export interface McpAnalyticsIntentClustersRecomputeResponse {}
-export const McpAnalyticsIntentClustersRecomputeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "McpAnalyticsIntentClustersRecomputeResponse",
-  }) as any as S.Schema<McpAnalyticsIntentClustersRecomputeResponse>;
-
-export interface McpAnalyticsIntentClustersRetrieveRequest {
+export interface GetMcpAnalyticsIntentClusterRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Narrow the response to one tool: its pivot entry, the clusters it serves or switches with, and the overlap pairs it belongs to. Coverage meta stays whole-snapshot. Use this for single-tool views so they don't download every cluster and pivot to render one row. An unknown tool returns empty sections, not a 404. */
   tool?: string;
 }
-export const McpAnalyticsIntentClustersRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      tool: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/mcp_analytics/intent_clusters/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "McpAnalyticsIntentClustersRetrieveRequest",
-  }) as any as S.Schema<McpAnalyticsIntentClustersRetrieveRequest>;
+export const GetMcpAnalyticsIntentClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    tool: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/mcp_analytics/intent_clusters/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetMcpAnalyticsIntentClusterRequest",
+}) as any as S.Schema<GetMcpAnalyticsIntentClusterRequest>;
 
 /** * `idle` - Idle * `computing` - Computing * `error` - Error */
 export type MCPIntentClusterSnapshotStatusEnum = "idle" | "computing" | "error";
@@ -847,23 +648,219 @@ export const MCPIntentClusterSnapshot = /*@__PURE__*/ S.suspend(() =>
   identifier: "MCPIntentClusterSnapshot",
 }) as any as S.Schema<MCPIntentClusterSnapshot>;
 
-export type McpAnalyticsIntentClustersRetrieveResponseBodyList =
+export type GetMcpAnalyticsIntentClusterResponseBodyList =
   Array<MCPIntentClusterSnapshot>;
-export const McpAnalyticsIntentClustersRetrieveResponseBodyList =
+export const GetMcpAnalyticsIntentClusterResponseBodyList =
   /*@__PURE__*/ S.Array(
     MCPIntentClusterSnapshot,
-  ) as any as S.Schema<McpAnalyticsIntentClustersRetrieveResponseBodyList>;
+  ) as any as S.Schema<GetMcpAnalyticsIntentClusterResponseBodyList>;
 
-export type McpAnalyticsIntentClustersRetrieveResponse =
-  McpAnalyticsIntentClustersRetrieveResponseBodyList;
-export const McpAnalyticsIntentClustersRetrieveResponse =
+export type GetMcpAnalyticsIntentClusterResponse =
+  GetMcpAnalyticsIntentClusterResponseBodyList;
+export const GetMcpAnalyticsIntentClusterResponse = /*@__PURE__*/ S.suspend(
+  () => GetMcpAnalyticsIntentClusterResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetMcpAnalyticsIntentClusterResponse",
+}) as any as S.Schema<GetMcpAnalyticsIntentClusterResponse>;
+
+export interface ListMcpAnalyticsFeedbackRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListMcpAnalyticsFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/mcp_analytics/feedback/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListMcpAnalyticsFeedbackRequest",
+}) as any as S.Schema<ListMcpAnalyticsFeedbackRequest>;
+
+export type PaginatedMCPAnalyticsSubmissionListResultsList =
+  Array<MCPAnalyticsSubmission>;
+export const PaginatedMCPAnalyticsSubmissionListResultsList =
+  /*@__PURE__*/ S.Array(
+    MCPAnalyticsSubmission,
+  ) as any as S.Schema<PaginatedMCPAnalyticsSubmissionListResultsList>;
+
+export interface PaginatedMCPAnalyticsSubmissionList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedMCPAnalyticsSubmissionListResultsList;
+}
+export const PaginatedMCPAnalyticsSubmissionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedMCPAnalyticsSubmissionListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedMCPAnalyticsSubmissionList",
+}) as any as S.Schema<PaginatedMCPAnalyticsSubmissionList>;
+
+export interface ListMcpAnalyticsMissingCapabilitiesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListMcpAnalyticsMissingCapabilitiesRequest =
   /*@__PURE__*/ S.suspend(() =>
-    McpAnalyticsIntentClustersRetrieveResponseBodyList.pipe(
-      T.RawResponseRoot(),
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/mcp_analytics/missing_capabilities/",
+        code: 200,
+      }),
     ),
   ).annotate({
-    identifier: "McpAnalyticsIntentClustersRetrieveResponse",
-  }) as any as S.Schema<McpAnalyticsIntentClustersRetrieveResponse>;
+    identifier: "ListMcpAnalyticsMissingCapabilitiesRequest",
+  }) as any as S.Schema<ListMcpAnalyticsMissingCapabilitiesRequest>;
+
+export interface ListMcpAnalyticsSessionsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Start of the window to aggregate sessions over. PostHog date string — relative (e.g. '-7d', '-24h') or an absolute ISO timestamp. Defaults to '-7d'. */
+  date_from?: string;
+  /** End of the window. PostHog date string or absolute ISO timestamp. Defaults to now. */
+  date_to?: string;
+  /** Maximum number of sessions to return per page. Defaults to 100; values above 500 are rejected. */
+  limit?: number;
+  /** Number of sessions to skip before returning results. Combine with limit to page through sessions; the response's has_next flag indicates whether more remain. */
+  offset?: number;
+  /** Sort column. Allowed: session_id, session_start, session_end, duration_seconds, tool_call_count, mcp_client_name, distinct_id. Prefix with '-' for descending. Defaults to '-session_start' (newest sessions first). */
+  order_by?: string;
+  /** Case-insensitive substring filter matched against session_id, distinct_id, mcp_client_name, and tools_used. */
+  search?: string;
+}
+export const ListMcpAnalyticsSessionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    date_from: S.optional(S.String.pipe(T.Query())),
+    date_to: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    order_by: S.optional(S.String.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/mcp_analytics/sessions/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListMcpAnalyticsSessionsRequest",
+}) as any as S.Schema<ListMcpAnalyticsSessionsRequest>;
+
+/** Distinct $mcp_tool_name values seen in the session. */
+export type MCPSessionToolsUsedList = Array<string>;
+export const MCPSessionToolsUsedList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MCPSessionToolsUsedList>;
+
+export interface MCPSession {
+  /** $mcp_session_id grouping all $mcp_tool_call events in the session. */
+  session_id: string;
+  /** Total number of $mcp_tool_call events in the session. */
+  tool_calls: number;
+  /** Timestamp of the first $mcp_tool_call event in the session. */
+  session_start: string;
+  /** Timestamp of the most recent $mcp_tool_call event in the session. */
+  session_end: string;
+  /** Number of distinct PostHog distinct_ids that produced events in the session. */
+  distinct_id_count: number;
+  /** Distinct $mcp_tool_name values seen in the session. */
+  tools_used: MCPSessionToolsUsedList;
+  /** Most recent $mcp_client_name observed in the session. */
+  mcp_client_name: string;
+  /** Most recent distinct_id observed for the session. Stable identifier the SDK tagged the events with. */
+  distinct_id: string;
+  /** email property of the Person resolved from distinct_id; empty when no Person is mapped. */
+  person_email: string;
+  /** name property of the Person resolved from distinct_id; empty when no Person is mapped. */
+  person_name: string;
+  /** LLM-generated summary (at most two sentences) of the agent's overall goal for the session. Empty until generated on demand via the generate_intent endpoint. */
+  intent: string;
+}
+export const MCPSession = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    session_id: S.String,
+    tool_calls: S.Number,
+    session_start: S.String,
+    session_end: S.String,
+    distinct_id_count: S.Number,
+    tools_used: MCPSessionToolsUsedList,
+    mcp_client_name: S.String,
+    distinct_id: S.String,
+    person_email: S.String,
+    person_name: S.String,
+    intent: S.String,
+  }),
+).annotate({ identifier: "MCPSession" }) as any as S.Schema<MCPSession>;
+
+export type PaginatedMCPSessionListResultsList = Array<MCPSession>;
+export const PaginatedMCPSessionListResultsList = /*@__PURE__*/ S.Array(
+  MCPSession,
+) as any as S.Schema<PaginatedMCPSessionListResultsList>;
+
+export interface PaginatedMCPSessionList {
+  results: PaginatedMCPSessionListResultsList;
+  /** Whether more results exist beyond this page; the client fetches the next page with a larger offset. */
+  has_next: boolean;
+}
+export const PaginatedMCPSessionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: PaginatedMCPSessionListResultsList,
+    has_next: S.Boolean,
+  }),
+).annotate({
+  identifier: "PaginatedMCPSessionList",
+}) as any as S.Schema<PaginatedMCPSessionList>;
+
+export interface McpAnalyticsIntentClustersRecomputeRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const McpAnalyticsIntentClustersRecomputeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/mcp_analytics/intent_clusters/recompute/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "McpAnalyticsIntentClustersRecomputeRequest",
+  }) as any as S.Schema<McpAnalyticsIntentClustersRecomputeRequest>;
+
+export interface McpAnalyticsIntentClustersRecomputeResponse {}
+export const McpAnalyticsIntentClustersRecomputeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "McpAnalyticsIntentClustersRecomputeResponse",
+  }) as any as S.Schema<McpAnalyticsIntentClustersRecomputeResponse>;
 
 export interface McpAnalyticsSessionsActivityOverviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1165,90 +1162,105 @@ export const PaginatedMCPToolCallList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedMCPToolCallList",
 }) as any as S.Schema<PaginatedMCPToolCallList>;
 
-export type CreateMcpAnalyticFeedbackError = PosthogOpError;
+export type CreateMcpAnalyticsFeedbackError = PosthogOpError;
 /** Create a new MCP feedback submission for the current project. */
-export const createMcpAnalyticFeedback: API.OperationMethod<
-  CreateMcpAnalyticFeedbackRequest,
+export const createMcpAnalyticsFeedback: API.OperationMethod<
+  CreateMcpAnalyticsFeedbackRequest,
   MCPAnalyticsSubmission,
-  CreateMcpAnalyticFeedbackError,
+  CreateMcpAnalyticsFeedbackError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateMcpAnalyticFeedbackRequest,
+  input: CreateMcpAnalyticsFeedbackRequest,
   output: MCPAnalyticsSubmission,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateMcpAnalyticMissingCapabilityError = PosthogOpError;
+export type CreateMcpAnalyticsMissingCapabilityError = PosthogOpError;
 /** Create a new missing capability report for the current project. */
-export const createMcpAnalyticMissingCapability: API.OperationMethod<
-  CreateMcpAnalyticMissingCapabilityRequest,
+export const createMcpAnalyticsMissingCapability: API.OperationMethod<
+  CreateMcpAnalyticsMissingCapabilityRequest,
   MCPAnalyticsSubmission,
-  CreateMcpAnalyticMissingCapabilityError,
+  CreateMcpAnalyticsMissingCapabilityError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateMcpAnalyticMissingCapabilityRequest,
+  input: CreateMcpAnalyticsMissingCapabilityRequest,
   output: MCPAnalyticsSubmission,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type GenerateMcpAnalyticSessionIntentError = PosthogOpError;
+export type GenerateMcpAnalyticsSessionIntentError = PosthogOpError;
 /** Generate (or return the cached) LLM summary of the agent's goal for a session, derived from its recorded $mcp_intents. The first call summarises and persists the result; subsequent calls return the stored summary. */
-export const generateMcpAnalyticSessionIntent: API.OperationMethod<
-  GenerateMcpAnalyticSessionIntentRequest,
+export const generateMcpAnalyticsSessionIntent: API.OperationMethod<
+  GenerateMcpAnalyticsSessionIntentRequest,
   MCPSessionIntent,
-  GenerateMcpAnalyticSessionIntentError,
+  GenerateMcpAnalyticsSessionIntentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateMcpAnalyticSessionIntentRequest,
+  input: GenerateMcpAnalyticsSessionIntentRequest,
   output: MCPSessionIntent,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMcpAnalyticFeedbackError = PosthogOpError;
+export type GetMcpAnalyticsIntentClusterError = PosthogOpError;
+/** Return the most recent intent cluster snapshot for the current project. Returns an empty IDLE snapshot when no clustering run has happened yet. */
+export const getMcpAnalyticsIntentCluster: API.OperationMethod<
+  GetMcpAnalyticsIntentClusterRequest,
+  GetMcpAnalyticsIntentClusterResponse,
+  GetMcpAnalyticsIntentClusterError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMcpAnalyticsIntentClusterRequest,
+  output: GetMcpAnalyticsIntentClusterResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMcpAnalyticsFeedbackError = PosthogOpError;
 /** List MCP feedback submissions for the current project, newest first. */
-export const listMcpAnalyticFeedback: API.OperationMethod<
-  ListMcpAnalyticFeedbackRequest,
+export const listMcpAnalyticsFeedback: API.OperationMethod<
+  ListMcpAnalyticsFeedbackRequest,
   PaginatedMCPAnalyticsSubmissionList,
-  ListMcpAnalyticFeedbackError,
+  ListMcpAnalyticsFeedbackError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMcpAnalyticFeedbackRequest,
+  input: ListMcpAnalyticsFeedbackRequest,
   output: PaginatedMCPAnalyticsSubmissionList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMcpAnalyticMissingCapabilitiesError = PosthogOpError;
+export type ListMcpAnalyticsMissingCapabilitiesError = PosthogOpError;
 /** List missing capability reports for the current project, newest first. */
-export const listMcpAnalyticMissingCapabilities: API.OperationMethod<
-  ListMcpAnalyticMissingCapabilitiesRequest,
+export const listMcpAnalyticsMissingCapabilities: API.OperationMethod<
+  ListMcpAnalyticsMissingCapabilitiesRequest,
   PaginatedMCPAnalyticsSubmissionList,
-  ListMcpAnalyticMissingCapabilitiesError,
+  ListMcpAnalyticsMissingCapabilitiesError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMcpAnalyticMissingCapabilitiesRequest,
+  input: ListMcpAnalyticsMissingCapabilitiesRequest,
   output: PaginatedMCPAnalyticsSubmissionList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListMcpAnalyticSessionsError = PosthogOpError;
+export type ListMcpAnalyticsSessionsError = PosthogOpError;
 /** List MCP sessions for the current project, derived by grouping $mcp_tool_call events by $mcp_session_id. Ordered by newest session start first by default. */
-export const listMcpAnalyticSessions: API.OperationMethod<
-  ListMcpAnalyticSessionsRequest,
+export const listMcpAnalyticsSessions: API.OperationMethod<
+  ListMcpAnalyticsSessionsRequest,
   PaginatedMCPSessionList,
-  ListMcpAnalyticSessionsError,
+  ListMcpAnalyticsSessionsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListMcpAnalyticSessionsRequest,
+  input: ListMcpAnalyticsSessionsRequest,
   output: PaginatedMCPSessionList,
   errors: [],
   protocol: PosthogProtocol,
@@ -1265,21 +1277,6 @@ export const mcpAnalyticsIntentClustersRecompute: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: McpAnalyticsIntentClustersRecomputeRequest,
   output: McpAnalyticsIntentClustersRecomputeResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpAnalyticsIntentClustersRetrieveError = PosthogOpError;
-/** Return the most recent intent cluster snapshot for the current project. Returns an empty IDLE snapshot when no clustering run has happened yet. */
-export const mcpAnalyticsIntentClustersRetrieve: API.OperationMethod<
-  McpAnalyticsIntentClustersRetrieveRequest,
-  McpAnalyticsIntentClustersRetrieveResponse,
-  McpAnalyticsIntentClustersRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpAnalyticsIntentClustersRetrieveRequest,
-  output: McpAnalyticsIntentClustersRetrieveResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

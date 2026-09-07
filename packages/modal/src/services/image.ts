@@ -86,38 +86,6 @@ export const GetImageBuildChainResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetImageBuildChainResponse",
 }) as any as S.Schema<GetImageBuildChainResponse>;
 
-export interface GetImageByTagRequest {
-  /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
-  tag?: string;
-  /** New clients should send environment name as a /-separated prefix of the `tag` field. environment_name only accepted when tag has no environment or workspace prefix. */
-  environmentName?: string;
-}
-export const GetImageByTagRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tag: S.optional(S.String),
-    environmentName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/ImageGetByTag",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetImageByTagRequest",
-}) as any as S.Schema<GetImageByTagRequest>;
-
-export interface GetImageByTagResponse {
-  imageId?: string;
-}
-export const GetImageByTagResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    imageId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GetImageByTagResponse",
-}) as any as S.Schema<GetImageByTagResponse>;
-
 export interface ImageFromIdRequest {
   imageId?: string;
 }
@@ -175,6 +143,38 @@ export const ImageFromIdResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ImageFromIdResponse",
 }) as any as S.Schema<ImageFromIdResponse>;
+
+export interface ImageGetByTagRequest {
+  /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
+  tag?: string;
+  /** New clients should send environment name as a /-separated prefix of the `tag` field. environment_name only accepted when tag has no environment or workspace prefix. */
+  environmentName?: string;
+}
+export const ImageGetByTagRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tag: S.optional(S.String),
+    environmentName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/ImageGetByTag",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ImageGetByTagRequest",
+}) as any as S.Schema<ImageGetByTagRequest>;
+
+export interface ImageGetByTagResponse {
+  imageId?: string;
+}
+export const ImageGetByTagResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    imageId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImageGetByTagResponse",
+}) as any as S.Schema<ImageGetByTagResponse>;
 
 export interface BaseImage {
   imageId?: string;
@@ -326,6 +326,10 @@ export const VolumeMountList = /*@__PURE__*/ S.Array(
   VolumeMount,
 ) as any as S.Schema<VolumeMountList>;
 
+/** CPU architecture an image is built for and must run on. */
+export type Arch = "ARCH_UNSPECIFIED" | "ARCH_X86_64" | "ARCH_AARCH64";
+export const Arch = /*@__PURE__*/ S.String;
+
 export interface Image {
   baseImages?: BaseImageList;
   dockerfileCommands?: StringList;
@@ -348,6 +352,8 @@ export interface Image {
   buildArgs?: StringMap;
   /** Volume mount for RUN commands */
   volumeMounts?: VolumeMountList;
+  /** CPU architecture the image is built for. Images with an unspecified arch predate this field and are treated as x86_64. */
+  arch?: Arch | (string & {});
 }
 export const Image = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -366,6 +372,7 @@ export const Image = /*@__PURE__*/ S.suspend(() =>
     buildFunction: S.optional(BuildFunction),
     buildArgs: S.optional(StringMap),
     volumeMounts: S.optional(VolumeMountList),
+    arch: S.optional(Arch),
   }),
 ).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
 
@@ -476,44 +483,70 @@ export const ImageGetOrCreateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageGetOrCreateResponse",
 }) as any as S.Schema<ImageGetOrCreateResponse>;
 
-export interface ImagePublishRequest {
-  imageId?: string;
-  /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
-  tag?: string;
-  /** New clients should send environment name as a /-separated prefix of the `tag` field. environment_name only accepted when tag has no environment or workspace prefix. */
+export interface ImageListTagsRequest {
   environmentName?: string;
-  /** Explicit opt-in required when publishing to a public environment. */
-  allowPublic?: boolean;
+  /** Prefix search over full "name:tag" strings. */
+  tagPrefix?: string;
+  /** Defaults to 100. Values above 100 are rejected by the server. */
+  maxObjects?: number;
+  pageToken?: string;
 }
-export const ImagePublishRequest = /*@__PURE__*/ S.suspend(() =>
+export const ImageListTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    imageId: S.optional(S.String),
-    tag: S.optional(S.String),
     environmentName: S.optional(S.String),
-    allowPublic: S.optional(S.Boolean),
+    tagPrefix: S.optional(S.String),
+    maxObjects: S.optional(S.Number),
+    pageToken: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/ImagePublish",
+      uri: "/modal.client.ModalClient/ImageListTags",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ImagePublishRequest",
-}) as any as S.Schema<ImagePublishRequest>;
+  identifier: "ImageListTagsRequest",
+}) as any as S.Schema<ImageListTagsRequest>;
 
-export interface ImagePublishResponse {
+/** set on success */
+export interface ImageListTagsItem {
+  tag?: string;
   imageId?: string;
   revisionId?: string;
+  createdAt?: number;
+  updatedAt?: number;
 }
-export const ImagePublishResponse = /*@__PURE__*/ S.suspend(() =>
+export const ImageListTagsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    tag: S.optional(S.String),
     imageId: S.optional(S.String),
     revisionId: S.optional(S.String),
+    createdAt: S.optional(S.Number),
+    updatedAt: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "ImagePublishResponse",
-}) as any as S.Schema<ImagePublishResponse>;
+  identifier: "ImageListTagsItem",
+}) as any as S.Schema<ImageListTagsItem>;
+
+export type ImageListTagsItemList = Array<ImageListTagsItem>;
+export const ImageListTagsItemList = /*@__PURE__*/ S.Array(
+  ImageListTagsItem,
+) as any as S.Schema<ImageListTagsItemList>;
+
+export interface ImageListTagsResponse {
+  items?: ImageListTagsItemList;
+  nextPageToken?: string;
+  environmentName?: string;
+}
+export const ImageListTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(ImageListTagsItemList),
+    nextPageToken: S.optional(S.String),
+    environmentName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImageListTagsResponse",
+}) as any as S.Schema<ImageListTagsResponse>;
 
 export interface ImageTagRevisionsRequest {
   /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
@@ -580,70 +613,44 @@ export const ImageTagRevisionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageTagRevisionsResponse",
 }) as any as S.Schema<ImageTagRevisionsResponse>;
 
-export interface ListImageTagsRequest {
+export interface PublishImageRequest {
+  imageId?: string;
+  /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
+  tag?: string;
+  /** New clients should send environment name as a /-separated prefix of the `tag` field. environment_name only accepted when tag has no environment or workspace prefix. */
   environmentName?: string;
-  /** Prefix search over full "name:tag" strings. */
-  tagPrefix?: string;
-  /** Defaults to 100. Values above 100 are rejected by the server. */
-  maxObjects?: number;
-  pageToken?: string;
+  /** Explicit opt-in required when publishing to a public environment. */
+  allowPublic?: boolean;
 }
-export const ListImageTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const PublishImageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    imageId: S.optional(S.String),
+    tag: S.optional(S.String),
     environmentName: S.optional(S.String),
-    tagPrefix: S.optional(S.String),
-    maxObjects: S.optional(S.Number),
-    pageToken: S.optional(S.String),
+    allowPublic: S.optional(S.Boolean),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/modal.client.ModalClient/ImageListTags",
+      uri: "/modal.client.ModalClient/ImagePublish",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListImageTagsRequest",
-}) as any as S.Schema<ListImageTagsRequest>;
+  identifier: "PublishImageRequest",
+}) as any as S.Schema<PublishImageRequest>;
 
-/** set on success */
-export interface ImageListTagsItem {
-  tag?: string;
+export interface PublishImageResponse {
   imageId?: string;
   revisionId?: string;
-  createdAt?: number;
-  updatedAt?: number;
 }
-export const ImageListTagsItem = /*@__PURE__*/ S.suspend(() =>
+export const PublishImageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    tag: S.optional(S.String),
     imageId: S.optional(S.String),
     revisionId: S.optional(S.String),
-    createdAt: S.optional(S.Number),
-    updatedAt: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "ImageListTagsItem",
-}) as any as S.Schema<ImageListTagsItem>;
-
-export type ImageListTagsItemList = Array<ImageListTagsItem>;
-export const ImageListTagsItemList = /*@__PURE__*/ S.Array(
-  ImageListTagsItem,
-) as any as S.Schema<ImageListTagsItemList>;
-
-export interface ListImageTagsResponse {
-  items?: ImageListTagsItemList;
-  nextPageToken?: string;
-  environmentName?: string;
-}
-export const ListImageTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(ImageListTagsItemList),
-    nextPageToken: S.optional(S.String),
-    environmentName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListImageTagsResponse",
-}) as any as S.Schema<ListImageTagsResponse>;
+  identifier: "PublishImageResponse",
+}) as any as S.Schema<PublishImageResponse>;
 
 export type DeleteImageError = ModalOpError;
 export const deleteImage: API.OperationMethod<
@@ -674,20 +681,6 @@ export const getImageBuildChain: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetImageByTagError = ModalOpError;
-export const getImageByTag: API.OperationMethod<
-  GetImageByTagRequest,
-  GetImageByTagResponse,
-  GetImageByTagError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetImageByTagRequest,
-  output: GetImageByTagResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ImageFromIdError = ModalOpError;
 export const imageFromId: API.OperationMethod<
   ImageFromIdRequest,
@@ -697,6 +690,20 @@ export const imageFromId: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ImageFromIdRequest,
   output: ImageFromIdResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImageGetByTagError = ModalOpError;
+export const imageGetByTag: API.OperationMethod<
+  ImageGetByTagRequest,
+  ImageGetByTagResponse,
+  ImageGetByTagError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImageGetByTagRequest,
+  output: ImageGetByTagResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -716,15 +723,15 @@ export const imageGetOrCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImagePublishError = ModalOpError;
-export const imagePublish: API.OperationMethod<
-  ImagePublishRequest,
-  ImagePublishResponse,
-  ImagePublishError,
+export type ImageListTagsError = ModalOpError;
+export const imageListTags: API.OperationMethod<
+  ImageListTagsRequest,
+  ImageListTagsResponse,
+  ImageListTagsError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImagePublishRequest,
-  output: ImagePublishResponse,
+  input: ImageListTagsRequest,
+  output: ImageListTagsResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -744,15 +751,15 @@ export const imageTagRevisions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListImageTagsError = ModalOpError;
-export const listImageTags: API.OperationMethod<
-  ListImageTagsRequest,
-  ListImageTagsResponse,
-  ListImageTagsError,
+export type PublishImageError = ModalOpError;
+export const publishImage: API.OperationMethod<
+  PublishImageRequest,
+  PublishImageResponse,
+  PublishImageError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListImageTagsRequest,
-  output: ListImageTagsResponse,
+  input: PublishImageRequest,
+  output: PublishImageResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

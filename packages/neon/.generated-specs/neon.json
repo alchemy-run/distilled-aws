@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.neon.api#AdvisorCategory": {
@@ -4165,7 +4166,7 @@
         "smithy.api#documentation": "Create a project transfer request\n\nCreates a transfer request for the specified project. The request expires after a set period.\nTo accept the request, the recipient calls `PUT /projects/{project_id}/transfer_requests/{request_id}`\nor uses the Neon Console claim link.\nThe optional `ru` parameter redirects the recipient after acceptance."
       }
     },
-    "com.neon.api#RequestAcceptProjectTransferRequest": {
+    "com.neon.api#AcceptProjectTransferRequestRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4195,10 +4196,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#RequestAcceptProjectTransfer": {
+    "com.neon.api#AcceptProjectTransferRequest": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#RequestAcceptProjectTransferRequest"
+        "target": "com.neon.api#AcceptProjectTransferRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4212,7 +4213,7 @@
         "smithy.api#documentation": "Accept a project transfer request\n\nAccepts a transfer request for the specified project, transferring it to the specified organization\nor user. If org_id is not passed, the project will be transferred to the current user or organization account."
       }
     },
-    "com.neon.api#GetProjectJwksRequest": {
+    "com.neon.api#GetProjectJWKSRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4327,10 +4328,10 @@
         "smithy.api#documentation": "JWKS configurations associated with the project."
       }
     },
-    "com.neon.api#GetProjectJwks": {
+    "com.neon.api#GetProjectJWKS": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#GetProjectJwksRequest"
+        "target": "com.neon.api#GetProjectJWKSRequest"
       },
       "output": {
         "target": "com.neon.api#ProjectJWKSResponse"
@@ -4452,7 +4453,7 @@
         "smithy.api#documentation": "Add JWKS URL\n\nAdds a JWKS URL to the specified project for verifying JWTs used as the authentication mechanism.\n\nThe URL must be a valid HTTPS URL that returns a JSON Web Key Set.\n\nThe `provider_name` field allows you to specify which authentication provider you're using (e.g., Clerk, Auth0, AWS Cognito).\n\nThe `branch_id` scopes the JWKS URL to specific branches; if not specified, it applies to all branches.\n\nThe `role_names` scopes the URL to specific roles; if not specified, default roles are used (`authenticator`, `authenticated`, `anonymous`).\n\nThe `jwt_audience` specifies which `aud` values are accepted in JWTs."
       }
     },
-    "com.neon.api#DeleteProjectJwksRequest": {
+    "com.neon.api#DeleteProjectJWKSRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4476,10 +4477,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#DeleteProjectJwks": {
+    "com.neon.api#DeleteProjectJWKS": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#DeleteProjectJwksRequest"
+        "target": "com.neon.api#DeleteProjectJWKSRequest"
       },
       "output": {
         "target": "com.neon.api#JWKS"
@@ -4493,7 +4494,7 @@
         "smithy.api#documentation": "Delete JWKS URL\n\nRemoves the specified JWKS URL from the project.\nJWTs signed by keys from the removed URL can no longer authenticate to the project's endpoints."
       }
     },
-    "com.neon.api#GetProjectBranchDataApiRequest": {
+    "com.neon.api#GetProjectBranchDataAPIRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4647,10 +4648,10 @@
         "smithy.api#documentation": "List of available database schemas (SubZero only)"
       }
     },
-    "com.neon.api#GetProjectBranchDataApi": {
+    "com.neon.api#GetProjectBranchDataAPI": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#GetProjectBranchDataApiRequest"
+        "target": "com.neon.api#GetProjectBranchDataAPIRequest"
       },
       "output": {
         "target": "com.neon.api#DataAPIReponse"
@@ -4684,7 +4685,7 @@
         "smithy.api#documentation": "Authentication provider for the Neon Data API. `neon_auth`: use Neon's built-in managed authentication (no JWKS configuration required). `external`: use an external JWT provider, which requires `jwks_url`. When omitted, no auth provider is configured (existing setup is kept)."
       }
     },
-    "com.neon.api#CreateProjectBranchDataApiRequest": {
+    "com.neon.api#CreateProjectBranchDataAPIRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4773,10 +4774,10 @@
         "smithy.api#documentation": "Neon Data API created successfully"
       }
     },
-    "com.neon.api#CreateProjectBranchDataApi": {
+    "com.neon.api#CreateProjectBranchDataAPI": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#CreateProjectBranchDataApiRequest"
+        "target": "com.neon.api#CreateProjectBranchDataAPIRequest"
       },
       "output": {
         "target": "com.neon.api#DataAPICreateResponse"
@@ -4790,7 +4791,7 @@
         "smithy.api#documentation": "Create Neon Data API\n\nCreates a new instance of Neon Data API in the specified branch.\nThe Data API exposes a REST interface over the branch database. The `database_name` path parameter determines which database the API serves."
       }
     },
-    "com.neon.api#UpdateProjectBranchDataApiRequest": {
+    "com.neon.api#UpdateProjectBranchDataAPIRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4828,7 +4829,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#UpdateProjectBranchDataApiResponse": {
+    "com.neon.api#UpdateProjectBranchDataAPIResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4843,13 +4844,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.neon.api#UpdateProjectBranchDataApi": {
+    "com.neon.api#UpdateProjectBranchDataAPI": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#UpdateProjectBranchDataApiRequest"
+        "target": "com.neon.api#UpdateProjectBranchDataAPIRequest"
       },
       "output": {
-        "target": "com.neon.api#UpdateProjectBranchDataApiResponse"
+        "target": "com.neon.api#UpdateProjectBranchDataAPIResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4860,7 +4861,7 @@
         "smithy.api#documentation": "Update Neon Data API\n\nUpdates the Neon Data API configuration for the specified branch.\nYou can optionally provide settings to update the Data API configuration.\nThe schema cache is always refreshed as part of this operation."
       }
     },
-    "com.neon.api#DeleteProjectBranchDataApiRequest": {
+    "com.neon.api#DeleteProjectBranchDataAPIRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4892,7 +4893,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#DeleteProjectBranchDataApiResponse": {
+    "com.neon.api#DeleteProjectBranchDataAPIResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4907,13 +4908,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.neon.api#DeleteProjectBranchDataApi": {
+    "com.neon.api#DeleteProjectBranchDataAPI": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#DeleteProjectBranchDataApiRequest"
+        "target": "com.neon.api#DeleteProjectBranchDataAPIRequest"
       },
       "output": {
-        "target": "com.neon.api#DeleteProjectBranchDataApiResponse"
+        "target": "com.neon.api#DeleteProjectBranchDataAPIResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5471,7 +5472,7 @@
         "smithy.api#documentation": "Delete domain from redirect_uri whitelist\n\nRemoves a domain from the redirect URI whitelist for the specified branch.\nAfter removal, the domain can no longer be used as a redirect target after authentication."
       }
     },
-    "com.neon.api#CreateNeonAuthProviderSdkKeysRequest": {
+    "com.neon.api#CreateNeonAuthProviderSDKKeysRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5492,10 +5493,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#CreateNeonAuthProviderSdkKeys": {
+    "com.neon.api#CreateNeonAuthProviderSDKKeys": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#CreateNeonAuthProviderSdkKeysRequest"
+        "target": "com.neon.api#CreateNeonAuthProviderSDKKeysRequest"
       },
       "output": {
         "target": "com.neon.api#NeonAuthCreateIntegrationResponse"
@@ -6661,7 +6662,7 @@
         "smithy.api#documentation": "Update email provider configuration\n\nUpdates the email provider configuration for the specified branch's Neon Auth integration.\nThe email provider handles transactional messages such as verification emails and password reset links.\n\nPartial `standard` updates — omitting fields to keep their stored values — are supported only for\nBetter Auth integrations, which merge omitted fields server-side. Legacy Stack Auth integrations do\nnot merge and require all six `standard` fields (`host`, `port`, `username`, `password`,\n`sender_email`, `sender_name`) on every update; a partial `standard` body is rejected with 400."
       }
     },
-    "com.neon.api#GetConnectionUriRequest": {
+    "com.neon.api#GetConnectionURIRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6727,10 +6728,10 @@
       },
       "traits": {}
     },
-    "com.neon.api#GetConnectionUri": {
+    "com.neon.api#GetConnectionURI": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#GetConnectionUriRequest"
+        "target": "com.neon.api#GetConnectionURIRequest"
       },
       "output": {
         "target": "com.neon.api#ConnectionURIResponse"
@@ -9536,7 +9537,7 @@
         "smithy.api#documentation": "Set branch as default\n\nSets the specified branch as the project's default branch.\nThe default designation is automatically removed from the previous default branch.\nFor more information, see [Manage branches](https://neon.com/docs/manage/branches/)."
       }
     },
-    "com.neon.api#RestoreFinalizeBranchRequest": {
+    "com.neon.api#FinalizeRestoreBranchRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9585,10 +9586,10 @@
       },
       "traits": {}
     },
-    "com.neon.api#RestoreFinalizeBranch": {
+    "com.neon.api#FinalizeRestoreBranch": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#RestoreFinalizeBranchRequest"
+        "target": "com.neon.api#FinalizeRestoreBranchRequest"
       },
       "output": {
         "target": "com.neon.api#OperationsResponse"
@@ -10583,7 +10584,7 @@
         "smithy.api#documentation": "Reset role password\n\nResets the password for the specified Postgres role.\nReturns a new password and operations. The new password is ready to use when the last operation finishes.\nThe old password remains valid until last operation finishes.\nConnections to the compute endpoint are dropped. If idle,\nthe compute endpoint becomes active for a short period of time.\n\nFor related information, see [Manage roles](https://neon.com/docs/manage/roles/)."
       }
     },
-    "com.neon.api#ListProjectVpcEndpointsRequest": {
+    "com.neon.api#ListProjectVPCEndpointsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10641,10 +10642,10 @@
         "smithy.api#documentation": "List of VPC endpoints returned by the request."
       }
     },
-    "com.neon.api#ListProjectVpcEndpoints": {
+    "com.neon.api#ListProjectVPCEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#ListProjectVpcEndpointsRequest"
+        "target": "com.neon.api#ListProjectVPCEndpointsRequest"
       },
       "output": {
         "target": "com.neon.api#VPCEndpointsResponse"
@@ -10706,7 +10707,7 @@
         "smithy.api#documentation": "Set VPC endpoint restriction\n\nSets or updates a VPC endpoint restriction for a Neon project.\nWhen a VPC endpoint restriction is set, the project only accepts connections\nfrom the specified VPC.\nA VPC endpoint can be set as a restriction only after it is assigned to the\nparent organization of the Neon project."
       }
     },
-    "com.neon.api#DeleteProjectVpcEndpointRequest": {
+    "com.neon.api#DeleteProjectVPCEndpointRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10730,10 +10731,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#DeleteProjectVpcEndpoint": {
+    "com.neon.api#DeleteProjectVPCEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#DeleteProjectVpcEndpointRequest"
+        "target": "com.neon.api#DeleteProjectVPCEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13406,7 +13407,7 @@
         "smithy.api#documentation": "Transfer projects between organizations\n\nTransfers selected projects, identified by their IDs, from your organization to another specified organization."
       }
     },
-    "com.neon.api#ListOrganizationVpcEndpointsAllRegionsRequest": {
+    "com.neon.api#ListOrganizationVPCEndpointsAllRegionsRequest": {
       "type": "structure",
       "members": {
         "org_id": {
@@ -13471,10 +13472,10 @@
         "smithy.api#documentation": "VPC endpoints associated with the region."
       }
     },
-    "com.neon.api#ListOrganizationVpcEndpointsAllRegions": {
+    "com.neon.api#ListOrganizationVPCEndpointsAllRegions": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#ListOrganizationVpcEndpointsAllRegionsRequest"
+        "target": "com.neon.api#ListOrganizationVPCEndpointsAllRegionsRequest"
       },
       "output": {
         "target": "com.neon.api#VPCEndpointsWithRegionResponse"
@@ -13488,7 +13489,7 @@
         "smithy.api#documentation": "List VPC endpoints across all regions\n\nRetrieves the list of VPC endpoints for the specified Neon organization across all regions."
       }
     },
-    "com.neon.api#ListOrganizationVpcEndpointsRequest": {
+    "com.neon.api#ListOrganizationVPCEndpointsRequest": {
       "type": "structure",
       "members": {
         "org_id": {
@@ -13512,10 +13513,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#ListOrganizationVpcEndpoints": {
+    "com.neon.api#ListOrganizationVPCEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#ListOrganizationVpcEndpointsRequest"
+        "target": "com.neon.api#ListOrganizationVPCEndpointsRequest"
       },
       "output": {
         "target": "com.neon.api#VPCEndpointsResponse"
@@ -13529,7 +13530,7 @@
         "smithy.api#documentation": "List VPC endpoints\n\nRetrieves the list of VPC endpoints for the specified Neon organization."
       }
     },
-    "com.neon.api#GetOrganizationVpcEndpointDetailsRequest": {
+    "com.neon.api#GetOrganizationVPCEndpointDetailsRequest": {
       "type": "structure",
       "members": {
         "org_id": {
@@ -13611,10 +13612,10 @@
         "smithy.api#documentation": "A list of example projects that are restricted to use this VPC endpoint.\nThere are at most 3 projects in the list, even if more projects are restricted.\n"
       }
     },
-    "com.neon.api#GetOrganizationVpcEndpointDetails": {
+    "com.neon.api#GetOrganizationVPCEndpointDetails": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#GetOrganizationVpcEndpointDetailsRequest"
+        "target": "com.neon.api#GetOrganizationVPCEndpointDetailsRequest"
       },
       "output": {
         "target": "com.neon.api#VPCEndpointDetails"
@@ -13684,7 +13685,7 @@
         "smithy.api#documentation": "Assign or update VPC endpoint\n\nAssigns a VPC endpoint to a Neon organization or updates its existing assignment."
       }
     },
-    "com.neon.api#DeleteOrganizationVpcEndpointRequest": {
+    "com.neon.api#DeleteOrganizationVPCEndpointRequest": {
       "type": "structure",
       "members": {
         "org_id": {
@@ -13716,10 +13717,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.neon.api#DeleteOrganizationVpcEndpoint": {
+    "com.neon.api#DeleteOrganizationVPCEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.neon.api#DeleteOrganizationVpcEndpointRequest"
+        "target": "com.neon.api#DeleteOrganizationVPCEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16691,6 +16692,75 @@
       },
       "traits": {}
     },
+    "com.neon.api#GrantedCredentialScope": {
+      "type": "enum",
+      "members": {
+        "STORAGE_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storage:read"
+          }
+        },
+        "STORAGE_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storage:write"
+          }
+        },
+        "AI_GATEWAY_INVOKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai_gateway:invoke"
+          }
+        },
+        "TELEMETRY_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "telemetry:write"
+          }
+        },
+        "FUNCTIONS_INVOKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "functions:invoke"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single capability a credential actually carries, as reported by\nresponses that describe an existing credential.\n\nThis set is a superset of `CredentialScope` (the requestable set)\nbecause a credential's scopes are not limited to what this API offers:\nthe platform accepts additional scopes for customer-managed (`user`)\ncredentials, so one may exist on your branch that was not issued\nthrough this endpoint. Responses must be able to report such a\ncredential rather than fail to describe it — a client that rejected\nthe value would, on rotate, discard the replacement secret after the\nrotation had already committed. Treat unknown values as opaque.\n"
+      }
+    },
+    "com.neon.api#CredentialMetaScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#GrantedCredentialScope"
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListCredentialsResponseCredentialsList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#CredentialMeta"
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListCredentials": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#ListCredentialsRequest"
+      },
+      "output": {
+        "target": "com.neon.api#ListCredentialsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/projects/{project_id}/branches/{branch_id}/credentials",
+          "code": 200
+        },
+        "smithy.api#documentation": "List credentials on the branch\n\nReturns metadata for customer-issued credentials on the branch.\nSecrets are never included.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
     "com.neon.api#CredentialScope": {
       "type": "enum",
       "members": {
@@ -16720,38 +16790,7 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "A single capability a credential may exercise. A credential is granted\na set of these; it may only perform actions explicitly listed in its\nscopes.\n"
-      }
-    },
-    "com.neon.api#CredentialMetaScopesList": {
-      "type": "list",
-      "member": {
-        "target": "com.neon.api#CredentialScope"
-      },
-      "traits": {}
-    },
-    "com.neon.api#ListCredentialsResponseCredentialsList": {
-      "type": "list",
-      "member": {
-        "target": "com.neon.api#CredentialMeta"
-      },
-      "traits": {}
-    },
-    "com.neon.api#ListCredentials": {
-      "type": "operation",
-      "input": {
-        "target": "com.neon.api#ListCredentialsRequest"
-      },
-      "output": {
-        "target": "com.neon.api#ListCredentialsResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/projects/{project_id}/branches/{branch_id}/credentials",
-          "code": 200
-        },
-        "smithy.api#documentation": "List credentials on the branch\n\nReturns metadata for customer-issued credentials on the branch.\nSecrets are never included.\n\n**Note**: This endpoint is currently in Beta."
+        "smithy.api#documentation": "A single capability you may request when issuing a credential. A\ncredential is granted a set of these; it may only perform actions\nexplicitly listed in its scopes.\n\nThis is the *requestable* set. Responses describing an existing\ncredential use `GrantedCredentialScope`, which is deliberately wider:\na credential may have been granted a scope that this endpoint does not\noffer, and a response must be able to report it.\n"
       }
     },
     "com.neon.api#CreateCredentialRequestScopesList": {
@@ -16886,7 +16925,7 @@
     "com.neon.api#CreateCredentialResponseScopesList": {
       "type": "list",
       "member": {
-        "target": "com.neon.api#CredentialScope"
+        "target": "com.neon.api#GrantedCredentialScope"
       },
       "traits": {}
     },
@@ -16959,6 +16998,238 @@
           "code": 200
         },
         "smithy.api#documentation": "Revoke a credential\n\nSoft-deletes the credential.  Idempotent.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
+    "com.neon.api#RevealCredentialRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The opaque credential id (e.g. nak_live_<32hex>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#CredentialSecret": {
+      "type": "structure",
+      "members": {
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque credential id (e.g. nak_live_<32hex>).",
+            "smithy.api#required": {}
+          }
+        },
+        "api_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bearer token.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "s3_secret_access_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "nsk_live_<64 hex>; the AWS_SECRET_ACCESS_KEY.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The live secrets of an existing credential, recovered on demand by the\nreveal endpoint. `api_token` and `s3_secret_access_key` are the same\nvalues handed back once at issuance.\n\nThe field set is deliberately narrower than `CreateCredentialResponse`:\nit carries only what reveal can actually recover. `token_id_short`,\n`scopes`, `principal_type`, `created_at` and `expires_at` are metadata,\nnot secrets — read them from the list endpoint instead.\n\nNo `branch_id` is returned. Reveal is scoped by `(project_id,\ntoken_id)`, so the branch in the request path authorizes the call but\nis not proven to be the branch the credential was issued on. Echoing it\nback would assert an anchor this endpoint never verified. For a\ncredential's true anchor branch, read `branch_id` from the list\nendpoint, which is branch-exact.\n"
+      }
+    },
+    "com.neon.api#RevealCredential": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#RevealCredentialRequest"
+      },
+      "output": {
+        "target": "com.neon.api#CredentialSecret"
+      },
+      "errors": [
+        {
+          "target": "com.neon.api#NotFound"
+        },
+        {
+          "target": "com.neon.api#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/reveal",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reveal a credential's secrets\n\nReturns the live `api_token` and `s3_secret_access_key` of an existing\ncredential, so a credential whose issuance response was lost can be\nrecovered without minting a new one.\n\nThis is a POST with an explicit `/reveal` verb so the secrets never ride\na GET, where they would land in access logs, browser history and proxy\ncaches. Revoked and expired credentials return 404, as does a\n`token_id` that does not belong to this project.\n\nA credential issued before secret retrieval was supported has no\nrecoverable secret and returns 409 — rotate it to obtain one.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
+    "com.neon.api#RotateCredentialRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The opaque credential id (e.g. nak_live_<32hex>)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#RotateCredentialResponse": {
+      "type": "structure",
+      "members": {
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque credential id (e.g. nak_live_<32hex>), unchanged by the\nrotation. Doubles as the `AWS_ACCESS_KEY_ID` for SigV4.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "token_id_short": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First 12 hex chars of token_id; safe to log.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer-supplied label carried on the credential. Absent when none was set at issuance."
+          }
+        },
+        "api_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new Bearer token; returned exactly once.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "s3_secret_access_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new nsk_live_<64 hex> AWS_SECRET_ACCESS_KEY; returned exactly once.",
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.neon.api#RotateCredentialResponseScopesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "principal_type": {
+          "target": "com.neon.api#RotateCredentialResponsePrincipalType",
+          "traits": {
+            "smithy.api#documentation": "Always `user`: only customer-managed credentials are rotatable\nthrough this endpoint.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the credential was originally issued. Rotation replaces the\nsecrets in place and does not reset this.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the credential expires; absent means never expires. Rotation\ndoes not extend it.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The replacement secret material for an existing credential, returned\nexactly once. `token_id`, `scopes`, `branch_id` and `created_at` are\nunchanged by the rotation — only `api_token` and\n`s3_secret_access_key` are new.\n"
+      }
+    },
+    "com.neon.api#RotateCredentialResponseScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#GrantedCredentialScope"
+      },
+      "traits": {}
+    },
+    "com.neon.api#RotateCredentialResponsePrincipalType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Always `user`: only customer-managed credentials are rotatable\nthrough this endpoint.\n"
+      }
+    },
+    "com.neon.api#RotateCredential": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#RotateCredentialRequest"
+      },
+      "output": {
+        "target": "com.neon.api#RotateCredentialResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/rotate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Rotate a credential's secrets\n\nReplaces the secret material on an existing scoped credential in\nplace. `token_id` is preserved — it is the `AWS_ACCESS_KEY_ID` for\nS3-compatible clients, so the access key id your application already\nholds keeps working and only the secret changes. This is the analog of\nresetting a Postgres password, not of issuing a second credential.\n\nThe response carries the new `api_token` and `s3_secret_access_key`\nexactly once. Rotation is **not** idempotent: retrying after an\nambiguous timeout mints another secret and supersedes the previous\nreplacement, so a retry does not recover a lost response — it only\ninvalidates the secret you did not receive. If you lose the response,\nissue a replacement credential and revoke this one.\n\nThe old secret stops authenticating as soon as the rotation commits.\nWhere a region caches credentials on its data-plane verifiers, a\nreplica may briefly keep accepting the old secret — and rejecting the\nnew one — until its cache entry expires; where it does not, the\ncutover is immediate apart from requests already in flight. Either way\nthe changeover is not atomic across replicas, so retry an unexpected\nauthentication failure right after rotating rather than treating the\nnew secret as bad. `last_used_at` continues to report the logical\ncredential's prior usage and says nothing about whether the new secret\nhas been used yet.\n\nOnly a live, unexpired, unrevoked customer-managed (`user`) credential\non a live project and live branch is eligible. Anything else —\nincluding the platform-internal `function` and `system` credentials —\nis reported as not found, indistinguishable from an unknown\n`token_id`.\n\n**Note**: This endpoint is currently in Beta."
       }
     },
     "com.neon.api#ListProjectBranchFunctionsRequest": {
@@ -17446,6 +17717,260 @@
         "com.distilled.openapi#contentType": "multipart"
       }
     },
+    "com.neon.api#ListProjectBranchCustomDomainsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "A cursor to use in pagination. A cursor defines your place in the data list. Include `response.pagination.next` in subsequent API calls to fetch next page of the list."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Specify a value from 1 to 1000 to limit number of domains in the response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#CustomDomain": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The registered custom domain (normalized, lowercase).",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of branch entity the domain targets. Possible values:\n`function` (v1 supports only `function`). Not an `enum`: new values may\nship in later spec versions — treat any undocumented value as unknown.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target entity's identifier within the branch. For `function` this\nis the function slug.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "cname_target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname the customer must point their custom domain at with a\nCNAME record. Empty when the serving region has no custom-domains\nfront door configured. This is the activation input: point DNS here\nand the domain goes live (see `status`) once a certificate is issued\non the first request.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain's current validity, computed by a background check:\n`pending` (still converging — point your CNAME at `cname_target` and\nwait), `active` (live: DNS resolves to the edge, the CA is authorized,\nand routing is published), or `error` (a fixable problem — see\n`status_reason`). Not an `enum`: treat any undocumented value as\nunknown. May be absent briefly right after registration.\n"
+          }
+        },
+        "dns_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS + CAA portion of the check: `pending` (no records yet), `ok`\n(resolves to our edge and the CA is authorized), `misconfigured` (your\nCNAME does not resolve to our edge), or `caa_blocked` (your CAA records\nforbid Let's Encrypt). Not an `enum`.\n"
+          }
+        },
+        "binding_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether Neon's internal routing for the domain is published:\n`pending`, `present`, or `missing`. `missing` is an internal fault\nsurfaced for support. Not an `enum`.\n"
+          }
+        },
+        "status_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short, stable machine-readable reason for a non-active `status`\n(e.g. `cname-not-pointing-at-edge`, `caa-blocks-lets-encrypt`,\n`binding-missing`), suitable for keying an actionable hint. Empty when\nactive or pending.\n"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListProjectBranchCustomDomainsResponseCustomDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "com.neon.api#CustomDomain"
+      },
+      "traits": {}
+    },
+    "com.neon.api#ListProjectBranchCustomDomainsResponse": {
+      "type": "structure",
+      "members": {
+        "custom_domains": {
+          "target": "com.neon.api#ListProjectBranchCustomDomainsResponseCustomDomainsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.neon.api#CursorPagination"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.neon.api#ListProjectBranchCustomDomains": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#ListProjectBranchCustomDomainsRequest"
+      },
+      "output": {
+        "target": "com.neon.api#ListProjectBranchCustomDomainsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/projects/{project_id}/branches/{branch_id}/custom-domains",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the custom domains on a branch\n\nLists all custom domains registered on the branch, across every target\nentity.\n\n**Note**: This endpoint is currently in Beta.",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "pagination.next",
+          "items": "custom_domains"
+        }
+      }
+    },
+    "com.neon.api#RegisterProjectBranchCustomDomainRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom domain to register (for example `dashboard.acme.com`).\nCase-insensitive; normalized to lowercase (a trailing root dot is\nstripped, so the 254-char bound admits a fully-qualified name whose\nnormalized form is 253 chars). Neon-managed and internal hostnames are\nrejected.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind of branch entity to point the domain at. v1 supports only\n`function`; any other value is rejected with `invalid_entity_type`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "entity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target entity's identifier within the branch. For `function` this\nis the function slug (which must already exist on the branch).\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#RegisterProjectBranchCustomDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#RegisterProjectBranchCustomDomainRequest"
+      },
+      "output": {
+        "target": "com.neon.api#CustomDomain"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/projects/{project_id}/branches/{branch_id}/custom-domains",
+          "code": 200
+        },
+        "smithy.api#documentation": "Register a custom domain on a branch\n\nRegisters a customer-owned domain (for example `dashboard.acme.com`) on the\nbranch and points it at a target entity, chosen by `entity_type` +\n`entity_id`. In v1 only `entity_type: function` is supported (an\nunsupported type is rejected with `400`), where `entity_id` is the function\nslug and the function must already exist on the branch (else `404`).\n\nThe response includes the `cname_target` the customer must point their\ndomain at with a CNAME record; the domain goes live only once that DNS\nresolves and a certificate is issued on the first request. A domain already\nregistered to another resource is rejected with `409` and no detail about\nthe owner. Re-registering the same domain for the same entity is idempotent.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
+    "com.neon.api#DeleteProjectBranchCustomDomainRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon project ID"
+          }
+        },
+        "branch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Neon branch ID"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The registered custom domain (case-insensitive)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.neon.api#DeleteProjectBranchCustomDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.neon.api#DeleteProjectBranchCustomDomainRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/projects/{project_id}/branches/{branch_id}/custom-domains/{domain}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a custom domain from a branch\n\nRemoves a custom domain registered on the branch and stops routing it.\n\n**Note**: This endpoint is currently in Beta."
+      }
+    },
     "com.neon.api#NotFound": {
       "type": "structure",
       "members": {},
@@ -17516,187 +18041,49 @@
       "version": "v2",
       "operations": [
         {
-          "target": "com.neon.api#GetProjectAdvisorSecurityIssues"
-        },
-        {
-          "target": "com.neon.api#ListApiKeys"
-        },
-        {
-          "target": "com.neon.api#CreateApiKey"
-        },
-        {
-          "target": "com.neon.api#RevokeApiKey"
-        },
-        {
-          "target": "com.neon.api#GetProjectOperation"
-        },
-        {
-          "target": "com.neon.api#ListProjects"
-        },
-        {
-          "target": "com.neon.api#CreateProject"
-        },
-        {
-          "target": "com.neon.api#ListSharedProjects"
-        },
-        {
-          "target": "com.neon.api#GetProject"
-        },
-        {
-          "target": "com.neon.api#UpdateProject"
-        },
-        {
-          "target": "com.neon.api#DeleteProject"
-        },
-        {
-          "target": "com.neon.api#RecoverProject"
-        },
-        {
-          "target": "com.neon.api#ListProjectOperations"
-        },
-        {
-          "target": "com.neon.api#ListProjectPermissions"
-        },
-        {
-          "target": "com.neon.api#GrantPermissionToProject"
-        },
-        {
-          "target": "com.neon.api#ListProjectMembers"
-        },
-        {
-          "target": "com.neon.api#SetProjectMemberRole"
-        },
-        {
-          "target": "com.neon.api#RemoveProjectMemberRole"
-        },
-        {
-          "target": "com.neon.api#RevokePermissionFromProject"
-        },
-        {
-          "target": "com.neon.api#GetAvailablePreloadLibraries"
-        },
-        {
-          "target": "com.neon.api#CreateProjectTransferRequest"
-        },
-        {
-          "target": "com.neon.api#RequestAcceptProjectTransfer"
-        },
-        {
-          "target": "com.neon.api#GetProjectJwks"
-        },
-        {
-          "target": "com.neon.api#AddProjectJWKS"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectJwks"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchDataApi"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranchDataApi"
-        },
-        {
-          "target": "com.neon.api#UpdateProjectBranchDataApi"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchDataApi"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuth"
-        },
-        {
-          "target": "com.neon.api#CreateNeonAuth"
-        },
-        {
-          "target": "com.neon.api#DisableNeonAuth"
-        },
-        {
-          "target": "com.neon.api#ListBranchNeonAuthTrustedDomains"
-        },
-        {
-          "target": "com.neon.api#AddBranchNeonAuthTrustedDomain"
-        },
-        {
-          "target": "com.neon.api#DeleteBranchNeonAuthTrustedDomain"
-        },
-        {
-          "target": "com.neon.api#CreateNeonAuthProviderSdkKeys"
-        },
-        {
-          "target": "com.neon.api#CreateBranchNeonAuthNewUser"
-        },
-        {
-          "target": "com.neon.api#DeleteBranchNeonAuthUser"
-        },
-        {
-          "target": "com.neon.api#UpdateNeonAuthUserRole"
-        },
-        {
-          "target": "com.neon.api#TransferNeonAuthProviderProject"
-        },
-        {
-          "target": "com.neon.api#ListBranchNeonAuthOauthProviders"
+          "target": "com.neon.api#AcceptProjectTransferRequest"
         },
         {
           "target": "com.neon.api#AddBranchNeonAuthOauthProvider"
         },
         {
-          "target": "com.neon.api#UpdateBranchNeonAuthOauthProvider"
+          "target": "com.neon.api#AddBranchNeonAuthTrustedDomain"
         },
         {
-          "target": "com.neon.api#DeleteBranchNeonAuthOauthProvider"
+          "target": "com.neon.api#AddProjectJWKS"
         },
         {
-          "target": "com.neon.api#SendNeonAuthEmailProviderTest"
+          "target": "com.neon.api#AssignOrganizationVPCEndpoint"
         },
         {
-          "target": "com.neon.api#GetNeonAuthEmailAndPasswordConfig"
+          "target": "com.neon.api#AssignProjectVPCEndpoint"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthEmailAndPasswordConfig"
+          "target": "com.neon.api#CountProjectBranches"
         },
         {
-          "target": "com.neon.api#GetNeonAuthEmailProvider"
+          "target": "com.neon.api#CreateApiKey"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthEmailProvider"
+          "target": "com.neon.api#CreateBranchNeonAuthNewUser"
         },
         {
-          "target": "com.neon.api#GetConnectionUri"
+          "target": "com.neon.api#CreateCredential"
         },
         {
-          "target": "com.neon.api#GetNeonAuthAllowLocalhost"
+          "target": "com.neon.api#CreateNeonAuth"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthAllowLocalhost"
+          "target": "com.neon.api#CreateNeonAuthProviderSDKKeys"
         },
         {
-          "target": "com.neon.api#GetNeonAuthPluginConfigs"
+          "target": "com.neon.api#CreateOrganizationInvitations"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthOrganizationPlugin"
+          "target": "com.neon.api#CreateOrgApiKey"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthConfig"
-        },
-        {
-          "target": "com.neon.api#UpdateNeonAuthMagicLinkPlugin"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthPhoneNumberPlugin"
-        },
-        {
-          "target": "com.neon.api#UpdateNeonAuthPhoneNumberPlugin"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthWebhookConfig"
-        },
-        {
-          "target": "com.neon.api#UpdateNeonAuthWebhookConfig"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranches"
+          "target": "com.neon.api#CreateProject"
         },
         {
           "target": "com.neon.api#CreateProjectBranch"
@@ -17705,112 +18092,109 @@
           "target": "com.neon.api#CreateProjectBranchAnonymized"
         },
         {
-          "target": "com.neon.api#CountProjectBranches"
+          "target": "com.neon.api#CreateProjectBranchBucket"
         },
         {
-          "target": "com.neon.api#GetProjectBranch"
-        },
-        {
-          "target": "com.neon.api#UpdateProjectBranch"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranch"
-        },
-        {
-          "target": "com.neon.api#RestoreProjectBranch"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchSchema"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchSchemaComparison"
-        },
-        {
-          "target": "com.neon.api#GetMaskingRules"
-        },
-        {
-          "target": "com.neon.api#UpdateMaskingRules"
-        },
-        {
-          "target": "com.neon.api#GetAnonymizedBranchStatus"
-        },
-        {
-          "target": "com.neon.api#StartAnonymization"
-        },
-        {
-          "target": "com.neon.api#SetDefaultProjectBranch"
-        },
-        {
-          "target": "com.neon.api#RestoreFinalizeBranch"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchEndpoints"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchDatabases"
+          "target": "com.neon.api#CreateProjectBranchDataAPI"
         },
         {
           "target": "com.neon.api#CreateProjectBranchDatabase"
         },
         {
-          "target": "com.neon.api#GetProjectBranchDatabase"
-        },
-        {
-          "target": "com.neon.api#UpdateProjectBranchDatabase"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchDatabase"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchRoles"
+          "target": "com.neon.api#CreateProjectBranchFunctionDeployment"
         },
         {
           "target": "com.neon.api#CreateProjectBranchRole"
         },
         {
-          "target": "com.neon.api#GetProjectBranchRole"
+          "target": "com.neon.api#CreateProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#CreateProjectTransferRequest"
+        },
+        {
+          "target": "com.neon.api#CreateSnapshot"
+        },
+        {
+          "target": "com.neon.api#DeleteBranchNeonAuthOauthProvider"
+        },
+        {
+          "target": "com.neon.api#DeleteBranchNeonAuthTrustedDomain"
+        },
+        {
+          "target": "com.neon.api#DeleteBranchNeonAuthUser"
+        },
+        {
+          "target": "com.neon.api#DeleteOrganizationSpendingLimit"
+        },
+        {
+          "target": "com.neon.api#DeleteOrganizationVPCEndpoint"
+        },
+        {
+          "target": "com.neon.api#DeleteProject"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranch"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchBucket"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchBucketObject"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchBucketObjectsByPrefix"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchCustomDomain"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchDataAPI"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchDatabase"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchFunction"
         },
         {
           "target": "com.neon.api#DeleteProjectBranchRole"
         },
         {
-          "target": "com.neon.api#GetProjectBranchRolePassword"
-        },
-        {
-          "target": "com.neon.api#ResetProjectBranchRolePassword"
-        },
-        {
-          "target": "com.neon.api#ListProjectVpcEndpoints"
-        },
-        {
-          "target": "com.neon.api#AssignProjectVPCEndpoint"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectVpcEndpoint"
-        },
-        {
-          "target": "com.neon.api#ListProjectEndpoints"
-        },
-        {
-          "target": "com.neon.api#CreateProjectEndpoint"
-        },
-        {
-          "target": "com.neon.api#GetProjectEndpoint"
-        },
-        {
-          "target": "com.neon.api#UpdateProjectEndpoint"
-        },
-        {
           "target": "com.neon.api#DeleteProjectEndpoint"
         },
         {
-          "target": "com.neon.api#StartProjectEndpoint"
+          "target": "com.neon.api#DeleteProjectJWKS"
         },
         {
-          "target": "com.neon.api#SuspendProjectEndpoint"
+          "target": "com.neon.api#DeleteProjectVPCEndpoint"
         },
         {
-          "target": "com.neon.api#RestartProjectEndpoint"
+          "target": "com.neon.api#DeleteSnapshot"
+        },
+        {
+          "target": "com.neon.api#DisableNeonAuth"
+        },
+        {
+          "target": "com.neon.api#FinalizeRestoreBranch"
+        },
+        {
+          "target": "com.neon.api#GetActiveRegions"
+        },
+        {
+          "target": "com.neon.api#GetAnonymizedBranchStatus"
+        },
+        {
+          "target": "com.neon.api#GetAuthDetails"
+        },
+        {
+          "target": "com.neon.api#GetAvailablePreloadLibraries"
+        },
+        {
+          "target": "com.neon.api#GetConnectionURI"
+        },
+        {
+          "target": "com.neon.api#GetConsumptionHistoryPerBranchV2"
         },
         {
           "target": "com.neon.api#GetConsumptionHistoryPerProject"
@@ -17819,115 +18203,148 @@
           "target": "com.neon.api#GetConsumptionHistoryPerProjectV2"
         },
         {
-          "target": "com.neon.api#GetConsumptionHistoryPerBranchV2"
-        },
-        {
-          "target": "com.neon.api#GetOrganization"
-        },
-        {
-          "target": "com.neon.api#ListOrgApiKeys"
-        },
-        {
-          "target": "com.neon.api#CreateOrgApiKey"
-        },
-        {
-          "target": "com.neon.api#RevokeOrgApiKey"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationSpendingLimit"
-        },
-        {
-          "target": "com.neon.api#SetOrganizationSpendingLimit"
-        },
-        {
-          "target": "com.neon.api#DeleteOrganizationSpendingLimit"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationMembers"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationMember"
-        },
-        {
-          "target": "com.neon.api#UpdateOrganizationMember"
-        },
-        {
-          "target": "com.neon.api#RemoveOrganizationMember"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationInvitations"
-        },
-        {
-          "target": "com.neon.api#CreateOrganizationInvitations"
-        },
-        {
-          "target": "com.neon.api#TransferProjectsFromOrgToOrg"
-        },
-        {
-          "target": "com.neon.api#ListOrganizationVpcEndpointsAllRegions"
-        },
-        {
-          "target": "com.neon.api#ListOrganizationVpcEndpoints"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationVpcEndpointDetails"
-        },
-        {
-          "target": "com.neon.api#AssignOrganizationVPCEndpoint"
-        },
-        {
-          "target": "com.neon.api#DeleteOrganizationVpcEndpoint"
-        },
-        {
-          "target": "com.neon.api#GetActiveRegions"
-        },
-        {
           "target": "com.neon.api#GetCurrentUserInfo"
         },
         {
           "target": "com.neon.api#GetCurrentUserOrganizations"
         },
         {
-          "target": "com.neon.api#GetAuthDetails"
+          "target": "com.neon.api#GetMaskingRules"
         },
         {
-          "target": "com.neon.api#CreateSnapshot"
+          "target": "com.neon.api#GetNeonAuth"
         },
         {
-          "target": "com.neon.api#ListSnapshots"
+          "target": "com.neon.api#GetNeonAuthAllowLocalhost"
         },
         {
-          "target": "com.neon.api#UpdateSnapshot"
+          "target": "com.neon.api#GetNeonAuthEmailAndPasswordConfig"
         },
         {
-          "target": "com.neon.api#DeleteSnapshot"
+          "target": "com.neon.api#GetNeonAuthEmailProvider"
         },
         {
-          "target": "com.neon.api#RestoreSnapshot"
+          "target": "com.neon.api#GetNeonAuthPhoneNumberPlugin"
         },
         {
-          "target": "com.neon.api#GetSnapshotSchedule"
+          "target": "com.neon.api#GetNeonAuthPluginConfigs"
         },
         {
-          "target": "com.neon.api#SetSnapshotSchedule"
+          "target": "com.neon.api#GetNeonAuthWebhookConfig"
         },
         {
-          "target": "com.neon.api#ListProjectBranchBuckets"
+          "target": "com.neon.api#GetOrganization"
         },
         {
-          "target": "com.neon.api#CreateProjectBranchBucket"
+          "target": "com.neon.api#GetOrganizationInvitations"
         },
         {
-          "target": "com.neon.api#DeleteProjectBranchBucket"
+          "target": "com.neon.api#GetOrganizationMember"
         },
         {
-          "target": "com.neon.api#GetProjectBranchStorage"
+          "target": "com.neon.api#GetOrganizationMembers"
+        },
+        {
+          "target": "com.neon.api#GetOrganizationSpendingLimit"
+        },
+        {
+          "target": "com.neon.api#GetOrganizationVPCEndpointDetails"
+        },
+        {
+          "target": "com.neon.api#GetProject"
+        },
+        {
+          "target": "com.neon.api#GetProjectAdvisorSecurityIssues"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranch"
         },
         {
           "target": "com.neon.api#GetProjectBranchAiGateway"
         },
         {
-          "target": "com.neon.api#QueryProjectBranchLogs"
+          "target": "com.neon.api#GetProjectBranchBucketObject"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchDataAPI"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchDatabase"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchFunction"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchRole"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchRolePassword"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchSchema"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchSchemaComparison"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchStorage"
+        },
+        {
+          "target": "com.neon.api#GetProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#GetProjectJWKS"
+        },
+        {
+          "target": "com.neon.api#GetProjectOperation"
+        },
+        {
+          "target": "com.neon.api#GetSnapshotSchedule"
+        },
+        {
+          "target": "com.neon.api#GrantPermissionToProject"
+        },
+        {
+          "target": "com.neon.api#ListApiKeys"
+        },
+        {
+          "target": "com.neon.api#ListBranchNeonAuthOauthProviders"
+        },
+        {
+          "target": "com.neon.api#ListBranchNeonAuthTrustedDomains"
+        },
+        {
+          "target": "com.neon.api#ListCredentials"
+        },
+        {
+          "target": "com.neon.api#ListOrganizationVPCEndpoints"
+        },
+        {
+          "target": "com.neon.api#ListOrganizationVPCEndpointsAllRegions"
+        },
+        {
+          "target": "com.neon.api#ListOrgApiKeys"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchBucketObjects"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchBuckets"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchCustomDomains"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchDatabases"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchEndpoints"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranches"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchFunctions"
         },
         {
           "target": "com.neon.api#ListProjectBranchLogFields"
@@ -17936,43 +18353,166 @@
           "target": "com.neon.api#ListProjectBranchLogFieldValues"
         },
         {
-          "target": "com.neon.api#ListProjectBranchBucketObjects"
+          "target": "com.neon.api#ListProjectBranchRoles"
         },
         {
-          "target": "com.neon.api#DeleteProjectBranchBucketObject"
+          "target": "com.neon.api#ListProjectEndpoints"
         },
         {
-          "target": "com.neon.api#GetProjectBranchBucketObject"
+          "target": "com.neon.api#ListProjectMembers"
         },
         {
-          "target": "com.neon.api#DeleteProjectBranchBucketObjectsByPrefix"
+          "target": "com.neon.api#ListProjectOperations"
+        },
+        {
+          "target": "com.neon.api#ListProjectPermissions"
+        },
+        {
+          "target": "com.neon.api#ListProjects"
+        },
+        {
+          "target": "com.neon.api#ListProjectVPCEndpoints"
+        },
+        {
+          "target": "com.neon.api#ListSharedProjects"
+        },
+        {
+          "target": "com.neon.api#ListSnapshots"
         },
         {
           "target": "com.neon.api#PresignProjectBranchBucketObject"
         },
         {
-          "target": "com.neon.api#ListCredentials"
+          "target": "com.neon.api#QueryProjectBranchLogs"
         },
         {
-          "target": "com.neon.api#CreateCredential"
+          "target": "com.neon.api#RecoverProject"
+        },
+        {
+          "target": "com.neon.api#RegisterProjectBranchCustomDomain"
+        },
+        {
+          "target": "com.neon.api#RemoveOrganizationMember"
+        },
+        {
+          "target": "com.neon.api#RemoveProjectMemberRole"
+        },
+        {
+          "target": "com.neon.api#ResetProjectBranchRolePassword"
+        },
+        {
+          "target": "com.neon.api#RestartProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#RestoreProjectBranch"
+        },
+        {
+          "target": "com.neon.api#RestoreSnapshot"
+        },
+        {
+          "target": "com.neon.api#RevealCredential"
+        },
+        {
+          "target": "com.neon.api#RevokeApiKey"
         },
         {
           "target": "com.neon.api#RevokeCredential"
         },
         {
-          "target": "com.neon.api#ListProjectBranchFunctions"
+          "target": "com.neon.api#RevokeOrgApiKey"
         },
         {
-          "target": "com.neon.api#GetProjectBranchFunction"
+          "target": "com.neon.api#RevokePermissionFromProject"
+        },
+        {
+          "target": "com.neon.api#RotateCredential"
+        },
+        {
+          "target": "com.neon.api#SendNeonAuthEmailProviderTest"
+        },
+        {
+          "target": "com.neon.api#SetDefaultProjectBranch"
+        },
+        {
+          "target": "com.neon.api#SetOrganizationSpendingLimit"
+        },
+        {
+          "target": "com.neon.api#SetProjectMemberRole"
+        },
+        {
+          "target": "com.neon.api#SetSnapshotSchedule"
+        },
+        {
+          "target": "com.neon.api#StartAnonymization"
+        },
+        {
+          "target": "com.neon.api#StartProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#SuspendProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#TransferNeonAuthProviderProject"
+        },
+        {
+          "target": "com.neon.api#TransferProjectsFromOrgToOrg"
+        },
+        {
+          "target": "com.neon.api#UpdateBranchNeonAuthOauthProvider"
+        },
+        {
+          "target": "com.neon.api#UpdateMaskingRules"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthAllowLocalhost"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthConfig"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthEmailAndPasswordConfig"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthEmailProvider"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthMagicLinkPlugin"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthOrganizationPlugin"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthPhoneNumberPlugin"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthUserRole"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthWebhookConfig"
+        },
+        {
+          "target": "com.neon.api#UpdateOrganizationMember"
+        },
+        {
+          "target": "com.neon.api#UpdateProject"
+        },
+        {
+          "target": "com.neon.api#UpdateProjectBranch"
+        },
+        {
+          "target": "com.neon.api#UpdateProjectBranchDataAPI"
+        },
+        {
+          "target": "com.neon.api#UpdateProjectBranchDatabase"
         },
         {
           "target": "com.neon.api#UpdateProjectBranchFunction"
         },
         {
-          "target": "com.neon.api#DeleteProjectBranchFunction"
+          "target": "com.neon.api#UpdateProjectEndpoint"
         },
         {
-          "target": "com.neon.api#CreateProjectBranchFunctionDeployment"
+          "target": "com.neon.api#UpdateSnapshot"
         }
       ],
       "traits": {

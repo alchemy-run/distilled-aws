@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredential": {
@@ -293,7 +294,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateResponseTagsMap",
+          "target": "com.azure.hybridkubernetes#UpdateConnectedClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -986,7 +987,7 @@
         "smithy.api#documentation": "The current deployment state of connectedClusters."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterUpdateResponseTagsMap": {
+    "com.azure.hybridkubernetes#UpdateConnectedClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1134,7 +1135,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateRequestTagsMap",
+          "target": "com.azure.hybridkubernetes#UpdateConnectedClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1208,7 +1209,7 @@
         "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterUpdateRequestTagsMap": {
+    "com.azure.hybridkubernetes#UpdateConnectedClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1220,13 +1221,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridkubernetes#CreateConnectedClusterOrReplace": {
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridkubernetes#CreateConnectedClusterOrReplaceRequest"
+        "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.hybridkubernetes#CreateConnectedClusterOrReplaceResponse"
+        "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1239,7 +1240,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.hybridkubernetes#CreateConnectedClusterOrReplaceResponse": {
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1316,7 +1317,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridkubernetes#CreateConnectedClusterOrReplaceRequest": {
+    "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1748,7 +1749,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterGetResponseTagsMap",
+          "target": "com.azure.hybridkubernetes#GetConnectedClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1785,7 +1786,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterGetResponseTagsMap": {
+    "com.azure.hybridkubernetes#GetConnectedClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2178,19 +2179,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredential"
+          "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplace"
         },
         {
           "target": "com.azure.hybridkubernetes#DeleteConnectedCluster"
         },
         {
-          "target": "com.azure.hybridkubernetes#UpdateConnectedCluster"
-        },
-        {
-          "target": "com.azure.hybridkubernetes#CreateConnectedClusterOrReplace"
-        },
-        {
           "target": "com.azure.hybridkubernetes#GetConnectedCluster"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#GetOperation"
         },
         {
           "target": "com.azure.hybridkubernetes#ListConnectedClusterByResourceGroup"
@@ -2199,7 +2197,10 @@
           "target": "com.azure.hybridkubernetes#ListConnectedClusterBySubscription"
         },
         {
-          "target": "com.azure.hybridkubernetes#GetOperation"
+          "target": "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredential"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#UpdateConnectedCluster"
         }
       ],
       "traits": {

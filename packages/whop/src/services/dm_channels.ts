@@ -115,6 +115,18 @@ export const DeleteDmChannelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDmChannelResponse",
 }) as any as S.Schema<DeleteDmChannelResponse>;
 
+export interface GetDmChannelRequest {
+  /** The unique identifier of the DM channel to retrieve. */
+  id: string;
+}
+export const GetDmChannelRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/dm_channels/{id}", code: 200 })),
+).annotate({
+  identifier: "GetDmChannelRequest",
+}) as any as S.Schema<GetDmChannelRequest>;
+
 export interface ListDmChannelRequest {
   after?: string;
   before?: string;
@@ -197,18 +209,6 @@ export const ListDmChannelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDmChannelResponse",
 }) as any as S.Schema<ListDmChannelResponse>;
 
-export interface RetrieveDmChannelRequest {
-  /** The unique identifier of the DM channel to retrieve. */
-  id: string;
-}
-export const RetrieveDmChannelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/dm_channels/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveDmChannelRequest",
-}) as any as S.Schema<RetrieveDmChannelRequest>;
-
 export interface UpdateDmChannelRequest {
   /** The unique identifier of the DM channel to update. */
   id: string;
@@ -264,6 +264,26 @@ export const deleteDmChannel: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetDmChannelError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve dm channel [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing DM channel. Required permissions (one of): - `dms:read` - `support_chat:read` */
+export const getDmChannel: API.OperationMethod<
+  GetDmChannelRequest,
+  DmChannel,
+  GetDmChannelError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDmChannelRequest,
+  output: DmChannel,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListDmChannelError =
   | BadRequest
   | Forbidden
@@ -295,26 +315,6 @@ export const listDmChannel: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveDmChannelError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve dm channel [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing DM channel. Required permissions (one of): - `dms:read` - `support_chat:read` */
-export const retrieveDmChannel: API.OperationMethod<
-  RetrieveDmChannelRequest,
-  DmChannel,
-  RetrieveDmChannelError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDmChannelRequest,
-  output: DmChannel,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateDmChannelError =
   | BadRequest

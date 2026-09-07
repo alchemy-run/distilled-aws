@@ -4,438 +4,10 @@
     "service": "recommender",
     "version": "v1",
     "title": "Recommender API",
-    "baseUrl": "https://recommender.googleapis.com/"
+    "baseUrl": "https://recommender.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfo": {
-      "type": "structure",
-      "members": {
-        "state": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfoStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Insight state."
-          }
-        },
-        "stateMetadata": {
-          "target": "com.gcp.recommender_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "A map of metadata for the state, provided by user or automations systems."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information related to insight state."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfoStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "ACCEPTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACCEPTED"
-          }
-        },
-        "DISMISSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISMISSED"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationDismissedRequest": {
-      "type": "structure",
-      "members": {
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Fingerprint of the Recommendation. Provides optimistic locking."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request for the `MarkRecommendationDismissed` Method."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReference": {
-      "type": "structure",
-      "members": {
-        "insight": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Insight resource name, e.g. projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[INSIGHT_ID]"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Reference to an associated insight."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1CostProjection": {
-      "type": "structure",
-      "members": {
-        "cost": {
-          "target": "com.gcp.recommender_v1#GoogleTypeMoney",
-          "traits": {
-            "smithy.api#documentation": "An approximate projection on amount saved or amount incurred. Negative cost units indicate cost savings and positive cost units indicate increase. See google.type.Money documentation for positive/negative units. A user's permissions may affect whether the cost is computed using list prices or custom contract prices."
-          }
-        },
-        "duration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Duration for which this cost applies."
-          }
-        },
-        "costInLocalCurrency": {
-          "target": "com.gcp.recommender_v1#GoogleTypeMoney",
-          "traits": {
-            "smithy.api#documentation": "The approximate cost savings in the billing account's local currency."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains metadata about how much money a recommendation can save or incur."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config"
-          }
-        },
-        "insightTypeGenerationConfig": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeGenerationConfig",
-          "traits": {
-            "smithy.api#documentation": "InsightTypeGenerationConfig which configures the generation of insights for this insight type."
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.recommender_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Allows clients to store small amounts of arbitrary data. Annotations must follow the Kubernetes syntax. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between."
-          }
-        },
-        "revisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Immutable. The revision ID of the config. A new revision is committed whenever the config is changed in any way. The format is an 8-character hexadecimal string."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A user-settable field to provide a human-readable name to be used in user interfaces."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Fingerprint of the InsightTypeConfig. Provides optimistic locking when updating."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time when the config was updated."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for an InsightType."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationContent": {
-      "type": "structure",
-      "members": {
-        "operationGroups": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroupList",
-          "traits": {
-            "smithy.api#documentation": "Operations to one or more Google Cloud resources grouped in such a way that, all operations within one group are expected to be performed atomically and in an order."
-          }
-        },
-        "overview": {
-          "target": "com.gcp.recommender_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Condensed overview information about the recommendation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains what resources are changing and how they are changing."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroupList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroup"
-      }
-    },
-    "com.gcp.recommender_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReference": {
-      "type": "structure",
-      "members": {
-        "recommendation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Recommendation resource name, e.g. projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Reference to an associated recommendation."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListInsightsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token that can be used to request the next page of results. This field is empty if there are no additional results."
-          }
-        },
-        "insights": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightList",
-          "traits": {
-            "smithy.api#documentation": "The set of insights for the `parent` resource."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response to the `ListInsights` method."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Insight"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1SecurityProjection": {
-      "type": "structure",
-      "members": {
-        "details": {
-          "target": "com.gcp.recommender_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Additional security impact details that is provided by the recommender."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains various ways of describing the impact on Security."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleTypeMoney": {
-      "type": "structure",
-      "members": {
-        "units": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
-          }
-        },
-        "nanos": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
-          }
-        },
-        "currencyCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents an amount of money with its currency type."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfo": {
-      "type": "structure",
-      "members": {
-        "stateMetadata": {
-          "target": "com.gcp.recommender_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "A map of metadata for the state, provided by user or automations systems."
-          }
-        },
-        "state": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfoStateEnum",
-          "traits": {
-            "smithy.api#documentation": "The state of the recommendation, Eg ACTIVE, SUCCEEDED, FAILED."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information for state. Contains state and metadata."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfoStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "CLAIMED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLAIMED"
-          }
-        },
-        "SUCCEEDED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUCCEEDED"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        },
-        "DISMISSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISMISSED"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Impact": {
-      "type": "structure",
-      "members": {
-        "costProjection": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1CostProjection",
-          "traits": {
-            "smithy.api#documentation": "Use with CategoryType.COST"
-          }
-        },
-        "reliabilityProjection": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ReliabilityProjection",
-          "traits": {
-            "smithy.api#documentation": "Use with CategoryType.RELIABILITY"
-          }
-        },
-        "category": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactCategoryEnum",
-          "traits": {
-            "smithy.api#documentation": "Category that is being targeted."
-          }
-        },
-        "sustainabilityProjection": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1SustainabilityProjection",
-          "traits": {
-            "smithy.api#documentation": "Use with CategoryType.SUSTAINABILITY"
-          }
-        },
-        "securityProjection": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1SecurityProjection",
-          "traits": {
-            "smithy.api#documentation": "Use with CategoryType.SECURITY"
-          }
-        },
-        "service": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The service that this impact is associated with."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains the impact a recommendation can have for a given category."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactCategoryEnum": {
-      "type": "enum",
-      "members": {
-        "CATEGORY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CATEGORY_UNSPECIFIED"
-          }
-        },
-        "COST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COST"
-          }
-        },
-        "SECURITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SECURITY"
-          }
-        },
-        "PERFORMANCE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PERFORMANCE"
-          }
-        },
-        "MANAGEABILITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MANAGEABILITY"
-          }
-        },
-        "SUSTAINABILITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUSTAINABILITY"
-          }
-        },
-        "RELIABILITY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RELIABILITY"
-          }
-        }
-      }
-    },
     "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommenderGenerationConfig": {
       "type": "structure",
       "members": {
@@ -448,6 +20,15 @@
       },
       "traits": {
         "smithy.api#documentation": "A Configuration to customize the generation of recommendations. Eg, customizing the lookback period considered when generating a recommendation."
+      }
+    },
+    "com.gcp.recommender_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
       }
     },
     "com.gcp.recommender_v1#GoogleCloudRecommenderV1ReliabilityProjection": {
@@ -505,31 +86,19 @@
         "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ReliabilityProjectionRisksItemEnum"
       }
     },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Insight": {
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation": {
       "type": "structure",
       "members": {
-        "targetResources": {
-          "target": "com.gcp.recommender_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Fully qualified resource names that this insight is targeting."
-          }
-        },
-        "observationPeriod": {
+        "lastRefreshTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Observation period that led to the insight. The source data used to generate the insight ends at last_refresh_time and begins at (last_refresh_time - observation_period)."
+            "smithy.api#documentation": "Last time this recommendation was refreshed by the system that created it in the first place."
           }
         },
-        "category": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightCategoryEnum",
+        "additionalImpact": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactList",
           "traits": {
-            "smithy.api#documentation": "Category being targeted by the insight."
-          }
-        },
-        "stateInfo": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfo",
-          "traits": {
-            "smithy.api#documentation": "Information state and metadata."
+            "smithy.api#documentation": "Optional set of additional impact that this recommendation may have when trying to optimize for the primary category. These may be positive or negative."
           }
         },
         "description": {
@@ -538,10 +107,290 @@
             "smithy.api#documentation": "Free-form human readable summary in English. The maximum length is 500 characters."
           }
         },
-        "associatedRecommendations": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReferenceList",
+        "associatedInsights": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReferenceList",
           "traits": {
-            "smithy.api#documentation": "Recommendations derived from this insight."
+            "smithy.api#documentation": "Insights that led to this recommendation."
+          }
+        },
+        "priority": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationPriorityEnum",
+          "traits": {
+            "smithy.api#documentation": "Recommendation's priority."
+          }
+        },
+        "targetResources": {
+          "target": "com.gcp.recommender_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource names that this recommendation is targeting."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fingerprint of the Recommendation. Provides optimistic locking when updating states."
+          }
+        },
+        "content": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationContent",
+          "traits": {
+            "smithy.api#documentation": "Content of the recommendation describing recommended changes to resources."
+          }
+        },
+        "stateInfo": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfo",
+          "traits": {
+            "smithy.api#documentation": "Information for state. Contains state and metadata."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of recommendation."
+          }
+        },
+        "primaryImpact": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Impact",
+          "traits": {
+            "smithy.api#documentation": "The primary impact that this recommendation can have while trying to optimize for one category."
+          }
+        },
+        "recommenderSubtype": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = \"google.iam.policy.Recommender\", recommender_subtype can be one of \"REMOVE_ROLE\"/\"REPLACE_ROLE\""
+          }
+        },
+        "xorGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Corresponds to a mutually exclusive group ID within a recommender. A non-empty ID indicates that the recommendation belongs to a mutually exclusive group. This means that only one recommendation within the group is suggested to be applied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A recommendation along with a suggested action. E.g., a rightsizing recommendation for an underutilized VM, IAM role recommendations, etc"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Impact"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReferenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReference"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationPriorityEnum": {
+      "type": "enum",
+      "members": {
+        "PRIORITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIORITY_UNSPECIFIED"
+          }
+        },
+        "P4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P4"
+          }
+        },
+        "P3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P3"
+          }
+        },
+        "P2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P2"
+          }
+        },
+        "P1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P1"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleTypeMoney": {
+      "type": "structure",
+      "members": {
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an amount of money with its currency type."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcher": {
+      "type": "structure",
+      "members": {
+        "matchesPattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "To be used for full regex matching. The regular expression is using the Google RE2 syntax (https://github.com/google/re2/wiki/Syntax), so to be used with RE2::FullMatch"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains various matching options for values for a GCP resource field."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1SustainabilityProjection": {
+      "type": "structure",
+      "members": {
+        "kgCO2e": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Carbon Footprint generated in kg of CO2 equivalent. Chose kg_c_o2e so that the name renders correctly in camelCase (kgCO2e)."
+          }
+        },
+        "duration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Duration for which this sustainability applies."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains metadata about how much sustainability a recommendation can save or incur."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig": {
+      "type": "structure",
+      "members": {
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The revision ID of the config. A new revision is committed whenever the config is changed in any way. The format is an 8-character hexadecimal string."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fingerprint of the InsightTypeConfig. Provides optimistic locking when updating."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time when the config was updated."
+          }
+        },
+        "insightTypeGenerationConfig": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeGenerationConfig",
+          "traits": {
+            "smithy.api#documentation": "InsightTypeGenerationConfig which configures the generation of insights for this insight type."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.recommender_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Allows clients to store small amounts of arbitrary data. Annotations must follow the Kubernetes syntax. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A user-settable field to provide a human-readable name to be used in user interfaces."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for an InsightType."
+      }
+    },
+    "com.gcp.recommender_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroup": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationList",
+          "traits": {
+            "smithy.api#documentation": "List of operations across one or more resources that belong to this group. Loosely based on RFC6902 and should be performed in the order they appear."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group of operations that need to be performed atomically."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Operation"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationSucceededRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Fingerprint of the Recommendation. Provides optimistic locking."
+          }
+        },
+        "stateMetadata": {
+          "target": "com.gcp.recommender_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex `/^a-z0-9{0,62}$/`. Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for the `MarkRecommendationSucceeded` Method."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Insight": {
+      "type": "structure",
+      "members": {
+        "observationPeriod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Observation period that led to the insight. The source data used to generate the insight ends at last_refresh_time and begins at (last_refresh_time - observation_period)."
           }
         },
         "etag": {
@@ -550,16 +399,22 @@
             "smithy.api#documentation": "Fingerprint of the Insight. Provides optimistic locking when updating states."
           }
         },
-        "content": {
-          "target": "com.gcp.recommender_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "A struct of custom fields to explain the insight. Example: \"grantedPermissionsCount\": \"1000\""
-          }
-        },
-        "name": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. Name of the insight."
+            "smithy.api#documentation": "Free-form human readable summary in English. The maximum length is 500 characters."
+          }
+        },
+        "stateInfo": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfo",
+          "traits": {
+            "smithy.api#documentation": "Information state and metadata."
+          }
+        },
+        "targetResources": {
+          "target": "com.gcp.recommender_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource names that this insight is targeting."
           }
         },
         "insightSubtype": {
@@ -568,10 +423,10 @@
             "smithy.api#documentation": "Insight subtype. Insight content schema will be stable for a given subtype."
           }
         },
-        "lastRefreshTime": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Timestamp of the latest data used to generate the insight."
+            "smithy.api#documentation": "Identifier. Name of the insight."
           }
         },
         "severity": {
@@ -579,16 +434,75 @@
           "traits": {
             "smithy.api#documentation": "Insight's severity."
           }
+        },
+        "lastRefreshTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the latest data used to generate the insight."
+          }
+        },
+        "associatedRecommendations": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReferenceList",
+          "traits": {
+            "smithy.api#documentation": "Recommendations derived from this insight."
+          }
+        },
+        "content": {
+          "target": "com.gcp.recommender_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "A struct of custom fields to explain the insight. Example: \"grantedPermissionsCount\": \"1000\""
+          }
+        },
+        "category": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightCategoryEnum",
+          "traits": {
+            "smithy.api#documentation": "Category being targeted by the insight."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "An insight along with the information used to derive the insight. The insight may have associated recommendations as well."
       }
     },
-    "com.gcp.recommender_v1#StringList": {
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOW"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDIUM"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReferenceList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReference"
       }
     },
     "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightCategoryEnum": {
@@ -638,315 +552,58 @@
         }
       }
     },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReferenceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReference"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightSeverityEnum": {
-      "type": "enum",
-      "members": {
-        "SEVERITY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
-          }
-        },
-        "LOW": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOW"
-          }
-        },
-        "MEDIUM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MEDIUM"
-          }
-        },
-        "HIGH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HIGH"
-          }
-        },
-        "CRITICAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CRITICAL"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest": {
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1SecurityProjection": {
       "type": "structure",
       "members": {
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Fingerprint of the Recommendation. Provides optimistic locking."
-          }
-        },
-        "stateMetadata": {
-          "target": "com.gcp.recommender_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex `/^a-z0-9{0,62}$/`. Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request for the `MarkRecommendationFailed` Method."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Operation": {
-      "type": "structure",
-      "members": {
-        "path": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Path to the target field being operated on. If the operation is at the resource level, then path should be \"/\". This field is always populated."
-          }
-        },
-        "pathFilters": {
+        "details": {
           "target": "com.gcp.recommender_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers. * Example: ``` { \"/versions/*/name\" : \"it-123\" \"/versions/*/targetSize/percent\": 20 } ``` * Example: ``` { \"/bindings/*/role\": \"roles/owner\" \"/bindings/*/condition\" : null } ``` * Example: ``` { \"/bindings/*/role\": \"roles/owner\" \"/bindings/*/members/*\" : [\"x@example.com\", \"y@example.com\"] } ``` When both path_filters and path_value_matchers are set, an implicit AND must be performed."
-          }
-        },
-        "value": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "Value for the `path` field. Will be set for actions:'add'/'replace'. Maybe set for action: 'test'. Either this or `value_matcher` will be set for 'test' operation. An exact match must be performed."
-          }
-        },
-        "resourceType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Type of GCP resource being modified/tested. This field is always populated. Example: cloudresourcemanager.googleapis.com/Project, compute.googleapis.com/Instance"
-          }
-        },
-        "sourcePath": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Can be set with action 'copy' or 'move' to indicate the source field within resource or source_resource, ignored if provided for other operation types."
-          }
-        },
-        "pathValueMatchers": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcherMap",
-          "traits": {
-            "smithy.api#documentation": "Similar to path_filters, this contains set of filters to apply if `path` field refers to array elements. This is meant to support value matching beyond exact match. To perform exact match, use path_filters. When both path_filters and path_value_matchers are set, an implicit AND must be performed."
-          }
-        },
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Contains the fully qualified resource name. This field is always populated. ex: //cloudresourcemanager.googleapis.com/projects/foo."
-          }
-        },
-        "valueMatcher": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcher",
-          "traits": {
-            "smithy.api#documentation": "Can be set for action 'test' for advanced matching for the value of 'path' field. Either this or `value` will be set for 'test' operation."
-          }
-        },
-        "sourceResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Can be set with action 'copy' to copy resource configuration across different resources of the same type. Example: A resource clone can be done via action = 'copy', path = \"/\", from = \"/\", source_resource = and resource_name = . This field is empty for all other values of `action`."
-          }
-        },
-        "action": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Type of this operation. Contains one of 'add', 'remove', 'replace', 'move', 'copy', 'test' and custom operations. This field is case-insensitive and always populated."
+            "smithy.api#documentation": "Additional security impact details that is provided by the recommender."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains an operation for a resource loosely based on the JSON-PATCH format with support for: * Custom filters for describing partial array patch. * Extended path values for describing nested arrays. * Custom fields for describing the resource for which the operation is being described. * Allows extension to custom operations not natively supported by RFC6902. See https://tools.ietf.org/html/rfc6902 for details on the original RFC."
+        "smithy.api#documentation": "Contains various ways of describing the impact on Security."
       }
     },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcherMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcher"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroup": {
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightRecommendationReference": {
       "type": "structure",
       "members": {
-        "operations": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationList",
+        "recommendation": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "List of operations across one or more resources that belong to this group. Loosely based on RFC6902 and should be performed in the order they appear."
+            "smithy.api#documentation": "Recommendation resource name, e.g. projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Group of operations that need to be performed atomically."
+        "smithy.api#documentation": "Reference to an associated recommendation."
       }
     },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Operation"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1SustainabilityProjection": {
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1CostProjection": {
       "type": "structure",
       "members": {
+        "cost": {
+          "target": "com.gcp.recommender_v1#GoogleTypeMoney",
+          "traits": {
+            "smithy.api#documentation": "An approximate projection on amount saved or amount incurred. Negative cost units indicate cost savings and positive cost units indicate increase. See google.type.Money documentation for positive/negative units. A user's permissions may affect whether the cost is computed using list prices or custom contract prices."
+          }
+        },
+        "costInLocalCurrency": {
+          "target": "com.gcp.recommender_v1#GoogleTypeMoney",
+          "traits": {
+            "smithy.api#documentation": "The approximate cost savings in the billing account's local currency."
+          }
+        },
         "duration": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Duration for which this sustainability applies."
-          }
-        },
-        "kgCO2e": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Carbon Footprint generated in kg of CO2 equivalent. Chose kg_c_o2e so that the name renders correctly in camelCase (kgCO2e)."
+            "smithy.api#documentation": "Duration for which this cost applies."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains metadata about how much sustainability a recommendation can save or incur."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation": {
-      "type": "structure",
-      "members": {
-        "content": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationContent",
-          "traits": {
-            "smithy.api#documentation": "Content of the recommendation describing recommended changes to resources."
-          }
-        },
-        "stateInfo": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfo",
-          "traits": {
-            "smithy.api#documentation": "Information for state. Contains state and metadata."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of recommendation."
-          }
-        },
-        "recommenderSubtype": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = \"google.iam.policy.Recommender\", recommender_subtype can be one of \"REMOVE_ROLE\"/\"REPLACE_ROLE\""
-          }
-        },
-        "targetResources": {
-          "target": "com.gcp.recommender_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Fully qualified resource names that this recommendation is targeting."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Fingerprint of the Recommendation. Provides optimistic locking when updating states."
-          }
-        },
-        "priority": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationPriorityEnum",
-          "traits": {
-            "smithy.api#documentation": "Recommendation's priority."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Free-form human readable summary in English. The maximum length is 500 characters."
-          }
-        },
-        "xorGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Corresponds to a mutually exclusive group ID within a recommender. A non-empty ID indicates that the recommendation belongs to a mutually exclusive group. This means that only one recommendation within the group is suggested to be applied."
-          }
-        },
-        "lastRefreshTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this recommendation was refreshed by the system that created it in the first place."
-          }
-        },
-        "primaryImpact": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Impact",
-          "traits": {
-            "smithy.api#documentation": "The primary impact that this recommendation can have while trying to optimize for one category."
-          }
-        },
-        "associatedInsights": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReferenceList",
-          "traits": {
-            "smithy.api#documentation": "Insights that led to this recommendation."
-          }
-        },
-        "additionalImpact": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactList",
-          "traits": {
-            "smithy.api#documentation": "Optional set of additional impact that this recommendation may have when trying to optimize for the primary category. These may be positive or negative."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A recommendation along with a suggested action. E.g., a rightsizing recommendation for an underutilized VM, IAM role recommendations, etc"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationPriorityEnum": {
-      "type": "enum",
-      "members": {
-        "PRIORITY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PRIORITY_UNSPECIFIED"
-          }
-        },
-        "P4": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "P4"
-          }
-        },
-        "P3": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "P3"
-          }
-        },
-        "P2": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "P2"
-          }
-        },
-        "P1": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "P1"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReferenceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReference"
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Impact"
+        "smithy.api#documentation": "Contains metadata about how much money a recommendation can save or incur."
       }
     },
     "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListRecommendationsResponse": {
@@ -975,108 +632,18 @@
         "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
       }
     },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationClaimedRequest": {
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationInsightReference": {
       "type": "structure",
       "members": {
-        "etag": {
+        "insight": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Fingerprint of the Recommendation. Provides optimistic locking."
-          }
-        },
-        "stateMetadata": {
-          "target": "com.gcp.recommender_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex `/^a-z0-9{0,62}$/`. Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`."
+            "smithy.api#documentation": "Insight resource name, e.g. projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/insights/[INSIGHT_ID]"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request for the `MarkRecommendationClaimed` Method."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeGenerationConfig": {
-      "type": "structure",
-      "members": {
-        "params": {
-          "target": "com.gcp.recommender_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Parameters for this InsightTypeGenerationConfig. These configs can be used by or are applied to all subtypes."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A configuration to customize the generation of insights. Eg, customizing the lookback period considered when generating a insight."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationSucceededRequest": {
-      "type": "structure",
-      "members": {
-        "stateMetadata": {
-          "target": "com.gcp.recommender_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex `/^a-z0-9{0,62}$/`. Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Fingerprint of the Recommendation. Provides optimistic locking."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request for the `MarkRecommendationSucceeded` Method."
-      }
-    },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommenderConfig": {
-      "type": "structure",
-      "members": {
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time when the config was updated."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Fingerprint of the RecommenderConfig. Provides optimistic locking when updating."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A user-settable field to provide a human-readable name to be used in user interfaces."
-          }
-        },
-        "revisionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Immutable. The revision ID of the config. A new revision is committed whenever the config is changed in any way. The format is an 8-character hexadecimal string."
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.recommender_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Allows clients to store small amounts of arbitrary data. Annotations must follow the Kubernetes syntax. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between."
-          }
-        },
-        "recommenderGenerationConfig": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommenderGenerationConfig",
-          "traits": {
-            "smithy.api#documentation": "RecommenderGenerationConfig which configures the Generation of recommendations for this recommender."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for a Recommender."
+        "smithy.api#documentation": "Reference to an associated insight."
       }
     },
     "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkInsightAcceptedRequest": {
@@ -1099,18 +666,452 @@
         "smithy.api#documentation": "Request for the `MarkInsightAccepted` method."
       }
     },
-    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcher": {
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Operation": {
       "type": "structure",
       "members": {
-        "matchesPattern": {
+        "path": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "To be used for full regex matching. The regular expression is using the Google RE2 syntax (https://github.com/google/re2/wiki/Syntax), so to be used with RE2::FullMatch"
+            "smithy.api#documentation": "Path to the target field being operated on. If the operation is at the resource level, then path should be \"/\". This field is always populated."
+          }
+        },
+        "sourceResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can be set with action 'copy' to copy resource configuration across different resources of the same type. Example: A resource clone can be done via action = 'copy', path = \"/\", from = \"/\", source_resource = and resource_name = . This field is empty for all other values of `action`."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of GCP resource being modified/tested. This field is always populated. Example: cloudresourcemanager.googleapis.com/Project, compute.googleapis.com/Instance"
+          }
+        },
+        "pathValueMatchers": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcherMap",
+          "traits": {
+            "smithy.api#documentation": "Similar to path_filters, this contains set of filters to apply if `path` field refers to array elements. This is meant to support value matching beyond exact match. To perform exact match, use path_filters. When both path_filters and path_value_matchers are set, an implicit AND must be performed."
+          }
+        },
+        "valueMatcher": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcher",
+          "traits": {
+            "smithy.api#documentation": "Can be set for action 'test' for advanced matching for the value of 'path' field. Either this or `value` will be set for 'test' operation."
+          }
+        },
+        "sourcePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Can be set with action 'copy' or 'move' to indicate the source field within resource or source_resource, ignored if provided for other operation types."
+          }
+        },
+        "pathFilters": {
+          "target": "com.gcp.recommender_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers. * Example: ``` { \"/versions/*/name\" : \"it-123\" \"/versions/*/targetSize/percent\": 20 } ``` * Example: ``` { \"/bindings/*/role\": \"roles/owner\" \"/bindings/*/condition\" : null } ``` * Example: ``` { \"/bindings/*/role\": \"roles/owner\" \"/bindings/*/members/*\" : [\"x@example.com\", \"y@example.com\"] } ``` When both path_filters and path_value_matchers are set, an implicit AND must be performed."
+          }
+        },
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of this operation. Contains one of 'add', 'remove', 'replace', 'move', 'copy', 'test' and custom operations. This field is case-insensitive and always populated."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Value for the `path` field. Will be set for actions:'add'/'replace'. Maybe set for action: 'test'. Either this or `value_matcher` will be set for 'test' operation. An exact match must be performed."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the fully qualified resource name. This field is always populated. ex: //cloudresourcemanager.googleapis.com/projects/foo."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains various matching options for values for a GCP resource field."
+        "smithy.api#documentation": "Contains an operation for a resource loosely based on the JSON-PATCH format with support for: * Custom filters for describing partial array patch. * Extended path values for describing nested arrays. * Custom fields for describing the resource for which the operation is being described. * Allows extension to custom operations not natively supported by RFC6902. See https://tools.ietf.org/html/rfc6902 for details on the original RFC."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcherMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ValueMatcher"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest": {
+      "type": "structure",
+      "members": {
+        "stateMetadata": {
+          "target": "com.gcp.recommender_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex `/^a-z0-9{0,62}$/`. Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Fingerprint of the Recommendation. Provides optimistic locking."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for the `MarkRecommendationFailed` Method."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeGenerationConfig": {
+      "type": "structure",
+      "members": {
+        "params": {
+          "target": "com.gcp.recommender_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Parameters for this InsightTypeGenerationConfig. These configs can be used by or are applied to all subtypes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A configuration to customize the generation of insights. Eg, customizing the lookback period considered when generating a insight."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommenderConfig": {
+      "type": "structure",
+      "members": {
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The revision ID of the config. A new revision is committed whenever the config is changed in any way. The format is an 8-character hexadecimal string."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time when the config was updated."
+          }
+        },
+        "recommenderGenerationConfig": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommenderGenerationConfig",
+          "traits": {
+            "smithy.api#documentation": "RecommenderGenerationConfig which configures the Generation of recommendations for this recommender."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fingerprint of the RecommenderConfig. Provides optimistic locking when updating."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.recommender_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Allows clients to store small amounts of arbitrary data. Annotations must follow the Kubernetes syntax. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A user-settable field to provide a human-readable name to be used in user interfaces."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for a Recommender."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationDismissedRequest": {
+      "type": "structure",
+      "members": {
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fingerprint of the Recommendation. Provides optimistic locking."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for the `MarkRecommendationDismissed` Method."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfo": {
+      "type": "structure",
+      "members": {
+        "stateMetadata": {
+          "target": "com.gcp.recommender_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "A map of metadata for the state, provided by user or automations systems."
+          }
+        },
+        "state": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfoStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Insight state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information related to insight state."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightStateInfoStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCEPTED"
+          }
+        },
+        "DISMISSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISMISSED"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListInsightsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be used to request the next page of results. This field is empty if there are no additional results."
+          }
+        },
+        "insights": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightList",
+          "traits": {
+            "smithy.api#documentation": "The set of insights for the `parent` resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response to the `ListInsights` method."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Insight"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationClaimedRequest": {
+      "type": "structure",
+      "members": {
+        "stateMetadata": {
+          "target": "com.gcp.recommender_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex `/^a-z0-9{0,62}$/`. Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Fingerprint of the Recommendation. Provides optimistic locking."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for the `MarkRecommendationClaimed` Method."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfo": {
+      "type": "structure",
+      "members": {
+        "state": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfoStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The state of the recommendation, Eg ACTIVE, SUCCEEDED, FAILED."
+          }
+        },
+        "stateMetadata": {
+          "target": "com.gcp.recommender_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "A map of metadata for the state, provided by user or automations systems."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information for state. Contains state and metadata."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationStateInfoStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "CLAIMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLAIMED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "DISMISSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISMISSED"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1RecommendationContent": {
+      "type": "structure",
+      "members": {
+        "overview": {
+          "target": "com.gcp.recommender_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Condensed overview information about the recommendation."
+          }
+        },
+        "operationGroups": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroupList",
+          "traits": {
+            "smithy.api#documentation": "Operations to one or more Google Cloud resources grouped in such a way that, all operations within one group are expected to be performed atomically and in an order."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains what resources are changing and how they are changing."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1OperationGroup"
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1Impact": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service that this impact is associated with."
+          }
+        },
+        "securityProjection": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1SecurityProjection",
+          "traits": {
+            "smithy.api#documentation": "Use with CategoryType.SECURITY"
+          }
+        },
+        "sustainabilityProjection": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1SustainabilityProjection",
+          "traits": {
+            "smithy.api#documentation": "Use with CategoryType.SUSTAINABILITY"
+          }
+        },
+        "reliabilityProjection": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ReliabilityProjection",
+          "traits": {
+            "smithy.api#documentation": "Use with CategoryType.RELIABILITY"
+          }
+        },
+        "costProjection": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1CostProjection",
+          "traits": {
+            "smithy.api#documentation": "Use with CategoryType.COST"
+          }
+        },
+        "category": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactCategoryEnum",
+          "traits": {
+            "smithy.api#documentation": "Category that is being targeted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the impact a recommendation can have for a given category."
+      }
+    },
+    "com.gcp.recommender_v1#GoogleCloudRecommenderV1ImpactCategoryEnum": {
+      "type": "enum",
+      "members": {
+        "CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CATEGORY_UNSPECIFIED"
+          }
+        },
+        "COST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COST"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "PERFORMANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERFORMANCE"
+          }
+        },
+        "MANAGEABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANAGEABILITY"
+          }
+        },
+        "SUSTAINABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSTAINABILITY"
+          }
+        },
+        "RELIABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELIABILITY"
+          }
+        }
       }
     },
     "com.gcp.recommender_v1#GetConfigBillingAccountsLocationsRecommendersRequest": {
@@ -1179,13 +1180,6 @@
     "com.gcp.recommender_v1#UpdateConfigBillingAccountsLocationsRecommendersRequest": {
       "type": "structure",
       "members": {
-        "validateOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, validate the request and preview the change, but do not actually update it.",
-            "smithy.api#httpQuery": "validateOnly"
-          }
-        },
         "updateMask": {
           "target": "smithy.api#String",
           "traits": {
@@ -1199,6 +1193,13 @@
             "smithy.api#documentation": "Identifier. Name of recommender config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, validate the request and preview the change, but do not actually update it.",
+            "smithy.api#httpQuery": "validateOnly"
           }
         },
         "body": {
@@ -1316,64 +1317,15 @@
         "smithy.api#documentation": "Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationClaimed can be applied to recommendations in CLAIMED, SUCCEEDED, FAILED, or ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender."
       }
     },
-    "com.gcp.recommender_v1#MarkFailedBillingAccountsLocationsRecommendersRecommendationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the recommendation.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#MarkFailedBillingAccountsLocationsRecommendersRecommendations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#MarkFailedBillingAccountsLocationsRecommendersRecommendationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.recommender_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:markFailed"
-        },
-        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
-      }
-    },
     "com.gcp.recommender_v1#ListBillingAccountsLocationsRecommendersRecommendationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "pageSize": {
@@ -1383,19 +1335,18 @@
             "smithy.api#httpQuery": "pageSize"
           }
         },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
           }
         }
       }
@@ -1565,6 +1516,93 @@
         "smithy.api#documentation": "Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender."
       }
     },
+    "com.gcp.recommender_v1#MarkFailedBillingAccountsLocationsRecommendersRecommendationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the recommendation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#MarkFailedBillingAccountsLocationsRecommendersRecommendations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#MarkFailedBillingAccountsLocationsRecommendersRecommendationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recommender_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:markFailed"
+        },
+        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
+      }
+    },
+    "com.gcp.recommender_v1#GetConfigBillingAccountsLocationsInsightTypesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GetConfigBillingAccountsLocationsInsightTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#GetConfigBillingAccountsLocationsInsightTypesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType."
+      }
+    },
     "com.gcp.recommender_v1#UpdateConfigBillingAccountsLocationsInsightTypesRequest": {
       "type": "structure",
       "members": {
@@ -1629,26 +1667,47 @@
         "smithy.api#documentation": "Updates an InsightTypeConfig change. This will create a new revision of the config."
       }
     },
-    "com.gcp.recommender_v1#GetConfigBillingAccountsLocationsInsightTypesRequest": {
+    "com.gcp.recommender_v1#ListBillingAccountsLocationsInsightTypesInsightsRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.recommender_v1#GetConfigBillingAccountsLocationsInsightTypes": {
+    "com.gcp.recommender_v1#ListBillingAccountsLocationsInsightTypesInsights": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.recommender_v1#GetConfigBillingAccountsLocationsInsightTypesRequest"
+        "target": "com.gcp.recommender_v1#ListBillingAccountsLocationsInsightTypesInsightsRequest"
       },
       "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig"
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListInsightsResponse"
       },
       "errors": [
         {
@@ -1661,9 +1720,13 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+name}"
+          "uri": "v1/{+parent}/insights"
         },
-        "smithy.api#documentation": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType."
+        "smithy.api#documentation": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.recommender_v1#GetBillingAccountsLocationsInsightTypesInsightsRequest": {
@@ -1753,21 +1816,22 @@
         "smithy.api#documentation": "Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated. MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight."
       }
     },
-    "com.gcp.recommender_v1#ListBillingAccountsLocationsInsightTypesInsightsRequest": {
+    "com.gcp.recommender_v1#ListFoldersLocationsRecommendersRecommendationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "pageToken": {
@@ -1777,23 +1841,22 @@
             "smithy.api#httpQuery": "pageToken"
           }
         },
-        "parent": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.recommender_v1#ListBillingAccountsLocationsInsightTypesInsights": {
+    "com.gcp.recommender_v1#ListFoldersLocationsRecommendersRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.recommender_v1#ListBillingAccountsLocationsInsightTypesInsightsRequest"
+        "target": "com.gcp.recommender_v1#ListFoldersLocationsRecommendersRecommendationsRequest"
       },
       "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListInsightsResponse"
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListRecommendationsResponse"
       },
       "errors": [
         {
@@ -1806,13 +1869,113 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/insights"
+          "uri": "v1/{+parent}/recommendations"
         },
-        "smithy.api#documentation": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
+        "smithy.api#documentation": "Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.recommender_v1#MarkFailedFoldersLocationsRecommendersRecommendationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the recommendation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#MarkFailedFoldersLocationsRecommendersRecommendations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#MarkFailedFoldersLocationsRecommendersRecommendationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recommender_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:markFailed"
+        },
+        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
+      }
+    },
+    "com.gcp.recommender_v1#MarkDismissedFoldersLocationsRecommendersRecommendationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the recommendation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationDismissedRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#MarkDismissedFoldersLocationsRecommendersRecommendations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#MarkDismissedFoldersLocationsRecommendersRecommendationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recommender_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:markDismissed"
+        },
+        "smithy.api#documentation": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender."
       }
     },
     "com.gcp.recommender_v1#MarkClaimedFoldersLocationsRecommendersRecommendationsRequest": {
@@ -1902,56 +2065,6 @@
         "smithy.api#documentation": "Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender."
       }
     },
-    "com.gcp.recommender_v1#MarkFailedFoldersLocationsRecommendersRecommendationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the recommendation.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#MarkFailedFoldersLocationsRecommendersRecommendations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#MarkFailedFoldersLocationsRecommendersRecommendationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.recommender_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:markFailed"
-        },
-        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
-      }
-    },
     "com.gcp.recommender_v1#MarkSucceededFoldersLocationsRecommendersRecommendationsRequest": {
       "type": "structure",
       "members": {
@@ -2000,180 +2113,6 @@
           "uri": "v1/{+name}:markSucceeded"
         },
         "smithy.api#documentation": "Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
-      }
-    },
-    "com.gcp.recommender_v1#ListFoldersLocationsRecommendersRecommendationsRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#ListFoldersLocationsRecommendersRecommendations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#ListFoldersLocationsRecommendersRecommendationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListRecommendationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/recommendations"
-        },
-        "smithy.api#documentation": "Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.recommender_v1#MarkDismissedFoldersLocationsRecommendersRecommendationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the recommendation.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationDismissedRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#MarkDismissedFoldersLocationsRecommendersRecommendations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#MarkDismissedFoldersLocationsRecommendersRecommendationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.recommender_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:markDismissed"
-        },
-        "smithy.api#documentation": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender."
-      }
-    },
-    "com.gcp.recommender_v1#ListFoldersLocationsInsightTypesInsightsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#ListFoldersLocationsInsightTypesInsights": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#ListFoldersLocationsInsightTypesInsightsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListInsightsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/insights"
-        },
-        "smithy.api#documentation": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
       }
     },
     "com.gcp.recommender_v1#GetFoldersLocationsInsightTypesInsightsRequest": {
@@ -2263,6 +2202,105 @@
         "smithy.api#documentation": "Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated. MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight."
       }
     },
+    "com.gcp.recommender_v1#ListFoldersLocationsInsightTypesInsightsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#ListFoldersLocationsInsightTypesInsights": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#ListFoldersLocationsInsightTypesInsightsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1ListInsightsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/insights"
+        },
+        "smithy.api#documentation": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GetConfigOrganizationsLocationsInsightTypesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GetConfigOrganizationsLocationsInsightTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#GetConfigOrganizationsLocationsInsightTypesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType."
+      }
+    },
     "com.gcp.recommender_v1#UpdateConfigOrganizationsLocationsInsightTypesRequest": {
       "type": "structure",
       "members": {
@@ -2273,19 +2311,19 @@
             "smithy.api#httpQuery": "updateMask"
           }
         },
-        "validateOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, validate the request and preview the change, but do not actually update it.",
-            "smithy.api#httpQuery": "validateOnly"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, validate the request and preview the change, but do not actually update it.",
+            "smithy.api#httpQuery": "validateOnly"
           }
         },
         "body": {
@@ -2325,43 +2363,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Updates an InsightTypeConfig change. This will create a new revision of the config."
-      }
-    },
-    "com.gcp.recommender_v1#GetConfigOrganizationsLocationsInsightTypesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#GetConfigOrganizationsLocationsInsightTypes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#GetConfigOrganizationsLocationsInsightTypesRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType."
       }
     },
     "com.gcp.recommender_v1#GetOrganizationsLocationsInsightTypesInsightsRequest": {
@@ -2419,18 +2420,18 @@
             "smithy.api#httpQuery": "pageSize"
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
             "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -2561,18 +2562,18 @@
             "smithy.api#required": {}
           }
         },
-        "validateOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, validate the request and preview the change, but do not actually update it.",
-            "smithy.api#httpQuery": "validateOnly"
-          }
-        },
         "updateMask": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The list of fields to be updated.",
             "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, validate the request and preview the change, but do not actually update it.",
+            "smithy.api#httpQuery": "validateOnly"
           }
         },
         "body": {
@@ -2614,7 +2615,7 @@
         "smithy.api#documentation": "Updates a Recommender Config. This will create a new revision of the config."
       }
     },
-    "com.gcp.recommender_v1#MarkFailedOrganizationsLocationsRecommendersRecommendationsRequest": {
+    "com.gcp.recommender_v1#MarkDismissedOrganizationsLocationsRecommendersRecommendationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2626,7 +2627,7 @@
           }
         },
         "body": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationDismissedRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -2634,10 +2635,10 @@
         }
       }
     },
-    "com.gcp.recommender_v1#MarkFailedOrganizationsLocationsRecommendersRecommendations": {
+    "com.gcp.recommender_v1#MarkDismissedOrganizationsLocationsRecommendersRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.recommender_v1#MarkFailedOrganizationsLocationsRecommendersRecommendationsRequest"
+        "target": "com.gcp.recommender_v1#MarkDismissedOrganizationsLocationsRecommendersRecommendationsRequest"
       },
       "output": {
         "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
@@ -2659,9 +2660,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+name}:markFailed"
+          "uri": "v1/{+name}:markDismissed"
         },
-        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
+        "smithy.api#documentation": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender."
       }
     },
     "com.gcp.recommender_v1#MarkClaimedOrganizationsLocationsRecommendersRecommendationsRequest": {
@@ -2712,6 +2713,93 @@
           "uri": "v1/{+name}:markClaimed"
         },
         "smithy.api#documentation": "Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationClaimed can be applied to recommendations in CLAIMED, SUCCEEDED, FAILED, or ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender."
+      }
+    },
+    "com.gcp.recommender_v1#GetOrganizationsLocationsRecommendersRecommendationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the recommendation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GetOrganizationsLocationsRecommendersRecommendations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#GetOrganizationsLocationsRecommendersRecommendationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender."
+      }
+    },
+    "com.gcp.recommender_v1#MarkFailedOrganizationsLocationsRecommendersRecommendationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the recommendation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#MarkFailedOrganizationsLocationsRecommendersRecommendations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#MarkFailedOrganizationsLocationsRecommendersRecommendationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.recommender_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:markFailed"
+        },
+        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
       }
     },
     "com.gcp.recommender_v1#MarkSucceededOrganizationsLocationsRecommendersRecommendationsRequest": {
@@ -2826,133 +2914,17 @@
         }
       }
     },
-    "com.gcp.recommender_v1#MarkDismissedOrganizationsLocationsRecommendersRecommendationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the recommendation.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationDismissedRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#MarkDismissedOrganizationsLocationsRecommendersRecommendations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#MarkDismissedOrganizationsLocationsRecommendersRecommendationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.recommender_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:markDismissed"
-        },
-        "smithy.api#documentation": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender."
-      }
-    },
-    "com.gcp.recommender_v1#GetOrganizationsLocationsRecommendersRecommendationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the recommendation.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#GetOrganizationsLocationsRecommendersRecommendations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#GetOrganizationsLocationsRecommendersRecommendationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender."
-      }
-    },
-    "com.gcp.recommender_v1#GetConfigProjectsLocationsInsightTypesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#GetConfigProjectsLocationsInsightTypes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#GetConfigProjectsLocationsInsightTypesRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType."
-      }
-    },
     "com.gcp.recommender_v1#UpdateConfigProjectsLocationsInsightTypesRequest": {
       "type": "structure",
       "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
         "updateMask": {
           "target": "smithy.api#String",
           "traits": {
@@ -2965,14 +2937,6 @@
           "traits": {
             "smithy.api#documentation": "If true, validate the request and preview the change, but do not actually update it.",
             "smithy.api#httpQuery": "validateOnly"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of insight type config. Eg, projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
           }
         },
         "body": {
@@ -3012,6 +2976,43 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Updates an InsightTypeConfig change. This will create a new revision of the config."
+      }
+    },
+    "com.gcp.recommender_v1#GetConfigProjectsLocationsInsightTypesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GetConfigProjectsLocationsInsightTypes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#GetConfigProjectsLocationsInsightTypesRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1InsightTypeConfig"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType."
       }
     },
     "com.gcp.recommender_v1#MarkAcceptedProjectsLocationsInsightTypesInsightsRequest": {
@@ -3067,12 +3068,11 @@
     "com.gcp.recommender_v1#ListProjectsLocationsInsightTypesInsightsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "pageSize": {
@@ -3082,18 +3082,19 @@
             "smithy.api#httpQuery": "pageSize"
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
             "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The container resource on which to execute the request. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
@@ -3264,7 +3265,7 @@
         "smithy.api#documentation": "Updates a Recommender Config. This will create a new revision of the config."
       }
     },
-    "com.gcp.recommender_v1#MarkFailedProjectsLocationsRecommendersRecommendationsRequest": {
+    "com.gcp.recommender_v1#MarkSucceededProjectsLocationsRecommendersRecommendationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3276,7 +3277,7 @@
           }
         },
         "body": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationSucceededRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3284,10 +3285,10 @@
         }
       }
     },
-    "com.gcp.recommender_v1#MarkFailedProjectsLocationsRecommendersRecommendations": {
+    "com.gcp.recommender_v1#MarkSucceededProjectsLocationsRecommendersRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.recommender_v1#MarkFailedProjectsLocationsRecommendersRecommendationsRequest"
+        "target": "com.gcp.recommender_v1#MarkSucceededProjectsLocationsRecommendersRecommendationsRequest"
       },
       "output": {
         "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
@@ -3309,9 +3310,46 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+name}:markFailed"
+          "uri": "v1/{+name}:markSucceeded"
         },
-        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
+        "smithy.api#documentation": "Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
+      }
+    },
+    "com.gcp.recommender_v1#GetProjectsLocationsRecommendersRecommendationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the recommendation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.recommender_v1#GetProjectsLocationsRecommendersRecommendations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.recommender_v1#GetProjectsLocationsRecommendersRecommendationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.recommender_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.recommender_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender."
       }
     },
     "com.gcp.recommender_v1#MarkClaimedProjectsLocationsRecommendersRecommendationsRequest": {
@@ -3367,11 +3405,11 @@
     "com.gcp.recommender_v1#ListProjectsLocationsRecommendersRecommendationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
+        "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "pageSize": {
@@ -3381,11 +3419,11 @@
             "smithy.api#httpQuery": "pageSize"
           }
         },
-        "pageToken": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "parent": {
@@ -3476,44 +3514,7 @@
         "smithy.api#documentation": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender."
       }
     },
-    "com.gcp.recommender_v1#GetProjectsLocationsRecommendersRecommendationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the recommendation.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.recommender_v1#GetProjectsLocationsRecommendersRecommendations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.recommender_v1#GetProjectsLocationsRecommendersRecommendationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.recommender_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.recommender_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender."
-      }
-    },
-    "com.gcp.recommender_v1#MarkSucceededProjectsLocationsRecommendersRecommendationsRequest": {
+    "com.gcp.recommender_v1#MarkFailedProjectsLocationsRecommendersRecommendationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3525,7 +3526,7 @@
           }
         },
         "body": {
-          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationSucceededRequest",
+          "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1MarkRecommendationFailedRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3533,10 +3534,10 @@
         }
       }
     },
-    "com.gcp.recommender_v1#MarkSucceededProjectsLocationsRecommendersRecommendations": {
+    "com.gcp.recommender_v1#MarkFailedProjectsLocationsRecommendersRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.recommender_v1#MarkSucceededProjectsLocationsRecommendersRecommendationsRequest"
+        "target": "com.gcp.recommender_v1#MarkFailedProjectsLocationsRecommendersRecommendationsRequest"
       },
       "output": {
         "target": "com.gcp.recommender_v1#GoogleCloudRecommenderV1Recommendation"
@@ -3558,9 +3559,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+name}:markSucceeded"
+          "uri": "v1/{+name}:markFailed"
         },
-        "smithy.api#documentation": "Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
+        "smithy.api#documentation": "Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender."
       }
     }
   }

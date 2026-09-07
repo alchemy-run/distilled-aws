@@ -112,11 +112,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type InstancesGetResponseTagsMap = { [key: string]: string | undefined };
-export const InstancesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetInstanceResponseTagsMap = { [key: string]: string | undefined };
+export const GetInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesGetResponseTagsMap>;
+) as any as S.Schema<GetInstanceResponseTagsMap>;
 
 /** Marketplace subscription status of a resource. */
 export type LiftrBaseMarketplaceSubscriptionStatus =
@@ -333,7 +333,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface InstancesGetResponseIdentity {
+export interface GetInstanceResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -341,7 +341,7 @@ export interface InstancesGetResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const InstancesGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetInstanceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -349,8 +349,8 @@ export const InstancesGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "InstancesGetResponseIdentity",
-}) as any as S.Schema<InstancesGetResponseIdentity>;
+  identifier: "GetInstanceResponseIdentity",
+}) as any as S.Schema<GetInstanceResponseIdentity>;
 
 export interface GetInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -362,13 +362,13 @@ export interface GetInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InstancesGetResponseTagsMap;
+  tags?: GetInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: InstanceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstancesGetResponseIdentity;
+  identity?: GetInstanceResponseIdentity;
 }
 export const GetInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -376,10 +376,10 @@ export const GetInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InstancesGetResponseTagsMap),
+    tags: S.optional(GetInstanceResponseTagsMap),
     location: S.String,
     properties: S.optional(InstanceProperties),
-    identity: S.optional(InstancesGetResponseIdentity),
+    identity: S.optional(GetInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "GetInstanceResponse",
@@ -496,9 +496,9 @@ export const InstancesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type InstancesCreateOrUpdateResponseIdentity =
-  InstancesGetResponseIdentity;
+  GetInstanceResponseIdentity;
 export const InstancesCreateOrUpdateResponseIdentity =
-  InstancesGetResponseIdentity;
+  GetInstanceResponseIdentity;
 
 export interface InstancesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -516,7 +516,7 @@ export interface InstancesCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: InstanceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstancesGetResponseIdentity;
+  identity?: GetInstanceResponseIdentity;
 }
 export const InstancesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -527,7 +527,7 @@ export const InstancesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(InstancesCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(InstanceProperties),
-    identity: S.optional(InstancesGetResponseIdentity),
+    identity: S.optional(GetInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "InstancesCreateOrUpdateResponse",
@@ -563,8 +563,8 @@ export const InstanceResourceTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<InstanceResourceTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type InstanceResourceIdentity = InstancesGetResponseIdentity;
-export const InstanceResourceIdentity = InstancesGetResponseIdentity;
+export type InstanceResourceIdentity = GetInstanceResponseIdentity;
+export const InstanceResourceIdentity = GetInstanceResponseIdentity;
 
 /** Concrete tracked resource types can be created by aliasing this type using a specific property type. */
 export interface InstanceResource {
@@ -583,7 +583,7 @@ export interface InstanceResource {
   /** The resource-specific properties for this resource. */
   properties?: InstanceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstancesGetResponseIdentity;
+  identity?: GetInstanceResponseIdentity;
 }
 export const InstanceResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -594,7 +594,7 @@ export const InstanceResource = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(InstanceResourceTagsMap),
     location: S.String,
     properties: S.optional(InstanceProperties),
-    identity: S.optional(InstancesGetResponseIdentity),
+    identity: S.optional(GetInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "InstanceResource",
@@ -709,20 +709,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -730,13 +730,13 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOperationsResponse>;
 
 /** Resource tags. */
-export type InstancesUpdateRequestTagsMap = {
+export type UpdateInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const InstancesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInstanceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateInstanceRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType =
@@ -794,7 +794,7 @@ export interface UpdateInstanceRequest {
   /** Name of the Instance resource */
   instancename: string;
   /** Resource tags. */
-  tags?: InstancesUpdateRequestTagsMap;
+  tags?: UpdateInstanceRequestTagsMap;
   /** The managed service identities assigned to this resource. */
   identity?: AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput;
 }
@@ -803,7 +803,7 @@ export const UpdateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     instancename: S.String.pipe(T.Label()),
-    tags: S.optional(InstancesUpdateRequestTagsMap),
+    tags: S.optional(UpdateInstanceRequestTagsMap),
     identity: S.optional(
       AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput,
     ),
@@ -820,17 +820,17 @@ export const UpdateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateInstanceRequest>;
 
 /** Resource tags. */
-export type InstancesUpdateResponseTagsMap = {
+export type UpdateInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InstancesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateInstanceResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type InstancesUpdateResponseIdentity = InstancesGetResponseIdentity;
-export const InstancesUpdateResponseIdentity = InstancesGetResponseIdentity;
+export type UpdateInstanceResponseIdentity = GetInstanceResponseIdentity;
+export const UpdateInstanceResponseIdentity = GetInstanceResponseIdentity;
 
 export interface UpdateInstanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -842,13 +842,13 @@ export interface UpdateInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InstancesUpdateResponseTagsMap;
+  tags?: UpdateInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: InstanceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: InstancesGetResponseIdentity;
+  identity?: GetInstanceResponseIdentity;
 }
 export const UpdateInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -856,10 +856,10 @@ export const UpdateInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InstancesUpdateResponseTagsMap),
+    tags: S.optional(UpdateInstanceResponseTagsMap),
     location: S.String,
     properties: S.optional(InstanceProperties),
-    identity: S.optional(InstancesGetResponseIdentity),
+    identity: S.optional(GetInstanceResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateInstanceResponse",

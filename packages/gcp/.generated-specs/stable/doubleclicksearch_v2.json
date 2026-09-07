@@ -4,82 +4,96 @@
     "service": "doubleclicksearch",
     "version": "v2",
     "title": "Search Ads 360 API",
-    "baseUrl": "https://doubleclicksearch.googleapis.com/"
+    "baseUrl": "https://doubleclicksearch.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.doubleclicksearch_v2#IdMappingFile": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "File returned to https://developers.google.com/search-ads/v2/reference/reports/getIdMappingFile."
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#ReportApiColumnSpec": {
+    "com.gcp.doubleclicksearch_v2#Availability": {
       "type": "structure",
       "members": {
-        "customDimensionName": {
+        "segmentationName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\\ If used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+            "smithy.api#documentation": "The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name)."
+          }
+        },
+        "segmentationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The segmentation type that this availability is for (its default value is `FLOODLIGHT`)."
+          }
+        },
+        "segmentationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID)."
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience."
+          }
+        },
+        "agencyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS agency ID."
+          }
+        },
+        "advertiserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS advertiser ID."
+          }
+        },
+        "availabilityTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time by which all conversions have been uploaded, in epoch millis UTC."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message containing availability data relevant to DoubleClick Search."
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#SavedColumn": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of data this saved column will produce."
           }
         },
         "savedColumnName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
+            "smithy.api#documentation": "The name of the saved column."
           }
         },
-        "columnName": {
+        "kind": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Name of a DoubleClick Search column to include in the report."
-          }
-        },
-        "headerText": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text used to identify this column in the report output; defaults to `columnName` or `savedColumnName` when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
-          }
-        },
-        "platformSource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The platform that is used to provide data for the custom dimension. Acceptable values are \"floodlight\"."
-          }
-        },
-        "endDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with `startDate`."
-          }
-        },
-        "startDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with `endDate`."
-          }
-        },
-        "groupByColumn": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Synchronous report only. Set to `true` to group by this column. Defaults to `false`."
-          }
-        },
-        "productReportPerspective": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Returns metrics only for a specific type of product activity. Accepted values are: - \"`sold`\": returns metrics only for products that were sold - \"`advertised`\": returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold "
-          }
-        },
-        "customMetricName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+            "smithy.api#documentation": "Identifies this as a SavedColumn resource. Value: the fixed string doubleclicksearch#savedColumn."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A request object used to create a DoubleClick Search report."
+        "smithy.api#documentation": "A saved column"
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#ReportRow": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "A row in a DoubleClick Search report."
       }
     },
     "com.gcp.doubleclicksearch_v2#UpdateAvailabilityResponse": {
@@ -102,45 +116,16 @@
         "target": "com.gcp.doubleclicksearch_v2#Availability"
       }
     },
+    "com.gcp.doubleclicksearch_v2#IdMappingFile": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "File returned to https://developers.google.com/search-ads/v2/reference/reports/getIdMappingFile."
+      }
+    },
     "com.gcp.doubleclicksearch_v2#Report": {
       "type": "structure",
       "members": {
-        "rows": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportRowList",
-          "traits": {
-            "smithy.api#documentation": "Synchronous report only. Generated report rows."
-          }
-        },
-        "isReportReady": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Asynchronous report only. True if and only if the report has completed successfully and the report files are ready to be downloaded."
-          }
-        },
-        "statisticsTimeZone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If all statistics of the report are sourced from the same time zone, this would be it. Otherwise the field is unset."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Asynchronous report only. Id of the report."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies this as a Report resource. Value: the fixed string `doubleclicksearch#report`."
-          }
-        },
-        "files": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportFilesItemList",
-          "traits": {
-            "smithy.api#documentation": "Asynchronous report only. Contains a list of generated report files once the report has successfully completed."
-          }
-        },
         "request": {
           "target": "com.gcp.doubleclicksearch_v2#ReportRequest",
           "traits": {
@@ -153,10 +138,46 @@
             "smithy.api#documentation": "The currency code of all monetary values produced in the report, including values that are set by users (e.g., keyword bid settings) and metrics (e.g., cost and revenue). The currency code of a report is determined by the `statisticsCurrency` field of the report request."
           }
         },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous report only. Id of the report."
+          }
+        },
+        "files": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportFilesItemList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous report only. Contains a list of generated report files once the report has successfully completed."
+          }
+        },
+        "isReportReady": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous report only. True if and only if the report has completed successfully and the report files are ready to be downloaded."
+          }
+        },
         "rowCount": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The number of report rows generated by the report, not including headers."
+          }
+        },
+        "rows": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportRowList",
+          "traits": {
+            "smithy.api#documentation": "Synchronous report only. Generated report rows."
+          }
+        },
+        "statisticsTimeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If all statistics of the report are sourced from the same time zone, this would be it. Otherwise the field is unset."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies this as a Report resource. Value: the fixed string `doubleclicksearch#report`."
           }
         }
       },
@@ -164,25 +185,19 @@
         "smithy.api#documentation": "A DoubleClick Search report. This object contains the report request, some report metadata such as currency code, and the generated report rows or report files."
       }
     },
-    "com.gcp.doubleclicksearch_v2#ReportRowList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.doubleclicksearch_v2#ReportRow"
-      }
-    },
     "com.gcp.doubleclicksearch_v2#ReportFilesItem": {
       "type": "structure",
       "members": {
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Use this url to download the report file."
-          }
-        },
         "byteCount": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The size of this report file in bytes."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use this url to download the report file."
           }
         }
       }
@@ -193,233 +208,121 @@
         "target": "com.gcp.doubleclicksearch_v2#ReportFilesItem"
       }
     },
-    "com.gcp.doubleclicksearch_v2#Availability": {
+    "com.gcp.doubleclicksearch_v2#ReportRowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.doubleclicksearch_v2#ReportRow"
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#CustomDimension": {
       "type": "structure",
       "members": {
-        "segmentationName": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name)."
+            "smithy.api#documentation": "Custom dimension name."
           }
         },
-        "segmentationId": {
+        "value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID)."
-          }
-        },
-        "customerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience."
-          }
-        },
-        "advertiserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS advertiser ID."
-          }
-        },
-        "agencyId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS agency ID."
-          }
-        },
-        "segmentationType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The segmentation type that this availability is for (its default value is `FLOODLIGHT`)."
-          }
-        },
-        "availabilityTimestamp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time by which all conversions have been uploaded, in epoch millis UTC."
+            "smithy.api#documentation": "Custom dimension value."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A message containing availability data relevant to DoubleClick Search."
+        "smithy.api#documentation": "A message containing the custom dimension."
       }
     },
-    "com.gcp.doubleclicksearch_v2#SavedColumn": {
+    "com.gcp.doubleclicksearch_v2#UpdateAvailabilityRequest": {
       "type": "structure",
       "members": {
-        "kind": {
+        "availabilities": {
+          "target": "com.gcp.doubleclicksearch_v2#AvailabilityList",
+          "traits": {
+            "smithy.api#documentation": "The availabilities being requested."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request to update availability."
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#ReportApiColumnSpec": {
+      "type": "structure",
+      "members": {
+        "groupByColumn": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Synchronous report only. Set to `true` to group by this column. Defaults to `false`."
+          }
+        },
+        "columnName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifies this as a SavedColumn resource. Value: the fixed string doubleclicksearch#savedColumn."
+            "smithy.api#documentation": "Name of a DoubleClick Search column to include in the report."
           }
         },
         "savedColumnName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the saved column."
+            "smithy.api#documentation": "Name of a saved column to include in the report. The report must be scoped at advertiser or lower, and this saved column must already be created in the DoubleClick Search UI."
           }
         },
-        "type": {
+        "customDimensionName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The type of data this saved column will produce."
+            "smithy.api#documentation": "Segments a report by a custom dimension. The report must be scoped to an advertiser or lower, and the custom dimension must already be set up in DoubleClick Search. The custom dimension name, which appears in DoubleClick Search, is case sensitive.\\ If used in a conversion report, returns the value of the specified custom dimension for the given conversion, if set. This column does not segment the conversion report."
+          }
+        },
+        "headerText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text used to identify this column in the report output; defaults to `columnName` or `savedColumnName` when not specified. This can be used to prevent collisions between DoubleClick Search columns and saved columns with the same name."
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Inclusive date in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with `endDate`."
+          }
+        },
+        "productReportPerspective": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns metrics only for a specific type of product activity. Accepted values are: - \"`sold`\": returns metrics only for products that were sold - \"`advertised`\": returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold "
+          }
+        },
+        "platformSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The platform that is used to provide data for the custom dimension. Acceptable values are \"floodlight\"."
+          }
+        },
+        "customMetricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a custom metric to include in the report. The report must be scoped to an advertiser or lower, and the custom metric must already be set up in DoubleClick Search. The custom metric name, which appears in DoubleClick Search, is case sensitive."
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Inclusive day in YYYY-MM-DD format. When provided, this overrides the overall time range of the report for this column only. Must be provided together with `startDate`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A saved column"
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#ReportRow": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      },
-      "traits": {
-        "smithy.api#documentation": "A row in a DoubleClick Search report."
+        "smithy.api#documentation": "A request object used to create a DoubleClick Search report."
       }
     },
     "com.gcp.doubleclicksearch_v2#Conversion": {
       "type": "structure",
       "members": {
-        "conversionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the `dsConversionId` or `floodlightOrderId` into this property depending on the advertiser's Floodlight instructions."
-          }
-        },
-        "deviceType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of device on which the conversion occurred."
-          }
-        },
-        "customDimension": {
-          "target": "com.gcp.doubleclicksearch_v2#CustomDimensionList",
-          "traits": {
-            "smithy.api#documentation": "Custom dimensions for the conversion, which can be used to filter data in a report."
-          }
-        },
-        "attributionModel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Available to advertisers only after contacting DoubleClick Search customer support."
-          }
-        },
-        "adGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS ad group ID."
-          }
-        },
-        "floodlightOrderId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Floodlight order ID provided by the advertiser for the conversion."
-          }
-        },
-        "storeId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the local store for which the product was advertised. Applicable only when the channel is \"`local`\"."
-          }
-        },
-        "clickId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS click ID for the conversion."
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of the conversion, that is, either `ACTION` or `TRANSACTION`. An `ACTION` conversion is an action by the user that has no monetarily quantifiable value, while a `TRANSACTION` conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (`ACTION`) versus ecommerce purchases (`TRANSACTION`)."
-          }
-        },
-        "engineAccountId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS engine account ID."
-          }
-        },
-        "dsConversionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID that DoubleClick Search generates for each conversion."
-          }
-        },
-        "customMetric": {
-          "target": "com.gcp.doubleclicksearch_v2#CustomMetricList",
-          "traits": {
-            "smithy.api#documentation": "Custom metrics for the conversion."
-          }
-        },
-        "customerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience."
-          }
-        },
-        "productGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS product group ID."
-          }
-        },
-        "criterionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS criterion (keyword) ID."
-          }
-        },
-        "conversionModifiedTimestamp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time at which the conversion was last modified, in epoch millis UTC."
-          }
-        },
-        "segmentationType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The segmentation type of this conversion (for example, `FLOODLIGHT`)."
-          }
-        },
-        "inventoryAccountId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID that DS generates and uses to uniquely identify the inventory account that contains the product."
-          }
-        },
-        "revenueMicros": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The revenue amount of this `TRANSACTION` conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of \"10\" enter \"10000000\" (10 million) in your request."
-          }
-        },
-        "advertiserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS advertiser ID."
-          }
-        },
-        "quantityMillis": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The quantity of this conversion, in millis."
-          }
-        },
         "segmentationName": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The friendly segmentation identifier (for example, DoubleClick Search Floodlight activity name)."
-          }
-        },
-        "currencyCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The currency code for the conversion's revenue. Should be in ISO 4217 alphabetic (3-char) format."
           }
         },
         "state": {
@@ -428,22 +331,64 @@
             "smithy.api#documentation": "The state of the conversion, that is, either `ACTIVE` or `REMOVED`. Note: state DELETED is deprecated."
           }
         },
-        "productId": {
+        "adId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The product ID (SKU)."
+            "smithy.api#documentation": "DS ad ID."
           }
         },
-        "agencyId": {
+        "conversionModifiedTimestamp": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "DS agency ID."
+            "smithy.api#documentation": "The time at which the conversion was last modified, in epoch millis UTC."
           }
         },
-        "segmentationId": {
+        "floodlightOrderId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID)."
+            "smithy.api#documentation": "The Floodlight order ID provided by the advertiser for the conversion."
+          }
+        },
+        "quantityMillis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of this conversion, in millis."
+          }
+        },
+        "inventoryAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID that DS generates and uses to uniquely identify the inventory account that contains the product."
+          }
+        },
+        "clickId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS click ID for the conversion."
+          }
+        },
+        "adGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS ad group ID."
+          }
+        },
+        "advertiserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS advertiser ID."
+          }
+        },
+        "deviceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of device on which the conversion occurred."
+          }
+        },
+        "storeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the local store for which the product was advertised. Applicable only when the channel is \"`local`\"."
           }
         },
         "productLanguage": {
@@ -452,16 +397,16 @@
             "smithy.api#documentation": "The language registered for the Merchant Center feed that contains the product. Use an ISO 639 code to specify a language."
           }
         },
-        "adId": {
+        "agencyId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "DS ad ID."
+            "smithy.api#documentation": "DS agency ID."
           }
         },
-        "channel": {
+        "revenueMicros": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Sales channel for the product. Acceptable values are: - \"`local`\": a physical store - \"`online`\": an online store "
+            "smithy.api#documentation": "The revenue amount of this `TRANSACTION` conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of \"10\" enter \"10000000\" (10 million) in your request."
           }
         },
         "adUserDataConsent": {
@@ -470,16 +415,106 @@
             "smithy.api#documentation": "Represents consent for core platform services (CPS) preferences in settings. No default value. Acceptable values are: GRANTED: The desired consent status is to grant. Read the CPS preferences from GTE settings. DENIED: The desired consent status is to deny; CPS list is empty."
           }
         },
+        "conversionTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the conversion took place, in epoch millis UTC."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the conversion, that is, either `ACTION` or `TRANSACTION`. An `ACTION` conversion is an action by the user that has no monetarily quantifiable value, while a `TRANSACTION` conversion is an action that does have a monetarily quantifiable value. Examples are email list signups (`ACTION`) versus ecommerce purchases (`TRANSACTION`)."
+          }
+        },
+        "segmentationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The segmentation type of this conversion (for example, `FLOODLIGHT`)."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The currency code for the conversion's revenue. Should be in ISO 4217 alphabetic (3-char) format."
+          }
+        },
+        "customDimension": {
+          "target": "com.gcp.doubleclicksearch_v2#CustomDimensionList",
+          "traits": {
+            "smithy.api#documentation": "Custom dimensions for the conversion, which can be used to filter data in a report."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sales channel for the product. Acceptable values are: - \"`local`\": a physical store - \"`online`\": an online store "
+          }
+        },
         "productCountry": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The country registered for the Merchant Center feed that contains the product. Use an ISO 3166 code to specify a country."
           }
         },
-        "conversionTimestamp": {
+        "productId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The time at which the conversion took place, in epoch millis UTC."
+            "smithy.api#documentation": "The product ID (SKU)."
+          }
+        },
+        "productGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS product group ID."
+          }
+        },
+        "campaignId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS campaign ID."
+          }
+        },
+        "conversionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the `dsConversionId` or `floodlightOrderId` into this property depending on the advertiser's Floodlight instructions."
+          }
+        },
+        "segmentationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The numeric segmentation identifier (for example, DoubleClick Search Floodlight activity ID)."
+          }
+        },
+        "engineAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS engine account ID."
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience."
+          }
+        },
+        "attributionModel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Available to advertisers only after contacting DoubleClick Search customer support."
+          }
+        },
+        "customMetric": {
+          "target": "com.gcp.doubleclicksearch_v2#CustomMetricList",
+          "traits": {
+            "smithy.api#documentation": "Custom metrics for the conversion."
+          }
+        },
+        "criterionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS criterion (keyword) ID."
           }
         },
         "countMillis": {
@@ -488,27 +523,15 @@
             "smithy.api#documentation": "Available to advertisers only after contacting DoubleClick Search customer support."
           }
         },
-        "campaignId": {
+        "dsConversionId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "DS campaign ID."
+            "smithy.api#documentation": "ID that DoubleClick Search generates for each conversion."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "A conversion containing data relevant to DoubleClick Search. Common DS3 API conversion fields: Id Range [1 - 2800]. Next Id to use: 33"
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#CustomDimensionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.doubleclicksearch_v2#CustomDimension"
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#CustomMetricList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.doubleclicksearch_v2#CustomMetric"
       }
     },
     "com.gcp.doubleclicksearch_v2#ConversionAdUserDataConsentEnum": {
@@ -534,39 +557,101 @@
         }
       }
     },
-    "com.gcp.doubleclicksearch_v2#CustomDimension": {
+    "com.gcp.doubleclicksearch_v2#CustomDimensionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.doubleclicksearch_v2#CustomDimension"
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#CustomMetricList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.doubleclicksearch_v2#CustomMetric"
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#SavedColumnList": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.gcp.doubleclicksearch_v2#SavedColumnList_",
+          "traits": {
+            "smithy.api#documentation": "The saved columns being requested."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies this as a SavedColumnList resource. Value: the fixed string doubleclicksearch#savedColumnList."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of saved columns. Advertisers create saved columns to report on Floodlight activities, Google Analytics goals, or custom KPIs. To request reports with saved columns, you'll need the saved column names that are available from this list."
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#SavedColumnList_": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.doubleclicksearch_v2#SavedColumn"
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#CustomMetric": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "smithy.api#String",
+          "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Custom dimension value."
+            "smithy.api#documentation": "Custom metric numeric value."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Custom dimension name."
+            "smithy.api#documentation": "Custom metric name."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A message containing the custom dimension."
+        "smithy.api#documentation": "A message containing the custom metric."
       }
     },
     "com.gcp.doubleclicksearch_v2#ReportRequest": {
       "type": "structure",
       "members": {
+        "includeDeletedEntities": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if removed entities should be included in the report. Defaults to `false`. Deprecated, please use `includeRemovedEntities` instead."
+          }
+        },
         "startRow": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Synchronous report only. Zero-based index of the first row to return. Acceptable values are `0` to `50000`, inclusive. Defaults to `0`."
           }
         },
-        "verifySingleTimeZone": {
+        "orderBy": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportRequestOrderByItemList",
+          "traits": {
+            "smithy.api#documentation": "Synchronous report only. A list of columns and directions defining sorting to be performed on the report rows.\\ The maximum number of orderings per request is 300."
+          }
+        },
+        "timeRange": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportRequestTimeRange",
+          "traits": {
+            "smithy.api#documentation": "If metrics are requested in a report, this argument will be used to restrict the metrics to a specific time range."
+          }
+        },
+        "includeRemovedEntities": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "If `true`, the report would only be created if all the requested stat data are sourced from a single timezone. Defaults to `false`."
+            "smithy.api#documentation": "Determines if removed entities should be included in the report. Defaults to `false`."
+          }
+        },
+        "filters": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportRequestFiltersItemList",
+          "traits": {
+            "smithy.api#documentation": "A list of filters to be applied to the report.\\ The maximum number of filters per request is 300."
           }
         },
         "downloadFormat": {
@@ -581,28 +666,16 @@
             "smithy.api#documentation": "Specifies the currency in which monetary will be returned. Possible values are: `usd`, `agency` (valid if the report is scoped to agency or lower), `advertiser` (valid if the report is scoped to * advertiser or lower), or `account` (valid if the report is scoped to engine account or lower)."
           }
         },
-        "reportScope": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportRequestReportScope",
+        "reportType": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The reportScope is a set of IDs that are used to determine which subset of entities will be returned in the report. The full lineage of IDs from the lowest scoped level desired up through agency is required."
+            "smithy.api#documentation": "Determines the type of rows that are returned in the report. For example, if you specify `reportType: keyword`, each row in the report will contain data about a keyword. See the [Types of Reports](/search-ads/v2/report-types/) reference for the columns that are available for each type."
           }
         },
-        "includeDeletedEntities": {
+        "verifySingleTimeZone": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Determines if removed entities should be included in the report. Defaults to `false`. Deprecated, please use `includeRemovedEntities` instead."
-          }
-        },
-        "includeRemovedEntities": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Determines if removed entities should be included in the report. Defaults to `false`."
-          }
-        },
-        "orderBy": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportRequestOrderByItemList",
-          "traits": {
-            "smithy.api#documentation": "Synchronous report only. A list of columns and directions defining sorting to be performed on the report rows.\\ The maximum number of orderings per request is 300."
+            "smithy.api#documentation": "If `true`, the report would only be created if all the requested stat data are sourced from a single timezone. Defaults to `false`."
           }
         },
         "columns": {
@@ -611,16 +684,16 @@
             "smithy.api#documentation": "The columns to include in the report. This includes both DoubleClick Search columns and saved columns. For DoubleClick Search columns, only the `columnName` parameter is required. For saved columns only the `savedColumnName` parameter is required. Both `columnName` and `savedColumnName` cannot be set in the same stanza.\\ The maximum number of columns per request is 300."
           }
         },
-        "reportType": {
-          "target": "smithy.api#String",
+        "maxRowsPerFile": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Determines the type of rows that are returned in the report. For example, if you specify `reportType: keyword`, each row in the report will contain data about a keyword. See the [Types of Reports](/search-ads/v2/report-types/) reference for the columns that are available for each type."
+            "smithy.api#documentation": "Asynchronous report only. The maximum number of rows per report file. A large report is split into many files based on this field. Acceptable values are `1000000` to `100000000`, inclusive."
           }
         },
-        "timeRange": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportRequestTimeRange",
+        "reportScope": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportRequestReportScope",
           "traits": {
-            "smithy.api#documentation": "If metrics are requested in a report, this argument will be used to restrict the metrics to a specific time range."
+            "smithy.api#documentation": "The reportScope is a set of IDs that are used to determine which subset of entities will be returned in the report. The full lineage of IDs from the lowest scoped level desired up through agency is required."
           }
         },
         "rowCount": {
@@ -628,69 +701,10 @@
           "traits": {
             "smithy.api#documentation": "Synchronous report only. The maximum number of rows to return; additional rows are dropped. Acceptable values are `0` to `10000`, inclusive. Defaults to `10000`."
           }
-        },
-        "maxRowsPerFile": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Asynchronous report only. The maximum number of rows per report file. A large report is split into many files based on this field. Acceptable values are `1000000` to `100000000`, inclusive."
-          }
-        },
-        "filters": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportRequestFiltersItemList",
-          "traits": {
-            "smithy.api#documentation": "A list of filters to be applied to the report.\\ The maximum number of filters per request is 300."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "A request object used to create a DoubleClick Search report."
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#ReportRequestReportScope": {
-      "type": "structure",
-      "members": {
-        "adId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS ad ID."
-          }
-        },
-        "agencyId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS agency ID."
-          }
-        },
-        "engineAccountId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS engine account ID."
-          }
-        },
-        "campaignId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS campaign ID."
-          }
-        },
-        "adGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS ad group ID."
-          }
-        },
-        "advertiserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS advertiser ID."
-          }
-        },
-        "keywordId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS keyword ID."
-          }
-        }
       }
     },
     "com.gcp.doubleclicksearch_v2#ReportRequestOrderByItem": {
@@ -716,28 +730,10 @@
         "target": "com.gcp.doubleclicksearch_v2#ReportRequestOrderByItem"
       }
     },
-    "com.gcp.doubleclicksearch_v2#ReportApiColumnSpecList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.doubleclicksearch_v2#ReportApiColumnSpec"
-      }
-    },
     "com.gcp.doubleclicksearch_v2#ReportRequestTimeRange": {
       "type": "structure",
       "members": {
-        "changedAttributesSinceTimestamp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Inclusive UTC timestamp in RFC format, e.g., `2013-07-16T10:16:23.555Z`. See additional references on how changed attribute reports work."
-          }
-        },
         "startDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Inclusive date in YYYY-MM-DD format."
-          }
-        },
-        "endDate": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Inclusive date in YYYY-MM-DD format."
@@ -747,6 +743,18 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Inclusive UTC timestamp in RFC format, e.g., `2013-07-16T10:16:23.555Z`. See additional references on how changed metrics reports work."
+          }
+        },
+        "changedAttributesSinceTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Inclusive UTC timestamp in RFC format, e.g., `2013-07-16T10:16:23.555Z`. See additional references on how changed attribute reports work."
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Inclusive date in YYYY-MM-DD format."
           }
         }
       }
@@ -786,64 +794,57 @@
         "target": "com.gcp.doubleclicksearch_v2#ReportRequestFiltersItem"
       }
     },
-    "com.gcp.doubleclicksearch_v2#CustomMetric": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Custom metric name."
-          }
-        },
-        "value": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Custom metric numeric value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A message containing the custom metric."
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#SavedColumnList": {
-      "type": "structure",
-      "members": {
-        "items": {
-          "target": "com.gcp.doubleclicksearch_v2#SavedColumnList_",
-          "traits": {
-            "smithy.api#documentation": "The saved columns being requested."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies this as a SavedColumnList resource. Value: the fixed string doubleclicksearch#savedColumnList."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A list of saved columns. Advertisers create saved columns to report on Floodlight activities, Google Analytics goals, or custom KPIs. To request reports with saved columns, you'll need the saved column names that are available from this list."
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#SavedColumnList_": {
+    "com.gcp.doubleclicksearch_v2#ReportApiColumnSpecList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.doubleclicksearch_v2#SavedColumn"
+        "target": "com.gcp.doubleclicksearch_v2#ReportApiColumnSpec"
       }
     },
-    "com.gcp.doubleclicksearch_v2#UpdateAvailabilityRequest": {
+    "com.gcp.doubleclicksearch_v2#ReportRequestReportScope": {
       "type": "structure",
       "members": {
-        "availabilities": {
-          "target": "com.gcp.doubleclicksearch_v2#AvailabilityList",
+        "advertiserId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The availabilities being requested."
+            "smithy.api#documentation": "DS advertiser ID."
+          }
+        },
+        "adGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS ad group ID."
+          }
+        },
+        "keywordId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS keyword ID."
+          }
+        },
+        "campaignId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS campaign ID."
+          }
+        },
+        "adId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS ad ID."
+          }
+        },
+        "engineAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS engine account ID."
+          }
+        },
+        "agencyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS agency ID."
           }
         }
-      },
-      "traits": {
-        "smithy.api#documentation": "The request to update availability."
       }
     },
     "com.gcp.doubleclicksearch_v2#ConversionList": {
@@ -872,14 +873,23 @@
         "target": "com.gcp.doubleclicksearch_v2#Conversion"
       }
     },
-    "com.gcp.doubleclicksearch_v2#RequestReportsRequest": {
+    "com.gcp.doubleclicksearch_v2#ListSavedColumnsRequest": {
       "type": "structure",
       "members": {
-        "body": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportRequest",
+        "advertiserId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "DS ID of the advertiser.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "agencyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DS ID of the agency.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
@@ -908,6 +918,42 @@
             "status": 403
           }
         ]
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#ListSavedColumns": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.doubleclicksearch_v2#ListSavedColumnsRequest"
+      },
+      "output": {
+        "target": "com.gcp.doubleclicksearch_v2#SavedColumnList"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.doubleclicksearch_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.doubleclicksearch_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns"
+        },
+        "smithy.api#documentation": "Retrieve the list of saved columns for a specified advertiser."
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#RequestReportsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
       }
     },
     "com.gcp.doubleclicksearch_v2#BadRequest": {
@@ -966,6 +1012,48 @@
         "smithy.api#documentation": "Inserts a report request into the reporting system."
       }
     },
+    "com.gcp.doubleclicksearch_v2#GenerateReportsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.doubleclicksearch_v2#ReportRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#GenerateReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.doubleclicksearch_v2#GenerateReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.doubleclicksearch_v2#Report"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.doubleclicksearch_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.doubleclicksearch_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.doubleclicksearch_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.doubleclicksearch_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "doubleclicksearch/v2/reports/generate"
+        },
+        "smithy.api#documentation": "Generates and returns a report immediately."
+      }
+    },
     "com.gcp.doubleclicksearch_v2#GetIdMappingFileReportsRequest": {
       "type": "structure",
       "members": {
@@ -1014,18 +1102,18 @@
     "com.gcp.doubleclicksearch_v2#GetFileReportsRequest": {
       "type": "structure",
       "members": {
-        "reportFragment": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The index of the report fragment to download.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
         "reportId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "ID of the report.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "reportFragment": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The index of the report fragment to download.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -1051,48 +1139,6 @@
           "uri": "doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}"
         },
         "smithy.api#documentation": "Downloads a report file encoded in UTF-8."
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#GenerateReportsRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.doubleclicksearch_v2#ReportRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#GenerateReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.doubleclicksearch_v2#GenerateReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.doubleclicksearch_v2#Report"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.doubleclicksearch_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.doubleclicksearch_v2#Forbidden"
-        },
-        {
-          "target": "com.gcp.doubleclicksearch_v2#BadRequest"
-        },
-        {
-          "target": "com.gcp.doubleclicksearch_v2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "doubleclicksearch/v2/reports/generate"
-        },
-        "smithy.api#documentation": "Generates and returns a report immediately."
       }
     },
     "com.gcp.doubleclicksearch_v2#GetReportsRequest": {
@@ -1132,151 +1178,22 @@
         "smithy.api#documentation": "Polls for the status of a report request."
       }
     },
-    "com.gcp.doubleclicksearch_v2#ListSavedColumnsRequest": {
+    "com.gcp.doubleclicksearch_v2#InsertConversionRequest": {
       "type": "structure",
       "members": {
-        "agencyId": {
-          "target": "smithy.api#String",
+        "body": {
+          "target": "com.gcp.doubleclicksearch_v2#ConversionList",
           "traits": {
-            "smithy.api#documentation": "DS ID of the agency.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "advertiserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "DS ID of the advertiser.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.doubleclicksearch_v2#ListSavedColumns": {
+    "com.gcp.doubleclicksearch_v2#InsertConversion": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.doubleclicksearch_v2#ListSavedColumnsRequest"
-      },
-      "output": {
-        "target": "com.gcp.doubleclicksearch_v2#SavedColumnList"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.doubleclicksearch_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.doubleclicksearch_v2#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns"
-        },
-        "smithy.api#documentation": "Retrieve the list of saved columns for a specified advertiser."
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#GetConversionRequest": {
-      "type": "structure",
-      "members": {
-        "criterionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the criterion.",
-            "smithy.api#httpQuery": "criterionId"
-          }
-        },
-        "rowCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of conversions to return per call.",
-            "smithy.api#httpQuery": "rowCount",
-            "smithy.api#required": {}
-          }
-        },
-        "agencyId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the agency.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "startRow": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The 0-based starting index for retrieving conversions results.",
-            "smithy.api#httpQuery": "startRow",
-            "smithy.api#required": {}
-          }
-        },
-        "adGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the ad group.",
-            "smithy.api#httpQuery": "adGroupId"
-          }
-        },
-        "startDate": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
-            "smithy.api#httpQuery": "startDate",
-            "smithy.api#required": {}
-          }
-        },
-        "endDate": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
-            "smithy.api#httpQuery": "endDate",
-            "smithy.api#required": {}
-          }
-        },
-        "customerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience.",
-            "smithy.api#httpQuery": "customerId"
-          }
-        },
-        "campaignId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the campaign.",
-            "smithy.api#httpQuery": "campaignId"
-          }
-        },
-        "advertiserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the advertiser.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "adId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the ad.",
-            "smithy.api#httpQuery": "adId"
-          }
-        },
-        "engineAccountId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the engine account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#GetConversion": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.doubleclicksearch_v2#GetConversionRequest"
+        "target": "com.gcp.doubleclicksearch_v2#InsertConversionRequest"
       },
       "output": {
         "target": "com.gcp.doubleclicksearch_v2#ConversionList"
@@ -1287,14 +1204,20 @@
         },
         {
           "target": "com.gcp.doubleclicksearch_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.doubleclicksearch_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.doubleclicksearch_v2#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion"
+          "method": "POST",
+          "uri": "doubleclicksearch/v2/conversion"
         },
-        "smithy.api#documentation": "Retrieves a list of conversions from a DoubleClick Search engine account."
+        "smithy.api#documentation": "Inserts a batch of new conversions into DoubleClick Search."
       }
     },
     "com.gcp.doubleclicksearch_v2#UpdateConversionRequest": {
@@ -1337,6 +1260,126 @@
           "uri": "doubleclicksearch/v2/conversion"
         },
         "smithy.api#documentation": "Updates a batch of conversions in DoubleClick Search."
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#GetConversionRequest": {
+      "type": "structure",
+      "members": {
+        "agencyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the agency.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "advertiserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the advertiser.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "startDate": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
+            "smithy.api#httpQuery": "startDate",
+            "smithy.api#required": {}
+          }
+        },
+        "rowCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of conversions to return per call.",
+            "smithy.api#httpQuery": "rowCount",
+            "smithy.api#required": {}
+          }
+        },
+        "engineAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the engine account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience.",
+            "smithy.api#httpQuery": "customerId"
+          }
+        },
+        "adGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the ad group.",
+            "smithy.api#httpQuery": "adGroupId"
+          }
+        },
+        "criterionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the criterion.",
+            "smithy.api#httpQuery": "criterionId"
+          }
+        },
+        "campaignId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the campaign.",
+            "smithy.api#httpQuery": "campaignId"
+          }
+        },
+        "adId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the ad.",
+            "smithy.api#httpQuery": "adId"
+          }
+        },
+        "startRow": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The 0-based starting index for retrieving conversions results.",
+            "smithy.api#httpQuery": "startRow",
+            "smithy.api#required": {}
+          }
+        },
+        "endDate": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
+            "smithy.api#httpQuery": "endDate",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.doubleclicksearch_v2#GetConversion": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.doubleclicksearch_v2#GetConversionRequest"
+      },
+      "output": {
+        "target": "com.gcp.doubleclicksearch_v2#ConversionList"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.doubleclicksearch_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.doubleclicksearch_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion"
+        },
+        "smithy.api#documentation": "Retrieves a list of conversions from a DoubleClick Search engine account."
       }
     },
     "com.gcp.doubleclicksearch_v2#UpdateAvailabilityConversionRequest": {
@@ -1384,11 +1427,11 @@
     "com.gcp.doubleclicksearch_v2#GetByCustomerIdConversionRequest": {
       "type": "structure",
       "members": {
-        "rowCount": {
+        "startRow": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The number of conversions to return per call.",
-            "smithy.api#httpQuery": "rowCount",
+            "smithy.api#documentation": "The 0-based starting index for retrieving conversions results.",
+            "smithy.api#httpQuery": "startRow",
             "smithy.api#required": {}
           }
         },
@@ -1399,34 +1442,19 @@
             "smithy.api#httpQuery": "adGroupId"
           }
         },
+        "criterionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the criterion.",
+            "smithy.api#httpQuery": "criterionId"
+          }
+        },
         "startDate": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.",
             "smithy.api#httpQuery": "startDate",
             "smithy.api#required": {}
-          }
-        },
-        "customerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "adId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the ad.",
-            "smithy.api#httpQuery": "adId"
-          }
-        },
-        "advertiserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the advertiser.",
-            "smithy.api#httpQuery": "advertiserId"
           }
         },
         "campaignId": {
@@ -1436,25 +1464,11 @@
             "smithy.api#httpQuery": "campaignId"
           }
         },
-        "agencyId": {
+        "customerId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Numeric ID of the agency.",
-            "smithy.api#httpQuery": "agencyId"
-          }
-        },
-        "criterionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Numeric ID of the criterion.",
-            "smithy.api#httpQuery": "criterionId"
-          }
-        },
-        "startRow": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The 0-based starting index for retrieving conversions results.",
-            "smithy.api#httpQuery": "startRow",
+            "smithy.api#documentation": "Customer ID of a client account in the new Search Ads 360 experience.",
+            "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
@@ -1466,11 +1480,40 @@
             "smithy.api#required": {}
           }
         },
+        "adId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the ad.",
+            "smithy.api#httpQuery": "adId"
+          }
+        },
+        "agencyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the agency.",
+            "smithy.api#httpQuery": "agencyId"
+          }
+        },
         "engineAccountId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Numeric ID of the engine account.",
             "smithy.api#httpQuery": "engineAccountId"
+          }
+        },
+        "advertiserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric ID of the advertiser.",
+            "smithy.api#httpQuery": "advertiserId"
+          }
+        },
+        "rowCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of conversions to return per call.",
+            "smithy.api#httpQuery": "rowCount",
+            "smithy.api#required": {}
           }
         }
       }
@@ -1497,48 +1540,6 @@
           "uri": "doubleclicksearch/v2/customer/{customerId}/conversion"
         },
         "smithy.api#documentation": "Retrieves a list of conversions from a DoubleClick Search engine account."
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#InsertConversionRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.doubleclicksearch_v2#ConversionList",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.doubleclicksearch_v2#InsertConversion": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.doubleclicksearch_v2#InsertConversionRequest"
-      },
-      "output": {
-        "target": "com.gcp.doubleclicksearch_v2#ConversionList"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.doubleclicksearch_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.doubleclicksearch_v2#Forbidden"
-        },
-        {
-          "target": "com.gcp.doubleclicksearch_v2#BadRequest"
-        },
-        {
-          "target": "com.gcp.doubleclicksearch_v2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "doubleclicksearch/v2/conversion"
-        },
-        "smithy.api#documentation": "Inserts a batch of new conversions into DoubleClick Search."
       }
     }
   }

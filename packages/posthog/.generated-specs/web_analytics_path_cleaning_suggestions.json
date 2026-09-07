@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsApplyRequest": {
+    "com.posthog.web_analytics_path_cleaning_suggestions#ApplyWebAnalyticsPathCleaningSuggestionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -53,10 +54,10 @@
       },
       "traits": {}
     },
-    "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsApply": {
+    "com.posthog.web_analytics_path_cleaning_suggestions#ApplyWebAnalyticsPathCleaningSuggestion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsApplyRequest"
+        "target": "com.posthog.web_analytics_path_cleaning_suggestions#ApplyWebAnalyticsPathCleaningSuggestionRequest"
       },
       "output": {
         "target": "com.posthog.web_analytics_path_cleaning_suggestions#ApplyPathCleaningSuggestionResponse"
@@ -70,7 +71,7 @@
         "smithy.api#documentation": "Apply a path-cleaning suggestion\n\nMerges the suggestion's rules into the team's path_cleaning_filters (never overwrites existing rules) and resolves the underlying health issue. Requires project admin, matching the team API's gate on path_cleaning_filters."
       }
     },
-    "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsPreviewRequest": {
+    "com.posthog.web_analytics_path_cleaning_suggestions#PreviewWebAnalyticsPathCleaningSuggestionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -156,10 +157,10 @@
         "smithy.api#documentation": "Up to 20 before/after pairs for sampled paths the suggested rules would rewrite."
       }
     },
-    "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsPreview": {
+    "com.posthog.web_analytics_path_cleaning_suggestions#PreviewWebAnalyticsPathCleaningSuggestion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsPreviewRequest"
+        "target": "com.posthog.web_analytics_path_cleaning_suggestions#PreviewWebAnalyticsPathCleaningSuggestionRequest"
       },
       "output": {
         "target": "com.posthog.web_analytics_path_cleaning_suggestions#PreviewPathCleaningSuggestionResponse"
@@ -173,7 +174,7 @@
         "smithy.api#documentation": "Preview a path-cleaning suggestion on real paths\n\nApplies the suggestion's rules (in order) to a fresh sample of the team's top paths and returns before/after pairs for the paths that would change. Computed on demand; path samples are never stored. Nothing is modified."
       }
     },
-    "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticPathCleaningSuggestionRequest": {
+    "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticsPathCleaningSuggestionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -302,10 +303,10 @@
         "smithy.api#documentation": "Validated path-cleaning rules proposed for this team, most specific first."
       }
     },
-    "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticPathCleaningSuggestion": {
+    "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticsPathCleaningSuggestion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticPathCleaningSuggestionRequest"
+        "target": "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticsPathCleaningSuggestionRequest"
       },
       "output": {
         "target": "com.posthog.web_analytics_path_cleaning_suggestions#GeneratePathCleaningSuggestionResponse"
@@ -324,13 +325,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsApply"
+          "target": "com.posthog.web_analytics_path_cleaning_suggestions#ApplyWebAnalyticsPathCleaningSuggestion"
         },
         {
-          "target": "com.posthog.web_analytics_path_cleaning_suggestions#WebAnalyticsPathCleaningSuggestionsPreview"
+          "target": "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticsPathCleaningSuggestion"
         },
         {
-          "target": "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticPathCleaningSuggestion"
+          "target": "com.posthog.web_analytics_path_cleaning_suggestions#PreviewWebAnalyticsPathCleaningSuggestion"
         }
       ],
       "traits": {

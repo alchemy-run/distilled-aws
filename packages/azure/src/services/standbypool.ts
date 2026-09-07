@@ -146,14 +146,14 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type StandbyContainerGroupPoolsGetResponseTagsMap = {
+export type GetStandbyContainerGroupPoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StandbyContainerGroupPoolsGetResponseTagsMap =
+export const GetStandbyContainerGroupPoolResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StandbyContainerGroupPoolsGetResponseTagsMap>;
+  ) as any as S.Schema<GetStandbyContainerGroupPoolResponseTagsMap>;
 
 /** Refill policy of standby pool */
 export type RefillPolicy = "always";
@@ -288,7 +288,7 @@ export interface GetStandbyContainerGroupPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StandbyContainerGroupPoolsGetResponseTagsMap;
+  tags?: GetStandbyContainerGroupPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -301,7 +301,7 @@ export const GetStandbyContainerGroupPoolResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(StandbyContainerGroupPoolsGetResponseTagsMap),
+      tags: S.optional(GetStandbyContainerGroupPoolResponseTagsMap),
       location: S.String,
       properties: S.optional(StandbyContainerGroupPoolResourceProperties),
     }),
@@ -597,14 +597,14 @@ export const GetStandbyVirtualMachinePoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStandbyVirtualMachinePoolRequest>;
 
 /** Resource tags. */
-export type StandbyVirtualMachinePoolsGetResponseTagsMap = {
+export type GetStandbyVirtualMachinePoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StandbyVirtualMachinePoolsGetResponseTagsMap =
+export const GetStandbyVirtualMachinePoolResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StandbyVirtualMachinePoolsGetResponseTagsMap>;
+  ) as any as S.Schema<GetStandbyVirtualMachinePoolResponseTagsMap>;
 
 /** Details of the elasticity profile. */
 export interface StandbyVirtualMachinePoolElasticityProfile {
@@ -692,7 +692,7 @@ export interface GetStandbyVirtualMachinePoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StandbyVirtualMachinePoolsGetResponseTagsMap;
+  tags?: GetStandbyVirtualMachinePoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -705,7 +705,7 @@ export const GetStandbyVirtualMachinePoolResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(StandbyVirtualMachinePoolsGetResponseTagsMap),
+      tags: S.optional(GetStandbyVirtualMachinePoolResponseTagsMap),
       location: S.String,
       properties: S.optional(StandbyVirtualMachinePoolResourceProperties),
     }),
@@ -964,20 +964,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1661,14 +1661,14 @@ export const StandbyVirtualMachinePoolsCreateOrUpdateResponse =
   }) as any as S.Schema<StandbyVirtualMachinePoolsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type StandbyContainerGroupPoolsUpdateRequestTagsMap = {
+export type UpdateStandbyContainerGroupPoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StandbyContainerGroupPoolsUpdateRequestTagsMap =
+export const UpdateStandbyContainerGroupPoolRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StandbyContainerGroupPoolsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateStandbyContainerGroupPoolRequestTagsMap>;
 
 /** Specifies zones of standby container group pools. */
 export type StandbyContainerGroupPoolResourceUpdatePropertiesZonesList =
@@ -1708,7 +1708,7 @@ export interface UpdateStandbyContainerGroupPoolRequest {
   /** Name of the standby container group pool */
   standbyContainerGroupPoolName: string;
   /** Resource tags. */
-  tags?: StandbyContainerGroupPoolsUpdateRequestTagsMap;
+  tags?: UpdateStandbyContainerGroupPoolRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: StandbyContainerGroupPoolResourceUpdateProperties;
 }
@@ -1718,7 +1718,7 @@ export const UpdateStandbyContainerGroupPoolRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       standbyContainerGroupPoolName: S.String.pipe(T.Label()),
-      tags: S.optional(StandbyContainerGroupPoolsUpdateRequestTagsMap),
+      tags: S.optional(UpdateStandbyContainerGroupPoolRequestTagsMap),
       properties: S.optional(StandbyContainerGroupPoolResourceUpdateProperties),
     }).pipe(
       T.Http({
@@ -1733,14 +1733,14 @@ export const UpdateStandbyContainerGroupPoolRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateStandbyContainerGroupPoolRequest>;
 
 /** Resource tags. */
-export type StandbyContainerGroupPoolsUpdateResponseTagsMap = {
+export type UpdateStandbyContainerGroupPoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StandbyContainerGroupPoolsUpdateResponseTagsMap =
+export const UpdateStandbyContainerGroupPoolResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StandbyContainerGroupPoolsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateStandbyContainerGroupPoolResponseTagsMap>;
 
 export interface UpdateStandbyContainerGroupPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1752,7 +1752,7 @@ export interface UpdateStandbyContainerGroupPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StandbyContainerGroupPoolsUpdateResponseTagsMap;
+  tags?: UpdateStandbyContainerGroupPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1765,7 +1765,7 @@ export const UpdateStandbyContainerGroupPoolResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(StandbyContainerGroupPoolsUpdateResponseTagsMap),
+      tags: S.optional(UpdateStandbyContainerGroupPoolResponseTagsMap),
       location: S.String,
       properties: S.optional(StandbyContainerGroupPoolResourceProperties),
     }),
@@ -1774,14 +1774,14 @@ export const UpdateStandbyContainerGroupPoolResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateStandbyContainerGroupPoolResponse>;
 
 /** Resource tags. */
-export type StandbyVirtualMachinePoolsUpdateRequestTagsMap = {
+export type UpdateStandbyVirtualMachinePoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StandbyVirtualMachinePoolsUpdateRequestTagsMap =
+export const UpdateStandbyVirtualMachinePoolRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StandbyVirtualMachinePoolsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateStandbyVirtualMachinePoolRequestTagsMap>;
 
 /** The updatable properties of the StandbyVirtualMachinePoolResource. */
 export interface StandbyVirtualMachinePoolResourceUpdateProperties {
@@ -1814,7 +1814,7 @@ export interface UpdateStandbyVirtualMachinePoolRequest {
   /** Name of the standby virtual machine pool */
   standbyVirtualMachinePoolName: string;
   /** Resource tags. */
-  tags?: StandbyVirtualMachinePoolsUpdateRequestTagsMap;
+  tags?: UpdateStandbyVirtualMachinePoolRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: StandbyVirtualMachinePoolResourceUpdateProperties;
 }
@@ -1824,7 +1824,7 @@ export const UpdateStandbyVirtualMachinePoolRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       standbyVirtualMachinePoolName: S.String.pipe(T.Label()),
-      tags: S.optional(StandbyVirtualMachinePoolsUpdateRequestTagsMap),
+      tags: S.optional(UpdateStandbyVirtualMachinePoolRequestTagsMap),
       properties: S.optional(StandbyVirtualMachinePoolResourceUpdateProperties),
     }).pipe(
       T.Http({
@@ -1839,14 +1839,14 @@ export const UpdateStandbyVirtualMachinePoolRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateStandbyVirtualMachinePoolRequest>;
 
 /** Resource tags. */
-export type StandbyVirtualMachinePoolsUpdateResponseTagsMap = {
+export type UpdateStandbyVirtualMachinePoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StandbyVirtualMachinePoolsUpdateResponseTagsMap =
+export const UpdateStandbyVirtualMachinePoolResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StandbyVirtualMachinePoolsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateStandbyVirtualMachinePoolResponseTagsMap>;
 
 export interface UpdateStandbyVirtualMachinePoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1858,7 +1858,7 @@ export interface UpdateStandbyVirtualMachinePoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StandbyVirtualMachinePoolsUpdateResponseTagsMap;
+  tags?: UpdateStandbyVirtualMachinePoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1871,7 +1871,7 @@ export const UpdateStandbyVirtualMachinePoolResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(StandbyVirtualMachinePoolsUpdateResponseTagsMap),
+      tags: S.optional(UpdateStandbyVirtualMachinePoolResponseTagsMap),
       location: S.String,
       properties: S.optional(StandbyVirtualMachinePoolResourceProperties),
     }),

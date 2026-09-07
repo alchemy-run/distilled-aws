@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.drains#GetDrainsRequest": {
@@ -11541,22 +11542,22 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.drains#GetDrains"
-        },
-        {
           "target": "com.vercel.drains#CreateDrain"
-        },
-        {
-          "target": "com.vercel.drains#GetDrain"
-        },
-        {
-          "target": "com.vercel.drains#UpdateDrain"
         },
         {
           "target": "com.vercel.drains#DeleteDrain"
         },
         {
+          "target": "com.vercel.drains#GetDrain"
+        },
+        {
+          "target": "com.vercel.drains#GetDrains"
+        },
+        {
           "target": "com.vercel.drains#TestDrain"
+        },
+        {
+          "target": "com.vercel.drains#UpdateDrain"
         }
       ],
       "traits": {

@@ -13,9 +13,9 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeStore/accounts */
-export type AccountsCheckNameAvailabilityRequestType =
+export type CheckAccountNameAvailabilityRequestType =
   "Microsoft.DataLakeStore/accounts";
-export const AccountsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
 
 export interface CheckAccountNameAvailabilityRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -25,14 +25,14 @@ export interface CheckAccountNameAvailabilityRequest {
   /** The Data Lake Store name to check availability for. */
   name: string;
   /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeStore/accounts */
-  type: AccountsCheckNameAvailabilityRequestType | (string & {});
+  type: CheckAccountNameAvailabilityRequestType | (string & {});
 }
 export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
     name: S.String,
-    type: AccountsCheckNameAvailabilityRequestType,
+    type: CheckAccountNameAvailabilityRequestType,
   }).pipe(
     T.Http({
       method: "POST",
@@ -65,13 +65,11 @@ export const NameAvailabilityInformation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NameAvailabilityInformation>;
 
 /** The resource tags. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
+) as any as S.Schema<CreateAccountRequestTagsMap>;
 
 /** The type of encryption being used. Currently the only supported type is 'SystemAssigned'. */
 export type EncryptionIdentityInputType = "SystemAssigned";
@@ -361,7 +359,7 @@ export interface CreateAccountRequest {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentityInput;
   /** The Data Lake Store account properties to use for creating. */
@@ -373,7 +371,7 @@ export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     location: S.String,
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     identity: S.optional(EncryptionIdentityInput),
     properties: S.optional(CreateDataLakeStoreAccountProperties),
   }).pipe(
@@ -389,13 +387,13 @@ export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** The type of encryption being used. Currently the only supported type is 'SystemAssigned'. */
 export type EncryptionIdentityType = "SystemAssigned";
@@ -713,7 +711,7 @@ export interface CreateAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentity;
   /** The Data Lake Store account properties. */
@@ -725,7 +723,7 @@ export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     identity: S.optional(EncryptionIdentity),
     properties: S.optional(DataLakeStoreAccountProperties),
   }),
@@ -980,11 +978,11 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** The resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 export interface GetAccountResponse {
   /** The resource identifier. */
@@ -996,7 +994,7 @@ export interface GetAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentity;
   /** The Data Lake Store account properties. */
@@ -1008,7 +1006,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     identity: S.optional(EncryptionIdentity),
     properties: S.optional(DataLakeStoreAccountProperties),
   }),
@@ -1771,13 +1769,11 @@ export const TrustedIdProvidersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<TrustedIdProvidersCreateOrUpdateResponse>;
 
 /** Resource tags */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** The Key Vault update information used for user managed key rotation. */
 export interface UpdateKeyVaultMetaInfo {
@@ -1989,7 +1985,7 @@ export interface UpdateAccountRequest {
   /** The name of the Data Lake Store account. */
   accountName: string;
   /** Resource tags */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** The Data Lake Store account properties to update. */
   properties?: UpdateDataLakeStoreAccountProperties;
 }
@@ -1998,7 +1994,7 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     properties: S.optional(UpdateDataLakeStoreAccountProperties),
   }).pipe(
     T.Http({
@@ -2013,13 +2009,13 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 export interface UpdateAccountResponse {
   /** The resource identifier. */
@@ -2031,7 +2027,7 @@ export interface UpdateAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The Key Vault encryption identity, if any. */
   identity?: EncryptionIdentity;
   /** The Data Lake Store account properties. */
@@ -2043,7 +2039,7 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     identity: S.optional(EncryptionIdentity),
     properties: S.optional(DataLakeStoreAccountProperties),
   }),

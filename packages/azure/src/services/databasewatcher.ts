@@ -792,11 +792,11 @@ export const GetWatcherRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWatcherRequest>;
 
 /** Resource tags. */
-export type WatchersGetResponseTagsMap = { [key: string]: string | undefined };
-export const WatchersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWatcherResponseTagsMap = { [key: string]: string | undefined };
+export const GetWatcherResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WatchersGetResponseTagsMap>;
+) as any as S.Schema<GetWatcherResponseTagsMap>;
 
 /** The type of Kusto offering. */
 export type KustoOfferingType = "adx" | "free" | "fabric";
@@ -903,7 +903,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface WatchersGetResponseIdentity {
+export interface GetWatcherResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -911,7 +911,7 @@ export interface WatchersGetResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const WatchersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetWatcherResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -919,8 +919,8 @@ export const WatchersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "WatchersGetResponseIdentity",
-}) as any as S.Schema<WatchersGetResponseIdentity>;
+  identifier: "GetWatcherResponseIdentity",
+}) as any as S.Schema<GetWatcherResponseIdentity>;
 
 export interface GetWatcherResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -932,13 +932,13 @@ export interface GetWatcherResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WatchersGetResponseTagsMap;
+  tags?: GetWatcherResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: WatcherProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersGetResponseIdentity;
+  identity?: GetWatcherResponseIdentity;
 }
 export const GetWatcherResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -946,10 +946,10 @@ export const GetWatcherResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WatchersGetResponseTagsMap),
+    tags: S.optional(GetWatcherResponseTagsMap),
     location: S.String,
     properties: S.optional(WatcherProperties),
-    identity: S.optional(WatchersGetResponseIdentity),
+    identity: S.optional(GetWatcherResponseIdentity),
   }),
 ).annotate({
   identifier: "GetWatcherResponse",
@@ -1168,20 +1168,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1363,8 +1363,8 @@ export const WatcherTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<WatcherTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WatcherIdentity = WatchersGetResponseIdentity;
-export const WatcherIdentity = WatchersGetResponseIdentity;
+export type WatcherIdentity = GetWatcherResponseIdentity;
+export const WatcherIdentity = GetWatcherResponseIdentity;
 
 /** The DatabaseWatcherProviderHub resource. */
 export interface Watcher {
@@ -1383,7 +1383,7 @@ export interface Watcher {
   /** The resource-specific properties for this resource. */
   properties?: WatcherProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersGetResponseIdentity;
+  identity?: GetWatcherResponseIdentity;
 }
 export const Watcher = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1394,7 +1394,7 @@ export const Watcher = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(WatcherTagsMap),
     location: S.String,
     properties: S.optional(WatcherProperties),
-    identity: S.optional(WatchersGetResponseIdentity),
+    identity: S.optional(GetWatcherResponseIdentity),
   }),
 ).annotate({ identifier: "Watcher" }) as any as S.Schema<Watcher>;
 
@@ -1519,17 +1519,15 @@ export const StartWatcherRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartWatcherRequest>;
 
 /** Resource tags. */
-export type WatchersStartResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WatchersStartResponseTagsMap = /*@__PURE__*/ S.Record(
+export type StartWatcherResponseTagsMap = { [key: string]: string | undefined };
+export const StartWatcherResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WatchersStartResponseTagsMap>;
+) as any as S.Schema<StartWatcherResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WatchersStartResponseIdentity = WatchersGetResponseIdentity;
-export const WatchersStartResponseIdentity = WatchersGetResponseIdentity;
+export type StartWatcherResponseIdentity = GetWatcherResponseIdentity;
+export const StartWatcherResponseIdentity = GetWatcherResponseIdentity;
 
 export interface StartWatcherResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1541,13 +1539,13 @@ export interface StartWatcherResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WatchersStartResponseTagsMap;
+  tags?: StartWatcherResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: WatcherProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersGetResponseIdentity;
+  identity?: GetWatcherResponseIdentity;
 }
 export const StartWatcherResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1555,10 +1553,10 @@ export const StartWatcherResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WatchersStartResponseTagsMap),
+    tags: S.optional(StartWatcherResponseTagsMap),
     location: S.String,
     properties: S.optional(WatcherProperties),
-    identity: S.optional(WatchersGetResponseIdentity),
+    identity: S.optional(GetWatcherResponseIdentity),
   }),
 ).annotate({
   identifier: "StartWatcherResponse",
@@ -1590,15 +1588,15 @@ export const StopWatcherRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopWatcherRequest>;
 
 /** Resource tags. */
-export type WatchersStopResponseTagsMap = { [key: string]: string | undefined };
-export const WatchersStopResponseTagsMap = /*@__PURE__*/ S.Record(
+export type StopWatcherResponseTagsMap = { [key: string]: string | undefined };
+export const StopWatcherResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WatchersStopResponseTagsMap>;
+) as any as S.Schema<StopWatcherResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WatchersStopResponseIdentity = WatchersGetResponseIdentity;
-export const WatchersStopResponseIdentity = WatchersGetResponseIdentity;
+export type StopWatcherResponseIdentity = GetWatcherResponseIdentity;
+export const StopWatcherResponseIdentity = GetWatcherResponseIdentity;
 
 export interface StopWatcherResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1610,13 +1608,13 @@ export interface StopWatcherResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WatchersStopResponseTagsMap;
+  tags?: StopWatcherResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: WatcherProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersGetResponseIdentity;
+  identity?: GetWatcherResponseIdentity;
 }
 export const StopWatcherResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1624,10 +1622,10 @@ export const StopWatcherResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WatchersStopResponseTagsMap),
+    tags: S.optional(StopWatcherResponseTagsMap),
     location: S.String,
     properties: S.optional(WatcherProperties),
-    identity: S.optional(WatchersGetResponseIdentity),
+    identity: S.optional(GetWatcherResponseIdentity),
   }),
 ).annotate({
   identifier: "StopWatcherResponse",
@@ -1728,27 +1726,25 @@ export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentitiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface WatchersUpdateRequestIdentity {
+export interface UpdateWatcherRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   userAssignedIdentities?: UserAssignedIdentitiesInput;
 }
-export const WatchersUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWatcherRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
   }),
 ).annotate({
-  identifier: "WatchersUpdateRequestIdentity",
-}) as any as S.Schema<WatchersUpdateRequestIdentity>;
+  identifier: "UpdateWatcherRequestIdentity",
+}) as any as S.Schema<UpdateWatcherRequestIdentity>;
 
 /** Resource tags. */
-export type WatchersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WatchersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateWatcherRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateWatcherRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WatchersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWatcherRequestTagsMap>;
 
 /** The properties of a data store. */
 export interface DatastoreUpdate {
@@ -1805,9 +1801,9 @@ export interface UpdateWatcherRequest {
   /** The database watcher name. */
   watcherName: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersUpdateRequestIdentity;
+  identity?: UpdateWatcherRequestIdentity;
   /** Resource tags. */
-  tags?: WatchersUpdateRequestTagsMap;
+  tags?: UpdateWatcherRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: WatcherUpdateProperties;
 }
@@ -1816,8 +1812,8 @@ export const UpdateWatcherRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     watcherName: S.String.pipe(T.Label()),
-    identity: S.optional(WatchersUpdateRequestIdentity),
-    tags: S.optional(WatchersUpdateRequestTagsMap),
+    identity: S.optional(UpdateWatcherRequestIdentity),
+    tags: S.optional(UpdateWatcherRequestTagsMap),
     properties: S.optional(WatcherUpdateProperties),
   }).pipe(
     T.Http({
@@ -1832,17 +1828,17 @@ export const UpdateWatcherRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWatcherRequest>;
 
 /** Resource tags. */
-export type WatchersUpdateResponseTagsMap = {
+export type UpdateWatcherResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WatchersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWatcherResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WatchersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWatcherResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WatchersUpdateResponseIdentity = WatchersGetResponseIdentity;
-export const WatchersUpdateResponseIdentity = WatchersGetResponseIdentity;
+export type UpdateWatcherResponseIdentity = GetWatcherResponseIdentity;
+export const UpdateWatcherResponseIdentity = GetWatcherResponseIdentity;
 
 export interface UpdateWatcherResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1854,13 +1850,13 @@ export interface UpdateWatcherResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WatchersUpdateResponseTagsMap;
+  tags?: UpdateWatcherResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: WatcherProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersGetResponseIdentity;
+  identity?: GetWatcherResponseIdentity;
 }
 export const UpdateWatcherResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1868,10 +1864,10 @@ export const UpdateWatcherResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WatchersUpdateResponseTagsMap),
+    tags: S.optional(UpdateWatcherResponseTagsMap),
     location: S.String,
     properties: S.optional(WatcherProperties),
-    identity: S.optional(WatchersGetResponseIdentity),
+    identity: S.optional(GetWatcherResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateWatcherResponse",
@@ -1904,9 +1900,9 @@ export const WatcherPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type WatchersCreateOrUpdateRequestIdentity =
-  WatchersUpdateRequestIdentity;
+  UpdateWatcherRequestIdentity;
 export const WatchersCreateOrUpdateRequestIdentity =
-  WatchersUpdateRequestIdentity;
+  UpdateWatcherRequestIdentity;
 
 export interface WatchersCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1922,7 +1918,7 @@ export interface WatchersCreateOrUpdateRequest {
   /** The resource-specific properties for this resource. */
   properties?: WatcherPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersUpdateRequestIdentity;
+  identity?: UpdateWatcherRequestIdentity;
 }
 export const WatchersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1932,7 +1928,7 @@ export const WatchersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(WatchersCreateOrUpdateRequestTagsMap),
     location: S.String,
     properties: S.optional(WatcherPropertiesInput),
-    identity: S.optional(WatchersUpdateRequestIdentity),
+    identity: S.optional(UpdateWatcherRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -1955,10 +1951,9 @@ export const WatchersCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<WatchersCreateOrUpdateResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WatchersCreateOrUpdateResponseIdentity =
-  WatchersGetResponseIdentity;
+export type WatchersCreateOrUpdateResponseIdentity = GetWatcherResponseIdentity;
 export const WatchersCreateOrUpdateResponseIdentity =
-  WatchersGetResponseIdentity;
+  GetWatcherResponseIdentity;
 
 export interface WatchersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1976,7 +1971,7 @@ export interface WatchersCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: WatcherProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: WatchersGetResponseIdentity;
+  identity?: GetWatcherResponseIdentity;
 }
 export const WatchersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1987,7 +1982,7 @@ export const WatchersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(WatchersCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(WatcherProperties),
-    identity: S.optional(WatchersGetResponseIdentity),
+    identity: S.optional(GetWatcherResponseIdentity),
   }),
 ).annotate({
   identifier: "WatchersCreateOrUpdateResponse",

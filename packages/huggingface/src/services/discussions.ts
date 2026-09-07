@@ -4887,6 +4887,45 @@ export const ListDiscussionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDiscussionsResponse",
 }) as any as S.Schema<ListDiscussionsResponse>;
 
+export type MergePullRequestRequestRepoType =
+  | "models"
+  | "spaces"
+  | "datasets"
+  | "kernels";
+export const MergePullRequestRequestRepoType = /*@__PURE__*/ S.String;
+
+export interface MergePullRequestRequest {
+  repoType: MergePullRequestRequestRepoType | (string & {});
+  namespace: string;
+  repo: string;
+  num: string;
+  comment?: string;
+}
+export const MergePullRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repoType: MergePullRequestRequestRepoType.pipe(T.Label()),
+    namespace: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    num: S.String.pipe(T.Label()),
+    comment: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/{repoType}/{namespace}/{repo}/discussions/{num}/merge",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "MergePullRequestRequest",
+}) as any as S.Schema<MergePullRequestRequest>;
+
+export interface MergePullRequestResponse {}
+export const MergePullRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MergePullRequestResponse",
+}) as any as S.Schema<MergePullRequestResponse>;
+
 export type PinDiscussionRequestRepoType =
   | "models"
   | "spaces"
@@ -6744,45 +6783,6 @@ export const ReplyToPostCommentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplyToPostCommentResponse",
 }) as any as S.Schema<ReplyToPostCommentResponse>;
 
-export type MergePullRequestRequestRepoType =
-  | "models"
-  | "spaces"
-  | "datasets"
-  | "kernels";
-export const MergePullRequestRequestRepoType = /*@__PURE__*/ S.String;
-
-export interface RequestMergePullRequest {
-  repoType: MergePullRequestRequestRepoType | (string & {});
-  namespace: string;
-  repo: string;
-  num: string;
-  comment?: string;
-}
-export const RequestMergePullRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repoType: MergePullRequestRequestRepoType.pipe(T.Label()),
-    namespace: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    num: S.String.pipe(T.Label()),
-    comment: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/{repoType}/{namespace}/{repo}/discussions/{num}/merge",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RequestMergePullRequest",
-}) as any as S.Schema<RequestMergePullRequest>;
-
-export interface RequestMergePullResponse {}
-export const RequestMergePullResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RequestMergePullResponse",
-}) as any as S.Schema<RequestMergePullResponse>;
-
 export type ChangeStatusError = HuggingFaceOpError;
 /** Change status Change the status of a discussion */
 export const changeStatus: API.OperationMethod<
@@ -6978,6 +6978,21 @@ export const listDiscussions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MergePullRequestError = HuggingFaceOpError;
+/** Merge a pull request */
+export const mergePullRequest: API.OperationMethod<
+  MergePullRequestRequest,
+  MergePullRequestResponse,
+  MergePullRequestError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MergePullRequestRequest,
+  output: MergePullRequestResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PinDiscussionError = HuggingFaceOpError;
 /** Pin a discussion */
 export const pinDiscussion: API.OperationMethod<
@@ -7063,21 +7078,6 @@ export const replyToPostComment: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ReplyToPostCommentRequest,
   output: ReplyToPostCommentResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RequestMergePullError = HuggingFaceOpError;
-/** Merge a pull request */
-export const requestMergePull: API.OperationMethod<
-  RequestMergePullRequest,
-  RequestMergePullResponse,
-  RequestMergePullError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestMergePullRequest,
-  output: RequestMergePullResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

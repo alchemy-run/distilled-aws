@@ -25,10 +25,6 @@ import {
   listRfc6902PatchFiles,
 } from "./patches.ts";
 import { resolveSpecPath } from "./spec-path.ts";
-import {
-  rewriteOpenApiOperationIds,
-  type OperationIdRewrite,
-} from "./rewrite-operation-ids.ts";
 
 export interface OpenApiSpecEntry {
   /** Output model name — written to `<outDir>/<name>.json`. */
@@ -39,15 +35,7 @@ export interface OpenApiSpecEntry {
    * Hook between patching and conversion (e.g. path prefixing, server
    * rewrites). May mutate the spec in place or return a replacement.
    */
-  readonly preprocess?: (spec: any) => unknown | void;
-  /**
-   * Mutate OpenAPI `operationId`s after the RFC-6902 chain and
-   * {@link preprocess}. Prefer {@link OpenApiConvertOptions.operationNaming}
-   * (`"verbNoun"`) plus {@link OpenApiConvertOptions.operationNames} — naming
-   * is a convert policy, not a spec edit. Keep this for a later step that
-   * still reads the OpenAPI id.
-   */
-  readonly rewriteOperationIds?: OperationIdRewrite;
+  readonly preprocess?: (spec: any) => unknown | void | Promise<unknown | void>;
   /** Per-spec converter option overrides (merged over the shared options). */
   readonly options?: Partial<OpenApiConvertOptions>;
 }
@@ -80,9 +68,10 @@ export interface RunOpenApiConvertOptions {
    */
   readonly onStalePatch?: "fail" | "warn";
   /**
-   * Run {@link finalizeConvert} (verbNoun on written models) after this
-   * convert. Default true. Pass false when the caller will finalize once
-   * after several convert steps (Fly machines + sprites + addons).
+   * Run {@link finalizeConvert} on the written models (reference check +
+   * finalized marker; naming already happened in the converter). Default
+   * true. Pass false when the caller finalizes once after several convert
+   * steps (Fly machines + sprites + addons).
    */
   readonly finalize?: boolean;
 }
@@ -139,24 +128,14 @@ export const runOpenApiConvert = async (
       for (const b of openapiPatches.errors)
         console.error(`❌ bad patch: ${b}`);
       throw new Error(
-        `${openapiPatches.errors.length} patch operation(s) failed — fix the pointers, rewrite operationIds via rewriteOperationIds, or delete the patch`,
+        `${openapiPatches.errors.length} patch operation(s) failed — fix the pointers or delete the patch`,
       );
     }
 
     // ---- Preprocess hook ----
     if (entry.preprocess) {
-      const replaced = entry.preprocess(spec);
+      const replaced = await entry.preprocess(spec);
       if (replaced !== undefined) spec = replaced;
-    }
-
-    if (entry.rewriteOperationIds) {
-      const { renamed } = rewriteOpenApiOperationIds(
-        spec,
-        entry.rewriteOperationIds,
-      );
-      if (renamed > 0) {
-        console.log(`   rewrote ${renamed} operationId(s) (${entry.name})`);
-      }
     }
 
     // ---- Convert, Smithy patches, write ----
@@ -194,9 +173,9 @@ export const runOpenApiConvert = async (
     await finalizeConvert({
       root: o.root,
       outDir,
-      // OpenAPI + Smithy ops from the convert patch dir already ran.
+      // Patches and naming already ran above.
       patchesDir: false,
-      operationNaming: o.options.operationNaming ?? "verbNoun",
+      operationNaming: "as-is",
       include: (resource) => written.has(resource),
     });
   }

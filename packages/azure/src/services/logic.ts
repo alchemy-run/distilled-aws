@@ -13,6 +13,41 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface CancelWorkflowRunRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The workflow run name. */
+  runName: string;
+}
+export const CancelWorkflowRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workflowName: S.String.pipe(T.Label()),
+    runName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/cancel",
+      code: 200,
+      apiVersion: "2019-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelWorkflowRunRequest",
+}) as any as S.Schema<CancelWorkflowRunRequest>;
+
+export interface CancelWorkflowRunResponse {}
+export const CancelWorkflowRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelWorkflowRunResponse",
+}) as any as S.Schema<CancelWorkflowRunResponse>;
+
 export interface DeleteIntegrationAccountRequest {
   /** The subscription id. */
   subscriptionId: string;
@@ -553,13 +588,13 @@ export const GetIntegrationAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIntegrationAccountRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountsGetResponseTagsMap = {
+export type GetIntegrationAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetIntegrationAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationAccountsGetResponseTagsMap>;
+) as any as S.Schema<GetIntegrationAccountResponseTagsMap>;
 
 /** The resource reference. */
 export interface ResourceReference {
@@ -637,7 +672,7 @@ export interface GetIntegrationAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountsGetResponseTagsMap;
+  tags?: GetIntegrationAccountResponseTagsMap;
   /** The integration account properties. */
   properties?: IntegrationAccountProperties;
   /** The sku. */
@@ -649,7 +684,7 @@ export const GetIntegrationAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(IntegrationAccountsGetResponseTagsMap),
+    tags: S.optional(GetIntegrationAccountResponseTagsMap),
     properties: S.optional(IntegrationAccountProperties),
     sku: S.optional(IntegrationAccountSku),
   }),
@@ -687,14 +722,14 @@ export const GetIntegrationAccountAgreementRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetIntegrationAccountAgreementRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountAgreementsGetResponseTagsMap = {
+export type GetIntegrationAccountAgreementResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountAgreementsGetResponseTagsMap =
+export const GetIntegrationAccountAgreementResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationAccountAgreementsGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationAccountAgreementResponseTagsMap>;
 
 /** The agreement type. */
 export type AgreementType = "NotSpecified" | "AS2" | "X12" | "Edifact";
@@ -2237,7 +2272,7 @@ export interface GetIntegrationAccountAgreementResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountAgreementsGetResponseTagsMap;
+  tags?: GetIntegrationAccountAgreementResponseTagsMap;
   /** The integration account agreement properties. */
   properties: IntegrationAccountAgreementProperties;
 }
@@ -2248,7 +2283,7 @@ export const GetIntegrationAccountAgreementResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationAccountAgreementsGetResponseTagsMap),
+      tags: S.optional(GetIntegrationAccountAgreementResponseTagsMap),
       properties: IntegrationAccountAgreementProperties,
     }),
 ).annotate({
@@ -2285,14 +2320,14 @@ export const GetIntegrationAccountAssemblyRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetIntegrationAccountAssemblyRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountAssembliesGetResponseTagsMap = {
+export type GetIntegrationAccountAssemblyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountAssembliesGetResponseTagsMap =
+export const GetIntegrationAccountAssemblyResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationAccountAssembliesGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationAccountAssemblyResponseTagsMap>;
 
 /** The content hash. */
 export interface ContentHash {
@@ -2379,7 +2414,7 @@ export interface GetIntegrationAccountAssemblyResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountAssembliesGetResponseTagsMap;
+  tags?: GetIntegrationAccountAssemblyResponseTagsMap;
   /** The assembly properties. */
   properties: AssemblyProperties;
 }
@@ -2390,7 +2425,7 @@ export const GetIntegrationAccountAssemblyResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationAccountAssembliesGetResponseTagsMap),
+      tags: S.optional(GetIntegrationAccountAssemblyResponseTagsMap),
       properties: AssemblyProperties,
     }),
 ).annotate({
@@ -2427,14 +2462,14 @@ export const GetIntegrationAccountBatchConfigurationRequest =
   }) as any as S.Schema<GetIntegrationAccountBatchConfigurationRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountBatchConfigurationsGetResponseTagsMap = {
+export type GetIntegrationAccountBatchConfigurationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountBatchConfigurationsGetResponseTagsMap =
+export const GetIntegrationAccountBatchConfigurationResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationAccountBatchConfigurationsGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationAccountBatchConfigurationResponseTagsMap>;
 
 /** The recurrence frequency. */
 export type RecurrenceFrequency =
@@ -2624,7 +2659,7 @@ export interface GetIntegrationAccountBatchConfigurationResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountBatchConfigurationsGetResponseTagsMap;
+  tags?: GetIntegrationAccountBatchConfigurationResponseTagsMap;
   /** The batch configuration properties. */
   properties: BatchConfigurationProperties;
 }
@@ -2635,7 +2670,7 @@ export const GetIntegrationAccountBatchConfigurationResponse =
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationAccountBatchConfigurationsGetResponseTagsMap),
+      tags: S.optional(GetIntegrationAccountBatchConfigurationResponseTagsMap),
       properties: BatchConfigurationProperties,
     }),
   ).annotate({
@@ -2672,14 +2707,14 @@ export const GetIntegrationAccountCertificateRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetIntegrationAccountCertificateRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountCertificatesGetResponseTagsMap = {
+export type GetIntegrationAccountCertificateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountCertificatesGetResponseTagsMap =
+export const GetIntegrationAccountCertificateResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationAccountCertificatesGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationAccountCertificateResponseTagsMap>;
 
 /** The key vault reference. */
 export interface KeyVaultKeyReferenceKeyVault {
@@ -2755,7 +2790,7 @@ export interface GetIntegrationAccountCertificateResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountCertificatesGetResponseTagsMap;
+  tags?: GetIntegrationAccountCertificateResponseTagsMap;
   /** The integration account certificate properties. */
   properties: IntegrationAccountCertificateProperties;
 }
@@ -2766,7 +2801,7 @@ export const GetIntegrationAccountCertificateResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationAccountCertificatesGetResponseTagsMap),
+      tags: S.optional(GetIntegrationAccountCertificateResponseTagsMap),
       properties: IntegrationAccountCertificateProperties,
     }),
 ).annotate({
@@ -2802,13 +2837,13 @@ export const GetIntegrationAccountMapRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIntegrationAccountMapRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountMapsGetResponseTagsMap = {
+export type GetIntegrationAccountMapResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountMapsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetIntegrationAccountMapResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationAccountMapsGetResponseTagsMap>;
+) as any as S.Schema<GetIntegrationAccountMapResponseTagsMap>;
 
 /** The map type. */
 export type MapType = "NotSpecified" | "Xslt" | "Xslt20" | "Xslt30" | "Liquid";
@@ -2874,7 +2909,7 @@ export interface GetIntegrationAccountMapResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountMapsGetResponseTagsMap;
+  tags?: GetIntegrationAccountMapResponseTagsMap;
   /** The integration account map properties. */
   properties: IntegrationAccountMapProperties;
 }
@@ -2884,7 +2919,7 @@ export const GetIntegrationAccountMapResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(IntegrationAccountMapsGetResponseTagsMap),
+    tags: S.optional(GetIntegrationAccountMapResponseTagsMap),
     properties: IntegrationAccountMapProperties,
   }),
 ).annotate({
@@ -2920,14 +2955,14 @@ export const GetIntegrationAccountPartnerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIntegrationAccountPartnerRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountPartnersGetResponseTagsMap = {
+export type GetIntegrationAccountPartnerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountPartnersGetResponseTagsMap =
+export const GetIntegrationAccountPartnerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationAccountPartnersGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationAccountPartnerResponseTagsMap>;
 
 /** The partner type. */
 export type PartnerType = "NotSpecified" | "B2B";
@@ -2998,7 +3033,7 @@ export interface GetIntegrationAccountPartnerResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountPartnersGetResponseTagsMap;
+  tags?: GetIntegrationAccountPartnerResponseTagsMap;
   /** The integration account partner properties. */
   properties: IntegrationAccountPartnerProperties;
 }
@@ -3009,7 +3044,7 @@ export const GetIntegrationAccountPartnerResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationAccountPartnersGetResponseTagsMap),
+      tags: S.optional(GetIntegrationAccountPartnerResponseTagsMap),
       properties: IntegrationAccountPartnerProperties,
     }),
 ).annotate({
@@ -3045,14 +3080,14 @@ export const GetIntegrationAccountSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIntegrationAccountSchemaRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountSchemasGetResponseTagsMap = {
+export type GetIntegrationAccountSchemaResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountSchemasGetResponseTagsMap =
+export const GetIntegrationAccountSchemaResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationAccountSchemasGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationAccountSchemaResponseTagsMap>;
 
 /** The schema type. */
 export type SchemaType = "NotSpecified" | "Xml";
@@ -3108,7 +3143,7 @@ export interface GetIntegrationAccountSchemaResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountSchemasGetResponseTagsMap;
+  tags?: GetIntegrationAccountSchemaResponseTagsMap;
   /** The integration account schema properties. */
   properties: IntegrationAccountSchemaProperties;
 }
@@ -3118,7 +3153,7 @@ export const GetIntegrationAccountSchemaResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(IntegrationAccountSchemasGetResponseTagsMap),
+    tags: S.optional(GetIntegrationAccountSchemaResponseTagsMap),
     properties: IntegrationAccountSchemaProperties,
   }),
 ).annotate({
@@ -3154,14 +3189,14 @@ export const GetIntegrationAccountSessionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIntegrationAccountSessionRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountSessionsGetResponseTagsMap = {
+export type GetIntegrationAccountSessionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountSessionsGetResponseTagsMap =
+export const GetIntegrationAccountSessionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationAccountSessionsGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationAccountSessionResponseTagsMap>;
 
 /** The integration account session properties. */
 export interface IntegrationAccountSessionProperties {
@@ -3192,7 +3227,7 @@ export interface GetIntegrationAccountSessionResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountSessionsGetResponseTagsMap;
+  tags?: GetIntegrationAccountSessionResponseTagsMap;
   /** The integration account session properties. */
   properties: IntegrationAccountSessionProperties;
 }
@@ -3203,7 +3238,7 @@ export const GetIntegrationAccountSessionResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationAccountSessionsGetResponseTagsMap),
+      tags: S.optional(GetIntegrationAccountSessionResponseTagsMap),
       properties: IntegrationAccountSessionProperties,
     }),
 ).annotate({
@@ -3237,14 +3272,14 @@ export const GetIntegrationServiceEnvironmentRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetIntegrationServiceEnvironmentRequest>;
 
 /** The resource tags. */
-export type IntegrationServiceEnvironmentsGetResponseTagsMap = {
+export type GetIntegrationServiceEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationServiceEnvironmentsGetResponseTagsMap =
+export const GetIntegrationServiceEnvironmentResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationServiceEnvironmentsGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationServiceEnvironmentResponseTagsMap>;
 
 /** The workflow provisioning state. */
 export type WorkflowProvisioningState =
@@ -3531,7 +3566,7 @@ export interface GetIntegrationServiceEnvironmentResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationServiceEnvironmentsGetResponseTagsMap;
+  tags?: GetIntegrationServiceEnvironmentResponseTagsMap;
   /** The integration service environment properties. */
   properties?: IntegrationServiceEnvironmentProperties;
   /** The sku. */
@@ -3545,7 +3580,7 @@ export const GetIntegrationServiceEnvironmentResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationServiceEnvironmentsGetResponseTagsMap),
+      tags: S.optional(GetIntegrationServiceEnvironmentResponseTagsMap),
       properties: S.optional(IntegrationServiceEnvironmentProperties),
       sku: S.optional(IntegrationServiceEnvironmentSku),
       identity: S.optional(ManagedServiceIdentity),
@@ -3584,14 +3619,14 @@ export const GetIntegrationServiceEnvironmentManagedApisRequest =
   }) as any as S.Schema<GetIntegrationServiceEnvironmentManagedApisRequest>;
 
 /** The resource tags. */
-export type IntegrationServiceEnvironmentManagedApisGetResponseTagsMap = {
+export type GetIntegrationServiceEnvironmentManagedApisResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationServiceEnvironmentManagedApisGetResponseTagsMap =
+export const GetIntegrationServiceEnvironmentManagedApisResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationServiceEnvironmentManagedApisGetResponseTagsMap>;
+  ) as any as S.Schema<GetIntegrationServiceEnvironmentManagedApisResponseTagsMap>;
 
 /** The connection parameters. */
 export type IntegrationServiceEnvironmentManagedApiPropertiesConnectionParametersMap =
@@ -3905,7 +3940,7 @@ export interface GetIntegrationServiceEnvironmentManagedApisResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationServiceEnvironmentManagedApisGetResponseTagsMap;
+  tags?: GetIntegrationServiceEnvironmentManagedApisResponseTagsMap;
   /** The integration service environment managed api properties. */
   properties?: IntegrationServiceEnvironmentManagedApiProperties;
 }
@@ -3917,7 +3952,7 @@ export const GetIntegrationServiceEnvironmentManagedApisResponse =
       type: S.optional(S.String),
       location: S.optional(S.String),
       tags: S.optional(
-        IntegrationServiceEnvironmentManagedApisGetResponseTagsMap,
+        GetIntegrationServiceEnvironmentManagedApisResponseTagsMap,
       ),
       properties: S.optional(IntegrationServiceEnvironmentManagedApiProperties),
     }),
@@ -4181,11 +4216,11 @@ export const GetWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkflowRequest>;
 
 /** The resource tags. */
-export type WorkflowsGetResponseTagsMap = { [key: string]: string | undefined };
-export const WorkflowsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkflowResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkflowResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkflowsGetResponseTagsMap>;
+) as any as S.Schema<GetWorkflowResponseTagsMap>;
 
 /** The ip address range. */
 export interface IpAddressRange {
@@ -4440,7 +4475,7 @@ export interface GetWorkflowResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: WorkflowsGetResponseTagsMap;
+  tags?: GetWorkflowResponseTagsMap;
   /** The workflow properties. */
   properties?: WorkflowProperties;
   identity?: ManagedServiceIdentity;
@@ -4451,7 +4486,7 @@ export const GetWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(WorkflowsGetResponseTagsMap),
+    tags: S.optional(GetWorkflowResponseTagsMap),
     properties: S.optional(WorkflowProperties),
     identity: S.optional(ManagedServiceIdentity),
   }),
@@ -4884,14 +4919,14 @@ export const GetWorkflowRunActionRepetitionRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetWorkflowRunActionRepetitionRequest>;
 
 /** The resource tags. */
-export type WorkflowRunActionRepetitionsGetResponseTagsMap = {
+export type GetWorkflowRunActionRepetitionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkflowRunActionRepetitionsGetResponseTagsMap =
+export const GetWorkflowRunActionRepetitionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<WorkflowRunActionRepetitionsGetResponseTagsMap>;
+  ) as any as S.Schema<GetWorkflowRunActionRepetitionResponseTagsMap>;
 
 /** Gets the retry histories. */
 export type WorkflowRunActionRepetitionPropertiesRetryHistoryList =
@@ -4993,7 +5028,7 @@ export interface GetWorkflowRunActionRepetitionResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: WorkflowRunActionRepetitionsGetResponseTagsMap;
+  tags?: GetWorkflowRunActionRepetitionResponseTagsMap;
   /** The workflow run action repetition properties definition. */
   properties: WorkflowRunActionRepetitionProperties;
 }
@@ -5004,12 +5039,219 @@ export const GetWorkflowRunActionRepetitionResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(WorkflowRunActionRepetitionsGetResponseTagsMap),
+      tags: S.optional(GetWorkflowRunActionRepetitionResponseTagsMap),
       properties: WorkflowRunActionRepetitionProperties,
     }),
 ).annotate({
   identifier: "GetWorkflowRunActionRepetitionResponse",
 }) as any as S.Schema<GetWorkflowRunActionRepetitionResponse>;
+
+export interface GetWorkflowRunActionRepetitionsRequestHistoryRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The workflow run name. */
+  runName: string;
+  /** The workflow action name. */
+  actionName: string;
+  /** The workflow repetition. */
+  repetitionName: string;
+  /** The request history name. */
+  requestHistoryName: string;
+}
+export const GetWorkflowRunActionRepetitionsRequestHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workflowName: S.String.pipe(T.Label()),
+      runName: S.String.pipe(T.Label()),
+      actionName: S.String.pipe(T.Label()),
+      repetitionName: S.String.pipe(T.Label()),
+      requestHistoryName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/repetitions/{repetitionName}/requestHistories/{requestHistoryName}",
+        code: 200,
+        apiVersion: "2019-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetWorkflowRunActionRepetitionsRequestHistoryRequest",
+  }) as any as S.Schema<GetWorkflowRunActionRepetitionsRequestHistoryRequest>;
+
+/** The resource tags. */
+export type GetWorkflowRunActionRepetitionsRequestHistoryResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetWorkflowRunActionRepetitionsRequestHistoryResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetWorkflowRunActionRepetitionsRequestHistoryResponseTagsMap>;
+
+/** A request. */
+export interface Request {
+  /** A list of all the headers attached to the request. */
+  headers?: unknown;
+  /** The destination for the request. */
+  uri?: string;
+  /** The HTTP method used for the request. */
+  method?: string;
+}
+export const Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    headers: S.optional(S.Unknown),
+    uri: S.optional(S.String),
+    method: S.optional(S.String),
+  }),
+).annotate({ identifier: "Request" }) as any as S.Schema<Request>;
+
+/** A response. */
+export interface Response {
+  /** A list of all the headers attached to the response. */
+  headers?: unknown;
+  /** The status code of the response. */
+  statusCode?: number;
+  /** Details on the location of the body content. */
+  bodyLink?: ContentLink;
+}
+export const Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    headers: S.optional(S.Unknown),
+    statusCode: S.optional(S.Number),
+    bodyLink: S.optional(ContentLink),
+  }),
+).annotate({ identifier: "Response" }) as any as S.Schema<Response>;
+
+/** The request history. */
+export interface RequestHistoryProperties {
+  /** The time the request started. */
+  startTime?: string;
+  /** The time the request ended. */
+  endTime?: string;
+  /** The request. */
+  request?: Request;
+  /** The response. */
+  response?: Response;
+}
+export const RequestHistoryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    request: S.optional(Request),
+    response: S.optional(Response),
+  }),
+).annotate({
+  identifier: "RequestHistoryProperties",
+}) as any as S.Schema<RequestHistoryProperties>;
+
+export interface GetWorkflowRunActionRepetitionsRequestHistoryResponse {
+  /** The resource id. */
+  id?: string;
+  /** Gets the resource name. */
+  name?: string;
+  /** Gets the resource type. */
+  type?: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: GetWorkflowRunActionRepetitionsRequestHistoryResponseTagsMap;
+  /** The request history properties. */
+  properties?: RequestHistoryProperties;
+}
+export const GetWorkflowRunActionRepetitionsRequestHistoryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(
+        GetWorkflowRunActionRepetitionsRequestHistoryResponseTagsMap,
+      ),
+      properties: S.optional(RequestHistoryProperties),
+    }),
+  ).annotate({
+    identifier: "GetWorkflowRunActionRepetitionsRequestHistoryResponse",
+  }) as any as S.Schema<GetWorkflowRunActionRepetitionsRequestHistoryResponse>;
+
+export interface GetWorkflowRunActionRequestHistoryRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The workflow run name. */
+  runName: string;
+  /** The workflow action name. */
+  actionName: string;
+  /** The request history name. */
+  requestHistoryName: string;
+}
+export const GetWorkflowRunActionRequestHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workflowName: S.String.pipe(T.Label()),
+      runName: S.String.pipe(T.Label()),
+      actionName: S.String.pipe(T.Label()),
+      requestHistoryName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/requestHistories/{requestHistoryName}",
+        code: 200,
+        apiVersion: "2019-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetWorkflowRunActionRequestHistoryRequest",
+  }) as any as S.Schema<GetWorkflowRunActionRequestHistoryRequest>;
+
+/** The resource tags. */
+export type GetWorkflowRunActionRequestHistoryResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetWorkflowRunActionRequestHistoryResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetWorkflowRunActionRequestHistoryResponseTagsMap>;
+
+export interface GetWorkflowRunActionRequestHistoryResponse {
+  /** The resource id. */
+  id?: string;
+  /** Gets the resource name. */
+  name?: string;
+  /** Gets the resource type. */
+  type?: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: GetWorkflowRunActionRequestHistoryResponseTagsMap;
+  /** The request history properties. */
+  properties?: RequestHistoryProperties;
+}
+export const GetWorkflowRunActionRequestHistoryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(GetWorkflowRunActionRequestHistoryResponseTagsMap),
+      properties: S.optional(RequestHistoryProperties),
+    }),
+  ).annotate({
+    identifier: "GetWorkflowRunActionRequestHistoryResponse",
+  }) as any as S.Schema<GetWorkflowRunActionRequestHistoryResponse>;
 
 export interface GetWorkflowRunActionScopeRepetitionRequest {
   /** The subscription id. */
@@ -5047,14 +5289,14 @@ export const GetWorkflowRunActionScopeRepetitionRequest =
   }) as any as S.Schema<GetWorkflowRunActionScopeRepetitionRequest>;
 
 /** The resource tags. */
-export type WorkflowRunActionScopeRepetitionsGetResponseTagsMap = {
+export type GetWorkflowRunActionScopeRepetitionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkflowRunActionScopeRepetitionsGetResponseTagsMap =
+export const GetWorkflowRunActionScopeRepetitionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<WorkflowRunActionScopeRepetitionsGetResponseTagsMap>;
+  ) as any as S.Schema<GetWorkflowRunActionScopeRepetitionResponseTagsMap>;
 
 export interface GetWorkflowRunActionScopeRepetitionResponse {
   /** The resource id. */
@@ -5066,7 +5308,7 @@ export interface GetWorkflowRunActionScopeRepetitionResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: WorkflowRunActionScopeRepetitionsGetResponseTagsMap;
+  tags?: GetWorkflowRunActionScopeRepetitionResponseTagsMap;
   /** The workflow run action repetition properties definition. */
   properties: WorkflowRunActionRepetitionProperties;
 }
@@ -5077,7 +5319,7 @@ export const GetWorkflowRunActionScopeRepetitionResponse =
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(WorkflowRunActionScopeRepetitionsGetResponseTagsMap),
+      tags: S.optional(GetWorkflowRunActionScopeRepetitionResponseTagsMap),
       properties: WorkflowRunActionRepetitionProperties,
     }),
   ).annotate({
@@ -5413,13 +5655,13 @@ export const GetWorkflowVersionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkflowVersionRequest>;
 
 /** The resource tags. */
-export type WorkflowVersionsGetResponseTagsMap = {
+export type GetWorkflowVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkflowVersionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetWorkflowVersionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkflowVersionsGetResponseTagsMap>;
+) as any as S.Schema<GetWorkflowVersionResponseTagsMap>;
 
 /** The parameters. */
 export type WorkflowVersionPropertiesParametersMap = {
@@ -5486,7 +5728,7 @@ export interface GetWorkflowVersionResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: WorkflowVersionsGetResponseTagsMap;
+  tags?: GetWorkflowVersionResponseTagsMap;
   /** The workflow version properties. */
   properties?: WorkflowVersionProperties;
 }
@@ -5496,7 +5738,7 @@ export const GetWorkflowVersionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(WorkflowVersionsGetResponseTagsMap),
+    tags: S.optional(GetWorkflowVersionResponseTagsMap),
     properties: S.optional(WorkflowVersionProperties),
   }),
 ).annotate({
@@ -6673,208 +6915,6 @@ export const IntegrationAccountsLogTrackingEventsResponse =
     identifier: "IntegrationAccountsLogTrackingEventsResponse",
   }) as any as S.Schema<IntegrationAccountsLogTrackingEventsResponse>;
 
-/** The key type. */
-export type KeyType = "NotSpecified" | "Primary" | "Secondary";
-export const KeyType = /*@__PURE__*/ S.String;
-
-export interface IntegrationAccountsRegenerateAccessKeyRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The integration account name. */
-  integrationAccountName: string;
-  /** The key type. */
-  keyType?: KeyType | (string & {});
-}
-export const IntegrationAccountsRegenerateAccessKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      integrationAccountName: S.String.pipe(T.Label()),
-      keyType: S.optional(KeyType),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/regenerateAccessKey",
-        code: 200,
-        apiVersion: "2019-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationAccountsRegenerateAccessKeyRequest",
-  }) as any as S.Schema<IntegrationAccountsRegenerateAccessKeyRequest>;
-
-/** The resource tags. */
-export type IntegrationAccountsRegenerateAccessKeyResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IntegrationAccountsRegenerateAccessKeyResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IntegrationAccountsRegenerateAccessKeyResponseTagsMap>;
-
-export interface IntegrationAccountsRegenerateAccessKeyResponse {
-  /** The resource id. */
-  id?: string;
-  /** Gets the resource name. */
-  name?: string;
-  /** Gets the resource type. */
-  type?: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: IntegrationAccountsRegenerateAccessKeyResponseTagsMap;
-  /** The integration account properties. */
-  properties?: IntegrationAccountProperties;
-  /** The sku. */
-  sku?: IntegrationAccountSku;
-}
-export const IntegrationAccountsRegenerateAccessKeyResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(IntegrationAccountsRegenerateAccessKeyResponseTagsMap),
-      properties: S.optional(IntegrationAccountProperties),
-      sku: S.optional(IntegrationAccountSku),
-    }),
-  ).annotate({
-    identifier: "IntegrationAccountsRegenerateAccessKeyResponse",
-  }) as any as S.Schema<IntegrationAccountsRegenerateAccessKeyResponse>;
-
-/** The resource tags. */
-export type IntegrationServiceEnvironmentManagedApisPutRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IntegrationServiceEnvironmentManagedApisPutRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IntegrationServiceEnvironmentManagedApisPutRequestTagsMap>;
-
-/** The integration service environment managed api deployment parameters. */
-export interface IntegrationServiceEnvironmentManagedApiDeploymentParametersInput {
-  /** The integration service environment managed api content link for deployment. */
-  contentLinkDefinition?: ContentLinkInput;
-}
-export const IntegrationServiceEnvironmentManagedApiDeploymentParametersInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      contentLinkDefinition: S.optional(ContentLinkInput),
-    }),
-  ).annotate({
-    identifier:
-      "IntegrationServiceEnvironmentManagedApiDeploymentParametersInput",
-  }) as any as S.Schema<IntegrationServiceEnvironmentManagedApiDeploymentParametersInput>;
-
-/** The integration service environment managed api properties. */
-export interface IntegrationServiceEnvironmentManagedApiPropertiesInput {
-  /** The integration service environment reference. */
-  integrationServiceEnvironment?: KeyVaultKeyReferenceInputKeyVault;
-  /** The integration service environment managed api deployment parameters. */
-  deploymentParameters?: IntegrationServiceEnvironmentManagedApiDeploymentParametersInput;
-}
-export const IntegrationServiceEnvironmentManagedApiPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      integrationServiceEnvironment: S.optional(
-        KeyVaultKeyReferenceInputKeyVault,
-      ),
-      deploymentParameters: S.optional(
-        IntegrationServiceEnvironmentManagedApiDeploymentParametersInput,
-      ),
-    }),
-  ).annotate({
-    identifier: "IntegrationServiceEnvironmentManagedApiPropertiesInput",
-  }) as any as S.Schema<IntegrationServiceEnvironmentManagedApiPropertiesInput>;
-
-export interface IntegrationServiceEnvironmentManagedApisPutRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroup: string;
-  /** The integration service environment name. */
-  integrationServiceEnvironmentName: string;
-  /** The api name. */
-  apiName: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: IntegrationServiceEnvironmentManagedApisPutRequestTagsMap;
-  /** The integration service environment managed api properties. */
-  properties?: IntegrationServiceEnvironmentManagedApiPropertiesInput;
-}
-export const IntegrationServiceEnvironmentManagedApisPutRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroup: S.String.pipe(T.Label()),
-      integrationServiceEnvironmentName: S.String.pipe(T.Label()),
-      apiName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-      tags: S.optional(
-        IntegrationServiceEnvironmentManagedApisPutRequestTagsMap,
-      ),
-      properties: S.optional(
-        IntegrationServiceEnvironmentManagedApiPropertiesInput,
-      ),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/managedApis/{apiName}",
-        code: 200,
-        apiVersion: "2019-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationServiceEnvironmentManagedApisPutRequest",
-  }) as any as S.Schema<IntegrationServiceEnvironmentManagedApisPutRequest>;
-
-/** The resource tags. */
-export type IntegrationServiceEnvironmentManagedApisPutResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IntegrationServiceEnvironmentManagedApisPutResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IntegrationServiceEnvironmentManagedApisPutResponseTagsMap>;
-
-export interface IntegrationServiceEnvironmentManagedApisPutResponse {
-  /** The resource id. */
-  id?: string;
-  /** Gets the resource name. */
-  name?: string;
-  /** Gets the resource type. */
-  type?: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: IntegrationServiceEnvironmentManagedApisPutResponseTagsMap;
-  /** The integration service environment managed api properties. */
-  properties?: IntegrationServiceEnvironmentManagedApiProperties;
-}
-export const IntegrationServiceEnvironmentManagedApisPutResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(
-        IntegrationServiceEnvironmentManagedApisPutResponseTagsMap,
-      ),
-      properties: S.optional(IntegrationServiceEnvironmentManagedApiProperties),
-    }),
-  ).annotate({
-    identifier: "IntegrationServiceEnvironmentManagedApisPutResponse",
-  }) as any as S.Schema<IntegrationServiceEnvironmentManagedApisPutResponse>;
-
 /** The resource tags. */
 export type IntegrationServiceEnvironmentsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -7107,6 +7147,10 @@ export const IntegrationServiceEnvironmentsCreateOrUpdateResponse =
   ).annotate({
     identifier: "IntegrationServiceEnvironmentsCreateOrUpdateResponse",
   }) as any as S.Schema<IntegrationServiceEnvironmentsCreateOrUpdateResponse>;
+
+/** The key type. */
+export type KeyType = "NotSpecified" | "Primary" | "Secondary";
+export const KeyType = /*@__PURE__*/ S.String;
 
 export interface ListIntegrationAccountAgreementContentCallbackUrlRequest {
   /** The subscription id. */
@@ -9650,6 +9694,128 @@ export const WorkflowRunActionRepetitionDefinitionCollection =
     identifier: "WorkflowRunActionRepetitionDefinitionCollection",
   }) as any as S.Schema<WorkflowRunActionRepetitionDefinitionCollection>;
 
+export interface ListWorkflowRunActionRepetitionsRequestHistoriesRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The workflow run name. */
+  runName: string;
+  /** The workflow action name. */
+  actionName: string;
+  /** The workflow repetition. */
+  repetitionName: string;
+}
+export const ListWorkflowRunActionRepetitionsRequestHistoriesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workflowName: S.String.pipe(T.Label()),
+      runName: S.String.pipe(T.Label()),
+      actionName: S.String.pipe(T.Label()),
+      repetitionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/repetitions/{repetitionName}/requestHistories",
+        code: 200,
+        apiVersion: "2019-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWorkflowRunActionRepetitionsRequestHistoriesRequest",
+  }) as any as S.Schema<ListWorkflowRunActionRepetitionsRequestHistoriesRequest>;
+
+/** The resource tags. */
+export type RequestHistoryTagsMap = { [key: string]: string | undefined };
+export const RequestHistoryTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RequestHistoryTagsMap>;
+
+/** The request history. */
+export interface RequestHistory {
+  /** The resource id. */
+  id?: string;
+  /** Gets the resource name. */
+  name?: string;
+  /** Gets the resource type. */
+  type?: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: RequestHistoryTagsMap;
+  /** The request history properties. */
+  properties?: RequestHistoryProperties;
+}
+export const RequestHistory = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(RequestHistoryTagsMap),
+    properties: S.optional(RequestHistoryProperties),
+  }),
+).annotate({ identifier: "RequestHistory" }) as any as S.Schema<RequestHistory>;
+
+/** A list of workflow request histories. */
+export type RequestHistoryListResultValueList = Array<RequestHistory>;
+export const RequestHistoryListResultValueList = /*@__PURE__*/ S.Array(
+  RequestHistory,
+) as any as S.Schema<RequestHistoryListResultValueList>;
+
+/** The list of workflow request histories. */
+export interface RequestHistoryListResult {
+  /** A list of workflow request histories. */
+  value?: RequestHistoryListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const RequestHistoryListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(RequestHistoryListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RequestHistoryListResult",
+}) as any as S.Schema<RequestHistoryListResult>;
+
+export interface ListWorkflowRunActionRequestHistoriesRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The workflow run name. */
+  runName: string;
+  /** The workflow action name. */
+  actionName: string;
+}
+export const ListWorkflowRunActionRequestHistoriesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workflowName: S.String.pipe(T.Label()),
+      runName: S.String.pipe(T.Label()),
+      actionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/requestHistories",
+        code: 200,
+        apiVersion: "2019-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWorkflowRunActionRequestHistoriesRequest",
+  }) as any as S.Schema<ListWorkflowRunActionRequestHistoriesRequest>;
+
 export interface ListWorkflowRunActionsRequest {
   /** The subscription id. */
   subscriptionId: string;
@@ -10171,6 +10337,309 @@ export const ListWorkflowVersionTriggerCallbackUrlRequest =
     identifier: "ListWorkflowVersionTriggerCallbackUrlRequest",
   }) as any as S.Schema<ListWorkflowVersionTriggerCallbackUrlRequest>;
 
+export interface MoveWorkflowRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The resource id. */
+  id?: string;
+}
+export const MoveWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workflowName: S.String.pipe(T.Label()),
+    id: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/move",
+      code: 200,
+      apiVersion: "2019-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "MoveWorkflowRequest",
+}) as any as S.Schema<MoveWorkflowRequest>;
+
+export interface MoveWorkflowResponse {}
+export const MoveWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MoveWorkflowResponse",
+}) as any as S.Schema<MoveWorkflowResponse>;
+
+/** The resource tags. */
+export type PutIntegrationServiceEnvironmentManagedApisRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutIntegrationServiceEnvironmentManagedApisRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutIntegrationServiceEnvironmentManagedApisRequestTagsMap>;
+
+/** The integration service environment managed api deployment parameters. */
+export interface IntegrationServiceEnvironmentManagedApiDeploymentParametersInput {
+  /** The integration service environment managed api content link for deployment. */
+  contentLinkDefinition?: ContentLinkInput;
+}
+export const IntegrationServiceEnvironmentManagedApiDeploymentParametersInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      contentLinkDefinition: S.optional(ContentLinkInput),
+    }),
+  ).annotate({
+    identifier:
+      "IntegrationServiceEnvironmentManagedApiDeploymentParametersInput",
+  }) as any as S.Schema<IntegrationServiceEnvironmentManagedApiDeploymentParametersInput>;
+
+/** The integration service environment managed api properties. */
+export interface IntegrationServiceEnvironmentManagedApiPropertiesInput {
+  /** The integration service environment reference. */
+  integrationServiceEnvironment?: KeyVaultKeyReferenceInputKeyVault;
+  /** The integration service environment managed api deployment parameters. */
+  deploymentParameters?: IntegrationServiceEnvironmentManagedApiDeploymentParametersInput;
+}
+export const IntegrationServiceEnvironmentManagedApiPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      integrationServiceEnvironment: S.optional(
+        KeyVaultKeyReferenceInputKeyVault,
+      ),
+      deploymentParameters: S.optional(
+        IntegrationServiceEnvironmentManagedApiDeploymentParametersInput,
+      ),
+    }),
+  ).annotate({
+    identifier: "IntegrationServiceEnvironmentManagedApiPropertiesInput",
+  }) as any as S.Schema<IntegrationServiceEnvironmentManagedApiPropertiesInput>;
+
+export interface PutIntegrationServiceEnvironmentManagedApisRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroup: string;
+  /** The integration service environment name. */
+  integrationServiceEnvironmentName: string;
+  /** The api name. */
+  apiName: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: PutIntegrationServiceEnvironmentManagedApisRequestTagsMap;
+  /** The integration service environment managed api properties. */
+  properties?: IntegrationServiceEnvironmentManagedApiPropertiesInput;
+}
+export const PutIntegrationServiceEnvironmentManagedApisRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroup: S.String.pipe(T.Label()),
+      integrationServiceEnvironmentName: S.String.pipe(T.Label()),
+      apiName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+      tags: S.optional(
+        PutIntegrationServiceEnvironmentManagedApisRequestTagsMap,
+      ),
+      properties: S.optional(
+        IntegrationServiceEnvironmentManagedApiPropertiesInput,
+      ),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/managedApis/{apiName}",
+        code: 200,
+        apiVersion: "2019-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PutIntegrationServiceEnvironmentManagedApisRequest",
+  }) as any as S.Schema<PutIntegrationServiceEnvironmentManagedApisRequest>;
+
+/** The resource tags. */
+export type PutIntegrationServiceEnvironmentManagedApisResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutIntegrationServiceEnvironmentManagedApisResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutIntegrationServiceEnvironmentManagedApisResponseTagsMap>;
+
+export interface PutIntegrationServiceEnvironmentManagedApisResponse {
+  /** The resource id. */
+  id?: string;
+  /** Gets the resource name. */
+  name?: string;
+  /** Gets the resource type. */
+  type?: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: PutIntegrationServiceEnvironmentManagedApisResponseTagsMap;
+  /** The integration service environment managed api properties. */
+  properties?: IntegrationServiceEnvironmentManagedApiProperties;
+}
+export const PutIntegrationServiceEnvironmentManagedApisResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(
+        PutIntegrationServiceEnvironmentManagedApisResponseTagsMap,
+      ),
+      properties: S.optional(IntegrationServiceEnvironmentManagedApiProperties),
+    }),
+  ).annotate({
+    identifier: "PutIntegrationServiceEnvironmentManagedApisResponse",
+  }) as any as S.Schema<PutIntegrationServiceEnvironmentManagedApisResponse>;
+
+export interface RegenerateIntegrationAccountAccessKeyRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The integration account name. */
+  integrationAccountName: string;
+  /** The key type. */
+  keyType?: KeyType | (string & {});
+}
+export const RegenerateIntegrationAccountAccessKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      integrationAccountName: S.String.pipe(T.Label()),
+      keyType: S.optional(KeyType),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts/{integrationAccountName}/regenerateAccessKey",
+        code: 200,
+        apiVersion: "2019-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateIntegrationAccountAccessKeyRequest",
+  }) as any as S.Schema<RegenerateIntegrationAccountAccessKeyRequest>;
+
+/** The resource tags. */
+export type RegenerateIntegrationAccountAccessKeyResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RegenerateIntegrationAccountAccessKeyResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<RegenerateIntegrationAccountAccessKeyResponseTagsMap>;
+
+export interface RegenerateIntegrationAccountAccessKeyResponse {
+  /** The resource id. */
+  id?: string;
+  /** Gets the resource name. */
+  name?: string;
+  /** Gets the resource type. */
+  type?: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: RegenerateIntegrationAccountAccessKeyResponseTagsMap;
+  /** The integration account properties. */
+  properties?: IntegrationAccountProperties;
+  /** The sku. */
+  sku?: IntegrationAccountSku;
+}
+export const RegenerateIntegrationAccountAccessKeyResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(RegenerateIntegrationAccountAccessKeyResponseTagsMap),
+      properties: S.optional(IntegrationAccountProperties),
+      sku: S.optional(IntegrationAccountSku),
+    }),
+  ).annotate({
+    identifier: "RegenerateIntegrationAccountAccessKeyResponse",
+  }) as any as S.Schema<RegenerateIntegrationAccountAccessKeyResponse>;
+
+export interface RegenerateWorkflowAccessKeyRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The key type. */
+  keyType?: KeyType | (string & {});
+}
+export const RegenerateWorkflowAccessKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workflowName: S.String.pipe(T.Label()),
+    keyType: S.optional(KeyType),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/regenerateAccessKey",
+      code: 200,
+      apiVersion: "2019-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateWorkflowAccessKeyRequest",
+}) as any as S.Schema<RegenerateWorkflowAccessKeyRequest>;
+
+export interface RegenerateWorkflowAccessKeyResponse {}
+export const RegenerateWorkflowAccessKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RegenerateWorkflowAccessKeyResponse",
+}) as any as S.Schema<RegenerateWorkflowAccessKeyResponse>;
+
+export interface ResetWorkflowTriggerRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The workflow trigger name. */
+  triggerName: string;
+}
+export const ResetWorkflowTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workflowName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/reset",
+      code: 200,
+      apiVersion: "2019-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResetWorkflowTriggerRequest",
+}) as any as S.Schema<ResetWorkflowTriggerRequest>;
+
+export interface ResetWorkflowTriggerResponse {}
+export const ResetWorkflowTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResetWorkflowTriggerResponse",
+}) as any as S.Schema<ResetWorkflowTriggerResponse>;
+
 export interface RestartIntegrationServiceEnvironmentRequest {
   /** The subscription id. */
   subscriptionId: string;
@@ -10260,14 +10729,49 @@ export const SetWorkflowTriggerStateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SetWorkflowTriggerStateResponse",
 }) as any as S.Schema<SetWorkflowTriggerStateResponse>;
 
+export interface TriggerRunWorkflowRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The workflow trigger name. */
+  triggerName: string;
+}
+export const TriggerRunWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workflowName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/run",
+      code: 200,
+      apiVersion: "2019-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "TriggerRunWorkflowRequest",
+}) as any as S.Schema<TriggerRunWorkflowRequest>;
+
+export interface TriggerRunWorkflowResponse {}
+export const TriggerRunWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TriggerRunWorkflowResponse",
+}) as any as S.Schema<TriggerRunWorkflowResponse>;
+
 /** The resource tags. */
-export type IntegrationAccountsUpdateRequestTagsMap = {
+export type UpdateIntegrationAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIntegrationAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationAccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateIntegrationAccountRequestTagsMap>;
 
 export interface UpdateIntegrationAccountRequest {
   /** The subscription id. */
@@ -10279,7 +10783,7 @@ export interface UpdateIntegrationAccountRequest {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountsUpdateRequestTagsMap;
+  tags?: UpdateIntegrationAccountRequestTagsMap;
   /** The integration account properties. */
   properties?: IntegrationAccountPropertiesInput;
   /** The sku. */
@@ -10291,7 +10795,7 @@ export const UpdateIntegrationAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     integrationAccountName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(IntegrationAccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateIntegrationAccountRequestTagsMap),
     properties: S.optional(IntegrationAccountPropertiesInput),
     sku: S.optional(IntegrationAccountSku),
   }).pipe(
@@ -10307,13 +10811,13 @@ export const UpdateIntegrationAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIntegrationAccountRequest>;
 
 /** The resource tags. */
-export type IntegrationAccountsUpdateResponseTagsMap = {
+export type UpdateIntegrationAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationAccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIntegrationAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationAccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateIntegrationAccountResponseTagsMap>;
 
 export interface UpdateIntegrationAccountResponse {
   /** The resource id. */
@@ -10325,7 +10829,7 @@ export interface UpdateIntegrationAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationAccountsUpdateResponseTagsMap;
+  tags?: UpdateIntegrationAccountResponseTagsMap;
   /** The integration account properties. */
   properties?: IntegrationAccountProperties;
   /** The sku. */
@@ -10337,7 +10841,7 @@ export const UpdateIntegrationAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(IntegrationAccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateIntegrationAccountResponseTagsMap),
     properties: S.optional(IntegrationAccountProperties),
     sku: S.optional(IntegrationAccountSku),
   }),
@@ -10346,14 +10850,14 @@ export const UpdateIntegrationAccountResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIntegrationAccountResponse>;
 
 /** The resource tags. */
-export type IntegrationServiceEnvironmentsUpdateRequestTagsMap = {
+export type UpdateIntegrationServiceEnvironmentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationServiceEnvironmentsUpdateRequestTagsMap =
+export const UpdateIntegrationServiceEnvironmentRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationServiceEnvironmentsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateIntegrationServiceEnvironmentRequestTagsMap>;
 
 export interface UpdateIntegrationServiceEnvironmentRequest {
   /** The subscription id. */
@@ -10365,7 +10869,7 @@ export interface UpdateIntegrationServiceEnvironmentRequest {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationServiceEnvironmentsUpdateRequestTagsMap;
+  tags?: UpdateIntegrationServiceEnvironmentRequestTagsMap;
   /** The integration service environment properties. */
   properties?: IntegrationServiceEnvironmentPropertiesInput;
   /** The sku. */
@@ -10379,7 +10883,7 @@ export const UpdateIntegrationServiceEnvironmentRequest =
       resourceGroup: S.String.pipe(T.Label()),
       integrationServiceEnvironmentName: S.String.pipe(T.Label()),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationServiceEnvironmentsUpdateRequestTagsMap),
+      tags: S.optional(UpdateIntegrationServiceEnvironmentRequestTagsMap),
       properties: S.optional(IntegrationServiceEnvironmentPropertiesInput),
       sku: S.optional(IntegrationServiceEnvironmentSku),
       identity: S.optional(ManagedServiceIdentityInput),
@@ -10396,14 +10900,14 @@ export const UpdateIntegrationServiceEnvironmentRequest =
   }) as any as S.Schema<UpdateIntegrationServiceEnvironmentRequest>;
 
 /** The resource tags. */
-export type IntegrationServiceEnvironmentsUpdateResponseTagsMap = {
+export type UpdateIntegrationServiceEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationServiceEnvironmentsUpdateResponseTagsMap =
+export const UpdateIntegrationServiceEnvironmentResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<IntegrationServiceEnvironmentsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateIntegrationServiceEnvironmentResponseTagsMap>;
 
 export interface UpdateIntegrationServiceEnvironmentResponse {
   /** The resource id. */
@@ -10415,7 +10919,7 @@ export interface UpdateIntegrationServiceEnvironmentResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: IntegrationServiceEnvironmentsUpdateResponseTagsMap;
+  tags?: UpdateIntegrationServiceEnvironmentResponseTagsMap;
   /** The integration service environment properties. */
   properties?: IntegrationServiceEnvironmentProperties;
   /** The sku. */
@@ -10429,7 +10933,7 @@ export const UpdateIntegrationServiceEnvironmentResponse =
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(IntegrationServiceEnvironmentsUpdateResponseTagsMap),
+      tags: S.optional(UpdateIntegrationServiceEnvironmentResponseTagsMap),
       properties: S.optional(IntegrationServiceEnvironmentProperties),
       sku: S.optional(IntegrationServiceEnvironmentSku),
       identity: S.optional(ManagedServiceIdentity),
@@ -10464,13 +10968,13 @@ export const UpdateWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkflowRequest>;
 
 /** The resource tags. */
-export type WorkflowsUpdateResponseTagsMap = {
+export type UpdateWorkflowResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkflowsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkflowResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkflowsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkflowResponseTagsMap>;
 
 export interface UpdateWorkflowResponse {
   /** The resource id. */
@@ -10482,7 +10986,7 @@ export interface UpdateWorkflowResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: WorkflowsUpdateResponseTagsMap;
+  tags?: UpdateWorkflowResponseTagsMap;
   /** The workflow properties. */
   properties?: WorkflowProperties;
   identity?: ManagedServiceIdentity;
@@ -10493,7 +10997,7 @@ export const UpdateWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(WorkflowsUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkflowResponseTagsMap),
     properties: S.optional(WorkflowProperties),
     identity: S.optional(ManagedServiceIdentity),
   }),
@@ -10501,378 +11005,14 @@ export const UpdateWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWorkflowResponse",
 }) as any as S.Schema<UpdateWorkflowResponse>;
 
-export interface WorkflowRunActionRepetitionsRequestHistoriesGetRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The workflow run name. */
-  runName: string;
-  /** The workflow action name. */
-  actionName: string;
-  /** The workflow repetition. */
-  repetitionName: string;
-  /** The request history name. */
-  requestHistoryName: string;
-}
-export const WorkflowRunActionRepetitionsRequestHistoriesGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workflowName: S.String.pipe(T.Label()),
-      runName: S.String.pipe(T.Label()),
-      actionName: S.String.pipe(T.Label()),
-      repetitionName: S.String.pipe(T.Label()),
-      requestHistoryName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/repetitions/{repetitionName}/requestHistories/{requestHistoryName}",
-        code: 200,
-        apiVersion: "2019-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkflowRunActionRepetitionsRequestHistoriesGetRequest",
-  }) as any as S.Schema<WorkflowRunActionRepetitionsRequestHistoriesGetRequest>;
-
 /** The resource tags. */
-export type WorkflowRunActionRepetitionsRequestHistoriesGetResponseTagsMap = {
+export type ValidateWorkflowByLocationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkflowRunActionRepetitionsRequestHistoriesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<WorkflowRunActionRepetitionsRequestHistoriesGetResponseTagsMap>;
-
-/** A request. */
-export interface Request {
-  /** A list of all the headers attached to the request. */
-  headers?: unknown;
-  /** The destination for the request. */
-  uri?: string;
-  /** The HTTP method used for the request. */
-  method?: string;
-}
-export const Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    headers: S.optional(S.Unknown),
-    uri: S.optional(S.String),
-    method: S.optional(S.String),
-  }),
-).annotate({ identifier: "Request" }) as any as S.Schema<Request>;
-
-/** A response. */
-export interface Response {
-  /** A list of all the headers attached to the response. */
-  headers?: unknown;
-  /** The status code of the response. */
-  statusCode?: number;
-  /** Details on the location of the body content. */
-  bodyLink?: ContentLink;
-}
-export const Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    headers: S.optional(S.Unknown),
-    statusCode: S.optional(S.Number),
-    bodyLink: S.optional(ContentLink),
-  }),
-).annotate({ identifier: "Response" }) as any as S.Schema<Response>;
-
-/** The request history. */
-export interface RequestHistoryProperties {
-  /** The time the request started. */
-  startTime?: string;
-  /** The time the request ended. */
-  endTime?: string;
-  /** The request. */
-  request?: Request;
-  /** The response. */
-  response?: Response;
-}
-export const RequestHistoryProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    request: S.optional(Request),
-    response: S.optional(Response),
-  }),
-).annotate({
-  identifier: "RequestHistoryProperties",
-}) as any as S.Schema<RequestHistoryProperties>;
-
-export interface WorkflowRunActionRepetitionsRequestHistoriesGetResponse {
-  /** The resource id. */
-  id?: string;
-  /** Gets the resource name. */
-  name?: string;
-  /** Gets the resource type. */
-  type?: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: WorkflowRunActionRepetitionsRequestHistoriesGetResponseTagsMap;
-  /** The request history properties. */
-  properties?: RequestHistoryProperties;
-}
-export const WorkflowRunActionRepetitionsRequestHistoriesGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(
-        WorkflowRunActionRepetitionsRequestHistoriesGetResponseTagsMap,
-      ),
-      properties: S.optional(RequestHistoryProperties),
-    }),
-  ).annotate({
-    identifier: "WorkflowRunActionRepetitionsRequestHistoriesGetResponse",
-  }) as any as S.Schema<WorkflowRunActionRepetitionsRequestHistoriesGetResponse>;
-
-export interface WorkflowRunActionRepetitionsRequestHistoriesListRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The workflow run name. */
-  runName: string;
-  /** The workflow action name. */
-  actionName: string;
-  /** The workflow repetition. */
-  repetitionName: string;
-}
-export const WorkflowRunActionRepetitionsRequestHistoriesListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workflowName: S.String.pipe(T.Label()),
-      runName: S.String.pipe(T.Label()),
-      actionName: S.String.pipe(T.Label()),
-      repetitionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/repetitions/{repetitionName}/requestHistories",
-        code: 200,
-        apiVersion: "2019-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkflowRunActionRepetitionsRequestHistoriesListRequest",
-  }) as any as S.Schema<WorkflowRunActionRepetitionsRequestHistoriesListRequest>;
-
-/** The resource tags. */
-export type RequestHistoryTagsMap = { [key: string]: string | undefined };
-export const RequestHistoryTagsMap = /*@__PURE__*/ S.Record(
+export const ValidateWorkflowByLocationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RequestHistoryTagsMap>;
-
-/** The request history. */
-export interface RequestHistory {
-  /** The resource id. */
-  id?: string;
-  /** Gets the resource name. */
-  name?: string;
-  /** Gets the resource type. */
-  type?: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: RequestHistoryTagsMap;
-  /** The request history properties. */
-  properties?: RequestHistoryProperties;
-}
-export const RequestHistory = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(RequestHistoryTagsMap),
-    properties: S.optional(RequestHistoryProperties),
-  }),
-).annotate({ identifier: "RequestHistory" }) as any as S.Schema<RequestHistory>;
-
-/** A list of workflow request histories. */
-export type RequestHistoryListResultValueList = Array<RequestHistory>;
-export const RequestHistoryListResultValueList = /*@__PURE__*/ S.Array(
-  RequestHistory,
-) as any as S.Schema<RequestHistoryListResultValueList>;
-
-/** The list of workflow request histories. */
-export interface RequestHistoryListResult {
-  /** A list of workflow request histories. */
-  value?: RequestHistoryListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const RequestHistoryListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(RequestHistoryListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RequestHistoryListResult",
-}) as any as S.Schema<RequestHistoryListResult>;
-
-export interface WorkflowRunActionRequestHistoriesGetRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The workflow run name. */
-  runName: string;
-  /** The workflow action name. */
-  actionName: string;
-  /** The request history name. */
-  requestHistoryName: string;
-}
-export const WorkflowRunActionRequestHistoriesGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workflowName: S.String.pipe(T.Label()),
-      runName: S.String.pipe(T.Label()),
-      actionName: S.String.pipe(T.Label()),
-      requestHistoryName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/requestHistories/{requestHistoryName}",
-        code: 200,
-        apiVersion: "2019-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkflowRunActionRequestHistoriesGetRequest",
-  }) as any as S.Schema<WorkflowRunActionRequestHistoriesGetRequest>;
-
-/** The resource tags. */
-export type WorkflowRunActionRequestHistoriesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkflowRunActionRequestHistoriesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<WorkflowRunActionRequestHistoriesGetResponseTagsMap>;
-
-export interface WorkflowRunActionRequestHistoriesGetResponse {
-  /** The resource id. */
-  id?: string;
-  /** Gets the resource name. */
-  name?: string;
-  /** Gets the resource type. */
-  type?: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: WorkflowRunActionRequestHistoriesGetResponseTagsMap;
-  /** The request history properties. */
-  properties?: RequestHistoryProperties;
-}
-export const WorkflowRunActionRequestHistoriesGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(WorkflowRunActionRequestHistoriesGetResponseTagsMap),
-      properties: S.optional(RequestHistoryProperties),
-    }),
-  ).annotate({
-    identifier: "WorkflowRunActionRequestHistoriesGetResponse",
-  }) as any as S.Schema<WorkflowRunActionRequestHistoriesGetResponse>;
-
-export interface WorkflowRunActionRequestHistoriesListRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The workflow run name. */
-  runName: string;
-  /** The workflow action name. */
-  actionName: string;
-}
-export const WorkflowRunActionRequestHistoriesListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workflowName: S.String.pipe(T.Label()),
-      runName: S.String.pipe(T.Label()),
-      actionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/requestHistories",
-        code: 200,
-        apiVersion: "2019-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkflowRunActionRequestHistoriesListRequest",
-  }) as any as S.Schema<WorkflowRunActionRequestHistoriesListRequest>;
-
-export interface WorkflowRunsCancelRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The workflow run name. */
-  runName: string;
-}
-export const WorkflowRunsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workflowName: S.String.pipe(T.Label()),
-    runName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/cancel",
-      code: 200,
-      apiVersion: "2019-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowRunsCancelRequest",
-}) as any as S.Schema<WorkflowRunsCancelRequest>;
-
-export interface WorkflowRunsCancelResponse {}
-export const WorkflowRunsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkflowRunsCancelResponse",
-}) as any as S.Schema<WorkflowRunsCancelResponse>;
-
-/** The resource tags. */
-export type WorkflowsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkflowsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkflowsCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<ValidateWorkflowByLocationRequestTagsMap>;
 
 /** The parameters. */
 export type WorkflowPropertiesInputParametersMap = {
@@ -10915,6 +11055,112 @@ export const WorkflowPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WorkflowPropertiesInput",
 }) as any as S.Schema<WorkflowPropertiesInput>;
+
+export interface ValidateWorkflowByLocationRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow location. */
+  location: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The resource tags. */
+  tags?: ValidateWorkflowByLocationRequestTagsMap;
+  /** The workflow properties. */
+  properties?: WorkflowPropertiesInput;
+  identity?: ManagedServiceIdentityInput;
+}
+export const ValidateWorkflowByLocationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    workflowName: S.String.pipe(T.Label()),
+    tags: S.optional(ValidateWorkflowByLocationRequestTagsMap),
+    properties: S.optional(WorkflowPropertiesInput),
+    identity: S.optional(ManagedServiceIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/locations/{location}/workflows/{workflowName}/validate",
+      code: 200,
+      apiVersion: "2019-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateWorkflowByLocationRequest",
+}) as any as S.Schema<ValidateWorkflowByLocationRequest>;
+
+export interface ValidateWorkflowByLocationResponse {}
+export const ValidateWorkflowByLocationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ValidateWorkflowByLocationResponse",
+}) as any as S.Schema<ValidateWorkflowByLocationResponse>;
+
+/** The resource tags. */
+export type ValidateWorkflowByResourceGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateWorkflowByResourceGroupRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateWorkflowByResourceGroupRequestTagsMap>;
+
+export interface ValidateWorkflowByResourceGroupRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The workflow name. */
+  workflowName: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: ValidateWorkflowByResourceGroupRequestTagsMap;
+  /** The workflow properties. */
+  properties?: WorkflowPropertiesInput;
+  identity?: ManagedServiceIdentityInput;
+}
+export const ValidateWorkflowByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workflowName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+      tags: S.optional(ValidateWorkflowByResourceGroupRequestTagsMap),
+      properties: S.optional(WorkflowPropertiesInput),
+      identity: S.optional(ManagedServiceIdentityInput),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/validate",
+        code: 200,
+        apiVersion: "2019-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "ValidateWorkflowByResourceGroupRequest",
+}) as any as S.Schema<ValidateWorkflowByResourceGroupRequest>;
+
+export interface ValidateWorkflowByResourceGroupResponse {}
+export const ValidateWorkflowByResourceGroupResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ValidateWorkflowByResourceGroupResponse",
+}) as any as S.Schema<ValidateWorkflowByResourceGroupResponse>;
+
+/** The resource tags. */
+export type WorkflowsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WorkflowsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WorkflowsCreateOrUpdateRequestTagsMap>;
 
 export interface WorkflowsCreateOrUpdateRequest {
   /** The subscription id. */
@@ -10990,182 +11236,6 @@ export const WorkflowsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkflowsCreateOrUpdateResponse",
 }) as any as S.Schema<WorkflowsCreateOrUpdateResponse>;
 
-export interface WorkflowsMoveRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The resource id. */
-  id?: string;
-}
-export const WorkflowsMoveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workflowName: S.String.pipe(T.Label()),
-    id: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/move",
-      code: 200,
-      apiVersion: "2019-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowsMoveRequest",
-}) as any as S.Schema<WorkflowsMoveRequest>;
-
-export interface WorkflowsMoveResponse {}
-export const WorkflowsMoveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkflowsMoveResponse",
-}) as any as S.Schema<WorkflowsMoveResponse>;
-
-export interface WorkflowsRegenerateAccessKeyRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The key type. */
-  keyType?: KeyType | (string & {});
-}
-export const WorkflowsRegenerateAccessKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workflowName: S.String.pipe(T.Label()),
-    keyType: S.optional(KeyType),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/regenerateAccessKey",
-      code: 200,
-      apiVersion: "2019-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowsRegenerateAccessKeyRequest",
-}) as any as S.Schema<WorkflowsRegenerateAccessKeyRequest>;
-
-export interface WorkflowsRegenerateAccessKeyResponse {}
-export const WorkflowsRegenerateAccessKeyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkflowsRegenerateAccessKeyResponse",
-}) as any as S.Schema<WorkflowsRegenerateAccessKeyResponse>;
-
-/** The resource tags. */
-export type WorkflowsValidateByLocationRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkflowsValidateByLocationRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkflowsValidateByLocationRequestTagsMap>;
-
-export interface WorkflowsValidateByLocationRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow location. */
-  location: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The resource tags. */
-  tags?: WorkflowsValidateByLocationRequestTagsMap;
-  /** The workflow properties. */
-  properties?: WorkflowPropertiesInput;
-  identity?: ManagedServiceIdentityInput;
-}
-export const WorkflowsValidateByLocationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    workflowName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkflowsValidateByLocationRequestTagsMap),
-    properties: S.optional(WorkflowPropertiesInput),
-    identity: S.optional(ManagedServiceIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/locations/{location}/workflows/{workflowName}/validate",
-      code: 200,
-      apiVersion: "2019-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowsValidateByLocationRequest",
-}) as any as S.Schema<WorkflowsValidateByLocationRequest>;
-
-export interface WorkflowsValidateByLocationResponse {}
-export const WorkflowsValidateByLocationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkflowsValidateByLocationResponse",
-}) as any as S.Schema<WorkflowsValidateByLocationResponse>;
-
-/** The resource tags. */
-export type WorkflowsValidateByResourceGroupRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkflowsValidateByResourceGroupRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<WorkflowsValidateByResourceGroupRequestTagsMap>;
-
-export interface WorkflowsValidateByResourceGroupRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: WorkflowsValidateByResourceGroupRequestTagsMap;
-  /** The workflow properties. */
-  properties?: WorkflowPropertiesInput;
-  identity?: ManagedServiceIdentityInput;
-}
-export const WorkflowsValidateByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workflowName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-      tags: S.optional(WorkflowsValidateByResourceGroupRequestTagsMap),
-      properties: S.optional(WorkflowPropertiesInput),
-      identity: S.optional(ManagedServiceIdentityInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/validate",
-        code: 200,
-        apiVersion: "2019-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkflowsValidateByResourceGroupRequest",
-}) as any as S.Schema<WorkflowsValidateByResourceGroupRequest>;
-
-export interface WorkflowsValidateByResourceGroupResponse {}
-export const WorkflowsValidateByResourceGroupResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkflowsValidateByResourceGroupResponse",
-}) as any as S.Schema<WorkflowsValidateByResourceGroupResponse>;
-
 export interface WorkflowTriggerHistoriesResubmitRequest {
   /** The subscription id. */
   subscriptionId: string;
@@ -11205,75 +11275,20 @@ export const WorkflowTriggerHistoriesResubmitResponse = /*@__PURE__*/ S.suspend(
   identifier: "WorkflowTriggerHistoriesResubmitResponse",
 }) as any as S.Schema<WorkflowTriggerHistoriesResubmitResponse>;
 
-export interface WorkflowTriggersResetRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The workflow trigger name. */
-  triggerName: string;
-}
-export const WorkflowTriggersResetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workflowName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/reset",
-      code: 200,
-      apiVersion: "2019-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowTriggersResetRequest",
-}) as any as S.Schema<WorkflowTriggersResetRequest>;
-
-export interface WorkflowTriggersResetResponse {}
-export const WorkflowTriggersResetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkflowTriggersResetResponse",
-}) as any as S.Schema<WorkflowTriggersResetResponse>;
-
-export interface WorkflowTriggersRunRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The workflow name. */
-  workflowName: string;
-  /** The workflow trigger name. */
-  triggerName: string;
-}
-export const WorkflowTriggersRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workflowName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/run",
-      code: 200,
-      apiVersion: "2019-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkflowTriggersRunRequest",
-}) as any as S.Schema<WorkflowTriggersRunRequest>;
-
-export interface WorkflowTriggersRunResponse {}
-export const WorkflowTriggersRunResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkflowTriggersRunResponse",
-}) as any as S.Schema<WorkflowTriggersRunResponse>;
+export type CancelWorkflowRunError = AzureOpError;
+/** Cancels a workflow run. */
+export const CancelWorkflowRun: API.OperationMethod<
+  CancelWorkflowRunRequest,
+  CancelWorkflowRunResponse,
+  CancelWorkflowRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelWorkflowRunRequest,
+  output: CancelWorkflowRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type DeleteIntegrationAccountError = AzureOpError;
 /** Deletes an integration account. */
@@ -11740,6 +11755,36 @@ export const GetWorkflowRunActionRepetition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetWorkflowRunActionRepetitionsRequestHistoryError = AzureOpError;
+/** Gets a workflow run repetition request history. */
+export const GetWorkflowRunActionRepetitionsRequestHistory: API.OperationMethod<
+  GetWorkflowRunActionRepetitionsRequestHistoryRequest,
+  GetWorkflowRunActionRepetitionsRequestHistoryResponse,
+  GetWorkflowRunActionRepetitionsRequestHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkflowRunActionRepetitionsRequestHistoryRequest,
+  output: GetWorkflowRunActionRepetitionsRequestHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkflowRunActionRequestHistoryError = AzureOpError;
+/** Gets a workflow run request history. */
+export const GetWorkflowRunActionRequestHistory: API.OperationMethod<
+  GetWorkflowRunActionRequestHistoryRequest,
+  GetWorkflowRunActionRequestHistoryResponse,
+  GetWorkflowRunActionRequestHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkflowRunActionRequestHistoryRequest,
+  output: GetWorkflowRunActionRequestHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetWorkflowRunActionScopeRepetitionError = AzureOpError;
 /** Get a workflow run action scoped repetition. */
 export const GetWorkflowRunActionScopeRepetition: API.OperationMethod<
@@ -11976,36 +12021,6 @@ export const IntegrationAccountsLogTrackingEvents: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IntegrationAccountsLogTrackingEventsRequest,
   output: IntegrationAccountsLogTrackingEventsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationAccountsRegenerateAccessKeyError = AzureOpError;
-/** Regenerates the integration account access key. */
-export const IntegrationAccountsRegenerateAccessKey: API.OperationMethod<
-  IntegrationAccountsRegenerateAccessKeyRequest,
-  IntegrationAccountsRegenerateAccessKeyResponse,
-  IntegrationAccountsRegenerateAccessKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationAccountsRegenerateAccessKeyRequest,
-  output: IntegrationAccountsRegenerateAccessKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationServiceEnvironmentManagedApisPutError = AzureOpError;
-/** Puts the integration service environment managed Api. */
-export const IntegrationServiceEnvironmentManagedApisPut: API.OperationMethod<
-  IntegrationServiceEnvironmentManagedApisPutRequest,
-  IntegrationServiceEnvironmentManagedApisPutResponse,
-  IntegrationServiceEnvironmentManagedApisPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationServiceEnvironmentManagedApisPutRequest,
-  output: IntegrationServiceEnvironmentManagedApisPutResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -12465,6 +12480,37 @@ export const ListWorkflowRunActionRepetitions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListWorkflowRunActionRepetitionsRequestHistoriesError =
+  AzureOpError;
+/** List a workflow run repetition request history. */
+export const ListWorkflowRunActionRepetitionsRequestHistories: API.OperationMethod<
+  ListWorkflowRunActionRepetitionsRequestHistoriesRequest,
+  RequestHistoryListResult,
+  ListWorkflowRunActionRepetitionsRequestHistoriesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkflowRunActionRepetitionsRequestHistoriesRequest,
+  output: RequestHistoryListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkflowRunActionRequestHistoriesError = AzureOpError;
+/** List a workflow run request history. */
+export const ListWorkflowRunActionRequestHistories: API.OperationMethod<
+  ListWorkflowRunActionRequestHistoriesRequest,
+  RequestHistoryListResult,
+  ListWorkflowRunActionRequestHistoriesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkflowRunActionRequestHistoriesRequest,
+  output: RequestHistoryListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListWorkflowRunActionsError = AzureOpError;
 /** Gets a list of workflow run actions. */
 export const ListWorkflowRunActions: API.OperationMethod<
@@ -12600,6 +12646,81 @@ export const ListWorkflowVersionTriggerCallbackUrl: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MoveWorkflowError = AzureOpError;
+/** Moves an existing workflow. */
+export const MoveWorkflow: API.OperationMethod<
+  MoveWorkflowRequest,
+  MoveWorkflowResponse,
+  MoveWorkflowError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MoveWorkflowRequest,
+  output: MoveWorkflowResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutIntegrationServiceEnvironmentManagedApisError = AzureOpError;
+/** Puts the integration service environment managed Api. */
+export const PutIntegrationServiceEnvironmentManagedApis: API.OperationMethod<
+  PutIntegrationServiceEnvironmentManagedApisRequest,
+  PutIntegrationServiceEnvironmentManagedApisResponse,
+  PutIntegrationServiceEnvironmentManagedApisError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutIntegrationServiceEnvironmentManagedApisRequest,
+  output: PutIntegrationServiceEnvironmentManagedApisResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateIntegrationAccountAccessKeyError = AzureOpError;
+/** Regenerates the integration account access key. */
+export const RegenerateIntegrationAccountAccessKey: API.OperationMethod<
+  RegenerateIntegrationAccountAccessKeyRequest,
+  RegenerateIntegrationAccountAccessKeyResponse,
+  RegenerateIntegrationAccountAccessKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateIntegrationAccountAccessKeyRequest,
+  output: RegenerateIntegrationAccountAccessKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateWorkflowAccessKeyError = AzureOpError;
+/** Regenerates the callback URL access key for request triggers. */
+export const RegenerateWorkflowAccessKey: API.OperationMethod<
+  RegenerateWorkflowAccessKeyRequest,
+  RegenerateWorkflowAccessKeyResponse,
+  RegenerateWorkflowAccessKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateWorkflowAccessKeyRequest,
+  output: RegenerateWorkflowAccessKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetWorkflowTriggerError = AzureOpError;
+/** Resets a workflow trigger. */
+export const ResetWorkflowTrigger: API.OperationMethod<
+  ResetWorkflowTriggerRequest,
+  ResetWorkflowTriggerResponse,
+  ResetWorkflowTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetWorkflowTriggerRequest,
+  output: ResetWorkflowTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RestartIntegrationServiceEnvironmentError = AzureOpError;
 /** Restarts an integration service environment. */
 export const RestartIntegrationServiceEnvironment: API.OperationMethod<
@@ -12625,6 +12746,21 @@ export const SetWorkflowTriggerState: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SetWorkflowTriggerStateRequest,
   output: SetWorkflowTriggerStateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerRunWorkflowError = AzureOpError;
+/** Runs a workflow trigger. */
+export const TriggerRunWorkflow: API.OperationMethod<
+  TriggerRunWorkflowRequest,
+  TriggerRunWorkflowResponse,
+  TriggerRunWorkflowError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerRunWorkflowRequest,
+  output: TriggerRunWorkflowResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -12675,77 +12811,31 @@ export const UpdateWorkflow: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WorkflowRunActionRepetitionsRequestHistoriesGetError = AzureOpError;
-/** Gets a workflow run repetition request history. */
-export const WorkflowRunActionRepetitionsRequestHistoriesGet: API.OperationMethod<
-  WorkflowRunActionRepetitionsRequestHistoriesGetRequest,
-  WorkflowRunActionRepetitionsRequestHistoriesGetResponse,
-  WorkflowRunActionRepetitionsRequestHistoriesGetError,
+export type ValidateWorkflowByLocationError = AzureOpError;
+/** Validates the workflow definition. */
+export const ValidateWorkflowByLocation: API.OperationMethod<
+  ValidateWorkflowByLocationRequest,
+  ValidateWorkflowByLocationResponse,
+  ValidateWorkflowByLocationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowRunActionRepetitionsRequestHistoriesGetRequest,
-  output: WorkflowRunActionRepetitionsRequestHistoriesGetResponse,
+  input: ValidateWorkflowByLocationRequest,
+  output: ValidateWorkflowByLocationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type WorkflowRunActionRepetitionsRequestHistoriesListError =
-  AzureOpError;
-/** List a workflow run repetition request history. */
-export const WorkflowRunActionRepetitionsRequestHistoriesList: API.OperationMethod<
-  WorkflowRunActionRepetitionsRequestHistoriesListRequest,
-  RequestHistoryListResult,
-  WorkflowRunActionRepetitionsRequestHistoriesListError,
+export type ValidateWorkflowByResourceGroupError = AzureOpError;
+/** Validates the workflow. */
+export const ValidateWorkflowByResourceGroup: API.OperationMethod<
+  ValidateWorkflowByResourceGroupRequest,
+  ValidateWorkflowByResourceGroupResponse,
+  ValidateWorkflowByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowRunActionRepetitionsRequestHistoriesListRequest,
-  output: RequestHistoryListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowRunActionRequestHistoriesGetError = AzureOpError;
-/** Gets a workflow run request history. */
-export const WorkflowRunActionRequestHistoriesGet: API.OperationMethod<
-  WorkflowRunActionRequestHistoriesGetRequest,
-  WorkflowRunActionRequestHistoriesGetResponse,
-  WorkflowRunActionRequestHistoriesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowRunActionRequestHistoriesGetRequest,
-  output: WorkflowRunActionRequestHistoriesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowRunActionRequestHistoriesListError = AzureOpError;
-/** List a workflow run request history. */
-export const WorkflowRunActionRequestHistoriesList: API.OperationMethod<
-  WorkflowRunActionRequestHistoriesListRequest,
-  RequestHistoryListResult,
-  WorkflowRunActionRequestHistoriesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowRunActionRequestHistoriesListRequest,
-  output: RequestHistoryListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowRunsCancelError = AzureOpError;
-/** Cancels a workflow run. */
-export const WorkflowRunsCancel: API.OperationMethod<
-  WorkflowRunsCancelRequest,
-  WorkflowRunsCancelResponse,
-  WorkflowRunsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowRunsCancelRequest,
-  output: WorkflowRunsCancelResponse,
+  input: ValidateWorkflowByResourceGroupRequest,
+  output: ValidateWorkflowByResourceGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -12766,66 +12856,6 @@ export const WorkflowsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WorkflowsMoveError = AzureOpError;
-/** Moves an existing workflow. */
-export const WorkflowsMove: API.OperationMethod<
-  WorkflowsMoveRequest,
-  WorkflowsMoveResponse,
-  WorkflowsMoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowsMoveRequest,
-  output: WorkflowsMoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowsRegenerateAccessKeyError = AzureOpError;
-/** Regenerates the callback URL access key for request triggers. */
-export const WorkflowsRegenerateAccessKey: API.OperationMethod<
-  WorkflowsRegenerateAccessKeyRequest,
-  WorkflowsRegenerateAccessKeyResponse,
-  WorkflowsRegenerateAccessKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowsRegenerateAccessKeyRequest,
-  output: WorkflowsRegenerateAccessKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowsValidateByLocationError = AzureOpError;
-/** Validates the workflow definition. */
-export const WorkflowsValidateByLocation: API.OperationMethod<
-  WorkflowsValidateByLocationRequest,
-  WorkflowsValidateByLocationResponse,
-  WorkflowsValidateByLocationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowsValidateByLocationRequest,
-  output: WorkflowsValidateByLocationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowsValidateByResourceGroupError = AzureOpError;
-/** Validates the workflow. */
-export const WorkflowsValidateByResourceGroup: API.OperationMethod<
-  WorkflowsValidateByResourceGroupRequest,
-  WorkflowsValidateByResourceGroupResponse,
-  WorkflowsValidateByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowsValidateByResourceGroupRequest,
-  output: WorkflowsValidateByResourceGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WorkflowTriggerHistoriesResubmitError = AzureOpError;
 /** Resubmits a workflow run based on the trigger history. */
 export const WorkflowTriggerHistoriesResubmit: API.OperationMethod<
@@ -12836,36 +12866,6 @@ export const WorkflowTriggerHistoriesResubmit: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkflowTriggerHistoriesResubmitRequest,
   output: WorkflowTriggerHistoriesResubmitResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowTriggersResetError = AzureOpError;
-/** Resets a workflow trigger. */
-export const WorkflowTriggersReset: API.OperationMethod<
-  WorkflowTriggersResetRequest,
-  WorkflowTriggersResetResponse,
-  WorkflowTriggersResetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowTriggersResetRequest,
-  output: WorkflowTriggersResetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkflowTriggersRunError = AzureOpError;
-/** Runs a workflow trigger. */
-export const WorkflowTriggersRun: API.OperationMethod<
-  WorkflowTriggersRunRequest,
-  WorkflowTriggersRunResponse,
-  WorkflowTriggersRunError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkflowTriggersRunRequest,
-  output: WorkflowTriggersRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

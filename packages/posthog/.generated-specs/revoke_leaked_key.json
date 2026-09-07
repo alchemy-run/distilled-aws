@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.revoke_leaked_key#CreateRevokeLeakedKeyRequest": {
+    "com.posthog.revoke_leaked_key#RevokeLeakedKeyCreateRequest": {
       "type": "structure",
       "members": {
         "token": {
@@ -85,10 +86,10 @@
         "smithy.api#documentation": "* `personal_api_key` - personal_api_key\n* `project_secret_api_key` - project_secret_api_key\n* `oauth_access_token` - oauth_access_token\n* `oauth_refresh_token` - oauth_refresh_token"
       }
     },
-    "com.posthog.revoke_leaked_key#CreateRevokeLeakedKey": {
+    "com.posthog.revoke_leaked_key#RevokeLeakedKeyCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.revoke_leaked_key#CreateRevokeLeakedKeyRequest"
+        "target": "com.posthog.revoke_leaked_key#RevokeLeakedKeyCreateRequest"
       },
       "output": {
         "target": "com.posthog.revoke_leaked_key#LeakedKeyReportResponse"
@@ -125,7 +126,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.revoke_leaked_key#CreateRevokeLeakedKey"
+          "target": "com.posthog.revoke_leaked_key#RevokeLeakedKeyCreate"
         }
       ],
       "traits": {

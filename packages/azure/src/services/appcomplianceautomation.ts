@@ -36,17 +36,17 @@ export const CheckProviderActionNameAvailabilityRequest =
   }) as any as S.Schema<CheckProviderActionNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type ProviderActionsCheckNameAvailabilityResponseReason =
+export type CheckProviderActionNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const ProviderActionsCheckNameAvailabilityResponseReason =
+export const CheckProviderActionNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckProviderActionNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: ProviderActionsCheckNameAvailabilityResponseReason;
+  reason?: CheckProviderActionNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -54,66 +54,12 @@ export const CheckProviderActionNameAvailabilityResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(ProviderActionsCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckProviderActionNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
   ).annotate({
     identifier: "CheckProviderActionNameAvailabilityResponse",
   }) as any as S.Schema<CheckProviderActionNameAvailabilityResponse>;
-
-export interface CheckReportNestedResourceNameAvailabilityRequest {
-  /** Report Name. */
-  reportName: string;
-  /** The name of the resource for which availability needs to be checked. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-}
-export const CheckReportNestedResourceNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      reportName: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2024-06-27",
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckReportNestedResourceNameAvailabilityRequest",
-  }) as any as S.Schema<CheckReportNestedResourceNameAvailabilityRequest>;
-
-/** The reason why the given name is not available. */
-export type ReportNestedResourceCheckNameAvailabilityResponseReason =
-  | "Invalid"
-  | "AlreadyExists";
-export const ReportNestedResourceCheckNameAvailabilityResponseReason =
-  /*@__PURE__*/ S.String;
-
-export interface CheckReportNestedResourceNameAvailabilityResponse {
-  /** Indicates if the resource name is available. */
-  nameAvailable?: boolean;
-  /** The reason why the given name is not available. */
-  reason?: ReportNestedResourceCheckNameAvailabilityResponseReason;
-  /** Detailed reason why the given name is available. */
-  message?: string;
-}
-export const CheckReportNestedResourceNameAvailabilityResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(
-        ReportNestedResourceCheckNameAvailabilityResponseReason,
-      ),
-      message: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CheckReportNestedResourceNameAvailabilityResponse",
-  }) as any as S.Schema<CheckReportNestedResourceNameAvailabilityResponse>;
 
 export interface DeleteEvidenceRequest {
   /** Report Name. */
@@ -227,6 +173,245 @@ export const DeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteWebhookResponse",
 }) as any as S.Schema<DeleteWebhookResponse>;
+
+export interface DownloadEvidenceRequest {
+  /** Report Name. */
+  reportName: string;
+  /** The evidence name. */
+  evidenceName: string;
+  /** Tenant id. */
+  reportCreatorTenantId?: string;
+  /** The offerGuid which mapping to the reports. */
+  offerGuid?: string;
+}
+export const DownloadEvidenceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reportName: S.String.pipe(T.Label()),
+    evidenceName: S.String.pipe(T.Label()),
+    reportCreatorTenantId: S.optional(S.String),
+    offerGuid: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/evidences/{evidenceName}/download",
+      code: 200,
+      apiVersion: "2024-06-27",
+    }),
+  ),
+).annotate({
+  identifier: "DownloadEvidenceRequest",
+}) as any as S.Schema<DownloadEvidenceRequest>;
+
+/** The uri of evidence file */
+export interface EvidenceFileDownloadResponseEvidenceFile {
+  /** The url of evidence file */
+  url?: string;
+}
+export const EvidenceFileDownloadResponseEvidenceFile = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      url: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "EvidenceFileDownloadResponseEvidenceFile",
+}) as any as S.Schema<EvidenceFileDownloadResponseEvidenceFile>;
+
+/** Object that includes all the possible response for the evidence file download operation. */
+export interface EvidenceFileDownloadResponse {
+  /** The uri of evidence file */
+  evidenceFile?: EvidenceFileDownloadResponseEvidenceFile;
+}
+export const EvidenceFileDownloadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    evidenceFile: S.optional(EvidenceFileDownloadResponseEvidenceFile),
+  }),
+).annotate({
+  identifier: "EvidenceFileDownloadResponse",
+}) as any as S.Schema<EvidenceFileDownloadResponse>;
+
+/** Indicates the download type. */
+export type DownloadType =
+  | "ComplianceReport"
+  | "CompliancePdfReport"
+  | "ComplianceDetailedPdfReport"
+  | "ResourceList";
+export const DownloadType = /*@__PURE__*/ S.String;
+
+export interface DownloadSnapshotRequest {
+  /** Report Name. */
+  reportName: string;
+  /** Snapshot Name. */
+  snapshotName: string;
+  /** Tenant id. */
+  reportCreatorTenantId?: string;
+  /** Indicates the download type. */
+  downloadType: DownloadType | (string & {});
+  /** The offerGuid which mapping to the reports. */
+  offerGuid?: string;
+}
+export const DownloadSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reportName: S.String.pipe(T.Label()),
+    snapshotName: S.String.pipe(T.Label()),
+    reportCreatorTenantId: S.optional(S.String),
+    downloadType: DownloadType,
+    offerGuid: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/snapshots/{snapshotName}/download",
+      code: 200,
+      apiVersion: "2024-06-27",
+    }),
+  ),
+).annotate({
+  identifier: "DownloadSnapshotRequest",
+}) as any as S.Schema<DownloadSnapshotRequest>;
+
+/** Resource Id. */
+export interface ResourceItem {
+  /** The subscription Id of this resource. */
+  subscriptionId?: string;
+  /** The resource group name of this resource. */
+  resourceGroup?: string;
+  /** The resource type of this resource. e.g. "Microsoft.SignalRService/SignalR" */
+  resourceType?: string;
+  /** The resource Id - e.g. "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1". */
+  resourceId?: string;
+}
+export const ResourceItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.optional(S.String),
+    resourceGroup: S.optional(S.String),
+    resourceType: S.optional(S.String),
+    resourceId: S.optional(S.String),
+  }),
+).annotate({ identifier: "ResourceItem" }) as any as S.Schema<ResourceItem>;
+
+/** Resource list of the report */
+export type DownloadResponseResourceListList = Array<ResourceItem>;
+export const DownloadResponseResourceListList = /*@__PURE__*/ S.Array(
+  ResourceItem,
+) as any as S.Schema<DownloadResponseResourceListList>;
+
+/** Indicates the control status. */
+export type ControlStatus =
+  | "Passed"
+  | "Failed"
+  | "NotApplicable"
+  | "PendingApproval";
+export const ControlStatus = /*@__PURE__*/ S.String;
+
+/** Resource Origin. */
+export type ResourceOrigin = "Azure" | "AWS" | "GCP";
+export const ResourceOrigin = /*@__PURE__*/ S.String;
+
+/** Indicates the resource status. */
+export type ResourceStatus = "Healthy" | "Unhealthy";
+export const ResourceStatus = /*@__PURE__*/ S.String;
+
+/** Object that includes all the content for single compliance result. */
+export interface ComplianceReportItem {
+  /** The category name. */
+  categoryName?: string;
+  /** The control family name. */
+  controlFamilyName?: string;
+  /** The control Id - e.g. "1". */
+  controlId?: string;
+  /** The control name. */
+  controlName?: string;
+  /** Control status. */
+  controlStatus?: ControlStatus;
+  /** The title of the customer responsibility. */
+  responsibilityTitle?: string;
+  /** The description of the customer responsibility. */
+  responsibilityDescription?: string;
+  /** The Id of the resource. */
+  resourceId?: string;
+  /** The type of the resource. e.g. "Microsoft.SignalRService/SignalR" */
+  resourceType?: string;
+  /** Resource origin. */
+  resourceOrigin?: ResourceOrigin;
+  /** Resource status. */
+  resourceStatus?: ResourceStatus;
+  /** The status change date for the resource. */
+  resourceStatusChangeDate?: string;
+}
+export const ComplianceReportItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    categoryName: S.optional(S.String),
+    controlFamilyName: S.optional(S.String),
+    controlId: S.optional(S.String),
+    controlName: S.optional(S.String),
+    controlStatus: S.optional(ControlStatus),
+    responsibilityTitle: S.optional(S.String),
+    responsibilityDescription: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    resourceType: S.optional(S.String),
+    resourceOrigin: S.optional(ResourceOrigin),
+    resourceStatus: S.optional(ResourceStatus),
+    resourceStatusChangeDate: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ComplianceReportItem",
+}) as any as S.Schema<ComplianceReportItem>;
+
+/** List of the compliance result */
+export type DownloadResponseComplianceReportList = Array<ComplianceReportItem>;
+export const DownloadResponseComplianceReportList = /*@__PURE__*/ S.Array(
+  ComplianceReportItem,
+) as any as S.Schema<DownloadResponseComplianceReportList>;
+
+/** Compliance pdf report */
+export interface DownloadResponseCompliancePdfReport {
+  /** The uri of compliance pdf report */
+  sasUri?: string;
+}
+export const DownloadResponseCompliancePdfReport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sasUri: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DownloadResponseCompliancePdfReport",
+}) as any as S.Schema<DownloadResponseCompliancePdfReport>;
+
+/** The detailed compliance pdf report */
+export interface DownloadResponseComplianceDetailedPdfReport {
+  /** The uri of detailed compliance pdf report */
+  sasUri?: string;
+}
+export const DownloadResponseComplianceDetailedPdfReport =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      sasUri: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DownloadResponseComplianceDetailedPdfReport",
+  }) as any as S.Schema<DownloadResponseComplianceDetailedPdfReport>;
+
+/** Object that includes all the possible response for the download operation. */
+export interface DownloadResponse {
+  /** Resource list of the report */
+  resourceList?: DownloadResponseResourceListList;
+  /** List of the compliance result */
+  complianceReport?: DownloadResponseComplianceReportList;
+  /** Compliance pdf report */
+  compliancePdfReport?: DownloadResponseCompliancePdfReport;
+  /** The detailed compliance pdf report */
+  complianceDetailedPdfReport?: DownloadResponseComplianceDetailedPdfReport;
+}
+export const DownloadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceList: S.optional(DownloadResponseResourceListList),
+    complianceReport: S.optional(DownloadResponseComplianceReportList),
+    compliancePdfReport: S.optional(DownloadResponseCompliancePdfReport),
+    complianceDetailedPdfReport: S.optional(
+      DownloadResponseComplianceDetailedPdfReport,
+    ),
+  }),
+).annotate({
+  identifier: "DownloadResponse",
+}) as any as S.Schema<DownloadResponse>;
 
 /** Evidence type */
 export type EvidenceType = "File" | "AutoCollectedEvidence" | "Data";
@@ -394,61 +579,6 @@ export const EvidenceCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EvidenceCreateOrUpdateResponse",
 }) as any as S.Schema<EvidenceCreateOrUpdateResponse>;
 
-export interface EvidenceDownloadRequest {
-  /** Report Name. */
-  reportName: string;
-  /** The evidence name. */
-  evidenceName: string;
-  /** Tenant id. */
-  reportCreatorTenantId?: string;
-  /** The offerGuid which mapping to the reports. */
-  offerGuid?: string;
-}
-export const EvidenceDownloadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reportName: S.String.pipe(T.Label()),
-    evidenceName: S.String.pipe(T.Label()),
-    reportCreatorTenantId: S.optional(S.String),
-    offerGuid: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/evidences/{evidenceName}/download",
-      code: 200,
-      apiVersion: "2024-06-27",
-    }),
-  ),
-).annotate({
-  identifier: "EvidenceDownloadRequest",
-}) as any as S.Schema<EvidenceDownloadRequest>;
-
-/** The uri of evidence file */
-export interface EvidenceFileDownloadResponseEvidenceFile {
-  /** The url of evidence file */
-  url?: string;
-}
-export const EvidenceFileDownloadResponseEvidenceFile = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      url: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "EvidenceFileDownloadResponseEvidenceFile",
-}) as any as S.Schema<EvidenceFileDownloadResponseEvidenceFile>;
-
-/** Object that includes all the possible response for the evidence file download operation. */
-export interface EvidenceFileDownloadResponse {
-  /** The uri of evidence file */
-  evidenceFile?: EvidenceFileDownloadResponseEvidenceFile;
-}
-export const EvidenceFileDownloadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    evidenceFile: S.optional(EvidenceFileDownloadResponseEvidenceFile),
-  }),
-).annotate({
-  identifier: "EvidenceFileDownloadResponse",
-}) as any as S.Schema<EvidenceFileDownloadResponse>;
-
 export interface GetEvidenceRequest {
   /** Report Name. */
   reportName: string;
@@ -599,10 +729,6 @@ export const GetReportRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetReportRequest",
 }) as any as S.Schema<GetReportRequest>;
-
-/** Resource Origin. */
-export type ResourceOrigin = "Azure" | "AWS" | "GCP";
-export const ResourceOrigin = /*@__PURE__*/ S.String;
 
 /** Single resource Id's metadata. */
 export interface ResourceMetadata {
@@ -831,11 +957,11 @@ export const GetReportResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetReportResponse",
 }) as any as S.Schema<GetReportResponse>;
 
-export interface GetReportScopingQuestionRequest {
+export interface GetReportScopingQuestionsRequest {
   /** Report Name. */
   reportName: string;
 }
-export const GetReportScopingQuestionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReportScopingQuestionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reportName: S.String.pipe(T.Label()),
   }).pipe(
@@ -847,8 +973,8 @@ export const GetReportScopingQuestionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetReportScopingQuestionRequest",
-}) as any as S.Schema<GetReportScopingQuestionRequest>;
+  identifier: "GetReportScopingQuestionsRequest",
+}) as any as S.Schema<GetReportScopingQuestionsRequest>;
 
 /** Question input type. */
 export type InputType =
@@ -1123,14 +1249,6 @@ export type ControlFamilyStatus =
   | "PendingApproval";
 export const ControlFamilyStatus = /*@__PURE__*/ S.String;
 
-/** Indicates the control status. */
-export type ControlStatus =
-  | "Passed"
-  | "Failed"
-  | "NotApplicable"
-  | "PendingApproval";
-export const ControlStatus = /*@__PURE__*/ S.String;
-
 /** Indicates the customer responsibility type. */
 export type ResponsibilityType = "Automated" | "ScopedManual" | "Manual";
 export const ResponsibilityType = /*@__PURE__*/ S.String;
@@ -1150,10 +1268,6 @@ export const ResponsibilityStatus = /*@__PURE__*/ S.String;
 /** Indicates the customer responsibility supported cloud environment. */
 export type ResponsibilityEnvironment = "Azure" | "AWS" | "GCP" | "General";
 export const ResponsibilityEnvironment = /*@__PURE__*/ S.String;
-
-/** Indicates the resource status. */
-export type ResourceStatus = "Healthy" | "Unhealthy";
-export const ResourceStatus = /*@__PURE__*/ S.String;
 
 /** List of recommendation id. */
 export type ResponsibilityResourceRecommendationIdsList = Array<string>;
@@ -1764,20 +1878,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1785,22 +1899,22 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOperationsResponse>;
 
 /** List of subscription ids to be query. If the list is null or empty, the API will query all the subscriptions of the user. */
-export type ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList =
+export type ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList =
   Array<string>;
-export const ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList =
+export const ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList>;
+  ) as any as S.Schema<ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList>;
 
 export interface ListProviderActionInUseStorageAccountsRequest {
   /** List of subscription ids to be query. If the list is null or empty, the API will query all the subscriptions of the user. */
-  subscriptionIds?: ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList;
+  subscriptionIds?: ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList;
 }
 export const ListProviderActionInUseStorageAccountsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionIds: S.optional(
-        ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList,
+        ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList,
       ),
     }).pipe(
       T.Http({
@@ -2207,114 +2321,6 @@ export const OnboardResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OnboardResponse",
 }) as any as S.Schema<OnboardResponse>;
 
-/** List of resource ids to be evaluated */
-export type ProviderActionsTriggerEvaluationRequestResourceIdsList =
-  Array<string>;
-export const ProviderActionsTriggerEvaluationRequestResourceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProviderActionsTriggerEvaluationRequestResourceIdsList>;
-
-export interface ProviderActionsTriggerEvaluationRequest {
-  /** List of resource ids to be evaluated */
-  resourceIds: ProviderActionsTriggerEvaluationRequestResourceIdsList;
-}
-export const ProviderActionsTriggerEvaluationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      resourceIds: ProviderActionsTriggerEvaluationRequestResourceIdsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.AppComplianceAutomation/triggerEvaluation",
-        code: 200,
-        apiVersion: "2024-06-27",
-      }),
-    ),
-).annotate({
-  identifier: "ProviderActionsTriggerEvaluationRequest",
-}) as any as S.Schema<ProviderActionsTriggerEvaluationRequest>;
-
-/** List of resource ids to be evaluated */
-export type TriggerEvaluationPropertyResourceIdsList = Array<string>;
-export const TriggerEvaluationPropertyResourceIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TriggerEvaluationPropertyResourceIdsList>;
-
-/** A class represent the quick assessment. */
-export interface QuickAssessment {
-  /** Resource id. */
-  resourceId?: string;
-  /** Responsibility id. */
-  responsibilityId?: string;
-  /** The timestamp of resource creation (UTC). */
-  timestamp?: string;
-  /** Quick assessment status. */
-  resourceStatus?: ResourceStatus;
-  /** Quick assessment display name. */
-  displayName?: string;
-  /** Quick assessment display name. */
-  description?: string;
-  /** Link to remediation steps for this quick assessment. */
-  remediationLink?: string;
-}
-export const QuickAssessment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceId: S.optional(S.String),
-    responsibilityId: S.optional(S.String),
-    timestamp: S.optional(S.String),
-    resourceStatus: S.optional(ResourceStatus),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    remediationLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "QuickAssessment",
-}) as any as S.Schema<QuickAssessment>;
-
-/** List of quick assessments */
-export type TriggerEvaluationPropertyQuickAssessmentsList =
-  Array<QuickAssessment>;
-export const TriggerEvaluationPropertyQuickAssessmentsList =
-  /*@__PURE__*/ S.Array(
-    QuickAssessment,
-  ) as any as S.Schema<TriggerEvaluationPropertyQuickAssessmentsList>;
-
-/** Trigger evaluation response. */
-export interface TriggerEvaluationProperty {
-  /** The time when the evaluation is triggered. */
-  triggerTime?: string;
-  /** The time when the evaluation is end. */
-  evaluationEndTime?: string;
-  /** List of resource ids to be evaluated */
-  resourceIds?: TriggerEvaluationPropertyResourceIdsList;
-  /** List of quick assessments */
-  quickAssessments?: TriggerEvaluationPropertyQuickAssessmentsList;
-}
-export const TriggerEvaluationProperty = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    triggerTime: S.optional(S.String),
-    evaluationEndTime: S.optional(S.String),
-    resourceIds: S.optional(TriggerEvaluationPropertyResourceIdsList),
-    quickAssessments: S.optional(TriggerEvaluationPropertyQuickAssessmentsList),
-  }),
-).annotate({
-  identifier: "TriggerEvaluationProperty",
-}) as any as S.Schema<TriggerEvaluationProperty>;
-
-/** Trigger evaluation response. */
-export interface TriggerEvaluationResponse {
-  /** trigger evaluation property. */
-  properties?: TriggerEvaluationProperty;
-}
-export const TriggerEvaluationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(TriggerEvaluationProperty),
-  }),
-).annotate({
-  identifier: "TriggerEvaluationResponse",
-}) as any as S.Schema<TriggerEvaluationResponse>;
-
 /** List of resource data. */
 export type ReportPropertiesInputResourcesList = Array<ResourceMetadata>;
 export const ReportPropertiesInputResourcesList = /*@__PURE__*/ S.Array(
@@ -2431,40 +2437,59 @@ export const ReportFixResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReportFixResult",
 }) as any as S.Schema<ReportFixResult>;
 
-export interface ReportSyncCertRecordRequest {
+export interface ReportNestedResourceCheckNameAvailabilityRequest {
   /** Report Name. */
   reportName: string;
-  /** certification record to be synchronized. */
-  certRecord: CertSyncRecord;
+  /** The name of the resource for which availability needs to be checked. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
 }
-export const ReportSyncCertRecordRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reportName: S.String.pipe(T.Label()),
-    certRecord: CertSyncRecord,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/syncCertRecord",
-      code: 200,
-      apiVersion: "2024-06-27",
-    }),
-  ),
-).annotate({
-  identifier: "ReportSyncCertRecordRequest",
-}) as any as S.Schema<ReportSyncCertRecordRequest>;
+export const ReportNestedResourceCheckNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      reportName: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2024-06-27",
+      }),
+    ),
+  ).annotate({
+    identifier: "ReportNestedResourceCheckNameAvailabilityRequest",
+  }) as any as S.Schema<ReportNestedResourceCheckNameAvailabilityRequest>;
 
-/** Synchronize certification record response. */
-export interface SyncCertRecordResponse {
-  /** certification record synchronized. */
-  certRecord?: CertSyncRecord;
+/** The reason why the given name is not available. */
+export type ReportNestedResourceCheckNameAvailabilityResponseReason =
+  | "Invalid"
+  | "AlreadyExists";
+export const ReportNestedResourceCheckNameAvailabilityResponseReason =
+  /*@__PURE__*/ S.String;
+
+export interface ReportNestedResourceCheckNameAvailabilityResponse {
+  /** Indicates if the resource name is available. */
+  nameAvailable?: boolean;
+  /** The reason why the given name is not available. */
+  reason?: ReportNestedResourceCheckNameAvailabilityResponseReason;
+  /** Detailed reason why the given name is available. */
+  message?: string;
 }
-export const SyncCertRecordResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certRecord: S.optional(CertSyncRecord),
-  }),
-).annotate({
-  identifier: "SyncCertRecordResponse",
-}) as any as S.Schema<SyncCertRecordResponse>;
+export const ReportNestedResourceCheckNameAvailabilityResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nameAvailable: S.optional(S.Boolean),
+      reason: S.optional(
+        ReportNestedResourceCheckNameAvailabilityResponseReason,
+      ),
+      message: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ReportNestedResourceCheckNameAvailabilityResponse",
+  }) as any as S.Schema<ReportNestedResourceCheckNameAvailabilityResponse>;
 
 /** List of scoping question answers. */
 export type ScopingConfigurationPropertiesInputAnswersList =
@@ -2538,173 +2563,148 @@ export const ScopingConfigurationCreateOrUpdateResponse =
     identifier: "ScopingConfigurationCreateOrUpdateResponse",
   }) as any as S.Schema<ScopingConfigurationCreateOrUpdateResponse>;
 
-/** Indicates the download type. */
-export type DownloadType =
-  | "ComplianceReport"
-  | "CompliancePdfReport"
-  | "ComplianceDetailedPdfReport"
-  | "ResourceList";
-export const DownloadType = /*@__PURE__*/ S.String;
-
-export interface SnapshotDownloadRequest {
+export interface SyncReportCertRecordRequest {
   /** Report Name. */
   reportName: string;
-  /** Snapshot Name. */
-  snapshotName: string;
-  /** Tenant id. */
-  reportCreatorTenantId?: string;
-  /** Indicates the download type. */
-  downloadType: DownloadType | (string & {});
-  /** The offerGuid which mapping to the reports. */
-  offerGuid?: string;
+  /** certification record to be synchronized. */
+  certRecord: CertSyncRecord;
 }
-export const SnapshotDownloadRequest = /*@__PURE__*/ S.suspend(() =>
+export const SyncReportCertRecordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reportName: S.String.pipe(T.Label()),
-    snapshotName: S.String.pipe(T.Label()),
-    reportCreatorTenantId: S.optional(S.String),
-    downloadType: DownloadType,
-    offerGuid: S.optional(S.String),
+    certRecord: CertSyncRecord,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/snapshots/{snapshotName}/download",
+      uri: "/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/syncCertRecord",
       code: 200,
       apiVersion: "2024-06-27",
     }),
   ),
 ).annotate({
-  identifier: "SnapshotDownloadRequest",
-}) as any as S.Schema<SnapshotDownloadRequest>;
+  identifier: "SyncReportCertRecordRequest",
+}) as any as S.Schema<SyncReportCertRecordRequest>;
 
-/** Resource Id. */
-export interface ResourceItem {
-  /** The subscription Id of this resource. */
-  subscriptionId?: string;
-  /** The resource group name of this resource. */
-  resourceGroup?: string;
-  /** The resource type of this resource. e.g. "Microsoft.SignalRService/SignalR" */
-  resourceType?: string;
-  /** The resource Id - e.g. "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1". */
-  resourceId?: string;
+/** Synchronize certification record response. */
+export interface SyncCertRecordResponse {
+  /** certification record synchronized. */
+  certRecord?: CertSyncRecord;
 }
-export const ResourceItem = /*@__PURE__*/ S.suspend(() =>
+export const SyncCertRecordResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.optional(S.String),
-    resourceGroup: S.optional(S.String),
-    resourceType: S.optional(S.String),
-    resourceId: S.optional(S.String),
-  }),
-).annotate({ identifier: "ResourceItem" }) as any as S.Schema<ResourceItem>;
-
-/** Resource list of the report */
-export type DownloadResponseResourceListList = Array<ResourceItem>;
-export const DownloadResponseResourceListList = /*@__PURE__*/ S.Array(
-  ResourceItem,
-) as any as S.Schema<DownloadResponseResourceListList>;
-
-/** Object that includes all the content for single compliance result. */
-export interface ComplianceReportItem {
-  /** The category name. */
-  categoryName?: string;
-  /** The control family name. */
-  controlFamilyName?: string;
-  /** The control Id - e.g. "1". */
-  controlId?: string;
-  /** The control name. */
-  controlName?: string;
-  /** Control status. */
-  controlStatus?: ControlStatus;
-  /** The title of the customer responsibility. */
-  responsibilityTitle?: string;
-  /** The description of the customer responsibility. */
-  responsibilityDescription?: string;
-  /** The Id of the resource. */
-  resourceId?: string;
-  /** The type of the resource. e.g. "Microsoft.SignalRService/SignalR" */
-  resourceType?: string;
-  /** Resource origin. */
-  resourceOrigin?: ResourceOrigin;
-  /** Resource status. */
-  resourceStatus?: ResourceStatus;
-  /** The status change date for the resource. */
-  resourceStatusChangeDate?: string;
-}
-export const ComplianceReportItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    categoryName: S.optional(S.String),
-    controlFamilyName: S.optional(S.String),
-    controlId: S.optional(S.String),
-    controlName: S.optional(S.String),
-    controlStatus: S.optional(ControlStatus),
-    responsibilityTitle: S.optional(S.String),
-    responsibilityDescription: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    resourceType: S.optional(S.String),
-    resourceOrigin: S.optional(ResourceOrigin),
-    resourceStatus: S.optional(ResourceStatus),
-    resourceStatusChangeDate: S.optional(S.String),
+    certRecord: S.optional(CertSyncRecord),
   }),
 ).annotate({
-  identifier: "ComplianceReportItem",
-}) as any as S.Schema<ComplianceReportItem>;
+  identifier: "SyncCertRecordResponse",
+}) as any as S.Schema<SyncCertRecordResponse>;
 
-/** List of the compliance result */
-export type DownloadResponseComplianceReportList = Array<ComplianceReportItem>;
-export const DownloadResponseComplianceReportList = /*@__PURE__*/ S.Array(
-  ComplianceReportItem,
-) as any as S.Schema<DownloadResponseComplianceReportList>;
+/** List of resource ids to be evaluated */
+export type TriggerProviderActionEvaluationRequestResourceIdsList =
+  Array<string>;
+export const TriggerProviderActionEvaluationRequestResourceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TriggerProviderActionEvaluationRequestResourceIdsList>;
 
-/** Compliance pdf report */
-export interface DownloadResponseCompliancePdfReport {
-  /** The uri of compliance pdf report */
-  sasUri?: string;
+export interface TriggerProviderActionEvaluationRequest {
+  /** List of resource ids to be evaluated */
+  resourceIds: TriggerProviderActionEvaluationRequestResourceIdsList;
 }
-export const DownloadResponseCompliancePdfReport = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sasUri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DownloadResponseCompliancePdfReport",
-}) as any as S.Schema<DownloadResponseCompliancePdfReport>;
-
-/** The detailed compliance pdf report */
-export interface DownloadResponseComplianceDetailedPdfReport {
-  /** The uri of detailed compliance pdf report */
-  sasUri?: string;
-}
-export const DownloadResponseComplianceDetailedPdfReport =
-  /*@__PURE__*/ S.suspend(() =>
+export const TriggerProviderActionEvaluationRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
-      sasUri: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DownloadResponseComplianceDetailedPdfReport",
-  }) as any as S.Schema<DownloadResponseComplianceDetailedPdfReport>;
-
-/** Object that includes all the possible response for the download operation. */
-export interface DownloadResponse {
-  /** Resource list of the report */
-  resourceList?: DownloadResponseResourceListList;
-  /** List of the compliance result */
-  complianceReport?: DownloadResponseComplianceReportList;
-  /** Compliance pdf report */
-  compliancePdfReport?: DownloadResponseCompliancePdfReport;
-  /** The detailed compliance pdf report */
-  complianceDetailedPdfReport?: DownloadResponseComplianceDetailedPdfReport;
-}
-export const DownloadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceList: S.optional(DownloadResponseResourceListList),
-    complianceReport: S.optional(DownloadResponseComplianceReportList),
-    compliancePdfReport: S.optional(DownloadResponseCompliancePdfReport),
-    complianceDetailedPdfReport: S.optional(
-      DownloadResponseComplianceDetailedPdfReport,
+      resourceIds: TriggerProviderActionEvaluationRequestResourceIdsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.AppComplianceAutomation/triggerEvaluation",
+        code: 200,
+        apiVersion: "2024-06-27",
+      }),
     ),
+).annotate({
+  identifier: "TriggerProviderActionEvaluationRequest",
+}) as any as S.Schema<TriggerProviderActionEvaluationRequest>;
+
+/** List of resource ids to be evaluated */
+export type TriggerEvaluationPropertyResourceIdsList = Array<string>;
+export const TriggerEvaluationPropertyResourceIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TriggerEvaluationPropertyResourceIdsList>;
+
+/** A class represent the quick assessment. */
+export interface QuickAssessment {
+  /** Resource id. */
+  resourceId?: string;
+  /** Responsibility id. */
+  responsibilityId?: string;
+  /** The timestamp of resource creation (UTC). */
+  timestamp?: string;
+  /** Quick assessment status. */
+  resourceStatus?: ResourceStatus;
+  /** Quick assessment display name. */
+  displayName?: string;
+  /** Quick assessment display name. */
+  description?: string;
+  /** Link to remediation steps for this quick assessment. */
+  remediationLink?: string;
+}
+export const QuickAssessment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceId: S.optional(S.String),
+    responsibilityId: S.optional(S.String),
+    timestamp: S.optional(S.String),
+    resourceStatus: S.optional(ResourceStatus),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    remediationLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DownloadResponse",
-}) as any as S.Schema<DownloadResponse>;
+  identifier: "QuickAssessment",
+}) as any as S.Schema<QuickAssessment>;
+
+/** List of quick assessments */
+export type TriggerEvaluationPropertyQuickAssessmentsList =
+  Array<QuickAssessment>;
+export const TriggerEvaluationPropertyQuickAssessmentsList =
+  /*@__PURE__*/ S.Array(
+    QuickAssessment,
+  ) as any as S.Schema<TriggerEvaluationPropertyQuickAssessmentsList>;
+
+/** Trigger evaluation response. */
+export interface TriggerEvaluationProperty {
+  /** The time when the evaluation is triggered. */
+  triggerTime?: string;
+  /** The time when the evaluation is end. */
+  evaluationEndTime?: string;
+  /** List of resource ids to be evaluated */
+  resourceIds?: TriggerEvaluationPropertyResourceIdsList;
+  /** List of quick assessments */
+  quickAssessments?: TriggerEvaluationPropertyQuickAssessmentsList;
+}
+export const TriggerEvaluationProperty = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    triggerTime: S.optional(S.String),
+    evaluationEndTime: S.optional(S.String),
+    resourceIds: S.optional(TriggerEvaluationPropertyResourceIdsList),
+    quickAssessments: S.optional(TriggerEvaluationPropertyQuickAssessmentsList),
+  }),
+).annotate({
+  identifier: "TriggerEvaluationProperty",
+}) as any as S.Schema<TriggerEvaluationProperty>;
+
+/** Trigger evaluation response. */
+export interface TriggerEvaluationResponse {
+  /** trigger evaluation property. */
+  properties?: TriggerEvaluationProperty;
+}
+export const TriggerEvaluationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(TriggerEvaluationProperty),
+  }),
+).annotate({
+  identifier: "TriggerEvaluationResponse",
+}) as any as S.Schema<TriggerEvaluationResponse>;
 
 /** List of resource data. */
 export type ReportPatchPropertiesInputResourcesList = Array<ResourceMetadata>;
@@ -2973,21 +2973,6 @@ export const CheckProviderActionNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckReportNestedResourceNameAvailabilityError = AzureOpError;
-/** Checks the report's nested resource name availability, e.g: Webhooks, Evidences, Snapshots. */
-export const CheckReportNestedResourceNameAvailability: API.OperationMethod<
-  CheckReportNestedResourceNameAvailabilityRequest,
-  CheckReportNestedResourceNameAvailabilityResponse,
-  CheckReportNestedResourceNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckReportNestedResourceNameAvailabilityRequest,
-  output: CheckReportNestedResourceNameAvailabilityResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteEvidenceError = AzureOpError;
 /** Delete an existent evidence from a specified report */
 export const DeleteEvidence: API.OperationMethod<
@@ -3048,6 +3033,36 @@ export const DeleteWebhook: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DownloadEvidenceError = AzureOpError;
+/** Download evidence file. */
+export const DownloadEvidence: API.OperationMethod<
+  DownloadEvidenceRequest,
+  EvidenceFileDownloadResponse,
+  DownloadEvidenceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadEvidenceRequest,
+  output: EvidenceFileDownloadResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadSnapshotError = AzureOpError;
+/** Download compliance needs from snapshot, like: Compliance Report, Resource List. */
+export const DownloadSnapshot: API.OperationMethod<
+  DownloadSnapshotRequest,
+  DownloadResponse,
+  DownloadSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadSnapshotRequest,
+  output: DownloadResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type EvidenceCreateOrUpdateError = AzureOpError;
 /** Create or Update an evidence a specified report */
 export const EvidenceCreateOrUpdate: API.OperationMethod<
@@ -3058,21 +3073,6 @@ export const EvidenceCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EvidenceCreateOrUpdateRequest,
   output: EvidenceCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EvidenceDownloadError = AzureOpError;
-/** Download evidence file. */
-export const EvidenceDownload: API.OperationMethod<
-  EvidenceDownloadRequest,
-  EvidenceFileDownloadResponse,
-  EvidenceDownloadError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EvidenceDownloadRequest,
-  output: EvidenceFileDownloadResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3138,15 +3138,15 @@ export const GetReport: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetReportScopingQuestionError = AzureOpError;
+export type GetReportScopingQuestionsError = AzureOpError;
 /** Fix the AppComplianceAutomation report error. e.g: App Compliance Automation Tool service unregistered, automation removed. */
-export const GetReportScopingQuestion: API.OperationMethod<
-  GetReportScopingQuestionRequest,
+export const GetReportScopingQuestions: API.OperationMethod<
+  GetReportScopingQuestionsRequest,
   ScopingQuestions,
-  GetReportScopingQuestionError,
+  GetReportScopingQuestionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReportScopingQuestionRequest,
+  input: GetReportScopingQuestionsRequest,
   output: ScopingQuestions,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3318,21 +3318,6 @@ export const ProviderActionsOnboard: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProviderActionsTriggerEvaluationError = AzureOpError;
-/** Trigger quick evaluation for the given subscriptions. */
-export const ProviderActionsTriggerEvaluation: API.OperationMethod<
-  ProviderActionsTriggerEvaluationRequest,
-  TriggerEvaluationResponse,
-  ProviderActionsTriggerEvaluationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProviderActionsTriggerEvaluationRequest,
-  output: TriggerEvaluationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReportCreateOrUpdateError = AzureOpError;
 /** Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report. */
 export const ReportCreateOrUpdate: API.OperationMethod<
@@ -3363,16 +3348,16 @@ export const ReportFix: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReportSyncCertRecordError = AzureOpError;
-/** Synchronize attestation record from app compliance. */
-export const ReportSyncCertRecord: API.OperationMethod<
-  ReportSyncCertRecordRequest,
-  SyncCertRecordResponse,
-  ReportSyncCertRecordError,
+export type ReportNestedResourceCheckNameAvailabilityError = AzureOpError;
+/** Checks the report's nested resource name availability, e.g: Webhooks, Evidences, Snapshots. */
+export const ReportNestedResourceCheckNameAvailability: API.OperationMethod<
+  ReportNestedResourceCheckNameAvailabilityRequest,
+  ReportNestedResourceCheckNameAvailabilityResponse,
+  ReportNestedResourceCheckNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReportSyncCertRecordRequest,
-  output: SyncCertRecordResponse,
+  input: ReportNestedResourceCheckNameAvailabilityRequest,
+  output: ReportNestedResourceCheckNameAvailabilityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3393,16 +3378,31 @@ export const ScopingConfigurationCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SnapshotDownloadError = AzureOpError;
-/** Download compliance needs from snapshot, like: Compliance Report, Resource List. */
-export const SnapshotDownload: API.OperationMethod<
-  SnapshotDownloadRequest,
-  DownloadResponse,
-  SnapshotDownloadError,
+export type SyncReportCertRecordError = AzureOpError;
+/** Synchronize attestation record from app compliance. */
+export const SyncReportCertRecord: API.OperationMethod<
+  SyncReportCertRecordRequest,
+  SyncCertRecordResponse,
+  SyncReportCertRecordError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotDownloadRequest,
-  output: DownloadResponse,
+  input: SyncReportCertRecordRequest,
+  output: SyncCertRecordResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerProviderActionEvaluationError = AzureOpError;
+/** Trigger quick evaluation for the given subscriptions. */
+export const TriggerProviderActionEvaluation: API.OperationMethod<
+  TriggerProviderActionEvaluationRequest,
+  TriggerEvaluationResponse,
+  TriggerProviderActionEvaluationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerProviderActionEvaluationRequest,
+  output: TriggerEvaluationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -1,5 +1,5 @@
 {
-  "description": "Fix Keyspace and PaginatedDatabaseBranchKeyspace schema: vector_pool_allocation can be null, replication_durability_constraints can be empty object",
+  "description": "Fix Keyspace and PaginatedDatabaseBranchKeyspace schema: vector_pool_allocation can be null",
   "patches": [
     {
       "op": "add",
@@ -7,19 +7,9 @@
       "value": true
     },
     {
-      "op": "replace",
-      "path": "/definitions/DatabaseBranchKeyspace/properties/replication_durability_constraints/required",
-      "value": []
-    },
-    {
       "op": "add",
       "path": "/definitions/PaginatedDatabaseBranchKeyspace/properties/data/items/properties/vector_pool_allocation/x-nullable",
       "value": true
-    },
-    {
-      "op": "replace",
-      "path": "/definitions/PaginatedDatabaseBranchKeyspace/properties/data/items/properties/replication_durability_constraints/required",
-      "value": []
     }
   ]
 }

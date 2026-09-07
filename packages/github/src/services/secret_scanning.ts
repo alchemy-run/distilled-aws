@@ -103,36 +103,33 @@ export const SecretScanningCustomPatternToCreate = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecretScanningCustomPatternToCreate>;
 
 /** The list of custom patterns to create. */
-export type BulkCreateRepoCustomPatternsRequestPatternsList =
+export type BulkCreateOrgCustomPatternsRequestPatternsList =
   Array<SecretScanningCustomPatternToCreate>;
-export const BulkCreateRepoCustomPatternsRequestPatternsList =
+export const BulkCreateOrgCustomPatternsRequestPatternsList =
   /*@__PURE__*/ S.Array(
     SecretScanningCustomPatternToCreate,
-  ) as any as S.Schema<BulkCreateRepoCustomPatternsRequestPatternsList>;
+  ) as any as S.Schema<BulkCreateOrgCustomPatternsRequestPatternsList>;
 
-export interface CreateBulkRepoCustomPatternRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
+export interface BulkCreateOrgCustomPatternsRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
   /** The list of custom patterns to create. */
-  patterns: BulkCreateRepoCustomPatternsRequestPatternsList;
+  patterns: BulkCreateOrgCustomPatternsRequestPatternsList;
 }
-export const CreateBulkRepoCustomPatternRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateOrgCustomPatternsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    patterns: BulkCreateRepoCustomPatternsRequestPatternsList,
+    org: S.String.pipe(T.Label()),
+    patterns: BulkCreateOrgCustomPatternsRequestPatternsList,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/repos/{owner}/{repo}/secret-scanning/custom-patterns",
+      uri: "/orgs/{org}/secret-scanning/custom-patterns",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateBulkRepoCustomPatternRequest",
-}) as any as S.Schema<CreateBulkRepoCustomPatternRequest>;
+  identifier: "BulkCreateOrgCustomPatternsRequest",
+}) as any as S.Schema<BulkCreateOrgCustomPatternsRequest>;
 
 /** The state of the custom pattern. */
 export type SecretScanningCustomPatternState = "published" | "unpublished";
@@ -202,57 +199,6 @@ export const SecretScanningCustomPattern = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SecretScanningCustomPattern>;
 
 /** The list of successfully created custom patterns. */
-export type BulkCreateRepoCustomPatternsResponseCreatedPatternsList =
-  Array<SecretScanningCustomPattern>;
-export const BulkCreateRepoCustomPatternsResponseCreatedPatternsList =
-  /*@__PURE__*/ S.Array(
-    SecretScanningCustomPattern,
-  ) as any as S.Schema<BulkCreateRepoCustomPatternsResponseCreatedPatternsList>;
-
-export interface CreateBulkRepoCustomPatternResponse {
-  /** The list of successfully created custom patterns. */
-  created_patterns?: BulkCreateRepoCustomPatternsResponseCreatedPatternsList;
-}
-export const CreateBulkRepoCustomPatternResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_patterns: S.optional(
-      BulkCreateRepoCustomPatternsResponseCreatedPatternsList,
-    ),
-  }),
-).annotate({
-  identifier: "CreateBulkRepoCustomPatternResponse",
-}) as any as S.Schema<CreateBulkRepoCustomPatternResponse>;
-
-/** The list of custom patterns to create. */
-export type BulkCreateOrgCustomPatternsRequestPatternsList =
-  Array<SecretScanningCustomPatternToCreate>;
-export const BulkCreateOrgCustomPatternsRequestPatternsList =
-  /*@__PURE__*/ S.Array(
-    SecretScanningCustomPatternToCreate,
-  ) as any as S.Schema<BulkCreateOrgCustomPatternsRequestPatternsList>;
-
-export interface CreateOrgBulkCustomPatternRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The list of custom patterns to create. */
-  patterns: BulkCreateOrgCustomPatternsRequestPatternsList;
-}
-export const CreateOrgBulkCustomPatternRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    patterns: BulkCreateOrgCustomPatternsRequestPatternsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/orgs/{org}/secret-scanning/custom-patterns",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateOrgBulkCustomPatternRequest",
-}) as any as S.Schema<CreateOrgBulkCustomPatternRequest>;
-
-/** The list of successfully created custom patterns. */
 export type BulkCreateOrgCustomPatternsResponseCreatedPatternsList =
   Array<SecretScanningCustomPattern>;
 export const BulkCreateOrgCustomPatternsResponseCreatedPatternsList =
@@ -260,19 +206,192 @@ export const BulkCreateOrgCustomPatternsResponseCreatedPatternsList =
     SecretScanningCustomPattern,
   ) as any as S.Schema<BulkCreateOrgCustomPatternsResponseCreatedPatternsList>;
 
-export interface CreateOrgBulkCustomPatternResponse {
+export interface BulkCreateOrgCustomPatternsResponse {
   /** The list of successfully created custom patterns. */
   created_patterns?: BulkCreateOrgCustomPatternsResponseCreatedPatternsList;
 }
-export const CreateOrgBulkCustomPatternResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateOrgCustomPatternsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     created_patterns: S.optional(
       BulkCreateOrgCustomPatternsResponseCreatedPatternsList,
     ),
   }),
 ).annotate({
-  identifier: "CreateOrgBulkCustomPatternResponse",
-}) as any as S.Schema<CreateOrgBulkCustomPatternResponse>;
+  identifier: "BulkCreateOrgCustomPatternsResponse",
+}) as any as S.Schema<BulkCreateOrgCustomPatternsResponse>;
+
+/** The list of custom patterns to create. */
+export type BulkCreateRepoCustomPatternsRequestPatternsList =
+  Array<SecretScanningCustomPatternToCreate>;
+export const BulkCreateRepoCustomPatternsRequestPatternsList =
+  /*@__PURE__*/ S.Array(
+    SecretScanningCustomPatternToCreate,
+  ) as any as S.Schema<BulkCreateRepoCustomPatternsRequestPatternsList>;
+
+export interface BulkCreateRepoCustomPatternsRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The list of custom patterns to create. */
+  patterns: BulkCreateRepoCustomPatternsRequestPatternsList;
+}
+export const BulkCreateRepoCustomPatternsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    patterns: BulkCreateRepoCustomPatternsRequestPatternsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/secret-scanning/custom-patterns",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BulkCreateRepoCustomPatternsRequest",
+}) as any as S.Schema<BulkCreateRepoCustomPatternsRequest>;
+
+/** The list of successfully created custom patterns. */
+export type BulkCreateRepoCustomPatternsResponseCreatedPatternsList =
+  Array<SecretScanningCustomPattern>;
+export const BulkCreateRepoCustomPatternsResponseCreatedPatternsList =
+  /*@__PURE__*/ S.Array(
+    SecretScanningCustomPattern,
+  ) as any as S.Schema<BulkCreateRepoCustomPatternsResponseCreatedPatternsList>;
+
+export interface BulkCreateRepoCustomPatternsResponse {
+  /** The list of successfully created custom patterns. */
+  created_patterns?: BulkCreateRepoCustomPatternsResponseCreatedPatternsList;
+}
+export const BulkCreateRepoCustomPatternsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      created_patterns: S.optional(
+        BulkCreateRepoCustomPatternsResponseCreatedPatternsList,
+      ),
+    }),
+).annotate({
+  identifier: "BulkCreateRepoCustomPatternsResponse",
+}) as any as S.Schema<BulkCreateRepoCustomPatternsResponse>;
+
+/** A custom pattern to delete in a bulk operation. */
+export interface SecretScanningCustomPatternToDelete {
+  /** The ID of the custom pattern to delete. */
+  pattern_id: number;
+  custom_pattern_version?: string | null;
+}
+export const SecretScanningCustomPatternToDelete = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pattern_id: S.Number,
+    custom_pattern_version: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "SecretScanningCustomPatternToDelete",
+}) as any as S.Schema<SecretScanningCustomPatternToDelete>;
+
+/** The list of custom patterns to delete. */
+export type BulkDeleteOrgCustomPatternsRequestPatternsList =
+  Array<SecretScanningCustomPatternToDelete>;
+export const BulkDeleteOrgCustomPatternsRequestPatternsList =
+  /*@__PURE__*/ S.Array(
+    SecretScanningCustomPatternToDelete,
+  ) as any as S.Schema<BulkDeleteOrgCustomPatternsRequestPatternsList>;
+
+/** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
+export type BulkDeleteOrgCustomPatternsRequestPostDeleteAction =
+  | "delete_alerts"
+  | "resolve_alerts";
+export const BulkDeleteOrgCustomPatternsRequestPostDeleteAction =
+  /*@__PURE__*/ S.String;
+
+export interface BulkDeleteOrgCustomPatternsRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The list of custom patterns to delete. */
+  patterns: BulkDeleteOrgCustomPatternsRequestPatternsList;
+  /** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
+  post_delete_action?:
+    | BulkDeleteOrgCustomPatternsRequestPostDeleteAction
+    | (string & {});
+}
+export const BulkDeleteOrgCustomPatternsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    patterns: BulkDeleteOrgCustomPatternsRequestPatternsList,
+    post_delete_action: S.optional(
+      BulkDeleteOrgCustomPatternsRequestPostDeleteAction,
+    ),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/orgs/{org}/secret-scanning/custom-patterns",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BulkDeleteOrgCustomPatternsRequest",
+}) as any as S.Schema<BulkDeleteOrgCustomPatternsRequest>;
+
+export interface BulkDeleteOrgCustomPatternsResponse {}
+export const BulkDeleteOrgCustomPatternsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BulkDeleteOrgCustomPatternsResponse",
+}) as any as S.Schema<BulkDeleteOrgCustomPatternsResponse>;
+
+/** The list of custom patterns to delete. */
+export type BulkDeleteRepoCustomPatternsRequestPatternsList =
+  Array<SecretScanningCustomPatternToDelete>;
+export const BulkDeleteRepoCustomPatternsRequestPatternsList =
+  /*@__PURE__*/ S.Array(
+    SecretScanningCustomPatternToDelete,
+  ) as any as S.Schema<BulkDeleteRepoCustomPatternsRequestPatternsList>;
+
+/** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
+export type BulkDeleteRepoCustomPatternsRequestPostDeleteAction =
+  | "delete_alerts"
+  | "resolve_alerts";
+export const BulkDeleteRepoCustomPatternsRequestPostDeleteAction =
+  /*@__PURE__*/ S.String;
+
+export interface BulkDeleteRepoCustomPatternsRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The list of custom patterns to delete. */
+  patterns: BulkDeleteRepoCustomPatternsRequestPatternsList;
+  /** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
+  post_delete_action?:
+    | BulkDeleteRepoCustomPatternsRequestPostDeleteAction
+    | (string & {});
+}
+export const BulkDeleteRepoCustomPatternsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    patterns: BulkDeleteRepoCustomPatternsRequestPatternsList,
+    post_delete_action: S.optional(
+      BulkDeleteRepoCustomPatternsRequestPostDeleteAction,
+    ),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/repos/{owner}/{repo}/secret-scanning/custom-patterns",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BulkDeleteRepoCustomPatternsRequest",
+}) as any as S.Schema<BulkDeleteRepoCustomPatternsRequest>;
+
+export interface BulkDeleteRepoCustomPatternsResponse {}
+export const BulkDeleteRepoCustomPatternsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "BulkDeleteRepoCustomPatternsResponse",
+}) as any as S.Schema<BulkDeleteRepoCustomPatternsResponse>;
 
 /** The reason for bypassing push protection. */
 export type SecretScanningPushProtectionBypassReason =
@@ -322,124 +441,6 @@ export const SecretScanningPushProtectionBypass = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SecretScanningPushProtectionBypass",
 }) as any as S.Schema<SecretScanningPushProtectionBypass>;
-
-/** A custom pattern to delete in a bulk operation. */
-export interface SecretScanningCustomPatternToDelete {
-  /** The ID of the custom pattern to delete. */
-  pattern_id: number;
-  custom_pattern_version?: string | null;
-}
-export const SecretScanningCustomPatternToDelete = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pattern_id: S.Number,
-    custom_pattern_version: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "SecretScanningCustomPatternToDelete",
-}) as any as S.Schema<SecretScanningCustomPatternToDelete>;
-
-/** The list of custom patterns to delete. */
-export type BulkDeleteRepoCustomPatternsRequestPatternsList =
-  Array<SecretScanningCustomPatternToDelete>;
-export const BulkDeleteRepoCustomPatternsRequestPatternsList =
-  /*@__PURE__*/ S.Array(
-    SecretScanningCustomPatternToDelete,
-  ) as any as S.Schema<BulkDeleteRepoCustomPatternsRequestPatternsList>;
-
-/** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
-export type BulkDeleteRepoCustomPatternsRequestPostDeleteAction =
-  | "delete_alerts"
-  | "resolve_alerts";
-export const BulkDeleteRepoCustomPatternsRequestPostDeleteAction =
-  /*@__PURE__*/ S.String;
-
-export interface DeleteBulkRepoCustomPatternRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The list of custom patterns to delete. */
-  patterns: BulkDeleteRepoCustomPatternsRequestPatternsList;
-  /** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
-  post_delete_action?:
-    | BulkDeleteRepoCustomPatternsRequestPostDeleteAction
-    | (string & {});
-}
-export const DeleteBulkRepoCustomPatternRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    patterns: BulkDeleteRepoCustomPatternsRequestPatternsList,
-    post_delete_action: S.optional(
-      BulkDeleteRepoCustomPatternsRequestPostDeleteAction,
-    ),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/repos/{owner}/{repo}/secret-scanning/custom-patterns",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DeleteBulkRepoCustomPatternRequest",
-}) as any as S.Schema<DeleteBulkRepoCustomPatternRequest>;
-
-export interface DeleteBulkRepoCustomPatternResponse {}
-export const DeleteBulkRepoCustomPatternResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteBulkRepoCustomPatternResponse",
-}) as any as S.Schema<DeleteBulkRepoCustomPatternResponse>;
-
-/** The list of custom patterns to delete. */
-export type BulkDeleteOrgCustomPatternsRequestPatternsList =
-  Array<SecretScanningCustomPatternToDelete>;
-export const BulkDeleteOrgCustomPatternsRequestPatternsList =
-  /*@__PURE__*/ S.Array(
-    SecretScanningCustomPatternToDelete,
-  ) as any as S.Schema<BulkDeleteOrgCustomPatternsRequestPatternsList>;
-
-/** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
-export type BulkDeleteOrgCustomPatternsRequestPostDeleteAction =
-  | "delete_alerts"
-  | "resolve_alerts";
-export const BulkDeleteOrgCustomPatternsRequestPostDeleteAction =
-  /*@__PURE__*/ S.String;
-
-export interface DeleteOrgBulkCustomPatternRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The list of custom patterns to delete. */
-  patterns: BulkDeleteOrgCustomPatternsRequestPatternsList;
-  /** What to do with alerts associated with the deleted patterns. `delete_alerts` permanently removes the alerts. `resolve_alerts` resolves the alerts as "pattern deleted". Defaults to `delete_alerts` when not specified. */
-  post_delete_action?:
-    | BulkDeleteOrgCustomPatternsRequestPostDeleteAction
-    | (string & {});
-}
-export const DeleteOrgBulkCustomPatternRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    patterns: BulkDeleteOrgCustomPatternsRequestPatternsList,
-    post_delete_action: S.optional(
-      BulkDeleteOrgCustomPatternsRequestPostDeleteAction,
-    ),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/orgs/{org}/secret-scanning/custom-patterns",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DeleteOrgBulkCustomPatternRequest",
-}) as any as S.Schema<DeleteOrgBulkCustomPatternRequest>;
-
-export interface DeleteOrgBulkCustomPatternResponse {}
-export const DeleteOrgBulkCustomPatternResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteOrgBulkCustomPatternResponse",
-}) as any as S.Schema<DeleteOrgBulkCustomPatternResponse>;
 
 export interface GetAlertRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -2253,42 +2254,80 @@ export const UpdateRepoCustomPatternRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRepoCustomPatternRequest",
 }) as any as S.Schema<UpdateRepoCustomPatternRequest>;
 
-export type CreateBulkRepoCustomPatternError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | GithubOpError;
-/** Bulk create repository custom patterns Bulk creates secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. */
-export const createBulkRepoCustomPattern: API.OperationMethod<
-  CreateBulkRepoCustomPatternRequest,
-  CreateBulkRepoCustomPatternResponse,
-  CreateBulkRepoCustomPatternError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateBulkRepoCustomPatternRequest,
-  output: CreateBulkRepoCustomPatternResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateOrgBulkCustomPatternError =
+export type BulkCreateOrgCustomPatternsError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | GithubOpError;
 /** Bulk create organization custom patterns Bulk creates secret scanning custom patterns for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint. */
-export const createOrgBulkCustomPattern: API.OperationMethod<
-  CreateOrgBulkCustomPatternRequest,
-  CreateOrgBulkCustomPatternResponse,
-  CreateOrgBulkCustomPatternError,
+export const bulkCreateOrgCustomPatterns: API.OperationMethod<
+  BulkCreateOrgCustomPatternsRequest,
+  BulkCreateOrgCustomPatternsResponse,
+  BulkCreateOrgCustomPatternsError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateOrgBulkCustomPatternRequest,
-  output: CreateOrgBulkCustomPatternResponse,
+  input: BulkCreateOrgCustomPatternsRequest,
+  output: BulkCreateOrgCustomPatternsResponse,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkCreateRepoCustomPatternsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | GithubOpError;
+/** Bulk create repository custom patterns Bulk creates secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. */
+export const bulkCreateRepoCustomPatterns: API.OperationMethod<
+  BulkCreateRepoCustomPatternsRequest,
+  BulkCreateRepoCustomPatternsResponse,
+  BulkCreateRepoCustomPatternsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkCreateRepoCustomPatternsRequest,
+  output: BulkCreateRepoCustomPatternsResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteOrgCustomPatternsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | GithubOpError;
+/** Bulk delete organization custom patterns Bulk deletes secret scanning custom patterns for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint. */
+export const bulkDeleteOrgCustomPatterns: API.OperationMethod<
+  BulkDeleteOrgCustomPatternsRequest,
+  BulkDeleteOrgCustomPatternsResponse,
+  BulkDeleteOrgCustomPatternsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteOrgCustomPatternsRequest,
+  output: BulkDeleteOrgCustomPatternsResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkDeleteRepoCustomPatternsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | GithubOpError;
+/** Bulk delete repository custom patterns Bulk deletes secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. */
+export const bulkDeleteRepoCustomPatterns: API.OperationMethod<
+  BulkDeleteRepoCustomPatternsRequest,
+  BulkDeleteRepoCustomPatternsResponse,
+  BulkDeleteRepoCustomPatternsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteRepoCustomPatternsRequest,
+  output: BulkDeleteRepoCustomPatternsResponse,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -2308,44 +2347,6 @@ export const createPushProtectionBypass: API.OperationMethod<
   input: CreatePushProtectionBypassRequest,
   output: SecretScanningPushProtectionBypass,
   errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkRepoCustomPatternError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | GithubOpError;
-/** Bulk delete repository custom patterns Bulk deletes secret scanning custom patterns for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` or `security_events` scope to use this endpoint. If this endpoint is only used with public repositories, the token can use the `public_repo` scope instead. */
-export const deleteBulkRepoCustomPattern: API.OperationMethod<
-  DeleteBulkRepoCustomPatternRequest,
-  DeleteBulkRepoCustomPatternResponse,
-  DeleteBulkRepoCustomPatternError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkRepoCustomPatternRequest,
-  output: DeleteBulkRepoCustomPatternResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOrgBulkCustomPatternError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | GithubOpError;
-/** Bulk delete organization custom patterns Bulk deletes secret scanning custom patterns for an organization. Personal access tokens (classic) need the `write:org` scope to use this endpoint. */
-export const deleteOrgBulkCustomPattern: API.OperationMethod<
-  DeleteOrgBulkCustomPatternRequest,
-  DeleteOrgBulkCustomPatternResponse,
-  DeleteOrgBulkCustomPatternError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOrgBulkCustomPatternRequest,
-  output: DeleteOrgBulkCustomPatternResponse,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));

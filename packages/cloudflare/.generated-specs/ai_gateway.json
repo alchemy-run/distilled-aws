@@ -114,7 +114,8 @@
       "usageEvents": "usage_events",
       "versionId": "version_id",
       "workersAiBillingMode": "workers_ai_billing_mode"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ai_gateway#CreateRequestLogManagementStrategy": {
@@ -16187,154 +16188,157 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.ai_gateway#Create"
+          "target": "com.cloudflare.ai_gateway#CreateAiGateway"
         },
         {
-          "target": "com.cloudflare.ai_gateway#Delete"
+          "target": "com.cloudflare.ai_gateway#CreateBillingSpendingLimit"
         },
         {
-          "target": "com.cloudflare.ai_gateway#Get"
+          "target": "com.cloudflare.ai_gateway#CreateBillingTopup"
         },
         {
-          "target": "com.cloudflare.ai_gateway#List"
+          "target": "com.cloudflare.ai_gateway#CreateBillingTopupConfig"
         },
         {
-          "target": "com.cloudflare.ai_gateway#Update"
+          "target": "com.cloudflare.ai_gateway#CreateCustomProvider"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingCreditBalance"
+          "target": "com.cloudflare.ai_gateway#CreateDataset"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingInvoiceHistory"
+          "target": "com.cloudflare.ai_gateway#CreateDeploymentDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingInvoicePreview"
+          "target": "com.cloudflare.ai_gateway#CreateDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingUsageHistory"
+          "target": "com.cloudflare.ai_gateway#CreateEvaluation"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingSpendingLimitCreate"
+          "target": "com.cloudflare.ai_gateway#CreateProviderConfig"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingSpendingLimitDelete"
+          "target": "com.cloudflare.ai_gateway#CreateVersionDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingSpendingLimitGet"
+          "target": "com.cloudflare.ai_gateway#CreditBalanceBilling"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingTopupCreate"
+          "target": "com.cloudflare.ai_gateway#DeleteAiGateway"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingTopupStatus"
+          "target": "com.cloudflare.ai_gateway#DeleteBillingSpendingLimit"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingTopupConfigCreate"
+          "target": "com.cloudflare.ai_gateway#DeleteBillingTopupConfig"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingTopupConfigDelete"
+          "target": "com.cloudflare.ai_gateway#DeleteCustomProvider"
         },
         {
-          "target": "com.cloudflare.ai_gateway#BillingTopupConfigGet"
+          "target": "com.cloudflare.ai_gateway#DeleteDataset"
         },
         {
-          "target": "com.cloudflare.ai_gateway#CustomProvidersCreate"
+          "target": "com.cloudflare.ai_gateway#DeleteDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#CustomProvidersDelete"
+          "target": "com.cloudflare.ai_gateway#DeleteEvaluation"
         },
         {
-          "target": "com.cloudflare.ai_gateway#CustomProvidersGet"
+          "target": "com.cloudflare.ai_gateway#DeleteLog"
         },
         {
-          "target": "com.cloudflare.ai_gateway#CustomProvidersList"
+          "target": "com.cloudflare.ai_gateway#DeleteProviderConfig"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DatasetsCreate"
+          "target": "com.cloudflare.ai_gateway#GetAiGateway"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DatasetsDelete"
+          "target": "com.cloudflare.ai_gateway#GetBillingSpendingLimit"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DatasetsGet"
+          "target": "com.cloudflare.ai_gateway#GetBillingTopupConfig"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DatasetsList"
+          "target": "com.cloudflare.ai_gateway#GetCustomProvider"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DatasetsUpdate"
+          "target": "com.cloudflare.ai_gateway#GetDataset"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingCreate"
+          "target": "com.cloudflare.ai_gateway#GetDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingCreateDeployment"
+          "target": "com.cloudflare.ai_gateway#GetEvaluation"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingCreateVersion"
+          "target": "com.cloudflare.ai_gateway#GetLog"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingDelete"
+          "target": "com.cloudflare.ai_gateway#GetUrl"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingGet"
+          "target": "com.cloudflare.ai_gateway#GetVersionDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingGetVersion"
+          "target": "com.cloudflare.ai_gateway#InvoiceHistoryBilling"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingList"
+          "target": "com.cloudflare.ai_gateway#InvoicePreviewBilling"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingListDeployments"
+          "target": "com.cloudflare.ai_gateway#ListAiGateways"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingListVersions"
+          "target": "com.cloudflare.ai_gateway#ListCustomProviders"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DynamicRoutingUpdate"
+          "target": "com.cloudflare.ai_gateway#ListDatasets"
         },
         {
-          "target": "com.cloudflare.ai_gateway#EvaluationTypesList"
+          "target": "com.cloudflare.ai_gateway#ListDeploymentsDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#EvaluationsCreate"
+          "target": "com.cloudflare.ai_gateway#ListDynamicRoutings"
         },
         {
-          "target": "com.cloudflare.ai_gateway#EvaluationsDelete"
+          "target": "com.cloudflare.ai_gateway#ListEvaluations"
         },
         {
-          "target": "com.cloudflare.ai_gateway#EvaluationsGet"
+          "target": "com.cloudflare.ai_gateway#ListEvaluationTypes"
         },
         {
-          "target": "com.cloudflare.ai_gateway#EvaluationsList"
+          "target": "com.cloudflare.ai_gateway#ListLogs"
         },
         {
-          "target": "com.cloudflare.ai_gateway#LogsDelete"
+          "target": "com.cloudflare.ai_gateway#ListProviderConfigs"
         },
         {
-          "target": "com.cloudflare.ai_gateway#LogsEdit"
+          "target": "com.cloudflare.ai_gateway#ListVersionsDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#LogsGet"
+          "target": "com.cloudflare.ai_gateway#PatchDynamicRouting"
         },
         {
-          "target": "com.cloudflare.ai_gateway#LogsList"
+          "target": "com.cloudflare.ai_gateway#PatchLog"
         },
         {
-          "target": "com.cloudflare.ai_gateway#LogsRequest"
+          "target": "com.cloudflare.ai_gateway#RequestLog"
         },
         {
-          "target": "com.cloudflare.ai_gateway#LogsResponse"
+          "target": "com.cloudflare.ai_gateway#ResponseLog"
         },
         {
-          "target": "com.cloudflare.ai_gateway#ProviderConfigsCreate"
+          "target": "com.cloudflare.ai_gateway#StatusBillingTopup"
         },
         {
-          "target": "com.cloudflare.ai_gateway#ProviderConfigsList"
+          "target": "com.cloudflare.ai_gateway#UpdateAiGateway"
         },
         {
-          "target": "com.cloudflare.ai_gateway#UrlsGet"
+          "target": "com.cloudflare.ai_gateway#UpdateDataset"
+        },
+        {
+          "target": "com.cloudflare.ai_gateway#UsageHistoryBilling"
         }
       ],
       "traits": {

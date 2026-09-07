@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.tracing#TracingAggregationQueryBody": {
@@ -267,7 +268,7 @@
         "smithy.api#documentation": "Property filters applied to spans in both windows."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanAggregateRequest": {
+    "com.posthog.tracing#CreateTracingSpansAggregateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -420,10 +421,10 @@
         "smithy.api#documentation": "Rows for the comparison window when compareFilter.compare is true, else null."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanAggregate": {
+    "com.posthog.tracing#CreateTracingSpansAggregate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanAggregateRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansAggregateRequest"
       },
       "output": {
         "target": "com.posthog.tracing#TracingAggregationResponse"
@@ -536,7 +537,7 @@
         "smithy.api#documentation": "Property filters scoping the spans the breakdown runs over (e.g. only error spans)."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanAttributeBreakdownRequest": {
+    "com.posthog.tracing#CreateTracingSpansAttributeBreakdownRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -639,10 +640,10 @@
         "smithy.api#documentation": "Rows for the comparison window when compareFilter.compare is true, else null."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanAttributeBreakdown": {
+    "com.posthog.tracing#CreateTracingSpansAttributeBreakdown": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanAttributeBreakdownRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansAttributeBreakdownRequest"
       },
       "output": {
         "target": "com.posthog.tracing#TracingAttributeBreakdownResponse"
@@ -655,7 +656,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingSpansAttributesRetrieveRequestAttributeType": {
+    "com.posthog.tracing#GetTracingSpansAttributeRequestAttributeType": {
       "type": "enum",
       "members": {
         "SPAN_ATTRIBUTE": {
@@ -673,7 +674,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tracing#TracingSpansAttributesRetrieveRequest": {
+    "com.posthog.tracing#GetTracingSpansAttributeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -685,7 +686,7 @@
           }
         },
         "attribute_type": {
-          "target": "com.posthog.tracing#TracingSpansAttributesRetrieveRequestAttributeType",
+          "target": "com.posthog.tracing#GetTracingSpansAttributeRequestAttributeType",
           "traits": {
             "smithy.api#httpQuery": "attribute_type",
             "smithy.api#documentation": "Type of attributes: \"span_attribute\" for span-level attributes, \"span_resource_attribute\" for resource-level attributes.\n\n* `span_attribute` - span_attribute\n* `span_resource_attribute` - span_resource_attribute"
@@ -807,10 +808,10 @@
         "smithy.api#documentation": "Available attribute keys matching the filters."
       }
     },
-    "com.posthog.tracing#TracingSpansAttributesRetrieve": {
+    "com.posthog.tracing#GetTracingSpansAttribute": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#TracingSpansAttributesRetrieveRequest"
+        "target": "com.posthog.tracing#GetTracingSpansAttributeRequest"
       },
       "output": {
         "target": "com.posthog.tracing#TracingAttributesResponse"
@@ -880,7 +881,7 @@
         "smithy.api#documentation": "Property filters for the count."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanCountRequest": {
+    "com.posthog.tracing#CreateTracingSpansCountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -923,10 +924,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tracing#CreateTracingSpanCount": {
+    "com.posthog.tracing#CreateTracingSpansCount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanCountRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansCountRequest"
       },
       "output": {
         "target": "com.posthog.tracing#TracingCountResponse"
@@ -1002,7 +1003,7 @@
         "smithy.api#documentation": "Property filters for the query."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanDurationHistogramRequest": {
+    "com.posthog.tracing#CreateTracingSpansDurationHistogramRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1025,10 +1026,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#CreateTracingSpanDurationHistogram": {
+    "com.posthog.tracing#CreateTracingSpansDurationHistogram": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanDurationHistogramRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansDurationHistogramRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1041,7 +1042,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingSpansHasSpansRetrieveRequest": {
+    "com.posthog.tracing#GetTracingSpansHasSpanRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1070,10 +1071,10 @@
       },
       "traits": {}
     },
-    "com.posthog.tracing#TracingSpansHasSpansRetrieve": {
+    "com.posthog.tracing#GetTracingSpansHasSpan": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#TracingSpansHasSpansRetrieveRequest"
+        "target": "com.posthog.tracing#GetTracingSpansHasSpanRequest"
       },
       "output": {
         "target": "com.posthog.tracing#HasSpansResponse"
@@ -1086,7 +1087,7 @@
         }
       }
     },
-    "com.posthog.tracing#CreateTracingSpanLatencyHeatmapRequest": {
+    "com.posthog.tracing#CreateTracingSpansLatencyHeatmapRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1158,10 +1159,10 @@
         "smithy.api#documentation": "Sparse heatmap cells ordered by time then duration bucket. Every time bucket in the window appears in at least one row, so the full x axis can be derived from the response."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanLatencyHeatmap": {
+    "com.posthog.tracing#CreateTracingSpansLatencyHeatmap": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanLatencyHeatmapRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansLatencyHeatmapRequest"
       },
       "output": {
         "target": "com.posthog.tracing#TracingLatencyHeatmapResponse"
@@ -1331,7 +1332,7 @@
         "smithy.api#documentation": "Property filters for the query."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanQueryRequest": {
+    "com.posthog.tracing#CreateTracingSpansQueryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1354,10 +1355,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#CreateTracingSpanQuery": {
+    "com.posthog.tracing#CreateTracingSpansQuery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanQueryRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansQueryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1370,7 +1371,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingSpansServiceNamesRetrieveRequest": {
+    "com.posthog.tracing#GetTracingSpansServiceNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1400,10 +1401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#TracingSpansServiceNamesRetrieve": {
+    "com.posthog.tracing#GetTracingSpansServiceName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#TracingSpansServiceNamesRetrieveRequest"
+        "target": "com.posthog.tracing#GetTracingSpansServiceNameRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1479,7 +1480,7 @@
         "smithy.api#documentation": "Property filters for the query."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanSparklineRequest": {
+    "com.posthog.tracing#CreateTracingSpansSparklineRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1502,10 +1503,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#CreateTracingSpanSparkline": {
+    "com.posthog.tracing#CreateTracingSpansSparkline": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanSparklineRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansSparklineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1579,7 +1580,7 @@
         "smithy.api#documentation": "Optional symbol (function) line ranges, supplied by the client from its own AST/LSP. When given, each span is attributed to the smallest enclosing range (one row per symbol). When omitted (or an empty list), spans are aggregated per source line (one row per line); pass a single whole-file range for a file-level total."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanSymbolStatRequest": {
+    "com.posthog.tracing#CreateTracingSpansSymbolStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1847,10 +1848,10 @@
         "smithy.api#documentation": "* `line` - line\n* `symbol` - symbol"
       }
     },
-    "com.posthog.tracing#CreateTracingSpanSymbolStat": {
+    "com.posthog.tracing#CreateTracingSpansSymbolStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanSymbolStatRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansSymbolStatRequest"
       },
       "output": {
         "target": "com.posthog.tracing#SymbolStatsResponse"
@@ -1863,7 +1864,7 @@
         }
       }
     },
-    "com.posthog.tracing#CreateTracingSpanTraceRequest": {
+    "com.posthog.tracing#CreateTracingSpansTraceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1904,10 +1905,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#CreateTracingSpanTrace": {
+    "com.posthog.tracing#CreateTracingSpansTrace": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanTraceRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansTraceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1982,7 +1983,7 @@
         "smithy.api#documentation": "Additional property filters applied to spans in both windows."
       }
     },
-    "com.posthog.tracing#CreateTracingSpanTreeRequest": {
+    "com.posthog.tracing#CreateTracingSpansTreeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2005,10 +2006,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#CreateTracingSpanTree": {
+    "com.posthog.tracing#CreateTracingSpansTree": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#CreateTracingSpanTreeRequest"
+        "target": "com.posthog.tracing#CreateTracingSpansTreeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2021,7 +2022,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingSpansValuesRetrieveRequestAttributeType": {
+    "com.posthog.tracing#GetTracingSpansValueRequestAttributeType": {
       "type": "enum",
       "members": {
         "SPAN": {
@@ -2045,7 +2046,7 @@
       },
       "traits": {}
     },
-    "com.posthog.tracing#TracingSpansValuesRetrieveRequest": {
+    "com.posthog.tracing#GetTracingSpansValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2057,7 +2058,7 @@
           }
         },
         "attribute_type": {
-          "target": "com.posthog.tracing#TracingSpansValuesRetrieveRequestAttributeType",
+          "target": "com.posthog.tracing#GetTracingSpansValueRequestAttributeType",
           "traits": {
             "smithy.api#httpQuery": "attribute_type",
             "smithy.api#documentation": "Type of attribute: \"span\" for built-in span fields (e.g. name), \"span_attribute\" for span-level attributes, \"span_resource_attribute\" for resource-level attributes.\n\n* `span` - span\n* `span_attribute` - span_attribute\n* `span_resource_attribute` - span_resource_attribute"
@@ -2097,10 +2098,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#TracingSpansValuesRetrieve": {
+    "com.posthog.tracing#GetTracingSpansValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#TracingSpansValuesRetrieveRequest"
+        "target": "com.posthog.tracing#GetTracingSpansValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2407,7 +2408,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingViewsCreateRequestFiltersMap": {
+    "com.posthog.tracing#CreateTracingViewRequestFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2438,7 +2439,7 @@
           }
         },
         "filters": {
-          "target": "com.posthog.tracing#TracingViewsCreateRequestFiltersMap",
+          "target": "com.posthog.tracing#CreateTracingViewRequestFiltersMap",
           "traits": {
             "smithy.api#documentation": "Saved tracing filters — a subset of the frontend TracingFilters shape. May contain dateRange, serviceNames, filterGroup, orderBy, orderDirection, and viewMode."
           }
@@ -2470,7 +2471,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingViewsRetrieveRequest": {
+    "com.posthog.tracing#GetTracingViewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2493,10 +2494,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#TracingViewsRetrieve": {
+    "com.posthog.tracing#GetTracingView": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#TracingViewsRetrieveRequest"
+        "target": "com.posthog.tracing#GetTracingViewRequest"
       },
       "output": {
         "target": "com.posthog.tracing#TracingView"
@@ -2509,7 +2510,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingViewsUpdateRequestFiltersMap": {
+    "com.posthog.tracing#UpdateTracingViewRequestFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2547,7 +2548,7 @@
           }
         },
         "filters": {
-          "target": "com.posthog.tracing#TracingViewsUpdateRequestFiltersMap",
+          "target": "com.posthog.tracing#UpdateTracingViewRequestFiltersMap",
           "traits": {
             "smithy.api#documentation": "Saved tracing filters — a subset of the frontend TracingFilters shape. May contain dateRange, serviceNames, filterGroup, orderBy, orderDirection, and viewMode."
           }
@@ -2579,7 +2580,7 @@
         }
       }
     },
-    "com.posthog.tracing#TracingViewsPartialUpdateRequestFiltersMap": {
+    "com.posthog.tracing#UpdateTracingViewsPartialRequestFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2591,7 +2592,7 @@
         "smithy.api#documentation": "Saved tracing filters — a subset of the frontend TracingFilters shape. May contain dateRange, serviceNames, filterGroup, orderBy, orderDirection, and viewMode."
       }
     },
-    "com.posthog.tracing#UpdateTracingViewPartialRequest": {
+    "com.posthog.tracing#UpdateTracingViewsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2616,7 +2617,7 @@
           }
         },
         "filters": {
-          "target": "com.posthog.tracing#TracingViewsPartialUpdateRequestFiltersMap",
+          "target": "com.posthog.tracing#UpdateTracingViewsPartialRequestFiltersMap",
           "traits": {
             "smithy.api#documentation": "Saved tracing filters — a subset of the frontend TracingFilters shape. May contain dateRange, serviceNames, filterGroup, orderBy, orderDirection, and viewMode."
           }
@@ -2632,10 +2633,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.tracing#UpdateTracingViewPartial": {
+    "com.posthog.tracing#UpdateTracingViewsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.tracing#UpdateTracingViewPartialRequest"
+        "target": "com.posthog.tracing#UpdateTracingViewsPartialRequest"
       },
       "output": {
         "target": "com.posthog.tracing#TracingView"
@@ -2692,64 +2693,64 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.tracing#CreateTracingSpanAggregate"
+          "target": "com.posthog.tracing#CreateTracingSpansAggregate"
         },
         {
-          "target": "com.posthog.tracing#CreateTracingSpanAttributeBreakdown"
+          "target": "com.posthog.tracing#CreateTracingSpansAttributeBreakdown"
         },
         {
-          "target": "com.posthog.tracing#TracingSpansAttributesRetrieve"
+          "target": "com.posthog.tracing#CreateTracingSpansCount"
         },
         {
-          "target": "com.posthog.tracing#CreateTracingSpanCount"
+          "target": "com.posthog.tracing#CreateTracingSpansDurationHistogram"
         },
         {
-          "target": "com.posthog.tracing#CreateTracingSpanDurationHistogram"
+          "target": "com.posthog.tracing#CreateTracingSpansLatencyHeatmap"
         },
         {
-          "target": "com.posthog.tracing#TracingSpansHasSpansRetrieve"
+          "target": "com.posthog.tracing#CreateTracingSpansQuery"
         },
         {
-          "target": "com.posthog.tracing#CreateTracingSpanLatencyHeatmap"
+          "target": "com.posthog.tracing#CreateTracingSpansSparkline"
         },
         {
-          "target": "com.posthog.tracing#CreateTracingSpanQuery"
+          "target": "com.posthog.tracing#CreateTracingSpansSymbolStat"
         },
         {
-          "target": "com.posthog.tracing#TracingSpansServiceNamesRetrieve"
+          "target": "com.posthog.tracing#CreateTracingSpansTrace"
         },
         {
-          "target": "com.posthog.tracing#CreateTracingSpanSparkline"
-        },
-        {
-          "target": "com.posthog.tracing#CreateTracingSpanSymbolStat"
-        },
-        {
-          "target": "com.posthog.tracing#CreateTracingSpanTrace"
-        },
-        {
-          "target": "com.posthog.tracing#CreateTracingSpanTree"
-        },
-        {
-          "target": "com.posthog.tracing#TracingSpansValuesRetrieve"
-        },
-        {
-          "target": "com.posthog.tracing#ListTracingViews"
+          "target": "com.posthog.tracing#CreateTracingSpansTree"
         },
         {
           "target": "com.posthog.tracing#CreateTracingView"
         },
         {
-          "target": "com.posthog.tracing#TracingViewsRetrieve"
+          "target": "com.posthog.tracing#GetTracingSpansAttribute"
+        },
+        {
+          "target": "com.posthog.tracing#GetTracingSpansHasSpan"
+        },
+        {
+          "target": "com.posthog.tracing#GetTracingSpansServiceName"
+        },
+        {
+          "target": "com.posthog.tracing#GetTracingSpansValue"
+        },
+        {
+          "target": "com.posthog.tracing#GetTracingView"
+        },
+        {
+          "target": "com.posthog.tracing#ListTracingViews"
+        },
+        {
+          "target": "com.posthog.tracing#TracingViewsDestroy"
         },
         {
           "target": "com.posthog.tracing#UpdateTracingView"
         },
         {
-          "target": "com.posthog.tracing#UpdateTracingViewPartial"
-        },
-        {
-          "target": "com.posthog.tracing#TracingViewsDestroy"
+          "target": "com.posthog.tracing#UpdateTracingViewsPartial"
         }
       ],
       "traits": {

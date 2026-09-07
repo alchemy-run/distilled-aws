@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.floating_ips#ListFloatingIpsRequestSortItem": {
@@ -1580,19 +1581,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.floating_ips#ListFloatingIps"
+          "target": "com.hetzner.floating_ips#CreateFloatingIp"
         },
         {
-          "target": "com.hetzner.floating_ips#CreateFloatingIp"
+          "target": "com.hetzner.floating_ips#DeleteFloatingIp"
         },
         {
           "target": "com.hetzner.floating_ips#GetFloatingIp"
         },
         {
-          "target": "com.hetzner.floating_ips#UpdateFloatingIp"
+          "target": "com.hetzner.floating_ips#ListFloatingIps"
         },
         {
-          "target": "com.hetzner.floating_ips#DeleteFloatingIp"
+          "target": "com.hetzner.floating_ips#UpdateFloatingIp"
         }
       ],
       "traits": {

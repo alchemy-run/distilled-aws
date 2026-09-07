@@ -4,54 +4,10 @@
     "service": "ftp",
     "version": "v1",
     "title": "Cloud FTP API",
-    "baseUrl": "https://ftp.googleapis.com/"
+    "baseUrl": "https://ftp.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.ftp_v1#StopServerRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for stopping a Server."
-      }
-    },
-    "com.gcp.ftp_v1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.ftp_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "operations": {
-          "target": "com.gcp.ftp_v1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.ftp_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.ftp_v1#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.ftp_v1#Operation"
-      }
-    },
     "com.gcp.ftp_v1#ListLocationsResponse": {
       "type": "structure",
       "members": {
@@ -78,115 +34,24 @@
         "target": "com.gcp.ftp_v1#Location"
       }
     },
-    "com.gcp.ftp_v1#ListServersResponse": {
+    "com.gcp.ftp_v1#ServerCredential": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
+        "fingerprint": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A token identifying a page of results the server should return."
+            "smithy.api#documentation": "Output only. The fingerprint is a hash of the public key, and is displayed when clients access the server for the first time to verify the server's identity."
           }
         },
-        "unreachable": {
-          "target": "com.gcp.ftp_v1#StringList",
+        "asymmetricAlgorithm": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Unordered list. Locations that could not be reached."
-          }
-        },
-        "servers": {
-          "target": "com.gcp.ftp_v1#ServerList",
-          "traits": {
-            "smithy.api#documentation": "The list of Server"
+            "smithy.api#documentation": "Output only. Asymmetric algorithm used by the public key. Possible values (can be expanded in future): - ssh-ed25519"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Message for response to listing Servers"
-      }
-    },
-    "com.gcp.ftp_v1#ServerList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.ftp_v1#Server"
-      }
-    },
-    "com.gcp.ftp_v1#ListUsersResponse": {
-      "type": "structure",
-      "members": {
-        "users": {
-          "target": "com.gcp.ftp_v1#UserList",
-          "traits": {
-            "smithy.api#documentation": "The list of User"
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.ftp_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Locations that could not be reached."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token identifying a page of results the user should return."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message for response to listing Users"
-      }
-    },
-    "com.gcp.ftp_v1#UserList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.ftp_v1#User"
-      }
-    },
-    "com.gcp.ftp_v1#Operation": {
-      "type": "structure",
-      "members": {
-        "error": {
-          "target": "com.gcp.ftp_v1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.ftp_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "response": {
-          "target": "com.gcp.ftp_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.ftp_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
+        "smithy.api#documentation": "Represents credentials of an FTP Server."
       }
     },
     "com.gcp.ftp_v1#ExternalServerConfig": {
@@ -209,15 +74,288 @@
         "smithy.api#documentation": "Configuration for external server."
       }
     },
+    "com.gcp.ftp_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.ftp_v1#AllowedConsumer": {
+      "type": "structure",
+      "members": {
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID or number of the consumer project. Must be in the format: `projects/{project}`."
+          }
+        },
+        "connectionLimit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The connection limit for the consumer. Value must be greater than 0."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A consumer project or network that is permitted to connect to the server via PSC."
+      }
+    },
+    "com.gcp.ftp_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.ftp_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.ftp_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.ftp_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ftp_v1#Operation"
+      }
+    },
+    "com.gcp.ftp_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.ftp_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.ftp_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.ftp_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ftp_v1#DocumentMap"
+      }
+    },
+    "com.gcp.ftp_v1#DeniedConsumer": {
+      "type": "structure",
+      "members": {
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The project ID or number of the consumer project. Must be in the format: `projects/{project}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A consumer project or network that is denied to connect to the server via PSC."
+      }
+    },
+    "com.gcp.ftp_v1#StorageDirectoryMapping": {
+      "type": "structure",
+      "members": {
+        "directory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Directory where the user lands in the SFTP server."
+          }
+        },
+        "bucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the bucket."
+          }
+        },
+        "bucketPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Prefix inside the bucket."
+          }
+        },
+        "permission": {
+          "target": "com.gcp.ftp_v1#StorageDirectoryMappingPermissionEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Permission to the bucket."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mapping of backing Cloud Storage path to the directory where the user lands in the SFTP server. If directory is not specified, it'll default to '/'. Eg 1 - (bucket_name: bucket, bucket_prefix: path1/path2, directory: /abc/def/username) The user will land at /abcd/def/username, and the view there will match that of /bucket/path1/path2. The user will not be aware of Cloud Storage prefix '/bucket/path1' and there will be no such directory in the view. Eg 2 - (bucket_name: bucket, bucket_prefix: path1/path2, directory: '') The user will land at '/', and the view there will match that of /bucket/path1/path2. The user will not be aware of Cloud Storage prefix '/bucket/path1/path2' and there will be no such directory in the view."
+      }
+    },
+    "com.gcp.ftp_v1#StorageDirectoryMappingPermissionEnum": {
+      "type": "enum",
+      "members": {
+        "PERMISSION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
+          }
+        },
+        "READ_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_ONLY"
+          }
+        },
+        "READ_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READ_WRITE"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#StartServerRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for starting a Server."
+      }
+    },
+    "com.gcp.ftp_v1#StopServerRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for stopping a Server."
+      }
+    },
+    "com.gcp.ftp_v1#Location": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.ftp_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.ftp_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.ftp_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.ftp_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
     "com.gcp.ftp_v1#UserCredential": {
       "type": "structure",
       "members": {
-        "sshPublicKeyBody": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. SSH public key body in OpenSSH format. Example: \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ...\""
-          }
-        },
         "credentialType": {
           "target": "com.gcp.ftp_v1#UserCredentialCredentialTypeEnum",
           "traits": {
@@ -228,6 +366,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. Name of the user credential."
+          }
+        },
+        "sshPublicKeyBody": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. SSH public key body in OpenSSH format. Example: \"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ...\""
           }
         }
       },
@@ -252,6 +396,44 @@
         }
       }
     },
+    "com.gcp.ftp_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.ftp_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.ftp_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.ftp_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
     "com.gcp.ftp_v1#CancelOperationRequest": {
       "type": "structure",
       "members": {},
@@ -259,40 +441,45 @@
         "smithy.api#documentation": "The request message for Operations.CancelOperation."
       }
     },
-    "com.gcp.ftp_v1#AllowedConsumer": {
+    "com.gcp.ftp_v1#ListUsersResponse": {
       "type": "structure",
       "members": {
-        "connectionLimit": {
-          "target": "smithy.api#String",
+        "users": {
+          "target": "com.gcp.ftp_v1#UserList",
           "traits": {
-            "smithy.api#documentation": "Required. The connection limit for the consumer. Value must be greater than 0."
+            "smithy.api#documentation": "The list of User"
           }
         },
-        "project": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The project ID or number of the consumer project. Must be in the format: `projects/{project}`."
+            "smithy.api#documentation": "A token identifying a page of results the user should return."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.ftp_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Locations that could not be reached."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A consumer project or network that is permitted to connect to the server via PSC."
+        "smithy.api#documentation": "Message for response to listing Users"
       }
     },
-    "com.gcp.ftp_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+    "com.gcp.ftp_v1#UserList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ftp_v1#User"
       }
     },
     "com.gcp.ftp_v1#User": {
       "type": "structure",
       "members": {
-        "storageDirectoryMappings": {
-          "target": "com.gcp.ftp_v1#StorageDirectoryMappingList",
+        "customerServiceAccount": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Mapping of Cloud Storage buckets to directories where the user will land in the SFTP server."
+            "smithy.api#documentation": "Required. Service account in customer project attached to this SFTP User."
           }
         },
         "createTime": {
@@ -301,16 +488,16 @@
             "smithy.api#documentation": "Output only. [Output only] Create time stamp"
           }
         },
-        "labels": {
-          "target": "com.gcp.ftp_v1#StringMap",
+        "updateTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Labels as key value pairs"
+            "smithy.api#documentation": "Output only. [Output only] Update time stamp"
           }
         },
-        "state": {
-          "target": "com.gcp.ftp_v1#UserStateEnum",
+        "storageDirectoryMappings": {
+          "target": "com.gcp.ftp_v1#StorageDirectoryMappingList",
           "traits": {
-            "smithy.api#documentation": "Output only. Tracks user creation."
+            "smithy.api#documentation": "Required. Mapping of Cloud Storage buckets to directories where the user will land in the SFTP server."
           }
         },
         "userCredentials": {
@@ -319,28 +506,28 @@
             "smithy.api#documentation": "Required. User credential for the user. The maximum number of user credentials is 10."
           }
         },
+        "state": {
+          "target": "com.gcp.ftp_v1#UserStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Tracks user creation."
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Identifier. User-friendly name via which User will be identified. projects/{project}/locations/{location}/servers/{server}/users/{user}"
           }
         },
-        "updateTime": {
-          "target": "smithy.api#String",
+        "labels": {
+          "target": "com.gcp.ftp_v1#StringMap",
           "traits": {
-            "smithy.api#documentation": "Output only. [Output only] Update time stamp"
+            "smithy.api#documentation": "Optional. Labels as key value pairs"
           }
         },
         "username": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. [Output only] The username of the user."
-          }
-        },
-        "customerServiceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Service account in customer project attached to this SFTP User."
           }
         }
       },
@@ -354,13 +541,10 @@
         "target": "com.gcp.ftp_v1#StorageDirectoryMapping"
       }
     },
-    "com.gcp.ftp_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
+    "com.gcp.ftp_v1#UserCredentialList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ftp_v1#UserCredential"
       }
     },
     "com.gcp.ftp_v1#UserStateEnum": {
@@ -404,142 +588,52 @@
         }
       }
     },
-    "com.gcp.ftp_v1#UserCredentialList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.ftp_v1#UserCredential"
-      }
-    },
-    "com.gcp.ftp_v1#DeniedConsumer": {
-      "type": "structure",
-      "members": {
-        "project": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The project ID or number of the consumer project. Must be in the format: `projects/{project}`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A consumer project or network that is denied to connect to the server via PSC."
-      }
-    },
-    "com.gcp.ftp_v1#StartServerRequest": {
+    "com.gcp.ftp_v1#Empty": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "Request message for starting a Server."
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
-    "com.gcp.ftp_v1#PscEndpoint": {
+    "com.gcp.ftp_v1#ListServersResponse": {
       "type": "structure",
       "members": {
-        "network": {
-          "target": "smithy.api#String",
+        "unreachable": {
+          "target": "com.gcp.ftp_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Output only. The consumer network. Format: `projects/{project}/locations/{location}/networks/{network}`"
+            "smithy.api#documentation": "Unordered list. Locations that could not be reached."
           }
         },
-        "endpoint": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. This is a Resource name for Private Service Connect endpoint. Format: `projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}`"
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
           }
         },
-        "status": {
-          "target": "smithy.api#String",
+        "servers": {
+          "target": "com.gcp.ftp_v1#ServerList",
           "traits": {
-            "smithy.api#documentation": "Output only. The status of the connected endpoint."
+            "smithy.api#documentation": "The list of Server"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Details of PSC endpoint created by customer."
+        "smithy.api#documentation": "Message for response to listing Servers"
       }
     },
-    "com.gcp.ftp_v1#Status": {
-      "type": "structure",
-      "members": {
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
-        "details": {
-          "target": "com.gcp.ftp_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.ftp_v1#DocumentMapList": {
+    "com.gcp.ftp_v1#ServerList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.ftp_v1#DocumentMap"
-      }
-    },
-    "com.gcp.ftp_v1#Location": {
-      "type": "structure",
-      "members": {
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.ftp_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.ftp_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+        "target": "com.gcp.ftp_v1#Server"
       }
     },
     "com.gcp.ftp_v1#Server": {
       "type": "structure",
       "members": {
-        "satisfiesPzs": {
-          "target": "smithy.api#Boolean",
+        "googleManagedServerCredential": {
+          "target": "com.gcp.ftp_v1#ServerCredential",
           "traits": {
-            "smithy.api#documentation": "Output only. Whether the Server satisfies Physical Zone Separation (PZS) requirements."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. name of resource"
+            "smithy.api#documentation": "Output only. Credentials of the FTP Server."
           }
         },
         "updateTime": {
@@ -554,16 +648,16 @@
             "smithy.api#documentation": "Output only. Whether the Server satisfies Physical Zone Isolation (PZI) requirements."
           }
         },
-        "createTime": {
-          "target": "smithy.api#String",
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Output only. [Output only] Create time stamp"
+            "smithy.api#documentation": "Output only. Whether the Server satisfies Physical Zone Separation (PZS) requirements."
           }
         },
-        "state": {
-          "target": "com.gcp.ftp_v1#ServerStateEnum",
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The state of the server."
+            "smithy.api#documentation": "Identifier. name of resource"
           }
         },
         "displayName": {
@@ -578,22 +672,16 @@
             "smithy.api#documentation": "Configuration for internal access."
           }
         },
-        "externalConfig": {
-          "target": "com.gcp.ftp_v1#ExternalServerConfig",
-          "traits": {
-            "smithy.api#documentation": "Configuration for external access."
-          }
-        },
         "serviceAgent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Service agent used to access the customer bucket."
           }
         },
-        "googleManagedServerCredential": {
-          "target": "com.gcp.ftp_v1#ServerCredential",
+        "createTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Credentials of the FTP Server."
+            "smithy.api#documentation": "Output only. [Output only] Create time stamp"
           }
         },
         "labels": {
@@ -602,15 +690,50 @@
             "smithy.api#documentation": "Optional. Labels as key value pairs"
           }
         },
+        "externalConfig": {
+          "target": "com.gcp.ftp_v1#ExternalServerConfig",
+          "traits": {
+            "smithy.api#documentation": "Configuration for external access."
+          }
+        },
         "accessType": {
           "target": "com.gcp.ftp_v1#ServerAccessTypeEnum",
           "traits": {
             "smithy.api#documentation": "Required. The access type of the Server."
           }
+        },
+        "state": {
+          "target": "com.gcp.ftp_v1#ServerStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of the server."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Message describing Server object"
+      }
+    },
+    "com.gcp.ftp_v1#ServerAccessTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACCESS_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESS_TYPE_UNSPECIFIED"
+          }
+        },
+        "EXTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTERNAL"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL"
+          }
+        }
       }
     },
     "com.gcp.ftp_v1#ServerStateEnum": {
@@ -672,157 +795,15 @@
         }
       }
     },
-    "com.gcp.ftp_v1#ServerAccessTypeEnum": {
-      "type": "enum",
-      "members": {
-        "ACCESS_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACCESS_TYPE_UNSPECIFIED"
-          }
-        },
-        "EXTERNAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EXTERNAL"
-          }
-        },
-        "INTERNAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "INTERNAL"
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#ServerCredential": {
-      "type": "structure",
-      "members": {
-        "fingerprint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The fingerprint is a hash of the public key, and is displayed when clients access the server for the first time to verify the server's identity."
-          }
-        },
-        "asymmetricAlgorithm": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Asymmetric algorithm used by the public key. Possible values (can be expanded in future): - ssh-ed25519"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents credentials of an FTP Server."
-      }
-    },
-    "com.gcp.ftp_v1#StorageDirectoryMapping": {
-      "type": "structure",
-      "members": {
-        "permission": {
-          "target": "com.gcp.ftp_v1#StorageDirectoryMappingPermissionEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. Permission to the bucket."
-          }
-        },
-        "bucketPrefix": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Prefix inside the bucket."
-          }
-        },
-        "bucket": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the bucket."
-          }
-        },
-        "directory": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Directory where the user lands in the SFTP server."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Mapping of backing Cloud Storage path to the directory where the user lands in the SFTP server. If directory is not specified, it'll default to '/'. Eg 1 - (bucket_name: bucket, bucket_prefix: path1/path2, directory: /abc/def/username) The user will land at /abcd/def/username, and the view there will match that of /bucket/path1/path2. The user will not be aware of Cloud Storage prefix '/bucket/path1' and there will be no such directory in the view. Eg 2 - (bucket_name: bucket, bucket_prefix: path1/path2, directory: '') The user will land at '/', and the view there will match that of /bucket/path1/path2. The user will not be aware of Cloud Storage prefix '/bucket/path1/path2' and there will be no such directory in the view."
-      }
-    },
-    "com.gcp.ftp_v1#StorageDirectoryMappingPermissionEnum": {
-      "type": "enum",
-      "members": {
-        "PERMISSION_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PERMISSION_UNSPECIFIED"
-          }
-        },
-        "READ_ONLY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "READ_ONLY"
-          }
-        },
-        "READ_WRITE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "READ_WRITE"
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#OperationMetadata": {
-      "type": "structure",
-      "members": {
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation was created."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. API version used to start the operation."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation finished running."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
-          }
-        },
-        "verb": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents the metadata of the long-running operation."
-      }
-    },
     "com.gcp.ftp_v1#InternalServerConfig": {
       "type": "structure",
       "members": {
+        "consumerRejectList": {
+          "target": "com.gcp.ftp_v1#DeniedConsumerList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of projects that are denied connection. Format: \"projects/sample_project_id\" or \"projects/1234567890\" Projects in this list will be denied access, even if they are included in the `allow_list`. If this list is empty, no projects are explicitly rejected."
+          }
+        },
         "consumerAcceptList": {
           "target": "com.gcp.ftp_v1#AllowedConsumerList",
           "traits": {
@@ -840,16 +821,16 @@
           "traits": {
             "smithy.api#documentation": "Output only. The resource name of the service attachment. Format: `projects/{project}/regions/{region}/serviceAttachments/{service_attachment}`"
           }
-        },
-        "consumerRejectList": {
-          "target": "com.gcp.ftp_v1#DeniedConsumerList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of projects that are denied connection. Format: \"projects/sample_project_id\" or \"projects/1234567890\" Projects in this list will be denied access, even if they are included in the `allow_list`. If this list is empty, no projects are explicitly rejected."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Configuration for private server accessible via PSC."
+      }
+    },
+    "com.gcp.ftp_v1#DeniedConsumerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ftp_v1#DeniedConsumer"
       }
     },
     "com.gcp.ftp_v1#AllowedConsumerList": {
@@ -864,49 +845,41 @@
         "target": "com.gcp.ftp_v1#PscEndpoint"
       }
     },
-    "com.gcp.ftp_v1#DeniedConsumerList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.ftp_v1#DeniedConsumer"
+    "com.gcp.ftp_v1#PscEndpoint": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The consumer network. Format: `projects/{project}/locations/{location}/networks/{network}`"
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. This is a Resource name for Private Service Connect endpoint. Format: `projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}`"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of the connected endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of PSC endpoint created by customer."
       }
     },
-    "com.gcp.ftp_v1#ListProjectsLocationsRequest": {
+    "com.gcp.ftp_v1#GetProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#documentation": "Resource name for the location.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "extraLocationTypes": {
-          "target": "com.gcp.ftp_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -937,6 +910,71 @@
         ]
       }
     },
+    "com.gcp.ftp_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ftp_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ftp_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ftp_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.ftp_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
     "com.gcp.ftp_v1#ListProjectsLocations": {
       "type": "operation",
       "input": {
@@ -965,26 +1003,95 @@
         }
       }
     },
-    "com.gcp.ftp_v1#GetProjectsLocationsRequest": {
+    "com.gcp.ftp_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ftp_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ftp_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ftp_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.ftp_v1#GetProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#documentation": "The name of the operation resource.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.ftp_v1#GetProjectsLocations": {
+    "com.gcp.ftp_v1#GetProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ftp_v1#GetProjectsLocationsRequest"
+        "target": "com.gcp.ftp_v1#GetProjectsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.ftp_v1#Location"
+        "target": "com.gcp.ftp_v1#Operation"
       },
       "errors": [
         {
@@ -999,25 +1106,18 @@
           "method": "GET",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Gets information about a location."
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     },
-    "com.gcp.ftp_v1#StopProjectsLocationsServersRequest": {
+    "com.gcp.ftp_v1#DeleteProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Name of the resource. Format: `projects/{project}/locations/{location}/servers/{server}`",
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.ftp_v1#StopServerRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -1048,56 +1148,13 @@
         ]
       }
     },
-    "com.gcp.ftp_v1#StopProjectsLocationsServers": {
+    "com.gcp.ftp_v1#DeleteProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ftp_v1#StopProjectsLocationsServersRequest"
+        "target": "com.gcp.ftp_v1#DeleteProjectsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.ftp_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ftp_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.ftp_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:stop"
-        },
-        "smithy.api#documentation": "Stops an active Server."
-      }
-    },
-    "com.gcp.ftp_v1#DeleteProjectsLocationsServersRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the resource",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#DeleteProjectsLocationsServers": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ftp_v1#DeleteProjectsLocationsServersRequest"
-      },
-      "output": {
-        "target": "com.gcp.ftp_v1#Operation"
+        "target": "com.gcp.ftp_v1#Empty"
       },
       "errors": [
         {
@@ -1118,36 +1175,22 @@
           "method": "DELETE",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Deletes a single Server."
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
-    "com.gcp.ftp_v1#PatchProjectsLocationsServersRequest": {
+    "com.gcp.ftp_v1#CancelProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. name of resource",
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Server resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
         "body": {
-          "target": "com.gcp.ftp_v1#Server",
+          "target": "com.gcp.ftp_v1#CancelOperationRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1155,13 +1198,13 @@
         }
       }
     },
-    "com.gcp.ftp_v1#PatchProjectsLocationsServers": {
+    "com.gcp.ftp_v1#CancelProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ftp_v1#PatchProjectsLocationsServersRequest"
+        "target": "com.gcp.ftp_v1#CancelProjectsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.ftp_v1#Operation"
+        "target": "com.gcp.ftp_v1#Empty"
       },
       "errors": [
         {
@@ -1179,10 +1222,10 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
         },
-        "smithy.api#documentation": "Updates the parameters of a single Server."
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     },
     "com.gcp.ftp_v1#GetProjectsLocationsServersViewEnum": {
@@ -1255,11 +1298,12 @@
     "com.gcp.ftp_v1#CreateProjectsLocationsServersRequest": {
       "type": "structure",
       "members": {
-        "requestId": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
+            "smithy.api#documentation": "Required. Value for parent.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "serverId": {
@@ -1269,12 +1313,11 @@
             "smithy.api#httpQuery": "serverId"
           }
         },
-        "parent": {
+        "requestId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Value for parent.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
           }
         },
         "body": {
@@ -1316,84 +1359,26 @@
         "smithy.api#documentation": "Creates a new Server in a given project and location."
       }
     },
-    "com.gcp.ftp_v1#ListProjectsLocationsServersViewEnum": {
-      "type": "enum",
-      "members": {
-        "SERVER_VIEW_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SERVER_VIEW_UNSPECIFIED"
-          }
-        },
-        "SERVER_VIEW_BASIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SERVER_VIEW_BASIC"
-          }
-        },
-        "SERVER_VIEW_FULL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SERVER_VIEW_FULL"
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#ListProjectsLocationsServersRequest": {
+    "com.gcp.ftp_v1#DeleteProjectsLocationsServersRequest": {
       "type": "structure",
       "members": {
-        "filter": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Filtering results",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Hint for how to order the results",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "view": {
-          "target": "com.gcp.ftp_v1#ListProjectsLocationsServersViewEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The view of the Server resource to return.",
-            "smithy.api#httpQuery": "view"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent value for ListServersRequest",
+            "smithy.api#documentation": "Required. Name of the resource",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.ftp_v1#ListProjectsLocationsServers": {
+    "com.gcp.ftp_v1#DeleteProjectsLocationsServers": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ftp_v1#ListProjectsLocationsServersRequest"
+        "target": "com.gcp.ftp_v1#DeleteProjectsLocationsServersRequest"
       },
       "output": {
-        "target": "com.gcp.ftp_v1#ListServersResponse"
+        "target": "com.gcp.ftp_v1#Operation"
       },
       "errors": [
         {
@@ -1401,18 +1386,20 @@
         },
         {
           "target": "com.gcp.ftp_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ftp_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/servers"
+          "method": "DELETE",
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Lists Servers in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Deletes a single Server."
       }
     },
     "com.gcp.ftp_v1#StartProjectsLocationsServersRequest": {
@@ -1463,6 +1450,318 @@
           "uri": "v1/{+name}:start"
         },
         "smithy.api#documentation": "Starts a stopping/stopped Server."
+      }
+    },
+    "com.gcp.ftp_v1#StopProjectsLocationsServersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource. Format: `projects/{project}/locations/{location}/servers/{server}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.ftp_v1#StopServerRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#StopProjectsLocationsServers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ftp_v1#StopProjectsLocationsServersRequest"
+      },
+      "output": {
+        "target": "com.gcp.ftp_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ftp_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ftp_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:stop"
+        },
+        "smithy.api#documentation": "Stops an active Server."
+      }
+    },
+    "com.gcp.ftp_v1#PatchProjectsLocationsServersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. name of resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Server resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.ftp_v1#Server",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#PatchProjectsLocationsServers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ftp_v1#PatchProjectsLocationsServersRequest"
+      },
+      "output": {
+        "target": "com.gcp.ftp_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ftp_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ftp_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single Server."
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsServersViewEnum": {
+      "type": "enum",
+      "members": {
+        "SERVER_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVER_VIEW_UNSPECIFIED"
+          }
+        },
+        "SERVER_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVER_VIEW_BASIC"
+          }
+        },
+        "SERVER_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVER_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsServersRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "view": {
+          "target": "com.gcp.ftp_v1#ListProjectsLocationsServersViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The view of the Server resource to return.",
+            "smithy.api#httpQuery": "view"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for ListServersRequest",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsServers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ftp_v1#ListProjectsLocationsServersRequest"
+      },
+      "output": {
+        "target": "com.gcp.ftp_v1#ListServersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ftp_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/servers"
+        },
+        "smithy.api#documentation": "Lists Servers in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsServersUsersViewEnum": {
+      "type": "enum",
+      "members": {
+        "USER_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_VIEW_UNSPECIFIED"
+          }
+        },
+        "USER_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_VIEW_BASIC"
+          }
+        },
+        "USER_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USER_VIEW_FULL"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsServersUsersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for ListUsersRequest",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the user should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Requested page size. User may return fewer items than requested. The maximum value is 1000; The default value is 50 if the field is omitted (or set to 0).",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "view": {
+          "target": "com.gcp.ftp_v1#ListProjectsLocationsServersUsersViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The view of the User resource to return.",
+            "smithy.api#httpQuery": "view"
+          }
+        }
+      }
+    },
+    "com.gcp.ftp_v1#ListProjectsLocationsServersUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ftp_v1#ListProjectsLocationsServersUsersRequest"
+      },
+      "output": {
+        "target": "com.gcp.ftp_v1#ListUsersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ftp_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/users"
+        },
+        "smithy.api#documentation": "Lists Users in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.ftp_v1#GetProjectsLocationsServersUsersViewEnum": {
@@ -1596,84 +1895,33 @@
         "smithy.api#documentation": "Creates a new User in a given project and location and Server."
       }
     },
-    "com.gcp.ftp_v1#ListProjectsLocationsServersUsersViewEnum": {
-      "type": "enum",
-      "members": {
-        "USER_VIEW_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "USER_VIEW_UNSPECIFIED"
-          }
-        },
-        "USER_VIEW_BASIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "USER_VIEW_BASIC"
-          }
-        },
-        "USER_VIEW_FULL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "USER_VIEW_FULL"
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#ListProjectsLocationsServersUsersRequest": {
+    "com.gcp.ftp_v1#DeleteProjectsLocationsServersUsersRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the user should return.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filtering results",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Requested page size. User may return fewer items than requested. The maximum value is 1000; The default value is 50 if the field is omitted (or set to 0).",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent value for ListUsersRequest",
+            "smithy.api#documentation": "Required. Name of the resource",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "view": {
-          "target": "com.gcp.ftp_v1#ListProjectsLocationsServersUsersViewEnum",
+        "force": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Optional. The view of the User resource to return.",
-            "smithy.api#httpQuery": "view"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Hint for how to order the results",
-            "smithy.api#httpQuery": "orderBy"
+            "smithy.api#documentation": "Optional. If set to true, the request will force the deletion of the User.",
+            "smithy.api#httpQuery": "force"
           }
         }
       }
     },
-    "com.gcp.ftp_v1#ListProjectsLocationsServersUsers": {
+    "com.gcp.ftp_v1#DeleteProjectsLocationsServersUsers": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ftp_v1#ListProjectsLocationsServersUsersRequest"
+        "target": "com.gcp.ftp_v1#DeleteProjectsLocationsServersUsersRequest"
       },
       "output": {
-        "target": "com.gcp.ftp_v1#ListUsersResponse"
+        "target": "com.gcp.ftp_v1#Operation"
       },
       "errors": [
         {
@@ -1681,36 +1929,38 @@
         },
         {
           "target": "com.gcp.ftp_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.ftp_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.ftp_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/users"
+          "method": "DELETE",
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Lists Users in a given project and location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Deletes a single User."
       }
     },
     "com.gcp.ftp_v1#PatchProjectsLocationsServersUsersRequest": {
       "type": "structure",
       "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the User resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Identifier. User-friendly name via which User will be identified. projects/{project}/locations/{location}/servers/{server}/users/{user}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the User resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -1750,255 +2000,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Updates the parameters of a single User."
-      }
-    },
-    "com.gcp.ftp_v1#DeleteProjectsLocationsServersUsersRequest": {
-      "type": "structure",
-      "members": {
-        "force": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If set to true, the request will force the deletion of the User.",
-            "smithy.api#httpQuery": "force"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the resource",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#DeleteProjectsLocationsServersUsers": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ftp_v1#DeleteProjectsLocationsServersUsersRequest"
-      },
-      "output": {
-        "target": "com.gcp.ftp_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ftp_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.ftp_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a single User."
-      }
-    },
-    "com.gcp.ftp_v1#ListProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#ListProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ftp_v1#ListProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.ftp_v1#ListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ftp_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.ftp_v1#DeleteProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be deleted.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#DeleteProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ftp_v1#DeleteProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.ftp_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ftp_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.ftp_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
-      }
-    },
-    "com.gcp.ftp_v1#GetProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ftp_v1#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.ftp_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ftp_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.ftp_v1#CancelProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.ftp_v1#CancelOperationRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.ftp_v1#CancelProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ftp_v1#CancelProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.ftp_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ftp_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.ftp_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.ftp_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:cancel"
-        },
-        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     }
   }

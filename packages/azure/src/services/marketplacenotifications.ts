@@ -38,52 +38,52 @@ export const GetNotificationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNotificationRequest>;
 
 /** The type of identity that created the resource. */
-export type NotificationGetResponseSystemDataCreatedByType =
+export type GetNotificationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NotificationGetResponseSystemDataCreatedByType =
+export const GetNotificationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type NotificationGetResponseSystemDataLastModifiedByType =
+export type GetNotificationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NotificationGetResponseSystemDataLastModifiedByType =
+export const GetNotificationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface NotificationGetResponseSystemData {
+export interface GetNotificationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: NotificationGetResponseSystemDataCreatedByType;
+  createdByType?: GetNotificationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: NotificationGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetNotificationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const NotificationGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetNotificationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(NotificationGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetNotificationResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      NotificationGetResponseSystemDataLastModifiedByType,
+      GetNotificationResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "NotificationGetResponseSystemData",
-}) as any as S.Schema<NotificationGetResponseSystemData>;
+  identifier: "GetNotificationResponseSystemData",
+}) as any as S.Schema<GetNotificationResponseSystemData>;
 
 export interface OfferProperties {
   /** legacy offer id of the notification (publisher.offer) */
@@ -114,7 +114,7 @@ export interface GetNotificationResponse {
   /** The type of the resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: NotificationGetResponseSystemData;
+  systemData?: GetNotificationResponseSystemData;
   /** The offer data structure. */
   properties?: OfferProperties;
 }
@@ -123,15 +123,15 @@ export const GetNotificationResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(NotificationGetResponseSystemData),
+    systemData: S.optional(GetNotificationResponseSystemData),
     properties: S.optional(OfferProperties),
   }),
 ).annotate({
   identifier: "GetNotificationResponse",
 }) as any as S.Schema<GetNotificationResponse>;
 
-export interface GetNotificationOperationRequest {}
-export const GetNotificationOperationRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetNotificationOperationsRequest {}
+export const GetNotificationOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -141,8 +141,8 @@ export const GetNotificationOperationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetNotificationOperationRequest",
-}) as any as S.Schema<GetNotificationOperationRequest>;
+  identifier: "GetNotificationOperationsRequest",
+}) as any as S.Schema<GetNotificationOperationsRequest>;
 
 /** Operation display payload */
 export interface OperationDisplay {
@@ -336,14 +336,14 @@ export const GetNotification: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetNotificationOperationError = AzureOpError;
-export const GetNotificationOperation: API.OperationMethod<
-  GetNotificationOperationRequest,
+export type GetNotificationOperationsError = AzureOpError;
+export const GetNotificationOperations: API.OperationMethod<
+  GetNotificationOperationsRequest,
   AvailableOperations,
-  GetNotificationOperationError,
+  GetNotificationOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetNotificationOperationRequest,
+  input: GetNotificationOperationsRequest,
   output: AvailableOperations,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

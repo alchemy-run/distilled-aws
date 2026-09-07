@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.query#DashboardFilter": {
@@ -4603,6 +4604,12 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "customBotDefinitions": {
+          "target": "com.posthog.query#HogQLQueryModifiersCustomBotDefinitionsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "customChannelTypeRules": {
           "target": "com.posthog.query#HogQLQueryModifiersCustomChannelTypeRulesList",
           "traits": {
@@ -4815,6 +4822,125 @@
             "smithy.api#enumValue": "uniq_page_screen_autocaptures"
           }
         }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#CustomBotDefinition": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reported by `$virt_traffic_category`. Defaults to `custom`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "com.posthog.query#CustomBotField",
+          "traits": {
+            "smithy.api#documentation": "The event property this rule reads.",
+            "smithy.api#required": {}
+          }
+        },
+        "matcher": {
+          "target": "com.posthog.query#CustomBotMatcher",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reported by `$virt_bot_name` and `$virt_bot_operator` when the rule matches.",
+            "smithy.api#required": {}
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Matched against the property named by `key`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#CustomBotField": {
+      "type": "enum",
+      "members": {
+        "RAW_USER_AGENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$raw_user_agent"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$ip"
+          }
+        },
+        "LIB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$lib"
+          }
+        },
+        "HOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$host"
+          }
+        },
+        "PATHNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$pathname"
+          }
+        },
+        "CURRENT_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$current_url"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#CustomBotMatcher": {
+      "type": "enum",
+      "members": {
+        "CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contains"
+          }
+        },
+        "REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regex"
+          }
+        },
+        "CIDR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cidr"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#HogQLQueryModifiersCustomBotDefinitionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#CustomBotDefinition"
       },
       "traits": {}
     },
@@ -14783,6 +14909,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStale": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -15183,6 +15316,13 @@
           "target": "com.posthog.query#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -26627,6 +26767,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.query#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -27226,6 +27373,13 @@
           "target": "com.posthog.query#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -29335,6 +29489,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "aws-s3"
+          }
+        },
+        "AWS_REDSHIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aws-redshift"
           }
         },
         "S3_COMPATIBLE": {
@@ -31750,6 +31910,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "display": {
+          "target": "com.posthog.query#MetricsDisplaySettings",
+          "traits": {
+            "smithy.api#documentation": "Chart presentation. A node without it renders as a line chart.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "formula": {
           "target": "smithy.api#String",
           "traits": {
@@ -32063,6 +32230,149 @@
       "type": "list",
       "member": {
         "target": "com.posthog.query#MetricsQueryClause"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MetricsDisplaySettings": {
+      "type": "structure",
+      "members": {
+        "goalLines": {
+          "target": "com.posthog.query#MetricsDisplaySettingsGoalLinesList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "statSummary": {
+          "target": "com.posthog.query#MetricsStatSummary",
+          "traits": {
+            "smithy.api#documentation": "`stat` display only: which summary the headline value shows.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.query#MetricsDisplayType",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "yAxis": {
+          "target": "com.posthog.query#MetricsYAxisSettings",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MetricsDisplaySettingsGoalLinesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#GoalLine"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MetricsStatSummary": {
+      "type": "enum",
+      "members": {
+        "LATEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "latest"
+          }
+        },
+        "AVERAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "average"
+          }
+        },
+        "TOTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "total"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MetricsDisplayType": {
+      "type": "enum",
+      "members": {
+        "LINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "line"
+          }
+        },
+        "AREA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "area"
+          }
+        },
+        "BAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bar"
+          }
+        },
+        "STAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stat"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MetricsYAxisSettings": {
+      "type": "structure",
+      "members": {
+        "max": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Pins the top of the axis; unset means automatic. Pinning both ends drops the automatic stretch that keeps an off-scale goal line on-plot.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "min": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Pins the bottom of the axis; unset means automatic. Ignored while `startAtZero` is on.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scale": {
+          "target": "com.posthog.query#MetricsAxisScale",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "startAtZero": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When false the axis floats to the data range instead of starting at zero. Ignored on a logarithmic scale, and on the bar display, where a bar's length encodes magnitude from zero.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MetricsAxisScale": {
+      "type": "enum",
+      "members": {
+        "LINEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linear"
+          }
+        },
+        "LOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log"
+          }
+        }
       },
       "traits": {}
     },
@@ -37827,12 +38137,85 @@
         "smithy.api#documentation": "Match accounts where any listed user actively holds any relationship."
       }
     },
+    "com.posthog.query#AccountsTableAssignedFilter": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
     "com.posthog.query#AccountsTableUnassignedFilter": {
       "type": "structure",
       "members": {
         "kind": {
           "target": "smithy.api#String"
         }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#AccountsTableRelationshipFilter": {
+      "type": "structure",
+      "members": {
+        "definitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String"
+        },
+        "operator": {
+          "target": "com.posthog.query#AccountsTableRelationshipOperator",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userIds": {
+          "target": "com.posthog.query#AccountsTableRelationshipFilterUserIdsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#AccountsTableRelationshipOperator": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "IS_NOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not"
+          }
+        },
+        "IS_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_set"
+          }
+        },
+        "IS_NOT_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not_set"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#AccountsTableRelationshipFilterUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
       },
       "traits": {}
     },
@@ -38103,8 +38486,14 @@
         "AccountsTableAssignedToFilter": {
           "target": "com.posthog.query#AccountsTableAssignedToFilter"
         },
+        "AccountsTableAssignedFilter": {
+          "target": "com.posthog.query#AccountsTableAssignedFilter"
+        },
         "AccountsTableUnassignedFilter": {
           "target": "com.posthog.query#AccountsTableUnassignedFilter"
+        },
+        "AccountsTableRelationshipFilter": {
+          "target": "com.posthog.query#AccountsTableRelationshipFilter"
         },
         "AccountsTableAccountIdFilter": {
           "target": "com.posthog.query#AccountsTableAccountIdFilter"
@@ -43192,6 +43581,236 @@
       },
       "traits": {}
     },
+    "com.posthog.query#MCPMissingCapabilitiesQuery": {
+      "type": "structure",
+      "members": {
+        "dateRange": {
+          "target": "com.posthog.query#DateRange",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String"
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page size; defaults to 100, capped at 500.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "modifiers": {
+          "target": "com.posthog.query#HogQLQueryModifiers",
+          "traits": {
+            "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Reports to skip before returning results. Combine with limit to page through them; the response's has_next flag indicates whether more remain.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "response": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQueryResponse",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Case-insensitive substring match over the report text.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.posthog.query#QueryLogTags",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "version of the node, used for schema migrations",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MCPMissingCapabilitiesQueryResponse": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Query error. Returned only if 'explain' or `modifiers.debug` is true. Throws an error otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_next": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether more reports exist past this page.",
+            "smithy.api#required": {}
+          }
+        },
+        "hogql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Generated HogQL query.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "modifiers": {
+          "target": "com.posthog.query#HogQLQueryModifiers",
+          "traits": {
+            "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query_status": {
+          "target": "com.posthog.query#QueryStatus",
+          "traits": {
+            "smithy.api#documentation": "Query status indicates whether next to the provided data, a query is still running.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resolved_compare_date_range": {
+          "target": "com.posthog.query#ResolvedDateRangeResponse",
+          "traits": {
+            "smithy.api#documentation": "The resolved previous/comparison period date range, when comparing against another period",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resolved_date_range": {
+          "target": "com.posthog.query#ResolvedDateRangeResponse",
+          "traits": {
+            "smithy.api#documentation": "The date range used for the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQueryResponseResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "timings": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQueryResponseTimingsList",
+          "traits": {
+            "smithy.api#documentation": "Measured timings for different parts of the query generation process",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "used_data_warehouse_sources": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQueryResponseUsedDataWarehouseSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Connector-synced data warehouse sources referenced by this query, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "warnings": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQueryResponseWarningsList",
+          "traits": {
+            "smithy.api#documentation": "Warnings about data warehouse sources referenced by the query whose latest sync failed, is paused, hit a billing limit, or is otherwise stale. Results may not reflect current source data. Accumulated across every HogQL execution that contributes to this response — so insights backed by warehouse tables (Trends, Funnels, etc.) receive the same warnings as raw HogQL queries. Also carries access control warnings when a system-table query filters out objects the user can't access.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MCPMissingCapabilitiesItem": {
+      "type": "structure",
+      "members": {
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "harness": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resolved client label, the client's own self-reported name when unrecognized, or \"Unidentified client\" when the report carried no client identity at all.",
+            "smithy.api#required": {}
+          }
+        },
+        "intent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The agent's own words for the capability it wanted, from $mcp_intent.",
+            "smithy.api#required": {}
+          }
+        },
+        "person_properties": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "JSON-encoded person email/name for display; \"{}\" when neither resolved.",
+            "smithy.api#required": {}
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Conversation id: $mcp_session_id, falling back to $session_id; empty when neither is set.",
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MCPMissingCapabilitiesQueryResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#MCPMissingCapabilitiesItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MCPMissingCapabilitiesQueryResponseTimingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#QueryTiming"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MCPMissingCapabilitiesQueryResponseUsedDataWarehouseSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#DataWarehouseSourceUsage"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MCPMissingCapabilitiesQueryResponseWarningsItem": {
+      "type": "union",
+      "members": {
+        "DataWarehouseSyncWarning": {
+          "target": "com.posthog.query#DataWarehouseSyncWarning"
+        },
+        "AccessControlFilterWarning": {
+          "target": "com.posthog.query#AccessControlFilterWarning"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#MCPMissingCapabilitiesQueryResponseWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#MCPMissingCapabilitiesQueryResponseWarningsItem"
+      },
+      "traits": {}
+    },
     "com.posthog.query#HogQLAutocompleteSourceQuery": {
       "type": "union",
       "members": {
@@ -43425,6 +44044,9 @@
         },
         "MCPToolNeighborsQuery": {
           "target": "com.posthog.query#MCPToolNeighborsQuery"
+        },
+        "MCPMissingCapabilitiesQuery": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQuery"
         }
       },
       "traits": {}
@@ -43662,6 +44284,9 @@
         },
         "MCPToolNeighborsQuery": {
           "target": "com.posthog.query#MCPToolNeighborsQuery"
+        },
+        "MCPMissingCapabilitiesQuery": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQuery"
         }
       },
       "traits": {}
@@ -44880,6 +45505,13 @@
         "leftYAxisSettings": {
           "target": "com.posthog.query#YAxisSettings",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "legendPosition": {
+          "target": "com.posthog.query#LegendPosition",
+          "traits": {
+            "smithy.api#documentation": "Where the legend sits relative to the chart. Unset falls back per chart type: right for pie, top for the rest.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -46719,6 +47351,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.query#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -46864,6 +47503,13 @@
         "offset": {
           "target": "smithy.api#Integer",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -47363,6 +48009,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.query#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -47504,6 +48157,13 @@
           "target": "com.posthog.query#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -49888,6 +50548,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "account_fields"
+          }
+        },
+        "ACCOUNT_RELATIONSHIPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account_relationships"
           }
         },
         "ACCOUNT_CUSTOM_PROPERTIES": {
@@ -52430,7 +53096,7 @@
       },
       "traits": {}
     },
-    "com.posthog.query#QueryCreateRequestQuery": {
+    "com.posthog.query#CreateQueryRequestQuery": {
       "type": "union",
       "members": {
         "EventsNode": {
@@ -52730,6 +53396,9 @@
         "MCPToolNeighborsQuery": {
           "target": "com.posthog.query#MCPToolNeighborsQuery"
         },
+        "MCPMissingCapabilitiesQuery": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQuery"
+        },
         "PropertyValuesQuery": {
           "target": "com.posthog.query#PropertyValuesQuery"
         }
@@ -52786,7 +53455,7 @@
       },
       "traits": {}
     },
-    "com.posthog.query#QueryCreateRequestVariablesOverrideValueMap": {
+    "com.posthog.query#CreateQueryRequestVariablesOverrideValueMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -52796,13 +53465,13 @@
       },
       "traits": {}
     },
-    "com.posthog.query#QueryCreateRequestVariablesOverrideMap": {
+    "com.posthog.query#CreateQueryRequestVariablesOverrideMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.posthog.query#QueryCreateRequestVariablesOverrideValueMap"
+        "target": "com.posthog.query#CreateQueryRequestVariablesOverrideValueMap"
       },
       "traits": {}
     },
@@ -52851,7 +53520,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.query#QueryCreateRequestQuery",
+          "target": "com.posthog.query#CreateQueryRequestQuery",
           "traits": {
             "smithy.api#documentation": "Submit a JSON string representing a query for PostHog data analysis, for example a HogQL query.\n\nExample payload:\n\n```\n\n{\"query\": {\"kind\": \"HogQLQuery\", \"query\": \"select * from events limit 100\"}}\n\n```\n\nFor more details on HogQL queries, see the [PostHog HogQL documentation](/docs/hogql#api-access)."
           }
@@ -52864,7 +53533,7 @@
           }
         },
         "variables_override": {
-          "target": "com.posthog.query#QueryCreateRequestVariablesOverrideMap",
+          "target": "com.posthog.query#CreateQueryRequestVariablesOverrideMap",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -53200,6 +53869,9 @@
         },
         "QueryResponseAlternative112": {
           "target": "com.posthog.query#QueryResponseAlternative112"
+        },
+        "QueryResponseAlternative113": {
+          "target": "com.posthog.query#QueryResponseAlternative113"
         }
       },
       "traits": {}
@@ -56120,6 +56792,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.query#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -56265,6 +56944,13 @@
         "offset": {
           "target": "smithy.api#Integer",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -56764,6 +57450,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.query#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -56905,6 +57598,13 @@
           "target": "com.posthog.query#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -58930,6 +59630,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.query#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -59075,6 +59782,13 @@
         "offset": {
           "target": "smithy.api#Integer",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -59574,6 +60288,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.query#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -59715,6 +60436,13 @@
           "target": "com.posthog.query#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -67043,6 +67771,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "has_next": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether more reports exist past this page.",
+            "smithy.api#required": {}
+          }
+        },
         "hogql": {
           "target": "smithy.api#String",
           "traits": {
@@ -67111,7 +67846,7 @@
     "com.posthog.query#QueryResponseAlternative112ResultsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.query#PropertyValueItem"
+        "target": "com.posthog.query#MCPMissingCapabilitiesItem"
       },
       "traits": {}
     },
@@ -67145,6 +67880,121 @@
       "type": "list",
       "member": {
         "target": "com.posthog.query#QueryResponseAlternative112WarningsItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#QueryResponseAlternative113": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Query error. Returned only if 'explain' or `modifiers.debug` is true. Throws an error otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hogql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Generated HogQL query.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "modifiers": {
+          "target": "com.posthog.query#HogQLQueryModifiers",
+          "traits": {
+            "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "query_status": {
+          "target": "com.posthog.query#QueryStatus",
+          "traits": {
+            "smithy.api#documentation": "Query status indicates whether next to the provided data, a query is still running.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resolved_compare_date_range": {
+          "target": "com.posthog.query#ResolvedDateRangeResponse",
+          "traits": {
+            "smithy.api#documentation": "The resolved previous/comparison period date range, when comparing against another period",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resolved_date_range": {
+          "target": "com.posthog.query#ResolvedDateRangeResponse",
+          "traits": {
+            "smithy.api#documentation": "The date range used for the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.query#QueryResponseAlternative113ResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "timings": {
+          "target": "com.posthog.query#QueryResponseAlternative113TimingsList",
+          "traits": {
+            "smithy.api#documentation": "Measured timings for different parts of the query generation process",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "used_data_warehouse_sources": {
+          "target": "com.posthog.query#QueryResponseAlternative113UsedDataWarehouseSourcesList",
+          "traits": {
+            "smithy.api#documentation": "Connector-synced data warehouse sources referenced by this query, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "warnings": {
+          "target": "com.posthog.query#QueryResponseAlternative113WarningsList",
+          "traits": {
+            "smithy.api#documentation": "Warnings about data warehouse sources referenced by the query whose latest sync failed, is paused, hit a billing limit, or is otherwise stale. Results may not reflect current source data. Accumulated across every HogQL execution that contributes to this response — so insights backed by warehouse tables (Trends, Funnels, etc.) receive the same warnings as raw HogQL queries. Also carries access control warnings when a system-table query filters out objects the user can't access.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#QueryResponseAlternative113ResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#PropertyValueItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#QueryResponseAlternative113TimingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#QueryTiming"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#QueryResponseAlternative113UsedDataWarehouseSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#DataWarehouseSourceUsage"
+      },
+      "traits": {}
+    },
+    "com.posthog.query#QueryResponseAlternative113WarningsItem": {
+      "type": "union",
+      "members": {
+        "DataWarehouseSyncWarning": {
+          "target": "com.posthog.query#DataWarehouseSyncWarning"
+        },
+        "AccessControlFilterWarning": {
+          "target": "com.posthog.query#AccessControlFilterWarning"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.query#QueryResponseAlternative113WarningsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.query#QueryResponseAlternative113WarningsItem"
       },
       "traits": {}
     },
@@ -67191,7 +68041,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.query#QueryRetrieveRequest": {
+    "com.posthog.query#GetQueryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -67223,10 +68073,10 @@
       },
       "traits": {}
     },
-    "com.posthog.query#QueryRetrieve": {
+    "com.posthog.query#GetQuery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.query#QueryRetrieveRequest"
+        "target": "com.posthog.query#GetQueryRequest"
       },
       "output": {
         "target": "com.posthog.query#QueryStatusResponse"
@@ -67296,7 +68146,7 @@
         "smithy.api#documentation": "(Experimental)"
       }
     },
-    "com.posthog.query#QueryLogRetrieveRequest": {
+    "com.posthog.query#GetQueryLogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -67319,7 +68169,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.query#QueryLogRetrieveResponseBodyMap": {
+    "com.posthog.query#GetQueryLogResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -67329,11 +68179,11 @@
       },
       "traits": {}
     },
-    "com.posthog.query#QueryLogRetrieveResponse": {
+    "com.posthog.query#GetQueryLogResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.query#QueryLogRetrieveResponseBodyMap",
+          "target": "com.posthog.query#GetQueryLogResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -67344,13 +68194,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.query#QueryLogRetrieve": {
+    "com.posthog.query#GetQueryLog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.query#QueryLogRetrieveRequest"
+        "target": "com.posthog.query#GetQueryLogRequest"
       },
       "output": {
-        "target": "com.posthog.query#QueryLogRetrieveResponse"
+        "target": "com.posthog.query#GetQueryLogResponse"
       },
       "errors": [
         {
@@ -67417,7 +68267,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.query#QueryCheckAuthForAsyncCreateRequest": {
+    "com.posthog.query#CreateQueryCheckAuthForAsyncRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -67433,7 +68283,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.query#QueryCheckAuthForAsyncCreateResponseBodyMap": {
+    "com.posthog.query#CreateQueryCheckAuthForAsyncResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -67443,11 +68293,11 @@
       },
       "traits": {}
     },
-    "com.posthog.query#QueryCheckAuthForAsyncCreateResponse": {
+    "com.posthog.query#CreateQueryCheckAuthForAsyncResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.query#QueryCheckAuthForAsyncCreateResponseBodyMap",
+          "target": "com.posthog.query#CreateQueryCheckAuthForAsyncResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -67458,13 +68308,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.query#QueryCheckAuthForAsyncCreate": {
+    "com.posthog.query#CreateQueryCheckAuthForAsync": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.query#QueryCheckAuthForAsyncCreateRequest"
+        "target": "com.posthog.query#CreateQueryCheckAuthForAsyncRequest"
       },
       "output": {
-        "target": "com.posthog.query#QueryCheckAuthForAsyncCreateResponse"
+        "target": "com.posthog.query#CreateQueryCheckAuthForAsyncResponse"
       },
       "errors": [
         {
@@ -67483,7 +68333,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.query#QueryDraftSqlRetrieveRequest": {
+    "com.posthog.query#GetQueryDraftSqlRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -67499,7 +68349,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.query#QueryDraftSqlRetrieveResponseBodyMap": {
+    "com.posthog.query#GetQueryDraftSqlResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -67509,11 +68359,11 @@
       },
       "traits": {}
     },
-    "com.posthog.query#QueryDraftSqlRetrieveResponse": {
+    "com.posthog.query#GetQueryDraftSqlResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.query#QueryDraftSqlRetrieveResponseBodyMap",
+          "target": "com.posthog.query#GetQueryDraftSqlResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -67524,13 +68374,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.query#QueryDraftSqlRetrieve": {
+    "com.posthog.query#GetQueryDraftSql": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.query#QueryDraftSqlRetrieveRequest"
+        "target": "com.posthog.query#GetQueryDraftSqlRequest"
       },
       "output": {
-        "target": "com.posthog.query#QueryDraftSqlRetrieveResponse"
+        "target": "com.posthog.query#GetQueryDraftSqlResponse"
       },
       "errors": [
         {
@@ -67549,7 +68399,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.query#QueryUpgradeCreateRequestQuery": {
+    "com.posthog.query#CreateQueryUpgradeRequestQuery": {
       "type": "union",
       "members": {
         "EventsNode": {
@@ -67849,6 +68699,9 @@
         "MCPToolNeighborsQuery": {
           "target": "com.posthog.query#MCPToolNeighborsQuery"
         },
+        "MCPMissingCapabilitiesQuery": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQuery"
+        },
         "PropertyValuesQuery": {
           "target": "com.posthog.query#PropertyValuesQuery"
         }
@@ -67867,7 +68720,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.query#QueryUpgradeCreateRequestQuery"
+          "target": "com.posthog.query#CreateQueryUpgradeRequestQuery"
         }
       },
       "traits": {
@@ -68183,6 +69036,9 @@
         "MCPToolNeighborsQuery": {
           "target": "com.posthog.query#MCPToolNeighborsQuery"
         },
+        "MCPMissingCapabilitiesQuery": {
+          "target": "com.posthog.query#MCPMissingCapabilitiesQuery"
+        },
         "PropertyValuesQuery": {
           "target": "com.posthog.query#PropertyValuesQuery"
         }
@@ -68264,25 +69120,25 @@
           "target": "com.posthog.query#CreateQuery"
         },
         {
-          "target": "com.posthog.query#QueryRetrieve"
+          "target": "com.posthog.query#CreateQueryCheckAuthForAsync"
         },
         {
-          "target": "com.posthog.query#QueryDestroy"
-        },
-        {
-          "target": "com.posthog.query#QueryLogRetrieve"
+          "target": "com.posthog.query#CreateQueryUpgrade"
         },
         {
           "target": "com.posthog.query#CreateQueryWithKind"
         },
         {
-          "target": "com.posthog.query#QueryCheckAuthForAsyncCreate"
+          "target": "com.posthog.query#GetQuery"
         },
         {
-          "target": "com.posthog.query#QueryDraftSqlRetrieve"
+          "target": "com.posthog.query#GetQueryDraftSql"
         },
         {
-          "target": "com.posthog.query#CreateQueryUpgrade"
+          "target": "com.posthog.query#GetQueryLog"
+        },
+        {
+          "target": "com.posthog.query#QueryDestroy"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.file_system_shortcut#ListFileSystemShortcutRequest": {
@@ -231,7 +232,7 @@
         }
       }
     },
-    "com.posthog.file_system_shortcut#FileSystemShortcutRetrieveRequest": {
+    "com.posthog.file_system_shortcut#GetFileSystemShortcutRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -255,10 +256,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.file_system_shortcut#FileSystemShortcutRetrieve": {
+    "com.posthog.file_system_shortcut#GetFileSystemShortcut": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.file_system_shortcut#FileSystemShortcutRetrieveRequest"
+        "target": "com.posthog.file_system_shortcut#GetFileSystemShortcutRequest"
       },
       "output": {
         "target": "com.posthog.file_system_shortcut#FileSystemShortcut2"
@@ -493,7 +494,7 @@
         }
       }
     },
-    "com.posthog.file_system_shortcut#FileSystemShortcutReorderCreateRequestOrderedIdsList": {
+    "com.posthog.file_system_shortcut#CreateFileSystemShortcutReorderRequestOrderedIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -514,7 +515,7 @@
           }
         },
         "ordered_ids": {
-          "target": "com.posthog.file_system_shortcut#FileSystemShortcutReorderCreateRequestOrderedIdsList",
+          "target": "com.posthog.file_system_shortcut#CreateFileSystemShortcutReorderRequestOrderedIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of the current user's shortcuts in the desired display order.",
             "smithy.api#required": {}
@@ -586,25 +587,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.file_system_shortcut#ListFileSystemShortcut"
-        },
-        {
           "target": "com.posthog.file_system_shortcut#CreateFileSystemShortcut"
         },
         {
-          "target": "com.posthog.file_system_shortcut#FileSystemShortcutRetrieve"
+          "target": "com.posthog.file_system_shortcut#CreateFileSystemShortcutReorder"
+        },
+        {
+          "target": "com.posthog.file_system_shortcut#FileSystemShortcutDestroy"
+        },
+        {
+          "target": "com.posthog.file_system_shortcut#GetFileSystemShortcut"
+        },
+        {
+          "target": "com.posthog.file_system_shortcut#ListFileSystemShortcut"
         },
         {
           "target": "com.posthog.file_system_shortcut#UpdateFileSystemShortcut"
         },
         {
           "target": "com.posthog.file_system_shortcut#UpdateFileSystemShortcutPartial"
-        },
-        {
-          "target": "com.posthog.file_system_shortcut#FileSystemShortcutDestroy"
-        },
-        {
-          "target": "com.posthog.file_system_shortcut#CreateFileSystemShortcutReorder"
         }
       ],
       "traits": {

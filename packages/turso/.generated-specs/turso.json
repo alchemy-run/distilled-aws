@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.turso.api#ListDatabasesRequest": {
@@ -3743,7 +3744,7 @@
       },
       "traits": {}
     },
-    "com.turso.api#ListApiTokensResponse": {
+    "com.turso.api#ListAPITokensResponse": {
       "type": "structure",
       "members": {
         "tokens": {
@@ -3754,13 +3755,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turso.api#ListApiTokens": {
+    "com.turso.api#ListAPITokens": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.turso.api#ListApiTokensResponse"
+        "target": "com.turso.api#ListAPITokensResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3852,7 +3853,7 @@
         "smithy.api#documentation": "Permissions to grant a group-scoped token. Each entry is either an individual scope or one of the presets `read-only` (expands to `read`) and `full-access` (expands to every scope). Required and must be non-empty when `group` is set. `db:mint-token` lets the token issue new SQL credentials; `db:rotate-creds` invalidates every existing SQL token for the database — they are deliberately separate because rotation is destructive."
       }
     },
-    "com.turso.api#CreateApiTokenRequest": {
+    "com.turso.api#CreateAPITokenRequest": {
       "type": "structure",
       "members": {
         "tokenName": {
@@ -3886,7 +3887,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.turso.api#CreateApiTokenResponse": {
+    "com.turso.api#CreateAPITokenResponse": {
       "type": "structure",
       "members": {
         "name": {
@@ -3906,13 +3907,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turso.api#CreateApiToken": {
+    "com.turso.api#CreateAPIToken": {
       "type": "operation",
       "input": {
-        "target": "com.turso.api#CreateApiTokenRequest"
+        "target": "com.turso.api#CreateAPITokenRequest"
       },
       "output": {
-        "target": "com.turso.api#CreateApiTokenResponse"
+        "target": "com.turso.api#CreateAPITokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3975,7 +3976,7 @@
         "smithy.api#documentation": "Revoke API Token\n\nRevokes the provided API token belonging to a user."
       }
     },
-    "com.turso.api#ListOrganizationApiTokensRequest": {
+    "com.turso.api#ListOrganizationAPITokensRequest": {
       "type": "structure",
       "members": {
         "organizationSlug": {
@@ -4069,7 +4070,7 @@
       },
       "traits": {}
     },
-    "com.turso.api#ListOrganizationApiTokensResponse": {
+    "com.turso.api#ListOrganizationAPITokensResponse": {
       "type": "structure",
       "members": {
         "tokens": {
@@ -4080,13 +4081,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turso.api#ListOrganizationApiTokens": {
+    "com.turso.api#ListOrganizationAPITokens": {
       "type": "operation",
       "input": {
-        "target": "com.turso.api#ListOrganizationApiTokensRequest"
+        "target": "com.turso.api#ListOrganizationAPITokensRequest"
       },
       "output": {
-        "target": "com.turso.api#ListOrganizationApiTokensResponse"
+        "target": "com.turso.api#ListOrganizationAPITokensResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4680,6 +4681,11 @@
       "output": {
         "target": "com.turso.api#InviteOrganizationMemberV2Response"
       },
+      "errors": [
+        {
+          "target": "com.turso.api#BadRequest"
+        }
+      ],
       "traits": {
         "smithy.api#http": {
           "method": "POST",
@@ -4867,97 +4873,64 @@
       "version": "0.1.0",
       "operations": [
         {
-          "target": "com.turso.api#ListDatabases"
+          "target": "com.turso.api#AddLocationToGroup"
+        },
+        {
+          "target": "com.turso.api#AddOrganizationMember"
+        },
+        {
+          "target": "com.turso.api#CreateAPIToken"
         },
         {
           "target": "com.turso.api#CreateDatabase"
         },
         {
-          "target": "com.turso.api#GetDatabase"
-        },
-        {
-          "target": "com.turso.api#DeleteDatabase"
-        },
-        {
-          "target": "com.turso.api#GetDatabaseConfiguration"
-        },
-        {
-          "target": "com.turso.api#UpdateDatabaseConfiguration"
-        },
-        {
-          "target": "com.turso.api#ListDatabaseInstances"
-        },
-        {
-          "target": "com.turso.api#GetDatabaseInstance"
-        },
-        {
           "target": "com.turso.api#CreateDatabaseToken"
-        },
-        {
-          "target": "com.turso.api#GetDatabaseUsage"
-        },
-        {
-          "target": "com.turso.api#GetDatabaseStats"
-        },
-        {
-          "target": "com.turso.api#InvalidateDatabaseTokens"
-        },
-        {
-          "target": "com.turso.api#ListGroups"
         },
         {
           "target": "com.turso.api#CreateGroup"
         },
         {
-          "target": "com.turso.api#GetGroup"
+          "target": "com.turso.api#CreateGroupToken"
+        },
+        {
+          "target": "com.turso.api#DeleteDatabase"
         },
         {
           "target": "com.turso.api#DeleteGroup"
         },
         {
+          "target": "com.turso.api#DeleteOrganizationInviteByEmailV2"
+        },
+        {
+          "target": "com.turso.api#GetCurrentUser"
+        },
+        {
+          "target": "com.turso.api#GetDatabase"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseConfiguration"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseInstance"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseStats"
+        },
+        {
+          "target": "com.turso.api#GetDatabaseUsage"
+        },
+        {
+          "target": "com.turso.api#GetGroup"
+        },
+        {
           "target": "com.turso.api#GetGroupConfiguration"
-        },
-        {
-          "target": "com.turso.api#UpdateGroupConfiguration"
-        },
-        {
-          "target": "com.turso.api#TransferGroup"
-        },
-        {
-          "target": "com.turso.api#UnarchiveGroup"
-        },
-        {
-          "target": "com.turso.api#AddLocationToGroup"
-        },
-        {
-          "target": "com.turso.api#RemoveLocationFromGroup"
-        },
-        {
-          "target": "com.turso.api#UpdateGroupDatabases"
-        },
-        {
-          "target": "com.turso.api#CreateGroupToken"
-        },
-        {
-          "target": "com.turso.api#InvalidateGroupTokens"
-        },
-        {
-          "target": "com.turso.api#ListLocations"
-        },
-        {
-          "target": "com.turso.api#ListOrganizations"
         },
         {
           "target": "com.turso.api#GetOrganization"
         },
         {
-          "target": "com.turso.api#UpdateOrganization"
-        },
-        {
-          "target": "com.turso.api#ListOrganizationPlans"
-        },
-        {
-          "target": "com.turso.api#ListOrganizationInvoices"
+          "target": "com.turso.api#GetOrganizationMember"
         },
         {
           "target": "com.turso.api#GetOrganizationSubscription"
@@ -4966,37 +4939,31 @@
           "target": "com.turso.api#GetOrganizationUsage"
         },
         {
-          "target": "com.turso.api#ListOrganizationMembers"
+          "target": "com.turso.api#InvalidateDatabaseTokens"
         },
         {
-          "target": "com.turso.api#AddOrganizationMember"
+          "target": "com.turso.api#InvalidateGroupTokens"
         },
         {
-          "target": "com.turso.api#GetOrganizationMember"
+          "target": "com.turso.api#InviteOrganizationMemberV2"
         },
         {
-          "target": "com.turso.api#UpdateMemberRole"
+          "target": "com.turso.api#ListAPITokens"
         },
         {
-          "target": "com.turso.api#RemoveOrganizationMember"
+          "target": "com.turso.api#ListDatabaseInstances"
         },
         {
-          "target": "com.turso.api#ValidateAPIToken"
+          "target": "com.turso.api#ListDatabases"
         },
         {
-          "target": "com.turso.api#ListApiTokens"
+          "target": "com.turso.api#ListGroups"
         },
         {
-          "target": "com.turso.api#CreateApiToken"
+          "target": "com.turso.api#ListLocations"
         },
         {
-          "target": "com.turso.api#RevokeAPIToken"
-        },
-        {
-          "target": "com.turso.api#ListOrganizationApiTokens"
-        },
-        {
-          "target": "com.turso.api#RevokeOrganizationAPIToken"
+          "target": "com.turso.api#ListOrganizationAPITokens"
         },
         {
           "target": "com.turso.api#ListOrganizationAuditLogs"
@@ -5005,13 +4972,52 @@
           "target": "com.turso.api#ListOrganizationInvitesV2"
         },
         {
-          "target": "com.turso.api#InviteOrganizationMemberV2"
+          "target": "com.turso.api#ListOrganizationInvoices"
         },
         {
-          "target": "com.turso.api#DeleteOrganizationInviteByEmailV2"
+          "target": "com.turso.api#ListOrganizationMembers"
         },
         {
-          "target": "com.turso.api#GetCurrentUser"
+          "target": "com.turso.api#ListOrganizationPlans"
+        },
+        {
+          "target": "com.turso.api#ListOrganizations"
+        },
+        {
+          "target": "com.turso.api#RemoveLocationFromGroup"
+        },
+        {
+          "target": "com.turso.api#RemoveOrganizationMember"
+        },
+        {
+          "target": "com.turso.api#RevokeAPIToken"
+        },
+        {
+          "target": "com.turso.api#RevokeOrganizationAPIToken"
+        },
+        {
+          "target": "com.turso.api#TransferGroup"
+        },
+        {
+          "target": "com.turso.api#UnarchiveGroup"
+        },
+        {
+          "target": "com.turso.api#UpdateDatabaseConfiguration"
+        },
+        {
+          "target": "com.turso.api#UpdateGroupConfiguration"
+        },
+        {
+          "target": "com.turso.api#UpdateGroupDatabases"
+        },
+        {
+          "target": "com.turso.api#UpdateMemberRole"
+        },
+        {
+          "target": "com.turso.api#UpdateOrganization"
+        },
+        {
+          "target": "com.turso.api#ValidateAPIToken"
         }
       ],
       "traits": {

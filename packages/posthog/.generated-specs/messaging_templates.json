@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.messaging_templates#ListMessagingTemplatesRequest": {
@@ -523,7 +524,7 @@
         }
       }
     },
-    "com.posthog.messaging_templates#MessagingTemplatesRetrieveRequest": {
+    "com.posthog.messaging_templates#GetMessagingTemplateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -547,10 +548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.messaging_templates#MessagingTemplatesRetrieve": {
+    "com.posthog.messaging_templates#GetMessagingTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_templates#MessagingTemplatesRetrieveRequest"
+        "target": "com.posthog.messaging_templates#GetMessagingTemplateRequest"
       },
       "output": {
         "target": "com.posthog.messaging_templates#MessageTemplate"
@@ -641,7 +642,7 @@
         }
       }
     },
-    "com.posthog.messaging_templates#UpdateMessagingTemplatePartialRequest": {
+    "com.posthog.messaging_templates#UpdateMessagingTemplatesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -702,10 +703,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.messaging_templates#UpdateMessagingTemplatePartial": {
+    "com.posthog.messaging_templates#UpdateMessagingTemplatesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_templates#UpdateMessagingTemplatePartialRequest"
+        "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesPartialRequest"
       },
       "output": {
         "target": "com.posthog.messaging_templates#MessageTemplate"
@@ -870,7 +871,7 @@
         "smithy.api#documentation": "* `update_content` - update_content\n* `update_column` - update_column\n* `update_row` - update_row\n* `update_body` - update_body\n* `add_content` - add_content\n* `remove_content` - remove_content\n* `move_content` - move_content\n* `add_row` - add_row\n* `remove_row` - remove_row"
       }
     },
-    "com.posthog.messaging_templates#MessagingTemplatesDesignPartialUpdateRequestOperationsList": {
+    "com.posthog.messaging_templates#UpdateMessagingTemplatesDesignPartialRequestOperationsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.messaging_templates#DesignOperation"
@@ -879,7 +880,7 @@
         "smithy.api#documentation": "Ordered edits applied atomically to a template's Unlayer design: the stored design is read, the ops are applied in order, the result is validated and re-rendered to HTML, and it's saved only if valid — otherwise the template is unchanged. Reference blocks by id so you never resend the whole design."
       }
     },
-    "com.posthog.messaging_templates#UpdateMessagingTemplateDesignPartialRequest": {
+    "com.posthog.messaging_templates#UpdateMessagingTemplatesDesignPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -899,7 +900,7 @@
           }
         },
         "operations": {
-          "target": "com.posthog.messaging_templates#MessagingTemplatesDesignPartialUpdateRequestOperationsList",
+          "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesDesignPartialRequestOperationsList",
           "traits": {
             "smithy.api#documentation": "Ordered edits applied atomically to a template's Unlayer design: the stored design is read, the ops are applied in order, the result is validated and re-rendered to HTML, and it's saved only if valid — otherwise the template is unchanged. Reference blocks by id so you never resend the whole design."
           }
@@ -909,10 +910,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.messaging_templates#UpdateMessagingTemplateDesignPartial": {
+    "com.posthog.messaging_templates#UpdateMessagingTemplatesDesignPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_templates#UpdateMessagingTemplateDesignPartialRequest"
+        "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesDesignPartialRequest"
       },
       "output": {
         "target": "com.posthog.messaging_templates#MessageTemplate"
@@ -930,25 +931,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.messaging_templates#ListMessagingTemplates"
-        },
-        {
           "target": "com.posthog.messaging_templates#CreateMessagingTemplate"
         },
         {
-          "target": "com.posthog.messaging_templates#MessagingTemplatesRetrieve"
+          "target": "com.posthog.messaging_templates#GetMessagingTemplate"
         },
         {
-          "target": "com.posthog.messaging_templates#UpdateMessagingTemplate"
-        },
-        {
-          "target": "com.posthog.messaging_templates#UpdateMessagingTemplatePartial"
+          "target": "com.posthog.messaging_templates#ListMessagingTemplates"
         },
         {
           "target": "com.posthog.messaging_templates#MessagingTemplatesDestroy"
         },
         {
-          "target": "com.posthog.messaging_templates#UpdateMessagingTemplateDesignPartial"
+          "target": "com.posthog.messaging_templates#UpdateMessagingTemplate"
+        },
+        {
+          "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesDesignPartial"
+        },
+        {
+          "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesPartial"
         }
       ],
       "traits": {

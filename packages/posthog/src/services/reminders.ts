@@ -19,11 +19,11 @@ export type BlankEnum = "";
 export const BlankEnum = /*@__PURE__*/ S.String;
 
 /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
-export type RemindersCreateRequestRecurrenceInterval =
+export type CreateReminderRequestRecurrenceInterval =
   | RecurrenceIntervalEnum
   | BlankEnum;
-export const RemindersCreateRequestRecurrenceInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemindersCreateRequestRecurrenceInterval>;
+export const CreateReminderRequestRecurrenceInterval =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateReminderRequestRecurrenceInterval>;
 
 export interface CreateReminderRequest {
   /** ID of the organization this reminder belongs to. You must be a member of it. */
@@ -41,7 +41,7 @@ export interface CreateReminderRequest {
   /** For a one-off reminder: when it should fire (ISO 8601, future). */
   scheduled_at?: string | null;
   /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
-  recurrence_interval?: RemindersCreateRequestRecurrenceInterval | null;
+  recurrence_interval?: CreateReminderRequestRecurrenceInterval | null;
   /** For a recurring reminder: a 5-field cron expression (e.g. '0 9 * * 1' = Mondays 9am). May fire at most 4 times per day. Mutually exclusive with recurrence_interval. */
   cron_expression?: string | null;
   /** IANA timezone the schedule resolves in (e.g. 'America/New_York'). Defaults to the project timezone when a team is set, otherwise UTC. */
@@ -59,7 +59,7 @@ export const CreateReminderRequest = /*@__PURE__*/ S.suspend(() =>
     resource_id: S.optional(S.NullOr(S.String)),
     scheduled_at: S.optional(S.NullOr(S.String)),
     recurrence_interval: S.optional(
-      S.NullOr(RemindersCreateRequestRecurrenceInterval),
+      S.NullOr(CreateReminderRequestRecurrenceInterval),
     ),
     cron_expression: S.optional(S.NullOr(S.String)),
     timezone: S.optional(S.String),
@@ -180,6 +180,18 @@ export const Reminder = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Reminder" }) as any as S.Schema<Reminder>;
 
+export interface GetReminderRequest {
+  /** A UUID string identifying this reminder. */
+  id: string;
+}
+export const GetReminderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/api/reminders/{id}/", code: 200 })),
+).annotate({
+  identifier: "GetReminderRequest",
+}) as any as S.Schema<GetReminderRequest>;
+
 export interface ListRemindersRequest {
   /** Number of results to return per page. */
   limit?: number;
@@ -236,24 +248,12 @@ export const RemindersDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RemindersDestroyResponse",
 }) as any as S.Schema<RemindersDestroyResponse>;
 
-export interface RemindersRetrieveRequest {
-  /** A UUID string identifying this reminder. */
-  id: string;
-}
-export const RemindersRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/api/reminders/{id}/", code: 200 })),
-).annotate({
-  identifier: "RemindersRetrieveRequest",
-}) as any as S.Schema<RemindersRetrieveRequest>;
-
 /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
-export type RemindersUpdateRequestRecurrenceInterval =
+export type UpdateReminderRequestRecurrenceInterval =
   | RecurrenceIntervalEnum
   | BlankEnum;
-export const RemindersUpdateRequestRecurrenceInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemindersUpdateRequestRecurrenceInterval>;
+export const UpdateReminderRequestRecurrenceInterval =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateReminderRequestRecurrenceInterval>;
 
 export interface UpdateReminderRequest {
   /** A UUID string identifying this reminder. */
@@ -273,7 +273,7 @@ export interface UpdateReminderRequest {
   /** For a one-off reminder: when it should fire (ISO 8601, future). */
   scheduled_at?: string | null;
   /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
-  recurrence_interval?: RemindersUpdateRequestRecurrenceInterval | null;
+  recurrence_interval?: UpdateReminderRequestRecurrenceInterval | null;
   /** For a recurring reminder: a 5-field cron expression (e.g. '0 9 * * 1' = Mondays 9am). May fire at most 4 times per day. Mutually exclusive with recurrence_interval. */
   cron_expression?: string | null;
   /** IANA timezone the schedule resolves in (e.g. 'America/New_York'). Defaults to the project timezone when a team is set, otherwise UTC. */
@@ -292,7 +292,7 @@ export const UpdateReminderRequest = /*@__PURE__*/ S.suspend(() =>
     resource_id: S.optional(S.NullOr(S.String)),
     scheduled_at: S.optional(S.NullOr(S.String)),
     recurrence_interval: S.optional(
-      S.NullOr(RemindersUpdateRequestRecurrenceInterval),
+      S.NullOr(UpdateReminderRequestRecurrenceInterval),
     ),
     cron_expression: S.optional(S.NullOr(S.String)),
     timezone: S.optional(S.String),
@@ -303,13 +303,13 @@ export const UpdateReminderRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateReminderRequest>;
 
 /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
-export type RemindersPartialUpdateRequestRecurrenceInterval =
+export type UpdateRemindersPartialRequestRecurrenceInterval =
   | RecurrenceIntervalEnum
   | BlankEnum;
-export const RemindersPartialUpdateRequestRecurrenceInterval =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemindersPartialUpdateRequestRecurrenceInterval>;
+export const UpdateRemindersPartialRequestRecurrenceInterval =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateRemindersPartialRequestRecurrenceInterval>;
 
-export interface UpdateReminderPartialRequest {
+export interface UpdateRemindersPartialRequest {
   /** A UUID string identifying this reminder. */
   id: string;
   /** ID of the organization this reminder belongs to. You must be a member of it. */
@@ -327,7 +327,7 @@ export interface UpdateReminderPartialRequest {
   /** For a one-off reminder: when it should fire (ISO 8601, future). */
   scheduled_at?: string | null;
   /** For a recurring reminder: daily, weekly, monthly, or yearly. * `daily` - Daily * `weekly` - Weekly * `monthly` - Monthly * `yearly` - Yearly */
-  recurrence_interval?: RemindersPartialUpdateRequestRecurrenceInterval | null;
+  recurrence_interval?: UpdateRemindersPartialRequestRecurrenceInterval | null;
   /** For a recurring reminder: a 5-field cron expression (e.g. '0 9 * * 1' = Mondays 9am). May fire at most 4 times per day. Mutually exclusive with recurrence_interval. */
   cron_expression?: string | null;
   /** IANA timezone the schedule resolves in (e.g. 'America/New_York'). Defaults to the project timezone when a team is set, otherwise UTC. */
@@ -335,7 +335,7 @@ export interface UpdateReminderPartialRequest {
   /** Optional: recurring reminders stop (status=completed) after this time. */
   end_date?: string | null;
 }
-export const UpdateReminderPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRemindersPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     organization: S.optional(S.String),
@@ -346,15 +346,15 @@ export const UpdateReminderPartialRequest = /*@__PURE__*/ S.suspend(() =>
     resource_id: S.optional(S.NullOr(S.String)),
     scheduled_at: S.optional(S.NullOr(S.String)),
     recurrence_interval: S.optional(
-      S.NullOr(RemindersPartialUpdateRequestRecurrenceInterval),
+      S.NullOr(UpdateRemindersPartialRequestRecurrenceInterval),
     ),
     cron_expression: S.optional(S.NullOr(S.String)),
     timezone: S.optional(S.String),
     end_date: S.optional(S.NullOr(S.String)),
   }).pipe(T.Http({ method: "PATCH", uri: "/api/reminders/{id}/", code: 200 })),
 ).annotate({
-  identifier: "UpdateReminderPartialRequest",
-}) as any as S.Schema<UpdateReminderPartialRequest>;
+  identifier: "UpdateRemindersPartialRequest",
+}) as any as S.Schema<UpdateRemindersPartialRequest>;
 
 export type CreateReminderError = PosthogOpError;
 export const createReminder: API.OperationMethod<
@@ -364,6 +364,20 @@ export const createReminder: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateReminderRequest,
+  output: Reminder,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetReminderError = PosthogOpError;
+export const getReminder: API.OperationMethod<
+  GetReminderRequest,
+  Reminder,
+  GetReminderError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetReminderRequest,
   output: Reminder,
   errors: [],
   protocol: PosthogProtocol,
@@ -398,20 +412,6 @@ export const remindersDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RemindersRetrieveError = PosthogOpError;
-export const remindersRetrieve: API.OperationMethod<
-  RemindersRetrieveRequest,
-  Reminder,
-  RemindersRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RemindersRetrieveRequest,
-  output: Reminder,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateReminderError = PosthogOpError;
 export const updateReminder: API.OperationMethod<
   UpdateReminderRequest,
@@ -426,14 +426,14 @@ export const updateReminder: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateReminderPartialError = PosthogOpError;
-export const updateReminderPartial: API.OperationMethod<
-  UpdateReminderPartialRequest,
+export type UpdateRemindersPartialError = PosthogOpError;
+export const updateRemindersPartial: API.OperationMethod<
+  UpdateRemindersPartialRequest,
   Reminder,
-  UpdateReminderPartialError,
+  UpdateRemindersPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateReminderPartialRequest,
+  input: UpdateRemindersPartialRequest,
   output: Reminder,
   errors: [],
   protocol: PosthogProtocol,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.invoices#Direction": {
@@ -4032,7 +4033,7 @@
         "smithy.api#documentation": "Create invoice\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate an invoice for a customer. The invoice can be charged automatically using a stored payment method, or sent to the customer for manual payment.\n\nRequired permissions:\n - `invoice:create`\n - `member:email:read`\n - `member:basic:read`\n - `payment:basic:read`"
       }
     },
-    "com.whop.invoices#RetrieveInvoiceRequest": {
+    "com.whop.invoices#GetInvoiceRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4048,10 +4049,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.invoices#RetrieveInvoice": {
+    "com.whop.invoices#GetInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.whop.invoices#RetrieveInvoiceRequest"
+        "target": "com.whop.invoices#GetInvoiceRequest"
       },
       "output": {
         "target": "com.whop.invoices#Invoice"
@@ -4938,19 +4939,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.invoices#ListInvoice"
-        },
-        {
           "target": "com.whop.invoices#CreateInvoice"
         },
         {
-          "target": "com.whop.invoices#RetrieveInvoice"
-        },
-        {
-          "target": "com.whop.invoices#UpdateInvoice"
-        },
-        {
           "target": "com.whop.invoices#DeleteInvoice"
+        },
+        {
+          "target": "com.whop.invoices#GetInvoice"
+        },
+        {
+          "target": "com.whop.invoices#ListInvoice"
         },
         {
           "target": "com.whop.invoices#MarkPaidInvoice"
@@ -4960,6 +4958,9 @@
         },
         {
           "target": "com.whop.invoices#ResendInvoice"
+        },
+        {
+          "target": "com.whop.invoices#UpdateInvoice"
         },
         {
           "target": "com.whop.invoices#VoidInvoice"

@@ -91,32 +91,32 @@ export const DeleteWebResourceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteWebResourceResponse>;
 
 export interface SiteVerificationWebResourceGettokenRequestSite {
-  /** The type of resource to be verified. Can be SITE or INET_DOMAIN (domain name). */
-  type?: string;
   /** The site identifier. If the type is set to SITE, the identifier is a URL. If the type is set to INET_DOMAIN, the site identifier is a domain name. */
   identifier?: string;
+  /** The type of resource to be verified. Can be SITE or INET_DOMAIN (domain name). */
+  type?: string;
 }
 export const SiteVerificationWebResourceGettokenRequestSite =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: S.optional(S.String),
       identifier: S.optional(S.String),
+      type: S.optional(S.String),
     }),
   ).annotate({
     identifier: "SiteVerificationWebResourceGettokenRequestSite",
   }) as any as S.Schema<SiteVerificationWebResourceGettokenRequestSite>;
 
 export interface SiteVerificationWebResourceGettokenRequest {
-  /** The verification method that will be used to verify this site. For sites, 'FILE' or 'META' methods may be used. For domains, only 'DNS' may be used. */
-  verificationMethod?: string;
   /** The site for which a verification token will be generated. */
   site?: SiteVerificationWebResourceGettokenRequestSite;
+  /** The verification method that will be used to verify this site. For sites, 'FILE' or 'META' methods may be used. For domains, only 'DNS' may be used. */
+  verificationMethod?: string;
 }
 export const SiteVerificationWebResourceGettokenRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      verificationMethod: S.optional(S.String),
       site: S.optional(SiteVerificationWebResourceGettokenRequestSite),
+      verificationMethod: S.optional(S.String),
     }),
   ).annotate({
     identifier: "SiteVerificationWebResourceGettokenRequest",
@@ -143,16 +143,16 @@ export const GetTokenWebResourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTokenWebResourceRequest>;
 
 export interface SiteVerificationWebResourceGettokenResponse {
-  /** The verification method to use in conjunction with this token. For FILE, the token should be placed in the top-level directory of the site, stored inside a file of the same name. For META, the token should be placed in the HEAD tag of the default page that is loaded for the site. For DNS, the token should be placed in a TXT record of the domain. */
-  method?: string;
   /** The verification token. The token must be placed appropriately in order for verification to succeed. */
   token?: string;
+  /** The verification method to use in conjunction with this token. For FILE, the token should be placed in the top-level directory of the site, stored inside a file of the same name. For META, the token should be placed in the HEAD tag of the default page that is loaded for the site. For DNS, the token should be placed in a TXT record of the domain. */
+  method?: string;
 }
 export const SiteVerificationWebResourceGettokenResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      method: S.optional(S.String),
       token: S.optional(S.String),
+      method: S.optional(S.String),
     }),
   ).annotate({
     identifier: "SiteVerificationWebResourceGettokenResponse",
@@ -198,17 +198,17 @@ export const SiteVerificationWebResourceResourceSite = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SiteVerificationWebResourceResourceSite>;
 
 export interface SiteVerificationWebResourceResource {
-  /** The email addresses of all verified owners. */
-  owners?: StringList;
   /** The string used to identify this site. This value should be used in the "id" portion of the REST URL for the Get, Update, and Delete operations. */
   id?: string;
+  /** The email addresses of all verified owners. */
+  owners?: StringList;
   /** The address and type of a site that is verified or will be verified. */
   site?: SiteVerificationWebResourceResourceSite;
 }
 export const SiteVerificationWebResourceResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    owners: S.optional(StringList),
     id: S.optional(S.String),
+    owners: S.optional(StringList),
     site: S.optional(SiteVerificationWebResourceResourceSite),
   }),
 ).annotate({

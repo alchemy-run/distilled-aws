@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.flag_value#FlagValueValuesRetrieveRequest": {
+    "com.posthog.flag_value#GetFlagValueValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -68,10 +69,10 @@
       },
       "traits": {}
     },
-    "com.posthog.flag_value#FlagValueValuesRetrieve": {
+    "com.posthog.flag_value#GetFlagValueValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.flag_value#FlagValueValuesRetrieveRequest"
+        "target": "com.posthog.flag_value#GetFlagValueValueRequest"
       },
       "output": {
         "target": "com.posthog.flag_value#FlagValueResponse"
@@ -140,7 +141,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.flag_value#FlagValueValuesRetrieve"
+          "target": "com.posthog.flag_value#GetFlagValueValue"
         }
       ],
       "traits": {

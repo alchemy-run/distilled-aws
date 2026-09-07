@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.edgemarketplace#ListPublisherBySubscription": {
@@ -851,7 +852,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.edgemarketplace#OperationsListResponseValueList",
+          "target": "com.azure.edgemarketplace#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -867,7 +868,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgemarketplace#OperationsListResponseValueList": {
+    "com.azure.edgemarketplace#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.edgemarketplace#Operation"
@@ -1463,31 +1464,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.edgemarketplace#ListPublisherBySubscription"
-        },
-        {
-          "target": "com.azure.edgemarketplace#ListOfferBySubscription"
-        },
-        {
-          "target": "com.azure.edgemarketplace#ListOperations"
-        },
-        {
-          "target": "com.azure.edgemarketplace#GetPublisher"
-        },
-        {
-          "target": "com.azure.edgemarketplace#ListPublishers"
-        },
-        {
-          "target": "com.azure.edgemarketplace#GetOfferAccessToken"
-        },
-        {
           "target": "com.azure.edgemarketplace#GenerateOfferAccessToken"
         },
         {
           "target": "com.azure.edgemarketplace#GetOffer"
         },
         {
+          "target": "com.azure.edgemarketplace#GetOfferAccessToken"
+        },
+        {
+          "target": "com.azure.edgemarketplace#GetPublisher"
+        },
+        {
+          "target": "com.azure.edgemarketplace#ListOfferBySubscription"
+        },
+        {
           "target": "com.azure.edgemarketplace#ListOffers"
+        },
+        {
+          "target": "com.azure.edgemarketplace#ListOperations"
+        },
+        {
+          "target": "com.azure.edgemarketplace#ListPublisherBySubscription"
+        },
+        {
+          "target": "com.azure.edgemarketplace#ListPublishers"
         }
       ],
       "traits": {

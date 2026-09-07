@@ -49,6 +49,95 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface GetPayoutMethodRequest {
+  /** The unique identifier of the payout method to retrieve. */
+  id: string;
+}
+export const GetPayoutMethodRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/payout_methods/{id}", code: 200 })),
+).annotate({
+  identifier: "GetPayoutMethodRequest",
+}) as any as S.Schema<GetPayoutMethodRequest>;
+
+/** The company associated with this payout destination. Null if not linked to a specific company. */
+export interface PayoutMethodCompany {
+  /** The unique identifier for the company. */
+  id: string;
+}
+export const PayoutMethodCompany = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }),
+).annotate({
+  identifier: "PayoutMethodCompany",
+}) as any as S.Schema<PayoutMethodCompany>;
+
+/** The category of a payout destination. */
+export type PayoutDestinationCategory =
+  | "crypto"
+  | "rtp"
+  | "next_day_bank"
+  | "bank_wire"
+  | "digital_wallet"
+  | "unknown";
+export const PayoutDestinationCategory = /*@__PURE__*/ S.String;
+
+/** The payout destination configuration linked to this token. Null if not yet configured. */
+export interface PayoutMethodDestination {
+  /** The category of the payout destination */
+  category: PayoutDestinationCategory;
+  /** The country code of the payout destination */
+  country_code: string;
+  /** The name of the payer associated with the payout destination */
+  name: string;
+}
+export const PayoutMethodDestination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: PayoutDestinationCategory,
+    country_code: S.String,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "PayoutMethodDestination",
+}) as any as S.Schema<PayoutMethodDestination>;
+
+/** A configured payout destination where a user receives earned funds, such as a bank account or digital wallet. */
+export interface PayoutMethod {
+  /** A masked identifier for the payout destination, such as the last four digits of a bank account or an email address. Null if no reference is available. */
+  account_reference: string | null;
+  /** The company associated with this payout destination. Null if not linked to a specific company. */
+  company: PayoutMethodCompany | null;
+  /** The datetime the payout token was created. */
+  created_at: string;
+  /** The three-letter ISO currency code that payouts are delivered in for this destination. */
+  currency: string;
+  /** The payout destination configuration linked to this token. Null if not yet configured. */
+  destination: PayoutMethodDestination | null;
+  /** The unique identifier for the payout token. */
+  id: string;
+  /** The name of the bank or financial institution receiving payouts. Null if not applicable or not provided. */
+  institution_name: string | null;
+  /** Whether this is the default payout destination for the associated payout account. */
+  is_default: boolean;
+  /** A user-defined label to help identify this payout destination. Not sent to the provider. Null if no nickname has been set. */
+  nickname: string | null;
+}
+export const PayoutMethod = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_reference: S.NullOr(S.String),
+    company: S.NullOr(PayoutMethodCompany),
+    created_at: S.String,
+    currency: S.String,
+    destination: S.NullOr(PayoutMethodDestination),
+    id: S.String,
+    institution_name: S.NullOr(S.String),
+    is_default: S.Boolean,
+    nickname: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "PayoutMethod" }) as any as S.Schema<PayoutMethod>;
+
 export interface ListPayoutMethodRequest {
   after?: string;
   before?: string;
@@ -69,59 +158,25 @@ export const ListPayoutMethodRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPayoutMethodRequest>;
 
 /** The company associated with this payout destination. Null if not linked to a specific company. */
-export interface PayoutMethodListItemCompany {
-  /** The unique identifier for the company. */
-  id: string;
-}
-export const PayoutMethodListItemCompany = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "PayoutMethodListItemCompany",
-}) as any as S.Schema<PayoutMethodListItemCompany>;
-
-/** The category of a payout destination. */
-export type PayoutDestinationCategory =
-  | "crypto"
-  | "rtp"
-  | "next_day_bank"
-  | "bank_wire"
-  | "digital_wallet"
-  | "unknown";
-export const PayoutDestinationCategory = /*@__PURE__*/ S.String;
+export type PayoutMethodListItemCompany = PayoutMethodCompany;
+export const PayoutMethodListItemCompany = PayoutMethodCompany;
 
 /** The payout destination configuration linked to this token. Null if not yet configured. */
-export interface PayoutMethodListItemDestination {
-  /** The category of the payout destination */
-  category: PayoutDestinationCategory;
-  /** The country code of the payout destination */
-  country_code: string;
-  /** The name of the payer associated with the payout destination */
-  name: string;
-}
-export const PayoutMethodListItemDestination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: PayoutDestinationCategory,
-    country_code: S.String,
-    name: S.String,
-  }),
-).annotate({
-  identifier: "PayoutMethodListItemDestination",
-}) as any as S.Schema<PayoutMethodListItemDestination>;
+export type PayoutMethodListItemDestination = PayoutMethodDestination;
+export const PayoutMethodListItemDestination = PayoutMethodDestination;
 
 /** A configured payout destination where a user receives earned funds, such as a bank account or digital wallet. */
 export interface PayoutMethodListItem {
   /** A masked identifier for the payout destination, such as the last four digits of a bank account or an email address. Null if no reference is available. */
   account_reference: string | null;
   /** The company associated with this payout destination. Null if not linked to a specific company. */
-  company: PayoutMethodListItemCompany | null;
+  company: PayoutMethodCompany | null;
   /** The datetime the payout token was created. */
   created_at: string;
   /** The three-letter ISO currency code that payouts are delivered in for this destination. */
   currency: string;
   /** The payout destination configuration linked to this token. Null if not yet configured. */
-  destination: PayoutMethodListItemDestination | null;
+  destination: PayoutMethodDestination | null;
   /** The unique identifier for the payout token. */
   id: string;
   /** The name of the bank or financial institution receiving payouts. Null if not applicable or not provided. */
@@ -134,10 +189,10 @@ export interface PayoutMethodListItem {
 export const PayoutMethodListItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     account_reference: S.NullOr(S.String),
-    company: S.NullOr(PayoutMethodListItemCompany),
+    company: S.NullOr(PayoutMethodCompany),
     created_at: S.String,
     currency: S.String,
-    destination: S.NullOr(PayoutMethodListItemDestination),
+    destination: S.NullOr(PayoutMethodDestination),
     id: S.String,
     institution_name: S.NullOr(S.String),
     is_default: S.Boolean,
@@ -188,60 +243,25 @@ export const ListPayoutMethodResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPayoutMethodResponse",
 }) as any as S.Schema<ListPayoutMethodResponse>;
 
-export interface RetrievePayoutMethodRequest {
-  /** The unique identifier of the payout method to retrieve. */
-  id: string;
-}
-export const RetrievePayoutMethodRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/payout_methods/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrievePayoutMethodRequest",
-}) as any as S.Schema<RetrievePayoutMethodRequest>;
-
-/** The company associated with this payout destination. Null if not linked to a specific company. */
-export type PayoutMethodCompany = PayoutMethodListItemCompany;
-export const PayoutMethodCompany = PayoutMethodListItemCompany;
-
-/** The payout destination configuration linked to this token. Null if not yet configured. */
-export type PayoutMethodDestination = PayoutMethodListItemDestination;
-export const PayoutMethodDestination = PayoutMethodListItemDestination;
-
-/** A configured payout destination where a user receives earned funds, such as a bank account or digital wallet. */
-export interface PayoutMethod {
-  /** A masked identifier for the payout destination, such as the last four digits of a bank account or an email address. Null if no reference is available. */
-  account_reference: string | null;
-  /** The company associated with this payout destination. Null if not linked to a specific company. */
-  company: PayoutMethodListItemCompany | null;
-  /** The datetime the payout token was created. */
-  created_at: string;
-  /** The three-letter ISO currency code that payouts are delivered in for this destination. */
-  currency: string;
-  /** The payout destination configuration linked to this token. Null if not yet configured. */
-  destination: PayoutMethodListItemDestination | null;
-  /** The unique identifier for the payout token. */
-  id: string;
-  /** The name of the bank or financial institution receiving payouts. Null if not applicable or not provided. */
-  institution_name: string | null;
-  /** Whether this is the default payout destination for the associated payout account. */
-  is_default: boolean;
-  /** A user-defined label to help identify this payout destination. Not sent to the provider. Null if no nickname has been set. */
-  nickname: string | null;
-}
-export const PayoutMethod = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_reference: S.NullOr(S.String),
-    company: S.NullOr(PayoutMethodListItemCompany),
-    created_at: S.String,
-    currency: S.String,
-    destination: S.NullOr(PayoutMethodListItemDestination),
-    id: S.String,
-    institution_name: S.NullOr(S.String),
-    is_default: S.Boolean,
-    nickname: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "PayoutMethod" }) as any as S.Schema<PayoutMethod>;
+export type GetPayoutMethodError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve payout method [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing payout method. Required permissions: - `payout:destination:read` */
+export const getPayoutMethod: API.OperationMethod<
+  GetPayoutMethodRequest,
+  PayoutMethod,
+  GetPayoutMethodError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPayoutMethodRequest,
+  output: PayoutMethod,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListPayoutMethodError =
   | BadRequest
@@ -274,23 +294,3 @@ export const listPayoutMethod: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePayoutMethodError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve payout method [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing payout method. Required permissions: - `payout:destination:read` */
-export const retrievePayoutMethod: API.OperationMethod<
-  RetrievePayoutMethodRequest,
-  PayoutMethod,
-  RetrievePayoutMethodError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePayoutMethodRequest,
-  output: PayoutMethod,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

@@ -233,7 +233,7 @@ export const DeleteWebPubSubPrivateEndpointConnectionResponse =
     identifier: "DeleteWebPubSubPrivateEndpointConnectionResponse",
   }) as any as S.Schema<DeleteWebPubSubPrivateEndpointConnectionResponse>;
 
-export interface DeleteWebPubSubReplicaRequest {
+export interface DeleteWebPubSubReplicasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -243,7 +243,7 @@ export interface DeleteWebPubSubReplicaRequest {
   /** The name of the replica. */
   replicaName: string;
 }
-export const DeleteWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -258,15 +258,15 @@ export const DeleteWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteWebPubSubReplicaRequest",
-}) as any as S.Schema<DeleteWebPubSubReplicaRequest>;
+  identifier: "DeleteWebPubSubReplicasRequest",
+}) as any as S.Schema<DeleteWebPubSubReplicasRequest>;
 
-export interface DeleteWebPubSubReplicaResponse {}
-export const DeleteWebPubSubReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteWebPubSubReplicasResponse {}
+export const DeleteWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteWebPubSubReplicaResponse",
-}) as any as S.Schema<DeleteWebPubSubReplicaResponse>;
+  identifier: "DeleteWebPubSubReplicasResponse",
+}) as any as S.Schema<DeleteWebPubSubReplicasResponse>;
 
 export interface DeleteWebPubSubSharedPrivateLinkResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -371,11 +371,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type WebPubSubGetResponseTagsMap = { [key: string]: string | undefined };
-export const WebPubSubGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWebPubSubResponseTagsMap = { [key: string]: string | undefined };
+export const GetWebPubSubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WebPubSubGetResponseTagsMap>;
+) as any as S.Schema<GetWebPubSubResponseTagsMap>;
 
 /** Optional tier of this particular SKU. 'Standard' or 'Free'. `Basic` is deprecated, use `Standard` instead. */
 export type WebPubSubSkuTier = "Free" | "Basic" | "Standard" | "Premium";
@@ -928,7 +928,7 @@ export interface GetWebPubSubResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WebPubSubGetResponseTagsMap;
+  tags?: GetWebPubSubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   sku?: ResourceSku;
@@ -942,7 +942,7 @@ export const GetWebPubSubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubGetResponseTagsMap),
+    tags: S.optional(GetWebPubSubResponseTagsMap),
     location: S.String,
     sku: S.optional(ResourceSku),
     properties: S.optional(WebPubSubProperties),
@@ -1344,7 +1344,7 @@ export const GetWebPubSubPrivateEndpointConnectionResponse =
     identifier: "GetWebPubSubPrivateEndpointConnectionResponse",
   }) as any as S.Schema<GetWebPubSubPrivateEndpointConnectionResponse>;
 
-export interface GetWebPubSubReplicaRequest {
+export interface GetWebPubSubReplicasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1354,7 +1354,7 @@ export interface GetWebPubSubReplicaRequest {
   /** The name of the replica. */
   replicaName: string;
 }
-export const GetWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1369,17 +1369,17 @@ export const GetWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetWebPubSubReplicaRequest",
-}) as any as S.Schema<GetWebPubSubReplicaRequest>;
+  identifier: "GetWebPubSubReplicasRequest",
+}) as any as S.Schema<GetWebPubSubReplicasRequest>;
 
 /** Resource tags. */
-export type WebPubSubReplicasGetResponseTagsMap = {
+export type GetWebPubSubReplicasResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WebPubSubReplicasGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetWebPubSubReplicasResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WebPubSubReplicasGetResponseTagsMap>;
+) as any as S.Schema<GetWebPubSubReplicasResponseTagsMap>;
 
 export interface ReplicaProperties {
   provisioningState?: ProvisioningState;
@@ -1398,7 +1398,7 @@ export const ReplicaProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplicaProperties",
 }) as any as S.Schema<ReplicaProperties>;
 
-export interface GetWebPubSubReplicaResponse {
+export interface GetWebPubSubReplicasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1408,26 +1408,26 @@ export interface GetWebPubSubReplicaResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WebPubSubReplicasGetResponseTagsMap;
+  tags?: GetWebPubSubReplicasResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   sku?: ResourceSku;
   properties?: ReplicaProperties;
 }
-export const GetWebPubSubReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubReplicasGetResponseTagsMap),
+    tags: S.optional(GetWebPubSubReplicasResponseTagsMap),
     location: S.String,
     sku: S.optional(ResourceSku),
     properties: S.optional(ReplicaProperties),
   }),
 ).annotate({
-  identifier: "GetWebPubSubReplicaResponse",
-}) as any as S.Schema<GetWebPubSubReplicaResponse>;
+  identifier: "GetWebPubSubReplicasResponse",
+}) as any as S.Schema<GetWebPubSubReplicasResponse>;
 
 export interface GetWebPubSubReplicaSharedPrivateLinkResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2665,6 +2665,37 @@ export const ListWebPubSubSkusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWebPubSubSkusRequest",
 }) as any as S.Schema<ListWebPubSubSkusRequest>;
 
+/** The type of access key. */
+export type KeyType = "Primary" | "Secondary" | "Salt";
+export const KeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateWebPubSubKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  keyType?: KeyType | (string & {});
+}
+export const RegenerateWebPubSubKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    keyType: S.optional(KeyType),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/regenerateKey",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateWebPubSubKeyRequest",
+}) as any as S.Schema<RegenerateWebPubSubKeyRequest>;
+
 export interface RestartWebPubSubRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -2697,7 +2728,7 @@ export const RestartWebPubSubResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestartWebPubSubResponse",
 }) as any as S.Schema<RestartWebPubSubResponse>;
 
-export interface RestartWebPubSubReplicaRequest {
+export interface RestartWebPubSubReplicasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2707,7 +2738,7 @@ export interface RestartWebPubSubReplicaRequest {
   /** The name of the replica. */
   replicaName: string;
 }
-export const RestartWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestartWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2722,24 +2753,24 @@ export const RestartWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestartWebPubSubReplicaRequest",
-}) as any as S.Schema<RestartWebPubSubReplicaRequest>;
+  identifier: "RestartWebPubSubReplicasRequest",
+}) as any as S.Schema<RestartWebPubSubReplicasRequest>;
 
-export interface RestartWebPubSubReplicaResponse {}
-export const RestartWebPubSubReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RestartWebPubSubReplicasResponse {}
+export const RestartWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestartWebPubSubReplicaResponse",
-}) as any as S.Schema<RestartWebPubSubReplicaResponse>;
+  identifier: "RestartWebPubSubReplicasResponse",
+}) as any as S.Schema<RestartWebPubSubReplicasResponse>;
 
 /** Resource tags. */
-export type WebPubSubUpdateRequestTagsMap = {
+export type UpdateWebPubSubRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WebPubSubUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWebPubSubRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WebPubSubUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWebPubSubRequestTagsMap>;
 
 /** The billing information of the resource. */
 export interface ResourceSkuInput {
@@ -2837,7 +2868,7 @@ export interface UpdateWebPubSubRequest {
   /** The name of the resource. */
   resourceName: string;
   /** Resource tags. */
-  tags?: WebPubSubUpdateRequestTagsMap;
+  tags?: UpdateWebPubSubRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   sku?: ResourceSkuInput;
@@ -2850,7 +2881,7 @@ export const UpdateWebPubSubRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(WebPubSubUpdateRequestTagsMap),
+    tags: S.optional(UpdateWebPubSubRequestTagsMap),
     location: S.String,
     sku: S.optional(ResourceSkuInput),
     properties: S.optional(WebPubSubPropertiesInput),
@@ -2869,13 +2900,13 @@ export const UpdateWebPubSubRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWebPubSubRequest>;
 
 /** Resource tags. */
-export type WebPubSubUpdateResponseTagsMap = {
+export type UpdateWebPubSubResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WebPubSubUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWebPubSubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WebPubSubUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWebPubSubResponseTagsMap>;
 
 export interface UpdateWebPubSubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2887,7 +2918,7 @@ export interface UpdateWebPubSubResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WebPubSubUpdateResponseTagsMap;
+  tags?: UpdateWebPubSubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   sku?: ResourceSku;
@@ -2901,7 +2932,7 @@ export const UpdateWebPubSubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubUpdateResponseTagsMap),
+    tags: S.optional(UpdateWebPubSubResponseTagsMap),
     location: S.String,
     sku: S.optional(ResourceSku),
     properties: S.optional(WebPubSubProperties),
@@ -2985,13 +3016,13 @@ export const UpdateWebPubSubPrivateEndpointConnectionResponse =
   }) as any as S.Schema<UpdateWebPubSubPrivateEndpointConnectionResponse>;
 
 /** Resource tags. */
-export type WebPubSubReplicasUpdateRequestTagsMap = {
+export type UpdateWebPubSubReplicasRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WebPubSubReplicasUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWebPubSubReplicasRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WebPubSubReplicasUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWebPubSubReplicasRequestTagsMap>;
 
 export interface ReplicaPropertiesInput {
   /** Enable or disable the regional endpoint. Default to "Enabled". When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected. */
@@ -3008,7 +3039,7 @@ export const ReplicaPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplicaPropertiesInput",
 }) as any as S.Schema<ReplicaPropertiesInput>;
 
-export interface UpdateWebPubSubReplicaRequest {
+export interface UpdateWebPubSubReplicasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3018,19 +3049,19 @@ export interface UpdateWebPubSubReplicaRequest {
   /** The name of the replica. */
   replicaName: string;
   /** Resource tags. */
-  tags?: WebPubSubReplicasUpdateRequestTagsMap;
+  tags?: UpdateWebPubSubReplicasRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   sku?: ResourceSkuInput;
   properties?: ReplicaPropertiesInput;
 }
-export const UpdateWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
     replicaName: S.String.pipe(T.Label()),
-    tags: S.optional(WebPubSubReplicasUpdateRequestTagsMap),
+    tags: S.optional(UpdateWebPubSubReplicasRequestTagsMap),
     location: S.String,
     sku: S.optional(ResourceSkuInput),
     properties: S.optional(ReplicaPropertiesInput),
@@ -3043,19 +3074,19 @@ export const UpdateWebPubSubReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateWebPubSubReplicaRequest",
-}) as any as S.Schema<UpdateWebPubSubReplicaRequest>;
+  identifier: "UpdateWebPubSubReplicasRequest",
+}) as any as S.Schema<UpdateWebPubSubReplicasRequest>;
 
 /** Resource tags. */
-export type WebPubSubReplicasUpdateResponseTagsMap = {
+export type UpdateWebPubSubReplicasResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WebPubSubReplicasUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWebPubSubReplicasResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WebPubSubReplicasUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWebPubSubReplicasResponseTagsMap>;
 
-export interface UpdateWebPubSubReplicaResponse {
+export interface UpdateWebPubSubReplicasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3065,26 +3096,26 @@ export interface UpdateWebPubSubReplicaResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WebPubSubReplicasUpdateResponseTagsMap;
+  tags?: UpdateWebPubSubReplicasResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   sku?: ResourceSku;
   properties?: ReplicaProperties;
 }
-export const UpdateWebPubSubReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubReplicasUpdateResponseTagsMap),
+    tags: S.optional(UpdateWebPubSubReplicasResponseTagsMap),
     location: S.String,
     sku: S.optional(ResourceSku),
     properties: S.optional(ReplicaProperties),
   }),
 ).annotate({
-  identifier: "UpdateWebPubSubReplicaResponse",
-}) as any as S.Schema<UpdateWebPubSubReplicaResponse>;
+  identifier: "UpdateWebPubSubReplicasResponse",
+}) as any as S.Schema<UpdateWebPubSubReplicasResponse>;
 
 /** Resource tags. */
 export type WebPubSubCreateOrUpdateRequestTagsMap = {
@@ -3374,37 +3405,6 @@ export const WebPubSubHubsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WebPubSubHubsCreateOrUpdateResponse",
 }) as any as S.Schema<WebPubSubHubsCreateOrUpdateResponse>;
-
-/** The type of access key. */
-export type KeyType = "Primary" | "Secondary" | "Salt";
-export const KeyType = /*@__PURE__*/ S.String;
-
-export interface WebPubSubRegenerateKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  keyType?: KeyType | (string & {});
-}
-export const WebPubSubRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    keyType: S.optional(KeyType),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/regenerateKey",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubRegenerateKeyRequest",
-}) as any as S.Schema<WebPubSubRegenerateKeyRequest>;
 
 /** Resource tags. */
 export type WebPubSubReplicasCreateOrUpdateRequestTagsMap = {
@@ -3722,16 +3722,16 @@ export const DeleteWebPubSubPrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteWebPubSubReplicaError = AzureOpError;
+export type DeleteWebPubSubReplicasError = AzureOpError;
 /** Operation to delete a replica. */
-export const DeleteWebPubSubReplica: API.OperationMethod<
-  DeleteWebPubSubReplicaRequest,
-  DeleteWebPubSubReplicaResponse,
-  DeleteWebPubSubReplicaError,
+export const DeleteWebPubSubReplicas: API.OperationMethod<
+  DeleteWebPubSubReplicasRequest,
+  DeleteWebPubSubReplicasResponse,
+  DeleteWebPubSubReplicasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteWebPubSubReplicaRequest,
-  output: DeleteWebPubSubReplicaResponse,
+  input: DeleteWebPubSubReplicasRequest,
+  output: DeleteWebPubSubReplicasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3827,16 +3827,16 @@ export const GetWebPubSubPrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetWebPubSubReplicaError = AzureOpError;
+export type GetWebPubSubReplicasError = AzureOpError;
 /** Get the replica and its properties. */
-export const GetWebPubSubReplica: API.OperationMethod<
-  GetWebPubSubReplicaRequest,
-  GetWebPubSubReplicaResponse,
-  GetWebPubSubReplicaError,
+export const GetWebPubSubReplicas: API.OperationMethod<
+  GetWebPubSubReplicasRequest,
+  GetWebPubSubReplicasResponse,
+  GetWebPubSubReplicasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWebPubSubReplicaRequest,
-  output: GetWebPubSubReplicaResponse,
+  input: GetWebPubSubReplicasRequest,
+  output: GetWebPubSubReplicasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4097,6 +4097,21 @@ export const ListWebPubSubSkus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RegenerateWebPubSubKeyError = AzureOpError;
+/** Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time. */
+export const RegenerateWebPubSubKey: API.OperationMethod<
+  RegenerateWebPubSubKeyRequest,
+  WebPubSubKeys,
+  RegenerateWebPubSubKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateWebPubSubKeyRequest,
+  output: WebPubSubKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RestartWebPubSubError = AzureOpError;
 /** Operation to restart a resource. */
 export const RestartWebPubSub: API.OperationMethod<
@@ -4112,16 +4127,16 @@ export const RestartWebPubSub: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestartWebPubSubReplicaError = AzureOpError;
+export type RestartWebPubSubReplicasError = AzureOpError;
 /** Operation to restart a replica. */
-export const RestartWebPubSubReplica: API.OperationMethod<
-  RestartWebPubSubReplicaRequest,
-  RestartWebPubSubReplicaResponse,
-  RestartWebPubSubReplicaError,
+export const RestartWebPubSubReplicas: API.OperationMethod<
+  RestartWebPubSubReplicasRequest,
+  RestartWebPubSubReplicasResponse,
+  RestartWebPubSubReplicasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestartWebPubSubReplicaRequest,
-  output: RestartWebPubSubReplicaResponse,
+  input: RestartWebPubSubReplicasRequest,
+  output: RestartWebPubSubReplicasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4157,16 +4172,16 @@ export const UpdateWebPubSubPrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateWebPubSubReplicaError = AzureOpError;
+export type UpdateWebPubSubReplicasError = AzureOpError;
 /** Operation to update an exiting replica. */
-export const UpdateWebPubSubReplica: API.OperationMethod<
-  UpdateWebPubSubReplicaRequest,
-  UpdateWebPubSubReplicaResponse,
-  UpdateWebPubSubReplicaError,
+export const UpdateWebPubSubReplicas: API.OperationMethod<
+  UpdateWebPubSubReplicasRequest,
+  UpdateWebPubSubReplicasResponse,
+  UpdateWebPubSubReplicasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWebPubSubReplicaRequest,
-  output: UpdateWebPubSubReplicaResponse,
+  input: UpdateWebPubSubReplicasRequest,
+  output: UpdateWebPubSubReplicasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4227,21 +4242,6 @@ export const WebPubSubHubsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WebPubSubHubsCreateOrUpdateRequest,
   output: WebPubSubHubsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubRegenerateKeyError = AzureOpError;
-/** Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time. */
-export const WebPubSubRegenerateKey: API.OperationMethod<
-  WebPubSubRegenerateKeyRequest,
-  WebPubSubKeys,
-  WebPubSubRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubRegenerateKeyRequest,
-  output: WebPubSubKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

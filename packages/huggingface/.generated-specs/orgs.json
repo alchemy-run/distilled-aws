@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.orgs#ListMemberAccessTokensRequest": {
@@ -1738,6 +1739,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "org.token_approval.authorization_request.denied"
+          }
+        },
+        "ORG_AUDIT_LOG_EXPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.audit_log.export"
+          }
+        },
+        "ORG_REPO_ANALYTICS_EXPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.repo_analytics.export"
           }
         },
         "REPO_ADD_SECRETS": {
@@ -5213,34 +5226,19 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.orgs#ListMemberAccessTokens"
-        },
-        {
-          "target": "com.huggingface.orgs#RevokeMemberToken"
-        },
-        {
-          "target": "com.huggingface.orgs#ListOrganizationRepositories"
-        },
-        {
-          "target": "com.huggingface.orgs#RotateSsoCredentials"
+          "target": "com.huggingface.orgs#ChangeMemberRole"
         },
         {
           "target": "com.huggingface.orgs#ExportAuditLog"
         },
         {
-          "target": "com.huggingface.orgs#GetNetworkSecuritySettings"
-        },
-        {
-          "target": "com.huggingface.orgs#UpdateNetworkSecurity"
-        },
-        {
           "target": "com.huggingface.orgs#GetAvatar"
         },
         {
-          "target": "com.huggingface.orgs#GetOrganizationMembers"
+          "target": "com.huggingface.orgs#GetNetworkSecuritySettings"
         },
         {
-          "target": "com.huggingface.orgs#ChangeMemberRole"
+          "target": "com.huggingface.orgs#GetOrganizationMembers"
         },
         {
           "target": "com.huggingface.orgs#GetOrgUsage"
@@ -5255,10 +5253,25 @@
           "target": "com.huggingface.orgs#GetSessionInferenceUsage"
         },
         {
+          "target": "com.huggingface.orgs#GetSocialHandles"
+        },
+        {
+          "target": "com.huggingface.orgs#ListMemberAccessTokens"
+        },
+        {
+          "target": "com.huggingface.orgs#ListOrganizationRepositories"
+        },
+        {
+          "target": "com.huggingface.orgs#RevokeMemberToken"
+        },
+        {
+          "target": "com.huggingface.orgs#RotateSsoCredentials"
+        },
+        {
           "target": "com.huggingface.orgs#StreamUsage"
         },
         {
-          "target": "com.huggingface.orgs#GetSocialHandles"
+          "target": "com.huggingface.orgs#UpdateNetworkSecurity"
         }
       ],
       "traits": {

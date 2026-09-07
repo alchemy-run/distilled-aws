@@ -286,7 +286,7 @@ export const IoK8sApiStorageV1CSIDriverSpec = /*@__PURE__*/ S.suspend(() =>
   identifier: "IoK8sApiStorageV1CSIDriverSpec",
 }) as any as S.Schema<IoK8sApiStorageV1CSIDriverSpec>;
 
-export interface CreateStorageV1CsiDriverRequest {
+export interface CreateStorageV1CSIDriverRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
@@ -304,7 +304,7 @@ export interface CreateStorageV1CsiDriverRequest {
   /** spec represents the specification of the CSI Driver. */
   spec: IoK8sApiStorageV1CSIDriverSpec;
 }
-export const CreateStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateStorageV1CSIDriverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pretty: S.optional(S.String.pipe(T.Query())),
     dryRun: S.optional(S.String.pipe(T.Query())),
@@ -322,8 +322,8 @@ export const CreateStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateStorageV1CsiDriverRequest",
-}) as any as S.Schema<CreateStorageV1CsiDriverRequest>;
+  identifier: "CreateStorageV1CSIDriverRequest",
+}) as any as S.Schema<CreateStorageV1CSIDriverRequest>;
 
 /** CSIDriver captures information about a Container Storage Interface (CSI) volume driver deployed on the cluster. Kubernetes attach detach controller uses this object to determine whether attach is required. Kubelet uses this object to determine whether pod information needs to be passed on mount. CSIDriver objects are non-namespaced. */
 export interface IoK8sApiStorageV1CSIDriver {
@@ -486,7 +486,7 @@ export const IoK8sApiStorageV1CSINodeStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "IoK8sApiStorageV1CSINodeStatus",
 }) as any as S.Schema<IoK8sApiStorageV1CSINodeStatus>;
 
-export interface CreateStorageV1CsiNodeRequest {
+export interface CreateStorageV1CSINodeRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
@@ -506,7 +506,7 @@ export interface CreateStorageV1CsiNodeRequest {
   /** status contains health and status information for the node's storage. */
   status?: IoK8sApiStorageV1CSINodeStatus;
 }
-export const CreateStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateStorageV1CSINodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pretty: S.optional(S.String.pipe(T.Query())),
     dryRun: S.optional(S.String.pipe(T.Query())),
@@ -525,8 +525,8 @@ export const CreateStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateStorageV1CsiNodeRequest",
-}) as any as S.Schema<CreateStorageV1CsiNodeRequest>;
+  identifier: "CreateStorageV1CSINodeRequest",
+}) as any as S.Schema<CreateStorageV1CSINodeRequest>;
 
 /** CSINode holds information about all CSI drivers installed on a node. CSI drivers do not need to create the CSINode object directly. As long as they use the node-driver-registrar sidecar container, the kubelet will automatically populate the CSINode object for the CSI driver as part of kubelet plugin registration. CSINode has the same name as a node. If the object is missing, it means either there are no CSI Drivers available on the node, or the Kubelet version is low enough that it doesn't create this object. CSINode has an OwnerReference that points to the corresponding node object. */
 export interface IoK8sApiStorageV1CSINode {
@@ -622,7 +622,7 @@ export const IoK8sApimachineryPkgApisMetaV1LabelSelector =
     identifier: "IoK8sApimachineryPkgApisMetaV1LabelSelector",
   }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1LabelSelector>;
 
-export interface CreateStorageV1NamespacedCsiStorageCapacityRequest {
+export interface CreateStorageV1NamespacedCSIStorageCapacityRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -648,7 +648,7 @@ export interface CreateStorageV1NamespacedCsiStorageCapacityRequest {
   /** storageClassName represents the name of the StorageClass that the reported capacity applies to. It must meet the same requirements as the name of a StorageClass object (non-empty, DNS subdomain). If that object no longer exists, the CSIStorageCapacity object is obsolete and should be removed by its creator. This field is immutable. */
   storageClassName: string;
 }
-export const CreateStorageV1NamespacedCsiStorageCapacityRequest =
+export const CreateStorageV1NamespacedCSIStorageCapacityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       namespace: S.String.pipe(T.Label()),
@@ -671,8 +671,8 @@ export const CreateStorageV1NamespacedCsiStorageCapacityRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateStorageV1NamespacedCsiStorageCapacityRequest",
-  }) as any as S.Schema<CreateStorageV1NamespacedCsiStorageCapacityRequest>;
+    identifier: "CreateStorageV1NamespacedCSIStorageCapacityRequest",
+  }) as any as S.Schema<CreateStorageV1NamespacedCSIStorageCapacityRequest>;
 
 /** CSIStorageCapacity stores the result of one CSI GetCapacity call. For a given StorageClass, this describes the available capacity in a particular topology segment. This can be used when considering where to instantiate new PersistentVolumes. For example this can express things like: - StorageClass "standard" has "1234 GiB" available in "topology.kubernetes.io/zone=us-east1" - StorageClass "localssd" has "10 GiB" available in "kubernetes.io/hostname=knode-abc123" The following three cases all imply that no capacity is available for a certain combination: - no object exists with suitable topology and storage class name - such an object exists, but the capacity is unset - such an object exists, but the capacity is zero The producer of these objects can decide which approach is more suitable. They are consumed by the kube-scheduler when a CSI driver opts into capacity-aware scheduling with CSIDriverSpec.StorageCapacity. The scheduler compares the MaximumVolumeSize against the requested size of pending volumes to filter out unsuitable nodes. If MaximumVolumeSize is unset, it falls back to a comparison against the less precise Capacity. If that is also unset, the scheduler assumes that capacity is insufficient and tries some other node. */
 export interface IoK8sApiStorageV1CSIStorageCapacity {
@@ -2071,7 +2071,7 @@ export const IoK8sApimachineryPkgApisMetaV1Preconditions =
     identifier: "IoK8sApimachineryPkgApisMetaV1Preconditions",
   }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1Preconditions>;
 
-export interface DeleteStorageV1CollectionCsiDriverRequest {
+export interface DeleteStorageV1CollectionCSIDriverRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
@@ -2109,7 +2109,7 @@ export interface DeleteStorageV1CollectionCsiDriverRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteStorageV1CollectionCsiDriverRequest =
+export const DeleteStorageV1CollectionCSIDriverRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       pretty: S.optional(S.String.pipe(T.Query())),
@@ -2140,8 +2140,8 @@ export const DeleteStorageV1CollectionCsiDriverRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteStorageV1CollectionCsiDriverRequest",
-  }) as any as S.Schema<DeleteStorageV1CollectionCsiDriverRequest>;
+    identifier: "DeleteStorageV1CollectionCSIDriverRequest",
+  }) as any as S.Schema<DeleteStorageV1CollectionCSIDriverRequest>;
 
 /** StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered. */
 export interface IoK8sApimachineryPkgApisMetaV1StatusCause {
@@ -2275,7 +2275,7 @@ export const IoK8sApimachineryPkgApisMetaV1Status = /*@__PURE__*/ S.suspend(
   identifier: "IoK8sApimachineryPkgApisMetaV1Status",
 }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1Status>;
 
-export interface DeleteStorageV1CollectionCsiNodeRequest {
+export interface DeleteStorageV1CollectionCSINodeRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
@@ -2313,7 +2313,7 @@ export interface DeleteStorageV1CollectionCsiNodeRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteStorageV1CollectionCsiNodeRequest = /*@__PURE__*/ S.suspend(
+export const DeleteStorageV1CollectionCSINodeRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       pretty: S.optional(S.String.pipe(T.Query())),
@@ -2344,10 +2344,10 @@ export const DeleteStorageV1CollectionCsiNodeRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteStorageV1CollectionCsiNodeRequest",
-}) as any as S.Schema<DeleteStorageV1CollectionCsiNodeRequest>;
+  identifier: "DeleteStorageV1CollectionCSINodeRequest",
+}) as any as S.Schema<DeleteStorageV1CollectionCSINodeRequest>;
 
-export interface DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest {
+export interface DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -2387,7 +2387,7 @@ export interface DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest =
+export const DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       namespace: S.String.pipe(T.Label()),
@@ -2419,8 +2419,8 @@ export const DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest",
-  }) as any as S.Schema<DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest>;
+    identifier: "DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest",
+  }) as any as S.Schema<DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest>;
 
 export interface DeleteStorageV1CollectionStorageClassRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -2638,7 +2638,7 @@ export const DeleteStorageV1CollectionVolumeAttributesClassRequest =
     identifier: "DeleteStorageV1CollectionVolumeAttributesClassRequest",
   }) as any as S.Schema<DeleteStorageV1CollectionVolumeAttributesClassRequest>;
 
-export interface DeleteStorageV1CsiDriverRequest {
+export interface DeleteStorageV1CSIDriverRequest {
   /** name of the CSIDriver */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -2660,7 +2660,7 @@ export interface DeleteStorageV1CsiDriverRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteStorageV1CSIDriverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
     pretty: S.optional(S.String.pipe(T.Query())),
@@ -2682,10 +2682,10 @@ export const DeleteStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteStorageV1CsiDriverRequest",
-}) as any as S.Schema<DeleteStorageV1CsiDriverRequest>;
+  identifier: "DeleteStorageV1CSIDriverRequest",
+}) as any as S.Schema<DeleteStorageV1CSIDriverRequest>;
 
-export interface DeleteStorageV1CsiNodeRequest {
+export interface DeleteStorageV1CSINodeRequest {
   /** name of the CSINode */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -2707,7 +2707,7 @@ export interface DeleteStorageV1CsiNodeRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteStorageV1CSINodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
     pretty: S.optional(S.String.pipe(T.Query())),
@@ -2729,10 +2729,10 @@ export const DeleteStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteStorageV1CsiNodeRequest",
-}) as any as S.Schema<DeleteStorageV1CsiNodeRequest>;
+  identifier: "DeleteStorageV1CSINodeRequest",
+}) as any as S.Schema<DeleteStorageV1CSINodeRequest>;
 
-export interface DeleteStorageV1NamespacedCsiStorageCapacityRequest {
+export interface DeleteStorageV1NamespacedCSIStorageCapacityRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
   /** name of the CSIStorageCapacity */
@@ -2756,7 +2756,7 @@ export interface DeleteStorageV1NamespacedCsiStorageCapacityRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteStorageV1NamespacedCsiStorageCapacityRequest =
+export const DeleteStorageV1NamespacedCSIStorageCapacityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       namespace: S.String.pipe(T.Label()),
@@ -2780,8 +2780,8 @@ export const DeleteStorageV1NamespacedCsiStorageCapacityRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteStorageV1NamespacedCsiStorageCapacityRequest",
-  }) as any as S.Schema<DeleteStorageV1NamespacedCsiStorageCapacityRequest>;
+    identifier: "DeleteStorageV1NamespacedCSIStorageCapacityRequest",
+  }) as any as S.Schema<DeleteStorageV1NamespacedCSIStorageCapacityRequest>;
 
 export interface DeleteStorageV1StorageClassRequest {
   /** name of the StorageClass */
@@ -2926,14 +2926,14 @@ export const DeleteStorageV1VolumeAttributesClassRequest =
     identifier: "DeleteStorageV1VolumeAttributesClassRequest",
   }) as any as S.Schema<DeleteStorageV1VolumeAttributesClassRequest>;
 
-export interface GetStorageApiGroupRequest {}
-export const GetStorageApiGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetStorageAPIGroupRequest {}
+export const GetStorageAPIGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/apis/storage.k8s.io/", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetStorageApiGroupRequest",
-}) as any as S.Schema<GetStorageApiGroupRequest>;
+  identifier: "GetStorageAPIGroupRequest",
+}) as any as S.Schema<GetStorageAPIGroupRequest>;
 
 /** GroupVersion contains the "group/version" and "version" string of a version. It is made a struct to keep extensibility. */
 export interface IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery {
@@ -3018,14 +3018,14 @@ export const IoK8sApimachineryPkgApisMetaV1APIGroup = /*@__PURE__*/ S.suspend(
   identifier: "IoK8sApimachineryPkgApisMetaV1APIGroup",
 }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1APIGroup>;
 
-export interface GetStorageV1ApiResourcesRequest {}
-export const GetStorageV1ApiResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetStorageV1APIResourcesRequest {}
+export const GetStorageV1APIResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/apis/storage.k8s.io/v1/", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetStorageV1ApiResourcesRequest",
-}) as any as S.Schema<GetStorageV1ApiResourcesRequest>;
+  identifier: "GetStorageV1APIResourcesRequest",
+}) as any as S.Schema<GetStorageV1APIResourcesRequest>;
 
 /** categories is a list of the grouped resources this resource belongs to (e.g. 'all') */
 export type IoK8sApimachineryPkgApisMetaV1APIResourceCategoriesList =
@@ -3126,7 +3126,7 @@ export const IoK8sApimachineryPkgApisMetaV1APIResourceList =
     identifier: "IoK8sApimachineryPkgApisMetaV1APIResourceList",
   }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1APIResourceList>;
 
-export interface ListStorageV1CsiDriverRequest {
+export interface ListStorageV1CSIDriverRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
@@ -3152,7 +3152,7 @@ export interface ListStorageV1CsiDriverRequest {
   /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
   watch?: boolean;
 }
-export const ListStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListStorageV1CSIDriverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pretty: S.optional(S.String.pipe(T.Query())),
     allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
@@ -3174,8 +3174,8 @@ export const ListStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListStorageV1CsiDriverRequest",
-}) as any as S.Schema<ListStorageV1CsiDriverRequest>;
+  identifier: "ListStorageV1CSIDriverRequest",
+}) as any as S.Schema<ListStorageV1CSIDriverRequest>;
 
 /** items is the list of CSIDriver */
 export type IoK8sApiStorageV1CSIDriverListItemsList =
@@ -3206,7 +3206,7 @@ export const IoK8sApiStorageV1CSIDriverList = /*@__PURE__*/ S.suspend(() =>
   identifier: "IoK8sApiStorageV1CSIDriverList",
 }) as any as S.Schema<IoK8sApiStorageV1CSIDriverList>;
 
-export interface ListStorageV1CsiNodeRequest {
+export interface ListStorageV1CSINodeRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
@@ -3232,7 +3232,7 @@ export interface ListStorageV1CsiNodeRequest {
   /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
   watch?: boolean;
 }
-export const ListStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListStorageV1CSINodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pretty: S.optional(S.String.pipe(T.Query())),
     allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
@@ -3254,8 +3254,8 @@ export const ListStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListStorageV1CsiNodeRequest",
-}) as any as S.Schema<ListStorageV1CsiNodeRequest>;
+  identifier: "ListStorageV1CSINodeRequest",
+}) as any as S.Schema<ListStorageV1CSINodeRequest>;
 
 /** items is the list of CSINode */
 export type IoK8sApiStorageV1CSINodeListItemsList =
@@ -3286,7 +3286,7 @@ export const IoK8sApiStorageV1CSINodeList = /*@__PURE__*/ S.suspend(() =>
   identifier: "IoK8sApiStorageV1CSINodeList",
 }) as any as S.Schema<IoK8sApiStorageV1CSINodeList>;
 
-export interface ListStorageV1CsiStorageCapacityForAllNamespacesRequest {
+export interface ListStorageV1CSIStorageCapacityForAllNamespacesRequest {
   /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
   allowWatchBookmarks?: boolean;
   /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
@@ -3312,7 +3312,7 @@ export interface ListStorageV1CsiStorageCapacityForAllNamespacesRequest {
   /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
   watch?: boolean;
 }
-export const ListStorageV1CsiStorageCapacityForAllNamespacesRequest =
+export const ListStorageV1CSIStorageCapacityForAllNamespacesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
@@ -3335,8 +3335,8 @@ export const ListStorageV1CsiStorageCapacityForAllNamespacesRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListStorageV1CsiStorageCapacityForAllNamespacesRequest",
-  }) as any as S.Schema<ListStorageV1CsiStorageCapacityForAllNamespacesRequest>;
+    identifier: "ListStorageV1CSIStorageCapacityForAllNamespacesRequest",
+  }) as any as S.Schema<ListStorageV1CSIStorageCapacityForAllNamespacesRequest>;
 
 /** items is the list of CSIStorageCapacity objects. */
 export type IoK8sApiStorageV1CSIStorageCapacityListItemsList =
@@ -3369,7 +3369,7 @@ export const IoK8sApiStorageV1CSIStorageCapacityList = /*@__PURE__*/ S.suspend(
   identifier: "IoK8sApiStorageV1CSIStorageCapacityList",
 }) as any as S.Schema<IoK8sApiStorageV1CSIStorageCapacityList>;
 
-export interface ListStorageV1NamespacedCsiStorageCapacityRequest {
+export interface ListStorageV1NamespacedCSIStorageCapacityRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -3397,7 +3397,7 @@ export interface ListStorageV1NamespacedCsiStorageCapacityRequest {
   /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
   watch?: boolean;
 }
-export const ListStorageV1NamespacedCsiStorageCapacityRequest =
+export const ListStorageV1NamespacedCSIStorageCapacityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       namespace: S.String.pipe(T.Label()),
@@ -3421,8 +3421,8 @@ export const ListStorageV1NamespacedCsiStorageCapacityRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListStorageV1NamespacedCsiStorageCapacityRequest",
-  }) as any as S.Schema<ListStorageV1NamespacedCsiStorageCapacityRequest>;
+    identifier: "ListStorageV1NamespacedCSIStorageCapacityRequest",
+  }) as any as S.Schema<ListStorageV1NamespacedCSIStorageCapacityRequest>;
 
 export interface ListStorageV1StorageClassRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -3670,388 +3670,7 @@ export const IoK8sApiStorageV1VolumeAttributesClassList =
     identifier: "IoK8sApiStorageV1VolumeAttributesClassList",
   }) as any as S.Schema<IoK8sApiStorageV1VolumeAttributesClassList>;
 
-export interface ListWatchStorageV1CsiDriverRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-    continue: S.optional(S.String.pipe(T.Query())),
-    fieldSelector: S.optional(S.String.pipe(T.Query())),
-    labelSelector: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    pretty: S.optional(S.String.pipe(T.Query())),
-    resourceVersion: S.optional(S.String.pipe(T.Query())),
-    resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-    sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-    shardSelector: S.optional(S.String.pipe(T.Query())),
-    timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-    watch: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/apis/storage.k8s.io/v1/watch/csidrivers",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListWatchStorageV1CsiDriverRequest",
-}) as any as S.Schema<ListWatchStorageV1CsiDriverRequest>;
-
-/** Event represents a single event to a watched resource. */
-export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
-  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
-  object: unknown;
-  type: string;
-}
-export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      object: S.Unknown,
-      type: S.String,
-    }),
-).annotate({
-  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
-}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
-
-export interface ListWatchStorageV1CsiNodeRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-    continue: S.optional(S.String.pipe(T.Query())),
-    fieldSelector: S.optional(S.String.pipe(T.Query())),
-    labelSelector: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    pretty: S.optional(S.String.pipe(T.Query())),
-    resourceVersion: S.optional(S.String.pipe(T.Query())),
-    resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-    sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-    shardSelector: S.optional(S.String.pipe(T.Query())),
-    timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-    watch: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/apis/storage.k8s.io/v1/watch/csinodes",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListWatchStorageV1CsiNodeRequest",
-}) as any as S.Schema<ListWatchStorageV1CsiNodeRequest>;
-
-export interface ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/storage.k8s.io/v1/watch/csistoragecapacities",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest",
-  }) as any as S.Schema<ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest>;
-
-export interface ListWatchStorageV1NamespacedCsiStorageCapacityRequest {
-  /** object name and auth scope, such as for teams and projects */
-  namespace: string;
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchStorageV1NamespacedCsiStorageCapacityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      namespace: S.String.pipe(T.Label()),
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/storage.k8s.io/v1/watch/namespaces/{namespace}/csistoragecapacities",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchStorageV1NamespacedCsiStorageCapacityRequest",
-  }) as any as S.Schema<ListWatchStorageV1NamespacedCsiStorageCapacityRequest>;
-
-export interface ListWatchStorageV1StorageClassRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchStorageV1StorageClassRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/storage.k8s.io/v1/watch/storageclasses",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ListWatchStorageV1StorageClassRequest",
-}) as any as S.Schema<ListWatchStorageV1StorageClassRequest>;
-
-export interface ListWatchStorageV1VolumeAttachmentRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchStorageV1VolumeAttachmentRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/storage.k8s.io/v1/watch/volumeattachments",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchStorageV1VolumeAttachmentRequest",
-  }) as any as S.Schema<ListWatchStorageV1VolumeAttachmentRequest>;
-
-export interface ListWatchStorageV1VolumeAttributeClassRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchStorageV1VolumeAttributeClassRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/storage.k8s.io/v1/watch/volumeattributesclasses",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchStorageV1VolumeAttributeClassRequest",
-  }) as any as S.Schema<ListWatchStorageV1VolumeAttributeClassRequest>;
-
-export interface PatchStorageV1CsiDriverRequest {
+export interface PatchStorageV1CSIDriverRequest {
   /** name of the CSIDriver */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -4065,7 +3684,7 @@ export interface PatchStorageV1CsiDriverRequest {
   /** Force is going to "force" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. */
   force?: boolean;
 }
-export const PatchStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchStorageV1CSIDriverRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
     pretty: S.optional(S.String.pipe(T.Query())),
@@ -4081,10 +3700,10 @@ export const PatchStorageV1CsiDriverRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PatchStorageV1CsiDriverRequest",
-}) as any as S.Schema<PatchStorageV1CsiDriverRequest>;
+  identifier: "PatchStorageV1CSIDriverRequest",
+}) as any as S.Schema<PatchStorageV1CSIDriverRequest>;
 
-export interface PatchStorageV1CsiNodeRequest {
+export interface PatchStorageV1CSINodeRequest {
   /** name of the CSINode */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -4098,7 +3717,7 @@ export interface PatchStorageV1CsiNodeRequest {
   /** Force is going to "force" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. */
   force?: boolean;
 }
-export const PatchStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchStorageV1CSINodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
     pretty: S.optional(S.String.pipe(T.Query())),
@@ -4114,10 +3733,10 @@ export const PatchStorageV1CsiNodeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PatchStorageV1CsiNodeRequest",
-}) as any as S.Schema<PatchStorageV1CsiNodeRequest>;
+  identifier: "PatchStorageV1CSINodeRequest",
+}) as any as S.Schema<PatchStorageV1CSINodeRequest>;
 
-export interface PatchStorageV1CsiNodeStatusRequest {
+export interface PatchStorageV1CSINodeStatusRequest {
   /** name of the CSINode */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -4131,7 +3750,7 @@ export interface PatchStorageV1CsiNodeStatusRequest {
   /** Force is going to "force" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. */
   force?: boolean;
 }
-export const PatchStorageV1CsiNodeStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchStorageV1CSINodeStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String.pipe(T.Label()),
     pretty: S.optional(S.String.pipe(T.Query())),
@@ -4147,10 +3766,10 @@ export const PatchStorageV1CsiNodeStatusRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PatchStorageV1CsiNodeStatusRequest",
-}) as any as S.Schema<PatchStorageV1CsiNodeStatusRequest>;
+  identifier: "PatchStorageV1CSINodeStatusRequest",
+}) as any as S.Schema<PatchStorageV1CSINodeStatusRequest>;
 
-export interface PatchStorageV1NamespacedCsiStorageCapacityRequest {
+export interface PatchStorageV1NamespacedCSIStorageCapacityRequest {
   /** object name and auth scope, such as for teams and projects */
   namespace: string;
   /** name of the CSIStorageCapacity */
@@ -4166,7 +3785,7 @@ export interface PatchStorageV1NamespacedCsiStorageCapacityRequest {
   /** Force is going to "force" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. */
   force?: boolean;
 }
-export const PatchStorageV1NamespacedCsiStorageCapacityRequest =
+export const PatchStorageV1NamespacedCSIStorageCapacityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       namespace: S.String.pipe(T.Label()),
@@ -4184,8 +3803,8 @@ export const PatchStorageV1NamespacedCsiStorageCapacityRequest =
       }),
     ),
   ).annotate({
-    identifier: "PatchStorageV1NamespacedCsiStorageCapacityRequest",
-  }) as any as S.Schema<PatchStorageV1NamespacedCsiStorageCapacityRequest>;
+    identifier: "PatchStorageV1NamespacedCSIStorageCapacityRequest",
+  }) as any as S.Schema<PatchStorageV1NamespacedCSIStorageCapacityRequest>;
 
 export interface PatchStorageV1StorageClassRequest {
   /** name of the StorageClass */
@@ -4978,6 +4597,73 @@ export const WatchStorageV1CSIDriverRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "WatchStorageV1CSIDriverRequest",
 }) as any as S.Schema<WatchStorageV1CSIDriverRequest>;
 
+/** Event represents a single event to a watched resource. */
+export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
+  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
+  object: unknown;
+  type: string;
+}
+export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      object: S.Unknown,
+      type: S.String,
+    }),
+).annotate({
+  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
+}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
+
+export interface WatchStorageV1CSIDriverListRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchStorageV1CSIDriverListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+    continue: S.optional(S.String.pipe(T.Query())),
+    fieldSelector: S.optional(S.String.pipe(T.Query())),
+    labelSelector: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    pretty: S.optional(S.String.pipe(T.Query())),
+    resourceVersion: S.optional(S.String.pipe(T.Query())),
+    resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+    sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+    shardSelector: S.optional(S.String.pipe(T.Query())),
+    timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+    watch: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/apis/storage.k8s.io/v1/watch/csidrivers",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "WatchStorageV1CSIDriverListRequest",
+}) as any as S.Schema<WatchStorageV1CSIDriverListRequest>;
+
 export interface WatchStorageV1CSINodeRequest {
   /** name of the CSINode */
   name: string;
@@ -5031,6 +4717,109 @@ export const WatchStorageV1CSINodeRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WatchStorageV1CSINodeRequest",
 }) as any as S.Schema<WatchStorageV1CSINodeRequest>;
+
+export interface WatchStorageV1CSINodeListRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchStorageV1CSINodeListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+    continue: S.optional(S.String.pipe(T.Query())),
+    fieldSelector: S.optional(S.String.pipe(T.Query())),
+    labelSelector: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    pretty: S.optional(S.String.pipe(T.Query())),
+    resourceVersion: S.optional(S.String.pipe(T.Query())),
+    resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+    sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+    shardSelector: S.optional(S.String.pipe(T.Query())),
+    timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+    watch: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/apis/storage.k8s.io/v1/watch/csinodes",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "WatchStorageV1CSINodeListRequest",
+}) as any as S.Schema<WatchStorageV1CSINodeListRequest>;
+
+export interface WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/storage.k8s.io/v1/watch/csistoragecapacities",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest",
+  }) as any as S.Schema<WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest>;
 
 export interface WatchStorageV1NamespacedCSIStorageCapacityRequest {
   /** object name and auth scope, such as for teams and projects */
@@ -5090,6 +4879,61 @@ export const WatchStorageV1NamespacedCSIStorageCapacityRequest =
     identifier: "WatchStorageV1NamespacedCSIStorageCapacityRequest",
   }) as any as S.Schema<WatchStorageV1NamespacedCSIStorageCapacityRequest>;
 
+export interface WatchStorageV1NamespacedCSIStorageCapacityListRequest {
+  /** object name and auth scope, such as for teams and projects */
+  namespace: string;
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchStorageV1NamespacedCSIStorageCapacityListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      namespace: S.String.pipe(T.Label()),
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/storage.k8s.io/v1/watch/namespaces/{namespace}/csistoragecapacities",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchStorageV1NamespacedCSIStorageCapacityListRequest",
+  }) as any as S.Schema<WatchStorageV1NamespacedCSIStorageCapacityListRequest>;
+
 export interface WatchStorageV1StorageClassRequest {
   /** name of the StorageClass */
   name: string;
@@ -5143,6 +4987,58 @@ export const WatchStorageV1StorageClassRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WatchStorageV1StorageClassRequest",
 }) as any as S.Schema<WatchStorageV1StorageClassRequest>;
+
+export interface WatchStorageV1StorageClassListRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchStorageV1StorageClassListRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/storage.k8s.io/v1/watch/storageclasses",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "WatchStorageV1StorageClassListRequest",
+}) as any as S.Schema<WatchStorageV1StorageClassListRequest>;
 
 export interface WatchStorageV1VolumeAttachmentRequest {
   /** name of the VolumeAttachment */
@@ -5199,6 +5095,58 @@ export const WatchStorageV1VolumeAttachmentRequest = /*@__PURE__*/ S.suspend(
   identifier: "WatchStorageV1VolumeAttachmentRequest",
 }) as any as S.Schema<WatchStorageV1VolumeAttachmentRequest>;
 
+export interface WatchStorageV1VolumeAttachmentListRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchStorageV1VolumeAttachmentListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/storage.k8s.io/v1/watch/volumeattachments",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchStorageV1VolumeAttachmentListRequest",
+  }) as any as S.Schema<WatchStorageV1VolumeAttachmentListRequest>;
+
 export interface WatchStorageV1VolumeAttributesClassRequest {
   /** name of the VolumeAttributesClass */
   name: string;
@@ -5254,54 +5202,106 @@ export const WatchStorageV1VolumeAttributesClassRequest =
     identifier: "WatchStorageV1VolumeAttributesClassRequest",
   }) as any as S.Schema<WatchStorageV1VolumeAttributesClassRequest>;
 
-export type CreateStorageV1CsiDriverError =
+export interface WatchStorageV1VolumeAttributesClassListRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchStorageV1VolumeAttributesClassListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/storage.k8s.io/v1/watch/volumeattributesclasses",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchStorageV1VolumeAttributesClassListRequest",
+  }) as any as S.Schema<WatchStorageV1VolumeAttributesClassListRequest>;
+
+export type CreateStorageV1CSIDriverError =
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** create a CSIDriver */
-export const createStorageV1CsiDriver: API.OperationMethod<
-  CreateStorageV1CsiDriverRequest,
+export const createStorageV1CSIDriver: API.OperationMethod<
+  CreateStorageV1CSIDriverRequest,
   IoK8sApiStorageV1CSIDriver,
-  CreateStorageV1CsiDriverError,
+  CreateStorageV1CSIDriverError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateStorageV1CsiDriverRequest,
+  input: CreateStorageV1CSIDriverRequest,
   output: IoK8sApiStorageV1CSIDriver,
   errors: [Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateStorageV1CsiNodeError =
+export type CreateStorageV1CSINodeError =
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** create a CSINode */
-export const createStorageV1CsiNode: API.OperationMethod<
-  CreateStorageV1CsiNodeRequest,
+export const createStorageV1CSINode: API.OperationMethod<
+  CreateStorageV1CSINodeRequest,
   IoK8sApiStorageV1CSINode,
-  CreateStorageV1CsiNodeError,
+  CreateStorageV1CSINodeError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateStorageV1CsiNodeRequest,
+  input: CreateStorageV1CSINodeRequest,
   output: IoK8sApiStorageV1CSINode,
   errors: [Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateStorageV1NamespacedCsiStorageCapacityError =
+export type CreateStorageV1NamespacedCSIStorageCapacityError =
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** create a CSIStorageCapacity */
-export const createStorageV1NamespacedCsiStorageCapacity: API.OperationMethod<
-  CreateStorageV1NamespacedCsiStorageCapacityRequest,
+export const createStorageV1NamespacedCSIStorageCapacity: API.OperationMethod<
+  CreateStorageV1NamespacedCSIStorageCapacityRequest,
   IoK8sApiStorageV1CSIStorageCapacity,
-  CreateStorageV1NamespacedCsiStorageCapacityError,
+  CreateStorageV1NamespacedCSIStorageCapacityError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateStorageV1NamespacedCsiStorageCapacityRequest,
+  input: CreateStorageV1NamespacedCSIStorageCapacityRequest,
   output: IoK8sApiStorageV1CSIStorageCapacity,
   errors: [Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -5362,46 +5362,46 @@ export const createStorageV1VolumeAttributesClass: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageV1CollectionCsiDriverError = KubernetesOpError;
+export type DeleteStorageV1CollectionCSIDriverError = KubernetesOpError;
 /** delete collection of CSIDriver */
-export const deleteStorageV1CollectionCsiDriver: API.OperationMethod<
-  DeleteStorageV1CollectionCsiDriverRequest,
+export const deleteStorageV1CollectionCSIDriver: API.OperationMethod<
+  DeleteStorageV1CollectionCSIDriverRequest,
   IoK8sApimachineryPkgApisMetaV1Status,
-  DeleteStorageV1CollectionCsiDriverError,
+  DeleteStorageV1CollectionCSIDriverError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageV1CollectionCsiDriverRequest,
+  input: DeleteStorageV1CollectionCSIDriverRequest,
   output: IoK8sApimachineryPkgApisMetaV1Status,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageV1CollectionCsiNodeError = KubernetesOpError;
+export type DeleteStorageV1CollectionCSINodeError = KubernetesOpError;
 /** delete collection of CSINode */
-export const deleteStorageV1CollectionCsiNode: API.OperationMethod<
-  DeleteStorageV1CollectionCsiNodeRequest,
+export const deleteStorageV1CollectionCSINode: API.OperationMethod<
+  DeleteStorageV1CollectionCSINodeRequest,
   IoK8sApimachineryPkgApisMetaV1Status,
-  DeleteStorageV1CollectionCsiNodeError,
+  DeleteStorageV1CollectionCSINodeError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageV1CollectionCsiNodeRequest,
+  input: DeleteStorageV1CollectionCSINodeRequest,
   output: IoK8sApimachineryPkgApisMetaV1Status,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageV1CollectionNamespacedCsiStorageCapacityError =
+export type DeleteStorageV1CollectionNamespacedCSIStorageCapacityError =
   KubernetesOpError;
 /** delete collection of CSIStorageCapacity */
-export const deleteStorageV1CollectionNamespacedCsiStorageCapacity: API.OperationMethod<
-  DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest,
+export const deleteStorageV1CollectionNamespacedCSIStorageCapacity: API.OperationMethod<
+  DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest,
   IoK8sApimachineryPkgApisMetaV1Status,
-  DeleteStorageV1CollectionNamespacedCsiStorageCapacityError,
+  DeleteStorageV1CollectionNamespacedCSIStorageCapacityError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageV1CollectionNamespacedCsiStorageCapacityRequest,
+  input: DeleteStorageV1CollectionNamespacedCSIStorageCapacityRequest,
   output: IoK8sApimachineryPkgApisMetaV1Status,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -5454,54 +5454,54 @@ export const deleteStorageV1CollectionVolumeAttributesClass: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageV1CsiDriverError =
+export type DeleteStorageV1CSIDriverError =
   | NotFound
   | Conflict
   | KubernetesOpError;
 /** delete a CSIDriver */
-export const deleteStorageV1CsiDriver: API.OperationMethod<
-  DeleteStorageV1CsiDriverRequest,
+export const deleteStorageV1CSIDriver: API.OperationMethod<
+  DeleteStorageV1CSIDriverRequest,
   IoK8sApiStorageV1CSIDriver,
-  DeleteStorageV1CsiDriverError,
+  DeleteStorageV1CSIDriverError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageV1CsiDriverRequest,
+  input: DeleteStorageV1CSIDriverRequest,
   output: IoK8sApiStorageV1CSIDriver,
   errors: [NotFound, Conflict, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageV1CsiNodeError =
+export type DeleteStorageV1CSINodeError =
   | NotFound
   | Conflict
   | KubernetesOpError;
 /** delete a CSINode */
-export const deleteStorageV1CsiNode: API.OperationMethod<
-  DeleteStorageV1CsiNodeRequest,
+export const deleteStorageV1CSINode: API.OperationMethod<
+  DeleteStorageV1CSINodeRequest,
   IoK8sApiStorageV1CSINode,
-  DeleteStorageV1CsiNodeError,
+  DeleteStorageV1CSINodeError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageV1CsiNodeRequest,
+  input: DeleteStorageV1CSINodeRequest,
   output: IoK8sApiStorageV1CSINode,
   errors: [NotFound, Conflict, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteStorageV1NamespacedCsiStorageCapacityError =
+export type DeleteStorageV1NamespacedCSIStorageCapacityError =
   | NotFound
   | Conflict
   | KubernetesOpError;
 /** delete a CSIStorageCapacity */
-export const deleteStorageV1NamespacedCsiStorageCapacity: API.OperationMethod<
-  DeleteStorageV1NamespacedCsiStorageCapacityRequest,
+export const deleteStorageV1NamespacedCSIStorageCapacity: API.OperationMethod<
+  DeleteStorageV1NamespacedCSIStorageCapacityRequest,
   IoK8sApimachineryPkgApisMetaV1Status,
-  DeleteStorageV1NamespacedCsiStorageCapacityError,
+  DeleteStorageV1NamespacedCSIStorageCapacityError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteStorageV1NamespacedCsiStorageCapacityRequest,
+  input: DeleteStorageV1NamespacedCSIStorageCapacityRequest,
   output: IoK8sApimachineryPkgApisMetaV1Status,
   errors: [NotFound, Conflict, UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -5562,91 +5562,91 @@ export const deleteStorageV1VolumeAttributesClass: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetStorageApiGroupError = KubernetesOpError;
+export type GetStorageAPIGroupError = KubernetesOpError;
 /** get information of a group */
-export const getStorageApiGroup: API.OperationMethod<
-  GetStorageApiGroupRequest,
+export const getStorageAPIGroup: API.OperationMethod<
+  GetStorageAPIGroupRequest,
   IoK8sApimachineryPkgApisMetaV1APIGroup,
-  GetStorageApiGroupError,
+  GetStorageAPIGroupError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageApiGroupRequest,
+  input: GetStorageAPIGroupRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIGroup,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetStorageV1ApiResourcesError = KubernetesOpError;
+export type GetStorageV1APIResourcesError = KubernetesOpError;
 /** get available resources */
-export const getStorageV1ApiResources: API.OperationMethod<
-  GetStorageV1ApiResourcesRequest,
+export const getStorageV1APIResources: API.OperationMethod<
+  GetStorageV1APIResourcesRequest,
   IoK8sApimachineryPkgApisMetaV1APIResourceList,
-  GetStorageV1ApiResourcesError,
+  GetStorageV1APIResourcesError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetStorageV1ApiResourcesRequest,
+  input: GetStorageV1APIResourcesRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIResourceList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListStorageV1CsiDriverError = KubernetesOpError;
+export type ListStorageV1CSIDriverError = KubernetesOpError;
 /** list or watch objects of kind CSIDriver */
-export const listStorageV1CsiDriver: API.OperationMethod<
-  ListStorageV1CsiDriverRequest,
+export const listStorageV1CSIDriver: API.OperationMethod<
+  ListStorageV1CSIDriverRequest,
   IoK8sApiStorageV1CSIDriverList,
-  ListStorageV1CsiDriverError,
+  ListStorageV1CSIDriverError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListStorageV1CsiDriverRequest,
+  input: ListStorageV1CSIDriverRequest,
   output: IoK8sApiStorageV1CSIDriverList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListStorageV1CsiNodeError = KubernetesOpError;
+export type ListStorageV1CSINodeError = KubernetesOpError;
 /** list or watch objects of kind CSINode */
-export const listStorageV1CsiNode: API.OperationMethod<
-  ListStorageV1CsiNodeRequest,
+export const listStorageV1CSINode: API.OperationMethod<
+  ListStorageV1CSINodeRequest,
   IoK8sApiStorageV1CSINodeList,
-  ListStorageV1CsiNodeError,
+  ListStorageV1CSINodeError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListStorageV1CsiNodeRequest,
+  input: ListStorageV1CSINodeRequest,
   output: IoK8sApiStorageV1CSINodeList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListStorageV1CsiStorageCapacityForAllNamespacesError =
+export type ListStorageV1CSIStorageCapacityForAllNamespacesError =
   KubernetesOpError;
 /** list or watch objects of kind CSIStorageCapacity */
-export const listStorageV1CsiStorageCapacityForAllNamespaces: API.OperationMethod<
-  ListStorageV1CsiStorageCapacityForAllNamespacesRequest,
+export const listStorageV1CSIStorageCapacityForAllNamespaces: API.OperationMethod<
+  ListStorageV1CSIStorageCapacityForAllNamespacesRequest,
   IoK8sApiStorageV1CSIStorageCapacityList,
-  ListStorageV1CsiStorageCapacityForAllNamespacesError,
+  ListStorageV1CSIStorageCapacityForAllNamespacesError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListStorageV1CsiStorageCapacityForAllNamespacesRequest,
+  input: ListStorageV1CSIStorageCapacityForAllNamespacesRequest,
   output: IoK8sApiStorageV1CSIStorageCapacityList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListStorageV1NamespacedCsiStorageCapacityError = KubernetesOpError;
+export type ListStorageV1NamespacedCSIStorageCapacityError = KubernetesOpError;
 /** list or watch objects of kind CSIStorageCapacity */
-export const listStorageV1NamespacedCsiStorageCapacity: API.OperationMethod<
-  ListStorageV1NamespacedCsiStorageCapacityRequest,
+export const listStorageV1NamespacedCSIStorageCapacity: API.OperationMethod<
+  ListStorageV1NamespacedCSIStorageCapacityRequest,
   IoK8sApiStorageV1CSIStorageCapacityList,
-  ListStorageV1NamespacedCsiStorageCapacityError,
+  ListStorageV1NamespacedCSIStorageCapacityError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListStorageV1NamespacedCsiStorageCapacityRequest,
+  input: ListStorageV1NamespacedCSIStorageCapacityRequest,
   output: IoK8sApiStorageV1CSIStorageCapacityList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -5698,179 +5698,72 @@ export const listStorageV1VolumeAttributesClass: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListWatchStorageV1CsiDriverError = KubernetesOpError;
-/** watch individual changes to a list of CSIDriver. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchStorageV1CsiDriver: API.OperationMethod<
-  ListWatchStorageV1CsiDriverRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchStorageV1CsiDriverError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchStorageV1CsiDriverRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchStorageV1CsiNodeError = KubernetesOpError;
-/** watch individual changes to a list of CSINode. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchStorageV1CsiNode: API.OperationMethod<
-  ListWatchStorageV1CsiNodeRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchStorageV1CsiNodeError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchStorageV1CsiNodeRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchStorageV1CsiStorageCapacityForAllNamespacesError =
-  KubernetesOpError;
-/** watch individual changes to a list of CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchStorageV1CsiStorageCapacityForAllNamespaces: API.OperationMethod<
-  ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchStorageV1CsiStorageCapacityForAllNamespacesError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchStorageV1CsiStorageCapacityForAllNamespacesRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchStorageV1NamespacedCsiStorageCapacityError =
-  KubernetesOpError;
-/** watch individual changes to a list of CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchStorageV1NamespacedCsiStorageCapacity: API.OperationMethod<
-  ListWatchStorageV1NamespacedCsiStorageCapacityRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchStorageV1NamespacedCsiStorageCapacityError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchStorageV1NamespacedCsiStorageCapacityRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchStorageV1StorageClassError = KubernetesOpError;
-/** watch individual changes to a list of StorageClass. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchStorageV1StorageClass: API.OperationMethod<
-  ListWatchStorageV1StorageClassRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchStorageV1StorageClassError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchStorageV1StorageClassRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchStorageV1VolumeAttachmentError = KubernetesOpError;
-/** watch individual changes to a list of VolumeAttachment. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchStorageV1VolumeAttachment: API.OperationMethod<
-  ListWatchStorageV1VolumeAttachmentRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchStorageV1VolumeAttachmentError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchStorageV1VolumeAttachmentRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListWatchStorageV1VolumeAttributeClassError = KubernetesOpError;
-/** watch individual changes to a list of VolumeAttributesClass. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchStorageV1VolumeAttributeClass: API.OperationMethod<
-  ListWatchStorageV1VolumeAttributeClassRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchStorageV1VolumeAttributeClassError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchStorageV1VolumeAttributeClassRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchStorageV1CsiDriverError =
+export type PatchStorageV1CSIDriverError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** partially update the specified CSIDriver */
-export const patchStorageV1CsiDriver: API.OperationMethod<
-  PatchStorageV1CsiDriverRequest,
+export const patchStorageV1CSIDriver: API.OperationMethod<
+  PatchStorageV1CSIDriverRequest,
   IoK8sApiStorageV1CSIDriver,
-  PatchStorageV1CsiDriverError,
+  PatchStorageV1CSIDriverError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchStorageV1CsiDriverRequest,
+  input: PatchStorageV1CSIDriverRequest,
   output: IoK8sApiStorageV1CSIDriver,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type PatchStorageV1CsiNodeError =
+export type PatchStorageV1CSINodeError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** partially update the specified CSINode */
-export const patchStorageV1CsiNode: API.OperationMethod<
-  PatchStorageV1CsiNodeRequest,
+export const patchStorageV1CSINode: API.OperationMethod<
+  PatchStorageV1CSINodeRequest,
   IoK8sApiStorageV1CSINode,
-  PatchStorageV1CsiNodeError,
+  PatchStorageV1CSINodeError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchStorageV1CsiNodeRequest,
+  input: PatchStorageV1CSINodeRequest,
   output: IoK8sApiStorageV1CSINode,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type PatchStorageV1CsiNodeStatusError = KubernetesOpError;
+export type PatchStorageV1CSINodeStatusError = KubernetesOpError;
 /** partially update status of the specified CSINode */
-export const patchStorageV1CsiNodeStatus: API.OperationMethod<
-  PatchStorageV1CsiNodeStatusRequest,
+export const patchStorageV1CSINodeStatus: API.OperationMethod<
+  PatchStorageV1CSINodeStatusRequest,
   IoK8sApiStorageV1CSINode,
-  PatchStorageV1CsiNodeStatusError,
+  PatchStorageV1CSINodeStatusError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchStorageV1CsiNodeStatusRequest,
+  input: PatchStorageV1CSINodeStatusRequest,
   output: IoK8sApiStorageV1CSINode,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type PatchStorageV1NamespacedCsiStorageCapacityError =
+export type PatchStorageV1NamespacedCSIStorageCapacityError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** partially update the specified CSIStorageCapacity */
-export const patchStorageV1NamespacedCsiStorageCapacity: API.OperationMethod<
-  PatchStorageV1NamespacedCsiStorageCapacityRequest,
+export const patchStorageV1NamespacedCSIStorageCapacity: API.OperationMethod<
+  PatchStorageV1NamespacedCSIStorageCapacityRequest,
   IoK8sApiStorageV1CSIStorageCapacity,
-  PatchStorageV1NamespacedCsiStorageCapacityError,
+  PatchStorageV1NamespacedCSIStorageCapacityError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchStorageV1NamespacedCsiStorageCapacityRequest,
+  input: PatchStorageV1NamespacedCSIStorageCapacityRequest,
   output: IoK8sApiStorageV1CSIStorageCapacity,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -6242,6 +6135,21 @@ export const watchStorageV1CSIDriver: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type WatchStorageV1CSIDriverListError = KubernetesOpError;
+/** watch individual changes to a list of CSIDriver. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchStorageV1CSIDriverList: API.OperationMethod<
+  WatchStorageV1CSIDriverListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchStorageV1CSIDriverListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchStorageV1CSIDriverListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WatchStorageV1CSINodeError = KubernetesOpError;
 /** watch changes to an object of kind CSINode. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
 export const watchStorageV1CSINode: API.OperationMethod<
@@ -6251,6 +6159,37 @@ export const watchStorageV1CSINode: API.OperationMethod<
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchStorageV1CSINodeRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchStorageV1CSINodeListError = KubernetesOpError;
+/** watch individual changes to a list of CSINode. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchStorageV1CSINodeList: API.OperationMethod<
+  WatchStorageV1CSINodeListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchStorageV1CSINodeListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchStorageV1CSINodeListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchStorageV1CSIStorageCapacityListForAllNamespacesError =
+  KubernetesOpError;
+/** watch individual changes to a list of CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchStorageV1CSIStorageCapacityListForAllNamespaces: API.OperationMethod<
+  WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchStorageV1CSIStorageCapacityListForAllNamespacesError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchStorageV1CSIStorageCapacityListForAllNamespacesRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -6272,6 +6211,22 @@ export const watchStorageV1NamespacedCSIStorageCapacity: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type WatchStorageV1NamespacedCSIStorageCapacityListError =
+  KubernetesOpError;
+/** watch individual changes to a list of CSIStorageCapacity. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchStorageV1NamespacedCSIStorageCapacityList: API.OperationMethod<
+  WatchStorageV1NamespacedCSIStorageCapacityListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchStorageV1NamespacedCSIStorageCapacityListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchStorageV1NamespacedCSIStorageCapacityListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WatchStorageV1StorageClassError = KubernetesOpError;
 /** watch changes to an object of kind StorageClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
 export const watchStorageV1StorageClass: API.OperationMethod<
@@ -6281,6 +6236,21 @@ export const watchStorageV1StorageClass: API.OperationMethod<
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchStorageV1StorageClassRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchStorageV1StorageClassListError = KubernetesOpError;
+/** watch individual changes to a list of StorageClass. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchStorageV1StorageClassList: API.OperationMethod<
+  WatchStorageV1StorageClassListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchStorageV1StorageClassListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchStorageV1StorageClassListRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -6302,6 +6272,21 @@ export const watchStorageV1VolumeAttachment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type WatchStorageV1VolumeAttachmentListError = KubernetesOpError;
+/** watch individual changes to a list of VolumeAttachment. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchStorageV1VolumeAttachmentList: API.OperationMethod<
+  WatchStorageV1VolumeAttachmentListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchStorageV1VolumeAttachmentListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchStorageV1VolumeAttachmentListRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
 export type WatchStorageV1VolumeAttributesClassError = KubernetesOpError;
 /** watch changes to an object of kind VolumeAttributesClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter. */
 export const watchStorageV1VolumeAttributesClass: API.OperationMethod<
@@ -6311,6 +6296,21 @@ export const watchStorageV1VolumeAttributesClass: API.OperationMethod<
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchStorageV1VolumeAttributesClassRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchStorageV1VolumeAttributesClassListError = KubernetesOpError;
+/** watch individual changes to a list of VolumeAttributesClass. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchStorageV1VolumeAttributesClassList: API.OperationMethod<
+  WatchStorageV1VolumeAttributesClassListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchStorageV1VolumeAttributesClassListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchStorageV1VolumeAttributesClassListRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,

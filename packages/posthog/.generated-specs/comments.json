@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.comments#CommentsListRequestCompleted": {
+    "com.posthog.comments#ListCommentsRequestCompleted": {
       "type": "enum",
       "members": {
         "ANY": {
@@ -41,7 +42,7 @@
       },
       "traits": {}
     },
-    "com.posthog.comments#CommentsListRequestKind": {
+    "com.posthog.comments#ListCommentsRequestKind": {
       "type": "enum",
       "members": {
         "ANY": {
@@ -77,7 +78,7 @@
           }
         },
         "completed": {
-          "target": "com.posthog.comments#CommentsListRequestCompleted",
+          "target": "com.posthog.comments#ListCommentsRequestCompleted",
           "traits": {
             "smithy.api#httpQuery": "completed",
             "smithy.api#documentation": "When kind=task, restrict to open (incomplete) or completed tasks. Ignored when kind is not 'task'. Defaults to 'any' (no filter).\n\n* `any` - any\n* `open` - open\n* `completed` - completed"
@@ -98,7 +99,7 @@
           }
         },
         "kind": {
-          "target": "com.posthog.comments#CommentsListRequestKind",
+          "target": "com.posthog.comments#ListCommentsRequestKind",
           "traits": {
             "smithy.api#httpQuery": "kind",
             "smithy.api#documentation": "Filter by comment kind. 'task' returns only items intentionally created as actionable. 'comment' excludes tasks. Defaults to 'any' (no filter).\n\n* `any` - any\n* `comment` - comment\n* `task` - task"
@@ -444,7 +445,7 @@
         }
       }
     },
-    "com.posthog.comments#CommentsCreateRequestMentionsList": {
+    "com.posthog.comments#CreateCommentRequestMentionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -478,7 +479,7 @@
           }
         },
         "mentions": {
-          "target": "com.posthog.comments#CommentsCreateRequestMentionsList"
+          "target": "com.posthog.comments#CreateCommentRequestMentionsList"
         },
         "slug": {
           "target": "smithy.api#String"
@@ -546,7 +547,7 @@
         "smithy.api#documentation": "Create a comment.\n\nSupport messages are deduplicated: an identical message from the same author on the same\nticket within a short window returns the original comment with a 200 instead of creating a\nsecond one, and a 409 while a concurrent request is still creating it."
       }
     },
-    "com.posthog.comments#CommentsRetrieveRequest": {
+    "com.posthog.comments#GetCommentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -570,10 +571,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.comments#CommentsRetrieve": {
+    "com.posthog.comments#GetComment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.comments#CommentsRetrieveRequest"
+        "target": "com.posthog.comments#GetCommentRequest"
       },
       "output": {
         "target": "com.posthog.comments#CommentOutput"
@@ -594,7 +595,7 @@
         }
       }
     },
-    "com.posthog.comments#CommentsUpdateRequestMentionsList": {
+    "com.posthog.comments#UpdateCommentRequestMentionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -636,7 +637,7 @@
           }
         },
         "mentions": {
-          "target": "com.posthog.comments#CommentsUpdateRequestMentionsList"
+          "target": "com.posthog.comments#UpdateCommentRequestMentionsList"
         },
         "slug": {
           "target": "smithy.api#String"
@@ -700,14 +701,14 @@
         }
       }
     },
-    "com.posthog.comments#CommentsPartialUpdateRequestMentionsList": {
+    "com.posthog.comments#UpdateCommentsPartialRequestMentionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.posthog.comments#UpdateCommentPartialRequest": {
+    "com.posthog.comments#UpdateCommentsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -742,7 +743,7 @@
           }
         },
         "mentions": {
-          "target": "com.posthog.comments#CommentsPartialUpdateRequestMentionsList"
+          "target": "com.posthog.comments#UpdateCommentsPartialRequestMentionsList"
         },
         "slug": {
           "target": "smithy.api#String"
@@ -779,10 +780,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.comments#UpdateCommentPartial": {
+    "com.posthog.comments#UpdateCommentsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.comments#UpdateCommentPartialRequest"
+        "target": "com.posthog.comments#UpdateCommentsPartialRequest"
       },
       "output": {
         "target": "com.posthog.comments#CommentOutput"
@@ -855,7 +856,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.comments#CreateCommentCompleteRequest": {
+    "com.posthog.comments#CreateCommentsCompleteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -879,10 +880,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.comments#CreateCommentComplete": {
+    "com.posthog.comments#CreateCommentsComplete": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.comments#CreateCommentCompleteRequest"
+        "target": "com.posthog.comments#CreateCommentsCompleteRequest"
       },
       "output": {
         "target": "com.posthog.comments#CommentOutput"
@@ -896,7 +897,7 @@
         "smithy.api#documentation": "Mark a task-comment as complete. Sets completed_at and completed_by. 400 if the comment is not a task or is already complete."
       }
     },
-    "com.posthog.comments#CreateCommentReopenRequest": {
+    "com.posthog.comments#CreateCommentsReopenRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -920,10 +921,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.comments#CreateCommentReopen": {
+    "com.posthog.comments#CreateCommentsReopen": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.comments#CreateCommentReopenRequest"
+        "target": "com.posthog.comments#CreateCommentsReopenRequest"
       },
       "output": {
         "target": "com.posthog.comments#CommentOutput"
@@ -937,7 +938,7 @@
         "smithy.api#documentation": "Reopen a completed task-comment. Clears completed_at and completed_by. 400 if the comment is not a task or is already open."
       }
     },
-    "com.posthog.comments#CreateCommentSendToSlackRequest": {
+    "com.posthog.comments#CommentsSendToSlackCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1059,10 +1060,10 @@
       },
       "traits": {}
     },
-    "com.posthog.comments#CreateCommentSendToSlack": {
+    "com.posthog.comments#CommentsSendToSlackCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.comments#CreateCommentSendToSlackRequest"
+        "target": "com.posthog.comments#CommentsSendToSlackCreateRequest"
       },
       "output": {
         "target": "com.posthog.comments#CommentSlackThread"
@@ -1076,7 +1077,7 @@
         "smithy.api#documentation": "Mirror this discussion thread to a Slack channel. Posts the comment (and its existing replies) as a new Slack thread; later replies on either side sync across. A discussion mirrors to exactly one Slack thread: re-calling with the same channel returns the existing mirror; a different channel is a 400 naming the existing one. 409 while a concurrent send is in flight. 404 when the feature is not enabled for the team."
       }
     },
-    "com.posthog.comments#CommentsThreadRetrieveRequest": {
+    "com.posthog.comments#GetCommentsThreadRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1100,10 +1101,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.comments#CommentsThreadRetrieve": {
+    "com.posthog.comments#GetCommentsThread": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.comments#CommentsThreadRetrieveRequest"
+        "target": "com.posthog.comments#GetCommentsThreadRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1124,7 +1125,7 @@
         }
       }
     },
-    "com.posthog.comments#CommentsCountRetrieveRequest": {
+    "com.posthog.comments#GetCommentsCountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1140,10 +1141,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.comments#CommentsCountRetrieve": {
+    "com.posthog.comments#GetCommentsCount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.comments#CommentsCountRetrieveRequest"
+        "target": "com.posthog.comments#GetCommentsCountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1221,37 +1222,37 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.comments#ListComments"
+          "target": "com.posthog.comments#CommentsDestroy"
+        },
+        {
+          "target": "com.posthog.comments#CommentsSendToSlackCreate"
         },
         {
           "target": "com.posthog.comments#CreateComment"
         },
         {
-          "target": "com.posthog.comments#CommentsRetrieve"
+          "target": "com.posthog.comments#CreateCommentsComplete"
+        },
+        {
+          "target": "com.posthog.comments#CreateCommentsReopen"
+        },
+        {
+          "target": "com.posthog.comments#GetComment"
+        },
+        {
+          "target": "com.posthog.comments#GetCommentsCount"
+        },
+        {
+          "target": "com.posthog.comments#GetCommentsThread"
+        },
+        {
+          "target": "com.posthog.comments#ListComments"
         },
         {
           "target": "com.posthog.comments#UpdateComment"
         },
         {
-          "target": "com.posthog.comments#UpdateCommentPartial"
-        },
-        {
-          "target": "com.posthog.comments#CommentsDestroy"
-        },
-        {
-          "target": "com.posthog.comments#CreateCommentComplete"
-        },
-        {
-          "target": "com.posthog.comments#CreateCommentReopen"
-        },
-        {
-          "target": "com.posthog.comments#CreateCommentSendToSlack"
-        },
-        {
-          "target": "com.posthog.comments#CommentsThreadRetrieve"
-        },
-        {
-          "target": "com.posthog.comments#CommentsCountRetrieve"
+          "target": "com.posthog.comments#UpdateCommentsPartial"
         }
       ],
       "traits": {

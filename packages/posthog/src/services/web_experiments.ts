@@ -85,6 +85,27 @@ export const WebExperimentsAPI = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebExperimentsAPI",
 }) as any as S.Schema<WebExperimentsAPI>;
 
+export interface GetWebExperimentRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this web experiment. */
+  id: number;
+}
+export const GetWebExperimentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/web_experiments/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWebExperimentRequest",
+}) as any as S.Schema<GetWebExperimentRequest>;
+
 export interface ListWebExperimentsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -160,7 +181,7 @@ export const UpdateWebExperimentRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWebExperimentRequest",
 }) as any as S.Schema<UpdateWebExperimentRequest>;
 
-export interface UpdateWebExperimentPartialRequest {
+export interface UpdateWebExperimentsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this web experiment. */
@@ -170,7 +191,7 @@ export interface UpdateWebExperimentPartialRequest {
   /** Variants for the web experiment. Example: { "control": { "transforms": [ { "text": "Here comes Superman!", "html": "", "selector": "#page > #body > .header h1" } ], "conditions": "None", "rollout_percentage": 50 }, } */
   variants?: unknown;
 }
-export const UpdateWebExperimentPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebExperimentsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -185,8 +206,8 @@ export const UpdateWebExperimentPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateWebExperimentPartialRequest",
-}) as any as S.Schema<UpdateWebExperimentPartialRequest>;
+  identifier: "UpdateWebExperimentsPartialRequest",
+}) as any as S.Schema<UpdateWebExperimentsPartialRequest>;
 
 export interface WebExperimentsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -216,27 +237,6 @@ export const WebExperimentsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebExperimentsDestroyResponse",
 }) as any as S.Schema<WebExperimentsDestroyResponse>;
 
-export interface WebExperimentsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this web experiment. */
-  id: number;
-}
-export const WebExperimentsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/web_experiments/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebExperimentsRetrieveRequest",
-}) as any as S.Schema<WebExperimentsRetrieveRequest>;
-
 export type CreateWebExperimentError =
   | BadRequest
   | Forbidden
@@ -251,6 +251,20 @@ export const createWebExperiment: API.OperationMethod<
   input: CreateWebExperimentRequest,
   output: WebExperimentsAPI,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebExperimentError = Forbidden | NotFound | PosthogOpError;
+export const getWebExperiment: API.OperationMethod<
+  GetWebExperimentRequest,
+  WebExperimentsAPI,
+  GetWebExperimentError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebExperimentRequest,
+  output: WebExperimentsAPI,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -291,18 +305,18 @@ export const updateWebExperiment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateWebExperimentPartialError =
+export type UpdateWebExperimentsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateWebExperimentPartial: API.OperationMethod<
-  UpdateWebExperimentPartialRequest,
+export const updateWebExperimentsPartial: API.OperationMethod<
+  UpdateWebExperimentsPartialRequest,
   WebExperimentsAPI,
-  UpdateWebExperimentPartialError,
+  UpdateWebExperimentsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWebExperimentPartialRequest,
+  input: UpdateWebExperimentsPartialRequest,
   output: WebExperimentsAPI,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -318,20 +332,6 @@ export const webExperimentsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WebExperimentsDestroyRequest,
   output: WebExperimentsDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebExperimentsRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const webExperimentsRetrieve: API.OperationMethod<
-  WebExperimentsRetrieveRequest,
-  WebExperimentsAPI,
-  WebExperimentsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebExperimentsRetrieveRequest,
-  output: WebExperimentsAPI,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

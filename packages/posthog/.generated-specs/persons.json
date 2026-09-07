@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.persons#PersonsListRequestFormat": {
+    "com.posthog.persons#ListPersonsRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -39,7 +40,7 @@
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.posthog.persons#PropertyGroupOperator",
+          "target": "com.posthog.persons#PropertyGroupOperatorEnum",
           "traits": {
             "smithy.api#documentation": "\n You can use a simplified version:\n```json\n{\n    \"properties\": [\n        {\n            \"key\": \"email\",\n            \"value\": \"x@y.com\",\n            \"operator\": \"exact\",\n            \"type\": \"event\"\n        }\n    ]\n}\n```\n\nOr you can create more complicated queries with AND and OR:\n```json\n{\n    \"properties\": {\n        \"type\": \"AND\",\n        \"values\": [\n            {\n                \"type\": \"OR\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            },\n            {\n                \"type\": \"AND\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            }\n        ]\n    ]\n}\n```\n\n\n* `AND` - AND\n* `OR` - OR"
           }
@@ -50,7 +51,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PropertyGroupOperator": {
+    "com.posthog.persons#PropertyGroupOperatorEnum": {
       "type": "enum",
       "members": {
         "AND": {
@@ -499,7 +500,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsListRequestPropertiesList": {
+    "com.posthog.persons#ListPersonsRequestPropertiesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.persons#Property"
@@ -539,7 +540,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsListRequestFormat",
+          "target": "com.posthog.persons#ListPersonsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -559,7 +560,7 @@
           }
         },
         "properties": {
-          "target": "com.posthog.persons#PersonsListRequestPropertiesList",
+          "target": "com.posthog.persons#ListPersonsRequestPropertiesList",
           "traits": {
             "smithy.api#httpQuery": "properties",
             "smithy.api#documentation": "Filter Persons by person properties."
@@ -689,7 +690,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsRetrieveRequestFormat": {
+    "com.posthog.persons#GetPersonRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -707,7 +708,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsRetrieveRequest": {
+    "com.posthog.persons#GetPersonRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -727,7 +728,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsRetrieveRequestFormat",
+          "target": "com.posthog.persons#GetPersonRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -737,10 +738,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#PersonsRetrieve": {
+    "com.posthog.persons#GetPerson": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#PersonsRetrieveRequest"
+        "target": "com.posthog.persons#GetPersonRequest"
       },
       "output": {
         "target": "com.posthog.persons#PersonRecord"
@@ -765,7 +766,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsUpdateRequestFormat": {
+    "com.posthog.persons#UpdatePersonRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -803,7 +804,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsUpdateRequestFormat",
+          "target": "com.posthog.persons#UpdatePersonRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -847,7 +848,7 @@
         "smithy.api#documentation": "Only for setting properties on the person. \"properties\" from the request data will be updated via a \"$set\" event.\nThis means that only the properties listed will be updated, but other properties won't be removed nor updated.\nIf you would like to remove a property use the `delete_property` endpoint."
       }
     },
-    "com.posthog.persons#PersonsPartialUpdateRequestFormat": {
+    "com.posthog.persons#UpdatePersonsPartialRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -865,7 +866,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#UpdatePersonPartialRequest": {
+    "com.posthog.persons#UpdatePersonsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -885,7 +886,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsPartialUpdateRequestFormat",
+          "target": "com.posthog.persons#UpdatePersonsPartialRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -901,10 +902,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#UpdatePersonPartial": {
+    "com.posthog.persons#UpdatePersonsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#UpdatePersonPartialRequest"
+        "target": "com.posthog.persons#UpdatePersonsPartialRequest"
       },
       "output": {
         "target": "com.posthog.persons#PersonRecord"
@@ -929,7 +930,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsActivityRetrieveRequestFormat": {
+    "com.posthog.persons#GetPersonsActivityRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -947,7 +948,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsActivityRetrieveRequest": {
+    "com.posthog.persons#GetPersonsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -967,7 +968,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsActivityRetrieveRequestFormat",
+          "target": "com.posthog.persons#GetPersonsActivityRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -977,10 +978,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#PersonsActivityRetrieve": {
+    "com.posthog.persons#GetPersonsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#PersonsActivityRetrieveRequest"
+        "target": "com.posthog.persons#GetPersonsActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1109,7 +1110,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsEmailsListRequestFormat": {
+    "com.posthog.persons#ListPersonsEmailsRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1127,7 +1128,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#ListPersonEmailsRequest": {
+    "com.posthog.persons#ListPersonsEmailsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1161,7 +1162,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsEmailsListRequestFormat",
+          "target": "com.posthog.persons#ListPersonsEmailsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1275,18 +1276,18 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsEmailsListResponseBodyList": {
+    "com.posthog.persons#ListPersonsEmailsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.persons#MessageAsset"
       },
       "traits": {}
     },
-    "com.posthog.persons#ListPersonEmailsResponse": {
+    "com.posthog.persons#ListPersonsEmailsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.persons#PersonsEmailsListResponseBodyList",
+          "target": "com.posthog.persons#ListPersonsEmailsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1297,13 +1298,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.persons#ListPersonEmails": {
+    "com.posthog.persons#ListPersonsEmails": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#ListPersonEmailsRequest"
+        "target": "com.posthog.persons#ListPersonsEmailsRequest"
       },
       "output": {
-        "target": "com.posthog.persons#ListPersonEmailsResponse"
+        "target": "com.posthog.persons#ListPersonsEmailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1314,7 +1315,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequestFormat": {
+    "com.posthog.persons#GetPersonsPropertiesTimelineRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1332,7 +1333,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequest": {
+    "com.posthog.persons#GetPersonsPropertiesTimelineRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1352,7 +1353,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequestFormat",
+          "target": "com.posthog.persons#GetPersonsPropertiesTimelineRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1362,10 +1363,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#PersonsPropertiesTimelineRetrieve": {
+    "com.posthog.persons#GetPersonsPropertiesTimeline": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#PersonsPropertiesTimelineRetrieveRequest"
+        "target": "com.posthog.persons#GetPersonsPropertiesTimelineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1390,7 +1391,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsPushNotificationsListRequestFormat": {
+    "com.posthog.persons#ListPersonsPushNotificationsRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1408,7 +1409,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#ListPersonPushNotificationsRequest": {
+    "com.posthog.persons#ListPersonsPushNotificationsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1442,7 +1443,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsPushNotificationsListRequestFormat",
+          "target": "com.posthog.persons#ListPersonsPushNotificationsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1466,18 +1467,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#PersonsPushNotificationsListResponseBodyList": {
+    "com.posthog.persons#ListPersonsPushNotificationsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.persons#MessageAsset"
       },
       "traits": {}
     },
-    "com.posthog.persons#ListPersonPushNotificationsResponse": {
+    "com.posthog.persons#ListPersonsPushNotificationsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.persons#PersonsPushNotificationsListResponseBodyList",
+          "target": "com.posthog.persons#ListPersonsPushNotificationsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1488,13 +1489,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.persons#ListPersonPushNotifications": {
+    "com.posthog.persons#ListPersonsPushNotifications": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#ListPersonPushNotificationsRequest"
+        "target": "com.posthog.persons#ListPersonsPushNotificationsRequest"
       },
       "output": {
-        "target": "com.posthog.persons#ListPersonPushNotificationsResponse"
+        "target": "com.posthog.persons#ListPersonsPushNotificationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1505,7 +1506,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsSplitCreateRequestFormat": {
+    "com.posthog.persons#CreatePersonsSplitRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1523,7 +1524,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsSplitCreateRequestDistinctIdsToSplitList": {
+    "com.posthog.persons#CreatePersonsSplitRequestDistinctIdsToSplitList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1532,7 +1533,7 @@
         "smithy.api#documentation": "List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`."
       }
     },
-    "com.posthog.persons#CreatePersonSplitRequest": {
+    "com.posthog.persons#CreatePersonsSplitRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1552,7 +1553,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsSplitCreateRequestFormat",
+          "target": "com.posthog.persons#CreatePersonsSplitRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1565,7 +1566,7 @@
           }
         },
         "distinct_ids_to_split": {
-          "target": "com.posthog.persons#PersonsSplitCreateRequestDistinctIdsToSplitList",
+          "target": "com.posthog.persons#CreatePersonsSplitRequestDistinctIdsToSplitList",
           "traits": {
             "smithy.api#documentation": "List of distinct_ids to **move off** this person onto new single-id persons. The original person keeps every other distinct_id and its properties. New persons are created with deterministic UUIDs derived from `(team_id, distinct_id)`. Cannot be combined with `main_distinct_id`.",
             "com.distilled.openapi#nullable": {}
@@ -1589,10 +1590,10 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#CreatePersonSplit": {
+    "com.posthog.persons#CreatePersonsSplit": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#CreatePersonSplitRequest"
+        "target": "com.posthog.persons#CreatePersonsSplitRequest"
       },
       "output": {
         "target": "com.posthog.persons#PersonSplitResponse"
@@ -1705,7 +1706,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsAllActivityRetrieveRequestFormat": {
+    "com.posthog.persons#GetPersonsAllActivityRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1723,7 +1724,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsAllActivityRetrieveRequest": {
+    "com.posthog.persons#GetPersonsAllActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1735,7 +1736,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsAllActivityRetrieveRequestFormat",
+          "target": "com.posthog.persons#GetPersonsAllActivityRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1745,10 +1746,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#PersonsAllActivityRetrieve": {
+    "com.posthog.persons#GetPersonsAllActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#PersonsAllActivityRetrieveRequest"
+        "target": "com.posthog.persons#GetPersonsAllActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1773,7 +1774,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsBatchByDistinctIdsCreateRequestFormat": {
+    "com.posthog.persons#CreatePersonsBatchByDistinctIdsRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1791,7 +1792,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#CreatePersonBatchByDistinctIdsRequest": {
+    "com.posthog.persons#CreatePersonsBatchByDistinctIdsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1803,7 +1804,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsBatchByDistinctIdsCreateRequestFormat",
+          "target": "com.posthog.persons#CreatePersonsBatchByDistinctIdsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1819,10 +1820,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#CreatePersonBatchByDistinctIds": {
+    "com.posthog.persons#CreatePersonsBatchByDistinctIds": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#CreatePersonBatchByDistinctIdsRequest"
+        "target": "com.posthog.persons#CreatePersonsBatchByDistinctIdsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1847,7 +1848,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsBatchByUuidsCreateRequestFormat": {
+    "com.posthog.persons#CreatePersonsBatchByUuidRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1865,7 +1866,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#CreatePersonBatchByUuidRequest": {
+    "com.posthog.persons#CreatePersonsBatchByUuidRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1877,7 +1878,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsBatchByUuidsCreateRequestFormat",
+          "target": "com.posthog.persons#CreatePersonsBatchByUuidRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1893,10 +1894,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#CreatePersonBatchByUuid": {
+    "com.posthog.persons#CreatePersonsBatchByUuid": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#CreatePersonBatchByUuidRequest"
+        "target": "com.posthog.persons#CreatePersonsBatchByUuidRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2037,7 +2038,7 @@
         "smithy.api#documentation": "This endpoint allows you to bulk delete persons, either by the PostHog person IDs or by distinct IDs. You can pass in a maximum of 1000 IDs per call. Only events captured before the request will be deleted."
       }
     },
-    "com.posthog.persons#PersonsCohortsRetrieveRequestFormat": {
+    "com.posthog.persons#GetPersonsCohortRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -2055,7 +2056,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsCohortsRetrieveRequest": {
+    "com.posthog.persons#GetPersonsCohortRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2067,7 +2068,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsCohortsRetrieveRequestFormat",
+          "target": "com.posthog.persons#GetPersonsCohortRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -2085,10 +2086,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#PersonsCohortsRetrieve": {
+    "com.posthog.persons#GetPersonsCohort": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#PersonsCohortsRetrieveRequest"
+        "target": "com.posthog.persons#GetPersonsCohortRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2113,7 +2114,7 @@
         "smithy.api#documentation": "This endpoint is meant for reading and deleting persons. To create or update persons, we recommend using the [capture API](https://posthog.com/docs/api/capture), the `$set` and `$unset` [properties](https://posthog.com/docs/product-analytics/user-properties), or one of our SDKs."
       }
     },
-    "com.posthog.persons#PersonsDeletionStatusListRequestFormat": {
+    "com.posthog.persons#ListPersonsDeletionStatusRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -2131,7 +2132,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsDeletionStatusListRequestStatus": {
+    "com.posthog.persons#ListPersonsDeletionStatusRequestStatus": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -2155,7 +2156,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#ListPersonDeletionStatusRequest": {
+    "com.posthog.persons#ListPersonsDeletionStatusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2167,7 +2168,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsDeletionStatusListRequestFormat",
+          "target": "com.posthog.persons#ListPersonsDeletionStatusRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -2194,7 +2195,7 @@
           }
         },
         "status": {
-          "target": "com.posthog.persons#PersonsDeletionStatusListRequestStatus",
+          "target": "com.posthog.persons#ListPersonsDeletionStatusRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Filter by deletion status: 'pending', 'completed', or 'all'."
@@ -2267,10 +2268,10 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#ListPersonDeletionStatus": {
+    "com.posthog.persons#ListPersonsDeletionStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#ListPersonDeletionStatusRequest"
+        "target": "com.posthog.persons#ListPersonsDeletionStatusRequest"
       },
       "output": {
         "target": "com.posthog.persons#PaginatedAsyncDeletionStatusList"
@@ -2295,7 +2296,7 @@
         "smithy.api#documentation": "List the status of queued event deletions for persons. When you delete a person with `delete_events=true`, an async deletion is queued. Use this endpoint to check whether those deletions are still pending or have been completed."
       }
     },
-    "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequestFormat": {
+    "com.posthog.persons#GetPersonsPropertiesAtTimeRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -2313,7 +2314,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequest": {
+    "com.posthog.persons#GetPersonsPropertiesAtTimeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2332,7 +2333,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequestFormat",
+          "target": "com.posthog.persons#GetPersonsPropertiesAtTimeRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -2503,10 +2504,10 @@
         "smithy.api#documentation": "All distinct_ids that were queried for this person"
       }
     },
-    "com.posthog.persons#PersonsPropertiesAtTimeRetrieve": {
+    "com.posthog.persons#GetPersonsPropertiesAtTime": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#PersonsPropertiesAtTimeRetrieveRequest"
+        "target": "com.posthog.persons#GetPersonsPropertiesAtTimeRequest"
       },
       "output": {
         "target": "com.posthog.persons#PersonPropertiesAtTimeResponse"
@@ -2549,7 +2550,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#CreatePersonResetPersonDistinctIdRequest": {
+    "com.posthog.persons#PersonsResetPersonDistinctIdCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2577,10 +2578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#CreatePersonResetPersonDistinctId": {
+    "com.posthog.persons#PersonsResetPersonDistinctIdCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#CreatePersonResetPersonDistinctIdRequest"
+        "target": "com.posthog.persons#PersonsResetPersonDistinctIdCreateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2605,7 +2606,7 @@
         "smithy.api#documentation": "Reset a distinct_id for a deleted person. This allows the distinct_id to be used again."
       }
     },
-    "com.posthog.persons#PersonsValuesRetrieveRequestFormat": {
+    "com.posthog.persons#GetPersonsValueRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -2623,7 +2624,7 @@
       },
       "traits": {}
     },
-    "com.posthog.persons#PersonsValuesRetrieveRequest": {
+    "com.posthog.persons#GetPersonsValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2635,7 +2636,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.persons#PersonsValuesRetrieveRequestFormat",
+          "target": "com.posthog.persons#GetPersonsValueRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -2660,10 +2661,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.persons#PersonsValuesRetrieve": {
+    "com.posthog.persons#GetPersonsValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.persons#PersonsValuesRetrieveRequest"
+        "target": "com.posthog.persons#GetPersonsValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2732,64 +2733,64 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.persons#CreatePersonsBatchByDistinctIds"
+        },
+        {
+          "target": "com.posthog.persons#CreatePersonsBatchByUuid"
+        },
+        {
+          "target": "com.posthog.persons#CreatePersonsSplit"
+        },
+        {
+          "target": "com.posthog.persons#GetPerson"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsActivity"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsAllActivity"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsCohort"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsPropertiesAtTime"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsPropertiesTimeline"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsValue"
+        },
+        {
           "target": "com.posthog.persons#ListPersons"
         },
         {
-          "target": "com.posthog.persons#PersonsRetrieve"
+          "target": "com.posthog.persons#ListPersonsDeletionStatus"
         },
         {
-          "target": "com.posthog.persons#UpdatePerson"
+          "target": "com.posthog.persons#ListPersonsEmails"
         },
         {
-          "target": "com.posthog.persons#UpdatePersonPartial"
-        },
-        {
-          "target": "com.posthog.persons#PersonsActivityRetrieve"
-        },
-        {
-          "target": "com.posthog.persons#PersonsDeletePropertyCreate"
-        },
-        {
-          "target": "com.posthog.persons#ListPersonEmails"
-        },
-        {
-          "target": "com.posthog.persons#PersonsPropertiesTimelineRetrieve"
-        },
-        {
-          "target": "com.posthog.persons#ListPersonPushNotifications"
-        },
-        {
-          "target": "com.posthog.persons#CreatePersonSplit"
-        },
-        {
-          "target": "com.posthog.persons#PersonsUpdatePropertyCreate"
-        },
-        {
-          "target": "com.posthog.persons#PersonsAllActivityRetrieve"
-        },
-        {
-          "target": "com.posthog.persons#CreatePersonBatchByDistinctIds"
-        },
-        {
-          "target": "com.posthog.persons#CreatePersonBatchByUuid"
+          "target": "com.posthog.persons#ListPersonsPushNotifications"
         },
         {
           "target": "com.posthog.persons#PersonsBulkDeleteCreate"
         },
         {
-          "target": "com.posthog.persons#PersonsCohortsRetrieve"
+          "target": "com.posthog.persons#PersonsDeletePropertyCreate"
         },
         {
-          "target": "com.posthog.persons#ListPersonDeletionStatus"
+          "target": "com.posthog.persons#PersonsResetPersonDistinctIdCreate"
         },
         {
-          "target": "com.posthog.persons#PersonsPropertiesAtTimeRetrieve"
+          "target": "com.posthog.persons#PersonsUpdatePropertyCreate"
         },
         {
-          "target": "com.posthog.persons#CreatePersonResetPersonDistinctId"
+          "target": "com.posthog.persons#UpdatePerson"
         },
         {
-          "target": "com.posthog.persons#PersonsValuesRetrieve"
+          "target": "com.posthog.persons#UpdatePersonsPartial"
         }
       ],
       "traits": {

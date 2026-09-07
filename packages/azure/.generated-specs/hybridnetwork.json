@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaState": {
@@ -234,7 +235,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupSchemasUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -345,7 +346,7 @@
         "smithy.api#documentation": "The current provisioning state."
       }
     },
-    "com.azure.hybridnetwork#ConfigurationGroupSchemasUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -501,7 +502,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupSchemasUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -511,7 +512,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ConfigurationGroupSchemasUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -743,7 +744,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupSchemasGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetConfigurationGroupSchemaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -766,7 +767,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#ConfigurationGroupSchemasGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetConfigurationGroupSchemaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1376,13 +1377,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTag": {
+    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagRequest"
+        "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsRequest"
       },
       "output": {
-        "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagResponse"
+        "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1395,7 +1396,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagResponse": {
+    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1423,7 +1424,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupValuesUpdateTagsResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1446,7 +1447,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#ConfigurationGroupValuesUpdateTagsResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1458,7 +1459,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagRequest": {
+    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1486,7 +1487,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupValuesUpdateTagsRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1496,7 +1497,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ConfigurationGroupValuesUpdateTagsRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateConfigurationGroupValueTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1762,7 +1763,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupValuesGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetConfigurationGroupValueResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1785,7 +1786,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#ConfigurationGroupValuesGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetConfigurationGroupValueResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2676,10 +2677,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#RequestNetworkFunctionExecute": {
+    "com.azure.hybridnetwork#ExecuteNetworkFunctionRequest": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#RequestNetworkFunctionExecuteRequest"
+        "target": "com.azure.hybridnetwork#ExecuteNetworkFunctionRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2695,7 +2696,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#RequestNetworkFunctionExecuteRequest": {
+    "com.azure.hybridnetwork#ExecuteNetworkFunctionRequestRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3388,13 +3389,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#UpdateNetworkFunctionTag": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTagRequest"
+        "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTagsRequest"
       },
       "output": {
-        "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTagResponse"
+        "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3407,7 +3408,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#UpdateNetworkFunctionTagResponse": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3435,7 +3436,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionsUpdateTagsResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3460,7 +3461,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionsUpdateTagsResponseIdentity",
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTagsResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3470,7 +3471,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionsUpdateTagsResponseIdentity": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionTagsResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3502,7 +3503,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionsUpdateTagsResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3514,7 +3515,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridnetwork#UpdateNetworkFunctionTagRequest": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3542,7 +3543,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionsUpdateTagsRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3552,7 +3553,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionsUpdateTagsRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4002,7 +4003,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionsGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4027,7 +4028,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionsGetResponseIdentity",
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4037,7 +4038,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionsGetResponseIdentity": {
+    "com.azure.hybridnetwork#GetNetworkFunctionResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4069,7 +4070,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionsGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetNetworkFunctionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4630,7 +4631,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4653,7 +4654,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4709,7 +4710,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4719,7 +4720,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4992,7 +4993,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5015,7 +5016,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetNetworkFunctionDefinitionVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5181,7 +5182,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5280,7 +5281,7 @@
         "smithy.api#documentation": "The current provisioning state."
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5328,7 +5329,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5338,7 +5339,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5564,7 +5565,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5587,7 +5588,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetNetworkFunctionDefinitionGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6439,7 +6440,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignVersionsUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6462,7 +6463,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkServiceDesignVersionsUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6518,7 +6519,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignVersionsUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6528,7 +6529,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkServiceDesignVersionsUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6827,7 +6828,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignVersionsGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6850,7 +6851,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkServiceDesignVersionsGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetNetworkServiceDesignVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7016,7 +7017,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignGroupsUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7115,7 +7116,7 @@
         "smithy.api#documentation": "The current provisioning state."
       }
     },
-    "com.azure.hybridnetwork#NetworkServiceDesignGroupsUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7163,7 +7164,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignGroupsUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7173,7 +7174,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkServiceDesignGroupsUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7399,7 +7400,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignGroupsGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7422,7 +7423,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#NetworkServiceDesignGroupsGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetNetworkServiceDesignGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7640,7 +7641,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.hybridnetwork#OperationsListResponseValueList",
+          "target": "com.azure.hybridnetwork#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -7656,7 +7657,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#OperationsListResponseValueList": {
+    "com.azure.hybridnetwork#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.hybridnetwork#Operation"
@@ -7929,7 +7930,7 @@
       "type": "structure",
       "members": {
         "credentialType": {
-          "target": "com.azure.hybridnetwork#ArtifactManifestsListCredentialResponseCredentialType",
+          "target": "com.azure.hybridnetwork#ListArtifactManifestCredentialResponseCredentialType",
           "traits": {
             "smithy.api#documentation": "The credential type.",
             "smithy.api#required": {}
@@ -7940,7 +7941,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactManifestsListCredentialResponseCredentialType": {
+    "com.azure.hybridnetwork#ListArtifactManifestCredentialResponseCredentialType": {
       "type": "enum",
       "members": {
         "UNKNOWN": {
@@ -8128,7 +8129,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ArtifactManifestsUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateArtifactManifestResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8306,7 +8307,7 @@
         "smithy.api#documentation": "The current provisioning state."
       }
     },
-    "com.azure.hybridnetwork#ArtifactManifestsUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateArtifactManifestResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8362,7 +8363,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ArtifactManifestsUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateArtifactManifestRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8372,7 +8373,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactManifestsUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateArtifactManifestRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8615,7 +8616,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ArtifactManifestsGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetArtifactManifestResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8638,7 +8639,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactManifestsGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetArtifactManifestResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8974,10 +8975,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPoints": {
+    "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPointsRequest"
+        "target": "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPointsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8993,7 +8994,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPointsRequest": {
+    "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9029,7 +9030,7 @@
           }
         },
         "manualPrivateEndPointConnections": {
-          "target": "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsList",
+          "target": "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList",
           "traits": {
             "smithy.api#documentation": "list of private endpoints."
           }
@@ -9039,16 +9040,16 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsList": {
+    "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList": {
       "type": "list",
       "member": {
-        "target": "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem"
+        "target": "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem"
       },
       "traits": {
         "smithy.api#documentation": "list of private endpoints."
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem": {
+    "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -9062,10 +9063,10 @@
         "smithy.api#documentation": "Reference to another resource."
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPoints": {
+    "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPointsRequest"
+        "target": "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPointsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9081,7 +9082,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPointsRequest": {
+    "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9117,7 +9118,7 @@
           }
         },
         "manualPrivateEndPointConnections": {
-          "target": "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsList",
+          "target": "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList",
           "traits": {
             "smithy.api#documentation": "list of private endpoints."
           }
@@ -9127,16 +9128,16 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsList": {
+    "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsList": {
       "type": "list",
       "member": {
-        "target": "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem"
+        "target": "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem"
       },
       "traits": {
         "smithy.api#documentation": "list of private endpoints."
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPointsRequestManualPrivateEndPointConnectionsItem": {
+    "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPointsRequestManualPrivateEndPointConnectionsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -9275,10 +9276,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPoint": {
+    "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointRequest"
+        "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9294,7 +9295,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointRequest": {
+    "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9330,7 +9331,7 @@
           }
         },
         "networkFabricControllerIds": {
-          "target": "com.azure.hybridnetwork#ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList",
+          "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList",
           "traits": {
             "smithy.api#documentation": "list of network fabric controllers."
           }
@@ -9340,16 +9341,16 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList": {
+    "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList": {
       "type": "list",
       "member": {
-        "target": "com.azure.hybridnetwork#ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem"
+        "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem"
       },
       "traits": {
         "smithy.api#documentation": "list of network fabric controllers."
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresDeleteNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem": {
+    "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -9363,10 +9364,10 @@
         "smithy.api#documentation": "Reference to another resource."
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPoints": {
+    "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPointsRequest"
+        "target": "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPointsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9382,7 +9383,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPointsRequest": {
+    "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9418,7 +9419,7 @@
           }
         },
         "networkFabricControllerIds": {
-          "target": "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList",
+          "target": "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList",
           "traits": {
             "smithy.api#documentation": "list of network fabric controllers."
           }
@@ -9428,16 +9429,16 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList": {
+    "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsList": {
       "type": "list",
       "member": {
-        "target": "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem"
+        "target": "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem"
       },
       "traits": {
         "smithy.api#documentation": "list of network fabric controllers."
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem": {
+    "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPointsRequestNetworkFabricControllerIdsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -9557,7 +9558,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ArtifactStoresUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateArtifactStoreResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9761,7 +9762,7 @@
         "smithy.api#documentation": "The current provisioning state."
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateArtifactStoreResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9809,7 +9810,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ArtifactStoresUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateArtifactStoreRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9819,7 +9820,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateArtifactStoreRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10144,7 +10145,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#ArtifactStoresGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetArtifactStoreResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10167,7 +10168,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#ArtifactStoresGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetArtifactStoreResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10460,7 +10461,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#PublishersUpdateResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdatePublisherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10479,7 +10480,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hybridnetwork#PublishersUpdateResponseIdentity",
+          "target": "com.azure.hybridnetwork#UpdatePublisherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -10489,7 +10490,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#PublishersUpdateResponseIdentity": {
+    "com.azure.hybridnetwork#UpdatePublisherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10617,7 +10618,7 @@
         "smithy.api#documentation": "The current provisioning state."
       }
     },
-    "com.azure.hybridnetwork#PublishersUpdateResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdatePublisherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10657,7 +10658,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#PublishersUpdateRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdatePublisherRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10667,7 +10668,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#PublishersUpdateRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdatePublisherRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10969,7 +10970,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#PublishersGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetPublisherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10988,7 +10989,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hybridnetwork#PublishersGetResponseIdentity",
+          "target": "com.azure.hybridnetwork#GetPublisherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -10998,7 +10999,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#PublishersGetResponseIdentity": {
+    "com.azure.hybridnetwork#GetPublisherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -11030,7 +11031,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridnetwork#PublishersGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetPublisherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12151,13 +12152,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#UpdateSiteTag": {
+    "com.azure.hybridnetwork#UpdateSiteTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#UpdateSiteTagRequest"
+        "target": "com.azure.hybridnetwork#UpdateSiteTagsRequest"
       },
       "output": {
-        "target": "com.azure.hybridnetwork#UpdateSiteTagResponse"
+        "target": "com.azure.hybridnetwork#UpdateSiteTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12170,7 +12171,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#UpdateSiteTagResponse": {
+    "com.azure.hybridnetwork#UpdateSiteTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12198,7 +12199,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#SitesUpdateTagsResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateSiteTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12221,7 +12222,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#SitesUpdateTagsResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateSiteTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12233,7 +12234,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridnetwork#UpdateSiteTagRequest": {
+    "com.azure.hybridnetwork#UpdateSiteTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12261,7 +12262,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#SitesUpdateTagsRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateSiteTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12271,7 +12272,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#SitesUpdateTagsRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateSiteTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12498,7 +12499,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#SitesGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetSiteResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12521,7 +12522,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#SitesGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetSiteResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13148,13 +13149,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTag": {
+    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagRequest"
+        "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsRequest"
       },
       "output": {
-        "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagResponse"
+        "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13167,7 +13168,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-15"
       }
     },
-    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagResponse": {
+    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13195,7 +13196,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#SiteNetworkServicesUpdateTagsResponseTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13214,7 +13215,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hybridnetwork#SiteNetworkServicesUpdateTagsResponseIdentity",
+          "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -13230,7 +13231,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#SiteNetworkServicesUpdateTagsResponseIdentity": {
+    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -13262,7 +13263,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridnetwork#SiteNetworkServicesUpdateTagsResponseTagsMap": {
+    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13274,7 +13275,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagRequest": {
+    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13302,7 +13303,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#SiteNetworkServicesUpdateTagsRequestTagsMap",
+          "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13312,7 +13313,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridnetwork#SiteNetworkServicesUpdateTagsRequestTagsMap": {
+    "com.azure.hybridnetwork#UpdateSiteNetworkServiceTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13760,7 +13761,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridnetwork#SiteNetworkServicesGetResponseTagsMap",
+          "target": "com.azure.hybridnetwork#GetSiteNetworkServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13779,7 +13780,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hybridnetwork#SiteNetworkServicesGetResponseIdentity",
+          "target": "com.azure.hybridnetwork#GetSiteNetworkServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -13795,7 +13796,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridnetwork#SiteNetworkServicesGetResponseIdentity": {
+    "com.azure.hybridnetwork#GetSiteNetworkServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -13827,7 +13828,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridnetwork#SiteNetworkServicesGetResponseTagsMap": {
+    "com.azure.hybridnetwork#GetSiteNetworkServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13876,19 +13877,124 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaState"
+          "target": "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPoints"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteConfigurationGroupSchema"
+          "target": "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPoints"
         },
         {
-          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchema"
+          "target": "com.azure.hybridnetwork#ArtifactManifestsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ArtifactStoresCreateOrUpdate"
         },
         {
           "target": "com.azure.hybridnetwork#ConfigurationGroupSchemasCreateOrUpdate"
         },
         {
+          "target": "com.azure.hybridnetwork#ConfigurationGroupValuesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteArtifactManifest"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteConfigurationGroupSchema"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteConfigurationGroupValue"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteNetworkFunction"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeletePublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteSite"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteSiteNetworkService"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ExecuteNetworkFunctionRequest"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetArtifactManifest"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetComponent"
+        },
+        {
           "target": "com.azure.hybridnetwork#GetConfigurationGroupSchema"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetConfigurationGroupValue"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkFunction"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetProxyArtifact"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetPublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetSite"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetSiteNetworkService"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactManifestByArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactManifestCredential"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactStoreByPublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactStoreNetworkFabricControllerPrivateEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactStorePrivateEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListComponentByNetworkFunction"
         },
         {
           "target": "com.azure.hybridnetwork#ListConfigurationGroupSchemaByPublisher"
@@ -13900,178 +14006,28 @@
           "target": "com.azure.hybridnetwork#ListConfigurationGroupValueBySubscription"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteConfigurationGroupValue"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTag"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupValuesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetConfigurationGroupValue"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListComponentByNetworkFunction"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetComponent"
-        },
-        {
-          "target": "com.azure.hybridnetwork#RequestNetworkFunctionExecute"
-        },
-        {
           "target": "com.azure.hybridnetwork#ListNetworkFunctionByResourceGroup"
         },
         {
           "target": "com.azure.hybridnetwork#ListNetworkFunctionBySubscription"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteNetworkFunction"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTag"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkFunctionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkFunction"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionState"
+          "target": "com.azure.hybridnetwork#ListNetworkFunctionDefinitionGroupByPublisher"
         },
         {
           "target": "com.azure.hybridnetwork#ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroup"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListNetworkFunctionDefinitionGroupByPublisher"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionState"
+          "target": "com.azure.hybridnetwork#ListNetworkServiceDesignGroupByPublisher"
         },
         {
           "target": "com.azure.hybridnetwork#ListNetworkServiceDesignVersionByNetworkServiceDesignGroup"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListNetworkServiceDesignGroupByPublisher"
-        },
-        {
           "target": "com.azure.hybridnetwork#ListOperations"
         },
         {
-          "target": "com.azure.hybridnetwork#UpdateArtifactManifestState"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactManifestCredential"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteArtifactManifest"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateArtifactManifest"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ArtifactManifestsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetArtifactManifest"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactManifestByArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactStorePrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ArtifactStoresRemovePrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ArtifactStoresApprovePrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactStoreNetworkFabricControllerPrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPoint"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ArtifactStoresAddNetworkFabricControllerEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ArtifactStoresCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactStoreByPublisher"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeletePublisher"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdatePublisher"
-        },
-        {
-          "target": "com.azure.hybridnetwork#PublishersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetPublisher"
+          "target": "com.azure.hybridnetwork#ListProxyArtifact"
         },
         {
           "target": "com.azure.hybridnetwork#ListPublisherByResourceGroup"
@@ -14080,31 +14036,10 @@
           "target": "com.azure.hybridnetwork#ListPublisherBySubscription"
         },
         {
-          "target": "com.azure.hybridnetwork#UpdateProxyArtifactState"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetProxyArtifact"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListProxyArtifact"
-        },
-        {
           "target": "com.azure.hybridnetwork#ListSiteByResourceGroup"
         },
         {
           "target": "com.azure.hybridnetwork#ListSiteBySubscription"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteSite"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateSiteTag"
-        },
-        {
-          "target": "com.azure.hybridnetwork#SitesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetSite"
         },
         {
           "target": "com.azure.hybridnetwork#ListSiteNetworkServiceByResourceGroup"
@@ -14113,16 +14048,82 @@
           "target": "com.azure.hybridnetwork#ListSiteNetworkServiceBySubscription"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteSiteNetworkService"
+          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTag"
+          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkFunctionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkServiceDesignGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkServiceDesignVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#PublishersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPoints"
         },
         {
           "target": "com.azure.hybridnetwork#SiteNetworkServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridnetwork#GetSiteNetworkService"
+          "target": "com.azure.hybridnetwork#SitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateArtifactManifest"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateArtifactManifestState"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchema"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaState"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTags"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionState"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTags"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionState"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateProxyArtifactState"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdatePublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTags"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateSiteTags"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.ads#ListAdsRequestAdCampaignIdsList": {
@@ -2768,7 +2769,7 @@
         "smithy.api#documentation": "Create an Ad\n\nCreates an ad in an ad group."
       }
     },
-    "com.whop.ads#RetrieveAdRequestAttributionModel": {
+    "com.whop.ads#GetAdRequestAttributionModel": {
       "type": "enum",
       "members": {
         "LAST_TOUCH": {
@@ -2786,7 +2787,7 @@
       },
       "traits": {}
     },
-    "com.whop.ads#RetrieveAdRequest": {
+    "com.whop.ads#GetAdRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2819,7 +2820,7 @@
           }
         },
         "attribution_model": {
-          "target": "com.whop.ads#RetrieveAdRequestAttributionModel",
+          "target": "com.whop.ads#GetAdRequestAttributionModel",
           "traits": {
             "smithy.api#httpQuery": "attribution_model",
             "smithy.api#documentation": "Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise."
@@ -2830,10 +2831,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.ads#RetrieveAd": {
+    "com.whop.ads#GetAd": {
       "type": "operation",
       "input": {
-        "target": "com.whop.ads#RetrieveAdRequest"
+        "target": "com.whop.ads#GetAdRequest"
       },
       "output": {
         "target": "com.whop.ads#Ad"
@@ -3965,16 +3966,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.ads#ListAds"
-        },
-        {
           "target": "com.whop.ads#CreateAd"
-        },
-        {
-          "target": "com.whop.ads#RetrieveAd"
-        },
-        {
-          "target": "com.whop.ads#UpdateAd"
         },
         {
           "target": "com.whop.ads#DeleteAd"
@@ -3983,10 +3975,19 @@
           "target": "com.whop.ads#DuplicateAd"
         },
         {
+          "target": "com.whop.ads#GetAd"
+        },
+        {
+          "target": "com.whop.ads#ListAds"
+        },
+        {
           "target": "com.whop.ads#PauseAd"
         },
         {
           "target": "com.whop.ads#UnpauseAd"
+        },
+        {
+          "target": "com.whop.ads#UpdateAd"
         }
       ],
       "traits": {

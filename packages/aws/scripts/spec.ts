@@ -175,6 +175,22 @@ export const applyAwsSpecPatches = (
           member.traits["smithy.api#required"] = {};
         }
         if (memberOverride.sensitive) {
+          const target = shapes[member.target];
+          const listTarget =
+            target?.type === "list" ? shapes[target.member?.target] : undefined;
+          const isString = (t: any, id: string) =>
+            id === "smithy.api#String" || t?.type === "string";
+          if (
+            !isString(target, member.target) &&
+            !(
+              listTarget !== undefined &&
+              isString(listTarget, target.member.target)
+            )
+          ) {
+            throw new Error(
+              `patches/${patchFileBase}.json sensitive override on ${structName}.${memberName} requires a plain string or list-of-string member`,
+            );
+          }
           member.traits["smithy.api#sensitive"] = {};
         }
       }
@@ -197,38 +213,19 @@ export const applyAwsSpecPatches = (
         ...(override.add ?? []),
       ];
       const members: Record<string, any> = {};
+      const seen = new Set<string>();
       for (const value of values) {
-        const key = String(value).replace(/[^A-Za-z0-9_]/g, "_") || "VALUE";
+        const literal = String(value);
+        if (seen.has(literal)) continue;
+        seen.add(literal);
+        let key = literal.replace(/[^A-Za-z0-9_]/g, "_") || "VALUE";
+        while (members[key] !== undefined) key = `${key}_`;
         members[key] = {
+          target: "smithy.api#Unit",
           traits: { "smithy.api#enumValue": value },
         };
       }
       shape.members = members;
-    }
-  }
-
-  if (serviceSpec.errors) {
-    for (const [errorName, members] of Object.entries(serviceSpec.errors)) {
-      const shape = Object.entries(shapes).find(
-        ([id, s]) => id.split("#")[1] === errorName && s.type === "structure",
-      )?.[1];
-      if (shape === undefined) continue;
-      shape.members = { ...(shape.members ?? {}) };
-      for (const [memberName, patch] of Object.entries(members)) {
-        const traits: Record<string, unknown> = {};
-        if (patch.optional !== false) {
-          /* optional: no required trait */
-        } else {
-          traits["smithy.api#required"] = {};
-        }
-        if (patch.httpHeader) {
-          traits["smithy.api#httpHeader"] = patch.httpHeader;
-        }
-        shape.members[memberName] = {
-          target: primitiveTarget(patch.type),
-          ...(Object.keys(traits).length ? { traits } : {}),
-        };
-      }
     }
   }
 
@@ -304,6 +301,33 @@ export const applyAwsSpecPatches = (
           .filter((t) => !existingTargets.has(t))
           .map((target) => ({ target })),
       ];
+    }
+  }
+
+  // After the operation patches so members can land on patch-born
+  // (`aws.patched#…`) error shapes too.
+  if (serviceSpec.errors) {
+    for (const [errorName, members] of Object.entries(serviceSpec.errors)) {
+      const shape = Object.entries(shapes).find(
+        ([id, s]) => id.split("#")[1] === errorName && s.type === "structure",
+      )?.[1];
+      if (shape === undefined) continue;
+      shape.members = { ...(shape.members ?? {}) };
+      for (const [memberName, patch] of Object.entries(members)) {
+        const traits: Record<string, unknown> = {};
+        if (patch.optional !== false) {
+          /* optional: no required trait */
+        } else {
+          traits["smithy.api#required"] = {};
+        }
+        if (patch.httpHeader) {
+          traits["smithy.api#httpHeader"] = patch.httpHeader;
+        }
+        shape.members[memberName] = {
+          target: primitiveTarget(patch.type),
+          ...(Object.keys(traits).length ? { traits } : {}),
+        };
+      }
     }
   }
 };
@@ -1072,10 +1096,11 @@ const smithyPrimitiveToTs: Record<string, string> = {
 };
 
 /**
- * Build the AWS SdkSpec for one loaded model. MUTATES the model: union
- * spec-patches are applied and patched/synthetic errors are materialized as
- * shapes so the driver's error collection and reachability see them. Must
- * be called before `generateService` on the same model instance.
+ * Build the AWS SdkSpec for one loaded model. The model is
+ * `.generated-specs/<sdkId>.json` — already patched by scripts/convert.ts
+ * (`applyAwsSpecPatches`), so every override is a trait or shape here.
+ * `serviceSpec` is only consulted for `errorCategories`, which is an
+ * emit-time classification rather than a model fact.
  */
 export const awsSpec = (
   model: SmithyModel,
@@ -1106,7 +1131,6 @@ export const awsSpec = (
     serviceShape.traits?.["aws.auth#sigv2"]?.name;
   const version: string = serviceShape.version ?? "";
   const patchFileBase = sdkId.toLowerCase().replaceAll(" ", "-");
-  applyAwsSpecPatches(model, serviceSpec, patchFileBase);
 
   const serviceXmlNamespace = (
     serviceShape.traits?.["smithy.api#xmlNamespace"] as
@@ -1596,14 +1620,14 @@ export const awsSpec = (
       schema = suspendRef(schema, cyclicClasses.has(memberTargetName));
     }
 
-    // Spec-patch member overrides (optional / sensitive).
-    const structureOverride = serviceSpec.structures?.[ownerName];
-    const memberOverride = structureOverride?.members?.[memberName];
-    // Member-level sensitive override — the Smithy model lacks @sensitive
-    // but the field carries secret material (e.g. API Gateway ApiKey.value).
-    // Swap the wire schema for SensitiveString so responses decode to
-    // Redacted and requests accept raw or Redacted values.
-    if (memberOverride?.sensitive) {
+    // Member-level @sensitive (stamped by convert from patches/{sdkId}.json
+    // `structures.<name>.members.<member>.sensitive`; the published model
+    // only marks the target string shape). Swap the wire schema for
+    // SensitiveString so responses decode to Redacted and requests accept
+    // raw or Redacted values.
+    // Upstream models also put @sensitive on non-string members; those
+    // keep their schema (the trait is informational there).
+    if (traits["smithy.api#sensitive"] != null && !isMemberErrorShape) {
       const listMemberTarget =
         memberTargetShape?.type === "list"
           ? memberTargetShape.member?.target
@@ -1617,14 +1641,9 @@ export const awsSpec = (
         tsType = "string | redacted.Redacted<string>";
       } else if (isStringList) {
         // Sensitive list of strings (e.g. ElastiCache user Passwords) —
-        // each element decodes to Redacted.
+        // each element decodes to Redacted, replacing the named list const.
         schema = "S.Array(SensitiveString)";
         tsType = "Array<string | redacted.Redacted<string>>";
-      } else {
-        throw new Error(
-          `sensitive member override on ${ownerName}.${memberName} ` +
-            `requires a plain string or list-of-string member (schema was ${schema})`,
-        );
       }
     }
 
@@ -1633,8 +1652,7 @@ export const awsSpec = (
     const hasClientOptional = traits["smithy.api#clientOptional"] != null;
     const hasRequired = traits["smithy.api#required"] != null;
     const isSoftRequired = hasClientOptional && hasRequired;
-    const isOptional =
-      memberOverride?.optional ?? (hasClientOptional || !hasRequired);
+    const isOptional = hasClientOptional || !hasRequired;
     if (isOptional) {
       schema = `S.optional(${schema})`;
     }
@@ -1844,18 +1862,9 @@ export const awsSpec = (
         // against; AWS adds enum values without an SDK release.
         case "enum": {
           const name = formatName(id);
-          const enumOverride = serviceSpec.enums?.[name];
-          let enumValues: readonly string[];
-          if (enumOverride?.replace) {
-            enumValues = enumOverride.replace;
-          } else {
-            enumValues = Object.values(
-              (def.members ?? {}) as Record<string, any>,
-            ).map((m) => m.traits["smithy.api#enumValue"] as string);
-            if (enumOverride?.add) {
-              enumValues = [...enumValues, ...enumOverride.add];
-            }
-          }
+          const enumValues = Object.values(
+            (def.members ?? {}) as Record<string, any>,
+          ).map((m) => m.traits["smithy.api#enumValue"] as string);
           const union = enumValues.length
             ? `${enumValues.map((v) => JSON.stringify(v)).join(" | ")} | (string & {})`
             : "string";
@@ -1868,21 +1877,9 @@ export const awsSpec = (
         // ---- Int enums: OPEN numeric literal union aliases (v0 surface).
         case "intEnum": {
           const name = formatName(id);
-          const enumOverride = serviceSpec.enums?.[name];
-          let enumValues: number[];
-          if (enumOverride?.replace) {
-            enumValues = enumOverride.replace.map((v) => parseInt(v, 10));
-          } else {
-            enumValues = Object.values(
-              (def.members ?? {}) as Record<string, any>,
-            ).map((m) => m.traits["smithy.api#enumValue"] as number);
-            if (enumOverride?.add) {
-              enumValues = [
-                ...enumValues,
-                ...enumOverride.add.map((v) => parseInt(v, 10)),
-              ];
-            }
-          }
+          const enumValues = Object.values(
+            (def.members ?? {}) as Record<string, any>,
+          ).map((m) => m.traits["smithy.api#enumValue"] as number);
           const intUnion = enumValues.length
             ? `${enumValues.join(" | ")} | (number & {})`
             : "number";
@@ -2209,46 +2206,13 @@ export const awsSpec = (
             suspendAll: true,
           }),
         );
-        // ErrorMemberPatch merges — members for errors under-documented in
-        // Smithy (e.g. S3 PermanentRedirect's headers). A patched member
-        // REPLACES a same-named model member (patches exist precisely to
-        // correct the model, e.g. making a required `message` optional).
-        const errorPatches = serviceSpec.errors?.[name];
-        const keptMembers = errorPatches
-          ? members.filter((m) => !(m.name in errorPatches))
-          : members;
-
-        const errorFields: Array<{ name: string; expr: string }> =
-          keptMembers.map((m) => ({ name: m.name, expr: m.schemaExpr }));
-
-        if (errorPatches) {
-          const patchedFields: Array<{ name: string; expr: string }> = [];
-          for (const [memberName, patch] of Object.entries(errorPatches)) {
-            const traitPipes: string[] = [];
-            if (patch.httpHeader) {
-              traitPipes.push(`T.HttpHeader("${patch.httpHeader}")`);
-            }
-            const schemaType =
-              patch.type === "boolean"
-                ? "S.Boolean"
-                : patch.type === "number"
-                  ? "S.Number"
-                  : "S.String";
-            const optionalWrapped =
-              patch.optional !== false
-                ? `S.optional(${schemaType})`
-                : schemaType;
-            patchedFields.push({
-              name: memberName,
-              expr:
-                traitPipes.length > 0
-                  ? `${optionalWrapped}.pipe(${traitPipes.join(", ")})`
-                  : optionalWrapped,
-            });
-          }
-          // Patched members lead, matching the previous emission order.
-          errorFields.unshift(...patchedFields);
-        }
+        // Members patched in from patches/{sdkId}.json (`errors.<name>`)
+        // are already real model members with their httpHeader / required
+        // traits — convert wrote them — so they flow through convertMember
+        // like any other.
+        const errorFields: Array<{ name: string; expr: string }> = members.map(
+          (m) => ({ name: m.name, expr: m.schemaExpr }),
+        );
 
         // Canonical message member. AWS spells this `message` in most models,
         // `Message` in the XML-era ones, and omits it entirely from others —

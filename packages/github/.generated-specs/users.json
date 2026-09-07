@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.users#PrivateUser": {
@@ -620,7 +621,7 @@
           "uri": "/user",
           "code": 200
         },
-        "smithy.api#documentation": "Get the authenticated user\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope in order for the response to include private profile information."
+        "smithy.api#documentation": "Get the authenticated user\n\nOAuth app tokens and personal access tokens (classic) need the `read:user` scope, or the broader `user` scope, for this endpoint to return the private user response. The private user response includes additional fields such as `private_gists`, `total_private_repos`, `owned_private_repos`, `disk_usage`, `collaborators`, and `two_factor_authentication`. Tokens without these scopes receive the public user response.\n\nThe private and public user response types are unrelated to the [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles) setting. A token without scopes still authenticates as the token's owner, so values subject to private profile visibility, such as `followers` and `following`, may differ from an unauthenticated response."
       }
     },
     "com.github.users#UpdateAuthenticatedRequest": {
@@ -3049,7 +3050,7 @@
           "uri": "/users/{username}",
           "code": 200
         },
-        "smithy.api#documentation": "Get a user\n\nProvides publicly available information about someone with a GitHub account.\n\nThe `events_url` value is a URI template. Replace `{/privacy}` with `/public` to retrieve only public events. Omit it to retrieve public events and, when authenticated as the user, private events. For more information, see \"[List events for the authenticated user](https://docs.github.com/rest/activity/events#list-events-for-the-authenticated-user).\"\n\nIf you are requesting information about an [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users), or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users, your requests must be authenticated as a user or GitHub App that has access to the organization to view that account's information. If you are not authorized, the request will return a `404 Not Found` status.\n\nThe `email` key in the following response is the publicly visible email address from your GitHub [profile page](https://github.com/settings/profile). When setting up your profile, you can select a primary email address to be public which provides an email entry for this endpoint. If you do not set a public email address for `email`, then it will have a value of `null`. You only see publicly visible email addresses when authenticated with GitHub. For more information, see [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication).\n\nThe Emails API enables you to list all of your email addresses, and toggle a primary email to be visible publicly. For more information, see [Emails API](https://docs.github.com/rest/users/emails)."
+        "smithy.api#documentation": "Get a user\n\nProvides publicly available information about someone with a GitHub account.\n\nIf the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), the `followers` and `following` values are `0` unless the request is authenticated as that user. A request authenticated as the specified user returns the actual values even if the token has no OAuth scopes.\n\nThe `events_url` value is a URI template. Replace `{/privacy}` with `/public` to retrieve only public events. Omit it to retrieve public events and, when authenticated as the user, private events. For more information, see \"[List events for the authenticated user](https://docs.github.com/rest/activity/events#list-events-for-the-authenticated-user).\"\n\nIf you are requesting information about an [Enterprise Managed User](https://docs.github.com/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users), or a GitHub App bot that is installed in an organization that uses Enterprise Managed Users, your requests must be authenticated as a user or GitHub App that has access to the organization to view that account's information. If you are not authorized, the request will return a `404 Not Found` status.\n\nThe `email` key in the following response is the publicly visible email address from your GitHub [profile page](https://github.com/settings/profile). When setting up your profile, you can select a primary email address to be public which provides an email entry for this endpoint. If you do not set a public email address for `email`, then it will have a value of `null`. You only see publicly visible email addresses when authenticated with GitHub. For more information, see [Authentication](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#authentication).\n\nThe Emails API enables you to list all of your email addresses, and toggle a primary email to be visible publicly. For more information, see [Emails API](https://docs.github.com/rest/users/emails)."
       }
     },
     "com.github.users#ListAttestationsBulkRequestSubjectDigestsList": {
@@ -3668,7 +3669,7 @@
           "uri": "/users/{username}/followers",
           "code": 200
         },
-        "smithy.api#documentation": "List followers of a user\n\nLists the people following the specified user."
+        "smithy.api#documentation": "List followers of a user\n\nLists the people following the specified user.\n\nIf the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns the list even if the token has no OAuth scopes."
       }
     },
     "com.github.users#ListFollowingForUserRequest": {
@@ -3737,7 +3738,7 @@
           "uri": "/users/{username}/following",
           "code": 200
         },
-        "smithy.api#documentation": "List the people a user follows\n\nLists the people who the specified user follows."
+        "smithy.api#documentation": "List the people a user follows\n\nLists the people who the specified user follows.\n\nIf the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns the list even if the token has no OAuth scopes."
       }
     },
     "com.github.users#CheckFollowingForUserRequest": {
@@ -4258,121 +4259,100 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.users#GetAuthenticated"
-        },
-        {
-          "target": "com.github.users#UpdateAuthenticated"
-        },
-        {
-          "target": "com.github.users#ListBlockedByAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#CheckBlocked"
-        },
-        {
-          "target": "com.github.users#Block"
-        },
-        {
-          "target": "com.github.users#Unblock"
-        },
-        {
-          "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#ListEmailsForAuthenticatedUser"
-        },
-        {
           "target": "com.github.users#AddEmailForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeleteEmailForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#ListFollowersForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#ListFollowedByAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#CheckPersonIsFollowedByAuthenticated"
-        },
-        {
-          "target": "com.github.users#Follow"
-        },
-        {
-          "target": "com.github.users#Unfollow"
-        },
-        {
-          "target": "com.github.users#ListGpgKeysForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#CreateGpgKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#GetGpgKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeleteGpgKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#ListPublicSshKeysForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#CreatePublicSshKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#GetPublicSshKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeletePublicSshKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#ListPublicEmailsForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#ListSocialAccountsForAuthenticatedUser"
         },
         {
           "target": "com.github.users#AddSocialAccountForAuthenticatedUser"
         },
         {
-          "target": "com.github.users#DeleteSocialAccountForAuthenticatedUser"
+          "target": "com.github.users#Block"
         },
         {
-          "target": "com.github.users#ListSshSigningKeysForAuthenticatedUser"
+          "target": "com.github.users#CheckBlocked"
+        },
+        {
+          "target": "com.github.users#CheckFollowingForUser"
+        },
+        {
+          "target": "com.github.users#CheckPersonIsFollowedByAuthenticated"
+        },
+        {
+          "target": "com.github.users#CreateGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CreatePublicSshKeyForAuthenticatedUser"
         },
         {
           "target": "com.github.users#CreateSshSigningKeyForAuthenticatedUser"
         },
         {
-          "target": "com.github.users#GetSshSigningKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeleteSshSigningKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#GetById"
-        },
-        {
-          "target": "com.github.users#List"
-        },
-        {
-          "target": "com.github.users#GetByUsername"
-        },
-        {
-          "target": "com.github.users#ListAttestationsBulk"
-        },
-        {
           "target": "com.github.users#DeleteAttestationsBulk"
-        },
-        {
-          "target": "com.github.users#DeleteAttestationsBySubjectDigest"
         },
         {
           "target": "com.github.users#DeleteAttestationsById"
         },
         {
+          "target": "com.github.users#DeleteAttestationsBySubjectDigest"
+        },
+        {
+          "target": "com.github.users#DeleteEmailForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeletePublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteSocialAccountForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#Follow"
+        },
+        {
+          "target": "com.github.users#GetAuthenticated"
+        },
+        {
+          "target": "com.github.users#GetById"
+        },
+        {
+          "target": "com.github.users#GetByUsername"
+        },
+        {
+          "target": "com.github.users#GetContextForUser"
+        },
+        {
+          "target": "com.github.users#GetGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetPublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#List"
+        },
+        {
           "target": "com.github.users#ListAttestations"
+        },
+        {
+          "target": "com.github.users#ListAttestationsBulk"
+        },
+        {
+          "target": "com.github.users#ListBlockedByAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListEmailsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListFollowedByAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListFollowersForAuthenticatedUser"
         },
         {
           "target": "com.github.users#ListFollowersForUser"
@@ -4381,22 +4361,43 @@
           "target": "com.github.users#ListFollowingForUser"
         },
         {
-          "target": "com.github.users#CheckFollowingForUser"
+          "target": "com.github.users#ListGpgKeysForAuthenticatedUser"
         },
         {
           "target": "com.github.users#ListGpgKeysForUser"
         },
         {
-          "target": "com.github.users#GetContextForUser"
+          "target": "com.github.users#ListPublicEmailsForAuthenticatedUser"
         },
         {
           "target": "com.github.users#ListPublicKeysForUser"
         },
         {
+          "target": "com.github.users#ListPublicSshKeysForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListSocialAccountsForAuthenticatedUser"
+        },
+        {
           "target": "com.github.users#ListSocialAccountsForUser"
         },
         {
+          "target": "com.github.users#ListSshSigningKeysForAuthenticatedUser"
+        },
+        {
           "target": "com.github.users#ListSshSigningKeysForUser"
+        },
+        {
+          "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#Unblock"
+        },
+        {
+          "target": "com.github.users#Unfollow"
+        },
+        {
+          "target": "com.github.users#UpdateAuthenticated"
         }
       ],
       "traits": {

@@ -24,7 +24,8 @@
       "serveVariation": "serve_variation",
       "updatedAt": "updated_at",
       "updatedBy": "updated_by"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.flagship#AppsListResultItem": {
@@ -9834,40 +9835,40 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.flagship#AppsCreate"
+          "target": "com.cloudflare.flagship#CreateApp"
         },
         {
-          "target": "com.cloudflare.flagship#AppsDelete"
+          "target": "com.cloudflare.flagship#CreateAppFlag"
         },
         {
-          "target": "com.cloudflare.flagship#AppsGet"
+          "target": "com.cloudflare.flagship#DeleteApp"
         },
         {
-          "target": "com.cloudflare.flagship#AppsList"
+          "target": "com.cloudflare.flagship#DeleteAppFlag"
         },
         {
-          "target": "com.cloudflare.flagship#AppsUpdate"
+          "target": "com.cloudflare.flagship#GetApp"
         },
         {
-          "target": "com.cloudflare.flagship#AppsEvaluateGet"
+          "target": "com.cloudflare.flagship#GetAppEvaluate"
         },
         {
-          "target": "com.cloudflare.flagship#AppsFlagsCreate"
+          "target": "com.cloudflare.flagship#GetAppFlag"
         },
         {
-          "target": "com.cloudflare.flagship#AppsFlagsDelete"
+          "target": "com.cloudflare.flagship#ListAppFlagChangelogs"
         },
         {
-          "target": "com.cloudflare.flagship#AppsFlagsGet"
+          "target": "com.cloudflare.flagship#ListAppFlags"
         },
         {
-          "target": "com.cloudflare.flagship#AppsFlagsList"
+          "target": "com.cloudflare.flagship#ListApps"
         },
         {
-          "target": "com.cloudflare.flagship#AppsFlagsUpdate"
+          "target": "com.cloudflare.flagship#UpdateApp"
         },
         {
-          "target": "com.cloudflare.flagship#AppsFlagsChangelogList"
+          "target": "com.cloudflare.flagship#UpdateAppFlag"
         }
       ],
       "traits": {

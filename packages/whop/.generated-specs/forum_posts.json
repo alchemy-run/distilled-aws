@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.forum_posts#ListForumPostRequest": {
@@ -1328,7 +1329,7 @@
         "smithy.api#documentation": "Create forum post\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a new forum post or comment within an experience. Supports text content, attachments, polls, paywalling, and pinning. Pass experience_id 'public' with a company_id to post to a company's public forum.\n\nRequired permissions:\n - `forum:post:create`"
       }
     },
-    "com.whop.forum_posts#RetrieveForumPostRequest": {
+    "com.whop.forum_posts#GetForumPostRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1344,10 +1345,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.forum_posts#RetrieveForumPost": {
+    "com.whop.forum_posts#GetForumPost": {
       "type": "operation",
       "input": {
-        "target": "com.whop.forum_posts#RetrieveForumPostRequest"
+        "target": "com.whop.forum_posts#GetForumPostRequest"
       },
       "output": {
         "target": "com.whop.forum_posts#ForumPost"
@@ -1538,13 +1539,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.forum_posts#ListForumPost"
-        },
-        {
           "target": "com.whop.forum_posts#CreateForumPost"
         },
         {
-          "target": "com.whop.forum_posts#RetrieveForumPost"
+          "target": "com.whop.forum_posts#GetForumPost"
+        },
+        {
+          "target": "com.whop.forum_posts#ListForumPost"
         },
         {
           "target": "com.whop.forum_posts#UpdateForumPost"

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.code_quality#ListFindingsForRepoRequestDirection": {
@@ -961,13 +962,13 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.code_quality#ListFindingsForRepo"
-        },
-        {
           "target": "com.github.code_quality#GetFinding"
         },
         {
           "target": "com.github.code_quality#GetSetup"
+        },
+        {
+          "target": "com.github.code_quality#ListFindingsForRepo"
         },
         {
           "target": "com.github.code_quality#UpdateSetup"

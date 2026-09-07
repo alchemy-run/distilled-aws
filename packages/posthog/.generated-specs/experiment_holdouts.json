@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.experiment_holdouts#ListExperimentHoldoutsRequest": {
@@ -997,7 +998,7 @@
         }
       }
     },
-    "com.posthog.experiment_holdouts#ExperimentHoldoutsCreateRequestFiltersList": {
+    "com.posthog.experiment_holdouts#CreateExperimentHoldoutRequestFiltersList": {
       "type": "list",
       "member": {
         "target": "com.posthog.experiment_holdouts#FeatureFlagConditionGroupSchema"
@@ -1031,7 +1032,7 @@
           }
         },
         "filters": {
-          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsCreateRequestFiltersList",
+          "target": "com.posthog.experiment_holdouts#CreateExperimentHoldoutRequestFiltersList",
           "traits": {
             "smithy.api#documentation": "Non-empty list of release-condition groups defining the held-out population, using the same shape as feature-flag release conditions. Each element's `rollout_percentage` (0–100, may be fractional) is the **exclusion** percentage — the share of users held back from all experiments that reference this holdout. `properties` optionally narrows the group by person/group properties. Do not set `variant`: the server normalizes it to `holdout-{id}`. Note that only the first element's `rollout_percentage` is embedded into each linked experiment's feature flag, and this population is shared across every experiment using the holdout."
           }
@@ -1068,7 +1069,7 @@
         }
       }
     },
-    "com.posthog.experiment_holdouts#ExperimentHoldoutsRetrieveRequest": {
+    "com.posthog.experiment_holdouts#GetExperimentHoldoutRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1092,10 +1093,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiment_holdouts#ExperimentHoldoutsRetrieve": {
+    "com.posthog.experiment_holdouts#GetExperimentHoldout": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsRetrieveRequest"
+        "target": "com.posthog.experiment_holdouts#GetExperimentHoldoutRequest"
       },
       "output": {
         "target": "com.posthog.experiment_holdouts#ExperimentHoldout"
@@ -1116,7 +1117,7 @@
         }
       }
     },
-    "com.posthog.experiment_holdouts#ExperimentHoldoutsUpdateRequestFiltersList": {
+    "com.posthog.experiment_holdouts#UpdateExperimentHoldoutRequestFiltersList": {
       "type": "list",
       "member": {
         "target": "com.posthog.experiment_holdouts#FeatureFlagConditionGroupSchema"
@@ -1158,7 +1159,7 @@
           }
         },
         "filters": {
-          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsUpdateRequestFiltersList",
+          "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldoutRequestFiltersList",
           "traits": {
             "smithy.api#documentation": "Non-empty list of release-condition groups defining the held-out population, using the same shape as feature-flag release conditions. Each element's `rollout_percentage` (0–100, may be fractional) is the **exclusion** percentage — the share of users held back from all experiments that reference this holdout. `properties` optionally narrows the group by person/group properties. Do not set `variant`: the server normalizes it to `holdout-{id}`. Note that only the first element's `rollout_percentage` is embedded into each linked experiment's feature flag, and this population is shared across every experiment using the holdout."
           }
@@ -1195,7 +1196,7 @@
         }
       }
     },
-    "com.posthog.experiment_holdouts#ExperimentHoldoutsPartialUpdateRequestFiltersList": {
+    "com.posthog.experiment_holdouts#UpdateExperimentHoldoutsPartialRequestFiltersList": {
       "type": "list",
       "member": {
         "target": "com.posthog.experiment_holdouts#FeatureFlagConditionGroupSchema"
@@ -1204,7 +1205,7 @@
         "smithy.api#documentation": "Non-empty list of release-condition groups defining the held-out population, using the same shape as feature-flag release conditions. Each element's `rollout_percentage` (0–100, may be fractional) is the **exclusion** percentage — the share of users held back from all experiments that reference this holdout. `properties` optionally narrows the group by person/group properties. Do not set `variant`: the server normalizes it to `holdout-{id}`. Note that only the first element's `rollout_percentage` is embedded into each linked experiment's feature flag, and this population is shared across every experiment using the holdout."
       }
     },
-    "com.posthog.experiment_holdouts#UpdateExperimentHoldoutPartialRequest": {
+    "com.posthog.experiment_holdouts#UpdateExperimentHoldoutsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1237,7 +1238,7 @@
           }
         },
         "filters": {
-          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsPartialUpdateRequestFiltersList",
+          "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldoutsPartialRequestFiltersList",
           "traits": {
             "smithy.api#documentation": "Non-empty list of release-condition groups defining the held-out population, using the same shape as feature-flag release conditions. Each element's `rollout_percentage` (0–100, may be fractional) is the **exclusion** percentage — the share of users held back from all experiments that reference this holdout. `properties` optionally narrows the group by person/group properties. Do not set `variant`: the server normalizes it to `holdout-{id}`. Note that only the first element's `rollout_percentage` is embedded into each linked experiment's feature flag, and this population is shared across every experiment using the holdout."
           }
@@ -1247,10 +1248,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiment_holdouts#UpdateExperimentHoldoutPartial": {
+    "com.posthog.experiment_holdouts#UpdateExperimentHoldoutsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldoutPartialRequest"
+        "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldoutsPartialRequest"
       },
       "output": {
         "target": "com.posthog.experiment_holdouts#ExperimentHoldout"
@@ -1366,22 +1367,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.experiment_holdouts#ListExperimentHoldouts"
-        },
-        {
           "target": "com.posthog.experiment_holdouts#CreateExperimentHoldout"
         },
         {
-          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsRetrieve"
+          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsDestroy"
+        },
+        {
+          "target": "com.posthog.experiment_holdouts#GetExperimentHoldout"
+        },
+        {
+          "target": "com.posthog.experiment_holdouts#ListExperimentHoldouts"
         },
         {
           "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldout"
         },
         {
-          "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldoutPartial"
-        },
-        {
-          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsDestroy"
+          "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldoutsPartial"
         }
       ],
       "traits": {

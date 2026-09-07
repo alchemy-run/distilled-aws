@@ -71,14 +71,14 @@ export const QuotaLimitsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaLimitsResponse",
 }) as any as S.Schema<QuotaLimitsResponse>;
 
-export type QuotaLimitsListResponseBodyList = Array<QuotaLimitsResponse>;
-export const QuotaLimitsListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListQuotaLimitsResponseBodyList = Array<QuotaLimitsResponse>;
+export const ListQuotaLimitsResponseBodyList = /*@__PURE__*/ S.Array(
   QuotaLimitsResponse,
-) as any as S.Schema<QuotaLimitsListResponseBodyList>;
+) as any as S.Schema<ListQuotaLimitsResponseBodyList>;
 
-export type ListQuotaLimitsResponse = QuotaLimitsListResponseBodyList;
+export type ListQuotaLimitsResponse = ListQuotaLimitsResponseBodyList;
 export const ListQuotaLimitsResponse = /*@__PURE__*/ S.suspend(() =>
-  QuotaLimitsListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListQuotaLimitsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListQuotaLimitsResponse",
 }) as any as S.Schema<ListQuotaLimitsResponse>;

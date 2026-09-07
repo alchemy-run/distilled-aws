@@ -21,19 +21,19 @@ export class BadRequest
     [{ status: 400 }],
   ) {}
 
-export interface CreateRevokeLeakedKeyRequest {
+export interface RevokeLeakedKeyCreateRequest {
   /** The leaked PostHog personal API key, project secret API key, or OAuth access/refresh token to revoke. */
   token: string;
 }
-export const CreateRevokeLeakedKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const RevokeLeakedKeyCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token: S.String,
   }).pipe(
     T.Http({ method: "POST", uri: "/api/revoke_leaked_key/", code: 200 }),
   ),
 ).annotate({
-  identifier: "CreateRevokeLeakedKeyRequest",
-}) as any as S.Schema<CreateRevokeLeakedKeyRequest>;
+  identifier: "RevokeLeakedKeyCreateRequest",
+}) as any as S.Schema<RevokeLeakedKeyCreateRequest>;
 
 /** * `personal_api_key` - personal_api_key * `project_secret_api_key` - project_secret_api_key * `oauth_access_token` - oauth_access_token * `oauth_refresh_token` - oauth_refresh_token */
 export type LeakedKeyReportResponseTypeEnum =
@@ -58,15 +58,15 @@ export const LeakedKeyReportResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LeakedKeyReportResponse",
 }) as any as S.Schema<LeakedKeyReportResponse>;
 
-export type CreateRevokeLeakedKeyError = BadRequest | PosthogOpError;
+export type RevokeLeakedKeyCreateError = BadRequest | PosthogOpError;
 /** Report and revoke a leaked PostHog API key or token Public, unauthenticated endpoint for self-service revocation of a leaked PostHog personal API key, project secret API key, or OAuth access/refresh token. If the token matches a real credential, it is revoked immediately and the owner is notified by email. This includes an expired OAuth access token: the paired refresh token it protects may still be live. This endpoint only checks the region it is running on. `"found": false` does not guarantee the token is safe. If you're not sure which region issued it, check both: https://app.posthog.com/api/revoke_leaked_key and https://eu.posthog.com/api/revoke_leaked_key. */
-export const createRevokeLeakedKey: API.OperationMethod<
-  CreateRevokeLeakedKeyRequest,
+export const revokeLeakedKeyCreate: API.OperationMethod<
+  RevokeLeakedKeyCreateRequest,
   LeakedKeyReportResponse,
-  CreateRevokeLeakedKeyError,
+  RevokeLeakedKeyCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateRevokeLeakedKeyRequest,
+  input: RevokeLeakedKeyCreateRequest,
   output: LeakedKeyReportResponse,
   errors: [BadRequest],
   protocol: PosthogProtocol,

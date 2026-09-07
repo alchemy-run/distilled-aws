@@ -486,231 +486,6 @@ export const ChangeUserRoleResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChangeUserRoleResponse",
 }) as any as S.Schema<ChangeUserRoleResponse>;
 
-export type ConfigureAutoJoinRequestAutoJoinCase0Role =
-  | "admin"
-  | "write"
-  | "contributor"
-  | "read"
-  | "no_access";
-export const ConfigureAutoJoinRequestAutoJoinCase0Role = /*@__PURE__*/ S.String;
-
-export type ConfigureAutoJoinRequestAutoJoinCase0Scope = "all" | "read_plus";
-export const ConfigureAutoJoinRequestAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
-
-export interface ConfigureAutoJoinRequestAutoJoinCase0 {
-  enabled: unknown;
-  role: ConfigureAutoJoinRequestAutoJoinCase0Role | (string & {});
-  scope?: ConfigureAutoJoinRequestAutoJoinCase0Scope | (string & {});
-}
-export const ConfigureAutoJoinRequestAutoJoinCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      enabled: S.Unknown,
-      role: ConfigureAutoJoinRequestAutoJoinCase0Role,
-      scope: S.optional(ConfigureAutoJoinRequestAutoJoinCase0Scope),
-    }),
-).annotate({
-  identifier: "ConfigureAutoJoinRequestAutoJoinCase0",
-}) as any as S.Schema<ConfigureAutoJoinRequestAutoJoinCase0>;
-
-export type ConfigureAutoJoinRequestAutoJoinCase1 =
-  AddUsersResponseAutoJoinCase1;
-export const ConfigureAutoJoinRequestAutoJoinCase1 =
-  AddUsersResponseAutoJoinCase1;
-
-export type ConfigureAutoJoinRequestAutoJoin =
-  | ConfigureAutoJoinRequestAutoJoinCase0
-  | AddUsersResponseAutoJoinCase1;
-export const ConfigureAutoJoinRequestAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigureAutoJoinRequestAutoJoin>;
-
-export interface ConfigureAutoJoinRequest {
-  name: string;
-  resourceGroupId: string;
-  autoJoin?: ConfigureAutoJoinRequestAutoJoin;
-}
-export const ConfigureAutoJoinRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    resourceGroupId: S.String.pipe(T.Label()),
-    autoJoin: S.optional(ConfigureAutoJoinRequestAutoJoin),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/organizations/{name}/resource-groups/{resourceGroupId}/settings",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConfigureAutoJoinRequest",
-}) as any as S.Schema<ConfigureAutoJoinRequest>;
-
-export type ConfigureAutoJoinResponseAutoJoinCase0Role =
-  | "admin"
-  | "write"
-  | "contributor"
-  | "read"
-  | "no_access";
-export const ConfigureAutoJoinResponseAutoJoinCase0Role =
-  /*@__PURE__*/ S.String;
-
-export type ConfigureAutoJoinResponseAutoJoinCase0Scope = "all" | "read_plus";
-export const ConfigureAutoJoinResponseAutoJoinCase0Scope =
-  /*@__PURE__*/ S.String;
-
-export interface ConfigureAutoJoinResponseAutoJoinCase0 {
-  enabled: unknown;
-  role: ConfigureAutoJoinResponseAutoJoinCase0Role;
-  scope?: ConfigureAutoJoinResponseAutoJoinCase0Scope;
-}
-export const ConfigureAutoJoinResponseAutoJoinCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      enabled: S.Unknown,
-      role: ConfigureAutoJoinResponseAutoJoinCase0Role,
-      scope: S.optional(ConfigureAutoJoinResponseAutoJoinCase0Scope),
-    }),
-).annotate({
-  identifier: "ConfigureAutoJoinResponseAutoJoinCase0",
-}) as any as S.Schema<ConfigureAutoJoinResponseAutoJoinCase0>;
-
-export type ConfigureAutoJoinResponseAutoJoinCase1 =
-  AddUsersResponseAutoJoinCase1;
-export const ConfigureAutoJoinResponseAutoJoinCase1 =
-  AddUsersResponseAutoJoinCase1;
-
-export type ConfigureAutoJoinResponseAutoJoin =
-  | ConfigureAutoJoinResponseAutoJoinCase0
-  | AddUsersResponseAutoJoinCase1;
-export const ConfigureAutoJoinResponseAutoJoin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigureAutoJoinResponseAutoJoin>;
-
-export type ConfigureAutoJoinResponseSpendLimits = AddUsersResponseSpendLimits;
-export const ConfigureAutoJoinResponseSpendLimits = AddUsersResponseSpendLimits;
-
-export type ConfigureAutoJoinResponseUsersItemRole =
-  | "admin"
-  | "write"
-  | "contributor"
-  | "read"
-  | "no_access";
-export const ConfigureAutoJoinResponseUsersItemRole = /*@__PURE__*/ S.String;
-
-export interface ConfigureAutoJoinResponseUsersItem {
-  type: unknown;
-  _id: string;
-  fullname: string;
-  name: string;
-  avatarUrl: string;
-  role: ConfigureAutoJoinResponseUsersItemRole;
-  addedBy?: string;
-}
-export const ConfigureAutoJoinResponseUsersItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.Unknown,
-    _id: S.String,
-    fullname: S.String,
-    name: S.String,
-    avatarUrl: S.String,
-    role: ConfigureAutoJoinResponseUsersItemRole,
-    addedBy: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConfigureAutoJoinResponseUsersItem",
-}) as any as S.Schema<ConfigureAutoJoinResponseUsersItem>;
-
-export type ConfigureAutoJoinResponseUsersList =
-  Array<ConfigureAutoJoinResponseUsersItem>;
-export const ConfigureAutoJoinResponseUsersList = /*@__PURE__*/ S.Array(
-  ConfigureAutoJoinResponseUsersItem,
-) as any as S.Schema<ConfigureAutoJoinResponseUsersList>;
-
-export type ConfigureAutoJoinResponseResourcesItemCase0Type =
-  | "dataset"
-  | "model"
-  | "space"
-  | "bucket"
-  | "kernel";
-export const ConfigureAutoJoinResponseResourcesItemCase0Type =
-  /*@__PURE__*/ S.String;
-
-export interface ConfigureAutoJoinResponseResourcesItemCase0 {
-  type: ConfigureAutoJoinResponseResourcesItemCase0Type;
-  name: string;
-  addedBy?: string;
-  private: boolean;
-}
-export const ConfigureAutoJoinResponseResourcesItemCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ConfigureAutoJoinResponseResourcesItemCase0Type,
-      name: S.String,
-      addedBy: S.optional(S.String),
-      private: S.Boolean,
-    }),
-  ).annotate({
-    identifier: "ConfigureAutoJoinResponseResourcesItemCase0",
-  }) as any as S.Schema<ConfigureAutoJoinResponseResourcesItemCase0>;
-
-export type ConfigureAutoJoinResponseResourcesItemCase1 =
-  AddUsersResponseResourcesItemCase1;
-export const ConfigureAutoJoinResponseResourcesItemCase1 =
-  AddUsersResponseResourcesItemCase1;
-
-export type ConfigureAutoJoinResponseResourcesItemCase2 =
-  AddUsersResponseResourcesItemCase1;
-export const ConfigureAutoJoinResponseResourcesItemCase2 =
-  AddUsersResponseResourcesItemCase1;
-
-export type ConfigureAutoJoinResponseResourcesItemCase3 =
-  AddUsersResponseResourcesItemCase3;
-export const ConfigureAutoJoinResponseResourcesItemCase3 =
-  AddUsersResponseResourcesItemCase3;
-
-export type ConfigureAutoJoinResponseResourcesItemCase4 =
-  AddUsersResponseResourcesItemCase3;
-export const ConfigureAutoJoinResponseResourcesItemCase4 =
-  AddUsersResponseResourcesItemCase3;
-
-export type ConfigureAutoJoinResponseResourcesItem =
-  | ConfigureAutoJoinResponseResourcesItemCase0
-  | AddUsersResponseResourcesItemCase1
-  | AddUsersResponseResourcesItemCase1
-  | AddUsersResponseResourcesItemCase3
-  | AddUsersResponseResourcesItemCase3;
-export const ConfigureAutoJoinResponseResourcesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConfigureAutoJoinResponseResourcesItem>;
-
-export type ConfigureAutoJoinResponseResourcesList =
-  Array<ConfigureAutoJoinResponseResourcesItem>;
-export const ConfigureAutoJoinResponseResourcesList = /*@__PURE__*/ S.Array(
-  ConfigureAutoJoinResponseResourcesItem,
-) as any as S.Schema<ConfigureAutoJoinResponseResourcesList>;
-
-export interface ConfigureAutoJoinResponse {
-  id: string;
-  name: string;
-  description?: string | null;
-  autoJoin?: ConfigureAutoJoinResponseAutoJoin;
-  spendLimits?: AddUsersResponseSpendLimits;
-  users: ConfigureAutoJoinResponseUsersList;
-  resources: ConfigureAutoJoinResponseResourcesList;
-}
-export const ConfigureAutoJoinResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    description: S.optional(S.NullOr(S.String)),
-    autoJoin: S.optional(ConfigureAutoJoinResponseAutoJoin),
-    spendLimits: S.optional(AddUsersResponseSpendLimits),
-    users: ConfigureAutoJoinResponseUsersList,
-    resources: ConfigureAutoJoinResponseResourcesList,
-  }),
-).annotate({
-  identifier: "ConfigureAutoJoinResponse",
-}) as any as S.Schema<ConfigureAutoJoinResponse>;
-
 export type CreateResourceGroupRequestUsersItemRole =
   | "admin"
   | "write"
@@ -1405,6 +1180,231 @@ export const GetResourceGroupsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetResourceGroupsResponse",
 }) as any as S.Schema<GetResourceGroupsResponse>;
 
+export type JoinConfigureAutoRequestAutoJoinCase0Role =
+  | "admin"
+  | "write"
+  | "contributor"
+  | "read"
+  | "no_access";
+export const JoinConfigureAutoRequestAutoJoinCase0Role = /*@__PURE__*/ S.String;
+
+export type JoinConfigureAutoRequestAutoJoinCase0Scope = "all" | "read_plus";
+export const JoinConfigureAutoRequestAutoJoinCase0Scope =
+  /*@__PURE__*/ S.String;
+
+export interface JoinConfigureAutoRequestAutoJoinCase0 {
+  enabled: unknown;
+  role: JoinConfigureAutoRequestAutoJoinCase0Role | (string & {});
+  scope?: JoinConfigureAutoRequestAutoJoinCase0Scope | (string & {});
+}
+export const JoinConfigureAutoRequestAutoJoinCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      enabled: S.Unknown,
+      role: JoinConfigureAutoRequestAutoJoinCase0Role,
+      scope: S.optional(JoinConfigureAutoRequestAutoJoinCase0Scope),
+    }),
+).annotate({
+  identifier: "JoinConfigureAutoRequestAutoJoinCase0",
+}) as any as S.Schema<JoinConfigureAutoRequestAutoJoinCase0>;
+
+export type JoinConfigureAutoRequestAutoJoinCase1 =
+  AddUsersResponseAutoJoinCase1;
+export const JoinConfigureAutoRequestAutoJoinCase1 =
+  AddUsersResponseAutoJoinCase1;
+
+export type JoinConfigureAutoRequestAutoJoin =
+  | JoinConfigureAutoRequestAutoJoinCase0
+  | AddUsersResponseAutoJoinCase1;
+export const JoinConfigureAutoRequestAutoJoin =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<JoinConfigureAutoRequestAutoJoin>;
+
+export interface JoinConfigureAutoRequest {
+  name: string;
+  resourceGroupId: string;
+  autoJoin?: JoinConfigureAutoRequestAutoJoin;
+}
+export const JoinConfigureAutoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    resourceGroupId: S.String.pipe(T.Label()),
+    autoJoin: S.optional(JoinConfigureAutoRequestAutoJoin),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/organizations/{name}/resource-groups/{resourceGroupId}/settings",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "JoinConfigureAutoRequest",
+}) as any as S.Schema<JoinConfigureAutoRequest>;
+
+export type JoinConfigureAutoResponseAutoJoinCase0Role =
+  | "admin"
+  | "write"
+  | "contributor"
+  | "read"
+  | "no_access";
+export const JoinConfigureAutoResponseAutoJoinCase0Role =
+  /*@__PURE__*/ S.String;
+
+export type JoinConfigureAutoResponseAutoJoinCase0Scope = "all" | "read_plus";
+export const JoinConfigureAutoResponseAutoJoinCase0Scope =
+  /*@__PURE__*/ S.String;
+
+export interface JoinConfigureAutoResponseAutoJoinCase0 {
+  enabled: unknown;
+  role: JoinConfigureAutoResponseAutoJoinCase0Role;
+  scope?: JoinConfigureAutoResponseAutoJoinCase0Scope;
+}
+export const JoinConfigureAutoResponseAutoJoinCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      enabled: S.Unknown,
+      role: JoinConfigureAutoResponseAutoJoinCase0Role,
+      scope: S.optional(JoinConfigureAutoResponseAutoJoinCase0Scope),
+    }),
+).annotate({
+  identifier: "JoinConfigureAutoResponseAutoJoinCase0",
+}) as any as S.Schema<JoinConfigureAutoResponseAutoJoinCase0>;
+
+export type JoinConfigureAutoResponseAutoJoinCase1 =
+  AddUsersResponseAutoJoinCase1;
+export const JoinConfigureAutoResponseAutoJoinCase1 =
+  AddUsersResponseAutoJoinCase1;
+
+export type JoinConfigureAutoResponseAutoJoin =
+  | JoinConfigureAutoResponseAutoJoinCase0
+  | AddUsersResponseAutoJoinCase1;
+export const JoinConfigureAutoResponseAutoJoin =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<JoinConfigureAutoResponseAutoJoin>;
+
+export type JoinConfigureAutoResponseSpendLimits = AddUsersResponseSpendLimits;
+export const JoinConfigureAutoResponseSpendLimits = AddUsersResponseSpendLimits;
+
+export type JoinConfigureAutoResponseUsersItemRole =
+  | "admin"
+  | "write"
+  | "contributor"
+  | "read"
+  | "no_access";
+export const JoinConfigureAutoResponseUsersItemRole = /*@__PURE__*/ S.String;
+
+export interface JoinConfigureAutoResponseUsersItem {
+  type: unknown;
+  _id: string;
+  fullname: string;
+  name: string;
+  avatarUrl: string;
+  role: JoinConfigureAutoResponseUsersItemRole;
+  addedBy?: string;
+}
+export const JoinConfigureAutoResponseUsersItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.Unknown,
+    _id: S.String,
+    fullname: S.String,
+    name: S.String,
+    avatarUrl: S.String,
+    role: JoinConfigureAutoResponseUsersItemRole,
+    addedBy: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "JoinConfigureAutoResponseUsersItem",
+}) as any as S.Schema<JoinConfigureAutoResponseUsersItem>;
+
+export type JoinConfigureAutoResponseUsersList =
+  Array<JoinConfigureAutoResponseUsersItem>;
+export const JoinConfigureAutoResponseUsersList = /*@__PURE__*/ S.Array(
+  JoinConfigureAutoResponseUsersItem,
+) as any as S.Schema<JoinConfigureAutoResponseUsersList>;
+
+export type JoinConfigureAutoResponseResourcesItemCase0Type =
+  | "dataset"
+  | "model"
+  | "space"
+  | "bucket"
+  | "kernel";
+export const JoinConfigureAutoResponseResourcesItemCase0Type =
+  /*@__PURE__*/ S.String;
+
+export interface JoinConfigureAutoResponseResourcesItemCase0 {
+  type: JoinConfigureAutoResponseResourcesItemCase0Type;
+  name: string;
+  addedBy?: string;
+  private: boolean;
+}
+export const JoinConfigureAutoResponseResourcesItemCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: JoinConfigureAutoResponseResourcesItemCase0Type,
+      name: S.String,
+      addedBy: S.optional(S.String),
+      private: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "JoinConfigureAutoResponseResourcesItemCase0",
+  }) as any as S.Schema<JoinConfigureAutoResponseResourcesItemCase0>;
+
+export type JoinConfigureAutoResponseResourcesItemCase1 =
+  AddUsersResponseResourcesItemCase1;
+export const JoinConfigureAutoResponseResourcesItemCase1 =
+  AddUsersResponseResourcesItemCase1;
+
+export type JoinConfigureAutoResponseResourcesItemCase2 =
+  AddUsersResponseResourcesItemCase1;
+export const JoinConfigureAutoResponseResourcesItemCase2 =
+  AddUsersResponseResourcesItemCase1;
+
+export type JoinConfigureAutoResponseResourcesItemCase3 =
+  AddUsersResponseResourcesItemCase3;
+export const JoinConfigureAutoResponseResourcesItemCase3 =
+  AddUsersResponseResourcesItemCase3;
+
+export type JoinConfigureAutoResponseResourcesItemCase4 =
+  AddUsersResponseResourcesItemCase3;
+export const JoinConfigureAutoResponseResourcesItemCase4 =
+  AddUsersResponseResourcesItemCase3;
+
+export type JoinConfigureAutoResponseResourcesItem =
+  | JoinConfigureAutoResponseResourcesItemCase0
+  | AddUsersResponseResourcesItemCase1
+  | AddUsersResponseResourcesItemCase1
+  | AddUsersResponseResourcesItemCase3
+  | AddUsersResponseResourcesItemCase3;
+export const JoinConfigureAutoResponseResourcesItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<JoinConfigureAutoResponseResourcesItem>;
+
+export type JoinConfigureAutoResponseResourcesList =
+  Array<JoinConfigureAutoResponseResourcesItem>;
+export const JoinConfigureAutoResponseResourcesList = /*@__PURE__*/ S.Array(
+  JoinConfigureAutoResponseResourcesItem,
+) as any as S.Schema<JoinConfigureAutoResponseResourcesList>;
+
+export interface JoinConfigureAutoResponse {
+  id: string;
+  name: string;
+  description?: string | null;
+  autoJoin?: JoinConfigureAutoResponseAutoJoin;
+  spendLimits?: AddUsersResponseSpendLimits;
+  users: JoinConfigureAutoResponseUsersList;
+  resources: JoinConfigureAutoResponseResourcesList;
+}
+export const JoinConfigureAutoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    description: S.optional(S.NullOr(S.String)),
+    autoJoin: S.optional(JoinConfigureAutoResponseAutoJoin),
+    spendLimits: S.optional(AddUsersResponseSpendLimits),
+    users: JoinConfigureAutoResponseUsersList,
+    resources: JoinConfigureAutoResponseResourcesList,
+  }),
+).annotate({
+  identifier: "JoinConfigureAutoResponse",
+}) as any as S.Schema<JoinConfigureAutoResponse>;
+
 export interface RemoveUserRequest {
   name: string;
   resourceGroupId: string;
@@ -1825,21 +1825,6 @@ export const changeUserRole: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigureAutoJoinError = HuggingFaceOpError;
-/** Configure auto-join Configure the auto-join settings of a resource group. Requires the org to have a Team plan or higher. */
-export const configureAutoJoin: API.OperationMethod<
-  ConfigureAutoJoinRequest,
-  ConfigureAutoJoinResponse,
-  ConfigureAutoJoinError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigureAutoJoinRequest,
-  output: ConfigureAutoJoinResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateResourceGroupError = HuggingFaceOpError;
 /** Create resource group Create a new resource group in the organization. Requires the org to have a Team plan or higher. */
 export const createResourceGroup: API.OperationMethod<
@@ -1895,6 +1880,21 @@ export const getResourceGroups: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetResourceGroupsRequest,
   output: GetResourceGroupsResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
+export type JoinConfigureAutoError = HuggingFaceOpError;
+/** Configure auto-join Configure the auto-join settings of a resource group. Requires the org to have a Team plan or higher. */
+export const joinConfigureAuto: API.OperationMethod<
+  JoinConfigureAutoRequest,
+  JoinConfigureAutoResponse,
+  JoinConfigureAutoError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: JoinConfigureAutoRequest,
+  output: JoinConfigureAutoResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

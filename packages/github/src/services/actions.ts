@@ -4731,6 +4731,91 @@ export const GetReviewsForRunResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetReviewsForRunResponse",
 }) as any as S.Schema<GetReviewsForRunResponse>;
 
+export interface GetRunnerVersionDeprecationForOrgRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The runner version to look up. */
+  version: string;
+}
+export const GetRunnerVersionDeprecationForOrgRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      version: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/orgs/{org}/actions/runners/deprecations/{version}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetRunnerVersionDeprecationForOrgRequest",
+}) as any as S.Schema<GetRunnerVersionDeprecationForOrgRequest>;
+
+export interface GetRunnerVersionDeprecationForOrgResponse {
+  /** The runner version string. */
+  runner_version: string;
+  /** The date after which this runner version can no longer register. Null if no schedule is set. */
+  registration_deprecates_at?: string | null;
+  /** The date after which jobs will no longer be dispatched to runners on this version. */
+  runtime_deprecates_at?: string | null;
+}
+export const GetRunnerVersionDeprecationForOrgResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      runner_version: S.String,
+      registration_deprecates_at: S.optional(S.NullOr(S.String)),
+      runtime_deprecates_at: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "GetRunnerVersionDeprecationForOrgResponse",
+  }) as any as S.Schema<GetRunnerVersionDeprecationForOrgResponse>;
+
+export interface GetRunnerVersionDeprecationForRepoRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The runner version to look up. */
+  version: string;
+}
+export const GetRunnerVersionDeprecationForRepoRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      owner: S.String.pipe(T.Label()),
+      repo: S.String.pipe(T.Label()),
+      version: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/repos/{owner}/{repo}/actions/runners/deprecations/{version}",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetRunnerVersionDeprecationForRepoRequest",
+  }) as any as S.Schema<GetRunnerVersionDeprecationForRepoRequest>;
+
+export interface GetRunnerVersionDeprecationForRepoResponse {
+  /** The runner version string. */
+  runner_version: string;
+  /** The date after which this runner version can no longer register. Null if no schedule is set. */
+  registration_deprecates_at?: string | null;
+  /** The date after which jobs will no longer be dispatched to runners on this version. */
+  runtime_deprecates_at?: string | null;
+}
+export const GetRunnerVersionDeprecationForRepoResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      runner_version: S.String,
+      registration_deprecates_at: S.optional(S.NullOr(S.String)),
+      runtime_deprecates_at: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "GetRunnerVersionDeprecationForRepoResponse",
+  }) as any as S.Schema<GetRunnerVersionDeprecationForRepoResponse>;
+
 export interface GetSelfHostedRunnerForOrgRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
@@ -8085,43 +8170,6 @@ export const RemoveSelfHostedRunnerFromGroupForOrgResponse =
     identifier: "RemoveSelfHostedRunnerFromGroupForOrgResponse",
   }) as any as S.Schema<RemoveSelfHostedRunnerFromGroupForOrgResponse>;
 
-export interface ReRunJobForWorkflowRunRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The unique identifier of the job. */
-  job_id: number;
-  /** Whether to enable debug logging for the re-run. */
-  enable_debug_logging?: boolean;
-  /** Whether to enable the debugger for the re-run of this job. */
-  enable_debugger?: boolean;
-}
-export const ReRunJobForWorkflowRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    job_id: S.Number.pipe(T.Label()),
-    enable_debug_logging: S.optional(S.Boolean),
-    enable_debugger: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/actions/jobs/{job_id}/rerun",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReRunJobForWorkflowRunRequest",
-}) as any as S.Schema<ReRunJobForWorkflowRunRequest>;
-
-export type ReRunJobForWorkflowRunResponse = unknown;
-export const ReRunJobForWorkflowRunResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ReRunJobForWorkflowRunResponse",
-}) as any as S.Schema<ReRunJobForWorkflowRunResponse>;
-
 export interface ReRunWorkflowRequest {
   /** The account owner of the repository. The name is not case sensitive. */
   owner: string;
@@ -8500,6 +8548,43 @@ export const ReviewPendingDeploymentsForRunResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ReviewPendingDeploymentsForRunResponse",
 }) as any as S.Schema<ReviewPendingDeploymentsForRunResponse>;
+
+export interface RunReRunJobForWorkflowRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The unique identifier of the job. */
+  job_id: number;
+  /** Whether to enable debug logging for the re-run. */
+  enable_debug_logging?: boolean;
+  /** Whether to enable the debugger for the re-run of this job. */
+  enable_debugger?: boolean;
+}
+export const RunReRunJobForWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    job_id: S.Number.pipe(T.Label()),
+    enable_debug_logging: S.optional(S.Boolean),
+    enable_debugger: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/actions/jobs/{job_id}/rerun",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RunReRunJobForWorkflowRequest",
+}) as any as S.Schema<RunReRunJobForWorkflowRequest>;
+
+export type RunReRunJobForWorkflowResponse = unknown;
+export const RunReRunJobForWorkflowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RunReRunJobForWorkflowResponse",
+}) as any as S.Schema<RunReRunJobForWorkflowResponse>;
 
 export interface SetActionsCacheRetentionLimitForEnterpriseRequest {
   /** The slug version of the enterprise name. */
@@ -11341,6 +11426,36 @@ export const getReviewsForRun: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetRunnerVersionDeprecationForOrgError = GithubOpError;
+/** Get runner version end-of-life schedule for an organization Gets the end-of-life schedule for a specific runner version in an organization. Returns the runner version and the dates when registration and runtime support will end. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. */
+export const getRunnerVersionDeprecationForOrg: API.OperationMethod<
+  GetRunnerVersionDeprecationForOrgRequest,
+  GetRunnerVersionDeprecationForOrgResponse,
+  GetRunnerVersionDeprecationForOrgError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRunnerVersionDeprecationForOrgRequest,
+  output: GetRunnerVersionDeprecationForOrgResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRunnerVersionDeprecationForRepoError = GithubOpError;
+/** Get runner version end-of-life schedule for a repository Gets the end-of-life schedule for a specific runner version in a repository. Returns the runner version and the dates when registration and runtime support will end. Authenticated users must have admin access to the repository to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. */
+export const getRunnerVersionDeprecationForRepo: API.OperationMethod<
+  GetRunnerVersionDeprecationForRepoRequest,
+  GetRunnerVersionDeprecationForRepoResponse,
+  GetRunnerVersionDeprecationForRepoError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRunnerVersionDeprecationForRepoRequest,
+  output: GetRunnerVersionDeprecationForRepoResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSelfHostedRunnerForOrgError = GithubOpError;
 /** Get a self-hosted runner for an organization Gets a specific self-hosted runner configured in an organization. Authenticated users must have admin access to the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required. */
 export const getSelfHostedRunnerForOrg: API.OperationMethod<
@@ -12145,21 +12260,6 @@ export const removeSelfHostedRunnerFromGroupForOrg: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReRunJobForWorkflowRunError = Forbidden | GithubOpError;
-/** Re-run a job from a workflow run Re-run a job and its dependent jobs in a workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. */
-export const reRunJobForWorkflowRun: API.OperationMethod<
-  ReRunJobForWorkflowRunRequest,
-  ReRunJobForWorkflowRunResponse,
-  ReRunJobForWorkflowRunError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReRunJobForWorkflowRunRequest,
-  output: ReRunJobForWorkflowRunResponse,
-  errors: [Forbidden],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReRunWorkflowError = GithubOpError;
 /** Re-run a workflow Re-runs your workflow run using its `id`. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. */
 export const reRunWorkflow: API.OperationMethod<
@@ -12216,6 +12316,21 @@ export const reviewPendingDeploymentsForRun: API.OperationMethod<
   input: ReviewPendingDeploymentsForRunRequest,
   output: ReviewPendingDeploymentsForRunResponse,
   errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunReRunJobForWorkflowError = Forbidden | GithubOpError;
+/** Re-run a job from a workflow run Re-run a job and its dependent jobs in a workflow run. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint. */
+export const runReRunJobForWorkflow: API.OperationMethod<
+  RunReRunJobForWorkflowRequest,
+  RunReRunJobForWorkflowResponse,
+  RunReRunJobForWorkflowError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunReRunJobForWorkflowRequest,
+  output: RunReRunJobForWorkflowResponse,
+  errors: [Forbidden],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));

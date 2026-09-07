@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.policy#GetPolicyApiGroup": {
+    "com.kubernetes.policy#GetPolicyAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.policy#GetPolicyV1ApiResources": {
+    "com.kubernetes.policy#GetPolicyV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -893,8 +894,7 @@
         "message": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string."
           }
         },
         "observedGeneration": {
@@ -2175,7 +2175,7 @@
         "smithy.api#documentation": "list or watch objects of kind PodDisruptionBudget"
       }
     },
-    "com.kubernetes.policy#ListWatchPolicyV1NamespacedPodDisruptionBudgetRequest": {
+    "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2296,10 +2296,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.policy#ListWatchPolicyV1NamespacedPodDisruptionBudget": {
+    "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.policy#ListWatchPolicyV1NamespacedPodDisruptionBudgetRequest"
+        "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetListRequest"
       },
       "output": {
         "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2438,7 +2438,7 @@
         "smithy.api#documentation": "watch changes to an object of kind PodDisruptionBudget. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.policy#ListWatchPolicyV1PodDisruptionBudgetForAllNamespacesRequest": {
+    "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -2530,10 +2530,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.policy#ListWatchPolicyV1PodDisruptionBudgetForAllNamespaces": {
+    "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.policy#ListWatchPolicyV1PodDisruptionBudgetForAllNamespacesRequest"
+        "target": "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.policy#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2591,52 +2591,52 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.policy#GetPolicyApiGroup"
-        },
-        {
-          "target": "com.kubernetes.policy#GetPolicyV1ApiResources"
-        },
-        {
-          "target": "com.kubernetes.policy#ListPolicyV1NamespacedPodDisruptionBudget"
-        },
-        {
           "target": "com.kubernetes.policy#CreatePolicyV1NamespacedPodDisruptionBudget"
         },
         {
           "target": "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudget"
         },
         {
-          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudget"
-        },
-        {
-          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudget"
-        },
-        {
-          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudget"
-        },
-        {
           "target": "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudget"
         },
         {
-          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatus"
+          "target": "com.kubernetes.policy#GetPolicyAPIGroup"
         },
         {
-          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetStatus"
+          "target": "com.kubernetes.policy#GetPolicyV1APIResources"
         },
         {
-          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatus"
+          "target": "com.kubernetes.policy#ListPolicyV1NamespacedPodDisruptionBudget"
         },
         {
           "target": "com.kubernetes.policy#ListPolicyV1PodDisruptionBudgetForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.policy#ListWatchPolicyV1NamespacedPodDisruptionBudget"
+          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatus"
+        },
+        {
+          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatus"
+        },
+        {
+          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetStatus"
         },
         {
           "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudget"
         },
         {
-          "target": "com.kubernetes.policy#ListWatchPolicyV1PodDisruptionBudgetForAllNamespaces"
+          "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetList"
+        },
+        {
+          "target": "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespaces"
         }
       ],
       "traits": {

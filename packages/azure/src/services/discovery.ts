@@ -1111,17 +1111,17 @@ export const GetBookshelfPrivateEndpointConnectionRequest =
   }) as any as S.Schema<GetBookshelfPrivateEndpointConnectionRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
+export type GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList =
   Array<string>;
-export const BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
+export const GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface BookshelfPrivateEndpointConnectionsGetResponseProperties {
+export interface GetBookshelfPrivateEndpointConnectionResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList;
+  groupIds?: GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -1129,19 +1129,19 @@ export interface BookshelfPrivateEndpointConnectionsGetResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const BookshelfPrivateEndpointConnectionsGetResponseProperties =
+export const GetBookshelfPrivateEndpointConnectionResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList,
+        GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionsGetResponseProperties",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionsGetResponseProperties>;
+    identifier: "GetBookshelfPrivateEndpointConnectionResponseProperties",
+  }) as any as S.Schema<GetBookshelfPrivateEndpointConnectionResponseProperties>;
 
 export interface GetBookshelfPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1153,7 +1153,7 @@ export interface GetBookshelfPrivateEndpointConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: BookshelfPrivateEndpointConnectionsGetResponseProperties;
+  properties?: GetBookshelfPrivateEndpointConnectionResponseProperties;
 }
 export const GetBookshelfPrivateEndpointConnectionResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -1163,7 +1163,7 @@ export const GetBookshelfPrivateEndpointConnectionResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        BookshelfPrivateEndpointConnectionsGetResponseProperties,
+        GetBookshelfPrivateEndpointConnectionResponseProperties,
       ),
     }),
   ).annotate({
@@ -1200,44 +1200,44 @@ export const GetBookshelfPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetBookshelfPrivateLinkResourceRequest>;
 
 /** The private link resource required member names. */
-export type BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export type GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList =
   Array<string>;
-export const BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export const GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList>;
+  ) as any as S.Schema<GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList>;
 
 /** The private link resource private link DNS zone name. */
-export type BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export type GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   Array<string>;
-export const BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export const GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList>;
+  ) as any as S.Schema<GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList>;
 
 /** Properties of a private link resource. */
-export interface BookshelfPrivateLinkResourcesGetResponseProperties {
+export interface GetBookshelfPrivateLinkResourceResponseProperties {
   /** The private link resource group id. */
   groupId?: string;
   /** The private link resource required member names. */
-  requiredMembers?: BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList;
+  requiredMembers?: GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList;
   /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList;
+  requiredZoneNames?: GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList;
 }
-export const BookshelfPrivateLinkResourcesGetResponseProperties =
+export const GetBookshelfPrivateLinkResourceResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupId: S.optional(S.String),
       requiredMembers: S.optional(
-        BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList,
+        GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList,
       ),
       requiredZoneNames: S.optional(
-        BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList,
+        GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList,
       ),
     }),
   ).annotate({
-    identifier: "BookshelfPrivateLinkResourcesGetResponseProperties",
-  }) as any as S.Schema<BookshelfPrivateLinkResourcesGetResponseProperties>;
+    identifier: "GetBookshelfPrivateLinkResourceResponseProperties",
+  }) as any as S.Schema<GetBookshelfPrivateLinkResourceResponseProperties>;
 
 export interface GetBookshelfPrivateLinkResourceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1249,7 +1249,7 @@ export interface GetBookshelfPrivateLinkResourceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of a private link resource. */
-  properties?: BookshelfPrivateLinkResourcesGetResponseProperties;
+  properties?: GetBookshelfPrivateLinkResourceResponseProperties;
 }
 export const GetBookshelfPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -1258,9 +1258,7 @@ export const GetBookshelfPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      properties: S.optional(
-        BookshelfPrivateLinkResourcesGetResponseProperties,
-      ),
+      properties: S.optional(GetBookshelfPrivateLinkResourceResponseProperties),
     }),
 ).annotate({
   identifier: "GetBookshelfPrivateLinkResourceResponse",
@@ -1292,13 +1290,13 @@ export const GetBookshelveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBookshelveRequest>;
 
 /** Resource tags. */
-export type BookshelvesGetResponseTagsMap = {
+export type GetBookshelveResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BookshelvesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBookshelveResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BookshelvesGetResponseTagsMap>;
+) as any as S.Schema<GetBookshelveResponseTagsMap>;
 
 export interface GetBookshelveResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1310,7 +1308,7 @@ export interface GetBookshelveResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BookshelvesGetResponseTagsMap;
+  tags?: GetBookshelveResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1322,7 +1320,7 @@ export const GetBookshelveResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BookshelvesGetResponseTagsMap),
+    tags: S.optional(GetBookshelveResponseTagsMap),
     location: S.String,
     properties: S.optional(BookshelfProperties),
   }),
@@ -1359,13 +1357,13 @@ export const GetChatModelDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetChatModelDeploymentRequest>;
 
 /** Resource tags. */
-export type ChatModelDeploymentsGetResponseTagsMap = {
+export type GetChatModelDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ChatModelDeploymentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetChatModelDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChatModelDeploymentsGetResponseTagsMap>;
+) as any as S.Schema<GetChatModelDeploymentResponseTagsMap>;
 
 export interface GetChatModelDeploymentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1377,7 +1375,7 @@ export interface GetChatModelDeploymentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ChatModelDeploymentsGetResponseTagsMap;
+  tags?: GetChatModelDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1389,7 +1387,7 @@ export const GetChatModelDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ChatModelDeploymentsGetResponseTagsMap),
+    tags: S.optional(GetChatModelDeploymentResponseTagsMap),
     location: S.String,
     properties: S.optional(ChatModelDeploymentProperties),
   }),
@@ -1426,11 +1424,11 @@ export const GetNodePoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNodePoolRequest>;
 
 /** Resource tags. */
-export type NodePoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const NodePoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetNodePoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetNodePoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NodePoolsGetResponseTagsMap>;
+) as any as S.Schema<GetNodePoolResponseTagsMap>;
 
 /** Supported Azure VM Sizes. */
 export type VmSize =
@@ -1501,7 +1499,7 @@ export interface GetNodePoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NodePoolsGetResponseTagsMap;
+  tags?: GetNodePoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1513,7 +1511,7 @@ export const GetNodePoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NodePoolsGetResponseTagsMap),
+    tags: S.optional(GetNodePoolResponseTagsMap),
     location: S.String,
     properties: S.optional(NodePoolProperties),
   }),
@@ -1550,11 +1548,11 @@ export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectRequest>;
 
 /** Resource tags. */
-export type ProjectsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ProjectsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetProjectResponseTagsMap = { [key: string]: string | undefined };
+export const GetProjectResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsGetResponseTagsMap>;
+) as any as S.Schema<GetProjectResponseTagsMap>;
 
 /** Allowed StorageContainers (Control plane resource references). */
 export type ProjectPropertiesStorageContainerIdsList = Array<string>;
@@ -1607,7 +1605,7 @@ export interface GetProjectResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProjectsGetResponseTagsMap;
+  tags?: GetProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1619,7 +1617,7 @@ export const GetProjectResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ProjectsGetResponseTagsMap),
+    tags: S.optional(GetProjectResponseTagsMap),
     location: S.String,
     properties: S.optional(ProjectProperties),
   }),
@@ -1656,13 +1654,13 @@ export const GetStorageAssetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStorageAssetRequest>;
 
 /** Resource tags. */
-export type StorageAssetsGetResponseTagsMap = {
+export type GetStorageAssetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageAssetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetStorageAssetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageAssetsGetResponseTagsMap>;
+) as any as S.Schema<GetStorageAssetResponseTagsMap>;
 
 /** Storage Asset properties */
 export interface StorageAssetProperties {
@@ -1693,7 +1691,7 @@ export interface GetStorageAssetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageAssetsGetResponseTagsMap;
+  tags?: GetStorageAssetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1705,7 +1703,7 @@ export const GetStorageAssetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageAssetsGetResponseTagsMap),
+    tags: S.optional(GetStorageAssetResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageAssetProperties),
   }),
@@ -1739,13 +1737,13 @@ export const GetStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStorageContainerRequest>;
 
 /** Resource tags. */
-export type StorageContainersGetResponseTagsMap = {
+export type GetStorageContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageContainersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetStorageContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageContainersGetResponseTagsMap>;
+) as any as S.Schema<GetStorageContainerResponseTagsMap>;
 
 /** The kind of the backing storage store. */
 export type StorageStoreType = "AzureStorageBlob" | "AzureNetAppFiles";
@@ -1788,7 +1786,7 @@ export interface GetStorageContainerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageContainersGetResponseTagsMap;
+  tags?: GetStorageContainerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1800,7 +1798,7 @@ export const GetStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageContainersGetResponseTagsMap),
+    tags: S.optional(GetStorageContainerResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageContainerProperties),
   }),
@@ -1834,13 +1832,13 @@ export const GetSupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSupercomputerRequest>;
 
 /** Resource tags. */
-export type SupercomputersGetResponseTagsMap = {
+export type GetSupercomputerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SupercomputersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSupercomputerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SupercomputersGetResponseTagsMap>;
+) as any as S.Schema<GetSupercomputerResponseTagsMap>;
 
 /** Network egress type provisioned for the supercomputer workloads. Defaults to LoadBalancer if not specified. If None is specified, the customer is responsible for providing outbound connectivity for Supercomputer functionality. */
 export type SupercomputerPropertiesOutboundType = "LoadBalancer" | "None";
@@ -1955,22 +1953,22 @@ export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
 export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** Managed service identity (either system assigned, or none) */
-export interface SupercomputersGetResponseIdentity {
+export interface GetSupercomputerResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: SystemAssignedServiceIdentityType;
 }
-export const SupercomputersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetSupercomputerResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: SystemAssignedServiceIdentityType,
   }),
 ).annotate({
-  identifier: "SupercomputersGetResponseIdentity",
-}) as any as S.Schema<SupercomputersGetResponseIdentity>;
+  identifier: "GetSupercomputerResponseIdentity",
+}) as any as S.Schema<GetSupercomputerResponseIdentity>;
 
 export interface GetSupercomputerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1982,13 +1980,13 @@ export interface GetSupercomputerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SupercomputersGetResponseTagsMap;
+  tags?: GetSupercomputerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SupercomputerProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersGetResponseIdentity;
+  identity?: GetSupercomputerResponseIdentity;
 }
 export const GetSupercomputerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1996,10 +1994,10 @@ export const GetSupercomputerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SupercomputersGetResponseTagsMap),
+    tags: S.optional(GetSupercomputerResponseTagsMap),
     location: S.String,
     properties: S.optional(SupercomputerProperties),
-    identity: S.optional(SupercomputersGetResponseIdentity),
+    identity: S.optional(GetSupercomputerResponseIdentity),
   }),
 ).annotate({
   identifier: "GetSupercomputerResponse",
@@ -2029,11 +2027,11 @@ export const GetToolRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetToolRequest" }) as any as S.Schema<GetToolRequest>;
 
 /** Resource tags. */
-export type ToolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ToolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetToolResponseTagsMap = { [key: string]: string | undefined };
+export const GetToolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ToolsGetResponseTagsMap>;
+) as any as S.Schema<GetToolResponseTagsMap>;
 
 /** Environment variables to make available */
 export type ToolPropertiesEnvironmentVariablesMap = {
@@ -2083,7 +2081,7 @@ export interface GetToolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ToolsGetResponseTagsMap;
+  tags?: GetToolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2095,7 +2093,7 @@ export const GetToolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ToolsGetResponseTagsMap),
+    tags: S.optional(GetToolResponseTagsMap),
     location: S.String,
     properties: S.optional(ToolProperties),
   }),
@@ -2129,13 +2127,11 @@ export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
 
 /** List of linked SuperComputers. */
 export type WorkspacePropertiesSupercomputerIdsList = Array<string>;
@@ -2243,7 +2239,7 @@ export interface GetWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkspacesGetResponseTagsMap;
+  tags?: GetWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2255,7 +2251,7 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkspaceProperties),
   }),
@@ -2293,17 +2289,17 @@ export const GetWorkspacePrivateEndpointConnectionRequest =
   }) as any as S.Schema<GetWorkspacePrivateEndpointConnectionRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
+export type GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList =
   Array<string>;
-export const WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
+export const GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface WorkspacePrivateEndpointConnectionsGetResponseProperties {
+export interface GetWorkspacePrivateEndpointConnectionResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList;
+  groupIds?: GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -2311,19 +2307,19 @@ export interface WorkspacePrivateEndpointConnectionsGetResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const WorkspacePrivateEndpointConnectionsGetResponseProperties =
+export const GetWorkspacePrivateEndpointConnectionResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList,
+        GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionsGetResponseProperties",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionsGetResponseProperties>;
+    identifier: "GetWorkspacePrivateEndpointConnectionResponseProperties",
+  }) as any as S.Schema<GetWorkspacePrivateEndpointConnectionResponseProperties>;
 
 export interface GetWorkspacePrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2335,7 +2331,7 @@ export interface GetWorkspacePrivateEndpointConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: WorkspacePrivateEndpointConnectionsGetResponseProperties;
+  properties?: GetWorkspacePrivateEndpointConnectionResponseProperties;
 }
 export const GetWorkspacePrivateEndpointConnectionResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -2345,7 +2341,7 @@ export const GetWorkspacePrivateEndpointConnectionResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(
-        WorkspacePrivateEndpointConnectionsGetResponseProperties,
+        GetWorkspacePrivateEndpointConnectionResponseProperties,
       ),
     }),
   ).annotate({
@@ -2382,44 +2378,44 @@ export const GetWorkspacePrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetWorkspacePrivateLinkResourceRequest>;
 
 /** The private link resource required member names. */
-export type WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export type GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList =
   Array<string>;
-export const WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
+export const GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList>;
+  ) as any as S.Schema<GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList>;
 
 /** The private link resource private link DNS zone name. */
-export type WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export type GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   Array<string>;
-export const WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
+export const GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList>;
+  ) as any as S.Schema<GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList>;
 
 /** Properties of a private link resource. */
-export interface WorkspacePrivateLinkResourcesGetResponseProperties {
+export interface GetWorkspacePrivateLinkResourceResponseProperties {
   /** The private link resource group id. */
   groupId?: string;
   /** The private link resource required member names. */
-  requiredMembers?: WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList;
+  requiredMembers?: GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList;
   /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList;
+  requiredZoneNames?: GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList;
 }
-export const WorkspacePrivateLinkResourcesGetResponseProperties =
+export const GetWorkspacePrivateLinkResourceResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupId: S.optional(S.String),
       requiredMembers: S.optional(
-        WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList,
+        GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList,
       ),
       requiredZoneNames: S.optional(
-        WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList,
+        GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList,
       ),
     }),
   ).annotate({
-    identifier: "WorkspacePrivateLinkResourcesGetResponseProperties",
-  }) as any as S.Schema<WorkspacePrivateLinkResourcesGetResponseProperties>;
+    identifier: "GetWorkspacePrivateLinkResourceResponseProperties",
+  }) as any as S.Schema<GetWorkspacePrivateLinkResourceResponseProperties>;
 
 export interface GetWorkspacePrivateLinkResourceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2431,7 +2427,7 @@ export interface GetWorkspacePrivateLinkResourceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of a private link resource. */
-  properties?: WorkspacePrivateLinkResourcesGetResponseProperties;
+  properties?: GetWorkspacePrivateLinkResourceResponseProperties;
 }
 export const GetWorkspacePrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -2440,9 +2436,7 @@ export const GetWorkspacePrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      properties: S.optional(
-        WorkspacePrivateLinkResourcesGetResponseProperties,
-      ),
+      properties: S.optional(GetWorkspacePrivateLinkResourceResponseProperties),
     }),
 ).annotate({
   identifier: "GetWorkspacePrivateLinkResourceResponse",
@@ -3010,20 +3004,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -3331,8 +3325,8 @@ export const SupercomputerTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<SupercomputerTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type SupercomputerIdentity = SupercomputersGetResponseIdentity;
-export const SupercomputerIdentity = SupercomputersGetResponseIdentity;
+export type SupercomputerIdentity = GetSupercomputerResponseIdentity;
+export const SupercomputerIdentity = GetSupercomputerResponseIdentity;
 
 /** Supercomputer tracked resource */
 export interface Supercomputer {
@@ -3351,7 +3345,7 @@ export interface Supercomputer {
   /** The resource-specific properties for this resource. */
   properties?: SupercomputerProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersGetResponseIdentity;
+  identity?: GetSupercomputerResponseIdentity;
 }
 export const Supercomputer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3362,7 +3356,7 @@ export const Supercomputer = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(SupercomputerTagsMap),
     location: S.String,
     properties: S.optional(SupercomputerProperties),
-    identity: S.optional(SupercomputersGetResponseIdentity),
+    identity: S.optional(GetSupercomputerResponseIdentity),
   }),
 ).annotate({ identifier: "Supercomputer" }) as any as S.Schema<Supercomputer>;
 
@@ -4410,9 +4404,9 @@ export const SupercomputersCreateOrUpdateResponseTagsMap =
 
 /** Managed service identity (either system assigned, or none) */
 export type SupercomputersCreateOrUpdateResponseIdentity =
-  SupercomputersGetResponseIdentity;
+  GetSupercomputerResponseIdentity;
 export const SupercomputersCreateOrUpdateResponseIdentity =
-  SupercomputersGetResponseIdentity;
+  GetSupercomputerResponseIdentity;
 
 export interface SupercomputersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4430,7 +4424,7 @@ export interface SupercomputersCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: SupercomputerProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersGetResponseIdentity;
+  identity?: GetSupercomputerResponseIdentity;
 }
 export const SupercomputersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -4442,7 +4436,7 @@ export const SupercomputersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
       tags: S.optional(SupercomputersCreateOrUpdateResponseTagsMap),
       location: S.String,
       properties: S.optional(SupercomputerProperties),
-      identity: S.optional(SupercomputersGetResponseIdentity),
+      identity: S.optional(GetSupercomputerResponseIdentity),
     }),
 ).annotate({
   identifier: "SupercomputersCreateOrUpdateResponse",
@@ -4571,13 +4565,13 @@ export const ToolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ToolsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type BookshelvesUpdateRequestTagsMap = {
+export type UpdateBookshelveRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BookshelvesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBookshelveRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BookshelvesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBookshelveRequestTagsMap>;
 
 /** Key Vault Properties with clientId selection */
 export interface BookshelfKeyVaultPropertiesUpdate {
@@ -4619,7 +4613,7 @@ export interface UpdateBookshelveRequest {
   /** The name of the Bookshelf */
   bookshelfName: string;
   /** Resource tags. */
-  tags?: BookshelvesUpdateRequestTagsMap;
+  tags?: UpdateBookshelveRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: BookshelfPropertiesUpdate;
 }
@@ -4628,7 +4622,7 @@ export const UpdateBookshelveRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     bookshelfName: S.String.pipe(T.Label()),
-    tags: S.optional(BookshelvesUpdateRequestTagsMap),
+    tags: S.optional(UpdateBookshelveRequestTagsMap),
     properties: S.optional(BookshelfPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -4643,13 +4637,13 @@ export const UpdateBookshelveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBookshelveRequest>;
 
 /** Resource tags. */
-export type BookshelvesUpdateResponseTagsMap = {
+export type UpdateBookshelveResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BookshelvesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBookshelveResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BookshelvesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBookshelveResponseTagsMap>;
 
 export interface UpdateBookshelveResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4661,7 +4655,7 @@ export interface UpdateBookshelveResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BookshelvesUpdateResponseTagsMap;
+  tags?: UpdateBookshelveResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4673,7 +4667,7 @@ export const UpdateBookshelveResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BookshelvesUpdateResponseTagsMap),
+    tags: S.optional(UpdateBookshelveResponseTagsMap),
     location: S.String,
     properties: S.optional(BookshelfProperties),
   }),
@@ -4682,13 +4676,13 @@ export const UpdateBookshelveResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBookshelveResponse>;
 
 /** Resource tags. */
-export type ChatModelDeploymentsUpdateRequestTagsMap = {
+export type UpdateChatModelDeploymentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ChatModelDeploymentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateChatModelDeploymentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChatModelDeploymentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateChatModelDeploymentRequestTagsMap>;
 
 /** Defines a deployment binding a specific model family to a user-defined deployment name for chat inference. */
 export interface ChatModelDeploymentPropertiesUpdate {
@@ -4713,7 +4707,7 @@ export interface UpdateChatModelDeploymentRequest {
   /** The name of the ChatModelDeployment */
   chatModelDeploymentName: string;
   /** Resource tags. */
-  tags?: ChatModelDeploymentsUpdateRequestTagsMap;
+  tags?: UpdateChatModelDeploymentRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: ChatModelDeploymentPropertiesUpdate;
 }
@@ -4723,7 +4717,7 @@ export const UpdateChatModelDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     chatModelDeploymentName: S.String.pipe(T.Label()),
-    tags: S.optional(ChatModelDeploymentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateChatModelDeploymentRequestTagsMap),
     properties: S.optional(ChatModelDeploymentPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -4738,13 +4732,13 @@ export const UpdateChatModelDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateChatModelDeploymentRequest>;
 
 /** Resource tags. */
-export type ChatModelDeploymentsUpdateResponseTagsMap = {
+export type UpdateChatModelDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ChatModelDeploymentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateChatModelDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChatModelDeploymentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateChatModelDeploymentResponseTagsMap>;
 
 export interface UpdateChatModelDeploymentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4756,7 +4750,7 @@ export interface UpdateChatModelDeploymentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ChatModelDeploymentsUpdateResponseTagsMap;
+  tags?: UpdateChatModelDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4768,7 +4762,7 @@ export const UpdateChatModelDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ChatModelDeploymentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateChatModelDeploymentResponseTagsMap),
     location: S.String,
     properties: S.optional(ChatModelDeploymentProperties),
   }),
@@ -4777,13 +4771,13 @@ export const UpdateChatModelDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateChatModelDeploymentResponse>;
 
 /** Resource tags. */
-export type NodePoolsUpdateRequestTagsMap = {
+export type UpdateNodePoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NodePoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNodePoolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NodePoolsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNodePoolRequestTagsMap>;
 
 /** NodePool properties */
 export interface NodePoolPropertiesUpdate {
@@ -4811,7 +4805,7 @@ export interface UpdateNodePoolRequest {
   /** The name of the NodePool */
   nodePoolName: string;
   /** Resource tags. */
-  tags?: NodePoolsUpdateRequestTagsMap;
+  tags?: UpdateNodePoolRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: NodePoolPropertiesUpdate;
 }
@@ -4821,7 +4815,7 @@ export const UpdateNodePoolRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     supercomputerName: S.String.pipe(T.Label()),
     nodePoolName: S.String.pipe(T.Label()),
-    tags: S.optional(NodePoolsUpdateRequestTagsMap),
+    tags: S.optional(UpdateNodePoolRequestTagsMap),
     properties: S.optional(NodePoolPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -4836,13 +4830,13 @@ export const UpdateNodePoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNodePoolRequest>;
 
 /** Resource tags. */
-export type NodePoolsUpdateResponseTagsMap = {
+export type UpdateNodePoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NodePoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNodePoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NodePoolsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNodePoolResponseTagsMap>;
 
 export interface UpdateNodePoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4854,7 +4848,7 @@ export interface UpdateNodePoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NodePoolsUpdateResponseTagsMap;
+  tags?: UpdateNodePoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4866,7 +4860,7 @@ export const UpdateNodePoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NodePoolsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNodePoolResponseTagsMap),
     location: S.String,
     properties: S.optional(NodePoolProperties),
   }),
@@ -4875,13 +4869,11 @@ export const UpdateNodePoolResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNodePoolResponse>;
 
 /** Resource tags. */
-export type ProjectsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateProjectRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateProjectRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateProjectRequestTagsMap>;
 
 export interface UpdateProjectRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4893,7 +4885,7 @@ export interface UpdateProjectRequest {
   /** The name of the Project */
   projectName: string;
   /** Resource tags. */
-  tags?: ProjectsUpdateRequestTagsMap;
+  tags?: UpdateProjectRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: ProjectPropertiesInput;
 }
@@ -4903,7 +4895,7 @@ export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     projectName: S.String.pipe(T.Label()),
-    tags: S.optional(ProjectsUpdateRequestTagsMap),
+    tags: S.optional(UpdateProjectRequestTagsMap),
     properties: S.optional(ProjectPropertiesInput),
   }).pipe(
     T.Http({
@@ -4918,13 +4910,13 @@ export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProjectRequest>;
 
 /** Resource tags. */
-export type ProjectsUpdateResponseTagsMap = {
+export type UpdateProjectResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProjectsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateProjectResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProjectsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateProjectResponseTagsMap>;
 
 export interface UpdateProjectResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4936,7 +4928,7 @@ export interface UpdateProjectResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProjectsUpdateResponseTagsMap;
+  tags?: UpdateProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4948,7 +4940,7 @@ export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ProjectsUpdateResponseTagsMap),
+    tags: S.optional(UpdateProjectResponseTagsMap),
     location: S.String,
     properties: S.optional(ProjectProperties),
   }),
@@ -4957,13 +4949,13 @@ export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProjectResponse>;
 
 /** Resource tags. */
-export type StorageAssetsUpdateRequestTagsMap = {
+export type UpdateStorageAssetRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageAssetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageAssetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageAssetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateStorageAssetRequestTagsMap>;
 
 /** Storage Asset properties */
 export interface StorageAssetPropertiesUpdate {
@@ -4988,7 +4980,7 @@ export interface UpdateStorageAssetRequest {
   /** The name of the StorageAsset */
   storageAssetName: string;
   /** Resource tags. */
-  tags?: StorageAssetsUpdateRequestTagsMap;
+  tags?: UpdateStorageAssetRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: StorageAssetPropertiesUpdate;
 }
@@ -4998,7 +4990,7 @@ export const UpdateStorageAssetRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     storageContainerName: S.String.pipe(T.Label()),
     storageAssetName: S.String.pipe(T.Label()),
-    tags: S.optional(StorageAssetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateStorageAssetRequestTagsMap),
     properties: S.optional(StorageAssetPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -5013,13 +5005,13 @@ export const UpdateStorageAssetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateStorageAssetRequest>;
 
 /** Resource tags. */
-export type StorageAssetsUpdateResponseTagsMap = {
+export type UpdateStorageAssetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageAssetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageAssetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageAssetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateStorageAssetResponseTagsMap>;
 
 export interface UpdateStorageAssetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5031,7 +5023,7 @@ export interface UpdateStorageAssetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageAssetsUpdateResponseTagsMap;
+  tags?: UpdateStorageAssetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5043,7 +5035,7 @@ export const UpdateStorageAssetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageAssetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateStorageAssetResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageAssetProperties),
   }),
@@ -5052,13 +5044,13 @@ export const UpdateStorageAssetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateStorageAssetResponse>;
 
 /** Resource tags. */
-export type StorageContainersUpdateRequestTagsMap = {
+export type UpdateStorageContainerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageContainersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageContainerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageContainersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateStorageContainerRequestTagsMap>;
 
 export interface UpdateStorageContainerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5068,7 +5060,7 @@ export interface UpdateStorageContainerRequest {
   /** The name of the StorageContainer */
   storageContainerName: string;
   /** Resource tags. */
-  tags?: StorageContainersUpdateRequestTagsMap;
+  tags?: UpdateStorageContainerRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: unknown;
 }
@@ -5077,7 +5069,7 @@ export const UpdateStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     storageContainerName: S.String.pipe(T.Label()),
-    tags: S.optional(StorageContainersUpdateRequestTagsMap),
+    tags: S.optional(UpdateStorageContainerRequestTagsMap),
     properties: S.optional(S.Unknown),
   }).pipe(
     T.Http({
@@ -5092,13 +5084,13 @@ export const UpdateStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateStorageContainerRequest>;
 
 /** Resource tags. */
-export type StorageContainersUpdateResponseTagsMap = {
+export type UpdateStorageContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageContainersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageContainersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateStorageContainerResponseTagsMap>;
 
 export interface UpdateStorageContainerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5110,7 +5102,7 @@ export interface UpdateStorageContainerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageContainersUpdateResponseTagsMap;
+  tags?: UpdateStorageContainerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5122,7 +5114,7 @@ export const UpdateStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageContainersUpdateResponseTagsMap),
+    tags: S.optional(UpdateStorageContainerResponseTagsMap),
     location: S.String,
     properties: S.optional(StorageContainerProperties),
   }),
@@ -5131,13 +5123,13 @@ export const UpdateStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateStorageContainerResponse>;
 
 /** Resource tags. */
-export type SupercomputersUpdateRequestTagsMap = {
+export type UpdateSupercomputerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SupercomputersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSupercomputerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SupercomputersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSupercomputerRequestTagsMap>;
 
 /** User assigned identity properties */
 export type SupercomputerIdentitiesUpdateInputWorkloadIdentitiesValue =
@@ -5217,7 +5209,7 @@ export interface UpdateSupercomputerRequest {
   /** The name of the Supercomputer */
   supercomputerName: string;
   /** Resource tags. */
-  tags?: SupercomputersUpdateRequestTagsMap;
+  tags?: UpdateSupercomputerRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: SupercomputerPropertiesUpdateInput;
   /** The managed service identities assigned to this resource. */
@@ -5228,7 +5220,7 @@ export const UpdateSupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     supercomputerName: S.String.pipe(T.Label()),
-    tags: S.optional(SupercomputersUpdateRequestTagsMap),
+    tags: S.optional(UpdateSupercomputerRequestTagsMap),
     properties: S.optional(SupercomputerPropertiesUpdateInput),
     identity: S.optional(
       AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate,
@@ -5246,19 +5238,19 @@ export const UpdateSupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSupercomputerRequest>;
 
 /** Resource tags. */
-export type SupercomputersUpdateResponseTagsMap = {
+export type UpdateSupercomputerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SupercomputersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSupercomputerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SupercomputersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSupercomputerResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type SupercomputersUpdateResponseIdentity =
-  SupercomputersGetResponseIdentity;
-export const SupercomputersUpdateResponseIdentity =
-  SupercomputersGetResponseIdentity;
+export type UpdateSupercomputerResponseIdentity =
+  GetSupercomputerResponseIdentity;
+export const UpdateSupercomputerResponseIdentity =
+  GetSupercomputerResponseIdentity;
 
 export interface UpdateSupercomputerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5270,13 +5262,13 @@ export interface UpdateSupercomputerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SupercomputersUpdateResponseTagsMap;
+  tags?: UpdateSupercomputerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SupercomputerProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersGetResponseIdentity;
+  identity?: GetSupercomputerResponseIdentity;
 }
 export const UpdateSupercomputerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5284,21 +5276,21 @@ export const UpdateSupercomputerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SupercomputersUpdateResponseTagsMap),
+    tags: S.optional(UpdateSupercomputerResponseTagsMap),
     location: S.String,
     properties: S.optional(SupercomputerProperties),
-    identity: S.optional(SupercomputersGetResponseIdentity),
+    identity: S.optional(GetSupercomputerResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateSupercomputerResponse",
 }) as any as S.Schema<UpdateSupercomputerResponse>;
 
 /** Resource tags. */
-export type ToolsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const ToolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateToolRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateToolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ToolsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateToolRequestTagsMap>;
 
 /** Environment variables to make available */
 export type ToolPropertiesUpdateEnvironmentVariablesMap = {
@@ -5348,7 +5340,7 @@ export interface UpdateToolRequest {
   /** The name of the Tool */
   toolName: string;
   /** Resource tags. */
-  tags?: ToolsUpdateRequestTagsMap;
+  tags?: UpdateToolRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: ToolPropertiesUpdate;
 }
@@ -5357,7 +5349,7 @@ export const UpdateToolRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     toolName: S.String.pipe(T.Label()),
-    tags: S.optional(ToolsUpdateRequestTagsMap),
+    tags: S.optional(UpdateToolRequestTagsMap),
     properties: S.optional(ToolPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -5372,11 +5364,11 @@ export const UpdateToolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateToolRequest>;
 
 /** Resource tags. */
-export type ToolsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const ToolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateToolResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateToolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ToolsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateToolResponseTagsMap>;
 
 export interface UpdateToolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5388,7 +5380,7 @@ export interface UpdateToolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ToolsUpdateResponseTagsMap;
+  tags?: UpdateToolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5400,7 +5392,7 @@ export const UpdateToolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ToolsUpdateResponseTagsMap),
+    tags: S.optional(UpdateToolResponseTagsMap),
     location: S.String,
     properties: S.optional(ToolProperties),
   }),
@@ -5409,13 +5401,13 @@ export const UpdateToolResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateToolResponse>;
 
 /** Resource tags. */
-export type WorkspacesUpdateRequestTagsMap = {
+export type UpdateWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
 
 /** List of linked SuperComputers. */
 export type WorkspacePropertiesUpdateSupercomputerIdsList = Array<string>;
@@ -5455,7 +5447,7 @@ export interface UpdateWorkspaceRequest {
   /** The name of the Workspace */
   workspaceName: string;
   /** Resource tags. */
-  tags?: WorkspacesUpdateRequestTagsMap;
+  tags?: UpdateWorkspaceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: WorkspacePropertiesUpdate;
 }
@@ -5464,7 +5456,7 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
     properties: S.optional(WorkspacePropertiesUpdate),
   }).pipe(
     T.Http({
@@ -5479,13 +5471,13 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesUpdateResponseTagsMap = {
+export type UpdateWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
 
 export interface UpdateWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5497,7 +5489,7 @@ export interface UpdateWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkspacesUpdateResponseTagsMap;
+  tags?: UpdateWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5509,7 +5501,7 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkspaceProperties),
   }),

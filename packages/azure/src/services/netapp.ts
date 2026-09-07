@@ -728,38 +728,6 @@ export const AccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsCreateOrUpdateResponse",
 }) as any as S.Schema<AccountsCreateOrUpdateResponse>;
 
-export interface AccountsRenewCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-}
-export const AccountsRenewCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/renewCredentials",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsRenewCredentialsRequest",
-}) as any as S.Schema<AccountsRenewCredentialsRequest>;
-
-export interface AccountsRenewCredentialsResponse {}
-export const AccountsRenewCredentialsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AccountsRenewCredentialsResponse",
-}) as any as S.Schema<AccountsRenewCredentialsResponse>;
-
 export interface AccountsTransitionToCmkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -897,152 +865,6 @@ export const AuthorizeVolumeReplicationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AuthorizeVolumeReplicationResponse",
 }) as any as S.Schema<AuthorizeVolumeReplicationResponse>;
 
-export interface BackupPoliciesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-}
-export const BackupPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/backupPolicies",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BackupPoliciesListRequest",
-}) as any as S.Schema<BackupPoliciesListRequest>;
-
-/** Resource tags. */
-export type BackupPolicyTagsMap = { [key: string]: string | undefined };
-export const BackupPolicyTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BackupPolicyTagsMap>;
-
-/** Volume details using the backup policy */
-export interface VolumeBackups {
-  /** Volume name */
-  volumeName?: string;
-  /** ResourceId used to identify the Volume */
-  volumeResourceId?: string;
-  /** Total count of backups for volume */
-  backupsCount?: number;
-  /** Policy enabled */
-  policyEnabled?: boolean;
-}
-export const VolumeBackups = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    volumeName: S.optional(S.String),
-    volumeResourceId: S.optional(S.String),
-    backupsCount: S.optional(S.Number),
-    policyEnabled: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "VolumeBackups" }) as any as S.Schema<VolumeBackups>;
-
-/** A list of volumes assigned to this policy */
-export type BackupPolicyPropertiesVolumeBackupsList = Array<VolumeBackups>;
-export const BackupPolicyPropertiesVolumeBackupsList = /*@__PURE__*/ S.Array(
-  VolumeBackups,
-) as any as S.Schema<BackupPolicyPropertiesVolumeBackupsList>;
-
-/** Backup policy properties */
-export interface BackupPolicyProperties {
-  /** Backup Policy GUID ID */
-  backupPolicyId?: string;
-  /** Azure lifecycle management */
-  provisioningState?: string;
-  /** Daily backups count to keep */
-  dailyBackupsToKeep?: number;
-  /** Weekly backups count to keep */
-  weeklyBackupsToKeep?: number;
-  /** Monthly backups count to keep */
-  monthlyBackupsToKeep?: number;
-  /** Volumes using current backup policy */
-  volumesAssigned?: number;
-  /** The property to decide policy is enabled or not */
-  enabled?: boolean;
-  /** A list of volumes assigned to this policy */
-  volumeBackups?: BackupPolicyPropertiesVolumeBackupsList;
-}
-export const BackupPolicyProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    backupPolicyId: S.optional(S.String),
-    provisioningState: S.optional(S.String),
-    dailyBackupsToKeep: S.optional(S.Number),
-    weeklyBackupsToKeep: S.optional(S.Number),
-    monthlyBackupsToKeep: S.optional(S.Number),
-    volumesAssigned: S.optional(S.Number),
-    enabled: S.optional(S.Boolean),
-    volumeBackups: S.optional(BackupPolicyPropertiesVolumeBackupsList),
-  }),
-).annotate({
-  identifier: "BackupPolicyProperties",
-}) as any as S.Schema<BackupPolicyProperties>;
-
-/** Backup policy information */
-export interface BackupPolicy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BackupPolicyTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Backup policy Properties */
-  properties: BackupPolicyProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const BackupPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BackupPolicyTagsMap),
-    location: S.String,
-    properties: BackupPolicyProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "BackupPolicy" }) as any as S.Schema<BackupPolicy>;
-
-/** The BackupPolicy items on this page */
-export type BackupPoliciesListValueList = Array<BackupPolicy>;
-export const BackupPoliciesListValueList = /*@__PURE__*/ S.Array(
-  BackupPolicy,
-) as any as S.Schema<BackupPoliciesListValueList>;
-
-/** List of Backup Policies */
-export interface BackupPoliciesList {
-  /** The BackupPolicy items on this page */
-  value: BackupPoliciesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BackupPoliciesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BackupPoliciesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BackupPoliciesList",
-}) as any as S.Schema<BackupPoliciesList>;
-
 export interface BackupsGetVolumeLatestRestoreStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1112,83 +934,6 @@ export const RestoreStatus = /*@__PURE__*/ S.suspend(() =>
     totalTransferBytes: S.optional(S.Number),
   }),
 ).annotate({ identifier: "RestoreStatus" }) as any as S.Schema<RestoreStatus>;
-
-export interface BackupsUnderAccountMigrateBackupsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The ResourceId of the Backup Vault */
-  backupVaultId: string;
-}
-export const BackupsUnderAccountMigrateBackupsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      backupVaultId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/migrateBackups",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupsUnderAccountMigrateBackupsRequest",
-}) as any as S.Schema<BackupsUnderAccountMigrateBackupsRequest>;
-
-export interface BackupsUnderAccountMigrateBackupsResponse {}
-export const BackupsUnderAccountMigrateBackupsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BackupsUnderAccountMigrateBackupsResponse",
-  }) as any as S.Schema<BackupsUnderAccountMigrateBackupsResponse>;
-
-export interface BackupsUnderVolumeMigrateBackupsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the volume */
-  volumeName: string;
-  /** The ResourceId of the Backup Vault */
-  backupVaultId: string;
-}
-export const BackupsUnderVolumeMigrateBackupsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      poolName: S.String.pipe(T.Label()),
-      volumeName: S.String.pipe(T.Label()),
-      backupVaultId: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/migrateBackups",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BackupsUnderVolumeMigrateBackupsRequest",
-}) as any as S.Schema<BackupsUnderVolumeMigrateBackupsRequest>;
-
-export interface BackupsUnderVolumeMigrateBackupsResponse {}
-export const BackupsUnderVolumeMigrateBackupsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BackupsUnderVolumeMigrateBackupsResponse",
-}) as any as S.Schema<BackupsUnderVolumeMigrateBackupsResponse>;
 
 /** Resource tags. */
 export type BackupVaultsCreateOrUpdateRequestTagsMap = {
@@ -1573,47 +1318,6 @@ export const BucketsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BucketsCreateOrUpdateResponse",
 }) as any as S.Schema<BucketsCreateOrUpdateResponse>;
-
-export interface BucketsRefreshCertificateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the volume */
-  volumeName: string;
-  /** The name of the bucket */
-  bucketName: string;
-}
-export const BucketsRefreshCertificateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-    bucketName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/buckets/{bucketName}/refreshCertificate",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BucketsRefreshCertificateRequest",
-}) as any as S.Schema<BucketsRefreshCertificateRequest>;
-
-export interface BucketsRefreshCertificateResponse {}
-export const BucketsRefreshCertificateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BucketsRefreshCertificateResponse",
-}) as any as S.Schema<BucketsRefreshCertificateResponse>;
 
 /** Resource tags. */
 export type CachesCreateOrUpdateRequestTagsMap = {
@@ -2261,88 +1965,6 @@ export const CachesPoolChangeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CachesPoolChangeResponse",
 }) as any as S.Schema<CachesPoolChangeResponse>;
 
-export interface CachesResetSmbPasswordRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the cache resource. */
-  cacheName: string;
-}
-export const CachesResetSmbPasswordRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}/resetSmbPassword",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "CachesResetSmbPasswordRequest",
-}) as any as S.Schema<CachesResetSmbPasswordRequest>;
-
-/** Resource tags. */
-export type CachesResetSmbPasswordResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CachesResetSmbPasswordResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CachesResetSmbPasswordResponseTagsMap>;
-
-/** The availability zones. */
-export type CachesResetSmbPasswordResponseZonesList = Array<string>;
-export const CachesResetSmbPasswordResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CachesResetSmbPasswordResponseZonesList>;
-
-export interface CachesResetSmbPasswordResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CachesResetSmbPasswordResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Cache properties */
-  properties: CacheProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-  /** The availability zones. */
-  zones?: CachesResetSmbPasswordResponseZonesList;
-}
-export const CachesResetSmbPasswordResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CachesResetSmbPasswordResponseTagsMap),
-    location: S.String,
-    properties: CacheProperties,
-    etag: S.optional(S.String),
-    zones: S.optional(CachesResetSmbPasswordResponseZonesList),
-  }),
-).annotate({
-  identifier: "CachesResetSmbPasswordResponse",
-}) as any as S.Schema<CachesResetSmbPasswordResponse>;
-
 export interface CheckNetAppResourceFilePathAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -2482,6 +2104,65 @@ export const CheckNetAppResourceQuotaAvailabilityRequest =
     identifier: "CheckNetAppResourceQuotaAvailabilityRequest",
   }) as any as S.Schema<CheckNetAppResourceQuotaAvailabilityRequest>;
 
+/** ARP report suspect resolution */
+export type RansomwareSuspectResolution = "PotentialThreat" | "FalsePositive";
+export const RansomwareSuspectResolution = /*@__PURE__*/ S.String;
+
+/** List of file extensions resolved (PotentialThreat or FalsePositive) */
+export type ClearRansomwareReportSuspectsRequestExtensionsList = Array<string>;
+export const ClearRansomwareReportSuspectsRequestExtensionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ClearRansomwareReportSuspectsRequestExtensionsList>;
+
+export interface ClearRansomwareReportSuspectsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the volume */
+  volumeName: string;
+  /** The name of the ransomware report */
+  ransomwareReportName: string;
+  /** ARP report suspect resolution */
+  resolution: RansomwareSuspectResolution | (string & {});
+  /** List of file extensions resolved (PotentialThreat or FalsePositive) */
+  extensions: ClearRansomwareReportSuspectsRequestExtensionsList;
+}
+export const ClearRansomwareReportSuspectsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      poolName: S.String.pipe(T.Label()),
+      volumeName: S.String.pipe(T.Label()),
+      ransomwareReportName: S.String.pipe(T.Label()),
+      resolution: RansomwareSuspectResolution,
+      extensions: ClearRansomwareReportSuspectsRequestExtensionsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/ransomwareReports/{ransomwareReportName}/clearSuspects",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ClearRansomwareReportSuspectsRequest",
+}) as any as S.Schema<ClearRansomwareReportSuspectsRequest>;
+
+export interface ClearRansomwareReportSuspectsResponse {}
+export const ClearRansomwareReportSuspectsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ClearRansomwareReportSuspectsResponse",
+}) as any as S.Schema<ClearRansomwareReportSuspectsResponse>;
+
 /** Backup properties */
 export interface BackupPropertiesInput {
   /** Label for backup */
@@ -2619,13 +2300,13 @@ export const CreateBackupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBackupResponse>;
 
 /** Resource tags. */
-export type BackupPoliciesCreateRequestTagsMap = {
+export type CreateBackupPolicyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupPoliciesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateBackupPolicyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupPoliciesCreateRequestTagsMap>;
+) as any as S.Schema<CreateBackupPolicyRequestTagsMap>;
 
 /** Backup policy properties */
 export interface BackupPolicyPropertiesInput {
@@ -2659,7 +2340,7 @@ export interface CreateBackupPolicyRequest {
   /** Backup policy Name which uniquely identify backup policy. */
   backupPolicyName: string;
   /** Resource tags. */
-  tags?: BackupPoliciesCreateRequestTagsMap;
+  tags?: CreateBackupPolicyRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Backup policy Properties */
@@ -2671,7 +2352,7 @@ export const CreateBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     backupPolicyName: S.String.pipe(T.Label()),
-    tags: S.optional(BackupPoliciesCreateRequestTagsMap),
+    tags: S.optional(CreateBackupPolicyRequestTagsMap),
     location: S.String,
     properties: BackupPolicyPropertiesInput,
   }).pipe(
@@ -2687,13 +2368,73 @@ export const CreateBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateBackupPolicyRequest>;
 
 /** Resource tags. */
-export type BackupPoliciesCreateResponseTagsMap = {
+export type CreateBackupPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupPoliciesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateBackupPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupPoliciesCreateResponseTagsMap>;
+) as any as S.Schema<CreateBackupPolicyResponseTagsMap>;
+
+/** Volume details using the backup policy */
+export interface VolumeBackups {
+  /** Volume name */
+  volumeName?: string;
+  /** ResourceId used to identify the Volume */
+  volumeResourceId?: string;
+  /** Total count of backups for volume */
+  backupsCount?: number;
+  /** Policy enabled */
+  policyEnabled?: boolean;
+}
+export const VolumeBackups = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    volumeName: S.optional(S.String),
+    volumeResourceId: S.optional(S.String),
+    backupsCount: S.optional(S.Number),
+    policyEnabled: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "VolumeBackups" }) as any as S.Schema<VolumeBackups>;
+
+/** A list of volumes assigned to this policy */
+export type BackupPolicyPropertiesVolumeBackupsList = Array<VolumeBackups>;
+export const BackupPolicyPropertiesVolumeBackupsList = /*@__PURE__*/ S.Array(
+  VolumeBackups,
+) as any as S.Schema<BackupPolicyPropertiesVolumeBackupsList>;
+
+/** Backup policy properties */
+export interface BackupPolicyProperties {
+  /** Backup Policy GUID ID */
+  backupPolicyId?: string;
+  /** Azure lifecycle management */
+  provisioningState?: string;
+  /** Daily backups count to keep */
+  dailyBackupsToKeep?: number;
+  /** Weekly backups count to keep */
+  weeklyBackupsToKeep?: number;
+  /** Monthly backups count to keep */
+  monthlyBackupsToKeep?: number;
+  /** Volumes using current backup policy */
+  volumesAssigned?: number;
+  /** The property to decide policy is enabled or not */
+  enabled?: boolean;
+  /** A list of volumes assigned to this policy */
+  volumeBackups?: BackupPolicyPropertiesVolumeBackupsList;
+}
+export const BackupPolicyProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    backupPolicyId: S.optional(S.String),
+    provisioningState: S.optional(S.String),
+    dailyBackupsToKeep: S.optional(S.Number),
+    weeklyBackupsToKeep: S.optional(S.Number),
+    monthlyBackupsToKeep: S.optional(S.Number),
+    volumesAssigned: S.optional(S.Number),
+    enabled: S.optional(S.Boolean),
+    volumeBackups: S.optional(BackupPolicyPropertiesVolumeBackupsList),
+  }),
+).annotate({
+  identifier: "BackupPolicyProperties",
+}) as any as S.Schema<BackupPolicyProperties>;
 
 export interface CreateBackupPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2705,7 +2446,7 @@ export interface CreateBackupPolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BackupPoliciesCreateResponseTagsMap;
+  tags?: CreateBackupPolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Backup policy Properties */
@@ -2719,7 +2460,7 @@ export const CreateBackupPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BackupPoliciesCreateResponseTagsMap),
+    tags: S.optional(CreateBackupPolicyResponseTagsMap),
     location: S.String,
     properties: BackupPolicyProperties,
     etag: S.optional(S.String),
@@ -2819,13 +2560,13 @@ export const CreateSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSnapshotResponse>;
 
 /** Resource tags. */
-export type SnapshotPoliciesCreateRequestTagsMap = {
+export type CreateSnapshotPolicyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SnapshotPoliciesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSnapshotPolicyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotPoliciesCreateRequestTagsMap>;
+) as any as S.Schema<CreateSnapshotPolicyRequestTagsMap>;
 
 /** Hourly Schedule properties */
 export interface HourlySchedule {
@@ -2947,7 +2688,7 @@ export interface CreateSnapshotPolicyRequest {
   /** The name of the snapshot policy */
   snapshotPolicyName: string;
   /** Resource tags. */
-  tags?: SnapshotPoliciesCreateRequestTagsMap;
+  tags?: CreateSnapshotPolicyRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Snapshot policy Properties */
@@ -2959,7 +2700,7 @@ export const CreateSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     snapshotPolicyName: S.String.pipe(T.Label()),
-    tags: S.optional(SnapshotPoliciesCreateRequestTagsMap),
+    tags: S.optional(CreateSnapshotPolicyRequestTagsMap),
     location: S.String,
     properties: SnapshotPolicyPropertiesInput,
   }).pipe(
@@ -2975,13 +2716,13 @@ export const CreateSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateSnapshotPolicyRequest>;
 
 /** Resource tags. */
-export type SnapshotPoliciesCreateResponseTagsMap = {
+export type CreateSnapshotPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SnapshotPoliciesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSnapshotPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotPoliciesCreateResponseTagsMap>;
+) as any as S.Schema<CreateSnapshotPolicyResponseTagsMap>;
 
 /** Snapshot policy properties */
 export interface SnapshotPolicyProperties {
@@ -3021,7 +2762,7 @@ export interface CreateSnapshotPolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SnapshotPoliciesCreateResponseTagsMap;
+  tags?: CreateSnapshotPolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Snapshot policy Properties */
@@ -3035,7 +2776,7 @@ export const CreateSnapshotPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotPoliciesCreateResponseTagsMap),
+    tags: S.optional(CreateSnapshotPolicyResponseTagsMap),
     location: S.String,
     properties: SnapshotPolicyProperties,
     etag: S.optional(S.String),
@@ -4122,13 +3863,13 @@ export const CreateVolumeGroupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateVolumeGroupResponse>;
 
 /** Resource tags. */
-export type VolumeQuotaRulesCreateRequestTagsMap = {
+export type CreateVolumeQuotaRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VolumeQuotaRulesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateVolumeQuotaRuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumeQuotaRulesCreateRequestTagsMap>;
+) as any as S.Schema<CreateVolumeQuotaRuleRequestTagsMap>;
 
 /** Type of quota */
 export type QuotaType =
@@ -4171,7 +3912,7 @@ export interface CreateVolumeQuotaRuleRequest {
   /** The name of volume quota rule */
   volumeQuotaRuleName: string;
   /** Resource tags. */
-  tags?: VolumeQuotaRulesCreateRequestTagsMap;
+  tags?: CreateVolumeQuotaRuleRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Volume Quota Rule Properties */
@@ -4185,7 +3926,7 @@ export const CreateVolumeQuotaRuleRequest = /*@__PURE__*/ S.suspend(() =>
     poolName: S.String.pipe(T.Label()),
     volumeName: S.String.pipe(T.Label()),
     volumeQuotaRuleName: S.String.pipe(T.Label()),
-    tags: S.optional(VolumeQuotaRulesCreateRequestTagsMap),
+    tags: S.optional(CreateVolumeQuotaRuleRequestTagsMap),
     location: S.String,
     properties: S.optional(VolumeQuotaRulesPropertiesInput),
   }).pipe(
@@ -4201,13 +3942,13 @@ export const CreateVolumeQuotaRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateVolumeQuotaRuleRequest>;
 
 /** Resource tags. */
-export type VolumeQuotaRulesCreateResponseTagsMap = {
+export type CreateVolumeQuotaRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VolumeQuotaRulesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateVolumeQuotaRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumeQuotaRulesCreateResponseTagsMap>;
+) as any as S.Schema<CreateVolumeQuotaRuleResponseTagsMap>;
 
 /** Volume Quota Rule properties */
 export interface VolumeQuotaRulesProperties {
@@ -4241,7 +3982,7 @@ export interface CreateVolumeQuotaRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VolumeQuotaRulesCreateResponseTagsMap;
+  tags?: CreateVolumeQuotaRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Volume Quota Rule Properties */
@@ -4253,7 +3994,7 @@ export const CreateVolumeQuotaRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VolumeQuotaRulesCreateResponseTagsMap),
+    tags: S.optional(CreateVolumeQuotaRuleResponseTagsMap),
     location: S.String,
     properties: S.optional(VolumeQuotaRulesProperties),
   }),
@@ -4442,7 +4183,7 @@ export const DeleteBucketResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteBucketResponse",
 }) as any as S.Schema<DeleteBucketResponse>;
 
-export interface DeleteCacheRequest {
+export interface DeleteCachRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4454,7 +4195,7 @@ export interface DeleteCacheRequest {
   /** The name of the cache resource. */
   cacheName: string;
 }
-export const DeleteCacheRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCachRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4470,15 +4211,15 @@ export const DeleteCacheRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteCacheRequest",
-}) as any as S.Schema<DeleteCacheRequest>;
+  identifier: "DeleteCachRequest",
+}) as any as S.Schema<DeleteCachRequest>;
 
-export interface DeleteCacheResponse {}
-export const DeleteCacheResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCachResponse {}
+export const DeleteCachResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteCacheResponse",
-}) as any as S.Schema<DeleteCacheResponse>;
+  identifier: "DeleteCachResponse",
+}) as any as S.Schema<DeleteCachResponse>;
 
 export interface DeletePoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4746,7 +4487,83 @@ export const DeleteVolumeReplicationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVolumeReplicationResponse",
 }) as any as S.Schema<DeleteVolumeReplicationResponse>;
 
-export interface GenerateBucketAkvCredentialRequest {
+export interface FinalizeVolumeExternalReplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the volume */
+  volumeName: string;
+}
+export const FinalizeVolumeExternalReplicationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      poolName: S.String.pipe(T.Label()),
+      volumeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/finalizeExternalReplication",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "FinalizeVolumeExternalReplicationRequest",
+}) as any as S.Schema<FinalizeVolumeExternalReplicationRequest>;
+
+export interface FinalizeVolumeExternalReplicationResponse {}
+export const FinalizeVolumeExternalReplicationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "FinalizeVolumeExternalReplicationResponse",
+  }) as any as S.Schema<FinalizeVolumeExternalReplicationResponse>;
+
+export interface FinalizeVolumeRelocationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the volume */
+  volumeName: string;
+}
+export const FinalizeVolumeRelocationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/finalizeRelocation",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "FinalizeVolumeRelocationRequest",
+}) as any as S.Schema<FinalizeVolumeRelocationRequest>;
+
+export interface FinalizeVolumeRelocationResponse {}
+export const FinalizeVolumeRelocationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "FinalizeVolumeRelocationResponse",
+}) as any as S.Schema<FinalizeVolumeRelocationResponse>;
+
+export interface GenerateBucketAkvCredentialsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4762,7 +4579,7 @@ export interface GenerateBucketAkvCredentialRequest {
   /** The number of days from now until the newly generated Access and Secret key pair will expire. */
   keyPairExpiryDays?: number;
 }
-export const GenerateBucketAkvCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateBucketAkvCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4780,17 +4597,17 @@ export const GenerateBucketAkvCredentialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GenerateBucketAkvCredentialRequest",
-}) as any as S.Schema<GenerateBucketAkvCredentialRequest>;
+  identifier: "GenerateBucketAkvCredentialsRequest",
+}) as any as S.Schema<GenerateBucketAkvCredentialsRequest>;
 
-export interface GenerateBucketAkvCredentialResponse {}
-export const GenerateBucketAkvCredentialResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface GenerateBucketAkvCredentialsResponse {}
+export const GenerateBucketAkvCredentialsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "GenerateBucketAkvCredentialResponse",
-}) as any as S.Schema<GenerateBucketAkvCredentialResponse>;
+  identifier: "GenerateBucketAkvCredentialsResponse",
+}) as any as S.Schema<GenerateBucketAkvCredentialsResponse>;
 
-export interface GenerateBucketCredentialRequest {
+export interface GenerateBucketCredentialsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4806,7 +4623,7 @@ export interface GenerateBucketCredentialRequest {
   /** The number of days from now until the newly generated Access and Secret key pair will expire. */
   keyPairExpiryDays?: number;
 }
-export const GenerateBucketCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateBucketCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4824,8 +4641,8 @@ export const GenerateBucketCredentialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GenerateBucketCredentialRequest",
-}) as any as S.Schema<GenerateBucketCredentialRequest>;
+  identifier: "GenerateBucketCredentialsRequest",
+}) as any as S.Schema<GenerateBucketCredentialsRequest>;
 
 /** Bucket Access Key, Secret Key, and Expiry date and time of the key pair */
 export interface BucketGenerateCredentials {
@@ -4872,44 +4689,44 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AccountsGetResponseIdentityUserAssignedIdentitiesMap = {
+export type GetAccountResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AccountsGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetAccountResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AccountsGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetAccountResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AccountsGetResponseIdentity {
+export interface GetAccountResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AccountsGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetAccountResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AccountsGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AccountsGetResponseIdentityUserAssignedIdentitiesMap,
+      GetAccountResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AccountsGetResponseIdentity",
-}) as any as S.Schema<AccountsGetResponseIdentity>;
+  identifier: "GetAccountResponseIdentity",
+}) as any as S.Schema<GetAccountResponseIdentity>;
 
 export interface GetAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4921,7 +4738,7 @@ export interface GetAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** NetApp Account properties */
@@ -4929,7 +4746,7 @@ export interface GetAccountResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsGetResponseIdentity;
+  identity?: GetAccountResponseIdentity;
 }
 export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4937,11 +4754,11 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AccountProperties),
     etag: S.optional(S.String),
-    identity: S.optional(AccountsGetResponseIdentity),
+    identity: S.optional(GetAccountResponseIdentity),
   }),
 ).annotate({
   identifier: "GetAccountResponse",
@@ -5176,13 +4993,13 @@ export const GetBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBackupPolicyRequest>;
 
 /** Resource tags. */
-export type BackupPoliciesGetResponseTagsMap = {
+export type GetBackupPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupPoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBackupPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupPoliciesGetResponseTagsMap>;
+) as any as S.Schema<GetBackupPolicyResponseTagsMap>;
 
 export interface GetBackupPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5194,7 +5011,7 @@ export interface GetBackupPolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BackupPoliciesGetResponseTagsMap;
+  tags?: GetBackupPolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Backup policy Properties */
@@ -5208,7 +5025,7 @@ export const GetBackupPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BackupPoliciesGetResponseTagsMap),
+    tags: S.optional(GetBackupPolicyResponseTagsMap),
     location: S.String,
     properties: BackupPolicyProperties,
     etag: S.optional(S.String),
@@ -5246,13 +5063,13 @@ export const GetBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBackupVaultRequest>;
 
 /** Resource tags. */
-export type BackupVaultsGetResponseTagsMap = {
+export type GetBackupVaultResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupVaultsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBackupVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupVaultsGetResponseTagsMap>;
+) as any as S.Schema<GetBackupVaultResponseTagsMap>;
 
 export interface GetBackupVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5264,7 +5081,7 @@ export interface GetBackupVaultResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BackupVaultsGetResponseTagsMap;
+  tags?: GetBackupVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Backup Vault Properties */
@@ -5276,7 +5093,7 @@ export const GetBackupVaultResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BackupVaultsGetResponseTagsMap),
+    tags: S.optional(GetBackupVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(BackupVaultProperties),
   }),
@@ -5342,7 +5159,7 @@ export const GetBucketResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetBucketResponse",
 }) as any as S.Schema<GetBucketResponse>;
 
-export interface GetCacheRequest {
+export interface GetCachRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5354,7 +5171,7 @@ export interface GetCacheRequest {
   /** The name of the cache resource. */
   cacheName: string;
 }
-export const GetCacheRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCachRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5369,24 +5186,22 @@ export const GetCacheRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2026-06-01",
     }),
   ),
-).annotate({
-  identifier: "GetCacheRequest",
-}) as any as S.Schema<GetCacheRequest>;
+).annotate({ identifier: "GetCachRequest" }) as any as S.Schema<GetCachRequest>;
 
 /** Resource tags. */
-export type CachesGetResponseTagsMap = { [key: string]: string | undefined };
-export const CachesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCachResponseTagsMap = { [key: string]: string | undefined };
+export const GetCachResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CachesGetResponseTagsMap>;
+) as any as S.Schema<GetCachResponseTagsMap>;
 
 /** The availability zones. */
-export type CachesGetResponseZonesList = Array<string>;
-export const CachesGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetCachResponseZonesList = Array<string>;
+export const GetCachResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<CachesGetResponseZonesList>;
+) as any as S.Schema<GetCachResponseZonesList>;
 
-export interface GetCacheResponse {
+export interface GetCachResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5396,7 +5211,7 @@ export interface GetCacheResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CachesGetResponseTagsMap;
+  tags?: GetCachResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cache properties */
@@ -5404,23 +5219,23 @@ export interface GetCacheResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
   /** The availability zones. */
-  zones?: CachesGetResponseZonesList;
+  zones?: GetCachResponseZonesList;
 }
-export const GetCacheResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCachResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CachesGetResponseTagsMap),
+    tags: S.optional(GetCachResponseTagsMap),
     location: S.String,
     properties: CacheProperties,
     etag: S.optional(S.String),
-    zones: S.optional(CachesGetResponseZonesList),
+    zones: S.optional(GetCachResponseZonesList),
   }),
 ).annotate({
-  identifier: "GetCacheResponse",
-}) as any as S.Schema<GetCacheResponse>;
+  identifier: "GetCachResponse",
+}) as any as S.Schema<GetCachResponse>;
 
 export interface GetNetAppResourceQuotaLimitRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5490,7 +5305,7 @@ export const GetNetAppResourceQuotaLimitResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetNetAppResourceQuotaLimitResponse",
 }) as any as S.Schema<GetNetAppResourceQuotaLimitResponse>;
 
-export interface GetNetAppResourceQuotaLimitAccountRequest {
+export interface GetNetAppResourceQuotaLimitsAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5500,7 +5315,7 @@ export interface GetNetAppResourceQuotaLimitAccountRequest {
   /** The name of the Quota Limit */
   quotaLimitName: string;
 }
-export const GetNetAppResourceQuotaLimitAccountRequest =
+export const GetNetAppResourceQuotaLimitsAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5516,10 +5331,10 @@ export const GetNetAppResourceQuotaLimitAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetNetAppResourceQuotaLimitAccountRequest",
-  }) as any as S.Schema<GetNetAppResourceQuotaLimitAccountRequest>;
+    identifier: "GetNetAppResourceQuotaLimitsAccountRequest",
+  }) as any as S.Schema<GetNetAppResourceQuotaLimitsAccountRequest>;
 
-export interface GetNetAppResourceQuotaLimitAccountResponse {
+export interface GetNetAppResourceQuotaLimitsAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5531,7 +5346,7 @@ export interface GetNetAppResourceQuotaLimitAccountResponse {
   /** QuotaItem properties */
   properties?: QuotaItemProperties;
 }
-export const GetNetAppResourceQuotaLimitAccountResponse =
+export const GetNetAppResourceQuotaLimitsAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -5541,8 +5356,8 @@ export const GetNetAppResourceQuotaLimitAccountResponse =
       properties: S.optional(QuotaItemProperties),
     }),
   ).annotate({
-    identifier: "GetNetAppResourceQuotaLimitAccountResponse",
-  }) as any as S.Schema<GetNetAppResourceQuotaLimitAccountResponse>;
+    identifier: "GetNetAppResourceQuotaLimitsAccountResponse",
+  }) as any as S.Schema<GetNetAppResourceQuotaLimitsAccountResponse>;
 
 export interface GetNetAppResourceRegionInfosRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5744,11 +5559,11 @@ export const GetPoolRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetPoolRequest" }) as any as S.Schema<GetPoolRequest>;
 
 /** Resource tags. */
-export type PoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const PoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolsGetResponseTagsMap>;
+) as any as S.Schema<GetPoolResponseTagsMap>;
 
 /** The service level of the file system */
 export type PoolPropertiesServiceLevel =
@@ -5815,7 +5630,7 @@ export interface GetPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PoolsGetResponseTagsMap;
+  tags?: GetPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Capacity pool properties */
@@ -5829,7 +5644,7 @@ export const GetPoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PoolsGetResponseTagsMap),
+    tags: S.optional(GetPoolResponseTagsMap),
     location: S.String,
     properties: PoolProperties,
     etag: S.optional(S.String),
@@ -5879,10 +5694,6 @@ export const RansomwareReportState = /*@__PURE__*/ S.String;
 /** Severity of the Advanced Ransomware Protection (ARP) report */
 export type RansomwareReportSeverity = "None" | "Low" | "Moderate" | "High";
 export const RansomwareReportSeverity = /*@__PURE__*/ S.String;
-
-/** ARP report suspect resolution */
-export type RansomwareSuspectResolution = "PotentialThreat" | "FalsePositive";
-export const RansomwareSuspectResolution = /*@__PURE__*/ S.String;
 
 /** Suspect file information */
 export interface SuspectFile {
@@ -6077,13 +5888,13 @@ export const GetSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSnapshotPolicyRequest>;
 
 /** Resource tags. */
-export type SnapshotPoliciesGetResponseTagsMap = {
+export type GetSnapshotPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SnapshotPoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSnapshotPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotPoliciesGetResponseTagsMap>;
+) as any as S.Schema<GetSnapshotPolicyResponseTagsMap>;
 
 export interface GetSnapshotPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6095,7 +5906,7 @@ export interface GetSnapshotPolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SnapshotPoliciesGetResponseTagsMap;
+  tags?: GetSnapshotPolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Snapshot policy Properties */
@@ -6109,7 +5920,7 @@ export const GetSnapshotPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotPoliciesGetResponseTagsMap),
+    tags: S.optional(GetSnapshotPolicyResponseTagsMap),
     location: S.String,
     properties: SnapshotPolicyProperties,
     etag: S.optional(S.String),
@@ -6150,17 +5961,17 @@ export const GetVolumeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVolumeRequest>;
 
 /** Resource tags. */
-export type VolumesGetResponseTagsMap = { [key: string]: string | undefined };
-export const VolumesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetVolumeResponseTagsMap = { [key: string]: string | undefined };
+export const GetVolumeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumesGetResponseTagsMap>;
+) as any as S.Schema<GetVolumeResponseTagsMap>;
 
 /** The availability zones. */
-export type VolumesGetResponseZonesList = Array<string>;
-export const VolumesGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetVolumeResponseZonesList = Array<string>;
+export const GetVolumeResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<VolumesGetResponseZonesList>;
+) as any as S.Schema<GetVolumeResponseZonesList>;
 
 export interface GetVolumeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6172,7 +5983,7 @@ export interface GetVolumeResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VolumesGetResponseTagsMap;
+  tags?: GetVolumeResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Volume properties */
@@ -6180,7 +5991,7 @@ export interface GetVolumeResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
   /** The availability zones. */
-  zones?: VolumesGetResponseZonesList;
+  zones?: GetVolumeResponseZonesList;
 }
 export const GetVolumeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6188,11 +5999,11 @@ export const GetVolumeResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VolumesGetResponseTagsMap),
+    tags: S.optional(GetVolumeResponseTagsMap),
     location: S.String,
     properties: VolumeProperties,
     etag: S.optional(S.String),
-    zones: S.optional(VolumesGetResponseZonesList),
+    zones: S.optional(GetVolumeResponseZonesList),
   }),
 ).annotate({
   identifier: "GetVolumeResponse",
@@ -6288,13 +6099,13 @@ export const GetVolumeQuotaRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVolumeQuotaRuleRequest>;
 
 /** Resource tags. */
-export type VolumeQuotaRulesGetResponseTagsMap = {
+export type GetVolumeQuotaRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VolumeQuotaRulesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVolumeQuotaRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumeQuotaRulesGetResponseTagsMap>;
+) as any as S.Schema<GetVolumeQuotaRuleResponseTagsMap>;
 
 export interface GetVolumeQuotaRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6306,7 +6117,7 @@ export interface GetVolumeQuotaRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VolumeQuotaRulesGetResponseTagsMap;
+  tags?: GetVolumeQuotaRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Volume Quota Rule Properties */
@@ -6318,7 +6129,7 @@ export const GetVolumeQuotaRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VolumeQuotaRulesGetResponseTagsMap),
+    tags: S.optional(GetVolumeQuotaRuleResponseTagsMap),
     location: S.String,
     properties: S.optional(VolumeQuotaRulesProperties),
   }),
@@ -6538,6 +6349,92 @@ export const BackupsList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BackupsList" }) as any as S.Schema<BackupsList>;
 
+export interface ListBackupPoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+}
+export const ListBackupPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/backupPolicies",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBackupPoliciesRequest",
+}) as any as S.Schema<ListBackupPoliciesRequest>;
+
+/** Resource tags. */
+export type BackupPolicyTagsMap = { [key: string]: string | undefined };
+export const BackupPolicyTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BackupPolicyTagsMap>;
+
+/** Backup policy information */
+export interface BackupPolicy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: BackupPolicyTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Backup policy Properties */
+  properties: BackupPolicyProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const BackupPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(BackupPolicyTagsMap),
+    location: S.String,
+    properties: BackupPolicyProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "BackupPolicy" }) as any as S.Schema<BackupPolicy>;
+
+/** The BackupPolicy items on this page */
+export type BackupPoliciesListValueList = Array<BackupPolicy>;
+export const BackupPoliciesListValueList = /*@__PURE__*/ S.Array(
+  BackupPolicy,
+) as any as S.Schema<BackupPoliciesListValueList>;
+
+/** List of Backup Policies */
+export interface BackupPoliciesList {
+  /** The BackupPolicy items on this page */
+  value: BackupPoliciesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BackupPoliciesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BackupPoliciesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BackupPoliciesList",
+}) as any as S.Schema<BackupPoliciesList>;
+
 export interface ListBackupVaultByNetAppAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6696,59 +6593,6 @@ export const BucketList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BucketList" }) as any as S.Schema<BucketList>;
 
-export interface ListCachePeeringPassphrasesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the cache resource. */
-  cacheName: string;
-}
-export const ListCachePeeringPassphrasesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    cacheName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}/listPeeringPassphrases",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListCachePeeringPassphrasesRequest",
-}) as any as S.Schema<ListCachePeeringPassphrasesRequest>;
-
-/** The response containing peering passphrases and commands for cluster and vserver peering. */
-export interface PeeringPassphrases {
-  /** The cluster peering command. */
-  clusterPeeringCommand: string;
-  /** The cluster peering passphrase. */
-  clusterPeeringPassphrase: string;
-  /** The vserver peering command. */
-  vserverPeeringCommand: string;
-  /** Warnings that are critical for the cluster peering and vserver peering processes. */
-  criticalWarning?: string;
-}
-export const PeeringPassphrases = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterPeeringCommand: S.String,
-    clusterPeeringPassphrase: S.String,
-    vserverPeeringCommand: S.String,
-    criticalWarning: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PeeringPassphrases",
-}) as any as S.Schema<PeeringPassphrases>;
-
 export interface ListCachesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6845,31 +6689,81 @@ export const CacheList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "CacheList" }) as any as S.Schema<CacheList>;
 
-export interface ListNetAppResourceQuotaLimitAccountRequest {
+export interface ListCachPeeringPassphrasesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the NetApp account */
   accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the cache resource. */
+  cacheName: string;
 }
-export const ListNetAppResourceQuotaLimitAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListCachPeeringPassphrasesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}/listPeeringPassphrases",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCachPeeringPassphrasesRequest",
+}) as any as S.Schema<ListCachPeeringPassphrasesRequest>;
+
+/** The response containing peering passphrases and commands for cluster and vserver peering. */
+export interface PeeringPassphrases {
+  /** The cluster peering command. */
+  clusterPeeringCommand: string;
+  /** The cluster peering passphrase. */
+  clusterPeeringPassphrase: string;
+  /** The vserver peering command. */
+  vserverPeeringCommand: string;
+  /** Warnings that are critical for the cluster peering and vserver peering processes. */
+  criticalWarning?: string;
+}
+export const PeeringPassphrases = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterPeeringCommand: S.String,
+    clusterPeeringPassphrase: S.String,
+    vserverPeeringCommand: S.String,
+    criticalWarning: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PeeringPassphrases",
+}) as any as S.Schema<PeeringPassphrases>;
+
+export interface ListNetAppResourceQuotaLimitsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListNetAppResourceQuotaLimitsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/quotaLimits",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/quotaLimits",
         code: 200,
         apiVersion: "2026-06-01",
       }),
     ),
-  ).annotate({
-    identifier: "ListNetAppResourceQuotaLimitAccountRequest",
-  }) as any as S.Schema<ListNetAppResourceQuotaLimitAccountRequest>;
+).annotate({
+  identifier: "ListNetAppResourceQuotaLimitsRequest",
+}) as any as S.Schema<ListNetAppResourceQuotaLimitsRequest>;
 
 /** Information regarding Quota Item. */
 export interface QuotaItem {
@@ -6914,28 +6808,31 @@ export const QuotaItemList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "QuotaItemList" }) as any as S.Schema<QuotaItemList>;
 
-export interface ListNetAppResourceQuotaLimitsRequest {
+export interface ListNetAppResourceQuotaLimitsAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
 }
-export const ListNetAppResourceQuotaLimitsRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListNetAppResourceQuotaLimitsAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/quotaLimits",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/quotaLimits",
         code: 200,
         apiVersion: "2026-06-01",
       }),
     ),
-).annotate({
-  identifier: "ListNetAppResourceQuotaLimitsRequest",
-}) as any as S.Schema<ListNetAppResourceQuotaLimitsRequest>;
+  ).annotate({
+    identifier: "ListNetAppResourceQuotaLimitsAccountRequest",
+  }) as any as S.Schema<ListNetAppResourceQuotaLimitsAccountRequest>;
 
 export interface ListNetAppResourceRegionInfosRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7376,6 +7273,170 @@ export const CapacityPoolList = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapacityPoolList",
 }) as any as S.Schema<CapacityPoolList>;
 
+export interface ListRansomwareReportsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the volume */
+  volumeName: string;
+}
+export const ListRansomwareReportsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/ransomwareReports",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRansomwareReportsRequest",
+}) as any as S.Schema<ListRansomwareReportsRequest>;
+
+/** Advanced Ransomware Protection (ARP) report Get details of the specified Advanced Ransomware Protection report (ARP). ARP reports are created with a list of suspected files when it detects any combination of high data entropy, abnormal volume activity with data encryption, and unusual file extensions. ARP creates snapshots named Anti_ransomware_backup when it detects a potential ransomware threat. You can use one of these ARP snapshots or another snapshot of your volume to restore data. */
+export interface RansomwareReport {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Advanced Ransomware Protection reports Properties */
+  properties?: RansomwareReportProperties;
+}
+export const RansomwareReport = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RansomwareReportProperties),
+  }),
+).annotate({
+  identifier: "RansomwareReport",
+}) as any as S.Schema<RansomwareReport>;
+
+/** The RansomwareReport items on this page */
+export type RansomwareReportsListValueList = Array<RansomwareReport>;
+export const RansomwareReportsListValueList = /*@__PURE__*/ S.Array(
+  RansomwareReport,
+) as any as S.Schema<RansomwareReportsListValueList>;
+
+/** List of Advanced Ransomware Protection (ARP) reports */
+export interface RansomwareReportsList {
+  /** The RansomwareReport items on this page */
+  value: RansomwareReportsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RansomwareReportsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RansomwareReportsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RansomwareReportsList",
+}) as any as S.Schema<RansomwareReportsList>;
+
+export interface ListSnapshotPoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+}
+export const ListSnapshotPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/snapshotPolicies",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSnapshotPoliciesRequest",
+}) as any as S.Schema<ListSnapshotPoliciesRequest>;
+
+/** Resource tags. */
+export type SnapshotPolicyTagsMap = { [key: string]: string | undefined };
+export const SnapshotPolicyTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SnapshotPolicyTagsMap>;
+
+/** Snapshot policy information */
+export interface SnapshotPolicy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SnapshotPolicyTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Snapshot policy Properties */
+  properties: SnapshotPolicyProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const SnapshotPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SnapshotPolicyTagsMap),
+    location: S.String,
+    properties: SnapshotPolicyProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "SnapshotPolicy" }) as any as S.Schema<SnapshotPolicy>;
+
+/** The SnapshotPolicy items on this page */
+export type SnapshotPoliciesListValueList = Array<SnapshotPolicy>;
+export const SnapshotPoliciesListValueList = /*@__PURE__*/ S.Array(
+  SnapshotPolicy,
+) as any as S.Schema<SnapshotPoliciesListValueList>;
+
+/** List of Snapshot Policies */
+export interface SnapshotPoliciesList {
+  /** The SnapshotPolicy items on this page */
+  value: SnapshotPoliciesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SnapshotPoliciesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SnapshotPoliciesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SnapshotPoliciesList",
+}) as any as S.Schema<SnapshotPoliciesList>;
+
 export interface ListSnapshotPolicyVolumesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -7473,6 +7534,83 @@ export const SnapshotPolicyVolumeList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SnapshotPolicyVolumeList",
 }) as any as S.Schema<SnapshotPolicyVolumeList>;
+
+export interface ListSnapshotsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the volume */
+  volumeName: string;
+}
+export const ListSnapshotsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSnapshotsRequest",
+}) as any as S.Schema<ListSnapshotsRequest>;
+
+/** Snapshot of a Volume */
+export interface Snapshot {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Snapshot Properties */
+  properties?: SnapshotProperties;
+  /** Resource location */
+  location: string;
+}
+export const Snapshot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SnapshotProperties),
+    location: S.String,
+  }),
+).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
+
+/** The Snapshot items on this page */
+export type SnapshotsListValueList = Array<Snapshot>;
+export const SnapshotsListValueList = /*@__PURE__*/ S.Array(
+  Snapshot,
+) as any as S.Schema<SnapshotsListValueList>;
+
+/** List of Snapshots */
+export interface SnapshotsList {
+  /** The Snapshot items on this page */
+  value: SnapshotsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SnapshotsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SnapshotsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "SnapshotsList" }) as any as S.Schema<SnapshotsList>;
 
 export interface ListVolumeGroupByNetAppAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7754,8 +7892,8 @@ export const VolumeQuotaRulesList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VolumeQuotaRulesList>;
 
 /** Exclude Replications filter. 'None' returns all replications, 'Deleted' excludes deleted replications. Default is 'None' */
-export type VolumesListReplicationsRequestExclude = "None" | "Deleted";
-export const VolumesListReplicationsRequestExclude = /*@__PURE__*/ S.String;
+export type ListVolumeReplicationsRequestExclude = "None" | "Deleted";
+export const ListVolumeReplicationsRequestExclude = /*@__PURE__*/ S.String;
 
 export interface ListVolumeReplicationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7769,7 +7907,7 @@ export interface ListVolumeReplicationsRequest {
   /** The name of the volume */
   volumeName: string;
   /** Exclude Replications filter. 'None' returns all replications, 'Deleted' excludes deleted replications. Default is 'None' */
-  exclude?: VolumesListReplicationsRequestExclude | (string & {});
+  exclude?: ListVolumeReplicationsRequestExclude | (string & {});
 }
 export const ListVolumeReplicationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7778,7 +7916,7 @@ export const ListVolumeReplicationsRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     poolName: S.String.pipe(T.Label()),
     volumeName: S.String.pipe(T.Label()),
-    exclude: S.optional(VolumesListReplicationsRequestExclude),
+    exclude: S.optional(ListVolumeReplicationsRequestExclude),
   }).pipe(
     T.Http({
       method: "POST",
@@ -7897,6 +8035,83 @@ export const VolumeList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "VolumeList" }) as any as S.Schema<VolumeList>;
 
+export interface MigrateBackupsUnderAccountBackupsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The ResourceId of the Backup Vault */
+  backupVaultId: string;
+}
+export const MigrateBackupsUnderAccountBackupsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      backupVaultId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/migrateBackups",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "MigrateBackupsUnderAccountBackupsRequest",
+}) as any as S.Schema<MigrateBackupsUnderAccountBackupsRequest>;
+
+export interface MigrateBackupsUnderAccountBackupsResponse {}
+export const MigrateBackupsUnderAccountBackupsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "MigrateBackupsUnderAccountBackupsResponse",
+  }) as any as S.Schema<MigrateBackupsUnderAccountBackupsResponse>;
+
+export interface MigrateBackupsUnderVolumeBackupsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the volume */
+  volumeName: string;
+  /** The ResourceId of the Backup Vault */
+  backupVaultId: string;
+}
+export const MigrateBackupsUnderVolumeBackupsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      poolName: S.String.pipe(T.Label()),
+      volumeName: S.String.pipe(T.Label()),
+      backupVaultId: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/migrateBackups",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "MigrateBackupsUnderVolumeBackupsRequest",
+}) as any as S.Schema<MigrateBackupsUnderVolumeBackupsRequest>;
+
+export interface MigrateBackupsUnderVolumeBackupsResponse {}
+export const MigrateBackupsUnderVolumeBackupsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "MigrateBackupsUnderVolumeBackupsResponse",
+}) as any as S.Schema<MigrateBackupsUnderVolumeBackupsResponse>;
+
 export interface NetAppResourceQueryRegionInfoRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -7919,123 +8134,6 @@ export const NetAppResourceQueryRegionInfoRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "NetAppResourceQueryRegionInfoRequest",
 }) as any as S.Schema<NetAppResourceQueryRegionInfoRequest>;
-
-/** Network features available to the volume. */
-export type NetAppResourceUpdateNetworkSiblingSetRequestNetworkFeatures =
-  | "Basic"
-  | "Standard"
-  | "Basic_Standard"
-  | "Standard_Basic";
-export const NetAppResourceUpdateNetworkSiblingSetRequestNetworkFeatures =
-  /*@__PURE__*/ S.String;
-
-export interface NetAppResourceUpdateNetworkSiblingSetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** Network Sibling Set ID for a group of volumes sharing networking resources in a subnet. */
-  networkSiblingSetId: string;
-  /** The Azure Resource URI for a delegated subnet. Must have the delegation Microsoft.NetApp/volumes. Example /subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/Microsoft.Network/virtualNetworks/testVnet/subnets/{mySubnet} */
-  subnetId: string;
-  /** Network sibling set state Id identifying the current state of the sibling set. */
-  networkSiblingSetStateId: string;
-  /** Network features available to the volume. */
-  networkFeatures:
-    | NetAppResourceUpdateNetworkSiblingSetRequestNetworkFeatures
-    | (string & {});
-}
-export const NetAppResourceUpdateNetworkSiblingSetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      networkSiblingSetId: S.String,
-      subnetId: S.String,
-      networkSiblingSetStateId: S.String,
-      networkFeatures:
-        NetAppResourceUpdateNetworkSiblingSetRequestNetworkFeatures,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/updateNetworkSiblingSet",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetAppResourceUpdateNetworkSiblingSetRequest",
-  }) as any as S.Schema<NetAppResourceUpdateNetworkSiblingSetRequest>;
-
-/** Network features available to the volume, or current state of update. */
-export type NetworkSiblingSetNetworkFeatures =
-  | "Basic"
-  | "Standard"
-  | "Basic_Standard"
-  | "Standard_Basic";
-export const NetworkSiblingSetNetworkFeatures = /*@__PURE__*/ S.String;
-
-/** Gets the status of the NetworkSiblingSet at the time the operation was called. */
-export type NetworkSiblingSetProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Updating";
-export const NetworkSiblingSetProvisioningState = /*@__PURE__*/ S.String;
-
-/** Volume resource Ids */
-export type NicInfoVolumeResourceIdsList = Array<string>;
-export const NicInfoVolumeResourceIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NicInfoVolumeResourceIdsList>;
-
-/** NIC information and list of volumes for which the NIC has the primary mount IP Address. */
-export interface NicInfo {
-  /** IP Address */
-  ipAddress?: string;
-  /** Volume resource Ids */
-  volumeResourceIds?: NicInfoVolumeResourceIdsList;
-}
-export const NicInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAddress: S.optional(S.String),
-    volumeResourceIds: S.optional(NicInfoVolumeResourceIdsList),
-  }),
-).annotate({ identifier: "NicInfo" }) as any as S.Schema<NicInfo>;
-
-/** List of NIC information */
-export type NetworkSiblingSetNicInfoListList = Array<NicInfo>;
-export const NetworkSiblingSetNicInfoListList = /*@__PURE__*/ S.Array(
-  NicInfo,
-) as any as S.Schema<NetworkSiblingSetNicInfoListList>;
-
-/** Describes the contents of a network sibling set. */
-export interface NetworkSiblingSet {
-  /** Network Sibling Set ID for a group of volumes sharing networking resources in a subnet. */
-  networkSiblingSetId?: string;
-  /** The Azure Resource URI for a delegated subnet. Must have the delegation Microsoft.NetApp/volumes. Example /subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/Microsoft.Network/virtualNetworks/testVnet/subnets/{mySubnet} */
-  subnetId?: string;
-  /** Network sibling set state Id identifying the current state of the sibling set. */
-  networkSiblingSetStateId?: string;
-  /** Network features available to the volume, or current state of update. */
-  networkFeatures?: NetworkSiblingSetNetworkFeatures;
-  /** Gets the status of the NetworkSiblingSet at the time the operation was called. */
-  provisioningState?: NetworkSiblingSetProvisioningState;
-  /** List of NIC information */
-  nicInfoList?: NetworkSiblingSetNicInfoListList;
-}
-export const NetworkSiblingSet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    networkSiblingSetId: S.optional(S.String),
-    subnetId: S.optional(S.String),
-    networkSiblingSetStateId: S.optional(S.String),
-    networkFeatures: S.optional(NetworkSiblingSetNetworkFeatures),
-    provisioningState: S.optional(NetworkSiblingSetProvisioningState),
-    nicInfoList: S.optional(NetworkSiblingSetNicInfoListList),
-  }),
-).annotate({
-  identifier: "NetworkSiblingSet",
-}) as any as S.Schema<NetworkSiblingSet>;
 
 /** Resource tags. */
 export type PoolsCreateOrUpdateRequestTagsMap = {
@@ -8170,14 +8268,7 @@ export const PoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PoolsCreateOrUpdateResponse",
 }) as any as S.Schema<PoolsCreateOrUpdateResponse>;
 
-/** List of file extensions resolved (PotentialThreat or FalsePositive) */
-export type RansomwareReportsClearSuspectsRequestExtensionsList = Array<string>;
-export const RansomwareReportsClearSuspectsRequestExtensionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RansomwareReportsClearSuspectsRequestExtensionsList>;
-
-export interface RansomwareReportsClearSuspectsRequest {
+export interface RefreshBucketCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8188,76 +8279,115 @@ export interface RansomwareReportsClearSuspectsRequest {
   poolName: string;
   /** The name of the volume */
   volumeName: string;
-  /** The name of the ransomware report */
-  ransomwareReportName: string;
-  /** ARP report suspect resolution */
-  resolution: RansomwareSuspectResolution | (string & {});
-  /** List of file extensions resolved (PotentialThreat or FalsePositive) */
-  extensions: RansomwareReportsClearSuspectsRequestExtensionsList;
+  /** The name of the bucket */
+  bucketName: string;
 }
-export const RansomwareReportsClearSuspectsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      poolName: S.String.pipe(T.Label()),
-      volumeName: S.String.pipe(T.Label()),
-      ransomwareReportName: S.String.pipe(T.Label()),
-      resolution: RansomwareSuspectResolution,
-      extensions: RansomwareReportsClearSuspectsRequestExtensionsList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/ransomwareReports/{ransomwareReportName}/clearSuspects",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "RansomwareReportsClearSuspectsRequest",
-}) as any as S.Schema<RansomwareReportsClearSuspectsRequest>;
-
-export interface RansomwareReportsClearSuspectsResponse {}
-export const RansomwareReportsClearSuspectsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "RansomwareReportsClearSuspectsResponse",
-}) as any as S.Schema<RansomwareReportsClearSuspectsResponse>;
-
-export interface RansomwareReportsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the volume */
-  volumeName: string;
-}
-export const RansomwareReportsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const RefreshBucketCertificateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     poolName: S.String.pipe(T.Label()),
     volumeName: S.String.pipe(T.Label()),
+    bucketName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/ransomwareReports",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/buckets/{bucketName}/refreshCertificate",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "RansomwareReportsListRequest",
-}) as any as S.Schema<RansomwareReportsListRequest>;
+  identifier: "RefreshBucketCertificateRequest",
+}) as any as S.Schema<RefreshBucketCertificateRequest>;
 
-/** Advanced Ransomware Protection (ARP) report Get details of the specified Advanced Ransomware Protection report (ARP). ARP reports are created with a list of suspected files when it detects any combination of high data entropy, abnormal volume activity with data encryption, and unusual file extensions. ARP creates snapshots named Anti_ransomware_backup when it detects a potential ransomware threat. You can use one of these ARP snapshots or another snapshot of your volume to restore data. */
-export interface RansomwareReport {
+export interface RefreshBucketCertificateResponse {}
+export const RefreshBucketCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RefreshBucketCertificateResponse",
+}) as any as S.Schema<RefreshBucketCertificateResponse>;
+
+export interface RenewAccountCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+}
+export const RenewAccountCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/renewCredentials",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "RenewAccountCredentialsRequest",
+}) as any as S.Schema<RenewAccountCredentialsRequest>;
+
+export interface RenewAccountCredentialsResponse {}
+export const RenewAccountCredentialsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RenewAccountCredentialsResponse",
+}) as any as S.Schema<RenewAccountCredentialsResponse>;
+
+export interface ResetCachSmbPasswordRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the cache resource. */
+  cacheName: string;
+}
+export const ResetCachSmbPasswordRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    cacheName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/caches/{cacheName}/resetSmbPassword",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResetCachSmbPasswordRequest",
+}) as any as S.Schema<ResetCachSmbPasswordRequest>;
+
+/** Resource tags. */
+export type ResetCachSmbPasswordResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ResetCachSmbPasswordResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ResetCachSmbPasswordResponseTagsMap>;
+
+/** The availability zones. */
+export type ResetCachSmbPasswordResponseZonesList = Array<string>;
+export const ResetCachSmbPasswordResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ResetCachSmbPasswordResponseZonesList>;
+
+export interface ResetCachSmbPasswordResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8266,52 +8396,80 @@ export interface RansomwareReport {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Advanced Ransomware Protection reports Properties */
-  properties?: RansomwareReportProperties;
+  /** Resource tags. */
+  tags?: ResetCachSmbPasswordResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Cache properties */
+  properties: CacheProperties;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+  /** The availability zones. */
+  zones?: ResetCachSmbPasswordResponseZonesList;
 }
-export const RansomwareReport = /*@__PURE__*/ S.suspend(() =>
+export const ResetCachSmbPasswordResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(RansomwareReportProperties),
+    tags: S.optional(ResetCachSmbPasswordResponseTagsMap),
+    location: S.String,
+    properties: CacheProperties,
+    etag: S.optional(S.String),
+    zones: S.optional(ResetCachSmbPasswordResponseZonesList),
   }),
 ).annotate({
-  identifier: "RansomwareReport",
-}) as any as S.Schema<RansomwareReport>;
+  identifier: "ResetCachSmbPasswordResponse",
+}) as any as S.Schema<ResetCachSmbPasswordResponse>;
 
-/** The RansomwareReport items on this page */
-export type RansomwareReportsListValueList = Array<RansomwareReport>;
-export const RansomwareReportsListValueList = /*@__PURE__*/ S.Array(
-  RansomwareReport,
-) as any as S.Schema<RansomwareReportsListValueList>;
-
-/** List of Advanced Ransomware Protection (ARP) reports */
-export interface RansomwareReportsList {
-  /** The RansomwareReport items on this page */
-  value: RansomwareReportsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+export interface ResetVolumeCifsPasswordRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the NetApp account */
+  accountName: string;
+  /** The name of the capacity pool */
+  poolName: string;
+  /** The name of the volume */
+  volumeName: string;
 }
-export const RansomwareReportsList = /*@__PURE__*/ S.suspend(() =>
+export const ResetVolumeCifsPasswordRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: RansomwareReportsListValueList,
-    nextLink: S.optional(S.String),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/resetCifsPassword",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "RansomwareReportsList",
-}) as any as S.Schema<RansomwareReportsList>;
+  identifier: "ResetVolumeCifsPasswordRequest",
+}) as any as S.Schema<ResetVolumeCifsPasswordRequest>;
+
+export interface ResetVolumeCifsPasswordResponse {}
+export const ResetVolumeCifsPasswordResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResetVolumeCifsPasswordResponse",
+}) as any as S.Schema<ResetVolumeCifsPasswordResponse>;
 
 /** List of files to be restored */
-export type BackupsUnderBackupVaultRestoreFilesRequestFileListList =
+export type RestoreBackupsUnderBackupVaultFilesRequestFileListList =
   Array<string>;
-export const BackupsUnderBackupVaultRestoreFilesRequestFileListList =
+export const RestoreBackupsUnderBackupVaultFilesRequestFileListList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BackupsUnderBackupVaultRestoreFilesRequestFileListList>;
+  ) as any as S.Schema<RestoreBackupsUnderBackupVaultFilesRequestFileListList>;
 
-export interface RestoreBackupUnderBackupVaultFileRequest {
+export interface RestoreBackupsUnderBackupVaultFilesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8323,21 +8481,21 @@ export interface RestoreBackupUnderBackupVaultFileRequest {
   /** The name of the backup */
   backupName: string;
   /** List of files to be restored */
-  fileList: BackupsUnderBackupVaultRestoreFilesRequestFileListList;
+  fileList: RestoreBackupsUnderBackupVaultFilesRequestFileListList;
   /** Destination folder where the files will be restored. The path name should start with a forward slash. If it is omitted from request then restore is done at the root folder of the destination volume by default */
   restoreFilePath?: string;
   /** Resource Id of the destination volume on which the files need to be restored */
   destinationVolumeId: string;
 }
-export const RestoreBackupUnderBackupVaultFileRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const RestoreBackupsUnderBackupVaultFilesRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       accountName: S.String.pipe(T.Label()),
       backupVaultName: S.String.pipe(T.Label()),
       backupName: S.String.pipe(T.Label()),
-      fileList: BackupsUnderBackupVaultRestoreFilesRequestFileListList,
+      fileList: RestoreBackupsUnderBackupVaultFilesRequestFileListList,
       restoreFilePath: S.optional(S.String),
       destinationVolumeId: S.String,
     }).pipe(
@@ -8348,23 +8506,23 @@ export const RestoreBackupUnderBackupVaultFileRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2026-06-01",
       }),
     ),
-).annotate({
-  identifier: "RestoreBackupUnderBackupVaultFileRequest",
-}) as any as S.Schema<RestoreBackupUnderBackupVaultFileRequest>;
+  ).annotate({
+    identifier: "RestoreBackupsUnderBackupVaultFilesRequest",
+  }) as any as S.Schema<RestoreBackupsUnderBackupVaultFilesRequest>;
 
-export interface RestoreBackupUnderBackupVaultFileResponse {}
-export const RestoreBackupUnderBackupVaultFileResponse =
+export interface RestoreBackupsUnderBackupVaultFilesResponse {}
+export const RestoreBackupsUnderBackupVaultFilesResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "RestoreBackupUnderBackupVaultFileResponse",
-  }) as any as S.Schema<RestoreBackupUnderBackupVaultFileResponse>;
+    identifier: "RestoreBackupsUnderBackupVaultFilesResponse",
+  }) as any as S.Schema<RestoreBackupsUnderBackupVaultFilesResponse>;
 
 /** List of files to be restored */
-export type SnapshotsRestoreFilesRequestFilePathsList = Array<string>;
-export const SnapshotsRestoreFilesRequestFilePathsList = /*@__PURE__*/ S.Array(
+export type RestoreSnapshotFilesRequestFilePathsList = Array<string>;
+export const RestoreSnapshotFilesRequestFilePathsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<SnapshotsRestoreFilesRequestFilePathsList>;
+) as any as S.Schema<RestoreSnapshotFilesRequestFilePathsList>;
 
-export interface RestoreSnapshotFileRequest {
+export interface RestoreSnapshotFilesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8378,11 +8536,11 @@ export interface RestoreSnapshotFileRequest {
   /** The name of the snapshot */
   snapshotName: string;
   /** List of files to be restored */
-  filePaths: SnapshotsRestoreFilesRequestFilePathsList;
+  filePaths: RestoreSnapshotFilesRequestFilePathsList;
   /** Destination folder where the files will be restored */
   destinationPath?: string;
 }
-export const RestoreSnapshotFileRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestoreSnapshotFilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8390,7 +8548,7 @@ export const RestoreSnapshotFileRequest = /*@__PURE__*/ S.suspend(() =>
     poolName: S.String.pipe(T.Label()),
     volumeName: S.String.pipe(T.Label()),
     snapshotName: S.String.pipe(T.Label()),
-    filePaths: SnapshotsRestoreFilesRequestFilePathsList,
+    filePaths: RestoreSnapshotFilesRequestFilePathsList,
     destinationPath: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -8401,15 +8559,15 @@ export const RestoreSnapshotFileRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestoreSnapshotFileRequest",
-}) as any as S.Schema<RestoreSnapshotFileRequest>;
+  identifier: "RestoreSnapshotFilesRequest",
+}) as any as S.Schema<RestoreSnapshotFilesRequest>;
 
-export interface RestoreSnapshotFileResponse {}
-export const RestoreSnapshotFileResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RestoreSnapshotFilesResponse {}
+export const RestoreSnapshotFilesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestoreSnapshotFileResponse",
-}) as any as S.Schema<RestoreSnapshotFileResponse>;
+  identifier: "RestoreSnapshotFilesResponse",
+}) as any as S.Schema<RestoreSnapshotFilesResponse>;
 
 export interface SetNetAppResourceQueryNetworkSiblingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8440,93 +8598,77 @@ export const SetNetAppResourceQueryNetworkSiblingRequest =
     identifier: "SetNetAppResourceQueryNetworkSiblingRequest",
   }) as any as S.Schema<SetNetAppResourceQueryNetworkSiblingRequest>;
 
-export interface SnapshotPoliciesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-}
-export const SnapshotPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/snapshotPolicies",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotPoliciesListRequest",
-}) as any as S.Schema<SnapshotPoliciesListRequest>;
+/** Network features available to the volume, or current state of update. */
+export type NetworkSiblingSetNetworkFeatures =
+  | "Basic"
+  | "Standard"
+  | "Basic_Standard"
+  | "Standard_Basic";
+export const NetworkSiblingSetNetworkFeatures = /*@__PURE__*/ S.String;
 
-/** Resource tags. */
-export type SnapshotPolicyTagsMap = { [key: string]: string | undefined };
-export const SnapshotPolicyTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SnapshotPolicyTagsMap>;
+/** Gets the status of the NetworkSiblingSet at the time the operation was called. */
+export type NetworkSiblingSetProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Updating";
+export const NetworkSiblingSetProvisioningState = /*@__PURE__*/ S.String;
 
-/** Snapshot policy information */
-export interface SnapshotPolicy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SnapshotPolicyTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Snapshot policy Properties */
-  properties: SnapshotPolicyProperties;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
+/** Volume resource Ids */
+export type NicInfoVolumeResourceIdsList = Array<string>;
+export const NicInfoVolumeResourceIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NicInfoVolumeResourceIdsList>;
+
+/** NIC information and list of volumes for which the NIC has the primary mount IP Address. */
+export interface NicInfo {
+  /** IP Address */
+  ipAddress?: string;
+  /** Volume resource Ids */
+  volumeResourceIds?: NicInfoVolumeResourceIdsList;
 }
-export const SnapshotPolicy = /*@__PURE__*/ S.suspend(() =>
+export const NicInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotPolicyTagsMap),
-    location: S.String,
-    properties: SnapshotPolicyProperties,
-    etag: S.optional(S.String),
+    ipAddress: S.optional(S.String),
+    volumeResourceIds: S.optional(NicInfoVolumeResourceIdsList),
   }),
-).annotate({ identifier: "SnapshotPolicy" }) as any as S.Schema<SnapshotPolicy>;
+).annotate({ identifier: "NicInfo" }) as any as S.Schema<NicInfo>;
 
-/** The SnapshotPolicy items on this page */
-export type SnapshotPoliciesListValueList = Array<SnapshotPolicy>;
-export const SnapshotPoliciesListValueList = /*@__PURE__*/ S.Array(
-  SnapshotPolicy,
-) as any as S.Schema<SnapshotPoliciesListValueList>;
+/** List of NIC information */
+export type NetworkSiblingSetNicInfoListList = Array<NicInfo>;
+export const NetworkSiblingSetNicInfoListList = /*@__PURE__*/ S.Array(
+  NicInfo,
+) as any as S.Schema<NetworkSiblingSetNicInfoListList>;
 
-/** List of Snapshot Policies */
-export interface SnapshotPoliciesList {
-  /** The SnapshotPolicy items on this page */
-  value: SnapshotPoliciesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+/** Describes the contents of a network sibling set. */
+export interface NetworkSiblingSet {
+  /** Network Sibling Set ID for a group of volumes sharing networking resources in a subnet. */
+  networkSiblingSetId?: string;
+  /** The Azure Resource URI for a delegated subnet. Must have the delegation Microsoft.NetApp/volumes. Example /subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/Microsoft.Network/virtualNetworks/testVnet/subnets/{mySubnet} */
+  subnetId?: string;
+  /** Network sibling set state Id identifying the current state of the sibling set. */
+  networkSiblingSetStateId?: string;
+  /** Network features available to the volume, or current state of update. */
+  networkFeatures?: NetworkSiblingSetNetworkFeatures;
+  /** Gets the status of the NetworkSiblingSet at the time the operation was called. */
+  provisioningState?: NetworkSiblingSetProvisioningState;
+  /** List of NIC information */
+  nicInfoList?: NetworkSiblingSetNicInfoListList;
 }
-export const SnapshotPoliciesList = /*@__PURE__*/ S.suspend(() =>
+export const NetworkSiblingSet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: SnapshotPoliciesListValueList,
-    nextLink: S.optional(S.String),
+    networkSiblingSetId: S.optional(S.String),
+    subnetId: S.optional(S.String),
+    networkSiblingSetStateId: S.optional(S.String),
+    networkFeatures: S.optional(NetworkSiblingSetNetworkFeatures),
+    provisioningState: S.optional(NetworkSiblingSetProvisioningState),
+    nicInfoList: S.optional(NetworkSiblingSetNicInfoListList),
   }),
 ).annotate({
-  identifier: "SnapshotPoliciesList",
-}) as any as S.Schema<SnapshotPoliciesList>;
+  identifier: "NetworkSiblingSet",
+}) as any as S.Schema<NetworkSiblingSet>;
 
-export interface SnapshotsListRequest {
+export interface TransferVolumesPerformReplicationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8538,106 +8680,65 @@ export interface SnapshotsListRequest {
   /** The name of the volume */
   volumeName: string;
 }
-export const SnapshotsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/snapshots",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
+export const TransferVolumesPerformReplicationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      poolName: S.String.pipe(T.Label()),
+      volumeName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/performReplicationTransfer",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
 ).annotate({
-  identifier: "SnapshotsListRequest",
-}) as any as S.Schema<SnapshotsListRequest>;
+  identifier: "TransferVolumesPerformReplicationRequest",
+}) as any as S.Schema<TransferVolumesPerformReplicationRequest>;
 
-/** Snapshot of a Volume */
-export interface Snapshot {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Snapshot Properties */
-  properties?: SnapshotProperties;
-  /** Resource location */
-  location: string;
-}
-export const Snapshot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SnapshotProperties),
-    location: S.String,
-  }),
-).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
-
-/** The Snapshot items on this page */
-export type SnapshotsListValueList = Array<Snapshot>;
-export const SnapshotsListValueList = /*@__PURE__*/ S.Array(
-  Snapshot,
-) as any as S.Schema<SnapshotsListValueList>;
-
-/** List of Snapshots */
-export interface SnapshotsList {
-  /** The Snapshot items on this page */
-  value: SnapshotsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SnapshotsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SnapshotsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "SnapshotsList" }) as any as S.Schema<SnapshotsList>;
+export interface TransferVolumesPerformReplicationResponse {}
+export const TransferVolumesPerformReplicationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "TransferVolumesPerformReplicationResponse",
+  }) as any as S.Schema<TransferVolumesPerformReplicationResponse>;
 
 /** Resource tags */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AccountsUpdateRequestIdentityUserAssignedIdentitiesMap = {
+export type UpdateAccountRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentityInput | undefined;
 };
-export const AccountsUpdateRequestIdentityUserAssignedIdentitiesMap =
+export const UpdateAccountRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentityInput,
-  ) as any as S.Schema<AccountsUpdateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAccountRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AccountsUpdateRequestIdentity {
+export interface UpdateAccountRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AccountsUpdateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAccountRequestIdentityUserAssignedIdentitiesMap;
 }
-export const AccountsUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AccountsUpdateRequestIdentityUserAssignedIdentitiesMap,
+      UpdateAccountRequestIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AccountsUpdateRequestIdentity",
-}) as any as S.Schema<AccountsUpdateRequestIdentity>;
+  identifier: "UpdateAccountRequestIdentity",
+}) as any as S.Schema<UpdateAccountRequestIdentity>;
 
 export interface UpdateAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8649,11 +8750,11 @@ export interface UpdateAccountRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** NetApp Account properties */
   properties?: AccountPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsUpdateRequestIdentity;
+  identity?: UpdateAccountRequestIdentity;
 }
 export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8661,9 +8762,9 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     properties: S.optional(AccountPropertiesInput),
-    identity: S.optional(AccountsUpdateRequestIdentity),
+    identity: S.optional(UpdateAccountRequestIdentity),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -8677,46 +8778,46 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AccountsUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateAccountResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AccountsUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateAccountResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AccountsUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAccountResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AccountsUpdateResponseIdentity {
+export interface UpdateAccountResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AccountsUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAccountResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AccountsUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AccountsUpdateResponseIdentityUserAssignedIdentitiesMap,
+      UpdateAccountResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponseIdentity",
-}) as any as S.Schema<AccountsUpdateResponseIdentity>;
+  identifier: "UpdateAccountResponseIdentity",
+}) as any as S.Schema<UpdateAccountResponseIdentity>;
 
 export interface UpdateAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8728,7 +8829,7 @@ export interface UpdateAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** NetApp Account properties */
@@ -8736,7 +8837,7 @@ export interface UpdateAccountResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsUpdateResponseIdentity;
+  identity?: UpdateAccountResponseIdentity;
 }
 export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8744,11 +8845,11 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     location: S.String,
     properties: S.optional(AccountProperties),
     etag: S.optional(S.String),
-    identity: S.optional(AccountsUpdateResponseIdentity),
+    identity: S.optional(UpdateAccountResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateAccountResponse",
@@ -8826,13 +8927,13 @@ export const UpdateBackupResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBackupResponse>;
 
 /** Resource tags */
-export type BackupPoliciesUpdateRequestTagsMap = {
+export type UpdateBackupPolicyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupPoliciesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBackupPolicyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupPoliciesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBackupPolicyRequestTagsMap>;
 
 export interface UpdateBackupPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8846,7 +8947,7 @@ export interface UpdateBackupPolicyRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: BackupPoliciesUpdateRequestTagsMap;
+  tags?: UpdateBackupPolicyRequestTagsMap;
   /** Backup policy Properties */
   properties?: BackupPolicyPropertiesInput;
 }
@@ -8857,7 +8958,7 @@ export const UpdateBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     backupPolicyName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(BackupPoliciesUpdateRequestTagsMap),
+    tags: S.optional(UpdateBackupPolicyRequestTagsMap),
     properties: S.optional(BackupPolicyPropertiesInput),
   }).pipe(
     T.Http({
@@ -8872,13 +8973,13 @@ export const UpdateBackupPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBackupPolicyRequest>;
 
 /** Resource tags. */
-export type BackupPoliciesUpdateResponseTagsMap = {
+export type UpdateBackupPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupPoliciesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBackupPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupPoliciesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBackupPolicyResponseTagsMap>;
 
 export interface UpdateBackupPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8890,7 +8991,7 @@ export interface UpdateBackupPolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BackupPoliciesUpdateResponseTagsMap;
+  tags?: UpdateBackupPolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Backup policy Properties */
@@ -8904,7 +9005,7 @@ export const UpdateBackupPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BackupPoliciesUpdateResponseTagsMap),
+    tags: S.optional(UpdateBackupPolicyResponseTagsMap),
     location: S.String,
     properties: BackupPolicyProperties,
     etag: S.optional(S.String),
@@ -8914,13 +9015,13 @@ export const UpdateBackupPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBackupPolicyResponse>;
 
 /** Resource tags */
-export type BackupVaultsUpdateRequestTagsMap = {
+export type UpdateBackupVaultRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupVaultsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBackupVaultRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupVaultsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBackupVaultRequestTagsMap>;
 
 export interface UpdateBackupVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8932,7 +9033,7 @@ export interface UpdateBackupVaultRequest {
   /** The name of the Backup Vault */
   backupVaultName: string;
   /** Resource tags */
-  tags?: BackupVaultsUpdateRequestTagsMap;
+  tags?: UpdateBackupVaultRequestTagsMap;
 }
 export const UpdateBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8940,7 +9041,7 @@ export const UpdateBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     backupVaultName: S.String.pipe(T.Label()),
-    tags: S.optional(BackupVaultsUpdateRequestTagsMap),
+    tags: S.optional(UpdateBackupVaultRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -8954,13 +9055,13 @@ export const UpdateBackupVaultRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBackupVaultRequest>;
 
 /** Resource tags. */
-export type BackupVaultsUpdateResponseTagsMap = {
+export type UpdateBackupVaultResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BackupVaultsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBackupVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BackupVaultsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBackupVaultResponseTagsMap>;
 
 export interface UpdateBackupVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8972,7 +9073,7 @@ export interface UpdateBackupVaultResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BackupVaultsUpdateResponseTagsMap;
+  tags?: UpdateBackupVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Backup Vault Properties */
@@ -8984,7 +9085,7 @@ export const UpdateBackupVaultResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BackupVaultsUpdateResponseTagsMap),
+    tags: S.optional(UpdateBackupVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(BackupVaultProperties),
   }),
@@ -9084,11 +9185,11 @@ export const UpdateBucketResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBucketResponse>;
 
 /** Resource tags. */
-export type CachesUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const CachesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateCachRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateCachRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CachesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCachRequestTagsMap>;
 
 /** Set of supported protocol types, which include NFSv3, NFSv4 and SMB protocol */
 export type CacheUpdatePropertiesProtocolTypesList = Array<
@@ -9132,7 +9233,7 @@ export const CacheUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "CacheUpdateProperties",
 }) as any as S.Schema<CacheUpdateProperties>;
 
-export interface UpdateCacheRequest {
+export interface UpdateCachRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9144,18 +9245,18 @@ export interface UpdateCacheRequest {
   /** The name of the cache resource. */
   cacheName: string;
   /** Resource tags. */
-  tags?: CachesUpdateRequestTagsMap;
+  tags?: UpdateCachRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: CacheUpdateProperties;
 }
-export const UpdateCacheRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCachRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     poolName: S.String.pipe(T.Label()),
     cacheName: S.String.pipe(T.Label()),
-    tags: S.optional(CachesUpdateRequestTagsMap),
+    tags: S.optional(UpdateCachRequestTagsMap),
     properties: S.optional(CacheUpdateProperties),
   }).pipe(
     T.Http({
@@ -9166,23 +9267,23 @@ export const UpdateCacheRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateCacheRequest",
-}) as any as S.Schema<UpdateCacheRequest>;
+  identifier: "UpdateCachRequest",
+}) as any as S.Schema<UpdateCachRequest>;
 
 /** Resource tags. */
-export type CachesUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const CachesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateCachResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateCachResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CachesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCachResponseTagsMap>;
 
 /** The availability zones. */
-export type CachesUpdateResponseZonesList = Array<string>;
-export const CachesUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateCachResponseZonesList = Array<string>;
+export const UpdateCachResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<CachesUpdateResponseZonesList>;
+) as any as S.Schema<UpdateCachResponseZonesList>;
 
-export interface UpdateCacheResponse {
+export interface UpdateCachResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9192,7 +9293,7 @@ export interface UpdateCacheResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CachesUpdateResponseTagsMap;
+  tags?: UpdateCachResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Cache properties */
@@ -9200,30 +9301,77 @@ export interface UpdateCacheResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
   /** The availability zones. */
-  zones?: CachesUpdateResponseZonesList;
+  zones?: UpdateCachResponseZonesList;
 }
-export const UpdateCacheResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCachResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CachesUpdateResponseTagsMap),
+    tags: S.optional(UpdateCachResponseTagsMap),
     location: S.String,
     properties: CacheProperties,
     etag: S.optional(S.String),
-    zones: S.optional(CachesUpdateResponseZonesList),
+    zones: S.optional(UpdateCachResponseZonesList),
   }),
 ).annotate({
-  identifier: "UpdateCacheResponse",
-}) as any as S.Schema<UpdateCacheResponse>;
+  identifier: "UpdateCachResponse",
+}) as any as S.Schema<UpdateCachResponse>;
+
+/** Network features available to the volume. */
+export type UpdateNetAppResourceNetworkSiblingSetRequestNetworkFeatures =
+  | "Basic"
+  | "Standard"
+  | "Basic_Standard"
+  | "Standard_Basic";
+export const UpdateNetAppResourceNetworkSiblingSetRequestNetworkFeatures =
+  /*@__PURE__*/ S.String;
+
+export interface UpdateNetAppResourceNetworkSiblingSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** Network Sibling Set ID for a group of volumes sharing networking resources in a subnet. */
+  networkSiblingSetId: string;
+  /** The Azure Resource URI for a delegated subnet. Must have the delegation Microsoft.NetApp/volumes. Example /subscriptions/subscriptionId/resourceGroups/resourceGroup/providers/Microsoft.Network/virtualNetworks/testVnet/subnets/{mySubnet} */
+  subnetId: string;
+  /** Network sibling set state Id identifying the current state of the sibling set. */
+  networkSiblingSetStateId: string;
+  /** Network features available to the volume. */
+  networkFeatures:
+    | UpdateNetAppResourceNetworkSiblingSetRequestNetworkFeatures
+    | (string & {});
+}
+export const UpdateNetAppResourceNetworkSiblingSetRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      networkSiblingSetId: S.String,
+      subnetId: S.String,
+      networkSiblingSetStateId: S.String,
+      networkFeatures:
+        UpdateNetAppResourceNetworkSiblingSetRequestNetworkFeatures,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/updateNetworkSiblingSet",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateNetAppResourceNetworkSiblingSetRequest",
+  }) as any as S.Schema<UpdateNetAppResourceNetworkSiblingSetRequest>;
 
 /** Resource tags */
-export type PoolsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const PoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdatePoolRequestTagsMap = { [key: string]: string | undefined };
+export const UpdatePoolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePoolRequestTagsMap>;
 
 /** The qos type of the pool */
 export type QosType = "Auto" | "Manual";
@@ -9263,7 +9411,7 @@ export interface UpdatePoolRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: PoolsUpdateRequestTagsMap;
+  tags?: UpdatePoolRequestTagsMap;
   /** Capacity pool properties */
   properties?: PoolPatchProperties;
 }
@@ -9274,7 +9422,7 @@ export const UpdatePoolRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     poolName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(PoolsUpdateRequestTagsMap),
+    tags: S.optional(UpdatePoolRequestTagsMap),
     properties: S.optional(PoolPatchProperties),
   }).pipe(
     T.Http({
@@ -9289,11 +9437,11 @@ export const UpdatePoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePoolRequest>;
 
 /** Resource tags. */
-export type PoolsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const PoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdatePoolResponseTagsMap = { [key: string]: string | undefined };
+export const UpdatePoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePoolResponseTagsMap>;
 
 export interface UpdatePoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9305,7 +9453,7 @@ export interface UpdatePoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PoolsUpdateResponseTagsMap;
+  tags?: UpdatePoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Capacity pool properties */
@@ -9319,7 +9467,7 @@ export const UpdatePoolResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PoolsUpdateResponseTagsMap),
+    tags: S.optional(UpdatePoolResponseTagsMap),
     location: S.String,
     properties: PoolProperties,
     etag: S.optional(S.String),
@@ -9390,13 +9538,13 @@ export const UpdateSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSnapshotResponse>;
 
 /** Resource tags */
-export type SnapshotPoliciesUpdateRequestTagsMap = {
+export type UpdateSnapshotPolicyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SnapshotPoliciesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSnapshotPolicyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotPoliciesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSnapshotPolicyRequestTagsMap>;
 
 export interface UpdateSnapshotPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9410,7 +9558,7 @@ export interface UpdateSnapshotPolicyRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: SnapshotPoliciesUpdateRequestTagsMap;
+  tags?: UpdateSnapshotPolicyRequestTagsMap;
   /** Snapshot Policy properties */
   properties?: SnapshotPolicyPropertiesInput;
 }
@@ -9421,7 +9569,7 @@ export const UpdateSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     snapshotPolicyName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(SnapshotPoliciesUpdateRequestTagsMap),
+    tags: S.optional(UpdateSnapshotPolicyRequestTagsMap),
     properties: S.optional(SnapshotPolicyPropertiesInput),
   }).pipe(
     T.Http({
@@ -9436,13 +9584,13 @@ export const UpdateSnapshotPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSnapshotPolicyRequest>;
 
 /** Resource tags. */
-export type SnapshotPoliciesUpdateResponseTagsMap = {
+export type UpdateSnapshotPolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SnapshotPoliciesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSnapshotPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotPoliciesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSnapshotPolicyResponseTagsMap>;
 
 export interface UpdateSnapshotPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9454,7 +9602,7 @@ export interface UpdateSnapshotPolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SnapshotPoliciesUpdateResponseTagsMap;
+  tags?: UpdateSnapshotPolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Snapshot policy Properties */
@@ -9468,7 +9616,7 @@ export const UpdateSnapshotPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotPoliciesUpdateResponseTagsMap),
+    tags: S.optional(UpdateSnapshotPolicyResponseTagsMap),
     location: S.String,
     properties: SnapshotPolicyProperties,
     etag: S.optional(S.String),
@@ -9478,11 +9626,11 @@ export const UpdateSnapshotPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSnapshotPolicyResponse>;
 
 /** Resource tags */
-export type VolumesUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const VolumesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVolumeRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVolumeRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVolumeRequestTagsMap>;
 
 /** The service level of the file system */
 export type ServiceLevel =
@@ -9630,7 +9778,7 @@ export interface UpdateVolumeRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: VolumesUpdateRequestTagsMap;
+  tags?: UpdateVolumeRequestTagsMap;
   /** Patchable volume properties */
   properties?: VolumePatchProperties;
 }
@@ -9642,7 +9790,7 @@ export const UpdateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
     poolName: S.String.pipe(T.Label()),
     volumeName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(VolumesUpdateRequestTagsMap),
+    tags: S.optional(UpdateVolumeRequestTagsMap),
     properties: S.optional(VolumePatchProperties),
   }).pipe(
     T.Http({
@@ -9657,19 +9805,17 @@ export const UpdateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVolumeRequest>;
 
 /** Resource tags. */
-export type VolumesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VolumesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVolumeResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateVolumeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVolumeResponseTagsMap>;
 
 /** The availability zones. */
-export type VolumesUpdateResponseZonesList = Array<string>;
-export const VolumesUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateVolumeResponseZonesList = Array<string>;
+export const UpdateVolumeResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<VolumesUpdateResponseZonesList>;
+) as any as S.Schema<UpdateVolumeResponseZonesList>;
 
 export interface UpdateVolumeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9681,7 +9827,7 @@ export interface UpdateVolumeResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VolumesUpdateResponseTagsMap;
+  tags?: UpdateVolumeResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Volume properties */
@@ -9689,7 +9835,7 @@ export interface UpdateVolumeResponse {
   /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
   etag?: string;
   /** The availability zones. */
-  zones?: VolumesUpdateResponseZonesList;
+  zones?: UpdateVolumeResponseZonesList;
 }
 export const UpdateVolumeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9697,24 +9843,24 @@ export const UpdateVolumeResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VolumesUpdateResponseTagsMap),
+    tags: S.optional(UpdateVolumeResponseTagsMap),
     location: S.String,
     properties: VolumeProperties,
     etag: S.optional(S.String),
-    zones: S.optional(VolumesUpdateResponseZonesList),
+    zones: S.optional(UpdateVolumeResponseZonesList),
   }),
 ).annotate({
   identifier: "UpdateVolumeResponse",
 }) as any as S.Schema<UpdateVolumeResponse>;
 
 /** Resource tags */
-export type VolumeQuotaRulesUpdateRequestTagsMap = {
+export type UpdateVolumeQuotaRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VolumeQuotaRulesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVolumeQuotaRuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumeQuotaRulesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVolumeQuotaRuleRequestTagsMap>;
 
 export interface UpdateVolumeQuotaRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9730,7 +9876,7 @@ export interface UpdateVolumeQuotaRuleRequest {
   /** The name of volume quota rule */
   volumeQuotaRuleName: string;
   /** Resource tags */
-  tags?: VolumeQuotaRulesUpdateRequestTagsMap;
+  tags?: UpdateVolumeQuotaRuleRequestTagsMap;
   /** Volume Quota Rule Properties */
   properties?: VolumeQuotaRulesPropertiesInput;
 }
@@ -9742,7 +9888,7 @@ export const UpdateVolumeQuotaRuleRequest = /*@__PURE__*/ S.suspend(() =>
     poolName: S.String.pipe(T.Label()),
     volumeName: S.String.pipe(T.Label()),
     volumeQuotaRuleName: S.String.pipe(T.Label()),
-    tags: S.optional(VolumeQuotaRulesUpdateRequestTagsMap),
+    tags: S.optional(UpdateVolumeQuotaRuleRequestTagsMap),
     properties: S.optional(VolumeQuotaRulesPropertiesInput),
   }).pipe(
     T.Http({
@@ -9757,13 +9903,13 @@ export const UpdateVolumeQuotaRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVolumeQuotaRuleRequest>;
 
 /** Resource tags. */
-export type VolumeQuotaRulesUpdateResponseTagsMap = {
+export type UpdateVolumeQuotaRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VolumeQuotaRulesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVolumeQuotaRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumeQuotaRulesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVolumeQuotaRuleResponseTagsMap>;
 
 export interface UpdateVolumeQuotaRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9775,7 +9921,7 @@ export interface UpdateVolumeQuotaRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VolumeQuotaRulesUpdateResponseTagsMap;
+  tags?: UpdateVolumeQuotaRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Volume Quota Rule Properties */
@@ -9787,7 +9933,7 @@ export const UpdateVolumeQuotaRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VolumeQuotaRulesUpdateResponseTagsMap),
+    tags: S.optional(UpdateVolumeQuotaRuleResponseTagsMap),
     location: S.String,
     properties: S.optional(VolumeQuotaRulesProperties),
   }),
@@ -9989,82 +10135,6 @@ export const VolumesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumesCreateOrUpdateResponse",
 }) as any as S.Schema<VolumesCreateOrUpdateResponse>;
 
-export interface VolumesFinalizeExternalReplicationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the volume */
-  volumeName: string;
-}
-export const VolumesFinalizeExternalReplicationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      poolName: S.String.pipe(T.Label()),
-      volumeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/finalizeExternalReplication",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VolumesFinalizeExternalReplicationRequest",
-  }) as any as S.Schema<VolumesFinalizeExternalReplicationRequest>;
-
-export interface VolumesFinalizeExternalReplicationResponse {}
-export const VolumesFinalizeExternalReplicationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VolumesFinalizeExternalReplicationResponse",
-  }) as any as S.Schema<VolumesFinalizeExternalReplicationResponse>;
-
-export interface VolumesFinalizeRelocationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the volume */
-  volumeName: string;
-}
-export const VolumesFinalizeRelocationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/finalizeRelocation",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesFinalizeRelocationRequest",
-}) as any as S.Schema<VolumesFinalizeRelocationRequest>;
-
-export interface VolumesFinalizeRelocationResponse {}
-export const VolumesFinalizeRelocationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VolumesFinalizeRelocationResponse",
-}) as any as S.Schema<VolumesFinalizeRelocationResponse>;
-
 export interface VolumesListGetGroupIdListForLdapUserRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -10194,44 +10264,6 @@ export const ClusterPeerCommandResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ClusterPeerCommandResponse",
 }) as any as S.Schema<ClusterPeerCommandResponse>;
-
-export interface VolumesPerformReplicationTransferRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the volume */
-  volumeName: string;
-}
-export const VolumesPerformReplicationTransferRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      poolName: S.String.pipe(T.Label()),
-      volumeName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/performReplicationTransfer",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "VolumesPerformReplicationTransferRequest",
-}) as any as S.Schema<VolumesPerformReplicationTransferRequest>;
-
-export interface VolumesPerformReplicationTransferResponse {}
-export const VolumesPerformReplicationTransferResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VolumesPerformReplicationTransferResponse",
-  }) as any as S.Schema<VolumesPerformReplicationTransferResponse>;
 
 export interface VolumesPoolChangeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -10538,44 +10570,6 @@ export const ReplicationStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplicationStatus",
 }) as any as S.Schema<ReplicationStatus>;
 
-export interface VolumesResetCifsPasswordRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the NetApp account */
-  accountName: string;
-  /** The name of the capacity pool */
-  poolName: string;
-  /** The name of the volume */
-  volumeName: string;
-}
-export const VolumesResetCifsPasswordRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/resetCifsPassword",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesResetCifsPasswordRequest",
-}) as any as S.Schema<VolumesResetCifsPasswordRequest>;
-
-export interface VolumesResetCifsPasswordResponse {}
-export const VolumesResetCifsPasswordResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VolumesResetCifsPasswordResponse",
-}) as any as S.Schema<VolumesResetCifsPasswordResponse>;
-
 export interface VolumesResyncReplicationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -10807,21 +10801,6 @@ export const AccountsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountsRenewCredentialsError = AzureOpError;
-/** Renew identity credentials that are used to authenticate to key vault, for customer-managed key encryption. If encryption.identity.principalId does not match identity.principalId, running this operation will fix it. */
-export const AccountsRenewCredentials: API.OperationMethod<
-  AccountsRenewCredentialsRequest,
-  AccountsRenewCredentialsResponse,
-  AccountsRenewCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsRenewCredentialsRequest,
-  output: AccountsRenewCredentialsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AccountsTransitionToCmkError = AzureOpError;
 /** Transitions all volumes in a VNet to a different encryption key source (Microsoft-managed key or Azure Key Vault). Operation fails if targeted volumes share encryption sibling set with volumes from another account. */
 export const AccountsTransitionToCmk: API.OperationMethod<
@@ -10867,21 +10846,6 @@ export const AuthorizeVolumeReplication: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BackupPoliciesList2Error = AzureOpError;
-/** List backup policies for Netapp Account */
-export const BackupPoliciesList2: API.OperationMethod<
-  BackupPoliciesListRequest,
-  BackupPoliciesList,
-  BackupPoliciesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupPoliciesListRequest,
-  output: BackupPoliciesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BackupsGetVolumeLatestRestoreStatusError = AzureOpError;
 /** Get the latest status of the restore for a volume */
 export const BackupsGetVolumeLatestRestoreStatus: API.OperationMethod<
@@ -10892,36 +10856,6 @@ export const BackupsGetVolumeLatestRestoreStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BackupsGetVolumeLatestRestoreStatusRequest,
   output: RestoreStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupsUnderAccountMigrateBackupsError = AzureOpError;
-/** Migrate the backups under a NetApp account to backup vault */
-export const BackupsUnderAccountMigrateBackups: API.OperationMethod<
-  BackupsUnderAccountMigrateBackupsRequest,
-  BackupsUnderAccountMigrateBackupsResponse,
-  BackupsUnderAccountMigrateBackupsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupsUnderAccountMigrateBackupsRequest,
-  output: BackupsUnderAccountMigrateBackupsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BackupsUnderVolumeMigrateBackupsError = AzureOpError;
-/** Migrate the backups under volume to backup vault */
-export const BackupsUnderVolumeMigrateBackups: API.OperationMethod<
-  BackupsUnderVolumeMigrateBackupsRequest,
-  BackupsUnderVolumeMigrateBackupsResponse,
-  BackupsUnderVolumeMigrateBackupsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BackupsUnderVolumeMigrateBackupsRequest,
-  output: BackupsUnderVolumeMigrateBackupsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10957,21 +10891,6 @@ export const BucketsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BucketsRefreshCertificateError = AzureOpError;
-/** This operation will fetch the certificate from Azure Key Vault and install it on the bucket server. */
-export const BucketsRefreshCertificate: API.OperationMethod<
-  BucketsRefreshCertificateRequest,
-  BucketsRefreshCertificateResponse,
-  BucketsRefreshCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BucketsRefreshCertificateRequest,
-  output: BucketsRefreshCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CachesCreateOrUpdateError = AzureOpError;
 /** Create or update the specified Cache within the Capacity Pool */
 export const CachesCreateOrUpdate: API.OperationMethod<
@@ -10997,21 +10916,6 @@ export const CachesPoolChange: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CachesPoolChangeRequest,
   output: CachesPoolChangeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CachesResetSmbPasswordError = AzureOpError;
-/** Resets the SMB password for the cache */
-export const CachesResetSmbPassword: API.OperationMethod<
-  CachesResetSmbPasswordRequest,
-  CachesResetSmbPasswordResponse,
-  CachesResetSmbPasswordError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CachesResetSmbPasswordRequest,
-  output: CachesResetSmbPasswordResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11057,6 +10961,21 @@ export const CheckNetAppResourceQuotaAvailability: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CheckNetAppResourceQuotaAvailabilityRequest,
   output: CheckAvailabilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ClearRansomwareReportSuspectsError = AzureOpError;
+/** Clear ransomware suspects for the given Advanced Ransomware Protection report. You should evaluate the report to determine whether the activity is acceptable (false positive) or whether an attack seems malicious. ARP creates snapshots named Anti_ransomware_backup when it detects a potential ransomware threat. You can use one of these ARP snapshots or another snapshot of your volume to restore data", */
+export const ClearRansomwareReportSuspects: API.OperationMethod<
+  ClearRansomwareReportSuspectsRequest,
+  ClearRansomwareReportSuspectsResponse,
+  ClearRansomwareReportSuspectsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ClearRansomwareReportSuspectsRequest,
+  output: ClearRansomwareReportSuspectsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11227,16 +11146,16 @@ export const DeleteBucket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteCacheError = AzureOpError;
+export type DeleteCachError = AzureOpError;
 /** Delete the specified cache */
-export const DeleteCache: API.OperationMethod<
-  DeleteCacheRequest,
-  DeleteCacheResponse,
-  DeleteCacheError,
+export const DeleteCach: API.OperationMethod<
+  DeleteCachRequest,
+  DeleteCachResponse,
+  DeleteCachError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCacheRequest,
-  output: DeleteCacheResponse,
+  input: DeleteCachRequest,
+  output: DeleteCachResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11347,30 +11266,60 @@ export const DeleteVolumeReplication: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GenerateBucketAkvCredentialError = AzureOpError;
-/** Generate the access key and secret key used for accessing the specified volume bucket and store in Azure Key Vault. */
-export const GenerateBucketAkvCredential: API.OperationMethod<
-  GenerateBucketAkvCredentialRequest,
-  GenerateBucketAkvCredentialResponse,
-  GenerateBucketAkvCredentialError,
+export type FinalizeVolumeExternalReplicationError = AzureOpError;
+/** Finalizes the migration of an external volume by releasing the replication and breaking the external cluster peering if no other migration is active. */
+export const FinalizeVolumeExternalReplication: API.OperationMethod<
+  FinalizeVolumeExternalReplicationRequest,
+  FinalizeVolumeExternalReplicationResponse,
+  FinalizeVolumeExternalReplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateBucketAkvCredentialRequest,
-  output: GenerateBucketAkvCredentialResponse,
+  input: FinalizeVolumeExternalReplicationRequest,
+  output: FinalizeVolumeExternalReplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GenerateBucketCredentialError = AzureOpError;
-/** Generate the access key and secret key used for accessing the specified volume bucket. Also return expiry date and time of key pair (in UTC). */
-export const GenerateBucketCredential: API.OperationMethod<
-  GenerateBucketCredentialRequest,
-  BucketGenerateCredentials,
-  GenerateBucketCredentialError,
+export type FinalizeVolumeRelocationError = AzureOpError;
+/** Finalizes the relocation of the volume and cleans up the old volume. */
+export const FinalizeVolumeRelocation: API.OperationMethod<
+  FinalizeVolumeRelocationRequest,
+  FinalizeVolumeRelocationResponse,
+  FinalizeVolumeRelocationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateBucketCredentialRequest,
+  input: FinalizeVolumeRelocationRequest,
+  output: FinalizeVolumeRelocationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GenerateBucketAkvCredentialsError = AzureOpError;
+/** Generate the access key and secret key used for accessing the specified volume bucket and store in Azure Key Vault. */
+export const GenerateBucketAkvCredentials: API.OperationMethod<
+  GenerateBucketAkvCredentialsRequest,
+  GenerateBucketAkvCredentialsResponse,
+  GenerateBucketAkvCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GenerateBucketAkvCredentialsRequest,
+  output: GenerateBucketAkvCredentialsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GenerateBucketCredentialsError = AzureOpError;
+/** Generate the access key and secret key used for accessing the specified volume bucket. Also return expiry date and time of key pair (in UTC). */
+export const GenerateBucketCredentials: API.OperationMethod<
+  GenerateBucketCredentialsRequest,
+  BucketGenerateCredentials,
+  GenerateBucketCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GenerateBucketCredentialsRequest,
   output: BucketGenerateCredentials,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -11482,16 +11431,16 @@ export const GetBucket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCacheError = AzureOpError;
+export type GetCachError = AzureOpError;
 /** Get the details of the specified Cache */
-export const GetCache: API.OperationMethod<
-  GetCacheRequest,
-  GetCacheResponse,
-  GetCacheError,
+export const GetCach: API.OperationMethod<
+  GetCachRequest,
+  GetCachResponse,
+  GetCachError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCacheRequest,
-  output: GetCacheResponse,
+  input: GetCachRequest,
+  output: GetCachResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11512,16 +11461,16 @@ export const GetNetAppResourceQuotaLimit: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetNetAppResourceQuotaLimitAccountError = AzureOpError;
+export type GetNetAppResourceQuotaLimitsAccountError = AzureOpError;
 /** Get the default, current and usages account quota limit */
-export const GetNetAppResourceQuotaLimitAccount: API.OperationMethod<
-  GetNetAppResourceQuotaLimitAccountRequest,
-  GetNetAppResourceQuotaLimitAccountResponse,
-  GetNetAppResourceQuotaLimitAccountError,
+export const GetNetAppResourceQuotaLimitsAccount: API.OperationMethod<
+  GetNetAppResourceQuotaLimitsAccountRequest,
+  GetNetAppResourceQuotaLimitsAccountResponse,
+  GetNetAppResourceQuotaLimitsAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetNetAppResourceQuotaLimitAccountRequest,
-  output: GetNetAppResourceQuotaLimitAccountResponse,
+  input: GetNetAppResourceQuotaLimitsAccountRequest,
+  output: GetNetAppResourceQuotaLimitsAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11707,6 +11656,21 @@ export const ListBackupByVault: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListBackupPoliciesError = AzureOpError;
+/** List backup policies for Netapp Account */
+export const ListBackupPolicies: API.OperationMethod<
+  ListBackupPoliciesRequest,
+  BackupPoliciesList,
+  ListBackupPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBackupPoliciesRequest,
+  output: BackupPoliciesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListBackupVaultByNetAppAccountError = AzureOpError;
 /** List and describe all Backup Vaults in the NetApp account. */
 export const ListBackupVaultByNetAppAccount: API.OperationMethod<
@@ -11737,21 +11701,6 @@ export const ListBuckets: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListCachePeeringPassphrasesError = AzureOpError;
-/** This operation will list the cluster peering command, cluster peering passphrase and the vserver peering command */
-export const ListCachePeeringPassphrases: API.OperationMethod<
-  ListCachePeeringPassphrasesRequest,
-  PeeringPassphrases,
-  ListCachePeeringPassphrasesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListCachePeeringPassphrasesRequest,
-  output: PeeringPassphrases,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListCachesError = AzureOpError;
 /** List all Caches within the Capacity Pool */
 export const ListCaches: API.OperationMethod<
@@ -11767,16 +11716,16 @@ export const ListCaches: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListNetAppResourceQuotaLimitAccountError = AzureOpError;
-/** Gets a list of quota limits for all quotas that are under account. Currently PoolsPerAccount is the only one. */
-export const ListNetAppResourceQuotaLimitAccount: API.OperationMethod<
-  ListNetAppResourceQuotaLimitAccountRequest,
-  QuotaItemList,
-  ListNetAppResourceQuotaLimitAccountError,
+export type ListCachPeeringPassphrasesError = AzureOpError;
+/** This operation will list the cluster peering command, cluster peering passphrase and the vserver peering command */
+export const ListCachPeeringPassphrases: API.OperationMethod<
+  ListCachPeeringPassphrasesRequest,
+  PeeringPassphrases,
+  ListCachPeeringPassphrasesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListNetAppResourceQuotaLimitAccountRequest,
-  output: QuotaItemList,
+  input: ListCachPeeringPassphrasesRequest,
+  output: PeeringPassphrases,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11791,6 +11740,21 @@ export const ListNetAppResourceQuotaLimits: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListNetAppResourceQuotaLimitsRequest,
+  output: QuotaItemList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetAppResourceQuotaLimitsAccountError = AzureOpError;
+/** Gets a list of quota limits for all quotas that are under account. Currently PoolsPerAccount is the only one. */
+export const ListNetAppResourceQuotaLimitsAccount: API.OperationMethod<
+  ListNetAppResourceQuotaLimitsAccountRequest,
+  QuotaItemList,
+  ListNetAppResourceQuotaLimitsAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNetAppResourceQuotaLimitsAccountRequest,
   output: QuotaItemList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -11857,6 +11821,36 @@ export const ListPools: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListRansomwareReportsError = AzureOpError;
+/** List all ransomware reports for the volume Returns a list of the Advanced Ransomware Protection (ARP) reports for the volume. ARP reports are created with a list of suspected files when it detects any combination of high data entropy, abnormal volume activity with data encryption, and unusual file extensions. ARP creates snapshots named Anti_ransomware_backup when it detects a potential ransomware threat. You can use one of these ARP snapshots or another snapshot of your volume to restore data" */
+export const ListRansomwareReports: API.OperationMethod<
+  ListRansomwareReportsRequest,
+  RansomwareReportsList,
+  ListRansomwareReportsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRansomwareReportsRequest,
+  output: RansomwareReportsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSnapshotPoliciesError = AzureOpError;
+/** List snapshot policy */
+export const ListSnapshotPolicies: API.OperationMethod<
+  ListSnapshotPoliciesRequest,
+  SnapshotPoliciesList,
+  ListSnapshotPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSnapshotPoliciesRequest,
+  output: SnapshotPoliciesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListSnapshotPolicyVolumesError = AzureOpError;
 /** Get volumes associated with snapshot policy */
 export const ListSnapshotPolicyVolumes: API.OperationMethod<
@@ -11867,6 +11861,21 @@ export const ListSnapshotPolicyVolumes: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListSnapshotPolicyVolumesRequest,
   output: SnapshotPolicyVolumeList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSnapshotsError = AzureOpError;
+/** List all snapshots associated with the volume */
+export const ListSnapshots: API.OperationMethod<
+  ListSnapshotsRequest,
+  SnapshotsList,
+  ListSnapshotsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSnapshotsRequest,
+  output: SnapshotsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11947,6 +11956,36 @@ export const ListVolumes: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MigrateBackupsUnderAccountBackupsError = AzureOpError;
+/** Migrate the backups under a NetApp account to backup vault */
+export const MigrateBackupsUnderAccountBackups: API.OperationMethod<
+  MigrateBackupsUnderAccountBackupsRequest,
+  MigrateBackupsUnderAccountBackupsResponse,
+  MigrateBackupsUnderAccountBackupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateBackupsUnderAccountBackupsRequest,
+  output: MigrateBackupsUnderAccountBackupsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateBackupsUnderVolumeBackupsError = AzureOpError;
+/** Migrate the backups under volume to backup vault */
+export const MigrateBackupsUnderVolumeBackups: API.OperationMethod<
+  MigrateBackupsUnderVolumeBackupsRequest,
+  MigrateBackupsUnderVolumeBackupsResponse,
+  MigrateBackupsUnderVolumeBackupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateBackupsUnderVolumeBackupsRequest,
+  output: MigrateBackupsUnderVolumeBackupsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type NetAppResourceQueryRegionInfoError = AzureOpError;
 /** Describes region specific information. Provides storage to network proximity and logical zone mapping information. */
 export const NetAppResourceQueryRegionInfo: API.OperationMethod<
@@ -11957,21 +11996,6 @@ export const NetAppResourceQueryRegionInfo: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NetAppResourceQueryRegionInfoRequest,
   output: RegionInfo,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetAppResourceUpdateNetworkSiblingSetError = AzureOpError;
-/** Update the network features of a network sibling set Update the network features of the specified network sibling set. */
-export const NetAppResourceUpdateNetworkSiblingSet: API.OperationMethod<
-  NetAppResourceUpdateNetworkSiblingSetRequest,
-  NetworkSiblingSet,
-  NetAppResourceUpdateNetworkSiblingSetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetAppResourceUpdateNetworkSiblingSetRequest,
-  output: NetworkSiblingSet,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11992,61 +12016,91 @@ export const PoolsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RansomwareReportsClearSuspectsError = AzureOpError;
-/** Clear ransomware suspects for the given Advanced Ransomware Protection report. You should evaluate the report to determine whether the activity is acceptable (false positive) or whether an attack seems malicious. ARP creates snapshots named Anti_ransomware_backup when it detects a potential ransomware threat. You can use one of these ARP snapshots or another snapshot of your volume to restore data", */
-export const RansomwareReportsClearSuspects: API.OperationMethod<
-  RansomwareReportsClearSuspectsRequest,
-  RansomwareReportsClearSuspectsResponse,
-  RansomwareReportsClearSuspectsError,
+export type RefreshBucketCertificateError = AzureOpError;
+/** This operation will fetch the certificate from Azure Key Vault and install it on the bucket server. */
+export const RefreshBucketCertificate: API.OperationMethod<
+  RefreshBucketCertificateRequest,
+  RefreshBucketCertificateResponse,
+  RefreshBucketCertificateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RansomwareReportsClearSuspectsRequest,
-  output: RansomwareReportsClearSuspectsResponse,
+  input: RefreshBucketCertificateRequest,
+  output: RefreshBucketCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RansomwareReportsList2Error = AzureOpError;
-/** List all ransomware reports for the volume Returns a list of the Advanced Ransomware Protection (ARP) reports for the volume. ARP reports are created with a list of suspected files when it detects any combination of high data entropy, abnormal volume activity with data encryption, and unusual file extensions. ARP creates snapshots named Anti_ransomware_backup when it detects a potential ransomware threat. You can use one of these ARP snapshots or another snapshot of your volume to restore data" */
-export const RansomwareReportsList2: API.OperationMethod<
-  RansomwareReportsListRequest,
-  RansomwareReportsList,
-  RansomwareReportsList2Error,
+export type RenewAccountCredentialsError = AzureOpError;
+/** Renew identity credentials that are used to authenticate to key vault, for customer-managed key encryption. If encryption.identity.principalId does not match identity.principalId, running this operation will fix it. */
+export const RenewAccountCredentials: API.OperationMethod<
+  RenewAccountCredentialsRequest,
+  RenewAccountCredentialsResponse,
+  RenewAccountCredentialsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RansomwareReportsListRequest,
-  output: RansomwareReportsList,
+  input: RenewAccountCredentialsRequest,
+  output: RenewAccountCredentialsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RestoreBackupUnderBackupVaultFileError = AzureOpError;
+export type ResetCachSmbPasswordError = AzureOpError;
+/** Resets the SMB password for the cache */
+export const ResetCachSmbPassword: API.OperationMethod<
+  ResetCachSmbPasswordRequest,
+  ResetCachSmbPasswordResponse,
+  ResetCachSmbPasswordError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetCachSmbPasswordRequest,
+  output: ResetCachSmbPasswordResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetVolumeCifsPasswordError = AzureOpError;
+/** Reset cifs password from volume */
+export const ResetVolumeCifsPassword: API.OperationMethod<
+  ResetVolumeCifsPasswordRequest,
+  ResetVolumeCifsPasswordResponse,
+  ResetVolumeCifsPasswordError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetVolumeCifsPasswordRequest,
+  output: ResetVolumeCifsPasswordResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreBackupsUnderBackupVaultFilesError = AzureOpError;
 /** Restore the specified files from the specified backup to the active filesystem */
-export const RestoreBackupUnderBackupVaultFile: API.OperationMethod<
-  RestoreBackupUnderBackupVaultFileRequest,
-  RestoreBackupUnderBackupVaultFileResponse,
-  RestoreBackupUnderBackupVaultFileError,
+export const RestoreBackupsUnderBackupVaultFiles: API.OperationMethod<
+  RestoreBackupsUnderBackupVaultFilesRequest,
+  RestoreBackupsUnderBackupVaultFilesResponse,
+  RestoreBackupsUnderBackupVaultFilesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestoreBackupUnderBackupVaultFileRequest,
-  output: RestoreBackupUnderBackupVaultFileResponse,
+  input: RestoreBackupsUnderBackupVaultFilesRequest,
+  output: RestoreBackupsUnderBackupVaultFilesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RestoreSnapshotFileError = AzureOpError;
+export type RestoreSnapshotFilesError = AzureOpError;
 /** Restore the specified files from the specified snapshot to the active filesystem */
-export const RestoreSnapshotFile: API.OperationMethod<
-  RestoreSnapshotFileRequest,
-  RestoreSnapshotFileResponse,
-  RestoreSnapshotFileError,
+export const RestoreSnapshotFiles: API.OperationMethod<
+  RestoreSnapshotFilesRequest,
+  RestoreSnapshotFilesResponse,
+  RestoreSnapshotFilesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestoreSnapshotFileRequest,
-  output: RestoreSnapshotFileResponse,
+  input: RestoreSnapshotFilesRequest,
+  output: RestoreSnapshotFilesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -12067,31 +12121,16 @@ export const SetNetAppResourceQueryNetworkSibling: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SnapshotPoliciesList2Error = AzureOpError;
-/** List snapshot policy */
-export const SnapshotPoliciesList2: API.OperationMethod<
-  SnapshotPoliciesListRequest,
-  SnapshotPoliciesList,
-  SnapshotPoliciesList2Error,
+export type TransferVolumesPerformReplicationError = AzureOpError;
+/** Performs an adhoc replication transfer on a volume with volumeType Migration */
+export const TransferVolumesPerformReplication: API.OperationMethod<
+  TransferVolumesPerformReplicationRequest,
+  TransferVolumesPerformReplicationResponse,
+  TransferVolumesPerformReplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotPoliciesListRequest,
-  output: SnapshotPoliciesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SnapshotsList2Error = AzureOpError;
-/** List all snapshots associated with the volume */
-export const SnapshotsList2: API.OperationMethod<
-  SnapshotsListRequest,
-  SnapshotsList,
-  SnapshotsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotsListRequest,
-  output: SnapshotsList,
+  input: TransferVolumesPerformReplicationRequest,
+  output: TransferVolumesPerformReplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -12172,16 +12211,31 @@ export const UpdateBucket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateCacheError = AzureOpError;
+export type UpdateCachError = AzureOpError;
 /** Patch the specified Cache */
-export const UpdateCache: API.OperationMethod<
-  UpdateCacheRequest,
-  UpdateCacheResponse,
-  UpdateCacheError,
+export const UpdateCach: API.OperationMethod<
+  UpdateCachRequest,
+  UpdateCachResponse,
+  UpdateCachError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateCacheRequest,
-  output: UpdateCacheResponse,
+  input: UpdateCachRequest,
+  output: UpdateCachResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNetAppResourceNetworkSiblingSetError = AzureOpError;
+/** Update the network features of a network sibling set Update the network features of the specified network sibling set. */
+export const UpdateNetAppResourceNetworkSiblingSet: API.OperationMethod<
+  UpdateNetAppResourceNetworkSiblingSetRequest,
+  NetworkSiblingSet,
+  UpdateNetAppResourceNetworkSiblingSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetAppResourceNetworkSiblingSetRequest,
+  output: NetworkSiblingSet,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -12307,36 +12361,6 @@ export const VolumesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VolumesFinalizeExternalReplicationError = AzureOpError;
-/** Finalizes the migration of an external volume by releasing the replication and breaking the external cluster peering if no other migration is active. */
-export const VolumesFinalizeExternalReplication: API.OperationMethod<
-  VolumesFinalizeExternalReplicationRequest,
-  VolumesFinalizeExternalReplicationResponse,
-  VolumesFinalizeExternalReplicationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesFinalizeExternalReplicationRequest,
-  output: VolumesFinalizeExternalReplicationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesFinalizeRelocationError = AzureOpError;
-/** Finalizes the relocation of the volume and cleans up the old volume. */
-export const VolumesFinalizeRelocation: API.OperationMethod<
-  VolumesFinalizeRelocationRequest,
-  VolumesFinalizeRelocationResponse,
-  VolumesFinalizeRelocationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesFinalizeRelocationRequest,
-  output: VolumesFinalizeRelocationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VolumesListGetGroupIdListForLdapUserError = AzureOpError;
 /** Returns the list of group Ids for a specific LDAP User */
 export const VolumesListGetGroupIdListForLdapUser: API.OperationMethod<
@@ -12362,21 +12386,6 @@ export const VolumesPeerExternalCluster: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VolumesPeerExternalClusterRequest,
   output: ClusterPeerCommandResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesPerformReplicationTransferError = AzureOpError;
-/** Performs an adhoc replication transfer on a volume with volumeType Migration */
-export const VolumesPerformReplicationTransfer: API.OperationMethod<
-  VolumesPerformReplicationTransferRequest,
-  VolumesPerformReplicationTransferResponse,
-  VolumesPerformReplicationTransferError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesPerformReplicationTransferRequest,
-  output: VolumesPerformReplicationTransferResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -12467,21 +12476,6 @@ export const VolumesReplicationStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VolumesReplicationStatusRequest,
   output: ReplicationStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesResetCifsPasswordError = AzureOpError;
-/** Reset cifs password from volume */
-export const VolumesResetCifsPassword: API.OperationMethod<
-  VolumesResetCifsPasswordRequest,
-  VolumesResetCifsPasswordResponse,
-  VolumesResetCifsPasswordError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesResetCifsPasswordRequest,
-  output: VolumesResetCifsPasswordResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

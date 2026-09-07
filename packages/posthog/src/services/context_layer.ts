@@ -48,43 +48,6 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface ContextLayerChannelPagesRetrieveRequest {
-  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
-  organization_id: string;
-  channel_id: string;
-}
-export const ContextLayerChannelPagesRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      organization_id: S.String.pipe(T.Label()),
-      channel_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/organizations/{organization_id}/context_layer/channel-pages/{channel_id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ContextLayerChannelPagesRetrieveRequest",
-}) as any as S.Schema<ContextLayerChannelPagesRetrieveRequest>;
-
-/** Response shape for a channel's page identity in the wiki. */
-export interface ChannelWikiPage {
-  /** Repo-relative path of the wiki page whose frontmatter names the channel. */
-  path: string;
-  /** Whether a page exists at this path. False when the path is a proposal for a channel whose page has not been created yet. */
-  exists?: boolean;
-}
-export const ChannelWikiPage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.String,
-    exists: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ChannelWikiPage",
-}) as any as S.Schema<ChannelWikiPage>;
-
 export interface ContextLayerEnableCreateRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
@@ -148,13 +111,169 @@ export const WikiExport = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WikiExport" }) as any as S.Schema<WikiExport>;
 
-export interface ContextLayerPagesRetrieveRequest {
+export interface CreateContextLayerCommitRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  /** A `git bundle` carrying the ref to land, created in the agent's clone (for example `git bundle create out.bundle origin/main..main`). */
+  bundle: string;
+  /** Optional run summary stored in the landed commit body. */
+  summary?: string;
+  /** Land a dated dreaming branch (`dream/<YYYY-MM-DD>`) as one merge commit instead of rebasing onto `main`. Omit for ordinary commits on `main`. */
+  branch?: string | null;
+}
+export const CreateContextLayerCommitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    bundle: S.String,
+    summary: S.optional(S.String),
+    branch: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/organizations/{organization_id}/context_layer/commits/",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "CreateContextLayerCommitRequest",
+}) as any as S.Schema<CreateContextLayerCommitRequest>;
+
+export interface GetContextLayerChannelPageRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  channel_id: string;
+}
+export const GetContextLayerChannelPageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    channel_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/context_layer/channel-pages/{channel_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetContextLayerChannelPageRequest",
+}) as any as S.Schema<GetContextLayerChannelPageRequest>;
+
+/** Response shape for a channel's page identity in the wiki. */
+export interface ChannelWikiPage {
+  /** Repo-relative path of the wiki page whose frontmatter names the channel. */
+  path: string;
+  /** Whether a page exists at this path. False when the path is a proposal for a channel whose page has not been created yet. */
+  exists?: boolean;
+}
+export const ChannelWikiPage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.String,
+    exists: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ChannelWikiPage",
+}) as any as S.Schema<ChannelWikiPage>;
+
+export interface GetContextLayerDreamRequest {
+  /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
+  organization_id: string;
+  sha: string;
+}
+export const GetContextLayerDreamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+    sha: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/context_layer/dreams/{sha}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetContextLayerDreamRequest",
+}) as any as S.Schema<GetContextLayerDreamRequest>;
+
+/** One dreaming run: the merge commit it landed as, plus what it changed. */
+export interface DreamRun {
+  /** Merge commit sha the run landed as; pass back as `sha` on the detail read. */
+  sha: string;
+  /** The run's date, `YYYY-MM-DD`. */
+  date: string;
+  /** When the run landed. */
+  committed_at: string;
+  /** The run summary the dreaming agent wrote. */
+  summary: string;
+  /** Pages the run created. */
+  pages_added: number;
+  /** Pages the run edited. */
+  pages_modified: number;
+  /** Pages the run removed. */
+  pages_deleted: number;
+}
+export const DreamRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sha: S.String,
+    date: S.String,
+    committed_at: S.String,
+    summary: S.String,
+    pages_added: S.Number,
+    pages_modified: S.Number,
+    pages_deleted: S.Number,
+  }),
+).annotate({ identifier: "DreamRun" }) as any as S.Schema<DreamRun>;
+
+/** * `added` - added * `modified` - modified * `deleted` - deleted */
+export type DreamFileDiffStatusEnum = "added" | "modified" | "deleted";
+export const DreamFileDiffStatusEnum = /*@__PURE__*/ S.String;
+
+/** One file a dream run changed, with its unified patch. */
+export interface DreamFileDiff {
+  /** Repo-relative path of the changed page. */
+  path: string;
+  /** How the run changed the page. * `added` - added * `modified` - modified * `deleted` - deleted */
+  status: DreamFileDiffStatusEnum;
+  /** Unified git patch for this file. */
+  patch: string;
+  /** Whether the patch was cut off for size. */
+  truncated: boolean;
+}
+export const DreamFileDiff = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.String,
+    status: DreamFileDiffStatusEnum,
+    patch: S.String,
+    truncated: S.Boolean,
+  }),
+).annotate({ identifier: "DreamFileDiff" }) as any as S.Schema<DreamFileDiff>;
+
+/** Per-file patches, in diff order. */
+export type DreamRunDetailFilesList = Array<DreamFileDiff>;
+export const DreamRunDetailFilesList = /*@__PURE__*/ S.Array(
+  DreamFileDiff,
+) as any as S.Schema<DreamRunDetailFilesList>;
+
+/** Response shape for one dream run: the run plus the diff it landed. */
+export interface DreamRunDetail {
+  run: DreamRun;
+  /** Per-file patches, in diff order. */
+  files: DreamRunDetailFilesList;
+}
+export const DreamRunDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run: DreamRun,
+    files: DreamRunDetailFilesList,
+  }),
+).annotate({ identifier: "DreamRunDetail" }) as any as S.Schema<DreamRunDetail>;
+
+export interface GetContextLayerPageRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
   /** Repo-relative Markdown path of the page to read. */
   path: string;
 }
-export const ContextLayerPagesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetContextLayerPageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
     path: S.String.pipe(T.Query()),
@@ -166,8 +285,8 @@ export const ContextLayerPagesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ContextLayerPagesRetrieveRequest",
-}) as any as S.Schema<ContextLayerPagesRetrieveRequest>;
+  identifier: "GetContextLayerPageRequest",
+}) as any as S.Schema<GetContextLayerPageRequest>;
 
 /** Response shape for one wiki page. */
 export interface WikiPage {
@@ -189,11 +308,11 @@ export const WikiPage = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WikiPage" }) as any as S.Schema<WikiPage>;
 
-export interface ContextLayerStatusRetrieveRequest {
+export interface GetContextLayerStatusRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
 }
-export const ContextLayerStatusRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetContextLayerStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -204,14 +323,14 @@ export const ContextLayerStatusRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ContextLayerStatusRetrieveRequest",
-}) as any as S.Schema<ContextLayerStatusRetrieveRequest>;
+  identifier: "GetContextLayerStatusRequest",
+}) as any as S.Schema<GetContextLayerStatusRequest>;
 
-export interface ContextLayerTreeRetrieveRequest {
+export interface GetContextLayerTreeRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
 }
-export const ContextLayerTreeRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetContextLayerTreeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -222,8 +341,8 @@ export const ContextLayerTreeRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ContextLayerTreeRetrieveRequest",
-}) as any as S.Schema<ContextLayerTreeRetrieveRequest>;
+  identifier: "GetContextLayerTreeRequest",
+}) as any as S.Schema<GetContextLayerTreeRequest>;
 
 /** Repo-relative path of every Markdown page at the current head. */
 export type WikiTreePathsList = Array<string>;
@@ -245,24 +364,23 @@ export const WikiTree = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WikiTree" }) as any as S.Schema<WikiTree>;
 
-export interface ContextLayerWikiReportRetrieveRequest {
+export interface GetContextLayerWikiReportRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
 }
-export const ContextLayerWikiReportRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      organization_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/organizations/{organization_id}/context_layer/wiki/report/",
-        code: 200,
-      }),
-    ),
+export const GetContextLayerWikiReportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    organization_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/context_layer/wiki/report/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "ContextLayerWikiReportRetrieveRequest",
-}) as any as S.Schema<ContextLayerWikiReportRetrieveRequest>;
+  identifier: "GetContextLayerWikiReportRequest",
+}) as any as S.Schema<GetContextLayerWikiReportRequest>;
 
 export interface WikiHealthFinding {
   /** Stable category used to group this finding. */
@@ -303,33 +421,67 @@ export const WikiHealthReport = /*@__PURE__*/ S.suspend(() =>
   identifier: "WikiHealthReport",
 }) as any as S.Schema<WikiHealthReport>;
 
-export interface CreateContextLayerCommitRequest {
+export interface ListContextLayerDreamsRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
   organization_id: string;
-  /** A `git bundle` carrying the ref to land, created in the agent's clone (for example `git bundle create out.bundle origin/main..main`). */
-  bundle: string;
-  /** Optional run summary stored in the landed commit body. */
-  summary?: string;
-  /** Land a dated dreaming branch (`dream/<YYYY-MM-DD>`) as one merge commit instead of rebasing onto `main`. Omit for ordinary commits on `main`. */
-  branch?: string | null;
 }
-export const CreateContextLayerCommitRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListContextLayerDreamsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organization_id: S.String.pipe(T.Label()),
-    bundle: S.String,
-    summary: S.optional(S.String),
-    branch: S.optional(S.NullOr(S.String)),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/organizations/{organization_id}/context_layer/commits/",
+      method: "GET",
+      uri: "/api/organizations/{organization_id}/context_layer/dreams/",
       code: 200,
-      contentType: "form-urlencoded",
     }),
   ),
 ).annotate({
-  identifier: "CreateContextLayerCommitRequest",
-}) as any as S.Schema<CreateContextLayerCommitRequest>;
+  identifier: "ListContextLayerDreamsRequest",
+}) as any as S.Schema<ListContextLayerDreamsRequest>;
+
+/** * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress */
+export type ActiveDreamRunRunStatusEnum =
+  | "not_started"
+  | "queued"
+  | "in_progress";
+export const ActiveDreamRunRunStatusEnum = /*@__PURE__*/ S.String;
+
+/** A dreaming task that has not reached a terminal state yet. */
+export interface ActiveDreamRun {
+  /** The current task-run state for the active dream. * `not_started` - not_started * `queued` - queued * `in_progress` - in_progress */
+  run_status: ActiveDreamRunRunStatusEnum;
+  /** When the active dream task was created. */
+  started_at: string;
+}
+export const ActiveDreamRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    run_status: ActiveDreamRunRunStatusEnum,
+    started_at: S.String,
+  }),
+).annotate({ identifier: "ActiveDreamRun" }) as any as S.Schema<ActiveDreamRun>;
+
+/** Every landed dream run, newest first. */
+export type DreamRunListDreamsList = Array<DreamRun>;
+export const DreamRunListDreamsList = /*@__PURE__*/ S.Array(
+  DreamRun,
+) as any as S.Schema<DreamRunListDreamsList>;
+
+/** Response shape for the wiki's dream run listing. */
+export interface DreamRunList {
+  /** Commit sha of the wiki's current head. */
+  head_sha: string;
+  /** The organization's active dreaming task, or null when no dream is running. */
+  active_run: ActiveDreamRun | null;
+  /** Every landed dream run, newest first. */
+  dreams: DreamRunListDreamsList;
+}
+export const DreamRunList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    head_sha: S.String,
+    active_run: S.NullOr(ActiveDreamRun),
+    dreams: DreamRunListDreamsList,
+  }),
+).annotate({ identifier: "DreamRunList" }) as any as S.Schema<DreamRunList>;
 
 export interface UpdateContextLayerPageRequest {
   /** ID of the organization you're trying to access. To find the ID of the organization, make a call to /api/organizations/. */
@@ -357,21 +509,6 @@ export const UpdateContextLayerPageRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateContextLayerPageRequest",
 }) as any as S.Schema<UpdateContextLayerPageRequest>;
-
-export type ContextLayerChannelPagesRetrieveError = NotFound | PosthogOpError;
-/** Resolve a channel's wiki page The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
-export const contextLayerChannelPagesRetrieve: API.OperationMethod<
-  ContextLayerChannelPagesRetrieveRequest,
-  ChannelWikiPage,
-  ContextLayerChannelPagesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContextLayerChannelPagesRetrieveRequest,
-  output: ChannelWikiPage,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
 
 export type ContextLayerEnableCreateError = PosthogOpError;
 /** Enable the context layer Create the organization's wiki with the default structure and import existing channel CONTEXT.md documents once. Idempotent. */
@@ -403,66 +540,6 @@ export const contextLayerExportRetrieve: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContextLayerPagesRetrieveError = NotFound | PosthogOpError;
-/** Read a wiki page The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
-export const contextLayerPagesRetrieve: API.OperationMethod<
-  ContextLayerPagesRetrieveRequest,
-  WikiPage,
-  ContextLayerPagesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContextLayerPagesRetrieveRequest,
-  output: WikiPage,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContextLayerStatusRetrieveError = NotFound | PosthogOpError;
-/** Get the wiki head The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
-export const contextLayerStatusRetrieve: API.OperationMethod<
-  ContextLayerStatusRetrieveRequest,
-  ContextLayerStatus,
-  ContextLayerStatusRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContextLayerStatusRetrieveRequest,
-  output: ContextLayerStatus,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContextLayerTreeRetrieveError = NotFound | PosthogOpError;
-/** List wiki pages The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
-export const contextLayerTreeRetrieve: API.OperationMethod<
-  ContextLayerTreeRetrieveRequest,
-  WikiTree,
-  ContextLayerTreeRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContextLayerTreeRetrieveRequest,
-  output: WikiTree,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContextLayerWikiReportRetrieveError = PosthogOpError;
-/** Report wiki health findings The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
-export const contextLayerWikiReportRetrieve: API.OperationMethod<
-  ContextLayerWikiReportRetrieveRequest,
-  WikiHealthReport,
-  ContextLayerWikiReportRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContextLayerWikiReportRetrieveRequest,
-  output: WikiHealthReport,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateContextLayerCommitError =
   | BadRequest
   | Conflict
@@ -477,6 +554,111 @@ export const createContextLayerCommit: API.OperationMethod<
   input: CreateContextLayerCommitRequest,
   output: ContextLayerStatus,
   errors: [BadRequest, Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContextLayerChannelPageError = NotFound | PosthogOpError;
+/** Resolve a channel's wiki page The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
+export const getContextLayerChannelPage: API.OperationMethod<
+  GetContextLayerChannelPageRequest,
+  ChannelWikiPage,
+  GetContextLayerChannelPageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContextLayerChannelPageRequest,
+  output: ChannelWikiPage,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContextLayerDreamError = NotFound | PosthogOpError;
+/** Read one dream run One dreaming run with the per-file unified patches it landed. */
+export const getContextLayerDream: API.OperationMethod<
+  GetContextLayerDreamRequest,
+  DreamRunDetail,
+  GetContextLayerDreamError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContextLayerDreamRequest,
+  output: DreamRunDetail,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContextLayerPageError = NotFound | PosthogOpError;
+/** Read a wiki page The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
+export const getContextLayerPage: API.OperationMethod<
+  GetContextLayerPageRequest,
+  WikiPage,
+  GetContextLayerPageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContextLayerPageRequest,
+  output: WikiPage,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContextLayerStatusError = NotFound | PosthogOpError;
+/** Get the wiki head The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
+export const getContextLayerStatus: API.OperationMethod<
+  GetContextLayerStatusRequest,
+  ContextLayerStatus,
+  GetContextLayerStatusError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContextLayerStatusRequest,
+  output: ContextLayerStatus,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContextLayerTreeError = NotFound | PosthogOpError;
+/** List wiki pages The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
+export const getContextLayerTree: API.OperationMethod<
+  GetContextLayerTreeRequest,
+  WikiTree,
+  GetContextLayerTreeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContextLayerTreeRequest,
+  output: WikiTree,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContextLayerWikiReportError = PosthogOpError;
+/** Report wiki health findings The organization's context wiki: a git repo of Markdown pages hosted by PostHog. */
+export const getContextLayerWikiReport: API.OperationMethod<
+  GetContextLayerWikiReportRequest,
+  WikiHealthReport,
+  GetContextLayerWikiReportError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContextLayerWikiReportRequest,
+  output: WikiHealthReport,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContextLayerDreamsError = NotFound | PosthogOpError;
+/** List dream runs The active dreaming task, when present, plus every landed run newest first. A landed run is one merge commit `dream: <date>` whose body is the summary; its changes are on the detail read. */
+export const listContextLayerDreams: API.OperationMethod<
+  ListContextLayerDreamsRequest,
+  DreamRunList,
+  ListContextLayerDreamsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContextLayerDreamsRequest,
+  output: DreamRunList,
+  errors: [NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

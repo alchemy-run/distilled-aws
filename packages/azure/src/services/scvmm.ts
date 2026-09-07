@@ -676,8 +676,8 @@ export const CreateVirtualMachineInstanceCheckpointResponse =
     identifier: "CreateVirtualMachineInstanceCheckpointResponse",
   }) as any as S.Schema<CreateVirtualMachineInstanceCheckpointResponse>;
 
-export type AvailabilitySetsDeleteRequestForce = "true" | "false";
-export const AvailabilitySetsDeleteRequestForce = /*@__PURE__*/ S.String;
+export type DeleteAvailabilitySetRequestForce = "true" | "false";
+export const DeleteAvailabilitySetRequestForce = /*@__PURE__*/ S.String;
 
 export interface DeleteAvailabilitySetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -687,14 +687,14 @@ export interface DeleteAvailabilitySetRequest {
   /** Name of the AvailabilitySet. */
   availabilitySetResourceName: string;
   /** Forces the resource to be deleted. */
-  force?: AvailabilitySetsDeleteRequestForce | (string & {});
+  force?: DeleteAvailabilitySetRequestForce | (string & {});
 }
 export const DeleteAvailabilitySetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     availabilitySetResourceName: S.String.pipe(T.Label()),
-    force: S.optional(AvailabilitySetsDeleteRequestForce.pipe(T.Query())),
+    force: S.optional(DeleteAvailabilitySetRequestForce.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -714,8 +714,8 @@ export const DeleteAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAvailabilitySetResponse",
 }) as any as S.Schema<DeleteAvailabilitySetResponse>;
 
-export type CloudsDeleteRequestForce = "true" | "false";
-export const CloudsDeleteRequestForce = /*@__PURE__*/ S.String;
+export type DeleteCloudRequestForce = "true" | "false";
+export const DeleteCloudRequestForce = /*@__PURE__*/ S.String;
 
 export interface DeleteCloudRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -725,14 +725,14 @@ export interface DeleteCloudRequest {
   /** Name of the Cloud. */
   cloudResourceName: string;
   /** Forces the resource to be deleted. */
-  force?: CloudsDeleteRequestForce | (string & {});
+  force?: DeleteCloudRequestForce | (string & {});
 }
 export const DeleteCloudRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     cloudResourceName: S.String.pipe(T.Label()),
-    force: S.optional(CloudsDeleteRequestForce.pipe(T.Query())),
+    force: S.optional(DeleteCloudRequestForce.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -813,33 +813,31 @@ export const DeleteInventoryItemResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteInventoryItemResponse",
 }) as any as S.Schema<DeleteInventoryItemResponse>;
 
-export type VirtualMachineInstancesDeleteRequestForce = "true" | "false";
-export const VirtualMachineInstancesDeleteRequestForce = /*@__PURE__*/ S.String;
+export type DeleteVirtualMachineInstanceRequestForce = "true" | "false";
+export const DeleteVirtualMachineInstanceRequestForce = /*@__PURE__*/ S.String;
 
-export type VirtualMachineInstancesDeleteRequestDeleteFromHost =
+export type DeleteVirtualMachineInstanceRequestDeleteFromHost =
   | "true"
   | "false";
-export const VirtualMachineInstancesDeleteRequestDeleteFromHost =
+export const DeleteVirtualMachineInstanceRequestDeleteFromHost =
   /*@__PURE__*/ S.String;
 
 export interface DeleteVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Forces the resource to be deleted. */
-  force?: VirtualMachineInstancesDeleteRequestForce | (string & {});
+  force?: DeleteVirtualMachineInstanceRequestForce | (string & {});
   /** Whether to disable the VM from azure and also delete it from Vmm. */
   deleteFromHost?:
-    | VirtualMachineInstancesDeleteRequestDeleteFromHost
+    | DeleteVirtualMachineInstanceRequestDeleteFromHost
     | (string & {});
 }
 export const DeleteVirtualMachineInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
-    force: S.optional(
-      VirtualMachineInstancesDeleteRequestForce.pipe(T.Query()),
-    ),
+    force: S.optional(DeleteVirtualMachineInstanceRequestForce.pipe(T.Query())),
     deleteFromHost: S.optional(
-      VirtualMachineInstancesDeleteRequestDeleteFromHost.pipe(T.Query()),
+      DeleteVirtualMachineInstanceRequestDeleteFromHost.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -889,8 +887,8 @@ export const DeleteVirtualMachineInstanceCheckpointResponse =
     identifier: "DeleteVirtualMachineInstanceCheckpointResponse",
   }) as any as S.Schema<DeleteVirtualMachineInstanceCheckpointResponse>;
 
-export type VirtualMachineTemplatesDeleteRequestForce = "true" | "false";
-export const VirtualMachineTemplatesDeleteRequestForce = /*@__PURE__*/ S.String;
+export type DeleteVirtualMachineTemplateRequestForce = "true" | "false";
+export const DeleteVirtualMachineTemplateRequestForce = /*@__PURE__*/ S.String;
 
 export interface DeleteVirtualMachineTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -900,16 +898,14 @@ export interface DeleteVirtualMachineTemplateRequest {
   /** Name of the VirtualMachineTemplate. */
   virtualMachineTemplateName: string;
   /** Forces the resource to be deleted. */
-  force?: VirtualMachineTemplatesDeleteRequestForce | (string & {});
+  force?: DeleteVirtualMachineTemplateRequestForce | (string & {});
 }
 export const DeleteVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualMachineTemplateName: S.String.pipe(T.Label()),
-    force: S.optional(
-      VirtualMachineTemplatesDeleteRequestForce.pipe(T.Query()),
-    ),
+    force: S.optional(DeleteVirtualMachineTemplateRequestForce.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -929,8 +925,8 @@ export const DeleteVirtualMachineTemplateResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteVirtualMachineTemplateResponse",
 }) as any as S.Schema<DeleteVirtualMachineTemplateResponse>;
 
-export type VirtualNetworksDeleteRequestForce = "true" | "false";
-export const VirtualNetworksDeleteRequestForce = /*@__PURE__*/ S.String;
+export type DeleteVirtualNetworkRequestForce = "true" | "false";
+export const DeleteVirtualNetworkRequestForce = /*@__PURE__*/ S.String;
 
 export interface DeleteVirtualNetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -940,14 +936,14 @@ export interface DeleteVirtualNetworkRequest {
   /** Name of the VirtualNetwork. */
   virtualNetworkName: string;
   /** Forces the resource to be deleted. */
-  force?: VirtualNetworksDeleteRequestForce | (string & {});
+  force?: DeleteVirtualNetworkRequestForce | (string & {});
 }
 export const DeleteVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualNetworkName: S.String.pipe(T.Label()),
-    force: S.optional(VirtualNetworksDeleteRequestForce.pipe(T.Query())),
+    force: S.optional(DeleteVirtualNetworkRequestForce.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -967,8 +963,8 @@ export const DeleteVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVirtualNetworkResponse",
 }) as any as S.Schema<DeleteVirtualNetworkResponse>;
 
-export type VmmServersDeleteRequestForce = "true" | "false";
-export const VmmServersDeleteRequestForce = /*@__PURE__*/ S.String;
+export type DeleteVmmServerRequestForce = "true" | "false";
+export const DeleteVmmServerRequestForce = /*@__PURE__*/ S.String;
 
 export interface DeleteVmmServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -978,14 +974,14 @@ export interface DeleteVmmServerRequest {
   /** Name of the VmmServer. */
   vmmServerName: string;
   /** Forces the resource to be deleted. */
-  force?: VmmServersDeleteRequestForce | (string & {});
+  force?: DeleteVmmServerRequestForce | (string & {});
 }
 export const DeleteVmmServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vmmServerName: S.String.pipe(T.Label()),
-    force: S.optional(VmmServersDeleteRequestForce.pipe(T.Query())),
+    force: S.optional(DeleteVmmServerRequestForce.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1031,13 +1027,13 @@ export const GetAvailabilitySetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAvailabilitySetRequest>;
 
 /** Resource tags. */
-export type AvailabilitySetsGetResponseTagsMap = {
+export type GetAvailabilitySetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailabilitySetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAvailabilitySetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AvailabilitySetsGetResponseTagsMap>;
+) as any as S.Schema<GetAvailabilitySetResponseTagsMap>;
 
 export interface GetAvailabilitySetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1049,7 +1045,7 @@ export interface GetAvailabilitySetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AvailabilitySetsGetResponseTagsMap;
+  tags?: GetAvailabilitySetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1063,7 +1059,7 @@ export const GetAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AvailabilitySetsGetResponseTagsMap),
+    tags: S.optional(GetAvailabilitySetResponseTagsMap),
     location: S.String,
     properties: S.optional(AvailabilitySetProperties),
     extendedLocation: ExtendedLocation,
@@ -1098,11 +1094,11 @@ export const GetCloudRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCloudRequest>;
 
 /** Resource tags. */
-export type CloudsGetResponseTagsMap = { [key: string]: string | undefined };
-export const CloudsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCloudResponseTagsMap = { [key: string]: string | undefined };
+export const GetCloudResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CloudsGetResponseTagsMap>;
+) as any as S.Schema<GetCloudResponseTagsMap>;
 
 export interface GetCloudResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1114,7 +1110,7 @@ export interface GetCloudResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CloudsGetResponseTagsMap;
+  tags?: GetCloudResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1128,7 +1124,7 @@ export const GetCloudResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CloudsGetResponseTagsMap),
+    tags: S.optional(GetCloudResponseTagsMap),
     location: S.String,
     properties: S.optional(CloudProperties),
     extendedLocation: ExtendedLocation,
@@ -1695,13 +1691,13 @@ export const GetVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualMachineTemplateRequest>;
 
 /** Resource tags. */
-export type VirtualMachineTemplatesGetResponseTagsMap = {
+export type GetVirtualMachineTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineTemplatesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualMachineTemplateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualMachineTemplatesGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualMachineTemplateResponseTagsMap>;
 
 /** Customizable. */
 export type IsCustomizable = "true" | "false";
@@ -1797,7 +1793,7 @@ export interface GetVirtualMachineTemplateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineTemplatesGetResponseTagsMap;
+  tags?: GetVirtualMachineTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1811,7 +1807,7 @@ export const GetVirtualMachineTemplateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachineTemplatesGetResponseTagsMap),
+    tags: S.optional(GetVirtualMachineTemplateResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualMachineTemplateProperties),
     extendedLocation: ExtendedLocation,
@@ -1846,13 +1842,13 @@ export const GetVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualNetworkRequest>;
 
 /** Resource tags. */
-export type VirtualNetworksGetResponseTagsMap = {
+export type GetVirtualNetworkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworksGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualNetworkResponseTagsMap>;
 
 /** Defines the resource properties. */
 export interface VirtualNetworkProperties {
@@ -1889,7 +1885,7 @@ export interface GetVirtualNetworkResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualNetworksGetResponseTagsMap;
+  tags?: GetVirtualNetworkResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1903,7 +1899,7 @@ export const GetVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualNetworksGetResponseTagsMap),
+    tags: S.optional(GetVirtualNetworkResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualNetworkProperties),
     extendedLocation: ExtendedLocation,
@@ -1912,11 +1908,11 @@ export const GetVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVirtualNetworkResponse",
 }) as any as S.Schema<GetVirtualNetworkResponse>;
 
-export interface GetVmInstanceHybridIdentityMetadataRequest {
+export interface GetVmInstanceHybridIdentityMetadatasRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const GetVmInstanceHybridIdentityMetadataRequest =
+export const GetVmInstanceHybridIdentityMetadatasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceUri: S.String.pipe(T.Label()),
@@ -1929,8 +1925,8 @@ export const GetVmInstanceHybridIdentityMetadataRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVmInstanceHybridIdentityMetadataRequest",
-  }) as any as S.Schema<GetVmInstanceHybridIdentityMetadataRequest>;
+    identifier: "GetVmInstanceHybridIdentityMetadatasRequest",
+  }) as any as S.Schema<GetVmInstanceHybridIdentityMetadatasRequest>;
 
 /** Describes the properties of Hybrid Identity Metadata for a Virtual Machine. */
 export interface VmInstanceHybridIdentityMetadataProperties {
@@ -1952,7 +1948,7 @@ export const VmInstanceHybridIdentityMetadataProperties =
     identifier: "VmInstanceHybridIdentityMetadataProperties",
   }) as any as S.Schema<VmInstanceHybridIdentityMetadataProperties>;
 
-export interface GetVmInstanceHybridIdentityMetadataResponse {
+export interface GetVmInstanceHybridIdentityMetadatasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1964,7 +1960,7 @@ export interface GetVmInstanceHybridIdentityMetadataResponse {
   /** The resource-specific properties for this resource. */
   properties?: VmInstanceHybridIdentityMetadataProperties;
 }
-export const GetVmInstanceHybridIdentityMetadataResponse =
+export const GetVmInstanceHybridIdentityMetadatasResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1974,8 +1970,8 @@ export const GetVmInstanceHybridIdentityMetadataResponse =
       properties: S.optional(VmInstanceHybridIdentityMetadataProperties),
     }),
   ).annotate({
-    identifier: "GetVmInstanceHybridIdentityMetadataResponse",
-  }) as any as S.Schema<GetVmInstanceHybridIdentityMetadataResponse>;
+    identifier: "GetVmInstanceHybridIdentityMetadatasResponse",
+  }) as any as S.Schema<GetVmInstanceHybridIdentityMetadatasResponse>;
 
 export interface GetVmmServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2003,13 +1999,11 @@ export const GetVmmServerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVmmServerRequest>;
 
 /** Resource tags. */
-export type VmmServersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VmmServersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetVmmServerResponseTagsMap = { [key: string]: string | undefined };
+export const GetVmmServerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VmmServersGetResponseTagsMap>;
+) as any as S.Schema<GetVmmServerResponseTagsMap>;
 
 /** Credentials to connect to VmmServer. */
 export interface VmmCredential {
@@ -2069,7 +2063,7 @@ export interface GetVmmServerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VmmServersGetResponseTagsMap;
+  tags?: GetVmmServerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2083,7 +2077,7 @@ export const GetVmmServerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VmmServersGetResponseTagsMap),
+    tags: S.optional(GetVmmServerResponseTagsMap),
     location: S.String,
     properties: S.optional(VmmServerProperties),
     extendedLocation: ExtendedLocation,
@@ -2506,20 +2500,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2809,11 +2803,11 @@ export const ListVirtualNetworkBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListVirtualNetworkBySubscriptionRequest",
 }) as any as S.Schema<ListVirtualNetworkBySubscriptionRequest>;
 
-export interface ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceRequest {
+export interface ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceRequest =
+export const ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       resourceUri: S.String.pipe(T.Label()),
@@ -2827,8 +2821,8 @@ export const ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceRequest
     ),
   ).annotate({
     identifier:
-      "ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceRequest",
-  }) as any as S.Schema<ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceRequest>;
+      "ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest",
+  }) as any as S.Schema<ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest>;
 
 /** Defines the HybridIdentityMetadata. */
 export interface VmInstanceHybridIdentityMetadata {
@@ -3065,20 +3059,20 @@ export const StartVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartVirtualMachineInstanceResponse>;
 
 /** Gets or sets a value indicating whether to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Defaults to false. */
-export type VirtualMachineInstancesStopRequestSkipShutdown = "true" | "false";
-export const VirtualMachineInstancesStopRequestSkipShutdown =
+export type StopVirtualMachineInstanceRequestSkipShutdown = "true" | "false";
+export const StopVirtualMachineInstanceRequestSkipShutdown =
   /*@__PURE__*/ S.String;
 
 export interface StopVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** Gets or sets a value indicating whether to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Defaults to false. */
-  skipShutdown?: VirtualMachineInstancesStopRequestSkipShutdown | (string & {});
+  skipShutdown?: StopVirtualMachineInstanceRequestSkipShutdown | (string & {});
 }
 export const StopVirtualMachineInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
-    skipShutdown: S.optional(VirtualMachineInstancesStopRequestSkipShutdown),
+    skipShutdown: S.optional(StopVirtualMachineInstanceRequestSkipShutdown),
   }).pipe(
     T.Http({
       method: "POST",
@@ -3099,13 +3093,13 @@ export const StopVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopVirtualMachineInstanceResponse>;
 
 /** Resource tags. */
-export type AvailabilitySetsUpdateRequestTagsMap = {
+export type UpdateAvailabilitySetRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailabilitySetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAvailabilitySetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AvailabilitySetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAvailabilitySetRequestTagsMap>;
 
 export interface UpdateAvailabilitySetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3115,14 +3109,14 @@ export interface UpdateAvailabilitySetRequest {
   /** Name of the AvailabilitySet. */
   availabilitySetResourceName: string;
   /** Resource tags. */
-  tags?: AvailabilitySetsUpdateRequestTagsMap;
+  tags?: UpdateAvailabilitySetRequestTagsMap;
 }
 export const UpdateAvailabilitySetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     availabilitySetResourceName: S.String.pipe(T.Label()),
-    tags: S.optional(AvailabilitySetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAvailabilitySetRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3136,13 +3130,13 @@ export const UpdateAvailabilitySetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAvailabilitySetRequest>;
 
 /** Resource tags. */
-export type AvailabilitySetsUpdateResponseTagsMap = {
+export type UpdateAvailabilitySetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailabilitySetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAvailabilitySetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AvailabilitySetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAvailabilitySetResponseTagsMap>;
 
 export interface UpdateAvailabilitySetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3154,7 +3148,7 @@ export interface UpdateAvailabilitySetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AvailabilitySetsUpdateResponseTagsMap;
+  tags?: UpdateAvailabilitySetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3168,7 +3162,7 @@ export const UpdateAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AvailabilitySetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAvailabilitySetResponseTagsMap),
     location: S.String,
     properties: S.optional(AvailabilitySetProperties),
     extendedLocation: ExtendedLocation,
@@ -3178,11 +3172,11 @@ export const UpdateAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAvailabilitySetResponse>;
 
 /** Resource tags. */
-export type CloudsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const CloudsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateCloudRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateCloudRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CloudsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCloudRequestTagsMap>;
 
 export interface UpdateCloudRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3192,14 +3186,14 @@ export interface UpdateCloudRequest {
   /** Name of the Cloud. */
   cloudResourceName: string;
   /** Resource tags. */
-  tags?: CloudsUpdateRequestTagsMap;
+  tags?: UpdateCloudRequestTagsMap;
 }
 export const UpdateCloudRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     cloudResourceName: S.String.pipe(T.Label()),
-    tags: S.optional(CloudsUpdateRequestTagsMap),
+    tags: S.optional(UpdateCloudRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3213,11 +3207,11 @@ export const UpdateCloudRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCloudRequest>;
 
 /** Resource tags. */
-export type CloudsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const CloudsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateCloudResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateCloudResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CloudsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCloudResponseTagsMap>;
 
 export interface UpdateCloudResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3229,7 +3223,7 @@ export interface UpdateCloudResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CloudsUpdateResponseTagsMap;
+  tags?: UpdateCloudResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3243,7 +3237,7 @@ export const UpdateCloudResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CloudsUpdateResponseTagsMap),
+    tags: S.optional(UpdateCloudResponseTagsMap),
     location: S.String,
     properties: S.optional(CloudProperties),
     extendedLocation: ExtendedLocation,
@@ -3484,14 +3478,14 @@ export const UpdateVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateVirtualMachineInstanceResponse>;
 
 /** Resource tags. */
-export type VirtualMachineTemplatesUpdateRequestTagsMap = {
+export type UpdateVirtualMachineTemplateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineTemplatesUpdateRequestTagsMap =
+export const UpdateVirtualMachineTemplateRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineTemplatesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineTemplateRequestTagsMap>;
 
 export interface UpdateVirtualMachineTemplateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3501,14 +3495,14 @@ export interface UpdateVirtualMachineTemplateRequest {
   /** Name of the VirtualMachineTemplate. */
   virtualMachineTemplateName: string;
   /** Resource tags. */
-  tags?: VirtualMachineTemplatesUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineTemplateRequestTagsMap;
 }
 export const UpdateVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualMachineTemplateName: S.String.pipe(T.Label()),
-    tags: S.optional(VirtualMachineTemplatesUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualMachineTemplateRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3522,14 +3516,14 @@ export const UpdateVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualMachineTemplateRequest>;
 
 /** Resource tags. */
-export type VirtualMachineTemplatesUpdateResponseTagsMap = {
+export type UpdateVirtualMachineTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineTemplatesUpdateResponseTagsMap =
+export const UpdateVirtualMachineTemplateResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineTemplatesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineTemplateResponseTagsMap>;
 
 export interface UpdateVirtualMachineTemplateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3541,7 +3535,7 @@ export interface UpdateVirtualMachineTemplateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineTemplatesUpdateResponseTagsMap;
+  tags?: UpdateVirtualMachineTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3556,7 +3550,7 @@ export const UpdateVirtualMachineTemplateResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineTemplatesUpdateResponseTagsMap),
+      tags: S.optional(UpdateVirtualMachineTemplateResponseTagsMap),
       location: S.String,
       properties: S.optional(VirtualMachineTemplateProperties),
       extendedLocation: ExtendedLocation,
@@ -3566,13 +3560,13 @@ export const UpdateVirtualMachineTemplateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateVirtualMachineTemplateResponse>;
 
 /** Resource tags. */
-export type VirtualNetworksUpdateRequestTagsMap = {
+export type UpdateVirtualNetworkRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualNetworkRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVirtualNetworkRequestTagsMap>;
 
 export interface UpdateVirtualNetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3582,14 +3576,14 @@ export interface UpdateVirtualNetworkRequest {
   /** Name of the VirtualNetwork. */
   virtualNetworkName: string;
   /** Resource tags. */
-  tags?: VirtualNetworksUpdateRequestTagsMap;
+  tags?: UpdateVirtualNetworkRequestTagsMap;
 }
 export const UpdateVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualNetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(VirtualNetworksUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualNetworkRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3603,13 +3597,13 @@ export const UpdateVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualNetworkRequest>;
 
 /** Resource tags. */
-export type VirtualNetworksUpdateResponseTagsMap = {
+export type UpdateVirtualNetworkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualNetworkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVirtualNetworkResponseTagsMap>;
 
 export interface UpdateVirtualNetworkResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3621,7 +3615,7 @@ export interface UpdateVirtualNetworkResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualNetworksUpdateResponseTagsMap;
+  tags?: UpdateVirtualNetworkResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3635,7 +3629,7 @@ export const UpdateVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualNetworksUpdateResponseTagsMap),
+    tags: S.optional(UpdateVirtualNetworkResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualNetworkProperties),
     extendedLocation: ExtendedLocation,
@@ -3645,13 +3639,13 @@ export const UpdateVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualNetworkResponse>;
 
 /** Resource tags. */
-export type VmmServersUpdateRequestTagsMap = {
+export type UpdateVmmServerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VmmServersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVmmServerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VmmServersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVmmServerRequestTagsMap>;
 
 export interface UpdateVmmServerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3661,14 +3655,14 @@ export interface UpdateVmmServerRequest {
   /** Name of the VmmServer. */
   vmmServerName: string;
   /** Resource tags. */
-  tags?: VmmServersUpdateRequestTagsMap;
+  tags?: UpdateVmmServerRequestTagsMap;
 }
 export const UpdateVmmServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vmmServerName: S.String.pipe(T.Label()),
-    tags: S.optional(VmmServersUpdateRequestTagsMap),
+    tags: S.optional(UpdateVmmServerRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3682,13 +3676,13 @@ export const UpdateVmmServerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVmmServerRequest>;
 
 /** Resource tags. */
-export type VmmServersUpdateResponseTagsMap = {
+export type UpdateVmmServerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VmmServersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVmmServerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VmmServersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVmmServerResponseTagsMap>;
 
 export interface UpdateVmmServerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3700,7 +3694,7 @@ export interface UpdateVmmServerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VmmServersUpdateResponseTagsMap;
+  tags?: UpdateVmmServerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3714,7 +3708,7 @@ export const UpdateVmmServerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VmmServersUpdateResponseTagsMap),
+    tags: S.optional(UpdateVmmServerResponseTagsMap),
     location: S.String,
     properties: S.optional(VmmServerProperties),
     extendedLocation: ExtendedLocation,
@@ -4621,16 +4615,16 @@ export const GetVirtualNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVmInstanceHybridIdentityMetadataError = AzureOpError;
+export type GetVmInstanceHybridIdentityMetadatasError = AzureOpError;
 /** Gets HybridIdentityMetadata. Implements HybridIdentityMetadata GET method. */
-export const GetVmInstanceHybridIdentityMetadata: API.OperationMethod<
-  GetVmInstanceHybridIdentityMetadataRequest,
-  GetVmInstanceHybridIdentityMetadataResponse,
-  GetVmInstanceHybridIdentityMetadataError,
+export const GetVmInstanceHybridIdentityMetadatas: API.OperationMethod<
+  GetVmInstanceHybridIdentityMetadatasRequest,
+  GetVmInstanceHybridIdentityMetadatasResponse,
+  GetVmInstanceHybridIdentityMetadatasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmInstanceHybridIdentityMetadataRequest,
-  output: GetVmInstanceHybridIdentityMetadataResponse,
+  input: GetVmInstanceHybridIdentityMetadatasRequest,
+  output: GetVmInstanceHybridIdentityMetadatasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4831,16 +4825,16 @@ export const ListVirtualNetworkBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceError =
+export type ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceError =
   AzureOpError;
 /** Implements GET HybridIdentityMetadata in a vm. Returns the list of HybridIdentityMetadata of the given VM. */
-export const ListVmInstanceHybridIdentityMetadataByVirtualMachineInstance: API.OperationMethod<
-  ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceRequest,
+export const ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstance: API.OperationMethod<
+  ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest,
   VmInstanceHybridIdentityMetadataListResult,
-  ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceError,
+  ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListVmInstanceHybridIdentityMetadataByVirtualMachineInstanceRequest,
+  input: ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest,
   output: VmInstanceHybridIdentityMetadataListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

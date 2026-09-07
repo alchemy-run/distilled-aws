@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.orgs#ListRequest": {
@@ -4465,7 +4466,7 @@
         "smithy.api#documentation": "Ping an organization webhook\n\nThis will trigger a [ping event](https://docs.github.com/webhooks/#ping-event)\nto be sent to the hook.\n\nYou must be an organization owner to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need `admin:org_hook` scope. OAuth apps cannot list, view, or edit\nwebhooks that they did not create and users cannot list, view, or edit webhooks that were created by OAuth apps."
       }
     },
-    "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestActorType": {
+    "com.github.orgs#GetApiInsightRouteStatsByActorRequestActorType": {
       "type": "enum",
       "members": {
         "INSTALLATION": {
@@ -4501,7 +4502,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestDirection": {
+    "com.github.orgs#GetApiInsightRouteStatsByActorRequestDirection": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -4519,7 +4520,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestSortItem": {
+    "com.github.orgs#GetApiInsightRouteStatsByActorRequestSortItem": {
       "type": "enum",
       "members": {
         "LAST_RATE_LIMITED_TIMESTAMP": {
@@ -4561,14 +4562,14 @@
       },
       "traits": {}
     },
-    "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestSortList": {
+    "com.github.orgs#GetApiInsightRouteStatsByActorRequestSortList": {
       "type": "list",
       "member": {
-        "target": "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestSortItem"
+        "target": "com.github.orgs#GetApiInsightRouteStatsByActorRequestSortItem"
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightRouteStatByActorRequest": {
+    "com.github.orgs#GetApiInsightRouteStatsByActorRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -4580,7 +4581,7 @@
           }
         },
         "actor_type": {
-          "target": "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestActorType",
+          "target": "com.github.orgs#GetApiInsightRouteStatsByActorRequestActorType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4625,14 +4626,14 @@
           }
         },
         "direction": {
-          "target": "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestDirection",
+          "target": "com.github.orgs#GetApiInsightRouteStatsByActorRequestDirection",
           "traits": {
             "smithy.api#httpQuery": "direction",
             "smithy.api#documentation": "The direction to sort the results by."
           }
         },
         "sort": {
-          "target": "com.github.orgs#ApiInsightsGetRouteStatsByActorRequestSortList",
+          "target": "com.github.orgs#GetApiInsightRouteStatsByActorRequestSortList",
           "traits": {
             "smithy.api#httpQuery": "sort",
             "smithy.api#documentation": "The property to sort the results by."
@@ -4698,7 +4699,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightRouteStatByActorResponse": {
+    "com.github.orgs#GetApiInsightRouteStatsByActorResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4713,13 +4714,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetApiInsightRouteStatByActor": {
+    "com.github.orgs#GetApiInsightRouteStatsByActor": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightRouteStatByActorRequest"
+        "target": "com.github.orgs#GetApiInsightRouteStatsByActorRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetApiInsightRouteStatByActorResponse"
+        "target": "com.github.orgs#GetApiInsightRouteStatsByActorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4730,7 +4731,7 @@
         "smithy.api#documentation": "Get route stats by actor\n\nGet API request count statistics for an actor broken down by route within a specified time frame.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#ApiInsightsGetSubjectStatsRequestDirection": {
+    "com.github.orgs#GetApiInsightSubjectStatsRequestDirection": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -4748,7 +4749,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#ApiInsightsGetSubjectStatsRequestSortItem": {
+    "com.github.orgs#GetApiInsightSubjectStatsRequestSortItem": {
       "type": "enum",
       "members": {
         "LAST_RATE_LIMITED_TIMESTAMP": {
@@ -4784,14 +4785,14 @@
       },
       "traits": {}
     },
-    "com.github.orgs#ApiInsightsGetSubjectStatsRequestSortList": {
+    "com.github.orgs#GetApiInsightSubjectStatsRequestSortList": {
       "type": "list",
       "member": {
-        "target": "com.github.orgs#ApiInsightsGetSubjectStatsRequestSortItem"
+        "target": "com.github.orgs#GetApiInsightSubjectStatsRequestSortItem"
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightSubjectStatRequest": {
+    "com.github.orgs#GetApiInsightSubjectStatsRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -4832,14 +4833,14 @@
           }
         },
         "direction": {
-          "target": "com.github.orgs#ApiInsightsGetSubjectStatsRequestDirection",
+          "target": "com.github.orgs#GetApiInsightSubjectStatsRequestDirection",
           "traits": {
             "smithy.api#httpQuery": "direction",
             "smithy.api#documentation": "The direction to sort the results by."
           }
         },
         "sort": {
-          "target": "com.github.orgs#ApiInsightsGetSubjectStatsRequestSortList",
+          "target": "com.github.orgs#GetApiInsightSubjectStatsRequestSortList",
           "traits": {
             "smithy.api#httpQuery": "sort",
             "smithy.api#documentation": "The property to sort the results by."
@@ -4896,7 +4897,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightSubjectStatResponse": {
+    "com.github.orgs#GetApiInsightSubjectStatsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4911,13 +4912,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetApiInsightSubjectStat": {
+    "com.github.orgs#GetApiInsightSubjectStats": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightSubjectStatRequest"
+        "target": "com.github.orgs#GetApiInsightSubjectStatsRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetApiInsightSubjectStatResponse"
+        "target": "com.github.orgs#GetApiInsightSubjectStatsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4928,7 +4929,7 @@
         "smithy.api#documentation": "Get subject stats\n\nGet API request statistics for all subjects within an organization within a specified time frame. Subjects can be users or GitHub Apps.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#GetApiInsightSummaryStatRequest": {
+    "com.github.orgs#GetApiInsightSummaryStatsRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -4979,10 +4980,10 @@
         "smithy.api#documentation": "API Insights usage summary stats for an organization"
       }
     },
-    "com.github.orgs#GetApiInsightSummaryStat": {
+    "com.github.orgs#GetApiInsightSummaryStats": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightSummaryStatRequest"
+        "target": "com.github.orgs#GetApiInsightSummaryStatsRequest"
       },
       "output": {
         "target": "com.github.orgs#ApiInsightsSummaryStats"
@@ -4996,7 +4997,7 @@
         "smithy.api#documentation": "Get summary stats\n\nGet overall statistics of API requests made within an organization by all users and apps within a specified time frame.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#GetApiInsightSummaryStatByUserRequest": {
+    "com.github.orgs#GetApiInsightSummaryStatsByUserRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -5035,10 +5036,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.orgs#GetApiInsightSummaryStatByUser": {
+    "com.github.orgs#GetApiInsightSummaryStatsByUser": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightSummaryStatByUserRequest"
+        "target": "com.github.orgs#GetApiInsightSummaryStatsByUserRequest"
       },
       "output": {
         "target": "com.github.orgs#ApiInsightsSummaryStats"
@@ -5052,7 +5053,7 @@
         "smithy.api#documentation": "Get summary stats by user\n\nGet overall statistics of API requests within the organization for a user.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#ApiInsightsGetSummaryStatsByActorRequestActorType": {
+    "com.github.orgs#GetApiInsightSummaryStatsByActorRequestActorType": {
       "type": "enum",
       "members": {
         "INSTALLATION": {
@@ -5088,7 +5089,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightSummaryStatByActorRequest": {
+    "com.github.orgs#GetApiInsightSummaryStatsByActorRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -5100,7 +5101,7 @@
           }
         },
         "actor_type": {
-          "target": "com.github.orgs#ApiInsightsGetSummaryStatsByActorRequestActorType",
+          "target": "com.github.orgs#GetApiInsightSummaryStatsByActorRequestActorType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -5135,10 +5136,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.orgs#GetApiInsightSummaryStatByActor": {
+    "com.github.orgs#GetApiInsightSummaryStatsByActor": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightSummaryStatByActorRequest"
+        "target": "com.github.orgs#GetApiInsightSummaryStatsByActorRequest"
       },
       "output": {
         "target": "com.github.orgs#ApiInsightsSummaryStats"
@@ -5152,7 +5153,7 @@
         "smithy.api#documentation": "Get summary stats by actor\n\nGet overall statistics of API requests within the organization made by a specific actor. Actors can be GitHub App installations, OAuth apps or other tokens on behalf of a user.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#GetApiInsightTimeStatRequest": {
+    "com.github.orgs#GetApiInsightTimeStatsRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -5215,7 +5216,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightTimeStatResponse": {
+    "com.github.orgs#GetApiInsightTimeStatsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5230,13 +5231,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetApiInsightTimeStat": {
+    "com.github.orgs#GetApiInsightTimeStats": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightTimeStatRequest"
+        "target": "com.github.orgs#GetApiInsightTimeStatsRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetApiInsightTimeStatResponse"
+        "target": "com.github.orgs#GetApiInsightTimeStatsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5247,7 +5248,7 @@
         "smithy.api#documentation": "Get time stats\n\nGet the number of API requests and rate-limited requests made within an organization over a specified time period.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#GetApiInsightTimeStatByUserRequest": {
+    "com.github.orgs#GetApiInsightTimeStatsByUserRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -5294,7 +5295,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.orgs#GetApiInsightTimeStatByUserResponse": {
+    "com.github.orgs#GetApiInsightTimeStatsByUserResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5309,13 +5310,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetApiInsightTimeStatByUser": {
+    "com.github.orgs#GetApiInsightTimeStatsByUser": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightTimeStatByUserRequest"
+        "target": "com.github.orgs#GetApiInsightTimeStatsByUserRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetApiInsightTimeStatByUserResponse"
+        "target": "com.github.orgs#GetApiInsightTimeStatsByUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5326,7 +5327,7 @@
         "smithy.api#documentation": "Get time stats by user\n\nGet the number of API requests and rate-limited requests made within an organization by a specific user over a specified time period.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#ApiInsightsGetTimeStatsByActorRequestActorType": {
+    "com.github.orgs#GetApiInsightTimeStatsByActorRequestActorType": {
       "type": "enum",
       "members": {
         "INSTALLATION": {
@@ -5362,7 +5363,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightTimeStatByActorRequest": {
+    "com.github.orgs#GetApiInsightTimeStatsByActorRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -5374,7 +5375,7 @@
           }
         },
         "actor_type": {
-          "target": "com.github.orgs#ApiInsightsGetTimeStatsByActorRequestActorType",
+          "target": "com.github.orgs#GetApiInsightTimeStatsByActorRequestActorType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -5417,7 +5418,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.orgs#GetApiInsightTimeStatByActorResponse": {
+    "com.github.orgs#GetApiInsightTimeStatsByActorResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5432,13 +5433,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetApiInsightTimeStatByActor": {
+    "com.github.orgs#GetApiInsightTimeStatsByActor": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightTimeStatByActorRequest"
+        "target": "com.github.orgs#GetApiInsightTimeStatsByActorRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetApiInsightTimeStatByActorResponse"
+        "target": "com.github.orgs#GetApiInsightTimeStatsByActorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5449,7 +5450,7 @@
         "smithy.api#documentation": "Get time stats by actor\n\nGet the number of API requests and rate-limited requests made within an organization by a specific actor within a specified time period.\n\nUnder normal conditions, you can expect API data to appear within 4–6 hours after making a request. During incidents or periods of unusually high volume, it may take longer to show up."
       }
     },
-    "com.github.orgs#ApiInsightsGetUserStatsRequestDirection": {
+    "com.github.orgs#GetApiInsightUserStatsRequestDirection": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -5467,7 +5468,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#ApiInsightsGetUserStatsRequestSortItem": {
+    "com.github.orgs#GetApiInsightUserStatsRequestSortItem": {
       "type": "enum",
       "members": {
         "LAST_RATE_LIMITED_TIMESTAMP": {
@@ -5503,14 +5504,14 @@
       },
       "traits": {}
     },
-    "com.github.orgs#ApiInsightsGetUserStatsRequestSortList": {
+    "com.github.orgs#GetApiInsightUserStatsRequestSortList": {
       "type": "list",
       "member": {
-        "target": "com.github.orgs#ApiInsightsGetUserStatsRequestSortItem"
+        "target": "com.github.orgs#GetApiInsightUserStatsRequestSortItem"
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightUserStatRequest": {
+    "com.github.orgs#GetApiInsightUserStatsRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -5559,14 +5560,14 @@
           }
         },
         "direction": {
-          "target": "com.github.orgs#ApiInsightsGetUserStatsRequestDirection",
+          "target": "com.github.orgs#GetApiInsightUserStatsRequestDirection",
           "traits": {
             "smithy.api#httpQuery": "direction",
             "smithy.api#documentation": "The direction to sort the results by."
           }
         },
         "sort": {
-          "target": "com.github.orgs#ApiInsightsGetUserStatsRequestSortList",
+          "target": "com.github.orgs#GetApiInsightUserStatsRequestSortList",
           "traits": {
             "smithy.api#httpQuery": "sort",
             "smithy.api#documentation": "The property to sort the results by."
@@ -5635,7 +5636,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetApiInsightUserStatResponse": {
+    "com.github.orgs#GetApiInsightUserStatsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5650,13 +5651,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetApiInsightUserStat": {
+    "com.github.orgs#GetApiInsightUserStats": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetApiInsightUserStatRequest"
+        "target": "com.github.orgs#GetApiInsightUserStatsRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetApiInsightUserStatResponse"
+        "target": "com.github.orgs#GetApiInsightUserStatsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11858,7 +11859,7 @@
         "smithy.api#documentation": "List requests to access organization resources with fine-grained personal access tokens\n\nLists requests from organization members to access organization resources with a fine-grained personal access token.\n\nOnly GitHub Apps can use this endpoint."
       }
     },
-    "com.github.orgs#ReviewPatGrantRequestsInBulkRequestPatRequestIdsList": {
+    "com.github.orgs#BulkReviewPatGrantRequestsInRequestPatRequestIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -11867,7 +11868,7 @@
         "smithy.api#documentation": "Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values."
       }
     },
-    "com.github.orgs#ReviewPatGrantRequestsInBulkRequestAction": {
+    "com.github.orgs#BulkReviewPatGrantRequestsInRequestAction": {
       "type": "enum",
       "members": {
         "APPROVE": {
@@ -11887,7 +11888,7 @@
         "smithy.api#documentation": "Action to apply to the requests."
       }
     },
-    "com.github.orgs#ReviewPatGrantRequestsInBulkRequest": {
+    "com.github.orgs#BulkReviewPatGrantRequestsInRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -11899,13 +11900,13 @@
           }
         },
         "pat_request_ids": {
-          "target": "com.github.orgs#ReviewPatGrantRequestsInBulkRequestPatRequestIdsList",
+          "target": "com.github.orgs#BulkReviewPatGrantRequestsInRequestPatRequestIdsList",
           "traits": {
             "smithy.api#documentation": "Unique identifiers of the requests for access via fine-grained personal access token. Must be formed of between 1 and 100 `pat_request_id` values."
           }
         },
         "action": {
-          "target": "com.github.orgs#ReviewPatGrantRequestsInBulkRequestAction",
+          "target": "com.github.orgs#BulkReviewPatGrantRequestsInRequestAction",
           "traits": {
             "smithy.api#documentation": "Action to apply to the requests.",
             "smithy.api#required": {}
@@ -11923,10 +11924,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.orgs#ReviewPatGrantRequestsInBulk": {
+    "com.github.orgs#BulkReviewPatGrantRequestsIn": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#ReviewPatGrantRequestsInBulkRequest"
+        "target": "com.github.orgs#BulkReviewPatGrantRequestsInRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11971,7 +11972,7 @@
         "smithy.api#documentation": "Action to apply to the request."
       }
     },
-    "com.github.orgs#RequestReviewPatGrantRequest": {
+    "com.github.orgs#ReviewPatGrantRequestRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -12009,10 +12010,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.orgs#RequestReviewPatGrant": {
+    "com.github.orgs#ReviewPatGrantRequest": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#RequestReviewPatGrantRequest"
+        "target": "com.github.orgs#ReviewPatGrantRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13651,7 +13652,7 @@
         "smithy.api#documentation": "List repositories a fine-grained personal access token has access to\n\nLists the repositories a fine-grained personal access token has access to.\n\nOnly GitHub Apps can use this endpoint."
       }
     },
-    "com.github.orgs#GetCustomPropertyForReposOrganizationDefinitionRequest": {
+    "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitionsRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -13856,7 +13857,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetCustomPropertyForReposOrganizationDefinitionResponse": {
+    "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitionsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -13871,13 +13872,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetCustomPropertyForReposOrganizationDefinition": {
+    "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitions": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetCustomPropertyForReposOrganizationDefinitionRequest"
+        "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitionsRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetCustomPropertyForReposOrganizationDefinitionResponse"
+        "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitionsResponse"
       },
       "errors": [
         {
@@ -14208,7 +14209,7 @@
         "smithy.api#documentation": "Create or update a custom property for an organization\n\nCreates a new or updates an existing custom property that is defined for an organization.\n\nTo use this endpoint, the authenticated user must be one of:\n- An administrator for the organization.\n- A user, or a user on a team, with the fine-grained permission of `custom_properties_org_definitions_manager` in the organization."
       }
     },
-    "com.github.orgs#DeleteCustomPropertyForReposOrganizationDefinitionRequest": {
+    "com.github.orgs#CustomPropertiesForReposDeleteOrganizationDefinitionRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -14232,10 +14233,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.orgs#DeleteCustomPropertyForReposOrganizationDefinition": {
+    "com.github.orgs#CustomPropertiesForReposDeleteOrganizationDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#DeleteCustomPropertyForReposOrganizationDefinitionRequest"
+        "target": "com.github.orgs#CustomPropertiesForReposDeleteOrganizationDefinitionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14257,7 +14258,7 @@
         "smithy.api#documentation": "Remove a custom property for an organization\n\nRemoves a custom property that is defined for an organization.\n\nTo use this endpoint, the authenticated user must be one of:\n  - An administrator for the organization.\n  - A user, or a user on a team, with the fine-grained permission of `custom_properties_org_definitions_manager` in the organization."
       }
     },
-    "com.github.orgs#GetCustomPropertyForReposOrganizationValueRequest": {
+    "com.github.orgs#CustomPropertiesForReposGetOrganizationValuesRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -14387,7 +14388,7 @@
       },
       "traits": {}
     },
-    "com.github.orgs#GetCustomPropertyForReposOrganizationValueResponse": {
+    "com.github.orgs#CustomPropertiesForReposGetOrganizationValuesResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -14402,13 +14403,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.orgs#GetCustomPropertyForReposOrganizationValue": {
+    "com.github.orgs#CustomPropertiesForReposGetOrganizationValues": {
       "type": "operation",
       "input": {
-        "target": "com.github.orgs#GetCustomPropertyForReposOrganizationValueRequest"
+        "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationValuesRequest"
       },
       "output": {
-        "target": "com.github.orgs#GetCustomPropertyForReposOrganizationValueResponse"
+        "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationValuesResponse"
       },
       "errors": [
         {
@@ -15703,31 +15704,169 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.orgs#List"
+          "target": "com.github.orgs#AssignTeamToOrgRole"
         },
         {
-          "target": "com.github.orgs#Get"
+          "target": "com.github.orgs#AssignUserToOrgRole"
         },
         {
-          "target": "com.github.orgs#Update"
+          "target": "com.github.orgs#BlockUser"
         },
         {
-          "target": "com.github.orgs#Delete"
+          "target": "com.github.orgs#BulkReviewPatGrantRequestsIn"
+        },
+        {
+          "target": "com.github.orgs#CancelInvitation"
+        },
+        {
+          "target": "com.github.orgs#CheckBlockedUser"
+        },
+        {
+          "target": "com.github.orgs#CheckMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#CheckPublicMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#ConvertMemberToOutsideCollaborator"
         },
         {
           "target": "com.github.orgs#CreateArtifactDeploymentRecord"
         },
         {
-          "target": "com.github.orgs#SetClusterDeploymentRecords"
+          "target": "com.github.orgs#CreateArtifactStorageRecord"
         },
         {
           "target": "com.github.orgs#CreateClusterDeploymentRecordsJob"
         },
         {
+          "target": "com.github.orgs#CreateInvitation"
+        },
+        {
+          "target": "com.github.orgs#CreateIssueField"
+        },
+        {
+          "target": "com.github.orgs#CreateIssueType"
+        },
+        {
+          "target": "com.github.orgs#CreateWebhook"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinition"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinitions"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationValues"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposDeleteOrganizationDefinition"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinition"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitions"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationValues"
+        },
+        {
+          "target": "com.github.orgs#Delete"
+        },
+        {
+          "target": "com.github.orgs#DeleteAttestationsBulk"
+        },
+        {
+          "target": "com.github.orgs#DeleteAttestationsById"
+        },
+        {
+          "target": "com.github.orgs#DeleteAttestationsBySubjectDigest"
+        },
+        {
+          "target": "com.github.orgs#DeleteIssueField"
+        },
+        {
+          "target": "com.github.orgs#DeleteIssueType"
+        },
+        {
+          "target": "com.github.orgs#DeleteWebhook"
+        },
+        {
+          "target": "com.github.orgs#DisableSelectedRepositoryImmutableReleasesOrganization"
+        },
+        {
+          "target": "com.github.orgs#EnableSelectedRepositoryImmutableReleasesOrganization"
+        },
+        {
+          "target": "com.github.orgs#Get"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightRouteStatsByActor"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightSubjectStats"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightSummaryStats"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightSummaryStatsByActor"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightSummaryStatsByUser"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightTimeStats"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightTimeStatsByActor"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightTimeStatsByUser"
+        },
+        {
+          "target": "com.github.orgs#GetApiInsightUserStats"
+        },
+        {
           "target": "com.github.orgs#GetClusterDeploymentRecordsJob"
         },
         {
-          "target": "com.github.orgs#CreateArtifactStorageRecord"
+          "target": "com.github.orgs#GetImmutableReleasesSettings"
+        },
+        {
+          "target": "com.github.orgs#GetImmutableReleasesSettingsRepositories"
+        },
+        {
+          "target": "com.github.orgs#GetMembershipForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.orgs#GetMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#GetOrgRole"
+        },
+        {
+          "target": "com.github.orgs#GetOrgRulesetHistory"
+        },
+        {
+          "target": "com.github.orgs#GetOrgRulesetVersion"
+        },
+        {
+          "target": "com.github.orgs#GetWebhook"
+        },
+        {
+          "target": "com.github.orgs#GetWebhookConfigForOrg"
+        },
+        {
+          "target": "com.github.orgs#GetWebhookDelivery"
+        },
+        {
+          "target": "com.github.orgs#List"
+        },
+        {
+          "target": "com.github.orgs#ListAppInstallations"
         },
         {
           "target": "com.github.orgs#ListArtifactDeploymentRecords"
@@ -15736,109 +15875,25 @@
           "target": "com.github.orgs#ListArtifactStorageRecords"
         },
         {
-          "target": "com.github.orgs#ListAttestationsBulk"
-        },
-        {
-          "target": "com.github.orgs#DeleteAttestationsBulk"
-        },
-        {
-          "target": "com.github.orgs#DeleteAttestationsBySubjectDigest"
-        },
-        {
           "target": "com.github.orgs#ListAttestationRepositories"
-        },
-        {
-          "target": "com.github.orgs#DeleteAttestationsById"
         },
         {
           "target": "com.github.orgs#ListAttestations"
         },
         {
+          "target": "com.github.orgs#ListAttestationsBulk"
+        },
+        {
           "target": "com.github.orgs#ListBlockedUsers"
-        },
-        {
-          "target": "com.github.orgs#CheckBlockedUser"
-        },
-        {
-          "target": "com.github.orgs#BlockUser"
-        },
-        {
-          "target": "com.github.orgs#UnblockUser"
         },
         {
           "target": "com.github.orgs#ListFailedInvitations"
         },
         {
-          "target": "com.github.orgs#ListWebhooks"
+          "target": "com.github.orgs#ListForAuthenticatedUser"
         },
         {
-          "target": "com.github.orgs#CreateWebhook"
-        },
-        {
-          "target": "com.github.orgs#GetWebhook"
-        },
-        {
-          "target": "com.github.orgs#UpdateWebhook"
-        },
-        {
-          "target": "com.github.orgs#DeleteWebhook"
-        },
-        {
-          "target": "com.github.orgs#GetWebhookConfigForOrg"
-        },
-        {
-          "target": "com.github.orgs#UpdateWebhookConfigForOrg"
-        },
-        {
-          "target": "com.github.orgs#ListWebhookDeliveries"
-        },
-        {
-          "target": "com.github.orgs#GetWebhookDelivery"
-        },
-        {
-          "target": "com.github.orgs#RedeliverWebhookDelivery"
-        },
-        {
-          "target": "com.github.orgs#PingWebhook"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightRouteStatByActor"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightSubjectStat"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightSummaryStat"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightSummaryStatByUser"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightSummaryStatByActor"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightTimeStat"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightTimeStatByUser"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightTimeStatByActor"
-        },
-        {
-          "target": "com.github.orgs#GetApiInsightUserStat"
-        },
-        {
-          "target": "com.github.orgs#ListAppInstallations"
-        },
-        {
-          "target": "com.github.orgs#ListPendingInvitations"
-        },
-        {
-          "target": "com.github.orgs#CreateInvitation"
-        },
-        {
-          "target": "com.github.orgs#CancelInvitation"
+          "target": "com.github.orgs#ListForUser"
         },
         {
           "target": "com.github.orgs#ListInvitationTeams"
@@ -15847,67 +15902,16 @@
           "target": "com.github.orgs#ListIssueFields"
         },
         {
-          "target": "com.github.orgs#CreateIssueField"
-        },
-        {
-          "target": "com.github.orgs#UpdateIssueField"
-        },
-        {
-          "target": "com.github.orgs#DeleteIssueField"
-        },
-        {
           "target": "com.github.orgs#ListIssueTypes"
-        },
-        {
-          "target": "com.github.orgs#CreateIssueType"
-        },
-        {
-          "target": "com.github.orgs#UpdateIssueType"
-        },
-        {
-          "target": "com.github.orgs#DeleteIssueType"
         },
         {
           "target": "com.github.orgs#ListMembers"
         },
         {
-          "target": "com.github.orgs#CheckMembershipForUser"
-        },
-        {
-          "target": "com.github.orgs#RemoveMember"
-        },
-        {
-          "target": "com.github.orgs#GetMembershipForUser"
-        },
-        {
-          "target": "com.github.orgs#SetMembershipForUser"
-        },
-        {
-          "target": "com.github.orgs#RemoveMembershipForUser"
+          "target": "com.github.orgs#ListMembershipsForAuthenticatedUser"
         },
         {
           "target": "com.github.orgs#ListOrgRoles"
-        },
-        {
-          "target": "com.github.orgs#RevokeAllOrgRolesTeam"
-        },
-        {
-          "target": "com.github.orgs#AssignTeamToOrgRole"
-        },
-        {
-          "target": "com.github.orgs#RevokeOrgRoleTeam"
-        },
-        {
-          "target": "com.github.orgs#RevokeAllOrgRolesUser"
-        },
-        {
-          "target": "com.github.orgs#AssignUserToOrgRole"
-        },
-        {
-          "target": "com.github.orgs#RevokeOrgRoleUser"
-        },
-        {
-          "target": "com.github.orgs#GetOrgRole"
         },
         {
           "target": "com.github.orgs#ListOrgRoleTeams"
@@ -15919,106 +15923,103 @@
           "target": "com.github.orgs#ListOutsideCollaborators"
         },
         {
-          "target": "com.github.orgs#ConvertMemberToOutsideCollaborator"
-        },
-        {
-          "target": "com.github.orgs#RemoveOutsideCollaborator"
-        },
-        {
-          "target": "com.github.orgs#ListPatGrantRequests"
-        },
-        {
-          "target": "com.github.orgs#ReviewPatGrantRequestsInBulk"
-        },
-        {
-          "target": "com.github.orgs#RequestReviewPatGrant"
+          "target": "com.github.orgs#ListPatGrantRepositories"
         },
         {
           "target": "com.github.orgs#ListPatGrantRequestRepositories"
         },
         {
+          "target": "com.github.orgs#ListPatGrantRequests"
+        },
+        {
           "target": "com.github.orgs#ListPatGrants"
         },
         {
-          "target": "com.github.orgs#UpdatePatAccesses"
-        },
-        {
-          "target": "com.github.orgs#UpdatePatAccess"
-        },
-        {
-          "target": "com.github.orgs#ListPatGrantRepositories"
-        },
-        {
-          "target": "com.github.orgs#GetCustomPropertyForReposOrganizationDefinition"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinitions"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinition"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinition"
-        },
-        {
-          "target": "com.github.orgs#DeleteCustomPropertyForReposOrganizationDefinition"
-        },
-        {
-          "target": "com.github.orgs#GetCustomPropertyForReposOrganizationValue"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationValues"
+          "target": "com.github.orgs#ListPendingInvitations"
         },
         {
           "target": "com.github.orgs#ListPublicMembers"
         },
         {
-          "target": "com.github.orgs#CheckPublicMembershipForUser"
+          "target": "com.github.orgs#ListWebhookDeliveries"
         },
         {
-          "target": "com.github.orgs#SetPublicMembershipForAuthenticatedUser"
+          "target": "com.github.orgs#ListWebhooks"
+        },
+        {
+          "target": "com.github.orgs#PingWebhook"
+        },
+        {
+          "target": "com.github.orgs#RedeliverWebhookDelivery"
+        },
+        {
+          "target": "com.github.orgs#RemoveMember"
+        },
+        {
+          "target": "com.github.orgs#RemoveMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#RemoveOutsideCollaborator"
         },
         {
           "target": "com.github.orgs#RemovePublicMembershipForAuthenticatedUser"
         },
         {
-          "target": "com.github.orgs#GetOrgRulesetHistory"
+          "target": "com.github.orgs#ReviewPatGrantRequest"
         },
         {
-          "target": "com.github.orgs#GetOrgRulesetVersion"
+          "target": "com.github.orgs#RevokeAllOrgRolesTeam"
         },
         {
-          "target": "com.github.orgs#GetImmutableReleasesSettings"
+          "target": "com.github.orgs#RevokeAllOrgRolesUser"
+        },
+        {
+          "target": "com.github.orgs#RevokeOrgRoleTeam"
+        },
+        {
+          "target": "com.github.orgs#RevokeOrgRoleUser"
+        },
+        {
+          "target": "com.github.orgs#SetClusterDeploymentRecords"
         },
         {
           "target": "com.github.orgs#SetImmutableReleasesSettings"
         },
         {
-          "target": "com.github.orgs#GetImmutableReleasesSettingsRepositories"
-        },
-        {
           "target": "com.github.orgs#SetImmutableReleasesSettingsRepositories"
         },
         {
-          "target": "com.github.orgs#EnableSelectedRepositoryImmutableReleasesOrganization"
+          "target": "com.github.orgs#SetMembershipForUser"
         },
         {
-          "target": "com.github.orgs#DisableSelectedRepositoryImmutableReleasesOrganization"
+          "target": "com.github.orgs#SetPublicMembershipForAuthenticatedUser"
         },
         {
-          "target": "com.github.orgs#ListMembershipsForAuthenticatedUser"
+          "target": "com.github.orgs#UnblockUser"
         },
         {
-          "target": "com.github.orgs#GetMembershipForAuthenticatedUser"
+          "target": "com.github.orgs#Update"
+        },
+        {
+          "target": "com.github.orgs#UpdateIssueField"
+        },
+        {
+          "target": "com.github.orgs#UpdateIssueType"
         },
         {
           "target": "com.github.orgs#UpdateMembershipForAuthenticatedUser"
         },
         {
-          "target": "com.github.orgs#ListForAuthenticatedUser"
+          "target": "com.github.orgs#UpdatePatAccess"
         },
         {
-          "target": "com.github.orgs#ListForUser"
+          "target": "com.github.orgs#UpdatePatAccesses"
+        },
+        {
+          "target": "com.github.orgs#UpdateWebhook"
+        },
+        {
+          "target": "com.github.orgs#UpdateWebhookConfigForOrg"
         }
       ],
       "traits": {

@@ -54,8 +54,8 @@ export const CreateCustomPropertySourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateCustomPropertySourceRequest>;
 
 /** * `tracked` - tracked * `ignored` - ignored */
-export type AccountSegmentEnum = "tracked" | "ignored";
-export const AccountSegmentEnum = /*@__PURE__*/ S.String;
+export type SyncSegmentEnum = "tracked" | "ignored";
+export const SyncSegmentEnum = /*@__PURE__*/ S.String;
 
 /** * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
 export type SyncPhaseEnum = "staging" | "dispatching" | "syncing" | "completed";
@@ -67,7 +67,7 @@ export interface CustomPropertySyncRun {
   /** Warehouse import or materialization job associated with the run, if any. */
   job_id: string | null;
   /** Account segment processed by this run. Person and group property runs return null. * `tracked` - tracked * `ignored` - ignored */
-  account_segment: AccountSegmentEnum | null;
+  account_segment: SyncSegmentEnum | null;
   /** Current account sync phase. Person and group property runs return null. * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
   sync_phase: SyncPhaseEnum | null;
   /** Latest Temporal activity attempt for the current account sync phase. */
@@ -105,7 +105,7 @@ export const CustomPropertySyncRun = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     job_id: S.NullOr(S.String),
-    account_segment: S.NullOr(AccountSegmentEnum),
+    account_segment: S.NullOr(SyncSegmentEnum),
     sync_phase: S.NullOr(SyncPhaseEnum),
     attempt: S.NullOr(S.Number),
     workflow_id: S.NullOr(S.String),
@@ -251,106 +251,25 @@ export const CustomPropertySourcesDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "CustomPropertySourcesDestroyResponse",
 }) as any as S.Schema<CustomPropertySourcesDestroyResponse>;
 
-export interface CustomPropertySourcesRetrieveRequest {
+export interface GetCustomPropertySourceRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const CustomPropertySourcesRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/custom_property_sources/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CustomPropertySourcesRetrieveRequest",
-}) as any as S.Schema<CustomPropertySourcesRetrieveRequest>;
-
-export interface CustomPropertySourcesSyncRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const CustomPropertySourcesSyncRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCustomPropertySourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/custom_property_sources/{id}/sync/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CustomPropertySourcesSyncRequest",
-}) as any as S.Schema<CustomPropertySourcesSyncRequest>;
-
-export interface CustomPropertySourcesSyncResponse {}
-export const CustomPropertySourcesSyncResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CustomPropertySourcesSyncResponse",
-}) as any as S.Schema<CustomPropertySourcesSyncResponse>;
-
-export interface ListCustomPropertySourceRunsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Match run IDs, workflow IDs, job IDs, statuses, segments, triggers, or errors. */
-  search?: string;
-}
-export const ListCustomPropertySourceRunsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/custom_property_sources/{id}/runs/",
+      uri: "/api/projects/{project_id}/custom_property_sources/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListCustomPropertySourceRunsRequest",
-}) as any as S.Schema<ListCustomPropertySourceRunsRequest>;
-
-export type PaginatedCustomPropertySyncRunListResultsList =
-  Array<CustomPropertySyncRun>;
-export const PaginatedCustomPropertySyncRunListResultsList =
-  /*@__PURE__*/ S.Array(
-    CustomPropertySyncRun,
-  ) as any as S.Schema<PaginatedCustomPropertySyncRunListResultsList>;
-
-export interface PaginatedCustomPropertySyncRunList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedCustomPropertySyncRunListResultsList;
-}
-export const PaginatedCustomPropertySyncRunList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedCustomPropertySyncRunListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedCustomPropertySyncRunList",
-}) as any as S.Schema<PaginatedCustomPropertySyncRunList>;
+  identifier: "GetCustomPropertySourceRequest",
+}) as any as S.Schema<GetCustomPropertySourceRequest>;
 
 export interface ListCustomPropertySourcesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -400,6 +319,87 @@ export const PaginatedCustomPropertySourceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedCustomPropertySourceList",
 }) as any as S.Schema<PaginatedCustomPropertySourceList>;
 
+export interface ListCustomPropertySourcesRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Match run IDs, workflow IDs, job IDs, statuses, segments, triggers, or errors. */
+  search?: string;
+}
+export const ListCustomPropertySourcesRunsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+      search: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/custom_property_sources/{id}/runs/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListCustomPropertySourcesRunsRequest",
+}) as any as S.Schema<ListCustomPropertySourcesRunsRequest>;
+
+export type PaginatedCustomPropertySyncRunListResultsList =
+  Array<CustomPropertySyncRun>;
+export const PaginatedCustomPropertySyncRunListResultsList =
+  /*@__PURE__*/ S.Array(
+    CustomPropertySyncRun,
+  ) as any as S.Schema<PaginatedCustomPropertySyncRunListResultsList>;
+
+export interface PaginatedCustomPropertySyncRunList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedCustomPropertySyncRunListResultsList;
+}
+export const PaginatedCustomPropertySyncRunList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedCustomPropertySyncRunListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedCustomPropertySyncRunList",
+}) as any as S.Schema<PaginatedCustomPropertySyncRunList>;
+
+export interface SyncCustomPropertySourceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const SyncCustomPropertySourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/custom_property_sources/{id}/sync/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SyncCustomPropertySourceRequest",
+}) as any as S.Schema<SyncCustomPropertySourceRequest>;
+
+export interface SyncCustomPropertySourceResponse {}
+export const SyncCustomPropertySourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SyncCustomPropertySourceResponse",
+}) as any as S.Schema<SyncCustomPropertySourceResponse>;
+
 export interface UpdateCustomPropertySourceRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -429,7 +429,7 @@ export const UpdateCustomPropertySourceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateCustomPropertySourceRequest",
 }) as any as S.Schema<UpdateCustomPropertySourceRequest>;
 
-export interface UpdateCustomPropertySourcePartialRequest {
+export interface UpdateCustomPropertySourcesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -440,8 +440,8 @@ export interface UpdateCustomPropertySourcePartialRequest {
   /** Whether the source syncs; re-enabling it resets the failure count. */
   is_enabled?: boolean;
 }
-export const UpdateCustomPropertySourcePartialRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateCustomPropertySourcesPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
@@ -455,9 +455,9 @@ export const UpdateCustomPropertySourcePartialRequest = /*@__PURE__*/ S.suspend(
         code: 200,
       }),
     ),
-).annotate({
-  identifier: "UpdateCustomPropertySourcePartialRequest",
-}) as any as S.Schema<UpdateCustomPropertySourcePartialRequest>;
+  ).annotate({
+    identifier: "UpdateCustomPropertySourcesPartialRequest",
+  }) as any as S.Schema<UpdateCustomPropertySourcesPartialRequest>;
 
 export type CreateCustomPropertySourceError = PosthogOpError;
 export const createCustomPropertySource: API.OperationMethod<
@@ -502,45 +502,15 @@ export const customPropertySourcesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CustomPropertySourcesRetrieveError = PosthogOpError;
-export const customPropertySourcesRetrieve: API.OperationMethod<
-  CustomPropertySourcesRetrieveRequest,
+export type GetCustomPropertySourceError = PosthogOpError;
+export const getCustomPropertySource: API.OperationMethod<
+  GetCustomPropertySourceRequest,
   CustomPropertySource,
-  CustomPropertySourcesRetrieveError,
+  GetCustomPropertySourceError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertySourcesRetrieveRequest,
+  input: GetCustomPropertySourceRequest,
   output: CustomPropertySource,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomPropertySourcesSyncError = PosthogOpError;
-/** Person and group sources only: run what this source reads now — an import for a table binding (a real, billable warehouse sync), a materialization for a view binding. The incremental person/group-property update runs off that run. */
-export const customPropertySourcesSync: API.OperationMethod<
-  CustomPropertySourcesSyncRequest,
-  CustomPropertySourcesSyncResponse,
-  CustomPropertySourcesSyncError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertySourcesSyncRequest,
-  output: CustomPropertySourcesSyncResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListCustomPropertySourceRunsError = PosthogOpError;
-/** The source's sync history, newest first. Person and group runs require viewer access to their warehouse source because the response includes row counts and sync errors. */
-export const listCustomPropertySourceRuns: API.OperationMethod<
-  ListCustomPropertySourceRunsRequest,
-  PaginatedCustomPropertySyncRunList,
-  ListCustomPropertySourceRunsError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListCustomPropertySourceRunsRequest,
-  output: PaginatedCustomPropertySyncRunList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -560,6 +530,36 @@ export const listCustomPropertySources: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListCustomPropertySourcesRunsError = PosthogOpError;
+/** The source's sync history, newest first. Person and group runs require viewer access to their warehouse source because the response includes row counts and sync errors. */
+export const listCustomPropertySourcesRuns: API.OperationMethod<
+  ListCustomPropertySourcesRunsRequest,
+  PaginatedCustomPropertySyncRunList,
+  ListCustomPropertySourcesRunsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCustomPropertySourcesRunsRequest,
+  output: PaginatedCustomPropertySyncRunList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncCustomPropertySourceError = PosthogOpError;
+/** Person and group sources only: run what this source reads now — an import for a table binding (a real, billable warehouse sync), a materialization for a view binding. The incremental person/group-property update runs off that run. */
+export const syncCustomPropertySource: API.OperationMethod<
+  SyncCustomPropertySourceRequest,
+  SyncCustomPropertySourceResponse,
+  SyncCustomPropertySourceError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncCustomPropertySourceRequest,
+  output: SyncCustomPropertySourceResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateCustomPropertySourceError = PosthogOpError;
 export const updateCustomPropertySource: API.OperationMethod<
   UpdateCustomPropertySourceRequest,
@@ -574,14 +574,14 @@ export const updateCustomPropertySource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateCustomPropertySourcePartialError = PosthogOpError;
-export const updateCustomPropertySourcePartial: API.OperationMethod<
-  UpdateCustomPropertySourcePartialRequest,
+export type UpdateCustomPropertySourcesPartialError = PosthogOpError;
+export const updateCustomPropertySourcesPartial: API.OperationMethod<
+  UpdateCustomPropertySourcesPartialRequest,
   CustomPropertySource,
-  UpdateCustomPropertySourcePartialError,
+  UpdateCustomPropertySourcesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateCustomPropertySourcePartialRequest,
+  input: UpdateCustomPropertySourcesPartialRequest,
   output: CustomPropertySource,
   errors: [],
   protocol: PosthogProtocol,

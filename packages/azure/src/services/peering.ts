@@ -349,7 +349,7 @@ export const DeletePeeringServiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePeeringServiceResponse",
 }) as any as S.Schema<DeletePeeringServiceResponse>;
 
-export interface DeletePrefixeRequest {
+export interface DeletePrefixRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -359,7 +359,7 @@ export interface DeletePrefixeRequest {
   /** The name of the prefix. */
   prefixName: string;
 }
-export const DeletePrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeletePrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -374,15 +374,15 @@ export const DeletePrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeletePrefixeRequest",
-}) as any as S.Schema<DeletePrefixeRequest>;
+  identifier: "DeletePrefixRequest",
+}) as any as S.Schema<DeletePrefixRequest>;
 
-export interface DeletePrefixeResponse {}
-export const DeletePrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeletePrefixResponse {}
+export const DeletePrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeletePrefixeResponse",
-}) as any as S.Schema<DeletePrefixeResponse>;
+  identifier: "DeletePrefixResponse",
+}) as any as S.Schema<DeletePrefixResponse>;
 
 export interface DeleteRegisteredAsnRequest {
   /** The ID of the target subscription. */
@@ -419,7 +419,7 @@ export const DeleteRegisteredAsnResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteRegisteredAsnResponse",
 }) as any as S.Schema<DeleteRegisteredAsnResponse>;
 
-export interface DeleteRegisteredPrefixeRequest {
+export interface DeleteRegisteredPrefixRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -429,7 +429,7 @@ export interface DeleteRegisteredPrefixeRequest {
   /** The name of the registered prefix. */
   registeredPrefixName: string;
 }
-export const DeleteRegisteredPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteRegisteredPrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -444,15 +444,15 @@ export const DeleteRegisteredPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteRegisteredPrefixeRequest",
-}) as any as S.Schema<DeleteRegisteredPrefixeRequest>;
+  identifier: "DeleteRegisteredPrefixRequest",
+}) as any as S.Schema<DeleteRegisteredPrefixRequest>;
 
-export interface DeleteRegisteredPrefixeResponse {}
-export const DeleteRegisteredPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteRegisteredPrefixResponse {}
+export const DeleteRegisteredPrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteRegisteredPrefixeResponse",
-}) as any as S.Schema<DeleteRegisteredPrefixeResponse>;
+  identifier: "DeleteRegisteredPrefixResponse",
+}) as any as S.Schema<DeleteRegisteredPrefixResponse>;
 
 export interface GetConnectionMonitorTestRequest {
   /** The ID of the target subscription. */
@@ -640,11 +640,11 @@ export const GetPeeringRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPeeringRequest>;
 
 /** Resource tags. */
-export type PeeringsGetResponseTagsMap = { [key: string]: string | undefined };
-export const PeeringsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetPeeringResponseTagsMap = { [key: string]: string | undefined };
+export const GetPeeringResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PeeringsGetResponseTagsMap>;
+) as any as S.Schema<GetPeeringResponseTagsMap>;
 
 /** The field indicating if Microsoft provides session ip addresses. */
 export type SessionAddressProvider = "Microsoft" | "Peer";
@@ -985,7 +985,7 @@ export interface GetPeeringResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PeeringsGetResponseTagsMap;
+  tags?: GetPeeringResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties that define a peering. */
@@ -1001,7 +1001,7 @@ export const GetPeeringResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PeeringsGetResponseTagsMap),
+    tags: S.optional(GetPeeringResponseTagsMap),
     location: S.String,
     properties: S.optional(PeeringProperties),
     sku: PeeringSku,
@@ -1037,13 +1037,13 @@ export const GetPeeringServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPeeringServiceRequest>;
 
 /** Resource tags. */
-export type PeeringServicesGetResponseTagsMap = {
+export type GetPeeringServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PeeringServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPeeringServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PeeringServicesGetResponseTagsMap>;
+) as any as S.Schema<GetPeeringServiceResponseTagsMap>;
 
 /** The list of connected agents. */
 export type LogAnalyticsWorkspacePropertiesConnectedAgentsList = Array<string>;
@@ -1126,7 +1126,7 @@ export interface GetPeeringServiceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PeeringServicesGetResponseTagsMap;
+  tags?: GetPeeringServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties that define a peering service. */
@@ -1140,7 +1140,7 @@ export const GetPeeringServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PeeringServicesGetResponseTagsMap),
+    tags: S.optional(GetPeeringServiceResponseTagsMap),
     location: S.String,
     properties: S.optional(PeeringServiceProperties),
     sku: S.optional(PeeringServiceSku),
@@ -1149,7 +1149,7 @@ export const GetPeeringServiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPeeringServiceResponse",
 }) as any as S.Schema<GetPeeringServiceResponse>;
 
-export interface GetPrefixeRequest {
+export interface GetPrefixRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1161,7 +1161,7 @@ export interface GetPrefixeRequest {
   /** The properties to be expanded. */
   _expand?: string;
 }
-export const GetPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1177,8 +1177,8 @@ export const GetPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetPrefixeRequest",
-}) as any as S.Schema<GetPrefixeRequest>;
+  identifier: "GetPrefixRequest",
+}) as any as S.Schema<GetPrefixRequest>;
 
 /** The prefix validation state. */
 export type PrefixValidationState =
@@ -1258,7 +1258,7 @@ export const PeeringServicePrefixProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PeeringServicePrefixProperties",
 }) as any as S.Schema<PeeringServicePrefixProperties>;
 
-export interface GetPrefixeResponse {
+export interface GetPrefixResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1270,7 +1270,7 @@ export interface GetPrefixeResponse {
   /** Gets or sets the peering prefix properties. */
   properties?: PeeringServicePrefixProperties;
 }
-export const GetPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1279,8 +1279,8 @@ export const GetPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PeeringServicePrefixProperties),
   }),
 ).annotate({
-  identifier: "GetPrefixeResponse",
-}) as any as S.Schema<GetPrefixeResponse>;
+  identifier: "GetPrefixResponse",
+}) as any as S.Schema<GetPrefixResponse>;
 
 export interface GetRegisteredAsnRequest {
   /** The ID of the target subscription. */
@@ -1353,7 +1353,7 @@ export const GetRegisteredAsnResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRegisteredAsnResponse",
 }) as any as S.Schema<GetRegisteredAsnResponse>;
 
-export interface GetRegisteredPrefixeRequest {
+export interface GetRegisteredPrefixRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1363,7 +1363,7 @@ export interface GetRegisteredPrefixeRequest {
   /** The name of the registered prefix. */
   registeredPrefixName: string;
 }
-export const GetRegisteredPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRegisteredPrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1378,8 +1378,8 @@ export const GetRegisteredPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetRegisteredPrefixeRequest",
-}) as any as S.Schema<GetRegisteredPrefixeRequest>;
+  identifier: "GetRegisteredPrefixRequest",
+}) as any as S.Schema<GetRegisteredPrefixRequest>;
 
 /** The properties that define a registered prefix. */
 export interface PeeringRegisteredPrefixProperties {
@@ -1406,7 +1406,7 @@ export const PeeringRegisteredPrefixProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PeeringRegisteredPrefixProperties",
 }) as any as S.Schema<PeeringRegisteredPrefixProperties>;
 
-export interface GetRegisteredPrefixeResponse {
+export interface GetRegisteredPrefixResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1418,7 +1418,7 @@ export interface GetRegisteredPrefixeResponse {
   /** The properties that define a registered prefix. */
   properties?: PeeringRegisteredPrefixProperties;
 }
-export const GetRegisteredPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRegisteredPrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1427,8 +1427,68 @@ export const GetRegisteredPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PeeringRegisteredPrefixProperties),
   }),
 ).annotate({
-  identifier: "GetRegisteredPrefixeResponse",
-}) as any as S.Schema<GetRegisteredPrefixeResponse>;
+  identifier: "GetRegisteredPrefixResponse",
+}) as any as S.Schema<GetRegisteredPrefixResponse>;
+
+export type InvokeLookingGlassRequestCommand =
+  | "Traceroute"
+  | "Ping"
+  | "BgpRoute";
+export const InvokeLookingGlassRequestCommand = /*@__PURE__*/ S.String;
+
+export type InvokeLookingGlassRequestSourceType = "EdgeSite" | "AzureRegion";
+export const InvokeLookingGlassRequestSourceType = /*@__PURE__*/ S.String;
+
+export interface InvokeLookingGlassRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The command to be executed: ping, traceroute, bgpRoute. */
+  command: InvokeLookingGlassRequestCommand | (string & {});
+  /** The type of the source: Edge site or Azure Region. */
+  sourceType: InvokeLookingGlassRequestSourceType | (string & {});
+  /** The location of the source. */
+  sourceLocation: string;
+  /** The IP address of the destination. */
+  destinationIP: string;
+}
+export const InvokeLookingGlassRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    command: InvokeLookingGlassRequestCommand.pipe(T.Query()),
+    sourceType: InvokeLookingGlassRequestSourceType.pipe(T.Query()),
+    sourceLocation: S.String.pipe(T.Query()),
+    destinationIP: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Peering/lookingGlass",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "InvokeLookingGlassRequest",
+}) as any as S.Schema<InvokeLookingGlassRequest>;
+
+/** Invoked command */
+export type Command = "Traceroute" | "Ping" | "BgpRoute";
+export const Command = /*@__PURE__*/ S.String;
+
+/** Looking glass output model */
+export interface LookingGlassOutput {
+  /** Invoked command */
+  command?: Command;
+  /** Output of the command */
+  output?: string;
+}
+export const LookingGlassOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    command: S.optional(Command),
+    output: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LookingGlassOutput",
+}) as any as S.Schema<LookingGlassOutput>;
 
 export interface ListCdnPeeringPrefixesRequest {
   /** The ID of the target subscription. */
@@ -1598,10 +1658,10 @@ export const ConnectionMonitorTestListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectionMonitorTestListResult",
 }) as any as S.Schema<ConnectionMonitorTestListResult>;
 
-export type LegacyPeeringsListRequestKind = "Direct" | "Exchange";
-export const LegacyPeeringsListRequestKind = /*@__PURE__*/ S.String;
+export type ListLegacyPeeringsRequestKind = "Direct" | "Exchange";
+export const ListLegacyPeeringsRequestKind = /*@__PURE__*/ S.String;
 
-export type LegacyPeeringsListRequestDirectPeeringType =
+export type ListLegacyPeeringsRequestDirectPeeringType =
   | "Edge"
   | "Transit"
   | "Cdn"
@@ -1611,7 +1671,7 @@ export type LegacyPeeringsListRequestDirectPeeringType =
   | "Voice"
   | "EdgeZoneForOperators"
   | "PeerProp";
-export const LegacyPeeringsListRequestDirectPeeringType =
+export const ListLegacyPeeringsRequestDirectPeeringType =
   /*@__PURE__*/ S.String;
 
 export interface ListLegacyPeeringsRequest {
@@ -1620,22 +1680,22 @@ export interface ListLegacyPeeringsRequest {
   /** The location of the peering. */
   peeringLocation: string;
   /** The kind of the peering. */
-  kind: LegacyPeeringsListRequestKind | (string & {});
+  kind: ListLegacyPeeringsRequestKind | (string & {});
   /** The ASN number associated with a legacy peering. */
   asn?: number;
   /** The direct peering type. */
   directPeeringType?:
-    | LegacyPeeringsListRequestDirectPeeringType
+    | ListLegacyPeeringsRequestDirectPeeringType
     | (string & {});
 }
 export const ListLegacyPeeringsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     peeringLocation: S.String.pipe(T.Query()),
-    kind: LegacyPeeringsListRequestKind.pipe(T.Query()),
+    kind: ListLegacyPeeringsRequestKind.pipe(T.Query()),
     asn: S.optional(S.Number.pipe(T.Query())),
     directPeeringType: S.optional(
-      LegacyPeeringsListRequestDirectPeeringType.pipe(T.Query()),
+      ListLegacyPeeringsRequestDirectPeeringType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -1994,10 +2054,10 @@ export const ListPeeringBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPeeringBySubscriptionRequest",
 }) as any as S.Schema<ListPeeringBySubscriptionRequest>;
 
-export type PeeringLocationsListRequestKind = "Direct" | "Exchange";
-export const PeeringLocationsListRequestKind = /*@__PURE__*/ S.String;
+export type ListPeeringLocationsRequestKind = "Direct" | "Exchange";
+export const ListPeeringLocationsRequestKind = /*@__PURE__*/ S.String;
 
-export type PeeringLocationsListRequestDirectPeeringType =
+export type ListPeeringLocationsRequestDirectPeeringType =
   | "Edge"
   | "Transit"
   | "Cdn"
@@ -2007,25 +2067,25 @@ export type PeeringLocationsListRequestDirectPeeringType =
   | "Voice"
   | "EdgeZoneForOperators"
   | "PeerProp";
-export const PeeringLocationsListRequestDirectPeeringType =
+export const ListPeeringLocationsRequestDirectPeeringType =
   /*@__PURE__*/ S.String;
 
 export interface ListPeeringLocationsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The kind of the peering. */
-  kind: PeeringLocationsListRequestKind | (string & {});
+  kind: ListPeeringLocationsRequestKind | (string & {});
   /** The type of direct peering. */
   directPeeringType?:
-    | PeeringLocationsListRequestDirectPeeringType
+    | ListPeeringLocationsRequestDirectPeeringType
     | (string & {});
 }
 export const ListPeeringLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    kind: PeeringLocationsListRequestKind.pipe(T.Query()),
+    kind: ListPeeringLocationsRequestKind.pipe(T.Query()),
     directPeeringType: S.optional(
-      PeeringLocationsListRequestDirectPeeringType.pipe(T.Query()),
+      ListPeeringLocationsRequestDirectPeeringType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -2595,7 +2655,7 @@ export const PeeringServiceProviderListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PeeringServiceProviderListResult",
 }) as any as S.Schema<PeeringServiceProviderListResult>;
 
-export interface ListPrefixeByPeeringServiceRequest {
+export interface ListPrefixByPeeringServiceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2605,7 +2665,7 @@ export interface ListPrefixeByPeeringServiceRequest {
   /** The properties to be expanded. */
   _expand?: string;
 }
-export const ListPrefixeByPeeringServiceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPrefixByPeeringServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2620,8 +2680,8 @@ export const ListPrefixeByPeeringServiceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListPrefixeByPeeringServiceRequest",
-}) as any as S.Schema<ListPrefixeByPeeringServiceRequest>;
+  identifier: "ListPrefixByPeeringServiceRequest",
+}) as any as S.Schema<ListPrefixByPeeringServiceRequest>;
 
 /** The peering service prefix class. */
 export interface PeeringServicePrefix {
@@ -2838,7 +2898,7 @@ export const PeeringRegisteredAsnListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PeeringRegisteredAsnListResult",
 }) as any as S.Schema<PeeringRegisteredAsnListResult>;
 
-export interface ListRegisteredPrefixeByPeeringRequest {
+export interface ListRegisteredPrefixByPeeringRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2846,7 +2906,7 @@ export interface ListRegisteredPrefixeByPeeringRequest {
   /** The name of the peering. */
   peeringName: string;
 }
-export const ListRegisteredPrefixeByPeeringRequest = /*@__PURE__*/ S.suspend(
+export const ListRegisteredPrefixByPeeringRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2861,8 +2921,8 @@ export const ListRegisteredPrefixeByPeeringRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListRegisteredPrefixeByPeeringRequest",
-}) as any as S.Schema<ListRegisteredPrefixeByPeeringRequest>;
+  identifier: "ListRegisteredPrefixByPeeringRequest",
+}) as any as S.Schema<ListRegisteredPrefixByPeeringRequest>;
 
 /** The customer's prefix that is registered by the peering service provider. */
 export interface PeeringRegisteredPrefix {
@@ -2980,66 +3040,6 @@ export const RpUnbilledPrefixListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RpUnbilledPrefixListResult",
 }) as any as S.Schema<RpUnbilledPrefixListResult>;
-
-export type LookingGlassInvokeRequestCommand =
-  | "Traceroute"
-  | "Ping"
-  | "BgpRoute";
-export const LookingGlassInvokeRequestCommand = /*@__PURE__*/ S.String;
-
-export type LookingGlassInvokeRequestSourceType = "EdgeSite" | "AzureRegion";
-export const LookingGlassInvokeRequestSourceType = /*@__PURE__*/ S.String;
-
-export interface LookingGlassInvokeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The command to be executed: ping, traceroute, bgpRoute. */
-  command: LookingGlassInvokeRequestCommand | (string & {});
-  /** The type of the source: Edge site or Azure Region. */
-  sourceType: LookingGlassInvokeRequestSourceType | (string & {});
-  /** The location of the source. */
-  sourceLocation: string;
-  /** The IP address of the destination. */
-  destinationIP: string;
-}
-export const LookingGlassInvokeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    command: LookingGlassInvokeRequestCommand.pipe(T.Query()),
-    sourceType: LookingGlassInvokeRequestSourceType.pipe(T.Query()),
-    sourceLocation: S.String.pipe(T.Query()),
-    destinationIP: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Peering/lookingGlass",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "LookingGlassInvokeRequest",
-}) as any as S.Schema<LookingGlassInvokeRequest>;
-
-/** Invoked command */
-export type Command = "Traceroute" | "Ping" | "BgpRoute";
-export const Command = /*@__PURE__*/ S.String;
-
-/** Looking glass output model */
-export interface LookingGlassOutput {
-  /** Invoked command */
-  command?: Command;
-  /** Output of the command */
-  output?: string;
-}
-export const LookingGlassOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    command: S.optional(Command),
-    output: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LookingGlassOutput",
-}) as any as S.Schema<LookingGlassOutput>;
 
 /** The contact details of the peer. */
 export type PeerAsnPropertiesInputPeerContactDetailList = Array<ContactDetail>;
@@ -3723,66 +3723,12 @@ export const RegisteredPrefixesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "RegisteredPrefixesCreateOrUpdateResponse",
 }) as any as S.Schema<RegisteredPrefixesCreateOrUpdateResponse>;
 
-export interface RegisteredPrefixesValidateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the peering. */
-  peeringName: string;
-  /** The name of the registered prefix. */
-  registeredPrefixName: string;
-}
-export const RegisteredPrefixesValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    peeringName: S.String.pipe(T.Label()),
-    registeredPrefixName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Peering/peerings/{peeringName}/registeredPrefixes/{registeredPrefixName}/validate",
-      code: 200,
-      apiVersion: "2025-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "RegisteredPrefixesValidateRequest",
-}) as any as S.Schema<RegisteredPrefixesValidateRequest>;
-
-export interface RegisteredPrefixesValidateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties that define a registered prefix. */
-  properties?: PeeringRegisteredPrefixProperties;
-}
-export const RegisteredPrefixesValidateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PeeringRegisteredPrefixProperties),
-  }),
-).annotate({
-  identifier: "RegisteredPrefixesValidateResponse",
-}) as any as S.Schema<RegisteredPrefixesValidateResponse>;
-
 /** Gets or sets the tags, a dictionary of descriptors arm object */
-export type PeeringsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PeeringsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdatePeeringRequestTagsMap = { [key: string]: string | undefined };
+export const UpdatePeeringRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PeeringsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePeeringRequestTagsMap>;
 
 export interface UpdatePeeringRequest {
   /** The ID of the target subscription. */
@@ -3792,14 +3738,14 @@ export interface UpdatePeeringRequest {
   /** The name of the peering. */
   peeringName: string;
   /** Gets or sets the tags, a dictionary of descriptors arm object */
-  tags?: PeeringsUpdateRequestTagsMap;
+  tags?: UpdatePeeringRequestTagsMap;
 }
 export const UpdatePeeringRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     peeringName: S.String.pipe(T.Label()),
-    tags: S.optional(PeeringsUpdateRequestTagsMap),
+    tags: S.optional(UpdatePeeringRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3813,13 +3759,13 @@ export const UpdatePeeringRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePeeringRequest>;
 
 /** Resource tags. */
-export type PeeringsUpdateResponseTagsMap = {
+export type UpdatePeeringResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PeeringsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePeeringResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PeeringsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePeeringResponseTagsMap>;
 
 export interface UpdatePeeringResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3831,7 +3777,7 @@ export interface UpdatePeeringResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PeeringsUpdateResponseTagsMap;
+  tags?: UpdatePeeringResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties that define a peering. */
@@ -3847,7 +3793,7 @@ export const UpdatePeeringResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PeeringsUpdateResponseTagsMap),
+    tags: S.optional(UpdatePeeringResponseTagsMap),
     location: S.String,
     properties: S.optional(PeeringProperties),
     sku: PeeringSku,
@@ -3858,13 +3804,13 @@ export const UpdatePeeringResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePeeringResponse>;
 
 /** Gets or sets the tags, a dictionary of descriptors arm object */
-export type PeeringServicesUpdateRequestTagsMap = {
+export type UpdatePeeringServiceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PeeringServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePeeringServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PeeringServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePeeringServiceRequestTagsMap>;
 
 export interface UpdatePeeringServiceRequest {
   /** The ID of the target subscription. */
@@ -3874,14 +3820,14 @@ export interface UpdatePeeringServiceRequest {
   /** The name of the peering. */
   peeringServiceName: string;
   /** Gets or sets the tags, a dictionary of descriptors arm object */
-  tags?: PeeringServicesUpdateRequestTagsMap;
+  tags?: UpdatePeeringServiceRequestTagsMap;
 }
 export const UpdatePeeringServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     peeringServiceName: S.String.pipe(T.Label()),
-    tags: S.optional(PeeringServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdatePeeringServiceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3895,13 +3841,13 @@ export const UpdatePeeringServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePeeringServiceRequest>;
 
 /** Resource tags. */
-export type PeeringServicesUpdateResponseTagsMap = {
+export type UpdatePeeringServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PeeringServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePeeringServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PeeringServicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePeeringServiceResponseTagsMap>;
 
 export interface UpdatePeeringServiceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3913,7 +3859,7 @@ export interface UpdatePeeringServiceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PeeringServicesUpdateResponseTagsMap;
+  tags?: UpdatePeeringServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties that define a peering service. */
@@ -3927,7 +3873,7 @@ export const UpdatePeeringServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PeeringServicesUpdateResponseTagsMap),
+    tags: S.optional(UpdatePeeringServiceResponseTagsMap),
     location: S.String,
     properties: S.optional(PeeringServiceProperties),
     sku: S.optional(PeeringServiceSku),
@@ -3935,6 +3881,58 @@ export const UpdatePeeringServiceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdatePeeringServiceResponse",
 }) as any as S.Schema<UpdatePeeringServiceResponse>;
+
+export interface ValidateRegisteredPrefixRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the peering. */
+  peeringName: string;
+  /** The name of the registered prefix. */
+  registeredPrefixName: string;
+}
+export const ValidateRegisteredPrefixRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    peeringName: S.String.pipe(T.Label()),
+    registeredPrefixName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Peering/peerings/{peeringName}/registeredPrefixes/{registeredPrefixName}/validate",
+      code: 200,
+      apiVersion: "2025-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateRegisteredPrefixRequest",
+}) as any as S.Schema<ValidateRegisteredPrefixRequest>;
+
+export interface ValidateRegisteredPrefixResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties that define a registered prefix. */
+  properties?: PeeringRegisteredPrefixProperties;
+}
+export const ValidateRegisteredPrefixResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PeeringRegisteredPrefixProperties),
+  }),
+).annotate({
+  identifier: "ValidateRegisteredPrefixResponse",
+}) as any as S.Schema<ValidateRegisteredPrefixResponse>;
 
 export type CheckServiceProviderAvailabilityError = AzureOpError;
 /** Checks if the peering service provider is present within 1000 miles of customer's location */
@@ -4026,16 +4024,16 @@ export const DeletePeeringService: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeletePrefixeError = AzureOpError;
+export type DeletePrefixError = AzureOpError;
 /** Deletes an existing prefix with the specified name under the given subscription, resource group and peering service. */
-export const DeletePrefixe: API.OperationMethod<
-  DeletePrefixeRequest,
-  DeletePrefixeResponse,
-  DeletePrefixeError,
+export const DeletePrefix: API.OperationMethod<
+  DeletePrefixRequest,
+  DeletePrefixResponse,
+  DeletePrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletePrefixeRequest,
-  output: DeletePrefixeResponse,
+  input: DeletePrefixRequest,
+  output: DeletePrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4056,16 +4054,16 @@ export const DeleteRegisteredAsn: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteRegisteredPrefixeError = AzureOpError;
+export type DeleteRegisteredPrefixError = AzureOpError;
 /** Deletes an existing registered prefix with the specified name under the given subscription, resource group and peering. */
-export const DeleteRegisteredPrefixe: API.OperationMethod<
-  DeleteRegisteredPrefixeRequest,
-  DeleteRegisteredPrefixeResponse,
-  DeleteRegisteredPrefixeError,
+export const DeleteRegisteredPrefix: API.OperationMethod<
+  DeleteRegisteredPrefixRequest,
+  DeleteRegisteredPrefixResponse,
+  DeleteRegisteredPrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteRegisteredPrefixeRequest,
-  output: DeleteRegisteredPrefixeResponse,
+  input: DeleteRegisteredPrefixRequest,
+  output: DeleteRegisteredPrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4131,16 +4129,16 @@ export const GetPeeringService: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPrefixeError = AzureOpError;
+export type GetPrefixError = AzureOpError;
 /** Gets an existing prefix with the specified name under the given subscription, resource group and peering service. */
-export const GetPrefixe: API.OperationMethod<
-  GetPrefixeRequest,
-  GetPrefixeResponse,
-  GetPrefixeError,
+export const GetPrefix: API.OperationMethod<
+  GetPrefixRequest,
+  GetPrefixResponse,
+  GetPrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrefixeRequest,
-  output: GetPrefixeResponse,
+  input: GetPrefixRequest,
+  output: GetPrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4161,16 +4159,31 @@ export const GetRegisteredAsn: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetRegisteredPrefixeError = AzureOpError;
+export type GetRegisteredPrefixError = AzureOpError;
 /** Gets an existing registered prefix with the specified name under the given subscription, resource group and peering. */
-export const GetRegisteredPrefixe: API.OperationMethod<
-  GetRegisteredPrefixeRequest,
-  GetRegisteredPrefixeResponse,
-  GetRegisteredPrefixeError,
+export const GetRegisteredPrefix: API.OperationMethod<
+  GetRegisteredPrefixRequest,
+  GetRegisteredPrefixResponse,
+  GetRegisteredPrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetRegisteredPrefixeRequest,
-  output: GetRegisteredPrefixeResponse,
+  input: GetRegisteredPrefixRequest,
+  output: GetRegisteredPrefixResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InvokeLookingGlassError = AzureOpError;
+/** Run looking glass functionality */
+export const InvokeLookingGlass: API.OperationMethod<
+  InvokeLookingGlassRequest,
+  LookingGlassOutput,
+  InvokeLookingGlassError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InvokeLookingGlassRequest,
+  output: LookingGlassOutput,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4371,15 +4384,15 @@ export const ListPeeringServiceProviders: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListPrefixeByPeeringServiceError = AzureOpError;
+export type ListPrefixByPeeringServiceError = AzureOpError;
 /** Lists all prefixes under the given subscription, resource group and peering service. */
-export const ListPrefixeByPeeringService: API.OperationMethod<
-  ListPrefixeByPeeringServiceRequest,
+export const ListPrefixByPeeringService: API.OperationMethod<
+  ListPrefixByPeeringServiceRequest,
   PeeringServicePrefixListResult,
-  ListPrefixeByPeeringServiceError,
+  ListPrefixByPeeringServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListPrefixeByPeeringServiceRequest,
+  input: ListPrefixByPeeringServiceRequest,
   output: PeeringServicePrefixListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -4416,15 +4429,15 @@ export const ListRegisteredAsnByPeering: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListRegisteredPrefixeByPeeringError = AzureOpError;
+export type ListRegisteredPrefixByPeeringError = AzureOpError;
 /** Lists all registered prefixes under the given subscription, resource group and peering. */
-export const ListRegisteredPrefixeByPeering: API.OperationMethod<
-  ListRegisteredPrefixeByPeeringRequest,
+export const ListRegisteredPrefixByPeering: API.OperationMethod<
+  ListRegisteredPrefixByPeeringRequest,
   PeeringRegisteredPrefixListResult,
-  ListRegisteredPrefixeByPeeringError,
+  ListRegisteredPrefixByPeeringError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListRegisteredPrefixeByPeeringRequest,
+  input: ListRegisteredPrefixByPeeringRequest,
   output: PeeringRegisteredPrefixListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -4441,21 +4454,6 @@ export const ListRpUnbilledPrefixes: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListRpUnbilledPrefixesRequest,
   output: RpUnbilledPrefixListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LookingGlassInvokeError = AzureOpError;
-/** Run looking glass functionality */
-export const LookingGlassInvoke: API.OperationMethod<
-  LookingGlassInvokeRequest,
-  LookingGlassOutput,
-  LookingGlassInvokeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LookingGlassInvokeRequest,
-  output: LookingGlassOutput,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4566,21 +4564,6 @@ export const RegisteredPrefixesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RegisteredPrefixesValidateError = AzureOpError;
-/** Validates an existing registered prefix with the specified name under the given subscription, resource group and peering. */
-export const RegisteredPrefixesValidate: API.OperationMethod<
-  RegisteredPrefixesValidateRequest,
-  RegisteredPrefixesValidateResponse,
-  RegisteredPrefixesValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegisteredPrefixesValidateRequest,
-  output: RegisteredPrefixesValidateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdatePeeringError = AzureOpError;
 /** Updates tags for a peering with the specified name under the given subscription and resource group. */
 export const UpdatePeering: API.OperationMethod<
@@ -4606,6 +4589,21 @@ export const UpdatePeeringService: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdatePeeringServiceRequest,
   output: UpdatePeeringServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateRegisteredPrefixError = AzureOpError;
+/** Validates an existing registered prefix with the specified name under the given subscription, resource group and peering. */
+export const ValidateRegisteredPrefix: API.OperationMethod<
+  ValidateRegisteredPrefixRequest,
+  ValidateRegisteredPrefixResponse,
+  ValidateRegisteredPrefixError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateRegisteredPrefixRequest,
+  output: ValidateRegisteredPrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -67,17 +67,17 @@ export class NotFound
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Agenciesandbrands_Date {
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
   /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
   day?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
   /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
   year?: number;
 }
 export const Agenciesandbrands_Date = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    month: S.optional(S.Number),
     day: S.optional(S.Number),
+    month: S.optional(S.Number),
     year: S.optional(S.Number),
   }),
 ).annotate({
@@ -142,109 +142,6 @@ export const DateRange = /*@__PURE__*/ S.suspend(() =>
     relative: S.optional(DateRangeRelativeEnum),
   }),
 ).annotate({ identifier: "DateRange" }) as any as S.Schema<DateRange>;
-
-export type ReportDefinitionDimensionsItemEnum =
-  | "DIMENSION_UNSPECIFIED"
-  | "ADVERTISER_DOMAIN"
-  | "AGENCY_ACCOUNT_ID"
-  | "AGENCY_ACCOUNT_NAME"
-  | "BID_FILTERING_REASON"
-  | "BID_FILTERING_REASON_NAME"
-  | "BUYER_SDK"
-  | "CAMPAIGN_ID"
-  | "CAMPAIGN_NAME"
-  | "COUNTRY"
-  | "CREATIVE_FORMAT"
-  | "CREATIVE_ID"
-  | "CREATIVE_POLICIES"
-  | "CREATIVE_POLICIES_NAME"
-  | "CREATIVE_SIZE"
-  | "CURATION_DATA_SEGMENT_ID"
-  | "CURATION_PARTNER_NAME"
-  | "CURATOR_FEE_TYPE"
-  | "DATE"
-  | "DEAL_ID"
-  | "DEAL_NAME"
-  | "DETECTED_ADVERTISER_NAME"
-  | "DSP_NAME"
-  | "DSP_SEAT_ID"
-  | "ENVIRONMENT"
-  | "ENVIRONMENT_NAME"
-  | "GMA_SDK"
-  | "HOUR"
-  | "MOBILE_APP_ID"
-  | "MOBILE_APP_NAME"
-  | "MOBILE_OS"
-  | "MONTH"
-  | "PACKAGE_FEE_VISIBILITY"
-  | "PLACEMENT_ID"
-  | "PLATFORM"
-  | "PUBLISHER_DOMAIN"
-  | "PUBLISHER_ID"
-  | "PUBLISHER_NAME"
-  | "PUBLISHER_PROTECTIONS"
-  | "PUBLISHER_PROTECTIONS_NAME"
-  | "SELLER_AUTHORIZATION"
-  | "SELLER_AUTHORIZATION_NAME"
-  | "SUPPLY_PATH_TYPE"
-  | "SUPPLY_PATH_TYPE_NAME"
-  | "TRANSACTION_TYPE"
-  | "VAST_ERROR_CODE"
-  | "WEEK";
-export const ReportDefinitionDimensionsItemEnum = /*@__PURE__*/ S.String;
-
-export type ReportDefinitionDimensionsItemEnumList = Array<
-  ReportDefinitionDimensionsItemEnum | (string & {})
->;
-export const ReportDefinitionDimensionsItemEnumList = /*@__PURE__*/ S.Array(
-  ReportDefinitionDimensionsItemEnum,
-) as any as S.Schema<ReportDefinitionDimensionsItemEnumList>;
-
-export type ReportDefinitionTimeZoneSourceEnum =
-  | "TIME_ZONE_SOURCE_UNSPECIFIED"
-  | "AD_EXCHANGE"
-  | "UTC"
-  | "PROVIDED"
-  | "AGENCY";
-export const ReportDefinitionTimeZoneSourceEnum = /*@__PURE__*/ S.String;
-
-export type ReportDefinitionMetricsItemEnum =
-  | "METRIC_UNSPECIFIED"
-  | "ACTIVE_VIEW_MEASURABILITY_RATE"
-  | "ACTIVE_VIEW_MEASURABLE"
-  | "ACTIVE_VIEW_VIEWABILITY_RATE"
-  | "ACTIVE_VIEW_VIEWABLE"
-  | "AUCTIONS_WON"
-  | "BIDS"
-  | "BIDS_IN_AUCTION"
-  | "CLICKS"
-  | "CPC"
-  | "CPM"
-  | "CURATION_PARTNER_FEE"
-  | "DISCOUNT_AMOUNT"
-  | "EFFECTIVE_DISCOUNT_RATE"
-  | "ENGAGED_VIEWS"
-  | "IMPRESSIONS"
-  | "PRE_DISCOUNT_SPEND"
-  | "PRE_DISCOUNT_SPEND_WITHOUT_CURATION_PARTNER_FEE"
-  | "REACHED_QUERIES"
-  | "SPEND"
-  | "SPEND_WITHOUT_CURATION_PARTNER_FEE"
-  | "VAST_ERROR_COUNT"
-  | "VIDEO_COMPLETE"
-  | "VIDEO_FIRST_QUARTILE"
-  | "VIDEO_MIDPOINT"
-  | "VIDEO_START"
-  | "VIDEO_THIRD_QUARTILE"
-  | "VIDEO_VTR";
-export const ReportDefinitionMetricsItemEnum = /*@__PURE__*/ S.String;
-
-export type ReportDefinitionMetricsItemEnumList = Array<
-  ReportDefinitionMetricsItemEnum | (string & {})
->;
-export const ReportDefinitionMetricsItemEnumList = /*@__PURE__*/ S.Array(
-  ReportDefinitionMetricsItemEnum,
-) as any as S.Schema<ReportDefinitionMetricsItemEnumList>;
 
 export type FieldDimensionEnum =
   | "DIMENSION_UNSPECIFIED"
@@ -360,36 +257,104 @@ export const SortList = /*@__PURE__*/ S.Array(
   Sort,
 ) as any as S.Schema<SortList>;
 
-/** A list of filters. */
-export interface FilterList {
-  /** Required. A list of filters. */
-  filters?: FilterList_;
-}
-export const FilterList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.suspend(() => FilterList_)),
-  }),
-).annotate({ identifier: "FilterList" }) as any as S.Schema<FilterList>;
+export type ReportDefinitionDimensionsItemEnum =
+  | "DIMENSION_UNSPECIFIED"
+  | "ADVERTISER_DOMAIN"
+  | "AGENCY_ACCOUNT_ID"
+  | "AGENCY_ACCOUNT_NAME"
+  | "BID_FILTERING_REASON"
+  | "BID_FILTERING_REASON_NAME"
+  | "BUYER_SDK"
+  | "CAMPAIGN_ID"
+  | "CAMPAIGN_NAME"
+  | "COUNTRY"
+  | "CREATIVE_FORMAT"
+  | "CREATIVE_ID"
+  | "CREATIVE_POLICIES"
+  | "CREATIVE_POLICIES_NAME"
+  | "CREATIVE_SIZE"
+  | "CURATION_DATA_SEGMENT_ID"
+  | "CURATION_PARTNER_NAME"
+  | "CURATOR_FEE_TYPE"
+  | "DATE"
+  | "DEAL_ID"
+  | "DEAL_NAME"
+  | "DETECTED_ADVERTISER_NAME"
+  | "DSP_NAME"
+  | "DSP_SEAT_ID"
+  | "ENVIRONMENT"
+  | "ENVIRONMENT_NAME"
+  | "GMA_SDK"
+  | "HOUR"
+  | "MOBILE_APP_ID"
+  | "MOBILE_APP_NAME"
+  | "MOBILE_OS"
+  | "MONTH"
+  | "PACKAGE_FEE_VISIBILITY"
+  | "PLACEMENT_ID"
+  | "PLATFORM"
+  | "PUBLISHER_DOMAIN"
+  | "PUBLISHER_ID"
+  | "PUBLISHER_NAME"
+  | "PUBLISHER_PROTECTIONS"
+  | "PUBLISHER_PROTECTIONS_NAME"
+  | "SELLER_AUTHORIZATION"
+  | "SELLER_AUTHORIZATION_NAME"
+  | "SUPPLY_PATH_TYPE"
+  | "SUPPLY_PATH_TYPE_NAME"
+  | "TRANSACTION_TYPE"
+  | "VAST_ERROR_CODE"
+  | "WEEK";
+export const ReportDefinitionDimensionsItemEnum = /*@__PURE__*/ S.String;
+
+export type ReportDefinitionDimensionsItemEnumList = Array<
+  ReportDefinitionDimensionsItemEnum | (string & {})
+>;
+export const ReportDefinitionDimensionsItemEnumList = /*@__PURE__*/ S.Array(
+  ReportDefinitionDimensionsItemEnum,
+) as any as S.Schema<ReportDefinitionDimensionsItemEnumList>;
+
+export type ReportDefinitionTimeZoneSourceEnum =
+  | "TIME_ZONE_SOURCE_UNSPECIFIED"
+  | "AD_EXCHANGE"
+  | "UTC"
+  | "PROVIDED"
+  | "AGENCY";
+export const ReportDefinitionTimeZoneSourceEnum = /*@__PURE__*/ S.String;
+
+export type FieldFilterOperationEnum =
+  | "IN"
+  | "NOT_IN"
+  | "CONTAINS"
+  | "NOT_CONTAINS"
+  | "LESS_THAN"
+  | "LESS_THAN_EQUALS"
+  | "GREATER_THAN"
+  | "GREATER_THAN_EQUALS"
+  | "BETWEEN"
+  | "MATCHES"
+  | "NOT_MATCHES";
+export const FieldFilterOperationEnum = /*@__PURE__*/ S.String;
 
 export type StringList_ = Array<string>;
 export const StringList_ = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<StringList_>;
 
-/** A list of integer values. */
-export interface IntList {
+/** A list of string values. */
+export interface StringList {
   /** The values */
   values?: StringList_;
 }
-export const IntList = /*@__PURE__*/ S.suspend(() =>
+export const StringList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     values: S.optional(StringList_),
   }),
-).annotate({ identifier: "IntList" }) as any as S.Schema<IntList>;
+).annotate({ identifier: "StringList" }) as any as S.Schema<StringList>;
 
-/** A list of string values. */
-export type StringList = IntList;
-export const StringList = IntList;
+/** A list of integer values. */
+export type IntList = StringList;
+export const IntList = StringList;
 
 export type DoubleList_ = Array<number>;
 export const DoubleList_ = /*@__PURE__*/ S.Array(
@@ -409,33 +374,33 @@ export const DoubleList = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents a single value in a report. */
 export interface ReportValue {
-  /** For lists of integer values. */
-  intListValue?: IntList;
-  /** For double values. */
-  doubleValue?: number;
   /** For lists of string values. */
-  stringListValue?: IntList;
+  stringListValue?: StringList;
   /** For bytes values. */
   bytesValue?: string;
-  /** For boolean values. */
-  boolValue?: boolean;
-  /** For string values. */
-  stringValue?: string;
   /** For integer values. */
   intValue?: string;
+  /** For boolean values. */
+  boolValue?: boolean;
+  /** For lists of integer values. */
+  intListValue?: StringList;
+  /** For double values. */
+  doubleValue?: number;
   /** For lists of double values. */
   doubleListValue?: DoubleList;
+  /** For string values. */
+  stringValue?: string;
 }
 export const ReportValue = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    intListValue: S.optional(IntList),
-    doubleValue: S.optional(S.Number),
-    stringListValue: S.optional(IntList),
+    stringListValue: S.optional(StringList),
     bytesValue: S.optional(S.String),
-    boolValue: S.optional(S.Boolean),
-    stringValue: S.optional(S.String),
     intValue: S.optional(S.String),
+    boolValue: S.optional(S.Boolean),
+    intListValue: S.optional(StringList),
+    doubleValue: S.optional(S.Number),
     doubleListValue: S.optional(DoubleList),
+    stringValue: S.optional(S.String),
   }),
 ).annotate({ identifier: "ReportValue" }) as any as S.Schema<ReportValue>;
 
@@ -444,54 +409,51 @@ export const ReportValueList = /*@__PURE__*/ S.Array(
   ReportValue,
 ) as any as S.Schema<ReportValueList>;
 
-export type FieldFilterOperationEnum =
-  | "IN"
-  | "NOT_IN"
-  | "CONTAINS"
-  | "NOT_CONTAINS"
-  | "LESS_THAN"
-  | "LESS_THAN_EQUALS"
-  | "GREATER_THAN"
-  | "GREATER_THAN_EQUALS"
-  | "BETWEEN"
-  | "MATCHES"
-  | "NOT_MATCHES";
-export const FieldFilterOperationEnum = /*@__PURE__*/ S.String;
-
 /** A filter on a specific field. */
 export interface FieldFilter {
-  /** Required. Values to filter to. */
-  values?: ReportValueList;
   /** Required. The operation of this filter. */
   operation?: FieldFilterOperationEnum | (string & {});
   /** Required. The field to filter on. */
   field?: Field;
+  /** Required. Values to filter to. */
+  values?: ReportValueList;
 }
 export const FieldFilter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    values: S.optional(ReportValueList),
     operation: S.optional(FieldFilterOperationEnum),
     field: S.optional(Field),
+    values: S.optional(ReportValueList),
   }),
 ).annotate({ identifier: "FieldFilter" }) as any as S.Schema<FieldFilter>;
 
+/** A list of filters. */
+export interface FilterList {
+  /** Required. A list of filters. */
+  filters?: FilterList_;
+}
+export const FilterList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filters: S.optional(S.suspend(() => FilterList_)),
+  }),
+).annotate({ identifier: "FilterList" }) as any as S.Schema<FilterList>;
+
 /** A filter over one or more fields. */
 export interface Filter {
-  /** A list of filters whose results are AND-ed. */
-  andFilter?: FilterList;
   /** A filter on a single field. */
   fieldFilter?: FieldFilter;
-  /** A filter whose result is negated. */
-  notFilter?: Filter;
   /** A list of filters whose results are OR-ed. */
   orFilter?: FilterList;
+  /** A list of filters whose results are AND-ed. */
+  andFilter?: FilterList;
+  /** A filter whose result is negated. */
+  notFilter?: Filter;
 }
 export const Filter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    andFilter: S.optional(FilterList),
     fieldFilter: S.optional(FieldFilter),
-    notFilter: S.optional(Filter),
     orFilter: S.optional(FilterList),
+    andFilter: S.optional(FilterList),
+    notFilter: S.optional(Filter),
   }),
 ).annotate({ identifier: "Filter" }) as any as S.Schema<Filter>;
 
@@ -500,35 +462,73 @@ export const FilterList_ = /*@__PURE__*/ S.Array(
   Filter,
 ) as any as S.Schema<FilterList_>;
 
+export type ReportDefinitionMetricsItemEnum =
+  | "METRIC_UNSPECIFIED"
+  | "ACTIVE_VIEW_MEASURABILITY_RATE"
+  | "ACTIVE_VIEW_MEASURABLE"
+  | "ACTIVE_VIEW_VIEWABILITY_RATE"
+  | "ACTIVE_VIEW_VIEWABLE"
+  | "AUCTIONS_WON"
+  | "BIDS"
+  | "BIDS_IN_AUCTION"
+  | "CLICKS"
+  | "CPC"
+  | "CPM"
+  | "CURATION_PARTNER_FEE"
+  | "DISCOUNT_AMOUNT"
+  | "EFFECTIVE_DISCOUNT_RATE"
+  | "ENGAGED_VIEWS"
+  | "IMPRESSIONS"
+  | "PRE_DISCOUNT_SPEND"
+  | "PRE_DISCOUNT_SPEND_WITHOUT_CURATION_PARTNER_FEE"
+  | "REACHED_QUERIES"
+  | "SPEND"
+  | "SPEND_WITHOUT_CURATION_PARTNER_FEE"
+  | "VAST_ERROR_COUNT"
+  | "VIDEO_COMPLETE"
+  | "VIDEO_FIRST_QUARTILE"
+  | "VIDEO_MIDPOINT"
+  | "VIDEO_START"
+  | "VIDEO_THIRD_QUARTILE"
+  | "VIDEO_VTR";
+export const ReportDefinitionMetricsItemEnum = /*@__PURE__*/ S.String;
+
+export type ReportDefinitionMetricsItemEnumList = Array<
+  ReportDefinitionMetricsItemEnum | (string & {})
+>;
+export const ReportDefinitionMetricsItemEnumList = /*@__PURE__*/ S.Array(
+  ReportDefinitionMetricsItemEnum,
+) as any as S.Schema<ReportDefinitionMetricsItemEnumList>;
+
 /** The definition of how a report should be run. */
 export interface ReportDefinition {
+  /** Optional. The ISO 4217 currency code for this report. Defaults to account currency code if not specified. */
+  currencyCode?: string;
+  /** Optional. If time_zone_source is PROVIDED, this is the time zone to use for this report. Leave empty for any other time zone source. Time zone in IANA format. For example, "America/New_York". */
+  timeZone?: string;
   /** Required. The primary date range of this report. */
   dateRange?: DateRange;
+  /** Optional. Default sorts to apply to this report. */
+  sorts?: SortList;
   /** Required. The list of dimensions to report on. If empty, the report will have no dimensions, and any metrics will be totals. */
   dimensions?: ReportDefinitionDimensionsItemEnumList;
   /** Optional. Where to get the time zone for this report. Defaults to using the Pacific time zone (PT). If source is PROVIDED, the time_zone field in the report definition must also set a time zone. */
   timeZoneSource?: ReportDefinitionTimeZoneSourceEnum | (string & {});
-  /** Required. The list of metrics to report on. If empty, the report will have no metrics. */
-  metrics?: ReportDefinitionMetricsItemEnumList;
-  /** Optional. If time_zone_source is PROVIDED, this is the time zone to use for this report. Leave empty for any other time zone source. Time zone in IANA format. For example, "America/New_York". */
-  timeZone?: string;
-  /** Optional. Default sorts to apply to this report. */
-  sorts?: SortList;
   /** Optional. The filters for this report. */
   filters?: FilterList_;
-  /** Optional. The ISO 4217 currency code for this report. Defaults to account currency code if not specified. */
-  currencyCode?: string;
+  /** Required. The list of metrics to report on. If empty, the report will have no metrics. */
+  metrics?: ReportDefinitionMetricsItemEnumList;
 }
 export const ReportDefinition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    currencyCode: S.optional(S.String),
+    timeZone: S.optional(S.String),
     dateRange: S.optional(DateRange),
+    sorts: S.optional(SortList),
     dimensions: S.optional(ReportDefinitionDimensionsItemEnumList),
     timeZoneSource: S.optional(ReportDefinitionTimeZoneSourceEnum),
-    metrics: S.optional(ReportDefinitionMetricsItemEnumList),
-    timeZone: S.optional(S.String),
-    sorts: S.optional(SortList),
     filters: S.optional(FilterList_),
-    currencyCode: S.optional(S.String),
+    metrics: S.optional(ReportDefinitionMetricsItemEnumList),
   }),
 ).annotate({
   identifier: "ReportDefinition",
@@ -536,30 +536,30 @@ export const ReportDefinition = /*@__PURE__*/ S.suspend(() =>
 
 /** The `Report` resource. */
 export interface Report {
-  /** Optional. Display name for the report. */
-  displayName?: string;
-  /** Output only. The locale of this report. Locale is set from the user's locale at the time of the request. Locale can't be modified. */
-  locale?: string;
-  /** Identifier. The resource name of the report. Report resource name have the form: `agencies/{account_id}/reports/{report_id}` */
-  name?: string;
-  /** Required. The report definition of the report. */
-  reportDefinition?: ReportDefinition;
-  /** Output only. The instant this report was created. */
-  createTime?: string;
   /** Output only. The instant this report was last modified. */
   updateTime?: string;
+  /** Output only. The instant this report was created. */
+  createTime?: string;
+  /** Optional. Display name for the report. */
+  displayName?: string;
   /** Output only. Report ID. */
   reportId?: string;
+  /** Identifier. The resource name of the report. Report resource name have the form: `agencies/{account_id}/reports/{report_id}` */
+  name?: string;
+  /** Output only. The locale of this report. Locale is set from the user's locale at the time of the request. Locale can't be modified. */
+  locale?: string;
+  /** Required. The report definition of the report. */
+  reportDefinition?: ReportDefinition;
 }
 export const Report = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    displayName: S.optional(S.String),
-    locale: S.optional(S.String),
-    name: S.optional(S.String),
-    reportDefinition: S.optional(ReportDefinition),
-    createTime: S.optional(S.String),
     updateTime: S.optional(S.String),
+    createTime: S.optional(S.String),
+    displayName: S.optional(S.String),
     reportId: S.optional(S.String),
+    name: S.optional(S.String),
+    locale: S.optional(S.String),
+    reportDefinition: S.optional(ReportDefinition),
   }),
 ).annotate({ identifier: "Report" }) as any as S.Schema<Report>;
 
@@ -609,19 +609,19 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
 }) as any as S.Schema<Empty>;
 
 export interface FetchRowsAgenciesReportsResultsRequest {
+  /** Optional. A page token, received from a previous `FetchReportResultRows` call. Provide this to retrieve the second and subsequent batches of rows. */
+  pageToken?: string;
   /** The report result being fetched. Format: `agencies/{account_id}/reports/{report_id}/results/{report_result_id}` */
   name: string;
   /** Optional. The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 1,000 rows will be returned. The maximum value is 10,000; values greater than 10,000 will be reduced to 10,000. */
   pageSize?: number;
-  /** Optional. A page token, received from a previous `FetchReportResultRows` call. Provide this to retrieve the second and subsequent batches of rows. */
-  pageToken?: string;
 }
 export const FetchRowsAgenciesReportsResultsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      pageToken: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -653,15 +653,15 @@ export const MetricValueGroupList = /*@__PURE__*/ S.Array(
 
 /** A row of report data. */
 export interface Row {
-  /** The order of the dimension values is the same as the order of the dimensions specified in the request. */
-  dimensionValues?: ReportValueList;
   /** The length of the metric_value_groups field will be equal to the length of the date_ranges field in the fetch response. The metric_value_groups field is ordered such that each index corresponds to the date_range at the same index. For example, given date_ranges [x, y], metric_value_groups will have a length of two. The first entry in metric_value_groups represents the metrics for date x and the second entry in metric_value_groups represents the metrics for date y. */
   metricValueGroups?: MetricValueGroupList;
+  /** The order of the dimension values is the same as the order of the dimensions specified in the request. */
+  dimensionValues?: ReportValueList;
 }
 export const Row = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dimensionValues: S.optional(ReportValueList),
     metricValueGroups: S.optional(MetricValueGroupList),
+    dimensionValues: S.optional(ReportValueList),
   }),
 ).annotate({ identifier: "Row" }) as any as S.Schema<Row>;
 
@@ -675,23 +675,23 @@ export const FixedDateRangeList = /*@__PURE__*/ S.Array(
 
 /** The response message for the fetch report result rows endpoint. */
 export interface FetchReportResultRowsResponse {
-  /** The total number of rows available from this report. Useful for pagination. Only returned with the first page of results (when page_token is not included in the request). */
-  totalRowCount?: number;
-  /** A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
-  nextPageToken?: string;
-  /** Up to `page_size` rows of report data. */
-  rows?: RowList;
   /** The time at which the report was scheduled to run. For non-scheduled reports, this is the time at which the report was requested to be run. */
   runTime?: string;
+  /** The total number of rows available from this report. Useful for pagination. Only returned with the first page of results (when page_token is not included in the request). */
+  totalRowCount?: number;
+  /** Up to `page_size` rows of report data. */
+  rows?: RowList;
+  /** A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
+  nextPageToken?: string;
   /** The computed fixed date ranges this report includes. Only returned with the first page of results (when page_token is not included in the request). */
   dateRanges?: FixedDateRangeList;
 }
 export const FetchReportResultRowsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    totalRowCount: S.optional(S.Number),
-    nextPageToken: S.optional(S.String),
-    rows: S.optional(RowList),
     runTime: S.optional(S.String),
+    totalRowCount: S.optional(S.Number),
+    rows: S.optional(RowList),
+    nextPageToken: S.optional(S.String),
     dateRanges: S.optional(FixedDateRangeList),
   }),
 ).annotate({
@@ -747,65 +747,65 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
-  message?: string;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
+  /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
+  message?: string;
   /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
   details?: DocumentMapList;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: S.optional(S.String),
     code: S.optional(S.Number),
+    message: S.optional(S.String),
     details: S.optional(DocumentMapList),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
-  metadata?: DocumentMap;
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
-  /** The error result of the operation in case of failure or cancellation. */
-  error?: Status;
   /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
   name?: string;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
+  /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
+  metadata?: DocumentMap;
+  /** The error result of the operation in case of failure or cancellation. */
+  error?: Status;
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metadata: S.optional(DocumentMap),
-    response: S.optional(DocumentMap),
-    done: S.optional(S.Boolean),
-    error: S.optional(Status),
     name: S.optional(S.String),
+    done: S.optional(S.Boolean),
+    metadata: S.optional(DocumentMap),
+    error: S.optional(Status),
+    response: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 export interface ListAgenciesReportsRequest {
-  /** Required. The parent, which owns this collection of reports. Format: `agencies/{account_id}` */
-  parent: string;
-  /** Optional. Expression to filter the response. See syntax details at https://developers.google.com/ad-manager/api/beta/filters */
-  filter?: string;
-  /** Optional. A page token, received from a previous `ListReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReports` must match the call that provided the page token. */
-  pageToken?: string;
-  /** Optional. Expression to specify sorting order. See syntax details at https://developers.google.com/ad-manager/api/beta/filters#order */
-  orderBy?: string;
   /** Optional. The maximum number of `Reports` to return. The service may return fewer than this value. If unspecified, at most 50 `Reports` will be returned. The maximum value is 1000; values greater than 1000 will be coerced to 1000. */
   pageSize?: number;
+  /** Optional. Expression to filter the response. See syntax details at https://developers.google.com/ad-manager/api/beta/filters */
+  filter?: string;
+  /** Required. The parent, which owns this collection of reports. Format: `agencies/{account_id}` */
+  parent: string;
+  /** Optional. Expression to specify sorting order. See syntax details at https://developers.google.com/ad-manager/api/beta/filters#order */
+  orderBy?: string;
+  /** Optional. A page token, received from a previous `ListReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReports` must match the call that provided the page token. */
+  pageToken?: string;
   /** Optional. Number of individual resources to skip while paginating. */
   skip?: number;
 }
 export const ListAgenciesReportsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    parent: S.String.pipe(T.Label()),
-    filter: S.optional(S.String.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    orderBy: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    parent: S.String.pipe(T.Label()),
+    orderBy: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
     skip: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -825,17 +825,17 @@ export const ReportList = /*@__PURE__*/ S.Array(
 
 /** Response object for `ListReportsResponse` containing matching `Report` objects. */
 export interface ListReportsResponse {
-  /** Total number of `Report` objects. If a filter was included in the request, this reflects the total number after the filtering is applied. `total_size` won't be calculated in the response unless it has been included in a response field mask. The response field mask can be provided to the method by using the URL parameter `$fields` or `fields`, or by using the HTTP/gRPC header `X-Goog-FieldMask`. For more information, see https://developers.google.com/ad-manager/api/beta/field-masks */
-  totalSize?: number;
   /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
   nextPageToken?: string;
+  /** Total number of `Report` objects. If a filter was included in the request, this reflects the total number after the filtering is applied. `total_size` won't be calculated in the response unless it has been included in a response field mask. The response field mask can be provided to the method by using the URL parameter `$fields` or `fields`, or by using the HTTP/gRPC header `X-Goog-FieldMask`. For more information, see https://developers.google.com/ad-manager/api/beta/field-masks */
+  totalSize?: number;
   /** The `Report` objects from the specified network. */
   reports?: ReportList;
 }
 export const ListReportsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    totalSize: S.optional(S.Number),
     nextPageToken: S.optional(S.String),
+    totalSize: S.optional(S.Number),
     reports: S.optional(ReportList),
   }),
 ).annotate({
@@ -843,17 +843,17 @@ export const ListReportsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListReportsResponse>;
 
 export interface PatchAgenciesReportsRequest {
-  /** Optional. The list of fields to update. */
-  updateMask?: string;
   /** Identifier. The resource name of the report. Report resource name have the form: `agencies/{account_id}/reports/{report_id}` */
   name: string;
+  /** Optional. The list of fields to update. */
+  updateMask?: string;
   /** Request body */
   body?: Report;
 }
 export const PatchAgenciesReportsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    updateMask: S.optional(S.String.pipe(T.Query())),
     body: S.optional(Report.pipe(T.HttpBody())),
   }).pipe(
     T.Http({

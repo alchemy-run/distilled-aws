@@ -40,14 +40,14 @@ export class NotFound
   ) {}
 
 /** Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths. */
-export type SavedCreateRequestWidthsList = Array<number>;
-export const SavedCreateRequestWidthsList = /*@__PURE__*/ S.Array(
+export type CreateSavedRequestWidthsList = Array<number>;
+export const CreateSavedRequestWidthsList = /*@__PURE__*/ S.Array(
   S.Number,
-) as any as S.Schema<SavedCreateRequestWidthsList>;
+) as any as S.Schema<CreateSavedRequestWidthsList>;
 
 /** * `screenshot` - Screenshot * `iframe` - Iframe * `recording` - Recording */
-export type HeatmapType = "screenshot" | "iframe" | "recording";
-export const HeatmapType = /*@__PURE__*/ S.String;
+export type SavedHeatmapTypeEnum = "screenshot" | "iframe" | "recording";
+export const SavedHeatmapTypeEnum = /*@__PURE__*/ S.String;
 
 export interface CreateSavedRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -57,11 +57,11 @@ export interface CreateSavedRequest {
   /** Exact page URL to render and overlay heatmap data on. Wildcards are not allowed. */
   url: string;
   /** URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted. */
-  data_url?: string | null;
+  data_url?: string;
   /** Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths. */
-  widths?: SavedCreateRequestWidthsList;
+  widths?: CreateSavedRequestWidthsList;
   /** Render mode: 'screenshot' (renders the page headlessly, default), 'iframe', or 'recording'. Only 'screenshot' generates image bytes. * `screenshot` - Screenshot * `iframe` - Iframe * `recording` - Recording */
-  type?: HeatmapType | (string & {});
+  type?: SavedHeatmapTypeEnum | (string & {});
   /** Set true to soft-delete the saved heatmap. */
   deleted?: boolean;
   /** When true, ask the headless browser to dismiss cookie/consent banners before capturing the screenshot. Off by default: the blocker can stall the render on some sites and time out. Only applies to 'screenshot' heatmaps. */
@@ -72,9 +72,9 @@ export const CreateSavedRequest = /*@__PURE__*/ S.suspend(() =>
     project_id: S.String.pipe(T.Label()),
     name: S.optional(S.NullOr(S.String)),
     url: S.String,
-    data_url: S.optional(S.NullOr(S.String)),
-    widths: S.optional(SavedCreateRequestWidthsList),
-    type: S.optional(HeatmapType),
+    data_url: S.optional(S.String),
+    widths: S.optional(CreateSavedRequestWidthsList),
+    type: S.optional(SavedHeatmapTypeEnum),
     deleted: S.optional(S.Boolean),
     block_consent_modals: S.optional(S.Boolean),
   }).pipe(
@@ -95,15 +95,12 @@ export const HeatmapScreenshotResponseTargetWidthsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<HeatmapScreenshotResponseTargetWidthsList>;
 
 /** * `server` - Server * `toolbar` - Toolbar */
-export type HeatmapScreenshotResponseSourceEnum = "server" | "toolbar";
-export const HeatmapScreenshotResponseSourceEnum = /*@__PURE__*/ S.String;
+export type SavedHeatmapSourceEnum = "server" | "toolbar";
+export const SavedHeatmapSourceEnum = /*@__PURE__*/ S.String;
 
 /** * `processing` - Processing * `completed` - Completed * `failed` - Failed */
-export type HeatmapScreenshotResponseStatusEnum =
-  | "processing"
-  | "completed"
-  | "failed";
-export const HeatmapScreenshotResponseStatusEnum = /*@__PURE__*/ S.String;
+export type SavedHeatmapStatusEnum = "processing" | "completed" | "failed";
+export const SavedHeatmapStatusEnum = /*@__PURE__*/ S.String;
 
 export interface HeatmapSnapshotMetadata {
   /** Viewport width (CSS pixels) this screenshot was rendered at. */
@@ -188,15 +185,15 @@ export interface HeatmapScreenshotResponse {
   /** The page URL this saved heatmap renders and overlays data on. */
   url?: string;
   /** URL whose heatmap data is overlaid on the screenshot (defaults to 'url'). */
-  data_url?: string | null;
+  data_url?: string;
   /** Viewport widths (CSS pixels) the screenshot is rendered at. */
   target_widths?: HeatmapScreenshotResponseTargetWidthsList;
   /** Render mode: 'screenshot', 'iframe', or 'recording'. * `screenshot` - Screenshot * `iframe` - Iframe * `recording` - Recording */
-  type?: HeatmapType;
+  type?: SavedHeatmapTypeEnum;
   /** How the screenshot was captured: 'server' (rendered headlessly via Browserless) or 'toolbar' (captured client-side from the on-page toolbar, e.g. for pages behind a login). * `server` - Server * `toolbar` - Toolbar */
-  source?: HeatmapScreenshotResponseSourceEnum;
+  source?: SavedHeatmapSourceEnum;
   /** Screenshot generation status: 'processing', 'completed', or 'failed'. * `processing` - Processing * `completed` - Completed * `failed` - Failed */
-  status?: HeatmapScreenshotResponseStatusEnum;
+  status?: SavedHeatmapStatusEnum;
   /** Whether at least one rendered image is ready to fetch. */
   has_content?: boolean;
   /** Per-width render metadata. Fetch the actual image bytes for a width from the content endpoint. */
@@ -219,11 +216,11 @@ export const HeatmapScreenshotResponse = /*@__PURE__*/ S.suspend(() =>
     short_id: S.optional(S.String),
     name: S.optional(S.NullOr(S.String)),
     url: S.optional(S.String),
-    data_url: S.optional(S.NullOr(S.String)),
+    data_url: S.optional(S.String),
     target_widths: S.optional(HeatmapScreenshotResponseTargetWidthsList),
-    type: S.optional(HeatmapType),
-    source: S.optional(HeatmapScreenshotResponseSourceEnum),
-    status: S.optional(HeatmapScreenshotResponseStatusEnum),
+    type: S.optional(SavedHeatmapTypeEnum),
+    source: S.optional(SavedHeatmapSourceEnum),
+    status: S.optional(SavedHeatmapStatusEnum),
     has_content: S.optional(S.Boolean),
     snapshots: S.optional(HeatmapScreenshotResponseSnapshotsList),
     deleted: S.optional(S.Boolean),
@@ -239,28 +236,28 @@ export const HeatmapScreenshotResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HeatmapScreenshotResponse>;
 
 /** One screenshot per viewport width, parallel to 'widths' (same length, same order). Lets a single toolbar capture cover the same viewport widths the server renders. At most 16 widths. */
-export type SavedCaptureCreateRequestImagesList = Array<string>;
-export const SavedCaptureCreateRequestImagesList = /*@__PURE__*/ S.Array(
+export type CreateSavedCaptureRequestImagesList = Array<string>;
+export const CreateSavedCaptureRequestImagesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<SavedCaptureCreateRequestImagesList>;
+) as any as S.Schema<CreateSavedCaptureRequestImagesList>;
 
 /** Viewport widths (CSS pixels) the 'images' were captured at, parallel to 'images'. */
-export type SavedCaptureCreateRequestWidthsList = Array<number>;
-export const SavedCaptureCreateRequestWidthsList = /*@__PURE__*/ S.Array(
+export type CreateSavedCaptureRequestWidthsList = Array<number>;
+export const CreateSavedCaptureRequestWidthsList = /*@__PURE__*/ S.Array(
   S.Number,
-) as any as S.Schema<SavedCaptureCreateRequestWidthsList>;
+) as any as S.Schema<CreateSavedCaptureRequestWidthsList>;
 
 export interface CreateSavedCaptureRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Single screenshot of the page, captured client-side by the toolbar (JPEG or PNG). Max 20MB. Pair with 'width'. Use 'images'/'widths' instead to save several viewport widths on one heatmap. */
-  image?: string;
+  image?: string | null;
   /** Viewport width (CSS pixels) the single 'image' was captured at. */
   width?: number;
   /** One screenshot per viewport width, parallel to 'widths' (same length, same order). Lets a single toolbar capture cover the same viewport widths the server renders. At most 16 widths. */
-  images?: SavedCaptureCreateRequestImagesList;
+  images?: CreateSavedCaptureRequestImagesList;
   /** Viewport widths (CSS pixels) the 'images' were captured at, parallel to 'images'. */
-  widths?: SavedCaptureCreateRequestWidthsList;
+  widths?: CreateSavedCaptureRequestWidthsList;
   /** Exact page URL the screenshot was captured on. Wildcards are not allowed; this is stored as both the heatmap URL and its data URL, so the overlay reads aggregate data for this exact URL. */
   url: string;
   /** Human-readable label for the saved heatmap. Defaults to the URL when omitted. */
@@ -269,10 +266,10 @@ export interface CreateSavedCaptureRequest {
 export const CreateSavedCaptureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    image: S.optional(S.String),
+    image: S.optional(S.NullOr(S.String)),
     width: S.optional(S.Number),
-    images: S.optional(SavedCaptureCreateRequestImagesList),
-    widths: S.optional(SavedCaptureCreateRequestWidthsList),
+    images: S.optional(CreateSavedCaptureRequestImagesList),
+    widths: S.optional(CreateSavedCaptureRequestWidthsList),
     url: S.String,
     name: S.optional(S.String),
   }).pipe(
@@ -361,25 +358,25 @@ export const CreateSavedPrewarmRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSavedPrewarmRequest",
 }) as any as S.Schema<CreateSavedPrewarmRequest>;
 
-export interface CreateSavedRegenerateRequest {
+export interface GetSavedRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   short_id: string;
 }
-export const CreateSavedRegenerateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSavedRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     short_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/saved/{short_id}/regenerate/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/saved/{short_id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateSavedRegenerateRequest",
-}) as any as S.Schema<CreateSavedRegenerateRequest>;
+  identifier: "GetSavedRequest",
+}) as any as S.Schema<GetSavedRequest>;
 
 export interface ListSavedRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -440,14 +437,14 @@ export const SavedHeatmapListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SavedHeatmapListResponse",
 }) as any as S.Schema<SavedHeatmapListResponse>;
 
-export type SavedListResponseBodyList = Array<SavedHeatmapListResponse>;
-export const SavedListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListSavedResponseBodyList = Array<SavedHeatmapListResponse>;
+export const ListSavedResponseBodyList = /*@__PURE__*/ S.Array(
   SavedHeatmapListResponse,
-) as any as S.Schema<SavedListResponseBodyList>;
+) as any as S.Schema<ListSavedResponseBodyList>;
 
-export type ListSavedResponse = SavedListResponseBodyList;
+export type ListSavedResponse = ListSavedResponseBodyList;
 export const ListSavedResponse = /*@__PURE__*/ S.suspend(() =>
-  SavedListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListSavedResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListSavedResponse",
 }) as any as S.Schema<ListSavedResponse>;
@@ -479,31 +476,31 @@ export const SavedDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SavedDestroyResponse",
 }) as any as S.Schema<SavedDestroyResponse>;
 
-export interface SavedRetrieveRequest {
+export interface SavedRegenerateCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   short_id: string;
 }
-export const SavedRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const SavedRegenerateCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     short_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/saved/{short_id}/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/saved/{short_id}/regenerate/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "SavedRetrieveRequest",
-}) as any as S.Schema<SavedRetrieveRequest>;
+  identifier: "SavedRegenerateCreateRequest",
+}) as any as S.Schema<SavedRegenerateCreateRequest>;
 
 /** Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths. */
-export type SavedPartialUpdateRequestWidthsList = Array<number>;
-export const SavedPartialUpdateRequestWidthsList = /*@__PURE__*/ S.Array(
+export type UpdateSavedPartialRequestWidthsList = Array<number>;
+export const UpdateSavedPartialRequestWidthsList = /*@__PURE__*/ S.Array(
   S.Number,
-) as any as S.Schema<SavedPartialUpdateRequestWidthsList>;
+) as any as S.Schema<UpdateSavedPartialRequestWidthsList>;
 
 export interface UpdateSavedPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -514,11 +511,11 @@ export interface UpdateSavedPartialRequest {
   /** Exact page URL to render and overlay heatmap data on. Wildcards are not allowed. */
   url?: string;
   /** URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted. */
-  data_url?: string | null;
+  data_url?: string;
   /** Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths. */
-  widths?: SavedPartialUpdateRequestWidthsList;
+  widths?: UpdateSavedPartialRequestWidthsList;
   /** Render mode: 'screenshot' (renders the page headlessly, default), 'iframe', or 'recording'. Only 'screenshot' generates image bytes. * `screenshot` - Screenshot * `iframe` - Iframe * `recording` - Recording */
-  type?: HeatmapType | (string & {});
+  type?: SavedHeatmapTypeEnum | (string & {});
   /** Set true to soft-delete the saved heatmap. */
   deleted?: boolean;
   /** When true, ask the headless browser to dismiss cookie/consent banners before capturing the screenshot. Off by default: the blocker can stall the render on some sites and time out. Only applies to 'screenshot' heatmaps. */
@@ -530,9 +527,9 @@ export const UpdateSavedPartialRequest = /*@__PURE__*/ S.suspend(() =>
     short_id: S.String.pipe(T.Label()),
     name: S.optional(S.NullOr(S.String)),
     url: S.optional(S.String),
-    data_url: S.optional(S.NullOr(S.String)),
-    widths: S.optional(SavedPartialUpdateRequestWidthsList),
-    type: S.optional(HeatmapType),
+    data_url: S.optional(S.String),
+    widths: S.optional(UpdateSavedPartialRequestWidthsList),
+    type: S.optional(SavedHeatmapTypeEnum),
     deleted: S.optional(S.Boolean),
     block_consent_modals: S.optional(S.Boolean),
   }).pipe(
@@ -610,21 +607,17 @@ export const createSavedPrewarm: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSavedRegenerateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Re-run screenshot generation for a saved heatmap of type 'screenshot'. Clears existing renders and re-renders at every target width; status returns to 'processing'. */
-export const createSavedRegenerate: API.OperationMethod<
-  CreateSavedRegenerateRequest,
+export type GetSavedError = Forbidden | NotFound | PosthogOpError;
+/** Get a single saved heatmap by its short_id, including per-width render status. */
+export const getSaved: API.OperationMethod<
+  GetSavedRequest,
   HeatmapScreenshotResponse,
-  CreateSavedRegenerateError,
+  GetSavedError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSavedRegenerateRequest,
+  input: GetSavedRequest,
   output: HeatmapScreenshotResponse,
-  errors: [BadRequest, Forbidden, NotFound],
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -659,17 +652,21 @@ export const savedDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SavedRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Get a single saved heatmap by its short_id, including per-width render status. */
-export const savedRetrieve: API.OperationMethod<
-  SavedRetrieveRequest,
+export type SavedRegenerateCreateError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Re-run screenshot generation for a saved heatmap of type 'screenshot'. Clears existing renders and re-renders at every target width; status returns to 'processing'. */
+export const savedRegenerateCreate: API.OperationMethod<
+  SavedRegenerateCreateRequest,
   HeatmapScreenshotResponse,
-  SavedRetrieveError,
+  SavedRegenerateCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SavedRetrieveRequest,
+  input: SavedRegenerateCreateRequest,
   output: HeatmapScreenshotResponse,
-  errors: [Forbidden, NotFound],
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

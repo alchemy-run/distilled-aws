@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.file_system#ListFileSystemRequest": {
@@ -387,7 +388,7 @@
         }
       }
     },
-    "com.posthog.file_system#FileSystemRetrieveRequest": {
+    "com.posthog.file_system#GetFileSystemRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -411,10 +412,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.file_system#FileSystemRetrieve": {
+    "com.posthog.file_system#GetFileSystem": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.file_system#FileSystemRetrieveRequest"
+        "target": "com.posthog.file_system#GetFileSystemRequest"
       },
       "output": {
         "target": "com.posthog.file_system#FileSystem2"
@@ -753,25 +754,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.file_system#ListFileSystem"
-        },
-        {
           "target": "com.posthog.file_system#CreateFileSystem"
-        },
-        {
-          "target": "com.posthog.file_system#FileSystemRetrieve"
-        },
-        {
-          "target": "com.posthog.file_system#UpdateFileSystem"
-        },
-        {
-          "target": "com.posthog.file_system#UpdateFileSystemPartial"
         },
         {
           "target": "com.posthog.file_system#FileSystemDestroy"
         },
         {
           "target": "com.posthog.file_system#FileSystemUndoDeleteCreate"
+        },
+        {
+          "target": "com.posthog.file_system#GetFileSystem"
+        },
+        {
+          "target": "com.posthog.file_system#ListFileSystem"
+        },
+        {
+          "target": "com.posthog.file_system#UpdateFileSystem"
+        },
+        {
+          "target": "com.posthog.file_system#UpdateFileSystemPartial"
         }
       ],
       "traits": {

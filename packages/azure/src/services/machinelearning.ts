@@ -70,13 +70,11 @@ export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkspaceRequest>;
 
 /** The tags of the resource. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
 
 /** Sku of the resource */
 export interface Sku {
@@ -156,7 +154,7 @@ export interface GetWorkspaceResponse {
   /** The location of the resource. This cannot be changed after the resource is created. */
   location: string;
   /** The tags of the resource. */
-  tags?: WorkspacesGetResponseTagsMap;
+  tags?: GetWorkspaceResponseTagsMap;
   /** The sku of the workspace. */
   sku?: Sku;
   /** The properties of the machine learning workspace. */
@@ -168,7 +166,7 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(WorkspacesGetResponseTagsMap),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
     sku: S.optional(Sku),
     properties: S.optional(WorkspaceProperties),
   }),
@@ -386,13 +384,13 @@ export const WorkspaceKeysResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkspaceKeysResponse>;
 
 /** The resource tags for the machine learning workspace. */
-export type WorkspacesUpdateRequestTagsMap = {
+export type UpdateWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
 
 /** The current state of workspace resource. */
 export type WorkspacePropertiesUpdateParametersWorkspaceState =
@@ -437,7 +435,7 @@ export interface UpdateWorkspaceRequest {
   /** The name of the machine learning workspace. */
   workspaceName: string;
   /** The resource tags for the machine learning workspace. */
-  tags?: WorkspacesUpdateRequestTagsMap;
+  tags?: UpdateWorkspaceRequestTagsMap;
   /** The properties that the machine learning workspace will be updated with. */
   properties?: WorkspacePropertiesUpdateParameters;
 }
@@ -446,7 +444,7 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
     properties: S.optional(WorkspacePropertiesUpdateParameters),
   }).pipe(
     T.Http({
@@ -461,13 +459,13 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkspaceRequest>;
 
 /** The tags of the resource. */
-export type WorkspacesUpdateResponseTagsMap = {
+export type UpdateWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
 
 export interface UpdateWorkspaceResponse {
   /** The resource ID. */
@@ -479,7 +477,7 @@ export interface UpdateWorkspaceResponse {
   /** The location of the resource. This cannot be changed after the resource is created. */
   location: string;
   /** The tags of the resource. */
-  tags?: WorkspacesUpdateResponseTagsMap;
+  tags?: UpdateWorkspaceResponseTagsMap;
   /** The sku of the workspace. */
   sku?: Sku;
   /** The properties of the machine learning workspace. */
@@ -491,7 +489,7 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
     sku: S.optional(Sku),
     properties: S.optional(WorkspaceProperties),
   }),

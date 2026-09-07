@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.coordination#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.coordination#GetCoordinationApiGroup": {
+    "com.kubernetes.coordination#GetCoordinationAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.coordination#GetCoordinationV1ApiResources": {
+    "com.kubernetes.coordination#GetCoordinationV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1727,7 +1728,7 @@
         "smithy.api#documentation": "delete a Lease"
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1LeaseForAllNamespacesRequest": {
+    "com.kubernetes.coordination#WatchCoordinationV1LeaseListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -1840,10 +1841,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1LeaseForAllNamespaces": {
+    "com.kubernetes.coordination#WatchCoordinationV1LeaseListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.coordination#ListWatchCoordinationV1LeaseForAllNamespacesRequest"
+        "target": "com.kubernetes.coordination#WatchCoordinationV1LeaseListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.coordination#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -1857,7 +1858,7 @@
         "smithy.api#documentation": "watch individual changes to a list of Lease. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1NamespacedLeaseRequest": {
+    "com.kubernetes.coordination#WatchCoordinationV1NamespacedLeaseListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -1957,10 +1958,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1NamespacedLease": {
+    "com.kubernetes.coordination#WatchCoordinationV1NamespacedLeaseList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.coordination#ListWatchCoordinationV1NamespacedLeaseRequest"
+        "target": "com.kubernetes.coordination#WatchCoordinationV1NamespacedLeaseListRequest"
       },
       "output": {
         "target": "com.kubernetes.coordination#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2099,7 +2100,7 @@
         "smithy.api#documentation": "watch changes to an object of kind Lease. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.coordination#GetCoordinationV1alpha2ApiResources": {
+    "com.kubernetes.coordination#GetCoordinationV1alpha2APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -3086,7 +3087,7 @@
         "smithy.api#documentation": "delete a LeaseCandidate"
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1alpha2LeaseCandidateForAllNamespacesRequest": {
+    "com.kubernetes.coordination#WatchCoordinationV1alpha2LeaseCandidateListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -3178,10 +3179,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1alpha2LeaseCandidateForAllNamespaces": {
+    "com.kubernetes.coordination#WatchCoordinationV1alpha2LeaseCandidateListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.coordination#ListWatchCoordinationV1alpha2LeaseCandidateForAllNamespacesRequest"
+        "target": "com.kubernetes.coordination#WatchCoordinationV1alpha2LeaseCandidateListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.coordination#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -3195,7 +3196,7 @@
         "smithy.api#documentation": "watch individual changes to a list of LeaseCandidate. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1alpha2NamespacedLeaseCandidateRequest": {
+    "com.kubernetes.coordination#WatchCoordinationV1alpha2NamespacedLeaseCandidateListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -3295,10 +3296,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1alpha2NamespacedLeaseCandidate": {
+    "com.kubernetes.coordination#WatchCoordinationV1alpha2NamespacedLeaseCandidateList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.coordination#ListWatchCoordinationV1alpha2NamespacedLeaseCandidateRequest"
+        "target": "com.kubernetes.coordination#WatchCoordinationV1alpha2NamespacedLeaseCandidateListRequest"
       },
       "output": {
         "target": "com.kubernetes.coordination#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -3437,7 +3438,7 @@
         "smithy.api#documentation": "watch changes to an object of kind LeaseCandidate. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.coordination#GetCoordinationV1beta1ApiResources": {
+    "com.kubernetes.coordination#GetCoordinationV1beta1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -4424,7 +4425,7 @@
         "smithy.api#documentation": "delete a LeaseCandidate"
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1beta1LeaseCandidateForAllNamespacesRequest": {
+    "com.kubernetes.coordination#WatchCoordinationV1beta1LeaseCandidateListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -4516,10 +4517,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1beta1LeaseCandidateForAllNamespaces": {
+    "com.kubernetes.coordination#WatchCoordinationV1beta1LeaseCandidateListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.coordination#ListWatchCoordinationV1beta1LeaseCandidateForAllNamespacesRequest"
+        "target": "com.kubernetes.coordination#WatchCoordinationV1beta1LeaseCandidateListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.coordination#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -4533,7 +4534,7 @@
         "smithy.api#documentation": "watch individual changes to a list of LeaseCandidate. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1beta1NamespacedLeaseCandidateRequest": {
+    "com.kubernetes.coordination#WatchCoordinationV1beta1NamespacedLeaseCandidateListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -4633,10 +4634,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.coordination#ListWatchCoordinationV1beta1NamespacedLeaseCandidate": {
+    "com.kubernetes.coordination#WatchCoordinationV1beta1NamespacedLeaseCandidateList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.coordination#ListWatchCoordinationV1beta1NamespacedLeaseCandidateRequest"
+        "target": "com.kubernetes.coordination#WatchCoordinationV1beta1NamespacedLeaseCandidateListRequest"
       },
       "output": {
         "target": "com.kubernetes.coordination#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -4819,46 +4820,43 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.coordination#GetCoordinationApiGroup"
+          "target": "com.kubernetes.coordination#CreateCoordinationV1alpha2NamespacedLeaseCandidate"
         },
         {
-          "target": "com.kubernetes.coordination#GetCoordinationV1ApiResources"
-        },
-        {
-          "target": "com.kubernetes.coordination#ListCoordinationV1LeaseForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.coordination#ListCoordinationV1NamespacedLease"
+          "target": "com.kubernetes.coordination#CreateCoordinationV1beta1NamespacedLeaseCandidate"
         },
         {
           "target": "com.kubernetes.coordination#CreateCoordinationV1NamespacedLease"
         },
         {
+          "target": "com.kubernetes.coordination#DeleteCoordinationV1alpha2CollectionNamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#DeleteCoordinationV1alpha2NamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#DeleteCoordinationV1beta1CollectionNamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#DeleteCoordinationV1beta1NamespacedLeaseCandidate"
+        },
+        {
           "target": "com.kubernetes.coordination#DeleteCoordinationV1CollectionNamespacedLease"
-        },
-        {
-          "target": "com.kubernetes.coordination#ReadCoordinationV1NamespacedLease"
-        },
-        {
-          "target": "com.kubernetes.coordination#ReplaceCoordinationV1NamespacedLease"
-        },
-        {
-          "target": "com.kubernetes.coordination#PatchCoordinationV1NamespacedLease"
         },
         {
           "target": "com.kubernetes.coordination#DeleteCoordinationV1NamespacedLease"
         },
         {
-          "target": "com.kubernetes.coordination#ListWatchCoordinationV1LeaseForAllNamespaces"
+          "target": "com.kubernetes.coordination#GetCoordinationAPIGroup"
         },
         {
-          "target": "com.kubernetes.coordination#ListWatchCoordinationV1NamespacedLease"
+          "target": "com.kubernetes.coordination#GetCoordinationV1alpha2APIResources"
         },
         {
-          "target": "com.kubernetes.coordination#WatchCoordinationV1NamespacedLease"
+          "target": "com.kubernetes.coordination#GetCoordinationV1APIResources"
         },
         {
-          "target": "com.kubernetes.coordination#GetCoordinationV1alpha2ApiResources"
+          "target": "com.kubernetes.coordination#GetCoordinationV1beta1APIResources"
         },
         {
           "target": "com.kubernetes.coordination#ListCoordinationV1alpha2LeaseCandidateForAllNamespaces"
@@ -4867,67 +4865,70 @@
           "target": "com.kubernetes.coordination#ListCoordinationV1alpha2NamespacedLeaseCandidate"
         },
         {
-          "target": "com.kubernetes.coordination#CreateCoordinationV1alpha2NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#DeleteCoordinationV1alpha2CollectionNamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#ReadCoordinationV1alpha2NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#ReplaceCoordinationV1alpha2NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#PatchCoordinationV1alpha2NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#DeleteCoordinationV1alpha2NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#ListWatchCoordinationV1alpha2LeaseCandidateForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.coordination#ListWatchCoordinationV1alpha2NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#WatchCoordinationV1alpha2NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#GetCoordinationV1beta1ApiResources"
-        },
-        {
           "target": "com.kubernetes.coordination#ListCoordinationV1beta1LeaseCandidateForAllNamespaces"
         },
         {
           "target": "com.kubernetes.coordination#ListCoordinationV1beta1NamespacedLeaseCandidate"
         },
         {
-          "target": "com.kubernetes.coordination#CreateCoordinationV1beta1NamespacedLeaseCandidate"
+          "target": "com.kubernetes.coordination#ListCoordinationV1LeaseForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.coordination#DeleteCoordinationV1beta1CollectionNamespacedLeaseCandidate"
+          "target": "com.kubernetes.coordination#ListCoordinationV1NamespacedLease"
         },
         {
-          "target": "com.kubernetes.coordination#ReadCoordinationV1beta1NamespacedLeaseCandidate"
-        },
-        {
-          "target": "com.kubernetes.coordination#ReplaceCoordinationV1beta1NamespacedLeaseCandidate"
+          "target": "com.kubernetes.coordination#PatchCoordinationV1alpha2NamespacedLeaseCandidate"
         },
         {
           "target": "com.kubernetes.coordination#PatchCoordinationV1beta1NamespacedLeaseCandidate"
         },
         {
-          "target": "com.kubernetes.coordination#DeleteCoordinationV1beta1NamespacedLeaseCandidate"
+          "target": "com.kubernetes.coordination#PatchCoordinationV1NamespacedLease"
         },
         {
-          "target": "com.kubernetes.coordination#ListWatchCoordinationV1beta1LeaseCandidateForAllNamespaces"
+          "target": "com.kubernetes.coordination#ReadCoordinationV1alpha2NamespacedLeaseCandidate"
         },
         {
-          "target": "com.kubernetes.coordination#ListWatchCoordinationV1beta1NamespacedLeaseCandidate"
+          "target": "com.kubernetes.coordination#ReadCoordinationV1beta1NamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#ReadCoordinationV1NamespacedLease"
+        },
+        {
+          "target": "com.kubernetes.coordination#ReplaceCoordinationV1alpha2NamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#ReplaceCoordinationV1beta1NamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#ReplaceCoordinationV1NamespacedLease"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1alpha2LeaseCandidateListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1alpha2NamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1alpha2NamespacedLeaseCandidateList"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1beta1LeaseCandidateListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.coordination#WatchCoordinationV1beta1NamespacedLeaseCandidate"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1beta1NamespacedLeaseCandidateList"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1LeaseListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1NamespacedLease"
+        },
+        {
+          "target": "com.kubernetes.coordination#WatchCoordinationV1NamespacedLeaseList"
         }
       ],
       "traits": {

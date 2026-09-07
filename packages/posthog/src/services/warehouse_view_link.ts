@@ -145,87 +145,26 @@ export const ViewLink = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ViewLink" }) as any as S.Schema<ViewLink>;
 
-export interface CreateWarehouseViewLinkValidateRequest {
+export interface GetWarehouseViewLinkRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Name of the table or view being joined onto the source table. */
-  joining_table_name: string;
-  /** Column or HogQL expression on the joining table used as the join key. */
-  joining_table_key: string;
-  /** Name of the table the join starts from, for example events. */
-  source_table_name: string;
-  /** Column or HogQL expression on the source table used as the join key. */
-  source_table_key: string;
+  /** A UUID string identifying this data warehouse join. */
+  id: string;
 }
-export const CreateWarehouseViewLinkValidateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      joining_table_name: S.String,
-      joining_table_key: S.String,
-      source_table_name: S.String,
-      source_table_key: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/warehouse_view_link/validate/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CreateWarehouseViewLinkValidateRequest",
-}) as any as S.Schema<CreateWarehouseViewLinkValidateRequest>;
-
-/** Column names for each row in results. */
-export type ViewLinkValidationResponseColumnsList = Array<string>;
-export const ViewLinkValidationResponseColumnsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ViewLinkValidationResponseColumnsList>;
-
-export type ViewLinkValidationResponseResultsItemList = Array<unknown>;
-export const ViewLinkValidationResponseResultsItemList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ViewLinkValidationResponseResultsItemList>;
-
-/** Distinct source and joining key pairs from the joined result, at most 5. */
-export type ViewLinkValidationResponseResultsList =
-  Array<ViewLinkValidationResponseResultsItemList>;
-export const ViewLinkValidationResponseResultsList = /*@__PURE__*/ S.Array(
-  ViewLinkValidationResponseResultsItemList,
-) as any as S.Schema<ViewLinkValidationResponseResultsList>;
-
-export interface ViewLinkValidationResponse {
-  /** Whether the join compiled and returned rows when executed against a sample of the source table. */
-  is_valid: boolean;
-  /** Warning about the validation result, for example when the sampled join returned no rows. */
-  msg: string | null;
-  /** The HogQL statement used to validate the join. */
-  hogql: string | null;
-  /** Column names for each row in results. */
-  columns: ViewLinkValidationResponseColumnsList;
-  /** Distinct source and joining key pairs from the joined result, at most 5. */
-  results: ViewLinkValidationResponseResultsList;
-  /** Number of sampled source rows checked for a join match, at most 10000. Null when the match-rate query failed. */
-  total_rows: number | null;
-  /** Number of sampled source rows with at least one match in the joining table. Null when the match-rate query failed. */
-  matched_rows: number | null;
-  /** matched_rows divided by total_rows, between 0 and 1. Null when the match-rate query failed or no rows were sampled. */
-  match_rate: number | null;
-}
-export const ViewLinkValidationResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWarehouseViewLinkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    is_valid: S.Boolean,
-    msg: S.NullOr(S.String),
-    hogql: S.NullOr(S.String),
-    columns: ViewLinkValidationResponseColumnsList,
-    results: ViewLinkValidationResponseResultsList,
-    total_rows: S.NullOr(S.Number),
-    matched_rows: S.NullOr(S.Number),
-    match_rate: S.NullOr(S.Number),
-  }),
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_view_link/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "ViewLinkValidationResponse",
-}) as any as S.Schema<ViewLinkValidationResponse>;
+  identifier: "GetWarehouseViewLinkRequest",
+}) as any as S.Schema<GetWarehouseViewLinkRequest>;
 
 export interface ListWarehouseViewLinkRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -389,26 +328,87 @@ export const WarehouseViewLinkDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WarehouseViewLinkDestroyResponse",
 }) as any as S.Schema<WarehouseViewLinkDestroyResponse>;
 
-export interface WarehouseViewLinkRetrieveRequest {
+export interface WarehouseViewLinkValidateCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this data warehouse join. */
-  id: string;
+  /** Name of the table or view being joined onto the source table. */
+  joining_table_name: string;
+  /** Column or HogQL expression on the joining table used as the join key. */
+  joining_table_key: string;
+  /** Name of the table the join starts from, for example events. */
+  source_table_name: string;
+  /** Column or HogQL expression on the source table used as the join key. */
+  source_table_key: string;
 }
-export const WarehouseViewLinkRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_view_link/{id}/",
-      code: 200,
-    }),
-  ),
+export const WarehouseViewLinkValidateCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      joining_table_name: S.String,
+      joining_table_key: S.String,
+      source_table_name: S.String,
+      source_table_key: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/warehouse_view_link/validate/",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "WarehouseViewLinkRetrieveRequest",
-}) as any as S.Schema<WarehouseViewLinkRetrieveRequest>;
+  identifier: "WarehouseViewLinkValidateCreateRequest",
+}) as any as S.Schema<WarehouseViewLinkValidateCreateRequest>;
+
+/** Column names for each row in results. */
+export type ViewLinkValidationResponseColumnsList = Array<string>;
+export const ViewLinkValidationResponseColumnsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ViewLinkValidationResponseColumnsList>;
+
+export type ViewLinkValidationResponseResultsItemList = Array<unknown>;
+export const ViewLinkValidationResponseResultsItemList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<ViewLinkValidationResponseResultsItemList>;
+
+/** Distinct source and joining key pairs from the joined result, at most 5. */
+export type ViewLinkValidationResponseResultsList =
+  Array<ViewLinkValidationResponseResultsItemList>;
+export const ViewLinkValidationResponseResultsList = /*@__PURE__*/ S.Array(
+  ViewLinkValidationResponseResultsItemList,
+) as any as S.Schema<ViewLinkValidationResponseResultsList>;
+
+export interface ViewLinkValidationResponse {
+  /** Whether the join compiled and returned rows when executed against a sample of the source table. */
+  is_valid: boolean;
+  /** Warning about the validation result, for example when the sampled join returned no rows. */
+  msg: string | null;
+  /** The HogQL statement used to validate the join. */
+  hogql: string | null;
+  /** Column names for each row in results. */
+  columns: ViewLinkValidationResponseColumnsList;
+  /** Distinct source and joining key pairs from the joined result, at most 5. */
+  results: ViewLinkValidationResponseResultsList;
+  /** Number of sampled source rows checked for a join match, at most 10000. Null when the match-rate query failed. */
+  total_rows: number | null;
+  /** Number of sampled source rows with at least one match in the joining table. Null when the match-rate query failed. */
+  matched_rows: number | null;
+  /** matched_rows divided by total_rows, between 0 and 1. Null when the match-rate query failed or no rows were sampled. */
+  match_rate: number | null;
+}
+export const ViewLinkValidationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    is_valid: S.Boolean,
+    msg: S.NullOr(S.String),
+    hogql: S.NullOr(S.String),
+    columns: ViewLinkValidationResponseColumnsList,
+    results: ViewLinkValidationResponseResultsList,
+    total_rows: S.NullOr(S.Number),
+    matched_rows: S.NullOr(S.Number),
+    match_rate: S.NullOr(S.Number),
+  }),
+).annotate({
+  identifier: "ViewLinkValidationResponse",
+}) as any as S.Schema<ViewLinkValidationResponse>;
 
 export type CreateWarehouseViewLinkError = PosthogOpError;
 /** Create, Read, Update and Delete View Columns. */
@@ -425,17 +425,17 @@ export const createWarehouseViewLink: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateWarehouseViewLinkValidateError = BadRequest | PosthogOpError;
+export type GetWarehouseViewLinkError = PosthogOpError;
 /** Create, Read, Update and Delete View Columns. */
-export const createWarehouseViewLinkValidate: API.OperationMethod<
-  CreateWarehouseViewLinkValidateRequest,
-  ViewLinkValidationResponse,
-  CreateWarehouseViewLinkValidateError,
+export const getWarehouseViewLink: API.OperationMethod<
+  GetWarehouseViewLinkRequest,
+  ViewLink,
+  GetWarehouseViewLinkError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateWarehouseViewLinkValidateRequest,
-  output: ViewLinkValidationResponse,
-  errors: [BadRequest],
+  input: GetWarehouseViewLinkRequest,
+  output: ViewLink,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -500,17 +500,17 @@ export const warehouseViewLinkDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WarehouseViewLinkRetrieveError = PosthogOpError;
+export type WarehouseViewLinkValidateCreateError = BadRequest | PosthogOpError;
 /** Create, Read, Update and Delete View Columns. */
-export const warehouseViewLinkRetrieve: API.OperationMethod<
-  WarehouseViewLinkRetrieveRequest,
-  ViewLink,
-  WarehouseViewLinkRetrieveError,
+export const warehouseViewLinkValidateCreate: API.OperationMethod<
+  WarehouseViewLinkValidateCreateRequest,
+  ViewLinkValidationResponse,
+  WarehouseViewLinkValidateCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseViewLinkRetrieveRequest,
-  output: ViewLink,
-  errors: [],
+  input: WarehouseViewLinkValidateCreateRequest,
+  output: ViewLinkValidationResponse,
+  errors: [BadRequest],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

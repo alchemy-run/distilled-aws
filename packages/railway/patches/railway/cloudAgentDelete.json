@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#CloudAgentDeleteRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#DeleteCloudAgentRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation cloudAgentDelete($id: ID!) {\n  cloudAgentDelete(id: $id)\n}"
     }
   ]

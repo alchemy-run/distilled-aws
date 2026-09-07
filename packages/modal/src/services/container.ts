@@ -36,6 +36,48 @@ export const ContainerCheckpointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerCheckpointResponse",
 }) as any as S.Schema<ContainerCheckpointResponse>;
 
+/** Whether to use RDMA interfaces */
+export interface RuntimeInputMessage {
+  message?: string;
+  messageIndex?: string;
+  eof?: boolean;
+}
+export const RuntimeInputMessage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    messageIndex: S.optional(S.String),
+    eof: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RuntimeInputMessage",
+}) as any as S.Schema<RuntimeInputMessage>;
+
+export interface ContainerExecPutInputRequest {
+  execId?: string;
+  input?: RuntimeInputMessage;
+}
+export const ContainerExecPutInputRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    execId: S.optional(S.String),
+    input: S.optional(RuntimeInputMessage),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/ContainerExecPutInput",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ContainerExecPutInputRequest",
+}) as any as S.Schema<ContainerExecPutInputRequest>;
+
+export interface ContainerExecPutInputResponse {}
+export const ContainerExecPutInputResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ContainerExecPutInputResponse",
+}) as any as S.Schema<ContainerExecPutInputResponse>;
+
 export interface ContainerExecWaitRequest {
   execId?: string;
   timeout?: number;
@@ -588,48 +630,6 @@ export const ExecContainerFilesystemResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExecContainerFilesystemResponse",
 }) as any as S.Schema<ExecContainerFilesystemResponse>;
 
-/** Whether to use RDMA interfaces */
-export interface RuntimeInputMessage {
-  message?: string;
-  messageIndex?: string;
-  eof?: boolean;
-}
-export const RuntimeInputMessage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    messageIndex: S.optional(S.String),
-    eof: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RuntimeInputMessage",
-}) as any as S.Schema<RuntimeInputMessage>;
-
-export interface ExecContainerPutInputRequest {
-  execId?: string;
-  input?: RuntimeInputMessage;
-}
-export const ExecContainerPutInputRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    execId: S.optional(S.String),
-    input: S.optional(RuntimeInputMessage),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/ContainerExecPutInput",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ExecContainerPutInputRequest",
-}) as any as S.Schema<ExecContainerPutInputRequest>;
-
-export interface ExecContainerPutInputResponse {}
-export const ExecContainerPutInputResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ExecContainerPutInputResponse",
-}) as any as S.Schema<ExecContainerPutInputResponse>;
-
 export interface StopContainerRequest {
   taskId?: string;
   graceful?: boolean;
@@ -666,6 +666,20 @@ export const containerCheckpoint: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ContainerCheckpointRequest,
   output: ContainerCheckpointResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ContainerExecPutInputError = ModalOpError;
+export const containerExecPutInput: API.OperationMethod<
+  ContainerExecPutInputRequest,
+  ContainerExecPutInputResponse,
+  ContainerExecPutInputError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ContainerExecPutInputRequest,
+  output: ContainerExecPutInputResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -778,20 +792,6 @@ export const execContainerFilesystem: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ExecContainerFilesystemRequest,
   output: ExecContainerFilesystemResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExecContainerPutInputError = ModalOpError;
-export const execContainerPutInput: API.OperationMethod<
-  ExecContainerPutInputRequest,
-  ExecContainerPutInputResponse,
-  ExecContainerPutInputError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExecContainerPutInputRequest,
-  output: ExecContainerPutInputResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

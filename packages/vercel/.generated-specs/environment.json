@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.environment#ListSharedEnvVariableRequest": {
@@ -4331,37 +4332,37 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.environment#ListSharedEnvVariable"
+          "target": "com.vercel.environment#CreateCustomEnvironment"
         },
         {
           "target": "com.vercel.environment#CreateSharedEnvVariable"
         },
         {
-          "target": "com.vercel.environment#UpdateSharedEnvVariable"
-        },
-        {
           "target": "com.vercel.environment#DeleteSharedEnvVariable"
-        },
-        {
-          "target": "com.vercel.environment#GetSharedEnvVar"
-        },
-        {
-          "target": "com.vercel.environment#UnlinkSharedEnvVariable"
-        },
-        {
-          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironments"
-        },
-        {
-          "target": "com.vercel.environment#CreateCustomEnvironment"
         },
         {
           "target": "com.vercel.environment#GetCustomEnvironment"
         },
         {
-          "target": "com.vercel.environment#UpdateCustomEnvironment"
+          "target": "com.vercel.environment#GetProjectsByIdOrNameCustomEnvironments"
+        },
+        {
+          "target": "com.vercel.environment#GetSharedEnvVar"
+        },
+        {
+          "target": "com.vercel.environment#ListSharedEnvVariable"
         },
         {
           "target": "com.vercel.environment#RemoveCustomEnvironment"
+        },
+        {
+          "target": "com.vercel.environment#UnlinkSharedEnvVariable"
+        },
+        {
+          "target": "com.vercel.environment#UpdateCustomEnvironment"
+        },
+        {
+          "target": "com.vercel.environment#UpdateSharedEnvVariable"
         }
       ],
       "traits": {

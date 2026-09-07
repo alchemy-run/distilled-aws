@@ -63,13 +63,13 @@ export const CheckNameResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckNameResponse",
 }) as any as S.Schema<CheckNameResponse>;
 
-export type WorkspaceCollectionsCreateRequestTagsMap = {
+export type CreateWorkspaceCollectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspaceCollectionsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateWorkspaceCollectionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspaceCollectionsCreateRequestTagsMap>;
+) as any as S.Schema<CreateWorkspaceCollectionRequestTagsMap>;
 
 /** SKU name */
 export type AzureSkuName = "S1";
@@ -101,7 +101,7 @@ export interface CreateWorkspaceCollectionRequest {
   workspaceCollectionName: string;
   /** Azure location */
   location?: string;
-  tags?: WorkspaceCollectionsCreateRequestTagsMap;
+  tags?: CreateWorkspaceCollectionRequestTagsMap;
   sku?: AzureSku;
 }
 export const CreateWorkspaceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
@@ -110,7 +110,7 @@ export const CreateWorkspaceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceCollectionName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(WorkspaceCollectionsCreateRequestTagsMap),
+    tags: S.optional(CreateWorkspaceCollectionRequestTagsMap),
     sku: S.optional(AzureSku),
   }).pipe(
     T.Http({
@@ -252,7 +252,7 @@ export const OperationList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
 
-export interface GetWorkspaceCollectionAccessKeyRequest {
+export interface GetWorkspaceCollectionAccessKeysRequest {
   /** Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** Azure resource group */
@@ -260,7 +260,7 @@ export interface GetWorkspaceCollectionAccessKeyRequest {
   /** Power BI Embedded Workspace Collection name */
   workspaceCollectionName: string;
 }
-export const GetWorkspaceCollectionAccessKeyRequest = /*@__PURE__*/ S.suspend(
+export const GetWorkspaceCollectionAccessKeysRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -275,8 +275,8 @@ export const GetWorkspaceCollectionAccessKeyRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetWorkspaceCollectionAccessKeyRequest",
-}) as any as S.Schema<GetWorkspaceCollectionAccessKeyRequest>;
+  identifier: "GetWorkspaceCollectionAccessKeysRequest",
+}) as any as S.Schema<GetWorkspaceCollectionAccessKeysRequest>;
 
 export interface WorkspaceCollectionAccessKeys {
   /** Access key 1 */
@@ -435,13 +435,87 @@ export const WorkspaceList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WorkspaceList" }) as any as S.Schema<WorkspaceList>;
 
-export type WorkspaceCollectionsUpdateRequestTagsMap = {
+export type MigrateWorkspaceCollectionRequestResourcesList = Array<string>;
+export const MigrateWorkspaceCollectionRequestResourcesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MigrateWorkspaceCollectionRequestResourcesList>;
+
+export interface MigrateWorkspaceCollectionRequest {
+  /** Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** Azure resource group */
+  resourceGroupName: string;
+  /** Name of the resource group the Power BI workspace collections will be migrated to. */
+  targetResourceGroup?: string;
+  resources?: MigrateWorkspaceCollectionRequestResourcesList;
+}
+export const MigrateWorkspaceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    targetResourceGroup: S.optional(S.String),
+    resources: S.optional(MigrateWorkspaceCollectionRequestResourcesList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/moveResources",
+      code: 200,
+      apiVersion: "2016-01-29",
+    }),
+  ),
+).annotate({
+  identifier: "MigrateWorkspaceCollectionRequest",
+}) as any as S.Schema<MigrateWorkspaceCollectionRequest>;
+
+export interface MigrateWorkspaceCollectionResponse {}
+export const MigrateWorkspaceCollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MigrateWorkspaceCollectionResponse",
+}) as any as S.Schema<MigrateWorkspaceCollectionResponse>;
+
+/** Key name */
+export type RegenerateWorkspaceCollectionKeyRequestKeyName = "key1" | "key2";
+export const RegenerateWorkspaceCollectionKeyRequestKeyName =
+  /*@__PURE__*/ S.String;
+
+export interface RegenerateWorkspaceCollectionKeyRequest {
+  /** Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** Azure resource group */
+  resourceGroupName: string;
+  /** Power BI Embedded Workspace Collection name */
+  workspaceCollectionName: string;
+  /** Key name */
+  keyName?: RegenerateWorkspaceCollectionKeyRequestKeyName | (string & {});
+}
+export const RegenerateWorkspaceCollectionKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceCollectionName: S.String.pipe(T.Label()),
+      keyName: S.optional(RegenerateWorkspaceCollectionKeyRequestKeyName),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}/regenerateKey",
+        code: 200,
+        apiVersion: "2016-01-29",
+      }),
+    ),
+).annotate({
+  identifier: "RegenerateWorkspaceCollectionKeyRequest",
+}) as any as S.Schema<RegenerateWorkspaceCollectionKeyRequest>;
+
+export type UpdateWorkspaceCollectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspaceCollectionsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceCollectionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspaceCollectionsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkspaceCollectionRequestTagsMap>;
 
 export interface UpdateWorkspaceCollectionRequest {
   /** Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -450,7 +524,7 @@ export interface UpdateWorkspaceCollectionRequest {
   resourceGroupName: string;
   /** Power BI Embedded Workspace Collection name */
   workspaceCollectionName: string;
-  tags?: WorkspaceCollectionsUpdateRequestTagsMap;
+  tags?: UpdateWorkspaceCollectionRequestTagsMap;
   sku?: AzureSku;
 }
 export const UpdateWorkspaceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
@@ -458,7 +532,7 @@ export const UpdateWorkspaceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceCollectionName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspaceCollectionsUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkspaceCollectionRequestTagsMap),
     sku: S.optional(AzureSku),
   }).pipe(
     T.Http({
@@ -471,80 +545,6 @@ export const UpdateWorkspaceCollectionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateWorkspaceCollectionRequest",
 }) as any as S.Schema<UpdateWorkspaceCollectionRequest>;
-
-export type WorkspaceCollectionsMigrateRequestResourcesList = Array<string>;
-export const WorkspaceCollectionsMigrateRequestResourcesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspaceCollectionsMigrateRequestResourcesList>;
-
-export interface WorkspaceCollectionsMigrateRequest {
-  /** Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** Azure resource group */
-  resourceGroupName: string;
-  /** Name of the resource group the Power BI workspace collections will be migrated to. */
-  targetResourceGroup?: string;
-  resources?: WorkspaceCollectionsMigrateRequestResourcesList;
-}
-export const WorkspaceCollectionsMigrateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    targetResourceGroup: S.optional(S.String),
-    resources: S.optional(WorkspaceCollectionsMigrateRequestResourcesList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/moveResources",
-      code: 200,
-      apiVersion: "2016-01-29",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspaceCollectionsMigrateRequest",
-}) as any as S.Schema<WorkspaceCollectionsMigrateRequest>;
-
-export interface WorkspaceCollectionsMigrateResponse {}
-export const WorkspaceCollectionsMigrateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkspaceCollectionsMigrateResponse",
-}) as any as S.Schema<WorkspaceCollectionsMigrateResponse>;
-
-/** Key name */
-export type WorkspaceCollectionsRegenerateKeyRequestKeyName = "key1" | "key2";
-export const WorkspaceCollectionsRegenerateKeyRequestKeyName =
-  /*@__PURE__*/ S.String;
-
-export interface WorkspaceCollectionsRegenerateKeyRequest {
-  /** Gets subscription credentials which uniquely identify a Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** Azure resource group */
-  resourceGroupName: string;
-  /** Power BI Embedded Workspace Collection name */
-  workspaceCollectionName: string;
-  /** Key name */
-  keyName?: WorkspaceCollectionsRegenerateKeyRequestKeyName | (string & {});
-}
-export const WorkspaceCollectionsRegenerateKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceCollectionName: S.String.pipe(T.Label()),
-      keyName: S.optional(WorkspaceCollectionsRegenerateKeyRequestKeyName),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.PowerBI/workspaceCollections/{workspaceCollectionName}/regenerateKey",
-        code: 200,
-        apiVersion: "2016-01-29",
-      }),
-    ),
-).annotate({
-  identifier: "WorkspaceCollectionsRegenerateKeyRequest",
-}) as any as S.Schema<WorkspaceCollectionsRegenerateKeyRequest>;
 
 export type CheckWorkspaceCollectionNameAvailabilityError = AzureOpError;
 /** Verify the specified Power BI Workspace Collection name is valid and not already in use. */
@@ -606,15 +606,15 @@ export const GetAvailableOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetWorkspaceCollectionAccessKeyError = AzureOpError;
+export type GetWorkspaceCollectionAccessKeysError = AzureOpError;
 /** Retrieves the primary and secondary access keys for the specified Power BI Workspace Collection. */
-export const GetWorkspaceCollectionAccessKey: API.OperationMethod<
-  GetWorkspaceCollectionAccessKeyRequest,
+export const GetWorkspaceCollectionAccessKeys: API.OperationMethod<
+  GetWorkspaceCollectionAccessKeysRequest,
   WorkspaceCollectionAccessKeys,
-  GetWorkspaceCollectionAccessKeyError,
+  GetWorkspaceCollectionAccessKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWorkspaceCollectionAccessKeyRequest,
+  input: GetWorkspaceCollectionAccessKeysRequest,
   output: WorkspaceCollectionAccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -681,6 +681,36 @@ export const ListWorkspaces: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MigrateWorkspaceCollectionError = AzureOpError;
+/** Migrates an existing Power BI Workspace Collection to a different resource group and/or subscription. */
+export const MigrateWorkspaceCollection: API.OperationMethod<
+  MigrateWorkspaceCollectionRequest,
+  MigrateWorkspaceCollectionResponse,
+  MigrateWorkspaceCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateWorkspaceCollectionRequest,
+  output: MigrateWorkspaceCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateWorkspaceCollectionKeyError = AzureOpError;
+/** Regenerates the primary or secondary access key for the specified Power BI Workspace Collection. */
+export const RegenerateWorkspaceCollectionKey: API.OperationMethod<
+  RegenerateWorkspaceCollectionKeyRequest,
+  WorkspaceCollectionAccessKeys,
+  RegenerateWorkspaceCollectionKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateWorkspaceCollectionKeyRequest,
+  output: WorkspaceCollectionAccessKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateWorkspaceCollectionError = AzureOpError;
 /** Update an existing Power BI Workspace Collection with the specified properties. */
 export const UpdateWorkspaceCollection: API.OperationMethod<
@@ -691,36 +721,6 @@ export const UpdateWorkspaceCollection: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateWorkspaceCollectionRequest,
   output: WorkspaceCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceCollectionsMigrateError = AzureOpError;
-/** Migrates an existing Power BI Workspace Collection to a different resource group and/or subscription. */
-export const WorkspaceCollectionsMigrate: API.OperationMethod<
-  WorkspaceCollectionsMigrateRequest,
-  WorkspaceCollectionsMigrateResponse,
-  WorkspaceCollectionsMigrateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceCollectionsMigrateRequest,
-  output: WorkspaceCollectionsMigrateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspaceCollectionsRegenerateKeyError = AzureOpError;
-/** Regenerates the primary or secondary access key for the specified Power BI Workspace Collection. */
-export const WorkspaceCollectionsRegenerateKey: API.OperationMethod<
-  WorkspaceCollectionsRegenerateKeyRequest,
-  WorkspaceCollectionAccessKeys,
-  WorkspaceCollectionsRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspaceCollectionsRegenerateKeyRequest,
-  output: WorkspaceCollectionAccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

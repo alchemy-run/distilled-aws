@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.course_students#ListCourseStudentRequest": {
@@ -257,7 +258,7 @@
         }
       }
     },
-    "com.whop.course_students#RetrieveCourseStudentRequest": {
+    "com.whop.course_students#GetCourseStudentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -412,10 +413,10 @@
         "smithy.api#documentation": "The user profile of the enrolled student."
       }
     },
-    "com.whop.course_students#RetrieveCourseStudent": {
+    "com.whop.course_students#GetCourseStudent": {
       "type": "operation",
       "input": {
-        "target": "com.whop.course_students#RetrieveCourseStudentRequest"
+        "target": "com.whop.course_students#GetCourseStudentRequest"
       },
       "output": {
         "target": "com.whop.course_students#CourseStudent"
@@ -500,10 +501,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.course_students#ListCourseStudent"
+          "target": "com.whop.course_students#GetCourseStudent"
         },
         {
-          "target": "com.whop.course_students#RetrieveCourseStudent"
+          "target": "com.whop.course_students#ListCourseStudent"
         }
       ],
       "traits": {

@@ -12,8 +12,8 @@ import * as Retry from "../retry.ts";
 export type { PosthogOpError, PosthogOpContext };
 
 /** * `FeatureFlag` - feature flag */
-export type ModelNameEnum = "FeatureFlag";
-export const ModelNameEnum = /*@__PURE__*/ S.String;
+export type ScheduledChangeAllowedModelsEnum = "FeatureFlag";
+export const ScheduledChangeAllowedModelsEnum = /*@__PURE__*/ S.String;
 
 /** * `daily` - daily * `weekly` - weekly * `monthly` - monthly * `yearly` - yearly */
 export type ScheduledChangeRecurrenceIntervalEnum =
@@ -29,7 +29,7 @@ export interface CreateScheduledChangeRequest {
   /** The ID of the record to modify (e.g. the feature flag ID). */
   record_id: string;
   /** The type of record to modify. Currently only "FeatureFlag" is supported. * `FeatureFlag` - feature flag */
-  model_name: ModelNameEnum | (string & {});
+  model_name: ScheduledChangeAllowedModelsEnum | (string & {});
   /** The change to apply. Must include an 'operation' key and a 'value' key. Supported operations: 'update_status' (value: true/false to enable/disable the flag), 'add_release_condition' (value: object with 'groups', 'payloads', and 'multivariate' keys), 'update_variants' (value: object with 'variants' and 'payloads' keys). */
   payload: unknown;
   /** ISO 8601 datetime when the change should be applied (e.g. '2025-06-01T14:00:00Z'). */
@@ -49,7 +49,7 @@ export const CreateScheduledChangeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     record_id: S.String,
-    model_name: ModelNameEnum,
+    model_name: ScheduledChangeAllowedModelsEnum,
     payload: S.Unknown,
     scheduled_at: S.String,
     is_recurring: S.optional(S.Boolean),
@@ -152,7 +152,7 @@ export interface ScheduledChange {
   /** The ID of the record to modify (e.g. the feature flag ID). */
   record_id: string;
   /** The type of record to modify. Currently only "FeatureFlag" is supported. * `FeatureFlag` - feature flag */
-  model_name: ModelNameEnum;
+  model_name: ScheduledChangeAllowedModelsEnum;
   /** The change to apply. Must include an 'operation' key and a 'value' key. Supported operations: 'update_status' (value: true/false to enable/disable the flag), 'add_release_condition' (value: object with 'groups', 'payloads', and 'multivariate' keys), 'update_variants' (value: object with 'variants' and 'payloads' keys). */
   payload: unknown;
   /** ISO 8601 datetime when the change should be applied (e.g. '2025-06-01T14:00:00Z'). */
@@ -180,7 +180,7 @@ export const ScheduledChange = /*@__PURE__*/ S.suspend(() =>
     id: S.Number,
     team_id: S.Number,
     record_id: S.String,
-    model_name: ModelNameEnum,
+    model_name: ScheduledChangeAllowedModelsEnum,
     payload: S.Unknown,
     scheduled_at: S.String,
     executed_at: S.NullOr(S.String),
@@ -201,6 +201,27 @@ export const ScheduledChange = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ScheduledChange",
 }) as any as S.Schema<ScheduledChange>;
+
+export interface GetScheduledChangeRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this scheduled change. */
+  id: number;
+}
+export const GetScheduledChangeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/scheduled_changes/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetScheduledChangeRequest",
+}) as any as S.Schema<GetScheduledChangeRequest>;
 
 export interface ListScheduledChangesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -282,27 +303,6 @@ export const ScheduledChangesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScheduledChangesDestroyResponse",
 }) as any as S.Schema<ScheduledChangesDestroyResponse>;
 
-export interface ScheduledChangesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this scheduled change. */
-  id: number;
-}
-export const ScheduledChangesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/scheduled_changes/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ScheduledChangesRetrieveRequest",
-}) as any as S.Schema<ScheduledChangesRetrieveRequest>;
-
 export interface UpdateScheduledChangeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -311,7 +311,7 @@ export interface UpdateScheduledChangeRequest {
   /** The ID of the record to modify (e.g. the feature flag ID). */
   record_id: string;
   /** The type of record to modify. Currently only "FeatureFlag" is supported. * `FeatureFlag` - feature flag */
-  model_name: ModelNameEnum | (string & {});
+  model_name: ScheduledChangeAllowedModelsEnum | (string & {});
   /** The change to apply. Must include an 'operation' key and a 'value' key. Supported operations: 'update_status' (value: true/false to enable/disable the flag), 'add_release_condition' (value: object with 'groups', 'payloads', and 'multivariate' keys), 'update_variants' (value: object with 'variants' and 'payloads' keys). */
   payload: unknown;
   /** ISO 8601 datetime when the change should be applied (e.g. '2025-06-01T14:00:00Z'). */
@@ -332,7 +332,7 @@ export const UpdateScheduledChangeRequest = /*@__PURE__*/ S.suspend(() =>
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
     record_id: S.String,
-    model_name: ModelNameEnum,
+    model_name: ScheduledChangeAllowedModelsEnum,
     payload: S.Unknown,
     scheduled_at: S.String,
     is_recurring: S.optional(S.Boolean),
@@ -352,7 +352,7 @@ export const UpdateScheduledChangeRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateScheduledChangeRequest",
 }) as any as S.Schema<UpdateScheduledChangeRequest>;
 
-export interface UpdateScheduledChangePartialRequest {
+export interface UpdateScheduledChangesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this scheduled change. */
@@ -360,7 +360,7 @@ export interface UpdateScheduledChangePartialRequest {
   /** The ID of the record to modify (e.g. the feature flag ID). */
   record_id?: string;
   /** The type of record to modify. Currently only "FeatureFlag" is supported. * `FeatureFlag` - feature flag */
-  model_name?: ModelNameEnum | (string & {});
+  model_name?: ScheduledChangeAllowedModelsEnum | (string & {});
   /** The change to apply. Must include an 'operation' key and a 'value' key. Supported operations: 'update_status' (value: true/false to enable/disable the flag), 'add_release_condition' (value: object with 'groups', 'payloads', and 'multivariate' keys), 'update_variants' (value: object with 'variants' and 'payloads' keys). */
   payload?: unknown;
   /** ISO 8601 datetime when the change should be applied (e.g. '2025-06-01T14:00:00Z'). */
@@ -376,30 +376,31 @@ export interface UpdateScheduledChangePartialRequest {
   /** Optional ISO 8601 datetime after which a recurring schedule stops executing. */
   end_date?: string | null;
 }
-export const UpdateScheduledChangePartialRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    record_id: S.optional(S.String),
-    model_name: S.optional(ModelNameEnum),
-    payload: S.optional(S.Unknown),
-    scheduled_at: S.optional(S.String),
-    is_recurring: S.optional(S.Boolean),
-    recurrence_interval: S.optional(
-      S.NullOr(ScheduledChangeRecurrenceIntervalEnum),
+export const UpdateScheduledChangesPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+      record_id: S.optional(S.String),
+      model_name: S.optional(ScheduledChangeAllowedModelsEnum),
+      payload: S.optional(S.Unknown),
+      scheduled_at: S.optional(S.String),
+      is_recurring: S.optional(S.Boolean),
+      recurrence_interval: S.optional(
+        S.NullOr(ScheduledChangeRecurrenceIntervalEnum),
+      ),
+      cron_expression: S.optional(S.NullOr(S.String)),
+      end_date: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/scheduled_changes/{id}/",
+        code: 200,
+      }),
     ),
-    cron_expression: S.optional(S.NullOr(S.String)),
-    end_date: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/scheduled_changes/{id}/",
-      code: 200,
-    }),
-  ),
 ).annotate({
-  identifier: "UpdateScheduledChangePartialRequest",
-}) as any as S.Schema<UpdateScheduledChangePartialRequest>;
+  identifier: "UpdateScheduledChangesPartialRequest",
+}) as any as S.Schema<UpdateScheduledChangesPartialRequest>;
 
 export type CreateScheduledChangeError = PosthogOpError;
 /** Create, read, update and delete scheduled changes. */
@@ -410,6 +411,21 @@ export const createScheduledChange: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateScheduledChangeRequest,
+  output: ScheduledChange,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScheduledChangeError = PosthogOpError;
+/** Create, read, update and delete scheduled changes. */
+export const getScheduledChange: API.OperationMethod<
+  GetScheduledChangeRequest,
+  ScheduledChange,
+  GetScheduledChangeError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScheduledChangeRequest,
   output: ScheduledChange,
   errors: [],
   protocol: PosthogProtocol,
@@ -446,21 +462,6 @@ export const scheduledChangesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ScheduledChangesRetrieveError = PosthogOpError;
-/** Create, read, update and delete scheduled changes. */
-export const scheduledChangesRetrieve: API.OperationMethod<
-  ScheduledChangesRetrieveRequest,
-  ScheduledChange,
-  ScheduledChangesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScheduledChangesRetrieveRequest,
-  output: ScheduledChange,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateScheduledChangeError = PosthogOpError;
 /** Create, read, update and delete scheduled changes. */
 export const updateScheduledChange: API.OperationMethod<
@@ -476,15 +477,15 @@ export const updateScheduledChange: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateScheduledChangePartialError = PosthogOpError;
+export type UpdateScheduledChangesPartialError = PosthogOpError;
 /** Create, read, update and delete scheduled changes. */
-export const updateScheduledChangePartial: API.OperationMethod<
-  UpdateScheduledChangePartialRequest,
+export const updateScheduledChangesPartial: API.OperationMethod<
+  UpdateScheduledChangesPartialRequest,
   ScheduledChange,
-  UpdateScheduledChangePartialError,
+  UpdateScheduledChangesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateScheduledChangePartialRequest,
+  input: UpdateScheduledChangesPartialRequest,
   output: ScheduledChange,
   errors: [],
   protocol: PosthogProtocol,

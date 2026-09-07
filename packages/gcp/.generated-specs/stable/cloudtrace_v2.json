@@ -4,42 +4,285 @@
     "service": "cloudtrace",
     "version": "v2",
     "title": "Cloud Trace API",
-    "baseUrl": "https://cloudtrace.googleapis.com/"
+    "baseUrl": "https://cloudtrace.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.cloudtrace_v2#BatchWriteSpansRequest": {
+    "com.gcp.cloudtrace_v2#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.cloudtrace_v2#StackTrace": {
       "type": "structure",
       "members": {
-        "spans": {
-          "target": "com.gcp.cloudtrace_v2#SpanList",
+        "stackFrames": {
+          "target": "com.gcp.cloudtrace_v2#StackFrames",
           "traits": {
-            "smithy.api#documentation": "Required. A list of new spans. The span names must not match existing spans, otherwise the results are undefined."
+            "smithy.api#documentation": "Optional. Stack frames in this stack trace. A maximum of 128 frames are allowed."
+          }
+        },
+        "stackTraceHashId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace. Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`. Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The request message for the `BatchWriteSpans` method."
+        "smithy.api#documentation": "A call stack appearing in a trace."
       }
     },
-    "com.gcp.cloudtrace_v2#SpanList": {
+    "com.gcp.cloudtrace_v2#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.cloudtrace_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.cloudtrace_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.cloudtrace_v2#DocumentMapList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.cloudtrace_v2#Span"
+        "target": "com.gcp.cloudtrace_v2#DocumentMap"
+      }
+    },
+    "com.gcp.cloudtrace_v2#TimeEvents": {
+      "type": "structure",
+      "members": {
+        "timeEvent": {
+          "target": "com.gcp.cloudtrace_v2#TimeEventList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A collection of `TimeEvent`s."
+          }
+        },
+        "droppedMessageEventsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of dropped message events in all the included time events. If the value is 0, then no message events were dropped."
+          }
+        },
+        "droppedAnnotationsCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of dropped annotations in all the included time events. If the value is 0, then no annotations were dropped."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of `TimeEvent`s. A `TimeEvent` is a time-stamped annotation on the span, consisting of either user-supplied key:value pairs, or details of a message sent/received between Spans."
+      }
+    },
+    "com.gcp.cloudtrace_v2#TimeEventList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudtrace_v2#TimeEvent"
+      }
+    },
+    "com.gcp.cloudtrace_v2#Span": {
+      "type": "structure",
+      "members": {
+        "stackTrace": {
+          "target": "com.gcp.cloudtrace_v2#StackTrace",
+          "traits": {
+            "smithy.api#documentation": "Optional. Stack trace captured at the start of the span."
+          }
+        },
+        "childSpanCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans."
+          }
+        },
+        "links": {
+          "target": "com.gcp.cloudtrace_v2#Links",
+          "traits": {
+            "smithy.api#documentation": "Optional. Links associated with the span. You can have up to 128 links per Span."
+          }
+        },
+        "parentSpanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The `[SPAN_ID]` of this span's parent span. If this is a root span, then this field must be empty."
+          }
+        },
+        "displayName": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
+          "traits": {
+            "smithy.api#documentation": "Required. A description of the span's operation (up to 128 bytes). Cloud Trace displays the description in the Cloud console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces."
+          }
+        },
+        "spanId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `[SPAN_ID]` portion of the span's resource name."
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.cloudtrace_v2#Attributes",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of attributes on the span. You can have up to 32 attributes per span."
+          }
+        },
+        "sameProcessAsParentSpan": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Trace is unable to take advantage of this helpful information."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. ."
+          }
+        },
+        "spanKind": {
+          "target": "com.gcp.cloudtrace_v2#SpanSpanKindEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running."
+          }
+        },
+        "status": {
+          "target": "com.gcp.cloudtrace_v2#Status",
+          "traits": {
+            "smithy.api#documentation": "Optional. The final status for this span."
+          }
+        },
+        "timeEvents": {
+          "target": "com.gcp.cloudtrace_v2#TimeEvents",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of time events. You can have up to 32 annotations and 128 message events per span."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server's application handler starts running."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous. There might be gaps or overlaps between spans in a trace."
+      }
+    },
+    "com.gcp.cloudtrace_v2#SpanSpanKindEnum": {
+      "type": "enum",
+      "members": {
+        "SPAN_KIND_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPAN_KIND_UNSPECIFIED"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL"
+          }
+        },
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVER"
+          }
+        },
+        "CLIENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT"
+          }
+        },
+        "PRODUCER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCER"
+          }
+        },
+        "CONSUMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudtrace_v2#Attributes": {
+      "type": "structure",
+      "members": {
+        "droppedAttributesCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid."
+          }
+        },
+        "attributeMap": {
+          "target": "com.gcp.cloudtrace_v2#AttributeValueMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the boolean values `true` or `false`. For example: \"/instance_id\": { \"string_value\": { \"value\": \"my-instance\" } } \"/http/request_bytes\": { \"int_value\": 300 } \"example.com/myattribute\": { \"bool_value\": false }"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of attributes as key-value pairs."
+      }
+    },
+    "com.gcp.cloudtrace_v2#AttributeValueMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.cloudtrace_v2#AttributeValue"
       }
     },
     "com.gcp.cloudtrace_v2#Link": {
       "type": "structure",
       "members": {
-        "traceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The `[TRACE_ID]` for a trace within a project."
-          }
-        },
         "type": {
           "target": "com.gcp.cloudtrace_v2#LinkTypeEnum",
           "traits": {
             "smithy.api#documentation": "Optional. The relationship of the current span relative to the linked span."
+          }
+        },
+        "traceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The `[TRACE_ID]` for a trace within a project."
           }
         },
         "attributes": {
@@ -91,16 +334,16 @@
             "smithy.api#documentation": "Text annotation with a set of attributes."
           }
         },
-        "time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The timestamp indicating the time the event occurred."
-          }
-        },
         "messageEvent": {
           "target": "com.gcp.cloudtrace_v2#MessageEvent",
           "traits": {
             "smithy.api#documentation": "An event describing a message sent/received between Spans."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The timestamp indicating the time the event occurred."
           }
         }
       },
@@ -108,304 +351,30 @@
         "smithy.api#documentation": "A time-stamped annotation or message event in the Span."
       }
     },
-    "com.gcp.cloudtrace_v2#TimeEvents": {
+    "com.gcp.cloudtrace_v2#Links": {
       "type": "structure",
       "members": {
-        "droppedMessageEventsCount": {
-          "target": "smithy.api#Integer",
+        "link": {
+          "target": "com.gcp.cloudtrace_v2#LinkList",
           "traits": {
-            "smithy.api#documentation": "Optional. The number of dropped message events in all the included time events. If the value is 0, then no message events were dropped."
+            "smithy.api#documentation": "Optional. A collection of links."
           }
         },
-        "timeEvent": {
-          "target": "com.gcp.cloudtrace_v2#TimeEventList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A collection of `TimeEvent`s."
-          }
-        },
-        "droppedAnnotationsCount": {
+        "droppedLinksCount": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. The number of dropped annotations in all the included time events. If the value is 0, then no annotations were dropped."
+            "smithy.api#documentation": "Optional. The number of dropped links after the maximum size was enforced. If this value is 0, then no links were dropped."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A collection of `TimeEvent`s. A `TimeEvent` is a time-stamped annotation on the span, consisting of either user-supplied key:value pairs, or details of a message sent/received between Spans."
+        "smithy.api#documentation": "A collection of links, which are references from this span to a span in the same or different trace."
       }
     },
-    "com.gcp.cloudtrace_v2#TimeEventList": {
+    "com.gcp.cloudtrace_v2#LinkList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.cloudtrace_v2#TimeEvent"
-      }
-    },
-    "com.gcp.cloudtrace_v2#StackTrace": {
-      "type": "structure",
-      "members": {
-        "stackTraceHashId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The hash ID is used to conserve network bandwidth for duplicate stack traces within a single trace. Often multiple spans will have identical stack traces. The first occurrence of a stack trace should contain both the `stackFrame` content and a value in `stackTraceHashId`. Subsequent spans within the same request can refer to that stack trace by only setting `stackTraceHashId`."
-          }
-        },
-        "stackFrames": {
-          "target": "com.gcp.cloudtrace_v2#StackFrames",
-          "traits": {
-            "smithy.api#documentation": "Optional. Stack frames in this stack trace. A maximum of 128 frames are allowed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A call stack appearing in a trace."
-      }
-    },
-    "com.gcp.cloudtrace_v2#Annotation": {
-      "type": "structure",
-      "members": {
-        "description": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. A user-supplied message describing the event. The maximum length for the description is 256 bytes."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.cloudtrace_v2#Attributes",
-          "traits": {
-            "smithy.api#documentation": "Optional. A set of attributes on the annotation. You can have up to 4 attributes per Annotation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Text annotation with a set of attributes."
-      }
-    },
-    "com.gcp.cloudtrace_v2#Module": {
-      "type": "structure",
-      "members": {
-        "buildId": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. A unique identifier for the module, usually a hash of its contents (up to 128 bytes)."
-          }
-        },
-        "module": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. For example: main binary, kernel modules, and dynamic libraries such as libc.so, sharedlib.so (up to 256 bytes)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Binary module."
-      }
-    },
-    "com.gcp.cloudtrace_v2#Attributes": {
-      "type": "structure",
-      "members": {
-        "attributeMap": {
-          "target": "com.gcp.cloudtrace_v2#AttributeValueMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. A set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the boolean values `true` or `false`. For example: \"/instance_id\": { \"string_value\": { \"value\": \"my-instance\" } } \"/http/request_bytes\": { \"int_value\": 300 } \"example.com/myattribute\": { \"bool_value\": false }"
-          }
-        },
-        "droppedAttributesCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A set of attributes as key-value pairs."
-      }
-    },
-    "com.gcp.cloudtrace_v2#AttributeValueMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.cloudtrace_v2#AttributeValue"
-      }
-    },
-    "com.gcp.cloudtrace_v2#TruncatableString": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
-          }
-        },
-        "truncatedByteCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a string that might be shortened to a specified length."
-      }
-    },
-    "com.gcp.cloudtrace_v2#AttributeValue": {
-      "type": "structure",
-      "members": {
-        "intValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A 64-bit signed integer."
-          }
-        },
-        "stringValue": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. A string up to 256 bytes long."
-          }
-        },
-        "boolValue": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. A Boolean value represented by `true` or `false`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The allowed types for `[VALUE]` in a `[KEY]:[VALUE]` attribute."
-      }
-    },
-    "com.gcp.cloudtrace_v2#Span": {
-      "type": "structure",
-      "members": {
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server's application handler starts running."
-          }
-        },
-        "status": {
-          "target": "com.gcp.cloudtrace_v2#Status",
-          "traits": {
-            "smithy.api#documentation": "Optional. The final status for this span."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running."
-          }
-        },
-        "parentSpanId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The `[SPAN_ID]` of this span's parent span. If this is a root span, then this field must be empty."
-          }
-        },
-        "childSpanCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans."
-          }
-        },
-        "sameProcessAsParentSpan": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Trace is unable to take advantage of this helpful information."
-          }
-        },
-        "stackTrace": {
-          "target": "com.gcp.cloudtrace_v2#StackTrace",
-          "traits": {
-            "smithy.api#documentation": "Optional. Stack trace captured at the start of the span."
-          }
-        },
-        "timeEvents": {
-          "target": "com.gcp.cloudtrace_v2#TimeEvents",
-          "traits": {
-            "smithy.api#documentation": "Optional. A set of time events. You can have up to 32 annotations and 128 message events per span."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.cloudtrace_v2#Attributes",
-          "traits": {
-            "smithy.api#documentation": "Optional. A set of attributes on the span. You can have up to 32 attributes per span."
-          }
-        },
-        "spanKind": {
-          "target": "com.gcp.cloudtrace_v2#SpanSpanKindEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call."
-          }
-        },
-        "displayName": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Required. A description of the span's operation (up to 128 bytes). Cloud Trace displays the description in the Cloud console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces."
-          }
-        },
-        "links": {
-          "target": "com.gcp.cloudtrace_v2#Links",
-          "traits": {
-            "smithy.api#documentation": "Optional. Links associated with the span. You can have up to 128 links per Span."
-          }
-        },
-        "spanId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The `[SPAN_ID]` portion of the span's resource name."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. ."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous. There might be gaps or overlaps between spans in a trace."
-      }
-    },
-    "com.gcp.cloudtrace_v2#SpanSpanKindEnum": {
-      "type": "enum",
-      "members": {
-        "SPAN_KIND_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SPAN_KIND_UNSPECIFIED"
-          }
-        },
-        "INTERNAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "INTERNAL"
-          }
-        },
-        "SERVER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SERVER"
-          }
-        },
-        "CLIENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLIENT"
-          }
-        },
-        "PRODUCER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PRODUCER"
-          }
-        },
-        "CONSUMER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONSUMER"
-          }
-        }
+        "target": "com.gcp.cloudtrace_v2#Link"
       }
     },
     "com.gcp.cloudtrace_v2#MessageEvent": {
@@ -417,16 +386,16 @@
             "smithy.api#documentation": "Optional. An identifier for the MessageEvent's message that can be used to match `SENT` and `RECEIVED` MessageEvents."
           }
         },
-        "compressedSizeBytes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The number of compressed bytes sent or received. If missing, the compressed size is assumed to be the same size as the uncompressed size."
-          }
-        },
         "type": {
           "target": "com.gcp.cloudtrace_v2#MessageEventTypeEnum",
           "traits": {
             "smithy.api#documentation": "Optional. Type of MessageEvent. Indicates whether the message was sent or received."
+          }
+        },
+        "compressedSizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of compressed bytes sent or received. If missing, the compressed size is assumed to be the same size as the uncompressed size."
           }
         },
         "uncompressedSizeBytes": {
@@ -463,93 +432,175 @@
         }
       }
     },
-    "com.gcp.cloudtrace_v2#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.cloudtrace_v2#Status": {
+    "com.gcp.cloudtrace_v2#BatchWriteSpansRequest": {
       "type": "structure",
       "members": {
-        "message": {
+        "spans": {
+          "target": "com.gcp.cloudtrace_v2#SpanList",
+          "traits": {
+            "smithy.api#documentation": "Required. A list of new spans. The span names must not match existing spans, otherwise the results are undefined."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for the `BatchWriteSpans` method."
+      }
+    },
+    "com.gcp.cloudtrace_v2#SpanList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudtrace_v2#Span"
+      }
+    },
+    "com.gcp.cloudtrace_v2#Annotation": {
+      "type": "structure",
+      "members": {
+        "attributes": {
+          "target": "com.gcp.cloudtrace_v2#Attributes",
+          "traits": {
+            "smithy.api#documentation": "Optional. A set of attributes on the annotation. You can have up to 4 attributes per Annotation."
+          }
+        },
+        "description": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
+          "traits": {
+            "smithy.api#documentation": "Optional. A user-supplied message describing the event. The maximum length for the description is 256 bytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Text annotation with a set of attributes."
+      }
+    },
+    "com.gcp.cloudtrace_v2#TruncatableString": {
+      "type": "structure",
+      "members": {
+        "value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+            "smithy.api#documentation": "Optional. The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit."
           }
         },
-        "details": {
-          "target": "com.gcp.cloudtrace_v2#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        },
-        "code": {
+        "truncatedByteCount": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+            "smithy.api#documentation": "Optional. The number of bytes removed from the original string. If this value is 0, then the string was not shortened."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        "smithy.api#documentation": "Represents a string that might be shortened to a specified length."
       }
     },
-    "com.gcp.cloudtrace_v2#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.cloudtrace_v2#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudtrace_v2#DocumentMap"
-      }
-    },
-    "com.gcp.cloudtrace_v2#Links": {
+    "com.gcp.cloudtrace_v2#Module": {
       "type": "structure",
       "members": {
-        "droppedLinksCount": {
-          "target": "smithy.api#Integer",
+        "module": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
           "traits": {
-            "smithy.api#documentation": "Optional. The number of dropped links after the maximum size was enforced. If this value is 0, then no links were dropped."
+            "smithy.api#documentation": "Optional. For example: main binary, kernel modules, and dynamic libraries such as libc.so, sharedlib.so (up to 256 bytes)."
           }
         },
-        "link": {
-          "target": "com.gcp.cloudtrace_v2#LinkList",
+        "buildId": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
           "traits": {
-            "smithy.api#documentation": "Optional. A collection of links."
+            "smithy.api#documentation": "Optional. A unique identifier for the module, usually a hash of its contents (up to 128 bytes)."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A collection of links, which are references from this span to a span in the same or different trace."
+        "smithy.api#documentation": "Binary module."
       }
     },
-    "com.gcp.cloudtrace_v2#LinkList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudtrace_v2#Link"
+    "com.gcp.cloudtrace_v2#StackFrame": {
+      "type": "structure",
+      "members": {
+        "columnNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The column number where the function call appears, if available. This is important in JavaScript because of its anonymous functions."
+          }
+        },
+        "lineNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The line number in `file_name` where the function call appears."
+          }
+        },
+        "fileName": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the source file where the function call appears (up to 256 bytes)."
+          }
+        },
+        "loadModule": {
+          "target": "com.gcp.cloudtrace_v2#Module",
+          "traits": {
+            "smithy.api#documentation": "Optional. The binary module from where the code was loaded."
+          }
+        },
+        "originalFunctionName": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
+          "traits": {
+            "smithy.api#documentation": "Optional. An un-mangled function name, if `function_name` is mangled. To get information about name mangling, run [this search](https://www.google.com/search?q=cxx+name+mangling). The name can be fully-qualified (up to 1024 bytes)."
+          }
+        },
+        "sourceVersion": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The version of the deployed source code (up to 128 bytes)."
+          }
+        },
+        "functionName": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
+          "traits": {
+            "smithy.api#documentation": "Optional. The fully-qualified name that uniquely identifies the function or method that is active in this frame (up to 1024 bytes)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single stack frame in a stack trace."
+      }
+    },
+    "com.gcp.cloudtrace_v2#AttributeValue": {
+      "type": "structure",
+      "members": {
+        "intValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A 64-bit signed integer."
+          }
+        },
+        "boolValue": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. A Boolean value represented by `true` or `false`."
+          }
+        },
+        "stringValue": {
+          "target": "com.gcp.cloudtrace_v2#TruncatableString",
+          "traits": {
+            "smithy.api#documentation": "Optional. A string up to 256 bytes long."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The allowed types for `[VALUE]` in a `[KEY]:[VALUE]` attribute."
       }
     },
     "com.gcp.cloudtrace_v2#StackFrames": {
       "type": "structure",
       "members": {
-        "droppedFramesCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The number of stack frames that were dropped because there were too many stack frames. If this value is 0, then no stack frames were dropped."
-          }
-        },
         "frame": {
           "target": "com.gcp.cloudtrace_v2#StackFrameList",
           "traits": {
             "smithy.api#documentation": "Optional. Stack frames in this call stack."
+          }
+        },
+        "droppedFramesCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The number of stack frames that were dropped because there were too many stack frames. If this value is 0, then no stack frames were dropped."
           }
         }
       },
@@ -561,56 +612,6 @@
       "type": "list",
       "member": {
         "target": "com.gcp.cloudtrace_v2#StackFrame"
-      }
-    },
-    "com.gcp.cloudtrace_v2#StackFrame": {
-      "type": "structure",
-      "members": {
-        "sourceVersion": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. The version of the deployed source code (up to 128 bytes)."
-          }
-        },
-        "fileName": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. The name of the source file where the function call appears (up to 256 bytes)."
-          }
-        },
-        "functionName": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. The fully-qualified name that uniquely identifies the function or method that is active in this frame (up to 1024 bytes)."
-          }
-        },
-        "lineNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The line number in `file_name` where the function call appears."
-          }
-        },
-        "loadModule": {
-          "target": "com.gcp.cloudtrace_v2#Module",
-          "traits": {
-            "smithy.api#documentation": "Optional. The binary module from where the code was loaded."
-          }
-        },
-        "columnNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The column number where the function call appears, if available. This is important in JavaScript because of its anonymous functions."
-          }
-        },
-        "originalFunctionName": {
-          "target": "com.gcp.cloudtrace_v2#TruncatableString",
-          "traits": {
-            "smithy.api#documentation": "Optional. An un-mangled function name, if `function_name` is mangled. To get information about name mangling, run [this search](https://www.google.com/search?q=cxx+name+mangling). The name can be fully-qualified (up to 1024 bytes)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a single stack frame in a stack trace."
       }
     },
     "com.gcp.cloudtrace_v2#BatchWriteProjectsTracesRequest": {

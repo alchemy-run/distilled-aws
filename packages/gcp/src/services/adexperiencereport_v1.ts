@@ -57,6 +57,19 @@ export const GetSitesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSitesRequest",
 }) as any as S.Schema<GetSitesRequest>;
 
+export type PlatformSummaryRegionItemEnum =
+  | "REGION_UNKNOWN"
+  | "REGION_A"
+  | "REGION_B"
+  | "REGION_C";
+export const PlatformSummaryRegionItemEnum = /*@__PURE__*/ S.String;
+
+export type PlatformSummaryRegionItemEnumList =
+  Array<PlatformSummaryRegionItemEnum>;
+export const PlatformSummaryRegionItemEnumList = /*@__PURE__*/ S.Array(
+  PlatformSummaryRegionItemEnum,
+) as any as S.Schema<PlatformSummaryRegionItemEnumList>;
+
 export type PlatformSummaryFilterStatusEnum =
   | "UNKNOWN"
   | "ON"
@@ -72,45 +85,32 @@ export type PlatformSummaryBetterAdsStatusEnum =
   | "FAILING";
 export const PlatformSummaryBetterAdsStatusEnum = /*@__PURE__*/ S.String;
 
-export type PlatformSummaryRegionItemEnum =
-  | "REGION_UNKNOWN"
-  | "REGION_A"
-  | "REGION_B"
-  | "REGION_C";
-export const PlatformSummaryRegionItemEnum = /*@__PURE__*/ S.String;
-
-export type PlatformSummaryRegionItemEnumList =
-  Array<PlatformSummaryRegionItemEnum>;
-export const PlatformSummaryRegionItemEnumList = /*@__PURE__*/ S.Array(
-  PlatformSummaryRegionItemEnum,
-) as any as S.Schema<PlatformSummaryRegionItemEnumList>;
-
 /** A site's Ad Experience Report summary on a single platform. */
 export interface PlatformSummary {
-  /** The site's [enforcement status](https://support.google.com/webtools/answer/7308033) on this platform. */
-  filterStatus?: PlatformSummaryFilterStatusEnum;
-  /** The site's Ad Experience Report status on this platform. */
-  betterAdsStatus?: PlatformSummaryBetterAdsStatusEnum;
-  /** Whether the site is currently under review on this platform. */
-  underReview?: boolean;
-  /** The site's regions on this platform. No longer populated, because there is no longer any semantic difference between sites in different regions. */
-  region?: PlatformSummaryRegionItemEnumList;
-  /** The time at which [enforcement](https://support.google.com/webtools/answer/7308033) against the site began or will begin on this platform. Not set when the filter_status is OFF. */
-  enforcementTime?: string;
-  /** A link to the full Ad Experience Report for the site on this platform.. Not set in ViolatingSitesResponse. Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report. */
-  reportUrl?: string;
   /** The time at which the site's status last changed on this platform. */
   lastChangeTime?: string;
+  /** The time at which [enforcement](https://support.google.com/webtools/answer/7308033) against the site began or will begin on this platform. Not set when the filter_status is OFF. */
+  enforcementTime?: string;
+  /** The site's regions on this platform. No longer populated, because there is no longer any semantic difference between sites in different regions. */
+  region?: PlatformSummaryRegionItemEnumList;
+  /** The site's [enforcement status](https://support.google.com/webtools/answer/7308033) on this platform. */
+  filterStatus?: PlatformSummaryFilterStatusEnum;
+  /** A link to the full Ad Experience Report for the site on this platform.. Not set in ViolatingSitesResponse. Note that you must complete the [Search Console verification process](https://support.google.com/webmasters/answer/9008080) for the site before you can access the full report. */
+  reportUrl?: string;
+  /** Whether the site is currently under review on this platform. */
+  underReview?: boolean;
+  /** The site's Ad Experience Report status on this platform. */
+  betterAdsStatus?: PlatformSummaryBetterAdsStatusEnum;
 }
 export const PlatformSummary = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    filterStatus: S.optional(PlatformSummaryFilterStatusEnum),
-    betterAdsStatus: S.optional(PlatformSummaryBetterAdsStatusEnum),
-    underReview: S.optional(S.Boolean),
-    region: S.optional(PlatformSummaryRegionItemEnumList),
-    enforcementTime: S.optional(S.String),
-    reportUrl: S.optional(S.String),
     lastChangeTime: S.optional(S.String),
+    enforcementTime: S.optional(S.String),
+    region: S.optional(PlatformSummaryRegionItemEnumList),
+    filterStatus: S.optional(PlatformSummaryFilterStatusEnum),
+    reportUrl: S.optional(S.String),
+    underReview: S.optional(S.Boolean),
+    betterAdsStatus: S.optional(PlatformSummaryBetterAdsStatusEnum),
   }),
 ).annotate({
   identifier: "PlatformSummary",
@@ -120,16 +120,16 @@ export const PlatformSummary = /*@__PURE__*/ S.suspend(() =>
 export interface SiteSummaryResponse {
   /** The site's Ad Experience Report summary on desktop. */
   desktopSummary?: PlatformSummary;
-  /** The site's Ad Experience Report summary on mobile. */
-  mobileSummary?: PlatformSummary;
   /** The name of the reviewed site, e.g. `google.com`. */
   reviewedSite?: string;
+  /** The site's Ad Experience Report summary on mobile. */
+  mobileSummary?: PlatformSummary;
 }
 export const SiteSummaryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     desktopSummary: S.optional(PlatformSummary),
-    mobileSummary: S.optional(PlatformSummary),
     reviewedSite: S.optional(S.String),
+    mobileSummary: S.optional(PlatformSummary),
   }),
 ).annotate({
   identifier: "SiteSummaryResponse",

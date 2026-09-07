@@ -126,7 +126,8 @@
       "verifySender": "verify_sender",
       "whitelistedPatternType": "whitelisted_pattern_type",
       "xOriginatingIp": "x_originating_ip"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.email_security#InvestigateGetResponseActionLogItemOperation": {
@@ -8563,163 +8564,163 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.email_security#InvestigateGet"
+          "target": "com.cloudflare.email_security#BulkInvestigateMove"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateList"
+          "target": "com.cloudflare.email_security#BulkInvestigateRelease"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateBulkCreate"
+          "target": "com.cloudflare.email_security#CreateInvestigateBulk"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateBulkDelete"
+          "target": "com.cloudflare.email_security#CreateInvestigateBulkCancel"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateBulkGet"
+          "target": "com.cloudflare.email_security#CreateInvestigateMove"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateBulkList"
+          "target": "com.cloudflare.email_security#CreateInvestigatePreview"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateBulkCancelCreate"
+          "target": "com.cloudflare.email_security#CreateInvestigateReclassify"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateBulkMessagesList"
+          "target": "com.cloudflare.email_security#CreateSettingAllowPolicy"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateDetectionsGet"
+          "target": "com.cloudflare.email_security#CreateSettingBlockSender"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateMoveBulk"
+          "target": "com.cloudflare.email_security#CreateSettingImpersonationRegistry"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateMoveCreate"
+          "target": "com.cloudflare.email_security#CreateSettingSendingDomainRestriction"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigatePreviewCreate"
+          "target": "com.cloudflare.email_security#CreateSettingTrustedDomain"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigatePreviewGet"
+          "target": "com.cloudflare.email_security#CreateSettingUrlIgnorePattern"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateRawGet"
+          "target": "com.cloudflare.email_security#DeleteInvestigateBulk"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateReclassifyCreate"
+          "target": "com.cloudflare.email_security#DeleteSettingAllowPolicy"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateReleaseBulk"
+          "target": "com.cloudflare.email_security#DeleteSettingBlockSender"
         },
         {
-          "target": "com.cloudflare.email_security#InvestigateTraceGet"
+          "target": "com.cloudflare.email_security#DeleteSettingDomain"
         },
         {
-          "target": "com.cloudflare.email_security#PhishguardReportsList"
+          "target": "com.cloudflare.email_security#DeleteSettingImpersonationRegistry"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsAllowPoliciesCreate"
+          "target": "com.cloudflare.email_security#DeleteSettingSendingDomainRestriction"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsAllowPoliciesDelete"
+          "target": "com.cloudflare.email_security#DeleteSettingTrustedDomain"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsAllowPoliciesEdit"
+          "target": "com.cloudflare.email_security#DeleteSettingUrlIgnorePattern"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsAllowPoliciesGet"
+          "target": "com.cloudflare.email_security#GetInvestigate"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsAllowPoliciesList"
+          "target": "com.cloudflare.email_security#GetInvestigateBulk"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsBlockSendersCreate"
+          "target": "com.cloudflare.email_security#GetInvestigateDetection"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsBlockSendersDelete"
+          "target": "com.cloudflare.email_security#GetInvestigatePreview"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsBlockSendersEdit"
+          "target": "com.cloudflare.email_security#GetInvestigateRaw"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsBlockSendersGet"
+          "target": "com.cloudflare.email_security#GetInvestigateTrace"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsBlockSendersList"
+          "target": "com.cloudflare.email_security#GetSettingAllowPolicy"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsDomainsDelete"
+          "target": "com.cloudflare.email_security#GetSettingBlockSender"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsDomainsEdit"
+          "target": "com.cloudflare.email_security#GetSettingDomain"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsDomainsGet"
+          "target": "com.cloudflare.email_security#GetSettingImpersonationRegistry"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsDomainsList"
+          "target": "com.cloudflare.email_security#GetSettingSendingDomainRestriction"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsImpersonationRegistryCreate"
+          "target": "com.cloudflare.email_security#GetSettingTrustedDomain"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsImpersonationRegistryDelete"
+          "target": "com.cloudflare.email_security#GetSettingUrlIgnorePattern"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsImpersonationRegistryEdit"
+          "target": "com.cloudflare.email_security#ListInvestigateBulkMessages"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsImpersonationRegistryGet"
+          "target": "com.cloudflare.email_security#ListInvestigateBulks"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsImpersonationRegistryList"
+          "target": "com.cloudflare.email_security#ListInvestigates"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsSendingDomainRestrictionsCreate"
+          "target": "com.cloudflare.email_security#ListPhishguardReports"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsSendingDomainRestrictionsDelete"
+          "target": "com.cloudflare.email_security#ListSettingAllowPolicies"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsSendingDomainRestrictionsEdit"
+          "target": "com.cloudflare.email_security#ListSettingBlockSenders"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsSendingDomainRestrictionsGet"
+          "target": "com.cloudflare.email_security#ListSettingDomains"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsSendingDomainRestrictionsList"
+          "target": "com.cloudflare.email_security#ListSettingImpersonationRegistries"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsTrustedDomainsCreate"
+          "target": "com.cloudflare.email_security#ListSettingSendingDomainRestrictions"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsTrustedDomainsDelete"
+          "target": "com.cloudflare.email_security#ListSettingTrustedDomains"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsTrustedDomainsEdit"
+          "target": "com.cloudflare.email_security#ListSettingUrlIgnorePatterns"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsTrustedDomainsGet"
+          "target": "com.cloudflare.email_security#ListSubmissions"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsTrustedDomainsList"
+          "target": "com.cloudflare.email_security#PatchSettingAllowPolicy"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsUrlIgnorePatternsCreate"
+          "target": "com.cloudflare.email_security#PatchSettingBlockSender"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsUrlIgnorePatternsDelete"
+          "target": "com.cloudflare.email_security#PatchSettingDomain"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsUrlIgnorePatternsEdit"
+          "target": "com.cloudflare.email_security#PatchSettingImpersonationRegistry"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsUrlIgnorePatternsGet"
+          "target": "com.cloudflare.email_security#PatchSettingSendingDomainRestriction"
         },
         {
-          "target": "com.cloudflare.email_security#SettingsUrlIgnorePatternsList"
+          "target": "com.cloudflare.email_security#PatchSettingTrustedDomain"
         },
         {
-          "target": "com.cloudflare.email_security#SubmissionsList"
+          "target": "com.cloudflare.email_security#PatchSettingUrlIgnorePattern"
         }
       ],
       "traits": {
@@ -8937,13 +8938,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.email_security#ReleaseBulkInvestigate": {
+    "com.cloudflare.email_security#BulkInvestigateRelease": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.email_security#ReleaseBulkInvestigateRequest"
+        "target": "com.cloudflare.email_security#BulkInvestigateReleaseRequest"
       },
       "output": {
-        "target": "com.cloudflare.email_security#ReleaseBulkInvestigateResponse"
+        "target": "com.cloudflare.email_security#BulkInvestigateReleaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8958,7 +8959,7 @@
         }
       }
     },
-    "com.cloudflare.email_security#ReleaseBulkInvestigateRequest": {
+    "com.cloudflare.email_security#BulkInvestigateReleaseRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -8981,7 +8982,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.email_security#ReleaseBulkInvestigateResponse": {
+    "com.cloudflare.email_security#BulkInvestigateReleaseResponse": {
       "type": "structure",
       "members": {
         "result": {

@@ -137,14 +137,14 @@ export const SandboxCustomImageDTO = /*@__PURE__*/ S.suspend(() =>
   identifier: "SandboxCustomImageDTO",
 }) as any as S.Schema<SandboxCustomImageDTO>;
 
-export interface CreateSandboxCustomImageBuildRequest {
+export interface CreateSandboxCustomImagesBuildRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
   /** Image spec YAML to build. When omitted, the spec is read from the builder agent's live sandbox. */
   spec_yaml?: string | null;
 }
-export const CreateSandboxCustomImageBuildRequest = /*@__PURE__*/ S.suspend(
+export const CreateSandboxCustomImagesBuildRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -158,15 +158,15 @@ export const CreateSandboxCustomImageBuildRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateSandboxCustomImageBuildRequest",
-}) as any as S.Schema<CreateSandboxCustomImageBuildRequest>;
+  identifier: "CreateSandboxCustomImagesBuildRequest",
+}) as any as S.Schema<CreateSandboxCustomImagesBuildRequest>;
 
-export interface CreateSandboxCustomImageBuilderTaskRequest {
+export interface CreateSandboxCustomImagesBuilderTaskRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const CreateSandboxCustomImageBuilderTaskRequest =
+export const CreateSandboxCustomImagesBuilderTaskRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -179,8 +179,28 @@ export const CreateSandboxCustomImageBuilderTaskRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateSandboxCustomImageBuilderTaskRequest",
-  }) as any as S.Schema<CreateSandboxCustomImageBuilderTaskRequest>;
+    identifier: "CreateSandboxCustomImagesBuilderTaskRequest",
+  }) as any as S.Schema<CreateSandboxCustomImagesBuilderTaskRequest>;
+
+export interface GetSandboxCustomImageRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetSandboxCustomImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/sandbox_custom_images/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSandboxCustomImageRequest",
+}) as any as S.Schema<GetSandboxCustomImageRequest>;
 
 export interface ListSandboxCustomImagesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -257,27 +277,7 @@ export const SandboxCustomImagesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SandboxCustomImagesDestroyResponse",
 }) as any as S.Schema<SandboxCustomImagesDestroyResponse>;
 
-export interface SandboxCustomImagesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const SandboxCustomImagesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/sandbox_custom_images/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SandboxCustomImagesRetrieveRequest",
-}) as any as S.Schema<SandboxCustomImagesRetrieveRequest>;
-
-export interface UpdateSandboxCustomImagePartialRequest {
+export interface UpdateSandboxCustomImagesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -286,7 +286,7 @@ export interface UpdateSandboxCustomImagePartialRequest {
   /** New description. Omit to leave unchanged; pass an empty string to clear it. */
   description?: string;
 }
-export const UpdateSandboxCustomImagePartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateSandboxCustomImagesPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -301,8 +301,8 @@ export const UpdateSandboxCustomImagePartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateSandboxCustomImagePartialRequest",
-}) as any as S.Schema<UpdateSandboxCustomImagePartialRequest>;
+  identifier: "UpdateSandboxCustomImagesPartialRequest",
+}) as any as S.Schema<UpdateSandboxCustomImagesPartialRequest>;
 
 export type CreateSandboxCustomImageError = PosthogOpError;
 /** Create a draft custom image and start its interactive image-builder agent task. The returned builder_task_id points at the conversation. */
@@ -319,30 +319,45 @@ export const createSandboxCustomImage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSandboxCustomImageBuildError = PosthogOpError;
+export type CreateSandboxCustomImagesBuildError = PosthogOpError;
 /** Persist the image spec (from the request body or the builder agent's sandbox), run the security scan, and on pass build and publish the image. */
-export const createSandboxCustomImageBuild: API.OperationMethod<
-  CreateSandboxCustomImageBuildRequest,
+export const createSandboxCustomImagesBuild: API.OperationMethod<
+  CreateSandboxCustomImagesBuildRequest,
   SandboxCustomImageDTO,
-  CreateSandboxCustomImageBuildError,
+  CreateSandboxCustomImagesBuildError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSandboxCustomImageBuildRequest,
+  input: CreateSandboxCustomImagesBuildRequest,
   output: SandboxCustomImageDTO,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSandboxCustomImageBuilderTaskError = PosthogOpError;
+export type CreateSandboxCustomImagesBuilderTaskError = PosthogOpError;
 /** Revive (or reuse) the image's builder agent session. When the previous session has ended, a fresh one is started seeded with the stored spec — use this to update an existing image. */
-export const createSandboxCustomImageBuilderTask: API.OperationMethod<
-  CreateSandboxCustomImageBuilderTaskRequest,
+export const createSandboxCustomImagesBuilderTask: API.OperationMethod<
+  CreateSandboxCustomImagesBuilderTaskRequest,
   SandboxCustomImageDTO,
-  CreateSandboxCustomImageBuilderTaskError,
+  CreateSandboxCustomImagesBuilderTaskError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSandboxCustomImageBuilderTaskRequest,
+  input: CreateSandboxCustomImagesBuilderTaskRequest,
+  output: SandboxCustomImageDTO,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSandboxCustomImageError = PosthogOpError;
+/** API for custom sandbox base images, built on top of the VM sandbox base via an image-builder agent. Custom images only run on the Modal VM runtime, so every action is gated on the `tasks-modal-vm-sandbox` flag (org-enabled with `user_created` in its origin_products payload). */
+export const getSandboxCustomImage: API.OperationMethod<
+  GetSandboxCustomImageRequest,
+  SandboxCustomImageDTO,
+  GetSandboxCustomImageError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSandboxCustomImageRequest,
   output: SandboxCustomImageDTO,
   errors: [],
   protocol: PosthogProtocol,
@@ -379,30 +394,15 @@ export const sandboxCustomImagesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SandboxCustomImagesRetrieveError = PosthogOpError;
-/** API for custom sandbox base images, built on top of the VM sandbox base via an image-builder agent. Custom images only run on the Modal VM runtime, so every action is gated on the `tasks-modal-vm-sandbox` flag (org-enabled with `user_created` in its origin_products payload). */
-export const sandboxCustomImagesRetrieve: API.OperationMethod<
-  SandboxCustomImagesRetrieveRequest,
-  SandboxCustomImageDTO,
-  SandboxCustomImagesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxCustomImagesRetrieveRequest,
-  output: SandboxCustomImageDTO,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSandboxCustomImagePartialError = PosthogOpError;
+export type UpdateSandboxCustomImagesPartialError = PosthogOpError;
 /** Rename or update the description of a custom image. Only mutable metadata (name, description) is editable; the build spec and status are managed by the build flow. */
-export const updateSandboxCustomImagePartial: API.OperationMethod<
-  UpdateSandboxCustomImagePartialRequest,
+export const updateSandboxCustomImagesPartial: API.OperationMethod<
+  UpdateSandboxCustomImagesPartialRequest,
   SandboxCustomImageDTO,
-  UpdateSandboxCustomImagePartialError,
+  UpdateSandboxCustomImagesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSandboxCustomImagePartialRequest,
+  input: UpdateSandboxCustomImagesPartialRequest,
   output: SandboxCustomImageDTO,
   errors: [],
   protocol: PosthogProtocol,

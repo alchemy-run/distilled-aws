@@ -87,6 +87,46 @@ export const ObjectMediaPreviewOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ObjectMediaPreviewOutput",
 }) as any as S.Schema<ObjectMediaPreviewOutput>;
 
+export interface GetObjectMediaPreviewRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this object media preview. */
+  id: string;
+}
+export const GetObjectMediaPreviewRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/object_media_previews/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetObjectMediaPreviewRequest",
+}) as any as S.Schema<GetObjectMediaPreviewRequest>;
+
+export interface GetObjectMediaPreviewsPreferredForEventRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetObjectMediaPreviewsPreferredForEventRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/object_media_previews/preferred_for_event/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetObjectMediaPreviewsPreferredForEventRequest",
+  }) as any as S.Schema<GetObjectMediaPreviewsPreferredForEventRequest>;
+
 export interface ListObjectMediaPreviewsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -164,46 +204,6 @@ export const ObjectMediaPreviewsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ObjectMediaPreviewsDestroyResponse",
 }) as any as S.Schema<ObjectMediaPreviewsDestroyResponse>;
 
-export interface ObjectMediaPreviewsPreferredForEventRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const ObjectMediaPreviewsPreferredForEventRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/object_media_previews/preferred_for_event/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ObjectMediaPreviewsPreferredForEventRetrieveRequest",
-  }) as any as S.Schema<ObjectMediaPreviewsPreferredForEventRetrieveRequest>;
-
-export interface ObjectMediaPreviewsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this object media preview. */
-  id: string;
-}
-export const ObjectMediaPreviewsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/object_media_previews/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ObjectMediaPreviewsRetrieveRequest",
-}) as any as S.Schema<ObjectMediaPreviewsRetrieveRequest>;
-
 export interface UpdateObjectMediaPreviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -233,7 +233,7 @@ export const UpdateObjectMediaPreviewRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateObjectMediaPreviewRequest",
 }) as any as S.Schema<UpdateObjectMediaPreviewRequest>;
 
-export interface UpdateObjectMediaPreviewPartialRequest {
+export interface UpdateObjectMediaPreviewsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this object media preview. */
@@ -243,7 +243,7 @@ export interface UpdateObjectMediaPreviewPartialRequest {
   exported_asset_id?: string | null;
   event_definition_id?: string | null;
 }
-export const UpdateObjectMediaPreviewPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateObjectMediaPreviewsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -260,8 +260,8 @@ export const UpdateObjectMediaPreviewPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateObjectMediaPreviewPartialRequest",
-}) as any as S.Schema<UpdateObjectMediaPreviewPartialRequest>;
+  identifier: "UpdateObjectMediaPreviewsPartialRequest",
+}) as any as S.Schema<UpdateObjectMediaPreviewsPartialRequest>;
 
 export type CreateObjectMediaPreviewError =
   | BadRequest
@@ -277,6 +277,38 @@ export const createObjectMediaPreview: API.OperationMethod<
   input: CreateObjectMediaPreviewRequest,
   output: ObjectMediaPreviewOutput,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetObjectMediaPreviewError = Forbidden | NotFound | PosthogOpError;
+export const getObjectMediaPreview: API.OperationMethod<
+  GetObjectMediaPreviewRequest,
+  ObjectMediaPreviewOutput,
+  GetObjectMediaPreviewError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetObjectMediaPreviewRequest,
+  output: ObjectMediaPreviewOutput,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetObjectMediaPreviewsPreferredForEventError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Get the preferred media preview for an event definition. Most recent user-uploaded, then most recent exported asset. Requires event_definition (query param). */
+export const getObjectMediaPreviewsPreferredForEvent: API.OperationMethod<
+  GetObjectMediaPreviewsPreferredForEventRequest,
+  ObjectMediaPreviewOutput,
+  GetObjectMediaPreviewsPreferredForEventError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetObjectMediaPreviewsPreferredForEventRequest,
+  output: ObjectMediaPreviewOutput,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -316,41 +348,6 @@ export const objectMediaPreviewsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ObjectMediaPreviewsPreferredForEventRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Get the preferred media preview for an event definition. Most recent user-uploaded, then most recent exported asset. Requires event_definition (query param). */
-export const objectMediaPreviewsPreferredForEventRetrieve: API.OperationMethod<
-  ObjectMediaPreviewsPreferredForEventRetrieveRequest,
-  ObjectMediaPreviewOutput,
-  ObjectMediaPreviewsPreferredForEventRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ObjectMediaPreviewsPreferredForEventRetrieveRequest,
-  output: ObjectMediaPreviewOutput,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ObjectMediaPreviewsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const objectMediaPreviewsRetrieve: API.OperationMethod<
-  ObjectMediaPreviewsRetrieveRequest,
-  ObjectMediaPreviewOutput,
-  ObjectMediaPreviewsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ObjectMediaPreviewsRetrieveRequest,
-  output: ObjectMediaPreviewOutput,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateObjectMediaPreviewError =
   | BadRequest
   | Forbidden
@@ -369,18 +366,18 @@ export const updateObjectMediaPreview: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateObjectMediaPreviewPartialError =
+export type UpdateObjectMediaPreviewsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateObjectMediaPreviewPartial: API.OperationMethod<
-  UpdateObjectMediaPreviewPartialRequest,
+export const updateObjectMediaPreviewsPartial: API.OperationMethod<
+  UpdateObjectMediaPreviewsPartialRequest,
   ObjectMediaPreviewOutput,
-  UpdateObjectMediaPreviewPartialError,
+  UpdateObjectMediaPreviewsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateObjectMediaPreviewPartialRequest,
+  input: UpdateObjectMediaPreviewsPartialRequest,
   output: ObjectMediaPreviewOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

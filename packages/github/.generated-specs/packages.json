@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.packages#ListDockerMigrationConflictingPackagesForOrganizationRequest": {
@@ -4409,82 +4410,82 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForOrganization"
-        },
-        {
-          "target": "com.github.packages#ListPackagesForOrganization"
-        },
-        {
-          "target": "com.github.packages#GetPackageForOrganization"
+          "target": "com.github.packages#DeletePackageForAuthenticatedUser"
         },
         {
           "target": "com.github.packages#DeletePackageForOrg"
         },
         {
-          "target": "com.github.packages#RestorePackageForOrg"
-        },
-        {
-          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrg"
-        },
-        {
-          "target": "com.github.packages#GetPackageVersionForOrganization"
-        },
-        {
-          "target": "com.github.packages#DeletePackageVersionForOrg"
-        },
-        {
-          "target": "com.github.packages#RestorePackageVersionForOrg"
-        },
-        {
-          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.packages#ListPackagesForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.packages#GetPackageForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.packages#DeletePackageForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.packages#RestorePackageForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUser"
-        },
-        {
-          "target": "com.github.packages#GetPackageVersionForAuthenticatedUser"
+          "target": "com.github.packages#DeletePackageForUser"
         },
         {
           "target": "com.github.packages#DeletePackageVersionForAuthenticatedUser"
         },
         {
-          "target": "com.github.packages#RestorePackageVersionForAuthenticatedUser"
+          "target": "com.github.packages#DeletePackageVersionForOrg"
         },
         {
-          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForUser"
+          "target": "com.github.packages#DeletePackageVersionForUser"
         },
         {
-          "target": "com.github.packages#ListPackagesForUser"
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUser"
         },
         {
-          "target": "com.github.packages#GetPackageForUser"
-        },
-        {
-          "target": "com.github.packages#DeletePackageForUser"
-        },
-        {
-          "target": "com.github.packages#RestorePackageForUser"
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrg"
         },
         {
           "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByUser"
         },
         {
+          "target": "com.github.packages#GetPackageForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#GetPackageForOrganization"
+        },
+        {
+          "target": "com.github.packages#GetPackageForUser"
+        },
+        {
+          "target": "com.github.packages#GetPackageVersionForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#GetPackageVersionForOrganization"
+        },
+        {
           "target": "com.github.packages#GetPackageVersionForUser"
         },
         {
-          "target": "com.github.packages#DeletePackageVersionForUser"
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForOrganization"
+        },
+        {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForUser"
+        },
+        {
+          "target": "com.github.packages#ListPackagesForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#ListPackagesForOrganization"
+        },
+        {
+          "target": "com.github.packages#ListPackagesForUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageForOrg"
+        },
+        {
+          "target": "com.github.packages#RestorePackageForUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageVersionForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageVersionForOrg"
         },
         {
           "target": "com.github.packages#RestorePackageVersionForUser"

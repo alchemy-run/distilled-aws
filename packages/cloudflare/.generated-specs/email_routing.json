@@ -23,7 +23,8 @@
       "supportSubaddress": "support_subaddress",
       "totalCount": "total_count",
       "totalPages": "total_pages"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.email_routing#DisableResponseStatus": {
@@ -271,7 +272,7 @@
         "smithy.api#documentation": "Unlock MX records previously locked by Email Routing. Deprecated - use PATCH /zones/{zone_id}/email/routing/dns instead."
       }
     },
-    "com.cloudflare.email_routing#AddressesEditRequestStatus": {
+    "com.cloudflare.email_routing#EditAddressRequestStatus": {
       "type": "enum",
       "members": {
         "UNVERIFIED": {
@@ -288,7 +289,7 @@
         }
       }
     },
-    "com.cloudflare.email_routing#AddressesEditRequest": {
+    "com.cloudflare.email_routing#EditAddressRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -308,7 +309,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.email_routing#AddressesEditRequestStatus",
+          "target": "com.cloudflare.email_routing#EditAddressRequestStatus",
           "traits": {
             "smithy.api#documentation": "Destination address status. Non-admin callers may only set verified addresses back to unverified; setting to verified requires admin privileges.",
             "smithy.api#required": {}
@@ -319,7 +320,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.email_routing#AddressesEditResponse": {
+    "com.cloudflare.email_routing#EditAddressResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -364,13 +365,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.email_routing#AddressesEdit": {
+    "com.cloudflare.email_routing#EditAddress": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.email_routing#AddressesEditRequest"
+        "target": "com.cloudflare.email_routing#EditAddressRequest"
       },
       "output": {
-        "target": "com.cloudflare.email_routing#AddressesEditResponse"
+        "target": "com.cloudflare.email_routing#EditAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1767,61 +1768,64 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.email_routing#Disable"
+          "target": "com.cloudflare.email_routing#CreateAddress"
         },
         {
-          "target": "com.cloudflare.email_routing#Enable"
+          "target": "com.cloudflare.email_routing#CreateDns"
         },
         {
-          "target": "com.cloudflare.email_routing#Get"
+          "target": "com.cloudflare.email_routing#CreateRule"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DeleteAddress"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DeleteDns"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DeleteRule"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DisableEmailRouting"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EditAddress"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EnableEmailRouting"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetAddress"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetDns"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetEmailRouting"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetRule"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetRuleCatchAll"
+        },
+        {
+          "target": "com.cloudflare.email_routing#ListAddresses"
+        },
+        {
+          "target": "com.cloudflare.email_routing#ListRules"
+        },
+        {
+          "target": "com.cloudflare.email_routing#PatchDns"
+        },
+        {
+          "target": "com.cloudflare.email_routing#PutRuleCatchAll"
         },
         {
           "target": "com.cloudflare.email_routing#Unlock"
         },
         {
-          "target": "com.cloudflare.email_routing#AddressesCreate"
-        },
-        {
-          "target": "com.cloudflare.email_routing#AddressesDelete"
-        },
-        {
-          "target": "com.cloudflare.email_routing#AddressesEdit"
-        },
-        {
-          "target": "com.cloudflare.email_routing#AddressesGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#AddressesList"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsCreate"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsDelete"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsEdit"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesCreate"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesDelete"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesUpdate"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdate"
+          "target": "com.cloudflare.email_routing#UpdateRule"
         }
       ],
       "traits": {

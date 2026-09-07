@@ -88,7 +88,8 @@
       "twoFactorAuthenticationLocked": "two_factor_authentication_locked",
       "useLegacy": "use_legacy",
       "validationCode": "validation_code"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.user#EditResponseBetasList": {
@@ -2919,73 +2920,73 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.user#Edit"
+          "target": "com.cloudflare.user#CreateToken"
         },
         {
-          "target": "com.cloudflare.user#Get"
+          "target": "com.cloudflare.user#DeleteOrganization"
         },
         {
-          "target": "com.cloudflare.user#AuditLogsList"
+          "target": "com.cloudflare.user#DeleteSubscription"
         },
         {
-          "target": "com.cloudflare.user#BillingHistoryList"
+          "target": "com.cloudflare.user#DeleteToken"
         },
         {
-          "target": "com.cloudflare.user#BillingProfileGet"
+          "target": "com.cloudflare.user#GetBillingProfile"
         },
         {
-          "target": "com.cloudflare.user#InvitesEdit"
+          "target": "com.cloudflare.user#GetInvite"
         },
         {
-          "target": "com.cloudflare.user#InvitesGet"
+          "target": "com.cloudflare.user#GetOrganization"
         },
         {
-          "target": "com.cloudflare.user#InvitesList"
+          "target": "com.cloudflare.user#GetSubscription"
         },
         {
-          "target": "com.cloudflare.user#OrganizationsDelete"
+          "target": "com.cloudflare.user#GetToken"
         },
         {
-          "target": "com.cloudflare.user#OrganizationsGet"
+          "target": "com.cloudflare.user#GetUser"
         },
         {
-          "target": "com.cloudflare.user#OrganizationsList"
+          "target": "com.cloudflare.user#ListAuditLogs"
         },
         {
-          "target": "com.cloudflare.user#SubscriptionsDelete"
+          "target": "com.cloudflare.user#ListBillingHistories"
         },
         {
-          "target": "com.cloudflare.user#SubscriptionsGet"
+          "target": "com.cloudflare.user#ListInvites"
         },
         {
-          "target": "com.cloudflare.user#SubscriptionsUpdate"
+          "target": "com.cloudflare.user#ListOrganizations"
         },
         {
-          "target": "com.cloudflare.user#TenantsList"
+          "target": "com.cloudflare.user#ListTenants"
         },
         {
-          "target": "com.cloudflare.user#TokensCreate"
+          "target": "com.cloudflare.user#ListTokenPermissionGroups"
         },
         {
-          "target": "com.cloudflare.user#TokensDelete"
+          "target": "com.cloudflare.user#ListTokens"
         },
         {
-          "target": "com.cloudflare.user#TokensGet"
+          "target": "com.cloudflare.user#PatchInvite"
         },
         {
-          "target": "com.cloudflare.user#TokensList"
+          "target": "com.cloudflare.user#PatchUser"
         },
         {
-          "target": "com.cloudflare.user#TokensUpdate"
+          "target": "com.cloudflare.user#PutSubscription"
         },
         {
-          "target": "com.cloudflare.user#TokensVerify"
+          "target": "com.cloudflare.user#PutTokenValue"
         },
         {
-          "target": "com.cloudflare.user#TokensPermissionGroupsList"
+          "target": "com.cloudflare.user#UpdateToken"
         },
         {
-          "target": "com.cloudflare.user#TokensValueUpdate"
+          "target": "com.cloudflare.user#VerifyToken"
         }
       ],
       "traits": {

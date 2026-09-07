@@ -21,7 +21,8 @@
       "serialNumber": "serial_number",
       "updatedAt": "updated_at",
       "uploadedOn": "uploaded_on"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.mtls_certificates#CreateResponseType": {
@@ -244,19 +245,19 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.mtls_certificates#Create"
+          "target": "com.cloudflare.mtls_certificates#CreateMtlsCertificate"
         },
         {
-          "target": "com.cloudflare.mtls_certificates#Delete"
+          "target": "com.cloudflare.mtls_certificates#DeleteMtlsCertificate"
         },
         {
-          "target": "com.cloudflare.mtls_certificates#Get"
+          "target": "com.cloudflare.mtls_certificates#GetAssociation"
         },
         {
-          "target": "com.cloudflare.mtls_certificates#List"
+          "target": "com.cloudflare.mtls_certificates#GetMtlsCertificate"
         },
         {
-          "target": "com.cloudflare.mtls_certificates#AssociationsGet"
+          "target": "com.cloudflare.mtls_certificates#ListMtlsCertificates"
         }
       ],
       "traits": {

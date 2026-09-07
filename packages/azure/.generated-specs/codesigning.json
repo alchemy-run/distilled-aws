@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.codesigning#CertificateProfilesRevokeCertificate": {
+    "com.azure.codesigning#RevokeCertificateProfileCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.codesigning#CertificateProfilesRevokeCertificateRequest"
+        "target": "com.azure.codesigning#RevokeCertificateProfileCertificateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-10-13"
       }
     },
-    "com.azure.codesigning#CertificateProfilesRevokeCertificateRequest": {
+    "com.azure.codesigning#RevokeCertificateProfileCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1085,7 +1086,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.codesigning#CodeSigningAccountsUpdateResponseTagsMap",
+          "target": "com.azure.codesigning#UpdateCodeSigningAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1169,7 +1170,7 @@
         "smithy.api#documentation": "Name of the sku."
       }
     },
-    "com.azure.codesigning#CodeSigningAccountsUpdateResponseTagsMap": {
+    "com.azure.codesigning#UpdateCodeSigningAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1209,7 +1210,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.codesigning#CodeSigningAccountsUpdateRequestTagsMap",
+          "target": "com.azure.codesigning#UpdateCodeSigningAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1253,7 +1254,7 @@
         "smithy.api#documentation": "SKU of the artifact signing account."
       }
     },
-    "com.azure.codesigning#CodeSigningAccountsUpdateRequestTagsMap": {
+    "com.azure.codesigning#UpdateCodeSigningAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1312,7 +1313,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.codesigning#CodeSigningAccountsCreateResponseTagsMap",
+          "target": "com.azure.codesigning#CreateCodeSigningAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1335,7 +1336,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.codesigning#CodeSigningAccountsCreateResponseTagsMap": {
+    "com.azure.codesigning#CreateCodeSigningAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1375,7 +1376,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.codesigning#CodeSigningAccountsCreateRequestTagsMap",
+          "target": "com.azure.codesigning#CreateCodeSigningAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1412,7 +1413,7 @@
         "smithy.api#documentation": "Properties of the artifact signing account."
       }
     },
-    "com.azure.codesigning#CodeSigningAccountsCreateRequestTagsMap": {
+    "com.azure.codesigning#CreateCodeSigningAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1471,7 +1472,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.codesigning#CodeSigningAccountsGetResponseTagsMap",
+          "target": "com.azure.codesigning#GetCodeSigningAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1494,7 +1495,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.codesigning#CodeSigningAccountsGetResponseTagsMap": {
+    "com.azure.codesigning#GetCodeSigningAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1827,7 +1828,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.codesigning#OperationsListResponseValueList",
+          "target": "com.azure.codesigning#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1843,7 +1844,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.codesigning#OperationsListResponseValueList": {
+    "com.azure.codesigning#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.codesigning#Operation"
@@ -1967,31 +1968,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.codesigning#CertificateProfilesRevokeCertificate"
-        },
-        {
-          "target": "com.azure.codesigning#DeleteCertificateProfile"
+          "target": "com.azure.codesigning#CheckCodeSigningAccountNameAvailability"
         },
         {
           "target": "com.azure.codesigning#CreateCertificateProfile"
         },
         {
-          "target": "com.azure.codesigning#GetCertificateProfile"
+          "target": "com.azure.codesigning#CreateCodeSigningAccount"
         },
         {
-          "target": "com.azure.codesigning#ListCertificateProfileByCodeSigningAccount"
+          "target": "com.azure.codesigning#DeleteCertificateProfile"
         },
         {
           "target": "com.azure.codesigning#DeleteCodeSigningAccount"
         },
         {
-          "target": "com.azure.codesigning#UpdateCodeSigningAccount"
-        },
-        {
-          "target": "com.azure.codesigning#CreateCodeSigningAccount"
+          "target": "com.azure.codesigning#GetCertificateProfile"
         },
         {
           "target": "com.azure.codesigning#GetCodeSigningAccount"
+        },
+        {
+          "target": "com.azure.codesigning#ListCertificateProfileByCodeSigningAccount"
         },
         {
           "target": "com.azure.codesigning#ListCodeSigningAccountByResourceGroup"
@@ -2000,10 +1998,13 @@
           "target": "com.azure.codesigning#ListCodeSigningAccountBySubscription"
         },
         {
-          "target": "com.azure.codesigning#CheckCodeSigningAccountNameAvailability"
+          "target": "com.azure.codesigning#ListOperations"
         },
         {
-          "target": "com.azure.codesigning#ListOperations"
+          "target": "com.azure.codesigning#RevokeCertificateProfileCertificate"
+        },
+        {
+          "target": "com.azure.codesigning#UpdateCodeSigningAccount"
         }
       ],
       "traits": {

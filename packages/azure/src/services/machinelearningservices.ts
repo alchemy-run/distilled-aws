@@ -752,6 +752,41 @@ export const BatchEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "BatchEndpointsCreateOrUpdateResponse",
 }) as any as S.Schema<BatchEndpointsCreateOrUpdateResponse>;
 
+export interface CancelJobRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Azure Machine Learning Workspace Name */
+  workspaceName: string;
+  /** The name and identifier for the Job. This is case-sensitive. */
+  id: string;
+}
+export const CancelJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}/cancel",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelJobRequest",
+}) as any as S.Schema<CancelJobRequest>;
+
+export interface CancelJobResponse {}
+export const CancelJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelJobResponse",
+}) as any as S.Schema<CancelJobResponse>;
+
 /** The asset property dictionary. */
 export type CapabilityHostPropertiesInputPropertiesMap = {
   [key: string]: string | undefined;
@@ -1429,53 +1464,6 @@ export const CodeVersionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CodeVersionsCreateOrUpdateResponse",
 }) as any as S.Schema<CodeVersionsCreateOrUpdateResponse>;
 
-export interface CodeVersionsPublishRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of Azure Machine Learning workspace. */
-  workspaceName: string;
-  /** Container name. This is case-sensitive. */
-  name: string;
-  /** Version identifier. This is case-sensitive. */
-  version: string;
-  /** Destination asset name */
-  destinationName?: string | null;
-  /** Destination asset version */
-  destinationVersion?: string | null;
-  /** Destination registry name */
-  registryName?: string | null;
-}
-export const CodeVersionsPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    version: S.String.pipe(T.Label()),
-    destinationName: S.optional(S.NullOr(S.String)),
-    destinationVersion: S.optional(S.NullOr(S.String)),
-    registryName: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}/publish",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CodeVersionsPublishRequest",
-}) as any as S.Schema<CodeVersionsPublishRequest>;
-
-export interface CodeVersionsPublishResponse {}
-export const CodeVersionsPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CodeVersionsPublishResponse",
-}) as any as S.Schema<CodeVersionsPublishResponse>;
-
 /** The asset property dictionary. */
 export type ComponentContainerPropertiesInputPropertiesMap = {
   [key: string]: string | undefined;
@@ -1733,53 +1721,6 @@ export const ComponentVersionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ComponentVersionsCreateOrUpdateResponse",
 }) as any as S.Schema<ComponentVersionsCreateOrUpdateResponse>;
-
-export interface ComponentVersionsPublishRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of Azure Machine Learning workspace. */
-  workspaceName: string;
-  /** Container name. */
-  name: string;
-  /** Version identifier. */
-  version: string;
-  /** Destination asset name */
-  destinationName?: string | null;
-  /** Destination asset version */
-  destinationVersion?: string | null;
-  /** Destination registry name */
-  registryName?: string | null;
-}
-export const ComponentVersionsPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    version: S.String.pipe(T.Label()),
-    destinationName: S.optional(S.NullOr(S.String)),
-    destinationVersion: S.optional(S.NullOr(S.String)),
-    registryName: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}/publish",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ComponentVersionsPublishRequest",
-}) as any as S.Schema<ComponentVersionsPublishRequest>;
-
-export interface ComponentVersionsPublishResponse {}
-export const ComponentVersionsPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ComponentVersionsPublishResponse",
-}) as any as S.Schema<ComponentVersionsPublishResponse>;
 
 /** The type of compute */
 export type ComputeType =
@@ -2823,53 +2764,6 @@ export const DataVersionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataVersionsCreateOrUpdateResponse",
 }) as any as S.Schema<DataVersionsCreateOrUpdateResponse>;
 
-export interface DataVersionsPublishRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of Azure Machine Learning workspace. */
-  workspaceName: string;
-  /** Container name. */
-  name: string;
-  /** Version identifier. */
-  version: string;
-  /** Destination asset name */
-  destinationName?: string | null;
-  /** Destination asset version */
-  destinationVersion?: string | null;
-  /** Destination registry name */
-  registryName?: string | null;
-}
-export const DataVersionsPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    version: S.String.pipe(T.Label()),
-    destinationName: S.optional(S.NullOr(S.String)),
-    destinationVersion: S.optional(S.NullOr(S.String)),
-    registryName: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}/publish",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataVersionsPublishRequest",
-}) as any as S.Schema<DataVersionsPublishRequest>;
-
-export interface DataVersionsPublishResponse {}
-export const DataVersionsPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataVersionsPublishResponse",
-}) as any as S.Schema<DataVersionsPublishResponse>;
-
 export interface DeleteBatchDeploymentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -3124,8 +3018,8 @@ export const DeleteComponentVersionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteComponentVersionResponse",
 }) as any as S.Schema<DeleteComponentVersionResponse>;
 
-export type ComputeDeleteRequestUnderlyingResourceAction = "Delete" | "Detach";
-export const ComputeDeleteRequestUnderlyingResourceAction =
+export type DeleteComputeRequestUnderlyingResourceAction = "Delete" | "Detach";
+export const DeleteComputeRequestUnderlyingResourceAction =
   /*@__PURE__*/ S.String;
 
 export interface DeleteComputeRequest {
@@ -3139,7 +3033,7 @@ export interface DeleteComputeRequest {
   computeName: string;
   /** Delete the underlying compute if 'Delete', or detach the underlying compute from workspace if 'Detach'. */
   underlyingResourceAction:
-    | ComputeDeleteRequestUnderlyingResourceAction
+    | DeleteComputeRequestUnderlyingResourceAction
     | (string & {});
 }
 export const DeleteComputeRequest = /*@__PURE__*/ S.suspend(() =>
@@ -3148,7 +3042,7 @@ export const DeleteComputeRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     computeName: S.String.pipe(T.Label()),
-    underlyingResourceAction: ComputeDeleteRequestUnderlyingResourceAction.pipe(
+    underlyingResourceAction: DeleteComputeRequestUnderlyingResourceAction.pipe(
       T.Query(),
     ),
   }).pipe(
@@ -3533,7 +3427,7 @@ export const DeleteJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteJobResponse",
 }) as any as S.Schema<DeleteJobResponse>;
 
-export interface DeleteManagedNetworkSettingRuleRequest {
+export interface DeleteManagedNetworkSettingsRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3543,7 +3437,7 @@ export interface DeleteManagedNetworkSettingRuleRequest {
   /** Name of the workspace managed network outbound rule */
   ruleName: string;
 }
-export const DeleteManagedNetworkSettingRuleRequest = /*@__PURE__*/ S.suspend(
+export const DeleteManagedNetworkSettingsRuleRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3559,15 +3453,15 @@ export const DeleteManagedNetworkSettingRuleRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteManagedNetworkSettingRuleRequest",
-}) as any as S.Schema<DeleteManagedNetworkSettingRuleRequest>;
+  identifier: "DeleteManagedNetworkSettingsRuleRequest",
+}) as any as S.Schema<DeleteManagedNetworkSettingsRuleRequest>;
 
-export interface DeleteManagedNetworkSettingRuleResponse {}
-export const DeleteManagedNetworkSettingRuleResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteManagedNetworkSettingsRuleResponse {}
+export const DeleteManagedNetworkSettingsRuleResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteManagedNetworkSettingRuleResponse",
-}) as any as S.Schema<DeleteManagedNetworkSettingRuleResponse>;
+  identifier: "DeleteManagedNetworkSettingsRuleResponse",
+}) as any as S.Schema<DeleteManagedNetworkSettingsRuleResponse>;
 
 export interface DeleteMarketplaceSubscriptionRequest {
   /** The ID of the target subscription. */
@@ -4672,53 +4566,6 @@ export const EnvironmentVersionsCreateOrUpdateResponse =
     identifier: "EnvironmentVersionsCreateOrUpdateResponse",
   }) as any as S.Schema<EnvironmentVersionsCreateOrUpdateResponse>;
 
-export interface EnvironmentVersionsPublishRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of Azure Machine Learning workspace. */
-  workspaceName: string;
-  /** Container name. This is case-sensitive. */
-  name: string;
-  /** Version identifier. This is case-sensitive. */
-  version: string;
-  /** Destination asset name */
-  destinationName?: string | null;
-  /** Destination asset version */
-  destinationVersion?: string | null;
-  /** Destination registry name */
-  registryName?: string | null;
-}
-export const EnvironmentVersionsPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    version: S.String.pipe(T.Label()),
-    destinationName: S.optional(S.NullOr(S.String)),
-    destinationVersion: S.optional(S.NullOr(S.String)),
-    registryName: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}/publish",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "EnvironmentVersionsPublishRequest",
-}) as any as S.Schema<EnvironmentVersionsPublishRequest>;
-
-export interface EnvironmentVersionsPublishResponse {}
-export const EnvironmentVersionsPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EnvironmentVersionsPublishResponse",
-}) as any as S.Schema<EnvironmentVersionsPublishResponse>;
-
 /** The asset property dictionary. */
 export type FeaturesetContainerPropertiesInputPropertiesMap = {
   [key: string]: string | undefined;
@@ -5708,24 +5555,24 @@ export const GetBatchDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBatchDeploymentRequest>;
 
 /** Resource tags. */
-export type BatchDeploymentsGetResponseTagsMap = {
+export type GetBatchDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchDeploymentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBatchDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchDeploymentsGetResponseTagsMap>;
+) as any as S.Schema<GetBatchDeploymentResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type BatchDeploymentsGetResponseIdentity =
+export type GetBatchDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const BatchDeploymentsGetResponseIdentity =
+export const GetBatchDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type BatchDeploymentsGetResponseSku =
+export type GetBatchDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const BatchDeploymentsGetResponseSku =
+export const GetBatchDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface GetBatchDeploymentResponse {
@@ -5738,7 +5585,7 @@ export interface GetBatchDeploymentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BatchDeploymentsGetResponseTagsMap;
+  tags?: GetBatchDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -5756,7 +5603,7 @@ export const GetBatchDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BatchDeploymentsGetResponseTagsMap),
+    tags: S.optional(GetBatchDeploymentResponseTagsMap),
     location: S.String,
     properties: BatchDeploymentProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -5796,24 +5643,24 @@ export const GetBatchEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBatchEndpointRequest>;
 
 /** Resource tags. */
-export type BatchEndpointsGetResponseTagsMap = {
+export type GetBatchEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBatchEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchEndpointsGetResponseTagsMap>;
+) as any as S.Schema<GetBatchEndpointResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type BatchEndpointsGetResponseIdentity =
+export type GetBatchEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const BatchEndpointsGetResponseIdentity =
+export const GetBatchEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type BatchEndpointsGetResponseSku =
+export type GetBatchEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const BatchEndpointsGetResponseSku =
+export const GetBatchEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface GetBatchEndpointResponse {
@@ -5826,7 +5673,7 @@ export interface GetBatchEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BatchEndpointsGetResponseTagsMap;
+  tags?: GetBatchEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -5844,7 +5691,7 @@ export const GetBatchEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BatchEndpointsGetResponseTagsMap),
+    tags: S.optional(GetBatchEndpointResponseTagsMap),
     location: S.String,
     properties: BatchEndpointProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -6150,20 +5997,20 @@ export const GetComputeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetComputeRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ComputeGetResponseTagsMap = { [key: string]: string | undefined };
-export const ComputeGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetComputeResponseTagsMap = { [key: string]: string | undefined };
+export const GetComputeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ComputeGetResponseTagsMap>;
+) as any as S.Schema<GetComputeResponseTagsMap>;
 
 /** The resource model definition representing SKU */
-export type ComputeGetResponseSku = BatchDeploymentsCreateOrUpdateResponseSku;
-export const ComputeGetResponseSku = BatchDeploymentsCreateOrUpdateResponseSku;
+export type GetComputeResponseSku = BatchDeploymentsCreateOrUpdateResponseSku;
+export const GetComputeResponseSku = BatchDeploymentsCreateOrUpdateResponseSku;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ComputeGetResponseIdentity =
+export type GetComputeResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const ComputeGetResponseIdentity =
+export const GetComputeResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 export interface GetComputeResponse {
@@ -6180,7 +6027,7 @@ export interface GetComputeResponse {
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ComputeGetResponseTagsMap | null;
+  tags?: GetComputeResponseTagsMap | null;
   /** The resource model definition representing SKU */
   sku?: BatchDeploymentsCreateOrUpdateResponseSku;
   /** Managed service identity (system assigned and/or user assigned identities) */
@@ -6194,7 +6041,7 @@ export const GetComputeResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(Compute),
     location: S.optional(S.String),
-    tags: S.optional(S.NullOr(ComputeGetResponseTagsMap)),
+    tags: S.optional(S.NullOr(GetComputeResponseTagsMap)),
     sku: S.optional(BatchDeploymentsCreateOrUpdateResponseSku),
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
   }),
@@ -7009,7 +6856,7 @@ export const GetJobResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "GetJobResponse" }) as any as S.Schema<GetJobResponse>;
 
-export interface GetManagedNetworkSettingRuleRequest {
+export interface GetManagedNetworkSettingsRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7019,23 +6866,24 @@ export interface GetManagedNetworkSettingRuleRequest {
   /** Name of the workspace managed network outbound rule */
   ruleName: string;
 }
-export const GetManagedNetworkSettingRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules/{ruleName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
+export const GetManagedNetworkSettingsRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      ruleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules/{ruleName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
 ).annotate({
-  identifier: "GetManagedNetworkSettingRuleRequest",
-}) as any as S.Schema<GetManagedNetworkSettingRuleRequest>;
+  identifier: "GetManagedNetworkSettingsRuleRequest",
+}) as any as S.Schema<GetManagedNetworkSettingsRuleRequest>;
 
 /** Category of a managed network Outbound Rule of a machine learning workspace. */
 export type RuleCategory =
@@ -7085,7 +6933,7 @@ export const OutboundRule = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OutboundRule" }) as any as S.Schema<OutboundRule>;
 
-export interface GetManagedNetworkSettingRuleResponse {
+export interface GetManagedNetworkSettingsRuleResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -7097,7 +6945,7 @@ export interface GetManagedNetworkSettingRuleResponse {
   /** Outbound Rule for the managed network of a machine learning workspace. */
   properties: OutboundRule;
 }
-export const GetManagedNetworkSettingRuleResponse = /*@__PURE__*/ S.suspend(
+export const GetManagedNetworkSettingsRuleResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -7107,8 +6955,8 @@ export const GetManagedNetworkSettingRuleResponse = /*@__PURE__*/ S.suspend(
       properties: OutboundRule,
     }),
 ).annotate({
-  identifier: "GetManagedNetworkSettingRuleResponse",
-}) as any as S.Schema<GetManagedNetworkSettingRuleResponse>;
+  identifier: "GetManagedNetworkSettingsRuleResponse",
+}) as any as S.Schema<GetManagedNetworkSettingsRuleResponse>;
 
 export interface GetMarketplaceSubscriptionRequest {
   /** The ID of the target subscription. */
@@ -7515,13 +7363,13 @@ export const GetOnlineDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOnlineDeploymentRequest>;
 
 /** Resource tags. */
-export type OnlineDeploymentsGetResponseTagsMap = {
+export type GetOnlineDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OnlineDeploymentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetOnlineDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OnlineDeploymentsGetResponseTagsMap>;
+) as any as S.Schema<GetOnlineDeploymentResponseTagsMap>;
 
 /** Environment variables configuration for the deployment. */
 export type OnlineDeploymentPropertiesEnvironmentVariablesMap = {
@@ -7754,15 +7602,15 @@ export const OnlineDeploymentProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OnlineDeploymentProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type OnlineDeploymentsGetResponseIdentity =
+export type GetOnlineDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const OnlineDeploymentsGetResponseIdentity =
+export const GetOnlineDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type OnlineDeploymentsGetResponseSku =
+export type GetOnlineDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const OnlineDeploymentsGetResponseSku =
+export const GetOnlineDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface GetOnlineDeploymentResponse {
@@ -7775,7 +7623,7 @@ export interface GetOnlineDeploymentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OnlineDeploymentsGetResponseTagsMap;
+  tags?: GetOnlineDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -7793,7 +7641,7 @@ export const GetOnlineDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OnlineDeploymentsGetResponseTagsMap),
+    tags: S.optional(GetOnlineDeploymentResponseTagsMap),
     location: S.String,
     properties: OnlineDeploymentProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -7805,13 +7653,13 @@ export const GetOnlineDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOnlineDeploymentResponse>;
 
 /** The type of container to retrieve logs from. */
-export type OnlineDeploymentsGetLogsRequestContainerType =
+export type GetOnlineDeploymentLogsRequestContainerType =
   | "StorageInitializer"
   | "InferenceServer";
-export const OnlineDeploymentsGetLogsRequestContainerType =
+export const GetOnlineDeploymentLogsRequestContainerType =
   /*@__PURE__*/ S.String;
 
-export interface GetOnlineDeploymentLogRequest {
+export interface GetOnlineDeploymentLogsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7823,18 +7671,18 @@ export interface GetOnlineDeploymentLogRequest {
   /** Inference Endpoint Deployment name. */
   deploymentName: string;
   /** The type of container to retrieve logs from. */
-  containerType?: OnlineDeploymentsGetLogsRequestContainerType | (string & {});
+  containerType?: GetOnlineDeploymentLogsRequestContainerType | (string & {});
   /** The maximum number of lines to tail. */
   tail?: number | null;
 }
-export const GetOnlineDeploymentLogRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOnlineDeploymentLogsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
     deploymentName: S.String.pipe(T.Label()),
-    containerType: S.optional(OnlineDeploymentsGetLogsRequestContainerType),
+    containerType: S.optional(GetOnlineDeploymentLogsRequestContainerType),
     tail: S.optional(S.NullOr(S.Number)),
   }).pipe(
     T.Http({
@@ -7845,8 +7693,8 @@ export const GetOnlineDeploymentLogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetOnlineDeploymentLogRequest",
-}) as any as S.Schema<GetOnlineDeploymentLogRequest>;
+  identifier: "GetOnlineDeploymentLogsRequest",
+}) as any as S.Schema<GetOnlineDeploymentLogsRequest>;
 
 export interface DeploymentLogs {
   /** The retrieved online deployment logs. */
@@ -7887,13 +7735,13 @@ export const GetOnlineEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOnlineEndpointRequest>;
 
 /** Resource tags. */
-export type OnlineEndpointsGetResponseTagsMap = {
+export type GetOnlineEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OnlineEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetOnlineEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OnlineEndpointsGetResponseTagsMap>;
+) as any as S.Schema<GetOnlineEndpointResponseTagsMap>;
 
 /** Property dictionary. Properties can be added, but not removed or altered. */
 export type OnlineEndpointPropertiesPropertiesMap = {
@@ -7977,15 +7825,15 @@ export const OnlineEndpointProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OnlineEndpointProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type OnlineEndpointsGetResponseIdentity =
+export type GetOnlineEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const OnlineEndpointsGetResponseIdentity =
+export const GetOnlineEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type OnlineEndpointsGetResponseSku =
+export type GetOnlineEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const OnlineEndpointsGetResponseSku =
+export const GetOnlineEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface GetOnlineEndpointResponse {
@@ -7998,7 +7846,7 @@ export interface GetOnlineEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OnlineEndpointsGetResponseTagsMap;
+  tags?: GetOnlineEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -8016,7 +7864,7 @@ export const GetOnlineEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OnlineEndpointsGetResponseTagsMap),
+    tags: S.optional(GetOnlineEndpointResponseTagsMap),
     location: S.String,
     properties: OnlineEndpointProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -8179,25 +8027,25 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type PrivateEndpointConnectionsGetResponseIdentity =
+export type GetPrivateEndpointConnectionResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const PrivateEndpointConnectionsGetResponseIdentity =
+export const GetPrivateEndpointConnectionResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type PrivateEndpointConnectionsGetResponseSku =
+export type GetPrivateEndpointConnectionResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const PrivateEndpointConnectionsGetResponseSku =
+export const GetPrivateEndpointConnectionResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
-export type PrivateEndpointConnectionsGetResponseTagsMap = {
+export type GetPrivateEndpointConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateEndpointConnectionsGetResponseTagsMap =
+export const GetPrivateEndpointConnectionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsGetResponseTagsMap>;
+  ) as any as S.Schema<GetPrivateEndpointConnectionResponseTagsMap>;
 
 export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -8216,7 +8064,7 @@ export interface GetPrivateEndpointConnectionResponse {
   sku?: BatchDeploymentsCreateOrUpdateResponseSku;
   /** *Same as workspace location. */
   location?: string;
-  tags?: PrivateEndpointConnectionsGetResponseTagsMap;
+  tags?: GetPrivateEndpointConnectionResponseTagsMap;
 }
 export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -8229,7 +8077,7 @@ export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
       identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
       sku: S.optional(BatchDeploymentsCreateOrUpdateResponseSku),
       location: S.optional(S.String),
-      tags: S.optional(PrivateEndpointConnectionsGetResponseTagsMap),
+      tags: S.optional(GetPrivateEndpointConnectionResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetPrivateEndpointConnectionResponse",
@@ -8261,13 +8109,11 @@ export const GetRegistryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRegistryRequest>;
 
 /** Resource tags. */
-export type RegistriesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RegistriesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetRegistryResponseTagsMap = { [key: string]: string | undefined };
+export const GetRegistryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RegistriesGetResponseTagsMap>;
+) as any as S.Schema<GetRegistryResponseTagsMap>;
 
 /** ARM ResourceId of a resource */
 export interface ArmResourceId {
@@ -8566,16 +8412,14 @@ export const RegistryProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RegistryProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type RegistriesGetResponseIdentity =
+export type GetRegistryResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const RegistriesGetResponseIdentity =
+export const GetRegistryResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type RegistriesGetResponseSku =
-  BatchDeploymentsCreateOrUpdateResponseSku;
-export const RegistriesGetResponseSku =
-  BatchDeploymentsCreateOrUpdateResponseSku;
+export type GetRegistryResponseSku = BatchDeploymentsCreateOrUpdateResponseSku;
+export const GetRegistryResponseSku = BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface GetRegistryResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -8587,7 +8431,7 @@ export interface GetRegistryResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RegistriesGetResponseTagsMap;
+  tags?: GetRegistryResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -8605,7 +8449,7 @@ export const GetRegistryResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RegistriesGetResponseTagsMap),
+    tags: S.optional(GetRegistryResponseTagsMap),
     location: S.String,
     properties: RegistryProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -8884,7 +8728,7 @@ export const GetRegistryDataContainerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRegistryDataContainerResponse",
 }) as any as S.Schema<GetRegistryDataContainerResponse>;
 
-export interface GetRegistryDataReferenceBlobReferenceSasRequest {
+export interface GetRegistryDataReferenceBlobReferenceSASRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8900,7 +8744,7 @@ export interface GetRegistryDataReferenceBlobReferenceSasRequest {
   /** Blob uri of the asset to be accessed */
   blobUri?: string | null;
 }
-export const GetRegistryDataReferenceBlobReferenceSasRequest =
+export const GetRegistryDataReferenceBlobReferenceSASRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8919,8 +8763,8 @@ export const GetRegistryDataReferenceBlobReferenceSasRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetRegistryDataReferenceBlobReferenceSasRequest",
-  }) as any as S.Schema<GetRegistryDataReferenceBlobReferenceSasRequest>;
+    identifier: "GetRegistryDataReferenceBlobReferenceSASRequest",
+  }) as any as S.Schema<GetRegistryDataReferenceBlobReferenceSASRequest>;
 
 /** Enum to determine the DataReference credentials type. */
 export type DataReferenceCredentialType =
@@ -9426,13 +9270,13 @@ export const GetServerlessEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServerlessEndpointRequest>;
 
 /** Resource tags. */
-export type ServerlessEndpointsGetResponseTagsMap = {
+export type GetServerlessEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerlessEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetServerlessEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServerlessEndpointsGetResponseTagsMap>;
+) as any as S.Schema<GetServerlessEndpointResponseTagsMap>;
 
 export type ServerlessInferenceEndpointAuthMode = "Key" | "AAD" | "KeyAndAAD";
 export const ServerlessInferenceEndpointAuthMode = /*@__PURE__*/ S.String;
@@ -9529,15 +9373,15 @@ export const ServerlessEndpointProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServerlessEndpointProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ServerlessEndpointsGetResponseIdentity =
+export type GetServerlessEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const ServerlessEndpointsGetResponseIdentity =
+export const GetServerlessEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ServerlessEndpointsGetResponseSku =
+export type GetServerlessEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const ServerlessEndpointsGetResponseSku =
+export const GetServerlessEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface GetServerlessEndpointResponse {
@@ -9550,7 +9394,7 @@ export interface GetServerlessEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ServerlessEndpointsGetResponseTagsMap;
+  tags?: GetServerlessEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -9568,7 +9412,7 @@ export const GetServerlessEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ServerlessEndpointsGetResponseTagsMap),
+    tags: S.optional(GetServerlessEndpointResponseTagsMap),
     location: S.String,
     properties: ServerlessEndpointProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -10103,24 +9947,21 @@ export const WorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkspaceProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WorkspacesGetResponseIdentity =
+export type GetWorkspaceResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const WorkspacesGetResponseIdentity =
+export const GetWorkspaceResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type WorkspacesGetResponseSku =
-  BatchDeploymentsCreateOrUpdateResponseSku;
-export const WorkspacesGetResponseSku =
+export type GetWorkspaceResponseSku = BatchDeploymentsCreateOrUpdateResponseSku;
+export const GetWorkspaceResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
 
 export interface GetWorkspaceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -10139,7 +9980,7 @@ export interface GetWorkspaceResponse {
   location?: string;
   /** The resource model definition representing SKU */
   sku?: BatchDeploymentsCreateOrUpdateResponseSku;
-  tags?: WorkspacesGetResponseTagsMap;
+  tags?: GetWorkspaceResponseTagsMap;
 }
 export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10152,7 +9993,7 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     kind: S.optional(S.String),
     location: S.optional(S.String),
     sku: S.optional(BatchDeploymentsCreateOrUpdateResponseSku),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetWorkspaceResponse",
@@ -10208,41 +10049,6 @@ export const GetWorkspaceConnectionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetWorkspaceConnectionResponse",
 }) as any as S.Schema<GetWorkspaceConnectionResponse>;
-
-export interface JobsCancelRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Azure Machine Learning Workspace Name */
-  workspaceName: string;
-  /** The name and identifier for the Job. This is case-sensitive. */
-  id: string;
-}
-export const JobsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs/{id}/cancel",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobsCancelRequest",
-}) as any as S.Schema<JobsCancelRequest>;
-
-export interface JobsCancelResponse {}
-export const JobsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "JobsCancelResponse",
-}) as any as S.Schema<JobsCancelResponse>;
 
 /** The asset property dictionary. */
 export type JobBasePropertiesInputPropertiesMap = {
@@ -10830,11 +10636,11 @@ export const CodeVersionResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
   identifier: "CodeVersionResourceArmPaginatedResult",
 }) as any as S.Schema<CodeVersionResourceArmPaginatedResult>;
 
-export type ComponentContainersListRequestListViewType =
+export type ListComponentContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const ComponentContainersListRequestListViewType =
+export const ListComponentContainersRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListComponentContainersRequest {
@@ -10847,7 +10653,7 @@ export interface ListComponentContainersRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: ComponentContainersListRequestListViewType | (string & {});
+  listViewType?: ListComponentContainersRequestListViewType | (string & {});
 }
 export const ListComponentContainersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10856,7 +10662,7 @@ export const ListComponentContainersRequest = /*@__PURE__*/ S.suspend(() =>
     workspaceName: S.String.pipe(T.Label()),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     listViewType: S.optional(
-      ComponentContainersListRequestListViewType.pipe(T.Query()),
+      ListComponentContainersRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -10920,11 +10726,11 @@ export const ComponentContainerResourceArmPaginatedResult =
     identifier: "ComponentContainerResourceArmPaginatedResult",
   }) as any as S.Schema<ComponentContainerResourceArmPaginatedResult>;
 
-export type ComponentVersionsListRequestListViewType =
+export type ListComponentVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const ComponentVersionsListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListComponentVersionsRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListComponentVersionsRequest {
   /** The ID of the target subscription. */
@@ -10942,7 +10748,7 @@ export interface ListComponentVersionsRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: ComponentVersionsListRequestListViewType | (string & {});
+  listViewType?: ListComponentVersionsRequestListViewType | (string & {});
 }
 export const ListComponentVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10954,7 +10760,7 @@ export const ListComponentVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     listViewType: S.optional(
-      ComponentVersionsListRequestListViewType.pipe(T.Query()),
+      ListComponentVersionsRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -11250,11 +11056,11 @@ export const AmlComputeNodesInformation = /*@__PURE__*/ S.suspend(() =>
   identifier: "AmlComputeNodesInformation",
 }) as any as S.Schema<AmlComputeNodesInformation>;
 
-export type DataContainersListRequestListViewType =
+export type ListDataContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const DataContainersListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListDataContainersRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListDataContainersRequest {
   /** The ID of the target subscription. */
@@ -11266,7 +11072,7 @@ export interface ListDataContainersRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: DataContainersListRequestListViewType | (string & {});
+  listViewType?: ListDataContainersRequestListViewType | (string & {});
 }
 export const ListDataContainersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11275,7 +11081,7 @@ export const ListDataContainersRequest = /*@__PURE__*/ S.suspend(() =>
     workspaceName: S.String.pipe(T.Label()),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     listViewType: S.optional(
-      DataContainersListRequestListViewType.pipe(T.Query()),
+      ListDataContainersRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -11337,10 +11143,10 @@ export const DataContainerResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
   identifier: "DataContainerResourceArmPaginatedResult",
 }) as any as S.Schema<DataContainerResourceArmPaginatedResult>;
 
-export type DatastoresListRequestNamesList = Array<string>;
-export const DatastoresListRequestNamesList = /*@__PURE__*/ S.Array(
+export type ListDatastoresRequestNamesList = Array<string>;
+export const ListDatastoresRequestNamesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<DatastoresListRequestNamesList>;
+) as any as S.Schema<ListDatastoresRequestNamesList>;
 
 export interface ListDatastoresRequest {
   /** The ID of the target subscription. */
@@ -11356,7 +11162,7 @@ export interface ListDatastoresRequest {
   /** Filter down to the workspace default datastore. */
   isDefault?: boolean;
   /** Names of datastores to return. */
-  names?: DatastoresListRequestNamesList;
+  names?: ListDatastoresRequestNamesList;
   /** Text to search for in the datastore names. */
   searchText?: string;
   /** Order by property (createdtime | modifiedtime | name). */
@@ -11372,7 +11178,7 @@ export const ListDatastoresRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     count: S.optional(S.Number.pipe(T.Query())),
     isDefault: S.optional(S.Boolean.pipe(T.Query())),
-    names: S.optional(DatastoresListRequestNamesList.pipe(T.Query())),
+    names: S.optional(ListDatastoresRequestNamesList.pipe(T.Query())),
     searchText: S.optional(S.String.pipe(T.Query())),
     orderBy: S.optional(S.String.pipe(T.Query())),
     orderByAsc: S.optional(S.Boolean.pipe(T.Query())),
@@ -11489,11 +11295,11 @@ export const DatastoreSecrets = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatastoreSecrets",
 }) as any as S.Schema<DatastoreSecrets>;
 
-export type DataVersionsListRequestListViewType =
+export type ListDataVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const DataVersionsListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListDataVersionsRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListDataVersionsRequest {
   /** The ID of the target subscription. */
@@ -11513,7 +11319,7 @@ export interface ListDataVersionsRequest {
   /** Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2 */
   _tags?: string;
   /** [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities. */
-  listViewType?: DataVersionsListRequestListViewType | (string & {});
+  listViewType?: ListDataVersionsRequestListViewType | (string & {});
 }
 export const ListDataVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11526,7 +11332,7 @@ export const ListDataVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     _tags: S.optional(S.String.pipe(T.Query("$tags"))),
     listViewType: S.optional(
-      DataVersionsListRequestListViewType.pipe(T.Query()),
+      ListDataVersionsRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -11590,11 +11396,11 @@ export const DataVersionBaseResourceArmPaginatedResult =
     identifier: "DataVersionBaseResourceArmPaginatedResult",
   }) as any as S.Schema<DataVersionBaseResourceArmPaginatedResult>;
 
-export type EnvironmentContainersListRequestListViewType =
+export type ListEnvironmentContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const EnvironmentContainersListRequestListViewType =
+export const ListEnvironmentContainersRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListEnvironmentContainersRequest {
@@ -11607,7 +11413,7 @@ export interface ListEnvironmentContainersRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: EnvironmentContainersListRequestListViewType | (string & {});
+  listViewType?: ListEnvironmentContainersRequestListViewType | (string & {});
 }
 export const ListEnvironmentContainersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11616,7 +11422,7 @@ export const ListEnvironmentContainersRequest = /*@__PURE__*/ S.suspend(() =>
     workspaceName: S.String.pipe(T.Label()),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     listViewType: S.optional(
-      EnvironmentContainersListRequestListViewType.pipe(T.Query()),
+      ListEnvironmentContainersRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -11680,11 +11486,11 @@ export const EnvironmentContainerResourceArmPaginatedResult =
     identifier: "EnvironmentContainerResourceArmPaginatedResult",
   }) as any as S.Schema<EnvironmentContainerResourceArmPaginatedResult>;
 
-export type EnvironmentVersionsListRequestListViewType =
+export type ListEnvironmentVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const EnvironmentVersionsListRequestListViewType =
+export const ListEnvironmentVersionsRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListEnvironmentVersionsRequest {
@@ -11703,7 +11509,7 @@ export interface ListEnvironmentVersionsRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: EnvironmentVersionsListRequestListViewType | (string & {});
+  listViewType?: ListEnvironmentVersionsRequestListViewType | (string & {});
 }
 export const ListEnvironmentVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11715,7 +11521,7 @@ export const ListEnvironmentVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     listViewType: S.optional(
-      EnvironmentVersionsListRequestListViewType.pipe(T.Query()),
+      ListEnvironmentVersionsRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -11779,11 +11585,11 @@ export const EnvironmentVersionResourceArmPaginatedResult =
     identifier: "EnvironmentVersionResourceArmPaginatedResult",
   }) as any as S.Schema<EnvironmentVersionResourceArmPaginatedResult>;
 
-export type FeaturesListRequestListViewType =
+export type ListFeaturesRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const FeaturesListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListFeaturesRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListFeaturesRequest {
   /** The ID of the target subscription. */
@@ -11805,7 +11611,7 @@ export interface ListFeaturesRequest {
   /** Description of the featureset. */
   description?: string;
   /** [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities. */
-  listViewType?: FeaturesListRequestListViewType | (string & {});
+  listViewType?: ListFeaturesRequestListViewType | (string & {});
   /** Page size. */
   pageSize?: number;
 }
@@ -11820,7 +11626,7 @@ export const ListFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(S.String.pipe(T.Query())),
     featureName: S.optional(S.String.pipe(T.Query())),
     description: S.optional(S.String.pipe(T.Query())),
-    listViewType: S.optional(FeaturesListRequestListViewType.pipe(T.Query())),
+    listViewType: S.optional(ListFeaturesRequestListViewType.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -11879,11 +11685,11 @@ export const FeatureResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureResourceArmPaginatedResult",
 }) as any as S.Schema<FeatureResourceArmPaginatedResult>;
 
-export type FeaturesetContainersListRequestListViewType =
+export type ListFeaturesetContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const FeaturesetContainersListRequestListViewType =
+export const ListFeaturesetContainersRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListFeaturesetContainersRequest {
@@ -11898,7 +11704,7 @@ export interface ListFeaturesetContainersRequest {
   /** Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2 */
   tags?: string;
   /** [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities. */
-  listViewType?: FeaturesetContainersListRequestListViewType | (string & {});
+  listViewType?: ListFeaturesetContainersRequestListViewType | (string & {});
   /** page size */
   pageSize?: number;
   /** name for the featureset */
@@ -11916,7 +11722,7 @@ export const ListFeaturesetContainersRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     tags: S.optional(S.String.pipe(T.Query())),
     listViewType: S.optional(
-      FeaturesetContainersListRequestListViewType.pipe(T.Query()),
+      ListFeaturesetContainersRequestListViewType.pipe(T.Query()),
     ),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     name: S.optional(S.String.pipe(T.Query())),
@@ -11984,11 +11790,11 @@ export const FeaturesetContainerResourceArmPaginatedResult =
     identifier: "FeaturesetContainerResourceArmPaginatedResult",
   }) as any as S.Schema<FeaturesetContainerResourceArmPaginatedResult>;
 
-export type FeaturesetVersionsListRequestListViewType =
+export type ListFeaturesetVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const FeaturesetVersionsListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListFeaturesetVersionsRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListFeaturesetVersionsRequest {
   /** The ID of the target subscription. */
@@ -12004,7 +11810,7 @@ export interface ListFeaturesetVersionsRequest {
   /** Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2 */
   tags?: string;
   /** [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities. */
-  listViewType?: FeaturesetVersionsListRequestListViewType | (string & {});
+  listViewType?: ListFeaturesetVersionsRequestListViewType | (string & {});
   /** page size */
   pageSize?: number;
   /** name for the featureset version */
@@ -12027,7 +11833,7 @@ export const ListFeaturesetVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     tags: S.optional(S.String.pipe(T.Query())),
     listViewType: S.optional(
-      FeaturesetVersionsListRequestListViewType.pipe(T.Query()),
+      ListFeaturesetVersionsRequestListViewType.pipe(T.Query()),
     ),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     versionName: S.optional(S.String.pipe(T.Query())),
@@ -12097,11 +11903,11 @@ export const FeaturesetVersionResourceArmPaginatedResult =
     identifier: "FeaturesetVersionResourceArmPaginatedResult",
   }) as any as S.Schema<FeaturesetVersionResourceArmPaginatedResult>;
 
-export type FeaturestoreEntityContainersListRequestListViewType =
+export type ListFeaturestoreEntityContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const FeaturestoreEntityContainersListRequestListViewType =
+export const ListFeaturestoreEntityContainersRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListFeaturestoreEntityContainersRequest {
@@ -12117,7 +11923,7 @@ export interface ListFeaturestoreEntityContainersRequest {
   tags?: string;
   /** [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities. */
   listViewType?:
-    | FeaturestoreEntityContainersListRequestListViewType
+    | ListFeaturestoreEntityContainersRequestListViewType
     | (string & {});
   /** page size */
   pageSize?: number;
@@ -12137,7 +11943,7 @@ export const ListFeaturestoreEntityContainersRequest = /*@__PURE__*/ S.suspend(
       _skip: S.optional(S.String.pipe(T.Query("$skip"))),
       tags: S.optional(S.String.pipe(T.Query())),
       listViewType: S.optional(
-        FeaturestoreEntityContainersListRequestListViewType.pipe(T.Query()),
+        ListFeaturestoreEntityContainersRequestListViewType.pipe(T.Query()),
       ),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       name: S.optional(S.String.pipe(T.Query())),
@@ -12205,11 +12011,11 @@ export const FeaturestoreEntityContainerResourceArmPaginatedResult =
     identifier: "FeaturestoreEntityContainerResourceArmPaginatedResult",
   }) as any as S.Schema<FeaturestoreEntityContainerResourceArmPaginatedResult>;
 
-export type FeaturestoreEntityVersionsListRequestListViewType =
+export type ListFeaturestoreEntityVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const FeaturestoreEntityVersionsListRequestListViewType =
+export const ListFeaturestoreEntityVersionsRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListFeaturestoreEntityVersionsRequest {
@@ -12227,7 +12033,7 @@ export interface ListFeaturestoreEntityVersionsRequest {
   tags?: string;
   /** [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities. */
   listViewType?:
-    | FeaturestoreEntityVersionsListRequestListViewType
+    | ListFeaturestoreEntityVersionsRequestListViewType
     | (string & {});
   /** page size */
   pageSize?: number;
@@ -12252,7 +12058,7 @@ export const ListFeaturestoreEntityVersionsRequest = /*@__PURE__*/ S.suspend(
       _skip: S.optional(S.String.pipe(T.Query("$skip"))),
       tags: S.optional(S.String.pipe(T.Query())),
       listViewType: S.optional(
-        FeaturestoreEntityVersionsListRequestListViewType.pipe(T.Query()),
+        ListFeaturestoreEntityVersionsRequestListViewType.pipe(T.Query()),
       ),
       pageSize: S.optional(S.Number.pipe(T.Query())),
       versionName: S.optional(S.String.pipe(T.Query())),
@@ -12322,8 +12128,8 @@ export const FeaturestoreEntityVersionResourceArmPaginatedResult =
     identifier: "FeaturestoreEntityVersionResourceArmPaginatedResult",
   }) as any as S.Schema<FeaturestoreEntityVersionResourceArmPaginatedResult>;
 
-export type JobsListRequestListViewType = "ActiveOnly" | "ArchivedOnly" | "All";
-export const JobsListRequestListViewType = /*@__PURE__*/ S.String;
+export type ListJobsRequestListViewType = "ActiveOnly" | "ArchivedOnly" | "All";
+export const ListJobsRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListJobsRequest {
   /** The ID of the target subscription. */
@@ -12339,7 +12145,7 @@ export interface ListJobsRequest {
   /** Jobs returned will have this tag key. */
   tag?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: JobsListRequestListViewType | (string & {});
+  listViewType?: ListJobsRequestListViewType | (string & {});
   /** Comma-separated list of user property names (and optionally values). Example: prop1,prop2=value2 */
   properties?: string;
 }
@@ -12351,7 +12157,7 @@ export const ListJobsRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     jobType: S.optional(S.String.pipe(T.Query())),
     tag: S.optional(S.String.pipe(T.Query())),
-    listViewType: S.optional(JobsListRequestListViewType.pipe(T.Query())),
+    listViewType: S.optional(ListJobsRequestListViewType.pipe(T.Query())),
     properties: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -12410,7 +12216,7 @@ export const JobBaseResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobBaseResourceArmPaginatedResult",
 }) as any as S.Schema<JobBaseResourceArmPaginatedResult>;
 
-export interface ListManagedNetworkSettingRuleRequest {
+export interface ListManagedNetworkSettingsRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12418,7 +12224,7 @@ export interface ListManagedNetworkSettingRuleRequest {
   /** Azure Machine Learning Workspace Name */
   workspaceName: string;
 }
-export const ListManagedNetworkSettingRuleRequest = /*@__PURE__*/ S.suspend(
+export const ListManagedNetworkSettingsRuleRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12433,8 +12239,8 @@ export const ListManagedNetworkSettingRuleRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListManagedNetworkSettingRuleRequest",
-}) as any as S.Schema<ListManagedNetworkSettingRuleRequest>;
+  identifier: "ListManagedNetworkSettingsRuleRequest",
+}) as any as S.Schema<ListManagedNetworkSettingsRuleRequest>;
 
 /** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
 export interface OutboundRuleBasicResource {
@@ -12561,11 +12367,11 @@ export const MarketplaceSubscriptionResourceArmPaginatedResult =
     identifier: "MarketplaceSubscriptionResourceArmPaginatedResult",
   }) as any as S.Schema<MarketplaceSubscriptionResourceArmPaginatedResult>;
 
-export type ModelContainersListRequestListViewType =
+export type ListModelContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const ModelContainersListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListModelContainersRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListModelContainersRequest {
   /** The ID of the target subscription. */
@@ -12579,7 +12385,7 @@ export interface ListModelContainersRequest {
   /** Maximum number of results to return. */
   count?: number;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: ModelContainersListRequestListViewType | (string & {});
+  listViewType?: ListModelContainersRequestListViewType | (string & {});
 }
 export const ListModelContainersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12589,7 +12395,7 @@ export const ListModelContainersRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     count: S.optional(S.Number.pipe(T.Query())),
     listViewType: S.optional(
-      ModelContainersListRequestListViewType.pipe(T.Query()),
+      ListModelContainersRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -12651,11 +12457,11 @@ export const ModelContainerResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
   identifier: "ModelContainerResourceArmPaginatedResult",
 }) as any as S.Schema<ModelContainerResourceArmPaginatedResult>;
 
-export type ModelVersionsListRequestListViewType =
+export type ListModelVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const ModelVersionsListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListModelVersionsRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListModelVersionsRequest {
   /** The ID of the target subscription. */
@@ -12685,7 +12491,7 @@ export interface ListModelVersionsRequest {
   /** Name of the feed. */
   feed?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: ModelVersionsListRequestListViewType | (string & {});
+  listViewType?: ListModelVersionsRequestListViewType | (string & {});
 }
 export const ListModelVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12703,7 +12509,7 @@ export const ListModelVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(S.String.pipe(T.Query())),
     feed: S.optional(S.String.pipe(T.Query())),
     listViewType: S.optional(
-      ModelVersionsListRequestListViewType.pipe(T.Query()),
+      ListModelVersionsRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -13030,18 +12836,18 @@ export const ListOnlineEndpointKeysRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOnlineEndpointKeysRequest",
 }) as any as S.Schema<ListOnlineEndpointKeysRequest>;
 
-export type OnlineEndpointsListRequestComputeType =
+export type ListOnlineEndpointsRequestComputeType =
   | "Managed"
   | "Kubernetes"
   | "AzureMLCompute";
-export const OnlineEndpointsListRequestComputeType = /*@__PURE__*/ S.String;
+export const ListOnlineEndpointsRequestComputeType = /*@__PURE__*/ S.String;
 
-export type OnlineEndpointsListRequestOrderBy =
+export type ListOnlineEndpointsRequestOrderBy =
   | "CreatedAtDesc"
   | "CreatedAtAsc"
   | "UpdatedAtDesc"
   | "UpdatedAtAsc";
-export const OnlineEndpointsListRequestOrderBy = /*@__PURE__*/ S.String;
+export const ListOnlineEndpointsRequestOrderBy = /*@__PURE__*/ S.String;
 
 export interface ListOnlineEndpointsRequest {
   /** The ID of the target subscription. */
@@ -13055,7 +12861,7 @@ export interface ListOnlineEndpointsRequest {
   /** Number of endpoints to be retrieved in a page of results. */
   count?: number;
   /** EndpointComputeType to be filtered by. */
-  computeType?: OnlineEndpointsListRequestComputeType | (string & {});
+  computeType?: ListOnlineEndpointsRequestComputeType | (string & {});
   /** Continuation token for pagination. */
   _skip?: string;
   /** A set of tags with which to filter the returned models. It is a comma separated string of tags key or tags key=value. Example: tagKey1,tagKey2,tagKey3=value3 . */
@@ -13063,7 +12869,7 @@ export interface ListOnlineEndpointsRequest {
   /** A set of properties with which to filter the returned models. It is a comma separated string of properties key and/or properties key=value Example: propKey1,propKey2,propKey3=value3 . */
   properties?: string;
   /** The option to order the response. */
-  orderBy?: OnlineEndpointsListRequestOrderBy | (string & {});
+  orderBy?: ListOnlineEndpointsRequestOrderBy | (string & {});
 }
 export const ListOnlineEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13073,12 +12879,12 @@ export const ListOnlineEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String.pipe(T.Query())),
     count: S.optional(S.Number.pipe(T.Query())),
     computeType: S.optional(
-      OnlineEndpointsListRequestComputeType.pipe(T.Query()),
+      ListOnlineEndpointsRequestComputeType.pipe(T.Query()),
     ),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     tags: S.optional(S.String.pipe(T.Query())),
     properties: S.optional(S.String.pipe(T.Query())),
-    orderBy: S.optional(OnlineEndpointsListRequestOrderBy.pipe(T.Query())),
+    orderBy: S.optional(ListOnlineEndpointsRequestOrderBy.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -13239,20 +13045,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -13782,11 +13588,11 @@ export const ListRegistryComponentVersionsRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListRegistryComponentVersionsRequest",
 }) as any as S.Schema<ListRegistryComponentVersionsRequest>;
 
-export type RegistryDataContainersListRequestListViewType =
+export type ListRegistryDataContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const RegistryDataContainersListRequestListViewType =
+export const ListRegistryDataContainersRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListRegistryDataContainersRequest {
@@ -13799,7 +13605,7 @@ export interface ListRegistryDataContainersRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: RegistryDataContainersListRequestListViewType | (string & {});
+  listViewType?: ListRegistryDataContainersRequestListViewType | (string & {});
 }
 export const ListRegistryDataContainersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13808,7 +13614,7 @@ export const ListRegistryDataContainersRequest = /*@__PURE__*/ S.suspend(() =>
     registryName: S.String.pipe(T.Label()),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     listViewType: S.optional(
-      RegistryDataContainersListRequestListViewType.pipe(T.Query()),
+      ListRegistryDataContainersRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -13822,11 +13628,11 @@ export const ListRegistryDataContainersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRegistryDataContainersRequest",
 }) as any as S.Schema<ListRegistryDataContainersRequest>;
 
-export type RegistryDataVersionsListRequestListViewType =
+export type ListRegistryDataVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const RegistryDataVersionsListRequestListViewType =
+export const ListRegistryDataVersionsRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListRegistryDataVersionsRequest {
@@ -13847,7 +13653,7 @@ export interface ListRegistryDataVersionsRequest {
   /** Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2 */
   _tags?: string;
   /** [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for including/excluding (for example) archived entities. */
-  listViewType?: RegistryDataVersionsListRequestListViewType | (string & {});
+  listViewType?: ListRegistryDataVersionsRequestListViewType | (string & {});
 }
 export const ListRegistryDataVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13860,7 +13666,7 @@ export const ListRegistryDataVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     _tags: S.optional(S.String.pipe(T.Query("$tags"))),
     listViewType: S.optional(
-      RegistryDataVersionsListRequestListViewType.pipe(T.Query()),
+      ListRegistryDataVersionsRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -13874,11 +13680,11 @@ export const ListRegistryDataVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRegistryDataVersionsRequest",
 }) as any as S.Schema<ListRegistryDataVersionsRequest>;
 
-export type RegistryEnvironmentContainersListRequestListViewType =
+export type ListRegistryEnvironmentContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const RegistryEnvironmentContainersListRequestListViewType =
+export const ListRegistryEnvironmentContainersRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListRegistryEnvironmentContainersRequest {
@@ -13892,7 +13698,7 @@ export interface ListRegistryEnvironmentContainersRequest {
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
   listViewType?:
-    | RegistryEnvironmentContainersListRequestListViewType
+    | ListRegistryEnvironmentContainersRequestListViewType
     | (string & {});
 }
 export const ListRegistryEnvironmentContainersRequest = /*@__PURE__*/ S.suspend(
@@ -13903,7 +13709,7 @@ export const ListRegistryEnvironmentContainersRequest = /*@__PURE__*/ S.suspend(
       registryName: S.String.pipe(T.Label()),
       _skip: S.optional(S.String.pipe(T.Query("$skip"))),
       listViewType: S.optional(
-        RegistryEnvironmentContainersListRequestListViewType.pipe(T.Query()),
+        ListRegistryEnvironmentContainersRequestListViewType.pipe(T.Query()),
       ),
     }).pipe(
       T.Http({
@@ -13917,11 +13723,11 @@ export const ListRegistryEnvironmentContainersRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListRegistryEnvironmentContainersRequest",
 }) as any as S.Schema<ListRegistryEnvironmentContainersRequest>;
 
-export type RegistryEnvironmentVersionsListRequestListViewType =
+export type ListRegistryEnvironmentVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const RegistryEnvironmentVersionsListRequestListViewType =
+export const ListRegistryEnvironmentVersionsRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListRegistryEnvironmentVersionsRequest {
@@ -13941,7 +13747,7 @@ export interface ListRegistryEnvironmentVersionsRequest {
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
   listViewType?:
-    | RegistryEnvironmentVersionsListRequestListViewType
+    | ListRegistryEnvironmentVersionsRequestListViewType
     | (string & {});
 }
 export const ListRegistryEnvironmentVersionsRequest = /*@__PURE__*/ S.suspend(
@@ -13955,7 +13761,7 @@ export const ListRegistryEnvironmentVersionsRequest = /*@__PURE__*/ S.suspend(
       _top: S.optional(S.Number.pipe(T.Query("$top"))),
       _skip: S.optional(S.String.pipe(T.Query("$skip"))),
       listViewType: S.optional(
-        RegistryEnvironmentVersionsListRequestListViewType.pipe(T.Query()),
+        ListRegistryEnvironmentVersionsRequestListViewType.pipe(T.Query()),
       ),
     }).pipe(
       T.Http({
@@ -13969,11 +13775,11 @@ export const ListRegistryEnvironmentVersionsRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListRegistryEnvironmentVersionsRequest",
 }) as any as S.Schema<ListRegistryEnvironmentVersionsRequest>;
 
-export type RegistryModelContainersListRequestListViewType =
+export type ListRegistryModelContainersRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const RegistryModelContainersListRequestListViewType =
+export const ListRegistryModelContainersRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListRegistryModelContainersRequest {
@@ -13986,7 +13792,7 @@ export interface ListRegistryModelContainersRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: RegistryModelContainersListRequestListViewType | (string & {});
+  listViewType?: ListRegistryModelContainersRequestListViewType | (string & {});
 }
 export const ListRegistryModelContainersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13995,7 +13801,7 @@ export const ListRegistryModelContainersRequest = /*@__PURE__*/ S.suspend(() =>
     registryName: S.String.pipe(T.Label()),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
     listViewType: S.optional(
-      RegistryModelContainersListRequestListViewType.pipe(T.Query()),
+      ListRegistryModelContainersRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -14009,11 +13815,11 @@ export const ListRegistryModelContainersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRegistryModelContainersRequest",
 }) as any as S.Schema<ListRegistryModelContainersRequest>;
 
-export type RegistryModelVersionsListRequestListViewType =
+export type ListRegistryModelVersionsRequestListViewType =
   | "ActiveOnly"
   | "ArchivedOnly"
   | "All";
-export const RegistryModelVersionsListRequestListViewType =
+export const ListRegistryModelVersionsRequestListViewType =
   /*@__PURE__*/ S.String;
 
 export interface ListRegistryModelVersionsRequest {
@@ -14040,7 +13846,7 @@ export interface ListRegistryModelVersionsRequest {
   /** Comma-separated list of property names (and optionally values). Example: prop1,prop2=value2 */
   properties?: string;
   /** View type for including/excluding (for example) archived entities. */
-  listViewType?: RegistryModelVersionsListRequestListViewType | (string & {});
+  listViewType?: ListRegistryModelVersionsRequestListViewType | (string & {});
 }
 export const ListRegistryModelVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -14056,7 +13862,7 @@ export const ListRegistryModelVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(S.String.pipe(T.Query())),
     properties: S.optional(S.String.pipe(T.Query())),
     listViewType: S.optional(
-      RegistryModelVersionsListRequestListViewType.pipe(T.Query()),
+      ListRegistryModelVersionsRequestListViewType.pipe(T.Query()),
     ),
   }).pipe(
     T.Http({
@@ -14070,11 +13876,11 @@ export const ListRegistryModelVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRegistryModelVersionsRequest",
 }) as any as S.Schema<ListRegistryModelVersionsRequest>;
 
-export type SchedulesListRequestListViewType =
+export type ListSchedulesRequestListViewType =
   | "EnabledOnly"
   | "DisabledOnly"
   | "All";
-export const SchedulesListRequestListViewType = /*@__PURE__*/ S.String;
+export const ListSchedulesRequestListViewType = /*@__PURE__*/ S.String;
 
 export interface ListSchedulesRequest {
   /** The ID of the target subscription. */
@@ -14086,7 +13892,7 @@ export interface ListSchedulesRequest {
   /** Continuation token for pagination. */
   _skip?: string;
   /** Status filter for schedule. */
-  listViewType?: SchedulesListRequestListViewType | (string & {});
+  listViewType?: ListSchedulesRequestListViewType | (string & {});
 }
 export const ListSchedulesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -14094,7 +13900,7 @@ export const ListSchedulesRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     _skip: S.optional(S.String.pipe(T.Query("$skip"))),
-    listViewType: S.optional(SchedulesListRequestListViewType.pipe(T.Query())),
+    listViewType: S.optional(ListSchedulesRequestListViewType.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -15027,7 +14833,7 @@ export const ListWorkspaceNotebookKeysRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWorkspaceNotebookKeysRequest",
 }) as any as S.Schema<ListWorkspaceNotebookKeysRequest>;
 
-export interface ListWorkspaceOutboundNetworkDependencyEndpointsRequest {
+export interface ListWorkspaceOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15035,7 +14841,7 @@ export interface ListWorkspaceOutboundNetworkDependencyEndpointsRequest {
   /** Azure Machine Learning Workspace Name */
   workspaceName: string;
 }
-export const ListWorkspaceOutboundNetworkDependencyEndpointsRequest =
+export const ListWorkspaceOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -15050,8 +14856,8 @@ export const ListWorkspaceOutboundNetworkDependencyEndpointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListWorkspaceOutboundNetworkDependencyEndpointsRequest",
-  }) as any as S.Schema<ListWorkspaceOutboundNetworkDependencyEndpointsRequest>;
+    identifier: "ListWorkspaceOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListWorkspaceOutboundNetworkDependenciesEndpointsRequest>;
 
 export interface FQDNEndpointDetail {
   port?: number;
@@ -15161,34 +14967,6 @@ export const ListStorageAccountKeysResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListStorageAccountKeysResult",
 }) as any as S.Schema<ListStorageAccountKeysResult>;
-
-export interface ManagedNetworkProvisionsProvisionManagedNetworkRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Azure Machine Learning Workspace Name */
-  workspaceName: string;
-  includeSpark?: boolean;
-}
-export const ManagedNetworkProvisionsProvisionManagedNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      includeSpark: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/provisionManagedNetwork",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedNetworkProvisionsProvisionManagedNetworkRequest",
-  }) as any as S.Schema<ManagedNetworkProvisionsProvisionManagedNetworkRequest>;
 
 /** Outbound Rule for the managed network of a machine learning workspace. */
 export interface OutboundRuleInput {
@@ -15492,53 +15270,6 @@ export const ModelVersionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ModelVersionsCreateOrUpdateResponse",
 }) as any as S.Schema<ModelVersionsCreateOrUpdateResponse>;
-
-export interface ModelVersionsPublishRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of Azure Machine Learning workspace. */
-  workspaceName: string;
-  /** Container name. This is case-sensitive. */
-  name: string;
-  /** Version identifier. This is case-sensitive. */
-  version: string;
-  /** Destination asset name */
-  destinationName?: string | null;
-  /** Destination asset version */
-  destinationVersion?: string | null;
-  /** Destination registry name */
-  registryName?: string | null;
-}
-export const ModelVersionsPublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    version: S.String.pipe(T.Label()),
-    destinationName: S.optional(S.NullOr(S.String)),
-    destinationVersion: S.optional(S.NullOr(S.String)),
-    registryName: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}/publish",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ModelVersionsPublishRequest",
-}) as any as S.Schema<ModelVersionsPublishRequest>;
-
-export interface ModelVersionsPublishResponse {}
-export const ModelVersionsPublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ModelVersionsPublishResponse",
-}) as any as S.Schema<ModelVersionsPublishResponse>;
 
 /** Resource tags. */
 export type OnlineDeploymentsCreateOrUpdateRequestTagsMap = {
@@ -15883,51 +15614,6 @@ export const OnlineEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "OnlineEndpointsCreateOrUpdateResponse",
 }) as any as S.Schema<OnlineEndpointsCreateOrUpdateResponse>;
 
-export type KeyType = "Primary" | "Secondary";
-export const KeyType = /*@__PURE__*/ S.String;
-
-export interface OnlineEndpointsRegenerateKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Azure Machine Learning Workspace Name */
-  workspaceName: string;
-  /** Online Endpoint name. */
-  endpointName: string;
-  /** [Required] Specification for which type of key to generate. Primary or Secondary. */
-  keyType: KeyType | (string & {});
-  /** The value the key is set to. */
-  keyValue?: string | null;
-}
-export const OnlineEndpointsRegenerateKeysRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      endpointName: S.String.pipe(T.Label()),
-      keyType: KeyType,
-      keyValue: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}/regenerateKeys",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "OnlineEndpointsRegenerateKeysRequest",
-}) as any as S.Schema<OnlineEndpointsRegenerateKeysRequest>;
-
-export interface OnlineEndpointsRegenerateKeysResponse {}
-export const OnlineEndpointsRegenerateKeysResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "OnlineEndpointsRegenerateKeysResponse",
-}) as any as S.Schema<OnlineEndpointsRegenerateKeysResponse>;
-
 /** The Private Endpoint resource. */
 export type WorkspacePrivateEndpointResourceInput = UserAssignedIdentityInput;
 export const WorkspacePrivateEndpointResourceInput = UserAssignedIdentityInput;
@@ -16070,6 +15756,348 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
   ).annotate({
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
+
+export interface ProvisionManagedNetworkProvisionManagedNetworkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Azure Machine Learning Workspace Name */
+  workspaceName: string;
+  includeSpark?: boolean;
+}
+export const ProvisionManagedNetworkProvisionManagedNetworkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      includeSpark: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/provisionManagedNetwork",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ProvisionManagedNetworkProvisionManagedNetworkRequest",
+  }) as any as S.Schema<ProvisionManagedNetworkProvisionManagedNetworkRequest>;
+
+export interface PublishCodeVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Azure Machine Learning workspace. */
+  workspaceName: string;
+  /** Container name. This is case-sensitive. */
+  name: string;
+  /** Version identifier. This is case-sensitive. */
+  version: string;
+  /** Destination asset name */
+  destinationName?: string | null;
+  /** Destination asset version */
+  destinationVersion?: string | null;
+  /** Destination registry name */
+  registryName?: string | null;
+}
+export const PublishCodeVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+    destinationName: S.optional(S.NullOr(S.String)),
+    destinationVersion: S.optional(S.NullOr(S.String)),
+    registryName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/codes/{name}/versions/{version}/publish",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PublishCodeVersionRequest",
+}) as any as S.Schema<PublishCodeVersionRequest>;
+
+export interface PublishCodeVersionResponse {}
+export const PublishCodeVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PublishCodeVersionResponse",
+}) as any as S.Schema<PublishCodeVersionResponse>;
+
+export interface PublishComponentVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Azure Machine Learning workspace. */
+  workspaceName: string;
+  /** Container name. */
+  name: string;
+  /** Version identifier. */
+  version: string;
+  /** Destination asset name */
+  destinationName?: string | null;
+  /** Destination asset version */
+  destinationVersion?: string | null;
+  /** Destination registry name */
+  registryName?: string | null;
+}
+export const PublishComponentVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+    destinationName: S.optional(S.NullOr(S.String)),
+    destinationVersion: S.optional(S.NullOr(S.String)),
+    registryName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/components/{name}/versions/{version}/publish",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PublishComponentVersionRequest",
+}) as any as S.Schema<PublishComponentVersionRequest>;
+
+export interface PublishComponentVersionResponse {}
+export const PublishComponentVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PublishComponentVersionResponse",
+}) as any as S.Schema<PublishComponentVersionResponse>;
+
+export interface PublishDataVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Azure Machine Learning workspace. */
+  workspaceName: string;
+  /** Container name. */
+  name: string;
+  /** Version identifier. */
+  version: string;
+  /** Destination asset name */
+  destinationName?: string | null;
+  /** Destination asset version */
+  destinationVersion?: string | null;
+  /** Destination registry name */
+  registryName?: string | null;
+}
+export const PublishDataVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+    destinationName: S.optional(S.NullOr(S.String)),
+    destinationVersion: S.optional(S.NullOr(S.String)),
+    registryName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/data/{name}/versions/{version}/publish",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PublishDataVersionRequest",
+}) as any as S.Schema<PublishDataVersionRequest>;
+
+export interface PublishDataVersionResponse {}
+export const PublishDataVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PublishDataVersionResponse",
+}) as any as S.Schema<PublishDataVersionResponse>;
+
+export interface PublishEnvironmentVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Azure Machine Learning workspace. */
+  workspaceName: string;
+  /** Container name. This is case-sensitive. */
+  name: string;
+  /** Version identifier. This is case-sensitive. */
+  version: string;
+  /** Destination asset name */
+  destinationName?: string | null;
+  /** Destination asset version */
+  destinationVersion?: string | null;
+  /** Destination registry name */
+  registryName?: string | null;
+}
+export const PublishEnvironmentVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+    destinationName: S.optional(S.NullOr(S.String)),
+    destinationVersion: S.optional(S.NullOr(S.String)),
+    registryName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/environments/{name}/versions/{version}/publish",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PublishEnvironmentVersionRequest",
+}) as any as S.Schema<PublishEnvironmentVersionRequest>;
+
+export interface PublishEnvironmentVersionResponse {}
+export const PublishEnvironmentVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PublishEnvironmentVersionResponse",
+}) as any as S.Schema<PublishEnvironmentVersionResponse>;
+
+export interface PublishModelVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Azure Machine Learning workspace. */
+  workspaceName: string;
+  /** Container name. This is case-sensitive. */
+  name: string;
+  /** Version identifier. This is case-sensitive. */
+  version: string;
+  /** Destination asset name */
+  destinationName?: string | null;
+  /** Destination asset version */
+  destinationVersion?: string | null;
+  /** Destination registry name */
+  registryName?: string | null;
+}
+export const PublishModelVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    version: S.String.pipe(T.Label()),
+    destinationName: S.optional(S.NullOr(S.String)),
+    destinationVersion: S.optional(S.NullOr(S.String)),
+    registryName: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/models/{name}/versions/{version}/publish",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PublishModelVersionRequest",
+}) as any as S.Schema<PublishModelVersionRequest>;
+
+export interface PublishModelVersionResponse {}
+export const PublishModelVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PublishModelVersionResponse",
+}) as any as S.Schema<PublishModelVersionResponse>;
+
+export type KeyType = "Primary" | "Secondary";
+export const KeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateOnlineEndpointKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Azure Machine Learning Workspace Name */
+  workspaceName: string;
+  /** Online Endpoint name. */
+  endpointName: string;
+  /** [Required] Specification for which type of key to generate. Primary or Secondary. */
+  keyType: KeyType | (string & {});
+  /** The value the key is set to. */
+  keyValue?: string | null;
+}
+export const RegenerateOnlineEndpointKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    endpointName: S.String.pipe(T.Label()),
+    keyType: KeyType,
+    keyValue: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/onlineEndpoints/{endpointName}/regenerateKeys",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateOnlineEndpointKeysRequest",
+}) as any as S.Schema<RegenerateOnlineEndpointKeysRequest>;
+
+export interface RegenerateOnlineEndpointKeysResponse {}
+export const RegenerateOnlineEndpointKeysResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RegenerateOnlineEndpointKeysResponse",
+}) as any as S.Schema<RegenerateOnlineEndpointKeysResponse>;
+
+export interface RegenerateServerlessEndpointKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Azure Machine Learning Workspace Name */
+  workspaceName: string;
+  /** Serverless Endpoint name. */
+  name: string;
+  /** [Required] Specification for which type of key to generate. Primary or Secondary. */
+  keyType: KeyType | (string & {});
+  /** The value the key is set to. */
+  keyValue?: string | null;
+}
+export const RegenerateServerlessEndpointKeysRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      keyType: KeyType,
+      keyValue: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/serverlessEndpoints/{name}/regenerateKeys",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RegenerateServerlessEndpointKeysRequest",
+}) as any as S.Schema<RegenerateServerlessEndpointKeysRequest>;
 
 /** Resource tags. */
 export type RegistriesCreateOrUpdateRequestTagsMap = {
@@ -16319,130 +16347,6 @@ export const RegistriesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RegistriesCreateOrUpdateResponse",
 }) as any as S.Schema<RegistriesCreateOrUpdateResponse>;
-
-/** Resource tags. */
-export type RegistriesRemoveRegionsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RegistriesRemoveRegionsRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RegistriesRemoveRegionsRequestTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type RegistriesRemoveRegionsRequestIdentity =
-  BatchDeploymentsCreateOrUpdateRequestIdentity;
-export const RegistriesRemoveRegionsRequestIdentity =
-  BatchDeploymentsCreateOrUpdateRequestIdentity;
-
-/** The resource model definition representing SKU */
-export type RegistriesRemoveRegionsRequestSku =
-  BatchDeploymentsCreateOrUpdateRequestSku;
-export const RegistriesRemoveRegionsRequestSku =
-  BatchDeploymentsCreateOrUpdateRequestSku;
-
-export interface RegistriesRemoveRegionsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of Azure Machine Learning registry. This is case-insensitive */
-  registryName: string;
-  /** Resource tags. */
-  tags?: RegistriesRemoveRegionsRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** [Required] Additional attributes of the entity. */
-  properties: RegistryPropertiesInput;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: BatchDeploymentsCreateOrUpdateRequestIdentity;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: BatchDeploymentsCreateOrUpdateRequestSku;
-}
-export const RegistriesRemoveRegionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    registryName: S.String.pipe(T.Label()),
-    tags: S.optional(RegistriesRemoveRegionsRequestTagsMap),
-    location: S.String,
-    properties: RegistryPropertiesInput,
-    identity: S.optional(BatchDeploymentsCreateOrUpdateRequestIdentity),
-    kind: S.optional(S.String),
-    sku: S.optional(BatchDeploymentsCreateOrUpdateRequestSku),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/removeRegions",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RegistriesRemoveRegionsRequest",
-}) as any as S.Schema<RegistriesRemoveRegionsRequest>;
-
-/** Resource tags. */
-export type RegistriesRemoveRegionsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RegistriesRemoveRegionsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RegistriesRemoveRegionsResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type RegistriesRemoveRegionsResponseIdentity =
-  BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const RegistriesRemoveRegionsResponseIdentity =
-  BatchDeploymentsCreateOrUpdateResponseIdentity;
-
-/** The resource model definition representing SKU */
-export type RegistriesRemoveRegionsResponseSku =
-  BatchDeploymentsCreateOrUpdateResponseSku;
-export const RegistriesRemoveRegionsResponseSku =
-  BatchDeploymentsCreateOrUpdateResponseSku;
-
-export interface RegistriesRemoveRegionsResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RegistriesRemoveRegionsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** [Required] Additional attributes of the entity. */
-  properties: RegistryProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: BatchDeploymentsCreateOrUpdateResponseIdentity;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: BatchDeploymentsCreateOrUpdateResponseSku;
-}
-export const RegistriesRemoveRegionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(RegistriesRemoveRegionsResponseTagsMap),
-    location: S.String,
-    properties: RegistryProperties,
-    identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
-    kind: S.optional(S.String),
-    sku: S.optional(BatchDeploymentsCreateOrUpdateResponseSku),
-  }),
-).annotate({
-  identifier: "RegistriesRemoveRegionsResponse",
-}) as any as S.Schema<RegistriesRemoveRegionsResponse>;
 
 export interface RegistryCodeContainersCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -17176,6 +17080,130 @@ export const RegistryModelVersionsCreateOrUpdateResponse =
     identifier: "RegistryModelVersionsCreateOrUpdateResponse",
   }) as any as S.Schema<RegistryModelVersionsCreateOrUpdateResponse>;
 
+/** Resource tags. */
+export type RemoveRegistryRegionsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RemoveRegistryRegionsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RemoveRegistryRegionsRequestTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type RemoveRegistryRegionsRequestIdentity =
+  BatchDeploymentsCreateOrUpdateRequestIdentity;
+export const RemoveRegistryRegionsRequestIdentity =
+  BatchDeploymentsCreateOrUpdateRequestIdentity;
+
+/** The resource model definition representing SKU */
+export type RemoveRegistryRegionsRequestSku =
+  BatchDeploymentsCreateOrUpdateRequestSku;
+export const RemoveRegistryRegionsRequestSku =
+  BatchDeploymentsCreateOrUpdateRequestSku;
+
+export interface RemoveRegistryRegionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of Azure Machine Learning registry. This is case-insensitive */
+  registryName: string;
+  /** Resource tags. */
+  tags?: RemoveRegistryRegionsRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** [Required] Additional attributes of the entity. */
+  properties: RegistryPropertiesInput;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: BatchDeploymentsCreateOrUpdateRequestIdentity;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: BatchDeploymentsCreateOrUpdateRequestSku;
+}
+export const RemoveRegistryRegionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    registryName: S.String.pipe(T.Label()),
+    tags: S.optional(RemoveRegistryRegionsRequestTagsMap),
+    location: S.String,
+    properties: RegistryPropertiesInput,
+    identity: S.optional(BatchDeploymentsCreateOrUpdateRequestIdentity),
+    kind: S.optional(S.String),
+    sku: S.optional(BatchDeploymentsCreateOrUpdateRequestSku),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/removeRegions",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RemoveRegistryRegionsRequest",
+}) as any as S.Schema<RemoveRegistryRegionsRequest>;
+
+/** Resource tags. */
+export type RemoveRegistryRegionsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RemoveRegistryRegionsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RemoveRegistryRegionsResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type RemoveRegistryRegionsResponseIdentity =
+  BatchDeploymentsCreateOrUpdateResponseIdentity;
+export const RemoveRegistryRegionsResponseIdentity =
+  BatchDeploymentsCreateOrUpdateResponseIdentity;
+
+/** The resource model definition representing SKU */
+export type RemoveRegistryRegionsResponseSku =
+  BatchDeploymentsCreateOrUpdateResponseSku;
+export const RemoveRegistryRegionsResponseSku =
+  BatchDeploymentsCreateOrUpdateResponseSku;
+
+export interface RemoveRegistryRegionsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: RemoveRegistryRegionsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** [Required] Additional attributes of the entity. */
+  properties: RegistryProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: BatchDeploymentsCreateOrUpdateResponseIdentity;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: BatchDeploymentsCreateOrUpdateResponseSku;
+}
+export const RemoveRegistryRegionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(RemoveRegistryRegionsResponseTagsMap),
+    location: S.String,
+    properties: RegistryProperties,
+    identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
+    kind: S.optional(S.String),
+    sku: S.optional(BatchDeploymentsCreateOrUpdateResponseSku),
+  }),
+).annotate({
+  identifier: "RemoveRegistryRegionsResponse",
+}) as any as S.Schema<RemoveRegistryRegionsResponse>;
+
 export interface RestartComputeRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -17415,41 +17443,6 @@ export const ServerlessEndpointsCreateOrUpdateResponse =
     identifier: "ServerlessEndpointsCreateOrUpdateResponse",
   }) as any as S.Schema<ServerlessEndpointsCreateOrUpdateResponse>;
 
-export interface ServerlessEndpointsRegenerateKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Azure Machine Learning Workspace Name */
-  workspaceName: string;
-  /** Serverless Endpoint name. */
-  name: string;
-  /** [Required] Specification for which type of key to generate. Primary or Secondary. */
-  keyType: KeyType | (string & {});
-  /** The value the key is set to. */
-  keyValue?: string | null;
-}
-export const ServerlessEndpointsRegenerateKeysRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      keyType: KeyType,
-      keyValue: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/serverlessEndpoints/{name}/regenerateKeys",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ServerlessEndpointsRegenerateKeysRequest",
-}) as any as S.Schema<ServerlessEndpointsRegenerateKeysRequest>;
-
 export interface StartComputeRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -17534,13 +17527,13 @@ export const PartialBatchDeployment = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PartialBatchDeployment>;
 
 /** Resource tags. */
-export type BatchDeploymentsUpdateRequestTagsMap = {
+export type UpdateBatchDeploymentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchDeploymentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBatchDeploymentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchDeploymentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBatchDeploymentRequestTagsMap>;
 
 export interface UpdateBatchDeploymentRequest {
   /** The ID of the target subscription. */
@@ -17556,7 +17549,7 @@ export interface UpdateBatchDeploymentRequest {
   /** Additional attributes of the entity. */
   properties?: PartialBatchDeployment;
   /** Resource tags. */
-  tags?: BatchDeploymentsUpdateRequestTagsMap;
+  tags?: UpdateBatchDeploymentRequestTagsMap;
 }
 export const UpdateBatchDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -17566,7 +17559,7 @@ export const UpdateBatchDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
     endpointName: S.String.pipe(T.Label()),
     deploymentName: S.String.pipe(T.Label()),
     properties: S.optional(PartialBatchDeployment),
-    tags: S.optional(BatchDeploymentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateBatchDeploymentRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -17580,24 +17573,24 @@ export const UpdateBatchDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBatchDeploymentRequest>;
 
 /** Resource tags. */
-export type BatchDeploymentsUpdateResponseTagsMap = {
+export type UpdateBatchDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchDeploymentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBatchDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchDeploymentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBatchDeploymentResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type BatchDeploymentsUpdateResponseIdentity =
+export type UpdateBatchDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const BatchDeploymentsUpdateResponseIdentity =
+export const UpdateBatchDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type BatchDeploymentsUpdateResponseSku =
+export type UpdateBatchDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const BatchDeploymentsUpdateResponseSku =
+export const UpdateBatchDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface UpdateBatchDeploymentResponse {
@@ -17610,7 +17603,7 @@ export interface UpdateBatchDeploymentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BatchDeploymentsUpdateResponseTagsMap;
+  tags?: UpdateBatchDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -17628,7 +17621,7 @@ export const UpdateBatchDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BatchDeploymentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateBatchDeploymentResponseTagsMap),
     location: S.String,
     properties: BatchDeploymentProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -17640,13 +17633,13 @@ export const UpdateBatchDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBatchDeploymentResponse>;
 
 /** Resource tags. */
-export type BatchEndpointsUpdateRequestTagsMap = {
+export type UpdateBatchEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBatchEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchEndpointsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBatchEndpointRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type PartialManagedServiceIdentityType =
@@ -17694,7 +17687,7 @@ export interface UpdateBatchEndpointRequest {
   /** Name for the Batch Endpoint. */
   endpointName: string;
   /** Resource tags. */
-  tags?: BatchEndpointsUpdateRequestTagsMap;
+  tags?: UpdateBatchEndpointRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: PartialManagedServiceIdentity;
 }
@@ -17704,7 +17697,7 @@ export const UpdateBatchEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
-    tags: S.optional(BatchEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateBatchEndpointRequestTagsMap),
     identity: S.optional(PartialManagedServiceIdentity),
   }).pipe(
     T.Http({
@@ -17719,24 +17712,24 @@ export const UpdateBatchEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBatchEndpointRequest>;
 
 /** Resource tags. */
-export type BatchEndpointsUpdateResponseTagsMap = {
+export type UpdateBatchEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BatchEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBatchEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BatchEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBatchEndpointResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type BatchEndpointsUpdateResponseIdentity =
+export type UpdateBatchEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const BatchEndpointsUpdateResponseIdentity =
+export const UpdateBatchEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type BatchEndpointsUpdateResponseSku =
+export type UpdateBatchEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const BatchEndpointsUpdateResponseSku =
+export const UpdateBatchEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface UpdateBatchEndpointResponse {
@@ -17749,7 +17742,7 @@ export interface UpdateBatchEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BatchEndpointsUpdateResponseTagsMap;
+  tags?: UpdateBatchEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -17767,7 +17760,7 @@ export const UpdateBatchEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BatchEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateBatchEndpointResponseTagsMap),
     location: S.String,
     properties: BatchEndpointProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -17852,24 +17845,24 @@ export const UpdateComputeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateComputeRequest>;
 
 /** Contains resource tags defined as key/value pairs. */
-export type ComputeUpdateResponseTagsMap = {
+export type UpdateComputeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ComputeUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateComputeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ComputeUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateComputeResponseTagsMap>;
 
 /** The resource model definition representing SKU */
-export type ComputeUpdateResponseSku =
+export type UpdateComputeResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const ComputeUpdateResponseSku =
+export const UpdateComputeResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ComputeUpdateResponseIdentity =
+export type UpdateComputeResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const ComputeUpdateResponseIdentity =
+export const UpdateComputeResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 export interface UpdateComputeResponse {
@@ -17886,7 +17879,7 @@ export interface UpdateComputeResponse {
   /** Specifies the location of the resource. */
   location?: string;
   /** Contains resource tags defined as key/value pairs. */
-  tags?: ComputeUpdateResponseTagsMap | null;
+  tags?: UpdateComputeResponseTagsMap | null;
   /** The resource model definition representing SKU */
   sku?: BatchDeploymentsCreateOrUpdateResponseSku;
   /** Managed service identity (system assigned and/or user assigned identities) */
@@ -17900,7 +17893,7 @@ export const UpdateComputeResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(Compute),
     location: S.optional(S.String),
-    tags: S.optional(S.NullOr(ComputeUpdateResponseTagsMap)),
+    tags: S.optional(S.NullOr(UpdateComputeResponseTagsMap)),
     sku: S.optional(BatchDeploymentsCreateOrUpdateResponseSku),
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
   }),
@@ -17909,13 +17902,13 @@ export const UpdateComputeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateComputeResponse>;
 
 /** Resource tags. */
-export type OnlineDeploymentsUpdateRequestTagsMap = {
+export type UpdateOnlineDeploymentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OnlineDeploymentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOnlineDeploymentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OnlineDeploymentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateOnlineDeploymentRequestTagsMap>;
 
 /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
 export type PartialSkuTier = "Free" | "Basic" | "Standard" | "Premium";
@@ -17956,7 +17949,7 @@ export interface UpdateOnlineDeploymentRequest {
   /** Inference Endpoint Deployment name. */
   deploymentName: string;
   /** Resource tags. */
-  tags?: OnlineDeploymentsUpdateRequestTagsMap;
+  tags?: UpdateOnlineDeploymentRequestTagsMap;
   /** Sku details required for ARM contract for Autoscaling. */
   sku?: PartialSku;
 }
@@ -17967,7 +17960,7 @@ export const UpdateOnlineDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
     workspaceName: S.String.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
     deploymentName: S.String.pipe(T.Label()),
-    tags: S.optional(OnlineDeploymentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateOnlineDeploymentRequestTagsMap),
     sku: S.optional(PartialSku),
   }).pipe(
     T.Http({
@@ -17982,24 +17975,24 @@ export const UpdateOnlineDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOnlineDeploymentRequest>;
 
 /** Resource tags. */
-export type OnlineDeploymentsUpdateResponseTagsMap = {
+export type UpdateOnlineDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OnlineDeploymentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOnlineDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OnlineDeploymentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateOnlineDeploymentResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type OnlineDeploymentsUpdateResponseIdentity =
+export type UpdateOnlineDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const OnlineDeploymentsUpdateResponseIdentity =
+export const UpdateOnlineDeploymentResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type OnlineDeploymentsUpdateResponseSku =
+export type UpdateOnlineDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const OnlineDeploymentsUpdateResponseSku =
+export const UpdateOnlineDeploymentResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface UpdateOnlineDeploymentResponse {
@@ -18012,7 +18005,7 @@ export interface UpdateOnlineDeploymentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OnlineDeploymentsUpdateResponseTagsMap;
+  tags?: UpdateOnlineDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -18030,7 +18023,7 @@ export const UpdateOnlineDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OnlineDeploymentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateOnlineDeploymentResponseTagsMap),
     location: S.String,
     properties: OnlineDeploymentProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -18042,13 +18035,13 @@ export const UpdateOnlineDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOnlineDeploymentResponse>;
 
 /** Resource tags. */
-export type OnlineEndpointsUpdateRequestTagsMap = {
+export type UpdateOnlineEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OnlineEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOnlineEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OnlineEndpointsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateOnlineEndpointRequestTagsMap>;
 
 export interface UpdateOnlineEndpointRequest {
   /** The ID of the target subscription. */
@@ -18060,7 +18053,7 @@ export interface UpdateOnlineEndpointRequest {
   /** Online Endpoint name. */
   endpointName: string;
   /** Resource tags. */
-  tags?: OnlineEndpointsUpdateRequestTagsMap;
+  tags?: UpdateOnlineEndpointRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: PartialManagedServiceIdentity;
 }
@@ -18070,7 +18063,7 @@ export const UpdateOnlineEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     endpointName: S.String.pipe(T.Label()),
-    tags: S.optional(OnlineEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateOnlineEndpointRequestTagsMap),
     identity: S.optional(PartialManagedServiceIdentity),
   }).pipe(
     T.Http({
@@ -18085,24 +18078,24 @@ export const UpdateOnlineEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOnlineEndpointRequest>;
 
 /** Resource tags. */
-export type OnlineEndpointsUpdateResponseTagsMap = {
+export type UpdateOnlineEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OnlineEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOnlineEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OnlineEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateOnlineEndpointResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type OnlineEndpointsUpdateResponseIdentity =
+export type UpdateOnlineEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const OnlineEndpointsUpdateResponseIdentity =
+export const UpdateOnlineEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type OnlineEndpointsUpdateResponseSku =
+export type UpdateOnlineEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const OnlineEndpointsUpdateResponseSku =
+export const UpdateOnlineEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface UpdateOnlineEndpointResponse {
@@ -18115,7 +18108,7 @@ export interface UpdateOnlineEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OnlineEndpointsUpdateResponseTagsMap;
+  tags?: UpdateOnlineEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -18133,7 +18126,7 @@ export const UpdateOnlineEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OnlineEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateOnlineEndpointResponseTagsMap),
     location: S.String,
     properties: OnlineEndpointProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -18167,24 +18160,24 @@ export const QuotaBaseProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<QuotaBaseProperties>;
 
 /** The list for update quota. */
-export type QuotasUpdateRequestValueList = Array<QuotaBaseProperties>;
-export const QuotasUpdateRequestValueList = /*@__PURE__*/ S.Array(
+export type UpdateQuotasRequestValueList = Array<QuotaBaseProperties>;
+export const UpdateQuotasRequestValueList = /*@__PURE__*/ S.Array(
   QuotaBaseProperties,
-) as any as S.Schema<QuotasUpdateRequestValueList>;
+) as any as S.Schema<UpdateQuotasRequestValueList>;
 
-export interface UpdateQuotaRequest {
+export interface UpdateQuotasRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The location name. */
   location: string;
   /** The list for update quota. */
-  value?: QuotasUpdateRequestValueList;
+  value?: UpdateQuotasRequestValueList;
 }
-export const UpdateQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
-    value: S.optional(QuotasUpdateRequestValueList),
+    value: S.optional(UpdateQuotasRequestValueList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -18194,8 +18187,8 @@ export const UpdateQuotaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateQuotaRequest",
-}) as any as S.Schema<UpdateQuotaRequest>;
+  identifier: "UpdateQuotasRequest",
+}) as any as S.Schema<UpdateQuotasRequest>;
 
 /** Status of update workspace quota. */
 export type Status =
@@ -18263,13 +18256,13 @@ export const RegistryPartialManagedServiceIdentityInput =
   BatchDeploymentsCreateOrUpdateRequestIdentity;
 
 /** Resource tags. */
-export type RegistriesUpdateRequestTagsMap = {
+export type UpdateRegistryRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const RegistriesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRegistryRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RegistriesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateRegistryRequestTagsMap>;
 
 export interface UpdateRegistryRequest {
   /** The ID of the target subscription. */
@@ -18283,7 +18276,7 @@ export interface UpdateRegistryRequest {
   /** Sku details required for ARM contract for Autoscaling. */
   sku?: PartialSku;
   /** Resource tags. */
-  tags?: RegistriesUpdateRequestTagsMap;
+  tags?: UpdateRegistryRequestTagsMap;
 }
 export const UpdateRegistryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -18292,7 +18285,7 @@ export const UpdateRegistryRequest = /*@__PURE__*/ S.suspend(() =>
     registryName: S.String.pipe(T.Label()),
     identity: S.optional(BatchDeploymentsCreateOrUpdateRequestIdentity),
     sku: S.optional(PartialSku),
-    tags: S.optional(RegistriesUpdateRequestTagsMap),
+    tags: S.optional(UpdateRegistryRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -18306,24 +18299,24 @@ export const UpdateRegistryRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRegistryRequest>;
 
 /** Resource tags. */
-export type RegistriesUpdateResponseTagsMap = {
+export type UpdateRegistryResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RegistriesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRegistryResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RegistriesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateRegistryResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type RegistriesUpdateResponseIdentity =
+export type UpdateRegistryResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const RegistriesUpdateResponseIdentity =
+export const UpdateRegistryResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type RegistriesUpdateResponseSku =
+export type UpdateRegistryResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const RegistriesUpdateResponseSku =
+export const UpdateRegistryResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface UpdateRegistryResponse {
@@ -18336,7 +18329,7 @@ export interface UpdateRegistryResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RegistriesUpdateResponseTagsMap;
+  tags?: UpdateRegistryResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -18354,7 +18347,7 @@ export const UpdateRegistryResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RegistriesUpdateResponseTagsMap),
+    tags: S.optional(UpdateRegistryResponseTagsMap),
     location: S.String,
     properties: RegistryProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -18366,13 +18359,13 @@ export const UpdateRegistryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRegistryResponse>;
 
 /** Resource tags. */
-export type ServerlessEndpointsUpdateRequestTagsMap = {
+export type UpdateServerlessEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerlessEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServerlessEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServerlessEndpointsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServerlessEndpointRequestTagsMap>;
 
 export interface UpdateServerlessEndpointRequest {
   /** The ID of the target subscription. */
@@ -18384,7 +18377,7 @@ export interface UpdateServerlessEndpointRequest {
   /** Serverless Endpoint name. */
   name: string;
   /** Resource tags. */
-  tags?: ServerlessEndpointsUpdateRequestTagsMap;
+  tags?: UpdateServerlessEndpointRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: PartialManagedServiceIdentity;
   /** Sku details required for ARM contract for Autoscaling. */
@@ -18396,7 +18389,7 @@ export const UpdateServerlessEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    tags: S.optional(ServerlessEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateServerlessEndpointRequestTagsMap),
     identity: S.optional(PartialManagedServiceIdentity),
     sku: S.optional(PartialSku),
   }).pipe(
@@ -18412,24 +18405,24 @@ export const UpdateServerlessEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateServerlessEndpointRequest>;
 
 /** Resource tags. */
-export type ServerlessEndpointsUpdateResponseTagsMap = {
+export type UpdateServerlessEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServerlessEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServerlessEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServerlessEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateServerlessEndpointResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ServerlessEndpointsUpdateResponseIdentity =
+export type UpdateServerlessEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const ServerlessEndpointsUpdateResponseIdentity =
+export const UpdateServerlessEndpointResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ServerlessEndpointsUpdateResponseSku =
+export type UpdateServerlessEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const ServerlessEndpointsUpdateResponseSku =
+export const UpdateServerlessEndpointResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
 export interface UpdateServerlessEndpointResponse {
@@ -18442,7 +18435,7 @@ export interface UpdateServerlessEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ServerlessEndpointsUpdateResponseTagsMap;
+  tags?: UpdateServerlessEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** [Required] Additional attributes of the entity. */
@@ -18460,7 +18453,7 @@ export const UpdateServerlessEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ServerlessEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateServerlessEndpointResponseTagsMap),
     location: S.String,
     properties: ServerlessEndpointProperties,
     identity: S.optional(BatchDeploymentsCreateOrUpdateResponseIdentity),
@@ -18472,9 +18465,9 @@ export const UpdateServerlessEndpointResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateServerlessEndpointResponse>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WorkspacesUpdateRequestIdentity =
+export type UpdateWorkspaceRequestIdentity =
   BatchDeploymentsCreateOrUpdateRequestIdentity;
-export const WorkspacesUpdateRequestIdentity =
+export const UpdateWorkspaceRequestIdentity =
   BatchDeploymentsCreateOrUpdateRequestIdentity;
 
 export interface EncryptionKeyVaultUpdateProperties {
@@ -18595,19 +18588,19 @@ export const WorkspacePropertiesUpdateParametersInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<WorkspacePropertiesUpdateParametersInput>;
 
 /** The resource model definition representing SKU */
-export type WorkspacesUpdateRequestSku =
+export type UpdateWorkspaceRequestSku =
   BatchDeploymentsCreateOrUpdateRequestSku;
-export const WorkspacesUpdateRequestSku =
+export const UpdateWorkspaceRequestSku =
   BatchDeploymentsCreateOrUpdateRequestSku;
 
 /** The resource tags for the machine learning workspace. */
-export type WorkspacesUpdateRequestTagsMap = {
+export type UpdateWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
 
 export interface UpdateWorkspaceRequest {
   /** The ID of the target subscription. */
@@ -18623,7 +18616,7 @@ export interface UpdateWorkspaceRequest {
   /** The resource model definition representing SKU */
   sku?: BatchDeploymentsCreateOrUpdateRequestSku;
   /** The resource tags for the machine learning workspace. */
-  tags?: WorkspacesUpdateRequestTagsMap;
+  tags?: UpdateWorkspaceRequestTagsMap;
 }
 export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -18633,7 +18626,7 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(BatchDeploymentsCreateOrUpdateRequestIdentity),
     properties: S.optional(WorkspacePropertiesUpdateParametersInput),
     sku: S.optional(BatchDeploymentsCreateOrUpdateRequestSku),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -18647,24 +18640,24 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkspaceRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type WorkspacesUpdateResponseIdentity =
+export type UpdateWorkspaceResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
-export const WorkspacesUpdateResponseIdentity =
+export const UpdateWorkspaceResponseIdentity =
   BatchDeploymentsCreateOrUpdateResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type WorkspacesUpdateResponseSku =
+export type UpdateWorkspaceResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
-export const WorkspacesUpdateResponseSku =
+export const UpdateWorkspaceResponseSku =
   BatchDeploymentsCreateOrUpdateResponseSku;
 
-export type WorkspacesUpdateResponseTagsMap = {
+export type UpdateWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
 
 export interface UpdateWorkspaceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -18683,7 +18676,7 @@ export interface UpdateWorkspaceResponse {
   location?: string;
   /** The resource model definition representing SKU */
   sku?: BatchDeploymentsCreateOrUpdateResponseSku;
-  tags?: WorkspacesUpdateResponseTagsMap;
+  tags?: UpdateWorkspaceResponseTagsMap;
 }
 export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -18696,7 +18689,7 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     kind: S.optional(S.String),
     location: S.optional(S.String),
     sku: S.optional(BatchDeploymentsCreateOrUpdateResponseSku),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateWorkspaceResponse",
@@ -19362,6 +19355,21 @@ export const BatchEndpointsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CancelJobError = AzureOpError;
+/** Cancels a Job (asynchronous). Cancels a Job (asynchronous). */
+export const CancelJob: API.OperationMethod<
+  CancelJobRequest,
+  CancelJobResponse,
+  CancelJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelJobRequest,
+  output: CancelJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CapabilityHostsCreateOrUpdateError = AzureOpError;
 /** Create or update capabilityHost. Create or update capabilityHost. */
 export const CapabilityHostsCreateOrUpdate: API.OperationMethod<
@@ -19422,21 +19430,6 @@ export const CodeVersionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CodeVersionsPublishError = AzureOpError;
-/** Publish version asset into registry. Publish version asset into registry. */
-export const CodeVersionsPublish: API.OperationMethod<
-  CodeVersionsPublishRequest,
-  CodeVersionsPublishResponse,
-  CodeVersionsPublishError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CodeVersionsPublishRequest,
-  output: CodeVersionsPublishResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ComponentContainersCreateOrUpdateError = AzureOpError;
 /** Create or update container. Create or update container. */
 export const ComponentContainersCreateOrUpdate: API.OperationMethod<
@@ -19462,21 +19455,6 @@ export const ComponentVersionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ComponentVersionsCreateOrUpdateRequest,
   output: ComponentVersionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ComponentVersionsPublishError = AzureOpError;
-/** Publish version asset into registry. Publish version asset into registry. */
-export const ComponentVersionsPublish: API.OperationMethod<
-  ComponentVersionsPublishRequest,
-  ComponentVersionsPublishResponse,
-  ComponentVersionsPublishError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ComponentVersionsPublishRequest,
-  output: ComponentVersionsPublishResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -19552,21 +19530,6 @@ export const DataVersionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DataVersionsCreateOrUpdateRequest,
   output: DataVersionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataVersionsPublishError = AzureOpError;
-/** Publish version asset into registry. Publish version asset into registry. */
-export const DataVersionsPublish: API.OperationMethod<
-  DataVersionsPublishRequest,
-  DataVersionsPublishResponse,
-  DataVersionsPublishError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataVersionsPublishRequest,
-  output: DataVersionsPublishResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -19842,16 +19805,16 @@ export const DeleteJob: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteManagedNetworkSettingRuleError = AzureOpError;
+export type DeleteManagedNetworkSettingsRuleError = AzureOpError;
 /** Deletes an outbound rule from the managed network of a machine learning workspace. Deletes an outbound rule from the managed network of a machine learning workspace. */
-export const DeleteManagedNetworkSettingRule: API.OperationMethod<
-  DeleteManagedNetworkSettingRuleRequest,
-  DeleteManagedNetworkSettingRuleResponse,
-  DeleteManagedNetworkSettingRuleError,
+export const DeleteManagedNetworkSettingsRule: API.OperationMethod<
+  DeleteManagedNetworkSettingsRuleRequest,
+  DeleteManagedNetworkSettingsRuleResponse,
+  DeleteManagedNetworkSettingsRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteManagedNetworkSettingRuleRequest,
-  output: DeleteManagedNetworkSettingRuleResponse,
+  input: DeleteManagedNetworkSettingsRuleRequest,
+  output: DeleteManagedNetworkSettingsRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -20197,21 +20160,6 @@ export const EnvironmentVersionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EnvironmentVersionsCreateOrUpdateRequest,
   output: EnvironmentVersionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentVersionsPublishError = AzureOpError;
-/** Publish version asset into registry. Publish version asset into registry. */
-export const EnvironmentVersionsPublish: API.OperationMethod<
-  EnvironmentVersionsPublishRequest,
-  EnvironmentVersionsPublishResponse,
-  EnvironmentVersionsPublishError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentVersionsPublishRequest,
-  output: EnvironmentVersionsPublishResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -20577,16 +20525,16 @@ export const GetJob: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagedNetworkSettingRuleError = AzureOpError;
+export type GetManagedNetworkSettingsRuleError = AzureOpError;
 /** Gets an outbound rule from the managed network of a machine learning workspace. Gets an outbound rule from the managed network of a machine learning workspace. */
-export const GetManagedNetworkSettingRule: API.OperationMethod<
-  GetManagedNetworkSettingRuleRequest,
-  GetManagedNetworkSettingRuleResponse,
-  GetManagedNetworkSettingRuleError,
+export const GetManagedNetworkSettingsRule: API.OperationMethod<
+  GetManagedNetworkSettingsRuleRequest,
+  GetManagedNetworkSettingsRuleResponse,
+  GetManagedNetworkSettingsRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedNetworkSettingRuleRequest,
-  output: GetManagedNetworkSettingRuleResponse,
+  input: GetManagedNetworkSettingsRuleRequest,
+  output: GetManagedNetworkSettingsRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -20652,15 +20600,15 @@ export const GetOnlineDeployment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetOnlineDeploymentLogError = AzureOpError;
+export type GetOnlineDeploymentLogsError = AzureOpError;
 /** Polls an Endpoint operation. Polls an Endpoint operation. */
-export const GetOnlineDeploymentLog: API.OperationMethod<
-  GetOnlineDeploymentLogRequest,
+export const GetOnlineDeploymentLogs: API.OperationMethod<
+  GetOnlineDeploymentLogsRequest,
   DeploymentLogs,
-  GetOnlineDeploymentLogError,
+  GetOnlineDeploymentLogsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetOnlineDeploymentLogRequest,
+  input: GetOnlineDeploymentLogsRequest,
   output: DeploymentLogs,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -20802,15 +20750,15 @@ export const GetRegistryDataContainer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetRegistryDataReferenceBlobReferenceSasError = AzureOpError;
+export type GetRegistryDataReferenceBlobReferenceSASError = AzureOpError;
 /** Get blob reference SAS Uri. Get blob reference SAS Uri. */
-export const GetRegistryDataReferenceBlobReferenceSas: API.OperationMethod<
-  GetRegistryDataReferenceBlobReferenceSasRequest,
+export const GetRegistryDataReferenceBlobReferenceSAS: API.OperationMethod<
+  GetRegistryDataReferenceBlobReferenceSASRequest,
   GetBlobReferenceSASResponseDto,
-  GetRegistryDataReferenceBlobReferenceSasError,
+  GetRegistryDataReferenceBlobReferenceSASError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetRegistryDataReferenceBlobReferenceSasRequest,
+  input: GetRegistryDataReferenceBlobReferenceSASRequest,
   output: GetBlobReferenceSASResponseDto,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -20947,21 +20895,6 @@ export const GetWorkspaceConnection: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetWorkspaceConnectionRequest,
   output: GetWorkspaceConnectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobsCancelError = AzureOpError;
-/** Cancels a Job (asynchronous). Cancels a Job (asynchronous). */
-export const JobsCancel: API.OperationMethod<
-  JobsCancelRequest,
-  JobsCancelResponse,
-  JobsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsCancelRequest,
-  output: JobsCancelResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21312,15 +21245,15 @@ export const ListJobs: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListManagedNetworkSettingRuleError = AzureOpError;
+export type ListManagedNetworkSettingsRuleError = AzureOpError;
 /** Lists the managed network outbound rules for a machine learning workspace. Lists the managed network outbound rules for a machine learning workspace. */
-export const ListManagedNetworkSettingRule: API.OperationMethod<
-  ListManagedNetworkSettingRuleRequest,
+export const ListManagedNetworkSettingsRule: API.OperationMethod<
+  ListManagedNetworkSettingsRuleRequest,
   OutboundRuleListResult,
-  ListManagedNetworkSettingRuleError,
+  ListManagedNetworkSettingsRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListManagedNetworkSettingRuleRequest,
+  input: ListManagedNetworkSettingsRuleRequest,
   output: OutboundRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -21867,15 +21800,16 @@ export const ListWorkspaceNotebookKeys: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListWorkspaceOutboundNetworkDependencyEndpointsError = AzureOpError;
+export type ListWorkspaceOutboundNetworkDependenciesEndpointsError =
+  AzureOpError;
 /** Called by Client (Portal, CLI, etc) to get a list of all external outbound dependencies (FQDNs) programmatically. Called by Client (Portal, CLI, etc) to get a list of all external outbound dependencies (FQDNs) programmatically. */
-export const ListWorkspaceOutboundNetworkDependencyEndpoints: API.OperationMethod<
-  ListWorkspaceOutboundNetworkDependencyEndpointsRequest,
+export const ListWorkspaceOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListWorkspaceOutboundNetworkDependenciesEndpointsRequest,
   ExternalFQDNResponse,
-  ListWorkspaceOutboundNetworkDependencyEndpointsError,
+  ListWorkspaceOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWorkspaceOutboundNetworkDependencyEndpointsRequest,
+  input: ListWorkspaceOutboundNetworkDependenciesEndpointsRequest,
   output: ExternalFQDNResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -21892,21 +21826,6 @@ export const ListWorkspaceStorageAccountKeys: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWorkspaceStorageAccountKeysRequest,
   output: ListStorageAccountKeysResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNetworkProvisionsProvisionManagedNetworkError = AzureOpError;
-/** Provisions the managed network of a machine learning workspace. Provisions the managed network of a machine learning workspace. */
-export const ManagedNetworkProvisionsProvisionManagedNetwork: API.OperationMethod<
-  ManagedNetworkProvisionsProvisionManagedNetworkRequest,
-  ManagedNetworkProvisionStatus,
-  ManagedNetworkProvisionsProvisionManagedNetworkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkProvisionsProvisionManagedNetworkRequest,
-  output: ManagedNetworkProvisionStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21972,21 +21891,6 @@ export const ModelVersionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ModelVersionsPublishError = AzureOpError;
-/** Publish version asset into registry. Publish version asset into registry. */
-export const ModelVersionsPublish: API.OperationMethod<
-  ModelVersionsPublishRequest,
-  ModelVersionsPublishResponse,
-  ModelVersionsPublishError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ModelVersionsPublishRequest,
-  output: ModelVersionsPublishResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type OnlineDeploymentsCreateOrUpdateError = AzureOpError;
 /** Create or update Inference Endpoint Deployment (asynchronous). Create or update Inference Endpoint Deployment (asynchronous). */
 export const OnlineDeploymentsCreateOrUpdate: API.OperationMethod<
@@ -22017,21 +21921,6 @@ export const OnlineEndpointsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OnlineEndpointsRegenerateKeysError = AzureOpError;
-/** Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). */
-export const OnlineEndpointsRegenerateKeys: API.OperationMethod<
-  OnlineEndpointsRegenerateKeysRequest,
-  OnlineEndpointsRegenerateKeysResponse,
-  OnlineEndpointsRegenerateKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OnlineEndpointsRegenerateKeysRequest,
-  output: OnlineEndpointsRegenerateKeysResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateEndpointConnectionsCreateOrUpdateError = AzureOpError;
 /** Called by end-users to approve or reject a PE connection. This method must validate and forward the call to NRP. Called by end-users to approve or reject a PE connection. This method must validate and forward the call to NRP. */
 export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
@@ -22047,6 +21936,126 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ProvisionManagedNetworkProvisionManagedNetworkError = AzureOpError;
+/** Provisions the managed network of a machine learning workspace. Provisions the managed network of a machine learning workspace. */
+export const ProvisionManagedNetworkProvisionManagedNetwork: API.OperationMethod<
+  ProvisionManagedNetworkProvisionManagedNetworkRequest,
+  ManagedNetworkProvisionStatus,
+  ProvisionManagedNetworkProvisionManagedNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ProvisionManagedNetworkProvisionManagedNetworkRequest,
+  output: ManagedNetworkProvisionStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishCodeVersionError = AzureOpError;
+/** Publish version asset into registry. Publish version asset into registry. */
+export const PublishCodeVersion: API.OperationMethod<
+  PublishCodeVersionRequest,
+  PublishCodeVersionResponse,
+  PublishCodeVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishCodeVersionRequest,
+  output: PublishCodeVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishComponentVersionError = AzureOpError;
+/** Publish version asset into registry. Publish version asset into registry. */
+export const PublishComponentVersion: API.OperationMethod<
+  PublishComponentVersionRequest,
+  PublishComponentVersionResponse,
+  PublishComponentVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishComponentVersionRequest,
+  output: PublishComponentVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishDataVersionError = AzureOpError;
+/** Publish version asset into registry. Publish version asset into registry. */
+export const PublishDataVersion: API.OperationMethod<
+  PublishDataVersionRequest,
+  PublishDataVersionResponse,
+  PublishDataVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishDataVersionRequest,
+  output: PublishDataVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishEnvironmentVersionError = AzureOpError;
+/** Publish version asset into registry. Publish version asset into registry. */
+export const PublishEnvironmentVersion: API.OperationMethod<
+  PublishEnvironmentVersionRequest,
+  PublishEnvironmentVersionResponse,
+  PublishEnvironmentVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishEnvironmentVersionRequest,
+  output: PublishEnvironmentVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishModelVersionError = AzureOpError;
+/** Publish version asset into registry. Publish version asset into registry. */
+export const PublishModelVersion: API.OperationMethod<
+  PublishModelVersionRequest,
+  PublishModelVersionResponse,
+  PublishModelVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishModelVersionRequest,
+  output: PublishModelVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateOnlineEndpointKeysError = AzureOpError;
+/** Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). */
+export const RegenerateOnlineEndpointKeys: API.OperationMethod<
+  RegenerateOnlineEndpointKeysRequest,
+  RegenerateOnlineEndpointKeysResponse,
+  RegenerateOnlineEndpointKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateOnlineEndpointKeysRequest,
+  output: RegenerateOnlineEndpointKeysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateServerlessEndpointKeysError = AzureOpError;
+/** Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). */
+export const RegenerateServerlessEndpointKeys: API.OperationMethod<
+  RegenerateServerlessEndpointKeysRequest,
+  EndpointAuthKeys,
+  RegenerateServerlessEndpointKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateServerlessEndpointKeysRequest,
+  output: EndpointAuthKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RegistriesCreateOrUpdateError = AzureOpError;
 /** Create or update registry Create or update registry */
 export const RegistriesCreateOrUpdate: API.OperationMethod<
@@ -22057,21 +22066,6 @@ export const RegistriesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RegistriesCreateOrUpdateRequest,
   output: RegistriesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistriesRemoveRegionsError = AzureOpError;
-/** Remove regions from registry Remove regions from registry */
-export const RegistriesRemoveRegions: API.OperationMethod<
-  RegistriesRemoveRegionsRequest,
-  RegistriesRemoveRegionsResponse,
-  RegistriesRemoveRegionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistriesRemoveRegionsRequest,
-  output: RegistriesRemoveRegionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22275,6 +22269,21 @@ export const RegistryModelVersionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RemoveRegistryRegionsError = AzureOpError;
+/** Remove regions from registry Remove regions from registry */
+export const RemoveRegistryRegions: API.OperationMethod<
+  RemoveRegistryRegionsRequest,
+  RemoveRegistryRegionsResponse,
+  RemoveRegistryRegionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveRegistryRegionsRequest,
+  output: RemoveRegistryRegionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RestartComputeError = AzureOpError;
 /** Posts a restart action to a compute instance */
 export const RestartCompute: API.OperationMethod<
@@ -22315,21 +22324,6 @@ export const ServerlessEndpointsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ServerlessEndpointsCreateOrUpdateRequest,
   output: ServerlessEndpointsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServerlessEndpointsRegenerateKeysError = AzureOpError;
-/** Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). Regenerate EndpointAuthKeys for an Endpoint using Key-based authentication (asynchronous). */
-export const ServerlessEndpointsRegenerateKeys: API.OperationMethod<
-  ServerlessEndpointsRegenerateKeysRequest,
-  EndpointAuthKeys,
-  ServerlessEndpointsRegenerateKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServerlessEndpointsRegenerateKeysRequest,
-  output: EndpointAuthKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22440,15 +22434,15 @@ export const UpdateOnlineEndpoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateQuotaError = AzureOpError;
+export type UpdateQuotasError = AzureOpError;
 /** Update quota for each VM family in workspace. */
-export const UpdateQuota: API.OperationMethod<
-  UpdateQuotaRequest,
+export const UpdateQuotas: API.OperationMethod<
+  UpdateQuotasRequest,
   UpdateWorkspaceQuotasResult,
-  UpdateQuotaError,
+  UpdateQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateQuotaRequest,
+  input: UpdateQuotasRequest,
   output: UpdateWorkspaceQuotasResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

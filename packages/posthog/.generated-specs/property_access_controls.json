@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.property_access_controls#PropertyAccessControlsRetrieveRequest": {
+    "com.posthog.property_access_controls#GetPropertyAccessControlRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -170,10 +171,10 @@
         "smithy.api#documentation": "Available access levels that can be assigned."
       }
     },
-    "com.posthog.property_access_controls#PropertyAccessControlsRetrieve": {
+    "com.posthog.property_access_controls#GetPropertyAccessControl": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.property_access_controls#PropertyAccessControlsRetrieveRequest"
+        "target": "com.posthog.property_access_controls#GetPropertyAccessControlRequest"
       },
       "output": {
         "target": "com.posthog.property_access_controls#PropertyAccessControlState"
@@ -308,10 +309,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.property_access_controls#PropertyAccessControlsRetrieve"
+          "target": "com.posthog.property_access_controls#CreatePropertyAccessControl"
         },
         {
-          "target": "com.posthog.property_access_controls#CreatePropertyAccessControl"
+          "target": "com.posthog.property_access_controls#GetPropertyAccessControl"
         },
         {
           "target": "com.posthog.property_access_controls#PropertyAccessControlsDestroy"

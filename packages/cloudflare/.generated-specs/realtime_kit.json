@@ -165,7 +165,8 @@
         "alias": "getOrgAnalyticsLivestream",
         "target": "getOrgAnalyticsAnalytic"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.realtime_kit#ActiveSessionCreatePollRequestOptionsList": {
@@ -1458,7 +1459,7 @@
         }
       }
     },
-    "com.cloudflare.realtime_kit#GetOrgLivestreamAnalyticRequest": {
+    "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalyticsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1611,7 +1612,7 @@
         }
       }
     },
-    "com.cloudflare.realtime_kit#GetOrgLivestreamAnalyticResponse": {
+    "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalyticsResponse": {
       "type": "structure",
       "members": {
         "data": {
@@ -1623,13 +1624,13 @@
         "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
       }
     },
-    "com.cloudflare.realtime_kit#GetOrgLivestreamAnalytic": {
+    "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalytics": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.realtime_kit#GetOrgLivestreamAnalyticRequest"
+        "target": "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalyticsRequest"
       },
       "output": {
-        "target": "com.cloudflare.realtime_kit#GetOrgLivestreamAnalyticResponse"
+        "target": "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalyticsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -20793,169 +20794,169 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.realtime_kit#ActiveSessionCreatePoll"
+          "target": "com.cloudflare.realtime_kit#AddParticipantMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#ActiveSessionGetActiveSession"
+          "target": "com.cloudflare.realtime_kit#CreateIndependentLivestreamLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#ActiveSessionKickAllParticipants"
+          "target": "com.cloudflare.realtime_kit#CreateMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#ActiveSessionKickParticipants"
+          "target": "com.cloudflare.realtime_kit#CreatePollActiveSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#AnalyticsGetOrgAnalytics"
+          "target": "com.cloudflare.realtime_kit#CreatePreset"
         },
         {
-          "target": "com.cloudflare.realtime_kit#AppsGet"
+          "target": "com.cloudflare.realtime_kit#CreateWebhookWebhook"
         },
         {
-          "target": "com.cloudflare.realtime_kit#AppsPost"
+          "target": "com.cloudflare.realtime_kit#DeleteMeetingParticipantMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsCreateIndependentLivestream"
+          "target": "com.cloudflare.realtime_kit#DeletePreset"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetActiveLivestreamsForLivestreamId"
+          "target": "com.cloudflare.realtime_kit#DeleteWebhookWebhook"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetAllLivestreams"
+          "target": "com.cloudflare.realtime_kit#EditParticipantMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetLivestreamAnalyticsComplete"
+          "target": "com.cloudflare.realtime_kit#EditWebhookWebhook"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetLivestreamAnalyticsDaywise"
+          "target": "com.cloudflare.realtime_kit#GenerateSummaryOfTranscriptsSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetLivestreamSessionDetailsForSessionId"
+          "target": "com.cloudflare.realtime_kit#GetActiveLivestreamsForLivestreamIdLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetLivestreamSessionForLivestreamId"
+          "target": "com.cloudflare.realtime_kit#GetActiveRecordingsRecording"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetMeetingActiveLivestreams"
+          "target": "com.cloudflare.realtime_kit#GetActiveSessionActiveSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#GetOrgLivestreamAnalytic"
+          "target": "com.cloudflare.realtime_kit#GetAllLivestreamsLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsStartLivestreamingAMeeting"
+          "target": "com.cloudflare.realtime_kit#GetApp"
         },
         {
-          "target": "com.cloudflare.realtime_kit#LivestreamsStopLivestreamingAMeeting"
+          "target": "com.cloudflare.realtime_kit#GetLivestreamAnalyticsCompleteLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsAddParticipant"
+          "target": "com.cloudflare.realtime_kit#GetLivestreamAnalyticsDaywiseLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsCreate"
+          "target": "com.cloudflare.realtime_kit#GetLivestreamSessionDetailsForSessionIdLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsDeleteMeetingParticipant"
+          "target": "com.cloudflare.realtime_kit#GetLivestreamSessionForLivestreamIdLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsEditParticipant"
+          "target": "com.cloudflare.realtime_kit#GetMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsGet"
+          "target": "com.cloudflare.realtime_kit#GetMeetingActiveLivestreamsLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsGetMeetingById"
+          "target": "com.cloudflare.realtime_kit#GetMeetingByIdMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsGetMeetingParticipant"
+          "target": "com.cloudflare.realtime_kit#GetMeetingParticipantMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsGetMeetingParticipants"
+          "target": "com.cloudflare.realtime_kit#GetMeetingParticipantsMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsRefreshParticipantToken"
+          "target": "com.cloudflare.realtime_kit#GetOneRecordingRecording"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsReplaceMeetingById"
+          "target": "com.cloudflare.realtime_kit#GetOrgAnalyticsAnalytic"
         },
         {
-          "target": "com.cloudflare.realtime_kit#MeetingsUpdateMeetingById"
+          "target": "com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#PresetsCreate"
+          "target": "com.cloudflare.realtime_kit#GetPreset"
         },
         {
-          "target": "com.cloudflare.realtime_kit#PresetsDelete"
+          "target": "com.cloudflare.realtime_kit#GetPresetByIdPreset"
         },
         {
-          "target": "com.cloudflare.realtime_kit#PresetsGet"
+          "target": "com.cloudflare.realtime_kit#GetRecordingsRecording"
         },
         {
-          "target": "com.cloudflare.realtime_kit#PresetsGetPresetById"
+          "target": "com.cloudflare.realtime_kit#GetSessionChatSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#PresetsUpdate"
+          "target": "com.cloudflare.realtime_kit#GetSessionDetailsSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#RecordingsGetActiveRecordings"
+          "target": "com.cloudflare.realtime_kit#GetSessionParticipantDetailsSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#RecordingsGetOneRecording"
+          "target": "com.cloudflare.realtime_kit#GetSessionParticipantsSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#RecordingsGetRecordings"
+          "target": "com.cloudflare.realtime_kit#GetSessionsSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#RecordingsPauseResumeStopRecording"
+          "target": "com.cloudflare.realtime_kit#GetSessionSummarySession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#RecordingsStartRecordings"
+          "target": "com.cloudflare.realtime_kit#GetSessionTranscriptsSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#RecordingsStartTrackRecording"
+          "target": "com.cloudflare.realtime_kit#GetWebhookByIdWebhook"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGenerateSummaryOfTranscripts"
+          "target": "com.cloudflare.realtime_kit#GetWebhooksWebhook"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetParticipantDataFromPeerId"
+          "target": "com.cloudflare.realtime_kit#KickAllParticipantsActiveSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetSessionChat"
+          "target": "com.cloudflare.realtime_kit#KickParticipantsActiveSession"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetSessionDetails"
+          "target": "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalytics"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetSessionParticipantDetails"
+          "target": "com.cloudflare.realtime_kit#PatchPreset"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetSessionParticipants"
+          "target": "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecording"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetSessionSummary"
+          "target": "com.cloudflare.realtime_kit#PostApp"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetSessionTranscripts"
+          "target": "com.cloudflare.realtime_kit#RefreshParticipantTokenMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#SessionsGetSessions"
+          "target": "com.cloudflare.realtime_kit#ReplaceMeetingByIdMeeting"
         },
         {
-          "target": "com.cloudflare.realtime_kit#WebhooksCreateWebhook"
+          "target": "com.cloudflare.realtime_kit#ReplaceWebhookWebhook"
         },
         {
-          "target": "com.cloudflare.realtime_kit#WebhooksDeleteWebhook"
+          "target": "com.cloudflare.realtime_kit#StartLivestreamingAMeetingLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#WebhooksEditWebhook"
+          "target": "com.cloudflare.realtime_kit#StartRecordingsRecording"
         },
         {
-          "target": "com.cloudflare.realtime_kit#WebhooksGetWebhookById"
+          "target": "com.cloudflare.realtime_kit#StartTrackRecordingRecording"
         },
         {
-          "target": "com.cloudflare.realtime_kit#WebhooksGetWebhooks"
+          "target": "com.cloudflare.realtime_kit#StopLivestreamingAMeetingLivestream"
         },
         {
-          "target": "com.cloudflare.realtime_kit#WebhooksReplaceWebhook"
+          "target": "com.cloudflare.realtime_kit#UpdateMeetingByIdMeeting"
         }
       ],
       "traits": {
@@ -24502,13 +24503,13 @@
         "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
       }
     },
-    "com.cloudflare.realtime_kit#StopPauseResumeRecordingRecording": {
+    "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecording": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.realtime_kit#StopPauseResumeRecordingRecordingRequest"
+        "target": "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingRequest"
       },
       "output": {
-        "target": "com.cloudflare.realtime_kit#StopPauseResumeRecordingRecordingResponse"
+        "target": "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -24520,7 +24521,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.realtime_kit#StopPauseResumeRecordingRecordingRequest": {
+    "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -24556,7 +24557,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.realtime_kit#StopPauseResumeRecordingRecordingResponse": {
+    "com.cloudflare.realtime_kit#PauseResumeStopRecordingRecordingResponse": {
       "type": "structure",
       "members": {
         "data": {

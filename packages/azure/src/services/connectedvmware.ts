@@ -13,24 +13,87 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface ClustersListRequest {
+/** Describes the properties of a Cluster. */
+export interface ClusterPropertiesInput {
+  /** Gets or sets the ARM Id of the vCenter resource in which this cluster resides. */
+  vCenterId?: string;
+  /** Gets or sets the vCenter MoRef (Managed Object Reference) ID for the cluster. */
+  moRefId?: string;
+  /** Gets or sets the inventory Item ID for the cluster. */
+  inventoryItemId?: string;
+}
+export const ClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vCenterId: S.optional(S.String),
+    moRefId: S.optional(S.String),
+    inventoryItemId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterPropertiesInput",
+}) as any as S.Schema<ClusterPropertiesInput>;
+
+/** The extended location. */
+export interface ExtendedLocation {
+  /** The extended location type. */
+  type?: string;
+  /** The extended location name. */
+  name?: string;
+}
+export const ExtendedLocation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExtendedLocation",
+}) as any as S.Schema<ExtendedLocation>;
+
+/** Gets or sets the Resource tags. */
+export type CreateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const CreateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateClusterRequestTagsMap>;
+
+export interface CreateClusterRequest {
   /** The Subscription ID. */
   subscriptionId: string;
+  /** The Resource Group Name. */
+  resourceGroupName: string;
+  /** Name of the cluster. */
+  clusterName: string;
+  /** Resource properties. */
+  properties: ClusterPropertiesInput;
+  /** Gets or sets the location. */
+  location: string;
+  /** Gets or sets the extended location. */
+  extendedLocation?: ExtendedLocation;
+  /** Gets or sets the Resource tags. */
+  tags?: CreateClusterRequestTagsMap;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind?: string;
 }
-export const ClustersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    properties: ClusterPropertiesInput,
+    location: S.String,
+    extendedLocation: S.optional(ExtendedLocation),
+    tags: S.optional(CreateClusterRequestTagsMap),
+    kind: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/clusters",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/clusters/{clusterName}",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "ClustersListRequest",
-}) as any as S.Schema<ClustersListRequest>;
+  identifier: "CreateClusterRequest",
+}) as any as S.Schema<CreateClusterRequest>;
 
 /** The resource status information. */
 export interface ResourceStatus {
@@ -140,22 +203,6 @@ export const ClusterProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterProperties",
 }) as any as S.Schema<ClusterProperties>;
 
-/** The extended location. */
-export interface ExtendedLocation {
-  /** The extended location type. */
-  type?: string;
-  /** The extended location name. */
-  name?: string;
-}
-export const ExtendedLocation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExtendedLocation",
-}) as any as S.Schema<ExtendedLocation>;
-
 /** The type of identity that created the resource. */
 export type ClusterSystemDataCreatedByType =
   | "User"
@@ -242,94 +289,6 @@ export const Cluster = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
 
-/** Array of Clusters */
-export type ClustersListValueList = Array<Cluster>;
-export const ClustersListValueList = /*@__PURE__*/ S.Array(
-  Cluster,
-) as any as S.Schema<ClustersListValueList>;
-
-/** List of Clusters. */
-export interface ClustersList {
-  /** Url to follow for getting next page of Clusters. */
-  nextLink?: string;
-  /** Array of Clusters */
-  value: ClustersListValueList;
-}
-export const ClustersList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: ClustersListValueList,
-  }),
-).annotate({ identifier: "ClustersList" }) as any as S.Schema<ClustersList>;
-
-/** Describes the properties of a Cluster. */
-export interface ClusterPropertiesInput {
-  /** Gets or sets the ARM Id of the vCenter resource in which this cluster resides. */
-  vCenterId?: string;
-  /** Gets or sets the vCenter MoRef (Managed Object Reference) ID for the cluster. */
-  moRefId?: string;
-  /** Gets or sets the inventory Item ID for the cluster. */
-  inventoryItemId?: string;
-}
-export const ClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vCenterId: S.optional(S.String),
-    moRefId: S.optional(S.String),
-    inventoryItemId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterPropertiesInput",
-}) as any as S.Schema<ClusterPropertiesInput>;
-
-/** Gets or sets the Resource tags. */
-export type ClustersCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersCreateRequestTagsMap>;
-
-export interface CreateClusterRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-  /** The Resource Group Name. */
-  resourceGroupName: string;
-  /** Name of the cluster. */
-  clusterName: string;
-  /** Resource properties. */
-  properties: ClusterPropertiesInput;
-  /** Gets or sets the location. */
-  location: string;
-  /** Gets or sets the extended location. */
-  extendedLocation?: ExtendedLocation;
-  /** Gets or sets the Resource tags. */
-  tags?: ClustersCreateRequestTagsMap;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind?: string;
-}
-export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    properties: ClusterPropertiesInput,
-    location: S.String,
-    extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ClustersCreateRequestTagsMap),
-    kind: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "CreateClusterRequest",
-}) as any as S.Schema<CreateClusterRequest>;
-
 /** Describes the properties of a Datastore. */
 export interface DatastorePropertiesInput {
   /** Gets or sets the ARM Id of the vCenter resource in which this datastore resides. */
@@ -350,13 +309,13 @@ export const DatastorePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DatastorePropertiesInput>;
 
 /** Gets or sets the Resource tags. */
-export type DatastoresCreateRequestTagsMap = {
+export type CreateDatastoreRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DatastoresCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateDatastoreRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DatastoresCreateRequestTagsMap>;
+) as any as S.Schema<CreateDatastoreRequestTagsMap>;
 
 export interface CreateDatastoreRequest {
   /** The Subscription ID. */
@@ -372,7 +331,7 @@ export interface CreateDatastoreRequest {
   /** Gets or sets the extended location. */
   extendedLocation?: ExtendedLocation;
   /** Gets or sets the Resource tags. */
-  tags?: DatastoresCreateRequestTagsMap;
+  tags?: CreateDatastoreRequestTagsMap;
   /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
   kind?: string;
 }
@@ -384,7 +343,7 @@ export const CreateDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
     properties: DatastorePropertiesInput,
     location: S.String,
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(DatastoresCreateRequestTagsMap),
+    tags: S.optional(CreateDatastoreRequestTagsMap),
     kind: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -550,11 +509,11 @@ export const HostPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<HostPropertiesInput>;
 
 /** Gets or sets the Resource tags. */
-export type HostsCreateRequestTagsMap = { [key: string]: string | undefined };
-export const HostsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateHostRequestTagsMap = { [key: string]: string | undefined };
+export const CreateHostRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HostsCreateRequestTagsMap>;
+) as any as S.Schema<CreateHostRequestTagsMap>;
 
 export interface CreateHostRequest {
   /** The Subscription ID. */
@@ -570,7 +529,7 @@ export interface CreateHostRequest {
   /** Gets or sets the extended location. */
   extendedLocation?: ExtendedLocation;
   /** Gets or sets the Resource tags. */
-  tags?: HostsCreateRequestTagsMap;
+  tags?: CreateHostRequestTagsMap;
   /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
   kind?: string;
 }
@@ -582,7 +541,7 @@ export const CreateHostRequest = /*@__PURE__*/ S.suspend(() =>
     properties: HostPropertiesInput,
     location: S.String,
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(HostsCreateRequestTagsMap),
+    tags: S.optional(CreateHostRequestTagsMap),
     kind: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -907,13 +866,13 @@ export const ResourcePoolPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResourcePoolPropertiesInput>;
 
 /** Gets or sets the Resource tags. */
-export type ResourcePoolsCreateRequestTagsMap = {
+export type CreateResourcePoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourcePoolsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateResourcePoolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcePoolsCreateRequestTagsMap>;
+) as any as S.Schema<CreateResourcePoolRequestTagsMap>;
 
 export interface CreateResourcePoolRequest {
   /** The Subscription ID. */
@@ -929,7 +888,7 @@ export interface CreateResourcePoolRequest {
   /** Gets or sets the extended location. */
   extendedLocation?: ExtendedLocation;
   /** Gets or sets the Resource tags. */
-  tags?: ResourcePoolsCreateRequestTagsMap;
+  tags?: CreateResourcePoolRequestTagsMap;
   /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
   kind?: string;
 }
@@ -941,7 +900,7 @@ export const CreateResourcePoolRequest = /*@__PURE__*/ S.suspend(() =>
     properties: ResourcePoolPropertiesInput,
     location: S.String,
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ResourcePoolsCreateRequestTagsMap),
+    tags: S.optional(CreateResourcePoolRequestTagsMap),
     kind: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -1163,13 +1122,11 @@ export const VCenterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VCenterPropertiesInput>;
 
 /** Gets or sets the Resource tags. */
-export type VCentersCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VCentersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateVCenterRequestTagsMap = { [key: string]: string | undefined };
+export const CreateVCenterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VCentersCreateRequestTagsMap>;
+) as any as S.Schema<CreateVCenterRequestTagsMap>;
 
 export interface CreateVCenterRequest {
   /** The Subscription ID. */
@@ -1185,7 +1142,7 @@ export interface CreateVCenterRequest {
   /** Gets or sets the extended location. */
   extendedLocation?: ExtendedLocation;
   /** Gets or sets the Resource tags. */
-  tags?: VCentersCreateRequestTagsMap;
+  tags?: CreateVCenterRequestTagsMap;
   /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
   kind?: string;
 }
@@ -1197,7 +1154,7 @@ export const CreateVCenterRequest = /*@__PURE__*/ S.suspend(() =>
     properties: VCenterPropertiesInput,
     location: S.String,
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(VCentersCreateRequestTagsMap),
+    tags: S.optional(CreateVCenterRequestTagsMap),
     kind: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -1364,14 +1321,14 @@ export const VirtualMachineTemplatePropertiesInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<VirtualMachineTemplatePropertiesInput>;
 
 /** Gets or sets the Resource tags. */
-export type VirtualMachineTemplatesCreateRequestTagsMap = {
+export type CreateVirtualMachineTemplateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineTemplatesCreateRequestTagsMap =
+export const CreateVirtualMachineTemplateRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineTemplatesCreateRequestTagsMap>;
+  ) as any as S.Schema<CreateVirtualMachineTemplateRequestTagsMap>;
 
 export interface CreateVirtualMachineTemplateRequest {
   /** The Subscription ID. */
@@ -1387,7 +1344,7 @@ export interface CreateVirtualMachineTemplateRequest {
   /** Gets or sets the extended location. */
   extendedLocation?: ExtendedLocation;
   /** Gets or sets the Resource tags. */
-  tags?: VirtualMachineTemplatesCreateRequestTagsMap;
+  tags?: CreateVirtualMachineTemplateRequestTagsMap;
   /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
   kind?: string;
 }
@@ -1399,7 +1356,7 @@ export const CreateVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
     properties: VirtualMachineTemplatePropertiesInput,
     location: S.String,
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(VirtualMachineTemplatesCreateRequestTagsMap),
+    tags: S.optional(CreateVirtualMachineTemplateRequestTagsMap),
     kind: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -1824,13 +1781,13 @@ export const VirtualNetworkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualNetworkPropertiesInput>;
 
 /** Gets or sets the Resource tags. */
-export type VirtualNetworksCreateRequestTagsMap = {
+export type CreateVirtualNetworkRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworksCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateVirtualNetworkRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworksCreateRequestTagsMap>;
+) as any as S.Schema<CreateVirtualNetworkRequestTagsMap>;
 
 export interface CreateVirtualNetworkRequest {
   /** The Subscription ID. */
@@ -1846,7 +1803,7 @@ export interface CreateVirtualNetworkRequest {
   /** Gets or sets the extended location. */
   extendedLocation?: ExtendedLocation;
   /** Gets or sets the Resource tags. */
-  tags?: VirtualNetworksCreateRequestTagsMap;
+  tags?: CreateVirtualNetworkRequestTagsMap;
   /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
   kind?: string;
 }
@@ -1858,7 +1815,7 @@ export const CreateVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
     properties: VirtualNetworkPropertiesInput,
     location: S.String,
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(VirtualNetworksCreateRequestTagsMap),
+    tags: S.optional(CreateVirtualNetworkRequestTagsMap),
     kind: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -2057,13 +2014,13 @@ export const GuestAgentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "GuestAgentPropertiesInput",
 }) as any as S.Schema<GuestAgentPropertiesInput>;
 
-export interface CreateVmInstanceGuestAgentRequest {
+export interface CreateVMInstanceGuestAgentRequest {
   /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
   resourceUri: string;
   /** Resource properties. */
   properties: GuestAgentPropertiesInput;
 }
-export const CreateVmInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateVMInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     properties: GuestAgentPropertiesInput,
@@ -2076,8 +2033,8 @@ export const CreateVmInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateVmInstanceGuestAgentRequest",
-}) as any as S.Schema<CreateVmInstanceGuestAgentRequest>;
+  identifier: "CreateVMInstanceGuestAgentRequest",
+}) as any as S.Schema<CreateVMInstanceGuestAgentRequest>;
 
 /** The resource status information. */
 export type GuestAgentPropertiesStatusesList = Array<ResourceStatus>;
@@ -2122,7 +2079,7 @@ export const GuestAgentProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GuestAgentProperties",
 }) as any as S.Schema<GuestAgentProperties>;
 
-export interface CreateVmInstanceGuestAgentResponse {
+export interface CreateVMInstanceGuestAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2134,7 +2091,7 @@ export interface CreateVmInstanceGuestAgentResponse {
   /** Resource properties. */
   properties: GuestAgentProperties;
 }
-export const CreateVmInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateVMInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2143,47 +2100,8 @@ export const CreateVmInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
     properties: GuestAgentProperties,
   }),
 ).annotate({
-  identifier: "CreateVmInstanceGuestAgentResponse",
-}) as any as S.Schema<CreateVmInstanceGuestAgentResponse>;
-
-export interface DatastoresListRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-}
-export const DatastoresListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/datastores",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatastoresListRequest",
-}) as any as S.Schema<DatastoresListRequest>;
-
-/** Array of Datastores */
-export type DatastoresListValueList = Array<Datastore>;
-export const DatastoresListValueList = /*@__PURE__*/ S.Array(
-  Datastore,
-) as any as S.Schema<DatastoresListValueList>;
-
-/** List of Datastores. */
-export interface DatastoresList {
-  /** Url to follow for getting next page of Datastores. */
-  nextLink?: string;
-  /** Array of Datastores */
-  value: DatastoresListValueList;
-}
-export const DatastoresList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: DatastoresListValueList,
-  }),
-).annotate({ identifier: "DatastoresList" }) as any as S.Schema<DatastoresList>;
+  identifier: "CreateVMInstanceGuestAgentResponse",
+}) as any as S.Schema<CreateVMInstanceGuestAgentResponse>;
 
 export interface DeleteClusterRequest {
   /** The Subscription ID. */
@@ -2497,11 +2415,11 @@ export const DeleteVirtualNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteVirtualNetworkResponse",
 }) as any as S.Schema<DeleteVirtualNetworkResponse>;
 
-export interface DeleteVmInstanceGuestAgentRequest {
+export interface DeleteVMInstanceGuestAgentRequest {
   /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
   resourceUri: string;
 }
-export const DeleteVmInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteVMInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
   }).pipe(
@@ -2513,15 +2431,15 @@ export const DeleteVmInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteVmInstanceGuestAgentRequest",
-}) as any as S.Schema<DeleteVmInstanceGuestAgentRequest>;
+  identifier: "DeleteVMInstanceGuestAgentRequest",
+}) as any as S.Schema<DeleteVMInstanceGuestAgentRequest>;
 
-export interface DeleteVmInstanceGuestAgentResponse {}
-export const DeleteVmInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteVMInstanceGuestAgentResponse {}
+export const DeleteVMInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteVmInstanceGuestAgentResponse",
-}) as any as S.Schema<DeleteVmInstanceGuestAgentResponse>;
+  identifier: "DeleteVMInstanceGuestAgentResponse",
+}) as any as S.Schema<DeleteVMInstanceGuestAgentResponse>;
 
 export interface GetClusterRequest {
   /** The Subscription ID. */
@@ -3134,11 +3052,11 @@ export const GetVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVirtualNetworkRequest",
 }) as any as S.Schema<GetVirtualNetworkRequest>;
 
-export interface GetVmInstanceGuestAgentRequest {
+export interface GetVMInstanceGuestAgentRequest {
   /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
   resourceUri: string;
 }
-export const GetVmInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetVMInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
   }).pipe(
@@ -3150,10 +3068,10 @@ export const GetVmInstanceGuestAgentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetVmInstanceGuestAgentRequest",
-}) as any as S.Schema<GetVmInstanceGuestAgentRequest>;
+  identifier: "GetVMInstanceGuestAgentRequest",
+}) as any as S.Schema<GetVMInstanceGuestAgentRequest>;
 
-export interface GetVmInstanceGuestAgentResponse {
+export interface GetVMInstanceGuestAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3165,7 +3083,7 @@ export interface GetVmInstanceGuestAgentResponse {
   /** Resource properties. */
   properties: GuestAgentProperties;
 }
-export const GetVmInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetVMInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3174,8 +3092,8 @@ export const GetVmInstanceGuestAgentResponse = /*@__PURE__*/ S.suspend(() =>
     properties: GuestAgentProperties,
   }),
 ).annotate({
-  identifier: "GetVmInstanceGuestAgentResponse",
-}) as any as S.Schema<GetVmInstanceGuestAgentResponse>;
+  identifier: "GetVMInstanceGuestAgentResponse",
+}) as any as S.Schema<GetVMInstanceGuestAgentResponse>;
 
 export interface GetVmInstanceHybridIdentityMetadataRequest {
   /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
@@ -3242,45 +3160,6 @@ export const GetVmInstanceHybridIdentityMetadataResponse =
     identifier: "GetVmInstanceHybridIdentityMetadataResponse",
   }) as any as S.Schema<GetVmInstanceHybridIdentityMetadataResponse>;
 
-export interface HostsListRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-}
-export const HostsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/hosts",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "HostsListRequest",
-}) as any as S.Schema<HostsListRequest>;
-
-/** Array of Hosts */
-export type HostsListValueList = Array<Host>;
-export const HostsListValueList = /*@__PURE__*/ S.Array(
-  Host,
-) as any as S.Schema<HostsListValueList>;
-
-/** List of Hosts. */
-export interface HostsList {
-  /** Url to follow for getting next page of Hosts. */
-  nextLink?: string;
-  /** Array of Hosts */
-  value: HostsListValueList;
-}
-export const HostsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: HostsListValueList,
-  }),
-).annotate({ identifier: "HostsList" }) as any as S.Schema<HostsList>;
-
 export interface ListClusterByResourceGroupRequest {
   /** The Subscription ID. */
   subscriptionId: string;
@@ -3302,6 +3181,45 @@ export const ListClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListClusterByResourceGroupRequest",
 }) as any as S.Schema<ListClusterByResourceGroupRequest>;
+
+/** Array of Clusters */
+export type ClustersListValueList = Array<Cluster>;
+export const ClustersListValueList = /*@__PURE__*/ S.Array(
+  Cluster,
+) as any as S.Schema<ClustersListValueList>;
+
+/** List of Clusters. */
+export interface ClustersList {
+  /** Url to follow for getting next page of Clusters. */
+  nextLink?: string;
+  /** Array of Clusters */
+  value: ClustersListValueList;
+}
+export const ClustersList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: ClustersListValueList,
+  }),
+).annotate({ identifier: "ClustersList" }) as any as S.Schema<ClustersList>;
+
+export interface ListClustersRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+}
+export const ListClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/clusters",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClustersRequest",
+}) as any as S.Schema<ListClustersRequest>;
 
 export interface ListDatastoreByResourceGroupRequest {
   /** The Subscription ID. */
@@ -3325,6 +3243,45 @@ export const ListDatastoreByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDatastoreByResourceGroupRequest",
 }) as any as S.Schema<ListDatastoreByResourceGroupRequest>;
 
+/** Array of Datastores */
+export type DatastoresListValueList = Array<Datastore>;
+export const DatastoresListValueList = /*@__PURE__*/ S.Array(
+  Datastore,
+) as any as S.Schema<DatastoresListValueList>;
+
+/** List of Datastores. */
+export interface DatastoresList {
+  /** Url to follow for getting next page of Datastores. */
+  nextLink?: string;
+  /** Array of Datastores */
+  value: DatastoresListValueList;
+}
+export const DatastoresList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: DatastoresListValueList,
+  }),
+).annotate({ identifier: "DatastoresList" }) as any as S.Schema<DatastoresList>;
+
+export interface ListDatastoresRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+}
+export const ListDatastoresRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/datastores",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatastoresRequest",
+}) as any as S.Schema<ListDatastoresRequest>;
+
 export interface ListHostByResourceGroupRequest {
   /** The Subscription ID. */
   subscriptionId: string;
@@ -3346,6 +3303,45 @@ export const ListHostByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListHostByResourceGroupRequest",
 }) as any as S.Schema<ListHostByResourceGroupRequest>;
+
+/** Array of Hosts */
+export type HostsListValueList = Array<Host>;
+export const HostsListValueList = /*@__PURE__*/ S.Array(
+  Host,
+) as any as S.Schema<HostsListValueList>;
+
+/** List of Hosts. */
+export interface HostsList {
+  /** Url to follow for getting next page of Hosts. */
+  nextLink?: string;
+  /** Array of Hosts */
+  value: HostsListValueList;
+}
+export const HostsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: HostsListValueList,
+  }),
+).annotate({ identifier: "HostsList" }) as any as S.Schema<HostsList>;
+
+export interface ListHostsRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+}
+export const ListHostsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/hosts",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListHostsRequest",
+}) as any as S.Schema<ListHostsRequest>;
 
 export interface ListInventoryItemByVCenterRequest {
   /** The Subscription ID. */
@@ -3420,248 +3416,8 @@ export const InventoryItemsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "InventoryItemsList",
 }) as any as S.Schema<InventoryItemsList>;
 
-export interface ListResourcePoolByResourceGroupRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-  /** The Resource Group Name. */
-  resourceGroupName: string;
-}
-export const ListResourcePoolByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/resourcePools",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "ListResourcePoolByResourceGroupRequest",
-}) as any as S.Schema<ListResourcePoolByResourceGroupRequest>;
-
-/** Array of ResourcePools */
-export type ResourcePoolsListValueList = Array<ResourcePool>;
-export const ResourcePoolsListValueList = /*@__PURE__*/ S.Array(
-  ResourcePool,
-) as any as S.Schema<ResourcePoolsListValueList>;
-
-/** List of ResourcePools. */
-export interface ResourcePoolsList {
-  /** Url to follow for getting next page of ResourcePools. */
-  nextLink?: string;
-  /** Array of ResourcePools */
-  value: ResourcePoolsListValueList;
-}
-export const ResourcePoolsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: ResourcePoolsListValueList,
-  }),
-).annotate({
-  identifier: "ResourcePoolsList",
-}) as any as S.Schema<ResourcePoolsList>;
-
-export interface ListVCenterByResourceGroupRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-  /** The Resource Group Name. */
-  resourceGroupName: string;
-}
-export const ListVCenterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/vcenters",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListVCenterByResourceGroupRequest",
-}) as any as S.Schema<ListVCenterByResourceGroupRequest>;
-
-/** Array of VCenters */
-export type VCentersListValueList = Array<VCenter>;
-export const VCentersListValueList = /*@__PURE__*/ S.Array(
-  VCenter,
-) as any as S.Schema<VCentersListValueList>;
-
-/** List of VCenters. */
-export interface VCentersList {
-  /** Url to follow for getting next page of VCenters. */
-  nextLink?: string;
-  /** Array of VCenters */
-  value: VCentersListValueList;
-}
-export const VCentersList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: VCentersListValueList,
-  }),
-).annotate({ identifier: "VCentersList" }) as any as S.Schema<VCentersList>;
-
-export interface ListVirtualMachineTemplateByResourceGroupRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-  /** The Resource Group Name. */
-  resourceGroupName: string;
-}
-export const ListVirtualMachineTemplateByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineTemplates",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListVirtualMachineTemplateByResourceGroupRequest",
-  }) as any as S.Schema<ListVirtualMachineTemplateByResourceGroupRequest>;
-
-/** Array of VirtualMachineTemplates */
-export type VirtualMachineTemplatesListValueList =
-  Array<VirtualMachineTemplate>;
-export const VirtualMachineTemplatesListValueList = /*@__PURE__*/ S.Array(
-  VirtualMachineTemplate,
-) as any as S.Schema<VirtualMachineTemplatesListValueList>;
-
-/** List of VirtualMachineTemplates. */
-export interface VirtualMachineTemplatesList {
-  /** Url to follow for getting next page of VirtualMachineTemplates. */
-  nextLink?: string;
-  /** Array of VirtualMachineTemplates */
-  value: VirtualMachineTemplatesListValueList;
-}
-export const VirtualMachineTemplatesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: VirtualMachineTemplatesListValueList,
-  }),
-).annotate({
-  identifier: "VirtualMachineTemplatesList",
-}) as any as S.Schema<VirtualMachineTemplatesList>;
-
-export interface ListVirtualNetworkByResourceGroupRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-  /** The Resource Group Name. */
-  resourceGroupName: string;
-}
-export const ListVirtualNetworkByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "ListVirtualNetworkByResourceGroupRequest",
-}) as any as S.Schema<ListVirtualNetworkByResourceGroupRequest>;
-
-/** Array of VirtualNetworks */
-export type VirtualNetworksListValueList = Array<VirtualNetwork>;
-export const VirtualNetworksListValueList = /*@__PURE__*/ S.Array(
-  VirtualNetwork,
-) as any as S.Schema<VirtualNetworksListValueList>;
-
-/** List of VirtualNetworks. */
-export interface VirtualNetworksList {
-  /** Url to follow for getting next page of VirtualNetworks. */
-  nextLink?: string;
-  /** Array of VirtualNetworks */
-  value: VirtualNetworksListValueList;
-}
-export const VirtualNetworksList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: VirtualNetworksListValueList,
-  }),
-).annotate({
-  identifier: "VirtualNetworksList",
-}) as any as S.Schema<VirtualNetworksList>;
-
-export interface ListVmInstanceGuestAgentsRequest {
-  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
-  resourceUri: string;
-}
-export const ListVmInstanceGuestAgentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/guestAgents",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListVmInstanceGuestAgentsRequest",
-}) as any as S.Schema<ListVmInstanceGuestAgentsRequest>;
-
-/** Defines the GuestAgent. */
-export interface GuestAgent {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties: GuestAgentProperties;
-}
-export const GuestAgent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: GuestAgentProperties,
-  }),
-).annotate({ identifier: "GuestAgent" }) as any as S.Schema<GuestAgent>;
-
-/** Array of GuestAgent */
-export type GuestAgentListValueList = Array<GuestAgent>;
-export const GuestAgentListValueList = /*@__PURE__*/ S.Array(
-  GuestAgent,
-) as any as S.Schema<GuestAgentListValueList>;
-
-/** List of GuestAgent. */
-export interface GuestAgentList {
-  /** Url to follow for getting next page of GuestAgent. */
-  nextLink?: string;
-  /** Array of GuestAgent */
-  value: GuestAgentListValueList;
-}
-export const GuestAgentList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: GuestAgentListValueList,
-  }),
-).annotate({ identifier: "GuestAgentList" }) as any as S.Schema<GuestAgentList>;
-
-export interface OperationsList2Request {}
-export const OperationsList2Request = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -3671,8 +3427,8 @@ export const OperationsList2Request = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsList2Request",
-}) as any as S.Schema<OperationsList2Request>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Properties of the operation */
 export interface OperationDisplay {
@@ -3733,11 +3489,56 @@ export const OperationsList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationsList" }) as any as S.Schema<OperationsList>;
 
-export interface ResourcePoolsListRequest {
+export interface ListResourcePoolByResourceGroupRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+  /** The Resource Group Name. */
+  resourceGroupName: string;
+}
+export const ListResourcePoolByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/resourcePools",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListResourcePoolByResourceGroupRequest",
+}) as any as S.Schema<ListResourcePoolByResourceGroupRequest>;
+
+/** Array of ResourcePools */
+export type ResourcePoolsListValueList = Array<ResourcePool>;
+export const ResourcePoolsListValueList = /*@__PURE__*/ S.Array(
+  ResourcePool,
+) as any as S.Schema<ResourcePoolsListValueList>;
+
+/** List of ResourcePools. */
+export interface ResourcePoolsList {
+  /** Url to follow for getting next page of ResourcePools. */
+  nextLink?: string;
+  /** Array of ResourcePools */
+  value: ResourcePoolsListValueList;
+}
+export const ResourcePoolsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: ResourcePoolsListValueList,
+  }),
+).annotate({
+  identifier: "ResourcePoolsList",
+}) as any as S.Schema<ResourcePoolsList>;
+
+export interface ListResourcePoolsRequest {
   /** The Subscription ID. */
   subscriptionId: string;
 }
-export const ResourcePoolsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListResourcePoolsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -3749,8 +3550,400 @@ export const ResourcePoolsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResourcePoolsListRequest",
-}) as any as S.Schema<ResourcePoolsListRequest>;
+  identifier: "ListResourcePoolsRequest",
+}) as any as S.Schema<ListResourcePoolsRequest>;
+
+export interface ListVCenterByResourceGroupRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+  /** The Resource Group Name. */
+  resourceGroupName: string;
+}
+export const ListVCenterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/vcenters",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVCenterByResourceGroupRequest",
+}) as any as S.Schema<ListVCenterByResourceGroupRequest>;
+
+/** Array of VCenters */
+export type VCentersListValueList = Array<VCenter>;
+export const VCentersListValueList = /*@__PURE__*/ S.Array(
+  VCenter,
+) as any as S.Schema<VCentersListValueList>;
+
+/** List of VCenters. */
+export interface VCentersList {
+  /** Url to follow for getting next page of VCenters. */
+  nextLink?: string;
+  /** Array of VCenters */
+  value: VCentersListValueList;
+}
+export const VCentersList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: VCentersListValueList,
+  }),
+).annotate({ identifier: "VCentersList" }) as any as S.Schema<VCentersList>;
+
+export interface ListVCentersRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+}
+export const ListVCentersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/vcenters",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVCentersRequest",
+}) as any as S.Schema<ListVCentersRequest>;
+
+export interface ListVirtualMachineInstancesRequest {
+  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
+  resourceUri: string;
+}
+export const ListVirtualMachineInstancesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualMachineInstancesRequest",
+}) as any as S.Schema<ListVirtualMachineInstancesRequest>;
+
+/** Define the virtualMachineInstance. */
+export interface VirtualMachineInstance {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties: VirtualMachineInstanceProperties;
+  /** Gets or sets the extended location. */
+  extendedLocation?: ExtendedLocation;
+}
+export const VirtualMachineInstance = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VirtualMachineInstanceProperties,
+    extendedLocation: S.optional(ExtendedLocation),
+  }),
+).annotate({
+  identifier: "VirtualMachineInstance",
+}) as any as S.Schema<VirtualMachineInstance>;
+
+/** Array of VirtualMachines */
+export type VirtualMachineInstancesListValueList =
+  Array<VirtualMachineInstance>;
+export const VirtualMachineInstancesListValueList = /*@__PURE__*/ S.Array(
+  VirtualMachineInstance,
+) as any as S.Schema<VirtualMachineInstancesListValueList>;
+
+/** List of VirtualMachineInstances. */
+export interface VirtualMachineInstancesList {
+  /** Url to follow for getting next page of VirtualMachines. */
+  nextLink?: string;
+  /** Array of VirtualMachines */
+  value: VirtualMachineInstancesListValueList;
+}
+export const VirtualMachineInstancesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: VirtualMachineInstancesListValueList,
+  }),
+).annotate({
+  identifier: "VirtualMachineInstancesList",
+}) as any as S.Schema<VirtualMachineInstancesList>;
+
+export interface ListVirtualMachineTemplateByResourceGroupRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+  /** The Resource Group Name. */
+  resourceGroupName: string;
+}
+export const ListVirtualMachineTemplateByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineTemplates",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineTemplateByResourceGroupRequest",
+  }) as any as S.Schema<ListVirtualMachineTemplateByResourceGroupRequest>;
+
+/** Array of VirtualMachineTemplates */
+export type VirtualMachineTemplatesListValueList =
+  Array<VirtualMachineTemplate>;
+export const VirtualMachineTemplatesListValueList = /*@__PURE__*/ S.Array(
+  VirtualMachineTemplate,
+) as any as S.Schema<VirtualMachineTemplatesListValueList>;
+
+/** List of VirtualMachineTemplates. */
+export interface VirtualMachineTemplatesList {
+  /** Url to follow for getting next page of VirtualMachineTemplates. */
+  nextLink?: string;
+  /** Array of VirtualMachineTemplates */
+  value: VirtualMachineTemplatesListValueList;
+}
+export const VirtualMachineTemplatesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: VirtualMachineTemplatesListValueList,
+  }),
+).annotate({
+  identifier: "VirtualMachineTemplatesList",
+}) as any as S.Schema<VirtualMachineTemplatesList>;
+
+export interface ListVirtualMachineTemplatesRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+}
+export const ListVirtualMachineTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineTemplates",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualMachineTemplatesRequest",
+}) as any as S.Schema<ListVirtualMachineTemplatesRequest>;
+
+export interface ListVirtualNetworkByResourceGroupRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+  /** The Resource Group Name. */
+  resourceGroupName: string;
+}
+export const ListVirtualNetworkByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualNetworkByResourceGroupRequest",
+}) as any as S.Schema<ListVirtualNetworkByResourceGroupRequest>;
+
+/** Array of VirtualNetworks */
+export type VirtualNetworksListValueList = Array<VirtualNetwork>;
+export const VirtualNetworksListValueList = /*@__PURE__*/ S.Array(
+  VirtualNetwork,
+) as any as S.Schema<VirtualNetworksListValueList>;
+
+/** List of VirtualNetworks. */
+export interface VirtualNetworksList {
+  /** Url to follow for getting next page of VirtualNetworks. */
+  nextLink?: string;
+  /** Array of VirtualNetworks */
+  value: VirtualNetworksListValueList;
+}
+export const VirtualNetworksList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: VirtualNetworksListValueList,
+  }),
+).annotate({
+  identifier: "VirtualNetworksList",
+}) as any as S.Schema<VirtualNetworksList>;
+
+export interface ListVirtualNetworksRequest {
+  /** The Subscription ID. */
+  subscriptionId: string;
+}
+export const ListVirtualNetworksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualNetworksRequest",
+}) as any as S.Schema<ListVirtualNetworksRequest>;
+
+export interface ListVMInstanceGuestAgentsRequest {
+  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
+  resourceUri: string;
+}
+export const ListVMInstanceGuestAgentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/guestAgents",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVMInstanceGuestAgentsRequest",
+}) as any as S.Schema<ListVMInstanceGuestAgentsRequest>;
+
+/** Defines the GuestAgent. */
+export interface GuestAgent {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties: GuestAgentProperties;
+}
+export const GuestAgent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: GuestAgentProperties,
+  }),
+).annotate({ identifier: "GuestAgent" }) as any as S.Schema<GuestAgent>;
+
+/** Array of GuestAgent */
+export type GuestAgentListValueList = Array<GuestAgent>;
+export const GuestAgentListValueList = /*@__PURE__*/ S.Array(
+  GuestAgent,
+) as any as S.Schema<GuestAgentListValueList>;
+
+/** List of GuestAgent. */
+export interface GuestAgentList {
+  /** Url to follow for getting next page of GuestAgent. */
+  nextLink?: string;
+  /** Array of GuestAgent */
+  value: GuestAgentListValueList;
+}
+export const GuestAgentList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: GuestAgentListValueList,
+  }),
+).annotate({ identifier: "GuestAgentList" }) as any as S.Schema<GuestAgentList>;
+
+export interface ListVmInstanceHybridIdentityMetadataRequest {
+  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
+  resourceUri: string;
+}
+export const ListVmInstanceHybridIdentityMetadataRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceUri: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/{resourceUri}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/hybridIdentityMetadata",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVmInstanceHybridIdentityMetadataRequest",
+  }) as any as S.Schema<ListVmInstanceHybridIdentityMetadataRequest>;
+
+/** Defines the HybridIdentityMetadata. */
+export interface VmInstanceHybridIdentityMetadata {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties: VmInstanceHybridIdentityMetadataProperties;
+}
+export const VmInstanceHybridIdentityMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VmInstanceHybridIdentityMetadataProperties,
+  }),
+).annotate({
+  identifier: "VmInstanceHybridIdentityMetadata",
+}) as any as S.Schema<VmInstanceHybridIdentityMetadata>;
+
+/** Array of HybridIdentityMetadata */
+export type VmInstanceHybridIdentityMetadataListValueList =
+  Array<VmInstanceHybridIdentityMetadata>;
+export const VmInstanceHybridIdentityMetadataListValueList =
+  /*@__PURE__*/ S.Array(
+    VmInstanceHybridIdentityMetadata,
+  ) as any as S.Schema<VmInstanceHybridIdentityMetadataListValueList>;
+
+/** List of HybridIdentityMetadata. */
+export interface VmInstanceHybridIdentityMetadataList {
+  /** Url to follow for getting next page of HybridIdentityMetadata. */
+  nextLink?: string;
+  /** Array of HybridIdentityMetadata */
+  value: VmInstanceHybridIdentityMetadataListValueList;
+}
+export const VmInstanceHybridIdentityMetadataList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: VmInstanceHybridIdentityMetadataListValueList,
+    }),
+).annotate({
+  identifier: "VmInstanceHybridIdentityMetadataList",
+}) as any as S.Schema<VmInstanceHybridIdentityMetadataList>;
 
 export interface RestartVirtualMachineInstanceRequest {
   /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
@@ -3835,13 +4028,11 @@ export const StopVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopVirtualMachineInstanceResponse>;
 
 /** Resource tags. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
 export interface UpdateClusterRequest {
   /** The Subscription ID. */
@@ -3851,14 +4042,14 @@ export interface UpdateClusterRequest {
   /** Name of the cluster. */
   clusterName: string;
   /** Resource tags. */
-  tags?: ClustersUpdateRequestTagsMap;
+  tags?: UpdateClusterRequestTagsMap;
 }
 export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateClusterRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3872,13 +4063,13 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterRequest>;
 
 /** Resource tags. */
-export type DatastoresUpdateRequestTagsMap = {
+export type UpdateDatastoreRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DatastoresUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDatastoreRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DatastoresUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDatastoreRequestTagsMap>;
 
 export interface UpdateDatastoreRequest {
   /** The Subscription ID. */
@@ -3888,14 +4079,14 @@ export interface UpdateDatastoreRequest {
   /** Name of the datastore. */
   datastoreName: string;
   /** Resource tags. */
-  tags?: DatastoresUpdateRequestTagsMap;
+  tags?: UpdateDatastoreRequestTagsMap;
 }
 export const UpdateDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     datastoreName: S.String.pipe(T.Label()),
-    tags: S.optional(DatastoresUpdateRequestTagsMap),
+    tags: S.optional(UpdateDatastoreRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3909,11 +4100,11 @@ export const UpdateDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDatastoreRequest>;
 
 /** Resource tags. */
-export type HostsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const HostsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateHostRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateHostRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HostsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateHostRequestTagsMap>;
 
 export interface UpdateHostRequest {
   /** The Subscription ID. */
@@ -3923,14 +4114,14 @@ export interface UpdateHostRequest {
   /** Name of the host. */
   hostName: string;
   /** Resource tags. */
-  tags?: HostsUpdateRequestTagsMap;
+  tags?: UpdateHostRequestTagsMap;
 }
 export const UpdateHostRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     hostName: S.String.pipe(T.Label()),
-    tags: S.optional(HostsUpdateRequestTagsMap),
+    tags: S.optional(UpdateHostRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3944,13 +4135,13 @@ export const UpdateHostRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateHostRequest>;
 
 /** Resource tags. */
-export type ResourcePoolsUpdateRequestTagsMap = {
+export type UpdateResourcePoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourcePoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateResourcePoolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcePoolsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateResourcePoolRequestTagsMap>;
 
 export interface UpdateResourcePoolRequest {
   /** The Subscription ID. */
@@ -3960,14 +4151,14 @@ export interface UpdateResourcePoolRequest {
   /** Name of the resourcePool. */
   resourcePoolName: string;
   /** Resource tags. */
-  tags?: ResourcePoolsUpdateRequestTagsMap;
+  tags?: UpdateResourcePoolRequestTagsMap;
 }
 export const UpdateResourcePoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourcePoolName: S.String.pipe(T.Label()),
-    tags: S.optional(ResourcePoolsUpdateRequestTagsMap),
+    tags: S.optional(UpdateResourcePoolRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3981,13 +4172,11 @@ export const UpdateResourcePoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResourcePoolRequest>;
 
 /** Resource tags. */
-export type VCentersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VCentersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVCenterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVCenterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VCentersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVCenterRequestTagsMap>;
 
 export interface UpdateVCenterRequest {
   /** The Subscription ID. */
@@ -3997,14 +4186,14 @@ export interface UpdateVCenterRequest {
   /** Name of the vCenter. */
   vcenterName: string;
   /** Resource tags. */
-  tags?: VCentersUpdateRequestTagsMap;
+  tags?: UpdateVCenterRequestTagsMap;
 }
 export const UpdateVCenterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vcenterName: S.String.pipe(T.Label()),
-    tags: S.optional(VCentersUpdateRequestTagsMap),
+    tags: S.optional(UpdateVCenterRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4202,14 +4391,14 @@ export const UpdateVirtualMachineInstanceResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateVirtualMachineInstanceResponse>;
 
 /** Resource tags. */
-export type VirtualMachineTemplatesUpdateRequestTagsMap = {
+export type UpdateVirtualMachineTemplateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineTemplatesUpdateRequestTagsMap =
+export const UpdateVirtualMachineTemplateRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineTemplatesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineTemplateRequestTagsMap>;
 
 export interface UpdateVirtualMachineTemplateRequest {
   /** The Subscription ID. */
@@ -4219,14 +4408,14 @@ export interface UpdateVirtualMachineTemplateRequest {
   /** Name of the virtual machine template resource. */
   virtualMachineTemplateName: string;
   /** Resource tags. */
-  tags?: VirtualMachineTemplatesUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineTemplateRequestTagsMap;
 }
 export const UpdateVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualMachineTemplateName: S.String.pipe(T.Label()),
-    tags: S.optional(VirtualMachineTemplatesUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualMachineTemplateRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4240,13 +4429,13 @@ export const UpdateVirtualMachineTemplateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualMachineTemplateRequest>;
 
 /** Resource tags. */
-export type VirtualNetworksUpdateRequestTagsMap = {
+export type UpdateVirtualNetworkRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualNetworksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualNetworkRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualNetworksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVirtualNetworkRequestTagsMap>;
 
 export interface UpdateVirtualNetworkRequest {
   /** The Subscription ID. */
@@ -4256,14 +4445,14 @@ export interface UpdateVirtualNetworkRequest {
   /** Name of the virtual network resource. */
   virtualNetworkName: string;
   /** Resource tags. */
-  tags?: VirtualNetworksUpdateRequestTagsMap;
+  tags?: UpdateVirtualNetworkRequestTagsMap;
 }
 export const UpdateVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualNetworkName: S.String.pipe(T.Label()),
-    tags: S.optional(VirtualNetworksUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualNetworkRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4275,25 +4464,6 @@ export const UpdateVirtualNetworkRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateVirtualNetworkRequest",
 }) as any as S.Schema<UpdateVirtualNetworkRequest>;
-
-export interface VCentersListRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-}
-export const VCentersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/vcenters",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "VCentersListRequest",
-}) as any as S.Schema<VCentersListRequest>;
 
 /** Specifies the operating system settings for the virtual machine. */
 export interface OsProfileForVMInstanceInput {
@@ -4542,199 +4712,6 @@ export const VirtualMachineInstancesCreateOrUpdateResponse =
     identifier: "VirtualMachineInstancesCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualMachineInstancesCreateOrUpdateResponse>;
 
-export interface VirtualMachineInstancesListRequest {
-  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
-  resourceUri: string;
-}
-export const VirtualMachineInstancesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachineInstancesListRequest",
-}) as any as S.Schema<VirtualMachineInstancesListRequest>;
-
-/** Define the virtualMachineInstance. */
-export interface VirtualMachineInstance {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties: VirtualMachineInstanceProperties;
-  /** Gets or sets the extended location. */
-  extendedLocation?: ExtendedLocation;
-}
-export const VirtualMachineInstance = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VirtualMachineInstanceProperties,
-    extendedLocation: S.optional(ExtendedLocation),
-  }),
-).annotate({
-  identifier: "VirtualMachineInstance",
-}) as any as S.Schema<VirtualMachineInstance>;
-
-/** Array of VirtualMachines */
-export type VirtualMachineInstancesListValueList =
-  Array<VirtualMachineInstance>;
-export const VirtualMachineInstancesListValueList = /*@__PURE__*/ S.Array(
-  VirtualMachineInstance,
-) as any as S.Schema<VirtualMachineInstancesListValueList>;
-
-/** List of VirtualMachineInstances. */
-export interface VirtualMachineInstancesList {
-  /** Url to follow for getting next page of VirtualMachines. */
-  nextLink?: string;
-  /** Array of VirtualMachines */
-  value: VirtualMachineInstancesListValueList;
-}
-export const VirtualMachineInstancesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: VirtualMachineInstancesListValueList,
-  }),
-).annotate({
-  identifier: "VirtualMachineInstancesList",
-}) as any as S.Schema<VirtualMachineInstancesList>;
-
-export interface VirtualMachineTemplatesListRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-}
-export const VirtualMachineTemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineTemplates",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachineTemplatesListRequest",
-}) as any as S.Schema<VirtualMachineTemplatesListRequest>;
-
-export interface VirtualNetworksListRequest {
-  /** The Subscription ID. */
-  subscriptionId: string;
-}
-export const VirtualNetworksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ConnectedVMwarevSphere/virtualNetworks",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworksListRequest",
-}) as any as S.Schema<VirtualNetworksListRequest>;
-
-export interface VmInstanceHybridIdentityMetadataListRequest {
-  /** The fully qualified Azure Resource manager identifier of the Hybrid Compute machine resource to be extended. */
-  resourceUri: string;
-}
-export const VmInstanceHybridIdentityMetadataListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceUri: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/{resourceUri}/providers/Microsoft.ConnectedVMwarevSphere/virtualMachineInstances/default/hybridIdentityMetadata",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VmInstanceHybridIdentityMetadataListRequest",
-  }) as any as S.Schema<VmInstanceHybridIdentityMetadataListRequest>;
-
-/** Defines the HybridIdentityMetadata. */
-export interface VmInstanceHybridIdentityMetadata {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties: VmInstanceHybridIdentityMetadataProperties;
-}
-export const VmInstanceHybridIdentityMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VmInstanceHybridIdentityMetadataProperties,
-  }),
-).annotate({
-  identifier: "VmInstanceHybridIdentityMetadata",
-}) as any as S.Schema<VmInstanceHybridIdentityMetadata>;
-
-/** Array of HybridIdentityMetadata */
-export type VmInstanceHybridIdentityMetadataListValueList =
-  Array<VmInstanceHybridIdentityMetadata>;
-export const VmInstanceHybridIdentityMetadataListValueList =
-  /*@__PURE__*/ S.Array(
-    VmInstanceHybridIdentityMetadata,
-  ) as any as S.Schema<VmInstanceHybridIdentityMetadataListValueList>;
-
-/** List of HybridIdentityMetadata. */
-export interface VmInstanceHybridIdentityMetadataList {
-  /** Url to follow for getting next page of HybridIdentityMetadata. */
-  nextLink?: string;
-  /** Array of HybridIdentityMetadata */
-  value: VmInstanceHybridIdentityMetadataListValueList;
-}
-export const VmInstanceHybridIdentityMetadataList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: VmInstanceHybridIdentityMetadataListValueList,
-    }),
-).annotate({
-  identifier: "VmInstanceHybridIdentityMetadataList",
-}) as any as S.Schema<VmInstanceHybridIdentityMetadataList>;
-
-export type ClustersList2Error = AzureOpError;
-/** Implements GET clusters in a subscription. List of clusters in a subscription. */
-export const ClustersList2: API.OperationMethod<
-  ClustersListRequest,
-  ClustersList,
-  ClustersList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListRequest,
-  output: ClustersList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateClusterError = AzureOpError;
 /** Implements cluster PUT method. Create Or Update cluster. */
 export const CreateCluster: API.OperationMethod<
@@ -4855,31 +4832,16 @@ export const CreateVirtualNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateVmInstanceGuestAgentError = AzureOpError;
+export type CreateVMInstanceGuestAgentError = AzureOpError;
 /** Implements GuestAgent PUT method. Create Or Update GuestAgent. */
-export const CreateVmInstanceGuestAgent: API.OperationMethod<
-  CreateVmInstanceGuestAgentRequest,
-  CreateVmInstanceGuestAgentResponse,
-  CreateVmInstanceGuestAgentError,
+export const CreateVMInstanceGuestAgent: API.OperationMethod<
+  CreateVMInstanceGuestAgentRequest,
+  CreateVMInstanceGuestAgentResponse,
+  CreateVMInstanceGuestAgentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateVmInstanceGuestAgentRequest,
-  output: CreateVmInstanceGuestAgentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatastoresList2Error = AzureOpError;
-/** Implements GET datastores in a subscription. List of datastores in a subscription. */
-export const DatastoresList2: API.OperationMethod<
-  DatastoresListRequest,
-  DatastoresList,
-  DatastoresList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatastoresListRequest,
-  output: DatastoresList,
+  input: CreateVMInstanceGuestAgentRequest,
+  output: CreateVMInstanceGuestAgentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5020,16 +4982,16 @@ export const DeleteVirtualNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteVmInstanceGuestAgentError = AzureOpError;
+export type DeleteVMInstanceGuestAgentError = AzureOpError;
 /** Deletes an GuestAgent. Implements GuestAgent DELETE method. */
-export const DeleteVmInstanceGuestAgent: API.OperationMethod<
-  DeleteVmInstanceGuestAgentRequest,
-  DeleteVmInstanceGuestAgentResponse,
-  DeleteVmInstanceGuestAgentError,
+export const DeleteVMInstanceGuestAgent: API.OperationMethod<
+  DeleteVMInstanceGuestAgentRequest,
+  DeleteVMInstanceGuestAgentResponse,
+  DeleteVMInstanceGuestAgentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteVmInstanceGuestAgentRequest,
-  output: DeleteVmInstanceGuestAgentResponse,
+  input: DeleteVMInstanceGuestAgentRequest,
+  output: DeleteVMInstanceGuestAgentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5170,16 +5132,16 @@ export const GetVirtualNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVmInstanceGuestAgentError = AzureOpError;
+export type GetVMInstanceGuestAgentError = AzureOpError;
 /** Gets GuestAgent. Implements GuestAgent GET method. */
-export const GetVmInstanceGuestAgent: API.OperationMethod<
-  GetVmInstanceGuestAgentRequest,
-  GetVmInstanceGuestAgentResponse,
-  GetVmInstanceGuestAgentError,
+export const GetVMInstanceGuestAgent: API.OperationMethod<
+  GetVMInstanceGuestAgentRequest,
+  GetVMInstanceGuestAgentResponse,
+  GetVMInstanceGuestAgentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVmInstanceGuestAgentRequest,
-  output: GetVmInstanceGuestAgentResponse,
+  input: GetVMInstanceGuestAgentRequest,
+  output: GetVMInstanceGuestAgentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5200,21 +5162,6 @@ export const GetVmInstanceHybridIdentityMetadata: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type HostsList2Error = AzureOpError;
-/** Implements GET hosts in a subscription. List of hosts in a subscription. */
-export const HostsList2: API.OperationMethod<
-  HostsListRequest,
-  HostsList,
-  HostsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HostsListRequest,
-  output: HostsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListClusterByResourceGroupError = AzureOpError;
 /** Implements GET clusters in a resource group. List of clusters in a resource group. */
 export const ListClusterByResourceGroup: API.OperationMethod<
@@ -5224,6 +5171,21 @@ export const ListClusterByResourceGroup: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListClusterByResourceGroupRequest,
+  output: ClustersList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClustersError = AzureOpError;
+/** Implements GET clusters in a subscription. List of clusters in a subscription. */
+export const ListClusters: API.OperationMethod<
+  ListClustersRequest,
+  ClustersList,
+  ListClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClustersRequest,
   output: ClustersList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -5245,6 +5207,21 @@ export const ListDatastoreByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListDatastoresError = AzureOpError;
+/** Implements GET datastores in a subscription. List of datastores in a subscription. */
+export const ListDatastores: API.OperationMethod<
+  ListDatastoresRequest,
+  DatastoresList,
+  ListDatastoresError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatastoresRequest,
+  output: DatastoresList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListHostByResourceGroupError = AzureOpError;
 /** Implements GET hosts in a resource group. List of hosts in a resource group. */
 export const ListHostByResourceGroup: API.OperationMethod<
@@ -5254,6 +5231,21 @@ export const ListHostByResourceGroup: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListHostByResourceGroupRequest,
+  output: HostsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostsError = AzureOpError;
+/** Implements GET hosts in a subscription. List of hosts in a subscription. */
+export const ListHosts: API.OperationMethod<
+  ListHostsRequest,
+  HostsList,
+  ListHostsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostsRequest,
   output: HostsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -5275,6 +5267,21 @@ export const ListInventoryItemByVCenter: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListOperationsError = AzureOpError;
+/** Returns list of all operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationsList,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: OperationsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListResourcePoolByResourceGroupError = AzureOpError;
 /** Implements GET resourcePools in a resource group. List of resourcePools in a resource group. */
 export const ListResourcePoolByResourceGroup: API.OperationMethod<
@@ -5284,6 +5291,21 @@ export const ListResourcePoolByResourceGroup: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListResourcePoolByResourceGroupRequest,
+  output: ResourcePoolsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListResourcePoolsError = AzureOpError;
+/** Implements GET resourcePools in a subscription. List of resourcePools in a subscription. */
+export const ListResourcePools: API.OperationMethod<
+  ListResourcePoolsRequest,
+  ResourcePoolsList,
+  ListResourcePoolsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListResourcePoolsRequest,
   output: ResourcePoolsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -5305,6 +5327,36 @@ export const ListVCenterByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListVCentersError = AzureOpError;
+/** Implements GET vCenters in a subscription. List of vCenters in a subscription. */
+export const ListVCenters: API.OperationMethod<
+  ListVCentersRequest,
+  VCentersList,
+  ListVCentersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVCentersRequest,
+  output: VCentersList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineInstancesError = AzureOpError;
+/** Implements List virtual machine instances. Lists all of the virtual machine instances within the specified parent resource. */
+export const ListVirtualMachineInstances: API.OperationMethod<
+  ListVirtualMachineInstancesRequest,
+  VirtualMachineInstancesList,
+  ListVirtualMachineInstancesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineInstancesRequest,
+  output: VirtualMachineInstancesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVirtualMachineTemplateByResourceGroupError = AzureOpError;
 /** Implements GET virtualMachineTemplates in a resource group. List of virtualMachineTemplates in a resource group. */
 export const ListVirtualMachineTemplateByResourceGroup: API.OperationMethod<
@@ -5314,6 +5366,21 @@ export const ListVirtualMachineTemplateByResourceGroup: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVirtualMachineTemplateByResourceGroupRequest,
+  output: VirtualMachineTemplatesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineTemplatesError = AzureOpError;
+/** Implements GET virtualMachineTemplates in a subscription. List of virtualMachineTemplates in a subscription. */
+export const ListVirtualMachineTemplates: API.OperationMethod<
+  ListVirtualMachineTemplatesRequest,
+  VirtualMachineTemplatesList,
+  ListVirtualMachineTemplatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineTemplatesRequest,
   output: VirtualMachineTemplatesList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -5335,46 +5402,46 @@ export const ListVirtualNetworkByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListVmInstanceGuestAgentsError = AzureOpError;
-/** Implements GET GuestAgent in a vm. Returns the list of GuestAgent of the given vm. */
-export const ListVmInstanceGuestAgents: API.OperationMethod<
-  ListVmInstanceGuestAgentsRequest,
-  GuestAgentList,
-  ListVmInstanceGuestAgentsError,
+export type ListVirtualNetworksError = AzureOpError;
+/** Implements GET virtualNetworks in a subscription. List of virtualNetworks in a subscription. */
+export const ListVirtualNetworks: API.OperationMethod<
+  ListVirtualNetworksRequest,
+  VirtualNetworksList,
+  ListVirtualNetworksError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListVmInstanceGuestAgentsRequest,
+  input: ListVirtualNetworksRequest,
+  output: VirtualNetworksList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVMInstanceGuestAgentsError = AzureOpError;
+/** Implements GET GuestAgent in a vm. Returns the list of GuestAgent of the given vm. */
+export const ListVMInstanceGuestAgents: API.OperationMethod<
+  ListVMInstanceGuestAgentsRequest,
+  GuestAgentList,
+  ListVMInstanceGuestAgentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVMInstanceGuestAgentsRequest,
   output: GuestAgentList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsList2Error = AzureOpError;
-/** Returns list of all operations. */
-export const OperationsList2: API.OperationMethod<
-  OperationsList2Request,
-  OperationsList,
-  OperationsList2Error,
+export type ListVmInstanceHybridIdentityMetadataError = AzureOpError;
+/** Implements GET HybridIdentityMetadata in a vm. Returns the list of HybridIdentityMetadata of the given vm. */
+export const ListVmInstanceHybridIdentityMetadata: API.OperationMethod<
+  ListVmInstanceHybridIdentityMetadataRequest,
+  VmInstanceHybridIdentityMetadataList,
+  ListVmInstanceHybridIdentityMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsList2Request,
-  output: OperationsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourcePoolsList2Error = AzureOpError;
-/** Implements GET resourcePools in a subscription. List of resourcePools in a subscription. */
-export const ResourcePoolsList2: API.OperationMethod<
-  ResourcePoolsListRequest,
-  ResourcePoolsList,
-  ResourcePoolsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourcePoolsListRequest,
-  output: ResourcePoolsList,
+  input: ListVmInstanceHybridIdentityMetadataRequest,
+  output: VmInstanceHybridIdentityMetadataList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5545,21 +5612,6 @@ export const UpdateVirtualNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VCentersList2Error = AzureOpError;
-/** Implements GET vCenters in a subscription. List of vCenters in a subscription. */
-export const VCentersList2: API.OperationMethod<
-  VCentersListRequest,
-  VCentersList,
-  VCentersList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VCentersListRequest,
-  output: VCentersList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VirtualMachineInstancesCreateOrUpdateError = AzureOpError;
 /** Implements virtual machine PUT method. The operation to create or update a virtual machine instance. Please note some properties can be set only during virtual machine instance creation. */
 export const VirtualMachineInstancesCreateOrUpdate: API.OperationMethod<
@@ -5570,66 +5622,6 @@ export const VirtualMachineInstancesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachineInstancesCreateOrUpdateRequest,
   output: VirtualMachineInstancesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineInstancesList2Error = AzureOpError;
-/** Implements List virtual machine instances. Lists all of the virtual machine instances within the specified parent resource. */
-export const VirtualMachineInstancesList2: API.OperationMethod<
-  VirtualMachineInstancesListRequest,
-  VirtualMachineInstancesList,
-  VirtualMachineInstancesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineInstancesListRequest,
-  output: VirtualMachineInstancesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineTemplatesList2Error = AzureOpError;
-/** Implements GET virtualMachineTemplates in a subscription. List of virtualMachineTemplates in a subscription. */
-export const VirtualMachineTemplatesList2: API.OperationMethod<
-  VirtualMachineTemplatesListRequest,
-  VirtualMachineTemplatesList,
-  VirtualMachineTemplatesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineTemplatesListRequest,
-  output: VirtualMachineTemplatesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworksList2Error = AzureOpError;
-/** Implements GET virtualNetworks in a subscription. List of virtualNetworks in a subscription. */
-export const VirtualNetworksList2: API.OperationMethod<
-  VirtualNetworksListRequest,
-  VirtualNetworksList,
-  VirtualNetworksList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworksListRequest,
-  output: VirtualNetworksList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VmInstanceHybridIdentityMetadataList2Error = AzureOpError;
-/** Implements GET HybridIdentityMetadata in a vm. Returns the list of HybridIdentityMetadata of the given vm. */
-export const VmInstanceHybridIdentityMetadataList2: API.OperationMethod<
-  VmInstanceHybridIdentityMetadataListRequest,
-  VmInstanceHybridIdentityMetadataList,
-  VmInstanceHybridIdentityMetadataList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VmInstanceHybridIdentityMetadataListRequest,
-  output: VmInstanceHybridIdentityMetadataList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

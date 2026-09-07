@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.whop.payout_accounts#RetrievePayoutAccountRequest": {
+    "com.whop.payout_accounts#GetPayoutAccountRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -520,10 +521,10 @@
         "smithy.api#documentation": "The granular calculated statuses reflecting payout account KYC and payout readiness."
       }
     },
-    "com.whop.payout_accounts#RetrievePayoutAccount": {
+    "com.whop.payout_accounts#GetPayoutAccount": {
       "type": "operation",
       "input": {
-        "target": "com.whop.payout_accounts#RetrievePayoutAccountRequest"
+        "target": "com.whop.payout_accounts#GetPayoutAccountRequest"
       },
       "output": {
         "target": "com.whop.payout_accounts#PayoutAccount"
@@ -608,7 +609,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payout_accounts#RetrievePayoutAccount"
+          "target": "com.whop.payout_accounts#GetPayoutAccount"
         }
       ],
       "traits": {

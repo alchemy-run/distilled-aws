@@ -46,7 +46,8 @@
       "verificationStatus": "verification_status",
       "verificationType": "verification_type",
       "zoneId": "zone_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ssl#AnalyzeCreateRequestBundleMethod": {
@@ -87,7 +88,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ssl#AutomaticUpgraderGetResponseValue": {
+    "com.cloudflare.ssl#GetAutomaticUpgraderResponseValue": {
       "type": "enum",
       "members": {
         "AUTO": {
@@ -128,7 +129,7 @@
           }
         },
         "value": {
-          "target": "com.cloudflare.ssl#AutomaticUpgraderGetResponseValue",
+          "target": "com.cloudflare.ssl#GetAutomaticUpgraderResponseValue",
           "traits": {
             "smithy.api#documentation": "Current setting of the automatic SSL/TLS.",
             "smithy.api#required": {}
@@ -164,7 +165,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.ssl#AutomaticUpgraderPatchRequestValue": {
+    "com.cloudflare.ssl#PatchAutomaticUpgraderRequestValue": {
       "type": "enum",
       "members": {
         "AUTO": {
@@ -192,7 +193,7 @@
           }
         },
         "value": {
-          "target": "com.cloudflare.ssl#AutomaticUpgraderPatchRequestValue",
+          "target": "com.cloudflare.ssl#PatchAutomaticUpgraderRequestValue",
           "traits": {
             "smithy.api#documentation": "Controls enablement of Automatic SSL/TLS.",
             "smithy.api#required": {}
@@ -203,7 +204,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ssl#AutomaticUpgraderPatchResponseValue": {
+    "com.cloudflare.ssl#PatchAutomaticUpgraderResponseValue": {
       "type": "enum",
       "members": {
         "AUTO": {
@@ -244,7 +245,7 @@
           }
         },
         "value": {
-          "target": "com.cloudflare.ssl#AutomaticUpgraderPatchResponseValue",
+          "target": "com.cloudflare.ssl#PatchAutomaticUpgraderResponseValue",
           "traits": {
             "smithy.api#documentation": "Current setting of the automatic SSL/TLS.",
             "smithy.api#required": {}
@@ -2964,49 +2965,49 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.ssl#AnalyzeCreate"
+          "target": "com.cloudflare.ssl#CreateAnalyze"
         },
         {
-          "target": "com.cloudflare.ssl#AutoOriginTlsKexEdit"
+          "target": "com.cloudflare.ssl#CreateCertificatePack"
         },
         {
-          "target": "com.cloudflare.ssl#AutoOriginTlsKexGet"
+          "target": "com.cloudflare.ssl#DeleteCertificatePack"
         },
         {
           "target": "com.cloudflare.ssl#GetAutomaticUpgrader"
         },
         {
+          "target": "com.cloudflare.ssl#GetAutoOriginTlsKex"
+        },
+        {
+          "target": "com.cloudflare.ssl#GetCertificatePack"
+        },
+        {
+          "target": "com.cloudflare.ssl#GetCertificatePackQuota"
+        },
+        {
+          "target": "com.cloudflare.ssl#GetUniversalSetting"
+        },
+        {
+          "target": "com.cloudflare.ssl#GetVerification"
+        },
+        {
+          "target": "com.cloudflare.ssl#ListCertificatePacks"
+        },
+        {
           "target": "com.cloudflare.ssl#PatchAutomaticUpgrader"
         },
         {
-          "target": "com.cloudflare.ssl#CertificatePacksCreate"
+          "target": "com.cloudflare.ssl#PatchAutoOriginTlsKex"
         },
         {
-          "target": "com.cloudflare.ssl#CertificatePacksDelete"
+          "target": "com.cloudflare.ssl#PatchCertificatePack"
         },
         {
-          "target": "com.cloudflare.ssl#CertificatePacksEdit"
+          "target": "com.cloudflare.ssl#PatchUniversalSetting"
         },
         {
-          "target": "com.cloudflare.ssl#CertificatePacksGet"
-        },
-        {
-          "target": "com.cloudflare.ssl#CertificatePacksList"
-        },
-        {
-          "target": "com.cloudflare.ssl#CertificatePacksQuotaGet"
-        },
-        {
-          "target": "com.cloudflare.ssl#UniversalSettingsEdit"
-        },
-        {
-          "target": "com.cloudflare.ssl#UniversalSettingsGet"
-        },
-        {
-          "target": "com.cloudflare.ssl#VerificationEdit"
-        },
-        {
-          "target": "com.cloudflare.ssl#VerificationGet"
+          "target": "com.cloudflare.ssl#PatchVerification"
         }
       ],
       "traits": {

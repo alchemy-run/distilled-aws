@@ -159,13 +159,13 @@ export const DataColorThemesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataColorThemesDestroyResponse",
 }) as any as S.Schema<DataColorThemesDestroyResponse>;
 
-export interface DataColorThemesRetrieveRequest {
+export interface GetDataColorThemeRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this data color theme. */
   id: number;
 }
-export const DataColorThemesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDataColorThemeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -177,8 +177,8 @@ export const DataColorThemesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataColorThemesRetrieveRequest",
-}) as any as S.Schema<DataColorThemesRetrieveRequest>;
+  identifier: "GetDataColorThemeRequest",
+}) as any as S.Schema<GetDataColorThemeRequest>;
 
 export interface ListDataColorThemesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -251,7 +251,7 @@ export const UpdateDataColorThemeRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateDataColorThemeRequest",
 }) as any as S.Schema<UpdateDataColorThemeRequest>;
 
-export interface UpdateDataColorThemePartialRequest {
+export interface UpdateDataColorThemesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this data color theme. */
@@ -259,7 +259,7 @@ export interface UpdateDataColorThemePartialRequest {
   name?: string;
   colors?: unknown;
 }
-export const UpdateDataColorThemePartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDataColorThemesPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -273,8 +273,8 @@ export const UpdateDataColorThemePartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateDataColorThemePartialRequest",
-}) as any as S.Schema<UpdateDataColorThemePartialRequest>;
+  identifier: "UpdateDataColorThemesPartialRequest",
+}) as any as S.Schema<UpdateDataColorThemesPartialRequest>;
 
 export type CreateDataColorThemeError =
   | BadRequest
@@ -308,17 +308,14 @@ export const dataColorThemesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataColorThemesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dataColorThemesRetrieve: API.OperationMethod<
-  DataColorThemesRetrieveRequest,
+export type GetDataColorThemeError = Forbidden | NotFound | PosthogOpError;
+export const getDataColorTheme: API.OperationMethod<
+  GetDataColorThemeRequest,
   DataColorTheme,
-  DataColorThemesRetrieveError,
+  GetDataColorThemeError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataColorThemesRetrieveRequest,
+  input: GetDataColorThemeRequest,
   output: DataColorTheme,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -361,18 +358,18 @@ export const updateDataColorTheme: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateDataColorThemePartialError =
+export type UpdateDataColorThemesPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateDataColorThemePartial: API.OperationMethod<
-  UpdateDataColorThemePartialRequest,
+export const updateDataColorThemesPartial: API.OperationMethod<
+  UpdateDataColorThemesPartialRequest,
   DataColorTheme,
-  UpdateDataColorThemePartialError,
+  UpdateDataColorThemesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateDataColorThemePartialRequest,
+  input: UpdateDataColorThemesPartialRequest,
   output: DataColorTheme,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

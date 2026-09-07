@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependencyEndpoints": {
+    "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependencyEndpointsRequest"
+        "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpointCollection"
@@ -156,7 +157,7 @@
         "smithy.api#documentation": "Connect information from the dedicated hsm service to a single endpoint."
       }
     },
-    "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependencyEndpointsRequest": {
+    "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -286,7 +287,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseTagsMap",
+          "target": "com.azure.hardwaresecuritymodules#UpdateDedicatedHsmResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -313,7 +314,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseZonesList",
+          "target": "com.azure.hardwaresecuritymodules#UpdateDedicatedHsmResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -323,7 +324,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseZonesList": {
+    "com.azure.hardwaresecuritymodules#UpdateDedicatedHsmResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -547,7 +548,7 @@
         "smithy.api#documentation": "The API entity reference."
       }
     },
-    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseTagsMap": {
+    "com.azure.hardwaresecuritymodules#UpdateDedicatedHsmResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -695,7 +696,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateRequestTagsMap",
+          "target": "com.azure.hardwaresecuritymodules#UpdateDedicatedHsmRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -705,7 +706,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateRequestTagsMap": {
+    "com.azure.hardwaresecuritymodules#UpdateDedicatedHsmRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1024,7 +1025,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseTagsMap",
+          "target": "com.azure.hardwaresecuritymodules#GetDedicatedHsmResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1051,7 +1052,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseZonesList",
+          "target": "com.azure.hardwaresecuritymodules#GetDedicatedHsmResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -1061,7 +1062,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseZonesList": {
+    "com.azure.hardwaresecuritymodules#GetDedicatedHsmResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1070,7 +1071,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseTagsMap": {
+    "com.azure.hardwaresecuritymodules#GetDedicatedHsmResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1280,10 +1281,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#RestoreCloudHsmClusterValidateProperty": {
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestoreProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hardwaresecuritymodules#RestoreCloudHsmClusterValidatePropertyRequest"
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestorePropertiesRequest"
       },
       "output": {
         "target": "com.azure.hardwaresecuritymodules#RestoreResult"
@@ -1522,7 +1523,7 @@
         "smithy.api#documentation": "Status of the backup/restore operation"
       }
     },
-    "com.azure.hardwaresecuritymodules#RestoreCloudHsmClusterValidatePropertyRequest": {
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestorePropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1574,10 +1575,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupProperties": {
+    "com.azure.hardwaresecuritymodules#ValidateCloudHsmClusterBackupProperties": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupPropertiesRequest"
+        "target": "com.azure.hardwaresecuritymodules#ValidateCloudHsmClusterBackupPropertiesRequest"
       },
       "output": {
         "target": "com.azure.hardwaresecuritymodules#BackupResult"
@@ -1720,7 +1721,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupPropertiesRequest": {
+    "com.azure.hardwaresecuritymodules#ValidateCloudHsmClusterBackupPropertiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1765,10 +1766,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGet": {
+    "com.azure.hardwaresecuritymodules#GetCloudHsmClusterRestoreStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGetRequest"
+        "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterRestoreStatusRequest"
       },
       "output": {
         "target": "com.azure.hardwaresecuritymodules#RestoreResult"
@@ -1784,7 +1785,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-31"
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGetRequest": {
+    "com.azure.hardwaresecuritymodules#GetCloudHsmClusterRestoreStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1918,7 +1919,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList",
+          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of private link resources"
           }
@@ -1934,7 +1935,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList": {
+    "com.azure.hardwaresecuritymodules#ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.hardwaresecuritymodules#PrivateLinkResource"
@@ -2892,7 +2893,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseTagsMap",
+          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2911,7 +2912,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentity",
+          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2989,7 +2990,7 @@
         "smithy.api#documentation": "Sku family of the Cloud HSM Cluster"
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentity": {
+    "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3011,7 +3012,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3021,7 +3022,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3307,7 +3308,7 @@
         "smithy.api#documentation": "State of security domain activation"
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseTagsMap": {
+    "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3347,13 +3348,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestTagsMap",
+          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The Cloud HSM Cluster's tags"
           }
         },
         "identity": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentity",
+          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3363,7 +3364,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentity": {
+    "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3373,7 +3374,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3383,7 +3384,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3402,7 +3403,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestTagsMap": {
+    "com.azure.hardwaresecuritymodules#UpdateCloudHsmClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3726,7 +3727,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseTagsMap",
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3745,7 +3746,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentity",
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3761,7 +3762,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentity": {
+    "com.azure.hardwaresecuritymodules#GetCloudHsmClusterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3783,7 +3784,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3793,7 +3794,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.hardwaresecuritymodules#GetCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3805,7 +3806,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseTagsMap": {
+    "com.azure.hardwaresecuritymodules#GetCloudHsmClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4155,7 +4156,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.hardwaresecuritymodules#OperationsListResponseValueList",
+          "target": "com.azure.hardwaresecuritymodules#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4171,7 +4172,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hardwaresecuritymodules#OperationsListResponseValueList": {
+    "com.azure.hardwaresecuritymodules#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.hardwaresecuritymodules#Operation"
@@ -4295,79 +4296,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependencyEndpoints"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#DeleteDedicatedHsm"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#UpdateDedicatedHsm"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#GetDedicatedHsm"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmByResourceGroup"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#RestoreCloudHsmClusterValidateProperty"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupProperties"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGet"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#RestoreCloudHsmCluster"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterPrivateLinkResourceByCloudHsmCluster"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmClusterPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#CreateCloudHsmClusterPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#ListPrivateEndpointConnectionByCloudHsmCluster"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterBackupStatus"
-        },
-        {
           "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersBackup"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmCluster"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmCluster"
         },
         {
           "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdate"
         },
         {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestoreProperties"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CreateCloudHsmClusterPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmClusterPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DeleteDedicatedHsm"
+        },
+        {
           "target": "com.azure.hardwaresecuritymodules#GetCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterBackupStatus"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterRestoreStatus"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#GetDedicatedHsm"
         },
         {
           "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterByResourceGroup"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmBySubscription"
-        },
-        {
           "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterBySubscription"
         },
         {
+          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterPrivateLinkResourceByCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmByResourceGroup"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmBySubscription"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependenciesEndpoints"
+        },
+        {
           "target": "com.azure.hardwaresecuritymodules#ListOperations"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListPrivateEndpointConnectionByCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#RestoreCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#UpdateDedicatedHsm"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ValidateCloudHsmClusterBackupProperties"
         }
       ],
       "traits": {

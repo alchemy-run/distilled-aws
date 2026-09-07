@@ -571,6 +571,250 @@ export const DeleteCheckoutConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteCheckoutConfigurationResponse",
 }) as any as S.Schema<DeleteCheckoutConfigurationResponse>;
 
+export interface GetCheckoutConfigurationRequest {
+  /** The ID of the checkout configuration. */
+  id: string;
+}
+export const GetCheckoutConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/checkout_configurations/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCheckoutConfigurationRequest",
+}) as any as S.Schema<GetCheckoutConfigurationRequest>;
+
+/** Payment methods explicitly disabled. */
+export type GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList =
+  Array<string>;
+export const GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList>;
+
+/** Payment methods explicitly enabled. */
+export type GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList =
+  Array<string>;
+export const GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList>;
+
+/** The configuration governing a checkout mounted from this configuration, resolved through every layer (its own overrides, the plan's, and the account's) — the shape a session's `payment_method_configuration` carries. Apply it over the payment method types catalogue for the offerable set. `null` means platform defaults; `payment_method_configuration` stays this configuration's own editable override. */
+export interface GetCheckoutConfigurationResponseEffectivePaymentMethodConfiguration {
+  /** Payment methods explicitly disabled. */
+  disabled?: GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList;
+  /** Payment methods explicitly enabled. */
+  enabled?: GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList;
+  /** Whether platform default payment methods are included. */
+  include_platform_defaults?: boolean;
+}
+export const GetCheckoutConfigurationResponseEffectivePaymentMethodConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      disabled: S.optional(
+        GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList,
+      ),
+      enabled: S.optional(
+        GetCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList,
+      ),
+      include_platform_defaults: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier:
+      "GetCheckoutConfigurationResponseEffectivePaymentMethodConfiguration",
+  }) as any as S.Schema<GetCheckoutConfigurationResponseEffectivePaymentMethodConfiguration>;
+
+/** Controls whether checkout charges the buyer immediately or saves payment details for later. */
+export type GetCheckoutConfigurationResponseMode = "payment" | "setup";
+export const GetCheckoutConfigurationResponseMode = /*@__PURE__*/ S.String;
+
+/** Payment methods explicitly disabled for checkout. */
+export type GetCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList =
+  Array<string>;
+export const GetCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList>;
+
+/** Payment methods explicitly enabled for checkout. */
+export type GetCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList =
+  Array<string>;
+export const GetCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList>;
+
+/** Payment method overrides for this checkout. `null` when it uses the plan or platform defaults. */
+export interface GetCheckoutConfigurationResponsePaymentMethodConfiguration {
+  /** Payment methods explicitly disabled for checkout. */
+  disabled?: GetCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList;
+  /** Payment methods explicitly enabled for checkout. */
+  enabled?: GetCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList;
+  /** Whether platform default payment methods are included. */
+  include_platform_defaults?: boolean;
+}
+export const GetCheckoutConfigurationResponsePaymentMethodConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      disabled: S.optional(
+        GetCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList,
+      ),
+      enabled: S.optional(
+        GetCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList,
+      ),
+      include_platform_defaults: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "GetCheckoutConfigurationResponsePaymentMethodConfiguration",
+  }) as any as S.Schema<GetCheckoutConfigurationResponsePaymentMethodConfiguration>;
+
+/** Billing model for the plan. */
+export type GetCheckoutConfigurationResponsePlanPlanType =
+  | "renewal"
+  | "one_time";
+export const GetCheckoutConfigurationResponsePlanPlanType =
+  /*@__PURE__*/ S.String;
+
+/** Sales method for the plan. */
+export type GetCheckoutConfigurationResponsePlanReleaseMethod =
+  | "buy_now"
+  | "waitlist";
+export const GetCheckoutConfigurationResponsePlanReleaseMethod =
+  /*@__PURE__*/ S.String;
+
+/** 3D Secure behavior for this plan, or `null` to use the account default. */
+export type GetCheckoutConfigurationResponsePlanThreeDsLevel =
+  | "mandate_challenge"
+  | "frictionless";
+export const GetCheckoutConfigurationResponsePlanThreeDsLevel =
+  /*@__PURE__*/ S.String;
+
+/** Whether the plan is visible to customers or hidden from public view. */
+export type GetCheckoutConfigurationResponsePlanVisibility =
+  | "visible"
+  | "hidden"
+  | "archived"
+  | "quick_link";
+export const GetCheckoutConfigurationResponsePlanVisibility =
+  /*@__PURE__*/ S.String;
+
+/** Plan used for payment checkout. `null` in setup mode. */
+export interface GetCheckoutConfigurationResponsePlan {
+  /** Whether this plan accepts local currency payments via adaptive pricing. */
+  adaptive_pricing_enabled: boolean;
+  /** Recurring billing interval in days, such as 30 for monthly or 365 for annual. `null` for one-time plans. */
+  billing_period: number | null;
+  /** Three-letter ISO currency code for the plan's prices. */
+  currency: string;
+  /** Access duration in days for expiration-based plans. */
+  expiration_days: number | null;
+  /** Plan ID, prefixed `plan_`. */
+  id: string;
+  /** Initial purchase price in the plan currency. */
+  initial_price: number;
+  /** Billing model for the plan. */
+  plan_type: GetCheckoutConfigurationResponsePlanPlanType;
+  /** Sales method for the plan. */
+  release_method: GetCheckoutConfigurationResponsePlanReleaseMethod;
+  /** Recurring price charged each billing period. */
+  renewal_price: number;
+  /** 3D Secure behavior for this plan, or `null` to use the account default. */
+  three_ds_level: GetCheckoutConfigurationResponsePlanThreeDsLevel | null;
+  /** Free trial days before the first renewal charge. */
+  trial_period_days: number | null;
+  /** Whether the plan is visible to customers or hidden from public view. */
+  visibility: GetCheckoutConfigurationResponsePlanVisibility;
+}
+export const GetCheckoutConfigurationResponsePlan = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      adaptive_pricing_enabled: S.Boolean,
+      billing_period: S.NullOr(S.Number),
+      currency: S.String,
+      expiration_days: S.NullOr(S.Number),
+      id: S.String,
+      initial_price: S.Number,
+      plan_type: GetCheckoutConfigurationResponsePlanPlanType,
+      release_method: GetCheckoutConfigurationResponsePlanReleaseMethod,
+      renewal_price: S.Number,
+      three_ds_level: S.NullOr(
+        GetCheckoutConfigurationResponsePlanThreeDsLevel,
+      ),
+      trial_period_days: S.NullOr(S.Number),
+      visibility: GetCheckoutConfigurationResponsePlanVisibility,
+    }),
+).annotate({
+  identifier: "GetCheckoutConfigurationResponsePlan",
+}) as any as S.Schema<GetCheckoutConfigurationResponsePlan>;
+
+/** 3D Secure behavior for this checkout, or `null` to use the account default. */
+export type GetCheckoutConfigurationResponseThreeDsLevel =
+  | "mandate_challenge"
+  | "frictionless";
+export const GetCheckoutConfigurationResponseThreeDsLevel =
+  /*@__PURE__*/ S.String;
+
+export interface GetCheckoutConfigurationResponse {
+  /** Account ID, prefixed `biz_`. */
+  account_id: string;
+  /** Affiliate code applied at checkout, or `null` when none is set. */
+  affiliate_code?: string | null;
+  /** When the checkout configuration was created, as an ISO 8601 timestamp. */
+  created_at: string;
+  /** Currency used for setup-mode payment method availability; defaults to `usd` when omitted. */
+  currency?: string | null;
+  /** The configuration governing a checkout mounted from this configuration, resolved through every layer (its own overrides, the plan's, and the account's) — the shape a session's `payment_method_configuration` carries. Apply it over the payment method types catalogue for the offerable set. `null` means platform defaults; `payment_method_configuration` stays this configuration's own editable override. */
+  effective_payment_method_configuration?: GetCheckoutConfigurationResponseEffectivePaymentMethodConfiguration | null;
+  /** Checkout configuration ID, prefixed `ch_`. */
+  id: string;
+  /** Custom key-value metadata copied to payments and memberships. `null` without the `checkout_configuration:basic:read` scope. */
+  metadata?: unknown | null;
+  /** Controls whether checkout charges the buyer immediately or saves payment details for later. */
+  mode: GetCheckoutConfigurationResponseMode;
+  /** Payment method overrides for this checkout. `null` when it uses the plan or platform defaults. */
+  payment_method_configuration?: GetCheckoutConfigurationResponsePaymentMethodConfiguration | null;
+  /** Plan used for payment checkout. `null` in setup mode. */
+  plan?: GetCheckoutConfigurationResponsePlan | null;
+  /** Checkout URL you can send to customers. */
+  purchase_url?: string | null;
+  /** URL customers are sent to after checkout, or `null` when no redirect is configured. */
+  redirect_url?: string | null;
+  /** 3D Secure behavior for this checkout, or `null` to use the account default. */
+  three_ds_level?: GetCheckoutConfigurationResponseThreeDsLevel | null;
+  /** When the checkout configuration was last updated, as an ISO 8601 timestamp. */
+  updated_at: string;
+}
+export const GetCheckoutConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_id: S.String,
+    affiliate_code: S.optional(S.NullOr(S.String)),
+    created_at: S.String,
+    currency: S.optional(S.NullOr(S.String)),
+    effective_payment_method_configuration: S.optional(
+      S.NullOr(
+        GetCheckoutConfigurationResponseEffectivePaymentMethodConfiguration,
+      ),
+    ),
+    id: S.String,
+    metadata: S.optional(S.NullOr(S.Unknown)),
+    mode: GetCheckoutConfigurationResponseMode,
+    payment_method_configuration: S.optional(
+      S.NullOr(GetCheckoutConfigurationResponsePaymentMethodConfiguration),
+    ),
+    plan: S.optional(S.NullOr(GetCheckoutConfigurationResponsePlan)),
+    purchase_url: S.optional(S.NullOr(S.String)),
+    redirect_url: S.optional(S.NullOr(S.String)),
+    three_ds_level: S.optional(
+      S.NullOr(GetCheckoutConfigurationResponseThreeDsLevel),
+    ),
+    updated_at: S.String,
+  }),
+).annotate({
+  identifier: "GetCheckoutConfigurationResponse",
+}) as any as S.Schema<GetCheckoutConfigurationResponse>;
+
 export type ListCheckoutConfigurationsRequestOrder = "created_at";
 export const ListCheckoutConfigurationsRequestOrder = /*@__PURE__*/ S.String;
 
@@ -892,259 +1136,6 @@ export const ListCheckoutConfigurationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCheckoutConfigurationsResponse",
 }) as any as S.Schema<ListCheckoutConfigurationsResponse>;
 
-export interface RetrieveCheckoutConfigurationRequest {
-  /** The ID of the checkout configuration. */
-  id: string;
-}
-export const RetrieveCheckoutConfigurationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/checkout_configurations/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RetrieveCheckoutConfigurationRequest",
-}) as any as S.Schema<RetrieveCheckoutConfigurationRequest>;
-
-/** Payment methods explicitly disabled. */
-export type RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList =
-  Array<string>;
-export const RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList>;
-
-/** Payment methods explicitly enabled. */
-export type RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList =
-  Array<string>;
-export const RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList>;
-
-/** The configuration governing a checkout mounted from this configuration, resolved through every layer (its own overrides, the plan's, and the account's) — the shape a session's `payment_method_configuration` carries. Apply it over the payment method types catalogue for the offerable set. `null` means platform defaults; `payment_method_configuration` stays this configuration's own editable override. */
-export interface RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfiguration {
-  /** Payment methods explicitly disabled. */
-  disabled?: RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList;
-  /** Payment methods explicitly enabled. */
-  enabled?: RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList;
-  /** Whether platform default payment methods are included. */
-  include_platform_defaults?: boolean;
-}
-export const RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      disabled: S.optional(
-        RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationDisabledList,
-      ),
-      enabled: S.optional(
-        RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfigurationEnabledList,
-      ),
-      include_platform_defaults: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier:
-      "RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfiguration",
-  }) as any as S.Schema<RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfiguration>;
-
-/** Controls whether checkout charges the buyer immediately or saves payment details for later. */
-export type RetrieveCheckoutConfigurationResponseMode = "payment" | "setup";
-export const RetrieveCheckoutConfigurationResponseMode = /*@__PURE__*/ S.String;
-
-/** Payment methods explicitly disabled for checkout. */
-export type RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList =
-  Array<string>;
-export const RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList>;
-
-/** Payment methods explicitly enabled for checkout. */
-export type RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList =
-  Array<string>;
-export const RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList>;
-
-/** Payment method overrides for this checkout. `null` when it uses the plan or platform defaults. */
-export interface RetrieveCheckoutConfigurationResponsePaymentMethodConfiguration {
-  /** Payment methods explicitly disabled for checkout. */
-  disabled?: RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList;
-  /** Payment methods explicitly enabled for checkout. */
-  enabled?: RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList;
-  /** Whether platform default payment methods are included. */
-  include_platform_defaults?: boolean;
-}
-export const RetrieveCheckoutConfigurationResponsePaymentMethodConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      disabled: S.optional(
-        RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationDisabledList,
-      ),
-      enabled: S.optional(
-        RetrieveCheckoutConfigurationResponsePaymentMethodConfigurationEnabledList,
-      ),
-      include_platform_defaults: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier:
-      "RetrieveCheckoutConfigurationResponsePaymentMethodConfiguration",
-  }) as any as S.Schema<RetrieveCheckoutConfigurationResponsePaymentMethodConfiguration>;
-
-/** Billing model for the plan. */
-export type RetrieveCheckoutConfigurationResponsePlanPlanType =
-  | "renewal"
-  | "one_time";
-export const RetrieveCheckoutConfigurationResponsePlanPlanType =
-  /*@__PURE__*/ S.String;
-
-/** Sales method for the plan. */
-export type RetrieveCheckoutConfigurationResponsePlanReleaseMethod =
-  | "buy_now"
-  | "waitlist";
-export const RetrieveCheckoutConfigurationResponsePlanReleaseMethod =
-  /*@__PURE__*/ S.String;
-
-/** 3D Secure behavior for this plan, or `null` to use the account default. */
-export type RetrieveCheckoutConfigurationResponsePlanThreeDsLevel =
-  | "mandate_challenge"
-  | "frictionless";
-export const RetrieveCheckoutConfigurationResponsePlanThreeDsLevel =
-  /*@__PURE__*/ S.String;
-
-/** Whether the plan is visible to customers or hidden from public view. */
-export type RetrieveCheckoutConfigurationResponsePlanVisibility =
-  | "visible"
-  | "hidden"
-  | "archived"
-  | "quick_link";
-export const RetrieveCheckoutConfigurationResponsePlanVisibility =
-  /*@__PURE__*/ S.String;
-
-/** Plan used for payment checkout. `null` in setup mode. */
-export interface RetrieveCheckoutConfigurationResponsePlan {
-  /** Whether this plan accepts local currency payments via adaptive pricing. */
-  adaptive_pricing_enabled: boolean;
-  /** Recurring billing interval in days, such as 30 for monthly or 365 for annual. `null` for one-time plans. */
-  billing_period: number | null;
-  /** Three-letter ISO currency code for the plan's prices. */
-  currency: string;
-  /** Access duration in days for expiration-based plans. */
-  expiration_days: number | null;
-  /** Plan ID, prefixed `plan_`. */
-  id: string;
-  /** Initial purchase price in the plan currency. */
-  initial_price: number;
-  /** Billing model for the plan. */
-  plan_type: RetrieveCheckoutConfigurationResponsePlanPlanType;
-  /** Sales method for the plan. */
-  release_method: RetrieveCheckoutConfigurationResponsePlanReleaseMethod;
-  /** Recurring price charged each billing period. */
-  renewal_price: number;
-  /** 3D Secure behavior for this plan, or `null` to use the account default. */
-  three_ds_level: RetrieveCheckoutConfigurationResponsePlanThreeDsLevel | null;
-  /** Free trial days before the first renewal charge. */
-  trial_period_days: number | null;
-  /** Whether the plan is visible to customers or hidden from public view. */
-  visibility: RetrieveCheckoutConfigurationResponsePlanVisibility;
-}
-export const RetrieveCheckoutConfigurationResponsePlan =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      adaptive_pricing_enabled: S.Boolean,
-      billing_period: S.NullOr(S.Number),
-      currency: S.String,
-      expiration_days: S.NullOr(S.Number),
-      id: S.String,
-      initial_price: S.Number,
-      plan_type: RetrieveCheckoutConfigurationResponsePlanPlanType,
-      release_method: RetrieveCheckoutConfigurationResponsePlanReleaseMethod,
-      renewal_price: S.Number,
-      three_ds_level: S.NullOr(
-        RetrieveCheckoutConfigurationResponsePlanThreeDsLevel,
-      ),
-      trial_period_days: S.NullOr(S.Number),
-      visibility: RetrieveCheckoutConfigurationResponsePlanVisibility,
-    }),
-  ).annotate({
-    identifier: "RetrieveCheckoutConfigurationResponsePlan",
-  }) as any as S.Schema<RetrieveCheckoutConfigurationResponsePlan>;
-
-/** 3D Secure behavior for this checkout, or `null` to use the account default. */
-export type RetrieveCheckoutConfigurationResponseThreeDsLevel =
-  | "mandate_challenge"
-  | "frictionless";
-export const RetrieveCheckoutConfigurationResponseThreeDsLevel =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveCheckoutConfigurationResponse {
-  /** Account ID, prefixed `biz_`. */
-  account_id: string;
-  /** Affiliate code applied at checkout, or `null` when none is set. */
-  affiliate_code?: string | null;
-  /** When the checkout configuration was created, as an ISO 8601 timestamp. */
-  created_at: string;
-  /** Currency used for setup-mode payment method availability; defaults to `usd` when omitted. */
-  currency?: string | null;
-  /** The configuration governing a checkout mounted from this configuration, resolved through every layer (its own overrides, the plan's, and the account's) — the shape a session's `payment_method_configuration` carries. Apply it over the payment method types catalogue for the offerable set. `null` means platform defaults; `payment_method_configuration` stays this configuration's own editable override. */
-  effective_payment_method_configuration?: RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfiguration | null;
-  /** Checkout configuration ID, prefixed `ch_`. */
-  id: string;
-  /** Custom key-value metadata copied to payments and memberships. `null` without the `checkout_configuration:basic:read` scope. */
-  metadata?: unknown | null;
-  /** Controls whether checkout charges the buyer immediately or saves payment details for later. */
-  mode: RetrieveCheckoutConfigurationResponseMode;
-  /** Payment method overrides for this checkout. `null` when it uses the plan or platform defaults. */
-  payment_method_configuration?: RetrieveCheckoutConfigurationResponsePaymentMethodConfiguration | null;
-  /** Plan used for payment checkout. `null` in setup mode. */
-  plan?: RetrieveCheckoutConfigurationResponsePlan | null;
-  /** Checkout URL you can send to customers. */
-  purchase_url?: string | null;
-  /** URL customers are sent to after checkout, or `null` when no redirect is configured. */
-  redirect_url?: string | null;
-  /** 3D Secure behavior for this checkout, or `null` to use the account default. */
-  three_ds_level?: RetrieveCheckoutConfigurationResponseThreeDsLevel | null;
-  /** When the checkout configuration was last updated, as an ISO 8601 timestamp. */
-  updated_at: string;
-}
-export const RetrieveCheckoutConfigurationResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      account_id: S.String,
-      affiliate_code: S.optional(S.NullOr(S.String)),
-      created_at: S.String,
-      currency: S.optional(S.NullOr(S.String)),
-      effective_payment_method_configuration: S.optional(
-        S.NullOr(
-          RetrieveCheckoutConfigurationResponseEffectivePaymentMethodConfiguration,
-        ),
-      ),
-      id: S.String,
-      metadata: S.optional(S.NullOr(S.Unknown)),
-      mode: RetrieveCheckoutConfigurationResponseMode,
-      payment_method_configuration: S.optional(
-        S.NullOr(
-          RetrieveCheckoutConfigurationResponsePaymentMethodConfiguration,
-        ),
-      ),
-      plan: S.optional(S.NullOr(RetrieveCheckoutConfigurationResponsePlan)),
-      purchase_url: S.optional(S.NullOr(S.String)),
-      redirect_url: S.optional(S.NullOr(S.String)),
-      three_ds_level: S.optional(
-        S.NullOr(RetrieveCheckoutConfigurationResponseThreeDsLevel),
-      ),
-      updated_at: S.String,
-    }),
-).annotate({
-  identifier: "RetrieveCheckoutConfigurationResponse",
-}) as any as S.Schema<RetrieveCheckoutConfigurationResponse>;
-
 export type CreateCheckoutConfigurationError = Conflict | WhopOpError;
 /** Create a checkout configuration Creates a reusable checkout configuration for an existing or inline plan. */
 export const createCheckoutConfiguration: API.OperationMethod<
@@ -1170,6 +1161,21 @@ export const deleteCheckoutConfiguration: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteCheckoutConfigurationRequest,
   output: DeleteCheckoutConfigurationResponse,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCheckoutConfigurationError = NotFound | WhopOpError;
+/** Retrieve a checkout configuration Retrieves a checkout configuration by ID. This endpoint is public so a checkout page can load from the configuration URL. */
+export const getCheckoutConfiguration: API.OperationMethod<
+  GetCheckoutConfigurationRequest,
+  GetCheckoutConfigurationResponse,
+  GetCheckoutConfigurationError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCheckoutConfigurationRequest,
+  output: GetCheckoutConfigurationResponse,
   errors: [NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
@@ -1201,18 +1207,3 @@ export const listCheckoutConfigurations: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCheckoutConfigurationError = NotFound | WhopOpError;
-/** Retrieve a checkout configuration Retrieves a checkout configuration by ID. This endpoint is public so a checkout page can load from the configuration URL. */
-export const retrieveCheckoutConfiguration: API.OperationMethod<
-  RetrieveCheckoutConfigurationRequest,
-  RetrieveCheckoutConfigurationResponse,
-  RetrieveCheckoutConfigurationError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCheckoutConfigurationRequest,
-  output: RetrieveCheckoutConfigurationResponse,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

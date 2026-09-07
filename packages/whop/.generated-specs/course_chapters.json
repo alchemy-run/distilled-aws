@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.course_chapters#ListCourseChapterRequest": {
@@ -320,7 +321,7 @@
         "smithy.api#documentation": "Create course chapter\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a new chapter within a course to organize lessons into sections.\n\nRequired permissions:\n - `courses:update`"
       }
     },
-    "com.whop.course_chapters#RetrieveCourseChapterRequest": {
+    "com.whop.course_chapters#GetCourseChapterRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -336,10 +337,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.course_chapters#RetrieveCourseChapter": {
+    "com.whop.course_chapters#GetCourseChapter": {
       "type": "operation",
       "input": {
-        "target": "com.whop.course_chapters#RetrieveCourseChapterRequest"
+        "target": "com.whop.course_chapters#GetCourseChapterRequest"
       },
       "output": {
         "target": "com.whop.course_chapters#CourseChapter"
@@ -540,19 +541,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.course_chapters#ListCourseChapter"
-        },
-        {
           "target": "com.whop.course_chapters#CreateCourseChapter"
         },
         {
-          "target": "com.whop.course_chapters#RetrieveCourseChapter"
+          "target": "com.whop.course_chapters#DeleteCourseChapter"
+        },
+        {
+          "target": "com.whop.course_chapters#GetCourseChapter"
+        },
+        {
+          "target": "com.whop.course_chapters#ListCourseChapter"
         },
         {
           "target": "com.whop.course_chapters#UpdateCourseChapter"
-        },
-        {
-          "target": "com.whop.course_chapters#DeleteCourseChapter"
         }
       ],
       "traits": {

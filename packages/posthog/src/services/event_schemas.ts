@@ -62,19 +62,18 @@ export const CreateEventSchemaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateEventSchemaRequest>;
 
 /** * `DateTime` - DateTime * `String` - String * `Numeric` - Numeric * `Boolean` - Boolean * `Object` - Object */
-export type SchemaPropertyGroupPropertyPropertyTypeEnum =
+export type SchemaPropertyTypeEnum =
   | "DateTime"
   | "String"
   | "Numeric"
   | "Boolean"
   | "Object";
-export const SchemaPropertyGroupPropertyPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SchemaPropertyTypeEnum = /*@__PURE__*/ S.String;
 
 export interface SchemaPropertyGroupProperty {
   id?: string;
   name?: string;
-  property_type?: SchemaPropertyGroupPropertyPropertyTypeEnum;
+  property_type?: SchemaPropertyTypeEnum;
   is_required?: boolean;
   is_optional_in_types?: boolean;
   description?: string;
@@ -85,7 +84,7 @@ export const SchemaPropertyGroupProperty = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
-    property_type: S.optional(SchemaPropertyGroupPropertyPropertyTypeEnum),
+    property_type: S.optional(SchemaPropertyTypeEnum),
     is_required: S.optional(S.Boolean),
     is_optional_in_types: S.optional(S.Boolean),
     description: S.optional(S.String),
@@ -315,7 +314,7 @@ export const UpdateEventSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateEventSchemaRequest",
 }) as any as S.Schema<UpdateEventSchemaRequest>;
 
-export interface UpdateEventSchemaPartialRequest {
+export interface UpdateEventSchemasPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this event schema. */
@@ -323,7 +322,7 @@ export interface UpdateEventSchemaPartialRequest {
   event_definition?: string;
   property_group_id?: string;
 }
-export const UpdateEventSchemaPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEventSchemasPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -337,8 +336,8 @@ export const UpdateEventSchemaPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateEventSchemaPartialRequest",
-}) as any as S.Schema<UpdateEventSchemaPartialRequest>;
+  identifier: "UpdateEventSchemasPartialRequest",
+}) as any as S.Schema<UpdateEventSchemasPartialRequest>;
 
 export type CreateEventSchemaError =
   | BadRequest
@@ -408,18 +407,18 @@ export const updateEventSchema: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateEventSchemaPartialError =
+export type UpdateEventSchemasPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateEventSchemaPartial: API.OperationMethod<
-  UpdateEventSchemaPartialRequest,
+export const updateEventSchemasPartial: API.OperationMethod<
+  UpdateEventSchemasPartialRequest,
   EventSchemaOutput,
-  UpdateEventSchemaPartialError,
+  UpdateEventSchemasPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateEventSchemaPartialRequest,
+  input: UpdateEventSchemasPartialRequest,
   output: EventSchemaOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

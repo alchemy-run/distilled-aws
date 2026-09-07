@@ -39,22 +39,24 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type HeatmapsEventsRetrieveRequestAggregation =
+export type GetHeatmapsEventRequestAggregation =
   | "unique_visitors"
   | "total_count";
-export const HeatmapsEventsRetrieveRequestAggregation = /*@__PURE__*/ S.String;
+export const GetHeatmapsEventRequestAggregation = /*@__PURE__*/ S.String;
 
-export interface HeatmapsEventsRetrieveRequest {
+export interface GetHeatmapsEventRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** How to aggregate counts: 'total_count' (every interaction, default) or 'unique_visitors' (distinct people). * `unique_visitors` - unique_visitors * `total_count` - total_count */
-  aggregation?: HeatmapsEventsRetrieveRequestAggregation | (string & {});
+  aggregation?: GetHeatmapsEventRequestAggregation | (string & {});
   /** JSON array of cohort IDs (e.g. '[123, 456]') to restrict results to people in those cohorts. Feature-flagged; ignored when the cohort filter is not enabled for the caller. */
   cohort_ids?: string;
   /** Start of the window. Relative (e.g. '-7d', '-30d', '-1mStart') or an absolute 'YYYY-MM-DD' date. Defaults to '-7d'. Heatmap data is retained for 90 days. */
   date_from?: string;
   /** End of the window, inclusive. Relative or absolute 'YYYY-MM-DD'. Defaults to today. */
   date_to?: string;
+  /** JSON array of event filters (e.g. '[{"id": "purchase", "properties": []}]') to restrict results to sessions in which those events occurred. Each entry needs a string 'id' (the event name) and may carry a 'properties' array of property filters applied to that event, each of type 'event' or 'element'. Several entries are combined with AND: the session must contain a matching event for every entry. At most 10 entries, each with at most 20 property filters. Requires project-wide heatmap access, since the filter reads the project's events rather than one saved heatmap. Feature-flagged; ignored when the event filter is not enabled for the caller. */
+  events?: string;
   /** When true, exclude sessions from internal/test accounts using the project's test-account filters. */
   filter_test_accounts?: boolean;
   /** When true (default), drop interactions recorded at the (0, 0) origin, which are usually noise. */
@@ -76,15 +78,14 @@ export interface HeatmapsEventsRetrieveRequest {
   /** Only include interactions captured at a viewport at least this wide, in CSS pixels. Use with viewport_width_max to isolate a device class (e.g. 360-768 for mobile). */
   viewport_width_min?: number;
 }
-export const HeatmapsEventsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHeatmapsEventRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    aggregation: S.optional(
-      HeatmapsEventsRetrieveRequestAggregation.pipe(T.Query()),
-    ),
+    aggregation: S.optional(GetHeatmapsEventRequestAggregation.pipe(T.Query())),
     cohort_ids: S.optional(S.String.pipe(T.Query())),
     date_from: S.optional(S.String.pipe(T.Query())),
     date_to: S.optional(S.String.pipe(T.Query())),
+    events: S.optional(S.String.pipe(T.Query())),
     filter_test_accounts: S.optional(S.Boolean.pipe(T.Query())),
     hide_zero_coordinates: S.optional(S.Boolean.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -103,8 +104,8 @@ export const HeatmapsEventsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "HeatmapsEventsRetrieveRequest",
-}) as any as S.Schema<HeatmapsEventsRetrieveRequest>;
+  identifier: "GetHeatmapsEventRequest",
+}) as any as S.Schema<GetHeatmapsEventRequest>;
 
 export interface HeatmapEventItem {
   session_id?: string | null;
@@ -149,20 +150,22 @@ export const HeatmapEventsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "HeatmapEventsResponse",
 }) as any as S.Schema<HeatmapEventsResponse>;
 
-export type HeatmapsListRequestAggregation = "unique_visitors" | "total_count";
-export const HeatmapsListRequestAggregation = /*@__PURE__*/ S.String;
+export type ListHeatmapsRequestAggregation = "unique_visitors" | "total_count";
+export const ListHeatmapsRequestAggregation = /*@__PURE__*/ S.String;
 
 export interface ListHeatmapsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** How to aggregate counts: 'total_count' (every interaction, default) or 'unique_visitors' (distinct people). * `unique_visitors` - unique_visitors * `total_count` - total_count */
-  aggregation?: HeatmapsListRequestAggregation | (string & {});
+  aggregation?: ListHeatmapsRequestAggregation | (string & {});
   /** JSON array of cohort IDs (e.g. '[123, 456]') to restrict results to people in those cohorts. Feature-flagged; ignored when the cohort filter is not enabled for the caller. */
   cohort_ids?: string;
   /** Start of the window. Relative (e.g. '-7d', '-30d', '-1mStart') or an absolute 'YYYY-MM-DD' date. Defaults to '-7d'. Heatmap data is retained for 90 days. */
   date_from?: string;
   /** End of the window, inclusive. Relative or absolute 'YYYY-MM-DD'. Defaults to today. */
   date_to?: string;
+  /** JSON array of event filters (e.g. '[{"id": "purchase", "properties": []}]') to restrict results to sessions in which those events occurred. Each entry needs a string 'id' (the event name) and may carry a 'properties' array of property filters applied to that event, each of type 'event' or 'element'. Several entries are combined with AND: the session must contain a matching event for every entry. At most 10 entries, each with at most 20 property filters. Requires project-wide heatmap access, since the filter reads the project's events rather than one saved heatmap. Feature-flagged; ignored when the event filter is not enabled for the caller. */
+  events?: string;
   /** When true, exclude sessions from internal/test accounts using the project's test-account filters. */
   filter_test_accounts?: boolean;
   /** When true (default), drop interactions recorded at the (0, 0) origin, which are usually noise. */
@@ -185,10 +188,11 @@ export interface ListHeatmapsRequest {
 export const ListHeatmapsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    aggregation: S.optional(HeatmapsListRequestAggregation.pipe(T.Query())),
+    aggregation: S.optional(ListHeatmapsRequestAggregation.pipe(T.Query())),
     cohort_ids: S.optional(S.String.pipe(T.Query())),
     date_from: S.optional(S.String.pipe(T.Query())),
     date_to: S.optional(S.String.pipe(T.Query())),
+    events: S.optional(S.String.pipe(T.Query())),
     filter_test_accounts: S.optional(S.Boolean.pipe(T.Query())),
     hide_zero_coordinates: S.optional(S.Boolean.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -269,27 +273,27 @@ export const HeatmapsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "HeatmapsResponse",
 }) as any as S.Schema<HeatmapsResponse>;
 
-export type HeatmapsListResponseBodyList = Array<HeatmapsResponse>;
-export const HeatmapsListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListHeatmapsResponseBodyList = Array<HeatmapsResponse>;
+export const ListHeatmapsResponseBodyList = /*@__PURE__*/ S.Array(
   HeatmapsResponse,
-) as any as S.Schema<HeatmapsListResponseBodyList>;
+) as any as S.Schema<ListHeatmapsResponseBodyList>;
 
-export type ListHeatmapsResponse = HeatmapsListResponseBodyList;
+export type ListHeatmapsResponse = ListHeatmapsResponseBodyList;
 export const ListHeatmapsResponse = /*@__PURE__*/ S.suspend(() =>
-  HeatmapsListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListHeatmapsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListHeatmapsResponse",
 }) as any as S.Schema<ListHeatmapsResponse>;
 
-export type HeatmapsEventsRetrieveError = Forbidden | NotFound | PosthogOpError;
+export type GetHeatmapsEventError = Forbidden | NotFound | PosthogOpError;
 /** Drill into the individual session interactions behind one or more heatmap coordinates. Pass the 'points' you want to inspect (from the heatmaps list response) to get the underlying per-session events, so you can jump to the session recordings that produced a hotspot. */
-export const heatmapsEventsRetrieve: API.OperationMethod<
-  HeatmapsEventsRetrieveRequest,
+export const getHeatmapsEvent: API.OperationMethod<
+  GetHeatmapsEventRequest,
   HeatmapEventsResponse,
-  HeatmapsEventsRetrieveError,
+  GetHeatmapsEventError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HeatmapsEventsRetrieveRequest,
+  input: GetHeatmapsEventRequest,
   output: HeatmapEventsResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,

@@ -43,17 +43,17 @@ export const CheckMongoClusterNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CheckMongoClusterNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type MongoClustersCheckNameAvailabilityResponseReason =
+export type CheckMongoClusterNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const MongoClustersCheckNameAvailabilityResponseReason =
+export const CheckMongoClusterNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckMongoClusterNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: MongoClustersCheckNameAvailabilityResponseReason;
+  reason?: CheckMongoClusterNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -61,7 +61,7 @@ export const CheckMongoClusterNameAvailabilityResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(MongoClustersCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckMongoClusterNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
   ).annotate({
@@ -103,21 +103,21 @@ export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateLinkServiceConnectionState>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsCreateRequestProperties {
+export interface CreatePrivateEndpointConnectionRequestProperties {
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpointInput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
 }
-export const PrivateEndpointConnectionsCreateRequestProperties =
+export const CreatePrivateEndpointConnectionRequestProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateEndpoint: S.optional(PrivateEndpointInput),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateRequestProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateRequestProperties>;
+    identifier: "CreatePrivateEndpointConnectionRequestProperties",
+  }) as any as S.Schema<CreatePrivateEndpointConnectionRequestProperties>;
 
 export interface CreatePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -129,7 +129,7 @@ export interface CreatePrivateEndpointConnectionRequest {
   /** The name of the private endpoint connection associated with the Azure resource. */
   privateEndpointConnectionName: string;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsCreateRequestProperties;
+  properties?: CreatePrivateEndpointConnectionRequestProperties;
 }
 export const CreatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -138,7 +138,7 @@ export const CreatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       mongoClusterName: S.String.pipe(T.Label()),
       privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionsCreateRequestProperties),
+      properties: S.optional(CreatePrivateEndpointConnectionRequestProperties),
     }).pipe(
       T.Http({
         method: "PUT",
@@ -194,12 +194,12 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionsCreateResponsePropertiesGroupIdsList =
+export type CreatePrivateEndpointConnectionResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionsCreateResponsePropertiesGroupIdsList =
+export const CreatePrivateEndpointConnectionResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsCreateResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<CreatePrivateEndpointConnectionResponsePropertiesGroupIdsList>;
 
 /** The private endpoint resource. */
 export interface PrivateEndpoint {
@@ -224,9 +224,9 @@ export const PrivateEndpointConnectionProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsCreateResponseProperties {
+export interface CreatePrivateEndpointConnectionResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionsCreateResponsePropertiesGroupIdsList;
+  groupIds?: CreatePrivateEndpointConnectionResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -234,19 +234,19 @@ export interface PrivateEndpointConnectionsCreateResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionsCreateResponseProperties =
+export const CreatePrivateEndpointConnectionResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionsCreateResponsePropertiesGroupIdsList,
+        CreatePrivateEndpointConnectionResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateResponseProperties>;
+    identifier: "CreatePrivateEndpointConnectionResponseProperties",
+  }) as any as S.Schema<CreatePrivateEndpointConnectionResponseProperties>;
 
 export interface CreatePrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -258,7 +258,7 @@ export interface CreatePrivateEndpointConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsCreateResponseProperties;
+  properties?: CreatePrivateEndpointConnectionResponseProperties;
 }
 export const CreatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -267,9 +267,7 @@ export const CreatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      properties: S.optional(
-        PrivateEndpointConnectionsCreateResponseProperties,
-      ),
+      properties: S.optional(CreatePrivateEndpointConnectionResponseProperties),
     }),
 ).annotate({
   identifier: "CreatePrivateEndpointConnectionResponse",
@@ -591,13 +589,13 @@ export const GetMongoClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMongoClusterRequest>;
 
 /** Resource tags. */
-export type MongoClustersGetResponseTagsMap = {
+export type GetMongoClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetMongoClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MongoClustersGetResponseTagsMap>;
+) as any as S.Schema<GetMongoClusterResponseTagsMap>;
 
 /** The mode that the Mongo Cluster is created with. */
 export type CreateMode =
@@ -1065,7 +1063,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface MongoClustersGetResponseIdentity {
+export interface GetMongoClusterResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -1073,7 +1071,7 @@ export interface MongoClustersGetResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const MongoClustersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetMongoClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -1081,8 +1079,8 @@ export const MongoClustersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "MongoClustersGetResponseIdentity",
-}) as any as S.Schema<MongoClustersGetResponseIdentity>;
+  identifier: "GetMongoClusterResponseIdentity",
+}) as any as S.Schema<GetMongoClusterResponseIdentity>;
 
 export interface GetMongoClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1094,13 +1092,13 @@ export interface GetMongoClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MongoClustersGetResponseTagsMap;
+  tags?: GetMongoClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MongoClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: MongoClustersGetResponseIdentity;
+  identity?: GetMongoClusterResponseIdentity;
 }
 export const GetMongoClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1108,10 +1106,10 @@ export const GetMongoClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MongoClustersGetResponseTagsMap),
+    tags: S.optional(GetMongoClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(MongoClusterProperties),
-    identity: S.optional(MongoClustersGetResponseIdentity),
+    identity: S.optional(GetMongoClusterResponseIdentity),
   }),
 ).annotate({
   identifier: "GetMongoClusterResponse",
@@ -1146,17 +1144,17 @@ export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
 
 /** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
+export type GetPrivateEndpointConnectionResponsePropertiesGroupIdsList =
   Array<string>;
-export const PrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
+export const GetPrivateEndpointConnectionResponsePropertiesGroupIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsGetResponsePropertiesGroupIdsList>;
+  ) as any as S.Schema<GetPrivateEndpointConnectionResponsePropertiesGroupIdsList>;
 
 /** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionsGetResponseProperties {
+export interface GetPrivateEndpointConnectionResponseProperties {
   /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionsGetResponsePropertiesGroupIdsList;
+  groupIds?: GetPrivateEndpointConnectionResponsePropertiesGroupIdsList;
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpoint;
   /** A collection of information about the state of the connection between service consumer and provider. */
@@ -1164,19 +1162,19 @@ export interface PrivateEndpointConnectionsGetResponseProperties {
   /** The provisioning state of the private endpoint connection resource. */
   provisioningState?: PrivateEndpointConnectionProvisioningState;
 }
-export const PrivateEndpointConnectionsGetResponseProperties =
+export const GetPrivateEndpointConnectionResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupIds: S.optional(
-        PrivateEndpointConnectionsGetResponsePropertiesGroupIdsList,
+        GetPrivateEndpointConnectionResponsePropertiesGroupIdsList,
       ),
       privateEndpoint: S.optional(PrivateEndpoint),
       privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
       provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsGetResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionsGetResponseProperties>;
+    identifier: "GetPrivateEndpointConnectionResponseProperties",
+  }) as any as S.Schema<GetPrivateEndpointConnectionResponseProperties>;
 
 export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1188,7 +1186,7 @@ export interface GetPrivateEndpointConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Properties of the private endpoint connection. */
-  properties?: PrivateEndpointConnectionsGetResponseProperties;
+  properties?: GetPrivateEndpointConnectionResponseProperties;
 }
 export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -1197,7 +1195,7 @@ export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionsGetResponseProperties),
+      properties: S.optional(GetPrivateEndpointConnectionResponseProperties),
     }),
 ).annotate({
   identifier: "GetPrivateEndpointConnectionResponse",
@@ -1413,8 +1411,8 @@ export const MongoClusterTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<MongoClusterTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type MongoClusterIdentity = MongoClustersGetResponseIdentity;
-export const MongoClusterIdentity = MongoClustersGetResponseIdentity;
+export type MongoClusterIdentity = GetMongoClusterResponseIdentity;
+export const MongoClusterIdentity = GetMongoClusterResponseIdentity;
 
 /** Represents a mongo cluster resource. */
 export interface MongoCluster {
@@ -1433,7 +1431,7 @@ export interface MongoCluster {
   /** The resource-specific properties for this resource. */
   properties?: MongoClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: MongoClustersGetResponseIdentity;
+  identity?: GetMongoClusterResponseIdentity;
 }
 export const MongoCluster = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1444,7 +1442,7 @@ export const MongoCluster = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(MongoClusterTagsMap),
     location: S.String,
     properties: S.optional(MongoClusterProperties),
-    identity: S.optional(MongoClustersGetResponseIdentity),
+    identity: S.optional(GetMongoClusterResponseIdentity),
   }),
 ).annotate({ identifier: "MongoCluster" }) as any as S.Schema<MongoCluster>;
 
@@ -1625,20 +1623,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1864,7 +1862,7 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
-export interface ListReplicaByParentRequest {
+export interface ListReplicasByParentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1872,7 +1870,7 @@ export interface ListReplicaByParentRequest {
   /** The name of the mongo cluster. */
   mongoClusterName: string;
 }
-export const ListReplicaByParentRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListReplicasByParentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1886,8 +1884,8 @@ export const ListReplicaByParentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListReplicaByParentRequest",
-}) as any as S.Schema<ListReplicaByParentRequest>;
+  identifier: "ListReplicasByParentRequest",
+}) as any as S.Schema<ListReplicasByParentRequest>;
 
 /** Represents a mongo cluster replica. */
 export interface Replica {
@@ -2159,9 +2157,9 @@ export const MongoClustersCreateOrUpdateResponseTagsMap =
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type MongoClustersCreateOrUpdateResponseIdentity =
-  MongoClustersGetResponseIdentity;
+  GetMongoClusterResponseIdentity;
 export const MongoClustersCreateOrUpdateResponseIdentity =
-  MongoClustersGetResponseIdentity;
+  GetMongoClusterResponseIdentity;
 
 export interface MongoClustersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2179,7 +2177,7 @@ export interface MongoClustersCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: MongoClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: MongoClustersGetResponseIdentity;
+  identity?: GetMongoClusterResponseIdentity;
 }
 export const MongoClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2190,7 +2188,7 @@ export const MongoClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(MongoClustersCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(MongoClusterProperties),
-    identity: S.optional(MongoClustersGetResponseIdentity),
+    identity: S.optional(GetMongoClusterResponseIdentity),
   }),
 ).annotate({
   identifier: "MongoClustersCreateOrUpdateResponse",
@@ -2204,7 +2202,7 @@ export const PromoteOption = /*@__PURE__*/ S.String;
 export type PromoteMode = "Switchover";
 export const PromoteMode = /*@__PURE__*/ S.String;
 
-export interface MongoClustersPromoteRequest {
+export interface PromoteMongoClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2216,7 +2214,7 @@ export interface MongoClustersPromoteRequest {
   /** The mode to apply to the promote operation. Value is optional and default value is 'Switchover'. */
   mode?: PromoteMode | (string & {});
 }
-export const MongoClustersPromoteRequest = /*@__PURE__*/ S.suspend(() =>
+export const PromoteMongoClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2232,30 +2230,30 @@ export const MongoClustersPromoteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MongoClustersPromoteRequest",
-}) as any as S.Schema<MongoClustersPromoteRequest>;
+  identifier: "PromoteMongoClusterRequest",
+}) as any as S.Schema<PromoteMongoClusterRequest>;
 
-export interface MongoClustersPromoteResponse {}
-export const MongoClustersPromoteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PromoteMongoClusterResponse {}
+export const PromoteMongoClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "MongoClustersPromoteResponse",
-}) as any as S.Schema<MongoClustersPromoteResponse>;
+  identifier: "PromoteMongoClusterResponse",
+}) as any as S.Schema<PromoteMongoClusterResponse>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type MongoClustersUpdateRequestIdentity =
+export type UpdateMongoClusterRequestIdentity =
   MongoClustersCreateOrUpdateRequestIdentity;
-export const MongoClustersUpdateRequestIdentity =
+export const UpdateMongoClusterRequestIdentity =
   MongoClustersCreateOrUpdateRequestIdentity;
 
 /** Resource tags. */
-export type MongoClustersUpdateRequestTagsMap = {
+export type UpdateMongoClusterRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateMongoClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MongoClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateMongoClusterRequestTagsMap>;
 
 /** List of private endpoint connections. */
 export type MongoClusterUpdatePropertiesInputPreviewFeaturesList = Array<
@@ -2327,7 +2325,7 @@ export interface UpdateMongoClusterRequest {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: MongoClustersCreateOrUpdateRequestIdentity;
   /** Resource tags. */
-  tags?: MongoClustersUpdateRequestTagsMap;
+  tags?: UpdateMongoClusterRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: MongoClusterUpdatePropertiesInput;
 }
@@ -2337,7 +2335,7 @@ export const UpdateMongoClusterRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     mongoClusterName: S.String.pipe(T.Label()),
     identity: S.optional(MongoClustersCreateOrUpdateRequestIdentity),
-    tags: S.optional(MongoClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateMongoClusterRequestTagsMap),
     properties: S.optional(MongoClusterUpdatePropertiesInput),
   }).pipe(
     T.Http({
@@ -2352,19 +2350,19 @@ export const UpdateMongoClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMongoClusterRequest>;
 
 /** Resource tags. */
-export type MongoClustersUpdateResponseTagsMap = {
+export type UpdateMongoClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MongoClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateMongoClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MongoClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateMongoClusterResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type MongoClustersUpdateResponseIdentity =
-  MongoClustersGetResponseIdentity;
-export const MongoClustersUpdateResponseIdentity =
-  MongoClustersGetResponseIdentity;
+export type UpdateMongoClusterResponseIdentity =
+  GetMongoClusterResponseIdentity;
+export const UpdateMongoClusterResponseIdentity =
+  GetMongoClusterResponseIdentity;
 
 export interface UpdateMongoClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2376,13 +2374,13 @@ export interface UpdateMongoClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MongoClustersUpdateResponseTagsMap;
+  tags?: UpdateMongoClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MongoClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: MongoClustersGetResponseIdentity;
+  identity?: GetMongoClusterResponseIdentity;
 }
 export const UpdateMongoClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2390,10 +2388,10 @@ export const UpdateMongoClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MongoClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateMongoClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(MongoClusterProperties),
-    identity: S.optional(MongoClustersGetResponseIdentity),
+    identity: S.optional(GetMongoClusterResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateMongoClusterResponse",
@@ -2746,15 +2744,15 @@ export const ListPrivateLinkByMongoCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListReplicaByParentError = AzureOpError;
+export type ListReplicasByParentError = AzureOpError;
 /** List all the replicas for the mongo cluster. */
-export const ListReplicaByParent: API.OperationMethod<
-  ListReplicaByParentRequest,
+export const ListReplicasByParent: API.OperationMethod<
+  ListReplicasByParentRequest,
   ReplicaListResult,
-  ListReplicaByParentError,
+  ListReplicasByParentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListReplicaByParentRequest,
+  input: ListReplicasByParentRequest,
   output: ReplicaListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2791,16 +2789,16 @@ export const MongoClustersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MongoClustersPromoteError = AzureOpError;
+export type PromoteMongoClusterError = AzureOpError;
 /** Promotes a replica mongo cluster to a primary role. */
-export const MongoClustersPromote: API.OperationMethod<
-  MongoClustersPromoteRequest,
-  MongoClustersPromoteResponse,
-  MongoClustersPromoteError,
+export const PromoteMongoCluster: API.OperationMethod<
+  PromoteMongoClusterRequest,
+  PromoteMongoClusterResponse,
+  PromoteMongoClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MongoClustersPromoteRequest,
-  output: MongoClustersPromoteResponse,
+  input: PromoteMongoClusterRequest,
+  output: PromoteMongoClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

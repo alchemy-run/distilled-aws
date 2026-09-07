@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.teams#ListRequestTeamType": {
@@ -2084,7 +2085,7 @@
         "smithy.api#documentation": "The role that this user should have in the team."
       }
     },
-    "com.github.teams#UpdateOrgAddOrMembershipForUserInRequest": {
+    "com.github.teams#AddOrUpdateMembershipForUserInOrgRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -2122,10 +2123,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.teams#UpdateOrgAddOrMembershipForUserIn": {
+    "com.github.teams#AddOrUpdateMembershipForUserInOrg": {
       "type": "operation",
       "input": {
-        "target": "com.github.teams#UpdateOrgAddOrMembershipForUserInRequest"
+        "target": "com.github.teams#AddOrUpdateMembershipForUserInOrgRequest"
       },
       "output": {
         "target": "com.github.teams#TeamMembership"
@@ -4046,7 +4047,7 @@
         "smithy.api#documentation": "Check team permissions for a repository\n\nChecks whether a team has `admin`, `push`, `maintain`, `triage`, or `pull` permission for a repository. Repositories inherited through a parent team will also be checked.\n\nYou can also get information about the specified repository, including what permissions the team grants on it, by passing the following custom [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types/) via the `application/vnd.github.v3.repository+json` accept header.\n\nIf a team doesn't have permission for the repository, you will receive a `404 Not Found` response status.\n\nIf the repository is private, you must have at least `read` permission for that repository, and your token must have the `repo` or `admin:org` scope. Otherwise, you will receive a `404 Not Found` response status.\n\n> [!NOTE]\n> You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`."
       }
     },
-    "com.github.teams#UpdateOrgAddOrRepoPermissionInRequest": {
+    "com.github.teams#AddOrUpdateRepoPermissionsInOrgRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -4092,10 +4093,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.teams#UpdateOrgAddOrRepoPermissionIn": {
+    "com.github.teams#AddOrUpdateRepoPermissionsInOrg": {
       "type": "operation",
       "input": {
-        "target": "com.github.teams#UpdateOrgAddOrRepoPermissionInRequest"
+        "target": "com.github.teams#AddOrUpdateRepoPermissionsInOrgRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4356,52 +4357,52 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.teams#List"
+          "target": "com.github.teams#AddOrUpdateMembershipForUserInOrg"
         },
         {
-          "target": "com.github.teams#Create"
-        },
-        {
-          "target": "com.github.teams#GetByName"
-        },
-        {
-          "target": "com.github.teams#UpdateInOrg"
-        },
-        {
-          "target": "com.github.teams#DeleteInOrg"
-        },
-        {
-          "target": "com.github.teams#ListPendingInvitationsInOrg"
-        },
-        {
-          "target": "com.github.teams#ListMembersInOrg"
-        },
-        {
-          "target": "com.github.teams#GetMembershipForUserInOrg"
-        },
-        {
-          "target": "com.github.teams#UpdateOrgAddOrMembershipForUserIn"
-        },
-        {
-          "target": "com.github.teams#RemoveMembershipForUserInOrg"
-        },
-        {
-          "target": "com.github.teams#ListReposInOrg"
+          "target": "com.github.teams#AddOrUpdateRepoPermissionsInOrg"
         },
         {
           "target": "com.github.teams#CheckPermissionsForRepoInOrg"
         },
         {
-          "target": "com.github.teams#UpdateOrgAddOrRepoPermissionIn"
+          "target": "com.github.teams#Create"
         },
         {
-          "target": "com.github.teams#RemoveRepoInOrg"
+          "target": "com.github.teams#DeleteInOrg"
+        },
+        {
+          "target": "com.github.teams#GetByName"
+        },
+        {
+          "target": "com.github.teams#GetMembershipForUserInOrg"
+        },
+        {
+          "target": "com.github.teams#List"
         },
         {
           "target": "com.github.teams#ListChildInOrg"
         },
         {
           "target": "com.github.teams#ListForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.teams#ListMembersInOrg"
+        },
+        {
+          "target": "com.github.teams#ListPendingInvitationsInOrg"
+        },
+        {
+          "target": "com.github.teams#ListReposInOrg"
+        },
+        {
+          "target": "com.github.teams#RemoveMembershipForUserInOrg"
+        },
+        {
+          "target": "com.github.teams#RemoveRepoInOrg"
+        },
+        {
+          "target": "com.github.teams#UpdateInOrg"
         }
       ],
       "traits": {

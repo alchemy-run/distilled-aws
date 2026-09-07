@@ -34572,12 +34572,20 @@
     },
     "aws.patched#InvalidParameterCombination": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {}
     },
     "aws.patched#InvalidParameterValue": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {}
     }
   }

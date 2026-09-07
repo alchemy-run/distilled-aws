@@ -4,100 +4,44 @@
     "service": "safebrowsing",
     "version": "v4",
     "title": "Safe Browsing API",
-    "baseUrl": "https://safebrowsing.googleapis.com/"
+    "baseUrl": "https://safebrowsing.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitUserInfo": {
+    "com.gcp.safebrowsing_v4#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo": {
       "type": "structure",
       "members": {
-        "userId": {
+        "clientId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Unique user identifier defined by the client."
+            "smithy.api#documentation": "A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API."
           }
         },
-        "regionCode": {
+        "clientVersion": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The UN M.49 region code associated with the user's location."
+            "smithy.api#documentation": "The version of the client implementation."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Details about the user that encountered the threat."
+        "smithy.api#documentation": "The client metadata associated with Safe Browsing API requests."
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest": {
-      "type": "structure",
-      "members": {
-        "listUpdateRequests": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestList",
-          "traits": {
-            "smithy.api#documentation": "The requested threat list updates."
-          }
-        },
-        "client": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
-          "traits": {
-            "smithy.api#documentation": "The client metadata."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. The server may not respond to all requests, if the server has no updates for that list. NOTE: Field index 2 is unused. NEXT: 5"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntry": {
-      "type": "structure",
-      "members": {
-        "digest": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The digest of an executable in SHA256 format. The API supports both binary and hex digests. For JSON requests, digests are base64-encoded."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A URL."
-          }
-        },
-        "hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A hash prefix, consisting of the most significant 4-32 bytes of a SHA256 hash. This field is in binary format. For JSON requests, hashes are base64-encoded."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindFullHashesResponse": {
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesResponse": {
       "type": "structure",
       "members": {
         "matches": {
           "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchList",
           "traits": {
-            "smithy.api#documentation": "The full hashes that matched the requested prefixes."
-          }
-        },
-        "negativeCacheDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For requested entities that did not match the threat list, how long to cache the response."
-          }
-        },
-        "minimumWaitDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The minimum duration the client must wait before issuing any find hashes request. If this field is not set, clients can issue a request as soon as they want."
+            "smithy.api#documentation": "The threat list matches."
           }
         }
       }
@@ -108,264 +52,27 @@
         "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatch"
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawHashes": {
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4Checksum": {
       "type": "structure",
       "members": {
-        "rawHashes": {
+        "sha256": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The hashes, in binary format, concatenated into one long string. Hashes are sorted in lexicographic order. For JSON API users, hashes are base64-encoded."
-          }
-        },
-        "prefixSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of bytes for each prefix encoded below. This field can be anywhere from 4 (shortest prefix) to 32 (full SHA256 hash)."
+            "smithy.api#documentation": "The SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The uncompressed threat entries in hash format of a particular prefix length. Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4 bytes, but some hashes are lengthened if they collide with the hash of a popular URL. Used for sending ThreatEntrySet to clients that do not support compression, or when sending non-4-byte hashes to clients that do support compression."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHit": {
-      "type": "structure",
-      "members": {
-        "resources": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceList",
-          "traits": {
-            "smithy.api#documentation": "The resources related to the threat hit."
-          }
-        },
-        "clientInfo": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
-          "traits": {
-            "smithy.api#documentation": "Client-reported identification."
-          }
-        },
-        "userInfo": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitUserInfo",
-          "traits": {
-            "smithy.api#documentation": "Details about the user that encountered the threat."
-          }
-        },
-        "entry": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntry",
-          "traits": {
-            "smithy.api#documentation": "The threat entry responsible for the hit. Full hash should be reported for hash-based hits."
-          }
-        },
-        "threatType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The threat type reported."
-          }
-        },
-        "platformType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The platform type reported."
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSource"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatTypeEnum": {
-      "type": "enum",
-      "members": {
-        "THREAT_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THREAT_TYPE_UNSPECIFIED"
-          }
-        },
-        "MALWARE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MALWARE"
-          }
-        },
-        "SOCIAL_ENGINEERING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SOCIAL_ENGINEERING"
-          }
-        },
-        "UNWANTED_SOFTWARE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNWANTED_SOFTWARE"
-          }
-        },
-        "POTENTIALLY_HARMFUL_APPLICATION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POTENTIALLY_HARMFUL_APPLICATION"
-          }
-        },
-        "SOCIAL_ENGINEERING_INTERNAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SOCIAL_ENGINEERING_INTERNAL"
-          }
-        },
-        "API_ABUSE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "API_ABUSE"
-          }
-        },
-        "MALICIOUS_BINARY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MALICIOUS_BINARY"
-          }
-        },
-        "CSD_WHITELIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CSD_WHITELIST"
-          }
-        },
-        "CSD_DOWNLOAD_WHITELIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CSD_DOWNLOAD_WHITELIST"
-          }
-        },
-        "CLIENT_INCIDENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLIENT_INCIDENT"
-          }
-        },
-        "CLIENT_INCIDENT_WHITELIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLIENT_INCIDENT_WHITELIST"
-          }
-        },
-        "APK_MALWARE_OFFLINE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "APK_MALWARE_OFFLINE"
-          }
-        },
-        "SUBRESOURCE_FILTER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUBRESOURCE_FILTER"
-          }
-        },
-        "SUSPICIOUS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUSPICIOUS"
-          }
-        },
-        "TRICK_TO_BILL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TRICK_TO_BILL"
-          }
-        },
-        "HIGH_CONFIDENCE_ALLOWLIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HIGH_CONFIDENCE_ALLOWLIST"
-          }
-        },
-        "ACCURACY_TIPS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACCURACY_TIPS"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum": {
-      "type": "enum",
-      "members": {
-        "PLATFORM_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLATFORM_TYPE_UNSPECIFIED"
-          }
-        },
-        "WINDOWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WINDOWS"
-          }
-        },
-        "LINUX": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LINUX"
-          }
-        },
-        "ANDROID": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANDROID"
-          }
-        },
-        "OSX": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OSX"
-          }
-        },
-        "IOS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IOS"
-          }
-        },
-        "ANY_PLATFORM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANY_PLATFORM"
-          }
-        },
-        "ALL_PLATFORMS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ALL_PLATFORMS"
-          }
-        },
-        "CHROME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHROME"
-          }
-        }
+        "smithy.api#documentation": "The expected state of a client's local database."
       }
     },
     "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatch": {
       "type": "structure",
       "members": {
-        "threatEntryMetadata": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadata",
-          "traits": {
-            "smithy.api#documentation": "Optional metadata associated with this threat."
-          }
-        },
         "threat": {
           "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntry",
           "traits": {
             "smithy.api#documentation": "The threat matching this threat."
-          }
-        },
-        "threatEntryType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchThreatEntryTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The threat entry type matching this threat."
           }
         },
         "platformType": {
@@ -374,68 +81,33 @@
             "smithy.api#documentation": "The platform type matching this threat."
           }
         },
+        "cacheDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The cache lifetime for the returned match. Clients must not cache this response for more than this duration to avoid false positives."
+          }
+        },
+        "threatEntryType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchThreatEntryTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The threat entry type matching this threat."
+          }
+        },
         "threatType": {
           "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchThreatTypeEnum",
           "traits": {
             "smithy.api#documentation": "The threat type matching this threat."
           }
         },
-        "cacheDuration": {
-          "target": "smithy.api#String",
+        "threatEntryMetadata": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadata",
           "traits": {
-            "smithy.api#documentation": "The cache lifetime for the returned match. Clients must not cache this response for more than this duration to avoid false positives."
+            "smithy.api#documentation": "Optional metadata associated with this threat."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "A match when checking a threat entry in the Safe Browsing threat lists."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchThreatEntryTypeEnum": {
-      "type": "enum",
-      "members": {
-        "THREAT_ENTRY_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THREAT_ENTRY_TYPE_UNSPECIFIED"
-          }
-        },
-        "URL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "URL"
-          }
-        },
-        "EXECUTABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EXECUTABLE"
-          }
-        },
-        "IP_RANGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IP_RANGE"
-          }
-        },
-        "CHROME_EXTENSION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHROME_EXTENSION"
-          }
-        },
-        "FILENAME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FILENAME"
-          }
-        },
-        "CERT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CERT"
-          }
-        }
       }
     },
     "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchPlatformTypeEnum": {
@@ -493,6 +165,53 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "CHROME"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchThreatEntryTypeEnum": {
+      "type": "enum",
+      "members": {
+        "THREAT_ENTRY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_ENTRY_TYPE_UNSPECIFIED"
+          }
+        },
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL"
+          }
+        },
+        "EXECUTABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXECUTABLE"
+          }
+        },
+        "IP_RANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IP_RANGE"
+          }
+        },
+        "CHROME_EXTENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_EXTENSION"
+          }
+        },
+        "FILENAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILENAME"
+          }
+        },
+        "CERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT"
           }
         }
       }
@@ -610,239 +329,19 @@
         }
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadata": {
-      "type": "structure",
-      "members": {
-        "entries": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntryList",
-          "traits": {
-            "smithy.api#documentation": "The metadata entries."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The metadata associated with a specific threat entry. The client is expected to know the metadata key/value pairs associated with each threat type."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntryList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints": {
-      "type": "structure",
-      "members": {
-        "maxDatabaseEntries": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Sets the maximum number of entries that the client is willing to have in the local database for the specified list. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set."
-          }
-        },
-        "region": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Requests the list for a specific geographic location. If not set the server may pick that value based on the user's IP address. Expects ISO 3166-1 alpha-2 format."
-          }
-        },
-        "maxUpdateEntries": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum size in number of entries. The update will not contain more entries than this value. This should be a power of 2 between 2**10 and 2**20. If zero, no update size limit is set."
-          }
-        },
-        "language": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Requests the lists for a specific language. Expects ISO 639 alpha-2 format."
-          }
-        },
-        "deviceLocation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A client's physical location, expressed as a ISO 31166-1 alpha-2 region code."
-          }
-        },
-        "supportedCompressions": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "The compression types supported by the client."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The constraints for this update."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnum": {
-      "type": "enum",
-      "members": {
-        "COMPRESSION_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COMPRESSION_TYPE_UNSPECIFIED"
-          }
-        },
-        "RAW": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RAW"
-          }
-        },
-        "RICE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RICE"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnum"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesResponse": {
-      "type": "structure",
-      "members": {
-        "matches": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchList",
-          "traits": {
-            "smithy.api#documentation": "The threat list matches."
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesRequest": {
-      "type": "structure",
-      "members": {
-        "client": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
-          "traits": {
-            "smithy.api#documentation": "The client metadata."
-          }
-        },
-        "threatInfo": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfo",
-          "traits": {
-            "smithy.api#documentation": "The lists and entries to be checked for matches."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to check entries against lists."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ListThreatListsResponse": {
-      "type": "structure",
-      "members": {
-        "threatLists": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatListDescriptorList",
-          "traits": {
-            "smithy.api#documentation": "The lists available for download by the client."
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatListDescriptorList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatListDescriptor"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The metadata entry value. For JSON requests, the value is base64-encoded."
-          }
-        },
-        "key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The metadata entry key. For JSON requests, the key is base64-encoded."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single metadata entry."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo": {
-      "type": "structure",
-      "members": {
-        "clientId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API."
-          }
-        },
-        "clientVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of the client implementation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The client metadata associated with Safe Browsing API requests."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RiceDeltaEncoding": {
-      "type": "structure",
-      "members": {
-        "firstValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer's value. If the field is empty or missing, assume zero."
-          }
-        },
-        "numEntries": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
-          }
-        },
-        "riceParameter": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The Golomb-Rice parameter, which is a number between 2 and 28. This field is missing (that is, zero) if `num_entries` is zero."
-          }
-        },
-        "encodedData": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or compressed removal indices."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleProtobufEmpty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
     "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse": {
       "type": "structure",
       "members": {
-        "checksum": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4Checksum",
+        "platformType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponsePlatformTypeEnum",
           "traits": {
-            "smithy.api#documentation": "The expected SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database after applying the provided update. If the client state doesn't match the expected state, the client must disregard this update and retry later."
+            "smithy.api#documentation": "The platform type for which data is returned."
           }
         },
-        "additions": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetList",
+        "threatEntryType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatEntryTypeEnum",
           "traits": {
-            "smithy.api#documentation": "A set of entries to add to a local threat type's list. Repeated to allow for a combination of compressed and raw data to be sent in a single response."
+            "smithy.api#documentation": "The format of the threats."
           }
         },
         "removals": {
@@ -863,56 +362,27 @@
             "smithy.api#documentation": "The type of response. This may indicate that an action is required by the client when the response is received."
           }
         },
-        "platformType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponsePlatformTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The platform type for which data is returned."
-          }
-        },
         "threatType": {
           "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatTypeEnum",
           "traits": {
             "smithy.api#documentation": "The threat type for which data is returned."
           }
         },
-        "threatEntryType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatEntryTypeEnum",
+        "additions": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetList",
           "traits": {
-            "smithy.api#documentation": "The format of the threats."
+            "smithy.api#documentation": "A set of entries to add to a local threat type's list. Repeated to allow for a combination of compressed and raw data to be sent in a single response."
+          }
+        },
+        "checksum": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4Checksum",
+          "traits": {
+            "smithy.api#documentation": "The expected SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database after applying the provided update. If the client state doesn't match the expected state, the client must disregard this update and retry later."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "An update to an individual list."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySet"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseResponseTypeEnum": {
-      "type": "enum",
-      "members": {
-        "RESPONSE_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RESPONSE_TYPE_UNSPECIFIED"
-          }
-        },
-        "PARTIAL_UPDATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PARTIAL_UPDATE"
-          }
-        },
-        "FULL_UPDATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FULL_UPDATE"
-          }
-        }
       }
     },
     "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponsePlatformTypeEnum": {
@@ -970,6 +440,82 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "CHROME"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatEntryTypeEnum": {
+      "type": "enum",
+      "members": {
+        "THREAT_ENTRY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_ENTRY_TYPE_UNSPECIFIED"
+          }
+        },
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL"
+          }
+        },
+        "EXECUTABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXECUTABLE"
+          }
+        },
+        "IP_RANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IP_RANGE"
+          }
+        },
+        "CHROME_EXTENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_EXTENSION"
+          }
+        },
+        "FILENAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILENAME"
+          }
+        },
+        "CERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySet"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseResponseTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESPONSE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESPONSE_TYPE_UNSPECIFIED"
+          }
+        },
+        "PARTIAL_UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIAL_UPDATE"
+          }
+        },
+        "FULL_UPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL_UPDATE"
           }
         }
       }
@@ -1087,133 +633,39 @@
         }
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseThreatEntryTypeEnum": {
-      "type": "enum",
-      "members": {
-        "THREAT_ENTRY_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THREAT_ENTRY_TYPE_UNSPECIFIED"
-          }
-        },
-        "URL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "URL"
-          }
-        },
-        "EXECUTABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EXECUTABLE"
-          }
-        },
-        "IP_RANGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IP_RANGE"
-          }
-        },
-        "CHROME_EXTENSION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHROME_EXTENSION"
-          }
-        },
-        "FILENAME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FILENAME"
-          }
-        },
-        "CERT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CERT"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSource": {
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitUserInfo": {
       "type": "structure",
       "members": {
-        "url": {
+        "regionCode": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The URL of the resource."
+            "smithy.api#documentation": "The UN M.49 region code associated with the user's location."
           }
         },
-        "type": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The type of source reported."
-          }
-        },
-        "referrer": {
+        "userId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Referrer of the resource. Only set if the referrer is available."
-          }
-        },
-        "remoteIp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The remote IP of the resource in ASCII format. Either IPv4 or IPv6."
+            "smithy.api#documentation": "Unique user identifier defined by the client."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A single resource related to a threat hit."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceTypeEnum": {
-      "type": "enum",
-      "members": {
-        "THREAT_SOURCE_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THREAT_SOURCE_TYPE_UNSPECIFIED"
-          }
-        },
-        "MATCHING_URL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MATCHING_URL"
-          }
-        },
-        "TAB_URL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TAB_URL"
-          }
-        },
-        "TAB_REDIRECT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TAB_REDIRECT"
-          }
-        },
-        "TAB_RESOURCE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TAB_RESOURCE"
-          }
-        }
+        "smithy.api#documentation": "Details about the user that encountered the threat."
       }
     },
     "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse": {
       "type": "structure",
       "members": {
-        "minimumWaitDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The minimum duration the client must wait before issuing any update request. If this field is not set clients may update as soon as they want."
-          }
-        },
         "listUpdateResponses": {
           "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponseList",
           "traits": {
             "smithy.api#documentation": "The list updates requested by the clients. The number of responses here may be less than the number of requests sent by clients. This is the case, for example, if the server has no updates for a particular list."
+          }
+        },
+        "minimumWaitDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum duration the client must wait before issuing any update request. If this field is not set clients may update as soon as they want."
           }
         }
       }
@@ -1224,106 +676,221 @@
         "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse"
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySet": {
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest": {
       "type": "structure",
       "members": {
-        "rawHashes": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawHashes",
+        "listUpdateRequests": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestList",
           "traits": {
-            "smithy.api#documentation": "The raw SHA256-formatted entries."
+            "smithy.api#documentation": "The requested threat list updates."
           }
         },
-        "compressionType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetCompressionTypeEnum",
+        "client": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
           "traits": {
-            "smithy.api#documentation": "The compression type for the entries in this set."
-          }
-        },
-        "riceHashes": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RiceDeltaEncoding",
-          "traits": {
-            "smithy.api#documentation": "The encoded 4-byte prefixes of SHA256-formatted entries, using a Golomb-Rice encoding. The hashes are converted to uint32, sorted in ascending order, then delta encoded and stored as encoded_data."
-          }
-        },
-        "riceIndices": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RiceDeltaEncoding",
-          "traits": {
-            "smithy.api#documentation": "The encoded local, lexicographically-sorted list indices, using a Golomb-Rice encoding. Used for sending compressed removal indices. The removal indices (uint32) are sorted in ascending order, then delta encoded and stored as encoded_data."
-          }
-        },
-        "rawIndices": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawIndices",
-          "traits": {
-            "smithy.api#documentation": "The raw removal indices for a local list."
+            "smithy.api#documentation": "The client metadata."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A set of threats that should be added or removed from a client's local database."
+        "smithy.api#documentation": "Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. The server may not respond to all requests, if the server has no updates for that list. NOTE: Field index 2 is unused. NEXT: 5"
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetCompressionTypeEnum": {
-      "type": "enum",
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadata": {
+      "type": "structure",
       "members": {
-        "COMPRESSION_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
+        "entries": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntryList",
           "traits": {
-            "smithy.api#enumValue": "COMPRESSION_TYPE_UNSPECIFIED"
+            "smithy.api#documentation": "The metadata entries."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metadata associated with a specific threat entry. The client is expected to know the metadata key/value pairs associated with each threat type."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawHashes": {
+      "type": "structure",
+      "members": {
+        "prefixSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of bytes for each prefix encoded below. This field can be anywhere from 4 (shortest prefix) to 32 (full SHA256 hash)."
           }
         },
-        "RAW": {
-          "target": "smithy.api#Unit",
+        "rawHashes": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "RAW"
+            "smithy.api#documentation": "The hashes, in binary format, concatenated into one long string. Hashes are sorted in lexicographic order. For JSON API users, hashes are base64-encoded."
           }
-        },
-        "RICE": {
-          "target": "smithy.api#Unit",
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The uncompressed threat entries in hash format of a particular prefix length. Hashes can be anywhere from 4 to 32 bytes in size. A large majority are 4 bytes, but some hashes are lengthened if they collide with the hash of a popular URL. Used for sending ThreatEntrySet to clients that do not support compression, or when sending non-4-byte hashes to clients that do support compression."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ListThreatListsResponse": {
+      "type": "structure",
+      "members": {
+        "threatLists": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatListDescriptorList",
           "traits": {
-            "smithy.api#enumValue": "RICE"
+            "smithy.api#documentation": "The lists available for download by the client."
           }
         }
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest": {
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatListDescriptorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatListDescriptor"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntry": {
       "type": "structure",
       "members": {
-        "platformType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestPlatformTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The type of platform at risk by entries present in the list."
-          }
-        },
-        "threatEntryType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatEntryTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The types of entries present in the list."
-          }
-        },
-        "constraints": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints",
-          "traits": {
-            "smithy.api#documentation": "The constraints associated with this request."
-          }
-        },
-        "state": {
+        "url": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The current state of the client for the requested list (the encrypted client state that was received from the last successful list update)."
+            "smithy.api#documentation": "A URL."
+          }
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A hash prefix, consisting of the most significant 4-32 bytes of a SHA256 hash. This field is in binary format. For JSON requests, hashes are base64-encoded."
+          }
+        },
+        "digest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The digest of an executable in SHA256 format. The API supports both binary and hex digests. For JSON requests, digests are base64-encoded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An individual threat; for example, a malicious URL or its hash representation. Only one of these fields should be set."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The metadata entry key. For JSON requests, the key is base64-encoded."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The metadata entry value. For JSON requests, the value is base64-encoded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single metadata entry."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindFullHashesRequest": {
+      "type": "structure",
+      "members": {
+        "client": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
+          "traits": {
+            "smithy.api#documentation": "The client metadata."
+          }
+        },
+        "clientStates": {
+          "target": "com.gcp.safebrowsing_v4#StringList",
+          "traits": {
+            "smithy.api#documentation": "The current client states for each of the client's local threat lists."
+          }
+        },
+        "apiClient": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
+          "traits": {
+            "smithy.api#documentation": "Client metadata associated with callers of higher-level APIs built on top of the client's implementation."
+          }
+        },
+        "threatInfo": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfo",
+          "traits": {
+            "smithy.api#documentation": "The lists and hashes to be checked."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to return full hashes matched by the provided hash prefixes."
+      }
+    },
+    "com.gcp.safebrowsing_v4#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHit": {
+      "type": "structure",
+      "members": {
+        "userInfo": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitUserInfo",
+          "traits": {
+            "smithy.api#documentation": "Details about the user that encountered the threat."
+          }
+        },
+        "resources": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceList",
+          "traits": {
+            "smithy.api#documentation": "The resources related to the threat hit."
+          }
+        },
+        "platformType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The platform type reported."
+          }
+        },
+        "entry": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntry",
+          "traits": {
+            "smithy.api#documentation": "The threat entry responsible for the hit. Full hash should be reported for hash-based hits."
           }
         },
         "threatType": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatTypeEnum",
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatTypeEnum",
           "traits": {
-            "smithy.api#documentation": "The type of threat posed by entries present in the list."
+            "smithy.api#documentation": "The threat type reported."
+          }
+        },
+        "clientInfo": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
+          "traits": {
+            "smithy.api#documentation": "Client-reported identification."
           }
         }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single list update request."
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestPlatformTypeEnum": {
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSource"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitPlatformTypeEnum": {
       "type": "enum",
       "members": {
         "PLATFORM_TYPE_UNSPECIFIED": {
@@ -1382,6 +949,452 @@
         }
       }
     },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatTypeEnum": {
+      "type": "enum",
+      "members": {
+        "THREAT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_TYPE_UNSPECIFIED"
+          }
+        },
+        "MALWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALWARE"
+          }
+        },
+        "SOCIAL_ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL_ENGINEERING"
+          }
+        },
+        "UNWANTED_SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNWANTED_SOFTWARE"
+          }
+        },
+        "POTENTIALLY_HARMFUL_APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POTENTIALLY_HARMFUL_APPLICATION"
+          }
+        },
+        "SOCIAL_ENGINEERING_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL_ENGINEERING_INTERNAL"
+          }
+        },
+        "API_ABUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API_ABUSE"
+          }
+        },
+        "MALICIOUS_BINARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALICIOUS_BINARY"
+          }
+        },
+        "CSD_WHITELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSD_WHITELIST"
+          }
+        },
+        "CSD_DOWNLOAD_WHITELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSD_DOWNLOAD_WHITELIST"
+          }
+        },
+        "CLIENT_INCIDENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_INCIDENT"
+          }
+        },
+        "CLIENT_INCIDENT_WHITELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_INCIDENT_WHITELIST"
+          }
+        },
+        "APK_MALWARE_OFFLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APK_MALWARE_OFFLINE"
+          }
+        },
+        "SUBRESOURCE_FILTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBRESOURCE_FILTER"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPICIOUS"
+          }
+        },
+        "TRICK_TO_BILL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRICK_TO_BILL"
+          }
+        },
+        "HIGH_CONFIDENCE_ALLOWLIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH_CONFIDENCE_ALLOWLIST"
+          }
+        },
+        "ACCURACY_TIPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCURACY_TIPS"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfo": {
+      "type": "structure",
+      "members": {
+        "threatEntryTypes": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "The entry types to be checked."
+          }
+        },
+        "threatTypes": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "The threat types to be checked."
+          }
+        },
+        "platformTypes": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "The platform types to be checked."
+          }
+        },
+        "threatEntries": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryList",
+          "traits": {
+            "smithy.api#documentation": "The threat entries to be checked."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The information regarding one or more threats that a client submits when checking for matches in threat lists."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "THREAT_ENTRY_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_ENTRY_TYPE_UNSPECIFIED"
+          }
+        },
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "URL"
+          }
+        },
+        "EXECUTABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXECUTABLE"
+          }
+        },
+        "IP_RANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IP_RANGE"
+          }
+        },
+        "CHROME_EXTENSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME_EXTENSION"
+          }
+        },
+        "FILENAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FILENAME"
+          }
+        },
+        "CERT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CERT"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnum"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "THREAT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_TYPE_UNSPECIFIED"
+          }
+        },
+        "MALWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALWARE"
+          }
+        },
+        "SOCIAL_ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL_ENGINEERING"
+          }
+        },
+        "UNWANTED_SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNWANTED_SOFTWARE"
+          }
+        },
+        "POTENTIALLY_HARMFUL_APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POTENTIALLY_HARMFUL_APPLICATION"
+          }
+        },
+        "SOCIAL_ENGINEERING_INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOCIAL_ENGINEERING_INTERNAL"
+          }
+        },
+        "API_ABUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "API_ABUSE"
+          }
+        },
+        "MALICIOUS_BINARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MALICIOUS_BINARY"
+          }
+        },
+        "CSD_WHITELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSD_WHITELIST"
+          }
+        },
+        "CSD_DOWNLOAD_WHITELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSD_DOWNLOAD_WHITELIST"
+          }
+        },
+        "CLIENT_INCIDENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_INCIDENT"
+          }
+        },
+        "CLIENT_INCIDENT_WHITELIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLIENT_INCIDENT_WHITELIST"
+          }
+        },
+        "APK_MALWARE_OFFLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APK_MALWARE_OFFLINE"
+          }
+        },
+        "SUBRESOURCE_FILTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBRESOURCE_FILTER"
+          }
+        },
+        "SUSPICIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPICIOUS"
+          }
+        },
+        "TRICK_TO_BILL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRICK_TO_BILL"
+          }
+        },
+        "HIGH_CONFIDENCE_ALLOWLIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH_CONFIDENCE_ALLOWLIST"
+          }
+        },
+        "ACCURACY_TIPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCURACY_TIPS"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnum"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "PLATFORM_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_TYPE_UNSPECIFIED"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WINDOWS"
+          }
+        },
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINUX"
+          }
+        },
+        "ANDROID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID"
+          }
+        },
+        "OSX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSX"
+          }
+        },
+        "IOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS"
+          }
+        },
+        "ANY_PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANY_PLATFORM"
+          }
+        },
+        "ALL_PLATFORMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_PLATFORMS"
+          }
+        },
+        "CHROME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnum"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntry"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesRequest": {
+      "type": "structure",
+      "members": {
+        "threatInfo": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfo",
+          "traits": {
+            "smithy.api#documentation": "The lists and entries to be checked for matches."
+          }
+        },
+        "client": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
+          "traits": {
+            "smithy.api#documentation": "The client metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to check entries against lists."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "threatEntryType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatEntryTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The types of entries present in the list."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current state of the client for the requested list (the encrypted client state that was received from the last successful list update)."
+          }
+        },
+        "platformType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestPlatformTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of platform at risk by entries present in the list."
+          }
+        },
+        "threatType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of threat posed by entries present in the list."
+          }
+        },
+        "constraints": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints",
+          "traits": {
+            "smithy.api#documentation": "The constraints associated with this request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single list update request."
+      }
+    },
     "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestThreatEntryTypeEnum": {
       "type": "enum",
       "members": {
@@ -1425,6 +1438,65 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "CERT"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestPlatformTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PLATFORM_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM_TYPE_UNSPECIFIED"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WINDOWS"
+          }
+        },
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINUX"
+          }
+        },
+        "ANDROID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANDROID"
+          }
+        },
+        "OSX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSX"
+          }
+        },
+        "IOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IOS"
+          }
+        },
+        "ANY_PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANY_PLATFORM"
+          }
+        },
+        "ALL_PLATFORMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALL_PLATFORMS"
+          }
+        },
+        "CHROME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHROME"
           }
         }
       }
@@ -1542,18 +1614,280 @@
         }
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4Checksum": {
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RiceDeltaEncoding": {
       "type": "structure",
       "members": {
-        "sha256": {
+        "encodedData": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The SHA256 hash of the client state; that is, of the sorted list of all hashes present in the database."
+            "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
+          }
+        },
+        "firstValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The offset of the first entry in the encoded data, or, if only a single integer was encoded, that single integer's value. If the field is empty or missing, assume zero."
+          }
+        },
+        "riceParameter": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The Golomb-Rice parameter, which is a number between 2 and 28. This field is missing (that is, zero) if `num_entries` is zero."
+          }
+        },
+        "numEntries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The expected state of a client's local database."
+        "smithy.api#documentation": "The Rice-Golomb encoded data. Used for sending compressed 4-byte hashes or compressed removal indices."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindFullHashesResponse": {
+      "type": "structure",
+      "members": {
+        "matches": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatMatchList",
+          "traits": {
+            "smithy.api#documentation": "The full hashes that matched the requested prefixes."
+          }
+        },
+        "minimumWaitDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum duration the client must wait before issuing any find hashes request. If this field is not set, clients can issue a request as soon as they want."
+          }
+        },
+        "negativeCacheDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For requested entities that did not match the threat list, how long to cache the response."
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawIndices": {
+      "type": "structure",
+      "members": {
+        "indices": {
+          "target": "com.gcp.safebrowsing_v4#IntegerList",
+          "traits": {
+            "smithy.api#documentation": "The indices to remove from a lexicographically-sorted local list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of raw indices to remove from a local list."
+      }
+    },
+    "com.gcp.safebrowsing_v4#IntegerList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints": {
+      "type": "structure",
+      "members": {
+        "maxDatabaseEntries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Sets the maximum number of entries that the client is willing to have in the local database for the specified list. This should be a power of 2 between 2**10 and 2**20. If zero, no database size limit is set."
+          }
+        },
+        "deviceLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A client's physical location, expressed as a ISO 31166-1 alpha-2 region code."
+          }
+        },
+        "maxUpdateEntries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum size in number of entries. The update will not contain more entries than this value. This should be a power of 2 between 2**10 and 2**20. If zero, no update size limit is set."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Requests the list for a specific geographic location. If not set the server may pick that value based on the user's IP address. Expects ISO 3166-1 alpha-2 format."
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Requests the lists for a specific language. Expects ISO 639 alpha-2 format."
+          }
+        },
+        "supportedCompressions": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "The compression types supported by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The constraints for this update."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnum": {
+      "type": "enum",
+      "members": {
+        "COMPRESSION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPRESSION_TYPE_UNSPECIFIED"
+          }
+        },
+        "RAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RAW"
+          }
+        },
+        "RICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RICE"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraintsSupportedCompressionsItemEnum"
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSource": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the resource."
+          }
+        },
+        "remoteIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The remote IP of the resource in ASCII format. Either IPv4 or IPv6."
+          }
+        },
+        "referrer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Referrer of the resource. Only set if the referrer is available."
+          }
+        },
+        "type": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of source reported."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single resource related to a threat hit."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHitThreatSourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "THREAT_SOURCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THREAT_SOURCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "MATCHING_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHING_URL"
+          }
+        },
+        "TAB_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAB_URL"
+          }
+        },
+        "TAB_REDIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAB_REDIRECT"
+          }
+        },
+        "TAB_RESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAB_RESOURCE"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySet": {
+      "type": "structure",
+      "members": {
+        "rawHashes": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawHashes",
+          "traits": {
+            "smithy.api#documentation": "The raw SHA256-formatted entries."
+          }
+        },
+        "riceHashes": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RiceDeltaEncoding",
+          "traits": {
+            "smithy.api#documentation": "The encoded 4-byte prefixes of SHA256-formatted entries, using a Golomb-Rice encoding. The hashes are converted to uint32, sorted in ascending order, then delta encoded and stored as encoded_data."
+          }
+        },
+        "riceIndices": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RiceDeltaEncoding",
+          "traits": {
+            "smithy.api#documentation": "The encoded local, lexicographically-sorted list indices, using a Golomb-Rice encoding. Used for sending compressed removal indices. The removal indices (uint32) are sorted in ascending order, then delta encoded and stored as encoded_data."
+          }
+        },
+        "compressionType": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetCompressionTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The compression type for the entries in this set."
+          }
+        },
+        "rawIndices": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawIndices",
+          "traits": {
+            "smithy.api#documentation": "The raw removal indices for a local list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of threats that should be added or removed from a client's local database."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntrySetCompressionTypeEnum": {
+      "type": "enum",
+      "members": {
+        "COMPRESSION_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPRESSION_TYPE_UNSPECIFIED"
+          }
+        },
+        "RAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RAW"
+          }
+        },
+        "RICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RICE"
+          }
+        }
       }
     },
     "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatListDescriptor": {
@@ -1801,362 +2135,14 @@
         }
       }
     },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4RawIndices": {
+    "com.gcp.safebrowsing_v4#CreateThreatHitsRequest": {
       "type": "structure",
       "members": {
-        "indices": {
-          "target": "com.gcp.safebrowsing_v4#IntegerList",
+        "body": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHit",
           "traits": {
-            "smithy.api#documentation": "The indices to remove from a lexicographically-sorted local list."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A set of raw indices to remove from a local list."
-      }
-    },
-    "com.gcp.safebrowsing_v4#IntegerList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Integer"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindFullHashesRequest": {
-      "type": "structure",
-      "members": {
-        "apiClient": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
-          "traits": {
-            "smithy.api#documentation": "Client metadata associated with callers of higher-level APIs built on top of the client's implementation."
-          }
-        },
-        "clientStates": {
-          "target": "com.gcp.safebrowsing_v4#StringList",
-          "traits": {
-            "smithy.api#documentation": "The current client states for each of the client's local threat lists."
-          }
-        },
-        "client": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ClientInfo",
-          "traits": {
-            "smithy.api#documentation": "The client metadata."
-          }
-        },
-        "threatInfo": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfo",
-          "traits": {
-            "smithy.api#documentation": "The lists and hashes to be checked."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to return full hashes matched by the provided hash prefixes."
-      }
-    },
-    "com.gcp.safebrowsing_v4#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfo": {
-      "type": "structure",
-      "members": {
-        "threatTypes": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "The threat types to be checked."
-          }
-        },
-        "platformTypes": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "The platform types to be checked."
-          }
-        },
-        "threatEntryTypes": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "The entry types to be checked."
-          }
-        },
-        "threatEntries": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryList",
-          "traits": {
-            "smithy.api#documentation": "The threat entries to be checked."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The information regarding one or more threats that a client submits when checking for matches in threat lists."
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "THREAT_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THREAT_TYPE_UNSPECIFIED"
-          }
-        },
-        "MALWARE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MALWARE"
-          }
-        },
-        "SOCIAL_ENGINEERING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SOCIAL_ENGINEERING"
-          }
-        },
-        "UNWANTED_SOFTWARE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNWANTED_SOFTWARE"
-          }
-        },
-        "POTENTIALLY_HARMFUL_APPLICATION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "POTENTIALLY_HARMFUL_APPLICATION"
-          }
-        },
-        "SOCIAL_ENGINEERING_INTERNAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SOCIAL_ENGINEERING_INTERNAL"
-          }
-        },
-        "API_ABUSE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "API_ABUSE"
-          }
-        },
-        "MALICIOUS_BINARY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MALICIOUS_BINARY"
-          }
-        },
-        "CSD_WHITELIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CSD_WHITELIST"
-          }
-        },
-        "CSD_DOWNLOAD_WHITELIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CSD_DOWNLOAD_WHITELIST"
-          }
-        },
-        "CLIENT_INCIDENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLIENT_INCIDENT"
-          }
-        },
-        "CLIENT_INCIDENT_WHITELIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CLIENT_INCIDENT_WHITELIST"
-          }
-        },
-        "APK_MALWARE_OFFLINE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "APK_MALWARE_OFFLINE"
-          }
-        },
-        "SUBRESOURCE_FILTER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUBRESOURCE_FILTER"
-          }
-        },
-        "SUSPICIOUS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUSPICIOUS"
-          }
-        },
-        "TRICK_TO_BILL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TRICK_TO_BILL"
-          }
-        },
-        "HIGH_CONFIDENCE_ALLOWLIST": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HIGH_CONFIDENCE_ALLOWLIST"
-          }
-        },
-        "ACCURACY_TIPS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACCURACY_TIPS"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatTypesItemEnum"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "PLATFORM_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLATFORM_TYPE_UNSPECIFIED"
-          }
-        },
-        "WINDOWS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WINDOWS"
-          }
-        },
-        "LINUX": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LINUX"
-          }
-        },
-        "ANDROID": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANDROID"
-          }
-        },
-        "OSX": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OSX"
-          }
-        },
-        "IOS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IOS"
-          }
-        },
-        "ANY_PLATFORM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ANY_PLATFORM"
-          }
-        },
-        "ALL_PLATFORMS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ALL_PLATFORMS"
-          }
-        },
-        "CHROME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHROME"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoPlatformTypesItemEnum"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "THREAT_ENTRY_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THREAT_ENTRY_TYPE_UNSPECIFIED"
-          }
-        },
-        "URL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "URL"
-          }
-        },
-        "EXECUTABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EXECUTABLE"
-          }
-        },
-        "IP_RANGE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IP_RANGE"
-          }
-        },
-        "CHROME_EXTENSION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHROME_EXTENSION"
-          }
-        },
-        "FILENAME": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FILENAME"
-          }
-        },
-        "CERT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CERT"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatInfoThreatEntryTypesItemEnum"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntryList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatEntry"
-      }
-    },
-    "com.gcp.safebrowsing_v4#GetEncodedFullHashesRequest": {
-      "type": "structure",
-      "members": {
-        "clientId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.",
-            "smithy.api#httpQuery": "clientId"
-          }
-        },
-        "clientVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of the client implementation.",
-            "smithy.api#httpQuery": "clientVersion"
-          }
-        },
-        "encodedRequest": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A serialized FindFullHashesRequest proto.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -2187,91 +2173,6 @@
         ]
       }
     },
-    "com.gcp.safebrowsing_v4#GetEncodedFullHashes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.safebrowsing_v4#GetEncodedFullHashesRequest"
-      },
-      "output": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindFullHashesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.safebrowsing_v4#NotFound"
-        },
-        {
-          "target": "com.gcp.safebrowsing_v4#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v4/encodedFullHashes/{encodedRequest}"
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GetEncodedUpdatesRequest": {
-      "type": "structure",
-      "members": {
-        "encodedRequest": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A serialized FetchThreatListUpdatesRequest proto.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "clientId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A client ID that uniquely identifies the client implementation of the Safe Browsing API.",
-            "smithy.api#httpQuery": "clientId"
-          }
-        },
-        "clientVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of the client implementation.",
-            "smithy.api#httpQuery": "clientVersion"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#GetEncodedUpdates": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.safebrowsing_v4#GetEncodedUpdatesRequest"
-      },
-      "output": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.safebrowsing_v4#NotFound"
-        },
-        {
-          "target": "com.gcp.safebrowsing_v4#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v4/encodedUpdates/{encodedRequest}"
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v4#FindThreatMatchesRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
     "com.gcp.safebrowsing_v4#BadRequest": {
       "type": "structure",
       "members": {},
@@ -2296,48 +2197,6 @@
             "status": 409
           }
         ]
-      }
-    },
-    "com.gcp.safebrowsing_v4#FindThreatMatches": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.safebrowsing_v4#FindThreatMatchesRequest"
-      },
-      "output": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.safebrowsing_v4#NotFound"
-        },
-        {
-          "target": "com.gcp.safebrowsing_v4#Forbidden"
-        },
-        {
-          "target": "com.gcp.safebrowsing_v4#BadRequest"
-        },
-        {
-          "target": "com.gcp.safebrowsing_v4#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v4/threatMatches:find"
-        },
-        "smithy.api#documentation": "Finds the threat entries that match the Safe Browsing lists."
-      }
-    },
-    "com.gcp.safebrowsing_v4#CreateThreatHitsRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ThreatHit",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
       }
     },
     "com.gcp.safebrowsing_v4#CreateThreatHits": {
@@ -2370,17 +2229,25 @@
         "smithy.api#documentation": "Reports a Safe Browsing threat list hit to Google. Only projects with TRUSTED_REPORTER visibility can use this method."
       }
     },
-    "com.gcp.safebrowsing_v4#ListThreatListsRequest": {
+    "com.gcp.safebrowsing_v4#FetchThreatListUpdatesRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+        "body": {
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
     },
-    "com.gcp.safebrowsing_v4#ListThreatLists": {
+    "com.gcp.safebrowsing_v4#FetchThreatListUpdates": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.safebrowsing_v4#ListThreatListsRequest"
+        "target": "com.gcp.safebrowsing_v4#FetchThreatListUpdatesRequest"
       },
       "output": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ListThreatListsResponse"
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse"
       },
       "errors": [
         {
@@ -2388,14 +2255,20 @@
         },
         {
           "target": "com.gcp.safebrowsing_v4#Forbidden"
+        },
+        {
+          "target": "com.gcp.safebrowsing_v4#BadRequest"
+        },
+        {
+          "target": "com.gcp.safebrowsing_v4#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v4/threatLists"
+          "method": "POST",
+          "uri": "v4/threatListUpdates:fetch"
         },
-        "smithy.api#documentation": "Lists the Safe Browsing threat lists available for download."
+        "smithy.api#documentation": "Fetches the most recent threat list updates. A client can request updates for multiple lists at once."
       }
     },
     "com.gcp.safebrowsing_v4#FindFullHashesRequest": {
@@ -2440,11 +2313,61 @@
         "smithy.api#documentation": "Finds the full hashes that match the requested hash prefixes."
       }
     },
-    "com.gcp.safebrowsing_v4#ListFetchThreatUpdatesRequest": {
+    "com.gcp.safebrowsing_v4#GetEncodedFullHashesRequest": {
+      "type": "structure",
+      "members": {
+        "encodedRequest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A serialized FindFullHashesRequest proto.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "clientVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the client implementation.",
+            "smithy.api#httpQuery": "clientVersion"
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A client ID that (hopefully) uniquely identifies the client implementation of the Safe Browsing API.",
+            "smithy.api#httpQuery": "clientId"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GetEncodedFullHashes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.safebrowsing_v4#GetEncodedFullHashesRequest"
+      },
+      "output": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindFullHashesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.safebrowsing_v4#NotFound"
+        },
+        {
+          "target": "com.gcp.safebrowsing_v4#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v4/encodedFullHashes/{encodedRequest}"
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#FindThreatMatchesRequest": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest",
+          "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -2452,13 +2375,13 @@
         }
       }
     },
-    "com.gcp.safebrowsing_v4#ListFetchThreatUpdates": {
+    "com.gcp.safebrowsing_v4#FindThreatMatches": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.safebrowsing_v4#ListFetchThreatUpdatesRequest"
+        "target": "com.gcp.safebrowsing_v4#FindThreatMatchesRequest"
       },
       "output": {
-        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse"
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FindThreatMatchesResponse"
       },
       "errors": [
         {
@@ -2477,9 +2400,87 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v4/threatListUpdates:fetch"
+          "uri": "v4/threatMatches:find"
         },
-        "smithy.api#documentation": "Fetches the most recent threat list updates. A client can request updates for multiple lists at once."
+        "smithy.api#documentation": "Finds the threat entries that match the Safe Browsing lists."
+      }
+    },
+    "com.gcp.safebrowsing_v4#GetEncodedUpdatesRequest": {
+      "type": "structure",
+      "members": {
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A client ID that uniquely identifies the client implementation of the Safe Browsing API.",
+            "smithy.api#httpQuery": "clientId"
+          }
+        },
+        "encodedRequest": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A serialized FetchThreatListUpdatesRequest proto.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "clientVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the client implementation.",
+            "smithy.api#httpQuery": "clientVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#GetEncodedUpdates": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.safebrowsing_v4#GetEncodedUpdatesRequest"
+      },
+      "output": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.safebrowsing_v4#NotFound"
+        },
+        {
+          "target": "com.gcp.safebrowsing_v4#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v4/encodedUpdates/{encodedRequest}"
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v4#ListThreatListsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "com.gcp.safebrowsing_v4#ListThreatLists": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.safebrowsing_v4#ListThreatListsRequest"
+      },
+      "output": {
+        "target": "com.gcp.safebrowsing_v4#GoogleSecuritySafebrowsingV4ListThreatListsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.safebrowsing_v4#NotFound"
+        },
+        {
+          "target": "com.gcp.safebrowsing_v4#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v4/threatLists"
+        },
+        "smithy.api#documentation": "Lists the Safe Browsing threat lists available for download."
       }
     }
   }

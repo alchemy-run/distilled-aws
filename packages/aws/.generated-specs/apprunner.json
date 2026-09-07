@@ -1254,21 +1254,25 @@
       "type": "enum",
       "members": {
         "ACTIVE": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ACTIVE"
           }
         },
         "INACTIVE": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "INACTIVE"
           }
         },
         "active": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "active"
           }
         },
         "inactive": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "inactive"
           }
@@ -5652,21 +5656,25 @@
       "type": "enum",
       "members": {
         "ACTIVE": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ACTIVE"
           }
         },
         "INACTIVE": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "INACTIVE"
           }
         },
         "active": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "active"
           }
         },
         "inactive": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "inactive"
           }

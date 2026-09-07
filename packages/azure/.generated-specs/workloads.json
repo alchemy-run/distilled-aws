@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.workloads#StopSapDatabaseInstanceInstance": {
+    "com.azure.workloads#StopSAPDatabaseInstanceInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StopSapDatabaseInstanceInstanceRequest"
+        "target": "com.azure.workloads#StopSAPDatabaseInstanceInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StopSapDatabaseInstanceInstanceResponse"
+        "target": "com.azure.workloads#StopSAPDatabaseInstanceInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StopSapDatabaseInstanceInstanceResponse": {
+    "com.azure.workloads#StopSAPDatabaseInstanceInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -77,7 +78,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesStopInstanceResponseOperationsList",
+          "target": "com.azure.workloads#StopSAPDatabaseInstanceInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -169,7 +170,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesStopInstanceResponseOperationsList": {
+    "com.azure.workloads#StopSAPDatabaseInstanceInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -244,7 +245,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StopSapDatabaseInstanceInstanceRequest": {
+    "com.azure.workloads#StopSAPDatabaseInstanceInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -290,13 +291,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#StartSapDatabaseInstanceInstance": {
+    "com.azure.workloads#StartSAPDatabaseInstanceInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StartSapDatabaseInstanceInstanceRequest"
+        "target": "com.azure.workloads#StartSAPDatabaseInstanceInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StartSapDatabaseInstanceInstanceResponse"
+        "target": "com.azure.workloads#StartSAPDatabaseInstanceInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -309,7 +310,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StartSapDatabaseInstanceInstanceResponse": {
+    "com.azure.workloads#StartSAPDatabaseInstanceInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -350,7 +351,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesStartInstanceResponseOperationsList",
+          "target": "com.azure.workloads#StartSAPDatabaseInstanceInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -366,7 +367,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesStartInstanceResponseOperationsList": {
+    "com.azure.workloads#StartSAPDatabaseInstanceInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -375,7 +376,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StartSapDatabaseInstanceInstanceRequest": {
+    "com.azure.workloads#StartSAPDatabaseInstanceInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -415,13 +416,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#StopSapApplicationServerInstanceInstance": {
+    "com.azure.workloads#StopSAPApplicationServerInstanceInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StopSapApplicationServerInstanceInstanceRequest"
+        "target": "com.azure.workloads#StopSAPApplicationServerInstanceInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StopSapApplicationServerInstanceInstanceResponse"
+        "target": "com.azure.workloads#StopSAPApplicationServerInstanceInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -434,7 +435,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StopSapApplicationServerInstanceInstanceResponse": {
+    "com.azure.workloads#StopSAPApplicationServerInstanceInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -475,7 +476,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesStopInstanceResponseOperationsList",
+          "target": "com.azure.workloads#StopSAPApplicationServerInstanceInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -491,7 +492,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesStopInstanceResponseOperationsList": {
+    "com.azure.workloads#StopSAPApplicationServerInstanceInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -500,7 +501,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StopSapApplicationServerInstanceInstanceRequest": {
+    "com.azure.workloads#StopSAPApplicationServerInstanceInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -546,13 +547,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#StartSapApplicationServerInstanceInstance": {
+    "com.azure.workloads#StartSAPApplicationServerInstanceInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StartSapApplicationServerInstanceInstanceRequest"
+        "target": "com.azure.workloads#StartSAPApplicationServerInstanceInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StartSapApplicationServerInstanceInstanceResponse"
+        "target": "com.azure.workloads#StartSAPApplicationServerInstanceInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -565,7 +566,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StartSapApplicationServerInstanceInstanceResponse": {
+    "com.azure.workloads#StartSAPApplicationServerInstanceInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -606,7 +607,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesStartInstanceResponseOperationsList",
+          "target": "com.azure.workloads#StartSAPApplicationServerInstanceInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -622,7 +623,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesStartInstanceResponseOperationsList": {
+    "com.azure.workloads#StartSAPApplicationServerInstanceInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -631,7 +632,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StartSapApplicationServerInstanceInstanceRequest": {
+    "com.azure.workloads#StartSAPApplicationServerInstanceInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -671,13 +672,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#StopSapCentralInstanceInstance": {
+    "com.azure.workloads#StopSAPCentralInstanceInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StopSapCentralInstanceInstanceRequest"
+        "target": "com.azure.workloads#StopSAPCentralInstanceInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StopSapCentralInstanceInstanceResponse"
+        "target": "com.azure.workloads#StopSAPCentralInstanceInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -690,7 +691,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StopSapCentralInstanceInstanceResponse": {
+    "com.azure.workloads#StopSAPCentralInstanceInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -731,7 +732,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPCentralInstancesStopInstanceResponseOperationsList",
+          "target": "com.azure.workloads#StopSAPCentralInstanceInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -747,7 +748,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPCentralInstancesStopInstanceResponseOperationsList": {
+    "com.azure.workloads#StopSAPCentralInstanceInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -756,7 +757,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StopSapCentralInstanceInstanceRequest": {
+    "com.azure.workloads#StopSAPCentralInstanceInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -802,13 +803,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#StartSapCentralInstanceInstance": {
+    "com.azure.workloads#StartSAPCentralInstanceInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StartSapCentralInstanceInstanceRequest"
+        "target": "com.azure.workloads#StartSAPCentralInstanceInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StartSapCentralInstanceInstanceResponse"
+        "target": "com.azure.workloads#StartSAPCentralInstanceInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -821,7 +822,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StartSapCentralInstanceInstanceResponse": {
+    "com.azure.workloads#StartSAPCentralInstanceInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -862,7 +863,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPCentralInstancesStartInstanceResponseOperationsList",
+          "target": "com.azure.workloads#StartSAPCentralInstanceInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -878,7 +879,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPCentralInstancesStartInstanceResponseOperationsList": {
+    "com.azure.workloads#StartSAPCentralInstanceInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -887,7 +888,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StartSapCentralInstanceInstanceRequest": {
+    "com.azure.workloads#StartSAPCentralInstanceInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -927,13 +928,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#StopSapVirtualInstance": {
+    "com.azure.workloads#StopSAPVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StopSapVirtualInstanceRequest"
+        "target": "com.azure.workloads#StopSAPVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StopSapVirtualInstanceResponse"
+        "target": "com.azure.workloads#StopSAPVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -946,7 +947,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StopSapVirtualInstanceResponse": {
+    "com.azure.workloads#StopSAPVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -987,7 +988,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPVirtualInstancesStopResponseOperationsList",
+          "target": "com.azure.workloads#StopSAPVirtualInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -1003,7 +1004,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesStopResponseOperationsList": {
+    "com.azure.workloads#StopSAPVirtualInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -1012,7 +1013,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StopSapVirtualInstanceRequest": {
+    "com.azure.workloads#StopSAPVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1050,13 +1051,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#StartSapVirtualInstance": {
+    "com.azure.workloads#StartSAPVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#StartSapVirtualInstanceRequest"
+        "target": "com.azure.workloads#StartSAPVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#StartSapVirtualInstanceResponse"
+        "target": "com.azure.workloads#StartSAPVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1069,7 +1070,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#StartSapVirtualInstanceResponse": {
+    "com.azure.workloads#StartSAPVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1110,7 +1111,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPVirtualInstancesStartResponseOperationsList",
+          "target": "com.azure.workloads#StartSAPVirtualInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -1126,7 +1127,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesStartResponseOperationsList": {
+    "com.azure.workloads#StartSAPVirtualInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -1135,7 +1136,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#StartSapVirtualInstanceRequest": {
+    "com.azure.workloads#StartSAPVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1167,10 +1168,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#ListSapApplicationServerInstances": {
+    "com.azure.workloads#ListSAPApplicationServerInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#ListSapApplicationServerInstancesRequest"
+        "target": "com.azure.workloads#ListSAPApplicationServerInstancesRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPApplicationServerInstanceList"
@@ -1730,7 +1731,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.workloads#ListSapApplicationServerInstancesRequest": {
+    "com.azure.workloads#ListSAPApplicationServerInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1762,13 +1763,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#DeleteSapApplicationServerInstance": {
+    "com.azure.workloads#DeleteSAPApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#DeleteSapApplicationServerInstanceRequest"
+        "target": "com.azure.workloads#DeleteSAPApplicationServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#DeleteSapApplicationServerInstanceResponse"
+        "target": "com.azure.workloads#DeleteSAPApplicationServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1781,7 +1782,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#DeleteSapApplicationServerInstanceResponse": {
+    "com.azure.workloads#DeleteSAPApplicationServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1822,7 +1823,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesDeleteResponseOperationsList",
+          "target": "com.azure.workloads#DeleteSAPApplicationServerInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -1838,7 +1839,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesDeleteResponseOperationsList": {
+    "com.azure.workloads#DeleteSAPApplicationServerInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -1847,7 +1848,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#DeleteSapApplicationServerInstanceRequest": {
+    "com.azure.workloads#DeleteSAPApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1887,13 +1888,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#UpdateSapApplicationServerInstance": {
+    "com.azure.workloads#UpdateSAPApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#UpdateSapApplicationServerInstanceRequest"
+        "target": "com.azure.workloads#UpdateSAPApplicationServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#UpdateSapApplicationServerInstanceResponse"
+        "target": "com.azure.workloads#UpdateSAPApplicationServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1906,7 +1907,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#UpdateSapApplicationServerInstanceResponse": {
+    "com.azure.workloads#UpdateSAPApplicationServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1934,7 +1935,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSAPApplicationServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1954,7 +1955,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSAPApplicationServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1966,7 +1967,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#UpdateSapApplicationServerInstanceRequest": {
+    "com.azure.workloads#UpdateSAPApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2002,7 +2003,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSAPApplicationServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -2012,7 +2013,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSAPApplicationServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2024,13 +2025,13 @@
         "smithy.api#documentation": "Gets or sets the Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapApplicationServerInstance": {
+    "com.azure.workloads#CreateSAPApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#CreateSapApplicationServerInstanceRequest"
+        "target": "com.azure.workloads#CreateSAPApplicationServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#CreateSapApplicationServerInstanceResponse"
+        "target": "com.azure.workloads#CreateSAPApplicationServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2043,7 +2044,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#CreateSapApplicationServerInstanceResponse": {
+    "com.azure.workloads#CreateSAPApplicationServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2071,7 +2072,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSAPApplicationServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2091,7 +2092,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSAPApplicationServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2103,7 +2104,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapApplicationServerInstanceRequest": {
+    "com.azure.workloads#CreateSAPApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2139,7 +2140,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSAPApplicationServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2166,7 +2167,7 @@
         "smithy.api#documentation": "Defines the SAP Application Server instance properties."
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSAPApplicationServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2178,13 +2179,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapApplicationServerInstance": {
+    "com.azure.workloads#GetSAPApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#GetSapApplicationServerInstanceRequest"
+        "target": "com.azure.workloads#GetSAPApplicationServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#GetSapApplicationServerInstanceResponse"
+        "target": "com.azure.workloads#GetSAPApplicationServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2197,7 +2198,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#GetSapApplicationServerInstanceResponse": {
+    "com.azure.workloads#GetSAPApplicationServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2225,7 +2226,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPApplicationServerInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSAPApplicationServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2245,7 +2246,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPApplicationServerInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSAPApplicationServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2257,7 +2258,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapApplicationServerInstanceRequest": {
+    "com.azure.workloads#GetSAPApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2297,10 +2298,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#ListSapDatabaseInstances": {
+    "com.azure.workloads#ListSAPDatabaseInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#ListSapDatabaseInstancesRequest"
+        "target": "com.azure.workloads#ListSAPDatabaseInstancesRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPDatabaseInstanceList"
@@ -2499,7 +2500,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#ListSapDatabaseInstancesRequest": {
+    "com.azure.workloads#ListSAPDatabaseInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2531,13 +2532,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#DeleteSapDatabaseInstance": {
+    "com.azure.workloads#DeleteSAPDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#DeleteSapDatabaseInstanceRequest"
+        "target": "com.azure.workloads#DeleteSAPDatabaseInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#DeleteSapDatabaseInstanceResponse"
+        "target": "com.azure.workloads#DeleteSAPDatabaseInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2550,7 +2551,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#DeleteSapDatabaseInstanceResponse": {
+    "com.azure.workloads#DeleteSAPDatabaseInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2591,7 +2592,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesDeleteResponseOperationsList",
+          "target": "com.azure.workloads#DeleteSAPDatabaseInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2607,7 +2608,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesDeleteResponseOperationsList": {
+    "com.azure.workloads#DeleteSAPDatabaseInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -2616,7 +2617,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#DeleteSapDatabaseInstanceRequest": {
+    "com.azure.workloads#DeleteSAPDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2656,13 +2657,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#UpdateSapDatabaseInstance": {
+    "com.azure.workloads#UpdateSAPDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#UpdateSapDatabaseInstanceRequest"
+        "target": "com.azure.workloads#UpdateSAPDatabaseInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#UpdateSapDatabaseInstanceResponse"
+        "target": "com.azure.workloads#UpdateSAPDatabaseInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2675,7 +2676,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#UpdateSapDatabaseInstanceResponse": {
+    "com.azure.workloads#UpdateSAPDatabaseInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2703,7 +2704,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSAPDatabaseInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2723,7 +2724,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSAPDatabaseInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2735,7 +2736,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#UpdateSapDatabaseInstanceRequest": {
+    "com.azure.workloads#UpdateSAPDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2771,7 +2772,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSAPDatabaseInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -2781,7 +2782,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSAPDatabaseInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2793,13 +2794,13 @@
         "smithy.api#documentation": "Gets or sets the Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapDatabaseInstance": {
+    "com.azure.workloads#CreateSAPDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#CreateSapDatabaseInstanceRequest"
+        "target": "com.azure.workloads#CreateSAPDatabaseInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#CreateSapDatabaseInstanceResponse"
+        "target": "com.azure.workloads#CreateSAPDatabaseInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2812,7 +2813,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#CreateSapDatabaseInstanceResponse": {
+    "com.azure.workloads#CreateSAPDatabaseInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2840,7 +2841,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSAPDatabaseInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2860,7 +2861,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSAPDatabaseInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2872,7 +2873,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapDatabaseInstanceRequest": {
+    "com.azure.workloads#CreateSAPDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2908,7 +2909,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSAPDatabaseInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2935,7 +2936,7 @@
         "smithy.api#documentation": "Defines the Database properties."
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSAPDatabaseInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2947,13 +2948,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapDatabaseInstance": {
+    "com.azure.workloads#GetSAPDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#GetSapDatabaseInstanceRequest"
+        "target": "com.azure.workloads#GetSAPDatabaseInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#GetSapDatabaseInstanceResponse"
+        "target": "com.azure.workloads#GetSAPDatabaseInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2966,7 +2967,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#GetSapDatabaseInstanceResponse": {
+    "com.azure.workloads#GetSAPDatabaseInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2994,7 +2995,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPDatabaseInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSAPDatabaseInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3014,7 +3015,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPDatabaseInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSAPDatabaseInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3026,7 +3027,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapDatabaseInstanceRequest": {
+    "com.azure.workloads#GetSAPDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3066,10 +3067,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#ListSapCentralInstances": {
+    "com.azure.workloads#ListSAPCentralInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#ListSapCentralInstancesRequest"
+        "target": "com.azure.workloads#ListSAPCentralInstancesRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPCentralInstanceList"
@@ -3498,7 +3499,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#ListSapCentralInstancesRequest": {
+    "com.azure.workloads#ListSAPCentralInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3530,13 +3531,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#DeleteSapCentralInstance": {
+    "com.azure.workloads#DeleteSAPCentralInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#DeleteSapCentralInstanceRequest"
+        "target": "com.azure.workloads#DeleteSAPCentralInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#DeleteSapCentralInstanceResponse"
+        "target": "com.azure.workloads#DeleteSAPCentralInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3549,7 +3550,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#DeleteSapCentralInstanceResponse": {
+    "com.azure.workloads#DeleteSAPCentralInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3590,7 +3591,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPCentralInstancesDeleteResponseOperationsList",
+          "target": "com.azure.workloads#DeleteSAPCentralInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -3606,7 +3607,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPCentralInstancesDeleteResponseOperationsList": {
+    "com.azure.workloads#DeleteSAPCentralInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -3615,7 +3616,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#DeleteSapCentralInstanceRequest": {
+    "com.azure.workloads#DeleteSAPCentralInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3655,13 +3656,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#UpdateSapCentralInstance": {
+    "com.azure.workloads#UpdateSAPCentralInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#UpdateSapCentralInstanceRequest"
+        "target": "com.azure.workloads#UpdateSAPCentralInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#UpdateSapCentralInstanceResponse"
+        "target": "com.azure.workloads#UpdateSAPCentralInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3674,7 +3675,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#UpdateSapCentralInstanceResponse": {
+    "com.azure.workloads#UpdateSAPCentralInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3702,7 +3703,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPCentralInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSAPCentralInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3722,7 +3723,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPCentralInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSAPCentralInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3734,7 +3735,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#UpdateSapCentralInstanceRequest": {
+    "com.azure.workloads#UpdateSAPCentralInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3770,7 +3771,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPCentralInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSAPCentralInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -3780,7 +3781,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SAPCentralInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSAPCentralInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3792,13 +3793,13 @@
         "smithy.api#documentation": "Gets or sets the Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapCentralInstance": {
+    "com.azure.workloads#CreateSAPCentralInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#CreateSapCentralInstanceRequest"
+        "target": "com.azure.workloads#CreateSAPCentralInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#CreateSapCentralInstanceResponse"
+        "target": "com.azure.workloads#CreateSAPCentralInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3811,7 +3812,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#CreateSapCentralInstanceResponse": {
+    "com.azure.workloads#CreateSAPCentralInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3839,7 +3840,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPCentralInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSAPCentralInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3859,7 +3860,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPCentralInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSAPCentralInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3871,7 +3872,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapCentralInstanceRequest": {
+    "com.azure.workloads#CreateSAPCentralInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3907,7 +3908,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPCentralInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSAPCentralInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3975,7 +3976,7 @@
         "smithy.api#documentation": "Defines the SAP Message Server properties."
       }
     },
-    "com.azure.workloads#SAPCentralInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSAPCentralInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3987,13 +3988,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapCentralInstance": {
+    "com.azure.workloads#GetSAPCentralInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#GetSapCentralInstanceRequest"
+        "target": "com.azure.workloads#GetSAPCentralInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#GetSapCentralInstanceResponse"
+        "target": "com.azure.workloads#GetSAPCentralInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4006,7 +4007,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#GetSapCentralInstanceResponse": {
+    "com.azure.workloads#GetSAPCentralInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4034,7 +4035,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPCentralInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSAPCentralInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4054,7 +4055,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPCentralInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSAPCentralInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4066,7 +4067,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapCentralInstanceRequest": {
+    "com.azure.workloads#GetSAPCentralInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4106,10 +4107,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#ListSapVirtualInstanceBySubscription": {
+    "com.azure.workloads#ListSAPVirtualInstanceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#ListSapVirtualInstanceBySubscriptionRequest"
+        "target": "com.azure.workloads#ListSAPVirtualInstanceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPVirtualInstanceList"
@@ -4528,7 +4529,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#ListSapVirtualInstanceBySubscriptionRequest": {
+    "com.azure.workloads#ListSAPVirtualInstanceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4544,10 +4545,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#ListSapVirtualInstanceByResourceGroup": {
+    "com.azure.workloads#ListSAPVirtualInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#ListSapVirtualInstanceByResourceGroupRequest"
+        "target": "com.azure.workloads#ListSAPVirtualInstanceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPVirtualInstanceList"
@@ -4563,7 +4564,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#ListSapVirtualInstanceByResourceGroupRequest": {
+    "com.azure.workloads#ListSAPVirtualInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4587,13 +4588,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#DeleteSapVirtualInstance": {
+    "com.azure.workloads#DeleteSAPVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#DeleteSapVirtualInstanceRequest"
+        "target": "com.azure.workloads#DeleteSAPVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#DeleteSapVirtualInstanceResponse"
+        "target": "com.azure.workloads#DeleteSAPVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4606,7 +4607,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#DeleteSapVirtualInstanceResponse": {
+    "com.azure.workloads#DeleteSAPVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4647,7 +4648,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SAPVirtualInstancesDeleteResponseOperationsList",
+          "target": "com.azure.workloads#DeleteSAPVirtualInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -4663,7 +4664,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesDeleteResponseOperationsList": {
+    "com.azure.workloads#DeleteSAPVirtualInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -4672,7 +4673,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#DeleteSapVirtualInstanceRequest": {
+    "com.azure.workloads#DeleteSAPVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4704,13 +4705,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#UpdateSapVirtualInstance": {
+    "com.azure.workloads#UpdateSAPVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#UpdateSapVirtualInstanceRequest"
+        "target": "com.azure.workloads#UpdateSAPVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#UpdateSapVirtualInstanceResponse"
+        "target": "com.azure.workloads#UpdateSAPVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4723,7 +4724,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#UpdateSapVirtualInstanceResponse": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4751,7 +4752,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPVirtualInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSAPVirtualInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4764,7 +4765,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#SAPVirtualInstancesUpdateResponseIdentity",
+          "target": "com.azure.workloads#UpdateSAPVirtualInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -4780,7 +4781,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesUpdateResponseIdentity": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -4791,7 +4792,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#SAPVirtualInstancesUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#UpdateSAPVirtualInstanceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -4802,7 +4803,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4814,7 +4815,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4826,7 +4827,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#UpdateSapVirtualInstanceRequest": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4854,13 +4855,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPVirtualInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSAPVirtualInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.workloads#SAPVirtualInstancesUpdateRequestIdentity",
+          "target": "com.azure.workloads#UpdateSAPVirtualInstanceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -4870,7 +4871,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesUpdateRequestIdentity": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -4881,7 +4882,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#SAPVirtualInstancesUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#UpdateSAPVirtualInstanceRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -4892,7 +4893,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4911,7 +4912,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSAPVirtualInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4923,13 +4924,13 @@
         "smithy.api#documentation": "Gets or sets the Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapVirtualInstance": {
+    "com.azure.workloads#CreateSAPVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#CreateSapVirtualInstanceRequest"
+        "target": "com.azure.workloads#CreateSAPVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#CreateSapVirtualInstanceResponse"
+        "target": "com.azure.workloads#CreateSAPVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4942,7 +4943,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#CreateSapVirtualInstanceResponse": {
+    "com.azure.workloads#CreateSAPVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4970,7 +4971,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPVirtualInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSAPVirtualInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4983,7 +4984,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#SAPVirtualInstancesCreateResponseIdentity",
+          "target": "com.azure.workloads#CreateSAPVirtualInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -4999,7 +5000,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesCreateResponseIdentity": {
+    "com.azure.workloads#CreateSAPVirtualInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5010,7 +5011,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#SAPVirtualInstancesCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#CreateSAPVirtualInstanceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -5021,7 +5022,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#CreateSAPVirtualInstanceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5033,7 +5034,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSAPVirtualInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5045,7 +5046,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#CreateSapVirtualInstanceRequest": {
+    "com.azure.workloads#CreateSAPVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5073,7 +5074,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPVirtualInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSAPVirtualInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5086,7 +5087,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#SAPVirtualInstancesCreateRequestIdentity",
+          "target": "com.azure.workloads#CreateSAPVirtualInstanceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -5135,7 +5136,7 @@
         "smithy.api#documentation": "Defines the Virtual Instance for SAP solutions resource properties."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesCreateRequestIdentity": {
+    "com.azure.workloads#CreateSAPVirtualInstanceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5146,7 +5147,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#SAPVirtualInstancesCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#CreateSAPVirtualInstanceRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -5157,7 +5158,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#CreateSAPVirtualInstanceRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5169,7 +5170,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSAPVirtualInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5181,13 +5182,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapVirtualInstance": {
+    "com.azure.workloads#GetSAPVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#GetSapVirtualInstanceRequest"
+        "target": "com.azure.workloads#GetSAPVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#GetSapVirtualInstanceResponse"
+        "target": "com.azure.workloads#GetSAPVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5200,7 +5201,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#GetSapVirtualInstanceResponse": {
+    "com.azure.workloads#GetSAPVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5228,7 +5229,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SAPVirtualInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSAPVirtualInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5241,7 +5242,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#SAPVirtualInstancesGetResponseIdentity",
+          "target": "com.azure.workloads#GetSAPVirtualInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -5257,7 +5258,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesGetResponseIdentity": {
+    "com.azure.workloads#GetSAPVirtualInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5268,7 +5269,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#SAPVirtualInstancesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#GetSAPVirtualInstanceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -5279,7 +5280,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#GetSAPVirtualInstanceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5291,7 +5292,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#SAPVirtualInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSAPVirtualInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5303,7 +5304,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#GetSapVirtualInstanceRequest": {
+    "com.azure.workloads#GetSAPVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6040,7 +6041,7 @@
         "target": "com.azure.workloads#ListSapLandscapeMonitorRequest"
       },
       "output": {
-        "target": "com.azure.workloads#ListSapLandscapeMonitorResult"
+        "target": "com.azure.workloads#SapLandscapeMonitorListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -6053,7 +6054,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.workloads#ListSapLandscapeMonitorResult": {
+    "com.azure.workloads#SapLandscapeMonitorListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -6781,7 +6782,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#ProviderInstancesDeleteResponseOperationsList",
+          "target": "com.azure.workloads#DeleteProviderInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -6797,7 +6798,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#ProviderInstancesDeleteResponseOperationsList": {
+    "com.azure.workloads#DeleteProviderInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -6893,7 +6894,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#ProviderInstancesCreateResponseIdentity",
+          "target": "com.azure.workloads#CreateProviderInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -7058,7 +7059,7 @@
         "smithy.api#documentation": "State of provisioning of the provider instance"
       }
     },
-    "com.azure.workloads#ProviderInstancesCreateResponseIdentity": {
+    "com.azure.workloads#CreateProviderInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -7069,7 +7070,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#ProviderInstancesCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#CreateProviderInstanceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -7080,7 +7081,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#ProviderInstancesCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#CreateProviderInstanceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7128,7 +7129,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#ProviderInstancesCreateRequestIdentity",
+          "target": "com.azure.workloads#CreateProviderInstanceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -7158,7 +7159,7 @@
         "smithy.api#documentation": "Describes the properties of a provider instance."
       }
     },
-    "com.azure.workloads#ProviderInstancesCreateRequestIdentity": {
+    "com.azure.workloads#CreateProviderInstanceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -7169,7 +7170,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#ProviderInstancesCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#CreateProviderInstanceRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -7180,7 +7181,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#ProviderInstancesCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#CreateProviderInstanceRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7239,7 +7240,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#ProviderInstancesGetResponseIdentity",
+          "target": "com.azure.workloads#GetProviderInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -7255,7 +7256,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#ProviderInstancesGetResponseIdentity": {
+    "com.azure.workloads#GetProviderInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -7266,7 +7267,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#ProviderInstancesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#GetProviderInstanceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -7277,7 +7278,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#ProviderInstancesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#GetProviderInstanceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7547,7 +7548,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#MonitorsDeleteResponseOperationsList",
+          "target": "com.azure.workloads#DeleteMonitorResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -7563,7 +7564,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#MonitorsDeleteResponseOperationsList": {
+    "com.azure.workloads#DeleteMonitorResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult"
@@ -7651,7 +7652,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#MonitorsUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateMonitorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7664,7 +7665,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#MonitorsUpdateResponseIdentity",
+          "target": "com.azure.workloads#UpdateMonitorResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -7818,7 +7819,7 @@
         "smithy.api#documentation": "State of provisioning of the SAP monitor."
       }
     },
-    "com.azure.workloads#MonitorsUpdateResponseIdentity": {
+    "com.azure.workloads#UpdateMonitorResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -7829,7 +7830,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#MonitorsUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#UpdateMonitorResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -7840,7 +7841,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#MonitorsUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#UpdateMonitorResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7852,7 +7853,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#MonitorsUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateMonitorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7892,13 +7893,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#MonitorsUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateMonitorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.workloads#MonitorsUpdateRequestIdentity",
+          "target": "com.azure.workloads#UpdateMonitorRequestIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -7908,7 +7909,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#MonitorsUpdateRequestIdentity": {
+    "com.azure.workloads#UpdateMonitorRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -7919,7 +7920,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#MonitorsUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#UpdateMonitorRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -7930,7 +7931,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#MonitorsUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#UpdateMonitorRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7942,7 +7943,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#MonitorsUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateMonitorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8001,7 +8002,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#MonitorsCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateMonitorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8014,7 +8015,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#MonitorsCreateResponseIdentity",
+          "target": "com.azure.workloads#CreateMonitorResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -8030,7 +8031,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#MonitorsCreateResponseIdentity": {
+    "com.azure.workloads#CreateMonitorResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -8041,7 +8042,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#MonitorsCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#CreateMonitorResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -8052,7 +8053,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#MonitorsCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#CreateMonitorResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8064,7 +8065,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#MonitorsCreateResponseTagsMap": {
+    "com.azure.workloads#CreateMonitorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8104,7 +8105,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#MonitorsCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateMonitorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8117,7 +8118,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#MonitorsCreateRequestIdentity",
+          "target": "com.azure.workloads#CreateMonitorRequestIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -8197,7 +8198,7 @@
         "smithy.api#documentation": "Sets the routing preference of the SAP monitor. By default only RFC1918 traffic is routed to the customer VNET."
       }
     },
-    "com.azure.workloads#MonitorsCreateRequestIdentity": {
+    "com.azure.workloads#CreateMonitorRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -8208,7 +8209,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#MonitorsCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#CreateMonitorRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -8219,7 +8220,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#MonitorsCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#CreateMonitorRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8231,7 +8232,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#MonitorsCreateRequestTagsMap": {
+    "com.azure.workloads#CreateMonitorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8290,7 +8291,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#MonitorsGetResponseTagsMap",
+          "target": "com.azure.workloads#GetMonitorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8303,7 +8304,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.workloads#MonitorsGetResponseIdentity",
+          "target": "com.azure.workloads#GetMonitorResponseIdentity",
           "traits": {
             "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
           }
@@ -8319,7 +8320,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#MonitorsGetResponseIdentity": {
+    "com.azure.workloads#GetMonitorResponseIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -8330,7 +8331,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.workloads#MonitorsGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.workloads#GetMonitorResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.",
             "com.distilled.openapi#nullable": {}
@@ -8341,7 +8342,7 @@
         "smithy.api#documentation": "A pre-created user assigned identity with appropriate roles assigned. To learn more on identity and roles required, visit the ACSS how-to-guide."
       }
     },
-    "com.azure.workloads#MonitorsGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.workloads#GetMonitorResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8353,7 +8354,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.workloads#MonitorsGetResponseTagsMap": {
+    "com.azure.workloads#GetMonitorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8630,7 +8631,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.workloads#OperationsListResponseValueList",
+          "target": "com.azure.workloads#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -8646,7 +8647,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#OperationsListResponseValueList": {
+    "com.azure.workloads#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#Operation"
@@ -8765,13 +8766,13 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStop": {
+    "com.azure.workloads#StopSapVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesStopRequest"
+        "target": "com.azure.workloads#StopSapVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapVirtualInstancesStopResponse"
+        "target": "com.azure.workloads#StopSapVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8784,7 +8785,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStopResponse": {
+    "com.azure.workloads#StopSapVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8831,7 +8832,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapVirtualInstancesStopResponseOperationsList",
+          "target": "com.azure.workloads#StopSapVirtualInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -8847,7 +8848,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStopResponseOperationsList": {
+    "com.azure.workloads#StopSapVirtualInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -8928,7 +8929,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStopRequest": {
+    "com.azure.workloads#StopSapVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8972,13 +8973,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStart": {
+    "com.azure.workloads#StartSapVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesStartRequest"
+        "target": "com.azure.workloads#StartSapVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapVirtualInstancesStartResponse"
+        "target": "com.azure.workloads#StartSapVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8991,7 +8992,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStartResponse": {
+    "com.azure.workloads#StartSapVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9038,7 +9039,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapVirtualInstancesStartResponseOperationsList",
+          "target": "com.azure.workloads#StartSapVirtualInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -9054,7 +9055,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStartResponseOperationsList": {
+    "com.azure.workloads#StartSapVirtualInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -9063,7 +9064,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesStartRequest": {
+    "com.azure.workloads#StartSapVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9167,7 +9168,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapDatabaseInstancesStopResponseOperationsList",
+          "target": "com.azure.workloads#StopSapDatabaseInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -9183,7 +9184,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesStopResponseOperationsList": {
+    "com.azure.workloads#StopSapDatabaseInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -9310,7 +9311,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapDatabaseInstancesStartResponseOperationsList",
+          "target": "com.azure.workloads#StartSapDatabaseInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -9326,7 +9327,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesStartResponseOperationsList": {
+    "com.azure.workloads#StartSapDatabaseInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -9381,10 +9382,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesDelete": {
+    "com.azure.workloads#DeleteSapDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapDatabaseInstancesDeleteRequest"
+        "target": "com.azure.workloads#DeleteSapDatabaseInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9400,7 +9401,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesDeleteRequest": {
+    "com.azure.workloads#DeleteSapDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9440,13 +9441,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesUpdate": {
+    "com.azure.workloads#UpdateSapDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapDatabaseInstancesUpdateRequest"
+        "target": "com.azure.workloads#UpdateSapDatabaseInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapDatabaseInstancesUpdateResponse"
+        "target": "com.azure.workloads#UpdateSapDatabaseInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9459,7 +9460,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesUpdateResponse": {
+    "com.azure.workloads#UpdateSapDatabaseInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9487,7 +9488,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapDatabaseInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSapDatabaseInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9688,7 +9689,7 @@
         "smithy.api#documentation": "The Load Balancer details such as Load Balancer ID."
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSapDatabaseInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9700,7 +9701,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesUpdateRequest": {
+    "com.azure.workloads#UpdateSapDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9736,7 +9737,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapDatabaseInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSapDatabaseInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -9746,7 +9747,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSapDatabaseInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9758,13 +9759,13 @@
         "smithy.api#documentation": "Gets or sets the Resource tags."
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesCreate": {
+    "com.azure.workloads#CreateSapDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapDatabaseInstancesCreateRequest"
+        "target": "com.azure.workloads#CreateSapDatabaseInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapDatabaseInstancesCreateResponse"
+        "target": "com.azure.workloads#CreateSapDatabaseInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9777,7 +9778,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesCreateResponse": {
+    "com.azure.workloads#CreateSapDatabaseInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9805,7 +9806,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapDatabaseInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSapDatabaseInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9828,7 +9829,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSapDatabaseInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9840,7 +9841,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesCreateRequest": {
+    "com.azure.workloads#CreateSapDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9876,7 +9877,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapDatabaseInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSapDatabaseInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9899,7 +9900,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSapDatabaseInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9911,13 +9912,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesGet": {
+    "com.azure.workloads#GetSapDatabaseInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapDatabaseInstancesGetRequest"
+        "target": "com.azure.workloads#GetSapDatabaseInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapDatabaseInstancesGetResponse"
+        "target": "com.azure.workloads#GetSapDatabaseInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9930,7 +9931,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesGetResponse": {
+    "com.azure.workloads#GetSapDatabaseInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9958,7 +9959,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapDatabaseInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSapDatabaseInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9981,7 +9982,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSapDatabaseInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9993,7 +9994,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesGetRequest": {
+    "com.azure.workloads#GetSapDatabaseInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10033,10 +10034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesList": {
+    "com.azure.workloads#ListSapDatabaseInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapDatabaseInstancesListRequest"
+        "target": "com.azure.workloads#ListSapDatabaseInstancesRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPDatabaseInstanceListResult"
@@ -10133,7 +10134,7 @@
         "smithy.api#documentation": "Define the Database resource."
       }
     },
-    "com.azure.workloads#SapDatabaseInstancesListRequest": {
+    "com.azure.workloads#ListSapDatabaseInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10231,7 +10232,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapCentralServerInstancesStopResponseOperationsList",
+          "target": "com.azure.workloads#StopSapCentralServerInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -10247,7 +10248,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapCentralServerInstancesStopResponseOperationsList": {
+    "com.azure.workloads#StopSapCentralServerInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -10374,7 +10375,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapCentralServerInstancesStartResponseOperationsList",
+          "target": "com.azure.workloads#StartSapCentralServerInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -10390,7 +10391,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapCentralServerInstancesStartResponseOperationsList": {
+    "com.azure.workloads#StartSapCentralServerInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -10551,7 +10552,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapCentralServerInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSapCentralServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10894,7 +10895,7 @@
         "smithy.api#documentation": "Defines the SAP message server properties."
       }
     },
-    "com.azure.workloads#SapCentralServerInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSapCentralServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10942,7 +10943,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapCentralServerInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSapCentralServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -10952,7 +10953,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapCentralServerInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSapCentralServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11011,7 +11012,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapCentralServerInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSapCentralServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11034,7 +11035,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapCentralServerInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSapCentralServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11082,7 +11083,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapCentralServerInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSapCentralServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11144,7 +11145,7 @@
         "smithy.api#documentation": "Defines the SAP message server properties."
       }
     },
-    "com.azure.workloads#SapCentralServerInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSapCentralServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11203,7 +11204,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapCentralServerInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSapCentralServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11226,7 +11227,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapCentralServerInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSapCentralServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11476,7 +11477,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapApplicationServerInstancesStopResponseOperationsList",
+          "target": "com.azure.workloads#StopSapApplicationServerInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -11492,7 +11493,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesStopResponseOperationsList": {
+    "com.azure.workloads#StopSapApplicationServerInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -11619,7 +11620,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.workloads#SapApplicationServerInstancesStartResponseOperationsList",
+          "target": "com.azure.workloads#StartSapApplicationServerInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -11635,7 +11636,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesStartResponseOperationsList": {
+    "com.azure.workloads#StartSapApplicationServerInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.workloads#OperationStatusResult_2"
@@ -11690,10 +11691,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesDelete": {
+    "com.azure.workloads#DeleteSapApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesDeleteRequest"
+        "target": "com.azure.workloads#DeleteSapApplicationServerInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11709,7 +11710,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesDeleteRequest": {
+    "com.azure.workloads#DeleteSapApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11749,13 +11750,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesUpdate": {
+    "com.azure.workloads#UpdateSapApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesUpdateRequest"
+        "target": "com.azure.workloads#UpdateSapApplicationServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesUpdateResponse"
+        "target": "com.azure.workloads#UpdateSapApplicationServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11768,7 +11769,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesUpdateResponse": {
+    "com.azure.workloads#UpdateSapApplicationServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11796,7 +11797,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapApplicationServerInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSapApplicationServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11967,7 +11968,7 @@
         "smithy.api#documentation": "Storage details of all the Storage Accounts attached to the App Virtual Machine. For e.g. NFS on AFS Shared Storage."
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSapApplicationServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11979,7 +11980,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesUpdateRequest": {
+    "com.azure.workloads#UpdateSapApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12015,7 +12016,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapApplicationServerInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSapApplicationServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -12025,7 +12026,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSapApplicationServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12037,13 +12038,13 @@
         "smithy.api#documentation": "Gets or sets the Resource tags."
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesCreate": {
+    "com.azure.workloads#CreateSapApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesCreateRequest"
+        "target": "com.azure.workloads#CreateSapApplicationServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesCreateResponse"
+        "target": "com.azure.workloads#CreateSapApplicationServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12056,7 +12057,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesCreateResponse": {
+    "com.azure.workloads#CreateSapApplicationServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12084,7 +12085,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapApplicationServerInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSapApplicationServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12107,7 +12108,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSapApplicationServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12119,7 +12120,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesCreateRequest": {
+    "com.azure.workloads#CreateSapApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12155,7 +12156,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapApplicationServerInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSapApplicationServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12178,7 +12179,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSapApplicationServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12190,13 +12191,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesGet": {
+    "com.azure.workloads#GetSapApplicationServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesGetRequest"
+        "target": "com.azure.workloads#GetSapApplicationServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesGetResponse"
+        "target": "com.azure.workloads#GetSapApplicationServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12209,7 +12210,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesGetResponse": {
+    "com.azure.workloads#GetSapApplicationServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12237,7 +12238,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapApplicationServerInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSapApplicationServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12260,7 +12261,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSapApplicationServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12272,7 +12273,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesGetRequest": {
+    "com.azure.workloads#GetSapApplicationServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12312,10 +12313,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesList": {
+    "com.azure.workloads#ListSapApplicationServerInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapApplicationServerInstancesListRequest"
+        "target": "com.azure.workloads#ListSapApplicationServerInstancesRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPApplicationServerInstanceListResult"
@@ -12412,7 +12413,7 @@
         "smithy.api#documentation": "Define the SAP Application Server Instance resource."
       }
     },
-    "com.azure.workloads#SapApplicationServerInstancesListRequest": {
+    "com.azure.workloads#ListSapApplicationServerInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12444,10 +12445,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesDelete": {
+    "com.azure.workloads#DeleteSapVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesDeleteRequest"
+        "target": "com.azure.workloads#DeleteSapVirtualInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12463,7 +12464,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesDeleteRequest": {
+    "com.azure.workloads#DeleteSapVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12495,13 +12496,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesUpdate": {
+    "com.azure.workloads#UpdateSapVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesUpdateRequest"
+        "target": "com.azure.workloads#UpdateSapVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapVirtualInstancesUpdateResponse"
+        "target": "com.azure.workloads#UpdateSapVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12514,7 +12515,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesUpdateResponse": {
+    "com.azure.workloads#UpdateSapVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12542,7 +12543,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapVirtualInstancesUpdateResponseTagsMap",
+          "target": "com.azure.workloads#UpdateSapVirtualInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12882,7 +12883,7 @@
         "smithy.api#documentation": "Defines the environment type - Production/Non Production."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesUpdateResponseTagsMap": {
+    "com.azure.workloads#UpdateSapVirtualInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12894,7 +12895,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesUpdateRequest": {
+    "com.azure.workloads#UpdateSapVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12922,7 +12923,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapVirtualInstancesUpdateRequestTagsMap",
+          "target": "com.azure.workloads#UpdateSapVirtualInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Gets or sets the Resource tags."
           }
@@ -12998,7 +12999,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesUpdateRequestTagsMap": {
+    "com.azure.workloads#UpdateSapVirtualInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13010,13 +13011,13 @@
         "smithy.api#documentation": "Gets or sets the Resource tags."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesCreate": {
+    "com.azure.workloads#CreateSapVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesCreateRequest"
+        "target": "com.azure.workloads#CreateSapVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapVirtualInstancesCreateResponse"
+        "target": "com.azure.workloads#CreateSapVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13029,7 +13030,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesCreateResponse": {
+    "com.azure.workloads#CreateSapVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13057,7 +13058,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapVirtualInstancesCreateResponseTagsMap",
+          "target": "com.azure.workloads#CreateSapVirtualInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13086,7 +13087,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesCreateResponseTagsMap": {
+    "com.azure.workloads#CreateSapVirtualInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13098,7 +13099,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesCreateRequest": {
+    "com.azure.workloads#CreateSapVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13126,7 +13127,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapVirtualInstancesCreateRequestTagsMap",
+          "target": "com.azure.workloads#CreateSapVirtualInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13196,7 +13197,7 @@
         "smithy.api#documentation": "Defines the Virtual Instance for SAP solutions resource properties."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesCreateRequestTagsMap": {
+    "com.azure.workloads#CreateSapVirtualInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13208,13 +13209,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesGet": {
+    "com.azure.workloads#GetSapVirtualInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesGetRequest"
+        "target": "com.azure.workloads#GetSapVirtualInstanceRequest"
       },
       "output": {
-        "target": "com.azure.workloads#SapVirtualInstancesGetResponse"
+        "target": "com.azure.workloads#GetSapVirtualInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13227,7 +13228,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesGetResponse": {
+    "com.azure.workloads#GetSapVirtualInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13255,7 +13256,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.workloads#SapVirtualInstancesGetResponseTagsMap",
+          "target": "com.azure.workloads#GetSapVirtualInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13284,7 +13285,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesGetResponseTagsMap": {
+    "com.azure.workloads#GetSapVirtualInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13296,7 +13297,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesGetRequest": {
+    "com.azure.workloads#GetSapVirtualInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13328,10 +13329,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesListByResourceGroup": {
+    "com.azure.workloads#ListSapVirtualInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesListByResourceGroupRequest"
+        "target": "com.azure.workloads#ListSapVirtualInstanceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPVirtualInstanceListResult"
@@ -13434,7 +13435,7 @@
         "smithy.api#documentation": "Define the Virtual Instance for SAP solutions resource."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesListByResourceGroupRequest": {
+    "com.azure.workloads#ListSapVirtualInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13458,10 +13459,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesListBySubscription": {
+    "com.azure.workloads#ListSapVirtualInstanceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesListBySubscriptionRequest"
+        "target": "com.azure.workloads#ListSapVirtualInstanceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPVirtualInstanceListResult"
@@ -13477,7 +13478,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesListBySubscriptionRequest": {
+    "com.azure.workloads#ListSapVirtualInstanceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13493,10 +13494,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeSizingRecommendations": {
+    "com.azure.workloads#InvokeSapVirtualInstanceSizingRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesInvokeSizingRecommendationsRequest"
+        "target": "com.azure.workloads#InvokeSapVirtualInstanceSizingRecommendationsRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPSizingRecommendationResult_2"
@@ -13547,7 +13548,7 @@
         "smithy.api#documentation": "The type of SAP deployment, single server or Three tier."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeSizingRecommendationsRequest": {
+    "com.azure.workloads#InvokeSapVirtualInstanceSizingRecommendationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13666,10 +13667,10 @@
         "smithy.api#documentation": "The database scale method."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeSapSupportedSku": {
+    "com.azure.workloads#InvokeSapVirtualInstanceSapSupportedSku": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesInvokeSapSupportedSkuRequest"
+        "target": "com.azure.workloads#InvokeSapVirtualInstanceSapSupportedSkuRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPSupportedResourceSkusResult"
@@ -13685,7 +13686,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeSapSupportedSkuRequest": {
+    "com.azure.workloads#InvokeSapVirtualInstanceSapSupportedSkuRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13750,10 +13751,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeDiskConfigurations": {
+    "com.azure.workloads#InvokeSapVirtualInstanceDiskConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesInvokeDiskConfigurationsRequest"
+        "target": "com.azure.workloads#InvokeSapVirtualInstanceDiskConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPDiskConfigurationsResult_2"
@@ -13914,7 +13915,7 @@
         "smithy.api#documentation": "The disk configuration required for the selected volume."
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeDiskConfigurationsRequest": {
+    "com.azure.workloads#InvokeSapVirtualInstanceDiskConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13980,10 +13981,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeAvailabilityZoneDetails": {
+    "com.azure.workloads#InvokeSapVirtualInstanceAvailabilityZoneDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.workloads#SapVirtualInstancesInvokeAvailabilityZoneDetailsRequest"
+        "target": "com.azure.workloads#InvokeSapVirtualInstanceAvailabilityZoneDetailsRequest"
       },
       "output": {
         "target": "com.azure.workloads#SAPAvailabilityZoneDetailsResult"
@@ -13999,7 +14000,7 @@
         "com.distilled.openapi#apiVersion": "2024-09-01"
       }
     },
-    "com.azure.workloads#SapVirtualInstancesInvokeAvailabilityZoneDetailsRequest": {
+    "com.azure.workloads#InvokeSapVirtualInstanceAvailabilityZoneDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14049,142 +14050,115 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.workloads#StopSapDatabaseInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSapDatabaseInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSapApplicationServerInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSapApplicationServerInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSapCentralInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSapCentralInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#ListSapApplicationServerInstances"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#CreateSapApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#GetSapApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#ListSapDatabaseInstances"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#CreateSapDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#GetSapDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#ListSapCentralInstances"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapCentralInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapCentralInstance"
-        },
-        {
-          "target": "com.azure.workloads#CreateSapCentralInstance"
-        },
-        {
-          "target": "com.azure.workloads#GetSapCentralInstance"
-        },
-        {
-          "target": "com.azure.workloads#ListSapVirtualInstanceBySubscription"
-        },
-        {
-          "target": "com.azure.workloads#ListSapVirtualInstanceByResourceGroup"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#CreateSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#GetSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#SAPAvailabilityZoneDetails"
-        },
-        {
-          "target": "com.azure.workloads#SAPDiskConfigurations"
-        },
-        {
-          "target": "com.azure.workloads#SAPSupportedSku2"
-        },
-        {
-          "target": "com.azure.workloads#SAPSizingRecommendations"
-        },
-        {
-          "target": "com.azure.workloads#ListSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#CreateSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#GetSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#DeleteProviderInstance"
+          "target": "com.azure.workloads#CreateMonitor"
         },
         {
           "target": "com.azure.workloads#CreateProviderInstance"
         },
         {
-          "target": "com.azure.workloads#GetProviderInstance"
+          "target": "com.azure.workloads#CreateSapApplicationServerInstance"
         },
         {
-          "target": "com.azure.workloads#ListProviderInstances"
+          "target": "com.azure.workloads#CreateSAPApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSapDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSAPDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#CreateSapVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSAPVirtualInstance"
         },
         {
           "target": "com.azure.workloads#DeleteMonitor"
         },
         {
-          "target": "com.azure.workloads#UpdateMonitor"
+          "target": "com.azure.workloads#DeleteProviderInstance"
         },
         {
-          "target": "com.azure.workloads#CreateMonitor"
+          "target": "com.azure.workloads#DeleteSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSAPApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSAPDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSAPVirtualInstance"
         },
         {
           "target": "com.azure.workloads#GetMonitor"
+        },
+        {
+          "target": "com.azure.workloads#GetProviderInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSAPApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSapDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSAPDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#GetSapVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSAPVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceAvailabilityZoneDetails"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceDiskConfigurations"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceSapSupportedSku"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceSizingRecommendations"
         },
         {
           "target": "com.azure.workloads#ListMonitorByResourceGroup"
@@ -14196,103 +14170,130 @@
           "target": "com.azure.workloads#ListOperations"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesStop"
+          "target": "com.azure.workloads#ListProviderInstances"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesStart"
+          "target": "com.azure.workloads#ListSapApplicationServerInstances"
         },
         {
-          "target": "com.azure.workloads#StopSapDatabaseInstance"
+          "target": "com.azure.workloads#ListSAPApplicationServerInstances"
         },
         {
-          "target": "com.azure.workloads#StartSapDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#SapDatabaseInstancesDelete"
-        },
-        {
-          "target": "com.azure.workloads#SapDatabaseInstancesUpdate"
-        },
-        {
-          "target": "com.azure.workloads#SapDatabaseInstancesCreate"
-        },
-        {
-          "target": "com.azure.workloads#SapDatabaseInstancesGet"
-        },
-        {
-          "target": "com.azure.workloads#SapDatabaseInstancesList"
-        },
-        {
-          "target": "com.azure.workloads#StopSapCentralServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSapCentralServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapCentralServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapCentralServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#CreateSapCentralServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#GetSapCentralServerInstance"
+          "target": "com.azure.workloads#ListSAPCentralInstances"
         },
         {
           "target": "com.azure.workloads#ListSapCentralServerInstances"
         },
         {
-          "target": "com.azure.workloads#StopSapApplicationServerInstance"
+          "target": "com.azure.workloads#ListSapDatabaseInstances"
+        },
+        {
+          "target": "com.azure.workloads#ListSAPDatabaseInstances"
+        },
+        {
+          "target": "com.azure.workloads#ListSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#ListSapVirtualInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.workloads#ListSAPVirtualInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.workloads#ListSapVirtualInstanceBySubscription"
+        },
+        {
+          "target": "com.azure.workloads#ListSAPVirtualInstanceBySubscription"
+        },
+        {
+          "target": "com.azure.workloads#SAPAvailabilityZoneDetails"
+        },
+        {
+          "target": "com.azure.workloads#SAPDiskConfigurations"
+        },
+        {
+          "target": "com.azure.workloads#SAPSizingRecommendations"
+        },
+        {
+          "target": "com.azure.workloads#SAPSupportedSku2"
         },
         {
           "target": "com.azure.workloads#StartSapApplicationServerInstance"
         },
         {
-          "target": "com.azure.workloads#SapApplicationServerInstancesDelete"
+          "target": "com.azure.workloads#StartSAPApplicationServerInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#SapApplicationServerInstancesUpdate"
+          "target": "com.azure.workloads#StartSAPCentralInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#SapApplicationServerInstancesCreate"
+          "target": "com.azure.workloads#StartSapCentralServerInstance"
         },
         {
-          "target": "com.azure.workloads#SapApplicationServerInstancesGet"
+          "target": "com.azure.workloads#StartSapDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#SapApplicationServerInstancesList"
+          "target": "com.azure.workloads#StartSAPDatabaseInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesDelete"
+          "target": "com.azure.workloads#StartSapVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesUpdate"
+          "target": "com.azure.workloads#StartSAPVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesCreate"
+          "target": "com.azure.workloads#StopSapApplicationServerInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesGet"
+          "target": "com.azure.workloads#StopSAPApplicationServerInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesListByResourceGroup"
+          "target": "com.azure.workloads#StopSAPCentralInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesListBySubscription"
+          "target": "com.azure.workloads#StopSapCentralServerInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesInvokeSizingRecommendations"
+          "target": "com.azure.workloads#StopSapDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesInvokeSapSupportedSku"
+          "target": "com.azure.workloads#StopSAPDatabaseInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesInvokeDiskConfigurations"
+          "target": "com.azure.workloads#StopSapVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#SapVirtualInstancesInvokeAvailabilityZoneDetails"
+          "target": "com.azure.workloads#StopSAPVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateMonitor"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSAPApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSAPDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSAPVirtualInstance"
         }
       ],
       "traits": {

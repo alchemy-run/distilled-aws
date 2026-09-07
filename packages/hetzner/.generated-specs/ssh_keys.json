@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.ssh_keys#ListSshKeysRequestSortItem": {
@@ -701,19 +702,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.ssh_keys#ListSshKeys"
+          "target": "com.hetzner.ssh_keys#CreateSshKey"
         },
         {
-          "target": "com.hetzner.ssh_keys#CreateSshKey"
+          "target": "com.hetzner.ssh_keys#DeleteSshKey"
         },
         {
           "target": "com.hetzner.ssh_keys#GetSshKey"
         },
         {
-          "target": "com.hetzner.ssh_keys#UpdateSshKey"
+          "target": "com.hetzner.ssh_keys#ListSshKeys"
         },
         {
-          "target": "com.hetzner.ssh_keys#DeleteSshKey"
+          "target": "com.hetzner.ssh_keys#UpdateSshKey"
         }
       ],
       "traits": {

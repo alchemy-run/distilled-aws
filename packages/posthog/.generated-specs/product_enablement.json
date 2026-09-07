@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.product_enablement#ProductsEnum": {
@@ -43,7 +44,7 @@
         "smithy.api#documentation": "* `conversations` - conversations\n* `error_tracking` - error_tracking\n* `session_replay` - session_replay"
       }
     },
-    "com.posthog.product_enablement#ProductEnablementCreateRequestProductsList": {
+    "com.posthog.product_enablement#CreateProductEnablementRequestProductsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.product_enablement#ProductsEnum"
@@ -64,7 +65,7 @@
           }
         },
         "products": {
-          "target": "com.posthog.product_enablement#ProductEnablementCreateRequestProductsList",
+          "target": "com.posthog.product_enablement#CreateProductEnablementRequestProductsList",
           "traits": {
             "smithy.api#documentation": "Products to turn on for this project, each enabled with server-owned conservative defaults.",
             "smithy.api#required": {}

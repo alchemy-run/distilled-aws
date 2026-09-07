@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.data_warehouse#CheckDataWarehouseDatabaseNameRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseCheckDatabaseNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -59,10 +60,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#CheckDataWarehouseDatabaseNameRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseCheckDatabaseName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#CheckDataWarehouseDatabaseNameRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseCheckDatabaseNameRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#CheckDatabaseNameResponse"
@@ -76,7 +77,7 @@
         "smithy.api#documentation": "Check if a database name is available."
       }
     },
-    "com.posthog.data_warehouse#CheckDataWarehouseSchemaNameRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseCheckSchemaNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -120,10 +121,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#CheckDataWarehouseSchemaNameRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseCheckSchemaName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#CheckDataWarehouseSchemaNameRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseCheckSchemaNameRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#CheckSchemaNameResponse"
@@ -137,7 +138,7 @@
         "smithy.api#documentation": "Check if a schema name is free within the organization's managed warehouse."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseCompletedActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -153,10 +154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseCompletedActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseCompletedActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -170,7 +171,7 @@
         "smithy.api#documentation": "Returns completed/non-running activities (jobs with status 'Completed').\nSupports pagination and cutoff time filtering."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseDataHealthIssueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -186,10 +187,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseDataHealthIssue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseDataHealthIssueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -203,7 +204,7 @@
         "smithy.api#documentation": "Returns failed/disabled data pipeline items for the Pipeline status side panel.\nIncludes: materializations, syncs, sources, destinations, and transformations."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseDataOpsDashboardRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -219,10 +220,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseDataOpsDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseDataOpsDashboardRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -236,7 +237,7 @@
         "smithy.api#documentation": "Returns the data ops overview dashboard ID for this team, creating it if it doesn't exist yet."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseDataQualityGateRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseDataQualityGateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -267,10 +268,10 @@
         "smithy.api#documentation": "The team-level materialization gate. Checks always run and warn; this only toggles blocking."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseDataQualityGateRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseDataQualityGate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseDataQualityGateRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseDataQualityGateRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#DataQualityGateConfig"
@@ -323,7 +324,7 @@
         "smithy.api#documentation": "Read or update the team's data quality gate: whether a materialization whose error-severity checks fail is published."
       }
     },
-    "com.posthog.data_warehouse#DeleteOrgDataWarehouseDestroyRequest": {
+    "com.posthog.data_warehouse#DeleteDataWarehouseOrgDestroyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -357,10 +358,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#DeleteOrgDataWarehouseDestroy": {
+    "com.posthog.data_warehouse#DeleteDataWarehouseOrgDestroy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DeleteOrgDataWarehouseDestroyRequest"
+        "target": "com.posthog.data_warehouse#DeleteDataWarehouseOrgDestroyRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#DeleteWarehouseOrgResponse"
@@ -407,7 +408,7 @@
         "smithy.api#documentation": "Start deprovisioning the organization's managed warehouse. Restricted to organization admins."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseJobStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -423,10 +424,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseJobStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseJobStatRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -440,7 +441,7 @@
         "smithy.api#documentation": "Returns success and failed job statistics for the last 1, 7, or 30 days.\nQuery parameter 'days' can be 1, 7, or 30 (default: 7)."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseDataStatusRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseDataStatusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -726,10 +727,10 @@
         "smithy.api#documentation": "Per-source rollup of copy and register workflow statuses for configured warehouse source imports."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseDataStatusRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseDataStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseDataStatusRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseDataStatusRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#ManagedWarehouseDataStatusResponse"
@@ -743,7 +744,7 @@
         "smithy.api#documentation": "Get events, persons, and imported source readiness for the managed warehouse."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1084,10 +1085,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoring": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#ManagedWarehouseMonitoringSnapshotResponse"
@@ -1112,7 +1113,7 @@
         "smithy.api#documentation": "Get managed warehouse monitoring snapshot\n\nGet tenant-safe live worker, session, queue, and capacity data for the current organization."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestMetric": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric": {
       "type": "enum",
       "members": {
         "QUERY_RATE": {
@@ -1172,7 +1173,7 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestWindow": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow": {
       "type": "enum",
       "members": {
         "_1H": {
@@ -1208,7 +1209,7 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1220,7 +1221,7 @@
           }
         },
         "metric": {
-          "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestMetric",
+          "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestMetric",
           "traits": {
             "smithy.api#httpQuery": "metric",
             "smithy.api#required": {},
@@ -1228,7 +1229,7 @@
           }
         },
         "window": {
-          "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequestWindow",
+          "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequestWindow",
           "traits": {
             "smithy.api#httpQuery": "window",
             "smithy.api#documentation": "Trailing time window to retrieve. Defaults to 24h.\n\n* `1h` - 1h\n* `6h` - 6h\n* `24h` - 24h\n* `7d` - 7d\n* `30d` - 30d"
@@ -1371,10 +1372,10 @@
         "smithy.api#documentation": "Metric series grouped by their allow-listed labels."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseries": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseriesRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#ManagedWarehouseMonitoringSeriesResponse"
@@ -1399,7 +1400,7 @@
         "smithy.api#documentation": "Get managed warehouse monitoring time series\n\nGet one allow-listed monitoring metric for the current organization and trailing time window."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseSourceSchemaRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1605,10 +1606,10 @@
         "smithy.api#documentation": "Per-schema copy or register workflow status for the requested source."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseManagedWarehouseSourceSchemasRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseSourceSchema": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseSourceSchemasRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseSourceSchemaRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#ManagedWarehouseSourceSchemasResponse"
@@ -1682,7 +1683,7 @@
         "smithy.api#documentation": "Onboard this project onto the organization's existing managed warehouse.\n\nRequires a schema name and records the project's membership in the Duckgres control plane.\nRestricted to organization admins."
       }
     },
-    "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehousePropertyValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1698,10 +1699,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehousePropertyValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehousePropertyValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1762,7 +1763,7 @@
         "smithy.api#documentation": "Start provisioning a managed warehouse for this organization (shared by all its teams)."
       }
     },
-    "com.posthog.data_warehouse#CreateDataWarehouseResetPasswordRequest": {
+    "com.posthog.data_warehouse#DataWarehouseResetPasswordCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1797,10 +1798,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#CreateDataWarehouseResetPassword": {
+    "com.posthog.data_warehouse#DataWarehouseResetPasswordCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#CreateDataWarehouseResetPasswordRequest"
+        "target": "com.posthog.data_warehouse#DataWarehouseResetPasswordCreateRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#ResetPasswordResponse"
@@ -1814,7 +1815,7 @@
         "smithy.api#documentation": "Reset the root password for the managed warehouse."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseRunningActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1830,10 +1831,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseRunningActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseRunningActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1847,7 +1848,7 @@
         "smithy.api#documentation": "Returns currently running activities (jobs with status 'Running').\nSupports pagination and cutoff time filtering."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseTotalRowsStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1863,10 +1864,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseTotalRowsStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseTotalRowsStatRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1880,7 +1881,7 @@
         "smithy.api#documentation": "Returns aggregated statistics for the data warehouse total rows processed within the current billing period.\nUsed by the frontend data warehouse scene to display usage information."
       }
     },
-    "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieveRequest": {
+    "com.posthog.data_warehouse#GetDataWarehouseWarehouseStatusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2081,10 +2082,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieve": {
+    "com.posthog.data_warehouse#GetDataWarehouseWarehouseStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieveRequest"
+        "target": "com.posthog.data_warehouse#GetDataWarehouseWarehouseStatusRequest"
       },
       "output": {
         "target": "com.posthog.data_warehouse#WarehouseStatusResponse"
@@ -2142,67 +2143,67 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.data_warehouse#CheckDataWarehouseDatabaseNameRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#CheckDataWarehouseSchemaNameRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseCompletedActivityRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseDataHealthIssuesRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseDataOpsDashboardRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseDataQualityGateRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#UpdateDataWarehouseDataQualityGatePartial"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DeleteOrgDataWarehouseDestroy"
-        },
-        {
           "target": "com.posthog.data_warehouse#CreateDataWarehouseDeprovision"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseJobStatsRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseDataStatusRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseMonitoringTimeseriesRetrieve"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseManagedWarehouseSourceSchemasRetrieve"
         },
         {
           "target": "com.posthog.data_warehouse#CreateDataWarehouseOnboardTeam"
         },
         {
-          "target": "com.posthog.data_warehouse#DataWarehousePropertyValuesRetrieve"
-        },
-        {
           "target": "com.posthog.data_warehouse#CreateDataWarehouseProvision"
         },
         {
-          "target": "com.posthog.data_warehouse#CreateDataWarehouseResetPassword"
+          "target": "com.posthog.data_warehouse#DataWarehouseResetPasswordCreate"
         },
         {
-          "target": "com.posthog.data_warehouse#DataWarehouseRunningActivityRetrieve"
+          "target": "com.posthog.data_warehouse#DeleteDataWarehouseOrgDestroy"
         },
         {
-          "target": "com.posthog.data_warehouse#DataWarehouseTotalRowsStatsRetrieve"
+          "target": "com.posthog.data_warehouse#GetDataWarehouseCheckDatabaseName"
         },
         {
-          "target": "com.posthog.data_warehouse#DataWarehouseWarehouseStatusRetrieve"
+          "target": "com.posthog.data_warehouse#GetDataWarehouseCheckSchemaName"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseCompletedActivity"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseDataHealthIssue"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseDataOpsDashboard"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseDataQualityGate"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseJobStat"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseDataStatus"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoring"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseMonitoringTimeseries"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseSourceSchema"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehousePropertyValue"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseRunningActivity"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseTotalRowsStat"
+        },
+        {
+          "target": "com.posthog.data_warehouse#GetDataWarehouseWarehouseStatus"
+        },
+        {
+          "target": "com.posthog.data_warehouse#UpdateDataWarehouseDataQualityGatePartial"
         }
       ],
       "traits": {

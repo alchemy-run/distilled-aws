@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.swaps#ListSwapsRequest": {
@@ -752,7 +753,7 @@
         "smithy.api#documentation": "Create Swap Quote\n\nPreviews the price of a swap. Fiat pairs quote the in-ledger mid-market conversion — the same rate creating the swap fills at. No funds move and nothing is saved."
       }
     },
-    "com.whop.swaps#RetrieveSwapRequest": {
+    "com.whop.swaps#GetSwapRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -768,7 +769,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.swaps#RetrieveSwapResponseObject": {
+    "com.whop.swaps#GetSwapResponseObject": {
       "type": "enum",
       "members": {
         "SWAP": {
@@ -780,7 +781,7 @@
       },
       "traits": {}
     },
-    "com.whop.swaps#RetrieveSwapResponseStatus": {
+    "com.whop.swaps#GetSwapResponseStatus": {
       "type": "enum",
       "members": {
         "QUEUED": {
@@ -812,7 +813,7 @@
         "smithy.api#documentation": "Current swap status. `complete` and `failed` are terminal."
       }
     },
-    "com.whop.swaps#RetrieveSwapResponseTxHashesList": {
+    "com.whop.swaps#GetSwapResponseTxHashesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -821,7 +822,7 @@
         "smithy.api#documentation": "On-chain transaction hashes produced by the swap."
       }
     },
-    "com.whop.swaps#RetrieveSwapResponse": {
+    "com.whop.swaps#GetSwapResponse": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -846,20 +847,20 @@
           }
         },
         "object": {
-          "target": "com.whop.swaps#RetrieveSwapResponseObject",
+          "target": "com.whop.swaps#GetSwapResponseObject",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "status": {
-          "target": "com.whop.swaps#RetrieveSwapResponseStatus",
+          "target": "com.whop.swaps#GetSwapResponseStatus",
           "traits": {
             "smithy.api#documentation": "Current swap status. `complete` and `failed` are terminal.",
             "smithy.api#required": {}
           }
         },
         "tx_hashes": {
-          "target": "com.whop.swaps#RetrieveSwapResponseTxHashesList",
+          "target": "com.whop.swaps#GetSwapResponseTxHashesList",
           "traits": {
             "smithy.api#documentation": "On-chain transaction hashes produced by the swap.",
             "smithy.api#required": {}
@@ -870,13 +871,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.swaps#RetrieveSwap": {
+    "com.whop.swaps#GetSwap": {
       "type": "operation",
       "input": {
-        "target": "com.whop.swaps#RetrieveSwapRequest"
+        "target": "com.whop.swaps#GetSwapRequest"
       },
       "output": {
-        "target": "com.whop.swaps#RetrieveSwapResponse"
+        "target": "com.whop.swaps#GetSwapResponse"
       },
       "errors": [
         {
@@ -955,16 +956,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.swaps#ListSwaps"
-        },
-        {
           "target": "com.whop.swaps#CreateSwap"
         },
         {
           "target": "com.whop.swaps#CreateSwapQuote"
         },
         {
-          "target": "com.whop.swaps#RetrieveSwap"
+          "target": "com.whop.swaps#GetSwap"
+        },
+        {
+          "target": "com.whop.swaps#ListSwaps"
         }
       ],
       "traits": {

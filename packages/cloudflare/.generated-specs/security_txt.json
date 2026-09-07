@@ -18,7 +18,8 @@
     "keyDictionary": {
       "documentationUrl": "documentation_url",
       "preferredLanguages": "preferred_languages"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.security_txt#GetResponseAcknowledgmentsList": {
@@ -98,13 +99,13 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.security_txt#Delete"
+          "target": "com.cloudflare.security_txt#DeleteSecurityTxt"
         },
         {
-          "target": "com.cloudflare.security_txt#Get"
+          "target": "com.cloudflare.security_txt#GetSecurityTxt"
         },
         {
-          "target": "com.cloudflare.security_txt#Update"
+          "target": "com.cloudflare.security_txt#PutSecurityTxt"
         }
       ],
       "traits": {
@@ -304,16 +305,37 @@
     "com.cloudflare.security_txt#SecurityTxtFile": {
       "type": "structure",
       "members": {
-        "result": {
-          "target": "com.cloudflare.security_txt#SecurityTxtFile",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The zone's security.txt configuration, or an empty-string sentinel when none is configured."
-          }
+        "acknowledgments": {
+          "target": "com.cloudflare.security_txt#GetResponseAcknowledgmentsList"
+        },
+        "canonical": {
+          "target": "com.cloudflare.security_txt#GetResponseCanonicalList"
+        },
+        "contact": {
+          "target": "com.cloudflare.security_txt#GetResponseContactList"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "encryption": {
+          "target": "com.cloudflare.security_txt#GetResponseEncryptionList"
+        },
+        "expires": {
+          "target": "smithy.api#String"
+        },
+        "hiring": {
+          "target": "com.cloudflare.security_txt#GetResponseHiringList"
+        },
+        "policy": {
+          "target": "com.cloudflare.security_txt#GetResponsePolicyList"
+        },
+        "preferred_languages": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {
-        "smithy.api#output": {}
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
     "com.cloudflare.security_txt#GetSecurityTxtResponse": {

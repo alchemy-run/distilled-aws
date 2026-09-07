@@ -45,30 +45,30 @@ export const StringList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StringList>;
 
 export interface SearchEntitiesRequest {
-  /** Limits the number of entities to be returned. */
-  limit?: number;
   /** Restricts returned entities with these types, e.g. Person (as defined in http://schema.org/Person). If multiple types are specified, returned entities will contain one or more of these types. */
   types?: StringList;
+  /** Limits the number of entities to be returned. */
+  limit?: number;
+  /** The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B */
+  ids?: StringList;
   /** The list of language codes (defined in ISO 693) to run the query with, e.g. 'en'. */
   languages?: StringList;
   /** Enables prefix match against names and aliases of entities */
   prefix?: boolean;
-  /** The literal query string for search. */
-  query?: string;
-  /** The list of entity id to be used for search instead of query string. To specify multiple ids in the HTTP request, repeat the parameter in the URL as in ...?ids=A&ids=B */
-  ids?: StringList;
   /** Enables indenting of json results. */
   indent?: boolean;
+  /** The literal query string for search. */
+  query?: string;
 }
 export const SearchEntitiesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    limit: S.optional(S.Number.pipe(T.Query())),
     types: S.optional(StringList.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    ids: S.optional(StringList.pipe(T.Query())),
     languages: S.optional(StringList.pipe(T.Query())),
     prefix: S.optional(S.Boolean.pipe(T.Query())),
-    query: S.optional(S.String.pipe(T.Query())),
-    ids: S.optional(StringList.pipe(T.Query())),
     indent: S.optional(S.Boolean.pipe(T.Query())),
+    query: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -87,18 +87,18 @@ export const DocumentList = /*@__PURE__*/ S.Array(
 
 /** Response message includes the context and a list of matching results which contain the detail of associated entities. */
 export interface SearchResponse {
-  /** The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions. */
-  "@context"?: unknown;
   /** The schema type of top-level JSON-LD object, e.g. ItemList. */
   "@type"?: unknown;
   /** The item list of search results. */
   itemListElement?: DocumentList;
+  /** The local context applicable for the response. See more details at http://www.w3.org/TR/json-ld/#context-definitions. */
+  "@context"?: unknown;
 }
 export const SearchResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    "@context": S.optional(S.Unknown),
     "@type": S.optional(S.Unknown),
     itemListElement: S.optional(DocumentList),
+    "@context": S.optional(S.Unknown),
   }),
 ).annotate({ identifier: "SearchResponse" }) as any as S.Schema<SearchResponse>;
 

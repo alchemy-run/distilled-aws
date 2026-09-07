@@ -13,6 +13,41 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface ActivateContainerAppsRevisionRevisionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Container App Revision. */
+  revisionName: string;
+}
+export const ActivateContainerAppsRevisionRevisionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      revisionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/activate",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ActivateContainerAppsRevisionRevisionRequest",
+  }) as any as S.Schema<ActivateContainerAppsRevisionRevisionRequest>;
+
+export interface ActivateContainerAppsRevisionRevisionResponse {}
+export const ActivateContainerAppsRevisionRevisionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ActivateContainerAppsRevisionRevisionResponse",
+  }) as any as S.Schema<ActivateContainerAppsRevisionRevisionResponse>;
+
 /** Additional properties for the data connector which can be used to store custom key-value pairs */
 export type AgentConnectorPropertiesInputExtendedPropertiesMap = {
   [key: string]: unknown | undefined;
@@ -1246,7 +1281,7 @@ export const CertificatesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/certificates/{certificateName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -1385,7 +1420,7 @@ export const CheckConnectedEnvironmentNameAvailabilityRequest =
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/checkNameAvailability",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -1393,17 +1428,17 @@ export const CheckConnectedEnvironmentNameAvailabilityRequest =
   }) as any as S.Schema<CheckConnectedEnvironmentNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type ConnectedEnvironmentsCheckNameAvailabilityResponseReason =
+export type CheckConnectedEnvironmentNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const ConnectedEnvironmentsCheckNameAvailabilityResponseReason =
+export const CheckConnectedEnvironmentNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckConnectedEnvironmentNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: ConnectedEnvironmentsCheckNameAvailabilityResponseReason;
+  reason?: CheckConnectedEnvironmentNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -1412,13 +1447,91 @@ export const CheckConnectedEnvironmentNameAvailabilityResponse =
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
       reason: S.optional(
-        ConnectedEnvironmentsCheckNameAvailabilityResponseReason,
+        CheckConnectedEnvironmentNameAvailabilityResponseReason,
       ),
       message: S.optional(S.String),
     }),
   ).annotate({
     identifier: "CheckConnectedEnvironmentNameAvailabilityResponse",
   }) as any as S.Schema<CheckConnectedEnvironmentNameAvailabilityResponse>;
+
+export interface CheckManagedEnvironmentMigrationEligibilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Environment. */
+  environmentName: string;
+  /** The target environment mode to check migration eligibility against. */
+  targetMode: string;
+}
+export const CheckManagedEnvironmentMigrationEligibilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      targetMode: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/checkMigrationEligibility",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckManagedEnvironmentMigrationEligibilityRequest",
+  }) as any as S.Schema<CheckManagedEnvironmentMigrationEligibilityRequest>;
+
+/** A blocking reason that prevents a managed environment migration. */
+export interface MigrationEligibilityFailureReason {
+  /** The error code identifying the blocker. */
+  code: string;
+  /** A human-readable description of the blocker. */
+  message: string;
+}
+export const MigrationEligibilityFailureReason = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.String,
+    message: S.String,
+  }),
+).annotate({
+  identifier: "MigrationEligibilityFailureReason",
+}) as any as S.Schema<MigrationEligibilityFailureReason>;
+
+/** The blocking reasons preventing migration. Empty when the managed environment is eligible. */
+export type CheckMigrationEligibilityResponseFailureReasonsList =
+  Array<MigrationEligibilityFailureReason>;
+export const CheckMigrationEligibilityResponseFailureReasonsList =
+  /*@__PURE__*/ S.Array(
+    MigrationEligibilityFailureReason,
+  ) as any as S.Schema<CheckMigrationEligibilityResponseFailureReasonsList>;
+
+/** Result of a read-only managed environment migration eligibility check. */
+export interface CheckMigrationEligibilityResponse {
+  /** Whether the managed environment can migrate to the requested target mode. */
+  isEligible: boolean;
+  /** The name of the managed environment that was checked. */
+  environmentName: string;
+  /** The current mode of the managed environment. */
+  currentMode: string;
+  /** The requested target mode. */
+  targetMode: string;
+  /** The blocking reasons preventing migration. Empty when the managed environment is eligible. */
+  failureReasons: CheckMigrationEligibilityResponseFailureReasonsList;
+}
+export const CheckMigrationEligibilityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isEligible: S.Boolean,
+    environmentName: S.String,
+    currentMode: S.String,
+    targetMode: S.String,
+    failureReasons: CheckMigrationEligibilityResponseFailureReasonsList,
+  }),
+).annotate({
+  identifier: "CheckMigrationEligibilityResponse",
+}) as any as S.Schema<CheckMigrationEligibilityResponse>;
 
 export interface CheckNamespaceNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1445,7 +1558,7 @@ export const CheckNamespaceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/checkNameAvailability",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -1453,17 +1566,17 @@ export const CheckNamespaceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CheckNamespaceNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type NamespacesCheckNameAvailabilityResponseReason =
+export type CheckNamespaceNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const NamespacesCheckNameAvailabilityResponseReason =
+export const CheckNamespaceNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckNamespaceNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: NamespacesCheckNameAvailabilityResponseReason;
+  reason?: CheckNamespaceNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -1471,7 +1584,7 @@ export const CheckNamespaceNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(NamespacesCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckNamespaceNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
 ).annotate({
@@ -1521,7 +1634,7 @@ export const ConnectedEnvironmentsCertificatesCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/certificates/{certificateName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -1673,7 +1786,7 @@ export const ConnectedEnvironmentsCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -1912,7 +2025,7 @@ export const ConnectedEnvironmentsDaprComponentsCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/daprComponents/{componentName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -2095,7 +2208,7 @@ export const ConnectedEnvironmentsStoragesCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/storages/{storageName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -2158,6 +2271,165 @@ export const ConnectedEnvironmentsStoragesCreateOrUpdateResponse =
   ).annotate({
     identifier: "ConnectedEnvironmentsStoragesCreateOrUpdateResponse",
   }) as any as S.Schema<ConnectedEnvironmentsStoragesCreateOrUpdateResponse>;
+
+/** The Private Endpoint resource. */
+export type PrivateEndpointInput = UserAssignedIdentityInput;
+export const PrivateEndpointInput = UserAssignedIdentityInput;
+
+/** The private endpoint connection status. */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected"
+  | "Disconnected";
+export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PrivateEndpointServiceConnectionStatus),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkServiceConnectionState",
+}) as any as S.Schema<PrivateLinkServiceConnectionState>;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The resource of private end point. */
+  privateEndpoint?: UserAssignedIdentityInput;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(UserAssignedIdentityInput),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface ContainerAppPrivateEndpointConnectionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Private Endpoint Connection. */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const ContainerAppPrivateEndpointConnectionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ContainerAppPrivateEndpointConnectionsCreateOrUpdateRequest",
+  }) as any as S.Schema<ContainerAppPrivateEndpointConnectionsCreateOrUpdateRequest>;
+
+/** The group ids for the private endpoint resource. */
+export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
+export const PrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** The Private Endpoint resource. */
+export interface PrivateEndpoint {
+  /** The ARM identifier for Private Endpoint */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Waiting"
+  | "Updating"
+  | "Deleting"
+  | "Pending";
+export const PrivateEndpointConnectionProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
+  /** The resource of private end point. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
+    privateEndpoint: S.optional(PrivateEndpoint),
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+
+export interface ContainerAppPrivateEndpointConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const ContainerAppPrivateEndpointConnectionsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "ContainerAppPrivateEndpointConnectionsCreateOrUpdateResponse",
+  }) as any as S.Schema<ContainerAppPrivateEndpointConnectionsCreateOrUpdateResponse>;
 
 /** The configuration settings of the platform of ContainerApp Service Authentication/Authorization. */
 export interface AuthPlatform {
@@ -2765,11 +3037,20 @@ export const LoginRoutes = /*@__PURE__*/ S.suspend(() =>
 /** The configuration settings of the storage of the tokens if blob storage is used. */
 export interface BlobStorageTokenStore {
   /** The name of the app secrets containing the SAS URL of the blob storage containing the tokens. */
-  sasUrlSettingName: string;
+  sasUrlSettingName?: string;
+  /** The URI of the blob storage containing the tokens. Should not be used along with sasUrlSettingName. */
+  blobContainerUri?: string;
+  /** The Client ID of a User-Assigned Managed Identity. Should not be used along with managedIdentityResourceId. */
+  clientId?: string;
+  /** The Resource ID of a User-Assigned Managed Identity. Should not be used along with clientId. */
+  managedIdentityResourceId?: string;
 }
 export const BlobStorageTokenStore = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sasUrlSettingName: S.String,
+    sasUrlSettingName: S.optional(S.String),
+    blobContainerUri: S.optional(S.String),
+    clientId: S.optional(S.String),
+    managedIdentityResourceId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "BlobStorageTokenStore",
@@ -2982,7 +3263,7 @@ export const ContainerAppsAuthConfigsCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs/{authConfigName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -3022,6 +3303,19 @@ export const ContainerAppsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<ContainerAppsCreateOrUpdateRequestTagsMap>;
+
+/** Networking configuration for a Container App. Only supported for Container Apps deployed into an Express managed environment. */
+export interface ContainerAppNetworkingConfiguration {
+  /** Resource ID of a subnet used for outbound (egress) traffic from this Container App. Only supported for Container Apps in an Express managed environment. Mutually exclusive with the environment-level VNet configuration and immutable after the Container App is created. */
+  outboundVnetSubnetId?: string;
+}
+export const ContainerAppNetworkingConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    outboundVnetSubnetId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerAppNetworkingConfiguration",
+}) as any as S.Schema<ContainerAppNetworkingConfiguration>;
 
 /** Collection of secrets used by a Container app */
 export type ConfigurationInputSecretsList = Array<Secret>;
@@ -3922,6 +4216,8 @@ export interface Scale {
   cooldownPeriod?: number;
   /** Optional. KEDA Polling Interval in seconds. Defaults to 30 seconds if not set. */
   pollingInterval?: number;
+  /** Optional. Whether custom scale rules can override the automatic scale rules. This property is only applicable to Function Apps. */
+  allowScalingRuleOverride?: boolean;
   /** Scaling rules. */
   rules?: ScaleRulesList;
 }
@@ -3931,6 +4227,7 @@ export const Scale = /*@__PURE__*/ S.suspend(() =>
     maxReplicas: S.optional(S.Number),
     cooldownPeriod: S.optional(S.Number),
     pollingInterval: S.optional(S.Number),
+    allowScalingRuleOverride: S.optional(S.Boolean),
     rules: S.optional(ScaleRulesList),
   }),
 ).annotate({ identifier: "Scale" }) as any as S.Schema<Scale>;
@@ -4045,6 +4342,8 @@ export interface ContainerAppPropertiesInput {
   managedEnvironmentId?: string;
   /** Resource ID of environment. */
   environmentId?: string;
+  /** Networking configuration for the Container App. */
+  networking?: ContainerAppNetworkingConfiguration;
   /** Workload profile name to pin for container app execution. */
   workloadProfileName?: string;
   /** Non versioned Container App configuration properties. */
@@ -4056,6 +4355,7 @@ export const ContainerAppPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     managedEnvironmentId: S.optional(S.String),
     environmentId: S.optional(S.String),
+    networking: S.optional(ContainerAppNetworkingConfiguration),
     workloadProfileName: S.optional(S.String),
     configuration: S.optional(ConfigurationInput),
     template: S.optional(TemplateInput),
@@ -4131,7 +4431,7 @@ export const ContainerAppsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -4503,6 +4803,8 @@ export interface ContainerAppProperties {
   managedEnvironmentId?: string;
   /** Resource ID of environment. */
   environmentId?: string;
+  /** Networking configuration for the Container App. */
+  networking?: ContainerAppNetworkingConfiguration;
   /** Workload profile name to pin for container app execution. */
   workloadProfileName?: string;
   /** Name of the latest revision of the Container App. */
@@ -4528,6 +4830,7 @@ export const ContainerAppProperties = /*@__PURE__*/ S.suspend(() =>
     runningStatus: S.optional(ContainerAppRunningStatus),
     managedEnvironmentId: S.optional(S.String),
     environmentId: S.optional(S.String),
+    networking: S.optional(ContainerAppNetworkingConfiguration),
     workloadProfileName: S.optional(S.String),
     latestRevisionName: S.optional(S.String),
     latestReadyRevisionName: S.optional(S.String),
@@ -4615,76 +4918,6 @@ export const ContainerAppsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ContainerAppsCreateOrUpdateResponse",
 }) as any as S.Schema<ContainerAppsCreateOrUpdateResponse>;
-
-export interface ContainerAppsRevisionsActivateRevisionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Container App. */
-  containerAppName: string;
-  /** Name of the Container App Revision. */
-  revisionName: string;
-}
-export const ContainerAppsRevisionsActivateRevisionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      containerAppName: S.String.pipe(T.Label()),
-      revisionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/activate",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ContainerAppsRevisionsActivateRevisionRequest",
-  }) as any as S.Schema<ContainerAppsRevisionsActivateRevisionRequest>;
-
-export interface ContainerAppsRevisionsActivateRevisionResponse {}
-export const ContainerAppsRevisionsActivateRevisionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ContainerAppsRevisionsActivateRevisionResponse",
-  }) as any as S.Schema<ContainerAppsRevisionsActivateRevisionResponse>;
-
-export interface ContainerAppsRevisionsDeactivateRevisionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Container App. */
-  containerAppName: string;
-  /** Name of the Container App Revision. */
-  revisionName: string;
-}
-export const ContainerAppsRevisionsDeactivateRevisionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      containerAppName: S.String.pipe(T.Label()),
-      revisionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/deactivate",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ContainerAppsRevisionsDeactivateRevisionRequest",
-  }) as any as S.Schema<ContainerAppsRevisionsDeactivateRevisionRequest>;
-
-export interface ContainerAppsRevisionsDeactivateRevisionResponse {}
-export const ContainerAppsRevisionsDeactivateRevisionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ContainerAppsRevisionsDeactivateRevisionResponse",
-  }) as any as S.Schema<ContainerAppsRevisionsDeactivateRevisionResponse>;
 
 /** Resource tags. */
 export type ContainerAppsSessionPoolsCreateOrUpdateRequestTagsMap = {
@@ -4822,6 +5055,93 @@ export const SessionContainerEnvList = /*@__PURE__*/ S.Array(
 export type SessionContainerResources = ContainerResourcesInput;
 export const SessionContainerResources = ContainerResourcesInput;
 
+/** Denotes the type of probe. Can be Liveness or Startup, Readiness probe is not supported in sessions. Type must be unique for each probe within the context of a list of probes (SessionProbes). */
+export type SessionProbeType = "Liveness" | "Startup";
+export const SessionProbeType = /*@__PURE__*/ S.String;
+
+/** HTTPHeader describes a custom header to be used in HTTP probes */
+export type SessionProbeHttpGetHttpHeadersItem =
+  ContainerAppProbeHttpGetHttpHeadersItem;
+export const SessionProbeHttpGetHttpHeadersItem =
+  ContainerAppProbeHttpGetHttpHeadersItem;
+
+/** Custom headers to set in the request. HTTP allows repeated headers. */
+export type SessionProbeHttpGetHttpHeadersList =
+  Array<ContainerAppProbeHttpGetHttpHeadersItem>;
+export const SessionProbeHttpGetHttpHeadersList = /*@__PURE__*/ S.Array(
+  ContainerAppProbeHttpGetHttpHeadersItem,
+) as any as S.Schema<SessionProbeHttpGetHttpHeadersList>;
+
+/** HTTPGet specifies the http request to perform. */
+export interface SessionProbeHttpGet {
+  /** Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. */
+  host?: string;
+  /** Custom headers to set in the request. HTTP allows repeated headers. */
+  httpHeaders?: SessionProbeHttpGetHttpHeadersList;
+  /** Path to access on the HTTP server. */
+  path?: string;
+  /** Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. */
+  port: number;
+  /** Scheme to use for connecting to the host. Defaults to HTTP. */
+  scheme?: Scheme | (string & {});
+}
+export const SessionProbeHttpGet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    host: S.optional(S.String),
+    httpHeaders: S.optional(SessionProbeHttpGetHttpHeadersList),
+    path: S.optional(S.String),
+    port: S.Number,
+    scheme: S.optional(Scheme),
+  }),
+).annotate({
+  identifier: "SessionProbeHttpGet",
+}) as any as S.Schema<SessionProbeHttpGet>;
+
+/** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported. */
+export type SessionProbeTcpSocket = ContainerAppProbeTcpSocket;
+export const SessionProbeTcpSocket = ContainerAppProbeTcpSocket;
+
+/** Session probe configuration. */
+export interface SessionProbe {
+  /** Denotes the type of probe. Can be Liveness or Startup, Readiness probe is not supported in sessions. Type must be unique for each probe within the context of a list of probes (SessionProbes). */
+  type?: SessionProbeType | (string & {});
+  /** HTTPGet specifies the http request to perform. */
+  httpGet?: SessionProbeHttpGet;
+  /** TCPSocket specifies an action involving a TCP port. TCP hooks not yet supported. */
+  tcpSocket?: ContainerAppProbeTcpSocket;
+  /** Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1. Maximum value is 10. */
+  failureThreshold?: number;
+  /** Number of seconds after the container has started before liveness probes are initiated. Minimum value is 1. Maximum value is 60. */
+  initialDelaySeconds?: number;
+  /** How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1. Maximum value is 240. */
+  periodSeconds?: number;
+  /** Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1. Maximum value is 10. */
+  successThreshold?: number;
+  /** Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is an alpha field and requires enabling ProbeTerminationGracePeriod feature gate. Maximum value is 3600 seconds (1 hour) */
+  terminationGracePeriodSeconds?: number;
+  /** Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 240. */
+  timeoutSeconds?: number;
+}
+export const SessionProbe = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(SessionProbeType),
+    httpGet: S.optional(SessionProbeHttpGet),
+    tcpSocket: S.optional(ContainerAppProbeTcpSocket),
+    failureThreshold: S.optional(S.Number),
+    initialDelaySeconds: S.optional(S.Number),
+    periodSeconds: S.optional(S.Number),
+    successThreshold: S.optional(S.Number),
+    terminationGracePeriodSeconds: S.optional(S.Number),
+    timeoutSeconds: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SessionProbe" }) as any as S.Schema<SessionProbe>;
+
+/** List of probes for the container. */
+export type SessionContainerProbesList = Array<SessionProbe>;
+export const SessionContainerProbesList = /*@__PURE__*/ S.Array(
+  SessionProbe,
+) as any as S.Schema<SessionContainerProbesList>;
+
 /** Container definitions for the sessions of the session pool. */
 export interface SessionContainer {
   /** Container image tag. */
@@ -4836,6 +5156,8 @@ export interface SessionContainer {
   env?: SessionContainerEnvList;
   /** Container resource requirements. */
   resources?: ContainerResourcesInput;
+  /** List of probes for the container. */
+  probes?: SessionContainerProbesList;
 }
 export const SessionContainer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4845,6 +5167,7 @@ export const SessionContainer = /*@__PURE__*/ S.suspend(() =>
     args: S.optional(SessionContainerArgsList),
     env: S.optional(SessionContainerEnvList),
     resources: S.optional(ContainerResourcesInput),
+    probes: S.optional(SessionContainerProbesList),
   }),
 ).annotate({
   identifier: "SessionContainer",
@@ -5007,7 +5330,7 @@ export const ContainerAppsSessionPoolsCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sessionPools/{sessionPoolName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -5269,7 +5592,7 @@ export const ContainerAppsSourceControlsCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/sourcecontrols/{sourceControlName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -5301,6 +5624,180 @@ export const ContainerAppsSourceControlsCreateOrUpdateResponse =
     identifier: "ContainerAppsSourceControlsCreateOrUpdateResponse",
   }) as any as S.Schema<ContainerAppsSourceControlsCreateOrUpdateResponse>;
 
+/** Dapr Component Resiliency Policy HTTP Retry Backoff Configuration. */
+export interface DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration {
+  /** The optional initial delay in milliseconds before an operation is retried */
+  initialDelayInMilliseconds?: number;
+  /** The optional maximum time interval in milliseconds between retry attempts */
+  maxIntervalInMilliseconds?: number;
+}
+export const DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      initialDelayInMilliseconds: S.optional(S.Number),
+      maxIntervalInMilliseconds: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration",
+  }) as any as S.Schema<DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration>;
+
+/** Dapr Component Resiliency Policy HTTP Retry Policy Configuration. */
+export interface DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration {
+  /** The optional maximum number of retries */
+  maxRetries?: number;
+  /** The optional retry backoff configuration */
+  retryBackOff?: DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration;
+}
+export const DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      maxRetries: S.optional(S.Number),
+      retryBackOff: S.optional(
+        DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration,
+      ),
+    }),
+  ).annotate({
+    identifier: "DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration",
+  }) as any as S.Schema<DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration>;
+
+/** Dapr Component Resiliency Policy Timeout Policy Configuration. */
+export interface DaprComponentResiliencyPolicyTimeoutPolicyConfiguration {
+  /** The optional response timeout in seconds */
+  responseTimeoutInSeconds?: number;
+}
+export const DaprComponentResiliencyPolicyTimeoutPolicyConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      responseTimeoutInSeconds: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "DaprComponentResiliencyPolicyTimeoutPolicyConfiguration",
+  }) as any as S.Schema<DaprComponentResiliencyPolicyTimeoutPolicyConfiguration>;
+
+/** Dapr Component Resiliency Policy Circuit Breaker Policy Configuration. */
+export interface DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration {
+  /** The number of consecutive errors before the circuit is opened. */
+  consecutiveErrors?: number;
+  /** The interval in seconds until a retry attempt is made after the circuit is opened. */
+  timeoutInSeconds?: number;
+  /** The optional interval in seconds after which the error count resets to 0. An interval of 0 will never reset. If not specified, the timeoutInSeconds value will be used. */
+  intervalInSeconds?: number;
+}
+export const DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      consecutiveErrors: S.optional(S.Number),
+      timeoutInSeconds: S.optional(S.Number),
+      intervalInSeconds: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier:
+      "DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration",
+  }) as any as S.Schema<DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration>;
+
+/** Dapr Component Resiliency Policy Configuration. */
+export interface DaprComponentResiliencyPolicyConfiguration {
+  /** The optional HTTP retry policy configuration */
+  httpRetryPolicy?: DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration;
+  /** The optional timeout policy configuration */
+  timeoutPolicy?: DaprComponentResiliencyPolicyTimeoutPolicyConfiguration;
+  /** The optional circuit breaker policy configuration */
+  circuitBreakerPolicy?: DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration;
+}
+export const DaprComponentResiliencyPolicyConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      httpRetryPolicy: S.optional(
+        DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration,
+      ),
+      timeoutPolicy: S.optional(
+        DaprComponentResiliencyPolicyTimeoutPolicyConfiguration,
+      ),
+      circuitBreakerPolicy: S.optional(
+        DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration,
+      ),
+    }),
+  ).annotate({
+    identifier: "DaprComponentResiliencyPolicyConfiguration",
+  }) as any as S.Schema<DaprComponentResiliencyPolicyConfiguration>;
+
+/** Dapr Component Resiliency Policy resource specific properties */
+export interface DaprComponentResiliencyPolicyProperties {
+  /** The optional inbound component resiliency policy configuration */
+  inboundPolicy?: DaprComponentResiliencyPolicyConfiguration;
+  /** The optional outbound component resiliency policy configuration */
+  outboundPolicy?: DaprComponentResiliencyPolicyConfiguration;
+}
+export const DaprComponentResiliencyPolicyProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      inboundPolicy: S.optional(DaprComponentResiliencyPolicyConfiguration),
+      outboundPolicy: S.optional(DaprComponentResiliencyPolicyConfiguration),
+    }),
+).annotate({
+  identifier: "DaprComponentResiliencyPolicyProperties",
+}) as any as S.Schema<DaprComponentResiliencyPolicyProperties>;
+
+export interface DaprComponentResiliencyPoliciesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the Dapr Component. */
+  componentName: string;
+  /** Name of the Dapr Component Resiliency Policy. */
+  name: string;
+  /** Dapr Component Resiliency Policy resource specific properties */
+  properties?: DaprComponentResiliencyPolicyProperties;
+}
+export const DaprComponentResiliencyPoliciesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      componentName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      properties: S.optional(DaprComponentResiliencyPolicyProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}/resiliencyPolicies/{name}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DaprComponentResiliencyPoliciesCreateOrUpdateRequest",
+  }) as any as S.Schema<DaprComponentResiliencyPoliciesCreateOrUpdateRequest>;
+
+export interface DaprComponentResiliencyPoliciesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Dapr Component Resiliency Policy resource specific properties */
+  properties?: DaprComponentResiliencyPolicyProperties;
+}
+export const DaprComponentResiliencyPoliciesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DaprComponentResiliencyPolicyProperties),
+    }),
+  ).annotate({
+    identifier: "DaprComponentResiliencyPoliciesCreateOrUpdateResponse",
+  }) as any as S.Schema<DaprComponentResiliencyPoliciesCreateOrUpdateResponse>;
+
 export interface DaprComponentsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5325,7 +5822,7 @@ export const DaprComponentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5356,6 +5853,41 @@ export const DaprComponentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "DaprComponentsCreateOrUpdateResponse",
 }) as any as S.Schema<DaprComponentsCreateOrUpdateResponse>;
+
+export interface DeactivateContainerAppsRevisionRevisionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Container App Revision. */
+  revisionName: string;
+}
+export const DeactivateContainerAppsRevisionRevisionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      revisionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/deactivate",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeactivateContainerAppsRevisionRevisionRequest",
+  }) as any as S.Schema<DeactivateContainerAppsRevisionRevisionRequest>;
+
+export interface DeactivateContainerAppsRevisionRevisionResponse {}
+export const DeactivateContainerAppsRevisionRevisionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeactivateContainerAppsRevisionRevisionResponse",
+  }) as any as S.Schema<DeactivateContainerAppsRevisionRevisionResponse>;
 
 export interface DeleteAgentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5389,7 +5921,7 @@ export const DeleteAgentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAgentResponse",
 }) as any as S.Schema<DeleteAgentResponse>;
 
-export interface DeleteAgentConnectorRequest {
+export interface DeleteAgentsConnectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5399,7 +5931,7 @@ export interface DeleteAgentConnectorRequest {
   /** The name of the AgentConnector */
   connectorName: string;
 }
-export const DeleteAgentConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAgentsConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5414,15 +5946,15 @@ export const DeleteAgentConnectorRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAgentConnectorRequest",
-}) as any as S.Schema<DeleteAgentConnectorRequest>;
+  identifier: "DeleteAgentsConnectorRequest",
+}) as any as S.Schema<DeleteAgentsConnectorRequest>;
 
-export interface DeleteAgentConnectorResponse {}
-export const DeleteAgentConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAgentsConnectorResponse {}
+export const DeleteAgentsConnectorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAgentConnectorResponse",
-}) as any as S.Schema<DeleteAgentConnectorResponse>;
+  identifier: "DeleteAgentsConnectorResponse",
+}) as any as S.Schema<DeleteAgentsConnectorResponse>;
 
 export interface DeleteAgentSpaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5456,7 +5988,7 @@ export const DeleteAgentSpaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAgentSpaceResponse",
 }) as any as S.Schema<DeleteAgentSpaceResponse>;
 
-export interface DeleteAgentSpaceConnectorRequest {
+export interface DeleteAgentSpacesConnectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5466,7 +5998,7 @@ export interface DeleteAgentSpaceConnectorRequest {
   /** The name of the AgentSpaceConnector */
   connectorName: string;
 }
-export const DeleteAgentSpaceConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAgentSpacesConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5481,15 +6013,15 @@ export const DeleteAgentSpaceConnectorRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAgentSpaceConnectorRequest",
-}) as any as S.Schema<DeleteAgentSpaceConnectorRequest>;
+  identifier: "DeleteAgentSpacesConnectorRequest",
+}) as any as S.Schema<DeleteAgentSpacesConnectorRequest>;
 
-export interface DeleteAgentSpaceConnectorResponse {}
-export const DeleteAgentSpaceConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAgentSpacesConnectorResponse {}
+export const DeleteAgentSpacesConnectorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAgentSpaceConnectorResponse",
-}) as any as S.Schema<DeleteAgentSpaceConnectorResponse>;
+  identifier: "DeleteAgentSpacesConnectorResponse",
+}) as any as S.Schema<DeleteAgentSpacesConnectorResponse>;
 
 export interface DeleteCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5512,7 +6044,7 @@ export const DeleteCertificateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/certificates/{certificateName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5544,7 +6076,7 @@ export const DeleteConnectedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5558,7 +6090,7 @@ export const DeleteConnectedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteConnectedEnvironmentResponse",
 }) as any as S.Schema<DeleteConnectedEnvironmentResponse>;
 
-export interface DeleteConnectedEnvironmentCertificateRequest {
+export interface DeleteConnectedEnvironmentsCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5568,7 +6100,7 @@ export interface DeleteConnectedEnvironmentCertificateRequest {
   /** Name of the Certificate. */
   certificateName: string;
 }
-export const DeleteConnectedEnvironmentCertificateRequest =
+export const DeleteConnectedEnvironmentsCertificateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5580,20 +6112,20 @@ export const DeleteConnectedEnvironmentCertificateRequest =
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/certificates/{certificateName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "DeleteConnectedEnvironmentCertificateRequest",
-  }) as any as S.Schema<DeleteConnectedEnvironmentCertificateRequest>;
+    identifier: "DeleteConnectedEnvironmentsCertificateRequest",
+  }) as any as S.Schema<DeleteConnectedEnvironmentsCertificateRequest>;
 
-export interface DeleteConnectedEnvironmentCertificateResponse {}
-export const DeleteConnectedEnvironmentCertificateResponse =
+export interface DeleteConnectedEnvironmentsCertificateResponse {}
+export const DeleteConnectedEnvironmentsCertificateResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteConnectedEnvironmentCertificateResponse",
-  }) as any as S.Schema<DeleteConnectedEnvironmentCertificateResponse>;
+    identifier: "DeleteConnectedEnvironmentsCertificateResponse",
+  }) as any as S.Schema<DeleteConnectedEnvironmentsCertificateResponse>;
 
-export interface DeleteConnectedEnvironmentDaprComponentRequest {
+export interface DeleteConnectedEnvironmentsDaprComponentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5603,7 +6135,7 @@ export interface DeleteConnectedEnvironmentDaprComponentRequest {
   /** Name of the Dapr Component. */
   componentName: string;
 }
-export const DeleteConnectedEnvironmentDaprComponentRequest =
+export const DeleteConnectedEnvironmentsDaprComponentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5615,20 +6147,20 @@ export const DeleteConnectedEnvironmentDaprComponentRequest =
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/daprComponents/{componentName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "DeleteConnectedEnvironmentDaprComponentRequest",
-  }) as any as S.Schema<DeleteConnectedEnvironmentDaprComponentRequest>;
+    identifier: "DeleteConnectedEnvironmentsDaprComponentRequest",
+  }) as any as S.Schema<DeleteConnectedEnvironmentsDaprComponentRequest>;
 
-export interface DeleteConnectedEnvironmentDaprComponentResponse {}
-export const DeleteConnectedEnvironmentDaprComponentResponse =
+export interface DeleteConnectedEnvironmentsDaprComponentResponse {}
+export const DeleteConnectedEnvironmentsDaprComponentResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteConnectedEnvironmentDaprComponentResponse",
-  }) as any as S.Schema<DeleteConnectedEnvironmentDaprComponentResponse>;
+    identifier: "DeleteConnectedEnvironmentsDaprComponentResponse",
+  }) as any as S.Schema<DeleteConnectedEnvironmentsDaprComponentResponse>;
 
-export interface DeleteConnectedEnvironmentStorageRequest {
+export interface DeleteConnectedEnvironmentsStorageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5638,8 +6170,8 @@ export interface DeleteConnectedEnvironmentStorageRequest {
   /** Name of the storage. */
   storageName: string;
 }
-export const DeleteConnectedEnvironmentStorageRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteConnectedEnvironmentsStorageRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -5650,18 +6182,18 @@ export const DeleteConnectedEnvironmentStorageRequest = /*@__PURE__*/ S.suspend(
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/storages/{storageName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
-).annotate({
-  identifier: "DeleteConnectedEnvironmentStorageRequest",
-}) as any as S.Schema<DeleteConnectedEnvironmentStorageRequest>;
+  ).annotate({
+    identifier: "DeleteConnectedEnvironmentsStorageRequest",
+  }) as any as S.Schema<DeleteConnectedEnvironmentsStorageRequest>;
 
-export interface DeleteConnectedEnvironmentStorageResponse {}
-export const DeleteConnectedEnvironmentStorageResponse =
+export interface DeleteConnectedEnvironmentsStorageResponse {}
+export const DeleteConnectedEnvironmentsStorageResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteConnectedEnvironmentStorageResponse",
-  }) as any as S.Schema<DeleteConnectedEnvironmentStorageResponse>;
+    identifier: "DeleteConnectedEnvironmentsStorageResponse",
+  }) as any as S.Schema<DeleteConnectedEnvironmentsStorageResponse>;
 
 export interface DeleteContainerAppRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5681,7 +6213,7 @@ export const DeleteContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5695,7 +6227,42 @@ export const DeleteContainerAppResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteContainerAppResponse",
 }) as any as S.Schema<DeleteContainerAppResponse>;
 
-export interface DeleteContainerAppAuthConfigRequest {
+export interface DeleteContainerAppPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Private Endpoint Connection. */
+  privateEndpointConnectionName: string;
+}
+export const DeleteContainerAppPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteContainerAppPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<DeleteContainerAppPrivateEndpointConnectionRequest>;
+
+export interface DeleteContainerAppPrivateEndpointConnectionResponse {}
+export const DeleteContainerAppPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteContainerAppPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<DeleteContainerAppPrivateEndpointConnectionResponse>;
+
+export interface DeleteContainerAppsAuthConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5705,32 +6272,68 @@ export interface DeleteContainerAppAuthConfigRequest {
   /** Name of the Container App AuthConfig. */
   authConfigName: string;
 }
-export const DeleteContainerAppAuthConfigRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    containerAppName: S.String.pipe(T.Label()),
-    authConfigName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs/{authConfigName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
+export const DeleteContainerAppsAuthConfigRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      authConfigName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs/{authConfigName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
 ).annotate({
-  identifier: "DeleteContainerAppAuthConfigRequest",
-}) as any as S.Schema<DeleteContainerAppAuthConfigRequest>;
+  identifier: "DeleteContainerAppsAuthConfigRequest",
+}) as any as S.Schema<DeleteContainerAppsAuthConfigRequest>;
 
-export interface DeleteContainerAppAuthConfigResponse {}
-export const DeleteContainerAppAuthConfigResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteContainerAppsAuthConfigResponse {}
+export const DeleteContainerAppsAuthConfigResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteContainerAppAuthConfigResponse",
-}) as any as S.Schema<DeleteContainerAppAuthConfigResponse>;
+  identifier: "DeleteContainerAppsAuthConfigResponse",
+}) as any as S.Schema<DeleteContainerAppsAuthConfigResponse>;
 
-export interface DeleteContainerAppSessionPoolRequest {
+export interface DeleteContainerAppsLabelHistoryLabelHistoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the label. */
+  labelName: string;
+}
+export const DeleteContainerAppsLabelHistoryLabelHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      labelName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/labelHistories/{labelName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteContainerAppsLabelHistoryLabelHistoryRequest",
+  }) as any as S.Schema<DeleteContainerAppsLabelHistoryLabelHistoryRequest>;
+
+export interface DeleteContainerAppsLabelHistoryLabelHistoryResponse {}
+export const DeleteContainerAppsLabelHistoryLabelHistoryResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteContainerAppsLabelHistoryLabelHistoryResponse",
+  }) as any as S.Schema<DeleteContainerAppsLabelHistoryLabelHistoryResponse>;
+
+export interface DeleteContainerAppsSessionPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5738,7 +6341,7 @@ export interface DeleteContainerAppSessionPoolRequest {
   /** Name of the session pool. */
   sessionPoolName: string;
 }
-export const DeleteContainerAppSessionPoolRequest = /*@__PURE__*/ S.suspend(
+export const DeleteContainerAppsSessionPoolRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5749,21 +6352,21 @@ export const DeleteContainerAppSessionPoolRequest = /*@__PURE__*/ S.suspend(
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sessionPools/{sessionPoolName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "DeleteContainerAppSessionPoolRequest",
-}) as any as S.Schema<DeleteContainerAppSessionPoolRequest>;
+  identifier: "DeleteContainerAppsSessionPoolRequest",
+}) as any as S.Schema<DeleteContainerAppsSessionPoolRequest>;
 
-export interface DeleteContainerAppSessionPoolResponse {}
-export const DeleteContainerAppSessionPoolResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteContainerAppsSessionPoolResponse {}
+export const DeleteContainerAppsSessionPoolResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteContainerAppSessionPoolResponse",
-}) as any as S.Schema<DeleteContainerAppSessionPoolResponse>;
+  identifier: "DeleteContainerAppsSessionPoolResponse",
+}) as any as S.Schema<DeleteContainerAppsSessionPoolResponse>;
 
-export interface DeleteContainerAppSourceControlRequest {
+export interface DeleteContainerAppsSourceControlRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5773,7 +6376,7 @@ export interface DeleteContainerAppSourceControlRequest {
   /** Name of the Container App SourceControl. */
   sourceControlName: string;
 }
-export const DeleteContainerAppSourceControlRequest = /*@__PURE__*/ S.suspend(
+export const DeleteContainerAppsSourceControlRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5785,19 +6388,19 @@ export const DeleteContainerAppSourceControlRequest = /*@__PURE__*/ S.suspend(
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/sourcecontrols/{sourceControlName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "DeleteContainerAppSourceControlRequest",
-}) as any as S.Schema<DeleteContainerAppSourceControlRequest>;
+  identifier: "DeleteContainerAppsSourceControlRequest",
+}) as any as S.Schema<DeleteContainerAppsSourceControlRequest>;
 
-export interface DeleteContainerAppSourceControlResponse {}
-export const DeleteContainerAppSourceControlResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteContainerAppsSourceControlResponse {}
+export const DeleteContainerAppsSourceControlResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteContainerAppSourceControlResponse",
-}) as any as S.Schema<DeleteContainerAppSourceControlResponse>;
+  identifier: "DeleteContainerAppsSourceControlResponse",
+}) as any as S.Schema<DeleteContainerAppsSourceControlResponse>;
 
 export interface DeleteDaprComponentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5820,7 +6423,7 @@ export const DeleteDaprComponentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5833,6 +6436,79 @@ export const DeleteDaprComponentResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteDaprComponentResponse",
 }) as any as S.Schema<DeleteDaprComponentResponse>;
+
+export interface DeleteDaprComponentResiliencyPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the Dapr Component. */
+  componentName: string;
+  /** Name of the Dapr Component Resiliency Policy. */
+  name: string;
+}
+export const DeleteDaprComponentResiliencyPolicyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      componentName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}/resiliencyPolicies/{name}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteDaprComponentResiliencyPolicyRequest",
+  }) as any as S.Schema<DeleteDaprComponentResiliencyPolicyRequest>;
+
+export interface DeleteDaprComponentResiliencyPolicyResponse {}
+export const DeleteDaprComponentResiliencyPolicyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteDaprComponentResiliencyPolicyResponse",
+  }) as any as S.Schema<DeleteDaprComponentResiliencyPolicyResponse>;
+
+export interface DeleteDotNetComponentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the .NET Component. */
+  name: string;
+}
+export const DeleteDotNetComponentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    environmentName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/dotNetComponents/{name}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDotNetComponentRequest",
+}) as any as S.Schema<DeleteDotNetComponentRequest>;
+
+export interface DeleteDotNetComponentResponse {}
+export const DeleteDotNetComponentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDotNetComponentResponse",
+}) as any as S.Schema<DeleteDotNetComponentResponse>;
 
 export interface DeleteHttpRouteConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5855,7 +6531,7 @@ export const DeleteHttpRouteConfigRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/httpRouteConfigs/{httpRouteName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5890,7 +6566,7 @@ export const DeleteJavaComponentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/javaComponents/{name}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5922,7 +6598,7 @@ export const DeleteJobRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5957,7 +6633,7 @@ export const DeleteLogicAppRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/providers/Microsoft.App/logicApps/{logicAppName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -5993,7 +6669,7 @@ export const DeleteMaintenanceConfigurationRequest = /*@__PURE__*/ S.suspend(
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/maintenanceConfigurations/{configName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -6028,7 +6704,7 @@ export const DeleteManagedCertificateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/managedCertificates/{managedCertificateName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -6060,7 +6736,7 @@ export const DeleteManagedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -6096,7 +6772,7 @@ export const DeleteManagedEnvironmentPrivateEndpointConnectionRequest =
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -6109,7 +6785,7 @@ export const DeleteManagedEnvironmentPrivateEndpointConnectionResponse =
     identifier: "DeleteManagedEnvironmentPrivateEndpointConnectionResponse",
   }) as any as S.Schema<DeleteManagedEnvironmentPrivateEndpointConnectionResponse>;
 
-export interface DeleteManagedEnvironmentStorageRequest {
+export interface DeleteManagedEnvironmentsStorageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6119,7 +6795,7 @@ export interface DeleteManagedEnvironmentStorageRequest {
   /** Name of the storage. */
   storageName: string;
 }
-export const DeleteManagedEnvironmentStorageRequest = /*@__PURE__*/ S.suspend(
+export const DeleteManagedEnvironmentsStorageRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6131,19 +6807,226 @@ export const DeleteManagedEnvironmentStorageRequest = /*@__PURE__*/ S.suspend(
         method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/storages/{storageName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "DeleteManagedEnvironmentStorageRequest",
-}) as any as S.Schema<DeleteManagedEnvironmentStorageRequest>;
+  identifier: "DeleteManagedEnvironmentsStorageRequest",
+}) as any as S.Schema<DeleteManagedEnvironmentsStorageRequest>;
 
-export interface DeleteManagedEnvironmentStorageResponse {}
-export const DeleteManagedEnvironmentStorageResponse = /*@__PURE__*/ S.suspend(
+export interface DeleteManagedEnvironmentsStorageResponse {}
+export const DeleteManagedEnvironmentsStorageResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteManagedEnvironmentStorageResponse",
-}) as any as S.Schema<DeleteManagedEnvironmentStorageResponse>;
+  identifier: "DeleteManagedEnvironmentsStorageResponse",
+}) as any as S.Schema<DeleteManagedEnvironmentsStorageResponse>;
+
+export interface DeleteSandboxGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+}
+export const DeleteSandboxGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sandboxGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSandboxGroupRequest",
+}) as any as S.Schema<DeleteSandboxGroupRequest>;
+
+export interface DeleteSandboxGroupResponse {}
+export const DeleteSandboxGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSandboxGroupResponse",
+}) as any as S.Schema<DeleteSandboxGroupResponse>;
+
+export interface DeleteVnetConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+  /** The name of the VnetConnection */
+  vnetConnectionName: string;
+}
+export const DeleteVnetConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sandboxGroupName: S.String.pipe(T.Label()),
+    vnetConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}/vnetConnections/{vnetConnectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVnetConnectionRequest",
+}) as any as S.Schema<DeleteVnetConnectionRequest>;
+
+export interface DeleteVnetConnectionResponse {}
+export const DeleteVnetConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVnetConnectionResponse",
+}) as any as S.Schema<DeleteVnetConnectionResponse>;
+
+/** Type of the .NET Component. */
+export type DotNetComponentType = "AspireDashboard";
+export const DotNetComponentType = /*@__PURE__*/ S.String;
+
+/** Provisioning state of the .NET Component. */
+export type DotNetComponentProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Deleting"
+  | "InProgress";
+export const DotNetComponentProvisioningState = /*@__PURE__*/ S.String;
+
+/** Configuration properties for a .NET Component */
+export interface DotNetComponentConfigurationProperty {
+  /** The name of the property */
+  propertyName?: string;
+  /** The value of the property */
+  value?: string;
+}
+export const DotNetComponentConfigurationProperty = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      propertyName: S.optional(S.String),
+      value: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DotNetComponentConfigurationProperty",
+}) as any as S.Schema<DotNetComponentConfigurationProperty>;
+
+/** List of .NET Components configuration properties */
+export type DotNetComponentPropertiesConfigurationsList =
+  Array<DotNetComponentConfigurationProperty>;
+export const DotNetComponentPropertiesConfigurationsList =
+  /*@__PURE__*/ S.Array(
+    DotNetComponentConfigurationProperty,
+  ) as any as S.Schema<DotNetComponentPropertiesConfigurationsList>;
+
+/** Configuration to bind a .NET Component to another .NET Component */
+export interface DotNetComponentServiceBind {
+  /** Name of the service bind */
+  name?: string;
+  /** Resource id of the target service */
+  serviceId?: string;
+}
+export const DotNetComponentServiceBind = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    serviceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DotNetComponentServiceBind",
+}) as any as S.Schema<DotNetComponentServiceBind>;
+
+/** List of .NET Components that are bound to the .NET component */
+export type DotNetComponentPropertiesServiceBindsList =
+  Array<DotNetComponentServiceBind>;
+export const DotNetComponentPropertiesServiceBindsList = /*@__PURE__*/ S.Array(
+  DotNetComponentServiceBind,
+) as any as S.Schema<DotNetComponentPropertiesServiceBindsList>;
+
+/** .NET Component resource specific properties */
+export interface DotNetComponentProperties {
+  /** Type of the .NET Component. */
+  componentType?: DotNetComponentType | (string & {});
+  /** Provisioning state of the .NET Component. */
+  provisioningState?: DotNetComponentProvisioningState | (string & {});
+  /** List of .NET Components configuration properties */
+  configurations?: DotNetComponentPropertiesConfigurationsList;
+  /** List of .NET Components that are bound to the .NET component */
+  serviceBinds?: DotNetComponentPropertiesServiceBindsList;
+}
+export const DotNetComponentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    componentType: S.optional(DotNetComponentType),
+    provisioningState: S.optional(DotNetComponentProvisioningState),
+    configurations: S.optional(DotNetComponentPropertiesConfigurationsList),
+    serviceBinds: S.optional(DotNetComponentPropertiesServiceBindsList),
+  }),
+).annotate({
+  identifier: "DotNetComponentProperties",
+}) as any as S.Schema<DotNetComponentProperties>;
+
+export interface DotNetComponentsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the .NET Component. */
+  name: string;
+  /** .NET Component resource specific properties */
+  properties?: DotNetComponentProperties;
+}
+export const DotNetComponentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      properties: S.optional(DotNetComponentProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/dotNetComponents/{name}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DotNetComponentsCreateOrUpdateRequest",
+}) as any as S.Schema<DotNetComponentsCreateOrUpdateRequest>;
+
+export interface DotNetComponentsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** .NET Component resource specific properties */
+  properties?: DotNetComponentProperties;
+}
+export const DotNetComponentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DotNetComponentProperties),
+    }),
+).annotate({
+  identifier: "DotNetComponentsCreateOrUpdateResponse",
+}) as any as S.Schema<DotNetComponentsCreateOrUpdateResponse>;
 
 export interface GetAgentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6171,44 +7054,44 @@ export const GetAgentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAgentRequest>;
 
 /** Resource tags. */
-export type AgentsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AgentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAgentResponseTagsMap = { [key: string]: string | undefined };
+export const GetAgentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentsGetResponseTagsMap>;
+) as any as S.Schema<GetAgentResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentsGetResponseIdentityUserAssignedIdentitiesMap = {
+export type GetAgentResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AgentsGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetAgentResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AgentsGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetAgentResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentsGetResponseIdentity {
+export interface GetAgentResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentsGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetAgentResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AgentsGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetAgentResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentsGetResponseIdentityUserAssignedIdentitiesMap,
+      GetAgentResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentsGetResponseIdentity",
-}) as any as S.Schema<AgentsGetResponseIdentity>;
+  identifier: "GetAgentResponseIdentity",
+}) as any as S.Schema<GetAgentResponseIdentity>;
 
 export interface GetAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6220,13 +7103,13 @@ export interface GetAgentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AgentsGetResponseTagsMap;
+  tags?: GetAgentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AgentProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentsGetResponseIdentity;
+  identity?: GetAgentResponseIdentity;
 }
 export const GetAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6234,16 +7117,16 @@ export const GetAgentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AgentsGetResponseTagsMap),
+    tags: S.optional(GetAgentResponseTagsMap),
     location: S.String,
     properties: S.optional(AgentProperties),
-    identity: S.optional(AgentsGetResponseIdentity),
+    identity: S.optional(GetAgentResponseIdentity),
   }),
 ).annotate({
   identifier: "GetAgentResponse",
 }) as any as S.Schema<GetAgentResponse>;
 
-export interface GetAgentConnectorRequest {
+export interface GetAgentsConnectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6253,7 +7136,7 @@ export interface GetAgentConnectorRequest {
   /** The name of the AgentConnector */
   connectorName: string;
 }
-export const GetAgentConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAgentsConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6268,10 +7151,10 @@ export const GetAgentConnectorRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAgentConnectorRequest",
-}) as any as S.Schema<GetAgentConnectorRequest>;
+  identifier: "GetAgentsConnectorRequest",
+}) as any as S.Schema<GetAgentsConnectorRequest>;
 
-export interface GetAgentConnectorResponse {
+export interface GetAgentsConnectorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6283,7 +7166,7 @@ export interface GetAgentConnectorResponse {
   /** The resource-specific properties for this resource. */
   properties?: AgentConnectorProperties;
 }
-export const GetAgentConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAgentsConnectorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -6292,8 +7175,8 @@ export const GetAgentConnectorResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AgentConnectorProperties),
   }),
 ).annotate({
-  identifier: "GetAgentConnectorResponse",
-}) as any as S.Schema<GetAgentConnectorResponse>;
+  identifier: "GetAgentsConnectorResponse",
+}) as any as S.Schema<GetAgentsConnectorResponse>;
 
 export interface GetAgentSpaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6321,46 +7204,46 @@ export const GetAgentSpaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAgentSpaceRequest>;
 
 /** Resource tags. */
-export type AgentSpacesGetResponseTagsMap = {
+export type GetAgentSpaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AgentSpacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAgentSpaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentSpacesGetResponseTagsMap>;
+) as any as S.Schema<GetAgentSpaceResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentSpacesGetResponseIdentityUserAssignedIdentitiesMap = {
+export type GetAgentSpaceResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AgentSpacesGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetAgentSpaceResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AgentSpacesGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetAgentSpaceResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentSpacesGetResponseIdentity {
+export interface GetAgentSpaceResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentSpacesGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetAgentSpaceResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AgentSpacesGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetAgentSpaceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentSpacesGetResponseIdentityUserAssignedIdentitiesMap,
+      GetAgentSpaceResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentSpacesGetResponseIdentity",
-}) as any as S.Schema<AgentSpacesGetResponseIdentity>;
+  identifier: "GetAgentSpaceResponseIdentity",
+}) as any as S.Schema<GetAgentSpaceResponseIdentity>;
 
 export interface GetAgentSpaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6372,13 +7255,13 @@ export interface GetAgentSpaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AgentSpacesGetResponseTagsMap;
+  tags?: GetAgentSpaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AgentSpaceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentSpacesGetResponseIdentity;
+  identity?: GetAgentSpaceResponseIdentity;
 }
 export const GetAgentSpaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6386,16 +7269,16 @@ export const GetAgentSpaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AgentSpacesGetResponseTagsMap),
+    tags: S.optional(GetAgentSpaceResponseTagsMap),
     location: S.String,
     properties: S.optional(AgentSpaceProperties),
-    identity: S.optional(AgentSpacesGetResponseIdentity),
+    identity: S.optional(GetAgentSpaceResponseIdentity),
   }),
 ).annotate({
   identifier: "GetAgentSpaceResponse",
 }) as any as S.Schema<GetAgentSpaceResponse>;
 
-export interface GetAgentSpaceConnectorRequest {
+export interface GetAgentSpacesConnectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6405,7 +7288,7 @@ export interface GetAgentSpaceConnectorRequest {
   /** The name of the AgentSpaceConnector */
   connectorName: string;
 }
-export const GetAgentSpaceConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAgentSpacesConnectorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6420,10 +7303,10 @@ export const GetAgentSpaceConnectorRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetAgentSpaceConnectorRequest",
-}) as any as S.Schema<GetAgentSpaceConnectorRequest>;
+  identifier: "GetAgentSpacesConnectorRequest",
+}) as any as S.Schema<GetAgentSpacesConnectorRequest>;
 
-export interface GetAgentSpaceConnectorResponse {
+export interface GetAgentSpacesConnectorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6435,7 +7318,7 @@ export interface GetAgentSpaceConnectorResponse {
   /** The resource-specific properties for this resource. */
   properties?: AgentSpaceConnectorProperties;
 }
-export const GetAgentSpaceConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAgentSpacesConnectorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -6444,8 +7327,8 @@ export const GetAgentSpaceConnectorResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AgentSpaceConnectorProperties),
   }),
 ).annotate({
-  identifier: "GetAgentSpaceConnectorResponse",
-}) as any as S.Schema<GetAgentSpaceConnectorResponse>;
+  identifier: "GetAgentSpacesConnectorResponse",
+}) as any as S.Schema<GetAgentSpacesConnectorResponse>;
 
 export interface GetAvailableWorkloadProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6462,7 +7345,7 @@ export const GetAvailableWorkloadProfileRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/locations/{location}/availableManagedEnvironmentsWorkloadProfileTypes",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -6568,7 +7451,7 @@ export const GetBillingMeterRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/locations/{location}/billingMeters",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -6660,7 +7543,7 @@ export const GetCertificateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/certificates/{certificateName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -6668,13 +7551,13 @@ export const GetCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCertificateRequest>;
 
 /** Resource tags. */
-export type CertificatesGetResponseTagsMap = {
+export type GetCertificateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CertificatesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCertificateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CertificatesGetResponseTagsMap>;
+) as any as S.Schema<GetCertificateResponseTagsMap>;
 
 export interface GetCertificateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6686,7 +7569,7 @@ export interface GetCertificateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CertificatesGetResponseTagsMap;
+  tags?: GetCertificateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Certificate resource specific properties */
@@ -6698,7 +7581,7 @@ export const GetCertificateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CertificatesGetResponseTagsMap),
+    tags: S.optional(GetCertificateResponseTagsMap),
     location: S.String,
     properties: S.optional(CertificateProperties),
   }),
@@ -6724,7 +7607,7 @@ export const GetConnectedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -6732,13 +7615,13 @@ export const GetConnectedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConnectedEnvironmentRequest>;
 
 /** Resource tags. */
-export type ConnectedEnvironmentsGetResponseTagsMap = {
+export type GetConnectedEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedEnvironmentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetConnectedEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectedEnvironmentsGetResponseTagsMap>;
+) as any as S.Schema<GetConnectedEnvironmentResponseTagsMap>;
 
 export interface GetConnectedEnvironmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6750,7 +7633,7 @@ export interface GetConnectedEnvironmentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConnectedEnvironmentsGetResponseTagsMap;
+  tags?: GetConnectedEnvironmentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ConnectedEnvironment resource specific properties */
@@ -6764,7 +7647,7 @@ export const GetConnectedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConnectedEnvironmentsGetResponseTagsMap),
+    tags: S.optional(GetConnectedEnvironmentResponseTagsMap),
     location: S.String,
     properties: S.optional(ConnectedEnvironmentProperties),
     extendedLocation: S.optional(ExtendedLocation),
@@ -6773,7 +7656,7 @@ export const GetConnectedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetConnectedEnvironmentResponse",
 }) as any as S.Schema<GetConnectedEnvironmentResponse>;
 
-export interface GetConnectedEnvironmentCertificateRequest {
+export interface GetConnectedEnvironmentsCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6783,7 +7666,7 @@ export interface GetConnectedEnvironmentCertificateRequest {
   /** Name of the Certificate. */
   certificateName: string;
 }
-export const GetConnectedEnvironmentCertificateRequest =
+export const GetConnectedEnvironmentsCertificateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6795,24 +7678,24 @@ export const GetConnectedEnvironmentCertificateRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/certificates/{certificateName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "GetConnectedEnvironmentCertificateRequest",
-  }) as any as S.Schema<GetConnectedEnvironmentCertificateRequest>;
+    identifier: "GetConnectedEnvironmentsCertificateRequest",
+  }) as any as S.Schema<GetConnectedEnvironmentsCertificateRequest>;
 
 /** Resource tags. */
-export type ConnectedEnvironmentsCertificatesGetResponseTagsMap = {
+export type GetConnectedEnvironmentsCertificateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedEnvironmentsCertificatesGetResponseTagsMap =
+export const GetConnectedEnvironmentsCertificateResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ConnectedEnvironmentsCertificatesGetResponseTagsMap>;
+  ) as any as S.Schema<GetConnectedEnvironmentsCertificateResponseTagsMap>;
 
-export interface GetConnectedEnvironmentCertificateResponse {
+export interface GetConnectedEnvironmentsCertificateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6822,28 +7705,28 @@ export interface GetConnectedEnvironmentCertificateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConnectedEnvironmentsCertificatesGetResponseTagsMap;
+  tags?: GetConnectedEnvironmentsCertificateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Certificate resource specific properties */
   properties?: CertificateProperties;
 }
-export const GetConnectedEnvironmentCertificateResponse =
+export const GetConnectedEnvironmentsCertificateResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ConnectedEnvironmentsCertificatesGetResponseTagsMap),
+      tags: S.optional(GetConnectedEnvironmentsCertificateResponseTagsMap),
       location: S.String,
       properties: S.optional(CertificateProperties),
     }),
   ).annotate({
-    identifier: "GetConnectedEnvironmentCertificateResponse",
-  }) as any as S.Schema<GetConnectedEnvironmentCertificateResponse>;
+    identifier: "GetConnectedEnvironmentsCertificateResponse",
+  }) as any as S.Schema<GetConnectedEnvironmentsCertificateResponse>;
 
-export interface GetConnectedEnvironmentDaprComponentRequest {
+export interface GetConnectedEnvironmentsDaprComponentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6853,7 +7736,7 @@ export interface GetConnectedEnvironmentDaprComponentRequest {
   /** Name of the Dapr Component. */
   componentName: string;
 }
-export const GetConnectedEnvironmentDaprComponentRequest =
+export const GetConnectedEnvironmentsDaprComponentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6865,14 +7748,14 @@ export const GetConnectedEnvironmentDaprComponentRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/daprComponents/{componentName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "GetConnectedEnvironmentDaprComponentRequest",
-  }) as any as S.Schema<GetConnectedEnvironmentDaprComponentRequest>;
+    identifier: "GetConnectedEnvironmentsDaprComponentRequest",
+  }) as any as S.Schema<GetConnectedEnvironmentsDaprComponentRequest>;
 
-export interface GetConnectedEnvironmentDaprComponentResponse {
+export interface GetConnectedEnvironmentsDaprComponentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6884,7 +7767,7 @@ export interface GetConnectedEnvironmentDaprComponentResponse {
   /** Dapr Component resource specific properties */
   properties?: DaprComponentProperties;
 }
-export const GetConnectedEnvironmentDaprComponentResponse =
+export const GetConnectedEnvironmentsDaprComponentResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -6894,10 +7777,10 @@ export const GetConnectedEnvironmentDaprComponentResponse =
       properties: S.optional(DaprComponentProperties),
     }),
   ).annotate({
-    identifier: "GetConnectedEnvironmentDaprComponentResponse",
-  }) as any as S.Schema<GetConnectedEnvironmentDaprComponentResponse>;
+    identifier: "GetConnectedEnvironmentsDaprComponentResponse",
+  }) as any as S.Schema<GetConnectedEnvironmentsDaprComponentResponse>;
 
-export interface GetConnectedEnvironmentStorageRequest {
+export interface GetConnectedEnvironmentsStorageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6907,7 +7790,7 @@ export interface GetConnectedEnvironmentStorageRequest {
   /** Name of the storage. */
   storageName: string;
 }
-export const GetConnectedEnvironmentStorageRequest = /*@__PURE__*/ S.suspend(
+export const GetConnectedEnvironmentsStorageRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6919,14 +7802,14 @@ export const GetConnectedEnvironmentStorageRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/storages/{storageName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "GetConnectedEnvironmentStorageRequest",
-}) as any as S.Schema<GetConnectedEnvironmentStorageRequest>;
+  identifier: "GetConnectedEnvironmentsStorageRequest",
+}) as any as S.Schema<GetConnectedEnvironmentsStorageRequest>;
 
-export interface GetConnectedEnvironmentStorageResponse {
+export interface GetConnectedEnvironmentsStorageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6938,7 +7821,7 @@ export interface GetConnectedEnvironmentStorageResponse {
   /** Storage properties */
   properties?: ConnectedEnvironmentStorageProperties;
 }
-export const GetConnectedEnvironmentStorageResponse = /*@__PURE__*/ S.suspend(
+export const GetConnectedEnvironmentsStorageResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -6948,8 +7831,8 @@ export const GetConnectedEnvironmentStorageResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(ConnectedEnvironmentStorageProperties),
     }),
 ).annotate({
-  identifier: "GetConnectedEnvironmentStorageResponse",
-}) as any as S.Schema<GetConnectedEnvironmentStorageResponse>;
+  identifier: "GetConnectedEnvironmentsStorageResponse",
+}) as any as S.Schema<GetConnectedEnvironmentsStorageResponse>;
 
 export interface GetContainerAppRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6969,7 +7852,7 @@ export const GetContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -6977,18 +7860,18 @@ export const GetContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetContainerAppRequest>;
 
 /** Resource tags. */
-export type ContainerAppsGetResponseTagsMap = {
+export type GetContainerAppResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetContainerAppResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerAppsGetResponseTagsMap>;
+) as any as S.Schema<GetContainerAppResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsGetResponseIdentity =
+export type GetContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ContainerAppsGetResponseIdentity =
+export const GetContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface GetContainerAppResponse {
@@ -7001,7 +7884,7 @@ export interface GetContainerAppResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsGetResponseTagsMap;
+  tags?: GetContainerAppResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ContainerApp resource specific properties */
@@ -7021,7 +7904,7 @@ export const GetContainerAppResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContainerAppsGetResponseTagsMap),
+    tags: S.optional(GetContainerAppResponseTagsMap),
     location: S.String,
     properties: S.optional(ContainerAppProperties),
     extendedLocation: S.optional(ExtendedLocation),
@@ -7032,58 +7915,6 @@ export const GetContainerAppResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetContainerAppResponse",
 }) as any as S.Schema<GetContainerAppResponse>;
-
-export interface GetContainerAppAuthConfigRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Container App. */
-  containerAppName: string;
-  /** Name of the Container App AuthConfig. */
-  authConfigName: string;
-}
-export const GetContainerAppAuthConfigRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    containerAppName: S.String.pipe(T.Label()),
-    authConfigName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs/{authConfigName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetContainerAppAuthConfigRequest",
-}) as any as S.Schema<GetContainerAppAuthConfigRequest>;
-
-export interface GetContainerAppAuthConfigResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AuthConfig resource specific properties */
-  properties?: AuthConfigProperties;
-}
-export const GetContainerAppAuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AuthConfigProperties),
-  }),
-).annotate({
-  identifier: "GetContainerAppAuthConfigResponse",
-}) as any as S.Schema<GetContainerAppAuthConfigResponse>;
 
 export interface GetContainerAppAuthTokenRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7103,7 +7934,7 @@ export const GetContainerAppAuthTokenRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/getAuthtoken",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -7111,13 +7942,13 @@ export const GetContainerAppAuthTokenRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetContainerAppAuthTokenRequest>;
 
 /** Resource tags. */
-export type ContainerAppsGetAuthTokenResponseTagsMap = {
+export type GetContainerAppAuthTokenResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsGetAuthTokenResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetContainerAppAuthTokenResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerAppsGetAuthTokenResponseTagsMap>;
+) as any as S.Schema<GetContainerAppAuthTokenResponseTagsMap>;
 
 /** Container App auth token resource specific properties */
 export interface ContainerAppAuthTokenProperties {
@@ -7145,7 +7976,7 @@ export interface GetContainerAppAuthTokenResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsGetAuthTokenResponseTagsMap;
+  tags?: GetContainerAppAuthTokenResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Container App auth token resource specific properties */
@@ -7157,7 +7988,7 @@ export const GetContainerAppAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContainerAppsGetAuthTokenResponseTagsMap),
+    tags: S.optional(GetContainerAppAuthTokenResponseTagsMap),
     location: S.String,
     properties: S.optional(ContainerAppAuthTokenProperties),
   }),
@@ -7165,7 +7996,204 @@ export const GetContainerAppAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetContainerAppAuthTokenResponse",
 }) as any as S.Schema<GetContainerAppAuthTokenResponse>;
 
-export interface GetContainerAppDiagnosticDetectorRequest {
+export interface GetContainerAppPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Private Endpoint Connection. */
+  privateEndpointConnectionName: string;
+}
+export const GetContainerAppPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetContainerAppPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<GetContainerAppPrivateEndpointConnectionRequest>;
+
+export interface GetContainerAppPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetContainerAppPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "GetContainerAppPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<GetContainerAppPrivateEndpointConnectionResponse>;
+
+export interface GetContainerAppPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** The name of the private link associated with the Azure resource. */
+  privateLinkResourceName: string;
+}
+export const GetContainerAppPrivateLinkResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      privateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/privateLinkResources/{privateLinkResourceName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetContainerAppPrivateLinkResourceRequest",
+  }) as any as S.Schema<GetContainerAppPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetContainerAppPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetContainerAppPrivateLinkResourceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateLinkResourceProperties),
+    }),
+  ).annotate({
+    identifier: "GetContainerAppPrivateLinkResourceResponse",
+  }) as any as S.Schema<GetContainerAppPrivateLinkResourceResponse>;
+
+export interface GetContainerAppsAuthConfigRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Container App AuthConfig. */
+  authConfigName: string;
+}
+export const GetContainerAppsAuthConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    containerAppName: S.String.pipe(T.Label()),
+    authConfigName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs/{authConfigName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetContainerAppsAuthConfigRequest",
+}) as any as S.Schema<GetContainerAppsAuthConfigRequest>;
+
+export interface GetContainerAppsAuthConfigResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AuthConfig resource specific properties */
+  properties?: AuthConfigProperties;
+}
+export const GetContainerAppsAuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AuthConfigProperties),
+  }),
+).annotate({
+  identifier: "GetContainerAppsAuthConfigResponse",
+}) as any as S.Schema<GetContainerAppsAuthConfigResponse>;
+
+export interface GetContainerAppsDiagnosticDetectorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7175,8 +8203,8 @@ export interface GetContainerAppDiagnosticDetectorRequest {
   /** Name of the detector. */
   detectorName: string;
 }
-export const GetContainerAppDiagnosticDetectorRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetContainerAppsDiagnosticDetectorRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -7187,12 +8215,12 @@ export const GetContainerAppDiagnosticDetectorRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/detectors/{detectorName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
-).annotate({
-  identifier: "GetContainerAppDiagnosticDetectorRequest",
-}) as any as S.Schema<GetContainerAppDiagnosticDetectorRequest>;
+  ).annotate({
+    identifier: "GetContainerAppsDiagnosticDetectorRequest",
+  }) as any as S.Schema<GetContainerAppsDiagnosticDetectorRequest>;
 
 /** Support topic information */
 export interface DiagnosticSupportTopic {
@@ -7436,7 +8464,7 @@ export const DiagnosticsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiagnosticsProperties",
 }) as any as S.Schema<DiagnosticsProperties>;
 
-export interface GetContainerAppDiagnosticDetectorResponse {
+export interface GetContainerAppsDiagnosticDetectorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7448,7 +8476,7 @@ export interface GetContainerAppDiagnosticDetectorResponse {
   /** The resource-specific properties for this resource. */
   properties?: DiagnosticsProperties;
 }
-export const GetContainerAppDiagnosticDetectorResponse =
+export const GetContainerAppsDiagnosticDetectorResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7458,10 +8486,10 @@ export const GetContainerAppDiagnosticDetectorResponse =
       properties: S.optional(DiagnosticsProperties),
     }),
   ).annotate({
-    identifier: "GetContainerAppDiagnosticDetectorResponse",
-  }) as any as S.Schema<GetContainerAppDiagnosticDetectorResponse>;
+    identifier: "GetContainerAppsDiagnosticDetectorResponse",
+  }) as any as S.Schema<GetContainerAppsDiagnosticDetectorResponse>;
 
-export interface GetContainerAppDiagnosticRevisionRequest {
+export interface GetContainerAppsDiagnosticRevisionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7471,8 +8499,8 @@ export interface GetContainerAppDiagnosticRevisionRequest {
   /** Name of the detector. */
   revisionName: string;
 }
-export const GetContainerAppDiagnosticRevisionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetContainerAppsDiagnosticRevisionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -7483,12 +8511,12 @@ export const GetContainerAppDiagnosticRevisionRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/detectorProperties/revisionsApi/revisions/{revisionName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
-).annotate({
-  identifier: "GetContainerAppDiagnosticRevisionRequest",
-}) as any as S.Schema<GetContainerAppDiagnosticRevisionRequest>;
+  ).annotate({
+    identifier: "GetContainerAppsDiagnosticRevisionRequest",
+  }) as any as S.Schema<GetContainerAppsDiagnosticRevisionRequest>;
 
 /** Current health State of the revision */
 export type RevisionHealthState = "Healthy" | "Unhealthy" | "None";
@@ -7556,7 +8584,7 @@ export const RevisionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RevisionProperties",
 }) as any as S.Schema<RevisionProperties>;
 
-export interface GetContainerAppDiagnosticRevisionResponse {
+export interface GetContainerAppsDiagnosticRevisionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7568,7 +8596,7 @@ export interface GetContainerAppDiagnosticRevisionResponse {
   /** Revision resource specific properties */
   properties?: RevisionProperties;
 }
-export const GetContainerAppDiagnosticRevisionResponse =
+export const GetContainerAppsDiagnosticRevisionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7578,10 +8606,10 @@ export const GetContainerAppDiagnosticRevisionResponse =
       properties: S.optional(RevisionProperties),
     }),
   ).annotate({
-    identifier: "GetContainerAppDiagnosticRevisionResponse",
-  }) as any as S.Schema<GetContainerAppDiagnosticRevisionResponse>;
+    identifier: "GetContainerAppsDiagnosticRevisionResponse",
+  }) as any as S.Schema<GetContainerAppsDiagnosticRevisionResponse>;
 
-export interface GetContainerAppDiagnosticRootRequest {
+export interface GetContainerAppsDiagnosticRootRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7589,7 +8617,7 @@ export interface GetContainerAppDiagnosticRootRequest {
   /** Name of the Container App. */
   containerAppName: string;
 }
-export const GetContainerAppDiagnosticRootRequest = /*@__PURE__*/ S.suspend(
+export const GetContainerAppsDiagnosticRootRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7600,30 +8628,30 @@ export const GetContainerAppDiagnosticRootRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/detectorProperties/rootApi/",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "GetContainerAppDiagnosticRootRequest",
-}) as any as S.Schema<GetContainerAppDiagnosticRootRequest>;
+  identifier: "GetContainerAppsDiagnosticRootRequest",
+}) as any as S.Schema<GetContainerAppsDiagnosticRootRequest>;
 
 /** Resource tags. */
-export type ContainerAppsDiagnosticsGetRootResponseTagsMap = {
+export type GetContainerAppsDiagnosticRootResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsDiagnosticsGetRootResponseTagsMap =
+export const GetContainerAppsDiagnosticRootResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ContainerAppsDiagnosticsGetRootResponseTagsMap>;
+  ) as any as S.Schema<GetContainerAppsDiagnosticRootResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsDiagnosticsGetRootResponseIdentity =
+export type GetContainerAppsDiagnosticRootResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ContainerAppsDiagnosticsGetRootResponseIdentity =
+export const GetContainerAppsDiagnosticRootResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
-export interface GetContainerAppDiagnosticRootResponse {
+export interface GetContainerAppsDiagnosticRootResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7633,7 +8661,7 @@ export interface GetContainerAppDiagnosticRootResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsDiagnosticsGetRootResponseTagsMap;
+  tags?: GetContainerAppsDiagnosticRootResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ContainerApp resource specific properties */
@@ -7647,14 +8675,14 @@ export interface GetContainerAppDiagnosticRootResponse {
   /** Metadata to represent the container app kind, representing if a container app is workflowapp or functionapp. */
   kind?: Kind;
 }
-export const GetContainerAppDiagnosticRootResponse = /*@__PURE__*/ S.suspend(
+export const GetContainerAppsDiagnosticRootResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ContainerAppsDiagnosticsGetRootResponseTagsMap),
+      tags: S.optional(GetContainerAppsDiagnosticRootResponseTagsMap),
       location: S.String,
       properties: S.optional(ContainerAppProperties),
       extendedLocation: S.optional(ExtendedLocation),
@@ -7663,10 +8691,247 @@ export const GetContainerAppDiagnosticRootResponse = /*@__PURE__*/ S.suspend(
       kind: S.optional(Kind),
     }),
 ).annotate({
-  identifier: "GetContainerAppDiagnosticRootResponse",
-}) as any as S.Schema<GetContainerAppDiagnosticRootResponse>;
+  identifier: "GetContainerAppsDiagnosticRootResponse",
+}) as any as S.Schema<GetContainerAppsDiagnosticRootResponse>;
 
-export interface GetContainerAppRevisionReplicaReplicaRequest {
+export interface GetContainerAppsFunctionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Function. */
+  functionName: string;
+}
+export const GetContainerAppsFunctionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    containerAppName: S.String.pipe(T.Label()),
+    functionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/functions/{functionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetContainerAppsFunctionRequest",
+}) as any as S.Schema<GetContainerAppsFunctionRequest>;
+
+/** The state of a Container App function. */
+export type ContainerAppsFunctionState = "Enabled" | "Disabled";
+export const ContainerAppsFunctionState = /*@__PURE__*/ S.String;
+
+/** Function resource specific properties */
+export interface ContainerAppsFunctionProperties {
+  /** Invoke URL for the function. */
+  invokeUrlTemplate?: string;
+  /** Trigger type of the function. */
+  triggerType?: string;
+  /** Programming language of the function. */
+  language?: string;
+  /** Indicates whether the function is disabled. This property is deprecated; use `state` instead. */
+  isDisabled?: boolean;
+  /** The state of the function. */
+  state?: ContainerAppsFunctionState;
+}
+export const ContainerAppsFunctionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invokeUrlTemplate: S.optional(S.String),
+    triggerType: S.optional(S.String),
+    language: S.optional(S.String),
+    isDisabled: S.optional(S.Boolean),
+    state: S.optional(ContainerAppsFunctionState),
+  }),
+).annotate({
+  identifier: "ContainerAppsFunctionProperties",
+}) as any as S.Schema<ContainerAppsFunctionProperties>;
+
+export interface GetContainerAppsFunctionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Function resource specific properties */
+  properties?: ContainerAppsFunctionProperties;
+}
+export const GetContainerAppsFunctionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ContainerAppsFunctionProperties),
+  }),
+).annotate({
+  identifier: "GetContainerAppsFunctionResponse",
+}) as any as S.Schema<GetContainerAppsFunctionResponse>;
+
+export interface GetContainerAppsLabelHistoryLabelHistoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the label. */
+  labelName: string;
+}
+export const GetContainerAppsLabelHistoryLabelHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      labelName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/labelHistories/{labelName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetContainerAppsLabelHistoryLabelHistoryRequest",
+  }) as any as S.Schema<GetContainerAppsLabelHistoryLabelHistoryRequest>;
+
+/** Status of the label history record. */
+export type Status = "Succeeded" | "Failed" | "Starting";
+export const Status = /*@__PURE__*/ S.String;
+
+/** Container App Label History Item resource specific properties */
+export interface LabelHistoryRecordItem {
+  /** Container App revision name that label was applied to. */
+  revision?: string;
+  /** Timestamp describing when the label was applied to the revision. */
+  start?: string;
+  /** Timestamp describing when the label was removed from the revision. Only meaningful when the label is currently applied to the revision. */
+  stop?: string;
+  /** Status of the label history record. */
+  status?: Status;
+}
+export const LabelHistoryRecordItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    revision: S.optional(S.String),
+    start: S.optional(S.String),
+    stop: S.optional(S.String),
+    status: S.optional(Status),
+  }),
+).annotate({
+  identifier: "LabelHistoryRecordItem",
+}) as any as S.Schema<LabelHistoryRecordItem>;
+
+/** List of label history records. */
+export type LabelHistoryPropertiesRecordsList = Array<LabelHistoryRecordItem>;
+export const LabelHistoryPropertiesRecordsList = /*@__PURE__*/ S.Array(
+  LabelHistoryRecordItem,
+) as any as S.Schema<LabelHistoryPropertiesRecordsList>;
+
+/** Container App Label History resource specific properties */
+export interface LabelHistoryProperties {
+  /** List of label history records. */
+  records?: LabelHistoryPropertiesRecordsList;
+}
+export const LabelHistoryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    records: S.optional(LabelHistoryPropertiesRecordsList),
+  }),
+).annotate({
+  identifier: "LabelHistoryProperties",
+}) as any as S.Schema<LabelHistoryProperties>;
+
+export interface GetContainerAppsLabelHistoryLabelHistoryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Container App Label History resource specific properties */
+  properties?: LabelHistoryProperties;
+}
+export const GetContainerAppsLabelHistoryLabelHistoryResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(LabelHistoryProperties),
+    }),
+  ).annotate({
+    identifier: "GetContainerAppsLabelHistoryLabelHistoryResponse",
+  }) as any as S.Schema<GetContainerAppsLabelHistoryLabelHistoryResponse>;
+
+export interface GetContainerAppsRevisionFunctionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Container App Revision. */
+  revisionName: string;
+  /** Name of the Function. */
+  functionName: string;
+}
+export const GetContainerAppsRevisionFunctionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      revisionName: S.String.pipe(T.Label()),
+      functionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/functions/{functionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetContainerAppsRevisionFunctionRequest",
+}) as any as S.Schema<GetContainerAppsRevisionFunctionRequest>;
+
+export interface GetContainerAppsRevisionFunctionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Function resource specific properties */
+  properties?: ContainerAppsFunctionProperties;
+}
+export const GetContainerAppsRevisionFunctionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ContainerAppsFunctionProperties),
+    }),
+).annotate({
+  identifier: "GetContainerAppsRevisionFunctionResponse",
+}) as any as S.Schema<GetContainerAppsRevisionFunctionResponse>;
+
+export interface GetContainerAppsRevisionReplicasReplicaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7678,7 +8943,7 @@ export interface GetContainerAppRevisionReplicaReplicaRequest {
   /** Name of the Container App Revision Replica. */
   replicaName: string;
 }
-export const GetContainerAppRevisionReplicaReplicaRequest =
+export const GetContainerAppsRevisionReplicasReplicaRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7691,12 +8956,12 @@ export const GetContainerAppRevisionReplicaReplicaRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/replicas/{replicaName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "GetContainerAppRevisionReplicaReplicaRequest",
-  }) as any as S.Schema<GetContainerAppRevisionReplicaReplicaRequest>;
+    identifier: "GetContainerAppsRevisionReplicasReplicaRequest",
+  }) as any as S.Schema<GetContainerAppsRevisionReplicasReplicaRequest>;
 
 /** Current running state of the replica */
 export type ContainerAppReplicaRunningState =
@@ -7732,6 +8997,8 @@ export interface ReplicaContainer {
   logStreamEndpoint?: string;
   /** Container exec endpoint */
   execEndpoint?: string;
+  /** Container debug endpoint */
+  debugEndpoint?: string;
 }
 export const ReplicaContainer = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7744,6 +9011,7 @@ export const ReplicaContainer = /*@__PURE__*/ S.suspend(() =>
     runningStateDetails: S.optional(S.String),
     logStreamEndpoint: S.optional(S.String),
     execEndpoint: S.optional(S.String),
+    debugEndpoint: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ReplicaContainer",
@@ -7786,7 +9054,7 @@ export const ReplicaProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplicaProperties",
 }) as any as S.Schema<ReplicaProperties>;
 
-export interface GetContainerAppRevisionReplicaReplicaResponse {
+export interface GetContainerAppsRevisionReplicasReplicaResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7798,7 +9066,7 @@ export interface GetContainerAppRevisionReplicaReplicaResponse {
   /** Replica resource specific properties */
   properties?: ReplicaProperties;
 }
-export const GetContainerAppRevisionReplicaReplicaResponse =
+export const GetContainerAppsRevisionReplicasReplicaResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7808,10 +9076,10 @@ export const GetContainerAppRevisionReplicaReplicaResponse =
       properties: S.optional(ReplicaProperties),
     }),
   ).annotate({
-    identifier: "GetContainerAppRevisionReplicaReplicaResponse",
-  }) as any as S.Schema<GetContainerAppRevisionReplicaReplicaResponse>;
+    identifier: "GetContainerAppsRevisionReplicasReplicaResponse",
+  }) as any as S.Schema<GetContainerAppsRevisionReplicasReplicaResponse>;
 
-export interface GetContainerAppRevisionRevisionRequest {
+export interface GetContainerAppsRevisionRevisionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7821,7 +9089,7 @@ export interface GetContainerAppRevisionRevisionRequest {
   /** Name of the Container App Revision. */
   revisionName: string;
 }
-export const GetContainerAppRevisionRevisionRequest = /*@__PURE__*/ S.suspend(
+export const GetContainerAppsRevisionRevisionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7833,14 +9101,14 @@ export const GetContainerAppRevisionRevisionRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "GetContainerAppRevisionRevisionRequest",
-}) as any as S.Schema<GetContainerAppRevisionRevisionRequest>;
+  identifier: "GetContainerAppsRevisionRevisionRequest",
+}) as any as S.Schema<GetContainerAppsRevisionRevisionRequest>;
 
-export interface GetContainerAppRevisionRevisionResponse {
+export interface GetContainerAppsRevisionRevisionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7852,7 +9120,7 @@ export interface GetContainerAppRevisionRevisionResponse {
   /** Revision resource specific properties */
   properties?: RevisionProperties;
 }
-export const GetContainerAppRevisionRevisionResponse = /*@__PURE__*/ S.suspend(
+export const GetContainerAppsRevisionRevisionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -7862,10 +9130,10 @@ export const GetContainerAppRevisionRevisionResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(RevisionProperties),
     }),
 ).annotate({
-  identifier: "GetContainerAppRevisionRevisionResponse",
-}) as any as S.Schema<GetContainerAppRevisionRevisionResponse>;
+  identifier: "GetContainerAppsRevisionRevisionResponse",
+}) as any as S.Schema<GetContainerAppsRevisionRevisionResponse>;
 
-export interface GetContainerAppSessionPoolRequest {
+export interface GetContainerAppsSessionPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7873,7 +9141,7 @@ export interface GetContainerAppSessionPoolRequest {
   /** Name of the session pool. */
   sessionPoolName: string;
 }
-export const GetContainerAppSessionPoolRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetContainerAppsSessionPoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7883,30 +9151,30 @@ export const GetContainerAppSessionPoolRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sessionPools/{sessionPoolName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "GetContainerAppSessionPoolRequest",
-}) as any as S.Schema<GetContainerAppSessionPoolRequest>;
+  identifier: "GetContainerAppsSessionPoolRequest",
+}) as any as S.Schema<GetContainerAppsSessionPoolRequest>;
 
 /** Resource tags. */
-export type ContainerAppsSessionPoolsGetResponseTagsMap = {
+export type GetContainerAppsSessionPoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsSessionPoolsGetResponseTagsMap =
+export const GetContainerAppsSessionPoolResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ContainerAppsSessionPoolsGetResponseTagsMap>;
+  ) as any as S.Schema<GetContainerAppsSessionPoolResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsSessionPoolsGetResponseIdentity =
+export type GetContainerAppsSessionPoolResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ContainerAppsSessionPoolsGetResponseIdentity =
+export const GetContainerAppsSessionPoolResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
-export interface GetContainerAppSessionPoolResponse {
+export interface GetContainerAppsSessionPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7916,7 +9184,7 @@ export interface GetContainerAppSessionPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsSessionPoolsGetResponseTagsMap;
+  tags?: GetContainerAppsSessionPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Container App session pool resource specific properties */
@@ -7924,22 +9192,22 @@ export interface GetContainerAppSessionPoolResponse {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: ContainerAppsCreateOrUpdateResponseIdentity;
 }
-export const GetContainerAppSessionPoolResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetContainerAppsSessionPoolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContainerAppsSessionPoolsGetResponseTagsMap),
+    tags: S.optional(GetContainerAppsSessionPoolResponseTagsMap),
     location: S.String,
     properties: S.optional(SessionPoolProperties),
     identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
   }),
 ).annotate({
-  identifier: "GetContainerAppSessionPoolResponse",
-}) as any as S.Schema<GetContainerAppSessionPoolResponse>;
+  identifier: "GetContainerAppsSessionPoolResponse",
+}) as any as S.Schema<GetContainerAppsSessionPoolResponse>;
 
-export interface GetContainerAppSourceControlRequest {
+export interface GetContainerAppsSourceControlRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7949,25 +9217,26 @@ export interface GetContainerAppSourceControlRequest {
   /** Name of the Container App SourceControl. */
   sourceControlName: string;
 }
-export const GetContainerAppSourceControlRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    containerAppName: S.String.pipe(T.Label()),
-    sourceControlName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/sourcecontrols/{sourceControlName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
+export const GetContainerAppsSourceControlRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      sourceControlName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/sourcecontrols/{sourceControlName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
 ).annotate({
-  identifier: "GetContainerAppSourceControlRequest",
-}) as any as S.Schema<GetContainerAppSourceControlRequest>;
+  identifier: "GetContainerAppsSourceControlRequest",
+}) as any as S.Schema<GetContainerAppsSourceControlRequest>;
 
-export interface GetContainerAppSourceControlResponse {
+export interface GetContainerAppsSourceControlResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7979,7 +9248,7 @@ export interface GetContainerAppSourceControlResponse {
   /** SourceControl resource specific properties */
   properties?: SourceControlProperties;
 }
-export const GetContainerAppSourceControlResponse = /*@__PURE__*/ S.suspend(
+export const GetContainerAppsSourceControlResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -7989,8 +9258,8 @@ export const GetContainerAppSourceControlResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(SourceControlProperties),
     }),
 ).annotate({
-  identifier: "GetContainerAppSourceControlResponse",
-}) as any as S.Schema<GetContainerAppSourceControlResponse>;
+  identifier: "GetContainerAppsSourceControlResponse",
+}) as any as S.Schema<GetContainerAppsSourceControlResponse>;
 
 export interface GetCustomDomainVerificationIdRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8005,7 +9274,7 @@ export const GetCustomDomainVerificationIdRequest = /*@__PURE__*/ S.suspend(
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/getCustomDomainVerificationId",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -8040,7 +9309,7 @@ export const GetDaprComponentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -8071,6 +9340,115 @@ export const GetDaprComponentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDaprComponentResponse",
 }) as any as S.Schema<GetDaprComponentResponse>;
 
+export interface GetDaprComponentResiliencyPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the Dapr Component. */
+  componentName: string;
+  /** Name of the Dapr Component Resiliency Policy. */
+  name: string;
+}
+export const GetDaprComponentResiliencyPolicyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      componentName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}/resiliencyPolicies/{name}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetDaprComponentResiliencyPolicyRequest",
+}) as any as S.Schema<GetDaprComponentResiliencyPolicyRequest>;
+
+export interface GetDaprComponentResiliencyPolicyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Dapr Component Resiliency Policy resource specific properties */
+  properties?: DaprComponentResiliencyPolicyProperties;
+}
+export const GetDaprComponentResiliencyPolicyResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DaprComponentResiliencyPolicyProperties),
+    }),
+).annotate({
+  identifier: "GetDaprComponentResiliencyPolicyResponse",
+}) as any as S.Schema<GetDaprComponentResiliencyPolicyResponse>;
+
+export interface GetDotNetComponentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the .NET Component. */
+  name: string;
+}
+export const GetDotNetComponentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    environmentName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/dotNetComponents/{name}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDotNetComponentRequest",
+}) as any as S.Schema<GetDotNetComponentRequest>;
+
+export interface GetDotNetComponentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** .NET Component resource specific properties */
+  properties?: DotNetComponentProperties;
+}
+export const GetDotNetComponentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DotNetComponentProperties),
+  }),
+).annotate({
+  identifier: "GetDotNetComponentResponse",
+}) as any as S.Schema<GetDotNetComponentResponse>;
+
 export interface GetHttpRouteConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -8092,7 +9470,7 @@ export const GetHttpRouteConfigRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/httpRouteConfigs/{httpRouteName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -8313,7 +9691,7 @@ export const GetJavaComponentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/javaComponents/{name}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -8337,26 +9715,16 @@ export type JavaComponentProvisioningState =
 export const JavaComponentProvisioningState = /*@__PURE__*/ S.String;
 
 /** Configuration properties for a Java Component */
-export interface JavaComponentConfigurationProperty {
-  /** The name of the property */
-  propertyName?: string;
-  /** The value of the property */
-  value?: string;
-}
-export const JavaComponentConfigurationProperty = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    propertyName: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JavaComponentConfigurationProperty",
-}) as any as S.Schema<JavaComponentConfigurationProperty>;
+export type JavaComponentConfigurationProperty =
+  DotNetComponentConfigurationProperty;
+export const JavaComponentConfigurationProperty =
+  DotNetComponentConfigurationProperty;
 
 /** List of Java Components configuration properties */
 export type JavaComponentPropertiesConfigurationsList =
-  Array<JavaComponentConfigurationProperty>;
+  Array<DotNetComponentConfigurationProperty>;
 export const JavaComponentPropertiesConfigurationsList = /*@__PURE__*/ S.Array(
-  JavaComponentConfigurationProperty,
+  DotNetComponentConfigurationProperty,
 ) as any as S.Schema<JavaComponentPropertiesConfigurationsList>;
 
 /** Java component scaling configurations */
@@ -8376,26 +9744,14 @@ export const JavaComponentPropertiesScale = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JavaComponentPropertiesScale>;
 
 /** Configuration to bind a Java Component to another Java Component */
-export interface JavaComponentServiceBind {
-  /** Name of the service bind */
-  name?: string;
-  /** Resource id of the target service */
-  serviceId?: string;
-}
-export const JavaComponentServiceBind = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    serviceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JavaComponentServiceBind",
-}) as any as S.Schema<JavaComponentServiceBind>;
+export type JavaComponentServiceBind = DotNetComponentServiceBind;
+export const JavaComponentServiceBind = DotNetComponentServiceBind;
 
 /** List of Java Components that are bound to the Java component */
 export type JavaComponentPropertiesServiceBindsList =
-  Array<JavaComponentServiceBind>;
+  Array<DotNetComponentServiceBind>;
 export const JavaComponentPropertiesServiceBindsList = /*@__PURE__*/ S.Array(
-  JavaComponentServiceBind,
+  DotNetComponentServiceBind,
 ) as any as S.Schema<JavaComponentPropertiesServiceBindsList>;
 
 /** Java Component common properties. */
@@ -8465,17 +9821,17 @@ export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
 
 /** Resource tags. */
-export type JobsGetResponseTagsMap = { [key: string]: string | undefined };
-export const JobsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetJobResponseTagsMap = { [key: string]: string | undefined };
+export const GetJobResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JobsGetResponseTagsMap>;
+) as any as S.Schema<GetJobResponseTagsMap>;
 
 /** Provisioning state of the Container Apps Job. */
 export type JobProvisioningState =
@@ -8485,6 +9841,10 @@ export type JobProvisioningState =
   | "Canceled"
   | "Deleting";
 export const JobProvisioningState = /*@__PURE__*/ S.String;
+
+/** Current running state of the job */
+export type JobRunningState = "Ready" | "Progressing" | "Suspended";
+export const JobRunningState = /*@__PURE__*/ S.String;
 
 /** Collection of secrets used by a Container Apps Job */
 export type JobConfigurationSecretsList = Array<Secret>;
@@ -8700,6 +10060,8 @@ export const JobPropertiesOutboundIpAddressesList = /*@__PURE__*/ S.Array(
 export interface JobProperties {
   /** Provisioning state of the Container Apps Job. */
   provisioningState?: JobProvisioningState;
+  /** Current running state of the job */
+  runningState?: JobRunningState;
   /** Resource ID of environment. */
   environmentId?: string;
   /** Workload profile name to pin for container apps job execution. */
@@ -8716,6 +10078,7 @@ export interface JobProperties {
 export const JobProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(JobProvisioningState),
+    runningState: S.optional(JobRunningState),
     environmentId: S.optional(S.String),
     workloadProfileName: S.optional(S.String),
     configuration: S.optional(JobConfiguration),
@@ -8726,9 +10089,9 @@ export const JobProperties = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "JobProperties" }) as any as S.Schema<JobProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type JobsGetResponseIdentity =
+export type GetJobResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const JobsGetResponseIdentity =
+export const GetJobResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface GetJobResponse {
@@ -8741,7 +10104,7 @@ export interface GetJobResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: JobsGetResponseTagsMap;
+  tags?: GetJobResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Container Apps Job resource specific properties. */
@@ -8755,7 +10118,7 @@ export const GetJobResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(JobsGetResponseTagsMap),
+    tags: S.optional(GetJobResponseTagsMap),
     location: S.String,
     properties: S.optional(JobProperties),
     identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
@@ -8783,7 +10146,7 @@ export const GetJobDetectorRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/detectors/{detectorName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -8814,7 +10177,7 @@ export const GetJobDetectorResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetJobDetectorResponse",
 }) as any as S.Schema<GetJobDetectorResponse>;
 
-export interface GetJobProxyRequest {
+export interface GetJobsProxyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8824,7 +10187,7 @@ export interface GetJobProxyRequest {
   /** Proxy API Name for Container App Job. */
   apiName: string;
 }
-export const GetJobProxyRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetJobsProxyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8835,27 +10198,27 @@ export const GetJobProxyRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/detectorProperties/{apiName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "GetJobProxyRequest",
-}) as any as S.Schema<GetJobProxyRequest>;
+  identifier: "GetJobsProxyRequest",
+}) as any as S.Schema<GetJobsProxyRequest>;
 
 /** Resource tags. */
-export type JobsProxyGetResponseTagsMap = { [key: string]: string | undefined };
-export const JobsProxyGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetJobsProxyResponseTagsMap = { [key: string]: string | undefined };
+export const GetJobsProxyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JobsProxyGetResponseTagsMap>;
+) as any as S.Schema<GetJobsProxyResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type JobsProxyGetResponseIdentity =
+export type GetJobsProxyResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const JobsProxyGetResponseIdentity =
+export const GetJobsProxyResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
-export interface GetJobProxyResponse {
+export interface GetJobsProxyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8865,7 +10228,7 @@ export interface GetJobProxyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: JobsProxyGetResponseTagsMap;
+  tags?: GetJobsProxyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Container Apps Job resource specific properties. */
@@ -8873,20 +10236,20 @@ export interface GetJobProxyResponse {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: ContainerAppsCreateOrUpdateResponseIdentity;
 }
-export const GetJobProxyResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetJobsProxyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(JobsProxyGetResponseTagsMap),
+    tags: S.optional(GetJobsProxyResponseTagsMap),
     location: S.String,
     properties: S.optional(JobProperties),
     identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
   }),
 ).annotate({
-  identifier: "GetJobProxyResponse",
-}) as any as S.Schema<GetJobProxyResponse>;
+  identifier: "GetJobsProxyResponse",
+}) as any as S.Schema<GetJobsProxyResponse>;
 
 export interface GetLogicAppRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8909,7 +10272,7 @@ export const GetLogicAppRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/providers/Microsoft.App/logicApps/{logicAppName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -8961,7 +10324,7 @@ export const GetLogicAppWorkflowRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/providers/Microsoft.App/logicApps/{logicAppName}/workflows/{workflowName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -9121,7 +10484,7 @@ export const GetMaintenanceConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/maintenanceConfigurations/{configName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -9220,7 +10583,7 @@ export const GetManagedCertificateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/managedCertificates/{managedCertificateName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -9228,13 +10591,13 @@ export const GetManagedCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedCertificateRequest>;
 
 /** Resource tags. */
-export type ManagedCertificatesGetResponseTagsMap = {
+export type GetManagedCertificateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedCertificatesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedCertificateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedCertificatesGetResponseTagsMap>;
+) as any as S.Schema<GetManagedCertificateResponseTagsMap>;
 
 /** Selected type of domain control validation for managed certificates. */
 export type ManagedCertificateDomainControlValidation =
@@ -9280,7 +10643,7 @@ export interface GetManagedCertificateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedCertificatesGetResponseTagsMap;
+  tags?: GetManagedCertificateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Certificate resource specific properties */
@@ -9292,7 +10655,7 @@ export const GetManagedCertificateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedCertificatesGetResponseTagsMap),
+    tags: S.optional(GetManagedCertificateResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedCertificateProperties),
   }),
@@ -9318,7 +10681,7 @@ export const GetManagedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -9326,13 +10689,13 @@ export const GetManagedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedEnvironmentRequest>;
 
 /** Resource tags. */
-export type ManagedEnvironmentsGetResponseTagsMap = {
+export type GetManagedEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedEnvironmentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedEnvironmentsGetResponseTagsMap>;
+) as any as S.Schema<GetManagedEnvironmentResponseTagsMap>;
 
 /** Provisioning state of the Environment. */
 export type EnvironmentProvisioningState =
@@ -9404,6 +10767,188 @@ export const AppLogsConfiguration = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AppLogsConfiguration",
 }) as any as S.Schema<AppLogsConfiguration>;
+
+/** Configuration of Application Insights */
+export interface AppInsightsConfiguration {
+  /** Application Insights connection string */
+  connectionString?: string | Redacted.Redacted<string>;
+}
+export const AppInsightsConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "AppInsightsConfiguration",
+}) as any as S.Schema<AppInsightsConfiguration>;
+
+/** Configuration of datadog */
+export interface DataDogConfiguration {
+  /** The data dog site */
+  site?: string;
+  /** The data dog api key */
+  key?: string;
+}
+export const DataDogConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    site: S.optional(S.String),
+    key: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataDogConfiguration",
+}) as any as S.Schema<DataDogConfiguration>;
+
+/** Header of otlp configuration */
+export interface Header {
+  /** The key of otlp configuration header */
+  key?: string;
+  /** The value of otlp configuration header */
+  value?: string;
+}
+export const Header = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "Header" }) as any as S.Schema<Header>;
+
+/** Headers of otlp configurations */
+export type OtlpConfigurationHeadersList = Array<Header>;
+export const OtlpConfigurationHeadersList = /*@__PURE__*/ S.Array(
+  Header,
+) as any as S.Schema<OtlpConfigurationHeadersList>;
+
+/** Configuration of otlp */
+export interface OtlpConfiguration {
+  /** The name of otlp configuration */
+  name?: string;
+  /** The endpoint of otlp configuration */
+  endpoint?: string;
+  /** Boolean indicating if otlp configuration is insecure */
+  insecure?: boolean;
+  /** Headers of otlp configurations */
+  headers?: OtlpConfigurationHeadersList;
+}
+export const OtlpConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    endpoint: S.optional(S.String),
+    insecure: S.optional(S.Boolean),
+    headers: S.optional(OtlpConfigurationHeadersList),
+  }),
+).annotate({
+  identifier: "OtlpConfiguration",
+}) as any as S.Schema<OtlpConfiguration>;
+
+/** Open telemetry otlp configurations */
+export type DestinationsConfigurationOtlpConfigurationsList =
+  Array<OtlpConfiguration>;
+export const DestinationsConfigurationOtlpConfigurationsList =
+  /*@__PURE__*/ S.Array(
+    OtlpConfiguration,
+  ) as any as S.Schema<DestinationsConfigurationOtlpConfigurationsList>;
+
+/** Configuration of Open Telemetry destinations */
+export interface DestinationsConfiguration {
+  /** Open telemetry datadog destination configuration */
+  dataDogConfiguration?: DataDogConfiguration;
+  /** Open telemetry otlp configurations */
+  otlpConfigurations?: DestinationsConfigurationOtlpConfigurationsList;
+}
+export const DestinationsConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dataDogConfiguration: S.optional(DataDogConfiguration),
+    otlpConfigurations: S.optional(
+      DestinationsConfigurationOtlpConfigurationsList,
+    ),
+  }),
+).annotate({
+  identifier: "DestinationsConfiguration",
+}) as any as S.Schema<DestinationsConfiguration>;
+
+/** Open telemetry traces destinations */
+export type TracesConfigurationDestinationsList = Array<string>;
+export const TracesConfigurationDestinationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TracesConfigurationDestinationsList>;
+
+/** Configuration of Open Telemetry traces */
+export interface TracesConfiguration {
+  /** Boolean indicating if including dapr traces */
+  includeDapr?: boolean;
+  /** Open telemetry traces destinations */
+  destinations?: TracesConfigurationDestinationsList;
+}
+export const TracesConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    includeDapr: S.optional(S.Boolean),
+    destinations: S.optional(TracesConfigurationDestinationsList),
+  }),
+).annotate({
+  identifier: "TracesConfiguration",
+}) as any as S.Schema<TracesConfiguration>;
+
+/** Open telemetry logs destinations */
+export type LogsConfigurationDestinationsList = Array<string>;
+export const LogsConfigurationDestinationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LogsConfigurationDestinationsList>;
+
+/** Configuration of Open Telemetry logs */
+export interface LogsConfiguration {
+  /** Open telemetry logs destinations */
+  destinations?: LogsConfigurationDestinationsList;
+}
+export const LogsConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    destinations: S.optional(LogsConfigurationDestinationsList),
+  }),
+).annotate({
+  identifier: "LogsConfiguration",
+}) as any as S.Schema<LogsConfiguration>;
+
+/** Open telemetry metrics destinations */
+export type MetricsConfigurationDestinationsList = Array<string>;
+export const MetricsConfigurationDestinationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MetricsConfigurationDestinationsList>;
+
+/** Configuration of Open Telemetry metrics */
+export interface MetricsConfiguration {
+  /** Boolean indicating if including keda metrics */
+  includeKeda?: boolean;
+  /** Open telemetry metrics destinations */
+  destinations?: MetricsConfigurationDestinationsList;
+}
+export const MetricsConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    includeKeda: S.optional(S.Boolean),
+    destinations: S.optional(MetricsConfigurationDestinationsList),
+  }),
+).annotate({
+  identifier: "MetricsConfiguration",
+}) as any as S.Schema<MetricsConfiguration>;
+
+/** Configuration of Open Telemetry */
+export interface OpenTelemetryConfiguration {
+  /** Open telemetry destinations configuration */
+  destinationsConfiguration?: DestinationsConfiguration;
+  /** Open telemetry trace configuration */
+  tracesConfiguration?: TracesConfiguration;
+  /** Open telemetry logs configuration */
+  logsConfiguration?: LogsConfiguration;
+  /** Open telemetry metrics configuration */
+  metricsConfiguration?: MetricsConfiguration;
+}
+export const OpenTelemetryConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    destinationsConfiguration: S.optional(DestinationsConfiguration),
+    tracesConfiguration: S.optional(TracesConfiguration),
+    logsConfiguration: S.optional(LogsConfiguration),
+    metricsConfiguration: S.optional(MetricsConfiguration),
+  }),
+).annotate({
+  identifier: "OpenTelemetryConfiguration",
+}) as any as S.Schema<OpenTelemetryConfiguration>;
 
 /** Workload profile to scope container app execution. */
 export interface WorkloadProfile {
@@ -9539,86 +11084,13 @@ export const IngressConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "IngressConfiguration",
 }) as any as S.Schema<IngressConfiguration>;
 
-/** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
-export const PrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** The Private Endpoint resource. */
-export interface PrivateEndpoint {
-  /** The ARM identifier for Private Endpoint */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
-
-/** The private endpoint connection status. */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | "Disconnected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PrivateEndpointServiceConnectionStatus),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkServiceConnectionState",
-}) as any as S.Schema<PrivateLinkServiceConnectionState>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Waiting"
-  | "Updating"
-  | "Deleting"
-  | "Pending";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
-  /** The resource of private end point. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
-    privateEndpoint: S.optional(PrivateEndpoint),
-    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+/** Mode of the managed environment. */
+export type ManagedEnvironmentMode =
+  | "ConsumptionOnly"
+  | "WorkloadProfiles"
+  | "Express"
+  | "Archived";
+export const ManagedEnvironmentMode = /*@__PURE__*/ S.String;
 
 /** The Private Endpoint Connection resource. */
 export interface PrivateEndpointConnection {
@@ -9675,6 +11147,10 @@ export interface ManagedEnvironmentProperties {
   staticIp?: string;
   /** Cluster configuration which enables the log daemon to export app logs to configured destination */
   appLogsConfiguration?: AppLogsConfiguration;
+  /** Environment level Application Insights configuration */
+  appInsightsConfiguration?: AppInsightsConfiguration;
+  /** Environment Open Telemetry configuration */
+  openTelemetryConfiguration?: OpenTelemetryConfiguration;
   /** Whether or not this Managed Environment is zone-redundant. */
   zoneRedundant?: boolean;
   /** Custom domain configuration for the environment */
@@ -9695,6 +11171,8 @@ export interface ManagedEnvironmentProperties {
   peerTrafficConfiguration?: ManagedEnvironmentPropertiesPeerTrafficConfiguration;
   /** Ingress configuration for the Managed Environment. */
   ingressConfiguration?: IngressConfiguration;
+  /** Mode of the environment. Allowed Values: 'ConsumptionOnly', 'WorkloadProfiles', 'Express', 'Archived'. */
+  environmentMode?: ManagedEnvironmentMode;
   /** Private endpoint connections to the resource. */
   privateEndpointConnections?: ManagedEnvironmentPropertiesPrivateEndpointConnectionsList;
   /** Property to allow or block all public traffic. Allowed Values: 'Enabled', 'Disabled'. */
@@ -9710,6 +11188,8 @@ export const ManagedEnvironmentProperties = /*@__PURE__*/ S.suspend(() =>
     defaultDomain: S.optional(S.String),
     staticIp: S.optional(S.String),
     appLogsConfiguration: S.optional(AppLogsConfiguration),
+    appInsightsConfiguration: S.optional(AppInsightsConfiguration),
+    openTelemetryConfiguration: S.optional(OpenTelemetryConfiguration),
     zoneRedundant: S.optional(S.Boolean),
     customDomainConfiguration: S.optional(CustomDomainConfiguration),
     eventStreamEndpoint: S.optional(S.String),
@@ -9726,6 +11206,7 @@ export const ManagedEnvironmentProperties = /*@__PURE__*/ S.suspend(() =>
       ManagedEnvironmentPropertiesPeerTrafficConfiguration,
     ),
     ingressConfiguration: S.optional(IngressConfiguration),
+    environmentMode: S.optional(ManagedEnvironmentMode),
     privateEndpointConnections: S.optional(
       ManagedEnvironmentPropertiesPrivateEndpointConnectionsList,
     ),
@@ -9736,9 +11217,9 @@ export const ManagedEnvironmentProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedEnvironmentProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedEnvironmentsGetResponseIdentity =
+export type GetManagedEnvironmentResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ManagedEnvironmentsGetResponseIdentity =
+export const GetManagedEnvironmentResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface GetManagedEnvironmentResponse {
@@ -9751,7 +11232,7 @@ export interface GetManagedEnvironmentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedEnvironmentsGetResponseTagsMap;
+  tags?: GetManagedEnvironmentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Managed environment resource specific properties */
@@ -9767,7 +11248,7 @@ export const GetManagedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedEnvironmentsGetResponseTagsMap),
+    tags: S.optional(GetManagedEnvironmentResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedEnvironmentProperties),
     kind: S.optional(S.String),
@@ -9796,7 +11277,7 @@ export const GetManagedEnvironmentAuthTokenRequest = /*@__PURE__*/ S.suspend(
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/getAuthtoken",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -9804,14 +11285,14 @@ export const GetManagedEnvironmentAuthTokenRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetManagedEnvironmentAuthTokenRequest>;
 
 /** Resource tags. */
-export type ManagedEnvironmentsGetAuthTokenResponseTagsMap = {
+export type GetManagedEnvironmentAuthTokenResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedEnvironmentsGetAuthTokenResponseTagsMap =
+export const GetManagedEnvironmentAuthTokenResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedEnvironmentsGetAuthTokenResponseTagsMap>;
+  ) as any as S.Schema<GetManagedEnvironmentAuthTokenResponseTagsMap>;
 
 /** Environment auth token resource specific properties */
 export type EnvironmentAuthTokenProperties = ContainerAppAuthTokenProperties;
@@ -9827,7 +11308,7 @@ export interface GetManagedEnvironmentAuthTokenResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedEnvironmentsGetAuthTokenResponseTagsMap;
+  tags?: GetManagedEnvironmentAuthTokenResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Environment auth token resource specific properties */
@@ -9840,7 +11321,7 @@ export const GetManagedEnvironmentAuthTokenResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ManagedEnvironmentsGetAuthTokenResponseTagsMap),
+      tags: S.optional(GetManagedEnvironmentAuthTokenResponseTagsMap),
       location: S.String,
       properties: S.optional(ContainerAppAuthTokenProperties),
     }),
@@ -9870,7 +11351,7 @@ export const GetManagedEnvironmentDiagnosticDetectorRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/detectors/{detectorName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -9902,85 +11383,6 @@ export const GetManagedEnvironmentDiagnosticDetectorResponse =
     identifier: "GetManagedEnvironmentDiagnosticDetectorResponse",
   }) as any as S.Schema<GetManagedEnvironmentDiagnosticDetectorResponse>;
 
-export interface GetManagedEnvironmentDiagnosticRootRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Environment. */
-  environmentName: string;
-}
-export const GetManagedEnvironmentDiagnosticRootRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      environmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/detectorProperties/rootApi/",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GetManagedEnvironmentDiagnosticRootRequest",
-  }) as any as S.Schema<GetManagedEnvironmentDiagnosticRootRequest>;
-
-/** Resource tags. */
-export type ManagedEnvironmentsDiagnosticsGetRootResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedEnvironmentsDiagnosticsGetRootResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManagedEnvironmentsDiagnosticsGetRootResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedEnvironmentsDiagnosticsGetRootResponseIdentity =
-  ContainerAppsCreateOrUpdateResponseIdentity;
-export const ManagedEnvironmentsDiagnosticsGetRootResponseIdentity =
-  ContainerAppsCreateOrUpdateResponseIdentity;
-
-export interface GetManagedEnvironmentDiagnosticRootResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManagedEnvironmentsDiagnosticsGetRootResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Managed environment resource specific properties */
-  properties?: ManagedEnvironmentProperties;
-  /** Kind of the Environment. */
-  kind?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ContainerAppsCreateOrUpdateResponseIdentity;
-}
-export const GetManagedEnvironmentDiagnosticRootResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ManagedEnvironmentsDiagnosticsGetRootResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ManagedEnvironmentProperties),
-      kind: S.optional(S.String),
-      identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
-    }),
-  ).annotate({
-    identifier: "GetManagedEnvironmentDiagnosticRootResponse",
-  }) as any as S.Schema<GetManagedEnvironmentDiagnosticRootResponse>;
-
 export interface GetManagedEnvironmentPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -10003,7 +11405,7 @@ export const GetManagedEnvironmentPrivateEndpointConnectionRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -10035,7 +11437,140 @@ export const GetManagedEnvironmentPrivateEndpointConnectionResponse =
     identifier: "GetManagedEnvironmentPrivateEndpointConnectionResponse",
   }) as any as S.Schema<GetManagedEnvironmentPrivateEndpointConnectionResponse>;
 
-export interface GetManagedEnvironmentStorageRequest {
+export interface GetManagedEnvironmentPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** The name of the private link associated with the Azure resource. */
+  privateLinkResourceName: string;
+}
+export const GetManagedEnvironmentPrivateLinkResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      privateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/privateLinkResources/{privateLinkResourceName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetManagedEnvironmentPrivateLinkResourceRequest",
+  }) as any as S.Schema<GetManagedEnvironmentPrivateLinkResourceRequest>;
+
+export interface GetManagedEnvironmentPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetManagedEnvironmentPrivateLinkResourceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateLinkResourceProperties),
+    }),
+  ).annotate({
+    identifier: "GetManagedEnvironmentPrivateLinkResourceResponse",
+  }) as any as S.Schema<GetManagedEnvironmentPrivateLinkResourceResponse>;
+
+export interface GetManagedEnvironmentsDiagnosticRootRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Environment. */
+  environmentName: string;
+}
+export const GetManagedEnvironmentsDiagnosticRootRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/detectorProperties/rootApi/",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetManagedEnvironmentsDiagnosticRootRequest",
+  }) as any as S.Schema<GetManagedEnvironmentsDiagnosticRootRequest>;
+
+/** Resource tags. */
+export type GetManagedEnvironmentsDiagnosticRootResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetManagedEnvironmentsDiagnosticRootResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetManagedEnvironmentsDiagnosticRootResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetManagedEnvironmentsDiagnosticRootResponseIdentity =
+  ContainerAppsCreateOrUpdateResponseIdentity;
+export const GetManagedEnvironmentsDiagnosticRootResponseIdentity =
+  ContainerAppsCreateOrUpdateResponseIdentity;
+
+export interface GetManagedEnvironmentsDiagnosticRootResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetManagedEnvironmentsDiagnosticRootResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Managed environment resource specific properties */
+  properties?: ManagedEnvironmentProperties;
+  /** Kind of the Environment. */
+  kind?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ContainerAppsCreateOrUpdateResponseIdentity;
+}
+export const GetManagedEnvironmentsDiagnosticRootResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetManagedEnvironmentsDiagnosticRootResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ManagedEnvironmentProperties),
+      kind: S.optional(S.String),
+      identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
+    }),
+  ).annotate({
+    identifier: "GetManagedEnvironmentsDiagnosticRootResponse",
+  }) as any as S.Schema<GetManagedEnvironmentsDiagnosticRootResponse>;
+
+export interface GetManagedEnvironmentsStorageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10045,23 +11580,24 @@ export interface GetManagedEnvironmentStorageRequest {
   /** Name of the storage. */
   storageName: string;
 }
-export const GetManagedEnvironmentStorageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    environmentName: S.String.pipe(T.Label()),
-    storageName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/storages/{storageName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
+export const GetManagedEnvironmentsStorageRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      storageName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/storages/{storageName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
 ).annotate({
-  identifier: "GetManagedEnvironmentStorageRequest",
-}) as any as S.Schema<GetManagedEnvironmentStorageRequest>;
+  identifier: "GetManagedEnvironmentsStorageRequest",
+}) as any as S.Schema<GetManagedEnvironmentsStorageRequest>;
 
 /** NFS Azure File Properties. */
 export interface NfsAzureFileProperties {
@@ -10098,7 +11634,7 @@ export const ManagedEnvironmentStorageProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedEnvironmentStorageProperties",
 }) as any as S.Schema<ManagedEnvironmentStorageProperties>;
 
-export interface GetManagedEnvironmentStorageResponse {
+export interface GetManagedEnvironmentsStorageResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10110,7 +11646,7 @@ export interface GetManagedEnvironmentStorageResponse {
   /** Storage properties */
   properties?: ManagedEnvironmentStorageProperties;
 }
-export const GetManagedEnvironmentStorageResponse = /*@__PURE__*/ S.suspend(
+export const GetManagedEnvironmentsStorageResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -10120,8 +11656,177 @@ export const GetManagedEnvironmentStorageResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(ManagedEnvironmentStorageProperties),
     }),
 ).annotate({
-  identifier: "GetManagedEnvironmentStorageResponse",
-}) as any as S.Schema<GetManagedEnvironmentStorageResponse>;
+  identifier: "GetManagedEnvironmentsStorageResponse",
+}) as any as S.Schema<GetManagedEnvironmentsStorageResponse>;
+
+export interface GetSandboxGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+}
+export const GetSandboxGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sandboxGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSandboxGroupRequest",
+}) as any as S.Schema<GetSandboxGroupRequest>;
+
+/** Resource tags. */
+export type GetSandboxGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetSandboxGroupResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSandboxGroupResponseTagsMap>;
+
+/** Provisioning state of the SandboxGroup. */
+export type SandboxGroupProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "InProgress"
+  | "Updating"
+  | "Deleting";
+export const SandboxGroupProvisioningState = /*@__PURE__*/ S.String;
+
+/** SandboxGroup resource specific properties. */
+export interface SandboxGroupProperties {
+  /** The resource ID of the Azure Container Apps environment to link to the sandbox group. A sandbox group can be linked after creation, but the link cannot then be changed or removed. For subsequent create-or-update (PUT) requests, specify the same environment ID; omitting or changing it returns 409 Conflict. Omitting it from an update (PATCH) request leaves the existing link unchanged. */
+  environmentId?: string;
+  /** The default domain of the linked Azure Container Apps environment. Sandbox endpoints use subdomains of this domain. This read-only property is populated by the service and is omitted when no environment is linked. */
+  defaultDomain?: string;
+  provisioningState?: SandboxGroupProvisioningState;
+}
+export const SandboxGroupProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentId: S.optional(S.String),
+    defaultDomain: S.optional(S.String),
+    provisioningState: S.optional(SandboxGroupProvisioningState),
+  }),
+).annotate({
+  identifier: "SandboxGroupProperties",
+}) as any as S.Schema<SandboxGroupProperties>;
+
+export interface GetSandboxGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetSandboxGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SandboxGroupProperties;
+}
+export const GetSandboxGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetSandboxGroupResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SandboxGroupProperties),
+  }),
+).annotate({
+  identifier: "GetSandboxGroupResponse",
+}) as any as S.Schema<GetSandboxGroupResponse>;
+
+export interface GetVnetConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+  /** The name of the VnetConnection */
+  vnetConnectionName: string;
+}
+export const GetVnetConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sandboxGroupName: S.String.pipe(T.Label()),
+    vnetConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}/vnetConnections/{vnetConnectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVnetConnectionRequest",
+}) as any as S.Schema<GetVnetConnectionRequest>;
+
+/** Provisioning state of the VnetConnection. */
+export type VnetConnectionProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "InProgress"
+  | "Updating"
+  | "Deleting";
+export const VnetConnectionProvisioningState = /*@__PURE__*/ S.String;
+
+/** VnetConnection resource specific properties. */
+export interface VnetConnectionProperties {
+  provisioningState?: VnetConnectionProvisioningState | (string & {});
+  /** Resource ID of the subnet that sandboxes in the parent SandboxGroup will be connected to. */
+  subnetId?: string;
+}
+export const VnetConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(VnetConnectionProvisioningState),
+    subnetId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VnetConnectionProperties",
+}) as any as S.Schema<VnetConnectionProperties>;
+
+export interface GetVnetConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: VnetConnectionProperties;
+}
+export const GetVnetConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VnetConnectionProperties),
+  }),
+).annotate({
+  identifier: "GetVnetConnectionResponse",
+}) as any as S.Schema<GetVnetConnectionResponse>;
 
 /** Custom domain bindings for http Routes' hostnames. */
 export type HttpRouteConfigPropertiesInputCustomDomainsList =
@@ -10178,7 +11883,7 @@ export const HttpRouteConfigCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/httpRouteConfigs/{httpRouteName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -10210,6 +11915,44 @@ export const HttpRouteConfigCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "HttpRouteConfigCreateOrUpdateResponse",
 }) as any as S.Schema<HttpRouteConfigCreateOrUpdateResponse>;
 
+export interface InvokeFunctionsExtensionFunctionsHostRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Container App Revision. */
+  revisionName: string;
+  /** Name of the Function. */
+  functionAppName: string;
+}
+export const InvokeFunctionsExtensionFunctionsHostRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      revisionName: S.String.pipe(T.Label()),
+      functionAppName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/providers/Microsoft.App/functions/{functionAppName}/invoke",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "InvokeFunctionsExtensionFunctionsHostRequest",
+  }) as any as S.Schema<InvokeFunctionsExtensionFunctionsHostRequest>;
+
+export type InvokeFunctionsExtensionFunctionsHostResponse = string;
+export const InvokeFunctionsExtensionFunctionsHostResponse =
+  /*@__PURE__*/ S.suspend(() => S.String.pipe(T.RawResponseRoot())).annotate({
+    identifier: "InvokeFunctionsExtensionFunctionsHostResponse",
+  }) as any as S.Schema<InvokeFunctionsExtensionFunctionsHostResponse>;
+
 export interface JavaComponentsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -10234,7 +11977,7 @@ export const JavaComponentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/javaComponents/{name}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -10287,7 +12030,7 @@ export const JobExecutionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/executions/{jobExecutionName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -10380,6 +12123,70 @@ export const JobExecutionTemplate = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobExecutionTemplate",
 }) as any as S.Schema<JobExecutionTemplate>;
 
+/** Container Apps Job execution container status. Contains status code and reason */
+export interface ContainerExecutionStatus {
+  /** Container Name. */
+  name?: string;
+  /** Exit code */
+  code?: number;
+  /** Additional information for the container status */
+  additionalInformation?: string;
+  /** Status of the container */
+  status?: string;
+}
+export const ContainerExecutionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    code: S.optional(S.Number),
+    additionalInformation: S.optional(S.String),
+    status: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerExecutionStatus",
+}) as any as S.Schema<ContainerExecutionStatus>;
+
+/** Containers in the execution replica */
+export type ReplicaExecutionStatusContainersList =
+  Array<ContainerExecutionStatus>;
+export const ReplicaExecutionStatusContainersList = /*@__PURE__*/ S.Array(
+  ContainerExecutionStatus,
+) as any as S.Schema<ReplicaExecutionStatusContainersList>;
+
+/** Container Apps Job execution replica status. */
+export interface ReplicaExecutionStatus {
+  /** Replica Name. */
+  name?: string;
+  /** Containers in the execution replica */
+  containers?: ReplicaExecutionStatusContainersList;
+}
+export const ReplicaExecutionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    containers: S.optional(ReplicaExecutionStatusContainersList),
+  }),
+).annotate({
+  identifier: "ReplicaExecutionStatus",
+}) as any as S.Schema<ReplicaExecutionStatus>;
+
+/** Replicas in the execution. */
+export type ExecutionStatusReplicasList = Array<ReplicaExecutionStatus>;
+export const ExecutionStatusReplicasList = /*@__PURE__*/ S.Array(
+  ReplicaExecutionStatus,
+) as any as S.Schema<ExecutionStatusReplicasList>;
+
+/** Container Apps Job execution status. */
+export interface ExecutionStatus {
+  /** Replicas in the execution. */
+  replicas?: ExecutionStatusReplicasList;
+}
+export const ExecutionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    replicas: S.optional(ExecutionStatusReplicasList),
+  }),
+).annotate({
+  identifier: "ExecutionStatus",
+}) as any as S.Schema<ExecutionStatus>;
+
 /** Container Apps Job execution specific properties. */
 export interface JobExecutionProperties {
   /** Current running State of the job */
@@ -10390,6 +12197,12 @@ export interface JobExecutionProperties {
   endTime?: string;
   /** Job's execution container. */
   template?: JobExecutionTemplate;
+  /** Detailed status of the job execution. */
+  detailedStatus?: ExecutionStatus;
+  /** Reason for the current condition of job execution. */
+  reason?: string;
+  /** Human readable message indicating details about the current condition of the job execution. */
+  message?: string;
 }
 export const JobExecutionProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10397,6 +12210,9 @@ export const JobExecutionProperties = /*@__PURE__*/ S.suspend(() =>
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
     template: S.optional(JobExecutionTemplate),
+    detailedStatus: S.optional(ExecutionStatus),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
   }),
 ).annotate({
   identifier: "JobExecutionProperties",
@@ -10530,7 +12346,7 @@ export const JobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -10715,7 +12531,7 @@ export const ListAgentBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAgentBySubscriptionRequest",
 }) as any as S.Schema<ListAgentBySubscriptionRequest>;
 
-export interface ListAgentConnectorByAgentRequest {
+export interface ListAgentsConnectorByAgentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10723,7 +12539,7 @@ export interface ListAgentConnectorByAgentRequest {
   /** The name of the Agent */
   agentName: string;
 }
-export const ListAgentConnectorByAgentRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAgentsConnectorByAgentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -10737,8 +12553,8 @@ export const ListAgentConnectorByAgentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListAgentConnectorByAgentRequest",
-}) as any as S.Schema<ListAgentConnectorByAgentRequest>;
+  identifier: "ListAgentsConnectorByAgentRequest",
+}) as any as S.Schema<ListAgentsConnectorByAgentRequest>;
 
 /** Agent Connector used to connect to data sources */
 export interface AgentConnector {
@@ -10785,7 +12601,7 @@ export const AgentConnectorListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AgentConnectorListResult",
 }) as any as S.Schema<AgentConnectorListResult>;
 
-export interface ListAgentConnectorSecretsRequest {
+export interface ListAgentsConnectorSecretsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10795,7 +12611,7 @@ export interface ListAgentConnectorSecretsRequest {
   /** The name of the AgentConnector */
   connectorName: string;
 }
-export const ListAgentConnectorSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAgentsConnectorSecretsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -10810,10 +12626,10 @@ export const ListAgentConnectorSecretsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListAgentConnectorSecretsRequest",
-}) as any as S.Schema<ListAgentConnectorSecretsRequest>;
+  identifier: "ListAgentsConnectorSecretsRequest",
+}) as any as S.Schema<ListAgentsConnectorSecretsRequest>;
 
-export interface ListAgentConnectorSecretsResponse {
+export interface ListAgentsConnectorSecretsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10825,7 +12641,7 @@ export interface ListAgentConnectorSecretsResponse {
   /** The resource-specific properties for this resource. */
   properties?: AgentConnectorProperties;
 }
-export const ListAgentConnectorSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListAgentsConnectorSecretsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -10834,10 +12650,10 @@ export const ListAgentConnectorSecretsResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(AgentConnectorProperties),
   }),
 ).annotate({
-  identifier: "ListAgentConnectorSecretsResponse",
-}) as any as S.Schema<ListAgentConnectorSecretsResponse>;
+  identifier: "ListAgentsConnectorSecretsResponse",
+}) as any as S.Schema<ListAgentsConnectorSecretsResponse>;
 
-export interface ListAgentConnectorWithSecretByAgentRequest {
+export interface ListAgentsConnectorWithSecretsByAgentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10845,7 +12661,7 @@ export interface ListAgentConnectorWithSecretByAgentRequest {
   /** The name of the Agent */
   agentName: string;
 }
-export const ListAgentConnectorWithSecretByAgentRequest =
+export const ListAgentsConnectorWithSecretsByAgentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10860,8 +12676,8 @@ export const ListAgentConnectorWithSecretByAgentRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAgentConnectorWithSecretByAgentRequest",
-  }) as any as S.Schema<ListAgentConnectorWithSecretByAgentRequest>;
+    identifier: "ListAgentsConnectorWithSecretsByAgentRequest",
+  }) as any as S.Schema<ListAgentsConnectorWithSecretsByAgentRequest>;
 
 /** The AgentConnector items on this page */
 export type AgentConnectorCollectionValueList = Array<AgentConnector>;
@@ -11021,7 +12837,7 @@ export const ListAgentSpaceBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAgentSpaceBySubscriptionRequest",
 }) as any as S.Schema<ListAgentSpaceBySubscriptionRequest>;
 
-export interface ListAgentSpaceConnectorAllSecretsRequest {
+export interface ListAgentSpacesConnectorAllSecretsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11029,8 +12845,8 @@ export interface ListAgentSpaceConnectorAllSecretsRequest {
   /** The name of the AgentSpace */
   agentSpaceName: string;
 }
-export const ListAgentSpaceConnectorAllSecretsRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListAgentSpacesConnectorAllSecretsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -11043,9 +12859,9 @@ export const ListAgentSpaceConnectorAllSecretsRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2026-01-01",
       }),
     ),
-).annotate({
-  identifier: "ListAgentSpaceConnectorAllSecretsRequest",
-}) as any as S.Schema<ListAgentSpaceConnectorAllSecretsRequest>;
+  ).annotate({
+    identifier: "ListAgentSpacesConnectorAllSecretsRequest",
+  }) as any as S.Schema<ListAgentSpacesConnectorAllSecretsRequest>;
 
 /** Agent Space Connector used to connect to data sources */
 export interface AgentSpaceConnector {
@@ -11094,7 +12910,7 @@ export const AgentSpaceConnectorCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "AgentSpaceConnectorCollection",
 }) as any as S.Schema<AgentSpaceConnectorCollection>;
 
-export interface ListAgentSpaceConnectorByAgentSpaceRequest {
+export interface ListAgentSpacesConnectorByAgentSpaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11102,7 +12918,7 @@ export interface ListAgentSpaceConnectorByAgentSpaceRequest {
   /** The name of the AgentSpace */
   agentSpaceName: string;
 }
-export const ListAgentSpaceConnectorByAgentSpaceRequest =
+export const ListAgentSpacesConnectorByAgentSpaceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11117,8 +12933,8 @@ export const ListAgentSpaceConnectorByAgentSpaceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListAgentSpaceConnectorByAgentSpaceRequest",
-  }) as any as S.Schema<ListAgentSpaceConnectorByAgentSpaceRequest>;
+    identifier: "ListAgentSpacesConnectorByAgentSpaceRequest",
+  }) as any as S.Schema<ListAgentSpacesConnectorByAgentSpaceRequest>;
 
 /** The AgentSpaceConnector items on this page */
 export type AgentSpaceConnectorListResultValueList = Array<AgentSpaceConnector>;
@@ -11142,7 +12958,7 @@ export const AgentSpaceConnectorListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AgentSpaceConnectorListResult",
 }) as any as S.Schema<AgentSpaceConnectorListResult>;
 
-export interface ListAgentSpaceConnectorSecretsRequest {
+export interface ListAgentSpacesConnectorSecretsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11152,7 +12968,7 @@ export interface ListAgentSpaceConnectorSecretsRequest {
   /** The name of the AgentSpaceConnector */
   connectorName: string;
 }
-export const ListAgentSpaceConnectorSecretsRequest = /*@__PURE__*/ S.suspend(
+export const ListAgentSpacesConnectorSecretsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11168,10 +12984,10 @@ export const ListAgentSpaceConnectorSecretsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListAgentSpaceConnectorSecretsRequest",
-}) as any as S.Schema<ListAgentSpaceConnectorSecretsRequest>;
+  identifier: "ListAgentSpacesConnectorSecretsRequest",
+}) as any as S.Schema<ListAgentSpacesConnectorSecretsRequest>;
 
-export interface ListAgentSpaceConnectorSecretsResponse {
+export interface ListAgentSpacesConnectorSecretsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11183,7 +12999,7 @@ export interface ListAgentSpaceConnectorSecretsResponse {
   /** The resource-specific properties for this resource. */
   properties?: AgentSpaceConnectorProperties;
 }
-export const ListAgentSpaceConnectorSecretsResponse = /*@__PURE__*/ S.suspend(
+export const ListAgentSpacesConnectorSecretsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -11193,8 +13009,99 @@ export const ListAgentSpaceConnectorSecretsResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(AgentSpaceConnectorProperties),
     }),
 ).annotate({
-  identifier: "ListAgentSpaceConnectorSecretsResponse",
-}) as any as S.Schema<ListAgentSpaceConnectorSecretsResponse>;
+  identifier: "ListAgentSpacesConnectorSecretsResponse",
+}) as any as S.Schema<ListAgentSpacesConnectorSecretsResponse>;
+
+export interface ListAvailableEnvironmentModesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListAvailableEnvironmentModesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/locations/{location}/availableManagedEnvironmentsModes",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAvailableEnvironmentModesRequest",
+}) as any as S.Schema<ListAvailableEnvironmentModesRequest>;
+
+/** Details that describe an available environment mode. */
+export interface AvailableEnvironmentModeProperties {
+  /** The display name of the environment mode. */
+  displayName?: string;
+  /** The description of the environment mode. */
+  description?: string;
+}
+export const AvailableEnvironmentModeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailableEnvironmentModeProperties",
+}) as any as S.Schema<AvailableEnvironmentModeProperties>;
+
+/** An environment mode available to the subscription. */
+export interface AvailableEnvironmentMode {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The Azure region in which the environment mode is available. */
+  location?: string;
+  /** The environment mode details. */
+  properties?: AvailableEnvironmentModeProperties;
+}
+export const AvailableEnvironmentMode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    location: S.optional(S.String),
+    properties: S.optional(AvailableEnvironmentModeProperties),
+  }),
+).annotate({
+  identifier: "AvailableEnvironmentMode",
+}) as any as S.Schema<AvailableEnvironmentMode>;
+
+/** The AvailableEnvironmentMode items on this page */
+export type AvailableEnvironmentModesCollectionValueList =
+  Array<AvailableEnvironmentMode>;
+export const AvailableEnvironmentModesCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    AvailableEnvironmentMode,
+  ) as any as S.Schema<AvailableEnvironmentModesCollectionValueList>;
+
+/** Collection of environment modes available in the location. */
+export interface AvailableEnvironmentModesCollection {
+  /** The AvailableEnvironmentMode items on this page */
+  value: AvailableEnvironmentModesCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AvailableEnvironmentModesCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AvailableEnvironmentModesCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailableEnvironmentModesCollection",
+}) as any as S.Schema<AvailableEnvironmentModesCollection>;
 
 export interface ListCertificatesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11214,7 +13121,7 @@ export const ListCertificatesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/certificates",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -11295,7 +13202,7 @@ export const ListConnectedEnvironmentByResourceGroupRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -11379,14 +13286,14 @@ export const ListConnectedEnvironmentBySubscriptionRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/connectedEnvironments",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
     identifier: "ListConnectedEnvironmentBySubscriptionRequest",
   }) as any as S.Schema<ListConnectedEnvironmentBySubscriptionRequest>;
 
-export interface ListConnectedEnvironmentCertificatesRequest {
+export interface ListConnectedEnvironmentsCertificatesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11394,7 +13301,7 @@ export interface ListConnectedEnvironmentCertificatesRequest {
   /** Name of the Connected Environment. */
   connectedEnvironmentName: string;
 }
-export const ListConnectedEnvironmentCertificatesRequest =
+export const ListConnectedEnvironmentsCertificatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11405,14 +13312,14 @@ export const ListConnectedEnvironmentCertificatesRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/certificates",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListConnectedEnvironmentCertificatesRequest",
-  }) as any as S.Schema<ListConnectedEnvironmentCertificatesRequest>;
+    identifier: "ListConnectedEnvironmentsCertificatesRequest",
+  }) as any as S.Schema<ListConnectedEnvironmentsCertificatesRequest>;
 
-export interface ListConnectedEnvironmentDaprComponentsRequest {
+export interface ListConnectedEnvironmentsDaprComponentsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11420,7 +13327,7 @@ export interface ListConnectedEnvironmentDaprComponentsRequest {
   /** Name of the connected environment. */
   connectedEnvironmentName: string;
 }
-export const ListConnectedEnvironmentDaprComponentsRequest =
+export const ListConnectedEnvironmentsDaprComponentsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11431,12 +13338,12 @@ export const ListConnectedEnvironmentDaprComponentsRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/daprComponents",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListConnectedEnvironmentDaprComponentsRequest",
-  }) as any as S.Schema<ListConnectedEnvironmentDaprComponentsRequest>;
+    identifier: "ListConnectedEnvironmentsDaprComponentsRequest",
+  }) as any as S.Schema<ListConnectedEnvironmentsDaprComponentsRequest>;
 
 /** Dapr Component. */
 export interface DaprComponent {
@@ -11483,7 +13390,7 @@ export const DaprComponentsCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "DaprComponentsCollection",
 }) as any as S.Schema<DaprComponentsCollection>;
 
-export interface ListConnectedEnvironmentDaprComponentSecretsRequest {
+export interface ListConnectedEnvironmentsDaprComponentSecretsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11493,7 +13400,7 @@ export interface ListConnectedEnvironmentDaprComponentSecretsRequest {
   /** Name of the Dapr Component. */
   componentName: string;
 }
-export const ListConnectedEnvironmentDaprComponentSecretsRequest =
+export const ListConnectedEnvironmentsDaprComponentSecretsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11505,12 +13412,12 @@ export const ListConnectedEnvironmentDaprComponentSecretsRequest =
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/daprComponents/{componentName}/listSecrets",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListConnectedEnvironmentDaprComponentSecretsRequest",
-  }) as any as S.Schema<ListConnectedEnvironmentDaprComponentSecretsRequest>;
+    identifier: "ListConnectedEnvironmentsDaprComponentSecretsRequest",
+  }) as any as S.Schema<ListConnectedEnvironmentsDaprComponentSecretsRequest>;
 
 /** Dapr component Secret for ListSecrets Action */
 export type DaprSecret = SessionPoolSecret;
@@ -11535,7 +13442,7 @@ export const DaprSecretsCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "DaprSecretsCollection",
 }) as any as S.Schema<DaprSecretsCollection>;
 
-export interface ListConnectedEnvironmentStoragesRequest {
+export interface ListConnectedEnvironmentsStoragesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11543,7 +13450,7 @@ export interface ListConnectedEnvironmentStoragesRequest {
   /** Name of the connectedEnvironment. */
   connectedEnvironmentName: string;
 }
-export const ListConnectedEnvironmentStoragesRequest = /*@__PURE__*/ S.suspend(
+export const ListConnectedEnvironmentsStoragesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11554,12 +13461,12 @@ export const ListConnectedEnvironmentStoragesRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/storages",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "ListConnectedEnvironmentStoragesRequest",
-}) as any as S.Schema<ListConnectedEnvironmentStoragesRequest>;
+  identifier: "ListConnectedEnvironmentsStoragesRequest",
+}) as any as S.Schema<ListConnectedEnvironmentsStoragesRequest>;
 
 /** Storage resource for connectedEnvironment. */
 export interface ConnectedEnvironmentStorage {
@@ -11608,77 +13515,6 @@ export const ConnectedEnvironmentStoragesCollection = /*@__PURE__*/ S.suspend(
   identifier: "ConnectedEnvironmentStoragesCollection",
 }) as any as S.Schema<ConnectedEnvironmentStoragesCollection>;
 
-export interface ListContainerAppAuthConfigByContainerAppRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Container App. */
-  containerAppName: string;
-}
-export const ListContainerAppAuthConfigByContainerAppRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      containerAppName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListContainerAppAuthConfigByContainerAppRequest",
-  }) as any as S.Schema<ListContainerAppAuthConfigByContainerAppRequest>;
-
-/** Configuration settings for the Azure ContainerApp Service Authentication / Authorization feature. */
-export interface AuthConfig {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AuthConfig resource specific properties */
-  properties?: AuthConfigProperties;
-}
-export const AuthConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AuthConfigProperties),
-  }),
-).annotate({ identifier: "AuthConfig" }) as any as S.Schema<AuthConfig>;
-
-/** The AuthConfig items on this page */
-export type AuthConfigCollectionValueList = Array<AuthConfig>;
-export const AuthConfigCollectionValueList = /*@__PURE__*/ S.Array(
-  AuthConfig,
-) as any as S.Schema<AuthConfigCollectionValueList>;
-
-/** AuthConfig collection ARM resource. */
-export interface AuthConfigCollection {
-  /** The AuthConfig items on this page */
-  value: AuthConfigCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AuthConfigCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AuthConfigCollectionValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AuthConfigCollection",
-}) as any as S.Schema<AuthConfigCollection>;
-
 export interface ListContainerAppByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -11695,7 +13531,7 @@ export const ListContainerAppByResourceGroupRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -11789,7 +13625,7 @@ export const ListContainerAppBySubscriptionRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/containerApps",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -11818,7 +13654,7 @@ export const ListContainerAppCustomHostNameAnalysisRequest =
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/listCustomHostNameAnalysis",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -11970,7 +13806,7 @@ export const CustomHostnameAnalysisResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomHostnameAnalysisResult",
 }) as any as S.Schema<CustomHostnameAnalysisResult>;
 
-export interface ListContainerAppDiagnosticDetectorsRequest {
+export interface ListContainerAppPrivateEndpointConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -11978,7 +13814,201 @@ export interface ListContainerAppDiagnosticDetectorsRequest {
   /** Name of the Container App. */
   containerAppName: string;
 }
-export const ListContainerAppDiagnosticDetectorsRequest =
+export const ListContainerAppPrivateEndpointConnectionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListContainerAppPrivateEndpointConnectionsRequest",
+  }) as any as S.Schema<ListContainerAppPrivateEndpointConnectionsRequest>;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** The response of a PrivateEndpointConnection list operation. */
+export interface PrivateEndpointConnectionListResult {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListContainerAppPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+}
+export const ListContainerAppPrivateLinkResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListContainerAppPrivateLinkResourcesRequest",
+  }) as any as S.Schema<ListContainerAppPrivateLinkResourcesRequest>;
+
+/** A private link resource */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** The PrivateLinkResource items on this page */
+export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
+export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourceListResultValueList>;
+
+/** List of private link resources for a managed environment. */
+export interface PrivateLinkResourceListResult {
+  /** The PrivateLinkResource items on this page */
+  value: PrivateLinkResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceListResult",
+}) as any as S.Schema<PrivateLinkResourceListResult>;
+
+export interface ListContainerAppsAuthConfigByContainerAppRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+}
+export const ListContainerAppsAuthConfigByContainerAppRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/authConfigs",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListContainerAppsAuthConfigByContainerAppRequest",
+  }) as any as S.Schema<ListContainerAppsAuthConfigByContainerAppRequest>;
+
+/** Configuration settings for the Azure ContainerApp Service Authentication / Authorization feature. */
+export interface AuthConfig {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AuthConfig resource specific properties */
+  properties?: AuthConfigProperties;
+}
+export const AuthConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AuthConfigProperties),
+  }),
+).annotate({ identifier: "AuthConfig" }) as any as S.Schema<AuthConfig>;
+
+/** The AuthConfig items on this page */
+export type AuthConfigCollectionValueList = Array<AuthConfig>;
+export const AuthConfigCollectionValueList = /*@__PURE__*/ S.Array(
+  AuthConfig,
+) as any as S.Schema<AuthConfigCollectionValueList>;
+
+/** AuthConfig collection ARM resource. */
+export interface AuthConfigCollection {
+  /** The AuthConfig items on this page */
+  value: AuthConfigCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AuthConfigCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AuthConfigCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AuthConfigCollection",
+}) as any as S.Schema<AuthConfigCollection>;
+
+export interface ListContainerAppsDiagnosticDetectorsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+}
+export const ListContainerAppsDiagnosticDetectorsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11989,12 +14019,12 @@ export const ListContainerAppDiagnosticDetectorsRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/detectors",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListContainerAppDiagnosticDetectorsRequest",
-  }) as any as S.Schema<ListContainerAppDiagnosticDetectorsRequest>;
+    identifier: "ListContainerAppsDiagnosticDetectorsRequest",
+  }) as any as S.Schema<ListContainerAppsDiagnosticDetectorsRequest>;
 
 /** Diagnostics data for a resource. */
 export interface Diagnostics {
@@ -12041,7 +14071,7 @@ export const DiagnosticsCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiagnosticsCollection",
 }) as any as S.Schema<DiagnosticsCollection>;
 
-export interface ListContainerAppDiagnosticRevisionsRequest {
+export interface ListContainerAppsDiagnosticRevisionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12051,7 +14081,7 @@ export interface ListContainerAppDiagnosticRevisionsRequest {
   /** The filter to apply on the operation. */
   _filter?: string;
 }
-export const ListContainerAppDiagnosticRevisionsRequest =
+export const ListContainerAppsDiagnosticRevisionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12063,12 +14093,12 @@ export const ListContainerAppDiagnosticRevisionsRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/detectorProperties/revisionsApi/revisions/",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListContainerAppDiagnosticRevisionsRequest",
-  }) as any as S.Schema<ListContainerAppDiagnosticRevisionsRequest>;
+    identifier: "ListContainerAppsDiagnosticRevisionsRequest",
+  }) as any as S.Schema<ListContainerAppsDiagnosticRevisionsRequest>;
 
 /** Container App Revision. */
 export interface Revision {
@@ -12115,7 +14145,202 @@ export const RevisionCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "RevisionCollection",
 }) as any as S.Schema<RevisionCollection>;
 
-export interface ListContainerAppRevisionReplicaReplicasRequest {
+export interface ListContainerAppSecretsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+}
+export const ListContainerAppSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    containerAppName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/listSecrets",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListContainerAppSecretsRequest",
+}) as any as S.Schema<ListContainerAppSecretsRequest>;
+
+/** Container App Secret. */
+export type ContainerAppSecret = Secret;
+export const ContainerAppSecret = Secret;
+
+/** Collection of resources. */
+export type SecretsCollectionValueList = Array<Secret>;
+export const SecretsCollectionValueList = /*@__PURE__*/ S.Array(
+  Secret,
+) as any as S.Schema<SecretsCollectionValueList>;
+
+/** Container App Secrets Collection ARM resource. */
+export interface SecretsCollection {
+  /** Collection of resources. */
+  value: SecretsCollectionValueList;
+}
+export const SecretsCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SecretsCollectionValueList,
+  }),
+).annotate({
+  identifier: "SecretsCollection",
+}) as any as S.Schema<SecretsCollection>;
+
+export interface ListContainerAppsFunctionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+}
+export const ListContainerAppsFunctionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    containerAppName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/functions",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListContainerAppsFunctionsRequest",
+}) as any as S.Schema<ListContainerAppsFunctionsRequest>;
+
+/** Container App Function. */
+export interface ContainerAppsFunction {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Function resource specific properties */
+  properties?: ContainerAppsFunctionProperties;
+}
+export const ContainerAppsFunction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ContainerAppsFunctionProperties),
+  }),
+).annotate({
+  identifier: "ContainerAppsFunction",
+}) as any as S.Schema<ContainerAppsFunction>;
+
+/** The ContainerAppsFunction items on this page */
+export type ContainerAppsFunctionCollectionValueList =
+  Array<ContainerAppsFunction>;
+export const ContainerAppsFunctionCollectionValueList = /*@__PURE__*/ S.Array(
+  ContainerAppsFunction,
+) as any as S.Schema<ContainerAppsFunctionCollectionValueList>;
+
+/** Container App Functions collection ARM resource. */
+export interface ContainerAppsFunctionCollection {
+  /** The ContainerAppsFunction items on this page */
+  value: ContainerAppsFunctionCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ContainerAppsFunctionCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ContainerAppsFunctionCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerAppsFunctionCollection",
+}) as any as S.Schema<ContainerAppsFunctionCollection>;
+
+export interface ListContainerAppsLabelHistoryLabelHistoryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** The filter to apply on the operation. */
+  _filter?: string;
+}
+export const ListContainerAppsLabelHistoryLabelHistoryRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/labelHistories",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListContainerAppsLabelHistoryLabelHistoryRequest",
+  }) as any as S.Schema<ListContainerAppsLabelHistoryLabelHistoryRequest>;
+
+/** Container App Label History. */
+export interface LabelHistory {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Container App Label History resource specific properties */
+  properties?: LabelHistoryProperties;
+}
+export const LabelHistory = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(LabelHistoryProperties),
+  }),
+).annotate({ identifier: "LabelHistory" }) as any as S.Schema<LabelHistory>;
+
+/** The LabelHistory items on this page */
+export type LabelHistoryCollectionValueList = Array<LabelHistory>;
+export const LabelHistoryCollectionValueList = /*@__PURE__*/ S.Array(
+  LabelHistory,
+) as any as S.Schema<LabelHistoryCollectionValueList>;
+
+/** Container App Label History collection ARM resource. */
+export interface LabelHistoryCollection {
+  /** The LabelHistory items on this page */
+  value: LabelHistoryCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const LabelHistoryCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: LabelHistoryCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabelHistoryCollection",
+}) as any as S.Schema<LabelHistoryCollection>;
+
+export interface ListContainerAppsRevisionFunctionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12125,7 +14350,36 @@ export interface ListContainerAppRevisionReplicaReplicasRequest {
   /** Name of the Container App Revision. */
   revisionName: string;
 }
-export const ListContainerAppRevisionReplicaReplicasRequest =
+export const ListContainerAppsRevisionFunctionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      revisionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/functions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListContainerAppsRevisionFunctionsRequest",
+  }) as any as S.Schema<ListContainerAppsRevisionFunctionsRequest>;
+
+export interface ListContainerAppsRevisionReplicasReplicasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Container App Revision. */
+  revisionName: string;
+}
+export const ListContainerAppsRevisionReplicasReplicasRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12137,12 +14391,12 @@ export const ListContainerAppRevisionReplicaReplicasRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/replicas",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListContainerAppRevisionReplicaReplicasRequest",
-  }) as any as S.Schema<ListContainerAppRevisionReplicaReplicasRequest>;
+    identifier: "ListContainerAppsRevisionReplicasReplicasRequest",
+  }) as any as S.Schema<ListContainerAppsRevisionReplicasReplicasRequest>;
 
 /** Container App Revision Replica. */
 export interface Replica {
@@ -12186,7 +14440,7 @@ export const ReplicaCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplicaCollection",
 }) as any as S.Schema<ReplicaCollection>;
 
-export interface ListContainerAppRevisionRevisionsRequest {
+export interface ListContainerAppsRevisionRevisionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12196,8 +14450,8 @@ export interface ListContainerAppRevisionRevisionsRequest {
   /** The filter to apply on the operation. */
   _filter?: string;
 }
-export const ListContainerAppRevisionRevisionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListContainerAppsRevisionRevisionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -12208,68 +14462,20 @@ export const ListContainerAppRevisionRevisionsRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
-).annotate({
-  identifier: "ListContainerAppRevisionRevisionsRequest",
-}) as any as S.Schema<ListContainerAppRevisionRevisionsRequest>;
+  ).annotate({
+    identifier: "ListContainerAppsRevisionRevisionsRequest",
+  }) as any as S.Schema<ListContainerAppsRevisionRevisionsRequest>;
 
-export interface ListContainerAppSecretsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Container App. */
-  containerAppName: string;
-}
-export const ListContainerAppSecretsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    containerAppName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/listSecrets",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListContainerAppSecretsRequest",
-}) as any as S.Schema<ListContainerAppSecretsRequest>;
-
-/** Container App Secret. */
-export type ContainerAppSecret = Secret;
-export const ContainerAppSecret = Secret;
-
-/** Collection of resources. */
-export type SecretsCollectionValueList = Array<Secret>;
-export const SecretsCollectionValueList = /*@__PURE__*/ S.Array(
-  Secret,
-) as any as S.Schema<SecretsCollectionValueList>;
-
-/** Container App Secrets Collection ARM resource. */
-export interface SecretsCollection {
-  /** Collection of resources. */
-  value: SecretsCollectionValueList;
-}
-export const SecretsCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SecretsCollectionValueList,
-  }),
-).annotate({
-  identifier: "SecretsCollection",
-}) as any as S.Schema<SecretsCollection>;
-
-export interface ListContainerAppSessionPoolByResourceGroupRequest {
+export interface ListContainerAppsSessionPoolByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListContainerAppSessionPoolByResourceGroupRequest =
+export const ListContainerAppsSessionPoolByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12279,12 +14485,12 @@ export const ListContainerAppSessionPoolByResourceGroupRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sessionPools",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListContainerAppSessionPoolByResourceGroupRequest",
-  }) as any as S.Schema<ListContainerAppSessionPoolByResourceGroupRequest>;
+    identifier: "ListContainerAppsSessionPoolByResourceGroupRequest",
+  }) as any as S.Schema<ListContainerAppsSessionPoolByResourceGroupRequest>;
 
 /** Resource tags. */
 export type SessionPoolTagsMap = { [key: string]: string | undefined };
@@ -12351,11 +14557,11 @@ export const SessionPoolCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "SessionPoolCollection",
 }) as any as S.Schema<SessionPoolCollection>;
 
-export interface ListContainerAppSessionPoolBySubscriptionRequest {
+export interface ListContainerAppsSessionPoolBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListContainerAppSessionPoolBySubscriptionRequest =
+export const ListContainerAppsSessionPoolBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12364,14 +14570,14 @@ export const ListContainerAppSessionPoolBySubscriptionRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/sessionPools",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListContainerAppSessionPoolBySubscriptionRequest",
-  }) as any as S.Schema<ListContainerAppSessionPoolBySubscriptionRequest>;
+    identifier: "ListContainerAppsSessionPoolBySubscriptionRequest",
+  }) as any as S.Schema<ListContainerAppsSessionPoolBySubscriptionRequest>;
 
-export interface ListContainerAppSourceControlByContainerAppRequest {
+export interface ListContainerAppsSourceControlByContainerAppRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12379,7 +14585,7 @@ export interface ListContainerAppSourceControlByContainerAppRequest {
   /** Name of the Container App. */
   containerAppName: string;
 }
-export const ListContainerAppSourceControlByContainerAppRequest =
+export const ListContainerAppsSourceControlByContainerAppRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12390,12 +14596,12 @@ export const ListContainerAppSourceControlByContainerAppRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/sourcecontrols",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "ListContainerAppSourceControlByContainerAppRequest",
-  }) as any as S.Schema<ListContainerAppSourceControlByContainerAppRequest>;
+    identifier: "ListContainerAppsSourceControlByContainerAppRequest",
+  }) as any as S.Schema<ListContainerAppsSourceControlByContainerAppRequest>;
 
 /** Container App SourceControl. */
 export interface SourceControl {
@@ -12442,6 +14648,85 @@ export const SourceControlCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "SourceControlCollection",
 }) as any as S.Schema<SourceControlCollection>;
 
+export interface ListDaprComponentResiliencyPoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the Dapr Component. */
+  componentName: string;
+}
+export const ListDaprComponentResiliencyPoliciesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      environmentName: S.String.pipe(T.Label()),
+      componentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}/resiliencyPolicies",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDaprComponentResiliencyPoliciesRequest",
+  }) as any as S.Schema<ListDaprComponentResiliencyPoliciesRequest>;
+
+/** Dapr Component Resiliency Policy. */
+export interface DaprComponentResiliencyPolicy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Dapr Component Resiliency Policy resource specific properties */
+  properties?: DaprComponentResiliencyPolicyProperties;
+}
+export const DaprComponentResiliencyPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DaprComponentResiliencyPolicyProperties),
+  }),
+).annotate({
+  identifier: "DaprComponentResiliencyPolicy",
+}) as any as S.Schema<DaprComponentResiliencyPolicy>;
+
+/** The DaprComponentResiliencyPolicy items on this page */
+export type DaprComponentResiliencyPoliciesCollectionValueList =
+  Array<DaprComponentResiliencyPolicy>;
+export const DaprComponentResiliencyPoliciesCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    DaprComponentResiliencyPolicy,
+  ) as any as S.Schema<DaprComponentResiliencyPoliciesCollectionValueList>;
+
+/** Dapr Component Resiliency Policies ARM resource. */
+export interface DaprComponentResiliencyPoliciesCollection {
+  /** The DaprComponentResiliencyPolicy items on this page */
+  value: DaprComponentResiliencyPoliciesCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DaprComponentResiliencyPoliciesCollection =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: DaprComponentResiliencyPoliciesCollectionValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DaprComponentResiliencyPoliciesCollection",
+  }) as any as S.Schema<DaprComponentResiliencyPoliciesCollection>;
+
 export interface ListDaprComponentsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -12460,7 +14745,7 @@ export const ListDaprComponentsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -12488,12 +14773,84 @@ export const ListDaprComponentSecretsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/daprComponents/{componentName}/listSecrets",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
   identifier: "ListDaprComponentSecretsRequest",
 }) as any as S.Schema<ListDaprComponentSecretsRequest>;
+
+export interface ListDotNetComponentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+}
+export const ListDotNetComponentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    environmentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/dotNetComponents",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDotNetComponentsRequest",
+}) as any as S.Schema<ListDotNetComponentsRequest>;
+
+/** .NET Component. */
+export interface DotNetComponent {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** .NET Component resource specific properties */
+  properties?: DotNetComponentProperties;
+}
+export const DotNetComponent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DotNetComponentProperties),
+  }),
+).annotate({
+  identifier: "DotNetComponent",
+}) as any as S.Schema<DotNetComponent>;
+
+/** The DotNetComponent items on this page */
+export type DotNetComponentsCollectionValueList = Array<DotNetComponent>;
+export const DotNetComponentsCollectionValueList = /*@__PURE__*/ S.Array(
+  DotNetComponent,
+) as any as S.Schema<DotNetComponentsCollectionValueList>;
+
+/** .NET Components ARM resource. */
+export interface DotNetComponentsCollection {
+  /** The DotNetComponent items on this page */
+  value: DotNetComponentsCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DotNetComponentsCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DotNetComponentsCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DotNetComponentsCollection",
+}) as any as S.Schema<DotNetComponentsCollection>;
 
 export interface ListHttpRouteConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12513,7 +14870,7 @@ export const ListHttpRouteConfigRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/httpRouteConfigs",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -12585,7 +14942,7 @@ export const ListJavaComponentsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/javaComponents",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -12652,7 +15009,7 @@ export const ListJobByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -12734,7 +15091,7 @@ export const ListJobBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/jobs",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -12759,14 +15116,58 @@ export const ListJobDetectorsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/detectors",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
   identifier: "ListJobDetectorsRequest",
 }) as any as S.Schema<ListJobDetectorsRequest>;
 
-export interface ListJobExecutionsRequest {
+export interface ListJobSecretsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Job Name */
+  jobName: string;
+}
+export const ListJobSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/listSecrets",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListJobSecretsRequest",
+}) as any as S.Schema<ListJobSecretsRequest>;
+
+/** Collection of resources. */
+export type JobSecretsCollectionValueList = Array<Secret>;
+export const JobSecretsCollectionValueList = /*@__PURE__*/ S.Array(
+  Secret,
+) as any as S.Schema<JobSecretsCollectionValueList>;
+
+/** Container Apps Job Secrets Collection ARM resource. */
+export interface JobSecretsCollection {
+  /** Collection of resources. */
+  value: JobSecretsCollectionValueList;
+}
+export const JobSecretsCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: JobSecretsCollectionValueList,
+  }),
+).annotate({
+  identifier: "JobSecretsCollection",
+}) as any as S.Schema<JobSecretsCollection>;
+
+export interface ListJobsExecutionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12776,7 +15177,7 @@ export interface ListJobExecutionsRequest {
   /** The filter to apply on the operation. */
   _filter?: string;
 }
-export const ListJobExecutionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListJobsExecutionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12787,12 +15188,12 @@ export const ListJobExecutionsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/executions",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "ListJobExecutionsRequest",
-}) as any as S.Schema<ListJobExecutionsRequest>;
+  identifier: "ListJobsExecutionsRequest",
+}) as any as S.Schema<ListJobsExecutionsRequest>;
 
 /** Container Apps Job execution. */
 export interface JobExecution {
@@ -12839,107 +15240,6 @@ export const ContainerAppJobExecutions = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerAppJobExecutions",
 }) as any as S.Schema<ContainerAppJobExecutions>;
 
-export interface ListJobSecretsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Job Name */
-  jobName: string;
-}
-export const ListJobSecretsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/listSecrets",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListJobSecretsRequest",
-}) as any as S.Schema<ListJobSecretsRequest>;
-
-/** Collection of resources. */
-export type JobSecretsCollectionValueList = Array<Secret>;
-export const JobSecretsCollectionValueList = /*@__PURE__*/ S.Array(
-  Secret,
-) as any as S.Schema<JobSecretsCollectionValueList>;
-
-/** Container Apps Job Secrets Collection ARM resource. */
-export interface JobSecretsCollection {
-  /** Collection of resources. */
-  value: JobSecretsCollectionValueList;
-}
-export const JobSecretsCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: JobSecretsCollectionValueList,
-  }),
-).annotate({
-  identifier: "JobSecretsCollection",
-}) as any as S.Schema<JobSecretsCollection>;
-
-export interface ListLogicAppWorkflowConnectionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Container App. */
-  containerAppName: string;
-  /** Name of the Logic App, the extension resource. */
-  logicAppName: string;
-}
-export const ListLogicAppWorkflowConnectionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      containerAppName: S.String.pipe(T.Label()),
-      logicAppName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/providers/Microsoft.App/logicApps/{logicAppName}/listWorkflowsConnections",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "ListLogicAppWorkflowConnectionsRequest",
-}) as any as S.Schema<ListLogicAppWorkflowConnectionsRequest>;
-
-export interface ListLogicAppWorkflowConnectionsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Additional workflow properties. */
-  properties?: WorkflowEnvelopeProperties;
-  /** Gets the logic app hybrid workflow kind. */
-  kind?: WorkflowKind;
-}
-export const ListLogicAppWorkflowConnectionsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkflowEnvelopeProperties),
-      kind: S.optional(WorkflowKind),
-    }),
-).annotate({
-  identifier: "ListLogicAppWorkflowConnectionsResponse",
-}) as any as S.Schema<ListLogicAppWorkflowConnectionsResponse>;
-
 export interface ListLogicAppWorkflowsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -12961,7 +15261,7 @@ export const ListLogicAppWorkflowsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/providers/Microsoft.App/logicApps/{logicAppName}/workflows",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -13018,6 +15318,63 @@ export const WorkflowEnvelopeCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkflowEnvelopeCollection",
 }) as any as S.Schema<WorkflowEnvelopeCollection>;
 
+export interface ListLogicAppWorkflowsConnectionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Container App. */
+  containerAppName: string;
+  /** Name of the Logic App, the extension resource. */
+  logicAppName: string;
+}
+export const ListLogicAppWorkflowsConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      containerAppName: S.String.pipe(T.Label()),
+      logicAppName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/providers/Microsoft.App/logicApps/{logicAppName}/listWorkflowsConnections",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListLogicAppWorkflowsConnectionsRequest",
+}) as any as S.Schema<ListLogicAppWorkflowsConnectionsRequest>;
+
+export interface ListLogicAppWorkflowsConnectionsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Additional workflow properties. */
+  properties?: WorkflowEnvelopeProperties;
+  /** Gets the logic app hybrid workflow kind. */
+  kind?: WorkflowKind;
+}
+export const ListLogicAppWorkflowsConnectionsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkflowEnvelopeProperties),
+      kind: S.optional(WorkflowKind),
+    }),
+).annotate({
+  identifier: "ListLogicAppWorkflowsConnectionsResponse",
+}) as any as S.Schema<ListLogicAppWorkflowsConnectionsResponse>;
+
 export interface ListMaintenanceConfigurationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -13037,7 +15394,7 @@ export const ListMaintenanceConfigurationsRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/maintenanceConfigurations",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -13111,7 +15468,7 @@ export const ListManagedCertificatesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/managedCertificates",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -13194,7 +15551,7 @@ export const ListManagedEnvironmentByResourceGroupRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -13286,7 +15643,7 @@ export const ListManagedEnvironmentBySubscriptionRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/managedEnvironments",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -13312,7 +15669,7 @@ export const ListManagedEnvironmentDiagnosticDetectorsRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/detectors",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -13338,36 +15695,12 @@ export const ListManagedEnvironmentPrivateEndpointConnectionsRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/privateEndpointConnections",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
     identifier: "ListManagedEnvironmentPrivateEndpointConnectionsRequest",
   }) as any as S.Schema<ListManagedEnvironmentPrivateEndpointConnectionsRequest>;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** The response of a PrivateEndpointConnection list operation. */
-export interface PrivateEndpointConnectionListResult {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
 
 export interface ListManagedEnvironmentPrivateLinkResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13388,98 +15721,14 @@ export const ListManagedEnvironmentPrivateLinkResourcesRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/privateLinkResources",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
     identifier: "ListManagedEnvironmentPrivateLinkResourcesRequest",
   }) as any as S.Schema<ListManagedEnvironmentPrivateLinkResourcesRequest>;
 
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** A private link resource */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** The PrivateLinkResource items on this page */
-export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
-export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourceListResultValueList>;
-
-/** List of private link resources for a managed environment. */
-export interface PrivateLinkResourceListResult {
-  /** The PrivateLinkResource items on this page */
-  value: PrivateLinkResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceListResult",
-}) as any as S.Schema<PrivateLinkResourceListResult>;
-
-export interface ListManagedEnvironmentStoragesRequest {
+export interface ListManagedEnvironmentsStoragesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13487,7 +15736,7 @@ export interface ListManagedEnvironmentStoragesRequest {
   /** Name of the Environment. */
   environmentName: string;
 }
-export const ListManagedEnvironmentStoragesRequest = /*@__PURE__*/ S.suspend(
+export const ListManagedEnvironmentsStoragesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -13498,12 +15747,12 @@ export const ListManagedEnvironmentStoragesRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/storages",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "ListManagedEnvironmentStoragesRequest",
-}) as any as S.Schema<ListManagedEnvironmentStoragesRequest>;
+  identifier: "ListManagedEnvironmentsStoragesRequest",
+}) as any as S.Schema<ListManagedEnvironmentsStoragesRequest>;
 
 /** Storage resource for managedEnvironment. */
 export interface ManagedEnvironmentStorage {
@@ -13570,7 +15819,7 @@ export const ListManagedEnvironmentUsagesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/usages",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -13656,7 +15905,7 @@ export const ListManagedEnvironmentWorkloadProfileStatesRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/workloadProfileStates",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -13737,7 +15986,7 @@ export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/providers/Microsoft.App/operations",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -13809,6 +16058,107 @@ export const AvailableOperations = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AvailableOperations",
 }) as any as S.Schema<AvailableOperations>;
+
+export interface ListSandboxGroupByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSandboxGroupByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSandboxGroupByResourceGroupRequest",
+}) as any as S.Schema<ListSandboxGroupByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SandboxGroupTagsMap = { [key: string]: string | undefined };
+export const SandboxGroupTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SandboxGroupTagsMap>;
+
+/** A SandboxGroup resource, representing a group of sandboxes that share configuration defaults and quotas. */
+export interface SandboxGroup {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SandboxGroupTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SandboxGroupProperties;
+}
+export const SandboxGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SandboxGroupTagsMap),
+    location: S.String,
+    properties: S.optional(SandboxGroupProperties),
+  }),
+).annotate({ identifier: "SandboxGroup" }) as any as S.Schema<SandboxGroup>;
+
+/** The SandboxGroup items on this page */
+export type SandboxGroupListResultValueList = Array<SandboxGroup>;
+export const SandboxGroupListResultValueList = /*@__PURE__*/ S.Array(
+  SandboxGroup,
+) as any as S.Schema<SandboxGroupListResultValueList>;
+
+/** The response of a SandboxGroup list operation. */
+export interface SandboxGroupListResult {
+  /** The SandboxGroup items on this page */
+  value: SandboxGroupListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SandboxGroupListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SandboxGroupListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SandboxGroupListResult",
+}) as any as S.Schema<SandboxGroupListResult>;
+
+export interface ListSandboxGroupBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListSandboxGroupBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/sandboxGroups",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSandboxGroupBySubscriptionRequest",
+}) as any as S.Schema<ListSandboxGroupBySubscriptionRequest>;
 
 export interface ListSupportedAgentModelByLocationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13923,12 +16273,83 @@ export const ListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.App/locations/{location}/usages",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
   identifier: "ListUsagesRequest",
 }) as any as S.Schema<ListUsagesRequest>;
+
+export interface ListVnetConnectionBySandboxGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+}
+export const ListVnetConnectionBySandboxGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      sandboxGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}/vnetConnections",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVnetConnectionBySandboxGroupRequest",
+}) as any as S.Schema<ListVnetConnectionBySandboxGroupRequest>;
+
+/** A virtual network connection associated with a SandboxGroup. */
+export interface VnetConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: VnetConnectionProperties;
+}
+export const VnetConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VnetConnectionProperties),
+  }),
+).annotate({ identifier: "VnetConnection" }) as any as S.Schema<VnetConnection>;
+
+/** The VnetConnection items on this page */
+export type VnetConnectionListResultValueList = Array<VnetConnection>;
+export const VnetConnectionListResultValueList = /*@__PURE__*/ S.Array(
+  VnetConnection,
+) as any as S.Schema<VnetConnectionListResultValueList>;
+
+/** The response of a VnetConnection list operation. */
+export interface VnetConnectionListResult {
+  /** The VnetConnection items on this page */
+  value: VnetConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VnetConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VnetConnectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VnetConnectionListResult",
+}) as any as S.Schema<VnetConnectionListResult>;
 
 export interface LogicAppsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13951,7 +16372,7 @@ export const LogicAppsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/providers/Microsoft.App/logicApps/{logicAppName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -14004,7 +16425,7 @@ export const MaintenanceConfigurationsCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/maintenanceConfigurations/{configName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -14097,7 +16518,7 @@ export const ManagedCertificatesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/managedCertificates/{managedCertificateName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -14145,27 +16566,6 @@ export const ManagedCertificatesCreateOrUpdateResponse =
     identifier: "ManagedCertificatesCreateOrUpdateResponse",
   }) as any as S.Schema<ManagedCertificatesCreateOrUpdateResponse>;
 
-/** The Private Endpoint resource. */
-export type PrivateEndpointInput = UserAssignedIdentityInput;
-export const PrivateEndpointInput = UserAssignedIdentityInput;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The resource of private end point. */
-  privateEndpoint?: UserAssignedIdentityInput;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(UserAssignedIdentityInput),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
 export interface ManagedEnvironmentPrivateEndpointConnectionsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -14191,7 +16591,7 @@ export const ManagedEnvironmentPrivateEndpointConnectionsCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -14261,6 +16661,10 @@ export interface ManagedEnvironmentPropertiesInput {
   vnetConfiguration?: VnetConfiguration;
   /** Cluster configuration which enables the log daemon to export app logs to configured destination */
   appLogsConfiguration?: AppLogsConfiguration;
+  /** Environment level Application Insights configuration */
+  appInsightsConfiguration?: AppInsightsConfiguration;
+  /** Environment Open Telemetry configuration */
+  openTelemetryConfiguration?: OpenTelemetryConfiguration;
   /** Whether or not this Managed Environment is zone-redundant. */
   zoneRedundant?: boolean;
   /** Custom domain configuration for the environment */
@@ -14279,6 +16683,8 @@ export interface ManagedEnvironmentPropertiesInput {
   peerTrafficConfiguration?: ManagedEnvironmentPropertiesPeerTrafficConfiguration;
   /** Ingress configuration for the Managed Environment. */
   ingressConfiguration?: IngressConfiguration;
+  /** Mode of the environment. Allowed Values: 'ConsumptionOnly', 'WorkloadProfiles', 'Express', 'Archived'. */
+  environmentMode?: ManagedEnvironmentMode | (string & {});
   /** Property to allow or block all public traffic. Allowed Values: 'Enabled', 'Disabled'. */
   publicNetworkAccess?: PublicNetworkAccess | (string & {});
 }
@@ -14288,6 +16694,8 @@ export const ManagedEnvironmentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
     daprAIConnectionString: S.optional(S.String),
     vnetConfiguration: S.optional(VnetConfiguration),
     appLogsConfiguration: S.optional(AppLogsConfiguration),
+    appInsightsConfiguration: S.optional(AppInsightsConfiguration),
+    openTelemetryConfiguration: S.optional(OpenTelemetryConfiguration),
     zoneRedundant: S.optional(S.Boolean),
     customDomainConfiguration: S.optional(CustomDomainConfigurationInput),
     workloadProfiles: S.optional(
@@ -14303,6 +16711,7 @@ export const ManagedEnvironmentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
       ManagedEnvironmentPropertiesPeerTrafficConfiguration,
     ),
     ingressConfiguration: S.optional(IngressConfiguration),
+    environmentMode: S.optional(ManagedEnvironmentMode),
     publicNetworkAccess: S.optional(PublicNetworkAccess),
   }),
 ).annotate({
@@ -14349,7 +16758,7 @@ export const ManagedEnvironmentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
@@ -14434,7 +16843,7 @@ export const ManagedEnvironmentsStoragesCreateOrUpdateRequest =
         method: "PUT",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/storages/{storageName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
@@ -14466,7 +16875,7 @@ export const ManagedEnvironmentsStoragesCreateOrUpdateResponse =
     identifier: "ManagedEnvironmentsStoragesCreateOrUpdateResponse",
   }) as any as S.Schema<ManagedEnvironmentsStoragesCreateOrUpdateResponse>;
 
-export interface RestartContainerAppRevisionRevisionRequest {
+export interface RestartContainerAppsRevisionRevisionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14476,7 +16885,7 @@ export interface RestartContainerAppRevisionRevisionRequest {
   /** Name of the Container App Revision. */
   revisionName: string;
 }
-export const RestartContainerAppRevisionRevisionRequest =
+export const RestartContainerAppsRevisionRevisionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14488,18 +16897,185 @@ export const RestartContainerAppRevisionRevisionRequest =
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/revisions/{revisionName}/restart",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "RestartContainerAppRevisionRevisionRequest",
-  }) as any as S.Schema<RestartContainerAppRevisionRevisionRequest>;
+    identifier: "RestartContainerAppsRevisionRevisionRequest",
+  }) as any as S.Schema<RestartContainerAppsRevisionRevisionRequest>;
 
-export interface RestartContainerAppRevisionRevisionResponse {}
-export const RestartContainerAppRevisionRevisionResponse =
+export interface RestartContainerAppsRevisionRevisionResponse {}
+export const RestartContainerAppsRevisionRevisionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "RestartContainerAppRevisionRevisionResponse",
-  }) as any as S.Schema<RestartContainerAppRevisionRevisionResponse>;
+    identifier: "RestartContainerAppsRevisionRevisionResponse",
+  }) as any as S.Schema<RestartContainerAppsRevisionRevisionResponse>;
+
+export interface ResumeJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Job Name */
+  jobName: string;
+}
+export const ResumeJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/resume",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeJobRequest",
+}) as any as S.Schema<ResumeJobRequest>;
+
+/** Resource tags. */
+export type ResumeJobResponseTagsMap = { [key: string]: string | undefined };
+export const ResumeJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ResumeJobResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type ResumeJobResponseIdentity =
+  ContainerAppsCreateOrUpdateResponseIdentity;
+export const ResumeJobResponseIdentity =
+  ContainerAppsCreateOrUpdateResponseIdentity;
+
+export interface ResumeJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ResumeJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Container Apps Job resource specific properties. */
+  properties?: JobProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ContainerAppsCreateOrUpdateResponseIdentity;
+}
+export const ResumeJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ResumeJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(JobProperties),
+    identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "ResumeJobResponse",
+}) as any as S.Schema<ResumeJobResponse>;
+
+/** Resource tags. */
+export type SandboxGroupsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SandboxGroupsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SandboxGroupsCreateOrUpdateRequestTagsMap>;
+
+/** SandboxGroup resource specific properties. */
+export interface SandboxGroupPropertiesInput {
+  /** The resource ID of the Azure Container Apps environment to link to the sandbox group. A sandbox group can be linked after creation, but the link cannot then be changed or removed. For subsequent create-or-update (PUT) requests, specify the same environment ID; omitting or changing it returns 409 Conflict. Omitting it from an update (PATCH) request leaves the existing link unchanged. */
+  environmentId?: string;
+}
+export const SandboxGroupPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SandboxGroupPropertiesInput",
+}) as any as S.Schema<SandboxGroupPropertiesInput>;
+
+export interface SandboxGroupsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+  /** Resource tags. */
+  tags?: SandboxGroupsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SandboxGroupPropertiesInput;
+}
+export const SandboxGroupsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sandboxGroupName: S.String.pipe(T.Label()),
+    tags: S.optional(SandboxGroupsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(SandboxGroupPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "SandboxGroupsCreateOrUpdateRequest",
+}) as any as S.Schema<SandboxGroupsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type SandboxGroupsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SandboxGroupsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<SandboxGroupsCreateOrUpdateResponseTagsMap>;
+
+export interface SandboxGroupsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SandboxGroupsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SandboxGroupProperties;
+}
+export const SandboxGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SandboxGroupsCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SandboxGroupProperties),
+  }),
+).annotate({
+  identifier: "SandboxGroupsCreateOrUpdateResponse",
+}) as any as S.Schema<SandboxGroupsCreateOrUpdateResponse>;
 
 export interface StartAgentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14527,44 +17103,44 @@ export const StartAgentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartAgentRequest>;
 
 /** Resource tags. */
-export type AgentsStartResponseTagsMap = { [key: string]: string | undefined };
-export const AgentsStartResponseTagsMap = /*@__PURE__*/ S.Record(
+export type StartAgentResponseTagsMap = { [key: string]: string | undefined };
+export const StartAgentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentsStartResponseTagsMap>;
+) as any as S.Schema<StartAgentResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentsStartResponseIdentityUserAssignedIdentitiesMap = {
+export type StartAgentResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AgentsStartResponseIdentityUserAssignedIdentitiesMap =
+export const StartAgentResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AgentsStartResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<StartAgentResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentsStartResponseIdentity {
+export interface StartAgentResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentsStartResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: StartAgentResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AgentsStartResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const StartAgentResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentsStartResponseIdentityUserAssignedIdentitiesMap,
+      StartAgentResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentsStartResponseIdentity",
-}) as any as S.Schema<AgentsStartResponseIdentity>;
+  identifier: "StartAgentResponseIdentity",
+}) as any as S.Schema<StartAgentResponseIdentity>;
 
 export interface StartAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -14576,13 +17152,13 @@ export interface StartAgentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AgentsStartResponseTagsMap;
+  tags?: StartAgentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AgentProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentsStartResponseIdentity;
+  identity?: StartAgentResponseIdentity;
 }
 export const StartAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -14590,10 +17166,10 @@ export const StartAgentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AgentsStartResponseTagsMap),
+    tags: S.optional(StartAgentResponseTagsMap),
     location: S.String,
     properties: S.optional(AgentProperties),
-    identity: S.optional(AgentsStartResponseIdentity),
+    identity: S.optional(StartAgentResponseIdentity),
   }),
 ).annotate({
   identifier: "StartAgentResponse",
@@ -14617,7 +17193,7 @@ export const StartContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/start",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -14625,18 +17201,18 @@ export const StartContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartContainerAppRequest>;
 
 /** Resource tags. */
-export type ContainerAppsStartResponseTagsMap = {
+export type StartContainerAppResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsStartResponseTagsMap = /*@__PURE__*/ S.Record(
+export const StartContainerAppResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerAppsStartResponseTagsMap>;
+) as any as S.Schema<StartContainerAppResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsStartResponseIdentity =
+export type StartContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ContainerAppsStartResponseIdentity =
+export const StartContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface StartContainerAppResponse {
@@ -14649,7 +17225,7 @@ export interface StartContainerAppResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsStartResponseTagsMap;
+  tags?: StartContainerAppResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ContainerApp resource specific properties */
@@ -14669,7 +17245,7 @@ export const StartContainerAppResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContainerAppsStartResponseTagsMap),
+    tags: S.optional(StartContainerAppResponseTagsMap),
     location: S.String,
     properties: S.optional(ContainerAppProperties),
     extendedLocation: S.optional(ExtendedLocation),
@@ -14728,17 +17304,17 @@ export const JobExecutionContainerInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<JobExecutionContainerInput>;
 
 /** List of container definitions for the Container Apps Job. */
-export type JobsStartRequestContainersList = Array<JobExecutionContainerInput>;
-export const JobsStartRequestContainersList = /*@__PURE__*/ S.Array(
+export type StartJobRequestContainersList = Array<JobExecutionContainerInput>;
+export const StartJobRequestContainersList = /*@__PURE__*/ S.Array(
   JobExecutionContainerInput,
-) as any as S.Schema<JobsStartRequestContainersList>;
+) as any as S.Schema<StartJobRequestContainersList>;
 
 /** List of specialized containers that run before job containers. */
-export type JobsStartRequestInitContainersList =
+export type StartJobRequestInitContainersList =
   Array<JobExecutionContainerInput>;
-export const JobsStartRequestInitContainersList = /*@__PURE__*/ S.Array(
+export const StartJobRequestInitContainersList = /*@__PURE__*/ S.Array(
   JobExecutionContainerInput,
-) as any as S.Schema<JobsStartRequestInitContainersList>;
+) as any as S.Schema<StartJobRequestInitContainersList>;
 
 export interface StartJobRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14748,23 +17324,23 @@ export interface StartJobRequest {
   /** Job Name */
   jobName: string;
   /** List of container definitions for the Container Apps Job. */
-  containers?: JobsStartRequestContainersList;
+  containers?: StartJobRequestContainersList;
   /** List of specialized containers that run before job containers. */
-  initContainers?: JobsStartRequestInitContainersList;
+  initContainers?: StartJobRequestInitContainersList;
 }
 export const StartJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     jobName: S.String.pipe(T.Label()),
-    containers: S.optional(JobsStartRequestContainersList),
-    initContainers: S.optional(JobsStartRequestInitContainersList),
+    containers: S.optional(StartJobRequestContainersList),
+    initContainers: S.optional(StartJobRequestInitContainersList),
   }).pipe(
     T.Http({
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/start",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -14813,44 +17389,44 @@ export const StopAgentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopAgentRequest>;
 
 /** Resource tags. */
-export type AgentsStopResponseTagsMap = { [key: string]: string | undefined };
-export const AgentsStopResponseTagsMap = /*@__PURE__*/ S.Record(
+export type StopAgentResponseTagsMap = { [key: string]: string | undefined };
+export const StopAgentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentsStopResponseTagsMap>;
+) as any as S.Schema<StopAgentResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentsStopResponseIdentityUserAssignedIdentitiesMap = {
+export type StopAgentResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AgentsStopResponseIdentityUserAssignedIdentitiesMap =
+export const StopAgentResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AgentsStopResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<StopAgentResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentsStopResponseIdentity {
+export interface StopAgentResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentsStopResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: StopAgentResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AgentsStopResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const StopAgentResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentsStopResponseIdentityUserAssignedIdentitiesMap,
+      StopAgentResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentsStopResponseIdentity",
-}) as any as S.Schema<AgentsStopResponseIdentity>;
+  identifier: "StopAgentResponseIdentity",
+}) as any as S.Schema<StopAgentResponseIdentity>;
 
 export interface StopAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -14862,13 +17438,13 @@ export interface StopAgentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AgentsStopResponseTagsMap;
+  tags?: StopAgentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AgentProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentsStopResponseIdentity;
+  identity?: StopAgentResponseIdentity;
 }
 export const StopAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -14876,10 +17452,10 @@ export const StopAgentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AgentsStopResponseTagsMap),
+    tags: S.optional(StopAgentResponseTagsMap),
     location: S.String,
     properties: S.optional(AgentProperties),
-    identity: S.optional(AgentsStopResponseIdentity),
+    identity: S.optional(StopAgentResponseIdentity),
   }),
 ).annotate({
   identifier: "StopAgentResponse",
@@ -14903,7 +17479,7 @@ export const StopContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}/stop",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -14911,18 +17487,18 @@ export const StopContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopContainerAppRequest>;
 
 /** Resource tags. */
-export type ContainerAppsStopResponseTagsMap = {
+export type StopContainerAppResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsStopResponseTagsMap = /*@__PURE__*/ S.Record(
+export const StopContainerAppResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerAppsStopResponseTagsMap>;
+) as any as S.Schema<StopContainerAppResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsStopResponseIdentity =
+export type StopContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ContainerAppsStopResponseIdentity =
+export const StopContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface StopContainerAppResponse {
@@ -14935,7 +17511,7 @@ export interface StopContainerAppResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsStopResponseTagsMap;
+  tags?: StopContainerAppResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ContainerApp resource specific properties */
@@ -14955,7 +17531,7 @@ export const StopContainerAppResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContainerAppsStopResponseTagsMap),
+    tags: S.optional(StopContainerAppResponseTagsMap),
     location: S.String,
     properties: S.optional(ContainerAppProperties),
     extendedLocation: S.optional(ExtendedLocation),
@@ -14988,7 +17564,7 @@ export const StopJobExecutionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/executions/{jobExecutionName}/stop",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -15002,7 +17578,7 @@ export const StopJobExecutionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StopJobExecutionResponse",
 }) as any as S.Schema<StopJobExecutionResponse>;
 
-export interface StopJobMultipleExecutionRequest {
+export interface StopJobMultipleExecutionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15010,7 +17586,7 @@ export interface StopJobMultipleExecutionRequest {
   /** Job Name */
   jobName: string;
 }
-export const StopJobMultipleExecutionRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopJobMultipleExecutionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -15020,46 +17596,117 @@ export const StopJobMultipleExecutionRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/stop",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "StopJobMultipleExecutionRequest",
-}) as any as S.Schema<StopJobMultipleExecutionRequest>;
+  identifier: "StopJobMultipleExecutionsRequest",
+}) as any as S.Schema<StopJobMultipleExecutionsRequest>;
+
+export interface SuspendJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Job Name */
+  jobName: string;
+}
+export const SuspendJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}/suspend",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "SuspendJobRequest",
+}) as any as S.Schema<SuspendJobRequest>;
+
+/** Resource tags. */
+export type SuspendJobResponseTagsMap = { [key: string]: string | undefined };
+export const SuspendJobResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SuspendJobResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type SuspendJobResponseIdentity =
+  ContainerAppsCreateOrUpdateResponseIdentity;
+export const SuspendJobResponseIdentity =
+  ContainerAppsCreateOrUpdateResponseIdentity;
+
+export interface SuspendJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SuspendJobResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Container Apps Job resource specific properties. */
+  properties?: JobProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ContainerAppsCreateOrUpdateResponseIdentity;
+}
+export const SuspendJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SuspendJobResponseTagsMap),
+    location: S.String,
+    properties: S.optional(JobProperties),
+    identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "SuspendJobResponse",
+}) as any as S.Schema<SuspendJobResponse>;
 
 /** Resource tags */
-export type AgentsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const AgentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAgentRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAgentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAgentRequestTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentsUpdateRequestIdentityUserAssignedIdentitiesMap = {
+export type UpdateAgentRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentityInput | undefined;
 };
-export const AgentsUpdateRequestIdentityUserAssignedIdentitiesMap =
+export const UpdateAgentRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentityInput,
-  ) as any as S.Schema<AgentsUpdateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAgentRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentsUpdateRequestIdentity {
+export interface UpdateAgentRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentsUpdateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAgentRequestIdentityUserAssignedIdentitiesMap;
 }
-export const AgentsUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAgentRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentsUpdateRequestIdentityUserAssignedIdentitiesMap,
+      UpdateAgentRequestIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentsUpdateRequestIdentity",
-}) as any as S.Schema<AgentsUpdateRequestIdentity>;
+  identifier: "UpdateAgentRequestIdentity",
+}) as any as S.Schema<UpdateAgentRequestIdentity>;
 
 /** Agent identity configuration for PATCH requests */
 export interface AgentIdentityPatch {
@@ -15118,9 +17765,9 @@ export interface UpdateAgentRequest {
   /** The name of the Agent */
   agentName: string;
   /** Resource tags */
-  tags?: AgentsUpdateRequestTagsMap;
+  tags?: UpdateAgentRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentsUpdateRequestIdentity;
+  identity?: UpdateAgentRequestIdentity;
   /** Agent specific properties */
   properties?: AgentPatchProperties;
 }
@@ -15129,8 +17776,8 @@ export const UpdateAgentRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     agentName: S.String.pipe(T.Label()),
-    tags: S.optional(AgentsUpdateRequestTagsMap),
-    identity: S.optional(AgentsUpdateRequestIdentity),
+    tags: S.optional(UpdateAgentRequestTagsMap),
+    identity: S.optional(UpdateAgentRequestIdentity),
     properties: S.optional(AgentPatchProperties),
   }).pipe(
     T.Http({
@@ -15145,44 +17792,44 @@ export const UpdateAgentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAgentRequest>;
 
 /** Resource tags. */
-export type AgentsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const AgentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAgentResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateAgentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAgentResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentsUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateAgentResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AgentsUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateAgentResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AgentsUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAgentResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentsUpdateResponseIdentity {
+export interface UpdateAgentResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentsUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAgentResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AgentsUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAgentResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentsUpdateResponseIdentityUserAssignedIdentitiesMap,
+      UpdateAgentResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentsUpdateResponseIdentity",
-}) as any as S.Schema<AgentsUpdateResponseIdentity>;
+  identifier: "UpdateAgentResponseIdentity",
+}) as any as S.Schema<UpdateAgentResponseIdentity>;
 
 export interface UpdateAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15194,13 +17841,13 @@ export interface UpdateAgentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AgentsUpdateResponseTagsMap;
+  tags?: UpdateAgentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AgentProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentsUpdateResponseIdentity;
+  identity?: UpdateAgentResponseIdentity;
 }
 export const UpdateAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15208,50 +17855,50 @@ export const UpdateAgentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AgentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAgentResponseTagsMap),
     location: S.String,
     properties: S.optional(AgentProperties),
-    identity: S.optional(AgentsUpdateResponseIdentity),
+    identity: S.optional(UpdateAgentResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateAgentResponse",
 }) as any as S.Schema<UpdateAgentResponse>;
 
 /** Resource tags */
-export type AgentSpacesUpdateRequestTagsMap = {
+export type UpdateAgentSpaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AgentSpacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAgentSpaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentSpacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAgentSpaceRequestTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentSpacesUpdateRequestIdentityUserAssignedIdentitiesMap = {
+export type UpdateAgentSpaceRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentityInput | undefined;
 };
-export const AgentSpacesUpdateRequestIdentityUserAssignedIdentitiesMap =
+export const UpdateAgentSpaceRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentityInput,
-  ) as any as S.Schema<AgentSpacesUpdateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAgentSpaceRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentSpacesUpdateRequestIdentity {
+export interface UpdateAgentSpaceRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentSpacesUpdateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAgentSpaceRequestIdentityUserAssignedIdentitiesMap;
 }
-export const AgentSpacesUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAgentSpaceRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentSpacesUpdateRequestIdentityUserAssignedIdentitiesMap,
+      UpdateAgentSpaceRequestIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentSpacesUpdateRequestIdentity",
-}) as any as S.Schema<AgentSpacesUpdateRequestIdentity>;
+  identifier: "UpdateAgentSpaceRequestIdentity",
+}) as any as S.Schema<UpdateAgentSpaceRequestIdentity>;
 
 /** Collection of allowed Geneva actions */
 export type GenevaActionsPolicyPatchAllowedActionsList =
@@ -15331,9 +17978,9 @@ export interface UpdateAgentSpaceRequest {
   /** The name of the AgentSpace */
   agentSpaceName: string;
   /** Resource tags */
-  tags?: AgentSpacesUpdateRequestTagsMap;
+  tags?: UpdateAgentSpaceRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentSpacesUpdateRequestIdentity;
+  identity?: UpdateAgentSpaceRequestIdentity;
   /** Agent Space specific properties */
   properties?: AgentSpacePatchProperties;
 }
@@ -15342,8 +17989,8 @@ export const UpdateAgentSpaceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     agentSpaceName: S.String.pipe(T.Label()),
-    tags: S.optional(AgentSpacesUpdateRequestTagsMap),
-    identity: S.optional(AgentSpacesUpdateRequestIdentity),
+    tags: S.optional(UpdateAgentSpaceRequestTagsMap),
+    identity: S.optional(UpdateAgentSpaceRequestIdentity),
     properties: S.optional(AgentSpacePatchProperties),
   }).pipe(
     T.Http({
@@ -15358,46 +18005,46 @@ export const UpdateAgentSpaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAgentSpaceRequest>;
 
 /** Resource tags. */
-export type AgentSpacesUpdateResponseTagsMap = {
+export type UpdateAgentSpaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AgentSpacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAgentSpaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgentSpacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAgentSpaceResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type AgentSpacesUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateAgentSpaceResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const AgentSpacesUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateAgentSpaceResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<AgentSpacesUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateAgentSpaceResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AgentSpacesUpdateResponseIdentity {
+export interface UpdateAgentSpaceResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: AgentSpacesUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateAgentSpaceResponseIdentityUserAssignedIdentitiesMap;
 }
-export const AgentSpacesUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAgentSpaceResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      AgentSpacesUpdateResponseIdentityUserAssignedIdentitiesMap,
+      UpdateAgentSpaceResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "AgentSpacesUpdateResponseIdentity",
-}) as any as S.Schema<AgentSpacesUpdateResponseIdentity>;
+  identifier: "UpdateAgentSpaceResponseIdentity",
+}) as any as S.Schema<UpdateAgentSpaceResponseIdentity>;
 
 export interface UpdateAgentSpaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15409,13 +18056,13 @@ export interface UpdateAgentSpaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AgentSpacesUpdateResponseTagsMap;
+  tags?: UpdateAgentSpaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: AgentSpaceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AgentSpacesUpdateResponseIdentity;
+  identity?: UpdateAgentSpaceResponseIdentity;
 }
 export const UpdateAgentSpaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15423,23 +18070,23 @@ export const UpdateAgentSpaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AgentSpacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateAgentSpaceResponseTagsMap),
     location: S.String,
     properties: S.optional(AgentSpaceProperties),
-    identity: S.optional(AgentSpacesUpdateResponseIdentity),
+    identity: S.optional(UpdateAgentSpaceResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateAgentSpaceResponse",
 }) as any as S.Schema<UpdateAgentSpaceResponse>;
 
 /** Application-specific metadata in the form of key-value pairs. */
-export type CertificatesUpdateRequestTagsMap = {
+export type UpdateCertificateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CertificatesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCertificateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CertificatesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCertificateRequestTagsMap>;
 
 export interface UpdateCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15451,7 +18098,7 @@ export interface UpdateCertificateRequest {
   /** Name of the Certificate. */
   certificateName: string;
   /** Application-specific metadata in the form of key-value pairs. */
-  tags?: CertificatesUpdateRequestTagsMap;
+  tags?: UpdateCertificateRequestTagsMap;
 }
 export const UpdateCertificateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15459,13 +18106,13 @@ export const UpdateCertificateRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     environmentName: S.String.pipe(T.Label()),
     certificateName: S.String.pipe(T.Label()),
-    tags: S.optional(CertificatesUpdateRequestTagsMap),
+    tags: S.optional(UpdateCertificateRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/certificates/{certificateName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -15473,13 +18120,13 @@ export const UpdateCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCertificateRequest>;
 
 /** Resource tags. */
-export type CertificatesUpdateResponseTagsMap = {
+export type UpdateCertificateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CertificatesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCertificateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CertificatesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCertificateResponseTagsMap>;
 
 export interface UpdateCertificateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15491,7 +18138,7 @@ export interface UpdateCertificateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CertificatesUpdateResponseTagsMap;
+  tags?: UpdateCertificateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Certificate resource specific properties */
@@ -15503,7 +18150,7 @@ export const UpdateCertificateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CertificatesUpdateResponseTagsMap),
+    tags: S.optional(UpdateCertificateResponseTagsMap),
     location: S.String,
     properties: S.optional(CertificateProperties),
   }),
@@ -15512,13 +18159,13 @@ export const UpdateCertificateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCertificateResponse>;
 
 /** Resource tags. */
-export type ConnectedEnvironmentsUpdateRequestTagsMap = {
+export type UpdateConnectedEnvironmentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedEnvironmentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConnectedEnvironmentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectedEnvironmentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateConnectedEnvironmentRequestTagsMap>;
 
 export interface UpdateConnectedEnvironmentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15528,20 +18175,20 @@ export interface UpdateConnectedEnvironmentRequest {
   /** Name of the connectedEnvironment. */
   connectedEnvironmentName: string;
   /** Resource tags. */
-  tags?: ConnectedEnvironmentsUpdateRequestTagsMap;
+  tags?: UpdateConnectedEnvironmentRequestTagsMap;
 }
 export const UpdateConnectedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     connectedEnvironmentName: S.String.pipe(T.Label()),
-    tags: S.optional(ConnectedEnvironmentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateConnectedEnvironmentRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -15549,14 +18196,13 @@ export const UpdateConnectedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConnectedEnvironmentRequest>;
 
 /** Resource tags. */
-export type ConnectedEnvironmentsUpdateResponseTagsMap = {
+export type UpdateConnectedEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedEnvironmentsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ConnectedEnvironmentsUpdateResponseTagsMap>;
+export const UpdateConnectedEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateConnectedEnvironmentResponseTagsMap>;
 
 export interface UpdateConnectedEnvironmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15568,7 +18214,7 @@ export interface UpdateConnectedEnvironmentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConnectedEnvironmentsUpdateResponseTagsMap;
+  tags?: UpdateConnectedEnvironmentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ConnectedEnvironment resource specific properties */
@@ -15582,7 +18228,7 @@ export const UpdateConnectedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConnectedEnvironmentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateConnectedEnvironmentResponseTagsMap),
     location: S.String,
     properties: S.optional(ConnectedEnvironmentProperties),
     extendedLocation: S.optional(ExtendedLocation),
@@ -15592,16 +18238,16 @@ export const UpdateConnectedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConnectedEnvironmentResponse>;
 
 /** Application-specific metadata in the form of key-value pairs. */
-export type ConnectedEnvironmentsCertificatesUpdateRequestTagsMap = {
+export type UpdateConnectedEnvironmentsCertificateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedEnvironmentsCertificatesUpdateRequestTagsMap =
+export const UpdateConnectedEnvironmentsCertificateRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ConnectedEnvironmentsCertificatesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateConnectedEnvironmentsCertificateRequestTagsMap>;
 
-export interface UpdateConnectedEnvironmentCertificateRequest {
+export interface UpdateConnectedEnvironmentsCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15611,39 +18257,39 @@ export interface UpdateConnectedEnvironmentCertificateRequest {
   /** Name of the Certificate. */
   certificateName: string;
   /** Application-specific metadata in the form of key-value pairs. */
-  tags?: ConnectedEnvironmentsCertificatesUpdateRequestTagsMap;
+  tags?: UpdateConnectedEnvironmentsCertificateRequestTagsMap;
 }
-export const UpdateConnectedEnvironmentCertificateRequest =
+export const UpdateConnectedEnvironmentsCertificateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       connectedEnvironmentName: S.String.pipe(T.Label()),
       certificateName: S.String.pipe(T.Label()),
-      tags: S.optional(ConnectedEnvironmentsCertificatesUpdateRequestTagsMap),
+      tags: S.optional(UpdateConnectedEnvironmentsCertificateRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/connectedEnvironments/{connectedEnvironmentName}/certificates/{certificateName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
   ).annotate({
-    identifier: "UpdateConnectedEnvironmentCertificateRequest",
-  }) as any as S.Schema<UpdateConnectedEnvironmentCertificateRequest>;
+    identifier: "UpdateConnectedEnvironmentsCertificateRequest",
+  }) as any as S.Schema<UpdateConnectedEnvironmentsCertificateRequest>;
 
 /** Resource tags. */
-export type ConnectedEnvironmentsCertificatesUpdateResponseTagsMap = {
+export type UpdateConnectedEnvironmentsCertificateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedEnvironmentsCertificatesUpdateResponseTagsMap =
+export const UpdateConnectedEnvironmentsCertificateResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ConnectedEnvironmentsCertificatesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateConnectedEnvironmentsCertificateResponseTagsMap>;
 
-export interface UpdateConnectedEnvironmentCertificateResponse {
+export interface UpdateConnectedEnvironmentsCertificateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -15653,40 +18299,40 @@ export interface UpdateConnectedEnvironmentCertificateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConnectedEnvironmentsCertificatesUpdateResponseTagsMap;
+  tags?: UpdateConnectedEnvironmentsCertificateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Certificate resource specific properties */
   properties?: CertificateProperties;
 }
-export const UpdateConnectedEnvironmentCertificateResponse =
+export const UpdateConnectedEnvironmentsCertificateResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ConnectedEnvironmentsCertificatesUpdateResponseTagsMap),
+      tags: S.optional(UpdateConnectedEnvironmentsCertificateResponseTagsMap),
       location: S.String,
       properties: S.optional(CertificateProperties),
     }),
   ).annotate({
-    identifier: "UpdateConnectedEnvironmentCertificateResponse",
-  }) as any as S.Schema<UpdateConnectedEnvironmentCertificateResponse>;
+    identifier: "UpdateConnectedEnvironmentsCertificateResponse",
+  }) as any as S.Schema<UpdateConnectedEnvironmentsCertificateResponse>;
 
 /** Resource tags. */
-export type ContainerAppsUpdateRequestTagsMap = {
+export type UpdateContainerAppRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContainerAppRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerAppsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateContainerAppRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsUpdateRequestIdentity =
+export type UpdateContainerAppRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
-export const ContainerAppsUpdateRequestIdentity =
+export const UpdateContainerAppRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
 
 export interface UpdateContainerAppRequest {
@@ -15697,7 +18343,7 @@ export interface UpdateContainerAppRequest {
   /** Name of the Container App. */
   containerAppName: string;
   /** Resource tags. */
-  tags?: ContainerAppsUpdateRequestTagsMap;
+  tags?: UpdateContainerAppRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ContainerApp resource specific properties */
@@ -15716,7 +18362,7 @@ export const UpdateContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     containerAppName: S.String.pipe(T.Label()),
-    tags: S.optional(ContainerAppsUpdateRequestTagsMap),
+    tags: S.optional(UpdateContainerAppRequestTagsMap),
     location: S.String,
     properties: S.optional(ContainerAppPropertiesInput),
     extendedLocation: S.optional(ExtendedLocation),
@@ -15728,7 +18374,7 @@ export const UpdateContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps/{containerAppName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -15736,18 +18382,18 @@ export const UpdateContainerAppRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateContainerAppRequest>;
 
 /** Resource tags. */
-export type ContainerAppsUpdateResponseTagsMap = {
+export type UpdateContainerAppResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContainerAppResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerAppsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateContainerAppResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsUpdateResponseIdentity =
+export type UpdateContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ContainerAppsUpdateResponseIdentity =
+export const UpdateContainerAppResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface UpdateContainerAppResponse {
@@ -15760,7 +18406,7 @@ export interface UpdateContainerAppResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsUpdateResponseTagsMap;
+  tags?: UpdateContainerAppResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ContainerApp resource specific properties */
@@ -15780,7 +18426,7 @@ export const UpdateContainerAppResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ContainerAppsUpdateResponseTagsMap),
+    tags: S.optional(UpdateContainerAppResponseTagsMap),
     location: S.String,
     properties: S.optional(ContainerAppProperties),
     extendedLocation: S.optional(ExtendedLocation),
@@ -15793,19 +18439,19 @@ export const UpdateContainerAppResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateContainerAppResponse>;
 
 /** Resource tags. */
-export type ContainerAppsSessionPoolsUpdateRequestTagsMap = {
+export type UpdateContainerAppsSessionPoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsSessionPoolsUpdateRequestTagsMap =
+export const UpdateContainerAppsSessionPoolRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ContainerAppsSessionPoolsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateContainerAppsSessionPoolRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsSessionPoolsUpdateRequestIdentity =
+export type UpdateContainerAppsSessionPoolRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
-export const ContainerAppsSessionPoolsUpdateRequestIdentity =
+export const UpdateContainerAppsSessionPoolRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
 
 /** The secrets of the session pool. */
@@ -15842,7 +18488,7 @@ export const SessionPoolUpdatablePropertiesProperties = /*@__PURE__*/ S.suspend(
   identifier: "SessionPoolUpdatablePropertiesProperties",
 }) as any as S.Schema<SessionPoolUpdatablePropertiesProperties>;
 
-export interface UpdateContainerAppSessionPoolRequest {
+export interface UpdateContainerAppsSessionPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -15850,19 +18496,19 @@ export interface UpdateContainerAppSessionPoolRequest {
   /** Name of the session pool. */
   sessionPoolName: string;
   /** Resource tags. */
-  tags?: ContainerAppsSessionPoolsUpdateRequestTagsMap;
+  tags?: UpdateContainerAppsSessionPoolRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: ContainerAppsCreateOrUpdateRequestIdentity;
   /** Session pool resource specific updatable properties. */
   properties?: SessionPoolUpdatablePropertiesProperties;
 }
-export const UpdateContainerAppSessionPoolRequest = /*@__PURE__*/ S.suspend(
+export const UpdateContainerAppsSessionPoolRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       sessionPoolName: S.String.pipe(T.Label()),
-      tags: S.optional(ContainerAppsSessionPoolsUpdateRequestTagsMap),
+      tags: S.optional(UpdateContainerAppsSessionPoolRequestTagsMap),
       identity: S.optional(ContainerAppsCreateOrUpdateRequestIdentity),
       properties: S.optional(SessionPoolUpdatablePropertiesProperties),
     }).pipe(
@@ -15870,30 +18516,30 @@ export const UpdateContainerAppSessionPoolRequest = /*@__PURE__*/ S.suspend(
         method: "PATCH",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sessionPools/{sessionPoolName}",
         code: 200,
-        apiVersion: "2026-01-01",
+        apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "UpdateContainerAppSessionPoolRequest",
-}) as any as S.Schema<UpdateContainerAppSessionPoolRequest>;
+  identifier: "UpdateContainerAppsSessionPoolRequest",
+}) as any as S.Schema<UpdateContainerAppsSessionPoolRequest>;
 
 /** Resource tags. */
-export type ContainerAppsSessionPoolsUpdateResponseTagsMap = {
+export type UpdateContainerAppsSessionPoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerAppsSessionPoolsUpdateResponseTagsMap =
+export const UpdateContainerAppsSessionPoolResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ContainerAppsSessionPoolsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateContainerAppsSessionPoolResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ContainerAppsSessionPoolsUpdateResponseIdentity =
+export type UpdateContainerAppsSessionPoolResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ContainerAppsSessionPoolsUpdateResponseIdentity =
+export const UpdateContainerAppsSessionPoolResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
-export interface UpdateContainerAppSessionPoolResponse {
+export interface UpdateContainerAppsSessionPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -15903,7 +18549,7 @@ export interface UpdateContainerAppSessionPoolResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ContainerAppsSessionPoolsUpdateResponseTagsMap;
+  tags?: UpdateContainerAppsSessionPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Container App session pool resource specific properties */
@@ -15911,21 +18557,76 @@ export interface UpdateContainerAppSessionPoolResponse {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: ContainerAppsCreateOrUpdateResponseIdentity;
 }
-export const UpdateContainerAppSessionPoolResponse = /*@__PURE__*/ S.suspend(
+export const UpdateContainerAppsSessionPoolResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ContainerAppsSessionPoolsUpdateResponseTagsMap),
+      tags: S.optional(UpdateContainerAppsSessionPoolResponseTagsMap),
       location: S.String,
       properties: S.optional(SessionPoolProperties),
       identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
     }),
 ).annotate({
-  identifier: "UpdateContainerAppSessionPoolResponse",
-}) as any as S.Schema<UpdateContainerAppSessionPoolResponse>;
+  identifier: "UpdateContainerAppsSessionPoolResponse",
+}) as any as S.Schema<UpdateContainerAppsSessionPoolResponse>;
+
+export interface UpdateDotNetComponentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the managed environment. */
+  environmentName: string;
+  /** Name of the .NET Component. */
+  name: string;
+  /** .NET Component resource specific properties */
+  properties?: DotNetComponentProperties;
+}
+export const UpdateDotNetComponentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    environmentName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    properties: S.optional(DotNetComponentProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/dotNetComponents/{name}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDotNetComponentRequest",
+}) as any as S.Schema<UpdateDotNetComponentRequest>;
+
+export interface UpdateDotNetComponentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** .NET Component resource specific properties */
+  properties?: DotNetComponentProperties;
+}
+export const UpdateDotNetComponentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DotNetComponentProperties),
+  }),
+).annotate({
+  identifier: "UpdateDotNetComponentResponse",
+}) as any as S.Schema<UpdateDotNetComponentResponse>;
 
 export interface UpdateHttpRouteConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15951,7 +18652,7 @@ export const UpdateHttpRouteConfigRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/httpRouteConfigs/{httpRouteName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -16006,7 +18707,7 @@ export const UpdateJavaComponentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/javaComponents/{name}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -16038,17 +18739,17 @@ export const UpdateJavaComponentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateJavaComponentResponse>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type JobsUpdateRequestIdentity =
+export type UpdateJobRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
-export const JobsUpdateRequestIdentity =
+export const UpdateJobRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
 
 /** Resource tags. */
-export type JobsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const JobsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateJobRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateJobRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JobsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateJobRequestTagsMap>;
 
 /** Outbound IP Addresses of a container apps job. */
 export type JobPatchPropertiesPropertiesInputOutboundIpAddressesList =
@@ -16094,7 +18795,7 @@ export interface UpdateJobRequest {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: ContainerAppsCreateOrUpdateRequestIdentity;
   /** Resource tags. */
-  tags?: JobsUpdateRequestTagsMap;
+  tags?: UpdateJobRequestTagsMap;
   properties?: JobPatchPropertiesPropertiesInput;
 }
 export const UpdateJobRequest = /*@__PURE__*/ S.suspend(() =>
@@ -16103,14 +18804,14 @@ export const UpdateJobRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     jobName: S.String.pipe(T.Label()),
     identity: S.optional(ContainerAppsCreateOrUpdateRequestIdentity),
-    tags: S.optional(JobsUpdateRequestTagsMap),
+    tags: S.optional(UpdateJobRequestTagsMap),
     properties: S.optional(JobPatchPropertiesPropertiesInput),
   }).pipe(
     T.Http({
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/jobs/{jobName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -16118,16 +18819,16 @@ export const UpdateJobRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateJobRequest>;
 
 /** Resource tags. */
-export type JobsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const JobsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateJobResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateJobResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JobsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateJobResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type JobsUpdateResponseIdentity =
+export type UpdateJobResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const JobsUpdateResponseIdentity =
+export const UpdateJobResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface UpdateJobResponse {
@@ -16140,7 +18841,7 @@ export interface UpdateJobResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: JobsUpdateResponseTagsMap;
+  tags?: UpdateJobResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Container Apps Job resource specific properties. */
@@ -16154,7 +18855,7 @@ export const UpdateJobResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(JobsUpdateResponseTagsMap),
+    tags: S.optional(UpdateJobResponseTagsMap),
     location: S.String,
     properties: S.optional(JobProperties),
     identity: S.optional(ContainerAppsCreateOrUpdateResponseIdentity),
@@ -16164,13 +18865,13 @@ export const UpdateJobResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateJobResponse>;
 
 /** Application-specific metadata in the form of key-value pairs. */
-export type ManagedCertificatesUpdateRequestTagsMap = {
+export type UpdateManagedCertificateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedCertificatesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedCertificateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedCertificatesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateManagedCertificateRequestTagsMap>;
 
 export interface UpdateManagedCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16182,7 +18883,7 @@ export interface UpdateManagedCertificateRequest {
   /** Name of the Managed Certificate. */
   managedCertificateName: string;
   /** Application-specific metadata in the form of key-value pairs. */
-  tags?: ManagedCertificatesUpdateRequestTagsMap;
+  tags?: UpdateManagedCertificateRequestTagsMap;
 }
 export const UpdateManagedCertificateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -16190,13 +18891,13 @@ export const UpdateManagedCertificateRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     environmentName: S.String.pipe(T.Label()),
     managedCertificateName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedCertificatesUpdateRequestTagsMap),
+    tags: S.optional(UpdateManagedCertificateRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}/managedCertificates/{managedCertificateName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -16204,13 +18905,13 @@ export const UpdateManagedCertificateRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedCertificateRequest>;
 
 /** Resource tags. */
-export type ManagedCertificatesUpdateResponseTagsMap = {
+export type UpdateManagedCertificateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedCertificatesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedCertificateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedCertificatesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateManagedCertificateResponseTagsMap>;
 
 export interface UpdateManagedCertificateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -16222,7 +18923,7 @@ export interface UpdateManagedCertificateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedCertificatesUpdateResponseTagsMap;
+  tags?: UpdateManagedCertificateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Certificate resource specific properties */
@@ -16234,7 +18935,7 @@ export const UpdateManagedCertificateResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedCertificatesUpdateResponseTagsMap),
+    tags: S.optional(UpdateManagedCertificateResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedCertificateProperties),
   }),
@@ -16243,18 +18944,18 @@ export const UpdateManagedCertificateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedCertificateResponse>;
 
 /** Resource tags. */
-export type ManagedEnvironmentsUpdateRequestTagsMap = {
+export type UpdateManagedEnvironmentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedEnvironmentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedEnvironmentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedEnvironmentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateManagedEnvironmentRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedEnvironmentsUpdateRequestIdentity =
+export type UpdateManagedEnvironmentRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
-export const ManagedEnvironmentsUpdateRequestIdentity =
+export const UpdateManagedEnvironmentRequestIdentity =
   ContainerAppsCreateOrUpdateRequestIdentity;
 
 export interface UpdateManagedEnvironmentRequest {
@@ -16265,7 +18966,7 @@ export interface UpdateManagedEnvironmentRequest {
   /** Name of the Environment. */
   environmentName: string;
   /** Resource tags. */
-  tags?: ManagedEnvironmentsUpdateRequestTagsMap;
+  tags?: UpdateManagedEnvironmentRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Managed environment resource specific properties */
@@ -16280,7 +18981,7 @@ export const UpdateManagedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     environmentName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedEnvironmentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateManagedEnvironmentRequestTagsMap),
     location: S.String,
     properties: S.optional(ManagedEnvironmentPropertiesInput),
     kind: S.optional(S.String),
@@ -16290,7 +18991,7 @@ export const UpdateManagedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/managedEnvironments/{environmentName}",
       code: 200,
-      apiVersion: "2026-01-01",
+      apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
@@ -16298,18 +18999,18 @@ export const UpdateManagedEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedEnvironmentRequest>;
 
 /** Resource tags. */
-export type ManagedEnvironmentsUpdateResponseTagsMap = {
+export type UpdateManagedEnvironmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedEnvironmentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedEnvironmentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedEnvironmentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateManagedEnvironmentResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedEnvironmentsUpdateResponseIdentity =
+export type UpdateManagedEnvironmentResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
-export const ManagedEnvironmentsUpdateResponseIdentity =
+export const UpdateManagedEnvironmentResponseIdentity =
   ContainerAppsCreateOrUpdateResponseIdentity;
 
 export interface UpdateManagedEnvironmentResponse {
@@ -16322,7 +19023,7 @@ export interface UpdateManagedEnvironmentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedEnvironmentsUpdateResponseTagsMap;
+  tags?: UpdateManagedEnvironmentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Managed environment resource specific properties */
@@ -16338,7 +19039,7 @@ export const UpdateManagedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedEnvironmentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateManagedEnvironmentResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedEnvironmentProperties),
     kind: S.optional(S.String),
@@ -16347,6 +19048,161 @@ export const UpdateManagedEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateManagedEnvironmentResponse",
 }) as any as S.Schema<UpdateManagedEnvironmentResponse>;
+
+/** Resource tags. */
+export type UpdateSandboxGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSandboxGroupRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSandboxGroupRequestTagsMap>;
+
+/** SandboxGroup resource specific properties for patch requests. */
+export type SandboxGroupPatchProperties = SandboxGroupPropertiesInput;
+export const SandboxGroupPatchProperties = SandboxGroupPropertiesInput;
+
+export interface UpdateSandboxGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+  /** Resource tags. */
+  tags?: UpdateSandboxGroupRequestTagsMap;
+  /** SandboxGroup properties that can be updated. */
+  properties?: SandboxGroupPropertiesInput;
+}
+export const UpdateSandboxGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sandboxGroupName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateSandboxGroupRequestTagsMap),
+    properties: S.optional(SandboxGroupPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSandboxGroupRequest",
+}) as any as S.Schema<UpdateSandboxGroupRequest>;
+
+/** Resource tags. */
+export type UpdateSandboxGroupResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSandboxGroupResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSandboxGroupResponseTagsMap>;
+
+export interface UpdateSandboxGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateSandboxGroupResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SandboxGroupProperties;
+}
+export const UpdateSandboxGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateSandboxGroupResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SandboxGroupProperties),
+  }),
+).annotate({
+  identifier: "UpdateSandboxGroupResponse",
+}) as any as S.Schema<UpdateSandboxGroupResponse>;
+
+export interface VnetConnectionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the SandboxGroup */
+  sandboxGroupName: string;
+  /** The name of the VnetConnection */
+  vnetConnectionName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: VnetConnectionProperties;
+}
+export const VnetConnectionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      sandboxGroupName: S.String.pipe(T.Label()),
+      vnetConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(VnetConnectionProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/sandboxGroups/{sandboxGroupName}/vnetConnections/{vnetConnectionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "VnetConnectionsCreateOrUpdateRequest",
+}) as any as S.Schema<VnetConnectionsCreateOrUpdateRequest>;
+
+export interface VnetConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: VnetConnectionProperties;
+}
+export const VnetConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(VnetConnectionProperties),
+    }),
+).annotate({
+  identifier: "VnetConnectionsCreateOrUpdateResponse",
+}) as any as S.Schema<VnetConnectionsCreateOrUpdateResponse>;
+
+export type ActivateContainerAppsRevisionRevisionError = AzureOpError;
+/** Activates a revision for a Container App Activates a revision for a Container App */
+export const ActivateContainerAppsRevisionRevision: API.OperationMethod<
+  ActivateContainerAppsRevisionRevisionRequest,
+  ActivateContainerAppsRevisionRevisionResponse,
+  ActivateContainerAppsRevisionRevisionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ActivateContainerAppsRevisionRevisionRequest,
+  output: ActivateContainerAppsRevisionRevisionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type AgentsConnectorsCreateOrUpdateError = AzureOpError;
 /** Creates or updates an Agent Connector */
@@ -16438,6 +19294,21 @@ export const CheckConnectedEnvironmentNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CheckManagedEnvironmentMigrationEligibilityError = AzureOpError;
+/** Checks whether a Managed Environment can be migrated to a target mode. Checks whether a Managed Environment can be migrated to a target mode. */
+export const CheckManagedEnvironmentMigrationEligibility: API.OperationMethod<
+  CheckManagedEnvironmentMigrationEligibilityRequest,
+  CheckMigrationEligibilityResponse,
+  CheckManagedEnvironmentMigrationEligibilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckManagedEnvironmentMigrationEligibilityRequest,
+  output: CheckMigrationEligibilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CheckNamespaceNameAvailabilityError = AzureOpError;
 /** Checks the resource name availability. Checks if resource name is available. */
 export const CheckNamespaceNameAvailability: API.OperationMethod<
@@ -16514,6 +19385,22 @@ export const ConnectedEnvironmentsStoragesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ContainerAppPrivateEndpointConnectionsCreateOrUpdateError =
+  AzureOpError;
+/** Update the state of a private endpoint connection for a given Container App. Creates a private endpoint connection or updates its connection state for a Container App. */
+export const ContainerAppPrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
+  ContainerAppPrivateEndpointConnectionsCreateOrUpdateRequest,
+  ContainerAppPrivateEndpointConnectionsCreateOrUpdateResponse,
+  ContainerAppPrivateEndpointConnectionsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ContainerAppPrivateEndpointConnectionsCreateOrUpdateRequest,
+  output: ContainerAppPrivateEndpointConnectionsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ContainerAppsAuthConfigsCreateOrUpdateError = AzureOpError;
 /** Create or update the AuthConfig for a Container App. Create or update the AuthConfig for a Container App. */
 export const ContainerAppsAuthConfigsCreateOrUpdate: API.OperationMethod<
@@ -16539,36 +19426,6 @@ export const ContainerAppsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ContainerAppsCreateOrUpdateRequest,
   output: ContainerAppsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerAppsRevisionsActivateRevisionError = AzureOpError;
-/** Activates a revision for a Container App Activates a revision for a Container App */
-export const ContainerAppsRevisionsActivateRevision: API.OperationMethod<
-  ContainerAppsRevisionsActivateRevisionRequest,
-  ContainerAppsRevisionsActivateRevisionResponse,
-  ContainerAppsRevisionsActivateRevisionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerAppsRevisionsActivateRevisionRequest,
-  output: ContainerAppsRevisionsActivateRevisionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerAppsRevisionsDeactivateRevisionError = AzureOpError;
-/** Deactivates a revision for a Container App Deactivates a revision for a Container App */
-export const ContainerAppsRevisionsDeactivateRevision: API.OperationMethod<
-  ContainerAppsRevisionsDeactivateRevisionRequest,
-  ContainerAppsRevisionsDeactivateRevisionResponse,
-  ContainerAppsRevisionsDeactivateRevisionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerAppsRevisionsDeactivateRevisionRequest,
-  output: ContainerAppsRevisionsDeactivateRevisionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16604,6 +19461,21 @@ export const ContainerAppsSourceControlsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DaprComponentResiliencyPoliciesCreateOrUpdateError = AzureOpError;
+/** Creates or updates a Dapr component resiliency policy. Creates or updates a resiliency policy for a Dapr component. */
+export const DaprComponentResiliencyPoliciesCreateOrUpdate: API.OperationMethod<
+  DaprComponentResiliencyPoliciesCreateOrUpdateRequest,
+  DaprComponentResiliencyPoliciesCreateOrUpdateResponse,
+  DaprComponentResiliencyPoliciesCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DaprComponentResiliencyPoliciesCreateOrUpdateRequest,
+  output: DaprComponentResiliencyPoliciesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DaprComponentsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Dapr Component. Creates or updates a Dapr Component in a Managed Environment. */
 export const DaprComponentsCreateOrUpdate: API.OperationMethod<
@@ -16614,6 +19486,21 @@ export const DaprComponentsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DaprComponentsCreateOrUpdateRequest,
   output: DaprComponentsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeactivateContainerAppsRevisionRevisionError = AzureOpError;
+/** Deactivates a revision for a Container App Deactivates a revision for a Container App */
+export const DeactivateContainerAppsRevisionRevision: API.OperationMethod<
+  DeactivateContainerAppsRevisionRevisionRequest,
+  DeactivateContainerAppsRevisionRevisionResponse,
+  DeactivateContainerAppsRevisionRevisionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeactivateContainerAppsRevisionRevisionRequest,
+  output: DeactivateContainerAppsRevisionRevisionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16634,16 +19521,16 @@ export const DeleteAgent: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAgentConnectorError = AzureOpError;
+export type DeleteAgentsConnectorError = AzureOpError;
 /** Delete an Agent Connector */
-export const DeleteAgentConnector: API.OperationMethod<
-  DeleteAgentConnectorRequest,
-  DeleteAgentConnectorResponse,
-  DeleteAgentConnectorError,
+export const DeleteAgentsConnector: API.OperationMethod<
+  DeleteAgentsConnectorRequest,
+  DeleteAgentsConnectorResponse,
+  DeleteAgentsConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAgentConnectorRequest,
-  output: DeleteAgentConnectorResponse,
+  input: DeleteAgentsConnectorRequest,
+  output: DeleteAgentsConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16664,16 +19551,16 @@ export const DeleteAgentSpace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAgentSpaceConnectorError = AzureOpError;
+export type DeleteAgentSpacesConnectorError = AzureOpError;
 /** Delete an Agent Space Connector */
-export const DeleteAgentSpaceConnector: API.OperationMethod<
-  DeleteAgentSpaceConnectorRequest,
-  DeleteAgentSpaceConnectorResponse,
-  DeleteAgentSpaceConnectorError,
+export const DeleteAgentSpacesConnector: API.OperationMethod<
+  DeleteAgentSpacesConnectorRequest,
+  DeleteAgentSpacesConnectorResponse,
+  DeleteAgentSpacesConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAgentSpaceConnectorRequest,
-  output: DeleteAgentSpaceConnectorResponse,
+  input: DeleteAgentSpacesConnectorRequest,
+  output: DeleteAgentSpacesConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16709,46 +19596,46 @@ export const DeleteConnectedEnvironment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteConnectedEnvironmentCertificateError = AzureOpError;
+export type DeleteConnectedEnvironmentsCertificateError = AzureOpError;
 /** Deletes the specified Certificate. Deletes the specified Certificate. */
-export const DeleteConnectedEnvironmentCertificate: API.OperationMethod<
-  DeleteConnectedEnvironmentCertificateRequest,
-  DeleteConnectedEnvironmentCertificateResponse,
-  DeleteConnectedEnvironmentCertificateError,
+export const DeleteConnectedEnvironmentsCertificate: API.OperationMethod<
+  DeleteConnectedEnvironmentsCertificateRequest,
+  DeleteConnectedEnvironmentsCertificateResponse,
+  DeleteConnectedEnvironmentsCertificateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteConnectedEnvironmentCertificateRequest,
-  output: DeleteConnectedEnvironmentCertificateResponse,
+  input: DeleteConnectedEnvironmentsCertificateRequest,
+  output: DeleteConnectedEnvironmentsCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteConnectedEnvironmentDaprComponentError = AzureOpError;
+export type DeleteConnectedEnvironmentsDaprComponentError = AzureOpError;
 /** Delete a Dapr Component. Delete a Dapr Component from a connected environment. */
-export const DeleteConnectedEnvironmentDaprComponent: API.OperationMethod<
-  DeleteConnectedEnvironmentDaprComponentRequest,
-  DeleteConnectedEnvironmentDaprComponentResponse,
-  DeleteConnectedEnvironmentDaprComponentError,
+export const DeleteConnectedEnvironmentsDaprComponent: API.OperationMethod<
+  DeleteConnectedEnvironmentsDaprComponentRequest,
+  DeleteConnectedEnvironmentsDaprComponentResponse,
+  DeleteConnectedEnvironmentsDaprComponentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteConnectedEnvironmentDaprComponentRequest,
-  output: DeleteConnectedEnvironmentDaprComponentResponse,
+  input: DeleteConnectedEnvironmentsDaprComponentRequest,
+  output: DeleteConnectedEnvironmentsDaprComponentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteConnectedEnvironmentStorageError = AzureOpError;
+export type DeleteConnectedEnvironmentsStorageError = AzureOpError;
 /** Delete storage for a connectedEnvironment. Delete storage for a connectedEnvironment. */
-export const DeleteConnectedEnvironmentStorage: API.OperationMethod<
-  DeleteConnectedEnvironmentStorageRequest,
-  DeleteConnectedEnvironmentStorageResponse,
-  DeleteConnectedEnvironmentStorageError,
+export const DeleteConnectedEnvironmentsStorage: API.OperationMethod<
+  DeleteConnectedEnvironmentsStorageRequest,
+  DeleteConnectedEnvironmentsStorageResponse,
+  DeleteConnectedEnvironmentsStorageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteConnectedEnvironmentStorageRequest,
-  output: DeleteConnectedEnvironmentStorageResponse,
+  input: DeleteConnectedEnvironmentsStorageRequest,
+  output: DeleteConnectedEnvironmentsStorageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16769,46 +19656,76 @@ export const DeleteContainerApp: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteContainerAppAuthConfigError = AzureOpError;
+export type DeleteContainerAppPrivateEndpointConnectionError = AzureOpError;
+/** Delete a private endpoint connection for a given Container App. Deletes the specified private endpoint connection associated with a Container App. */
+export const DeleteContainerAppPrivateEndpointConnection: API.OperationMethod<
+  DeleteContainerAppPrivateEndpointConnectionRequest,
+  DeleteContainerAppPrivateEndpointConnectionResponse,
+  DeleteContainerAppPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteContainerAppPrivateEndpointConnectionRequest,
+  output: DeleteContainerAppPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteContainerAppsAuthConfigError = AzureOpError;
 /** Delete a Container App AuthConfig. Delete a Container App AuthConfig. */
-export const DeleteContainerAppAuthConfig: API.OperationMethod<
-  DeleteContainerAppAuthConfigRequest,
-  DeleteContainerAppAuthConfigResponse,
-  DeleteContainerAppAuthConfigError,
+export const DeleteContainerAppsAuthConfig: API.OperationMethod<
+  DeleteContainerAppsAuthConfigRequest,
+  DeleteContainerAppsAuthConfigResponse,
+  DeleteContainerAppsAuthConfigError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteContainerAppAuthConfigRequest,
-  output: DeleteContainerAppAuthConfigResponse,
+  input: DeleteContainerAppsAuthConfigRequest,
+  output: DeleteContainerAppsAuthConfigResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteContainerAppSessionPoolError = AzureOpError;
+export type DeleteContainerAppsLabelHistoryLabelHistoryError = AzureOpError;
+/** Delete the history of a label. Deletes the revision history associated with a Container App label. */
+export const DeleteContainerAppsLabelHistoryLabelHistory: API.OperationMethod<
+  DeleteContainerAppsLabelHistoryLabelHistoryRequest,
+  DeleteContainerAppsLabelHistoryLabelHistoryResponse,
+  DeleteContainerAppsLabelHistoryLabelHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteContainerAppsLabelHistoryLabelHistoryRequest,
+  output: DeleteContainerAppsLabelHistoryLabelHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteContainerAppsSessionPoolError = AzureOpError;
 /** Delete a session pool. Delete the session pool with the given name. */
-export const DeleteContainerAppSessionPool: API.OperationMethod<
-  DeleteContainerAppSessionPoolRequest,
-  DeleteContainerAppSessionPoolResponse,
-  DeleteContainerAppSessionPoolError,
+export const DeleteContainerAppsSessionPool: API.OperationMethod<
+  DeleteContainerAppsSessionPoolRequest,
+  DeleteContainerAppsSessionPoolResponse,
+  DeleteContainerAppsSessionPoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteContainerAppSessionPoolRequest,
-  output: DeleteContainerAppSessionPoolResponse,
+  input: DeleteContainerAppsSessionPoolRequest,
+  output: DeleteContainerAppsSessionPoolResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteContainerAppSourceControlError = AzureOpError;
+export type DeleteContainerAppsSourceControlError = AzureOpError;
 /** Delete a Container App SourceControl. Delete a Container App SourceControl. */
-export const DeleteContainerAppSourceControl: API.OperationMethod<
-  DeleteContainerAppSourceControlRequest,
-  DeleteContainerAppSourceControlResponse,
-  DeleteContainerAppSourceControlError,
+export const DeleteContainerAppsSourceControl: API.OperationMethod<
+  DeleteContainerAppsSourceControlRequest,
+  DeleteContainerAppsSourceControlResponse,
+  DeleteContainerAppsSourceControlError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteContainerAppSourceControlRequest,
-  output: DeleteContainerAppSourceControlResponse,
+  input: DeleteContainerAppsSourceControlRequest,
+  output: DeleteContainerAppsSourceControlResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16824,6 +19741,36 @@ export const DeleteDaprComponent: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteDaprComponentRequest,
   output: DeleteDaprComponentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDaprComponentResiliencyPolicyError = AzureOpError;
+/** Delete a Dapr component resiliency policy. Delete a resiliency policy for a Dapr component. */
+export const DeleteDaprComponentResiliencyPolicy: API.OperationMethod<
+  DeleteDaprComponentResiliencyPolicyRequest,
+  DeleteDaprComponentResiliencyPolicyResponse,
+  DeleteDaprComponentResiliencyPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDaprComponentResiliencyPolicyRequest,
+  output: DeleteDaprComponentResiliencyPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDotNetComponentError = AzureOpError;
+/** Delete a .NET Component. Deletes a .NET component from a managed environment. */
+export const DeleteDotNetComponent: API.OperationMethod<
+  DeleteDotNetComponentRequest,
+  DeleteDotNetComponentResponse,
+  DeleteDotNetComponentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDotNetComponentRequest,
+  output: DeleteDotNetComponentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16950,16 +19897,61 @@ export const DeleteManagedEnvironmentPrivateEndpointConnection: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type DeleteManagedEnvironmentStorageError = AzureOpError;
+export type DeleteManagedEnvironmentsStorageError = AzureOpError;
 /** Delete storage for a managedEnvironment. Delete storage for a managedEnvironment. */
-export const DeleteManagedEnvironmentStorage: API.OperationMethod<
-  DeleteManagedEnvironmentStorageRequest,
-  DeleteManagedEnvironmentStorageResponse,
-  DeleteManagedEnvironmentStorageError,
+export const DeleteManagedEnvironmentsStorage: API.OperationMethod<
+  DeleteManagedEnvironmentsStorageRequest,
+  DeleteManagedEnvironmentsStorageResponse,
+  DeleteManagedEnvironmentsStorageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteManagedEnvironmentStorageRequest,
-  output: DeleteManagedEnvironmentStorageResponse,
+  input: DeleteManagedEnvironmentsStorageRequest,
+  output: DeleteManagedEnvironmentsStorageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSandboxGroupError = AzureOpError;
+/** Delete a SandboxGroup. */
+export const DeleteSandboxGroup: API.OperationMethod<
+  DeleteSandboxGroupRequest,
+  DeleteSandboxGroupResponse,
+  DeleteSandboxGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSandboxGroupRequest,
+  output: DeleteSandboxGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVnetConnectionError = AzureOpError;
+/** Delete a VnetConnection. */
+export const DeleteVnetConnection: API.OperationMethod<
+  DeleteVnetConnectionRequest,
+  DeleteVnetConnectionResponse,
+  DeleteVnetConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVnetConnectionRequest,
+  output: DeleteVnetConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DotNetComponentsCreateOrUpdateError = AzureOpError;
+/** Creates or updates a .NET Component. Creates or updates a .NET Component in a Managed Environment. */
+export const DotNetComponentsCreateOrUpdate: API.OperationMethod<
+  DotNetComponentsCreateOrUpdateRequest,
+  DotNetComponentsCreateOrUpdateResponse,
+  DotNetComponentsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DotNetComponentsCreateOrUpdateRequest,
+  output: DotNetComponentsCreateOrUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16980,16 +19972,16 @@ export const GetAgent: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAgentConnectorError = AzureOpError;
+export type GetAgentsConnectorError = AzureOpError;
 /** Get the properties of an Agent Connector */
-export const GetAgentConnector: API.OperationMethod<
-  GetAgentConnectorRequest,
-  GetAgentConnectorResponse,
-  GetAgentConnectorError,
+export const GetAgentsConnector: API.OperationMethod<
+  GetAgentsConnectorRequest,
+  GetAgentsConnectorResponse,
+  GetAgentsConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAgentConnectorRequest,
-  output: GetAgentConnectorResponse,
+  input: GetAgentsConnectorRequest,
+  output: GetAgentsConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17010,16 +20002,16 @@ export const GetAgentSpace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAgentSpaceConnectorError = AzureOpError;
+export type GetAgentSpacesConnectorError = AzureOpError;
 /** Get the properties of an Agent Space Connector */
-export const GetAgentSpaceConnector: API.OperationMethod<
-  GetAgentSpaceConnectorRequest,
-  GetAgentSpaceConnectorResponse,
-  GetAgentSpaceConnectorError,
+export const GetAgentSpacesConnector: API.OperationMethod<
+  GetAgentSpacesConnectorRequest,
+  GetAgentSpacesConnectorResponse,
+  GetAgentSpacesConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAgentSpaceConnectorRequest,
-  output: GetAgentSpaceConnectorResponse,
+  input: GetAgentSpacesConnectorRequest,
+  output: GetAgentSpacesConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17085,46 +20077,46 @@ export const GetConnectedEnvironment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetConnectedEnvironmentCertificateError = AzureOpError;
+export type GetConnectedEnvironmentsCertificateError = AzureOpError;
 /** Get the specified Certificate. Get the specified Certificate. */
-export const GetConnectedEnvironmentCertificate: API.OperationMethod<
-  GetConnectedEnvironmentCertificateRequest,
-  GetConnectedEnvironmentCertificateResponse,
-  GetConnectedEnvironmentCertificateError,
+export const GetConnectedEnvironmentsCertificate: API.OperationMethod<
+  GetConnectedEnvironmentsCertificateRequest,
+  GetConnectedEnvironmentsCertificateResponse,
+  GetConnectedEnvironmentsCertificateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConnectedEnvironmentCertificateRequest,
-  output: GetConnectedEnvironmentCertificateResponse,
+  input: GetConnectedEnvironmentsCertificateRequest,
+  output: GetConnectedEnvironmentsCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetConnectedEnvironmentDaprComponentError = AzureOpError;
+export type GetConnectedEnvironmentsDaprComponentError = AzureOpError;
 /** Get a dapr component. Get a dapr component. */
-export const GetConnectedEnvironmentDaprComponent: API.OperationMethod<
-  GetConnectedEnvironmentDaprComponentRequest,
-  GetConnectedEnvironmentDaprComponentResponse,
-  GetConnectedEnvironmentDaprComponentError,
+export const GetConnectedEnvironmentsDaprComponent: API.OperationMethod<
+  GetConnectedEnvironmentsDaprComponentRequest,
+  GetConnectedEnvironmentsDaprComponentResponse,
+  GetConnectedEnvironmentsDaprComponentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConnectedEnvironmentDaprComponentRequest,
-  output: GetConnectedEnvironmentDaprComponentResponse,
+  input: GetConnectedEnvironmentsDaprComponentRequest,
+  output: GetConnectedEnvironmentsDaprComponentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetConnectedEnvironmentStorageError = AzureOpError;
+export type GetConnectedEnvironmentsStorageError = AzureOpError;
 /** Get storage for a connectedEnvironment. Get storage for a connectedEnvironment. */
-export const GetConnectedEnvironmentStorage: API.OperationMethod<
-  GetConnectedEnvironmentStorageRequest,
-  GetConnectedEnvironmentStorageResponse,
-  GetConnectedEnvironmentStorageError,
+export const GetConnectedEnvironmentsStorage: API.OperationMethod<
+  GetConnectedEnvironmentsStorageRequest,
+  GetConnectedEnvironmentsStorageResponse,
+  GetConnectedEnvironmentsStorageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetConnectedEnvironmentStorageRequest,
-  output: GetConnectedEnvironmentStorageResponse,
+  input: GetConnectedEnvironmentsStorageRequest,
+  output: GetConnectedEnvironmentsStorageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17145,21 +20137,6 @@ export const GetContainerApp: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppAuthConfigError = AzureOpError;
-/** Get a AuthConfig of a Container App. Get a AuthConfig of a Container App. */
-export const GetContainerAppAuthConfig: API.OperationMethod<
-  GetContainerAppAuthConfigRequest,
-  GetContainerAppAuthConfigResponse,
-  GetContainerAppAuthConfigError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppAuthConfigRequest,
-  output: GetContainerAppAuthConfigResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetContainerAppAuthTokenError = AzureOpError;
 /** Get auth token for a container app Get auth token for a container app */
 export const GetContainerAppAuthToken: API.OperationMethod<
@@ -17175,106 +20152,196 @@ export const GetContainerAppAuthToken: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppDiagnosticDetectorError = AzureOpError;
+export type GetContainerAppPrivateEndpointConnectionError = AzureOpError;
+/** Get a private endpoint connection for a given Container App. Gets the details of a private endpoint connection associated with a Container App. */
+export const GetContainerAppPrivateEndpointConnection: API.OperationMethod<
+  GetContainerAppPrivateEndpointConnectionRequest,
+  GetContainerAppPrivateEndpointConnectionResponse,
+  GetContainerAppPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerAppPrivateEndpointConnectionRequest,
+  output: GetContainerAppPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerAppPrivateLinkResourceError = AzureOpError;
+/** Get a private link resource for a given Container App. Gets the details of a private link resource supported by a Container App. */
+export const GetContainerAppPrivateLinkResource: API.OperationMethod<
+  GetContainerAppPrivateLinkResourceRequest,
+  GetContainerAppPrivateLinkResourceResponse,
+  GetContainerAppPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerAppPrivateLinkResourceRequest,
+  output: GetContainerAppPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerAppsAuthConfigError = AzureOpError;
+/** Get a AuthConfig of a Container App. Get a AuthConfig of a Container App. */
+export const GetContainerAppsAuthConfig: API.OperationMethod<
+  GetContainerAppsAuthConfigRequest,
+  GetContainerAppsAuthConfigResponse,
+  GetContainerAppsAuthConfigError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerAppsAuthConfigRequest,
+  output: GetContainerAppsAuthConfigResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerAppsDiagnosticDetectorError = AzureOpError;
 /** Get a diagnostics result of a Container App. Get a diagnostics result of a Container App. */
-export const GetContainerAppDiagnosticDetector: API.OperationMethod<
-  GetContainerAppDiagnosticDetectorRequest,
-  GetContainerAppDiagnosticDetectorResponse,
-  GetContainerAppDiagnosticDetectorError,
+export const GetContainerAppsDiagnosticDetector: API.OperationMethod<
+  GetContainerAppsDiagnosticDetectorRequest,
+  GetContainerAppsDiagnosticDetectorResponse,
+  GetContainerAppsDiagnosticDetectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppDiagnosticDetectorRequest,
-  output: GetContainerAppDiagnosticDetectorResponse,
+  input: GetContainerAppsDiagnosticDetectorRequest,
+  output: GetContainerAppsDiagnosticDetectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppDiagnosticRevisionError = AzureOpError;
+export type GetContainerAppsDiagnosticRevisionError = AzureOpError;
 /** Get a revision of a Container App. Get a revision of a Container App. */
-export const GetContainerAppDiagnosticRevision: API.OperationMethod<
-  GetContainerAppDiagnosticRevisionRequest,
-  GetContainerAppDiagnosticRevisionResponse,
-  GetContainerAppDiagnosticRevisionError,
+export const GetContainerAppsDiagnosticRevision: API.OperationMethod<
+  GetContainerAppsDiagnosticRevisionRequest,
+  GetContainerAppsDiagnosticRevisionResponse,
+  GetContainerAppsDiagnosticRevisionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppDiagnosticRevisionRequest,
-  output: GetContainerAppDiagnosticRevisionResponse,
+  input: GetContainerAppsDiagnosticRevisionRequest,
+  output: GetContainerAppsDiagnosticRevisionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppDiagnosticRootError = AzureOpError;
+export type GetContainerAppsDiagnosticRootError = AzureOpError;
 /** Get the properties of a Container App. Get the properties of a Container App. */
-export const GetContainerAppDiagnosticRoot: API.OperationMethod<
-  GetContainerAppDiagnosticRootRequest,
-  GetContainerAppDiagnosticRootResponse,
-  GetContainerAppDiagnosticRootError,
+export const GetContainerAppsDiagnosticRoot: API.OperationMethod<
+  GetContainerAppsDiagnosticRootRequest,
+  GetContainerAppsDiagnosticRootResponse,
+  GetContainerAppsDiagnosticRootError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppDiagnosticRootRequest,
-  output: GetContainerAppDiagnosticRootResponse,
+  input: GetContainerAppsDiagnosticRootRequest,
+  output: GetContainerAppsDiagnosticRootResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppRevisionReplicaReplicaError = AzureOpError;
+export type GetContainerAppsFunctionError = AzureOpError;
+/** Get a specific function of a Container App from the latest Revision. Gets the details of a specific function from the latest Container App revision. */
+export const GetContainerAppsFunction: API.OperationMethod<
+  GetContainerAppsFunctionRequest,
+  GetContainerAppsFunctionResponse,
+  GetContainerAppsFunctionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerAppsFunctionRequest,
+  output: GetContainerAppsFunctionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerAppsLabelHistoryLabelHistoryError = AzureOpError;
+/** Get the history of a label. Gets the revision history associated with a Container App label. */
+export const GetContainerAppsLabelHistoryLabelHistory: API.OperationMethod<
+  GetContainerAppsLabelHistoryLabelHistoryRequest,
+  GetContainerAppsLabelHistoryLabelHistoryResponse,
+  GetContainerAppsLabelHistoryLabelHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerAppsLabelHistoryLabelHistoryRequest,
+  output: GetContainerAppsLabelHistoryLabelHistoryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerAppsRevisionFunctionError = AzureOpError;
+/** Get a specific function of a Container App Revision. Gets the details of a specific function in a Container App revision. */
+export const GetContainerAppsRevisionFunction: API.OperationMethod<
+  GetContainerAppsRevisionFunctionRequest,
+  GetContainerAppsRevisionFunctionResponse,
+  GetContainerAppsRevisionFunctionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerAppsRevisionFunctionRequest,
+  output: GetContainerAppsRevisionFunctionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerAppsRevisionReplicasReplicaError = AzureOpError;
 /** Get a replica for a Container App Revision. Get a replica for a Container App Revision. */
-export const GetContainerAppRevisionReplicaReplica: API.OperationMethod<
-  GetContainerAppRevisionReplicaReplicaRequest,
-  GetContainerAppRevisionReplicaReplicaResponse,
-  GetContainerAppRevisionReplicaReplicaError,
+export const GetContainerAppsRevisionReplicasReplica: API.OperationMethod<
+  GetContainerAppsRevisionReplicasReplicaRequest,
+  GetContainerAppsRevisionReplicasReplicaResponse,
+  GetContainerAppsRevisionReplicasReplicaError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppRevisionReplicaReplicaRequest,
-  output: GetContainerAppRevisionReplicaReplicaResponse,
+  input: GetContainerAppsRevisionReplicasReplicaRequest,
+  output: GetContainerAppsRevisionReplicasReplicaResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppRevisionRevisionError = AzureOpError;
+export type GetContainerAppsRevisionRevisionError = AzureOpError;
 /** Get a revision of a Container App. Get a revision of a Container App. */
-export const GetContainerAppRevisionRevision: API.OperationMethod<
-  GetContainerAppRevisionRevisionRequest,
-  GetContainerAppRevisionRevisionResponse,
-  GetContainerAppRevisionRevisionError,
+export const GetContainerAppsRevisionRevision: API.OperationMethod<
+  GetContainerAppsRevisionRevisionRequest,
+  GetContainerAppsRevisionRevisionResponse,
+  GetContainerAppsRevisionRevisionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppRevisionRevisionRequest,
-  output: GetContainerAppRevisionRevisionResponse,
+  input: GetContainerAppsRevisionRevisionRequest,
+  output: GetContainerAppsRevisionRevisionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppSessionPoolError = AzureOpError;
+export type GetContainerAppsSessionPoolError = AzureOpError;
 /** Get the properties of a session pool. Get the properties of a session pool. */
-export const GetContainerAppSessionPool: API.OperationMethod<
-  GetContainerAppSessionPoolRequest,
-  GetContainerAppSessionPoolResponse,
-  GetContainerAppSessionPoolError,
+export const GetContainerAppsSessionPool: API.OperationMethod<
+  GetContainerAppsSessionPoolRequest,
+  GetContainerAppsSessionPoolResponse,
+  GetContainerAppsSessionPoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppSessionPoolRequest,
-  output: GetContainerAppSessionPoolResponse,
+  input: GetContainerAppsSessionPoolRequest,
+  output: GetContainerAppsSessionPoolResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetContainerAppSourceControlError = AzureOpError;
+export type GetContainerAppsSourceControlError = AzureOpError;
 /** Get a SourceControl of a Container App. Get a SourceControl of a Container App. */
-export const GetContainerAppSourceControl: API.OperationMethod<
-  GetContainerAppSourceControlRequest,
-  GetContainerAppSourceControlResponse,
-  GetContainerAppSourceControlError,
+export const GetContainerAppsSourceControl: API.OperationMethod<
+  GetContainerAppsSourceControlRequest,
+  GetContainerAppsSourceControlResponse,
+  GetContainerAppsSourceControlError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetContainerAppSourceControlRequest,
-  output: GetContainerAppSourceControlResponse,
+  input: GetContainerAppsSourceControlRequest,
+  output: GetContainerAppsSourceControlResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17305,6 +20372,36 @@ export const GetDaprComponent: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetDaprComponentRequest,
   output: GetDaprComponentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDaprComponentResiliencyPolicyError = AzureOpError;
+/** Get a Dapr component resiliency policy. Gets the details of a resiliency policy for a Dapr component. */
+export const GetDaprComponentResiliencyPolicy: API.OperationMethod<
+  GetDaprComponentResiliencyPolicyRequest,
+  GetDaprComponentResiliencyPolicyResponse,
+  GetDaprComponentResiliencyPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDaprComponentResiliencyPolicyRequest,
+  output: GetDaprComponentResiliencyPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDotNetComponentError = AzureOpError;
+/** Get a .NET Component. Gets the details of a .NET component in a managed environment. */
+export const GetDotNetComponent: API.OperationMethod<
+  GetDotNetComponentRequest,
+  GetDotNetComponentResponse,
+  GetDotNetComponentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDotNetComponentRequest,
+  output: GetDotNetComponentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17370,16 +20467,16 @@ export const GetJobDetector: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetJobProxyError = AzureOpError;
+export type GetJobsProxyError = AzureOpError;
 /** Get the properties of a Container App Job. Get the properties for a given Container App Job. */
-export const GetJobProxy: API.OperationMethod<
-  GetJobProxyRequest,
-  GetJobProxyResponse,
-  GetJobProxyError,
+export const GetJobsProxy: API.OperationMethod<
+  GetJobsProxyRequest,
+  GetJobsProxyResponse,
+  GetJobsProxyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetJobProxyRequest,
-  output: GetJobProxyResponse,
+  input: GetJobsProxyRequest,
+  output: GetJobsProxyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17490,21 +20587,6 @@ export const GetManagedEnvironmentDiagnosticDetector: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagedEnvironmentDiagnosticRootError = AzureOpError;
-/** Get the properties of a Managed Environment. Get the properties of a Managed Environment used to host container apps. */
-export const GetManagedEnvironmentDiagnosticRoot: API.OperationMethod<
-  GetManagedEnvironmentDiagnosticRootRequest,
-  GetManagedEnvironmentDiagnosticRootResponse,
-  GetManagedEnvironmentDiagnosticRootError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedEnvironmentDiagnosticRootRequest,
-  output: GetManagedEnvironmentDiagnosticRootResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetManagedEnvironmentPrivateEndpointConnectionError = AzureOpError;
 /** Get a private endpoint connection for a given managed environment. Get a private endpoint connection for a given managed environment. */
 export const GetManagedEnvironmentPrivateEndpointConnection: API.OperationMethod<
@@ -17520,16 +20602,76 @@ export const GetManagedEnvironmentPrivateEndpointConnection: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type GetManagedEnvironmentStorageError = AzureOpError;
-/** Get storage for a managedEnvironment. Get storage for a managedEnvironment. */
-export const GetManagedEnvironmentStorage: API.OperationMethod<
-  GetManagedEnvironmentStorageRequest,
-  GetManagedEnvironmentStorageResponse,
-  GetManagedEnvironmentStorageError,
+export type GetManagedEnvironmentPrivateLinkResourceError = AzureOpError;
+/** Get a private link resource for a given managed environment. Gets the details of a private link resource supported by a managed environment. */
+export const GetManagedEnvironmentPrivateLinkResource: API.OperationMethod<
+  GetManagedEnvironmentPrivateLinkResourceRequest,
+  GetManagedEnvironmentPrivateLinkResourceResponse,
+  GetManagedEnvironmentPrivateLinkResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedEnvironmentStorageRequest,
-  output: GetManagedEnvironmentStorageResponse,
+  input: GetManagedEnvironmentPrivateLinkResourceRequest,
+  output: GetManagedEnvironmentPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedEnvironmentsDiagnosticRootError = AzureOpError;
+/** Get the properties of a Managed Environment. Get the properties of a Managed Environment used to host container apps. */
+export const GetManagedEnvironmentsDiagnosticRoot: API.OperationMethod<
+  GetManagedEnvironmentsDiagnosticRootRequest,
+  GetManagedEnvironmentsDiagnosticRootResponse,
+  GetManagedEnvironmentsDiagnosticRootError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedEnvironmentsDiagnosticRootRequest,
+  output: GetManagedEnvironmentsDiagnosticRootResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedEnvironmentsStorageError = AzureOpError;
+/** Get storage for a managedEnvironment. Get storage for a managedEnvironment. */
+export const GetManagedEnvironmentsStorage: API.OperationMethod<
+  GetManagedEnvironmentsStorageRequest,
+  GetManagedEnvironmentsStorageResponse,
+  GetManagedEnvironmentsStorageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedEnvironmentsStorageRequest,
+  output: GetManagedEnvironmentsStorageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSandboxGroupError = AzureOpError;
+/** Get the properties of a SandboxGroup. */
+export const GetSandboxGroup: API.OperationMethod<
+  GetSandboxGroupRequest,
+  GetSandboxGroupResponse,
+  GetSandboxGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSandboxGroupRequest,
+  output: GetSandboxGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVnetConnectionError = AzureOpError;
+/** Get the properties of a VnetConnection. */
+export const GetVnetConnection: API.OperationMethod<
+  GetVnetConnectionRequest,
+  GetVnetConnectionResponse,
+  GetVnetConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVnetConnectionRequest,
+  output: GetVnetConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17545,6 +20687,21 @@ export const HttpRouteConfigCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: HttpRouteConfigCreateOrUpdateRequest,
   output: HttpRouteConfigCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InvokeFunctionsExtensionFunctionsHostError = AzureOpError;
+/** Proxies a Functions host call to the function app backed by the container app. Proxies a Functions host call to the function app backed by the container app. */
+export const InvokeFunctionsExtensionFunctionsHost: API.OperationMethod<
+  InvokeFunctionsExtensionFunctionsHostRequest,
+  InvokeFunctionsExtensionFunctionsHostResponse,
+  InvokeFunctionsExtensionFunctionsHostError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InvokeFunctionsExtensionFunctionsHostRequest,
+  output: InvokeFunctionsExtensionFunctionsHostResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17625,45 +20782,45 @@ export const ListAgentBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAgentConnectorByAgentError = AzureOpError;
+export type ListAgentsConnectorByAgentError = AzureOpError;
 /** Get all the connectors for an Agent */
-export const ListAgentConnectorByAgent: API.OperationMethod<
-  ListAgentConnectorByAgentRequest,
+export const ListAgentsConnectorByAgent: API.OperationMethod<
+  ListAgentsConnectorByAgentRequest,
   AgentConnectorListResult,
-  ListAgentConnectorByAgentError,
+  ListAgentsConnectorByAgentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAgentConnectorByAgentRequest,
+  input: ListAgentsConnectorByAgentRequest,
   output: AgentConnectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAgentConnectorSecretsError = AzureOpError;
+export type ListAgentsConnectorSecretsError = AzureOpError;
 /** Get a Data Connector with secrets from an Agent */
-export const ListAgentConnectorSecrets: API.OperationMethod<
-  ListAgentConnectorSecretsRequest,
-  ListAgentConnectorSecretsResponse,
-  ListAgentConnectorSecretsError,
+export const ListAgentsConnectorSecrets: API.OperationMethod<
+  ListAgentsConnectorSecretsRequest,
+  ListAgentsConnectorSecretsResponse,
+  ListAgentsConnectorSecretsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAgentConnectorSecretsRequest,
-  output: ListAgentConnectorSecretsResponse,
+  input: ListAgentsConnectorSecretsRequest,
+  output: ListAgentsConnectorSecretsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAgentConnectorWithSecretByAgentError = AzureOpError;
+export type ListAgentsConnectorWithSecretsByAgentError = AzureOpError;
 /** List all Data Connectors with secrets from an Agent */
-export const ListAgentConnectorWithSecretByAgent: API.OperationMethod<
-  ListAgentConnectorWithSecretByAgentRequest,
+export const ListAgentsConnectorWithSecretsByAgent: API.OperationMethod<
+  ListAgentsConnectorWithSecretsByAgentRequest,
   AgentConnectorCollection,
-  ListAgentConnectorWithSecretByAgentError,
+  ListAgentsConnectorWithSecretsByAgentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAgentConnectorWithSecretByAgentRequest,
+  input: ListAgentsConnectorWithSecretsByAgentRequest,
   output: AgentConnectorCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -17700,46 +20857,61 @@ export const ListAgentSpaceBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAgentSpaceConnectorAllSecretsError = AzureOpError;
+export type ListAgentSpacesConnectorAllSecretsError = AzureOpError;
 /** List all secrets for AgentSpace Connectors */
-export const ListAgentSpaceConnectorAllSecrets: API.OperationMethod<
-  ListAgentSpaceConnectorAllSecretsRequest,
+export const ListAgentSpacesConnectorAllSecrets: API.OperationMethod<
+  ListAgentSpacesConnectorAllSecretsRequest,
   AgentSpaceConnectorCollection,
-  ListAgentSpaceConnectorAllSecretsError,
+  ListAgentSpacesConnectorAllSecretsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAgentSpaceConnectorAllSecretsRequest,
+  input: ListAgentSpacesConnectorAllSecretsRequest,
   output: AgentSpaceConnectorCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAgentSpaceConnectorByAgentSpaceError = AzureOpError;
+export type ListAgentSpacesConnectorByAgentSpaceError = AzureOpError;
 /** Get all the connectors for an Agent Space */
-export const ListAgentSpaceConnectorByAgentSpace: API.OperationMethod<
-  ListAgentSpaceConnectorByAgentSpaceRequest,
+export const ListAgentSpacesConnectorByAgentSpace: API.OperationMethod<
+  ListAgentSpacesConnectorByAgentSpaceRequest,
   AgentSpaceConnectorListResult,
-  ListAgentSpaceConnectorByAgentSpaceError,
+  ListAgentSpacesConnectorByAgentSpaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAgentSpaceConnectorByAgentSpaceRequest,
+  input: ListAgentSpacesConnectorByAgentSpaceRequest,
   output: AgentSpaceConnectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListAgentSpaceConnectorSecretsError = AzureOpError;
+export type ListAgentSpacesConnectorSecretsError = AzureOpError;
 /** List secrets for an Agent Space Connector */
-export const ListAgentSpaceConnectorSecrets: API.OperationMethod<
-  ListAgentSpaceConnectorSecretsRequest,
-  ListAgentSpaceConnectorSecretsResponse,
-  ListAgentSpaceConnectorSecretsError,
+export const ListAgentSpacesConnectorSecrets: API.OperationMethod<
+  ListAgentSpacesConnectorSecretsRequest,
+  ListAgentSpacesConnectorSecretsResponse,
+  ListAgentSpacesConnectorSecretsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAgentSpaceConnectorSecretsRequest,
-  output: ListAgentSpaceConnectorSecretsResponse,
+  input: ListAgentSpacesConnectorSecretsRequest,
+  output: ListAgentSpacesConnectorSecretsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAvailableEnvironmentModesError = AzureOpError;
+/** Get available environment modes by location. Gets the environment modes available to a subscription in a location. */
+export const ListAvailableEnvironmentModes: API.OperationMethod<
+  ListAvailableEnvironmentModesRequest,
+  AvailableEnvironmentModesCollection,
+  ListAvailableEnvironmentModesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAvailableEnvironmentModesRequest,
+  output: AvailableEnvironmentModesCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17790,76 +20962,61 @@ export const ListConnectedEnvironmentBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListConnectedEnvironmentCertificatesError = AzureOpError;
+export type ListConnectedEnvironmentsCertificatesError = AzureOpError;
 /** Get the Certificates in a given connected environment. Get the Certificates in a given connected environment. */
-export const ListConnectedEnvironmentCertificates: API.OperationMethod<
-  ListConnectedEnvironmentCertificatesRequest,
+export const ListConnectedEnvironmentsCertificates: API.OperationMethod<
+  ListConnectedEnvironmentsCertificatesRequest,
   CertificateCollection,
-  ListConnectedEnvironmentCertificatesError,
+  ListConnectedEnvironmentsCertificatesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListConnectedEnvironmentCertificatesRequest,
+  input: ListConnectedEnvironmentsCertificatesRequest,
   output: CertificateCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListConnectedEnvironmentDaprComponentsError = AzureOpError;
+export type ListConnectedEnvironmentsDaprComponentsError = AzureOpError;
 /** Get the Dapr Components for a connected environment. Get the Dapr Components for a connected environment. */
-export const ListConnectedEnvironmentDaprComponents: API.OperationMethod<
-  ListConnectedEnvironmentDaprComponentsRequest,
+export const ListConnectedEnvironmentsDaprComponents: API.OperationMethod<
+  ListConnectedEnvironmentsDaprComponentsRequest,
   DaprComponentsCollection,
-  ListConnectedEnvironmentDaprComponentsError,
+  ListConnectedEnvironmentsDaprComponentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListConnectedEnvironmentDaprComponentsRequest,
+  input: ListConnectedEnvironmentsDaprComponentsRequest,
   output: DaprComponentsCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListConnectedEnvironmentDaprComponentSecretsError = AzureOpError;
+export type ListConnectedEnvironmentsDaprComponentSecretsError = AzureOpError;
 /** List secrets for a dapr component List secrets for a dapr component */
-export const ListConnectedEnvironmentDaprComponentSecrets: API.OperationMethod<
-  ListConnectedEnvironmentDaprComponentSecretsRequest,
+export const ListConnectedEnvironmentsDaprComponentSecrets: API.OperationMethod<
+  ListConnectedEnvironmentsDaprComponentSecretsRequest,
   DaprSecretsCollection,
-  ListConnectedEnvironmentDaprComponentSecretsError,
+  ListConnectedEnvironmentsDaprComponentSecretsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListConnectedEnvironmentDaprComponentSecretsRequest,
+  input: ListConnectedEnvironmentsDaprComponentSecretsRequest,
   output: DaprSecretsCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListConnectedEnvironmentStoragesError = AzureOpError;
+export type ListConnectedEnvironmentsStoragesError = AzureOpError;
 /** Get all storages for a connectedEnvironment. Get all storages for a connectedEnvironment. */
-export const ListConnectedEnvironmentStorages: API.OperationMethod<
-  ListConnectedEnvironmentStoragesRequest,
+export const ListConnectedEnvironmentsStorages: API.OperationMethod<
+  ListConnectedEnvironmentsStoragesRequest,
   ConnectedEnvironmentStoragesCollection,
-  ListConnectedEnvironmentStoragesError,
+  ListConnectedEnvironmentsStoragesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListConnectedEnvironmentStoragesRequest,
+  input: ListConnectedEnvironmentsStoragesRequest,
   output: ConnectedEnvironmentStoragesCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListContainerAppAuthConfigByContainerAppError = AzureOpError;
-/** Get the Container App AuthConfigs in a given resource group. Get the Container App AuthConfigs in a given resource group. */
-export const ListContainerAppAuthConfigByContainerApp: API.OperationMethod<
-  ListContainerAppAuthConfigByContainerAppRequest,
-  AuthConfigCollection,
-  ListContainerAppAuthConfigByContainerAppError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppAuthConfigByContainerAppRequest,
-  output: AuthConfigCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17910,60 +21067,75 @@ export const ListContainerAppCustomHostNameAnalysis: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListContainerAppDiagnosticDetectorsError = AzureOpError;
-/** Get the list of diagnostics for a given Container App. Get the list of diagnostics for a given Container App. */
-export const ListContainerAppDiagnosticDetectors: API.OperationMethod<
-  ListContainerAppDiagnosticDetectorsRequest,
-  DiagnosticsCollection,
-  ListContainerAppDiagnosticDetectorsError,
+export type ListContainerAppPrivateEndpointConnectionsError = AzureOpError;
+/** List private endpoint connections for a given Container App. Lists all private endpoint connections associated with a Container App. */
+export const ListContainerAppPrivateEndpointConnections: API.OperationMethod<
+  ListContainerAppPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListContainerAppPrivateEndpointConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppDiagnosticDetectorsRequest,
+  input: ListContainerAppPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppPrivateLinkResourcesError = AzureOpError;
+/** List private link resources for a given Container App. Lists the private link resources supported by a Container App. */
+export const ListContainerAppPrivateLinkResources: API.OperationMethod<
+  ListContainerAppPrivateLinkResourcesRequest,
+  PrivateLinkResourceListResult,
+  ListContainerAppPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppPrivateLinkResourcesRequest,
+  output: PrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppsAuthConfigByContainerAppError = AzureOpError;
+/** Get the Container App AuthConfigs in a given resource group. Get the Container App AuthConfigs in a given resource group. */
+export const ListContainerAppsAuthConfigByContainerApp: API.OperationMethod<
+  ListContainerAppsAuthConfigByContainerAppRequest,
+  AuthConfigCollection,
+  ListContainerAppsAuthConfigByContainerAppError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppsAuthConfigByContainerAppRequest,
+  output: AuthConfigCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppsDiagnosticDetectorsError = AzureOpError;
+/** Get the list of diagnostics for a given Container App. Get the list of diagnostics for a given Container App. */
+export const ListContainerAppsDiagnosticDetectors: API.OperationMethod<
+  ListContainerAppsDiagnosticDetectorsRequest,
+  DiagnosticsCollection,
+  ListContainerAppsDiagnosticDetectorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppsDiagnosticDetectorsRequest,
   output: DiagnosticsCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListContainerAppDiagnosticRevisionsError = AzureOpError;
+export type ListContainerAppsDiagnosticRevisionsError = AzureOpError;
 /** Get the Revisions for a given Container App. A synchronous resource action. */
-export const ListContainerAppDiagnosticRevisions: API.OperationMethod<
-  ListContainerAppDiagnosticRevisionsRequest,
+export const ListContainerAppsDiagnosticRevisions: API.OperationMethod<
+  ListContainerAppsDiagnosticRevisionsRequest,
   RevisionCollection,
-  ListContainerAppDiagnosticRevisionsError,
+  ListContainerAppsDiagnosticRevisionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppDiagnosticRevisionsRequest,
-  output: RevisionCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListContainerAppRevisionReplicaReplicasError = AzureOpError;
-/** List replicas for a Container App Revision. List replicas for a Container App Revision. */
-export const ListContainerAppRevisionReplicaReplicas: API.OperationMethod<
-  ListContainerAppRevisionReplicaReplicasRequest,
-  ReplicaCollection,
-  ListContainerAppRevisionReplicaReplicasError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppRevisionReplicaReplicasRequest,
-  output: ReplicaCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListContainerAppRevisionRevisionsError = AzureOpError;
-/** Get the Revisions for a given Container App. Get the Revisions for a given Container App. */
-export const ListContainerAppRevisionRevisions: API.OperationMethod<
-  ListContainerAppRevisionRevisionsRequest,
-  RevisionCollection,
-  ListContainerAppRevisionRevisionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppRevisionRevisionsRequest,
+  input: ListContainerAppsDiagnosticRevisionsRequest,
   output: RevisionCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -17985,46 +21157,136 @@ export const ListContainerAppSecrets: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListContainerAppSessionPoolByResourceGroupError = AzureOpError;
+export type ListContainerAppsFunctionsError = AzureOpError;
+/** List the functions for a given Container App from the latest Revision. Lists the functions available in the latest revision of a Container App. */
+export const ListContainerAppsFunctions: API.OperationMethod<
+  ListContainerAppsFunctionsRequest,
+  ContainerAppsFunctionCollection,
+  ListContainerAppsFunctionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppsFunctionsRequest,
+  output: ContainerAppsFunctionCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppsLabelHistoryLabelHistoryError = AzureOpError;
+/** Get the Label History for a given Container App. Lists the label revision histories for a Container App. */
+export const ListContainerAppsLabelHistoryLabelHistory: API.OperationMethod<
+  ListContainerAppsLabelHistoryLabelHistoryRequest,
+  LabelHistoryCollection,
+  ListContainerAppsLabelHistoryLabelHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppsLabelHistoryLabelHistoryRequest,
+  output: LabelHistoryCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppsRevisionFunctionsError = AzureOpError;
+/** List the functions for a given Container App Revision. Lists the functions available in a specific Container App revision. */
+export const ListContainerAppsRevisionFunctions: API.OperationMethod<
+  ListContainerAppsRevisionFunctionsRequest,
+  ContainerAppsFunctionCollection,
+  ListContainerAppsRevisionFunctionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppsRevisionFunctionsRequest,
+  output: ContainerAppsFunctionCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppsRevisionReplicasReplicasError = AzureOpError;
+/** List replicas for a Container App Revision. List replicas for a Container App Revision. */
+export const ListContainerAppsRevisionReplicasReplicas: API.OperationMethod<
+  ListContainerAppsRevisionReplicasReplicasRequest,
+  ReplicaCollection,
+  ListContainerAppsRevisionReplicasReplicasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppsRevisionReplicasReplicasRequest,
+  output: ReplicaCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppsRevisionRevisionsError = AzureOpError;
+/** Get the Revisions for a given Container App. Get the Revisions for a given Container App. */
+export const ListContainerAppsRevisionRevisions: API.OperationMethod<
+  ListContainerAppsRevisionRevisionsRequest,
+  RevisionCollection,
+  ListContainerAppsRevisionRevisionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerAppsRevisionRevisionsRequest,
+  output: RevisionCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerAppsSessionPoolByResourceGroupError = AzureOpError;
 /** Get the session pools in a given resource group of a subscription. Get the session pools in a given resource group of a subscription. */
-export const ListContainerAppSessionPoolByResourceGroup: API.OperationMethod<
-  ListContainerAppSessionPoolByResourceGroupRequest,
+export const ListContainerAppsSessionPoolByResourceGroup: API.OperationMethod<
+  ListContainerAppsSessionPoolByResourceGroupRequest,
   SessionPoolCollection,
-  ListContainerAppSessionPoolByResourceGroupError,
+  ListContainerAppsSessionPoolByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppSessionPoolByResourceGroupRequest,
+  input: ListContainerAppsSessionPoolByResourceGroupRequest,
   output: SessionPoolCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListContainerAppSessionPoolBySubscriptionError = AzureOpError;
+export type ListContainerAppsSessionPoolBySubscriptionError = AzureOpError;
 /** Get the session pools in a given subscription. Get the session pools in a given subscription. */
-export const ListContainerAppSessionPoolBySubscription: API.OperationMethod<
-  ListContainerAppSessionPoolBySubscriptionRequest,
+export const ListContainerAppsSessionPoolBySubscription: API.OperationMethod<
+  ListContainerAppsSessionPoolBySubscriptionRequest,
   SessionPoolCollection,
-  ListContainerAppSessionPoolBySubscriptionError,
+  ListContainerAppsSessionPoolBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppSessionPoolBySubscriptionRequest,
+  input: ListContainerAppsSessionPoolBySubscriptionRequest,
   output: SessionPoolCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListContainerAppSourceControlByContainerAppError = AzureOpError;
+export type ListContainerAppsSourceControlByContainerAppError = AzureOpError;
 /** Get the Container App SourceControls in a given resource group. Get the Container App SourceControls in a given resource group. */
-export const ListContainerAppSourceControlByContainerApp: API.OperationMethod<
-  ListContainerAppSourceControlByContainerAppRequest,
+export const ListContainerAppsSourceControlByContainerApp: API.OperationMethod<
+  ListContainerAppsSourceControlByContainerAppRequest,
   SourceControlCollection,
-  ListContainerAppSourceControlByContainerAppError,
+  ListContainerAppsSourceControlByContainerAppError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListContainerAppSourceControlByContainerAppRequest,
+  input: ListContainerAppsSourceControlByContainerAppRequest,
   output: SourceControlCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDaprComponentResiliencyPoliciesError = AzureOpError;
+/** Get the resiliency policies for a Dapr component. Lists the resiliency policies configured for a Dapr component. */
+export const ListDaprComponentResiliencyPolicies: API.OperationMethod<
+  ListDaprComponentResiliencyPoliciesRequest,
+  DaprComponentResiliencyPoliciesCollection,
+  ListDaprComponentResiliencyPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDaprComponentResiliencyPoliciesRequest,
+  output: DaprComponentResiliencyPoliciesCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18055,6 +21317,21 @@ export const ListDaprComponentSecrets: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDaprComponentSecretsRequest,
   output: DaprSecretsCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDotNetComponentsError = AzureOpError;
+/** Get the .NET Components for a managed environment. Lists the .NET components in a managed environment. */
+export const ListDotNetComponents: API.OperationMethod<
+  ListDotNetComponentsRequest,
+  DotNetComponentsCollection,
+  ListDotNetComponentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDotNetComponentsRequest,
+  output: DotNetComponentsCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18135,21 +21412,6 @@ export const ListJobDetectors: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListJobExecutionsError = AzureOpError;
-/** Get a Container Apps Job's executions Get a Container Apps Job's executions */
-export const ListJobExecutions: API.OperationMethod<
-  ListJobExecutionsRequest,
-  ContainerAppJobExecutions,
-  ListJobExecutionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListJobExecutionsRequest,
-  output: ContainerAppJobExecutions,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListJobSecretsError = AzureOpError;
 /** List secrets for a container apps job List secrets for a container apps job */
 export const ListJobSecrets: API.OperationMethod<
@@ -18165,16 +21427,16 @@ export const ListJobSecrets: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListLogicAppWorkflowConnectionsError = AzureOpError;
-/** Gets logic app's connections. Gets logic app's connections. */
-export const ListLogicAppWorkflowConnections: API.OperationMethod<
-  ListLogicAppWorkflowConnectionsRequest,
-  ListLogicAppWorkflowConnectionsResponse,
-  ListLogicAppWorkflowConnectionsError,
+export type ListJobsExecutionsError = AzureOpError;
+/** Get a Container Apps Job's executions Get a Container Apps Job's executions */
+export const ListJobsExecutions: API.OperationMethod<
+  ListJobsExecutionsRequest,
+  ContainerAppJobExecutions,
+  ListJobsExecutionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListLogicAppWorkflowConnectionsRequest,
-  output: ListLogicAppWorkflowConnectionsResponse,
+  input: ListJobsExecutionsRequest,
+  output: ContainerAppJobExecutions,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18190,6 +21452,21 @@ export const ListLogicAppWorkflows: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListLogicAppWorkflowsRequest,
   output: WorkflowEnvelopeCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLogicAppWorkflowsConnectionsError = AzureOpError;
+/** Gets logic app's connections. Gets logic app's connections. */
+export const ListLogicAppWorkflowsConnections: API.OperationMethod<
+  ListLogicAppWorkflowsConnectionsRequest,
+  ListLogicAppWorkflowsConnectionsResponse,
+  ListLogicAppWorkflowsConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLogicAppWorkflowsConnectionsRequest,
+  output: ListLogicAppWorkflowsConnectionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18301,15 +21578,15 @@ export const ListManagedEnvironmentPrivateLinkResources: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListManagedEnvironmentStoragesError = AzureOpError;
+export type ListManagedEnvironmentsStoragesError = AzureOpError;
 /** Get all storages for a managedEnvironment. Get all storages for a managedEnvironment. */
-export const ListManagedEnvironmentStorages: API.OperationMethod<
-  ListManagedEnvironmentStoragesRequest,
+export const ListManagedEnvironmentsStorages: API.OperationMethod<
+  ListManagedEnvironmentsStoragesRequest,
   ManagedEnvironmentStoragesCollection,
-  ListManagedEnvironmentStoragesError,
+  ListManagedEnvironmentsStoragesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListManagedEnvironmentStoragesRequest,
+  input: ListManagedEnvironmentsStoragesRequest,
   output: ManagedEnvironmentStoragesCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -18361,6 +21638,36 @@ export const ListOperations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListSandboxGroupByResourceGroupError = AzureOpError;
+/** Get all SandboxGroups in a resource group. */
+export const ListSandboxGroupByResourceGroup: API.OperationMethod<
+  ListSandboxGroupByResourceGroupRequest,
+  SandboxGroupListResult,
+  ListSandboxGroupByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSandboxGroupByResourceGroupRequest,
+  output: SandboxGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSandboxGroupBySubscriptionError = AzureOpError;
+/** Get all SandboxGroups for a subscription. */
+export const ListSandboxGroupBySubscription: API.OperationMethod<
+  ListSandboxGroupBySubscriptionRequest,
+  SandboxGroupListResult,
+  ListSandboxGroupBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSandboxGroupBySubscriptionRequest,
+  output: SandboxGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListSupportedAgentModelByLocationError = AzureOpError;
 /** List SupportedAgentModel resources by SubscriptionLocationResource */
 export const ListSupportedAgentModelByLocation: API.OperationMethod<
@@ -18386,6 +21693,21 @@ export const ListUsages: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListUsagesRequest,
   output: ListUsagesResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVnetConnectionBySandboxGroupError = AzureOpError;
+/** List all VnetConnections in the specified SandboxGroup. */
+export const ListVnetConnectionBySandboxGroup: API.OperationMethod<
+  ListVnetConnectionBySandboxGroupRequest,
+  VnetConnectionListResult,
+  ListVnetConnectionBySandboxGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVnetConnectionBySandboxGroupRequest,
+  output: VnetConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18482,16 +21804,46 @@ export const ManagedEnvironmentsStoragesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestartContainerAppRevisionRevisionError = AzureOpError;
+export type RestartContainerAppsRevisionRevisionError = AzureOpError;
 /** Restarts a revision for a Container App Restarts a revision for a Container App */
-export const RestartContainerAppRevisionRevision: API.OperationMethod<
-  RestartContainerAppRevisionRevisionRequest,
-  RestartContainerAppRevisionRevisionResponse,
-  RestartContainerAppRevisionRevisionError,
+export const RestartContainerAppsRevisionRevision: API.OperationMethod<
+  RestartContainerAppsRevisionRevisionRequest,
+  RestartContainerAppsRevisionRevisionResponse,
+  RestartContainerAppsRevisionRevisionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestartContainerAppRevisionRevisionRequest,
-  output: RestartContainerAppRevisionRevisionResponse,
+  input: RestartContainerAppsRevisionRevisionRequest,
+  output: RestartContainerAppsRevisionRevisionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeJobError = AzureOpError;
+/** Resumes a suspended job Resumes execution for a suspended Container Apps job. */
+export const ResumeJob: API.OperationMethod<
+  ResumeJobRequest,
+  ResumeJobResponse,
+  ResumeJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeJobRequest,
+  output: ResumeJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SandboxGroupsCreateOrUpdateError = AzureOpError;
+/** Create or update a SandboxGroup. */
+export const SandboxGroupsCreateOrUpdate: API.OperationMethod<
+  SandboxGroupsCreateOrUpdateRequest,
+  SandboxGroupsCreateOrUpdateResponse,
+  SandboxGroupsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SandboxGroupsCreateOrUpdateRequest,
+  output: SandboxGroupsCreateOrUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18587,16 +21939,31 @@ export const StopJobExecution: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StopJobMultipleExecutionError = AzureOpError;
+export type StopJobMultipleExecutionsError = AzureOpError;
 /** Terminates execution of a running container apps job Terminates execution of a running container apps job */
-export const StopJobMultipleExecution: API.OperationMethod<
-  StopJobMultipleExecutionRequest,
+export const StopJobMultipleExecutions: API.OperationMethod<
+  StopJobMultipleExecutionsRequest,
   ContainerAppJobExecutions,
-  StopJobMultipleExecutionError,
+  StopJobMultipleExecutionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopJobMultipleExecutionRequest,
+  input: StopJobMultipleExecutionsRequest,
   output: ContainerAppJobExecutions,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SuspendJobError = AzureOpError;
+/** Suspends a job Suspends execution for a running Container Apps job. */
+export const SuspendJob: API.OperationMethod<
+  SuspendJobRequest,
+  SuspendJobResponse,
+  SuspendJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SuspendJobRequest,
+  output: SuspendJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18662,16 +22029,16 @@ export const UpdateConnectedEnvironment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateConnectedEnvironmentCertificateError = AzureOpError;
+export type UpdateConnectedEnvironmentsCertificateError = AzureOpError;
 /** Update properties of a certificate Patches a certificate. Currently only patching of tags is supported */
-export const UpdateConnectedEnvironmentCertificate: API.OperationMethod<
-  UpdateConnectedEnvironmentCertificateRequest,
-  UpdateConnectedEnvironmentCertificateResponse,
-  UpdateConnectedEnvironmentCertificateError,
+export const UpdateConnectedEnvironmentsCertificate: API.OperationMethod<
+  UpdateConnectedEnvironmentsCertificateRequest,
+  UpdateConnectedEnvironmentsCertificateResponse,
+  UpdateConnectedEnvironmentsCertificateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateConnectedEnvironmentCertificateRequest,
-  output: UpdateConnectedEnvironmentCertificateResponse,
+  input: UpdateConnectedEnvironmentsCertificateRequest,
+  output: UpdateConnectedEnvironmentsCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18692,16 +22059,31 @@ export const UpdateContainerApp: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateContainerAppSessionPoolError = AzureOpError;
+export type UpdateContainerAppsSessionPoolError = AzureOpError;
 /** Update properties of a session pool Patches a session pool using JSON merge patch */
-export const UpdateContainerAppSessionPool: API.OperationMethod<
-  UpdateContainerAppSessionPoolRequest,
-  UpdateContainerAppSessionPoolResponse,
-  UpdateContainerAppSessionPoolError,
+export const UpdateContainerAppsSessionPool: API.OperationMethod<
+  UpdateContainerAppsSessionPoolRequest,
+  UpdateContainerAppsSessionPoolResponse,
+  UpdateContainerAppsSessionPoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateContainerAppSessionPoolRequest,
-  output: UpdateContainerAppSessionPoolResponse,
+  input: UpdateContainerAppsSessionPoolRequest,
+  output: UpdateContainerAppsSessionPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDotNetComponentError = AzureOpError;
+/** Update properties of a .NET Component Patches a .NET Component using JSON Merge Patch */
+export const UpdateDotNetComponent: API.OperationMethod<
+  UpdateDotNetComponentRequest,
+  UpdateDotNetComponentResponse,
+  UpdateDotNetComponentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDotNetComponentRequest,
+  output: UpdateDotNetComponentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18777,6 +22159,36 @@ export const UpdateManagedEnvironment: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateManagedEnvironmentRequest,
   output: UpdateManagedEnvironmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSandboxGroupError = AzureOpError;
+/** Patches a SandboxGroup. */
+export const UpdateSandboxGroup: API.OperationMethod<
+  UpdateSandboxGroupRequest,
+  UpdateSandboxGroupResponse,
+  UpdateSandboxGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSandboxGroupRequest,
+  output: UpdateSandboxGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type VnetConnectionsCreateOrUpdateError = AzureOpError;
+/** Create or update a VnetConnection. */
+export const VnetConnectionsCreateOrUpdate: API.OperationMethod<
+  VnetConnectionsCreateOrUpdateRequest,
+  VnetConnectionsCreateOrUpdateResponse,
+  VnetConnectionsCreateOrUpdateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: VnetConnectionsCreateOrUpdateRequest,
+  output: VnetConnectionsCreateOrUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

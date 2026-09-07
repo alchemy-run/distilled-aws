@@ -13,9 +13,9 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** The type of resource, for instance Microsoft.DigitalTwins/digitalTwinsInstances. */
-export type DigitalTwinsCheckNameAvailabilityRequestType =
+export type CheckDigitalTwinNameAvailabilityRequestType =
   "Microsoft.DigitalTwins/digitalTwinsInstances";
-export const DigitalTwinsCheckNameAvailabilityRequestType =
+export const CheckDigitalTwinNameAvailabilityRequestType =
   /*@__PURE__*/ S.String;
 
 export interface CheckDigitalTwinNameAvailabilityRequest {
@@ -26,7 +26,7 @@ export interface CheckDigitalTwinNameAvailabilityRequest {
   /** Resource name. */
   name: string;
   /** The type of resource, for instance Microsoft.DigitalTwins/digitalTwinsInstances. */
-  type: DigitalTwinsCheckNameAvailabilityRequestType | (string & {});
+  type: CheckDigitalTwinNameAvailabilityRequestType | (string & {});
 }
 export const CheckDigitalTwinNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -34,7 +34,7 @@ export const CheckDigitalTwinNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
       name: S.String,
-      type: DigitalTwinsCheckNameAvailabilityRequestType,
+      type: CheckDigitalTwinNameAvailabilityRequestType,
     }).pipe(
       T.Http({
         method: "POST",
@@ -96,13 +96,13 @@ export const DeleteDigitalTwinRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteDigitalTwinRequest>;
 
 /** The resource tags. */
-export type DigitalTwinsDeleteResponseTagsMap = {
+export type DeleteDigitalTwinResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DigitalTwinsDeleteResponseTagsMap = /*@__PURE__*/ S.Record(
+export const DeleteDigitalTwinResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DigitalTwinsDeleteResponseTagsMap>;
+) as any as S.Schema<DeleteDigitalTwinResponseTagsMap>;
 
 /** The type of Managed Identity used by the DigitalTwinsInstance. */
 export type DigitalTwinsIdentityType =
@@ -376,7 +376,7 @@ export interface DeleteDigitalTwinResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: DigitalTwinsDeleteResponseTagsMap | null;
+  tags?: DeleteDigitalTwinResponseTagsMap | null;
   /** The managed identity for the DigitalTwinsInstance. */
   identity?: DigitalTwinsIdentity | null;
   /** Metadata pertaining to creation and last modification of the DigitalTwinsInstance. */
@@ -390,7 +390,7 @@ export const DeleteDigitalTwinResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(S.NullOr(DigitalTwinsDeleteResponseTagsMap)),
+    tags: S.optional(S.NullOr(DeleteDigitalTwinResponseTagsMap)),
     identity: S.optional(S.NullOr(DigitalTwinsIdentity)),
     systemData: S.optional(SystemData),
     properties: S.optional(DigitalTwinsProperties),
@@ -399,7 +399,7 @@ export const DeleteDigitalTwinResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDigitalTwinResponse",
 }) as any as S.Schema<DeleteDigitalTwinResponse>;
 
-export interface DeleteDigitalTwinEndpointRequest {
+export interface DeleteDigitalTwinsEndpointRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the DigitalTwinsInstance. */
@@ -409,7 +409,7 @@ export interface DeleteDigitalTwinEndpointRequest {
   /** Name of Endpoint Resource. */
   endpointName: string;
 }
-export const DeleteDigitalTwinEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDigitalTwinsEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -424,8 +424,8 @@ export const DeleteDigitalTwinEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteDigitalTwinEndpointRequest",
-}) as any as S.Schema<DeleteDigitalTwinEndpointRequest>;
+  identifier: "DeleteDigitalTwinsEndpointRequest",
+}) as any as S.Schema<DeleteDigitalTwinsEndpointRequest>;
 
 /** The type of Digital Twins endpoint */
 export type DigitalTwinsEndpointResourcePropertiesEndpointType =
@@ -515,7 +515,7 @@ export const DigitalTwinsEndpointResourceProperties = /*@__PURE__*/ S.suspend(
   identifier: "DigitalTwinsEndpointResourceProperties",
 }) as any as S.Schema<DigitalTwinsEndpointResourceProperties>;
 
-export interface DeleteDigitalTwinEndpointResponse {
+export interface DeleteDigitalTwinsEndpointResponse {
   /** The resource identifier. */
   id?: string;
   /** Extension resource name. */
@@ -527,7 +527,7 @@ export interface DeleteDigitalTwinEndpointResponse {
   /** DigitalTwinsInstance endpoint resource properties. */
   properties: DigitalTwinsEndpointResourceProperties;
 }
-export const DeleteDigitalTwinEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDigitalTwinsEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -536,8 +536,8 @@ export const DeleteDigitalTwinEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     properties: DigitalTwinsEndpointResourceProperties,
   }),
 ).annotate({
-  identifier: "DeleteDigitalTwinEndpointResponse",
-}) as any as S.Schema<DeleteDigitalTwinEndpointResponse>;
+  identifier: "DeleteDigitalTwinsEndpointResponse",
+}) as any as S.Schema<DeleteDigitalTwinsEndpointResponse>;
 
 export interface DeletePrivateEndpointConnectionRequest {
   /** The subscription identifier. */
@@ -575,13 +575,13 @@ export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeletePrivateEndpointConnectionResponse",
 }) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export type TimeSeriesDatabaseConnectionsDeleteRequestCleanupConnectionArtifacts =
+export type DeleteTimeSeriesDatabaseConnectionRequestCleanupConnectionArtifacts =
   | "true"
   | "false";
-export const TimeSeriesDatabaseConnectionsDeleteRequestCleanupConnectionArtifacts =
+export const DeleteTimeSeriesDatabaseConnectionRequestCleanupConnectionArtifacts =
   /*@__PURE__*/ S.String;
 
-export interface DeleteTimeSeryDatabaseConnectionRequest {
+export interface DeleteTimeSeriesDatabaseConnectionRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the DigitalTwinsInstance. */
@@ -592,18 +592,18 @@ export interface DeleteTimeSeryDatabaseConnectionRequest {
   timeSeriesDatabaseConnectionName: string;
   /** Specifies whether or not to attempt to clean up artifacts that were created in order to establish a connection to the time series database. This is a best-effort attempt that will fail if appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data. */
   cleanupConnectionArtifacts?:
-    | TimeSeriesDatabaseConnectionsDeleteRequestCleanupConnectionArtifacts
+    | DeleteTimeSeriesDatabaseConnectionRequestCleanupConnectionArtifacts
     | (string & {});
 }
-export const DeleteTimeSeryDatabaseConnectionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteTimeSeriesDatabaseConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
       timeSeriesDatabaseConnectionName: S.String.pipe(T.Label()),
       cleanupConnectionArtifacts: S.optional(
-        TimeSeriesDatabaseConnectionsDeleteRequestCleanupConnectionArtifacts.pipe(
+        DeleteTimeSeriesDatabaseConnectionRequestCleanupConnectionArtifacts.pipe(
           T.Query(),
         ),
       ),
@@ -615,9 +615,9 @@ export const DeleteTimeSeryDatabaseConnectionRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2023-01-31",
       }),
     ),
-).annotate({
-  identifier: "DeleteTimeSeryDatabaseConnectionRequest",
-}) as any as S.Schema<DeleteTimeSeryDatabaseConnectionRequest>;
+  ).annotate({
+    identifier: "DeleteTimeSeriesDatabaseConnectionRequest",
+  }) as any as S.Schema<DeleteTimeSeriesDatabaseConnectionRequest>;
 
 /** The type of time series connection resource. */
 export type TimeSeriesDatabaseConnectionPropertiesConnectionType =
@@ -664,7 +664,7 @@ export const TimeSeriesDatabaseConnectionProperties = /*@__PURE__*/ S.suspend(
   identifier: "TimeSeriesDatabaseConnectionProperties",
 }) as any as S.Schema<TimeSeriesDatabaseConnectionProperties>;
 
-export interface DeleteTimeSeryDatabaseConnectionResponse {
+export interface DeleteTimeSeriesDatabaseConnectionResponse {
   /** The resource identifier. */
   id?: string;
   /** Extension resource name. */
@@ -676,8 +676,8 @@ export interface DeleteTimeSeryDatabaseConnectionResponse {
   /** Properties of a specific time series database connection. */
   properties?: TimeSeriesDatabaseConnectionProperties;
 }
-export const DeleteTimeSeryDatabaseConnectionResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteTimeSeriesDatabaseConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
@@ -685,9 +685,9 @@ export const DeleteTimeSeryDatabaseConnectionResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(TimeSeriesDatabaseConnectionProperties),
     }),
-).annotate({
-  identifier: "DeleteTimeSeryDatabaseConnectionResponse",
-}) as any as S.Schema<DeleteTimeSeryDatabaseConnectionResponse>;
+  ).annotate({
+    identifier: "DeleteTimeSeriesDatabaseConnectionResponse",
+  }) as any as S.Schema<DeleteTimeSeriesDatabaseConnectionResponse>;
 
 /** The resource tags. */
 export type DigitalTwinsCreateOrUpdateRequestTagsMap = {
@@ -1031,13 +1031,13 @@ export const GetDigitalTwinRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDigitalTwinRequest>;
 
 /** The resource tags. */
-export type DigitalTwinsGetResponseTagsMap = {
+export type GetDigitalTwinResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DigitalTwinsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDigitalTwinResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DigitalTwinsGetResponseTagsMap>;
+) as any as S.Schema<GetDigitalTwinResponseTagsMap>;
 
 export interface GetDigitalTwinResponse {
   /** The resource identifier. */
@@ -1049,7 +1049,7 @@ export interface GetDigitalTwinResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: DigitalTwinsGetResponseTagsMap | null;
+  tags?: GetDigitalTwinResponseTagsMap | null;
   /** The managed identity for the DigitalTwinsInstance. */
   identity?: DigitalTwinsIdentity | null;
   /** Metadata pertaining to creation and last modification of the DigitalTwinsInstance. */
@@ -1063,7 +1063,7 @@ export const GetDigitalTwinResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(S.NullOr(DigitalTwinsGetResponseTagsMap)),
+    tags: S.optional(S.NullOr(GetDigitalTwinResponseTagsMap)),
     identity: S.optional(S.NullOr(DigitalTwinsIdentity)),
     systemData: S.optional(SystemData),
     properties: S.optional(DigitalTwinsProperties),
@@ -1072,7 +1072,7 @@ export const GetDigitalTwinResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDigitalTwinResponse",
 }) as any as S.Schema<GetDigitalTwinResponse>;
 
-export interface GetDigitalTwinEndpointRequest {
+export interface GetDigitalTwinsEndpointRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the DigitalTwinsInstance. */
@@ -1082,7 +1082,7 @@ export interface GetDigitalTwinEndpointRequest {
   /** Name of Endpoint Resource. */
   endpointName: string;
 }
-export const GetDigitalTwinEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDigitalTwinsEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1097,10 +1097,10 @@ export const GetDigitalTwinEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetDigitalTwinEndpointRequest",
-}) as any as S.Schema<GetDigitalTwinEndpointRequest>;
+  identifier: "GetDigitalTwinsEndpointRequest",
+}) as any as S.Schema<GetDigitalTwinsEndpointRequest>;
 
-export interface GetDigitalTwinEndpointResponse {
+export interface GetDigitalTwinsEndpointResponse {
   /** The resource identifier. */
   id?: string;
   /** Extension resource name. */
@@ -1112,7 +1112,7 @@ export interface GetDigitalTwinEndpointResponse {
   /** DigitalTwinsInstance endpoint resource properties. */
   properties: DigitalTwinsEndpointResourceProperties;
 }
-export const GetDigitalTwinEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDigitalTwinsEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1121,8 +1121,8 @@ export const GetDigitalTwinEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     properties: DigitalTwinsEndpointResourceProperties,
   }),
 ).annotate({
-  identifier: "GetDigitalTwinEndpointResponse",
-}) as any as S.Schema<GetDigitalTwinEndpointResponse>;
+  identifier: "GetDigitalTwinsEndpointResponse",
+}) as any as S.Schema<GetDigitalTwinsEndpointResponse>;
 
 export interface GetPrivateEndpointConnectionRequest {
   /** The subscription identifier. */
@@ -1239,7 +1239,7 @@ export const GroupIdInformation = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupIdInformation",
 }) as any as S.Schema<GroupIdInformation>;
 
-export interface GetTimeSeryDatabaseConnectionRequest {
+export interface GetTimeSeriesDatabaseConnectionRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the DigitalTwinsInstance. */
@@ -1249,7 +1249,7 @@ export interface GetTimeSeryDatabaseConnectionRequest {
   /** Name of time series database connection. */
   timeSeriesDatabaseConnectionName: string;
 }
-export const GetTimeSeryDatabaseConnectionRequest = /*@__PURE__*/ S.suspend(
+export const GetTimeSeriesDatabaseConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1265,10 +1265,10 @@ export const GetTimeSeryDatabaseConnectionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetTimeSeryDatabaseConnectionRequest",
-}) as any as S.Schema<GetTimeSeryDatabaseConnectionRequest>;
+  identifier: "GetTimeSeriesDatabaseConnectionRequest",
+}) as any as S.Schema<GetTimeSeriesDatabaseConnectionRequest>;
 
-export interface GetTimeSeryDatabaseConnectionResponse {
+export interface GetTimeSeriesDatabaseConnectionResponse {
   /** The resource identifier. */
   id?: string;
   /** Extension resource name. */
@@ -1280,7 +1280,7 @@ export interface GetTimeSeryDatabaseConnectionResponse {
   /** Properties of a specific time series database connection. */
   properties?: TimeSeriesDatabaseConnectionProperties;
 }
-export const GetTimeSeryDatabaseConnectionResponse = /*@__PURE__*/ S.suspend(
+export const GetTimeSeriesDatabaseConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1290,8 +1290,8 @@ export const GetTimeSeryDatabaseConnectionResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(TimeSeriesDatabaseConnectionProperties),
     }),
 ).annotate({
-  identifier: "GetTimeSeryDatabaseConnectionResponse",
-}) as any as S.Schema<GetTimeSeryDatabaseConnectionResponse>;
+  identifier: "GetTimeSeriesDatabaseConnectionResponse",
+}) as any as S.Schema<GetTimeSeriesDatabaseConnectionResponse>;
 
 export interface ListDigitalTwinByResourceGroupRequest {
   /** The subscription identifier. */
@@ -1382,7 +1382,26 @@ export const DigitalTwinsDescriptionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DigitalTwinsDescriptionListResult",
 }) as any as S.Schema<DigitalTwinsDescriptionListResult>;
 
-export interface ListDigitalTwinEndpointRequest {
+export interface ListDigitalTwinsRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+}
+export const ListDigitalTwinsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/digitalTwinsInstances",
+      code: 200,
+      apiVersion: "2023-01-31",
+    }),
+  ),
+).annotate({
+  identifier: "ListDigitalTwinsRequest",
+}) as any as S.Schema<ListDigitalTwinsRequest>;
+
+export interface ListDigitalTwinsEndpointRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the DigitalTwinsInstance. */
@@ -1390,7 +1409,7 @@ export interface ListDigitalTwinEndpointRequest {
   /** The name of the DigitalTwinsInstance. */
   resourceName: string;
 }
-export const ListDigitalTwinEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDigitalTwinsEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1404,8 +1423,8 @@ export const ListDigitalTwinEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListDigitalTwinEndpointRequest",
-}) as any as S.Schema<ListDigitalTwinEndpointRequest>;
+  identifier: "ListDigitalTwinsEndpointRequest",
+}) as any as S.Schema<ListDigitalTwinsEndpointRequest>;
 
 /** DigitalTwinsInstance endpoint resource. */
 export interface DigitalTwinsEndpointResource {
@@ -1456,25 +1475,6 @@ export const DigitalTwinsEndpointResourceListResult = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "DigitalTwinsEndpointResourceListResult",
 }) as any as S.Schema<DigitalTwinsEndpointResourceListResult>;
-
-export interface ListDigitalTwinsRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-}
-export const ListDigitalTwinsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DigitalTwins/digitalTwinsInstances",
-      code: 200,
-      apiVersion: "2023-01-31",
-    }),
-  ),
-).annotate({
-  identifier: "ListDigitalTwinsRequest",
-}) as any as S.Schema<ListDigitalTwinsRequest>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -1655,7 +1655,7 @@ export const GroupIdInformationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupIdInformationResponse",
 }) as any as S.Schema<GroupIdInformationResponse>;
 
-export interface ListTimeSeryDatabaseConnectionsRequest {
+export interface ListTimeSeriesDatabaseConnectionsRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the DigitalTwinsInstance. */
@@ -1663,7 +1663,7 @@ export interface ListTimeSeryDatabaseConnectionsRequest {
   /** The name of the DigitalTwinsInstance. */
   resourceName: string;
 }
-export const ListTimeSeryDatabaseConnectionsRequest = /*@__PURE__*/ S.suspend(
+export const ListTimeSeriesDatabaseConnectionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1678,8 +1678,8 @@ export const ListTimeSeryDatabaseConnectionsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListTimeSeryDatabaseConnectionsRequest",
-}) as any as S.Schema<ListTimeSeryDatabaseConnectionsRequest>;
+  identifier: "ListTimeSeriesDatabaseConnectionsRequest",
+}) as any as S.Schema<ListTimeSeriesDatabaseConnectionsRequest>;
 
 /** Describes a time series database connection resource. */
 export interface TimeSeriesDatabaseConnection {
@@ -1846,13 +1846,13 @@ export const TimeSeriesDatabaseConnectionsCreateOrUpdateResponse =
   }) as any as S.Schema<TimeSeriesDatabaseConnectionsCreateOrUpdateResponse>;
 
 /** Instance patch properties */
-export type DigitalTwinsUpdateRequestTagsMap = {
+export type UpdateDigitalTwinRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DigitalTwinsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDigitalTwinRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DigitalTwinsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDigitalTwinRequestTagsMap>;
 
 /** Public network access for the DigitalTwinsInstance. */
 export type DigitalTwinsPatchPropertiesPublicNetworkAccess =
@@ -1887,7 +1887,7 @@ export interface UpdateDigitalTwinRequest {
   /** The name of the DigitalTwinsInstance. */
   resourceName: string;
   /** Instance patch properties */
-  tags?: DigitalTwinsUpdateRequestTagsMap | null;
+  tags?: UpdateDigitalTwinRequestTagsMap | null;
   /** The managed identity for the DigitalTwinsInstance. */
   identity?: DigitalTwinsIdentityInput | null;
   /** Properties for the DigitalTwinsInstance. */
@@ -1898,7 +1898,7 @@ export const UpdateDigitalTwinRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(S.NullOr(DigitalTwinsUpdateRequestTagsMap)),
+    tags: S.optional(S.NullOr(UpdateDigitalTwinRequestTagsMap)),
     identity: S.optional(S.NullOr(DigitalTwinsIdentityInput)),
     properties: S.optional(S.NullOr(DigitalTwinsPatchProperties)),
   }).pipe(
@@ -1914,13 +1914,13 @@ export const UpdateDigitalTwinRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDigitalTwinRequest>;
 
 /** The resource tags. */
-export type DigitalTwinsUpdateResponseTagsMap = {
+export type UpdateDigitalTwinResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DigitalTwinsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDigitalTwinResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DigitalTwinsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDigitalTwinResponseTagsMap>;
 
 export interface UpdateDigitalTwinResponse {
   /** The resource identifier. */
@@ -1932,7 +1932,7 @@ export interface UpdateDigitalTwinResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: DigitalTwinsUpdateResponseTagsMap | null;
+  tags?: UpdateDigitalTwinResponseTagsMap | null;
   /** The managed identity for the DigitalTwinsInstance. */
   identity?: DigitalTwinsIdentity | null;
   /** Metadata pertaining to creation and last modification of the DigitalTwinsInstance. */
@@ -1946,7 +1946,7 @@ export const UpdateDigitalTwinResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(S.NullOr(DigitalTwinsUpdateResponseTagsMap)),
+    tags: S.optional(S.NullOr(UpdateDigitalTwinResponseTagsMap)),
     identity: S.optional(S.NullOr(DigitalTwinsIdentity)),
     systemData: S.optional(SystemData),
     properties: S.optional(DigitalTwinsProperties),
@@ -1985,16 +1985,16 @@ export const DeleteDigitalTwin: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteDigitalTwinEndpointError = AzureOpError;
+export type DeleteDigitalTwinsEndpointError = AzureOpError;
 /** Delete a DigitalTwinsInstance endpoint. */
-export const DeleteDigitalTwinEndpoint: API.OperationMethod<
-  DeleteDigitalTwinEndpointRequest,
-  DeleteDigitalTwinEndpointResponse,
-  DeleteDigitalTwinEndpointError,
+export const DeleteDigitalTwinsEndpoint: API.OperationMethod<
+  DeleteDigitalTwinsEndpointRequest,
+  DeleteDigitalTwinsEndpointResponse,
+  DeleteDigitalTwinsEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDigitalTwinEndpointRequest,
-  output: DeleteDigitalTwinEndpointResponse,
+  input: DeleteDigitalTwinsEndpointRequest,
+  output: DeleteDigitalTwinsEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2015,16 +2015,16 @@ export const DeletePrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteTimeSeryDatabaseConnectionError = AzureOpError;
+export type DeleteTimeSeriesDatabaseConnectionError = AzureOpError;
 /** Delete a time series database connection. */
-export const DeleteTimeSeryDatabaseConnection: API.OperationMethod<
-  DeleteTimeSeryDatabaseConnectionRequest,
-  DeleteTimeSeryDatabaseConnectionResponse,
-  DeleteTimeSeryDatabaseConnectionError,
+export const DeleteTimeSeriesDatabaseConnection: API.OperationMethod<
+  DeleteTimeSeriesDatabaseConnectionRequest,
+  DeleteTimeSeriesDatabaseConnectionResponse,
+  DeleteTimeSeriesDatabaseConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteTimeSeryDatabaseConnectionRequest,
-  output: DeleteTimeSeryDatabaseConnectionResponse,
+  input: DeleteTimeSeriesDatabaseConnectionRequest,
+  output: DeleteTimeSeriesDatabaseConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2075,16 +2075,16 @@ export const GetDigitalTwin: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDigitalTwinEndpointError = AzureOpError;
+export type GetDigitalTwinsEndpointError = AzureOpError;
 /** Get DigitalTwinsInstances Endpoint. */
-export const GetDigitalTwinEndpoint: API.OperationMethod<
-  GetDigitalTwinEndpointRequest,
-  GetDigitalTwinEndpointResponse,
-  GetDigitalTwinEndpointError,
+export const GetDigitalTwinsEndpoint: API.OperationMethod<
+  GetDigitalTwinsEndpointRequest,
+  GetDigitalTwinsEndpointResponse,
+  GetDigitalTwinsEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDigitalTwinEndpointRequest,
-  output: GetDigitalTwinEndpointResponse,
+  input: GetDigitalTwinsEndpointRequest,
+  output: GetDigitalTwinsEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2120,16 +2120,16 @@ export const GetPrivateLinkResource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTimeSeryDatabaseConnectionError = AzureOpError;
+export type GetTimeSeriesDatabaseConnectionError = AzureOpError;
 /** Get the description of an existing time series database connection. */
-export const GetTimeSeryDatabaseConnection: API.OperationMethod<
-  GetTimeSeryDatabaseConnectionRequest,
-  GetTimeSeryDatabaseConnectionResponse,
-  GetTimeSeryDatabaseConnectionError,
+export const GetTimeSeriesDatabaseConnection: API.OperationMethod<
+  GetTimeSeriesDatabaseConnectionRequest,
+  GetTimeSeriesDatabaseConnectionResponse,
+  GetTimeSeriesDatabaseConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTimeSeryDatabaseConnectionRequest,
-  output: GetTimeSeryDatabaseConnectionResponse,
+  input: GetTimeSeriesDatabaseConnectionRequest,
+  output: GetTimeSeriesDatabaseConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2150,21 +2150,6 @@ export const ListDigitalTwinByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListDigitalTwinEndpointError = AzureOpError;
-/** Get DigitalTwinsInstance Endpoints. */
-export const ListDigitalTwinEndpoint: API.OperationMethod<
-  ListDigitalTwinEndpointRequest,
-  DigitalTwinsEndpointResourceListResult,
-  ListDigitalTwinEndpointError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListDigitalTwinEndpointRequest,
-  output: DigitalTwinsEndpointResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListDigitalTwinsError = AzureOpError;
 /** Get all the DigitalTwinsInstances in a subscription. */
 export const ListDigitalTwins: API.OperationMethod<
@@ -2175,6 +2160,21 @@ export const ListDigitalTwins: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDigitalTwinsRequest,
   output: DigitalTwinsDescriptionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDigitalTwinsEndpointError = AzureOpError;
+/** Get DigitalTwinsInstance Endpoints. */
+export const ListDigitalTwinsEndpoint: API.OperationMethod<
+  ListDigitalTwinsEndpointRequest,
+  DigitalTwinsEndpointResourceListResult,
+  ListDigitalTwinsEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDigitalTwinsEndpointRequest,
+  output: DigitalTwinsEndpointResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2225,15 +2225,15 @@ export const ListPrivateLinkResources: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListTimeSeryDatabaseConnectionsError = AzureOpError;
+export type ListTimeSeriesDatabaseConnectionsError = AzureOpError;
 /** Get all existing time series database connections for this DigitalTwins instance. */
-export const ListTimeSeryDatabaseConnections: API.OperationMethod<
-  ListTimeSeryDatabaseConnectionsRequest,
+export const ListTimeSeriesDatabaseConnections: API.OperationMethod<
+  ListTimeSeriesDatabaseConnectionsRequest,
   TimeSeriesDatabaseConnectionListResult,
-  ListTimeSeryDatabaseConnectionsError,
+  ListTimeSeriesDatabaseConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListTimeSeryDatabaseConnectionsRequest,
+  input: ListTimeSeriesDatabaseConnectionsRequest,
   output: TimeSeriesDatabaseConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

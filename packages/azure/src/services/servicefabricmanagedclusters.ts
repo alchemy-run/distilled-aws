@@ -462,139 +462,6 @@ export const ApplicationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApplicationsCreateOrUpdateResponse",
 }) as any as S.Schema<ApplicationsCreateOrUpdateResponse>;
 
-/** Enum for filtering health events. */
-export type HealthFilter =
-  | "Default"
-  | "None"
-  | "Ok"
-  | "Warning"
-  | "Error"
-  | "All";
-export const HealthFilter = /*@__PURE__*/ S.String;
-
-export interface ApplicationsFetchHealthRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-  /** Allows filtering of the health events returned in the response based on health state. */
-  eventsHealthStateFilter?: HealthFilter | (string & {});
-  /** Allows filtering of the deployed applications health state objects returned in the result of application health query based on their health state. */
-  deployedApplicationsHealthStateFilter?: HealthFilter | (string & {});
-  /** Allows filtering of the services health state objects returned in the result of services health query based on their health state. */
-  servicesHealthStateFilter?: HealthFilter | (string & {});
-  /** Indicates whether the health statistics should be returned as part of the query result. False by default. The statistics show the number of children entities in health state Ok, Warning, and Error. */
-  excludeHealthStatistics?: boolean;
-  /** Request timeout for the health query in seconds. The default value is 60 seconds. */
-  timeout?: number;
-}
-export const ApplicationsFetchHealthRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    eventsHealthStateFilter: S.optional(HealthFilter),
-    deployedApplicationsHealthStateFilter: S.optional(HealthFilter),
-    servicesHealthStateFilter: S.optional(HealthFilter),
-    excludeHealthStatistics: S.optional(S.Boolean),
-    timeout: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applications/{applicationName}/fetchHealth",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsFetchHealthRequest",
-}) as any as S.Schema<ApplicationsFetchHealthRequest>;
-
-export interface ApplicationsFetchHealthResponse {}
-export const ApplicationsFetchHealthResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationsFetchHealthResponse",
-}) as any as S.Schema<ApplicationsFetchHealthResponse>;
-
-export interface ApplicationsReadUpgradeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-}
-export const ApplicationsReadUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applications/{applicationName}/fetchUpgradeStatus",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsReadUpgradeRequest",
-}) as any as S.Schema<ApplicationsReadUpgradeRequest>;
-
-export interface ApplicationsReadUpgradeResponse {}
-export const ApplicationsReadUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationsReadUpgradeResponse",
-}) as any as S.Schema<ApplicationsReadUpgradeResponse>;
-
-export interface ApplicationsResumeUpgradeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the application resource. */
-  applicationName: string;
-  /** The upgrade domain name. Expected to be the next upgrade domain if the application is upgrading. */
-  upgradeDomainName?: string;
-}
-export const ApplicationsResumeUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-    upgradeDomainName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applications/{applicationName}/resumeUpgrade",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsResumeUpgradeRequest",
-}) as any as S.Schema<ApplicationsResumeUpgradeRequest>;
-
-export interface ApplicationsResumeUpgradeResponse {}
-export const ApplicationsResumeUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationsResumeUpgradeResponse",
-}) as any as S.Schema<ApplicationsResumeUpgradeResponse>;
-
 /** The application type name properties */
 export type ApplicationTypeResourcePropertiesInput = UserAssignedIdentityInput;
 export const ApplicationTypeResourcePropertiesInput = UserAssignedIdentityInput;
@@ -1000,10 +867,10 @@ export const DeleteNodeTypeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteNodeTypeResponse>;
 
 /** List of node names from the node type. */
-export type NodeTypesDeleteNodeRequestNodesList = Array<string>;
-export const NodeTypesDeleteNodeRequestNodesList = /*@__PURE__*/ S.Array(
+export type DeleteNodeTypeNodeRequestNodesList = Array<string>;
+export const DeleteNodeTypeNodeRequestNodesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<NodeTypesDeleteNodeRequestNodesList>;
+) as any as S.Schema<DeleteNodeTypeNodeRequestNodesList>;
 
 /** Specifies the way the operation will be performed. */
 export type UpdateType = "Default" | "ByUpgradeDomain";
@@ -1019,7 +886,7 @@ export interface DeleteNodeTypeNodeRequest {
   /** The name of the node type. */
   nodeTypeName: string;
   /** List of node names from the node type. */
-  nodes?: NodeTypesDeleteNodeRequestNodesList;
+  nodes?: DeleteNodeTypeNodeRequestNodesList;
   /** Force the action to go through. */
   force?: boolean;
   /** Specifies the way the operation will be performed. */
@@ -1031,7 +898,7 @@ export const DeleteNodeTypeNodeRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     nodeTypeName: S.String.pipe(T.Label()),
-    nodes: S.optional(NodeTypesDeleteNodeRequestNodesList),
+    nodes: S.optional(DeleteNodeTypeNodeRequestNodesList),
     force: S.optional(S.Boolean),
     updateType: S.optional(UpdateType),
   }).pipe(
@@ -1091,6 +958,66 @@ export const DeleteServiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteServiceResponse",
 }) as any as S.Schema<DeleteServiceResponse>;
 
+/** Enum for filtering health events. */
+export type HealthFilter =
+  | "Default"
+  | "None"
+  | "Ok"
+  | "Warning"
+  | "Error"
+  | "All";
+export const HealthFilter = /*@__PURE__*/ S.String;
+
+export interface FetchApplicationHealthRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+  /** Allows filtering of the health events returned in the response based on health state. */
+  eventsHealthStateFilter?: HealthFilter | (string & {});
+  /** Allows filtering of the deployed applications health state objects returned in the result of application health query based on their health state. */
+  deployedApplicationsHealthStateFilter?: HealthFilter | (string & {});
+  /** Allows filtering of the services health state objects returned in the result of services health query based on their health state. */
+  servicesHealthStateFilter?: HealthFilter | (string & {});
+  /** Indicates whether the health statistics should be returned as part of the query result. False by default. The statistics show the number of children entities in health state Ok, Warning, and Error. */
+  excludeHealthStatistics?: boolean;
+  /** Request timeout for the health query in seconds. The default value is 60 seconds. */
+  timeout?: number;
+}
+export const FetchApplicationHealthRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    eventsHealthStateFilter: S.optional(HealthFilter),
+    deployedApplicationsHealthStateFilter: S.optional(HealthFilter),
+    servicesHealthStateFilter: S.optional(HealthFilter),
+    excludeHealthStatistics: S.optional(S.Boolean),
+    timeout: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applications/{applicationName}/fetchHealth",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "FetchApplicationHealthRequest",
+}) as any as S.Schema<FetchApplicationHealthRequest>;
+
+export interface FetchApplicationHealthResponse {}
+export const FetchApplicationHealthResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "FetchApplicationHealthResponse",
+}) as any as S.Schema<FetchApplicationHealthResponse>;
+
 export interface GetApplicationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1120,13 +1047,13 @@ export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationRequest>;
 
 /** Resource tags. */
-export type ApplicationsGetResponseTagsMap = {
+export type GetApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationResponseTagsMap>;
 
 export interface GetApplicationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1140,7 +1067,7 @@ export interface GetApplicationResponse {
   /** The application resource properties. */
   properties?: ApplicationResourceProperties;
   /** Resource tags. */
-  tags?: ApplicationsGetResponseTagsMap;
+  tags?: GetApplicationResponseTagsMap;
   /** Describes the managed identities for an Azure resource. */
   identity?: ManagedIdentity;
   /** The geo-location where the resource lives */
@@ -1153,7 +1080,7 @@ export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationResourceProperties),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
+    tags: S.optional(GetApplicationResponseTagsMap),
     identity: S.optional(ManagedIdentity),
     location: S.optional(S.String),
   }),
@@ -1190,13 +1117,13 @@ export const GetApplicationTypeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationTypeRequest>;
 
 /** Resource tags. */
-export type ApplicationTypesGetResponseTagsMap = {
+export type GetApplicationTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationTypesGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationTypeResponseTagsMap>;
 
 export interface GetApplicationTypeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1210,7 +1137,7 @@ export interface GetApplicationTypeResponse {
   /** The application type name properties */
   properties?: ApplicationTypeResourceProperties;
   /** Resource tags. */
-  tags?: ApplicationTypesGetResponseTagsMap;
+  tags?: GetApplicationTypeResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -1221,7 +1148,7 @@ export const GetApplicationTypeResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationTypeResourceProperties),
-    tags: S.optional(ApplicationTypesGetResponseTagsMap),
+    tags: S.optional(GetApplicationTypeResponseTagsMap),
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -1260,13 +1187,13 @@ export const GetApplicationTypeVersionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationTypeVersionRequest>;
 
 /** Resource tags. */
-export type ApplicationTypeVersionsGetResponseTagsMap = {
+export type GetApplicationTypeVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypeVersionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationTypeVersionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationTypeVersionsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationTypeVersionResponseTagsMap>;
 
 export interface GetApplicationTypeVersionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1280,7 +1207,7 @@ export interface GetApplicationTypeVersionResponse {
   /** The properties of the application type version resource. */
   properties?: ApplicationTypeVersionResourceProperties;
   /** Resource tags. */
-  tags?: ApplicationTypeVersionsGetResponseTagsMap;
+  tags?: GetApplicationTypeVersionResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -1291,7 +1218,7 @@ export const GetApplicationTypeVersionResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationTypeVersionResourceProperties),
-    tags: S.optional(ApplicationTypeVersionsGetResponseTagsMap),
+    tags: S.optional(GetApplicationTypeVersionResponseTagsMap),
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -1397,13 +1324,13 @@ export const GetManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedClusterRequest>;
 
 /** Resource tags. */
-export type ManagedClustersGetResponseTagsMap = {
+export type GetManagedClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedClustersGetResponseTagsMap>;
+) as any as S.Schema<GetManagedClusterResponseTagsMap>;
 
 /** The current state of the cluster. */
 export type ClusterState =
@@ -2097,7 +2024,7 @@ export interface GetManagedClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedClustersGetResponseTagsMap;
+  tags?: GetManagedClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The managed cluster resource properties */
@@ -2113,7 +2040,7 @@ export const GetManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedClustersGetResponseTagsMap),
+    tags: S.optional(GetManagedClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedClusterProperties),
     etag: S.optional(S.String),
@@ -2193,8 +2120,8 @@ export const ManagedClusterCodeVersionResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedClusterCodeVersionResult",
 }) as any as S.Schema<ManagedClusterCodeVersionResult>;
 
-export type ManagedClusterVersionGetByEnvironmentRequestEnvironment = "Windows";
-export const ManagedClusterVersionGetByEnvironmentRequestEnvironment =
+export type GetManagedClusterVersionByEnvironmentRequestEnvironment = "Windows";
+export const GetManagedClusterVersionByEnvironmentRequestEnvironment =
   /*@__PURE__*/ S.String;
 
 export interface GetManagedClusterVersionByEnvironmentRequest {
@@ -2204,7 +2131,7 @@ export interface GetManagedClusterVersionByEnvironmentRequest {
   location: string;
   /** The operating system of the cluster. */
   environment:
-    | ManagedClusterVersionGetByEnvironmentRequestEnvironment
+    | GetManagedClusterVersionByEnvironmentRequestEnvironment
     | (string & {});
   /** The cluster code version. */
   clusterVersion: string;
@@ -2214,7 +2141,7 @@ export const GetManagedClusterVersionByEnvironmentRequest =
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
-      environment: ManagedClusterVersionGetByEnvironmentRequestEnvironment.pipe(
+      environment: GetManagedClusterVersionByEnvironmentRequestEnvironment.pipe(
         T.Label(),
       ),
       clusterVersion: S.String.pipe(T.Label()),
@@ -2287,7 +2214,7 @@ export const ManagedMaintenanceWindowStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedMaintenanceWindowStatus",
 }) as any as S.Schema<ManagedMaintenanceWindowStatus>;
 
-export interface GetManagedUnsupportedVmSizeRequest {
+export interface GetManagedUnsupportedVMSizRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The location for the unsupported VM sizes. This is different from cluster location. */
@@ -2295,7 +2222,7 @@ export interface GetManagedUnsupportedVmSizeRequest {
   /** VM Size name. */
   vmSize: string;
 }
-export const GetManagedUnsupportedVmSizeRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedUnsupportedVMSizRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -2309,8 +2236,8 @@ export const GetManagedUnsupportedVmSizeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetManagedUnsupportedVmSizeRequest",
-}) as any as S.Schema<GetManagedUnsupportedVmSizeRequest>;
+  identifier: "GetManagedUnsupportedVMSizRequest",
+}) as any as S.Schema<GetManagedUnsupportedVMSizRequest>;
 
 /** VM Sizes properties. */
 export interface VMSize {
@@ -3080,11 +3007,11 @@ export const NodeTypeProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NodeTypeProperties>;
 
 /** Resource tags. */
-export type NodeTypesGetResponseTagsMap = { [key: string]: string | undefined };
-export const NodeTypesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetNodeTypeResponseTagsMap = { [key: string]: string | undefined };
+export const GetNodeTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NodeTypesGetResponseTagsMap>;
+) as any as S.Schema<GetNodeTypeResponseTagsMap>;
 
 /** Describes a node type sku. */
 export interface NodeTypeSku {
@@ -3115,7 +3042,7 @@ export interface GetNodeTypeResponse {
   /** The node type properties */
   properties?: NodeTypeProperties;
   /** Resource tags. */
-  tags?: NodeTypesGetResponseTagsMap;
+  tags?: GetNodeTypeResponseTagsMap;
   /** The node type sku. */
   sku?: NodeTypeSku;
 }
@@ -3126,7 +3053,7 @@ export const GetNodeTypeResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(NodeTypeProperties),
-    tags: S.optional(NodeTypesGetResponseTagsMap),
+    tags: S.optional(GetNodeTypeResponseTagsMap),
     sku: S.optional(NodeTypeSku),
   }),
 ).annotate({
@@ -3493,11 +3420,11 @@ export const ServiceResourceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ServiceResourceProperties>;
 
 /** Resource tags. */
-export type ServicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetServiceResponseTagsMap = { [key: string]: string | undefined };
+export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesGetResponseTagsMap>;
+) as any as S.Schema<GetServiceResponseTagsMap>;
 
 export interface GetServiceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3511,7 +3438,7 @@ export interface GetServiceResponse {
   /** The service resource properties. */
   properties?: ServiceResourceProperties;
   /** Resource tags. */
-  tags?: ServicesGetResponseTagsMap;
+  tags?: GetServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -3522,7 +3449,7 @@ export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ServiceResourceProperties),
-    tags: S.optional(ServicesGetResponseTagsMap),
+    tags: S.optional(GetServiceResponseTagsMap),
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -3927,23 +3854,23 @@ export const ListManagedClusterVersionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListManagedClusterVersionRequest",
 }) as any as S.Schema<ListManagedClusterVersionRequest>;
 
-export type ManagedClusterVersionListResponseBodyList =
+export type ListManagedClusterVersionResponseBodyList =
   Array<ManagedClusterCodeVersionResult>;
-export const ManagedClusterVersionListResponseBodyList = /*@__PURE__*/ S.Array(
+export const ListManagedClusterVersionResponseBodyList = /*@__PURE__*/ S.Array(
   ManagedClusterCodeVersionResult,
-) as any as S.Schema<ManagedClusterVersionListResponseBodyList>;
+) as any as S.Schema<ListManagedClusterVersionResponseBodyList>;
 
 export type ListManagedClusterVersionResponse =
-  ManagedClusterVersionListResponseBodyList;
+  ListManagedClusterVersionResponseBodyList;
 export const ListManagedClusterVersionResponse = /*@__PURE__*/ S.suspend(() =>
-  ManagedClusterVersionListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListManagedClusterVersionResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListManagedClusterVersionResponse",
 }) as any as S.Schema<ListManagedClusterVersionResponse>;
 
-export type ManagedClusterVersionListByEnvironmentRequestEnvironment =
+export type ListManagedClusterVersionByEnvironmentRequestEnvironment =
   "Windows";
-export const ManagedClusterVersionListByEnvironmentRequestEnvironment =
+export const ListManagedClusterVersionByEnvironmentRequestEnvironment =
   /*@__PURE__*/ S.String;
 
 export interface ListManagedClusterVersionByEnvironmentRequest {
@@ -3953,7 +3880,7 @@ export interface ListManagedClusterVersionByEnvironmentRequest {
   location: string;
   /** The operating system of the cluster. */
   environment:
-    | ManagedClusterVersionListByEnvironmentRequestEnvironment
+    | ListManagedClusterVersionByEnvironmentRequestEnvironment
     | (string & {});
 }
 export const ListManagedClusterVersionByEnvironmentRequest =
@@ -3962,7 +3889,7 @@ export const ListManagedClusterVersionByEnvironmentRequest =
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
       environment:
-        ManagedClusterVersionListByEnvironmentRequestEnvironment.pipe(
+        ListManagedClusterVersionByEnvironmentRequestEnvironment.pipe(
           T.Label(),
         ),
     }).pipe(
@@ -3977,31 +3904,31 @@ export const ListManagedClusterVersionByEnvironmentRequest =
     identifier: "ListManagedClusterVersionByEnvironmentRequest",
   }) as any as S.Schema<ListManagedClusterVersionByEnvironmentRequest>;
 
-export type ManagedClusterVersionListByEnvironmentResponseBodyList =
+export type ListManagedClusterVersionByEnvironmentResponseBodyList =
   Array<ManagedClusterCodeVersionResult>;
-export const ManagedClusterVersionListByEnvironmentResponseBodyList =
+export const ListManagedClusterVersionByEnvironmentResponseBodyList =
   /*@__PURE__*/ S.Array(
     ManagedClusterCodeVersionResult,
-  ) as any as S.Schema<ManagedClusterVersionListByEnvironmentResponseBodyList>;
+  ) as any as S.Schema<ListManagedClusterVersionByEnvironmentResponseBodyList>;
 
 export type ListManagedClusterVersionByEnvironmentResponse =
-  ManagedClusterVersionListByEnvironmentResponseBodyList;
+  ListManagedClusterVersionByEnvironmentResponseBodyList;
 export const ListManagedClusterVersionByEnvironmentResponse =
   /*@__PURE__*/ S.suspend(() =>
-    ManagedClusterVersionListByEnvironmentResponseBodyList.pipe(
+    ListManagedClusterVersionByEnvironmentResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
     identifier: "ListManagedClusterVersionByEnvironmentResponse",
   }) as any as S.Schema<ListManagedClusterVersionByEnvironmentResponse>;
 
-export interface ListManagedUnsupportedVmSizesRequest {
+export interface ListManagedUnsupportedVMSizesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The location for the unsupported VM sizes. This is different from cluster location. */
   location: string;
 }
-export const ListManagedUnsupportedVmSizesRequest = /*@__PURE__*/ S.suspend(
+export const ListManagedUnsupportedVMSizesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4015,8 +3942,8 @@ export const ListManagedUnsupportedVmSizesRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListManagedUnsupportedVmSizesRequest",
-}) as any as S.Schema<ListManagedUnsupportedVmSizesRequest>;
+  identifier: "ListManagedUnsupportedVMSizesRequest",
+}) as any as S.Schema<ListManagedUnsupportedVMSizesRequest>;
 
 /** The ManagedVMSize items on this page */
 export type ManagedVMSizesResultValueList = Array<ManagedVMSize>;
@@ -4405,38 +4332,6 @@ export const ServiceResourceList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ServiceResourceList",
 }) as any as S.Schema<ServiceResourceList>;
-
-export interface ManagedApplyMaintenanceWindowPostRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-}
-export const ManagedApplyMaintenanceWindowPostRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applyMaintenanceWindow",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "ManagedApplyMaintenanceWindowPostRequest",
-}) as any as S.Schema<ManagedApplyMaintenanceWindowPostRequest>;
-
-export interface ManagedApplyMaintenanceWindowPostResponse {}
-export const ManagedApplyMaintenanceWindowPostResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ManagedApplyMaintenanceWindowPostResponse",
-  }) as any as S.Schema<ManagedApplyMaintenanceWindowPostResponse>;
 
 /** Resource tags. */
 export type ManagedClustersCreateOrUpdateRequestTagsMap = {
@@ -5229,56 +5124,6 @@ export const NodeTypesDeallocateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NodeTypesDeallocateResponse>;
 
 /** List of node names from the node type. */
-export type NodeTypesRedeployRequestNodesList = Array<string>;
-export const NodeTypesRedeployRequestNodesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NodeTypesRedeployRequestNodesList>;
-
-export interface NodeTypesRedeployRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster resource. */
-  clusterName: string;
-  /** The name of the node type. */
-  nodeTypeName: string;
-  /** List of node names from the node type. */
-  nodes?: NodeTypesRedeployRequestNodesList;
-  /** Force the action to go through. */
-  force?: boolean;
-  /** Specifies the way the operation will be performed. */
-  updateType?: UpdateType | (string & {});
-}
-export const NodeTypesRedeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    nodeTypeName: S.String.pipe(T.Label()),
-    nodes: S.optional(NodeTypesRedeployRequestNodesList),
-    force: S.optional(S.Boolean),
-    updateType: S.optional(UpdateType),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/nodeTypes/{nodeTypeName}/redeploy",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "NodeTypesRedeployRequest",
-}) as any as S.Schema<NodeTypesRedeployRequest>;
-
-export interface NodeTypesRedeployResponse {}
-export const NodeTypesRedeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NodeTypesRedeployResponse",
-}) as any as S.Schema<NodeTypesRedeployResponse>;
-
-/** List of node names from the node type. */
 export type NodeTypesReimageRequestNodesList = Array<string>;
 export const NodeTypesReimageRequestNodesList = /*@__PURE__*/ S.Array(
   S.String,
@@ -5327,6 +5172,123 @@ export const NodeTypesReimageResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "NodeTypesReimageResponse",
 }) as any as S.Schema<NodeTypesReimageResponse>;
+
+export interface PostManagedApplyMaintenanceWindowRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+}
+export const PostManagedApplyMaintenanceWindowRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applyMaintenanceWindow",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "PostManagedApplyMaintenanceWindowRequest",
+}) as any as S.Schema<PostManagedApplyMaintenanceWindowRequest>;
+
+export interface PostManagedApplyMaintenanceWindowResponse {}
+export const PostManagedApplyMaintenanceWindowResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PostManagedApplyMaintenanceWindowResponse",
+  }) as any as S.Schema<PostManagedApplyMaintenanceWindowResponse>;
+
+export interface ReadApplicationUpgradeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+}
+export const ReadApplicationUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applications/{applicationName}/fetchUpgradeStatus",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ReadApplicationUpgradeRequest",
+}) as any as S.Schema<ReadApplicationUpgradeRequest>;
+
+export interface ReadApplicationUpgradeResponse {}
+export const ReadApplicationUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ReadApplicationUpgradeResponse",
+}) as any as S.Schema<ReadApplicationUpgradeResponse>;
+
+/** List of node names from the node type. */
+export type RedeployNodeTypeRequestNodesList = Array<string>;
+export const RedeployNodeTypeRequestNodesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RedeployNodeTypeRequestNodesList>;
+
+export interface RedeployNodeTypeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the node type. */
+  nodeTypeName: string;
+  /** List of node names from the node type. */
+  nodes?: RedeployNodeTypeRequestNodesList;
+  /** Force the action to go through. */
+  force?: boolean;
+  /** Specifies the way the operation will be performed. */
+  updateType?: UpdateType | (string & {});
+}
+export const RedeployNodeTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    nodeTypeName: S.String.pipe(T.Label()),
+    nodes: S.optional(RedeployNodeTypeRequestNodesList),
+    force: S.optional(S.Boolean),
+    updateType: S.optional(UpdateType),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/nodeTypes/{nodeTypeName}/redeploy",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "RedeployNodeTypeRequest",
+}) as any as S.Schema<RedeployNodeTypeRequest>;
+
+export interface RedeployNodeTypeResponse {}
+export const RedeployNodeTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RedeployNodeTypeResponse",
+}) as any as S.Schema<RedeployNodeTypeResponse>;
 
 export interface RestartApplicationDeployedCodePackageRequest {
   /** The ID of the target subscription. */
@@ -5379,10 +5341,10 @@ export const RestartApplicationDeployedCodePackageResponse =
   }) as any as S.Schema<RestartApplicationDeployedCodePackageResponse>;
 
 /** List of node names from the node type. */
-export type NodeTypesRestartRequestNodesList = Array<string>;
-export const NodeTypesRestartRequestNodesList = /*@__PURE__*/ S.Array(
+export type RestartNodeTypeRequestNodesList = Array<string>;
+export const RestartNodeTypeRequestNodesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<NodeTypesRestartRequestNodesList>;
+) as any as S.Schema<RestartNodeTypeRequestNodesList>;
 
 export interface RestartNodeTypeRequest {
   /** The ID of the target subscription. */
@@ -5394,7 +5356,7 @@ export interface RestartNodeTypeRequest {
   /** The name of the node type. */
   nodeTypeName: string;
   /** List of node names from the node type. */
-  nodes?: NodeTypesRestartRequestNodesList;
+  nodes?: RestartNodeTypeRequestNodesList;
   /** Force the action to go through. */
   force?: boolean;
   /** Specifies the way the operation will be performed. */
@@ -5406,7 +5368,7 @@ export const RestartNodeTypeRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     nodeTypeName: S.String.pipe(T.Label()),
-    nodes: S.optional(NodeTypesRestartRequestNodesList),
+    nodes: S.optional(RestartNodeTypeRequestNodesList),
     force: S.optional(S.Boolean),
     updateType: S.optional(UpdateType),
   }).pipe(
@@ -5429,11 +5391,10 @@ export const RestartNodeTypeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestartNodeTypeResponse>;
 
 /** The IDs of the replicas to be restarted. */
-export type ServicesRestartReplicaRequestReplicaIdsList = Array<number>;
-export const ServicesRestartReplicaRequestReplicaIdsList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<ServicesRestartReplicaRequestReplicaIdsList>;
+export type RestartServiceReplicaRequestReplicaIdsList = Array<number>;
+export const RestartServiceReplicaRequestReplicaIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<RestartServiceReplicaRequestReplicaIdsList>;
 
 /** The kind of restart to perform. */
 export type RestartKind = "Simultaneous";
@@ -5453,7 +5414,7 @@ export interface RestartServiceReplicaRequest {
   /** The ID of the partition. */
   partitionId: string;
   /** The IDs of the replicas to be restarted. */
-  replicaIds: ServicesRestartReplicaRequestReplicaIdsList;
+  replicaIds: RestartServiceReplicaRequestReplicaIdsList;
   /** The kind of restart to perform. */
   restartKind: RestartKind | (string & {});
   /** If true, the restart operation will be forced. Use this option with care, as it may cause data loss. */
@@ -5469,7 +5430,7 @@ export const RestartServiceReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     applicationName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     partitionId: S.String,
-    replicaIds: ServicesRestartReplicaRequestReplicaIdsList,
+    replicaIds: RestartServiceReplicaRequestReplicaIdsList,
     restartKind: RestartKind,
     forceRestart: S.optional(S.Boolean),
     timeout: S.optional(S.Number),
@@ -5491,6 +5452,44 @@ export const RestartServiceReplicaResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RestartServiceReplicaResponse",
 }) as any as S.Schema<RestartServiceReplicaResponse>;
+
+export interface ResumeApplicationUpgradeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster resource. */
+  clusterName: string;
+  /** The name of the application resource. */
+  applicationName: string;
+  /** The upgrade domain name. Expected to be the next upgrade domain if the application is upgrading. */
+  upgradeDomainName?: string;
+}
+export const ResumeApplicationUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+    upgradeDomainName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceFabric/managedClusters/{clusterName}/applications/{applicationName}/resumeUpgrade",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeApplicationUpgradeRequest",
+}) as any as S.Schema<ResumeApplicationUpgradeRequest>;
+
+export interface ResumeApplicationUpgradeResponse {}
+export const ResumeApplicationUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResumeApplicationUpgradeResponse",
+}) as any as S.Schema<ResumeApplicationUpgradeResponse>;
 
 /** A list that describes the correlation of the service with other services. */
 export type ServiceResourcePropertiesInputCorrelationSchemeList =
@@ -5699,10 +5698,10 @@ export const StartApplicationRollbackResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartApplicationRollbackResponse>;
 
 /** List of node names from the node type. */
-export type NodeTypesStartRequestNodesList = Array<string>;
-export const NodeTypesStartRequestNodesList = /*@__PURE__*/ S.Array(
+export type StartNodeTypeRequestNodesList = Array<string>;
+export const StartNodeTypeRequestNodesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<NodeTypesStartRequestNodesList>;
+) as any as S.Schema<StartNodeTypeRequestNodesList>;
 
 export interface StartNodeTypeRequest {
   /** The ID of the target subscription. */
@@ -5714,7 +5713,7 @@ export interface StartNodeTypeRequest {
   /** The name of the node type. */
   nodeTypeName: string;
   /** List of node names from the node type. */
-  nodes?: NodeTypesStartRequestNodesList;
+  nodes?: StartNodeTypeRequestNodesList;
   /** Force the action to go through. */
   force?: boolean;
   /** Specifies the way the operation will be performed. */
@@ -5726,7 +5725,7 @@ export const StartNodeTypeRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     nodeTypeName: S.String.pipe(T.Label()),
-    nodes: S.optional(NodeTypesStartRequestNodesList),
+    nodes: S.optional(StartNodeTypeRequestNodesList),
     force: S.optional(S.Boolean),
     updateType: S.optional(UpdateType),
   }).pipe(
@@ -5749,13 +5748,13 @@ export const StartNodeTypeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StartNodeTypeResponse>;
 
 /** Application update parameters */
-export type ApplicationsUpdateRequestTagsMap = {
+export type UpdateApplicationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationRequestTagsMap>;
 
 /** List of application parameters with overridden values from their default values specified in the application manifest. */
 export type ApplicationUpdateParametersPropertiesParametersMap = {
@@ -5793,7 +5792,7 @@ export interface UpdateApplicationRequest {
   /** The name of the application resource. */
   applicationName: string;
   /** Application update parameters */
-  tags?: ApplicationsUpdateRequestTagsMap;
+  tags?: UpdateApplicationRequestTagsMap;
   /** Application update parameters properties. */
   properties?: ApplicationUpdateParametersProperties;
 }
@@ -5803,7 +5802,7 @@ export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
-    tags: S.optional(ApplicationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplicationRequestTagsMap),
     properties: S.optional(ApplicationUpdateParametersProperties),
   }).pipe(
     T.Http({
@@ -5818,13 +5817,13 @@ export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationRequest>;
 
 /** Resource tags. */
-export type ApplicationsUpdateResponseTagsMap = {
+export type UpdateApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApplicationResponseTagsMap>;
 
 export interface UpdateApplicationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5838,7 +5837,7 @@ export interface UpdateApplicationResponse {
   /** The application resource properties. */
   properties?: ApplicationResourceProperties;
   /** Resource tags. */
-  tags?: ApplicationsUpdateResponseTagsMap;
+  tags?: UpdateApplicationResponseTagsMap;
   /** Describes the managed identities for an Azure resource. */
   identity?: ManagedIdentity;
   /** The geo-location where the resource lives */
@@ -5851,7 +5850,7 @@ export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationResourceProperties),
-    tags: S.optional(ApplicationsUpdateResponseTagsMap),
+    tags: S.optional(UpdateApplicationResponseTagsMap),
     identity: S.optional(ManagedIdentity),
     location: S.optional(S.String),
   }),
@@ -5860,13 +5859,13 @@ export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationResponse>;
 
 /** Application type update parameters */
-export type ApplicationTypesUpdateRequestTagsMap = {
+export type UpdateApplicationTypeRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationTypeRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationTypesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationTypeRequestTagsMap>;
 
 export interface UpdateApplicationTypeRequest {
   /** The ID of the target subscription. */
@@ -5878,7 +5877,7 @@ export interface UpdateApplicationTypeRequest {
   /** The name of the application type name resource. */
   applicationTypeName: string;
   /** Application type update parameters */
-  tags?: ApplicationTypesUpdateRequestTagsMap;
+  tags?: UpdateApplicationTypeRequestTagsMap;
 }
 export const UpdateApplicationTypeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5886,7 +5885,7 @@ export const UpdateApplicationTypeRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     applicationTypeName: S.String.pipe(T.Label()),
-    tags: S.optional(ApplicationTypesUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplicationTypeRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5900,13 +5899,13 @@ export const UpdateApplicationTypeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationTypeRequest>;
 
 /** Resource tags. */
-export type ApplicationTypesUpdateResponseTagsMap = {
+export type UpdateApplicationTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationTypesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApplicationTypeResponseTagsMap>;
 
 export interface UpdateApplicationTypeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -5920,7 +5919,7 @@ export interface UpdateApplicationTypeResponse {
   /** The application type name properties */
   properties?: ApplicationTypeResourceProperties;
   /** Resource tags. */
-  tags?: ApplicationTypesUpdateResponseTagsMap;
+  tags?: UpdateApplicationTypeResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -5931,7 +5930,7 @@ export const UpdateApplicationTypeResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ApplicationTypeResourceProperties),
-    tags: S.optional(ApplicationTypesUpdateResponseTagsMap),
+    tags: S.optional(UpdateApplicationTypeResponseTagsMap),
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -5939,14 +5938,14 @@ export const UpdateApplicationTypeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationTypeResponse>;
 
 /** Application type version update parameters */
-export type ApplicationTypeVersionsUpdateRequestTagsMap = {
+export type UpdateApplicationTypeVersionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypeVersionsUpdateRequestTagsMap =
+export const UpdateApplicationTypeVersionRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ApplicationTypeVersionsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateApplicationTypeVersionRequestTagsMap>;
 
 export interface UpdateApplicationTypeVersionRequest {
   /** The ID of the target subscription. */
@@ -5960,7 +5959,7 @@ export interface UpdateApplicationTypeVersionRequest {
   /** The application type version. */
   version: string;
   /** Application type version update parameters */
-  tags?: ApplicationTypeVersionsUpdateRequestTagsMap;
+  tags?: UpdateApplicationTypeVersionRequestTagsMap;
 }
 export const UpdateApplicationTypeVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5969,7 +5968,7 @@ export const UpdateApplicationTypeVersionRequest = /*@__PURE__*/ S.suspend(() =>
     clusterName: S.String.pipe(T.Label()),
     applicationTypeName: S.String.pipe(T.Label()),
     version: S.String.pipe(T.Label()),
-    tags: S.optional(ApplicationTypeVersionsUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplicationTypeVersionRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5983,14 +5982,14 @@ export const UpdateApplicationTypeVersionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationTypeVersionRequest>;
 
 /** Resource tags. */
-export type ApplicationTypeVersionsUpdateResponseTagsMap = {
+export type UpdateApplicationTypeVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationTypeVersionsUpdateResponseTagsMap =
+export const UpdateApplicationTypeVersionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ApplicationTypeVersionsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateApplicationTypeVersionResponseTagsMap>;
 
 export interface UpdateApplicationTypeVersionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6004,7 +6003,7 @@ export interface UpdateApplicationTypeVersionResponse {
   /** The properties of the application type version resource. */
   properties?: ApplicationTypeVersionResourceProperties;
   /** Resource tags. */
-  tags?: ApplicationTypeVersionsUpdateResponseTagsMap;
+  tags?: UpdateApplicationTypeVersionResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -6016,7 +6015,7 @@ export const UpdateApplicationTypeVersionResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(ApplicationTypeVersionResourceProperties),
-      tags: S.optional(ApplicationTypeVersionsUpdateResponseTagsMap),
+      tags: S.optional(UpdateApplicationTypeVersionResponseTagsMap),
       location: S.optional(S.String),
     }),
 ).annotate({
@@ -6165,13 +6164,13 @@ export const UpdateApplicationUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationUpgradeResponse>;
 
 /** Managed cluster update parameters */
-export type ManagedClustersUpdateRequestTagsMap = {
+export type UpdateManagedClusterRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateManagedClusterRequestTagsMap>;
 
 export interface UpdateManagedClusterRequest {
   /** The ID of the target subscription. */
@@ -6181,14 +6180,14 @@ export interface UpdateManagedClusterRequest {
   /** The name of the cluster resource. */
   clusterName: string;
   /** Managed cluster update parameters */
-  tags?: ManagedClustersUpdateRequestTagsMap;
+  tags?: UpdateManagedClusterRequestTagsMap;
 }
 export const UpdateManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateManagedClusterRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -6202,13 +6201,13 @@ export const UpdateManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedClusterRequest>;
 
 /** Resource tags. */
-export type ManagedClustersUpdateResponseTagsMap = {
+export type UpdateManagedClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateManagedClusterResponseTagsMap>;
 
 export interface UpdateManagedClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6220,7 +6219,7 @@ export interface UpdateManagedClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedClustersUpdateResponseTagsMap;
+  tags?: UpdateManagedClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The managed cluster resource properties */
@@ -6236,7 +6235,7 @@ export const UpdateManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateManagedClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedClusterProperties),
     etag: S.optional(S.String),
@@ -6247,13 +6246,13 @@ export const UpdateManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedClusterResponse>;
 
 /** Node type update parameters */
-export type NodeTypesUpdateRequestTagsMap = {
+export type UpdateNodeTypeRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NodeTypesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNodeTypeRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NodeTypesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNodeTypeRequestTagsMap>;
 
 export interface UpdateNodeTypeRequest {
   /** The ID of the target subscription. */
@@ -6265,7 +6264,7 @@ export interface UpdateNodeTypeRequest {
   /** The name of the node type. */
   nodeTypeName: string;
   /** Node type update parameters */
-  tags?: NodeTypesUpdateRequestTagsMap;
+  tags?: UpdateNodeTypeRequestTagsMap;
   /** The node type sku. */
   sku?: NodeTypeSku;
 }
@@ -6275,7 +6274,7 @@ export const UpdateNodeTypeRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     nodeTypeName: S.String.pipe(T.Label()),
-    tags: S.optional(NodeTypesUpdateRequestTagsMap),
+    tags: S.optional(UpdateNodeTypeRequestTagsMap),
     sku: S.optional(NodeTypeSku),
   }).pipe(
     T.Http({
@@ -6290,13 +6289,13 @@ export const UpdateNodeTypeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNodeTypeRequest>;
 
 /** Resource tags. */
-export type NodeTypesUpdateResponseTagsMap = {
+export type UpdateNodeTypeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NodeTypesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNodeTypeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NodeTypesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNodeTypeResponseTagsMap>;
 
 export interface UpdateNodeTypeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6310,7 +6309,7 @@ export interface UpdateNodeTypeResponse {
   /** The node type properties */
   properties?: NodeTypeProperties;
   /** Resource tags. */
-  tags?: NodeTypesUpdateResponseTagsMap;
+  tags?: UpdateNodeTypeResponseTagsMap;
   /** The node type sku. */
   sku?: NodeTypeSku;
 }
@@ -6321,7 +6320,7 @@ export const UpdateNodeTypeResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(NodeTypeProperties),
-    tags: S.optional(NodeTypesUpdateResponseTagsMap),
+    tags: S.optional(UpdateNodeTypeResponseTagsMap),
     sku: S.optional(NodeTypeSku),
   }),
 ).annotate({
@@ -6329,13 +6328,11 @@ export const UpdateNodeTypeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNodeTypeResponse>;
 
 /** Service update parameters */
-export type ServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateServiceRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServiceRequestTagsMap>;
 
 export interface UpdateServiceRequest {
   /** The ID of the target subscription. */
@@ -6349,7 +6346,7 @@ export interface UpdateServiceRequest {
   /** The name of the service resource in the format of {applicationName}~{serviceName}. */
   serviceName: string;
   /** Service update parameters */
-  tags?: ServicesUpdateRequestTagsMap;
+  tags?: UpdateServiceRequestTagsMap;
 }
 export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6358,7 +6355,7 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
     clusterName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    tags: S.optional(ServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateServiceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -6372,13 +6369,13 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateServiceRequest>;
 
 /** Resource tags. */
-export type ServicesUpdateResponseTagsMap = {
+export type UpdateServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateServiceResponseTagsMap>;
 
 export interface UpdateServiceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -6392,7 +6389,7 @@ export interface UpdateServiceResponse {
   /** The service resource properties. */
   properties?: ServiceResourceProperties;
   /** Resource tags. */
-  tags?: ServicesUpdateResponseTagsMap;
+  tags?: UpdateServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -6403,7 +6400,7 @@ export const UpdateServiceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ServiceResourceProperties),
-    tags: S.optional(ServicesUpdateResponseTagsMap),
+    tags: S.optional(UpdateServiceResponseTagsMap),
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -6420,51 +6417,6 @@ export const ApplicationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApplicationsCreateOrUpdateRequest,
   output: ApplicationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsFetchHealthError = AzureOpError;
-/** Get the status of the deployed application health. It will query the cluster to find the health of the deployed application. */
-export const ApplicationsFetchHealth: API.OperationMethod<
-  ApplicationsFetchHealthRequest,
-  ApplicationsFetchHealthResponse,
-  ApplicationsFetchHealthError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsFetchHealthRequest,
-  output: ApplicationsFetchHealthResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsReadUpgradeError = AzureOpError;
-/** Get the status of the latest application upgrade. It will query the cluster to find the status of the latest application upgrade. */
-export const ApplicationsReadUpgrade: API.OperationMethod<
-  ApplicationsReadUpgradeRequest,
-  ApplicationsReadUpgradeResponse,
-  ApplicationsReadUpgradeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsReadUpgradeRequest,
-  output: ApplicationsReadUpgradeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApplicationsResumeUpgradeError = AzureOpError;
-/** Send a request to resume the current application upgrade. This will resume the application upgrade from where it was paused. */
-export const ApplicationsResumeUpgrade: API.OperationMethod<
-  ApplicationsResumeUpgradeRequest,
-  ApplicationsResumeUpgradeResponse,
-  ApplicationsResumeUpgradeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsResumeUpgradeRequest,
-  output: ApplicationsResumeUpgradeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6605,6 +6557,21 @@ export const DeleteService: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type FetchApplicationHealthError = AzureOpError;
+/** Get the status of the deployed application health. It will query the cluster to find the health of the deployed application. */
+export const FetchApplicationHealth: API.OperationMethod<
+  FetchApplicationHealthRequest,
+  FetchApplicationHealthResponse,
+  FetchApplicationHealthError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchApplicationHealthRequest,
+  output: FetchApplicationHealthResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetApplicationError = AzureOpError;
 /** Get a Service Fabric managed application resource created or in the process of being created in the Service Fabric cluster resource. */
 export const GetApplication: API.OperationMethod<
@@ -6725,15 +6692,15 @@ export const GetManagedMaintenanceWindowStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetManagedUnsupportedVmSizeError = AzureOpError;
+export type GetManagedUnsupportedVMSizError = AzureOpError;
 /** Get unsupported vm size for Service Fabric Managed Clusters. */
-export const GetManagedUnsupportedVmSize: API.OperationMethod<
-  GetManagedUnsupportedVmSizeRequest,
+export const GetManagedUnsupportedVMSiz: API.OperationMethod<
+  GetManagedUnsupportedVMSizRequest,
   ManagedVMSize,
-  GetManagedUnsupportedVmSizeError,
+  GetManagedUnsupportedVMSizError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetManagedUnsupportedVmSizeRequest,
+  input: GetManagedUnsupportedVMSizRequest,
   output: ManagedVMSize,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -6905,15 +6872,15 @@ export const ListManagedClusterVersionByEnvironment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListManagedUnsupportedVmSizesError = AzureOpError;
+export type ListManagedUnsupportedVMSizesError = AzureOpError;
 /** Get the lists of unsupported vm sizes for Service Fabric Managed Clusters. */
-export const ListManagedUnsupportedVmSizes: API.OperationMethod<
-  ListManagedUnsupportedVmSizesRequest,
+export const ListManagedUnsupportedVMSizes: API.OperationMethod<
+  ListManagedUnsupportedVMSizesRequest,
   ManagedVMSizesResult,
-  ListManagedUnsupportedVmSizesError,
+  ListManagedUnsupportedVMSizesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListManagedUnsupportedVmSizesRequest,
+  input: ListManagedUnsupportedVMSizesRequest,
   output: ManagedVMSizesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -6980,21 +6947,6 @@ export const ListServiceByApplications: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedApplyMaintenanceWindowPostError = AzureOpError;
-/** Action to Apply Maintenance window on the Service Fabric Managed Clusters, right now. Any pending update will be applied. */
-export const ManagedApplyMaintenanceWindowPost: API.OperationMethod<
-  ManagedApplyMaintenanceWindowPostRequest,
-  ManagedApplyMaintenanceWindowPostResponse,
-  ManagedApplyMaintenanceWindowPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedApplyMaintenanceWindowPostRequest,
-  output: ManagedApplyMaintenanceWindowPostResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ManagedClustersCreateOrUpdateError = AzureOpError;
 /** Create or update a Service Fabric managed cluster resource with the specified name. */
 export const ManagedClustersCreateOrUpdate: API.OperationMethod<
@@ -7040,21 +6992,6 @@ export const NodeTypesDeallocate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NodeTypesRedeployError = AzureOpError;
-/** Redeploys one or more nodes on the node type. It will disable the fabric nodes, trigger a shut down on the VMs, move them to a new node, and power them back on. */
-export const NodeTypesRedeploy: API.OperationMethod<
-  NodeTypesRedeployRequest,
-  NodeTypesRedeployResponse,
-  NodeTypesRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodeTypesRedeployRequest,
-  output: NodeTypesRedeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NodeTypesReimageError = AzureOpError;
 /** Reimages one or more nodes on the node type. It will disable the fabric nodes, trigger a reimage on the VMs and activate the nodes back again. */
 export const NodeTypesReimage: API.OperationMethod<
@@ -7065,6 +7002,51 @@ export const NodeTypesReimage: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NodeTypesReimageRequest,
   output: NodeTypesReimageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostManagedApplyMaintenanceWindowError = AzureOpError;
+/** Action to Apply Maintenance window on the Service Fabric Managed Clusters, right now. Any pending update will be applied. */
+export const PostManagedApplyMaintenanceWindow: API.OperationMethod<
+  PostManagedApplyMaintenanceWindowRequest,
+  PostManagedApplyMaintenanceWindowResponse,
+  PostManagedApplyMaintenanceWindowError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostManagedApplyMaintenanceWindowRequest,
+  output: PostManagedApplyMaintenanceWindowResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadApplicationUpgradeError = AzureOpError;
+/** Get the status of the latest application upgrade. It will query the cluster to find the status of the latest application upgrade. */
+export const ReadApplicationUpgrade: API.OperationMethod<
+  ReadApplicationUpgradeRequest,
+  ReadApplicationUpgradeResponse,
+  ReadApplicationUpgradeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadApplicationUpgradeRequest,
+  output: ReadApplicationUpgradeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RedeployNodeTypeError = AzureOpError;
+/** Redeploys one or more nodes on the node type. It will disable the fabric nodes, trigger a shut down on the VMs, move them to a new node, and power them back on. */
+export const RedeployNodeType: API.OperationMethod<
+  RedeployNodeTypeRequest,
+  RedeployNodeTypeResponse,
+  RedeployNodeTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RedeployNodeTypeRequest,
+  output: RedeployNodeTypeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7110,6 +7092,21 @@ export const RestartServiceReplica: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RestartServiceReplicaRequest,
   output: RestartServiceReplicaResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeApplicationUpgradeError = AzureOpError;
+/** Send a request to resume the current application upgrade. This will resume the application upgrade from where it was paused. */
+export const ResumeApplicationUpgrade: API.OperationMethod<
+  ResumeApplicationUpgradeRequest,
+  ResumeApplicationUpgradeResponse,
+  ResumeApplicationUpgradeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeApplicationUpgradeRequest,
+  output: ResumeApplicationUpgradeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.checks_v2#ListProjectChecksRequestBlocks": {
@@ -2702,6 +2703,9 @@
             "smithy.api#required": {}
           }
         },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
+        },
         "jobDefinitionId": {
           "target": "smithy.api#String",
           "traits": {
@@ -3567,6 +3571,9 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
         },
         "jobDefinitionId": {
           "target": "smithy.api#String",
@@ -4440,6 +4447,9 @@
             "smithy.api#required": {}
           }
         },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
+        },
         "jobDefinitionId": {
           "target": "smithy.api#String",
           "traits": {
@@ -5310,6 +5320,9 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
         },
         "jobDefinitionId": {
           "target": "smithy.api#String",
@@ -6268,6 +6281,9 @@
             "smithy.api#required": {}
           }
         },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
+        },
         "jobDefinitionId": {
           "target": "smithy.api#String",
           "traits": {
@@ -6523,19 +6539,19 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.checks_v2#ListProjectChecks"
+          "target": "com.vercel.checks_v2#CreateDeploymentCheckRun"
         },
         {
           "target": "com.vercel.checks_v2#CreateProjectCheck"
         },
         {
-          "target": "com.vercel.checks_v2#GetProjectCheck"
-        },
-        {
-          "target": "com.vercel.checks_v2#UpdateProjectCheck"
-        },
-        {
           "target": "com.vercel.checks_v2#DeleteProjectCheck"
+        },
+        {
+          "target": "com.vercel.checks_v2#GetDeploymentCheckRun"
+        },
+        {
+          "target": "com.vercel.checks_v2#GetProjectCheck"
         },
         {
           "target": "com.vercel.checks_v2#ListCheckRuns"
@@ -6544,13 +6560,13 @@
           "target": "com.vercel.checks_v2#ListDeploymentCheckRuns"
         },
         {
-          "target": "com.vercel.checks_v2#CreateDeploymentCheckRun"
-        },
-        {
-          "target": "com.vercel.checks_v2#GetDeploymentCheckRun"
+          "target": "com.vercel.checks_v2#ListProjectChecks"
         },
         {
           "target": "com.vercel.checks_v2#UpdateDeploymentCheckRun"
+        },
+        {
+          "target": "com.vercel.checks_v2#UpdateProjectCheck"
         }
       ],
       "traits": {

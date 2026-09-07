@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.repos#ListForOrgRequestType": {
@@ -12947,7 +12948,7 @@
         "smithy.api#documentation": "Update status check protection\n\nProtected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation.\n\nUpdating required status checks requires admin or owner permissions to the repository and branch protection to be enabled."
       }
     },
-    "com.github.repos#CheckRemoveStatusProtectionRequest": {
+    "com.github.repos#RemoveStatusCheckProtectionRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -12979,10 +12980,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.repos#CheckRemoveStatusProtection": {
+    "com.github.repos#RemoveStatusCheckProtection": {
       "type": "operation",
       "input": {
-        "target": "com.github.repos#CheckRemoveStatusProtectionRequest"
+        "target": "com.github.repos#RemoveStatusCheckProtectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13115,7 +13116,7 @@
       },
       "traits": {}
     },
-    "com.github.repos#CheckAddStatusContextRequest": {
+    "com.github.repos#AddStatusCheckContextsRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -13160,7 +13161,7 @@
       },
       "traits": {}
     },
-    "com.github.repos#CheckAddStatusContextResponse": {
+    "com.github.repos#AddStatusCheckContextsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -13175,13 +13176,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.repos#CheckAddStatusContext": {
+    "com.github.repos#AddStatusCheckContexts": {
       "type": "operation",
       "input": {
-        "target": "com.github.repos#CheckAddStatusContextRequest"
+        "target": "com.github.repos#AddStatusCheckContextsRequest"
       },
       "output": {
-        "target": "com.github.repos#CheckAddStatusContextResponse"
+        "target": "com.github.repos#AddStatusCheckContextsResponse"
       },
       "errors": [
         {
@@ -13374,7 +13375,7 @@
       },
       "traits": {}
     },
-    "com.github.repos#CheckRemoveStatusContextRequest": {
+    "com.github.repos#RemoveStatusCheckContextsRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -13419,7 +13420,7 @@
       },
       "traits": {}
     },
-    "com.github.repos#CheckRemoveStatusContextResponse": {
+    "com.github.repos#RemoveStatusCheckContextsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -13434,13 +13435,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.repos#CheckRemoveStatusContext": {
+    "com.github.repos#RemoveStatusCheckContexts": {
       "type": "operation",
       "input": {
-        "target": "com.github.repos#CheckRemoveStatusContextRequest"
+        "target": "com.github.repos#RemoveStatusCheckContextsRequest"
       },
       "output": {
-        "target": "com.github.repos#CheckRemoveStatusContextResponse"
+        "target": "com.github.repos#RemoveStatusCheckContextsResponse"
       },
       "errors": [
         {
@@ -26542,7 +26543,7 @@
         "smithy.api#documentation": "Disable private vulnerability reporting for a repository\n\nDisables private vulnerability reporting for a repository. The authenticated user must have admin access to the repository. For more information, see \"[Privately reporting a security vulnerability](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)\"."
       }
     },
-    "com.github.repos#GetCustomPropertyForReposRepositoryValueRequest": {
+    "com.github.repos#CustomPropertiesForReposGetRepositoryValuesRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -26617,7 +26618,7 @@
       },
       "traits": {}
     },
-    "com.github.repos#GetCustomPropertyForReposRepositoryValueResponse": {
+    "com.github.repos#CustomPropertiesForReposGetRepositoryValuesResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -26632,13 +26633,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.repos#GetCustomPropertyForReposRepositoryValue": {
+    "com.github.repos#CustomPropertiesForReposGetRepositoryValues": {
       "type": "operation",
       "input": {
-        "target": "com.github.repos#GetCustomPropertyForReposRepositoryValueRequest"
+        "target": "com.github.repos#CustomPropertiesForReposGetRepositoryValuesRequest"
       },
       "output": {
-        "target": "com.github.repos#GetCustomPropertyForReposRepositoryValueResponse"
+        "target": "com.github.repos#CustomPropertiesForReposGetRepositoryValuesResponse"
       },
       "errors": [
         {
@@ -28016,7 +28017,7 @@
         "smithy.api#documentation": "List release assets"
       }
     },
-    "com.github.repos#ReleaseUploadAssetRequest": {
+    "com.github.repos#UploadReleaseAssetRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -28061,10 +28062,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.repos#ReleaseUploadAsset": {
+    "com.github.repos#UploadReleaseAsset": {
       "type": "operation",
       "input": {
-        "target": "com.github.repos#ReleaseUploadAssetRequest"
+        "target": "com.github.repos#UploadReleaseAssetRequest"
       },
       "output": {
         "target": "com.github.repos#ReleaseAsset"
@@ -34041,73 +34042,247 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.repos#ListForOrg"
+          "target": "com.github.repos#AcceptInvitationForAuthenticatedUser"
         },
         {
-          "target": "com.github.repos#CreateInOrg"
+          "target": "com.github.repos#AddAppAccessRestrictions"
         },
         {
-          "target": "com.github.repos#GetOrgRulesets"
+          "target": "com.github.repos#AddCollaborator"
         },
         {
-          "target": "com.github.repos#CreateOrgRuleset"
+          "target": "com.github.repos#AddStatusCheckContexts"
         },
         {
-          "target": "com.github.repos#GetOrgRuleSuites"
+          "target": "com.github.repos#AddTeamAccessRestrictions"
         },
         {
-          "target": "com.github.repos#GetOrgRuleSuite"
+          "target": "com.github.repos#AddUserAccessRestrictions"
         },
         {
-          "target": "com.github.repos#GetOrgRuleset"
-        },
-        {
-          "target": "com.github.repos#UpdateOrgRuleset"
-        },
-        {
-          "target": "com.github.repos#DeleteOrgRuleset"
-        },
-        {
-          "target": "com.github.repos#Get"
-        },
-        {
-          "target": "com.github.repos#Update"
-        },
-        {
-          "target": "com.github.repos#Delete"
-        },
-        {
-          "target": "com.github.repos#ListActivities"
-        },
-        {
-          "target": "com.github.repos#CreateAttestation"
-        },
-        {
-          "target": "com.github.repos#ListAttestations"
-        },
-        {
-          "target": "com.github.repos#ListAutolinks"
-        },
-        {
-          "target": "com.github.repos#CreateAutolink"
-        },
-        {
-          "target": "com.github.repos#GetAutolink"
-        },
-        {
-          "target": "com.github.repos#DeleteAutolink"
+          "target": "com.github.repos#CancelPagesDeployment"
         },
         {
           "target": "com.github.repos#CheckAutomatedSecurityFixes2"
         },
         {
-          "target": "com.github.repos#EnableAutomatedSecurityFixes"
+          "target": "com.github.repos#CheckCollaborator"
+        },
+        {
+          "target": "com.github.repos#CheckImmutableReleases2"
+        },
+        {
+          "target": "com.github.repos#CheckPrivateVulnerabilityReporting"
+        },
+        {
+          "target": "com.github.repos#CheckVulnerabilityAlerts"
+        },
+        {
+          "target": "com.github.repos#CodeownersErrors2"
+        },
+        {
+          "target": "com.github.repos#CompareCommits"
+        },
+        {
+          "target": "com.github.repos#CreateAttestation"
+        },
+        {
+          "target": "com.github.repos#CreateAutolink"
+        },
+        {
+          "target": "com.github.repos#CreateCommitComment"
+        },
+        {
+          "target": "com.github.repos#CreateCommitSignatureProtection"
+        },
+        {
+          "target": "com.github.repos#CreateCommitStatus"
+        },
+        {
+          "target": "com.github.repos#CreateDeployKey"
+        },
+        {
+          "target": "com.github.repos#CreateDeployment"
+        },
+        {
+          "target": "com.github.repos#CreateDeploymentBranchPolicy"
+        },
+        {
+          "target": "com.github.repos#CreateDeploymentProtectionRule"
+        },
+        {
+          "target": "com.github.repos#CreateDeploymentStatus"
+        },
+        {
+          "target": "com.github.repos#CreateDispatchEvent"
+        },
+        {
+          "target": "com.github.repos#CreateForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.repos#CreateFork"
+        },
+        {
+          "target": "com.github.repos#CreateInOrg"
+        },
+        {
+          "target": "com.github.repos#CreateOrgRuleset"
+        },
+        {
+          "target": "com.github.repos#CreateOrUpdateEnvironment"
+        },
+        {
+          "target": "com.github.repos#CreateOrUpdateFileContents"
+        },
+        {
+          "target": "com.github.repos#CreatePagesDeployment"
+        },
+        {
+          "target": "com.github.repos#CreatePagesSite"
+        },
+        {
+          "target": "com.github.repos#CreateRelease"
+        },
+        {
+          "target": "com.github.repos#CreateRepoRuleset"
+        },
+        {
+          "target": "com.github.repos#CreateUsingTemplate"
+        },
+        {
+          "target": "com.github.repos#CreateWebhook"
+        },
+        {
+          "target": "com.github.repos#CustomPropertiesForReposCreateOrUpdateRepositoryValues"
+        },
+        {
+          "target": "com.github.repos#CustomPropertiesForReposGetRepositoryValues"
+        },
+        {
+          "target": "com.github.repos#DeclineInvitationForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.repos#Delete"
+        },
+        {
+          "target": "com.github.repos#DeleteAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#DeleteAdminBranchProtection"
+        },
+        {
+          "target": "com.github.repos#DeleteAnEnvironment"
+        },
+        {
+          "target": "com.github.repos#DeleteAutolink"
+        },
+        {
+          "target": "com.github.repos#DeleteBranchProtection"
+        },
+        {
+          "target": "com.github.repos#DeleteCommitComment"
+        },
+        {
+          "target": "com.github.repos#DeleteCommitSignatureProtection"
+        },
+        {
+          "target": "com.github.repos#DeleteDeployKey"
+        },
+        {
+          "target": "com.github.repos#DeleteDeployment"
+        },
+        {
+          "target": "com.github.repos#DeleteDeploymentBranchPolicy"
+        },
+        {
+          "target": "com.github.repos#DeleteFile"
+        },
+        {
+          "target": "com.github.repos#DeleteInvitation"
+        },
+        {
+          "target": "com.github.repos#DeleteOrgRuleset"
+        },
+        {
+          "target": "com.github.repos#DeletePagesSite"
+        },
+        {
+          "target": "com.github.repos#DeletePullRequestReviewProtection"
+        },
+        {
+          "target": "com.github.repos#DeleteRelease"
+        },
+        {
+          "target": "com.github.repos#DeleteReleaseAsset"
+        },
+        {
+          "target": "com.github.repos#DeleteRepoRuleset"
+        },
+        {
+          "target": "com.github.repos#DeleteWebhook"
         },
         {
           "target": "com.github.repos#DisableAutomatedSecurityFixes"
         },
         {
-          "target": "com.github.repos#ListBranches"
+          "target": "com.github.repos#DisableDeploymentProtectionRule"
+        },
+        {
+          "target": "com.github.repos#DisableImmutableReleases"
+        },
+        {
+          "target": "com.github.repos#DisablePrivateVulnerabilityReporting"
+        },
+        {
+          "target": "com.github.repos#DisableVulnerabilityAlerts"
+        },
+        {
+          "target": "com.github.repos#DownloadTarballArchive"
+        },
+        {
+          "target": "com.github.repos#DownloadZipballArchive"
+        },
+        {
+          "target": "com.github.repos#EnableAutomatedSecurityFixes"
+        },
+        {
+          "target": "com.github.repos#EnableImmutableReleases"
+        },
+        {
+          "target": "com.github.repos#EnablePrivateVulnerabilityReporting"
+        },
+        {
+          "target": "com.github.repos#EnableVulnerabilityAlerts"
+        },
+        {
+          "target": "com.github.repos#GenerateReleaseNotes"
+        },
+        {
+          "target": "com.github.repos#Get"
+        },
+        {
+          "target": "com.github.repos#GetAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#GetAdminBranchProtection"
+        },
+        {
+          "target": "com.github.repos#GetAllDeploymentProtectionRules"
+        },
+        {
+          "target": "com.github.repos#GetAllEnvironments"
+        },
+        {
+          "target": "com.github.repos#GetAllStatusCheckContexts"
+        },
+        {
+          "target": "com.github.repos#GetAllTopics"
+        },
+        {
+          "target": "com.github.repos#GetAppsWithAccessToProtectedBranch"
+        },
+        {
+          "target": "com.github.repos#GetAutolink"
         },
         {
           "target": "com.github.repos#GetBranch"
@@ -34116,379 +34291,100 @@
           "target": "com.github.repos#GetBranchProtection"
         },
         {
-          "target": "com.github.repos#UpdateBranchProtection"
+          "target": "com.github.repos#GetBranchRules"
         },
         {
-          "target": "com.github.repos#DeleteBranchProtection"
+          "target": "com.github.repos#GetClones"
         },
         {
-          "target": "com.github.repos#GetAdminBranchProtection"
-        },
-        {
-          "target": "com.github.repos#SetAdminBranchProtection"
-        },
-        {
-          "target": "com.github.repos#DeleteAdminBranchProtection"
-        },
-        {
-          "target": "com.github.repos#GetPullRequestReviewProtection"
-        },
-        {
-          "target": "com.github.repos#UpdatePullRequestReviewProtection"
-        },
-        {
-          "target": "com.github.repos#DeletePullRequestReviewProtection"
-        },
-        {
-          "target": "com.github.repos#GetCommitSignatureProtection"
-        },
-        {
-          "target": "com.github.repos#CreateCommitSignatureProtection"
-        },
-        {
-          "target": "com.github.repos#DeleteCommitSignatureProtection"
-        },
-        {
-          "target": "com.github.repos#GetStatusChecksProtection"
-        },
-        {
-          "target": "com.github.repos#UpdateStatusCheckProtection"
-        },
-        {
-          "target": "com.github.repos#CheckRemoveStatusProtection"
-        },
-        {
-          "target": "com.github.repos#GetAllStatusCheckContexts"
-        },
-        {
-          "target": "com.github.repos#CheckAddStatusContext"
-        },
-        {
-          "target": "com.github.repos#SetStatusCheckContexts"
-        },
-        {
-          "target": "com.github.repos#CheckRemoveStatusContext"
-        },
-        {
-          "target": "com.github.repos#GetAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#DeleteAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#GetAppsWithAccessToProtectedBranch"
-        },
-        {
-          "target": "com.github.repos#AddAppAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#SetAppAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#RemoveAppAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#GetTeamsWithAccessToProtectedBranch"
-        },
-        {
-          "target": "com.github.repos#AddTeamAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#SetTeamAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#RemoveTeamAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#GetUsersWithAccessToProtectedBranch"
-        },
-        {
-          "target": "com.github.repos#AddUserAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#SetUserAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#RemoveUserAccessRestrictions"
-        },
-        {
-          "target": "com.github.repos#RenameBranch"
-        },
-        {
-          "target": "com.github.repos#CodeownersErrors2"
-        },
-        {
-          "target": "com.github.repos#ListCollaborators"
-        },
-        {
-          "target": "com.github.repos#CheckCollaborator"
-        },
-        {
-          "target": "com.github.repos#AddCollaborator"
-        },
-        {
-          "target": "com.github.repos#RemoveCollaborator"
+          "target": "com.github.repos#GetCodeFrequencyStats"
         },
         {
           "target": "com.github.repos#GetCollaboratorPermissionLevel"
         },
         {
-          "target": "com.github.repos#ListCommitCommentsForRepo"
-        },
-        {
-          "target": "com.github.repos#GetCommitComment"
-        },
-        {
-          "target": "com.github.repos#UpdateCommitComment"
-        },
-        {
-          "target": "com.github.repos#DeleteCommitComment"
-        },
-        {
-          "target": "com.github.repos#ListCommits"
-        },
-        {
-          "target": "com.github.repos#ListBranchesForHeadCommit"
-        },
-        {
-          "target": "com.github.repos#ListCommentsForCommit"
-        },
-        {
-          "target": "com.github.repos#CreateCommitComment"
-        },
-        {
-          "target": "com.github.repos#ListPullRequestsAssociatedWithCommit"
+          "target": "com.github.repos#GetCombinedStatusForRef"
         },
         {
           "target": "com.github.repos#GetCommit"
         },
         {
-          "target": "com.github.repos#GetCombinedStatusForRef"
+          "target": "com.github.repos#GetCommitActivityStats"
         },
         {
-          "target": "com.github.repos#ListCommitStatusesForRef"
+          "target": "com.github.repos#GetCommitComment"
+        },
+        {
+          "target": "com.github.repos#GetCommitSignatureProtection"
         },
         {
           "target": "com.github.repos#GetCommunityProfileMetrics"
         },
         {
-          "target": "com.github.repos#CompareCommits"
-        },
-        {
           "target": "com.github.repos#GetContent"
         },
         {
-          "target": "com.github.repos#CreateOrUpdateFileContents"
-        },
-        {
-          "target": "com.github.repos#DeleteFile"
-        },
-        {
-          "target": "com.github.repos#ListContributors"
-        },
-        {
-          "target": "com.github.repos#ListDeployments"
-        },
-        {
-          "target": "com.github.repos#CreateDeployment"
-        },
-        {
-          "target": "com.github.repos#GetDeployment"
-        },
-        {
-          "target": "com.github.repos#DeleteDeployment"
-        },
-        {
-          "target": "com.github.repos#ListDeploymentStatuses"
-        },
-        {
-          "target": "com.github.repos#CreateDeploymentStatus"
-        },
-        {
-          "target": "com.github.repos#GetDeploymentStatus"
-        },
-        {
-          "target": "com.github.repos#CreateDispatchEvent"
-        },
-        {
-          "target": "com.github.repos#GetAllEnvironments"
-        },
-        {
-          "target": "com.github.repos#GetEnvironment"
-        },
-        {
-          "target": "com.github.repos#CreateOrUpdateEnvironment"
-        },
-        {
-          "target": "com.github.repos#DeleteAnEnvironment"
-        },
-        {
-          "target": "com.github.repos#ListDeploymentBranchPolicies"
-        },
-        {
-          "target": "com.github.repos#CreateDeploymentBranchPolicy"
-        },
-        {
-          "target": "com.github.repos#GetDeploymentBranchPolicy"
-        },
-        {
-          "target": "com.github.repos#UpdateDeploymentBranchPolicy"
-        },
-        {
-          "target": "com.github.repos#DeleteDeploymentBranchPolicy"
-        },
-        {
-          "target": "com.github.repos#GetAllDeploymentProtectionRules"
-        },
-        {
-          "target": "com.github.repos#CreateDeploymentProtectionRule"
-        },
-        {
-          "target": "com.github.repos#ListCustomDeploymentRuleIntegrations"
+          "target": "com.github.repos#GetContributorsStats"
         },
         {
           "target": "com.github.repos#GetCustomDeploymentProtectionRule"
         },
         {
-          "target": "com.github.repos#DisableDeploymentProtectionRule"
+          "target": "com.github.repos#GetDeployKey"
         },
         {
-          "target": "com.github.repos#ListForks"
+          "target": "com.github.repos#GetDeployment"
         },
         {
-          "target": "com.github.repos#CreateFork"
+          "target": "com.github.repos#GetDeploymentBranchPolicy"
+        },
+        {
+          "target": "com.github.repos#GetDeploymentStatus"
+        },
+        {
+          "target": "com.github.repos#GetEnvironment"
         },
         {
           "target": "com.github.repos#GetHashAlgorithm"
         },
         {
-          "target": "com.github.repos#ListWebhooks"
+          "target": "com.github.repos#GetLatestPagesBuild"
         },
         {
-          "target": "com.github.repos#CreateWebhook"
+          "target": "com.github.repos#GetLatestRelease"
         },
         {
-          "target": "com.github.repos#GetWebhook"
+          "target": "com.github.repos#GetOrgRuleset"
         },
         {
-          "target": "com.github.repos#UpdateWebhook"
+          "target": "com.github.repos#GetOrgRulesets"
         },
         {
-          "target": "com.github.repos#DeleteWebhook"
+          "target": "com.github.repos#GetOrgRuleSuite"
         },
         {
-          "target": "com.github.repos#GetWebhookConfigForRepo"
-        },
-        {
-          "target": "com.github.repos#UpdateWebhookConfigForRepo"
-        },
-        {
-          "target": "com.github.repos#ListWebhookDeliveries"
-        },
-        {
-          "target": "com.github.repos#GetWebhookDelivery"
-        },
-        {
-          "target": "com.github.repos#RedeliverWebhookDelivery"
-        },
-        {
-          "target": "com.github.repos#PingWebhook"
-        },
-        {
-          "target": "com.github.repos#TestPushWebhook"
-        },
-        {
-          "target": "com.github.repos#CheckImmutableReleases2"
-        },
-        {
-          "target": "com.github.repos#EnableImmutableReleases"
-        },
-        {
-          "target": "com.github.repos#DisableImmutableReleases"
-        },
-        {
-          "target": "com.github.repos#ListInvitations"
-        },
-        {
-          "target": "com.github.repos#UpdateInvitation"
-        },
-        {
-          "target": "com.github.repos#DeleteInvitation"
-        },
-        {
-          "target": "com.github.repos#ListIssueTypes"
-        },
-        {
-          "target": "com.github.repos#ListDeployKeys"
-        },
-        {
-          "target": "com.github.repos#CreateDeployKey"
-        },
-        {
-          "target": "com.github.repos#GetDeployKey"
-        },
-        {
-          "target": "com.github.repos#DeleteDeployKey"
-        },
-        {
-          "target": "com.github.repos#ListLanguages"
-        },
-        {
-          "target": "com.github.repos#MergeUpstream"
-        },
-        {
-          "target": "com.github.repos#Merge"
+          "target": "com.github.repos#GetOrgRuleSuites"
         },
         {
           "target": "com.github.repos#GetPages"
         },
         {
-          "target": "com.github.repos#CreatePagesSite"
-        },
-        {
-          "target": "com.github.repos#UpdateInformationAboutPagesSite"
-        },
-        {
-          "target": "com.github.repos#DeletePagesSite"
-        },
-        {
-          "target": "com.github.repos#ListPagesBuilds"
-        },
-        {
-          "target": "com.github.repos#RequestPagesBuild"
-        },
-        {
-          "target": "com.github.repos#GetLatestPagesBuild"
-        },
-        {
           "target": "com.github.repos#GetPagesBuild"
-        },
-        {
-          "target": "com.github.repos#CreatePagesDeployment"
         },
         {
           "target": "com.github.repos#GetPagesDeployment"
         },
         {
-          "target": "com.github.repos#CancelPagesDeployment"
-        },
-        {
           "target": "com.github.repos#GetPagesHealthCheck"
         },
         {
-          "target": "com.github.repos#CheckPrivateVulnerabilityReporting"
+          "target": "com.github.repos#GetParticipationStats"
         },
         {
-          "target": "com.github.repos#EnablePrivateVulnerabilityReporting"
+          "target": "com.github.repos#GetPullRequestReviewProtection"
         },
         {
-          "target": "com.github.repos#DisablePrivateVulnerabilityReporting"
-        },
-        {
-          "target": "com.github.repos#GetCustomPropertyForReposRepositoryValue"
-        },
-        {
-          "target": "com.github.repos#CustomPropertiesForReposCreateOrUpdateRepositoryValues"
+          "target": "com.github.repos#GetPunchCardStats"
         },
         {
           "target": "com.github.repos#GetReadme"
@@ -34497,109 +34393,37 @@
           "target": "com.github.repos#GetReadmeInDirectory"
         },
         {
-          "target": "com.github.repos#ListReleases"
-        },
-        {
-          "target": "com.github.repos#CreateRelease"
+          "target": "com.github.repos#GetRelease"
         },
         {
           "target": "com.github.repos#GetReleaseAsset"
         },
         {
-          "target": "com.github.repos#UpdateReleaseAsset"
-        },
-        {
-          "target": "com.github.repos#DeleteReleaseAsset"
-        },
-        {
-          "target": "com.github.repos#GenerateReleaseNotes"
-        },
-        {
-          "target": "com.github.repos#GetLatestRelease"
-        },
-        {
           "target": "com.github.repos#GetReleaseByTag"
-        },
-        {
-          "target": "com.github.repos#GetRelease"
-        },
-        {
-          "target": "com.github.repos#UpdateRelease"
-        },
-        {
-          "target": "com.github.repos#DeleteRelease"
-        },
-        {
-          "target": "com.github.repos#ListReleaseAssets"
-        },
-        {
-          "target": "com.github.repos#ReleaseUploadAsset"
-        },
-        {
-          "target": "com.github.repos#GetBranchRules"
-        },
-        {
-          "target": "com.github.repos#GetRepoRulesets"
-        },
-        {
-          "target": "com.github.repos#CreateRepoRuleset"
-        },
-        {
-          "target": "com.github.repos#GetRepoRuleSuites"
-        },
-        {
-          "target": "com.github.repos#GetRepoRuleSuite"
         },
         {
           "target": "com.github.repos#GetRepoRuleset"
         },
         {
-          "target": "com.github.repos#UpdateRepoRuleset"
-        },
-        {
-          "target": "com.github.repos#DeleteRepoRuleset"
-        },
-        {
           "target": "com.github.repos#GetRepoRulesetHistory"
+        },
+        {
+          "target": "com.github.repos#GetRepoRulesets"
         },
         {
           "target": "com.github.repos#GetRepoRulesetVersion"
         },
         {
-          "target": "com.github.repos#GetCodeFrequencyStats"
+          "target": "com.github.repos#GetRepoRuleSuite"
         },
         {
-          "target": "com.github.repos#GetCommitActivityStats"
+          "target": "com.github.repos#GetRepoRuleSuites"
         },
         {
-          "target": "com.github.repos#GetContributorsStats"
+          "target": "com.github.repos#GetStatusChecksProtection"
         },
         {
-          "target": "com.github.repos#GetParticipationStats"
-        },
-        {
-          "target": "com.github.repos#GetPunchCardStats"
-        },
-        {
-          "target": "com.github.repos#CreateCommitStatus"
-        },
-        {
-          "target": "com.github.repos#ListTags"
-        },
-        {
-          "target": "com.github.repos#DownloadTarballArchive"
-        },
-        {
-          "target": "com.github.repos#ListTeams"
-        },
-        {
-          "target": "com.github.repos#GetAllTopics"
-        },
-        {
-          "target": "com.github.repos#ReplaceAllTopics"
-        },
-        {
-          "target": "com.github.repos#GetClones"
+          "target": "com.github.repos#GetTeamsWithAccessToProtectedBranch"
         },
         {
           "target": "com.github.repos#GetTopPaths"
@@ -34608,46 +34432,223 @@
           "target": "com.github.repos#GetTopReferrers"
         },
         {
+          "target": "com.github.repos#GetUsersWithAccessToProtectedBranch"
+        },
+        {
           "target": "com.github.repos#GetViews"
         },
         {
-          "target": "com.github.repos#Transfer"
+          "target": "com.github.repos#GetWebhook"
         },
         {
-          "target": "com.github.repos#CheckVulnerabilityAlerts"
+          "target": "com.github.repos#GetWebhookConfigForRepo"
         },
         {
-          "target": "com.github.repos#EnableVulnerabilityAlerts"
+          "target": "com.github.repos#GetWebhookDelivery"
         },
         {
-          "target": "com.github.repos#DisableVulnerabilityAlerts"
+          "target": "com.github.repos#ListActivities"
         },
         {
-          "target": "com.github.repos#DownloadZipballArchive"
+          "target": "com.github.repos#ListAttestations"
         },
         {
-          "target": "com.github.repos#CreateUsingTemplate"
+          "target": "com.github.repos#ListAutolinks"
         },
         {
-          "target": "com.github.repos#ListPublic"
+          "target": "com.github.repos#ListBranches"
+        },
+        {
+          "target": "com.github.repos#ListBranchesForHeadCommit"
+        },
+        {
+          "target": "com.github.repos#ListCollaborators"
+        },
+        {
+          "target": "com.github.repos#ListCommentsForCommit"
+        },
+        {
+          "target": "com.github.repos#ListCommitCommentsForRepo"
+        },
+        {
+          "target": "com.github.repos#ListCommits"
+        },
+        {
+          "target": "com.github.repos#ListCommitStatusesForRef"
+        },
+        {
+          "target": "com.github.repos#ListContributors"
+        },
+        {
+          "target": "com.github.repos#ListCustomDeploymentRuleIntegrations"
+        },
+        {
+          "target": "com.github.repos#ListDeployKeys"
+        },
+        {
+          "target": "com.github.repos#ListDeploymentBranchPolicies"
+        },
+        {
+          "target": "com.github.repos#ListDeployments"
+        },
+        {
+          "target": "com.github.repos#ListDeploymentStatuses"
         },
         {
           "target": "com.github.repos#ListForAuthenticatedUser"
         },
         {
-          "target": "com.github.repos#CreateForAuthenticatedUser"
+          "target": "com.github.repos#ListForks"
+        },
+        {
+          "target": "com.github.repos#ListForOrg"
+        },
+        {
+          "target": "com.github.repos#ListForUser"
+        },
+        {
+          "target": "com.github.repos#ListInvitations"
         },
         {
           "target": "com.github.repos#ListInvitationsForAuthenticatedUser"
         },
         {
-          "target": "com.github.repos#AcceptInvitationForAuthenticatedUser"
+          "target": "com.github.repos#ListIssueTypes"
         },
         {
-          "target": "com.github.repos#DeclineInvitationForAuthenticatedUser"
+          "target": "com.github.repos#ListLanguages"
         },
         {
-          "target": "com.github.repos#ListForUser"
+          "target": "com.github.repos#ListPagesBuilds"
+        },
+        {
+          "target": "com.github.repos#ListPublic"
+        },
+        {
+          "target": "com.github.repos#ListPullRequestsAssociatedWithCommit"
+        },
+        {
+          "target": "com.github.repos#ListReleaseAssets"
+        },
+        {
+          "target": "com.github.repos#ListReleases"
+        },
+        {
+          "target": "com.github.repos#ListTags"
+        },
+        {
+          "target": "com.github.repos#ListTeams"
+        },
+        {
+          "target": "com.github.repos#ListWebhookDeliveries"
+        },
+        {
+          "target": "com.github.repos#ListWebhooks"
+        },
+        {
+          "target": "com.github.repos#Merge"
+        },
+        {
+          "target": "com.github.repos#MergeUpstream"
+        },
+        {
+          "target": "com.github.repos#PingWebhook"
+        },
+        {
+          "target": "com.github.repos#RedeliverWebhookDelivery"
+        },
+        {
+          "target": "com.github.repos#RemoveAppAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#RemoveCollaborator"
+        },
+        {
+          "target": "com.github.repos#RemoveStatusCheckContexts"
+        },
+        {
+          "target": "com.github.repos#RemoveStatusCheckProtection"
+        },
+        {
+          "target": "com.github.repos#RemoveTeamAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#RemoveUserAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#RenameBranch"
+        },
+        {
+          "target": "com.github.repos#ReplaceAllTopics"
+        },
+        {
+          "target": "com.github.repos#RequestPagesBuild"
+        },
+        {
+          "target": "com.github.repos#SetAdminBranchProtection"
+        },
+        {
+          "target": "com.github.repos#SetAppAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#SetStatusCheckContexts"
+        },
+        {
+          "target": "com.github.repos#SetTeamAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#SetUserAccessRestrictions"
+        },
+        {
+          "target": "com.github.repos#TestPushWebhook"
+        },
+        {
+          "target": "com.github.repos#Transfer"
+        },
+        {
+          "target": "com.github.repos#Update"
+        },
+        {
+          "target": "com.github.repos#UpdateBranchProtection"
+        },
+        {
+          "target": "com.github.repos#UpdateCommitComment"
+        },
+        {
+          "target": "com.github.repos#UpdateDeploymentBranchPolicy"
+        },
+        {
+          "target": "com.github.repos#UpdateInformationAboutPagesSite"
+        },
+        {
+          "target": "com.github.repos#UpdateInvitation"
+        },
+        {
+          "target": "com.github.repos#UpdateOrgRuleset"
+        },
+        {
+          "target": "com.github.repos#UpdatePullRequestReviewProtection"
+        },
+        {
+          "target": "com.github.repos#UpdateRelease"
+        },
+        {
+          "target": "com.github.repos#UpdateReleaseAsset"
+        },
+        {
+          "target": "com.github.repos#UpdateRepoRuleset"
+        },
+        {
+          "target": "com.github.repos#UpdateStatusCheckProtection"
+        },
+        {
+          "target": "com.github.repos#UpdateWebhook"
+        },
+        {
+          "target": "com.github.repos#UpdateWebhookConfigForRepo"
+        },
+        {
+          "target": "com.github.repos#UploadReleaseAsset"
         }
       ],
       "traits": {

@@ -4,105 +4,10 @@
     "service": "developerknowledge",
     "version": "v1alpha",
     "title": "Developer Knowledge API",
-    "baseUrl": "https://developerknowledge.googleapis.com/"
+    "baseUrl": "https://developerknowledge.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.developerknowledge_v1alpha#DocumentChunk": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Contains the resource name of the document this chunk is from. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`"
-          }
-        },
-        "relevanceScore": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Output only. Represents the relevance score of the chunk to the search query. Higher score indicates higher chunk relevance. The score is in range [0.0, 1.0]."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Specifies the ID of this chunk within the document. The chunk ID is unique within a document, but not globally unique across documents. The chunk ID is not stable and may change over time."
-          }
-        },
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Contains the content of the document chunk."
-          }
-        },
-        "document": {
-          "target": "com.gcp.developerknowledge_v1alpha#Document",
-          "traits": {
-            "smithy.api#documentation": "Output only. Represents metadata about the Document this chunk is from. The DocumentView of this Document message will be set to `DOCUMENT_VIEW_BASIC`. It is included here for convenience so that clients do not need to call DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments if they only need the metadata fields. Otherwise, clients should use DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments to fetch the full document content."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A DocumentChunk represents a piece of content from a Document in the DeveloperKnowledge corpus. To fetch the entire document content, pass the `parent` to DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#AnswerQueryRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Applies a strict filter to the search results used to ground the answer. The expression supports a subset of the syntax described at https://google.aip.dev/160. Supported fields for filtering: * `content_length_bytes` (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators. Timestamps must be in RFC-3339 format, e.g., `\"2025-01-01T00:00:00Z\"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes < 50000` * `data_source = \"docs.cloud.google.com\" OR data_source = \"firebase.google.com\"` * `data_source != \"firebase.google.com\"` * `update_time < \"2024-01-01T00:00:00Z\"` * `update_time >= \"2025-01-22T00:00:00Z\" AND (data_source = \"developer.chrome.com\" OR data_source = \"web.dev\")` * `uri = \"https://docs.cloud.google.com/release-notes\"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error."
-          }
-        },
-        "query": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The query to answer."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for DeveloperKnowledge.AnswerQuery."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#Answer": {
-      "type": "structure",
-      "members": {
-        "answerText": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Contains the text of the answer."
-          }
-        },
-        "citations": {
-          "target": "com.gcp.developerknowledge_v1alpha#AnswerCitationList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Contains citations for the answer."
-          }
-        },
-        "references": {
-          "target": "com.gcp.developerknowledge_v1alpha#AnswerReferenceList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Contains references for the answer."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An answer to a query."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#AnswerCitationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.developerknowledge_v1alpha#AnswerCitation"
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#AnswerReferenceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.developerknowledge_v1alpha#AnswerReference"
-      }
-    },
     "com.gcp.developerknowledge_v1alpha#AnswerQueryResponse": {
       "type": "structure",
       "members": {
@@ -115,32 +20,6 @@
       },
       "traits": {
         "smithy.api#documentation": "Response message for DeveloperKnowledge.AnswerQuery."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksResponse": {
-      "type": "structure",
-      "members": {
-        "results": {
-          "target": "com.gcp.developerknowledge_v1alpha#DocumentChunkList",
-          "traits": {
-            "smithy.api#documentation": "Contains the search results for the given query. Each DocumentChunk in this list contains a snippet of content relevant to the search query. Use the DocumentChunk.parent field of each result with DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments to retrieve the full document content."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for DeveloperKnowledge.SearchDocumentChunks."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#DocumentChunkList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.developerknowledge_v1alpha#DocumentChunk"
       }
     },
     "com.gcp.developerknowledge_v1alpha#AnswerReference": {
@@ -157,65 +36,19 @@
         "smithy.api#documentation": "Represents a reference to a source."
       }
     },
-    "com.gcp.developerknowledge_v1alpha#CitationSource": {
-      "type": "structure",
-      "members": {
-        "referenceIndex": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. Contains the index of the Answer.AnswerReference in the `references` repeated field."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Citation source."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#AnswerCitation": {
-      "type": "structure",
-      "members": {
-        "sources": {
-          "target": "com.gcp.developerknowledge_v1alpha#CitationSourceList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Contains citation sources for the attributed segment."
-          }
-        },
-        "endIndex": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. Indicates the end of the segment, measured in bytes (UTF-8 unicode), exclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length."
-          }
-        },
-        "startIndex": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. Indicates the start of the segment, measured in bytes (UTF-8 unicode), inclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Citation info for a segment."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#CitationSourceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.developerknowledge_v1alpha#CitationSource"
-      }
-    },
     "com.gcp.developerknowledge_v1alpha#Document": {
       "type": "structure",
       "members": {
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Provides the title of the document."
-          }
-        },
         "contentLengthBytes": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Output only. The length of the `content` field in bytes."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Provides the title of the document."
           }
         },
         "dataSource": {
@@ -224,28 +57,10 @@
             "smithy.api#documentation": "Output only. Specifies the data source of the document. Example data source: `firebase.google.com`"
           }
         },
-        "updateTime": {
-          "target": "smithy.api#String",
+        "view": {
+          "target": "com.gcp.developerknowledge_v1alpha#DocumentViewEnum",
           "traits": {
-            "smithy.api#documentation": "Output only. Represents the timestamp when the content or metadata of the document was last updated."
-          }
-        },
-        "uri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Provides the URI of the content, such as `docs.cloud.google.com/storage/docs/creating-buckets`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Contains the resource name of the document. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`"
-          }
-        },
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Contains the full content of the document in Markdown format."
+            "smithy.api#documentation": "Output only. Specifies the DocumentView of the document."
           }
         },
         "description": {
@@ -254,10 +69,28 @@
             "smithy.api#documentation": "Output only. Provides a description of the document."
           }
         },
-        "view": {
-          "target": "com.gcp.developerknowledge_v1alpha#DocumentViewEnum",
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Specifies the DocumentView of the document."
+            "smithy.api#documentation": "Identifier. Contains the resource name of the document. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Represents the timestamp when the content or metadata of the document was last updated."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains the full content of the document in Markdown format."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Provides the URI of the content, such as `https://docs.cloud.google.com/storage/docs/creating-buckets`."
           }
         }
       },
@@ -308,7 +141,175 @@
         "smithy.api#documentation": "Represents a reference to a document."
       }
     },
-    "com.gcp.developerknowledge_v1alpha#GetBatchDocumentResponse": {
+    "com.gcp.developerknowledge_v1alpha#AnswerQueryRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Applies a strict filter to the search results used to ground the answer. The expression supports a subset of the syntax described at https://google.aip.dev/160. Supported fields for filtering: * `content_length_bytes` (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators. Timestamps must be in RFC-3339 format, e.g., `\"2025-01-01T00:00:00Z\"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes < 50000` * `data_source = \"docs.cloud.google.com\" OR data_source = \"firebase.google.com\"` * `data_source != \"firebase.google.com\"` * `update_time < \"2024-01-01T00:00:00Z\"` * `update_time >= \"2025-01-22T00:00:00Z\" AND (data_source = \"developer.chrome.com\" OR data_source = \"web.dev\")` * `uri = \"https://docs.cloud.google.com/release-notes\"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The query to answer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for DeveloperKnowledge.AnswerQuery."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provides a token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "results": {
+          "target": "com.gcp.developerknowledge_v1alpha#DocumentChunkList",
+          "traits": {
+            "smithy.api#documentation": "Contains the search results for the given query. Each DocumentChunk in this list contains a snippet of content relevant to the search query. Use the DocumentChunk.parent field of each result with DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments to retrieve the full document content."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for DeveloperKnowledge.SearchDocumentChunks."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#DocumentChunkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.developerknowledge_v1alpha#DocumentChunk"
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#CitationSource": {
+      "type": "structure",
+      "members": {
+        "referenceIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains the index of the Answer.AnswerReference in the `references` repeated field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Citation source."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#AnswerCitation": {
+      "type": "structure",
+      "members": {
+        "sources": {
+          "target": "com.gcp.developerknowledge_v1alpha#CitationSourceList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains citation sources for the attributed segment."
+          }
+        },
+        "endIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates the end of the segment, measured in bytes (UTF-8 unicode), exclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length."
+          }
+        },
+        "startIndex": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates the start of the segment, measured in bytes (UTF-8 unicode), inclusive. If there are multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Citation info for a segment."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#CitationSourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.developerknowledge_v1alpha#CitationSource"
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#DocumentChunk": {
+      "type": "structure",
+      "members": {
+        "document": {
+          "target": "com.gcp.developerknowledge_v1alpha#Document",
+          "traits": {
+            "smithy.api#documentation": "Output only. Represents metadata about the Document this chunk is from. The DocumentView of this Document message will be set to `DOCUMENT_VIEW_BASIC`. It is included here for convenience so that clients do not need to call DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments if they only need the metadata fields. Otherwise, clients should use DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments to fetch the full document content."
+          }
+        },
+        "relevanceScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Output only. Represents the relevance score of the chunk to the search query. Higher score indicates higher chunk relevance. The score is in range [0.0, 1.0]."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specifies the ID of this chunk within the document. The chunk ID is unique within a document, but not globally unique across documents. The chunk ID is not stable and may change over time."
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains the resource name of the document this chunk is from. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains the content of the document chunk."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A DocumentChunk represents a piece of content from a Document in the DeveloperKnowledge corpus. To fetch the entire document content, pass the `parent` to DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#Answer": {
+      "type": "structure",
+      "members": {
+        "answerText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the text of the answer."
+          }
+        },
+        "citations": {
+          "target": "com.gcp.developerknowledge_v1alpha#AnswerCitationList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains citations for the answer."
+          }
+        },
+        "references": {
+          "target": "com.gcp.developerknowledge_v1alpha#AnswerReferenceList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains references for the answer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An answer to a query."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#AnswerCitationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.developerknowledge_v1alpha#AnswerCitation"
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#AnswerReferenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.developerknowledge_v1alpha#AnswerReference"
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsResponse": {
       "type": "structure",
       "members": {
         "documents": {
@@ -328,14 +329,56 @@
         "target": "com.gcp.developerknowledge_v1alpha#Document"
       }
     },
-    "com.gcp.developerknowledge_v1alpha#AnswerQueryV1alphaRequest": {
+    "com.gcp.developerknowledge_v1alpha#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsViewEnum": {
+      "type": "enum",
+      "members": {
+        "DOCUMENT_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_UNSPECIFIED"
+          }
+        },
+        "DOCUMENT_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_BASIC"
+          }
+        },
+        "DOCUMENT_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_FULL"
+          }
+        },
+        "DOCUMENT_VIEW_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_CONTENT"
+          }
+        }
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsRequest": {
       "type": "structure",
       "members": {
-        "body": {
-          "target": "com.gcp.developerknowledge_v1alpha#AnswerQueryRequest",
+        "names": {
+          "target": "com.gcp.developerknowledge_v1alpha#StringList",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error. ",
+            "smithy.api#httpQuery": "names"
+          }
+        },
+        "view": {
+          "target": "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.BatchGetDocuments defaults to `DOCUMENT_VIEW_CONTENT`.",
+            "smithy.api#httpQuery": "view"
           }
         }
       }
@@ -364,6 +407,176 @@
             "status": 403
           }
         ]
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#BatchGetDocuments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.developerknowledge_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.developerknowledge_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/documents:batchGet"
+        },
+        "smithy.api#documentation": "Retrieves multiple documents, each with its full Markdown content."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksDocumentsRequest": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Provides the raw query string provided by the user, such as \"How to create a Cloud Storage bucket?\". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
+            "smithy.api#httpQuery": "query"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `content_length_bytes` (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators. Timestamps must be in RFC-3339 format, e.g., `\"2025-01-01T00:00:00Z\"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g., `\"docs.cloud.google.com\"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes < 50000` * `data_source = \"docs.cloud.google.com\" OR data_source = \"firebase.google.com\"` * `data_source != \"firebase.google.com\"` * `update_time < \"2024-01-01T00:00:00Z\"` * `update_time >= \"2025-01-22T00:00:00Z\" AND (data_source = \"developer.chrome.com\" OR data_source = \"web.dev\")` * `uri = \"https://docs.cloud.google.com/release-notes\"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains a page token, received from a previous `SearchDocumentChunks` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksDocuments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksDocumentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.developerknowledge_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.developerknowledge_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/documents:searchDocumentChunks"
+        },
+        "smithy.api#documentation": "Searches for developer knowledge across Google's developer documentation. Returns DocumentChunks based on the user's query. There may be many chunks from the same Document. To retrieve full documents, use DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments with the DocumentChunk.parent returned in the SearchDocumentChunksResponse.results.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#GetDocumentsViewEnum": {
+      "type": "enum",
+      "members": {
+        "DOCUMENT_VIEW_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_UNSPECIFIED"
+          }
+        },
+        "DOCUMENT_VIEW_BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_BASIC"
+          }
+        },
+        "DOCUMENT_VIEW_FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_FULL"
+          }
+        },
+        "DOCUMENT_VIEW_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOCUMENT_VIEW_CONTENT"
+          }
+        }
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#GetDocumentsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "view": {
+          "target": "com.gcp.developerknowledge_v1alpha#GetDocumentsViewEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.GetDocument defaults to `DOCUMENT_VIEW_CONTENT`.",
+            "smithy.api#httpQuery": "view"
+          }
+        }
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#GetDocuments": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.developerknowledge_v1alpha#GetDocumentsRequest"
+      },
+      "output": {
+        "target": "com.gcp.developerknowledge_v1alpha#Document"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.developerknowledge_v1alpha#NotFound"
+        },
+        {
+          "target": "com.gcp.developerknowledge_v1alpha#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves a single document with its full Markdown content."
+      }
+    },
+    "com.gcp.developerknowledge_v1alpha#AnswerQueryV1alphaRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.developerknowledge_v1alpha#AnswerQueryRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
       }
     },
     "com.gcp.developerknowledge_v1alpha#BadRequest": {
@@ -420,218 +633,6 @@
           "uri": "v1alpha:answerQuery"
         },
         "smithy.api#documentation": "Answers a query using grounded generation."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsViewEnum": {
-      "type": "enum",
-      "members": {
-        "DOCUMENT_VIEW_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_UNSPECIFIED"
-          }
-        },
-        "DOCUMENT_VIEW_BASIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_BASIC"
-          }
-        },
-        "DOCUMENT_VIEW_FULL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_FULL"
-          }
-        },
-        "DOCUMENT_VIEW_CONTENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_CONTENT"
-          }
-        }
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#GetBatchDocumentRequest": {
-      "type": "structure",
-      "members": {
-        "view": {
-          "target": "com.gcp.developerknowledge_v1alpha#BatchGetDocumentsViewEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.BatchGetDocuments defaults to `DOCUMENT_VIEW_CONTENT`.",
-            "smithy.api#httpQuery": "view"
-          }
-        },
-        "names": {
-          "target": "com.gcp.developerknowledge_v1alpha#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. Specifies the names of the documents to retrieve. A maximum of 20 documents can be retrieved in a batch. The documents are returned in the same order as the `names` in the request. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` Each name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error. ",
-            "smithy.api#httpQuery": "names"
-          }
-        }
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#GetBatchDocument": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.developerknowledge_v1alpha#GetBatchDocumentRequest"
-      },
-      "output": {
-        "target": "com.gcp.developerknowledge_v1alpha#GetBatchDocumentResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.developerknowledge_v1alpha#NotFound"
-        },
-        {
-          "target": "com.gcp.developerknowledge_v1alpha#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1alpha/documents:batchGet"
-        },
-        "smithy.api#documentation": "Retrieves multiple documents, each with its full Markdown content."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#GetDocumentsViewEnum": {
-      "type": "enum",
-      "members": {
-        "DOCUMENT_VIEW_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_UNSPECIFIED"
-          }
-        },
-        "DOCUMENT_VIEW_BASIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_BASIC"
-          }
-        },
-        "DOCUMENT_VIEW_FULL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_FULL"
-          }
-        },
-        "DOCUMENT_VIEW_CONTENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOCUMENT_VIEW_CONTENT"
-          }
-        }
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#GetDocumentsRequest": {
-      "type": "structure",
-      "members": {
-        "view": {
-          "target": "com.gcp.developerknowledge_v1alpha#GetDocumentsViewEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Specifies the DocumentView of the document. If unspecified, DeveloperKnowledge.GetDocument defaults to `DOCUMENT_VIEW_CONTENT`.",
-            "smithy.api#httpQuery": "view"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Specifies the name of the document to retrieve. Format: `documents/{uri_without_scheme}` Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets` The name must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#GetDocuments": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.developerknowledge_v1alpha#GetDocumentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.developerknowledge_v1alpha#Document"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.developerknowledge_v1alpha#NotFound"
-        },
-        {
-          "target": "com.gcp.developerknowledge_v1alpha#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1alpha/{+name}"
-        },
-        "smithy.api#documentation": "Retrieves a single document with its full Markdown content."
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksDocumentsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains a page token, received from a previous `SearchDocumentChunks` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "query": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Provides the raw query string provided by the user, such as \"How to create a Cloud Storage bucket?\". The query must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
-            "smithy.api#httpQuery": "query"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `content_length_bytes` (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of the document, e.g. `docs.cloud.google.com`. See https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully updated. A meaningful update is one that changes document's markdown content or metadata. * `uri` (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators. STRING fields support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators. Timestamps must be in RFC-3339 format, e.g., `\"2025-01-01T00:00:00Z\"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g., `\"docs.cloud.google.com\"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping. Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes < 50000` * `data_source = \"docs.cloud.google.com\" OR data_source = \"firebase.google.com\"` * `data_source != \"firebase.google.com\"` * `update_time < \"2024-01-01T00:00:00Z\"` * `update_time >= \"2025-01-22T00:00:00Z\" AND (data_source = \"developer.chrome.com\" OR data_source = \"web.dev\")` * `uri = \"https://docs.cloud.google.com/release-notes\"` The `filter` string must not exceed 500 characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. Specifies the maximum number of results to return. The service may return fewer than this value. If unspecified, at most 5 results will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksDocuments": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksDocumentsRequest"
-      },
-      "output": {
-        "target": "com.gcp.developerknowledge_v1alpha#SearchDocumentChunksResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.developerknowledge_v1alpha#NotFound"
-        },
-        {
-          "target": "com.gcp.developerknowledge_v1alpha#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1alpha/documents:searchDocumentChunks"
-        },
-        "smithy.api#documentation": "Searches for developer knowledge across Google's developer documentation. Returns DocumentChunks based on the user's query. There may be many chunks from the same Document. To retrieve full documents, use DeveloperKnowledge.GetDocument or DeveloperKnowledge.BatchGetDocuments with the DocumentChunk.parent returned in the SearchDocumentChunksResponse.results.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
       }
     }
   }

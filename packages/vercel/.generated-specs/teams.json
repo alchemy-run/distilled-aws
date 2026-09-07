@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.teams#GetTeamMembersRequestRole": {
@@ -730,6 +731,18 @@
             "smithy.api#enumValue": "AiGatewaySettings"
           }
         },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
+          }
+        },
         "CONNECTORMANAGER": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -1370,6 +1383,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "AiGatewaySettings"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
           }
         },
         "CONNECTORMANAGER": {
@@ -2397,6 +2422,18 @@
             "smithy.api#enumValue": "AiGatewayBudgetManager"
           }
         },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
+          }
+        },
         "V0BUILDER": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -2881,6 +2918,12 @@
           "target": "com.vercel.teams#TeamStrictPasswordProtectionSettings",
           "traits": {
             "smithy.api#documentation": "When enabled, adding, changing, or removing project password protection requires Owner role."
+          }
+        },
+        "strictConnectors": {
+          "target": "com.vercel.teams#TeamStrictConnectors",
+          "traits": {
+            "smithy.api#documentation": "When enabled, creating and managing connectors requires Owner role or the ConnectorManager permission."
           }
         },
         "nsnbConfig": {
@@ -3409,6 +3452,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "AiGatewaySettings"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
           }
         },
         "CONNECTORMANAGER": {
@@ -4152,6 +4207,26 @@
         "smithy.api#documentation": "When enabled, adding, changing, or removing project password protection requires Owner role."
       }
     },
+    "com.vercel.teams#TeamStrictConnectors": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "When enabled, creating and managing connectors requires Owner role or the ConnectorManager permission."
+      }
+    },
     "com.vercel.teams#TeamNsnbConfigPreference": {
       "type": "enum",
       "members": {
@@ -4769,6 +4844,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "AiGatewaySettings"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
           }
         },
         "CONNECTORMANAGER": {
@@ -6226,6 +6313,21 @@
         "smithy.api#documentation": "When enabled, adding, changing, or removing project password protection requires Owner role."
       }
     },
+    "com.vercel.teams#PatchTeamRequestStrictConnectors": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable requiring Owner role to manage connectors.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "When enabled, creating and managing connectors requires Owner role."
+      }
+    },
     "com.vercel.teams#PatchTeamRequestNsnbConfigCase0Preference": {
       "type": "enum",
       "members": {
@@ -6563,6 +6665,12 @@
           "target": "com.vercel.teams#PatchTeamRequestStrictPasswordProtectionSettings",
           "traits": {
             "smithy.api#documentation": "When enabled, adding, changing, or removing project password protection requires Owner role."
+          }
+        },
+        "strictConnectors": {
+          "target": "com.vercel.teams#PatchTeamRequestStrictConnectors",
+          "traits": {
+            "smithy.api#documentation": "When enabled, creating and managing connectors requires Owner role."
           }
         },
         "nsnbConfig": {
@@ -7078,6 +7186,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "AiGatewaySettings"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
           }
         },
         "CONNECTORMANAGER": {
@@ -8231,40 +8351,10 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.teams#GetTeamMembers"
-        },
-        {
-          "target": "com.vercel.teams#InviteUserToTeam"
-        },
-        {
-          "target": "com.vercel.teams#RequestAccessToTeam"
-        },
-        {
-          "target": "com.vercel.teams#GetTeamAccessRequest"
-        },
-        {
-          "target": "com.vercel.teams#JoinTeam"
-        },
-        {
-          "target": "com.vercel.teams#UpdateTeamMember"
-        },
-        {
-          "target": "com.vercel.teams#RemoveTeamMember"
-        },
-        {
-          "target": "com.vercel.teams#GetTeam"
-        },
-        {
-          "target": "com.vercel.teams#PatchTeam"
-        },
-        {
-          "target": "com.vercel.teams#GetTeams"
-        },
-        {
           "target": "com.vercel.teams#CreateTeam"
         },
         {
-          "target": "com.vercel.teams#PostTeamDsyncRoles"
+          "target": "com.vercel.teams#DeleteMicrofrontendsGroup"
         },
         {
           "target": "com.vercel.teams#DeleteTeam"
@@ -8273,10 +8363,40 @@
           "target": "com.vercel.teams#DeleteTeamInviteCode"
         },
         {
+          "target": "com.vercel.teams#GetTeam"
+        },
+        {
+          "target": "com.vercel.teams#GetTeamAccessRequest"
+        },
+        {
+          "target": "com.vercel.teams#GetTeamMembers"
+        },
+        {
+          "target": "com.vercel.teams#GetTeams"
+        },
+        {
+          "target": "com.vercel.teams#InviteUserToTeam"
+        },
+        {
+          "target": "com.vercel.teams#JoinTeam"
+        },
+        {
+          "target": "com.vercel.teams#PatchTeam"
+        },
+        {
+          "target": "com.vercel.teams#PostTeamDsyncRoles"
+        },
+        {
+          "target": "com.vercel.teams#RemoveTeamMember"
+        },
+        {
+          "target": "com.vercel.teams#RequestAccessToTeam"
+        },
+        {
           "target": "com.vercel.teams#UpdateMicrofrontendsGroup"
         },
         {
-          "target": "com.vercel.teams#DeleteMicrofrontendsGroup"
+          "target": "com.vercel.teams#UpdateTeamMember"
         }
       ],
       "traits": {

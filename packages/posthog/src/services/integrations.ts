@@ -39,56 +39,6 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface AuthorizeIntegrationRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const AuthorizeIntegrationRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/integrations/authorize/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AuthorizeIntegrationRetrieveRequest",
-}) as any as S.Schema<AuthorizeIntegrationRetrieveRequest>;
-
-export interface AuthorizeIntegrationRetrieveResponse {}
-export const AuthorizeIntegrationRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AuthorizeIntegrationRetrieveResponse",
-}) as any as S.Schema<AuthorizeIntegrationRetrieveResponse>;
-
-export interface CheckIntegrationDomainConnectRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const CheckIntegrationDomainConnectRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/domain-connect/check/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckIntegrationDomainConnectRetrieveRequest",
-  }) as any as S.Schema<CheckIntegrationDomainConnectRetrieveRequest>;
-
-export interface CheckIntegrationDomainConnectRetrieveResponse {}
-export const CheckIntegrationDomainConnectRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CheckIntegrationDomainConnectRetrieveResponse",
-  }) as any as S.Schema<CheckIntegrationDomainConnectRetrieveResponse>;
-
 /** * `anthropic` - Anthropic * `apns` - Apple Push * `aws-redshift` - Aws Redshift * `aws-s3` - Aws S3 * `azure-blob` - Azure Blob * `bing-ads` - Bing Ads * `clickup` - Clickup * `customerio-app` - Customerio App * `customerio-track` - Customerio Track * `customerio-webhook` - Customerio Webhook * `databricks` - Databricks * `email` - Email * `firebase` - Firebase * `github` - Github * `gitlab` - Gitlab * `google-ads` - Google Ads * `google-analytics` - Google Analytics * `google-calendar` - Google Calendar * `google-cloud-service-account` - Google Cloud Service Account * `google-cloud-storage` - Google Cloud Storage * `google-pubsub` - Google Pubsub * `google-search-console` - Google Search Console * `google-sheets` - Google Sheets * `hubspot` - Hubspot * `instagram` - Instagram * `intercom` - Intercom * `jira` - Jira * `linear` - Linear * `linkedin-ads` - Linkedin Ads * `meta-ads` - Meta Ads * `pardot` - Pardot * `pinterest-ads` - Pinterest Ads * `postgresql` - Postgresql * `posthog` - Posthog * `reddit-ads` - Reddit Ads * `resend` - Resend * `s3-compatible` - S3 Compatible * `salesforce` - Salesforce * `slack` - Slack * `slack-posthog-code` - Slack Posthog Code * `snapchat` - Snapchat * `snowflake` - Snowflake * `stripe` - Stripe * `tiktok-ads` - Tiktok Ads * `twilio` - Twilio * `vercel` - Vercel * `youtube-analytics` - Youtube Analytics */
 export type IntegrationKindEnum =
   | "anthropic"
@@ -226,6 +176,8 @@ export interface IntegrationConfig {
   created_by?: UserBasic | null;
   errors?: string;
   display_name?: string;
+  /** Slack only: whether reconnecting can request the files:write scope. */
+  files_write_requestable?: boolean;
   /** GitHub only, null otherwise. Whether another project's GitHub integration references the same App installation. When false, disconnecting this integration also uninstalls the GitHub App from the connected account or organization and removes personal GitHub connections that share it. */
   installation_shared?: boolean | null;
   /** GitHub only, null otherwise. `unavailable` means the App was uninstalled or suspended on GitHub and PostHog can no longer mint tokens for it; `connected` otherwise. */
@@ -240,6 +192,7 @@ export const IntegrationConfig = /*@__PURE__*/ S.suspend(() =>
     created_by: S.optional(S.NullOr(UserBasic)),
     errors: S.optional(S.String),
     display_name: S.optional(S.String),
+    files_write_requestable: S.optional(S.Boolean),
     installation_shared: S.optional(S.NullOr(S.Boolean)),
     installation_status: S.optional(S.NullOr(InstallationStatusEnum)),
   }),
@@ -247,36 +200,7 @@ export const IntegrationConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntegrationConfig",
 }) as any as S.Schema<IntegrationConfig>;
 
-export interface CreateIntegrationDomainConnectApplyUrlRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  kind?: IntegrationKindEnum | (string & {});
-  config?: unknown;
-}
-export const CreateIntegrationDomainConnectApplyUrlRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      kind: S.optional(IntegrationKindEnum),
-      config: S.optional(S.Unknown),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/integrations/domain-connect/apply-url/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateIntegrationDomainConnectApplyUrlRequest",
-  }) as any as S.Schema<CreateIntegrationDomainConnectApplyUrlRequest>;
-
-export interface CreateIntegrationDomainConnectApplyUrlResponse {}
-export const CreateIntegrationDomainConnectApplyUrlResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CreateIntegrationDomainConnectApplyUrlResponse",
-  }) as any as S.Schema<CreateIntegrationDomainConnectApplyUrlResponse>;
-
-export interface CreateIntegrationGithubLinkExistingRequest {
+export interface CreateIntegrationsGithubLinkExistingRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Sibling team in the same organization whose GitHub installation should be reused. */
@@ -284,7 +208,7 @@ export interface CreateIntegrationGithubLinkExistingRequest {
   /** GitHub installation ID to link; resolved within the organization when source_team_id is omitted. */
   installation_id?: string;
 }
-export const CreateIntegrationGithubLinkExistingRequest =
+export const CreateIntegrationsGithubLinkExistingRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -298,10 +222,10 @@ export const CreateIntegrationGithubLinkExistingRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateIntegrationGithubLinkExistingRequest",
-  }) as any as S.Schema<CreateIntegrationGithubLinkExistingRequest>;
+    identifier: "CreateIntegrationsGithubLinkExistingRequest",
+  }) as any as S.Schema<CreateIntegrationsGithubLinkExistingRequest>;
 
-export interface CreateIntegrationGithubPrepareCallbackRequest {
+export interface CreateIntegrationsGithubPrepareCallbackRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Relative URL to redirect to after GitHub setup completes (e.g. account-connected for PostHog Desktop). */
@@ -309,7 +233,7 @@ export interface CreateIntegrationGithubPrepareCallbackRequest {
   /** GitHub installation ID being managed; binds the seeded update state so a callback can't swap in a different installation. */
   installation_id?: string;
 }
-export const CreateIntegrationGithubPrepareCallbackRequest =
+export const CreateIntegrationsGithubPrepareCallbackRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -323,127 +247,80 @@ export const CreateIntegrationGithubPrepareCallbackRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateIntegrationGithubPrepareCallbackRequest",
-  }) as any as S.Schema<CreateIntegrationGithubPrepareCallbackRequest>;
+    identifier: "CreateIntegrationsGithubPrepareCallbackRequest",
+  }) as any as S.Schema<CreateIntegrationsGithubPrepareCallbackRequest>;
 
-export interface CreateIntegrationGithubPrepareCallbackResponse {}
-export const CreateIntegrationGithubPrepareCallbackResponse =
+export interface CreateIntegrationsGithubPrepareCallbackResponse {}
+export const CreateIntegrationsGithubPrepareCallbackResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CreateIntegrationGithubPrepareCallbackResponse",
-  }) as any as S.Schema<CreateIntegrationGithubPrepareCallbackResponse>;
+    identifier: "CreateIntegrationsGithubPrepareCallbackResponse",
+  }) as any as S.Schema<CreateIntegrationsGithubPrepareCallbackResponse>;
 
-export interface CreateIntegrationGithubReposRefreshRequest {
+export interface CreateIntegrationsRequestAccessRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
+  /** The kind of integration the member is requesting be connected (e.g. 'slack', 'github'). * `anthropic` - Anthropic * `apns` - Apple Push * `aws-redshift` - Aws Redshift * `aws-s3` - Aws S3 * `azure-blob` - Azure Blob * `bing-ads` - Bing Ads * `clickup` - Clickup * `customerio-app` - Customerio App * `customerio-track` - Customerio Track * `customerio-webhook` - Customerio Webhook * `databricks` - Databricks * `email` - Email * `firebase` - Firebase * `github` - Github * `gitlab` - Gitlab * `google-ads` - Google Ads * `google-analytics` - Google Analytics * `google-calendar` - Google Calendar * `google-cloud-service-account` - Google Cloud Service Account * `google-cloud-storage` - Google Cloud Storage * `google-pubsub` - Google Pubsub * `google-search-console` - Google Search Console * `google-sheets` - Google Sheets * `hubspot` - Hubspot * `instagram` - Instagram * `intercom` - Intercom * `jira` - Jira * `linear` - Linear * `linkedin-ads` - Linkedin Ads * `meta-ads` - Meta Ads * `pardot` - Pardot * `pinterest-ads` - Pinterest Ads * `postgresql` - Postgresql * `posthog` - Posthog * `reddit-ads` - Reddit Ads * `resend` - Resend * `s3-compatible` - S3 Compatible * `salesforce` - Salesforce * `slack` - Slack * `slack-posthog-code` - Slack Posthog Code * `snapchat` - Snapchat * `snowflake` - Snowflake * `stripe` - Stripe * `tiktok-ads` - Tiktok Ads * `twilio` - Twilio * `vercel` - Vercel * `youtube-analytics` - Youtube Analytics */
+  kind: IntegrationKindEnum | (string & {});
+  /** Explanation from the requester of why this integration is needed. Shown to admins in the notification email. */
+  reason: string;
 }
-export const CreateIntegrationGithubReposRefreshRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const CreateIntegrationsRequestAccessRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
+      kind: IntegrationKindEnum,
+      reason: S.String,
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/api/projects/{project_id}/integrations/{id}/github_repos/refresh/",
+        uri: "/api/projects/{project_id}/integrations/request_access/",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "CreateIntegrationGithubReposRefreshRequest",
-  }) as any as S.Schema<CreateIntegrationGithubReposRefreshRequest>;
+).annotate({
+  identifier: "CreateIntegrationsRequestAccessRequest",
+}) as any as S.Schema<CreateIntegrationsRequestAccessRequest>;
 
-export interface GitHubRepo {
-  /** GitHub repository numeric identifier. */
-  id?: number;
-  /** Repository short name (without the owner prefix). */
-  name?: string;
-  /** Fully-qualified repository name as 'owner/repo'. */
-  full_name?: string;
-  /** Whether the repository is private. */
-  private?: boolean;
-  /** The repository's default branch (e.g. 'main'). */
-  default_branch?: string;
-  /** Primary programming language GitHub detected for the repository. */
-  language?: string;
-  /** ISO 8601 timestamp of the most recent push, useful for sorting by recent activity. */
-  pushed_at?: string;
-  /** Whether the repository is archived. */
-  archived?: boolean;
-  /** Whether the PostHog GitHub App has write access — required to open pull requests. */
-  can_push?: boolean;
+export interface IntegrationAccessRequestResponse {
+  /** Whether the access request was accepted and the project admins were notified. */
+  success: boolean;
 }
-export const GitHubRepo = /*@__PURE__*/ S.suspend(() =>
+export const IntegrationAccessRequestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.Number),
-    name: S.optional(S.String),
-    full_name: S.optional(S.String),
-    private: S.optional(S.Boolean),
-    default_branch: S.optional(S.String),
-    language: S.optional(S.String),
-    pushed_at: S.optional(S.String),
-    archived: S.optional(S.Boolean),
-    can_push: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "GitHubRepo" }) as any as S.Schema<GitHubRepo>;
-
-/** The refreshed repository cache. */
-export type GitHubReposRefreshResponseRepositoriesList = Array<GitHubRepo>;
-export const GitHubReposRefreshResponseRepositoriesList = /*@__PURE__*/ S.Array(
-  GitHubRepo,
-) as any as S.Schema<GitHubReposRefreshResponseRepositoriesList>;
-
-export interface GitHubReposRefreshResponse {
-  /** The refreshed repository cache. */
-  repositories?: GitHubReposRefreshResponseRepositoriesList;
-  /** `unavailable` when GitHub reports the App installation as uninstalled or suspended, in which case `repositories` is the last cached list rather than a fresh one. * `connected` - connected * `unavailable` - unavailable */
-  installation_status?: InstallationStatusEnum;
-}
-export const GitHubReposRefreshResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repositories: S.optional(GitHubReposRefreshResponseRepositoriesList),
-    installation_status: S.optional(InstallationStatusEnum),
+    success: S.Boolean,
   }),
 ).annotate({
-  identifier: "GitHubReposRefreshResponse",
-}) as any as S.Schema<GitHubReposRefreshResponse>;
+  identifier: "IntegrationAccessRequestResponse",
+}) as any as S.Schema<IntegrationAccessRequestResponse>;
 
-export interface IntegrationsAnthropicManagedAgentEnvsRetrieveRequest {
+export interface GetIntegrationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
   id: number;
 }
-export const IntegrationsAnthropicManagedAgentEnvsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/anthropic_managed_agent_environments/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationsAnthropicManagedAgentEnvsRetrieveRequest",
-  }) as any as S.Schema<IntegrationsAnthropicManagedAgentEnvsRetrieveRequest>;
+export const GetIntegrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationRequest",
+}) as any as S.Schema<GetIntegrationRequest>;
 
-export interface IntegrationsAnthropicManagedAgentEnvsRetrieveResponse {}
-export const IntegrationsAnthropicManagedAgentEnvsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsAnthropicManagedAgentEnvsRetrieveResponse",
-  }) as any as S.Schema<IntegrationsAnthropicManagedAgentEnvsRetrieveResponse>;
-
-export interface IntegrationsAnthropicManagedAgentsRetrieveRequest {
+export interface GetIntegrationsAnthropicManagedAgentRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
   id: number;
 }
-export const IntegrationsAnthropicManagedAgentsRetrieveRequest =
+export const GetIntegrationsAnthropicManagedAgentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -456,22 +333,50 @@ export const IntegrationsAnthropicManagedAgentsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "IntegrationsAnthropicManagedAgentsRetrieveRequest",
-  }) as any as S.Schema<IntegrationsAnthropicManagedAgentsRetrieveRequest>;
+    identifier: "GetIntegrationsAnthropicManagedAgentRequest",
+  }) as any as S.Schema<GetIntegrationsAnthropicManagedAgentRequest>;
 
-export interface IntegrationsAnthropicManagedAgentsRetrieveResponse {}
-export const IntegrationsAnthropicManagedAgentsRetrieveResponse =
+export interface GetIntegrationsAnthropicManagedAgentResponse {}
+export const GetIntegrationsAnthropicManagedAgentResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsAnthropicManagedAgentsRetrieveResponse",
-  }) as any as S.Schema<IntegrationsAnthropicManagedAgentsRetrieveResponse>;
+    identifier: "GetIntegrationsAnthropicManagedAgentResponse",
+  }) as any as S.Schema<GetIntegrationsAnthropicManagedAgentResponse>;
 
-export interface IntegrationsAnthropicManagedAgentVaultsRetrieveRequest {
+export interface GetIntegrationsAnthropicManagedAgentEnvRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
   id: number;
 }
-export const IntegrationsAnthropicManagedAgentVaultsRetrieveRequest =
+export const GetIntegrationsAnthropicManagedAgentEnvRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/{id}/anthropic_managed_agent_environments/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetIntegrationsAnthropicManagedAgentEnvRequest",
+  }) as any as S.Schema<GetIntegrationsAnthropicManagedAgentEnvRequest>;
+
+export interface GetIntegrationsAnthropicManagedAgentEnvResponse {}
+export const GetIntegrationsAnthropicManagedAgentEnvResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetIntegrationsAnthropicManagedAgentEnvResponse",
+  }) as any as S.Schema<GetIntegrationsAnthropicManagedAgentEnvResponse>;
+
+export interface GetIntegrationsAnthropicManagedAgentVaultRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsAnthropicManagedAgentVaultRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -484,16 +389,16 @@ export const IntegrationsAnthropicManagedAgentVaultsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "IntegrationsAnthropicManagedAgentVaultsRetrieveRequest",
-  }) as any as S.Schema<IntegrationsAnthropicManagedAgentVaultsRetrieveRequest>;
+    identifier: "GetIntegrationsAnthropicManagedAgentVaultRequest",
+  }) as any as S.Schema<GetIntegrationsAnthropicManagedAgentVaultRequest>;
 
-export interface IntegrationsAnthropicManagedAgentVaultsRetrieveResponse {}
-export const IntegrationsAnthropicManagedAgentVaultsRetrieveResponse =
+export interface GetIntegrationsAnthropicManagedAgentVaultResponse {}
+export const GetIntegrationsAnthropicManagedAgentVaultResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsAnthropicManagedAgentVaultsRetrieveResponse",
-  }) as any as S.Schema<IntegrationsAnthropicManagedAgentVaultsRetrieveResponse>;
+    identifier: "GetIntegrationsAnthropicManagedAgentVaultResponse",
+  }) as any as S.Schema<GetIntegrationsAnthropicManagedAgentVaultResponse>;
 
-export interface IntegrationsChannelsRetrieveRequest {
+export interface GetIntegrationsChannelRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
@@ -505,7 +410,7 @@ export interface IntegrationsChannelsRetrieveRequest {
   /** Optional case-insensitive channel name or ID search query. */
   search?: string;
 }
-export const IntegrationsChannelsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIntegrationsChannelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
@@ -520,8 +425,8 @@ export const IntegrationsChannelsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IntegrationsChannelsRetrieveRequest",
-}) as any as S.Schema<IntegrationsChannelsRetrieveRequest>;
+  identifier: "GetIntegrationsChannelRequest",
+}) as any as S.Schema<GetIntegrationsChannelRequest>;
 
 export interface SlackChannel {
   /** Slack channel ID (e.g. C0123ABC) — pass to cdp-functions inputs.channel. */
@@ -572,71 +477,70 @@ export const SlackChannelsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SlackChannelsResponse",
 }) as any as S.Schema<SlackChannelsResponse>;
 
-export interface IntegrationsClickupListsRetrieveRequest {
+export interface GetIntegrationsClickupListRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
   id: number;
 }
-export const IntegrationsClickupListsRetrieveRequest = /*@__PURE__*/ S.suspend(
+export const GetIntegrationsClickupListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/clickup_lists/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsClickupListRequest",
+}) as any as S.Schema<GetIntegrationsClickupListRequest>;
+
+export interface GetIntegrationsClickupListResponse {}
+export const GetIntegrationsClickupListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetIntegrationsClickupListResponse",
+}) as any as S.Schema<GetIntegrationsClickupListResponse>;
+
+export interface GetIntegrationsClickupSpaceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsClickupSpaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/clickup_spaces/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsClickupSpaceRequest",
+}) as any as S.Schema<GetIntegrationsClickupSpaceRequest>;
+
+export interface GetIntegrationsClickupSpaceResponse {}
+export const GetIntegrationsClickupSpaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetIntegrationsClickupSpaceResponse",
+}) as any as S.Schema<GetIntegrationsClickupSpaceResponse>;
+
+export interface GetIntegrationsClickupWorkspaceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsClickupWorkspaceRequest = /*@__PURE__*/ S.suspend(
   () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/clickup_lists/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsClickupListsRetrieveRequest",
-}) as any as S.Schema<IntegrationsClickupListsRetrieveRequest>;
-
-export interface IntegrationsClickupListsRetrieveResponse {}
-export const IntegrationsClickupListsRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "IntegrationsClickupListsRetrieveResponse",
-}) as any as S.Schema<IntegrationsClickupListsRetrieveResponse>;
-
-export interface IntegrationsClickupSpacesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsClickupSpacesRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/clickup_spaces/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsClickupSpacesRetrieveRequest",
-}) as any as S.Schema<IntegrationsClickupSpacesRetrieveRequest>;
-
-export interface IntegrationsClickupSpacesRetrieveResponse {}
-export const IntegrationsClickupSpacesRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsClickupSpacesRetrieveResponse",
-  }) as any as S.Schema<IntegrationsClickupSpacesRetrieveResponse>;
-
-export interface IntegrationsClickupWorkspacesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsClickupWorkspacesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.Number.pipe(T.Label()),
@@ -647,82 +551,22 @@ export const IntegrationsClickupWorkspacesRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "IntegrationsClickupWorkspacesRetrieveRequest",
-  }) as any as S.Schema<IntegrationsClickupWorkspacesRetrieveRequest>;
-
-export interface IntegrationsClickupWorkspacesRetrieveResponse {}
-export const IntegrationsClickupWorkspacesRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsClickupWorkspacesRetrieveResponse",
-  }) as any as S.Schema<IntegrationsClickupWorkspacesRetrieveResponse>;
-
-export interface IntegrationsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/integrations/{id}/",
-      code: 200,
-    }),
-  ),
 ).annotate({
-  identifier: "IntegrationsDestroyRequest",
-}) as any as S.Schema<IntegrationsDestroyRequest>;
+  identifier: "GetIntegrationsClickupWorkspaceRequest",
+}) as any as S.Schema<GetIntegrationsClickupWorkspaceRequest>;
 
-export interface IntegrationsDestroyResponse {}
-export const IntegrationsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IntegrationsDestroyResponse",
-}) as any as S.Schema<IntegrationsDestroyResponse>;
-
-export interface IntegrationsEmailVerifyCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-  kind?: IntegrationKindEnum | (string & {});
-  config?: unknown;
-}
-export const IntegrationsEmailVerifyCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      kind: S.optional(IntegrationKindEnum),
-      config: S.optional(S.Unknown),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/integrations/{id}/email/verify/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsEmailVerifyCreateRequest",
-}) as any as S.Schema<IntegrationsEmailVerifyCreateRequest>;
-
-export interface IntegrationsEmailVerifyCreateResponse {}
-export const IntegrationsEmailVerifyCreateResponse = /*@__PURE__*/ S.suspend(
+export interface GetIntegrationsClickupWorkspaceResponse {}
+export const GetIntegrationsClickupWorkspaceResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "IntegrationsEmailVerifyCreateResponse",
-}) as any as S.Schema<IntegrationsEmailVerifyCreateResponse>;
+  identifier: "GetIntegrationsClickupWorkspaceResponse",
+}) as any as S.Schema<GetIntegrationsClickupWorkspaceResponse>;
 
-export interface IntegrationsGithubAvailableInstallationsRetrieveRequest {
+export interface GetIntegrationsGithubAvailableInstallationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const IntegrationsGithubAvailableInstallationsRetrieveRequest =
+export const GetIntegrationsGithubAvailableInstallationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -734,8 +578,8 @@ export const IntegrationsGithubAvailableInstallationsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "IntegrationsGithubAvailableInstallationsRetrieveRequest",
-  }) as any as S.Schema<IntegrationsGithubAvailableInstallationsRetrieveRequest>;
+    identifier: "GetIntegrationsGithubAvailableInstallationRequest",
+  }) as any as S.Schema<GetIntegrationsGithubAvailableInstallationRequest>;
 
 export interface GitHubAvailableInstallation {
   /** GitHub installation ID to pass to github/link_existing when linking this installation. */
@@ -782,7 +626,7 @@ export const GitHubAvailableInstallationsResponse = /*@__PURE__*/ S.suspend(
   identifier: "GitHubAvailableInstallationsResponse",
 }) as any as S.Schema<GitHubAvailableInstallationsResponse>;
 
-export interface IntegrationsGithubBranchesRetrieveRequest {
+export interface GetIntegrationsGithubBranchRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
@@ -796,25 +640,24 @@ export interface IntegrationsGithubBranchesRetrieveRequest {
   /** Optional case-insensitive branch name search query. */
   search?: string;
 }
-export const IntegrationsGithubBranchesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-      repo: S.String.pipe(T.Query()),
-      search: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/github_branches/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationsGithubBranchesRetrieveRequest",
-  }) as any as S.Schema<IntegrationsGithubBranchesRetrieveRequest>;
+export const GetIntegrationsGithubBranchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    repo: S.String.pipe(T.Query()),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/github_branches/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsGithubBranchRequest",
+}) as any as S.Schema<GetIntegrationsGithubBranchRequest>;
 
 /** List of branch names */
 export type GitHubBranchesResponseBranchesList = Array<string>;
@@ -839,6 +682,624 @@ export const GitHubBranchesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GitHubBranchesResponse",
 }) as any as S.Schema<GitHubBranchesResponse>;
+
+export interface GetIntegrationsGithubReposRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+  /** Maximum number of repositories to return per request (max 500). */
+  limit?: number;
+  /** Number of repositories to skip before returning results. */
+  offset?: number;
+  /** Optional case-insensitive repository name search query. */
+  search?: string;
+}
+export const GetIntegrationsGithubReposRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/github_repos/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsGithubReposRequest",
+}) as any as S.Schema<GetIntegrationsGithubReposRequest>;
+
+export interface GitHubRepo {
+  /** GitHub repository numeric identifier. */
+  id?: number;
+  /** Repository short name (without the owner prefix). */
+  name?: string;
+  /** Fully-qualified repository name as 'owner/repo'. */
+  full_name?: string;
+  /** Whether the repository is private. */
+  private?: boolean;
+  /** The repository's default branch (e.g. 'main'). */
+  default_branch?: string;
+  /** Primary programming language GitHub detected for the repository. */
+  language?: string;
+  /** ISO 8601 timestamp of the most recent push, useful for sorting by recent activity. */
+  pushed_at?: string;
+  /** Whether the repository is archived. */
+  archived?: boolean;
+  /** Whether the PostHog GitHub App has write access — required to open pull requests. */
+  can_push?: boolean;
+}
+export const GitHubRepo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    name: S.optional(S.String),
+    full_name: S.optional(S.String),
+    private: S.optional(S.Boolean),
+    default_branch: S.optional(S.String),
+    language: S.optional(S.String),
+    pushed_at: S.optional(S.String),
+    archived: S.optional(S.Boolean),
+    can_push: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "GitHubRepo" }) as any as S.Schema<GitHubRepo>;
+
+export type GitHubReposResponseRepositoriesList = Array<GitHubRepo>;
+export const GitHubReposResponseRepositoriesList = /*@__PURE__*/ S.Array(
+  GitHubRepo,
+) as any as S.Schema<GitHubReposResponseRepositoriesList>;
+
+export interface GitHubReposResponse {
+  repositories?: GitHubReposResponseRepositoriesList;
+  /** Whether more repositories are available beyond this page. */
+  has_more?: boolean;
+  /** Total number of repositories matching the search query, across all pages. */
+  total?: number;
+}
+export const GitHubReposResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repositories: S.optional(GitHubReposResponseRepositoriesList),
+    has_more: S.optional(S.Boolean),
+    total: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GitHubReposResponse",
+}) as any as S.Schema<GitHubReposResponse>;
+
+export interface GetIntegrationsGithubTeamRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+  /** Maximum number of teams to return per request (max 500). */
+  limit?: number;
+  /** Number of teams to skip before returning results. */
+  offset?: number;
+  /** Optional case-insensitive team name or slug search query. */
+  search?: string;
+}
+export const GetIntegrationsGithubTeamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/github_teams/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsGithubTeamRequest",
+}) as any as S.Schema<GetIntegrationsGithubTeamRequest>;
+
+export interface GitHubTeam {
+  /** GitHub team numeric identifier. */
+  id: number;
+  /** GitHub team slug. */
+  slug: string;
+  /** GitHub team display name. */
+  name: string;
+}
+export const GitHubTeam = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    slug: S.String,
+    name: S.String,
+  }),
+).annotate({ identifier: "GitHubTeam" }) as any as S.Schema<GitHubTeam>;
+
+/** List of GitHub teams available to the installation organization. */
+export type GitHubTeamsResponseTeamsList = Array<GitHubTeam>;
+export const GitHubTeamsResponseTeamsList = /*@__PURE__*/ S.Array(
+  GitHubTeam,
+) as any as S.Schema<GitHubTeamsResponseTeamsList>;
+
+export interface GitHubTeamsResponse {
+  /** List of GitHub teams available to the installation organization. */
+  teams: GitHubTeamsResponseTeamsList;
+  /** Whether more teams are available beyond this page. */
+  has_more: boolean;
+}
+export const GitHubTeamsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teams: GitHubTeamsResponseTeamsList,
+    has_more: S.Boolean,
+  }),
+).annotate({
+  identifier: "GitHubTeamsResponse",
+}) as any as S.Schema<GitHubTeamsResponse>;
+
+export interface GetIntegrationsGoogleAccessibleAccountRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsGoogleAccessibleAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/{id}/google_accessible_accounts/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetIntegrationsGoogleAccessibleAccountRequest",
+  }) as any as S.Schema<GetIntegrationsGoogleAccessibleAccountRequest>;
+
+export interface GetIntegrationsGoogleAccessibleAccountResponse {}
+export const GetIntegrationsGoogleAccessibleAccountResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetIntegrationsGoogleAccessibleAccountResponse",
+  }) as any as S.Schema<GetIntegrationsGoogleAccessibleAccountResponse>;
+
+export interface GetIntegrationsGoogleConversionActionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsGoogleConversionActionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/{id}/google_conversion_actions/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetIntegrationsGoogleConversionActionRequest",
+  }) as any as S.Schema<GetIntegrationsGoogleConversionActionRequest>;
+
+export interface GetIntegrationsGoogleConversionActionResponse {}
+export const GetIntegrationsGoogleConversionActionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetIntegrationsGoogleConversionActionResponse",
+  }) as any as S.Schema<GetIntegrationsGoogleConversionActionResponse>;
+
+export interface GetIntegrationsJiraProjectRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsJiraProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/jira_projects/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsJiraProjectRequest",
+}) as any as S.Schema<GetIntegrationsJiraProjectRequest>;
+
+export interface JiraProject {
+  /** Jira project ID. */
+  id: string;
+  /** Jira project key to pass as error tracking config.project_key. */
+  key: string;
+  /** Jira project display name. */
+  name: string;
+}
+export const JiraProject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    key: S.String,
+    name: S.String,
+  }),
+).annotate({ identifier: "JiraProject" }) as any as S.Schema<JiraProject>;
+
+/** Jira projects available to this integration. */
+export type JiraProjectsResponseProjectsList = Array<JiraProject>;
+export const JiraProjectsResponseProjectsList = /*@__PURE__*/ S.Array(
+  JiraProject,
+) as any as S.Schema<JiraProjectsResponseProjectsList>;
+
+export interface JiraProjectsResponse {
+  /** Jira projects available to this integration. */
+  projects: JiraProjectsResponseProjectsList;
+}
+export const JiraProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    projects: JiraProjectsResponseProjectsList,
+  }),
+).annotate({
+  identifier: "JiraProjectsResponse",
+}) as any as S.Schema<JiraProjectsResponse>;
+
+export interface GetIntegrationsLinearTeamRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsLinearTeamRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/linear_teams/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsLinearTeamRequest",
+}) as any as S.Schema<GetIntegrationsLinearTeamRequest>;
+
+export interface LinearTeam {
+  /** Linear team ID to pass as error tracking config.team_id. */
+  id: string;
+  /** Linear team display name. */
+  name: string;
+}
+export const LinearTeam = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+  }),
+).annotate({ identifier: "LinearTeam" }) as any as S.Schema<LinearTeam>;
+
+/** Linear teams available to this integration. */
+export type LinearTeamsResponseTeamsList = Array<LinearTeam>;
+export const LinearTeamsResponseTeamsList = /*@__PURE__*/ S.Array(
+  LinearTeam,
+) as any as S.Schema<LinearTeamsResponseTeamsList>;
+
+export interface LinearTeamsResponse {
+  /** Linear teams available to this integration. */
+  teams: LinearTeamsResponseTeamsList;
+}
+export const LinearTeamsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    teams: LinearTeamsResponseTeamsList,
+  }),
+).annotate({
+  identifier: "LinearTeamsResponse",
+}) as any as S.Schema<LinearTeamsResponse>;
+
+export interface GetIntegrationsLinkedinAdsAccountRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsLinkedinAdsAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/{id}/linkedin_ads_accounts/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetIntegrationsLinkedinAdsAccountRequest",
+}) as any as S.Schema<GetIntegrationsLinkedinAdsAccountRequest>;
+
+export interface GetIntegrationsLinkedinAdsAccountResponse {}
+export const GetIntegrationsLinkedinAdsAccountResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetIntegrationsLinkedinAdsAccountResponse",
+  }) as any as S.Schema<GetIntegrationsLinkedinAdsAccountResponse>;
+
+export interface GetIntegrationsLinkedinAdsConversionRuleRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsLinkedinAdsConversionRuleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/{id}/linkedin_ads_conversion_rules/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetIntegrationsLinkedinAdsConversionRuleRequest",
+  }) as any as S.Schema<GetIntegrationsLinkedinAdsConversionRuleRequest>;
+
+export interface GetIntegrationsLinkedinAdsConversionRuleResponse {}
+export const GetIntegrationsLinkedinAdsConversionRuleResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetIntegrationsLinkedinAdsConversionRuleResponse",
+  }) as any as S.Schema<GetIntegrationsLinkedinAdsConversionRuleResponse>;
+
+export interface GetIntegrationsTwilioPhoneNumberRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const GetIntegrationsTwilioPhoneNumberRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/{id}/twilio_phone_numbers/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetIntegrationsTwilioPhoneNumberRequest",
+}) as any as S.Schema<GetIntegrationsTwilioPhoneNumberRequest>;
+
+export interface GetIntegrationsTwilioPhoneNumberResponse {}
+export const GetIntegrationsTwilioPhoneNumberResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetIntegrationsTwilioPhoneNumberResponse",
+}) as any as S.Schema<GetIntegrationsTwilioPhoneNumberResponse>;
+
+export interface GetIntegrationsUserRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+  /** Bypass the 1 hour member cache. Honored only for browser session callers; API key, OAuth, and MCP callers always read through the cache. */
+  force_refresh?: boolean;
+  /** Maximum number of members to return per request (max 200). */
+  limit?: number;
+  /** Number of members to skip before returning results. */
+  offset?: number;
+  /** Optional case-insensitive member name or ID search query. */
+  search?: string;
+  /** Look up one member directly by Slack member ID (e.g. U0123ABC). When set, `search`, `limit`, and `offset` are ignored and the response holds at most that member. */
+  user_id?: string;
+}
+export const GetIntegrationsUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    force_refresh: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+    user_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/integrations/{id}/users/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetIntegrationsUserRequest",
+}) as any as S.Schema<GetIntegrationsUserRequest>;
+
+export interface SlackUser {
+  /** Slack member ID (e.g. U0123ABC) — post to it to open a direct message. */
+  id: string;
+  /** Slack username (handle) without the leading '@'. */
+  name: string;
+  /** Name to show in pickers: the member's display name, falling back to their real name or handle. */
+  display_name: string;
+}
+export const SlackUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    display_name: S.String,
+  }),
+).annotate({ identifier: "SlackUser" }) as any as S.Schema<SlackUser>;
+
+/** Human Slack workspace members the PostHog Slack app can DM. */
+export type SlackUsersResponseUsersList = Array<SlackUser>;
+export const SlackUsersResponseUsersList = /*@__PURE__*/ S.Array(
+  SlackUser,
+) as any as S.Schema<SlackUsersResponseUsersList>;
+
+export interface SlackUsersResponse {
+  /** Human Slack workspace members the PostHog Slack app can DM. */
+  users: SlackUsersResponseUsersList;
+  /** ISO 8601 timestamp of the last full Slack API refresh (only set on full lists, not single-member lookups). */
+  lastRefreshedAt?: string | null;
+  /** Whether more members match the current search beyond this page. */
+  has_more?: boolean;
+}
+export const SlackUsersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    users: SlackUsersResponseUsersList,
+    lastRefreshedAt: S.optional(S.NullOr(S.String)),
+    has_more: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SlackUsersResponse",
+}) as any as S.Schema<SlackUsersResponse>;
+
+export interface IntegrationsAuthorizeRetrieveRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const IntegrationsAuthorizeRetrieveRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/authorize/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "IntegrationsAuthorizeRetrieveRequest",
+}) as any as S.Schema<IntegrationsAuthorizeRetrieveRequest>;
+
+export interface IntegrationsAuthorizeRetrieveResponse {}
+export const IntegrationsAuthorizeRetrieveResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "IntegrationsAuthorizeRetrieveResponse",
+}) as any as S.Schema<IntegrationsAuthorizeRetrieveResponse>;
+
+export interface IntegrationsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+}
+export const IntegrationsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/integrations/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "IntegrationsDestroyRequest",
+}) as any as S.Schema<IntegrationsDestroyRequest>;
+
+export interface IntegrationsDestroyResponse {}
+export const IntegrationsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IntegrationsDestroyResponse",
+}) as any as S.Schema<IntegrationsDestroyResponse>;
+
+export interface IntegrationsDomainConnectApplyUrlCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  kind?: IntegrationKindEnum | (string & {});
+  config?: unknown;
+}
+export const IntegrationsDomainConnectApplyUrlCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      kind: S.optional(IntegrationKindEnum),
+      config: S.optional(S.Unknown),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/integrations/domain-connect/apply-url/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "IntegrationsDomainConnectApplyUrlCreateRequest",
+  }) as any as S.Schema<IntegrationsDomainConnectApplyUrlCreateRequest>;
+
+export interface IntegrationsDomainConnectApplyUrlCreateResponse {}
+export const IntegrationsDomainConnectApplyUrlCreateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "IntegrationsDomainConnectApplyUrlCreateResponse",
+  }) as any as S.Schema<IntegrationsDomainConnectApplyUrlCreateResponse>;
+
+export interface IntegrationsDomainConnectCheckRetrieveRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const IntegrationsDomainConnectCheckRetrieveRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/integrations/domain-connect/check/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "IntegrationsDomainConnectCheckRetrieveRequest",
+  }) as any as S.Schema<IntegrationsDomainConnectCheckRetrieveRequest>;
+
+export interface IntegrationsDomainConnectCheckRetrieveResponse {}
+export const IntegrationsDomainConnectCheckRetrieveResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "IntegrationsDomainConnectCheckRetrieveResponse",
+  }) as any as S.Schema<IntegrationsDomainConnectCheckRetrieveResponse>;
+
+export interface IntegrationsEmailVerifyCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this integration. */
+  id: number;
+  kind?: IntegrationKindEnum | (string & {});
+  config?: unknown;
+}
+export const IntegrationsEmailVerifyCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+      kind: S.optional(IntegrationKindEnum),
+      config: S.optional(S.Unknown),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/integrations/{id}/email/verify/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "IntegrationsEmailVerifyCreateRequest",
+}) as any as S.Schema<IntegrationsEmailVerifyCreateRequest>;
+
+export interface IntegrationsEmailVerifyCreateResponse {}
+export const IntegrationsEmailVerifyCreateResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "IntegrationsEmailVerifyCreateResponse",
+}) as any as S.Schema<IntegrationsEmailVerifyCreateResponse>;
 
 /** * `posthog_code` - posthog_code */
 export type ConnectFromEnum = "posthog_code";
@@ -884,435 +1345,50 @@ export const GitHubOAuthAuthorizeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GitHubOAuthAuthorizeResponse",
 }) as any as S.Schema<GitHubOAuthAuthorizeResponse>;
 
-export interface IntegrationsGithubReposRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-  /** Maximum number of repositories to return per request (max 500). */
-  limit?: number;
-  /** Number of repositories to skip before returning results. */
-  offset?: number;
-  /** Optional case-insensitive repository name search query. */
-  search?: string;
-}
-export const IntegrationsGithubReposRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-      search: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/github_repos/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsGithubReposRetrieveRequest",
-}) as any as S.Schema<IntegrationsGithubReposRetrieveRequest>;
-
-export type GitHubReposResponseRepositoriesList = Array<GitHubRepo>;
-export const GitHubReposResponseRepositoriesList = /*@__PURE__*/ S.Array(
-  GitHubRepo,
-) as any as S.Schema<GitHubReposResponseRepositoriesList>;
-
-export interface GitHubReposResponse {
-  repositories?: GitHubReposResponseRepositoriesList;
-  /** Whether more repositories are available beyond this page. */
-  has_more?: boolean;
-  /** Total number of repositories matching the search query, across all pages. */
-  total?: number;
-}
-export const GitHubReposResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repositories: S.optional(GitHubReposResponseRepositoriesList),
-    has_more: S.optional(S.Boolean),
-    total: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "GitHubReposResponse",
-}) as any as S.Schema<GitHubReposResponse>;
-
-export interface IntegrationsGithubTeamsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-  /** Maximum number of teams to return per request (max 500). */
-  limit?: number;
-  /** Number of teams to skip before returning results. */
-  offset?: number;
-  /** Optional case-insensitive team name or slug search query. */
-  search?: string;
-}
-export const IntegrationsGithubTeamsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-      search: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/github_teams/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsGithubTeamsRetrieveRequest",
-}) as any as S.Schema<IntegrationsGithubTeamsRetrieveRequest>;
-
-export interface GitHubTeam {
-  /** GitHub team numeric identifier. */
-  id: number;
-  /** GitHub team slug. */
-  slug: string;
-  /** GitHub team display name. */
-  name: string;
-}
-export const GitHubTeam = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    slug: S.String,
-    name: S.String,
-  }),
-).annotate({ identifier: "GitHubTeam" }) as any as S.Schema<GitHubTeam>;
-
-/** List of GitHub teams available to the installation organization. */
-export type GitHubTeamsResponseTeamsList = Array<GitHubTeam>;
-export const GitHubTeamsResponseTeamsList = /*@__PURE__*/ S.Array(
-  GitHubTeam,
-) as any as S.Schema<GitHubTeamsResponseTeamsList>;
-
-export interface GitHubTeamsResponse {
-  /** List of GitHub teams available to the installation organization. */
-  teams: GitHubTeamsResponseTeamsList;
-  /** Whether more teams are available beyond this page. */
-  has_more: boolean;
-}
-export const GitHubTeamsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    teams: GitHubTeamsResponseTeamsList,
-    has_more: S.Boolean,
-  }),
-).annotate({
-  identifier: "GitHubTeamsResponse",
-}) as any as S.Schema<GitHubTeamsResponse>;
-
-export interface IntegrationsGoogleAccessibleAccountsRetrieveRequest {
+export interface IntegrationsGithubReposRefreshCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
   id: number;
 }
-export const IntegrationsGoogleAccessibleAccountsRetrieveRequest =
+export const IntegrationsGithubReposRefreshCreateRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/google_accessible_accounts/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationsGoogleAccessibleAccountsRetrieveRequest",
-  }) as any as S.Schema<IntegrationsGoogleAccessibleAccountsRetrieveRequest>;
-
-export interface IntegrationsGoogleAccessibleAccountsRetrieveResponse {}
-export const IntegrationsGoogleAccessibleAccountsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsGoogleAccessibleAccountsRetrieveResponse",
-  }) as any as S.Schema<IntegrationsGoogleAccessibleAccountsRetrieveResponse>;
-
-export interface IntegrationsGoogleConversionActionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsGoogleConversionActionsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/google_conversion_actions/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationsGoogleConversionActionsRetrieveRequest",
-  }) as any as S.Schema<IntegrationsGoogleConversionActionsRetrieveRequest>;
-
-export interface IntegrationsGoogleConversionActionsRetrieveResponse {}
-export const IntegrationsGoogleConversionActionsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsGoogleConversionActionsRetrieveResponse",
-  }) as any as S.Schema<IntegrationsGoogleConversionActionsRetrieveResponse>;
-
-export interface IntegrationsJiraProjectsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsJiraProjectsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/jira_projects/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsJiraProjectsRetrieveRequest",
-}) as any as S.Schema<IntegrationsJiraProjectsRetrieveRequest>;
-
-export interface JiraProject {
-  /** Jira project ID. */
-  id: string;
-  /** Jira project key to pass as error tracking config.project_key. */
-  key: string;
-  /** Jira project display name. */
-  name: string;
-}
-export const JiraProject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    key: S.String,
-    name: S.String,
-  }),
-).annotate({ identifier: "JiraProject" }) as any as S.Schema<JiraProject>;
-
-/** Jira projects available to this integration. */
-export type JiraProjectsResponseProjectsList = Array<JiraProject>;
-export const JiraProjectsResponseProjectsList = /*@__PURE__*/ S.Array(
-  JiraProject,
-) as any as S.Schema<JiraProjectsResponseProjectsList>;
-
-export interface JiraProjectsResponse {
-  /** Jira projects available to this integration. */
-  projects: JiraProjectsResponseProjectsList;
-}
-export const JiraProjectsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    projects: JiraProjectsResponseProjectsList,
-  }),
-).annotate({
-  identifier: "JiraProjectsResponse",
-}) as any as S.Schema<JiraProjectsResponse>;
-
-export interface IntegrationsLinearTeamsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsLinearTeamsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/linear_teams/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsLinearTeamsRetrieveRequest",
-}) as any as S.Schema<IntegrationsLinearTeamsRetrieveRequest>;
-
-export interface LinearTeam {
-  /** Linear team ID to pass as error tracking config.team_id. */
-  id: string;
-  /** Linear team display name. */
-  name: string;
-}
-export const LinearTeam = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-  }),
-).annotate({ identifier: "LinearTeam" }) as any as S.Schema<LinearTeam>;
-
-/** Linear teams available to this integration. */
-export type LinearTeamsResponseTeamsList = Array<LinearTeam>;
-export const LinearTeamsResponseTeamsList = /*@__PURE__*/ S.Array(
-  LinearTeam,
-) as any as S.Schema<LinearTeamsResponseTeamsList>;
-
-export interface LinearTeamsResponse {
-  /** Linear teams available to this integration. */
-  teams: LinearTeamsResponseTeamsList;
-}
-export const LinearTeamsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    teams: LinearTeamsResponseTeamsList,
-  }),
-).annotate({
-  identifier: "LinearTeamsResponse",
-}) as any as S.Schema<LinearTeamsResponse>;
-
-export interface IntegrationsLinkedinAdsAccountsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsLinkedinAdsAccountsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/linkedin_ads_accounts/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationsLinkedinAdsAccountsRetrieveRequest",
-  }) as any as S.Schema<IntegrationsLinkedinAdsAccountsRetrieveRequest>;
-
-export interface IntegrationsLinkedinAdsAccountsRetrieveResponse {}
-export const IntegrationsLinkedinAdsAccountsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsLinkedinAdsAccountsRetrieveResponse",
-  }) as any as S.Schema<IntegrationsLinkedinAdsAccountsRetrieveResponse>;
-
-export interface IntegrationsLinkedinAdsConversionRulesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsLinkedinAdsConversionRulesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/linkedin_ads_conversion_rules/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "IntegrationsLinkedinAdsConversionRulesRetrieveRequest",
-  }) as any as S.Schema<IntegrationsLinkedinAdsConversionRulesRetrieveRequest>;
-
-export interface IntegrationsLinkedinAdsConversionRulesRetrieveResponse {}
-export const IntegrationsLinkedinAdsConversionRulesRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsLinkedinAdsConversionRulesRetrieveResponse",
-  }) as any as S.Schema<IntegrationsLinkedinAdsConversionRulesRetrieveResponse>;
-
-export interface IntegrationsRequestAccessCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The kind of integration the member is requesting be connected (e.g. 'slack', 'github'). * `anthropic` - Anthropic * `apns` - Apple Push * `aws-redshift` - Aws Redshift * `aws-s3` - Aws S3 * `azure-blob` - Azure Blob * `bing-ads` - Bing Ads * `clickup` - Clickup * `customerio-app` - Customerio App * `customerio-track` - Customerio Track * `customerio-webhook` - Customerio Webhook * `databricks` - Databricks * `email` - Email * `firebase` - Firebase * `github` - Github * `gitlab` - Gitlab * `google-ads` - Google Ads * `google-analytics` - Google Analytics * `google-calendar` - Google Calendar * `google-cloud-service-account` - Google Cloud Service Account * `google-cloud-storage` - Google Cloud Storage * `google-pubsub` - Google Pubsub * `google-search-console` - Google Search Console * `google-sheets` - Google Sheets * `hubspot` - Hubspot * `instagram` - Instagram * `intercom` - Intercom * `jira` - Jira * `linear` - Linear * `linkedin-ads` - Linkedin Ads * `meta-ads` - Meta Ads * `pardot` - Pardot * `pinterest-ads` - Pinterest Ads * `postgresql` - Postgresql * `posthog` - Posthog * `reddit-ads` - Reddit Ads * `resend` - Resend * `s3-compatible` - S3 Compatible * `salesforce` - Salesforce * `slack` - Slack * `slack-posthog-code` - Slack Posthog Code * `snapchat` - Snapchat * `snowflake` - Snowflake * `stripe` - Stripe * `tiktok-ads` - Tiktok Ads * `twilio` - Twilio * `vercel` - Vercel * `youtube-analytics` - Youtube Analytics */
-  kind: IntegrationKindEnum | (string & {});
-  /** Explanation from the requester of why this integration is needed. Shown to admins in the notification email. */
-  reason: string;
-}
-export const IntegrationsRequestAccessCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      kind: IntegrationKindEnum,
-      reason: S.String,
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/api/projects/{project_id}/integrations/request_access/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "IntegrationsRequestAccessCreateRequest",
-}) as any as S.Schema<IntegrationsRequestAccessCreateRequest>;
-
-export interface IntegrationAccessRequestResponse {
-  /** Whether the access request was accepted and the project admins were notified. */
-  success: boolean;
-}
-export const IntegrationAccessRequestResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.Boolean,
-  }),
-).annotate({
-  identifier: "IntegrationAccessRequestResponse",
-}) as any as S.Schema<IntegrationAccessRequestResponse>;
-
-export interface IntegrationsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/integrations/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "IntegrationsRetrieveRequest",
-}) as any as S.Schema<IntegrationsRetrieveRequest>;
-
-export interface IntegrationsTwilioPhoneNumbersRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this integration. */
-  id: number;
-}
-export const IntegrationsTwilioPhoneNumbersRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/integrations/{id}/twilio_phone_numbers/",
+        uri: "/api/projects/{project_id}/integrations/{id}/github_repos/refresh/",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "IntegrationsTwilioPhoneNumbersRetrieveRequest",
-  }) as any as S.Schema<IntegrationsTwilioPhoneNumbersRetrieveRequest>;
+    identifier: "IntegrationsGithubReposRefreshCreateRequest",
+  }) as any as S.Schema<IntegrationsGithubReposRefreshCreateRequest>;
 
-export interface IntegrationsTwilioPhoneNumbersRetrieveResponse {}
-export const IntegrationsTwilioPhoneNumbersRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IntegrationsTwilioPhoneNumbersRetrieveResponse",
-  }) as any as S.Schema<IntegrationsTwilioPhoneNumbersRetrieveResponse>;
+/** The refreshed repository cache. */
+export type GitHubReposRefreshResponseRepositoriesList = Array<GitHubRepo>;
+export const GitHubReposRefreshResponseRepositoriesList = /*@__PURE__*/ S.Array(
+  GitHubRepo,
+) as any as S.Schema<GitHubReposRefreshResponseRepositoriesList>;
 
-export type IntegrationsListRequestKind =
+export interface GitHubReposRefreshResponse {
+  /** The refreshed repository cache. */
+  repositories?: GitHubReposRefreshResponseRepositoriesList;
+  /** `unavailable` when GitHub reports the App installation as uninstalled or suspended, in which case `repositories` is the last cached list rather than a fresh one. * `connected` - connected * `unavailable` - unavailable */
+  installation_status?: InstallationStatusEnum;
+}
+export const GitHubReposRefreshResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repositories: S.optional(GitHubReposRefreshResponseRepositoriesList),
+    installation_status: S.optional(InstallationStatusEnum),
+  }),
+).annotate({
+  identifier: "GitHubReposRefreshResponse",
+}) as any as S.Schema<GitHubReposRefreshResponse>;
+
+export type ListIntegrationsRequestKind =
   | "anthropic"
   | "apns"
   | "aws-redshift"
@@ -1360,13 +1436,13 @@ export type IntegrationsListRequestKind =
   | "twilio"
   | "vercel"
   | "youtube-analytics";
-export const IntegrationsListRequestKind = /*@__PURE__*/ S.String;
+export const ListIntegrationsRequestKind = /*@__PURE__*/ S.String;
 
 export interface ListIntegrationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** * `anthropic` - Anthropic * `apns` - Apple Push * `aws-redshift` - Aws Redshift * `aws-s3` - Aws S3 * `azure-blob` - Azure Blob * `bing-ads` - Bing Ads * `clickup` - Clickup * `customerio-app` - Customerio App * `customerio-track` - Customerio Track * `customerio-webhook` - Customerio Webhook * `databricks` - Databricks * `email` - Email * `firebase` - Firebase * `github` - Github * `gitlab` - Gitlab * `google-ads` - Google Ads * `google-analytics` - Google Analytics * `google-calendar` - Google Calendar * `google-cloud-service-account` - Google Cloud Service Account * `google-cloud-storage` - Google Cloud Storage * `google-pubsub` - Google Pubsub * `google-search-console` - Google Search Console * `google-sheets` - Google Sheets * `hubspot` - Hubspot * `instagram` - Instagram * `intercom` - Intercom * `jira` - Jira * `linear` - Linear * `linkedin-ads` - Linkedin Ads * `meta-ads` - Meta Ads * `pardot` - Pardot * `pinterest-ads` - Pinterest Ads * `postgresql` - Postgresql * `posthog` - Posthog * `reddit-ads` - Reddit Ads * `resend` - Resend * `s3-compatible` - S3 Compatible * `salesforce` - Salesforce * `slack` - Slack * `slack-posthog-code` - Slack Posthog Code * `snapchat` - Snapchat * `snowflake` - Snowflake * `stripe` - Stripe * `tiktok-ads` - Tiktok Ads * `twilio` - Twilio * `vercel` - Vercel * `youtube-analytics` - Youtube Analytics */
-  kind?: IntegrationsListRequestKind | (string & {});
+  kind?: ListIntegrationsRequestKind | (string & {});
   /** Number of results to return per page. */
   limit?: number;
   /** The initial index from which to return the results. */
@@ -1375,7 +1451,7 @@ export interface ListIntegrationsRequest {
 export const ListIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    kind: S.optional(IntegrationsListRequestKind.pipe(T.Query())),
+    kind: S.optional(ListIntegrationsRequestKind.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
@@ -1412,7 +1488,7 @@ export const PaginatedIntegrationConfigList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedIntegrationConfigList",
 }) as any as S.Schema<PaginatedIntegrationConfigList>;
 
-export interface UpdateIntegrationEmailPartialRequest {
+export interface UpdateIntegrationsEmailPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this integration. */
@@ -1420,7 +1496,7 @@ export interface UpdateIntegrationEmailPartialRequest {
   kind?: IntegrationKindEnum | (string & {});
   config?: unknown;
 }
-export const UpdateIntegrationEmailPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateIntegrationsEmailPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -1435,42 +1511,8 @@ export const UpdateIntegrationEmailPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateIntegrationEmailPartialRequest",
-}) as any as S.Schema<UpdateIntegrationEmailPartialRequest>;
-
-export type AuthorizeIntegrationRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const authorizeIntegrationRetrieve: API.OperationMethod<
-  AuthorizeIntegrationRetrieveRequest,
-  AuthorizeIntegrationRetrieveResponse,
-  AuthorizeIntegrationRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizeIntegrationRetrieveRequest,
-  output: AuthorizeIntegrationRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckIntegrationDomainConnectRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const checkIntegrationDomainConnectRetrieve: API.OperationMethod<
-  CheckIntegrationDomainConnectRetrieveRequest,
-  CheckIntegrationDomainConnectRetrieveResponse,
-  CheckIntegrationDomainConnectRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckIntegrationDomainConnectRetrieveRequest,
-  output: CheckIntegrationDomainConnectRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+  identifier: "UpdateIntegrationsEmailPartialRequest",
+}) as any as S.Schema<UpdateIntegrationsEmailPartialRequest>;
 
 export type CreateIntegrationError =
   | BadRequest
@@ -1490,178 +1532,382 @@ export const createIntegration: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateIntegrationDomainConnectApplyUrlError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Unified endpoint for generating Domain Connect apply URLs. Accepts a context ("email" or "proxy") and the relevant resource ID. The backend resolves the domain, template variables, and service ID based on context, then builds the signed apply URL. */
-export const createIntegrationDomainConnectApplyUrl: API.OperationMethod<
-  CreateIntegrationDomainConnectApplyUrlRequest,
-  CreateIntegrationDomainConnectApplyUrlResponse,
-  CreateIntegrationDomainConnectApplyUrlError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateIntegrationDomainConnectApplyUrlRequest,
-  output: CreateIntegrationDomainConnectApplyUrlResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateIntegrationGithubLinkExistingError = PosthogOpError;
+export type CreateIntegrationsGithubLinkExistingError = PosthogOpError;
 /** Reuse a GitHub installation already linked to a sibling team in the same organization. */
-export const createIntegrationGithubLinkExisting: API.OperationMethod<
-  CreateIntegrationGithubLinkExistingRequest,
+export const createIntegrationsGithubLinkExisting: API.OperationMethod<
+  CreateIntegrationsGithubLinkExistingRequest,
   IntegrationConfig,
-  CreateIntegrationGithubLinkExistingError,
+  CreateIntegrationsGithubLinkExistingError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateIntegrationGithubLinkExistingRequest,
+  input: CreateIntegrationsGithubLinkExistingRequest,
   output: IntegrationConfig,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateIntegrationGithubPrepareCallbackError = PosthogOpError;
+export type CreateIntegrationsGithubPrepareCallbackError = PosthogOpError;
 /** Seed GitHub setup callback state without redirecting to GitHub. Used when the user opens an existing installation's settings on github.com (e.g. PostHog Code "Update in GitHub") so the subsequent Setup URL redirect can be validated. */
-export const createIntegrationGithubPrepareCallback: API.OperationMethod<
-  CreateIntegrationGithubPrepareCallbackRequest,
-  CreateIntegrationGithubPrepareCallbackResponse,
-  CreateIntegrationGithubPrepareCallbackError,
+export const createIntegrationsGithubPrepareCallback: API.OperationMethod<
+  CreateIntegrationsGithubPrepareCallbackRequest,
+  CreateIntegrationsGithubPrepareCallbackResponse,
+  CreateIntegrationsGithubPrepareCallbackError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateIntegrationGithubPrepareCallbackRequest,
-  output: CreateIntegrationGithubPrepareCallbackResponse,
+  input: CreateIntegrationsGithubPrepareCallbackRequest,
+  output: CreateIntegrationsGithubPrepareCallbackResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateIntegrationGithubReposRefreshError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const createIntegrationGithubReposRefresh: API.OperationMethod<
-  CreateIntegrationGithubReposRefreshRequest,
-  GitHubReposRefreshResponse,
-  CreateIntegrationGithubReposRefreshError,
+export type CreateIntegrationsRequestAccessError = PosthogOpError;
+/** Notify project admins that a member is requesting an integration be connected. */
+export const createIntegrationsRequestAccess: API.OperationMethod<
+  CreateIntegrationsRequestAccessRequest,
+  IntegrationAccessRequestResponse,
+  CreateIntegrationsRequestAccessError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateIntegrationGithubReposRefreshRequest,
-  output: GitHubReposRefreshResponse,
+  input: CreateIntegrationsRequestAccessRequest,
+  output: IntegrationAccessRequestResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationError = Forbidden | NotFound | PosthogOpError;
+export const getIntegration: API.OperationMethod<
+  GetIntegrationRequest,
+  IntegrationConfig,
+  GetIntegrationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationRequest,
+  output: IntegrationConfig,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsAnthropicManagedAgentEnvsRetrieveError = PosthogOpError;
-export const integrationsAnthropicManagedAgentEnvsRetrieve: API.OperationMethod<
-  IntegrationsAnthropicManagedAgentEnvsRetrieveRequest,
-  IntegrationsAnthropicManagedAgentEnvsRetrieveResponse,
-  IntegrationsAnthropicManagedAgentEnvsRetrieveError,
+export type GetIntegrationsAnthropicManagedAgentError = PosthogOpError;
+export const getIntegrationsAnthropicManagedAgent: API.OperationMethod<
+  GetIntegrationsAnthropicManagedAgentRequest,
+  GetIntegrationsAnthropicManagedAgentResponse,
+  GetIntegrationsAnthropicManagedAgentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsAnthropicManagedAgentEnvsRetrieveRequest,
-  output: IntegrationsAnthropicManagedAgentEnvsRetrieveResponse,
+  input: GetIntegrationsAnthropicManagedAgentRequest,
+  output: GetIntegrationsAnthropicManagedAgentResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsAnthropicManagedAgentsRetrieveError = PosthogOpError;
-export const integrationsAnthropicManagedAgentsRetrieve: API.OperationMethod<
-  IntegrationsAnthropicManagedAgentsRetrieveRequest,
-  IntegrationsAnthropicManagedAgentsRetrieveResponse,
-  IntegrationsAnthropicManagedAgentsRetrieveError,
+export type GetIntegrationsAnthropicManagedAgentEnvError = PosthogOpError;
+export const getIntegrationsAnthropicManagedAgentEnv: API.OperationMethod<
+  GetIntegrationsAnthropicManagedAgentEnvRequest,
+  GetIntegrationsAnthropicManagedAgentEnvResponse,
+  GetIntegrationsAnthropicManagedAgentEnvError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsAnthropicManagedAgentsRetrieveRequest,
-  output: IntegrationsAnthropicManagedAgentsRetrieveResponse,
+  input: GetIntegrationsAnthropicManagedAgentEnvRequest,
+  output: GetIntegrationsAnthropicManagedAgentEnvResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsAnthropicManagedAgentVaultsRetrieveError =
-  PosthogOpError;
-export const integrationsAnthropicManagedAgentVaultsRetrieve: API.OperationMethod<
-  IntegrationsAnthropicManagedAgentVaultsRetrieveRequest,
-  IntegrationsAnthropicManagedAgentVaultsRetrieveResponse,
-  IntegrationsAnthropicManagedAgentVaultsRetrieveError,
+export type GetIntegrationsAnthropicManagedAgentVaultError = PosthogOpError;
+export const getIntegrationsAnthropicManagedAgentVault: API.OperationMethod<
+  GetIntegrationsAnthropicManagedAgentVaultRequest,
+  GetIntegrationsAnthropicManagedAgentVaultResponse,
+  GetIntegrationsAnthropicManagedAgentVaultError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsAnthropicManagedAgentVaultsRetrieveRequest,
-  output: IntegrationsAnthropicManagedAgentVaultsRetrieveResponse,
+  input: GetIntegrationsAnthropicManagedAgentVaultRequest,
+  output: GetIntegrationsAnthropicManagedAgentVaultResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsChannelsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsChannelsRetrieve: API.OperationMethod<
-  IntegrationsChannelsRetrieveRequest,
+export type GetIntegrationsChannelError = Forbidden | NotFound | PosthogOpError;
+export const getIntegrationsChannel: API.OperationMethod<
+  GetIntegrationsChannelRequest,
   SlackChannelsResponse,
-  IntegrationsChannelsRetrieveError,
+  GetIntegrationsChannelError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsChannelsRetrieveRequest,
+  input: GetIntegrationsChannelRequest,
   output: SlackChannelsResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsClickupListsRetrieveError =
+export type GetIntegrationsClickupListError =
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const integrationsClickupListsRetrieve: API.OperationMethod<
-  IntegrationsClickupListsRetrieveRequest,
-  IntegrationsClickupListsRetrieveResponse,
-  IntegrationsClickupListsRetrieveError,
+export const getIntegrationsClickupList: API.OperationMethod<
+  GetIntegrationsClickupListRequest,
+  GetIntegrationsClickupListResponse,
+  GetIntegrationsClickupListError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsClickupListsRetrieveRequest,
-  output: IntegrationsClickupListsRetrieveResponse,
+  input: GetIntegrationsClickupListRequest,
+  output: GetIntegrationsClickupListResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsClickupSpacesRetrieveError =
+export type GetIntegrationsClickupSpaceError =
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const integrationsClickupSpacesRetrieve: API.OperationMethod<
-  IntegrationsClickupSpacesRetrieveRequest,
-  IntegrationsClickupSpacesRetrieveResponse,
-  IntegrationsClickupSpacesRetrieveError,
+export const getIntegrationsClickupSpace: API.OperationMethod<
+  GetIntegrationsClickupSpaceRequest,
+  GetIntegrationsClickupSpaceResponse,
+  GetIntegrationsClickupSpaceError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsClickupSpacesRetrieveRequest,
-  output: IntegrationsClickupSpacesRetrieveResponse,
+  input: GetIntegrationsClickupSpaceRequest,
+  output: GetIntegrationsClickupSpaceResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type IntegrationsClickupWorkspacesRetrieveError =
+export type GetIntegrationsClickupWorkspaceError =
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const integrationsClickupWorkspacesRetrieve: API.OperationMethod<
-  IntegrationsClickupWorkspacesRetrieveRequest,
-  IntegrationsClickupWorkspacesRetrieveResponse,
-  IntegrationsClickupWorkspacesRetrieveError,
+export const getIntegrationsClickupWorkspace: API.OperationMethod<
+  GetIntegrationsClickupWorkspaceRequest,
+  GetIntegrationsClickupWorkspaceResponse,
+  GetIntegrationsClickupWorkspaceError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsClickupWorkspacesRetrieveRequest,
-  output: IntegrationsClickupWorkspacesRetrieveResponse,
+  input: GetIntegrationsClickupWorkspaceRequest,
+  output: GetIntegrationsClickupWorkspaceResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsGithubAvailableInstallationError = PosthogOpError;
+/** List GitHub installations this project can link. A GitHub App installs once per organization, so a second project links an existing installation rather than reinstalling. This backs the picker: when more than one option exists, the client passes the chosen installation_id to github/link_existing. The list also includes installations the user's personal GitHub link can see but that aren't linked to any project yet (``source_team_id: null``) — orphan installations approved on GitHub outside PostHog's callback, which ``github/link_existing`` can adopt. */
+export const getIntegrationsGithubAvailableInstallation: API.OperationMethod<
+  GetIntegrationsGithubAvailableInstallationRequest,
+  GitHubAvailableInstallationsResponse,
+  GetIntegrationsGithubAvailableInstallationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsGithubAvailableInstallationRequest,
+  output: GitHubAvailableInstallationsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsGithubBranchError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsGithubBranch: API.OperationMethod<
+  GetIntegrationsGithubBranchRequest,
+  GitHubBranchesResponse,
+  GetIntegrationsGithubBranchError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsGithubBranchRequest,
+  output: GitHubBranchesResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsGithubReposError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsGithubRepos: API.OperationMethod<
+  GetIntegrationsGithubReposRequest,
+  GitHubReposResponse,
+  GetIntegrationsGithubReposError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsGithubReposRequest,
+  output: GitHubReposResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsGithubTeamError = PosthogOpError;
+export const getIntegrationsGithubTeam: API.OperationMethod<
+  GetIntegrationsGithubTeamRequest,
+  GitHubTeamsResponse,
+  GetIntegrationsGithubTeamError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsGithubTeamRequest,
+  output: GitHubTeamsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsGoogleAccessibleAccountError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsGoogleAccessibleAccount: API.OperationMethod<
+  GetIntegrationsGoogleAccessibleAccountRequest,
+  GetIntegrationsGoogleAccessibleAccountResponse,
+  GetIntegrationsGoogleAccessibleAccountError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsGoogleAccessibleAccountRequest,
+  output: GetIntegrationsGoogleAccessibleAccountResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsGoogleConversionActionError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsGoogleConversionAction: API.OperationMethod<
+  GetIntegrationsGoogleConversionActionRequest,
+  GetIntegrationsGoogleConversionActionResponse,
+  GetIntegrationsGoogleConversionActionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsGoogleConversionActionRequest,
+  output: GetIntegrationsGoogleConversionActionResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsJiraProjectError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsJiraProject: API.OperationMethod<
+  GetIntegrationsJiraProjectRequest,
+  JiraProjectsResponse,
+  GetIntegrationsJiraProjectError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsJiraProjectRequest,
+  output: JiraProjectsResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsLinearTeamError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsLinearTeam: API.OperationMethod<
+  GetIntegrationsLinearTeamRequest,
+  LinearTeamsResponse,
+  GetIntegrationsLinearTeamError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsLinearTeamRequest,
+  output: LinearTeamsResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsLinkedinAdsAccountError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsLinkedinAdsAccount: API.OperationMethod<
+  GetIntegrationsLinkedinAdsAccountRequest,
+  GetIntegrationsLinkedinAdsAccountResponse,
+  GetIntegrationsLinkedinAdsAccountError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsLinkedinAdsAccountRequest,
+  output: GetIntegrationsLinkedinAdsAccountResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsLinkedinAdsConversionRuleError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsLinkedinAdsConversionRule: API.OperationMethod<
+  GetIntegrationsLinkedinAdsConversionRuleRequest,
+  GetIntegrationsLinkedinAdsConversionRuleResponse,
+  GetIntegrationsLinkedinAdsConversionRuleError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsLinkedinAdsConversionRuleRequest,
+  output: GetIntegrationsLinkedinAdsConversionRuleResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsTwilioPhoneNumberError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getIntegrationsTwilioPhoneNumber: API.OperationMethod<
+  GetIntegrationsTwilioPhoneNumberRequest,
+  GetIntegrationsTwilioPhoneNumberResponse,
+  GetIntegrationsTwilioPhoneNumberError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsTwilioPhoneNumberRequest,
+  output: GetIntegrationsTwilioPhoneNumberResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIntegrationsUserError = PosthogOpError;
+export const getIntegrationsUser: API.OperationMethod<
+  GetIntegrationsUserRequest,
+  SlackUsersResponse,
+  GetIntegrationsUserError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIntegrationsUserRequest,
+  output: SlackUsersResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type IntegrationsAuthorizeRetrieveError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const integrationsAuthorizeRetrieve: API.OperationMethod<
+  IntegrationsAuthorizeRetrieveRequest,
+  IntegrationsAuthorizeRetrieveResponse,
+  IntegrationsAuthorizeRetrieveError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: IntegrationsAuthorizeRetrieveRequest,
+  output: IntegrationsAuthorizeRetrieveResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1676,6 +1922,42 @@ export const integrationsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IntegrationsDestroyRequest,
   output: IntegrationsDestroyResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type IntegrationsDomainConnectApplyUrlCreateError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Unified endpoint for generating Domain Connect apply URLs. Accepts a context ("email" or "proxy") and the relevant resource ID. The backend resolves the domain, template variables, and service ID based on context, then builds the signed apply URL. */
+export const integrationsDomainConnectApplyUrlCreate: API.OperationMethod<
+  IntegrationsDomainConnectApplyUrlCreateRequest,
+  IntegrationsDomainConnectApplyUrlCreateResponse,
+  IntegrationsDomainConnectApplyUrlCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: IntegrationsDomainConnectApplyUrlCreateRequest,
+  output: IntegrationsDomainConnectApplyUrlCreateResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type IntegrationsDomainConnectCheckRetrieveError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const integrationsDomainConnectCheckRetrieve: API.OperationMethod<
+  IntegrationsDomainConnectCheckRetrieveRequest,
+  IntegrationsDomainConnectCheckRetrieveResponse,
+  IntegrationsDomainConnectCheckRetrieveError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: IntegrationsDomainConnectCheckRetrieveRequest,
+  output: IntegrationsDomainConnectCheckRetrieveResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1699,40 +1981,6 @@ export const integrationsEmailVerifyCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IntegrationsGithubAvailableInstallationsRetrieveError =
-  PosthogOpError;
-/** List GitHub installations this project can link. A GitHub App installs once per organization, so a second project links an existing installation rather than reinstalling. This backs the picker: when more than one option exists, the client passes the chosen installation_id to github/link_existing. The list also includes installations the user's personal GitHub link can see but that aren't linked to any project yet (``source_team_id: null``) — orphan installations approved on GitHub outside PostHog's callback, which ``github/link_existing`` can adopt. */
-export const integrationsGithubAvailableInstallationsRetrieve: API.OperationMethod<
-  IntegrationsGithubAvailableInstallationsRetrieveRequest,
-  GitHubAvailableInstallationsResponse,
-  IntegrationsGithubAvailableInstallationsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsGithubAvailableInstallationsRetrieveRequest,
-  output: GitHubAvailableInstallationsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsGithubBranchesRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsGithubBranchesRetrieve: API.OperationMethod<
-  IntegrationsGithubBranchesRetrieveRequest,
-  GitHubBranchesResponse,
-  IntegrationsGithubBranchesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsGithubBranchesRetrieveRequest,
-  output: GitHubBranchesResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IntegrationsGithubOauthAuthorizeCreateError = PosthogOpError;
 /** Mint a User OAuth URL to bootstrap a fresh `code` when the install flow returns without one. */
 export const integrationsGithubOauthAuthorizeCreate: API.OperationMethod<
@@ -1748,181 +1996,18 @@ export const integrationsGithubOauthAuthorizeCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IntegrationsGithubReposRetrieveError =
-  | BadRequest
+export type IntegrationsGithubReposRefreshCreateError =
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const integrationsGithubReposRetrieve: API.OperationMethod<
-  IntegrationsGithubReposRetrieveRequest,
-  GitHubReposResponse,
-  IntegrationsGithubReposRetrieveError,
+export const integrationsGithubReposRefreshCreate: API.OperationMethod<
+  IntegrationsGithubReposRefreshCreateRequest,
+  GitHubReposRefreshResponse,
+  IntegrationsGithubReposRefreshCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsGithubReposRetrieveRequest,
-  output: GitHubReposResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsGithubTeamsRetrieveError = PosthogOpError;
-export const integrationsGithubTeamsRetrieve: API.OperationMethod<
-  IntegrationsGithubTeamsRetrieveRequest,
-  GitHubTeamsResponse,
-  IntegrationsGithubTeamsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsGithubTeamsRetrieveRequest,
-  output: GitHubTeamsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsGoogleAccessibleAccountsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsGoogleAccessibleAccountsRetrieve: API.OperationMethod<
-  IntegrationsGoogleAccessibleAccountsRetrieveRequest,
-  IntegrationsGoogleAccessibleAccountsRetrieveResponse,
-  IntegrationsGoogleAccessibleAccountsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsGoogleAccessibleAccountsRetrieveRequest,
-  output: IntegrationsGoogleAccessibleAccountsRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsGoogleConversionActionsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsGoogleConversionActionsRetrieve: API.OperationMethod<
-  IntegrationsGoogleConversionActionsRetrieveRequest,
-  IntegrationsGoogleConversionActionsRetrieveResponse,
-  IntegrationsGoogleConversionActionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsGoogleConversionActionsRetrieveRequest,
-  output: IntegrationsGoogleConversionActionsRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsJiraProjectsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsJiraProjectsRetrieve: API.OperationMethod<
-  IntegrationsJiraProjectsRetrieveRequest,
-  JiraProjectsResponse,
-  IntegrationsJiraProjectsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsJiraProjectsRetrieveRequest,
-  output: JiraProjectsResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsLinearTeamsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsLinearTeamsRetrieve: API.OperationMethod<
-  IntegrationsLinearTeamsRetrieveRequest,
-  LinearTeamsResponse,
-  IntegrationsLinearTeamsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsLinearTeamsRetrieveRequest,
-  output: LinearTeamsResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsLinkedinAdsAccountsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsLinkedinAdsAccountsRetrieve: API.OperationMethod<
-  IntegrationsLinkedinAdsAccountsRetrieveRequest,
-  IntegrationsLinkedinAdsAccountsRetrieveResponse,
-  IntegrationsLinkedinAdsAccountsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsLinkedinAdsAccountsRetrieveRequest,
-  output: IntegrationsLinkedinAdsAccountsRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsLinkedinAdsConversionRulesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsLinkedinAdsConversionRulesRetrieve: API.OperationMethod<
-  IntegrationsLinkedinAdsConversionRulesRetrieveRequest,
-  IntegrationsLinkedinAdsConversionRulesRetrieveResponse,
-  IntegrationsLinkedinAdsConversionRulesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsLinkedinAdsConversionRulesRetrieveRequest,
-  output: IntegrationsLinkedinAdsConversionRulesRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsRequestAccessCreateError = PosthogOpError;
-/** Notify project admins that a member is requesting an integration be connected. */
-export const integrationsRequestAccessCreate: API.OperationMethod<
-  IntegrationsRequestAccessCreateRequest,
-  IntegrationAccessRequestResponse,
-  IntegrationsRequestAccessCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsRequestAccessCreateRequest,
-  output: IntegrationAccessRequestResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const integrationsRetrieve: API.OperationMethod<
-  IntegrationsRetrieveRequest,
-  IntegrationConfig,
-  IntegrationsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsRetrieveRequest,
-  output: IntegrationConfig,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IntegrationsTwilioPhoneNumbersRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const integrationsTwilioPhoneNumbersRetrieve: API.OperationMethod<
-  IntegrationsTwilioPhoneNumbersRetrieveRequest,
-  IntegrationsTwilioPhoneNumbersRetrieveResponse,
-  IntegrationsTwilioPhoneNumbersRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IntegrationsTwilioPhoneNumbersRetrieveRequest,
-  output: IntegrationsTwilioPhoneNumbersRetrieveResponse,
+  input: IntegrationsGithubReposRefreshCreateRequest,
+  output: GitHubReposRefreshResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1946,18 +2031,18 @@ export const listIntegrations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateIntegrationEmailPartialError =
+export type UpdateIntegrationsEmailPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateIntegrationEmailPartial: API.OperationMethod<
-  UpdateIntegrationEmailPartialRequest,
+export const updateIntegrationsEmailPartial: API.OperationMethod<
+  UpdateIntegrationsEmailPartialRequest,
   IntegrationConfig,
-  UpdateIntegrationEmailPartialError,
+  UpdateIntegrationsEmailPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateIntegrationEmailPartialRequest,
+  input: UpdateIntegrationsEmailPartialRequest,
   output: IntegrationConfig,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

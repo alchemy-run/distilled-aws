@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.actions#GetActionsRequestIdList": {
@@ -412,10 +413,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.actions#GetActions"
+          "target": "com.hetzner.actions#GetAction"
         },
         {
-          "target": "com.hetzner.actions#GetAction"
+          "target": "com.hetzner.actions#GetActions"
         }
       ],
       "traits": {

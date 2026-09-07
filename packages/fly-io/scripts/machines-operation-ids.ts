@@ -6,6 +6,7 @@
  * update, HTTP-method suffixes, and token order (`requestKmsToken`).
  */
 export const MACHINES_OPERATION_NAMES: Readonly<Record<string, string>> = {
+  "POST /v1/apps/{app_name}/deploy_token": "createAppDeployToken",
   "PATCH /v1/apps/{app_name}/machines/{machine_id}/metadata":
     "patchMachineMetadata",
   "POST /v1/apps/{app_name}/secrets": "updateSecrets",

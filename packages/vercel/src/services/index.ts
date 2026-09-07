@@ -25,6 +25,7 @@ export * as logDrains from "./log_drains.ts";
 export * as logs from "./logs.ts";
 export * as marketplace from "./marketplace.ts";
 export * as microfrontends from "./microfrontends.ts";
+export * as misc from "./misc.ts";
 export * as networking from "./networking.ts";
 export * as observability from "./observability.ts";
 export * as projectMembers from "./project_members.ts";

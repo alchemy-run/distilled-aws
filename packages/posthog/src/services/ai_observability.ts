@@ -143,82 +143,26 @@ export const InstrumentationChecklist = /*@__PURE__*/ S.suspend(() =>
   identifier: "InstrumentationChecklist",
 }) as any as S.Schema<InstrumentationChecklist>;
 
-export interface AiObservabilityInstrumentationChecklistRetrieveRequest {
+export interface ArchiveDatasetRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
+  /** A UUID string identifying this dataset. */
+  id: string;
 }
-export const AiObservabilityInstrumentationChecklistRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/ai_observability/instrumentation_checklist/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "AiObservabilityInstrumentationChecklistRetrieveRequest",
-  }) as any as S.Schema<AiObservabilityInstrumentationChecklistRetrieveRequest>;
-
-export interface CreateAiObservabilityInstrumentationChecklistDismissRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Key of the check to dismiss or restore. * `sessions` - sessions * `tool_calls` - tool_calls * `user_identity` - user_identity * `trace_structure` - trace_structure */
-  check: AIObservabilityInstrumentationCheckEnum | (string & {});
-}
-export const CreateAiObservabilityInstrumentationChecklistDismissRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      check: AIObservabilityInstrumentationCheckEnum,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/ai_observability/instrumentation_checklist/dismiss/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateAiObservabilityInstrumentationChecklistDismissRequest",
-  }) as any as S.Schema<CreateAiObservabilityInstrumentationChecklistDismissRequest>;
-
-/** Optional JSON object with descriptive dataset metadata. */
-export type DatasetsCreateRequestMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatasetsCreateRequestMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatasetsCreateRequestMetadataMap>;
-
-export interface CreateDatasetRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Dataset name. Names are unique within a project. */
-  name: string;
-  /** Optional description of what the dataset contains. */
-  description?: string;
-  /** Optional JSON object with descriptive dataset metadata. */
-  metadata?: DatasetsCreateRequestMetadataMap;
-}
-export const CreateDatasetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ArchiveDatasetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    name: S.String,
-    description: S.optional(S.String),
-    metadata: S.optional(DatasetsCreateRequestMetadataMap),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/datasets/",
+      uri: "/api/projects/{project_id}/datasets/{id}/archive/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateDatasetRequest",
-}) as any as S.Schema<CreateDatasetRequest>;
+  identifier: "ArchiveDatasetRequest",
+}) as any as S.Schema<ArchiveDatasetRequest>;
 
 /** JSON object with descriptive dataset metadata. */
 export type DatasetReadMetadataMap = { [key: string]: unknown | undefined };
@@ -315,62 +259,28 @@ export const DatasetRead = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DatasetRead" }) as any as S.Schema<DatasetRead>;
 
-export interface CreateDatasetExportRequest {
+export interface ArchiveDatasetItemRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this dataset. */
-  id: string;
-  /** Dataset revision to export. Defaults to the latest revision when the export is created. */
-  revision?: number;
+  dataset_item_id: string;
+  /** Current item version observed by the caller. */
+  base_version: number;
 }
-export const CreateDatasetExportRequest = /*@__PURE__*/ S.suspend(() =>
+export const ArchiveDatasetItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    revision: S.optional(S.Number),
+    dataset_item_id: S.String.pipe(T.Label()),
+    base_version: S.Number,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/datasets/{id}/exports/",
+      uri: "/api/projects/{project_id}/dataset_items/{dataset_item_id}/archive/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateDatasetExportRequest",
-}) as any as S.Schema<CreateDatasetExportRequest>;
-
-export type DatasetExportReadStatusEnum = "pending" | "complete" | "failed";
-export const DatasetExportReadStatusEnum = /*@__PURE__*/ S.String;
-
-export interface DatasetExportRead {
-  /** Export ID used to check status and download the file. */
-  id: number;
-  /** Current export state: pending, complete, or failed. */
-  status: DatasetExportReadStatusEnum;
-  /** Immutable dataset revision included in the export. */
-  dataset_revision: number;
-  /** Generated JSONL filename. */
-  filename: string;
-  /** When the export was requested. */
-  created_at: string;
-  /** When the generated file expires. */
-  expires_after: string;
-  /** Reason the export failed, or null while it is pending or complete. */
-  exception: string | null;
-}
-export const DatasetExportRead = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.Number,
-    status: DatasetExportReadStatusEnum,
-    dataset_revision: S.Number,
-    filename: S.String,
-    created_at: S.String,
-    expires_after: S.String,
-    exception: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "DatasetExportRead",
-}) as any as S.Schema<DatasetExportRead>;
+  identifier: "ArchiveDatasetItemRequest",
+}) as any as S.Schema<ArchiveDatasetItemRequest>;
 
 export type DatasetJSONValueCase0Map = { [key: string]: unknown | undefined };
 export const DatasetJSONValueCase0Map = /*@__PURE__*/ S.Record(
@@ -391,60 +301,6 @@ export type DatasetJSONValue =
   | boolean;
 export const DatasetJSONValue =
   /*@__PURE__*/ S.Unknown as any as S.Schema<DatasetJSONValue>;
-
-/** Optional JSON object with item metadata. */
-export type DatasetItemsCreateRequestMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const DatasetItemsCreateRequestMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<DatasetItemsCreateRequestMetadataMap>;
-
-export interface CreateDatasetItemRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Dataset that will own the item. */
-  dataset: string;
-  /** Optional case-sensitive stable key used for idempotent creates. It cannot be changed. */
-  client_item_id?: string | null;
-  /** Input supplied to the system under test. Any non-null JSON value is accepted. */
-  input: DatasetJSONValue;
-  /** Optional user-authored expected output. */
-  expected_output?: DatasetJSONValue | null;
-  /** Optional actual output captured from the source trace. */
-  source_output?: DatasetJSONValue | null;
-  /** Optional JSON object with item metadata. */
-  metadata?: DatasetItemsCreateRequestMetadataMap;
-  /** Trace ID copied from the source event. */
-  source_trace_id?: string | null;
-  /** Event ID copied from the source trace. */
-  source_event_id?: string | null;
-  /** Timestamp needed to retrieve the event-backed source trace. */
-  source_timestamp?: string | null;
-}
-export const CreateDatasetItemRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    dataset: S.String,
-    client_item_id: S.optional(S.NullOr(S.String)),
-    input: DatasetJSONValue,
-    expected_output: S.optional(S.NullOr(DatasetJSONValue)),
-    source_output: S.optional(S.NullOr(DatasetJSONValue)),
-    metadata: S.optional(DatasetItemsCreateRequestMetadataMap),
-    source_trace_id: S.optional(S.NullOr(S.String)),
-    source_event_id: S.optional(S.NullOr(S.String)),
-    source_timestamp: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/dataset_items/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CreateDatasetItemRequest",
-}) as any as S.Schema<CreateDatasetItemRequest>;
 
 /** JSON object with item metadata. */
 export type DatasetItemReadMetadataMap = { [key: string]: unknown | undefined };
@@ -518,7 +374,176 @@ export const DatasetItemRead = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatasetItemRead",
 }) as any as S.Schema<DatasetItemRead>;
 
-export interface CreateLlmAnalyticOfflineEvaluationExperimentItemRequest {
+export interface CreateAiObservabilityInstrumentationChecklistDismissRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Key of the check to dismiss or restore. * `sessions` - sessions * `tool_calls` - tool_calls * `user_identity` - user_identity * `trace_structure` - trace_structure */
+  check: AIObservabilityInstrumentationCheckEnum | (string & {});
+}
+export const CreateAiObservabilityInstrumentationChecklistDismissRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      check: AIObservabilityInstrumentationCheckEnum,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/ai_observability/instrumentation_checklist/dismiss/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateAiObservabilityInstrumentationChecklistDismissRequest",
+  }) as any as S.Schema<CreateAiObservabilityInstrumentationChecklistDismissRequest>;
+
+/** Optional JSON object with descriptive dataset metadata. */
+export type CreateDatasetRequestMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateDatasetRequestMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateDatasetRequestMetadataMap>;
+
+export interface CreateDatasetRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Dataset name. Names are unique within a project. */
+  name: string;
+  /** Optional description of what the dataset contains. */
+  description?: string;
+  /** Optional JSON object with descriptive dataset metadata. */
+  metadata?: CreateDatasetRequestMetadataMap;
+}
+export const CreateDatasetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    name: S.String,
+    description: S.optional(S.String),
+    metadata: S.optional(CreateDatasetRequestMetadataMap),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/datasets/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDatasetRequest",
+}) as any as S.Schema<CreateDatasetRequest>;
+
+/** Optional JSON object with item metadata. */
+export type CreateDatasetItemRequestMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateDatasetItemRequestMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateDatasetItemRequestMetadataMap>;
+
+export interface CreateDatasetItemRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Dataset that will own the item. */
+  dataset: string;
+  /** Optional case-sensitive stable key used for idempotent creates. It cannot be changed. */
+  client_item_id?: string | null;
+  /** Input supplied to the system under test. Any non-null JSON value is accepted. */
+  input: DatasetJSONValue;
+  /** Optional user-authored expected output. */
+  expected_output?: DatasetJSONValue | null;
+  /** Optional actual output captured from the source trace. */
+  source_output?: DatasetJSONValue | null;
+  /** Optional JSON object with item metadata. */
+  metadata?: CreateDatasetItemRequestMetadataMap;
+  /** Trace ID copied from the source event. */
+  source_trace_id?: string | null;
+  /** Event ID copied from the source trace. */
+  source_event_id?: string | null;
+  /** Timestamp needed to retrieve the event-backed source trace. */
+  source_timestamp?: string | null;
+}
+export const CreateDatasetItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    dataset: S.String,
+    client_item_id: S.optional(S.NullOr(S.String)),
+    input: DatasetJSONValue,
+    expected_output: S.optional(S.NullOr(DatasetJSONValue)),
+    source_output: S.optional(S.NullOr(DatasetJSONValue)),
+    metadata: S.optional(CreateDatasetItemRequestMetadataMap),
+    source_trace_id: S.optional(S.NullOr(S.String)),
+    source_event_id: S.optional(S.NullOr(S.String)),
+    source_timestamp: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/dataset_items/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDatasetItemRequest",
+}) as any as S.Schema<CreateDatasetItemRequest>;
+
+export interface CreateDatasetsExportRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this dataset. */
+  id: string;
+  /** Dataset revision to export. Defaults to the latest revision when the export is created. */
+  revision?: number;
+}
+export const CreateDatasetsExportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    revision: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/datasets/{id}/exports/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDatasetsExportRequest",
+}) as any as S.Schema<CreateDatasetsExportRequest>;
+
+export type DatasetExportReadStatusEnum = "pending" | "complete" | "failed";
+export const DatasetExportReadStatusEnum = /*@__PURE__*/ S.String;
+
+export interface DatasetExportRead {
+  /** Export ID used to check status and download the file. */
+  id: number;
+  /** Current export state: pending, complete, or failed. */
+  status: DatasetExportReadStatusEnum;
+  /** Immutable dataset revision included in the export. */
+  dataset_revision: number;
+  /** Generated JSONL filename. */
+  filename: string;
+  /** When the export was requested. */
+  created_at: string;
+  /** When the generated file expires. */
+  expires_after: string;
+  /** Reason the export failed, or null while it is pending or complete. */
+  exception: string | null;
+}
+export const DatasetExportRead = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.Number,
+    status: DatasetExportReadStatusEnum,
+    dataset_revision: S.Number,
+    filename: S.String,
+    created_at: S.String,
+    expires_after: S.String,
+    exception: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "DatasetExportRead",
+}) as any as S.Schema<DatasetExportRead>;
+
+export interface CreateLlmAnalyticsOfflineEvaluationsExperimentItemRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** `$ai_experiment_id` whose offline-evaluation items to return. */
@@ -528,7 +553,7 @@ export interface CreateLlmAnalyticOfflineEvaluationExperimentItemRequest {
   /** Upper bound on `timestamp` (ISO-8601). Omit to leave the upper bound open. */
   date_to?: string | null;
 }
-export const CreateLlmAnalyticOfflineEvaluationExperimentItemRequest =
+export const CreateLlmAnalyticsOfflineEvaluationsExperimentItemRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -543,8 +568,8 @@ export const CreateLlmAnalyticOfflineEvaluationExperimentItemRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateLlmAnalyticOfflineEvaluationExperimentItemRequest",
-  }) as any as S.Schema<CreateLlmAnalyticOfflineEvaluationExperimentItemRequest>;
+    identifier: "CreateLlmAnalyticsOfflineEvaluationsExperimentItemRequest",
+  }) as any as S.Schema<CreateLlmAnalyticsOfflineEvaluationsExperimentItemRequest>;
 
 export type OfflineExperimentItemsResponseResultsItemList = Array<unknown>;
 export const OfflineExperimentItemsResponseResultsItemList =
@@ -579,7 +604,7 @@ export const SummarizeTypeEnum = /*@__PURE__*/ S.String;
 export type DetailModeValueEnum = "minimal" | "detailed";
 export const DetailModeValueEnum = /*@__PURE__*/ S.String;
 
-export interface CreateLlmAnalyticSummarizationRequest {
+export interface CreateLlmAnalyticsSummarizationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Type of entity to summarize. Inferred automatically when using trace_id or generation_id. * `trace` - trace * `event` - event */
@@ -601,7 +626,7 @@ export interface CreateLlmAnalyticSummarizationRequest {
   /** End of date range for ID-based lookup. Defaults to now. */
   date_to?: string | null;
 }
-export const CreateLlmAnalyticSummarizationRequest = /*@__PURE__*/ S.suspend(
+export const CreateLlmAnalyticsSummarizationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -622,8 +647,8 @@ export const CreateLlmAnalyticSummarizationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateLlmAnalyticSummarizationRequest",
-}) as any as S.Schema<CreateLlmAnalyticSummarizationRequest>;
+  identifier: "CreateLlmAnalyticsSummarizationRequest",
+}) as any as S.Schema<CreateLlmAnalyticsSummarizationRequest>;
 
 export interface SummaryBullet {
   text?: string;
@@ -690,6 +715,73 @@ export const SummarizeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SummarizeResponse",
 }) as any as S.Schema<SummarizeResponse>;
 
+/** List of trace IDs to check for cached summaries */
+export type CreateLlmAnalyticsSummarizationBatchCheckRequestTraceIdsList =
+  Array<string>;
+export const CreateLlmAnalyticsSummarizationBatchCheckRequestTraceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateLlmAnalyticsSummarizationBatchCheckRequestTraceIdsList>;
+
+export interface CreateLlmAnalyticsSummarizationBatchCheckRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** List of trace IDs to check for cached summaries */
+  trace_ids?: CreateLlmAnalyticsSummarizationBatchCheckRequestTraceIdsList;
+  /** Summary detail level to check for * `minimal` - minimal * `detailed` - detailed */
+  mode?: DetailModeValueEnum | (string & {});
+  /** LLM model used for cached summaries */
+  model?: string | null;
+}
+export const CreateLlmAnalyticsSummarizationBatchCheckRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      trace_ids: S.optional(
+        CreateLlmAnalyticsSummarizationBatchCheckRequestTraceIdsList,
+      ),
+      mode: S.optional(DetailModeValueEnum),
+      model: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/llm_analytics/summarization/batch_check/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateLlmAnalyticsSummarizationBatchCheckRequest",
+  }) as any as S.Schema<CreateLlmAnalyticsSummarizationBatchCheckRequest>;
+
+export interface CachedSummary {
+  trace_id?: string;
+  title?: string;
+  cached?: boolean;
+}
+export const CachedSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trace_id: S.optional(S.String),
+    title: S.optional(S.String),
+    cached: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "CachedSummary" }) as any as S.Schema<CachedSummary>;
+
+export type BatchCheckResponseSummariesList = Array<CachedSummary>;
+export const BatchCheckResponseSummariesList = /*@__PURE__*/ S.Array(
+  CachedSummary,
+) as any as S.Schema<BatchCheckResponseSummariesList>;
+
+export interface BatchCheckResponse {
+  summaries?: BatchCheckResponseSummariesList;
+}
+export const BatchCheckResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    summaries: S.optional(BatchCheckResponseSummariesList),
+  }),
+).annotate({
+  identifier: "BatchCheckResponse",
+}) as any as S.Schema<BatchCheckResponse>;
+
 /** * `$ai_generation` - $ai_generation * `$ai_span` - $ai_span * `$ai_embedding` - $ai_embedding * `$ai_trace` - $ai_trace */
 export type EventTypeEnum =
   | "$ai_generation"
@@ -737,7 +829,7 @@ export const TextReprOptions = /*@__PURE__*/ S.suspend(() =>
   identifier: "TextReprOptions",
 }) as any as S.Schema<TextReprOptions>;
 
-export interface CreateLlmAnalyticTextReprRequest {
+export interface CreateLlmAnalyticsTextReprRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Type of LLM event to stringify * `$ai_generation` - $ai_generation * `$ai_span` - $ai_span * `$ai_embedding` - $ai_embedding * `$ai_trace` - $ai_trace */
@@ -747,7 +839,7 @@ export interface CreateLlmAnalyticTextReprRequest {
   /** Optional configuration for text generation */
   options?: TextReprOptions;
 }
-export const CreateLlmAnalyticTextReprRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateLlmAnalyticsTextReprRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     event_type: S.optional(EventTypeEnum),
@@ -761,8 +853,8 @@ export const CreateLlmAnalyticTextReprRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateLlmAnalyticTextReprRequest",
-}) as any as S.Schema<CreateLlmAnalyticTextReprRequest>;
+  identifier: "CreateLlmAnalyticsTextReprRequest",
+}) as any as S.Schema<CreateLlmAnalyticsTextReprRequest>;
 
 export interface TextReprMetadata {
   event_type?: string;
@@ -802,37 +894,57 @@ export const TextReprResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TextReprResponse",
 }) as any as S.Schema<TextReprResponse>;
 
-export interface DatasetItemsArchiveRequest {
+export interface GetAiObservabilityInstrumentationChecklistRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  dataset_item_id: string;
-  /** Current item version observed by the caller. */
-  base_version: number;
+  /** Grade the checks against a fresh read instead of a recent cached one. Use it after changing instrumentation, when a cached verdict would still describe the old code. */
+  refresh?: boolean;
 }
-export const DatasetItemsArchiveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAiObservabilityInstrumentationChecklistRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      refresh: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/ai_observability/instrumentation_checklist/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetAiObservabilityInstrumentationChecklistRequest",
+  }) as any as S.Schema<GetAiObservabilityInstrumentationChecklistRequest>;
+
+export interface GetDatasetRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this dataset. */
+  id: string;
+}
+export const GetDatasetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    dataset_item_id: S.String.pipe(T.Label()),
-    base_version: S.Number,
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/dataset_items/{dataset_item_id}/archive/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/datasets/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DatasetItemsArchiveRequest",
-}) as any as S.Schema<DatasetItemsArchiveRequest>;
+  identifier: "GetDatasetRequest",
+}) as any as S.Schema<GetDatasetRequest>;
 
-export interface DatasetItemsRetrieveRequest {
+export interface GetDatasetItemRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   dataset_item_id: string;
   /** Return the item as it appeared at this exact dataset revision. */
   revision?: number;
 }
-export const DatasetItemsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDatasetItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     dataset_item_id: S.String.pipe(T.Label()),
@@ -845,69 +957,17 @@ export const DatasetItemsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DatasetItemsRetrieveRequest",
-}) as any as S.Schema<DatasetItemsRetrieveRequest>;
+  identifier: "GetDatasetItemRequest",
+}) as any as S.Schema<GetDatasetItemRequest>;
 
-export interface DatasetsArchiveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this dataset. */
-  id: string;
-}
-export const DatasetsArchiveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/datasets/{id}/archive/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DatasetsArchiveRequest",
-}) as any as S.Schema<DatasetsArchiveRequest>;
-
-export interface DatasetsExportsContentRetrieveRequest {
+export interface GetDatasetsExportRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this dataset. */
   id: string;
   export_id: string;
 }
-export const DatasetsExportsContentRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      export_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/datasets/{id}/exports/{export_id}/content/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DatasetsExportsContentRetrieveRequest",
-}) as any as S.Schema<DatasetsExportsContentRetrieveRequest>;
-
-export interface DatasetsExportsContentRetrieveResponse {}
-export const DatasetsExportsContentRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DatasetsExportsContentRetrieveResponse",
-}) as any as S.Schema<DatasetsExportsContentRetrieveResponse>;
-
-export interface DatasetsExportsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this dataset. */
-  id: string;
-  export_id: string;
-}
-export const DatasetsExportsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDatasetsExportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -920,29 +980,38 @@ export const DatasetsExportsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DatasetsExportsRetrieveRequest",
-}) as any as S.Schema<DatasetsExportsRetrieveRequest>;
+  identifier: "GetDatasetsExportRequest",
+}) as any as S.Schema<GetDatasetsExportRequest>;
 
-export interface DatasetsRetrieveRequest {
+export interface GetDatasetsExportsContentRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this dataset. */
   id: string;
+  export_id: string;
 }
-export const DatasetsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDatasetsExportsContentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    export_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/datasets/{id}/",
+      uri: "/api/projects/{project_id}/datasets/{id}/exports/{export_id}/content/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DatasetsRetrieveRequest",
-}) as any as S.Schema<DatasetsRetrieveRequest>;
+  identifier: "GetDatasetsExportsContentRequest",
+}) as any as S.Schema<GetDatasetsExportsContentRequest>;
+
+export interface GetDatasetsExportsContentResponse {}
+export const GetDatasetsExportsContentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetDatasetsExportsContentResponse",
+}) as any as S.Schema<GetDatasetsExportsContentResponse>;
 
 export interface ListDatasetItemsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -999,7 +1068,7 @@ export const PaginatedDatasetItemReadList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDatasetItemReadList",
 }) as any as S.Schema<PaginatedDatasetItemReadList>;
 
-export interface ListDatasetItemVersionsRequest {
+export interface ListDatasetItemsVersionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   dataset_item_id: string;
@@ -1008,7 +1077,7 @@ export interface ListDatasetItemVersionsRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const ListDatasetItemVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDatasetItemsVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     dataset_item_id: S.String.pipe(T.Label()),
@@ -1022,10 +1091,80 @@ export const ListDatasetItemVersionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListDatasetItemVersionsRequest",
-}) as any as S.Schema<ListDatasetItemVersionsRequest>;
+  identifier: "ListDatasetItemsVersionsRequest",
+}) as any as S.Schema<ListDatasetItemsVersionsRequest>;
 
-export interface ListDatasetRevisionsRequest {
+export type ListDatasetsRequestIdInList = Array<string>;
+export const ListDatasetsRequestIdInList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDatasetsRequestIdInList>;
+
+export type ListDatasetsRequestOrderBy =
+  | "created_at"
+  | "-created_at"
+  | "updated_at"
+  | "-updated_at";
+export const ListDatasetsRequestOrderBy = /*@__PURE__*/ S.String;
+
+export interface ListDatasetsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Return archived datasets instead of active datasets. */
+  archived?: boolean;
+  /** Filter to these dataset IDs. Repeat the parameter or pass one comma-separated list, up to 100 IDs. */
+  id__in?: ListDatasetsRequestIdInList;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Field and direction used to order results. * `created_at` - created_at * `-created_at` - -created_at * `updated_at` - updated_at * `-updated_at` - -updated_at */
+  order_by?: ListDatasetsRequestOrderBy | (string & {});
+  /** Search dataset names, descriptions, and metadata. */
+  search?: string;
+}
+export const ListDatasetsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    archived: S.optional(S.Boolean.pipe(T.Query())),
+    id__in: S.optional(ListDatasetsRequestIdInList.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    order_by: S.optional(ListDatasetsRequestOrderBy.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/datasets/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDatasetsRequest",
+}) as any as S.Schema<ListDatasetsRequest>;
+
+export type PaginatedDatasetReadListResultsList = Array<DatasetRead>;
+export const PaginatedDatasetReadListResultsList = /*@__PURE__*/ S.Array(
+  DatasetRead,
+) as any as S.Schema<PaginatedDatasetReadListResultsList>;
+
+export interface PaginatedDatasetReadList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedDatasetReadListResultsList;
+}
+export const PaginatedDatasetReadList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedDatasetReadListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedDatasetReadList",
+}) as any as S.Schema<PaginatedDatasetReadList>;
+
+export interface ListDatasetsRevisionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this dataset. */
@@ -1035,7 +1174,7 @@ export interface ListDatasetRevisionsRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const ListDatasetRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDatasetsRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -1049,8 +1188,8 @@ export const ListDatasetRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListDatasetRevisionsRequest",
-}) as any as S.Schema<ListDatasetRevisionsRequest>;
+  identifier: "ListDatasetsRevisionsRequest",
+}) as any as S.Schema<ListDatasetsRevisionsRequest>;
 
 export interface DatasetRevisionRead {
   id: string;
@@ -1099,88 +1238,18 @@ export const PaginatedDatasetRevisionReadList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDatasetRevisionReadList",
 }) as any as S.Schema<PaginatedDatasetRevisionReadList>;
 
-export type DatasetsListRequestIdInList = Array<string>;
-export const DatasetsListRequestIdInList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatasetsListRequestIdInList>;
-
-export type DatasetsListRequestOrderBy =
-  | "created_at"
-  | "-created_at"
-  | "updated_at"
-  | "-updated_at";
-export const DatasetsListRequestOrderBy = /*@__PURE__*/ S.String;
-
-export interface ListDatasetsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Return archived datasets instead of active datasets. */
-  archived?: boolean;
-  /** Filter to these dataset IDs. Repeat the parameter or pass one comma-separated list, up to 100 IDs. */
-  id__in?: DatasetsListRequestIdInList;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Field and direction used to order results. * `created_at` - created_at * `-created_at` - -created_at * `updated_at` - updated_at * `-updated_at` - -updated_at */
-  order_by?: DatasetsListRequestOrderBy | (string & {});
-  /** Search dataset names, descriptions, and metadata. */
-  search?: string;
-}
-export const ListDatasetsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    archived: S.optional(S.Boolean.pipe(T.Query())),
-    id__in: S.optional(DatasetsListRequestIdInList.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    order_by: S.optional(DatasetsListRequestOrderBy.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/datasets/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ListDatasetsRequest",
-}) as any as S.Schema<ListDatasetsRequest>;
-
-export type PaginatedDatasetReadListResultsList = Array<DatasetRead>;
-export const PaginatedDatasetReadListResultsList = /*@__PURE__*/ S.Array(
-  DatasetRead,
-) as any as S.Schema<PaginatedDatasetReadListResultsList>;
-
-export interface PaginatedDatasetReadList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedDatasetReadListResultsList;
-}
-export const PaginatedDatasetReadList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedDatasetReadListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedDatasetReadList",
-}) as any as S.Schema<PaginatedDatasetReadList>;
-
-export type LlmAnalyticsPersonalSpendListRequestBucketMinutes =
+export type ListLlmAnalyticsPersonalSpendRequestBucketMinutes =
   | 5
   | 15
   | 30
   | 60;
-export const LlmAnalyticsPersonalSpendListRequestBucketMinutes =
+export const ListLlmAnalyticsPersonalSpendRequestBucketMinutes =
   /*@__PURE__*/ S.Number;
 
-export interface ListLlmAnalyticPersonalSpendRequest {
+export interface ListLlmAnalyticsPersonalSpendRequest {
   /** When set, additionally return a `by_bucket` breakdown: a time-ascending UTC cost series for the scoped product at this bucket size in minutes, with per-bucket cost split into uncached input / output / cache read / cache creation components plus the matching token sums. Supported bucket sizes: 5, 15, 30, 60. The window may span at most 600 buckets of the chosen size (e.g. 50 hours at 5-minute buckets). * `5` - 5 * `15` - 15 * `30` - 30 * `60` - 60 */
   bucket_minutes?:
-    | LlmAnalyticsPersonalSpendListRequestBucketMinutes
+    | ListLlmAnalyticsPersonalSpendRequestBucketMinutes
     | (number & {});
   /** Start of the spend window. Accepts absolute dates (`2026-04-23`) or relative strings (`-7d`, `-1m`, etc.) — same parser used elsewhere in PostHog. Defaults to `-30d`. The window between `date_from` and `date_to` cannot exceed 90 days. */
   date_from?: string;
@@ -1193,22 +1262,27 @@ export interface ListLlmAnalyticPersonalSpendRequest {
   /** If true, bypass the result cache and re-run the underlying queries against ClickHouse. */
   refresh?: boolean;
 }
-export const ListLlmAnalyticPersonalSpendRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bucket_minutes: S.optional(
-      LlmAnalyticsPersonalSpendListRequestBucketMinutes.pipe(T.Query()),
+export const ListLlmAnalyticsPersonalSpendRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      bucket_minutes: S.optional(
+        ListLlmAnalyticsPersonalSpendRequestBucketMinutes.pipe(T.Query()),
+      ),
+      date_from: S.optional(S.String.pipe(T.Query())),
+      date_to: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      product: S.String.pipe(T.Query()),
+      refresh: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/llm_analytics/@me/spend/",
+        code: 200,
+      }),
     ),
-    date_from: S.optional(S.String.pipe(T.Query())),
-    date_to: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    product: S.String.pipe(T.Query()),
-    refresh: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/llm_analytics/@me/spend/", code: 200 }),
-  ),
 ).annotate({
-  identifier: "ListLlmAnalyticPersonalSpendRequest",
-}) as any as S.Schema<ListLlmAnalyticPersonalSpendRequest>;
+  identifier: "ListLlmAnalyticsPersonalSpendRequest",
+}) as any as S.Schema<ListLlmAnalyticsPersonalSpendRequest>;
 
 export interface Summary {
   /** Inclusive UTC start of the spend window resolved from the request. */
@@ -1579,87 +1653,20 @@ export const PersonalSpendAnalysisResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PersonalSpendAnalysisResponse",
 }) as any as S.Schema<PersonalSpendAnalysisResponse>;
 
-export type LlmAnalyticsPersonalSpendListResponseBodyList =
+export type ListLlmAnalyticsPersonalSpendResponseBodyList =
   Array<PersonalSpendAnalysisResponse>;
-export const LlmAnalyticsPersonalSpendListResponseBodyList =
+export const ListLlmAnalyticsPersonalSpendResponseBodyList =
   /*@__PURE__*/ S.Array(
     PersonalSpendAnalysisResponse,
-  ) as any as S.Schema<LlmAnalyticsPersonalSpendListResponseBodyList>;
+  ) as any as S.Schema<ListLlmAnalyticsPersonalSpendResponseBodyList>;
 
-export type ListLlmAnalyticPersonalSpendResponse =
-  LlmAnalyticsPersonalSpendListResponseBodyList;
-export const ListLlmAnalyticPersonalSpendResponse = /*@__PURE__*/ S.suspend(
-  () => LlmAnalyticsPersonalSpendListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListLlmAnalyticsPersonalSpendResponse =
+  ListLlmAnalyticsPersonalSpendResponseBodyList;
+export const ListLlmAnalyticsPersonalSpendResponse = /*@__PURE__*/ S.suspend(
+  () => ListLlmAnalyticsPersonalSpendResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListLlmAnalyticPersonalSpendResponse",
-}) as any as S.Schema<ListLlmAnalyticPersonalSpendResponse>;
-
-/** List of trace IDs to check for cached summaries */
-export type LlmAnalyticsSummarizationBatchCheckCreateRequestTraceIdsList =
-  Array<string>;
-export const LlmAnalyticsSummarizationBatchCheckCreateRequestTraceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LlmAnalyticsSummarizationBatchCheckCreateRequestTraceIdsList>;
-
-export interface LlmAnalyticsSummarizationBatchCheckCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** List of trace IDs to check for cached summaries */
-  trace_ids?: LlmAnalyticsSummarizationBatchCheckCreateRequestTraceIdsList;
-  /** Summary detail level to check for * `minimal` - minimal * `detailed` - detailed */
-  mode?: DetailModeValueEnum | (string & {});
-  /** LLM model used for cached summaries */
-  model?: string | null;
-}
-export const LlmAnalyticsSummarizationBatchCheckCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      trace_ids: S.optional(
-        LlmAnalyticsSummarizationBatchCheckCreateRequestTraceIdsList,
-      ),
-      mode: S.optional(DetailModeValueEnum),
-      model: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/llm_analytics/summarization/batch_check/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "LlmAnalyticsSummarizationBatchCheckCreateRequest",
-  }) as any as S.Schema<LlmAnalyticsSummarizationBatchCheckCreateRequest>;
-
-export interface CachedSummary {
-  trace_id?: string;
-  title?: string;
-  cached?: boolean;
-}
-export const CachedSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trace_id: S.optional(S.String),
-    title: S.optional(S.String),
-    cached: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "CachedSummary" }) as any as S.Schema<CachedSummary>;
-
-export type BatchCheckResponseSummariesList = Array<CachedSummary>;
-export const BatchCheckResponseSummariesList = /*@__PURE__*/ S.Array(
-  CachedSummary,
-) as any as S.Schema<BatchCheckResponseSummariesList>;
-
-export interface BatchCheckResponse {
-  summaries?: BatchCheckResponseSummariesList;
-}
-export const BatchCheckResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    summaries: S.optional(BatchCheckResponseSummariesList),
-  }),
-).annotate({
-  identifier: "BatchCheckResponse",
-}) as any as S.Schema<BatchCheckResponse>;
+  identifier: "ListLlmAnalyticsPersonalSpendResponse",
+}) as any as S.Schema<ListLlmAnalyticsPersonalSpendResponse>;
 
 export interface RestoreDatasetRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -1708,90 +1715,90 @@ export const RestoreDatasetItemRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestoreDatasetItemRequest",
 }) as any as S.Schema<RestoreDatasetItemRequest>;
 
-export type DatasetItemsPartialUpdateRequestInputCase0Map = {
+export type UpdateDatasetItemsPartialRequestInputCase0Map = {
   [key: string]: unknown | undefined;
 };
-export const DatasetItemsPartialUpdateRequestInputCase0Map =
+export const UpdateDatasetItemsPartialRequestInputCase0Map =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<DatasetItemsPartialUpdateRequestInputCase0Map>;
+  ) as any as S.Schema<UpdateDatasetItemsPartialRequestInputCase0Map>;
 
-export type DatasetItemsPartialUpdateRequestInputCase1List = Array<unknown>;
-export const DatasetItemsPartialUpdateRequestInputCase1List =
+export type UpdateDatasetItemsPartialRequestInputCase1List = Array<unknown>;
+export const UpdateDatasetItemsPartialRequestInputCase1List =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<DatasetItemsPartialUpdateRequestInputCase1List>;
+  ) as any as S.Schema<UpdateDatasetItemsPartialRequestInputCase1List>;
 
 /** Replacement input. Omit to keep the current value. */
-export type DatasetItemsPartialUpdateRequestInput =
-  | DatasetItemsPartialUpdateRequestInputCase0Map
-  | DatasetItemsPartialUpdateRequestInputCase1List
+export type UpdateDatasetItemsPartialRequestInput =
+  | UpdateDatasetItemsPartialRequestInputCase0Map
+  | UpdateDatasetItemsPartialRequestInputCase1List
   | string
   | number
   | boolean;
-export const DatasetItemsPartialUpdateRequestInput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DatasetItemsPartialUpdateRequestInput>;
+export const UpdateDatasetItemsPartialRequestInput =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDatasetItemsPartialRequestInput>;
 
-export type DatasetItemsPartialUpdateRequestExpectedOutputCase0Map = {
+export type UpdateDatasetItemsPartialRequestExpectedOutputCase0Map = {
   [key: string]: unknown | undefined;
 };
-export const DatasetItemsPartialUpdateRequestExpectedOutputCase0Map =
+export const UpdateDatasetItemsPartialRequestExpectedOutputCase0Map =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<DatasetItemsPartialUpdateRequestExpectedOutputCase0Map>;
+  ) as any as S.Schema<UpdateDatasetItemsPartialRequestExpectedOutputCase0Map>;
 
-export type DatasetItemsPartialUpdateRequestExpectedOutputCase1List =
+export type UpdateDatasetItemsPartialRequestExpectedOutputCase1List =
   Array<unknown>;
-export const DatasetItemsPartialUpdateRequestExpectedOutputCase1List =
+export const UpdateDatasetItemsPartialRequestExpectedOutputCase1List =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<DatasetItemsPartialUpdateRequestExpectedOutputCase1List>;
+  ) as any as S.Schema<UpdateDatasetItemsPartialRequestExpectedOutputCase1List>;
 
 /** Replacement expected output. Send null to clear it. */
-export type DatasetItemsPartialUpdateRequestExpectedOutput =
-  | DatasetItemsPartialUpdateRequestExpectedOutputCase0Map
-  | DatasetItemsPartialUpdateRequestExpectedOutputCase1List
+export type UpdateDatasetItemsPartialRequestExpectedOutput =
+  | UpdateDatasetItemsPartialRequestExpectedOutputCase0Map
+  | UpdateDatasetItemsPartialRequestExpectedOutputCase1List
   | string
   | number
   | boolean;
-export const DatasetItemsPartialUpdateRequestExpectedOutput =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<DatasetItemsPartialUpdateRequestExpectedOutput>;
+export const UpdateDatasetItemsPartialRequestExpectedOutput =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDatasetItemsPartialRequestExpectedOutput>;
 
 /** Replacement metadata object. Send an empty object to clear it. */
-export type DatasetItemsPartialUpdateRequestMetadataMap = {
+export type UpdateDatasetItemsPartialRequestMetadataMap = {
   [key: string]: unknown | undefined;
 };
-export const DatasetItemsPartialUpdateRequestMetadataMap =
+export const UpdateDatasetItemsPartialRequestMetadataMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.Unknown,
-  ) as any as S.Schema<DatasetItemsPartialUpdateRequestMetadataMap>;
+  ) as any as S.Schema<UpdateDatasetItemsPartialRequestMetadataMap>;
 
-export interface UpdateDatasetItemPartialRequest {
+export interface UpdateDatasetItemsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   dataset_item_id: string;
   /** Current item version observed by the caller. */
   base_version: number;
   /** Replacement input. Omit to keep the current value. */
-  input?: DatasetItemsPartialUpdateRequestInput;
+  input?: UpdateDatasetItemsPartialRequestInput;
   /** Replacement expected output. Send null to clear it. */
-  expected_output?: DatasetItemsPartialUpdateRequestExpectedOutput | null;
+  expected_output?: UpdateDatasetItemsPartialRequestExpectedOutput | null;
   /** Replacement metadata object. Send an empty object to clear it. */
-  metadata?: DatasetItemsPartialUpdateRequestMetadataMap;
+  metadata?: UpdateDatasetItemsPartialRequestMetadataMap;
 }
-export const UpdateDatasetItemPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDatasetItemsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     dataset_item_id: S.String.pipe(T.Label()),
     base_version: S.Number,
-    input: S.optional(DatasetItemsPartialUpdateRequestInput),
+    input: S.optional(UpdateDatasetItemsPartialRequestInput),
     expected_output: S.optional(
-      S.NullOr(DatasetItemsPartialUpdateRequestExpectedOutput),
+      S.NullOr(UpdateDatasetItemsPartialRequestExpectedOutput),
     ),
-    metadata: S.optional(DatasetItemsPartialUpdateRequestMetadataMap),
+    metadata: S.optional(UpdateDatasetItemsPartialRequestMetadataMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1800,19 +1807,19 @@ export const UpdateDatasetItemPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateDatasetItemPartialRequest",
-}) as any as S.Schema<UpdateDatasetItemPartialRequest>;
+  identifier: "UpdateDatasetItemsPartialRequest",
+}) as any as S.Schema<UpdateDatasetItemsPartialRequest>;
 
 /** Replacement JSON object for descriptive dataset metadata. */
-export type DatasetsPartialUpdateRequestMetadataMap = {
+export type UpdateDatasetsPartialRequestMetadataMap = {
   [key: string]: unknown | undefined;
 };
-export const DatasetsPartialUpdateRequestMetadataMap = /*@__PURE__*/ S.Record(
+export const UpdateDatasetsPartialRequestMetadataMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<DatasetsPartialUpdateRequestMetadataMap>;
+) as any as S.Schema<UpdateDatasetsPartialRequestMetadataMap>;
 
-export interface UpdateDatasetPartialRequest {
+export interface UpdateDatasetsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this dataset. */
@@ -1822,15 +1829,15 @@ export interface UpdateDatasetPartialRequest {
   /** New dataset description. */
   description?: string;
   /** Replacement JSON object for descriptive dataset metadata. */
-  metadata?: DatasetsPartialUpdateRequestMetadataMap;
+  metadata?: UpdateDatasetsPartialRequestMetadataMap;
 }
-export const UpdateDatasetPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDatasetsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
     description: S.optional(S.String),
-    metadata: S.optional(DatasetsPartialUpdateRequestMetadataMap),
+    metadata: S.optional(UpdateDatasetsPartialRequestMetadataMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1839,8 +1846,8 @@ export const UpdateDatasetPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateDatasetPartialRequest",
-}) as any as S.Schema<UpdateDatasetPartialRequest>;
+  identifier: "UpdateDatasetsPartialRequest",
+}) as any as S.Schema<UpdateDatasetsPartialRequest>;
 
 export type AiObservabilityInstrumentationChecklistRestoreCreateError =
   PosthogOpError;
@@ -1858,18 +1865,32 @@ export const aiObservabilityInstrumentationChecklistRestoreCreate: API.Operation
   retry: Retry.Retry,
 }));
 
-export type AiObservabilityInstrumentationChecklistRetrieveError =
-  PosthogOpError;
-/** Grade every instrumentation check for this project. */
-export const aiObservabilityInstrumentationChecklistRetrieve: API.OperationMethod<
-  AiObservabilityInstrumentationChecklistRetrieveRequest,
-  InstrumentationChecklist,
-  AiObservabilityInstrumentationChecklistRetrieveError,
+export type ArchiveDatasetError = PosthogOpError;
+/** Archive a dataset. Archived datasets remain readable and reject item mutations. */
+export const archiveDataset: API.OperationMethod<
+  ArchiveDatasetRequest,
+  DatasetRead,
+  ArchiveDatasetError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AiObservabilityInstrumentationChecklistRetrieveRequest,
-  output: InstrumentationChecklist,
+  input: ArchiveDatasetRequest,
+  output: DatasetRead,
   errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ArchiveDatasetItemError = Conflict | PosthogOpError;
+/** Archive an active item by creating a new immutable version. */
+export const archiveDatasetItem: API.OperationMethod<
+  ArchiveDatasetItemRequest,
+  DatasetItemRead,
+  ArchiveDatasetItemError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ArchiveDatasetItemRequest,
+  output: DatasetItemRead,
+  errors: [Conflict],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -1910,21 +1931,6 @@ export const createDataset: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateDatasetExportError = Conflict | PosthogOpError;
-/** Create an asynchronous JSONL export pinned to an immutable dataset revision. */
-export const createDatasetExport: API.OperationMethod<
-  CreateDatasetExportRequest,
-  DatasetExportRead,
-  CreateDatasetExportError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateDatasetExportRequest,
-  output: DatasetExportRead,
-  errors: [Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateDatasetItemError =
   | BadRequest
   | Forbidden
@@ -1945,141 +1951,159 @@ export const createDatasetItem: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateLlmAnalyticOfflineEvaluationExperimentItemError =
-  | BadRequest
-  | PosthogOpError;
-export const createLlmAnalyticOfflineEvaluationExperimentItem: API.OperationMethod<
-  CreateLlmAnalyticOfflineEvaluationExperimentItemRequest,
-  OfflineExperimentItemsResponse,
-  CreateLlmAnalyticOfflineEvaluationExperimentItemError,
+export type CreateDatasetsExportError = Conflict | PosthogOpError;
+/** Create an asynchronous JSONL export pinned to an immutable dataset revision. */
+export const createDatasetsExport: API.OperationMethod<
+  CreateDatasetsExportRequest,
+  DatasetExportRead,
+  CreateDatasetsExportError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateLlmAnalyticOfflineEvaluationExperimentItemRequest,
+  input: CreateDatasetsExportRequest,
+  output: DatasetExportRead,
+  errors: [Conflict],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateLlmAnalyticsOfflineEvaluationsExperimentItemError =
+  | BadRequest
+  | PosthogOpError;
+export const createLlmAnalyticsOfflineEvaluationsExperimentItem: API.OperationMethod<
+  CreateLlmAnalyticsOfflineEvaluationsExperimentItemRequest,
+  OfflineExperimentItemsResponse,
+  CreateLlmAnalyticsOfflineEvaluationsExperimentItemError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateLlmAnalyticsOfflineEvaluationsExperimentItemRequest,
   output: OfflineExperimentItemsResponse,
   errors: [BadRequest],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateLlmAnalyticSummarizationError =
+export type CreateLlmAnalyticsSummarizationError =
   | BadRequest
   | Forbidden
   | PosthogOpError;
 /** Generate an AI-powered summary of an LLM trace or event. This endpoint analyzes the provided trace/event, generates a line-numbered text representation, and uses an LLM to create a concise summary with line references. **Two ways to use this endpoint:** 1. **By ID (recommended):** Pass `trace_id` or `generation_id` with an optional `date_from`/`date_to`. The backend fetches the data automatically. `summarize_type` is inferred. 2. **By data:** Pass the full trace/event data blob in `data` with `summarize_type`. This is how the frontend uses it. **Summary Format:** - Title (concise, max 10 words) - Mermaid flow diagram showing the main flow - 3-10 summary bullets with line references - "Interesting Notes" section for failures, successes, or unusual patterns - Line references in [L45] or [L45-52] format pointing to relevant sections The response includes the structured summary, the text representation, and metadata. */
-export const createLlmAnalyticSummarization: API.OperationMethod<
-  CreateLlmAnalyticSummarizationRequest,
+export const createLlmAnalyticsSummarization: API.OperationMethod<
+  CreateLlmAnalyticsSummarizationRequest,
   SummarizeResponse,
-  CreateLlmAnalyticSummarizationError,
+  CreateLlmAnalyticsSummarizationError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateLlmAnalyticSummarizationRequest,
+  input: CreateLlmAnalyticsSummarizationRequest,
   output: SummarizeResponse,
   errors: [BadRequest, Forbidden],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateLlmAnalyticTextReprError = BadRequest | PosthogOpError;
-/** Generate a human-readable text representation of an LLM trace event. This endpoint converts AI observability events ($ai_generation, $ai_span, $ai_embedding, or $ai_trace) into formatted text representations suitable for display, logging, or analysis. **Supported Event Types:** - `$ai_generation`: Individual LLM API calls with input/output messages - `$ai_span`: Logical spans with state transitions - `$ai_embedding`: Embedding generation events (text input → vector) - `$ai_trace`: Full traces with hierarchical structure **Options:** - `max_length`: Maximum character count (default: 2000000) - `truncated`: Enable middle-content truncation within events (default: true) - `truncate_buffer`: Characters at start/end when truncating (default: 1000) - `include_markers`: Use interactive markers vs plain text indicators (default: true) - Frontend: set true for `<<<TRUNCATED|base64|...>>>` markers - Backend/LLM: set false for `... (X chars truncated) ...` text - `collapsed`: Show summary vs full trace tree (default: false) - `include_hierarchy`: Include tree structure for traces (default: true) - `max_depth`: Maximum depth for hierarchical rendering (default: unlimited) - `tools_collapse_threshold`: Number of tools before auto-collapsing list (default: 5) - Tool lists >5 items show `<<<TOOLS_EXPANDABLE|...>>>` marker for frontend - Or `[+] AVAILABLE TOOLS: N` for backend when `include_markers: false` - `include_line_numbers`: Prefix each line with line number like L001:, L010: (default: false) **Use Cases:** - Frontend display: `truncated: true, include_markers: true, include_line_numbers: true` - Backend LLM context (summary): `truncated: true, include_markers: false, collapsed: true` - Backend LLM context (full): `truncated: false` The response includes the formatted text and metadata about the rendering. */
-export const createLlmAnalyticTextRepr: API.OperationMethod<
-  CreateLlmAnalyticTextReprRequest,
-  TextReprResponse,
-  CreateLlmAnalyticTextReprError,
+export type CreateLlmAnalyticsSummarizationBatchCheckError =
+  | BadRequest
+  | Forbidden
+  | PosthogOpError;
+/** Check which traces have cached summaries available. This endpoint allows batch checking of multiple trace IDs to see which ones have cached summaries. Returns only the traces that have cached summaries with their titles. **Use Cases:** - Load cached summaries on session view load - Avoid unnecessary LLM calls for already-summarized traces - Display summary previews without generating new summaries */
+export const createLlmAnalyticsSummarizationBatchCheck: API.OperationMethod<
+  CreateLlmAnalyticsSummarizationBatchCheckRequest,
+  BatchCheckResponse,
+  CreateLlmAnalyticsSummarizationBatchCheckError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateLlmAnalyticTextReprRequest,
+  input: CreateLlmAnalyticsSummarizationBatchCheckRequest,
+  output: BatchCheckResponse,
+  errors: [BadRequest, Forbidden],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateLlmAnalyticsTextReprError = BadRequest | PosthogOpError;
+/** Generate a human-readable text representation of an LLM trace event. This endpoint converts AI observability events ($ai_generation, $ai_span, $ai_embedding, or $ai_trace) into formatted text representations suitable for display, logging, or analysis. **Supported Event Types:** - `$ai_generation`: Individual LLM API calls with input/output messages - `$ai_span`: Logical spans with state transitions - `$ai_embedding`: Embedding generation events (text input → vector) - `$ai_trace`: Full traces with hierarchical structure **Options:** - `max_length`: Maximum character count (default: 2000000) - `truncated`: Enable middle-content truncation within events (default: true) - `truncate_buffer`: Characters at start/end when truncating (default: 1000) - `include_markers`: Use interactive markers vs plain text indicators (default: true) - Frontend: set true for `<<<TRUNCATED|base64|...>>>` markers - Backend/LLM: set false for `... (X chars truncated) ...` text - `collapsed`: Show summary vs full trace tree (default: false) - `include_hierarchy`: Include tree structure for traces (default: true) - `max_depth`: Maximum depth for hierarchical rendering (default: unlimited) - `tools_collapse_threshold`: Number of tools before auto-collapsing list (default: 5) - Tool lists >5 items show `<<<TOOLS_EXPANDABLE|...>>>` marker for frontend - Or `[+] AVAILABLE TOOLS: N` for backend when `include_markers: false` - `include_line_numbers`: Prefix each line with line number like L001:, L010: (default: false) **Use Cases:** - Frontend display: `truncated: true, include_markers: true, include_line_numbers: true` - Backend LLM context (summary): `truncated: true, include_markers: false, collapsed: true` - Backend LLM context (full): `truncated: false` The response includes the formatted text and metadata about the rendering. */
+export const createLlmAnalyticsTextRepr: API.OperationMethod<
+  CreateLlmAnalyticsTextReprRequest,
+  TextReprResponse,
+  CreateLlmAnalyticsTextReprError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateLlmAnalyticsTextReprRequest,
   output: TextReprResponse,
   errors: [BadRequest],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatasetItemsArchiveError = Conflict | PosthogOpError;
-/** Archive an active item by creating a new immutable version. */
-export const datasetItemsArchive: API.OperationMethod<
-  DatasetItemsArchiveRequest,
-  DatasetItemRead,
-  DatasetItemsArchiveError,
+export type GetAiObservabilityInstrumentationChecklistError = PosthogOpError;
+/** Grade every instrumentation check for this project. */
+export const getAiObservabilityInstrumentationChecklist: API.OperationMethod<
+  GetAiObservabilityInstrumentationChecklistRequest,
+  InstrumentationChecklist,
+  GetAiObservabilityInstrumentationChecklistError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatasetItemsArchiveRequest,
-  output: DatasetItemRead,
-  errors: [Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatasetItemsRetrieveError = PosthogOpError;
-/** Retrieve the current item version or the version visible at an exact dataset revision. */
-export const datasetItemsRetrieve: API.OperationMethod<
-  DatasetItemsRetrieveRequest,
-  DatasetItemRead,
-  DatasetItemsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatasetItemsRetrieveRequest,
-  output: DatasetItemRead,
+  input: GetAiObservabilityInstrumentationChecklistRequest,
+  output: InstrumentationChecklist,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatasetsArchiveError = PosthogOpError;
-/** Archive a dataset. Archived datasets remain readable and reject item mutations. */
-export const datasetsArchive: API.OperationMethod<
-  DatasetsArchiveRequest,
+export type GetDatasetError = Forbidden | NotFound | PosthogOpError;
+/** Retrieve an active or archived dataset. */
+export const getDataset: API.OperationMethod<
+  GetDatasetRequest,
   DatasetRead,
-  DatasetsArchiveError,
+  GetDatasetError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatasetsArchiveRequest,
+  input: GetDatasetRequest,
   output: DatasetRead,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatasetItemError = PosthogOpError;
+/** Retrieve the current item version or the version visible at an exact dataset revision. */
+export const getDatasetItem: API.OperationMethod<
+  GetDatasetItemRequest,
+  DatasetItemRead,
+  GetDatasetItemError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatasetItemRequest,
+  output: DatasetItemRead,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatasetsExportsContentRetrieveError = Conflict | PosthogOpError;
-/** Download a completed dataset JSONL export. */
-export const datasetsExportsContentRetrieve: API.OperationMethod<
-  DatasetsExportsContentRetrieveRequest,
-  DatasetsExportsContentRetrieveResponse,
-  DatasetsExportsContentRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatasetsExportsContentRetrieveRequest,
-  output: DatasetsExportsContentRetrieveResponse,
-  errors: [Conflict],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatasetsExportsRetrieveError = PosthogOpError;
+export type GetDatasetsExportError = PosthogOpError;
 /** Check the status of a dataset export created by the current user. */
-export const datasetsExportsRetrieve: API.OperationMethod<
-  DatasetsExportsRetrieveRequest,
+export const getDatasetsExport: API.OperationMethod<
+  GetDatasetsExportRequest,
   DatasetExportRead,
-  DatasetsExportsRetrieveError,
+  GetDatasetsExportError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatasetsExportsRetrieveRequest,
+  input: GetDatasetsExportRequest,
   output: DatasetExportRead,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatasetsRetrieveError = Forbidden | NotFound | PosthogOpError;
-/** Retrieve an active or archived dataset. */
-export const datasetsRetrieve: API.OperationMethod<
-  DatasetsRetrieveRequest,
-  DatasetRead,
-  DatasetsRetrieveError,
+export type GetDatasetsExportsContentError = Conflict | PosthogOpError;
+/** Download a completed dataset JSONL export. */
+export const getDatasetsExportsContent: API.OperationMethod<
+  GetDatasetsExportsContentRequest,
+  GetDatasetsExportsContentResponse,
+  GetDatasetsExportsContentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatasetsRetrieveRequest,
-  output: DatasetRead,
-  errors: [Forbidden, NotFound],
+  input: GetDatasetsExportsContentRequest,
+  output: GetDatasetsExportsContentResponse,
+  errors: [Conflict],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -2103,31 +2127,16 @@ export const listDatasetItems: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListDatasetItemVersionsError = PosthogOpError;
+export type ListDatasetItemsVersionsError = PosthogOpError;
 /** List every immutable version of an item, newest first. */
-export const listDatasetItemVersions: API.OperationMethod<
-  ListDatasetItemVersionsRequest,
+export const listDatasetItemsVersions: API.OperationMethod<
+  ListDatasetItemsVersionsRequest,
   PaginatedDatasetItemReadList,
-  ListDatasetItemVersionsError,
+  ListDatasetItemsVersionsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDatasetItemVersionsRequest,
+  input: ListDatasetItemsVersionsRequest,
   output: PaginatedDatasetItemReadList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListDatasetRevisionsError = PosthogOpError;
-/** List immutable dataset revisions, newest first. */
-export const listDatasetRevisions: API.OperationMethod<
-  ListDatasetRevisionsRequest,
-  PaginatedDatasetRevisionReadList,
-  ListDatasetRevisionsError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListDatasetRevisionsRequest,
-  output: PaginatedDatasetRevisionReadList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -2152,39 +2161,36 @@ export const listDatasets: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListLlmAnalyticPersonalSpendError =
+export type ListDatasetsRevisionsError = PosthogOpError;
+/** List immutable dataset revisions, newest first. */
+export const listDatasetsRevisions: API.OperationMethod<
+  ListDatasetsRevisionsRequest,
+  PaginatedDatasetRevisionReadList,
+  ListDatasetsRevisionsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatasetsRevisionsRequest,
+  output: PaginatedDatasetRevisionReadList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLlmAnalyticsPersonalSpendError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Return a structured personal LLM spend analysis for the requesting user. Pass `date_from` / `date_to` (absolute like `2026-04-23` or relative like `-7d`) to bound the window — defaults to the last 30 days, max 90 days. The `product=<ai_product>` query param is required and scopes the tool / model / day / trace breakdowns to a single product; supported values: posthog_code. `by_product` is always returned for cross-product visibility. `by_day` returns a day-ascending spend series for the scoped product. Pass `bucket_minutes` (5, 15, 30, or 60; the window may span at most 600 buckets) to additionally get `by_bucket`, a time-ascending series with per-bucket cost split into uncached input / output / cache read / cache creation components. Use `refresh=true` to bypass the 5-minute response cache. */
-export const listLlmAnalyticPersonalSpend: API.OperationMethod<
-  ListLlmAnalyticPersonalSpendRequest,
-  ListLlmAnalyticPersonalSpendResponse,
-  ListLlmAnalyticPersonalSpendError,
+export const listLlmAnalyticsPersonalSpend: API.OperationMethod<
+  ListLlmAnalyticsPersonalSpendRequest,
+  ListLlmAnalyticsPersonalSpendResponse,
+  ListLlmAnalyticsPersonalSpendError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListLlmAnalyticPersonalSpendRequest,
-  output: ListLlmAnalyticPersonalSpendResponse,
+  input: ListLlmAnalyticsPersonalSpendRequest,
+  output: ListLlmAnalyticsPersonalSpendResponse,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LlmAnalyticsSummarizationBatchCheckCreateError =
-  | BadRequest
-  | Forbidden
-  | PosthogOpError;
-/** Check which traces have cached summaries available. This endpoint allows batch checking of multiple trace IDs to see which ones have cached summaries. Returns only the traces that have cached summaries with their titles. **Use Cases:** - Load cached summaries on session view load - Avoid unnecessary LLM calls for already-summarized traces - Display summary previews without generating new summaries */
-export const llmAnalyticsSummarizationBatchCheckCreate: API.OperationMethod<
-  LlmAnalyticsSummarizationBatchCheckCreateRequest,
-  BatchCheckResponse,
-  LlmAnalyticsSummarizationBatchCheckCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LlmAnalyticsSummarizationBatchCheckCreateRequest,
-  output: BatchCheckResponse,
-  errors: [BadRequest, Forbidden],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -2219,35 +2225,35 @@ export const restoreDatasetItem: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateDatasetItemPartialError = Conflict | PosthogOpError;
+export type UpdateDatasetItemsPartialError = Conflict | PosthogOpError;
 /** Create a new immutable item version from editable fields. */
-export const updateDatasetItemPartial: API.OperationMethod<
-  UpdateDatasetItemPartialRequest,
+export const updateDatasetItemsPartial: API.OperationMethod<
+  UpdateDatasetItemsPartialRequest,
   DatasetItemRead,
-  UpdateDatasetItemPartialError,
+  UpdateDatasetItemsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateDatasetItemPartialRequest,
+  input: UpdateDatasetItemsPartialRequest,
   output: DatasetItemRead,
   errors: [Conflict],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateDatasetPartialError =
+export type UpdateDatasetsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | Conflict
   | PosthogOpError;
 /** Update descriptive dataset fields without changing its revision. */
-export const updateDatasetPartial: API.OperationMethod<
-  UpdateDatasetPartialRequest,
+export const updateDatasetsPartial: API.OperationMethod<
+  UpdateDatasetsPartialRequest,
   DatasetRead,
-  UpdateDatasetPartialError,
+  UpdateDatasetsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateDatasetPartialRequest,
+  input: UpdateDatasetsPartialRequest,
   output: DatasetRead,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
   protocol: PosthogProtocol,

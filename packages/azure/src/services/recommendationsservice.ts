@@ -323,17 +323,17 @@ export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckAccountNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type AccountsCheckNameAvailabilityResponseReason =
+export type CheckAccountNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const AccountsCheckNameAvailabilityResponseReason =
+export const CheckAccountNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
 export interface CheckAccountNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: AccountsCheckNameAvailabilityResponseReason;
+  reason?: CheckAccountNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
@@ -341,7 +341,7 @@ export const CheckAccountNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(AccountsCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckAccountNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
 ).annotate({
@@ -476,21 +476,20 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 /** Account configuration. This can only be set at RecommendationsService Account creation. */
-export type AccountsGetResponsePropertiesConfiguration = "Free" | "Capacity";
-export const AccountsGetResponsePropertiesConfiguration =
-  /*@__PURE__*/ S.String;
+export type GetAccountResponsePropertiesConfiguration = "Free" | "Capacity";
+export const GetAccountResponsePropertiesConfiguration = /*@__PURE__*/ S.String;
 
 /** Account resource properties. */
-export interface AccountsGetResponseProperties {
+export interface GetAccountResponseProperties {
   /** Account configuration. This can only be set at RecommendationsService Account creation. */
-  configuration?: AccountsGetResponsePropertiesConfiguration;
+  configuration?: GetAccountResponsePropertiesConfiguration;
   /** The list of service endpoints authentication details. */
   endpointAuthentications?: EndpointAuthenticationsList;
   /** The list of CORS details. */
@@ -500,65 +499,64 @@ export interface AccountsGetResponseProperties {
   /** The resource provisioning state. */
   provisioningState?: string;
 }
-export const AccountsGetResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    configuration: S.optional(AccountsGetResponsePropertiesConfiguration),
+    configuration: S.optional(GetAccountResponsePropertiesConfiguration),
     endpointAuthentications: S.optional(EndpointAuthenticationsList),
     cors: S.optional(CorsRuleList),
     reportsConnectionString: S.optional(S.String),
     provisioningState: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsGetResponseProperties",
-}) as any as S.Schema<AccountsGetResponseProperties>;
+  identifier: "GetAccountResponseProperties",
+}) as any as S.Schema<GetAccountResponseProperties>;
 
 /** The type of identity that created the resource. */
-export type AccountsGetResponseSystemDataCreatedByType =
+export type GetAccountResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AccountsGetResponseSystemDataLastModifiedByType =
+export type GetAccountResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsGetResponseSystemDataLastModifiedByType =
+export const GetAccountResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AccountsGetResponseSystemData {
+export interface GetAccountResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: AccountsGetResponseSystemDataCreatedByType;
+  createdByType?: GetAccountResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AccountsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetAccountResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AccountsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(AccountsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetAccountResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      AccountsGetResponseSystemDataLastModifiedByType,
+      GetAccountResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsGetResponseSystemData",
-}) as any as S.Schema<AccountsGetResponseSystemData>;
+  identifier: "GetAccountResponseSystemData",
+}) as any as S.Schema<GetAccountResponseSystemData>;
 
 export interface GetAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -568,23 +566,23 @@ export interface GetAccountResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Account resource properties. */
-  properties?: AccountsGetResponseProperties;
+  properties?: GetAccountResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AccountsGetResponseSystemData;
+  systemData?: GetAccountResponseSystemData;
 }
 export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     location: S.String,
-    properties: S.optional(AccountsGetResponseProperties),
-    systemData: S.optional(AccountsGetResponseSystemData),
+    properties: S.optional(GetAccountResponseProperties),
+    systemData: S.optional(GetAccountResponseSystemData),
   }),
 ).annotate({
   identifier: "GetAccountResponse",
@@ -698,26 +696,26 @@ export const GetModelingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetModelingRequest>;
 
 /** Resource tags. */
-export type ModelingGetResponseTagsMap = { [key: string]: string | undefined };
-export const ModelingGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetModelingResponseTagsMap = { [key: string]: string | undefined };
+export const GetModelingResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ModelingGetResponseTagsMap>;
+) as any as S.Schema<GetModelingResponseTagsMap>;
 
 /** Modeling features controls the set of supported scenarios\models being computed. This can only be set at Modeling creation. */
-export type ModelingGetResponsePropertiesFeatures =
+export type GetModelingResponsePropertiesFeatures =
   | "Basic"
   | "Standard"
   | "Premium";
-export const ModelingGetResponsePropertiesFeatures = /*@__PURE__*/ S.String;
+export const GetModelingResponsePropertiesFeatures = /*@__PURE__*/ S.String;
 
 /** Modeling frequency controls the modeling compute frequency. */
-export type ModelingGetResponsePropertiesFrequency = "Low" | "Medium" | "High";
-export const ModelingGetResponsePropertiesFrequency = /*@__PURE__*/ S.String;
+export type GetModelingResponsePropertiesFrequency = "Low" | "Medium" | "High";
+export const GetModelingResponsePropertiesFrequency = /*@__PURE__*/ S.String;
 
 /** Modeling size controls the maximum supported input data size. */
-export type ModelingGetResponsePropertiesSize = "Small" | "Medium" | "Large";
-export const ModelingGetResponsePropertiesSize = /*@__PURE__*/ S.String;
+export type GetModelingResponsePropertiesSize = "Small" | "Medium" | "Large";
+export const GetModelingResponsePropertiesSize = /*@__PURE__*/ S.String;
 
 /** The configuration to raw CDM data to be used as Modeling resource input. */
 export interface ModelingInputData {
@@ -733,77 +731,77 @@ export const ModelingInputData = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ModelingInputData>;
 
 /** Modeling resource properties. */
-export interface ModelingGetResponseProperties {
+export interface GetModelingResponseProperties {
   /** Modeling features controls the set of supported scenarios\models being computed. This can only be set at Modeling creation. */
-  features?: ModelingGetResponsePropertiesFeatures;
+  features?: GetModelingResponsePropertiesFeatures;
   /** Modeling frequency controls the modeling compute frequency. */
-  frequency?: ModelingGetResponsePropertiesFrequency;
+  frequency?: GetModelingResponsePropertiesFrequency;
   /** Modeling size controls the maximum supported input data size. */
-  size?: ModelingGetResponsePropertiesSize;
+  size?: GetModelingResponsePropertiesSize;
   /** The configuration to raw CDM data to be used as Modeling resource input. */
   inputData?: ModelingInputData;
   /** The resource provisioning state. */
   provisioningState?: string;
 }
-export const ModelingGetResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const GetModelingResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    features: S.optional(ModelingGetResponsePropertiesFeatures),
-    frequency: S.optional(ModelingGetResponsePropertiesFrequency),
-    size: S.optional(ModelingGetResponsePropertiesSize),
+    features: S.optional(GetModelingResponsePropertiesFeatures),
+    frequency: S.optional(GetModelingResponsePropertiesFrequency),
+    size: S.optional(GetModelingResponsePropertiesSize),
     inputData: S.optional(ModelingInputData),
     provisioningState: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ModelingGetResponseProperties",
-}) as any as S.Schema<ModelingGetResponseProperties>;
+  identifier: "GetModelingResponseProperties",
+}) as any as S.Schema<GetModelingResponseProperties>;
 
 /** The type of identity that created the resource. */
-export type ModelingGetResponseSystemDataCreatedByType =
+export type GetModelingResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ModelingGetResponseSystemDataCreatedByType =
+export const GetModelingResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ModelingGetResponseSystemDataLastModifiedByType =
+export type GetModelingResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ModelingGetResponseSystemDataLastModifiedByType =
+export const GetModelingResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ModelingGetResponseSystemData {
+export interface GetModelingResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ModelingGetResponseSystemDataCreatedByType;
+  createdByType?: GetModelingResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ModelingGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetModelingResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ModelingGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetModelingResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ModelingGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetModelingResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ModelingGetResponseSystemDataLastModifiedByType,
+      GetModelingResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ModelingGetResponseSystemData",
-}) as any as S.Schema<ModelingGetResponseSystemData>;
+  identifier: "GetModelingResponseSystemData",
+}) as any as S.Schema<GetModelingResponseSystemData>;
 
 export interface GetModelingResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -813,23 +811,23 @@ export interface GetModelingResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ModelingGetResponseTagsMap;
+  tags?: GetModelingResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Modeling resource properties. */
-  properties?: ModelingGetResponseProperties;
+  properties?: GetModelingResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ModelingGetResponseSystemData;
+  systemData?: GetModelingResponseSystemData;
 }
 export const GetModelingResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ModelingGetResponseTagsMap),
+    tags: S.optional(GetModelingResponseTagsMap),
     location: S.String,
-    properties: S.optional(ModelingGetResponseProperties),
-    systemData: S.optional(ModelingGetResponseSystemData),
+    properties: S.optional(GetModelingResponseProperties),
+    systemData: S.optional(GetModelingResponseSystemData),
   }),
 ).annotate({
   identifier: "GetModelingResponse",
@@ -952,11 +950,11 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type OperationStatusesGetResponseOperationsList =
+export type GetOperationStatusResponseOperationsList =
   Array<OperationStatusResult>;
-export const OperationStatusesGetResponseOperationsList = /*@__PURE__*/ S.Array(
+export const GetOperationStatusResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<OperationStatusesGetResponseOperationsList>;
+) as any as S.Schema<GetOperationStatusResponseOperationsList>;
 
 export interface GetOperationStatusResponse {
   /** Fully qualified ID for the async operation. */
@@ -974,7 +972,7 @@ export interface GetOperationStatusResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: OperationStatusesGetResponseOperationsList;
+  operations?: GetOperationStatusResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
   /** Custom operation properties, populated only for a successful operation. */
@@ -989,7 +987,7 @@ export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusesGetResponseOperationsList),
+    operations: S.optional(GetOperationStatusResponseOperationsList),
     error: S.optional(ErrorDetail),
     properties: S.optional(S.Unknown),
   }),
@@ -1026,16 +1024,16 @@ export const GetServiceEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServiceEndpointRequest>;
 
 /** Resource tags. */
-export type ServiceEndpointsGetResponseTagsMap = {
+export type GetServiceEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServiceEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetServiceEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServiceEndpointsGetResponseTagsMap>;
+) as any as S.Schema<GetServiceEndpointResponseTagsMap>;
 
 /** ServiceEndpoint resource properties. */
-export interface ServiceEndpointsGetResponseProperties {
+export interface GetServiceEndpointResponseProperties {
   /** ServiceEndpoint pre-allocated capacity controls the maximum requests-per-second allowed for that endpoint. Only applicable when Account configuration is Capacity. */
   preAllocatedCapacity?: number;
   /** The paired location that will be used by this ServiceEndpoint. */
@@ -1045,7 +1043,7 @@ export interface ServiceEndpointsGetResponseProperties {
   /** The resource provisioning state. */
   provisioningState?: string;
 }
-export const ServiceEndpointsGetResponseProperties = /*@__PURE__*/ S.suspend(
+export const GetServiceEndpointResponseProperties = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       preAllocatedCapacity: S.optional(S.Number),
@@ -1054,59 +1052,59 @@ export const ServiceEndpointsGetResponseProperties = /*@__PURE__*/ S.suspend(
       provisioningState: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ServiceEndpointsGetResponseProperties",
-}) as any as S.Schema<ServiceEndpointsGetResponseProperties>;
+  identifier: "GetServiceEndpointResponseProperties",
+}) as any as S.Schema<GetServiceEndpointResponseProperties>;
 
 /** The type of identity that created the resource. */
-export type ServiceEndpointsGetResponseSystemDataCreatedByType =
+export type GetServiceEndpointResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceEndpointsGetResponseSystemDataCreatedByType =
+export const GetServiceEndpointResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ServiceEndpointsGetResponseSystemDataLastModifiedByType =
+export type GetServiceEndpointResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceEndpointsGetResponseSystemDataLastModifiedByType =
+export const GetServiceEndpointResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ServiceEndpointsGetResponseSystemData {
+export interface GetServiceEndpointResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ServiceEndpointsGetResponseSystemDataCreatedByType;
+  createdByType?: GetServiceEndpointResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ServiceEndpointsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetServiceEndpointResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ServiceEndpointsGetResponseSystemData = /*@__PURE__*/ S.suspend(
+export const GetServiceEndpointResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ServiceEndpointsGetResponseSystemDataCreatedByType,
+        GetServiceEndpointResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ServiceEndpointsGetResponseSystemDataLastModifiedByType,
+        GetServiceEndpointResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ServiceEndpointsGetResponseSystemData",
-}) as any as S.Schema<ServiceEndpointsGetResponseSystemData>;
+  identifier: "GetServiceEndpointResponseSystemData",
+}) as any as S.Schema<GetServiceEndpointResponseSystemData>;
 
 export interface GetServiceEndpointResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1116,23 +1114,23 @@ export interface GetServiceEndpointResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ServiceEndpointsGetResponseTagsMap;
+  tags?: GetServiceEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ServiceEndpoint resource properties. */
-  properties?: ServiceEndpointsGetResponseProperties;
+  properties?: GetServiceEndpointResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ServiceEndpointsGetResponseSystemData;
+  systemData?: GetServiceEndpointResponseSystemData;
 }
 export const GetServiceEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ServiceEndpointsGetResponseTagsMap),
+    tags: S.optional(GetServiceEndpointResponseTagsMap),
     location: S.String,
-    properties: S.optional(ServiceEndpointsGetResponseProperties),
-    systemData: S.optional(ServiceEndpointsGetResponseSystemData),
+    properties: S.optional(GetServiceEndpointResponseProperties),
+    systemData: S.optional(GetServiceEndpointResponseSystemData),
   }),
 ).annotate({
   identifier: "GetServiceEndpointResponse",
@@ -1554,20 +1552,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1611,9 +1609,9 @@ export const ServiceEndpointResourceTagsMap = /*@__PURE__*/ S.Record(
 
 /** ServiceEndpoint resource properties. */
 export type ServiceEndpointResourceProperties =
-  ServiceEndpointsGetResponseProperties;
+  GetServiceEndpointResponseProperties;
 export const ServiceEndpointResourceProperties =
-  ServiceEndpointsGetResponseProperties;
+  GetServiceEndpointResponseProperties;
 
 /** The type of identity that created the resource. */
 export type ServiceEndpointResourceSystemDataCreatedByType =
@@ -1676,7 +1674,7 @@ export interface ServiceEndpointResource {
   /** The geo-location where the resource lives */
   location: string;
   /** ServiceEndpoint resource properties. */
-  properties?: ServiceEndpointsGetResponseProperties;
+  properties?: GetServiceEndpointResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
   systemData?: ServiceEndpointResourceSystemData;
 }
@@ -1687,7 +1685,7 @@ export const ServiceEndpointResource = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     tags: S.optional(ServiceEndpointResourceTagsMap),
     location: S.String,
-    properties: S.optional(ServiceEndpointsGetResponseProperties),
+    properties: S.optional(GetServiceEndpointResponseProperties),
     systemData: S.optional(ServiceEndpointResourceSystemData),
   }),
 ).annotate({
@@ -2024,9 +2022,9 @@ export const ServiceEndpointsCreateOrUpdateResponseTagsMap =
 
 /** ServiceEndpoint resource properties. */
 export type ServiceEndpointsCreateOrUpdateResponseProperties =
-  ServiceEndpointsGetResponseProperties;
+  GetServiceEndpointResponseProperties;
 export const ServiceEndpointsCreateOrUpdateResponseProperties =
-  ServiceEndpointsGetResponseProperties;
+  GetServiceEndpointResponseProperties;
 
 /** The type of identity that created the resource. */
 export type ServiceEndpointsCreateOrUpdateResponseSystemDataCreatedByType =
@@ -2091,7 +2089,7 @@ export interface ServiceEndpointsCreateOrUpdateResponse {
   /** The geo-location where the resource lives */
   location: string;
   /** ServiceEndpoint resource properties. */
-  properties?: ServiceEndpointsGetResponseProperties;
+  properties?: GetServiceEndpointResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
   systemData?: ServiceEndpointsCreateOrUpdateResponseSystemData;
 }
@@ -2103,7 +2101,7 @@ export const ServiceEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       tags: S.optional(ServiceEndpointsCreateOrUpdateResponseTagsMap),
       location: S.String,
-      properties: S.optional(ServiceEndpointsGetResponseProperties),
+      properties: S.optional(GetServiceEndpointResponseProperties),
       systemData: S.optional(ServiceEndpointsCreateOrUpdateResponseSystemData),
     }),
 ).annotate({
@@ -2118,7 +2116,7 @@ export const Tags = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<Tags>;
 
 /** Account resource patch properties. */
-export interface AccountsUpdateRequestProperties {
+export interface UpdateAccountRequestProperties {
   /** The list of service endpoints authentication details. */
   endpointAuthentications?: EndpointAuthenticationsList;
   /** The list of CORS details. */
@@ -2126,15 +2124,15 @@ export interface AccountsUpdateRequestProperties {
   /** Connection string to write Accounts reports to. */
   reportsConnectionString?: string;
 }
-export const AccountsUpdateRequestProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountRequestProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     endpointAuthentications: S.optional(EndpointAuthenticationsList),
     cors: S.optional(CorsRuleList),
     reportsConnectionString: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsUpdateRequestProperties",
-}) as any as S.Schema<AccountsUpdateRequestProperties>;
+  identifier: "UpdateAccountRequestProperties",
+}) as any as S.Schema<UpdateAccountRequestProperties>;
 
 export interface UpdateAccountRequest {
   /** The ID of the target subscription. */
@@ -2146,7 +2144,7 @@ export interface UpdateAccountRequest {
   /** Resource tags. */
   tags?: Tags;
   /** Account resource patch properties. */
-  properties?: AccountsUpdateRequestProperties;
+  properties?: UpdateAccountRequestProperties;
 }
 export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2154,7 +2152,7 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     tags: S.optional(Tags),
-    properties: S.optional(AccountsUpdateRequestProperties),
+    properties: S.optional(UpdateAccountRequestProperties),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2168,23 +2166,23 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 /** Account configuration. This can only be set at RecommendationsService Account creation. */
-export type AccountsUpdateResponsePropertiesConfiguration = "Free" | "Capacity";
-export const AccountsUpdateResponsePropertiesConfiguration =
+export type UpdateAccountResponsePropertiesConfiguration = "Free" | "Capacity";
+export const UpdateAccountResponsePropertiesConfiguration =
   /*@__PURE__*/ S.String;
 
 /** Account resource properties. */
-export interface AccountsUpdateResponseProperties {
+export interface UpdateAccountResponseProperties {
   /** Account configuration. This can only be set at RecommendationsService Account creation. */
-  configuration?: AccountsUpdateResponsePropertiesConfiguration;
+  configuration?: UpdateAccountResponsePropertiesConfiguration;
   /** The list of service endpoints authentication details. */
   endpointAuthentications?: EndpointAuthenticationsList;
   /** The list of CORS details. */
@@ -2194,65 +2192,65 @@ export interface AccountsUpdateResponseProperties {
   /** The resource provisioning state. */
   provisioningState?: string;
 }
-export const AccountsUpdateResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    configuration: S.optional(AccountsUpdateResponsePropertiesConfiguration),
+    configuration: S.optional(UpdateAccountResponsePropertiesConfiguration),
     endpointAuthentications: S.optional(EndpointAuthenticationsList),
     cors: S.optional(CorsRuleList),
     reportsConnectionString: S.optional(S.String),
     provisioningState: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponseProperties",
-}) as any as S.Schema<AccountsUpdateResponseProperties>;
+  identifier: "UpdateAccountResponseProperties",
+}) as any as S.Schema<UpdateAccountResponseProperties>;
 
 /** The type of identity that created the resource. */
-export type AccountsUpdateResponseSystemDataCreatedByType =
+export type UpdateAccountResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsUpdateResponseSystemDataCreatedByType =
+export const UpdateAccountResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AccountsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateAccountResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateAccountResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AccountsUpdateResponseSystemData {
+export interface UpdateAccountResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: AccountsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateAccountResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AccountsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateAccountResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AccountsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(AccountsUpdateResponseSystemDataCreatedByType),
+    createdByType: S.optional(UpdateAccountResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      AccountsUpdateResponseSystemDataLastModifiedByType,
+      UpdateAccountResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponseSystemData",
-}) as any as S.Schema<AccountsUpdateResponseSystemData>;
+  identifier: "UpdateAccountResponseSystemData",
+}) as any as S.Schema<UpdateAccountResponseSystemData>;
 
 export interface UpdateAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2262,40 +2260,40 @@ export interface UpdateAccountResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Account resource properties. */
-  properties?: AccountsUpdateResponseProperties;
+  properties?: UpdateAccountResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AccountsUpdateResponseSystemData;
+  systemData?: UpdateAccountResponseSystemData;
 }
 export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     location: S.String,
-    properties: S.optional(AccountsUpdateResponseProperties),
-    systemData: S.optional(AccountsUpdateResponseSystemData),
+    properties: S.optional(UpdateAccountResponseProperties),
+    systemData: S.optional(UpdateAccountResponseSystemData),
   }),
 ).annotate({
   identifier: "UpdateAccountResponse",
 }) as any as S.Schema<UpdateAccountResponse>;
 
 /** Modeling resource properties to update. */
-export interface ModelingUpdateRequestProperties {
+export interface UpdateModelingRequestProperties {
   /** The configuration to raw CDM data to be used as Modeling resource input. */
   inputData?: ModelingInputData;
 }
-export const ModelingUpdateRequestProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateModelingRequestProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     inputData: S.optional(ModelingInputData),
   }),
 ).annotate({
-  identifier: "ModelingUpdateRequestProperties",
-}) as any as S.Schema<ModelingUpdateRequestProperties>;
+  identifier: "UpdateModelingRequestProperties",
+}) as any as S.Schema<UpdateModelingRequestProperties>;
 
 export interface UpdateModelingRequest {
   /** The ID of the target subscription. */
@@ -2309,7 +2307,7 @@ export interface UpdateModelingRequest {
   /** Resource tags. */
   tags?: Tags;
   /** Modeling resource properties to update. */
-  properties?: ModelingUpdateRequestProperties;
+  properties?: UpdateModelingRequestProperties;
 }
 export const UpdateModelingRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2318,7 +2316,7 @@ export const UpdateModelingRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     modelingName: S.String.pipe(T.Label()),
     tags: S.optional(Tags),
-    properties: S.optional(ModelingUpdateRequestProperties),
+    properties: S.optional(UpdateModelingRequestProperties),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2332,104 +2330,104 @@ export const UpdateModelingRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateModelingRequest>;
 
 /** Resource tags. */
-export type ModelingUpdateResponseTagsMap = {
+export type UpdateModelingResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ModelingUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateModelingResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ModelingUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateModelingResponseTagsMap>;
 
 /** Modeling features controls the set of supported scenarios\models being computed. This can only be set at Modeling creation. */
-export type ModelingUpdateResponsePropertiesFeatures =
+export type UpdateModelingResponsePropertiesFeatures =
   | "Basic"
   | "Standard"
   | "Premium";
-export const ModelingUpdateResponsePropertiesFeatures = /*@__PURE__*/ S.String;
+export const UpdateModelingResponsePropertiesFeatures = /*@__PURE__*/ S.String;
 
 /** Modeling frequency controls the modeling compute frequency. */
-export type ModelingUpdateResponsePropertiesFrequency =
+export type UpdateModelingResponsePropertiesFrequency =
   | "Low"
   | "Medium"
   | "High";
-export const ModelingUpdateResponsePropertiesFrequency = /*@__PURE__*/ S.String;
+export const UpdateModelingResponsePropertiesFrequency = /*@__PURE__*/ S.String;
 
 /** Modeling size controls the maximum supported input data size. */
-export type ModelingUpdateResponsePropertiesSize = "Small" | "Medium" | "Large";
-export const ModelingUpdateResponsePropertiesSize = /*@__PURE__*/ S.String;
+export type UpdateModelingResponsePropertiesSize = "Small" | "Medium" | "Large";
+export const UpdateModelingResponsePropertiesSize = /*@__PURE__*/ S.String;
 
 /** Modeling resource properties. */
-export interface ModelingUpdateResponseProperties {
+export interface UpdateModelingResponseProperties {
   /** Modeling features controls the set of supported scenarios\models being computed. This can only be set at Modeling creation. */
-  features?: ModelingUpdateResponsePropertiesFeatures;
+  features?: UpdateModelingResponsePropertiesFeatures;
   /** Modeling frequency controls the modeling compute frequency. */
-  frequency?: ModelingUpdateResponsePropertiesFrequency;
+  frequency?: UpdateModelingResponsePropertiesFrequency;
   /** Modeling size controls the maximum supported input data size. */
-  size?: ModelingUpdateResponsePropertiesSize;
+  size?: UpdateModelingResponsePropertiesSize;
   /** The configuration to raw CDM data to be used as Modeling resource input. */
   inputData?: ModelingInputData;
   /** The resource provisioning state. */
   provisioningState?: string;
 }
-export const ModelingUpdateResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateModelingResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    features: S.optional(ModelingUpdateResponsePropertiesFeatures),
-    frequency: S.optional(ModelingUpdateResponsePropertiesFrequency),
-    size: S.optional(ModelingUpdateResponsePropertiesSize),
+    features: S.optional(UpdateModelingResponsePropertiesFeatures),
+    frequency: S.optional(UpdateModelingResponsePropertiesFrequency),
+    size: S.optional(UpdateModelingResponsePropertiesSize),
     inputData: S.optional(ModelingInputData),
     provisioningState: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ModelingUpdateResponseProperties",
-}) as any as S.Schema<ModelingUpdateResponseProperties>;
+  identifier: "UpdateModelingResponseProperties",
+}) as any as S.Schema<UpdateModelingResponseProperties>;
 
 /** The type of identity that created the resource. */
-export type ModelingUpdateResponseSystemDataCreatedByType =
+export type UpdateModelingResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ModelingUpdateResponseSystemDataCreatedByType =
+export const UpdateModelingResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ModelingUpdateResponseSystemDataLastModifiedByType =
+export type UpdateModelingResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ModelingUpdateResponseSystemDataLastModifiedByType =
+export const UpdateModelingResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ModelingUpdateResponseSystemData {
+export interface UpdateModelingResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ModelingUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateModelingResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ModelingUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateModelingResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ModelingUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateModelingResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ModelingUpdateResponseSystemDataCreatedByType),
+    createdByType: S.optional(UpdateModelingResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ModelingUpdateResponseSystemDataLastModifiedByType,
+      UpdateModelingResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ModelingUpdateResponseSystemData",
-}) as any as S.Schema<ModelingUpdateResponseSystemData>;
+  identifier: "UpdateModelingResponseSystemData",
+}) as any as S.Schema<UpdateModelingResponseSystemData>;
 
 export interface UpdateModelingResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2439,23 +2437,23 @@ export interface UpdateModelingResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ModelingUpdateResponseTagsMap;
+  tags?: UpdateModelingResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Modeling resource properties. */
-  properties?: ModelingUpdateResponseProperties;
+  properties?: UpdateModelingResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ModelingUpdateResponseSystemData;
+  systemData?: UpdateModelingResponseSystemData;
 }
 export const UpdateModelingResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ModelingUpdateResponseTagsMap),
+    tags: S.optional(UpdateModelingResponseTagsMap),
     location: S.String,
-    properties: S.optional(ModelingUpdateResponseProperties),
-    systemData: S.optional(ModelingUpdateResponseSystemData),
+    properties: S.optional(UpdateModelingResponseProperties),
+    systemData: S.optional(UpdateModelingResponseSystemData),
   }),
 ).annotate({
   identifier: "UpdateModelingResponse",
@@ -2493,70 +2491,70 @@ export const UpdateServiceEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateServiceEndpointRequest>;
 
 /** Resource tags. */
-export type ServiceEndpointsUpdateResponseTagsMap = {
+export type UpdateServiceEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServiceEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServiceEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServiceEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateServiceEndpointResponseTagsMap>;
 
 /** ServiceEndpoint resource properties. */
-export type ServiceEndpointsUpdateResponseProperties =
-  ServiceEndpointsGetResponseProperties;
-export const ServiceEndpointsUpdateResponseProperties =
-  ServiceEndpointsGetResponseProperties;
+export type UpdateServiceEndpointResponseProperties =
+  GetServiceEndpointResponseProperties;
+export const UpdateServiceEndpointResponseProperties =
+  GetServiceEndpointResponseProperties;
 
 /** The type of identity that created the resource. */
-export type ServiceEndpointsUpdateResponseSystemDataCreatedByType =
+export type UpdateServiceEndpointResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceEndpointsUpdateResponseSystemDataCreatedByType =
+export const UpdateServiceEndpointResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ServiceEndpointsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateServiceEndpointResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ServiceEndpointsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateServiceEndpointResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ServiceEndpointsUpdateResponseSystemData {
+export interface UpdateServiceEndpointResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ServiceEndpointsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateServiceEndpointResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ServiceEndpointsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateServiceEndpointResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ServiceEndpointsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
+export const UpdateServiceEndpointResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ServiceEndpointsUpdateResponseSystemDataCreatedByType,
+        UpdateServiceEndpointResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ServiceEndpointsUpdateResponseSystemDataLastModifiedByType,
+        UpdateServiceEndpointResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ServiceEndpointsUpdateResponseSystemData",
-}) as any as S.Schema<ServiceEndpointsUpdateResponseSystemData>;
+  identifier: "UpdateServiceEndpointResponseSystemData",
+}) as any as S.Schema<UpdateServiceEndpointResponseSystemData>;
 
 export interface UpdateServiceEndpointResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2566,23 +2564,23 @@ export interface UpdateServiceEndpointResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ServiceEndpointsUpdateResponseTagsMap;
+  tags?: UpdateServiceEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** ServiceEndpoint resource properties. */
-  properties?: ServiceEndpointsGetResponseProperties;
+  properties?: GetServiceEndpointResponseProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ServiceEndpointsUpdateResponseSystemData;
+  systemData?: UpdateServiceEndpointResponseSystemData;
 }
 export const UpdateServiceEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ServiceEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateServiceEndpointResponseTagsMap),
     location: S.String,
-    properties: S.optional(ServiceEndpointsGetResponseProperties),
-    systemData: S.optional(ServiceEndpointsUpdateResponseSystemData),
+    properties: S.optional(GetServiceEndpointResponseProperties),
+    systemData: S.optional(UpdateServiceEndpointResponseSystemData),
   }),
 ).annotate({
   identifier: "UpdateServiceEndpointResponse",

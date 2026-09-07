@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.datadog#TagRulesCreateOrUpdate": {
@@ -896,13 +897,13 @@
       },
       "traits": {}
     },
-    "com.azure.datadog#SingleSignOnConfigurationsGet": {
+    "com.azure.datadog#GetSingleSignOnConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datadog#SingleSignOnConfigurationsGetRequest"
+        "target": "com.azure.datadog#GetSingleSignOnConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.datadog#SingleSignOnConfigurationsGetResponse"
+        "target": "com.azure.datadog#GetSingleSignOnConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -915,7 +916,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-11"
       }
     },
-    "com.azure.datadog#SingleSignOnConfigurationsGetResponse": {
+    "com.azure.datadog#GetSingleSignOnConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -950,7 +951,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datadog#SingleSignOnConfigurationsGetRequest": {
+    "com.azure.datadog#GetSingleSignOnConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -990,10 +991,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datadog#SingleSignOnConfigurationsList": {
+    "com.azure.datadog#ListSingleSignOnConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datadog#SingleSignOnConfigurationsListRequest"
+        "target": "com.azure.datadog#ListSingleSignOnConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.datadog#DatadogSingleSignOnResourceListResponse"
@@ -1074,7 +1075,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.datadog#SingleSignOnConfigurationsListRequest": {
+    "com.azure.datadog#ListSingleSignOnConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1583,10 +1584,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datadog#SetMonitorRefreshPasswordLink": {
+    "com.azure.datadog#RefreshMonitorSetPasswordLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datadog#SetMonitorRefreshPasswordLinkRequest"
+        "target": "com.azure.datadog#RefreshMonitorSetPasswordLinkRequest"
       },
       "output": {
         "target": "com.azure.datadog#DatadogSetPasswordLink"
@@ -1614,7 +1615,7 @@
       },
       "traits": {}
     },
-    "com.azure.datadog#SetMonitorRefreshPasswordLinkRequest": {
+    "com.azure.datadog#RefreshMonitorSetPasswordLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2000,13 +2001,13 @@
         "smithy.api#documentation": "The list of subscriptions and it's monitoring status by current Datadog monitor."
       }
     },
-    "com.azure.datadog#UpdateMonitoredSubscriptionCreateor": {
+    "com.azure.datadog#UpdateMonitoredSubscriptionsCreateor": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datadog#UpdateMonitoredSubscriptionCreateorRequest"
+        "target": "com.azure.datadog#UpdateMonitoredSubscriptionsCreateorRequest"
       },
       "output": {
-        "target": "com.azure.datadog#UpdateMonitoredSubscriptionCreateorResponse"
+        "target": "com.azure.datadog#UpdateMonitoredSubscriptionsCreateorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2019,7 +2020,7 @@
         "com.distilled.openapi#apiVersion": "2025-06-11"
       }
     },
-    "com.azure.datadog#UpdateMonitoredSubscriptionCreateorResponse": {
+    "com.azure.datadog#UpdateMonitoredSubscriptionsCreateorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2057,7 +2058,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datadog#UpdateMonitoredSubscriptionCreateorRequest": {
+    "com.azure.datadog#UpdateMonitoredSubscriptionsCreateorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3115,7 +3116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datadog#MonitorsUpdateResponseTagsMap",
+          "target": "com.azure.datadog#UpdateMonitorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3144,7 +3145,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datadog#MonitorsUpdateResponseTagsMap": {
+    "com.azure.datadog#UpdateMonitorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3190,7 +3191,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datadog#MonitorsUpdateRequestTagsMap",
+          "target": "com.azure.datadog#UpdateMonitorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The new tags of the monitor resource."
           }
@@ -3203,7 +3204,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datadog#MonitorsUpdateRequestTagsMap": {
+    "com.azure.datadog#UpdateMonitorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3308,7 +3309,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datadog#MonitorsCreateResponseTagsMap",
+          "target": "com.azure.datadog#CreateMonitorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3337,7 +3338,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datadog#MonitorsCreateResponseTagsMap": {
+    "com.azure.datadog#CreateMonitorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3377,7 +3378,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datadog#MonitorsCreateRequestTagsMap",
+          "target": "com.azure.datadog#CreateMonitorRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3464,7 +3465,7 @@
         "smithy.api#documentation": "Flag specifying if the resource monitoring is enabled or disabled."
       }
     },
-    "com.azure.datadog#MonitorsCreateRequestTagsMap": {
+    "com.azure.datadog#CreateMonitorRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3523,7 +3524,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datadog#MonitorsGetResponseTagsMap",
+          "target": "com.azure.datadog#GetMonitorResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3552,7 +3553,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datadog#MonitorsGetResponseTagsMap": {
+    "com.azure.datadog#GetMonitorResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4341,97 +4342,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datadog#TagRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datadog#GetTagRule"
-        },
-        {
-          "target": "com.azure.datadog#ListTagRules"
-        },
-        {
-          "target": "com.azure.datadog#SingleSignOnConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datadog#SingleSignOnConfigurationsGet"
-        },
-        {
-          "target": "com.azure.datadog#SingleSignOnConfigurationsList"
-        },
-        {
-          "target": "com.azure.datadog#SetMonitorDefaultKey"
-        },
-        {
-          "target": "com.azure.datadog#OrganizationsResubscribe"
-        },
-        {
-          "target": "com.azure.datadog#SetMonitorRefreshPasswordLink"
-        },
-        {
-          "target": "com.azure.datadog#DeleteMonitoredSubscription"
-        },
-        {
-          "target": "com.azure.datadog#UpdateMonitoredSubscription"
-        },
-        {
-          "target": "com.azure.datadog#UpdateMonitoredSubscriptionCreateor"
-        },
-        {
-          "target": "com.azure.datadog#GetMonitoredSubscription"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitoredSubscriptions"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorMonitoredResources"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorLinkedResources"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorHosts"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorApiKeys"
-        },
-        {
-          "target": "com.azure.datadog#GetMonitorDefaultKey"
-        },
-        {
-          "target": "com.azure.datadog#GetBillingInfo"
+          "target": "com.azure.datadog#CreateMonitor"
         },
         {
           "target": "com.azure.datadog#DeleteMonitor"
         },
         {
-          "target": "com.azure.datadog#UpdateMonitor"
+          "target": "com.azure.datadog#DeleteMonitoredSubscription"
         },
         {
-          "target": "com.azure.datadog#CreateMonitor"
-        },
-        {
-          "target": "com.azure.datadog#GetMonitor"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorByResourceGroup"
+          "target": "com.azure.datadog#GetBillingInfo"
         },
         {
           "target": "com.azure.datadog#GetCreationSupported"
         },
         {
+          "target": "com.azure.datadog#GetMonitor"
+        },
+        {
+          "target": "com.azure.datadog#GetMonitorDefaultKey"
+        },
+        {
+          "target": "com.azure.datadog#GetMonitoredSubscription"
+        },
+        {
+          "target": "com.azure.datadog#GetSingleSignOnConfiguration"
+        },
+        {
+          "target": "com.azure.datadog#GetTagRule"
+        },
+        {
           "target": "com.azure.datadog#ListCreationSupported"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitors"
-        },
-        {
-          "target": "com.azure.datadog#MarketplaceAgreementsCreateOrUpdate"
         },
         {
           "target": "com.azure.datadog#ListMarketplaceAgreements"
         },
         {
+          "target": "com.azure.datadog#ListMonitorApiKeys"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorByResourceGroup"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitoredSubscriptions"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorHosts"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorLinkedResources"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorMonitoredResources"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitors"
+        },
+        {
           "target": "com.azure.datadog#ListOperations"
+        },
+        {
+          "target": "com.azure.datadog#ListSingleSignOnConfigurations"
+        },
+        {
+          "target": "com.azure.datadog#ListTagRules"
+        },
+        {
+          "target": "com.azure.datadog#MarketplaceAgreementsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datadog#OrganizationsResubscribe"
+        },
+        {
+          "target": "com.azure.datadog#RefreshMonitorSetPasswordLink"
+        },
+        {
+          "target": "com.azure.datadog#SetMonitorDefaultKey"
+        },
+        {
+          "target": "com.azure.datadog#SingleSignOnConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datadog#TagRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datadog#UpdateMonitor"
+        },
+        {
+          "target": "com.azure.datadog#UpdateMonitoredSubscription"
+        },
+        {
+          "target": "com.azure.datadog#UpdateMonitoredSubscriptionsCreateor"
         }
       ],
       "traits": {

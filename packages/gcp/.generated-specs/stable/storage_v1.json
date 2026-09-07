@@ -4,7 +4,8 @@
     "service": "storage",
     "version": "v1",
     "title": "Cloud Storage JSON API",
-    "baseUrl": "https://storage.googleapis.com/storage/v1/"
+    "baseUrl": "https://storage.googleapis.com/storage/v1/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.storage_v1#Bucket": {
@@ -2810,7 +2811,7 @@
         "smithy.api#documentation": "A storage.(buckets|objects|managedFolders).testIamPermissions response."
       }
     },
-    "com.gcp.storage_v1#RestoreBulkObjectRequest": {
+    "com.gcp.storage_v1#BulkRestoreObjectsRequest": {
       "type": "structure",
       "members": {
         "allowOverwrite": {
@@ -9217,7 +9218,7 @@
           }
         },
         "body": {
-          "target": "com.gcp.storage_v1#RestoreBulkObjectRequest",
+          "target": "com.gcp.storage_v1#BulkRestoreObjectsRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -9225,7 +9226,7 @@
         }
       }
     },
-    "com.gcp.storage_v1#RestoreBulkObject": {
+    "com.gcp.storage_v1#BulkRestoreObjects": {
       "type": "operation",
       "input": {
         "target": "com.gcp.storage_v1#BulkRestoreObjectsRequest_"

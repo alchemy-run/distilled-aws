@@ -351,6 +351,18 @@ export const DeleteApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteApiKeyResponse",
 }) as any as S.Schema<DeleteApiKeyResponse>;
 
+export interface GetApiKeyRequest {
+  /** API key ID, prefixed `apik_`. */
+  id: string;
+}
+export const GetApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/api_keys/{id}", code: 200 })),
+).annotate({
+  identifier: "GetApiKeyRequest",
+}) as any as S.Schema<GetApiKeyRequest>;
+
 export interface ListApiKeyPermissionsRequest {}
 export const ListApiKeyPermissionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -510,18 +522,6 @@ export const ListApiKeysResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListApiKeysResponse",
 }) as any as S.Schema<ListApiKeysResponse>;
-
-export interface RetrieveApiKeyRequest {
-  /** API key ID, prefixed `apik_`. */
-  id: string;
-}
-export const RetrieveApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/api_keys/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveApiKeyRequest",
-}) as any as S.Schema<RetrieveApiKeyRequest>;
 
 export interface RotateApiKeyRequest {
   /** API key ID, prefixed `apik_`. */
@@ -704,6 +704,21 @@ export const deleteApiKey: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetApiKeyError = Forbidden | NotFound | WhopOpError;
+/** Retrieve API Key Retrieves an API key with its effective permission grants. The full secret is never returned — rotate the key if it was lost. */
+export const getApiKey: API.OperationMethod<
+  GetApiKeyRequest,
+  ApiKey,
+  GetApiKeyError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApiKeyRequest,
+  output: ApiKey,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListApiKeyPermissionsError = WhopOpError;
 /** List the Permission Catalog Lists the catalog of permission actions that can be granted to users, apps, and API keys — the source for the dashboard's permission pickers. Small and returned in full on one page. */
 export const listApiKeyPermissions: API.OperationMethod<
@@ -745,21 +760,6 @@ export const listApiKeys: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveApiKeyError = Forbidden | NotFound | WhopOpError;
-/** Retrieve API Key Retrieves an API key with its effective permission grants. The full secret is never returned — rotate the key if it was lost. */
-export const retrieveApiKey: API.OperationMethod<
-  RetrieveApiKeyRequest,
-  ApiKey,
-  RetrieveApiKeyError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveApiKeyRequest,
-  output: ApiKey,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type RotateApiKeyError = Forbidden | NotFound | Conflict | WhopOpError;
 /** Rotate API Key Rotates the API key's secret, invalidating the previous secret immediately. The response is the only place the new `secret_key` is returned. */

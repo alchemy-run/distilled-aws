@@ -163,6 +163,8 @@ export type ExportAuditLogResponseBodyItemType =
   | "org.token_approval.authorization_request.authorized"
   | "org.token_approval.authorization_request.revoked"
   | "org.token_approval.authorization_request.denied"
+  | "org.audit_log.export"
+  | "org.repo_analytics.export"
   | "repo.add_secrets"
   | "repo.remove_secrets"
   | "repo.add_secret"

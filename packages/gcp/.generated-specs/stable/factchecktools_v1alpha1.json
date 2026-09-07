@@ -4,53 +4,192 @@
     "service": "factchecktools",
     "version": "v1alpha1",
     "title": "Fact Check Tools API",
-    "baseUrl": "https://factchecktools.googleapis.com/"
+    "baseUrl": "https://factchecktools.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse": {
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1Claim": {
       "type": "structure",
       "members": {
-        "claims": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimList",
-          "traits": {
-            "smithy.api#documentation": "The list of claims and all of their associated information."
-          }
-        },
-        "nextPageToken": {
+        "claimDate": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results."
+            "smithy.api#documentation": "The date that the claim was made."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The claim text. For instance, \"Crime has doubled in the last 2 years.\""
+          }
+        },
+        "claimReview": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList",
+          "traits": {
+            "smithy.api#documentation": "One or more reviews of this claim (namely, a fact-checking article)."
+          }
+        },
+        "claimant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A person or organization stating the claim. For instance, \"John Doe\"."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response from searching fact-checked claims."
+        "smithy.api#documentation": "Information about the claim."
       }
     },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimList": {
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1Claim"
+        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview"
       }
     },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1Publisher": {
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of this publisher. For instance, \"Awesome Fact Checks\"."
+            "smithy.api#documentation": "The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user."
           }
         },
-        "site": {
+        "publishDate": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Host-level site name, without the protocol or \"www\" prefix. For instance, \"awesomefactchecks.com\". This value of this field is based purely on the claim review URL."
+            "smithy.api#documentation": "The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value. Corresponds to `ClaimReview.datePublished`"
+          }
+        },
+        "versionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version ID for this markup. Except for update requests, this field is output-only and should not be set by the user."
+          }
+        },
+        "pageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden. Corresponds to `ClaimReview.url`"
+          }
+        },
+        "claimReviewMarkups": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupList",
+          "traits": {
+            "smithy.api#documentation": "A list of individual claim reviews for this page. Each item in the list corresponds to one `ClaimReview` element."
+          }
+        },
+        "claimReviewAuthor": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor",
+          "traits": {
+            "smithy.api#documentation": "Info about the author of this claim review. Similar to the above, semantically these are page-level fields, and each `ClaimReview` on this page will contain the same values."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Information about the publisher."
+        "smithy.api#documentation": "Holds one or more instances of `ClaimReview` markup for a webpage."
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup"
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor": {
+      "type": "structure",
+      "members": {
+        "jobTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Corresponds to `ClaimReview.itemReviewed.author.jobTitle`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A person or organization stating the claim. For instance, \"John Doe\". Corresponds to `ClaimReview.itemReviewed.author.name`."
+          }
+        },
+        "imageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Corresponds to `ClaimReview.itemReviewed.author.image`."
+          }
+        },
+        "sameAs": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Corresponds to `ClaimReview.itemReviewed.author.sameAs`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the claim author."
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the organization that is publishing the fact check. Corresponds to `ClaimReview.author.name`."
+          }
+        },
+        "imageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Corresponds to `ClaimReview.author.image`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the claim review author."
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating": {
+      "type": "structure",
+      "members": {
+        "worstRating": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For numeric ratings, the worst value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.worstRating`."
+          }
+        },
+        "textualRating": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The truthfulness rating as a human-readible short word or phrase. Corresponds to `ClaimReview.reviewRating.alternateName`."
+          }
+        },
+        "ratingValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "A numeric rating of this claim, in the range worstRating — bestRating inclusive. Corresponds to `ClaimReview.reviewRating.ratingValue`."
+          }
+        },
+        "bestRating": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For numeric ratings, the best value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.bestRating`."
+          }
+        },
+        "imageUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Corresponds to `ClaimReview.reviewRating.image`."
+          }
+        },
+        "ratingExplanation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Corresponds to `ClaimReview.reviewRating.ratingExplanation`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the claim rating."
       }
     },
     "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse": {
@@ -79,107 +218,65 @@
         "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult"
       }
     },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor": {
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse": {
       "type": "structure",
       "members": {
-        "imageUrl": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Corresponds to `ClaimReview.author.image`."
+            "smithy.api#documentation": "The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results."
           }
         },
-        "name": {
-          "target": "smithy.api#String",
+        "claims": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimList",
           "traits": {
-            "smithy.api#documentation": "Name of the organization that is publishing the fact check. Corresponds to `ClaimReview.author.name`."
+            "smithy.api#documentation": "The list of claims and all of their associated information."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Information about the claim review author."
+        "smithy.api#documentation": "Response from searching fact-checked claims."
       }
     },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup": {
-      "type": "structure",
-      "members": {
-        "claimFirstAppearance": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A link to a work in which this claim first appears. Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`."
-          }
-        },
-        "claimDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date when the claim was made or entered public discourse. Corresponds to `ClaimReview.itemReviewed.datePublished`."
-          }
-        },
-        "claimLocation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The location where this claim was made. Corresponds to `ClaimReview.itemReviewed.name`."
-          }
-        },
-        "claimAuthor": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor",
-          "traits": {
-            "smithy.api#documentation": "Info about the author of this claim."
-          }
-        },
-        "rating": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating",
-          "traits": {
-            "smithy.api#documentation": "Info about the rating of this claim review."
-          }
-        },
-        "claimAppearances": {
-          "target": "com.gcp.factchecktools_v1alpha1#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`. Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`."
-          }
-        },
-        "claimReviewed": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short summary of the claim being evaluated. Corresponds to `ClaimReview.claimReviewed`."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link (\"page jump\"). Corresponds to `ClaimReview.url`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Fields for an individual `ClaimReview` element. Except for sub-messages that group fields together, each of these fields correspond those in https://schema.org/ClaimReview. We list the precise mapping for each field."
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#StringList": {
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1Claim"
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse": {
+      "type": "structure",
+      "members": {
+        "claimReviewMarkupPages": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageList",
+          "traits": {
+            "smithy.api#documentation": "The result list of pages of `ClaimReview` markup."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response from listing `ClaimReview` markup."
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
       }
     },
     "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview": {
       "type": "structure",
       "members": {
-        "url": {
+        "textualRating": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The URL of this claim review."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The title of this claim review, if it can be determined."
-          }
-        },
-        "reviewDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date the claim was reviewed."
+            "smithy.api#documentation": "Textual rating. For instance, \"Mostly false\"."
           }
         },
         "publisher": {
@@ -188,10 +285,22 @@
             "smithy.api#documentation": "The publisher of this claim review."
           }
         },
-        "textualRating": {
+        "title": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Textual rating. For instance, \"Mostly false\"."
+            "smithy.api#documentation": "The title of this claim review, if it can be determined."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of this claim review."
+          }
+        },
+        "reviewDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date the claim was reviewed."
           }
         },
         "languageCode": {
@@ -203,38 +312,6 @@
       },
       "traits": {
         "smithy.api#documentation": "Information about a claim review."
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor": {
-      "type": "structure",
-      "members": {
-        "imageUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Corresponds to `ClaimReview.itemReviewed.author.image`."
-          }
-        },
-        "sameAs": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Corresponds to `ClaimReview.itemReviewed.author.sameAs`."
-          }
-        },
-        "jobTitle": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Corresponds to `ClaimReview.itemReviewed.author.jobTitle`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A person or organization stating the claim. For instance, \"John Doe\". Corresponds to `ClaimReview.itemReviewed.author.name`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information about the claim author."
       }
     },
     "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult": {
@@ -251,6 +328,26 @@
         "smithy.api#documentation": "A claim and its associated information."
       }
     },
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1Publisher": {
+      "type": "structure",
+      "members": {
+        "site": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host-level site name, without the protocol or \"www\" prefix. For instance, \"awesomefactchecks.com\". This value of this field is based purely on the claim review URL."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this publisher. For instance, \"Awesome Fact Checks\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the publisher."
+      }
+    },
     "com.gcp.factchecktools_v1alpha1#GoogleProtobufEmpty": {
       "type": "structure",
       "members": {},
@@ -258,179 +355,83 @@
         "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage": {
-      "type": "structure",
-      "members": {
-        "pageUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden. Corresponds to `ClaimReview.url`"
-          }
-        },
-        "publishDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value. Corresponds to `ClaimReview.datePublished`"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user."
-          }
-        },
-        "versionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version ID for this markup. Except for update requests, this field is output-only and should not be set by the user."
-          }
-        },
-        "claimReviewMarkups": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupList",
-          "traits": {
-            "smithy.api#documentation": "A list of individual claim reviews for this page. Each item in the list corresponds to one `ClaimReview` element."
-          }
-        },
-        "claimReviewAuthor": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor",
-          "traits": {
-            "smithy.api#documentation": "Info about the author of this claim review. Similar to the above, semantically these are page-level fields, and each `ClaimReview` on this page will contain the same values."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Holds one or more instances of `ClaimReview` markup for a webpage."
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup"
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results."
-          }
-        },
-        "claimReviewMarkupPages": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageList",
-          "traits": {
-            "smithy.api#documentation": "The result list of pages of `ClaimReview` markup."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response from listing `ClaimReview` markup."
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1Claim": {
+    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup": {
       "type": "structure",
       "members": {
         "claimDate": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The date that the claim was made."
+            "smithy.api#documentation": "The date when the claim was made or entered public discourse. Corresponds to `ClaimReview.itemReviewed.datePublished`."
           }
         },
-        "claimReview": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList",
+        "rating": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating",
           "traits": {
-            "smithy.api#documentation": "One or more reviews of this claim (namely, a fact-checking article)."
+            "smithy.api#documentation": "Info about the rating of this claim review."
           }
         },
-        "text": {
+        "claimReviewed": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The claim text. For instance, \"Crime has doubled in the last 2 years.\""
+            "smithy.api#documentation": "A short summary of the claim being evaluated. Corresponds to `ClaimReview.claimReviewed`."
           }
         },
-        "claimant": {
+        "claimAppearances": {
+          "target": "com.gcp.factchecktools_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`. Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`."
+          }
+        },
+        "claimFirstAppearance": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A person or organization stating the claim. For instance, \"John Doe\"."
+            "smithy.api#documentation": "A link to a work in which this claim first appears. Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link (\"page jump\"). Corresponds to `ClaimReview.url`"
+          }
+        },
+        "claimAuthor": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor",
+          "traits": {
+            "smithy.api#documentation": "Info about the author of this claim."
+          }
+        },
+        "claimLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location where this claim was made. Corresponds to `ClaimReview.itemReviewed.name`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Information about the claim."
+        "smithy.api#documentation": "Fields for an individual `ClaimReview` element. Except for sub-messages that group fields together, each of these fields correspond those in https://schema.org/ClaimReview. We list the precise mapping for each field."
       }
     },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList": {
+    "com.gcp.factchecktools_v1alpha1#StringList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview"
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating": {
-      "type": "structure",
-      "members": {
-        "textualRating": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The truthfulness rating as a human-readible short word or phrase. Corresponds to `ClaimReview.reviewRating.alternateName`."
-          }
-        },
-        "bestRating": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "For numeric ratings, the best value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.bestRating`."
-          }
-        },
-        "ratingValue": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "A numeric rating of this claim, in the range worstRating — bestRating inclusive. Corresponds to `ClaimReview.reviewRating.ratingValue`."
-          }
-        },
-        "worstRating": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "For numeric ratings, the worst value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.worstRating`."
-          }
-        },
-        "ratingExplanation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Corresponds to `ClaimReview.reviewRating.ratingExplanation`."
-          }
-        },
-        "imageUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Corresponds to `ClaimReview.reviewRating.image`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information about the claim rating."
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.factchecktools_v1alpha1#ImageSearchClaimsRequest": {
       "type": "structure",
       "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The pagination size. We will return up to that many results. Defaults to 10 if not set.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "imageUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The URI of the source image. This must be a publicly-accessible image HTTP/HTTPS URL. When fetching images from HTTP/HTTPS URLs, Google cannot guarantee that the request will be completed. Your request may fail if the specified host denies the request (e.g. due to request throttling or DOS prevention), or if Google throttles requests to the site for abuse prevention. You should not depend on externally-hosted images for production applications.",
-            "smithy.api#httpQuery": "imageUri"
           }
         },
         "offset": {
@@ -447,11 +448,11 @@
             "smithy.api#httpQuery": "languageCode"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "imageUri": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The pagination size. We will return up to that many results. Defaults to 10 if not set.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "Required. The URI of the source image. This must be a publicly-accessible image HTTP/HTTPS URL. When fetching images from HTTP/HTTPS URLs, Google cannot guarantee that the request will be completed. Your request may fail if the specified host denies the request (e.g. due to request throttling or DOS prevention), or if Google throttles requests to the site for abuse prevention. You should not depend on externally-hosted images for production applications.",
+            "smithy.api#httpQuery": "imageUri"
           }
         }
       }
@@ -513,39 +514,11 @@
     "com.gcp.factchecktools_v1alpha1#SearchClaimsRequest": {
       "type": "structure",
       "members": {
-        "query": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Textual query string. Required unless `review_publisher_site_filter` is specified.",
-            "smithy.api#httpQuery": "query"
-          }
-        },
         "languageCode": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". Can be used to restrict results by language, though we do not currently consider the region.",
             "smithy.api#httpQuery": "languageCode"
-          }
-        },
-        "reviewPublisherSiteFilter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The review publisher site to filter results by, e.g. nytimes.com.",
-            "smithy.api#httpQuery": "reviewPublisherSiteFilter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The pagination size. We will return up to that many results. Defaults to 10 if not set.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "offset": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.",
-            "smithy.api#httpQuery": "offset"
           }
         },
         "maxAgeDays": {
@@ -560,6 +533,34 @@
           "traits": {
             "smithy.api#documentation": "The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.",
             "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual query string. Required unless `review_publisher_site_filter` is specified.",
+            "smithy.api#httpQuery": "query"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result.",
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "reviewPublisherSiteFilter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The review publisher site to filter results by, e.g. nytimes.com.",
+            "smithy.api#httpQuery": "reviewPublisherSiteFilter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The pagination size. We will return up to that many results. Defaults to 10 if not set.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -590,117 +591,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#CreatePagesRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#CreatePages": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.factchecktools_v1alpha1#CreatePagesRequest"
-      },
-      "output": {
-        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#NotFound"
-        },
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#Forbidden"
-        },
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#BadRequest"
-        },
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1alpha1/pages"
-        },
-        "smithy.api#documentation": "Create `ClaimReview` markup on a page."
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#DeletePagesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the resource to delete, in the form of `pages/{page_id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.factchecktools_v1alpha1#DeletePages": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.factchecktools_v1alpha1#DeletePagesRequest"
-      },
-      "output": {
-        "target": "com.gcp.factchecktools_v1alpha1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#NotFound"
-        },
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#Forbidden"
-        },
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#BadRequest"
-        },
-        {
-          "target": "com.gcp.factchecktools_v1alpha1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1alpha1/{+name}"
-        },
-        "smithy.api#documentation": "Delete all `ClaimReview` markup on a page."
       }
     },
     "com.gcp.factchecktools_v1alpha1#GetPagesRequest": {
@@ -740,21 +630,132 @@
         "smithy.api#documentation": "Get all `ClaimReview` markup on a page."
       }
     },
+    "com.gcp.factchecktools_v1alpha1#DeletePagesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource to delete, in the form of `pages/{page_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#DeletePages": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.factchecktools_v1alpha1#DeletePagesRequest"
+      },
+      "output": {
+        "target": "com.gcp.factchecktools_v1alpha1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Delete all `ClaimReview` markup on a page."
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#CreatePagesRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.factchecktools_v1alpha1#CreatePages": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.factchecktools_v1alpha1#CreatePagesRequest"
+      },
+      "output": {
+        "target": "com.gcp.factchecktools_v1alpha1#GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.factchecktools_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/pages"
+        },
+        "smithy.api#documentation": "Create `ClaimReview` markup on a page."
+      }
+    },
     "com.gcp.factchecktools_v1alpha1#ListPagesRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The pagination size. We will return up to that many results. Defaults to 10 if not set. Has no effect if a URL is requested.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "url": {

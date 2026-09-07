@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.communication#SuppressionListAddressesDelete": {
+    "com.azure.communication#DeleteSuppressionListAddress": {
       "type": "operation",
       "input": {
-        "target": "com.azure.communication#SuppressionListAddressesDeleteRequest"
+        "target": "com.azure.communication#DeleteSuppressionListAddressRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-18"
       }
     },
-    "com.azure.communication#SuppressionListAddressesDeleteRequest": {
+    "com.azure.communication#DeleteSuppressionListAddressRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -397,13 +398,13 @@
         "smithy.api#documentation": "A class that describes the properties of a SuppressionListAddress resource."
       }
     },
-    "com.azure.communication#SuppressionListAddressesGet": {
+    "com.azure.communication#GetSuppressionListAddress": {
       "type": "operation",
       "input": {
-        "target": "com.azure.communication#SuppressionListAddressesGetRequest"
+        "target": "com.azure.communication#GetSuppressionListAddressRequest"
       },
       "output": {
-        "target": "com.azure.communication#SuppressionListAddressesGetResponse"
+        "target": "com.azure.communication#GetSuppressionListAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -416,7 +417,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-18"
       }
     },
-    "com.azure.communication#SuppressionListAddressesGetResponse": {
+    "com.azure.communication#GetSuppressionListAddressResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -454,7 +455,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.communication#SuppressionListAddressesGetRequest": {
+    "com.azure.communication#GetSuppressionListAddressRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -510,10 +511,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.communication#SuppressionListAddressesList": {
+    "com.azure.communication#ListSuppressionListAddresses": {
       "type": "operation",
       "input": {
-        "target": "com.azure.communication#SuppressionListAddressesListRequest"
+        "target": "com.azure.communication#ListSuppressionListAddressesRequest"
       },
       "output": {
         "target": "com.azure.communication#SuppressionListAddressResourceCollection"
@@ -597,7 +598,7 @@
         "smithy.api#documentation": "A object that represents a SuppressionList record."
       }
     },
-    "com.azure.communication#SuppressionListAddressesListRequest": {
+    "com.azure.communication#ListSuppressionListAddressesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1731,10 +1732,10 @@
         "smithy.api#documentation": "Type of verification."
       }
     },
-    "com.azure.communication#DomainsCancelVerification": {
+    "com.azure.communication#CancelDomainVerification": {
       "type": "operation",
       "input": {
-        "target": "com.azure.communication#DomainsCancelVerificationRequest"
+        "target": "com.azure.communication#CancelDomainVerificationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1750,7 +1751,7 @@
         "com.distilled.openapi#apiVersion": "2026-03-18"
       }
     },
-    "com.azure.communication#DomainsCancelVerificationRequest": {
+    "com.azure.communication#CancelDomainVerificationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1903,7 +1904,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#DomainsUpdateResponseTagsMap",
+          "target": "com.azure.communication#UpdateDomainResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2263,7 +2264,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.communication#DomainsUpdateResponseTagsMap": {
+    "com.azure.communication#UpdateDomainResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2311,7 +2312,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#DomainsUpdateRequestTagsMap",
+          "target": "com.azure.communication#UpdateDomainRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
           }
@@ -2341,7 +2342,7 @@
         "smithy.api#documentation": "A class that describes the updatable properties of a Domains resource."
       }
     },
-    "com.azure.communication#DomainsUpdateRequestTagsMap": {
+    "com.azure.communication#UpdateDomainRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2574,7 +2575,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#DomainsGetResponseTagsMap",
+          "target": "com.azure.communication#GetDomainResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2597,7 +2598,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.communication#DomainsGetResponseTagsMap": {
+    "com.azure.communication#GetDomainResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2891,7 +2892,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#EmailServicesUpdateResponseTagsMap",
+          "target": "com.azure.communication#UpdateEmailServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2997,7 +2998,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.communication#EmailServicesUpdateResponseTagsMap": {
+    "com.azure.communication#UpdateEmailServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3037,7 +3038,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#EmailServicesUpdateRequestTagsMap",
+          "target": "com.azure.communication#UpdateEmailServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
           }
@@ -3047,7 +3048,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.communication#EmailServicesUpdateRequestTagsMap": {
+    "com.azure.communication#UpdateEmailServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3251,7 +3252,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#EmailServicesGetResponseTagsMap",
+          "target": "com.azure.communication#GetEmailServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3274,7 +3275,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.communication#EmailServicesGetResponseTagsMap": {
+    "com.azure.communication#GetEmailServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3861,10 +3862,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.communication#CommunicationServicesRegenerateKey": {
+    "com.azure.communication#RegenerateCommunicationServiceKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.communication#CommunicationServicesRegenerateKeyRequest"
+        "target": "com.azure.communication#RegenerateCommunicationServiceKeyRequest"
       },
       "output": {
         "target": "com.azure.communication#CommunicationServiceKeys"
@@ -3912,7 +3913,7 @@
         "smithy.api#documentation": "A class representing the access keys of a CommunicationService."
       }
     },
-    "com.azure.communication#CommunicationServicesRegenerateKeyRequest": {
+    "com.azure.communication#RegenerateCommunicationServiceKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4199,7 +4200,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#CommunicationServicesUpdateResponseTagsMap",
+          "target": "com.azure.communication#UpdateCommunicationServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4218,7 +4219,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.communication#CommunicationServicesUpdateResponseIdentity",
+          "target": "com.azure.communication#UpdateCommunicationServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4228,7 +4229,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.communication#CommunicationServicesUpdateResponseIdentity": {
+    "com.azure.communication#UpdateCommunicationServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4250,7 +4251,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.communication#CommunicationServicesUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.communication#UpdateCommunicationServiceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -4260,7 +4261,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.communication#CommunicationServicesUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.communication#UpdateCommunicationServiceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4484,7 +4485,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.communication#CommunicationServicesUpdateResponseTagsMap": {
+    "com.azure.communication#UpdateCommunicationServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4524,7 +4525,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#CommunicationServicesUpdateRequestTagsMap",
+          "target": "com.azure.communication#UpdateCommunicationServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
           }
@@ -4536,7 +4537,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.communication#CommunicationServicesUpdateRequestIdentity",
+          "target": "com.azure.communication#UpdateCommunicationServiceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4546,7 +4547,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.communication#CommunicationServicesUpdateRequestIdentity": {
+    "com.azure.communication#UpdateCommunicationServiceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -4556,7 +4557,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.communication#CommunicationServicesUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.communication#UpdateCommunicationServiceRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -4566,7 +4567,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.communication#CommunicationServicesUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.communication#UpdateCommunicationServiceRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4637,7 +4638,7 @@
         "smithy.api#documentation": "Allow, disallow, or let network security perimeter configuration control public network access to the protected resource. Value is optional but if passed in, it must be 'Enabled', 'Disabled' or 'SecuredByPerimeter'."
       }
     },
-    "com.azure.communication#CommunicationServicesUpdateRequestTagsMap": {
+    "com.azure.communication#UpdateCommunicationServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4988,7 +4989,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.communication#CommunicationServicesGetResponseTagsMap",
+          "target": "com.azure.communication#GetCommunicationServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5007,7 +5008,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.communication#CommunicationServicesGetResponseIdentity",
+          "target": "com.azure.communication#GetCommunicationServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5017,7 +5018,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.communication#CommunicationServicesGetResponseIdentity": {
+    "com.azure.communication#GetCommunicationServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5039,7 +5040,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.communication#CommunicationServicesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.communication#GetCommunicationServiceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -5049,7 +5050,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.communication#CommunicationServicesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.communication#GetCommunicationServiceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5061,7 +5062,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.communication#CommunicationServicesGetResponseTagsMap": {
+    "com.azure.communication#GetCommunicationServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5449,7 +5450,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.communication#CommunicationServicesCheckNameAvailabilityResponseReason",
+          "target": "com.azure.communication#CheckCommunicationServiceNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -5465,7 +5466,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.communication#CommunicationServicesCheckNameAvailabilityResponseReason": {
+    "com.azure.communication#CheckCommunicationServiceNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -5536,7 +5537,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.communication#OperationsListResponseValueList",
+          "target": "com.azure.communication#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -5552,7 +5553,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.communication#OperationsListResponseValueList": {
+    "com.azure.communication#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.communication#Operation"
@@ -5676,94 +5677,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.communication#SuppressionListAddressesDelete"
+          "target": "com.azure.communication#CancelDomainVerification"
         },
         {
-          "target": "com.azure.communication#SuppressionListAddressesCreateOrUpdate"
+          "target": "com.azure.communication#CheckCommunicationServiceNameAvailability"
         },
         {
-          "target": "com.azure.communication#SuppressionListAddressesGet"
-        },
-        {
-          "target": "com.azure.communication#SuppressionListAddressesList"
-        },
-        {
-          "target": "com.azure.communication#DeleteSuppressionList"
-        },
-        {
-          "target": "com.azure.communication#SuppressionListsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#GetSuppressionList"
-        },
-        {
-          "target": "com.azure.communication#ListSuppressionListByDomain"
-        },
-        {
-          "target": "com.azure.communication#DeleteSenderUsername"
-        },
-        {
-          "target": "com.azure.communication#SenderUsernamesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#GetSenderUsername"
-        },
-        {
-          "target": "com.azure.communication#ListSenderUsernameByDomains"
-        },
-        {
-          "target": "com.azure.communication#DomainsInitiateVerification"
-        },
-        {
-          "target": "com.azure.communication#DomainsCancelVerification"
-        },
-        {
-          "target": "com.azure.communication#DeleteDomain"
-        },
-        {
-          "target": "com.azure.communication#UpdateDomain"
-        },
-        {
-          "target": "com.azure.communication#DomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#GetDomain"
-        },
-        {
-          "target": "com.azure.communication#ListDomainByEmailServiceResource"
-        },
-        {
-          "target": "com.azure.communication#DeleteEmailService"
-        },
-        {
-          "target": "com.azure.communication#UpdateEmailService"
-        },
-        {
-          "target": "com.azure.communication#EmailServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#GetEmailService"
-        },
-        {
-          "target": "com.azure.communication#ListEmailServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.communication#DeleteSmtpUsername"
-        },
-        {
-          "target": "com.azure.communication#SmtpUsernamesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#GetSmtpUsername"
-        },
-        {
-          "target": "com.azure.communication#ListSmtpUsernames"
-        },
-        {
-          "target": "com.azure.communication#CommunicationServicesRegenerateKey"
-        },
-        {
-          "target": "com.azure.communication#ListCommunicationServiceKeys"
+          "target": "com.azure.communication#CommunicationServicesCreateOrUpdate"
         },
         {
           "target": "com.azure.communication#CommunicationServicesLinkNotificationHub"
@@ -5772,31 +5692,112 @@
           "target": "com.azure.communication#DeleteCommunicationService"
         },
         {
-          "target": "com.azure.communication#UpdateCommunicationService"
+          "target": "com.azure.communication#DeleteDomain"
         },
         {
-          "target": "com.azure.communication#CommunicationServicesCreateOrUpdate"
+          "target": "com.azure.communication#DeleteEmailService"
+        },
+        {
+          "target": "com.azure.communication#DeleteSenderUsername"
+        },
+        {
+          "target": "com.azure.communication#DeleteSmtpUsername"
+        },
+        {
+          "target": "com.azure.communication#DeleteSuppressionList"
+        },
+        {
+          "target": "com.azure.communication#DeleteSuppressionListAddress"
+        },
+        {
+          "target": "com.azure.communication#DomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#DomainsInitiateVerification"
+        },
+        {
+          "target": "com.azure.communication#EmailServicesCreateOrUpdate"
         },
         {
           "target": "com.azure.communication#GetCommunicationService"
         },
         {
+          "target": "com.azure.communication#GetDomain"
+        },
+        {
+          "target": "com.azure.communication#GetEmailService"
+        },
+        {
+          "target": "com.azure.communication#GetSenderUsername"
+        },
+        {
+          "target": "com.azure.communication#GetSmtpUsername"
+        },
+        {
+          "target": "com.azure.communication#GetSuppressionList"
+        },
+        {
+          "target": "com.azure.communication#GetSuppressionListAddress"
+        },
+        {
           "target": "com.azure.communication#ListCommunicationServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.communication#ListEmailServiceVerifiedExchangeOnlineDomains"
-        },
-        {
-          "target": "com.azure.communication#ListEmailServiceBySubscription"
         },
         {
           "target": "com.azure.communication#ListCommunicationServiceBySubscription"
         },
         {
-          "target": "com.azure.communication#CheckCommunicationServiceNameAvailability"
+          "target": "com.azure.communication#ListCommunicationServiceKeys"
+        },
+        {
+          "target": "com.azure.communication#ListDomainByEmailServiceResource"
+        },
+        {
+          "target": "com.azure.communication#ListEmailServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.communication#ListEmailServiceBySubscription"
+        },
+        {
+          "target": "com.azure.communication#ListEmailServiceVerifiedExchangeOnlineDomains"
         },
         {
           "target": "com.azure.communication#ListOperations"
+        },
+        {
+          "target": "com.azure.communication#ListSenderUsernameByDomains"
+        },
+        {
+          "target": "com.azure.communication#ListSmtpUsernames"
+        },
+        {
+          "target": "com.azure.communication#ListSuppressionListAddresses"
+        },
+        {
+          "target": "com.azure.communication#ListSuppressionListByDomain"
+        },
+        {
+          "target": "com.azure.communication#RegenerateCommunicationServiceKey"
+        },
+        {
+          "target": "com.azure.communication#SenderUsernamesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#SmtpUsernamesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#SuppressionListAddressesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#SuppressionListsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#UpdateCommunicationService"
+        },
+        {
+          "target": "com.azure.communication#UpdateDomain"
+        },
+        {
+          "target": "com.azure.communication#UpdateEmailService"
         }
       ],
       "traits": {

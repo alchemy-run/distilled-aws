@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.windowsiot#CheckServiceDeviceServiceNameAvailability": {
@@ -353,7 +354,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.windowsiot#ServicesDeleteResponseTagsMap",
+          "target": "com.azure.windowsiot#DeleteServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -381,7 +382,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.windowsiot#ServicesDeleteResponseTagsMap": {
+    "com.azure.windowsiot#DeleteServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -466,7 +467,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.windowsiot#ServicesUpdateResponseTagsMap",
+          "target": "com.azure.windowsiot#UpdateServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -494,7 +495,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.windowsiot#ServicesUpdateResponseTagsMap": {
+    "com.azure.windowsiot#UpdateServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -534,7 +535,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.windowsiot#ServicesUpdateRequestTagsMap",
+          "target": "com.azure.windowsiot#UpdateServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -594,7 +595,7 @@
         "smithy.api#documentation": "The properties of a Windows IoT Device Service."
       }
     },
-    "com.azure.windowsiot#ServicesUpdateRequestTagsMap": {
+    "com.azure.windowsiot#UpdateServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -796,7 +797,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.windowsiot#ServicesGetResponseTagsMap",
+          "target": "com.azure.windowsiot#GetServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -824,7 +825,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.windowsiot#ServicesGetResponseTagsMap": {
+    "com.azure.windowsiot#GetServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -988,25 +989,25 @@
           "target": "com.azure.windowsiot#CheckServiceDeviceServiceNameAvailability"
         },
         {
-          "target": "com.azure.windowsiot#ListServices"
-        },
-        {
-          "target": "com.azure.windowsiot#ListServiceByResourceGroup"
-        },
-        {
           "target": "com.azure.windowsiot#DeleteService"
-        },
-        {
-          "target": "com.azure.windowsiot#UpdateService"
-        },
-        {
-          "target": "com.azure.windowsiot#ServicesCreateOrUpdate"
         },
         {
           "target": "com.azure.windowsiot#GetService"
         },
         {
           "target": "com.azure.windowsiot#ListOperations"
+        },
+        {
+          "target": "com.azure.windowsiot#ListServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.windowsiot#ListServices"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.windowsiot#UpdateService"
         }
       ],
       "traits": {

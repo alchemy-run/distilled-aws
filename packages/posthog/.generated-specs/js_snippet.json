@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.js_snippet#JsSnippetResolveRetrieveRequest": {
+    "com.posthog.js_snippet#GetJsSnippetResolveRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -33,7 +34,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.js_snippet#JsSnippetResolveRetrieveResponseBodyMap": {
+    "com.posthog.js_snippet#GetJsSnippetResolveResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -43,11 +44,11 @@
       },
       "traits": {}
     },
-    "com.posthog.js_snippet#JsSnippetResolveRetrieveResponse": {
+    "com.posthog.js_snippet#GetJsSnippetResolveResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.js_snippet#JsSnippetResolveRetrieveResponseBodyMap",
+          "target": "com.posthog.js_snippet#GetJsSnippetResolveResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -58,13 +59,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.js_snippet#JsSnippetResolveRetrieve": {
+    "com.posthog.js_snippet#GetJsSnippetResolve": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.js_snippet#JsSnippetResolveRetrieveRequest"
+        "target": "com.posthog.js_snippet#GetJsSnippetResolveRequest"
       },
       "output": {
-        "target": "com.posthog.js_snippet#JsSnippetResolveRetrieveResponse"
+        "target": "com.posthog.js_snippet#GetJsSnippetResolveResponse"
       },
       "errors": [
         {
@@ -83,7 +84,7 @@
         "smithy.api#documentation": "Preview what a given pin would resolve to, without saving it."
       }
     },
-    "com.posthog.js_snippet#JsSnippetVersionRetrieveRequest": {
+    "com.posthog.js_snippet#GetJsSnippetVersionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -99,7 +100,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.js_snippet#JsSnippetVersionRetrieveResponseBodyMap": {
+    "com.posthog.js_snippet#GetJsSnippetVersionResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -109,11 +110,11 @@
       },
       "traits": {}
     },
-    "com.posthog.js_snippet#JsSnippetVersionRetrieveResponse": {
+    "com.posthog.js_snippet#GetJsSnippetVersionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.js_snippet#JsSnippetVersionRetrieveResponseBodyMap",
+          "target": "com.posthog.js_snippet#GetJsSnippetVersionResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -124,13 +125,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.js_snippet#JsSnippetVersionRetrieve": {
+    "com.posthog.js_snippet#GetJsSnippetVersion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.js_snippet#JsSnippetVersionRetrieveRequest"
+        "target": "com.posthog.js_snippet#GetJsSnippetVersionRequest"
       },
       "output": {
-        "target": "com.posthog.js_snippet#JsSnippetVersionRetrieveResponse"
+        "target": "com.posthog.js_snippet#GetJsSnippetVersionResponse"
       },
       "errors": [
         {
@@ -172,7 +173,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.js_snippet#JsSnippetVersionPartialUpdateResponseBodyMap": {
+    "com.posthog.js_snippet#UpdateJsSnippetVersionPartialResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -186,7 +187,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.js_snippet#JsSnippetVersionPartialUpdateResponseBodyMap",
+          "target": "com.posthog.js_snippet#UpdateJsSnippetVersionPartialResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -269,10 +270,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.js_snippet#JsSnippetResolveRetrieve"
+          "target": "com.posthog.js_snippet#GetJsSnippetResolve"
         },
         {
-          "target": "com.posthog.js_snippet#JsSnippetVersionRetrieve"
+          "target": "com.posthog.js_snippet#GetJsSnippetVersion"
         },
         {
           "target": "com.posthog.js_snippet#UpdateJsSnippetVersionPartial"

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.domain#VerifyDomainCertificateRequest": {
@@ -237,13 +238,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.domain#VerifyDomainCertificate"
-        },
-        {
           "target": "com.modal.domain#CreateDomain"
         },
         {
           "target": "com.modal.domain#ListDomain"
+        },
+        {
+          "target": "com.modal.domain#VerifyDomainCertificate"
         }
       ],
       "traits": {

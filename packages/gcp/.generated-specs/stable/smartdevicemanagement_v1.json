@@ -4,27 +4,37 @@
     "service": "smartdevicemanagement",
     "version": "v1",
     "title": "Smart Device Management API",
-    "baseUrl": "https://smartdevicemanagement.googleapis.com/"
+    "baseUrl": "https://smartdevicemanagement.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelation": {
+    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Room": {
       "type": "structure",
       "members": {
-        "displayName": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The custom name of the relation -- e.g., structure/room where the device is assigned to."
+            "smithy.api#documentation": "Output only. The resource name of the room. For example: \"enterprises/XYZ/structures/ABC/rooms/123\"."
           }
         },
-        "parent": {
-          "target": "smithy.api#String",
+        "traits": {
+          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "Output only. The name of the relation -- e.g., structure/room where the device is assigned to. For example: \"enterprises/XYZ/structures/ABC\" or \"enterprises/XYZ/structures/ABC/rooms/123\""
+            "smithy.api#documentation": "Room traits."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents device relationships, for instance, structure/room to which the device is assigned to."
+        "smithy.api#documentation": "Room resource represents an instance of sub-space within a structure such as rooms in a hotel suite or rental apartment."
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
       }
     },
     "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListDevicesResponse": {
@@ -45,6 +55,98 @@
       "type": "list",
       "member": {
         "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Device"
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelation": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the relation -- e.g., structure/room where the device is assigned to. For example: \"enterprises/XYZ/structures/ABC\" or \"enterprises/XYZ/structures/ABC/rooms/123\""
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The custom name of the relation -- e.g., structure/room where the device is assigned to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents device relationships, for instance, structure/room to which the device is assigned to."
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Device": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the device. For example: \"enterprises/XYZ/devices/123\"."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Type of the device for general display purposes. For example: \"THERMOSTAT\". The device type should not be used to deduce or infer functionality of the actual device it is assigned to. Instead, use the returned traits for the device."
+          }
+        },
+        "traits": {
+          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. Device traits."
+          }
+        },
+        "parentRelations": {
+          "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelationList",
+          "traits": {
+            "smithy.api#documentation": "Assignee details of the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device resource represents an instance of enterprise managed device in the property."
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelation"
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The results of executing the command."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for SmartDeviceManagementService.ExecuteDeviceCommand"
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListRoomsResponse": {
+      "type": "structure",
+      "members": {
+        "rooms": {
+          "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1RoomList",
+          "traits": {
+            "smithy.api#documentation": "The list of rooms."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for SmartDeviceManagementService.ListRooms"
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1RoomList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Room"
       }
     },
     "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListStructuresResponse": {
@@ -87,28 +189,19 @@
         "smithy.api#documentation": "Request message for SmartDeviceManagementService.ExecuteDeviceCommand"
       }
     },
-    "com.gcp.smartdevicemanagement_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
     "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Structure": {
       "type": "structure",
       "members": {
-        "traits": {
-          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Structure traits."
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The resource name of the structure. For example: \"enterprises/XYZ/structures/ABC\"."
+          }
+        },
+        "traits": {
+          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Structure traits."
           }
         }
       },
@@ -116,105 +209,13 @@
         "smithy.api#documentation": "Structure resource represents an instance of enterprise managed home or hotel room."
       }
     },
-    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Room": {
-      "type": "structure",
-      "members": {
-        "traits": {
-          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Room traits."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The resource name of the room. For example: \"enterprises/XYZ/structures/ABC/rooms/123\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Room resource represents an instance of sub-space within a structure such as rooms in a hotel suite or rental apartment."
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListRoomsResponse": {
-      "type": "structure",
-      "members": {
-        "rooms": {
-          "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1RoomList",
-          "traits": {
-            "smithy.api#documentation": "The list of rooms."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for SmartDeviceManagementService.ListRooms"
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1RoomList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Room"
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Device": {
-      "type": "structure",
-      "members": {
-        "parentRelations": {
-          "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelationList",
-          "traits": {
-            "smithy.api#documentation": "Assignee details of the device."
-          }
-        },
-        "traits": {
-          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Output only. Device traits."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the device. For example: \"enterprises/XYZ/devices/123\"."
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Type of the device for general display purposes. For example: \"THERMOSTAT\". The device type should not be used to deduce or infer functionality of the actual device it is assigned to. Instead, use the returned traits for the device."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Device resource represents an instance of enterprise managed device in the property."
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ParentRelation"
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse": {
-      "type": "structure",
-      "members": {
-        "results": {
-          "target": "com.gcp.smartdevicemanagement_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The results of executing the command."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for SmartDeviceManagementService.ExecuteDeviceCommand"
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRequest": {
+    "com.gcp.smartdevicemanagement_v1#ListEnterprisesDevicesRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The parent enterprise to list structures under. E.g. \"enterprises/XYZ\".",
+            "smithy.api#documentation": "The parent enterprise to list devices under. E.g. \"enterprises/XYZ\".",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -222,7 +223,7 @@
         "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional filter to list structures.",
+            "smithy.api#documentation": "Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'",
             "smithy.api#httpQuery": "filter"
           }
         }
@@ -254,13 +255,13 @@
         ]
       }
     },
-    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructures": {
+    "com.gcp.smartdevicemanagement_v1#ListEnterprisesDevices": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRequest"
+        "target": "com.gcp.smartdevicemanagement_v1#ListEnterprisesDevicesRequest"
       },
       "output": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListStructuresResponse"
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListDevicesResponse"
       },
       "errors": [
         {
@@ -273,31 +274,31 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/structures"
+          "uri": "v1/{+parent}/devices"
         },
-        "smithy.api#documentation": "Lists structures managed by the enterprise."
+        "smithy.api#documentation": "Lists devices managed by the enterprise."
       }
     },
-    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRequest": {
+    "com.gcp.smartdevicemanagement_v1#GetEnterprisesDevicesRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the structure requested. For example: \"enterprises/XYZ/structures/ABC\".",
+            "smithy.api#documentation": "The name of the device requested. For example: \"enterprises/XYZ/devices/123\"",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructures": {
+    "com.gcp.smartdevicemanagement_v1#GetEnterprisesDevices": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRequest"
+        "target": "com.gcp.smartdevicemanagement_v1#GetEnterprisesDevicesRequest"
       },
       "output": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Structure"
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Device"
       },
       "errors": [
         {
@@ -312,81 +313,7 @@
           "method": "GET",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Gets a structure managed by the enterprise."
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRoomsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the room requested. For example: \"enterprises/XYZ/structures/ABC/rooms/123\".",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRooms": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRoomsRequest"
-      },
-      "output": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Room"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.smartdevicemanagement_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.smartdevicemanagement_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets a room managed by the enterprise."
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRoomsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The parent resource name of the rooms requested. For example: \"enterprises/XYZ/structures/ABC\".",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRooms": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRoomsRequest"
-      },
-      "output": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListRoomsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.smartdevicemanagement_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.smartdevicemanagement_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/rooms"
-        },
-        "smithy.api#documentation": "Lists rooms managed by the enterprise."
+        "smithy.api#documentation": "Gets a device managed by the enterprise."
       }
     },
     "com.gcp.smartdevicemanagement_v1#ExecuteCommandEnterprisesDevicesRequest": {
@@ -465,26 +392,26 @@
         "smithy.api#documentation": "Executes a command to device managed by the enterprise."
       }
     },
-    "com.gcp.smartdevicemanagement_v1#GetEnterprisesDevicesRequest": {
+    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the device requested. For example: \"enterprises/XYZ/devices/123\"",
+            "smithy.api#documentation": "The name of the structure requested. For example: \"enterprises/XYZ/structures/ABC\".",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.smartdevicemanagement_v1#GetEnterprisesDevices": {
+    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructures": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.smartdevicemanagement_v1#GetEnterprisesDevicesRequest"
+        "target": "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRequest"
       },
       "output": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Device"
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Structure"
       },
       "errors": [
         {
@@ -499,16 +426,16 @@
           "method": "GET",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Gets a device managed by the enterprise."
+        "smithy.api#documentation": "Gets a structure managed by the enterprise."
       }
     },
-    "com.gcp.smartdevicemanagement_v1#ListEnterprisesDevicesRequest": {
+    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The parent enterprise to list devices under. E.g. \"enterprises/XYZ\".",
+            "smithy.api#documentation": "The parent enterprise to list structures under. E.g. \"enterprises/XYZ\".",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -516,19 +443,19 @@
         "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'",
+            "smithy.api#documentation": "Optional filter to list structures.",
             "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.smartdevicemanagement_v1#ListEnterprisesDevices": {
+    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructures": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.smartdevicemanagement_v1#ListEnterprisesDevicesRequest"
+        "target": "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRequest"
       },
       "output": {
-        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListDevicesResponse"
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListStructuresResponse"
       },
       "errors": [
         {
@@ -541,9 +468,83 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/devices"
+          "uri": "v1/{+parent}/structures"
         },
-        "smithy.api#documentation": "Lists devices managed by the enterprise."
+        "smithy.api#documentation": "Lists structures managed by the enterprise."
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRoomsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The parent resource name of the rooms requested. For example: \"enterprises/XYZ/structures/ABC\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRooms": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.smartdevicemanagement_v1#ListEnterprisesStructuresRoomsRequest"
+      },
+      "output": {
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1ListRoomsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.smartdevicemanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.smartdevicemanagement_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/rooms"
+        },
+        "smithy.api#documentation": "Lists rooms managed by the enterprise."
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRoomsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the room requested. For example: \"enterprises/XYZ/structures/ABC/rooms/123\".",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRooms": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.smartdevicemanagement_v1#GetEnterprisesStructuresRoomsRequest"
+      },
+      "output": {
+        "target": "com.gcp.smartdevicemanagement_v1#GoogleHomeEnterpriseSdmV1Room"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.smartdevicemanagement_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.smartdevicemanagement_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a room managed by the enterprise."
       }
     }
   }

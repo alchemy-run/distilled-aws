@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.relationships#ListContainRelationshipByResourceGroup": {
+    "com.azure.relationships#ListContainsRelationshipByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.relationships#ListContainRelationshipByResourceGroupRequest"
+        "target": "com.azure.relationships#ListContainsRelationshipByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.relationships#ContainsRelationshipListResult"
@@ -382,7 +383,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.relationships#ListContainRelationshipByResourceGroupRequest": {
+    "com.azure.relationships#ListContainsRelationshipByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -413,10 +414,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.relationships#ListContainRelationshipBySubscription": {
+    "com.azure.relationships#ListContainsRelationshipBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.relationships#ListContainRelationshipBySubscriptionRequest"
+        "target": "com.azure.relationships#ListContainsRelationshipBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.relationships#ContainsRelationshipListResult"
@@ -432,7 +433,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.relationships#ListContainRelationshipBySubscriptionRequest": {
+    "com.azure.relationships#ListContainsRelationshipBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -478,7 +479,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.relationships#OperationsListResponseValueList",
+          "target": "com.azure.relationships#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -494,7 +495,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.relationships#OperationsListResponseValueList": {
+    "com.azure.relationships#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.relationships#Operation"
@@ -611,6 +612,386 @@
       },
       "traits": {
         "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.relationships#DeleteDependencyOfRelationshipsByServiceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.relationships#DeleteDependencyOfRelationshipsByServiceGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf/{name}",
+          "code": 200,
+          "apiVersion": "2026-08-01"
+        },
+        "smithy.api#documentation": "Delete a DependencyOfRelationship",
+        "com.distilled.openapi#apiVersion": "2026-08-01"
+      }
+    },
+    "com.azure.relationships#DeleteDependencyOfRelationshipsByServiceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "serviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the service group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of dependencyOf relationship."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf/{name}",
+          "code": 200,
+          "apiVersion": "2026-08-01"
+        },
+        "smithy.api#documentation": "Create a DependencyOfRelationship",
+        "com.distilled.openapi#apiVersion": "2026-08-01"
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.relationships#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.relationships#DependencyOfRelationshipProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationshipProperties": {
+      "type": "structure",
+      "members": {
+        "sourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relationship source resource id."
+          }
+        },
+        "targetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relationship target resource id.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetTenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relationship target tenant id."
+          }
+        },
+        "originInformation": {
+          "target": "com.azure.relationships#RelationshipOriginInformation",
+          "traits": {
+            "smithy.api#documentation": "Information about the origin of the relationship."
+          }
+        },
+        "metadata": {
+          "target": "com.azure.relationships#RelationshipMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the relationship."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.relationships#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the relationship."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "dependencyOf relationship properties."
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "serviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the service group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of dependencyOf relationship."
+          }
+        },
+        "properties": {
+          "target": "com.azure.relationships#DependencyOfRelationshipPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationshipPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "targetId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relationship target resource id.",
+            "smithy.api#required": {}
+          }
+        },
+        "targetTenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relationship target tenant id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "dependencyOf relationship properties."
+      }
+    },
+    "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf/{name}",
+          "code": 200,
+          "apiVersion": "2026-08-01"
+        },
+        "smithy.api#documentation": "Get a DependencyOfRelationship",
+        "com.distilled.openapi#apiVersion": "2026-08-01"
+      }
+    },
+    "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.relationships#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.relationships#DependencyOfRelationshipProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "serviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the service group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of dependencyOf relationship."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.relationships#ListDependencyOfRelationshipsByServiceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.relationships#ListDependencyOfRelationshipsByServiceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.relationships#DependencyOfRelationshipListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Relationships/dependencyOf",
+          "code": 200,
+          "apiVersion": "2026-08-01"
+        },
+        "smithy.api#documentation": "List DependencyOfRelationship resources by scope",
+        "com.distilled.openapi#apiVersion": "2026-08-01"
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationshipListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.relationships#DependencyOfRelationshipListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The DependencyOfRelationship items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a DependencyOfRelationship list operation."
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationshipListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.relationships#DependencyOfRelationship"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DependencyOfRelationship items on this page"
+      }
+    },
+    "com.azure.relationships#DependencyOfRelationship": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.relationships#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.relationships#DependencyOfRelationshipProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a dependencyOf relationship resource."
+      }
+    },
+    "com.azure.relationships#ListDependencyOfRelationshipsByServiceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "serviceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the service group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
     "com.azure.relationships#DeleteServiceGroupMemberRelationship": {
@@ -1093,51 +1474,6 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.relationships#DependencyOfRelationshipProperties": {
-      "type": "structure",
-      "members": {
-        "sourceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The relationship source resource id."
-          }
-        },
-        "targetId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The relationship target resource id.",
-            "smithy.api#required": {}
-          }
-        },
-        "targetTenant": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The relationship target tenant id."
-          }
-        },
-        "originInformation": {
-          "target": "com.azure.relationships#RelationshipOriginInformation",
-          "traits": {
-            "smithy.api#documentation": "Information about the origin of the relationship."
-          }
-        },
-        "metadata": {
-          "target": "com.azure.relationships#RelationshipMetadata",
-          "traits": {
-            "smithy.api#documentation": "Metadata about the relationship."
-          }
-        },
-        "provisioningState": {
-          "target": "com.azure.relationships#ProvisioningState",
-          "traits": {
-            "smithy.api#documentation": "The provisioning state of the relationship."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "dependencyOf relationship properties."
-      }
-    },
     "com.azure.relationships#DependencyOfRelationshipsCreateOrUpdateRequest": {
       "type": "structure",
       "members": {
@@ -1166,27 +1502,6 @@
       },
       "traits": {
         "smithy.api#input": {}
-      }
-    },
-    "com.azure.relationships#DependencyOfRelationshipPropertiesInput": {
-      "type": "structure",
-      "members": {
-        "targetId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The relationship target resource id.",
-            "smithy.api#required": {}
-          }
-        },
-        "targetTenant": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The relationship target tenant id."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "dependencyOf relationship properties."
       }
     },
     "com.azure.relationships#GetDependencyOfRelationship": {
@@ -1289,74 +1604,6 @@
         "com.distilled.openapi#apiVersion": "2026-08-01"
       }
     },
-    "com.azure.relationships#DependencyOfRelationshipListResult": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "com.azure.relationships#DependencyOfRelationshipListResultValueList",
-          "traits": {
-            "smithy.api#documentation": "The DependencyOfRelationship items on this page",
-            "smithy.api#required": {}
-          }
-        },
-        "nextLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The link to the next page of items"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response of a DependencyOfRelationship list operation."
-      }
-    },
-    "com.azure.relationships#DependencyOfRelationshipListResultValueList": {
-      "type": "list",
-      "member": {
-        "target": "com.azure.relationships#DependencyOfRelationship"
-      },
-      "traits": {
-        "smithy.api#documentation": "The DependencyOfRelationship items on this page"
-      }
-    },
-    "com.azure.relationships#DependencyOfRelationship": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the resource"
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
-          }
-        },
-        "systemData": {
-          "target": "com.azure.relationships#SystemData",
-          "traits": {
-            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
-          }
-        },
-        "properties": {
-          "target": "com.azure.relationships#DependencyOfRelationshipProperties",
-          "traits": {
-            "smithy.api#documentation": "The resource-specific properties for this resource."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Defines a dependencyOf relationship resource."
-      }
-    },
     "com.azure.relationships#ListDependencyOfRelationshipByParentRequest": {
       "type": "structure",
       "members": {
@@ -1378,28 +1625,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.relationships#ListContainRelationshipByResourceGroup"
+          "target": "com.azure.relationships#DeleteDependencyOfRelationship"
         },
         {
-          "target": "com.azure.relationships#ListContainRelationshipBySubscription"
-        },
-        {
-          "target": "com.azure.relationships#ListOperations"
+          "target": "com.azure.relationships#DeleteDependencyOfRelationshipsByServiceGroup"
         },
         {
           "target": "com.azure.relationships#DeleteServiceGroupMemberRelationship"
         },
         {
-          "target": "com.azure.relationships#ServiceGroupMemberRelationshipsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.relationships#GetServiceGroupMemberRelationship"
-        },
-        {
-          "target": "com.azure.relationships#ListServiceGroupMemberRelationshipByParent"
-        },
-        {
-          "target": "com.azure.relationships#DeleteDependencyOfRelationship"
+          "target": "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdate"
         },
         {
           "target": "com.azure.relationships#DependencyOfRelationshipsCreateOrUpdate"
@@ -1408,7 +1643,31 @@
           "target": "com.azure.relationships#GetDependencyOfRelationship"
         },
         {
+          "target": "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroup"
+        },
+        {
+          "target": "com.azure.relationships#GetServiceGroupMemberRelationship"
+        },
+        {
+          "target": "com.azure.relationships#ListContainsRelationshipByResourceGroup"
+        },
+        {
+          "target": "com.azure.relationships#ListContainsRelationshipBySubscription"
+        },
+        {
           "target": "com.azure.relationships#ListDependencyOfRelationshipByParent"
+        },
+        {
+          "target": "com.azure.relationships#ListDependencyOfRelationshipsByServiceGroup"
+        },
+        {
+          "target": "com.azure.relationships#ListOperations"
+        },
+        {
+          "target": "com.azure.relationships#ListServiceGroupMemberRelationshipByParent"
+        },
+        {
+          "target": "com.azure.relationships#ServiceGroupMemberRelationshipsCreateOrUpdate"
         }
       ],
       "traits": {

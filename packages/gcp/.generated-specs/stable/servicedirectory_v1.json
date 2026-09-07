@@ -4,206 +4,28 @@
     "service": "servicedirectory",
     "version": "v1",
     "title": "Service Directory API",
-    "baseUrl": "https://servicedirectory.googleapis.com/"
+    "baseUrl": "https://servicedirectory.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.servicedirectory_v1#Expr": {
+    "com.gcp.servicedirectory_v1#ResolveServiceRequest": {
       "type": "structure",
       "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
-          }
-        },
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
-      }
-    },
-    "com.gcp.servicedirectory_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.servicedirectory_v1#Endpoint": {
-      "type": "structure",
-      "members": {
-        "annotations": {
-          "target": "com.gcp.servicedirectory_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Annotations for the endpoint. This data can be consumed by service clients. Restrictions: * The entire annotations dictionary may contain up to 512 characters, spread accoss all key-value pairs. Annotations that go beyond this limit are rejected * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/) Annotations that fails to meet these requirements are rejected. Note: This field is equivalent to the `metadata` field in the v1beta1 API. They have the same syntax and read/write to the same location in Service Directory."
-          }
-        },
-        "network": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The Google Compute Engine network (VPC) of the endpoint in the format `projects//locations/global/networks/*`. The project must be specified by project number (project id is rejected). Incorrectly formatted networks are rejected, we also check to make sure that you have the servicedirectory.networks.attach permission on the project specified."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`."
-          }
-        },
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The globally unique identifier of the endpoint in the UUID4 format."
-          }
-        },
-        "address": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like: * `8.8.8` * `8.8.8.8:53` * `test:bad:address` * `[::1]` * `[::1]:8080` Limited to 45 characters."
-          }
-        },
-        "port": {
+        "maxEndpoints": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. Service Directory rejects values outside of `[0, 65535]`."
+            "smithy.api#documentation": "Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100. If a value less than one is specified, the Default is used. If a value greater than the Maximum is specified, the Maximum is used."
+          }
+        },
+        "endpointFilter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The filter applied to the endpoints of the resolved service. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port>8080` returns endpoints that have port number larger than 8080 * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so \"endpoint-e\" is returned but \"endpoint-a\" is not * `name=projects/my-project/locations/us-central1/namespaces/my-namespace/services/my-service/endpoints/ep-1` returns the endpoint that has an endpoint_id equal to `ep-1` * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called \"doesnotexist\". Since the filter does not match any endpoint, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160)."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "An individual endpoint that provides a service. The service must already exist to create an endpoint."
-      }
-    },
-    "com.gcp.servicedirectory_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.servicedirectory_v1#Namespace": {
-      "type": "structure",
-      "members": {
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The globally unique identifier of the namespace in the UUID4 format."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.servicedirectory_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Resource labels associated with this namespace. No more than 64 user labels can be associated with a given resource. Label keys and values can be no longer than 63 characters."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A container for services. Namespaces allow administrators to group services together and define permissions for a collection of services."
-      }
-    },
-    "com.gcp.servicedirectory_v1#GetPolicyOptions": {
-      "type": "structure",
-      "members": {
-        "requestedPolicyVersion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Encapsulates settings provided to GetIamPolicy."
-      }
-    },
-    "com.gcp.servicedirectory_v1#TestIamPermissionsResponse": {
-      "type": "structure",
-      "members": {
-        "permissions": {
-          "target": "com.gcp.servicedirectory_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
-      }
-    },
-    "com.gcp.servicedirectory_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.servicedirectory_v1#Location": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.servicedirectory_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.servicedirectory_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.servicedirectory_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
+        "smithy.api#documentation": "The request message for LookupService.ResolveService. Looks up a service by its name, returns the service and its endpoints."
       }
     },
     "com.gcp.servicedirectory_v1#ListNamespacesResponse": {
@@ -232,69 +54,156 @@
         "target": "com.gcp.servicedirectory_v1#Namespace"
       }
     },
-    "com.gcp.servicedirectory_v1#GetIamPolicyRequest": {
+    "com.gcp.servicedirectory_v1#Empty": {
       "type": "structure",
-      "members": {
-        "options": {
-          "target": "com.gcp.servicedirectory_v1#GetPolicyOptions",
-          "traits": {
-            "smithy.api#documentation": "OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`."
-          }
-        }
-      },
+      "members": {},
       "traits": {
-        "smithy.api#documentation": "Request message for `GetIamPolicy` method."
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
-    "com.gcp.servicedirectory_v1#ListLocationsResponse": {
+    "com.gcp.servicedirectory_v1#Service": {
       "type": "structure",
       "members": {
-        "locations": {
-          "target": "com.gcp.servicedirectory_v1#LocationList",
+        "endpoints": {
+          "target": "com.gcp.servicedirectory_v1#EndpointList",
           "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+            "smithy.api#documentation": "Output only. Endpoints associated with this service. Returned on LookupService.ResolveService. Control plane clients should use RegistrationService.ListEndpoints."
           }
         },
-        "nextPageToken": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
+            "smithy.api#documentation": "Immutable. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.servicedirectory_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Annotations for the service. This data can be consumed by service clients. Restrictions: * The entire annotations dictionary may contain up to 2000 characters, spread accoss all key-value pairs. Annotations that go beyond this limit are rejected * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Annotations that fails to meet these requirements are rejected Note: This field is equivalent to the `metadata` field in the v1beta1 API. They have the same syntax and read/write to the same location in Service Directory."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The globally unique identifier of the service in the UUID4 format."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
+        "smithy.api#documentation": "An individual service. A service contains a name and optional metadata. A service must exist before endpoints can be added to it."
       }
     },
-    "com.gcp.servicedirectory_v1#LocationList": {
+    "com.gcp.servicedirectory_v1#EndpointList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.servicedirectory_v1#Location"
+        "target": "com.gcp.servicedirectory_v1#Endpoint"
       }
     },
-    "com.gcp.servicedirectory_v1#TestIamPermissionsRequest": {
+    "com.gcp.servicedirectory_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.servicedirectory_v1#GetPolicyOptions": {
+      "type": "structure",
+      "members": {
+        "requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates settings provided to GetIamPolicy."
+      }
+    },
+    "com.gcp.servicedirectory_v1#Policy": {
+      "type": "structure",
+      "members": {
+        "bindings": {
+          "target": "com.gcp.servicedirectory_v1#BindingList",
+          "traits": {
+            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+      }
+    },
+    "com.gcp.servicedirectory_v1#BindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.servicedirectory_v1#Binding"
+      }
+    },
+    "com.gcp.servicedirectory_v1#Expr": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.servicedirectory_v1#TestIamPermissionsResponse": {
       "type": "structure",
       "members": {
         "permissions": {
           "target": "com.gcp.servicedirectory_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
+        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
       }
     },
-    "com.gcp.servicedirectory_v1#ResolveServiceResponse": {
-      "type": "structure",
-      "members": {
-        "service": {
-          "target": "com.gcp.servicedirectory_v1#Service"
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for LookupService.ResolveService."
+    "com.gcp.servicedirectory_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.servicedirectory_v1#ListServicesResponse": {
@@ -323,24 +232,113 @@
         "target": "com.gcp.servicedirectory_v1#Service"
       }
     },
-    "com.gcp.servicedirectory_v1#ResolveServiceRequest": {
+    "com.gcp.servicedirectory_v1#SetIamPolicyRequest": {
       "type": "structure",
       "members": {
-        "endpointFilter": {
-          "target": "smithy.api#String",
+        "policy": {
+          "target": "com.gcp.servicedirectory_v1#Policy",
           "traits": {
-            "smithy.api#documentation": "Optional. The filter applied to the endpoints of the resolved service. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port>8080` returns endpoints that have port number larger than 8080 * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so \"endpoint-e\" is returned but \"endpoint-a\" is not * `name=projects/my-project/locations/us-central1/namespaces/my-namespace/services/my-service/endpoints/ep-1` returns the endpoint that has an endpoint_id equal to `ep-1` * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called \"doesnotexist\". Since the filter does not match any endpoint, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160)."
-          }
-        },
-        "maxEndpoints": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of endpoints to return. Defaults to 25. Maximum is 100. If a value less than one is specified, the Default is used. If a value greater than the Maximum is specified, the Maximum is used."
+            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The request message for LookupService.ResolveService. Looks up a service by its name, returns the service and its endpoints."
+        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
+      }
+    },
+    "com.gcp.servicedirectory_v1#Namespace": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.servicedirectory_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Resource labels associated with this namespace. No more than 64 user labels can be associated with a given resource. Label keys and values can be no longer than 63 characters."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The globally unique identifier of the namespace in the UUID4 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A container for services. Namespaces allow administrators to group services together and define permissions for a collection of services."
+      }
+    },
+    "com.gcp.servicedirectory_v1#ResolveServiceResponse": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "com.gcp.servicedirectory_v1#Service"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for LookupService.ResolveService."
+      }
+    },
+    "com.gcp.servicedirectory_v1#Endpoint": {
+      "type": "structure",
+      "members": {
+        "annotations": {
+          "target": "com.gcp.servicedirectory_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Annotations for the endpoint. This data can be consumed by service clients. Restrictions: * The entire annotations dictionary may contain up to 512 characters, spread accoss all key-value pairs. Annotations that go beyond this limit are rejected * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/) Annotations that fails to meet these requirements are rejected. Note: This field is equivalent to the `metadata` field in the v1beta1 API. They have the same syntax and read/write to the same location in Service Directory."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Service Directory rejects values outside of `[0, 65535]`."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The globally unique identifier of the endpoint in the UUID4 format."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The Google Compute Engine network (VPC) of the endpoint in the format `projects//locations/global/networks/*`. The project must be specified by project number (project id is rejected). Incorrectly formatted networks are rejected, we also check to make sure that you have the servicedirectory.networks.attach permission on the project specified."
+          }
+        },
+        "address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like: * `8.8.8` * `8.8.8.8:53` * `test:bad:address` * `[::1]` * `[::1]:8080` Limited to 45 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An individual endpoint that provides a service. The service must already exist to create an endpoint."
+      }
+    },
+    "com.gcp.servicedirectory_v1#TestIamPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.servicedirectory_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
       }
     },
     "com.gcp.servicedirectory_v1#ListEndpointsResponse": {
@@ -363,61 +361,102 @@
         "smithy.api#documentation": "The response message for RegistrationService.ListEndpoints."
       }
     },
-    "com.gcp.servicedirectory_v1#EndpointList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.servicedirectory_v1#Endpoint"
-      }
-    },
-    "com.gcp.servicedirectory_v1#SetIamPolicyRequest": {
+    "com.gcp.servicedirectory_v1#GetIamPolicyRequest": {
       "type": "structure",
       "members": {
-        "policy": {
-          "target": "com.gcp.servicedirectory_v1#Policy",
+        "options": {
+          "target": "com.gcp.servicedirectory_v1#GetPolicyOptions",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+            "smithy.api#documentation": "OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
+        "smithy.api#documentation": "Request message for `GetIamPolicy` method."
       }
     },
-    "com.gcp.servicedirectory_v1#Policy": {
+    "com.gcp.servicedirectory_v1#ListLocationsResponse": {
       "type": "structure",
       "members": {
-        "version": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        },
-        "bindings": {
-          "target": "com.gcp.servicedirectory_v1#BindingList",
-          "traits": {
-            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
-          }
-        },
-        "etag": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.servicedirectory_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
       }
     },
-    "com.gcp.servicedirectory_v1#BindingList": {
+    "com.gcp.servicedirectory_v1#LocationList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.servicedirectory_v1#Binding"
+        "target": "com.gcp.servicedirectory_v1#Location"
+      }
+    },
+    "com.gcp.servicedirectory_v1#Location": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.servicedirectory_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.servicedirectory_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.servicedirectory_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
       }
     },
     "com.gcp.servicedirectory_v1#Binding": {
       "type": "structure",
       "members": {
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
+          }
+        },
         "members": {
           "target": "com.gcp.servicedirectory_v1#StringList",
           "traits": {
@@ -429,59 +468,49 @@
           "traits": {
             "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
           }
-        },
-        "role": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
       }
     },
-    "com.gcp.servicedirectory_v1#Service": {
+    "com.gcp.servicedirectory_v1#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
+        "extraLocationTypes": {
+          "target": "com.gcp.servicedirectory_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Immutable. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`."
-          }
-        },
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The globally unique identifier of the service in the UUID4 format."
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.servicedirectory_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Optional. Annotations for the service. This data can be consumed by service clients. Restrictions: * The entire annotations dictionary may contain up to 2000 characters, spread accoss all key-value pairs. Annotations that go beyond this limit are rejected * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Annotations that fails to meet these requirements are rejected Note: This field is equivalent to the `metadata` field in the v1beta1 API. They have the same syntax and read/write to the same location in Service Directory."
-          }
-        },
-        "endpoints": {
-          "target": "com.gcp.servicedirectory_v1#EndpointList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Endpoints associated with this service. Returned on LookupService.ResolveService. Control plane clients should use RegistrationService.ListEndpoints."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An individual service. A service contains a name and optional metadata. A service must exist before endpoints can be added to it."
-      }
-    },
-    "com.gcp.servicedirectory_v1#GetProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -512,71 +541,6 @@
         ]
       }
     },
-    "com.gcp.servicedirectory_v1#GetProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#GetProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#Location"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets information about a location."
-      }
-    },
-    "com.gcp.servicedirectory_v1#ListProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "extraLocationTypes": {
-          "target": "com.gcp.servicedirectory_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
     "com.gcp.servicedirectory_v1#ListProjectsLocations": {
       "type": "operation",
       "input": {
@@ -605,26 +569,26 @@
         }
       }
     },
-    "com.gcp.servicedirectory_v1#GetProjectsLocationsNamespacesRequest": {
+    "com.gcp.servicedirectory_v1#GetProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The name of the namespace to retrieve.",
+            "smithy.api#documentation": "Resource name for the location.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.servicedirectory_v1#GetProjectsLocationsNamespaces": {
+    "com.gcp.servicedirectory_v1#GetProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.servicedirectory_v1#GetProjectsLocationsNamespacesRequest"
+        "target": "com.gcp.servicedirectory_v1#GetProjectsLocationsRequest"
       },
       "output": {
-        "target": "com.gcp.servicedirectory_v1#Namespace"
+        "target": "com.gcp.servicedirectory_v1#Location"
       },
       "errors": [
         {
@@ -639,25 +603,25 @@
           "method": "GET",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Gets a namespace."
+        "smithy.api#documentation": "Gets information about a location."
       }
     },
     "com.gcp.servicedirectory_v1#PatchProjectsLocationsNamespacesRequest": {
       "type": "structure",
       "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. List of fields to be updated in this request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. List of fields to be updated in this request.",
-            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -725,19 +689,19 @@
         "smithy.api#documentation": "Updates a namespace."
       }
     },
-    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesRequest": {
+    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesRequest": {
       "type": "structure",
       "members": {
         "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.servicedirectory_v1#GetIamPolicyRequest",
+          "target": "com.gcp.servicedirectory_v1#SetIamPolicyRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -745,10 +709,10 @@
         }
       }
     },
-    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespaces": {
+    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesRequest"
+        "target": "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesRequest"
       },
       "output": {
         "target": "com.gcp.servicedirectory_v1#Policy"
@@ -770,59 +734,31 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+resource}:getIamPolicy"
+          "uri": "v1/{+resource}:setIamPolicy"
         },
-        "smithy.api#documentation": "Gets the IAM Policy for a resource (namespace or service only)."
+        "smithy.api#documentation": "Sets the IAM Policy for a resource (namespace or service only)."
       }
     },
-    "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespacesRequest": {
+    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of items to return.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "orderBy": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the project and location whose namespaces you'd like to list.",
+            "smithy.api#documentation": "Required. The name of the namespace to delete.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `labels.` for map field * `` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `labels.owner` returns namespaces that have a label with the key `owner`, this is the same as `labels:owner` * `labels.owner=sd` returns namespaces that have key/value `owner=sd` * `name>projects/my-project/locations/us-east1/namespaces/namespace-c` returns namespaces that have name that is alphabetically later than the string, so \"namespace-e\" is returned but \"namespace-a\" is not * `labels.owner!=sd AND labels.foo=bar` returns namespaces that have `owner` in label key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that namespace doesn't have a field called \"doesnotexist\". Since the filter does not match any namespaces, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespaces": {
+    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespacesRequest"
+        "target": "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesRequest"
       },
       "output": {
-        "target": "com.gcp.servicedirectory_v1#ListNamespacesResponse"
+        "target": "com.gcp.servicedirectory_v1#Empty"
       },
       "errors": [
         {
@@ -830,18 +766,20 @@
         },
         {
           "target": "com.gcp.servicedirectory_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/namespaces"
+          "method": "DELETE",
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Lists all namespaces.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Deletes a namespace. This also deletes all services and endpoints in the namespace."
       }
     },
     "com.gcp.servicedirectory_v1#TestIamPermissionsProjectsLocationsNamespacesRequest": {
@@ -894,65 +832,22 @@
         "smithy.api#documentation": "Tests IAM permissions for a resource (namespace or service only)."
       }
     },
-    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the namespace to delete.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespaces": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a namespace. This also deletes all services and endpoints in the namespace."
-      }
-    },
     "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesRequest": {
       "type": "structure",
       "members": {
+        "namespaceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+            "smithy.api#httpQuery": "namespaceId"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The resource name of the project and location the namespace will be created in.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "namespaceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
-            "smithy.api#httpQuery": "namespaceId"
           }
         },
         "body": {
@@ -994,19 +889,125 @@
         "smithy.api#documentation": "Creates a namespace, and returns the new namespace."
       }
     },
-    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesRequest": {
+    "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the project and location whose namespaces you'd like to list.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `labels.` for map field * `` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `labels.owner` returns namespaces that have a label with the key `owner`, this is the same as `labels:owner` * `labels.owner=sd` returns namespaces that have key/value `owner=sd` * `name>projects/my-project/locations/us-east1/namespaces/namespace-c` returns namespaces that have name that is alphabetically later than the string, so \"namespace-e\" is returned but \"namespace-a\" is not * `labels.owner!=sd AND labels.foo=bar` returns namespaces that have `owner` in label key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that namespace doesn't have a field called \"doesnotexist\". Since the filter does not match any namespaces, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespacesRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#ListNamespacesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/namespaces"
+        },
+        "smithy.api#documentation": "Lists all namespaces.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#GetProjectsLocationsNamespacesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the namespace to retrieve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#GetProjectsLocationsNamespaces": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#GetProjectsLocationsNamespacesRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#Namespace"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a namespace."
+      }
+    },
+    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesRequest": {
       "type": "structure",
       "members": {
         "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.servicedirectory_v1#SetIamPolicyRequest",
+          "target": "com.gcp.servicedirectory_v1#GetIamPolicyRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1014,10 +1015,10 @@
         }
       }
     },
-    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespaces": {
+    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesRequest"
+        "target": "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesRequest"
       },
       "output": {
         "target": "com.gcp.servicedirectory_v1#Policy"
@@ -1039,24 +1040,24 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+resource}:setIamPolicy"
+          "uri": "v1/{+resource}:getIamPolicy"
         },
-        "smithy.api#documentation": "Sets the IAM Policy for a resource (namespace or service only)."
+        "smithy.api#documentation": "Gets the IAM Policy for a resource (namespace or service only)."
       }
     },
-    "com.gcp.servicedirectory_v1#ResolveProjectsLocationsNamespacesServicesRequest": {
+    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesServicesRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The name of the service to resolve.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.servicedirectory_v1#ResolveServiceRequest",
+          "target": "com.gcp.servicedirectory_v1#GetIamPolicyRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1064,13 +1065,13 @@
         }
       }
     },
-    "com.gcp.servicedirectory_v1#ResolveProjectsLocationsNamespacesServices": {
+    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesServices": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.servicedirectory_v1#ResolveProjectsLocationsNamespacesServicesRequest"
+        "target": "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesServicesRequest"
       },
       "output": {
-        "target": "com.gcp.servicedirectory_v1#ResolveServiceResponse"
+        "target": "com.gcp.servicedirectory_v1#Policy"
       },
       "errors": [
         {
@@ -1089,9 +1090,66 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+name}:resolve"
+          "uri": "v1/{+resource}:getIamPolicy"
         },
-        "smithy.api#documentation": "Returns a service and its associated endpoints. Resolving a service is not considered an active developer method."
+        "smithy.api#documentation": "Gets the IAM Policy for a resource (namespace or service only)."
+      }
+    },
+    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the namespace this service will belong to.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "serviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+            "smithy.api#httpQuery": "serviceId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.servicedirectory_v1#Service",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#Service"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/services"
+        },
+        "smithy.api#documentation": "Creates a service, and returns the new service."
       }
     },
     "com.gcp.servicedirectory_v1#GetProjectsLocationsNamespacesServicesRequest": {
@@ -1188,6 +1246,156 @@
         "smithy.api#documentation": "Updates a service."
       }
     },
+    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesServicesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.servicedirectory_v1#SetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the IAM Policy for a resource (namespace or service only)."
+      }
+    },
+    "com.gcp.servicedirectory_v1#TestIamPermissionsProjectsLocationsNamespacesServicesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.servicedirectory_v1#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#TestIamPermissionsProjectsLocationsNamespacesServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#TestIamPermissionsProjectsLocationsNamespacesServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#TestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Tests IAM permissions for a resource (namespace or service only)."
+      }
+    },
+    "com.gcp.servicedirectory_v1#ResolveProjectsLocationsNamespacesServicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the service to resolve.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.servicedirectory_v1#ResolveServiceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#ResolveProjectsLocationsNamespacesServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#ResolveProjectsLocationsNamespacesServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#ResolveServiceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:resolve"
+        },
+        "smithy.api#documentation": "Returns a service and its associated endpoints. Resolving a service is not considered an active developer method."
+      }
+    },
     "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespacesServicesRequest": {
       "type": "structure",
       "members": {
@@ -1199,11 +1407,11 @@
             "smithy.api#required": {}
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
+        "pageSize": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Optional. The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "filter": {
@@ -1220,11 +1428,11 @@
             "smithy.api#httpQuery": "orderBy"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of items to return.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -1300,26 +1508,126 @@
         "smithy.api#documentation": "Deletes a service. This also deletes all endpoints associated with the service."
       }
     },
-    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesRequest": {
+    "com.gcp.servicedirectory_v1#PatchProjectsLocationsNamespacesServicesEndpointsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. List of fields to be updated in this request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.servicedirectory_v1#Endpoint",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#PatchProjectsLocationsNamespacesServicesEndpoints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#PatchProjectsLocationsNamespacesServicesEndpointsRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#Endpoint"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an endpoint."
+      }
+    },
+    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesServicesEndpointsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the endpoint to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesServicesEndpoints": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesServicesEndpointsRequest"
+      },
+      "output": {
+        "target": "com.gcp.servicedirectory_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.servicedirectory_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.servicedirectory_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an endpoint."
+      }
+    },
+    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesEndpointsRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The resource name of the namespace this service will belong to.",
+            "smithy.api#documentation": "Required. The resource name of the service that this endpoint provides.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "serviceId": {
+        "endpointId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
-            "smithy.api#httpQuery": "serviceId"
+            "smithy.api#httpQuery": "endpointId"
           }
         },
         "body": {
-          "target": "com.gcp.servicedirectory_v1#Service",
+          "target": "com.gcp.servicedirectory_v1#Endpoint",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1327,13 +1635,13 @@
         }
       }
     },
-    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServices": {
+    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesRequest"
+        "target": "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesEndpointsRequest"
       },
       "output": {
-        "target": "com.gcp.servicedirectory_v1#Service"
+        "target": "com.gcp.servicedirectory_v1#Endpoint"
       },
       "errors": [
         {
@@ -1352,159 +1660,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+parent}/services"
+          "uri": "v1/{+parent}/endpoints"
         },
-        "smithy.api#documentation": "Creates a service, and returns the new service."
-      }
-    },
-    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesServicesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.servicedirectory_v1#SetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#SetIamPolicyProjectsLocationsNamespacesServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+resource}:setIamPolicy"
-        },
-        "smithy.api#documentation": "Sets the IAM Policy for a resource (namespace or service only)."
-      }
-    },
-    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesServicesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.servicedirectory_v1#GetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#GetIamPolicyProjectsLocationsNamespacesServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+resource}:getIamPolicy"
-        },
-        "smithy.api#documentation": "Gets the IAM Policy for a resource (namespace or service only)."
-      }
-    },
-    "com.gcp.servicedirectory_v1#TestIamPermissionsProjectsLocationsNamespacesServicesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.servicedirectory_v1#TestIamPermissionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.servicedirectory_v1#TestIamPermissionsProjectsLocationsNamespacesServices": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#TestIamPermissionsProjectsLocationsNamespacesServicesRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#TestIamPermissionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+resource}:testIamPermissions"
-        },
-        "smithy.api#documentation": "Tests IAM permissions for a resource (namespace or service only)."
+        "smithy.api#documentation": "Creates an endpoint, and returns the new endpoint."
       }
     },
     "com.gcp.servicedirectory_v1#ListProjectsLocationsNamespacesServicesEndpointsRequest": {
@@ -1518,11 +1676,11 @@
             "smithy.api#required": {}
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
+        "pageSize": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Optional. The maximum number of items to return.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "filter": {
@@ -1539,11 +1697,11 @@
             "smithy.api#httpQuery": "orderBy"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of items to return.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "Optional. The next_page_token value returned from a previous List request, if any.",
+            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -1611,163 +1769,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Gets an endpoint."
-      }
-    },
-    "com.gcp.servicedirectory_v1#PatchProjectsLocationsNamespacesServicesEndpointsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. List of fields to be updated in this request.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.servicedirectory_v1#Endpoint",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.servicedirectory_v1#PatchProjectsLocationsNamespacesServicesEndpoints": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#PatchProjectsLocationsNamespacesServicesEndpointsRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#Endpoint"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates an endpoint."
-      }
-    },
-    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesEndpointsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the service that this endpoint provides.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "endpointId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
-            "smithy.api#httpQuery": "endpointId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.servicedirectory_v1#Endpoint",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesEndpoints": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#CreateProjectsLocationsNamespacesServicesEndpointsRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#Endpoint"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/endpoints"
-        },
-        "smithy.api#documentation": "Creates an endpoint, and returns the new endpoint."
-      }
-    },
-    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesServicesEndpointsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the endpoint to delete.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesServicesEndpoints": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.servicedirectory_v1#DeleteProjectsLocationsNamespacesServicesEndpointsRequest"
-      },
-      "output": {
-        "target": "com.gcp.servicedirectory_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.servicedirectory_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.servicedirectory_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes an endpoint."
       }
     }
   }

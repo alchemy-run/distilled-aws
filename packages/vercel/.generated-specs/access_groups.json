@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.access_groups#ReadAccessGroupRequest": {
@@ -71,6 +72,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "AiGatewaySettings"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSMANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsManager"
+          }
+        },
+        "AIGATEWAYTRANSCRIPTSVIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AiGatewayTranscriptsViewer"
           }
         },
         "CONNECTORMANAGER": {
@@ -2091,37 +2104,37 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.access_groups#ReadAccessGroup"
-        },
-        {
-          "target": "com.vercel.access_groups#UpdateAccessGroup"
-        },
-        {
-          "target": "com.vercel.access_groups#DeleteAccessGroup"
-        },
-        {
-          "target": "com.vercel.access_groups#ListAccessGroupMembers"
-        },
-        {
-          "target": "com.vercel.access_groups#ListAccessGroups"
-        },
-        {
           "target": "com.vercel.access_groups#CreateAccessGroup"
-        },
-        {
-          "target": "com.vercel.access_groups#ListAccessGroupProjects"
         },
         {
           "target": "com.vercel.access_groups#CreateAccessGroupProject"
         },
         {
-          "target": "com.vercel.access_groups#ReadAccessGroupProject"
-        },
-        {
-          "target": "com.vercel.access_groups#UpdateAccessGroupProject"
+          "target": "com.vercel.access_groups#DeleteAccessGroup"
         },
         {
           "target": "com.vercel.access_groups#DeleteAccessGroupProject"
+        },
+        {
+          "target": "com.vercel.access_groups#ListAccessGroupMembers"
+        },
+        {
+          "target": "com.vercel.access_groups#ListAccessGroupProjects"
+        },
+        {
+          "target": "com.vercel.access_groups#ListAccessGroups"
+        },
+        {
+          "target": "com.vercel.access_groups#ReadAccessGroup"
+        },
+        {
+          "target": "com.vercel.access_groups#ReadAccessGroupProject"
+        },
+        {
+          "target": "com.vercel.access_groups#UpdateAccessGroup"
+        },
+        {
+          "target": "com.vercel.access_groups#UpdateAccessGroupProject"
         }
       ],
       "traits": {

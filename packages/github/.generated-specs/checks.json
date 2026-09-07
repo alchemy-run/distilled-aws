@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.checks#CreateRequestStatus": {
@@ -1897,7 +1898,7 @@
         "smithy.api#documentation": "List check run annotations\n\nLists annotations for a check run using the annotation `id`.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint on a private repository."
       }
     },
-    "com.github.checks#RerequestRunRequest": {
+    "com.github.checks#RunRerequestRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1929,7 +1930,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.checks#RerequestRunResponse": {
+    "com.github.checks#RunRerequestResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1944,13 +1945,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.checks#RerequestRun": {
+    "com.github.checks#RunRerequest": {
       "type": "operation",
       "input": {
-        "target": "com.github.checks#RerequestRunRequest"
+        "target": "com.github.checks#RunRerequestRequest"
       },
       "output": {
-        "target": "com.github.checks#RerequestRunResponse"
+        "target": "com.github.checks#RunRerequestResponse"
       },
       "errors": [
         {
@@ -4012,37 +4013,37 @@
           "target": "com.github.checks#Create"
         },
         {
-          "target": "com.github.checks#Get"
-        },
-        {
-          "target": "com.github.checks#Update"
-        },
-        {
-          "target": "com.github.checks#ListAnnotations"
-        },
-        {
-          "target": "com.github.checks#RerequestRun"
-        },
-        {
           "target": "com.github.checks#CreateSuite"
         },
         {
-          "target": "com.github.checks#SetSuitesPreferences"
+          "target": "com.github.checks#Get"
         },
         {
           "target": "com.github.checks#GetSuite"
         },
         {
-          "target": "com.github.checks#ListForSuite"
-        },
-        {
-          "target": "com.github.checks#RerequestSuite"
+          "target": "com.github.checks#ListAnnotations"
         },
         {
           "target": "com.github.checks#ListForRef"
         },
         {
+          "target": "com.github.checks#ListForSuite"
+        },
+        {
           "target": "com.github.checks#ListSuitesForRef"
+        },
+        {
+          "target": "com.github.checks#RerequestSuite"
+        },
+        {
+          "target": "com.github.checks#RunRerequest"
+        },
+        {
+          "target": "com.github.checks#SetSuitesPreferences"
+        },
+        {
+          "target": "com.github.checks#Update"
         }
       ],
       "traits": {

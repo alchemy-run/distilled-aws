@@ -11,29 +11,26 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface ListWarehouseModelPathsRequest {
+export interface GetWarehouseModelPathRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
+  /** A UUID string identifying this data warehouse model path. */
+  id: string;
 }
-export const ListWarehouseModelPathsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWarehouseModelPathRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_model_paths/",
+      uri: "/api/projects/{project_id}/warehouse_model_paths/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListWarehouseModelPathsRequest",
-}) as any as S.Schema<ListWarehouseModelPathsRequest>;
+  identifier: "GetWarehouseModelPathRequest",
+}) as any as S.Schema<GetWarehouseModelPathRequest>;
 
 export type DataWarehouseModelPathPathList = Array<string>;
 export const DataWarehouseModelPathPathList = /*@__PURE__*/ S.Array(
@@ -116,6 +113,30 @@ export const DataWarehouseModelPath = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataWarehouseModelPath",
 }) as any as S.Schema<DataWarehouseModelPath>;
 
+export interface ListWarehouseModelPathsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListWarehouseModelPathsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_model_paths/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListWarehouseModelPathsRequest",
+}) as any as S.Schema<ListWarehouseModelPathsRequest>;
+
 export type PaginatedDataWarehouseModelPathListResultsList =
   Array<DataWarehouseModelPath>;
 export const PaginatedDataWarehouseModelPathListResultsList =
@@ -140,26 +161,19 @@ export const PaginatedDataWarehouseModelPathList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDataWarehouseModelPathList",
 }) as any as S.Schema<PaginatedDataWarehouseModelPathList>;
 
-export interface WarehouseModelPathsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse model path. */
-  id: string;
-}
-export const WarehouseModelPathsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_model_paths/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseModelPathsRetrieveRequest",
-}) as any as S.Schema<WarehouseModelPathsRetrieveRequest>;
+export type GetWarehouseModelPathError = PosthogOpError;
+export const getWarehouseModelPath: API.OperationMethod<
+  GetWarehouseModelPathRequest,
+  DataWarehouseModelPath,
+  GetWarehouseModelPathError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseModelPathRequest,
+  output: DataWarehouseModelPath,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListWarehouseModelPathsError = PosthogOpError;
 export const listWarehouseModelPaths: API.OperationMethod<
@@ -170,20 +184,6 @@ export const listWarehouseModelPaths: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWarehouseModelPathsRequest,
   output: PaginatedDataWarehouseModelPathList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseModelPathsRetrieveError = PosthogOpError;
-export const warehouseModelPathsRetrieve: API.OperationMethod<
-  WarehouseModelPathsRetrieveRequest,
-  DataWarehouseModelPath,
-  WarehouseModelPathsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseModelPathsRetrieveRequest,
-  output: DataWarehouseModelPath,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

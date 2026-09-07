@@ -324,15 +324,15 @@ export const GetAppRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetAppRequest" }) as any as S.Schema<GetAppRequest>;
 
 /** The resource tags. */
-export type AppsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AppsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAppResponseTagsMap = { [key: string]: string | undefined };
+export const GetAppResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppsGetResponseTagsMap>;
+) as any as S.Schema<GetAppResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type AppsGetResponseIdentity = AppsCreateOrUpdateResponseIdentity;
-export const AppsGetResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+export type GetAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+export const GetAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
 
 export interface GetAppResponse {
   /** The ARM resource identifier. */
@@ -344,7 +344,7 @@ export interface GetAppResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: AppsGetResponseTagsMap;
+  tags?: GetAppResponseTagsMap;
   /** The common properties of an IoT Central application. */
   properties?: AppProperties;
   /** A valid instance SKU. */
@@ -358,7 +358,7 @@ export const GetAppResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(AppsGetResponseTagsMap),
+    tags: S.optional(GetAppResponseTagsMap),
     properties: S.optional(AppProperties),
     sku: AppSkuInfo,
     identity: S.optional(AppsCreateOrUpdateResponseIdentity),
@@ -643,15 +643,15 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationListResult>;
 
 /** Instance tags */
-export type AppsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const AppsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAppRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAppRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAppRequestTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type AppsUpdateRequestIdentity = AppsCreateOrUpdateRequestIdentity;
-export const AppsUpdateRequestIdentity = AppsCreateOrUpdateRequestIdentity;
+export type UpdateAppRequestIdentity = AppsCreateOrUpdateRequestIdentity;
+export const UpdateAppRequestIdentity = AppsCreateOrUpdateRequestIdentity;
 
 export interface UpdateAppRequest {
   /** The subscription identifier. */
@@ -661,7 +661,7 @@ export interface UpdateAppRequest {
   /** The ARM resource name of the IoT Central application. */
   resourceName: string;
   /** Instance tags */
-  tags?: AppsUpdateRequestTagsMap;
+  tags?: UpdateAppRequestTagsMap;
   /** A valid instance SKU. */
   sku?: AppSkuInfo;
   /** The common properties of an IoT Central application. */
@@ -674,7 +674,7 @@ export const UpdateAppRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(AppsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAppRequestTagsMap),
     sku: S.optional(AppSkuInfo),
     properties: S.optional(AppPropertiesInput),
     identity: S.optional(AppsCreateOrUpdateRequestIdentity),
@@ -691,15 +691,15 @@ export const UpdateAppRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAppRequest>;
 
 /** The resource tags. */
-export type AppsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const AppsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAppResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateAppResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AppsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAppResponseTagsMap>;
 
 /** Managed service identity (either system assigned, or none) */
-export type AppsUpdateResponseIdentity = AppsCreateOrUpdateResponseIdentity;
-export const AppsUpdateResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+export type UpdateAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
+export const UpdateAppResponseIdentity = AppsCreateOrUpdateResponseIdentity;
 
 export interface UpdateAppResponse {
   /** The ARM resource identifier. */
@@ -711,7 +711,7 @@ export interface UpdateAppResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: AppsUpdateResponseTagsMap;
+  tags?: UpdateAppResponseTagsMap;
   /** The common properties of an IoT Central application. */
   properties?: AppProperties;
   /** A valid instance SKU. */
@@ -725,7 +725,7 @@ export const UpdateAppResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(AppsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAppResponseTagsMap),
     properties: S.optional(AppProperties),
     sku: AppSkuInfo,
     identity: S.optional(AppsCreateOrUpdateResponseIdentity),

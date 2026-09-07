@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.google_tag_gateway#GoogleTagGateway": {
@@ -22,10 +23,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.google_tag_gateway#ConfigGet"
+          "target": "com.cloudflare.google_tag_gateway#GetConfig"
         },
         {
-          "target": "com.cloudflare.google_tag_gateway#ConfigUpdate"
+          "target": "com.cloudflare.google_tag_gateway#PutConfig"
         }
       ],
       "traits": {

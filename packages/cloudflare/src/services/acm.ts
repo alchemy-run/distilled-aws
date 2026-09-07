@@ -489,11 +489,11 @@ export const UpdateTotalTlResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateTotalTlResponse",
 }) as any as S.Schema<UpdateTotalTlResponse>;
 
-export type TotalTlsUpdateRequestCertificateAuthority =
+export type UpdateTotalTlsRequestCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const TotalTlsUpdateRequestCertificateAuthority = /*@__PURE__*/ S.String;
+export const UpdateTotalTlsRequestCertificateAuthority = /*@__PURE__*/ S.String;
 
 export interface UpdateTotalTlsRequest {
   /** Identifier. */
@@ -502,7 +502,7 @@ export interface UpdateTotalTlsRequest {
   enabled: boolean;
   /** The Certificate Authority that Total TLS certificates will be issued through. */
   certificateAuthority?:
-    | TotalTlsUpdateRequestCertificateAuthority
+    | UpdateTotalTlsRequestCertificateAuthority
     | (string & {});
 }
 export const UpdateTotalTlsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -510,7 +510,7 @@ export const UpdateTotalTlsRequest = /*@__PURE__*/ S.suspend(() =>
     zoneId: S.String.pipe(T.Label("zone_id")),
     enabled: S.Boolean,
     certificateAuthority: S.optional(
-      TotalTlsUpdateRequestCertificateAuthority.pipe(
+      UpdateTotalTlsRequestCertificateAuthority.pipe(
         T.Body("certificate_authority"),
       ),
     ),
@@ -527,35 +527,35 @@ export const UpdateTotalTlsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateTotalTlsRequest",
 }) as any as S.Schema<UpdateTotalTlsRequest>;
 
-export type TotalTlsUpdateResponseCertificateAuthority =
+export type UpdateTotalTlsResponseCertificateAuthority =
   | "google"
   | "lets_encrypt"
   | "ssl_com";
-export const TotalTlsUpdateResponseCertificateAuthority =
+export const UpdateTotalTlsResponseCertificateAuthority =
   /*@__PURE__*/ S.String;
 
-export type TotalTlsUpdateResponseValidityPeriod = 90;
-export const TotalTlsUpdateResponseValidityPeriod = /*@__PURE__*/ S.Number;
+export type UpdateTotalTlsResponseValidityPeriod = 90;
+export const UpdateTotalTlsResponseValidityPeriod = /*@__PURE__*/ S.Number;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface UpdateTotalTlsResponse {
   /** The Certificate Authority that Total TLS certificates will be issued through. */
-  certificateAuthority?: TotalTlsUpdateResponseCertificateAuthority | null;
+  certificateAuthority?: UpdateTotalTlsResponseCertificateAuthority | null;
   /** If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone. */
   enabled?: boolean | null;
   /** The validity period in days for the certificates ordered via Total TLS. */
-  validityPeriod?: TotalTlsUpdateResponseValidityPeriod | null;
+  validityPeriod?: UpdateTotalTlsResponseValidityPeriod | null;
 }
 export const UpdateTotalTlsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     certificateAuthority: S.optional(
-      S.NullOr(TotalTlsUpdateResponseCertificateAuthority).pipe(
+      S.NullOr(UpdateTotalTlsResponseCertificateAuthority).pipe(
         T.Body("certificate_authority"),
       ),
     ),
     enabled: S.optional(S.NullOr(S.Boolean)),
     validityPeriod: S.optional(
-      S.NullOr(TotalTlsUpdateResponseValidityPeriod).pipe(
+      S.NullOr(UpdateTotalTlsResponseValidityPeriod).pipe(
         T.Body("validity_period"),
       ),
     ),

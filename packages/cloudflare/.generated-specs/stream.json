@@ -20,7 +20,8 @@
       "keyId": "key_id",
       "mediaId": "media_id",
       "shareLink": "share_link"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.stream#CreateRequestTusResumable": {
@@ -2888,133 +2889,133 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.stream#Create"
+          "target": "com.cloudflare.stream#CopyAudioTrack"
         },
         {
-          "target": "com.cloudflare.stream#Delete"
+          "target": "com.cloudflare.stream#CreateCaptionLanguage"
         },
         {
-          "target": "com.cloudflare.stream#Edit"
+          "target": "com.cloudflare.stream#CreateClip"
         },
         {
-          "target": "com.cloudflare.stream#Get"
+          "target": "com.cloudflare.stream#CreateCopy"
         },
         {
-          "target": "com.cloudflare.stream#List"
+          "target": "com.cloudflare.stream#CreateDirectUpload"
         },
         {
-          "target": "com.cloudflare.stream#AudioTracksCopy"
+          "target": "com.cloudflare.stream#CreateDownload"
         },
         {
-          "target": "com.cloudflare.stream#AudioTracksDelete"
+          "target": "com.cloudflare.stream#CreateKey"
         },
         {
-          "target": "com.cloudflare.stream#AudioTracksEdit"
+          "target": "com.cloudflare.stream#CreateLiveInput"
         },
         {
-          "target": "com.cloudflare.stream#AudioTracksGet"
+          "target": "com.cloudflare.stream#CreateLiveInputOutput"
         },
         {
-          "target": "com.cloudflare.stream#CaptionsGet"
+          "target": "com.cloudflare.stream#CreateStream"
         },
         {
-          "target": "com.cloudflare.stream#CaptionsLanguageCreate"
+          "target": "com.cloudflare.stream#CreateToken"
         },
         {
-          "target": "com.cloudflare.stream#CaptionsLanguageDelete"
+          "target": "com.cloudflare.stream#CreateWatermark"
         },
         {
-          "target": "com.cloudflare.stream#CaptionsLanguageGet"
+          "target": "com.cloudflare.stream#DeleteAudioTrack"
         },
         {
-          "target": "com.cloudflare.stream#CaptionsLanguageUpdate"
+          "target": "com.cloudflare.stream#DeleteCaptionLanguage"
         },
         {
-          "target": "com.cloudflare.stream#CaptionsLanguageVttGet"
+          "target": "com.cloudflare.stream#DeleteDownload"
         },
         {
-          "target": "com.cloudflare.stream#ClipCreate"
+          "target": "com.cloudflare.stream#DeleteKey"
         },
         {
-          "target": "com.cloudflare.stream#CopyCreate"
+          "target": "com.cloudflare.stream#DeleteLiveInput"
         },
         {
-          "target": "com.cloudflare.stream#DirectUploadCreate"
+          "target": "com.cloudflare.stream#DeleteLiveInputOutput"
         },
         {
-          "target": "com.cloudflare.stream#DownloadsCreate"
+          "target": "com.cloudflare.stream#DeleteStream"
         },
         {
-          "target": "com.cloudflare.stream#DownloadsDelete"
+          "target": "com.cloudflare.stream#DeleteWatermark"
         },
         {
-          "target": "com.cloudflare.stream#DownloadsGet"
+          "target": "com.cloudflare.stream#DeleteWebhook"
         },
         {
-          "target": "com.cloudflare.stream#EmbedGet"
+          "target": "com.cloudflare.stream#EditStream"
         },
         {
-          "target": "com.cloudflare.stream#KeysCreate"
+          "target": "com.cloudflare.stream#GetAudioTrack"
         },
         {
-          "target": "com.cloudflare.stream#KeysDelete"
+          "target": "com.cloudflare.stream#GetCaption"
         },
         {
-          "target": "com.cloudflare.stream#KeysGet"
+          "target": "com.cloudflare.stream#GetCaptionLanguage"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsCreate"
+          "target": "com.cloudflare.stream#GetCaptionLanguageVtt"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsDelete"
+          "target": "com.cloudflare.stream#GetDownload"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsGet"
+          "target": "com.cloudflare.stream#GetEmbed"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsList"
+          "target": "com.cloudflare.stream#GetKey"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsUpdate"
+          "target": "com.cloudflare.stream#GetLiveInput"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsOutputsCreate"
+          "target": "com.cloudflare.stream#GetStream"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsOutputsDelete"
+          "target": "com.cloudflare.stream#GetWatermark"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsOutputsList"
+          "target": "com.cloudflare.stream#GetWebhook"
         },
         {
-          "target": "com.cloudflare.stream#LiveInputsOutputsUpdate"
+          "target": "com.cloudflare.stream#ListLiveInputOutputs"
         },
         {
-          "target": "com.cloudflare.stream#TokenCreate"
+          "target": "com.cloudflare.stream#ListLiveInputs"
         },
         {
-          "target": "com.cloudflare.stream#VideosStorageUsage"
+          "target": "com.cloudflare.stream#ListStreams"
         },
         {
-          "target": "com.cloudflare.stream#WatermarksCreate"
+          "target": "com.cloudflare.stream#ListWatermarks"
         },
         {
-          "target": "com.cloudflare.stream#WatermarksDelete"
+          "target": "com.cloudflare.stream#PatchAudioTrack"
         },
         {
-          "target": "com.cloudflare.stream#WatermarksGet"
+          "target": "com.cloudflare.stream#PutWebhook"
         },
         {
-          "target": "com.cloudflare.stream#WatermarksList"
+          "target": "com.cloudflare.stream#StorageUsageVideo"
         },
         {
-          "target": "com.cloudflare.stream#WebhooksDelete"
+          "target": "com.cloudflare.stream#UpdateCaptionLanguage"
         },
         {
-          "target": "com.cloudflare.stream#WebhooksGet"
+          "target": "com.cloudflare.stream#UpdateLiveInput"
         },
         {
-          "target": "com.cloudflare.stream#WebhooksUpdate"
+          "target": "com.cloudflare.stream#UpdateLiveInputOutput"
         }
       ],
       "traits": {

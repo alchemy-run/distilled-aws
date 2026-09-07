@@ -12,13 +12,13 @@ import * as Retry from "../retry.ts";
 export type { PosthogOpError, PosthogOpContext };
 
 /** * `disabled` - Disabled * `dry_run` - Dry Run * `live` - Live */
-export type EventFilterConfigModeEnum = "disabled" | "dry_run" | "live";
-export const EventFilterConfigModeEnum = /*@__PURE__*/ S.String;
+export type EventFilterModeEnum = "disabled" | "dry_run" | "live";
+export const EventFilterModeEnum = /*@__PURE__*/ S.String;
 
 export interface CreateEventFilterRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  mode?: EventFilterConfigModeEnum | (string & {});
+  mode?: EventFilterModeEnum | (string & {});
   /** Boolean expression tree. Nodes: {"type": "and"|"or", "children": [...]}, {"type": "not", "child": {...}}, {"type": "condition", "field": "event_name"|"distinct_id", "operator": "exact"|"contains", "value": "<string>"} */
   filter_tree?: unknown;
   /** Test events to validate the filter. Each: {"event_name": "...", "distinct_id": "...", "expected_result": "drop"|"ingest"} */
@@ -27,7 +27,7 @@ export interface CreateEventFilterRequest {
 export const CreateEventFilterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    mode: S.optional(EventFilterConfigModeEnum),
+    mode: S.optional(EventFilterModeEnum),
     filter_tree: S.optional(S.Unknown),
     test_cases: S.optional(S.Unknown),
   }).pipe(
@@ -43,7 +43,7 @@ export const CreateEventFilterRequest = /*@__PURE__*/ S.suspend(() =>
 
 export interface EventFilterConfig {
   id?: string;
-  mode?: EventFilterConfigModeEnum;
+  mode?: EventFilterModeEnum;
   /** Boolean expression tree. Nodes: {"type": "and"|"or", "children": [...]}, {"type": "not", "child": {...}}, {"type": "condition", "field": "event_name"|"distinct_id", "operator": "exact"|"contains", "value": "<string>"} */
   filter_tree?: unknown;
   /** Test events to validate the filter. Each: {"event_name": "...", "distinct_id": "...", "expected_result": "drop"|"ingest"} */
@@ -54,7 +54,7 @@ export interface EventFilterConfig {
 export const EventFilterConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
-    mode: S.optional(EventFilterConfigModeEnum),
+    mode: S.optional(EventFilterModeEnum),
     filter_tree: S.optional(S.Unknown),
     test_cases: S.optional(S.Unknown),
     created_at: S.optional(S.String),
@@ -64,11 +64,29 @@ export const EventFilterConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "EventFilterConfig",
 }) as any as S.Schema<EventFilterConfig>;
 
-export interface EventFilterMetricsRetrieveRequest {
+export interface GetEventFilterRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const EventFilterMetricsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEventFilterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/event_filter/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEventFilterRequest",
+}) as any as S.Schema<GetEventFilterRequest>;
+
+export interface GetEventFilterMetricsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetEventFilterMetricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -79,8 +97,8 @@ export const EventFilterMetricsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EventFilterMetricsRetrieveRequest",
-}) as any as S.Schema<EventFilterMetricsRetrieveRequest>;
+  identifier: "GetEventFilterMetricsRequest",
+}) as any as S.Schema<GetEventFilterMetricsRequest>;
 
 export type AppMetricsResponseLabelsList = Array<string>;
 export const AppMetricsResponseLabelsList = /*@__PURE__*/ S.Array(
@@ -123,24 +141,23 @@ export const AppMetricsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppMetricsResponse",
 }) as any as S.Schema<AppMetricsResponse>;
 
-export interface EventFilterMetricsTotalsRetrieveRequest {
+export interface GetEventFilterMetricsTotalRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const EventFilterMetricsTotalsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/event_filter/metrics/totals/",
-        code: 200,
-      }),
-    ),
+export const GetEventFilterMetricsTotalRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/event_filter/metrics/totals/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "EventFilterMetricsTotalsRetrieveRequest",
-}) as any as S.Schema<EventFilterMetricsTotalsRetrieveRequest>;
+  identifier: "GetEventFilterMetricsTotalRequest",
+}) as any as S.Schema<GetEventFilterMetricsTotalRequest>;
 
 export type AppMetricsTotalsResponseTotalsMap = {
   [key: string]: number | undefined;
@@ -161,24 +178,6 @@ export const AppMetricsTotalsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppMetricsTotalsResponse",
 }) as any as S.Schema<AppMetricsTotalsResponse>;
 
-export interface EventFilterRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const EventFilterRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/event_filter/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "EventFilterRetrieveRequest",
-}) as any as S.Schema<EventFilterRetrieveRequest>;
-
 export type CreateEventFilterError = PosthogOpError;
 /** Create or update the event filter config. */
 export const createEventFilter: API.OperationMethod<
@@ -194,46 +193,46 @@ export const createEventFilter: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EventFilterMetricsRetrieveError = PosthogOpError;
-/** Single event filter per team. GET /event_filter/ — returns the config (or null if not yet created) POST /event_filter/ — creates or updates the config (upsert) GET /event_filter/metrics/ — time-series metrics GET /event_filter/metrics/totals/ — aggregate totals */
-export const eventFilterMetricsRetrieve: API.OperationMethod<
-  EventFilterMetricsRetrieveRequest,
-  AppMetricsResponse,
-  EventFilterMetricsRetrieveError,
+export type GetEventFilterError = PosthogOpError;
+/** Returns the event filter config for the team, or null if not yet created. */
+export const getEventFilter: API.OperationMethod<
+  GetEventFilterRequest,
+  EventFilterConfig,
+  GetEventFilterError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventFilterMetricsRetrieveRequest,
+  input: GetEventFilterRequest,
+  output: EventFilterConfig,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEventFilterMetricsError = PosthogOpError;
+/** Single event filter per team. GET /event_filter/ — returns the config (or null if not yet created) POST /event_filter/ — creates or updates the config (upsert) GET /event_filter/metrics/ — time-series metrics GET /event_filter/metrics/totals/ — aggregate totals */
+export const getEventFilterMetrics: API.OperationMethod<
+  GetEventFilterMetricsRequest,
+  AppMetricsResponse,
+  GetEventFilterMetricsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEventFilterMetricsRequest,
   output: AppMetricsResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type EventFilterMetricsTotalsRetrieveError = PosthogOpError;
+export type GetEventFilterMetricsTotalError = PosthogOpError;
 /** Single event filter per team. GET /event_filter/ — returns the config (or null if not yet created) POST /event_filter/ — creates or updates the config (upsert) GET /event_filter/metrics/ — time-series metrics GET /event_filter/metrics/totals/ — aggregate totals */
-export const eventFilterMetricsTotalsRetrieve: API.OperationMethod<
-  EventFilterMetricsTotalsRetrieveRequest,
+export const getEventFilterMetricsTotal: API.OperationMethod<
+  GetEventFilterMetricsTotalRequest,
   AppMetricsTotalsResponse,
-  EventFilterMetricsTotalsRetrieveError,
+  GetEventFilterMetricsTotalError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventFilterMetricsTotalsRetrieveRequest,
+  input: GetEventFilterMetricsTotalRequest,
   output: AppMetricsTotalsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EventFilterRetrieveError = PosthogOpError;
-/** Returns the event filter config for the team, or null if not yet created. */
-export const eventFilterRetrieve: API.OperationMethod<
-  EventFilterRetrieveRequest,
-  EventFilterConfig,
-  EventFilterRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventFilterRetrieveRequest,
-  output: EventFilterConfig,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

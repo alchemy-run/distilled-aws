@@ -19,7 +19,8 @@
       "ipv4Cidrs": "ipv4_cidrs",
       "ipv6Cidrs": "ipv6_cidrs",
       "jdcloudCidrs": "jdcloud_cidrs"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ips#ListResultPublicIPIPsIpv4CidrsList": {
@@ -120,7 +121,7 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.ips#List"
+          "target": "com.cloudflare.ips#ListIps"
         }
       ],
       "traits": {

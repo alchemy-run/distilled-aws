@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.portal#DeleteDashboard": {
@@ -115,7 +116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.portal#DashboardsUpdateResponseTagsMap",
+          "target": "com.azure.portal#UpdateDashboardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -327,7 +328,7 @@
         "smithy.api#documentation": "The dashboard's part position."
       }
     },
-    "com.azure.portal#DashboardsUpdateResponseTagsMap": {
+    "com.azure.portal#UpdateDashboardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -481,7 +482,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.portal#DashboardsUpdateRequestTagsMap",
+          "target": "com.azure.portal#UpdateDashboardRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -491,7 +492,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.portal#DashboardsUpdateRequestTagsMap": {
+    "com.azure.portal#UpdateDashboardRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -753,7 +754,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.portal#DashboardsGetResponseTagsMap",
+          "target": "com.azure.portal#GetDashboardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -776,7 +777,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.portal#DashboardsGetResponseTagsMap": {
+    "com.azure.portal#GetDashboardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1014,7 +1015,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.portal#OperationsListResponseValueList",
+          "target": "com.azure.portal#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1030,7 +1031,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.portal#OperationsListResponseValueList": {
+    "com.azure.portal#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.portal#Operation"
@@ -1457,7 +1458,7 @@
         "smithy.api#documentation": "The tenant configuration resource definition."
       }
     },
-    "com.azure.portal#ListTenantConfigurationViolationsList": {
+    "com.azure.portal#ListListTenantConfigurationViolations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1537,16 +1538,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.portal#DeleteDashboard"
-        },
-        {
-          "target": "com.azure.portal#UpdateDashboard"
+          "target": "com.azure.portal#CreateTenantConfiguration"
         },
         {
           "target": "com.azure.portal#DashboardsCreateOrUpdate"
         },
         {
+          "target": "com.azure.portal#DeleteDashboard"
+        },
+        {
+          "target": "com.azure.portal#DeleteTenantConfiguration"
+        },
+        {
           "target": "com.azure.portal#GetDashboard"
+        },
+        {
+          "target": "com.azure.portal#GetTenantConfiguration"
         },
         {
           "target": "com.azure.portal#ListDashboardByResourceGroup"
@@ -1555,22 +1562,16 @@
           "target": "com.azure.portal#ListDashboardBySubscription"
         },
         {
+          "target": "com.azure.portal#ListListTenantConfigurationViolations"
+        },
+        {
           "target": "com.azure.portal#ListOperations"
-        },
-        {
-          "target": "com.azure.portal#DeleteTenantConfiguration"
-        },
-        {
-          "target": "com.azure.portal#CreateTenantConfiguration"
-        },
-        {
-          "target": "com.azure.portal#GetTenantConfiguration"
         },
         {
           "target": "com.azure.portal#ListTenantConfigurations"
         },
         {
-          "target": "com.azure.portal#ListTenantConfigurationViolationsList"
+          "target": "com.azure.portal#UpdateDashboard"
         }
       ],
       "traits": {

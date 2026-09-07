@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.isos#ListIsosRequestArchitecture": {
@@ -478,10 +479,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.isos#ListIsos"
+          "target": "com.hetzner.isos#GetIso"
         },
         {
-          "target": "com.hetzner.isos#GetIso"
+          "target": "com.hetzner.isos#ListIsos"
         }
       ],
       "traits": {

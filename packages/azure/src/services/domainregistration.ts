@@ -644,144 +644,6 @@ export const DomainsCreateOrUpdateOwnershipIdentifierResponse =
     identifier: "DomainsCreateOrUpdateOwnershipIdentifierResponse",
   }) as any as S.Schema<DomainsCreateOrUpdateOwnershipIdentifierResponse>;
 
-export interface DomainsGetControlCenterSsoRequestRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const DomainsGetControlCenterSsoRequestRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/generateSsoRequest",
-        code: 200,
-        apiVersion: "2024-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "DomainsGetControlCenterSsoRequestRequest",
-}) as any as S.Schema<DomainsGetControlCenterSsoRequestRequest>;
-
-/** Single sign-on request information for domain management. */
-export interface DomainControlCenterSsoRequest {
-  /** URL where the single sign-on request is to be made. */
-  url?: string;
-  /** Post parameter key. */
-  postParameterKey?: string;
-  /** Post parameter value. Client should use 'application/x-www-form-urlencoded' encoding for this value. */
-  postParameterValue?: string;
-}
-export const DomainControlCenterSsoRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    postParameterKey: S.optional(S.String),
-    postParameterValue: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainControlCenterSsoRequest",
-}) as any as S.Schema<DomainControlCenterSsoRequest>;
-
-export interface DomainsRenewRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the domain. */
-  domainName: string;
-}
-export const DomainsRenewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/renew",
-      code: 200,
-      apiVersion: "2024-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "DomainsRenewRequest",
-}) as any as S.Schema<DomainsRenewRequest>;
-
-export interface DomainsRenewResponse {}
-export const DomainsRenewResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DomainsRenewResponse",
-}) as any as S.Schema<DomainsRenewResponse>;
-
-export interface DomainsTransferOutRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the domain. */
-  domainName: string;
-}
-export const DomainsTransferOutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    domainName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/transferOut",
-      code: 200,
-      apiVersion: "2024-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "DomainsTransferOutRequest",
-}) as any as S.Schema<DomainsTransferOutRequest>;
-
-/** Resource tags. */
-export type DomainsTransferOutResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DomainsTransferOutResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DomainsTransferOutResponseTagsMap>;
-
-export interface DomainsTransferOutResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DomainsTransferOutResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Domain resource specific properties */
-  properties?: DomainProperties;
-  /** Kind of resource */
-  kind?: string;
-}
-export const DomainsTransferOutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DomainsTransferOutResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DomainProperties),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainsTransferOutResponse",
-}) as any as S.Schema<DomainsTransferOutResponse>;
-
 export interface GetDomainRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -808,11 +670,11 @@ export const GetDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDomainRequest>;
 
 /** Resource tags. */
-export type DomainsGetResponseTagsMap = { [key: string]: string | undefined };
-export const DomainsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDomainResponseTagsMap = { [key: string]: string | undefined };
+export const GetDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DomainsGetResponseTagsMap>;
+) as any as S.Schema<GetDomainResponseTagsMap>;
 
 export interface GetDomainResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -824,7 +686,7 @@ export interface GetDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DomainsGetResponseTagsMap;
+  tags?: GetDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Domain resource specific properties */
@@ -838,7 +700,7 @@ export const GetDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DomainsGetResponseTagsMap),
+    tags: S.optional(GetDomainResponseTagsMap),
     location: S.String,
     properties: S.optional(DomainProperties),
     kind: S.optional(S.String),
@@ -846,6 +708,45 @@ export const GetDomainResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetDomainResponse",
 }) as any as S.Schema<GetDomainResponse>;
+
+export interface GetDomainControlCenterSsoRequestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const GetDomainControlCenterSsoRequestRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/generateSsoRequest",
+        code: 200,
+        apiVersion: "2024-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetDomainControlCenterSsoRequestRequest",
+}) as any as S.Schema<GetDomainControlCenterSsoRequestRequest>;
+
+/** Single sign-on request information for domain management. */
+export interface DomainControlCenterSsoRequest {
+  /** URL where the single sign-on request is to be made. */
+  url?: string;
+  /** Post parameter key. */
+  postParameterKey?: string;
+  /** Post parameter value. Client should use 'application/x-www-form-urlencoded' encoding for this value. */
+  postParameterValue?: string;
+}
+export const DomainControlCenterSsoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    postParameterKey: S.optional(S.String),
+    postParameterValue: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainControlCenterSsoRequest",
+}) as any as S.Schema<DomainControlCenterSsoRequest>;
 
 export interface GetDomainOwnershipIdentifierRequest {
   /** The ID of the target subscription. */
@@ -1620,6 +1521,105 @@ export const TopLevelDomainCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "TopLevelDomainCollection",
 }) as any as S.Schema<TopLevelDomainCollection>;
 
+export interface RenewDomainRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the domain. */
+  domainName: string;
+}
+export const RenewDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/renew",
+      code: 200,
+      apiVersion: "2024-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "RenewDomainRequest",
+}) as any as S.Schema<RenewDomainRequest>;
+
+export interface RenewDomainResponse {}
+export const RenewDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RenewDomainResponse",
+}) as any as S.Schema<RenewDomainResponse>;
+
+export interface TransferDomainOutRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the domain. */
+  domainName: string;
+}
+export const TransferDomainOutRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    domainName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/transferOut",
+      code: 200,
+      apiVersion: "2024-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "TransferDomainOutRequest",
+}) as any as S.Schema<TransferDomainOutRequest>;
+
+/** Resource tags. */
+export type TransferDomainOutResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const TransferDomainOutResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TransferDomainOutResponseTagsMap>;
+
+export interface TransferDomainOutResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: TransferDomainOutResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Domain resource specific properties */
+  properties?: DomainProperties;
+  /** Kind of resource */
+  kind?: string;
+}
+export const TransferDomainOutResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(TransferDomainOutResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DomainProperties),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TransferDomainOutResponse",
+}) as any as S.Schema<TransferDomainOutResponse>;
+
 /** DomainPatchResource resource specific properties */
 export type DomainPatchResourcePropertiesInput = DomainPropertiesInput;
 export const DomainPatchResourcePropertiesInput = DomainPropertiesInput;
@@ -1656,13 +1656,11 @@ export const UpdateDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDomainRequest>;
 
 /** Resource tags. */
-export type DomainsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DomainsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateDomainResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DomainsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDomainResponseTagsMap>;
 
 export interface UpdateDomainResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1674,7 +1672,7 @@ export interface UpdateDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DomainsUpdateResponseTagsMap;
+  tags?: UpdateDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Domain resource specific properties */
@@ -1688,7 +1686,7 @@ export const UpdateDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DomainsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDomainResponseTagsMap),
     location: S.String,
     properties: S.optional(DomainProperties),
     kind: S.optional(S.String),
@@ -1835,51 +1833,6 @@ export const DomainsCreateOrUpdateOwnershipIdentifier: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DomainsGetControlCenterSsoRequestError = AzureOpError;
-/** Generate a single sign-on request for the domain management portal. Description for Generate a single sign-on request for the domain management portal. */
-export const DomainsGetControlCenterSsoRequest: API.OperationMethod<
-  DomainsGetControlCenterSsoRequestRequest,
-  DomainControlCenterSsoRequest,
-  DomainsGetControlCenterSsoRequestError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainsGetControlCenterSsoRequestRequest,
-  output: DomainControlCenterSsoRequest,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainsRenewError = AzureOpError;
-/** Renew a domain. Description for Renew a domain. */
-export const DomainsRenew: API.OperationMethod<
-  DomainsRenewRequest,
-  DomainsRenewResponse,
-  DomainsRenewError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainsRenewRequest,
-  output: DomainsRenewResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainsTransferOutError = AzureOpError;
-/** Transfer out domain to another registrar Transfer out domain to another registrar */
-export const DomainsTransferOut: API.OperationMethod<
-  DomainsTransferOutRequest,
-  DomainsTransferOutResponse,
-  DomainsTransferOutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainsTransferOutRequest,
-  output: DomainsTransferOutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetDomainError = AzureOpError;
 /** Get a domain. Description for Get a domain. */
 export const GetDomain: API.OperationMethod<
@@ -1890,6 +1843,21 @@ export const GetDomain: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetDomainRequest,
   output: GetDomainResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDomainControlCenterSsoRequestError = AzureOpError;
+/** Generate a single sign-on request for the domain management portal. Description for Generate a single sign-on request for the domain management portal. */
+export const GetDomainControlCenterSsoRequest: API.OperationMethod<
+  GetDomainControlCenterSsoRequestRequest,
+  DomainControlCenterSsoRequest,
+  GetDomainControlCenterSsoRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDomainControlCenterSsoRequestRequest,
+  output: DomainControlCenterSsoRequest,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2025,6 +1993,36 @@ export const ListTopLevelDomains: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTopLevelDomainsRequest,
   output: TopLevelDomainCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RenewDomainError = AzureOpError;
+/** Renew a domain. Description for Renew a domain. */
+export const RenewDomain: API.OperationMethod<
+  RenewDomainRequest,
+  RenewDomainResponse,
+  RenewDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RenewDomainRequest,
+  output: RenewDomainResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TransferDomainOutError = AzureOpError;
+/** Transfer out domain to another registrar Transfer out domain to another registrar */
+export const TransferDomainOut: API.OperationMethod<
+  TransferDomainOutRequest,
+  TransferDomainOutResponse,
+  TransferDomainOutError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TransferDomainOutRequest,
+  output: TransferDomainOutResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

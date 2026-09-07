@@ -4,7 +4,8 @@
     "service": "oauth2",
     "version": "v2",
     "title": "Google OAuth2 API",
-    "baseUrl": "https://www.googleapis.com/"
+    "baseUrl": "https://www.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.oauth2_v2#Tokeninfo": {

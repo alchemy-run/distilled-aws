@@ -39,6 +39,103 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+/** The role that this user should have in the team. */
+export type AddOrUpdateMembershipForUserInOrgRequestRole =
+  | "member"
+  | "maintainer";
+export const AddOrUpdateMembershipForUserInOrgRequestRole =
+  /*@__PURE__*/ S.String;
+
+export interface AddOrUpdateMembershipForUserInOrgRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The slug of the team name. */
+  team_slug: string;
+  /** The handle for the GitHub user account. */
+  username: string;
+  /** The role that this user should have in the team. */
+  role?: AddOrUpdateMembershipForUserInOrgRequestRole | (string & {});
+}
+export const AddOrUpdateMembershipForUserInOrgRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      team_slug: S.String.pipe(T.Label()),
+      username: S.String.pipe(T.Label()),
+      role: S.optional(AddOrUpdateMembershipForUserInOrgRequestRole),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/orgs/{org}/teams/{team_slug}/memberships/{username}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "AddOrUpdateMembershipForUserInOrgRequest",
+}) as any as S.Schema<AddOrUpdateMembershipForUserInOrgRequest>;
+
+/** The role of the user in the team. */
+export type TeamMembershipRole = "member" | "maintainer";
+export const TeamMembershipRole = /*@__PURE__*/ S.String;
+
+/** The state of the user's membership in the team. */
+export type TeamMembershipState = "active" | "pending";
+export const TeamMembershipState = /*@__PURE__*/ S.String;
+
+/** Team Membership */
+export interface TeamMembership {
+  url: string;
+  /** The role of the user in the team. */
+  role: TeamMembershipRole;
+  /** The state of the user's membership in the team. */
+  state: TeamMembershipState;
+}
+export const TeamMembership = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.String,
+    role: TeamMembershipRole,
+    state: TeamMembershipState,
+  }),
+).annotate({ identifier: "TeamMembership" }) as any as S.Schema<TeamMembership>;
+
+export interface AddOrUpdateRepoPermissionsInOrgRequest {
+  /** The organization name. The name is not case sensitive. */
+  org: string;
+  /** The slug of the team name. */
+  team_slug: string;
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The permission to grant the team on this repository. We accept the following permissions to be set: `pull`, `triage`, `push`, `maintain`, `admin` and you can also specify a custom repository role name, if the owning organization has defined any. If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository. */
+  permission?: string;
+}
+export const AddOrUpdateRepoPermissionsInOrgRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      org: S.String.pipe(T.Label()),
+      team_slug: S.String.pipe(T.Label()),
+      owner: S.String.pipe(T.Label()),
+      repo: S.String.pipe(T.Label()),
+      permission: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "AddOrUpdateRepoPermissionsInOrgRequest",
+}) as any as S.Schema<AddOrUpdateRepoPermissionsInOrgRequest>;
+
+export interface AddOrUpdateRepoPermissionsInOrgResponse {}
+export const AddOrUpdateRepoPermissionsInOrgResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "AddOrUpdateRepoPermissionsInOrgResponse",
+}) as any as S.Schema<AddOrUpdateRepoPermissionsInOrgResponse>;
+
 export interface CheckPermissionsForRepoInOrgRequest {
   /** The organization name. The name is not case sensitive. */
   org: string;
@@ -761,30 +858,6 @@ export const GetMembershipForUserInOrgRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetMembershipForUserInOrgRequest",
 }) as any as S.Schema<GetMembershipForUserInOrgRequest>;
-
-/** The role of the user in the team. */
-export type TeamMembershipRole = "member" | "maintainer";
-export const TeamMembershipRole = /*@__PURE__*/ S.String;
-
-/** The state of the user's membership in the team. */
-export type TeamMembershipState = "active" | "pending";
-export const TeamMembershipState = /*@__PURE__*/ S.String;
-
-/** Team Membership */
-export interface TeamMembership {
-  url: string;
-  /** The role of the user in the team. */
-  role: TeamMembershipRole;
-  /** The state of the user's membership in the team. */
-  state: TeamMembershipState;
-}
-export const TeamMembership = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.String,
-    role: TeamMembershipRole,
-    state: TeamMembershipState,
-  }),
-).annotate({ identifier: "TeamMembership" }) as any as S.Schema<TeamMembership>;
 
 export type ListRequestTeamType = "all" | "enterprise" | "organization";
 export const ListRequestTeamType = /*@__PURE__*/ S.String;
@@ -1844,78 +1917,38 @@ export const UpdateInOrgRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateInOrgRequest",
 }) as any as S.Schema<UpdateInOrgRequest>;
 
-/** The role that this user should have in the team. */
-export type AddOrUpdateMembershipForUserInOrgRequestRole =
-  | "member"
-  | "maintainer";
-export const AddOrUpdateMembershipForUserInOrgRequestRole =
-  /*@__PURE__*/ S.String;
+export type AddOrUpdateMembershipForUserInOrgError =
+  | Forbidden
+  | UnprocessableEntity
+  | GithubOpError;
+/** Add or update team membership for a user Adds an organization member to a team. An authenticated organization owner or team maintainer can add organization members to a team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)." An organization owner can add someone who is not part of the team's organization to a team. When an organization owner adds someone to a team who is not an organization member, this endpoint will send an invitation to the person via email. This newly-created membership will be in the "pending" state until the person accepts the invitation, at which point the membership will transition to the "active" state and the user will be added as a member of the team. If the user is already a member of the team, this endpoint will update the role of the team member's role. To update the membership of a team member, the authenticated user must be an organization owner or a team maintainer. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `PUT /organizations/{org_id}/team/{team_id}/memberships/{username}`. */
+export const addOrUpdateMembershipForUserInOrg: API.OperationMethod<
+  AddOrUpdateMembershipForUserInOrgRequest,
+  TeamMembership,
+  AddOrUpdateMembershipForUserInOrgError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddOrUpdateMembershipForUserInOrgRequest,
+  output: TeamMembership,
+  errors: [Forbidden, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface UpdateOrgAddOrMembershipForUserInRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The slug of the team name. */
-  team_slug: string;
-  /** The handle for the GitHub user account. */
-  username: string;
-  /** The role that this user should have in the team. */
-  role?: AddOrUpdateMembershipForUserInOrgRequestRole | (string & {});
-}
-export const UpdateOrgAddOrMembershipForUserInRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      team_slug: S.String.pipe(T.Label()),
-      username: S.String.pipe(T.Label()),
-      role: S.optional(AddOrUpdateMembershipForUserInOrgRequestRole),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/orgs/{org}/teams/{team_slug}/memberships/{username}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "UpdateOrgAddOrMembershipForUserInRequest",
-}) as any as S.Schema<UpdateOrgAddOrMembershipForUserInRequest>;
-
-export interface UpdateOrgAddOrRepoPermissionInRequest {
-  /** The organization name. The name is not case sensitive. */
-  org: string;
-  /** The slug of the team name. */
-  team_slug: string;
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The permission to grant the team on this repository. We accept the following permissions to be set: `pull`, `triage`, `push`, `maintain`, `admin` and you can also specify a custom repository role name, if the owning organization has defined any. If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository. */
-  permission?: string;
-}
-export const UpdateOrgAddOrRepoPermissionInRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      org: S.String.pipe(T.Label()),
-      team_slug: S.String.pipe(T.Label()),
-      owner: S.String.pipe(T.Label()),
-      repo: S.String.pipe(T.Label()),
-      permission: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "UpdateOrgAddOrRepoPermissionInRequest",
-}) as any as S.Schema<UpdateOrgAddOrRepoPermissionInRequest>;
-
-export interface UpdateOrgAddOrRepoPermissionInResponse {}
-export const UpdateOrgAddOrRepoPermissionInResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "UpdateOrgAddOrRepoPermissionInResponse",
-}) as any as S.Schema<UpdateOrgAddOrRepoPermissionInResponse>;
+export type AddOrUpdateRepoPermissionsInOrgError = GithubOpError;
+/** Add or update team repository permissions To add a repository to a team or update the team's permission on a repository, the authenticated user must have admin access to the repository, and must be able to see the team. The repository must be owned by the organization, or a direct fork of a repository owned by the organization. You will get a `422 Unprocessable Entity` status if you attempt to add a repository to a team that is not owned by the organization. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)." > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `PUT /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`. For more information about the permission levels, see "[Repository permission levels for an organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)". */
+export const addOrUpdateRepoPermissionsInOrg: API.OperationMethod<
+  AddOrUpdateRepoPermissionsInOrgRequest,
+  AddOrUpdateRepoPermissionsInOrgResponse,
+  AddOrUpdateRepoPermissionsInOrgError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddOrUpdateRepoPermissionsInOrgRequest,
+  output: AddOrUpdateRepoPermissionsInOrgResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CheckPermissionsForRepoInOrgError = NotFound | GithubOpError;
 /** Check team permissions for a repository Checks whether a team has `admin`, `push`, `maintain`, `triage`, or `pull` permission for a repository. Repositories inherited through a parent team will also be checked. You can also get information about the specified repository, including what permissions the team grants on it, by passing the following custom [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types/) via the `application/vnd.github.v3.repository+json` accept header. If a team doesn't have permission for the repository, you will receive a `404 Not Found` response status. If the repository is private, you must have at least `read` permission for that repository, and your token must have the `repo` or `admin:org` scope. Otherwise, you will receive a `404 Not Found` response status. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `GET /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`. */
@@ -2132,39 +2165,6 @@ export const updateInOrg: API.OperationMethod<
   input: UpdateInOrgRequest,
   output: TeamFull,
   errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateOrgAddOrMembershipForUserInError =
-  | Forbidden
-  | UnprocessableEntity
-  | GithubOpError;
-/** Add or update team membership for a user Adds an organization member to a team. An authenticated organization owner or team maintainer can add organization members to a team. Team synchronization is available for organizations using GitHub Enterprise Cloud. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. > [!NOTE] > When you have team synchronization set up for a team with your organization's identity provider (IdP), you will see an error if you attempt to use the API for making changes to the team's membership. If you have access to manage group membership in your IdP, you can manage GitHub team membership through your identity provider, which automatically adds and removes team members in an organization. For more information, see "[Synchronizing teams between your identity provider and GitHub](https://docs.github.com/articles/synchronizing-teams-between-your-identity-provider-and-github/)." An organization owner can add someone who is not part of the team's organization to a team. When an organization owner adds someone to a team who is not an organization member, this endpoint will send an invitation to the person via email. This newly-created membership will be in the "pending" state until the person accepts the invitation, at which point the membership will transition to the "active" state and the user will be added as a member of the team. If the user is already a member of the team, this endpoint will update the role of the team member's role. To update the membership of a team member, the authenticated user must be an organization owner or a team maintainer. > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `PUT /organizations/{org_id}/team/{team_id}/memberships/{username}`. */
-export const updateOrgAddOrMembershipForUserIn: API.OperationMethod<
-  UpdateOrgAddOrMembershipForUserInRequest,
-  TeamMembership,
-  UpdateOrgAddOrMembershipForUserInError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateOrgAddOrMembershipForUserInRequest,
-  output: TeamMembership,
-  errors: [Forbidden, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateOrgAddOrRepoPermissionInError = GithubOpError;
-/** Add or update team repository permissions To add a repository to a team or update the team's permission on a repository, the authenticated user must have admin access to the repository, and must be able to see the team. The repository must be owned by the organization, or a direct fork of a repository owned by the organization. You will get a `422 Unprocessable Entity` status if you attempt to add a repository to a team that is not owned by the organization. Note that, if you choose not to pass any parameters, you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)." > [!NOTE] > You can also specify a team by `org_id` and `team_id` using the route `PUT /organizations/{org_id}/team/{team_id}/repos/{owner}/{repo}`. For more information about the permission levels, see "[Repository permission levels for an organization](https://docs.github.com/github/setting-up-and-managing-organizations-and-teams/repository-permission-levels-for-an-organization#permission-levels-for-repositories-owned-by-an-organization)". */
-export const updateOrgAddOrRepoPermissionIn: API.OperationMethod<
-  UpdateOrgAddOrRepoPermissionInRequest,
-  UpdateOrgAddOrRepoPermissionInResponse,
-  UpdateOrgAddOrRepoPermissionInError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateOrgAddOrRepoPermissionInRequest,
-  output: UpdateOrgAddOrRepoPermissionInResponse,
-  errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));

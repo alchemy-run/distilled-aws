@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.redis#RedisRegenerateKey": {
+    "com.azure.redis#RegenerateRedisKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#RedisRegenerateKeyRequest"
+        "target": "com.azure.redis#RegenerateRedisKeyRequest"
       },
       "output": {
         "target": "com.azure.redis#RedisAccessKeys"
@@ -56,7 +57,7 @@
         "smithy.api#documentation": "Redis cache access keys."
       }
     },
-    "com.azure.redis#RedisRegenerateKeyRequest": {
+    "com.azure.redis#RegenerateRedisKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -445,13 +446,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#PrivateEndpointConnectionsPut": {
+    "com.azure.redis#PutPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#PrivateEndpointConnectionsPutRequest"
+        "target": "com.azure.redis#PutPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.redis#PrivateEndpointConnectionsPutResponse"
+        "target": "com.azure.redis#PutPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -464,7 +465,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.redis#PrivateEndpointConnectionsPutResponse": {
+    "com.azure.redis#PutPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -642,7 +643,7 @@
         "smithy.api#documentation": "The group ids for the private endpoint resource."
       }
     },
-    "com.azure.redis#PrivateEndpointConnectionsPutRequest": {
+    "com.azure.redis#PutPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -932,10 +933,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#PatchSchedulesDelete": {
+    "com.azure.redis#DeletePatchSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#PatchSchedulesDeleteRequest"
+        "target": "com.azure.redis#DeletePatchScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -951,7 +952,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.redis#PatchSchedulesDeleteRequest": {
+    "com.azure.redis#DeletePatchScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -979,7 +980,7 @@
           }
         },
         "default": {
-          "target": "com.azure.redis#PatchSchedulesDeleteRequestDefault",
+          "target": "com.azure.redis#DeletePatchScheduleRequestDefault",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -991,7 +992,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#PatchSchedulesDeleteRequestDefault": {
+    "com.azure.redis#DeletePatchScheduleRequestDefault": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -1240,13 +1241,13 @@
       },
       "traits": {}
     },
-    "com.azure.redis#PatchSchedulesGet": {
+    "com.azure.redis#GetPatchSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#PatchSchedulesGetRequest"
+        "target": "com.azure.redis#GetPatchScheduleRequest"
       },
       "output": {
-        "target": "com.azure.redis#PatchSchedulesGetResponse"
+        "target": "com.azure.redis#GetPatchScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1259,7 +1260,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.redis#PatchSchedulesGetResponse": {
+    "com.azure.redis#GetPatchScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1304,7 +1305,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.redis#PatchSchedulesGetRequest": {
+    "com.azure.redis#GetPatchScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1332,7 +1333,7 @@
           }
         },
         "default": {
-          "target": "com.azure.redis#PatchSchedulesGetRequestDefault",
+          "target": "com.azure.redis#GetPatchScheduleRequestDefault",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -1344,7 +1345,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#PatchSchedulesGetRequestDefault": {
+    "com.azure.redis#GetPatchScheduleRequestDefault": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -1356,10 +1357,10 @@
       },
       "traits": {}
     },
-    "com.azure.redis#PatchSchedulesListByRedisResource": {
+    "com.azure.redis#ListPatchScheduleByRedisResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#PatchSchedulesListByRedisResourceRequest"
+        "target": "com.azure.redis#ListPatchScheduleByRedisResourceRequest"
       },
       "output": {
         "target": "com.azure.redis#RedisPatchScheduleListResult"
@@ -1450,7 +1451,7 @@
         "smithy.api#documentation": "Response to put/get patch schedules for Redis cache."
       }
     },
-    "com.azure.redis#PatchSchedulesListByRedisResourceRequest": {
+    "com.azure.redis#ListPatchScheduleByRedisResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2135,10 +2136,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#RedisImportData": {
+    "com.azure.redis#ImportRedisData": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#RedisImportDataRequest"
+        "target": "com.azure.redis#ImportRedisDataRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2154,7 +2155,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.redis#RedisImportDataRequest": {
+    "com.azure.redis#ImportRedisDataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2188,7 +2189,7 @@
           }
         },
         "files": {
-          "target": "com.azure.redis#RedisImportDataRequestFilesList",
+          "target": "com.azure.redis#ImportRedisDataRequestFilesList",
           "traits": {
             "smithy.api#documentation": "files to import.",
             "smithy.api#required": {}
@@ -2213,7 +2214,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#RedisImportDataRequestFilesList": {
+    "com.azure.redis#ImportRedisDataRequestFilesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2222,13 +2223,13 @@
         "smithy.api#documentation": "files to import."
       }
     },
-    "com.azure.redis#RedisForceReboot": {
+    "com.azure.redis#RebootRedisForce": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#RedisForceRebootRequest"
+        "target": "com.azure.redis#RebootRedisForceRequest"
       },
       "output": {
-        "target": "com.azure.redis#RedisForceRebootResponse"
+        "target": "com.azure.redis#RebootRedisForceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2241,7 +2242,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.redis#RedisForceRebootResponse": {
+    "com.azure.redis#RebootRedisForceResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -2255,7 +2256,7 @@
         "smithy.api#documentation": "Response to force reboot for Redis cache."
       }
     },
-    "com.azure.redis#RedisForceRebootRequest": {
+    "com.azure.redis#RebootRedisForceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2295,7 +2296,7 @@
           }
         },
         "ports": {
-          "target": "com.azure.redis#RedisForceRebootRequestPortsList",
+          "target": "com.azure.redis#RebootRedisForceRequestPortsList",
           "traits": {
             "smithy.api#documentation": "A list of redis instances to reboot, specified by per-instance SSL ports or non-SSL ports."
           }
@@ -2305,7 +2306,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#RedisForceRebootRequestPortsList": {
+    "com.azure.redis#RebootRedisForceRequestPortsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -2340,13 +2341,13 @@
         "smithy.api#documentation": "Which Redis node(s) to reboot. Depending on this value data loss is possible."
       }
     },
-    "com.azure.redis#RedisFlushCache": {
+    "com.azure.redis#FlushRedisCache": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#RedisFlushCacheRequest"
+        "target": "com.azure.redis#FlushRedisCacheRequest"
       },
       "output": {
-        "target": "com.azure.redis#RedisFlushCacheResponse"
+        "target": "com.azure.redis#FlushRedisCacheResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2359,7 +2360,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.redis#RedisFlushCacheResponse": {
+    "com.azure.redis#FlushRedisCacheResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2400,7 +2401,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.redis#RedisFlushCacheResponseOperationsList",
+          "target": "com.azure.redis#FlushRedisCacheResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2492,7 +2493,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.redis#RedisFlushCacheResponseOperationsList": {
+    "com.azure.redis#FlushRedisCacheResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.redis#OperationStatusResult"
@@ -2567,7 +2568,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.redis#RedisFlushCacheRequest": {
+    "com.azure.redis#FlushRedisCacheRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3003,10 +3004,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#RedisExportData": {
+    "com.azure.redis#ExportRedisData": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redis#RedisExportDataRequest"
+        "target": "com.azure.redis#ExportRedisDataRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3022,7 +3023,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.redis#RedisExportDataRequest": {
+    "com.azure.redis#ExportRedisDataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4112,7 +4113,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.redis#RedisUpdateResponseTagsMap",
+          "target": "com.azure.redis#UpdateRedisResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4132,13 +4133,13 @@
           }
         },
         "zones": {
-          "target": "com.azure.redis#RedisUpdateResponseZonesList",
+          "target": "com.azure.redis#UpdateRedisResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
         },
         "identity": {
-          "target": "com.azure.redis#RedisUpdateResponseIdentity",
+          "target": "com.azure.redis#UpdateRedisResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4148,7 +4149,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.redis#RedisUpdateResponseIdentity": {
+    "com.azure.redis#UpdateRedisResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4241,7 +4242,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.redis#RedisUpdateResponseZonesList": {
+    "com.azure.redis#UpdateRedisResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4924,7 +4925,7 @@
         "smithy.api#documentation": "All Redis Settings. Few possible keys: rdb-backup-enabled,rdb-storage-connection-string,rdb-backup-frequency,maxmemory-delta, maxmemory-policy,notify-keyspace-events, aof-backup-enabled, aof-storage-connection-string-0, aof-storage-connection-string-1 etc."
       }
     },
-    "com.azure.redis#RedisUpdateResponseTagsMap": {
+    "com.azure.redis#UpdateRedisResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4970,13 +4971,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.redis#RedisUpdateRequestTagsMap",
+          "target": "com.azure.redis#UpdateRedisRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.redis#RedisUpdateRequestIdentity",
+          "target": "com.azure.redis#UpdateRedisRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4986,7 +4987,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#RedisUpdateRequestIdentity": {
+    "com.azure.redis#UpdateRedisRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5022,7 +5023,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.redis#RedisUpdateRequestTagsMap": {
+    "com.azure.redis#UpdateRedisRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5298,7 +5299,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.redis#RedisCreateResponseTagsMap",
+          "target": "com.azure.redis#CreateRedisResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5318,13 +5319,13 @@
           }
         },
         "zones": {
-          "target": "com.azure.redis#RedisCreateResponseZonesList",
+          "target": "com.azure.redis#CreateRedisResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
         },
         "identity": {
-          "target": "com.azure.redis#RedisCreateResponseIdentity",
+          "target": "com.azure.redis#CreateRedisResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5334,7 +5335,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.redis#RedisCreateResponseIdentity": {
+    "com.azure.redis#CreateRedisResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5363,7 +5364,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.redis#RedisCreateResponseZonesList": {
+    "com.azure.redis#CreateRedisResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5372,7 +5373,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.redis#RedisCreateResponseTagsMap": {
+    "com.azure.redis#CreateRedisResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5419,7 +5420,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.redis#RedisCreateRequestZonesList",
+          "target": "com.azure.redis#CreateRedisRequestZonesList",
           "traits": {
             "smithy.api#documentation": "A list of availability zones denoting where the resource needs to come from."
           }
@@ -5432,13 +5433,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.redis#RedisCreateRequestTagsMap",
+          "target": "com.azure.redis#CreateRedisRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.redis#RedisCreateRequestIdentity",
+          "target": "com.azure.redis#CreateRedisRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5448,7 +5449,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redis#RedisCreateRequestIdentity": {
+    "com.azure.redis#CreateRedisRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5465,7 +5466,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.redis#RedisCreateRequestTagsMap": {
+    "com.azure.redis#CreateRedisRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5477,7 +5478,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.redis#RedisCreateRequestZonesList": {
+    "com.azure.redis#CreateRedisRequestZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5644,7 +5645,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.redis#RedisGetResponseTagsMap",
+          "target": "com.azure.redis#GetRedisResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5664,13 +5665,13 @@
           }
         },
         "zones": {
-          "target": "com.azure.redis#RedisGetResponseZonesList",
+          "target": "com.azure.redis#GetRedisResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
         },
         "identity": {
-          "target": "com.azure.redis#RedisGetResponseIdentity",
+          "target": "com.azure.redis#GetRedisResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5680,7 +5681,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.redis#RedisGetResponseIdentity": {
+    "com.azure.redis#GetRedisResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5709,7 +5710,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.redis#RedisGetResponseZonesList": {
+    "com.azure.redis#GetRedisResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5718,7 +5719,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.redis#RedisGetResponseTagsMap": {
+    "com.azure.redis#GetRedisResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6044,7 +6045,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.redis#AsyncOperationStatusGetResponseOperationsList",
+          "target": "com.azure.redis#GetAsyncOperationStatusResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -6056,7 +6057,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.redis#AsyncOperationStatusGetResponsePropertiesMap",
+          "target": "com.azure.redis#GetAsyncOperationStatusResponsePropertiesMap",
           "traits": {
             "smithy.api#documentation": "Additional properties from RP, only when operation is successful"
           }
@@ -6066,7 +6067,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.redis#AsyncOperationStatusGetResponsePropertiesMap": {
+    "com.azure.redis#GetAsyncOperationStatusResponsePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6078,7 +6079,7 @@
         "smithy.api#documentation": "Additional properties from RP, only when operation is successful"
       }
     },
-    "com.azure.redis#AsyncOperationStatusGetResponseOperationsList": {
+    "com.azure.redis#GetAsyncOperationStatusResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.redis#OperationStatusResult"
@@ -6274,112 +6275,100 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.redis#RedisRegenerateKey"
-        },
-        {
-          "target": "com.azure.redis#ListPrivateLinkResourceByRedisCache"
-        },
-        {
-          "target": "com.azure.redis#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.redis#PrivateEndpointConnectionsPut"
-        },
-        {
-          "target": "com.azure.redis#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.redis#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.redis#PatchSchedulesDelete"
-        },
-        {
-          "target": "com.azure.redis#PatchSchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.redis#PatchSchedulesGet"
-        },
-        {
-          "target": "com.azure.redis#PatchSchedulesListByRedisResource"
-        },
-        {
-          "target": "com.azure.redis#ListRedisUpgradeNotifications"
-        },
-        {
-          "target": "com.azure.redis#ListRedisKeys"
-        },
-        {
-          "target": "com.azure.redis#DeleteLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#CreateLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#GetLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#ListLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#RedisImportData"
-        },
-        {
-          "target": "com.azure.redis#RedisForceReboot"
-        },
-        {
-          "target": "com.azure.redis#RedisFlushCache"
-        },
-        {
-          "target": "com.azure.redis#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.redis#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.redis#GetFirewallRule"
-        },
-        {
-          "target": "com.azure.redis#ListFirewallRules"
-        },
-        {
-          "target": "com.azure.redis#RedisExportData"
-        },
-        {
-          "target": "com.azure.redis#DeleteAccessPolicyAssignment"
-        },
-        {
           "target": "com.azure.redis#AccessPolicyAssignmentCreateUpdate"
-        },
-        {
-          "target": "com.azure.redis#GetAccessPolicyAssignment"
-        },
-        {
-          "target": "com.azure.redis#ListAccessPolicyAssignment"
-        },
-        {
-          "target": "com.azure.redis#DeleteAccessPolicy"
         },
         {
           "target": "com.azure.redis#AccessPolicyCreateUpdate"
         },
         {
-          "target": "com.azure.redis#GetAccessPolicy"
+          "target": "com.azure.redis#CheckRedisNameAvailability"
         },
         {
-          "target": "com.azure.redis#ListAccessPolicy"
-        },
-        {
-          "target": "com.azure.redis#DeleteRedis"
-        },
-        {
-          "target": "com.azure.redis#UpdateRedis"
+          "target": "com.azure.redis#CreateLinkedServer"
         },
         {
           "target": "com.azure.redis#CreateRedis"
         },
         {
+          "target": "com.azure.redis#DeleteAccessPolicy"
+        },
+        {
+          "target": "com.azure.redis#DeleteAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redis#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.redis#DeleteLinkedServer"
+        },
+        {
+          "target": "com.azure.redis#DeletePatchSchedule"
+        },
+        {
+          "target": "com.azure.redis#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.redis#DeleteRedis"
+        },
+        {
+          "target": "com.azure.redis#ExportRedisData"
+        },
+        {
+          "target": "com.azure.redis#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.redis#FlushRedisCache"
+        },
+        {
+          "target": "com.azure.redis#GetAccessPolicy"
+        },
+        {
+          "target": "com.azure.redis#GetAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redis#GetAsyncOperationStatus"
+        },
+        {
+          "target": "com.azure.redis#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.redis#GetLinkedServer"
+        },
+        {
+          "target": "com.azure.redis#GetPatchSchedule"
+        },
+        {
+          "target": "com.azure.redis#GetPrivateEndpointConnection"
+        },
+        {
           "target": "com.azure.redis#GetRedis"
+        },
+        {
+          "target": "com.azure.redis#ImportRedisData"
+        },
+        {
+          "target": "com.azure.redis#ListAccessPolicy"
+        },
+        {
+          "target": "com.azure.redis#ListAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redis#ListFirewallRules"
+        },
+        {
+          "target": "com.azure.redis#ListLinkedServer"
+        },
+        {
+          "target": "com.azure.redis#ListOperations"
+        },
+        {
+          "target": "com.azure.redis#ListPatchScheduleByRedisResource"
+        },
+        {
+          "target": "com.azure.redis#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.redis#ListPrivateLinkResourceByRedisCache"
         },
         {
           "target": "com.azure.redis#ListRedisByResourceGroup"
@@ -6388,13 +6377,25 @@
           "target": "com.azure.redis#ListRedisBySubscription"
         },
         {
-          "target": "com.azure.redis#GetAsyncOperationStatus"
+          "target": "com.azure.redis#ListRedisKeys"
         },
         {
-          "target": "com.azure.redis#CheckRedisNameAvailability"
+          "target": "com.azure.redis#ListRedisUpgradeNotifications"
         },
         {
-          "target": "com.azure.redis#ListOperations"
+          "target": "com.azure.redis#PatchSchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.redis#PutPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.redis#RebootRedisForce"
+        },
+        {
+          "target": "com.azure.redis#RegenerateRedisKey"
+        },
+        {
+          "target": "com.azure.redis#UpdateRedis"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.smart_shield#GetRequest": {
@@ -475,7 +476,7 @@
         "smithy.api#documentation": "Set Smart Shield Settings."
       }
     },
-    "com.cloudflare.smart_shield#CacheReserveClearClearRequest": {
+    "com.cloudflare.smart_shield#ClearCacheReserveClearRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -491,7 +492,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.smart_shield#CacheReserveClearClearResponseId": {
+    "com.cloudflare.smart_shield#ClearCacheReserveClearResponseId": {
       "type": "enum",
       "members": {
         "CACHE_RESERVE_CLEAR": {
@@ -502,7 +503,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#CacheReserveClearClearResponseState": {
+    "com.cloudflare.smart_shield#ClearCacheReserveClearResponseState": {
       "type": "enum",
       "members": {
         "IN_PROGRESS": {
@@ -519,11 +520,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#CacheReserveClearClearResponse": {
+    "com.cloudflare.smart_shield#ClearCacheReserveClearResponse": {
       "type": "structure",
       "members": {
         "id": {
-          "target": "com.cloudflare.smart_shield#CacheReserveClearClearResponseId",
+          "target": "com.cloudflare.smart_shield#ClearCacheReserveClearResponseId",
           "traits": {
             "smithy.api#documentation": "ID of the zone setting.",
             "smithy.api#required": {}
@@ -537,7 +538,7 @@
           }
         },
         "state": {
-          "target": "com.cloudflare.smart_shield#CacheReserveClearClearResponseState",
+          "target": "com.cloudflare.smart_shield#ClearCacheReserveClearResponseState",
           "traits": {
             "smithy.api#documentation": "The current state of the Cache Reserve Clear operation.",
             "smithy.api#required": {}
@@ -561,13 +562,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.smart_shield#CacheReserveClearClear": {
+    "com.cloudflare.smart_shield#ClearCacheReserveClear": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.smart_shield#CacheReserveClearClearRequest"
+        "target": "com.cloudflare.smart_shield#ClearCacheReserveClearRequest"
       },
       "output": {
-        "target": "com.cloudflare.smart_shield#CacheReserveClearClearResponse"
+        "target": "com.cloudflare.smart_shield#ClearCacheReserveClearResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -682,7 +683,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestCheckRegionsItem": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -771,34 +772,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestCheckRegionsList": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigMethod": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -815,7 +816,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfig": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -831,7 +832,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -843,13 +844,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -868,7 +869,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestTcpConfigMethod": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -879,11 +880,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateRequestTcpConfig": {
+    "com.cloudflare.smart_shield#CreateHealthCheckRequestTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -922,7 +923,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -946,7 +947,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestHttpConfig",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -970,7 +971,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateRequestTcpConfig",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckRequestTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -992,7 +993,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseCheckRegionsItem": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -1081,34 +1082,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseCheckRegionsList": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigMethod": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -1125,7 +1126,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfig": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -1141,7 +1142,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -1153,13 +1154,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -1178,7 +1179,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseStatus": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseStatus": {
       "type": "enum",
       "members": {
         "UNKNOWN": {
@@ -1207,7 +1208,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseTcpConfigMethod": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -1218,11 +1219,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksCreateResponseTcpConfig": {
+    "com.cloudflare.smart_shield#CreateHealthCheckResponseTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -1251,7 +1252,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -1284,7 +1285,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseHttpConfig",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -1311,7 +1312,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseStatus",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the origin server according to the health check."
           }
@@ -1323,7 +1324,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksCreateResponseTcpConfig",
+          "target": "com.cloudflare.smart_shield#CreateHealthCheckResponseTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -1420,7 +1421,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestCheckRegionsItem": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -1509,34 +1510,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestCheckRegionsList": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksEditRequestCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#EditHealthCheckRequestCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigMethod": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -1553,7 +1554,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfig": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -1569,7 +1570,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -1581,13 +1582,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -1606,7 +1607,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestTcpConfigMethod": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -1617,11 +1618,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequestTcpConfig": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequestTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditRequestTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckRequestTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -1634,7 +1635,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditRequest": {
+    "com.cloudflare.smart_shield#EditHealthCheckRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1668,7 +1669,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditRequestCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckRequestCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -1692,7 +1693,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditRequestHttpConfig",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckRequestHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -1716,7 +1717,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditRequestTcpConfig",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckRequestTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -1738,7 +1739,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseCheckRegionsItem": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -1827,34 +1828,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseCheckRegionsList": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksEditResponseCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#EditHealthCheckResponseCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigMethod": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -1871,7 +1872,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfig": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -1887,7 +1888,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -1899,13 +1900,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -1924,7 +1925,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseStatus": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseStatus": {
       "type": "enum",
       "members": {
         "UNKNOWN": {
@@ -1953,7 +1954,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseTcpConfigMethod": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -1964,11 +1965,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponseTcpConfig": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponseTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -1981,7 +1982,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEditResponse": {
+    "com.cloudflare.smart_shield#EditHealthCheckResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1997,7 +1998,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -2030,7 +2031,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseHttpConfig",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -2057,7 +2058,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseStatus",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the origin server according to the health check."
           }
@@ -2069,7 +2070,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksEditResponseTcpConfig",
+          "target": "com.cloudflare.smart_shield#EditHealthCheckResponseTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -2092,13 +2093,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksEdit": {
+    "com.cloudflare.smart_shield#EditHealthCheck": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.smart_shield#HealthChecksEditRequest"
+        "target": "com.cloudflare.smart_shield#EditHealthCheckRequest"
       },
       "output": {
-        "target": "com.cloudflare.smart_shield#HealthChecksEditResponse"
+        "target": "com.cloudflare.smart_shield#EditHealthCheckResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2133,7 +2134,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseCheckRegionsItem": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -2222,34 +2223,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseCheckRegionsList": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksGetResponseCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#GetHealthCheckResponseCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigMethod": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -2266,7 +2267,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfig": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -2282,7 +2283,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -2294,13 +2295,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -2319,7 +2320,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseStatus": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseStatus": {
       "type": "enum",
       "members": {
         "UNKNOWN": {
@@ -2348,7 +2349,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseTcpConfigMethod": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -2359,11 +2360,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksGetResponseTcpConfig": {
+    "com.cloudflare.smart_shield#GetHealthCheckResponseTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -2392,7 +2393,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -2425,7 +2426,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseHttpConfig",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -2452,7 +2453,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseStatus",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the origin server according to the health check."
           }
@@ -2464,7 +2465,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksGetResponseTcpConfig",
+          "target": "com.cloudflare.smart_shield#GetHealthCheckResponseTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -2535,7 +2536,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemCheckRegionsItem": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -2624,34 +2625,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemCheckRegionsList": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksListResultItemCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigMethod": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -2668,7 +2669,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfig": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -2684,7 +2685,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -2696,13 +2697,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -2721,7 +2722,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemStatus": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemStatus": {
       "type": "enum",
       "members": {
         "UNKNOWN": {
@@ -2750,7 +2751,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemTcpConfigMethod": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -2761,11 +2762,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItemTcpConfig": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItemTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -2778,7 +2779,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultItem": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -2794,7 +2795,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -2827,7 +2828,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemHttpConfig",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -2854,7 +2855,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemStatus",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the origin server according to the health check."
           }
@@ -2866,7 +2867,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultItemTcpConfig",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultItemTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -2885,17 +2886,17 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksListResultList": {
+    "com.cloudflare.smart_shield#ListHealthChecksResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksListResultItem"
+        "target": "com.cloudflare.smart_shield#ListHealthChecksResultItem"
       }
     },
     "com.cloudflare.smart_shield#ListHealthChecksResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.smart_shield#HealthChecksListResultList",
+          "target": "com.cloudflare.smart_shield#ListHealthChecksResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -2924,7 +2925,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestErrorsItemSource": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestErrorsItemSource": {
       "type": "structure",
       "members": {
         "pointer": {
@@ -2932,7 +2933,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestErrorsItem": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestErrorsItem": {
       "type": "structure",
       "members": {
         "code": {
@@ -2951,17 +2952,17 @@
           "target": "smithy.api#String"
         },
         "source": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestErrorsItemSource"
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestErrorsItemSource"
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestErrorsList": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestErrorsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestErrorsItem"
+        "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestErrorsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestMessagesItem": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestMessagesItem": {
       "type": "structure",
       "members": {
         "code": {
@@ -2984,13 +2985,13 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestMessagesList": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestMessagesList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestMessagesItem"
+        "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestMessagesItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultCheckRegionsItem": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -3079,34 +3080,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultCheckRegionsList": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigMethod": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -3123,7 +3124,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfig": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -3139,7 +3140,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -3151,13 +3152,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -3176,7 +3177,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultStatus": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultStatus": {
       "type": "enum",
       "members": {
         "UNKNOWN": {
@@ -3205,7 +3206,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultTcpConfigMethod": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -3216,11 +3217,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultTcpConfig": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -3233,7 +3234,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateRequestResult": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckRequestResult": {
       "type": "structure",
       "members": {
         "id": {
@@ -3249,7 +3250,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -3282,7 +3283,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultHttpConfig",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -3309,7 +3310,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultStatus",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the origin server according to the health check."
           }
@@ -3321,7 +3322,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResultTcpConfig",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResultTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -3360,19 +3361,19 @@
           }
         },
         "errors": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestErrorsList",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestErrorsList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "messages": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestMessagesList",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestMessagesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "result": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateRequestResult",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckRequestResult",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3389,7 +3390,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseCheckRegionsItem": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseCheckRegionsItem": {
       "type": "enum",
       "members": {
         "WNAM": {
@@ -3478,34 +3479,34 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseCheckRegionsList": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseCheckRegionsList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseCheckRegionsItem"
+        "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseCheckRegionsItem"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigExpectedCodesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigHeaderValueList": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigExpectedCodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigHeaderMap": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigHeaderValueList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigHeaderMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigHeaderValueList"
+        "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigHeaderValueList"
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigMethod": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -3522,7 +3523,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfig": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfig": {
       "type": "structure",
       "members": {
         "allow_insecure": {
@@ -3538,7 +3539,7 @@
           }
         },
         "expected_codes": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigExpectedCodesList",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigExpectedCodesList",
           "traits": {
             "smithy.api#documentation": "The expected HTTP response codes (e.g. \"200\") or code ranges (e.g. \"2xx\" for all codes starting with 2) of the health check."
           }
@@ -3550,13 +3551,13 @@
           }
         },
         "header": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigHeaderMap",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigHeaderMap",
           "traits": {
             "smithy.api#documentation": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden."
           }
         },
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfigMethod",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method to use for the health check."
           }
@@ -3575,7 +3576,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseStatus": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseStatus": {
       "type": "enum",
       "members": {
         "UNKNOWN": {
@@ -3604,7 +3605,7 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseTcpConfigMethod": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseTcpConfigMethod": {
       "type": "enum",
       "members": {
         "CONNECTION_ESTABLISHED": {
@@ -3615,11 +3616,11 @@
         }
       }
     },
-    "com.cloudflare.smart_shield#HealthChecksUpdateResponseTcpConfig": {
+    "com.cloudflare.smart_shield#UpdateHealthCheckResponseTcpConfig": {
       "type": "structure",
       "members": {
         "method": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseTcpConfigMethod",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseTcpConfigMethod",
           "traits": {
             "smithy.api#documentation": "The TCP connection method to use for the health check."
           }
@@ -3648,7 +3649,7 @@
           }
         },
         "check_regions": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseCheckRegionsList",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseCheckRegionsList",
           "traits": {
             "smithy.api#documentation": "A list of regions from which to run health checks. Null means Cloudflare will pick a default region."
           }
@@ -3681,7 +3682,7 @@
           }
         },
         "http_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseHttpConfig",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseHttpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to an HTTP or HTTPS health check."
           }
@@ -3708,7 +3709,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseStatus",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the origin server according to the health check."
           }
@@ -3720,7 +3721,7 @@
           }
         },
         "tcp_config": {
-          "target": "com.cloudflare.smart_shield#HealthChecksUpdateResponseTcpConfig",
+          "target": "com.cloudflare.smart_shield#UpdateHealthCheckResponseTcpConfig",
           "traits": {
             "smithy.api#documentation": "Parameters specific to TCP health check."
           }
@@ -3766,16 +3767,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.smart_shield#Get"
-        },
-        {
-          "target": "com.cloudflare.smart_shield#Update"
-        },
-        {
-          "target": "com.cloudflare.smart_shield#CacheReserveClearClear"
-        },
-        {
           "target": "com.cloudflare.smart_shield#CacheReserveClearStatus"
+        },
+        {
+          "target": "com.cloudflare.smart_shield#ClearCacheReserveClear"
         },
         {
           "target": "com.cloudflare.smart_shield#CreateHealthCheck"
@@ -3784,13 +3779,19 @@
           "target": "com.cloudflare.smart_shield#DeleteHealthCheck"
         },
         {
-          "target": "com.cloudflare.smart_shield#HealthChecksEdit"
+          "target": "com.cloudflare.smart_shield#EditHealthCheck"
+        },
+        {
+          "target": "com.cloudflare.smart_shield#Get"
         },
         {
           "target": "com.cloudflare.smart_shield#GetHealthCheck"
         },
         {
           "target": "com.cloudflare.smart_shield#ListHealthChecks"
+        },
+        {
+          "target": "com.cloudflare.smart_shield#Update"
         },
         {
           "target": "com.cloudflare.smart_shield#UpdateHealthCheck"

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.help#ListDiscoverySolution": {
@@ -898,7 +899,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.help#OperationsListResponseValueList",
+          "target": "com.azure.help#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -914,7 +915,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.help#OperationsListResponseValueList": {
+    "com.azure.help#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.help#Operation"
@@ -1038,7 +1039,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.help#ListDiscoverySolution"
+          "target": "com.azure.help#CheckDiagnosticNameAvailability"
         },
         {
           "target": "com.azure.help#CreateDiagnostic"
@@ -1047,7 +1048,7 @@
           "target": "com.azure.help#GetDiagnostic"
         },
         {
-          "target": "com.azure.help#CheckDiagnosticNameAvailability"
+          "target": "com.azure.help#ListDiscoverySolution"
         },
         {
           "target": "com.azure.help#ListOperations"

@@ -19,7 +19,8 @@
       "perPage": "per_page",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.audit_logs#ListRequestAction": {
@@ -239,7 +240,7 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.audit_logs#List"
+          "target": "com.cloudflare.audit_logs#ListAuditLogs"
         }
       ],
       "traits": {

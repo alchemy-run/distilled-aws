@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.security#UpdateAttackChallengeModeRequestBodyCase0": {
@@ -799,6 +800,12 @@
             "smithy.api#enumValue": "target_path"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "TRUSTED_SOURCE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -1454,6 +1461,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -2206,6 +2219,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -3103,6 +3122,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -4359,6 +4384,12 @@
             "smithy.api#enumValue": "target_path"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "TRUSTED_SOURCE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -5014,6 +5045,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -5766,6 +5803,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -6663,6 +6706,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -7919,6 +7968,12 @@
             "smithy.api#enumValue": "target_path"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "TRUSTED_SOURCE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -8574,6 +8629,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -9326,6 +9387,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -10223,6 +10290,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -11566,6 +11639,12 @@
             "smithy.api#enumValue": "shared_condition"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "RULESET": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -12252,6 +12331,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "shared_condition"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "RULESET": {
@@ -13439,6 +13524,12 @@
             "smithy.api#enumValue": "target_path"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "TRUSTED_SOURCE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -14094,6 +14185,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -14846,6 +14943,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -15745,6 +15848,12 @@
             "smithy.api#enumValue": "target_path"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "TRUSTED_SOURCE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -16591,6 +16700,12 @@
             "smithy.api#enumValue": "shared_condition"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "RULESET": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -17090,6 +17205,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "shared_condition"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "RULESET": {
@@ -17668,6 +17789,12 @@
             "smithy.api#enumValue": "shared_condition"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "RULESET": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -18116,6 +18243,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "shared_condition"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "RULESET": {
@@ -18760,6 +18893,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "shared_condition"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "RULESET": {
@@ -19449,6 +19588,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "shared_condition"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "RULESET": {
@@ -21518,6 +21663,12 @@
             "smithy.api#enumValue": "target_path"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "TRUSTED_SOURCE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -22173,6 +22324,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -22925,6 +23082,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -23822,6 +23985,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -25198,6 +25367,12 @@
             "smithy.api#enumValue": "target_path"
           }
         },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
+          }
+        },
         "TRUSTED_SOURCE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -25853,6 +26028,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -26605,6 +26786,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -27502,6 +27689,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "target_path"
+          }
+        },
+        "TRAFFIC_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic_source"
           }
         },
         "TRUSTED_SOURCE": {
@@ -28599,6 +28792,9 @@
           "target": "com.vercel.security#BadRequest"
         },
         {
+          "target": "com.vercel.security#PaymentRequired"
+        },
+        {
           "target": "com.vercel.security#Forbidden"
         },
         {
@@ -28896,6 +29092,9 @@
           "target": "com.vercel.security#BadRequest"
         },
         {
+          "target": "com.vercel.security#PaymentRequired"
+        },
+        {
           "target": "com.vercel.security#Forbidden"
         },
         {
@@ -28980,6 +29179,9 @@
       "errors": [
         {
           "target": "com.vercel.security#BadRequest"
+        },
+        {
+          "target": "com.vercel.security#PaymentRequired"
         },
         {
           "target": "com.vercel.security#Forbidden"
@@ -29496,25 +29698,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.security#UpdateAttackChallengeMode"
+          "target": "com.vercel.security#AddBypassIp"
         },
         {
-          "target": "com.vercel.security#GetSecurityFirewallConfig"
-        },
-        {
-          "target": "com.vercel.security#PutFirewallConfig"
-        },
-        {
-          "target": "com.vercel.security#UpdateFirewallConfig"
-        },
-        {
-          "target": "com.vercel.security#GetFirewallConfig"
+          "target": "com.vercel.security#CreateSecurityFirewallConfigByConfigVersionActivate"
         },
         {
           "target": "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersion"
         },
         {
-          "target": "com.vercel.security#CreateSecurityFirewallConfigByConfigVersionActivate"
+          "target": "com.vercel.security#GenerateFirewallRule"
         },
         {
           "target": "com.vercel.security#GetActiveAttackStatus"
@@ -29523,16 +29716,25 @@
           "target": "com.vercel.security#GetBypassIp"
         },
         {
-          "target": "com.vercel.security#AddBypassIp"
+          "target": "com.vercel.security#GetFirewallConfig"
         },
         {
-          "target": "com.vercel.security#RemoveBypassIp"
+          "target": "com.vercel.security#GetSecurityFirewallConfig"
         },
         {
           "target": "com.vercel.security#GetSecurityFirewallEvents"
         },
         {
-          "target": "com.vercel.security#GenerateFirewallRule"
+          "target": "com.vercel.security#PutFirewallConfig"
+        },
+        {
+          "target": "com.vercel.security#RemoveBypassIp"
+        },
+        {
+          "target": "com.vercel.security#UpdateAttackChallengeMode"
+        },
+        {
+          "target": "com.vercel.security#UpdateFirewallConfig"
         }
       ],
       "traits": {

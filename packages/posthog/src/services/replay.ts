@@ -40,8 +40,8 @@ export class NotFound
   ) {}
 
 /** * `collection` - Collection * `filters` - Filters */
-export type SessionRecordingPlaylistTypeEnum = "collection" | "filters";
-export const SessionRecordingPlaylistTypeEnum = /*@__PURE__*/ S.String;
+export type SessionRecordingPlaylistPlaylistTypeEnum = "collection" | "filters";
+export const SessionRecordingPlaylistPlaylistTypeEnum = /*@__PURE__*/ S.String;
 
 export interface CreateSessionRecordingPlaylistRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -58,7 +58,7 @@ export interface CreateSessionRecordingPlaylistRequest {
   /** JSON object with recording filter criteria. Only used when type is 'filters'. Defines which recordings match this saved filter view. When updating a filters-type playlist, you must include the existing filters alongside any other changes — omitting filters will be treated as removing them. */
   filters?: unknown;
   /** Playlist type: 'collection' for manually curated recordings, 'filters' for saved filter views. Required on create, cannot be changed after. * `collection` - Collection * `filters` - Filters */
-  type?: SessionRecordingPlaylistTypeEnum | (string & {}) | null;
+  type?: SessionRecordingPlaylistPlaylistTypeEnum | (string & {}) | null;
   _create_in_folder?: string;
 }
 export const CreateSessionRecordingPlaylistRequest = /*@__PURE__*/ S.suspend(
@@ -71,7 +71,7 @@ export const CreateSessionRecordingPlaylistRequest = /*@__PURE__*/ S.suspend(
       pinned: S.optional(S.Boolean),
       deleted: S.optional(S.Boolean),
       filters: S.optional(S.Unknown),
-      type: S.optional(S.NullOr(SessionRecordingPlaylistTypeEnum)),
+      type: S.optional(S.NullOr(SessionRecordingPlaylistPlaylistTypeEnum)),
       _create_in_folder: S.optional(S.String),
     }).pipe(
       T.Http({
@@ -183,7 +183,7 @@ export interface SessionRecordingPlaylistOutput {
   last_modified_by?: UserBasic | null;
   recordings_counts?: SessionRecordingPlaylistOutputRecordingsCountsMap;
   /** Playlist type: 'collection' for manually curated recordings, 'filters' for saved filter views. Required on create, cannot be changed after. * `collection` - Collection * `filters` - Filters */
-  type?: SessionRecordingPlaylistTypeEnum | null;
+  type?: SessionRecordingPlaylistPlaylistTypeEnum | null;
   /** Return whether this is a synthetic playlist */
   is_synthetic?: boolean;
 }
@@ -204,14 +204,14 @@ export const SessionRecordingPlaylistOutput = /*@__PURE__*/ S.suspend(() =>
     recordings_counts: S.optional(
       SessionRecordingPlaylistOutputRecordingsCountsMap,
     ),
-    type: S.optional(S.NullOr(SessionRecordingPlaylistTypeEnum)),
+    type: S.optional(S.NullOr(SessionRecordingPlaylistPlaylistTypeEnum)),
     is_synthetic: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "SessionRecordingPlaylistOutput",
 }) as any as S.Schema<SessionRecordingPlaylistOutput>;
 
-export interface CreateSessionRecordingPlaylistRecordingRequest {
+export interface CreateSessionRecordingPlaylistsRecordingRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   short_id: string;
@@ -228,10 +228,10 @@ export interface CreateSessionRecordingPlaylistRecordingRequest {
   /** JSON object with recording filter criteria. Only used when type is 'filters'. Defines which recordings match this saved filter view. When updating a filters-type playlist, you must include the existing filters alongside any other changes — omitting filters will be treated as removing them. */
   filters?: unknown;
   /** Playlist type: 'collection' for manually curated recordings, 'filters' for saved filter views. Required on create, cannot be changed after. * `collection` - Collection * `filters` - Filters */
-  type?: SessionRecordingPlaylistTypeEnum | (string & {}) | null;
+  type?: SessionRecordingPlaylistPlaylistTypeEnum | (string & {}) | null;
   _create_in_folder?: string;
 }
-export const CreateSessionRecordingPlaylistRecordingRequest =
+export const CreateSessionRecordingPlaylistsRecordingRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -243,7 +243,7 @@ export const CreateSessionRecordingPlaylistRecordingRequest =
       pinned: S.optional(S.Boolean),
       deleted: S.optional(S.Boolean),
       filters: S.optional(S.Unknown),
-      type: S.optional(S.NullOr(SessionRecordingPlaylistTypeEnum)),
+      type: S.optional(S.NullOr(SessionRecordingPlaylistPlaylistTypeEnum)),
       _create_in_folder: S.optional(S.String),
     }).pipe(
       T.Http({
@@ -253,94 +253,35 @@ export const CreateSessionRecordingPlaylistRecordingRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateSessionRecordingPlaylistRecordingRequest",
-  }) as any as S.Schema<CreateSessionRecordingPlaylistRecordingRequest>;
+    identifier: "CreateSessionRecordingPlaylistsRecordingRequest",
+  }) as any as S.Schema<CreateSessionRecordingPlaylistsRecordingRequest>;
 
-export interface CreateSessionRecordingPlaylistRecordingResponse {}
-export const CreateSessionRecordingPlaylistRecordingResponse =
+export interface CreateSessionRecordingPlaylistsRecordingResponse {}
+export const CreateSessionRecordingPlaylistsRecordingResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CreateSessionRecordingPlaylistRecordingResponse",
-  }) as any as S.Schema<CreateSessionRecordingPlaylistRecordingResponse>;
+    identifier: "CreateSessionRecordingPlaylistsRecordingResponse",
+  }) as any as S.Schema<CreateSessionRecordingPlaylistsRecordingResponse>;
 
-export interface ListSessionRecordingPlaylistsRequest {
+export interface GetSessionRecordingRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  created_by?: number;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  short_id?: string;
+  /** A UUID string identifying this session recording. */
+  id: string;
 }
-export const ListSessionRecordingPlaylistsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      created_by: S.optional(S.Number.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-      short_id: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/session_recording_playlists/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ListSessionRecordingPlaylistsRequest",
-}) as any as S.Schema<ListSessionRecordingPlaylistsRequest>;
-
-export type PaginatedSessionRecordingPlaylistListOutputResultsList =
-  Array<SessionRecordingPlaylistOutput>;
-export const PaginatedSessionRecordingPlaylistListOutputResultsList =
-  /*@__PURE__*/ S.Array(
-    SessionRecordingPlaylistOutput,
-  ) as any as S.Schema<PaginatedSessionRecordingPlaylistListOutputResultsList>;
-
-export interface PaginatedSessionRecordingPlaylistListOutput {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedSessionRecordingPlaylistListOutputResultsList;
-}
-export const PaginatedSessionRecordingPlaylistListOutput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      count: S.optional(S.Number),
-      next: S.optional(S.NullOr(S.String)),
-      previous: S.optional(S.NullOr(S.String)),
-      results: S.optional(
-        PaginatedSessionRecordingPlaylistListOutputResultsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "PaginatedSessionRecordingPlaylistListOutput",
-  }) as any as S.Schema<PaginatedSessionRecordingPlaylistListOutput>;
-
-export interface ListSessionRecordingsRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const ListSessionRecordingsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSessionRecordingRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/session_recordings/",
+      uri: "/api/projects/{project_id}/session_recordings/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "ListSessionRecordingsRequest",
-}) as any as S.Schema<ListSessionRecordingsRequest>;
+  identifier: "GetSessionRecordingRequest",
+}) as any as S.Schema<GetSessionRecordingRequest>;
 
 export type SessionRecordingViewersList = Array<string>;
 export const SessionRecordingViewersList = /*@__PURE__*/ S.Array(
@@ -463,6 +404,133 @@ export const SessionRecording = /*@__PURE__*/ S.suspend(() =>
   identifier: "SessionRecording",
 }) as any as S.Schema<SessionRecording>;
 
+export interface GetSessionRecordingPlaylistRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  short_id: string;
+}
+export const GetSessionRecordingPlaylistRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    short_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/session_recording_playlists/{short_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetSessionRecordingPlaylistRequest",
+}) as any as S.Schema<GetSessionRecordingPlaylistRequest>;
+
+export interface GetSessionRecordingPlaylistsRecordingRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  short_id: string;
+}
+export const GetSessionRecordingPlaylistsRecordingRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      short_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/session_recording_playlists/{short_id}/recordings/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetSessionRecordingPlaylistsRecordingRequest",
+  }) as any as S.Schema<GetSessionRecordingPlaylistsRecordingRequest>;
+
+export interface GetSessionRecordingPlaylistsRecordingResponse {}
+export const GetSessionRecordingPlaylistsRecordingResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetSessionRecordingPlaylistsRecordingResponse",
+  }) as any as S.Schema<GetSessionRecordingPlaylistsRecordingResponse>;
+
+export interface ListSessionRecordingPlaylistsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  created_by?: number;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  short_id?: string;
+}
+export const ListSessionRecordingPlaylistsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      created_by: S.optional(S.Number.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+      short_id: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/session_recording_playlists/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListSessionRecordingPlaylistsRequest",
+}) as any as S.Schema<ListSessionRecordingPlaylistsRequest>;
+
+export type PaginatedSessionRecordingPlaylistListOutputResultsList =
+  Array<SessionRecordingPlaylistOutput>;
+export const PaginatedSessionRecordingPlaylistListOutputResultsList =
+  /*@__PURE__*/ S.Array(
+    SessionRecordingPlaylistOutput,
+  ) as any as S.Schema<PaginatedSessionRecordingPlaylistListOutputResultsList>;
+
+export interface PaginatedSessionRecordingPlaylistListOutput {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedSessionRecordingPlaylistListOutputResultsList;
+}
+export const PaginatedSessionRecordingPlaylistListOutput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      count: S.optional(S.Number),
+      next: S.optional(S.NullOr(S.String)),
+      previous: S.optional(S.NullOr(S.String)),
+      results: S.optional(
+        PaginatedSessionRecordingPlaylistListOutputResultsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "PaginatedSessionRecordingPlaylistListOutput",
+  }) as any as S.Schema<PaginatedSessionRecordingPlaylistListOutput>;
+
+export interface ListSessionRecordingsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListSessionRecordingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/session_recordings/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSessionRecordingsRequest",
+}) as any as S.Schema<ListSessionRecordingsRequest>;
+
 export type PaginatedSessionRecordingListResultsList = Array<SessionRecording>;
 export const PaginatedSessionRecordingListResultsList = /*@__PURE__*/ S.Array(
   SessionRecording,
@@ -541,54 +609,6 @@ export const SessionRecordingPlaylistsRecordingsDestroyResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "SessionRecordingPlaylistsRecordingsDestroyResponse",
   }) as any as S.Schema<SessionRecordingPlaylistsRecordingsDestroyResponse>;
-
-export interface SessionRecordingPlaylistsRecordingsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  short_id: string;
-}
-export const SessionRecordingPlaylistsRecordingsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      short_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/session_recording_playlists/{short_id}/recordings/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "SessionRecordingPlaylistsRecordingsRetrieveRequest",
-  }) as any as S.Schema<SessionRecordingPlaylistsRecordingsRetrieveRequest>;
-
-export interface SessionRecordingPlaylistsRecordingsRetrieveResponse {}
-export const SessionRecordingPlaylistsRecordingsRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SessionRecordingPlaylistsRecordingsRetrieveResponse",
-  }) as any as S.Schema<SessionRecordingPlaylistsRecordingsRetrieveResponse>;
-
-export interface SessionRecordingPlaylistsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  short_id: string;
-}
-export const SessionRecordingPlaylistsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      short_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/session_recording_playlists/{short_id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "SessionRecordingPlaylistsRetrieveRequest",
-}) as any as S.Schema<SessionRecordingPlaylistsRetrieveRequest>;
 
 /** Session IDs of the recordings to delete (max 100 per call). */
 export type SessionRecordingsBulkDeleteCreateRequestSessionRecordingIdsList =
@@ -680,27 +700,6 @@ export const SessionRecordingsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SessionRecordingsDestroyResponse",
 }) as any as S.Schema<SessionRecordingsDestroyResponse>;
 
-export interface SessionRecordingsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this session recording. */
-  id: string;
-}
-export const SessionRecordingsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/session_recordings/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SessionRecordingsRetrieveRequest",
-}) as any as S.Schema<SessionRecordingsRetrieveRequest>;
-
 export interface MinimalPersonInput {
   /** Key-value map of person properties set via $set and $set_once operations. */
   properties?: unknown;
@@ -736,30 +735,6 @@ export const UpdateSessionRecordingRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateSessionRecordingRequest",
 }) as any as S.Schema<UpdateSessionRecordingRequest>;
 
-export interface UpdateSessionRecordingPartialRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this session recording. */
-  id: string;
-  person?: MinimalPersonInput;
-}
-export const UpdateSessionRecordingPartialRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      person: S.optional(MinimalPersonInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/session_recordings/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "UpdateSessionRecordingPartialRequest",
-}) as any as S.Schema<UpdateSessionRecordingPartialRequest>;
-
 export interface UpdateSessionRecordingPlaylistRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -776,7 +751,7 @@ export interface UpdateSessionRecordingPlaylistRequest {
   /** JSON object with recording filter criteria. Only used when type is 'filters'. Defines which recordings match this saved filter view. When updating a filters-type playlist, you must include the existing filters alongside any other changes — omitting filters will be treated as removing them. */
   filters?: unknown;
   /** Playlist type: 'collection' for manually curated recordings, 'filters' for saved filter views. Required on create, cannot be changed after. * `collection` - Collection * `filters` - Filters */
-  type?: SessionRecordingPlaylistTypeEnum | (string & {}) | null;
+  type?: SessionRecordingPlaylistPlaylistTypeEnum | (string & {}) | null;
   _create_in_folder?: string;
 }
 export const UpdateSessionRecordingPlaylistRequest = /*@__PURE__*/ S.suspend(
@@ -790,7 +765,7 @@ export const UpdateSessionRecordingPlaylistRequest = /*@__PURE__*/ S.suspend(
       pinned: S.optional(S.Boolean),
       deleted: S.optional(S.Boolean),
       filters: S.optional(S.Unknown),
-      type: S.optional(S.NullOr(SessionRecordingPlaylistTypeEnum)),
+      type: S.optional(S.NullOr(SessionRecordingPlaylistPlaylistTypeEnum)),
       _create_in_folder: S.optional(S.String),
     }).pipe(
       T.Http({
@@ -803,7 +778,7 @@ export const UpdateSessionRecordingPlaylistRequest = /*@__PURE__*/ S.suspend(
   identifier: "UpdateSessionRecordingPlaylistRequest",
 }) as any as S.Schema<UpdateSessionRecordingPlaylistRequest>;
 
-export interface UpdateSessionRecordingPlaylistPartialRequest {
+export interface UpdateSessionRecordingPlaylistsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   short_id: string;
@@ -819,10 +794,10 @@ export interface UpdateSessionRecordingPlaylistPartialRequest {
   /** JSON object with recording filter criteria. Only used when type is 'filters'. Defines which recordings match this saved filter view. When updating a filters-type playlist, you must include the existing filters alongside any other changes — omitting filters will be treated as removing them. */
   filters?: unknown;
   /** Playlist type: 'collection' for manually curated recordings, 'filters' for saved filter views. Required on create, cannot be changed after. * `collection` - Collection * `filters` - Filters */
-  type?: SessionRecordingPlaylistTypeEnum | (string & {}) | null;
+  type?: SessionRecordingPlaylistPlaylistTypeEnum | (string & {}) | null;
   _create_in_folder?: string;
 }
-export const UpdateSessionRecordingPlaylistPartialRequest =
+export const UpdateSessionRecordingPlaylistsPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -833,7 +808,7 @@ export const UpdateSessionRecordingPlaylistPartialRequest =
       pinned: S.optional(S.Boolean),
       deleted: S.optional(S.Boolean),
       filters: S.optional(S.Unknown),
-      type: S.optional(S.NullOr(SessionRecordingPlaylistTypeEnum)),
+      type: S.optional(S.NullOr(SessionRecordingPlaylistPlaylistTypeEnum)),
       _create_in_folder: S.optional(S.String),
     }).pipe(
       T.Http({
@@ -843,8 +818,32 @@ export const UpdateSessionRecordingPlaylistPartialRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateSessionRecordingPlaylistPartialRequest",
-  }) as any as S.Schema<UpdateSessionRecordingPlaylistPartialRequest>;
+    identifier: "UpdateSessionRecordingPlaylistsPartialRequest",
+  }) as any as S.Schema<UpdateSessionRecordingPlaylistsPartialRequest>;
+
+export interface UpdateSessionRecordingsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this session recording. */
+  id: string;
+  person?: MinimalPersonInput;
+}
+export const UpdateSessionRecordingsPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      person: S.optional(MinimalPersonInput),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/session_recordings/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateSessionRecordingsPartialRequest",
+}) as any as S.Schema<UpdateSessionRecordingsPartialRequest>;
 
 export type CreateSessionRecordingPlaylistError =
   | BadRequest
@@ -864,20 +863,68 @@ export const createSessionRecordingPlaylist: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSessionRecordingPlaylistRecordingError =
+export type CreateSessionRecordingPlaylistsRecordingError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const createSessionRecordingPlaylistRecording: API.OperationMethod<
-  CreateSessionRecordingPlaylistRecordingRequest,
-  CreateSessionRecordingPlaylistRecordingResponse,
-  CreateSessionRecordingPlaylistRecordingError,
+export const createSessionRecordingPlaylistsRecording: API.OperationMethod<
+  CreateSessionRecordingPlaylistsRecordingRequest,
+  CreateSessionRecordingPlaylistsRecordingResponse,
+  CreateSessionRecordingPlaylistsRecordingError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSessionRecordingPlaylistRecordingRequest,
-  output: CreateSessionRecordingPlaylistRecordingResponse,
+  input: CreateSessionRecordingPlaylistsRecordingRequest,
+  output: CreateSessionRecordingPlaylistsRecordingResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSessionRecordingError = Forbidden | NotFound | PosthogOpError;
+export const getSessionRecording: API.OperationMethod<
+  GetSessionRecordingRequest,
+  SessionRecording,
+  GetSessionRecordingError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSessionRecordingRequest,
+  output: SessionRecording,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSessionRecordingPlaylistError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getSessionRecordingPlaylist: API.OperationMethod<
+  GetSessionRecordingPlaylistRequest,
+  SessionRecordingPlaylistOutput,
+  GetSessionRecordingPlaylistError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSessionRecordingPlaylistRequest,
+  output: SessionRecordingPlaylistOutput,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSessionRecordingPlaylistsRecordingError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getSessionRecordingPlaylistsRecording: API.OperationMethod<
+  GetSessionRecordingPlaylistsRecordingRequest,
+  GetSessionRecordingPlaylistsRecordingResponse,
+  GetSessionRecordingPlaylistsRecordingError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSessionRecordingPlaylistsRecordingRequest,
+  output: GetSessionRecordingPlaylistsRecordingResponse,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -954,40 +1001,6 @@ export const sessionRecordingPlaylistsRecordingsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SessionRecordingPlaylistsRecordingsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const sessionRecordingPlaylistsRecordingsRetrieve: API.OperationMethod<
-  SessionRecordingPlaylistsRecordingsRetrieveRequest,
-  SessionRecordingPlaylistsRecordingsRetrieveResponse,
-  SessionRecordingPlaylistsRecordingsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SessionRecordingPlaylistsRecordingsRetrieveRequest,
-  output: SessionRecordingPlaylistsRecordingsRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SessionRecordingPlaylistsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const sessionRecordingPlaylistsRetrieve: API.OperationMethod<
-  SessionRecordingPlaylistsRetrieveRequest,
-  SessionRecordingPlaylistOutput,
-  SessionRecordingPlaylistsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SessionRecordingPlaylistsRetrieveRequest,
-  output: SessionRecordingPlaylistOutput,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SessionRecordingsBulkDeleteCreateError = PosthogOpError;
 /** Delete a batch of session recordings by session ID. Deletion is permanent and cannot be undone. IDs that don't match an existing recording are skipped and counted in `total_requested` but not `deleted_count`. */
 export const sessionRecordingsBulkDeleteCreate: API.OperationMethod<
@@ -1020,23 +1033,6 @@ export const sessionRecordingsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SessionRecordingsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const sessionRecordingsRetrieve: API.OperationMethod<
-  SessionRecordingsRetrieveRequest,
-  SessionRecording,
-  SessionRecordingsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SessionRecordingsRetrieveRequest,
-  output: SessionRecording,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateSessionRecordingError =
   | BadRequest
   | Forbidden
@@ -1049,24 +1045,6 @@ export const updateSessionRecording: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateSessionRecordingRequest,
-  output: SessionRecording,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSessionRecordingPartialError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const updateSessionRecordingPartial: API.OperationMethod<
-  UpdateSessionRecordingPartialRequest,
-  SessionRecording,
-  UpdateSessionRecordingPartialError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSessionRecordingPartialRequest,
   output: SessionRecording,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -1091,19 +1069,37 @@ export const updateSessionRecordingPlaylist: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSessionRecordingPlaylistPartialError =
+export type UpdateSessionRecordingPlaylistsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateSessionRecordingPlaylistPartial: API.OperationMethod<
-  UpdateSessionRecordingPlaylistPartialRequest,
+export const updateSessionRecordingPlaylistsPartial: API.OperationMethod<
+  UpdateSessionRecordingPlaylistsPartialRequest,
   SessionRecordingPlaylistOutput,
-  UpdateSessionRecordingPlaylistPartialError,
+  UpdateSessionRecordingPlaylistsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSessionRecordingPlaylistPartialRequest,
+  input: UpdateSessionRecordingPlaylistsPartialRequest,
   output: SessionRecordingPlaylistOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSessionRecordingsPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateSessionRecordingsPartial: API.OperationMethod<
+  UpdateSessionRecordingsPartialRequest,
+  SessionRecording,
+  UpdateSessionRecordingsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSessionRecordingsPartialRequest,
+  output: SessionRecording,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

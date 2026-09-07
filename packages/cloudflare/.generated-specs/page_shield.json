@@ -43,7 +43,8 @@
       "urlReportedMalicious": "url_reported_malicious",
       "useCloudflareReportingEndpoint": "use_cloudflare_reporting_endpoint",
       "useConnectionUrlPath": "use_connection_url_path"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.page_shield#ConnectionsGetResponseMaliciousDomainCategoriesList": {
@@ -904,43 +905,43 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.page_shield#Get"
+          "target": "com.cloudflare.page_shield#CreatePolicy"
         },
         {
-          "target": "com.cloudflare.page_shield#Update"
+          "target": "com.cloudflare.page_shield#DeletePolicy"
         },
         {
-          "target": "com.cloudflare.page_shield#ConnectionsGet"
+          "target": "com.cloudflare.page_shield#GetConnection"
         },
         {
-          "target": "com.cloudflare.page_shield#ConnectionsList"
+          "target": "com.cloudflare.page_shield#GetCooky"
         },
         {
-          "target": "com.cloudflare.page_shield#CookiesGet"
+          "target": "com.cloudflare.page_shield#GetPageShield"
         },
         {
-          "target": "com.cloudflare.page_shield#CookiesList"
+          "target": "com.cloudflare.page_shield#GetPolicy"
         },
         {
-          "target": "com.cloudflare.page_shield#PoliciesCreate"
+          "target": "com.cloudflare.page_shield#GetScript"
         },
         {
-          "target": "com.cloudflare.page_shield#PoliciesDelete"
+          "target": "com.cloudflare.page_shield#ListConnections"
         },
         {
-          "target": "com.cloudflare.page_shield#PoliciesGet"
+          "target": "com.cloudflare.page_shield#ListCookies"
         },
         {
-          "target": "com.cloudflare.page_shield#PoliciesList"
+          "target": "com.cloudflare.page_shield#ListPolicies"
         },
         {
-          "target": "com.cloudflare.page_shield#PoliciesUpdate"
+          "target": "com.cloudflare.page_shield#ListScripts"
         },
         {
-          "target": "com.cloudflare.page_shield#ScriptsGet"
+          "target": "com.cloudflare.page_shield#PutPageShield"
         },
         {
-          "target": "com.cloudflare.page_shield#ScriptsList"
+          "target": "com.cloudflare.page_shield#UpdatePolicy"
         }
       ],
       "traits": {

@@ -31,7 +31,8 @@
       "resultInfo": "result_info",
       "tcpConfig": "tcp_config",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.healthchecks#CreateRequestCheckRegionsItem": {
@@ -2709,31 +2710,31 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.healthchecks#Create"
+          "target": "com.cloudflare.healthchecks#CreateHealthcheck"
         },
         {
-          "target": "com.cloudflare.healthchecks#Delete"
+          "target": "com.cloudflare.healthchecks#CreatePreview"
         },
         {
-          "target": "com.cloudflare.healthchecks#Edit"
+          "target": "com.cloudflare.healthchecks#DeleteHealthcheck"
         },
         {
-          "target": "com.cloudflare.healthchecks#Get"
+          "target": "com.cloudflare.healthchecks#DeletePreview"
         },
         {
-          "target": "com.cloudflare.healthchecks#List"
+          "target": "com.cloudflare.healthchecks#GetHealthcheck"
         },
         {
-          "target": "com.cloudflare.healthchecks#Update"
+          "target": "com.cloudflare.healthchecks#GetPreview"
         },
         {
-          "target": "com.cloudflare.healthchecks#PreviewsCreate"
+          "target": "com.cloudflare.healthchecks#ListHealthchecks"
         },
         {
-          "target": "com.cloudflare.healthchecks#PreviewsDelete"
+          "target": "com.cloudflare.healthchecks#PatchHealthcheck"
         },
         {
-          "target": "com.cloudflare.healthchecks#PreviewsGet"
+          "target": "com.cloudflare.healthchecks#UpdateHealthcheck"
         }
       ],
       "traits": {

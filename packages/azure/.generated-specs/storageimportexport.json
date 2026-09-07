@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.storageimportexport#ListOperations": {
@@ -1109,7 +1110,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.storageimportexport#JobsUpdateRequestProperties",
+          "target": "com.azure.storageimportexport#UpdateJobRequestProperties",
           "traits": {
             "smithy.api#documentation": "Specifies the properties of a UpdateJob."
           }
@@ -1119,7 +1120,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storageimportexport#JobsUpdateRequestProperties": {
+    "com.azure.storageimportexport#UpdateJobRequestProperties": {
       "type": "structure",
       "members": {
         "cancelRequested": {
@@ -1165,7 +1166,7 @@
           }
         },
         "driveList": {
-          "target": "com.azure.storageimportexport#JobsUpdateRequestPropertiesDriveListList",
+          "target": "com.azure.storageimportexport#UpdateJobRequestPropertiesDriveListList",
           "traits": {
             "smithy.api#documentation": "List of drives that comprise the job."
           }
@@ -1175,7 +1176,7 @@
         "smithy.api#documentation": "Specifies the properties of a UpdateJob."
       }
     },
-    "com.azure.storageimportexport#JobsUpdateRequestPropertiesDriveListList": {
+    "com.azure.storageimportexport#UpdateJobRequestPropertiesDriveListList": {
       "type": "list",
       "member": {
         "target": "com.azure.storageimportexport#DriveStatus"
@@ -1826,22 +1827,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storageimportexport#ListOperations"
-        },
-        {
-          "target": "com.azure.storageimportexport#ListBitLockerKeys"
+          "target": "com.azure.storageimportexport#CreateJob"
         },
         {
           "target": "com.azure.storageimportexport#DeleteJob"
         },
         {
-          "target": "com.azure.storageimportexport#UpdateJob"
-        },
-        {
-          "target": "com.azure.storageimportexport#CreateJob"
-        },
-        {
           "target": "com.azure.storageimportexport#GetJob"
+        },
+        {
+          "target": "com.azure.storageimportexport#GetLocation"
+        },
+        {
+          "target": "com.azure.storageimportexport#ListBitLockerKeys"
         },
         {
           "target": "com.azure.storageimportexport#ListJobByResourceGroup"
@@ -1850,10 +1848,13 @@
           "target": "com.azure.storageimportexport#ListJobBySubscription"
         },
         {
-          "target": "com.azure.storageimportexport#GetLocation"
+          "target": "com.azure.storageimportexport#ListLocations"
         },
         {
-          "target": "com.azure.storageimportexport#ListLocations"
+          "target": "com.azure.storageimportexport#ListOperations"
+        },
+        {
+          "target": "com.azure.storageimportexport#UpdateJob"
         }
       ],
       "traits": {

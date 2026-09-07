@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.custom_property_sources#ListCustomPropertySourcesRequest": {
@@ -253,7 +254,7 @@
           }
         },
         "account_segment": {
-          "target": "com.posthog.custom_property_sources#AccountSegmentEnum",
+          "target": "com.posthog.custom_property_sources#SyncSegmentEnum",
           "traits": {
             "smithy.api#documentation": "Account segment processed by this run. Person and group property runs return null.\n\n* `tracked` - tracked\n* `ignored` - ignored",
             "smithy.api#required": {},
@@ -385,7 +386,7 @@
         "smithy.api#documentation": "One warehouse-backed custom property sync run."
       }
     },
-    "com.posthog.custom_property_sources#AccountSegmentEnum": {
+    "com.posthog.custom_property_sources#SyncSegmentEnum": {
       "type": "enum",
       "members": {
         "TRACKED": {
@@ -545,7 +546,7 @@
         }
       }
     },
-    "com.posthog.custom_property_sources#CustomPropertySourcesRetrieveRequest": {
+    "com.posthog.custom_property_sources#GetCustomPropertySourceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -568,10 +569,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.custom_property_sources#CustomPropertySourcesRetrieve": {
+    "com.posthog.custom_property_sources#GetCustomPropertySource": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_sources#CustomPropertySourcesRetrieveRequest"
+        "target": "com.posthog.custom_property_sources#GetCustomPropertySourceRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_sources#CustomPropertySource"
@@ -641,7 +642,7 @@
         }
       }
     },
-    "com.posthog.custom_property_sources#UpdateCustomPropertySourcePartialRequest": {
+    "com.posthog.custom_property_sources#UpdateCustomPropertySourcesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -682,10 +683,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.custom_property_sources#UpdateCustomPropertySourcePartial": {
+    "com.posthog.custom_property_sources#UpdateCustomPropertySourcesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_sources#UpdateCustomPropertySourcePartialRequest"
+        "target": "com.posthog.custom_property_sources#UpdateCustomPropertySourcesPartialRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_sources#CustomPropertySource"
@@ -777,7 +778,7 @@
         "smithy.api#documentation": "Person and group sources only: start a backfill that reads the whole warehouse table and\npopulates person or group properties for historical rows. Coalesces if one is already running\nfor the table."
       }
     },
-    "com.posthog.custom_property_sources#ListCustomPropertySourceRunsRequest": {
+    "com.posthog.custom_property_sources#ListCustomPropertySourcesRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -858,10 +859,10 @@
       },
       "traits": {}
     },
-    "com.posthog.custom_property_sources#ListCustomPropertySourceRuns": {
+    "com.posthog.custom_property_sources#ListCustomPropertySourcesRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_sources#ListCustomPropertySourceRunsRequest"
+        "target": "com.posthog.custom_property_sources#ListCustomPropertySourcesRunsRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_sources#PaginatedCustomPropertySyncRunList"
@@ -875,7 +876,7 @@
         "smithy.api#documentation": "The source's sync history, newest first. Person and group runs require viewer access to\ntheir warehouse source because the response includes row counts and sync errors."
       }
     },
-    "com.posthog.custom_property_sources#CustomPropertySourcesSyncRequest": {
+    "com.posthog.custom_property_sources#SyncCustomPropertySourceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -898,10 +899,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.custom_property_sources#CustomPropertySourcesSync": {
+    "com.posthog.custom_property_sources#SyncCustomPropertySource": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_sources#CustomPropertySourcesSyncRequest"
+        "target": "com.posthog.custom_property_sources#SyncCustomPropertySourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -920,31 +921,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.custom_property_sources#ListCustomPropertySources"
-        },
-        {
           "target": "com.posthog.custom_property_sources#CreateCustomPropertySource"
-        },
-        {
-          "target": "com.posthog.custom_property_sources#CustomPropertySourcesRetrieve"
-        },
-        {
-          "target": "com.posthog.custom_property_sources#UpdateCustomPropertySource"
-        },
-        {
-          "target": "com.posthog.custom_property_sources#UpdateCustomPropertySourcePartial"
-        },
-        {
-          "target": "com.posthog.custom_property_sources#CustomPropertySourcesDestroy"
         },
         {
           "target": "com.posthog.custom_property_sources#CustomPropertySourcesBackfill"
         },
         {
-          "target": "com.posthog.custom_property_sources#ListCustomPropertySourceRuns"
+          "target": "com.posthog.custom_property_sources#CustomPropertySourcesDestroy"
         },
         {
-          "target": "com.posthog.custom_property_sources#CustomPropertySourcesSync"
+          "target": "com.posthog.custom_property_sources#GetCustomPropertySource"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#ListCustomPropertySources"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#ListCustomPropertySourcesRuns"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#SyncCustomPropertySource"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#UpdateCustomPropertySource"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#UpdateCustomPropertySourcesPartial"
         }
       ],
       "traits": {

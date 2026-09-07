@@ -76,28 +76,28 @@ export type BatchGetAmpUrlsRequestLookupStrategyEnum =
 export const BatchGetAmpUrlsRequestLookupStrategyEnum = /*@__PURE__*/ S.String;
 
 /** AMP URL request for a batch of URLs. */
-export interface GetBatchAmpUrlRequest {
+export interface BatchGetAmpUrlsRequest {
   /** List of URLs to look up for the paired AMP URLs. The URLs are case-sensitive. Up to 50 URLs per lookup (see [Usage Limits](/amp/cache/reference/limits)). */
   urls?: StringList;
   /** The lookup_strategy being requested. */
   lookupStrategy?: BatchGetAmpUrlsRequestLookupStrategyEnum | (string & {});
 }
-export const GetBatchAmpUrlRequest = /*@__PURE__*/ S.suspend(() =>
+export const BatchGetAmpUrlsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     urls: S.optional(StringList),
     lookupStrategy: S.optional(BatchGetAmpUrlsRequestLookupStrategyEnum),
   }),
 ).annotate({
-  identifier: "GetBatchAmpUrlRequest",
-}) as any as S.Schema<GetBatchAmpUrlRequest>;
+  identifier: "BatchGetAmpUrlsRequest",
+}) as any as S.Schema<BatchGetAmpUrlsRequest>;
 
 export interface BatchGetAmpUrlsRequest_ {
   /** Request body */
-  body?: GetBatchAmpUrlRequest;
+  body?: BatchGetAmpUrlsRequest;
 }
 export const BatchGetAmpUrlsRequest_ = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    body: S.optional(GetBatchAmpUrlRequest.pipe(T.HttpBody())),
+    body: S.optional(BatchGetAmpUrlsRequest.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
       method: "POST",
@@ -108,28 +108,6 @@ export const BatchGetAmpUrlsRequest_ = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BatchGetAmpUrlsRequest_",
 }) as any as S.Schema<BatchGetAmpUrlsRequest_>;
-
-/** AMP URL response for a requested URL. */
-export interface AmpUrl {
-  /** The original non-AMP URL. */
-  originalUrl?: string;
-  /** The AMP URL pointing to the publisher's web server. */
-  ampUrl?: string;
-  /** The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to the cached document in the Google AMP Cache. */
-  cdnAmpUrl?: string;
-}
-export const AmpUrl = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    originalUrl: S.optional(S.String),
-    ampUrl: S.optional(S.String),
-    cdnAmpUrl: S.optional(S.String),
-  }),
-).annotate({ identifier: "AmpUrl" }) as any as S.Schema<AmpUrl>;
-
-export type AmpUrlList = Array<AmpUrl>;
-export const AmpUrlList = /*@__PURE__*/ S.Array(
-  AmpUrl,
-) as any as S.Schema<AmpUrlList>;
 
 export type AmpUrlErrorErrorCodeEnum =
   | "ERROR_CODE_UNSPECIFIED"
@@ -142,17 +120,17 @@ export const AmpUrlErrorErrorCodeEnum = /*@__PURE__*/ S.String;
 
 /** AMP URL Error resource for a requested URL that couldn't be found. */
 export interface AmpUrlError {
-  /** The original non-AMP URL. */
-  originalUrl?: string;
   /** The error code of an API call. */
   errorCode?: AmpUrlErrorErrorCodeEnum;
+  /** The original non-AMP URL. */
+  originalUrl?: string;
   /** An optional descriptive error message. */
   errorMessage?: string;
 }
 export const AmpUrlError = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    originalUrl: S.optional(S.String),
     errorCode: S.optional(AmpUrlErrorErrorCodeEnum),
+    originalUrl: S.optional(S.String),
     errorMessage: S.optional(S.String),
   }),
 ).annotate({ identifier: "AmpUrlError" }) as any as S.Schema<AmpUrlError>;
@@ -162,37 +140,59 @@ export const AmpUrlErrorList = /*@__PURE__*/ S.Array(
   AmpUrlError,
 ) as any as S.Schema<AmpUrlErrorList>;
 
+/** AMP URL response for a requested URL. */
+export interface AmpUrl {
+  /** The original non-AMP URL. */
+  originalUrl?: string;
+  /** The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to the cached document in the Google AMP Cache. */
+  cdnAmpUrl?: string;
+  /** The AMP URL pointing to the publisher's web server. */
+  ampUrl?: string;
+}
+export const AmpUrl = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    originalUrl: S.optional(S.String),
+    cdnAmpUrl: S.optional(S.String),
+    ampUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "AmpUrl" }) as any as S.Schema<AmpUrl>;
+
+export type AmpUrlList = Array<AmpUrl>;
+export const AmpUrlList = /*@__PURE__*/ S.Array(
+  AmpUrl,
+) as any as S.Schema<AmpUrlList>;
+
 /** Batch AMP URL response. */
-export interface GetBatchAmpUrlResponse {
-  /** For each URL in BatchAmpUrlsRequest, the URL response. The response might not be in the same order as URLs in the batch request. If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only once. */
-  ampUrls?: AmpUrlList;
+export interface BatchGetAmpUrlsResponse {
   /** The errors for requested URLs that have no AMP URL. */
   urlErrors?: AmpUrlErrorList;
+  /** For each URL in BatchAmpUrlsRequest, the URL response. The response might not be in the same order as URLs in the batch request. If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only once. */
+  ampUrls?: AmpUrlList;
 }
-export const GetBatchAmpUrlResponse = /*@__PURE__*/ S.suspend(() =>
+export const BatchGetAmpUrlsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ampUrls: S.optional(AmpUrlList),
     urlErrors: S.optional(AmpUrlErrorList),
+    ampUrls: S.optional(AmpUrlList),
   }),
 ).annotate({
-  identifier: "GetBatchAmpUrlResponse",
-}) as any as S.Schema<GetBatchAmpUrlResponse>;
+  identifier: "BatchGetAmpUrlsResponse",
+}) as any as S.Schema<BatchGetAmpUrlsResponse>;
 
-export type GetBatchAmpUrlError =
+export type BatchGetAmpUrlsError =
   | NotFound
   | Forbidden
   | BadRequest
   | Conflict
   | GcpOpError;
 /** Returns AMP URL(s) and equivalent [AMP Cache URL(s)](/amp/cache/overview#amp-cache-url-format). */
-export const getBatchAmpUrl: API.OperationMethod<
+export const batchGetAmpUrls: API.OperationMethod<
   BatchGetAmpUrlsRequest_,
-  GetBatchAmpUrlResponse,
-  GetBatchAmpUrlError,
+  BatchGetAmpUrlsResponse,
+  BatchGetAmpUrlsError,
   GcpOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: BatchGetAmpUrlsRequest_,
-  output: GetBatchAmpUrlResponse,
+  output: BatchGetAmpUrlsResponse,
   errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,

@@ -21,7 +21,8 @@
       "perPage": "per_page",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.rate_limits#CreateRequestActionMode": {
@@ -1839,19 +1840,19 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.rate_limits#Create"
+          "target": "com.cloudflare.rate_limits#CreateRateLimit"
         },
         {
-          "target": "com.cloudflare.rate_limits#Delete"
+          "target": "com.cloudflare.rate_limits#DeleteRateLimit"
         },
         {
-          "target": "com.cloudflare.rate_limits#Edit"
+          "target": "com.cloudflare.rate_limits#EditRateLimit"
         },
         {
-          "target": "com.cloudflare.rate_limits#Get"
+          "target": "com.cloudflare.rate_limits#GetRateLimit"
         },
         {
-          "target": "com.cloudflare.rate_limits#List"
+          "target": "com.cloudflare.rate_limits#ListRateLimits"
         }
       ],
       "traits": {

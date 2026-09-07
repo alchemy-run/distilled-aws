@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.streamlit_apps#ListStreamlitAppsRequest": {
@@ -470,7 +471,7 @@
         "smithy.api#documentation": "Create a streamlit app"
       }
     },
-    "com.posthog.streamlit_apps#StreamlitAppsRetrieveRequest": {
+    "com.posthog.streamlit_apps#GetStreamlitAppRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -493,10 +494,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.streamlit_apps#StreamlitAppsRetrieve": {
+    "com.posthog.streamlit_apps#GetStreamlitApp": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.streamlit_apps#StreamlitAppsRetrieveRequest"
+        "target": "com.posthog.streamlit_apps#GetStreamlitAppRequest"
       },
       "output": {
         "target": "com.posthog.streamlit_apps#AppContract"
@@ -574,7 +575,7 @@
         "smithy.api#documentation": "Update a streamlit app"
       }
     },
-    "com.posthog.streamlit_apps#UpdateStreamlitAppPartialRequest": {
+    "com.posthog.streamlit_apps#UpdateStreamlitAppsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -621,10 +622,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.streamlit_apps#UpdateStreamlitAppPartial": {
+    "com.posthog.streamlit_apps#UpdateStreamlitAppsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.streamlit_apps#UpdateStreamlitAppPartialRequest"
+        "target": "com.posthog.streamlit_apps#UpdateStreamlitAppsPartialRequest"
       },
       "output": {
         "target": "com.posthog.streamlit_apps#AppContract"
@@ -678,7 +679,7 @@
         "smithy.api#documentation": "Delete a streamlit app"
       }
     },
-    "com.posthog.streamlit_apps#CreateStreamlitAppActivateVersionRequest": {
+    "com.posthog.streamlit_apps#StreamlitAppsActivateVersionCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -721,10 +722,10 @@
       },
       "traits": {}
     },
-    "com.posthog.streamlit_apps#CreateStreamlitAppActivateVersion": {
+    "com.posthog.streamlit_apps#StreamlitAppsActivateVersionCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.streamlit_apps#CreateStreamlitAppActivateVersionRequest"
+        "target": "com.posthog.streamlit_apps#StreamlitAppsActivateVersionCreateRequest"
       },
       "output": {
         "target": "com.posthog.streamlit_apps#ActivateVersionResponse"
@@ -925,7 +926,7 @@
         "smithy.api#documentation": "Start the app sandbox"
       }
     },
-    "com.posthog.streamlit_apps#StreamlitAppsStatusRetrieveRequest": {
+    "com.posthog.streamlit_apps#GetStreamlitAppsStatusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -998,10 +999,10 @@
       },
       "traits": {}
     },
-    "com.posthog.streamlit_apps#StreamlitAppsStatusRetrieve": {
+    "com.posthog.streamlit_apps#GetStreamlitAppsStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.streamlit_apps#StreamlitAppsStatusRetrieveRequest"
+        "target": "com.posthog.streamlit_apps#GetStreamlitAppsStatusRequest"
       },
       "output": {
         "target": "com.posthog.streamlit_apps#StreamlitAppStatus"
@@ -1055,7 +1056,7 @@
         "smithy.api#documentation": "Stop the app sandbox"
       }
     },
-    "com.posthog.streamlit_apps#CreateStreamlitAppUploadVersionRequest": {
+    "com.posthog.streamlit_apps#StreamlitAppsUploadVersionCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1085,10 +1086,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.streamlit_apps#CreateStreamlitAppUploadVersion": {
+    "com.posthog.streamlit_apps#StreamlitAppsUploadVersionCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.streamlit_apps#CreateStreamlitAppUploadVersionRequest"
+        "target": "com.posthog.streamlit_apps#StreamlitAppsUploadVersionCreateRequest"
       },
       "output": {
         "target": "com.posthog.streamlit_apps#AppVersionContract"
@@ -1102,7 +1103,7 @@
         "smithy.api#documentation": "Upload a new app version"
       }
     },
-    "com.posthog.streamlit_apps#StreamlitAppsVersionsRetrieveRequest": {
+    "com.posthog.streamlit_apps#GetStreamlitAppsVersionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1147,10 +1148,10 @@
         "smithy.api#documentation": "Most recent versions of the app, newest first (capped at 50)."
       }
     },
-    "com.posthog.streamlit_apps#StreamlitAppsVersionsRetrieve": {
+    "com.posthog.streamlit_apps#GetStreamlitAppsVersion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.streamlit_apps#StreamlitAppsVersionsRetrieveRequest"
+        "target": "com.posthog.streamlit_apps#GetStreamlitAppsVersionRequest"
       },
       "output": {
         "target": "com.posthog.streamlit_apps#StreamlitAppVersionList"
@@ -1169,25 +1170,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.streamlit_apps#ListStreamlitApps"
-        },
-        {
           "target": "com.posthog.streamlit_apps#CreateStreamlitApp"
         },
         {
-          "target": "com.posthog.streamlit_apps#StreamlitAppsRetrieve"
+          "target": "com.posthog.streamlit_apps#GetStreamlitApp"
         },
         {
-          "target": "com.posthog.streamlit_apps#UpdateStreamlitApp"
+          "target": "com.posthog.streamlit_apps#GetStreamlitAppsStatus"
         },
         {
-          "target": "com.posthog.streamlit_apps#UpdateStreamlitAppPartial"
+          "target": "com.posthog.streamlit_apps#GetStreamlitAppsVersion"
         },
         {
-          "target": "com.posthog.streamlit_apps#StreamlitAppsDestroy"
+          "target": "com.posthog.streamlit_apps#ListStreamlitApps"
         },
         {
-          "target": "com.posthog.streamlit_apps#CreateStreamlitAppActivateVersion"
+          "target": "com.posthog.streamlit_apps#StreamlitAppsActivateVersionCreate"
         },
         {
           "target": "com.posthog.streamlit_apps#StreamlitAppsConnectInfoRetrieve"
@@ -1196,22 +1194,25 @@
           "target": "com.posthog.streamlit_apps#StreamlitAppsCreateVersionFromSourceCreate"
         },
         {
+          "target": "com.posthog.streamlit_apps#StreamlitAppsDestroy"
+        },
+        {
           "target": "com.posthog.streamlit_apps#StreamlitAppsRestartCreate"
         },
         {
           "target": "com.posthog.streamlit_apps#StreamlitAppsStartCreate"
         },
         {
-          "target": "com.posthog.streamlit_apps#StreamlitAppsStatusRetrieve"
-        },
-        {
           "target": "com.posthog.streamlit_apps#StreamlitAppsStopCreate"
         },
         {
-          "target": "com.posthog.streamlit_apps#CreateStreamlitAppUploadVersion"
+          "target": "com.posthog.streamlit_apps#StreamlitAppsUploadVersionCreate"
         },
         {
-          "target": "com.posthog.streamlit_apps#StreamlitAppsVersionsRetrieve"
+          "target": "com.posthog.streamlit_apps#UpdateStreamlitApp"
+        },
+        {
+          "target": "com.posthog.streamlit_apps#UpdateStreamlitAppsPartial"
         }
       ],
       "traits": {

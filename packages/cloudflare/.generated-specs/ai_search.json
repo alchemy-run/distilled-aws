@@ -116,7 +116,8 @@
       "waitForCompletion": "wait_for_completion",
       "webCrawler": "web_crawler",
       "workerDomain": "worker_domain"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ai_search#InstancesChatCompletionsRequestMessagesItemContentCase1ItemCase0Type": {
@@ -22487,142 +22488,142 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.ai_search#InstancesChatCompletions"
+          "target": "com.cloudflare.ai_search#ChatCompletionsInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesCreate"
+          "target": "com.cloudflare.ai_search#ChatCompletionsNamespace"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesDelete"
+          "target": "com.cloudflare.ai_search#ChatCompletionsNamespaceInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesList"
+          "target": "com.cloudflare.ai_search#ChunksNamespaceInstanceItem"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesRead"
+          "target": "com.cloudflare.ai_search#CreateInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesSearch"
+          "target": "com.cloudflare.ai_search#CreateInstanceJob"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesStats"
+          "target": "com.cloudflare.ai_search#CreateNamespace"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesUpdate"
+          "target": "com.cloudflare.ai_search#CreateNamespaceInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesJobsCreate"
+          "target": "com.cloudflare.ai_search#CreateNamespaceInstanceJob"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesJobsGet"
+          "target": "com.cloudflare.ai_search#CreateOrUpdateNamespaceInstanceItem"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesJobsList"
+          "target": "com.cloudflare.ai_search#CreateToken"
         },
         {
-          "target": "com.cloudflare.ai_search#InstancesJobsLogs"
+          "target": "com.cloudflare.ai_search#DeleteInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesChatCompletions"
+          "target": "com.cloudflare.ai_search#DeleteNamespace"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesCreate"
+          "target": "com.cloudflare.ai_search#DeleteNamespaceInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesDelete"
+          "target": "com.cloudflare.ai_search#DeleteNamespaceInstanceItem"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesList"
+          "target": "com.cloudflare.ai_search#DeleteToken"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesRead"
+          "target": "com.cloudflare.ai_search#DownloadNamespaceInstanceItem"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesSearch"
+          "target": "com.cloudflare.ai_search#GetInstanceJob"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesUpdate"
+          "target": "com.cloudflare.ai_search#GetNamespaceInstanceItem"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesChatCompletions"
+          "target": "com.cloudflare.ai_search#GetNamespaceInstanceJob"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesCreate"
+          "target": "com.cloudflare.ai_search#ListInstanceJobs"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesDelete"
+          "target": "com.cloudflare.ai_search#ListInstances"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesList"
+          "target": "com.cloudflare.ai_search#ListNamespaceInstanceItems"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesRead"
+          "target": "com.cloudflare.ai_search#ListNamespaceInstanceJobs"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesSearch"
+          "target": "com.cloudflare.ai_search#ListNamespaceInstances"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesStats"
+          "target": "com.cloudflare.ai_search#ListNamespaces"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesUpdate"
+          "target": "com.cloudflare.ai_search#ListTokens"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsChunks"
+          "target": "com.cloudflare.ai_search#LogsInstanceJob"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsCreateOrUpdate"
+          "target": "com.cloudflare.ai_search#LogsNamespaceInstanceItem"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsDelete"
+          "target": "com.cloudflare.ai_search#LogsNamespaceInstanceJob"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsDownload"
+          "target": "com.cloudflare.ai_search#PatchNamespaceInstanceJob"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsGet"
+          "target": "com.cloudflare.ai_search#ReadInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsList"
+          "target": "com.cloudflare.ai_search#ReadNamespace"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsLogs"
+          "target": "com.cloudflare.ai_search#ReadNamespaceInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsSync"
+          "target": "com.cloudflare.ai_search#ReadToken"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesItemsUpload"
+          "target": "com.cloudflare.ai_search#SearchInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesJobsCreate"
+          "target": "com.cloudflare.ai_search#SearchNamespace"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesJobsGet"
+          "target": "com.cloudflare.ai_search#SearchNamespaceInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesJobsList"
+          "target": "com.cloudflare.ai_search#StatsInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesJobsLogs"
+          "target": "com.cloudflare.ai_search#StatsNamespaceInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#NamespacesInstancesJobsUpdate"
+          "target": "com.cloudflare.ai_search#SyncNamespaceInstanceItem"
         },
         {
-          "target": "com.cloudflare.ai_search#TokensCreate"
+          "target": "com.cloudflare.ai_search#UpdateInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#TokensDelete"
+          "target": "com.cloudflare.ai_search#UpdateNamespace"
         },
         {
-          "target": "com.cloudflare.ai_search#TokensList"
+          "target": "com.cloudflare.ai_search#UpdateNamespaceInstance"
         },
         {
-          "target": "com.cloudflare.ai_search#TokensRead"
+          "target": "com.cloudflare.ai_search#UpdateToken"
         },
         {
-          "target": "com.cloudflare.ai_search#TokensUpdate"
+          "target": "com.cloudflare.ai_search#UploadNamespaceInstanceItem"
         }
       ],
       "traits": {

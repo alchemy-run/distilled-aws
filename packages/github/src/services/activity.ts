@@ -285,6 +285,72 @@ export const GetStargazerCountForRepoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetStargazerCountForRepoResponse",
 }) as any as S.Schema<GetStargazerCountForRepoResponse>;
 
+export interface GetStargazerHistoryForRepoRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The number of results per page (max 30). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  per_page?: number;
+  /** The page number of the results to fetch (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
+  page?: number;
+}
+export const GetStargazerHistoryForRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    per_page: S.optional(S.Number.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/repos/{owner}/{repo}/stargazers/history",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetStargazerHistoryForRepoRequest",
+}) as any as S.Schema<GetStargazerHistoryForRepoRequest>;
+
+/** The number of stars created on each day of the week, starting on Sunday. */
+export type StargazerHistoryDaysList = Array<number>;
+export const StargazerHistoryDaysList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<StargazerHistoryDaysList>;
+
+/** Stargazer History */
+export interface StargazerHistory {
+  /** The number of stars created on each day of the week, starting on Sunday. */
+  days: StargazerHistoryDaysList;
+  /** The number of stars created during the week. */
+  total: number;
+  /** The start of the week, given as a Unix timestamp. */
+  week: number;
+}
+export const StargazerHistory = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    days: StargazerHistoryDaysList,
+    total: S.Number,
+    week: S.Number,
+  }),
+).annotate({
+  identifier: "StargazerHistory",
+}) as any as S.Schema<StargazerHistory>;
+
+export type GetStargazerHistoryForRepoResponseBodyList =
+  Array<StargazerHistory>;
+export const GetStargazerHistoryForRepoResponseBodyList = /*@__PURE__*/ S.Array(
+  StargazerHistory,
+) as any as S.Schema<GetStargazerHistoryForRepoResponseBodyList>;
+
+export type GetStargazerHistoryForRepoResponse =
+  GetStargazerHistoryForRepoResponseBodyList;
+export const GetStargazerHistoryForRepoResponse = /*@__PURE__*/ S.suspend(() =>
+  GetStargazerHistoryForRepoResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetStargazerHistoryForRepoResponse",
+}) as any as S.Schema<GetStargazerHistoryForRepoResponse>;
+
 export interface GetThreadRequest {
   /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
   thread_id: number;
@@ -3881,59 +3947,6 @@ export const ListWatchersForRepoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWatchersForRepoResponse",
 }) as any as S.Schema<ListWatchersForRepoResponse>;
 
-export interface MarkNotificationsAsReadRequest {
-  /** Describes the last point that notifications were checked. Anything updated since this time will not be marked as read. If you omit this parameter, all notifications are marked as read. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. Default: The current timestamp. */
-  last_read_at?: string;
-  /** Whether the notification has been read. */
-  read?: boolean;
-}
-export const MarkNotificationsAsReadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    last_read_at: S.optional(S.String),
-    read: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "PUT", uri: "/notifications", code: 200 })),
-).annotate({
-  identifier: "MarkNotificationsAsReadRequest",
-}) as any as S.Schema<MarkNotificationsAsReadRequest>;
-
-export interface MarkNotificationsAsReadResponse {}
-export const MarkNotificationsAsReadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MarkNotificationsAsReadResponse",
-}) as any as S.Schema<MarkNotificationsAsReadResponse>;
-
-export interface MarkRepoNotificationsAsReadRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** Describes the last point that notifications were checked. Anything updated since this time will not be marked as read. If you omit this parameter, all notifications are marked as read. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. Default: The current timestamp. */
-  last_read_at?: string;
-}
-export const MarkRepoNotificationsAsReadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    last_read_at: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/repos/{owner}/{repo}/notifications",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "MarkRepoNotificationsAsReadRequest",
-}) as any as S.Schema<MarkRepoNotificationsAsReadRequest>;
-
-export interface MarkRepoNotificationsAsReadResponse {}
-export const MarkRepoNotificationsAsReadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MarkRepoNotificationsAsReadResponse",
-}) as any as S.Schema<MarkRepoNotificationsAsReadResponse>;
-
 export interface MarkThreadAsDoneRequest {
   /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
   thread_id: number;
@@ -3959,11 +3972,64 @@ export const MarkThreadAsDoneResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "MarkThreadAsDoneResponse",
 }) as any as S.Schema<MarkThreadAsDoneResponse>;
 
-export interface MarkThreadAsReadRequest {
+export interface ReadMarkNotificationsAsRequest {
+  /** Describes the last point that notifications were checked. Anything updated since this time will not be marked as read. If you omit this parameter, all notifications are marked as read. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. Default: The current timestamp. */
+  last_read_at?: string;
+  /** Whether the notification has been read. */
+  read?: boolean;
+}
+export const ReadMarkNotificationsAsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    last_read_at: S.optional(S.String),
+    read: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "PUT", uri: "/notifications", code: 200 })),
+).annotate({
+  identifier: "ReadMarkNotificationsAsRequest",
+}) as any as S.Schema<ReadMarkNotificationsAsRequest>;
+
+export interface ReadMarkNotificationsAsResponse {}
+export const ReadMarkNotificationsAsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ReadMarkNotificationsAsResponse",
+}) as any as S.Schema<ReadMarkNotificationsAsResponse>;
+
+export interface ReadMarkRepoNotificationsAsRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** Describes the last point that notifications were checked. Anything updated since this time will not be marked as read. If you omit this parameter, all notifications are marked as read. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. Default: The current timestamp. */
+  last_read_at?: string;
+}
+export const ReadMarkRepoNotificationsAsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    last_read_at: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/repos/{owner}/{repo}/notifications",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ReadMarkRepoNotificationsAsRequest",
+}) as any as S.Schema<ReadMarkRepoNotificationsAsRequest>;
+
+export interface ReadMarkRepoNotificationsAsResponse {}
+export const ReadMarkRepoNotificationsAsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ReadMarkRepoNotificationsAsResponse",
+}) as any as S.Schema<ReadMarkRepoNotificationsAsResponse>;
+
+export interface ReadMarkThreadAsRequest {
   /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
   thread_id: number;
 }
-export const MarkThreadAsReadRequest = /*@__PURE__*/ S.suspend(() =>
+export const ReadMarkThreadAsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     thread_id: S.Number.pipe(T.Label()),
   }).pipe(
@@ -3974,15 +4040,15 @@ export const MarkThreadAsReadRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MarkThreadAsReadRequest",
-}) as any as S.Schema<MarkThreadAsReadRequest>;
+  identifier: "ReadMarkThreadAsRequest",
+}) as any as S.Schema<ReadMarkThreadAsRequest>;
 
-export interface MarkThreadAsReadResponse {}
-export const MarkThreadAsReadResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ReadMarkThreadAsResponse {}
+export const ReadMarkThreadAsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "MarkThreadAsReadResponse",
-}) as any as S.Schema<MarkThreadAsReadResponse>;
+  identifier: "ReadMarkThreadAsResponse",
+}) as any as S.Schema<ReadMarkThreadAsResponse>;
 
 export interface SetRepoSubscriptionRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -4174,6 +4240,23 @@ export const getStargazerCountForRepo: API.OperationMethod<
   input: GetStargazerCountForRepoRequest,
   output: GetStargazerCountForRepoResponse,
   errors: [NotFound],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStargazerHistoryForRepoError =
+  | UnprocessableEntity
+  | GithubOpError;
+/** Get repository star history Returns repository stars grouped by calendar weeks, most recent first. Pages move backward toward the repository's creation week, and weeks within a page are ordered newest to oldest, so concatenating pages produces one continuous series. Weeks without stars contain zero counts. Week and day boundaries are not guaranteed to align with UTC. The `days` array contains the number of stars created on each day of the week, starting on Sunday. */
+export const getStargazerHistoryForRepo: API.OperationMethod<
+  GetStargazerHistoryForRepoRequest,
+  GetStargazerHistoryForRepoResponse,
+  GetStargazerHistoryForRepoError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStargazerHistoryForRepoRequest,
+  output: GetStargazerHistoryForRepoResponse,
+  errors: [UnprocessableEntity],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -4399,7 +4482,7 @@ export const listReposStarredByAuthenticatedUser: API.OperationMethod<
 }));
 
 export type ListReposStarredByUserError = GithubOpError;
-/** List repositories starred by a user Lists repositories a user has starred. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created. */
+/** List repositories starred by a user Lists repositories a user has starred. If the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns starred repositories visible to the token even if the token has no OAuth scopes. This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)." - **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created. */
 export const listReposStarredByUser: API.OperationMethod<
   ListReposStarredByUserRequest,
   ListReposStarredByUserResponse,
@@ -4475,36 +4558,6 @@ export const listWatchersForRepo: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MarkNotificationsAsReadError = Forbidden | GithubOpError;
-/** Mark notifications as read Marks all notifications as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the [List notifications for the authenticated user](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user) endpoint and pass the query parameter `all=false`. */
-export const markNotificationsAsRead: API.OperationMethod<
-  MarkNotificationsAsReadRequest,
-  MarkNotificationsAsReadResponse,
-  MarkNotificationsAsReadError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarkNotificationsAsReadRequest,
-  output: MarkNotificationsAsReadResponse,
-  errors: [Forbidden],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarkRepoNotificationsAsReadError = GithubOpError;
-/** Mark repository notifications as read Marks all notifications in a repository as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the [List repository notifications for the authenticated user](https://docs.github.com/rest/activity/notifications#list-repository-notifications-for-the-authenticated-user) endpoint and pass the query parameter `all=false`. */
-export const markRepoNotificationsAsRead: API.OperationMethod<
-  MarkRepoNotificationsAsReadRequest,
-  MarkRepoNotificationsAsReadResponse,
-  MarkRepoNotificationsAsReadError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarkRepoNotificationsAsReadRequest,
-  output: MarkRepoNotificationsAsReadResponse,
-  errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
 export type MarkThreadAsDoneError = GithubOpError;
 /** Mark a thread as done Marks a thread as "done." Marking a thread as "done" is equivalent to marking a notification in your notification inbox on GitHub as done: https://github.com/notifications. */
 export const markThreadAsDone: API.OperationMethod<
@@ -4520,16 +4573,46 @@ export const markThreadAsDone: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MarkThreadAsReadError = Forbidden | GithubOpError;
-/** Mark a thread as read Marks a thread as "read." Marking a thread as "read" is equivalent to clicking a notification in your notification inbox on GitHub: https://github.com/notifications. */
-export const markThreadAsRead: API.OperationMethod<
-  MarkThreadAsReadRequest,
-  MarkThreadAsReadResponse,
-  MarkThreadAsReadError,
+export type ReadMarkNotificationsAsError = Forbidden | GithubOpError;
+/** Mark notifications as read Marks all notifications as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the [List notifications for the authenticated user](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user) endpoint and pass the query parameter `all=false`. */
+export const readMarkNotificationsAs: API.OperationMethod<
+  ReadMarkNotificationsAsRequest,
+  ReadMarkNotificationsAsResponse,
+  ReadMarkNotificationsAsError,
   GithubOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MarkThreadAsReadRequest,
-  output: MarkThreadAsReadResponse,
+  input: ReadMarkNotificationsAsRequest,
+  output: ReadMarkNotificationsAsResponse,
+  errors: [Forbidden],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadMarkRepoNotificationsAsError = GithubOpError;
+/** Mark repository notifications as read Marks all notifications in a repository as "read" for the current user. If the number of notifications is too large to complete in one request, you will receive a `202 Accepted` status and GitHub will run an asynchronous process to mark notifications as "read." To check whether any "unread" notifications remain, you can use the [List repository notifications for the authenticated user](https://docs.github.com/rest/activity/notifications#list-repository-notifications-for-the-authenticated-user) endpoint and pass the query parameter `all=false`. */
+export const readMarkRepoNotificationsAs: API.OperationMethod<
+  ReadMarkRepoNotificationsAsRequest,
+  ReadMarkRepoNotificationsAsResponse,
+  ReadMarkRepoNotificationsAsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadMarkRepoNotificationsAsRequest,
+  output: ReadMarkRepoNotificationsAsResponse,
+  errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReadMarkThreadAsError = Forbidden | GithubOpError;
+/** Mark a thread as read Marks a thread as "read." Marking a thread as "read" is equivalent to clicking a notification in your notification inbox on GitHub: https://github.com/notifications. */
+export const readMarkThreadAs: API.OperationMethod<
+  ReadMarkThreadAsRequest,
+  ReadMarkThreadAsResponse,
+  ReadMarkThreadAsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReadMarkThreadAsRequest,
+  output: ReadMarkThreadAsResponse,
   errors: [Forbidden],
   protocol: GithubProtocol,
   retry: Retry.Retry,

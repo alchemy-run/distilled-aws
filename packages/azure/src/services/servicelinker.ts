@@ -586,120 +586,6 @@ export const ConnectorCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConnectorCreateOrUpdateResponse",
 }) as any as S.Schema<ConnectorCreateOrUpdateResponse>;
 
-export interface ConnectorValidateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of resource. */
-  connectorName: string;
-}
-export const ConnectorValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}/validate",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConnectorValidateRequest",
-}) as any as S.Schema<ConnectorValidateRequest>;
-
-/** The result of validation */
-export type ValidationResultItemResult = "success" | "failure" | "warning";
-export const ValidationResultItemResult = /*@__PURE__*/ S.String;
-
-/** The validation item for a Linker. */
-export interface ValidationResultItem {
-  /** The validation item name. */
-  name?: string;
-  /** The display name of validation item */
-  description?: string | null;
-  /** The result of validation */
-  result?: ValidationResultItemResult | null;
-  /** The error message of validation result */
-  errorMessage?: string | null;
-  /** The error code of validation result */
-  errorCode?: string | null;
-}
-export const ValidationResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    description: S.optional(S.NullOr(S.String)),
-    result: S.optional(S.NullOr(ValidationResultItemResult)),
-    errorMessage: S.optional(S.NullOr(S.String)),
-    errorCode: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ValidationResultItem",
-}) as any as S.Schema<ValidationResultItem>;
-
-/** The detail of validation result */
-export type ValidateResultValidationDetailList = Array<ValidationResultItem>;
-export const ValidateResultValidationDetailList = /*@__PURE__*/ S.Array(
-  ValidationResultItem,
-) as any as S.Schema<ValidateResultValidationDetailList>;
-
-/** The validation result for a Linker. */
-export interface ValidateResult {
-  /** The linker name. */
-  linkerName?: string | null;
-  /** A boolean value indicating whether the connection is available or not */
-  isConnectionAvailable?: boolean | null;
-  /** The start time of the validation report. */
-  reportStartTimeUtc?: string | null;
-  /** The end time of the validation report. */
-  reportEndTimeUtc?: string | null;
-  /** The resource id of the Linker source application. */
-  sourceId?: string | null;
-  /** The resource Id of target service. */
-  targetId?: string | null;
-  /** The authentication type. */
-  authType?: AuthType | null;
-  /** The detail of validation result */
-  validationDetail?: ValidateResultValidationDetailList;
-}
-export const ValidateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    linkerName: S.optional(S.NullOr(S.String)),
-    isConnectionAvailable: S.optional(S.NullOr(S.Boolean)),
-    reportStartTimeUtc: S.optional(S.NullOr(S.String)),
-    reportEndTimeUtc: S.optional(S.NullOr(S.String)),
-    sourceId: S.optional(S.NullOr(S.String)),
-    targetId: S.optional(S.NullOr(S.String)),
-    authType: S.optional(S.NullOr(AuthType)),
-    validationDetail: S.optional(ValidateResultValidationDetailList),
-  }),
-).annotate({ identifier: "ValidateResult" }) as any as S.Schema<ValidateResult>;
-
-/** The validation operation result for a Linker. */
-export interface ValidateOperationResult {
-  /** The validation result detail. */
-  properties?: ValidateResult | null;
-  /** Validated Linker id. */
-  resourceId?: string | null;
-  /** Validation operation status. */
-  status?: string | null;
-}
-export const ValidateOperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(S.NullOr(ValidateResult)),
-    resourceId: S.optional(S.NullOr(S.String)),
-    status: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "ValidateOperationResult",
-}) as any as S.Schema<ValidateOperationResult>;
-
 /** The name of action for you dryrun job. */
 export type DryrunActionName = "createOrUpdate";
 export const DryrunActionName = /*@__PURE__*/ S.String;
@@ -1046,34 +932,34 @@ export const DeleteLinkerDryrunResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteLinkerDryrunResponse>;
 
 /** Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations */
-export type ConnectorGenerateConfigurationsRequestCustomizedKeysMap = {
+export type GenerateConnectorConfigurationsRequestCustomizedKeysMap = {
   [key: string]: string | undefined;
 };
-export const ConnectorGenerateConfigurationsRequestCustomizedKeysMap =
+export const GenerateConnectorConfigurationsRequestCustomizedKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ConnectorGenerateConfigurationsRequestCustomizedKeysMap>;
+  ) as any as S.Schema<GenerateConnectorConfigurationsRequestCustomizedKeysMap>;
 
 /** A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations */
-export type ConnectorGenerateConfigurationsRequestAdditionalConfigurationsMap =
+export type GenerateConnectorConfigurationsRequestAdditionalConfigurationsMap =
   { [key: string]: string | undefined };
-export const ConnectorGenerateConfigurationsRequestAdditionalConfigurationsMap =
+export const GenerateConnectorConfigurationsRequestAdditionalConfigurationsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ConnectorGenerateConfigurationsRequestAdditionalConfigurationsMap>;
+  ) as any as S.Schema<GenerateConnectorConfigurationsRequestAdditionalConfigurationsMap>;
 
 /** A dictionary of additional properties to be added in the end of connection string. */
-export type ConnectorGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap =
+export type GenerateConnectorConfigurationsRequestAdditionalConnectionStringPropertiesMap =
   { [key: string]: string | undefined };
-export const ConnectorGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap =
+export const GenerateConnectorConfigurationsRequestAdditionalConnectionStringPropertiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ConnectorGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap>;
+  ) as any as S.Schema<GenerateConnectorConfigurationsRequestAdditionalConnectionStringPropertiesMap>;
 
-export interface GenerateConnectorConfigurationRequest {
+export interface GenerateConnectorConfigurationsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1087,17 +973,17 @@ export interface GenerateConnectorConfigurationRequest {
   /** Optional, indicate whether to apply configurations on source application. If enable, generate configurations and applied to the source application. Default is enable. If optOut, no configuration change will be made on source. */
   action?: ActionType | (string & {});
   /** Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations */
-  customizedKeys?: ConnectorGenerateConfigurationsRequestCustomizedKeysMap;
+  customizedKeys?: GenerateConnectorConfigurationsRequestCustomizedKeysMap;
   /** Indicates some additional properties for dapr client type */
   daprProperties?: DaprPropertiesInput;
   /** A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations */
-  additionalConfigurations?: ConnectorGenerateConfigurationsRequestAdditionalConfigurationsMap;
+  additionalConfigurations?: GenerateConnectorConfigurationsRequestAdditionalConfigurationsMap;
   /** A dictionary of additional properties to be added in the end of connection string. */
-  additionalConnectionStringProperties?: ConnectorGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap;
+  additionalConnectionStringProperties?: GenerateConnectorConfigurationsRequestAdditionalConnectionStringPropertiesMap;
   /** An option to store configuration into different place */
   configurationStore?: ConfigurationStore | null;
 }
-export const GenerateConnectorConfigurationRequest = /*@__PURE__*/ S.suspend(
+export const GenerateConnectorConfigurationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1107,14 +993,14 @@ export const GenerateConnectorConfigurationRequest = /*@__PURE__*/ S.suspend(
       deleteOrUpdateBehavior: S.optional(DeleteOrUpdateBehavior),
       action: S.optional(ActionType),
       customizedKeys: S.optional(
-        ConnectorGenerateConfigurationsRequestCustomizedKeysMap,
+        GenerateConnectorConfigurationsRequestCustomizedKeysMap,
       ),
       daprProperties: S.optional(DaprPropertiesInput),
       additionalConfigurations: S.optional(
-        ConnectorGenerateConfigurationsRequestAdditionalConfigurationsMap,
+        GenerateConnectorConfigurationsRequestAdditionalConfigurationsMap,
       ),
       additionalConnectionStringProperties: S.optional(
-        ConnectorGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap,
+        GenerateConnectorConfigurationsRequestAdditionalConnectionStringPropertiesMap,
       ),
       configurationStore: S.optional(S.NullOr(ConfigurationStore)),
     }).pipe(
@@ -1126,8 +1012,8 @@ export const GenerateConnectorConfigurationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GenerateConnectorConfigurationRequest",
-}) as any as S.Schema<GenerateConnectorConfigurationRequest>;
+  identifier: "GenerateConnectorConfigurationsRequest",
+}) as any as S.Schema<GenerateConnectorConfigurationsRequest>;
 
 /** Type of configuration to determine whether the configuration can be modified after creation. KeyvaultSecret means the configuration references a key vault secret, such as App Service/ACA key vault reference. Default means the configuration is real value, such as user name, raw secret, etc. */
 export type LinkerConfigurationType = "Default" | "KeyVaultSecret";
@@ -1178,35 +1064,35 @@ export const ConfigurationResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConfigurationResult>;
 
 /** Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations */
-export type LinkersGenerateConfigurationsRequestCustomizedKeysMap = {
+export type GenerateLinkerConfigurationsRequestCustomizedKeysMap = {
   [key: string]: string | undefined;
 };
-export const LinkersGenerateConfigurationsRequestCustomizedKeysMap =
+export const GenerateLinkerConfigurationsRequestCustomizedKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<LinkersGenerateConfigurationsRequestCustomizedKeysMap>;
+  ) as any as S.Schema<GenerateLinkerConfigurationsRequestCustomizedKeysMap>;
 
 /** A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations */
-export type LinkersGenerateConfigurationsRequestAdditionalConfigurationsMap = {
+export type GenerateLinkerConfigurationsRequestAdditionalConfigurationsMap = {
   [key: string]: string | undefined;
 };
-export const LinkersGenerateConfigurationsRequestAdditionalConfigurationsMap =
+export const GenerateLinkerConfigurationsRequestAdditionalConfigurationsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<LinkersGenerateConfigurationsRequestAdditionalConfigurationsMap>;
+  ) as any as S.Schema<GenerateLinkerConfigurationsRequestAdditionalConfigurationsMap>;
 
 /** A dictionary of additional properties to be added in the end of connection string. */
-export type LinkersGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap =
+export type GenerateLinkerConfigurationsRequestAdditionalConnectionStringPropertiesMap =
   { [key: string]: string | undefined };
-export const LinkersGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap =
+export const GenerateLinkerConfigurationsRequestAdditionalConnectionStringPropertiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<LinkersGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap>;
+  ) as any as S.Schema<GenerateLinkerConfigurationsRequestAdditionalConnectionStringPropertiesMap>;
 
-export interface GenerateLinkerConfigurationRequest {
+export interface GenerateLinkerConfigurationsRequest {
   /** The fully qualified Azure Resource manager identifier of the resource to be connected. */
   resourceUri: string;
   /** The name Linker resource. */
@@ -1216,31 +1102,31 @@ export interface GenerateLinkerConfigurationRequest {
   /** Optional, indicate whether to apply configurations on source application. If enable, generate configurations and applied to the source application. Default is enable. If optOut, no configuration change will be made on source. */
   action?: ActionType | (string & {});
   /** Optional. A dictionary of default key name and customized key name mapping. If not specified, default key name will be used for generate configurations */
-  customizedKeys?: LinkersGenerateConfigurationsRequestCustomizedKeysMap;
+  customizedKeys?: GenerateLinkerConfigurationsRequestCustomizedKeysMap;
   /** Indicates some additional properties for dapr client type */
   daprProperties?: DaprPropertiesInput;
   /** A dictionary of additional configurations to be added. Service will auto generate a set of basic configurations and this property is to full fill more customized configurations */
-  additionalConfigurations?: LinkersGenerateConfigurationsRequestAdditionalConfigurationsMap;
+  additionalConfigurations?: GenerateLinkerConfigurationsRequestAdditionalConfigurationsMap;
   /** A dictionary of additional properties to be added in the end of connection string. */
-  additionalConnectionStringProperties?: LinkersGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap;
+  additionalConnectionStringProperties?: GenerateLinkerConfigurationsRequestAdditionalConnectionStringPropertiesMap;
   /** An option to store configuration into different place */
   configurationStore?: ConfigurationStore | null;
 }
-export const GenerateLinkerConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateLinkerConfigurationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     linkerName: S.String.pipe(T.Label()),
     deleteOrUpdateBehavior: S.optional(DeleteOrUpdateBehavior),
     action: S.optional(ActionType),
     customizedKeys: S.optional(
-      LinkersGenerateConfigurationsRequestCustomizedKeysMap,
+      GenerateLinkerConfigurationsRequestCustomizedKeysMap,
     ),
     daprProperties: S.optional(DaprPropertiesInput),
     additionalConfigurations: S.optional(
-      LinkersGenerateConfigurationsRequestAdditionalConfigurationsMap,
+      GenerateLinkerConfigurationsRequestAdditionalConfigurationsMap,
     ),
     additionalConnectionStringProperties: S.optional(
-      LinkersGenerateConfigurationsRequestAdditionalConnectionStringPropertiesMap,
+      GenerateLinkerConfigurationsRequestAdditionalConnectionStringPropertiesMap,
     ),
     configurationStore: S.optional(S.NullOr(ConfigurationStore)),
   }).pipe(
@@ -1252,8 +1138,8 @@ export const GenerateLinkerConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GenerateLinkerConfigurationRequest",
-}) as any as S.Schema<GenerateLinkerConfigurationRequest>;
+  identifier: "GenerateLinkerConfigurationsRequest",
+}) as any as S.Schema<GenerateLinkerConfigurationsRequest>;
 
 export interface GetConnectorRequest {
   /** The ID of the target subscription. */
@@ -1499,28 +1385,6 @@ export const LinkerCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "LinkerCreateOrUpdateResponse",
 }) as any as S.Schema<LinkerCreateOrUpdateResponse>;
-
-export interface LinkerValidateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource to be connected. */
-  resourceUri: string;
-  /** The name Linker resource. */
-  linkerName: string;
-}
-export const LinkerValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    linkerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}/validateLinker",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "LinkerValidateRequest",
-}) as any as S.Schema<LinkerValidateRequest>;
 
 export interface ListConfigurationNamesRequest {
   /** OData filter options. */
@@ -1968,20 +1832,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2196,6 +2060,142 @@ export const UpdateLinkerDryrunResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateLinkerDryrunResponse",
 }) as any as S.Schema<UpdateLinkerDryrunResponse>;
 
+export interface ValidateConnectorRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of resource. */
+  connectorName: string;
+}
+export const ValidateConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.ServiceLinker/locations/{location}/connectors/{connectorName}/validate",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateConnectorRequest",
+}) as any as S.Schema<ValidateConnectorRequest>;
+
+/** The result of validation */
+export type ValidationResultItemResult = "success" | "failure" | "warning";
+export const ValidationResultItemResult = /*@__PURE__*/ S.String;
+
+/** The validation item for a Linker. */
+export interface ValidationResultItem {
+  /** The validation item name. */
+  name?: string;
+  /** The display name of validation item */
+  description?: string | null;
+  /** The result of validation */
+  result?: ValidationResultItemResult | null;
+  /** The error message of validation result */
+  errorMessage?: string | null;
+  /** The error code of validation result */
+  errorCode?: string | null;
+}
+export const ValidationResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    description: S.optional(S.NullOr(S.String)),
+    result: S.optional(S.NullOr(ValidationResultItemResult)),
+    errorMessage: S.optional(S.NullOr(S.String)),
+    errorCode: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "ValidationResultItem",
+}) as any as S.Schema<ValidationResultItem>;
+
+/** The detail of validation result */
+export type ValidateResultValidationDetailList = Array<ValidationResultItem>;
+export const ValidateResultValidationDetailList = /*@__PURE__*/ S.Array(
+  ValidationResultItem,
+) as any as S.Schema<ValidateResultValidationDetailList>;
+
+/** The validation result for a Linker. */
+export interface ValidateResult {
+  /** The linker name. */
+  linkerName?: string | null;
+  /** A boolean value indicating whether the connection is available or not */
+  isConnectionAvailable?: boolean | null;
+  /** The start time of the validation report. */
+  reportStartTimeUtc?: string | null;
+  /** The end time of the validation report. */
+  reportEndTimeUtc?: string | null;
+  /** The resource id of the Linker source application. */
+  sourceId?: string | null;
+  /** The resource Id of target service. */
+  targetId?: string | null;
+  /** The authentication type. */
+  authType?: AuthType | null;
+  /** The detail of validation result */
+  validationDetail?: ValidateResultValidationDetailList;
+}
+export const ValidateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    linkerName: S.optional(S.NullOr(S.String)),
+    isConnectionAvailable: S.optional(S.NullOr(S.Boolean)),
+    reportStartTimeUtc: S.optional(S.NullOr(S.String)),
+    reportEndTimeUtc: S.optional(S.NullOr(S.String)),
+    sourceId: S.optional(S.NullOr(S.String)),
+    targetId: S.optional(S.NullOr(S.String)),
+    authType: S.optional(S.NullOr(AuthType)),
+    validationDetail: S.optional(ValidateResultValidationDetailList),
+  }),
+).annotate({ identifier: "ValidateResult" }) as any as S.Schema<ValidateResult>;
+
+/** The validation operation result for a Linker. */
+export interface ValidateOperationResult {
+  /** The validation result detail. */
+  properties?: ValidateResult | null;
+  /** Validated Linker id. */
+  resourceId?: string | null;
+  /** Validation operation status. */
+  status?: string | null;
+}
+export const ValidateOperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(S.NullOr(ValidateResult)),
+    resourceId: S.optional(S.NullOr(S.String)),
+    status: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "ValidateOperationResult",
+}) as any as S.Schema<ValidateOperationResult>;
+
+export interface ValidateLinkerRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource to be connected. */
+  resourceUri: string;
+  /** The name Linker resource. */
+  linkerName: string;
+}
+export const ValidateLinkerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    linkerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}/validateLinker",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateLinkerRequest",
+}) as any as S.Schema<ValidateLinkerRequest>;
+
 export type ConnectorCreateOrUpdateError = AzureOpError;
 /** Create or update Connector resource. */
 export const ConnectorCreateOrUpdate: API.OperationMethod<
@@ -2206,21 +2206,6 @@ export const ConnectorCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ConnectorCreateOrUpdateRequest,
   output: ConnectorCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectorValidateError = AzureOpError;
-/** Validate a Connector. */
-export const ConnectorValidate: API.OperationMethod<
-  ConnectorValidateRequest,
-  ValidateOperationResult,
-  ConnectorValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectorValidateRequest,
-  output: ValidateOperationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2316,30 +2301,30 @@ export const DeleteLinkerDryrun: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GenerateConnectorConfigurationError = AzureOpError;
+export type GenerateConnectorConfigurationsError = AzureOpError;
 /** Generate configurations for a Connector. */
-export const GenerateConnectorConfiguration: API.OperationMethod<
-  GenerateConnectorConfigurationRequest,
+export const GenerateConnectorConfigurations: API.OperationMethod<
+  GenerateConnectorConfigurationsRequest,
   ConfigurationResult,
-  GenerateConnectorConfigurationError,
+  GenerateConnectorConfigurationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateConnectorConfigurationRequest,
+  input: GenerateConnectorConfigurationsRequest,
   output: ConfigurationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GenerateLinkerConfigurationError = AzureOpError;
+export type GenerateLinkerConfigurationsError = AzureOpError;
 /** Generate configurations for a Linker. */
-export const GenerateLinkerConfiguration: API.OperationMethod<
-  GenerateLinkerConfigurationRequest,
+export const GenerateLinkerConfigurations: API.OperationMethod<
+  GenerateLinkerConfigurationsRequest,
   ConfigurationResult,
-  GenerateLinkerConfigurationError,
+  GenerateLinkerConfigurationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateLinkerConfigurationRequest,
+  input: GenerateLinkerConfigurationsRequest,
   output: ConfigurationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2416,21 +2401,6 @@ export const LinkerCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: LinkerCreateOrUpdateRequest,
   output: LinkerCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LinkerValidateError = AzureOpError;
-/** Validate a Linker. */
-export const LinkerValidate: API.OperationMethod<
-  LinkerValidateRequest,
-  ValidateOperationResult,
-  LinkerValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LinkerValidateRequest,
-  output: ValidateOperationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2611,6 +2581,36 @@ export const UpdateLinkerDryrun: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateLinkerDryrunRequest,
   output: UpdateLinkerDryrunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateConnectorError = AzureOpError;
+/** Validate a Connector. */
+export const ValidateConnector: API.OperationMethod<
+  ValidateConnectorRequest,
+  ValidateOperationResult,
+  ValidateConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateConnectorRequest,
+  output: ValidateOperationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateLinkerError = AzureOpError;
+/** Validate a Linker. */
+export const ValidateLinker: API.OperationMethod<
+  ValidateLinkerRequest,
+  ValidateOperationResult,
+  ValidateLinkerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateLinkerRequest,
+  output: ValidateOperationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

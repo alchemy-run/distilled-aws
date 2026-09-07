@@ -66,7 +66,7 @@ export const CheckNameAvailabilityOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckNameAvailabilityOutput",
 }) as any as S.Schema<CheckNameAvailabilityOutput>;
 
-export interface CheckCommunicationNoSubscriptionNameAvailabilityRequest {
+export interface CheckCommunicationsNoSubscriptionNameAvailabilityRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** The resource name to validate. */
@@ -74,7 +74,7 @@ export interface CheckCommunicationNoSubscriptionNameAvailabilityRequest {
   /** The type of resource. */
   type: Type | (string & {});
 }
-export const CheckCommunicationNoSubscriptionNameAvailabilityRequest =
+export const CheckCommunicationsNoSubscriptionNameAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       supportTicketName: S.String.pipe(T.Label()),
@@ -89,8 +89,8 @@ export const CheckCommunicationNoSubscriptionNameAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckCommunicationNoSubscriptionNameAvailabilityRequest",
-  }) as any as S.Schema<CheckCommunicationNoSubscriptionNameAvailabilityRequest>;
+    identifier: "CheckCommunicationsNoSubscriptionNameAvailabilityRequest",
+  }) as any as S.Schema<CheckCommunicationsNoSubscriptionNameAvailabilityRequest>;
 
 export interface CheckSupportTicketNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -118,13 +118,13 @@ export const CheckSupportTicketNameAvailabilityRequest =
     identifier: "CheckSupportTicketNameAvailabilityRequest",
   }) as any as S.Schema<CheckSupportTicketNameAvailabilityRequest>;
 
-export interface CheckSupportTicketNoSubscriptionNameAvailabilityRequest {
+export interface CheckSupportTicketsNoSubscriptionNameAvailabilityRequest {
   /** The resource name to validate. */
   name: string;
   /** The type of resource. */
   type: Type | (string & {});
 }
-export const CheckSupportTicketNoSubscriptionNameAvailabilityRequest =
+export const CheckSupportTicketsNoSubscriptionNameAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
@@ -138,8 +138,8 @@ export const CheckSupportTicketNoSubscriptionNameAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckSupportTicketNoSubscriptionNameAvailabilityRequest",
-  }) as any as S.Schema<CheckSupportTicketNoSubscriptionNameAvailabilityRequest>;
+    identifier: "CheckSupportTicketsNoSubscriptionNameAvailabilityRequest",
+  }) as any as S.Schema<CheckSupportTicketsNoSubscriptionNameAvailabilityRequest>;
 
 /** Describes the properties of a communication resource. */
 export interface CommunicationDetailsPropertiesInput {
@@ -290,7 +290,7 @@ export const CreateCommunicationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCommunicationResponse",
 }) as any as S.Schema<CreateCommunicationResponse>;
 
-export interface CreateCommunicationNoSubscriptionRequest {
+export interface CreateCommunicationsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** The name of the CommunicationDetails */
@@ -298,8 +298,8 @@ export interface CreateCommunicationNoSubscriptionRequest {
   /** Properties of the resource. */
   properties: CommunicationDetailsPropertiesInput;
 }
-export const CreateCommunicationNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const CreateCommunicationsNoSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       supportTicketName: S.String.pipe(T.Label()),
       communicationName: S.String.pipe(T.Label()),
@@ -312,11 +312,11 @@ export const CreateCommunicationNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2024-04-01",
       }),
     ),
-).annotate({
-  identifier: "CreateCommunicationNoSubscriptionRequest",
-}) as any as S.Schema<CreateCommunicationNoSubscriptionRequest>;
+  ).annotate({
+    identifier: "CreateCommunicationsNoSubscriptionRequest",
+  }) as any as S.Schema<CreateCommunicationsNoSubscriptionRequest>;
 
-export interface CreateCommunicationNoSubscriptionResponse {
+export interface CreateCommunicationsNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -328,7 +328,7 @@ export interface CreateCommunicationNoSubscriptionResponse {
   /** Properties of the resource. */
   properties: CommunicationDetailsProperties;
 }
-export const CreateCommunicationNoSubscriptionResponse =
+export const CreateCommunicationsNoSubscriptionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -338,8 +338,8 @@ export const CreateCommunicationNoSubscriptionResponse =
       properties: CommunicationDetailsProperties,
     }),
   ).annotate({
-    identifier: "CreateCommunicationNoSubscriptionResponse",
-  }) as any as S.Schema<CreateCommunicationNoSubscriptionResponse>;
+    identifier: "CreateCommunicationsNoSubscriptionResponse",
+  }) as any as S.Schema<CreateCommunicationsNoSubscriptionResponse>;
 
 /** Describes the properties of a file. */
 export interface FileDetailsPropertiesInput {
@@ -434,7 +434,7 @@ export const CreateFileResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateFileResponse",
 }) as any as S.Schema<CreateFileResponse>;
 
-export interface CreateFileNoSubscriptionRequest {
+export interface CreateFilesNoSubscriptionRequest {
   /** The name of the FileWorkspaceDetails */
   fileWorkspaceName: string;
   /** The name of the FileDetails */
@@ -442,7 +442,7 @@ export interface CreateFileNoSubscriptionRequest {
   /** Properties of the resource */
   properties?: FileDetailsPropertiesInput;
 }
-export const CreateFileNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateFilesNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     fileWorkspaceName: S.String.pipe(T.Label()),
     fileName: S.String.pipe(T.Label()),
@@ -456,10 +456,10 @@ export const CreateFileNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateFileNoSubscriptionRequest",
-}) as any as S.Schema<CreateFileNoSubscriptionRequest>;
+  identifier: "CreateFilesNoSubscriptionRequest",
+}) as any as S.Schema<CreateFilesNoSubscriptionRequest>;
 
-export interface CreateFileNoSubscriptionResponse {
+export interface CreateFilesNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -471,7 +471,7 @@ export interface CreateFileNoSubscriptionResponse {
   /** Properties of the resource */
   properties?: FileDetailsProperties;
 }
-export const CreateFileNoSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateFilesNoSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -480,8 +480,8 @@ export const CreateFileNoSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FileDetailsProperties),
   }),
 ).annotate({
-  identifier: "CreateFileNoSubscriptionResponse",
-}) as any as S.Schema<CreateFileNoSubscriptionResponse>;
+  identifier: "CreateFilesNoSubscriptionResponse",
+}) as any as S.Schema<CreateFilesNoSubscriptionResponse>;
 
 export interface CreateFileWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -545,12 +545,12 @@ export const CreateFileWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateFileWorkspaceResponse",
 }) as any as S.Schema<CreateFileWorkspaceResponse>;
 
-export interface CreateFileWorkspaceNoSubscriptionRequest {
+export interface CreateFileWorkspacesNoSubscriptionRequest {
   /** The name of the FileWorkspaceDetails */
   fileWorkspaceName: string;
 }
-export const CreateFileWorkspaceNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const CreateFileWorkspacesNoSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       fileWorkspaceName: S.String.pipe(T.Label()),
     }).pipe(
@@ -561,11 +561,11 @@ export const CreateFileWorkspaceNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2024-04-01",
       }),
     ),
-).annotate({
-  identifier: "CreateFileWorkspaceNoSubscriptionRequest",
-}) as any as S.Schema<CreateFileWorkspaceNoSubscriptionRequest>;
+  ).annotate({
+    identifier: "CreateFileWorkspacesNoSubscriptionRequest",
+  }) as any as S.Schema<CreateFileWorkspacesNoSubscriptionRequest>;
 
-export interface CreateFileWorkspaceNoSubscriptionResponse {
+export interface CreateFileWorkspacesNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -577,7 +577,7 @@ export interface CreateFileWorkspaceNoSubscriptionResponse {
   /** Properties of the resource */
   properties?: FileWorkspaceDetailsProperties;
 }
-export const CreateFileWorkspaceNoSubscriptionResponse =
+export const CreateFileWorkspacesNoSubscriptionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -587,8 +587,8 @@ export const CreateFileWorkspaceNoSubscriptionResponse =
       properties: S.optional(FileWorkspaceDetailsProperties),
     }),
   ).annotate({
-    identifier: "CreateFileWorkspaceNoSubscriptionResponse",
-  }) as any as S.Schema<CreateFileWorkspaceNoSubscriptionResponse>;
+    identifier: "CreateFileWorkspacesNoSubscriptionResponse",
+  }) as any as S.Schema<CreateFileWorkspacesNoSubscriptionResponse>;
 
 /** A value that indicates the urgency of the case, which in turn determines the response time according to the service level agreement of the technical support plan you have with Azure. Note: 'Highest critical impact', also known as the 'Emergency - Severe impact' level in the Azure portal is reserved only for our Premium customers. */
 export type SeverityLevel =
@@ -999,14 +999,14 @@ export const CreateSupportTicketResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSupportTicketResponse",
 }) as any as S.Schema<CreateSupportTicketResponse>;
 
-export interface CreateSupportTicketNoSubscriptionRequest {
+export interface CreateSupportTicketsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** Properties of the resource. */
   properties: SupportTicketDetailsPropertiesInput;
 }
-export const CreateSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const CreateSupportTicketsNoSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       supportTicketName: S.String.pipe(T.Label()),
       properties: SupportTicketDetailsPropertiesInput,
@@ -1018,11 +1018,11 @@ export const CreateSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2024-04-01",
       }),
     ),
-).annotate({
-  identifier: "CreateSupportTicketNoSubscriptionRequest",
-}) as any as S.Schema<CreateSupportTicketNoSubscriptionRequest>;
+  ).annotate({
+    identifier: "CreateSupportTicketsNoSubscriptionRequest",
+  }) as any as S.Schema<CreateSupportTicketsNoSubscriptionRequest>;
 
-export interface CreateSupportTicketNoSubscriptionResponse {
+export interface CreateSupportTicketsNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1034,7 +1034,7 @@ export interface CreateSupportTicketNoSubscriptionResponse {
   /** Properties of the resource. */
   properties: SupportTicketDetailsProperties;
 }
-export const CreateSupportTicketNoSubscriptionResponse =
+export const CreateSupportTicketsNoSubscriptionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1044,81 +1044,8 @@ export const CreateSupportTicketNoSubscriptionResponse =
       properties: SupportTicketDetailsProperties,
     }),
   ).annotate({
-    identifier: "CreateSupportTicketNoSubscriptionResponse",
-  }) as any as S.Schema<CreateSupportTicketNoSubscriptionResponse>;
-
-export interface FilesNoSubscriptionUploadRequest {
-  /** The name of the FileWorkspaceDetails */
-  fileWorkspaceName: string;
-  /** The name of the FileDetails */
-  fileName: string;
-  /** File Content in base64 encoded format */
-  content?: string;
-  /** Index of the uploaded chunk (Index starts at 0) */
-  chunkIndex?: number;
-}
-export const FilesNoSubscriptionUploadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileWorkspaceName: S.String.pipe(T.Label()),
-    fileName: S.String.pipe(T.Label()),
-    content: S.optional(S.String),
-    chunkIndex: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files/{fileName}/upload",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "FilesNoSubscriptionUploadRequest",
-}) as any as S.Schema<FilesNoSubscriptionUploadRequest>;
-
-export interface FilesNoSubscriptionUploadResponse {}
-export const FilesNoSubscriptionUploadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FilesNoSubscriptionUploadResponse",
-}) as any as S.Schema<FilesNoSubscriptionUploadResponse>;
-
-export interface FilesUploadRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the FileWorkspaceDetails */
-  fileWorkspaceName: string;
-  /** The name of the FileDetails */
-  fileName: string;
-  /** File Content in base64 encoded format */
-  content?: string;
-  /** Index of the uploaded chunk (Index starts at 0) */
-  chunkIndex?: number;
-}
-export const FilesUploadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    fileWorkspaceName: S.String.pipe(T.Label()),
-    fileName: S.String.pipe(T.Label()),
-    content: S.optional(S.String),
-    chunkIndex: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files/{fileName}/upload",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "FilesUploadRequest",
-}) as any as S.Schema<FilesUploadRequest>;
-
-export interface FilesUploadResponse {}
-export const FilesUploadResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FilesUploadResponse",
-}) as any as S.Schema<FilesUploadResponse>;
+    identifier: "CreateSupportTicketsNoSubscriptionResponse",
+  }) as any as S.Schema<CreateSupportTicketsNoSubscriptionResponse>;
 
 export interface GetChatTranscriptRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1218,13 +1145,13 @@ export const GetChatTranscriptResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetChatTranscriptResponse",
 }) as any as S.Schema<GetChatTranscriptResponse>;
 
-export interface GetChatTranscriptNoSubscriptionRequest {
+export interface GetChatTranscriptsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** The name of the ChatTranscriptDetails */
   chatTranscriptName: string;
 }
-export const GetChatTranscriptNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const GetChatTranscriptsNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       supportTicketName: S.String.pipe(T.Label()),
@@ -1238,10 +1165,10 @@ export const GetChatTranscriptNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetChatTranscriptNoSubscriptionRequest",
-}) as any as S.Schema<GetChatTranscriptNoSubscriptionRequest>;
+  identifier: "GetChatTranscriptsNoSubscriptionRequest",
+}) as any as S.Schema<GetChatTranscriptsNoSubscriptionRequest>;
 
-export interface GetChatTranscriptNoSubscriptionResponse {
+export interface GetChatTranscriptsNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1253,7 +1180,7 @@ export interface GetChatTranscriptNoSubscriptionResponse {
   /** Properties of the resource. */
   properties?: ChatTranscriptDetailsProperties;
 }
-export const GetChatTranscriptNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
+export const GetChatTranscriptsNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1263,8 +1190,8 @@ export const GetChatTranscriptNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(ChatTranscriptDetailsProperties),
     }),
 ).annotate({
-  identifier: "GetChatTranscriptNoSubscriptionResponse",
-}) as any as S.Schema<GetChatTranscriptNoSubscriptionResponse>;
+  identifier: "GetChatTranscriptsNoSubscriptionResponse",
+}) as any as S.Schema<GetChatTranscriptsNoSubscriptionResponse>;
 
 export interface GetCommunicationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1315,13 +1242,13 @@ export const GetCommunicationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCommunicationResponse",
 }) as any as S.Schema<GetCommunicationResponse>;
 
-export interface GetCommunicationNoSubscriptionRequest {
+export interface GetCommunicationsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** The name of the CommunicationDetails */
   communicationName: string;
 }
-export const GetCommunicationNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const GetCommunicationsNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       supportTicketName: S.String.pipe(T.Label()),
@@ -1335,10 +1262,10 @@ export const GetCommunicationNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetCommunicationNoSubscriptionRequest",
-}) as any as S.Schema<GetCommunicationNoSubscriptionRequest>;
+  identifier: "GetCommunicationsNoSubscriptionRequest",
+}) as any as S.Schema<GetCommunicationsNoSubscriptionRequest>;
 
-export interface GetCommunicationNoSubscriptionResponse {
+export interface GetCommunicationsNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1350,7 +1277,7 @@ export interface GetCommunicationNoSubscriptionResponse {
   /** Properties of the resource. */
   properties: CommunicationDetailsProperties;
 }
-export const GetCommunicationNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
+export const GetCommunicationsNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1360,8 +1287,8 @@ export const GetCommunicationNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
       properties: CommunicationDetailsProperties,
     }),
 ).annotate({
-  identifier: "GetCommunicationNoSubscriptionResponse",
-}) as any as S.Schema<GetCommunicationNoSubscriptionResponse>;
+  identifier: "GetCommunicationsNoSubscriptionResponse",
+}) as any as S.Schema<GetCommunicationsNoSubscriptionResponse>;
 
 export interface GetFileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1410,13 +1337,13 @@ export const GetFileResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetFileResponse",
 }) as any as S.Schema<GetFileResponse>;
 
-export interface GetFileNoSubscriptionRequest {
+export interface GetFilesNoSubscriptionRequest {
   /** The name of the FileWorkspaceDetails */
   fileWorkspaceName: string;
   /** The name of the FileDetails */
   fileName: string;
 }
-export const GetFileNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFilesNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     fileWorkspaceName: S.String.pipe(T.Label()),
     fileName: S.String.pipe(T.Label()),
@@ -1429,10 +1356,10 @@ export const GetFileNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetFileNoSubscriptionRequest",
-}) as any as S.Schema<GetFileNoSubscriptionRequest>;
+  identifier: "GetFilesNoSubscriptionRequest",
+}) as any as S.Schema<GetFilesNoSubscriptionRequest>;
 
-export interface GetFileNoSubscriptionResponse {
+export interface GetFilesNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1444,7 +1371,7 @@ export interface GetFileNoSubscriptionResponse {
   /** Properties of the resource */
   properties?: FileDetailsProperties;
 }
-export const GetFileNoSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFilesNoSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1453,8 +1380,8 @@ export const GetFileNoSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FileDetailsProperties),
   }),
 ).annotate({
-  identifier: "GetFileNoSubscriptionResponse",
-}) as any as S.Schema<GetFileNoSubscriptionResponse>;
+  identifier: "GetFilesNoSubscriptionResponse",
+}) as any as S.Schema<GetFilesNoSubscriptionResponse>;
 
 export interface GetFileWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1502,11 +1429,11 @@ export const GetFileWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetFileWorkspaceResponse",
 }) as any as S.Schema<GetFileWorkspaceResponse>;
 
-export interface GetFileWorkspaceNoSubscriptionRequest {
+export interface GetFileWorkspacesNoSubscriptionRequest {
   /** The name of the FileWorkspaceDetails */
   fileWorkspaceName: string;
 }
-export const GetFileWorkspaceNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const GetFileWorkspacesNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       fileWorkspaceName: S.String.pipe(T.Label()),
@@ -1519,10 +1446,10 @@ export const GetFileWorkspaceNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetFileWorkspaceNoSubscriptionRequest",
-}) as any as S.Schema<GetFileWorkspaceNoSubscriptionRequest>;
+  identifier: "GetFileWorkspacesNoSubscriptionRequest",
+}) as any as S.Schema<GetFileWorkspacesNoSubscriptionRequest>;
 
-export interface GetFileWorkspaceNoSubscriptionResponse {
+export interface GetFileWorkspacesNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1534,7 +1461,7 @@ export interface GetFileWorkspaceNoSubscriptionResponse {
   /** Properties of the resource */
   properties?: FileWorkspaceDetailsProperties;
 }
-export const GetFileWorkspaceNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
+export const GetFileWorkspacesNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1544,8 +1471,8 @@ export const GetFileWorkspaceNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(FileWorkspaceDetailsProperties),
     }),
 ).annotate({
-  identifier: "GetFileWorkspaceNoSubscriptionResponse",
-}) as any as S.Schema<GetFileWorkspaceNoSubscriptionResponse>;
+  identifier: "GetFileWorkspacesNoSubscriptionResponse",
+}) as any as S.Schema<GetFileWorkspacesNoSubscriptionResponse>;
 
 export interface GetProblemClassificationRequest {
   /** Name of the Azure service. */
@@ -1746,11 +1673,11 @@ export const GetSupportTicketResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSupportTicketResponse",
 }) as any as S.Schema<GetSupportTicketResponse>;
 
-export interface GetSupportTicketNoSubscriptionRequest {
+export interface GetSupportTicketsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
 }
-export const GetSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const GetSupportTicketsNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       supportTicketName: S.String.pipe(T.Label()),
@@ -1763,10 +1690,10 @@ export const GetSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetSupportTicketNoSubscriptionRequest",
-}) as any as S.Schema<GetSupportTicketNoSubscriptionRequest>;
+  identifier: "GetSupportTicketsNoSubscriptionRequest",
+}) as any as S.Schema<GetSupportTicketsNoSubscriptionRequest>;
 
-export interface GetSupportTicketNoSubscriptionResponse {
+export interface GetSupportTicketsNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1778,7 +1705,7 @@ export interface GetSupportTicketNoSubscriptionResponse {
   /** Properties of the resource. */
   properties: SupportTicketDetailsProperties;
 }
-export const GetSupportTicketNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
+export const GetSupportTicketsNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1788,28 +1715,30 @@ export const GetSupportTicketNoSubscriptionResponse = /*@__PURE__*/ S.suspend(
       properties: SupportTicketDetailsProperties,
     }),
 ).annotate({
-  identifier: "GetSupportTicketNoSubscriptionResponse",
-}) as any as S.Schema<GetSupportTicketNoSubscriptionResponse>;
+  identifier: "GetSupportTicketsNoSubscriptionResponse",
+}) as any as S.Schema<GetSupportTicketsNoSubscriptionResponse>;
 
-export interface ListChatTranscriptNoSubscriptionRequest {
+export interface ListChatTranscriptsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
 }
-export const ListChatTranscriptNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      supportTicketName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Support/supportTickets/{supportTicketName}/chatTranscripts",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
+export const ListChatTranscriptsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    supportTicketName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/supportTickets/{supportTicketName}/chatTranscripts",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ListChatTranscriptNoSubscriptionRequest",
-}) as any as S.Schema<ListChatTranscriptNoSubscriptionRequest>;
+  identifier: "ListChatTranscriptsRequest",
+}) as any as S.Schema<ListChatTranscriptsRequest>;
 
 /** Object that represents a Chat Transcript resource. */
 export interface ChatTranscriptDetails {
@@ -1843,44 +1772,44 @@ export const ChatTranscriptsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ChatTranscriptsListResultValueList>;
 
 /** [Placeholder] Description for page model */
-export interface ListChatTranscriptsResult {
+export interface ChatTranscriptsListResult {
   /** [Placeholder] Description for nextLink property */
   nextLink?: string;
   /** [Placeholder] Description for value property */
   value?: ChatTranscriptsListResultValueList;
 }
-export const ListChatTranscriptsResult = /*@__PURE__*/ S.suspend(() =>
+export const ChatTranscriptsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(ChatTranscriptsListResultValueList),
   }),
 ).annotate({
-  identifier: "ListChatTranscriptsResult",
-}) as any as S.Schema<ListChatTranscriptsResult>;
+  identifier: "ChatTranscriptsListResult",
+}) as any as S.Schema<ChatTranscriptsListResult>;
 
-export interface ListChatTranscriptsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
+export interface ListChatTranscriptsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
 }
-export const ListChatTranscriptsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    supportTicketName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/supportTickets/{supportTicketName}/chatTranscripts",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
+export const ListChatTranscriptsNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      supportTicketName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Support/supportTickets/{supportTicketName}/chatTranscripts",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ListChatTranscriptsRequest",
-}) as any as S.Schema<ListChatTranscriptsRequest>;
+  identifier: "ListChatTranscriptsNoSubscriptionRequest",
+}) as any as S.Schema<ListChatTranscriptsNoSubscriptionRequest>;
 
-export interface ListCommunicationNoSubscriptionRequest {
+export interface ListCommunicationsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** The number of values to return in the collection. Default is 10 and max is 10. */
@@ -1888,23 +1817,23 @@ export interface ListCommunicationNoSubscriptionRequest {
   /** The filter to apply on the operation. You can filter by communicationType and createdDate properties. CommunicationType supports Equals ('eq') operator and createdDate supports Greater Than ('gt') and Greater Than or Equals ('ge') operators. You may combine the CommunicationType and CreatedDate filters by Logical And ('and') operator. */
   _filter?: string;
 }
-export const ListCommunicationNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      supportTicketName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Support/supportTickets/{supportTicketName}/communications",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
+export const ListCommunicationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    supportTicketName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/supportTickets/{supportTicketName}/communications",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ListCommunicationNoSubscriptionRequest",
-}) as any as S.Schema<ListCommunicationNoSubscriptionRequest>;
+  identifier: "ListCommunicationsRequest",
+}) as any as S.Schema<ListCommunicationsRequest>;
 
 /** Object that represents a Communication resource. */
 export interface CommunicationDetails {
@@ -1938,24 +1867,22 @@ export const CommunicationsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CommunicationsListResultValueList>;
 
 /** [Placeholder] Description for page model */
-export interface ListCommunicationsResult {
+export interface CommunicationsListResult {
   /** [Placeholder] Description for nextLink property */
   nextLink?: string;
   /** [Placeholder] Description for value property */
   value?: CommunicationsListResultValueList;
 }
-export const ListCommunicationsResult = /*@__PURE__*/ S.suspend(() =>
+export const CommunicationsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(CommunicationsListResultValueList),
   }),
 ).annotate({
-  identifier: "ListCommunicationsResult",
-}) as any as S.Schema<ListCommunicationsResult>;
+  identifier: "CommunicationsListResult",
+}) as any as S.Schema<CommunicationsListResult>;
 
-export interface ListCommunicationsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
+export interface ListCommunicationsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** The number of values to return in the collection. Default is 10 and max is 10. */
@@ -1963,42 +1890,45 @@ export interface ListCommunicationsRequest {
   /** The filter to apply on the operation. You can filter by communicationType and createdDate properties. CommunicationType supports Equals ('eq') operator and createdDate supports Greater Than ('gt') and Greater Than or Equals ('ge') operators. You may combine the CommunicationType and CreatedDate filters by Logical And ('and') operator. */
   _filter?: string;
 }
-export const ListCommunicationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    supportTicketName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/supportTickets/{supportTicketName}/communications",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
+export const ListCommunicationsNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      supportTicketName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Support/supportTickets/{supportTicketName}/communications",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ListCommunicationsRequest",
-}) as any as S.Schema<ListCommunicationsRequest>;
+  identifier: "ListCommunicationsNoSubscriptionRequest",
+}) as any as S.Schema<ListCommunicationsNoSubscriptionRequest>;
 
-export interface ListFileNoSubscriptionRequest {
+export interface ListFilesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
   /** The name of the FileWorkspaceDetails */
   fileWorkspaceName: string;
 }
-export const ListFileNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
     fileWorkspaceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "ListFileNoSubscriptionRequest",
-}) as any as S.Schema<ListFileNoSubscriptionRequest>;
+  identifier: "ListFilesRequest",
+}) as any as S.Schema<ListFilesRequest>;
 
 /** Object that represents File Details resource */
 export interface FileDetails {
@@ -2030,42 +1960,39 @@ export const FilesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FilesListResultValueList>;
 
 /** [Placeholder] Description for page model */
-export interface ListFilesResult {
+export interface FilesListResult {
   /** [Placeholder] Description for nextLink property */
   nextLink?: string;
   /** [Placeholder] Description for value property */
   value?: FilesListResultValueList;
 }
-export const ListFilesResult = /*@__PURE__*/ S.suspend(() =>
+export const FilesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(FilesListResultValueList),
   }),
 ).annotate({
-  identifier: "ListFilesResult",
-}) as any as S.Schema<ListFilesResult>;
+  identifier: "FilesListResult",
+}) as any as S.Schema<FilesListResult>;
 
-export interface ListFilesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
+export interface ListFilesNoSubscriptionRequest {
   /** The name of the FileWorkspaceDetails */
   fileWorkspaceName: string;
 }
-export const ListFilesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFilesNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
     fileWorkspaceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files",
+      uri: "/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "ListFilesRequest",
-}) as any as S.Schema<ListFilesRequest>;
+  identifier: "ListFilesNoSubscriptionRequest",
+}) as any as S.Schema<ListFilesNoSubscriptionRequest>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -2135,20 +2062,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2207,20 +2134,20 @@ export const ProblemClassificationsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ProblemClassificationsListResultValueList>;
 
 /** Collection of ProblemClassification resources. */
-export interface ListProblemClassificationsResult {
+export interface ProblemClassificationsListResult {
   /** The link to the next page of items */
   nextLink?: string;
   /** List of ProblemClassification resources. */
   value?: ProblemClassificationsListResultValueList;
 }
-export const ListProblemClassificationsResult = /*@__PURE__*/ S.suspend(() =>
+export const ProblemClassificationsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(ProblemClassificationsListResultValueList),
   }),
 ).annotate({
-  identifier: "ListProblemClassificationsResult",
-}) as any as S.Schema<ListProblemClassificationsResult>;
+  identifier: "ProblemClassificationsListResult",
+}) as any as S.Schema<ProblemClassificationsListResult>;
 
 export interface ListServicesRequest {}
 export const ListServicesRequest = /*@__PURE__*/ S.suspend(() =>
@@ -2266,43 +2193,45 @@ export const ServicesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ServicesListResultValueList>;
 
 /** Collection of Service resources. */
-export interface ListServicesResult {
+export interface ServicesListResult {
   /** The link to the next page of items */
   nextLink?: string;
   /** List of Service resources. */
   value?: ServicesListResultValueList;
 }
-export const ListServicesResult = /*@__PURE__*/ S.suspend(() =>
+export const ServicesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(ServicesListResultValueList),
   }),
 ).annotate({
-  identifier: "ListServicesResult",
-}) as any as S.Schema<ListServicesResult>;
+  identifier: "ServicesListResult",
+}) as any as S.Schema<ServicesListResult>;
 
-export interface ListSupportTicketNoSubscriptionRequest {
+export interface ListSupportTicketsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
   /** The number of values to return in the collection. Default is 25 and max is 100. */
   _top?: number;
-  /** The filter to apply on the operation. We support 'odata v4.0' filter semantics. <a target='_blank' href='https://docs.microsoft.com/odata/concepts/queryoptions-overview'>Learn more</a> <br/><i>Status</i> , <i>ServiceId</i>, and <i>ProblemClassificationId</i> filters can only be used with 'eq' operator. For <i>CreatedDate</i> filter, the supported operators are 'gt' and 'ge'. When using both filters, combine them using the logical 'AND'. */
+  /** The filter to apply on the operation. We support 'odata v4.0' filter semantics. [Learn more](https://docs.microsoft.com/odata/concepts/queryoptions-overview). _Status_, _ServiceId_, and _ProblemClassificationId_ filters can only be used with Equals ('eq') operator. For _CreatedDate_ filter, the supported operators are Greater Than ('gt') and Greater Than or Equals ('ge'). When using both filters, combine them using the logical 'AND'. */
   _filter?: string;
 }
-export const ListSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Support/supportTickets",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
+export const ListSupportTicketsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/supportTickets",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ListSupportTicketNoSubscriptionRequest",
-}) as any as S.Schema<ListSupportTicketNoSubscriptionRequest>;
+  identifier: "ListSupportTicketsRequest",
+}) as any as S.Schema<ListSupportTicketsRequest>;
 
 /** Object that represents SupportTicketDetails resource. */
 export interface SupportTicketDetails {
@@ -2336,45 +2265,43 @@ export const SupportTicketsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<SupportTicketsListResultValueList>;
 
 /** [Placeholder] Description for page model */
-export interface ListSupportTicketsResult {
+export interface SupportTicketsListResult {
   /** [Placeholder] Description for nextLink property */
   nextLink?: string;
   /** [Placeholder] Description for value property */
   value?: SupportTicketsListResultValueList;
 }
-export const ListSupportTicketsResult = /*@__PURE__*/ S.suspend(() =>
+export const SupportTicketsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextLink: S.optional(S.String),
     value: S.optional(SupportTicketsListResultValueList),
   }),
 ).annotate({
-  identifier: "ListSupportTicketsResult",
-}) as any as S.Schema<ListSupportTicketsResult>;
+  identifier: "SupportTicketsListResult",
+}) as any as S.Schema<SupportTicketsListResult>;
 
-export interface ListSupportTicketsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
+export interface ListSupportTicketsNoSubscriptionRequest {
   /** The number of values to return in the collection. Default is 25 and max is 100. */
   _top?: number;
-  /** The filter to apply on the operation. We support 'odata v4.0' filter semantics. [Learn more](https://docs.microsoft.com/odata/concepts/queryoptions-overview). _Status_, _ServiceId_, and _ProblemClassificationId_ filters can only be used with Equals ('eq') operator. For _CreatedDate_ filter, the supported operators are Greater Than ('gt') and Greater Than or Equals ('ge'). When using both filters, combine them using the logical 'AND'. */
+  /** The filter to apply on the operation. We support 'odata v4.0' filter semantics. <a target='_blank' href='https://docs.microsoft.com/odata/concepts/queryoptions-overview'>Learn more</a> <br/><i>Status</i> , <i>ServiceId</i>, and <i>ProblemClassificationId</i> filters can only be used with 'eq' operator. For <i>CreatedDate</i> filter, the supported operators are 'gt' and 'ge'. When using both filters, combine them using the logical 'AND'. */
   _filter?: string;
 }
-export const ListSupportTicketsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/supportTickets",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
+export const ListSupportTicketsNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Support/supportTickets",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ListSupportTicketsRequest",
-}) as any as S.Schema<ListSupportTicketsRequest>;
+  identifier: "ListSupportTicketsNoSubscriptionRequest",
+}) as any as S.Schema<ListSupportTicketsNoSubscriptionRequest>;
 
 /** Status to be updated on the ticket. */
 export type Status = "open" | "closed";
@@ -2427,12 +2354,12 @@ export const UpdateContactProfile = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateContactProfile>;
 
 /** This property indicates secondary consents for the support ticket */
-export type SupportTicketsUpdateRequestSecondaryConsentList =
+export type UpdateSupportTicketRequestSecondaryConsentList =
   Array<SecondaryConsent>;
-export const SupportTicketsUpdateRequestSecondaryConsentList =
+export const UpdateSupportTicketRequestSecondaryConsentList =
   /*@__PURE__*/ S.Array(
     SecondaryConsent,
-  ) as any as S.Schema<SupportTicketsUpdateRequestSecondaryConsentList>;
+  ) as any as S.Schema<UpdateSupportTicketRequestSecondaryConsentList>;
 
 export interface UpdateSupportTicketRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2448,7 +2375,7 @@ export interface UpdateSupportTicketRequest {
   /** Advanced diagnostic consent to be updated on the support ticket. */
   advancedDiagnosticConsent?: Consent | (string & {});
   /** This property indicates secondary consents for the support ticket */
-  secondaryConsent?: SupportTicketsUpdateRequestSecondaryConsentList;
+  secondaryConsent?: UpdateSupportTicketRequestSecondaryConsentList;
 }
 export const UpdateSupportTicketRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2459,7 +2386,7 @@ export const UpdateSupportTicketRequest = /*@__PURE__*/ S.suspend(() =>
     contactDetails: S.optional(UpdateContactProfile),
     advancedDiagnosticConsent: S.optional(Consent),
     secondaryConsent: S.optional(
-      SupportTicketsUpdateRequestSecondaryConsentList,
+      UpdateSupportTicketRequestSecondaryConsentList,
     ),
   }).pipe(
     T.Http({
@@ -2498,14 +2425,14 @@ export const UpdateSupportTicketResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSupportTicketResponse>;
 
 /** This property indicates secondary consents for the support ticket */
-export type SupportTicketsNoSubscriptionUpdateRequestSecondaryConsentList =
+export type UpdateSupportTicketsNoSubscriptionRequestSecondaryConsentList =
   Array<SecondaryConsent>;
-export const SupportTicketsNoSubscriptionUpdateRequestSecondaryConsentList =
+export const UpdateSupportTicketsNoSubscriptionRequestSecondaryConsentList =
   /*@__PURE__*/ S.Array(
     SecondaryConsent,
-  ) as any as S.Schema<SupportTicketsNoSubscriptionUpdateRequestSecondaryConsentList>;
+  ) as any as S.Schema<UpdateSupportTicketsNoSubscriptionRequestSecondaryConsentList>;
 
-export interface UpdateSupportTicketNoSubscriptionRequest {
+export interface UpdateSupportTicketsNoSubscriptionRequest {
   /** The name of the SupportTicketDetails */
   supportTicketName: string;
   /** Severity level. */
@@ -2517,10 +2444,10 @@ export interface UpdateSupportTicketNoSubscriptionRequest {
   /** Advanced diagnostic consent to be updated on the support ticket. */
   advancedDiagnosticConsent?: Consent | (string & {});
   /** This property indicates secondary consents for the support ticket */
-  secondaryConsent?: SupportTicketsNoSubscriptionUpdateRequestSecondaryConsentList;
+  secondaryConsent?: UpdateSupportTicketsNoSubscriptionRequestSecondaryConsentList;
 }
-export const UpdateSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateSupportTicketsNoSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       supportTicketName: S.String.pipe(T.Label()),
       severity: S.optional(SeverityLevel),
@@ -2528,7 +2455,7 @@ export const UpdateSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
       contactDetails: S.optional(UpdateContactProfile),
       advancedDiagnosticConsent: S.optional(Consent),
       secondaryConsent: S.optional(
-        SupportTicketsNoSubscriptionUpdateRequestSecondaryConsentList,
+        UpdateSupportTicketsNoSubscriptionRequestSecondaryConsentList,
       ),
     }).pipe(
       T.Http({
@@ -2538,11 +2465,11 @@ export const UpdateSupportTicketNoSubscriptionRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2024-04-01",
       }),
     ),
-).annotate({
-  identifier: "UpdateSupportTicketNoSubscriptionRequest",
-}) as any as S.Schema<UpdateSupportTicketNoSubscriptionRequest>;
+  ).annotate({
+    identifier: "UpdateSupportTicketsNoSubscriptionRequest",
+  }) as any as S.Schema<UpdateSupportTicketsNoSubscriptionRequest>;
 
-export interface UpdateSupportTicketNoSubscriptionResponse {
+export interface UpdateSupportTicketsNoSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2554,7 +2481,7 @@ export interface UpdateSupportTicketNoSubscriptionResponse {
   /** Properties of the resource. */
   properties: SupportTicketDetailsProperties;
 }
-export const UpdateSupportTicketNoSubscriptionResponse =
+export const UpdateSupportTicketsNoSubscriptionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -2564,8 +2491,81 @@ export const UpdateSupportTicketNoSubscriptionResponse =
       properties: SupportTicketDetailsProperties,
     }),
   ).annotate({
-    identifier: "UpdateSupportTicketNoSubscriptionResponse",
-  }) as any as S.Schema<UpdateSupportTicketNoSubscriptionResponse>;
+    identifier: "UpdateSupportTicketsNoSubscriptionResponse",
+  }) as any as S.Schema<UpdateSupportTicketsNoSubscriptionResponse>;
+
+export interface UploadFileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the FileWorkspaceDetails */
+  fileWorkspaceName: string;
+  /** The name of the FileDetails */
+  fileName: string;
+  /** File Content in base64 encoded format */
+  content?: string;
+  /** Index of the uploaded chunk (Index starts at 0) */
+  chunkIndex?: number;
+}
+export const UploadFileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    fileWorkspaceName: S.String.pipe(T.Label()),
+    fileName: S.String.pipe(T.Label()),
+    content: S.optional(S.String),
+    chunkIndex: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files/{fileName}/upload",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UploadFileRequest",
+}) as any as S.Schema<UploadFileRequest>;
+
+export interface UploadFileResponse {}
+export const UploadFileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UploadFileResponse",
+}) as any as S.Schema<UploadFileResponse>;
+
+export interface UploadFilesNoSubscriptionRequest {
+  /** The name of the FileWorkspaceDetails */
+  fileWorkspaceName: string;
+  /** The name of the FileDetails */
+  fileName: string;
+  /** File Content in base64 encoded format */
+  content?: string;
+  /** Index of the uploaded chunk (Index starts at 0) */
+  chunkIndex?: number;
+}
+export const UploadFilesNoSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileWorkspaceName: S.String.pipe(T.Label()),
+    fileName: S.String.pipe(T.Label()),
+    content: S.optional(S.String),
+    chunkIndex: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files/{fileName}/upload",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UploadFilesNoSubscriptionRequest",
+}) as any as S.Schema<UploadFilesNoSubscriptionRequest>;
+
+export interface UploadFilesNoSubscriptionResponse {}
+export const UploadFilesNoSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UploadFilesNoSubscriptionResponse",
+}) as any as S.Schema<UploadFilesNoSubscriptionResponse>;
 
 export type CheckCommunicationNameAvailabilityError = AzureOpError;
 /** Check the availability of a resource name. This API should be used to check the uniqueness of the name for adding a new communication to the support ticket. */
@@ -2582,16 +2582,16 @@ export const CheckCommunicationNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckCommunicationNoSubscriptionNameAvailabilityError =
+export type CheckCommunicationsNoSubscriptionNameAvailabilityError =
   AzureOpError;
 /** Check the availability of a resource name. This API should be used to check the uniqueness of the name for adding a new communication to the support ticket. */
-export const CheckCommunicationNoSubscriptionNameAvailability: API.OperationMethod<
-  CheckCommunicationNoSubscriptionNameAvailabilityRequest,
+export const CheckCommunicationsNoSubscriptionNameAvailability: API.OperationMethod<
+  CheckCommunicationsNoSubscriptionNameAvailabilityRequest,
   CheckNameAvailabilityOutput,
-  CheckCommunicationNoSubscriptionNameAvailabilityError,
+  CheckCommunicationsNoSubscriptionNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckCommunicationNoSubscriptionNameAvailabilityRequest,
+  input: CheckCommunicationsNoSubscriptionNameAvailabilityRequest,
   output: CheckNameAvailabilityOutput,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2613,16 +2613,16 @@ export const CheckSupportTicketNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckSupportTicketNoSubscriptionNameAvailabilityError =
+export type CheckSupportTicketsNoSubscriptionNameAvailabilityError =
   AzureOpError;
 /** Check the availability of a resource name. This API should be used to check the uniqueness of the name for support ticket creation for the selected subscription. */
-export const CheckSupportTicketNoSubscriptionNameAvailability: API.OperationMethod<
-  CheckSupportTicketNoSubscriptionNameAvailabilityRequest,
+export const CheckSupportTicketsNoSubscriptionNameAvailability: API.OperationMethod<
+  CheckSupportTicketsNoSubscriptionNameAvailabilityRequest,
   CheckNameAvailabilityOutput,
-  CheckSupportTicketNoSubscriptionNameAvailabilityError,
+  CheckSupportTicketsNoSubscriptionNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckSupportTicketNoSubscriptionNameAvailabilityRequest,
+  input: CheckSupportTicketsNoSubscriptionNameAvailabilityRequest,
   output: CheckNameAvailabilityOutput,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2644,16 +2644,16 @@ export const CreateCommunication: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateCommunicationNoSubscriptionError = AzureOpError;
+export type CreateCommunicationsNoSubscriptionError = AzureOpError;
 /** Adds a new customer communication to an Azure support ticket. */
-export const CreateCommunicationNoSubscription: API.OperationMethod<
-  CreateCommunicationNoSubscriptionRequest,
-  CreateCommunicationNoSubscriptionResponse,
-  CreateCommunicationNoSubscriptionError,
+export const CreateCommunicationsNoSubscription: API.OperationMethod<
+  CreateCommunicationsNoSubscriptionRequest,
+  CreateCommunicationsNoSubscriptionResponse,
+  CreateCommunicationsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateCommunicationNoSubscriptionRequest,
-  output: CreateCommunicationNoSubscriptionResponse,
+  input: CreateCommunicationsNoSubscriptionRequest,
+  output: CreateCommunicationsNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2674,16 +2674,16 @@ export const CreateFile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateFileNoSubscriptionError = AzureOpError;
+export type CreateFilesNoSubscriptionError = AzureOpError;
 /** Creates a new file under a workspace. */
-export const CreateFileNoSubscription: API.OperationMethod<
-  CreateFileNoSubscriptionRequest,
-  CreateFileNoSubscriptionResponse,
-  CreateFileNoSubscriptionError,
+export const CreateFilesNoSubscription: API.OperationMethod<
+  CreateFilesNoSubscriptionRequest,
+  CreateFilesNoSubscriptionResponse,
+  CreateFilesNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateFileNoSubscriptionRequest,
-  output: CreateFileNoSubscriptionResponse,
+  input: CreateFilesNoSubscriptionRequest,
+  output: CreateFilesNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2704,16 +2704,16 @@ export const CreateFileWorkspace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateFileWorkspaceNoSubscriptionError = AzureOpError;
+export type CreateFileWorkspacesNoSubscriptionError = AzureOpError;
 /** Creates a new file workspace. */
-export const CreateFileWorkspaceNoSubscription: API.OperationMethod<
-  CreateFileWorkspaceNoSubscriptionRequest,
-  CreateFileWorkspaceNoSubscriptionResponse,
-  CreateFileWorkspaceNoSubscriptionError,
+export const CreateFileWorkspacesNoSubscription: API.OperationMethod<
+  CreateFileWorkspacesNoSubscriptionRequest,
+  CreateFileWorkspacesNoSubscriptionResponse,
+  CreateFileWorkspacesNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateFileWorkspaceNoSubscriptionRequest,
-  output: CreateFileWorkspaceNoSubscriptionResponse,
+  input: CreateFileWorkspacesNoSubscriptionRequest,
+  output: CreateFileWorkspacesNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2734,46 +2734,16 @@ export const CreateSupportTicket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSupportTicketNoSubscriptionError = AzureOpError;
+export type CreateSupportTicketsNoSubscriptionError = AzureOpError;
 /** Creates a new support ticket for Billing, and Subscription Management issues. Learn the [prerequisites](https://aka.ms/supportAPI) required to create a support ticket.<br/><br/>Always call the Services and ProblemClassifications API to get the most recent set of services and problem categories required for support ticket creation.<br/><br/>Adding attachments is not currently supported via the API. To add a file to an existing support ticket, visit the [Manage support ticket](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/managesupportrequest) page in the Azure portal, select the support ticket, and use the file upload control to add a new file.<br/><br/>Providing consent to share diagnostic information with Azure support is currently not supported via the API. The Azure support engineer working on your ticket will reach out to you for consent if your issue requires gathering diagnostic information from your Azure resources.<br/><br/> */
-export const CreateSupportTicketNoSubscription: API.OperationMethod<
-  CreateSupportTicketNoSubscriptionRequest,
-  CreateSupportTicketNoSubscriptionResponse,
-  CreateSupportTicketNoSubscriptionError,
+export const CreateSupportTicketsNoSubscription: API.OperationMethod<
+  CreateSupportTicketsNoSubscriptionRequest,
+  CreateSupportTicketsNoSubscriptionResponse,
+  CreateSupportTicketsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSupportTicketNoSubscriptionRequest,
-  output: CreateSupportTicketNoSubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FilesNoSubscriptionUploadError = AzureOpError;
-/** This API allows you to upload content to a file */
-export const FilesNoSubscriptionUpload: API.OperationMethod<
-  FilesNoSubscriptionUploadRequest,
-  FilesNoSubscriptionUploadResponse,
-  FilesNoSubscriptionUploadError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FilesNoSubscriptionUploadRequest,
-  output: FilesNoSubscriptionUploadResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FilesUploadError = AzureOpError;
-/** This API allows you to upload content to a file */
-export const FilesUpload: API.OperationMethod<
-  FilesUploadRequest,
-  FilesUploadResponse,
-  FilesUploadError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FilesUploadRequest,
-  output: FilesUploadResponse,
+  input: CreateSupportTicketsNoSubscriptionRequest,
+  output: CreateSupportTicketsNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2794,16 +2764,16 @@ export const GetChatTranscript: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetChatTranscriptNoSubscriptionError = AzureOpError;
+export type GetChatTranscriptsNoSubscriptionError = AzureOpError;
 /** Returns chatTranscript details for a no subscription support ticket. */
-export const GetChatTranscriptNoSubscription: API.OperationMethod<
-  GetChatTranscriptNoSubscriptionRequest,
-  GetChatTranscriptNoSubscriptionResponse,
-  GetChatTranscriptNoSubscriptionError,
+export const GetChatTranscriptsNoSubscription: API.OperationMethod<
+  GetChatTranscriptsNoSubscriptionRequest,
+  GetChatTranscriptsNoSubscriptionResponse,
+  GetChatTranscriptsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetChatTranscriptNoSubscriptionRequest,
-  output: GetChatTranscriptNoSubscriptionResponse,
+  input: GetChatTranscriptsNoSubscriptionRequest,
+  output: GetChatTranscriptsNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2824,16 +2794,16 @@ export const GetCommunication: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCommunicationNoSubscriptionError = AzureOpError;
+export type GetCommunicationsNoSubscriptionError = AzureOpError;
 /** Returns communication details for a support ticket. */
-export const GetCommunicationNoSubscription: API.OperationMethod<
-  GetCommunicationNoSubscriptionRequest,
-  GetCommunicationNoSubscriptionResponse,
-  GetCommunicationNoSubscriptionError,
+export const GetCommunicationsNoSubscription: API.OperationMethod<
+  GetCommunicationsNoSubscriptionRequest,
+  GetCommunicationsNoSubscriptionResponse,
+  GetCommunicationsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCommunicationNoSubscriptionRequest,
-  output: GetCommunicationNoSubscriptionResponse,
+  input: GetCommunicationsNoSubscriptionRequest,
+  output: GetCommunicationsNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2854,16 +2824,16 @@ export const GetFile: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetFileNoSubscriptionError = AzureOpError;
+export type GetFilesNoSubscriptionError = AzureOpError;
 /** Returns details of a specific file in a work space. */
-export const GetFileNoSubscription: API.OperationMethod<
-  GetFileNoSubscriptionRequest,
-  GetFileNoSubscriptionResponse,
-  GetFileNoSubscriptionError,
+export const GetFilesNoSubscription: API.OperationMethod<
+  GetFilesNoSubscriptionRequest,
+  GetFilesNoSubscriptionResponse,
+  GetFilesNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetFileNoSubscriptionRequest,
-  output: GetFileNoSubscriptionResponse,
+  input: GetFilesNoSubscriptionRequest,
+  output: GetFilesNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2884,16 +2854,16 @@ export const GetFileWorkspace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetFileWorkspaceNoSubscriptionError = AzureOpError;
+export type GetFileWorkspacesNoSubscriptionError = AzureOpError;
 /** Gets details for a specific file workspace. */
-export const GetFileWorkspaceNoSubscription: API.OperationMethod<
-  GetFileWorkspaceNoSubscriptionRequest,
-  GetFileWorkspaceNoSubscriptionResponse,
-  GetFileWorkspaceNoSubscriptionError,
+export const GetFileWorkspacesNoSubscription: API.OperationMethod<
+  GetFileWorkspacesNoSubscriptionRequest,
+  GetFileWorkspacesNoSubscriptionResponse,
+  GetFileWorkspacesNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetFileWorkspaceNoSubscriptionRequest,
-  output: GetFileWorkspaceNoSubscriptionResponse,
+  input: GetFileWorkspacesNoSubscriptionRequest,
+  output: GetFileWorkspacesNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2944,31 +2914,16 @@ export const GetSupportTicket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSupportTicketNoSubscriptionError = AzureOpError;
+export type GetSupportTicketsNoSubscriptionError = AzureOpError;
 /** Gets details for a specific support ticket. Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. */
-export const GetSupportTicketNoSubscription: API.OperationMethod<
-  GetSupportTicketNoSubscriptionRequest,
-  GetSupportTicketNoSubscriptionResponse,
-  GetSupportTicketNoSubscriptionError,
+export const GetSupportTicketsNoSubscription: API.OperationMethod<
+  GetSupportTicketsNoSubscriptionRequest,
+  GetSupportTicketsNoSubscriptionResponse,
+  GetSupportTicketsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSupportTicketNoSubscriptionRequest,
-  output: GetSupportTicketNoSubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListChatTranscriptNoSubscriptionError = AzureOpError;
-/** Lists all chat transcripts for a support ticket */
-export const ListChatTranscriptNoSubscription: API.OperationMethod<
-  ListChatTranscriptNoSubscriptionRequest,
-  ListChatTranscriptsResult,
-  ListChatTranscriptNoSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListChatTranscriptNoSubscriptionRequest,
-  output: ListChatTranscriptsResult,
+  input: GetSupportTicketsNoSubscriptionRequest,
+  output: GetSupportTicketsNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2978,27 +2933,27 @@ export type ListChatTranscriptsError = AzureOpError;
 /** Lists all chat transcripts for a support ticket under subscription */
 export const ListChatTranscripts: API.OperationMethod<
   ListChatTranscriptsRequest,
-  ListChatTranscriptsResult,
+  ChatTranscriptsListResult,
   ListChatTranscriptsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListChatTranscriptsRequest,
-  output: ListChatTranscriptsResult,
+  output: ChatTranscriptsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListCommunicationNoSubscriptionError = AzureOpError;
-/** Lists all communications (attachments not included) for a support ticket. <br/></br> You can also filter support ticket communications by _CreatedDate_ or _CommunicationType_ using the $filter parameter. The only type of communication supported today is _Web_. Output will be a paged result with _nextLink_, using which you can retrieve the next set of Communication results. <br/><br/>Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. */
-export const ListCommunicationNoSubscription: API.OperationMethod<
-  ListCommunicationNoSubscriptionRequest,
-  ListCommunicationsResult,
-  ListCommunicationNoSubscriptionError,
+export type ListChatTranscriptsNoSubscriptionError = AzureOpError;
+/** Lists all chat transcripts for a support ticket */
+export const ListChatTranscriptsNoSubscription: API.OperationMethod<
+  ListChatTranscriptsNoSubscriptionRequest,
+  ChatTranscriptsListResult,
+  ListChatTranscriptsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListCommunicationNoSubscriptionRequest,
-  output: ListCommunicationsResult,
+  input: ListChatTranscriptsNoSubscriptionRequest,
+  output: ChatTranscriptsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3008,27 +2963,27 @@ export type ListCommunicationsError = AzureOpError;
 /** Lists all communications (attachments not included) for a support ticket. <br/></br> You can also filter support ticket communications by _CreatedDate_ or _CommunicationType_ using the $filter parameter. The only type of communication supported today is _Web_. Output will be a paged result with _nextLink_, using which you can retrieve the next set of Communication results. <br/><br/>Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. */
 export const ListCommunications: API.OperationMethod<
   ListCommunicationsRequest,
-  ListCommunicationsResult,
+  CommunicationsListResult,
   ListCommunicationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListCommunicationsRequest,
-  output: ListCommunicationsResult,
+  output: CommunicationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListFileNoSubscriptionError = AzureOpError;
-/** Lists all the Files information under a workspace for an Azure subscription. */
-export const ListFileNoSubscription: API.OperationMethod<
-  ListFileNoSubscriptionRequest,
-  ListFilesResult,
-  ListFileNoSubscriptionError,
+export type ListCommunicationsNoSubscriptionError = AzureOpError;
+/** Lists all communications (attachments not included) for a support ticket. <br/></br> You can also filter support ticket communications by _CreatedDate_ or _CommunicationType_ using the $filter parameter. The only type of communication supported today is _Web_. Output will be a paged result with _nextLink_, using which you can retrieve the next set of Communication results. <br/><br/>Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. */
+export const ListCommunicationsNoSubscription: API.OperationMethod<
+  ListCommunicationsNoSubscriptionRequest,
+  CommunicationsListResult,
+  ListCommunicationsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListFileNoSubscriptionRequest,
-  output: ListFilesResult,
+  input: ListCommunicationsNoSubscriptionRequest,
+  output: CommunicationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3038,12 +2993,27 @@ export type ListFilesError = AzureOpError;
 /** Lists all the Files information under a workspace for an Azure subscription. */
 export const ListFiles: API.OperationMethod<
   ListFilesRequest,
-  ListFilesResult,
+  FilesListResult,
   ListFilesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListFilesRequest,
-  output: ListFilesResult,
+  output: FilesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFilesNoSubscriptionError = AzureOpError;
+/** Lists all the Files information under a workspace for an Azure subscription. */
+export const ListFilesNoSubscription: API.OperationMethod<
+  ListFilesNoSubscriptionRequest,
+  FilesListResult,
+  ListFilesNoSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFilesNoSubscriptionRequest,
+  output: FilesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3068,12 +3038,12 @@ export type ListProblemClassificationsError = AzureOpError;
 /** Lists all the problem classifications (categories) available for a specific Azure service. Always use the service and problem classifications obtained programmatically. This practice ensures that you always have the most recent set of service and problem classification Ids. */
 export const ListProblemClassifications: API.OperationMethod<
   ListProblemClassificationsRequest,
-  ListProblemClassificationsResult,
+  ProblemClassificationsListResult,
   ListProblemClassificationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListProblemClassificationsRequest,
-  output: ListProblemClassificationsResult,
+  output: ProblemClassificationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3083,27 +3053,12 @@ export type ListServicesError = AzureOpError;
 /** Lists all the Azure services available for support ticket creation. For **Technical** issues, select the Service Id that maps to the Azure service/product as displayed in the **Services** drop-down list on the Azure portal's [New support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview) page. Always use the service and its corresponding problem classification(s) obtained programmatically for support ticket creation. This practice ensures that you always have the most recent set of service and problem classification Ids. */
 export const ListServices: API.OperationMethod<
   ListServicesRequest,
-  ListServicesResult,
+  ServicesListResult,
   ListServicesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListServicesRequest,
-  output: ListServicesResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListSupportTicketNoSubscriptionError = AzureOpError;
-/** Lists all the support tickets. <br/><br/>You can also filter the support tickets by <i>Status</i>, <i>CreatedDate</i>, , <i>ServiceId</i>, and <i>ProblemClassificationId</i> using the $filter parameter. Output will be a paged result with <i>nextLink</i>, using which you can retrieve the next set of support tickets. <br/><br/>Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. */
-export const ListSupportTicketNoSubscription: API.OperationMethod<
-  ListSupportTicketNoSubscriptionRequest,
-  ListSupportTicketsResult,
-  ListSupportTicketNoSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSupportTicketNoSubscriptionRequest,
-  output: ListSupportTicketsResult,
+  output: ServicesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3113,12 +3068,27 @@ export type ListSupportTicketsError = AzureOpError;
 /** Lists all the support tickets for an Azure subscription. You can also filter the support tickets by _Status_, _CreatedDate_, _ServiceId_, and _ProblemClassificationId_ using the $filter parameter. Output will be a paged result with _nextLink_, using which you can retrieve the next set of support tickets. <br/><br/>Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. */
 export const ListSupportTickets: API.OperationMethod<
   ListSupportTicketsRequest,
-  ListSupportTicketsResult,
+  SupportTicketsListResult,
   ListSupportTicketsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListSupportTicketsRequest,
-  output: ListSupportTicketsResult,
+  output: SupportTicketsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSupportTicketsNoSubscriptionError = AzureOpError;
+/** Lists all the support tickets. <br/><br/>You can also filter the support tickets by <i>Status</i>, <i>CreatedDate</i>, , <i>ServiceId</i>, and <i>ProblemClassificationId</i> using the $filter parameter. Output will be a paged result with <i>nextLink</i>, using which you can retrieve the next set of support tickets. <br/><br/>Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. */
+export const ListSupportTicketsNoSubscription: API.OperationMethod<
+  ListSupportTicketsNoSubscriptionRequest,
+  SupportTicketsListResult,
+  ListSupportTicketsNoSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSupportTicketsNoSubscriptionRequest,
+  output: SupportTicketsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3139,16 +3109,46 @@ export const UpdateSupportTicket: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSupportTicketNoSubscriptionError = AzureOpError;
+export type UpdateSupportTicketsNoSubscriptionError = AzureOpError;
 /** This API allows you to update the severity level, ticket status, and your contact information in the support ticket.<br/><br/>Note: The severity levels cannot be changed if a support ticket is actively being worked upon by an Azure support engineer. In such a case, contact your support engineer to request severity update by adding a new communication using the Communications API. */
-export const UpdateSupportTicketNoSubscription: API.OperationMethod<
-  UpdateSupportTicketNoSubscriptionRequest,
-  UpdateSupportTicketNoSubscriptionResponse,
-  UpdateSupportTicketNoSubscriptionError,
+export const UpdateSupportTicketsNoSubscription: API.OperationMethod<
+  UpdateSupportTicketsNoSubscriptionRequest,
+  UpdateSupportTicketsNoSubscriptionResponse,
+  UpdateSupportTicketsNoSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSupportTicketNoSubscriptionRequest,
-  output: UpdateSupportTicketNoSubscriptionResponse,
+  input: UpdateSupportTicketsNoSubscriptionRequest,
+  output: UpdateSupportTicketsNoSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadFileError = AzureOpError;
+/** This API allows you to upload content to a file */
+export const UploadFile: API.OperationMethod<
+  UploadFileRequest,
+  UploadFileResponse,
+  UploadFileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadFileRequest,
+  output: UploadFileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadFilesNoSubscriptionError = AzureOpError;
+/** This API allows you to upload content to a file */
+export const UploadFilesNoSubscription: API.OperationMethod<
+  UploadFilesNoSubscriptionRequest,
+  UploadFilesNoSubscriptionResponse,
+  UploadFilesNoSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadFilesNoSubscriptionRequest,
+  output: UploadFilesNoSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

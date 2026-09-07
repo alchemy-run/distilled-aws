@@ -24,7 +24,8 @@
       "permanentBounces": "permanent_bounces",
       "replyTo": "reply_to",
       "returnPathDomain": "return_path_domain"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.email_sending#SendRequestFromEmailSendingEmailAddressObject": {
@@ -670,25 +671,25 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.email_sending#Send"
+          "target": "com.cloudflare.email_sending#CreateSubdomain"
         },
         {
-          "target": "com.cloudflare.email_sending#SendRaw"
+          "target": "com.cloudflare.email_sending#DeleteSubdomain"
         },
         {
-          "target": "com.cloudflare.email_sending#SubdomainsCreate"
+          "target": "com.cloudflare.email_sending#GetSubdomain"
         },
         {
-          "target": "com.cloudflare.email_sending#SubdomainsDelete"
+          "target": "com.cloudflare.email_sending#GetSubdomainDns"
         },
         {
-          "target": "com.cloudflare.email_sending#SubdomainsGet"
+          "target": "com.cloudflare.email_sending#ListSubdomains"
         },
         {
-          "target": "com.cloudflare.email_sending#SubdomainsList"
+          "target": "com.cloudflare.email_sending#SendEmailSending"
         },
         {
-          "target": "com.cloudflare.email_sending#SubdomainsDnsGet"
+          "target": "com.cloudflare.email_sending#SendRawEmailSending"
         }
       ],
       "traits": {

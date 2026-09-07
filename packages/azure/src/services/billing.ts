@@ -12,232 +12,69 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AddressValidateRequest {
-  /** Address line 1. */
-  addressLine1: string;
-  /** Address line 2. */
-  addressLine2?: string;
-  /** Address line 3. */
-  addressLine3?: string;
-  /** Address city. */
-  city?: string;
-  /** Company name. Optional for MCA Individual (Pay-as-you-go). */
-  companyName?: string;
-  /** Country code uses ISO 3166-1 Alpha-2 format. */
-  country: string;
-  /** Address district. */
-  district?: string;
-  /** Email address. */
-  email?: string;
-  /** First name. Optional for MCA Enterprise. */
-  firstName?: string;
-  /** Last name. Optional for MCA Enterprise. */
-  lastName?: string;
-  /** Middle name. */
-  middleName?: string;
-  /** Phone number. */
-  phoneNumber?: string;
-  /** Postal code. */
-  postalCode?: string;
-  /** Address region. */
-  region?: string;
-  /** Indicates if the address is incomplete. */
-  isValidAddress?: boolean;
+/** The type of product that is transferred. */
+export type ProductType =
+  | "AzureSubscription"
+  | "AzureReservation"
+  | "Department"
+  | "SavingsPlan"
+  | "SAAS";
+export const ProductType = /*@__PURE__*/ S.String;
+
+/** Details of the product that is transferred. */
+export interface ProductDetails {
+  /** Type of the product that is transferred. */
+  productType?: ProductType | (string & {});
+  /** The ID of the product that is transferred. */
+  productId?: string;
 }
-export const AddressValidateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ProductDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    addressLine1: S.String,
-    addressLine2: S.optional(S.String),
-    addressLine3: S.optional(S.String),
-    city: S.optional(S.String),
-    companyName: S.optional(S.String),
-    country: S.String,
-    district: S.optional(S.String),
-    email: S.optional(S.String),
-    firstName: S.optional(S.String),
-    lastName: S.optional(S.String),
-    middleName: S.optional(S.String),
-    phoneNumber: S.optional(S.String),
-    postalCode: S.optional(S.String),
-    region: S.optional(S.String),
-    isValidAddress: S.optional(S.Boolean),
+    productType: S.optional(ProductType),
+    productId: S.optional(S.String),
+  }),
+).annotate({ identifier: "ProductDetails" }) as any as S.Schema<ProductDetails>;
+
+/** Request parameters to accept transfer. */
+export type AcceptTransferPropertiesProductDetailsList = Array<ProductDetails>;
+export const AcceptTransferPropertiesProductDetailsList = /*@__PURE__*/ S.Array(
+  ProductDetails,
+) as any as S.Schema<AcceptTransferPropertiesProductDetailsList>;
+
+/** Request parameters to accept transfer. */
+export interface AcceptTransferProperties {
+  /** Request parameters to accept transfer. */
+  productDetails?: AcceptTransferPropertiesProductDetailsList;
+}
+export const AcceptTransferProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productDetails: S.optional(AcceptTransferPropertiesProductDetailsList),
+  }),
+).annotate({
+  identifier: "AcceptTransferProperties",
+}) as any as S.Schema<AcceptTransferProperties>;
+
+export interface AcceptRecipientTransferRequest {
+  /** The ID that uniquely identifies a transfer request. */
+  transferName: string;
+  /** Request parameters to accept transfer. */
+  properties?: AcceptTransferProperties;
+}
+export const AcceptRecipientTransferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transferName: S.String.pipe(T.Label()),
+    properties: S.optional(AcceptTransferProperties),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/providers/Microsoft.Billing/validateAddress",
+      uri: "/providers/Microsoft.Billing/transfers/{transferName}/accept",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "AddressValidateRequest",
-}) as any as S.Schema<AddressValidateRequest>;
-
-/** Status of the address validation. */
-export type AddressValidationStatus = "Other" | "Valid" | "Invalid";
-export const AddressValidationStatus = /*@__PURE__*/ S.String;
-
-/** Address details. */
-export interface AddressDetails {
-  /** Address line 1. */
-  addressLine1: string;
-  /** Address line 2. */
-  addressLine2?: string;
-  /** Address line 3. */
-  addressLine3?: string;
-  /** Address city. */
-  city?: string;
-  /** Company name. Optional for MCA Individual (Pay-as-you-go). */
-  companyName?: string;
-  /** Country code uses ISO 3166-1 Alpha-2 format. */
-  country: string;
-  /** Address district. */
-  district?: string;
-  /** Email address. */
-  email?: string;
-  /** First name. Optional for MCA Enterprise. */
-  firstName?: string;
-  /** Last name. Optional for MCA Enterprise. */
-  lastName?: string;
-  /** Middle name. */
-  middleName?: string;
-  /** Phone number. */
-  phoneNumber?: string;
-  /** Postal code. */
-  postalCode?: string;
-  /** Address region. */
-  region?: string;
-  /** Indicates if the address is incomplete. */
-  isValidAddress?: boolean;
-}
-export const AddressDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    addressLine1: S.String,
-    addressLine2: S.optional(S.String),
-    addressLine3: S.optional(S.String),
-    city: S.optional(S.String),
-    companyName: S.optional(S.String),
-    country: S.String,
-    district: S.optional(S.String),
-    email: S.optional(S.String),
-    firstName: S.optional(S.String),
-    lastName: S.optional(S.String),
-    middleName: S.optional(S.String),
-    phoneNumber: S.optional(S.String),
-    postalCode: S.optional(S.String),
-    region: S.optional(S.String),
-    isValidAddress: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "AddressDetails" }) as any as S.Schema<AddressDetails>;
-
-/** The list of suggested addresses. */
-export type AddressValidationResponseSuggestedAddressesList =
-  Array<AddressDetails>;
-export const AddressValidationResponseSuggestedAddressesList =
-  /*@__PURE__*/ S.Array(
-    AddressDetails,
-  ) as any as S.Schema<AddressValidationResponseSuggestedAddressesList>;
-
-/** Result of the address validation. */
-export interface AddressValidationResponse {
-  /** Status of the address validation. */
-  status?: AddressValidationStatus;
-  /** The list of suggested addresses. */
-  suggestedAddresses?: AddressValidationResponseSuggestedAddressesList;
-  /** Validation error message. */
-  validationMessage?: string;
-}
-export const AddressValidationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(AddressValidationStatus),
-    suggestedAddresses: S.optional(
-      AddressValidationResponseSuggestedAddressesList,
-    ),
-    validationMessage: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AddressValidationResponse",
-}) as any as S.Schema<AddressValidationResponse>;
-
-/** The state determines whether users from the associated tenant can be assigned roles for commerce activities like viewing and downloading invoices, managing payments, and making purchases. */
-export type BillingManagementTenantState =
-  | "Other"
-  | "NotAllowed"
-  | "Active"
-  | "Revoked";
-export const BillingManagementTenantState = /*@__PURE__*/ S.String;
-
-/** The state determines whether subscriptions and licenses can be provisioned in the associated tenant. It can be set to 'Pending' to initiate a billing request. */
-export type ProvisioningTenantState =
-  | "Other"
-  | "NotRequested"
-  | "Active"
-  | "Pending"
-  | "BillingRequestExpired"
-  | "BillingRequestDeclined"
-  | "Revoked";
-export const ProvisioningTenantState = /*@__PURE__*/ S.String;
-
-/** An associated tenant. */
-export interface AssociatedTenantPropertiesInput {
-  /** The name of the associated tenant. */
-  displayName?: string;
-  /** The ID that uniquely identifies a tenant. */
-  tenantId?: string;
-  /** The state determines whether users from the associated tenant can be assigned roles for commerce activities like viewing and downloading invoices, managing payments, and making purchases. */
-  billingManagementState?: BillingManagementTenantState | (string & {});
-  /** The state determines whether subscriptions and licenses can be provisioned in the associated tenant. It can be set to 'Pending' to initiate a billing request. */
-  provisioningManagementState?: ProvisioningTenantState | (string & {});
-}
-export const AssociatedTenantPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    billingManagementState: S.optional(BillingManagementTenantState),
-    provisioningManagementState: S.optional(ProvisioningTenantState),
-  }),
-).annotate({
-  identifier: "AssociatedTenantPropertiesInput",
-}) as any as S.Schema<AssociatedTenantPropertiesInput>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type AssociatedTenantsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AssociatedTenantsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AssociatedTenantsCreateOrUpdateRequestTagsMap>;
-
-export interface AssociatedTenantsCreateOrUpdateRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a tenant. */
-  associatedTenantName: string;
-  /** An associated tenant. */
-  properties?: AssociatedTenantPropertiesInput;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: AssociatedTenantsCreateOrUpdateRequestTagsMap;
-}
-export const AssociatedTenantsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      associatedTenantName: S.String.pipe(T.Label()),
-      properties: S.optional(AssociatedTenantPropertiesInput),
-      tags: S.optional(AssociatedTenantsCreateOrUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/associatedTenants/{associatedTenantName}",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "AssociatedTenantsCreateOrUpdateRequest",
-}) as any as S.Schema<AssociatedTenantsCreateOrUpdateRequest>;
+  identifier: "AcceptRecipientTransferRequest",
+}) as any as S.Schema<AcceptRecipientTransferRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -281,60 +118,173 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
-/** The provisioning state of the resource during a long-running operation. */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Canceled"
-  | "Failed"
-  | "New"
-  | "Pending"
-  | "Provisioning"
-  | "PendingBilling"
-  | "ConfirmedBilling"
-  | "Creating"
-  | "Created"
-  | "Expired";
-export const ProvisioningState = /*@__PURE__*/ S.String;
+/** Type of the products that can be transferred. */
+export type EligibleProductType =
+  | "DevTestAzureSubscription"
+  | "StandardAzureSubscription"
+  | "AzureReservation";
+export const EligibleProductType = /*@__PURE__*/ S.String;
 
-/** An associated tenant. */
-export interface AssociatedTenantProperties {
-  /** The provisioning state of the resource during a long-running operation. */
-  provisioningState?: ProvisioningState;
-  /** The name of the associated tenant. */
-  displayName?: string;
-  /** The ID that uniquely identifies a tenant. */
-  tenantId?: string;
-  /** The state determines whether users from the associated tenant can be assigned roles for commerce activities like viewing and downloading invoices, managing payments, and making purchases. */
-  billingManagementState?: BillingManagementTenantState;
-  /** The state determines whether subscriptions and licenses can be provisioned in the associated tenant. It can be set to 'Pending' to initiate a billing request. */
-  provisioningManagementState?: ProvisioningTenantState;
-  /** The unique identifier for the billing request that is created when enabling provisioning for an associated tenant. */
-  provisioningBillingRequestId?: string;
+/** Type of subscriptions that can be transferred. */
+export type RecipientTransferPropertiesAllowedProductTypeList =
+  Array<EligibleProductType>;
+export const RecipientTransferPropertiesAllowedProductTypeList =
+  /*@__PURE__*/ S.Array(
+    EligibleProductType,
+  ) as any as S.Schema<RecipientTransferPropertiesAllowedProductTypeList>;
+
+/** The status of a transfer. */
+export type TransferStatus =
+  | "Expired"
+  | "Pending"
+  | "InProgress"
+  | "Completed"
+  | "CompletedWithErrors"
+  | "Failed"
+  | "Canceled"
+  | "Declined";
+export const TransferStatus = /*@__PURE__*/ S.String;
+
+/** The type of customer of the transfer initiator. */
+export type InitiatorCustomerType = "Partner" | "EA";
+export const InitiatorCustomerType = /*@__PURE__*/ S.String;
+
+/** The status of a transfer. */
+export type ProductTransferStatus =
+  | "NotStarted"
+  | "InProgress"
+  | "Completed"
+  | "Failed";
+export const ProductTransferStatus = /*@__PURE__*/ S.String;
+
+/** Error details for transfer execution. */
+export interface TransferError {
+  /** Error code. */
+  code?: string;
+  /** Error message. */
+  message?: string;
 }
-export const AssociatedTenantProperties = /*@__PURE__*/ S.suspend(() =>
+export const TransferError = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    displayName: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    billingManagementState: S.optional(BillingManagementTenantState),
-    provisioningManagementState: S.optional(ProvisioningTenantState),
-    provisioningBillingRequestId: S.optional(S.String),
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({ identifier: "TransferError" }) as any as S.Schema<TransferError>;
+
+/** Detailed transfer status. */
+export interface DetailedTransferStatus {
+  /** Type of product that is transferred. */
+  productType?: ProductType;
+  /** The ID of the product that is transferred. */
+  productId?: string;
+  /** The name of the product that is transferred. */
+  productName?: string;
+  /** The SKU of the product that is transferred. */
+  skuDescription?: string;
+  /** Transfer status. */
+  transferStatus?: ProductTransferStatus;
+  /** Error details for transfer execution. */
+  errorDetails?: TransferError;
+}
+export const DetailedTransferStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    productType: S.optional(ProductType),
+    productId: S.optional(S.String),
+    productName: S.optional(S.String),
+    skuDescription: S.optional(S.String),
+    transferStatus: S.optional(ProductTransferStatus),
+    errorDetails: S.optional(TransferError),
   }),
 ).annotate({
-  identifier: "AssociatedTenantProperties",
-}) as any as S.Schema<AssociatedTenantProperties>;
+  identifier: "DetailedTransferStatus",
+}) as any as S.Schema<DetailedTransferStatus>;
+
+/** Detailed transfer status. */
+export type RecipientTransferPropertiesDetailedTransferStatusList =
+  Array<DetailedTransferStatus>;
+export const RecipientTransferPropertiesDetailedTransferStatusList =
+  /*@__PURE__*/ S.Array(
+    DetailedTransferStatus,
+  ) as any as S.Schema<RecipientTransferPropertiesDetailedTransferStatusList>;
+
+/** The supported account types. */
+export type SupportedAccountType =
+  | "None"
+  | "Partner"
+  | "Individual"
+  | "Enterprise";
+export const SupportedAccountType = /*@__PURE__*/ S.String;
+
+/** List of supported account types. */
+export type RecipientTransferPropertiesSupportedAccountsList =
+  Array<SupportedAccountType>;
+export const RecipientTransferPropertiesSupportedAccountsList =
+  /*@__PURE__*/ S.Array(
+    SupportedAccountType,
+  ) as any as S.Schema<RecipientTransferPropertiesSupportedAccountsList>;
+
+/** Transfer Details. */
+export interface RecipientTransferProperties {
+  /** The time at which the transfer request expires. */
+  expirationTime?: string;
+  /** Type of subscriptions that can be transferred. */
+  allowedProductType?: RecipientTransferPropertiesAllowedProductTypeList;
+  /** Overall transfer status. */
+  transferStatus?: TransferStatus;
+  /** The email ID of the user to whom the transfer request was sent. */
+  recipientEmailId?: string;
+  /** The email ID of the user who sent the transfer request. */
+  initiatorEmailId?: string;
+  /** Optional MPN ID of the reseller for transfer requests that are sent from a Microsoft Partner Agreement billing account. */
+  resellerId?: string;
+  /** Optional name of the reseller for transfer requests that are sent from Microsoft Partner Agreement billing account. */
+  resellerName?: string;
+  /** The type of customer who sent the transfer request. */
+  initiatorCustomerType?: InitiatorCustomerType;
+  /** The email ID of the user who canceled the transfer request. */
+  canceledBy?: string;
+  /** Detailed transfer status. */
+  detailedTransferStatus?: RecipientTransferPropertiesDetailedTransferStatusList;
+  /** The customer tenant id. */
+  customerTenantId?: string;
+  /** List of supported account types. */
+  supportedAccounts?: RecipientTransferPropertiesSupportedAccountsList;
+}
+export const RecipientTransferProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationTime: S.optional(S.String),
+    allowedProductType: S.optional(
+      RecipientTransferPropertiesAllowedProductTypeList,
+    ),
+    transferStatus: S.optional(TransferStatus),
+    recipientEmailId: S.optional(S.String),
+    initiatorEmailId: S.optional(S.String),
+    resellerId: S.optional(S.String),
+    resellerName: S.optional(S.String),
+    initiatorCustomerType: S.optional(InitiatorCustomerType),
+    canceledBy: S.optional(S.String),
+    detailedTransferStatus: S.optional(
+      RecipientTransferPropertiesDetailedTransferStatusList,
+    ),
+    customerTenantId: S.optional(S.String),
+    supportedAccounts: S.optional(
+      RecipientTransferPropertiesSupportedAccountsList,
+    ),
+  }),
+).annotate({
+  identifier: "RecipientTransferProperties",
+}) as any as S.Schema<RecipientTransferProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type AssociatedTenantsCreateOrUpdateResponseTagsMap = {
+export type AcceptRecipientTransferResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AssociatedTenantsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<AssociatedTenantsCreateOrUpdateResponseTagsMap>;
+export const AcceptRecipientTransferResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AcceptRecipientTransferResponseTagsMap>;
 
-export interface AssociatedTenantsCreateOrUpdateResponse {
+export interface AcceptRecipientTransferResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -343,24 +293,23 @@ export interface AssociatedTenantsCreateOrUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** An associated tenant. */
-  properties?: AssociatedTenantProperties;
+  /** Details of the transfer. */
+  properties?: RecipientTransferProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: AssociatedTenantsCreateOrUpdateResponseTagsMap;
+  tags?: AcceptRecipientTransferResponseTagsMap;
 }
-export const AssociatedTenantsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AssociatedTenantProperties),
-      tags: S.optional(AssociatedTenantsCreateOrUpdateResponseTagsMap),
-    }),
+export const AcceptRecipientTransferResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RecipientTransferProperties),
+    tags: S.optional(AcceptRecipientTransferResponseTagsMap),
+  }),
 ).annotate({
-  identifier: "AssociatedTenantsCreateOrUpdateResponse",
-}) as any as S.Schema<AssociatedTenantsCreateOrUpdateResponse>;
+  identifier: "AcceptRecipientTransferResponse",
+}) as any as S.Schema<AcceptRecipientTransferResponse>;
 
 /** The properties of payment term. */
 export interface PaymentTermInput {
@@ -381,23 +330,23 @@ export const PaymentTermInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaymentTermInput",
 }) as any as S.Schema<PaymentTermInput>;
 
-export type BillingAccountsAddPaymentTermsRequestBodyList =
+export type AddBillingAccountPaymentTermsRequestBodyList =
   Array<PaymentTermInput>;
-export const BillingAccountsAddPaymentTermsRequestBodyList =
+export const AddBillingAccountPaymentTermsRequestBodyList =
   /*@__PURE__*/ S.Array(
     PaymentTermInput,
-  ) as any as S.Schema<BillingAccountsAddPaymentTermsRequestBodyList>;
+  ) as any as S.Schema<AddBillingAccountPaymentTermsRequestBodyList>;
 
-export interface BillingAccountsAddPaymentTermsRequest {
+export interface AddBillingAccountPaymentTermsRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
-  body: BillingAccountsAddPaymentTermsRequestBodyList;
+  body: AddBillingAccountPaymentTermsRequestBodyList;
 }
-export const BillingAccountsAddPaymentTermsRequest = /*@__PURE__*/ S.suspend(
+export const AddBillingAccountPaymentTermsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
-      body: BillingAccountsAddPaymentTermsRequestBodyList.pipe(T.HttpBody()),
+      body: AddBillingAccountPaymentTermsRequestBodyList.pipe(T.HttpBody()),
     }).pipe(
       T.Http({
         method: "POST",
@@ -407,8 +356,23 @@ export const BillingAccountsAddPaymentTermsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "BillingAccountsAddPaymentTermsRequest",
-}) as any as S.Schema<BillingAccountsAddPaymentTermsRequest>;
+  identifier: "AddBillingAccountPaymentTermsRequest",
+}) as any as S.Schema<AddBillingAccountPaymentTermsRequest>;
+
+/** The provisioning state of the resource during a long-running operation. */
+export type ProvisioningState =
+  | "Succeeded"
+  | "Canceled"
+  | "Failed"
+  | "New"
+  | "Pending"
+  | "Provisioning"
+  | "PendingBilling"
+  | "ConfirmedBilling"
+  | "Creating"
+  | "Created"
+  | "Expired";
+export const ProvisioningState = /*@__PURE__*/ S.String;
 
 /** The current status of the billing account. */
 export type AccountStatus =
@@ -556,6 +520,59 @@ export const EnrollmentDetails = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EnrollmentDetails",
 }) as any as S.Schema<EnrollmentDetails>;
+
+/** Address details. */
+export interface AddressDetails {
+  /** Address line 1. */
+  addressLine1: string;
+  /** Address line 2. */
+  addressLine2?: string;
+  /** Address line 3. */
+  addressLine3?: string;
+  /** Address city. */
+  city?: string;
+  /** Company name. Optional for MCA Individual (Pay-as-you-go). */
+  companyName?: string;
+  /** Country code uses ISO 3166-1 Alpha-2 format. */
+  country: string;
+  /** Address district. */
+  district?: string;
+  /** Email address. */
+  email?: string;
+  /** First name. Optional for MCA Enterprise. */
+  firstName?: string;
+  /** Last name. Optional for MCA Enterprise. */
+  lastName?: string;
+  /** Middle name. */
+  middleName?: string;
+  /** Phone number. */
+  phoneNumber?: string;
+  /** Postal code. */
+  postalCode?: string;
+  /** Address region. */
+  region?: string;
+  /** Indicates if the address is incomplete. */
+  isValidAddress?: boolean;
+}
+export const AddressDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    addressLine1: S.String,
+    addressLine2: S.optional(S.String),
+    addressLine3: S.optional(S.String),
+    city: S.optional(S.String),
+    companyName: S.optional(S.String),
+    country: S.String,
+    district: S.optional(S.String),
+    email: S.optional(S.String),
+    firstName: S.optional(S.String),
+    lastName: S.optional(S.String),
+    middleName: S.optional(S.String),
+    phoneNumber: S.optional(S.String),
+    postalCode: S.optional(S.String),
+    region: S.optional(S.String),
+    isValidAddress: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "AddressDetails" }) as any as S.Schema<AddressDetails>;
 
 /** The types of registration number allowed based on the country of the billing account. */
 export type RegistrationNumberTypeList = Array<string>;
@@ -727,16 +744,16 @@ export const BillingAccountProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingAccountProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingAccountsAddPaymentTermsResponseTagsMap = {
+export type AddBillingAccountPaymentTermsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingAccountsAddPaymentTermsResponseTagsMap =
+export const AddBillingAccountPaymentTermsResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingAccountsAddPaymentTermsResponseTagsMap>;
+  ) as any as S.Schema<AddBillingAccountPaymentTermsResponseTagsMap>;
 
-export interface BillingAccountsAddPaymentTermsResponse {
+export interface AddBillingAccountPaymentTermsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -748,9 +765,9 @@ export interface BillingAccountsAddPaymentTermsResponse {
   /** A billing account. */
   properties?: BillingAccountProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingAccountsAddPaymentTermsResponseTagsMap;
+  tags?: AddBillingAccountPaymentTermsResponseTagsMap;
 }
-export const BillingAccountsAddPaymentTermsResponse = /*@__PURE__*/ S.suspend(
+export const AddBillingAccountPaymentTermsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -758,107 +775,157 @@ export const BillingAccountsAddPaymentTermsResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingAccountProperties),
-      tags: S.optional(BillingAccountsAddPaymentTermsResponseTagsMap),
+      tags: S.optional(AddBillingAccountPaymentTermsResponseTagsMap),
     }),
 ).annotate({
-  identifier: "BillingAccountsAddPaymentTermsResponse",
-}) as any as S.Schema<BillingAccountsAddPaymentTermsResponse>;
+  identifier: "AddBillingAccountPaymentTermsResponse",
+}) as any as S.Schema<AddBillingAccountPaymentTermsResponse>;
 
-export interface BillingAccountsCancelPaymentTermsRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  body: string;
+/** The state determines whether users from the associated tenant can be assigned roles for commerce activities like viewing and downloading invoices, managing payments, and making purchases. */
+export type BillingManagementTenantState =
+  | "Other"
+  | "NotAllowed"
+  | "Active"
+  | "Revoked";
+export const BillingManagementTenantState = /*@__PURE__*/ S.String;
+
+/** The state determines whether subscriptions and licenses can be provisioned in the associated tenant. It can be set to 'Pending' to initiate a billing request. */
+export type ProvisioningTenantState =
+  | "Other"
+  | "NotRequested"
+  | "Active"
+  | "Pending"
+  | "BillingRequestExpired"
+  | "BillingRequestDeclined"
+  | "Revoked";
+export const ProvisioningTenantState = /*@__PURE__*/ S.String;
+
+/** An associated tenant. */
+export interface AssociatedTenantPropertiesInput {
+  /** The name of the associated tenant. */
+  displayName?: string;
+  /** The ID that uniquely identifies a tenant. */
+  tenantId?: string;
+  /** The state determines whether users from the associated tenant can be assigned roles for commerce activities like viewing and downloading invoices, managing payments, and making purchases. */
+  billingManagementState?: BillingManagementTenantState | (string & {});
+  /** The state determines whether subscriptions and licenses can be provisioned in the associated tenant. It can be set to 'Pending' to initiate a billing request. */
+  provisioningManagementState?: ProvisioningTenantState | (string & {});
 }
-export const BillingAccountsCancelPaymentTermsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      body: S.String.pipe(T.HttpBody()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/cancelPaymentTerms",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "BillingAccountsCancelPaymentTermsRequest",
-}) as any as S.Schema<BillingAccountsCancelPaymentTermsRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingAccountsCancelPaymentTermsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BillingAccountsCancelPaymentTermsResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BillingAccountsCancelPaymentTermsResponseTagsMap>;
-
-export interface BillingAccountsCancelPaymentTermsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A billing account. */
-  properties?: BillingAccountProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingAccountsCancelPaymentTermsResponseTagsMap;
-}
-export const BillingAccountsCancelPaymentTermsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(BillingAccountProperties),
-      tags: S.optional(BillingAccountsCancelPaymentTermsResponseTagsMap),
-    }),
-  ).annotate({
-    identifier: "BillingAccountsCancelPaymentTermsResponse",
-  }) as any as S.Schema<BillingAccountsCancelPaymentTermsResponse>;
-
-export interface BillingAccountsConfirmTransitionRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-}
-export const BillingAccountsConfirmTransitionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/confirmTransition",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "BillingAccountsConfirmTransitionRequest",
-}) as any as S.Schema<BillingAccountsConfirmTransitionRequest>;
-
-/** The details for a billing account transitioned from agreement type Microsoft Online Services Program to agreement type Microsoft Customer Agreement. */
-export interface TransitionDetails {
-  /** The transition completion date. */
-  transitionDate?: string;
-  /** The anniversary day of the pre-transitioned account of type Microsoft Online Services Program. */
-  anniversaryDay?: number;
-}
-export const TransitionDetails = /*@__PURE__*/ S.suspend(() =>
+export const AssociatedTenantPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    transitionDate: S.optional(S.String),
-    anniversaryDay: S.optional(S.Number),
+    displayName: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    billingManagementState: S.optional(BillingManagementTenantState),
+    provisioningManagementState: S.optional(ProvisioningTenantState),
   }),
 ).annotate({
-  identifier: "TransitionDetails",
-}) as any as S.Schema<TransitionDetails>;
+  identifier: "AssociatedTenantPropertiesInput",
+}) as any as S.Schema<AssociatedTenantPropertiesInput>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type AssociatedTenantsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AssociatedTenantsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<AssociatedTenantsCreateOrUpdateRequestTagsMap>;
+
+export interface AssociatedTenantsCreateOrUpdateRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a tenant. */
+  associatedTenantName: string;
+  /** An associated tenant. */
+  properties?: AssociatedTenantPropertiesInput;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: AssociatedTenantsCreateOrUpdateRequestTagsMap;
+}
+export const AssociatedTenantsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      associatedTenantName: S.String.pipe(T.Label()),
+      properties: S.optional(AssociatedTenantPropertiesInput),
+      tags: S.optional(AssociatedTenantsCreateOrUpdateRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/associatedTenants/{associatedTenantName}",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "AssociatedTenantsCreateOrUpdateRequest",
+}) as any as S.Schema<AssociatedTenantsCreateOrUpdateRequest>;
+
+/** An associated tenant. */
+export interface AssociatedTenantProperties {
+  /** The provisioning state of the resource during a long-running operation. */
+  provisioningState?: ProvisioningState;
+  /** The name of the associated tenant. */
+  displayName?: string;
+  /** The ID that uniquely identifies a tenant. */
+  tenantId?: string;
+  /** The state determines whether users from the associated tenant can be assigned roles for commerce activities like viewing and downloading invoices, managing payments, and making purchases. */
+  billingManagementState?: BillingManagementTenantState;
+  /** The state determines whether subscriptions and licenses can be provisioned in the associated tenant. It can be set to 'Pending' to initiate a billing request. */
+  provisioningManagementState?: ProvisioningTenantState;
+  /** The unique identifier for the billing request that is created when enabling provisioning for an associated tenant. */
+  provisioningBillingRequestId?: string;
+}
+export const AssociatedTenantProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    displayName: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    billingManagementState: S.optional(BillingManagementTenantState),
+    provisioningManagementState: S.optional(ProvisioningTenantState),
+    provisioningBillingRequestId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AssociatedTenantProperties",
+}) as any as S.Schema<AssociatedTenantProperties>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type AssociatedTenantsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AssociatedTenantsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<AssociatedTenantsCreateOrUpdateResponseTagsMap>;
+
+export interface AssociatedTenantsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** An associated tenant. */
+  properties?: AssociatedTenantProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: AssociatedTenantsCreateOrUpdateResponseTagsMap;
+}
+export const AssociatedTenantsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AssociatedTenantProperties),
+      tags: S.optional(AssociatedTenantsCreateOrUpdateResponseTagsMap),
+    }),
+).annotate({
+  identifier: "AssociatedTenantsCreateOrUpdateResponse",
+}) as any as S.Schema<AssociatedTenantsCreateOrUpdateResponse>;
 
 export interface BillingAccountsListInvoiceSectionsByCreateSubscriptionPermissionRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -1001,97 +1068,6 @@ export const InvoiceSectionWithCreateSubPermissionListResult =
   ).annotate({
     identifier: "InvoiceSectionWithCreateSubPermissionListResult",
   }) as any as S.Schema<InvoiceSectionWithCreateSubPermissionListResult>;
-
-export type BillingAccountsValidatePaymentTermsRequestBodyList =
-  Array<PaymentTermInput>;
-export const BillingAccountsValidatePaymentTermsRequestBodyList =
-  /*@__PURE__*/ S.Array(
-    PaymentTermInput,
-  ) as any as S.Schema<BillingAccountsValidatePaymentTermsRequestBodyList>;
-
-export interface BillingAccountsValidatePaymentTermsRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  body: BillingAccountsValidatePaymentTermsRequestBodyList;
-}
-export const BillingAccountsValidatePaymentTermsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      body: BillingAccountsValidatePaymentTermsRequestBodyList.pipe(
-        T.HttpBody(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/validatePaymentTerms",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BillingAccountsValidatePaymentTermsRequest",
-  }) as any as S.Schema<BillingAccountsValidatePaymentTermsRequest>;
-
-/** Indicates the eligibility status of the payment terms. */
-export type PaymentTermsEligibilityStatus = "Other" | "Valid" | "Invalid";
-export const PaymentTermsEligibilityStatus = /*@__PURE__*/ S.String;
-
-/** Indicates the reason for the ineligibility of the payment terms. */
-export type PaymentTermsEligibilityCode =
-  | "Other"
-  | "OverlappingPaymentTerms"
-  | "InvalidDateFormat"
-  | "InvalidDateRange"
-  | "InactiveBillingAccount"
-  | "InvalidBillingAccountType"
-  | "NullOrEmptyPaymentTerms"
-  | "BillingAccountNotFound"
-  | "IneligibleBillingAccountStatus"
-  | "InvalidTerms";
-export const PaymentTermsEligibilityCode = /*@__PURE__*/ S.String;
-
-/** Details of the payment terms eligibility. */
-export interface PaymentTermsEligibilityDetail {
-  /** Indicates the reason for the ineligibility of the payment terms. */
-  code?: PaymentTermsEligibilityCode;
-  /** Indicates the message for the ineligibility of the payment terms. */
-  message?: string;
-}
-export const PaymentTermsEligibilityDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(PaymentTermsEligibilityCode),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PaymentTermsEligibilityDetail",
-}) as any as S.Schema<PaymentTermsEligibilityDetail>;
-
-/** Details of the payment terms eligibility. */
-export type PaymentTermsEligibilityResultEligibilityDetailsList =
-  Array<PaymentTermsEligibilityDetail>;
-export const PaymentTermsEligibilityResultEligibilityDetailsList =
-  /*@__PURE__*/ S.Array(
-    PaymentTermsEligibilityDetail,
-  ) as any as S.Schema<PaymentTermsEligibilityResultEligibilityDetailsList>;
-
-/** Result of the payment terms eligibility. */
-export interface PaymentTermsEligibilityResult {
-  /** Indicates the eligibility status of the payment terms. */
-  eligibilityStatus?: PaymentTermsEligibilityStatus;
-  /** Details of the payment terms eligibility. */
-  eligibilityDetails?: PaymentTermsEligibilityResultEligibilityDetailsList;
-}
-export const PaymentTermsEligibilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    eligibilityStatus: S.optional(PaymentTermsEligibilityStatus),
-    eligibilityDetails: S.optional(
-      PaymentTermsEligibilityResultEligibilityDetailsList,
-    ),
-  }),
-).annotate({
-  identifier: "PaymentTermsEligibilityResult",
-}) as any as S.Schema<PaymentTermsEligibilityResult>;
 
 /** Information about the enabled azure plans. */
 export type BillingProfilePropertiesInputEnabledAzurePlansList =
@@ -1448,6 +1424,90 @@ export const BillingProfilesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "BillingProfilesCreateOrUpdateResponse",
 }) as any as S.Schema<BillingProfilesCreateOrUpdateResponse>;
+
+export interface BillingProfilesValidateDeleteEligibilityRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a billing profile. */
+  billingProfileName: string;
+}
+export const BillingProfilesValidateDeleteEligibilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      billingProfileName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/validateDeleteEligibility",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "BillingProfilesValidateDeleteEligibilityRequest",
+  }) as any as S.Schema<BillingProfilesValidateDeleteEligibilityRequest>;
+
+/** Status describing if billing profile is eligible to be deleted. */
+export type DeleteBillingProfileEligibilityStatus = "Allowed" | "NotAllowed";
+export const DeleteBillingProfileEligibilityStatus = /*@__PURE__*/ S.String;
+
+/** Code of the delete invoice section eligibility response. */
+export type DeleteBillingProfileEligibilityCode =
+  | "None"
+  | "ActiveCredits"
+  | "ActiveCreditCard"
+  | "LastBillingProfile"
+  | "NotSupported"
+  | "OutstandingCharges"
+  | "PendingCharges"
+  | "ReservedInstances"
+  | "ActiveBillingSubscriptions";
+export const DeleteBillingProfileEligibilityCode = /*@__PURE__*/ S.String;
+
+/** Validation details of delete billing profile eligibility. */
+export interface DeleteBillingProfileEligibilityDetail {
+  /** Code of the delete invoice section eligibility response. */
+  code?: DeleteBillingProfileEligibilityCode;
+  /** Validation message. */
+  message?: string;
+}
+export const DeleteBillingProfileEligibilityDetail = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(DeleteBillingProfileEligibilityCode),
+      message: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DeleteBillingProfileEligibilityDetail",
+}) as any as S.Schema<DeleteBillingProfileEligibilityDetail>;
+
+/** Validation details of delete billing profile eligibility. */
+export type DeleteBillingProfileEligibilityResultEligibilityDetailsList =
+  Array<DeleteBillingProfileEligibilityDetail>;
+export const DeleteBillingProfileEligibilityResultEligibilityDetailsList =
+  /*@__PURE__*/ S.Array(
+    DeleteBillingProfileEligibilityDetail,
+  ) as any as S.Schema<DeleteBillingProfileEligibilityResultEligibilityDetailsList>;
+
+/** Eligibility to delete a billing profile result. */
+export interface DeleteBillingProfileEligibilityResult {
+  /** Status describing if billing profile is eligible to be deleted. */
+  eligibilityStatus?: DeleteBillingProfileEligibilityStatus;
+  /** Validation details of delete billing profile eligibility. */
+  eligibilityDetails?: DeleteBillingProfileEligibilityResultEligibilityDetailsList;
+}
+export const DeleteBillingProfileEligibilityResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      eligibilityStatus: S.optional(DeleteBillingProfileEligibilityStatus),
+      eligibilityDetails: S.optional(
+        DeleteBillingProfileEligibilityResultEligibilityDetailsList,
+      ),
+    }),
+).annotate({
+  identifier: "DeleteBillingProfileEligibilityResult",
+}) as any as S.Schema<DeleteBillingProfileEligibilityResult>;
 
 /** Additional information for the billing request. */
 export type BillingRequestPropertiesInputAdditionalInformationMap = {
@@ -2826,72 +2886,42 @@ export const BillingSubscriptionsAliasesCreateOrUpdateResponse =
     identifier: "BillingSubscriptionsAliasesCreateOrUpdateResponse",
   }) as any as S.Schema<BillingSubscriptionsAliasesCreateOrUpdateResponse>;
 
-/** Cancellation reason. */
-export type CancellationReason = "Other" | "Compromise" | "Dispute";
-export const CancellationReason = /*@__PURE__*/ S.String;
-
-export interface BillingSubscriptionsCancelRequest {
+export interface BillingSubscriptionsSplitRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a subscription. */
   billingSubscriptionName: string;
-  /** Cancellation reason. */
-  cancellationReason: CancellationReason | (string & {});
-  /** The fully qualified ID that uniquely identifies a customer. */
-  customerId?: string;
-}
-export const BillingSubscriptionsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billingAccountName: S.String.pipe(T.Label()),
-    billingSubscriptionName: S.String.pipe(T.Label()),
-    cancellationReason: CancellationReason,
-    customerId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/cancel",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "BillingSubscriptionsCancelRequest",
-}) as any as S.Schema<BillingSubscriptionsCancelRequest>;
-
-export interface BillingSubscriptionsCancelResponse {}
-export const BillingSubscriptionsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BillingSubscriptionsCancelResponse",
-}) as any as S.Schema<BillingSubscriptionsCancelResponse>;
-
-export interface BillingSubscriptionsMergeRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a subscription. */
-  billingSubscriptionName: string;
-  /** The ID of the target billing subscription that will be merged with the source subscription provided in the request. */
-  targetBillingSubscriptionName?: string;
-  /** The quantity of the source billing subscription that will be merged with the target billing subscription. */
+  /** The ID of the target product to which the subscription needs to be split into. This value is not same as the value returned in Get API call and can be retrieved from Catalog API to know the product id to split into. */
+  targetProductTypeId?: string;
+  /** The ID of the target product to which the subscription needs to be split into. This value is not same as the value returned in Get API call and can be retrieved from Catalog API to know the sku id to split into. */
+  targetSkuId?: string;
+  /** The quantity of the target product to which the subscription needs to be split into. */
   quantity?: number;
+  /** The term duration of the target in ISO8601 format product to which the subscription needs to be split into. Example: P1M, P1Y */
+  termDuration?: string;
+  /** The billing frequency of the target subscription in the ISO8601 format. Example: P1M, P3M, P1Y" */
+  billingFrequency?: string;
 }
-export const BillingSubscriptionsMergeRequest = /*@__PURE__*/ S.suspend(() =>
+export const BillingSubscriptionsSplitRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     billingAccountName: S.String.pipe(T.Label()),
     billingSubscriptionName: S.String.pipe(T.Label()),
-    targetBillingSubscriptionName: S.optional(S.String),
+    targetProductTypeId: S.optional(S.String),
+    targetSkuId: S.optional(S.String),
     quantity: S.optional(S.Number),
+    termDuration: S.optional(S.String),
+    billingFrequency: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/merge",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/split",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "BillingSubscriptionsMergeRequest",
-}) as any as S.Schema<BillingSubscriptionsMergeRequest>;
+  identifier: "BillingSubscriptionsSplitRequest",
+}) as any as S.Schema<BillingSubscriptionsSplitRequest>;
 
 /** Dictionary of billing policies associated with the subscription. */
 export type BillingSubscriptionPropertiesBillingPoliciesMap = {
@@ -3069,143 +3099,6 @@ export const BillingSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingSubscriptionProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionsMergeResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BillingSubscriptionsMergeResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BillingSubscriptionsMergeResponseTagsMap>;
-
-export interface BillingSubscriptionsMergeResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a(n) BillingSubscription */
-  properties?: BillingSubscriptionProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionsMergeResponseTagsMap;
-}
-export const BillingSubscriptionsMergeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BillingSubscriptionProperties),
-    tags: S.optional(BillingSubscriptionsMergeResponseTagsMap),
-  }),
-).annotate({
-  identifier: "BillingSubscriptionsMergeResponse",
-}) as any as S.Schema<BillingSubscriptionsMergeResponse>;
-
-export interface BillingSubscriptionsMoveRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a subscription. */
-  billingSubscriptionName: string;
-  /** The destination invoice section id. */
-  destinationInvoiceSectionId?: string;
-  /** The destination enrollment account id. */
-  destinationEnrollmentAccountId?: string;
-}
-export const BillingSubscriptionsMoveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billingAccountName: S.String.pipe(T.Label()),
-    billingSubscriptionName: S.String.pipe(T.Label()),
-    destinationInvoiceSectionId: S.optional(S.String),
-    destinationEnrollmentAccountId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/move",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "BillingSubscriptionsMoveRequest",
-}) as any as S.Schema<BillingSubscriptionsMoveRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionsMoveResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BillingSubscriptionsMoveResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BillingSubscriptionsMoveResponseTagsMap>;
-
-export interface BillingSubscriptionsMoveResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a(n) BillingSubscription */
-  properties?: BillingSubscriptionProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionsMoveResponseTagsMap;
-}
-export const BillingSubscriptionsMoveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BillingSubscriptionProperties),
-    tags: S.optional(BillingSubscriptionsMoveResponseTagsMap),
-  }),
-).annotate({
-  identifier: "BillingSubscriptionsMoveResponse",
-}) as any as S.Schema<BillingSubscriptionsMoveResponse>;
-
-export interface BillingSubscriptionsSplitRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a subscription. */
-  billingSubscriptionName: string;
-  /** The ID of the target product to which the subscription needs to be split into. This value is not same as the value returned in Get API call and can be retrieved from Catalog API to know the product id to split into. */
-  targetProductTypeId?: string;
-  /** The ID of the target product to which the subscription needs to be split into. This value is not same as the value returned in Get API call and can be retrieved from Catalog API to know the sku id to split into. */
-  targetSkuId?: string;
-  /** The quantity of the target product to which the subscription needs to be split into. */
-  quantity?: number;
-  /** The term duration of the target in ISO8601 format product to which the subscription needs to be split into. Example: P1M, P1Y */
-  termDuration?: string;
-  /** The billing frequency of the target subscription in the ISO8601 format. Example: P1M, P3M, P1Y" */
-  billingFrequency?: string;
-}
-export const BillingSubscriptionsSplitRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billingAccountName: S.String.pipe(T.Label()),
-    billingSubscriptionName: S.String.pipe(T.Label()),
-    targetProductTypeId: S.optional(S.String),
-    targetSkuId: S.optional(S.String),
-    quantity: S.optional(S.Number),
-    termDuration: S.optional(S.String),
-    billingFrequency: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/split",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "BillingSubscriptionsSplitRequest",
-}) as any as S.Schema<BillingSubscriptionsSplitRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
 export type BillingSubscriptionsSplitResponseTagsMap = {
   [key: string]: string | undefined;
 };
@@ -3338,26 +3231,338 @@ export const MoveBillingSubscriptionEligibilityResult = /*@__PURE__*/ S.suspend(
   identifier: "MoveBillingSubscriptionEligibilityResult",
 }) as any as S.Schema<MoveBillingSubscriptionEligibilityResult>;
 
+export interface CancelBillingAccountPaymentTermsRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  body: string;
+}
+export const CancelBillingAccountPaymentTermsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      body: S.String.pipe(T.HttpBody()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/cancelPaymentTerms",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "CancelBillingAccountPaymentTermsRequest",
+}) as any as S.Schema<CancelBillingAccountPaymentTermsRequest>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type CancelBillingAccountPaymentTermsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CancelBillingAccountPaymentTermsResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CancelBillingAccountPaymentTermsResponseTagsMap>;
+
+export interface CancelBillingAccountPaymentTermsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A billing account. */
+  properties?: BillingAccountProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: CancelBillingAccountPaymentTermsResponseTagsMap;
+}
+export const CancelBillingAccountPaymentTermsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(BillingAccountProperties),
+      tags: S.optional(CancelBillingAccountPaymentTermsResponseTagsMap),
+    }),
+).annotate({
+  identifier: "CancelBillingAccountPaymentTermsResponse",
+}) as any as S.Schema<CancelBillingAccountPaymentTermsResponse>;
+
+/** Cancellation reason. */
+export type CancellationReason = "Other" | "Compromise" | "Dispute";
+export const CancellationReason = /*@__PURE__*/ S.String;
+
+export interface CancelBillingSubscriptionRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a subscription. */
+  billingSubscriptionName: string;
+  /** Cancellation reason. */
+  cancellationReason: CancellationReason | (string & {});
+  /** The fully qualified ID that uniquely identifies a customer. */
+  customerId?: string;
+}
+export const CancelBillingSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billingAccountName: S.String.pipe(T.Label()),
+    billingSubscriptionName: S.String.pipe(T.Label()),
+    cancellationReason: CancellationReason,
+    customerId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/cancel",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelBillingSubscriptionRequest",
+}) as any as S.Schema<CancelBillingSubscriptionRequest>;
+
+export interface CancelBillingSubscriptionResponse {}
+export const CancelBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelBillingSubscriptionResponse",
+}) as any as S.Schema<CancelBillingSubscriptionResponse>;
+
+export interface CancelPartnerTransferRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a billing profile. */
+  billingProfileName: string;
+  /** The ID that uniquely identifies a customer. */
+  customerName: string;
+  /** The ID that uniquely identifies a transfer request. */
+  transferName: string;
+}
+export const CancelPartnerTransferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billingAccountName: S.String.pipe(T.Label()),
+    billingProfileName: S.String.pipe(T.Label()),
+    customerName: S.String.pipe(T.Label()),
+    transferName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers/{transferName}/cancel",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelPartnerTransferRequest",
+}) as any as S.Schema<CancelPartnerTransferRequest>;
+
+/** Detailed transfer status. */
+export type PartnerTransferPropertiesDetailedTransferStatusList =
+  Array<DetailedTransferStatus>;
+export const PartnerTransferPropertiesDetailedTransferStatusList =
+  /*@__PURE__*/ S.Array(
+    DetailedTransferStatus,
+  ) as any as S.Schema<PartnerTransferPropertiesDetailedTransferStatusList>;
+
+/** Transfer Details. */
+export interface PartnerTransferProperties {
+  /** The time at which the transfer request expires. */
+  expirationTime?: string;
+  /** Overall transfer status. */
+  transferStatus?: TransferStatus;
+  /** The email ID of the user to whom the transfer request was sent. */
+  recipientEmailId?: string;
+  /** The type of customer who sent the transfer request. */
+  initiatorCustomerType?: InitiatorCustomerType;
+  /** The email ID of the user who sent the transfer request. */
+  initiatorEmailId?: string;
+  /** Optional MPN ID of the reseller for transfer requests that are sent from a Microsoft Partner Agreement billing account. */
+  resellerId?: string;
+  /** Optional name of the reseller for transfer requests that are sent from Microsoft Partner Agreement billing account. */
+  resellerName?: string;
+  /** The email ID of the user who canceled the transfer request. */
+  canceledBy?: string;
+  /** Detailed transfer status. */
+  detailedTransferStatus?: PartnerTransferPropertiesDetailedTransferStatusList;
+}
+export const PartnerTransferProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationTime: S.optional(S.String),
+    transferStatus: S.optional(TransferStatus),
+    recipientEmailId: S.optional(S.String),
+    initiatorCustomerType: S.optional(InitiatorCustomerType),
+    initiatorEmailId: S.optional(S.String),
+    resellerId: S.optional(S.String),
+    resellerName: S.optional(S.String),
+    canceledBy: S.optional(S.String),
+    detailedTransferStatus: S.optional(
+      PartnerTransferPropertiesDetailedTransferStatusList,
+    ),
+  }),
+).annotate({
+  identifier: "PartnerTransferProperties",
+}) as any as S.Schema<PartnerTransferProperties>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type CancelPartnerTransferResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CancelPartnerTransferResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CancelPartnerTransferResponseTagsMap>;
+
+export interface CancelPartnerTransferResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Details of the transfer. */
+  properties?: PartnerTransferProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: CancelPartnerTransferResponseTagsMap;
+}
+export const CancelPartnerTransferResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PartnerTransferProperties),
+    tags: S.optional(CancelPartnerTransferResponseTagsMap),
+  }),
+).annotate({
+  identifier: "CancelPartnerTransferResponse",
+}) as any as S.Schema<CancelPartnerTransferResponse>;
+
+export interface CancelTransferRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a billing profile. */
+  billingProfileName: string;
+  /** The ID that uniquely identifies an invoice section. */
+  invoiceSectionName: string;
+  /** The ID that uniquely identifies a transfer request. */
+  transferName: string;
+}
+export const CancelTransferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billingAccountName: S.String.pipe(T.Label()),
+    billingProfileName: S.String.pipe(T.Label()),
+    invoiceSectionName: S.String.pipe(T.Label()),
+    transferName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/transfers/{transferName}/cancel",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelTransferRequest",
+}) as any as S.Schema<CancelTransferRequest>;
+
+/** Detailed transfer status. */
+export type TransferPropertiesDetailedTransferStatusList =
+  Array<DetailedTransferStatus>;
+export const TransferPropertiesDetailedTransferStatusList =
+  /*@__PURE__*/ S.Array(
+    DetailedTransferStatus,
+  ) as any as S.Schema<TransferPropertiesDetailedTransferStatusList>;
+
+/** Transfer details */
+export interface TransferProperties {
+  /** The time at which the transfer request expires. */
+  expirationTime?: string;
+  /** Overall transfer status. */
+  transferStatus?: TransferStatus;
+  /** The email ID of the user to whom the transfer request was sent. */
+  recipientEmailId?: string;
+  /** The email ID of the user who sent the transfer request. */
+  initiatorEmailId?: string;
+  /** The email ID of the user who canceled the transfer request. */
+  canceledBy?: string;
+  /** Detailed transfer status. */
+  detailedTransferStatus?: TransferPropertiesDetailedTransferStatusList;
+}
+export const TransferProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationTime: S.optional(S.String),
+    transferStatus: S.optional(TransferStatus),
+    recipientEmailId: S.optional(S.String),
+    initiatorEmailId: S.optional(S.String),
+    canceledBy: S.optional(S.String),
+    detailedTransferStatus: S.optional(
+      TransferPropertiesDetailedTransferStatusList,
+    ),
+  }),
+).annotate({
+  identifier: "TransferProperties",
+}) as any as S.Schema<TransferProperties>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type CancelTransferResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CancelTransferResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CancelTransferResponseTagsMap>;
+
+export interface CancelTransferResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Details of the transfer. */
+  properties?: TransferProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: CancelTransferResponseTagsMap;
+}
+export const CancelTransferResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TransferProperties),
+    tags: S.optional(CancelTransferResponseTagsMap),
+  }),
+).annotate({
+  identifier: "CancelTransferResponse",
+}) as any as S.Schema<CancelTransferResponse>;
+
 /** List of actions passed in the request body against which the permissions will be checked. */
-export type BillingPermissionsCheckAccessByBillingAccountRequestActionsList =
+export type CheckBillingPermissionsAccessByBillingAccountRequestActionsList =
   Array<string>;
-export const BillingPermissionsCheckAccessByBillingAccountRequestActionsList =
+export const CheckBillingPermissionsAccessByBillingAccountRequestActionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByBillingAccountRequestActionsList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByBillingAccountRequestActionsList>;
 
-export interface CheckBillingPermissionAccessByBillingAccountRequest {
+export interface CheckBillingPermissionsAccessByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** List of actions passed in the request body against which the permissions will be checked. */
-  actions?: BillingPermissionsCheckAccessByBillingAccountRequestActionsList;
+  actions?: CheckBillingPermissionsAccessByBillingAccountRequestActionsList;
 }
-export const CheckBillingPermissionAccessByBillingAccountRequest =
+export const CheckBillingPermissionsAccessByBillingAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
       actions: S.optional(
-        BillingPermissionsCheckAccessByBillingAccountRequestActionsList,
+        CheckBillingPermissionsAccessByBillingAccountRequestActionsList,
       ),
     }).pipe(
       T.Http({
@@ -3368,8 +3573,8 @@ export const CheckBillingPermissionAccessByBillingAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByBillingAccountRequest",
-  }) as any as S.Schema<CheckBillingPermissionAccessByBillingAccountRequest>;
+    identifier: "CheckBillingPermissionsAccessByBillingAccountRequest",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByBillingAccountRequest>;
 
 /** Access Decision, specifies access is allowed or not. */
 export type AccessDecision = "Other" | "Allowed" | "NotAllowed";
@@ -3391,47 +3596,47 @@ export const CheckAccessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckAccessResponse",
 }) as any as S.Schema<CheckAccessResponse>;
 
-export type BillingPermissionsCheckAccessByBillingAccountResponseBodyList =
+export type CheckBillingPermissionsAccessByBillingAccountResponseBodyList =
   Array<CheckAccessResponse>;
-export const BillingPermissionsCheckAccessByBillingAccountResponseBodyList =
+export const CheckBillingPermissionsAccessByBillingAccountResponseBodyList =
   /*@__PURE__*/ S.Array(
     CheckAccessResponse,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByBillingAccountResponseBodyList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByBillingAccountResponseBodyList>;
 
-export type CheckBillingPermissionAccessByBillingAccountResponse =
-  BillingPermissionsCheckAccessByBillingAccountResponseBodyList;
-export const CheckBillingPermissionAccessByBillingAccountResponse =
+export type CheckBillingPermissionsAccessByBillingAccountResponse =
+  CheckBillingPermissionsAccessByBillingAccountResponseBodyList;
+export const CheckBillingPermissionsAccessByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
-    BillingPermissionsCheckAccessByBillingAccountResponseBodyList.pipe(
+    CheckBillingPermissionsAccessByBillingAccountResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByBillingAccountResponse",
-  }) as any as S.Schema<CheckBillingPermissionAccessByBillingAccountResponse>;
+    identifier: "CheckBillingPermissionsAccessByBillingAccountResponse",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByBillingAccountResponse>;
 
 /** List of actions passed in the request body against which the permissions will be checked. */
-export type BillingPermissionsCheckAccessByBillingProfileRequestActionsList =
+export type CheckBillingPermissionsAccessByBillingProfileRequestActionsList =
   Array<string>;
-export const BillingPermissionsCheckAccessByBillingProfileRequestActionsList =
+export const CheckBillingPermissionsAccessByBillingProfileRequestActionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByBillingProfileRequestActionsList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByBillingProfileRequestActionsList>;
 
-export interface CheckBillingPermissionAccessByBillingProfileRequest {
+export interface CheckBillingPermissionsAccessByBillingProfileRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a billing profile. */
   billingProfileName: string;
   /** List of actions passed in the request body against which the permissions will be checked. */
-  actions?: BillingPermissionsCheckAccessByBillingProfileRequestActionsList;
+  actions?: CheckBillingPermissionsAccessByBillingProfileRequestActionsList;
 }
-export const CheckBillingPermissionAccessByBillingProfileRequest =
+export const CheckBillingPermissionsAccessByBillingProfileRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
       billingProfileName: S.String.pipe(T.Label()),
       actions: S.optional(
-        BillingPermissionsCheckAccessByBillingProfileRequestActionsList,
+        CheckBillingPermissionsAccessByBillingProfileRequestActionsList,
       ),
     }).pipe(
       T.Http({
@@ -3442,36 +3647,36 @@ export const CheckBillingPermissionAccessByBillingProfileRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByBillingProfileRequest",
-  }) as any as S.Schema<CheckBillingPermissionAccessByBillingProfileRequest>;
+    identifier: "CheckBillingPermissionsAccessByBillingProfileRequest",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByBillingProfileRequest>;
 
-export type BillingPermissionsCheckAccessByBillingProfileResponseBodyList =
+export type CheckBillingPermissionsAccessByBillingProfileResponseBodyList =
   Array<CheckAccessResponse>;
-export const BillingPermissionsCheckAccessByBillingProfileResponseBodyList =
+export const CheckBillingPermissionsAccessByBillingProfileResponseBodyList =
   /*@__PURE__*/ S.Array(
     CheckAccessResponse,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByBillingProfileResponseBodyList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByBillingProfileResponseBodyList>;
 
-export type CheckBillingPermissionAccessByBillingProfileResponse =
-  BillingPermissionsCheckAccessByBillingProfileResponseBodyList;
-export const CheckBillingPermissionAccessByBillingProfileResponse =
+export type CheckBillingPermissionsAccessByBillingProfileResponse =
+  CheckBillingPermissionsAccessByBillingProfileResponseBodyList;
+export const CheckBillingPermissionsAccessByBillingProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
-    BillingPermissionsCheckAccessByBillingProfileResponseBodyList.pipe(
+    CheckBillingPermissionsAccessByBillingProfileResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByBillingProfileResponse",
-  }) as any as S.Schema<CheckBillingPermissionAccessByBillingProfileResponse>;
+    identifier: "CheckBillingPermissionsAccessByBillingProfileResponse",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByBillingProfileResponse>;
 
 /** List of actions passed in the request body against which the permissions will be checked. */
-export type BillingPermissionsCheckAccessByCustomerRequestActionsList =
+export type CheckBillingPermissionsAccessByCustomerRequestActionsList =
   Array<string>;
-export const BillingPermissionsCheckAccessByCustomerRequestActionsList =
+export const CheckBillingPermissionsAccessByCustomerRequestActionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByCustomerRequestActionsList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByCustomerRequestActionsList>;
 
-export interface CheckBillingPermissionAccessByCustomerRequest {
+export interface CheckBillingPermissionsAccessByCustomerRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a billing profile. */
@@ -3479,16 +3684,16 @@ export interface CheckBillingPermissionAccessByCustomerRequest {
   /** The ID that uniquely identifies a customer. */
   customerName: string;
   /** List of actions passed in the request body against which the permissions will be checked. */
-  actions?: BillingPermissionsCheckAccessByCustomerRequestActionsList;
+  actions?: CheckBillingPermissionsAccessByCustomerRequestActionsList;
 }
-export const CheckBillingPermissionAccessByCustomerRequest =
+export const CheckBillingPermissionsAccessByCustomerRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
       billingProfileName: S.String.pipe(T.Label()),
       customerName: S.String.pipe(T.Label()),
       actions: S.optional(
-        BillingPermissionsCheckAccessByCustomerRequestActionsList,
+        CheckBillingPermissionsAccessByCustomerRequestActionsList,
       ),
     }).pipe(
       T.Http({
@@ -3499,50 +3704,50 @@ export const CheckBillingPermissionAccessByCustomerRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByCustomerRequest",
-  }) as any as S.Schema<CheckBillingPermissionAccessByCustomerRequest>;
+    identifier: "CheckBillingPermissionsAccessByCustomerRequest",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByCustomerRequest>;
 
-export type BillingPermissionsCheckAccessByCustomerResponseBodyList =
+export type CheckBillingPermissionsAccessByCustomerResponseBodyList =
   Array<CheckAccessResponse>;
-export const BillingPermissionsCheckAccessByCustomerResponseBodyList =
+export const CheckBillingPermissionsAccessByCustomerResponseBodyList =
   /*@__PURE__*/ S.Array(
     CheckAccessResponse,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByCustomerResponseBodyList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByCustomerResponseBodyList>;
 
-export type CheckBillingPermissionAccessByCustomerResponse =
-  BillingPermissionsCheckAccessByCustomerResponseBodyList;
-export const CheckBillingPermissionAccessByCustomerResponse =
+export type CheckBillingPermissionsAccessByCustomerResponse =
+  CheckBillingPermissionsAccessByCustomerResponseBodyList;
+export const CheckBillingPermissionsAccessByCustomerResponse =
   /*@__PURE__*/ S.suspend(() =>
-    BillingPermissionsCheckAccessByCustomerResponseBodyList.pipe(
+    CheckBillingPermissionsAccessByCustomerResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByCustomerResponse",
-  }) as any as S.Schema<CheckBillingPermissionAccessByCustomerResponse>;
+    identifier: "CheckBillingPermissionsAccessByCustomerResponse",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByCustomerResponse>;
 
 /** List of actions passed in the request body against which the permissions will be checked. */
-export type BillingPermissionsCheckAccessByDepartmentRequestActionsList =
+export type CheckBillingPermissionsAccessByDepartmentRequestActionsList =
   Array<string>;
-export const BillingPermissionsCheckAccessByDepartmentRequestActionsList =
+export const CheckBillingPermissionsAccessByDepartmentRequestActionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByDepartmentRequestActionsList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByDepartmentRequestActionsList>;
 
-export interface CheckBillingPermissionAccessByDepartmentRequest {
+export interface CheckBillingPermissionsAccessByDepartmentRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The name of the department. */
   departmentName: string;
   /** List of actions passed in the request body against which the permissions will be checked. */
-  actions?: BillingPermissionsCheckAccessByDepartmentRequestActionsList;
+  actions?: CheckBillingPermissionsAccessByDepartmentRequestActionsList;
 }
-export const CheckBillingPermissionAccessByDepartmentRequest =
+export const CheckBillingPermissionsAccessByDepartmentRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
       departmentName: S.String.pipe(T.Label()),
       actions: S.optional(
-        BillingPermissionsCheckAccessByDepartmentRequestActionsList,
+        CheckBillingPermissionsAccessByDepartmentRequestActionsList,
       ),
     }).pipe(
       T.Http({
@@ -3553,50 +3758,50 @@ export const CheckBillingPermissionAccessByDepartmentRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByDepartmentRequest",
-  }) as any as S.Schema<CheckBillingPermissionAccessByDepartmentRequest>;
+    identifier: "CheckBillingPermissionsAccessByDepartmentRequest",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByDepartmentRequest>;
 
-export type BillingPermissionsCheckAccessByDepartmentResponseBodyList =
+export type CheckBillingPermissionsAccessByDepartmentResponseBodyList =
   Array<CheckAccessResponse>;
-export const BillingPermissionsCheckAccessByDepartmentResponseBodyList =
+export const CheckBillingPermissionsAccessByDepartmentResponseBodyList =
   /*@__PURE__*/ S.Array(
     CheckAccessResponse,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByDepartmentResponseBodyList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByDepartmentResponseBodyList>;
 
-export type CheckBillingPermissionAccessByDepartmentResponse =
-  BillingPermissionsCheckAccessByDepartmentResponseBodyList;
-export const CheckBillingPermissionAccessByDepartmentResponse =
+export type CheckBillingPermissionsAccessByDepartmentResponse =
+  CheckBillingPermissionsAccessByDepartmentResponseBodyList;
+export const CheckBillingPermissionsAccessByDepartmentResponse =
   /*@__PURE__*/ S.suspend(() =>
-    BillingPermissionsCheckAccessByDepartmentResponseBodyList.pipe(
+    CheckBillingPermissionsAccessByDepartmentResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByDepartmentResponse",
-  }) as any as S.Schema<CheckBillingPermissionAccessByDepartmentResponse>;
+    identifier: "CheckBillingPermissionsAccessByDepartmentResponse",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByDepartmentResponse>;
 
 /** List of actions passed in the request body against which the permissions will be checked. */
-export type BillingPermissionsCheckAccessByEnrollmentAccountRequestActionsList =
+export type CheckBillingPermissionsAccessByEnrollmentAccountRequestActionsList =
   Array<string>;
-export const BillingPermissionsCheckAccessByEnrollmentAccountRequestActionsList =
+export const CheckBillingPermissionsAccessByEnrollmentAccountRequestActionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByEnrollmentAccountRequestActionsList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByEnrollmentAccountRequestActionsList>;
 
-export interface CheckBillingPermissionAccessByEnrollmentAccountRequest {
+export interface CheckBillingPermissionsAccessByEnrollmentAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The name of the enrollment account. */
   enrollmentAccountName: string;
   /** List of actions passed in the request body against which the permissions will be checked. */
-  actions?: BillingPermissionsCheckAccessByEnrollmentAccountRequestActionsList;
+  actions?: CheckBillingPermissionsAccessByEnrollmentAccountRequestActionsList;
 }
-export const CheckBillingPermissionAccessByEnrollmentAccountRequest =
+export const CheckBillingPermissionsAccessByEnrollmentAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
       enrollmentAccountName: S.String.pipe(T.Label()),
       actions: S.optional(
-        BillingPermissionsCheckAccessByEnrollmentAccountRequestActionsList,
+        CheckBillingPermissionsAccessByEnrollmentAccountRequestActionsList,
       ),
     }).pipe(
       T.Http({
@@ -3607,36 +3812,36 @@ export const CheckBillingPermissionAccessByEnrollmentAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByEnrollmentAccountRequest",
-  }) as any as S.Schema<CheckBillingPermissionAccessByEnrollmentAccountRequest>;
+    identifier: "CheckBillingPermissionsAccessByEnrollmentAccountRequest",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByEnrollmentAccountRequest>;
 
-export type BillingPermissionsCheckAccessByEnrollmentAccountResponseBodyList =
+export type CheckBillingPermissionsAccessByEnrollmentAccountResponseBodyList =
   Array<CheckAccessResponse>;
-export const BillingPermissionsCheckAccessByEnrollmentAccountResponseBodyList =
+export const CheckBillingPermissionsAccessByEnrollmentAccountResponseBodyList =
   /*@__PURE__*/ S.Array(
     CheckAccessResponse,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByEnrollmentAccountResponseBodyList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByEnrollmentAccountResponseBodyList>;
 
-export type CheckBillingPermissionAccessByEnrollmentAccountResponse =
-  BillingPermissionsCheckAccessByEnrollmentAccountResponseBodyList;
-export const CheckBillingPermissionAccessByEnrollmentAccountResponse =
+export type CheckBillingPermissionsAccessByEnrollmentAccountResponse =
+  CheckBillingPermissionsAccessByEnrollmentAccountResponseBodyList;
+export const CheckBillingPermissionsAccessByEnrollmentAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
-    BillingPermissionsCheckAccessByEnrollmentAccountResponseBodyList.pipe(
+    CheckBillingPermissionsAccessByEnrollmentAccountResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByEnrollmentAccountResponse",
-  }) as any as S.Schema<CheckBillingPermissionAccessByEnrollmentAccountResponse>;
+    identifier: "CheckBillingPermissionsAccessByEnrollmentAccountResponse",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByEnrollmentAccountResponse>;
 
 /** List of actions passed in the request body against which the permissions will be checked. */
-export type BillingPermissionsCheckAccessByInvoiceSectionRequestActionsList =
+export type CheckBillingPermissionsAccessByInvoiceSectionRequestActionsList =
   Array<string>;
-export const BillingPermissionsCheckAccessByInvoiceSectionRequestActionsList =
+export const CheckBillingPermissionsAccessByInvoiceSectionRequestActionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByInvoiceSectionRequestActionsList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByInvoiceSectionRequestActionsList>;
 
-export interface CheckBillingPermissionAccessByInvoiceSectionRequest {
+export interface CheckBillingPermissionsAccessByInvoiceSectionRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a billing profile. */
@@ -3644,16 +3849,16 @@ export interface CheckBillingPermissionAccessByInvoiceSectionRequest {
   /** The ID that uniquely identifies an invoice section. */
   invoiceSectionName: string;
   /** List of actions passed in the request body against which the permissions will be checked. */
-  actions?: BillingPermissionsCheckAccessByInvoiceSectionRequestActionsList;
+  actions?: CheckBillingPermissionsAccessByInvoiceSectionRequestActionsList;
 }
-export const CheckBillingPermissionAccessByInvoiceSectionRequest =
+export const CheckBillingPermissionsAccessByInvoiceSectionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
       billingProfileName: S.String.pipe(T.Label()),
       invoiceSectionName: S.String.pipe(T.Label()),
       actions: S.optional(
-        BillingPermissionsCheckAccessByInvoiceSectionRequestActionsList,
+        CheckBillingPermissionsAccessByInvoiceSectionRequestActionsList,
       ),
     }).pipe(
       T.Http({
@@ -3664,26 +3869,62 @@ export const CheckBillingPermissionAccessByInvoiceSectionRequest =
       }),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByInvoiceSectionRequest",
-  }) as any as S.Schema<CheckBillingPermissionAccessByInvoiceSectionRequest>;
+    identifier: "CheckBillingPermissionsAccessByInvoiceSectionRequest",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByInvoiceSectionRequest>;
 
-export type BillingPermissionsCheckAccessByInvoiceSectionResponseBodyList =
+export type CheckBillingPermissionsAccessByInvoiceSectionResponseBodyList =
   Array<CheckAccessResponse>;
-export const BillingPermissionsCheckAccessByInvoiceSectionResponseBodyList =
+export const CheckBillingPermissionsAccessByInvoiceSectionResponseBodyList =
   /*@__PURE__*/ S.Array(
     CheckAccessResponse,
-  ) as any as S.Schema<BillingPermissionsCheckAccessByInvoiceSectionResponseBodyList>;
+  ) as any as S.Schema<CheckBillingPermissionsAccessByInvoiceSectionResponseBodyList>;
 
-export type CheckBillingPermissionAccessByInvoiceSectionResponse =
-  BillingPermissionsCheckAccessByInvoiceSectionResponseBodyList;
-export const CheckBillingPermissionAccessByInvoiceSectionResponse =
+export type CheckBillingPermissionsAccessByInvoiceSectionResponse =
+  CheckBillingPermissionsAccessByInvoiceSectionResponseBodyList;
+export const CheckBillingPermissionsAccessByInvoiceSectionResponse =
   /*@__PURE__*/ S.suspend(() =>
-    BillingPermissionsCheckAccessByInvoiceSectionResponseBodyList.pipe(
+    CheckBillingPermissionsAccessByInvoiceSectionResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
-    identifier: "CheckBillingPermissionAccessByInvoiceSectionResponse",
-  }) as any as S.Schema<CheckBillingPermissionAccessByInvoiceSectionResponse>;
+    identifier: "CheckBillingPermissionsAccessByInvoiceSectionResponse",
+  }) as any as S.Schema<CheckBillingPermissionsAccessByInvoiceSectionResponse>;
+
+export interface ConfirmBillingAccountTransitionRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+}
+export const ConfirmBillingAccountTransitionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/confirmTransition",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ConfirmBillingAccountTransitionRequest",
+}) as any as S.Schema<ConfirmBillingAccountTransitionRequest>;
+
+/** The details for a billing account transitioned from agreement type Microsoft Online Services Program to agreement type Microsoft Customer Agreement. */
+export interface TransitionDetails {
+  /** The transition completion date. */
+  transitionDate?: string;
+  /** The anniversary day of the pre-transitioned account of type Microsoft Online Services Program. */
+  anniversaryDay?: number;
+}
+export const TransitionDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transitionDate: S.optional(S.String),
+    anniversaryDay: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TransitionDetails",
+}) as any as S.Schema<TransitionDetails>;
 
 export interface CreateBillingRoleAssignmentByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -3727,14 +3968,14 @@ export const CreateBillingRoleAssignmentByBillingAccountRequest =
   }) as any as S.Schema<CreateBillingRoleAssignmentByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsCreateByBillingAccountResponseTagsMap = {
+export type CreateBillingRoleAssignmentByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsCreateByBillingAccountResponseTagsMap =
+export const CreateBillingRoleAssignmentByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsCreateByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<CreateBillingRoleAssignmentByBillingAccountResponseTagsMap>;
 
 export interface CreateBillingRoleAssignmentByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3748,7 +3989,7 @@ export interface CreateBillingRoleAssignmentByBillingAccountResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsCreateByBillingAccountResponseTagsMap;
+  tags?: CreateBillingRoleAssignmentByBillingAccountResponseTagsMap;
 }
 export const CreateBillingRoleAssignmentByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -3759,7 +4000,7 @@ export const CreateBillingRoleAssignmentByBillingAccountResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
       tags: S.optional(
-        BillingRoleAssignmentsCreateByBillingAccountResponseTagsMap,
+        CreateBillingRoleAssignmentByBillingAccountResponseTagsMap,
       ),
     }),
   ).annotate({
@@ -3811,14 +4052,14 @@ export const CreateBillingRoleAssignmentByBillingProfileRequest =
   }) as any as S.Schema<CreateBillingRoleAssignmentByBillingProfileRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsCreateByBillingProfileResponseTagsMap = {
+export type CreateBillingRoleAssignmentByBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsCreateByBillingProfileResponseTagsMap =
+export const CreateBillingRoleAssignmentByBillingProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsCreateByBillingProfileResponseTagsMap>;
+  ) as any as S.Schema<CreateBillingRoleAssignmentByBillingProfileResponseTagsMap>;
 
 export interface CreateBillingRoleAssignmentByBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3832,7 +4073,7 @@ export interface CreateBillingRoleAssignmentByBillingProfileResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsCreateByBillingProfileResponseTagsMap;
+  tags?: CreateBillingRoleAssignmentByBillingProfileResponseTagsMap;
 }
 export const CreateBillingRoleAssignmentByBillingProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -3843,7 +4084,7 @@ export const CreateBillingRoleAssignmentByBillingProfileResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
       tags: S.optional(
-        BillingRoleAssignmentsCreateByBillingProfileResponseTagsMap,
+        CreateBillingRoleAssignmentByBillingProfileResponseTagsMap,
       ),
     }),
   ).annotate({
@@ -3898,14 +4139,14 @@ export const CreateBillingRoleAssignmentByCustomerRequest =
   }) as any as S.Schema<CreateBillingRoleAssignmentByCustomerRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsCreateByCustomerResponseTagsMap = {
+export type CreateBillingRoleAssignmentByCustomerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsCreateByCustomerResponseTagsMap =
+export const CreateBillingRoleAssignmentByCustomerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsCreateByCustomerResponseTagsMap>;
+  ) as any as S.Schema<CreateBillingRoleAssignmentByCustomerResponseTagsMap>;
 
 export interface CreateBillingRoleAssignmentByCustomerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3919,7 +4160,7 @@ export interface CreateBillingRoleAssignmentByCustomerResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsCreateByCustomerResponseTagsMap;
+  tags?: CreateBillingRoleAssignmentByCustomerResponseTagsMap;
 }
 export const CreateBillingRoleAssignmentByCustomerResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -3929,7 +4170,7 @@ export const CreateBillingRoleAssignmentByCustomerResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
-      tags: S.optional(BillingRoleAssignmentsCreateByCustomerResponseTagsMap),
+      tags: S.optional(CreateBillingRoleAssignmentByCustomerResponseTagsMap),
     }),
   ).annotate({
     identifier: "CreateBillingRoleAssignmentByCustomerResponse",
@@ -3983,14 +4224,14 @@ export const CreateBillingRoleAssignmentByInvoiceSectionRequest =
   }) as any as S.Schema<CreateBillingRoleAssignmentByInvoiceSectionRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsCreateByInvoiceSectionResponseTagsMap = {
+export type CreateBillingRoleAssignmentByInvoiceSectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsCreateByInvoiceSectionResponseTagsMap =
+export const CreateBillingRoleAssignmentByInvoiceSectionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsCreateByInvoiceSectionResponseTagsMap>;
+  ) as any as S.Schema<CreateBillingRoleAssignmentByInvoiceSectionResponseTagsMap>;
 
 export interface CreateBillingRoleAssignmentByInvoiceSectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4004,7 +4245,7 @@ export interface CreateBillingRoleAssignmentByInvoiceSectionResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsCreateByInvoiceSectionResponseTagsMap;
+  tags?: CreateBillingRoleAssignmentByInvoiceSectionResponseTagsMap;
 }
 export const CreateBillingRoleAssignmentByInvoiceSectionResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -4015,7 +4256,7 @@ export const CreateBillingRoleAssignmentByInvoiceSectionResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
       tags: S.optional(
-        BillingRoleAssignmentsCreateByInvoiceSectionResponseTagsMap,
+        CreateBillingRoleAssignmentByInvoiceSectionResponseTagsMap,
       ),
     }),
   ).annotate({
@@ -4079,90 +4320,6 @@ export const DeleteBillingProfileResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteBillingProfileResponse",
 }) as any as S.Schema<DeleteBillingProfileResponse>;
-
-export interface DeleteBillingProfileValidateEligibilityRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a billing profile. */
-  billingProfileName: string;
-}
-export const DeleteBillingProfileValidateEligibilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      billingProfileName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/validateDeleteEligibility",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteBillingProfileValidateEligibilityRequest",
-  }) as any as S.Schema<DeleteBillingProfileValidateEligibilityRequest>;
-
-/** Status describing if billing profile is eligible to be deleted. */
-export type DeleteBillingProfileEligibilityStatus = "Allowed" | "NotAllowed";
-export const DeleteBillingProfileEligibilityStatus = /*@__PURE__*/ S.String;
-
-/** Code of the delete invoice section eligibility response. */
-export type DeleteBillingProfileEligibilityCode =
-  | "None"
-  | "ActiveCredits"
-  | "ActiveCreditCard"
-  | "LastBillingProfile"
-  | "NotSupported"
-  | "OutstandingCharges"
-  | "PendingCharges"
-  | "ReservedInstances"
-  | "ActiveBillingSubscriptions";
-export const DeleteBillingProfileEligibilityCode = /*@__PURE__*/ S.String;
-
-/** Validation details of delete billing profile eligibility. */
-export interface DeleteBillingProfileEligibilityDetail {
-  /** Code of the delete invoice section eligibility response. */
-  code?: DeleteBillingProfileEligibilityCode;
-  /** Validation message. */
-  message?: string;
-}
-export const DeleteBillingProfileEligibilityDetail = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.optional(DeleteBillingProfileEligibilityCode),
-      message: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DeleteBillingProfileEligibilityDetail",
-}) as any as S.Schema<DeleteBillingProfileEligibilityDetail>;
-
-/** Validation details of delete billing profile eligibility. */
-export type DeleteBillingProfileEligibilityResultEligibilityDetailsList =
-  Array<DeleteBillingProfileEligibilityDetail>;
-export const DeleteBillingProfileEligibilityResultEligibilityDetailsList =
-  /*@__PURE__*/ S.Array(
-    DeleteBillingProfileEligibilityDetail,
-  ) as any as S.Schema<DeleteBillingProfileEligibilityResultEligibilityDetailsList>;
-
-/** Eligibility to delete a billing profile result. */
-export interface DeleteBillingProfileEligibilityResult {
-  /** Status describing if billing profile is eligible to be deleted. */
-  eligibilityStatus?: DeleteBillingProfileEligibilityStatus;
-  /** Validation details of delete billing profile eligibility. */
-  eligibilityDetails?: DeleteBillingProfileEligibilityResultEligibilityDetailsList;
-}
-export const DeleteBillingProfileEligibilityResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      eligibilityStatus: S.optional(DeleteBillingProfileEligibilityStatus),
-      eligibilityDetails: S.optional(
-        DeleteBillingProfileEligibilityResultEligibilityDetailsList,
-      ),
-    }),
-).annotate({
-  identifier: "DeleteBillingProfileEligibilityResult",
-}) as any as S.Schema<DeleteBillingProfileEligibilityResult>;
 
 export interface DeleteBillingRoleAssignmentByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -4420,89 +4577,6 @@ export const DeleteInvoiceSectionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteInvoiceSectionResponse",
 }) as any as S.Schema<DeleteInvoiceSectionResponse>;
 
-export interface DeleteInvoiceSectionValidateEligibilityRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a billing profile. */
-  billingProfileName: string;
-  /** The ID that uniquely identifies an invoice section. */
-  invoiceSectionName: string;
-}
-export const DeleteInvoiceSectionValidateEligibilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      billingProfileName: S.String.pipe(T.Label()),
-      invoiceSectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/validateDeleteEligibility",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteInvoiceSectionValidateEligibilityRequest",
-  }) as any as S.Schema<DeleteInvoiceSectionValidateEligibilityRequest>;
-
-/** Status describing if invoice section is eligible to be deleted. */
-export type DeleteInvoiceSectionEligibilityStatus = "Allowed" | "NotAllowed";
-export const DeleteInvoiceSectionEligibilityStatus = /*@__PURE__*/ S.String;
-
-/** Code for the delete invoice section validation. */
-export type DeleteInvoiceSectionEligibilityCode =
-  | "Other"
-  | "LastInvoiceSection"
-  | "ActiveAzurePlans"
-  | "ReservedInstances"
-  | "ActiveBillingSubscriptions";
-export const DeleteInvoiceSectionEligibilityCode = /*@__PURE__*/ S.String;
-
-/** The details of delete invoice section eligibility result. */
-export interface DeleteInvoiceSectionEligibilityDetail {
-  /** Code for the delete invoice section validation. */
-  code?: DeleteInvoiceSectionEligibilityCode;
-  /** Validation message. */
-  message?: string;
-}
-export const DeleteInvoiceSectionEligibilityDetail = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.optional(DeleteInvoiceSectionEligibilityCode),
-      message: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DeleteInvoiceSectionEligibilityDetail",
-}) as any as S.Schema<DeleteInvoiceSectionEligibilityDetail>;
-
-/** A list of delete invoice section eligibility result details. */
-export type DeleteInvoiceSectionEligibilityResultEligibilityDetailsList =
-  Array<DeleteInvoiceSectionEligibilityDetail>;
-export const DeleteInvoiceSectionEligibilityResultEligibilityDetailsList =
-  /*@__PURE__*/ S.Array(
-    DeleteInvoiceSectionEligibilityDetail,
-  ) as any as S.Schema<DeleteInvoiceSectionEligibilityResultEligibilityDetailsList>;
-
-/** Eligibility to delete an invoice section result. */
-export interface DeleteInvoiceSectionEligibilityResult {
-  /** Status describing if invoice section is eligible to be deleted. */
-  eligibilityStatus?: DeleteInvoiceSectionEligibilityStatus;
-  /** A list of delete invoice section eligibility result details. */
-  eligibilityDetails?: DeleteInvoiceSectionEligibilityResultEligibilityDetailsList;
-}
-export const DeleteInvoiceSectionEligibilityResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      eligibilityStatus: S.optional(DeleteInvoiceSectionEligibilityStatus),
-      eligibilityDetails: S.optional(
-        DeleteInvoiceSectionEligibilityResultEligibilityDetailsList,
-      ),
-    }),
-).annotate({
-  identifier: "DeleteInvoiceSectionEligibilityResult",
-}) as any as S.Schema<DeleteInvoiceSectionEligibilityResult>;
-
 export interface DeletePaymentMethodByUserRequest {
   /** The ID that uniquely identifies a payment method. */
   paymentMethodName: string;
@@ -4528,6 +4602,175 @@ export const DeletePaymentMethodByUserResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeletePaymentMethodByUserResponse",
 }) as any as S.Schema<DeletePaymentMethodByUserResponse>;
+
+export interface DownloadInvoiceByBillingAccountRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies an invoice. */
+  invoiceName: string;
+  /** The ID that uniquely identifies an invoice document. This ID may be an identifier for an invoice PDF, a credit note, or a tax receipt. */
+  documentName?: string;
+}
+export const DownloadInvoiceByBillingAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      invoiceName: S.String.pipe(T.Label()),
+      documentName: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "DownloadInvoiceByBillingAccountRequest",
+}) as any as S.Schema<DownloadInvoiceByBillingAccountRequest>;
+
+/** A secure URL that can be used to download a an entity until the URL expires. */
+export interface DocumentDownloadResult {
+  /** The time in UTC when the download URL will expire. */
+  expiryTime?: string;
+  /** The URL to the PDF or .zip file. */
+  url?: string;
+}
+export const DocumentDownloadResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expiryTime: S.optional(S.String),
+    url: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DocumentDownloadResult",
+}) as any as S.Schema<DocumentDownloadResult>;
+
+export interface DownloadInvoiceByBillingSubscriptionRequest {
+  /** The ID that uniquely identifies a billing subscription. */
+  subscriptionId: string;
+  /** The ID that uniquely identifies an invoice. */
+  invoiceName: string;
+  /** The ID that uniquely identifies an invoice document. This ID may be an identifier for an invoice PDF, a credit note, or a tax receipt. */
+  documentName?: string;
+}
+export const DownloadInvoiceByBillingSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      invoiceName: S.String.pipe(T.Label()),
+      documentName: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadInvoiceByBillingSubscriptionRequest",
+  }) as any as S.Schema<DownloadInvoiceByBillingSubscriptionRequest>;
+
+/** A list of download details for individual documents. */
+export interface DocumentDownloadRequest {
+  /** The ID that uniquely identifies an invoice document. This ID may be an identifier for an invoice PDF, a credit note, or a tax receipt. If omitted, the most recent invoice PDF for the invoice will be returned. */
+  documentName?: string;
+  /** The ID that uniquely identifies an invoice. */
+  invoiceName?: string;
+}
+export const DocumentDownloadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    documentName: S.optional(S.String),
+    invoiceName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DocumentDownloadRequest",
+}) as any as S.Schema<DocumentDownloadRequest>;
+
+export type DownloadInvoiceDocumentsByBillingAccountRequestBodyList =
+  Array<DocumentDownloadRequest>;
+export const DownloadInvoiceDocumentsByBillingAccountRequestBodyList =
+  /*@__PURE__*/ S.Array(
+    DocumentDownloadRequest,
+  ) as any as S.Schema<DownloadInvoiceDocumentsByBillingAccountRequestBodyList>;
+
+export interface DownloadInvoiceDocumentsByBillingAccountRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  body: DownloadInvoiceDocumentsByBillingAccountRequestBodyList;
+}
+export const DownloadInvoiceDocumentsByBillingAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      body: DownloadInvoiceDocumentsByBillingAccountRequestBodyList.pipe(
+        T.HttpBody(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/downloadDocuments",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadInvoiceDocumentsByBillingAccountRequest",
+  }) as any as S.Schema<DownloadInvoiceDocumentsByBillingAccountRequest>;
+
+export type DownloadInvoiceDocumentsByBillingSubscriptionRequestBodyList =
+  Array<DocumentDownloadRequest>;
+export const DownloadInvoiceDocumentsByBillingSubscriptionRequestBodyList =
+  /*@__PURE__*/ S.Array(
+    DocumentDownloadRequest,
+  ) as any as S.Schema<DownloadInvoiceDocumentsByBillingSubscriptionRequestBodyList>;
+
+export interface DownloadInvoiceDocumentsByBillingSubscriptionRequest {
+  /** The ID that uniquely identifies a billing subscription. */
+  subscriptionId: string;
+  body: DownloadInvoiceDocumentsByBillingSubscriptionRequestBodyList;
+}
+export const DownloadInvoiceDocumentsByBillingSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      body: DownloadInvoiceDocumentsByBillingSubscriptionRequestBodyList.pipe(
+        T.HttpBody(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/downloadDocuments",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadInvoiceDocumentsByBillingSubscriptionRequest",
+  }) as any as S.Schema<DownloadInvoiceDocumentsByBillingSubscriptionRequest>;
+
+export interface DownloadInvoiceSummaryByBillingAccountRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies an invoice. */
+  invoiceName: string;
+}
+export const DownloadInvoiceSummaryByBillingAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      invoiceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/downloadSummary",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DownloadInvoiceSummaryByBillingAccountRequest",
+  }) as any as S.Schema<DownloadInvoiceSummaryByBillingAccountRequest>;
 
 export interface GetAgreementRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -4668,13 +4911,11 @@ export const AgreementProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AgreementProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type AgreementsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgreementsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAgreementResponseTagsMap = { [key: string]: string | undefined };
+export const GetAgreementResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AgreementsGetResponseTagsMap>;
+) as any as S.Schema<GetAgreementResponseTagsMap>;
 
 export interface GetAgreementResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4688,7 +4929,7 @@ export interface GetAgreementResponse {
   /** An agreement. */
   properties?: AgreementProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: AgreementsGetResponseTagsMap;
+  tags?: GetAgreementResponseTagsMap;
 }
 export const GetAgreementResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4697,7 +4938,7 @@ export const GetAgreementResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(AgreementProperties),
-    tags: S.optional(AgreementsGetResponseTagsMap),
+    tags: S.optional(GetAgreementResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetAgreementResponse",
@@ -4726,13 +4967,13 @@ export const GetAssociatedTenantRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAssociatedTenantRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type AssociatedTenantsGetResponseTagsMap = {
+export type GetAssociatedTenantResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AssociatedTenantsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAssociatedTenantResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AssociatedTenantsGetResponseTagsMap>;
+) as any as S.Schema<GetAssociatedTenantResponseTagsMap>;
 
 export interface GetAssociatedTenantResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4746,7 +4987,7 @@ export interface GetAssociatedTenantResponse {
   /** An associated tenant. */
   properties?: AssociatedTenantProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: AssociatedTenantsGetResponseTagsMap;
+  tags?: GetAssociatedTenantResponseTagsMap;
 }
 export const GetAssociatedTenantResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4755,7 +4996,7 @@ export const GetAssociatedTenantResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(AssociatedTenantProperties),
-    tags: S.optional(AssociatedTenantsGetResponseTagsMap),
+    tags: S.optional(GetAssociatedTenantResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetAssociatedTenantResponse",
@@ -4854,14 +5095,14 @@ export const AvailableBalanceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AvailableBalanceProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type AvailableBalancesGetByBillingAccountResponseTagsMap = {
+export type GetAvailableBalanceByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailableBalancesGetByBillingAccountResponseTagsMap =
+export const GetAvailableBalanceByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AvailableBalancesGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetAvailableBalanceByBillingAccountResponseTagsMap>;
 
 export interface GetAvailableBalanceByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4875,7 +5116,7 @@ export interface GetAvailableBalanceByBillingAccountResponse {
   /** The Available Credit or Payment on Account Balance. The credit balance can be used to settle due or past due invoices. */
   properties?: AvailableBalanceProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: AvailableBalancesGetByBillingAccountResponseTagsMap;
+  tags?: GetAvailableBalanceByBillingAccountResponseTagsMap;
 }
 export const GetAvailableBalanceByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -4885,7 +5126,7 @@ export const GetAvailableBalanceByBillingAccountResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(AvailableBalanceProperties),
-      tags: S.optional(AvailableBalancesGetByBillingAccountResponseTagsMap),
+      tags: S.optional(GetAvailableBalanceByBillingAccountResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetAvailableBalanceByBillingAccountResponse",
@@ -4915,14 +5156,14 @@ export const GetAvailableBalanceByBillingProfileRequest =
   }) as any as S.Schema<GetAvailableBalanceByBillingProfileRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type AvailableBalancesGetByBillingProfileResponseTagsMap = {
+export type GetAvailableBalanceByBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailableBalancesGetByBillingProfileResponseTagsMap =
+export const GetAvailableBalanceByBillingProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AvailableBalancesGetByBillingProfileResponseTagsMap>;
+  ) as any as S.Schema<GetAvailableBalanceByBillingProfileResponseTagsMap>;
 
 export interface GetAvailableBalanceByBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4936,7 +5177,7 @@ export interface GetAvailableBalanceByBillingProfileResponse {
   /** The Available Credit or Payment on Account Balance. The credit balance can be used to settle due or past due invoices. */
   properties?: AvailableBalanceProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: AvailableBalancesGetByBillingProfileResponseTagsMap;
+  tags?: GetAvailableBalanceByBillingProfileResponseTagsMap;
 }
 export const GetAvailableBalanceByBillingProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -4946,7 +5187,7 @@ export const GetAvailableBalanceByBillingProfileResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(AvailableBalanceProperties),
-      tags: S.optional(AvailableBalancesGetByBillingProfileResponseTagsMap),
+      tags: S.optional(GetAvailableBalanceByBillingProfileResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetAvailableBalanceByBillingProfileResponse",
@@ -4972,13 +5213,13 @@ export const GetBillingAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingAccountsGetResponseTagsMap = {
+export type GetBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingAccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBillingAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingAccountsGetResponseTagsMap>;
+) as any as S.Schema<GetBillingAccountResponseTagsMap>;
 
 export interface GetBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4992,7 +5233,7 @@ export interface GetBillingAccountResponse {
   /** A billing account. */
   properties?: BillingAccountProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingAccountsGetResponseTagsMap;
+  tags?: GetBillingAccountResponseTagsMap;
 }
 export const GetBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5001,7 +5242,7 @@ export const GetBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingAccountProperties),
-    tags: S.optional(BillingAccountsGetResponseTagsMap),
+    tags: S.optional(GetBillingAccountResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetBillingAccountResponse",
@@ -5030,13 +5271,13 @@ export const GetBillingProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBillingProfileRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingProfilesGetResponseTagsMap = {
+export type GetBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingProfilesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBillingProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingProfilesGetResponseTagsMap>;
+) as any as S.Schema<GetBillingProfileResponseTagsMap>;
 
 export interface GetBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5050,7 +5291,7 @@ export interface GetBillingProfileResponse {
   /** A billing profile. */
   properties?: BillingProfileProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingProfilesGetResponseTagsMap;
+  tags?: GetBillingProfileResponseTagsMap;
 }
 export const GetBillingProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5059,7 +5300,7 @@ export const GetBillingProfileResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingProfileProperties),
-    tags: S.optional(BillingProfilesGetResponseTagsMap),
+    tags: S.optional(GetBillingProfileResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetBillingProfileResponse",
@@ -5311,13 +5552,13 @@ export const BillingPropertyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingPropertyProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingPropertyGetResponseTagsMap = {
+export type GetBillingPropertyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingPropertyGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBillingPropertyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingPropertyGetResponseTagsMap>;
+) as any as S.Schema<GetBillingPropertyResponseTagsMap>;
 
 export interface GetBillingPropertyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5331,7 +5572,7 @@ export interface GetBillingPropertyResponse {
   /** A billing property. */
   properties?: BillingPropertyProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingPropertyGetResponseTagsMap;
+  tags?: GetBillingPropertyResponseTagsMap;
 }
 export const GetBillingPropertyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5340,7 +5581,7 @@ export const GetBillingPropertyResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingPropertyProperties),
-    tags: S.optional(BillingPropertyGetResponseTagsMap),
+    tags: S.optional(GetBillingPropertyResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetBillingPropertyResponse",
@@ -5366,13 +5607,13 @@ export const GetBillingRequestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBillingRequestRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRequestsGetResponseTagsMap = {
+export type GetBillingRequestResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRequestsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBillingRequestResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingRequestsGetResponseTagsMap>;
+) as any as S.Schema<GetBillingRequestResponseTagsMap>;
 
 export interface GetBillingRequestResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5386,7 +5627,7 @@ export interface GetBillingRequestResponse {
   /** A request submitted by a user to manage billing. Users with an owner role on the scope can approve or decline these requests. */
   properties?: BillingRequestProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRequestsGetResponseTagsMap;
+  tags?: GetBillingRequestResponseTagsMap;
 }
 export const GetBillingRequestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5395,7 +5636,7 @@ export const GetBillingRequestResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingRequestProperties),
-    tags: S.optional(BillingRequestsGetResponseTagsMap),
+    tags: S.optional(GetBillingRequestResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetBillingRequestResponse",
@@ -5425,14 +5666,14 @@ export const GetBillingRoleAssignmentByBillingAccountRequest =
   }) as any as S.Schema<GetBillingRoleAssignmentByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsGetByBillingAccountResponseTagsMap = {
+export type GetBillingRoleAssignmentByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsGetByBillingAccountResponseTagsMap =
+export const GetBillingRoleAssignmentByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleAssignmentByBillingAccountResponseTagsMap>;
 
 export interface GetBillingRoleAssignmentByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5446,7 +5687,7 @@ export interface GetBillingRoleAssignmentByBillingAccountResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsGetByBillingAccountResponseTagsMap;
+  tags?: GetBillingRoleAssignmentByBillingAccountResponseTagsMap;
 }
 export const GetBillingRoleAssignmentByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5456,9 +5697,7 @@ export const GetBillingRoleAssignmentByBillingAccountResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
-      tags: S.optional(
-        BillingRoleAssignmentsGetByBillingAccountResponseTagsMap,
-      ),
+      tags: S.optional(GetBillingRoleAssignmentByBillingAccountResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleAssignmentByBillingAccountResponse",
@@ -5491,14 +5730,14 @@ export const GetBillingRoleAssignmentByBillingProfileRequest =
   }) as any as S.Schema<GetBillingRoleAssignmentByBillingProfileRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsGetByBillingProfileResponseTagsMap = {
+export type GetBillingRoleAssignmentByBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsGetByBillingProfileResponseTagsMap =
+export const GetBillingRoleAssignmentByBillingProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsGetByBillingProfileResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleAssignmentByBillingProfileResponseTagsMap>;
 
 export interface GetBillingRoleAssignmentByBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5512,7 +5751,7 @@ export interface GetBillingRoleAssignmentByBillingProfileResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsGetByBillingProfileResponseTagsMap;
+  tags?: GetBillingRoleAssignmentByBillingProfileResponseTagsMap;
 }
 export const GetBillingRoleAssignmentByBillingProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5522,9 +5761,7 @@ export const GetBillingRoleAssignmentByBillingProfileResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
-      tags: S.optional(
-        BillingRoleAssignmentsGetByBillingProfileResponseTagsMap,
-      ),
+      tags: S.optional(GetBillingRoleAssignmentByBillingProfileResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleAssignmentByBillingProfileResponse",
@@ -5560,14 +5797,14 @@ export const GetBillingRoleAssignmentByCustomerRequest =
   }) as any as S.Schema<GetBillingRoleAssignmentByCustomerRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsGetByCustomerResponseTagsMap = {
+export type GetBillingRoleAssignmentByCustomerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsGetByCustomerResponseTagsMap =
+export const GetBillingRoleAssignmentByCustomerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsGetByCustomerResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleAssignmentByCustomerResponseTagsMap>;
 
 export interface GetBillingRoleAssignmentByCustomerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5581,7 +5818,7 @@ export interface GetBillingRoleAssignmentByCustomerResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsGetByCustomerResponseTagsMap;
+  tags?: GetBillingRoleAssignmentByCustomerResponseTagsMap;
 }
 export const GetBillingRoleAssignmentByCustomerResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5591,7 +5828,7 @@ export const GetBillingRoleAssignmentByCustomerResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
-      tags: S.optional(BillingRoleAssignmentsGetByCustomerResponseTagsMap),
+      tags: S.optional(GetBillingRoleAssignmentByCustomerResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleAssignmentByCustomerResponse",
@@ -5624,14 +5861,14 @@ export const GetBillingRoleAssignmentByDepartmentRequest =
   }) as any as S.Schema<GetBillingRoleAssignmentByDepartmentRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsGetByDepartmentResponseTagsMap = {
+export type GetBillingRoleAssignmentByDepartmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsGetByDepartmentResponseTagsMap =
+export const GetBillingRoleAssignmentByDepartmentResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsGetByDepartmentResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleAssignmentByDepartmentResponseTagsMap>;
 
 export interface GetBillingRoleAssignmentByDepartmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5645,7 +5882,7 @@ export interface GetBillingRoleAssignmentByDepartmentResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsGetByDepartmentResponseTagsMap;
+  tags?: GetBillingRoleAssignmentByDepartmentResponseTagsMap;
 }
 export const GetBillingRoleAssignmentByDepartmentResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5655,7 +5892,7 @@ export const GetBillingRoleAssignmentByDepartmentResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
-      tags: S.optional(BillingRoleAssignmentsGetByDepartmentResponseTagsMap),
+      tags: S.optional(GetBillingRoleAssignmentByDepartmentResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleAssignmentByDepartmentResponse",
@@ -5688,14 +5925,14 @@ export const GetBillingRoleAssignmentByEnrollmentAccountRequest =
   }) as any as S.Schema<GetBillingRoleAssignmentByEnrollmentAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsGetByEnrollmentAccountResponseTagsMap = {
+export type GetBillingRoleAssignmentByEnrollmentAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsGetByEnrollmentAccountResponseTagsMap =
+export const GetBillingRoleAssignmentByEnrollmentAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsGetByEnrollmentAccountResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleAssignmentByEnrollmentAccountResponseTagsMap>;
 
 export interface GetBillingRoleAssignmentByEnrollmentAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5709,7 +5946,7 @@ export interface GetBillingRoleAssignmentByEnrollmentAccountResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsGetByEnrollmentAccountResponseTagsMap;
+  tags?: GetBillingRoleAssignmentByEnrollmentAccountResponseTagsMap;
 }
 export const GetBillingRoleAssignmentByEnrollmentAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5720,7 +5957,7 @@ export const GetBillingRoleAssignmentByEnrollmentAccountResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
       tags: S.optional(
-        BillingRoleAssignmentsGetByEnrollmentAccountResponseTagsMap,
+        GetBillingRoleAssignmentByEnrollmentAccountResponseTagsMap,
       ),
     }),
   ).annotate({
@@ -5757,14 +5994,14 @@ export const GetBillingRoleAssignmentByInvoiceSectionRequest =
   }) as any as S.Schema<GetBillingRoleAssignmentByInvoiceSectionRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleAssignmentsGetByInvoiceSectionResponseTagsMap = {
+export type GetBillingRoleAssignmentByInvoiceSectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleAssignmentsGetByInvoiceSectionResponseTagsMap =
+export const GetBillingRoleAssignmentByInvoiceSectionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleAssignmentsGetByInvoiceSectionResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleAssignmentByInvoiceSectionResponseTagsMap>;
 
 export interface GetBillingRoleAssignmentByInvoiceSectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5778,7 +6015,7 @@ export interface GetBillingRoleAssignmentByInvoiceSectionResponse {
   /** The properties of the billing role assignment. */
   properties?: BillingRoleAssignmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleAssignmentsGetByInvoiceSectionResponseTagsMap;
+  tags?: GetBillingRoleAssignmentByInvoiceSectionResponseTagsMap;
 }
 export const GetBillingRoleAssignmentByInvoiceSectionResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5788,9 +6025,7 @@ export const GetBillingRoleAssignmentByInvoiceSectionResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleAssignmentProperties),
-      tags: S.optional(
-        BillingRoleAssignmentsGetByInvoiceSectionResponseTagsMap,
-      ),
+      tags: S.optional(GetBillingRoleAssignmentByInvoiceSectionResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleAssignmentByInvoiceSectionResponse",
@@ -5875,14 +6110,14 @@ export const BillingRoleDefinitionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingRoleDefinitionProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleDefinitionGetByBillingAccountResponseTagsMap = {
+export type GetBillingRoleDefinitionByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleDefinitionGetByBillingAccountResponseTagsMap =
+export const GetBillingRoleDefinitionByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleDefinitionGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleDefinitionByBillingAccountResponseTagsMap>;
 
 export interface GetBillingRoleDefinitionByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5896,7 +6131,7 @@ export interface GetBillingRoleDefinitionByBillingAccountResponse {
   /** The properties of a role definition. */
   properties?: BillingRoleDefinitionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleDefinitionGetByBillingAccountResponseTagsMap;
+  tags?: GetBillingRoleDefinitionByBillingAccountResponseTagsMap;
 }
 export const GetBillingRoleDefinitionByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5906,7 +6141,7 @@ export const GetBillingRoleDefinitionByBillingAccountResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleDefinitionProperties),
-      tags: S.optional(BillingRoleDefinitionGetByBillingAccountResponseTagsMap),
+      tags: S.optional(GetBillingRoleDefinitionByBillingAccountResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleDefinitionByBillingAccountResponse",
@@ -5939,14 +6174,14 @@ export const GetBillingRoleDefinitionByBillingProfileRequest =
   }) as any as S.Schema<GetBillingRoleDefinitionByBillingProfileRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleDefinitionGetByBillingProfileResponseTagsMap = {
+export type GetBillingRoleDefinitionByBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleDefinitionGetByBillingProfileResponseTagsMap =
+export const GetBillingRoleDefinitionByBillingProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleDefinitionGetByBillingProfileResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleDefinitionByBillingProfileResponseTagsMap>;
 
 export interface GetBillingRoleDefinitionByBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5960,7 +6195,7 @@ export interface GetBillingRoleDefinitionByBillingProfileResponse {
   /** The properties of a role definition. */
   properties?: BillingRoleDefinitionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleDefinitionGetByBillingProfileResponseTagsMap;
+  tags?: GetBillingRoleDefinitionByBillingProfileResponseTagsMap;
 }
 export const GetBillingRoleDefinitionByBillingProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -5970,7 +6205,7 @@ export const GetBillingRoleDefinitionByBillingProfileResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleDefinitionProperties),
-      tags: S.optional(BillingRoleDefinitionGetByBillingProfileResponseTagsMap),
+      tags: S.optional(GetBillingRoleDefinitionByBillingProfileResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleDefinitionByBillingProfileResponse",
@@ -6006,14 +6241,14 @@ export const GetBillingRoleDefinitionByCustomerRequest =
   }) as any as S.Schema<GetBillingRoleDefinitionByCustomerRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleDefinitionGetByCustomerResponseTagsMap = {
+export type GetBillingRoleDefinitionByCustomerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleDefinitionGetByCustomerResponseTagsMap =
+export const GetBillingRoleDefinitionByCustomerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleDefinitionGetByCustomerResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleDefinitionByCustomerResponseTagsMap>;
 
 export interface GetBillingRoleDefinitionByCustomerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6027,7 +6262,7 @@ export interface GetBillingRoleDefinitionByCustomerResponse {
   /** The properties of a role definition. */
   properties?: BillingRoleDefinitionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleDefinitionGetByCustomerResponseTagsMap;
+  tags?: GetBillingRoleDefinitionByCustomerResponseTagsMap;
 }
 export const GetBillingRoleDefinitionByCustomerResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -6037,7 +6272,7 @@ export const GetBillingRoleDefinitionByCustomerResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleDefinitionProperties),
-      tags: S.optional(BillingRoleDefinitionGetByCustomerResponseTagsMap),
+      tags: S.optional(GetBillingRoleDefinitionByCustomerResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleDefinitionByCustomerResponse",
@@ -6070,14 +6305,14 @@ export const GetBillingRoleDefinitionByDepartmentRequest =
   }) as any as S.Schema<GetBillingRoleDefinitionByDepartmentRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleDefinitionGetByDepartmentResponseTagsMap = {
+export type GetBillingRoleDefinitionByDepartmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleDefinitionGetByDepartmentResponseTagsMap =
+export const GetBillingRoleDefinitionByDepartmentResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleDefinitionGetByDepartmentResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleDefinitionByDepartmentResponseTagsMap>;
 
 export interface GetBillingRoleDefinitionByDepartmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6091,7 +6326,7 @@ export interface GetBillingRoleDefinitionByDepartmentResponse {
   /** The properties of a role definition. */
   properties?: BillingRoleDefinitionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleDefinitionGetByDepartmentResponseTagsMap;
+  tags?: GetBillingRoleDefinitionByDepartmentResponseTagsMap;
 }
 export const GetBillingRoleDefinitionByDepartmentResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -6101,7 +6336,7 @@ export const GetBillingRoleDefinitionByDepartmentResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleDefinitionProperties),
-      tags: S.optional(BillingRoleDefinitionGetByDepartmentResponseTagsMap),
+      tags: S.optional(GetBillingRoleDefinitionByDepartmentResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleDefinitionByDepartmentResponse",
@@ -6134,14 +6369,14 @@ export const GetBillingRoleDefinitionByEnrollmentAccountRequest =
   }) as any as S.Schema<GetBillingRoleDefinitionByEnrollmentAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleDefinitionGetByEnrollmentAccountResponseTagsMap = {
+export type GetBillingRoleDefinitionByEnrollmentAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleDefinitionGetByEnrollmentAccountResponseTagsMap =
+export const GetBillingRoleDefinitionByEnrollmentAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleDefinitionGetByEnrollmentAccountResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleDefinitionByEnrollmentAccountResponseTagsMap>;
 
 export interface GetBillingRoleDefinitionByEnrollmentAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6155,7 +6390,7 @@ export interface GetBillingRoleDefinitionByEnrollmentAccountResponse {
   /** The properties of a role definition. */
   properties?: BillingRoleDefinitionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleDefinitionGetByEnrollmentAccountResponseTagsMap;
+  tags?: GetBillingRoleDefinitionByEnrollmentAccountResponseTagsMap;
 }
 export const GetBillingRoleDefinitionByEnrollmentAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -6166,7 +6401,7 @@ export const GetBillingRoleDefinitionByEnrollmentAccountResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleDefinitionProperties),
       tags: S.optional(
-        BillingRoleDefinitionGetByEnrollmentAccountResponseTagsMap,
+        GetBillingRoleDefinitionByEnrollmentAccountResponseTagsMap,
       ),
     }),
   ).annotate({
@@ -6203,14 +6438,14 @@ export const GetBillingRoleDefinitionByInvoiceSectionRequest =
   }) as any as S.Schema<GetBillingRoleDefinitionByInvoiceSectionRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingRoleDefinitionGetByInvoiceSectionResponseTagsMap = {
+export type GetBillingRoleDefinitionByInvoiceSectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingRoleDefinitionGetByInvoiceSectionResponseTagsMap =
+export const GetBillingRoleDefinitionByInvoiceSectionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingRoleDefinitionGetByInvoiceSectionResponseTagsMap>;
+  ) as any as S.Schema<GetBillingRoleDefinitionByInvoiceSectionResponseTagsMap>;
 
 export interface GetBillingRoleDefinitionByInvoiceSectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6224,7 +6459,7 @@ export interface GetBillingRoleDefinitionByInvoiceSectionResponse {
   /** The properties of a role definition. */
   properties?: BillingRoleDefinitionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingRoleDefinitionGetByInvoiceSectionResponseTagsMap;
+  tags?: GetBillingRoleDefinitionByInvoiceSectionResponseTagsMap;
 }
 export const GetBillingRoleDefinitionByInvoiceSectionResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -6234,7 +6469,7 @@ export const GetBillingRoleDefinitionByInvoiceSectionResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingRoleDefinitionProperties),
-      tags: S.optional(BillingRoleDefinitionGetByInvoiceSectionResponseTagsMap),
+      tags: S.optional(GetBillingRoleDefinitionByInvoiceSectionResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingRoleDefinitionByInvoiceSectionResponse",
@@ -6266,13 +6501,13 @@ export const GetBillingSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetBillingSubscriptionRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionsGetResponseTagsMap = {
+export type GetBillingSubscriptionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingSubscriptionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetBillingSubscriptionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingSubscriptionsGetResponseTagsMap>;
+) as any as S.Schema<GetBillingSubscriptionResponseTagsMap>;
 
 export interface GetBillingSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6286,7 +6521,7 @@ export interface GetBillingSubscriptionResponse {
   /** The properties of a(n) BillingSubscription */
   properties?: BillingSubscriptionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionsGetResponseTagsMap;
+  tags?: GetBillingSubscriptionResponseTagsMap;
 }
 export const GetBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6295,71 +6530,11 @@ export const GetBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingSubscriptionProperties),
-    tags: S.optional(BillingSubscriptionsGetResponseTagsMap),
+    tags: S.optional(GetBillingSubscriptionResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetBillingSubscriptionResponse",
 }) as any as S.Schema<GetBillingSubscriptionResponse>;
-
-export interface GetBillingSubscriptionAliaseRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a subscription alias. */
-  aliasName: string;
-}
-export const GetBillingSubscriptionAliaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billingAccountName: S.String.pipe(T.Label()),
-    aliasName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases/{aliasName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetBillingSubscriptionAliaseRequest",
-}) as any as S.Schema<GetBillingSubscriptionAliaseRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionsAliasesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BillingSubscriptionsAliasesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<BillingSubscriptionsAliasesGetResponseTagsMap>;
-
-export interface GetBillingSubscriptionAliaseResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a(n) BillingSubscriptionAlias */
-  properties?: BillingSubscriptionAliasProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionsAliasesGetResponseTagsMap;
-}
-export const GetBillingSubscriptionAliaseResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(BillingSubscriptionAliasProperties),
-      tags: S.optional(BillingSubscriptionsAliasesGetResponseTagsMap),
-    }),
-).annotate({
-  identifier: "GetBillingSubscriptionAliaseResponse",
-}) as any as S.Schema<GetBillingSubscriptionAliaseResponse>;
 
 export interface GetBillingSubscriptionByBillingProfileRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -6391,14 +6566,14 @@ export const GetBillingSubscriptionByBillingProfileRequest =
   }) as any as S.Schema<GetBillingSubscriptionByBillingProfileRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionsGetByBillingProfileResponseTagsMap = {
+export type GetBillingSubscriptionByBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingSubscriptionsGetByBillingProfileResponseTagsMap =
+export const GetBillingSubscriptionByBillingProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<BillingSubscriptionsGetByBillingProfileResponseTagsMap>;
+  ) as any as S.Schema<GetBillingSubscriptionByBillingProfileResponseTagsMap>;
 
 export interface GetBillingSubscriptionByBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6412,7 +6587,7 @@ export interface GetBillingSubscriptionByBillingProfileResponse {
   /** The properties of a(n) BillingSubscription */
   properties?: BillingSubscriptionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionsGetByBillingProfileResponseTagsMap;
+  tags?: GetBillingSubscriptionByBillingProfileResponseTagsMap;
 }
 export const GetBillingSubscriptionByBillingProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -6422,11 +6597,71 @@ export const GetBillingSubscriptionByBillingProfileResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(BillingSubscriptionProperties),
-      tags: S.optional(BillingSubscriptionsGetByBillingProfileResponseTagsMap),
+      tags: S.optional(GetBillingSubscriptionByBillingProfileResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetBillingSubscriptionByBillingProfileResponse",
   }) as any as S.Schema<GetBillingSubscriptionByBillingProfileResponse>;
+
+export interface GetBillingSubscriptionsAliasRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a subscription alias. */
+  aliasName: string;
+}
+export const GetBillingSubscriptionsAliasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billingAccountName: S.String.pipe(T.Label()),
+    aliasName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases/{aliasName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBillingSubscriptionsAliasRequest",
+}) as any as S.Schema<GetBillingSubscriptionsAliasRequest>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type GetBillingSubscriptionsAliasResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetBillingSubscriptionsAliasResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetBillingSubscriptionsAliasResponseTagsMap>;
+
+export interface GetBillingSubscriptionsAliasResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a(n) BillingSubscriptionAlias */
+  properties?: BillingSubscriptionAliasProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: GetBillingSubscriptionsAliasResponseTagsMap;
+}
+export const GetBillingSubscriptionsAliasResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(BillingSubscriptionAliasProperties),
+      tags: S.optional(GetBillingSubscriptionsAliasResponseTagsMap),
+    }),
+).annotate({
+  identifier: "GetBillingSubscriptionsAliasResponse",
+}) as any as S.Schema<GetBillingSubscriptionsAliasResponse>;
 
 export interface GetCustomerRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -6507,11 +6742,11 @@ export const CustomerProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomerProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type CustomersGetResponseTagsMap = { [key: string]: string | undefined };
-export const CustomersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCustomerResponseTagsMap = { [key: string]: string | undefined };
+export const GetCustomerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CustomersGetResponseTagsMap>;
+) as any as S.Schema<GetCustomerResponseTagsMap>;
 
 export interface GetCustomerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6525,7 +6760,7 @@ export interface GetCustomerResponse {
   /** A partner's customer. */
   properties?: CustomerProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: CustomersGetResponseTagsMap;
+  tags?: GetCustomerResponseTagsMap;
 }
 export const GetCustomerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6534,7 +6769,7 @@ export const GetCustomerResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(CustomerProperties),
-    tags: S.optional(CustomersGetResponseTagsMap),
+    tags: S.optional(GetCustomerResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetCustomerResponse",
@@ -6563,14 +6798,14 @@ export const GetCustomerByBillingAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCustomerByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type CustomersGetByBillingAccountResponseTagsMap = {
+export type GetCustomerByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CustomersGetByBillingAccountResponseTagsMap =
+export const GetCustomerByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CustomersGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetCustomerByBillingAccountResponseTagsMap>;
 
 export interface GetCustomerByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6584,7 +6819,7 @@ export interface GetCustomerByBillingAccountResponse {
   /** A partner's customer. */
   properties?: CustomerProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: CustomersGetByBillingAccountResponseTagsMap;
+  tags?: GetCustomerByBillingAccountResponseTagsMap;
 }
 export const GetCustomerByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6593,7 +6828,7 @@ export const GetCustomerByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(CustomerProperties),
-    tags: S.optional(CustomersGetByBillingAccountResponseTagsMap),
+    tags: S.optional(GetCustomerByBillingAccountResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetCustomerByBillingAccountResponse",
@@ -6644,13 +6879,13 @@ export const DepartmentProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DepartmentProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type DepartmentsGetResponseTagsMap = {
+export type GetDepartmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DepartmentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDepartmentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DepartmentsGetResponseTagsMap>;
+) as any as S.Schema<GetDepartmentResponseTagsMap>;
 
 export interface GetDepartmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6664,7 +6899,7 @@ export interface GetDepartmentResponse {
   /** Optional grouping of enrollment accounts to segment costs into logical groupings and set budgets. */
   properties?: DepartmentProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: DepartmentsGetResponseTagsMap;
+  tags?: GetDepartmentResponseTagsMap;
 }
 export const GetDepartmentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6673,7 +6908,7 @@ export const GetDepartmentResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(DepartmentProperties),
-    tags: S.optional(DepartmentsGetResponseTagsMap),
+    tags: S.optional(GetDepartmentResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetDepartmentResponse",
@@ -6742,13 +6977,13 @@ export const EnrollmentAccountProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EnrollmentAccountProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type EnrollmentAccountsGetResponseTagsMap = {
+export type GetEnrollmentAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnrollmentAccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetEnrollmentAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnrollmentAccountsGetResponseTagsMap>;
+) as any as S.Schema<GetEnrollmentAccountResponseTagsMap>;
 
 export interface GetEnrollmentAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6762,7 +6997,7 @@ export interface GetEnrollmentAccountResponse {
   /** It is an organizational hierarchy within a billing account to administer and manage azure costs. */
   properties?: EnrollmentAccountProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: EnrollmentAccountsGetResponseTagsMap;
+  tags?: GetEnrollmentAccountResponseTagsMap;
 }
 export const GetEnrollmentAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6771,7 +7006,7 @@ export const GetEnrollmentAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(EnrollmentAccountProperties),
-    tags: S.optional(EnrollmentAccountsGetResponseTagsMap),
+    tags: S.optional(GetEnrollmentAccountResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetEnrollmentAccountResponse",
@@ -6804,14 +7039,14 @@ export const GetEnrollmentAccountByDepartmentRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetEnrollmentAccountByDepartmentRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type EnrollmentAccountsGetByDepartmentResponseTagsMap = {
+export type GetEnrollmentAccountByDepartmentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnrollmentAccountsGetByDepartmentResponseTagsMap =
+export const GetEnrollmentAccountByDepartmentResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<EnrollmentAccountsGetByDepartmentResponseTagsMap>;
+  ) as any as S.Schema<GetEnrollmentAccountByDepartmentResponseTagsMap>;
 
 export interface GetEnrollmentAccountByDepartmentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6825,7 +7060,7 @@ export interface GetEnrollmentAccountByDepartmentResponse {
   /** It is an organizational hierarchy within a billing account to administer and manage azure costs. */
   properties?: EnrollmentAccountProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: EnrollmentAccountsGetByDepartmentResponseTagsMap;
+  tags?: GetEnrollmentAccountByDepartmentResponseTagsMap;
 }
 export const GetEnrollmentAccountByDepartmentResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -6835,7 +7070,7 @@ export const GetEnrollmentAccountByDepartmentResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(EnrollmentAccountProperties),
-      tags: S.optional(EnrollmentAccountsGetByDepartmentResponseTagsMap),
+      tags: S.optional(GetEnrollmentAccountByDepartmentResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetEnrollmentAccountByDepartmentResponse",
@@ -7173,11 +7408,11 @@ export const InvoiceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InvoiceProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type InvoicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const InvoicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetInvoiceResponseTagsMap = { [key: string]: string | undefined };
+export const GetInvoiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InvoicesGetResponseTagsMap>;
+) as any as S.Schema<GetInvoiceResponseTagsMap>;
 
 export interface GetInvoiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7191,7 +7426,7 @@ export interface GetInvoiceResponse {
   /** An invoice. */
   properties?: InvoiceProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: InvoicesGetResponseTagsMap;
+  tags?: GetInvoiceResponseTagsMap;
 }
 export const GetInvoiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7200,7 +7435,7 @@ export const GetInvoiceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(InvoiceProperties),
-    tags: S.optional(InvoicesGetResponseTagsMap),
+    tags: S.optional(GetInvoiceResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetInvoiceResponse",
@@ -7229,14 +7464,13 @@ export const GetInvoiceByBillingAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInvoiceByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type InvoicesGetByBillingAccountResponseTagsMap = {
+export type GetInvoiceByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InvoicesGetByBillingAccountResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<InvoicesGetByBillingAccountResponseTagsMap>;
+export const GetInvoiceByBillingAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetInvoiceByBillingAccountResponseTagsMap>;
 
 export interface GetInvoiceByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7250,7 +7484,7 @@ export interface GetInvoiceByBillingAccountResponse {
   /** An invoice. */
   properties?: InvoiceProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: InvoicesGetByBillingAccountResponseTagsMap;
+  tags?: GetInvoiceByBillingAccountResponseTagsMap;
 }
 export const GetInvoiceByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7259,7 +7493,7 @@ export const GetInvoiceByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(InvoiceProperties),
-    tags: S.optional(InvoicesGetByBillingAccountResponseTagsMap),
+    tags: S.optional(GetInvoiceByBillingAccountResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetInvoiceByBillingAccountResponse",
@@ -7289,14 +7523,14 @@ export const GetInvoiceByBillingSubscriptionRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetInvoiceByBillingSubscriptionRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type InvoicesGetByBillingSubscriptionResponseTagsMap = {
+export type GetInvoiceByBillingSubscriptionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InvoicesGetByBillingSubscriptionResponseTagsMap =
+export const GetInvoiceByBillingSubscriptionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<InvoicesGetByBillingSubscriptionResponseTagsMap>;
+  ) as any as S.Schema<GetInvoiceByBillingSubscriptionResponseTagsMap>;
 
 export interface GetInvoiceByBillingSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7310,7 +7544,7 @@ export interface GetInvoiceByBillingSubscriptionResponse {
   /** An invoice. */
   properties?: InvoiceProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: InvoicesGetByBillingSubscriptionResponseTagsMap;
+  tags?: GetInvoiceByBillingSubscriptionResponseTagsMap;
 }
 export const GetInvoiceByBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -7320,7 +7554,7 @@ export const GetInvoiceByBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(InvoiceProperties),
-      tags: S.optional(InvoicesGetByBillingSubscriptionResponseTagsMap),
+      tags: S.optional(GetInvoiceByBillingSubscriptionResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetInvoiceByBillingSubscriptionResponse",
@@ -7392,13 +7626,13 @@ export const InvoiceSectionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InvoiceSectionProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type InvoiceSectionsGetResponseTagsMap = {
+export type GetInvoiceSectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InvoiceSectionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetInvoiceSectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InvoiceSectionsGetResponseTagsMap>;
+) as any as S.Schema<GetInvoiceSectionResponseTagsMap>;
 
 export interface GetInvoiceSectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7412,7 +7646,7 @@ export interface GetInvoiceSectionResponse {
   /** An invoice section. */
   properties?: InvoiceSectionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: InvoiceSectionsGetResponseTagsMap;
+  tags?: GetInvoiceSectionResponseTagsMap;
 }
 export const GetInvoiceSectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7421,7 +7655,7 @@ export const GetInvoiceSectionResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(InvoiceSectionProperties),
-    tags: S.optional(InvoiceSectionsGetResponseTagsMap),
+    tags: S.optional(GetInvoiceSectionResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetInvoiceSectionResponse",
@@ -7455,136 +7689,14 @@ export const GetPartnerTransferRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPartnerTransferRequest",
 }) as any as S.Schema<GetPartnerTransferRequest>;
 
-/** The status of a transfer. */
-export type TransferStatus =
-  | "Expired"
-  | "Pending"
-  | "InProgress"
-  | "Completed"
-  | "CompletedWithErrors"
-  | "Failed"
-  | "Canceled"
-  | "Declined";
-export const TransferStatus = /*@__PURE__*/ S.String;
-
-/** The type of customer of the transfer initiator. */
-export type InitiatorCustomerType = "Partner" | "EA";
-export const InitiatorCustomerType = /*@__PURE__*/ S.String;
-
-/** The type of product that is transferred. */
-export type ProductType =
-  | "AzureSubscription"
-  | "AzureReservation"
-  | "Department"
-  | "SavingsPlan"
-  | "SAAS";
-export const ProductType = /*@__PURE__*/ S.String;
-
-/** The status of a transfer. */
-export type ProductTransferStatus =
-  | "NotStarted"
-  | "InProgress"
-  | "Completed"
-  | "Failed";
-export const ProductTransferStatus = /*@__PURE__*/ S.String;
-
-/** Error details for transfer execution. */
-export interface TransferError {
-  /** Error code. */
-  code?: string;
-  /** Error message. */
-  message?: string;
-}
-export const TransferError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({ identifier: "TransferError" }) as any as S.Schema<TransferError>;
-
-/** Detailed transfer status. */
-export interface DetailedTransferStatus {
-  /** Type of product that is transferred. */
-  productType?: ProductType;
-  /** The ID of the product that is transferred. */
-  productId?: string;
-  /** The name of the product that is transferred. */
-  productName?: string;
-  /** The SKU of the product that is transferred. */
-  skuDescription?: string;
-  /** Transfer status. */
-  transferStatus?: ProductTransferStatus;
-  /** Error details for transfer execution. */
-  errorDetails?: TransferError;
-}
-export const DetailedTransferStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productType: S.optional(ProductType),
-    productId: S.optional(S.String),
-    productName: S.optional(S.String),
-    skuDescription: S.optional(S.String),
-    transferStatus: S.optional(ProductTransferStatus),
-    errorDetails: S.optional(TransferError),
-  }),
-).annotate({
-  identifier: "DetailedTransferStatus",
-}) as any as S.Schema<DetailedTransferStatus>;
-
-/** Detailed transfer status. */
-export type PartnerTransferPropertiesDetailedTransferStatusList =
-  Array<DetailedTransferStatus>;
-export const PartnerTransferPropertiesDetailedTransferStatusList =
-  /*@__PURE__*/ S.Array(
-    DetailedTransferStatus,
-  ) as any as S.Schema<PartnerTransferPropertiesDetailedTransferStatusList>;
-
-/** Transfer Details. */
-export interface PartnerTransferProperties {
-  /** The time at which the transfer request expires. */
-  expirationTime?: string;
-  /** Overall transfer status. */
-  transferStatus?: TransferStatus;
-  /** The email ID of the user to whom the transfer request was sent. */
-  recipientEmailId?: string;
-  /** The type of customer who sent the transfer request. */
-  initiatorCustomerType?: InitiatorCustomerType;
-  /** The email ID of the user who sent the transfer request. */
-  initiatorEmailId?: string;
-  /** Optional MPN ID of the reseller for transfer requests that are sent from a Microsoft Partner Agreement billing account. */
-  resellerId?: string;
-  /** Optional name of the reseller for transfer requests that are sent from Microsoft Partner Agreement billing account. */
-  resellerName?: string;
-  /** The email ID of the user who canceled the transfer request. */
-  canceledBy?: string;
-  /** Detailed transfer status. */
-  detailedTransferStatus?: PartnerTransferPropertiesDetailedTransferStatusList;
-}
-export const PartnerTransferProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationTime: S.optional(S.String),
-    transferStatus: S.optional(TransferStatus),
-    recipientEmailId: S.optional(S.String),
-    initiatorCustomerType: S.optional(InitiatorCustomerType),
-    initiatorEmailId: S.optional(S.String),
-    resellerId: S.optional(S.String),
-    resellerName: S.optional(S.String),
-    canceledBy: S.optional(S.String),
-    detailedTransferStatus: S.optional(
-      PartnerTransferPropertiesDetailedTransferStatusList,
-    ),
-  }),
-).annotate({
-  identifier: "PartnerTransferProperties",
-}) as any as S.Schema<PartnerTransferProperties>;
-
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PartnerTransfersGetResponseTagsMap = {
+export type GetPartnerTransferResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PartnerTransfersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPartnerTransferResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PartnerTransfersGetResponseTagsMap>;
+) as any as S.Schema<GetPartnerTransferResponseTagsMap>;
 
 export interface GetPartnerTransferResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7598,7 +7710,7 @@ export interface GetPartnerTransferResponse {
   /** Details of the transfer. */
   properties?: PartnerTransferProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PartnerTransfersGetResponseTagsMap;
+  tags?: GetPartnerTransferResponseTagsMap;
 }
 export const GetPartnerTransferResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7607,7 +7719,7 @@ export const GetPartnerTransferResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(PartnerTransferProperties),
-    tags: S.optional(PartnerTransfersGetResponseTagsMap),
+    tags: S.optional(GetPartnerTransferResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetPartnerTransferResponse",
@@ -7700,14 +7812,14 @@ export const PaymentMethodProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaymentMethodProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PaymentMethodsGetByBillingAccountResponseTagsMap = {
+export type GetPaymentMethodByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PaymentMethodsGetByBillingAccountResponseTagsMap =
+export const GetPaymentMethodByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PaymentMethodsGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetPaymentMethodByBillingAccountResponseTagsMap>;
 
 export interface GetPaymentMethodByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7721,7 +7833,7 @@ export interface GetPaymentMethodByBillingAccountResponse {
   /** Payment method properties */
   properties?: PaymentMethodProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PaymentMethodsGetByBillingAccountResponseTagsMap;
+  tags?: GetPaymentMethodByBillingAccountResponseTagsMap;
 }
 export const GetPaymentMethodByBillingAccountResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -7731,7 +7843,7 @@ export const GetPaymentMethodByBillingAccountResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(PaymentMethodProperties),
-      tags: S.optional(PaymentMethodsGetByBillingAccountResponseTagsMap),
+      tags: S.optional(GetPaymentMethodByBillingAccountResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetPaymentMethodByBillingAccountResponse",
@@ -7810,14 +7922,14 @@ export const PaymentMethodLinkProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaymentMethodLinkProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PaymentMethodsGetByBillingProfileResponseTagsMap = {
+export type GetPaymentMethodByBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PaymentMethodsGetByBillingProfileResponseTagsMap =
+export const GetPaymentMethodByBillingProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PaymentMethodsGetByBillingProfileResponseTagsMap>;
+  ) as any as S.Schema<GetPaymentMethodByBillingProfileResponseTagsMap>;
 
 export interface GetPaymentMethodByBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7831,7 +7943,7 @@ export interface GetPaymentMethodByBillingProfileResponse {
   /** Payment method link properties */
   properties?: PaymentMethodLinkProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PaymentMethodsGetByBillingProfileResponseTagsMap;
+  tags?: GetPaymentMethodByBillingProfileResponseTagsMap;
 }
 export const GetPaymentMethodByBillingProfileResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -7841,7 +7953,7 @@ export const GetPaymentMethodByBillingProfileResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(PaymentMethodLinkProperties),
-      tags: S.optional(PaymentMethodsGetByBillingProfileResponseTagsMap),
+      tags: S.optional(GetPaymentMethodByBillingProfileResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetPaymentMethodByBillingProfileResponse",
@@ -7867,13 +7979,13 @@ export const GetPaymentMethodByUserRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPaymentMethodByUserRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PaymentMethodsGetByUserResponseTagsMap = {
+export type GetPaymentMethodByUserResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PaymentMethodsGetByUserResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPaymentMethodByUserResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PaymentMethodsGetByUserResponseTagsMap>;
+) as any as S.Schema<GetPaymentMethodByUserResponseTagsMap>;
 
 export interface GetPaymentMethodByUserResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7887,7 +7999,7 @@ export interface GetPaymentMethodByUserResponse {
   /** Payment method properties */
   properties?: PaymentMethodProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PaymentMethodsGetByUserResponseTagsMap;
+  tags?: GetPaymentMethodByUserResponseTagsMap;
 }
 export const GetPaymentMethodByUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7896,7 +8008,7 @@ export const GetPaymentMethodByUserResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(PaymentMethodProperties),
-    tags: S.optional(PaymentMethodsGetByUserResponseTagsMap),
+    tags: S.optional(GetPaymentMethodByUserResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetPaymentMethodByUserResponse",
@@ -8053,14 +8165,13 @@ export const BillingAccountPolicyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingAccountPolicyProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PoliciesGetByBillingAccountResponseTagsMap = {
+export type GetPolicyByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PoliciesGetByBillingAccountResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PoliciesGetByBillingAccountResponseTagsMap>;
+export const GetPolicyByBillingAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetPolicyByBillingAccountResponseTagsMap>;
 
 export interface GetPolicyByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8074,7 +8185,7 @@ export interface GetPolicyByBillingAccountResponse {
   /** A policy at billing account scope. */
   properties?: BillingAccountPolicyProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PoliciesGetByBillingAccountResponseTagsMap;
+  tags?: GetPolicyByBillingAccountResponseTagsMap;
 }
 export const GetPolicyByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8083,7 +8194,7 @@ export const GetPolicyByBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingAccountPolicyProperties),
-    tags: S.optional(PoliciesGetByBillingAccountResponseTagsMap),
+    tags: S.optional(GetPolicyByBillingAccountResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetPolicyByBillingAccountResponse",
@@ -8167,14 +8278,13 @@ export const BillingProfilePolicyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingProfilePolicyProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PoliciesGetByBillingProfileResponseTagsMap = {
+export type GetPolicyByBillingProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PoliciesGetByBillingProfileResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PoliciesGetByBillingProfileResponseTagsMap>;
+export const GetPolicyByBillingProfileResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetPolicyByBillingProfileResponseTagsMap>;
 
 export interface GetPolicyByBillingProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8188,7 +8298,7 @@ export interface GetPolicyByBillingProfileResponse {
   /** A policy at billing profile scope. */
   properties?: BillingProfilePolicyProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PoliciesGetByBillingProfileResponseTagsMap;
+  tags?: GetPolicyByBillingProfileResponseTagsMap;
 }
 export const GetPolicyByBillingProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8197,14 +8307,14 @@ export const GetPolicyByBillingProfileResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingProfilePolicyProperties),
-    tags: S.optional(PoliciesGetByBillingProfileResponseTagsMap),
+    tags: S.optional(GetPolicyByBillingProfileResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetPolicyByBillingProfileResponse",
 }) as any as S.Schema<GetPolicyByBillingProfileResponse>;
 
-export type PoliciesGetByCustomerRequestPolicyName = "default";
-export const PoliciesGetByCustomerRequestPolicyName = /*@__PURE__*/ S.String;
+export type GetPolicyByCustomerRequestPolicyName = "default";
+export const GetPolicyByCustomerRequestPolicyName = /*@__PURE__*/ S.String;
 
 export interface GetPolicyByCustomerRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -8214,14 +8324,14 @@ export interface GetPolicyByCustomerRequest {
   /** The ID that uniquely identifies a customer. */
   customerName: string;
   /** Service-defined resource names such as 'default' which are reserved resource names. */
-  policyName: PoliciesGetByCustomerRequestPolicyName | (string & {});
+  policyName: GetPolicyByCustomerRequestPolicyName | (string & {});
 }
 export const GetPolicyByCustomerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     billingAccountName: S.String.pipe(T.Label()),
     billingProfileName: S.String.pipe(T.Label()),
     customerName: S.String.pipe(T.Label()),
-    policyName: PoliciesGetByCustomerRequestPolicyName.pipe(T.Label()),
+    policyName: GetPolicyByCustomerRequestPolicyName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -8260,13 +8370,13 @@ export const CustomerPolicyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomerPolicyProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PoliciesGetByCustomerResponseTagsMap = {
+export type GetPolicyByCustomerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PoliciesGetByCustomerResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPolicyByCustomerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoliciesGetByCustomerResponseTagsMap>;
+) as any as S.Schema<GetPolicyByCustomerResponseTagsMap>;
 
 export interface GetPolicyByCustomerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8280,7 +8390,7 @@ export interface GetPolicyByCustomerResponse {
   /** A policy at customer scope. */
   properties?: CustomerPolicyProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PoliciesGetByCustomerResponseTagsMap;
+  tags?: GetPolicyByCustomerResponseTagsMap;
 }
 export const GetPolicyByCustomerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8289,7 +8399,7 @@ export const GetPolicyByCustomerResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(CustomerPolicyProperties),
-    tags: S.optional(PoliciesGetByCustomerResponseTagsMap),
+    tags: S.optional(GetPolicyByCustomerResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetPolicyByCustomerResponse",
@@ -8319,14 +8429,14 @@ export const GetPolicyByCustomerAtBillingAccountRequest =
   }) as any as S.Schema<GetPolicyByCustomerAtBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PoliciesGetByCustomerAtBillingAccountResponseTagsMap = {
+export type GetPolicyByCustomerAtBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PoliciesGetByCustomerAtBillingAccountResponseTagsMap =
+export const GetPolicyByCustomerAtBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<PoliciesGetByCustomerAtBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetPolicyByCustomerAtBillingAccountResponseTagsMap>;
 
 export interface GetPolicyByCustomerAtBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8340,7 +8450,7 @@ export interface GetPolicyByCustomerAtBillingAccountResponse {
   /** A policy at customer scope. */
   properties?: CustomerPolicyProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PoliciesGetByCustomerAtBillingAccountResponseTagsMap;
+  tags?: GetPolicyByCustomerAtBillingAccountResponseTagsMap;
 }
 export const GetPolicyByCustomerAtBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -8350,7 +8460,7 @@ export const GetPolicyByCustomerAtBillingAccountResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(CustomerPolicyProperties),
-      tags: S.optional(PoliciesGetByCustomerAtBillingAccountResponseTagsMap),
+      tags: S.optional(GetPolicyByCustomerAtBillingAccountResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetPolicyByCustomerAtBillingAccountResponse",
@@ -8398,13 +8508,13 @@ export const SubscriptionPolicyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubscriptionPolicyProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PoliciesGetBySubscriptionResponseTagsMap = {
+export type GetPolicyBySubscriptionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PoliciesGetBySubscriptionResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPolicyBySubscriptionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoliciesGetBySubscriptionResponseTagsMap>;
+) as any as S.Schema<GetPolicyBySubscriptionResponseTagsMap>;
 
 export interface GetPolicyBySubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8418,7 +8528,7 @@ export interface GetPolicyBySubscriptionResponse {
   /** A policy at subscription scope. */
   properties?: SubscriptionPolicyProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PoliciesGetBySubscriptionResponseTagsMap;
+  tags?: GetPolicyBySubscriptionResponseTagsMap;
 }
 export const GetPolicyBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8427,7 +8537,7 @@ export const GetPolicyBySubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(SubscriptionPolicyProperties),
-    tags: S.optional(PoliciesGetBySubscriptionResponseTagsMap),
+    tags: S.optional(GetPolicyBySubscriptionResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetPolicyBySubscriptionResponse",
@@ -8546,11 +8656,11 @@ export const ProductProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProductProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type ProductsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ProductsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetProductResponseTagsMap = { [key: string]: string | undefined };
+export const GetProductResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProductsGetResponseTagsMap>;
+) as any as S.Schema<GetProductResponseTagsMap>;
 
 export interface GetProductResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8564,7 +8674,7 @@ export interface GetProductResponse {
   /** A product. */
   properties?: ProductProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: ProductsGetResponseTagsMap;
+  tags?: GetProductResponseTagsMap;
 }
 export const GetProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8573,7 +8683,7 @@ export const GetProductResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProductProperties),
-    tags: S.optional(ProductsGetResponseTagsMap),
+    tags: S.optional(GetProductResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetProductResponse",
@@ -8598,105 +8708,14 @@ export const GetRecipientTransferRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRecipientTransferRequest",
 }) as any as S.Schema<GetRecipientTransferRequest>;
 
-/** Type of the products that can be transferred. */
-export type EligibleProductType =
-  | "DevTestAzureSubscription"
-  | "StandardAzureSubscription"
-  | "AzureReservation";
-export const EligibleProductType = /*@__PURE__*/ S.String;
-
-/** Type of subscriptions that can be transferred. */
-export type RecipientTransferPropertiesAllowedProductTypeList =
-  Array<EligibleProductType>;
-export const RecipientTransferPropertiesAllowedProductTypeList =
-  /*@__PURE__*/ S.Array(
-    EligibleProductType,
-  ) as any as S.Schema<RecipientTransferPropertiesAllowedProductTypeList>;
-
-/** Detailed transfer status. */
-export type RecipientTransferPropertiesDetailedTransferStatusList =
-  Array<DetailedTransferStatus>;
-export const RecipientTransferPropertiesDetailedTransferStatusList =
-  /*@__PURE__*/ S.Array(
-    DetailedTransferStatus,
-  ) as any as S.Schema<RecipientTransferPropertiesDetailedTransferStatusList>;
-
-/** The supported account types. */
-export type SupportedAccountType =
-  | "None"
-  | "Partner"
-  | "Individual"
-  | "Enterprise";
-export const SupportedAccountType = /*@__PURE__*/ S.String;
-
-/** List of supported account types. */
-export type RecipientTransferPropertiesSupportedAccountsList =
-  Array<SupportedAccountType>;
-export const RecipientTransferPropertiesSupportedAccountsList =
-  /*@__PURE__*/ S.Array(
-    SupportedAccountType,
-  ) as any as S.Schema<RecipientTransferPropertiesSupportedAccountsList>;
-
-/** Transfer Details. */
-export interface RecipientTransferProperties {
-  /** The time at which the transfer request expires. */
-  expirationTime?: string;
-  /** Type of subscriptions that can be transferred. */
-  allowedProductType?: RecipientTransferPropertiesAllowedProductTypeList;
-  /** Overall transfer status. */
-  transferStatus?: TransferStatus;
-  /** The email ID of the user to whom the transfer request was sent. */
-  recipientEmailId?: string;
-  /** The email ID of the user who sent the transfer request. */
-  initiatorEmailId?: string;
-  /** Optional MPN ID of the reseller for transfer requests that are sent from a Microsoft Partner Agreement billing account. */
-  resellerId?: string;
-  /** Optional name of the reseller for transfer requests that are sent from Microsoft Partner Agreement billing account. */
-  resellerName?: string;
-  /** The type of customer who sent the transfer request. */
-  initiatorCustomerType?: InitiatorCustomerType;
-  /** The email ID of the user who canceled the transfer request. */
-  canceledBy?: string;
-  /** Detailed transfer status. */
-  detailedTransferStatus?: RecipientTransferPropertiesDetailedTransferStatusList;
-  /** The customer tenant id. */
-  customerTenantId?: string;
-  /** List of supported account types. */
-  supportedAccounts?: RecipientTransferPropertiesSupportedAccountsList;
-}
-export const RecipientTransferProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationTime: S.optional(S.String),
-    allowedProductType: S.optional(
-      RecipientTransferPropertiesAllowedProductTypeList,
-    ),
-    transferStatus: S.optional(TransferStatus),
-    recipientEmailId: S.optional(S.String),
-    initiatorEmailId: S.optional(S.String),
-    resellerId: S.optional(S.String),
-    resellerName: S.optional(S.String),
-    initiatorCustomerType: S.optional(InitiatorCustomerType),
-    canceledBy: S.optional(S.String),
-    detailedTransferStatus: S.optional(
-      RecipientTransferPropertiesDetailedTransferStatusList,
-    ),
-    customerTenantId: S.optional(S.String),
-    supportedAccounts: S.optional(
-      RecipientTransferPropertiesSupportedAccountsList,
-    ),
-  }),
-).annotate({
-  identifier: "RecipientTransferProperties",
-}) as any as S.Schema<RecipientTransferProperties>;
-
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type RecipientTransfersGetResponseTagsMap = {
+export type GetRecipientTransferResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RecipientTransfersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRecipientTransferResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RecipientTransfersGetResponseTagsMap>;
+) as any as S.Schema<GetRecipientTransferResponseTagsMap>;
 
 export interface GetRecipientTransferResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -8710,7 +8729,7 @@ export interface GetRecipientTransferResponse {
   /** Details of the transfer. */
   properties?: RecipientTransferProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: RecipientTransfersGetResponseTagsMap;
+  tags?: GetRecipientTransferResponseTagsMap;
 }
 export const GetRecipientTransferResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8719,7 +8738,7 @@ export const GetRecipientTransferResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(RecipientTransferProperties),
-    tags: S.optional(RecipientTransfersGetResponseTagsMap),
+    tags: S.optional(GetRecipientTransferResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetRecipientTransferResponse",
@@ -9219,14 +9238,14 @@ export const ReservationProperty = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReservationProperty>;
 
 /** Tags for this reservation */
-export type ReservationsGetByReservationOrderResponseTagsMap = {
+export type GetReservationByReservationOrderResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ReservationsGetByReservationOrderResponseTagsMap =
+export const GetReservationByReservationOrderResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ReservationsGetByReservationOrderResponseTagsMap>;
+  ) as any as S.Schema<GetReservationByReservationOrderResponseTagsMap>;
 
 /** The property of reservation sku object. */
 export interface ReservationSkuProperty {
@@ -9256,7 +9275,7 @@ export interface GetReservationByReservationOrderResponse {
   location?: string;
   etag?: number;
   /** Tags for this reservation */
-  tags?: ReservationsGetByReservationOrderResponseTagsMap;
+  tags?: GetReservationByReservationOrderResponseTagsMap;
   /** The sku information associated to this reservation */
   sku?: ReservationSkuProperty;
 }
@@ -9270,7 +9289,7 @@ export const GetReservationByReservationOrderResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(ReservationProperty),
       location: S.optional(S.String),
       etag: S.optional(S.Number),
-      tags: S.optional(ReservationsGetByReservationOrderResponseTagsMap),
+      tags: S.optional(GetReservationByReservationOrderResponseTagsMap),
       sku: S.optional(ReservationSkuProperty),
     }),
 ).annotate({
@@ -9488,14 +9507,14 @@ export const ReservationOrderProperty = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ReservationOrderProperty>;
 
 /** Tags for this reservation */
-export type ReservationOrdersGetByBillingAccountResponseTagsMap = {
+export type GetReservationOrderByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ReservationOrdersGetByBillingAccountResponseTagsMap =
+export const GetReservationOrderByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ReservationOrdersGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetReservationOrderByBillingAccountResponseTagsMap>;
 
 export interface GetReservationOrderByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9510,7 +9529,7 @@ export interface GetReservationOrderByBillingAccountResponse {
   properties?: ReservationOrderProperty;
   etag?: number;
   /** Tags for this reservation */
-  tags?: ReservationOrdersGetByBillingAccountResponseTagsMap;
+  tags?: GetReservationOrderByBillingAccountResponseTagsMap;
 }
 export const GetReservationOrderByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -9521,13 +9540,13 @@ export const GetReservationOrderByBillingAccountResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(ReservationOrderProperty),
       etag: S.optional(S.Number),
-      tags: S.optional(ReservationOrdersGetByBillingAccountResponseTagsMap),
+      tags: S.optional(GetReservationOrderByBillingAccountResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetReservationOrderByBillingAccountResponse",
   }) as any as S.Schema<GetReservationOrderByBillingAccountResponse>;
 
-export interface GetSavingPlanByBillingAccountRequest {
+export interface GetSavingsPlanByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** Order ID of the savings plan */
@@ -9537,7 +9556,7 @@ export interface GetSavingPlanByBillingAccountRequest {
   /** May be used to expand the planInformation. */
   expand?: string;
 }
-export const GetSavingPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
+export const GetSavingsPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -9553,8 +9572,8 @@ export const GetSavingPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetSavingPlanByBillingAccountRequest",
-}) as any as S.Schema<GetSavingPlanByBillingAccountRequest>;
+  identifier: "GetSavingsPlanByBillingAccountRequest",
+}) as any as S.Schema<GetSavingsPlanByBillingAccountRequest>;
 
 /** Represents the Savings plan term in ISO 8601 format. */
 export type SavingsPlanTerm = "P1Y" | "P3Y" | "P5Y";
@@ -9822,16 +9841,16 @@ export const SavingsPlanModelProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SavingsPlanModelProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type SavingsPlansGetByBillingAccountResponseTagsMap = {
+export type GetSavingsPlanByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SavingsPlansGetByBillingAccountResponseTagsMap =
+export const GetSavingsPlanByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SavingsPlansGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetSavingsPlanByBillingAccountResponseTagsMap>;
 
-export interface GetSavingPlanByBillingAccountResponse {
+export interface GetSavingsPlanByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9843,11 +9862,11 @@ export interface GetSavingPlanByBillingAccountResponse {
   /** Savings plan properties */
   properties?: SavingsPlanModelProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: SavingsPlansGetByBillingAccountResponseTagsMap;
+  tags?: GetSavingsPlanByBillingAccountResponseTagsMap;
   /** Savings plan SKU */
   sku: Sku;
 }
-export const GetSavingPlanByBillingAccountResponse = /*@__PURE__*/ S.suspend(
+export const GetSavingsPlanByBillingAccountResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -9855,14 +9874,14 @@ export const GetSavingPlanByBillingAccountResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(SavingsPlanModelProperties),
-      tags: S.optional(SavingsPlansGetByBillingAccountResponseTagsMap),
+      tags: S.optional(GetSavingsPlanByBillingAccountResponseTagsMap),
       sku: Sku,
     }),
 ).annotate({
-  identifier: "GetSavingPlanByBillingAccountResponse",
-}) as any as S.Schema<GetSavingPlanByBillingAccountResponse>;
+  identifier: "GetSavingsPlanByBillingAccountResponse",
+}) as any as S.Schema<GetSavingsPlanByBillingAccountResponse>;
 
-export interface GetSavingPlanOrderByBillingAccountRequest {
+export interface GetSavingsPlanOrderByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** Order ID of the savings plan */
@@ -9870,7 +9889,7 @@ export interface GetSavingPlanOrderByBillingAccountRequest {
   /** May be used to expand the planInformation. */
   expand?: string;
 }
-export const GetSavingPlanOrderByBillingAccountRequest =
+export const GetSavingsPlanOrderByBillingAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -9885,8 +9904,8 @@ export const GetSavingPlanOrderByBillingAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetSavingPlanOrderByBillingAccountRequest",
-  }) as any as S.Schema<GetSavingPlanOrderByBillingAccountRequest>;
+    identifier: "GetSavingsPlanOrderByBillingAccountRequest",
+  }) as any as S.Schema<GetSavingsPlanOrderByBillingAccountRequest>;
 
 /** Information about payment related to a savings plan order. */
 export interface PaymentDetail {
@@ -9998,16 +10017,16 @@ export const SavingsPlanOrderModelProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SavingsPlanOrderModelProperties>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type SavingsPlanOrdersGetByBillingAccountResponseTagsMap = {
+export type GetSavingsPlanOrderByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SavingsPlanOrdersGetByBillingAccountResponseTagsMap =
+export const GetSavingsPlanOrderByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SavingsPlanOrdersGetByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<GetSavingsPlanOrderByBillingAccountResponseTagsMap>;
 
-export interface GetSavingPlanOrderByBillingAccountResponse {
+export interface GetSavingsPlanOrderByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10019,11 +10038,11 @@ export interface GetSavingPlanOrderByBillingAccountResponse {
   /** Savings plan order properties */
   properties?: SavingsPlanOrderModelProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: SavingsPlanOrdersGetByBillingAccountResponseTagsMap;
+  tags?: GetSavingsPlanOrderByBillingAccountResponseTagsMap;
   /** Savings plan SKU */
   sku: Sku;
 }
-export const GetSavingPlanOrderByBillingAccountResponse =
+export const GetSavingsPlanOrderByBillingAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -10031,12 +10050,12 @@ export const GetSavingPlanOrderByBillingAccountResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(SavingsPlanOrderModelProperties),
-      tags: S.optional(SavingsPlanOrdersGetByBillingAccountResponseTagsMap),
+      tags: S.optional(GetSavingsPlanOrderByBillingAccountResponseTagsMap),
       sku: Sku,
     }),
   ).annotate({
-    identifier: "GetSavingPlanOrderByBillingAccountResponse",
-  }) as any as S.Schema<GetSavingPlanOrderByBillingAccountResponse>;
+    identifier: "GetSavingsPlanOrderByBillingAccountResponse",
+  }) as any as S.Schema<GetSavingsPlanOrderByBillingAccountResponse>;
 
 export interface GetTransactionTransactionSummaryByInvoiceRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -10123,50 +10142,12 @@ export const GetTransferRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTransferRequest",
 }) as any as S.Schema<GetTransferRequest>;
 
-/** Detailed transfer status. */
-export type TransferPropertiesDetailedTransferStatusList =
-  Array<DetailedTransferStatus>;
-export const TransferPropertiesDetailedTransferStatusList =
-  /*@__PURE__*/ S.Array(
-    DetailedTransferStatus,
-  ) as any as S.Schema<TransferPropertiesDetailedTransferStatusList>;
-
-/** Transfer details */
-export interface TransferProperties {
-  /** The time at which the transfer request expires. */
-  expirationTime?: string;
-  /** Overall transfer status. */
-  transferStatus?: TransferStatus;
-  /** The email ID of the user to whom the transfer request was sent. */
-  recipientEmailId?: string;
-  /** The email ID of the user who sent the transfer request. */
-  initiatorEmailId?: string;
-  /** The email ID of the user who canceled the transfer request. */
-  canceledBy?: string;
-  /** Detailed transfer status. */
-  detailedTransferStatus?: TransferPropertiesDetailedTransferStatusList;
-}
-export const TransferProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationTime: S.optional(S.String),
-    transferStatus: S.optional(TransferStatus),
-    recipientEmailId: S.optional(S.String),
-    initiatorEmailId: S.optional(S.String),
-    canceledBy: S.optional(S.String),
-    detailedTransferStatus: S.optional(
-      TransferPropertiesDetailedTransferStatusList,
-    ),
-  }),
-).annotate({
-  identifier: "TransferProperties",
-}) as any as S.Schema<TransferProperties>;
-
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type TransfersGetResponseTagsMap = { [key: string]: string | undefined };
-export const TransfersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetTransferResponseTagsMap = { [key: string]: string | undefined };
+export const GetTransferResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TransfersGetResponseTagsMap>;
+) as any as S.Schema<GetTransferResponseTagsMap>;
 
 export interface GetTransferResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10180,7 +10161,7 @@ export interface GetTransferResponse {
   /** Details of the transfer. */
   properties?: TransferProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: TransfersGetResponseTagsMap;
+  tags?: GetTransferResponseTagsMap;
 }
 export const GetTransferResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10189,7 +10170,7 @@ export const GetTransferResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(TransferProperties),
-    tags: S.optional(TransfersGetResponseTagsMap),
+    tags: S.optional(GetTransferResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetTransferResponse",
@@ -10223,175 +10204,6 @@ export const InvoicesAmendResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "InvoicesAmendResponse",
 }) as any as S.Schema<InvoicesAmendResponse>;
-
-export interface InvoicesDownloadByBillingAccountRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies an invoice. */
-  invoiceName: string;
-  /** The ID that uniquely identifies an invoice document. This ID may be an identifier for an invoice PDF, a credit note, or a tax receipt. */
-  documentName?: string;
-}
-export const InvoicesDownloadByBillingAccountRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      invoiceName: S.String.pipe(T.Label()),
-      documentName: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/download",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "InvoicesDownloadByBillingAccountRequest",
-}) as any as S.Schema<InvoicesDownloadByBillingAccountRequest>;
-
-/** A secure URL that can be used to download a an entity until the URL expires. */
-export interface DocumentDownloadResult {
-  /** The time in UTC when the download URL will expire. */
-  expiryTime?: string;
-  /** The URL to the PDF or .zip file. */
-  url?: string;
-}
-export const DocumentDownloadResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expiryTime: S.optional(S.String),
-    url: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DocumentDownloadResult",
-}) as any as S.Schema<DocumentDownloadResult>;
-
-export interface InvoicesDownloadByBillingSubscriptionRequest {
-  /** The ID that uniquely identifies a billing subscription. */
-  subscriptionId: string;
-  /** The ID that uniquely identifies an invoice. */
-  invoiceName: string;
-  /** The ID that uniquely identifies an invoice document. This ID may be an identifier for an invoice PDF, a credit note, or a tax receipt. */
-  documentName?: string;
-}
-export const InvoicesDownloadByBillingSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      invoiceName: S.String.pipe(T.Label()),
-      documentName: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/invoices/{invoiceName}/download",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "InvoicesDownloadByBillingSubscriptionRequest",
-  }) as any as S.Schema<InvoicesDownloadByBillingSubscriptionRequest>;
-
-/** A list of download details for individual documents. */
-export interface DocumentDownloadRequest {
-  /** The ID that uniquely identifies an invoice document. This ID may be an identifier for an invoice PDF, a credit note, or a tax receipt. If omitted, the most recent invoice PDF for the invoice will be returned. */
-  documentName?: string;
-  /** The ID that uniquely identifies an invoice. */
-  invoiceName?: string;
-}
-export const DocumentDownloadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    documentName: S.optional(S.String),
-    invoiceName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DocumentDownloadRequest",
-}) as any as S.Schema<DocumentDownloadRequest>;
-
-export type InvoicesDownloadDocumentsByBillingAccountRequestBodyList =
-  Array<DocumentDownloadRequest>;
-export const InvoicesDownloadDocumentsByBillingAccountRequestBodyList =
-  /*@__PURE__*/ S.Array(
-    DocumentDownloadRequest,
-  ) as any as S.Schema<InvoicesDownloadDocumentsByBillingAccountRequestBodyList>;
-
-export interface InvoicesDownloadDocumentsByBillingAccountRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  body: InvoicesDownloadDocumentsByBillingAccountRequestBodyList;
-}
-export const InvoicesDownloadDocumentsByBillingAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      body: InvoicesDownloadDocumentsByBillingAccountRequestBodyList.pipe(
-        T.HttpBody(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/downloadDocuments",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "InvoicesDownloadDocumentsByBillingAccountRequest",
-  }) as any as S.Schema<InvoicesDownloadDocumentsByBillingAccountRequest>;
-
-export type InvoicesDownloadDocumentsByBillingSubscriptionRequestBodyList =
-  Array<DocumentDownloadRequest>;
-export const InvoicesDownloadDocumentsByBillingSubscriptionRequestBodyList =
-  /*@__PURE__*/ S.Array(
-    DocumentDownloadRequest,
-  ) as any as S.Schema<InvoicesDownloadDocumentsByBillingSubscriptionRequestBodyList>;
-
-export interface InvoicesDownloadDocumentsByBillingSubscriptionRequest {
-  /** The ID that uniquely identifies a billing subscription. */
-  subscriptionId: string;
-  body: InvoicesDownloadDocumentsByBillingSubscriptionRequestBodyList;
-}
-export const InvoicesDownloadDocumentsByBillingSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      body: InvoicesDownloadDocumentsByBillingSubscriptionRequestBodyList.pipe(
-        T.HttpBody(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/{subscriptionId}/downloadDocuments",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "InvoicesDownloadDocumentsByBillingSubscriptionRequest",
-  }) as any as S.Schema<InvoicesDownloadDocumentsByBillingSubscriptionRequest>;
-
-export interface InvoicesDownloadSummaryByBillingAccountRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies an invoice. */
-  invoiceName: string;
-}
-export const InvoicesDownloadSummaryByBillingAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      invoiceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/invoices/{invoiceName}/downloadSummary",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "InvoicesDownloadSummaryByBillingAccountRequest",
-  }) as any as S.Schema<InvoicesDownloadSummaryByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
 export type InvoiceSectionPropertiesInputTagsMap = {
@@ -10506,6 +10318,89 @@ export const InvoiceSectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "InvoiceSectionsCreateOrUpdateResponse",
 }) as any as S.Schema<InvoiceSectionsCreateOrUpdateResponse>;
+
+export interface InvoiceSectionsValidateDeleteEligibilityRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a billing profile. */
+  billingProfileName: string;
+  /** The ID that uniquely identifies an invoice section. */
+  invoiceSectionName: string;
+}
+export const InvoiceSectionsValidateDeleteEligibilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      billingProfileName: S.String.pipe(T.Label()),
+      invoiceSectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/validateDeleteEligibility",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "InvoiceSectionsValidateDeleteEligibilityRequest",
+  }) as any as S.Schema<InvoiceSectionsValidateDeleteEligibilityRequest>;
+
+/** Status describing if invoice section is eligible to be deleted. */
+export type DeleteInvoiceSectionEligibilityStatus = "Allowed" | "NotAllowed";
+export const DeleteInvoiceSectionEligibilityStatus = /*@__PURE__*/ S.String;
+
+/** Code for the delete invoice section validation. */
+export type DeleteInvoiceSectionEligibilityCode =
+  | "Other"
+  | "LastInvoiceSection"
+  | "ActiveAzurePlans"
+  | "ReservedInstances"
+  | "ActiveBillingSubscriptions";
+export const DeleteInvoiceSectionEligibilityCode = /*@__PURE__*/ S.String;
+
+/** The details of delete invoice section eligibility result. */
+export interface DeleteInvoiceSectionEligibilityDetail {
+  /** Code for the delete invoice section validation. */
+  code?: DeleteInvoiceSectionEligibilityCode;
+  /** Validation message. */
+  message?: string;
+}
+export const DeleteInvoiceSectionEligibilityDetail = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(DeleteInvoiceSectionEligibilityCode),
+      message: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DeleteInvoiceSectionEligibilityDetail",
+}) as any as S.Schema<DeleteInvoiceSectionEligibilityDetail>;
+
+/** A list of delete invoice section eligibility result details. */
+export type DeleteInvoiceSectionEligibilityResultEligibilityDetailsList =
+  Array<DeleteInvoiceSectionEligibilityDetail>;
+export const DeleteInvoiceSectionEligibilityResultEligibilityDetailsList =
+  /*@__PURE__*/ S.Array(
+    DeleteInvoiceSectionEligibilityDetail,
+  ) as any as S.Schema<DeleteInvoiceSectionEligibilityResultEligibilityDetailsList>;
+
+/** Eligibility to delete an invoice section result. */
+export interface DeleteInvoiceSectionEligibilityResult {
+  /** Status describing if invoice section is eligible to be deleted. */
+  eligibilityStatus?: DeleteInvoiceSectionEligibilityStatus;
+  /** A list of delete invoice section eligibility result details. */
+  eligibilityDetails?: DeleteInvoiceSectionEligibilityResultEligibilityDetailsList;
+}
+export const DeleteInvoiceSectionEligibilityResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      eligibilityStatus: S.optional(DeleteInvoiceSectionEligibilityStatus),
+      eligibilityDetails: S.optional(
+        DeleteInvoiceSectionEligibilityResultEligibilityDetailsList,
+      ),
+    }),
+).annotate({
+  identifier: "DeleteInvoiceSectionEligibilityResult",
+}) as any as S.Schema<DeleteInvoiceSectionEligibilityResult>;
 
 export interface ListAgreementByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -10790,11 +10685,11 @@ export const BillingAccountListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingAccountListResult",
 }) as any as S.Schema<BillingAccountListResult>;
 
-export interface ListBillingPermissionByBillingAccountRequest {
+export interface ListBillingPermissionsByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
 }
-export const ListBillingPermissionByBillingAccountRequest =
+export const ListBillingPermissionsByBillingAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -10807,8 +10702,8 @@ export const ListBillingPermissionByBillingAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListBillingPermissionByBillingAccountRequest",
-  }) as any as S.Schema<ListBillingPermissionByBillingAccountRequest>;
+    identifier: "ListBillingPermissionsByBillingAccountRequest",
+  }) as any as S.Schema<ListBillingPermissionsByBillingAccountRequest>;
 
 /** The BillingPermission items on this page */
 export type BillingPermissionListResultValueList = Array<BillingPermission>;
@@ -10832,13 +10727,13 @@ export const BillingPermissionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingPermissionListResult",
 }) as any as S.Schema<BillingPermissionListResult>;
 
-export interface ListBillingPermissionByBillingProfileRequest {
+export interface ListBillingPermissionsByBillingProfileRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a billing profile. */
   billingProfileName: string;
 }
-export const ListBillingPermissionByBillingProfileRequest =
+export const ListBillingPermissionsByBillingProfileRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -10852,10 +10747,10 @@ export const ListBillingPermissionByBillingProfileRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListBillingPermissionByBillingProfileRequest",
-  }) as any as S.Schema<ListBillingPermissionByBillingProfileRequest>;
+    identifier: "ListBillingPermissionsByBillingProfileRequest",
+  }) as any as S.Schema<ListBillingPermissionsByBillingProfileRequest>;
 
-export interface ListBillingPermissionByCustomerRequest {
+export interface ListBillingPermissionsByCustomerRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a billing profile. */
@@ -10863,7 +10758,7 @@ export interface ListBillingPermissionByCustomerRequest {
   /** The ID that uniquely identifies a customer. */
   customerName: string;
 }
-export const ListBillingPermissionByCustomerRequest = /*@__PURE__*/ S.suspend(
+export const ListBillingPermissionsByCustomerRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -10878,16 +10773,16 @@ export const ListBillingPermissionByCustomerRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListBillingPermissionByCustomerRequest",
-}) as any as S.Schema<ListBillingPermissionByCustomerRequest>;
+  identifier: "ListBillingPermissionsByCustomerRequest",
+}) as any as S.Schema<ListBillingPermissionsByCustomerRequest>;
 
-export interface ListBillingPermissionByCustomerAtBillingAccountRequest {
+export interface ListBillingPermissionsByCustomerAtBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a customer. */
   customerName: string;
 }
-export const ListBillingPermissionByCustomerAtBillingAccountRequest =
+export const ListBillingPermissionsByCustomerAtBillingAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -10901,17 +10796,17 @@ export const ListBillingPermissionByCustomerAtBillingAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListBillingPermissionByCustomerAtBillingAccountRequest",
-  }) as any as S.Schema<ListBillingPermissionByCustomerAtBillingAccountRequest>;
+    identifier: "ListBillingPermissionsByCustomerAtBillingAccountRequest",
+  }) as any as S.Schema<ListBillingPermissionsByCustomerAtBillingAccountRequest>;
 
-export interface ListBillingPermissionByDepartmentRequest {
+export interface ListBillingPermissionsByDepartmentRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The name of the department. */
   departmentName: string;
 }
-export const ListBillingPermissionByDepartmentRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListBillingPermissionsByDepartmentRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
       departmentName: S.String.pipe(T.Label()),
@@ -10923,17 +10818,17 @@ export const ListBillingPermissionByDepartmentRequest = /*@__PURE__*/ S.suspend(
         apiVersion: "2024-04-01",
       }),
     ),
-).annotate({
-  identifier: "ListBillingPermissionByDepartmentRequest",
-}) as any as S.Schema<ListBillingPermissionByDepartmentRequest>;
+  ).annotate({
+    identifier: "ListBillingPermissionsByDepartmentRequest",
+  }) as any as S.Schema<ListBillingPermissionsByDepartmentRequest>;
 
-export interface ListBillingPermissionByEnrollmentAccountRequest {
+export interface ListBillingPermissionsByEnrollmentAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The name of the enrollment account. */
   enrollmentAccountName: string;
 }
-export const ListBillingPermissionByEnrollmentAccountRequest =
+export const ListBillingPermissionsByEnrollmentAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -10947,10 +10842,10 @@ export const ListBillingPermissionByEnrollmentAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListBillingPermissionByEnrollmentAccountRequest",
-  }) as any as S.Schema<ListBillingPermissionByEnrollmentAccountRequest>;
+    identifier: "ListBillingPermissionsByEnrollmentAccountRequest",
+  }) as any as S.Schema<ListBillingPermissionsByEnrollmentAccountRequest>;
 
-export interface ListBillingPermissionByInvoiceSectionRequest {
+export interface ListBillingPermissionsByInvoiceSectionRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The ID that uniquely identifies a billing profile. */
@@ -10958,7 +10853,7 @@ export interface ListBillingPermissionByInvoiceSectionRequest {
   /** The ID that uniquely identifies an invoice section. */
   invoiceSectionName: string;
 }
-export const ListBillingPermissionByInvoiceSectionRequest =
+export const ListBillingPermissionsByInvoiceSectionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -10973,8 +10868,8 @@ export const ListBillingPermissionByInvoiceSectionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListBillingPermissionByInvoiceSectionRequest",
-  }) as any as S.Schema<ListBillingPermissionByInvoiceSectionRequest>;
+    identifier: "ListBillingPermissionsByInvoiceSectionRequest",
+  }) as any as S.Schema<ListBillingPermissionsByInvoiceSectionRequest>;
 
 export interface ListBillingProfileByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -11705,108 +11600,6 @@ export const ListBillingRoleDefinitionByInvoiceSectionRequest =
     identifier: "ListBillingRoleDefinitionByInvoiceSectionRequest",
   }) as any as S.Schema<ListBillingRoleDefinitionByInvoiceSectionRequest>;
 
-export interface ListBillingSubscriptionAliaseByBillingAccountRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** Can be used to get deleted billing subscriptions. */
-  includeDeleted?: boolean;
-  /** The filter query option allows clients to filter a collection of resources that are addressed by a request URL. */
-  filter?: string;
-  /** The orderby query option allows clients to request resources in a particular order. */
-  orderBy?: string;
-  /** The top query option requests the number of items in the queried collection to be included in the result. The maximum supported value for top is 50. */
-  top?: number;
-  /** The skip query option requests the number of items in the queried collection that are to be skipped and not included in the result. */
-  skip?: number;
-  /** The count query option allows clients to request a count of the matching resources included with the resources in the response. */
-  count?: boolean;
-  /** The search query option allows clients to request items within a collection matching a free-text search expression. search is only supported for string fields. */
-  search?: string;
-}
-export const ListBillingSubscriptionAliaseByBillingAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      billingAccountName: S.String.pipe(T.Label()),
-      includeDeleted: S.optional(S.Boolean.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      top: S.optional(S.Number.pipe(T.Query())),
-      skip: S.optional(S.Number.pipe(T.Query())),
-      count: S.optional(S.Boolean.pipe(T.Query())),
-      search: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListBillingSubscriptionAliaseByBillingAccountRequest",
-  }) as any as S.Schema<ListBillingSubscriptionAliaseByBillingAccountRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionAliasTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BillingSubscriptionAliasTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BillingSubscriptionAliasTagsMap>;
-
-/** A billing subscription alias. */
-export interface BillingSubscriptionAlias {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a(n) BillingSubscriptionAlias */
-  properties?: BillingSubscriptionAliasProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionAliasTagsMap;
-}
-export const BillingSubscriptionAlias = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BillingSubscriptionAliasProperties),
-    tags: S.optional(BillingSubscriptionAliasTagsMap),
-  }),
-).annotate({
-  identifier: "BillingSubscriptionAlias",
-}) as any as S.Schema<BillingSubscriptionAlias>;
-
-/** The BillingSubscriptionAlias items on this page */
-export type BillingSubscriptionAliasListResultValueList =
-  Array<BillingSubscriptionAlias>;
-export const BillingSubscriptionAliasListResultValueList =
-  /*@__PURE__*/ S.Array(
-    BillingSubscriptionAlias,
-  ) as any as S.Schema<BillingSubscriptionAliasListResultValueList>;
-
-/** Paged collection of BillingSubscriptionAlias items */
-export interface BillingSubscriptionAliasListResult {
-  /** The BillingSubscriptionAlias items on this page */
-  value: BillingSubscriptionAliasListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BillingSubscriptionAliasListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BillingSubscriptionAliasListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BillingSubscriptionAliasListResult",
-}) as any as S.Schema<BillingSubscriptionAliasListResult>;
-
 export interface ListBillingSubscriptionByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
@@ -12151,6 +11944,108 @@ export const ListBillingSubscriptionByInvoiceSectionRequest =
   ).annotate({
     identifier: "ListBillingSubscriptionByInvoiceSectionRequest",
   }) as any as S.Schema<ListBillingSubscriptionByInvoiceSectionRequest>;
+
+export interface ListBillingSubscriptionsAliasByBillingAccountRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** Can be used to get deleted billing subscriptions. */
+  includeDeleted?: boolean;
+  /** The filter query option allows clients to filter a collection of resources that are addressed by a request URL. */
+  filter?: string;
+  /** The orderby query option allows clients to request resources in a particular order. */
+  orderBy?: string;
+  /** The top query option requests the number of items in the queried collection to be included in the result. The maximum supported value for top is 50. */
+  top?: number;
+  /** The skip query option requests the number of items in the queried collection that are to be skipped and not included in the result. */
+  skip?: number;
+  /** The count query option allows clients to request a count of the matching resources included with the resources in the response. */
+  count?: boolean;
+  /** The search query option allows clients to request items within a collection matching a free-text search expression. search is only supported for string fields. */
+  search?: string;
+}
+export const ListBillingSubscriptionsAliasByBillingAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      includeDeleted: S.optional(S.Boolean.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
+      orderBy: S.optional(S.String.pipe(T.Query())),
+      top: S.optional(S.Number.pipe(T.Query())),
+      skip: S.optional(S.Number.pipe(T.Query())),
+      count: S.optional(S.Boolean.pipe(T.Query())),
+      search: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBillingSubscriptionsAliasByBillingAccountRequest",
+  }) as any as S.Schema<ListBillingSubscriptionsAliasByBillingAccountRequest>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type BillingSubscriptionAliasTagsMap = {
+  [key: string]: string | undefined;
+};
+export const BillingSubscriptionAliasTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BillingSubscriptionAliasTagsMap>;
+
+/** A billing subscription alias. */
+export interface BillingSubscriptionAlias {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a(n) BillingSubscriptionAlias */
+  properties?: BillingSubscriptionAliasProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: BillingSubscriptionAliasTagsMap;
+}
+export const BillingSubscriptionAlias = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BillingSubscriptionAliasProperties),
+    tags: S.optional(BillingSubscriptionAliasTagsMap),
+  }),
+).annotate({
+  identifier: "BillingSubscriptionAlias",
+}) as any as S.Schema<BillingSubscriptionAlias>;
+
+/** The BillingSubscriptionAlias items on this page */
+export type BillingSubscriptionAliasListResultValueList =
+  Array<BillingSubscriptionAlias>;
+export const BillingSubscriptionAliasListResultValueList =
+  /*@__PURE__*/ S.Array(
+    BillingSubscriptionAlias,
+  ) as any as S.Schema<BillingSubscriptionAliasListResultValueList>;
+
+/** Paged collection of BillingSubscriptionAlias items */
+export interface BillingSubscriptionAliasListResult {
+  /** The BillingSubscriptionAlias items on this page */
+  value: BillingSubscriptionAliasListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BillingSubscriptionAliasListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BillingSubscriptionAliasListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BillingSubscriptionAliasListResult",
+}) as any as S.Schema<BillingSubscriptionAliasListResult>;
 
 export interface ListCustomerByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -13696,7 +13591,7 @@ export const ReservationOrderList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReservationOrderList",
 }) as any as S.Schema<ReservationOrderList>;
 
-export interface ListSavingPlanByBillingAccountRequest {
+export interface ListSavingsPlanByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The filter query option allows clients to filter a collection of resources that are addressed by a request URL. */
@@ -13712,7 +13607,7 @@ export interface ListSavingPlanByBillingAccountRequest {
   /** To indicate whether to refresh the roll up counts of the savings plans group by provisioning states */
   refreshSummary?: string;
 }
-export const ListSavingPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
+export const ListSavingsPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -13731,8 +13626,8 @@ export const ListSavingPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSavingPlanByBillingAccountRequest",
-}) as any as S.Schema<ListSavingPlanByBillingAccountRequest>;
+  identifier: "ListSavingsPlanByBillingAccountRequest",
+}) as any as S.Schema<ListSavingsPlanByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
 export type SavingsPlanModelTagsMap = { [key: string]: string | undefined };
@@ -13773,12 +13668,12 @@ export const SavingsPlanModel = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SavingsPlanModel>;
 
 /** The SavingsPlanModel items on this page */
-export type SavingsPlansListByBillingAccountResponseValueList =
+export type ListSavingsPlanByBillingAccountResponseValueList =
   Array<SavingsPlanModel>;
-export const SavingsPlansListByBillingAccountResponseValueList =
+export const ListSavingsPlanByBillingAccountResponseValueList =
   /*@__PURE__*/ S.Array(
     SavingsPlanModel,
-  ) as any as S.Schema<SavingsPlansListByBillingAccountResponseValueList>;
+  ) as any as S.Schema<ListSavingsPlanByBillingAccountResponseValueList>;
 
 /** The roll up count summary of savings plans in each state */
 export interface SavingsPlanSummaryCount {
@@ -13817,32 +13712,32 @@ export const SavingsPlanSummaryCount = /*@__PURE__*/ S.suspend(() =>
   identifier: "SavingsPlanSummaryCount",
 }) as any as S.Schema<SavingsPlanSummaryCount>;
 
-export interface ListSavingPlanByBillingAccountResponse {
+export interface ListSavingsPlanByBillingAccountResponse {
   /** The SavingsPlanModel items on this page */
-  value: SavingsPlansListByBillingAccountResponseValueList;
+  value: ListSavingsPlanByBillingAccountResponseValueList;
   /** The link to the next page of items */
   nextLink?: string;
   /** The roll out count summary of the savings plans */
   summary: SavingsPlanSummaryCount;
 }
-export const ListSavingPlanByBillingAccountResponse = /*@__PURE__*/ S.suspend(
+export const ListSavingsPlanByBillingAccountResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      value: SavingsPlansListByBillingAccountResponseValueList,
+      value: ListSavingsPlanByBillingAccountResponseValueList,
       nextLink: S.optional(S.String),
       summary: SavingsPlanSummaryCount,
     }),
 ).annotate({
-  identifier: "ListSavingPlanByBillingAccountResponse",
-}) as any as S.Schema<ListSavingPlanByBillingAccountResponse>;
+  identifier: "ListSavingsPlanByBillingAccountResponse",
+}) as any as S.Schema<ListSavingsPlanByBillingAccountResponse>;
 
-export interface ListSavingPlanBySavingPlanOrderRequest {
+export interface ListSavingsPlanBySavingsPlanOrderRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** Order ID of the savings plan */
   savingsPlanOrderId: string;
 }
-export const ListSavingPlanBySavingPlanOrderRequest = /*@__PURE__*/ S.suspend(
+export const ListSavingsPlanBySavingsPlanOrderRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -13856,8 +13751,8 @@ export const ListSavingPlanBySavingPlanOrderRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSavingPlanBySavingPlanOrderRequest",
-}) as any as S.Schema<ListSavingPlanBySavingPlanOrderRequest>;
+  identifier: "ListSavingsPlanBySavingsPlanOrderRequest",
+}) as any as S.Schema<ListSavingsPlanBySavingsPlanOrderRequest>;
 
 /** The SavingsPlanModel items on this page */
 export type SavingsPlanModelListValueList = Array<SavingsPlanModel>;
@@ -13881,7 +13776,7 @@ export const SavingsPlanModelList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SavingsPlanModelList",
 }) as any as S.Schema<SavingsPlanModelList>;
 
-export interface ListSavingPlanOrderByBillingAccountRequest {
+export interface ListSavingsPlanOrderByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** The filter query option allows clients to filter a collection of resources that are addressed by a request URL. */
@@ -13891,7 +13786,7 @@ export interface ListSavingPlanOrderByBillingAccountRequest {
   /** The number of savings plans to skip from the list before returning results */
   skiptoken?: number;
 }
-export const ListSavingPlanOrderByBillingAccountRequest =
+export const ListSavingsPlanOrderByBillingAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -13907,8 +13802,8 @@ export const ListSavingPlanOrderByBillingAccountRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListSavingPlanOrderByBillingAccountRequest",
-  }) as any as S.Schema<ListSavingPlanOrderByBillingAccountRequest>;
+    identifier: "ListSavingsPlanOrderByBillingAccountRequest",
+  }) as any as S.Schema<ListSavingsPlanOrderByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
 export type SavingsPlanOrderModelTagsMap = {
@@ -13972,11 +13867,11 @@ export const SavingsPlanOrderModelList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SavingsPlanOrderModelList",
 }) as any as S.Schema<SavingsPlanOrderModelList>;
 
-export type TransactionsListByBillingProfileRequestType =
+export type ListTransactionByBillingProfileRequestType =
   | "Other"
   | "Billed"
   | "Unbilled";
-export const TransactionsListByBillingProfileRequestType =
+export const ListTransactionByBillingProfileRequestType =
   /*@__PURE__*/ S.String;
 
 export interface ListTransactionByBillingProfileRequest {
@@ -13989,7 +13884,7 @@ export interface ListTransactionByBillingProfileRequest {
   /** The end date to fetch the transactions. The date should be specified in MM-DD-YYYY format. */
   periodEndDate: string;
   /** The type of transaction. */
-  type: TransactionsListByBillingProfileRequestType | (string & {});
+  type: ListTransactionByBillingProfileRequestType | (string & {});
   /** The filter query option allows clients to filter a collection of resources that are addressed by a request URL. */
   filter?: string;
   /** The orderby query option allows clients to request resources in a particular order. */
@@ -14010,7 +13905,7 @@ export const ListTransactionByBillingProfileRequest = /*@__PURE__*/ S.suspend(
       billingProfileName: S.String.pipe(T.Label()),
       periodStartDate: S.String.pipe(T.Query()),
       periodEndDate: S.String.pipe(T.Query()),
-      type: TransactionsListByBillingProfileRequestType.pipe(T.Query()),
+      type: ListTransactionByBillingProfileRequestType.pipe(T.Query()),
       filter: S.optional(S.String.pipe(T.Query())),
       orderBy: S.optional(S.String.pipe(T.Query())),
       top: S.optional(S.Number.pipe(T.Query())),
@@ -14243,11 +14138,11 @@ export const TransactionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TransactionListResult",
 }) as any as S.Schema<TransactionListResult>;
 
-export type TransactionsListByCustomerRequestType =
+export type ListTransactionByCustomerRequestType =
   | "Other"
   | "Billed"
   | "Unbilled";
-export const TransactionsListByCustomerRequestType = /*@__PURE__*/ S.String;
+export const ListTransactionByCustomerRequestType = /*@__PURE__*/ S.String;
 
 export interface ListTransactionByCustomerRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -14261,7 +14156,7 @@ export interface ListTransactionByCustomerRequest {
   /** The end date to fetch the transactions. The date should be specified in MM-DD-YYYY format. */
   periodEndDate: string;
   /** The type of transaction. */
-  type: TransactionsListByCustomerRequestType | (string & {});
+  type: ListTransactionByCustomerRequestType | (string & {});
   /** The filter query option allows clients to filter a collection of resources that are addressed by a request URL. */
   filter?: string;
   /** The orderby query option allows clients to request resources in a particular order. */
@@ -14282,7 +14177,7 @@ export const ListTransactionByCustomerRequest = /*@__PURE__*/ S.suspend(() =>
     customerName: S.String.pipe(T.Label()),
     periodStartDate: S.String.pipe(T.Query()),
     periodEndDate: S.String.pipe(T.Query()),
-    type: TransactionsListByCustomerRequestType.pipe(T.Query()),
+    type: ListTransactionByCustomerRequestType.pipe(T.Query()),
     filter: S.optional(S.String.pipe(T.Query())),
     orderBy: S.optional(S.String.pipe(T.Query())),
     top: S.optional(S.Number.pipe(T.Query())),
@@ -14341,11 +14236,11 @@ export const ListTransactionByInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTransactionByInvoiceRequest",
 }) as any as S.Schema<ListTransactionByInvoiceRequest>;
 
-export type TransactionsListByInvoiceSectionRequestType =
+export type ListTransactionByInvoiceSectionRequestType =
   | "Other"
   | "Billed"
   | "Unbilled";
-export const TransactionsListByInvoiceSectionRequestType =
+export const ListTransactionByInvoiceSectionRequestType =
   /*@__PURE__*/ S.String;
 
 export interface ListTransactionByInvoiceSectionRequest {
@@ -14360,7 +14255,7 @@ export interface ListTransactionByInvoiceSectionRequest {
   /** The end date to fetch the transactions. The date should be specified in MM-DD-YYYY format. */
   periodEndDate: string;
   /** The type of transaction. */
-  type: TransactionsListByInvoiceSectionRequestType | (string & {});
+  type: ListTransactionByInvoiceSectionRequestType | (string & {});
   /** The filter query option allows clients to filter a collection of resources that are addressed by a request URL. */
   filter?: string;
   /** The orderby query option allows clients to request resources in a particular order. */
@@ -14382,7 +14277,7 @@ export const ListTransactionByInvoiceSectionRequest = /*@__PURE__*/ S.suspend(
       invoiceSectionName: S.String.pipe(T.Label()),
       periodStartDate: S.String.pipe(T.Query()),
       periodEndDate: S.String.pipe(T.Query()),
-      type: TransactionsListByInvoiceSectionRequestType.pipe(T.Query()),
+      type: ListTransactionByInvoiceSectionRequestType.pipe(T.Query()),
       filter: S.optional(S.String.pipe(T.Query())),
       orderBy: S.optional(S.String.pipe(T.Query())),
       top: S.optional(S.Number.pipe(T.Query())),
@@ -14483,44 +14378,44 @@ export const TransferDetailsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TransferDetailsListResult",
 }) as any as S.Schema<TransferDetailsListResult>;
 
-export interface PartnerTransfersCancelRequest {
+export interface MergeBillingSubscriptionRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
-  /** The ID that uniquely identifies a billing profile. */
-  billingProfileName: string;
-  /** The ID that uniquely identifies a customer. */
-  customerName: string;
-  /** The ID that uniquely identifies a transfer request. */
-  transferName: string;
+  /** The ID that uniquely identifies a subscription. */
+  billingSubscriptionName: string;
+  /** The ID of the target billing subscription that will be merged with the source subscription provided in the request. */
+  targetBillingSubscriptionName?: string;
+  /** The quantity of the source billing subscription that will be merged with the target billing subscription. */
+  quantity?: number;
 }
-export const PartnerTransfersCancelRequest = /*@__PURE__*/ S.suspend(() =>
+export const MergeBillingSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     billingAccountName: S.String.pipe(T.Label()),
-    billingProfileName: S.String.pipe(T.Label()),
-    customerName: S.String.pipe(T.Label()),
-    transferName: S.String.pipe(T.Label()),
+    billingSubscriptionName: S.String.pipe(T.Label()),
+    targetBillingSubscriptionName: S.optional(S.String),
+    quantity: S.optional(S.Number),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers/{transferName}/cancel",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/merge",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "PartnerTransfersCancelRequest",
-}) as any as S.Schema<PartnerTransfersCancelRequest>;
+  identifier: "MergeBillingSubscriptionRequest",
+}) as any as S.Schema<MergeBillingSubscriptionRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type PartnerTransfersCancelResponseTagsMap = {
+export type MergeBillingSubscriptionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PartnerTransfersCancelResponseTagsMap = /*@__PURE__*/ S.Record(
+export const MergeBillingSubscriptionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PartnerTransfersCancelResponseTagsMap>;
+) as any as S.Schema<MergeBillingSubscriptionResponseTagsMap>;
 
-export interface PartnerTransfersCancelResponse {
+export interface MergeBillingSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -14529,23 +14424,146 @@ export interface PartnerTransfersCancelResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Details of the transfer. */
-  properties?: PartnerTransferProperties;
+  /** The properties of a(n) BillingSubscription */
+  properties?: BillingSubscriptionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: PartnerTransfersCancelResponseTagsMap;
+  tags?: MergeBillingSubscriptionResponseTagsMap;
 }
-export const PartnerTransfersCancelResponse = /*@__PURE__*/ S.suspend(() =>
+export const MergeBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(PartnerTransferProperties),
-    tags: S.optional(PartnerTransfersCancelResponseTagsMap),
+    properties: S.optional(BillingSubscriptionProperties),
+    tags: S.optional(MergeBillingSubscriptionResponseTagsMap),
   }),
 ).annotate({
-  identifier: "PartnerTransfersCancelResponse",
-}) as any as S.Schema<PartnerTransfersCancelResponse>;
+  identifier: "MergeBillingSubscriptionResponse",
+}) as any as S.Schema<MergeBillingSubscriptionResponse>;
+
+export interface MoveBillingSubscriptionRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a subscription. */
+  billingSubscriptionName: string;
+  /** The destination invoice section id. */
+  destinationInvoiceSectionId?: string;
+  /** The destination enrollment account id. */
+  destinationEnrollmentAccountId?: string;
+}
+export const MoveBillingSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billingAccountName: S.String.pipe(T.Label()),
+    billingSubscriptionName: S.String.pipe(T.Label()),
+    destinationInvoiceSectionId: S.optional(S.String),
+    destinationEnrollmentAccountId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptions/{billingSubscriptionName}/move",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "MoveBillingSubscriptionRequest",
+}) as any as S.Schema<MoveBillingSubscriptionRequest>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type MoveBillingSubscriptionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const MoveBillingSubscriptionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<MoveBillingSubscriptionResponseTagsMap>;
+
+export interface MoveBillingSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a(n) BillingSubscription */
+  properties?: BillingSubscriptionProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: MoveBillingSubscriptionResponseTagsMap;
+}
+export const MoveBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BillingSubscriptionProperties),
+    tags: S.optional(MoveBillingSubscriptionResponseTagsMap),
+  }),
+).annotate({
+  identifier: "MoveBillingSubscriptionResponse",
+}) as any as S.Schema<MoveBillingSubscriptionResponse>;
+
+export interface MoveProductRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** The ID that uniquely identifies a product. */
+  productName: string;
+  /** The destination invoice section id. */
+  destinationInvoiceSectionId: string;
+}
+export const MoveProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billingAccountName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    destinationInvoiceSectionId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}/move",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "MoveProductRequest",
+}) as any as S.Schema<MoveProductRequest>;
+
+/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+export type MoveProductResponseTagsMap = { [key: string]: string | undefined };
+export const MoveProductResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<MoveProductResponseTagsMap>;
+
+export interface MoveProductResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A product. */
+  properties?: ProductProperties;
+  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
+  tags?: MoveProductResponseTagsMap;
+}
+export const MoveProductResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProductProperties),
+    tags: S.optional(MoveProductResponseTagsMap),
+  }),
+).annotate({
+  identifier: "MoveProductResponse",
+}) as any as S.Schema<MoveProductResponse>;
 
 /** Request parameters to initiate transfer. */
 export interface PartnerInitiateTransferProperties {
@@ -14942,65 +14960,6 @@ export const PoliciesCreateOrUpdateByCustomerAtBillingAccountResponse =
     identifier: "PoliciesCreateOrUpdateByCustomerAtBillingAccountResponse",
   }) as any as S.Schema<PoliciesCreateOrUpdateByCustomerAtBillingAccountResponse>;
 
-export interface ProductsMoveRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a product. */
-  productName: string;
-  /** The destination invoice section id. */
-  destinationInvoiceSectionId: string;
-}
-export const ProductsMoveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billingAccountName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    destinationInvoiceSectionId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}/move",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProductsMoveRequest",
-}) as any as S.Schema<ProductsMoveRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type ProductsMoveResponseTagsMap = { [key: string]: string | undefined };
-export const ProductsMoveResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProductsMoveResponseTagsMap>;
-
-export interface ProductsMoveResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A product. */
-  properties?: ProductProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: ProductsMoveResponseTagsMap;
-}
-export const ProductsMoveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProductProperties),
-    tags: S.optional(ProductsMoveResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ProductsMoveResponse",
-}) as any as S.Schema<ProductsMoveResponse>;
-
 export interface ProductsValidateMoveEligibilityRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
@@ -15083,97 +15042,6 @@ export const MoveProductEligibilityResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MoveProductEligibilityResult",
 }) as any as S.Schema<MoveProductEligibilityResult>;
 
-/** Details of the product that is transferred. */
-export interface ProductDetails {
-  /** Type of the product that is transferred. */
-  productType?: ProductType | (string & {});
-  /** The ID of the product that is transferred. */
-  productId?: string;
-}
-export const ProductDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productType: S.optional(ProductType),
-    productId: S.optional(S.String),
-  }),
-).annotate({ identifier: "ProductDetails" }) as any as S.Schema<ProductDetails>;
-
-/** Request parameters to accept transfer. */
-export type AcceptTransferPropertiesProductDetailsList = Array<ProductDetails>;
-export const AcceptTransferPropertiesProductDetailsList = /*@__PURE__*/ S.Array(
-  ProductDetails,
-) as any as S.Schema<AcceptTransferPropertiesProductDetailsList>;
-
-/** Request parameters to accept transfer. */
-export interface AcceptTransferProperties {
-  /** Request parameters to accept transfer. */
-  productDetails?: AcceptTransferPropertiesProductDetailsList;
-}
-export const AcceptTransferProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    productDetails: S.optional(AcceptTransferPropertiesProductDetailsList),
-  }),
-).annotate({
-  identifier: "AcceptTransferProperties",
-}) as any as S.Schema<AcceptTransferProperties>;
-
-export interface RecipientTransfersAcceptRequest {
-  /** The ID that uniquely identifies a transfer request. */
-  transferName: string;
-  /** Request parameters to accept transfer. */
-  properties?: AcceptTransferProperties;
-}
-export const RecipientTransfersAcceptRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transferName: S.String.pipe(T.Label()),
-    properties: S.optional(AcceptTransferProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Billing/transfers/{transferName}/accept",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RecipientTransfersAcceptRequest",
-}) as any as S.Schema<RecipientTransfersAcceptRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type RecipientTransfersAcceptResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RecipientTransfersAcceptResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RecipientTransfersAcceptResponseTagsMap>;
-
-export interface RecipientTransfersAcceptResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Details of the transfer. */
-  properties?: RecipientTransferProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: RecipientTransfersAcceptResponseTagsMap;
-}
-export const RecipientTransfersAcceptResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RecipientTransferProperties),
-    tags: S.optional(RecipientTransfersAcceptResponseTagsMap),
-  }),
-).annotate({
-  identifier: "RecipientTransfersAcceptResponse",
-}) as any as S.Schema<RecipientTransfersAcceptResponse>;
-
 export interface RecipientTransfersDeclineRequest {
   /** The ID that uniquely identifies a transfer request. */
   transferName: string;
@@ -15229,106 +15097,109 @@ export const RecipientTransfersDeclineResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecipientTransfersDeclineResponse",
 }) as any as S.Schema<RecipientTransfersDeclineResponse>;
 
-export interface RecipientTransfersValidateRequest {
-  /** The ID that uniquely identifies a transfer request. */
-  transferName: string;
-  /** Request parameters to accept transfer. */
-  properties?: AcceptTransferProperties;
+/** Savings plan patch request */
+export interface SavingsPlanUpdateRequestProperties {
+  /** Display name */
+  displayName?: string;
+  /** Type of the Applied Scope. */
+  appliedScopeType?: AppliedScopeType | (string & {});
+  /** Properties specific to applied scope type. Not required if not applicable. */
+  appliedScopeProperties?: AppliedScopeProperties;
+  /** Setting this to true will automatically purchase a new benefit on the expiration date time. */
+  renew?: boolean;
+  /** Properties specific to renew. */
+  renewProperties?: RenewProperties;
 }
-export const RecipientTransfersValidateRequest = /*@__PURE__*/ S.suspend(() =>
+export const SavingsPlanUpdateRequestProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    transferName: S.String.pipe(T.Label()),
-    properties: S.optional(AcceptTransferProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Billing/transfers/{transferName}/validate",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RecipientTransfersValidateRequest",
-}) as any as S.Schema<RecipientTransfersValidateRequest>;
-
-/** The properties of the validation result. */
-export interface ValidationResultProperties {
-  /** Result Level. */
-  level?: string;
-  /** Result Code. */
-  code?: string;
-  /** The validation message. */
-  message?: string;
-}
-export const ValidationResultProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    level: S.optional(S.String),
-    code: S.optional(S.String),
-    message: S.optional(S.String),
+    displayName: S.optional(S.String),
+    appliedScopeType: S.optional(AppliedScopeType),
+    appliedScopeProperties: S.optional(AppliedScopeProperties),
+    renew: S.optional(S.Boolean),
+    renewProperties: S.optional(RenewProperties),
   }),
 ).annotate({
-  identifier: "ValidationResultProperties",
-}) as any as S.Schema<ValidationResultProperties>;
+  identifier: "SavingsPlanUpdateRequestProperties",
+}) as any as S.Schema<SavingsPlanUpdateRequestProperties>;
 
-/** The array of validation results. */
-export type ValidateTransferResponsePropertiesResultsList =
-  Array<ValidationResultProperties>;
-export const ValidateTransferResponsePropertiesResultsList =
+/** The benefits of a savings plan. */
+export type SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList =
+  Array<SavingsPlanUpdateRequestProperties>;
+export const SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList =
   /*@__PURE__*/ S.Array(
-    ValidationResultProperties,
-  ) as any as S.Schema<ValidateTransferResponsePropertiesResultsList>;
+    SavingsPlanUpdateRequestProperties,
+  ) as any as S.Schema<SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList>;
 
-/** The properties of transfer validation response. */
-export interface ValidateTransferResponseProperties {
-  /** The status of validation */
-  status?: string;
-  /** The product id for which this result applies. */
-  productId?: string;
-  /** The array of validation results. */
-  results?: ValidateTransferResponsePropertiesResultsList;
+export interface SavingsPlansValidateUpdateByBillingAccountRequest {
+  /** The ID that uniquely identifies a billing account. */
+  billingAccountName: string;
+  /** Order ID of the savings plan */
+  savingsPlanOrderId: string;
+  /** ID of the savings plan */
+  savingsPlanId: string;
+  /** The benefits of a savings plan. */
+  benefits?: SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList;
 }
-export const ValidateTransferResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const SavingsPlansValidateUpdateByBillingAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billingAccountName: S.String.pipe(T.Label()),
+      savingsPlanOrderId: S.String.pipe(T.Label()),
+      savingsPlanId: S.String.pipe(T.Label()),
+      benefits: S.optional(
+        SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}/validate",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "SavingsPlansValidateUpdateByBillingAccountRequest",
+  }) as any as S.Schema<SavingsPlansValidateUpdateByBillingAccountRequest>;
+
+/** Benefit scope response property */
+export interface SavingsPlanValidResponseProperty {
+  /** Indicates if the provided input is valid */
+  valid?: boolean;
+  /** Failure reason code if the provided input is invalid */
+  reasonCode?: string;
+  /** Failure reason if the provided input is invalid */
+  reason?: string;
+}
+export const SavingsPlanValidResponseProperty = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(S.String),
-    productId: S.optional(S.String),
-    results: S.optional(ValidateTransferResponsePropertiesResultsList),
+    valid: S.optional(S.Boolean),
+    reasonCode: S.optional(S.String),
+    reason: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ValidateTransferResponseProperties",
-}) as any as S.Schema<ValidateTransferResponseProperties>;
+  identifier: "SavingsPlanValidResponseProperty",
+}) as any as S.Schema<SavingsPlanValidResponseProperty>;
 
-/** Transfer validation response. */
-export interface ValidateTransferResponse {
-  /** The properties of transfer validation response. */
-  properties?: ValidateTransferResponseProperties;
+export type SavingsPlanValidateResponseBenefitsList =
+  Array<SavingsPlanValidResponseProperty>;
+export const SavingsPlanValidateResponseBenefitsList = /*@__PURE__*/ S.Array(
+  SavingsPlanValidResponseProperty,
+) as any as S.Schema<SavingsPlanValidateResponseBenefitsList>;
+
+/** Savings plan update validate response. */
+export interface SavingsPlanValidateResponse {
+  benefits?: SavingsPlanValidateResponseBenefitsList;
+  /** Url to get the next page. */
+  nextLink?: string;
 }
-export const ValidateTransferResponse = /*@__PURE__*/ S.suspend(() =>
+export const SavingsPlanValidateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    properties: S.optional(ValidateTransferResponseProperties),
+    benefits: S.optional(SavingsPlanValidateResponseBenefitsList),
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ValidateTransferResponse",
-}) as any as S.Schema<ValidateTransferResponse>;
-
-/** The list of transfer validation results. */
-export type ValidateTransferListResponseValueList =
-  Array<ValidateTransferResponse>;
-export const ValidateTransferListResponseValueList = /*@__PURE__*/ S.Array(
-  ValidateTransferResponse,
-) as any as S.Schema<ValidateTransferListResponseValueList>;
-
-/** Result of transfer validation. */
-export interface ValidateTransferListResponse {
-  /** The list of transfer validation results. */
-  value?: ValidateTransferListResponseValueList;
-}
-export const ValidateTransferListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ValidateTransferListResponseValueList),
-  }),
-).annotate({
-  identifier: "ValidateTransferListResponse",
-}) as any as S.Schema<ValidateTransferListResponse>;
+  identifier: "SavingsPlanValidateResponse",
+}) as any as S.Schema<SavingsPlanValidateResponse>;
 
 export interface TransactionsTransactionsDownloadByInvoiceRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -15352,70 +15223,6 @@ export const TransactionsTransactionsDownloadByInvoiceRequest =
   ).annotate({
     identifier: "TransactionsTransactionsDownloadByInvoiceRequest",
   }) as any as S.Schema<TransactionsTransactionsDownloadByInvoiceRequest>;
-
-export interface TransfersCancelRequest {
-  /** The ID that uniquely identifies a billing account. */
-  billingAccountName: string;
-  /** The ID that uniquely identifies a billing profile. */
-  billingProfileName: string;
-  /** The ID that uniquely identifies an invoice section. */
-  invoiceSectionName: string;
-  /** The ID that uniquely identifies a transfer request. */
-  transferName: string;
-}
-export const TransfersCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billingAccountName: S.String.pipe(T.Label()),
-    billingProfileName: S.String.pipe(T.Label()),
-    invoiceSectionName: S.String.pipe(T.Label()),
-    transferName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/transfers/{transferName}/cancel",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TransfersCancelRequest",
-}) as any as S.Schema<TransfersCancelRequest>;
-
-/** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type TransfersCancelResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TransfersCancelResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TransfersCancelResponseTagsMap>;
-
-export interface TransfersCancelResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Details of the transfer. */
-  properties?: TransferProperties;
-  /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: TransfersCancelResponseTagsMap;
-}
-export const TransfersCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TransferProperties),
-    tags: S.optional(TransfersCancelResponseTagsMap),
-  }),
-).annotate({
-  identifier: "TransfersCancelResponse",
-}) as any as S.Schema<TransfersCancelResponse>;
 
 /** Request parameters to initiate transfer. */
 export interface InitiateTransferProperties {
@@ -15498,13 +15305,13 @@ export const TransfersInitiateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TransfersInitiateResponse>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingAccountsUpdateRequestTagsMap = {
+export type UpdateBillingAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingAccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBillingAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingAccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBillingAccountRequestTagsMap>;
 
 /** The properties of an enrollment. */
 export interface EnrollmentDetailsInput {
@@ -15588,14 +15395,14 @@ export interface UpdateBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingAccountsUpdateRequestTagsMap;
+  tags?: UpdateBillingAccountRequestTagsMap;
   /** A billing account. */
   properties?: BillingAccountPropertiesInput;
 }
 export const UpdateBillingAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     billingAccountName: S.String.pipe(T.Label()),
-    tags: S.optional(BillingAccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateBillingAccountRequestTagsMap),
     properties: S.optional(BillingAccountPropertiesInput),
   }).pipe(
     T.Http({
@@ -15610,13 +15417,13 @@ export const UpdateBillingAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingAccountsUpdateResponseTagsMap = {
+export type UpdateBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingAccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBillingAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingAccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBillingAccountResponseTagsMap>;
 
 export interface UpdateBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15630,7 +15437,7 @@ export interface UpdateBillingAccountResponse {
   /** A billing account. */
   properties?: BillingAccountProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingAccountsUpdateResponseTagsMap;
+  tags?: UpdateBillingAccountResponseTagsMap;
 }
 export const UpdateBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15639,7 +15446,7 @@ export const UpdateBillingAccountResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingAccountProperties),
-    tags: S.optional(BillingAccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateBillingAccountResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateBillingAccountResponse",
@@ -15665,13 +15472,13 @@ export const BillingPropertyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BillingPropertyPropertiesInput>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingPropertyUpdateRequestTagsMap = {
+export type UpdateBillingPropertyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingPropertyUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBillingPropertyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingPropertyUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBillingPropertyRequestTagsMap>;
 
 export interface UpdateBillingPropertyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15679,13 +15486,13 @@ export interface UpdateBillingPropertyRequest {
   /** A billing property. */
   properties?: BillingPropertyPropertiesInput;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingPropertyUpdateRequestTagsMap;
+  tags?: UpdateBillingPropertyRequestTagsMap;
 }
 export const UpdateBillingPropertyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     properties: S.optional(BillingPropertyPropertiesInput),
-    tags: S.optional(BillingPropertyUpdateRequestTagsMap),
+    tags: S.optional(UpdateBillingPropertyRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -15699,13 +15506,13 @@ export const UpdateBillingPropertyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBillingPropertyRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingPropertyUpdateResponseTagsMap = {
+export type UpdateBillingPropertyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingPropertyUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBillingPropertyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingPropertyUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBillingPropertyResponseTagsMap>;
 
 export interface UpdateBillingPropertyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15719,7 +15526,7 @@ export interface UpdateBillingPropertyResponse {
   /** A billing property. */
   properties?: BillingPropertyProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingPropertyUpdateResponseTagsMap;
+  tags?: UpdateBillingPropertyResponseTagsMap;
 }
 export const UpdateBillingPropertyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15728,20 +15535,20 @@ export const UpdateBillingPropertyResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingPropertyProperties),
-    tags: S.optional(BillingPropertyUpdateResponseTagsMap),
+    tags: S.optional(UpdateBillingPropertyResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateBillingPropertyResponse",
 }) as any as S.Schema<UpdateBillingPropertyResponse>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionsUpdateRequestTagsMap = {
+export type UpdateBillingSubscriptionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingSubscriptionsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBillingSubscriptionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingSubscriptionsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBillingSubscriptionRequestTagsMap>;
 
 /** The billing properties of a subscription. */
 export type BillingSubscriptionPropertiesInput =
@@ -15755,7 +15562,7 @@ export interface UpdateBillingSubscriptionRequest {
   /** The ID that uniquely identifies a subscription. */
   billingSubscriptionName: string;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionsUpdateRequestTagsMap;
+  tags?: UpdateBillingSubscriptionRequestTagsMap;
   /** The properties of a(n) BillingSubscription */
   properties?: BillingSubscriptionAliasPropertiesInput;
 }
@@ -15763,7 +15570,7 @@ export const UpdateBillingSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     billingAccountName: S.String.pipe(T.Label()),
     billingSubscriptionName: S.String.pipe(T.Label()),
-    tags: S.optional(BillingSubscriptionsUpdateRequestTagsMap),
+    tags: S.optional(UpdateBillingSubscriptionRequestTagsMap),
     properties: S.optional(BillingSubscriptionAliasPropertiesInput),
   }).pipe(
     T.Http({
@@ -15778,13 +15585,13 @@ export const UpdateBillingSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBillingSubscriptionRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type BillingSubscriptionsUpdateResponseTagsMap = {
+export type UpdateBillingSubscriptionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const BillingSubscriptionsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateBillingSubscriptionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BillingSubscriptionsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBillingSubscriptionResponseTagsMap>;
 
 export interface UpdateBillingSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15798,7 +15605,7 @@ export interface UpdateBillingSubscriptionResponse {
   /** The properties of a(n) BillingSubscription */
   properties?: BillingSubscriptionProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: BillingSubscriptionsUpdateResponseTagsMap;
+  tags?: UpdateBillingSubscriptionResponseTagsMap;
 }
 export const UpdateBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15807,20 +15614,18 @@ export const UpdateBillingSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(BillingSubscriptionProperties),
-    tags: S.optional(BillingSubscriptionsUpdateResponseTagsMap),
+    tags: S.optional(UpdateBillingSubscriptionResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateBillingSubscriptionResponse",
 }) as any as S.Schema<UpdateBillingSubscriptionResponse>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type ProductsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProductsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateProductRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateProductRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProductsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateProductRequestTagsMap>;
 
 /** The amount. */
 export type AmountInput = SystemOverridesInput;
@@ -15855,7 +15660,7 @@ export interface UpdateProductRequest {
   /** The ID that uniquely identifies a product. */
   productName: string;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: ProductsUpdateRequestTagsMap;
+  tags?: UpdateProductRequestTagsMap;
   /** A product. */
   properties?: ProductPropertiesInput;
 }
@@ -15863,7 +15668,7 @@ export const UpdateProductRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     billingAccountName: S.String.pipe(T.Label()),
     productName: S.String.pipe(T.Label()),
-    tags: S.optional(ProductsUpdateRequestTagsMap),
+    tags: S.optional(UpdateProductRequestTagsMap),
     properties: S.optional(ProductPropertiesInput),
   }).pipe(
     T.Http({
@@ -15878,13 +15683,13 @@ export const UpdateProductRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateProductRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type ProductsUpdateResponseTagsMap = {
+export type UpdateProductResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProductsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateProductResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ProductsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateProductResponseTagsMap>;
 
 export interface UpdateProductResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -15898,7 +15703,7 @@ export interface UpdateProductResponse {
   /** A product. */
   properties?: ProductProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: ProductsUpdateResponseTagsMap;
+  tags?: UpdateProductResponseTagsMap;
 }
 export const UpdateProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15907,7 +15712,7 @@ export const UpdateProductResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(ProductProperties),
-    tags: S.optional(ProductsUpdateResponseTagsMap),
+    tags: S.optional(UpdateProductResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateProductResponse",
@@ -16032,14 +15837,14 @@ export type ReservationSkuPropertyInput = SystemOverridesInput;
 export const ReservationSkuPropertyInput = SystemOverridesInput;
 
 /** Tags for this reservation */
-export type ReservationsUpdateByBillingAccountRequestTagsMap = {
+export type UpdateReservationByBillingAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ReservationsUpdateByBillingAccountRequestTagsMap =
+export const UpdateReservationByBillingAccountRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ReservationsUpdateByBillingAccountRequestTagsMap>;
+  ) as any as S.Schema<UpdateReservationByBillingAccountRequestTagsMap>;
 
 export interface UpdateReservationByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
@@ -16053,7 +15858,7 @@ export interface UpdateReservationByBillingAccountRequest {
   /** The sku information associated to this reservation */
   sku?: SystemOverridesInput;
   /** Tags for this reservation */
-  tags?: ReservationsUpdateByBillingAccountRequestTagsMap;
+  tags?: UpdateReservationByBillingAccountRequestTagsMap;
 }
 export const UpdateReservationByBillingAccountRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -16063,7 +15868,7 @@ export const UpdateReservationByBillingAccountRequest = /*@__PURE__*/ S.suspend(
       reservationId: S.String.pipe(T.Label()),
       properties: S.optional(PatchPropertiesInput),
       sku: S.optional(SystemOverridesInput),
-      tags: S.optional(ReservationsUpdateByBillingAccountRequestTagsMap),
+      tags: S.optional(UpdateReservationByBillingAccountRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -16077,14 +15882,14 @@ export const UpdateReservationByBillingAccountRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateReservationByBillingAccountRequest>;
 
 /** Tags for this reservation */
-export type ReservationsUpdateByBillingAccountResponseTagsMap = {
+export type UpdateReservationByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ReservationsUpdateByBillingAccountResponseTagsMap =
+export const UpdateReservationByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ReservationsUpdateByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<UpdateReservationByBillingAccountResponseTagsMap>;
 
 export interface UpdateReservationByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -16101,7 +15906,7 @@ export interface UpdateReservationByBillingAccountResponse {
   location?: string;
   etag?: number;
   /** Tags for this reservation */
-  tags?: ReservationsUpdateByBillingAccountResponseTagsMap;
+  tags?: UpdateReservationByBillingAccountResponseTagsMap;
   /** The sku information associated to this reservation */
   sku?: ReservationSkuProperty;
 }
@@ -16115,49 +15920,24 @@ export const UpdateReservationByBillingAccountResponse =
       properties: S.optional(ReservationProperty),
       location: S.optional(S.String),
       etag: S.optional(S.Number),
-      tags: S.optional(ReservationsUpdateByBillingAccountResponseTagsMap),
+      tags: S.optional(UpdateReservationByBillingAccountResponseTagsMap),
       sku: S.optional(ReservationSkuProperty),
     }),
   ).annotate({
     identifier: "UpdateReservationByBillingAccountResponse",
   }) as any as S.Schema<UpdateReservationByBillingAccountResponse>;
 
-/** Savings plan patch request */
-export interface SavingsPlanUpdateRequestProperties {
-  /** Display name */
-  displayName?: string;
-  /** Type of the Applied Scope. */
-  appliedScopeType?: AppliedScopeType | (string & {});
-  /** Properties specific to applied scope type. Not required if not applicable. */
-  appliedScopeProperties?: AppliedScopeProperties;
-  /** Setting this to true will automatically purchase a new benefit on the expiration date time. */
-  renew?: boolean;
-  /** Properties specific to renew. */
-  renewProperties?: RenewProperties;
-}
-export const SavingsPlanUpdateRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    appliedScopeType: S.optional(AppliedScopeType),
-    appliedScopeProperties: S.optional(AppliedScopeProperties),
-    renew: S.optional(S.Boolean),
-    renewProperties: S.optional(RenewProperties),
-  }),
-).annotate({
-  identifier: "SavingsPlanUpdateRequestProperties",
-}) as any as S.Schema<SavingsPlanUpdateRequestProperties>;
-
 /** Tags for this reservation */
-export type SavingsPlansUpdateByBillingAccountRequestTagsMap = {
+export type UpdateSavingsPlanByBillingAccountRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SavingsPlansUpdateByBillingAccountRequestTagsMap =
+export const UpdateSavingsPlanByBillingAccountRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SavingsPlansUpdateByBillingAccountRequestTagsMap>;
+  ) as any as S.Schema<UpdateSavingsPlanByBillingAccountRequestTagsMap>;
 
-export interface UpdateSavingPlanByBillingAccountRequest {
+export interface UpdateSavingsPlanByBillingAccountRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
   /** Order ID of the savings plan */
@@ -16169,9 +15949,9 @@ export interface UpdateSavingPlanByBillingAccountRequest {
   /** The SKU to be applied for this resource */
   sku?: Sku;
   /** Tags for this reservation */
-  tags?: SavingsPlansUpdateByBillingAccountRequestTagsMap;
+  tags?: UpdateSavingsPlanByBillingAccountRequestTagsMap;
 }
-export const UpdateSavingPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
+export const UpdateSavingsPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
@@ -16179,7 +15959,7 @@ export const UpdateSavingPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
       savingsPlanId: S.String.pipe(T.Label()),
       properties: S.optional(SavingsPlanUpdateRequestProperties),
       sku: S.optional(Sku),
-      tags: S.optional(SavingsPlansUpdateByBillingAccountRequestTagsMap),
+      tags: S.optional(UpdateSavingsPlanByBillingAccountRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -16189,20 +15969,20 @@ export const UpdateSavingPlanByBillingAccountRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateSavingPlanByBillingAccountRequest",
-}) as any as S.Schema<UpdateSavingPlanByBillingAccountRequest>;
+  identifier: "UpdateSavingsPlanByBillingAccountRequest",
+}) as any as S.Schema<UpdateSavingsPlanByBillingAccountRequest>;
 
 /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-export type SavingsPlansUpdateByBillingAccountResponseTagsMap = {
+export type UpdateSavingsPlanByBillingAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SavingsPlansUpdateByBillingAccountResponseTagsMap =
+export const UpdateSavingsPlanByBillingAccountResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SavingsPlansUpdateByBillingAccountResponseTagsMap>;
+  ) as any as S.Schema<UpdateSavingsPlanByBillingAccountResponseTagsMap>;
 
-export interface UpdateSavingPlanByBillingAccountResponse {
+export interface UpdateSavingsPlanByBillingAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -16214,114 +15994,336 @@ export interface UpdateSavingPlanByBillingAccountResponse {
   /** Savings plan properties */
   properties?: SavingsPlanModelProperties;
   /** Dictionary of metadata associated with the resource. It may not be populated for all resource types. Maximum key/value length supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain < > % & \ ? / */
-  tags?: SavingsPlansUpdateByBillingAccountResponseTagsMap;
+  tags?: UpdateSavingsPlanByBillingAccountResponseTagsMap;
   /** Savings plan SKU */
   sku: Sku;
 }
-export const UpdateSavingPlanByBillingAccountResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateSavingsPlanByBillingAccountResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: S.optional(SavingsPlanModelProperties),
-      tags: S.optional(SavingsPlansUpdateByBillingAccountResponseTagsMap),
+      tags: S.optional(UpdateSavingsPlanByBillingAccountResponseTagsMap),
       sku: Sku,
     }),
+  ).annotate({
+    identifier: "UpdateSavingsPlanByBillingAccountResponse",
+  }) as any as S.Schema<UpdateSavingsPlanByBillingAccountResponse>;
+
+export interface ValidateAddressRequest {
+  /** Address line 1. */
+  addressLine1: string;
+  /** Address line 2. */
+  addressLine2?: string;
+  /** Address line 3. */
+  addressLine3?: string;
+  /** Address city. */
+  city?: string;
+  /** Company name. Optional for MCA Individual (Pay-as-you-go). */
+  companyName?: string;
+  /** Country code uses ISO 3166-1 Alpha-2 format. */
+  country: string;
+  /** Address district. */
+  district?: string;
+  /** Email address. */
+  email?: string;
+  /** First name. Optional for MCA Enterprise. */
+  firstName?: string;
+  /** Last name. Optional for MCA Enterprise. */
+  lastName?: string;
+  /** Middle name. */
+  middleName?: string;
+  /** Phone number. */
+  phoneNumber?: string;
+  /** Postal code. */
+  postalCode?: string;
+  /** Address region. */
+  region?: string;
+  /** Indicates if the address is incomplete. */
+  isValidAddress?: boolean;
+}
+export const ValidateAddressRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    addressLine1: S.String,
+    addressLine2: S.optional(S.String),
+    addressLine3: S.optional(S.String),
+    city: S.optional(S.String),
+    companyName: S.optional(S.String),
+    country: S.String,
+    district: S.optional(S.String),
+    email: S.optional(S.String),
+    firstName: S.optional(S.String),
+    lastName: S.optional(S.String),
+    middleName: S.optional(S.String),
+    phoneNumber: S.optional(S.String),
+    postalCode: S.optional(S.String),
+    region: S.optional(S.String),
+    isValidAddress: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Billing/validateAddress",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "UpdateSavingPlanByBillingAccountResponse",
-}) as any as S.Schema<UpdateSavingPlanByBillingAccountResponse>;
+  identifier: "ValidateAddressRequest",
+}) as any as S.Schema<ValidateAddressRequest>;
 
-/** The benefits of a savings plan. */
-export type SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList =
-  Array<SavingsPlanUpdateRequestProperties>;
-export const SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList =
+/** Status of the address validation. */
+export type AddressValidationStatus = "Other" | "Valid" | "Invalid";
+export const AddressValidationStatus = /*@__PURE__*/ S.String;
+
+/** The list of suggested addresses. */
+export type AddressValidationResponseSuggestedAddressesList =
+  Array<AddressDetails>;
+export const AddressValidationResponseSuggestedAddressesList =
   /*@__PURE__*/ S.Array(
-    SavingsPlanUpdateRequestProperties,
-  ) as any as S.Schema<SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList>;
+    AddressDetails,
+  ) as any as S.Schema<AddressValidationResponseSuggestedAddressesList>;
 
-export interface UpdateSavingPlanValidateByBillingAccountRequest {
+/** Result of the address validation. */
+export interface AddressValidationResponse {
+  /** Status of the address validation. */
+  status?: AddressValidationStatus;
+  /** The list of suggested addresses. */
+  suggestedAddresses?: AddressValidationResponseSuggestedAddressesList;
+  /** Validation error message. */
+  validationMessage?: string;
+}
+export const AddressValidationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(AddressValidationStatus),
+    suggestedAddresses: S.optional(
+      AddressValidationResponseSuggestedAddressesList,
+    ),
+    validationMessage: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AddressValidationResponse",
+}) as any as S.Schema<AddressValidationResponse>;
+
+export type ValidateBillingAccountPaymentTermsRequestBodyList =
+  Array<PaymentTermInput>;
+export const ValidateBillingAccountPaymentTermsRequestBodyList =
+  /*@__PURE__*/ S.Array(
+    PaymentTermInput,
+  ) as any as S.Schema<ValidateBillingAccountPaymentTermsRequestBodyList>;
+
+export interface ValidateBillingAccountPaymentTermsRequest {
   /** The ID that uniquely identifies a billing account. */
   billingAccountName: string;
-  /** Order ID of the savings plan */
-  savingsPlanOrderId: string;
-  /** ID of the savings plan */
-  savingsPlanId: string;
-  /** The benefits of a savings plan. */
-  benefits?: SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList;
+  body: ValidateBillingAccountPaymentTermsRequestBodyList;
 }
-export const UpdateSavingPlanValidateByBillingAccountRequest =
+export const ValidateBillingAccountPaymentTermsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       billingAccountName: S.String.pipe(T.Label()),
-      savingsPlanOrderId: S.String.pipe(T.Label()),
-      savingsPlanId: S.String.pipe(T.Label()),
-      benefits: S.optional(
-        SavingsPlansValidateUpdateByBillingAccountRequestBenefitsList,
+      body: ValidateBillingAccountPaymentTermsRequestBodyList.pipe(
+        T.HttpBody(),
       ),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}/validate",
+        uri: "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/validatePaymentTerms",
         code: 200,
         apiVersion: "2024-04-01",
       }),
     ),
   ).annotate({
-    identifier: "UpdateSavingPlanValidateByBillingAccountRequest",
-  }) as any as S.Schema<UpdateSavingPlanValidateByBillingAccountRequest>;
+    identifier: "ValidateBillingAccountPaymentTermsRequest",
+  }) as any as S.Schema<ValidateBillingAccountPaymentTermsRequest>;
 
-/** Benefit scope response property */
-export interface SavingsPlanValidResponseProperty {
-  /** Indicates if the provided input is valid */
-  valid?: boolean;
-  /** Failure reason code if the provided input is invalid */
-  reasonCode?: string;
-  /** Failure reason if the provided input is invalid */
-  reason?: string;
+/** Indicates the eligibility status of the payment terms. */
+export type PaymentTermsEligibilityStatus = "Other" | "Valid" | "Invalid";
+export const PaymentTermsEligibilityStatus = /*@__PURE__*/ S.String;
+
+/** Indicates the reason for the ineligibility of the payment terms. */
+export type PaymentTermsEligibilityCode =
+  | "Other"
+  | "OverlappingPaymentTerms"
+  | "InvalidDateFormat"
+  | "InvalidDateRange"
+  | "InactiveBillingAccount"
+  | "InvalidBillingAccountType"
+  | "NullOrEmptyPaymentTerms"
+  | "BillingAccountNotFound"
+  | "IneligibleBillingAccountStatus"
+  | "InvalidTerms";
+export const PaymentTermsEligibilityCode = /*@__PURE__*/ S.String;
+
+/** Details of the payment terms eligibility. */
+export interface PaymentTermsEligibilityDetail {
+  /** Indicates the reason for the ineligibility of the payment terms. */
+  code?: PaymentTermsEligibilityCode;
+  /** Indicates the message for the ineligibility of the payment terms. */
+  message?: string;
 }
-export const SavingsPlanValidResponseProperty = /*@__PURE__*/ S.suspend(() =>
+export const PaymentTermsEligibilityDetail = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    valid: S.optional(S.Boolean),
-    reasonCode: S.optional(S.String),
-    reason: S.optional(S.String),
+    code: S.optional(PaymentTermsEligibilityCode),
+    message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SavingsPlanValidResponseProperty",
-}) as any as S.Schema<SavingsPlanValidResponseProperty>;
+  identifier: "PaymentTermsEligibilityDetail",
+}) as any as S.Schema<PaymentTermsEligibilityDetail>;
 
-export type SavingsPlanValidateResponseBenefitsList =
-  Array<SavingsPlanValidResponseProperty>;
-export const SavingsPlanValidateResponseBenefitsList = /*@__PURE__*/ S.Array(
-  SavingsPlanValidResponseProperty,
-) as any as S.Schema<SavingsPlanValidateResponseBenefitsList>;
+/** Details of the payment terms eligibility. */
+export type PaymentTermsEligibilityResultEligibilityDetailsList =
+  Array<PaymentTermsEligibilityDetail>;
+export const PaymentTermsEligibilityResultEligibilityDetailsList =
+  /*@__PURE__*/ S.Array(
+    PaymentTermsEligibilityDetail,
+  ) as any as S.Schema<PaymentTermsEligibilityResultEligibilityDetailsList>;
 
-/** Savings plan update validate response. */
-export interface SavingsPlanValidateResponse {
-  benefits?: SavingsPlanValidateResponseBenefitsList;
-  /** Url to get the next page. */
-  nextLink?: string;
+/** Result of the payment terms eligibility. */
+export interface PaymentTermsEligibilityResult {
+  /** Indicates the eligibility status of the payment terms. */
+  eligibilityStatus?: PaymentTermsEligibilityStatus;
+  /** Details of the payment terms eligibility. */
+  eligibilityDetails?: PaymentTermsEligibilityResultEligibilityDetailsList;
 }
-export const SavingsPlanValidateResponse = /*@__PURE__*/ S.suspend(() =>
+export const PaymentTermsEligibilityResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    benefits: S.optional(SavingsPlanValidateResponseBenefitsList),
-    nextLink: S.optional(S.String),
+    eligibilityStatus: S.optional(PaymentTermsEligibilityStatus),
+    eligibilityDetails: S.optional(
+      PaymentTermsEligibilityResultEligibilityDetailsList,
+    ),
   }),
 ).annotate({
-  identifier: "SavingsPlanValidateResponse",
-}) as any as S.Schema<SavingsPlanValidateResponse>;
+  identifier: "PaymentTermsEligibilityResult",
+}) as any as S.Schema<PaymentTermsEligibilityResult>;
 
-export type AddressValidateError = AzureOpError;
-/** Validates an address. Use the operation to validate an address before using it as soldTo or a billTo address. */
-export const AddressValidate: API.OperationMethod<
-  AddressValidateRequest,
-  AddressValidationResponse,
-  AddressValidateError,
+export interface ValidateRecipientTransferRequest {
+  /** The ID that uniquely identifies a transfer request. */
+  transferName: string;
+  /** Request parameters to accept transfer. */
+  properties?: AcceptTransferProperties;
+}
+export const ValidateRecipientTransferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transferName: S.String.pipe(T.Label()),
+    properties: S.optional(AcceptTransferProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Billing/transfers/{transferName}/validate",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateRecipientTransferRequest",
+}) as any as S.Schema<ValidateRecipientTransferRequest>;
+
+/** The properties of the validation result. */
+export interface ValidationResultProperties {
+  /** Result Level. */
+  level?: string;
+  /** Result Code. */
+  code?: string;
+  /** The validation message. */
+  message?: string;
+}
+export const ValidationResultProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    level: S.optional(S.String),
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ValidationResultProperties",
+}) as any as S.Schema<ValidationResultProperties>;
+
+/** The array of validation results. */
+export type ValidateTransferResponsePropertiesResultsList =
+  Array<ValidationResultProperties>;
+export const ValidateTransferResponsePropertiesResultsList =
+  /*@__PURE__*/ S.Array(
+    ValidationResultProperties,
+  ) as any as S.Schema<ValidateTransferResponsePropertiesResultsList>;
+
+/** The properties of transfer validation response. */
+export interface ValidateTransferResponseProperties {
+  /** The status of validation */
+  status?: string;
+  /** The product id for which this result applies. */
+  productId?: string;
+  /** The array of validation results. */
+  results?: ValidateTransferResponsePropertiesResultsList;
+}
+export const ValidateTransferResponseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    productId: S.optional(S.String),
+    results: S.optional(ValidateTransferResponsePropertiesResultsList),
+  }),
+).annotate({
+  identifier: "ValidateTransferResponseProperties",
+}) as any as S.Schema<ValidateTransferResponseProperties>;
+
+/** Transfer validation response. */
+export interface ValidateTransferResponse {
+  /** The properties of transfer validation response. */
+  properties?: ValidateTransferResponseProperties;
+}
+export const ValidateTransferResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(ValidateTransferResponseProperties),
+  }),
+).annotate({
+  identifier: "ValidateTransferResponse",
+}) as any as S.Schema<ValidateTransferResponse>;
+
+/** The list of transfer validation results. */
+export type ValidateTransferListResponseValueList =
+  Array<ValidateTransferResponse>;
+export const ValidateTransferListResponseValueList = /*@__PURE__*/ S.Array(
+  ValidateTransferResponse,
+) as any as S.Schema<ValidateTransferListResponseValueList>;
+
+/** Result of transfer validation. */
+export interface ValidateTransferListResponse {
+  /** The list of transfer validation results. */
+  value?: ValidateTransferListResponseValueList;
+}
+export const ValidateTransferListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ValidateTransferListResponseValueList),
+  }),
+).annotate({
+  identifier: "ValidateTransferListResponse",
+}) as any as S.Schema<ValidateTransferListResponse>;
+
+export type AcceptRecipientTransferError = AzureOpError;
+/** Accepts a transfer request. Accepts a transfer request. */
+export const AcceptRecipientTransfer: API.OperationMethod<
+  AcceptRecipientTransferRequest,
+  AcceptRecipientTransferResponse,
+  AcceptRecipientTransferError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AddressValidateRequest,
-  output: AddressValidationResponse,
+  input: AcceptRecipientTransferRequest,
+  output: AcceptRecipientTransferResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AddBillingAccountPaymentTermsError = AzureOpError;
+/** Adds payment terms to all the billing profiles under the billing account. Currently, payment terms can be added only on billing accounts that have Agreement Type as 'Microsoft Customer Agreement' and AccountType as 'Enterprise'. This action needs pre-authorization and only Field Sellers are authorized to add the payment terms and is not a self-serve action. */
+export const AddBillingAccountPaymentTerms: API.OperationMethod<
+  AddBillingAccountPaymentTermsRequest,
+  AddBillingAccountPaymentTermsResponse,
+  AddBillingAccountPaymentTermsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddBillingAccountPaymentTermsRequest,
+  output: AddBillingAccountPaymentTermsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16337,51 +16339,6 @@ export const AssociatedTenantsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AssociatedTenantsCreateOrUpdateRequest,
   output: AssociatedTenantsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAccountsAddPaymentTermsError = AzureOpError;
-/** Adds payment terms to all the billing profiles under the billing account. Currently, payment terms can be added only on billing accounts that have Agreement Type as 'Microsoft Customer Agreement' and AccountType as 'Enterprise'. This action needs pre-authorization and only Field Sellers are authorized to add the payment terms and is not a self-serve action. */
-export const BillingAccountsAddPaymentTerms: API.OperationMethod<
-  BillingAccountsAddPaymentTermsRequest,
-  BillingAccountsAddPaymentTermsResponse,
-  BillingAccountsAddPaymentTermsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAccountsAddPaymentTermsRequest,
-  output: BillingAccountsAddPaymentTermsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAccountsCancelPaymentTermsError = AzureOpError;
-/** Cancels all the payment terms on billing account that falls after the cancellation date in the request. Currently, cancel payment terms is only served by admin actions and is not a self-serve action. */
-export const BillingAccountsCancelPaymentTerms: API.OperationMethod<
-  BillingAccountsCancelPaymentTermsRequest,
-  BillingAccountsCancelPaymentTermsResponse,
-  BillingAccountsCancelPaymentTermsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAccountsCancelPaymentTermsRequest,
-  output: BillingAccountsCancelPaymentTermsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingAccountsConfirmTransitionError = AzureOpError;
-/** Gets the transition details for a billing account that has transitioned from agreement type Microsoft Online Services Program to agreement type Microsoft Customer Agreement. */
-export const BillingAccountsConfirmTransition: API.OperationMethod<
-  BillingAccountsConfirmTransitionRequest,
-  TransitionDetails,
-  BillingAccountsConfirmTransitionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAccountsConfirmTransitionRequest,
-  output: TransitionDetails,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16404,21 +16361,6 @@ export const BillingAccountsListInvoiceSectionsByCreateSubscriptionPermission: A
   retry: Retry.Retry,
 }));
 
-export type BillingAccountsValidatePaymentTermsError = AzureOpError;
-/** Validates payment terms on a billing account with agreement type 'Microsoft Customer Agreement' and account type 'Enterprise'. */
-export const BillingAccountsValidatePaymentTerms: API.OperationMethod<
-  BillingAccountsValidatePaymentTermsRequest,
-  PaymentTermsEligibilityResult,
-  BillingAccountsValidatePaymentTermsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingAccountsValidatePaymentTermsRequest,
-  output: PaymentTermsEligibilityResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BillingProfilesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a billing profile. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement and Microsoft Partner Agreement. If you are a MCA Individual (Pay-as-you-go) customer, then please use the Azure portal experience to create the billing profile. */
 export const BillingProfilesCreateOrUpdate: API.OperationMethod<
@@ -16429,6 +16371,21 @@ export const BillingProfilesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BillingProfilesCreateOrUpdateRequest,
   output: BillingProfilesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BillingProfilesValidateDeleteEligibilityError = AzureOpError;
+/** Validates if the billing profile can be deleted. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement and Microsoft Partner Agreement. */
+export const BillingProfilesValidateDeleteEligibility: API.OperationMethod<
+  BillingProfilesValidateDeleteEligibilityRequest,
+  DeleteBillingProfileEligibilityResult,
+  BillingProfilesValidateDeleteEligibilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BillingProfilesValidateDeleteEligibilityRequest,
+  output: DeleteBillingProfileEligibilityResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16572,51 +16529,6 @@ export const BillingSubscriptionsAliasesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BillingSubscriptionsCancelError = AzureOpError;
-/** Cancels a usage-based subscription. This operation is supported only for billing accounts of type Microsoft Partner Agreement. */
-export const BillingSubscriptionsCancel: API.OperationMethod<
-  BillingSubscriptionsCancelRequest,
-  BillingSubscriptionsCancelResponse,
-  BillingSubscriptionsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingSubscriptionsCancelRequest,
-  output: BillingSubscriptionsCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingSubscriptionsMergeError = AzureOpError;
-/** Merges the billing subscription provided in the request with a target billing subscription. */
-export const BillingSubscriptionsMerge: API.OperationMethod<
-  BillingSubscriptionsMergeRequest,
-  BillingSubscriptionsMergeResponse,
-  BillingSubscriptionsMergeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingSubscriptionsMergeRequest,
-  output: BillingSubscriptionsMergeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BillingSubscriptionsMoveError = AzureOpError;
-/** Moves charges for a subscription to a new invoice section. The new invoice section must belong to the same billing profile as the existing invoice section. This operation is supported for billing accounts with agreement type Microsoft Customer Agreement. */
-export const BillingSubscriptionsMove: API.OperationMethod<
-  BillingSubscriptionsMoveRequest,
-  BillingSubscriptionsMoveResponse,
-  BillingSubscriptionsMoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingSubscriptionsMoveRequest,
-  output: BillingSubscriptionsMoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BillingSubscriptionsSplitError = AzureOpError;
 /** Splits a subscription into a new subscription with quantity less than current subscription quantity and not equal to 0. */
 export const BillingSubscriptionsSplit: API.OperationMethod<
@@ -16647,91 +16559,167 @@ export const BillingSubscriptionsValidateMoveEligibility: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckBillingPermissionAccessByBillingAccountError = AzureOpError;
+export type CancelBillingAccountPaymentTermsError = AzureOpError;
+/** Cancels all the payment terms on billing account that falls after the cancellation date in the request. Currently, cancel payment terms is only served by admin actions and is not a self-serve action. */
+export const CancelBillingAccountPaymentTerms: API.OperationMethod<
+  CancelBillingAccountPaymentTermsRequest,
+  CancelBillingAccountPaymentTermsResponse,
+  CancelBillingAccountPaymentTermsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelBillingAccountPaymentTermsRequest,
+  output: CancelBillingAccountPaymentTermsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelBillingSubscriptionError = AzureOpError;
+/** Cancels a usage-based subscription. This operation is supported only for billing accounts of type Microsoft Partner Agreement. */
+export const CancelBillingSubscription: API.OperationMethod<
+  CancelBillingSubscriptionRequest,
+  CancelBillingSubscriptionResponse,
+  CancelBillingSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelBillingSubscriptionRequest,
+  output: CancelBillingSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelPartnerTransferError = AzureOpError;
+/** Cancels a transfer request. The operation is supported only for billing accounts with agreement type Microsoft Partner Agreement. */
+export const CancelPartnerTransfer: API.OperationMethod<
+  CancelPartnerTransferRequest,
+  CancelPartnerTransferResponse,
+  CancelPartnerTransferError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelPartnerTransferRequest,
+  output: CancelPartnerTransferResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelTransferError = AzureOpError;
+/** Cancels a transfer request. The operation is supported only for billing accounts with agreement type Microsoft Customer Agreement. */
+export const CancelTransfer: API.OperationMethod<
+  CancelTransferRequest,
+  CancelTransferResponse,
+  CancelTransferError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelTransferRequest,
+  output: CancelTransferResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckBillingPermissionsAccessByBillingAccountError = AzureOpError;
 /** Provides a list of check access response objects for a billing account. */
-export const CheckBillingPermissionAccessByBillingAccount: API.OperationMethod<
-  CheckBillingPermissionAccessByBillingAccountRequest,
-  CheckBillingPermissionAccessByBillingAccountResponse,
-  CheckBillingPermissionAccessByBillingAccountError,
+export const CheckBillingPermissionsAccessByBillingAccount: API.OperationMethod<
+  CheckBillingPermissionsAccessByBillingAccountRequest,
+  CheckBillingPermissionsAccessByBillingAccountResponse,
+  CheckBillingPermissionsAccessByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckBillingPermissionAccessByBillingAccountRequest,
-  output: CheckBillingPermissionAccessByBillingAccountResponse,
+  input: CheckBillingPermissionsAccessByBillingAccountRequest,
+  output: CheckBillingPermissionsAccessByBillingAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CheckBillingPermissionAccessByBillingProfileError = AzureOpError;
+export type CheckBillingPermissionsAccessByBillingProfileError = AzureOpError;
 /** Provides a list of check access response objects for a billing profile. */
-export const CheckBillingPermissionAccessByBillingProfile: API.OperationMethod<
-  CheckBillingPermissionAccessByBillingProfileRequest,
-  CheckBillingPermissionAccessByBillingProfileResponse,
-  CheckBillingPermissionAccessByBillingProfileError,
+export const CheckBillingPermissionsAccessByBillingProfile: API.OperationMethod<
+  CheckBillingPermissionsAccessByBillingProfileRequest,
+  CheckBillingPermissionsAccessByBillingProfileResponse,
+  CheckBillingPermissionsAccessByBillingProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckBillingPermissionAccessByBillingProfileRequest,
-  output: CheckBillingPermissionAccessByBillingProfileResponse,
+  input: CheckBillingPermissionsAccessByBillingProfileRequest,
+  output: CheckBillingPermissionsAccessByBillingProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CheckBillingPermissionAccessByCustomerError = AzureOpError;
+export type CheckBillingPermissionsAccessByCustomerError = AzureOpError;
 /** Provides a list of check access response objects for a customer. */
-export const CheckBillingPermissionAccessByCustomer: API.OperationMethod<
-  CheckBillingPermissionAccessByCustomerRequest,
-  CheckBillingPermissionAccessByCustomerResponse,
-  CheckBillingPermissionAccessByCustomerError,
+export const CheckBillingPermissionsAccessByCustomer: API.OperationMethod<
+  CheckBillingPermissionsAccessByCustomerRequest,
+  CheckBillingPermissionsAccessByCustomerResponse,
+  CheckBillingPermissionsAccessByCustomerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckBillingPermissionAccessByCustomerRequest,
-  output: CheckBillingPermissionAccessByCustomerResponse,
+  input: CheckBillingPermissionsAccessByCustomerRequest,
+  output: CheckBillingPermissionsAccessByCustomerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CheckBillingPermissionAccessByDepartmentError = AzureOpError;
+export type CheckBillingPermissionsAccessByDepartmentError = AzureOpError;
 /** Provides a list of check access response objects for a department. */
-export const CheckBillingPermissionAccessByDepartment: API.OperationMethod<
-  CheckBillingPermissionAccessByDepartmentRequest,
-  CheckBillingPermissionAccessByDepartmentResponse,
-  CheckBillingPermissionAccessByDepartmentError,
+export const CheckBillingPermissionsAccessByDepartment: API.OperationMethod<
+  CheckBillingPermissionsAccessByDepartmentRequest,
+  CheckBillingPermissionsAccessByDepartmentResponse,
+  CheckBillingPermissionsAccessByDepartmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckBillingPermissionAccessByDepartmentRequest,
-  output: CheckBillingPermissionAccessByDepartmentResponse,
+  input: CheckBillingPermissionsAccessByDepartmentRequest,
+  output: CheckBillingPermissionsAccessByDepartmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CheckBillingPermissionAccessByEnrollmentAccountError = AzureOpError;
+export type CheckBillingPermissionsAccessByEnrollmentAccountError =
+  AzureOpError;
 /** Provides a list of check access response objects for an enrollment account. */
-export const CheckBillingPermissionAccessByEnrollmentAccount: API.OperationMethod<
-  CheckBillingPermissionAccessByEnrollmentAccountRequest,
-  CheckBillingPermissionAccessByEnrollmentAccountResponse,
-  CheckBillingPermissionAccessByEnrollmentAccountError,
+export const CheckBillingPermissionsAccessByEnrollmentAccount: API.OperationMethod<
+  CheckBillingPermissionsAccessByEnrollmentAccountRequest,
+  CheckBillingPermissionsAccessByEnrollmentAccountResponse,
+  CheckBillingPermissionsAccessByEnrollmentAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckBillingPermissionAccessByEnrollmentAccountRequest,
-  output: CheckBillingPermissionAccessByEnrollmentAccountResponse,
+  input: CheckBillingPermissionsAccessByEnrollmentAccountRequest,
+  output: CheckBillingPermissionsAccessByEnrollmentAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CheckBillingPermissionAccessByInvoiceSectionError = AzureOpError;
+export type CheckBillingPermissionsAccessByInvoiceSectionError = AzureOpError;
 /** Provides a list of check access response objects for an invoice section. */
-export const CheckBillingPermissionAccessByInvoiceSection: API.OperationMethod<
-  CheckBillingPermissionAccessByInvoiceSectionRequest,
-  CheckBillingPermissionAccessByInvoiceSectionResponse,
-  CheckBillingPermissionAccessByInvoiceSectionError,
+export const CheckBillingPermissionsAccessByInvoiceSection: API.OperationMethod<
+  CheckBillingPermissionsAccessByInvoiceSectionRequest,
+  CheckBillingPermissionsAccessByInvoiceSectionResponse,
+  CheckBillingPermissionsAccessByInvoiceSectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckBillingPermissionAccessByInvoiceSectionRequest,
-  output: CheckBillingPermissionAccessByInvoiceSectionResponse,
+  input: CheckBillingPermissionsAccessByInvoiceSectionRequest,
+  output: CheckBillingPermissionsAccessByInvoiceSectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ConfirmBillingAccountTransitionError = AzureOpError;
+/** Gets the transition details for a billing account that has transitioned from agreement type Microsoft Online Services Program to agreement type Microsoft Customer Agreement. */
+export const ConfirmBillingAccountTransition: API.OperationMethod<
+  ConfirmBillingAccountTransitionRequest,
+  TransitionDetails,
+  ConfirmBillingAccountTransitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConfirmBillingAccountTransitionRequest,
+  output: TransitionDetails,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16822,21 +16810,6 @@ export const DeleteBillingProfile: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteBillingProfileRequest,
   output: DeleteBillingProfileResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBillingProfileValidateEligibilityError = AzureOpError;
-/** Validates if the billing profile can be deleted. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement and Microsoft Partner Agreement. */
-export const DeleteBillingProfileValidateEligibility: API.OperationMethod<
-  DeleteBillingProfileValidateEligibilityRequest,
-  DeleteBillingProfileEligibilityResult,
-  DeleteBillingProfileValidateEligibilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBillingProfileValidateEligibilityRequest,
-  output: DeleteBillingProfileEligibilityResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -16962,21 +16935,6 @@ export const DeleteInvoiceSection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteInvoiceSectionValidateEligibilityError = AzureOpError;
-/** Validates if the invoice section can be deleted. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement. */
-export const DeleteInvoiceSectionValidateEligibility: API.OperationMethod<
-  DeleteInvoiceSectionValidateEligibilityRequest,
-  DeleteInvoiceSectionEligibilityResult,
-  DeleteInvoiceSectionValidateEligibilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteInvoiceSectionValidateEligibilityRequest,
-  output: DeleteInvoiceSectionEligibilityResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeletePaymentMethodByUserError = AzureOpError;
 /** Deletes a payment method owned by the caller. */
 export const DeletePaymentMethodByUser: API.OperationMethod<
@@ -16987,6 +16945,81 @@ export const DeletePaymentMethodByUser: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeletePaymentMethodByUserRequest,
   output: DeletePaymentMethodByUserResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadInvoiceByBillingAccountError = AzureOpError;
+/** Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement. */
+export const DownloadInvoiceByBillingAccount: API.OperationMethod<
+  DownloadInvoiceByBillingAccountRequest,
+  DocumentDownloadResult,
+  DownloadInvoiceByBillingAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadInvoiceByBillingAccountRequest,
+  output: DocumentDownloadResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadInvoiceByBillingSubscriptionError = AzureOpError;
+/** Gets a URL to download an invoice by billing subscription. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement. */
+export const DownloadInvoiceByBillingSubscription: API.OperationMethod<
+  DownloadInvoiceByBillingSubscriptionRequest,
+  DocumentDownloadResult,
+  DownloadInvoiceByBillingSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadInvoiceByBillingSubscriptionRequest,
+  output: DocumentDownloadResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadInvoiceDocumentsByBillingAccountError = AzureOpError;
+/** Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement. */
+export const DownloadInvoiceDocumentsByBillingAccount: API.OperationMethod<
+  DownloadInvoiceDocumentsByBillingAccountRequest,
+  DocumentDownloadResult,
+  DownloadInvoiceDocumentsByBillingAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadInvoiceDocumentsByBillingAccountRequest,
+  output: DocumentDownloadResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadInvoiceDocumentsByBillingSubscriptionError = AzureOpError;
+/** Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement. */
+export const DownloadInvoiceDocumentsByBillingSubscription: API.OperationMethod<
+  DownloadInvoiceDocumentsByBillingSubscriptionRequest,
+  DocumentDownloadResult,
+  DownloadInvoiceDocumentsByBillingSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadInvoiceDocumentsByBillingSubscriptionRequest,
+  output: DocumentDownloadResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DownloadInvoiceSummaryByBillingAccountError = AzureOpError;
+/** Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with agreement type Enterprise Agreement. */
+export const DownloadInvoiceSummaryByBillingAccount: API.OperationMethod<
+  DownloadInvoiceSummaryByBillingAccountRequest,
+  DocumentDownloadResult,
+  DownloadInvoiceSummaryByBillingAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DownloadInvoiceSummaryByBillingAccountRequest,
+  output: DocumentDownloadResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17307,21 +17340,6 @@ export const GetBillingSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetBillingSubscriptionAliaseError = AzureOpError;
-/** Gets a subscription by its alias ID. The operation is supported for seat based billing subscriptions. */
-export const GetBillingSubscriptionAliase: API.OperationMethod<
-  GetBillingSubscriptionAliaseRequest,
-  GetBillingSubscriptionAliaseResponse,
-  GetBillingSubscriptionAliaseError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBillingSubscriptionAliaseRequest,
-  output: GetBillingSubscriptionAliaseResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetBillingSubscriptionByBillingProfileError = AzureOpError;
 /** Gets a subscription by its billing profile and ID. The operation is supported for billing accounts with agreement type Enterprise Agreement. */
 export const GetBillingSubscriptionByBillingProfile: API.OperationMethod<
@@ -17332,6 +17350,21 @@ export const GetBillingSubscriptionByBillingProfile: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetBillingSubscriptionByBillingProfileRequest,
   output: GetBillingSubscriptionByBillingProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBillingSubscriptionsAliasError = AzureOpError;
+/** Gets a subscription by its alias ID. The operation is supported for seat based billing subscriptions. */
+export const GetBillingSubscriptionsAlias: API.OperationMethod<
+  GetBillingSubscriptionsAliasRequest,
+  GetBillingSubscriptionsAliasResponse,
+  GetBillingSubscriptionsAliasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBillingSubscriptionsAliasRequest,
+  output: GetBillingSubscriptionsAliasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17667,31 +17700,31 @@ export const GetReservationOrderByBillingAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSavingPlanByBillingAccountError = AzureOpError;
+export type GetSavingsPlanByBillingAccountError = AzureOpError;
 /** Get savings plan by billing account. */
-export const GetSavingPlanByBillingAccount: API.OperationMethod<
-  GetSavingPlanByBillingAccountRequest,
-  GetSavingPlanByBillingAccountResponse,
-  GetSavingPlanByBillingAccountError,
+export const GetSavingsPlanByBillingAccount: API.OperationMethod<
+  GetSavingsPlanByBillingAccountRequest,
+  GetSavingsPlanByBillingAccountResponse,
+  GetSavingsPlanByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSavingPlanByBillingAccountRequest,
-  output: GetSavingPlanByBillingAccountResponse,
+  input: GetSavingsPlanByBillingAccountRequest,
+  output: GetSavingsPlanByBillingAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSavingPlanOrderByBillingAccountError = AzureOpError;
+export type GetSavingsPlanOrderByBillingAccountError = AzureOpError;
 /** Get a savings plan order by billing account. */
-export const GetSavingPlanOrderByBillingAccount: API.OperationMethod<
-  GetSavingPlanOrderByBillingAccountRequest,
-  GetSavingPlanOrderByBillingAccountResponse,
-  GetSavingPlanOrderByBillingAccountError,
+export const GetSavingsPlanOrderByBillingAccount: API.OperationMethod<
+  GetSavingsPlanOrderByBillingAccountRequest,
+  GetSavingsPlanOrderByBillingAccountResponse,
+  GetSavingsPlanOrderByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSavingPlanOrderByBillingAccountRequest,
-  output: GetSavingPlanOrderByBillingAccountResponse,
+  input: GetSavingsPlanOrderByBillingAccountRequest,
+  output: GetSavingsPlanOrderByBillingAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17742,81 +17775,6 @@ export const InvoicesAmend: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InvoicesDownloadByBillingAccountError = AzureOpError;
-/** Gets a URL to download an invoice document. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement, Microsoft Customer Agreement or Enterprise Agreement. */
-export const InvoicesDownloadByBillingAccount: API.OperationMethod<
-  InvoicesDownloadByBillingAccountRequest,
-  DocumentDownloadResult,
-  InvoicesDownloadByBillingAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesDownloadByBillingAccountRequest,
-  output: DocumentDownloadResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesDownloadByBillingSubscriptionError = AzureOpError;
-/** Gets a URL to download an invoice by billing subscription. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement. */
-export const InvoicesDownloadByBillingSubscription: API.OperationMethod<
-  InvoicesDownloadByBillingSubscriptionRequest,
-  DocumentDownloadResult,
-  InvoicesDownloadByBillingSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesDownloadByBillingSubscriptionRequest,
-  output: DocumentDownloadResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesDownloadDocumentsByBillingAccountError = AzureOpError;
-/** Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement. */
-export const InvoicesDownloadDocumentsByBillingAccount: API.OperationMethod<
-  InvoicesDownloadDocumentsByBillingAccountRequest,
-  DocumentDownloadResult,
-  InvoicesDownloadDocumentsByBillingAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesDownloadDocumentsByBillingAccountRequest,
-  output: DocumentDownloadResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesDownloadDocumentsByBillingSubscriptionError = AzureOpError;
-/** Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement. */
-export const InvoicesDownloadDocumentsByBillingSubscription: API.OperationMethod<
-  InvoicesDownloadDocumentsByBillingSubscriptionRequest,
-  DocumentDownloadResult,
-  InvoicesDownloadDocumentsByBillingSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesDownloadDocumentsByBillingSubscriptionRequest,
-  output: DocumentDownloadResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesDownloadSummaryByBillingAccountError = AzureOpError;
-/** Gets a URL to download the summary document for an invoice. The operation is supported for billing accounts with agreement type Enterprise Agreement. */
-export const InvoicesDownloadSummaryByBillingAccount: API.OperationMethod<
-  InvoicesDownloadSummaryByBillingAccountRequest,
-  DocumentDownloadResult,
-  InvoicesDownloadSummaryByBillingAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesDownloadSummaryByBillingAccountRequest,
-  output: DocumentDownloadResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InvoiceSectionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type Microsoft Customer Agreement. */
 export const InvoiceSectionsCreateOrUpdate: API.OperationMethod<
@@ -17827,6 +17785,21 @@ export const InvoiceSectionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InvoiceSectionsCreateOrUpdateRequest,
   output: InvoiceSectionsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InvoiceSectionsValidateDeleteEligibilityError = AzureOpError;
+/** Validates if the invoice section can be deleted. The operation is supported for billing accounts with agreement type Microsoft Customer Agreement. */
+export const InvoiceSectionsValidateDeleteEligibility: API.OperationMethod<
+  InvoiceSectionsValidateDeleteEligibilityRequest,
+  DeleteInvoiceSectionEligibilityResult,
+  InvoiceSectionsValidateDeleteEligibilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InvoiceSectionsValidateDeleteEligibilityRequest,
+  output: DeleteInvoiceSectionEligibilityResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -17877,105 +17850,106 @@ export const ListBillingAccounts: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListBillingPermissionByBillingAccountError = AzureOpError;
+export type ListBillingPermissionsByBillingAccountError = AzureOpError;
 /** Lists the billing permissions the caller has on a billing account. */
-export const ListBillingPermissionByBillingAccount: API.OperationMethod<
-  ListBillingPermissionByBillingAccountRequest,
+export const ListBillingPermissionsByBillingAccount: API.OperationMethod<
+  ListBillingPermissionsByBillingAccountRequest,
   BillingPermissionListResult,
-  ListBillingPermissionByBillingAccountError,
+  ListBillingPermissionsByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingPermissionByBillingAccountRequest,
+  input: ListBillingPermissionsByBillingAccountRequest,
   output: BillingPermissionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListBillingPermissionByBillingProfileError = AzureOpError;
+export type ListBillingPermissionsByBillingProfileError = AzureOpError;
 /** Lists the billing permissions the caller has on a billing profile. */
-export const ListBillingPermissionByBillingProfile: API.OperationMethod<
-  ListBillingPermissionByBillingProfileRequest,
+export const ListBillingPermissionsByBillingProfile: API.OperationMethod<
+  ListBillingPermissionsByBillingProfileRequest,
   BillingPermissionListResult,
-  ListBillingPermissionByBillingProfileError,
+  ListBillingPermissionsByBillingProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingPermissionByBillingProfileRequest,
+  input: ListBillingPermissionsByBillingProfileRequest,
   output: BillingPermissionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListBillingPermissionByCustomerError = AzureOpError;
+export type ListBillingPermissionsByCustomerError = AzureOpError;
 /** Lists the billing permissions the caller has for a customer. */
-export const ListBillingPermissionByCustomer: API.OperationMethod<
-  ListBillingPermissionByCustomerRequest,
+export const ListBillingPermissionsByCustomer: API.OperationMethod<
+  ListBillingPermissionsByCustomerRequest,
   BillingPermissionListResult,
-  ListBillingPermissionByCustomerError,
+  ListBillingPermissionsByCustomerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingPermissionByCustomerRequest,
+  input: ListBillingPermissionsByCustomerRequest,
   output: BillingPermissionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListBillingPermissionByCustomerAtBillingAccountError = AzureOpError;
+export type ListBillingPermissionsByCustomerAtBillingAccountError =
+  AzureOpError;
 /** Lists the billing permissions the caller has for a customer at billing account level. */
-export const ListBillingPermissionByCustomerAtBillingAccount: API.OperationMethod<
-  ListBillingPermissionByCustomerAtBillingAccountRequest,
+export const ListBillingPermissionsByCustomerAtBillingAccount: API.OperationMethod<
+  ListBillingPermissionsByCustomerAtBillingAccountRequest,
   BillingPermissionListResult,
-  ListBillingPermissionByCustomerAtBillingAccountError,
+  ListBillingPermissionsByCustomerAtBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingPermissionByCustomerAtBillingAccountRequest,
+  input: ListBillingPermissionsByCustomerAtBillingAccountRequest,
   output: BillingPermissionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListBillingPermissionByDepartmentError = AzureOpError;
+export type ListBillingPermissionsByDepartmentError = AzureOpError;
 /** Lists the billing permissions the caller has for a department. */
-export const ListBillingPermissionByDepartment: API.OperationMethod<
-  ListBillingPermissionByDepartmentRequest,
+export const ListBillingPermissionsByDepartment: API.OperationMethod<
+  ListBillingPermissionsByDepartmentRequest,
   BillingPermissionListResult,
-  ListBillingPermissionByDepartmentError,
+  ListBillingPermissionsByDepartmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingPermissionByDepartmentRequest,
+  input: ListBillingPermissionsByDepartmentRequest,
   output: BillingPermissionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListBillingPermissionByEnrollmentAccountError = AzureOpError;
+export type ListBillingPermissionsByEnrollmentAccountError = AzureOpError;
 /** Lists the billing permissions the caller has for an enrollment account. */
-export const ListBillingPermissionByEnrollmentAccount: API.OperationMethod<
-  ListBillingPermissionByEnrollmentAccountRequest,
+export const ListBillingPermissionsByEnrollmentAccount: API.OperationMethod<
+  ListBillingPermissionsByEnrollmentAccountRequest,
   BillingPermissionListResult,
-  ListBillingPermissionByEnrollmentAccountError,
+  ListBillingPermissionsByEnrollmentAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingPermissionByEnrollmentAccountRequest,
+  input: ListBillingPermissionsByEnrollmentAccountRequest,
   output: BillingPermissionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListBillingPermissionByInvoiceSectionError = AzureOpError;
+export type ListBillingPermissionsByInvoiceSectionError = AzureOpError;
 /** Lists the billing permissions the caller has for an invoice section. */
-export const ListBillingPermissionByInvoiceSection: API.OperationMethod<
-  ListBillingPermissionByInvoiceSectionRequest,
+export const ListBillingPermissionsByInvoiceSection: API.OperationMethod<
+  ListBillingPermissionsByInvoiceSectionRequest,
   BillingPermissionListResult,
-  ListBillingPermissionByInvoiceSectionError,
+  ListBillingPermissionsByInvoiceSectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingPermissionByInvoiceSectionRequest,
+  input: ListBillingPermissionsByInvoiceSectionRequest,
   output: BillingPermissionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -18252,21 +18226,6 @@ export const ListBillingRoleDefinitionByInvoiceSection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListBillingSubscriptionAliaseByBillingAccountError = AzureOpError;
-/** Lists the subscription aliases for a billing account. The operation is supported for seat based billing subscriptions. */
-export const ListBillingSubscriptionAliaseByBillingAccount: API.OperationMethod<
-  ListBillingSubscriptionAliaseByBillingAccountRequest,
-  BillingSubscriptionAliasListResult,
-  ListBillingSubscriptionAliaseByBillingAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListBillingSubscriptionAliaseByBillingAccountRequest,
-  output: BillingSubscriptionAliasListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListBillingSubscriptionByBillingAccountError = AzureOpError;
 /** Lists the subscriptions for a billing account. */
 export const ListBillingSubscriptionByBillingAccount: API.OperationMethod<
@@ -18353,6 +18312,21 @@ export const ListBillingSubscriptionByInvoiceSection: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListBillingSubscriptionByInvoiceSectionRequest,
   output: BillingSubscriptionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBillingSubscriptionsAliasByBillingAccountError = AzureOpError;
+/** Lists the subscription aliases for a billing account. The operation is supported for seat based billing subscriptions. */
+export const ListBillingSubscriptionsAliasByBillingAccount: API.OperationMethod<
+  ListBillingSubscriptionsAliasByBillingAccountRequest,
+  BillingSubscriptionAliasListResult,
+  ListBillingSubscriptionsAliasByBillingAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBillingSubscriptionsAliasByBillingAccountRequest,
+  output: BillingSubscriptionAliasListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18703,45 +18677,45 @@ export const ListReservationOrderByBillingAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSavingPlanByBillingAccountError = AzureOpError;
+export type ListSavingsPlanByBillingAccountError = AzureOpError;
 /** List savings plans by billing account. */
-export const ListSavingPlanByBillingAccount: API.OperationMethod<
-  ListSavingPlanByBillingAccountRequest,
-  ListSavingPlanByBillingAccountResponse,
-  ListSavingPlanByBillingAccountError,
+export const ListSavingsPlanByBillingAccount: API.OperationMethod<
+  ListSavingsPlanByBillingAccountRequest,
+  ListSavingsPlanByBillingAccountResponse,
+  ListSavingsPlanByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSavingPlanByBillingAccountRequest,
-  output: ListSavingPlanByBillingAccountResponse,
+  input: ListSavingsPlanByBillingAccountRequest,
+  output: ListSavingsPlanByBillingAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSavingPlanBySavingPlanOrderError = AzureOpError;
+export type ListSavingsPlanBySavingsPlanOrderError = AzureOpError;
 /** List savings plans in an order by billing account. */
-export const ListSavingPlanBySavingPlanOrder: API.OperationMethod<
-  ListSavingPlanBySavingPlanOrderRequest,
+export const ListSavingsPlanBySavingsPlanOrder: API.OperationMethod<
+  ListSavingsPlanBySavingsPlanOrderRequest,
   SavingsPlanModelList,
-  ListSavingPlanBySavingPlanOrderError,
+  ListSavingsPlanBySavingsPlanOrderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSavingPlanBySavingPlanOrderRequest,
+  input: ListSavingsPlanBySavingsPlanOrderRequest,
   output: SavingsPlanModelList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSavingPlanOrderByBillingAccountError = AzureOpError;
+export type ListSavingsPlanOrderByBillingAccountError = AzureOpError;
 /** List all Savings plan orders by billing account. */
-export const ListSavingPlanOrderByBillingAccount: API.OperationMethod<
-  ListSavingPlanOrderByBillingAccountRequest,
+export const ListSavingsPlanOrderByBillingAccount: API.OperationMethod<
+  ListSavingsPlanOrderByBillingAccountRequest,
   SavingsPlanOrderModelList,
-  ListSavingPlanOrderByBillingAccountError,
+  ListSavingsPlanOrderByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSavingPlanOrderByBillingAccountRequest,
+  input: ListSavingsPlanOrderByBillingAccountRequest,
   output: SavingsPlanOrderModelList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -18823,16 +18797,46 @@ export const ListTransfers: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PartnerTransfersCancelError = AzureOpError;
-/** Cancels a transfer request. The operation is supported only for billing accounts with agreement type Microsoft Partner Agreement. */
-export const PartnerTransfersCancel: API.OperationMethod<
-  PartnerTransfersCancelRequest,
-  PartnerTransfersCancelResponse,
-  PartnerTransfersCancelError,
+export type MergeBillingSubscriptionError = AzureOpError;
+/** Merges the billing subscription provided in the request with a target billing subscription. */
+export const MergeBillingSubscription: API.OperationMethod<
+  MergeBillingSubscriptionRequest,
+  MergeBillingSubscriptionResponse,
+  MergeBillingSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PartnerTransfersCancelRequest,
-  output: PartnerTransfersCancelResponse,
+  input: MergeBillingSubscriptionRequest,
+  output: MergeBillingSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MoveBillingSubscriptionError = AzureOpError;
+/** Moves charges for a subscription to a new invoice section. The new invoice section must belong to the same billing profile as the existing invoice section. This operation is supported for billing accounts with agreement type Microsoft Customer Agreement. */
+export const MoveBillingSubscription: API.OperationMethod<
+  MoveBillingSubscriptionRequest,
+  MoveBillingSubscriptionResponse,
+  MoveBillingSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MoveBillingSubscriptionRequest,
+  output: MoveBillingSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MoveProductError = AzureOpError;
+/** Moves a product's charges to a new invoice section. The new invoice section must belong to the same billing profile as the existing invoice section. This operation is supported only for products that are purchased with a recurring charge and for billing accounts with agreement type Microsoft Customer Agreement. */
+export const MoveProduct: API.OperationMethod<
+  MoveProductRequest,
+  MoveProductResponse,
+  MoveProductError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MoveProductRequest,
+  output: MoveProductResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18914,21 +18918,6 @@ export const PoliciesCreateOrUpdateByCustomerAtBillingAccount: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type ProductsMoveError = AzureOpError;
-/** Moves a product's charges to a new invoice section. The new invoice section must belong to the same billing profile as the existing invoice section. This operation is supported only for products that are purchased with a recurring charge and for billing accounts with agreement type Microsoft Customer Agreement. */
-export const ProductsMove: API.OperationMethod<
-  ProductsMoveRequest,
-  ProductsMoveResponse,
-  ProductsMoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProductsMoveRequest,
-  output: ProductsMoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProductsValidateMoveEligibilityError = AzureOpError;
 /** Validates if a product's charges can be moved to a new invoice section. This operation is supported only for products that are purchased with a recurring charge and for billing accounts with agreement type Microsoft Customer Agreement. */
 export const ProductsValidateMoveEligibility: API.OperationMethod<
@@ -18939,21 +18928,6 @@ export const ProductsValidateMoveEligibility: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ProductsValidateMoveEligibilityRequest,
   output: MoveProductEligibilityResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RecipientTransfersAcceptError = AzureOpError;
-/** Accepts a transfer request. Accepts a transfer request. */
-export const RecipientTransfersAccept: API.OperationMethod<
-  RecipientTransfersAcceptRequest,
-  RecipientTransfersAcceptResponse,
-  RecipientTransfersAcceptError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RecipientTransfersAcceptRequest,
-  output: RecipientTransfersAcceptResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18974,16 +18948,16 @@ export const RecipientTransfersDecline: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RecipientTransfersValidateError = AzureOpError;
-/** Validates if a subscription or a reservation can be transferred. Use this operation to validate your subscriptions or reservation before using the accept transfer operation. Validates if a subscription or a reservation can be transferred. Use this operation to validate your subscriptions or reservation before using the accept transfer operation. */
-export const RecipientTransfersValidate: API.OperationMethod<
-  RecipientTransfersValidateRequest,
-  ValidateTransferListResponse,
-  RecipientTransfersValidateError,
+export type SavingsPlansValidateUpdateByBillingAccountError = AzureOpError;
+/** Validate savings plan patch by billing account. */
+export const SavingsPlansValidateUpdateByBillingAccount: API.OperationMethod<
+  SavingsPlansValidateUpdateByBillingAccountRequest,
+  SavingsPlanValidateResponse,
+  SavingsPlansValidateUpdateByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RecipientTransfersValidateRequest,
-  output: ValidateTransferListResponse,
+  input: SavingsPlansValidateUpdateByBillingAccountRequest,
+  output: SavingsPlanValidateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -18999,21 +18973,6 @@ export const TransactionsTransactionsDownloadByInvoice: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TransactionsTransactionsDownloadByInvoiceRequest,
   output: DocumentDownloadResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransfersCancelError = AzureOpError;
-/** Cancels a transfer request. The operation is supported only for billing accounts with agreement type Microsoft Customer Agreement. */
-export const TransfersCancel: API.OperationMethod<
-  TransfersCancelRequest,
-  TransfersCancelResponse,
-  TransfersCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransfersCancelRequest,
-  output: TransfersCancelResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -19109,31 +19068,61 @@ export const UpdateReservationByBillingAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSavingPlanByBillingAccountError = AzureOpError;
+export type UpdateSavingsPlanByBillingAccountError = AzureOpError;
 /** Update savings plan by billing account. */
-export const UpdateSavingPlanByBillingAccount: API.OperationMethod<
-  UpdateSavingPlanByBillingAccountRequest,
-  UpdateSavingPlanByBillingAccountResponse,
-  UpdateSavingPlanByBillingAccountError,
+export const UpdateSavingsPlanByBillingAccount: API.OperationMethod<
+  UpdateSavingsPlanByBillingAccountRequest,
+  UpdateSavingsPlanByBillingAccountResponse,
+  UpdateSavingsPlanByBillingAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSavingPlanByBillingAccountRequest,
-  output: UpdateSavingPlanByBillingAccountResponse,
+  input: UpdateSavingsPlanByBillingAccountRequest,
+  output: UpdateSavingsPlanByBillingAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSavingPlanValidateByBillingAccountError = AzureOpError;
-/** Validate savings plan patch by billing account. */
-export const UpdateSavingPlanValidateByBillingAccount: API.OperationMethod<
-  UpdateSavingPlanValidateByBillingAccountRequest,
-  SavingsPlanValidateResponse,
-  UpdateSavingPlanValidateByBillingAccountError,
+export type ValidateAddressError = AzureOpError;
+/** Validates an address. Use the operation to validate an address before using it as soldTo or a billTo address. */
+export const ValidateAddress: API.OperationMethod<
+  ValidateAddressRequest,
+  AddressValidationResponse,
+  ValidateAddressError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSavingPlanValidateByBillingAccountRequest,
-  output: SavingsPlanValidateResponse,
+  input: ValidateAddressRequest,
+  output: AddressValidationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateBillingAccountPaymentTermsError = AzureOpError;
+/** Validates payment terms on a billing account with agreement type 'Microsoft Customer Agreement' and account type 'Enterprise'. */
+export const ValidateBillingAccountPaymentTerms: API.OperationMethod<
+  ValidateBillingAccountPaymentTermsRequest,
+  PaymentTermsEligibilityResult,
+  ValidateBillingAccountPaymentTermsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateBillingAccountPaymentTermsRequest,
+  output: PaymentTermsEligibilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateRecipientTransferError = AzureOpError;
+/** Validates if a subscription or a reservation can be transferred. Use this operation to validate your subscriptions or reservation before using the accept transfer operation. Validates if a subscription or a reservation can be transferred. Use this operation to validate your subscriptions or reservation before using the accept transfer operation. */
+export const ValidateRecipientTransfer: API.OperationMethod<
+  ValidateRecipientTransferRequest,
+  ValidateTransferListResponse,
+  ValidateRecipientTransferError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateRecipientTransferRequest,
+  output: ValidateTransferListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

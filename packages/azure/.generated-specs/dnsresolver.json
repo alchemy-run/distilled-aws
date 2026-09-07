@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.dnsresolver#ListDnsResolverByVirtualNetwork": {
@@ -399,7 +400,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#OutboundEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateOutboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -500,7 +501,7 @@
         "smithy.api#documentation": "The current provisioning state of the resource."
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateOutboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -656,7 +657,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#OutboundEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateOutboundEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for outbound endpoint."
           }
@@ -666,7 +667,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateOutboundEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -901,7 +902,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#OutboundEndpointsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetOutboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -931,7 +932,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#OutboundEndpointsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetOutboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1247,7 +1248,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#InboundEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateInboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1360,7 +1361,7 @@
         "smithy.api#documentation": "Private IP address allocation method."
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateInboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1408,7 +1409,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#InboundEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateInboundEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for inbound endpoint."
           }
@@ -1418,7 +1419,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateInboundEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1662,7 +1663,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#InboundEndpointsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetInboundEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1692,7 +1693,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#InboundEndpointsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetInboundEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2000,7 +2001,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolversUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2083,7 +2084,7 @@
         "smithy.api#documentation": "The current status of the DNS resolver. This is a read-only property and any attempt to set this value will be ignored."
       }
     },
-    "com.azure.dnsresolver#DnsResolversUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2123,7 +2124,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolversUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS Resolver."
           }
@@ -2133,7 +2134,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2360,7 +2361,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolversGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2390,7 +2391,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolversGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2690,7 +2691,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2741,7 +2742,7 @@
         "smithy.api#documentation": "Represents the properties of a DNS resolver policy virtual network link."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2789,7 +2790,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for the DNS resolver policy virtual network link."
           }
@@ -2799,7 +2800,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLinkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3019,7 +3020,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3049,7 +3050,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLinkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3365,7 +3366,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsSecurityRuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3505,7 +3506,7 @@
         "smithy.api#documentation": "The type of action to take."
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsSecurityRuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3559,7 +3560,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsSecurityRuleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS security rule."
           }
@@ -3569,7 +3570,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsSecurityRuleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3830,7 +3831,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsSecurityRuleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3860,7 +3861,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsSecurityRulesGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsSecurityRuleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4168,7 +4169,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4217,7 +4218,7 @@
         "smithy.api#documentation": "Represents the properties of a DNS resolver policy."
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4257,7 +4258,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS resolver policy."
           }
@@ -4267,7 +4268,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverPolicyRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4484,7 +4485,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4513,7 +4514,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverPoliciesGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverPolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4706,13 +4707,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulk": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainList": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsBulkRequest"
+        "target": "com.azure.dnsresolver#BulkDnsResolverDomainListRequest"
       },
       "output": {
-        "target": "com.azure.dnsresolver#DnsResolverDomainListsBulkResponse"
+        "target": "com.azure.dnsresolver#BulkDnsResolverDomainListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4725,7 +4726,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulkResponse": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainListResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4753,7 +4754,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsBulkResponseTagsMap",
+          "target": "com.azure.dnsresolver#BulkDnsResolverDomainListResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4823,7 +4824,7 @@
         "smithy.api#documentation": "The domains in the domain list. Will be null if user is using large domain list."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulkResponseTagsMap": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainListResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4835,7 +4836,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsBulkRequest": {
+    "com.azure.dnsresolver#BulkDnsResolverDomainListRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5014,7 +5015,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainListResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5043,7 +5044,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverDomainListResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5089,7 +5090,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainListRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS resolver domain list."
           }
@@ -5099,7 +5100,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsResolverDomainListRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5355,7 +5356,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsResolverDomainListResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5384,7 +5385,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsResolverDomainListsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsResolverDomainListResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6943,7 +6944,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateResponseTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7009,7 +7010,7 @@
         "smithy.api#documentation": "The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateResponseTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7049,13 +7050,13 @@
           }
         },
         "dnsResolverOutboundEndpoints": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList",
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList",
           "traits": {
             "smithy.api#documentation": "The reference to the DNS resolver outbound endpoints that are used to route DNS queries matching the forwarding rules in the ruleset to the target DNS servers."
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestTagsMap",
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for DNS Resolver."
           }
@@ -7065,7 +7066,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestTagsMap": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7077,7 +7078,7 @@
         "smithy.api#documentation": "Tags for DNS Resolver."
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsUpdateRequestDnsResolverOutboundEndpointsList": {
+    "com.azure.dnsresolver#UpdateDnsForwardingRulesetRequestDnsResolverOutboundEndpointsList": {
       "type": "list",
       "member": {
         "target": "com.azure.dnsresolver#SubResource"
@@ -7310,7 +7311,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsGetResponseTagsMap",
+          "target": "com.azure.dnsresolver#GetDnsForwardingRulesetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7340,7 +7341,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dnsresolver#DnsForwardingRulesetsGetResponseTagsMap": {
+    "com.azure.dnsresolver#GetDnsForwardingRulesetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7707,178 +7708,178 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dnsresolver#ListDnsResolverByVirtualNetwork"
+          "target": "com.azure.dnsresolver#BulkDnsResolverDomainList"
         },
         {
-          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByVirtualNetwork"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetwork"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteOutboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateOutboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#OutboundEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetOutboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListOutboundEndpoints"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteInboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateInboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#InboundEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetInboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListInboundEndpoints"
+          "target": "com.azure.dnsresolver#DeleteDnsForwardingRuleset"
         },
         {
           "target": "com.azure.dnsresolver#DeleteDnsResolver"
         },
         {
-          "target": "com.azure.dnsresolver#UpdateDnsResolver"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsResolversCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsResolver"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverByResourceGroup"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinks"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsSecurityRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateDnsSecurityRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsSecurityRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsSecurityRules"
+          "target": "com.azure.dnsresolver#DeleteDnsResolverDomainList"
         },
         {
           "target": "com.azure.dnsresolver#DeleteDnsResolverPolicy"
         },
         {
-          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicy"
+          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLink"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesCreateOrUpdate"
+          "target": "com.azure.dnsresolver#DeleteDnsSecurityRule"
         },
         {
-          "target": "com.azure.dnsresolver#GetDnsResolverPolicy"
+          "target": "com.azure.dnsresolver#DeleteForwardingRule"
         },
         {
-          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroup"
+          "target": "com.azure.dnsresolver#DeleteInboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsBulk"
+          "target": "com.azure.dnsresolver#DeleteOutboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#DeleteDnsResolverDomainList"
+          "target": "com.azure.dnsresolver#DeleteVirtualNetworkLink"
         },
         {
-          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainList"
+          "target": "com.azure.dnsresolver#DnsForwardingRulesetsCreateOrUpdate"
         },
         {
           "target": "com.azure.dnsresolver#DnsResolverDomainListsCreateOrUpdate"
         },
         {
+          "target": "com.azure.dnsresolver#DnsResolverPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsResolversCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsSecurityRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#ForwardingRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsForwardingRuleset"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsResolver"
+        },
+        {
           "target": "com.azure.dnsresolver#GetDnsResolverDomainList"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicy"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsSecurityRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetForwardingRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetInboundEndpoint"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetOutboundEndpoint"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.dnsresolver#InboundEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetwork"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesets"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverByVirtualNetwork"
         },
         {
           "target": "com.azure.dnsresolver#ListDnsResolverDomainListByResourceGroup"
         },
         {
-          "target": "com.azure.dnsresolver#DeleteVirtualNetworkLink"
+          "target": "com.azure.dnsresolver#ListDnsResolverDomainLists"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicies"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByVirtualNetwork"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinks"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolvers"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsSecurityRules"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListForwardingRules"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListInboundEndpoints"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListOutboundEndpoints"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListVirtualNetworkLinks"
+        },
+        {
+          "target": "com.azure.dnsresolver#OutboundEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRuleset"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolver"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainList"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicy"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsSecurityRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateForwardingRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateInboundEndpoint"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateOutboundEndpoint"
         },
         {
           "target": "com.azure.dnsresolver#UpdateVirtualNetworkLink"
         },
         {
           "target": "com.azure.dnsresolver#VirtualNetworkLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListVirtualNetworkLinks"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteForwardingRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateForwardingRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#ForwardingRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetForwardingRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListForwardingRules"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsForwardingRuleset"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateDnsForwardingRuleset"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsForwardingRuleset"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroup"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolvers"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverPolicies"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverDomainLists"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsForwardingRulesets"
         }
       ],
       "traits": {

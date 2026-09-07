@@ -113,13 +113,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type OpenShiftClustersGetResponseTagsMap = {
+export type GetOpenShiftClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OpenShiftClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetOpenShiftClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OpenShiftClustersGetResponseTagsMap>;
+) as any as S.Schema<GetOpenShiftClusterResponseTagsMap>;
 
 /** ProvisioningState represents a provisioning state. */
 export type ProvisioningState =
@@ -507,38 +507,37 @@ export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserAssignedIdentity>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type OpenShiftClustersGetResponseIdentityUserAssignedIdentitiesMap = {
+export type GetOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const OpenShiftClustersGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<OpenShiftClustersGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface OpenShiftClustersGetResponseIdentity {
+export interface GetOpenShiftClusterResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: OpenShiftClustersGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap;
 }
-export const OpenShiftClustersGetResponseIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        OpenShiftClustersGetResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
+export const GetOpenShiftClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      GetOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
 ).annotate({
-  identifier: "OpenShiftClustersGetResponseIdentity",
-}) as any as S.Schema<OpenShiftClustersGetResponseIdentity>;
+  identifier: "GetOpenShiftClusterResponseIdentity",
+}) as any as S.Schema<GetOpenShiftClusterResponseIdentity>;
 
 export interface GetOpenShiftClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -550,13 +549,13 @@ export interface GetOpenShiftClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OpenShiftClustersGetResponseTagsMap;
+  tags?: GetOpenShiftClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The cluster properties. */
   properties?: OpenShiftClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: OpenShiftClustersGetResponseIdentity;
+  identity?: GetOpenShiftClusterResponseIdentity;
 }
 export const GetOpenShiftClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -564,10 +563,10 @@ export const GetOpenShiftClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OpenShiftClustersGetResponseTagsMap),
+    tags: S.optional(GetOpenShiftClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(OpenShiftClusterProperties),
-    identity: S.optional(OpenShiftClustersGetResponseIdentity),
+    identity: S.optional(GetOpenShiftClusterResponseIdentity),
   }),
 ).annotate({
   identifier: "GetOpenShiftClusterResponse",
@@ -634,6 +633,103 @@ export const GetOpenShiftVersionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetOpenShiftVersionResponse",
 }) as any as S.Schema<GetOpenShiftVersionResponse>;
+
+export interface GetPlatformWorkloadIdentityRoleSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The desired version value of the PlatformWorkloadIdentityRoleSet resource. */
+  openShiftMinorVersion: string;
+}
+export const GetPlatformWorkloadIdentityRoleSetRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      openShiftMinorVersion: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RedHatOpenShift/locations/{location}/platformWorkloadIdentityRoleSets/{openShiftMinorVersion}",
+        code: 200,
+        apiVersion: "2025-07-25",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPlatformWorkloadIdentityRoleSetRequest",
+  }) as any as S.Schema<GetPlatformWorkloadIdentityRoleSetRequest>;
+
+/** PlatformWorkloadIdentityRole represents a mapping from a particular OCP operator to the built-in role that should be assigned to that operator's corresponding managed identity. */
+export interface PlatformWorkloadIdentityRole {
+  /** OperatorName represents the name of the operator that this role is for. */
+  operatorName?: string;
+  /** RoleDefinitionName represents the name of the role. */
+  roleDefinitionName?: string;
+  /** RoleDefinitionID represents the resource ID of the role definition. */
+  roleDefinitionId?: string;
+}
+export const PlatformWorkloadIdentityRole = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operatorName: S.optional(S.String),
+    roleDefinitionName: S.optional(S.String),
+    roleDefinitionId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PlatformWorkloadIdentityRole",
+}) as any as S.Schema<PlatformWorkloadIdentityRole>;
+
+/** PlatformWorkloadIdentityRoles represents the set of roles associated with this version. */
+export type PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList =
+  Array<PlatformWorkloadIdentityRole>;
+export const PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList =
+  /*@__PURE__*/ S.Array(
+    PlatformWorkloadIdentityRole,
+  ) as any as S.Schema<PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList>;
+
+/** PlatformWorkloadIdentityRoleSetProperties represents the properties of a PlatformWorkloadIdentityRoleSet resource. */
+export interface PlatformWorkloadIdentityRoleSetProperties {
+  /** OpenShiftVersion represents the version associated with this set of roles. */
+  openShiftVersion?: string;
+  /** PlatformWorkloadIdentityRoles represents the set of roles associated with this version. */
+  platformWorkloadIdentityRoles?: PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList;
+}
+export const PlatformWorkloadIdentityRoleSetProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      openShiftVersion: S.optional(S.String),
+      platformWorkloadIdentityRoles: S.optional(
+        PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "PlatformWorkloadIdentityRoleSetProperties",
+  }) as any as S.Schema<PlatformWorkloadIdentityRoleSetProperties>;
+
+export interface GetPlatformWorkloadIdentityRoleSetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties for the PlatformWorkloadIdentityRoleSet resource. */
+  properties?: PlatformWorkloadIdentityRoleSetProperties;
+}
+export const GetPlatformWorkloadIdentityRoleSetResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PlatformWorkloadIdentityRoleSetProperties),
+    }),
+  ).annotate({
+    identifier: "GetPlatformWorkloadIdentityRoleSetResponse",
+  }) as any as S.Schema<GetPlatformWorkloadIdentityRoleSetResponse>;
 
 export interface ListOpenShiftClusterAdminCredentialsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1016,52 +1112,6 @@ export const ListPlatformWorkloadIdentityRoleSetsRequest =
   ).annotate({
     identifier: "ListPlatformWorkloadIdentityRoleSetsRequest",
   }) as any as S.Schema<ListPlatformWorkloadIdentityRoleSetsRequest>;
-
-/** PlatformWorkloadIdentityRole represents a mapping from a particular OCP operator to the built-in role that should be assigned to that operator's corresponding managed identity. */
-export interface PlatformWorkloadIdentityRole {
-  /** OperatorName represents the name of the operator that this role is for. */
-  operatorName?: string;
-  /** RoleDefinitionName represents the name of the role. */
-  roleDefinitionName?: string;
-  /** RoleDefinitionID represents the resource ID of the role definition. */
-  roleDefinitionId?: string;
-}
-export const PlatformWorkloadIdentityRole = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operatorName: S.optional(S.String),
-    roleDefinitionName: S.optional(S.String),
-    roleDefinitionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PlatformWorkloadIdentityRole",
-}) as any as S.Schema<PlatformWorkloadIdentityRole>;
-
-/** PlatformWorkloadIdentityRoles represents the set of roles associated with this version. */
-export type PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList =
-  Array<PlatformWorkloadIdentityRole>;
-export const PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList =
-  /*@__PURE__*/ S.Array(
-    PlatformWorkloadIdentityRole,
-  ) as any as S.Schema<PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList>;
-
-/** PlatformWorkloadIdentityRoleSetProperties represents the properties of a PlatformWorkloadIdentityRoleSet resource. */
-export interface PlatformWorkloadIdentityRoleSetProperties {
-  /** OpenShiftVersion represents the version associated with this set of roles. */
-  openShiftVersion?: string;
-  /** PlatformWorkloadIdentityRoles represents the set of roles associated with this version. */
-  platformWorkloadIdentityRoles?: PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList;
-}
-export const PlatformWorkloadIdentityRoleSetProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      openShiftVersion: S.optional(S.String),
-      platformWorkloadIdentityRoles: S.optional(
-        PlatformWorkloadIdentityRoleSetPropertiesPlatformWorkloadIdentityRolesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "PlatformWorkloadIdentityRoleSetProperties",
-  }) as any as S.Schema<PlatformWorkloadIdentityRoleSetProperties>;
 
 /** PlatformWorkloadIdentityRoleSet represents a mapping from the names of OCP operators to the built-in roles that should be assigned to those operator's corresponding managed identities for a particular OCP version. */
 export interface PlatformWorkloadIdentityRoleSet {
@@ -1471,93 +1521,42 @@ export const OpenShiftClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "OpenShiftClustersCreateOrUpdateResponse",
 }) as any as S.Schema<OpenShiftClustersCreateOrUpdateResponse>;
 
-export interface PlatformWorkloadIdentityRoleSetGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The desired version value of the PlatformWorkloadIdentityRoleSet resource. */
-  openShiftMinorVersion: string;
-}
-export const PlatformWorkloadIdentityRoleSetGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      openShiftMinorVersion: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.RedHatOpenShift/locations/{location}/platformWorkloadIdentityRoleSets/{openShiftMinorVersion}",
-        code: 200,
-        apiVersion: "2025-07-25",
-      }),
-    ),
-  ).annotate({
-    identifier: "PlatformWorkloadIdentityRoleSetGetRequest",
-  }) as any as S.Schema<PlatformWorkloadIdentityRoleSetGetRequest>;
-
-export interface PlatformWorkloadIdentityRoleSetGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties for the PlatformWorkloadIdentityRoleSet resource. */
-  properties?: PlatformWorkloadIdentityRoleSetProperties;
-}
-export const PlatformWorkloadIdentityRoleSetGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PlatformWorkloadIdentityRoleSetProperties),
-    }),
-  ).annotate({
-    identifier: "PlatformWorkloadIdentityRoleSetGetResponse",
-  }) as any as S.Schema<PlatformWorkloadIdentityRoleSetGetResponse>;
-
 /** The resource tags. */
-export type OpenShiftClustersUpdateRequestTagsMap = {
+export type UpdateOpenShiftClusterRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const OpenShiftClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOpenShiftClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OpenShiftClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateOpenShiftClusterRequestTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type OpenShiftClustersUpdateRequestIdentityUserAssignedIdentitiesMap = {
+export type UpdateOpenShiftClusterRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]: ConsoleProfileInput | undefined;
 };
-export const OpenShiftClustersUpdateRequestIdentityUserAssignedIdentitiesMap =
+export const UpdateOpenShiftClusterRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     ConsoleProfileInput,
-  ) as any as S.Schema<OpenShiftClustersUpdateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateOpenShiftClusterRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface OpenShiftClustersUpdateRequestIdentity {
+export interface UpdateOpenShiftClusterRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: OpenShiftClustersUpdateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateOpenShiftClusterRequestIdentityUserAssignedIdentitiesMap;
 }
-export const OpenShiftClustersUpdateRequestIdentity = /*@__PURE__*/ S.suspend(
+export const UpdateOpenShiftClusterRequestIdentity = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(
-        OpenShiftClustersUpdateRequestIdentityUserAssignedIdentitiesMap,
+        UpdateOpenShiftClusterRequestIdentityUserAssignedIdentitiesMap,
       ),
     }),
 ).annotate({
-  identifier: "OpenShiftClustersUpdateRequestIdentity",
-}) as any as S.Schema<OpenShiftClustersUpdateRequestIdentity>;
+  identifier: "UpdateOpenShiftClusterRequestIdentity",
+}) as any as S.Schema<UpdateOpenShiftClusterRequestIdentity>;
 
 export interface UpdateOpenShiftClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1567,20 +1566,20 @@ export interface UpdateOpenShiftClusterRequest {
   /** The name of the OpenShift cluster resource. */
   resourceName: string;
   /** The resource tags. */
-  tags?: OpenShiftClustersUpdateRequestTagsMap;
+  tags?: UpdateOpenShiftClusterRequestTagsMap;
   /** The cluster properties. */
   properties?: OpenShiftClusterPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: OpenShiftClustersUpdateRequestIdentity;
+  identity?: UpdateOpenShiftClusterRequestIdentity;
 }
 export const UpdateOpenShiftClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(OpenShiftClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateOpenShiftClusterRequestTagsMap),
     properties: S.optional(OpenShiftClusterPropertiesInput),
-    identity: S.optional(OpenShiftClustersUpdateRequestIdentity),
+    identity: S.optional(UpdateOpenShiftClusterRequestIdentity),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1594,47 +1593,47 @@ export const UpdateOpenShiftClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateOpenShiftClusterRequest>;
 
 /** Resource tags. */
-export type OpenShiftClustersUpdateResponseTagsMap = {
+export type UpdateOpenShiftClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OpenShiftClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOpenShiftClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OpenShiftClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateOpenShiftClusterResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type OpenShiftClustersUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const OpenShiftClustersUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<OpenShiftClustersUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface OpenShiftClustersUpdateResponseIdentity {
+export interface UpdateOpenShiftClusterResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: OpenShiftClustersUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap;
 }
-export const OpenShiftClustersUpdateResponseIdentity = /*@__PURE__*/ S.suspend(
+export const UpdateOpenShiftClusterResponseIdentity = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       principalId: S.optional(S.String),
       tenantId: S.optional(S.String),
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(
-        OpenShiftClustersUpdateResponseIdentityUserAssignedIdentitiesMap,
+        UpdateOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap,
       ),
     }),
 ).annotate({
-  identifier: "OpenShiftClustersUpdateResponseIdentity",
-}) as any as S.Schema<OpenShiftClustersUpdateResponseIdentity>;
+  identifier: "UpdateOpenShiftClusterResponseIdentity",
+}) as any as S.Schema<UpdateOpenShiftClusterResponseIdentity>;
 
 export interface UpdateOpenShiftClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1646,13 +1645,13 @@ export interface UpdateOpenShiftClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: OpenShiftClustersUpdateResponseTagsMap;
+  tags?: UpdateOpenShiftClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The cluster properties. */
   properties?: OpenShiftClusterProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: OpenShiftClustersUpdateResponseIdentity;
+  identity?: UpdateOpenShiftClusterResponseIdentity;
 }
 export const UpdateOpenShiftClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1660,10 +1659,10 @@ export const UpdateOpenShiftClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(OpenShiftClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateOpenShiftClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(OpenShiftClusterProperties),
-    identity: S.optional(OpenShiftClustersUpdateResponseIdentity),
+    identity: S.optional(UpdateOpenShiftClusterResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateOpenShiftClusterResponse",
@@ -1709,6 +1708,21 @@ export const GetOpenShiftVersion: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetOpenShiftVersionRequest,
   output: GetOpenShiftVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPlatformWorkloadIdentityRoleSetError = AzureOpError;
+/** Gets a mapping of an OpenShift version to identity requirements, which includes operatorName, roleDefinitionName, roleDefinitionId, and serviceAccounts. This operation returns Platform Workload Identity Role Set as a string */
+export const GetPlatformWorkloadIdentityRoleSet: API.OperationMethod<
+  GetPlatformWorkloadIdentityRoleSetRequest,
+  GetPlatformWorkloadIdentityRoleSetResponse,
+  GetPlatformWorkloadIdentityRoleSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPlatformWorkloadIdentityRoleSetRequest,
+  output: GetPlatformWorkloadIdentityRoleSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1829,21 +1843,6 @@ export const OpenShiftClustersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: OpenShiftClustersCreateOrUpdateRequest,
   output: OpenShiftClustersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PlatformWorkloadIdentityRoleSetGetError = AzureOpError;
-/** Gets a mapping of an OpenShift version to identity requirements, which includes operatorName, roleDefinitionName, roleDefinitionId, and serviceAccounts. This operation returns Platform Workload Identity Role Set as a string */
-export const PlatformWorkloadIdentityRoleSetGet: API.OperationMethod<
-  PlatformWorkloadIdentityRoleSetGetRequest,
-  PlatformWorkloadIdentityRoleSetGetResponse,
-  PlatformWorkloadIdentityRoleSetGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PlatformWorkloadIdentityRoleSetGetRequest,
-  output: PlatformWorkloadIdentityRoleSetGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

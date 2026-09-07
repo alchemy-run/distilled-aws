@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.mariadb#StopServer": {
@@ -124,10 +125,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.mariadb#StopServer"
+          "target": "com.azure.mariadb#StartServer"
         },
         {
-          "target": "com.azure.mariadb#StartServer"
+          "target": "com.azure.mariadb#StopServer"
         }
       ],
       "traits": {

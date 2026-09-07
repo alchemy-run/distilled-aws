@@ -461,11 +461,11 @@ export const GetDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDiskPoolRequest>;
 
 /** Resource tags. */
-export type DiskPoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const DiskPoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDiskPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetDiskPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DiskPoolsGetResponseTagsMap>;
+) as any as S.Schema<GetDiskPoolResponseTagsMap>;
 
 export interface GetDiskPoolResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -475,7 +475,7 @@ export interface GetDiskPoolResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: DiskPoolsGetResponseTagsMap;
+  tags?: GetDiskPoolResponseTagsMap;
   /** The geo-location where the resource lives. */
   location: string;
   /** Determines the SKU of the Disk pool */
@@ -494,7 +494,7 @@ export const GetDiskPoolResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(DiskPoolsGetResponseTagsMap),
+    tags: S.optional(GetDiskPoolResponseTagsMap),
     location: S.String,
     sku: S.optional(Sku),
     properties: DiskPoolProperties,
@@ -890,7 +890,7 @@ export const ListDiskPoolBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDiskPoolBySubscriptionRequest",
 }) as any as S.Schema<ListDiskPoolBySubscriptionRequest>;
 
-export interface ListDiskPoolOutboundNetworkDependencyEndpointsRequest {
+export interface ListDiskPoolOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -898,7 +898,7 @@ export interface ListDiskPoolOutboundNetworkDependencyEndpointsRequest {
   /** The name of the Disk Pool. */
   diskPoolName: string;
 }
-export const ListDiskPoolOutboundNetworkDependencyEndpointsRequest =
+export const ListDiskPoolOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -913,8 +913,8 @@ export const ListDiskPoolOutboundNetworkDependencyEndpointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListDiskPoolOutboundNetworkDependencyEndpointsRequest",
-  }) as any as S.Schema<ListDiskPoolOutboundNetworkDependencyEndpointsRequest>;
+    identifier: "ListDiskPoolOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListDiskPoolOutboundNetworkDependenciesEndpointsRequest>;
 
 /** Current TCP connectivity information from the App Service Environment to a single endpoint. */
 export interface EndpointDetail {
@@ -1523,13 +1523,13 @@ export const DiskPoolUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiskPoolUpdateProperties>;
 
 /** Resource tags. */
-export type DiskPoolsUpdateRequestTagsMap = {
+export type UpdateDiskPoolRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DiskPoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDiskPoolRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DiskPoolsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDiskPoolRequestTagsMap>;
 
 export interface UpdateDiskPoolRequest {
   /** The ID of the target subscription. */
@@ -1547,7 +1547,7 @@ export interface UpdateDiskPoolRequest {
   /** Determines the SKU of the Disk Pool */
   sku?: Sku;
   /** Resource tags. */
-  tags?: DiskPoolsUpdateRequestTagsMap;
+  tags?: UpdateDiskPoolRequestTagsMap;
 }
 export const UpdateDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1558,7 +1558,7 @@ export const UpdateDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
     managedByExtended: S.optional(ManagedByExtended),
     properties: DiskPoolUpdateProperties,
     sku: S.optional(Sku),
-    tags: S.optional(DiskPoolsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDiskPoolRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1572,13 +1572,13 @@ export const UpdateDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDiskPoolRequest>;
 
 /** Resource tags. */
-export type DiskPoolsUpdateResponseTagsMap = {
+export type UpdateDiskPoolResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DiskPoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDiskPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DiskPoolsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDiskPoolResponseTagsMap>;
 
 export interface UpdateDiskPoolResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1588,7 +1588,7 @@ export interface UpdateDiskPoolResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: DiskPoolsUpdateResponseTagsMap;
+  tags?: UpdateDiskPoolResponseTagsMap;
   /** The geo-location where the resource lives. */
   location: string;
   /** Determines the SKU of the Disk pool */
@@ -1607,7 +1607,7 @@ export const UpdateDiskPoolResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(DiskPoolsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDiskPoolResponseTagsMap),
     location: S.String,
     sku: S.optional(Sku),
     properties: DiskPoolProperties,
@@ -1865,15 +1865,16 @@ export const ListDiskPoolBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListDiskPoolOutboundNetworkDependencyEndpointsError = AzureOpError;
+export type ListDiskPoolOutboundNetworkDependenciesEndpointsError =
+  AzureOpError;
 /** Gets the network endpoints of all outbound dependencies of a Disk Pool */
-export const ListDiskPoolOutboundNetworkDependencyEndpoints: API.OperationMethod<
-  ListDiskPoolOutboundNetworkDependencyEndpointsRequest,
+export const ListDiskPoolOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListDiskPoolOutboundNetworkDependenciesEndpointsRequest,
   OutboundEnvironmentEndpointList,
-  ListDiskPoolOutboundNetworkDependencyEndpointsError,
+  ListDiskPoolOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDiskPoolOutboundNetworkDependencyEndpointsRequest,
+  input: ListDiskPoolOutboundNetworkDependenciesEndpointsRequest,
   output: OutboundEnvironmentEndpointList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

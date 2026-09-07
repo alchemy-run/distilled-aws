@@ -121,59 +121,578 @@ export const AccessControlListsResyncResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccessControlListsResyncResponse",
 }) as any as S.Schema<AccessControlListsResyncResponse>;
 
-export interface AccessControlListsValidateConfigurationRequest {
+export interface CommitL2IsolationDomainConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the Access Control List. */
-  accessControlListName: string;
+  /** Name of the L2 Isolation Domain. */
+  l2IsolationDomainName: string;
 }
-export const AccessControlListsValidateConfigurationRequest =
+export const CommitL2IsolationDomainConfigurationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      accessControlListName: S.String.pipe(T.Label()),
+      l2IsolationDomainName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/accessControlLists/{accessControlListName}/validateConfiguration",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l2IsolationDomains/{l2IsolationDomainName}/commitConfiguration",
         code: 200,
         apiVersion: "2025-07-15",
       }),
     ),
   ).annotate({
-    identifier: "AccessControlListsValidateConfigurationRequest",
-  }) as any as S.Schema<AccessControlListsValidateConfigurationRequest>;
+    identifier: "CommitL2IsolationDomainConfigurationRequest",
+  }) as any as S.Schema<CommitL2IsolationDomainConfigurationRequest>;
 
-export interface AccessControlListsValidateConfigurationResponse {
+export interface CommitL2IsolationDomainConfigurationResponse {
   /** The error object. */
   error?: ErrorDetail;
   /** Gets the configuration state. */
   configurationState?: ConfigurationState;
-  /** URL for the details of the response. */
-  url?: string;
 }
-export const AccessControlListsValidateConfigurationResponse =
+export const CommitL2IsolationDomainConfigurationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       error: S.optional(ErrorDetail),
       configurationState: S.optional(ConfigurationState),
-      url: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "AccessControlListsValidateConfigurationResponse",
-  }) as any as S.Schema<AccessControlListsValidateConfigurationResponse>;
+    identifier: "CommitL2IsolationDomainConfigurationResponse",
+  }) as any as S.Schema<CommitL2IsolationDomainConfigurationResponse>;
+
+export interface CommitL3IsolationDomainConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the L3 Isolation Domain. */
+  l3IsolationDomainName: string;
+}
+export const CommitL3IsolationDomainConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      l3IsolationDomainName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l3IsolationDomains/{l3IsolationDomainName}/commitConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "CommitL3IsolationDomainConfigurationRequest",
+  }) as any as S.Schema<CommitL3IsolationDomainConfigurationRequest>;
+
+export interface CommitL3IsolationDomainConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+}
+export const CommitL3IsolationDomainConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+    }),
+  ).annotate({
+    identifier: "CommitL3IsolationDomainConfigurationResponse",
+  }) as any as S.Schema<CommitL3IsolationDomainConfigurationResponse>;
+
+export interface CommitNetworkFabricBatchStatusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Fabric. */
+  networkFabricName: string;
+  /** Commit Batch Identifier. If not provided, the latest commit batch status will be returned. */
+  commitBatchId?: string;
+}
+export const CommitNetworkFabricBatchStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkFabricName: S.String.pipe(T.Label()),
+      commitBatchId: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/commitBatchStatus",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+).annotate({
+  identifier: "CommitNetworkFabricBatchStatusRequest",
+}) as any as S.Schema<CommitNetworkFabricBatchStatusRequest>;
+
+/** The operations list. */
+export type OperationStatusResultOperationsList = Array<OperationStatusResult>;
+export const OperationStatusResultOperationsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => OperationStatusResult),
+) as any as S.Schema<OperationStatusResultOperationsList>;
+
+/** The current status of an async operation. */
+export interface OperationStatusResult {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: OperationStatusResultOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(OperationStatusResultOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "OperationStatusResult",
+}) as any as S.Schema<OperationStatusResult>;
+
+/** The operations list. */
+export type CommitBatchStatusOperationResponseOperationsItemOperationsList =
+  Array<OperationStatusResult>;
+export const CommitBatchStatusOperationResponseOperationsItemOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<CommitBatchStatusOperationResponseOperationsItemOperationsList>;
+
+/** The current status of an async operation. */
+export interface CommitBatchStatusOperationResponseOperationsItem {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: CommitBatchStatusOperationResponseOperationsItemOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const CommitBatchStatusOperationResponseOperationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        CommitBatchStatusOperationResponseOperationsItemOperationsList,
+      ),
+      error: S.optional(ErrorDetail),
+    }),
+  ).annotate({
+    identifier: "CommitBatchStatusOperationResponseOperationsItem",
+  }) as any as S.Schema<CommitBatchStatusOperationResponseOperationsItem>;
+
+/** The operations list. */
+export type CommitBatchStatusOperationResponseOperationsList =
+  Array<CommitBatchStatusOperationResponseOperationsItem>;
+export const CommitBatchStatusOperationResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    CommitBatchStatusOperationResponseOperationsItem,
+  ) as any as S.Schema<CommitBatchStatusOperationResponseOperationsList>;
+
+/** The error details. */
+export type CommitBatchStatusOperationResponseErrorDetailsList =
+  Array<ErrorDetail>;
+export const CommitBatchStatusOperationResponseErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<CommitBatchStatusOperationResponseErrorDetailsList>;
+
+/** The error additional info. */
+export type CommitBatchStatusOperationResponseErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const CommitBatchStatusOperationResponseErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<CommitBatchStatusOperationResponseErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface CommitBatchStatusOperationResponseError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: CommitBatchStatusOperationResponseErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: CommitBatchStatusOperationResponseErrorAdditionalInfoList;
+}
+export const CommitBatchStatusOperationResponseError = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(CommitBatchStatusOperationResponseErrorDetailsList),
+      additionalInfo: S.optional(
+        CommitBatchStatusOperationResponseErrorAdditionalInfoList,
+      ),
+    }),
+).annotate({
+  identifier: "CommitBatchStatusOperationResponseError",
+}) as any as S.Schema<CommitBatchStatusOperationResponseError>;
+
+/** Commit Batch State. */
+export type CommitBatchState = "Processing" | "Succeeded" | "Failed";
+export const CommitBatchState = /*@__PURE__*/ S.String;
+
+/** List of devices for which the commit operation failed. */
+export type CommitBatchDetailsFailedDevicesList = Array<string>;
+export const CommitBatchDetailsFailedDevicesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CommitBatchDetailsFailedDevicesList>;
+
+/** Commit Batch Details. */
+export interface CommitBatchDetails {
+  /** List of devices for which the commit operation failed. */
+  failedDevices?: CommitBatchDetailsFailedDevicesList;
+}
+export const CommitBatchDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    failedDevices: S.optional(CommitBatchDetailsFailedDevicesList),
+  }),
+).annotate({
+  identifier: "CommitBatchDetails",
+}) as any as S.Schema<CommitBatchDetails>;
+
+/** Commit Batch Status Response Properties. */
+export interface CommitBatchStatusResponseProperties {
+  /** Commit Batch Identifier. */
+  commitBatchId?: string;
+  /** Commit Batch State. */
+  commitBatchState?: CommitBatchState;
+  /** Commit Batch Details. */
+  commitBatchDetails?: CommitBatchDetails;
+}
+export const CommitBatchStatusResponseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    commitBatchId: S.optional(S.String),
+    commitBatchState: S.optional(CommitBatchState),
+    commitBatchDetails: S.optional(CommitBatchDetails),
+  }),
+).annotate({
+  identifier: "CommitBatchStatusResponseProperties",
+}) as any as S.Schema<CommitBatchStatusResponseProperties>;
+
+/** Commit Batch Status Response. */
+export interface CommitBatchStatusOperationResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: CommitBatchStatusOperationResponseOperationsList;
+  /** The error detail. */
+  error?: CommitBatchStatusOperationResponseError;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Commit Batch Status Response Properties. */
+  properties?: CommitBatchStatusResponseProperties;
+}
+export const CommitBatchStatusOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(CommitBatchStatusOperationResponseOperationsList),
+    error: S.optional(CommitBatchStatusOperationResponseError),
+    resourceId: S.optional(S.String),
+    properties: S.optional(CommitBatchStatusResponseProperties),
+  }),
+).annotate({
+  identifier: "CommitBatchStatusOperationResponse",
+}) as any as S.Schema<CommitBatchStatusOperationResponse>;
+
+/** Commit stage Action to be performed. */
+export type CommitStage = "Start" | "Continue" | "Rollback";
+export const CommitStage = /*@__PURE__*/ S.String;
+
+/** Indicates Commit configuration staging policy. Supported policy is StageCEConfiguration, which indicates to prepare the configuration for the CE device type. */
+export type CommitConfigurationPolicy = "StageCEConfiguration";
+export const CommitConfigurationPolicy = /*@__PURE__*/ S.String;
+
+/** List of ARM resource IDs of devices to be included in the commit operation. Either CE1 or CE2 is allowed. */
+export type CommitNetworkFabricConfigurationRequestDevicesList = Array<string>;
+export const CommitNetworkFabricConfigurationRequestDevicesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CommitNetworkFabricConfigurationRequestDevicesList>;
+
+export interface CommitNetworkFabricConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Fabric. */
+  networkFabricName: string;
+  /** Commit stage Action to be performed. */
+  commitStage?: CommitStage | (string & {});
+  /** Commit configuration Policy. Supported policy is StageCEConfiguration, which indicates to prepare the configuration for the CE device type. */
+  commitPolicy?: CommitConfigurationPolicy | (string & {});
+  /** List of ARM resource IDs of devices to be included in the commit operation. Either CE1 or CE2 is allowed. */
+  devices?: CommitNetworkFabricConfigurationRequestDevicesList;
+}
+export const CommitNetworkFabricConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkFabricName: S.String.pipe(T.Label()),
+      commitStage: S.optional(CommitStage),
+      commitPolicy: S.optional(CommitConfigurationPolicy),
+      devices: S.optional(CommitNetworkFabricConfigurationRequestDevicesList),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/commitConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+).annotate({
+  identifier: "CommitNetworkFabricConfigurationRequest",
+}) as any as S.Schema<CommitNetworkFabricConfigurationRequest>;
+
+/** The operations list. */
+export type CommitConfigurationResponseOperationsItemOperationsList =
+  Array<OperationStatusResult>;
+export const CommitConfigurationResponseOperationsItemOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<CommitConfigurationResponseOperationsItemOperationsList>;
+
+/** The current status of an async operation. */
+export interface CommitConfigurationResponseOperationsItem {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: CommitConfigurationResponseOperationsItemOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const CommitConfigurationResponseOperationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        CommitConfigurationResponseOperationsItemOperationsList,
+      ),
+      error: S.optional(ErrorDetail),
+    }),
+  ).annotate({
+    identifier: "CommitConfigurationResponseOperationsItem",
+  }) as any as S.Schema<CommitConfigurationResponseOperationsItem>;
+
+/** The operations list. */
+export type CommitConfigurationResponseOperationsList =
+  Array<CommitConfigurationResponseOperationsItem>;
+export const CommitConfigurationResponseOperationsList = /*@__PURE__*/ S.Array(
+  CommitConfigurationResponseOperationsItem,
+) as any as S.Schema<CommitConfigurationResponseOperationsList>;
+
+/** The error details. */
+export type CommitConfigurationResponseErrorDetailsList = Array<ErrorDetail>;
+export const CommitConfigurationResponseErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<CommitConfigurationResponseErrorDetailsList>;
+
+/** The error additional info. */
+export type CommitConfigurationResponseErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const CommitConfigurationResponseErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<CommitConfigurationResponseErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface CommitConfigurationResponseError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: CommitConfigurationResponseErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: CommitConfigurationResponseErrorAdditionalInfoList;
+}
+export const CommitConfigurationResponseError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(CommitConfigurationResponseErrorDetailsList),
+    additionalInfo: S.optional(
+      CommitConfigurationResponseErrorAdditionalInfoList,
+    ),
+  }),
+).annotate({
+  identifier: "CommitConfigurationResponseError",
+}) as any as S.Schema<CommitConfigurationResponseError>;
+
+/** Commit Configuration Response. */
+export interface CommitConfigurationResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: CommitConfigurationResponseOperationsList;
+  /** The error detail. */
+  error?: CommitConfigurationResponseError;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+}
+export const CommitConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(CommitConfigurationResponseOperationsList),
+    error: S.optional(CommitConfigurationResponseError),
+    resourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CommitConfigurationResponse",
+}) as any as S.Schema<CommitConfigurationResponse>;
+
+export interface CommitRoutePolicyConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Route Policy. */
+  routePolicyName: string;
+}
+export const CommitRoutePolicyConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      routePolicyName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/routePolicies/{routePolicyName}/commitConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+).annotate({
+  identifier: "CommitRoutePolicyConfigurationRequest",
+}) as any as S.Schema<CommitRoutePolicyConfigurationRequest>;
+
+export interface CommitRoutePolicyConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+}
+export const CommitRoutePolicyConfigurationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+    }),
+).annotate({
+  identifier: "CommitRoutePolicyConfigurationResponse",
+}) as any as S.Schema<CommitRoutePolicyConfigurationResponse>;
 
 /** Resource tags. */
-export type AccessControlListsCreateRequestTagsMap = {
+export type CreateAccessControlListRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessControlListsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccessControlListRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessControlListsCreateRequestTagsMap>;
+) as any as S.Schema<CreateAccessControlListRequestTagsMap>;
 
 /** Input method to configure Access Control List. */
 export type ConfigurationType = "File" | "Inline";
@@ -974,7 +1493,7 @@ export interface CreateAccessControlListRequest {
   /** Name of the Access Control List. */
   accessControlListName: string;
   /** Resource tags. */
-  tags?: AccessControlListsCreateRequestTagsMap;
+  tags?: CreateAccessControlListRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Access ControlList properties. */
@@ -985,7 +1504,7 @@ export const CreateAccessControlListRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accessControlListName: S.String.pipe(T.Label()),
-    tags: S.optional(AccessControlListsCreateRequestTagsMap),
+    tags: S.optional(CreateAccessControlListRequestTagsMap),
     location: S.String,
     properties: AccessControlListPropertiesInput,
   }).pipe(
@@ -1043,13 +1562,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type AccessControlListsCreateResponseTagsMap = {
+export type CreateAccessControlListResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessControlListsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccessControlListResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessControlListsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccessControlListResponseTagsMap>;
 
 /** Default action that needs to be applied when no condition is matched. Example: Permit | Deny. */
 export type AccessControlListPropertiesDefaultAction = "Permit" | "Deny";
@@ -1197,7 +1716,7 @@ export interface CreateAccessControlListResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccessControlListsCreateResponseTagsMap;
+  tags?: CreateAccessControlListResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Access ControlList properties. */
@@ -1209,7 +1728,7 @@ export const CreateAccessControlListResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccessControlListsCreateResponseTagsMap),
+    tags: S.optional(CreateAccessControlListResponseTagsMap),
     location: S.String,
     properties: AccessControlListProperties,
   }),
@@ -2511,161 +3030,13 @@ export const CreateInternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInternalNetworkResponse>;
 
 /** Resource tags. */
-export type InternetGatewaysCreateRequestTagsMap = {
+export type CreateInternetGatewayRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const InternetGatewaysCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateInternetGatewayRuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InternetGatewaysCreateRequestTagsMap>;
-
-/** Gateway Type of the resource. */
-export type GatewayType = "Infrastructure" | "Workload";
-export const GatewayType = /*@__PURE__*/ S.String;
-
-/** Internet Gateway Properties defines the properties of the resource. */
-export interface InternetGatewayPropertiesInput {
-  /** Switch configuration description. */
-  annotation?: string;
-  /** ARM Resource ID of the Internet Gateway Rule. */
-  internetGatewayRuleId?: string;
-  /** Gateway Type of the resource. */
-  type?: GatewayType | (string & {});
-  /** Gateway Type of the resource. */
-  internetGatewayType?: GatewayType | (string & {});
-  /** ARM Resource ID of the Network Fabric Controller. */
-  networkFabricControllerId: string;
-}
-export const InternetGatewayPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    annotation: S.optional(S.String),
-    internetGatewayRuleId: S.optional(S.String),
-    type: S.optional(GatewayType),
-    internetGatewayType: S.optional(GatewayType),
-    networkFabricControllerId: S.String,
-  }),
-).annotate({
-  identifier: "InternetGatewayPropertiesInput",
-}) as any as S.Schema<InternetGatewayPropertiesInput>;
-
-export interface CreateInternetGatewayRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway. */
-  internetGatewayName: string;
-  /** Resource tags. */
-  tags?: InternetGatewaysCreateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayPropertiesInput;
-}
-export const CreateInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(InternetGatewaysCreateRequestTagsMap),
-    location: S.String,
-    properties: InternetGatewayPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "CreateInternetGatewayRequest",
-}) as any as S.Schema<CreateInternetGatewayRequest>;
-
-/** Resource tags. */
-export type InternetGatewaysCreateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InternetGatewaysCreateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InternetGatewaysCreateResponseTagsMap>;
-
-/** Internet Gateway Properties defines the properties of the resource. */
-export interface InternetGatewayProperties {
-  /** Switch configuration description. */
-  annotation?: string;
-  /** ARM Resource ID of the Internet Gateway Rule. */
-  internetGatewayRuleId?: string;
-  /** IPv4 Address of Internet Gateway. */
-  ipv4Address?: string;
-  /** Port number of Internet Gateway. */
-  port?: number;
-  /** Gateway Type of the resource. */
-  type?: GatewayType;
-  /** Gateway Type of the resource. */
-  internetGatewayType?: GatewayType;
-  /** ARM Resource ID of the Network Fabric Controller. */
-  networkFabricControllerId: string;
-  /** Details of the last operation performed on the resource */
-  lastOperation?: LastOperationProperties;
-  /** Provisioning state of resource. */
-  provisioningState?: ProvisioningState;
-}
-export const InternetGatewayProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    annotation: S.optional(S.String),
-    internetGatewayRuleId: S.optional(S.String),
-    ipv4Address: S.optional(S.String),
-    port: S.optional(S.Number),
-    type: S.optional(GatewayType),
-    internetGatewayType: S.optional(GatewayType),
-    networkFabricControllerId: S.String,
-    lastOperation: S.optional(LastOperationProperties),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "InternetGatewayProperties",
-}) as any as S.Schema<InternetGatewayProperties>;
-
-export interface CreateInternetGatewayResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: InternetGatewaysCreateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayProperties;
-}
-export const CreateInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewaysCreateResponseTagsMap),
-    location: S.String,
-    properties: InternetGatewayProperties,
-  }),
-).annotate({
-  identifier: "CreateInternetGatewayResponse",
-}) as any as S.Schema<CreateInternetGatewayResponse>;
-
-/** Resource tags. */
-export type InternetGatewayRulesCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InternetGatewayRulesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InternetGatewayRulesCreateRequestTagsMap>;
+) as any as S.Schema<CreateInternetGatewayRuleRequestTagsMap>;
 
 /** Specify action. */
 export type Action = "Allow" | "Deny";
@@ -2774,7 +3145,7 @@ export interface CreateInternetGatewayRuleRequest {
   /** Name of the Internet Gateway rule. */
   internetGatewayRuleName: string;
   /** Resource tags. */
-  tags?: InternetGatewayRulesCreateRequestTagsMap;
+  tags?: CreateInternetGatewayRuleRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Internet Gateway Rule properties */
@@ -2785,7 +3156,7 @@ export const CreateInternetGatewayRuleRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     internetGatewayRuleName: S.String.pipe(T.Label()),
-    tags: S.optional(InternetGatewayRulesCreateRequestTagsMap),
+    tags: S.optional(CreateInternetGatewayRuleRequestTagsMap),
     location: S.String,
     properties: InternetGatewayRulePropertiesInput,
   }).pipe(
@@ -2801,13 +3172,13 @@ export const CreateInternetGatewayRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInternetGatewayRuleRequest>;
 
 /** Resource tags. */
-export type InternetGatewayRulesCreateResponseTagsMap = {
+export type CreateInternetGatewayRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InternetGatewayRulesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateInternetGatewayRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InternetGatewayRulesCreateResponseTagsMap>;
+) as any as S.Schema<CreateInternetGatewayRuleResponseTagsMap>;
 
 /** List of Internet Gateway resource Id. */
 export type InternetGatewayRulePropertiesInternetGatewayIdsList = Array<string>;
@@ -2853,7 +3224,7 @@ export interface CreateInternetGatewayRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InternetGatewayRulesCreateResponseTagsMap;
+  tags?: CreateInternetGatewayRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Internet Gateway Rule properties */
@@ -2865,7 +3236,7 @@ export const CreateInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewayRulesCreateResponseTagsMap),
+    tags: S.optional(CreateInternetGatewayRuleResponseTagsMap),
     location: S.String,
     properties: InternetGatewayRuleProperties,
   }),
@@ -2874,13 +3245,161 @@ export const CreateInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInternetGatewayRuleResponse>;
 
 /** Resource tags. */
-export type IpCommunitiesCreateRequestTagsMap = {
+export type CreateInternetGatewaysRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpCommunitiesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateInternetGatewaysRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpCommunitiesCreateRequestTagsMap>;
+) as any as S.Schema<CreateInternetGatewaysRequestTagsMap>;
+
+/** Gateway Type of the resource. */
+export type GatewayType = "Infrastructure" | "Workload";
+export const GatewayType = /*@__PURE__*/ S.String;
+
+/** Internet Gateway Properties defines the properties of the resource. */
+export interface InternetGatewayPropertiesInput {
+  /** Switch configuration description. */
+  annotation?: string;
+  /** ARM Resource ID of the Internet Gateway Rule. */
+  internetGatewayRuleId?: string;
+  /** Gateway Type of the resource. */
+  type?: GatewayType | (string & {});
+  /** Gateway Type of the resource. */
+  internetGatewayType?: GatewayType | (string & {});
+  /** ARM Resource ID of the Network Fabric Controller. */
+  networkFabricControllerId: string;
+}
+export const InternetGatewayPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    annotation: S.optional(S.String),
+    internetGatewayRuleId: S.optional(S.String),
+    type: S.optional(GatewayType),
+    internetGatewayType: S.optional(GatewayType),
+    networkFabricControllerId: S.String,
+  }),
+).annotate({
+  identifier: "InternetGatewayPropertiesInput",
+}) as any as S.Schema<InternetGatewayPropertiesInput>;
+
+export interface CreateInternetGatewaysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway. */
+  internetGatewayName: string;
+  /** Resource tags. */
+  tags?: CreateInternetGatewaysRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayPropertiesInput;
+}
+export const CreateInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayName: S.String.pipe(T.Label()),
+    tags: S.optional(CreateInternetGatewaysRequestTagsMap),
+    location: S.String,
+    properties: InternetGatewayPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "CreateInternetGatewaysRequest",
+}) as any as S.Schema<CreateInternetGatewaysRequest>;
+
+/** Resource tags. */
+export type CreateInternetGatewaysResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateInternetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateInternetGatewaysResponseTagsMap>;
+
+/** Internet Gateway Properties defines the properties of the resource. */
+export interface InternetGatewayProperties {
+  /** Switch configuration description. */
+  annotation?: string;
+  /** ARM Resource ID of the Internet Gateway Rule. */
+  internetGatewayRuleId?: string;
+  /** IPv4 Address of Internet Gateway. */
+  ipv4Address?: string;
+  /** Port number of Internet Gateway. */
+  port?: number;
+  /** Gateway Type of the resource. */
+  type?: GatewayType;
+  /** Gateway Type of the resource. */
+  internetGatewayType?: GatewayType;
+  /** ARM Resource ID of the Network Fabric Controller. */
+  networkFabricControllerId: string;
+  /** Details of the last operation performed on the resource */
+  lastOperation?: LastOperationProperties;
+  /** Provisioning state of resource. */
+  provisioningState?: ProvisioningState;
+}
+export const InternetGatewayProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    annotation: S.optional(S.String),
+    internetGatewayRuleId: S.optional(S.String),
+    ipv4Address: S.optional(S.String),
+    port: S.optional(S.Number),
+    type: S.optional(GatewayType),
+    internetGatewayType: S.optional(GatewayType),
+    networkFabricControllerId: S.String,
+    lastOperation: S.optional(LastOperationProperties),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "InternetGatewayProperties",
+}) as any as S.Schema<InternetGatewayProperties>;
+
+export interface CreateInternetGatewaysResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CreateInternetGatewaysResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayProperties;
+}
+export const CreateInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(CreateInternetGatewaysResponseTagsMap),
+    location: S.String,
+    properties: InternetGatewayProperties,
+  }),
+).annotate({
+  identifier: "CreateInternetGatewaysResponse",
+}) as any as S.Schema<CreateInternetGatewaysResponse>;
+
+/** Resource tags. */
+export type CreateIpCommunityRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateIpCommunityRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateIpCommunityRequestTagsMap>;
 
 /** Community action types. Example: Permit | Deny. */
 export type CommunityActionTypes = "Permit" | "Deny";
@@ -2963,7 +3482,7 @@ export interface CreateIpCommunityRequest {
   /** Name of the IP Community. */
   ipCommunityName: string;
   /** Resource tags. */
-  tags?: IpCommunitiesCreateRequestTagsMap;
+  tags?: CreateIpCommunityRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Community Properties */
@@ -2974,7 +3493,7 @@ export const CreateIpCommunityRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ipCommunityName: S.String.pipe(T.Label()),
-    tags: S.optional(IpCommunitiesCreateRequestTagsMap),
+    tags: S.optional(CreateIpCommunityRequestTagsMap),
     location: S.String,
     properties: IpCommunityPropertiesInput,
   }).pipe(
@@ -2990,13 +3509,13 @@ export const CreateIpCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIpCommunityRequest>;
 
 /** Resource tags. */
-export type IpCommunitiesCreateResponseTagsMap = {
+export type CreateIpCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpCommunitiesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateIpCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpCommunitiesCreateResponseTagsMap>;
+) as any as S.Schema<CreateIpCommunityResponseTagsMap>;
 
 /** List of IP Community Rules. */
 export type IpCommunityPropertiesIpCommunityRulesList = Array<IpCommunityRule>;
@@ -3045,7 +3564,7 @@ export interface CreateIpCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpCommunitiesCreateResponseTagsMap;
+  tags?: CreateIpCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Community Properties */
@@ -3057,7 +3576,7 @@ export const CreateIpCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpCommunitiesCreateResponseTagsMap),
+    tags: S.optional(CreateIpCommunityResponseTagsMap),
     location: S.String,
     properties: IpCommunityProperties,
   }),
@@ -3066,13 +3585,13 @@ export const CreateIpCommunityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIpCommunityResponse>;
 
 /** Resource tags. */
-export type IpExtendedCommunitiesCreateRequestTagsMap = {
+export type CreateIpExtendedCommunityRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpExtendedCommunitiesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateIpExtendedCommunityRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpExtendedCommunitiesCreateRequestTagsMap>;
+) as any as S.Schema<CreateIpExtendedCommunityRequestTagsMap>;
 
 /** Route Target List.The expected formats are ASN(plain):NN >> example 4294967294:50, ASN.ASN:NN >> example 65533.65333:40, IP-address:NN >> example 10.10.10.10:65535. The possible values of ASN,NN are in range of 0-65535, ASN(plain) is in range of 0-4294967295. */
 export type IpExtendedCommunityRuleRouteTargetsList = Array<string>;
@@ -3132,7 +3651,7 @@ export interface CreateIpExtendedCommunityRequest {
   /** Name of the IP Extended Community. */
   ipExtendedCommunityName: string;
   /** Resource tags. */
-  tags?: IpExtendedCommunitiesCreateRequestTagsMap;
+  tags?: CreateIpExtendedCommunityRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IpExtendedCommunity properties */
@@ -3143,7 +3662,7 @@ export const CreateIpExtendedCommunityRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ipExtendedCommunityName: S.String.pipe(T.Label()),
-    tags: S.optional(IpExtendedCommunitiesCreateRequestTagsMap),
+    tags: S.optional(CreateIpExtendedCommunityRequestTagsMap),
     location: S.String,
     properties: IpExtendedCommunityPropertiesInput,
   }).pipe(
@@ -3159,14 +3678,13 @@ export const CreateIpExtendedCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIpExtendedCommunityRequest>;
 
 /** Resource tags. */
-export type IpExtendedCommunitiesCreateResponseTagsMap = {
+export type CreateIpExtendedCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpExtendedCommunitiesCreateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IpExtendedCommunitiesCreateResponseTagsMap>;
+export const CreateIpExtendedCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateIpExtendedCommunityResponseTagsMap>;
 
 /** List of IP Extended Community Rules. */
 export type IpExtendedCommunityPropertiesIpExtendedCommunityRulesList =
@@ -3218,7 +3736,7 @@ export interface CreateIpExtendedCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpExtendedCommunitiesCreateResponseTagsMap;
+  tags?: CreateIpExtendedCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IpExtendedCommunity properties */
@@ -3230,7 +3748,7 @@ export const CreateIpExtendedCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpExtendedCommunitiesCreateResponseTagsMap),
+    tags: S.optional(CreateIpExtendedCommunityResponseTagsMap),
     location: S.String,
     properties: IpExtendedCommunityProperties,
   }),
@@ -3239,13 +3757,13 @@ export const CreateIpExtendedCommunityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIpExtendedCommunityResponse>;
 
 /** Resource tags. */
-export type IpPrefixesCreateRequestTagsMap = {
+export type CreateIpPrefixRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpPrefixesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateIpPrefixRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpPrefixesCreateRequestTagsMap>;
+) as any as S.Schema<CreateIpPrefixRequestTagsMap>;
 
 /** Specify prefix-list bounds. */
 export type Condition =
@@ -3300,7 +3818,7 @@ export const IpPrefixPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "IpPrefixPropertiesInput",
 }) as any as S.Schema<IpPrefixPropertiesInput>;
 
-export interface CreateIpPrefixeRequest {
+export interface CreateIpPrefixRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3308,18 +3826,18 @@ export interface CreateIpPrefixeRequest {
   /** Name of the IP Prefix. */
   ipPrefixName: string;
   /** Resource tags. */
-  tags?: IpPrefixesCreateRequestTagsMap;
+  tags?: CreateIpPrefixRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Prefix properties */
   properties: IpPrefixPropertiesInput;
 }
-export const CreateIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateIpPrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ipPrefixName: S.String.pipe(T.Label()),
-    tags: S.optional(IpPrefixesCreateRequestTagsMap),
+    tags: S.optional(CreateIpPrefixRequestTagsMap),
     location: S.String,
     properties: IpPrefixPropertiesInput,
   }).pipe(
@@ -3331,17 +3849,17 @@ export const CreateIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateIpPrefixeRequest",
-}) as any as S.Schema<CreateIpPrefixeRequest>;
+  identifier: "CreateIpPrefixRequest",
+}) as any as S.Schema<CreateIpPrefixRequest>;
 
 /** Resource tags. */
-export type IpPrefixesCreateResponseTagsMap = {
+export type CreateIpPrefixResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpPrefixesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateIpPrefixResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpPrefixesCreateResponseTagsMap>;
+) as any as S.Schema<CreateIpPrefixResponseTagsMap>;
 
 /** The list of IP Prefix Rules. */
 export type IpPrefixPropertiesIpPrefixRulesList = Array<IpPrefixRule>;
@@ -3380,7 +3898,7 @@ export const IpPrefixProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IpPrefixProperties",
 }) as any as S.Schema<IpPrefixProperties>;
 
-export interface CreateIpPrefixeResponse {
+export interface CreateIpPrefixResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3390,34 +3908,34 @@ export interface CreateIpPrefixeResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpPrefixesCreateResponseTagsMap;
+  tags?: CreateIpPrefixResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Prefix properties */
   properties: IpPrefixProperties;
 }
-export const CreateIpPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateIpPrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpPrefixesCreateResponseTagsMap),
+    tags: S.optional(CreateIpPrefixResponseTagsMap),
     location: S.String,
     properties: IpPrefixProperties,
   }),
 ).annotate({
-  identifier: "CreateIpPrefixeResponse",
-}) as any as S.Schema<CreateIpPrefixeResponse>;
+  identifier: "CreateIpPrefixResponse",
+}) as any as S.Schema<CreateIpPrefixResponse>;
 
 /** Resource tags. */
-export type L2IsolationDomainsCreateRequestTagsMap = {
+export type CreateL2IsolationDomainRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2IsolationDomainsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateL2IsolationDomainRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2IsolationDomainsCreateRequestTagsMap>;
+) as any as S.Schema<CreateL2IsolationDomainRequestTagsMap>;
 
 /** Extended VLAN status, default value is Disabled. */
 export type L2IsolationDomainPropertiesInputExtendedVlan =
@@ -3480,19 +3998,19 @@ export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentitiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface L2IsolationDomainsCreateRequestIdentity {
+export interface CreateL2IsolationDomainRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   userAssignedIdentities?: UserAssignedIdentitiesInput;
 }
-export const L2IsolationDomainsCreateRequestIdentity = /*@__PURE__*/ S.suspend(
+export const CreateL2IsolationDomainRequestIdentity = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
     }),
 ).annotate({
-  identifier: "L2IsolationDomainsCreateRequestIdentity",
-}) as any as S.Schema<L2IsolationDomainsCreateRequestIdentity>;
+  identifier: "CreateL2IsolationDomainRequestIdentity",
+}) as any as S.Schema<CreateL2IsolationDomainRequestIdentity>;
 
 export interface CreateL2IsolationDomainRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3502,23 +4020,23 @@ export interface CreateL2IsolationDomainRequest {
   /** Name of the L2 Isolation Domain. */
   l2IsolationDomainName: string;
   /** Resource tags. */
-  tags?: L2IsolationDomainsCreateRequestTagsMap;
+  tags?: CreateL2IsolationDomainRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L2IsolationDomain properties */
   properties: L2IsolationDomainPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateL2IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     l2IsolationDomainName: S.String.pipe(T.Label()),
-    tags: S.optional(L2IsolationDomainsCreateRequestTagsMap),
+    tags: S.optional(CreateL2IsolationDomainRequestTagsMap),
     location: S.String,
     properties: L2IsolationDomainPropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -3532,13 +4050,13 @@ export const CreateL2IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateL2IsolationDomainRequest>;
 
 /** Resource tags. */
-export type L2IsolationDomainsCreateResponseTagsMap = {
+export type CreateL2IsolationDomainResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2IsolationDomainsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateL2IsolationDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2IsolationDomainsCreateResponseTagsMap>;
+) as any as S.Schema<CreateL2IsolationDomainResponseTagsMap>;
 
 /** Extended VLAN status, default value is Disabled. */
 export type L2IsolationDomainPropertiesExtendedVlan = "Enabled" | "Disabled";
@@ -3610,7 +4128,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface L2IsolationDomainsCreateResponseIdentity {
+export interface CreateL2IsolationDomainResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -3618,7 +4136,7 @@ export interface L2IsolationDomainsCreateResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const L2IsolationDomainsCreateResponseIdentity = /*@__PURE__*/ S.suspend(
+export const CreateL2IsolationDomainResponseIdentity = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       principalId: S.optional(S.String),
@@ -3627,8 +4145,8 @@ export const L2IsolationDomainsCreateResponseIdentity = /*@__PURE__*/ S.suspend(
       userAssignedIdentities: S.optional(UserAssignedIdentities),
     }),
 ).annotate({
-  identifier: "L2IsolationDomainsCreateResponseIdentity",
-}) as any as S.Schema<L2IsolationDomainsCreateResponseIdentity>;
+  identifier: "CreateL2IsolationDomainResponseIdentity",
+}) as any as S.Schema<CreateL2IsolationDomainResponseIdentity>;
 
 export interface CreateL2IsolationDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3640,13 +4158,13 @@ export interface CreateL2IsolationDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L2IsolationDomainsCreateResponseTagsMap;
+  tags?: CreateL2IsolationDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L2IsolationDomain properties */
   properties: L2IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateL2IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3654,23 +4172,23 @@ export const CreateL2IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L2IsolationDomainsCreateResponseTagsMap),
+    tags: S.optional(CreateL2IsolationDomainResponseTagsMap),
     location: S.String,
     properties: L2IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateL2IsolationDomainResponse",
 }) as any as S.Schema<CreateL2IsolationDomainResponse>;
 
 /** Resource tags. */
-export type L3IsolationDomainsCreateRequestTagsMap = {
+export type CreateL3IsolationDomainRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const L3IsolationDomainsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateL3IsolationDomainRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L3IsolationDomainsCreateRequestTagsMap>;
+) as any as S.Schema<CreateL3IsolationDomainRequestTagsMap>;
 
 /** Advertise Connected Subnets. Ex: "True" | "False". */
 export type L3IsolationDomainPropertiesInputRedistributeConnectedSubnets =
@@ -3832,10 +4350,10 @@ export const L3IsolationDomainPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<L3IsolationDomainPropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L3IsolationDomainsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const L3IsolationDomainsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateL3IsolationDomainRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateL3IsolationDomainRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateL3IsolationDomainRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3845,23 +4363,23 @@ export interface CreateL3IsolationDomainRequest {
   /** Name of the L3 Isolation Domain. */
   l3IsolationDomainName: string;
   /** Resource tags. */
-  tags?: L3IsolationDomainsCreateRequestTagsMap;
+  tags?: CreateL3IsolationDomainRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L3 Isolation Domain Properties */
   properties: L3IsolationDomainPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateL3IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     l3IsolationDomainName: S.String.pipe(T.Label()),
-    tags: S.optional(L3IsolationDomainsCreateRequestTagsMap),
+    tags: S.optional(CreateL3IsolationDomainRequestTagsMap),
     location: S.String,
     properties: L3IsolationDomainPropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -3875,13 +4393,13 @@ export const CreateL3IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateL3IsolationDomainRequest>;
 
 /** Resource tags. */
-export type L3IsolationDomainsCreateResponseTagsMap = {
+export type CreateL3IsolationDomainResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L3IsolationDomainsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateL3IsolationDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L3IsolationDomainsCreateResponseTagsMap>;
+) as any as S.Schema<CreateL3IsolationDomainResponseTagsMap>;
 
 /** Advertise Connected Subnets. Ex: "True" | "False". */
 export type L3IsolationDomainPropertiesRedistributeConnectedSubnets =
@@ -3978,10 +4496,10 @@ export const L3IsolationDomainProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<L3IsolationDomainProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L3IsolationDomainsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const L3IsolationDomainsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateL3IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateL3IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateL3IsolationDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3993,13 +4511,13 @@ export interface CreateL3IsolationDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L3IsolationDomainsCreateResponseTagsMap;
+  tags?: CreateL3IsolationDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L3 Isolation Domain Properties */
   properties: L3IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateL3IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4007,23 +4525,23 @@ export const CreateL3IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L3IsolationDomainsCreateResponseTagsMap),
+    tags: S.optional(CreateL3IsolationDomainResponseTagsMap),
     location: S.String,
     properties: L3IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateL3IsolationDomainResponse",
 }) as any as S.Schema<CreateL3IsolationDomainResponse>;
 
 /** Resource tags. */
-export type NeighborGroupsCreateRequestTagsMap = {
+export type CreateNeighborGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NeighborGroupsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNeighborGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NeighborGroupsCreateRequestTagsMap>;
+) as any as S.Schema<CreateNeighborGroupRequestTagsMap>;
 
 /** Array of IPv4 Addresses. */
 export type NeighborGroupDestinationIpv4AddressesList = Array<string>;
@@ -4070,10 +4588,10 @@ export const NeighborGroupPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NeighborGroupPropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NeighborGroupsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NeighborGroupsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNeighborGroupRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNeighborGroupRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNeighborGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4083,23 +4601,23 @@ export interface CreateNeighborGroupRequest {
   /** Name of the Neighbor Group. */
   neighborGroupName: string;
   /** Resource tags. */
-  tags?: NeighborGroupsCreateRequestTagsMap;
+  tags?: CreateNeighborGroupRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NeighborGroup Properties */
   properties: NeighborGroupPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNeighborGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     neighborGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(NeighborGroupsCreateRequestTagsMap),
+    tags: S.optional(CreateNeighborGroupRequestTagsMap),
     location: S.String,
     properties: NeighborGroupPropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -4113,13 +4631,13 @@ export const CreateNeighborGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNeighborGroupRequest>;
 
 /** Resource tags. */
-export type NeighborGroupsCreateResponseTagsMap = {
+export type CreateNeighborGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NeighborGroupsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNeighborGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NeighborGroupsCreateResponseTagsMap>;
+) as any as S.Schema<CreateNeighborGroupResponseTagsMap>;
 
 /** List of NetworkTap IDs where neighbor group is associated. */
 export type NeighborGroupPropertiesNetworkTapIdsList = Array<string>;
@@ -4176,10 +4694,10 @@ export const NeighborGroupProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NeighborGroupProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NeighborGroupsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NeighborGroupsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNeighborGroupResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNeighborGroupResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNeighborGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4191,13 +4709,13 @@ export interface CreateNeighborGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NeighborGroupsCreateResponseTagsMap;
+  tags?: CreateNeighborGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NeighborGroup Properties */
   properties: NeighborGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNeighborGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4205,24 +4723,24 @@ export const CreateNeighborGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NeighborGroupsCreateResponseTagsMap),
+    tags: S.optional(CreateNeighborGroupResponseTagsMap),
     location: S.String,
     properties: NeighborGroupProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateNeighborGroupResponse",
 }) as any as S.Schema<CreateNeighborGroupResponse>;
 
 /** Resource tags. */
-export type NetworkBootstrapDevicesCreateRequestTagsMap = {
+export type CreateNetworkBootstrapDeviceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkBootstrapDevicesCreateRequestTagsMap =
+export const CreateNetworkBootstrapDeviceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkBootstrapDevicesCreateRequestTagsMap>;
+  ) as any as S.Schema<CreateNetworkBootstrapDeviceRequestTagsMap>;
 
 /** Network Bootstrap Device Properties defines the properties of the resource. */
 export interface NetworkBootstrapDevicePropertiesInput {
@@ -4248,10 +4766,10 @@ export const NetworkBootstrapDevicePropertiesInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<NetworkBootstrapDevicePropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkBootstrapDevicesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkBootstrapDevicesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkBootstrapDeviceRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkBootstrapDeviceRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkBootstrapDeviceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4261,23 +4779,23 @@ export interface CreateNetworkBootstrapDeviceRequest {
   /** Name of the Network Bootstrap Device. */
   networkBootstrapDeviceName: string;
   /** Resource tags. */
-  tags?: NetworkBootstrapDevicesCreateRequestTagsMap;
+  tags?: CreateNetworkBootstrapDeviceRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkBootstrapDevice properties */
   properties: NetworkBootstrapDevicePropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkBootstrapDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkBootstrapDeviceName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkBootstrapDevicesCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkBootstrapDeviceRequestTagsMap),
     location: S.String,
     properties: NetworkBootstrapDevicePropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -4291,14 +4809,14 @@ export const CreateNetworkBootstrapDeviceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkBootstrapDeviceRequest>;
 
 /** Resource tags. */
-export type NetworkBootstrapDevicesCreateResponseTagsMap = {
+export type CreateNetworkBootstrapDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkBootstrapDevicesCreateResponseTagsMap =
+export const CreateNetworkBootstrapDeviceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkBootstrapDevicesCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateNetworkBootstrapDeviceResponseTagsMap>;
 
 /** Network Bootstrap Device Properties defines the properties of the resource. */
 export interface NetworkBootstrapDeviceProperties {
@@ -4353,10 +4871,10 @@ export const NetworkBootstrapDeviceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkBootstrapDeviceProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkBootstrapDevicesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkBootstrapDevicesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkBootstrapDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkBootstrapDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkBootstrapDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4368,13 +4886,13 @@ export interface CreateNetworkBootstrapDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkBootstrapDevicesCreateResponseTagsMap;
+  tags?: CreateNetworkBootstrapDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkBootstrapDevice properties */
   properties: NetworkBootstrapDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkBootstrapDeviceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -4383,10 +4901,10 @@ export const CreateNetworkBootstrapDeviceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(NetworkBootstrapDevicesCreateResponseTagsMap),
+      tags: S.optional(CreateNetworkBootstrapDeviceResponseTagsMap),
       location: S.String,
       properties: NetworkBootstrapDeviceProperties,
-      identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+      identity: S.optional(CreateL2IsolationDomainResponseIdentity),
     }),
 ).annotate({
   identifier: "CreateNetworkBootstrapDeviceResponse",
@@ -4520,13 +5038,13 @@ export const CreateNetworkBootstrapInterfaceResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateNetworkBootstrapInterfaceResponse>;
 
 /** Resource tags. */
-export type NetworkDevicesCreateRequestTagsMap = {
+export type CreateNetworkDeviceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkDevicesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkDeviceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkDevicesCreateRequestTagsMap>;
+) as any as S.Schema<CreateNetworkDeviceRequestTagsMap>;
 
 /** The type of managed identity. */
 export type ManagedServiceIdentitySelectorType =
@@ -4576,10 +5094,10 @@ export const NetworkDevicePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkDevicePropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkDevicesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkDevicesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkDeviceRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkDeviceRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkDeviceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4589,23 +5107,23 @@ export interface CreateNetworkDeviceRequest {
   /** Name of the Network Device. */
   networkDeviceName: string;
   /** Resource tags. */
-  tags?: NetworkDevicesCreateRequestTagsMap;
+  tags?: CreateNetworkDeviceRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkDevice properties */
   properties: NetworkDevicePropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkDeviceName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkDevicesCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkDeviceRequestTagsMap),
     location: S.String,
     properties: NetworkDevicePropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -4619,13 +5137,13 @@ export const CreateNetworkDeviceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkDeviceRequest>;
 
 /** Resource tags. */
-export type NetworkDevicesCreateResponseTagsMap = {
+export type CreateNetworkDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkDevicesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkDevicesCreateResponseTagsMap>;
+) as any as S.Schema<CreateNetworkDeviceResponseTagsMap>;
 
 /** NetworkDeviceRole is the device role: Example: CE | ToR. */
 export type NetworkDeviceRole = "CE" | "ToR" | "NPB" | "TS" | "Management";
@@ -4811,10 +5329,10 @@ export const NetworkDeviceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkDeviceProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkDevicesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkDevicesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4826,13 +5344,13 @@ export interface CreateNetworkDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkDevicesCreateResponseTagsMap;
+  tags?: CreateNetworkDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkDevice properties */
   properties: NetworkDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4840,23 +5358,23 @@ export const CreateNetworkDeviceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkDevicesCreateResponseTagsMap),
+    tags: S.optional(CreateNetworkDeviceResponseTagsMap),
     location: S.String,
     properties: NetworkDeviceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateNetworkDeviceResponse",
 }) as any as S.Schema<CreateNetworkDeviceResponse>;
 
 /** Resource tags. */
-export type NetworkFabricsCreateRequestTagsMap = {
+export type CreateNetworkFabricRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkFabricRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkFabricsCreateRequestTagsMap>;
+) as any as S.Schema<CreateNetworkFabricRequestTagsMap>;
 
 /** Storage account configuration. */
 export interface StorageAccountConfiguration {
@@ -5193,10 +5711,10 @@ export const NetworkFabricPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkFabricPropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkFabricsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkFabricRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkFabricRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkFabricRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5206,23 +5724,23 @@ export interface CreateNetworkFabricRequest {
   /** Name of the Network Fabric. */
   networkFabricName: string;
   /** Resource tags. */
-  tags?: NetworkFabricsCreateRequestTagsMap;
+  tags?: CreateNetworkFabricRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabric Properties */
   properties: NetworkFabricPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkFabricRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkFabricName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkFabricsCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkFabricRequestTagsMap),
     location: S.String,
     properties: NetworkFabricPropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -5236,13 +5754,13 @@ export const CreateNetworkFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkFabricRequest>;
 
 /** Resource tags. */
-export type NetworkFabricsCreateResponseTagsMap = {
+export type CreateNetworkFabricResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkFabricsCreateResponseTagsMap>;
+) as any as S.Schema<CreateNetworkFabricResponseTagsMap>;
 
 /** Array of router IDs. */
 export type NetworkFabricPropertiesRouterIdsList = Array<string>;
@@ -5619,10 +6137,10 @@ export const NetworkFabricProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkFabricProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkFabricsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkFabricResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkFabricResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkFabricResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5634,13 +6152,13 @@ export interface CreateNetworkFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkFabricsCreateResponseTagsMap;
+  tags?: CreateNetworkFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabric Properties */
   properties: NetworkFabricProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkFabricResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5648,24 +6166,24 @@ export const CreateNetworkFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFabricsCreateResponseTagsMap),
+    tags: S.optional(CreateNetworkFabricResponseTagsMap),
     location: S.String,
     properties: NetworkFabricProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateNetworkFabricResponse",
 }) as any as S.Schema<CreateNetworkFabricResponse>;
 
 /** Resource tags. */
-export type NetworkFabricControllersCreateRequestTagsMap = {
+export type CreateNetworkFabricControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricControllersCreateRequestTagsMap =
+export const CreateNetworkFabricControllerRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkFabricControllersCreateRequestTagsMap>;
+  ) as any as S.Schema<CreateNetworkFabricControllerRequestTagsMap>;
 
 /** The ExpressRoute circuit ID and the Auth Key are required for you to successfully deploy NFC service. */
 export interface ExpressRouteConnectionInformation {
@@ -5776,10 +6294,10 @@ export const NetworkFabricControllerPropertiesInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<NetworkFabricControllerPropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricControllersCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkFabricControllersCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkFabricControllerRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkFabricControllerRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkFabricControllerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5789,13 +6307,13 @@ export interface CreateNetworkFabricControllerRequest {
   /** Name of the Network Fabric Controller. */
   networkFabricControllerName: string;
   /** Resource tags. */
-  tags?: NetworkFabricControllersCreateRequestTagsMap;
+  tags?: CreateNetworkFabricControllerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabricController Properties */
   properties: NetworkFabricControllerPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkFabricControllerRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -5803,10 +6321,10 @@ export const CreateNetworkFabricControllerRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       networkFabricControllerName: S.String.pipe(T.Label()),
-      tags: S.optional(NetworkFabricControllersCreateRequestTagsMap),
+      tags: S.optional(CreateNetworkFabricControllerRequestTagsMap),
       location: S.String,
       properties: NetworkFabricControllerPropertiesInput,
-      identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+      identity: S.optional(CreateL2IsolationDomainRequestIdentity),
     }).pipe(
       T.Http({
         method: "PUT",
@@ -5820,14 +6338,14 @@ export const CreateNetworkFabricControllerRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateNetworkFabricControllerRequest>;
 
 /** Resource tags. */
-export type NetworkFabricControllersCreateResponseTagsMap = {
+export type CreateNetworkFabricControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricControllersCreateResponseTagsMap =
+export const CreateNetworkFabricControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkFabricControllersCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateNetworkFabricControllerResponseTagsMap>;
 
 /** As part of an update, the Infrastructure ExpressRoute CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure services. (This is a Mandatory attribute) */
 export type NetworkFabricControllerPropertiesInfrastructureExpressRouteConnectionsList =
@@ -5968,10 +6486,10 @@ export const NetworkFabricControllerProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkFabricControllerProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricControllersCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkFabricControllersCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkFabricControllerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkFabricControllerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkFabricControllerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5983,13 +6501,13 @@ export interface CreateNetworkFabricControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkFabricControllersCreateResponseTagsMap;
+  tags?: CreateNetworkFabricControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabricController Properties */
   properties: NetworkFabricControllerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkFabricControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -5998,10 +6516,10 @@ export const CreateNetworkFabricControllerResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(NetworkFabricControllersCreateResponseTagsMap),
+      tags: S.optional(CreateNetworkFabricControllerResponseTagsMap),
       location: S.String,
       properties: NetworkFabricControllerProperties,
-      identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+      identity: S.optional(CreateL2IsolationDomainResponseIdentity),
     }),
 ).annotate({
   identifier: "CreateNetworkFabricControllerResponse",
@@ -6024,10 +6542,10 @@ export const NetworkInterfacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkInterfacePropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkInterfacesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkInterfacesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkInterfaceRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkInterfaceRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkInterfaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6041,7 +6559,7 @@ export interface CreateNetworkInterfaceRequest {
   /** The NetworkInterface properties */
   properties: NetworkInterfacePropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6050,7 +6568,7 @@ export const CreateNetworkInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
     networkDeviceName: S.String.pipe(T.Label()),
     networkInterfaceName: S.String.pipe(T.Label()),
     properties: NetworkInterfacePropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -6113,10 +6631,10 @@ export const NetworkInterfaceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkInterfaceProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkInterfacesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkInterfacesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkInterfaceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkInterfaceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkInterfaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6130,7 +6648,7 @@ export interface CreateNetworkInterfaceResponse {
   /** The NetworkInterface properties */
   properties: NetworkInterfaceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6139,20 +6657,20 @@ export const CreateNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: NetworkInterfaceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateNetworkInterfaceResponse",
 }) as any as S.Schema<CreateNetworkInterfaceResponse>;
 
 /** Resource tags. */
-export type NetworkMonitorsCreateRequestTagsMap = {
+export type CreateNetworkMonitorRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkMonitorsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkMonitorsCreateRequestTagsMap>;
+) as any as S.Schema<CreateNetworkMonitorRequestTagsMap>;
 
 /** Station Configuration State. */
 export type StationConfigurationState = "Enabled" | "Disabled";
@@ -6288,7 +6806,7 @@ export interface CreateNetworkMonitorRequest {
   /** Name of the Network Monitor. */
   networkMonitorName: string;
   /** Resource tags. */
-  tags?: NetworkMonitorsCreateRequestTagsMap;
+  tags?: CreateNetworkMonitorRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkMonitor properties. */
@@ -6299,7 +6817,7 @@ export const CreateNetworkMonitorRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkMonitorName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkMonitorsCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkMonitorRequestTagsMap),
     location: S.String,
     properties: NetworkMonitorPropertiesInput,
   }).pipe(
@@ -6315,13 +6833,13 @@ export const CreateNetworkMonitorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkMonitorRequest>;
 
 /** Resource tags. */
-export type NetworkMonitorsCreateResponseTagsMap = {
+export type CreateNetworkMonitorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkMonitorsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkMonitorsCreateResponseTagsMap>;
+) as any as S.Schema<CreateNetworkMonitorResponseTagsMap>;
 
 /** Network Monitor Properties defines the properties of the resource. */
 export interface NetworkMonitorProperties {
@@ -6361,7 +6879,7 @@ export interface CreateNetworkMonitorResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkMonitorsCreateResponseTagsMap;
+  tags?: CreateNetworkMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkMonitor properties. */
@@ -6373,7 +6891,7 @@ export const CreateNetworkMonitorResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkMonitorsCreateResponseTagsMap),
+    tags: S.optional(CreateNetworkMonitorResponseTagsMap),
     location: S.String,
     properties: NetworkMonitorProperties,
   }),
@@ -6382,13 +6900,13 @@ export const CreateNetworkMonitorResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkMonitorResponse>;
 
 /** Resource tags. */
-export type NetworkPacketBrokersCreateRequestTagsMap = {
+export type CreateNetworkPacketBrokerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkPacketBrokersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkPacketBrokerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkPacketBrokersCreateRequestTagsMap>;
+) as any as S.Schema<CreateNetworkPacketBrokerRequestTagsMap>;
 
 /** Network Packet Broker Properties defines the properties of the resource. */
 export interface NetworkPacketBrokerPropertiesInput {
@@ -6404,10 +6922,10 @@ export const NetworkPacketBrokerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkPacketBrokerPropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkPacketBrokersCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkPacketBrokersCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkPacketBrokerRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkPacketBrokerRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkPacketBrokerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6417,23 +6935,23 @@ export interface CreateNetworkPacketBrokerRequest {
   /** Name of the Network Packet Broker. */
   networkPacketBrokerName: string;
   /** Resource tags. */
-  tags?: NetworkPacketBrokersCreateRequestTagsMap;
+  tags?: CreateNetworkPacketBrokerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkPacketBroker properties */
   properties: NetworkPacketBrokerPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkPacketBrokerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkPacketBrokerName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkPacketBrokersCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkPacketBrokerRequestTagsMap),
     location: S.String,
     properties: NetworkPacketBrokerPropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -6447,13 +6965,13 @@ export const CreateNetworkPacketBrokerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkPacketBrokerRequest>;
 
 /** Resource tags. */
-export type NetworkPacketBrokersCreateResponseTagsMap = {
+export type CreateNetworkPacketBrokerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkPacketBrokersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkPacketBrokerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkPacketBrokersCreateResponseTagsMap>;
+) as any as S.Schema<CreateNetworkPacketBrokerResponseTagsMap>;
 
 /** List of ARM resource IDs of Network Devices [NPB]. */
 export type NetworkPacketBrokerPropertiesNetworkDeviceIdsList = Array<string>;
@@ -6524,10 +7042,10 @@ export const NetworkPacketBrokerProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkPacketBrokerProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkPacketBrokersCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkPacketBrokersCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkPacketBrokerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkPacketBrokerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkPacketBrokerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6539,13 +7057,13 @@ export interface CreateNetworkPacketBrokerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkPacketBrokersCreateResponseTagsMap;
+  tags?: CreateNetworkPacketBrokerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkPacketBroker properties */
   properties: NetworkPacketBrokerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkPacketBrokerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6553,23 +7071,23 @@ export const CreateNetworkPacketBrokerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkPacketBrokersCreateResponseTagsMap),
+    tags: S.optional(CreateNetworkPacketBrokerResponseTagsMap),
     location: S.String,
     properties: NetworkPacketBrokerProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateNetworkPacketBrokerResponse",
 }) as any as S.Schema<CreateNetworkPacketBrokerResponse>;
 
 /** Resource tags. */
-export type NetworkRacksCreateRequestTagsMap = {
+export type CreateNetworkRackRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkRacksCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkRackRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkRacksCreateRequestTagsMap>;
+) as any as S.Schema<CreateNetworkRackRequestTagsMap>;
 
 /** Network Rack SKU name. */
 export type NetworkRackType = "Aggregate" | "Compute" | "Combined";
@@ -6602,7 +7120,7 @@ export interface CreateNetworkRackRequest {
   /** Name of the Network Rack. */
   networkRackName: string;
   /** Resource tags. */
-  tags?: NetworkRacksCreateRequestTagsMap;
+  tags?: CreateNetworkRackRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Network Rack Properties */
@@ -6613,7 +7131,7 @@ export const CreateNetworkRackRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkRackName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkRacksCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkRackRequestTagsMap),
     location: S.String,
     properties: NetworkRackPropertiesInput,
   }).pipe(
@@ -6629,13 +7147,13 @@ export const CreateNetworkRackRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkRackRequest>;
 
 /** Resource tags. */
-export type NetworkRacksCreateResponseTagsMap = {
+export type CreateNetworkRackResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkRacksCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkRackResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkRacksCreateResponseTagsMap>;
+) as any as S.Schema<CreateNetworkRackResponseTagsMap>;
 
 /** List of network device ARM resource IDs. */
 export type NetworkRackPropertiesNetworkDevicesList = Array<string>;
@@ -6684,7 +7202,7 @@ export interface CreateNetworkRackResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkRacksCreateResponseTagsMap;
+  tags?: CreateNetworkRackResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Network Rack Properties */
@@ -6696,7 +7214,7 @@ export const CreateNetworkRackResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkRacksCreateResponseTagsMap),
+    tags: S.optional(CreateNetworkRackResponseTagsMap),
     location: S.String,
     properties: NetworkRackProperties,
   }),
@@ -6705,13 +7223,13 @@ export const CreateNetworkRackResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkRackResponse>;
 
 /** Resource tags. */
-export type NetworkTapsCreateRequestTagsMap = {
+export type CreateNetworkTapRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkTapRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapsCreateRequestTagsMap>;
+) as any as S.Schema<CreateNetworkTapRequestTagsMap>;
 
 /** Type of destination. Input can be IsolationDomain or Direct. */
 export type DestinationType = "IsolationDomain" | "Direct";
@@ -6803,10 +7321,10 @@ export const NetworkTapPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkTapPropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkTapsCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkTapRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkTapRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkTapRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6816,23 +7334,23 @@ export interface CreateNetworkTapRequest {
   /** Name of the Network Tap. */
   networkTapName: string;
   /** Resource tags. */
-  tags?: NetworkTapsCreateRequestTagsMap;
+  tags?: CreateNetworkTapRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTap Properties */
   properties: NetworkTapPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkTapRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkTapName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkTapsCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkTapRequestTagsMap),
     location: S.String,
     properties: NetworkTapPropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -6846,13 +7364,13 @@ export const CreateNetworkTapRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkTapRequest>;
 
 /** Resource tags. */
-export type NetworkTapsCreateResponseTagsMap = {
+export type CreateNetworkTapResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkTapResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapsCreateResponseTagsMap>;
+) as any as S.Schema<CreateNetworkTapResponseTagsMap>;
 
 /** Associated Network Fabric Resource IDs */
 export type NetworkTapPropertiesNetworkFabricIdsList = Array<string>;
@@ -6911,10 +7429,10 @@ export const NetworkTapProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkTapProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapsCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkTapResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkTapResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkTapResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6926,13 +7444,13 @@ export interface CreateNetworkTapResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkTapsCreateResponseTagsMap;
+  tags?: CreateNetworkTapResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTap Properties */
   properties: NetworkTapProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkTapResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6940,23 +7458,23 @@ export const CreateNetworkTapResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkTapsCreateResponseTagsMap),
+    tags: S.optional(CreateNetworkTapResponseTagsMap),
     location: S.String,
     properties: NetworkTapProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateNetworkTapResponse",
 }) as any as S.Schema<CreateNetworkTapResponse>;
 
 /** Resource tags. */
-export type NetworkTapRulesCreateRequestTagsMap = {
+export type CreateNetworkTapRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapRulesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkTapRuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapRulesCreateRequestTagsMap>;
+) as any as S.Schema<CreateNetworkTapRuleRequestTagsMap>;
 
 /** List of the protocols that need to be matched. */
 export type NetworkTapRuleMatchConditionProtocolTypesList = Array<string>;
@@ -7189,10 +7707,10 @@ export const NetworkTapRulePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkTapRulePropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapRulesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
-export const NetworkTapRulesCreateRequestIdentity =
-  L2IsolationDomainsCreateRequestIdentity;
+export type CreateNetworkTapRuleRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
+export const CreateNetworkTapRuleRequestIdentity =
+  CreateL2IsolationDomainRequestIdentity;
 
 export interface CreateNetworkTapRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7202,23 +7720,23 @@ export interface CreateNetworkTapRuleRequest {
   /** Name of the Network Tap Rule. */
   networkTapRuleName: string;
   /** Resource tags. */
-  tags?: NetworkTapRulesCreateRequestTagsMap;
+  tags?: CreateNetworkTapRuleRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTapRule Properties */
   properties: NetworkTapRulePropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateRequestIdentity;
+  identity?: CreateL2IsolationDomainRequestIdentity;
 }
 export const CreateNetworkTapRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkTapRuleName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkTapRulesCreateRequestTagsMap),
+    tags: S.optional(CreateNetworkTapRuleRequestTagsMap),
     location: S.String,
     properties: NetworkTapRulePropertiesInput,
-    identity: S.optional(L2IsolationDomainsCreateRequestIdentity),
+    identity: S.optional(CreateL2IsolationDomainRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -7232,13 +7750,13 @@ export const CreateNetworkTapRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateNetworkTapRuleRequest>;
 
 /** Resource tags. */
-export type NetworkTapRulesCreateResponseTagsMap = {
+export type CreateNetworkTapRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapRulesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateNetworkTapRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapRulesCreateResponseTagsMap>;
+) as any as S.Schema<CreateNetworkTapRuleResponseTagsMap>;
 
 /** List of match configurations. */
 export type NetworkTapRulePropertiesMatchConfigurationsList =
@@ -7334,10 +7852,10 @@ export const NetworkTapRuleProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkTapRuleProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapRulesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapRulesCreateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type CreateNetworkTapRuleResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const CreateNetworkTapRuleResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface CreateNetworkTapRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7349,13 +7867,13 @@ export interface CreateNetworkTapRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkTapRulesCreateResponseTagsMap;
+  tags?: CreateNetworkTapRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTapRule Properties */
   properties: NetworkTapRuleProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const CreateNetworkTapRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7363,10 +7881,10 @@ export const CreateNetworkTapRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkTapRulesCreateResponseTagsMap),
+    tags: S.optional(CreateNetworkTapRuleResponseTagsMap),
     location: S.String,
     properties: NetworkTapRuleProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateNetworkTapRuleResponse",
@@ -7943,13 +8461,13 @@ export const CreateNetworkToNetworkInterconnectResponse =
   }) as any as S.Schema<CreateNetworkToNetworkInterconnectResponse>;
 
 /** Resource tags. */
-export type RoutePoliciesCreateRequestTagsMap = {
+export type CreateRoutePolicyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const RoutePoliciesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateRoutePolicyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RoutePoliciesCreateRequestTagsMap>;
+) as any as S.Schema<CreateRoutePolicyRequestTagsMap>;
 
 /** Default action that needs to be applied when no condition is matched. Example: Permit | Deny. */
 export type RoutePolicyPropertiesInputDefaultAction = "Permit" | "Deny";
@@ -8174,7 +8692,7 @@ export interface CreateRoutePolicyRequest {
   /** Name of the Route Policy. */
   routePolicyName: string;
   /** Resource tags. */
-  tags?: RoutePoliciesCreateRequestTagsMap;
+  tags?: CreateRoutePolicyRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The RoutePolicy properties */
@@ -8185,7 +8703,7 @@ export const CreateRoutePolicyRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     routePolicyName: S.String.pipe(T.Label()),
-    tags: S.optional(RoutePoliciesCreateRequestTagsMap),
+    tags: S.optional(CreateRoutePolicyRequestTagsMap),
     location: S.String,
     properties: RoutePolicyPropertiesInput,
   }).pipe(
@@ -8201,13 +8719,13 @@ export const CreateRoutePolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateRoutePolicyRequest>;
 
 /** Resource tags. */
-export type RoutePoliciesCreateResponseTagsMap = {
+export type CreateRoutePolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RoutePoliciesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateRoutePolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RoutePoliciesCreateResponseTagsMap>;
+) as any as S.Schema<CreateRoutePolicyResponseTagsMap>;
 
 /** Default action that needs to be applied when no condition is matched. Example: Permit | Deny. */
 export type RoutePolicyPropertiesDefaultAction = "Permit" | "Deny";
@@ -8271,7 +8789,7 @@ export interface CreateRoutePolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RoutePoliciesCreateResponseTagsMap;
+  tags?: CreateRoutePolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The RoutePolicy properties */
@@ -8283,7 +8801,7 @@ export const CreateRoutePolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RoutePoliciesCreateResponseTagsMap),
+    tags: S.optional(CreateRoutePolicyResponseTagsMap),
     location: S.String,
     properties: RoutePolicyProperties,
   }),
@@ -8393,38 +8911,6 @@ export const DeleteInternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteInternalNetworkResponse",
 }) as any as S.Schema<DeleteInternalNetworkResponse>;
 
-export interface DeleteInternetGatewayRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway. */
-  internetGatewayName: string;
-}
-export const DeleteInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteInternetGatewayRequest",
-}) as any as S.Schema<DeleteInternetGatewayRequest>;
-
-export interface DeleteInternetGatewayResponse {}
-export const DeleteInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteInternetGatewayResponse",
-}) as any as S.Schema<DeleteInternetGatewayResponse>;
-
 export interface DeleteInternetGatewayRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -8456,6 +8942,38 @@ export const DeleteInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteInternetGatewayRuleResponse",
 }) as any as S.Schema<DeleteInternetGatewayRuleResponse>;
+
+export interface DeleteInternetGatewaysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway. */
+  internetGatewayName: string;
+}
+export const DeleteInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInternetGatewaysRequest",
+}) as any as S.Schema<DeleteInternetGatewaysRequest>;
+
+export interface DeleteInternetGatewaysResponse {}
+export const DeleteInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInternetGatewaysResponse",
+}) as any as S.Schema<DeleteInternetGatewaysResponse>;
 
 export interface DeleteIpCommunityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8521,7 +9039,7 @@ export const DeleteIpExtendedCommunityResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteIpExtendedCommunityResponse",
 }) as any as S.Schema<DeleteIpExtendedCommunityResponse>;
 
-export interface DeleteIpPrefixeRequest {
+export interface DeleteIpPrefixRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8529,7 +9047,7 @@ export interface DeleteIpPrefixeRequest {
   /** Name of the IP Prefix. */
   ipPrefixName: string;
 }
-export const DeleteIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteIpPrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8543,15 +9061,15 @@ export const DeleteIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteIpPrefixeRequest",
-}) as any as S.Schema<DeleteIpPrefixeRequest>;
+  identifier: "DeleteIpPrefixRequest",
+}) as any as S.Schema<DeleteIpPrefixRequest>;
 
-export interface DeleteIpPrefixeResponse {}
-export const DeleteIpPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteIpPrefixResponse {}
+export const DeleteIpPrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteIpPrefixeResponse",
-}) as any as S.Schema<DeleteIpPrefixeResponse>;
+  identifier: "DeleteIpPrefixResponse",
+}) as any as S.Schema<DeleteIpPrefixResponse>;
 
 export interface DeleteL2IsolationDomainRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9102,13 +9620,13 @@ export const GetAccessControlListRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccessControlListRequest>;
 
 /** Resource tags. */
-export type AccessControlListsGetResponseTagsMap = {
+export type GetAccessControlListResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessControlListsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAccessControlListResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessControlListsGetResponseTagsMap>;
+) as any as S.Schema<GetAccessControlListResponseTagsMap>;
 
 export interface GetAccessControlListResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9120,7 +9638,7 @@ export interface GetAccessControlListResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccessControlListsGetResponseTagsMap;
+  tags?: GetAccessControlListResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Access ControlList properties. */
@@ -9132,7 +9650,7 @@ export const GetAccessControlListResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccessControlListsGetResponseTagsMap),
+    tags: S.optional(GetAccessControlListResponseTagsMap),
     location: S.String,
     properties: AccessControlListProperties,
   }),
@@ -9244,70 +9762,6 @@ export const GetInternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetInternalNetworkResponse",
 }) as any as S.Schema<GetInternalNetworkResponse>;
 
-export interface GetInternetGatewayRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway. */
-  internetGatewayName: string;
-}
-export const GetInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "GetInternetGatewayRequest",
-}) as any as S.Schema<GetInternetGatewayRequest>;
-
-/** Resource tags. */
-export type InternetGatewaysGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InternetGatewaysGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InternetGatewaysGetResponseTagsMap>;
-
-export interface GetInternetGatewayResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: InternetGatewaysGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayProperties;
-}
-export const GetInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewaysGetResponseTagsMap),
-    location: S.String,
-    properties: InternetGatewayProperties,
-  }),
-).annotate({
-  identifier: "GetInternetGatewayResponse",
-}) as any as S.Schema<GetInternetGatewayResponse>;
-
 export interface GetInternetGatewayRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -9334,13 +9788,13 @@ export const GetInternetGatewayRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInternetGatewayRuleRequest>;
 
 /** Resource tags. */
-export type InternetGatewayRulesGetResponseTagsMap = {
+export type GetInternetGatewayRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InternetGatewayRulesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetInternetGatewayRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InternetGatewayRulesGetResponseTagsMap>;
+) as any as S.Schema<GetInternetGatewayRuleResponseTagsMap>;
 
 export interface GetInternetGatewayRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9352,7 +9806,7 @@ export interface GetInternetGatewayRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InternetGatewayRulesGetResponseTagsMap;
+  tags?: GetInternetGatewayRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Internet Gateway Rule properties */
@@ -9364,13 +9818,77 @@ export const GetInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewayRulesGetResponseTagsMap),
+    tags: S.optional(GetInternetGatewayRuleResponseTagsMap),
     location: S.String,
     properties: InternetGatewayRuleProperties,
   }),
 ).annotate({
   identifier: "GetInternetGatewayRuleResponse",
 }) as any as S.Schema<GetInternetGatewayRuleResponse>;
+
+export interface GetInternetGatewaysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway. */
+  internetGatewayName: string;
+}
+export const GetInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways/{internetGatewayName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "GetInternetGatewaysRequest",
+}) as any as S.Schema<GetInternetGatewaysRequest>;
+
+/** Resource tags. */
+export type GetInternetGatewaysResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetInternetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetInternetGatewaysResponseTagsMap>;
+
+export interface GetInternetGatewaysResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetInternetGatewaysResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayProperties;
+}
+export const GetInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetInternetGatewaysResponseTagsMap),
+    location: S.String,
+    properties: InternetGatewayProperties,
+  }),
+).annotate({
+  identifier: "GetInternetGatewaysResponse",
+}) as any as S.Schema<GetInternetGatewaysResponse>;
 
 export interface GetIpCommunityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9398,13 +9916,13 @@ export const GetIpCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIpCommunityRequest>;
 
 /** Resource tags. */
-export type IpCommunitiesGetResponseTagsMap = {
+export type GetIpCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpCommunitiesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetIpCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpCommunitiesGetResponseTagsMap>;
+) as any as S.Schema<GetIpCommunityResponseTagsMap>;
 
 export interface GetIpCommunityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9416,7 +9934,7 @@ export interface GetIpCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpCommunitiesGetResponseTagsMap;
+  tags?: GetIpCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Community Properties */
@@ -9428,7 +9946,7 @@ export const GetIpCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpCommunitiesGetResponseTagsMap),
+    tags: S.optional(GetIpCommunityResponseTagsMap),
     location: S.String,
     properties: IpCommunityProperties,
   }),
@@ -9462,13 +9980,13 @@ export const GetIpExtendedCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIpExtendedCommunityRequest>;
 
 /** Resource tags. */
-export type IpExtendedCommunitiesGetResponseTagsMap = {
+export type GetIpExtendedCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpExtendedCommunitiesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetIpExtendedCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpExtendedCommunitiesGetResponseTagsMap>;
+) as any as S.Schema<GetIpExtendedCommunityResponseTagsMap>;
 
 export interface GetIpExtendedCommunityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9480,7 +9998,7 @@ export interface GetIpExtendedCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpExtendedCommunitiesGetResponseTagsMap;
+  tags?: GetIpExtendedCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IpExtendedCommunity properties */
@@ -9492,7 +10010,7 @@ export const GetIpExtendedCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpExtendedCommunitiesGetResponseTagsMap),
+    tags: S.optional(GetIpExtendedCommunityResponseTagsMap),
     location: S.String,
     properties: IpExtendedCommunityProperties,
   }),
@@ -9500,7 +10018,7 @@ export const GetIpExtendedCommunityResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIpExtendedCommunityResponse",
 }) as any as S.Schema<GetIpExtendedCommunityResponse>;
 
-export interface GetIpPrefixeRequest {
+export interface GetIpPrefixRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9508,7 +10026,7 @@ export interface GetIpPrefixeRequest {
   /** Name of the IP Prefix. */
   ipPrefixName: string;
 }
-export const GetIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIpPrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -9522,19 +10040,17 @@ export const GetIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetIpPrefixeRequest",
-}) as any as S.Schema<GetIpPrefixeRequest>;
+  identifier: "GetIpPrefixRequest",
+}) as any as S.Schema<GetIpPrefixRequest>;
 
 /** Resource tags. */
-export type IpPrefixesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IpPrefixesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetIpPrefixResponseTagsMap = { [key: string]: string | undefined };
+export const GetIpPrefixResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpPrefixesGetResponseTagsMap>;
+) as any as S.Schema<GetIpPrefixResponseTagsMap>;
 
-export interface GetIpPrefixeResponse {
+export interface GetIpPrefixResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9544,25 +10060,25 @@ export interface GetIpPrefixeResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpPrefixesGetResponseTagsMap;
+  tags?: GetIpPrefixResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Prefix properties */
   properties: IpPrefixProperties;
 }
-export const GetIpPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetIpPrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpPrefixesGetResponseTagsMap),
+    tags: S.optional(GetIpPrefixResponseTagsMap),
     location: S.String,
     properties: IpPrefixProperties,
   }),
 ).annotate({
-  identifier: "GetIpPrefixeResponse",
-}) as any as S.Schema<GetIpPrefixeResponse>;
+  identifier: "GetIpPrefixResponse",
+}) as any as S.Schema<GetIpPrefixResponse>;
 
 export interface GetL2IsolationDomainRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -9590,19 +10106,19 @@ export const GetL2IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetL2IsolationDomainRequest>;
 
 /** Resource tags. */
-export type L2IsolationDomainsGetResponseTagsMap = {
+export type GetL2IsolationDomainResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2IsolationDomainsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetL2IsolationDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2IsolationDomainsGetResponseTagsMap>;
+) as any as S.Schema<GetL2IsolationDomainResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L2IsolationDomainsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const L2IsolationDomainsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetL2IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetL2IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetL2IsolationDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9614,13 +10130,13 @@ export interface GetL2IsolationDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L2IsolationDomainsGetResponseTagsMap;
+  tags?: GetL2IsolationDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L2IsolationDomain properties */
   properties: L2IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetL2IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9628,10 +10144,10 @@ export const GetL2IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L2IsolationDomainsGetResponseTagsMap),
+    tags: S.optional(GetL2IsolationDomainResponseTagsMap),
     location: S.String,
     properties: L2IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetL2IsolationDomainResponse",
@@ -9663,19 +10179,19 @@ export const GetL3IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetL3IsolationDomainRequest>;
 
 /** Resource tags. */
-export type L3IsolationDomainsGetResponseTagsMap = {
+export type GetL3IsolationDomainResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L3IsolationDomainsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetL3IsolationDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L3IsolationDomainsGetResponseTagsMap>;
+) as any as S.Schema<GetL3IsolationDomainResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L3IsolationDomainsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const L3IsolationDomainsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetL3IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetL3IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetL3IsolationDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9687,13 +10203,13 @@ export interface GetL3IsolationDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L3IsolationDomainsGetResponseTagsMap;
+  tags?: GetL3IsolationDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L3 Isolation Domain Properties */
   properties: L3IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetL3IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9701,10 +10217,10 @@ export const GetL3IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L3IsolationDomainsGetResponseTagsMap),
+    tags: S.optional(GetL3IsolationDomainResponseTagsMap),
     location: S.String,
     properties: L3IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetL3IsolationDomainResponse",
@@ -9736,19 +10252,19 @@ export const GetNeighborGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNeighborGroupRequest>;
 
 /** Resource tags. */
-export type NeighborGroupsGetResponseTagsMap = {
+export type GetNeighborGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NeighborGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNeighborGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NeighborGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetNeighborGroupResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NeighborGroupsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NeighborGroupsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNeighborGroupResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNeighborGroupResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNeighborGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9760,13 +10276,13 @@ export interface GetNeighborGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NeighborGroupsGetResponseTagsMap;
+  tags?: GetNeighborGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NeighborGroup Properties */
   properties: NeighborGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNeighborGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9774,10 +10290,10 @@ export const GetNeighborGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NeighborGroupsGetResponseTagsMap),
+    tags: S.optional(GetNeighborGroupResponseTagsMap),
     location: S.String,
     properties: NeighborGroupProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNeighborGroupResponse",
@@ -9809,19 +10325,19 @@ export const GetNetworkBootstrapDeviceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkBootstrapDeviceRequest>;
 
 /** Resource tags. */
-export type NetworkBootstrapDevicesGetResponseTagsMap = {
+export type GetNetworkBootstrapDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkBootstrapDevicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkBootstrapDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkBootstrapDevicesGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkBootstrapDeviceResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkBootstrapDevicesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkBootstrapDevicesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkBootstrapDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkBootstrapDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkBootstrapDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9833,13 +10349,13 @@ export interface GetNetworkBootstrapDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkBootstrapDevicesGetResponseTagsMap;
+  tags?: GetNetworkBootstrapDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkBootstrapDevice properties */
   properties: NetworkBootstrapDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkBootstrapDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9847,10 +10363,10 @@ export const GetNetworkBootstrapDeviceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkBootstrapDevicesGetResponseTagsMap),
+    tags: S.optional(GetNetworkBootstrapDeviceResponseTagsMap),
     location: S.String,
     properties: NetworkBootstrapDeviceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkBootstrapDeviceResponse",
@@ -9935,19 +10451,19 @@ export const GetNetworkDeviceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkDeviceRequest>;
 
 /** Resource tags. */
-export type NetworkDevicesGetResponseTagsMap = {
+export type GetNetworkDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkDevicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkDevicesGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkDeviceResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkDevicesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkDevicesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9959,13 +10475,13 @@ export interface GetNetworkDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkDevicesGetResponseTagsMap;
+  tags?: GetNetworkDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkDevice properties */
   properties: NetworkDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9973,10 +10489,10 @@ export const GetNetworkDeviceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkDevicesGetResponseTagsMap),
+    tags: S.optional(GetNetworkDeviceResponseTagsMap),
     location: S.String,
     properties: NetworkDeviceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkDeviceResponse",
@@ -10180,19 +10696,19 @@ export const GetNetworkFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkFabricRequest>;
 
 /** Resource tags. */
-export type NetworkFabricsGetResponseTagsMap = {
+export type GetNetworkFabricResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkFabricsGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkFabricResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkFabricsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkFabricResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkFabricResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkFabricResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10204,13 +10720,13 @@ export interface GetNetworkFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkFabricsGetResponseTagsMap;
+  tags?: GetNetworkFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabric Properties */
   properties: NetworkFabricProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkFabricResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10218,10 +10734,10 @@ export const GetNetworkFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFabricsGetResponseTagsMap),
+    tags: S.optional(GetNetworkFabricResponseTagsMap),
     location: S.String,
     properties: NetworkFabricProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkFabricResponse",
@@ -10253,20 +10769,19 @@ export const GetNetworkFabricControllerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkFabricControllerRequest>;
 
 /** Resource tags. */
-export type NetworkFabricControllersGetResponseTagsMap = {
+export type GetNetworkFabricControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricControllersGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<NetworkFabricControllersGetResponseTagsMap>;
+export const GetNetworkFabricControllerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetNetworkFabricControllerResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricControllersGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkFabricControllersGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkFabricControllerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkFabricControllerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkFabricControllerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10278,13 +10793,13 @@ export interface GetNetworkFabricControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkFabricControllersGetResponseTagsMap;
+  tags?: GetNetworkFabricControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabricController Properties */
   properties: NetworkFabricControllerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkFabricControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10292,10 +10807,10 @@ export const GetNetworkFabricControllerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFabricControllersGetResponseTagsMap),
+    tags: S.optional(GetNetworkFabricControllerResponseTagsMap),
     location: S.String,
     properties: NetworkFabricControllerProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkFabricControllerResponse",
@@ -10412,49 +10927,6 @@ export const GetNetworkFabricTopologyRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetNetworkFabricTopologyRequest",
 }) as any as S.Schema<GetNetworkFabricTopologyRequest>;
-
-/** The operations list. */
-export type OperationStatusResultOperationsList = Array<OperationStatusResult>;
-export const OperationStatusResultOperationsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => OperationStatusResult),
-) as any as S.Schema<OperationStatusResultOperationsList>;
-
-/** The current status of an async operation. */
-export interface OperationStatusResult {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: OperationStatusResultOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusResultOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "OperationStatusResult",
-}) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
 export type GetTopologyResponseOperationsItemOperationsList =
@@ -10628,10 +11100,10 @@ export const GetNetworkInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkInterfaceRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkInterfacesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkInterfacesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkInterfaceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkInterfaceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkInterfaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10645,7 +11117,7 @@ export interface GetNetworkInterfaceResponse {
   /** The NetworkInterface properties */
   properties: NetworkInterfaceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10654,7 +11126,7 @@ export const GetNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: NetworkInterfaceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkInterfaceResponse",
@@ -10686,13 +11158,13 @@ export const GetNetworkMonitorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkMonitorRequest>;
 
 /** Resource tags. */
-export type NetworkMonitorsGetResponseTagsMap = {
+export type GetNetworkMonitorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkMonitorsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkMonitorsGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkMonitorResponseTagsMap>;
 
 export interface GetNetworkMonitorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10704,7 +11176,7 @@ export interface GetNetworkMonitorResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkMonitorsGetResponseTagsMap;
+  tags?: GetNetworkMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkMonitor properties. */
@@ -10716,7 +11188,7 @@ export const GetNetworkMonitorResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkMonitorsGetResponseTagsMap),
+    tags: S.optional(GetNetworkMonitorResponseTagsMap),
     location: S.String,
     properties: NetworkMonitorProperties,
   }),
@@ -10750,19 +11222,19 @@ export const GetNetworkPacketBrokerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkPacketBrokerRequest>;
 
 /** Resource tags. */
-export type NetworkPacketBrokersGetResponseTagsMap = {
+export type GetNetworkPacketBrokerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkPacketBrokersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkPacketBrokerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkPacketBrokersGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkPacketBrokerResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkPacketBrokersGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkPacketBrokersGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkPacketBrokerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkPacketBrokerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkPacketBrokerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10774,13 +11246,13 @@ export interface GetNetworkPacketBrokerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkPacketBrokersGetResponseTagsMap;
+  tags?: GetNetworkPacketBrokerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkPacketBroker properties */
   properties: NetworkPacketBrokerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkPacketBrokerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10788,10 +11260,10 @@ export const GetNetworkPacketBrokerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkPacketBrokersGetResponseTagsMap),
+    tags: S.optional(GetNetworkPacketBrokerResponseTagsMap),
     location: S.String,
     properties: NetworkPacketBrokerProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkPacketBrokerResponse",
@@ -10823,13 +11295,13 @@ export const GetNetworkRackRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkRackRequest>;
 
 /** Resource tags. */
-export type NetworkRacksGetResponseTagsMap = {
+export type GetNetworkRackResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkRacksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkRackResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkRacksGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkRackResponseTagsMap>;
 
 export interface GetNetworkRackResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10841,7 +11313,7 @@ export interface GetNetworkRackResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkRacksGetResponseTagsMap;
+  tags?: GetNetworkRackResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Network Rack Properties */
@@ -10853,7 +11325,7 @@ export const GetNetworkRackResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkRacksGetResponseTagsMap),
+    tags: S.optional(GetNetworkRackResponseTagsMap),
     location: S.String,
     properties: NetworkRackProperties,
   }),
@@ -10887,19 +11359,19 @@ export const GetNetworkTapRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkTapRequest>;
 
 /** Resource tags. */
-export type NetworkTapsGetResponseTagsMap = {
+export type GetNetworkTapResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkTapResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapsGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkTapResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapsGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkTapResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkTapResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkTapResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10911,13 +11383,13 @@ export interface GetNetworkTapResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkTapsGetResponseTagsMap;
+  tags?: GetNetworkTapResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTap Properties */
   properties: NetworkTapProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkTapResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10925,10 +11397,10 @@ export const GetNetworkTapResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkTapsGetResponseTagsMap),
+    tags: S.optional(GetNetworkTapResponseTagsMap),
     location: S.String,
     properties: NetworkTapProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkTapResponse",
@@ -10960,19 +11432,19 @@ export const GetNetworkTapRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkTapRuleRequest>;
 
 /** Resource tags. */
-export type NetworkTapRulesGetResponseTagsMap = {
+export type GetNetworkTapRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapRulesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetNetworkTapRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapRulesGetResponseTagsMap>;
+) as any as S.Schema<GetNetworkTapRuleResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapRulesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapRulesGetResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type GetNetworkTapRuleResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const GetNetworkTapRuleResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface GetNetworkTapRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10984,13 +11456,13 @@ export interface GetNetworkTapRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkTapRulesGetResponseTagsMap;
+  tags?: GetNetworkTapRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTapRule Properties */
   properties: NetworkTapRuleProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const GetNetworkTapRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10998,10 +11470,10 @@ export const GetNetworkTapRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkTapRulesGetResponseTagsMap),
+    tags: S.optional(GetNetworkTapRuleResponseTagsMap),
     location: S.String,
     properties: NetworkTapRuleProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "GetNetworkTapRuleResponse",
@@ -11087,13 +11559,13 @@ export const GetRoutePolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRoutePolicyRequest>;
 
 /** Resource tags. */
-export type RoutePoliciesGetResponseTagsMap = {
+export type GetRoutePolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RoutePoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRoutePolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RoutePoliciesGetResponseTagsMap>;
+) as any as S.Schema<GetRoutePolicyResponseTagsMap>;
 
 export interface GetRoutePolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -11105,7 +11577,7 @@ export interface GetRoutePolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RoutePoliciesGetResponseTagsMap;
+  tags?: GetRoutePolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The RoutePolicy properties */
@@ -11117,187 +11589,13 @@ export const GetRoutePolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RoutePoliciesGetResponseTagsMap),
+    tags: S.optional(GetRoutePolicyResponseTagsMap),
     location: S.String,
     properties: RoutePolicyProperties,
   }),
 ).annotate({
   identifier: "GetRoutePolicyResponse",
 }) as any as S.Schema<GetRoutePolicyResponse>;
-
-export interface L2IsolationDomainsCommitConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the L2 Isolation Domain. */
-  l2IsolationDomainName: string;
-}
-export const L2IsolationDomainsCommitConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      l2IsolationDomainName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l2IsolationDomains/{l2IsolationDomainName}/commitConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "L2IsolationDomainsCommitConfigurationRequest",
-  }) as any as S.Schema<L2IsolationDomainsCommitConfigurationRequest>;
-
-export interface L2IsolationDomainsCommitConfigurationResponse {
-  /** The error object. */
-  error?: ErrorDetail;
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-}
-export const L2IsolationDomainsCommitConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ErrorDetail),
-      configurationState: S.optional(ConfigurationState),
-    }),
-  ).annotate({
-    identifier: "L2IsolationDomainsCommitConfigurationResponse",
-  }) as any as S.Schema<L2IsolationDomainsCommitConfigurationResponse>;
-
-export interface L2IsolationDomainsValidateConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the L2 Isolation Domain. */
-  l2IsolationDomainName: string;
-}
-export const L2IsolationDomainsValidateConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      l2IsolationDomainName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l2IsolationDomains/{l2IsolationDomainName}/validateConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "L2IsolationDomainsValidateConfigurationRequest",
-  }) as any as S.Schema<L2IsolationDomainsValidateConfigurationRequest>;
-
-export interface L2IsolationDomainsValidateConfigurationResponse {
-  /** The error object. */
-  error?: ErrorDetail;
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-  /** URL for the details of the response. */
-  url?: string;
-}
-export const L2IsolationDomainsValidateConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ErrorDetail),
-      configurationState: S.optional(ConfigurationState),
-      url: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "L2IsolationDomainsValidateConfigurationResponse",
-  }) as any as S.Schema<L2IsolationDomainsValidateConfigurationResponse>;
-
-export interface L3IsolationDomainsCommitConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the L3 Isolation Domain. */
-  l3IsolationDomainName: string;
-}
-export const L3IsolationDomainsCommitConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      l3IsolationDomainName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l3IsolationDomains/{l3IsolationDomainName}/commitConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "L3IsolationDomainsCommitConfigurationRequest",
-  }) as any as S.Schema<L3IsolationDomainsCommitConfigurationRequest>;
-
-export interface L3IsolationDomainsCommitConfigurationResponse {
-  /** The error object. */
-  error?: ErrorDetail;
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-}
-export const L3IsolationDomainsCommitConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ErrorDetail),
-      configurationState: S.optional(ConfigurationState),
-    }),
-  ).annotate({
-    identifier: "L3IsolationDomainsCommitConfigurationResponse",
-  }) as any as S.Schema<L3IsolationDomainsCommitConfigurationResponse>;
-
-export interface L3IsolationDomainsValidateConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the L3 Isolation Domain. */
-  l3IsolationDomainName: string;
-}
-export const L3IsolationDomainsValidateConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      l3IsolationDomainName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l3IsolationDomains/{l3IsolationDomainName}/validateConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "L3IsolationDomainsValidateConfigurationRequest",
-  }) as any as S.Schema<L3IsolationDomainsValidateConfigurationRequest>;
-
-export interface L3IsolationDomainsValidateConfigurationResponse {
-  /** The error object. */
-  error?: ErrorDetail;
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-  /** URL for the details of the response. */
-  url?: string;
-}
-export const L3IsolationDomainsValidateConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ErrorDetail),
-      configurationState: S.optional(ConfigurationState),
-      url: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "L3IsolationDomainsValidateConfigurationResponse",
-  }) as any as S.Schema<L3IsolationDomainsValidateConfigurationResponse>;
 
 export interface ListAccessControlListByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11548,109 +11846,6 @@ export const InternalNetworksList = /*@__PURE__*/ S.suspend(() =>
   identifier: "InternalNetworksList",
 }) as any as S.Schema<InternalNetworksList>;
 
-export interface ListInternetGatewayByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ListInternetGatewayByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListInternetGatewayByResourceGroupRequest",
-  }) as any as S.Schema<ListInternetGatewayByResourceGroupRequest>;
-
-/** Resource tags. */
-export type InternetGatewayTagsMap = { [key: string]: string | undefined };
-export const InternetGatewayTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InternetGatewayTagsMap>;
-
-/** The Internet Gateway resource definition. */
-export interface InternetGateway {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: InternetGatewayTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Properties */
-  properties: InternetGatewayProperties;
-}
-export const InternetGateway = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewayTagsMap),
-    location: S.String,
-    properties: InternetGatewayProperties,
-  }),
-).annotate({
-  identifier: "InternetGateway",
-}) as any as S.Schema<InternetGateway>;
-
-/** The InternetGateway items on this page */
-export type InternetGatewaysListResultValueList = Array<InternetGateway>;
-export const InternetGatewaysListResultValueList = /*@__PURE__*/ S.Array(
-  InternetGateway,
-) as any as S.Schema<InternetGatewaysListResultValueList>;
-
-/** Paged collection of InternetGateway items */
-export interface InternetGatewaysListResult {
-  /** The InternetGateway items on this page */
-  value: InternetGatewaysListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const InternetGatewaysListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: InternetGatewaysListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InternetGatewaysListResult",
-}) as any as S.Schema<InternetGatewaysListResult>;
-
-export interface ListInternetGatewayBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ListInternetGatewayBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-).annotate({
-  identifier: "ListInternetGatewayBySubscriptionRequest",
-}) as any as S.Schema<ListInternetGatewayBySubscriptionRequest>;
-
 export interface ListInternetGatewayRuleByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -11754,6 +11949,109 @@ export const ListInternetGatewayRuleBySubscriptionRequest =
   ).annotate({
     identifier: "ListInternetGatewayRuleBySubscriptionRequest",
   }) as any as S.Schema<ListInternetGatewayRuleBySubscriptionRequest>;
+
+export interface ListInternetGatewaysByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListInternetGatewaysByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListInternetGatewaysByResourceGroupRequest",
+  }) as any as S.Schema<ListInternetGatewaysByResourceGroupRequest>;
+
+/** Resource tags. */
+export type InternetGatewayTagsMap = { [key: string]: string | undefined };
+export const InternetGatewayTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<InternetGatewayTagsMap>;
+
+/** The Internet Gateway resource definition. */
+export interface InternetGateway {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: InternetGatewayTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Properties */
+  properties: InternetGatewayProperties;
+}
+export const InternetGateway = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(InternetGatewayTagsMap),
+    location: S.String,
+    properties: InternetGatewayProperties,
+  }),
+).annotate({
+  identifier: "InternetGateway",
+}) as any as S.Schema<InternetGateway>;
+
+/** The InternetGateway items on this page */
+export type InternetGatewaysListResultValueList = Array<InternetGateway>;
+export const InternetGatewaysListResultValueList = /*@__PURE__*/ S.Array(
+  InternetGateway,
+) as any as S.Schema<InternetGatewaysListResultValueList>;
+
+/** Paged collection of InternetGateway items */
+export interface InternetGatewaysListResult {
+  /** The InternetGateway items on this page */
+  value: InternetGatewaysListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const InternetGatewaysListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: InternetGatewaysListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InternetGatewaysListResult",
+}) as any as S.Schema<InternetGatewaysListResult>;
+
+export interface ListInternetGatewaysBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListInternetGatewaysBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/internetGateways",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListInternetGatewaysBySubscriptionRequest",
+  }) as any as S.Schema<ListInternetGatewaysBySubscriptionRequest>;
 
 export interface ListIpCommunityByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -11959,13 +12257,13 @@ export const ListIpExtendedCommunityBySubscriptionRequest =
     identifier: "ListIpExtendedCommunityBySubscriptionRequest",
   }) as any as S.Schema<ListIpExtendedCommunityBySubscriptionRequest>;
 
-export interface ListIpPrefixeByResourceGroupRequest {
+export interface ListIpPrefixByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListIpPrefixeByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListIpPrefixByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -11978,8 +12276,8 @@ export const ListIpPrefixeByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListIpPrefixeByResourceGroupRequest",
-}) as any as S.Schema<ListIpPrefixeByResourceGroupRequest>;
+  identifier: "ListIpPrefixByResourceGroupRequest",
+}) as any as S.Schema<ListIpPrefixByResourceGroupRequest>;
 
 /** Resource tags. */
 export type IpPrefixTagsMap = { [key: string]: string | undefined };
@@ -12039,11 +12337,11 @@ export const IpPrefixesListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IpPrefixesListResult",
 }) as any as S.Schema<IpPrefixesListResult>;
 
-export interface ListIpPrefixeBySubscriptionRequest {
+export interface ListIpPrefixBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListIpPrefixeBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListIpPrefixBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -12055,8 +12353,8 @@ export const ListIpPrefixeBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListIpPrefixeBySubscriptionRequest",
-}) as any as S.Schema<ListIpPrefixeBySubscriptionRequest>;
+  identifier: "ListIpPrefixBySubscriptionRequest",
+}) as any as S.Schema<ListIpPrefixBySubscriptionRequest>;
 
 export interface ListL2IsolationDomainByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12089,10 +12387,9 @@ export const L2IsolationDomainTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<L2IsolationDomainTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L2IsolationDomainIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type L2IsolationDomainIdentity = CreateL2IsolationDomainResponseIdentity;
 export const L2IsolationDomainIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 
 /** The L2 Isolation Domain resource definition. */
 export interface L2IsolationDomain {
@@ -12111,7 +12408,7 @@ export interface L2IsolationDomain {
   /** The L2IsolationDomain properties */
   properties: L2IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const L2IsolationDomain = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12122,7 +12419,7 @@ export const L2IsolationDomain = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(L2IsolationDomainTagsMap),
     location: S.String,
     properties: L2IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "L2IsolationDomain",
@@ -12201,10 +12498,9 @@ export const L3IsolationDomainTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<L3IsolationDomainTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L3IsolationDomainIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type L3IsolationDomainIdentity = CreateL2IsolationDomainResponseIdentity;
 export const L3IsolationDomainIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 
 /** The L3 Isolation Domain resource definition. */
 export interface L3IsolationDomain {
@@ -12223,7 +12519,7 @@ export interface L3IsolationDomain {
   /** The L3 Isolation Domain Properties */
   properties: L3IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const L3IsolationDomain = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12234,7 +12530,7 @@ export const L3IsolationDomain = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(L3IsolationDomainTagsMap),
     location: S.String,
     properties: L3IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "L3IsolationDomain",
@@ -12313,8 +12609,8 @@ export const NeighborGroupTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NeighborGroupTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NeighborGroupIdentity = L2IsolationDomainsCreateResponseIdentity;
-export const NeighborGroupIdentity = L2IsolationDomainsCreateResponseIdentity;
+export type NeighborGroupIdentity = CreateL2IsolationDomainResponseIdentity;
+export const NeighborGroupIdentity = CreateL2IsolationDomainResponseIdentity;
 
 /** Defines the Neighbor Group. */
 export interface NeighborGroup {
@@ -12333,7 +12629,7 @@ export interface NeighborGroup {
   /** The NeighborGroup Properties */
   properties: NeighborGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NeighborGroup = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12344,7 +12640,7 @@ export const NeighborGroup = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NeighborGroupTagsMap),
     location: S.String,
     properties: NeighborGroupProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({ identifier: "NeighborGroup" }) as any as S.Schema<NeighborGroup>;
 
@@ -12424,9 +12720,9 @@ export const NetworkBootstrapDeviceTagsMap = /*@__PURE__*/ S.Record(
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type NetworkBootstrapDeviceIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 export const NetworkBootstrapDeviceIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 
 /** The Network Bootstrap Device resource definition. */
 export interface NetworkBootstrapDevice {
@@ -12445,7 +12741,7 @@ export interface NetworkBootstrapDevice {
   /** The NetworkBootstrapDevice properties */
   properties: NetworkBootstrapDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkBootstrapDevice = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12456,7 +12752,7 @@ export const NetworkBootstrapDevice = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NetworkBootstrapDeviceTagsMap),
     location: S.String,
     properties: NetworkBootstrapDeviceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "NetworkBootstrapDevice",
@@ -12611,8 +12907,8 @@ export const NetworkDeviceTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NetworkDeviceTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkDeviceIdentity = L2IsolationDomainsCreateResponseIdentity;
-export const NetworkDeviceIdentity = L2IsolationDomainsCreateResponseIdentity;
+export type NetworkDeviceIdentity = CreateL2IsolationDomainResponseIdentity;
+export const NetworkDeviceIdentity = CreateL2IsolationDomainResponseIdentity;
 
 /** The Network Device resource definition. */
 export interface NetworkDevice {
@@ -12631,7 +12927,7 @@ export interface NetworkDevice {
   /** The NetworkDevice properties */
   properties: NetworkDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkDevice = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12642,7 +12938,7 @@ export const NetworkDevice = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NetworkDeviceTagsMap),
     location: S.String,
     properties: NetworkDeviceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({ identifier: "NetworkDevice" }) as any as S.Schema<NetworkDevice>;
 
@@ -12786,8 +13082,8 @@ export const NetworkFabricTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NetworkFabricTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricIdentity = L2IsolationDomainsCreateResponseIdentity;
-export const NetworkFabricIdentity = L2IsolationDomainsCreateResponseIdentity;
+export type NetworkFabricIdentity = CreateL2IsolationDomainResponseIdentity;
+export const NetworkFabricIdentity = CreateL2IsolationDomainResponseIdentity;
 
 /** The Network Fabric resource definition. */
 export interface NetworkFabric {
@@ -12806,7 +13102,7 @@ export interface NetworkFabric {
   /** The NetworkFabric Properties */
   properties: NetworkFabricProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkFabric = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12817,7 +13113,7 @@ export const NetworkFabric = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NetworkFabricTagsMap),
     location: S.String,
     properties: NetworkFabricProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({ identifier: "NetworkFabric" }) as any as S.Schema<NetworkFabric>;
 
@@ -12897,9 +13193,9 @@ export const NetworkFabricControllerTagsMap = /*@__PURE__*/ S.Record(
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type NetworkFabricControllerIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 export const NetworkFabricControllerIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 
 /** The Network Fabric Controller resource definition. */
 export interface NetworkFabricController {
@@ -12918,7 +13214,7 @@ export interface NetworkFabricController {
   /** The NetworkFabricController Properties */
   properties: NetworkFabricControllerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkFabricController = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12929,7 +13225,7 @@ export const NetworkFabricController = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NetworkFabricControllerTagsMap),
     location: S.String,
     properties: NetworkFabricControllerProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "NetworkFabricController",
@@ -13073,9 +13369,8 @@ export const ListNetworkInterfaceByNetworkDeviceRequest =
   }) as any as S.Schema<ListNetworkInterfaceByNetworkDeviceRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkInterfaceIdentity = L2IsolationDomainsCreateResponseIdentity;
-export const NetworkInterfaceIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type NetworkInterfaceIdentity = CreateL2IsolationDomainResponseIdentity;
+export const NetworkInterfaceIdentity = CreateL2IsolationDomainResponseIdentity;
 
 /** Defines the NetworkInterface resource. */
 export interface NetworkInterface {
@@ -13090,7 +13385,7 @@ export interface NetworkInterface {
   /** The NetworkInterface properties */
   properties: NetworkInterfaceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkInterface = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13099,7 +13394,7 @@ export const NetworkInterface = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: NetworkInterfaceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "NetworkInterface",
@@ -13260,9 +13555,9 @@ export const NetworkPacketBrokerTagsMap = /*@__PURE__*/ S.Record(
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type NetworkPacketBrokerIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 export const NetworkPacketBrokerIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+  CreateL2IsolationDomainResponseIdentity;
 
 /** The NetworkPacketBroker resource definition. */
 export interface NetworkPacketBroker {
@@ -13281,7 +13576,7 @@ export interface NetworkPacketBroker {
   /** The NetworkPacketBroker properties */
   properties: NetworkPacketBrokerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkPacketBroker = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13292,7 +13587,7 @@ export const NetworkPacketBroker = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NetworkPacketBrokerTagsMap),
     location: S.String,
     properties: NetworkPacketBrokerProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "NetworkPacketBroker",
@@ -13473,8 +13768,8 @@ export const NetworkTapTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NetworkTapTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapIdentity = L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapIdentity = L2IsolationDomainsCreateResponseIdentity;
+export type NetworkTapIdentity = CreateL2IsolationDomainResponseIdentity;
+export const NetworkTapIdentity = CreateL2IsolationDomainResponseIdentity;
 
 /** The Network Tap resource definition. */
 export interface NetworkTap {
@@ -13493,7 +13788,7 @@ export interface NetworkTap {
   /** The NetworkTap Properties */
   properties: NetworkTapProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkTap = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13504,7 +13799,7 @@ export const NetworkTap = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NetworkTapTagsMap),
     location: S.String,
     properties: NetworkTapProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({ identifier: "NetworkTap" }) as any as S.Schema<NetworkTap>;
 
@@ -13580,8 +13875,8 @@ export const NetworkTapRuleTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<NetworkTapRuleTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapRuleIdentity = L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapRuleIdentity = L2IsolationDomainsCreateResponseIdentity;
+export type NetworkTapRuleIdentity = CreateL2IsolationDomainResponseIdentity;
+export const NetworkTapRuleIdentity = CreateL2IsolationDomainResponseIdentity;
 
 /** The NetworkTapRule resource definition. */
 export interface NetworkTapRule {
@@ -13600,7 +13895,7 @@ export interface NetworkTapRule {
   /** The NetworkTapRule Properties */
   properties: NetworkTapRuleProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const NetworkTapRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13611,7 +13906,7 @@ export const NetworkTapRule = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(NetworkTapRuleTagsMap),
     location: S.String,
     properties: NetworkTapRuleProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({ identifier: "NetworkTapRule" }) as any as S.Schema<NetworkTapRule>;
 
@@ -13799,20 +14094,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -13919,6 +14214,85 @@ export const ListRoutePolicyBySubscriptionRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ListRoutePolicyBySubscriptionRequest",
 }) as any as S.Schema<ListRoutePolicyBySubscriptionRequest>;
+
+/** Network fabric lock action */
+export type NetworkFabricLockAction = "Lock" | "Unlock";
+export const NetworkFabricLockAction = /*@__PURE__*/ S.String;
+
+export interface LockNetworkFabricFabricRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Fabric. */
+  networkFabricName: string;
+  /** Type of lock to be applied */
+  lockType?: NetworkFabricLockType | (string & {});
+  /** Action to be performed on the lock */
+  action?: NetworkFabricLockAction | (string & {});
+}
+export const LockNetworkFabricFabricRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkFabricName: S.String.pipe(T.Label()),
+    lockType: S.optional(NetworkFabricLockType),
+    action: S.optional(NetworkFabricLockAction),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/lockFabric",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "LockNetworkFabricFabricRequest",
+}) as any as S.Schema<LockNetworkFabricFabricRequest>;
+
+/** The operations list. */
+export type LockNetworkFabricFabricResponseOperationsList =
+  Array<OperationStatusResult>;
+export const LockNetworkFabricFabricResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<LockNetworkFabricFabricResponseOperationsList>;
+
+export interface LockNetworkFabricFabricResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: LockNetworkFabricFabricResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const LockNetworkFabricFabricResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(LockNetworkFabricFabricResponseOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "LockNetworkFabricFabricResponse",
+}) as any as S.Schema<LockNetworkFabricFabricResponse>;
 
 export interface NeighborGroupsResyncRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14078,343 +14452,6 @@ export const NeighborGroupResyncResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "NeighborGroupResyncResponse",
 }) as any as S.Schema<NeighborGroupResyncResponse>;
-
-export interface NetworkBootstrapDevicesRebootRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Bootstrap Device. */
-  networkBootstrapDeviceName: string;
-}
-export const NetworkBootstrapDevicesRebootRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkBootstrapDeviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkBootstrapDevices/{networkBootstrapDeviceName}/reboot",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkBootstrapDevicesRebootRequest",
-}) as any as S.Schema<NetworkBootstrapDevicesRebootRequest>;
-
-/** The operations list. */
-export type NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList>;
-
-/** The current status of an async operation. */
-export interface NetworkBootstrapDeviceRebootResponseOperationsItem {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkBootstrapDeviceRebootResponseOperationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-  ).annotate({
-    identifier: "NetworkBootstrapDeviceRebootResponseOperationsItem",
-  }) as any as S.Schema<NetworkBootstrapDeviceRebootResponseOperationsItem>;
-
-/** The operations list. */
-export type NetworkBootstrapDeviceRebootResponseOperationsList =
-  Array<NetworkBootstrapDeviceRebootResponseOperationsItem>;
-export const NetworkBootstrapDeviceRebootResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    NetworkBootstrapDeviceRebootResponseOperationsItem,
-  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseOperationsList>;
-
-/** The error details. */
-export type NetworkBootstrapDeviceRebootResponseErrorDetailsList =
-  Array<ErrorDetail>;
-export const NetworkBootstrapDeviceRebootResponseErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseErrorDetailsList>;
-
-/** The error additional info. */
-export type NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface NetworkBootstrapDeviceRebootResponseError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: NetworkBootstrapDeviceRebootResponseErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList;
-}
-export const NetworkBootstrapDeviceRebootResponseError =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(NetworkBootstrapDeviceRebootResponseErrorDetailsList),
-      additionalInfo: S.optional(
-        NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList,
-      ),
-    }),
-  ).annotate({
-    identifier: "NetworkBootstrapDeviceRebootResponseError",
-  }) as any as S.Schema<NetworkBootstrapDeviceRebootResponseError>;
-
-/** Network Bootstrap Device reboot Response. */
-export interface NetworkBootstrapDeviceRebootResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkBootstrapDeviceRebootResponseOperationsList;
-  /** The error detail. */
-  error?: NetworkBootstrapDeviceRebootResponseError;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-}
-export const NetworkBootstrapDeviceRebootResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkBootstrapDeviceRebootResponseOperationsList,
-      ),
-      error: S.optional(NetworkBootstrapDeviceRebootResponseError),
-      resourceId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NetworkBootstrapDeviceRebootResponse",
-}) as any as S.Schema<NetworkBootstrapDeviceRebootResponse>;
-
-export interface NetworkBootstrapDevicesRefreshConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Bootstrap Device. */
-  networkBootstrapDeviceName: string;
-}
-export const NetworkBootstrapDevicesRefreshConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkBootstrapDeviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkBootstrapDevices/{networkBootstrapDeviceName}/refreshConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkBootstrapDevicesRefreshConfigurationRequest",
-  }) as any as S.Schema<NetworkBootstrapDevicesRefreshConfigurationRequest>;
-
-/** The operations list. */
-export type NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList>;
-
-/** The current status of an async operation. */
-export interface NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-  ).annotate({
-    identifier:
-      "NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem",
-  }) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem>;
-
-/** The operations list. */
-export type NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList =
-  Array<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem>;
-export const NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem,
-  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList>;
-
-/** The error details. */
-export type NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList =
-  Array<ErrorDetail>;
-export const NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList>;
-
-/** The error additional info. */
-export type NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface NetworkBootstrapDeviceRefreshConfigurationResponseError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList;
-}
-export const NetworkBootstrapDeviceRefreshConfigurationResponseError =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(
-        NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList,
-      ),
-      additionalInfo: S.optional(
-        NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList,
-      ),
-    }),
-  ).annotate({
-    identifier: "NetworkBootstrapDeviceRefreshConfigurationResponseError",
-  }) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseError>;
-
-/** The current status of an refresh configuration async operation. */
-export interface NetworkBootstrapDeviceRefreshConfigurationResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList;
-  /** The error detail. */
-  error?: NetworkBootstrapDeviceRefreshConfigurationResponseError;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-}
-export const NetworkBootstrapDeviceRefreshConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList,
-      ),
-      error: S.optional(
-        NetworkBootstrapDeviceRefreshConfigurationResponseError,
-      ),
-      resourceId: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkBootstrapDeviceRefreshConfigurationResponse",
-  }) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponse>;
 
 export interface NetworkBootstrapDevicesResyncPasswordsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -14755,253 +14792,6 @@ export const NetworkBootstrapDeviceUpgradeResponse = /*@__PURE__*/ S.suspend(
   identifier: "NetworkBootstrapDeviceUpgradeResponse",
 }) as any as S.Schema<NetworkBootstrapDeviceUpgradeResponse>;
 
-/** Type of reboot to be performed. Example: GracefulRebootWithZTP */
-export type RebootType =
-  | "GracefulRebootWithZTP"
-  | "GracefulRebootWithoutZTP"
-  | "UngracefulRebootWithZTP"
-  | "UngracefulRebootWithoutZTP";
-export const RebootType = /*@__PURE__*/ S.String;
-
-export interface NetworkDevicesRebootRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Device. */
-  networkDeviceName: string;
-  /** Type of reboot to be performed. Example: GracefulRebootWithZTP */
-  rebootType?: RebootType | (string & {});
-}
-export const NetworkDevicesRebootRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkDeviceName: S.String.pipe(T.Label()),
-    rebootType: S.optional(RebootType),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/reboot",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkDevicesRebootRequest",
-}) as any as S.Schema<NetworkDevicesRebootRequest>;
-
-/** The operations list. */
-export type NetworkDevicesRebootResponseOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkDevicesRebootResponseOperationsList = /*@__PURE__*/ S.Array(
-  OperationStatusResult,
-) as any as S.Schema<NetworkDevicesRebootResponseOperationsList>;
-
-export interface NetworkDevicesRebootResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkDevicesRebootResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkDevicesRebootResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(NetworkDevicesRebootResponseOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "NetworkDevicesRebootResponse",
-}) as any as S.Schema<NetworkDevicesRebootResponse>;
-
-export interface NetworkDevicesRefreshConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Device. */
-  networkDeviceName: string;
-}
-export const NetworkDevicesRefreshConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkDeviceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/refreshConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkDevicesRefreshConfigurationRequest",
-  }) as any as S.Schema<NetworkDevicesRefreshConfigurationRequest>;
-
-/** The operations list. */
-export type NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList>;
-
-/** The current status of an async operation. */
-export interface NetworkDeviceRefreshConfigurationResponseOperationsItem {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkDeviceRefreshConfigurationResponseOperationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-  ).annotate({
-    identifier: "NetworkDeviceRefreshConfigurationResponseOperationsItem",
-  }) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseOperationsItem>;
-
-/** The operations list. */
-export type NetworkDeviceRefreshConfigurationResponseOperationsList =
-  Array<NetworkDeviceRefreshConfigurationResponseOperationsItem>;
-export const NetworkDeviceRefreshConfigurationResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    NetworkDeviceRefreshConfigurationResponseOperationsItem,
-  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseOperationsList>;
-
-/** The error details. */
-export type NetworkDeviceRefreshConfigurationResponseErrorDetailsList =
-  Array<ErrorDetail>;
-export const NetworkDeviceRefreshConfigurationResponseErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseErrorDetailsList>;
-
-/** The error additional info. */
-export type NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface NetworkDeviceRefreshConfigurationResponseError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: NetworkDeviceRefreshConfigurationResponseErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList;
-}
-export const NetworkDeviceRefreshConfigurationResponseError =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(
-        NetworkDeviceRefreshConfigurationResponseErrorDetailsList,
-      ),
-      additionalInfo: S.optional(
-        NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList,
-      ),
-    }),
-  ).annotate({
-    identifier: "NetworkDeviceRefreshConfigurationResponseError",
-  }) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseError>;
-
-/** The current status of an refresh configuration async operation. */
-export interface NetworkDeviceRefreshConfigurationResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkDeviceRefreshConfigurationResponseOperationsList;
-  /** The error detail. */
-  error?: NetworkDeviceRefreshConfigurationResponseError;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-}
-export const NetworkDeviceRefreshConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkDeviceRefreshConfigurationResponseOperationsList,
-      ),
-      error: S.optional(NetworkDeviceRefreshConfigurationResponseError),
-      resourceId: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkDeviceRefreshConfigurationResponse",
-  }) as any as S.Schema<NetworkDeviceRefreshConfigurationResponse>;
-
 export interface NetworkDevicesResyncCertificatesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -15335,275 +15125,6 @@ export const NetworkDeviceResyncPasswordsResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "NetworkDeviceResyncPasswordsResponse",
 }) as any as S.Schema<NetworkDeviceResyncPasswordsResponse>;
-
-export interface NetworkDevicesRunRoCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Device. */
-  networkDeviceName: string;
-  /** Specify the command. */
-  command?: string;
-}
-export const NetworkDevicesRunRoCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkDeviceName: S.String.pipe(T.Label()),
-    command: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/runRoCommand",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkDevicesRunRoCommandRequest",
-}) as any as S.Schema<NetworkDevicesRunRoCommandRequest>;
-
-/** Common response for device Ro Commands. */
-export interface CommonPostActionResponseForDeviceROCommands {
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-  /** Predefined link containing Device RO Command output. */
-  outputUrl?: string;
-  /** Device RO command Response limited to 4000 characters. */
-  deviceConfigurationPreview?: string;
-}
-export const CommonPostActionResponseForDeviceROCommands =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      configurationState: S.optional(ConfigurationState),
-      outputUrl: S.optional(S.String),
-      deviceConfigurationPreview: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CommonPostActionResponseForDeviceROCommands",
-  }) as any as S.Schema<CommonPostActionResponseForDeviceROCommands>;
-
-export interface NetworkDevicesRunRoCommandResponse {
-  /** The error object. */
-  error?: ErrorDetail;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** The additional properties of the operation status result. */
-  properties?: CommonPostActionResponseForDeviceROCommands;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** Operation status. */
-  status: string;
-}
-export const NetworkDevicesRunRoCommandResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(ErrorDetail),
-    endTime: S.optional(S.String),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    properties: S.optional(CommonPostActionResponseForDeviceROCommands),
-    resourceId: S.optional(S.String),
-    startTime: S.optional(S.String),
-    status: S.String,
-  }),
-).annotate({
-  identifier: "NetworkDevicesRunRoCommandResponse",
-}) as any as S.Schema<NetworkDevicesRunRoCommandResponse>;
-
-export interface NetworkDevicesRunRwCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Device. */
-  networkDeviceName: string;
-  /** Specify the command. */
-  command?: string;
-  /** Specify the commands file URL. */
-  commandUrl?: string;
-}
-export const NetworkDevicesRunRwCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkDeviceName: S.String.pipe(T.Label()),
-    command: S.optional(S.String),
-    commandUrl: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/runRwCommand",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkDevicesRunRwCommandRequest",
-}) as any as S.Schema<NetworkDevicesRunRwCommandRequest>;
-
-/** The operations list. */
-export type NetworkDeviceRunRwCommandResponseOperationsItemOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkDeviceRunRwCommandResponseOperationsItemOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseOperationsItemOperationsList>;
-
-/** The current status of an async operation. */
-export interface NetworkDeviceRunRwCommandResponseOperationsItem {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkDeviceRunRwCommandResponseOperationsItemOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkDeviceRunRwCommandResponseOperationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkDeviceRunRwCommandResponseOperationsItemOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-  ).annotate({
-    identifier: "NetworkDeviceRunRwCommandResponseOperationsItem",
-  }) as any as S.Schema<NetworkDeviceRunRwCommandResponseOperationsItem>;
-
-/** The operations list. */
-export type NetworkDeviceRunRwCommandResponseOperationsList =
-  Array<NetworkDeviceRunRwCommandResponseOperationsItem>;
-export const NetworkDeviceRunRwCommandResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    NetworkDeviceRunRwCommandResponseOperationsItem,
-  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseOperationsList>;
-
-/** The error details. */
-export type NetworkDeviceRunRwCommandResponseErrorDetailsList =
-  Array<ErrorDetail>;
-export const NetworkDeviceRunRwCommandResponseErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseErrorDetailsList>;
-
-/** The error additional info. */
-export type NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface NetworkDeviceRunRwCommandResponseError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: NetworkDeviceRunRwCommandResponseErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList;
-}
-export const NetworkDeviceRunRwCommandResponseError = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(NetworkDeviceRunRwCommandResponseErrorDetailsList),
-      additionalInfo: S.optional(
-        NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList,
-      ),
-    }),
-).annotate({
-  identifier: "NetworkDeviceRunRwCommandResponseError",
-}) as any as S.Schema<NetworkDeviceRunRwCommandResponseError>;
-
-/** Network Device Resource defines the properties of the resource. */
-export interface NetworkDeviceRwCommandResponseProperties {
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-  /** Predefined link containing Device Rw Command output. */
-  outputUrl?: string;
-}
-export const NetworkDeviceRwCommandResponseProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      configurationState: S.optional(ConfigurationState),
-      outputUrl: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NetworkDeviceRwCommandResponseProperties",
-}) as any as S.Schema<NetworkDeviceRwCommandResponseProperties>;
-
-/** Response body for a RunRwCommand request on a Network Device. */
-export interface NetworkDeviceRunRwCommandResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkDeviceRunRwCommandResponseOperationsList;
-  /** The error detail. */
-  error?: NetworkDeviceRunRwCommandResponseError;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Network Device Run Rw Command Response properties. */
-  properties?: NetworkDeviceRwCommandResponseProperties;
-}
-export const NetworkDeviceRunRwCommandResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(NetworkDeviceRunRwCommandResponseOperationsList),
-    error: S.optional(NetworkDeviceRunRwCommandResponseError),
-    resourceId: S.optional(S.String),
-    properties: S.optional(NetworkDeviceRwCommandResponseProperties),
-  }),
-).annotate({
-  identifier: "NetworkDeviceRunRwCommandResponse",
-}) as any as S.Schema<NetworkDeviceRunRwCommandResponse>;
 
 export interface NetworkDevicesUpgradeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -15955,401 +15476,6 @@ export const ArmConfigurationDiffOperationResponse = /*@__PURE__*/ S.suspend(
   identifier: "ArmConfigurationDiffOperationResponse",
 }) as any as S.Schema<ArmConfigurationDiffOperationResponse>;
 
-export interface NetworkFabricsCommitBatchStatusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Fabric. */
-  networkFabricName: string;
-  /** Commit Batch Identifier. If not provided, the latest commit batch status will be returned. */
-  commitBatchId?: string;
-}
-export const NetworkFabricsCommitBatchStatusRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkFabricName: S.String.pipe(T.Label()),
-      commitBatchId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/commitBatchStatus",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkFabricsCommitBatchStatusRequest",
-}) as any as S.Schema<NetworkFabricsCommitBatchStatusRequest>;
-
-/** The operations list. */
-export type CommitBatchStatusOperationResponseOperationsItemOperationsList =
-  Array<OperationStatusResult>;
-export const CommitBatchStatusOperationResponseOperationsItemOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<CommitBatchStatusOperationResponseOperationsItemOperationsList>;
-
-/** The current status of an async operation. */
-export interface CommitBatchStatusOperationResponseOperationsItem {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: CommitBatchStatusOperationResponseOperationsItemOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const CommitBatchStatusOperationResponseOperationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        CommitBatchStatusOperationResponseOperationsItemOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-  ).annotate({
-    identifier: "CommitBatchStatusOperationResponseOperationsItem",
-  }) as any as S.Schema<CommitBatchStatusOperationResponseOperationsItem>;
-
-/** The operations list. */
-export type CommitBatchStatusOperationResponseOperationsList =
-  Array<CommitBatchStatusOperationResponseOperationsItem>;
-export const CommitBatchStatusOperationResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    CommitBatchStatusOperationResponseOperationsItem,
-  ) as any as S.Schema<CommitBatchStatusOperationResponseOperationsList>;
-
-/** The error details. */
-export type CommitBatchStatusOperationResponseErrorDetailsList =
-  Array<ErrorDetail>;
-export const CommitBatchStatusOperationResponseErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<CommitBatchStatusOperationResponseErrorDetailsList>;
-
-/** The error additional info. */
-export type CommitBatchStatusOperationResponseErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const CommitBatchStatusOperationResponseErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<CommitBatchStatusOperationResponseErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface CommitBatchStatusOperationResponseError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: CommitBatchStatusOperationResponseErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: CommitBatchStatusOperationResponseErrorAdditionalInfoList;
-}
-export const CommitBatchStatusOperationResponseError = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(CommitBatchStatusOperationResponseErrorDetailsList),
-      additionalInfo: S.optional(
-        CommitBatchStatusOperationResponseErrorAdditionalInfoList,
-      ),
-    }),
-).annotate({
-  identifier: "CommitBatchStatusOperationResponseError",
-}) as any as S.Schema<CommitBatchStatusOperationResponseError>;
-
-/** Commit Batch State. */
-export type CommitBatchState = "Processing" | "Succeeded" | "Failed";
-export const CommitBatchState = /*@__PURE__*/ S.String;
-
-/** List of devices for which the commit operation failed. */
-export type CommitBatchDetailsFailedDevicesList = Array<string>;
-export const CommitBatchDetailsFailedDevicesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CommitBatchDetailsFailedDevicesList>;
-
-/** Commit Batch Details. */
-export interface CommitBatchDetails {
-  /** List of devices for which the commit operation failed. */
-  failedDevices?: CommitBatchDetailsFailedDevicesList;
-}
-export const CommitBatchDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    failedDevices: S.optional(CommitBatchDetailsFailedDevicesList),
-  }),
-).annotate({
-  identifier: "CommitBatchDetails",
-}) as any as S.Schema<CommitBatchDetails>;
-
-/** Commit Batch Status Response Properties. */
-export interface CommitBatchStatusResponseProperties {
-  /** Commit Batch Identifier. */
-  commitBatchId?: string;
-  /** Commit Batch State. */
-  commitBatchState?: CommitBatchState;
-  /** Commit Batch Details. */
-  commitBatchDetails?: CommitBatchDetails;
-}
-export const CommitBatchStatusResponseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    commitBatchId: S.optional(S.String),
-    commitBatchState: S.optional(CommitBatchState),
-    commitBatchDetails: S.optional(CommitBatchDetails),
-  }),
-).annotate({
-  identifier: "CommitBatchStatusResponseProperties",
-}) as any as S.Schema<CommitBatchStatusResponseProperties>;
-
-/** Commit Batch Status Response. */
-export interface CommitBatchStatusOperationResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: CommitBatchStatusOperationResponseOperationsList;
-  /** The error detail. */
-  error?: CommitBatchStatusOperationResponseError;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Commit Batch Status Response Properties. */
-  properties?: CommitBatchStatusResponseProperties;
-}
-export const CommitBatchStatusOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(CommitBatchStatusOperationResponseOperationsList),
-    error: S.optional(CommitBatchStatusOperationResponseError),
-    resourceId: S.optional(S.String),
-    properties: S.optional(CommitBatchStatusResponseProperties),
-  }),
-).annotate({
-  identifier: "CommitBatchStatusOperationResponse",
-}) as any as S.Schema<CommitBatchStatusOperationResponse>;
-
-/** Commit stage Action to be performed. */
-export type CommitStage = "Start" | "Continue" | "Rollback";
-export const CommitStage = /*@__PURE__*/ S.String;
-
-/** Indicates Commit configuration staging policy. Supported policy is StageCEConfiguration, which indicates to prepare the configuration for the CE device type. */
-export type CommitConfigurationPolicy = "StageCEConfiguration";
-export const CommitConfigurationPolicy = /*@__PURE__*/ S.String;
-
-/** List of ARM resource IDs of devices to be included in the commit operation. Either CE1 or CE2 is allowed. */
-export type NetworkFabricsCommitConfigurationRequestDevicesList = Array<string>;
-export const NetworkFabricsCommitConfigurationRequestDevicesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkFabricsCommitConfigurationRequestDevicesList>;
-
-export interface NetworkFabricsCommitConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Fabric. */
-  networkFabricName: string;
-  /** Commit stage Action to be performed. */
-  commitStage?: CommitStage | (string & {});
-  /** Commit configuration Policy. Supported policy is StageCEConfiguration, which indicates to prepare the configuration for the CE device type. */
-  commitPolicy?: CommitConfigurationPolicy | (string & {});
-  /** List of ARM resource IDs of devices to be included in the commit operation. Either CE1 or CE2 is allowed. */
-  devices?: NetworkFabricsCommitConfigurationRequestDevicesList;
-}
-export const NetworkFabricsCommitConfigurationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkFabricName: S.String.pipe(T.Label()),
-      commitStage: S.optional(CommitStage),
-      commitPolicy: S.optional(CommitConfigurationPolicy),
-      devices: S.optional(NetworkFabricsCommitConfigurationRequestDevicesList),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/commitConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-).annotate({
-  identifier: "NetworkFabricsCommitConfigurationRequest",
-}) as any as S.Schema<NetworkFabricsCommitConfigurationRequest>;
-
-/** The operations list. */
-export type CommitConfigurationResponseOperationsItemOperationsList =
-  Array<OperationStatusResult>;
-export const CommitConfigurationResponseOperationsItemOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<CommitConfigurationResponseOperationsItemOperationsList>;
-
-/** The current status of an async operation. */
-export interface CommitConfigurationResponseOperationsItem {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: CommitConfigurationResponseOperationsItemOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const CommitConfigurationResponseOperationsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        CommitConfigurationResponseOperationsItemOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-  ).annotate({
-    identifier: "CommitConfigurationResponseOperationsItem",
-  }) as any as S.Schema<CommitConfigurationResponseOperationsItem>;
-
-/** The operations list. */
-export type CommitConfigurationResponseOperationsList =
-  Array<CommitConfigurationResponseOperationsItem>;
-export const CommitConfigurationResponseOperationsList = /*@__PURE__*/ S.Array(
-  CommitConfigurationResponseOperationsItem,
-) as any as S.Schema<CommitConfigurationResponseOperationsList>;
-
-/** The error details. */
-export type CommitConfigurationResponseErrorDetailsList = Array<ErrorDetail>;
-export const CommitConfigurationResponseErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<CommitConfigurationResponseErrorDetailsList>;
-
-/** The error additional info. */
-export type CommitConfigurationResponseErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const CommitConfigurationResponseErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<CommitConfigurationResponseErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface CommitConfigurationResponseError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: CommitConfigurationResponseErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: CommitConfigurationResponseErrorAdditionalInfoList;
-}
-export const CommitConfigurationResponseError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(CommitConfigurationResponseErrorDetailsList),
-    additionalInfo: S.optional(
-      CommitConfigurationResponseErrorAdditionalInfoList,
-    ),
-  }),
-).annotate({
-  identifier: "CommitConfigurationResponseError",
-}) as any as S.Schema<CommitConfigurationResponseError>;
-
-/** Commit Configuration Response. */
-export interface CommitConfigurationResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: CommitConfigurationResponseOperationsList;
-  /** The error detail. */
-  error?: CommitConfigurationResponseError;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-}
-export const CommitConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(CommitConfigurationResponseOperationsList),
-    error: S.optional(CommitConfigurationResponseError),
-    resourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CommitConfigurationResponse",
-}) as any as S.Schema<CommitConfigurationResponse>;
-
 export interface NetworkFabricsDeprovisionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -16601,227 +15727,6 @@ export const DiscardCommitBatchOperationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DiscardCommitBatchOperationResponse",
 }) as any as S.Schema<DiscardCommitBatchOperationResponse>;
-
-/** Network fabric lock action */
-export type NetworkFabricLockAction = "Lock" | "Unlock";
-export const NetworkFabricLockAction = /*@__PURE__*/ S.String;
-
-export interface NetworkFabricsLockFabricRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Fabric. */
-  networkFabricName: string;
-  /** Type of lock to be applied */
-  lockType?: NetworkFabricLockType | (string & {});
-  /** Action to be performed on the lock */
-  action?: NetworkFabricLockAction | (string & {});
-}
-export const NetworkFabricsLockFabricRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkFabricName: S.String.pipe(T.Label()),
-    lockType: S.optional(NetworkFabricLockType),
-    action: S.optional(NetworkFabricLockAction),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/lockFabric",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkFabricsLockFabricRequest",
-}) as any as S.Schema<NetworkFabricsLockFabricRequest>;
-
-/** The operations list. */
-export type NetworkFabricsLockFabricResponseOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkFabricsLockFabricResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<NetworkFabricsLockFabricResponseOperationsList>;
-
-export interface NetworkFabricsLockFabricResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkFabricsLockFabricResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkFabricsLockFabricResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(NetworkFabricsLockFabricResponseOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "NetworkFabricsLockFabricResponse",
-}) as any as S.Schema<NetworkFabricsLockFabricResponse>;
-
-export interface NetworkFabricsProvisionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Fabric. */
-  networkFabricName: string;
-}
-export const NetworkFabricsProvisionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    networkFabricName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/provision",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "NetworkFabricsProvisionRequest",
-}) as any as S.Schema<NetworkFabricsProvisionRequest>;
-
-/** The operations list. */
-export type NetworkFabricsProvisionResponseOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkFabricsProvisionResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<NetworkFabricsProvisionResponseOperationsList>;
-
-export interface NetworkFabricsProvisionResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkFabricsProvisionResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkFabricsProvisionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    name: S.optional(S.String),
-    status: S.String,
-    percentComplete: S.optional(S.Number),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    operations: S.optional(NetworkFabricsProvisionResponseOperationsList),
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "NetworkFabricsProvisionResponse",
-}) as any as S.Schema<NetworkFabricsProvisionResponse>;
-
-export interface NetworkFabricsRefreshConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Fabric. */
-  networkFabricName: string;
-}
-export const NetworkFabricsRefreshConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkFabricName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/refreshConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFabricsRefreshConfigurationRequest",
-  }) as any as S.Schema<NetworkFabricsRefreshConfigurationRequest>;
-
-/** The operations list. */
-export type NetworkFabricsRefreshConfigurationResponseOperationsList =
-  Array<OperationStatusResult>;
-export const NetworkFabricsRefreshConfigurationResponseOperationsList =
-  /*@__PURE__*/ S.Array(
-    OperationStatusResult,
-  ) as any as S.Schema<NetworkFabricsRefreshConfigurationResponseOperationsList>;
-
-export interface NetworkFabricsRefreshConfigurationResponse {
-  /** Fully qualified ID for the async operation. */
-  id?: string;
-  /** Fully qualified ID of the resource against which the original async operation was started. */
-  resourceId?: string;
-  /** Name of the async operation. */
-  name?: string;
-  /** Operation status. */
-  status: string;
-  /** Percent of the operation that is complete. */
-  percentComplete?: number;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The operations list. */
-  operations?: NetworkFabricsRefreshConfigurationResponseOperationsList;
-  /** If present, details of the operation error. */
-  error?: ErrorDetail;
-}
-export const NetworkFabricsRefreshConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      resourceId: S.optional(S.String),
-      name: S.optional(S.String),
-      status: S.String,
-      percentComplete: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      operations: S.optional(
-        NetworkFabricsRefreshConfigurationResponseOperationsList,
-      ),
-      error: S.optional(ErrorDetail),
-    }),
-  ).annotate({
-    identifier: "NetworkFabricsRefreshConfigurationResponse",
-  }) as any as S.Schema<NetworkFabricsRefreshConfigurationResponse>;
 
 export interface NetworkFabricsResyncCertificatesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -17093,58 +15998,6 @@ export const NetworkFabricsUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "NetworkFabricsUpgradeResponse",
 }) as any as S.Schema<NetworkFabricsUpgradeResponse>;
-
-/** Validate action that to be performed */
-export type ValidateAction = "Cabling" | "Configuration" | "Connectivity";
-export const ValidateAction = /*@__PURE__*/ S.String;
-
-export interface NetworkFabricsValidateConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Fabric. */
-  networkFabricName: string;
-  /** Validate action that to be performed */
-  validateAction?: ValidateAction | (string & {});
-}
-export const NetworkFabricsValidateConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkFabricName: S.String.pipe(T.Label()),
-      validateAction: S.optional(ValidateAction),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/validateConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkFabricsValidateConfigurationRequest",
-  }) as any as S.Schema<NetworkFabricsValidateConfigurationRequest>;
-
-export interface NetworkFabricsValidateConfigurationResponse {
-  /** The error object. */
-  error?: ErrorDetail;
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-  /** URL for the details of the response. */
-  url?: string;
-}
-export const NetworkFabricsValidateConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ErrorDetail),
-      configurationState: S.optional(ConfigurationState),
-      url: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkFabricsValidateConfigurationResponse",
-  }) as any as S.Schema<NetworkFabricsValidateConfigurationResponse>;
 
 export interface NetworkFabricsViewDeviceConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -17490,51 +16343,6 @@ export const NetworkTapRuleResyncResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NetworkTapRuleResyncResponse",
 }) as any as S.Schema<NetworkTapRuleResyncResponse>;
 
-export interface NetworkTapRulesValidateConfigurationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Network Tap Rule. */
-  networkTapRuleName: string;
-}
-export const NetworkTapRulesValidateConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      networkTapRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkTapRules/{networkTapRuleName}/validateConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkTapRulesValidateConfigurationRequest",
-  }) as any as S.Schema<NetworkTapRulesValidateConfigurationRequest>;
-
-export interface NetworkTapRulesValidateConfigurationResponse {
-  /** The error object. */
-  error?: ErrorDetail;
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-  /** URL for the details of the response. */
-  url?: string;
-}
-export const NetworkTapRulesValidateConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ErrorDetail),
-      configurationState: S.optional(ConfigurationState),
-      url: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkTapRulesValidateConfigurationResponse",
-  }) as any as S.Schema<NetworkTapRulesValidateConfigurationResponse>;
-
 export interface NetworkTapsResyncRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -17691,7 +16499,7 @@ export const NetworkTapResyncResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NetworkTapResyncResponse",
 }) as any as S.Schema<NetworkTapResyncResponse>;
 
-export interface RotateNetworkFabricCertificateRequest {
+export interface ProvisionNetworkFabricRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17699,7 +16507,732 @@ export interface RotateNetworkFabricCertificateRequest {
   /** Name of the Network Fabric. */
   networkFabricName: string;
 }
-export const RotateNetworkFabricCertificateRequest = /*@__PURE__*/ S.suspend(
+export const ProvisionNetworkFabricRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkFabricName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/provision",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "ProvisionNetworkFabricRequest",
+}) as any as S.Schema<ProvisionNetworkFabricRequest>;
+
+/** The operations list. */
+export type ProvisionNetworkFabricResponseOperationsList =
+  Array<OperationStatusResult>;
+export const ProvisionNetworkFabricResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<ProvisionNetworkFabricResponseOperationsList>;
+
+export interface ProvisionNetworkFabricResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: ProvisionNetworkFabricResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const ProvisionNetworkFabricResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(ProvisionNetworkFabricResponseOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "ProvisionNetworkFabricResponse",
+}) as any as S.Schema<ProvisionNetworkFabricResponse>;
+
+export interface RebootNetworkBootstrapDeviceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Bootstrap Device. */
+  networkBootstrapDeviceName: string;
+}
+export const RebootNetworkBootstrapDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkBootstrapDeviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkBootstrapDevices/{networkBootstrapDeviceName}/reboot",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "RebootNetworkBootstrapDeviceRequest",
+}) as any as S.Schema<RebootNetworkBootstrapDeviceRequest>;
+
+/** The operations list. */
+export type NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList =
+  Array<OperationStatusResult>;
+export const NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList>;
+
+/** The current status of an async operation. */
+export interface NetworkBootstrapDeviceRebootResponseOperationsItem {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const NetworkBootstrapDeviceRebootResponseOperationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        NetworkBootstrapDeviceRebootResponseOperationsItemOperationsList,
+      ),
+      error: S.optional(ErrorDetail),
+    }),
+  ).annotate({
+    identifier: "NetworkBootstrapDeviceRebootResponseOperationsItem",
+  }) as any as S.Schema<NetworkBootstrapDeviceRebootResponseOperationsItem>;
+
+/** The operations list. */
+export type NetworkBootstrapDeviceRebootResponseOperationsList =
+  Array<NetworkBootstrapDeviceRebootResponseOperationsItem>;
+export const NetworkBootstrapDeviceRebootResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    NetworkBootstrapDeviceRebootResponseOperationsItem,
+  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseOperationsList>;
+
+/** The error details. */
+export type NetworkBootstrapDeviceRebootResponseErrorDetailsList =
+  Array<ErrorDetail>;
+export const NetworkBootstrapDeviceRebootResponseErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseErrorDetailsList>;
+
+/** The error additional info. */
+export type NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface NetworkBootstrapDeviceRebootResponseError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: NetworkBootstrapDeviceRebootResponseErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList;
+}
+export const NetworkBootstrapDeviceRebootResponseError =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(NetworkBootstrapDeviceRebootResponseErrorDetailsList),
+      additionalInfo: S.optional(
+        NetworkBootstrapDeviceRebootResponseErrorAdditionalInfoList,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkBootstrapDeviceRebootResponseError",
+  }) as any as S.Schema<NetworkBootstrapDeviceRebootResponseError>;
+
+/** Network Bootstrap Device reboot Response. */
+export interface NetworkBootstrapDeviceRebootResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkBootstrapDeviceRebootResponseOperationsList;
+  /** The error detail. */
+  error?: NetworkBootstrapDeviceRebootResponseError;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+}
+export const NetworkBootstrapDeviceRebootResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        NetworkBootstrapDeviceRebootResponseOperationsList,
+      ),
+      error: S.optional(NetworkBootstrapDeviceRebootResponseError),
+      resourceId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "NetworkBootstrapDeviceRebootResponse",
+}) as any as S.Schema<NetworkBootstrapDeviceRebootResponse>;
+
+/** Type of reboot to be performed. Example: GracefulRebootWithZTP */
+export type RebootType =
+  | "GracefulRebootWithZTP"
+  | "GracefulRebootWithoutZTP"
+  | "UngracefulRebootWithZTP"
+  | "UngracefulRebootWithoutZTP";
+export const RebootType = /*@__PURE__*/ S.String;
+
+export interface RebootNetworkDeviceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Device. */
+  networkDeviceName: string;
+  /** Type of reboot to be performed. Example: GracefulRebootWithZTP */
+  rebootType?: RebootType | (string & {});
+}
+export const RebootNetworkDeviceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkDeviceName: S.String.pipe(T.Label()),
+    rebootType: S.optional(RebootType),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/reboot",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "RebootNetworkDeviceRequest",
+}) as any as S.Schema<RebootNetworkDeviceRequest>;
+
+/** The operations list. */
+export type RebootNetworkDeviceResponseOperationsList =
+  Array<OperationStatusResult>;
+export const RebootNetworkDeviceResponseOperationsList = /*@__PURE__*/ S.Array(
+  OperationStatusResult,
+) as any as S.Schema<RebootNetworkDeviceResponseOperationsList>;
+
+export interface RebootNetworkDeviceResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: RebootNetworkDeviceResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const RebootNetworkDeviceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(RebootNetworkDeviceResponseOperationsList),
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "RebootNetworkDeviceResponse",
+}) as any as S.Schema<RebootNetworkDeviceResponse>;
+
+export interface RefreshNetworkBootstrapDeviceConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Bootstrap Device. */
+  networkBootstrapDeviceName: string;
+}
+export const RefreshNetworkBootstrapDeviceConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkBootstrapDeviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkBootstrapDevices/{networkBootstrapDeviceName}/refreshConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "RefreshNetworkBootstrapDeviceConfigurationRequest",
+  }) as any as S.Schema<RefreshNetworkBootstrapDeviceConfigurationRequest>;
+
+/** The operations list. */
+export type NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList =
+  Array<OperationStatusResult>;
+export const NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList>;
+
+/** The current status of an async operation. */
+export interface NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItemOperationsList,
+      ),
+      error: S.optional(ErrorDetail),
+    }),
+  ).annotate({
+    identifier:
+      "NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem",
+  }) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem>;
+
+/** The operations list. */
+export type NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList =
+  Array<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem>;
+export const NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    NetworkBootstrapDeviceRefreshConfigurationResponseOperationsItem,
+  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList>;
+
+/** The error details. */
+export type NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList =
+  Array<ErrorDetail>;
+export const NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList>;
+
+/** The error additional info. */
+export type NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface NetworkBootstrapDeviceRefreshConfigurationResponseError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList;
+}
+export const NetworkBootstrapDeviceRefreshConfigurationResponseError =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(
+        NetworkBootstrapDeviceRefreshConfigurationResponseErrorDetailsList,
+      ),
+      additionalInfo: S.optional(
+        NetworkBootstrapDeviceRefreshConfigurationResponseErrorAdditionalInfoList,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkBootstrapDeviceRefreshConfigurationResponseError",
+  }) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponseError>;
+
+/** The current status of an refresh configuration async operation. */
+export interface NetworkBootstrapDeviceRefreshConfigurationResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList;
+  /** The error detail. */
+  error?: NetworkBootstrapDeviceRefreshConfigurationResponseError;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+}
+export const NetworkBootstrapDeviceRefreshConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        NetworkBootstrapDeviceRefreshConfigurationResponseOperationsList,
+      ),
+      error: S.optional(
+        NetworkBootstrapDeviceRefreshConfigurationResponseError,
+      ),
+      resourceId: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NetworkBootstrapDeviceRefreshConfigurationResponse",
+  }) as any as S.Schema<NetworkBootstrapDeviceRefreshConfigurationResponse>;
+
+export interface RefreshNetworkDeviceConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Device. */
+  networkDeviceName: string;
+}
+export const RefreshNetworkDeviceConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkDeviceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/refreshConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshNetworkDeviceConfigurationRequest",
+}) as any as S.Schema<RefreshNetworkDeviceConfigurationRequest>;
+
+/** The operations list. */
+export type NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList =
+  Array<OperationStatusResult>;
+export const NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList>;
+
+/** The current status of an async operation. */
+export interface NetworkDeviceRefreshConfigurationResponseOperationsItem {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const NetworkDeviceRefreshConfigurationResponseOperationsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        NetworkDeviceRefreshConfigurationResponseOperationsItemOperationsList,
+      ),
+      error: S.optional(ErrorDetail),
+    }),
+  ).annotate({
+    identifier: "NetworkDeviceRefreshConfigurationResponseOperationsItem",
+  }) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseOperationsItem>;
+
+/** The operations list. */
+export type NetworkDeviceRefreshConfigurationResponseOperationsList =
+  Array<NetworkDeviceRefreshConfigurationResponseOperationsItem>;
+export const NetworkDeviceRefreshConfigurationResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    NetworkDeviceRefreshConfigurationResponseOperationsItem,
+  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseOperationsList>;
+
+/** The error details. */
+export type NetworkDeviceRefreshConfigurationResponseErrorDetailsList =
+  Array<ErrorDetail>;
+export const NetworkDeviceRefreshConfigurationResponseErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseErrorDetailsList>;
+
+/** The error additional info. */
+export type NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface NetworkDeviceRefreshConfigurationResponseError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: NetworkDeviceRefreshConfigurationResponseErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList;
+}
+export const NetworkDeviceRefreshConfigurationResponseError =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(
+        NetworkDeviceRefreshConfigurationResponseErrorDetailsList,
+      ),
+      additionalInfo: S.optional(
+        NetworkDeviceRefreshConfigurationResponseErrorAdditionalInfoList,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkDeviceRefreshConfigurationResponseError",
+  }) as any as S.Schema<NetworkDeviceRefreshConfigurationResponseError>;
+
+/** The current status of an refresh configuration async operation. */
+export interface NetworkDeviceRefreshConfigurationResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkDeviceRefreshConfigurationResponseOperationsList;
+  /** The error detail. */
+  error?: NetworkDeviceRefreshConfigurationResponseError;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+}
+export const NetworkDeviceRefreshConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        NetworkDeviceRefreshConfigurationResponseOperationsList,
+      ),
+      error: S.optional(NetworkDeviceRefreshConfigurationResponseError),
+      resourceId: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NetworkDeviceRefreshConfigurationResponse",
+  }) as any as S.Schema<NetworkDeviceRefreshConfigurationResponse>;
+
+export interface RefreshNetworkFabricConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Fabric. */
+  networkFabricName: string;
+}
+export const RefreshNetworkFabricConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkFabricName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/refreshConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshNetworkFabricConfigurationRequest",
+}) as any as S.Schema<RefreshNetworkFabricConfigurationRequest>;
+
+/** The operations list. */
+export type RefreshNetworkFabricConfigurationResponseOperationsList =
+  Array<OperationStatusResult>;
+export const RefreshNetworkFabricConfigurationResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<RefreshNetworkFabricConfigurationResponseOperationsList>;
+
+export interface RefreshNetworkFabricConfigurationResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: RefreshNetworkFabricConfigurationResponseOperationsList;
+  /** If present, details of the operation error. */
+  error?: ErrorDetail;
+}
+export const RefreshNetworkFabricConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        RefreshNetworkFabricConfigurationResponseOperationsList,
+      ),
+      error: S.optional(ErrorDetail),
+    }),
+  ).annotate({
+    identifier: "RefreshNetworkFabricConfigurationResponse",
+  }) as any as S.Schema<RefreshNetworkFabricConfigurationResponse>;
+
+export interface RotateNetworkFabricCertificatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Fabric. */
+  networkFabricName: string;
+}
+export const RotateNetworkFabricCertificatesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -17714,8 +17247,8 @@ export const RotateNetworkFabricCertificateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "RotateNetworkFabricCertificateRequest",
-}) as any as S.Schema<RotateNetworkFabricCertificateRequest>;
+  identifier: "RotateNetworkFabricCertificatesRequest",
+}) as any as S.Schema<RotateNetworkFabricCertificatesRequest>;
 
 /** The operations list. */
 export type NetworkFabricRotateCertificatesResponseOperationsItemOperationsList =
@@ -17859,7 +17392,7 @@ export const NetworkFabricRotateCertificatesResponse = /*@__PURE__*/ S.suspend(
   identifier: "NetworkFabricRotateCertificatesResponse",
 }) as any as S.Schema<NetworkFabricRotateCertificatesResponse>;
 
-export interface RotateNetworkFabricPasswordRequest {
+export interface RotateNetworkFabricPasswordsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -17867,7 +17400,7 @@ export interface RotateNetworkFabricPasswordRequest {
   /** Name of the Network Fabric. */
   networkFabricName: string;
 }
-export const RotateNetworkFabricPasswordRequest = /*@__PURE__*/ S.suspend(() =>
+export const RotateNetworkFabricPasswordsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -17881,8 +17414,8 @@ export const RotateNetworkFabricPasswordRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RotateNetworkFabricPasswordRequest",
-}) as any as S.Schema<RotateNetworkFabricPasswordRequest>;
+  identifier: "RotateNetworkFabricPasswordsRequest",
+}) as any as S.Schema<RotateNetworkFabricPasswordsRequest>;
 
 /** The operations list. */
 export type NetworkFabricRotatePasswordsResponseOperationsItemOperationsList =
@@ -18024,101 +17557,283 @@ export const NetworkFabricRotatePasswordsResponse = /*@__PURE__*/ S.suspend(
   identifier: "NetworkFabricRotatePasswordsResponse",
 }) as any as S.Schema<NetworkFabricRotatePasswordsResponse>;
 
-export interface RoutePoliciesCommitConfigurationRequest {
+export interface RunNetworkDeviceRoCommandRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the Route Policy. */
-  routePolicyName: string;
+  /** Name of the Network Device. */
+  networkDeviceName: string;
+  /** Specify the command. */
+  command?: string;
 }
-export const RoutePoliciesCommitConfigurationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      routePolicyName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/routePolicies/{routePolicyName}/commitConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
+export const RunNetworkDeviceRoCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkDeviceName: S.String.pipe(T.Label()),
+    command: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/runRoCommand",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
 ).annotate({
-  identifier: "RoutePoliciesCommitConfigurationRequest",
-}) as any as S.Schema<RoutePoliciesCommitConfigurationRequest>;
+  identifier: "RunNetworkDeviceRoCommandRequest",
+}) as any as S.Schema<RunNetworkDeviceRoCommandRequest>;
 
-export interface RoutePoliciesCommitConfigurationResponse {
-  /** The error object. */
-  error?: ErrorDetail;
+/** Common response for device Ro Commands. */
+export interface CommonPostActionResponseForDeviceROCommands {
   /** Gets the configuration state. */
   configurationState?: ConfigurationState;
+  /** Predefined link containing Device RO Command output. */
+  outputUrl?: string;
+  /** Device RO command Response limited to 4000 characters. */
+  deviceConfigurationPreview?: string;
 }
-export const RoutePoliciesCommitConfigurationResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const CommonPostActionResponseForDeviceROCommands =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      error: S.optional(ErrorDetail),
       configurationState: S.optional(ConfigurationState),
+      outputUrl: S.optional(S.String),
+      deviceConfigurationPreview: S.optional(S.String),
     }),
-).annotate({
-  identifier: "RoutePoliciesCommitConfigurationResponse",
-}) as any as S.Schema<RoutePoliciesCommitConfigurationResponse>;
+  ).annotate({
+    identifier: "CommonPostActionResponseForDeviceROCommands",
+  }) as any as S.Schema<CommonPostActionResponseForDeviceROCommands>;
 
-export interface RoutePoliciesValidateConfigurationRequest {
+export interface RunNetworkDeviceRoCommandResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** The additional properties of the operation status result. */
+  properties?: CommonPostActionResponseForDeviceROCommands;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** Operation status. */
+  status: string;
+}
+export const RunNetworkDeviceRoCommandResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(ErrorDetail),
+    endTime: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    properties: S.optional(CommonPostActionResponseForDeviceROCommands),
+    resourceId: S.optional(S.String),
+    startTime: S.optional(S.String),
+    status: S.String,
+  }),
+).annotate({
+  identifier: "RunNetworkDeviceRoCommandResponse",
+}) as any as S.Schema<RunNetworkDeviceRoCommandResponse>;
+
+export interface RunNetworkDeviceRwCommandRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the Route Policy. */
-  routePolicyName: string;
+  /** Name of the Network Device. */
+  networkDeviceName: string;
+  /** Specify the command. */
+  command?: string;
+  /** Specify the commands file URL. */
+  commandUrl?: string;
 }
-export const RoutePoliciesValidateConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      routePolicyName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/routePolicies/{routePolicyName}/validateConfiguration",
-        code: 200,
-        apiVersion: "2025-07-15",
-      }),
-    ),
-  ).annotate({
-    identifier: "RoutePoliciesValidateConfigurationRequest",
-  }) as any as S.Schema<RoutePoliciesValidateConfigurationRequest>;
+export const RunNetworkDeviceRwCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    networkDeviceName: S.String.pipe(T.Label()),
+    command: S.optional(S.String),
+    commandUrl: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkDevices/{networkDeviceName}/runRwCommand",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "RunNetworkDeviceRwCommandRequest",
+}) as any as S.Schema<RunNetworkDeviceRwCommandRequest>;
 
-export interface RoutePoliciesValidateConfigurationResponse {
-  /** The error object. */
+/** The operations list. */
+export type NetworkDeviceRunRwCommandResponseOperationsItemOperationsList =
+  Array<OperationStatusResult>;
+export const NetworkDeviceRunRwCommandResponseOperationsItemOperationsList =
+  /*@__PURE__*/ S.Array(
+    OperationStatusResult,
+  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseOperationsItemOperationsList>;
+
+/** The current status of an async operation. */
+export interface NetworkDeviceRunRwCommandResponseOperationsItem {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkDeviceRunRwCommandResponseOperationsItemOperationsList;
+  /** If present, details of the operation error. */
   error?: ErrorDetail;
-  /** Gets the configuration state. */
-  configurationState?: ConfigurationState;
-  /** URL for the details of the response. */
-  url?: string;
 }
-export const RoutePoliciesValidateConfigurationResponse =
+export const NetworkDeviceRunRwCommandResponseOperationsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
+      id: S.optional(S.String),
+      resourceId: S.optional(S.String),
+      name: S.optional(S.String),
+      status: S.String,
+      percentComplete: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      operations: S.optional(
+        NetworkDeviceRunRwCommandResponseOperationsItemOperationsList,
+      ),
       error: S.optional(ErrorDetail),
-      configurationState: S.optional(ConfigurationState),
-      url: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "RoutePoliciesValidateConfigurationResponse",
-  }) as any as S.Schema<RoutePoliciesValidateConfigurationResponse>;
+    identifier: "NetworkDeviceRunRwCommandResponseOperationsItem",
+  }) as any as S.Schema<NetworkDeviceRunRwCommandResponseOperationsItem>;
+
+/** The operations list. */
+export type NetworkDeviceRunRwCommandResponseOperationsList =
+  Array<NetworkDeviceRunRwCommandResponseOperationsItem>;
+export const NetworkDeviceRunRwCommandResponseOperationsList =
+  /*@__PURE__*/ S.Array(
+    NetworkDeviceRunRwCommandResponseOperationsItem,
+  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseOperationsList>;
+
+/** The error details. */
+export type NetworkDeviceRunRwCommandResponseErrorDetailsList =
+  Array<ErrorDetail>;
+export const NetworkDeviceRunRwCommandResponseErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseErrorDetailsList>;
+
+/** The error additional info. */
+export type NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface NetworkDeviceRunRwCommandResponseError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: NetworkDeviceRunRwCommandResponseErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList;
+}
+export const NetworkDeviceRunRwCommandResponseError = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(NetworkDeviceRunRwCommandResponseErrorDetailsList),
+      additionalInfo: S.optional(
+        NetworkDeviceRunRwCommandResponseErrorAdditionalInfoList,
+      ),
+    }),
+).annotate({
+  identifier: "NetworkDeviceRunRwCommandResponseError",
+}) as any as S.Schema<NetworkDeviceRunRwCommandResponseError>;
+
+/** Network Device Resource defines the properties of the resource. */
+export interface NetworkDeviceRwCommandResponseProperties {
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+  /** Predefined link containing Device Rw Command output. */
+  outputUrl?: string;
+}
+export const NetworkDeviceRwCommandResponseProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      configurationState: S.optional(ConfigurationState),
+      outputUrl: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "NetworkDeviceRwCommandResponseProperties",
+}) as any as S.Schema<NetworkDeviceRwCommandResponseProperties>;
+
+/** Response body for a RunRwCommand request on a Network Device. */
+export interface NetworkDeviceRunRwCommandResponse {
+  /** Fully qualified ID for the async operation. */
+  id?: string;
+  /** Name of the async operation. */
+  name?: string;
+  /** Operation status. */
+  status: string;
+  /** Percent of the operation that is complete. */
+  percentComplete?: number;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The operations list. */
+  operations?: NetworkDeviceRunRwCommandResponseOperationsList;
+  /** The error detail. */
+  error?: NetworkDeviceRunRwCommandResponseError;
+  /** Fully qualified ID of the resource against which the original async operation was started. */
+  resourceId?: string;
+  /** Network Device Run Rw Command Response properties. */
+  properties?: NetworkDeviceRwCommandResponseProperties;
+}
+export const NetworkDeviceRunRwCommandResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.String,
+    percentComplete: S.optional(S.Number),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    operations: S.optional(NetworkDeviceRunRwCommandResponseOperationsList),
+    error: S.optional(NetworkDeviceRunRwCommandResponseError),
+    resourceId: S.optional(S.String),
+    properties: S.optional(NetworkDeviceRwCommandResponseProperties),
+  }),
+).annotate({
+  identifier: "NetworkDeviceRunRwCommandResponse",
+}) as any as S.Schema<NetworkDeviceRunRwCommandResponse>;
 
 /** Resource tags. */
-export type AccessControlListsUpdateRequestTagsMap = {
+export type UpdateAccessControlListRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessControlListsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccessControlListRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessControlListsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccessControlListRequestTagsMap>;
 
 /** List of the protocols that need to be matched. */
 export type AccessControlListMatchConditionPatchProtocolTypesList =
@@ -18729,7 +18444,7 @@ export interface UpdateAccessControlListRequest {
   /** Name of the Access Control List. */
   accessControlListName: string;
   /** Resource tags. */
-  tags?: AccessControlListsUpdateRequestTagsMap;
+  tags?: UpdateAccessControlListRequestTagsMap;
   /** Access Control Lists patch properties. */
   properties?: AccessControlListPatchProperties;
 }
@@ -18738,7 +18453,7 @@ export const UpdateAccessControlListRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accessControlListName: S.String.pipe(T.Label()),
-    tags: S.optional(AccessControlListsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccessControlListRequestTagsMap),
     properties: S.optional(AccessControlListPatchProperties),
   }).pipe(
     T.Http({
@@ -18753,13 +18468,13 @@ export const UpdateAccessControlListRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccessControlListRequest>;
 
 /** Resource tags. */
-export type AccessControlListsUpdateResponseTagsMap = {
+export type UpdateAccessControlListResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccessControlListsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccessControlListResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccessControlListsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccessControlListResponseTagsMap>;
 
 export interface UpdateAccessControlListResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -18771,7 +18486,7 @@ export interface UpdateAccessControlListResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccessControlListsUpdateResponseTagsMap;
+  tags?: UpdateAccessControlListResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Access ControlList properties. */
@@ -18783,7 +18498,7 @@ export const UpdateAccessControlListResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccessControlListsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccessControlListResponseTagsMap),
     location: S.String,
     properties: AccessControlListProperties,
   }),
@@ -18792,12 +18507,12 @@ export const UpdateAccessControlListResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccessControlListResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type AccessControlListsUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateAccessControlListAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const AccessControlListsUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateAccessControlListAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<AccessControlListsUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateAccessControlListAdministrativeStateRequestResourceIdsList>;
 
 /** Administrative state. */
 export type EnableDisableState = "Enable" | "Disable" | "UnderMaintenance";
@@ -18811,7 +18526,7 @@ export interface UpdateAccessControlListAdministrativeStateRequest {
   /** Name of the Access Control List. */
   accessControlListName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: AccessControlListsUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateAccessControlListAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -18822,7 +18537,7 @@ export const UpdateAccessControlListAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       accessControlListName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        AccessControlListsUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateAccessControlListAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -19425,12 +19140,12 @@ export const UpdateExternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateExternalNetworkResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type ExternalNetworksUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateExternalNetworkAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const ExternalNetworksUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateExternalNetworkAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ExternalNetworksUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateExternalNetworkAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateExternalNetworkAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19442,7 +19157,7 @@ export interface UpdateExternalNetworkAdministrativeStateRequest {
   /** Name of the External Network. */
   externalNetworkName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: ExternalNetworksUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateExternalNetworkAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -19454,7 +19169,7 @@ export const UpdateExternalNetworkAdministrativeStateRequest =
       l3IsolationDomainName: S.String.pipe(T.Label()),
       externalNetworkName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        ExternalNetworksUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateExternalNetworkAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -19676,12 +19391,12 @@ export const ExternalNetworkUpdateBfdAdministrativeStateResponse =
   }) as any as S.Schema<ExternalNetworkUpdateBfdAdministrativeStateResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type ExternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList =
+export type UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const ExternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList =
+export const UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ExternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -19693,7 +19408,7 @@ export interface UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequest {
   /** Name of the External Network. */
   externalNetworkName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: ExternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -19705,7 +19420,7 @@ export const UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequest =
       l3IsolationDomainName: S.String.pipe(T.Label()),
       externalNetworkName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        ExternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList,
+        UpdateExternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -20007,12 +19722,12 @@ export const UpdateInternalNetworkResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateInternalNetworkResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type InternalNetworksUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateInternalNetworkAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const InternalNetworksUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateInternalNetworkAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<InternalNetworksUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateInternalNetworkAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateInternalNetworkAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20024,7 +19739,7 @@ export interface UpdateInternalNetworkAdministrativeStateRequest {
   /** Name of the Internal Network. */
   internalNetworkName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: InternalNetworksUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateInternalNetworkAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -20036,7 +19751,7 @@ export const UpdateInternalNetworkAdministrativeStateRequest =
       l3IsolationDomainName: S.String.pipe(T.Label()),
       internalNetworkName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        InternalNetworksUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateInternalNetworkAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -20517,12 +20232,12 @@ export const InternalNetworkUpdateBgpAdministrativeStateResponse =
   }) as any as S.Schema<InternalNetworkUpdateBgpAdministrativeStateResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type InternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList =
+export type UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const InternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList =
+export const UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<InternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -20534,7 +20249,7 @@ export interface UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequest {
   /** Name of the Internal Network. */
   internalNetworkName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: InternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -20546,7 +20261,7 @@ export const UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequest =
       l3IsolationDomainName: S.String.pipe(T.Label()),
       internalNetworkName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        InternalNetworksUpdateStaticRouteBfdAdministrativeStateRequestResourceIdsList,
+        UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -20562,13 +20277,89 @@ export const UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequest =
   }) as any as S.Schema<UpdateInternalNetworkStaticRouteBfdAdministrativeStateRequest>;
 
 /** Resource tags. */
-export type InternetGatewaysUpdateRequestTagsMap = {
+export type UpdateInternetGatewayRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const InternetGatewaysUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInternetGatewayRuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InternetGatewaysUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateInternetGatewayRuleRequestTagsMap>;
+
+export interface UpdateInternetGatewayRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Internet Gateway rule. */
+  internetGatewayRuleName: string;
+  /** Resource tags. */
+  tags?: UpdateInternetGatewayRuleRequestTagsMap;
+}
+export const UpdateInternetGatewayRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    internetGatewayRuleName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateInternetGatewayRuleRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGatewayRules/{internetGatewayRuleName}",
+      code: 200,
+      apiVersion: "2025-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateInternetGatewayRuleRequest",
+}) as any as S.Schema<UpdateInternetGatewayRuleRequest>;
+
+/** Resource tags. */
+export type UpdateInternetGatewayRuleResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInternetGatewayRuleResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInternetGatewayRuleResponseTagsMap>;
+
+export interface UpdateInternetGatewayRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateInternetGatewayRuleResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The Internet Gateway Rule properties */
+  properties: InternetGatewayRuleProperties;
+}
+export const UpdateInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateInternetGatewayRuleResponseTagsMap),
+    location: S.String,
+    properties: InternetGatewayRuleProperties,
+  }),
+).annotate({
+  identifier: "UpdateInternetGatewayRuleResponse",
+}) as any as S.Schema<UpdateInternetGatewayRuleResponse>;
+
+/** Resource tags. */
+export type UpdateInternetGatewaysRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateInternetGatewaysRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateInternetGatewaysRequestTagsMap>;
 
 /** PatchProperties for InternetGateway */
 export interface InternetGatewayPatchProperties {
@@ -20583,7 +20374,7 @@ export const InternetGatewayPatchProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "InternetGatewayPatchProperties",
 }) as any as S.Schema<InternetGatewayPatchProperties>;
 
-export interface UpdateInternetGatewayRequest {
+export interface UpdateInternetGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20591,16 +20382,16 @@ export interface UpdateInternetGatewayRequest {
   /** Name of the Internet Gateway. */
   internetGatewayName: string;
   /** Resource tags. */
-  tags?: InternetGatewaysUpdateRequestTagsMap;
+  tags?: UpdateInternetGatewaysRequestTagsMap;
   /** Resource properties. */
   properties?: InternetGatewayPatchProperties;
 }
-export const UpdateInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateInternetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     internetGatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(InternetGatewaysUpdateRequestTagsMap),
+    tags: S.optional(UpdateInternetGatewaysRequestTagsMap),
     properties: S.optional(InternetGatewayPatchProperties),
   }).pipe(
     T.Http({
@@ -20611,19 +20402,19 @@ export const UpdateInternetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateInternetGatewayRequest",
-}) as any as S.Schema<UpdateInternetGatewayRequest>;
+  identifier: "UpdateInternetGatewaysRequest",
+}) as any as S.Schema<UpdateInternetGatewaysRequest>;
 
 /** Resource tags. */
-export type InternetGatewaysUpdateResponseTagsMap = {
+export type UpdateInternetGatewaysResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InternetGatewaysUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInternetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InternetGatewaysUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateInternetGatewaysResponseTagsMap>;
 
-export interface UpdateInternetGatewayResponse {
+export interface UpdateInternetGatewaysResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -20633,110 +20424,34 @@ export interface UpdateInternetGatewayResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InternetGatewaysUpdateResponseTagsMap;
+  tags?: UpdateInternetGatewaysResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The Internet Gateway Properties */
   properties: InternetGatewayProperties;
 }
-export const UpdateInternetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateInternetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewaysUpdateResponseTagsMap),
+    tags: S.optional(UpdateInternetGatewaysResponseTagsMap),
     location: S.String,
     properties: InternetGatewayProperties,
   }),
 ).annotate({
-  identifier: "UpdateInternetGatewayResponse",
-}) as any as S.Schema<UpdateInternetGatewayResponse>;
+  identifier: "UpdateInternetGatewaysResponse",
+}) as any as S.Schema<UpdateInternetGatewaysResponse>;
 
 /** Resource tags. */
-export type InternetGatewayRulesUpdateRequestTagsMap = {
+export type UpdateIpCommunityRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const InternetGatewayRulesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIpCommunityRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InternetGatewayRulesUpdateRequestTagsMap>;
-
-export interface UpdateInternetGatewayRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Internet Gateway rule. */
-  internetGatewayRuleName: string;
-  /** Resource tags. */
-  tags?: InternetGatewayRulesUpdateRequestTagsMap;
-}
-export const UpdateInternetGatewayRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    internetGatewayRuleName: S.String.pipe(T.Label()),
-    tags: S.optional(InternetGatewayRulesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/internetGatewayRules/{internetGatewayRuleName}",
-      code: 200,
-      apiVersion: "2025-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateInternetGatewayRuleRequest",
-}) as any as S.Schema<UpdateInternetGatewayRuleRequest>;
-
-/** Resource tags. */
-export type InternetGatewayRulesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const InternetGatewayRulesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<InternetGatewayRulesUpdateResponseTagsMap>;
-
-export interface UpdateInternetGatewayRuleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: InternetGatewayRulesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The Internet Gateway Rule properties */
-  properties: InternetGatewayRuleProperties;
-}
-export const UpdateInternetGatewayRuleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(InternetGatewayRulesUpdateResponseTagsMap),
-    location: S.String,
-    properties: InternetGatewayRuleProperties,
-  }),
-).annotate({
-  identifier: "UpdateInternetGatewayRuleResponse",
-}) as any as S.Schema<UpdateInternetGatewayRuleResponse>;
-
-/** Resource tags. */
-export type IpCommunitiesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IpCommunitiesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IpCommunitiesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateIpCommunityRequestTagsMap>;
 
 /** List of IP Community Rules. */
 export type IpCommunityPatchablePropertiesIpCommunityRulesList =
@@ -20769,7 +20484,7 @@ export interface UpdateIpCommunityRequest {
   /** Name of the IP Community. */
   ipCommunityName: string;
   /** Resource tags. */
-  tags?: IpCommunitiesUpdateRequestTagsMap;
+  tags?: UpdateIpCommunityRequestTagsMap;
   /** IP Community patchable properties. */
   properties?: IpCommunityPatchableProperties;
 }
@@ -20778,7 +20493,7 @@ export const UpdateIpCommunityRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ipCommunityName: S.String.pipe(T.Label()),
-    tags: S.optional(IpCommunitiesUpdateRequestTagsMap),
+    tags: S.optional(UpdateIpCommunityRequestTagsMap),
     properties: S.optional(IpCommunityPatchableProperties),
   }).pipe(
     T.Http({
@@ -20793,13 +20508,13 @@ export const UpdateIpCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIpCommunityRequest>;
 
 /** Resource tags. */
-export type IpCommunitiesUpdateResponseTagsMap = {
+export type UpdateIpCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpCommunitiesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIpCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpCommunitiesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateIpCommunityResponseTagsMap>;
 
 export interface UpdateIpCommunityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -20811,7 +20526,7 @@ export interface UpdateIpCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpCommunitiesUpdateResponseTagsMap;
+  tags?: UpdateIpCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Community Properties */
@@ -20823,7 +20538,7 @@ export const UpdateIpCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpCommunitiesUpdateResponseTagsMap),
+    tags: S.optional(UpdateIpCommunityResponseTagsMap),
     location: S.String,
     properties: IpCommunityProperties,
   }),
@@ -20832,13 +20547,13 @@ export const UpdateIpCommunityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIpCommunityResponse>;
 
 /** Resource tags. */
-export type IpExtendedCommunitiesUpdateRequestTagsMap = {
+export type UpdateIpExtendedCommunityRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpExtendedCommunitiesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIpExtendedCommunityRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpExtendedCommunitiesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateIpExtendedCommunityRequestTagsMap>;
 
 /** List of IP Extended Community Rules. */
 export type IpExtendedCommunityPatchPropertiesIpExtendedCommunityRulesList =
@@ -20874,7 +20589,7 @@ export interface UpdateIpExtendedCommunityRequest {
   /** Name of the IP Extended Community. */
   ipExtendedCommunityName: string;
   /** Resource tags. */
-  tags?: IpExtendedCommunitiesUpdateRequestTagsMap;
+  tags?: UpdateIpExtendedCommunityRequestTagsMap;
   /** IP Extended Community patchable properties. */
   properties?: IpExtendedCommunityPatchProperties;
 }
@@ -20883,7 +20598,7 @@ export const UpdateIpExtendedCommunityRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ipExtendedCommunityName: S.String.pipe(T.Label()),
-    tags: S.optional(IpExtendedCommunitiesUpdateRequestTagsMap),
+    tags: S.optional(UpdateIpExtendedCommunityRequestTagsMap),
     properties: S.optional(IpExtendedCommunityPatchProperties),
   }).pipe(
     T.Http({
@@ -20898,14 +20613,13 @@ export const UpdateIpExtendedCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIpExtendedCommunityRequest>;
 
 /** Resource tags. */
-export type IpExtendedCommunitiesUpdateResponseTagsMap = {
+export type UpdateIpExtendedCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpExtendedCommunitiesUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IpExtendedCommunitiesUpdateResponseTagsMap>;
+export const UpdateIpExtendedCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateIpExtendedCommunityResponseTagsMap>;
 
 export interface UpdateIpExtendedCommunityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -20917,7 +20631,7 @@ export interface UpdateIpExtendedCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpExtendedCommunitiesUpdateResponseTagsMap;
+  tags?: UpdateIpExtendedCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IpExtendedCommunity properties */
@@ -20929,7 +20643,7 @@ export const UpdateIpExtendedCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpExtendedCommunitiesUpdateResponseTagsMap),
+    tags: S.optional(UpdateIpExtendedCommunityResponseTagsMap),
     location: S.String,
     properties: IpExtendedCommunityProperties,
   }),
@@ -20938,13 +20652,13 @@ export const UpdateIpExtendedCommunityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIpExtendedCommunityResponse>;
 
 /** Resource tags. */
-export type IpPrefixesUpdateRequestTagsMap = {
+export type UpdateIpPrefixRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpPrefixesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIpPrefixRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpPrefixesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateIpPrefixRequestTagsMap>;
 
 /** The list of IP Prefix Rules. */
 export type IpPrefixPatchPropertiesIpPrefixRulesList = Array<IpPrefixRule>;
@@ -20968,7 +20682,7 @@ export const IpPrefixPatchProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IpPrefixPatchProperties",
 }) as any as S.Schema<IpPrefixPatchProperties>;
 
-export interface UpdateIpPrefixeRequest {
+export interface UpdateIpPrefixRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20976,16 +20690,16 @@ export interface UpdateIpPrefixeRequest {
   /** Name of the IP Prefix. */
   ipPrefixName: string;
   /** Resource tags. */
-  tags?: IpPrefixesUpdateRequestTagsMap;
+  tags?: UpdateIpPrefixRequestTagsMap;
   /** IP Prefix patchable properties. */
   properties?: IpPrefixPatchProperties;
 }
-export const UpdateIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateIpPrefixRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ipPrefixName: S.String.pipe(T.Label()),
-    tags: S.optional(IpPrefixesUpdateRequestTagsMap),
+    tags: S.optional(UpdateIpPrefixRequestTagsMap),
     properties: S.optional(IpPrefixPatchProperties),
   }).pipe(
     T.Http({
@@ -20996,19 +20710,19 @@ export const UpdateIpPrefixeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateIpPrefixeRequest",
-}) as any as S.Schema<UpdateIpPrefixeRequest>;
+  identifier: "UpdateIpPrefixRequest",
+}) as any as S.Schema<UpdateIpPrefixRequest>;
 
 /** Resource tags. */
-export type IpPrefixesUpdateResponseTagsMap = {
+export type UpdateIpPrefixResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IpPrefixesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIpPrefixResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IpPrefixesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateIpPrefixResponseTagsMap>;
 
-export interface UpdateIpPrefixeResponse {
+export interface UpdateIpPrefixResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -21018,34 +20732,34 @@ export interface UpdateIpPrefixeResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IpPrefixesUpdateResponseTagsMap;
+  tags?: UpdateIpPrefixResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The IP Prefix properties */
   properties: IpPrefixProperties;
 }
-export const UpdateIpPrefixeResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateIpPrefixResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IpPrefixesUpdateResponseTagsMap),
+    tags: S.optional(UpdateIpPrefixResponseTagsMap),
     location: S.String,
     properties: IpPrefixProperties,
   }),
 ).annotate({
-  identifier: "UpdateIpPrefixeResponse",
-}) as any as S.Schema<UpdateIpPrefixeResponse>;
+  identifier: "UpdateIpPrefixResponse",
+}) as any as S.Schema<UpdateIpPrefixResponse>;
 
 /** Resource tags. */
-export type L2IsolationDomainsUpdateRequestTagsMap = {
+export type UpdateL2IsolationDomainRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2IsolationDomainsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateL2IsolationDomainRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2IsolationDomainsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateL2IsolationDomainRequestTagsMap>;
 
 /** Extended VLAN status. */
 export type ExtendedVlan = "Enabled" | "Disabled";
@@ -21123,7 +20837,7 @@ export interface UpdateL2IsolationDomainRequest {
   /** Name of the L2 Isolation Domain. */
   l2IsolationDomainName: string;
   /** Resource tags. */
-  tags?: L2IsolationDomainsUpdateRequestTagsMap;
+  tags?: UpdateL2IsolationDomainRequestTagsMap;
   /** L2 Isolation Domain resource patch properties. */
   properties?: L2IsolationDomainPatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -21134,7 +20848,7 @@ export const UpdateL2IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     l2IsolationDomainName: S.String.pipe(T.Label()),
-    tags: S.optional(L2IsolationDomainsUpdateRequestTagsMap),
+    tags: S.optional(UpdateL2IsolationDomainRequestTagsMap),
     properties: S.optional(L2IsolationDomainPatchProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -21150,19 +20864,19 @@ export const UpdateL2IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateL2IsolationDomainRequest>;
 
 /** Resource tags. */
-export type L2IsolationDomainsUpdateResponseTagsMap = {
+export type UpdateL2IsolationDomainResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L2IsolationDomainsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateL2IsolationDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L2IsolationDomainsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateL2IsolationDomainResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L2IsolationDomainsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const L2IsolationDomainsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateL2IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateL2IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateL2IsolationDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -21174,13 +20888,13 @@ export interface UpdateL2IsolationDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L2IsolationDomainsUpdateResponseTagsMap;
+  tags?: UpdateL2IsolationDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L2IsolationDomain properties */
   properties: L2IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateL2IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -21188,22 +20902,22 @@ export const UpdateL2IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L2IsolationDomainsUpdateResponseTagsMap),
+    tags: S.optional(UpdateL2IsolationDomainResponseTagsMap),
     location: S.String,
     properties: L2IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateL2IsolationDomainResponse",
 }) as any as S.Schema<UpdateL2IsolationDomainResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type L2IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateL2IsolationDomainAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const L2IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateL2IsolationDomainAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<L2IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateL2IsolationDomainAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateL2IsolationDomainAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -21213,7 +20927,7 @@ export interface UpdateL2IsolationDomainAdministrativeStateRequest {
   /** Name of the L2 Isolation Domain. */
   l2IsolationDomainName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: L2IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateL2IsolationDomainAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -21224,7 +20938,7 @@ export const UpdateL2IsolationDomainAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       l2IsolationDomainName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        L2IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateL2IsolationDomainAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -21240,13 +20954,13 @@ export const UpdateL2IsolationDomainAdministrativeStateRequest =
   }) as any as S.Schema<UpdateL2IsolationDomainAdministrativeStateRequest>;
 
 /** Resource tags. */
-export type L3IsolationDomainsUpdateRequestTagsMap = {
+export type UpdateL3IsolationDomainRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const L3IsolationDomainsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateL3IsolationDomainRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L3IsolationDomainsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateL3IsolationDomainRequestTagsMap>;
 
 /** Advertise Connected Subnets. Ex: "True" | "False". */
 export type RedistributeConnectedSubnets = "True" | "False";
@@ -21373,7 +21087,7 @@ export interface UpdateL3IsolationDomainRequest {
   /** Name of the L3 Isolation Domain. */
   l3IsolationDomainName: string;
   /** Resource tags. */
-  tags?: L3IsolationDomainsUpdateRequestTagsMap;
+  tags?: UpdateL3IsolationDomainRequestTagsMap;
   /** L3 Isolation Domain resource patch properties. */
   properties?: L3IsolationDomainPatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -21384,7 +21098,7 @@ export const UpdateL3IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     l3IsolationDomainName: S.String.pipe(T.Label()),
-    tags: S.optional(L3IsolationDomainsUpdateRequestTagsMap),
+    tags: S.optional(UpdateL3IsolationDomainRequestTagsMap),
     properties: S.optional(L3IsolationDomainPatchProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -21400,19 +21114,19 @@ export const UpdateL3IsolationDomainRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateL3IsolationDomainRequest>;
 
 /** Resource tags. */
-export type L3IsolationDomainsUpdateResponseTagsMap = {
+export type UpdateL3IsolationDomainResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const L3IsolationDomainsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateL3IsolationDomainResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<L3IsolationDomainsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateL3IsolationDomainResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type L3IsolationDomainsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const L3IsolationDomainsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateL3IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateL3IsolationDomainResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateL3IsolationDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -21424,13 +21138,13 @@ export interface UpdateL3IsolationDomainResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: L3IsolationDomainsUpdateResponseTagsMap;
+  tags?: UpdateL3IsolationDomainResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The L3 Isolation Domain Properties */
   properties: L3IsolationDomainProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateL3IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -21438,22 +21152,22 @@ export const UpdateL3IsolationDomainResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(L3IsolationDomainsUpdateResponseTagsMap),
+    tags: S.optional(UpdateL3IsolationDomainResponseTagsMap),
     location: S.String,
     properties: L3IsolationDomainProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateL3IsolationDomainResponse",
 }) as any as S.Schema<UpdateL3IsolationDomainResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type L3IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateL3IsolationDomainAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const L3IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateL3IsolationDomainAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<L3IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateL3IsolationDomainAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateL3IsolationDomainAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -21463,7 +21177,7 @@ export interface UpdateL3IsolationDomainAdministrativeStateRequest {
   /** Name of the L3 Isolation Domain. */
   l3IsolationDomainName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: L3IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateL3IsolationDomainAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -21474,7 +21188,7 @@ export const UpdateL3IsolationDomainAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       l3IsolationDomainName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        L3IsolationDomainsUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateL3IsolationDomainAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -21490,13 +21204,13 @@ export const UpdateL3IsolationDomainAdministrativeStateRequest =
   }) as any as S.Schema<UpdateL3IsolationDomainAdministrativeStateRequest>;
 
 /** Resource tags. */
-export type NeighborGroupsUpdateRequestTagsMap = {
+export type UpdateNeighborGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NeighborGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNeighborGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NeighborGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNeighborGroupRequestTagsMap>;
 
 /** Array of IPv4 Addresses. */
 export type NeighborGroupDestinationPatchIpv4AddressesList = Array<string>;
@@ -21552,7 +21266,7 @@ export interface UpdateNeighborGroupRequest {
   /** Name of the Neighbor Group. */
   neighborGroupName: string;
   /** Resource tags. */
-  tags?: NeighborGroupsUpdateRequestTagsMap;
+  tags?: UpdateNeighborGroupRequestTagsMap;
   /** Neighbor Group Patch properties. */
   properties?: NeighborGroupPatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -21563,7 +21277,7 @@ export const UpdateNeighborGroupRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     neighborGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(NeighborGroupsUpdateRequestTagsMap),
+    tags: S.optional(UpdateNeighborGroupRequestTagsMap),
     properties: S.optional(NeighborGroupPatchProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -21579,19 +21293,19 @@ export const UpdateNeighborGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNeighborGroupRequest>;
 
 /** Resource tags. */
-export type NeighborGroupsUpdateResponseTagsMap = {
+export type UpdateNeighborGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NeighborGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNeighborGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NeighborGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNeighborGroupResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NeighborGroupsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NeighborGroupsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNeighborGroupResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNeighborGroupResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNeighborGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -21603,13 +21317,13 @@ export interface UpdateNeighborGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NeighborGroupsUpdateResponseTagsMap;
+  tags?: UpdateNeighborGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NeighborGroup Properties */
   properties: NeighborGroupProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNeighborGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -21617,24 +21331,24 @@ export const UpdateNeighborGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NeighborGroupsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNeighborGroupResponseTagsMap),
     location: S.String,
     properties: NeighborGroupProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNeighborGroupResponse",
 }) as any as S.Schema<UpdateNeighborGroupResponse>;
 
 /** Resource tags. */
-export type NetworkBootstrapDevicesUpdateRequestTagsMap = {
+export type UpdateNetworkBootstrapDeviceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkBootstrapDevicesUpdateRequestTagsMap =
+export const UpdateNetworkBootstrapDeviceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkBootstrapDevicesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateNetworkBootstrapDeviceRequestTagsMap>;
 
 /** Network Bootstrap Device Patch properties. */
 export interface NetworkBootstrapDevicePatchProperties {
@@ -21664,7 +21378,7 @@ export interface UpdateNetworkBootstrapDeviceRequest {
   /** Name of the Network Bootstrap Device. */
   networkBootstrapDeviceName: string;
   /** Resource tags. */
-  tags?: NetworkBootstrapDevicesUpdateRequestTagsMap;
+  tags?: UpdateNetworkBootstrapDeviceRequestTagsMap;
   /** Network Bootstrap Device Patch properties. */
   properties?: NetworkBootstrapDevicePatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -21675,7 +21389,7 @@ export const UpdateNetworkBootstrapDeviceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkBootstrapDeviceName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkBootstrapDevicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkBootstrapDeviceRequestTagsMap),
     properties: S.optional(NetworkBootstrapDevicePatchProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -21691,20 +21405,20 @@ export const UpdateNetworkBootstrapDeviceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkBootstrapDeviceRequest>;
 
 /** Resource tags. */
-export type NetworkBootstrapDevicesUpdateResponseTagsMap = {
+export type UpdateNetworkBootstrapDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkBootstrapDevicesUpdateResponseTagsMap =
+export const UpdateNetworkBootstrapDeviceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkBootstrapDevicesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateNetworkBootstrapDeviceResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkBootstrapDevicesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkBootstrapDevicesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkBootstrapDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkBootstrapDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkBootstrapDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -21716,13 +21430,13 @@ export interface UpdateNetworkBootstrapDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkBootstrapDevicesUpdateResponseTagsMap;
+  tags?: UpdateNetworkBootstrapDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkBootstrapDevice properties */
   properties: NetworkBootstrapDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkBootstrapDeviceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -21731,22 +21445,22 @@ export const UpdateNetworkBootstrapDeviceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(NetworkBootstrapDevicesUpdateResponseTagsMap),
+      tags: S.optional(UpdateNetworkBootstrapDeviceResponseTagsMap),
       location: S.String,
       properties: NetworkBootstrapDeviceProperties,
-      identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+      identity: S.optional(CreateL2IsolationDomainResponseIdentity),
     }),
 ).annotate({
   identifier: "UpdateNetworkBootstrapDeviceResponse",
 }) as any as S.Schema<UpdateNetworkBootstrapDeviceResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkBootstrapDevicesUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkBootstrapDeviceAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkBootstrapDevicesUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkBootstrapDeviceAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkBootstrapDevicesUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkBootstrapDeviceAdministrativeStateRequestResourceIdsList>;
 
 /** Administrative state. */
 export type DeviceAdministrativeState =
@@ -21769,7 +21483,7 @@ export interface UpdateNetworkBootstrapDeviceAdministrativeStateRequest {
   /** Name of the Network Bootstrap Device. */
   networkBootstrapDeviceName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkBootstrapDevicesUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkBootstrapDeviceAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: DeviceAdministrativeState | (string & {});
 }
@@ -21780,7 +21494,7 @@ export const UpdateNetworkBootstrapDeviceAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       networkBootstrapDeviceName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkBootstrapDevicesUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkBootstrapDeviceAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(DeviceAdministrativeState),
     }).pipe(
@@ -22018,12 +21732,12 @@ export const UpdateNetworkBootstrapInterfaceResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNetworkBootstrapInterfaceResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkBootstrapInterfacesUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkBootstrapInterfaceAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkBootstrapInterfacesUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkBootstrapInterfaceAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkBootstrapInterfacesUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkBootstrapInterfaceAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkBootstrapInterfaceAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -22035,7 +21749,7 @@ export interface UpdateNetworkBootstrapInterfaceAdministrativeStateRequest {
   /** Name of the Network Bootstrap Interface. */
   networkBootstrapInterfaceName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkBootstrapInterfacesUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkBootstrapInterfaceAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -22047,7 +21761,7 @@ export const UpdateNetworkBootstrapInterfaceAdministrativeStateRequest =
       networkBootstrapDeviceName: S.String.pipe(T.Label()),
       networkBootstrapInterfaceName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkBootstrapInterfacesUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkBootstrapInterfaceAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -22079,13 +21793,13 @@ export const UpdateNetworkBootstrapInterfaceAdministrativeStateResponse =
   }) as any as S.Schema<UpdateNetworkBootstrapInterfaceAdministrativeStateResponse>;
 
 /** Resource tags. */
-export type NetworkDevicesUpdateRequestTagsMap = {
+export type UpdateNetworkDeviceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkDevicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkDeviceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkDevicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkDeviceRequestTagsMap>;
 
 /** IdentitySelector represents the selection of a managed identity for use. */
 export interface IdentitySelectorPatch {
@@ -22134,7 +21848,7 @@ export interface UpdateNetworkDeviceRequest {
   /** Name of the Network Device. */
   networkDeviceName: string;
   /** Resource tags. */
-  tags?: NetworkDevicesUpdateRequestTagsMap;
+  tags?: UpdateNetworkDeviceRequestTagsMap;
   /** Network Device Patch properties. */
   properties?: NetworkDevicePatchParametersProperties;
   /** The managed service identities assigned to this resource. */
@@ -22145,7 +21859,7 @@ export const UpdateNetworkDeviceRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkDeviceName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkDevicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkDeviceRequestTagsMap),
     properties: S.optional(NetworkDevicePatchParametersProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -22161,19 +21875,19 @@ export const UpdateNetworkDeviceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkDeviceRequest>;
 
 /** Resource tags. */
-export type NetworkDevicesUpdateResponseTagsMap = {
+export type UpdateNetworkDeviceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkDevicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkDeviceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkDevicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkDeviceResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkDevicesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkDevicesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkDeviceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkDeviceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -22185,13 +21899,13 @@ export interface UpdateNetworkDeviceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkDevicesUpdateResponseTagsMap;
+  tags?: UpdateNetworkDeviceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkDevice properties */
   properties: NetworkDeviceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -22199,22 +21913,22 @@ export const UpdateNetworkDeviceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkDevicesUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkDeviceResponseTagsMap),
     location: S.String,
     properties: NetworkDeviceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNetworkDeviceResponse",
 }) as any as S.Schema<UpdateNetworkDeviceResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkDevicesUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkDeviceAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkDevicesUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkDeviceAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkDevicesUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkDeviceAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkDeviceAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -22224,7 +21938,7 @@ export interface UpdateNetworkDeviceAdministrativeStateRequest {
   /** Name of the Network Device. */
   networkDeviceName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkDevicesUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkDeviceAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: DeviceAdministrativeState | (string & {});
 }
@@ -22235,7 +21949,7 @@ export const UpdateNetworkDeviceAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       networkDeviceName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkDevicesUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkDeviceAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(DeviceAdministrativeState),
     }).pipe(
@@ -22393,13 +22107,13 @@ export const NetworkDeviceUpdateAdministrativeStateResponse =
   }) as any as S.Schema<NetworkDeviceUpdateAdministrativeStateResponse>;
 
 /** Resource tags. */
-export type NetworkFabricsUpdateRequestTagsMap = {
+export type UpdateNetworkFabricRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkFabricRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkFabricsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkFabricRequestTagsMap>;
 
 /** Network and credentials configuration already applied to terminal server. */
 export interface TerminalServerPatchConfiguration {
@@ -22713,7 +22427,7 @@ export interface UpdateNetworkFabricRequest {
   /** Name of the Network Fabric. */
   networkFabricName: string;
   /** Resource tags. */
-  tags?: NetworkFabricsUpdateRequestTagsMap;
+  tags?: UpdateNetworkFabricRequestTagsMap;
   /** Network Fabric Patch properties. */
   properties?: NetworkFabricPatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -22724,7 +22438,7 @@ export const UpdateNetworkFabricRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkFabricName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkFabricsUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkFabricRequestTagsMap),
     properties: S.optional(NetworkFabricPatchProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -22740,19 +22454,19 @@ export const UpdateNetworkFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkFabricRequest>;
 
 /** Resource tags. */
-export type NetworkFabricsUpdateResponseTagsMap = {
+export type UpdateNetworkFabricResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkFabricsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkFabricResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkFabricsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkFabricResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkFabricResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkFabricResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -22764,13 +22478,13 @@ export interface UpdateNetworkFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkFabricsUpdateResponseTagsMap;
+  tags?: UpdateNetworkFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabric Properties */
   properties: NetworkFabricProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkFabricResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -22778,24 +22492,24 @@ export const UpdateNetworkFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkFabricsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkFabricResponseTagsMap),
     location: S.String,
     properties: NetworkFabricProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNetworkFabricResponse",
 }) as any as S.Schema<UpdateNetworkFabricResponse>;
 
 /** Resource tags. */
-export type NetworkFabricControllersUpdateRequestTagsMap = {
+export type UpdateNetworkFabricControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricControllersUpdateRequestTagsMap =
+export const UpdateNetworkFabricControllerRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkFabricControllersUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateNetworkFabricControllerRequestTagsMap>;
 
 /** As part of an update, the Infrastructure ExpressRoute CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure services. (This is a Mandatory attribute) */
 export type NetworkFabricControllerPatchPropertiesInfrastructureExpressRouteConnectionsList =
@@ -22842,7 +22556,7 @@ export interface UpdateNetworkFabricControllerRequest {
   /** Name of the Network Fabric Controller. */
   networkFabricControllerName: string;
   /** Resource tags. */
-  tags?: NetworkFabricControllersUpdateRequestTagsMap;
+  tags?: UpdateNetworkFabricControllerRequestTagsMap;
   /** Network Fabric Controller patch properties. */
   properties?: NetworkFabricControllerPatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -22854,7 +22568,7 @@ export const UpdateNetworkFabricControllerRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       networkFabricControllerName: S.String.pipe(T.Label()),
-      tags: S.optional(NetworkFabricControllersUpdateRequestTagsMap),
+      tags: S.optional(UpdateNetworkFabricControllerRequestTagsMap),
       properties: S.optional(NetworkFabricControllerPatchProperties),
       identity: S.optional(ManagedServiceIdentityPatchInput),
     }).pipe(
@@ -22870,20 +22584,20 @@ export const UpdateNetworkFabricControllerRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNetworkFabricControllerRequest>;
 
 /** Resource tags. */
-export type NetworkFabricControllersUpdateResponseTagsMap = {
+export type UpdateNetworkFabricControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkFabricControllersUpdateResponseTagsMap =
+export const UpdateNetworkFabricControllerResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkFabricControllersUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateNetworkFabricControllerResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkFabricControllersUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkFabricControllersUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkFabricControllerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkFabricControllerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkFabricControllerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -22895,13 +22609,13 @@ export interface UpdateNetworkFabricControllerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkFabricControllersUpdateResponseTagsMap;
+  tags?: UpdateNetworkFabricControllerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkFabricController Properties */
   properties: NetworkFabricControllerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkFabricControllerResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -22910,22 +22624,22 @@ export const UpdateNetworkFabricControllerResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(NetworkFabricControllersUpdateResponseTagsMap),
+      tags: S.optional(UpdateNetworkFabricControllerResponseTagsMap),
       location: S.String,
       properties: NetworkFabricControllerProperties,
-      identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+      identity: S.optional(CreateL2IsolationDomainResponseIdentity),
     }),
 ).annotate({
   identifier: "UpdateNetworkFabricControllerResponse",
 }) as any as S.Schema<UpdateNetworkFabricControllerResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkFabricsUpdateInfraManagementBfdConfigurationRequestResourceIdsList =
+export type UpdateNetworkFabricInfraManagementBfdConfigurationRequestResourceIdsList =
   Array<string>;
-export const NetworkFabricsUpdateInfraManagementBfdConfigurationRequestResourceIdsList =
+export const UpdateNetworkFabricInfraManagementBfdConfigurationRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkFabricsUpdateInfraManagementBfdConfigurationRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkFabricInfraManagementBfdConfigurationRequestResourceIdsList>;
 
 export interface UpdateNetworkFabricInfraManagementBfdConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -22935,7 +22649,7 @@ export interface UpdateNetworkFabricInfraManagementBfdConfigurationRequest {
   /** Name of the Network Fabric. */
   networkFabricName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkFabricsUpdateInfraManagementBfdConfigurationRequestResourceIdsList;
+  resourceIds?: UpdateNetworkFabricInfraManagementBfdConfigurationRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -22946,7 +22660,7 @@ export const UpdateNetworkFabricInfraManagementBfdConfigurationRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       networkFabricName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkFabricsUpdateInfraManagementBfdConfigurationRequestResourceIdsList,
+        UpdateNetworkFabricInfraManagementBfdConfigurationRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -22962,12 +22676,12 @@ export const UpdateNetworkFabricInfraManagementBfdConfigurationRequest =
   }) as any as S.Schema<UpdateNetworkFabricInfraManagementBfdConfigurationRequest>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkFabricsUpdateWorkloadManagementBfdConfigurationRequestResourceIdsList =
+export type UpdateNetworkFabricWorkloadManagementBfdConfigurationRequestResourceIdsList =
   Array<string>;
-export const NetworkFabricsUpdateWorkloadManagementBfdConfigurationRequestResourceIdsList =
+export const UpdateNetworkFabricWorkloadManagementBfdConfigurationRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkFabricsUpdateWorkloadManagementBfdConfigurationRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkFabricWorkloadManagementBfdConfigurationRequestResourceIdsList>;
 
 export interface UpdateNetworkFabricWorkloadManagementBfdConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -22977,7 +22691,7 @@ export interface UpdateNetworkFabricWorkloadManagementBfdConfigurationRequest {
   /** Name of the Network Fabric. */
   networkFabricName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkFabricsUpdateWorkloadManagementBfdConfigurationRequestResourceIdsList;
+  resourceIds?: UpdateNetworkFabricWorkloadManagementBfdConfigurationRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -22988,7 +22702,7 @@ export const UpdateNetworkFabricWorkloadManagementBfdConfigurationRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       networkFabricName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkFabricsUpdateWorkloadManagementBfdConfigurationRequestResourceIdsList,
+        UpdateNetworkFabricWorkloadManagementBfdConfigurationRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -23042,10 +22756,10 @@ export const UpdateNetworkInterfaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkInterfaceRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkInterfacesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkInterfacesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkInterfaceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkInterfaceResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkInterfaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -23059,7 +22773,7 @@ export interface UpdateNetworkInterfaceResponse {
   /** The NetworkInterface properties */
   properties: NetworkInterfaceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -23068,19 +22782,19 @@ export const UpdateNetworkInterfaceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: NetworkInterfaceProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNetworkInterfaceResponse",
 }) as any as S.Schema<UpdateNetworkInterfaceResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkInterfacesUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkInterfaceAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkInterfacesUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkInterfaceAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkInterfacesUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkInterfaceAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkInterfaceAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -23092,7 +22806,7 @@ export interface UpdateNetworkInterfaceAdministrativeStateRequest {
   /** Name of the Network Interface. */
   networkInterfaceName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkInterfacesUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkInterfaceAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -23104,7 +22818,7 @@ export const UpdateNetworkInterfaceAdministrativeStateRequest =
       networkDeviceName: S.String.pipe(T.Label()),
       networkInterfaceName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkInterfacesUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkInterfaceAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -23120,13 +22834,13 @@ export const UpdateNetworkInterfaceAdministrativeStateRequest =
   }) as any as S.Schema<UpdateNetworkInterfaceAdministrativeStateRequest>;
 
 /** Resource tags. */
-export type NetworkMonitorsUpdateRequestTagsMap = {
+export type UpdateNetworkMonitorRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkMonitorsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkMonitorsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkMonitorRequestTagsMap>;
 
 /** Station Connection PATCH Properties. */
 export type StationConnectionPatchProperties = StationConnectionProperties;
@@ -23220,7 +22934,7 @@ export interface UpdateNetworkMonitorRequest {
   /** Name of the Network Monitor. */
   networkMonitorName: string;
   /** Resource tags. */
-  tags?: NetworkMonitorsUpdateRequestTagsMap;
+  tags?: UpdateNetworkMonitorRequestTagsMap;
   /** Network Monitor Patch properties. */
   properties?: NetworkMonitorPatchProperties;
 }
@@ -23229,7 +22943,7 @@ export const UpdateNetworkMonitorRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkMonitorName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkMonitorsUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkMonitorRequestTagsMap),
     properties: S.optional(NetworkMonitorPatchProperties),
   }).pipe(
     T.Http({
@@ -23244,13 +22958,13 @@ export const UpdateNetworkMonitorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkMonitorRequest>;
 
 /** Resource tags. */
-export type NetworkMonitorsUpdateResponseTagsMap = {
+export type UpdateNetworkMonitorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkMonitorsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkMonitorsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkMonitorResponseTagsMap>;
 
 export interface UpdateNetworkMonitorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -23262,7 +22976,7 @@ export interface UpdateNetworkMonitorResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkMonitorsUpdateResponseTagsMap;
+  tags?: UpdateNetworkMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkMonitor properties. */
@@ -23274,7 +22988,7 @@ export const UpdateNetworkMonitorResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkMonitorsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkMonitorResponseTagsMap),
     location: S.String,
     properties: NetworkMonitorProperties,
   }),
@@ -23283,12 +22997,12 @@ export const UpdateNetworkMonitorResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkMonitorResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkMonitorsUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkMonitorAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkMonitorsUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkMonitorAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkMonitorsUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkMonitorAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkMonitorAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -23298,7 +23012,7 @@ export interface UpdateNetworkMonitorAdministrativeStateRequest {
   /** Name of the Network Monitor. */
   networkMonitorName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkMonitorsUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkMonitorAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -23309,7 +23023,7 @@ export const UpdateNetworkMonitorAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       networkMonitorName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkMonitorsUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkMonitorAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -23325,20 +23039,20 @@ export const UpdateNetworkMonitorAdministrativeStateRequest =
   }) as any as S.Schema<UpdateNetworkMonitorAdministrativeStateRequest>;
 
 /** List of ARM Resource IDs for which the given action applied successfully. */
-export type NetworkMonitorsUpdateAdministrativeStateResponseSuccessfulDevicesList =
+export type UpdateNetworkMonitorAdministrativeStateResponseSuccessfulDevicesList =
   Array<string>;
-export const NetworkMonitorsUpdateAdministrativeStateResponseSuccessfulDevicesList =
+export const UpdateNetworkMonitorAdministrativeStateResponseSuccessfulDevicesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkMonitorsUpdateAdministrativeStateResponseSuccessfulDevicesList>;
+  ) as any as S.Schema<UpdateNetworkMonitorAdministrativeStateResponseSuccessfulDevicesList>;
 
 /** List of ARM Resource IDs for which the given action failed to apply. */
-export type NetworkMonitorsUpdateAdministrativeStateResponseFailedDevicesList =
+export type UpdateNetworkMonitorAdministrativeStateResponseFailedDevicesList =
   Array<string>;
-export const NetworkMonitorsUpdateAdministrativeStateResponseFailedDevicesList =
+export const UpdateNetworkMonitorAdministrativeStateResponseFailedDevicesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkMonitorsUpdateAdministrativeStateResponseFailedDevicesList>;
+  ) as any as S.Schema<UpdateNetworkMonitorAdministrativeStateResponseFailedDevicesList>;
 
 export interface UpdateNetworkMonitorAdministrativeStateResponse {
   /** The error object. */
@@ -23346,9 +23060,9 @@ export interface UpdateNetworkMonitorAdministrativeStateResponse {
   /** Gets the configuration state. */
   configurationState?: ConfigurationState;
   /** List of ARM Resource IDs for which the given action applied successfully. */
-  successfulDevices?: NetworkMonitorsUpdateAdministrativeStateResponseSuccessfulDevicesList;
+  successfulDevices?: UpdateNetworkMonitorAdministrativeStateResponseSuccessfulDevicesList;
   /** List of ARM Resource IDs for which the given action failed to apply. */
-  failedDevices?: NetworkMonitorsUpdateAdministrativeStateResponseFailedDevicesList;
+  failedDevices?: UpdateNetworkMonitorAdministrativeStateResponseFailedDevicesList;
 }
 export const UpdateNetworkMonitorAdministrativeStateResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -23356,10 +23070,10 @@ export const UpdateNetworkMonitorAdministrativeStateResponse =
       error: S.optional(ErrorDetail),
       configurationState: S.optional(ConfigurationState),
       successfulDevices: S.optional(
-        NetworkMonitorsUpdateAdministrativeStateResponseSuccessfulDevicesList,
+        UpdateNetworkMonitorAdministrativeStateResponseSuccessfulDevicesList,
       ),
       failedDevices: S.optional(
-        NetworkMonitorsUpdateAdministrativeStateResponseFailedDevicesList,
+        UpdateNetworkMonitorAdministrativeStateResponseFailedDevicesList,
       ),
     }),
   ).annotate({
@@ -23367,13 +23081,13 @@ export const UpdateNetworkMonitorAdministrativeStateResponse =
   }) as any as S.Schema<UpdateNetworkMonitorAdministrativeStateResponse>;
 
 /** Resource tags. */
-export type NetworkPacketBrokersUpdateRequestTagsMap = {
+export type UpdateNetworkPacketBrokerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkPacketBrokersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkPacketBrokerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkPacketBrokersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkPacketBrokerRequestTagsMap>;
 
 export interface UpdateNetworkPacketBrokerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -23383,7 +23097,7 @@ export interface UpdateNetworkPacketBrokerRequest {
   /** Name of the Network Packet Broker. */
   networkPacketBrokerName: string;
   /** Resource tags. */
-  tags?: NetworkPacketBrokersUpdateRequestTagsMap;
+  tags?: UpdateNetworkPacketBrokerRequestTagsMap;
   /** The managed service identities assigned to this resource. */
   identity?: ManagedServiceIdentityPatchInput;
 }
@@ -23392,7 +23106,7 @@ export const UpdateNetworkPacketBrokerRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkPacketBrokerName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkPacketBrokersUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkPacketBrokerRequestTagsMap),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
     T.Http({
@@ -23407,19 +23121,19 @@ export const UpdateNetworkPacketBrokerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkPacketBrokerRequest>;
 
 /** Resource tags. */
-export type NetworkPacketBrokersUpdateResponseTagsMap = {
+export type UpdateNetworkPacketBrokerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkPacketBrokersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkPacketBrokerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkPacketBrokersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkPacketBrokerResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkPacketBrokersUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkPacketBrokersUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkPacketBrokerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkPacketBrokerResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkPacketBrokerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -23431,13 +23145,13 @@ export interface UpdateNetworkPacketBrokerResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkPacketBrokersUpdateResponseTagsMap;
+  tags?: UpdateNetworkPacketBrokerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkPacketBroker properties */
   properties: NetworkPacketBrokerProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkPacketBrokerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -23445,23 +23159,23 @@ export const UpdateNetworkPacketBrokerResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkPacketBrokersUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkPacketBrokerResponseTagsMap),
     location: S.String,
     properties: NetworkPacketBrokerProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNetworkPacketBrokerResponse",
 }) as any as S.Schema<UpdateNetworkPacketBrokerResponse>;
 
 /** Resource tags. */
-export type NetworkRacksUpdateRequestTagsMap = {
+export type UpdateNetworkRackRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkRacksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkRackRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkRacksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkRackRequestTagsMap>;
 
 export interface UpdateNetworkRackRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -23471,14 +23185,14 @@ export interface UpdateNetworkRackRequest {
   /** Name of the Network Rack. */
   networkRackName: string;
   /** Resource tags. */
-  tags?: NetworkRacksUpdateRequestTagsMap;
+  tags?: UpdateNetworkRackRequestTagsMap;
 }
 export const UpdateNetworkRackRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkRackName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkRacksUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkRackRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -23492,13 +23206,13 @@ export const UpdateNetworkRackRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkRackRequest>;
 
 /** Resource tags. */
-export type NetworkRacksUpdateResponseTagsMap = {
+export type UpdateNetworkRackResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkRacksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkRackResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkRacksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkRackResponseTagsMap>;
 
 export interface UpdateNetworkRackResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -23510,7 +23224,7 @@ export interface UpdateNetworkRackResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkRacksUpdateResponseTagsMap;
+  tags?: UpdateNetworkRackResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Network Rack Properties */
@@ -23522,7 +23236,7 @@ export const UpdateNetworkRackResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkRacksUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkRackResponseTagsMap),
     location: S.String,
     properties: NetworkRackProperties,
   }),
@@ -23531,13 +23245,13 @@ export const UpdateNetworkRackResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkRackResponse>;
 
 /** Resource tags. */
-export type NetworkTapsUpdateRequestTagsMap = {
+export type UpdateNetworkTapRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkTapRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkTapRequestTagsMap>;
 
 /** Polling type. */
 export type PollingType = "Pull" | "Push";
@@ -23627,7 +23341,7 @@ export interface UpdateNetworkTapRequest {
   /** Name of the Network Tap. */
   networkTapName: string;
   /** Resource tags. */
-  tags?: NetworkTapsUpdateRequestTagsMap;
+  tags?: UpdateNetworkTapRequestTagsMap;
   /** NetworkTap resource patch properties. */
   properties?: NetworkTapPatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -23638,7 +23352,7 @@ export const UpdateNetworkTapRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkTapName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkTapsUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkTapRequestTagsMap),
     properties: S.optional(NetworkTapPatchProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -23654,19 +23368,19 @@ export const UpdateNetworkTapRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkTapRequest>;
 
 /** Resource tags. */
-export type NetworkTapsUpdateResponseTagsMap = {
+export type UpdateNetworkTapResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkTapResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkTapResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapsUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkTapResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkTapResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkTapResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -23678,13 +23392,13 @@ export interface UpdateNetworkTapResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkTapsUpdateResponseTagsMap;
+  tags?: UpdateNetworkTapResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTap Properties */
   properties: NetworkTapProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkTapResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -23692,22 +23406,22 @@ export const UpdateNetworkTapResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkTapsUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkTapResponseTagsMap),
     location: S.String,
     properties: NetworkTapProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNetworkTapResponse",
 }) as any as S.Schema<UpdateNetworkTapResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkTapsUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkTapAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkTapsUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkTapAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkTapsUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkTapAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkTapAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -23717,7 +23431,7 @@ export interface UpdateNetworkTapAdministrativeStateRequest {
   /** Name of the Network Tap. */
   networkTapName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkTapsUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkTapAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -23728,7 +23442,7 @@ export const UpdateNetworkTapAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       networkTapName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkTapsUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkTapAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -23744,13 +23458,13 @@ export const UpdateNetworkTapAdministrativeStateRequest =
   }) as any as S.Schema<UpdateNetworkTapAdministrativeStateRequest>;
 
 /** Resource tags. */
-export type NetworkTapRulesUpdateRequestTagsMap = {
+export type UpdateNetworkTapRuleRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapRulesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkTapRuleRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapRulesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNetworkTapRuleRequestTagsMap>;
 
 /** List of the protocols that need to be matched. */
 export type NetworkTapRuleMatchConditionPatchProtocolTypesList = Array<string>;
@@ -23950,7 +23664,7 @@ export interface UpdateNetworkTapRuleRequest {
   /** Name of the Network Tap Rule. */
   networkTapRuleName: string;
   /** Resource tags. */
-  tags?: NetworkTapRulesUpdateRequestTagsMap;
+  tags?: UpdateNetworkTapRuleRequestTagsMap;
   /** Network Tap Rule Patch properties. */
   properties?: NetworkTapRulePatchProperties;
   /** The managed service identities assigned to this resource. */
@@ -23961,7 +23675,7 @@ export const UpdateNetworkTapRuleRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     networkTapRuleName: S.String.pipe(T.Label()),
-    tags: S.optional(NetworkTapRulesUpdateRequestTagsMap),
+    tags: S.optional(UpdateNetworkTapRuleRequestTagsMap),
     properties: S.optional(NetworkTapRulePatchProperties),
     identity: S.optional(ManagedServiceIdentityPatchInput),
   }).pipe(
@@ -23977,19 +23691,19 @@ export const UpdateNetworkTapRuleRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateNetworkTapRuleRequest>;
 
 /** Resource tags. */
-export type NetworkTapRulesUpdateResponseTagsMap = {
+export type UpdateNetworkTapRuleResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkTapRulesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateNetworkTapRuleResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkTapRulesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateNetworkTapRuleResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type NetworkTapRulesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
-export const NetworkTapRulesUpdateResponseIdentity =
-  L2IsolationDomainsCreateResponseIdentity;
+export type UpdateNetworkTapRuleResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
+export const UpdateNetworkTapRuleResponseIdentity =
+  CreateL2IsolationDomainResponseIdentity;
 
 export interface UpdateNetworkTapRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -24001,13 +23715,13 @@ export interface UpdateNetworkTapRuleResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NetworkTapRulesUpdateResponseTagsMap;
+  tags?: UpdateNetworkTapRuleResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The NetworkTapRule Properties */
   properties: NetworkTapRuleProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: L2IsolationDomainsCreateResponseIdentity;
+  identity?: CreateL2IsolationDomainResponseIdentity;
 }
 export const UpdateNetworkTapRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -24015,22 +23729,22 @@ export const UpdateNetworkTapRuleResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NetworkTapRulesUpdateResponseTagsMap),
+    tags: S.optional(UpdateNetworkTapRuleResponseTagsMap),
     location: S.String,
     properties: NetworkTapRuleProperties,
-    identity: S.optional(L2IsolationDomainsCreateResponseIdentity),
+    identity: S.optional(CreateL2IsolationDomainResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateNetworkTapRuleResponse",
 }) as any as S.Schema<UpdateNetworkTapRuleResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkTapRulesUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkTapRuleAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkTapRulesUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkTapRuleAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkTapRulesUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkTapRuleAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkTapRuleAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -24040,7 +23754,7 @@ export interface UpdateNetworkTapRuleAdministrativeStateRequest {
   /** Name of the Network Tap Rule. */
   networkTapRuleName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkTapRulesUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkTapRuleAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -24051,7 +23765,7 @@ export const UpdateNetworkTapRuleAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       networkTapRuleName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkTapRulesUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkTapRuleAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -24357,12 +24071,12 @@ export const UpdateNetworkToNetworkInterconnectResponse =
   }) as any as S.Schema<UpdateNetworkToNetworkInterconnectResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkToNetworkInterconnectsUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkToNetworkInterconnectAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkToNetworkInterconnectsUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkToNetworkInterconnectAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkToNetworkInterconnectsUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkToNetworkInterconnectAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkToNetworkInterconnectAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -24374,7 +24088,7 @@ export interface UpdateNetworkToNetworkInterconnectAdministrativeStateRequest {
   /** Name of the Network to Network Interconnect. */
   networkToNetworkInterconnectName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkToNetworkInterconnectsUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkToNetworkInterconnectAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -24386,7 +24100,7 @@ export const UpdateNetworkToNetworkInterconnectAdministrativeStateRequest =
       networkFabricName: S.String.pipe(T.Label()),
       networkToNetworkInterconnectName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkToNetworkInterconnectsUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkToNetworkInterconnectAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -24604,12 +24318,12 @@ export const NniUpdateBfdAdministrativeStateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<NniUpdateBfdAdministrativeStateResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type NetworkToNetworkInterconnectsUpdateNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList =
+export type UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const NetworkToNetworkInterconnectsUpdateNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList =
+export const UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkToNetworkInterconnectsUpdateNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -24621,7 +24335,7 @@ export interface UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrati
   /** Name of the Network to Network Interconnect. */
   networkToNetworkInterconnectName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: NetworkToNetworkInterconnectsUpdateNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -24633,7 +24347,7 @@ export const UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeSt
       networkFabricName: S.String.pipe(T.Label()),
       networkToNetworkInterconnectName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        NetworkToNetworkInterconnectsUpdateNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList,
+        UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -24650,13 +24364,13 @@ export const UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeSt
   }) as any as S.Schema<UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeStateRequest>;
 
 /** Resource tags. */
-export type RoutePoliciesUpdateRequestTagsMap = {
+export type UpdateRoutePolicyRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const RoutePoliciesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRoutePolicyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RoutePoliciesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateRoutePolicyRequestTagsMap>;
 
 /** List of IP Community resource IDs. */
 export type StatementConditionPatchPropertiesIpCommunityIdsList = Array<string>;
@@ -24771,7 +24485,7 @@ export interface UpdateRoutePolicyRequest {
   /** Name of the Route Policy. */
   routePolicyName: string;
   /** Resource tags. */
-  tags?: RoutePoliciesUpdateRequestTagsMap;
+  tags?: UpdateRoutePolicyRequestTagsMap;
   /** The RoutePolicy patchable properties. */
   properties?: RoutePolicyPatchableProperties;
 }
@@ -24780,7 +24494,7 @@ export const UpdateRoutePolicyRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     routePolicyName: S.String.pipe(T.Label()),
-    tags: S.optional(RoutePoliciesUpdateRequestTagsMap),
+    tags: S.optional(UpdateRoutePolicyRequestTagsMap),
     properties: S.optional(RoutePolicyPatchableProperties),
   }).pipe(
     T.Http({
@@ -24795,13 +24509,13 @@ export const UpdateRoutePolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRoutePolicyRequest>;
 
 /** Resource tags. */
-export type RoutePoliciesUpdateResponseTagsMap = {
+export type UpdateRoutePolicyResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RoutePoliciesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRoutePolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RoutePoliciesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateRoutePolicyResponseTagsMap>;
 
 export interface UpdateRoutePolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -24813,7 +24527,7 @@ export interface UpdateRoutePolicyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: RoutePoliciesUpdateResponseTagsMap;
+  tags?: UpdateRoutePolicyResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The RoutePolicy properties */
@@ -24825,7 +24539,7 @@ export const UpdateRoutePolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(RoutePoliciesUpdateResponseTagsMap),
+    tags: S.optional(UpdateRoutePolicyResponseTagsMap),
     location: S.String,
     properties: RoutePolicyProperties,
   }),
@@ -24834,12 +24548,12 @@ export const UpdateRoutePolicyResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRoutePolicyResponse>;
 
 /** Network Fabrics or Network Rack resource Id. */
-export type RoutePoliciesUpdateAdministrativeStateRequestResourceIdsList =
+export type UpdateRoutePolicyAdministrativeStateRequestResourceIdsList =
   Array<string>;
-export const RoutePoliciesUpdateAdministrativeStateRequestResourceIdsList =
+export const UpdateRoutePolicyAdministrativeStateRequestResourceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<RoutePoliciesUpdateAdministrativeStateRequestResourceIdsList>;
+  ) as any as S.Schema<UpdateRoutePolicyAdministrativeStateRequestResourceIdsList>;
 
 export interface UpdateRoutePolicyAdministrativeStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -24849,7 +24563,7 @@ export interface UpdateRoutePolicyAdministrativeStateRequest {
   /** Name of the Route Policy. */
   routePolicyName: string;
   /** Network Fabrics or Network Rack resource Id. */
-  resourceIds?: RoutePoliciesUpdateAdministrativeStateRequestResourceIdsList;
+  resourceIds?: UpdateRoutePolicyAdministrativeStateRequestResourceIdsList;
   /** Administrative state. */
   state?: EnableDisableState | (string & {});
 }
@@ -24860,7 +24574,7 @@ export const UpdateRoutePolicyAdministrativeStateRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       routePolicyName: S.String.pipe(T.Label()),
       resourceIds: S.optional(
-        RoutePoliciesUpdateAdministrativeStateRequestResourceIdsList,
+        UpdateRoutePolicyAdministrativeStateRequestResourceIdsList,
       ),
       state: S.optional(EnableDisableState),
     }).pipe(
@@ -24874,6 +24588,283 @@ export const UpdateRoutePolicyAdministrativeStateRequest =
   ).annotate({
     identifier: "UpdateRoutePolicyAdministrativeStateRequest",
   }) as any as S.Schema<UpdateRoutePolicyAdministrativeStateRequest>;
+
+export interface ValidateAccessControlListConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Access Control List. */
+  accessControlListName: string;
+}
+export const ValidateAccessControlListConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accessControlListName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/accessControlLists/{accessControlListName}/validateConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateAccessControlListConfigurationRequest",
+  }) as any as S.Schema<ValidateAccessControlListConfigurationRequest>;
+
+export interface ValidateAccessControlListConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+  /** URL for the details of the response. */
+  url?: string;
+}
+export const ValidateAccessControlListConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+      url: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ValidateAccessControlListConfigurationResponse",
+  }) as any as S.Schema<ValidateAccessControlListConfigurationResponse>;
+
+export interface ValidateL2IsolationDomainConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the L2 Isolation Domain. */
+  l2IsolationDomainName: string;
+}
+export const ValidateL2IsolationDomainConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      l2IsolationDomainName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l2IsolationDomains/{l2IsolationDomainName}/validateConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateL2IsolationDomainConfigurationRequest",
+  }) as any as S.Schema<ValidateL2IsolationDomainConfigurationRequest>;
+
+export interface ValidateL2IsolationDomainConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+  /** URL for the details of the response. */
+  url?: string;
+}
+export const ValidateL2IsolationDomainConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+      url: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ValidateL2IsolationDomainConfigurationResponse",
+  }) as any as S.Schema<ValidateL2IsolationDomainConfigurationResponse>;
+
+export interface ValidateL3IsolationDomainConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the L3 Isolation Domain. */
+  l3IsolationDomainName: string;
+}
+export const ValidateL3IsolationDomainConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      l3IsolationDomainName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/l3IsolationDomains/{l3IsolationDomainName}/validateConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateL3IsolationDomainConfigurationRequest",
+  }) as any as S.Schema<ValidateL3IsolationDomainConfigurationRequest>;
+
+export interface ValidateL3IsolationDomainConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+  /** URL for the details of the response. */
+  url?: string;
+}
+export const ValidateL3IsolationDomainConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+      url: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ValidateL3IsolationDomainConfigurationResponse",
+  }) as any as S.Schema<ValidateL3IsolationDomainConfigurationResponse>;
+
+/** Validate action that to be performed */
+export type ValidateAction = "Cabling" | "Configuration" | "Connectivity";
+export const ValidateAction = /*@__PURE__*/ S.String;
+
+export interface ValidateNetworkFabricConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Fabric. */
+  networkFabricName: string;
+  /** Validate action that to be performed */
+  validateAction?: ValidateAction | (string & {});
+}
+export const ValidateNetworkFabricConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkFabricName: S.String.pipe(T.Label()),
+      validateAction: S.optional(ValidateAction),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/validateConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateNetworkFabricConfigurationRequest",
+  }) as any as S.Schema<ValidateNetworkFabricConfigurationRequest>;
+
+export interface ValidateNetworkFabricConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+  /** URL for the details of the response. */
+  url?: string;
+}
+export const ValidateNetworkFabricConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+      url: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ValidateNetworkFabricConfigurationResponse",
+  }) as any as S.Schema<ValidateNetworkFabricConfigurationResponse>;
+
+export interface ValidateNetworkTapRuleConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Network Tap Rule. */
+  networkTapRuleName: string;
+}
+export const ValidateNetworkTapRuleConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      networkTapRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkTapRules/{networkTapRuleName}/validateConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateNetworkTapRuleConfigurationRequest",
+  }) as any as S.Schema<ValidateNetworkTapRuleConfigurationRequest>;
+
+export interface ValidateNetworkTapRuleConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+  /** URL for the details of the response. */
+  url?: string;
+}
+export const ValidateNetworkTapRuleConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+      url: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ValidateNetworkTapRuleConfigurationResponse",
+  }) as any as S.Schema<ValidateNetworkTapRuleConfigurationResponse>;
+
+export interface ValidateRoutePolicyConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Route Policy. */
+  routePolicyName: string;
+}
+export const ValidateRoutePolicyConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      routePolicyName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/routePolicies/{routePolicyName}/validateConfiguration",
+        code: 200,
+        apiVersion: "2025-07-15",
+      }),
+    ),
+).annotate({
+  identifier: "ValidateRoutePolicyConfigurationRequest",
+}) as any as S.Schema<ValidateRoutePolicyConfigurationRequest>;
+
+export interface ValidateRoutePolicyConfigurationResponse {
+  /** The error object. */
+  error?: ErrorDetail;
+  /** Gets the configuration state. */
+  configurationState?: ConfigurationState;
+  /** URL for the details of the response. */
+  url?: string;
+}
+export const ValidateRoutePolicyConfigurationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      error: S.optional(ErrorDetail),
+      configurationState: S.optional(ConfigurationState),
+      url: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ValidateRoutePolicyConfigurationResponse",
+}) as any as S.Schema<ValidateRoutePolicyConfigurationResponse>;
 
 export type AccessControlListsResyncError = AzureOpError;
 /** Implements the operation to the underlying resources. */
@@ -24890,16 +24881,76 @@ export const AccessControlListsResync: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccessControlListsValidateConfigurationError = AzureOpError;
-/** Implements the operation to the underlying resources. */
-export const AccessControlListsValidateConfiguration: API.OperationMethod<
-  AccessControlListsValidateConfigurationRequest,
-  AccessControlListsValidateConfigurationResponse,
-  AccessControlListsValidateConfigurationError,
+export type CommitL2IsolationDomainConfigurationError = AzureOpError;
+/** Commits the configuration of the given resources. */
+export const CommitL2IsolationDomainConfiguration: API.OperationMethod<
+  CommitL2IsolationDomainConfigurationRequest,
+  CommitL2IsolationDomainConfigurationResponse,
+  CommitL2IsolationDomainConfigurationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccessControlListsValidateConfigurationRequest,
-  output: AccessControlListsValidateConfigurationResponse,
+  input: CommitL2IsolationDomainConfigurationRequest,
+  output: CommitL2IsolationDomainConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CommitL3IsolationDomainConfigurationError = AzureOpError;
+/** Commits the configuration of the given resources. */
+export const CommitL3IsolationDomainConfiguration: API.OperationMethod<
+  CommitL3IsolationDomainConfigurationRequest,
+  CommitL3IsolationDomainConfigurationResponse,
+  CommitL3IsolationDomainConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CommitL3IsolationDomainConfigurationRequest,
+  output: CommitL3IsolationDomainConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CommitNetworkFabricBatchStatusError = AzureOpError;
+/** Post action: Returns a status of commit batch operation. */
+export const CommitNetworkFabricBatchStatus: API.OperationMethod<
+  CommitNetworkFabricBatchStatusRequest,
+  CommitBatchStatusOperationResponse,
+  CommitNetworkFabricBatchStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CommitNetworkFabricBatchStatusRequest,
+  output: CommitBatchStatusOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CommitNetworkFabricConfigurationError = AzureOpError;
+/** Atomic update of the given Network Fabric instance. Sync update of NFA resources at Fabric level. */
+export const CommitNetworkFabricConfiguration: API.OperationMethod<
+  CommitNetworkFabricConfigurationRequest,
+  CommitConfigurationResponse,
+  CommitNetworkFabricConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CommitNetworkFabricConfigurationRequest,
+  output: CommitConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CommitRoutePolicyConfigurationError = AzureOpError;
+/** Commits the configuration of the given resources. */
+export const CommitRoutePolicyConfiguration: API.OperationMethod<
+  CommitRoutePolicyConfigurationRequest,
+  CommitRoutePolicyConfigurationResponse,
+  CommitRoutePolicyConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CommitRoutePolicyConfigurationRequest,
+  output: CommitRoutePolicyConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24950,21 +25001,6 @@ export const CreateInternalNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateInternetGatewayError = AzureOpError;
-/** Creates a Network Fabric Service Internet Gateway resource instance. */
-export const CreateInternetGateway: API.OperationMethod<
-  CreateInternetGatewayRequest,
-  CreateInternetGatewayResponse,
-  CreateInternetGatewayError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateInternetGatewayRequest,
-  output: CreateInternetGatewayResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateInternetGatewayRuleError = AzureOpError;
 /** Creates an Internet Gateway rule resource. */
 export const CreateInternetGatewayRule: API.OperationMethod<
@@ -24975,6 +25011,21 @@ export const CreateInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateInternetGatewayRuleRequest,
   output: CreateInternetGatewayRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateInternetGatewaysError = AzureOpError;
+/** Creates a Network Fabric Service Internet Gateway resource instance. */
+export const CreateInternetGateways: API.OperationMethod<
+  CreateInternetGatewaysRequest,
+  CreateInternetGatewaysResponse,
+  CreateInternetGatewaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateInternetGatewaysRequest,
+  output: CreateInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25010,16 +25061,16 @@ export const CreateIpExtendedCommunity: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateIpPrefixeError = AzureOpError;
+export type CreateIpPrefixError = AzureOpError;
 /** Implements IP Prefix PUT method. */
-export const CreateIpPrefixe: API.OperationMethod<
-  CreateIpPrefixeRequest,
-  CreateIpPrefixeResponse,
-  CreateIpPrefixeError,
+export const CreateIpPrefix: API.OperationMethod<
+  CreateIpPrefixRequest,
+  CreateIpPrefixResponse,
+  CreateIpPrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateIpPrefixeRequest,
-  output: CreateIpPrefixeResponse,
+  input: CreateIpPrefixRequest,
+  output: CreateIpPrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25310,21 +25361,6 @@ export const DeleteInternalNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteInternetGatewayError = AzureOpError;
-/** Execute a delete on Network Fabric Service Internet Gateway. */
-export const DeleteInternetGateway: API.OperationMethod<
-  DeleteInternetGatewayRequest,
-  DeleteInternetGatewayResponse,
-  DeleteInternetGatewayError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteInternetGatewayRequest,
-  output: DeleteInternetGatewayResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteInternetGatewayRuleError = AzureOpError;
 /** Implements Internet Gateway Rules DELETE method. */
 export const DeleteInternetGatewayRule: API.OperationMethod<
@@ -25335,6 +25371,21 @@ export const DeleteInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteInternetGatewayRuleRequest,
   output: DeleteInternetGatewayRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteInternetGatewaysError = AzureOpError;
+/** Execute a delete on Network Fabric Service Internet Gateway. */
+export const DeleteInternetGateways: API.OperationMethod<
+  DeleteInternetGatewaysRequest,
+  DeleteInternetGatewaysResponse,
+  DeleteInternetGatewaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInternetGatewaysRequest,
+  output: DeleteInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25370,16 +25421,16 @@ export const DeleteIpExtendedCommunity: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteIpPrefixeError = AzureOpError;
+export type DeleteIpPrefixError = AzureOpError;
 /** Implements IP Prefix DELETE method. */
-export const DeleteIpPrefixe: API.OperationMethod<
-  DeleteIpPrefixeRequest,
-  DeleteIpPrefixeResponse,
-  DeleteIpPrefixeError,
+export const DeleteIpPrefix: API.OperationMethod<
+  DeleteIpPrefixRequest,
+  DeleteIpPrefixResponse,
+  DeleteIpPrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteIpPrefixeRequest,
-  output: DeleteIpPrefixeResponse,
+  input: DeleteIpPrefixRequest,
+  output: DeleteIpPrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25670,21 +25721,6 @@ export const GetInternalNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetInternetGatewayError = AzureOpError;
-/** Implements Gateway GET method. */
-export const GetInternetGateway: API.OperationMethod<
-  GetInternetGatewayRequest,
-  GetInternetGatewayResponse,
-  GetInternetGatewayError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetInternetGatewayRequest,
-  output: GetInternetGatewayResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetInternetGatewayRuleError = AzureOpError;
 /** Gets an Internet Gateway Rule resource. */
 export const GetInternetGatewayRule: API.OperationMethod<
@@ -25695,6 +25731,21 @@ export const GetInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetInternetGatewayRuleRequest,
   output: GetInternetGatewayRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetInternetGatewaysError = AzureOpError;
+/** Implements Gateway GET method. */
+export const GetInternetGateways: API.OperationMethod<
+  GetInternetGatewaysRequest,
+  GetInternetGatewaysResponse,
+  GetInternetGatewaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInternetGatewaysRequest,
+  output: GetInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25730,16 +25781,16 @@ export const GetIpExtendedCommunity: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetIpPrefixeError = AzureOpError;
+export type GetIpPrefixError = AzureOpError;
 /** Implements IP Prefix GET method. */
-export const GetIpPrefixe: API.OperationMethod<
-  GetIpPrefixeRequest,
-  GetIpPrefixeResponse,
-  GetIpPrefixeError,
+export const GetIpPrefix: API.OperationMethod<
+  GetIpPrefixRequest,
+  GetIpPrefixResponse,
+  GetIpPrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetIpPrefixeRequest,
-  output: GetIpPrefixeResponse,
+  input: GetIpPrefixRequest,
+  output: GetIpPrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26030,66 +26081,6 @@ export const GetRoutePolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type L2IsolationDomainsCommitConfigurationError = AzureOpError;
-/** Commits the configuration of the given resources. */
-export const L2IsolationDomainsCommitConfiguration: API.OperationMethod<
-  L2IsolationDomainsCommitConfigurationRequest,
-  L2IsolationDomainsCommitConfigurationResponse,
-  L2IsolationDomainsCommitConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L2IsolationDomainsCommitConfigurationRequest,
-  output: L2IsolationDomainsCommitConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L2IsolationDomainsValidateConfigurationError = AzureOpError;
-/** Validates the configuration of the resources. */
-export const L2IsolationDomainsValidateConfiguration: API.OperationMethod<
-  L2IsolationDomainsValidateConfigurationRequest,
-  L2IsolationDomainsValidateConfigurationResponse,
-  L2IsolationDomainsValidateConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L2IsolationDomainsValidateConfigurationRequest,
-  output: L2IsolationDomainsValidateConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L3IsolationDomainsCommitConfigurationError = AzureOpError;
-/** Commits the configuration of the given resources. */
-export const L3IsolationDomainsCommitConfiguration: API.OperationMethod<
-  L3IsolationDomainsCommitConfigurationRequest,
-  L3IsolationDomainsCommitConfigurationResponse,
-  L3IsolationDomainsCommitConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L3IsolationDomainsCommitConfigurationRequest,
-  output: L3IsolationDomainsCommitConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type L3IsolationDomainsValidateConfigurationError = AzureOpError;
-/** Validates the configuration of the resources. */
-export const L3IsolationDomainsValidateConfiguration: API.OperationMethod<
-  L3IsolationDomainsValidateConfigurationRequest,
-  L3IsolationDomainsValidateConfigurationResponse,
-  L3IsolationDomainsValidateConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: L3IsolationDomainsValidateConfigurationRequest,
-  output: L3IsolationDomainsValidateConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListAccessControlListByResourceGroupError = AzureOpError;
 /** Implements AccessControlLists list by resource group GET method. */
 export const ListAccessControlListByResourceGroup: API.OperationMethod<
@@ -26150,36 +26141,6 @@ export const ListInternalNetworkByL3IsolationDomain: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListInternetGatewayByResourceGroupError = AzureOpError;
-/** Displays Internet Gateways list by resource group GET method. */
-export const ListInternetGatewayByResourceGroup: API.OperationMethod<
-  ListInternetGatewayByResourceGroupRequest,
-  InternetGatewaysListResult,
-  ListInternetGatewayByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListInternetGatewayByResourceGroupRequest,
-  output: InternetGatewaysListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListInternetGatewayBySubscriptionError = AzureOpError;
-/** Displays Internet Gateways list by subscription GET method. */
-export const ListInternetGatewayBySubscription: API.OperationMethod<
-  ListInternetGatewayBySubscriptionRequest,
-  InternetGatewaysListResult,
-  ListInternetGatewayBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListInternetGatewayBySubscriptionRequest,
-  output: InternetGatewaysListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListInternetGatewayRuleByResourceGroupError = AzureOpError;
 /** Implements Internet Gateway Rules list by resource group GET method. */
 export const ListInternetGatewayRuleByResourceGroup: API.OperationMethod<
@@ -26205,6 +26166,36 @@ export const ListInternetGatewayRuleBySubscription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListInternetGatewayRuleBySubscriptionRequest,
   output: InternetGatewayRulesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListInternetGatewaysByResourceGroupError = AzureOpError;
+/** Displays Internet Gateways list by resource group GET method. */
+export const ListInternetGatewaysByResourceGroup: API.OperationMethod<
+  ListInternetGatewaysByResourceGroupRequest,
+  InternetGatewaysListResult,
+  ListInternetGatewaysByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListInternetGatewaysByResourceGroupRequest,
+  output: InternetGatewaysListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListInternetGatewaysBySubscriptionError = AzureOpError;
+/** Displays Internet Gateways list by subscription GET method. */
+export const ListInternetGatewaysBySubscription: API.OperationMethod<
+  ListInternetGatewaysBySubscriptionRequest,
+  InternetGatewaysListResult,
+  ListInternetGatewaysBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListInternetGatewaysBySubscriptionRequest,
+  output: InternetGatewaysListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26270,30 +26261,30 @@ export const ListIpExtendedCommunityBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListIpPrefixeByResourceGroupError = AzureOpError;
+export type ListIpPrefixByResourceGroupError = AzureOpError;
 /** Implements IpPrefixes list by resource group GET method. */
-export const ListIpPrefixeByResourceGroup: API.OperationMethod<
-  ListIpPrefixeByResourceGroupRequest,
+export const ListIpPrefixByResourceGroup: API.OperationMethod<
+  ListIpPrefixByResourceGroupRequest,
   IpPrefixesListResult,
-  ListIpPrefixeByResourceGroupError,
+  ListIpPrefixByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListIpPrefixeByResourceGroupRequest,
+  input: ListIpPrefixByResourceGroupRequest,
   output: IpPrefixesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListIpPrefixeBySubscriptionError = AzureOpError;
+export type ListIpPrefixBySubscriptionError = AzureOpError;
 /** Implements IpPrefixes list by subscription GET method. */
-export const ListIpPrefixeBySubscription: API.OperationMethod<
-  ListIpPrefixeBySubscriptionRequest,
+export const ListIpPrefixBySubscription: API.OperationMethod<
+  ListIpPrefixBySubscriptionRequest,
   IpPrefixesListResult,
-  ListIpPrefixeBySubscriptionError,
+  ListIpPrefixBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListIpPrefixeBySubscriptionRequest,
+  input: ListIpPrefixBySubscriptionRequest,
   output: IpPrefixesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -26781,6 +26772,21 @@ export const ListRoutePolicyBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type LockNetworkFabricFabricError = AzureOpError;
+/** Post action: Triggers network fabric lock operation. */
+export const LockNetworkFabricFabric: API.OperationMethod<
+  LockNetworkFabricFabricRequest,
+  LockNetworkFabricFabricResponse,
+  LockNetworkFabricFabricError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: LockNetworkFabricFabricRequest,
+  output: LockNetworkFabricFabricResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type NeighborGroupsResyncError = AzureOpError;
 /** Resync the Neighbor Group after a configuration change. */
 export const NeighborGroupsResync: API.OperationMethod<
@@ -26791,36 +26797,6 @@ export const NeighborGroupsResync: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NeighborGroupsResyncRequest,
   output: NeighborGroupResyncResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkBootstrapDevicesRebootError = AzureOpError;
-/** Reboot the Network Bootstrap Device. */
-export const NetworkBootstrapDevicesReboot: API.OperationMethod<
-  NetworkBootstrapDevicesRebootRequest,
-  NetworkBootstrapDeviceRebootResponse,
-  NetworkBootstrapDevicesRebootError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkBootstrapDevicesRebootRequest,
-  output: NetworkBootstrapDeviceRebootResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkBootstrapDevicesRefreshConfigurationError = AzureOpError;
-/** Refreshes the configuration of Network Bootstrap Device. */
-export const NetworkBootstrapDevicesRefreshConfiguration: API.OperationMethod<
-  NetworkBootstrapDevicesRefreshConfigurationRequest,
-  NetworkBootstrapDeviceRefreshConfigurationResponse,
-  NetworkBootstrapDevicesRefreshConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkBootstrapDevicesRefreshConfigurationRequest,
-  output: NetworkBootstrapDeviceRefreshConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26856,36 +26832,6 @@ export const NetworkBootstrapDevicesUpgrade: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkDevicesRebootError = AzureOpError;
-/** Reboot the Network Device. */
-export const NetworkDevicesReboot: API.OperationMethod<
-  NetworkDevicesRebootRequest,
-  NetworkDevicesRebootResponse,
-  NetworkDevicesRebootError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkDevicesRebootRequest,
-  output: NetworkDevicesRebootResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkDevicesRefreshConfigurationError = AzureOpError;
-/** Refreshes the configuration the Network Device. */
-export const NetworkDevicesRefreshConfiguration: API.OperationMethod<
-  NetworkDevicesRefreshConfigurationRequest,
-  NetworkDeviceRefreshConfigurationResponse,
-  NetworkDevicesRefreshConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkDevicesRefreshConfigurationRequest,
-  output: NetworkDeviceRefreshConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkDevicesResyncCertificatesError = AzureOpError;
 /** Resync the latest certificates to the Network Device. Updates the Network Device to use the latest certificates. Does not generate new certificates. Allows network devices missed during a previous certificate rotation to be brought back into sync. */
 export const NetworkDevicesResyncCertificates: API.OperationMethod<
@@ -26911,36 +26857,6 @@ export const NetworkDevicesResyncPasswords: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NetworkDevicesResyncPasswordsRequest,
   output: NetworkDeviceResyncPasswordsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkDevicesRunRoCommandError = AzureOpError;
-/** Run the RO Command on the Network Device. */
-export const NetworkDevicesRunRoCommand: API.OperationMethod<
-  NetworkDevicesRunRoCommandRequest,
-  NetworkDevicesRunRoCommandResponse,
-  NetworkDevicesRunRoCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkDevicesRunRoCommandRequest,
-  output: NetworkDevicesRunRoCommandResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkDevicesRunRwCommandError = AzureOpError;
-/** Run the RW Command on the Network Device. */
-export const NetworkDevicesRunRwCommand: API.OperationMethod<
-  NetworkDevicesRunRwCommandRequest,
-  NetworkDeviceRunRwCommandResponse,
-  NetworkDevicesRunRwCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkDevicesRunRwCommandRequest,
-  output: NetworkDeviceRunRwCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26976,36 +26892,6 @@ export const NetworkFabricsArmConfigurationDiff: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkFabricsCommitBatchStatusError = AzureOpError;
-/** Post action: Returns a status of commit batch operation. */
-export const NetworkFabricsCommitBatchStatus: API.OperationMethod<
-  NetworkFabricsCommitBatchStatusRequest,
-  CommitBatchStatusOperationResponse,
-  NetworkFabricsCommitBatchStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFabricsCommitBatchStatusRequest,
-  output: CommitBatchStatusOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFabricsCommitConfigurationError = AzureOpError;
-/** Atomic update of the given Network Fabric instance. Sync update of NFA resources at Fabric level. */
-export const NetworkFabricsCommitConfiguration: API.OperationMethod<
-  NetworkFabricsCommitConfigurationRequest,
-  CommitConfigurationResponse,
-  NetworkFabricsCommitConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFabricsCommitConfigurationRequest,
-  output: CommitConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkFabricsDeprovisionError = AzureOpError;
 /** Deprovisions the underlying resources in the given Network Fabric instance. */
 export const NetworkFabricsDeprovision: API.OperationMethod<
@@ -27031,51 +26917,6 @@ export const NetworkFabricsDiscardCommitBatch: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NetworkFabricsDiscardCommitBatchRequest,
   output: DiscardCommitBatchOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFabricsLockFabricError = AzureOpError;
-/** Post action: Triggers network fabric lock operation. */
-export const NetworkFabricsLockFabric: API.OperationMethod<
-  NetworkFabricsLockFabricRequest,
-  NetworkFabricsLockFabricResponse,
-  NetworkFabricsLockFabricError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFabricsLockFabricRequest,
-  output: NetworkFabricsLockFabricResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFabricsProvisionError = AzureOpError;
-/** Provisions the underlying resources in the given Network Fabric instance. */
-export const NetworkFabricsProvision: API.OperationMethod<
-  NetworkFabricsProvisionRequest,
-  NetworkFabricsProvisionResponse,
-  NetworkFabricsProvisionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFabricsProvisionRequest,
-  output: NetworkFabricsProvisionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkFabricsRefreshConfigurationError = AzureOpError;
-/** Refreshes the configuration of the underlying resources in the given Network Fabric instance. */
-export const NetworkFabricsRefreshConfiguration: API.OperationMethod<
-  NetworkFabricsRefreshConfigurationRequest,
-  NetworkFabricsRefreshConfigurationResponse,
-  NetworkFabricsRefreshConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFabricsRefreshConfigurationRequest,
-  output: NetworkFabricsRefreshConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -27126,21 +26967,6 @@ export const NetworkFabricsUpgrade: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkFabricsValidateConfigurationError = AzureOpError;
-/** Validates the configuration of the underlying resources in the given Network Fabric instance. */
-export const NetworkFabricsValidateConfiguration: API.OperationMethod<
-  NetworkFabricsValidateConfigurationRequest,
-  NetworkFabricsValidateConfigurationResponse,
-  NetworkFabricsValidateConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkFabricsValidateConfigurationRequest,
-  output: NetworkFabricsValidateConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkFabricsViewDeviceConfigurationError = AzureOpError;
 /** Post action: Triggers view of network fabric configuration. */
 export const NetworkFabricsViewDeviceConfiguration: API.OperationMethod<
@@ -27171,21 +26997,6 @@ export const NetworkTapRulesResync: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkTapRulesValidateConfigurationError = AzureOpError;
-/** Implements the operation to the underlying resources. */
-export const NetworkTapRulesValidateConfiguration: API.OperationMethod<
-  NetworkTapRulesValidateConfigurationRequest,
-  NetworkTapRulesValidateConfigurationResponse,
-  NetworkTapRulesValidateConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkTapRulesValidateConfigurationRequest,
-  output: NetworkTapRulesValidateConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkTapsResyncError = AzureOpError;
 /** Implements the operation to the underlying resources. */
 export const NetworkTapsResync: API.OperationMethod<
@@ -27201,61 +27012,151 @@ export const NetworkTapsResync: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RotateNetworkFabricCertificateError = AzureOpError;
-/** Rotate all certificates on Network Devices. Creates new certificates, then updates the Network Devices to use the new certificates. Note that disabled devices cannot be updated and must be resynchronized with the new certificates once they are enabled. */
-export const RotateNetworkFabricCertificate: API.OperationMethod<
-  RotateNetworkFabricCertificateRequest,
-  NetworkFabricRotateCertificatesResponse,
-  RotateNetworkFabricCertificateError,
+export type ProvisionNetworkFabricError = AzureOpError;
+/** Provisions the underlying resources in the given Network Fabric instance. */
+export const ProvisionNetworkFabric: API.OperationMethod<
+  ProvisionNetworkFabricRequest,
+  ProvisionNetworkFabricResponse,
+  ProvisionNetworkFabricError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RotateNetworkFabricCertificateRequest,
+  input: ProvisionNetworkFabricRequest,
+  output: ProvisionNetworkFabricResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RebootNetworkBootstrapDeviceError = AzureOpError;
+/** Reboot the Network Bootstrap Device. */
+export const RebootNetworkBootstrapDevice: API.OperationMethod<
+  RebootNetworkBootstrapDeviceRequest,
+  NetworkBootstrapDeviceRebootResponse,
+  RebootNetworkBootstrapDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RebootNetworkBootstrapDeviceRequest,
+  output: NetworkBootstrapDeviceRebootResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RebootNetworkDeviceError = AzureOpError;
+/** Reboot the Network Device. */
+export const RebootNetworkDevice: API.OperationMethod<
+  RebootNetworkDeviceRequest,
+  RebootNetworkDeviceResponse,
+  RebootNetworkDeviceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RebootNetworkDeviceRequest,
+  output: RebootNetworkDeviceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshNetworkBootstrapDeviceConfigurationError = AzureOpError;
+/** Refreshes the configuration of Network Bootstrap Device. */
+export const RefreshNetworkBootstrapDeviceConfiguration: API.OperationMethod<
+  RefreshNetworkBootstrapDeviceConfigurationRequest,
+  NetworkBootstrapDeviceRefreshConfigurationResponse,
+  RefreshNetworkBootstrapDeviceConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshNetworkBootstrapDeviceConfigurationRequest,
+  output: NetworkBootstrapDeviceRefreshConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshNetworkDeviceConfigurationError = AzureOpError;
+/** Refreshes the configuration the Network Device. */
+export const RefreshNetworkDeviceConfiguration: API.OperationMethod<
+  RefreshNetworkDeviceConfigurationRequest,
+  NetworkDeviceRefreshConfigurationResponse,
+  RefreshNetworkDeviceConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshNetworkDeviceConfigurationRequest,
+  output: NetworkDeviceRefreshConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshNetworkFabricConfigurationError = AzureOpError;
+/** Refreshes the configuration of the underlying resources in the given Network Fabric instance. */
+export const RefreshNetworkFabricConfiguration: API.OperationMethod<
+  RefreshNetworkFabricConfigurationRequest,
+  RefreshNetworkFabricConfigurationResponse,
+  RefreshNetworkFabricConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshNetworkFabricConfigurationRequest,
+  output: RefreshNetworkFabricConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateNetworkFabricCertificatesError = AzureOpError;
+/** Rotate all certificates on Network Devices. Creates new certificates, then updates the Network Devices to use the new certificates. Note that disabled devices cannot be updated and must be resynchronized with the new certificates once they are enabled. */
+export const RotateNetworkFabricCertificates: API.OperationMethod<
+  RotateNetworkFabricCertificatesRequest,
+  NetworkFabricRotateCertificatesResponse,
+  RotateNetworkFabricCertificatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateNetworkFabricCertificatesRequest,
   output: NetworkFabricRotateCertificatesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RotateNetworkFabricPasswordError = AzureOpError;
+export type RotateNetworkFabricPasswordsError = AzureOpError;
 /** Rotate all passwords on the Terminal Server and Network Devices. Creates new passwords, then updates the Terminal Server and Network Devices to use the new passwords. Note that disabled devices cannot be updated and must be resynchronized with the new passwords once they are enabled. Fails if any of the devices could not be updated with the new password. Failed devices should be resynchronized with the new passwords once possible. */
-export const RotateNetworkFabricPassword: API.OperationMethod<
-  RotateNetworkFabricPasswordRequest,
+export const RotateNetworkFabricPasswords: API.OperationMethod<
+  RotateNetworkFabricPasswordsRequest,
   NetworkFabricRotatePasswordsResponse,
-  RotateNetworkFabricPasswordError,
+  RotateNetworkFabricPasswordsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RotateNetworkFabricPasswordRequest,
+  input: RotateNetworkFabricPasswordsRequest,
   output: NetworkFabricRotatePasswordsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RoutePoliciesCommitConfigurationError = AzureOpError;
-/** Commits the configuration of the given resources. */
-export const RoutePoliciesCommitConfiguration: API.OperationMethod<
-  RoutePoliciesCommitConfigurationRequest,
-  RoutePoliciesCommitConfigurationResponse,
-  RoutePoliciesCommitConfigurationError,
+export type RunNetworkDeviceRoCommandError = AzureOpError;
+/** Run the RO Command on the Network Device. */
+export const RunNetworkDeviceRoCommand: API.OperationMethod<
+  RunNetworkDeviceRoCommandRequest,
+  RunNetworkDeviceRoCommandResponse,
+  RunNetworkDeviceRoCommandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RoutePoliciesCommitConfigurationRequest,
-  output: RoutePoliciesCommitConfigurationResponse,
+  input: RunNetworkDeviceRoCommandRequest,
+  output: RunNetworkDeviceRoCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RoutePoliciesValidateConfigurationError = AzureOpError;
-/** Validates the configuration of the resources. */
-export const RoutePoliciesValidateConfiguration: API.OperationMethod<
-  RoutePoliciesValidateConfigurationRequest,
-  RoutePoliciesValidateConfigurationResponse,
-  RoutePoliciesValidateConfigurationError,
+export type RunNetworkDeviceRwCommandError = AzureOpError;
+/** Run the RW Command on the Network Device. */
+export const RunNetworkDeviceRwCommand: API.OperationMethod<
+  RunNetworkDeviceRwCommandRequest,
+  NetworkDeviceRunRwCommandResponse,
+  RunNetworkDeviceRwCommandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RoutePoliciesValidateConfigurationRequest,
-  output: RoutePoliciesValidateConfigurationResponse,
+  input: RunNetworkDeviceRwCommandRequest,
+  output: NetworkDeviceRunRwCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -27428,21 +27329,6 @@ export const UpdateInternalNetworkStaticRouteBfdAdministrativeState: API.Operati
   retry: Retry.Retry,
 }));
 
-export type UpdateInternetGatewayError = AzureOpError;
-/** Execute patch on Network Fabric Service Internet Gateway. */
-export const UpdateInternetGateway: API.OperationMethod<
-  UpdateInternetGatewayRequest,
-  UpdateInternetGatewayResponse,
-  UpdateInternetGatewayError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateInternetGatewayRequest,
-  output: UpdateInternetGatewayResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateInternetGatewayRuleError = AzureOpError;
 /** API to update certain properties of the Internet Gateway Rule resource. */
 export const UpdateInternetGatewayRule: API.OperationMethod<
@@ -27453,6 +27339,21 @@ export const UpdateInternetGatewayRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateInternetGatewayRuleRequest,
   output: UpdateInternetGatewayRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateInternetGatewaysError = AzureOpError;
+/** Execute patch on Network Fabric Service Internet Gateway. */
+export const UpdateInternetGateways: API.OperationMethod<
+  UpdateInternetGatewaysRequest,
+  UpdateInternetGatewaysResponse,
+  UpdateInternetGatewaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateInternetGatewaysRequest,
+  output: UpdateInternetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -27488,16 +27389,16 @@ export const UpdateIpExtendedCommunity: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateIpPrefixeError = AzureOpError;
+export type UpdateIpPrefixError = AzureOpError;
 /** API to update certain properties of the IP Prefix resource. */
-export const UpdateIpPrefixe: API.OperationMethod<
-  UpdateIpPrefixeRequest,
-  UpdateIpPrefixeResponse,
-  UpdateIpPrefixeError,
+export const UpdateIpPrefix: API.OperationMethod<
+  UpdateIpPrefixRequest,
+  UpdateIpPrefixResponse,
+  UpdateIpPrefixError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateIpPrefixeRequest,
-  output: UpdateIpPrefixeResponse,
+  input: UpdateIpPrefixRequest,
+  output: UpdateIpPrefixResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -27970,6 +27871,96 @@ export const UpdateRoutePolicyAdministrativeState: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateRoutePolicyAdministrativeStateRequest,
   output: UpdateAdministrativeStateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateAccessControlListConfigurationError = AzureOpError;
+/** Implements the operation to the underlying resources. */
+export const ValidateAccessControlListConfiguration: API.OperationMethod<
+  ValidateAccessControlListConfigurationRequest,
+  ValidateAccessControlListConfigurationResponse,
+  ValidateAccessControlListConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateAccessControlListConfigurationRequest,
+  output: ValidateAccessControlListConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateL2IsolationDomainConfigurationError = AzureOpError;
+/** Validates the configuration of the resources. */
+export const ValidateL2IsolationDomainConfiguration: API.OperationMethod<
+  ValidateL2IsolationDomainConfigurationRequest,
+  ValidateL2IsolationDomainConfigurationResponse,
+  ValidateL2IsolationDomainConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateL2IsolationDomainConfigurationRequest,
+  output: ValidateL2IsolationDomainConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateL3IsolationDomainConfigurationError = AzureOpError;
+/** Validates the configuration of the resources. */
+export const ValidateL3IsolationDomainConfiguration: API.OperationMethod<
+  ValidateL3IsolationDomainConfigurationRequest,
+  ValidateL3IsolationDomainConfigurationResponse,
+  ValidateL3IsolationDomainConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateL3IsolationDomainConfigurationRequest,
+  output: ValidateL3IsolationDomainConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateNetworkFabricConfigurationError = AzureOpError;
+/** Validates the configuration of the underlying resources in the given Network Fabric instance. */
+export const ValidateNetworkFabricConfiguration: API.OperationMethod<
+  ValidateNetworkFabricConfigurationRequest,
+  ValidateNetworkFabricConfigurationResponse,
+  ValidateNetworkFabricConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateNetworkFabricConfigurationRequest,
+  output: ValidateNetworkFabricConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateNetworkTapRuleConfigurationError = AzureOpError;
+/** Implements the operation to the underlying resources. */
+export const ValidateNetworkTapRuleConfiguration: API.OperationMethod<
+  ValidateNetworkTapRuleConfigurationRequest,
+  ValidateNetworkTapRuleConfigurationResponse,
+  ValidateNetworkTapRuleConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateNetworkTapRuleConfigurationRequest,
+  output: ValidateNetworkTapRuleConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateRoutePolicyConfigurationError = AzureOpError;
+/** Validates the configuration of the resources. */
+export const ValidateRoutePolicyConfiguration: API.OperationMethod<
+  ValidateRoutePolicyConfigurationRequest,
+  ValidateRoutePolicyConfigurationResponse,
+  ValidateRoutePolicyConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateRoutePolicyConfigurationRequest,
+  output: ValidateRoutePolicyConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

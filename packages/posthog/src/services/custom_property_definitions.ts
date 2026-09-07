@@ -65,12 +65,12 @@ export const CustomPropertyOption = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomPropertyOption>;
 
 /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-export type CustomPropertyDefinitionsCreateRequestOptionsList =
+export type CreateCustomPropertyDefinitionRequestOptionsList =
   Array<CustomPropertyOption>;
-export const CustomPropertyDefinitionsCreateRequestOptionsList =
+export const CreateCustomPropertyDefinitionRequestOptionsList =
   /*@__PURE__*/ S.Array(
     CustomPropertyOption,
-  ) as any as S.Schema<CustomPropertyDefinitionsCreateRequestOptionsList>;
+  ) as any as S.Schema<CreateCustomPropertyDefinitionRequestOptionsList>;
 
 export interface CreateCustomPropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -88,7 +88,7 @@ export interface CreateCustomPropertyDefinitionRequest {
   /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
   is_big_number?: boolean;
   /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-  options?: CustomPropertyDefinitionsCreateRequestOptionsList | null;
+  options?: CreateCustomPropertyDefinitionRequestOptionsList | null;
 }
 export const CreateCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -101,7 +101,7 @@ export const CreateCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
       group_type_index: S.optional(S.NullOr(S.Number)),
       is_big_number: S.optional(S.Boolean),
       options: S.optional(
-        S.NullOr(CustomPropertyDefinitionsCreateRequestOptionsList),
+        S.NullOr(CreateCustomPropertyDefinitionRequestOptionsList),
       ),
     }).pipe(
       T.Http({
@@ -121,8 +121,8 @@ export const CustomPropertyDefinitionOptionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomPropertyDefinitionOptionsList>;
 
 /** * `tracked` - tracked * `ignored` - ignored */
-export type AccountSegmentEnum = "tracked" | "ignored";
-export const AccountSegmentEnum = /*@__PURE__*/ S.String;
+export type SyncSegmentEnum = "tracked" | "ignored";
+export const SyncSegmentEnum = /*@__PURE__*/ S.String;
 
 /** * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
 export type SyncPhaseEnum = "staging" | "dispatching" | "syncing" | "completed";
@@ -134,7 +134,7 @@ export interface CustomPropertySyncRun {
   /** Warehouse import or materialization job associated with the run, if any. */
   job_id: string | null;
   /** Account segment processed by this run. Person and group property runs return null. * `tracked` - tracked * `ignored` - ignored */
-  account_segment: AccountSegmentEnum | null;
+  account_segment: SyncSegmentEnum | null;
   /** Current account sync phase. Person and group property runs return null. * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
   sync_phase: SyncPhaseEnum | null;
   /** Latest Temporal activity attempt for the current account sync phase. */
@@ -172,7 +172,7 @@ export const CustomPropertySyncRun = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     job_id: S.NullOr(S.String),
-    account_segment: S.NullOr(AccountSegmentEnum),
+    account_segment: S.NullOr(SyncSegmentEnum),
     sync_phase: S.NullOr(SyncPhaseEnum),
     attempt: S.NullOr(S.Number),
     workflow_id: S.NullOr(S.String),
@@ -285,7 +285,7 @@ export const CustomPropertyReference = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomPropertyReference",
 }) as any as S.Schema<CustomPropertyReference>;
 
-/** Workflows that use this property, resolved by definition id. */
+/** Workflows that use this property, resolved by definition id when the caller can view workflows. */
 export type CustomPropertyDefinitionReferencesList =
   Array<CustomPropertyReference>;
 export const CustomPropertyDefinitionReferencesList = /*@__PURE__*/ S.Array(
@@ -316,8 +316,10 @@ export interface CustomPropertyDefinition {
   created_at: string;
   created_by: number | null;
   updated_at: string | null;
-  /** Workflows that use this property, resolved by definition id. */
+  /** Workflows that use this property, resolved by definition id when the caller can view workflows. */
   references: CustomPropertyDefinitionReferencesList;
+  /** Whether a workflow updates this property. Always returned, even when workflow details are hidden. */
+  has_workflow_reference: boolean;
 }
 export const CustomPropertyDefinition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -335,6 +337,7 @@ export const CustomPropertyDefinition = /*@__PURE__*/ S.suspend(() =>
     created_by: S.NullOr(S.Number),
     updated_at: S.NullOr(S.String),
     references: CustomPropertyDefinitionReferencesList,
+    has_workflow_reference: S.Boolean,
   }),
 ).annotate({
   identifier: "CustomPropertyDefinition",
@@ -368,28 +371,27 @@ export const CustomPropertyDefinitionsDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "CustomPropertyDefinitionsDestroyResponse",
 }) as any as S.Schema<CustomPropertyDefinitionsDestroyResponse>;
 
-export interface CustomPropertyDefinitionsRetrieveRequest {
+export interface GetCustomPropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const CustomPropertyDefinitionsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
-        code: 200,
-      }),
-    ),
+export const GetCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "CustomPropertyDefinitionsRetrieveRequest",
-}) as any as S.Schema<CustomPropertyDefinitionsRetrieveRequest>;
+  identifier: "GetCustomPropertyDefinitionRequest",
+}) as any as S.Schema<GetCustomPropertyDefinitionRequest>;
 
-export interface CustomPropertyDefinitionsValuesRetrieveRequest {
+export interface GetCustomPropertyDefinitionsValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Id of the custom property definition to suggest values for. */
@@ -397,8 +399,8 @@ export interface CustomPropertyDefinitionsValuesRetrieveRequest {
   /** Case-insensitive substring to narrow the suggestions. */
   value?: string;
 }
-export const CustomPropertyDefinitionsValuesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetCustomPropertyDefinitionsValueRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       key: S.String.pipe(T.Query()),
@@ -410,9 +412,9 @@ export const CustomPropertyDefinitionsValuesRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "CustomPropertyDefinitionsValuesRetrieveRequest",
-  }) as any as S.Schema<CustomPropertyDefinitionsValuesRetrieveRequest>;
+).annotate({
+  identifier: "GetCustomPropertyDefinitionsValueRequest",
+}) as any as S.Schema<GetCustomPropertyDefinitionsValueRequest>;
 
 /** One suggested filter value for a custom property. */
 export interface CustomPropertyValueSuggestion {
@@ -503,12 +505,12 @@ export const PaginatedCustomPropertyDefinitionList = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PaginatedCustomPropertyDefinitionList>;
 
 /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-export type CustomPropertyDefinitionsUpdateRequestOptionsList =
+export type UpdateCustomPropertyDefinitionRequestOptionsList =
   Array<CustomPropertyOption>;
-export const CustomPropertyDefinitionsUpdateRequestOptionsList =
+export const UpdateCustomPropertyDefinitionRequestOptionsList =
   /*@__PURE__*/ S.Array(
     CustomPropertyOption,
-  ) as any as S.Schema<CustomPropertyDefinitionsUpdateRequestOptionsList>;
+  ) as any as S.Schema<UpdateCustomPropertyDefinitionRequestOptionsList>;
 
 export interface UpdateCustomPropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -527,7 +529,7 @@ export interface UpdateCustomPropertyDefinitionRequest {
   /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
   is_big_number?: boolean;
   /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-  options?: CustomPropertyDefinitionsUpdateRequestOptionsList | null;
+  options?: UpdateCustomPropertyDefinitionRequestOptionsList | null;
 }
 export const UpdateCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -541,7 +543,7 @@ export const UpdateCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
       group_type_index: S.optional(S.NullOr(S.Number)),
       is_big_number: S.optional(S.Boolean),
       options: S.optional(
-        S.NullOr(CustomPropertyDefinitionsUpdateRequestOptionsList),
+        S.NullOr(UpdateCustomPropertyDefinitionRequestOptionsList),
       ),
     }).pipe(
       T.Http({
@@ -555,14 +557,14 @@ export const UpdateCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateCustomPropertyDefinitionRequest>;
 
 /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-export type CustomPropertyDefinitionsPartialUpdateRequestOptionsList =
+export type UpdateCustomPropertyDefinitionsPartialRequestOptionsList =
   Array<CustomPropertyOption>;
-export const CustomPropertyDefinitionsPartialUpdateRequestOptionsList =
+export const UpdateCustomPropertyDefinitionsPartialRequestOptionsList =
   /*@__PURE__*/ S.Array(
     CustomPropertyOption,
-  ) as any as S.Schema<CustomPropertyDefinitionsPartialUpdateRequestOptionsList>;
+  ) as any as S.Schema<UpdateCustomPropertyDefinitionsPartialRequestOptionsList>;
 
-export interface UpdateCustomPropertyDefinitionPartialRequest {
+export interface UpdateCustomPropertyDefinitionsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -579,9 +581,9 @@ export interface UpdateCustomPropertyDefinitionPartialRequest {
   /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
   is_big_number?: boolean;
   /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-  options?: CustomPropertyDefinitionsPartialUpdateRequestOptionsList | null;
+  options?: UpdateCustomPropertyDefinitionsPartialRequestOptionsList | null;
 }
-export const UpdateCustomPropertyDefinitionPartialRequest =
+export const UpdateCustomPropertyDefinitionsPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -593,7 +595,7 @@ export const UpdateCustomPropertyDefinitionPartialRequest =
       group_type_index: S.optional(S.NullOr(S.Number)),
       is_big_number: S.optional(S.Boolean),
       options: S.optional(
-        S.NullOr(CustomPropertyDefinitionsPartialUpdateRequestOptionsList),
+        S.NullOr(UpdateCustomPropertyDefinitionsPartialRequestOptionsList),
       ),
     }).pipe(
       T.Http({
@@ -603,8 +605,8 @@ export const UpdateCustomPropertyDefinitionPartialRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateCustomPropertyDefinitionPartialRequest",
-  }) as any as S.Schema<UpdateCustomPropertyDefinitionPartialRequest>;
+    identifier: "UpdateCustomPropertyDefinitionsPartialRequest",
+  }) as any as S.Schema<UpdateCustomPropertyDefinitionsPartialRequest>;
 
 export type CreateCustomPropertyDefinitionError = PosthogOpError;
 export const createCustomPropertyDefinition: API.OperationMethod<
@@ -634,28 +636,28 @@ export const customPropertyDefinitionsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CustomPropertyDefinitionsRetrieveError = PosthogOpError;
-export const customPropertyDefinitionsRetrieve: API.OperationMethod<
-  CustomPropertyDefinitionsRetrieveRequest,
+export type GetCustomPropertyDefinitionError = PosthogOpError;
+export const getCustomPropertyDefinition: API.OperationMethod<
+  GetCustomPropertyDefinitionRequest,
   CustomPropertyDefinition,
-  CustomPropertyDefinitionsRetrieveError,
+  GetCustomPropertyDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsRetrieveRequest,
+  input: GetCustomPropertyDefinitionRequest,
   output: CustomPropertyDefinition,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CustomPropertyDefinitionsValuesRetrieveError = PosthogOpError;
-export const customPropertyDefinitionsValuesRetrieve: API.OperationMethod<
-  CustomPropertyDefinitionsValuesRetrieveRequest,
+export type GetCustomPropertyDefinitionsValueError = PosthogOpError;
+export const getCustomPropertyDefinitionsValue: API.OperationMethod<
+  GetCustomPropertyDefinitionsValueRequest,
   CustomPropertyValueSuggestionsResponse,
-  CustomPropertyDefinitionsValuesRetrieveError,
+  GetCustomPropertyDefinitionsValueError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsValuesRetrieveRequest,
+  input: GetCustomPropertyDefinitionsValueRequest,
   output: CustomPropertyValueSuggestionsResponse,
   errors: [],
   protocol: PosthogProtocol,
@@ -690,14 +692,14 @@ export const updateCustomPropertyDefinition: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateCustomPropertyDefinitionPartialError = PosthogOpError;
-export const updateCustomPropertyDefinitionPartial: API.OperationMethod<
-  UpdateCustomPropertyDefinitionPartialRequest,
+export type UpdateCustomPropertyDefinitionsPartialError = PosthogOpError;
+export const updateCustomPropertyDefinitionsPartial: API.OperationMethod<
+  UpdateCustomPropertyDefinitionsPartialRequest,
   CustomPropertyDefinition,
-  UpdateCustomPropertyDefinitionPartialError,
+  UpdateCustomPropertyDefinitionsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateCustomPropertyDefinitionPartialRequest,
+  input: UpdateCustomPropertyDefinitionsPartialRequest,
   output: CustomPropertyDefinition,
   errors: [],
   protocol: PosthogProtocol,

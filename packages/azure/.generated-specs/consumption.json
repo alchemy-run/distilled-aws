@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.consumption#GetPriceSheet": {
@@ -76,7 +77,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#PriceSheetGetResponseTagsMap",
+          "target": "com.azure.consumption#GetPriceSheetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -86,7 +87,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#PriceSheetGetResponseTagsMap": {
+    "com.azure.consumption#GetPriceSheetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -493,7 +494,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#PriceSheetGetByBillingPeriodResponseTagsMap",
+          "target": "com.azure.consumption#GetPriceSheetByBillingPeriodResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -503,7 +504,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#PriceSheetGetByBillingPeriodResponseTagsMap": {
+    "com.azure.consumption#GetPriceSheetByBillingPeriodResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -619,7 +620,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#AggregatedCostGetByManagementGroupResponseTagsMap",
+          "target": "com.azure.consumption#GetAggregatedCostByManagementGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -629,7 +630,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#AggregatedCostGetByManagementGroupResponseTagsMap": {
+    "com.azure.consumption#GetAggregatedCostByManagementGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -880,7 +881,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#AggregatedCostGetForBillingPeriodByManagementGroupResponseTagsMap",
+          "target": "com.azure.consumption#GetAggregatedCostForBillingPeriodByManagementGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -890,7 +891,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#AggregatedCostGetForBillingPeriodByManagementGroupResponseTagsMap": {
+    "com.azure.consumption#GetAggregatedCostForBillingPeriodByManagementGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1032,10 +1033,10 @@
         "smithy.api#documentation": "The object that represents the operation."
       }
     },
-    "com.azure.consumption#ListReservationSummaryByReservationOrderAndReservation": {
+    "com.azure.consumption#ReservationsSummariesListByReservationOrderAndReservation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.consumption#ListReservationSummaryByReservationOrderAndReservationRequest"
+        "target": "com.azure.consumption#ReservationsSummariesListByReservationOrderAndReservationRequest"
       },
       "output": {
         "target": "com.azure.consumption#ReservationSummariesListResult"
@@ -1240,7 +1241,7 @@
         "smithy.api#documentation": "The properties of the reservation summary."
       }
     },
-    "com.azure.consumption#ListReservationSummaryByReservationOrderAndReservationRequest": {
+    "com.azure.consumption#ReservationsSummariesListByReservationOrderAndReservationRequest": {
       "type": "structure",
       "members": {
         "reservationOrderId": {
@@ -1297,10 +1298,10 @@
       },
       "traits": {}
     },
-    "com.azure.consumption#ListReservationDetailByReservationOrderAndReservation": {
+    "com.azure.consumption#ReservationsDetailsListByReservationOrderAndReservation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.consumption#ListReservationDetailByReservationOrderAndReservationRequest"
+        "target": "com.azure.consumption#ReservationsDetailsListByReservationOrderAndReservationRequest"
       },
       "output": {
         "target": "com.azure.consumption#ReservationDetailsListResult"
@@ -1481,7 +1482,7 @@
         "smithy.api#documentation": "The properties of the reservation detail."
       }
     },
-    "com.azure.consumption#ListReservationDetailByReservationOrderAndReservationRequest": {
+    "com.azure.consumption#ReservationsDetailsListByReservationOrderAndReservationRequest": {
       "type": "structure",
       "members": {
         "reservationOrderId": {
@@ -1513,10 +1514,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.consumption#ListReservationSummaryByReservationOrder": {
+    "com.azure.consumption#ListReservationsSummaryByReservationOrder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.consumption#ListReservationSummaryByReservationOrderRequest"
+        "target": "com.azure.consumption#ListReservationsSummaryByReservationOrderRequest"
       },
       "output": {
         "target": "com.azure.consumption#ReservationSummariesListResult"
@@ -1532,7 +1533,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListReservationSummaryByReservationOrderRequest": {
+    "com.azure.consumption#ListReservationsSummaryByReservationOrderRequest": {
       "type": "structure",
       "members": {
         "reservationOrderId": {
@@ -1544,7 +1545,7 @@
           }
         },
         "grain": {
-          "target": "com.azure.consumption#ReservationsSummariesListByReservationOrderRequestGrain",
+          "target": "com.azure.consumption#ListReservationsSummaryByReservationOrderRequestGrain",
           "traits": {
             "smithy.api#httpQuery": "grain",
             "smithy.api#required": {},
@@ -1563,7 +1564,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.consumption#ReservationsSummariesListByReservationOrderRequestGrain": {
+    "com.azure.consumption#ListReservationsSummaryByReservationOrderRequestGrain": {
       "type": "enum",
       "members": {
         "DAILY": {
@@ -1581,10 +1582,10 @@
       },
       "traits": {}
     },
-    "com.azure.consumption#ListReservationDetailByReservationOrder": {
+    "com.azure.consumption#ListReservationsDetailByReservationOrder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.consumption#ListReservationDetailByReservationOrderRequest"
+        "target": "com.azure.consumption#ListReservationsDetailByReservationOrderRequest"
       },
       "output": {
         "target": "com.azure.consumption#ReservationDetailsListResult"
@@ -1600,7 +1601,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListReservationDetailByReservationOrderRequest": {
+    "com.azure.consumption#ListReservationsDetailByReservationOrderRequest": {
       "type": "structure",
       "members": {
         "reservationOrderId": {
@@ -1630,7 +1631,7 @@
         "target": "com.azure.consumption#ListReservationTransactionsRequest"
       },
       "output": {
-        "target": "com.azure.consumption#ListReservationTransactionsResult"
+        "target": "com.azure.consumption#ReservationTransactionsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -1643,7 +1644,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListReservationTransactionsResult": {
+    "com.azure.consumption#ReservationTransactionsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -2689,7 +2690,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#BalancesGetByBillingAccountResponseTagsMap",
+          "target": "com.azure.consumption#GetBalanceByBillingAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2699,7 +2700,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#BalancesGetByBillingAccountResponseTagsMap": {
+    "com.azure.consumption#GetBalanceByBillingAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3383,7 +3384,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#CreditsGetResponseTagsMap",
+          "target": "com.azure.consumption#GetCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "A list of Tag."
           }
@@ -3393,7 +3394,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#CreditsGetResponseTagsMap": {
+    "com.azure.consumption#GetCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3517,10 +3518,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.consumption#PriceSheetDownloadByBillingAccountPeriod": {
+    "com.azure.consumption#DownloadPriceSheetByBillingAccountPeriod": {
       "type": "operation",
       "input": {
-        "target": "com.azure.consumption#PriceSheetDownloadByBillingAccountPeriodRequest"
+        "target": "com.azure.consumption#DownloadPriceSheetByBillingAccountPeriodRequest"
       },
       "output": {
         "target": "com.azure.consumption#OperationStatus"
@@ -3602,7 +3603,7 @@
         "smithy.api#documentation": "The status of the long running operation."
       }
     },
-    "com.azure.consumption#PriceSheetDownloadByBillingAccountPeriodRequest": {
+    "com.azure.consumption#DownloadPriceSheetByBillingAccountPeriodRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -3685,7 +3686,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#BalancesGetForBillingPeriodByBillingAccountResponseTagsMap",
+          "target": "com.azure.consumption#GetBalanceForBillingPeriodByBillingAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3695,7 +3696,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#BalancesGetForBillingPeriodByBillingAccountResponseTagsMap": {
+    "com.azure.consumption#GetBalanceForBillingPeriodByBillingAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3737,7 +3738,7 @@
         "target": "com.azure.consumption#ListUsageDetailsRequest"
       },
       "output": {
-        "target": "com.azure.consumption#ListUsageDetailsResult"
+        "target": "com.azure.consumption#UsageDetailsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -3750,7 +3751,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListUsageDetailsResult": {
+    "com.azure.consumption#UsageDetailsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -3902,7 +3903,7 @@
           }
         },
         "metric": {
-          "target": "com.azure.consumption#UsageDetailsListRequestMetric",
+          "target": "com.azure.consumption#ListUsageDetailsRequestMetric",
           "traits": {
             "smithy.api#httpQuery": "metric",
             "smithy.api#documentation": "Allows to select different type of cost/usage records."
@@ -3913,7 +3914,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.consumption#UsageDetailsListRequestMetric": {
+    "com.azure.consumption#ListUsageDetailsRequestMetric": {
       "type": "enum",
       "members": {
         "ACTUALCOST": {
@@ -4080,10 +4081,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.consumption#ListReservationSummaries": {
+    "com.azure.consumption#ListReservationsSummaries": {
       "type": "operation",
       "input": {
-        "target": "com.azure.consumption#ListReservationSummariesRequest"
+        "target": "com.azure.consumption#ListReservationsSummariesRequest"
       },
       "output": {
         "target": "com.azure.consumption#ReservationSummariesListResult"
@@ -4099,7 +4100,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListReservationSummariesRequest": {
+    "com.azure.consumption#ListReservationsSummariesRequest": {
       "type": "structure",
       "members": {
         "resourceScope": {
@@ -4111,7 +4112,7 @@
           }
         },
         "grain": {
-          "target": "com.azure.consumption#ReservationsSummariesListRequestGrain",
+          "target": "com.azure.consumption#ListReservationsSummariesRequestGrain",
           "traits": {
             "smithy.api#httpQuery": "grain",
             "smithy.api#required": {},
@@ -4158,7 +4159,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.consumption#ReservationsSummariesListRequestGrain": {
+    "com.azure.consumption#ListReservationsSummariesRequestGrain": {
       "type": "enum",
       "members": {
         "DAILY": {
@@ -4182,7 +4183,7 @@
         "target": "com.azure.consumption#ListReservationRecommendationsRequest"
       },
       "output": {
-        "target": "com.azure.consumption#ListReservationRecommendationsResult"
+        "target": "com.azure.consumption#ReservationRecommendationsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -4195,7 +4196,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListReservationRecommendationsResult": {
+    "com.azure.consumption#ReservationRecommendationsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -4527,7 +4528,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.consumption#ReservationRecommendationDetailsGetResponseTagsMap",
+          "target": "com.azure.consumption#GetReservationRecommendationDetailResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4537,7 +4538,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.consumption#ReservationRecommendationDetailsGetResponseTagsMap": {
+    "com.azure.consumption#GetReservationRecommendationDetailResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4840,7 +4841,7 @@
           }
         },
         "scope": {
-          "target": "com.azure.consumption#ReservationRecommendationDetailsGetRequestScope",
+          "target": "com.azure.consumption#GetReservationRecommendationDetailRequestScope",
           "traits": {
             "smithy.api#httpQuery": "scope",
             "smithy.api#required": {},
@@ -4856,7 +4857,7 @@
           }
         },
         "term": {
-          "target": "com.azure.consumption#ReservationRecommendationDetailsGetRequestTerm",
+          "target": "com.azure.consumption#GetReservationRecommendationDetailRequestTerm",
           "traits": {
             "smithy.api#httpQuery": "term",
             "smithy.api#required": {},
@@ -4864,7 +4865,7 @@
           }
         },
         "lookBackPeriod": {
-          "target": "com.azure.consumption#ReservationRecommendationDetailsGetRequestLookBackPeriod",
+          "target": "com.azure.consumption#GetReservationRecommendationDetailRequestLookBackPeriod",
           "traits": {
             "smithy.api#httpQuery": "lookBackPeriod",
             "smithy.api#required": {},
@@ -4898,7 +4899,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.consumption#ReservationRecommendationDetailsGetRequestLookBackPeriod": {
+    "com.azure.consumption#GetReservationRecommendationDetailRequestLookBackPeriod": {
       "type": "enum",
       "members": {
         "LAST7DAYS": {
@@ -4922,7 +4923,7 @@
       },
       "traits": {}
     },
-    "com.azure.consumption#ReservationRecommendationDetailsGetRequestTerm": {
+    "com.azure.consumption#GetReservationRecommendationDetailRequestTerm": {
       "type": "enum",
       "members": {
         "P1M": {
@@ -4946,7 +4947,7 @@
       },
       "traits": {}
     },
-    "com.azure.consumption#ReservationRecommendationDetailsGetRequestScope": {
+    "com.azure.consumption#GetReservationRecommendationDetailRequestScope": {
       "type": "enum",
       "members": {
         "SINGLE": {
@@ -4970,10 +4971,10 @@
       },
       "traits": {}
     },
-    "com.azure.consumption#ListReservationDetails": {
+    "com.azure.consumption#ListReservationsDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.consumption#ListReservationDetailsRequest"
+        "target": "com.azure.consumption#ListReservationsDetailsRequest"
       },
       "output": {
         "target": "com.azure.consumption#ReservationDetailsListResult"
@@ -4989,7 +4990,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListReservationDetailsRequest": {
+    "com.azure.consumption#ListReservationsDetailsRequest": {
       "type": "structure",
       "members": {
         "resourceScope": {
@@ -5046,7 +5047,7 @@
         "target": "com.azure.consumption#ListMarketplacesRequest"
       },
       "output": {
-        "target": "com.azure.consumption#ListMarketplacesResult"
+        "target": "com.azure.consumption#MarketplacesListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -5059,7 +5060,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListMarketplacesResult": {
+    "com.azure.consumption#MarketplacesListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -5357,7 +5358,7 @@
         "target": "com.azure.consumption#ListChargesRequest"
       },
       "output": {
-        "target": "com.azure.consumption#ListChargesResult"
+        "target": "com.azure.consumption#ChargesListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -5370,7 +5371,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListChargesResult": {
+    "com.azure.consumption#ChargesListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -6362,7 +6363,7 @@
         "target": "com.azure.consumption#ListBudgetsRequest"
       },
       "output": {
-        "target": "com.azure.consumption#ListBudgetsResult"
+        "target": "com.azure.consumption#BudgetsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -6375,7 +6376,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.consumption#ListBudgetsResult": {
+    "com.azure.consumption#BudgetsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -6469,10 +6470,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.consumption#GetPriceSheet"
+          "target": "com.azure.consumption#BudgetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.consumption#GetPriceSheetByBillingPeriod"
+          "target": "com.azure.consumption#DeleteBudget"
+        },
+        {
+          "target": "com.azure.consumption#DownloadPriceSheetByBillingAccountPeriod"
         },
         {
           "target": "com.azure.consumption#GetAggregatedCostByManagementGroup"
@@ -6481,88 +6485,85 @@
           "target": "com.azure.consumption#GetAggregatedCostForBillingPeriodByManagementGroup"
         },
         {
-          "target": "com.azure.consumption#ListOperations"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationSummaryByReservationOrderAndReservation"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationDetailByReservationOrderAndReservation"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationSummaryByReservationOrder"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationDetailByReservationOrder"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationTransactions"
-        },
-        {
-          "target": "com.azure.consumption#ListLotByBillingAccount"
-        },
-        {
-          "target": "com.azure.consumption#ListEventByBillingAccount"
-        },
-        {
           "target": "com.azure.consumption#GetBalanceByBillingAccount"
-        },
-        {
-          "target": "com.azure.consumption#ListLotByCustomer"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationTransactionByBillingProfile"
-        },
-        {
-          "target": "com.azure.consumption#ListLotByBillingProfile"
-        },
-        {
-          "target": "com.azure.consumption#ListEventByBillingProfile"
-        },
-        {
-          "target": "com.azure.consumption#GetCredit"
-        },
-        {
-          "target": "com.azure.consumption#PriceSheetDownloadByBillingAccountPeriod"
         },
         {
           "target": "com.azure.consumption#GetBalanceForBillingPeriodByBillingAccount"
         },
         {
-          "target": "com.azure.consumption#ListUsageDetails"
+          "target": "com.azure.consumption#GetBudget"
         },
         {
-          "target": "com.azure.consumption#GetTag"
+          "target": "com.azure.consumption#GetCredit"
         },
         {
-          "target": "com.azure.consumption#ListReservationSummaries"
+          "target": "com.azure.consumption#GetPriceSheet"
         },
         {
-          "target": "com.azure.consumption#ListReservationRecommendations"
+          "target": "com.azure.consumption#GetPriceSheetByBillingPeriod"
         },
         {
           "target": "com.azure.consumption#GetReservationRecommendationDetail"
         },
         {
-          "target": "com.azure.consumption#ListReservationDetails"
+          "target": "com.azure.consumption#GetTag"
         },
         {
-          "target": "com.azure.consumption#ListMarketplaces"
+          "target": "com.azure.consumption#ListBudgets"
         },
         {
           "target": "com.azure.consumption#ListCharges"
         },
         {
-          "target": "com.azure.consumption#DeleteBudget"
+          "target": "com.azure.consumption#ListEventByBillingAccount"
         },
         {
-          "target": "com.azure.consumption#BudgetsCreateOrUpdate"
+          "target": "com.azure.consumption#ListEventByBillingProfile"
         },
         {
-          "target": "com.azure.consumption#GetBudget"
+          "target": "com.azure.consumption#ListLotByBillingAccount"
         },
         {
-          "target": "com.azure.consumption#ListBudgets"
+          "target": "com.azure.consumption#ListLotByBillingProfile"
+        },
+        {
+          "target": "com.azure.consumption#ListLotByCustomer"
+        },
+        {
+          "target": "com.azure.consumption#ListMarketplaces"
+        },
+        {
+          "target": "com.azure.consumption#ListOperations"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationRecommendations"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationsDetailByReservationOrder"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationsDetails"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationsSummaries"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationsSummaryByReservationOrder"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationTransactionByBillingProfile"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationTransactions"
+        },
+        {
+          "target": "com.azure.consumption#ListUsageDetails"
+        },
+        {
+          "target": "com.azure.consumption#ReservationsDetailsListByReservationOrderAndReservation"
+        },
+        {
+          "target": "com.azure.consumption#ReservationsSummariesListByReservationOrderAndReservation"
         }
       ],
       "traits": {

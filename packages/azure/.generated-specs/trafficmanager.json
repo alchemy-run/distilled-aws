@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.trafficmanager#GetHeatMap": {
@@ -235,7 +236,7 @@
           }
         },
         "heatMapType": {
-          "target": "com.azure.trafficmanager#HeatMapGetRequestHeatMapType",
+          "target": "com.azure.trafficmanager#GetHeatMapRequestHeatMapType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -243,14 +244,14 @@
           }
         },
         "topLeft": {
-          "target": "com.azure.trafficmanager#HeatMapGetRequestTopLeftList",
+          "target": "com.azure.trafficmanager#GetHeatMapRequestTopLeftList",
           "traits": {
             "smithy.api#httpQuery": "topLeft",
             "smithy.api#documentation": "The top left latitude,longitude pair of the rectangular viewport to query for."
           }
         },
         "botRight": {
-          "target": "com.azure.trafficmanager#HeatMapGetRequestBotRightList",
+          "target": "com.azure.trafficmanager#GetHeatMapRequestBotRightList",
           "traits": {
             "smithy.api#httpQuery": "botRight",
             "smithy.api#documentation": "The bottom right latitude,longitude pair of the rectangular viewport to query for."
@@ -261,21 +262,21 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#HeatMapGetRequestBotRightList": {
+    "com.azure.trafficmanager#GetHeatMapRequestBotRightList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Double"
       },
       "traits": {}
     },
-    "com.azure.trafficmanager#HeatMapGetRequestTopLeftList": {
+    "com.azure.trafficmanager#GetHeatMapRequestTopLeftList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Double"
       },
       "traits": {}
     },
-    "com.azure.trafficmanager#HeatMapGetRequestHeatMapType": {
+    "com.azure.trafficmanager#GetHeatMapRequestHeatMapType": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -348,7 +349,7 @@
           }
         },
         "endpointType": {
-          "target": "com.azure.trafficmanager#EndpointsDeleteRequestEndpointType",
+          "target": "com.azure.trafficmanager#DeleteEndpointRequestEndpointType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -368,7 +369,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#EndpointsDeleteRequestEndpointType": {
+    "com.azure.trafficmanager#DeleteEndpointRequestEndpointType": {
       "type": "enum",
       "members": {
         "AZUREENDPOINTS": {
@@ -726,7 +727,7 @@
           }
         },
         "endpointType": {
-          "target": "com.azure.trafficmanager#EndpointsUpdateRequestEndpointType",
+          "target": "com.azure.trafficmanager#UpdateEndpointRequestEndpointType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -770,7 +771,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#EndpointsUpdateRequestEndpointType": {
+    "com.azure.trafficmanager#UpdateEndpointRequestEndpointType": {
       "type": "enum",
       "members": {
         "AZUREENDPOINTS": {
@@ -1020,7 +1021,7 @@
           }
         },
         "endpointType": {
-          "target": "com.azure.trafficmanager#EndpointsGetRequestEndpointType",
+          "target": "com.azure.trafficmanager#GetEndpointRequestEndpointType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -1040,7 +1041,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#EndpointsGetRequestEndpointType": {
+    "com.azure.trafficmanager#GetEndpointRequestEndpointType": {
       "type": "enum",
       "members": {
         "AZUREENDPOINTS": {
@@ -1156,7 +1157,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.trafficmanager#ProfilesUpdateResponseTagsMap",
+          "target": "com.azure.trafficmanager#UpdateProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1610,7 +1611,7 @@
         "smithy.api#documentation": "The status of the Traffic Manager profile."
       }
     },
-    "com.azure.trafficmanager#ProfilesUpdateResponseTagsMap": {
+    "com.azure.trafficmanager#UpdateProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1668,7 +1669,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.trafficmanager#ProfilesUpdateRequestTagsMap",
+          "target": "com.azure.trafficmanager#UpdateProfileRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1784,7 +1785,7 @@
         "smithy.api#documentation": "Class containing DNS settings in a Traffic Manager profile."
       }
     },
-    "com.azure.trafficmanager#ProfilesUpdateRequestTagsMap": {
+    "com.azure.trafficmanager#UpdateProfileRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1992,7 +1993,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.trafficmanager#ProfilesGetResponseTagsMap",
+          "target": "com.azure.trafficmanager#GetProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2014,7 +2015,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.trafficmanager#ProfilesGetResponseTagsMap": {
+    "com.azure.trafficmanager#GetProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2222,10 +2223,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricKey": {
+    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricKeyRequest"
+        "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeysRequest"
       },
       "output": {
         "target": "com.azure.trafficmanager#DeleteOperationResult"
@@ -2241,7 +2242,7 @@
         "com.distilled.openapi#apiVersion": "2022-04-01"
       }
     },
-    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricKeyRequest": {
+    "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2338,13 +2339,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.trafficmanager#GetTrafficManagerUserMetricKey": {
+    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricKeyRequest"
+        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysRequest"
       },
       "output": {
-        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricKeyResponse"
+        "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2357,7 +2358,7 @@
         "com.distilled.openapi#apiVersion": "2022-04-01"
       }
     },
-    "com.azure.trafficmanager#GetTrafficManagerUserMetricKeyResponse": {
+    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2389,7 +2390,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.trafficmanager#GetTrafficManagerUserMetricKeyRequest": {
+    "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2634,13 +2635,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.trafficmanager#GetHeatMap"
+          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerNameAvailabilityV2"
+        },
+        {
+          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerRelativeDnsNameAvailability"
         },
         {
           "target": "com.azure.trafficmanager#DeleteEndpoint"
         },
         {
-          "target": "com.azure.trafficmanager#UpdateEndpoint"
+          "target": "com.azure.trafficmanager#DeleteProfile"
+        },
+        {
+          "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeys"
         },
         {
           "target": "com.azure.trafficmanager#EndpointsCreateOrUpdate"
@@ -2649,16 +2656,16 @@
           "target": "com.azure.trafficmanager#GetEndpoint"
         },
         {
-          "target": "com.azure.trafficmanager#DeleteProfile"
+          "target": "com.azure.trafficmanager#GetGeographicHierarchyDefault"
         },
         {
-          "target": "com.azure.trafficmanager#UpdateProfile"
-        },
-        {
-          "target": "com.azure.trafficmanager#ProfilesCreateOrUpdate"
+          "target": "com.azure.trafficmanager#GetHeatMap"
         },
         {
           "target": "com.azure.trafficmanager#GetProfile"
+        },
+        {
+          "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeys"
         },
         {
           "target": "com.azure.trafficmanager#ListProfileByResourceGroup"
@@ -2667,22 +2674,16 @@
           "target": "com.azure.trafficmanager#ListProfileBySubscription"
         },
         {
-          "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricKey"
+          "target": "com.azure.trafficmanager#ProfilesCreateOrUpdate"
         },
         {
           "target": "com.azure.trafficmanager#TrafficManagerUserMetricsKeysCreateOrUpdate"
         },
         {
-          "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricKey"
+          "target": "com.azure.trafficmanager#UpdateEndpoint"
         },
         {
-          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerNameAvailabilityV2"
-        },
-        {
-          "target": "com.azure.trafficmanager#GetGeographicHierarchyDefault"
-        },
-        {
-          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerRelativeDnsNameAvailability"
+          "target": "com.azure.trafficmanager#UpdateProfile"
         }
       ],
       "traits": {

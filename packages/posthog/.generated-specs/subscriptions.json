@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.subscriptions#SubscriptionsListRequestResourceType": {
+    "com.posthog.subscriptions#ListSubscriptionsRequestResourceType": {
       "type": "enum",
       "members": {
         "AI_PROMPT": {
@@ -41,7 +42,7 @@
       },
       "traits": {}
     },
-    "com.posthog.subscriptions#SubscriptionsListRequestTargetType": {
+    "com.posthog.subscriptions#ListSubscriptionsRequestTargetType": {
       "type": "enum",
       "members": {
         "EMAIL": {
@@ -54,6 +55,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "slack"
+          }
+        },
+        "TEAMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "teams"
           }
         }
       },
@@ -127,7 +134,7 @@
           }
         },
         "resource_type": {
-          "target": "com.posthog.subscriptions#SubscriptionsListRequestResourceType",
+          "target": "com.posthog.subscriptions#ListSubscriptionsRequestResourceType",
           "traits": {
             "smithy.api#httpQuery": "resource_type",
             "smithy.api#documentation": "Filter by subscription resource: insight, dashboard export, or AI report."
@@ -141,10 +148,10 @@
           }
         },
         "target_type": {
-          "target": "com.posthog.subscriptions#SubscriptionsListRequestTargetType",
+          "target": "com.posthog.subscriptions#ListSubscriptionsRequestTargetType",
           "traits": {
             "smithy.api#httpQuery": "target_type",
-            "smithy.api#documentation": "Filter by delivery channel (email or Slack)."
+            "smithy.api#documentation": "Filter by delivery channel: email, Slack, or Microsoft Teams."
           }
         }
       },
@@ -183,7 +190,7 @@
           "target": "smithy.api#Integer"
         },
         "resource_type": {
-          "target": "com.posthog.subscriptions#ResourceTypeEnum",
+          "target": "com.posthog.subscriptions#SubscriptionResourceTypeEnum",
           "traits": {
             "smithy.api#documentation": "What the subscription delivers: 'insight' (snapshot of one insight), 'dashboard' (snapshot of one dashboard), or 'ai_prompt' (LLM-generated report). Read-only — derived from the populated target (insight → insight, dashboard → dashboard, prompt → ai_prompt).\n\n* `insight` - Insight\n* `dashboard` - Dashboard\n* `ai_prompt` - AI prompt"
           }
@@ -234,15 +241,15 @@
           }
         },
         "target_type": {
-          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "target": "com.posthog.subscriptions#SubscriptionTargetEnum",
           "traits": {
-            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+            "smithy.api#documentation": "Delivery channel: email, slack, or teams.\n\n* `email` - Email\n* `slack` - Slack\n* `teams` - Microsoft Teams"
           }
         },
         "target_value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, Slack channel name/ID for slack, or a Microsoft Teams webhook URL for teams. A Teams webhook URL is only ever returned as its host, because the URL authorizes a post to the channel by itself. On update, omit the field to keep the stored URL, or send a full URL to replace it."
           }
         },
         "frequency": {
@@ -281,7 +288,7 @@
         "start_date": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime). The date anchors the recurrence and may be in the past. Deliveries run on half-hour cycles at :00 and :30. Other minute values are accepted for backward compatibility, but delivery happens during the next cycle instead of at that exact minute."
           }
         },
         "until_date": {
@@ -356,13 +363,19 @@
           "traits": {
             "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
           }
+        },
+        "delivery_config": {
+          "target": "com.posthog.subscriptions#DeliveryConfig",
+          "traits": {
+            "smithy.api#documentation": "Per-delivery rendering options. Each option documents which delivery targets it applies to."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Standard Subscription serializer."
       }
     },
-    "com.posthog.subscriptions#ResourceTypeEnum": {
+    "com.posthog.subscriptions#SubscriptionResourceTypeEnum": {
       "type": "enum",
       "members": {
         "INSIGHT": {
@@ -413,7 +426,7 @@
       "type": "structure",
       "members": {
         "mode": {
-          "target": "com.posthog.subscriptions#AIWindowConfigModeEnum",
+          "target": "com.posthog.subscriptions#SubscriptionAIWindowModeEnum",
           "traits": {
             "smithy.api#documentation": "What the report analyzes each run:\n* `since_last_sent` (default) — everything since the previous successful scheduled delivery (gap-free; test/manual sends don't move the anchor)\n* `last_n_days` — a fixed trailing window of start_days_ago days\n* `days_ago_range` — the explicit range from start_days_ago to end_days_ago days ago\n\n* `since_last_sent` - Since last report\n* `last_n_days` - Last N days\n* `days_ago_range` - Between X and Y days ago"
           }
@@ -435,7 +448,7 @@
       },
       "traits": {}
     },
-    "com.posthog.subscriptions#AIWindowConfigModeEnum": {
+    "com.posthog.subscriptions#SubscriptionAIWindowModeEnum": {
       "type": "enum",
       "members": {
         "SINCE_LAST_SENT": {
@@ -461,7 +474,7 @@
         "smithy.api#documentation": "* `since_last_sent` - Since last report\n* `last_n_days` - Last N days\n* `days_ago_range` - Between X and Y days ago"
       }
     },
-    "com.posthog.subscriptions#TargetTypeEnum": {
+    "com.posthog.subscriptions#SubscriptionTargetEnum": {
       "type": "enum",
       "members": {
         "EMAIL": {
@@ -475,10 +488,16 @@
           "traits": {
             "smithy.api#enumValue": "slack"
           }
+        },
+        "TEAMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "teams"
+          }
         }
       },
       "traits": {
-        "smithy.api#documentation": "* `email` - Email\n* `slack` - Slack"
+        "smithy.api#documentation": "* `email` - Email\n* `slack` - Slack\n* `teams` - Microsoft Teams"
       }
     },
     "com.posthog.subscriptions#RecurrenceIntervalEnum": {
@@ -713,6 +732,20 @@
       },
       "traits": {}
     },
+    "com.posthog.subscriptions#DeliveryConfig": {
+      "type": "structure",
+      "members": {
+        "post_all_insights_in_main_message": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Slack only: when true, upload all insight images together in the main Slack message instead of posting the first image in the main message and the rest as threaded replies. Defaults to false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Typed view over the Subscription.delivery_config JSON blob."
+      }
+    },
     "com.posthog.subscriptions#PaginatedSubscriptionListOutputResultsList": {
       "type": "list",
       "member": {
@@ -747,7 +780,7 @@
         }
       }
     },
-    "com.posthog.subscriptions#SubscriptionsCreateRequestDashboardExportInsightsList": {
+    "com.posthog.subscriptions#CreateSubscriptionRequestDashboardExportInsightsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -756,7 +789,7 @@
         "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 10."
       }
     },
-    "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayItem": {
+    "com.posthog.subscriptions#CreateSubscriptionRequestByweekdayItem": {
       "type": "enum",
       "members": {
         "MONDAY": {
@@ -806,10 +839,10 @@
         "smithy.api#documentation": "* `monday` - Monday\n* `tuesday` - Tuesday\n* `wednesday` - Wednesday\n* `thursday` - Thursday\n* `friday` - Friday\n* `saturday` - Saturday\n* `sunday` - Sunday"
       }
     },
-    "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayList": {
+    "com.posthog.subscriptions#CreateSubscriptionRequestByweekdayList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayItem"
+        "target": "com.posthog.subscriptions#CreateSubscriptionRequestByweekdayItem"
       },
       "traits": {
         "smithy.api#documentation": "Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday."
@@ -841,7 +874,7 @@
           }
         },
         "dashboard_export_insights": {
-          "target": "com.posthog.subscriptions#SubscriptionsCreateRequestDashboardExportInsightsList",
+          "target": "com.posthog.subscriptions#CreateSubscriptionRequestDashboardExportInsightsList",
           "traits": {
             "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 10."
           }
@@ -860,15 +893,15 @@
           }
         },
         "target_type": {
-          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "target": "com.posthog.subscriptions#SubscriptionTargetEnum",
           "traits": {
-            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+            "smithy.api#documentation": "Delivery channel: email, slack, or teams.\n\n* `email` - Email\n* `slack` - Slack\n* `teams` - Microsoft Teams"
           }
         },
         "target_value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, Slack channel name/ID for slack, or a Microsoft Teams webhook URL for teams. A Teams webhook URL is only ever returned as its host, because the URL authorizes a post to the channel by itself. On update, omit the field to keep the stored URL, or send a full URL to replace it."
           }
         },
         "frequency": {
@@ -884,7 +917,7 @@
           }
         },
         "byweekday": {
-          "target": "com.posthog.subscriptions#SubscriptionsCreateRequestByweekdayList",
+          "target": "com.posthog.subscriptions#CreateSubscriptionRequestByweekdayList",
           "traits": {
             "smithy.api#documentation": "Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
             "com.distilled.openapi#nullable": {}
@@ -907,7 +940,7 @@
         "start_date": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime). The date anchors the recurrence and may be in the past. Deliveries run on half-hour cycles at :00 and :30. Other minute values are accepted for backward compatibility, but delivery happens during the next cycle instead of at that exact minute."
           }
         },
         "until_date": {
@@ -967,6 +1000,12 @@
           "traits": {
             "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
           }
+        },
+        "delivery_config": {
+          "target": "com.posthog.subscriptions#DeliveryConfig",
+          "traits": {
+            "smithy.api#documentation": "Per-delivery rendering options. Each option documents which delivery targets it applies to."
+          }
         }
       },
       "traits": {
@@ -1000,7 +1039,7 @@
         }
       }
     },
-    "com.posthog.subscriptions#SubscriptionsRetrieveRequest": {
+    "com.posthog.subscriptions#GetSubscriptionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1024,10 +1063,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.subscriptions#SubscriptionsRetrieve": {
+    "com.posthog.subscriptions#GetSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.subscriptions#SubscriptionsRetrieveRequest"
+        "target": "com.posthog.subscriptions#GetSubscriptionRequest"
       },
       "output": {
         "target": "com.posthog.subscriptions#SubscriptionOutput"
@@ -1048,7 +1087,7 @@
         }
       }
     },
-    "com.posthog.subscriptions#SubscriptionsUpdateRequestDashboardExportInsightsList": {
+    "com.posthog.subscriptions#UpdateSubscriptionRequestDashboardExportInsightsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -1057,7 +1096,7 @@
         "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 10."
       }
     },
-    "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayItem": {
+    "com.posthog.subscriptions#UpdateSubscriptionRequestByweekdayItem": {
       "type": "enum",
       "members": {
         "MONDAY": {
@@ -1107,10 +1146,10 @@
         "smithy.api#documentation": "* `monday` - Monday\n* `tuesday` - Tuesday\n* `wednesday` - Wednesday\n* `thursday` - Thursday\n* `friday` - Friday\n* `saturday` - Saturday\n* `sunday` - Sunday"
       }
     },
-    "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayList": {
+    "com.posthog.subscriptions#UpdateSubscriptionRequestByweekdayList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayItem"
+        "target": "com.posthog.subscriptions#UpdateSubscriptionRequestByweekdayItem"
       },
       "traits": {
         "smithy.api#documentation": "Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday."
@@ -1150,7 +1189,7 @@
           }
         },
         "dashboard_export_insights": {
-          "target": "com.posthog.subscriptions#SubscriptionsUpdateRequestDashboardExportInsightsList",
+          "target": "com.posthog.subscriptions#UpdateSubscriptionRequestDashboardExportInsightsList",
           "traits": {
             "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 10."
           }
@@ -1169,15 +1208,15 @@
           }
         },
         "target_type": {
-          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "target": "com.posthog.subscriptions#SubscriptionTargetEnum",
           "traits": {
-            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+            "smithy.api#documentation": "Delivery channel: email, slack, or teams.\n\n* `email` - Email\n* `slack` - Slack\n* `teams` - Microsoft Teams"
           }
         },
         "target_value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, Slack channel name/ID for slack, or a Microsoft Teams webhook URL for teams. A Teams webhook URL is only ever returned as its host, because the URL authorizes a post to the channel by itself. On update, omit the field to keep the stored URL, or send a full URL to replace it."
           }
         },
         "frequency": {
@@ -1193,7 +1232,7 @@
           }
         },
         "byweekday": {
-          "target": "com.posthog.subscriptions#SubscriptionsUpdateRequestByweekdayList",
+          "target": "com.posthog.subscriptions#UpdateSubscriptionRequestByweekdayList",
           "traits": {
             "smithy.api#documentation": "Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
             "com.distilled.openapi#nullable": {}
@@ -1216,7 +1255,7 @@
         "start_date": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime). The date anchors the recurrence and may be in the past. Deliveries run on half-hour cycles at :00 and :30. Other minute values are accepted for backward compatibility, but delivery happens during the next cycle instead of at that exact minute."
           }
         },
         "until_date": {
@@ -1276,6 +1315,12 @@
           "traits": {
             "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
           }
+        },
+        "delivery_config": {
+          "target": "com.posthog.subscriptions#DeliveryConfig",
+          "traits": {
+            "smithy.api#documentation": "Per-delivery rendering options. Each option documents which delivery targets it applies to."
+          }
         }
       },
       "traits": {
@@ -1309,7 +1354,7 @@
         }
       }
     },
-    "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestDashboardExportInsightsList": {
+    "com.posthog.subscriptions#UpdateSubscriptionsPartialRequestDashboardExportInsightsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -1318,7 +1363,7 @@
         "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 10."
       }
     },
-    "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayItem": {
+    "com.posthog.subscriptions#UpdateSubscriptionsPartialRequestByweekdayItem": {
       "type": "enum",
       "members": {
         "MONDAY": {
@@ -1368,16 +1413,16 @@
         "smithy.api#documentation": "* `monday` - Monday\n* `tuesday` - Tuesday\n* `wednesday` - Wednesday\n* `thursday` - Thursday\n* `friday` - Friday\n* `saturday` - Saturday\n* `sunday` - Sunday"
       }
     },
-    "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayList": {
+    "com.posthog.subscriptions#UpdateSubscriptionsPartialRequestByweekdayList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayItem"
+        "target": "com.posthog.subscriptions#UpdateSubscriptionsPartialRequestByweekdayItem"
       },
       "traits": {
         "smithy.api#documentation": "Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday."
       }
     },
-    "com.posthog.subscriptions#UpdateSubscriptionPartialRequest": {
+    "com.posthog.subscriptions#UpdateSubscriptionsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1411,7 +1456,7 @@
           }
         },
         "dashboard_export_insights": {
-          "target": "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestDashboardExportInsightsList",
+          "target": "com.posthog.subscriptions#UpdateSubscriptionsPartialRequestDashboardExportInsightsList",
           "traits": {
             "smithy.api#documentation": "List of insight IDs from the dashboard to include. Required for dashboard subscriptions, max 10."
           }
@@ -1430,15 +1475,15 @@
           }
         },
         "target_type": {
-          "target": "com.posthog.subscriptions#TargetTypeEnum",
+          "target": "com.posthog.subscriptions#SubscriptionTargetEnum",
           "traits": {
-            "smithy.api#documentation": "Delivery channel: email or slack.\n\n* `email` - Email\n* `slack` - Slack"
+            "smithy.api#documentation": "Delivery channel: email, slack, or teams.\n\n* `email` - Email\n* `slack` - Slack\n* `teams` - Microsoft Teams"
           }
         },
         "target_value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, or Slack channel name/ID for slack."
+            "smithy.api#documentation": "Recipient(s): comma-separated email addresses for email, Slack channel name/ID for slack, or a Microsoft Teams webhook URL for teams. A Teams webhook URL is only ever returned as its host, because the URL authorizes a post to the channel by itself. On update, omit the field to keep the stored URL, or send a full URL to replace it."
           }
         },
         "frequency": {
@@ -1454,7 +1499,7 @@
           }
         },
         "byweekday": {
-          "target": "com.posthog.subscriptions#SubscriptionsPartialUpdateRequestByweekdayList",
+          "target": "com.posthog.subscriptions#UpdateSubscriptionsPartialRequestByweekdayList",
           "traits": {
             "smithy.api#documentation": "Days of week for daily or weekly subscriptions: monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
             "com.distilled.openapi#nullable": {}
@@ -1477,7 +1522,7 @@
         "start_date": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime)."
+            "smithy.api#documentation": "When to start delivering (ISO 8601 datetime). The date anchors the recurrence and may be in the past. Deliveries run on half-hour cycles at :00 and :30. Other minute values are accepted for backward compatibility, but delivery happens during the next cycle instead of at that exact minute."
           }
         },
         "until_date": {
@@ -1537,16 +1582,22 @@
           "traits": {
             "smithy.api#documentation": "Optional free-text guidance (max 500 chars) steering the AI summary, e.g. which metrics to emphasize. Only settable when AI summary context is enabled for the organization; clearing it (empty string) is always allowed."
           }
+        },
+        "delivery_config": {
+          "target": "com.posthog.subscriptions#DeliveryConfig",
+          "traits": {
+            "smithy.api#documentation": "Per-delivery rendering options. Each option documents which delivery targets it applies to."
+          }
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.subscriptions#UpdateSubscriptionPartial": {
+    "com.posthog.subscriptions#UpdateSubscriptionsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.subscriptions#UpdateSubscriptionPartialRequest"
+        "target": "com.posthog.subscriptions#UpdateSubscriptionsPartialRequest"
       },
       "output": {
         "target": "com.posthog.subscriptions#SubscriptionOutput"
@@ -1619,7 +1670,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.subscriptions#CreateSubscriptionTestDeliveryRequest": {
+    "com.posthog.subscriptions#CreateSubscriptionsTestDeliveryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1643,10 +1694,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.subscriptions#CreateSubscriptionTestDelivery": {
+    "com.posthog.subscriptions#CreateSubscriptionsTestDelivery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.subscriptions#CreateSubscriptionTestDeliveryRequest"
+        "target": "com.posthog.subscriptions#CreateSubscriptionsTestDeliveryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1667,7 +1718,7 @@
         }
       }
     },
-    "com.posthog.subscriptions#SubscriptionsDeliveriesListRequestStatus": {
+    "com.posthog.subscriptions#ListSubscriptionsDeliveriesRequestStatus": {
       "type": "enum",
       "members": {
         "COMPLETED": {
@@ -1697,7 +1748,7 @@
       },
       "traits": {}
     },
-    "com.posthog.subscriptions#ListSubscriptionDeliveriesRequest": {
+    "com.posthog.subscriptions#ListSubscriptionsDeliveriesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1723,7 +1774,7 @@
           }
         },
         "status": {
-          "target": "com.posthog.subscriptions#SubscriptionsDeliveriesListRequestStatus",
+          "target": "com.posthog.subscriptions#ListSubscriptionsDeliveriesRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Return only deliveries in this run status (starting, completed, failed, or skipped)."
@@ -1798,13 +1849,13 @@
         "target_type": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Channel snapshot at send time (email or slack)."
+            "smithy.api#documentation": "Channel snapshot at send time: email, slack, or teams."
           }
         },
         "target_value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Destination snapshot at send time (emails, channel id, URL)."
+            "smithy.api#documentation": "Destination snapshot at send time: the email list, the Slack channel id, or the host of the Microsoft Teams webhook. The webhook URL itself is never returned."
           }
         },
         "exported_asset_ids": {
@@ -2029,10 +2080,10 @@
       },
       "traits": {}
     },
-    "com.posthog.subscriptions#ListSubscriptionDeliveries": {
+    "com.posthog.subscriptions#ListSubscriptionsDeliveries": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.subscriptions#ListSubscriptionDeliveriesRequest"
+        "target": "com.posthog.subscriptions#ListSubscriptionsDeliveriesRequest"
       },
       "output": {
         "target": "com.posthog.subscriptions#PaginatedSubscriptionDeliveryList"
@@ -2046,7 +2097,7 @@
         "smithy.api#documentation": "List subscription deliveries\n\nPaginated delivery history for a subscription. Requires premium subscriptions."
       }
     },
-    "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieveRequest": {
+    "com.posthog.subscriptions#GetSubscriptionsDeliveryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2077,10 +2128,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieve": {
+    "com.posthog.subscriptions#GetSubscriptionsDelivery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieveRequest"
+        "target": "com.posthog.subscriptions#GetSubscriptionsDeliveryRequest"
       },
       "output": {
         "target": "com.posthog.subscriptions#SubscriptionDelivery"
@@ -2094,7 +2145,7 @@
         "smithy.api#documentation": "Retrieve subscription delivery\n\nFetch one delivery row by id."
       }
     },
-    "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveRequest": {
+    "com.posthog.subscriptions#GetSubscriptionsSummaryQuotaRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2110,7 +2161,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveResponse": {
+    "com.posthog.subscriptions#GetSubscriptionsSummaryQuotaResponse": {
       "type": "structure",
       "members": {
         "active_count": {
@@ -2137,13 +2188,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieve": {
+    "com.posthog.subscriptions#GetSubscriptionsSummaryQuota": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveRequest"
+        "target": "com.posthog.subscriptions#GetSubscriptionsSummaryQuotaRequest"
       },
       "output": {
-        "target": "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieveResponse"
+        "target": "com.posthog.subscriptions#GetSubscriptionsSummaryQuotaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2197,34 +2248,34 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.subscriptions#ListSubscriptions"
-        },
-        {
           "target": "com.posthog.subscriptions#CreateSubscription"
         },
         {
-          "target": "com.posthog.subscriptions#SubscriptionsRetrieve"
+          "target": "com.posthog.subscriptions#CreateSubscriptionsTestDelivery"
         },
         {
-          "target": "com.posthog.subscriptions#UpdateSubscription"
+          "target": "com.posthog.subscriptions#GetSubscription"
         },
         {
-          "target": "com.posthog.subscriptions#UpdateSubscriptionPartial"
+          "target": "com.posthog.subscriptions#GetSubscriptionsDelivery"
+        },
+        {
+          "target": "com.posthog.subscriptions#GetSubscriptionsSummaryQuota"
+        },
+        {
+          "target": "com.posthog.subscriptions#ListSubscriptions"
+        },
+        {
+          "target": "com.posthog.subscriptions#ListSubscriptionsDeliveries"
         },
         {
           "target": "com.posthog.subscriptions#SubscriptionsDestroy"
         },
         {
-          "target": "com.posthog.subscriptions#CreateSubscriptionTestDelivery"
+          "target": "com.posthog.subscriptions#UpdateSubscription"
         },
         {
-          "target": "com.posthog.subscriptions#ListSubscriptionDeliveries"
-        },
-        {
-          "target": "com.posthog.subscriptions#SubscriptionsDeliveriesRetrieve"
-        },
-        {
-          "target": "com.posthog.subscriptions#SubscriptionsSummaryQuotaRetrieve"
+          "target": "com.posthog.subscriptions#UpdateSubscriptionsPartial"
         }
       ],
       "traits": {

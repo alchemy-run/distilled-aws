@@ -11,888 +11,6 @@ import * as Retry from "../retry.ts";
 
 export type { HuggingFaceOpError, HuggingFaceOpContext };
 
-export type QuickSearchRequestLangCase0 =
-  | "aa"
-  | "ab"
-  | "ae"
-  | "af"
-  | "ak"
-  | "am"
-  | "an"
-  | "ar"
-  | "as"
-  | "av"
-  | "ay"
-  | "az"
-  | "ba"
-  | "be"
-  | "bg"
-  | "bh"
-  | "bi"
-  | "bm"
-  | "bn"
-  | "bo"
-  | "br"
-  | "bs"
-  | "ca"
-  | "ce"
-  | "ch"
-  | "co"
-  | "cr"
-  | "cs"
-  | "cu"
-  | "cv"
-  | "cy"
-  | "da"
-  | "de"
-  | "dv"
-  | "dz"
-  | "ee"
-  | "el"
-  | "en"
-  | "eo"
-  | "es"
-  | "et"
-  | "eu"
-  | "fa"
-  | "ff"
-  | "fi"
-  | "fj"
-  | "fo"
-  | "fr"
-  | "fy"
-  | "ga"
-  | "gd"
-  | "gl"
-  | "gn"
-  | "gu"
-  | "gv"
-  | "ha"
-  | "he"
-  | "hi"
-  | "ho"
-  | "hr"
-  | "ht"
-  | "hu"
-  | "hy"
-  | "hz"
-  | "ia"
-  | "id"
-  | "ie"
-  | "ig"
-  | "ii"
-  | "ik"
-  | "io"
-  | "is"
-  | "it"
-  | "iu"
-  | "ja"
-  | "jv"
-  | "ka"
-  | "kg"
-  | "ki"
-  | "kj"
-  | "kk"
-  | "kl"
-  | "km"
-  | "kn"
-  | "ko"
-  | "kr"
-  | "ks"
-  | "ku"
-  | "kv"
-  | "kw"
-  | "ky"
-  | "la"
-  | "lb"
-  | "lg"
-  | "li"
-  | "ln"
-  | "lo"
-  | "lt"
-  | "lu"
-  | "lv"
-  | "mg"
-  | "mh"
-  | "mi"
-  | "mk"
-  | "ml"
-  | "mn"
-  | "mr"
-  | "ms"
-  | "mt"
-  | "my"
-  | "na"
-  | "nb"
-  | "nd"
-  | "ne"
-  | "ng"
-  | "nl"
-  | "nn"
-  | "no"
-  | "nr"
-  | "nv"
-  | "ny"
-  | "oc"
-  | "oj"
-  | "om"
-  | "or"
-  | "os"
-  | "pa"
-  | "pi"
-  | "pl"
-  | "ps"
-  | "pt"
-  | "qu"
-  | "rm"
-  | "rn"
-  | "ro"
-  | "ru"
-  | "rw"
-  | "sa"
-  | "sc"
-  | "sd"
-  | "se"
-  | "sg"
-  | "si"
-  | "sk"
-  | "sl"
-  | "sm"
-  | "sn"
-  | "so"
-  | "sq"
-  | "sr"
-  | "ss"
-  | "st"
-  | "su"
-  | "sv"
-  | "sw"
-  | "ta"
-  | "te"
-  | "tg"
-  | "th"
-  | "ti"
-  | "tk"
-  | "tl"
-  | "tn"
-  | "to"
-  | "tr"
-  | "ts"
-  | "tt"
-  | "tw"
-  | "ty"
-  | "ug"
-  | "uk"
-  | "ur"
-  | "uz"
-  | "ve"
-  | "vi"
-  | "vo"
-  | "wa"
-  | "wo"
-  | "xh"
-  | "yi"
-  | "yo"
-  | "za"
-  | "zh"
-  | "zu";
-export const QuickSearchRequestLangCase0 = /*@__PURE__*/ S.String;
-
-export type QuickSearchRequestLang = QuickSearchRequestLangCase0 | string;
-export const QuickSearchRequestLang =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestLang>;
-
-export type QuickSearchRequestLibraryCase0 =
-  | "acestep"
-  | "adapter-transformers"
-  | "allennlp"
-  | "anemoi"
-  | "araclip"
-  | "aviation-ner"
-  | "asteroid"
-  | "audiocraft"
-  | "audioseal"
-  | "bagel-mot"
-  | "bboxmaskpose"
-  | "ben2"
-  | "bertopic"
-  | "big_vision"
-  | "bionemo"
-  | "birder"
-  | "birefnet"
-  | "bm25s"
-  | "boltzgen"
-  | "cancertathomev2"
-  | "cartesia_pytorch"
-  | "cartesia_mlx"
-  | "ccpfn"
-  | "champ"
-  | "chatterbox"
-  | "chaossim"
-  | "chat_tts"
-  | "chexmix"
-  | "chronos-forecasting"
-  | "clara"
-  | "clipscope"
-  | "cloud-agents"
-  | "collectorvision"
-  | "colipri"
-  | "cosyvoice"
-  | "cotracker"
-  | "colpali"
-  | "comet"
-  | "cortiq"
-  | "cosmos"
-  | "cxr-foundation"
-  | "deepforest"
-  | "depth-anything-v2"
-  | "depth-pro"
-  | "derm-foundation"
-  | "describe-anything"
-  | "dia-tts"
-  | "dia2"
-  | "diff-interpretation-tuning"
-  | "diffree"
-  | "diffusers"
-  | "diffusionkit"
-  | "docking-at-home"
-  | "doctr"
-  | "edsnlp"
-  | "elm"
-  | "encoderfile"
-  | "espnet"
-  | "eupe"
-  | "fairseq"
-  | "fastai"
-  | "fastprint"
-  | "fasttext"
-  | "fixer"
-  | "flair"
-  | "flextab"
-  | "fme"
-  | "gemma.cpp"
-  | "geometry-crafter"
-  | "gliner"
-  | "gliner2"
-  | "glm-tts"
-  | "glyph-byt5"
-  | "granite-library"
-  | "grok"
-  | "habibi-tts"
-  | "hallo"
-  | "minimax-h3"
-  | "hermes"
-  | "holomotion"
-  | "hezar"
-  | "htrflow"
-  | "hunyuan-dit"
-  | "hunyuan3d-2"
-  | "hunyuanworld-voyager"
-  | "hy-worldplay"
-  | "hy-world-2"
-  | "image-matching-models"
-  | "imstoucan"
-  | "index-tts"
-  | "infinitetalk"
-  | "infinite-you"
-  | "intellifold"
-  | "ising-decoding"
-  | "keras"
-  | "tf-keras"
-  | "keras-hub"
-  | "kerasformers"
-  | "kernels"
-  | "kimi-audio"
-  | "kittentts"
-  | "kronos"
-  | "k2"
-  | "lyra-2.0"
-  | "lagernvs"
-  | "ltx"
-  | "lightning-ir"
-  | "litert"
-  | "litert-lm"
-  | "lerobot"
-  | "lightglue"
-  | "liveportrait"
-  | "longcat-video-avatar-1.5"
-  | "llama-cpp-python"
-  | "mini-omni2"
-  | "mindspore"
-  | "magi-1"
-  | "magenta-realtime"
-  | "magenta-realtime-2"
-  | "mamba-ssm"
-  | "manas-1"
-  | "mars5-tts"
-  | "matanyone"
-  | "memra"
-  | "mesh-anything"
-  | "merlin"
-  | "medvae"
-  | "mflux"
-  | "mitie"
-  | "ml-agents"
-  | "ml-sharp"
-  | "mlx"
-  | "mlx-image"
-  | "mlc-llm"
-  | "model2vec"
-  | "mobilint"
-  | "montreal-forced-aligner"
-  | "moshi"
-  | "mtvcraft"
-  | "multimolecule"
-  | "nemo"
-  | "ninfer"
-  | "nobg"
-  | "nv-medtech"
-  | "open-oasis"
-  | "open_clip"
-  | "openasr"
-  | "opendde"
-  | "openpeerllm"
-  | "open-sora"
-  | "outetts"
-  | "paddlenlp"
-  | "PaddleOCR"
-  | "peft"
-  | "perception-encoder"
-  | "phantom-wan"
-  | "piper"
-  | "pocket-tts"
-  | "pruna-ai"
-  | "pxia"
-  | "pyannote-audio"
-  | "py-feat"
-  | "pythae"
-  | "quantumpeer"
-  | "qwen3_tts"
-  | "recurrentgemma"
-  | "relik"
-  | "refiners"
-  | "renderformer"
-  | "reverb"
-  | "rkllm"
-  | "robo-orchard-lab"
-  | "routee-powertrain"
-  | "rwkv"
-  | "saelens"
-  | "scail-2"
-  | "sam2"
-  | "sam-3d-body"
-  | "sam-3d-objects"
-  | "same"
-  | "sample-factory"
-  | "sap-rpt-1-oss"
-  | "sapiens"
-  | "sapiens2"
-  | "seedvr"
-  | "self-forcing"
-  | "sentence-transformers"
-  | "setfit"
-  | "sklearn"
-  | "spacy"
-  | "span-marker"
-  | "speechbrain"
-  | "ssr-speech"
-  | "stable-audio-3"
-  | "stable-audio-tools"
-  | "monkeyocr"
-  | "diffusion-single-file"
-  | "seed-story"
-  | "skala"
-  | "soloaudio"
-  | "songbloom"
-  | "stable-baselines3"
-  | "stanza"
-  | "supertonic"
-  | "swarmformer"
-  | "synthefy-migas"
-  | "f5-tts"
-  | "genmo"
-  | "tencent-song-generation"
-  | "tensorflowtts"
-  | "tensorrt"
-  | "tabpfn"
-  | "terratorch"
-  | "tic-clip"
-  | "timesfm"
-  | "timee-ts"
-  | "timm"
-  | "tirex"
-  | "tirex-2"
-  | "torchgeo"
-  | "transformers"
-  | "transformers.js"
-  | "trellis"
-  | "trellis2"
-  | "tunejury"
-  | "ultralytics"
-  | "univa"
-  | "uni-3dar"
-  | "unity-sentis"
-  | "sana"
-  | "videoprism"
-  | "vfi-mamba"
-  | "vismatch"
-  | "lvface"
-  | "voicecraft"
-  | "voxcpm"
-  | "vui"
-  | "vibevoice"
-  | "videox_fun"
-  | "wan2.2"
-  | "wham"
-  | "whisperkit"
-  | "yolov10"
-  | "yolov26"
-  | "zonos"
-  | "3dtopia-xl";
-export const QuickSearchRequestLibraryCase0 = /*@__PURE__*/ S.String;
-
-export type QuickSearchRequestLibrary = QuickSearchRequestLibraryCase0 | string;
-export const QuickSearchRequestLibrary =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestLibrary>;
-
-export type QuickSearchRequestTypeCase0Item =
-  | "model"
-  | "dataset"
-  | "space"
-  | "org"
-  | "user"
-  | "paper"
-  | "collection"
-  | "bucket"
-  | "kernel";
-export const QuickSearchRequestTypeCase0Item = /*@__PURE__*/ S.String;
-
-export type QuickSearchRequestTypeCase0List = Array<
-  QuickSearchRequestTypeCase0Item | (string & {})
->;
-export const QuickSearchRequestTypeCase0List = /*@__PURE__*/ S.Array(
-  QuickSearchRequestTypeCase0Item,
-) as any as S.Schema<QuickSearchRequestTypeCase0List>;
-
-export type QuickSearchRequestTypeCase1List = Array<string>;
-export const QuickSearchRequestTypeCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QuickSearchRequestTypeCase1List>;
-
-export type QuickSearchRequestType =
-  | QuickSearchRequestTypeCase0List
-  | QuickSearchRequestTypeCase1List;
-export const QuickSearchRequestType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestType>;
-
-export type QuickSearchRequestOrgsFilterCase0Item = "own" | "unwatched";
-export const QuickSearchRequestOrgsFilterCase0Item = /*@__PURE__*/ S.String;
-
-export type QuickSearchRequestOrgsFilterCase0List = Array<
-  QuickSearchRequestOrgsFilterCase0Item | (string & {})
->;
-export const QuickSearchRequestOrgsFilterCase0List = /*@__PURE__*/ S.Array(
-  QuickSearchRequestOrgsFilterCase0Item,
-) as any as S.Schema<QuickSearchRequestOrgsFilterCase0List>;
-
-export type QuickSearchRequestOrgsFilterCase1List = Array<string>;
-export const QuickSearchRequestOrgsFilterCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QuickSearchRequestOrgsFilterCase1List>;
-
-export type QuickSearchRequestOrgsFilter =
-  | QuickSearchRequestOrgsFilterCase0List
-  | QuickSearchRequestOrgsFilterCase1List;
-export const QuickSearchRequestOrgsFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestOrgsFilter>;
-
-export type QuickSearchRequestReposFilterCase0Item =
-  | "skip_disabled"
-  | "skip_gated"
-  | "own"
-  | "own_orgs"
-  | "granted_access";
-export const QuickSearchRequestReposFilterCase0Item = /*@__PURE__*/ S.String;
-
-export type QuickSearchRequestReposFilterCase0List = Array<
-  QuickSearchRequestReposFilterCase0Item | (string & {})
->;
-export const QuickSearchRequestReposFilterCase0List = /*@__PURE__*/ S.Array(
-  QuickSearchRequestReposFilterCase0Item,
-) as any as S.Schema<QuickSearchRequestReposFilterCase0List>;
-
-export type QuickSearchRequestReposFilterCase1List = Array<string>;
-export const QuickSearchRequestReposFilterCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QuickSearchRequestReposFilterCase1List>;
-
-export type QuickSearchRequestReposFilter =
-  | QuickSearchRequestReposFilterCase0List
-  | QuickSearchRequestReposFilterCase1List;
-export const QuickSearchRequestReposFilter =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestReposFilter>;
-
-export type QuickSearchRequestPipelinesCase0Item =
-  | "text-classification"
-  | "token-classification"
-  | "table-question-answering"
-  | "question-answering"
-  | "zero-shot-classification"
-  | "translation"
-  | "summarization"
-  | "feature-extraction"
-  | "text-generation"
-  | "fill-mask"
-  | "sentence-similarity"
-  | "text-to-speech"
-  | "text-to-audio"
-  | "automatic-speech-recognition"
-  | "audio-to-audio"
-  | "audio-classification"
-  | "audio-text-to-text"
-  | "voice-activity-detection"
-  | "depth-estimation"
-  | "image-classification"
-  | "object-detection"
-  | "image-segmentation"
-  | "text-to-image"
-  | "image-to-text"
-  | "image-to-image"
-  | "image-to-video"
-  | "unconditional-image-generation"
-  | "video-classification"
-  | "reinforcement-learning"
-  | "robotics"
-  | "tabular-classification"
-  | "tabular-regression"
-  | "tabular-to-text"
-  | "table-to-text"
-  | "multiple-choice"
-  | "text-ranking"
-  | "text-retrieval"
-  | "time-series-forecasting"
-  | "text-to-video"
-  | "image-text-to-text"
-  | "image-text-to-image"
-  | "image-text-to-video"
-  | "visual-question-answering"
-  | "document-question-answering"
-  | "zero-shot-image-classification"
-  | "graph-ml"
-  | "mask-generation"
-  | "zero-shot-object-detection"
-  | "text-to-3d"
-  | "image-to-3d"
-  | "image-feature-extraction"
-  | "video-text-to-text"
-  | "keypoint-detection"
-  | "visual-document-retrieval"
-  | "any-to-any"
-  | "video-to-video"
-  | "other";
-export const QuickSearchRequestPipelinesCase0Item = /*@__PURE__*/ S.String;
-
-export type QuickSearchRequestPipelinesCase0List = Array<
-  QuickSearchRequestPipelinesCase0Item | (string & {})
->;
-export const QuickSearchRequestPipelinesCase0List = /*@__PURE__*/ S.Array(
-  QuickSearchRequestPipelinesCase0Item,
-) as any as S.Schema<QuickSearchRequestPipelinesCase0List>;
-
-export type QuickSearchRequestPipelinesCase1Case1List = Array<string>;
-export const QuickSearchRequestPipelinesCase1Case1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QuickSearchRequestPipelinesCase1Case1List>;
-
-export type QuickSearchRequestPipelinesCase1 =
-  | string
-  | QuickSearchRequestPipelinesCase1Case1List;
-export const QuickSearchRequestPipelinesCase1 =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestPipelinesCase1>;
-
-/** Comma-separated or array of pipeline types */
-export type QuickSearchRequestPipelines =
-  | QuickSearchRequestPipelinesCase0List
-  | QuickSearchRequestPipelinesCase1;
-export const QuickSearchRequestPipelines =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestPipelines>;
-
-/** Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo */
-export type QuickSearchRequestExcludeList = Array<string>;
-export const QuickSearchRequestExcludeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QuickSearchRequestExcludeList>;
-
-export type QuickSearchRequestIncludeInvitees = boolean | unknown;
-export const QuickSearchRequestIncludeInvitees =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestIncludeInvitees>;
-
-export type QuickSearchRequestRepoTypeCase0 =
-  | "dataset"
-  | "model"
-  | "space"
-  | "bucket"
-  | "kernel";
-export const QuickSearchRequestRepoTypeCase0 = /*@__PURE__*/ S.String;
-
-export type QuickSearchRequestRepoType =
-  | QuickSearchRequestRepoTypeCase0
-  | string;
-export const QuickSearchRequestRepoType =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchRequestRepoType>;
-
-export type QuickSearchRequestSpacesTagsList = Array<string>;
-export const QuickSearchRequestSpacesTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QuickSearchRequestSpacesTagsList>;
-
-export interface QuickSearchRequest {
-  q?: string;
-  limit?: number;
-  lang?: QuickSearchRequestLang;
-  library?: QuickSearchRequestLibrary;
-  type?: QuickSearchRequestType;
-  orgsFilter?: QuickSearchRequestOrgsFilter;
-  reposFilter?: QuickSearchRequestReposFilter;
-  pipelines?: QuickSearchRequestPipelines;
-  exclude?: QuickSearchRequestExcludeList;
-  namespace?: string;
-  includeInvitees?: QuickSearchRequestIncludeInvitees;
-  repoName?: string;
-  repoType?: QuickSearchRequestRepoType;
-  discussionId?: string;
-  discussionCollectionName?: string;
-  spacesTags?: QuickSearchRequestSpacesTagsList;
-}
-export const QuickSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    q: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    lang: S.optional(QuickSearchRequestLang.pipe(T.Query())),
-    library: S.optional(QuickSearchRequestLibrary.pipe(T.Query())),
-    type: S.optional(QuickSearchRequestType.pipe(T.Query())),
-    orgsFilter: S.optional(QuickSearchRequestOrgsFilter.pipe(T.Query())),
-    reposFilter: S.optional(QuickSearchRequestReposFilter.pipe(T.Query())),
-    pipelines: S.optional(QuickSearchRequestPipelines.pipe(T.Query())),
-    exclude: S.optional(QuickSearchRequestExcludeList.pipe(T.Query())),
-    namespace: S.optional(S.String.pipe(T.Query())),
-    includeInvitees: S.optional(
-      QuickSearchRequestIncludeInvitees.pipe(T.Query()),
-    ),
-    repoName: S.optional(S.String.pipe(T.Query())),
-    repoType: S.optional(QuickSearchRequestRepoType.pipe(T.Query())),
-    discussionId: S.optional(S.String.pipe(T.Query())),
-    discussionCollectionName: S.optional(S.String.pipe(T.Query())),
-    spacesTags: S.optional(QuickSearchRequestSpacesTagsList.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/api/quicksearch", code: 200 })),
-).annotate({
-  identifier: "QuickSearchRequest",
-}) as any as S.Schema<QuickSearchRequest>;
-
-export interface QuickSearchResponseDatasetsItem {
-  _id: string;
-  id: string;
-  private?: boolean;
-  trendingWeight: number;
-}
-export const QuickSearchResponseDatasetsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    id: S.String,
-    private: S.optional(S.Boolean),
-    trendingWeight: S.Number,
-  }),
-).annotate({
-  identifier: "QuickSearchResponseDatasetsItem",
-}) as any as S.Schema<QuickSearchResponseDatasetsItem>;
-
-export type QuickSearchResponseDatasetsList =
-  Array<QuickSearchResponseDatasetsItem>;
-export const QuickSearchResponseDatasetsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseDatasetsItem,
-) as any as S.Schema<QuickSearchResponseDatasetsList>;
-
-export type QuickSearchResponseModelsItem = QuickSearchResponseDatasetsItem;
-export const QuickSearchResponseModelsItem = QuickSearchResponseDatasetsItem;
-
-export type QuickSearchResponseModelsList =
-  Array<QuickSearchResponseDatasetsItem>;
-export const QuickSearchResponseModelsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseDatasetsItem,
-) as any as S.Schema<QuickSearchResponseModelsList>;
-
-export interface QuickSearchResponseOrgsItem {
-  _id: string;
-  avatarUrl: string;
-  fullname: string;
-  name: string;
-}
-export const QuickSearchResponseOrgsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    avatarUrl: S.String,
-    fullname: S.String,
-    name: S.String,
-  }),
-).annotate({
-  identifier: "QuickSearchResponseOrgsItem",
-}) as any as S.Schema<QuickSearchResponseOrgsItem>;
-
-export type QuickSearchResponseOrgsList = Array<QuickSearchResponseOrgsItem>;
-export const QuickSearchResponseOrgsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseOrgsItem,
-) as any as S.Schema<QuickSearchResponseOrgsList>;
-
-export interface QuickSearchResponseSpacesItem {
-  _id: string;
-  id: string;
-  private?: boolean;
-  emoji: string;
-  trendingWeight: number;
-}
-export const QuickSearchResponseSpacesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    id: S.String,
-    private: S.optional(S.Boolean),
-    emoji: S.String,
-    trendingWeight: S.Number,
-  }),
-).annotate({
-  identifier: "QuickSearchResponseSpacesItem",
-}) as any as S.Schema<QuickSearchResponseSpacesItem>;
-
-export type QuickSearchResponseSpacesList =
-  Array<QuickSearchResponseSpacesItem>;
-export const QuickSearchResponseSpacesList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseSpacesItem,
-) as any as S.Schema<QuickSearchResponseSpacesList>;
-
-export interface QuickSearchResponseUsersItem {
-  _id: string;
-  avatarUrl: string;
-  fullname: string;
-  user: string;
-}
-export const QuickSearchResponseUsersItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    avatarUrl: S.String,
-    fullname: S.String,
-    user: S.String,
-  }),
-).annotate({
-  identifier: "QuickSearchResponseUsersItem",
-}) as any as S.Schema<QuickSearchResponseUsersItem>;
-
-export type QuickSearchResponseUsersList = Array<QuickSearchResponseUsersItem>;
-export const QuickSearchResponseUsersList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseUsersItem,
-) as any as S.Schema<QuickSearchResponseUsersList>;
-
-export interface QuickSearchResponsePapersItem {
-  _id: string;
-  id: string;
-  private?: boolean;
-}
-export const QuickSearchResponsePapersItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    id: S.String,
-    private: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "QuickSearchResponsePapersItem",
-}) as any as S.Schema<QuickSearchResponsePapersItem>;
-
-export type QuickSearchResponsePapersList =
-  Array<QuickSearchResponsePapersItem>;
-export const QuickSearchResponsePapersList = /*@__PURE__*/ S.Array(
-  QuickSearchResponsePapersItem,
-) as any as S.Schema<QuickSearchResponsePapersList>;
-
-export interface QuickSearchResponseCollectionsItem {
-  _id: string;
-  title: string;
-  description?: string;
-}
-export const QuickSearchResponseCollectionsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _id: S.String,
-    title: S.String,
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "QuickSearchResponseCollectionsItem",
-}) as any as S.Schema<QuickSearchResponseCollectionsItem>;
-
-export type QuickSearchResponseCollectionsList =
-  Array<QuickSearchResponseCollectionsItem>;
-export const QuickSearchResponseCollectionsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseCollectionsItem,
-) as any as S.Schema<QuickSearchResponseCollectionsList>;
-
-export type QuickSearchResponseBucketsItem = QuickSearchResponsePapersItem;
-export const QuickSearchResponseBucketsItem = QuickSearchResponsePapersItem;
-
-export type QuickSearchResponseBucketsList =
-  Array<QuickSearchResponsePapersItem>;
-export const QuickSearchResponseBucketsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponsePapersItem,
-) as any as S.Schema<QuickSearchResponseBucketsList>;
-
-export type QuickSearchResponseKernelsItem = QuickSearchResponsePapersItem;
-export const QuickSearchResponseKernelsItem = QuickSearchResponsePapersItem;
-
-export type QuickSearchResponseKernelsList =
-  Array<QuickSearchResponsePapersItem>;
-export const QuickSearchResponseKernelsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponsePapersItem,
-) as any as S.Schema<QuickSearchResponseKernelsList>;
-
-export interface QuickSearchResponse {
-  datasets: QuickSearchResponseDatasetsList;
-  datasetsCount: number;
-  models: QuickSearchResponseModelsList;
-  modelsCount: number;
-  orgs: QuickSearchResponseOrgsList;
-  q: string;
-  spaces: QuickSearchResponseSpacesList;
-  spacesCount: number;
-  users: QuickSearchResponseUsersList;
-  papers: QuickSearchResponsePapersList;
-  papersCount: number;
-  collections: QuickSearchResponseCollectionsList;
-  collectionsCount: number;
-  buckets: QuickSearchResponseBucketsList;
-  bucketsCount: number;
-  kernels: QuickSearchResponseKernelsList;
-  kernelsCount: number;
-}
-export const QuickSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    datasets: QuickSearchResponseDatasetsList,
-    datasetsCount: S.Number,
-    models: QuickSearchResponseModelsList,
-    modelsCount: S.Number,
-    orgs: QuickSearchResponseOrgsList,
-    q: S.String,
-    spaces: QuickSearchResponseSpacesList,
-    spacesCount: S.Number,
-    users: QuickSearchResponseUsersList,
-    papers: QuickSearchResponsePapersList,
-    papersCount: S.Number,
-    collections: QuickSearchResponseCollectionsList,
-    collectionsCount: S.Number,
-    buckets: QuickSearchResponseBucketsList,
-    bucketsCount: S.Number,
-    kernels: QuickSearchResponseKernelsList,
-    kernelsCount: S.Number,
-  }),
-).annotate({
-  identifier: "QuickSearchResponse",
-}) as any as S.Schema<QuickSearchResponse>;
-
 export type QuickSearchPostRequestLangCase0 =
   | "aa"
   | "ab"
@@ -1184,7 +302,7 @@ export type QuickSearchPostRequestLibraryCase0 =
   | "keras"
   | "tf-keras"
   | "keras-hub"
-  | "kerasformers"
+  | "zeromodels"
   | "kernels"
   | "kimi-audio"
   | "kittentts"
@@ -1275,6 +393,7 @@ export type QuickSearchPostRequestLibraryCase0 =
   | "self-forcing"
   | "sentence-transformers"
   | "setfit"
+  | "shadow"
   | "sklearn"
   | "spacy"
   | "span-marker"
@@ -1350,7 +469,8 @@ export type QuickSearchPostRequestTypeCase0Item =
   | "paper"
   | "collection"
   | "bucket"
-  | "kernel";
+  | "kernel"
+  | "blog";
 export const QuickSearchPostRequestTypeCase0Item = /*@__PURE__*/ S.String;
 
 export type QuickSearchPostRequestTypeCase0List = Array<
@@ -1505,7 +625,7 @@ export type QuickSearchPostRequestPipelines =
 export const QuickSearchPostRequestPipelines =
   /*@__PURE__*/ S.Unknown as any as S.Schema<QuickSearchPostRequestPipelines>;
 
-/** Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo */
+/** Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug */
 export type QuickSearchPostRequestExcludeList = Array<string>;
 export const QuickSearchPostRequestExcludeList = /*@__PURE__*/ S.Array(
   S.String,
@@ -1579,91 +699,198 @@ export const QuickSearchPostRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuickSearchPostRequest",
 }) as any as S.Schema<QuickSearchPostRequest>;
 
-export type QuickSearchPostResponseDatasetsItem =
-  QuickSearchResponseDatasetsItem;
-export const QuickSearchPostResponseDatasetsItem =
-  QuickSearchResponseDatasetsItem;
+export interface QuickSearchPostResponseDatasetsItem {
+  _id: string;
+  id: string;
+  private?: boolean;
+  trendingWeight: number;
+}
+export const QuickSearchPostResponseDatasetsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    id: S.String,
+    private: S.optional(S.Boolean),
+    trendingWeight: S.Number,
+  }),
+).annotate({
+  identifier: "QuickSearchPostResponseDatasetsItem",
+}) as any as S.Schema<QuickSearchPostResponseDatasetsItem>;
 
 export type QuickSearchPostResponseDatasetsList =
-  Array<QuickSearchResponseDatasetsItem>;
+  Array<QuickSearchPostResponseDatasetsItem>;
 export const QuickSearchPostResponseDatasetsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseDatasetsItem,
+  QuickSearchPostResponseDatasetsItem,
 ) as any as S.Schema<QuickSearchPostResponseDatasetsList>;
 
-export type QuickSearchPostResponseModelsItem = QuickSearchResponseDatasetsItem;
+export type QuickSearchPostResponseModelsItem =
+  QuickSearchPostResponseDatasetsItem;
 export const QuickSearchPostResponseModelsItem =
-  QuickSearchResponseDatasetsItem;
+  QuickSearchPostResponseDatasetsItem;
 
 export type QuickSearchPostResponseModelsList =
-  Array<QuickSearchResponseDatasetsItem>;
+  Array<QuickSearchPostResponseDatasetsItem>;
 export const QuickSearchPostResponseModelsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseDatasetsItem,
+  QuickSearchPostResponseDatasetsItem,
 ) as any as S.Schema<QuickSearchPostResponseModelsList>;
 
-export type QuickSearchPostResponseOrgsItem = QuickSearchResponseOrgsItem;
-export const QuickSearchPostResponseOrgsItem = QuickSearchResponseOrgsItem;
+export interface QuickSearchPostResponseOrgsItem {
+  _id: string;
+  avatarUrl: string;
+  fullname: string;
+  name: string;
+}
+export const QuickSearchPostResponseOrgsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    avatarUrl: S.String,
+    fullname: S.String,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "QuickSearchPostResponseOrgsItem",
+}) as any as S.Schema<QuickSearchPostResponseOrgsItem>;
 
 export type QuickSearchPostResponseOrgsList =
-  Array<QuickSearchResponseOrgsItem>;
+  Array<QuickSearchPostResponseOrgsItem>;
 export const QuickSearchPostResponseOrgsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseOrgsItem,
+  QuickSearchPostResponseOrgsItem,
 ) as any as S.Schema<QuickSearchPostResponseOrgsList>;
 
-export type QuickSearchPostResponseSpacesItem = QuickSearchResponseSpacesItem;
-export const QuickSearchPostResponseSpacesItem = QuickSearchResponseSpacesItem;
+export interface QuickSearchPostResponseSpacesItem {
+  _id: string;
+  id: string;
+  private?: boolean;
+  emoji: string;
+  trendingWeight: number;
+}
+export const QuickSearchPostResponseSpacesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    id: S.String,
+    private: S.optional(S.Boolean),
+    emoji: S.String,
+    trendingWeight: S.Number,
+  }),
+).annotate({
+  identifier: "QuickSearchPostResponseSpacesItem",
+}) as any as S.Schema<QuickSearchPostResponseSpacesItem>;
 
 export type QuickSearchPostResponseSpacesList =
-  Array<QuickSearchResponseSpacesItem>;
+  Array<QuickSearchPostResponseSpacesItem>;
 export const QuickSearchPostResponseSpacesList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseSpacesItem,
+  QuickSearchPostResponseSpacesItem,
 ) as any as S.Schema<QuickSearchPostResponseSpacesList>;
 
-export type QuickSearchPostResponseUsersItem = QuickSearchResponseUsersItem;
-export const QuickSearchPostResponseUsersItem = QuickSearchResponseUsersItem;
+export interface QuickSearchPostResponseUsersItem {
+  _id: string;
+  avatarUrl: string;
+  fullname: string;
+  user: string;
+}
+export const QuickSearchPostResponseUsersItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    avatarUrl: S.String,
+    fullname: S.String,
+    user: S.String,
+  }),
+).annotate({
+  identifier: "QuickSearchPostResponseUsersItem",
+}) as any as S.Schema<QuickSearchPostResponseUsersItem>;
 
 export type QuickSearchPostResponseUsersList =
-  Array<QuickSearchResponseUsersItem>;
+  Array<QuickSearchPostResponseUsersItem>;
 export const QuickSearchPostResponseUsersList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseUsersItem,
+  QuickSearchPostResponseUsersItem,
 ) as any as S.Schema<QuickSearchPostResponseUsersList>;
 
-export type QuickSearchPostResponsePapersItem = QuickSearchResponsePapersItem;
-export const QuickSearchPostResponsePapersItem = QuickSearchResponsePapersItem;
+export interface QuickSearchPostResponsePapersItem {
+  _id: string;
+  id: string;
+  private?: boolean;
+}
+export const QuickSearchPostResponsePapersItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    id: S.String,
+    private: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "QuickSearchPostResponsePapersItem",
+}) as any as S.Schema<QuickSearchPostResponsePapersItem>;
 
 export type QuickSearchPostResponsePapersList =
-  Array<QuickSearchResponsePapersItem>;
+  Array<QuickSearchPostResponsePapersItem>;
 export const QuickSearchPostResponsePapersList = /*@__PURE__*/ S.Array(
-  QuickSearchResponsePapersItem,
+  QuickSearchPostResponsePapersItem,
 ) as any as S.Schema<QuickSearchPostResponsePapersList>;
 
-export type QuickSearchPostResponseCollectionsItem =
-  QuickSearchResponseCollectionsItem;
-export const QuickSearchPostResponseCollectionsItem =
-  QuickSearchResponseCollectionsItem;
+export interface QuickSearchPostResponseCollectionsItem {
+  _id: string;
+  title: string;
+  description?: string;
+}
+export const QuickSearchPostResponseCollectionsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      _id: S.String,
+      title: S.String,
+      description: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "QuickSearchPostResponseCollectionsItem",
+}) as any as S.Schema<QuickSearchPostResponseCollectionsItem>;
 
 export type QuickSearchPostResponseCollectionsList =
-  Array<QuickSearchResponseCollectionsItem>;
+  Array<QuickSearchPostResponseCollectionsItem>;
 export const QuickSearchPostResponseCollectionsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponseCollectionsItem,
+  QuickSearchPostResponseCollectionsItem,
 ) as any as S.Schema<QuickSearchPostResponseCollectionsList>;
 
-export type QuickSearchPostResponseBucketsItem = QuickSearchResponsePapersItem;
-export const QuickSearchPostResponseBucketsItem = QuickSearchResponsePapersItem;
+export type QuickSearchPostResponseBucketsItem =
+  QuickSearchPostResponsePapersItem;
+export const QuickSearchPostResponseBucketsItem =
+  QuickSearchPostResponsePapersItem;
 
 export type QuickSearchPostResponseBucketsList =
-  Array<QuickSearchResponsePapersItem>;
+  Array<QuickSearchPostResponsePapersItem>;
 export const QuickSearchPostResponseBucketsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponsePapersItem,
+  QuickSearchPostResponsePapersItem,
 ) as any as S.Schema<QuickSearchPostResponseBucketsList>;
 
-export type QuickSearchPostResponseKernelsItem = QuickSearchResponsePapersItem;
-export const QuickSearchPostResponseKernelsItem = QuickSearchResponsePapersItem;
+export type QuickSearchPostResponseKernelsItem =
+  QuickSearchPostResponsePapersItem;
+export const QuickSearchPostResponseKernelsItem =
+  QuickSearchPostResponsePapersItem;
 
 export type QuickSearchPostResponseKernelsList =
-  Array<QuickSearchResponsePapersItem>;
+  Array<QuickSearchPostResponsePapersItem>;
 export const QuickSearchPostResponseKernelsList = /*@__PURE__*/ S.Array(
-  QuickSearchResponsePapersItem,
+  QuickSearchPostResponsePapersItem,
 ) as any as S.Schema<QuickSearchPostResponseKernelsList>;
+
+export interface QuickSearchPostResponseBlogsItem {
+  _id: string;
+  slug: string;
+  title: string;
+  private: boolean;
+}
+export const QuickSearchPostResponseBlogsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _id: S.String,
+    slug: S.String,
+    title: S.String,
+    private: S.Boolean,
+  }),
+).annotate({
+  identifier: "QuickSearchPostResponseBlogsItem",
+}) as any as S.Schema<QuickSearchPostResponseBlogsItem>;
+
+export type QuickSearchPostResponseBlogsList =
+  Array<QuickSearchPostResponseBlogsItem>;
+export const QuickSearchPostResponseBlogsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseBlogsItem,
+) as any as S.Schema<QuickSearchPostResponseBlogsList>;
 
 export interface QuickSearchPostResponse {
   datasets: QuickSearchPostResponseDatasetsList;
@@ -1683,6 +910,8 @@ export interface QuickSearchPostResponse {
   bucketsCount: number;
   kernels: QuickSearchPostResponseKernelsList;
   kernelsCount: number;
+  blogs: QuickSearchPostResponseBlogsList;
+  blogsCount: number;
 }
 export const QuickSearchPostResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1703,25 +932,834 @@ export const QuickSearchPostResponse = /*@__PURE__*/ S.suspend(() =>
     bucketsCount: S.Number,
     kernels: QuickSearchPostResponseKernelsList,
     kernelsCount: S.Number,
+    blogs: QuickSearchPostResponseBlogsList,
+    blogsCount: S.Number,
   }),
 ).annotate({
   identifier: "QuickSearchPostResponse",
 }) as any as S.Schema<QuickSearchPostResponse>;
 
-export type QuickSearchError = HuggingFaceOpError;
-/** Quick search Quick search for models, datasets, spaces, orgs, users, papers, collections, and buckets */
-export const quickSearch: API.OperationMethod<
-  QuickSearchRequest,
-  QuickSearchResponse,
-  QuickSearchError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QuickSearchRequest,
-  output: QuickSearchResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
+export type SearchQuickRequestLangCase0 =
+  | "aa"
+  | "ab"
+  | "ae"
+  | "af"
+  | "ak"
+  | "am"
+  | "an"
+  | "ar"
+  | "as"
+  | "av"
+  | "ay"
+  | "az"
+  | "ba"
+  | "be"
+  | "bg"
+  | "bh"
+  | "bi"
+  | "bm"
+  | "bn"
+  | "bo"
+  | "br"
+  | "bs"
+  | "ca"
+  | "ce"
+  | "ch"
+  | "co"
+  | "cr"
+  | "cs"
+  | "cu"
+  | "cv"
+  | "cy"
+  | "da"
+  | "de"
+  | "dv"
+  | "dz"
+  | "ee"
+  | "el"
+  | "en"
+  | "eo"
+  | "es"
+  | "et"
+  | "eu"
+  | "fa"
+  | "ff"
+  | "fi"
+  | "fj"
+  | "fo"
+  | "fr"
+  | "fy"
+  | "ga"
+  | "gd"
+  | "gl"
+  | "gn"
+  | "gu"
+  | "gv"
+  | "ha"
+  | "he"
+  | "hi"
+  | "ho"
+  | "hr"
+  | "ht"
+  | "hu"
+  | "hy"
+  | "hz"
+  | "ia"
+  | "id"
+  | "ie"
+  | "ig"
+  | "ii"
+  | "ik"
+  | "io"
+  | "is"
+  | "it"
+  | "iu"
+  | "ja"
+  | "jv"
+  | "ka"
+  | "kg"
+  | "ki"
+  | "kj"
+  | "kk"
+  | "kl"
+  | "km"
+  | "kn"
+  | "ko"
+  | "kr"
+  | "ks"
+  | "ku"
+  | "kv"
+  | "kw"
+  | "ky"
+  | "la"
+  | "lb"
+  | "lg"
+  | "li"
+  | "ln"
+  | "lo"
+  | "lt"
+  | "lu"
+  | "lv"
+  | "mg"
+  | "mh"
+  | "mi"
+  | "mk"
+  | "ml"
+  | "mn"
+  | "mr"
+  | "ms"
+  | "mt"
+  | "my"
+  | "na"
+  | "nb"
+  | "nd"
+  | "ne"
+  | "ng"
+  | "nl"
+  | "nn"
+  | "no"
+  | "nr"
+  | "nv"
+  | "ny"
+  | "oc"
+  | "oj"
+  | "om"
+  | "or"
+  | "os"
+  | "pa"
+  | "pi"
+  | "pl"
+  | "ps"
+  | "pt"
+  | "qu"
+  | "rm"
+  | "rn"
+  | "ro"
+  | "ru"
+  | "rw"
+  | "sa"
+  | "sc"
+  | "sd"
+  | "se"
+  | "sg"
+  | "si"
+  | "sk"
+  | "sl"
+  | "sm"
+  | "sn"
+  | "so"
+  | "sq"
+  | "sr"
+  | "ss"
+  | "st"
+  | "su"
+  | "sv"
+  | "sw"
+  | "ta"
+  | "te"
+  | "tg"
+  | "th"
+  | "ti"
+  | "tk"
+  | "tl"
+  | "tn"
+  | "to"
+  | "tr"
+  | "ts"
+  | "tt"
+  | "tw"
+  | "ty"
+  | "ug"
+  | "uk"
+  | "ur"
+  | "uz"
+  | "ve"
+  | "vi"
+  | "vo"
+  | "wa"
+  | "wo"
+  | "xh"
+  | "yi"
+  | "yo"
+  | "za"
+  | "zh"
+  | "zu";
+export const SearchQuickRequestLangCase0 = /*@__PURE__*/ S.String;
+
+export type SearchQuickRequestLang = SearchQuickRequestLangCase0 | string;
+export const SearchQuickRequestLang =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestLang>;
+
+export type SearchQuickRequestLibraryCase0 =
+  | "acestep"
+  | "adapter-transformers"
+  | "allennlp"
+  | "anemoi"
+  | "araclip"
+  | "aviation-ner"
+  | "asteroid"
+  | "audiocraft"
+  | "audioseal"
+  | "bagel-mot"
+  | "bboxmaskpose"
+  | "ben2"
+  | "bertopic"
+  | "big_vision"
+  | "bionemo"
+  | "birder"
+  | "birefnet"
+  | "bm25s"
+  | "boltzgen"
+  | "cancertathomev2"
+  | "cartesia_pytorch"
+  | "cartesia_mlx"
+  | "ccpfn"
+  | "champ"
+  | "chatterbox"
+  | "chaossim"
+  | "chat_tts"
+  | "chexmix"
+  | "chronos-forecasting"
+  | "clara"
+  | "clipscope"
+  | "cloud-agents"
+  | "collectorvision"
+  | "colipri"
+  | "cosyvoice"
+  | "cotracker"
+  | "colpali"
+  | "comet"
+  | "cortiq"
+  | "cosmos"
+  | "cxr-foundation"
+  | "deepforest"
+  | "depth-anything-v2"
+  | "depth-pro"
+  | "derm-foundation"
+  | "describe-anything"
+  | "dia-tts"
+  | "dia2"
+  | "diff-interpretation-tuning"
+  | "diffree"
+  | "diffusers"
+  | "diffusionkit"
+  | "docking-at-home"
+  | "doctr"
+  | "edsnlp"
+  | "elm"
+  | "encoderfile"
+  | "espnet"
+  | "eupe"
+  | "fairseq"
+  | "fastai"
+  | "fastprint"
+  | "fasttext"
+  | "fixer"
+  | "flair"
+  | "flextab"
+  | "fme"
+  | "gemma.cpp"
+  | "geometry-crafter"
+  | "gliner"
+  | "gliner2"
+  | "glm-tts"
+  | "glyph-byt5"
+  | "granite-library"
+  | "grok"
+  | "habibi-tts"
+  | "hallo"
+  | "minimax-h3"
+  | "hermes"
+  | "holomotion"
+  | "hezar"
+  | "htrflow"
+  | "hunyuan-dit"
+  | "hunyuan3d-2"
+  | "hunyuanworld-voyager"
+  | "hy-worldplay"
+  | "hy-world-2"
+  | "image-matching-models"
+  | "imstoucan"
+  | "index-tts"
+  | "infinitetalk"
+  | "infinite-you"
+  | "intellifold"
+  | "ising-decoding"
+  | "keras"
+  | "tf-keras"
+  | "keras-hub"
+  | "zeromodels"
+  | "kernels"
+  | "kimi-audio"
+  | "kittentts"
+  | "kronos"
+  | "k2"
+  | "lyra-2.0"
+  | "lagernvs"
+  | "ltx"
+  | "lightning-ir"
+  | "litert"
+  | "litert-lm"
+  | "lerobot"
+  | "lightglue"
+  | "liveportrait"
+  | "longcat-video-avatar-1.5"
+  | "llama-cpp-python"
+  | "mini-omni2"
+  | "mindspore"
+  | "magi-1"
+  | "magenta-realtime"
+  | "magenta-realtime-2"
+  | "mamba-ssm"
+  | "manas-1"
+  | "mars5-tts"
+  | "matanyone"
+  | "memra"
+  | "mesh-anything"
+  | "merlin"
+  | "medvae"
+  | "mflux"
+  | "mitie"
+  | "ml-agents"
+  | "ml-sharp"
+  | "mlx"
+  | "mlx-image"
+  | "mlc-llm"
+  | "model2vec"
+  | "mobilint"
+  | "montreal-forced-aligner"
+  | "moshi"
+  | "mtvcraft"
+  | "multimolecule"
+  | "nemo"
+  | "ninfer"
+  | "nobg"
+  | "nv-medtech"
+  | "open-oasis"
+  | "open_clip"
+  | "openasr"
+  | "opendde"
+  | "openpeerllm"
+  | "open-sora"
+  | "outetts"
+  | "paddlenlp"
+  | "PaddleOCR"
+  | "peft"
+  | "perception-encoder"
+  | "phantom-wan"
+  | "piper"
+  | "pocket-tts"
+  | "pruna-ai"
+  | "pxia"
+  | "pyannote-audio"
+  | "py-feat"
+  | "pythae"
+  | "quantumpeer"
+  | "qwen3_tts"
+  | "recurrentgemma"
+  | "relik"
+  | "refiners"
+  | "renderformer"
+  | "reverb"
+  | "rkllm"
+  | "robo-orchard-lab"
+  | "routee-powertrain"
+  | "rwkv"
+  | "saelens"
+  | "scail-2"
+  | "sam2"
+  | "sam-3d-body"
+  | "sam-3d-objects"
+  | "same"
+  | "sample-factory"
+  | "sap-rpt-1-oss"
+  | "sapiens"
+  | "sapiens2"
+  | "seedvr"
+  | "self-forcing"
+  | "sentence-transformers"
+  | "setfit"
+  | "shadow"
+  | "sklearn"
+  | "spacy"
+  | "span-marker"
+  | "speechbrain"
+  | "ssr-speech"
+  | "stable-audio-3"
+  | "stable-audio-tools"
+  | "monkeyocr"
+  | "diffusion-single-file"
+  | "seed-story"
+  | "skala"
+  | "soloaudio"
+  | "songbloom"
+  | "stable-baselines3"
+  | "stanza"
+  | "supertonic"
+  | "swarmformer"
+  | "synthefy-migas"
+  | "f5-tts"
+  | "genmo"
+  | "tencent-song-generation"
+  | "tensorflowtts"
+  | "tensorrt"
+  | "tabpfn"
+  | "terratorch"
+  | "tic-clip"
+  | "timesfm"
+  | "timee-ts"
+  | "timm"
+  | "tirex"
+  | "tirex-2"
+  | "torchgeo"
+  | "transformers"
+  | "transformers.js"
+  | "trellis"
+  | "trellis2"
+  | "tunejury"
+  | "ultralytics"
+  | "univa"
+  | "uni-3dar"
+  | "unity-sentis"
+  | "sana"
+  | "videoprism"
+  | "vfi-mamba"
+  | "vismatch"
+  | "lvface"
+  | "voicecraft"
+  | "voxcpm"
+  | "vui"
+  | "vibevoice"
+  | "videox_fun"
+  | "wan2.2"
+  | "wham"
+  | "whisperkit"
+  | "yolov10"
+  | "yolov26"
+  | "zonos"
+  | "3dtopia-xl";
+export const SearchQuickRequestLibraryCase0 = /*@__PURE__*/ S.String;
+
+export type SearchQuickRequestLibrary = SearchQuickRequestLibraryCase0 | string;
+export const SearchQuickRequestLibrary =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestLibrary>;
+
+export type SearchQuickRequestTypeCase0Item =
+  | "model"
+  | "dataset"
+  | "space"
+  | "org"
+  | "user"
+  | "paper"
+  | "collection"
+  | "bucket"
+  | "kernel"
+  | "blog";
+export const SearchQuickRequestTypeCase0Item = /*@__PURE__*/ S.String;
+
+export type SearchQuickRequestTypeCase0List = Array<
+  SearchQuickRequestTypeCase0Item | (string & {})
+>;
+export const SearchQuickRequestTypeCase0List = /*@__PURE__*/ S.Array(
+  SearchQuickRequestTypeCase0Item,
+) as any as S.Schema<SearchQuickRequestTypeCase0List>;
+
+export type SearchQuickRequestTypeCase1List = Array<string>;
+export const SearchQuickRequestTypeCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchQuickRequestTypeCase1List>;
+
+export type SearchQuickRequestType =
+  | SearchQuickRequestTypeCase0List
+  | SearchQuickRequestTypeCase1List;
+export const SearchQuickRequestType =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestType>;
+
+export type SearchQuickRequestOrgsFilterCase0Item = "own" | "unwatched";
+export const SearchQuickRequestOrgsFilterCase0Item = /*@__PURE__*/ S.String;
+
+export type SearchQuickRequestOrgsFilterCase0List = Array<
+  SearchQuickRequestOrgsFilterCase0Item | (string & {})
+>;
+export const SearchQuickRequestOrgsFilterCase0List = /*@__PURE__*/ S.Array(
+  SearchQuickRequestOrgsFilterCase0Item,
+) as any as S.Schema<SearchQuickRequestOrgsFilterCase0List>;
+
+export type SearchQuickRequestOrgsFilterCase1List = Array<string>;
+export const SearchQuickRequestOrgsFilterCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchQuickRequestOrgsFilterCase1List>;
+
+export type SearchQuickRequestOrgsFilter =
+  | SearchQuickRequestOrgsFilterCase0List
+  | SearchQuickRequestOrgsFilterCase1List;
+export const SearchQuickRequestOrgsFilter =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestOrgsFilter>;
+
+export type SearchQuickRequestReposFilterCase0Item =
+  | "skip_disabled"
+  | "skip_gated"
+  | "own"
+  | "own_orgs"
+  | "granted_access";
+export const SearchQuickRequestReposFilterCase0Item = /*@__PURE__*/ S.String;
+
+export type SearchQuickRequestReposFilterCase0List = Array<
+  SearchQuickRequestReposFilterCase0Item | (string & {})
+>;
+export const SearchQuickRequestReposFilterCase0List = /*@__PURE__*/ S.Array(
+  SearchQuickRequestReposFilterCase0Item,
+) as any as S.Schema<SearchQuickRequestReposFilterCase0List>;
+
+export type SearchQuickRequestReposFilterCase1List = Array<string>;
+export const SearchQuickRequestReposFilterCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchQuickRequestReposFilterCase1List>;
+
+export type SearchQuickRequestReposFilter =
+  | SearchQuickRequestReposFilterCase0List
+  | SearchQuickRequestReposFilterCase1List;
+export const SearchQuickRequestReposFilter =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestReposFilter>;
+
+export type SearchQuickRequestPipelinesCase0Item =
+  | "text-classification"
+  | "token-classification"
+  | "table-question-answering"
+  | "question-answering"
+  | "zero-shot-classification"
+  | "translation"
+  | "summarization"
+  | "feature-extraction"
+  | "text-generation"
+  | "fill-mask"
+  | "sentence-similarity"
+  | "text-to-speech"
+  | "text-to-audio"
+  | "automatic-speech-recognition"
+  | "audio-to-audio"
+  | "audio-classification"
+  | "audio-text-to-text"
+  | "voice-activity-detection"
+  | "depth-estimation"
+  | "image-classification"
+  | "object-detection"
+  | "image-segmentation"
+  | "text-to-image"
+  | "image-to-text"
+  | "image-to-image"
+  | "image-to-video"
+  | "unconditional-image-generation"
+  | "video-classification"
+  | "reinforcement-learning"
+  | "robotics"
+  | "tabular-classification"
+  | "tabular-regression"
+  | "tabular-to-text"
+  | "table-to-text"
+  | "multiple-choice"
+  | "text-ranking"
+  | "text-retrieval"
+  | "time-series-forecasting"
+  | "text-to-video"
+  | "image-text-to-text"
+  | "image-text-to-image"
+  | "image-text-to-video"
+  | "visual-question-answering"
+  | "document-question-answering"
+  | "zero-shot-image-classification"
+  | "graph-ml"
+  | "mask-generation"
+  | "zero-shot-object-detection"
+  | "text-to-3d"
+  | "image-to-3d"
+  | "image-feature-extraction"
+  | "video-text-to-text"
+  | "keypoint-detection"
+  | "visual-document-retrieval"
+  | "any-to-any"
+  | "video-to-video"
+  | "other";
+export const SearchQuickRequestPipelinesCase0Item = /*@__PURE__*/ S.String;
+
+export type SearchQuickRequestPipelinesCase0List = Array<
+  SearchQuickRequestPipelinesCase0Item | (string & {})
+>;
+export const SearchQuickRequestPipelinesCase0List = /*@__PURE__*/ S.Array(
+  SearchQuickRequestPipelinesCase0Item,
+) as any as S.Schema<SearchQuickRequestPipelinesCase0List>;
+
+export type SearchQuickRequestPipelinesCase1Case1List = Array<string>;
+export const SearchQuickRequestPipelinesCase1Case1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchQuickRequestPipelinesCase1Case1List>;
+
+export type SearchQuickRequestPipelinesCase1 =
+  | string
+  | SearchQuickRequestPipelinesCase1Case1List;
+export const SearchQuickRequestPipelinesCase1 =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestPipelinesCase1>;
+
+/** Comma-separated or array of pipeline types */
+export type SearchQuickRequestPipelines =
+  | SearchQuickRequestPipelinesCase0List
+  | SearchQuickRequestPipelinesCase1;
+export const SearchQuickRequestPipelines =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestPipelines>;
+
+/** Array of excluded resources: spaces/repo, models/repo, datasets/repo, papers/paperId, collections/collectionId, users/username, orgs/orgName, buckets/bucketName, kernels/repo, blog/blogSlug */
+export type SearchQuickRequestExcludeList = Array<string>;
+export const SearchQuickRequestExcludeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchQuickRequestExcludeList>;
+
+export type SearchQuickRequestIncludeInvitees = boolean | unknown;
+export const SearchQuickRequestIncludeInvitees =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestIncludeInvitees>;
+
+export type SearchQuickRequestRepoTypeCase0 =
+  | "dataset"
+  | "model"
+  | "space"
+  | "bucket"
+  | "kernel";
+export const SearchQuickRequestRepoTypeCase0 = /*@__PURE__*/ S.String;
+
+export type SearchQuickRequestRepoType =
+  | SearchQuickRequestRepoTypeCase0
+  | string;
+export const SearchQuickRequestRepoType =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<SearchQuickRequestRepoType>;
+
+export type SearchQuickRequestSpacesTagsList = Array<string>;
+export const SearchQuickRequestSpacesTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchQuickRequestSpacesTagsList>;
+
+export interface SearchQuickRequest {
+  q?: string;
+  limit?: number;
+  lang?: SearchQuickRequestLang;
+  library?: SearchQuickRequestLibrary;
+  type?: SearchQuickRequestType;
+  orgsFilter?: SearchQuickRequestOrgsFilter;
+  reposFilter?: SearchQuickRequestReposFilter;
+  pipelines?: SearchQuickRequestPipelines;
+  exclude?: SearchQuickRequestExcludeList;
+  namespace?: string;
+  includeInvitees?: SearchQuickRequestIncludeInvitees;
+  repoName?: string;
+  repoType?: SearchQuickRequestRepoType;
+  discussionId?: string;
+  discussionCollectionName?: string;
+  spacesTags?: SearchQuickRequestSpacesTagsList;
+}
+export const SearchQuickRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    q: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    lang: S.optional(SearchQuickRequestLang.pipe(T.Query())),
+    library: S.optional(SearchQuickRequestLibrary.pipe(T.Query())),
+    type: S.optional(SearchQuickRequestType.pipe(T.Query())),
+    orgsFilter: S.optional(SearchQuickRequestOrgsFilter.pipe(T.Query())),
+    reposFilter: S.optional(SearchQuickRequestReposFilter.pipe(T.Query())),
+    pipelines: S.optional(SearchQuickRequestPipelines.pipe(T.Query())),
+    exclude: S.optional(SearchQuickRequestExcludeList.pipe(T.Query())),
+    namespace: S.optional(S.String.pipe(T.Query())),
+    includeInvitees: S.optional(
+      SearchQuickRequestIncludeInvitees.pipe(T.Query()),
+    ),
+    repoName: S.optional(S.String.pipe(T.Query())),
+    repoType: S.optional(SearchQuickRequestRepoType.pipe(T.Query())),
+    discussionId: S.optional(S.String.pipe(T.Query())),
+    discussionCollectionName: S.optional(S.String.pipe(T.Query())),
+    spacesTags: S.optional(SearchQuickRequestSpacesTagsList.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/api/quicksearch", code: 200 })),
+).annotate({
+  identifier: "SearchQuickRequest",
+}) as any as S.Schema<SearchQuickRequest>;
+
+export type SearchQuickResponseDatasetsItem =
+  QuickSearchPostResponseDatasetsItem;
+export const SearchQuickResponseDatasetsItem =
+  QuickSearchPostResponseDatasetsItem;
+
+export type SearchQuickResponseDatasetsList =
+  Array<QuickSearchPostResponseDatasetsItem>;
+export const SearchQuickResponseDatasetsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseDatasetsItem,
+) as any as S.Schema<SearchQuickResponseDatasetsList>;
+
+export type SearchQuickResponseModelsItem = QuickSearchPostResponseDatasetsItem;
+export const SearchQuickResponseModelsItem =
+  QuickSearchPostResponseDatasetsItem;
+
+export type SearchQuickResponseModelsList =
+  Array<QuickSearchPostResponseDatasetsItem>;
+export const SearchQuickResponseModelsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseDatasetsItem,
+) as any as S.Schema<SearchQuickResponseModelsList>;
+
+export type SearchQuickResponseOrgsItem = QuickSearchPostResponseOrgsItem;
+export const SearchQuickResponseOrgsItem = QuickSearchPostResponseOrgsItem;
+
+export type SearchQuickResponseOrgsList =
+  Array<QuickSearchPostResponseOrgsItem>;
+export const SearchQuickResponseOrgsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseOrgsItem,
+) as any as S.Schema<SearchQuickResponseOrgsList>;
+
+export type SearchQuickResponseSpacesItem = QuickSearchPostResponseSpacesItem;
+export const SearchQuickResponseSpacesItem = QuickSearchPostResponseSpacesItem;
+
+export type SearchQuickResponseSpacesList =
+  Array<QuickSearchPostResponseSpacesItem>;
+export const SearchQuickResponseSpacesList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseSpacesItem,
+) as any as S.Schema<SearchQuickResponseSpacesList>;
+
+export type SearchQuickResponseUsersItem = QuickSearchPostResponseUsersItem;
+export const SearchQuickResponseUsersItem = QuickSearchPostResponseUsersItem;
+
+export type SearchQuickResponseUsersList =
+  Array<QuickSearchPostResponseUsersItem>;
+export const SearchQuickResponseUsersList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseUsersItem,
+) as any as S.Schema<SearchQuickResponseUsersList>;
+
+export type SearchQuickResponsePapersItem = QuickSearchPostResponsePapersItem;
+export const SearchQuickResponsePapersItem = QuickSearchPostResponsePapersItem;
+
+export type SearchQuickResponsePapersList =
+  Array<QuickSearchPostResponsePapersItem>;
+export const SearchQuickResponsePapersList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponsePapersItem,
+) as any as S.Schema<SearchQuickResponsePapersList>;
+
+export type SearchQuickResponseCollectionsItem =
+  QuickSearchPostResponseCollectionsItem;
+export const SearchQuickResponseCollectionsItem =
+  QuickSearchPostResponseCollectionsItem;
+
+export type SearchQuickResponseCollectionsList =
+  Array<QuickSearchPostResponseCollectionsItem>;
+export const SearchQuickResponseCollectionsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseCollectionsItem,
+) as any as S.Schema<SearchQuickResponseCollectionsList>;
+
+export type SearchQuickResponseBucketsItem = QuickSearchPostResponsePapersItem;
+export const SearchQuickResponseBucketsItem = QuickSearchPostResponsePapersItem;
+
+export type SearchQuickResponseBucketsList =
+  Array<QuickSearchPostResponsePapersItem>;
+export const SearchQuickResponseBucketsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponsePapersItem,
+) as any as S.Schema<SearchQuickResponseBucketsList>;
+
+export type SearchQuickResponseKernelsItem = QuickSearchPostResponsePapersItem;
+export const SearchQuickResponseKernelsItem = QuickSearchPostResponsePapersItem;
+
+export type SearchQuickResponseKernelsList =
+  Array<QuickSearchPostResponsePapersItem>;
+export const SearchQuickResponseKernelsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponsePapersItem,
+) as any as S.Schema<SearchQuickResponseKernelsList>;
+
+export type SearchQuickResponseBlogsItem = QuickSearchPostResponseBlogsItem;
+export const SearchQuickResponseBlogsItem = QuickSearchPostResponseBlogsItem;
+
+export type SearchQuickResponseBlogsList =
+  Array<QuickSearchPostResponseBlogsItem>;
+export const SearchQuickResponseBlogsList = /*@__PURE__*/ S.Array(
+  QuickSearchPostResponseBlogsItem,
+) as any as S.Schema<SearchQuickResponseBlogsList>;
+
+export interface SearchQuickResponse {
+  datasets: SearchQuickResponseDatasetsList;
+  datasetsCount: number;
+  models: SearchQuickResponseModelsList;
+  modelsCount: number;
+  orgs: SearchQuickResponseOrgsList;
+  q: string;
+  spaces: SearchQuickResponseSpacesList;
+  spacesCount: number;
+  users: SearchQuickResponseUsersList;
+  papers: SearchQuickResponsePapersList;
+  papersCount: number;
+  collections: SearchQuickResponseCollectionsList;
+  collectionsCount: number;
+  buckets: SearchQuickResponseBucketsList;
+  bucketsCount: number;
+  kernels: SearchQuickResponseKernelsList;
+  kernelsCount: number;
+  blogs: SearchQuickResponseBlogsList;
+  blogsCount: number;
+}
+export const SearchQuickResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    datasets: SearchQuickResponseDatasetsList,
+    datasetsCount: S.Number,
+    models: SearchQuickResponseModelsList,
+    modelsCount: S.Number,
+    orgs: SearchQuickResponseOrgsList,
+    q: S.String,
+    spaces: SearchQuickResponseSpacesList,
+    spacesCount: S.Number,
+    users: SearchQuickResponseUsersList,
+    papers: SearchQuickResponsePapersList,
+    papersCount: S.Number,
+    collections: SearchQuickResponseCollectionsList,
+    collectionsCount: S.Number,
+    buckets: SearchQuickResponseBucketsList,
+    bucketsCount: S.Number,
+    kernels: SearchQuickResponseKernelsList,
+    kernelsCount: S.Number,
+    blogs: SearchQuickResponseBlogsList,
+    blogsCount: S.Number,
+  }),
+).annotate({
+  identifier: "SearchQuickResponse",
+}) as any as S.Schema<SearchQuickResponse>;
 
 export type QuickSearchPostError = HuggingFaceOpError;
 /** Quick search Quick search for models, datasets, spaces, orgs, users, papers, collections, and buckets */
@@ -1733,6 +1771,21 @@ export const quickSearchPost: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: QuickSearchPostRequest,
   output: QuickSearchPostResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchQuickError = HuggingFaceOpError;
+/** Quick search Quick search for models, datasets, spaces, orgs, users, papers, collections, and buckets */
+export const searchQuick: API.OperationMethod<
+  SearchQuickRequest,
+  SearchQuickResponse,
+  SearchQuickError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchQuickRequest,
+  output: SearchQuickResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

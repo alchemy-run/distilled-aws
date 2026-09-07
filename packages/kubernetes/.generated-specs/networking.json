@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.networking#GetNetworkingApiGroup": {
+    "com.kubernetes.networking#GetNetworkingAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.networking#GetNetworkingV1ApiResources": {
+    "com.kubernetes.networking#GetNetworkingV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2101,7 +2102,7 @@
         "smithy.api#documentation": "list or watch objects of kind Ingress"
       }
     },
-    "com.kubernetes.networking#ListNetworkingV1IpAddressRequest": {
+    "com.kubernetes.networking#ListNetworkingV1IPAddressRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -2317,10 +2318,10 @@
         "smithy.api#documentation": "items is the list of IPAddresses."
       }
     },
-    "com.kubernetes.networking#ListNetworkingV1IpAddress": {
+    "com.kubernetes.networking#ListNetworkingV1IPAddress": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListNetworkingV1IpAddressRequest"
+        "target": "com.kubernetes.networking#ListNetworkingV1IPAddressRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApiNetworkingV1IPAddressList"
@@ -2334,7 +2335,7 @@
         "smithy.api#documentation": "list or watch objects of kind IPAddress"
       }
     },
-    "com.kubernetes.networking#CreateNetworkingV1IpAddressRequest": {
+    "com.kubernetes.networking#CreateNetworkingV1IPAddressRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -2395,10 +2396,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#CreateNetworkingV1IpAddress": {
+    "com.kubernetes.networking#CreateNetworkingV1IPAddress": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#CreateNetworkingV1IpAddressRequest"
+        "target": "com.kubernetes.networking#CreateNetworkingV1IPAddressRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApiNetworkingV1IPAddress"
@@ -2429,7 +2430,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1CollectionIpAddressRequest": {
+    "com.kubernetes.networking#DeleteNetworkingV1CollectionIPAddressRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -2560,10 +2561,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1CollectionIpAddress": {
+    "com.kubernetes.networking#DeleteNetworkingV1CollectionIPAddress": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIpAddressRequest"
+        "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIPAddressRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1Status"
@@ -2719,7 +2720,7 @@
         "smithy.api#documentation": "replace the specified IPAddress"
       }
     },
-    "com.kubernetes.networking#PatchNetworkingV1IpAddressRequest": {
+    "com.kubernetes.networking#PatchNetworkingV1IPAddressRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2770,10 +2771,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#PatchNetworkingV1IpAddress": {
+    "com.kubernetes.networking#PatchNetworkingV1IPAddress": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#PatchNetworkingV1IpAddressRequest"
+        "target": "com.kubernetes.networking#PatchNetworkingV1IPAddressRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApiNetworkingV1IPAddress"
@@ -2807,7 +2808,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1IpAddressRequest": {
+    "com.kubernetes.networking#DeleteNetworkingV1IPAddressRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2883,10 +2884,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1IpAddress": {
+    "com.kubernetes.networking#DeleteNetworkingV1IPAddress": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#DeleteNetworkingV1IpAddressRequest"
+        "target": "com.kubernetes.networking#DeleteNetworkingV1IPAddressRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1Status"
@@ -5122,7 +5123,7 @@
         "smithy.api#documentation": "list or watch objects of kind NetworkPolicy"
       }
     },
-    "com.kubernetes.networking#ListNetworkingV1ServiceCidrRequest": {
+    "com.kubernetes.networking#ListNetworkingV1ServiceCIDRRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -5335,8 +5336,7 @@
         "message": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "message is a human readable message indicating details about the transition. This may be an empty string."
           }
         },
         "observedGeneration": {
@@ -5389,10 +5389,10 @@
         "smithy.api#documentation": "items is the list of ServiceCIDRs."
       }
     },
-    "com.kubernetes.networking#ListNetworkingV1ServiceCidr": {
+    "com.kubernetes.networking#ListNetworkingV1ServiceCIDR": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListNetworkingV1ServiceCidrRequest"
+        "target": "com.kubernetes.networking#ListNetworkingV1ServiceCIDRRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApiNetworkingV1ServiceCIDRList"
@@ -5406,7 +5406,7 @@
         "smithy.api#documentation": "list or watch objects of kind ServiceCIDR"
       }
     },
-    "com.kubernetes.networking#CreateNetworkingV1ServiceCidrRequest": {
+    "com.kubernetes.networking#CreateNetworkingV1ServiceCIDRRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -5472,10 +5472,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#CreateNetworkingV1ServiceCidr": {
+    "com.kubernetes.networking#CreateNetworkingV1ServiceCIDR": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#CreateNetworkingV1ServiceCidrRequest"
+        "target": "com.kubernetes.networking#CreateNetworkingV1ServiceCIDRRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApiNetworkingV1ServiceCIDR"
@@ -5506,7 +5506,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCidrRequest": {
+    "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCIDRRequest": {
       "type": "structure",
       "members": {
         "pretty": {
@@ -5637,10 +5637,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCidr": {
+    "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCIDR": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCidrRequest"
+        "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCIDRRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1Status"
@@ -5801,7 +5801,7 @@
         "smithy.api#documentation": "replace the specified ServiceCIDR"
       }
     },
-    "com.kubernetes.networking#PatchNetworkingV1ServiceCidrRequest": {
+    "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5852,10 +5852,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#PatchNetworkingV1ServiceCidr": {
+    "com.kubernetes.networking#PatchNetworkingV1ServiceCIDR": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCidrRequest"
+        "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApiNetworkingV1ServiceCIDR"
@@ -5889,7 +5889,7 @@
         "smithy.api#documentation": "When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed"
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1ServiceCidrRequest": {
+    "com.kubernetes.networking#DeleteNetworkingV1ServiceCIDRRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5965,10 +5965,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#DeleteNetworkingV1ServiceCidr": {
+    "com.kubernetes.networking#DeleteNetworkingV1ServiceCIDR": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#DeleteNetworkingV1ServiceCidrRequest"
+        "target": "com.kubernetes.networking#DeleteNetworkingV1ServiceCIDRRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1Status"
@@ -6137,7 +6137,7 @@
         "smithy.api#documentation": "replace status of the specified ServiceCIDR"
       }
     },
-    "com.kubernetes.networking#PatchNetworkingV1ServiceCidrStatusRequest": {
+    "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRStatusRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -6188,10 +6188,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#PatchNetworkingV1ServiceCidrStatus": {
+    "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCidrStatusRequest"
+        "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApiNetworkingV1ServiceCIDR"
@@ -6216,7 +6216,7 @@
         "smithy.api#documentation": "partially update status of the specified ServiceCIDR"
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1IngressClassRequest": {
+    "com.kubernetes.networking#WatchNetworkingV1IngressClassListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -6329,10 +6329,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1IngressClass": {
+    "com.kubernetes.networking#WatchNetworkingV1IngressClassList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListWatchNetworkingV1IngressClassRequest"
+        "target": "com.kubernetes.networking#WatchNetworkingV1IngressClassListRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6463,7 +6463,7 @@
         "smithy.api#documentation": "watch changes to an object of kind IngressClass. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1IngressForAllNamespacesRequest": {
+    "com.kubernetes.networking#WatchNetworkingV1IngressListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -6555,10 +6555,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1IngressForAllNamespaces": {
+    "com.kubernetes.networking#WatchNetworkingV1IngressListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListWatchNetworkingV1IngressForAllNamespacesRequest"
+        "target": "com.kubernetes.networking#WatchNetworkingV1IngressListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6572,7 +6572,7 @@
         "smithy.api#documentation": "watch individual changes to a list of Ingress. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1IpAddressRequest": {
+    "com.kubernetes.networking#WatchNetworkingV1IPAddressListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -6664,10 +6664,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1IpAddress": {
+    "com.kubernetes.networking#WatchNetworkingV1IPAddressList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListWatchNetworkingV1IpAddressRequest"
+        "target": "com.kubernetes.networking#WatchNetworkingV1IPAddressListRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -6798,7 +6798,7 @@
         "smithy.api#documentation": "watch changes to an object of kind IPAddress. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1NamespacedIngressRequest": {
+    "com.kubernetes.networking#WatchNetworkingV1NamespacedIngressListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -6898,10 +6898,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1NamespacedIngress": {
+    "com.kubernetes.networking#WatchNetworkingV1NamespacedIngressList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListWatchNetworkingV1NamespacedIngressRequest"
+        "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedIngressListRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7040,7 +7040,7 @@
         "smithy.api#documentation": "watch changes to an object of kind Ingress. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1NamespacedNetworkPolicyRequest": {
+    "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicyListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -7140,10 +7140,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1NamespacedNetworkPolicy": {
+    "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicyList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListWatchNetworkingV1NamespacedNetworkPolicyRequest"
+        "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicyListRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7282,7 +7282,7 @@
         "smithy.api#documentation": "watch changes to an object of kind NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1NetworkPolicyForAllNamespacesRequest": {
+    "com.kubernetes.networking#WatchNetworkingV1NetworkPolicyListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -7374,10 +7374,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1NetworkPolicyForAllNamespaces": {
+    "com.kubernetes.networking#WatchNetworkingV1NetworkPolicyListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListWatchNetworkingV1NetworkPolicyForAllNamespacesRequest"
+        "target": "com.kubernetes.networking#WatchNetworkingV1NetworkPolicyListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7391,7 +7391,7 @@
         "smithy.api#documentation": "watch individual changes to a list of NetworkPolicy. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1ServiceCidrRequest": {
+    "com.kubernetes.networking#WatchNetworkingV1ServiceCIDRListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -7483,10 +7483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.networking#ListWatchNetworkingV1ServiceCidr": {
+    "com.kubernetes.networking#WatchNetworkingV1ServiceCIDRList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.networking#ListWatchNetworkingV1ServiceCidrRequest"
+        "target": "com.kubernetes.networking#WatchNetworkingV1ServiceCIDRListRequest"
       },
       "output": {
         "target": "com.kubernetes.networking#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -7661,175 +7661,175 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.networking#GetNetworkingApiGroup"
-        },
-        {
-          "target": "com.kubernetes.networking#GetNetworkingV1ApiResources"
-        },
-        {
-          "target": "com.kubernetes.networking#ListNetworkingV1IngressClass"
-        },
-        {
           "target": "com.kubernetes.networking#CreateNetworkingV1IngressClass"
         },
         {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#ListNetworkingV1IngressForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.networking#ListNetworkingV1IpAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#CreateNetworkingV1IpAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIpAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1IPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1IPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1IpAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1IpAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#ListNetworkingV1NamespacedIngress"
+          "target": "com.kubernetes.networking#CreateNetworkingV1IPAddress"
         },
         {
           "target": "com.kubernetes.networking#CreateNetworkingV1NamespacedIngress"
         },
         {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionNamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngressStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngressStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngressStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#ListNetworkingV1NamespacedNetworkPolicy"
-        },
-        {
           "target": "com.kubernetes.networking#CreateNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#CreateNetworkingV1ServiceCIDR"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionNamespacedIngress"
         },
         {
           "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionNamespacedNetworkPolicy"
         },
         {
-          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedNetworkPolicy"
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCIDR"
         },
         {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedNetworkPolicy"
+          "target": "com.kubernetes.networking#DeleteNetworkingV1IngressClass"
         },
         {
-          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedNetworkPolicy"
+          "target": "com.kubernetes.networking#DeleteNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1NamespacedIngress"
         },
         {
           "target": "com.kubernetes.networking#DeleteNetworkingV1NamespacedNetworkPolicy"
         },
         {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1ServiceCIDR"
+        },
+        {
+          "target": "com.kubernetes.networking#GetNetworkingAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.networking#GetNetworkingV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.networking#ListNetworkingV1IngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#ListNetworkingV1IngressForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.networking#ListNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#ListNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#ListNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
           "target": "com.kubernetes.networking#ListNetworkingV1NetworkPolicyForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.networking#ListNetworkingV1ServiceCidr"
+          "target": "com.kubernetes.networking#ListNetworkingV1ServiceCIDR"
         },
         {
-          "target": "com.kubernetes.networking#CreateNetworkingV1ServiceCidr"
+          "target": "com.kubernetes.networking#PatchNetworkingV1IngressClass"
         },
         {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCidr"
+          "target": "com.kubernetes.networking#PatchNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngressStatus"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDR"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRStatus"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1IngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngressStatus"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedNetworkPolicy"
         },
         {
           "target": "com.kubernetes.networking#ReadNetworkingV1ServiceCIDR"
         },
         {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1ServiceCIDR"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCidr"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1ServiceCidr"
-        },
-        {
           "target": "com.kubernetes.networking#ReadNetworkingV1ServiceCIDRStatus"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1IngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngressStatus"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1ServiceCIDR"
         },
         {
           "target": "com.kubernetes.networking#ReplaceNetworkingV1ServiceCIDRStatus"
         },
         {
-          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCidrStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#ListWatchNetworkingV1IngressClass"
-        },
-        {
           "target": "com.kubernetes.networking#WatchNetworkingV1IngressClass"
         },
         {
-          "target": "com.kubernetes.networking#ListWatchNetworkingV1IngressForAllNamespaces"
+          "target": "com.kubernetes.networking#WatchNetworkingV1IngressClassList"
         },
         {
-          "target": "com.kubernetes.networking#ListWatchNetworkingV1IpAddress"
+          "target": "com.kubernetes.networking#WatchNetworkingV1IngressListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1IPAddress"
         },
         {
-          "target": "com.kubernetes.networking#ListWatchNetworkingV1NamespacedIngress"
+          "target": "com.kubernetes.networking#WatchNetworkingV1IPAddressList"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedIngress"
         },
         {
-          "target": "com.kubernetes.networking#ListWatchNetworkingV1NamespacedNetworkPolicy"
+          "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedIngressList"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicy"
         },
         {
-          "target": "com.kubernetes.networking#ListWatchNetworkingV1NetworkPolicyForAllNamespaces"
+          "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicyList"
         },
         {
-          "target": "com.kubernetes.networking#ListWatchNetworkingV1ServiceCidr"
+          "target": "com.kubernetes.networking#WatchNetworkingV1NetworkPolicyListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1ServiceCIDR"
+        },
+        {
+          "target": "com.kubernetes.networking#WatchNetworkingV1ServiceCIDRList"
         }
       ],
       "traits": {

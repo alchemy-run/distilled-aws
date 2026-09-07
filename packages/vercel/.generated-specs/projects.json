@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.projects#GetProjectsRequestGitForkProtection": {
@@ -2379,6 +2380,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -10723,6 +10730,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -19747,6 +19760,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -20221,6 +20240,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -24302,6 +24327,20 @@
       },
       "traits": {}
     },
+    "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayUsageList": {
       "type": "list",
       "member": {
@@ -25220,6 +25259,13 @@
       "traits": {}
     },
     "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferInList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferRequestList": {
       "type": "list",
       "member": {
         "target": "com.vercel.projects#ACLAction"
@@ -26164,6 +26210,12 @@
         "aiGatewaySettings": {
           "target": "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewaySettingsList"
         },
+        "aiGatewayTranscripts": {
+          "target": "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsList"
+        },
+        "aiGatewayTranscriptsSettings": {
+          "target": "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayTranscriptsSettingsList"
+        },
         "aiGatewayUsage": {
           "target": "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsAiGatewayUsageList"
         },
@@ -26559,6 +26611,9 @@
         },
         "projectTransferIn": {
           "target": "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferInList"
+        },
+        "projectTransferRequest": {
+          "target": "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsProjectTransferRequestList"
         },
         "proTrialOnboarding": {
           "target": "com.vercel.projects#GetProjectsResponseBodyCase2ProjectsItemPermissionsProTrialOnboardingList"
@@ -31522,6 +31577,12 @@
             "smithy.api#enumValue": "ash"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "EVE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -35250,6 +35311,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -35724,6 +35791,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -39767,6 +39840,20 @@
       },
       "traits": {}
     },
+    "com.vercel.projects#CreateProjectResponsePermissionsAiGatewayTranscriptsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#CreateProjectResponsePermissionsAiGatewayTranscriptsSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.projects#CreateProjectResponsePermissionsAiGatewayUsageList": {
       "type": "list",
       "member": {
@@ -40685,6 +40772,13 @@
       "traits": {}
     },
     "com.vercel.projects#CreateProjectResponsePermissionsProjectTransferInList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#CreateProjectResponsePermissionsProjectTransferRequestList": {
       "type": "list",
       "member": {
         "target": "com.vercel.projects#ACLAction"
@@ -41629,6 +41723,12 @@
         "aiGatewaySettings": {
           "target": "com.vercel.projects#CreateProjectResponsePermissionsAiGatewaySettingsList"
         },
+        "aiGatewayTranscripts": {
+          "target": "com.vercel.projects#CreateProjectResponsePermissionsAiGatewayTranscriptsList"
+        },
+        "aiGatewayTranscriptsSettings": {
+          "target": "com.vercel.projects#CreateProjectResponsePermissionsAiGatewayTranscriptsSettingsList"
+        },
         "aiGatewayUsage": {
           "target": "com.vercel.projects#CreateProjectResponsePermissionsAiGatewayUsageList"
         },
@@ -42024,6 +42124,9 @@
         },
         "projectTransferIn": {
           "target": "com.vercel.projects#CreateProjectResponsePermissionsProjectTransferInList"
+        },
+        "projectTransferRequest": {
+          "target": "com.vercel.projects#CreateProjectResponsePermissionsProjectTransferRequestList"
         },
         "proTrialOnboarding": {
           "target": "com.vercel.projects#CreateProjectResponsePermissionsProTrialOnboardingList"
@@ -49070,6 +49173,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -49544,6 +49653,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -53587,6 +53702,20 @@
       },
       "traits": {}
     },
+    "com.vercel.projects#GetProjectResponsePermissionsAiGatewayTranscriptsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#GetProjectResponsePermissionsAiGatewayTranscriptsSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.projects#GetProjectResponsePermissionsAiGatewayUsageList": {
       "type": "list",
       "member": {
@@ -54505,6 +54634,13 @@
       "traits": {}
     },
     "com.vercel.projects#GetProjectResponsePermissionsProjectTransferInList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#GetProjectResponsePermissionsProjectTransferRequestList": {
       "type": "list",
       "member": {
         "target": "com.vercel.projects#ACLAction"
@@ -55449,6 +55585,12 @@
         "aiGatewaySettings": {
           "target": "com.vercel.projects#GetProjectResponsePermissionsAiGatewaySettingsList"
         },
+        "aiGatewayTranscripts": {
+          "target": "com.vercel.projects#GetProjectResponsePermissionsAiGatewayTranscriptsList"
+        },
+        "aiGatewayTranscriptsSettings": {
+          "target": "com.vercel.projects#GetProjectResponsePermissionsAiGatewayTranscriptsSettingsList"
+        },
         "aiGatewayUsage": {
           "target": "com.vercel.projects#GetProjectResponsePermissionsAiGatewayUsageList"
         },
@@ -55844,6 +55986,9 @@
         },
         "projectTransferIn": {
           "target": "com.vercel.projects#GetProjectResponsePermissionsProjectTransferInList"
+        },
+        "projectTransferRequest": {
+          "target": "com.vercel.projects#GetProjectResponsePermissionsProjectTransferRequestList"
         },
         "proTrialOnboarding": {
           "target": "com.vercel.projects#GetProjectResponsePermissionsProTrialOnboardingList"
@@ -60208,6 +60353,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "ash"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "EVE": {
@@ -65116,6 +65267,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -65590,6 +65747,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -69633,6 +69796,20 @@
       },
       "traits": {}
     },
+    "com.vercel.projects#UpdateProjectResponsePermissionsAiGatewayTranscriptsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#UpdateProjectResponsePermissionsAiGatewayTranscriptsSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.projects#UpdateProjectResponsePermissionsAiGatewayUsageList": {
       "type": "list",
       "member": {
@@ -70551,6 +70728,13 @@
       "traits": {}
     },
     "com.vercel.projects#UpdateProjectResponsePermissionsProjectTransferInList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#UpdateProjectResponsePermissionsProjectTransferRequestList": {
       "type": "list",
       "member": {
         "target": "com.vercel.projects#ACLAction"
@@ -71495,6 +71679,12 @@
         "aiGatewaySettings": {
           "target": "com.vercel.projects#UpdateProjectResponsePermissionsAiGatewaySettingsList"
         },
+        "aiGatewayTranscripts": {
+          "target": "com.vercel.projects#UpdateProjectResponsePermissionsAiGatewayTranscriptsList"
+        },
+        "aiGatewayTranscriptsSettings": {
+          "target": "com.vercel.projects#UpdateProjectResponsePermissionsAiGatewayTranscriptsSettingsList"
+        },
         "aiGatewayUsage": {
           "target": "com.vercel.projects#UpdateProjectResponsePermissionsAiGatewayUsageList"
         },
@@ -71890,6 +72080,9 @@
         },
         "projectTransferIn": {
           "target": "com.vercel.projects#UpdateProjectResponsePermissionsProjectTransferInList"
+        },
+        "projectTransferRequest": {
+          "target": "com.vercel.projects#UpdateProjectResponsePermissionsProjectTransferRequestList"
         },
         "proTrialOnboarding": {
           "target": "com.vercel.projects#UpdateProjectResponsePermissionsProTrialOnboardingList"
@@ -78799,6 +78992,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -79273,6 +79472,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -83316,6 +83521,20 @@
       },
       "traits": {}
     },
+    "com.vercel.projects#UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.projects#UploadProjectAvatarResponsePermissionsAiGatewayUsageList": {
       "type": "list",
       "member": {
@@ -84234,6 +84453,13 @@
       "traits": {}
     },
     "com.vercel.projects#UploadProjectAvatarResponsePermissionsProjectTransferInList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#UploadProjectAvatarResponsePermissionsProjectTransferRequestList": {
       "type": "list",
       "member": {
         "target": "com.vercel.projects#ACLAction"
@@ -85178,6 +85404,12 @@
         "aiGatewaySettings": {
           "target": "com.vercel.projects#UploadProjectAvatarResponsePermissionsAiGatewaySettingsList"
         },
+        "aiGatewayTranscripts": {
+          "target": "com.vercel.projects#UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsList"
+        },
+        "aiGatewayTranscriptsSettings": {
+          "target": "com.vercel.projects#UploadProjectAvatarResponsePermissionsAiGatewayTranscriptsSettingsList"
+        },
         "aiGatewayUsage": {
           "target": "com.vercel.projects#UploadProjectAvatarResponsePermissionsAiGatewayUsageList"
         },
@@ -85573,6 +85805,9 @@
         },
         "projectTransferIn": {
           "target": "com.vercel.projects#UploadProjectAvatarResponsePermissionsProjectTransferInList"
+        },
+        "projectTransferRequest": {
+          "target": "com.vercel.projects#UploadProjectAvatarResponsePermissionsProjectTransferRequestList"
         },
         "proTrialOnboarding": {
           "target": "com.vercel.projects#UploadProjectAvatarResponsePermissionsProTrialOnboardingList"
@@ -102116,7 +102351,6 @@
         "code": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Code that can be used to accept the project transfer request.",
             "smithy.api#required": {}
           }
         }
@@ -102139,6 +102373,9 @@
         },
         {
           "target": "com.vercel.projects#Forbidden"
+        },
+        {
+          "target": "com.vercel.projects#Conflict"
         }
       ],
       "traits": {
@@ -102202,7 +102439,7 @@
       },
       "traits": {}
     },
-    "com.vercel.projects#RequestAcceptProjectTransferRequest": {
+    "com.vercel.projects#AcceptProjectTransferRequestRequest": {
       "type": "structure",
       "members": {
         "code": {
@@ -102368,7 +102605,7 @@
       },
       "traits": {}
     },
-    "com.vercel.projects#RequestAcceptProjectTransferResponse": {
+    "com.vercel.projects#AcceptProjectTransferRequestResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -102383,13 +102620,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.vercel.projects#RequestAcceptProjectTransfer": {
+    "com.vercel.projects#AcceptProjectTransferRequest": {
       "type": "operation",
       "input": {
-        "target": "com.vercel.projects#RequestAcceptProjectTransferRequest"
+        "target": "com.vercel.projects#AcceptProjectTransferRequestRequest"
       },
       "output": {
-        "target": "com.vercel.projects#RequestAcceptProjectTransferResponse"
+        "target": "com.vercel.projects#AcceptProjectTransferRequestResponse"
       },
       "errors": [
         {
@@ -105649,6 +105886,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -106123,6 +106366,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -110166,6 +110415,20 @@
       },
       "traits": {}
     },
+    "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsSettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsAiGatewayUsageList": {
       "type": "list",
       "member": {
@@ -111084,6 +111347,13 @@
       "traits": {}
     },
     "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsProjectTransferInList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.projects#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsProjectTransferRequestList": {
       "type": "list",
       "member": {
         "target": "com.vercel.projects#ACLAction"
@@ -112028,6 +112298,12 @@
         "aiGatewaySettings": {
           "target": "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsAiGatewaySettingsList"
         },
+        "aiGatewayTranscripts": {
+          "target": "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsList"
+        },
+        "aiGatewayTranscriptsSettings": {
+          "target": "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsAiGatewayTranscriptsSettingsList"
+        },
         "aiGatewayUsage": {
           "target": "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsAiGatewayUsageList"
         },
@@ -112423,6 +112699,9 @@
         },
         "projectTransferIn": {
           "target": "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsProjectTransferInList"
+        },
+        "projectTransferRequest": {
+          "target": "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsProjectTransferRequestList"
         },
         "proTrialOnboarding": {
           "target": "com.vercel.projects#UpdateMicrofrontendsResponsePermissionsProTrialOnboardingList"
@@ -116907,100 +117186,100 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.projects#GetProjects"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectTrace"
-        },
-        {
-          "target": "com.vercel.projects#CreateProject"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectToken"
-        },
-        {
-          "target": "com.vercel.projects#CreateTraceSession"
-        },
-        {
-          "target": "com.vercel.projects#GetProject"
-        },
-        {
-          "target": "com.vercel.projects#UpdateProject"
-        },
-        {
-          "target": "com.vercel.projects#DeleteProject"
-        },
-        {
-          "target": "com.vercel.projects#UploadProjectAvatar"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectDomains"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectDomain"
-        },
-        {
-          "target": "com.vercel.projects#UpdateProjectDomain"
-        },
-        {
-          "target": "com.vercel.projects#RemoveProjectDomain"
+          "target": "com.vercel.projects#AcceptProjectTransferRequest"
         },
         {
           "target": "com.vercel.projects#AddProjectDomain"
         },
         {
-          "target": "com.vercel.projects#MoveProjectDomain"
+          "target": "com.vercel.projects#BatchRemoveProjectEnv"
         },
         {
-          "target": "com.vercel.projects#VerifyProjectDomain"
-        },
-        {
-          "target": "com.vercel.projects#FilterProjectEnvs"
+          "target": "com.vercel.projects#CreateProject"
         },
         {
           "target": "com.vercel.projects#CreateProjectEnv"
         },
         {
-          "target": "com.vercel.projects#GetProjectEnv"
+          "target": "com.vercel.projects#CreateProjectTransferRequest"
+        },
+        {
+          "target": "com.vercel.projects#CreateTraceSession"
+        },
+        {
+          "target": "com.vercel.projects#DeleteProject"
         },
         {
           "target": "com.vercel.projects#EditProjectEnv"
         },
         {
-          "target": "com.vercel.projects#RemoveProjectEnv"
+          "target": "com.vercel.projects#FilterProjectEnvs"
         },
         {
-          "target": "com.vercel.projects#BatchRemoveProjectEnv"
+          "target": "com.vercel.projects#GetProject"
         },
         {
-          "target": "com.vercel.projects#CreateProjectTransferRequest"
+          "target": "com.vercel.projects#GetProjectDomain"
         },
         {
-          "target": "com.vercel.projects#RequestAcceptProjectTransfer"
+          "target": "com.vercel.projects#GetProjectDomains"
         },
         {
-          "target": "com.vercel.projects#UpdateProjectProtectionBypass"
+          "target": "com.vercel.projects#GetProjectEnv"
         },
         {
-          "target": "com.vercel.projects#RequestRollback"
+          "target": "com.vercel.projects#GetProjects"
         },
         {
-          "target": "com.vercel.projects#UpdateProjectsByProjectIdRollbackByDeploymentIdUpdateDescription"
+          "target": "com.vercel.projects#GetProjectToken"
         },
         {
-          "target": "com.vercel.projects#UpdateMicrofrontends"
-        },
-        {
-          "target": "com.vercel.projects#RequestPromote"
+          "target": "com.vercel.projects#GetProjectTrace"
         },
         {
           "target": "com.vercel.projects#ListPromoteAliases"
         },
         {
+          "target": "com.vercel.projects#MoveProjectDomain"
+        },
+        {
           "target": "com.vercel.projects#PauseProject"
         },
         {
+          "target": "com.vercel.projects#RemoveProjectDomain"
+        },
+        {
+          "target": "com.vercel.projects#RemoveProjectEnv"
+        },
+        {
+          "target": "com.vercel.projects#RequestPromote"
+        },
+        {
+          "target": "com.vercel.projects#RequestRollback"
+        },
+        {
           "target": "com.vercel.projects#UnpauseProject"
+        },
+        {
+          "target": "com.vercel.projects#UpdateMicrofrontends"
+        },
+        {
+          "target": "com.vercel.projects#UpdateProject"
+        },
+        {
+          "target": "com.vercel.projects#UpdateProjectDomain"
+        },
+        {
+          "target": "com.vercel.projects#UpdateProjectProtectionBypass"
+        },
+        {
+          "target": "com.vercel.projects#UpdateProjectsByProjectIdRollbackByDeploymentIdUpdateDescription"
+        },
+        {
+          "target": "com.vercel.projects#UploadProjectAvatar"
+        },
+        {
+          "target": "com.vercel.projects#VerifyProjectDomain"
         }
       ],
       "traits": {

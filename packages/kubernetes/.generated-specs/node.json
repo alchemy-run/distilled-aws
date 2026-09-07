@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.node#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.node#GetNodeApiGroup": {
+    "com.kubernetes.node#GetNodeAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.node#GetNodeV1ApiResources": {
+    "com.kubernetes.node#GetNodeV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1656,7 +1657,7 @@
         "smithy.api#documentation": "delete a RuntimeClass"
       }
     },
-    "com.kubernetes.node#ListWatchNodeV1RuntimeClassRequest": {
+    "com.kubernetes.node#WatchNodeV1RuntimeClassListRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -1769,10 +1770,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.node#ListWatchNodeV1RuntimeClass": {
+    "com.kubernetes.node#WatchNodeV1RuntimeClassList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.node#ListWatchNodeV1RuntimeClassRequest"
+        "target": "com.kubernetes.node#WatchNodeV1RuntimeClassListRequest"
       },
       "output": {
         "target": "com.kubernetes.node#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -1947,19 +1948,25 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.node#GetNodeApiGroup"
+          "target": "com.kubernetes.node#CreateNodeV1RuntimeClass"
         },
         {
-          "target": "com.kubernetes.node#GetNodeV1ApiResources"
+          "target": "com.kubernetes.node#DeleteNodeV1CollectionRuntimeClass"
+        },
+        {
+          "target": "com.kubernetes.node#DeleteNodeV1RuntimeClass"
+        },
+        {
+          "target": "com.kubernetes.node#GetNodeAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.node#GetNodeV1APIResources"
         },
         {
           "target": "com.kubernetes.node#ListNodeV1RuntimeClass"
         },
         {
-          "target": "com.kubernetes.node#CreateNodeV1RuntimeClass"
-        },
-        {
-          "target": "com.kubernetes.node#DeleteNodeV1CollectionRuntimeClass"
+          "target": "com.kubernetes.node#PatchNodeV1RuntimeClass"
         },
         {
           "target": "com.kubernetes.node#ReadNodeV1RuntimeClass"
@@ -1968,16 +1975,10 @@
           "target": "com.kubernetes.node#ReplaceNodeV1RuntimeClass"
         },
         {
-          "target": "com.kubernetes.node#PatchNodeV1RuntimeClass"
-        },
-        {
-          "target": "com.kubernetes.node#DeleteNodeV1RuntimeClass"
-        },
-        {
-          "target": "com.kubernetes.node#ListWatchNodeV1RuntimeClass"
-        },
-        {
           "target": "com.kubernetes.node#WatchNodeV1RuntimeClass"
+        },
+        {
+          "target": "com.kubernetes.node#WatchNodeV1RuntimeClassList"
         }
       ],
       "traits": {

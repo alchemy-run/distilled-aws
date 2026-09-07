@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AgentPoolsAbortLatestOperationRequest {
+export interface AbortAgentPoolLatestOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23,7 +23,7 @@ export interface AgentPoolsAbortLatestOperationRequest {
   /** The name of the agent pool. */
   agentPoolName: string;
 }
-export const AgentPoolsAbortLatestOperationRequest = /*@__PURE__*/ S.suspend(
+export const AbortAgentPoolLatestOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -39,15 +39,47 @@ export const AgentPoolsAbortLatestOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "AgentPoolsAbortLatestOperationRequest",
-}) as any as S.Schema<AgentPoolsAbortLatestOperationRequest>;
+  identifier: "AbortAgentPoolLatestOperationRequest",
+}) as any as S.Schema<AbortAgentPoolLatestOperationRequest>;
 
-export interface AgentPoolsAbortLatestOperationResponse {}
-export const AgentPoolsAbortLatestOperationResponse = /*@__PURE__*/ S.suspend(
+export interface AbortAgentPoolLatestOperationResponse {}
+export const AbortAgentPoolLatestOperationResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "AgentPoolsAbortLatestOperationResponse",
-}) as any as S.Schema<AgentPoolsAbortLatestOperationResponse>;
+  identifier: "AbortAgentPoolLatestOperationResponse",
+}) as any as S.Schema<AbortAgentPoolLatestOperationResponse>;
+
+export interface AbortManagedClusterLatestOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const AbortManagedClusterLatestOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/abort",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "AbortManagedClusterLatestOperationRequest",
+  }) as any as S.Schema<AbortManagedClusterLatestOperationRequest>;
+
+export interface AbortManagedClusterLatestOperationResponse {}
+export const AbortManagedClusterLatestOperationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "AbortManagedClusterLatestOperationResponse",
+  }) as any as S.Schema<AbortManagedClusterLatestOperationResponse>;
 
 /** The OS disk type to be used for machines in the agent pool. The default is 'Ephemeral' if the VM supports it and has a cache disk larger than the requested OSDiskSizeGB. Otherwise, defaults to 'Managed'. May not be changed after creation. For more information see [Ephemeral OS](https://docs.microsoft.com/azure/aks/cluster-configuration#ephemeral-os). */
 export type OSDiskType = "Managed" | "Ephemeral";
@@ -1543,7 +1575,7 @@ export interface AutoUpgradeProfilePropertiesInput {
   disabled?: boolean;
   /** The status of the auto upgrade profile. */
   autoUpgradeProfileStatus?: AutoUpgradeProfileStatusInput;
-  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is Rapid, Stable or NodeImage, this field must be empty. */
+  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is not TargetKubernetesVersion, this field must be empty. */
   targetKubernetesVersion?: string;
   /** If upgrade channel is not TargetKubernetesVersion, this field must be False. If set to True: Fleet auto upgrade will continue generate update runs for patches of minor versions earlier than N-2 (where N is the latest supported minor version) if those minor versions support Long-Term Support (LTS). By default, this is set to False. For more information on AKS LTS, please see https://learn.microsoft.com/en-us/azure/aks/long-term-support */
   longTermSupport?: boolean;
@@ -1695,7 +1727,7 @@ export interface AutoUpgradeProfileProperties {
   disabled?: boolean;
   /** The status of the auto upgrade profile. */
   autoUpgradeProfileStatus?: AutoUpgradeProfileStatus;
-  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is Rapid, Stable or NodeImage, this field must be empty. */
+  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is not TargetKubernetesVersion, this field must be empty. */
   targetKubernetesVersion?: string;
   /** If upgrade channel is not TargetKubernetesVersion, this field must be False. If set to True: Fleet auto upgrade will continue generate update runs for patches of minor versions earlier than N-2 (where N is the latest supported minor version) if those minor versions support Long-Term Support (LTS). By default, this is set to False. For more information on AKS LTS, please see https://learn.microsoft.com/en-us/azure/aks/long-term-support */
   longTermSupport?: boolean;
@@ -2115,13 +2147,13 @@ export const DeleteAgentPoolResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteAgentPoolResponse>;
 
 /** The agent pool machine names. */
-export type AgentPoolsDeleteMachinesRequestMachineNamesList = Array<string>;
-export const AgentPoolsDeleteMachinesRequestMachineNamesList =
+export type DeleteAgentPoolMachinesRequestMachineNamesList = Array<string>;
+export const DeleteAgentPoolMachinesRequestMachineNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<AgentPoolsDeleteMachinesRequestMachineNamesList>;
+  ) as any as S.Schema<DeleteAgentPoolMachinesRequestMachineNamesList>;
 
-export interface DeleteAgentPoolMachineRequest {
+export interface DeleteAgentPoolMachinesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2131,15 +2163,15 @@ export interface DeleteAgentPoolMachineRequest {
   /** The name of the agent pool. */
   agentPoolName: string;
   /** The agent pool machine names. */
-  machineNames: AgentPoolsDeleteMachinesRequestMachineNamesList;
+  machineNames: DeleteAgentPoolMachinesRequestMachineNamesList;
 }
-export const DeleteAgentPoolMachineRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAgentPoolMachinesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
     agentPoolName: S.String.pipe(T.Label()),
-    machineNames: AgentPoolsDeleteMachinesRequestMachineNamesList,
+    machineNames: DeleteAgentPoolMachinesRequestMachineNamesList,
   }).pipe(
     T.Http({
       method: "POST",
@@ -2149,15 +2181,15 @@ export const DeleteAgentPoolMachineRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAgentPoolMachineRequest",
-}) as any as S.Schema<DeleteAgentPoolMachineRequest>;
+  identifier: "DeleteAgentPoolMachinesRequest",
+}) as any as S.Schema<DeleteAgentPoolMachinesRequest>;
 
-export interface DeleteAgentPoolMachineResponse {}
-export const DeleteAgentPoolMachineResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAgentPoolMachinesResponse {}
+export const DeleteAgentPoolMachinesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAgentPoolMachineResponse",
-}) as any as S.Schema<DeleteAgentPoolMachineResponse>;
+  identifier: "DeleteAgentPoolMachinesResponse",
+}) as any as S.Schema<DeleteAgentPoolMachinesResponse>;
 
 export interface DeleteAutoUpgradeProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2321,6 +2353,41 @@ export const DeleteFleetMemberResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteFleetMemberResponse",
 }) as any as S.Schema<DeleteFleetMemberResponse>;
+
+export interface DeleteFleetUpdateStrategyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateStrategy resource. */
+  updateStrategyName: string;
+}
+export const DeleteFleetUpdateStrategyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateStrategyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies/{updateStrategyName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFleetUpdateStrategyRequest",
+}) as any as S.Schema<DeleteFleetUpdateStrategyRequest>;
+
+export interface DeleteFleetUpdateStrategyResponse {}
+export const DeleteFleetUpdateStrategyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFleetUpdateStrategyResponse",
+}) as any as S.Schema<DeleteFleetUpdateStrategyResponse>;
 
 export interface DeleteIdentityBindingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2563,6 +2630,41 @@ export const DeleteTrustedAccessRoleBindingResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "DeleteTrustedAccessRoleBindingResponse",
 }) as any as S.Schema<DeleteTrustedAccessRoleBindingResponse>;
+
+export interface DeleteUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+}
+export const DeleteUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteUpdateRunRequest",
+}) as any as S.Schema<DeleteUpdateRunRequest>;
+
+export interface DeleteUpdateRunResponse {}
+export const DeleteUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteUpdateRunResponse",
+}) as any as S.Schema<DeleteUpdateRunResponse>;
 
 /** Resource tags. */
 export type FleetManagedNamespacesCreateOrUpdateRequestTagsMap = {
@@ -3738,178 +3840,6 @@ export const FleetUpdateStrategiesCreateOrUpdateResponse =
     identifier: "FleetUpdateStrategiesCreateOrUpdateResponse",
   }) as any as S.Schema<FleetUpdateStrategiesCreateOrUpdateResponse>;
 
-export interface FleetUpdateStrategiesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateStrategy resource. */
-  updateStrategyName: string;
-}
-export const FleetUpdateStrategiesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateStrategyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies/{updateStrategyName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetUpdateStrategiesDeleteRequest",
-}) as any as S.Schema<FleetUpdateStrategiesDeleteRequest>;
-
-export interface FleetUpdateStrategiesDeleteResponse {}
-export const FleetUpdateStrategiesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FleetUpdateStrategiesDeleteResponse",
-}) as any as S.Schema<FleetUpdateStrategiesDeleteResponse>;
-
-export interface FleetUpdateStrategiesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateStrategy resource. */
-  updateStrategyName: string;
-}
-export const FleetUpdateStrategiesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateStrategyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies/{updateStrategyName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetUpdateStrategiesGetRequest",
-}) as any as S.Schema<FleetUpdateStrategiesGetRequest>;
-
-export interface FleetUpdateStrategiesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetUpdateStrategyProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetUpdateStrategiesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FleetUpdateStrategyProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetUpdateStrategiesGetResponse",
-}) as any as S.Schema<FleetUpdateStrategiesGetResponse>;
-
-export interface FleetUpdateStrategiesListByFleetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The page-continuation token to use with a paged version of this API. */
-  _skipToken?: string;
-}
-export const FleetUpdateStrategiesListByFleetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      fleetName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "FleetUpdateStrategiesListByFleetRequest",
-}) as any as S.Schema<FleetUpdateStrategiesListByFleetRequest>;
-
-/** Defines a multi-stage process to perform update operations across members of a Fleet. */
-export interface FleetUpdateStrategy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetUpdateStrategyProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetUpdateStrategy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FleetUpdateStrategyProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetUpdateStrategy",
-}) as any as S.Schema<FleetUpdateStrategy>;
-
-/** The FleetUpdateStrategy items on this page */
-export type FleetUpdateStrategyListResultValueList = Array<FleetUpdateStrategy>;
-export const FleetUpdateStrategyListResultValueList = /*@__PURE__*/ S.Array(
-  FleetUpdateStrategy,
-) as any as S.Schema<FleetUpdateStrategyListResultValueList>;
-
-/** The response of a FleetUpdateStrategy list operation. */
-export interface FleetUpdateStrategyListResult {
-  /** The FleetUpdateStrategy items on this page */
-  value: FleetUpdateStrategyListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FleetUpdateStrategyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FleetUpdateStrategyListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetUpdateStrategyListResult",
-}) as any as S.Schema<FleetUpdateStrategyListResult>;
-
 export interface GetAgentPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -3962,7 +3892,7 @@ export const GetAgentPoolResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAgentPoolResponse",
 }) as any as S.Schema<GetAgentPoolResponse>;
 
-export interface GetAgentPoolAvailableAgentPoolVersionRequest {
+export interface GetAgentPoolAvailableAgentPoolVersionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3970,7 +3900,7 @@ export interface GetAgentPoolAvailableAgentPoolVersionRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
 }
-export const GetAgentPoolAvailableAgentPoolVersionRequest =
+export const GetAgentPoolAvailableAgentPoolVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3985,8 +3915,8 @@ export const GetAgentPoolAvailableAgentPoolVersionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetAgentPoolAvailableAgentPoolVersionRequest",
-  }) as any as S.Schema<GetAgentPoolAvailableAgentPoolVersionRequest>;
+    identifier: "GetAgentPoolAvailableAgentPoolVersionsRequest",
+  }) as any as S.Schema<GetAgentPoolAvailableAgentPoolVersionsRequest>;
 
 /** Available version information for an agent pool. */
 export interface AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem {
@@ -4316,15 +4246,15 @@ export const GetFleetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFleetRequest>;
 
 /** Resource tags. */
-export type FleetsGetResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFleetResponseTagsMap = { [key: string]: string | undefined };
+export const GetFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsGetResponseTagsMap>;
+) as any as S.Schema<GetFleetResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export type GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
 
 export interface GetFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4336,7 +4266,7 @@ export interface GetFleetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetsGetResponseTagsMap;
+  tags?: GetFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4352,7 +4282,7 @@ export const GetFleetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetsGetResponseTagsMap),
+    tags: S.optional(GetFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetProperties),
     eTag: S.optional(S.String),
@@ -4391,13 +4321,13 @@ export const GetFleetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFleetManagedNamespaceRequest>;
 
 /** Resource tags. */
-export type FleetManagedNamespacesGetResponseTagsMap = {
+export type GetFleetManagedNamespaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FleetManagedNamespacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetFleetManagedNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetManagedNamespacesGetResponseTagsMap>;
+) as any as S.Schema<GetFleetManagedNamespaceResponseTagsMap>;
 
 export interface GetFleetManagedNamespaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4409,7 +4339,7 @@ export interface GetFleetManagedNamespaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetManagedNamespacesGetResponseTagsMap;
+  tags?: GetFleetManagedNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4423,7 +4353,7 @@ export const GetFleetManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetManagedNamespacesGetResponseTagsMap),
+    tags: S.optional(GetFleetManagedNamespaceResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetManagedNamespaceProperties),
     eTag: S.optional(S.String),
@@ -4486,6 +4416,61 @@ export const GetFleetMemberResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetFleetMemberResponse",
 }) as any as S.Schema<GetFleetMemberResponse>;
+
+export interface GetFleetUpdateStrategyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateStrategy resource. */
+  updateStrategyName: string;
+}
+export const GetFleetUpdateStrategyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateStrategyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies/{updateStrategyName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFleetUpdateStrategyRequest",
+}) as any as S.Schema<GetFleetUpdateStrategyRequest>;
+
+export interface GetFleetUpdateStrategyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetUpdateStrategyProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const GetFleetUpdateStrategyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FleetUpdateStrategyProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetFleetUpdateStrategyResponse",
+}) as any as S.Schema<GetFleetUpdateStrategyResponse>;
 
 export interface GetGateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4818,10 +4803,10 @@ export const MachineProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MachineProperties>;
 
 /** The Availability zone in which machine is located. */
-export type MachinesGetResponseZonesList = Array<string>;
-export const MachinesGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetMachineResponseZonesList = Array<string>;
+export const GetMachineResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<MachinesGetResponseZonesList>;
+) as any as S.Schema<GetMachineResponseZonesList>;
 
 export interface GetMachineResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -4835,7 +4820,7 @@ export interface GetMachineResponse {
   /** The properties of the machine */
   properties?: MachineProperties;
   /** The Availability zone in which machine is located. */
-  zones?: MachinesGetResponseZonesList;
+  zones?: GetMachineResponseZonesList;
 }
 export const GetMachineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4844,7 +4829,7 @@ export const GetMachineResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(MachineProperties),
-    zones: S.optional(MachinesGetResponseZonesList),
+    zones: S.optional(GetMachineResponseZonesList),
   }),
 ).annotate({
   identifier: "GetMachineResponse",
@@ -5142,13 +5127,13 @@ export const GetManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedClusterRequest>;
 
 /** Resource tags. */
-export type ManagedClustersGetResponseTagsMap = {
+export type GetManagedClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedClustersGetResponseTagsMap>;
+) as any as S.Schema<GetManagedClusterResponseTagsMap>;
 
 /** The operating system type. The default is Linux. */
 export type ManagedClusterAgentPoolProfileOsType = "Linux" | "Windows";
@@ -7878,7 +7863,7 @@ export interface GetManagedClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedClustersGetResponseTagsMap;
+  tags?: GetManagedClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a managed cluster. */
@@ -7900,7 +7885,7 @@ export const GetManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedClustersGetResponseTagsMap),
+    tags: S.optional(GetManagedClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedClusterProperties),
     eTag: S.optional(S.String),
@@ -8309,13 +8294,13 @@ export const GetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedNamespaceRequest>;
 
 /** Resource tags. */
-export type ManagedNamespacesGetResponseTagsMap = {
+export type GetManagedNamespaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedNamespacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedNamespacesGetResponseTagsMap>;
+) as any as S.Schema<GetManagedNamespaceResponseTagsMap>;
 
 /** The current provisioning state of the namespace. */
 export type NamespaceProvisioningState =
@@ -8447,7 +8432,7 @@ export interface GetManagedNamespaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedNamespacesGetResponseTagsMap;
+  tags?: GetManagedNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a namespace. */
@@ -8461,7 +8446,7 @@ export const GetManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedNamespacesGetResponseTagsMap),
+    tags: S.optional(GetManagedNamespaceResponseTagsMap),
     location: S.String,
     properties: S.optional(NamespaceProperties),
     eTag: S.optional(S.String),
@@ -8615,11 +8600,11 @@ export const GetSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSnapshotRequest>;
 
 /** Resource tags. */
-export type SnapshotsGetResponseTagsMap = { [key: string]: string | undefined };
-export const SnapshotsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetSnapshotResponseTagsMap = { [key: string]: string | undefined };
+export const GetSnapshotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotsGetResponseTagsMap>;
+) as any as S.Schema<GetSnapshotResponseTagsMap>;
 
 /** The type of a snapshot. The default is NodePool. */
 export type SnapshotPropertiesSnapshotType = "NodePool";
@@ -8673,7 +8658,7 @@ export interface GetSnapshotResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SnapshotsGetResponseTagsMap;
+  tags?: GetSnapshotResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a snapshot. */
@@ -8685,7 +8670,7 @@ export const GetSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotsGetResponseTagsMap),
+    tags: S.optional(GetSnapshotResponseTagsMap),
     location: S.String,
     properties: S.optional(SnapshotProperties),
   }),
@@ -8779,6 +8764,445 @@ export const GetTrustedAccessRoleBindingResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetTrustedAccessRoleBindingResponse",
 }) as any as S.Schema<GetTrustedAccessRoleBindingResponse>;
+
+export interface GetUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+}
+export const GetUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetUpdateRunRequest",
+}) as any as S.Schema<GetUpdateRunRequest>;
+
+/** The provisioning state of the UpdateRun resource. */
+export type UpdateRunProvisioningState = "Succeeded" | "Failed" | "Canceled";
+export const UpdateRunProvisioningState = /*@__PURE__*/ S.String;
+
+/** The type of upgrade to perform when targeting ManagedClusters. */
+export type ManagedClusterUpgradeType =
+  | "Full"
+  | "NodeImageOnly"
+  | "ControlPlaneOnly";
+export const ManagedClusterUpgradeType = /*@__PURE__*/ S.String;
+
+/** The upgrade to apply to a ManagedCluster. */
+export interface ManagedClusterUpgradeSpec {
+  /** ManagedClusterUpgradeType is the type of upgrade to be applied. */
+  type: ManagedClusterUpgradeType | (string & {});
+  /** The Kubernetes version to upgrade the member clusters to. */
+  kubernetesVersion?: string;
+}
+export const ManagedClusterUpgradeSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedClusterUpgradeType,
+    kubernetesVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedClusterUpgradeSpec",
+}) as any as S.Schema<ManagedClusterUpgradeSpec>;
+
+/** The node image upgrade type. */
+export type NodeImageSelectionType = "Latest" | "Consistent" | "Custom";
+export const NodeImageSelectionType = /*@__PURE__*/ S.String;
+
+/** The node upgrade image version. */
+export interface NodeImageVersion {
+  /** The image version to upgrade the nodes to (e.g., 'AKSUbuntu-1804gen2containerd-2022.12.13'). */
+  version?: string;
+}
+export const NodeImageVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NodeImageVersion",
+}) as any as S.Schema<NodeImageVersion>;
+
+/** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
+export type NodeImageSelectionCustomNodeImageVersionsList =
+  Array<NodeImageVersion>;
+export const NodeImageSelectionCustomNodeImageVersionsList =
+  /*@__PURE__*/ S.Array(
+    NodeImageVersion,
+  ) as any as S.Schema<NodeImageSelectionCustomNodeImageVersionsList>;
+
+/** The node image upgrade to be applied to the target nodes in update run. */
+export interface NodeImageSelection {
+  /** The node image upgrade type. */
+  type: NodeImageSelectionType;
+  /** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
+  customNodeImageVersions?: NodeImageSelectionCustomNodeImageVersionsList;
+}
+export const NodeImageSelection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: NodeImageSelectionType,
+    customNodeImageVersions: S.optional(
+      NodeImageSelectionCustomNodeImageVersionsList,
+    ),
+  }),
+).annotate({
+  identifier: "NodeImageSelection",
+}) as any as S.Schema<NodeImageSelection>;
+
+/** The update to be applied to the ManagedClusters. */
+export interface ManagedClusterUpdate {
+  /** The upgrade to apply to the ManagedClusters. */
+  upgrade: ManagedClusterUpgradeSpec;
+  /** The node image upgrade to be applied to the target nodes in update run. */
+  nodeImageSelection?: NodeImageSelection;
+}
+export const ManagedClusterUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    upgrade: ManagedClusterUpgradeSpec,
+    nodeImageSelection: S.optional(NodeImageSelection),
+  }),
+).annotate({
+  identifier: "ManagedClusterUpdate",
+}) as any as S.Schema<ManagedClusterUpdate>;
+
+/** The state of the UpdateRun, UpdateStage, UpdateGroup, or MemberUpdate. */
+export type UpdateState =
+  | "NotStarted"
+  | "Running"
+  | "Stopping"
+  | "Stopped"
+  | "Skipped"
+  | "Failed"
+  | "Pending"
+  | "Completed";
+export const UpdateState = /*@__PURE__*/ S.String;
+
+/** The error details. */
+export type UpdateStatusErrorDetailsList = Array<ErrorDetail>;
+export const UpdateStatusErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetail,
+) as any as S.Schema<UpdateStatusErrorDetailsList>;
+
+/** The error additional info. */
+export type UpdateStatusErrorAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const UpdateStatusErrorAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<UpdateStatusErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface UpdateStatusError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: UpdateStatusErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: UpdateStatusErrorAdditionalInfoList;
+}
+export const UpdateStatusError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(UpdateStatusErrorDetailsList),
+    additionalInfo: S.optional(UpdateStatusErrorAdditionalInfoList),
+  }),
+).annotate({
+  identifier: "UpdateStatusError",
+}) as any as S.Schema<UpdateStatusError>;
+
+/** The status for an operation or group of operations. */
+export interface UpdateStatus {
+  /** The time the operation or group was started. */
+  startTime?: string;
+  /** The time the operation or group was completed. */
+  completedTime?: string;
+  /** The State of the operation or group. */
+  state?: UpdateState;
+  /** The error detail. */
+  error?: UpdateStatusError;
+}
+export const UpdateStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    completedTime: S.optional(S.String),
+    state: S.optional(UpdateState),
+    error: S.optional(UpdateStatusError),
+  }),
+).annotate({ identifier: "UpdateStatus" }) as any as S.Schema<UpdateStatus>;
+
+/** The status of a member update operation. */
+export interface MemberUpdateStatus {
+  /** The status of the MemberUpdate operation. */
+  status?: UpdateStatus;
+  /** The name of the FleetMember. */
+  name?: string;
+  /** The Azure resource id of the target Kubernetes cluster. */
+  clusterResourceId?: string;
+  /** The operation resource id of the latest attempt to perform the operation. */
+  operationId?: string;
+  /** The status message after processing the member update operation. */
+  message?: string;
+}
+export const MemberUpdateStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(UpdateStatus),
+    name: S.optional(S.String),
+    clusterResourceId: S.optional(S.String),
+    operationId: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MemberUpdateStatus",
+}) as any as S.Schema<MemberUpdateStatus>;
+
+/** The list of member this UpdateGroup updates. */
+export type UpdateGroupStatusMembersList = Array<MemberUpdateStatus>;
+export const UpdateGroupStatusMembersList = /*@__PURE__*/ S.Array(
+  MemberUpdateStatus,
+) as any as S.Schema<UpdateGroupStatusMembersList>;
+
+/** The status of the Gate, as represented in the Update Run. */
+export interface UpdateRunGateStatus {
+  /** The human-readable display name of the Gate. */
+  displayName?: string;
+  /** The resource id of the Gate. */
+  gateId?: string;
+  /** The status of the Gate. */
+  status?: UpdateStatus;
+}
+export const UpdateRunGateStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    gateId: S.optional(S.String),
+    status: S.optional(UpdateStatus),
+  }),
+).annotate({
+  identifier: "UpdateRunGateStatus",
+}) as any as S.Schema<UpdateRunGateStatus>;
+
+/** The list of Gates that will run before this UpdateGroup. */
+export type UpdateGroupStatusBeforeGatesList = Array<UpdateRunGateStatus>;
+export const UpdateGroupStatusBeforeGatesList = /*@__PURE__*/ S.Array(
+  UpdateRunGateStatus,
+) as any as S.Schema<UpdateGroupStatusBeforeGatesList>;
+
+/** The list of Gates that will run after this UpdateGroup. */
+export type UpdateGroupStatusAfterGatesList = Array<UpdateRunGateStatus>;
+export const UpdateGroupStatusAfterGatesList = /*@__PURE__*/ S.Array(
+  UpdateRunGateStatus,
+) as any as S.Schema<UpdateGroupStatusAfterGatesList>;
+
+/** The status of a UpdateGroup. */
+export interface UpdateGroupStatus {
+  /** The status of the UpdateGroup. */
+  status?: UpdateStatus;
+  /** The name of the UpdateGroup. */
+  name?: string;
+  /** The max number of upgrades that can run concurrently in this group, resolved from the UpdateStrategy.UpdateGroup.maxConcurrency value. If no value was provided, this value defaults to "1". */
+  maxConcurrency?: number;
+  /** The list of member this UpdateGroup updates. */
+  members?: UpdateGroupStatusMembersList;
+  /** The list of Gates that will run before this UpdateGroup. */
+  beforeGates?: UpdateGroupStatusBeforeGatesList;
+  /** The list of Gates that will run after this UpdateGroup. */
+  afterGates?: UpdateGroupStatusAfterGatesList;
+}
+export const UpdateGroupStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(UpdateStatus),
+    name: S.optional(S.String),
+    maxConcurrency: S.optional(S.Number),
+    members: S.optional(UpdateGroupStatusMembersList),
+    beforeGates: S.optional(UpdateGroupStatusBeforeGatesList),
+    afterGates: S.optional(UpdateGroupStatusAfterGatesList),
+  }),
+).annotate({
+  identifier: "UpdateGroupStatus",
+}) as any as S.Schema<UpdateGroupStatus>;
+
+/** The list of groups to be updated as part of this UpdateStage. */
+export type UpdateStageStatusGroupsList = Array<UpdateGroupStatus>;
+export const UpdateStageStatusGroupsList = /*@__PURE__*/ S.Array(
+  UpdateGroupStatus,
+) as any as S.Schema<UpdateStageStatusGroupsList>;
+
+/** The list of Gates that will run before this UpdateStage. */
+export type UpdateStageStatusBeforeGatesList = Array<UpdateRunGateStatus>;
+export const UpdateStageStatusBeforeGatesList = /*@__PURE__*/ S.Array(
+  UpdateRunGateStatus,
+) as any as S.Schema<UpdateStageStatusBeforeGatesList>;
+
+/** The list of Gates that will run after this UpdateStage. */
+export type UpdateStageStatusAfterGatesList = Array<UpdateRunGateStatus>;
+export const UpdateStageStatusAfterGatesList = /*@__PURE__*/ S.Array(
+  UpdateRunGateStatus,
+) as any as S.Schema<UpdateStageStatusAfterGatesList>;
+
+/** The status of the wait duration. */
+export interface WaitStatus {
+  /** The status of the wait duration. */
+  status?: UpdateStatus;
+  /** The wait duration configured in seconds. */
+  waitDurationInSeconds?: number;
+}
+export const WaitStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(UpdateStatus),
+    waitDurationInSeconds: S.optional(S.Number),
+  }),
+).annotate({ identifier: "WaitStatus" }) as any as S.Schema<WaitStatus>;
+
+/** The status of a UpdateStage. */
+export interface UpdateStageStatus {
+  /** The status of the UpdateStage. */
+  status?: UpdateStatus;
+  /** The name of the UpdateStage. */
+  name?: string;
+  /** The max number of upgrades that can run concurrently across all groups in this stage, resolved from the UpdateStrategy.UpdateStage.maxConcurrency value. */
+  maxConcurrency?: number;
+  /** The list of groups to be updated as part of this UpdateStage. */
+  groups?: UpdateStageStatusGroupsList;
+  /** The list of Gates that will run before this UpdateStage. */
+  beforeGates?: UpdateStageStatusBeforeGatesList;
+  /** The list of Gates that will run after this UpdateStage. */
+  afterGates?: UpdateStageStatusAfterGatesList;
+  /** The status of the wait period configured on the UpdateStage. */
+  afterStageWaitStatus?: WaitStatus;
+}
+export const UpdateStageStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(UpdateStatus),
+    name: S.optional(S.String),
+    maxConcurrency: S.optional(S.Number),
+    groups: S.optional(UpdateStageStatusGroupsList),
+    beforeGates: S.optional(UpdateStageStatusBeforeGatesList),
+    afterGates: S.optional(UpdateStageStatusAfterGatesList),
+    afterStageWaitStatus: S.optional(WaitStatus),
+  }),
+).annotate({
+  identifier: "UpdateStageStatus",
+}) as any as S.Schema<UpdateStageStatus>;
+
+/** The stages composing an update run. Stages are run sequentially withing an UpdateRun. */
+export type UpdateRunStatusStagesList = Array<UpdateStageStatus>;
+export const UpdateRunStatusStagesList = /*@__PURE__*/ S.Array(
+  UpdateStageStatus,
+) as any as S.Schema<UpdateRunStatusStagesList>;
+
+/** The image versions to upgrade the nodes to. */
+export type NodeImageSelectionStatusSelectedNodeImageVersionsList =
+  Array<NodeImageVersion>;
+export const NodeImageSelectionStatusSelectedNodeImageVersionsList =
+  /*@__PURE__*/ S.Array(
+    NodeImageVersion,
+  ) as any as S.Schema<NodeImageSelectionStatusSelectedNodeImageVersionsList>;
+
+/** The node image upgrade specs for the update run. */
+export interface NodeImageSelectionStatus {
+  /** The image versions to upgrade the nodes to. */
+  selectedNodeImageVersions?: NodeImageSelectionStatusSelectedNodeImageVersionsList;
+}
+export const NodeImageSelectionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    selectedNodeImageVersions: S.optional(
+      NodeImageSelectionStatusSelectedNodeImageVersionsList,
+    ),
+  }),
+).annotate({
+  identifier: "NodeImageSelectionStatus",
+}) as any as S.Schema<NodeImageSelectionStatus>;
+
+/** The status of a UpdateRun. */
+export interface UpdateRunStatus {
+  /** The status of the UpdateRun. */
+  status?: UpdateStatus;
+  /** The stages composing an update run. Stages are run sequentially withing an UpdateRun. */
+  stages?: UpdateRunStatusStagesList;
+  /** The node image upgrade specs for the update run. It is only set in update run when `NodeImageSelection.type` is `Consistent`. */
+  nodeImageSelection?: NodeImageSelectionStatus;
+}
+export const UpdateRunStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(UpdateStatus),
+    stages: S.optional(UpdateRunStatusStagesList),
+    nodeImageSelection: S.optional(NodeImageSelectionStatus),
+  }),
+).annotate({
+  identifier: "UpdateRunStatus",
+}) as any as S.Schema<UpdateRunStatus>;
+
+/** The properties of the UpdateRun. */
+export interface UpdateRunProperties {
+  /** The provisioning state of the UpdateRun resource. */
+  provisioningState?: UpdateRunProvisioningState;
+  /** The resource id of the FleetUpdateStrategy resource to reference. When creating a new run, there are three ways to define a strategy for the run: 1. Define a new strategy in place: Set the "strategy" field. 2. Use an existing strategy: Set the "updateStrategyId" field. (since 2023-08-15-preview) 3. Use the default strategy to update all the members one by one: Leave both "updateStrategyId" and "strategy" unset. (since 2023-08-15-preview) Setting both "updateStrategyId" and "strategy" is invalid. UpdateRuns created by "updateStrategyId" snapshot the referenced UpdateStrategy at the time of creation and store it in the "strategy" field. Subsequent changes to the referenced FleetUpdateStrategy resource do not propagate. UpdateRunStrategy changes can be made directly on the "strategy" field before launching the UpdateRun. */
+  updateStrategyId?: string;
+  /** The strategy defines the order in which the clusters will be updated. If not set, all members will be updated sequentially. The UpdateRun status will show a single UpdateStage and a single UpdateGroup targeting all members. The strategy of the UpdateRun can be modified until the run is started. */
+  strategy?: UpdateRunStrategy;
+  /** The update to be applied to all clusters in the UpdateRun. The managedClusterUpdate can be modified until the run is started. */
+  managedClusterUpdate: ManagedClusterUpdate;
+  /** The status of the UpdateRun. */
+  status?: UpdateRunStatus;
+  /** AutoUpgradeProfileId is the id of an auto upgrade profile resource. */
+  autoUpgradeProfileId?: string;
+}
+export const UpdateRunProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(UpdateRunProvisioningState),
+    updateStrategyId: S.optional(S.String),
+    strategy: S.optional(UpdateRunStrategy),
+    managedClusterUpdate: ManagedClusterUpdate,
+    status: S.optional(UpdateRunStatus),
+    autoUpgradeProfileId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateRunProperties",
+}) as any as S.Schema<UpdateRunProperties>;
+
+export interface GetUpdateRunResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const GetUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetUpdateRunResponse",
+}) as any as S.Schema<GetUpdateRunResponse>;
 
 /** Managed identity profile for the identity binding. */
 export interface IdentityBindingManagedIdentityProfileInput {
@@ -9438,6 +9862,88 @@ export const FleetMemberListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FleetMemberListResult",
 }) as any as S.Schema<FleetMemberListResult>;
 
+export interface ListFleetUpdateStrategyByFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The page-continuation token to use with a paged version of this API. */
+  _skipToken?: string;
+}
+export const ListFleetUpdateStrategyByFleetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      fleetName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListFleetUpdateStrategyByFleetRequest",
+}) as any as S.Schema<ListFleetUpdateStrategyByFleetRequest>;
+
+/** Defines a multi-stage process to perform update operations across members of a Fleet. */
+export interface FleetUpdateStrategy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetUpdateStrategyProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const FleetUpdateStrategy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FleetUpdateStrategyProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetUpdateStrategy",
+}) as any as S.Schema<FleetUpdateStrategy>;
+
+/** The FleetUpdateStrategy items on this page */
+export type FleetUpdateStrategyListResultValueList = Array<FleetUpdateStrategy>;
+export const FleetUpdateStrategyListResultValueList = /*@__PURE__*/ S.Array(
+  FleetUpdateStrategy,
+) as any as S.Schema<FleetUpdateStrategyListResultValueList>;
+
+/** The response of a FleetUpdateStrategy list operation. */
+export interface FleetUpdateStrategyListResult {
+  /** The FleetUpdateStrategy items on this page */
+  value: FleetUpdateStrategyListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FleetUpdateStrategyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FleetUpdateStrategyListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetUpdateStrategyListResult",
+}) as any as S.Schema<FleetUpdateStrategyListResult>;
+
 export interface ListGateByFleetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -9928,10 +10434,10 @@ export const ListManagedClusterClusterMonitoringUserCredentialsRequest =
     identifier: "ListManagedClusterClusterMonitoringUserCredentialsRequest",
   }) as any as S.Schema<ListManagedClusterClusterMonitoringUserCredentialsRequest>;
 
-export type ManagedClustersListClusterUserCredentialsRequestFormat =
+export type ListManagedClusterClusterUserCredentialsRequestFormat =
   | "azure"
   | "exec";
-export const ManagedClustersListClusterUserCredentialsRequestFormat =
+export const ListManagedClusterClusterUserCredentialsRequestFormat =
   /*@__PURE__*/ S.String;
 
 export interface ListManagedClusterClusterUserCredentialsRequest {
@@ -9945,7 +10451,7 @@ export interface ListManagedClusterClusterUserCredentialsRequest {
   server_fqdn?: string;
   /** Only apply to AAD clusters, specifies the format of returned kubeconfig. Format 'azure' will return azure auth-provider kubeconfig; format 'exec' will return exec format kubeconfig, which requires kubelogin binary in the path. */
   format?:
-    | ManagedClustersListClusterUserCredentialsRequestFormat
+    | ListManagedClusterClusterUserCredentialsRequestFormat
     | (string & {});
 }
 export const ListManagedClusterClusterUserCredentialsRequest =
@@ -9956,7 +10462,7 @@ export const ListManagedClusterClusterUserCredentialsRequest =
       resourceName: S.String.pipe(T.Label()),
       server_fqdn: S.optional(S.String.pipe(T.Query("server-fqdn"))),
       format: S.optional(
-        ManagedClustersListClusterUserCredentialsRequestFormat.pipe(T.Query()),
+        ListManagedClusterClusterUserCredentialsRequestFormat.pipe(T.Query()),
       ),
     }).pipe(
       T.Http({
@@ -9970,13 +10476,13 @@ export const ListManagedClusterClusterUserCredentialsRequest =
     identifier: "ListManagedClusterClusterUserCredentialsRequest",
   }) as any as S.Schema<ListManagedClusterClusterUserCredentialsRequest>;
 
-export interface ListManagedClusterKuberneteVersionsRequest {
+export interface ListManagedClusterKubernetesVersionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
 }
-export const ListManagedClusterKuberneteVersionsRequest =
+export const ListManagedClusterKubernetesVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9990,8 +10496,8 @@ export const ListManagedClusterKuberneteVersionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListManagedClusterKuberneteVersionsRequest",
-  }) as any as S.Schema<ListManagedClusterKuberneteVersionsRequest>;
+    identifier: "ListManagedClusterKubernetesVersionsRequest",
+  }) as any as S.Schema<ListManagedClusterKubernetesVersionsRequest>;
 
 /** Kubernetes support plans available for this version. */
 export type KubernetesVersionCapabilitiesSupportPlanList =
@@ -10229,7 +10735,7 @@ export const MeshUpgradeProfileList = /*@__PURE__*/ S.suspend(() =>
   identifier: "MeshUpgradeProfileList",
 }) as any as S.Schema<MeshUpgradeProfileList>;
 
-export interface ListManagedClusterOutboundNetworkDependencyEndpointsRequest {
+export interface ListManagedClusterOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10237,7 +10743,7 @@ export interface ListManagedClusterOutboundNetworkDependencyEndpointsRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
 }
-export const ListManagedClusterOutboundNetworkDependencyEndpointsRequest =
+export const ListManagedClusterOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10252,8 +10758,8 @@ export const ListManagedClusterOutboundNetworkDependencyEndpointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListManagedClusterOutboundNetworkDependencyEndpointsRequest",
-  }) as any as S.Schema<ListManagedClusterOutboundNetworkDependencyEndpointsRequest>;
+    identifier: "ListManagedClusterOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListManagedClusterOutboundNetworkDependenciesEndpointsRequest>;
 
 /** connect information from the AKS agent nodes to a single endpoint. */
 export interface EndpointDetail {
@@ -10662,17 +11168,17 @@ export const PrivateLinkResourcesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PrivateLinkResourcesListResultValueList>;
 
 /** A list of private link resources */
-export interface ListPrivateLinkResourcesResult {
+export interface PrivateLinkResourcesListResult {
   /** The collection value. */
   value?: PrivateLinkResourcesListResultValueList;
 }
-export const ListPrivateLinkResourcesResult = /*@__PURE__*/ S.suspend(() =>
+export const PrivateLinkResourcesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(PrivateLinkResourcesListResultValueList),
   }),
 ).annotate({
-  identifier: "ListPrivateLinkResourcesResult",
-}) as any as S.Schema<ListPrivateLinkResourcesResult>;
+  identifier: "PrivateLinkResourcesListResult",
+}) as any as S.Schema<PrivateLinkResourcesListResult>;
 
 export interface ListSnapshotByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -10972,6 +11478,85 @@ export const TrustedAccessRoleListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TrustedAccessRoleListResult",
 }) as any as S.Schema<TrustedAccessRoleListResult>;
 
+export interface ListUpdateRunByFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The page-continuation token to use with a paged version of this API. */
+  _skipToken?: string;
+}
+export const ListUpdateRunByFleetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUpdateRunByFleetRequest",
+}) as any as S.Schema<ListUpdateRunByFleetRequest>;
+
+/** A multi-stage process to perform update operations across members of a Fleet. */
+export interface UpdateRun {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const UpdateRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({ identifier: "UpdateRun" }) as any as S.Schema<UpdateRun>;
+
+/** The UpdateRun items on this page */
+export type UpdateRunListResultValueList = Array<UpdateRun>;
+export const UpdateRunListResultValueList = /*@__PURE__*/ S.Array(
+  UpdateRun,
+) as any as S.Schema<UpdateRunListResultValueList>;
+
+/** The response of a UpdateRun list operation. */
+export interface UpdateRunListResult {
+  /** The UpdateRun items on this page */
+  value: UpdateRunListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const UpdateRunListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: UpdateRunListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateRunListResult",
+}) as any as S.Schema<UpdateRunListResult>;
+
 export interface MaintenanceConfigurationsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -11028,38 +11613,6 @@ export const MaintenanceConfigurationsCreateOrUpdateResponse =
   ).annotate({
     identifier: "MaintenanceConfigurationsCreateOrUpdateResponse",
   }) as any as S.Schema<MaintenanceConfigurationsCreateOrUpdateResponse>;
-
-export interface ManagedClustersAbortLatestOperationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersAbortLatestOperationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/abort",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersAbortLatestOperationRequest",
-  }) as any as S.Schema<ManagedClustersAbortLatestOperationRequest>;
-
-export interface ManagedClustersAbortLatestOperationResponse {}
-export const ManagedClustersAbortLatestOperationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ManagedClustersAbortLatestOperationResponse",
-  }) as any as S.Schema<ManagedClustersAbortLatestOperationResponse>;
 
 /** Resource tags. */
 export type ManagedClustersCreateOrUpdateRequestTagsMap = {
@@ -11992,78 +12545,6 @@ export const ManagedClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ManagedClustersCreateOrUpdateResponse",
 }) as any as S.Schema<ManagedClustersCreateOrUpdateResponse>;
 
-export interface ManagedClustersResetServicePrincipalProfileRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The ID for the service principal. */
-  clientId: string;
-  /** The secret password associated with the service principal in plain text. */
-  secret?: string | Redacted.Redacted<string>;
-}
-export const ManagedClustersResetServicePrincipalProfileRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      clientId: S.String,
-      secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/resetServicePrincipalProfile",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersResetServicePrincipalProfileRequest",
-  }) as any as S.Schema<ManagedClustersResetServicePrincipalProfileRequest>;
-
-export interface ManagedClustersResetServicePrincipalProfileResponse {}
-export const ManagedClustersResetServicePrincipalProfileResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ManagedClustersResetServicePrincipalProfileResponse",
-  }) as any as S.Schema<ManagedClustersResetServicePrincipalProfileResponse>;
-
-export interface ManagedClustersRunCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The command to run. */
-  command: string;
-  /** A base64 encoded zip file containing the files required by the command. */
-  context?: string;
-  /** AuthToken issued for AKS AAD Server App. */
-  clusterToken?: string;
-}
-export const ManagedClustersRunCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    command: S.String,
-    context: S.optional(S.String),
-    clusterToken: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedClustersRunCommandRequest",
-}) as any as S.Schema<ManagedClustersRunCommandRequest>;
-
 /** Resource tags. */
 export type ManagedNamespacesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -12203,14 +12684,14 @@ export const ManagedNamespacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ManagedNamespacesCreateOrUpdateResponse>;
 
 /** The RequiredMembers of the resource */
-export type ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList =
+export type PostResolvePrivateLinkServiceIdRequestRequiredMembersList =
   Array<string>;
-export const ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList =
+export const PostResolvePrivateLinkServiceIdRequestRequiredMembersList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList>;
+  ) as any as S.Schema<PostResolvePrivateLinkServiceIdRequestRequiredMembersList>;
 
-export interface ResolvePrivateLinkServiceIdPOSTRequest {
+export interface PostResolvePrivateLinkServiceIdRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12226,9 +12707,9 @@ export interface ResolvePrivateLinkServiceIdPOSTRequest {
   /** The group ID of the resource. */
   groupId?: string;
   /** The RequiredMembers of the resource */
-  requiredMembers?: ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList;
+  requiredMembers?: PostResolvePrivateLinkServiceIdRequestRequiredMembersList;
 }
-export const ResolvePrivateLinkServiceIdPOSTRequest = /*@__PURE__*/ S.suspend(
+export const PostResolvePrivateLinkServiceIdRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12239,7 +12720,7 @@ export const ResolvePrivateLinkServiceIdPOSTRequest = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       groupId: S.optional(S.String),
       requiredMembers: S.optional(
-        ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList,
+        PostResolvePrivateLinkServiceIdRequestRequiredMembersList,
       ),
     }).pipe(
       T.Http({
@@ -12250,10 +12731,48 @@ export const ResolvePrivateLinkServiceIdPOSTRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ResolvePrivateLinkServiceIdPOSTRequest",
-}) as any as S.Schema<ResolvePrivateLinkServiceIdPOSTRequest>;
+  identifier: "PostResolvePrivateLinkServiceIdRequest",
+}) as any as S.Schema<PostResolvePrivateLinkServiceIdRequest>;
 
-export interface RotateManagedClusterClusterCertificateRequest {
+export interface ResetManagedClusterServicePrincipalProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The ID for the service principal. */
+  clientId: string;
+  /** The secret password associated with the service principal in plain text. */
+  secret?: string | Redacted.Redacted<string>;
+}
+export const ResetManagedClusterServicePrincipalProfileRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      clientId: S.String,
+      secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/resetServicePrincipalProfile",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ResetManagedClusterServicePrincipalProfileRequest",
+  }) as any as S.Schema<ResetManagedClusterServicePrincipalProfileRequest>;
+
+export interface ResetManagedClusterServicePrincipalProfileResponse {}
+export const ResetManagedClusterServicePrincipalProfileResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ResetManagedClusterServicePrincipalProfileResponse",
+  }) as any as S.Schema<ResetManagedClusterServicePrincipalProfileResponse>;
+
+export interface RotateManagedClusterClusterCertificatesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12261,7 +12780,7 @@ export interface RotateManagedClusterClusterCertificateRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
 }
-export const RotateManagedClusterClusterCertificateRequest =
+export const RotateManagedClusterClusterCertificatesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12276,16 +12795,16 @@ export const RotateManagedClusterClusterCertificateRequest =
       }),
     ),
   ).annotate({
-    identifier: "RotateManagedClusterClusterCertificateRequest",
-  }) as any as S.Schema<RotateManagedClusterClusterCertificateRequest>;
+    identifier: "RotateManagedClusterClusterCertificatesRequest",
+  }) as any as S.Schema<RotateManagedClusterClusterCertificatesRequest>;
 
-export interface RotateManagedClusterClusterCertificateResponse {}
-export const RotateManagedClusterClusterCertificateResponse =
+export interface RotateManagedClusterClusterCertificatesResponse {}
+export const RotateManagedClusterClusterCertificatesResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "RotateManagedClusterClusterCertificateResponse",
-  }) as any as S.Schema<RotateManagedClusterClusterCertificateResponse>;
+    identifier: "RotateManagedClusterClusterCertificatesResponse",
+  }) as any as S.Schema<RotateManagedClusterClusterCertificatesResponse>;
 
-export interface RotateManagedClusterServiceAccountSigningKeyRequest {
+export interface RotateManagedClusterServiceAccountSigningKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12293,7 +12812,7 @@ export interface RotateManagedClusterServiceAccountSigningKeyRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
 }
-export const RotateManagedClusterServiceAccountSigningKeyRequest =
+export const RotateManagedClusterServiceAccountSigningKeysRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -12308,14 +12827,48 @@ export const RotateManagedClusterServiceAccountSigningKeyRequest =
       }),
     ),
   ).annotate({
-    identifier: "RotateManagedClusterServiceAccountSigningKeyRequest",
-  }) as any as S.Schema<RotateManagedClusterServiceAccountSigningKeyRequest>;
+    identifier: "RotateManagedClusterServiceAccountSigningKeysRequest",
+  }) as any as S.Schema<RotateManagedClusterServiceAccountSigningKeysRequest>;
 
-export interface RotateManagedClusterServiceAccountSigningKeyResponse {}
-export const RotateManagedClusterServiceAccountSigningKeyResponse =
+export interface RotateManagedClusterServiceAccountSigningKeysResponse {}
+export const RotateManagedClusterServiceAccountSigningKeysResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "RotateManagedClusterServiceAccountSigningKeyResponse",
-  }) as any as S.Schema<RotateManagedClusterServiceAccountSigningKeyResponse>;
+    identifier: "RotateManagedClusterServiceAccountSigningKeysResponse",
+  }) as any as S.Schema<RotateManagedClusterServiceAccountSigningKeysResponse>;
+
+export interface RunManagedClusterCommandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The command to run. */
+  command: string;
+  /** A base64 encoded zip file containing the files required by the command. */
+  context?: string;
+  /** AuthToken issued for AKS AAD Server App. */
+  clusterToken?: string;
+}
+export const RunManagedClusterCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    command: S.String,
+    context: S.optional(S.String),
+    clusterToken: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "RunManagedClusterCommandRequest",
+}) as any as S.Schema<RunManagedClusterCommandRequest>;
 
 /** Resource tags. */
 export type SnapshotsCreateOrUpdateRequestTagsMap = {
@@ -12451,6 +13004,61 @@ export const StartManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartManagedClusterResponse",
 }) as any as S.Schema<StartManagedClusterResponse>;
 
+export interface StartUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+}
+export const StartUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/start",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartUpdateRunRequest",
+}) as any as S.Schema<StartUpdateRunRequest>;
+
+export interface StartUpdateRunResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const StartUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StartUpdateRunResponse",
+}) as any as S.Schema<StartUpdateRunResponse>;
+
 export interface StopManagedClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -12482,6 +13090,61 @@ export const StopManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "StopManagedClusterResponse",
 }) as any as S.Schema<StopManagedClusterResponse>;
+
+export interface StopUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+}
+export const StopUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/stop",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopUpdateRunRequest",
+}) as any as S.Schema<StopUpdateRunRequest>;
+
+export interface StopUpdateRunResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const StopUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StopUpdateRunResponse",
+}) as any as S.Schema<StopUpdateRunResponse>;
 
 /** A list of roles to bind, each item is a resource type qualified role name. For example: 'Microsoft.MachineLearningServices/workspaces/reader'. */
 export type TrustedAccessRoleBindingPropertiesInputRolesList = Array<string>;
@@ -12565,15 +13228,15 @@ export const TrustedAccessRoleBindingsCreateOrUpdateResponse =
   }) as any as S.Schema<TrustedAccessRoleBindingsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type FleetsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFleetRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsUpdateRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
-export const FleetsUpdateRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
+export type UpdateFleetRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
+export const UpdateFleetRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
 
 export interface UpdateFleetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12583,7 +13246,7 @@ export interface UpdateFleetRequest {
   /** The name of the Fleet resource. */
   fleetName: string;
   /** Resource tags. */
-  tags?: FleetsUpdateRequestTagsMap;
+  tags?: UpdateFleetRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: FleetsCreateOrUpdateRequestIdentity;
 }
@@ -12592,7 +13255,7 @@ export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fleetName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateFleetRequestTagsMap),
     identity: S.optional(FleetsCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
@@ -12607,16 +13270,15 @@ export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFleetRequest>;
 
 /** Resource tags. */
-export type FleetsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFleetResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsUpdateResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsUpdateResponseIdentity =
-  FleetsCreateOrUpdateResponseIdentity;
+export type UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
 
 export interface UpdateFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12628,7 +13290,7 @@ export interface UpdateFleetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetsUpdateResponseTagsMap;
+  tags?: UpdateFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -12644,7 +13306,7 @@ export const UpdateFleetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetProperties),
     eTag: S.optional(S.String),
@@ -12655,14 +13317,13 @@ export const UpdateFleetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFleetResponse>;
 
 /** Resource tags. */
-export type FleetManagedNamespacesUpdateRequestTagsMap = {
+export type UpdateFleetManagedNamespaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const FleetManagedNamespacesUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<FleetManagedNamespacesUpdateRequestTagsMap>;
+export const UpdateFleetManagedNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFleetManagedNamespaceRequestTagsMap>;
 
 export interface UpdateFleetManagedNamespaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -12674,7 +13335,7 @@ export interface UpdateFleetManagedNamespaceRequest {
   /** The name of the fleet managed namespace resource. */
   managedNamespaceName: string;
   /** Resource tags. */
-  tags?: FleetManagedNamespacesUpdateRequestTagsMap;
+  tags?: UpdateFleetManagedNamespaceRequestTagsMap;
 }
 export const UpdateFleetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12682,7 +13343,7 @@ export const UpdateFleetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     fleetName: S.String.pipe(T.Label()),
     managedNamespaceName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetManagedNamespacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateFleetManagedNamespaceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12696,14 +13357,14 @@ export const UpdateFleetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFleetManagedNamespaceRequest>;
 
 /** Resource tags. */
-export type FleetManagedNamespacesUpdateResponseTagsMap = {
+export type UpdateFleetManagedNamespaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FleetManagedNamespacesUpdateResponseTagsMap =
+export const UpdateFleetManagedNamespaceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<FleetManagedNamespacesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateFleetManagedNamespaceResponseTagsMap>;
 
 export interface UpdateFleetManagedNamespaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -12715,7 +13376,7 @@ export interface UpdateFleetManagedNamespaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetManagedNamespacesUpdateResponseTagsMap;
+  tags?: UpdateFleetManagedNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -12729,7 +13390,7 @@ export const UpdateFleetManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetManagedNamespacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateFleetManagedNamespaceResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetManagedNamespaceProperties),
     eTag: S.optional(S.String),
@@ -12893,15 +13554,15 @@ export const UpdateGateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateGateResponse>;
 
 /** Resource tags. */
-export type ManagedClustersUpdateTagsRequestTagsMap = {
+export type UpdateManagedClusterTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedClusterTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedClustersUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateManagedClusterTagsRequestTagsMap>;
 
-export interface UpdateManagedClusterTagRequest {
+export interface UpdateManagedClusterTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12909,14 +13570,14 @@ export interface UpdateManagedClusterTagRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
   /** Resource tags. */
-  tags?: ManagedClustersUpdateTagsRequestTagsMap;
+  tags?: UpdateManagedClusterTagsRequestTagsMap;
 }
-export const UpdateManagedClusterTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateManagedClusterTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedClustersUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateManagedClusterTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -12926,19 +13587,19 @@ export const UpdateManagedClusterTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateManagedClusterTagRequest",
-}) as any as S.Schema<UpdateManagedClusterTagRequest>;
+  identifier: "UpdateManagedClusterTagsRequest",
+}) as any as S.Schema<UpdateManagedClusterTagsRequest>;
 
 /** Resource tags. */
-export type ManagedClustersUpdateTagsResponseTagsMap = {
+export type UpdateManagedClusterTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedClusterTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedClustersUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateManagedClusterTagsResponseTagsMap>;
 
-export interface UpdateManagedClusterTagResponse {
+export interface UpdateManagedClusterTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12948,7 +13609,7 @@ export interface UpdateManagedClusterTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedClustersUpdateTagsResponseTagsMap;
+  tags?: UpdateManagedClusterTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a managed cluster. */
@@ -12964,13 +13625,13 @@ export interface UpdateManagedClusterTagResponse {
   /** This is primarily used to expose different UI experiences in the portal for different kinds */
   kind?: string;
 }
-export const UpdateManagedClusterTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateManagedClusterTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedClustersUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateManagedClusterTagsResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedClusterProperties),
     eTag: S.optional(S.String),
@@ -12980,17 +13641,17 @@ export const UpdateManagedClusterTagResponse = /*@__PURE__*/ S.suspend(() =>
     kind: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateManagedClusterTagResponse",
-}) as any as S.Schema<UpdateManagedClusterTagResponse>;
+  identifier: "UpdateManagedClusterTagsResponse",
+}) as any as S.Schema<UpdateManagedClusterTagsResponse>;
 
 /** Resource tags. */
-export type ManagedNamespacesUpdateRequestTagsMap = {
+export type UpdateManagedNamespaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedNamespacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedNamespacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateManagedNamespaceRequestTagsMap>;
 
 export interface UpdateManagedNamespaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -13002,7 +13663,7 @@ export interface UpdateManagedNamespaceRequest {
   /** The name of the managed namespace. */
   managedNamespaceName: string;
   /** Resource tags. */
-  tags?: ManagedNamespacesUpdateRequestTagsMap;
+  tags?: UpdateManagedNamespaceRequestTagsMap;
 }
 export const UpdateManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -13010,7 +13671,7 @@ export const UpdateManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
     managedNamespaceName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedNamespacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateManagedNamespaceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -13024,13 +13685,13 @@ export const UpdateManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedNamespaceRequest>;
 
 /** Resource tags. */
-export type ManagedNamespacesUpdateResponseTagsMap = {
+export type UpdateManagedNamespaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedNamespacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedNamespacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateManagedNamespaceResponseTagsMap>;
 
 export interface UpdateManagedNamespaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -13042,7 +13703,7 @@ export interface UpdateManagedNamespaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedNamespacesUpdateResponseTagsMap;
+  tags?: UpdateManagedNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a namespace. */
@@ -13056,7 +13717,7 @@ export const UpdateManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedNamespacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateManagedNamespaceResponseTagsMap),
     location: S.String,
     properties: S.optional(NamespaceProperties),
     eTag: S.optional(S.String),
@@ -13138,33 +13799,6 @@ export const UpdatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "UpdatePrivateEndpointConnectionResponse",
 }) as any as S.Schema<UpdatePrivateEndpointConnectionResponse>;
-
-/** The type of upgrade to perform when targeting ManagedClusters. */
-export type ManagedClusterUpgradeType =
-  | "Full"
-  | "NodeImageOnly"
-  | "ControlPlaneOnly";
-export const ManagedClusterUpgradeType = /*@__PURE__*/ S.String;
-
-/** The upgrade to apply to a ManagedCluster. */
-export interface ManagedClusterUpgradeSpec {
-  /** ManagedClusterUpgradeType is the type of upgrade to be applied. */
-  type: ManagedClusterUpgradeType | (string & {});
-  /** The Kubernetes version to upgrade the member clusters to. */
-  kubernetesVersion?: string;
-}
-export const ManagedClusterUpgradeSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ManagedClusterUpgradeType,
-    kubernetesVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedClusterUpgradeSpec",
-}) as any as S.Schema<ManagedClusterUpgradeSpec>;
-
-/** The node image upgrade type. */
-export type NodeImageSelectionType = "Latest" | "Consistent" | "Custom";
-export const NodeImageSelectionType = /*@__PURE__*/ S.String;
 
 /** The node upgrade image version. */
 export type NodeImageVersionInput = AgentPoolStatusInputProvisioningError;
@@ -13262,363 +13896,6 @@ export const UpdateRunsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRunsCreateOrUpdateRequest",
 }) as any as S.Schema<UpdateRunsCreateOrUpdateRequest>;
 
-/** The provisioning state of the UpdateRun resource. */
-export type UpdateRunProvisioningState = "Succeeded" | "Failed" | "Canceled";
-export const UpdateRunProvisioningState = /*@__PURE__*/ S.String;
-
-/** The node upgrade image version. */
-export interface NodeImageVersion {
-  /** The image version to upgrade the nodes to (e.g., 'AKSUbuntu-1804gen2containerd-2022.12.13'). */
-  version?: string;
-}
-export const NodeImageVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NodeImageVersion",
-}) as any as S.Schema<NodeImageVersion>;
-
-/** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
-export type NodeImageSelectionCustomNodeImageVersionsList =
-  Array<NodeImageVersion>;
-export const NodeImageSelectionCustomNodeImageVersionsList =
-  /*@__PURE__*/ S.Array(
-    NodeImageVersion,
-  ) as any as S.Schema<NodeImageSelectionCustomNodeImageVersionsList>;
-
-/** The node image upgrade to be applied to the target nodes in update run. */
-export interface NodeImageSelection {
-  /** The node image upgrade type. */
-  type: NodeImageSelectionType;
-  /** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
-  customNodeImageVersions?: NodeImageSelectionCustomNodeImageVersionsList;
-}
-export const NodeImageSelection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: NodeImageSelectionType,
-    customNodeImageVersions: S.optional(
-      NodeImageSelectionCustomNodeImageVersionsList,
-    ),
-  }),
-).annotate({
-  identifier: "NodeImageSelection",
-}) as any as S.Schema<NodeImageSelection>;
-
-/** The update to be applied to the ManagedClusters. */
-export interface ManagedClusterUpdate {
-  /** The upgrade to apply to the ManagedClusters. */
-  upgrade: ManagedClusterUpgradeSpec;
-  /** The node image upgrade to be applied to the target nodes in update run. */
-  nodeImageSelection?: NodeImageSelection;
-}
-export const ManagedClusterUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    upgrade: ManagedClusterUpgradeSpec,
-    nodeImageSelection: S.optional(NodeImageSelection),
-  }),
-).annotate({
-  identifier: "ManagedClusterUpdate",
-}) as any as S.Schema<ManagedClusterUpdate>;
-
-/** The state of the UpdateRun, UpdateStage, UpdateGroup, or MemberUpdate. */
-export type UpdateState =
-  | "NotStarted"
-  | "Running"
-  | "Stopping"
-  | "Stopped"
-  | "Skipped"
-  | "Failed"
-  | "Pending"
-  | "Completed";
-export const UpdateState = /*@__PURE__*/ S.String;
-
-/** The error details. */
-export type UpdateStatusErrorDetailsList = Array<ErrorDetail>;
-export const UpdateStatusErrorDetailsList = /*@__PURE__*/ S.Array(
-  ErrorDetail,
-) as any as S.Schema<UpdateStatusErrorDetailsList>;
-
-/** The error additional info. */
-export type UpdateStatusErrorAdditionalInfoList = Array<ErrorAdditionalInfo>;
-export const UpdateStatusErrorAdditionalInfoList = /*@__PURE__*/ S.Array(
-  ErrorAdditionalInfo,
-) as any as S.Schema<UpdateStatusErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface UpdateStatusError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: UpdateStatusErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: UpdateStatusErrorAdditionalInfoList;
-}
-export const UpdateStatusError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(UpdateStatusErrorDetailsList),
-    additionalInfo: S.optional(UpdateStatusErrorAdditionalInfoList),
-  }),
-).annotate({
-  identifier: "UpdateStatusError",
-}) as any as S.Schema<UpdateStatusError>;
-
-/** The status for an operation or group of operations. */
-export interface UpdateStatus {
-  /** The time the operation or group was started. */
-  startTime?: string;
-  /** The time the operation or group was completed. */
-  completedTime?: string;
-  /** The State of the operation or group. */
-  state?: UpdateState;
-  /** The error detail. */
-  error?: UpdateStatusError;
-}
-export const UpdateStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startTime: S.optional(S.String),
-    completedTime: S.optional(S.String),
-    state: S.optional(UpdateState),
-    error: S.optional(UpdateStatusError),
-  }),
-).annotate({ identifier: "UpdateStatus" }) as any as S.Schema<UpdateStatus>;
-
-/** The status of a member update operation. */
-export interface MemberUpdateStatus {
-  /** The status of the MemberUpdate operation. */
-  status?: UpdateStatus;
-  /** The name of the FleetMember. */
-  name?: string;
-  /** The Azure resource id of the target Kubernetes cluster. */
-  clusterResourceId?: string;
-  /** The operation resource id of the latest attempt to perform the operation. */
-  operationId?: string;
-  /** The status message after processing the member update operation. */
-  message?: string;
-}
-export const MemberUpdateStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(UpdateStatus),
-    name: S.optional(S.String),
-    clusterResourceId: S.optional(S.String),
-    operationId: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MemberUpdateStatus",
-}) as any as S.Schema<MemberUpdateStatus>;
-
-/** The list of member this UpdateGroup updates. */
-export type UpdateGroupStatusMembersList = Array<MemberUpdateStatus>;
-export const UpdateGroupStatusMembersList = /*@__PURE__*/ S.Array(
-  MemberUpdateStatus,
-) as any as S.Schema<UpdateGroupStatusMembersList>;
-
-/** The status of the Gate, as represented in the Update Run. */
-export interface UpdateRunGateStatus {
-  /** The human-readable display name of the Gate. */
-  displayName?: string;
-  /** The resource id of the Gate. */
-  gateId?: string;
-  /** The status of the Gate. */
-  status?: UpdateStatus;
-}
-export const UpdateRunGateStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    gateId: S.optional(S.String),
-    status: S.optional(UpdateStatus),
-  }),
-).annotate({
-  identifier: "UpdateRunGateStatus",
-}) as any as S.Schema<UpdateRunGateStatus>;
-
-/** The list of Gates that will run before this UpdateGroup. */
-export type UpdateGroupStatusBeforeGatesList = Array<UpdateRunGateStatus>;
-export const UpdateGroupStatusBeforeGatesList = /*@__PURE__*/ S.Array(
-  UpdateRunGateStatus,
-) as any as S.Schema<UpdateGroupStatusBeforeGatesList>;
-
-/** The list of Gates that will run after this UpdateGroup. */
-export type UpdateGroupStatusAfterGatesList = Array<UpdateRunGateStatus>;
-export const UpdateGroupStatusAfterGatesList = /*@__PURE__*/ S.Array(
-  UpdateRunGateStatus,
-) as any as S.Schema<UpdateGroupStatusAfterGatesList>;
-
-/** The status of a UpdateGroup. */
-export interface UpdateGroupStatus {
-  /** The status of the UpdateGroup. */
-  status?: UpdateStatus;
-  /** The name of the UpdateGroup. */
-  name?: string;
-  /** The max number of upgrades that can run concurrently in this group, resolved from the UpdateStrategy.UpdateGroup.maxConcurrency value. If no value was provided, this value defaults to "1". */
-  maxConcurrency?: number;
-  /** The list of member this UpdateGroup updates. */
-  members?: UpdateGroupStatusMembersList;
-  /** The list of Gates that will run before this UpdateGroup. */
-  beforeGates?: UpdateGroupStatusBeforeGatesList;
-  /** The list of Gates that will run after this UpdateGroup. */
-  afterGates?: UpdateGroupStatusAfterGatesList;
-}
-export const UpdateGroupStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(UpdateStatus),
-    name: S.optional(S.String),
-    maxConcurrency: S.optional(S.Number),
-    members: S.optional(UpdateGroupStatusMembersList),
-    beforeGates: S.optional(UpdateGroupStatusBeforeGatesList),
-    afterGates: S.optional(UpdateGroupStatusAfterGatesList),
-  }),
-).annotate({
-  identifier: "UpdateGroupStatus",
-}) as any as S.Schema<UpdateGroupStatus>;
-
-/** The list of groups to be updated as part of this UpdateStage. */
-export type UpdateStageStatusGroupsList = Array<UpdateGroupStatus>;
-export const UpdateStageStatusGroupsList = /*@__PURE__*/ S.Array(
-  UpdateGroupStatus,
-) as any as S.Schema<UpdateStageStatusGroupsList>;
-
-/** The list of Gates that will run before this UpdateStage. */
-export type UpdateStageStatusBeforeGatesList = Array<UpdateRunGateStatus>;
-export const UpdateStageStatusBeforeGatesList = /*@__PURE__*/ S.Array(
-  UpdateRunGateStatus,
-) as any as S.Schema<UpdateStageStatusBeforeGatesList>;
-
-/** The list of Gates that will run after this UpdateStage. */
-export type UpdateStageStatusAfterGatesList = Array<UpdateRunGateStatus>;
-export const UpdateStageStatusAfterGatesList = /*@__PURE__*/ S.Array(
-  UpdateRunGateStatus,
-) as any as S.Schema<UpdateStageStatusAfterGatesList>;
-
-/** The status of the wait duration. */
-export interface WaitStatus {
-  /** The status of the wait duration. */
-  status?: UpdateStatus;
-  /** The wait duration configured in seconds. */
-  waitDurationInSeconds?: number;
-}
-export const WaitStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(UpdateStatus),
-    waitDurationInSeconds: S.optional(S.Number),
-  }),
-).annotate({ identifier: "WaitStatus" }) as any as S.Schema<WaitStatus>;
-
-/** The status of a UpdateStage. */
-export interface UpdateStageStatus {
-  /** The status of the UpdateStage. */
-  status?: UpdateStatus;
-  /** The name of the UpdateStage. */
-  name?: string;
-  /** The max number of upgrades that can run concurrently across all groups in this stage, resolved from the UpdateStrategy.UpdateStage.maxConcurrency value. */
-  maxConcurrency?: number;
-  /** The list of groups to be updated as part of this UpdateStage. */
-  groups?: UpdateStageStatusGroupsList;
-  /** The list of Gates that will run before this UpdateStage. */
-  beforeGates?: UpdateStageStatusBeforeGatesList;
-  /** The list of Gates that will run after this UpdateStage. */
-  afterGates?: UpdateStageStatusAfterGatesList;
-  /** The status of the wait period configured on the UpdateStage. */
-  afterStageWaitStatus?: WaitStatus;
-}
-export const UpdateStageStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(UpdateStatus),
-    name: S.optional(S.String),
-    maxConcurrency: S.optional(S.Number),
-    groups: S.optional(UpdateStageStatusGroupsList),
-    beforeGates: S.optional(UpdateStageStatusBeforeGatesList),
-    afterGates: S.optional(UpdateStageStatusAfterGatesList),
-    afterStageWaitStatus: S.optional(WaitStatus),
-  }),
-).annotate({
-  identifier: "UpdateStageStatus",
-}) as any as S.Schema<UpdateStageStatus>;
-
-/** The stages composing an update run. Stages are run sequentially withing an UpdateRun. */
-export type UpdateRunStatusStagesList = Array<UpdateStageStatus>;
-export const UpdateRunStatusStagesList = /*@__PURE__*/ S.Array(
-  UpdateStageStatus,
-) as any as S.Schema<UpdateRunStatusStagesList>;
-
-/** The image versions to upgrade the nodes to. */
-export type NodeImageSelectionStatusSelectedNodeImageVersionsList =
-  Array<NodeImageVersion>;
-export const NodeImageSelectionStatusSelectedNodeImageVersionsList =
-  /*@__PURE__*/ S.Array(
-    NodeImageVersion,
-  ) as any as S.Schema<NodeImageSelectionStatusSelectedNodeImageVersionsList>;
-
-/** The node image upgrade specs for the update run. */
-export interface NodeImageSelectionStatus {
-  /** The image versions to upgrade the nodes to. */
-  selectedNodeImageVersions?: NodeImageSelectionStatusSelectedNodeImageVersionsList;
-}
-export const NodeImageSelectionStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    selectedNodeImageVersions: S.optional(
-      NodeImageSelectionStatusSelectedNodeImageVersionsList,
-    ),
-  }),
-).annotate({
-  identifier: "NodeImageSelectionStatus",
-}) as any as S.Schema<NodeImageSelectionStatus>;
-
-/** The status of a UpdateRun. */
-export interface UpdateRunStatus {
-  /** The status of the UpdateRun. */
-  status?: UpdateStatus;
-  /** The stages composing an update run. Stages are run sequentially withing an UpdateRun. */
-  stages?: UpdateRunStatusStagesList;
-  /** The node image upgrade specs for the update run. It is only set in update run when `NodeImageSelection.type` is `Consistent`. */
-  nodeImageSelection?: NodeImageSelectionStatus;
-}
-export const UpdateRunStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(UpdateStatus),
-    stages: S.optional(UpdateRunStatusStagesList),
-    nodeImageSelection: S.optional(NodeImageSelectionStatus),
-  }),
-).annotate({
-  identifier: "UpdateRunStatus",
-}) as any as S.Schema<UpdateRunStatus>;
-
-/** The properties of the UpdateRun. */
-export interface UpdateRunProperties {
-  /** The provisioning state of the UpdateRun resource. */
-  provisioningState?: UpdateRunProvisioningState;
-  /** The resource id of the FleetUpdateStrategy resource to reference. When creating a new run, there are three ways to define a strategy for the run: 1. Define a new strategy in place: Set the "strategy" field. 2. Use an existing strategy: Set the "updateStrategyId" field. (since 2023-08-15-preview) 3. Use the default strategy to update all the members one by one: Leave both "updateStrategyId" and "strategy" unset. (since 2023-08-15-preview) Setting both "updateStrategyId" and "strategy" is invalid. UpdateRuns created by "updateStrategyId" snapshot the referenced UpdateStrategy at the time of creation and store it in the "strategy" field. Subsequent changes to the referenced FleetUpdateStrategy resource do not propagate. UpdateRunStrategy changes can be made directly on the "strategy" field before launching the UpdateRun. */
-  updateStrategyId?: string;
-  /** The strategy defines the order in which the clusters will be updated. If not set, all members will be updated sequentially. The UpdateRun status will show a single UpdateStage and a single UpdateGroup targeting all members. The strategy of the UpdateRun can be modified until the run is started. */
-  strategy?: UpdateRunStrategy;
-  /** The update to be applied to all clusters in the UpdateRun. The managedClusterUpdate can be modified until the run is started. */
-  managedClusterUpdate: ManagedClusterUpdate;
-  /** The status of the UpdateRun. */
-  status?: UpdateRunStatus;
-  /** AutoUpgradeProfileId is the id of an auto upgrade profile resource. */
-  autoUpgradeProfileId?: string;
-}
-export const UpdateRunProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(UpdateRunProvisioningState),
-    updateStrategyId: S.optional(S.String),
-    strategy: S.optional(UpdateRunStrategy),
-    managedClusterUpdate: ManagedClusterUpdate,
-    status: S.optional(UpdateRunStatus),
-    autoUpgradeProfileId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunProperties",
-}) as any as S.Schema<UpdateRunProperties>;
-
 export interface UpdateRunsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -13645,175 +13922,6 @@ export const UpdateRunsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateRunsCreateOrUpdateResponse",
 }) as any as S.Schema<UpdateRunsCreateOrUpdateResponse>;
-
-export interface UpdateRunsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
-}
-export const UpdateRunsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsDeleteRequest",
-}) as any as S.Schema<UpdateRunsDeleteRequest>;
-
-export interface UpdateRunsDeleteResponse {}
-export const UpdateRunsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UpdateRunsDeleteResponse",
-}) as any as S.Schema<UpdateRunsDeleteResponse>;
-
-export interface UpdateRunsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
-}
-export const UpdateRunsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsGetRequest",
-}) as any as S.Schema<UpdateRunsGetRequest>;
-
-export interface UpdateRunsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const UpdateRunsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunsGetResponse",
-}) as any as S.Schema<UpdateRunsGetResponse>;
-
-export interface UpdateRunsListByFleetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The page-continuation token to use with a paged version of this API. */
-  _skipToken?: string;
-}
-export const UpdateRunsListByFleetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsListByFleetRequest",
-}) as any as S.Schema<UpdateRunsListByFleetRequest>;
-
-/** A multi-stage process to perform update operations across members of a Fleet. */
-export interface UpdateRun {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const UpdateRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({ identifier: "UpdateRun" }) as any as S.Schema<UpdateRun>;
-
-/** The UpdateRun items on this page */
-export type UpdateRunListResultValueList = Array<UpdateRun>;
-export const UpdateRunListResultValueList = /*@__PURE__*/ S.Array(
-  UpdateRun,
-) as any as S.Schema<UpdateRunListResultValueList>;
-
-/** The response of a UpdateRun list operation. */
-export interface UpdateRunListResult {
-  /** The UpdateRun items on this page */
-  value: UpdateRunListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const UpdateRunListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: UpdateRunListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunListResult",
-}) as any as S.Schema<UpdateRunListResult>;
 
 /** The target type of a skip request. */
 export type TargetType = "Member" | "Group" | "Stage" | "AfterStageWait";
@@ -13897,126 +14005,16 @@ export const UpdateRunsSkipResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRunsSkipResponse",
 }) as any as S.Schema<UpdateRunsSkipResponse>;
 
-export interface UpdateRunsStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
-}
-export const UpdateRunsStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/start",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsStartRequest",
-}) as any as S.Schema<UpdateRunsStartRequest>;
-
-export interface UpdateRunsStartResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const UpdateRunsStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunsStartResponse",
-}) as any as S.Schema<UpdateRunsStartResponse>;
-
-export interface UpdateRunsStopRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
-}
-export const UpdateRunsStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/stop",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsStopRequest",
-}) as any as S.Schema<UpdateRunsStopRequest>;
-
-export interface UpdateRunsStopResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const UpdateRunsStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunsStopResponse",
-}) as any as S.Schema<UpdateRunsStopResponse>;
-
 /** Resource tags. */
-export type SnapshotsUpdateTagsRequestTagsMap = {
+export type UpdateSnapshotTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SnapshotsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSnapshotTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotsUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateSnapshotTagsRequestTagsMap>;
 
-export interface UpdateSnapshotTagRequest {
+export interface UpdateSnapshotTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -14024,14 +14022,14 @@ export interface UpdateSnapshotTagRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
   /** Resource tags. */
-  tags?: SnapshotsUpdateTagsRequestTagsMap;
+  tags?: UpdateSnapshotTagsRequestTagsMap;
 }
-export const UpdateSnapshotTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSnapshotTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(SnapshotsUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateSnapshotTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -14041,19 +14039,19 @@ export const UpdateSnapshotTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSnapshotTagRequest",
-}) as any as S.Schema<UpdateSnapshotTagRequest>;
+  identifier: "UpdateSnapshotTagsRequest",
+}) as any as S.Schema<UpdateSnapshotTagsRequest>;
 
 /** Resource tags. */
-export type SnapshotsUpdateTagsResponseTagsMap = {
+export type UpdateSnapshotTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SnapshotsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSnapshotTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotsUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateSnapshotTagsResponseTagsMap>;
 
-export interface UpdateSnapshotTagResponse {
+export interface UpdateSnapshotTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -14063,36 +14061,51 @@ export interface UpdateSnapshotTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SnapshotsUpdateTagsResponseTagsMap;
+  tags?: UpdateSnapshotTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a snapshot. */
   properties?: SnapshotProperties;
 }
-export const UpdateSnapshotTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSnapshotTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotsUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateSnapshotTagsResponseTagsMap),
     location: S.String,
     properties: S.optional(SnapshotProperties),
   }),
 ).annotate({
-  identifier: "UpdateSnapshotTagResponse",
-}) as any as S.Schema<UpdateSnapshotTagResponse>;
+  identifier: "UpdateSnapshotTagsResponse",
+}) as any as S.Schema<UpdateSnapshotTagsResponse>;
 
-export type AgentPoolsAbortLatestOperationError = AzureOpError;
+export type AbortAgentPoolLatestOperationError = AzureOpError;
 /** Aborts last operation running on agent pool. Aborts the currently running operation on the agent pool. The Agent Pool will be moved to a Canceling state and eventually to a Canceled state when cancellation finishes. If the operation completes before cancellation can take place, a 409 error code is returned. */
-export const AgentPoolsAbortLatestOperation: API.OperationMethod<
-  AgentPoolsAbortLatestOperationRequest,
-  AgentPoolsAbortLatestOperationResponse,
-  AgentPoolsAbortLatestOperationError,
+export const AbortAgentPoolLatestOperation: API.OperationMethod<
+  AbortAgentPoolLatestOperationRequest,
+  AbortAgentPoolLatestOperationResponse,
+  AbortAgentPoolLatestOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsAbortLatestOperationRequest,
-  output: AgentPoolsAbortLatestOperationResponse,
+  input: AbortAgentPoolLatestOperationRequest,
+  output: AbortAgentPoolLatestOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AbortManagedClusterLatestOperationError = AzureOpError;
+/** Aborts last operation running on managed cluster. Aborts the currently running operation on the managed cluster. The Managed Cluster will be moved to a Canceling state and eventually to a Canceled state when cancellation finishes. If the operation completes before cancellation can take place, a 409 error code is returned. */
+export const AbortManagedClusterLatestOperation: API.OperationMethod<
+  AbortManagedClusterLatestOperationRequest,
+  AbortManagedClusterLatestOperationResponse,
+  AbortManagedClusterLatestOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AbortManagedClusterLatestOperationRequest,
+  output: AbortManagedClusterLatestOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14203,16 +14216,16 @@ export const DeleteAgentPool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteAgentPoolMachineError = AzureOpError;
+export type DeleteAgentPoolMachinesError = AzureOpError;
 /** Deletes specific machines in an agent pool. */
-export const DeleteAgentPoolMachine: API.OperationMethod<
-  DeleteAgentPoolMachineRequest,
-  DeleteAgentPoolMachineResponse,
-  DeleteAgentPoolMachineError,
+export const DeleteAgentPoolMachines: API.OperationMethod<
+  DeleteAgentPoolMachinesRequest,
+  DeleteAgentPoolMachinesResponse,
+  DeleteAgentPoolMachinesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAgentPoolMachineRequest,
-  output: DeleteAgentPoolMachineResponse,
+  input: DeleteAgentPoolMachinesRequest,
+  output: DeleteAgentPoolMachinesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14288,6 +14301,21 @@ export const DeleteFleetMember: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteFleetMemberRequest,
   output: DeleteFleetMemberResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFleetUpdateStrategyError = AzureOpError;
+/** Delete a FleetUpdateStrategy */
+export const DeleteFleetUpdateStrategy: API.OperationMethod<
+  DeleteFleetUpdateStrategyRequest,
+  DeleteFleetUpdateStrategyResponse,
+  DeleteFleetUpdateStrategyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFleetUpdateStrategyRequest,
+  output: DeleteFleetUpdateStrategyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14398,6 +14426,21 @@ export const DeleteTrustedAccessRoleBinding: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteUpdateRunError = AzureOpError;
+/** Delete a UpdateRun */
+export const DeleteUpdateRun: API.OperationMethod<
+  DeleteUpdateRunRequest,
+  DeleteUpdateRunResponse,
+  DeleteUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUpdateRunRequest,
+  output: DeleteUpdateRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type FleetManagedNamespacesCreateOrUpdateError = AzureOpError;
 /** Create a FleetManagedNamespace */
 export const FleetManagedNamespacesCreateOrUpdate: API.OperationMethod<
@@ -14443,51 +14486,6 @@ export const FleetUpdateStrategiesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FleetUpdateStrategiesDeleteError = AzureOpError;
-/** Delete a FleetUpdateStrategy */
-export const FleetUpdateStrategiesDelete: API.OperationMethod<
-  FleetUpdateStrategiesDeleteRequest,
-  FleetUpdateStrategiesDeleteResponse,
-  FleetUpdateStrategiesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetUpdateStrategiesDeleteRequest,
-  output: FleetUpdateStrategiesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetUpdateStrategiesGetError = AzureOpError;
-/** Get a FleetUpdateStrategy */
-export const FleetUpdateStrategiesGet: API.OperationMethod<
-  FleetUpdateStrategiesGetRequest,
-  FleetUpdateStrategiesGetResponse,
-  FleetUpdateStrategiesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetUpdateStrategiesGetRequest,
-  output: FleetUpdateStrategiesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetUpdateStrategiesListByFleetError = AzureOpError;
-/** List FleetUpdateStrategy resources by Fleet */
-export const FleetUpdateStrategiesListByFleet: API.OperationMethod<
-  FleetUpdateStrategiesListByFleetRequest,
-  FleetUpdateStrategyListResult,
-  FleetUpdateStrategiesListByFleetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetUpdateStrategiesListByFleetRequest,
-  output: FleetUpdateStrategyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetAgentPoolError = AzureOpError;
 /** Gets the specified managed cluster agent pool. */
 export const GetAgentPool: API.OperationMethod<
@@ -14503,15 +14501,15 @@ export const GetAgentPool: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAgentPoolAvailableAgentPoolVersionError = AzureOpError;
+export type GetAgentPoolAvailableAgentPoolVersionsError = AzureOpError;
 /** Gets a list of supported Kubernetes versions for the specified agent pool. See [supported Kubernetes versions](https://docs.microsoft.com/azure/aks/supported-kubernetes-versions) for more details about the version lifecycle. */
-export const GetAgentPoolAvailableAgentPoolVersion: API.OperationMethod<
-  GetAgentPoolAvailableAgentPoolVersionRequest,
+export const GetAgentPoolAvailableAgentPoolVersions: API.OperationMethod<
+  GetAgentPoolAvailableAgentPoolVersionsRequest,
   AgentPoolAvailableVersions,
-  GetAgentPoolAvailableAgentPoolVersionError,
+  GetAgentPoolAvailableAgentPoolVersionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAgentPoolAvailableAgentPoolVersionRequest,
+  input: GetAgentPoolAvailableAgentPoolVersionsRequest,
   output: AgentPoolAvailableVersions,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14603,6 +14601,21 @@ export const GetFleetMember: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetFleetMemberRequest,
   output: GetFleetMemberResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFleetUpdateStrategyError = AzureOpError;
+/** Get a FleetUpdateStrategy */
+export const GetFleetUpdateStrategy: API.OperationMethod<
+  GetFleetUpdateStrategyRequest,
+  GetFleetUpdateStrategyResponse,
+  GetFleetUpdateStrategyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFleetUpdateStrategyRequest,
+  output: GetFleetUpdateStrategyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14803,6 +14816,21 @@ export const GetTrustedAccessRoleBinding: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetUpdateRunError = AzureOpError;
+/** Get a UpdateRun */
+export const GetUpdateRun: API.OperationMethod<
+  GetUpdateRunRequest,
+  GetUpdateRunResponse,
+  GetUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUpdateRunRequest,
+  output: GetUpdateRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type IdentityBindingsCreateOrUpdateError = AzureOpError;
 /** Creates or updates an identity binding in the specified managed cluster. */
 export const IdentityBindingsCreateOrUpdate: API.OperationMethod<
@@ -14938,6 +14966,21 @@ export const ListFleetMemberByFleet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListFleetUpdateStrategyByFleetError = AzureOpError;
+/** List FleetUpdateStrategy resources by Fleet */
+export const ListFleetUpdateStrategyByFleet: API.OperationMethod<
+  ListFleetUpdateStrategyByFleetRequest,
+  FleetUpdateStrategyListResult,
+  ListFleetUpdateStrategyByFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFleetUpdateStrategyByFleetRequest,
+  output: FleetUpdateStrategyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListGateByFleetError = AzureOpError;
 /** List Gate resources by Fleet */
 export const ListGateByFleet: API.OperationMethod<
@@ -15059,15 +15102,15 @@ export const ListManagedClusterClusterUserCredentials: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListManagedClusterKuberneteVersionsError = AzureOpError;
+export type ListManagedClusterKubernetesVersionsError = AzureOpError;
 /** Gets a list of supported Kubernetes versions in the specified subscription. Contains extra metadata on the version, including supported patch versions, capabilities, available upgrades, and details on preview status of the version */
-export const ListManagedClusterKuberneteVersions: API.OperationMethod<
-  ListManagedClusterKuberneteVersionsRequest,
+export const ListManagedClusterKubernetesVersions: API.OperationMethod<
+  ListManagedClusterKubernetesVersionsRequest,
   KubernetesVersionListResult,
-  ListManagedClusterKuberneteVersionsError,
+  ListManagedClusterKubernetesVersionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListManagedClusterKuberneteVersionsRequest,
+  input: ListManagedClusterKubernetesVersionsRequest,
   output: KubernetesVersionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -15104,16 +15147,16 @@ export const ListManagedClusterMeshUpgradeProfiles: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListManagedClusterOutboundNetworkDependencyEndpointsError =
+export type ListManagedClusterOutboundNetworkDependenciesEndpointsError =
   AzureOpError;
 /** Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified managed cluster. Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified managed cluster. The operation returns properties of each egress endpoint. */
-export const ListManagedClusterOutboundNetworkDependencyEndpoints: API.OperationMethod<
-  ListManagedClusterOutboundNetworkDependencyEndpointsRequest,
+export const ListManagedClusterOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListManagedClusterOutboundNetworkDependenciesEndpointsRequest,
   OutboundEnvironmentEndpointCollection,
-  ListManagedClusterOutboundNetworkDependencyEndpointsError,
+  ListManagedClusterOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListManagedClusterOutboundNetworkDependencyEndpointsRequest,
+  input: ListManagedClusterOutboundNetworkDependenciesEndpointsRequest,
   output: OutboundEnvironmentEndpointCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -15199,12 +15242,12 @@ export type ListPrivateLinkResourcesError = AzureOpError;
 /** Gets a list of private link resources in the specified managed cluster. To learn more about private clusters, see: https://docs.microsoft.com/azure/aks/private-clusters */
 export const ListPrivateLinkResources: API.OperationMethod<
   ListPrivateLinkResourcesRequest,
-  ListPrivateLinkResourcesResult,
+  PrivateLinkResourcesListResult,
   ListPrivateLinkResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListPrivateLinkResourcesRequest,
-  output: ListPrivateLinkResourcesResult,
+  output: PrivateLinkResourcesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15270,6 +15313,21 @@ export const ListTrustedAccessRoles: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListUpdateRunByFleetError = AzureOpError;
+/** List UpdateRun resources by Fleet */
+export const ListUpdateRunByFleet: API.OperationMethod<
+  ListUpdateRunByFleetRequest,
+  UpdateRunListResult,
+  ListUpdateRunByFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUpdateRunByFleetRequest,
+  output: UpdateRunListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type MaintenanceConfigurationsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a maintenance configuration in the specified managed cluster. */
 export const MaintenanceConfigurationsCreateOrUpdate: API.OperationMethod<
@@ -15280,21 +15338,6 @@ export const MaintenanceConfigurationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: MaintenanceConfigurationsCreateOrUpdateRequest,
   output: MaintenanceConfigurationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersAbortLatestOperationError = AzureOpError;
-/** Aborts last operation running on managed cluster. Aborts the currently running operation on the managed cluster. The Managed Cluster will be moved to a Canceling state and eventually to a Canceled state when cancellation finishes. If the operation completes before cancellation can take place, a 409 error code is returned. */
-export const ManagedClustersAbortLatestOperation: API.OperationMethod<
-  ManagedClustersAbortLatestOperationRequest,
-  ManagedClustersAbortLatestOperationResponse,
-  ManagedClustersAbortLatestOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersAbortLatestOperationRequest,
-  output: ManagedClustersAbortLatestOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15315,36 +15358,6 @@ export const ManagedClustersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedClustersResetServicePrincipalProfileError = AzureOpError;
-/** Reset the Service Principal Profile of a managed cluster. This action cannot be performed on a cluster that is not using a service principal */
-export const ManagedClustersResetServicePrincipalProfile: API.OperationMethod<
-  ManagedClustersResetServicePrincipalProfileRequest,
-  ManagedClustersResetServicePrincipalProfileResponse,
-  ManagedClustersResetServicePrincipalProfileError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersResetServicePrincipalProfileRequest,
-  output: ManagedClustersResetServicePrincipalProfileResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersRunCommandError = AzureOpError;
-/** Submits a command to run against the Managed Cluster. AKS will create a pod to run the command. This is primarily useful for private clusters. For more information see [AKS Run Command](https://docs.microsoft.com/azure/aks/private-clusters#aks-run-command-preview). */
-export const ManagedClustersRunCommand: API.OperationMethod<
-  ManagedClustersRunCommandRequest,
-  RunCommandResult,
-  ManagedClustersRunCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersRunCommandRequest,
-  output: RunCommandResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ManagedNamespacesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a namespace managed by ARM for the specified managed cluster. Users can configure aspects like resource quotas, network ingress/egress policies, and more. See aka.ms/aks/managed-namespaces for more details. */
 export const ManagedNamespacesCreateOrUpdate: API.OperationMethod<
@@ -15360,46 +15373,76 @@ export const ManagedNamespacesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ResolvePrivateLinkServiceIdPOSTError = AzureOpError;
+export type PostResolvePrivateLinkServiceIdError = AzureOpError;
 /** Gets the private link service ID for the specified managed cluster. */
-export const ResolvePrivateLinkServiceIdPOST: API.OperationMethod<
-  ResolvePrivateLinkServiceIdPOSTRequest,
+export const PostResolvePrivateLinkServiceId: API.OperationMethod<
+  PostResolvePrivateLinkServiceIdRequest,
   PrivateLinkResource,
-  ResolvePrivateLinkServiceIdPOSTError,
+  PostResolvePrivateLinkServiceIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResolvePrivateLinkServiceIdPOSTRequest,
+  input: PostResolvePrivateLinkServiceIdRequest,
   output: PrivateLinkResource,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RotateManagedClusterClusterCertificateError = AzureOpError;
-/** Rotates the certificates of a managed cluster. See [Certificate rotation](https://docs.microsoft.com/azure/aks/certificate-rotation) for more details about rotating managed cluster certificates. */
-export const RotateManagedClusterClusterCertificate: API.OperationMethod<
-  RotateManagedClusterClusterCertificateRequest,
-  RotateManagedClusterClusterCertificateResponse,
-  RotateManagedClusterClusterCertificateError,
+export type ResetManagedClusterServicePrincipalProfileError = AzureOpError;
+/** Reset the Service Principal Profile of a managed cluster. This action cannot be performed on a cluster that is not using a service principal */
+export const ResetManagedClusterServicePrincipalProfile: API.OperationMethod<
+  ResetManagedClusterServicePrincipalProfileRequest,
+  ResetManagedClusterServicePrincipalProfileResponse,
+  ResetManagedClusterServicePrincipalProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RotateManagedClusterClusterCertificateRequest,
-  output: RotateManagedClusterClusterCertificateResponse,
+  input: ResetManagedClusterServicePrincipalProfileRequest,
+  output: ResetManagedClusterServicePrincipalProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RotateManagedClusterServiceAccountSigningKeyError = AzureOpError;
-/** Rotates the service account signing keys of a managed cluster. */
-export const RotateManagedClusterServiceAccountSigningKey: API.OperationMethod<
-  RotateManagedClusterServiceAccountSigningKeyRequest,
-  RotateManagedClusterServiceAccountSigningKeyResponse,
-  RotateManagedClusterServiceAccountSigningKeyError,
+export type RotateManagedClusterClusterCertificatesError = AzureOpError;
+/** Rotates the certificates of a managed cluster. See [Certificate rotation](https://docs.microsoft.com/azure/aks/certificate-rotation) for more details about rotating managed cluster certificates. */
+export const RotateManagedClusterClusterCertificates: API.OperationMethod<
+  RotateManagedClusterClusterCertificatesRequest,
+  RotateManagedClusterClusterCertificatesResponse,
+  RotateManagedClusterClusterCertificatesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RotateManagedClusterServiceAccountSigningKeyRequest,
-  output: RotateManagedClusterServiceAccountSigningKeyResponse,
+  input: RotateManagedClusterClusterCertificatesRequest,
+  output: RotateManagedClusterClusterCertificatesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateManagedClusterServiceAccountSigningKeysError = AzureOpError;
+/** Rotates the service account signing keys of a managed cluster. */
+export const RotateManagedClusterServiceAccountSigningKeys: API.OperationMethod<
+  RotateManagedClusterServiceAccountSigningKeysRequest,
+  RotateManagedClusterServiceAccountSigningKeysResponse,
+  RotateManagedClusterServiceAccountSigningKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateManagedClusterServiceAccountSigningKeysRequest,
+  output: RotateManagedClusterServiceAccountSigningKeysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunManagedClusterCommandError = AzureOpError;
+/** Submits a command to run against the Managed Cluster. AKS will create a pod to run the command. This is primarily useful for private clusters. For more information see [AKS Run Command](https://docs.microsoft.com/azure/aks/private-clusters#aks-run-command-preview). */
+export const RunManagedClusterCommand: API.OperationMethod<
+  RunManagedClusterCommandRequest,
+  RunCommandResult,
+  RunManagedClusterCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunManagedClusterCommandRequest,
+  output: RunCommandResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15435,6 +15478,21 @@ export const StartManagedCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type StartUpdateRunError = AzureOpError;
+/** Starts an UpdateRun. */
+export const StartUpdateRun: API.OperationMethod<
+  StartUpdateRunRequest,
+  StartUpdateRunResponse,
+  StartUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartUpdateRunRequest,
+  output: StartUpdateRunResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type StopManagedClusterError = AzureOpError;
 /** Stops a Managed Cluster This can only be performed on Azure Virtual Machine Scale set backed clusters. Stopping a cluster stops the control plane and agent nodes entirely, while maintaining all object and cluster state. A cluster does not accrue charges while it is stopped. See [stopping a cluster](https://docs.microsoft.com/azure/aks/start-stop-cluster) for more details about stopping a cluster. */
 export const StopManagedCluster: API.OperationMethod<
@@ -15445,6 +15503,21 @@ export const StopManagedCluster: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StopManagedClusterRequest,
   output: StopManagedClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopUpdateRunError = AzureOpError;
+/** Stops an UpdateRun. */
+export const StopUpdateRun: API.OperationMethod<
+  StopUpdateRunRequest,
+  StopUpdateRunResponse,
+  StopUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopUpdateRunRequest,
+  output: StopUpdateRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15525,16 +15598,16 @@ export const UpdateGate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateManagedClusterTagError = AzureOpError;
+export type UpdateManagedClusterTagsError = AzureOpError;
 /** Updates tags on a managed cluster. */
-export const UpdateManagedClusterTag: API.OperationMethod<
-  UpdateManagedClusterTagRequest,
-  UpdateManagedClusterTagResponse,
-  UpdateManagedClusterTagError,
+export const UpdateManagedClusterTags: API.OperationMethod<
+  UpdateManagedClusterTagsRequest,
+  UpdateManagedClusterTagsResponse,
+  UpdateManagedClusterTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateManagedClusterTagRequest,
-  output: UpdateManagedClusterTagResponse,
+  input: UpdateManagedClusterTagsRequest,
+  output: UpdateManagedClusterTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15585,51 +15658,6 @@ export const UpdateRunsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateRunsDeleteError = AzureOpError;
-/** Delete a UpdateRun */
-export const UpdateRunsDelete: API.OperationMethod<
-  UpdateRunsDeleteRequest,
-  UpdateRunsDeleteResponse,
-  UpdateRunsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsDeleteRequest,
-  output: UpdateRunsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsGetError = AzureOpError;
-/** Get a UpdateRun */
-export const UpdateRunsGet: API.OperationMethod<
-  UpdateRunsGetRequest,
-  UpdateRunsGetResponse,
-  UpdateRunsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsGetRequest,
-  output: UpdateRunsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsListByFleetError = AzureOpError;
-/** List UpdateRun resources by Fleet */
-export const UpdateRunsListByFleet: API.OperationMethod<
-  UpdateRunsListByFleetRequest,
-  UpdateRunListResult,
-  UpdateRunsListByFleetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsListByFleetRequest,
-  output: UpdateRunListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateRunsSkipError = AzureOpError;
 /** Skips one or a combination of member/group/stage/afterStageWait(s) of an update run. */
 export const UpdateRunsSkip: API.OperationMethod<
@@ -15645,46 +15673,16 @@ export const UpdateRunsSkip: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateRunsStartError = AzureOpError;
-/** Starts an UpdateRun. */
-export const UpdateRunsStart: API.OperationMethod<
-  UpdateRunsStartRequest,
-  UpdateRunsStartResponse,
-  UpdateRunsStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsStartRequest,
-  output: UpdateRunsStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsStopError = AzureOpError;
-/** Stops an UpdateRun. */
-export const UpdateRunsStop: API.OperationMethod<
-  UpdateRunsStopRequest,
-  UpdateRunsStopResponse,
-  UpdateRunsStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsStopRequest,
-  output: UpdateRunsStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateSnapshotTagError = AzureOpError;
+export type UpdateSnapshotTagsError = AzureOpError;
 /** Updates tags on a snapshot. */
-export const UpdateSnapshotTag: API.OperationMethod<
-  UpdateSnapshotTagRequest,
-  UpdateSnapshotTagResponse,
-  UpdateSnapshotTagError,
+export const UpdateSnapshotTags: API.OperationMethod<
+  UpdateSnapshotTagsRequest,
+  UpdateSnapshotTagsResponse,
+  UpdateSnapshotTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSnapshotTagRequest,
-  output: UpdateSnapshotTagResponse,
+  input: UpdateSnapshotTagsRequest,
+  output: UpdateSnapshotTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

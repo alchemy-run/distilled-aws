@@ -189,6 +189,18 @@ export const Entry = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Entry" }) as any as S.Schema<Entry>;
 
+export interface GetEntryRequest {
+  /** The unique identifier of the waitlist entry to retrieve. */
+  id: string;
+}
+export const GetEntryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/entries/{id}", code: 200 })),
+).annotate({
+  identifier: "GetEntryRequest",
+}) as any as S.Schema<GetEntryRequest>;
+
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
 export const Direction = /*@__PURE__*/ S.String;
@@ -327,18 +339,6 @@ export const ListEntryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEntryResponse",
 }) as any as S.Schema<ListEntryResponse>;
 
-export interface RetrieveEntryRequest {
-  /** The unique identifier of the waitlist entry to retrieve. */
-  id: string;
-}
-export const RetrieveEntryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/entries/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveEntryRequest",
-}) as any as S.Schema<RetrieveEntryRequest>;
-
 export type ApproveEntryError =
   | BadRequest
   | Forbidden
@@ -379,6 +379,26 @@ export const denyEntry: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetEntryError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve entry [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing waitlist entry. Required permissions: - `plan:waitlist:read` - `member:email:read` */
+export const getEntry: API.OperationMethod<
+  GetEntryRequest,
+  Entry,
+  GetEntryError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEntryRequest,
+  output: Entry,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListEntryError =
   | BadRequest
   | Forbidden
@@ -410,23 +430,3 @@ export const listEntry: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveEntryError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve entry [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing waitlist entry. Required permissions: - `plan:waitlist:read` - `member:email:read` */
-export const retrieveEntry: API.OperationMethod<
-  RetrieveEntryRequest,
-  Entry,
-  RetrieveEntryError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveEntryRequest,
-  output: Entry,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

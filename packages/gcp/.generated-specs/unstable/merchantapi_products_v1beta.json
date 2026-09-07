@@ -4,84 +4,97 @@
     "service": "merchantapi",
     "version": "products_v1beta",
     "title": "Merchant API",
-    "baseUrl": "https://merchantapi.googleapis.com/"
+    "baseUrl": "https://merchantapi.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.merchantapi_products_v1beta#ProductInput": {
+    "com.gcp.merchantapi_products_v1beta#Product": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The name of the product. Format: `accounts/{account}/productInputs/{productinput}` The {productinput} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productinput} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productinput}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productinput}` segment must be the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{productinput}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productinput}` segment is used to differentiate between the two formats."
-          }
-        },
-        "base64EncodedProduct": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The **unpadded base64url encoded name** of the processed product. Format: `accounts/{account}/products/{product}` where the last section `product` is the unpadded base64url encoding of the `content_language~feed_label~offer_id` name. Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product name `accounts/123/products/en~US~sku/123`. This field can be used directly as input to the API methods that require the product name to be encoded if it contains special characters, for example [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1beta/accounts.products/get)."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.merchantapi_products_v1beta#Attributes",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of product attributes."
-          }
-        },
-        "versionNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown."
-          }
-        },
-        "contentLanguage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Immutable. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the product."
-          }
-        },
-        "product": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of the processed product. Format: `accounts/{account}/products/{product}`"
-          }
-        },
-        "offerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Immutable. Your unique identifier for the product. This is the same for the product input and processed product. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. See the [products data specification](https://support.google.com/merchants/answer/188494#id) for details."
-          }
-        },
-        "base64EncodedName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The **unpadded base64url encoded name** of the product input. Format: `accounts/{account}/productInputs/{productinput}` where the last section `productinput` is the unpadded base64url encoding of the `content_language~feed_label~offer_id` name. Example: `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw` for the decoded product input name `accounts/123/productInputs/en~US~sku/123`. This field can be used directly as input to the API methods that require the product input name to be encoded if it contains special characters, for example [`GetProductInput`](https://developers.google.com/merchant/api/reference/rest/products_v1beta/accounts.productInputs/get)."
-          }
-        },
         "feedLabel": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Immutable. The feed label that lets you categorize and identify your products. The maximum allowed characters are 20, and the supported characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087)."
+            "smithy.api#documentation": "Output only. The feed label lets you categorize and identify your products. The maximum allowed characters is 20 and the supported characters are`A-Z`, `0-9`, hyphen and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087)"
+          }
+        },
+        "automatedDiscounts": {
+          "target": "com.gcp.merchantapi_products_v1beta#AutomatedDiscounts",
+          "traits": {
+            "smithy.api#documentation": "Output only. The automated discounts information for the product."
+          }
+        },
+        "productStatus": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductStatus",
+          "traits": {
+            "smithy.api#documentation": "Output only. The status of a product, data validation issues, that is, information about a product computed asynchronously."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the product. Format: `accounts/{account}/products/{product}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`."
           }
         },
         "channel": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductInputChannelEnum",
+          "target": "com.gcp.merchantapi_products_v1beta#ProductChannelEnum",
           "traits": {
-            "smithy.api#documentation": "Immutable. The [channel](https://support.google.com/merchants/answer/7361332) of the product."
+            "smithy.api#documentation": "Output only. The [channel](https://support.google.com/merchants/answer/7361332) of the product."
           }
         },
         "customAttributes": {
           "target": "com.gcp.merchantapi_products_v1beta#CustomAttributeList",
           "traits": {
-            "smithy.api#documentation": "Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion."
+            "smithy.api#documentation": "Output only. A list of custom (merchant-provided) attributes. It can also be used to submit any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Determines whether the product is [archived](https://support.google.com/merchants/answer/11909930). To archive or restore your product, visit Merchant Center products page. Learn also more about [offer visibility](https://support.google.com/merchants/answer/12488713)."
+          }
+        },
+        "base64EncodedName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The **unpadded base64url encoded name** of the product. Format: `accounts/{account}/products/{product}` where the last section `product` is the unpadded base64url encoding of the `content_language~feed_label~offer_id` name. Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product name `accounts/123/products/en~US~sku/123`. This field can be used directly as input to the API methods that require the product name to be encoded if it contains special characters, for example [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1beta/accounts.products/get)."
+          }
+        },
+        "versionNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. If the operation is prevented, the aborted exception will be thrown."
+          }
+        },
+        "contentLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the product."
+          }
+        },
+        "attributes": {
+          "target": "com.gcp.merchantapi_products_v1beta#Attributes",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of product attributes."
+          }
+        },
+        "dataSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The primary data source of the product."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Your unique identifier for the product. This is the same for the product input and processed product. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. See the [product data specification](https://support.google.com/merchants/answer/188494#id) for details."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style."
+        "smithy.api#documentation": "The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions."
       }
     },
-    "com.gcp.merchantapi_products_v1beta#ProductInputChannelEnum": {
+    "com.gcp.merchantapi_products_v1beta#ProductChannelEnum": {
       "type": "enum",
       "members": {
         "CHANNEL_ENUM_UNSPECIFIED": {
@@ -110,220 +123,21 @@
         "target": "com.gcp.merchantapi_products_v1beta#CustomAttribute"
       }
     },
-    "com.gcp.merchantapi_products_v1beta#Interval": {
-      "type": "structure",
-      "members": {
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end."
-          }
-        },
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#LoyaltyProgram": {
-      "type": "structure",
-      "members": {
-        "programLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a business entity and a loyalty program entity. The label must be provided so that the system can associate the assets below (for example, price and points) with a business. The corresponding program must be linked to the Merchant Center account."
-          }
-        },
-        "cashbackForFutureUse": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The cashback that can be used for future purchases."
-          }
-        },
-        "memberPriceEffectiveDate": {
-          "target": "com.gcp.merchantapi_products_v1beta#Interval",
-          "traits": {
-            "smithy.api#documentation": "A date range during which the item is eligible for member price. If not specified, the member price is always applicable. The date range is represented by a pair of ISO 8601 dates separated by a space, comma, or slash."
-          }
-        },
-        "loyaltyPoints": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The amount of loyalty points earned on a purchase."
-          }
-        },
-        "tierLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The label of the tier within the loyalty program. Must match one of the labels within the program."
-          }
-        },
-        "shippingLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The label of the shipping benefit. If the field has value, this offer has loyalty shipping benefit. If the field value isn't provided, the item is not eligible for loyalty shipping for the given loyalty tier."
-          }
-        },
-        "price": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The price for members of the given tier, that is, the instant discount price. Must be smaller or equal to the regular price."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A message that represents loyalty program."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#Price": {
-      "type": "structure",
-      "members": {
-        "amountMicros": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The price represented as a number in micros (1 million micros is an equivalent to one's currency standard unit, for example, 1 USD = 1000000 micros)."
-          }
-        },
-        "currencyCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The price represented as a number and currency."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#Installment": {
-      "type": "structure",
-      "members": {
-        "creditType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Type of installment payments. Supported values are: * \"`finance`\" * \"`lease`\""
-          }
-        },
-        "months": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The number of installments the buyer has to pay."
-          }
-        },
-        "amount": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The amount the buyer has to pay per month."
-          }
-        },
-        "downpayment": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The up-front down payment amount the buyer has to pay."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A message that represents installment."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentive": {
-      "type": "structure",
-      "members": {
-        "type": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Sustainability incentive program."
-          }
-        },
-        "percentage": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of the sale price that the incentive is applied to."
-          }
-        },
-        "amount": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The fixed amount of the incentive."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information regarding sustainability-related incentive programs such as rebates or tax relief."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveTypeEnum": {
-      "type": "enum",
-      "members": {
-        "TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
-          }
-        },
-        "EV_TAX_CREDIT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EV_TAX_CREDIT"
-          }
-        },
-        "EV_PRICE_DISCOUNT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EV_PRICE_DISCOUNT"
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductWeight": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Required. The weight represented as a number. The weight can have a maximum precision of four decimal places."
-          }
-        },
-        "unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The weight unit. Acceptable values are: * \"`g`\" * \"`kg`\" * \"`oz`\" * \"`lb`\""
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The weight of the product."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductStructuredDescription": {
-      "type": "structure",
-      "members": {
-        "digitalSourceType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The digital source type, for example \"trained_algorithmic_media\". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters."
-          }
-        },
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The description text Maximum length is 5000 characters"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Structured description, for algorithmically (AI)-generated descriptions."
-      }
-    },
     "com.gcp.merchantapi_products_v1beta#ProductChange": {
       "type": "structure",
       "members": {
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductChangeReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
+          }
+        },
+        "newValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
+          }
+        },
         "regionCode": {
           "target": "smithy.api#String",
           "traits": {
@@ -334,18 +148,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The old value of the changed resource or attribute. If empty, it means that the product was created. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
-          }
-        },
-        "newValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new value of the changed resource or attribute. If empty, it means that the product was deleted. Will have one of these values : (`approved`, `pending`, `disapproved`, ``)"
-          }
-        },
-        "reportingContext": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductChangeReportingContextEnum",
-          "traits": {
-            "smithy.api#documentation": "Reporting contexts that have the change (if applicable). Currently this field supports only (`SHOPPING_ADS`, `LOCAL_INVENTORY_ADS`, `YOUTUBE_SHOPPING`, `YOUTUBE_CHECKOUT`, `YOUTUBE_AFFILIATE`) from the enum value [ReportingContextEnum](/merchant/api/reference/rest/Shared.Types/ReportingContextEnum)"
           }
         }
       },
@@ -475,22 +277,209 @@
           "traits": {
             "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
           }
+        },
+        "RENTAL_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RENTAL_ADS"
+          }
         }
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ShippingDimension": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The dimension of the product used to calculate the shipping cost of the item."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ShippingDimension of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#AutomatedDiscounts": {
+      "type": "structure",
+      "members": {
+        "priorPrice": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The price prior to the application of the first price reduction. Absent if the information about the prior price of the product is not available."
+          }
+        },
+        "priorPriceProgressive": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The price prior to the application of consecutive price reductions. Absent if the information about the prior price of the product is not available."
+          }
+        },
+        "gadPrice": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The current sale price for products with a price optimized using Google Automated Discounts (GAD). Absent if the information about the GAD_price of the product is not available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information regarding Automated Discounts."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#SubscriptionCost": {
+      "type": "structure",
+      "members": {
+        "periodLength": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of subscription periods the buyer has to pay."
+          }
+        },
+        "amount": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The amount the buyer has to pay per subscription period."
+          }
+        },
+        "period": {
+          "target": "com.gcp.merchantapi_products_v1beta#SubscriptionCostPeriodEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of subscription period. Supported values are: * \"`month`\" * \"`year`\" * \"`week`\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SubscriptionCost of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#SubscriptionCostPeriodEnum": {
+      "type": "enum",
+      "members": {
+        "SUBSCRIPTION_PERIOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_PERIOD_UNSPECIFIED"
+          }
+        },
+        "MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONTH"
+          }
+        },
+        "YEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YEAR"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEK"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductDimension": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Required. The dimension value represented as a number. The value can have a maximum precision of four decimal places."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The dimension units. Acceptable values are: * \"`in`\" * \"`cm`\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The dimension of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ShippingWeight": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of value."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The weight of the product used to calculate the shipping cost of the item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ShippingWeight of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#UnitPricingMeasure": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of the measure."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The measure of an item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The UnitPricingMeasure of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductStructuredTitle": {
+      "type": "structure",
+      "members": {
+        "digitalSourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The digital source type, for example \"trained_algorithmic_media\". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title text Maximum length is 150 characters"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured title, for algorithmically (AI)-generated titles."
       }
     },
     "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessage": {
       "type": "structure",
       "members": {
+        "attribute": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessageAttributeEnum",
+          "traits": {
+            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
+          }
+        },
         "eventTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The time at which the event was generated. If you want to order the notification messages you receive you should rely on this field not on the order of receiving the notifications."
-          }
-        },
-        "resourceType": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessageResourceTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
           }
         },
         "changes": {
@@ -499,10 +488,10 @@
             "smithy.api#documentation": "A message to describe the change that happened to the product"
           }
         },
-        "resource": {
+        "managingAccount": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
+            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
           }
         },
         "account": {
@@ -511,33 +500,56 @@
             "smithy.api#documentation": "The target account that owns the entity that changed. Format : `accounts/{merchant_id}`"
           }
         },
-        "resourceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The product id."
-          }
-        },
         "expirationTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event."
           }
         },
-        "managingAccount": {
+        "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`"
+            "smithy.api#documentation": "The product name. Format: `accounts/{account}/products/{product}`"
           }
         },
-        "attribute": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessageAttributeEnum",
+        "resourceId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The attribute in the resource that changed, in this case it will be always `Status`."
+            "smithy.api#documentation": "The product id."
+          }
+        },
+        "resourceType": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessageResourceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The resource that changed, in this case it will always be `Product`."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "The message that the merchant will receive to notify about product status change event"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessageAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "ATTRIBUTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductChangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#ProductChange"
       }
     },
     "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessageResourceTypeEnum": {
@@ -563,32 +575,1024 @@
         }
       }
     },
-    "com.gcp.merchantapi_products_v1beta#ProductChangeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#ProductChange"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductStatusChangeMessageAttributeEnum": {
-      "type": "enum",
+    "com.gcp.merchantapi_products_v1beta#Tax": {
+      "type": "structure",
       "members": {
-        "ATTRIBUTE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
+        "region": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "ATTRIBUTE_UNSPECIFIED"
+            "smithy.api#documentation": "The geographic region to which the tax rate applies."
           }
         },
-        "STATUS": {
-          "target": "smithy.api#Unit",
+        "locationId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "STATUS"
+            "smithy.api#documentation": "The numeric ID of a location that the tax rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting)."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country within which the item is taxed, specified as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml)."
+          }
+        },
+        "rate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of tax rate that applies to the item price."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code range that the tax rate applies to, represented by a ZIP code, a ZIP code prefix using * wildcard, a range between two ZIP codes or two ZIP code prefixes of equal length. Examples: 94114, 94*, 94002-95460, 94*-95*."
+          }
+        },
+        "taxShip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true if tax is charged on shipping."
           }
         }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Tax of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#LoyaltyProgram": {
+      "type": "structure",
+      "members": {
+        "shippingLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label of the shipping benefit. If the field has value, this offer has loyalty shipping benefit. If the field value isn't provided, the item is not eligible for loyalty shipping for the given loyalty tier."
+          }
+        },
+        "cashbackForFutureUse": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The cashback that can be used for future purchases."
+          }
+        },
+        "loyaltyPoints": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The amount of loyalty points earned on a purchase."
+          }
+        },
+        "programLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a business entity and a loyalty program entity. The label must be provided so that the system can associate the assets below (for example, price and points) with a business. The corresponding program must be linked to the Merchant Center account."
+          }
+        },
+        "price": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The price for members of the given tier, that is, the instant discount price. Must be smaller or equal to the regular price."
+          }
+        },
+        "memberPriceEffectiveDate": {
+          "target": "com.gcp.merchantapi_products_v1beta#Interval",
+          "traits": {
+            "smithy.api#documentation": "A date range during which the item is eligible for member price. If not specified, the member price is always applicable. The date range is represented by a pair of ISO 8601 dates separated by a space, comma, or slash."
+          }
+        },
+        "tierLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label of the tier within the loyalty program. Must match one of the labels within the program."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message that represents loyalty program."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#Interval": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#UnitPricingBaseMeasure": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of the denominator."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The denominator of the unit price."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The UnitPricingBaseMeasure of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#Shipping": {
+      "type": "structure",
+      "members": {
+        "maxTransitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minTransitTime is optional if maxTransitTime is present."
+          }
+        },
+        "price": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "Fixed shipping price, represented as a number."
+          }
+        },
+        "handlingCutoffTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The handling cutoff time until which an order has to be placed to be processed in the same day. This is a string in format of HHMM (e.g. `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted to 8AM PST and `handling_cutoff_timezone` will be ignored."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship."
+          }
+        },
+        "minTransitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. minTransitTime can only be present together with maxTransitTime; but it is not required if maxTransitTime is present."
+          }
+        },
+        "locationGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location where the shipping is applicable, represented by a location group name."
+          }
+        },
+        "handlingCutoffTimezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST."
+          }
+        },
+        "loyaltyProgramLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The label of the [loyalty program](https://support.google.com/merchants/answer/6324484). Must match one of the program labels set in loyalty_programs. When set (in combination with [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier."
+          }
+        },
+        "minHandlingTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geographic region to which a shipping rate applies. See [region](https://support.google.com/merchants/answer/6324484) for more information."
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code range that the shipping rate applies to, represented by a postal code, a postal code prefix followed by a * wildcard, a range between two postal codes or two postal code prefixes of equal length."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The numeric ID of a location that the shipping rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting)."
+          }
+        },
+        "maxHandlingTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minHandlingTime is optional if maxHandlingTime is present."
+          }
+        },
+        "loyaltyTierLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The label of the [loyalty tier](https://support.google.com/merchants/answer/6324484) within the loyalty program. Must match one of the tiers set in the loyalty_programs. When set (in combination with [loyalty_program_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier."
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A free-form description of the service class or delivery speed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Shipping of the product."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentive": {
+      "type": "structure",
+      "members": {
+        "percentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of the sale price that the incentive is applied to."
+          }
+        },
+        "amount": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The fixed amount of the incentive."
+          }
+        },
+        "type": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Sustainability incentive program."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information regarding sustainability-related incentive programs such as rebates or tax relief."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "EV_TAX_CREDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EV_TAX_CREDIT"
+          }
+        },
+        "EV_PRICE_DISCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EV_PRICE_DISCOUNT"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#CustomAttribute": {
+      "type": "structure",
+      "members": {
+        "groupValues": {
+          "target": "com.gcp.merchantapi_products_v1beta#CustomAttributeList",
+          "traits": {
+            "smithy.api#documentation": "Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the attribute."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the attribute. If `value` is not empty, `group_values` must be empty."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ListProductsResponse": {
+      "type": "structure",
+      "members": {
+        "products": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductList",
+          "traits": {
+            "smithy.api#documentation": "The processed products from the specified account. These are your processed products after applying rules and supplemental data sources."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ListProducts method."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#Product"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#Attributes": {
+      "type": "structure",
+      "members": {
+        "identifierExists": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set this value to false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Defaults to true, if not provided."
+          }
+        },
+        "mobileLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the mobile-optimized version of your item's landing page."
+          }
+        },
+        "googleProductCategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API."
+          }
+        },
+        "brand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, \"Google\"."
+          }
+        },
+        "disclosureDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information."
+          }
+        },
+        "displayAdsTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of an item for dynamic remarketing campaigns."
+          }
+        },
+        "sizeSystem": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System in which the size is specified. Recommended for apparel items. For example, \"US\", \"UK\", \"DE\". For more information, see [Size system](https://support.google.com/merchants/answer/6324502)."
+          }
+        },
+        "installment": {
+          "target": "com.gcp.merchantapi_products_v1beta#Installment",
+          "traits": {
+            "smithy.api#documentation": "Number and amount of installments to pay for an item."
+          }
+        },
+        "virtualModelLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information."
+          }
+        },
+        "taxes": {
+          "target": "com.gcp.merchantapi_products_v1beta#TaxList",
+          "traits": {
+            "smithy.api#documentation": "Tax information."
+          }
+        },
+        "maximumRetailPrice": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "Maximum retail price (MRP) of the item. Applicable to India only."
+          }
+        },
+        "salePrice": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "Advertised sale price of the item."
+          }
+        },
+        "productHighlights": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Bullet points describing the most relevant [product highlights](https://support.google.com/merchants/answer/9216100)."
+          }
+        },
+        "shippingHeight": {
+          "target": "com.gcp.merchantapi_products_v1beta#ShippingDimension",
+          "traits": {
+            "smithy.api#documentation": "Height of the item for shipping."
+          }
+        },
+        "availability": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Availability](https://support.google.com/merchants/answer/6324448) status of the item. For example, \"in_stock\" or \"out_of_stock\"."
+          }
+        },
+        "externalSellerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account."
+          }
+        },
+        "sellOnGoogleQuantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the product that is available for selling on Google. Supported only for online products."
+          }
+        },
+        "taxCategory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [tax category](https://support.google.com/merchants/answer/7569847) of the product."
+          }
+        },
+        "excludedDestinations": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions."
+          }
+        },
+        "transitTimeLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The transit time label of the product, used to group product in account-level transit time tables."
+          }
+        },
+        "sustainabilityIncentives": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveList",
+          "traits": {
+            "smithy.api#documentation": "The list of sustainability incentive programs."
+          }
+        },
+        "pickupMethod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [pickup](https://support.google.com/merchants/answer/14634021) option for the item."
+          }
+        },
+        "pause": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930)."
+          }
+        },
+        "itemGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shared identifier for all variants of the same product."
+          }
+        },
+        "isBundle": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price."
+          }
+        },
+        "material": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [material](https://support.google.com/merchants/answer/6324410) of which the item is made. For example, \"Leather\" or \"Cotton\"."
+          }
+        },
+        "minEnergyEfficiencyClass": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The energy efficiency class as defined in EU directive 2010/30/EU."
+          }
+        },
+        "unitPricingBaseMeasure": {
+          "target": "com.gcp.merchantapi_products_v1beta#UnitPricingBaseMeasure",
+          "traits": {
+            "smithy.api#documentation": "The preference of the denominator of the unit price."
+          }
+        },
+        "linkTemplate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront."
+          }
+        },
+        "costOfGoodsSold": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "Cost of goods sold. Used for gross profit reporting."
+          }
+        },
+        "gtins": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs."
+          }
+        },
+        "shoppingAdsExcludedCountries": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings."
+          }
+        },
+        "mpn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/6324482)) of the item."
+          }
+        },
+        "unitPricingMeasure": {
+          "target": "com.gcp.merchantapi_products_v1beta#UnitPricingMeasure",
+          "traits": {
+            "smithy.api#documentation": "The measure and dimension of an item."
+          }
+        },
+        "salePriceEffectiveDate": {
+          "target": "com.gcp.merchantapi_products_v1beta#Interval",
+          "traits": {
+            "smithy.api#documentation": "Date range during which the item is on sale, see [product data specification](https://support.google.com/merchants/answer/7052112#price_and_availability)."
+          }
+        },
+        "autoPricingMinPrice": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and [\"dynamic promotions\"](https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability."
+          }
+        },
+        "price": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "Price of the item."
+          }
+        },
+        "maxEnergyEfficiencyClass": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The energy efficiency class as defined in EU directive 2010/30/EU."
+          }
+        },
+        "gender": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target [gender](https://support.google.com/merchants/answer/6324479) of the item. For example, \"male\" or \"female\"."
+          }
+        },
+        "loyaltyPoints": {
+          "target": "com.gcp.merchantapi_products_v1beta#LoyaltyPoints",
+          "traits": {
+            "smithy.api#documentation": "Loyalty points that users receive after purchasing the item. Japan only."
+          }
+        },
+        "subscriptionCost": {
+          "target": "com.gcp.merchantapi_products_v1beta#SubscriptionCost",
+          "traits": {
+            "smithy.api#documentation": "Number of periods (weeks, months or years) and amount of payment per period for an item with an associated subscription contract."
+          }
+        },
+        "adsGrouping": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Used to group items in an arbitrary way. Only for CPA, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387)."
+          }
+        },
+        "availabilityDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        },
+        "displayAdsLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL directly to your item's landing page for dynamic remarketing campaigns."
+          }
+        },
+        "productLength": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductDimension",
+          "traits": {
+            "smithy.api#documentation": "The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+          }
+        },
+        "productTypes": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/7052112#product_category))."
+          }
+        },
+        "adult": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true if the item is targeted towards adults."
+          }
+        },
+        "energyEfficiencyClass": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The energy efficiency class as defined in EU directive 2010/30/EU."
+          }
+        },
+        "cloudExportAdditionalProperties": {
+          "target": "com.gcp.merchantapi_products_v1beta#CloudExportAdditionalPropertiesList",
+          "traits": {
+            "smithy.api#documentation": "Extra fields to export to the Cloud Retail program."
+          }
+        },
+        "shippingWidth": {
+          "target": "com.gcp.merchantapi_products_v1beta#ShippingDimension",
+          "traits": {
+            "smithy.api#documentation": "Width of the item for shipping."
+          }
+        },
+        "customLabel0": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Custom label 0](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "shippingLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The shipping label of the product, used to group product in account-level shipping rules."
+          }
+        },
+        "includedDestinations": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the item."
+          }
+        },
+        "productDetails": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductDetailList",
+          "traits": {
+            "smithy.api#documentation": "Technical specification or additional product details."
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item's [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots."
+          }
+        },
+        "freeShippingThreshold": {
+          "target": "com.gcp.merchantapi_products_v1beta#FreeShippingThresholdList",
+          "traits": {
+            "smithy.api#documentation": "Conditions to be met for a product to have free shipping."
+          }
+        },
+        "multipack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The number of identical products in a business-defined multipack."
+          }
+        },
+        "displayAdsValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387)."
+          }
+        },
+        "displayAdsId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An identifier for an item for dynamic remarketing campaigns."
+          }
+        },
+        "additionalImageLinks": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional URLs of images of the item."
+          }
+        },
+        "shippingWeight": {
+          "target": "com.gcp.merchantapi_products_v1beta#ShippingWeight",
+          "traits": {
+            "smithy.api#documentation": "Weight of the item for shipping."
+          }
+        },
+        "sizeTypes": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497). For example, \"petite\", \"plus size\"."
+          }
+        },
+        "shippingLength": {
+          "target": "com.gcp.merchantapi_products_v1beta#ShippingDimension",
+          "traits": {
+            "smithy.api#documentation": "Length of the item for shipping."
+          }
+        },
+        "lifestyleImageLinks": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information."
+          }
+        },
+        "structuredDescription": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductStructuredDescription",
+          "traits": {
+            "smithy.api#documentation": "Structured description, for algorithmically (AI)-generated descriptions."
+          }
+        },
+        "canonicalLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the canonical version of your item's landing page."
+          }
+        },
+        "productWidth": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductDimension",
+          "traits": {
+            "smithy.api#documentation": "The width of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+          }
+        },
+        "customLabel2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "color": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Color](https://support.google.com/merchants/answer/6324487) of the item. For example, \"red\"."
+          }
+        },
+        "loyaltyPrograms": {
+          "target": "com.gcp.merchantapi_products_v1beta#LoyaltyProgramList",
+          "traits": {
+            "smithy.api#documentation": "A list of loyalty program information that is used to surface loyalty benefits (for example, better pricing, points, etc) to the user of this item."
+          }
+        },
+        "promotionIds": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of a promotion."
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL directly linking to your item's page on your online store."
+          }
+        },
+        "customLabel3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "maxHandlingTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximal product handling time (in business days)."
+          }
+        },
+        "productWeight": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductWeight",
+          "traits": {
+            "smithy.api#documentation": "The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive)."
+          }
+        },
+        "certifications": {
+          "target": "com.gcp.merchantapi_products_v1beta#CertificationList",
+          "traits": {
+            "smithy.api#documentation": "Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. For more information, see [Certification](https://support.google.com/merchants/answer/13528839)."
+          }
+        },
+        "adsLabels": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Similar to ads_grouping, but only works on CPC."
+          }
+        },
+        "imageLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of an image of the item."
+          }
+        },
+        "adsRedirect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Allows advertisers to override the item URL when the product is shown within the context of Product ads."
+          }
+        },
+        "ageGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target [age group](https://support.google.com/merchants/answer/6324463) of the item."
+          }
+        },
+        "structuredTitle": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductStructuredTitle",
+          "traits": {
+            "smithy.api#documentation": "Structured title, for algorithmically (AI)-generated titles."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the item."
+          }
+        },
+        "shipping": {
+          "target": "com.gcp.merchantapi_products_v1beta#ShippingList",
+          "traits": {
+            "smithy.api#documentation": "Shipping rules."
+          }
+        },
+        "productHeight": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductDimension",
+          "traits": {
+            "smithy.api#documentation": "The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+          }
+        },
+        "pickupSla": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400)."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492)."
+          }
+        },
+        "gtin": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs. Deprecated: Use `gtins` instead."
+          }
+        },
+        "customLabel4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "minHandlingTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimal product handling time (in business days)."
+          }
+        },
+        "customLabel1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Custom label 1](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
+          }
+        },
+        "mobileLinkTemplate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices."
+          }
+        },
+        "displayAdsSimilarIds": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387)."
+          }
+        },
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item should expire, as specified upon insertion, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. The actual expiration date is exposed in `productstatuses` as [googleExpirationDate](https://support.google.com/merchants/answer/6324499) and might be earlier if `expirationDate` is too far in the future."
+          }
+        },
+        "condition": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Condition](https://support.google.com/merchants/answer/6324469) or state of the item. For example, \"new\" or \"used\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Attributes."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#TaxList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#Tax"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentive"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#CloudExportAdditionalPropertiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#CloudExportAdditionalProperties"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#ProductDetail"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#FreeShippingThresholdList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#FreeShippingThreshold"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#LoyaltyProgramList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#LoyaltyProgram"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#CertificationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#Certification"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ShippingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#Shipping"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#LoyaltyPoints": {
+      "type": "structure",
+      "members": {
+        "pointsValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The retailer's loyalty points in absolute value."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters."
+          }
+        },
+        "ratio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The ratio of a point when converted to currency. Google assumes currency based on Merchant Center settings. If ratio is left out, it defaults to 1.0."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A message that represents loyalty points."
       }
     },
     "com.gcp.merchantapi_products_v1beta#CloudExportAdditionalProperties": {
       "type": "structure",
       "members": {
+        "minValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Minimum float value of the given property. For example for a TV product 1.00."
+          }
+        },
+        "floatValue": {
+          "target": "com.gcp.merchantapi_products_v1beta#DoubleList",
+          "traits": {
+            "smithy.api#documentation": "Float values of the given property. For example for a TV product 1.2345. Maximum repeatedness of this value is 400. Values are stored in an arbitrary but consistent order."
+          }
+        },
+        "boolValue": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean value of the given property. For example for a TV product, \"True\" or \"False\" if the screen is UHD."
+          }
+        },
+        "unitCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit of the given property. For example, \"Pixels\" for a TV product. Maximum string size is 256B."
+          }
+        },
         "propertyName": {
           "target": "smithy.api#String",
           "traits": {
@@ -601,10 +1605,10 @@
             "smithy.api#documentation": "Integer values of the given property. For example, 1080 for a TV product's Screen Resolution. Maximum repeatedness of this value is 400. Values are stored in an arbitrary but consistent order."
           }
         },
-        "minValue": {
+        "maxValue": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Minimum float value of the given property. For example for a TV product 1.00."
+            "smithy.api#documentation": "Maximum float value of the given property. For example for a TV product 100.00."
           }
         },
         "textValue": {
@@ -612,40 +1616,10 @@
           "traits": {
             "smithy.api#documentation": "Text value of the given property. For example, \"8K(UHD)\" could be a text value for a TV product. Maximum repeatedness of this value is 400. Values are stored in an arbitrary but consistent order. Maximum string size is 256 characters."
           }
-        },
-        "maxValue": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Maximum float value of the given property. For example for a TV product 100.00."
-          }
-        },
-        "boolValue": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Boolean value of the given property. For example for a TV product, \"True\" or \"False\" if the screen is UHD."
-          }
-        },
-        "floatValue": {
-          "target": "com.gcp.merchantapi_products_v1beta#DoubleList",
-          "traits": {
-            "smithy.api#documentation": "Float values of the given property. For example for a TV product 1.2345. Maximum repeatedness of this value is 400. Values are stored in an arbitrary but consistent order."
-          }
-        },
-        "unitCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unit of the given property. For example, \"Pixels\" for a TV product. Maximum string size is 256B."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Product property for the Cloud Retail API. For example, properties for a TV product could be \"Screen-Resolution\" or \"Screen-Size\"."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
       }
     },
     "com.gcp.merchantapi_products_v1beta#DoubleList": {
@@ -654,137 +1628,303 @@
         "target": "smithy.api#Double"
       }
     },
-    "com.gcp.merchantapi_products_v1beta#UnitPricingMeasure": {
+    "com.gcp.merchantapi_products_v1beta#ProductStructuredDescription": {
+      "type": "structure",
+      "members": {
+        "digitalSourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The digital source type, for example \"trained_algorithmic_media\". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description text Maximum length is 5000 characters"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured description, for algorithmically (AI)-generated descriptions."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductWeight": {
       "type": "structure",
       "members": {
         "unit": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The unit of the measure."
+            "smithy.api#documentation": "Required. The weight unit. Acceptable values are: * \"`g`\" * \"`kg`\" * \"`oz`\" * \"`lb`\""
           }
         },
         "value": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "The measure of an item."
+            "smithy.api#documentation": "Required. The weight represented as a number. The weight can have a maximum precision of four decimal places."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The UnitPricingMeasure of the product."
+        "smithy.api#documentation": "The weight of the product."
       }
     },
-    "com.gcp.merchantapi_products_v1beta#Shipping": {
+    "com.gcp.merchantapi_products_v1beta#ProductInput": {
       "type": "structure",
       "members": {
-        "postalCode": {
-          "target": "smithy.api#String",
+        "customAttributes": {
+          "target": "com.gcp.merchantapi_products_v1beta#CustomAttributeList",
           "traits": {
-            "smithy.api#documentation": "The postal code range that the shipping rate applies to, represented by a postal code, a postal code prefix followed by a * wildcard, a range between two postal codes or two postal code prefixes of equal length."
+            "smithy.api#documentation": "Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion."
           }
         },
-        "service": {
+        "product": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A free-form description of the service class or delivery speed."
+            "smithy.api#documentation": "Output only. The name of the processed product. Format: `accounts/{account}/products/{product}`"
           }
         },
-        "country": {
+        "channel": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductInputChannelEnum",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The [channel](https://support.google.com/merchants/answer/7361332) of the product."
+          }
+        },
+        "base64EncodedName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the country to which an item will ship."
+            "smithy.api#documentation": "Output only. The **unpadded base64url encoded name** of the product input. Format: `accounts/{account}/productInputs/{productinput}` where the last section `productinput` is the unpadded base64url encoding of the `content_language~feed_label~offer_id` name. Example: `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw` for the decoded product input name `accounts/123/productInputs/en~US~sku/123`. This field can be used directly as input to the API methods that require the product input name to be encoded if it contains special characters, for example [`GetProductInput`](https://developers.google.com/merchant/api/reference/rest/products_v1beta/accounts.productInputs/get)."
           }
         },
-        "locationGroupName": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The location where the shipping is applicable, represented by a location group name."
+            "smithy.api#documentation": "Identifier. The name of the product. Format: `accounts/{account}/productInputs/{productinput}` The {productinput} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productinput} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productinput}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productinput}` segment must be the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{productinput}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productinput}` segment is used to differentiate between the two formats."
           }
         },
-        "locationId": {
+        "versionNumber": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The numeric ID of a location that the shipping rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting)."
+            "smithy.api#documentation": "Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown."
           }
         },
-        "handlingCutoffTime": {
+        "attributes": {
+          "target": "com.gcp.merchantapi_products_v1beta#Attributes",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of product attributes."
+          }
+        },
+        "contentLanguage": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The handling cutoff time until which an order has to be placed to be processed in the same day. This is a string in format of HHMM (e.g. `1530`) for 3:30 PM. If not configured, the cutoff time will be defaulted to 8AM PST and `handling_cutoff_timezone` will be ignored."
+            "smithy.api#documentation": "Required. Immutable. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the product."
           }
         },
-        "loyaltyProgramLabel": {
+        "offerId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The label of the [loyalty program](https://support.google.com/merchants/answer/6324484). Must match one of the program labels set in loyalty_programs. When set (in combination with [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier."
+            "smithy.api#documentation": "Required. Immutable. Your unique identifier for the product. This is the same for the product input and processed product. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. See the [products data specification](https://support.google.com/merchants/answer/188494#id) for details."
           }
         },
-        "region": {
+        "feedLabel": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The geographic region to which a shipping rate applies. See [region](https://support.google.com/merchants/answer/6324484) for more information."
+            "smithy.api#documentation": "Required. Immutable. The feed label that lets you categorize and identify your products. The maximum allowed characters are 20, and the supported characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087)."
           }
         },
-        "price": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "Fixed shipping price, represented as a number."
-          }
-        },
-        "minTransitTime": {
+        "base64EncodedProduct": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Minimum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. minTransitTime can only be present together with maxTransitTime; but it is not required if maxTransitTime is present."
-          }
-        },
-        "minHandlingTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present."
-          }
-        },
-        "handlingCutoffTimezone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Timezone identifier](https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids) For example `Europe/Zurich`. This field only applies if `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this field is not set, the shipping destination timezone will be used. If both fields are not set, the handling cutoff time will default to 8AM PST."
-          }
-        },
-        "maxTransitTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minTransitTime is optional if maxTransitTime is present."
-          }
-        },
-        "loyaltyTierLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The label of the [loyalty tier](https://support.google.com/merchants/answer/6324484) within the loyalty program. Must match one of the tiers set in the loyalty_programs. When set (in combination with [loyalty_program_label](https://support.google.com/merchants/answer/6324484)), this shipping option is only applicable to loyalty program members of the specified tier."
-          }
-        },
-        "maxHandlingTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds. minHandlingTime is optional if maxHandlingTime is present."
+            "smithy.api#documentation": "Output only. The **unpadded base64url encoded name** of the processed product. Format: `accounts/{account}/products/{product}` where the last section `product` is the unpadded base64url encoding of the `content_language~feed_label~offer_id` name. Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product name `accounts/123/products/en~US~sku/123`. This field can be used directly as input to the API methods that require the product name to be encoded if it contains special characters, for example [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1beta/accounts.products/get)."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The Shipping of the product."
+        "smithy.api#documentation": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductInputChannelEnum": {
+      "type": "enum",
+      "members": {
+        "CHANNEL_ENUM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHANNEL_ENUM_UNSPECIFIED"
+          }
+        },
+        "ONLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE"
+          }
+        },
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL"
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductDetail": {
+      "type": "structure",
+      "members": {
+        "sectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The section header used to group a set of product details."
+          }
+        },
+        "attributeName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the product detail."
+          }
+        },
+        "attributeValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the product detail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The product details."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#Price": {
+      "type": "structure",
+      "members": {
+        "amountMicros": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The price represented as a number in micros (1 million micros is an equivalent to one's currency standard unit, for example, 1 USD = 1000000 micros)."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The currency of the price using three-letter acronyms according to [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The price represented as a number and currency."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ProductStatus": {
+      "type": "structure",
+      "members": {
+        "lastUpdateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item has been last updated, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        },
+        "itemLevelIssues": {
+          "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssueList",
+          "traits": {
+            "smithy.api#documentation": "A list of all issues associated with the product."
+          }
+        },
+        "destinationStatuses": {
+          "target": "com.gcp.merchantapi_products_v1beta#DestinationStatusList",
+          "traits": {
+            "smithy.api#documentation": "The intended destinations for the product."
+          }
+        },
+        "googleExpirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item expires, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date on which the item has been created, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of a product, data validation issues, that is, information about a product computed asynchronously."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ItemLevelIssueList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssue"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#DestinationStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.merchantapi_products_v1beta#DestinationStatus"
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#Certification": {
+      "type": "structure",
+      "members": {
+        "certificationAuthority": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certification authority, for example \"European_Commission\". Maximum length is 2000 characters."
+          }
+        },
+        "certificationLabelLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. URL to the certification label (eg. `https://www.example.com/label`), for example, the energy efficiency label required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters. For more information, see [Certification](https://support.google.com/merchants/answer/13528839)."
+          }
+        },
+        "certificationDocumentLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. URL to the certification document (eg. `https://www.example.com/document`), for example, the product data sheet or fiche required by UK's DESNZ or EU's EPREL. Maximum length is 2000 characters. For more information, see [Certification](https://support.google.com/merchants/answer/13528839)."
+          }
+        },
+        "certificationCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certification code. Maximum length is 2000 characters."
+          }
+        },
+        "certificationValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certification value (also known as class, level or grade), for example \"A+\", \"C\", \"gold\". Maximum length is 2000 characters."
+          }
+        },
+        "certificationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the certification, for example \"EPREL\". Maximum length is 2000 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Product [certification](https://support.google.com/merchants/answer/13528839), initially introduced for EU energy efficiency labeling compliance using the EU EPREL database."
       }
     },
     "com.gcp.merchantapi_products_v1beta#DestinationStatus": {
       "type": "structure",
       "members": {
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_products_v1beta#DestinationStatusReportingContextEnum",
+          "traits": {
+            "smithy.api#documentation": "The name of the reporting context."
+          }
+        },
         "pendingCountries": {
           "target": "com.gcp.merchantapi_products_v1beta#StringList",
           "traits": {
             "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where the offer is pending approval."
-          }
-        },
-        "disapprovedCountries": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where the offer is disapproved."
           }
         },
         "approvedCountries": {
@@ -793,10 +1933,10 @@
             "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where the offer is approved."
           }
         },
-        "reportingContext": {
-          "target": "com.gcp.merchantapi_products_v1beta#DestinationStatusReportingContextEnum",
+        "disapprovedCountries": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "The name of the reporting context."
+            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where the offer is disapproved."
           }
         }
       },
@@ -926,6 +2066,12 @@
           "traits": {
             "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
           }
+        },
+        "RENTAL_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RENTAL_ADS"
+          }
         }
       }
     },
@@ -949,1114 +2095,13 @@
         "smithy.api#documentation": "Conditions to be met for a product to have free shipping."
       }
     },
-    "com.gcp.merchantapi_products_v1beta#Tax": {
-      "type": "structure",
-      "members": {
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The numeric ID of a location that the tax rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting)."
-          }
-        },
-        "taxShip": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Set to true if tax is charged on shipping."
-          }
-        },
-        "postalCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The postal code range that the tax rate applies to, represented by a ZIP code, a ZIP code prefix using * wildcard, a range between two ZIP codes or two ZIP code prefixes of equal length. Examples: 94114, 94*, 94002-95460, 94*-95*."
-          }
-        },
-        "region": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The geographic region to which the tax rate applies."
-          }
-        },
-        "rate": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of tax rate that applies to the item price."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The country within which the item is taxed, specified as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The Tax of the product."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#UnitPricingBaseMeasure": {
-      "type": "structure",
-      "members": {
-        "unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unit of the denominator."
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The denominator of the unit price."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The UnitPricingBaseMeasure of the product."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#CustomAttribute": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the attribute."
-          }
-        },
-        "groupValues": {
-          "target": "com.gcp.merchantapi_products_v1beta#CustomAttributeList",
-          "traits": {
-            "smithy.api#documentation": "Subattributes within this attribute group. If `group_values` is not empty, `value` must be empty."
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value of the attribute. If `value` is not empty, `group_values` must be empty."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A message that represents custom attributes. Exactly one of `value` or `group_values` must not be empty."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#SubscriptionCost": {
-      "type": "structure",
-      "members": {
-        "amount": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The amount the buyer has to pay per subscription period."
-          }
-        },
-        "period": {
-          "target": "com.gcp.merchantapi_products_v1beta#SubscriptionCostPeriodEnum",
-          "traits": {
-            "smithy.api#documentation": "The type of subscription period. Supported values are: * \"`month`\" * \"`year`\" * \"`week`\""
-          }
-        },
-        "periodLength": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The number of subscription periods the buyer has to pay."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The SubscriptionCost of the product."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#SubscriptionCostPeriodEnum": {
-      "type": "enum",
-      "members": {
-        "SUBSCRIPTION_PERIOD_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUBSCRIPTION_PERIOD_UNSPECIFIED"
-          }
-        },
-        "MONTH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MONTH"
-          }
-        },
-        "YEAR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "YEAR"
-          }
-        },
-        "WEEK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WEEK"
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductDimension": {
-      "type": "structure",
-      "members": {
-        "unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The dimension units. Acceptable values are: * \"`in`\" * \"`cm`\""
-          }
-        },
-        "value": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Required. The dimension value represented as a number. The value can have a maximum precision of four decimal places."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The dimension of the product."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ShippingWeight": {
-      "type": "structure",
-      "members": {
-        "unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unit of value."
-          }
-        },
-        "value": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The weight of the product used to calculate the shipping cost of the item."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The ShippingWeight of the product."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#Product": {
-      "type": "structure",
-      "members": {
-        "channel": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductChannelEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The [channel](https://support.google.com/merchants/answer/7361332) of the product."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the product. Format: `accounts/{account}/products/{product}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`."
-          }
-        },
-        "feedLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The feed label lets you categorize and identify your products. The maximum allowed characters is 20 and the supported characters are`A-Z`, `0-9`, hyphen and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087)"
-          }
-        },
-        "dataSource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The primary data source of the product."
-          }
-        },
-        "automatedDiscounts": {
-          "target": "com.gcp.merchantapi_products_v1beta#AutomatedDiscounts",
-          "traits": {
-            "smithy.api#documentation": "Output only. The automated discounts information for the product."
-          }
-        },
-        "customAttributes": {
-          "target": "com.gcp.merchantapi_products_v1beta#CustomAttributeList",
-          "traits": {
-            "smithy.api#documentation": "Output only. A list of custom (merchant-provided) attributes. It can also be used to submit any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google."
-          }
-        },
-        "contentLanguage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the product."
-          }
-        },
-        "attributes": {
-          "target": "com.gcp.merchantapi_products_v1beta#Attributes",
-          "traits": {
-            "smithy.api#documentation": "Output only. A list of product attributes."
-          }
-        },
-        "archived": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Determines whether the product is [archived](https://support.google.com/merchants/answer/11909930). To archive or restore your product, visit Merchant Center products page. Learn also more about [offer visibility](https://support.google.com/merchants/answer/12488713)."
-          }
-        },
-        "offerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Your unique identifier for the product. This is the same for the product input and processed product. Leading and trailing whitespaces are stripped and multiple whitespaces are replaced by a single whitespace upon submission. See the [product data specification](https://support.google.com/merchants/answer/188494#id) for details."
-          }
-        },
-        "versionNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. If the operation is prevented, the aborted exception will be thrown."
-          }
-        },
-        "base64EncodedName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The **unpadded base64url encoded name** of the product. Format: `accounts/{account}/products/{product}` where the last section `product` is the unpadded base64url encoding of the `content_language~feed_label~offer_id` name. Example: `accounts/123/products/ZW5-VVN-c2t1LzEyMw` for the decoded product name `accounts/123/products/en~US~sku/123`. This field can be used directly as input to the API methods that require the product name to be encoded if it contains special characters, for example [`GetProduct`](https://developers.google.com/merchant/api/reference/rest/products_v1beta/accounts.products/get)."
-          }
-        },
-        "productStatus": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductStatus",
-          "traits": {
-            "smithy.api#documentation": "Output only. The status of a product, data validation issues, that is, information about a product computed asynchronously."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The processed product, built from multiple product inputs after applying rules and supplemental data sources. This processed product matches what is shown in your Merchant Center account. Each product is built from exactly one primary data source product input, and multiple supplemental data source inputs. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved. All fields in the processed product and its sub-messages match the name of their corresponding attribute in the [Product data specification](https://support.google.com/merchants/answer/7052112) with some exceptions."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductChannelEnum": {
-      "type": "enum",
-      "members": {
-        "CHANNEL_ENUM_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CHANNEL_ENUM_UNSPECIFIED"
-          }
-        },
-        "ONLINE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ONLINE"
-          }
-        },
-        "LOCAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOCAL"
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#AutomatedDiscounts": {
-      "type": "structure",
-      "members": {
-        "gadPrice": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The current sale price for products with a price optimized using Google Automated Discounts (GAD). Absent if the information about the GAD_price of the product is not available."
-          }
-        },
-        "priorPrice": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The price prior to the application of the first price reduction. Absent if the information about the prior price of the product is not available."
-          }
-        },
-        "priorPriceProgressive": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "The price prior to the application of consecutive price reductions. Absent if the information about the prior price of the product is not available."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information regarding Automated Discounts."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductDetail": {
-      "type": "structure",
-      "members": {
-        "attributeValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value of the product detail."
-          }
-        },
-        "attributeName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the product detail."
-          }
-        },
-        "sectionName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The section header used to group a set of product details."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The product details."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#Attributes": {
-      "type": "structure",
-      "members": {
-        "shippingLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The shipping label of the product, used to group product in account-level shipping rules."
-          }
-        },
-        "lifestyleImageLinks": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information."
-          }
-        },
-        "adsGrouping": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Used to group items in an arbitrary way. Only for CPA, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387)."
-          }
-        },
-        "itemGroupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Shared identifier for all variants of the same product."
-          }
-        },
-        "productHighlights": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Bullet points describing the most relevant [product highlights](https://support.google.com/merchants/answer/9216100)."
-          }
-        },
-        "customLabel2": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
-          }
-        },
-        "customLabel4": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
-          }
-        },
-        "mobileLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL for the mobile-optimized version of your item's landing page."
-          }
-        },
-        "shippingWidth": {
-          "target": "com.gcp.merchantapi_products_v1beta#ShippingDimension",
-          "traits": {
-            "smithy.api#documentation": "Width of the item for shipping."
-          }
-        },
-        "subscriptionCost": {
-          "target": "com.gcp.merchantapi_products_v1beta#SubscriptionCost",
-          "traits": {
-            "smithy.api#documentation": "Number of periods (weeks, months or years) and amount of payment per period for an item with an associated subscription contract."
-          }
-        },
-        "sustainabilityIncentives": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveList",
-          "traits": {
-            "smithy.api#documentation": "The list of sustainability incentive programs."
-          }
-        },
-        "certifications": {
-          "target": "com.gcp.merchantapi_products_v1beta#CertificationList",
-          "traits": {
-            "smithy.api#documentation": "Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. See the [Help Center](https://support.google.com/merchants/answer/13528839) article for more information."
-          }
-        },
-        "googleProductCategory": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API."
-          }
-        },
-        "imageLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL of an image of the item."
-          }
-        },
-        "link": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL directly linking to your item's page on your online store."
-          }
-        },
-        "sizeTypes": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497). For example, \"petite\", \"plus size\"."
-          }
-        },
-        "gender": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Target [gender](https://support.google.com/merchants/answer/6324479) of the item. For example, \"male\" or \"female\"."
-          }
-        },
-        "disclosureDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information."
-          }
-        },
-        "taxes": {
-          "target": "com.gcp.merchantapi_products_v1beta#TaxList",
-          "traits": {
-            "smithy.api#documentation": "Tax information."
-          }
-        },
-        "productDetails": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductDetailList",
-          "traits": {
-            "smithy.api#documentation": "Technical specification or additional product details."
-          }
-        },
-        "price": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "Price of the item."
-          }
-        },
-        "energyEfficiencyClass": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The energy efficiency class as defined in EU directive 2010/30/EU."
-          }
-        },
-        "externalSellerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account."
-          }
-        },
-        "mpn": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/6324482)) of the item."
-          }
-        },
-        "customLabel3": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
-          }
-        },
-        "structuredDescription": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductStructuredDescription",
-          "traits": {
-            "smithy.api#documentation": "Structured description, for algorithmically (AI)-generated descriptions."
-          }
-        },
-        "pattern": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The item's [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots."
-          }
-        },
-        "installment": {
-          "target": "com.gcp.merchantapi_products_v1beta#Installment",
-          "traits": {
-            "smithy.api#documentation": "Number and amount of installments to pay for an item."
-          }
-        },
-        "maxEnergyEfficiencyClass": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The energy efficiency class as defined in EU directive 2010/30/EU."
-          }
-        },
-        "brand": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, \"Google\"."
-          }
-        },
-        "salePrice": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "Advertised sale price of the item."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Description of the item."
-          }
-        },
-        "mobileLinkTemplate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices."
-          }
-        },
-        "condition": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Condition](https://support.google.com/merchants/answer/6324469) or state of the item. For example, \"new\" or \"used\"."
-          }
-        },
-        "shippingLength": {
-          "target": "com.gcp.merchantapi_products_v1beta#ShippingDimension",
-          "traits": {
-            "smithy.api#documentation": "Length of the item for shipping."
-          }
-        },
-        "isBundle": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price."
-          }
-        },
-        "additionalImageLinks": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Additional URLs of images of the item."
-          }
-        },
-        "displayAdsValue": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387)."
-          }
-        },
-        "structuredTitle": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductStructuredTitle",
-          "traits": {
-            "smithy.api#documentation": "Structured title, for algorithmically (AI)-generated titles."
-          }
-        },
-        "maxHandlingTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Maximal product handling time (in business days)."
-          }
-        },
-        "canonicalLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL for the canonical version of your item's landing page."
-          }
-        },
-        "minEnergyEfficiencyClass": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The energy efficiency class as defined in EU directive 2010/30/EU."
-          }
-        },
-        "identifierExists": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Set this value to false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Defaults to true, if not provided."
-          }
-        },
-        "shipping": {
-          "target": "com.gcp.merchantapi_products_v1beta#ShippingList",
-          "traits": {
-            "smithy.api#documentation": "Shipping rules."
-          }
-        },
-        "availability": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Availability](https://support.google.com/merchants/answer/6324448) status of the item. For example, \"in_stock\" or \"out_of_stock\"."
-          }
-        },
-        "unitPricingMeasure": {
-          "target": "com.gcp.merchantapi_products_v1beta#UnitPricingMeasure",
-          "traits": {
-            "smithy.api#documentation": "The measure and dimension of an item."
-          }
-        },
-        "pickupSla": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400)."
-          }
-        },
-        "customLabel0": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Custom label 0](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
-          }
-        },
-        "adult": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Set to true if the item is targeted towards adults."
-          }
-        },
-        "ageGroup": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Target [age group](https://support.google.com/merchants/answer/6324463) of the item."
-          }
-        },
-        "productWeight": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductWeight",
-          "traits": {
-            "smithy.api#documentation": "The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive)."
-          }
-        },
-        "maximumRetailPrice": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "Maximum retail price (MRP) of the item. Applicable to India only."
-          }
-        },
-        "salePriceEffectiveDate": {
-          "target": "com.gcp.merchantapi_products_v1beta#Interval",
-          "traits": {
-            "smithy.api#documentation": "Date range during which the item is on sale, see [product data specification](https://support.google.com/merchants/answer/7052112#price_and_availability)."
-          }
-        },
-        "costOfGoodsSold": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "Cost of goods sold. Used for gross profit reporting."
-          }
-        },
-        "shoppingAdsExcludedCountries": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings."
-          }
-        },
-        "freeShippingThreshold": {
-          "target": "com.gcp.merchantapi_products_v1beta#FreeShippingThresholdList",
-          "traits": {
-            "smithy.api#documentation": "Conditions to be met for a product to have free shipping."
-          }
-        },
-        "color": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Color](https://support.google.com/merchants/answer/6324487) of the item. For example, \"red\"."
-          }
-        },
-        "loyaltyPrograms": {
-          "target": "com.gcp.merchantapi_products_v1beta#LoyaltyProgramList",
-          "traits": {
-            "smithy.api#documentation": "A list of loyalty program information that is used to surface loyalty benefits (for example, better pricing, points, etc) to the user of this item."
-          }
-        },
-        "cloudExportAdditionalProperties": {
-          "target": "com.gcp.merchantapi_products_v1beta#CloudExportAdditionalPropertiesList",
-          "traits": {
-            "smithy.api#documentation": "Extra fields to export to the Cloud Retail program."
-          }
-        },
-        "expirationDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date on which the item should expire, as specified upon insertion, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. The actual expiration date is exposed in `productstatuses` as [googleExpirationDate](https://support.google.com/merchants/answer/6324499) and might be earlier if `expirationDate` is too far in the future."
-          }
-        },
-        "customLabel1": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Custom label 1](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign."
-          }
-        },
-        "sizeSystem": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "System in which the size is specified. Recommended for apparel items. For example, \"US\", \"UK\", \"DE\". For more information, see [Size system](https://support.google.com/merchants/answer/6324502)."
-          }
-        },
-        "productWidth": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductDimension",
-          "traits": {
-            "smithy.api#documentation": "The width of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
-          }
-        },
-        "linkTemplate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront."
-          }
-        },
-        "productHeight": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductDimension",
-          "traits": {
-            "smithy.api#documentation": "The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
-          }
-        },
-        "shippingWeight": {
-          "target": "com.gcp.merchantapi_products_v1beta#ShippingWeight",
-          "traits": {
-            "smithy.api#documentation": "Weight of the item for shipping."
-          }
-        },
-        "excludedDestinations": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions."
-          }
-        },
-        "shippingHeight": {
-          "target": "com.gcp.merchantapi_products_v1beta#ShippingDimension",
-          "traits": {
-            "smithy.api#documentation": "Height of the item for shipping."
-          }
-        },
-        "multipack": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The number of identical products in a business-defined multipack."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Title of the item."
-          }
-        },
-        "displayAdsId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An identifier for an item for dynamic remarketing campaigns."
-          }
-        },
-        "taxCategory": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The [tax category](https://support.google.com/merchants/answer/7569847) of the product."
-          }
-        },
-        "sellOnGoogleQuantity": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The quantity of the product that is available for selling on Google. Supported only for online products."
-          }
-        },
-        "promotionIds": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "The unique ID of a promotion."
-          }
-        },
-        "loyaltyPoints": {
-          "target": "com.gcp.merchantapi_products_v1beta#LoyaltyPoints",
-          "traits": {
-            "smithy.api#documentation": "Loyalty points that users receive after purchasing the item. Japan only."
-          }
-        },
-        "virtualModelLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information."
-          }
-        },
-        "availabilityDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
-          }
-        },
-        "productLength": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductDimension",
-          "traits": {
-            "smithy.api#documentation": "The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
-          }
-        },
-        "pause": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930)."
-          }
-        },
-        "productTypes": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/7052112#product_category))."
-          }
-        },
-        "transitTimeLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The transit time label of the product, used to group product in account-level transit time tables."
-          }
-        },
-        "minHandlingTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Minimal product handling time (in business days)."
-          }
-        },
-        "autoPricingMinPrice": {
-          "target": "com.gcp.merchantapi_products_v1beta#Price",
-          "traits": {
-            "smithy.api#documentation": "A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and [\"dynamic promotions\"](https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability."
-          }
-        },
-        "size": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492)."
-          }
-        },
-        "adsRedirect": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Allows advertisers to override the item URL when the product is shown within the context of Product ads."
-          }
-        },
-        "pickupMethod": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The [pickup](https://support.google.com/merchants/answer/14634021) option for the item."
-          }
-        },
-        "displayAdsLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL directly to your item's landing page for dynamic remarketing campaigns."
-          }
-        },
-        "includedDestinations": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions."
-          }
-        },
-        "adsLabels": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Similar to ads_grouping, but only works on CPC."
-          }
-        },
-        "displayAdsSimilarIds": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387)."
-          }
-        },
-        "gtin": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs. Deprecated: Use `gtins` instead."
-          }
-        },
-        "unitPricingBaseMeasure": {
-          "target": "com.gcp.merchantapi_products_v1beta#UnitPricingBaseMeasure",
-          "traits": {
-            "smithy.api#documentation": "The preference of the denominator of the unit price."
-          }
-        },
-        "material": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The [material](https://support.google.com/merchants/answer/6324410) of which the item is made. For example, \"Leather\" or \"Cotton\"."
-          }
-        },
-        "displayAdsTitle": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Title of an item for dynamic remarketing campaigns."
-          }
-        },
-        "gtins": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/6324461)) of the item. You can provide up to 10 GTINs."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Attributes."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentiveList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#ProductSustainabilityIncentive"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#CertificationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#Certification"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#TaxList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#Tax"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductDetailList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#ProductDetail"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ShippingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#Shipping"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#FreeShippingThresholdList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#FreeShippingThreshold"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#LoyaltyProgramList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#LoyaltyProgram"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#CloudExportAdditionalPropertiesList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#CloudExportAdditionalProperties"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductStructuredTitle": {
-      "type": "structure",
-      "members": {
-        "digitalSourceType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The digital source type, for example \"trained_algorithmic_media\". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters."
-          }
-        },
-        "content": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The title text Maximum length is 150 characters"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Structured title, for algorithmically (AI)-generated titles."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#LoyaltyPoints": {
-      "type": "structure",
-      "members": {
-        "ratio": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The ratio of a point when converted to currency. Google assumes currency based on Merchant Center settings. If ratio is left out, it defaults to 1.0."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of loyalty points program. It is recommended to limit the name to 12 full-width characters or 24 Roman characters."
-          }
-        },
-        "pointsValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The retailer's loyalty points in absolute value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A message that represents loyalty points."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#Certification": {
-      "type": "structure",
-      "members": {
-        "certificationName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the certification, for example \"EPREL\". Maximum length is 2000 characters."
-          }
-        },
-        "certificationCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certification code. Maximum length is 2000 characters."
-          }
-        },
-        "certificationAuthority": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certification authority, for example \"European_Commission\". Maximum length is 2000 characters."
-          }
-        },
-        "certificationValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certification value (also known as class, level or grade), for example \"A+\", \"C\", \"gold\". Maximum length is 2000 characters."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Product [certification](https://support.google.com/merchants/answer/13528839), initially introduced for EU energy efficiency labeling compliance using the EU EPREL database."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ListProductsResponse": {
-      "type": "structure",
-      "members": {
-        "products": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductList",
-          "traits": {
-            "smithy.api#documentation": "The processed products from the specified account. These are your processed products after applying rules and supplemental data sources."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for the ListProducts method."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ProductList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#Product"
-      }
-    },
     "com.gcp.merchantapi_products_v1beta#ItemLevelIssue": {
       "type": "structure",
       "members": {
-        "documentation": {
-          "target": "smithy.api#String",
+        "reportingContext": {
+          "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssueReportingContextEnum",
           "traits": {
-            "smithy.api#documentation": "The URL of a web page to help with resolving this issue."
-          }
-        },
-        "applicableCountries": {
-          "target": "com.gcp.merchantapi_products_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where issue applies to the offer."
-          }
-        },
-        "resolution": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Whether the issue can be resolved by the business."
-          }
-        },
-        "attribute": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The attribute's name, if the issue is caused by a single attribute."
+            "smithy.api#documentation": "The reporting context the issue applies to."
           }
         },
         "description": {
@@ -2065,16 +2110,10 @@
             "smithy.api#documentation": "A short issue description in English."
           }
         },
-        "code": {
-          "target": "smithy.api#String",
+        "applicableCountries": {
+          "target": "com.gcp.merchantapi_products_v1beta#StringList",
           "traits": {
-            "smithy.api#documentation": "The error code of the issue."
-          }
-        },
-        "severity": {
-          "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssueSeverityEnum",
-          "traits": {
-            "smithy.api#documentation": "How this issue affects serving of the offer."
+            "smithy.api#documentation": "List of country codes (ISO 3166-1 alpha-2) where issue applies to the offer."
           }
         },
         "detail": {
@@ -2083,44 +2122,39 @@
             "smithy.api#documentation": "A detailed issue description in English."
           }
         },
-        "reportingContext": {
-          "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssueReportingContextEnum",
+        "code": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The reporting context the issue applies to."
+            "smithy.api#documentation": "The error code of the issue."
+          }
+        },
+        "documentation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of a web page to help with resolving this issue."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssueSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "How this issue affects serving of the offer."
+          }
+        },
+        "attribute": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The attribute's name, if the issue is caused by a single attribute."
+          }
+        },
+        "resolution": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether the issue can be resolved by the business."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "The ItemLevelIssue of the product status."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ItemLevelIssueSeverityEnum": {
-      "type": "enum",
-      "members": {
-        "SEVERITY_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
-          }
-        },
-        "NOT_IMPACTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_IMPACTED"
-          }
-        },
-        "DEMOTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEMOTED"
-          }
-        },
-        "DISAPPROVED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISAPPROVED"
-          }
-        }
       }
     },
     "com.gcp.merchantapi_products_v1beta#ItemLevelIssueReportingContextEnum": {
@@ -2245,102 +2279,106 @@
           "traits": {
             "smithy.api#enumValue": "YOUTUBE_CHECKOUT"
           }
+        },
+        "RENTAL_ADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RENTAL_ADS"
+          }
         }
       }
     },
-    "com.gcp.merchantapi_products_v1beta#ProductStatus": {
-      "type": "structure",
+    "com.gcp.merchantapi_products_v1beta#ItemLevelIssueSeverityEnum": {
+      "type": "enum",
       "members": {
-        "creationDate": {
-          "target": "smithy.api#String",
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "Date on which the item has been created, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
           }
         },
-        "itemLevelIssues": {
-          "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssueList",
+        "NOT_IMPACTED": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "A list of all issues associated with the product."
+            "smithy.api#enumValue": "NOT_IMPACTED"
           }
         },
-        "lastUpdateDate": {
-          "target": "smithy.api#String",
+        "DEMOTED": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "Date on which the item has been last updated, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+            "smithy.api#enumValue": "DEMOTED"
           }
         },
-        "destinationStatuses": {
-          "target": "com.gcp.merchantapi_products_v1beta#DestinationStatusList",
+        "DISAPPROVED": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "The intended destinations for the product."
-          }
-        },
-        "googleExpirationDate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date on which the item expires, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format."
+            "smithy.api#enumValue": "DISAPPROVED"
           }
         }
-      },
-      "traits": {
-        "smithy.api#documentation": "The status of a product, data validation issues, that is, information about a product computed asynchronously."
       }
     },
-    "com.gcp.merchantapi_products_v1beta#ItemLevelIssueList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#ItemLevelIssue"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#DestinationStatusList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.merchantapi_products_v1beta#DestinationStatus"
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ShippingDimension": {
+    "com.gcp.merchantapi_products_v1beta#Installment": {
       "type": "structure",
       "members": {
-        "value": {
-          "target": "smithy.api#Double",
+        "amount": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
           "traits": {
-            "smithy.api#documentation": "The dimension of the product used to calculate the shipping cost of the item."
+            "smithy.api#documentation": "The amount the buyer has to pay per month."
           }
         },
-        "unit": {
+        "downpayment": {
+          "target": "com.gcp.merchantapi_products_v1beta#Price",
+          "traits": {
+            "smithy.api#documentation": "The up-front down payment amount the buyer has to pay."
+          }
+        },
+        "months": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The unit of value."
+            "smithy.api#documentation": "The number of installments the buyer has to pay."
+          }
+        },
+        "creditType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of installment payments. Supported values are: * \"`finance`\" * \"`lease`\""
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The ShippingDimension of the product."
+        "smithy.api#documentation": "A message that represents installment."
       }
     },
-    "com.gcp.merchantapi_products_v1beta#ListAccountsProductsRequest": {
+    "com.gcp.merchantapi_products_v1beta#PatchAccountsProductInputsRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size of 25 products will be returned.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
+        "updateMask": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProducts` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special \"*\" value for full product replacement is not supported.",
+            "smithy.api#httpQuery": "updateMask"
           }
         },
-        "parent": {
+        "dataSource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The account to list processed products for. Format: `accounts/{account}`",
+            "smithy.api#documentation": "Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
+            "smithy.api#httpQuery": "dataSource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The name of the product. Format: `accounts/{account}/productInputs/{productinput}` The {productinput} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productinput} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productinput}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productinput}` segment must be the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{productinput}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productinput}` segment is used to differentiate between the two formats.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.merchantapi_products_v1beta#ProductInput",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -2369,105 +2407,6 @@
             "status": 403
           }
         ]
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#ListAccountsProducts": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.merchantapi_products_v1beta#ListAccountsProductsRequest"
-      },
-      "output": {
-        "target": "com.gcp.merchantapi_products_v1beta#ListProductsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.merchantapi_products_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.merchantapi_products_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "products/v1beta/{+parent}/products"
-        },
-        "smithy.api#documentation": "Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#GetAccountsProductsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the product. Format: `accounts/{account}/products/{product}` The `{product}` segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the `{product}` segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{product}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{product}` segment must be the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/products/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{product}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{product}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#GetAccountsProducts": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.merchantapi_products_v1beta#GetAccountsProductsRequest"
-      },
-      "output": {
-        "target": "com.gcp.merchantapi_products_v1beta#Product"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.merchantapi_products_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.merchantapi_products_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "products/v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Retrieves the processed product from your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the updated final product can be retrieved."
-      }
-    },
-    "com.gcp.merchantapi_products_v1beta#PatchAccountsProductInputsRequest": {
-      "type": "structure",
-      "members": {
-        "dataSource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
-            "smithy.api#httpQuery": "dataSource"
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special \"*\" value for full product replacement is not supported.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The name of the product. Format: `accounts/{account}/productInputs/{productinput}` The {productinput} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productinput} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productinput}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productinput}` segment must be the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{productinput}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productinput}` segment is used to differentiate between the two formats.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.merchantapi_products_v1beta#ProductInput",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
       }
     },
     "com.gcp.merchantapi_products_v1beta#BadRequest": {
@@ -2586,19 +2525,19 @@
     "com.gcp.merchantapi_products_v1beta#DeleteAccountsProductInputsRequest": {
       "type": "structure",
       "members": {
-        "dataSource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
-            "smithy.api#httpQuery": "dataSource"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The name of the product input to delete. Format: `accounts/{account}/productInputs/{productInput}` The {productInput} segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the {productInput} segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{productInput}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{productInput}` segment must be the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{productInput}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{productInput}` segment is used to differentiate between the two formats.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "dataSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
+            "smithy.api#httpQuery": "dataSource"
           }
         }
       }
@@ -2631,6 +2570,98 @@
           "uri": "products/v1beta/{+name}"
         },
         "smithy.api#documentation": "Deletes a product input from your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#GetAccountsProductsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the product. Format: `accounts/{account}/products/{product}` The `{product}` segment is a unique identifier for the product. This identifier must be unique within a merchant account and generally follows the structure: `content_language~feed_label~offer_id`. Example: `en~US~sku123` For legacy local products, the structure is: `local~content_language~feed_label~offer_id`. Example: `local~en~US~sku123` The format of the `{product}` segment in the URL is automatically detected by the server, supporting two options: 1. **Encoded Format**: The `{product}` segment is an unpadded base64url encoded string (RFC 4648 Section 5). The decoded string must result in the `content_language~feed_label~offer_id` structure. This encoding MUST be used if any part of the product identifier (like `offer_id`) contains characters such as `/`, `%`, or `~`. * Example: To represent the product ID `en~US~sku/123`, the `{product}` segment must be the unpadded base64url encoding of this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name for the product would be `accounts/123/products/ZW5-VVN-c2t1LzEyMw`. 2. **Plain Format**: The `{product}` segment is the tilde-separated string `content_language~feed_label~offer_id`. This format is suitable only when `content_language`, `feed_label`, and `offer_id` do not contain URL-problematic characters like `/`, `%`, or `~`. We recommend using the **Encoded Format** for all product IDs to ensure correct parsing, especially those containing special characters. The presence of tilde (`~`) characters in the `{product}` segment is used to differentiate between the two formats. Note: For calls to the v1beta version, the plain format is `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#GetAccountsProducts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_products_v1beta#GetAccountsProductsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_products_v1beta#Product"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_products_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_products_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "products/v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves the processed product from your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the updated final product can be retrieved."
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ListAccountsProductsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProducts` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size of 25 products will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account to list processed products for. Format: `accounts/{account}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.merchantapi_products_v1beta#ListAccountsProducts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.merchantapi_products_v1beta#ListAccountsProductsRequest"
+      },
+      "output": {
+        "target": "com.gcp.merchantapi_products_v1beta#ListProductsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.merchantapi_products_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.merchantapi_products_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "products/v1beta/{+parent}/products"
+        },
+        "smithy.api#documentation": "Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     }
   }

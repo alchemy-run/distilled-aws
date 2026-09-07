@@ -32,7 +32,8 @@
       "totalCount": "total_count",
       "trafficType": "traffic_type",
       "virtualNetworkId": "virtual_network_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.spectrum#AnalyticsAggregatesCurrentsGetResultItem": {
@@ -3133,28 +3134,28 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.spectrum#AnalyticsAggregatesCurrentsGet"
+          "target": "com.cloudflare.spectrum#CreateApp"
         },
         {
-          "target": "com.cloudflare.spectrum#AnalyticsEventsBytimesGet"
+          "target": "com.cloudflare.spectrum#DeleteApp"
         },
         {
-          "target": "com.cloudflare.spectrum#AnalyticsEventsSummariesGet"
+          "target": "com.cloudflare.spectrum#GetAnalyticAggregateCurrent"
         },
         {
-          "target": "com.cloudflare.spectrum#AppsCreate"
+          "target": "com.cloudflare.spectrum#GetAnalyticEventBytime"
         },
         {
-          "target": "com.cloudflare.spectrum#AppsDelete"
+          "target": "com.cloudflare.spectrum#GetAnalyticEventSummary"
         },
         {
-          "target": "com.cloudflare.spectrum#AppsGet"
+          "target": "com.cloudflare.spectrum#GetApp"
         },
         {
-          "target": "com.cloudflare.spectrum#AppsList"
+          "target": "com.cloudflare.spectrum#ListApps"
         },
         {
-          "target": "com.cloudflare.spectrum#AppsUpdate"
+          "target": "com.cloudflare.spectrum#UpdateApp"
         }
       ],
       "traits": {

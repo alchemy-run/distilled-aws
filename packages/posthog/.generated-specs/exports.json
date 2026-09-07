@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.exports#ListExportsRequest": {
@@ -424,7 +425,7 @@
         }
       }
     },
-    "com.posthog.exports#ExportsRetrieveRequest": {
+    "com.posthog.exports#GetExportRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -448,10 +449,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.exports#ExportsRetrieve": {
+    "com.posthog.exports#GetExport": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.exports#ExportsRetrieveRequest"
+        "target": "com.posthog.exports#GetExportRequest"
       },
       "output": {
         "target": "com.posthog.exports#ExportedAsset"
@@ -472,7 +473,7 @@
         }
       }
     },
-    "com.posthog.exports#ExportsContentRetrieveRequest": {
+    "com.posthog.exports#GetExportsContentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -496,10 +497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.exports#ExportsContentRetrieve": {
+    "com.posthog.exports#GetExportsContent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.exports#ExportsContentRetrieveRequest"
+        "target": "com.posthog.exports#GetExportsContentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -564,16 +565,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.exports#ListExports"
-        },
-        {
           "target": "com.posthog.exports#CreateExport"
         },
         {
-          "target": "com.posthog.exports#ExportsRetrieve"
+          "target": "com.posthog.exports#GetExport"
         },
         {
-          "target": "com.posthog.exports#ExportsContentRetrieve"
+          "target": "com.posthog.exports#GetExportsContent"
+        },
+        {
+          "target": "com.posthog.exports#ListExports"
         }
       ],
       "traits": {

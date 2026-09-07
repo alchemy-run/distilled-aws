@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.apps#GetAppsApiGroup": {
+    "com.kubernetes.apps#GetAppsAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.apps#GetAppsV1ApiResources": {
+    "com.kubernetes.apps#GetAppsV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -7613,7 +7614,7 @@
         "smithy.api#documentation": "delete collection of DaemonSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedDaemonRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -7644,10 +7645,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedDaemon": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedDaemonRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1DaemonSet"
@@ -7666,7 +7667,7 @@
         "smithy.api#documentation": "read the specified DaemonSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemonRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -7749,10 +7750,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemon": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemonRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1DaemonSet"
@@ -7982,7 +7983,7 @@
         "smithy.api#documentation": "delete a DaemonSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedDaemonStatusRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetStatusRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -8013,10 +8014,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedDaemonStatus": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedDaemonStatusRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1DaemonSet"
@@ -8035,7 +8036,7 @@
         "smithy.api#documentation": "read status of the specified DaemonSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemonStatusRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetStatusRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -8118,10 +8119,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemonStatus": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemonStatusRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1DaemonSet"
@@ -10152,7 +10153,7 @@
         "smithy.api#documentation": "delete collection of ReplicaSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedReplicaRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -10183,10 +10184,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedReplica": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedReplicaRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1ReplicaSet"
@@ -10205,7 +10206,7 @@
         "smithy.api#documentation": "read the specified ReplicaSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -10288,10 +10289,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedReplica": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1ReplicaSet"
@@ -10521,7 +10522,7 @@
         "smithy.api#documentation": "delete a ReplicaSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedReplicaScaleRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetScaleRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -10552,10 +10553,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedReplicaScale": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetScale": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedReplicaScaleRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetScaleRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAutoscalingV1Scale"
@@ -10574,7 +10575,7 @@
         "smithy.api#documentation": "read scale of the specified ReplicaSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaScaleRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetScaleRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -10656,10 +10657,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaScale": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetScale": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaScaleRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetScaleRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAutoscalingV1Scale"
@@ -10771,7 +10772,7 @@
         "smithy.api#documentation": "partially update scale of the specified ReplicaSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedReplicaStatusRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetStatusRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -10802,10 +10803,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedReplicaStatus": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedReplicaStatusRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1ReplicaSet"
@@ -10824,7 +10825,7 @@
         "smithy.api#documentation": "read status of the specified ReplicaSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaStatusRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetStatusRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -10907,10 +10908,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaStatus": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaStatusRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1ReplicaSet"
@@ -12038,7 +12039,7 @@
         "smithy.api#documentation": "delete collection of StatefulSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedStatefulRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -12069,10 +12070,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedStateful": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedStatefulRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1StatefulSet"
@@ -12091,7 +12092,7 @@
         "smithy.api#documentation": "read the specified StatefulSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -12174,10 +12175,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedStateful": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1StatefulSet"
@@ -12407,7 +12408,7 @@
         "smithy.api#documentation": "delete a StatefulSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedStatefulScaleRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetScaleRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -12438,10 +12439,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedStatefulScale": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetScale": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedStatefulScaleRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetScaleRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAutoscalingV1Scale"
@@ -12460,7 +12461,7 @@
         "smithy.api#documentation": "read scale of the specified StatefulSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulScaleRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetScaleRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -12542,10 +12543,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulScale": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetScale": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulScaleRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetScaleRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAutoscalingV1Scale"
@@ -12657,7 +12658,7 @@
         "smithy.api#documentation": "partially update scale of the specified StatefulSet"
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedStatefulStatusRequest": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetStatusRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -12688,10 +12689,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReadAppV1NamespacedStatefulStatus": {
+    "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReadAppV1NamespacedStatefulStatusRequest"
+        "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1StatefulSet"
@@ -12710,7 +12711,7 @@
         "smithy.api#documentation": "read status of the specified StatefulSet"
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulStatusRequest": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetStatusRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -12793,10 +12794,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulStatus": {
+    "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetStatus": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulStatusRequest"
+        "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetStatusRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApiAppsV1StatefulSet"
@@ -13126,7 +13127,7 @@
         "smithy.api#documentation": "list or watch objects of kind StatefulSet"
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1ControllerRevisionForAllNamespacesRequest": {
+    "com.kubernetes.apps#WatchAppsV1ControllerRevisionListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -13239,10 +13240,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1ControllerRevisionForAllNamespaces": {
+    "com.kubernetes.apps#WatchAppsV1ControllerRevisionListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#ListWatchAppV1ControllerRevisionForAllNamespacesRequest"
+        "target": "com.kubernetes.apps#WatchAppsV1ControllerRevisionListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -13365,7 +13366,7 @@
         "smithy.api#documentation": "watch individual changes to a list of DaemonSet. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1DeploymentForAllNamespacesRequest": {
+    "com.kubernetes.apps#WatchAppsV1DeploymentListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -13457,10 +13458,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1DeploymentForAllNamespaces": {
+    "com.kubernetes.apps#WatchAppsV1DeploymentListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#ListWatchAppV1DeploymentForAllNamespacesRequest"
+        "target": "com.kubernetes.apps#WatchAppsV1DeploymentListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -13474,7 +13475,7 @@
         "smithy.api#documentation": "watch individual changes to a list of Deployment. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1NamespacedControllerRevisionRequest": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevisionListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -13574,10 +13575,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1NamespacedControllerRevision": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevisionList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#ListWatchAppV1NamespacedControllerRevisionRequest"
+        "target": "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevisionListRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -13833,7 +13834,7 @@
         "smithy.api#documentation": "watch individual changes to a list of DaemonSet. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.apps#SetWatchAppV1NamespacedDaemonRequest": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -13941,10 +13942,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetWatchAppV1NamespacedDaemon": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetWatchAppV1NamespacedDaemonRequest"
+        "target": "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -13958,7 +13959,7 @@
         "smithy.api#documentation": "watch changes to an object of kind DaemonSet. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1NamespacedDeploymentRequest": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedDeploymentListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -14058,10 +14059,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#ListWatchAppV1NamespacedDeployment": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedDeploymentList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#ListWatchAppV1NamespacedDeploymentRequest"
+        "target": "com.kubernetes.apps#WatchAppsV1NamespacedDeploymentListRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -14317,7 +14318,7 @@
         "smithy.api#documentation": "watch individual changes to a list of ReplicaSet. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.apps#SetWatchAppV1NamespacedReplicaRequest": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -14425,10 +14426,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetWatchAppV1NamespacedReplica": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetWatchAppV1NamespacedReplicaRequest"
+        "target": "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -14559,7 +14560,7 @@
         "smithy.api#documentation": "watch individual changes to a list of StatefulSet. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.apps#SetWatchAppV1NamespacedStatefulRequest": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSetRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -14667,10 +14668,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.apps#SetWatchAppV1NamespacedStateful": {
+    "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSet": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.apps#SetWatchAppV1NamespacedStatefulRequest"
+        "target": "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSetRequest"
       },
       "output": {
         "target": "com.kubernetes.apps#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -14946,10 +14947,55 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.apps#GetAppsApiGroup"
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedControllerRevision"
         },
         {
-          "target": "com.kubernetes.apps#GetAppsV1ApiResources"
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#GetAppsAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.apps#GetAppsV1APIResources"
         },
         {
           "target": "com.kubernetes.apps#ListAppsV1ControllerRevisionForAllNamespaces"
@@ -14964,169 +15010,16 @@
           "target": "com.kubernetes.apps#ListAppsV1NamespacedControllerRevision"
         },
         {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedControllerRevision"
-        },
-        {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedDaemon"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemon"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedDaemonStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedDaemonStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSetStatus"
         },
         {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedDeployment"
         },
         {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentScale"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentStatus"
-        },
-        {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedReplicaSet"
         },
         {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedReplica"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedReplica"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedReplicaScale"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaScale"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedReplicaStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedReplicaStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetStatus"
-        },
-        {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedStateful"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedStateful"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedStatefulScale"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulScale"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReadAppV1NamespacedStatefulStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#SetReplaceAppV1NamespacedStatefulStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetStatus"
         },
         {
           "target": "com.kubernetes.apps#ListAppsV1ReplicaSetForAllNamespaces"
@@ -15135,43 +15028,151 @@
           "target": "com.kubernetes.apps#ListAppsV1StatefulSetForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.apps#ListWatchAppV1ControllerRevisionForAllNamespaces"
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentScale"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#WatchAppsV1ControllerRevisionListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1DaemonSetListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.apps#ListWatchAppV1DeploymentForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.apps#ListWatchAppV1NamespacedControllerRevision"
+          "target": "com.kubernetes.apps#WatchAppsV1DeploymentListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevision"
         },
         {
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevisionList"
+        },
+        {
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSet"
+        },
+        {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSetList"
-        },
-        {
-          "target": "com.kubernetes.apps#SetWatchAppV1NamespacedDaemon"
-        },
-        {
-          "target": "com.kubernetes.apps#ListWatchAppV1NamespacedDeployment"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedDeployment"
         },
         {
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedDeploymentList"
+        },
+        {
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSet"
+        },
+        {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSetList"
         },
         {
-          "target": "com.kubernetes.apps#SetWatchAppV1NamespacedReplica"
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSet"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSetList"
-        },
-        {
-          "target": "com.kubernetes.apps#SetWatchAppV1NamespacedStateful"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1ReplicaSetListForAllNamespaces"

@@ -480,11 +480,29 @@ export const ListEndpointHealthchecksRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListEndpointHealthchecksRequest",
 }) as any as S.Schema<ListEndpointHealthchecksRequest>;
 
-export type ListEndpointHealthchecksItem = ListEndpointHealthchecksItemsList;
+export type EndpointHealthchecksListResponseCheckType = "icmp";
+export const EndpointHealthchecksListResponseCheckType = /*@__PURE__*/ S.String;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface ListEndpointHealthchecksItem {
+  /** type of check to perform */
+  checkType: EndpointHealthchecksListResponseCheckType;
+  /** the IP address of the host to perform checks against */
+  endpoint: string;
+  /** UUID. */
+  id?: string | null;
+  /** Optional name associated with this check */
+  name?: string | null;
+}
 export const ListEndpointHealthchecksItem = /*@__PURE__*/ S.suspend(() =>
-  S.suspend(() => ListEndpointHealthchecksItemsList).pipe(
-    T.EnvelopePayloadRoot(),
-  ),
+  S.Struct({
+    checkType: EndpointHealthchecksListResponseCheckType.pipe(
+      T.Body("check_type"),
+    ),
+    endpoint: S.String,
+    id: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+  }),
 ).annotate({
   identifier: "ListEndpointHealthchecksItem",
 }) as any as S.Schema<ListEndpointHealthchecksItem>;

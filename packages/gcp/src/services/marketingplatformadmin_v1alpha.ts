@@ -185,18 +185,18 @@ export const FindSalesPartnerManagedClientsOrganizationsRequest =
 
 /** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
 export interface Marketingplatformadmin_Date {
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
   /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
   year?: number;
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
 }
 export const Marketingplatformadmin_Date = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    month: S.optional(S.Number),
-    day: S.optional(S.Number),
     year: S.optional(S.Number),
+    day: S.optional(S.Number),
+    month: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "Marketingplatformadmin_Date",
@@ -218,18 +218,18 @@ export const Organization = /*@__PURE__*/ S.suspend(() =>
 
 /** Contains the client data. */
 export interface ClientData {
-  /** The end date of the contract between the sales org and the end client. */
-  endDate?: Marketingplatformadmin_Date;
-  /** The end client that has/had contract with the requested sales org. */
-  organization?: Organization;
   /** The start date of the contract between the sales org and the end client. */
   startDate?: Marketingplatformadmin_Date;
+  /** The end client that has/had contract with the requested sales org. */
+  organization?: Organization;
+  /** The end date of the contract between the sales org and the end client. */
+  endDate?: Marketingplatformadmin_Date;
 }
 export const ClientData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endDate: S.optional(Marketingplatformadmin_Date),
-    organization: S.optional(Organization),
     startDate: S.optional(Marketingplatformadmin_Date),
+    organization: S.optional(Organization),
+    endDate: S.optional(Marketingplatformadmin_Date),
   }),
 ).annotate({ identifier: "ClientData" }) as any as S.Schema<ClientData>;
 
@@ -271,15 +271,15 @@ export const GetOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetOrganizationsRequest>;
 
 export interface ListOrganizationsRequest {
-  /** Optional. The maximum number of organizations to return in one call. The service may return fewer than this value. If unspecified, at most 50 organizations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
-  pageSize?: number;
   /** Optional. A page token, received from a previous ListOrganizations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrganizations` must match the call that provided the page token. */
   pageToken?: string;
+  /** Optional. The maximum number of organizations to return in one call. The service may return fewer than this value. If unspecified, at most 50 organizations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. */
+  pageSize?: number;
 }
 export const ListOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -344,15 +344,15 @@ export const AnalyticsAccountLinkList = /*@__PURE__*/ S.Array(
 
 /** Response message for ListAnalyticsAccountLinks RPC. */
 export interface ListAnalyticsAccountLinksResponse {
-  /** Analytics account links in this organization. */
-  analyticsAccountLinks?: AnalyticsAccountLinkList;
   /** A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. */
   nextPageToken?: string;
+  /** Analytics account links in this organization. */
+  analyticsAccountLinks?: AnalyticsAccountLinkList;
 }
 export const ListAnalyticsAccountLinksResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    analyticsAccountLinks: S.optional(AnalyticsAccountLinkList),
     nextPageToken: S.optional(S.String),
+    analyticsAccountLinks: S.optional(AnalyticsAccountLinkList),
   }),
 ).annotate({
   identifier: "ListAnalyticsAccountLinksResponse",
@@ -395,38 +395,38 @@ export const ReportPropertyUsageOrganizationsRequest = /*@__PURE__*/ S.suspend(
 
 /** Represents an amount of money with its currency type. */
 export interface Money {
-  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
-  units?: string;
   /** Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000. */
   nanos?: number;
+  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
+  units?: string;
   /** The three-letter currency code defined in ISO 4217. */
   currencyCode?: string;
 }
 export const Money = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    units: S.optional(S.String),
     nanos: S.optional(S.Number),
+    units: S.optional(S.String),
     currencyCode: S.optional(S.String),
   }),
 ).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
 
 /** Contains the bill amount. */
 export interface BillInfo {
-  /** The amount of the monthly base fee. */
-  baseFee?: Money;
-  /** The amount of the event fee. */
-  eventFee?: Money;
   /** The total amount of the bill. */
   total?: Money;
   /** The amount of the price protection credit, this is only available for eligible customers. */
   priceProtectionCredit?: Money;
+  /** The amount of the event fee. */
+  eventFee?: Money;
+  /** The amount of the monthly base fee. */
+  baseFee?: Money;
 }
 export const BillInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    baseFee: S.optional(Money),
-    eventFee: S.optional(Money),
     total: S.optional(Money),
     priceProtectionCredit: S.optional(Money),
+    eventFee: S.optional(Money),
+    baseFee: S.optional(Money),
   }),
 ).annotate({ identifier: "BillInfo" }) as any as S.Schema<BillInfo>;
 
@@ -445,30 +445,30 @@ export const PropertyUsageServiceLevelEnum = /*@__PURE__*/ S.String;
 
 /** Contains the count of events received by the property, along with metadata that influences the volume of `billable` events. */
 export interface PropertyUsage {
-  /** Total event count that the property received during the requested month. */
-  totalEventCount?: string;
+  /** The ID of the property's parent account. */
+  accountId?: string;
   /** The subtype of the analytics property. This affects the billable event count. */
   propertyType?: PropertyUsagePropertyTypeEnum;
   /** The display name of the property. */
   displayName?: string;
-  /** The name of the Google Analytics Admin API property resource. Format: analyticsadmin.googleapis.com/properties/{property_id} */
-  property?: string;
-  /** The ID of the property's parent account. */
-  accountId?: string;
-  /** The service level of the property. */
-  serviceLevel?: PropertyUsageServiceLevelEnum;
   /** The number of events for which the property is billed in the requested month. */
   billableEventCount?: string;
+  /** Total event count that the property received during the requested month. */
+  totalEventCount?: string;
+  /** The service level of the property. */
+  serviceLevel?: PropertyUsageServiceLevelEnum;
+  /** The name of the Google Analytics Admin API property resource. Format: analyticsadmin.googleapis.com/properties/{property_id} */
+  property?: string;
 }
 export const PropertyUsage = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    totalEventCount: S.optional(S.String),
+    accountId: S.optional(S.String),
     propertyType: S.optional(PropertyUsagePropertyTypeEnum),
     displayName: S.optional(S.String),
-    property: S.optional(S.String),
-    accountId: S.optional(S.String),
-    serviceLevel: S.optional(PropertyUsageServiceLevelEnum),
     billableEventCount: S.optional(S.String),
+    totalEventCount: S.optional(S.String),
+    serviceLevel: S.optional(PropertyUsageServiceLevelEnum),
+    property: S.optional(S.String),
   }),
 ).annotate({ identifier: "PropertyUsage" }) as any as S.Schema<PropertyUsage>;
 

@@ -13,13 +13,13 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Tags for the Azure resource. */
-export type ControllersCreateRequestTagsMap = {
+export type CreateControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersCreateRequestTagsMap>;
+) as any as S.Schema<CreateControllerRequestTagsMap>;
 
 export interface ControllerPropertiesInput {
   /** Resource ID of the target container host */
@@ -66,7 +66,7 @@ export interface CreateControllerRequest {
   /** Name of the resource. */
   name: string;
   /** Tags for the Azure resource. */
-  tags?: ControllersCreateRequestTagsMap;
+  tags?: CreateControllerRequestTagsMap;
   /** Region where the Azure resource is located. */
   location: string;
   properties: ControllerPropertiesInput;
@@ -77,7 +77,7 @@ export const CreateControllerRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    tags: S.optional(ControllersCreateRequestTagsMap),
+    tags: S.optional(CreateControllerRequestTagsMap),
     location: S.String,
     properties: ControllerPropertiesInput,
     sku: Sku,
@@ -94,13 +94,13 @@ export const CreateControllerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateControllerRequest>;
 
 /** Tags for the Azure resource. */
-export type ControllersCreateResponseTagsMap = {
+export type CreateControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersCreateResponseTagsMap>;
+) as any as S.Schema<CreateControllerResponseTagsMap>;
 
 /** Provisioning state of the Azure Dev Spaces Controller. */
 export type ControllerPropertiesProvisioningState =
@@ -148,7 +148,7 @@ export interface CreateControllerResponse {
   /** The type of the resource. */
   type?: string;
   /** Tags for the Azure resource. */
-  tags?: ControllersCreateResponseTagsMap;
+  tags?: CreateControllerResponseTagsMap;
   /** Region where the Azure resource is located. */
   location: string;
   properties: ControllerProperties;
@@ -159,7 +159,7 @@ export const CreateControllerResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ControllersCreateResponseTagsMap),
+    tags: S.optional(CreateControllerResponseTagsMap),
     location: S.String,
     properties: ControllerProperties,
     sku: Sku,
@@ -271,13 +271,13 @@ export const GetControllerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetControllerRequest>;
 
 /** Tags for the Azure resource. */
-export type ControllersGetResponseTagsMap = {
+export type GetControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersGetResponseTagsMap>;
+) as any as S.Schema<GetControllerResponseTagsMap>;
 
 export interface GetControllerResponse {
   /** Fully qualified resource Id for the resource. */
@@ -287,7 +287,7 @@ export interface GetControllerResponse {
   /** The type of the resource. */
   type?: string;
   /** Tags for the Azure resource. */
-  tags?: ControllersGetResponseTagsMap;
+  tags?: GetControllerResponseTagsMap;
   /** Region where the Azure resource is located. */
   location: string;
   properties: ControllerProperties;
@@ -298,7 +298,7 @@ export const GetControllerResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ControllersGetResponseTagsMap),
+    tags: S.optional(GetControllerResponseTagsMap),
     location: S.String,
     properties: ControllerProperties,
     sku: Sku,
@@ -551,13 +551,13 @@ export const ResourceProviderOperationList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResourceProviderOperationList>;
 
 /** Tags for the Azure Dev Spaces Controller. */
-export type ControllersUpdateRequestTagsMap = {
+export type UpdateControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateControllerRequestTagsMap>;
 
 export interface ControllerUpdateParametersProperties {
   /** Credentials of the target container host (base64). */
@@ -580,7 +580,7 @@ export interface UpdateControllerRequest {
   /** Name of the resource. */
   name: string;
   /** Tags for the Azure Dev Spaces Controller. */
-  tags?: ControllersUpdateRequestTagsMap;
+  tags?: UpdateControllerRequestTagsMap;
   properties?: ControllerUpdateParametersProperties;
 }
 export const UpdateControllerRequest = /*@__PURE__*/ S.suspend(() =>
@@ -588,7 +588,7 @@ export const UpdateControllerRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    tags: S.optional(ControllersUpdateRequestTagsMap),
+    tags: S.optional(UpdateControllerRequestTagsMap),
     properties: S.optional(ControllerUpdateParametersProperties),
   }).pipe(
     T.Http({
@@ -603,13 +603,13 @@ export const UpdateControllerRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateControllerRequest>;
 
 /** Tags for the Azure resource. */
-export type ControllersUpdateResponseTagsMap = {
+export type UpdateControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateControllerResponseTagsMap>;
 
 export interface UpdateControllerResponse {
   /** Fully qualified resource Id for the resource. */
@@ -619,7 +619,7 @@ export interface UpdateControllerResponse {
   /** The type of the resource. */
   type?: string;
   /** Tags for the Azure resource. */
-  tags?: ControllersUpdateResponseTagsMap;
+  tags?: UpdateControllerResponseTagsMap;
   /** Region where the Azure resource is located. */
   location: string;
   properties: ControllerProperties;
@@ -630,7 +630,7 @@ export const UpdateControllerResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ControllersUpdateResponseTagsMap),
+    tags: S.optional(UpdateControllerResponseTagsMap),
     location: S.String,
     properties: ControllerProperties,
     sku: Sku,

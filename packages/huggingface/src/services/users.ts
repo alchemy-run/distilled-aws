@@ -276,6 +276,32 @@ export const GetSocialHandlesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSocialHandlesResponse",
 }) as any as S.Schema<GetSocialHandlesResponse>;
 
+export interface GetUserAvatarRequest {
+  username: string;
+  redirect?: unknown;
+}
+export const GetUserAvatarRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    username: S.String.pipe(T.Label()),
+    redirect: S.optional(S.Unknown.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/users/{username}/avatar", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetUserAvatarRequest",
+}) as any as S.Schema<GetUserAvatarRequest>;
+
+export interface GetUserAvatarResponse {
+  avatarUrl: string;
+}
+export const GetUserAvatarResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    avatarUrl: S.String,
+  }),
+).annotate({
+  identifier: "GetUserAvatarResponse",
+}) as any as S.Schema<GetUserAvatarResponse>;
+
 export interface GetUserUsageRequest {
   periodId?: string;
 }
@@ -1189,32 +1215,6 @@ export const ListUserRepositoriesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUserRepositoriesResponse",
 }) as any as S.Schema<ListUserRepositoriesResponse>;
 
-export interface RetrieveUserAvatarRequest {
-  username: string;
-  redirect?: unknown;
-}
-export const RetrieveUserAvatarRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    username: S.String.pipe(T.Label()),
-    redirect: S.optional(S.Unknown.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/users/{username}/avatar", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveUserAvatarRequest",
-}) as any as S.Schema<RetrieveUserAvatarRequest>;
-
-export interface RetrieveUserAvatarResponse {
-  avatarUrl: string;
-}
-export const RetrieveUserAvatarResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    avatarUrl: S.String,
-  }),
-).annotate({
-  identifier: "RetrieveUserAvatarResponse",
-}) as any as S.Schema<RetrieveUserAvatarResponse>;
-
 export interface StreamMetricsRequest {}
 export const StreamMetricsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -1478,6 +1478,21 @@ export const getSocialHandles: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetUserAvatarError = HuggingFaceOpError;
+/** Retrieve user avatar This endpoint returns a JSON with the avatar URL for the user. If called with the `Sec-Fetch-Dest: image` header, it instead redirects to the avatar URL */
+export const getUserAvatar: API.OperationMethod<
+  GetUserAvatarRequest,
+  GetUserAvatarResponse,
+  GetUserAvatarError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserAvatarRequest,
+  output: GetUserAvatarResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetUserUsageError = HuggingFaceOpError;
 /** Get user usage Get user usage for a given period */
 export const getUserUsage: API.OperationMethod<
@@ -1578,21 +1593,6 @@ export const listUserRepositories: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListUserRepositoriesRequest,
   output: ListUserRepositoriesResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveUserAvatarError = HuggingFaceOpError;
-/** Retrieve user avatar This endpoint returns a JSON with the avatar URL for the user. If called with the `Sec-Fetch-Dest: image` header, it instead redirects to the avatar URL */
-export const retrieveUserAvatar: API.OperationMethod<
-  RetrieveUserAvatarRequest,
-  RetrieveUserAvatarResponse,
-  RetrieveUserAvatarError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveUserAvatarRequest,
-  output: RetrieveUserAvatarResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

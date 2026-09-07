@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.annotations#ListAnnotationsRequest": {
@@ -99,7 +100,7 @@
           }
         },
         "creation_type": {
-          "target": "com.posthog.annotations#CreationTypeEnum",
+          "target": "com.posthog.annotations#AnnotationCreationTypeEnum",
           "traits": {
             "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
           }
@@ -186,7 +187,7 @@
       },
       "traits": {}
     },
-    "com.posthog.annotations#CreationTypeEnum": {
+    "com.posthog.annotations#AnnotationCreationTypeEnum": {
       "type": "enum",
       "members": {
         "USR": {
@@ -446,7 +447,7 @@
           }
         },
         "creation_type": {
-          "target": "com.posthog.annotations#CreationTypeEnum",
+          "target": "com.posthog.annotations#AnnotationCreationTypeEnum",
           "traits": {
             "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
           }
@@ -524,7 +525,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations."
       }
     },
-    "com.posthog.annotations#AnnotationsRetrieveRequest": {
+    "com.posthog.annotations#GetAnnotationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -548,10 +549,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.annotations#AnnotationsRetrieve": {
+    "com.posthog.annotations#GetAnnotation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.annotations#AnnotationsRetrieveRequest"
+        "target": "com.posthog.annotations#GetAnnotationRequest"
       },
       "output": {
         "target": "com.posthog.annotations#Annotation"
@@ -607,7 +608,7 @@
           }
         },
         "creation_type": {
-          "target": "com.posthog.annotations#CreationTypeEnum",
+          "target": "com.posthog.annotations#AnnotationCreationTypeEnum",
           "traits": {
             "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
           }
@@ -685,7 +686,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete annotations. [See docs](https://posthog.com/docs/data/annotations) for more information on annotations."
       }
     },
-    "com.posthog.annotations#UpdateAnnotationPartialRequest": {
+    "com.posthog.annotations#UpdateAnnotationsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -719,7 +720,7 @@
           }
         },
         "creation_type": {
-          "target": "com.posthog.annotations#CreationTypeEnum",
+          "target": "com.posthog.annotations#AnnotationCreationTypeEnum",
           "traits": {
             "smithy.api#documentation": "Who created this annotation. Use `USR` for user-created notes and `GIT` for bot/deployment notes.\n\n* `USR` - user\n* `GIT` - GitHub"
           }
@@ -769,10 +770,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.annotations#UpdateAnnotationPartial": {
+    "com.posthog.annotations#UpdateAnnotationsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.annotations#UpdateAnnotationPartialRequest"
+        "target": "com.posthog.annotations#UpdateAnnotationsPartialRequest"
       },
       "output": {
         "target": "com.posthog.annotations#Annotation"
@@ -890,22 +891,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.annotations#ListAnnotations"
+          "target": "com.posthog.annotations#AnnotationsDestroy"
         },
         {
           "target": "com.posthog.annotations#CreateAnnotation"
         },
         {
-          "target": "com.posthog.annotations#AnnotationsRetrieve"
+          "target": "com.posthog.annotations#GetAnnotation"
+        },
+        {
+          "target": "com.posthog.annotations#ListAnnotations"
         },
         {
           "target": "com.posthog.annotations#UpdateAnnotation"
         },
         {
-          "target": "com.posthog.annotations#UpdateAnnotationPartial"
-        },
-        {
-          "target": "com.posthog.annotations#AnnotationsDestroy"
+          "target": "com.posthog.annotations#UpdateAnnotationsPartial"
         }
       ],
       "traits": {

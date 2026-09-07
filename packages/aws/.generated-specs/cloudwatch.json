@@ -8967,7 +8967,11 @@
     },
     "aws.patched#UnsupportedOperation": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "Message": {
+          "target": "smithy.api#String"
+        }
+      },
       "traits": {}
     }
   }

@@ -4,60 +4,23 @@
     "service": "firebaseappdistribution",
     "version": "v1",
     "title": "Firebase App Distribution API",
-    "baseUrl": "https://firebaseappdistribution.googleapis.com/"
+    "baseUrl": "https://firebaseappdistribution.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Tester": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the tester resource. Format: `projects/{project_number}/testers/{email_address}`"
-          }
-        },
-        "lastActivityTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the tester was last active. This is the most recent time the tester installed one of the apps. If they've never installed one or if the release no longer exists, this is the time the tester was added to the project."
-          }
-        },
-        "groups": {
-          "target": "com.gcp.firebaseappdistribution_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The resource names of the groups this tester belongs to."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the tester associated with the Google account used to accept the tester invitation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A person that can be invited to test apps in a Firebase project."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
     "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListFeedbackReportsResponse": {
       "type": "structure",
       "members": {
-        "feedbackReports": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1FeedbackReportList",
-          "traits": {
-            "smithy.api#documentation": "The feedback reports"
-          }
-        },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "A short-lived token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "feedbackReports": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1FeedbackReportList",
+          "traits": {
+            "smithy.api#documentation": "The feedback reports"
           }
         }
       },
@@ -69,6 +32,56 @@
       "type": "list",
       "member": {
         "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1FeedbackReport"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GdataContentTypeInfo": {
+      "type": "structure",
+      "members": {
+        "fromBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the file derived by looking at specific bytes (i.e. \"magic bytes\") of the actual file."
+          }
+        },
+        "fromHeader": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the file as specified in the request headers, multipart headers, or RUPIO start request."
+          }
+        },
+        "fusionIdDetectionMetadata": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metadata information from Fusion ID detection. Serialized FusionIdDetectionMetadata proto. Only set if from_fusion_id is set."
+          }
+        },
+        "fromUrlPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API)."
+          }
+        },
+        "fromFusionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the file detected by Fusion ID. go/fusionid"
+          }
+        },
+        "bestGuess": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scotty's best guess of what the content type of the file is."
+          }
+        },
+        "fromFileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the file derived from the file extension of the original file name used by the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty."
       }
     },
     "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchLeaveGroupRequest": {
@@ -85,65 +98,19 @@
         "smithy.api#documentation": "Request message for `BatchLeaveGroup`"
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group": {
-      "type": "structure",
-      "members": {
-        "inviteLinkCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. The number of invite links for this group."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the group resource. Format: `projects/{project_number}/groups/{group_alias}`"
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The display name of the group."
-          }
-        },
-        "releaseCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. The number of releases this group is permitted to access."
-          }
-        },
-        "testerCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. The number of testers who are members of this group."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A group which can contain testers. A group can be invited to test apps in a Firebase project."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseNotes": {
-      "type": "structure",
-      "members": {
-        "text": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The text of the release notes."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Notes that belong to a release."
+    "com.gcp.firebaseappdistribution_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.firebaseappdistribution_v1#GoogleLongrunningListOperationsResponse": {
       "type": "structure",
       "members": {
-        "unreachable": {
-          "target": "com.gcp.firebaseappdistribution_v1#StringList",
+        "nextPageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+            "smithy.api#documentation": "The standard List next-page token."
           }
         },
         "operations": {
@@ -152,10 +119,10 @@
             "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
           }
         },
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "unreachable": {
+          "target": "com.gcp.firebaseappdistribution_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
           }
         }
       },
@@ -167,6 +134,122 @@
       "type": "list",
       "member": {
         "target": "com.gcp.firebaseappdistribution_v1#GoogleLongrunningOperation"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseResponseResultEnum",
+          "traits": {
+            "smithy.api#documentation": "Result of upload release."
+          }
+        },
+        "release": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Release",
+          "traits": {
+            "smithy.api#documentation": "Release associated with the uploaded binary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `UploadRelease`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseResponseResultEnum": {
+      "type": "enum",
+      "members": {
+        "UPLOAD_RELEASE_RESULT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPLOAD_RELEASE_RESULT_UNSPECIFIED"
+          }
+        },
+        "RELEASE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_CREATED"
+          }
+        },
+        "RELEASE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_UPDATED"
+          }
+        },
+        "RELEASE_UNMODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELEASE_UNMODIFIED"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchAddTestersRequest": {
+      "type": "structure",
+      "members": {
+        "emails": {
+          "target": "com.gcp.firebaseappdistribution_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The email addresses of the tester resources to create. A maximum of 999 and a minimum of 1 tester can be created in a batch."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Request message for batch adding testers"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListReleasesResponse": {
+      "type": "structure",
+      "members": {
+        "releases": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseList",
+          "traits": {
+            "smithy.api#documentation": "The releases"
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short-lived token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of releases."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for `ListReleases`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Release"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchRemoveTestersRequest": {
+      "type": "structure",
+      "members": {
+        "emails": {
+          "target": "com.gcp.firebaseappdistribution_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The email addresses of the tester resources to removed. A maximum of 999 and a minimum of 1 testers can be deleted in a batch."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for `BatchRemoveTesters`."
       }
     },
     "com.gcp.firebaseappdistribution_v1#GdataDiffUploadResponse": {
@@ -189,346 +272,18 @@
         "smithy.api#documentation": "Backend response for a Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1DistributeReleaseRequest": {
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseNotes": {
       "type": "structure",
       "members": {
-        "testerEmails": {
-          "target": "com.gcp.firebaseappdistribution_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of tester email addresses to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request."
-          }
-        },
-        "groupAliases": {
-          "target": "com.gcp.firebaseappdistribution_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of group aliases (IDs) to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The request message for `DistributeRelease`."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TestCertificate": {
-      "type": "structure",
-      "members": {
-        "hashSha1": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Hex string of SHA1 hash of the test certificate used to resign the AAB"
-          }
-        },
-        "hashMd5": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Hex string of MD5 hash of the test certificate used to resign the AAB"
-          }
-        },
-        "hashSha256": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Hex string of SHA256 hash of the test certificate used to resign the AAB"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "App bundle test certificate"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchAddTestersResponse": {
-      "type": "structure",
-      "members": {
-        "testers": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TesterList",
-          "traits": {
-            "smithy.api#documentation": "The testers which are created and/or already exist"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The Response message for `BatchAddTesters`."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TesterList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Tester"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GdataDiffUploadRequest": {
-      "type": "structure",
-      "members": {
-        "checksumsInfo": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
-          "traits": {
-            "smithy.api#documentation": "The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol."
-          }
-        },
-        "objectInfo": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
-          "traits": {
-            "smithy.api#documentation": "The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received."
-          }
-        },
-        "objectVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleLongrunningOperation": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.firebaseappdistribution_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "response": {
-          "target": "com.gcp.firebaseappdistribution_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "error": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleRpcStatus",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchAddTestersRequest": {
-      "type": "structure",
-      "members": {
-        "emails": {
-          "target": "com.gcp.firebaseappdistribution_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. The email addresses of the tester resources to create. A maximum of 999 and a minimum of 1 tester can be created in a batch."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The Request message for batch adding testers"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListTestersResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short-lived token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        },
-        "testers": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TesterList",
-          "traits": {
-            "smithy.api#documentation": "The testers listed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for `ListTesters`."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchRemoveTestersResponse": {
-      "type": "structure",
-      "members": {
-        "emails": {
-          "target": "com.gcp.firebaseappdistribution_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of deleted tester emails"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for `BatchRemoveTesters`"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1FeedbackReport": {
-      "type": "structure",
-      "members": {
-        "firebaseConsoleUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A link to the Firebase console displaying the feedback report."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the feedback report resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/feedbackReports/{feedback_report}`"
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time when the feedback report was created."
-          }
-        },
-        "screenshotUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A signed link (which expires in one hour) that lets you directly download the screenshot."
-          }
-        },
         "text": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The text of the feedback report."
-          }
-        },
-        "tester": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The resource name of the tester who submitted the feedback report."
+            "smithy.api#documentation": "The text of the release notes."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A feedback report submitted by a tester for a release."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleLongrunningWaitOperationRequest": {
-      "type": "structure",
-      "members": {
-        "timeout": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.WaitOperation."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseMetadata": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Operation metadata for `UploadRelease`."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchJoinGroupRequest": {
-      "type": "structure",
-      "members": {
-        "createMissingTesters": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether to create tester resources based on `emails` if they don't exist yet."
-          }
-        },
-        "emails": {
-          "target": "com.gcp.firebaseappdistribution_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. The emails of the testers to be added to the group. A maximum of 999 and a minimum of 1 tester can be created in a batch."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The request message for `BatchJoinGroup`"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListReleasesResponse": {
-      "type": "structure",
-      "members": {
-        "totalSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The total number of releases."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short-lived token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        },
-        "releases": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseList",
-          "traits": {
-            "smithy.api#documentation": "The releases"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for `ListReleases`."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Release"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GdataDiffChecksumsResponse": {
-      "type": "structure",
-      "members": {
-        "objectLocation": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
-          "traits": {
-            "smithy.api#documentation": "If set, calculate the checksums based on the contents and return them to the caller."
-          }
-        },
-        "chunkSizeBytes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The chunk size of checksums. Must be a multiple of 256KB."
-          }
-        },
-        "objectVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The object version of the object the checksums are being returned for."
-          }
-        },
-        "objectSizeBytes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The total size of the server object."
-          }
-        },
-        "checksumsLocation": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
-          "traits": {
-            "smithy.api#documentation": "Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
+        "smithy.api#documentation": "Notes that belong to a release."
       }
     },
     "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseRequest": {
@@ -545,45 +300,258 @@
         "smithy.api#documentation": "Request message for `UploadRelease`."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GdataObjectId": {
+    "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia": {
       "type": "structure",
       "members": {
-        "bucketName": {
+        "length": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the bucket to which this object belongs."
+            "smithy.api#documentation": "Size of the data, in bytes"
           }
         },
-        "generation": {
-          "target": "smithy.api#String",
+        "crc32cHash": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions"
+            "smithy.api#documentation": "crc32.c hash for the payload."
           }
         },
-        "objectName": {
+        "referenceType": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMediaReferenceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Describes what the field reference contains."
+          }
+        },
+        "md5Hash": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the object."
+            "smithy.api#documentation": "MD5 hash for the payload."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to the data, set if reference_type is PATH"
+          }
+        },
+        "blobRef": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef."
+          }
+        },
+        "inline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Media data, set if reference_type is INLINE"
+          }
+        },
+        "cosmoBinaryReference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field."
+          }
+        },
+        "objectId": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataObjectId",
+          "traits": {
+            "smithy.api#documentation": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
+          }
+        },
+        "sha1Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SHA-1 hash for the payload."
+          }
+        },
+        "blobstore2Info": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataBlobstore2Info",
+          "traits": {
+            "smithy.api#documentation": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763."
+        "smithy.api#documentation": "A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GdataCompositeMediaReferenceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "PATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATH"
+          }
+        },
+        "BLOB_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOB_REF"
+          }
+        },
+        "INLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INLINE"
+          }
+        },
+        "BIGSTORE_REF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BIGSTORE_REF"
+          }
+        },
+        "COSMO_BINARY_REFERENCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COSMO_BINARY_REFERENCE"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1AabInfo": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the `AabInfo` resource. Format: `projects/{project_number}/apps/{app}/aabInfo`"
+          }
+        },
+        "testCertificate": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TestCertificate",
+          "traits": {
+            "smithy.api#documentation": "App bundle test certificate generated for the app. Set after the first app bundle is uploaded for this app."
+          }
+        },
+        "integrationState": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1AabInfoIntegrationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "App bundle integration state. Only valid for android apps."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Android App Bundle (AAB) information for a Firebase app."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1AabInfoIntegrationStateEnum": {
+      "type": "enum",
+      "members": {
+        "AAB_INTEGRATION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_INTEGRATION_STATE_UNSPECIFIED"
+          }
+        },
+        "INTEGRATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTEGRATED"
+          }
+        },
+        "PLAY_ACCOUNT_NOT_LINKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAY_ACCOUNT_NOT_LINKED"
+          }
+        },
+        "NO_APP_WITH_GIVEN_BUNDLE_ID_IN_PLAY_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_APP_WITH_GIVEN_BUNDLE_ID_IN_PLAY_ACCOUNT"
+          }
+        },
+        "APP_NOT_PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APP_NOT_PUBLISHED"
+          }
+        },
+        "AAB_STATE_UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AAB_STATE_UNAVAILABLE"
+          }
+        },
+        "PLAY_IAS_TERMS_NOT_ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAY_IAS_TERMS_NOT_ACCEPTED"
+          }
+        },
+        "ADHOC_SHARING_KEY_NOT_GENERATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADHOC_SHARING_KEY_NOT_GENERATED"
+          }
+        },
+        "ADHOC_SHARING_KEY_NOT_REGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADHOC_SHARING_KEY_NOT_REGISTERED"
+          }
+        },
+        "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
+          }
+        },
+        "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Tester": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the tester resource. Format: `projects/{project_number}/testers/{email_address}`"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the tester associated with the Google account used to accept the tester invitation."
+          }
+        },
+        "groups": {
+          "target": "com.gcp.firebaseappdistribution_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The resource names of the groups this tester belongs to."
+          }
+        },
+        "lastActivityTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the tester was last active. This is the most recent time the tester installed one of the apps. If they've never installed one or if the release no longer exists, this is the time the tester was added to the project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A person that can be invited to test apps in a Firebase project."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleLongrunningCancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
       }
     },
     "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Release": {
       "type": "structure",
       "members": {
-        "releaseNotes": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseNotes",
-          "traits": {
-            "smithy.api#documentation": "Notes about the release."
-          }
-        },
-        "binaryDownloadUri": {
+        "updateTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. A signed link (which expires in one hour) to directly download the app binary (IPA/APK/AAB) file."
+            "smithy.api#documentation": "Output only. The time the release was last updated."
           }
         },
         "installationCount": {
@@ -592,10 +560,22 @@
             "smithy.api#documentation": "Output only. Number of testers who have downloaded this release."
           }
         },
-        "displayVersion": {
+        "openInvitationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of testers who were invited (incl. expired invitations), but did not (yet) accept the invitation."
+          }
+        },
+        "binaryDownloadUri": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Display version of the release. For an Android release, the display version is the `versionName`. For an iOS release, the display version is the `CFBundleShortVersionString`."
+            "smithy.api#documentation": "Output only. A signed link (which expires in one hour) to directly download the app binary (IPA/APK/AAB) file."
+          }
+        },
+        "releaseNotes": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseNotes",
+          "traits": {
+            "smithy.api#documentation": "Notes about the release."
           }
         },
         "feedbackCount": {
@@ -604,64 +584,16 @@
             "smithy.api#documentation": "Output only. Number of feedback reports left by testers."
           }
         },
-        "expireTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the release will expire."
-          }
-        },
-        "openInvitationCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. Number of testers who were invited (incl. expired invitations), but did not (yet) accept the invitation."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`"
-          }
-        },
-        "acceptedInvitationCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. Number of testers with accepted invitations."
-          }
-        },
         "testingUri": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices."
           }
         },
-        "binaryType": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseBinaryTypeEnum",
+        "testState": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseTestStateEnum",
           "traits": {
-            "smithy.api#documentation": "Output only. Type of binary."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the release was last updated."
-          }
-        },
-        "firebaseConsoleUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A link to the Firebase console displaying a single release."
-          }
-        },
-        "androidPackageRegistrationState": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseAndroidPackageRegistrationStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Registration state of the Android package (BinaryType.APK)."
-          }
-        },
-        "buildVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Build version of the release. For an Android release, the build version is the `versionCode`. For an iOS release, the build version is the `CFBundleVersion`."
+            "smithy.api#documentation": "Output only. The overall state of tests run on this release"
           }
         },
         "createTime": {
@@ -670,15 +602,98 @@
             "smithy.api#documentation": "Output only. The time the release was created."
           }
         },
-        "testState": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseTestStateEnum",
+        "firebaseConsoleUri": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The overall state of tests run on this release"
+            "smithy.api#documentation": "Output only. A link to the Firebase console displaying a single release."
+          }
+        },
+        "acceptedInvitationCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Number of testers with accepted invitations."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the release will expire."
+          }
+        },
+        "binaryType": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseBinaryTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Type of binary."
+          }
+        },
+        "displayVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Display version of the release. For an Android release, the display version is the `versionName`. For an iOS release, the display version is the `CFBundleShortVersionString`."
+          }
+        },
+        "androidPackageRegistrationState": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseAndroidPackageRegistrationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Registration state of the Android package (BinaryType.APK)."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the release resource. Format: `projects/{project_number}/apps/{app}/releases/{release}`"
+          }
+        },
+        "buildVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Build version of the release. For an Android release, the build version is the `versionCode`. For an iOS release, the build version is the `CFBundleVersion`."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "A release of a Firebase app."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseTestStateEnum": {
+      "type": "enum",
+      "members": {
+        "TEST_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEST_STATE_UNSPECIFIED"
+          }
+        },
+        "NO_TESTS_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_TESTS_REQUESTED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "PASSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "INCONCLUSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INCONCLUSIVE"
+          }
+        }
       }
     },
     "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseBinaryTypeEnum": {
@@ -739,383 +754,195 @@
         }
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ReleaseTestStateEnum": {
-      "type": "enum",
-      "members": {
-        "TEST_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TEST_STATE_UNSPECIFIED"
-          }
-        },
-        "NO_TESTS_REQUESTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NO_TESTS_REQUESTED"
-          }
-        },
-        "IN_PROGRESS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "IN_PROGRESS"
-          }
-        },
-        "PASSED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PASSED"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        },
-        "INCONCLUSIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "INCONCLUSIVE"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleRpcStatus": {
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TestCertificate": {
       "type": "structure",
       "members": {
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "message": {
+        "hashMd5": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+            "smithy.api#documentation": "Hex string of MD5 hash of the test certificate used to resign the AAB"
           }
         },
-        "details": {
-          "target": "com.gcp.firebaseappdistribution_v1#DocumentMapList",
+        "hashSha256": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+            "smithy.api#documentation": "Hex string of SHA256 hash of the test certificate used to resign the AAB"
+          }
+        },
+        "hashSha1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hex string of SHA1 hash of the test certificate used to resign the AAB"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+        "smithy.api#documentation": "App bundle test certificate"
       }
     },
-    "com.gcp.firebaseappdistribution_v1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebaseappdistribution_v1#DocumentMap"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GdataDiffVersionResponse": {
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1DistributeReleaseRequest": {
       "type": "structure",
       "members": {
-        "objectVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of the object stored at the server."
-          }
-        },
-        "objectSizeBytes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The total size of the server object."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseResponse": {
-      "type": "structure",
-      "members": {
-        "release": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Release",
-          "traits": {
-            "smithy.api#documentation": "Release associated with the uploaded binary."
-          }
-        },
-        "result": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseResponseResultEnum",
-          "traits": {
-            "smithy.api#documentation": "Result of upload release."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for `UploadRelease`."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseResponseResultEnum": {
-      "type": "enum",
-      "members": {
-        "UPLOAD_RELEASE_RESULT_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UPLOAD_RELEASE_RESULT_UNSPECIFIED"
-          }
-        },
-        "RELEASE_CREATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RELEASE_CREATED"
-          }
-        },
-        "RELEASE_UPDATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RELEASE_UPDATED"
-          }
-        },
-        "RELEASE_UNMODIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RELEASE_UNMODIFIED"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleLongrunningCancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest": {
-      "type": "structure",
-      "members": {
-        "names": {
+        "testerEmails": {
           "target": "com.gcp.firebaseappdistribution_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Required. The names of the release resources to delete. Format: `projects/{project_number}/apps/{app}/releases/{release}` A maximum of 100 releases can be deleted per request."
+            "smithy.api#documentation": "Optional. A list of tester email addresses to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request."
+          }
+        },
+        "groupAliases": {
+          "target": "com.gcp.firebaseappdistribution_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of group aliases (IDs) to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The request message for `BatchDeleteReleases`."
+        "smithy.api#documentation": "The request message for `DistributeRelease`."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GdataBlobstore2Info": {
+    "com.gcp.firebaseappdistribution_v1#GdataObjectId": {
       "type": "structure",
       "members": {
-        "readToken": {
+        "objectName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call."
+            "smithy.api#documentation": "The name of the object."
           }
         },
-        "uploadMetadataContainer": {
+        "generation": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Metadata passed from Blobstore -> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads."
+            "smithy.api#documentation": "Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions"
           }
         },
-        "downloadExternalReadToken": {
+        "bucketName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A serialized External Read Token passed from Bigstore -> Scotty for a GCS download. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads."
-          }
-        },
-        "blobGeneration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The blob generation id."
-          }
-        },
-        "downloadReadHandle": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Read handle passed from Bigstore -> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads."
-          }
-        },
-        "blobId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The blob id, e.g., /blobstore/prod/playground/scotty"
-          }
-        },
-        "uploadFragmentListCreationInfo": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A serialized Object Fragment List Creation Info passed from Bigstore -> Scotty for a GCS upload. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads."
+            "smithy.api#documentation": "The name of the bucket to which this object belongs."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Information to read/write to blobstore2."
+        "smithy.api#documentation": "This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GdataContentTypeInfo": {
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1DistributeReleaseResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The response message for `DistributeRelease`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleLongrunningWaitOperationRequest": {
       "type": "structure",
       "members": {
-        "fromFileName": {
+        "timeout": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The content type of the file derived from the file extension of the original file name used by the client."
-          }
-        },
-        "bestGuess": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scotty's best guess of what the content type of the file is."
-          }
-        },
-        "fromUrlPath": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API)."
-          }
-        },
-        "fromFusionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The content type of the file detected by Fusion ID. go/fusionid"
-          }
-        },
-        "fromHeader": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The content type of the file as specified in the request headers, multipart headers, or RUPIO start request."
-          }
-        },
-        "fromBytes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The content type of the file derived by looking at specific bytes (i.e. \"magic bytes\") of the actual file."
-          }
-        },
-        "fusionIdDetectionMetadata": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Metadata information from Fusion ID detection. Serialized FusionIdDetectionMetadata proto. Only set if from_fusion_id is set."
+            "smithy.api#documentation": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty."
+        "smithy.api#documentation": "The request message for Operations.WaitOperation."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia": {
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchJoinGroupRequest": {
       "type": "structure",
       "members": {
-        "blobRef": {
-          "target": "smithy.api#String",
+        "createMissingTesters": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef."
+            "smithy.api#documentation": "Indicates whether to create tester resources based on `emails` if they don't exist yet."
           }
         },
-        "sha1Hash": {
-          "target": "smithy.api#String",
+        "emails": {
+          "target": "com.gcp.firebaseappdistribution_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "SHA-1 hash for the payload."
-          }
-        },
-        "inline": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Media data, set if reference_type is INLINE"
-          }
-        },
-        "objectId": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataObjectId",
-          "traits": {
-            "smithy.api#documentation": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
-          }
-        },
-        "crc32cHash": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "crc32.c hash for the payload."
-          }
-        },
-        "path": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Path to the data, set if reference_type is PATH"
-          }
-        },
-        "blobstore2Info": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataBlobstore2Info",
-          "traits": {
-            "smithy.api#documentation": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
-          }
-        },
-        "md5Hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "MD5 hash for the payload."
-          }
-        },
-        "referenceType": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMediaReferenceTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Describes what the field reference contains."
-          }
-        },
-        "cosmoBinaryReference": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field."
-          }
-        },
-        "length": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Size of the data, in bytes"
+            "smithy.api#documentation": "Required. The emails of the testers to be added to the group. A maximum of 999 and a minimum of 1 tester can be created in a batch."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites."
+        "smithy.api#documentation": "The request message for `BatchJoinGroup`"
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GdataCompositeMediaReferenceTypeEnum": {
-      "type": "enum",
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1FeedbackReport": {
+      "type": "structure",
       "members": {
-        "PATH": {
-          "target": "smithy.api#Unit",
+        "tester": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "PATH"
+            "smithy.api#documentation": "Output only. The resource name of the tester who submitted the feedback report."
           }
         },
-        "BLOB_REF": {
-          "target": "smithy.api#Unit",
+        "createTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "BLOB_REF"
+            "smithy.api#documentation": "Output only. The time when the feedback report was created."
           }
         },
-        "INLINE": {
-          "target": "smithy.api#Unit",
+        "firebaseConsoleUri": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "INLINE"
+            "smithy.api#documentation": "Output only. A link to the Firebase console displaying the feedback report."
           }
         },
-        "BIGSTORE_REF": {
-          "target": "smithy.api#Unit",
+        "screenshotUri": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "BIGSTORE_REF"
+            "smithy.api#documentation": "Output only. A signed link (which expires in one hour) that lets you directly download the screenshot."
           }
         },
-        "COSMO_BINARY_REFERENCE": {
-          "target": "smithy.api#Unit",
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "COSMO_BINARY_REFERENCE"
+            "smithy.api#documentation": "The name of the feedback report resource. Format: `projects/{project_number}/apps/{app}/releases/{release}/feedbackReports/{feedback_report}`"
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The text of the feedback report."
           }
         }
+      },
+      "traits": {
+        "smithy.api#documentation": "A feedback report submitted by a tester for a release."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GdataDiffDownloadResponse": {
+      "type": "structure",
+      "members": {
+        "objectLocation": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "The original object location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GdataDownloadParameters": {
+      "type": "structure",
+      "members": {
+        "ignoreRange": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty."
+          }
+        },
+        "allowGzipCompression": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parameters specific to media downloads."
       }
     },
     "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListGroupsResponse": {
@@ -1144,144 +971,339 @@
         "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group"
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1DistributeReleaseResponse": {
+    "com.gcp.firebaseappdistribution_v1#GdataDiffChecksumsResponse": {
+      "type": "structure",
+      "members": {
+        "chunkSizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The chunk size of checksums. Must be a multiple of 256KB."
+          }
+        },
+        "objectVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The object version of the object the checksums are being returned for."
+          }
+        },
+        "checksumsLocation": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol."
+          }
+        },
+        "objectLocation": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "If set, calculate the checksums based on the contents and return them to the caller."
+          }
+        },
+        "objectSizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The total size of the server object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GdataDiffUploadRequest": {
+      "type": "structure",
+      "members": {
+        "objectInfo": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received."
+          }
+        },
+        "checksumsInfo": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
+          "traits": {
+            "smithy.api#documentation": "The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol."
+          }
+        },
+        "objectVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchAddTestersResponse": {
+      "type": "structure",
+      "members": {
+        "testers": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TesterList",
+          "traits": {
+            "smithy.api#documentation": "The testers which are created and/or already exist"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Response message for `BatchAddTesters`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TesterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Tester"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseMetadata": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "The response message for `DistributeRelease`."
+        "smithy.api#documentation": "Operation metadata for `UploadRelease`."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchRemoveTestersRequest": {
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchDeleteReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "names": {
+          "target": "com.gcp.firebaseappdistribution_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The names of the release resources to delete. Format: `projects/{project_number}/apps/{app}/releases/{release}` A maximum of 100 releases can be deleted per request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request message for `BatchDeleteReleases`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListTestersResponse": {
+      "type": "structure",
+      "members": {
+        "testers": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TesterList",
+          "traits": {
+            "smithy.api#documentation": "The testers listed."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short-lived token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for `ListTesters`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleLongrunningOperation": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleRpcStatus",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.firebaseappdistribution_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.firebaseappdistribution_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GdataDiffVersionResponse": {
+      "type": "structure",
+      "members": {
+        "objectSizeBytes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The total size of the server object."
+          }
+        },
+        "objectVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the object stored at the server."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group": {
+      "type": "structure",
+      "members": {
+        "inviteLinkCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of invite links for this group."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The display name of the group."
+          }
+        },
+        "testerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of testers who are members of this group."
+          }
+        },
+        "releaseCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The number of releases this group is permitted to access."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the group resource. Format: `projects/{project_number}/groups/{group_alias}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A group which can contain testers. A group can be invited to test apps in a Firebase project."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleRpcStatus": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.firebaseappdistribution_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1#DocumentMap"
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchRemoveTestersResponse": {
       "type": "structure",
       "members": {
         "emails": {
           "target": "com.gcp.firebaseappdistribution_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Required. The email addresses of the tester resources to removed. A maximum of 999 and a minimum of 1 testers can be deleted in a batch."
+            "smithy.api#documentation": "List of deleted tester emails"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The request message for `BatchRemoveTesters`."
+        "smithy.api#documentation": "The response message for `BatchRemoveTesters`"
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GdataDiffDownloadResponse": {
+    "com.gcp.firebaseappdistribution_v1#GdataBlobstore2Info": {
       "type": "structure",
       "members": {
-        "objectLocation": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia",
+        "downloadExternalReadToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The original object location."
+            "smithy.api#documentation": "A serialized External Read Token passed from Bigstore -> Scotty for a GCS download. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads."
+          }
+        },
+        "blobGeneration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blob generation id."
+          }
+        },
+        "blobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blob id, e.g., /blobstore/prod/playground/scotty"
+          }
+        },
+        "readToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call."
+          }
+        },
+        "downloadReadHandle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Read handle passed from Bigstore -> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads."
+          }
+        },
+        "uploadMetadataContainer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metadata passed from Blobstore -> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads."
+          }
+        },
+        "uploadFragmentListCreationInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A serialized Object Fragment List Creation Info passed from Bigstore -> Scotty for a GCS upload. This field must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol."
+        "smithy.api#documentation": "Information to read/write to blobstore2."
       }
     },
     "com.gcp.firebaseappdistribution_v1#GdataMedia": {
       "type": "structure",
       "members": {
-        "mediaId": {
+        "timestamp": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA."
-          }
-        },
-        "sha256Hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scotty-provided SHA256 hash for an upload."
-          }
-        },
-        "path": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Path to the data, set if reference_type is PATH"
-          }
-        },
-        "referenceType": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataMediaReferenceTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Describes what the field reference contains."
-          }
-        },
-        "downloadParameters": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataDownloadParameters",
-          "traits": {
-            "smithy.api#documentation": "Parameters for a media download."
-          }
-        },
-        "isPotentialRetry": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "|is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence."
-          }
-        },
-        "diffUploadRequest": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffUploadRequest",
-          "traits": {
-            "smithy.api#documentation": "Set if reference_type is DIFF_UPLOAD_REQUEST."
-          }
-        },
-        "contentType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "MIME type of the data"
-          }
-        },
-        "length": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Size of the data, in bytes"
-          }
-        },
-        "bigstoreObjectRef": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Use object_id instead."
-          }
-        },
-        "sha512Hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scotty-provided SHA512 hash for an upload."
-          }
-        },
-        "blobRef": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef."
-          }
-        },
-        "blobstore2Info": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataBlobstore2Info",
-          "traits": {
-            "smithy.api#documentation": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
-          }
-        },
-        "diffDownloadResponse": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffDownloadResponse",
-          "traits": {
-            "smithy.api#documentation": "Set if reference_type is DIFF_DOWNLOAD_RESPONSE."
-          }
-        },
-        "hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media."
-          }
-        },
-        "diffChecksumsResponse": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffChecksumsResponse",
-          "traits": {
-            "smithy.api#documentation": "Set if reference_type is DIFF_CHECKSUMS_RESPONSE."
-          }
-        },
-        "md5Hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scotty-provided MD5 hash for an upload."
+            "smithy.api#documentation": "Time at which the media data was last updated, in milliseconds since UNIX epoch"
           }
         },
         "hashVerified": {
@@ -1290,58 +1312,16 @@
             "smithy.api#documentation": "For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification."
           }
         },
-        "timestamp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Time at which the media data was last updated, in milliseconds since UNIX epoch"
-          }
-        },
-        "sha1Hash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Scotty-provided SHA1 hash for an upload."
-          }
-        },
-        "diffUploadResponse": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffUploadResponse",
-          "traits": {
-            "smithy.api#documentation": "Set if reference_type is DIFF_UPLOAD_RESPONSE."
-          }
-        },
-        "diffVersionResponse": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffVersionResponse",
-          "traits": {
-            "smithy.api#documentation": "Set if reference_type is DIFF_VERSION_RESPONSE."
-          }
-        },
         "contentTypeInfo": {
           "target": "com.gcp.firebaseappdistribution_v1#GdataContentTypeInfo",
           "traits": {
             "smithy.api#documentation": "Extended content type information provided for Scotty uploads."
           }
         },
-        "inline": {
+        "md5Hash": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Media data, set if reference_type is INLINE"
-          }
-        },
-        "token": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique fingerprint/version id for the media data"
-          }
-        },
-        "objectId": {
-          "target": "com.gcp.firebaseappdistribution_v1#GdataObjectId",
-          "traits": {
-            "smithy.api#documentation": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
-          }
-        },
-        "algorithm": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, \"MD5\" is the only possible value for this field. New values may be added at any time."
+            "smithy.api#documentation": "Scotty-provided MD5 hash for an upload."
           }
         },
         "cosmoBinaryReference": {
@@ -1356,10 +1336,142 @@
             "smithy.api#documentation": "A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified."
           }
         },
+        "blobRef": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef."
+          }
+        },
+        "mediaId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA."
+          }
+        },
+        "diffUploadResponse": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffUploadResponse",
+          "traits": {
+            "smithy.api#documentation": "Set if reference_type is DIFF_UPLOAD_RESPONSE."
+          }
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media."
+          }
+        },
+        "sha512Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scotty-provided SHA512 hash for an upload."
+          }
+        },
+        "diffChecksumsResponse": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffChecksumsResponse",
+          "traits": {
+            "smithy.api#documentation": "Set if reference_type is DIFF_CHECKSUMS_RESPONSE."
+          }
+        },
+        "sha1Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scotty-provided SHA1 hash for an upload."
+          }
+        },
         "crc32cHash": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique fingerprint/version id for the media data"
+          }
+        },
+        "referenceType": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataMediaReferenceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Describes what the field reference contains."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to the data, set if reference_type is PATH"
+          }
+        },
+        "diffUploadRequest": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffUploadRequest",
+          "traits": {
+            "smithy.api#documentation": "Set if reference_type is DIFF_UPLOAD_REQUEST."
+          }
+        },
+        "diffDownloadResponse": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffDownloadResponse",
+          "traits": {
+            "smithy.api#documentation": "Set if reference_type is DIFF_DOWNLOAD_RESPONSE."
+          }
+        },
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "MIME type of the data"
+          }
+        },
+        "sha256Hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scotty-provided SHA256 hash for an upload."
+          }
+        },
+        "objectId": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataObjectId",
+          "traits": {
+            "smithy.api#documentation": "Reference to a TI Blob, set if reference_type is BIGSTORE_REF."
+          }
+        },
+        "algorithm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, \"MD5\" is the only possible value for this field. New values may be added at any time."
+          }
+        },
+        "inline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Media data, set if reference_type is INLINE"
+          }
+        },
+        "downloadParameters": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataDownloadParameters",
+          "traits": {
+            "smithy.api#documentation": "Parameters for a media download."
+          }
+        },
+        "isPotentialRetry": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "|is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence."
+          }
+        },
+        "bigstoreObjectRef": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use object_id instead."
+          }
+        },
+        "blobstore2Info": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataBlobstore2Info",
+          "traits": {
+            "smithy.api#documentation": "Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob."
+          }
+        },
+        "diffVersionResponse": {
+          "target": "com.gcp.firebaseappdistribution_v1#GdataDiffVersionResponse",
+          "traits": {
+            "smithy.api#documentation": "Set if reference_type is DIFF_VERSION_RESPONSE."
           }
         },
         "filename": {
@@ -1367,10 +1479,22 @@
           "traits": {
             "smithy.api#documentation": "Original file name"
           }
+        },
+        "length": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Size of the data, in bytes"
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "A reference to data stored on the filesystem, on GFS or in blobstore."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GdataCompositeMediaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia"
       }
     },
     "com.gcp.firebaseappdistribution_v1#GdataMediaReferenceTypeEnum": {
@@ -1456,142 +1580,19 @@
         }
       }
     },
-    "com.gcp.firebaseappdistribution_v1#GdataCompositeMediaList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.firebaseappdistribution_v1#GdataCompositeMedia"
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1AabInfo": {
+    "com.gcp.firebaseappdistribution_v1#BatchRemoveProjectsTestersRequest": {
       "type": "structure",
       "members": {
-        "integrationState": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1AabInfoIntegrationStateEnum",
-          "traits": {
-            "smithy.api#documentation": "App bundle integration state. Only valid for android apps."
-          }
-        },
-        "testCertificate": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1TestCertificate",
-          "traits": {
-            "smithy.api#documentation": "App bundle test certificate generated for the app. Set after the first app bundle is uploaded for this app."
-          }
-        },
-        "name": {
+        "project": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the `AabInfo` resource. Format: `projects/{project_number}/apps/{app}/aabInfo`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Android App Bundle (AAB) information for a Firebase app."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1AabInfoIntegrationStateEnum": {
-      "type": "enum",
-      "members": {
-        "AAB_INTEGRATION_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AAB_INTEGRATION_STATE_UNSPECIFIED"
-          }
-        },
-        "INTEGRATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "INTEGRATED"
-          }
-        },
-        "PLAY_ACCOUNT_NOT_LINKED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAY_ACCOUNT_NOT_LINKED"
-          }
-        },
-        "NO_APP_WITH_GIVEN_BUNDLE_ID_IN_PLAY_ACCOUNT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NO_APP_WITH_GIVEN_BUNDLE_ID_IN_PLAY_ACCOUNT"
-          }
-        },
-        "APP_NOT_PUBLISHED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "APP_NOT_PUBLISHED"
-          }
-        },
-        "AAB_STATE_UNAVAILABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "AAB_STATE_UNAVAILABLE"
-          }
-        },
-        "PLAY_IAS_TERMS_NOT_ACCEPTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAY_IAS_TERMS_NOT_ACCEPTED"
-          }
-        },
-        "ADHOC_SHARING_KEY_NOT_GENERATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ADHOC_SHARING_KEY_NOT_GENERATED"
-          }
-        },
-        "ADHOC_SHARING_KEY_NOT_REGISTERED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ADHOC_SHARING_KEY_NOT_REGISTERED"
-          }
-        },
-        "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND"
-          }
-        },
-        "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GdataDownloadParameters": {
-      "type": "structure",
-      "members": {
-        "allowGzipCompression": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client."
-          }
-        },
-        "ignoreRange": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Parameters specific to media downloads."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#UploadMediaRequest": {
-      "type": "structure",
-      "members": {
-        "app": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the app resource. Format: `projects/{project_number}/apps/{app}`",
+            "smithy.api#documentation": "Required. The name of the project resource. Format: `projects/{project_number}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseRequest",
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchRemoveTestersRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1651,405 +1652,6 @@
         ]
       }
     },
-    "com.gcp.firebaseappdistribution_v1#UploadMedia": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#UploadMediaRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleLongrunningOperation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+app}/releases:upload"
-        },
-        "smithy.api#documentation": "Uploads a binary. Uploading a binary can result in a new release being created, an update to an existing release, or a no-op if a release with the same binary already exists."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#DeleteProjectsGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the group resource. Format: `projects/{project_number}/groups/{group_alias}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#DeleteProjectsGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#DeleteProjectsGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Delete a group."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 25 groups are returned. Values above 1000 are coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGroups` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the project resource, which is the parent of the group resources. Format: `projects/{project_number}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListGroupsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/groups"
-        },
-        "smithy.api#documentation": "List groups.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#BatchJoinProjectsGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "group": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the group resource to which testers are added. Format: `projects/{project_number}/groups/{group_alias}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchJoinGroupRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#BatchJoinProjectsGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#BatchJoinProjectsGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+group}:batchJoin"
-        },
-        "smithy.api#documentation": "Batch adds members to a group. The testers will gain access to all releases that the groups have access to."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#CreateProjectsGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "groupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The \"alias\" to use for the group, which will become the final component of the group's resource name. This value must be unique per project. The field is named `groupId` to comply with AIP guidance for user-specified IDs. This value should be 4-63 characters, and valid characters are `/a-z-/`. If not set, it will be generated based on the display name.",
-            "smithy.api#httpQuery": "groupId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the project resource, which is the parent of the group resource. Format: `projects/{project_number}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#CreateProjectsGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#CreateProjectsGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/groups"
-        },
-        "smithy.api#documentation": "Create a group."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GetProjectsGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the group resource to retrieve. Format: `projects/{project_number}/groups/{group_alias}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GetProjectsGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#GetProjectsGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get a group."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#BatchLeaveProjectsGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "group": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the group resource from which testers are removed. Format: `projects/{project_number}/groups/{group_alias}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchLeaveGroupRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#BatchLeaveProjectsGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#BatchLeaveProjectsGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+group}:batchLeave"
-        },
-        "smithy.api#documentation": "Batch removed members from a group. The testers will lose access to all releases that the groups have access to."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#PatchProjectsGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the group resource. Format: `projects/{project_number}/groups/{group_alias}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#PatchProjectsGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#PatchProjectsGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Update a group."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#BatchRemoveProjectsTestersRequest": {
-      "type": "structure",
-      "members": {
-        "project": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the project resource. Format: `projects/{project_number}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchRemoveTestersRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
     "com.gcp.firebaseappdistribution_v1#BatchRemoveProjectsTesters": {
       "type": "operation",
       "input": {
@@ -2078,6 +1680,68 @@
           "uri": "v1/{+project}/testers:batchRemove"
         },
         "smithy.api#documentation": "Batch removes testers. If found, this call deletes testers for the specified emails. Returns all deleted testers."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsTestersRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The expression to filter testers listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `name` - `displayName` - `groups` Example: - `name = \"projects/-/testers/*@example.com\"` - `displayName = \"Joe Sixpack\"` - `groups = \"projects/*/groups/qa-team\"`",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project resource, which is the parent of the tester resources. Format: `projects/{project_number}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListTesters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTesters` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of testers to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 10 testers are returned. Values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsTesters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsTestersRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListTestersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/testers"
+        },
+        "smithy.api#documentation": "Lists testers and their resource ids.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.firebaseappdistribution_v1#PatchProjectsTestersRequest": {
@@ -2187,68 +1851,6 @@
         "smithy.api#documentation": "Batch adds testers. This call adds testers for the specified emails if they don't already exist. Returns all testers specified in the request, including newly created and previously existing testers. This action is idempotent."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsTestersRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of testers to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 10 testers are returned. Values above 1000 are coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The expression to filter testers listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `name` - `displayName` - `groups` Example: - `name = \"projects/-/testers/*@example.com\"` - `displayName = \"Joe Sixpack\"` - `groups = \"projects/*/groups/qa-team\"`",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListTesters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTesters` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the project resource, which is the parent of the tester resources. Format: `projects/{project_number}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsTesters": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsTestersRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListTestersResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/testers"
-        },
-        "smithy.api#documentation": "Lists testers and their resource ids.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.firebaseappdistribution_v1#GetAabInfoProjectsAppsRequest": {
       "type": "structure",
       "members": {
@@ -2286,7 +1888,7 @@
         "smithy.api#documentation": "Gets Android App Bundle (AAB) information for a Firebase app."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#DeleteBatchProjectAppReleaseRequest": {
+    "com.gcp.firebaseappdistribution_v1#BatchDeleteProjectsAppsReleasesRequest": {
       "type": "structure",
       "members": {
         "parent": {
@@ -2306,10 +1908,10 @@
         }
       }
     },
-    "com.gcp.firebaseappdistribution_v1#DeleteBatchProjectAppRelease": {
+    "com.gcp.firebaseappdistribution_v1#BatchDeleteProjectsAppsReleases": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#DeleteBatchProjectAppReleaseRequest"
+        "target": "com.gcp.firebaseappdistribution_v1#BatchDeleteProjectsAppsReleasesRequest"
       },
       "output": {
         "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
@@ -2423,6 +2025,75 @@
         "smithy.api#documentation": "Gets a release."
       }
     },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to the [AIP-160 standard](http://aip.dev/160). Supported fields: - Time fields supporting `<`, `<=`, `>` and `>=`; expecting an RFC-3339 formatted string: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) - Text fields supporting `=`. The compared text can contain a wildcard character (`*`) at the beginning and/or end of the string which also enables case-insensitive matching: - `release_notes.text` (or `releaseNotes.text`) - `display_version` (or `displayVersion`) - `build_version` (or `buildVersion`). Examples: - `createTime <= \"2021-09-08T00:00:00+04:00\"` - `expire_time > \"2021-09-08T00:00:00+04:00\"` - `releaseNotes.text=\"fixes\" AND createTime >= \"2021-09-08T00:00:00.0Z\"` - `releaseNotes.text=\"*v1.0.0-rc*\"` - `(display_version = \"v1.0.0-rc2\" AND `build_version = \"123\") OR release_notes = \"*v1.0.0-rc2 (123)*\"`",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The fields used to order releases. Supported fields: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) To specify descending order for a field, append a \"desc\" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number}/apps/{app}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListReleasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/releases"
+        },
+        "smithy.api#documentation": "Lists releases. By default, sorts by `createTime` in descending order.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.firebaseappdistribution_v1#PatchProjectsAppsReleasesRequest": {
       "type": "structure",
       "members": {
@@ -2480,54 +2151,54 @@
         "smithy.api#documentation": "Updates a release."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesRequest": {
+    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesOperationsRequest": {
       "type": "structure",
       "members": {
-        "orderBy": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The fields used to order releases. Supported fields: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) To specify descending order for a field, append a \"desc\" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.",
-            "smithy.api#httpQuery": "orderBy"
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to the [AIP-160 standard](http://aip.dev/160). Supported fields: - Time fields supporting `<`, `<=`, `>` and `>=`; expecting an RFC-3339 formatted string: - `create_time` (or `createTime`) - `update_time` (or `updateTime`) - `expire_time` (or `expireTime`) - Text fields supporting `=`. The compared text can contain a wildcard character (`*`) at the beginning and/or end of the string which also enables case-insensitive matching: - `release_notes.text` (or `releaseNotes.text`) - `display_version` (or `displayVersion`) - `build_version` (or `buildVersion`). Examples: - `createTime <= \"2021-09-08T00:00:00+04:00\"` - `expire_time > \"2021-09-08T00:00:00+04:00\"` - `releaseNotes.text=\"fixes\" AND createTime >= \"2021-09-08T00:00:00.0Z\"` - `releaseNotes.text=\"*v1.0.0-rc*\"` - `(display_version = \"v1.0.0-rc2\" AND `build_version = \"123\") OR release_notes = \"*v1.0.0-rc2 (123)*\"`",
+            "smithy.api#documentation": "The standard list filter.",
             "smithy.api#httpQuery": "filter"
           }
         },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.",
+            "smithy.api#documentation": "The standard list page size.",
             "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number}/apps/{app}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
     },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleases": {
+    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesRequest"
+        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListReleasesResponse"
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleLongrunningListOperationsResponse"
       },
       "errors": [
         {
@@ -2540,191 +2211,13 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/releases"
+          "uri": "v1/{+name}/operations"
         },
-        "smithy.api#documentation": "Lists releases. By default, sorts by `createTime` in descending order.",
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GetProjectsAppsReleasesFeedbackReportsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the feedback report to retrieve. Format: projects/{project_number}/apps/{app}/releases/{release}/feedbackReports/{feedback_report}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#GetProjectsAppsReleasesFeedbackReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#GetProjectsAppsReleasesFeedbackReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1FeedbackReport"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets a feedback report."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesFeedbackReportsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the feedback report to delete. Format: projects/{project_number}/apps/{app}/releases/{release}/feedbackReports/{feedback_report}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesFeedbackReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesFeedbackReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a feedback report."
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesFeedbackReportsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the release resource, which is the parent of the feedback report resources. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesFeedbackReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesFeedbackReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListFeedbackReportsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/feedbackReports"
-        },
-        "smithy.api#documentation": "Lists feedback reports. By default, sorts by `createTime` in descending order.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be deleted.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
     "com.gcp.firebaseappdistribution_v1#CancelProjectsAppsReleasesOperationsRequest": {
@@ -2814,75 +2307,6 @@
         "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.firebaseappdistribution_v1#GoogleLongrunningListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.firebaseappdistribution_v1#WaitProjectsAppsReleasesOperationsRequest": {
       "type": "structure",
       "members": {
@@ -2931,6 +2355,583 @@
           "uri": "v1/{+name}:wait"
         },
         "smithy.api#documentation": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GetProjectsAppsReleasesFeedbackReportsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the feedback report to retrieve. Format: projects/{project_number}/apps/{app}/releases/{release}/feedbackReports/{feedback_report}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GetProjectsAppsReleasesFeedbackReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#GetProjectsAppsReleasesFeedbackReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1FeedbackReport"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets a feedback report."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesFeedbackReportsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the feedback report to delete. Format: projects/{project_number}/apps/{app}/releases/{release}/feedbackReports/{feedback_report}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesFeedbackReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#DeleteProjectsAppsReleasesFeedbackReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a feedback report."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesFeedbackReportsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the release resource, which is the parent of the feedback report resources. Format: `projects/{project_number}/apps/{app}/releases/{release}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesFeedbackReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsAppsReleasesFeedbackReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListFeedbackReportsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/feedbackReports"
+        },
+        "smithy.api#documentation": "Lists feedback reports. By default, sorts by `createTime` in descending order.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of groups to return. The service may return fewer than this value. The valid range is [1-1000]; If unspecified (0), at most 25 groups are returned. Values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGroups` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project resource, which is the parent of the group resources. Format: `projects/{project_number}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#ListProjectsGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#ListProjectsGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1ListGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/groups"
+        },
+        "smithy.api#documentation": "List groups.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#PatchProjectsGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the group resource. Format: `projects/{project_number}/groups/{group_alias}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#PatchProjectsGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#PatchProjectsGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update a group."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GetProjectsGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the group resource to retrieve. Format: `projects/{project_number}/groups/{group_alias}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#GetProjectsGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#GetProjectsGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get a group."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#BatchLeaveProjectsGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the group resource from which testers are removed. Format: `projects/{project_number}/groups/{group_alias}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchLeaveGroupRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#BatchLeaveProjectsGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#BatchLeaveProjectsGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+group}:batchLeave"
+        },
+        "smithy.api#documentation": "Batch removed members from a group. The testers will lose access to all releases that the groups have access to."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DeleteProjectsGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the group resource. Format: `projects/{project_number}/groups/{group_alias}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#DeleteProjectsGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#DeleteProjectsGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete a group."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#CreateProjectsGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The \"alias\" to use for the group, which will become the final component of the group's resource name. This value must be unique per project. The field is named `groupId` to comply with AIP guidance for user-specified IDs. This value should be 4-63 characters, and valid characters are `/a-z-/`. If not set, it will be generated based on the display name.",
+            "smithy.api#httpQuery": "groupId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the project resource, which is the parent of the group resource. Format: `projects/{project_number}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#CreateProjectsGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#CreateProjectsGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1Group"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/groups"
+        },
+        "smithy.api#documentation": "Create a group."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#BatchJoinProjectsGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the group resource to which testers are added. Format: `projects/{project_number}/groups/{group_alias}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1BatchJoinGroupRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#BatchJoinProjectsGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#BatchJoinProjectsGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+group}:batchJoin"
+        },
+        "smithy.api#documentation": "Batch adds members to a group. The testers will gain access to all releases that the groups have access to."
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#UploadMediaRequest": {
+      "type": "structure",
+      "members": {
+        "app": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the app resource. Format: `projects/{project_number}/apps/{app}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.firebaseappdistribution_v1#GoogleFirebaseAppdistroV1UploadReleaseRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.firebaseappdistribution_v1#UploadMedia": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.firebaseappdistribution_v1#UploadMediaRequest"
+      },
+      "output": {
+        "target": "com.gcp.firebaseappdistribution_v1#GoogleLongrunningOperation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.firebaseappdistribution_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+app}/releases:upload"
+        },
+        "smithy.api#documentation": "Uploads a binary. Uploading a binary can result in a new release being created, an update to an existing release, or a no-op if a release with the same binary already exists."
       }
     }
   }

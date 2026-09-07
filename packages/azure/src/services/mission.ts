@@ -314,51 +314,6 @@ export const ApprovalCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApprovalCreateOrUpdateResponse",
 }) as any as S.Schema<ApprovalCreateOrUpdateResponse>;
 
-/** Approval status indicating 'Approved' or 'Rejected' */
-export type ApprovalNotifyInitiatorRequestApprovalStatus =
-  | "Approved"
-  | "Rejected";
-export const ApprovalNotifyInitiatorRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
-
-export interface ApprovalNotifyInitiatorRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the approvals resource. */
-  approvalName: string;
-  /** Approval status indicating 'Approved' or 'Rejected' */
-  approvalStatus: ApprovalNotifyInitiatorRequestApprovalStatus | (string & {});
-}
-export const ApprovalNotifyInitiatorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    approvalName: S.String.pipe(T.Label()),
-    approvalStatus: ApprovalNotifyInitiatorRequestApprovalStatus,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}/notifyInitiator",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApprovalNotifyInitiatorRequest",
-}) as any as S.Schema<ApprovalNotifyInitiatorRequest>;
-
-/** Response body after handling of approvalCallbackRequest */
-export interface ApprovalActionResponse {
-  /** Confirmation message indicating the result of the operation. */
-  message: string;
-}
-export const ApprovalActionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.String,
-  }),
-).annotate({
-  identifier: "ApprovalActionResponse",
-}) as any as S.Schema<ApprovalActionResponse>;
-
 /** Subnet Configuration */
 export interface SubnetConfigurationInput {
   /** Subnet name. */
@@ -1515,6 +1470,19 @@ export const CommunityEndpointsHandleApprovalCreationRequest =
     identifier: "CommunityEndpointsHandleApprovalCreationRequest",
   }) as any as S.Schema<CommunityEndpointsHandleApprovalCreationRequest>;
 
+/** Response body after handling of approvalCallbackRequest */
+export interface ApprovalActionResponse {
+  /** Confirmation message indicating the result of the operation. */
+  message: string;
+}
+export const ApprovalActionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.String,
+  }),
+).annotate({
+  identifier: "ApprovalActionResponse",
+}) as any as S.Schema<ApprovalActionResponse>;
+
 /** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
 export type CommunityEndpointsHandleApprovalDeletionRequestResourceRequestAction =
   | "Create"
@@ -2583,16 +2551,16 @@ export const GetCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCommunityRequest>;
 
 /** Resource tags. */
-export type CommunityGetResponseTagsMap = { [key: string]: string | undefined };
-export const CommunityGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCommunityResponseTagsMap = { [key: string]: string | undefined };
+export const GetCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityGetResponseTagsMap>;
+) as any as S.Schema<GetCommunityResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type CommunityGetResponseIdentity =
+export type GetCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
-export const CommunityGetResponseIdentity =
+export const GetCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
 
 export interface GetCommunityResponse {
@@ -2605,7 +2573,7 @@ export interface GetCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityGetResponseTagsMap;
+  tags?: GetCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2619,7 +2587,7 @@ export const GetCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityGetResponseTagsMap),
+    tags: S.optional(GetCommunityResponseTagsMap),
     location: S.String,
     properties: S.optional(CommunityProperties),
     identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
@@ -2657,13 +2625,13 @@ export const GetCommunityEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCommunityEndpointRequest>;
 
 /** Resource tags. */
-export type CommunityEndpointsGetResponseTagsMap = {
+export type GetCommunityEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCommunityEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityEndpointsGetResponseTagsMap>;
+) as any as S.Schema<GetCommunityEndpointResponseTagsMap>;
 
 export interface GetCommunityEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2675,7 +2643,7 @@ export interface GetCommunityEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityEndpointsGetResponseTagsMap;
+  tags?: GetCommunityEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2687,7 +2655,7 @@ export const GetCommunityEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityEndpointsGetResponseTagsMap),
+    tags: S.optional(GetCommunityEndpointResponseTagsMap),
     location: S.String,
     properties: S.optional(CommunityEndpointProperties),
   }),
@@ -2724,13 +2692,13 @@ export const GetDedicatedHubRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDedicatedHubRequest>;
 
 /** Resource tags. */
-export type DedicatedHubGetResponseTagsMap = {
+export type GetDedicatedHubResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHubGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDedicatedHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHubGetResponseTagsMap>;
+) as any as S.Schema<GetDedicatedHubResponseTagsMap>;
 
 export interface GetDedicatedHubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2742,7 +2710,7 @@ export interface GetDedicatedHubResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHubGetResponseTagsMap;
+  tags?: GetDedicatedHubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2754,7 +2722,7 @@ export const GetDedicatedHubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHubGetResponseTagsMap),
+    tags: S.optional(GetDedicatedHubResponseTagsMap),
     location: S.String,
     properties: S.optional(DedicatedHubProperties),
   }),
@@ -2788,13 +2756,13 @@ export const GetEnclaveConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEnclaveConnectionRequest>;
 
 /** Resource tags. */
-export type EnclaveConnectionGetResponseTagsMap = {
+export type GetEnclaveConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveConnectionGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetEnclaveConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveConnectionGetResponseTagsMap>;
+) as any as S.Schema<GetEnclaveConnectionResponseTagsMap>;
 
 export interface GetEnclaveConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2806,7 +2774,7 @@ export interface GetEnclaveConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnclaveConnectionGetResponseTagsMap;
+  tags?: GetEnclaveConnectionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2818,7 +2786,7 @@ export const GetEnclaveConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveConnectionGetResponseTagsMap),
+    tags: S.optional(GetEnclaveConnectionResponseTagsMap),
     location: S.String,
     properties: S.optional(EnclaveConnectionProperties),
   }),
@@ -2855,13 +2823,13 @@ export const GetEnclaveEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEnclaveEndpointRequest>;
 
 /** Resource tags. */
-export type EnclaveEndpointsGetResponseTagsMap = {
+export type GetEnclaveEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetEnclaveEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveEndpointsGetResponseTagsMap>;
+) as any as S.Schema<GetEnclaveEndpointResponseTagsMap>;
 
 export interface GetEnclaveEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2873,7 +2841,7 @@ export interface GetEnclaveEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnclaveEndpointsGetResponseTagsMap;
+  tags?: GetEnclaveEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2885,7 +2853,7 @@ export const GetEnclaveEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveEndpointsGetResponseTagsMap),
+    tags: S.optional(GetEnclaveEndpointResponseTagsMap),
     location: S.String,
     properties: S.optional(EnclaveEndpointProperties),
   }),
@@ -2922,13 +2890,13 @@ export const GetTransitHubRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTransitHubRequest>;
 
 /** Resource tags. */
-export type TransitHubGetResponseTagsMap = {
+export type GetTransitHubResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TransitHubGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetTransitHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TransitHubGetResponseTagsMap>;
+) as any as S.Schema<GetTransitHubResponseTagsMap>;
 
 /** Specifies the state of the transitHub. */
 export type TransitHubState =
@@ -3018,7 +2986,7 @@ export interface GetTransitHubResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: TransitHubGetResponseTagsMap;
+  tags?: GetTransitHubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3030,7 +2998,7 @@ export const GetTransitHubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(TransitHubGetResponseTagsMap),
+    tags: S.optional(GetTransitHubResponseTagsMap),
     location: S.String,
     properties: S.optional(TransitHubProperties),
   }),
@@ -3064,13 +3032,13 @@ export const GetVirtualEnclaveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualEnclaveRequest>;
 
 /** Resource tags. */
-export type VirtualEnclaveGetResponseTagsMap = {
+export type GetVirtualEnclaveResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualEnclaveGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualEnclaveResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualEnclaveGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualEnclaveResponseTagsMap>;
 
 /** Subnet Configuration */
 export interface SubnetConfiguration {
@@ -3358,9 +3326,9 @@ export const VirtualEnclaveProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualEnclaveProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type VirtualEnclaveGetResponseIdentity =
+export type GetVirtualEnclaveResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
-export const VirtualEnclaveGetResponseIdentity =
+export const GetVirtualEnclaveResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
 
 export interface GetVirtualEnclaveResponse {
@@ -3373,7 +3341,7 @@ export interface GetVirtualEnclaveResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualEnclaveGetResponseTagsMap;
+  tags?: GetVirtualEnclaveResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3387,7 +3355,7 @@ export const GetVirtualEnclaveResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualEnclaveGetResponseTagsMap),
+    tags: S.optional(GetVirtualEnclaveResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualEnclaveProperties),
     identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
@@ -3425,11 +3393,11 @@ export const GetWorkloadRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkloadRequest>;
 
 /** Resource tags. */
-export type WorkloadGetResponseTagsMap = { [key: string]: string | undefined };
-export const WorkloadGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkloadResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkloadResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkloadGetResponseTagsMap>;
+) as any as S.Schema<GetWorkloadResponseTagsMap>;
 
 /** List of resource group ids. */
 export type WorkloadPropertiesResourceGroupCollectionList = Array<string>;
@@ -3495,7 +3463,7 @@ export interface GetWorkloadResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkloadGetResponseTagsMap;
+  tags?: GetWorkloadResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -3507,7 +3475,7 @@ export const GetWorkloadResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkloadGetResponseTagsMap),
+    tags: S.optional(GetWorkloadResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkloadProperties),
   }),
@@ -4162,20 +4130,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -4507,6 +4475,38 @@ export const ListWorkloadBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListWorkloadBySubscriptionRequest",
 }) as any as S.Schema<ListWorkloadBySubscriptionRequest>;
+
+/** Approval status indicating 'Approved' or 'Rejected' */
+export type NotifyApprovalInitiatorRequestApprovalStatus =
+  | "Approved"
+  | "Rejected";
+export const NotifyApprovalInitiatorRequestApprovalStatus =
+  /*@__PURE__*/ S.String;
+
+export interface NotifyApprovalInitiatorRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the approvals resource. */
+  approvalName: string;
+  /** Approval status indicating 'Approved' or 'Rejected' */
+  approvalStatus: NotifyApprovalInitiatorRequestApprovalStatus | (string & {});
+}
+export const NotifyApprovalInitiatorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    approvalName: S.String.pipe(T.Label()),
+    approvalStatus: NotifyApprovalInitiatorRequestApprovalStatus,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}/notifyInitiator",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "NotifyApprovalInitiatorRequest",
+}) as any as S.Schema<NotifyApprovalInitiatorRequest>;
 
 /** Resource tags. */
 export type TransitHubCreateOrUpdateRequestTagsMap = {
@@ -4940,13 +4940,13 @@ export const CommunityPatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CommunityPatchPropertiesInput>;
 
 /** Resource tags. */
-export type CommunityUpdateRequestTagsMap = {
+export type UpdateCommunityRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommunityRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCommunityRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType =
@@ -5006,7 +5006,7 @@ export interface UpdateCommunityRequest {
   /** Community Patch properties */
   properties?: CommunityPatchPropertiesInput;
   /** Resource tags. */
-  tags?: CommunityUpdateRequestTagsMap;
+  tags?: UpdateCommunityRequestTagsMap;
   /** The managed service identities assigned to this resource. */
   identity?: AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput;
 }
@@ -5016,7 +5016,7 @@ export const UpdateCommunityRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     communityName: S.String.pipe(T.Label()),
     properties: S.optional(CommunityPatchPropertiesInput),
-    tags: S.optional(CommunityUpdateRequestTagsMap),
+    tags: S.optional(UpdateCommunityRequestTagsMap),
     identity: S.optional(
       AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput,
     ),
@@ -5033,18 +5033,18 @@ export const UpdateCommunityRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCommunityRequest>;
 
 /** Resource tags. */
-export type CommunityUpdateResponseTagsMap = {
+export type UpdateCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCommunityResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type CommunityUpdateResponseIdentity =
+export type UpdateCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
-export const CommunityUpdateResponseIdentity =
+export const UpdateCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
 
 export interface UpdateCommunityResponse {
@@ -5057,7 +5057,7 @@ export interface UpdateCommunityResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityUpdateResponseTagsMap;
+  tags?: UpdateCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5071,7 +5071,7 @@ export const UpdateCommunityResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityUpdateResponseTagsMap),
+    tags: S.optional(UpdateCommunityResponseTagsMap),
     location: S.String,
     properties: S.optional(CommunityProperties),
     identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
@@ -5107,13 +5107,13 @@ export const CommunityEndpointPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CommunityEndpointPatchProperties>;
 
 /** Resource tags. */
-export type CommunityEndpointsUpdateRequestTagsMap = {
+export type UpdateCommunityEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommunityEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityEndpointsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCommunityEndpointRequestTagsMap>;
 
 export interface UpdateCommunityEndpointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5127,7 +5127,7 @@ export interface UpdateCommunityEndpointRequest {
   /** Community Endpoint Patch properties */
   properties?: CommunityEndpointPatchProperties;
   /** Resource tags. */
-  tags?: CommunityEndpointsUpdateRequestTagsMap;
+  tags?: UpdateCommunityEndpointRequestTagsMap;
 }
 export const UpdateCommunityEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5136,7 +5136,7 @@ export const UpdateCommunityEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     communityName: S.String.pipe(T.Label()),
     communityEndpointName: S.String.pipe(T.Label()),
     properties: S.optional(CommunityEndpointPatchProperties),
-    tags: S.optional(CommunityEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateCommunityEndpointRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5150,13 +5150,13 @@ export const UpdateCommunityEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCommunityEndpointRequest>;
 
 /** Resource tags. */
-export type CommunityEndpointsUpdateResponseTagsMap = {
+export type UpdateCommunityEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommunityEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCommunityEndpointResponseTagsMap>;
 
 export interface UpdateCommunityEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5168,7 +5168,7 @@ export interface UpdateCommunityEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityEndpointsUpdateResponseTagsMap;
+  tags?: UpdateCommunityEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5180,7 +5180,7 @@ export const UpdateCommunityEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateCommunityEndpointResponseTagsMap),
     location: S.String,
     properties: S.optional(CommunityEndpointProperties),
   }),
@@ -5193,13 +5193,13 @@ export type DedicatedHubPatchProperties = DedicatedHubPropertiesInput;
 export const DedicatedHubPatchProperties = DedicatedHubPropertiesInput;
 
 /** Resource tags. */
-export type DedicatedHubUpdateRequestTagsMap = {
+export type UpdateDedicatedHubRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHubUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHubRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHubUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDedicatedHubRequestTagsMap>;
 
 export interface UpdateDedicatedHubRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5213,7 +5213,7 @@ export interface UpdateDedicatedHubRequest {
   /** The DedicatedHub resource. */
   properties?: DedicatedHubPropertiesInput;
   /** Resource tags. */
-  tags?: DedicatedHubUpdateRequestTagsMap;
+  tags?: UpdateDedicatedHubRequestTagsMap;
 }
 export const UpdateDedicatedHubRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5222,7 +5222,7 @@ export const UpdateDedicatedHubRequest = /*@__PURE__*/ S.suspend(() =>
     communityName: S.String.pipe(T.Label()),
     dedicatedHubName: S.String.pipe(T.Label()),
     properties: S.optional(DedicatedHubPropertiesInput),
-    tags: S.optional(DedicatedHubUpdateRequestTagsMap),
+    tags: S.optional(UpdateDedicatedHubRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5236,13 +5236,13 @@ export const UpdateDedicatedHubRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDedicatedHubRequest>;
 
 /** Resource tags. */
-export type DedicatedHubUpdateResponseTagsMap = {
+export type UpdateDedicatedHubResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHubUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHubUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDedicatedHubResponseTagsMap>;
 
 export interface UpdateDedicatedHubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5254,7 +5254,7 @@ export interface UpdateDedicatedHubResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHubUpdateResponseTagsMap;
+  tags?: UpdateDedicatedHubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5266,7 +5266,7 @@ export const UpdateDedicatedHubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHubUpdateResponseTagsMap),
+    tags: S.optional(UpdateDedicatedHubResponseTagsMap),
     location: S.String,
     properties: S.optional(DedicatedHubProperties),
   }),
@@ -5288,13 +5288,13 @@ export const EnclaveConnectionPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EnclaveConnectionPatchProperties>;
 
 /** Resource tags. */
-export type EnclaveConnectionUpdateRequestTagsMap = {
+export type UpdateEnclaveConnectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveConnectionUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveConnectionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveConnectionUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateEnclaveConnectionRequestTagsMap>;
 
 export interface UpdateEnclaveConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5306,7 +5306,7 @@ export interface UpdateEnclaveConnectionRequest {
   /** Enclave Connection Patch properties */
   properties?: EnclaveConnectionPatchProperties;
   /** Resource tags. */
-  tags?: EnclaveConnectionUpdateRequestTagsMap;
+  tags?: UpdateEnclaveConnectionRequestTagsMap;
 }
 export const UpdateEnclaveConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5314,7 +5314,7 @@ export const UpdateEnclaveConnectionRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     enclaveConnectionName: S.String.pipe(T.Label()),
     properties: S.optional(EnclaveConnectionPatchProperties),
-    tags: S.optional(EnclaveConnectionUpdateRequestTagsMap),
+    tags: S.optional(UpdateEnclaveConnectionRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5328,13 +5328,13 @@ export const UpdateEnclaveConnectionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEnclaveConnectionRequest>;
 
 /** Resource tags. */
-export type EnclaveConnectionUpdateResponseTagsMap = {
+export type UpdateEnclaveConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveConnectionUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveConnectionUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateEnclaveConnectionResponseTagsMap>;
 
 export interface UpdateEnclaveConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5346,7 +5346,7 @@ export interface UpdateEnclaveConnectionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnclaveConnectionUpdateResponseTagsMap;
+  tags?: UpdateEnclaveConnectionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5358,7 +5358,7 @@ export const UpdateEnclaveConnectionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveConnectionUpdateResponseTagsMap),
+    tags: S.optional(UpdateEnclaveConnectionResponseTagsMap),
     location: S.String,
     properties: S.optional(EnclaveConnectionProperties),
   }),
@@ -5393,13 +5393,13 @@ export const EnclaveEndpointPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EnclaveEndpointPatchProperties>;
 
 /** Resource tags. */
-export type EnclaveEndpointsUpdateRequestTagsMap = {
+export type UpdateEnclaveEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveEndpointsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateEnclaveEndpointRequestTagsMap>;
 
 export interface UpdateEnclaveEndpointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5413,7 +5413,7 @@ export interface UpdateEnclaveEndpointRequest {
   /** Enclave Endpoint Patch properties */
   properties?: EnclaveEndpointPatchProperties;
   /** Resource tags. */
-  tags?: EnclaveEndpointsUpdateRequestTagsMap;
+  tags?: UpdateEnclaveEndpointRequestTagsMap;
 }
 export const UpdateEnclaveEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5422,7 +5422,7 @@ export const UpdateEnclaveEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     virtualEnclaveName: S.String.pipe(T.Label()),
     enclaveEndpointName: S.String.pipe(T.Label()),
     properties: S.optional(EnclaveEndpointPatchProperties),
-    tags: S.optional(EnclaveEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateEnclaveEndpointRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5436,13 +5436,13 @@ export const UpdateEnclaveEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateEnclaveEndpointRequest>;
 
 /** Resource tags. */
-export type EnclaveEndpointsUpdateResponseTagsMap = {
+export type UpdateEnclaveEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateEnclaveEndpointResponseTagsMap>;
 
 export interface UpdateEnclaveEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5454,7 +5454,7 @@ export interface UpdateEnclaveEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnclaveEndpointsUpdateResponseTagsMap;
+  tags?: UpdateEnclaveEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5466,7 +5466,7 @@ export const UpdateEnclaveEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateEnclaveEndpointResponseTagsMap),
     location: S.String,
     properties: S.optional(EnclaveEndpointProperties),
   }),
@@ -5479,13 +5479,13 @@ export type TransitHubPatchProperties = TransitHubPropertiesInput;
 export const TransitHubPatchProperties = TransitHubPropertiesInput;
 
 /** Resource tags. */
-export type TransitHubUpdateRequestTagsMap = {
+export type UpdateTransitHubRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const TransitHubUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTransitHubRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TransitHubUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateTransitHubRequestTagsMap>;
 
 export interface UpdateTransitHubRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5499,7 +5499,7 @@ export interface UpdateTransitHubRequest {
   /** The TransitHub resource. */
   properties?: TransitHubPropertiesInput;
   /** Resource tags. */
-  tags?: TransitHubUpdateRequestTagsMap;
+  tags?: UpdateTransitHubRequestTagsMap;
 }
 export const UpdateTransitHubRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5508,7 +5508,7 @@ export const UpdateTransitHubRequest = /*@__PURE__*/ S.suspend(() =>
     communityName: S.String.pipe(T.Label()),
     transitHubName: S.String.pipe(T.Label()),
     properties: S.optional(TransitHubPropertiesInput),
-    tags: S.optional(TransitHubUpdateRequestTagsMap),
+    tags: S.optional(UpdateTransitHubRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5522,13 +5522,13 @@ export const UpdateTransitHubRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateTransitHubRequest>;
 
 /** Resource tags. */
-export type TransitHubUpdateResponseTagsMap = {
+export type UpdateTransitHubResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TransitHubUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTransitHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TransitHubUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateTransitHubResponseTagsMap>;
 
 export interface UpdateTransitHubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5540,7 +5540,7 @@ export interface UpdateTransitHubResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: TransitHubUpdateResponseTagsMap;
+  tags?: UpdateTransitHubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5552,7 +5552,7 @@ export const UpdateTransitHubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(TransitHubUpdateResponseTagsMap),
+    tags: S.optional(UpdateTransitHubResponseTagsMap),
     location: S.String,
     properties: S.optional(TransitHubProperties),
   }),
@@ -5670,13 +5670,13 @@ export const VirtualEnclavePatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualEnclavePatchPropertiesInput>;
 
 /** Resource tags. */
-export type VirtualEnclaveUpdateRequestTagsMap = {
+export type UpdateVirtualEnclaveRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualEnclaveUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualEnclaveRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualEnclaveUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVirtualEnclaveRequestTagsMap>;
 
 export interface UpdateVirtualEnclaveRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5690,7 +5690,7 @@ export interface UpdateVirtualEnclaveRequest {
   /** The managed service identities assigned to this resource. */
   identity?: AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput;
   /** Resource tags. */
-  tags?: VirtualEnclaveUpdateRequestTagsMap;
+  tags?: UpdateVirtualEnclaveRequestTagsMap;
 }
 export const UpdateVirtualEnclaveRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5701,7 +5701,7 @@ export const UpdateVirtualEnclaveRequest = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(
       AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput,
     ),
-    tags: S.optional(VirtualEnclaveUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualEnclaveRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5715,18 +5715,18 @@ export const UpdateVirtualEnclaveRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualEnclaveRequest>;
 
 /** Resource tags. */
-export type VirtualEnclaveUpdateResponseTagsMap = {
+export type UpdateVirtualEnclaveResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualEnclaveUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualEnclaveResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualEnclaveUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVirtualEnclaveResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type VirtualEnclaveUpdateResponseIdentity =
+export type UpdateVirtualEnclaveResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
-export const VirtualEnclaveUpdateResponseIdentity =
+export const UpdateVirtualEnclaveResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
 
 export interface UpdateVirtualEnclaveResponse {
@@ -5739,7 +5739,7 @@ export interface UpdateVirtualEnclaveResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualEnclaveUpdateResponseTagsMap;
+  tags?: UpdateVirtualEnclaveResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5753,7 +5753,7 @@ export const UpdateVirtualEnclaveResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualEnclaveUpdateResponseTagsMap),
+    tags: S.optional(UpdateVirtualEnclaveResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualEnclaveProperties),
     identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
@@ -5785,13 +5785,13 @@ export const WorkloadPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkloadPatchProperties>;
 
 /** Resource tags. */
-export type WorkloadUpdateRequestTagsMap = {
+export type UpdateWorkloadRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkloadUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkloadRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkloadUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkloadRequestTagsMap>;
 
 export interface UpdateWorkloadRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5805,7 +5805,7 @@ export interface UpdateWorkloadRequest {
   /** Workload Patch properties */
   properties?: WorkloadPatchProperties;
   /** Resource tags. */
-  tags?: WorkloadUpdateRequestTagsMap;
+  tags?: UpdateWorkloadRequestTagsMap;
 }
 export const UpdateWorkloadRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -5814,7 +5814,7 @@ export const UpdateWorkloadRequest = /*@__PURE__*/ S.suspend(() =>
     virtualEnclaveName: S.String.pipe(T.Label()),
     workloadName: S.String.pipe(T.Label()),
     properties: S.optional(WorkloadPatchProperties),
-    tags: S.optional(WorkloadUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkloadRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -5828,13 +5828,13 @@ export const UpdateWorkloadRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkloadRequest>;
 
 /** Resource tags. */
-export type WorkloadUpdateResponseTagsMap = {
+export type UpdateWorkloadResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkloadUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkloadResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkloadUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkloadResponseTagsMap>;
 
 export interface UpdateWorkloadResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5846,7 +5846,7 @@ export interface UpdateWorkloadResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkloadUpdateResponseTagsMap;
+  tags?: UpdateWorkloadResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -5858,7 +5858,7 @@ export const UpdateWorkloadResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkloadUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkloadResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkloadProperties),
   }),
@@ -6306,21 +6306,6 @@ export const ApprovalCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApprovalCreateOrUpdateRequest,
   output: ApprovalCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApprovalNotifyInitiatorError = AzureOpError;
-/** Upon receiving approval or rejection from approver, this facilitates actions on approval resource */
-export const ApprovalNotifyInitiator: API.OperationMethod<
-  ApprovalNotifyInitiatorRequest,
-  ApprovalActionResponse,
-  ApprovalNotifyInitiatorError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApprovalNotifyInitiatorRequest,
-  output: ApprovalActionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7041,6 +7026,21 @@ export const ListWorkloadBySubscription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWorkloadBySubscriptionRequest,
   output: WorkloadResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type NotifyApprovalInitiatorError = AzureOpError;
+/** Upon receiving approval or rejection from approver, this facilitates actions on approval resource */
+export const NotifyApprovalInitiator: API.OperationMethod<
+  NotifyApprovalInitiatorRequest,
+  ApprovalActionResponse,
+  NotifyApprovalInitiatorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: NotifyApprovalInitiatorRequest,
+  output: ApprovalActionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.databasewatcher#DeleteTarget": {
@@ -699,7 +700,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersStopResponseTagsMap",
+          "target": "com.azure.databasewatcher#StopWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -718,7 +719,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersStopResponseIdentity",
+          "target": "com.azure.databasewatcher#StopWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -728,7 +729,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersStopResponseIdentity": {
+    "com.azure.databasewatcher#StopWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -998,7 +999,7 @@
         "smithy.api#documentation": "The type of Kusto offering."
       }
     },
-    "com.azure.databasewatcher#WatchersStopResponseTagsMap": {
+    "com.azure.databasewatcher#StopWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1089,7 +1090,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersStartResponseTagsMap",
+          "target": "com.azure.databasewatcher#StartWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1108,7 +1109,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersStartResponseIdentity",
+          "target": "com.azure.databasewatcher#StartWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1118,7 +1119,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersStartResponseIdentity": {
+    "com.azure.databasewatcher#StartWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1147,7 +1148,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.databasewatcher#WatchersStartResponseTagsMap": {
+    "com.azure.databasewatcher#StartWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2732,7 +2733,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersUpdateResponseTagsMap",
+          "target": "com.azure.databasewatcher#UpdateWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2751,7 +2752,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersUpdateResponseIdentity",
+          "target": "com.azure.databasewatcher#UpdateWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2761,7 +2762,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateResponseIdentity": {
+    "com.azure.databasewatcher#UpdateWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2790,7 +2791,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateResponseTagsMap": {
+    "com.azure.databasewatcher#UpdateWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2830,13 +2831,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersUpdateRequestIdentity",
+          "target": "com.azure.databasewatcher#UpdateWatcherRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersUpdateRequestTagsMap",
+          "target": "com.azure.databasewatcher#UpdateWatcherRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2922,7 +2923,7 @@
         "smithy.api#documentation": "The properties of a data store."
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateRequestTagsMap": {
+    "com.azure.databasewatcher#UpdateWatcherRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2934,7 +2935,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databasewatcher#WatchersUpdateRequestIdentity": {
+    "com.azure.databasewatcher#UpdateWatcherRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3240,7 +3241,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databasewatcher#WatchersGetResponseTagsMap",
+          "target": "com.azure.databasewatcher#GetWatcherResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3259,7 +3260,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.databasewatcher#WatchersGetResponseIdentity",
+          "target": "com.azure.databasewatcher#GetWatcherResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3269,7 +3270,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#WatchersGetResponseIdentity": {
+    "com.azure.databasewatcher#GetWatcherResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3298,7 +3299,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.databasewatcher#WatchersGetResponseTagsMap": {
+    "com.azure.databasewatcher#GetWatcherResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3571,7 +3572,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.databasewatcher#OperationsListResponseValueList",
+          "target": "com.azure.databasewatcher#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3587,7 +3588,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databasewatcher#OperationsListResponseValueList": {
+    "com.azure.databasewatcher#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.databasewatcher#Operation"
@@ -3711,67 +3712,52 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databasewatcher#DeleteTarget"
-        },
-        {
-          "target": "com.azure.databasewatcher#TargetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databasewatcher#GetTarget"
-        },
-        {
-          "target": "com.azure.databasewatcher#ListTargetByWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#StopWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#StartWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#DeleteSharedPrivateLinkResource"
+          "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdate"
         },
         {
           "target": "com.azure.databasewatcher#CreateSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.databasewatcher#GetSharedPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.databasewatcher#ListSharedPrivateLinkResourceByWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#StartHealthValidationValidation"
-        },
-        {
-          "target": "com.azure.databasewatcher#GetHealthValidation"
-        },
-        {
-          "target": "com.azure.databasewatcher#ListHealthValidationByParent"
-        },
-        {
           "target": "com.azure.databasewatcher#DeleteAlertRuleResource"
         },
         {
-          "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdate"
+          "target": "com.azure.databasewatcher#DeleteSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.databasewatcher#GetAlertRuleResource"
-        },
-        {
-          "target": "com.azure.databasewatcher#ListAlertRuleResourceByParent"
+          "target": "com.azure.databasewatcher#DeleteTarget"
         },
         {
           "target": "com.azure.databasewatcher#DeleteWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#UpdateWatcher"
+          "target": "com.azure.databasewatcher#GetAlertRuleResource"
         },
         {
-          "target": "com.azure.databasewatcher#WatchersCreateOrUpdate"
+          "target": "com.azure.databasewatcher#GetHealthValidation"
+        },
+        {
+          "target": "com.azure.databasewatcher#GetSharedPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.databasewatcher#GetTarget"
         },
         {
           "target": "com.azure.databasewatcher#GetWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#ListAlertRuleResourceByParent"
+        },
+        {
+          "target": "com.azure.databasewatcher#ListHealthValidationByParent"
+        },
+        {
+          "target": "com.azure.databasewatcher#ListOperations"
+        },
+        {
+          "target": "com.azure.databasewatcher#ListSharedPrivateLinkResourceByWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#ListTargetByWatcher"
         },
         {
           "target": "com.azure.databasewatcher#ListWatcherByResourceGroup"
@@ -3780,7 +3766,22 @@
           "target": "com.azure.databasewatcher#ListWatcherBySubscription"
         },
         {
-          "target": "com.azure.databasewatcher#ListOperations"
+          "target": "com.azure.databasewatcher#StartHealthValidationValidation"
+        },
+        {
+          "target": "com.azure.databasewatcher#StartWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#StopWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#TargetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databasewatcher#UpdateWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersCreateOrUpdate"
         }
       ],
       "traits": {

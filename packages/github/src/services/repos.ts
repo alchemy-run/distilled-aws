@@ -897,6 +897,77 @@ export const RepositoryInvitation = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepositoryInvitation",
 }) as any as S.Schema<RepositoryInvitation>;
 
+/** The name of the status checks */
+export type AddStatusCheckContextsRequestBodyCase0ContextsList = Array<string>;
+export const AddStatusCheckContextsRequestBodyCase0ContextsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AddStatusCheckContextsRequestBodyCase0ContextsList>;
+
+export interface AddStatusCheckContextsRequestBodyCase0 {
+  /** The name of the status checks */
+  contexts: AddStatusCheckContextsRequestBodyCase0ContextsList;
+}
+export const AddStatusCheckContextsRequestBodyCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      contexts: AddStatusCheckContextsRequestBodyCase0ContextsList,
+    }),
+).annotate({
+  identifier: "AddStatusCheckContextsRequestBodyCase0",
+}) as any as S.Schema<AddStatusCheckContextsRequestBodyCase0>;
+
+/** The name of the status checks */
+export type AddStatusCheckContextsRequestBodyCase1List = Array<string>;
+export const AddStatusCheckContextsRequestBodyCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AddStatusCheckContextsRequestBodyCase1List>;
+
+export type AddStatusCheckContextsRequestBody =
+  | AddStatusCheckContextsRequestBodyCase0
+  | AddStatusCheckContextsRequestBodyCase1List;
+export const AddStatusCheckContextsRequestBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<AddStatusCheckContextsRequestBody>;
+
+export interface AddStatusCheckContextsRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
+  branch: string;
+  body?: AddStatusCheckContextsRequestBody;
+}
+export const AddStatusCheckContextsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    branch: S.String.pipe(T.Label()),
+    body: S.optional(AddStatusCheckContextsRequestBody.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AddStatusCheckContextsRequest",
+}) as any as S.Schema<AddStatusCheckContextsRequest>;
+
+export type AddStatusCheckContextsResponseBodyList = Array<string>;
+export const AddStatusCheckContextsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AddStatusCheckContextsResponseBodyList>;
+
+export type AddStatusCheckContextsResponse =
+  AddStatusCheckContextsResponseBodyList;
+export const AddStatusCheckContextsResponse = /*@__PURE__*/ S.suspend(() =>
+  AddStatusCheckContextsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "AddStatusCheckContextsResponse",
+}) as any as S.Schema<AddStatusCheckContextsResponse>;
+
 /** The slug values for teams */
 export type AddTeamAccessRestrictionsRequestBodyCase0TeamsList = Array<string>;
 export const AddTeamAccessRestrictionsRequestBodyCase0TeamsList =
@@ -1178,77 +1249,6 @@ export const CancelPagesDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelPagesDeploymentResponse",
 }) as any as S.Schema<CancelPagesDeploymentResponse>;
 
-/** The name of the status checks */
-export type AddStatusCheckContextsRequestBodyCase0ContextsList = Array<string>;
-export const AddStatusCheckContextsRequestBodyCase0ContextsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AddStatusCheckContextsRequestBodyCase0ContextsList>;
-
-export interface AddStatusCheckContextsRequestBodyCase0 {
-  /** The name of the status checks */
-  contexts: AddStatusCheckContextsRequestBodyCase0ContextsList;
-}
-export const AddStatusCheckContextsRequestBodyCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      contexts: AddStatusCheckContextsRequestBodyCase0ContextsList,
-    }),
-).annotate({
-  identifier: "AddStatusCheckContextsRequestBodyCase0",
-}) as any as S.Schema<AddStatusCheckContextsRequestBodyCase0>;
-
-/** The name of the status checks */
-export type AddStatusCheckContextsRequestBodyCase1List = Array<string>;
-export const AddStatusCheckContextsRequestBodyCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AddStatusCheckContextsRequestBodyCase1List>;
-
-export type AddStatusCheckContextsRequestBody =
-  | AddStatusCheckContextsRequestBodyCase0
-  | AddStatusCheckContextsRequestBodyCase1List;
-export const AddStatusCheckContextsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddStatusCheckContextsRequestBody>;
-
-export interface CheckAddStatusContextRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
-  branch: string;
-  body?: AddStatusCheckContextsRequestBody;
-}
-export const CheckAddStatusContextRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    branch: S.String.pipe(T.Label()),
-    body: S.optional(AddStatusCheckContextsRequestBody.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CheckAddStatusContextRequest",
-}) as any as S.Schema<CheckAddStatusContextRequest>;
-
-export type AddStatusCheckContextsResponseBodyList = Array<string>;
-export const AddStatusCheckContextsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AddStatusCheckContextsResponseBodyList>;
-
-export type CheckAddStatusContextResponse =
-  AddStatusCheckContextsResponseBodyList;
-export const CheckAddStatusContextResponse = /*@__PURE__*/ S.suspend(() =>
-  AddStatusCheckContextsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "CheckAddStatusContextResponse",
-}) as any as S.Schema<CheckAddStatusContextResponse>;
-
 export interface CheckAutomatedSecurityFixesRequest {
   /** The account owner of the repository. The name is not case sensitive. */
   owner: string;
@@ -1388,110 +1388,6 @@ export const CheckPrivateVulnerabilityReportingResponse =
   ).annotate({
     identifier: "CheckPrivateVulnerabilityReportingResponse",
   }) as any as S.Schema<CheckPrivateVulnerabilityReportingResponse>;
-
-/** The name of the status checks */
-export type RemoveStatusCheckContextsRequestBodyCase0ContextsList =
-  Array<string>;
-export const RemoveStatusCheckContextsRequestBodyCase0ContextsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RemoveStatusCheckContextsRequestBodyCase0ContextsList>;
-
-export interface RemoveStatusCheckContextsRequestBodyCase0 {
-  /** The name of the status checks */
-  contexts: RemoveStatusCheckContextsRequestBodyCase0ContextsList;
-}
-export const RemoveStatusCheckContextsRequestBodyCase0 =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      contexts: RemoveStatusCheckContextsRequestBodyCase0ContextsList,
-    }),
-  ).annotate({
-    identifier: "RemoveStatusCheckContextsRequestBodyCase0",
-  }) as any as S.Schema<RemoveStatusCheckContextsRequestBodyCase0>;
-
-/** The name of the status checks */
-export type RemoveStatusCheckContextsRequestBodyCase1List = Array<string>;
-export const RemoveStatusCheckContextsRequestBodyCase1List =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RemoveStatusCheckContextsRequestBodyCase1List>;
-
-export type RemoveStatusCheckContextsRequestBody =
-  | RemoveStatusCheckContextsRequestBodyCase0
-  | RemoveStatusCheckContextsRequestBodyCase1List;
-export const RemoveStatusCheckContextsRequestBody =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RemoveStatusCheckContextsRequestBody>;
-
-export interface CheckRemoveStatusContextRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
-  branch: string;
-  body?: RemoveStatusCheckContextsRequestBody;
-}
-export const CheckRemoveStatusContextRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    branch: S.String.pipe(T.Label()),
-    body: S.optional(RemoveStatusCheckContextsRequestBody.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CheckRemoveStatusContextRequest",
-}) as any as S.Schema<CheckRemoveStatusContextRequest>;
-
-export type RemoveStatusCheckContextsResponseBodyList = Array<string>;
-export const RemoveStatusCheckContextsResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RemoveStatusCheckContextsResponseBodyList>;
-
-export type CheckRemoveStatusContextResponse =
-  RemoveStatusCheckContextsResponseBodyList;
-export const CheckRemoveStatusContextResponse = /*@__PURE__*/ S.suspend(() =>
-  RemoveStatusCheckContextsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "CheckRemoveStatusContextResponse",
-}) as any as S.Schema<CheckRemoveStatusContextResponse>;
-
-export interface CheckRemoveStatusProtectionRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
-  branch: string;
-}
-export const CheckRemoveStatusProtectionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    branch: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CheckRemoveStatusProtectionRequest",
-}) as any as S.Schema<CheckRemoveStatusProtectionRequest>;
-
-export interface CheckRemoveStatusProtectionResponse {}
-export const CheckRemoveStatusProtectionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CheckRemoveStatusProtectionResponse",
-}) as any as S.Schema<CheckRemoveStatusProtectionResponse>;
 
 export interface CheckVulnerabilityAlertsRequest {
   /** The account owner of the repository. The name is not case sensitive. */
@@ -6647,6 +6543,46 @@ export const CustomPropertiesForReposCreateOrUpdateRepositoryValuesResponse =
       "CustomPropertiesForReposCreateOrUpdateRepositoryValuesResponse",
   }) as any as S.Schema<CustomPropertiesForReposCreateOrUpdateRepositoryValuesResponse>;
 
+export interface CustomPropertiesForReposGetRepositoryValuesRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+}
+export const CustomPropertiesForReposGetRepositoryValuesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      owner: S.String.pipe(T.Label()),
+      repo: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/repos/{owner}/{repo}/properties/values",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CustomPropertiesForReposGetRepositoryValuesRequest",
+  }) as any as S.Schema<CustomPropertiesForReposGetRepositoryValuesRequest>;
+
+export type CustomPropertiesForReposGetRepositoryValuesResponseBodyList =
+  Array<CustomPropertyValue>;
+export const CustomPropertiesForReposGetRepositoryValuesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CustomPropertyValue,
+  ) as any as S.Schema<CustomPropertiesForReposGetRepositoryValuesResponseBodyList>;
+
+export type CustomPropertiesForReposGetRepositoryValuesResponse =
+  CustomPropertiesForReposGetRepositoryValuesResponseBodyList;
+export const CustomPropertiesForReposGetRepositoryValuesResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    CustomPropertiesForReposGetRepositoryValuesResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "CustomPropertiesForReposGetRepositoryValuesResponse",
+  }) as any as S.Schema<CustomPropertiesForReposGetRepositoryValuesResponse>;
+
 export interface DeclineInvitationForAuthenticatedUserRequest {
   /** The unique identifier of the invitation. */
   invitation_id: number;
@@ -10640,46 +10576,6 @@ export const GetCustomDeploymentProtectionRuleRequest = /*@__PURE__*/ S.suspend(
   identifier: "GetCustomDeploymentProtectionRuleRequest",
 }) as any as S.Schema<GetCustomDeploymentProtectionRuleRequest>;
 
-export interface GetCustomPropertyForReposRepositoryValueRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-}
-export const GetCustomPropertyForReposRepositoryValueRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      owner: S.String.pipe(T.Label()),
-      repo: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/repos/{owner}/{repo}/properties/values",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "GetCustomPropertyForReposRepositoryValueRequest",
-  }) as any as S.Schema<GetCustomPropertyForReposRepositoryValueRequest>;
-
-export type CustomPropertiesForReposGetRepositoryValuesResponseBodyList =
-  Array<CustomPropertyValue>;
-export const CustomPropertiesForReposGetRepositoryValuesResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CustomPropertyValue,
-  ) as any as S.Schema<CustomPropertiesForReposGetRepositoryValuesResponseBodyList>;
-
-export type GetCustomPropertyForReposRepositoryValueResponse =
-  CustomPropertiesForReposGetRepositoryValuesResponseBodyList;
-export const GetCustomPropertyForReposRepositoryValueResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    CustomPropertiesForReposGetRepositoryValuesResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "GetCustomPropertyForReposRepositoryValueResponse",
-  }) as any as S.Schema<GetCustomPropertyForReposRepositoryValueResponse>;
-
 export interface GetDeployKeyRequest {
   /** The account owner of the repository. The name is not case sensitive. */
   owner: string;
@@ -14607,34 +14503,6 @@ export const RedeliverWebhookDeliveryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RedeliverWebhookDeliveryResponse",
 }) as any as S.Schema<RedeliverWebhookDeliveryResponse>;
 
-export interface ReleaseUploadAssetRequest {
-  /** The account owner of the repository. The name is not case sensitive. */
-  owner: string;
-  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
-  repo: string;
-  /** The unique identifier of the release. */
-  release_id: number;
-  name: string;
-  label?: string;
-}
-export const ReleaseUploadAssetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    release_id: S.Number.pipe(T.Label()),
-    name: S.String.pipe(T.Query()),
-    label: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/releases/{release_id}/assets",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ReleaseUploadAssetRequest",
-}) as any as S.Schema<ReleaseUploadAssetRequest>;
-
 /** The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items. */
 export type RemoveAppAccessRestrictionsRequestAppsList = Array<string>;
 export const RemoveAppAccessRestrictionsRequestAppsList = /*@__PURE__*/ S.Array(
@@ -14712,6 +14580,110 @@ export const RemoveCollaboratorResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RemoveCollaboratorResponse",
 }) as any as S.Schema<RemoveCollaboratorResponse>;
+
+/** The name of the status checks */
+export type RemoveStatusCheckContextsRequestBodyCase0ContextsList =
+  Array<string>;
+export const RemoveStatusCheckContextsRequestBodyCase0ContextsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RemoveStatusCheckContextsRequestBodyCase0ContextsList>;
+
+export interface RemoveStatusCheckContextsRequestBodyCase0 {
+  /** The name of the status checks */
+  contexts: RemoveStatusCheckContextsRequestBodyCase0ContextsList;
+}
+export const RemoveStatusCheckContextsRequestBodyCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      contexts: RemoveStatusCheckContextsRequestBodyCase0ContextsList,
+    }),
+  ).annotate({
+    identifier: "RemoveStatusCheckContextsRequestBodyCase0",
+  }) as any as S.Schema<RemoveStatusCheckContextsRequestBodyCase0>;
+
+/** The name of the status checks */
+export type RemoveStatusCheckContextsRequestBodyCase1List = Array<string>;
+export const RemoveStatusCheckContextsRequestBodyCase1List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RemoveStatusCheckContextsRequestBodyCase1List>;
+
+export type RemoveStatusCheckContextsRequestBody =
+  | RemoveStatusCheckContextsRequestBodyCase0
+  | RemoveStatusCheckContextsRequestBodyCase1List;
+export const RemoveStatusCheckContextsRequestBody =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<RemoveStatusCheckContextsRequestBody>;
+
+export interface RemoveStatusCheckContextsRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
+  branch: string;
+  body?: RemoveStatusCheckContextsRequestBody;
+}
+export const RemoveStatusCheckContextsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    branch: S.String.pipe(T.Label()),
+    body: S.optional(RemoveStatusCheckContextsRequestBody.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RemoveStatusCheckContextsRequest",
+}) as any as S.Schema<RemoveStatusCheckContextsRequest>;
+
+export type RemoveStatusCheckContextsResponseBodyList = Array<string>;
+export const RemoveStatusCheckContextsResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RemoveStatusCheckContextsResponseBodyList>;
+
+export type RemoveStatusCheckContextsResponse =
+  RemoveStatusCheckContextsResponseBodyList;
+export const RemoveStatusCheckContextsResponse = /*@__PURE__*/ S.suspend(() =>
+  RemoveStatusCheckContextsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "RemoveStatusCheckContextsResponse",
+}) as any as S.Schema<RemoveStatusCheckContextsResponse>;
+
+export interface RemoveStatusCheckProtectionRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
+  branch: string;
+}
+export const RemoveStatusCheckProtectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    branch: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RemoveStatusCheckProtectionRequest",
+}) as any as S.Schema<RemoveStatusCheckProtectionRequest>;
+
+export interface RemoveStatusCheckProtectionResponse {}
+export const RemoveStatusCheckProtectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RemoveStatusCheckProtectionResponse",
+}) as any as S.Schema<RemoveStatusCheckProtectionResponse>;
 
 /** The slug values for teams */
 export type RemoveTeamAccessRestrictionsRequestBodyCase0TeamsList =
@@ -16734,6 +16706,34 @@ export const UpdateWebhookConfigForRepoRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWebhookConfigForRepoRequest",
 }) as any as S.Schema<UpdateWebhookConfigForRepoRequest>;
 
+export interface UploadReleaseAssetRequest {
+  /** The account owner of the repository. The name is not case sensitive. */
+  owner: string;
+  /** The name of the repository without the `.git` extension. The name is not case sensitive. */
+  repo: string;
+  /** The unique identifier of the release. */
+  release_id: number;
+  name: string;
+  label?: string;
+}
+export const UploadReleaseAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    release_id: S.Number.pipe(T.Label()),
+    name: S.String.pipe(T.Query()),
+    label: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/releases/{release_id}/assets",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UploadReleaseAssetRequest",
+}) as any as S.Schema<UploadReleaseAssetRequest>;
+
 export type AcceptInvitationForAuthenticatedUserError =
   | Forbidden
   | NotFound
@@ -16786,6 +16786,25 @@ export const addCollaborator: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type AddStatusCheckContextsError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | GithubOpError;
+/** Add status check contexts Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. */
+export const addStatusCheckContexts: API.OperationMethod<
+  AddStatusCheckContextsRequest,
+  AddStatusCheckContextsResponse,
+  AddStatusCheckContextsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddStatusCheckContextsRequest,
+  output: AddStatusCheckContextsResponse,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
 export type AddTeamAccessRestrictionsError =
   | UnprocessableEntity
   | GithubOpError;
@@ -16831,25 +16850,6 @@ export const cancelPagesDeployment: API.OperationMethod<
   input: CancelPagesDeploymentRequest,
   output: CancelPagesDeploymentResponse,
   errors: [NotFound],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckAddStatusContextError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | GithubOpError;
-/** Add status check contexts Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. */
-export const checkAddStatusContext: API.OperationMethod<
-  CheckAddStatusContextRequest,
-  CheckAddStatusContextResponse,
-  CheckAddStatusContextError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckAddStatusContextRequest,
-  output: CheckAddStatusContextResponse,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -16912,39 +16912,6 @@ export const checkPrivateVulnerabilityReporting: API.OperationMethod<
   input: CheckPrivateVulnerabilityReportingRequest,
   output: CheckPrivateVulnerabilityReportingResponse,
   errors: [UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckRemoveStatusContextError =
-  | NotFound
-  | UnprocessableEntity
-  | GithubOpError;
-/** Remove status check contexts Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. */
-export const checkRemoveStatusContext: API.OperationMethod<
-  CheckRemoveStatusContextRequest,
-  CheckRemoveStatusContextResponse,
-  CheckRemoveStatusContextError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckRemoveStatusContextRequest,
-  output: CheckRemoveStatusContextResponse,
-  errors: [NotFound, UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CheckRemoveStatusProtectionError = GithubOpError;
-/** Remove status check protection Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. */
-export const checkRemoveStatusProtection: API.OperationMethod<
-  CheckRemoveStatusProtectionRequest,
-  CheckRemoveStatusProtectionResponse,
-  CheckRemoveStatusProtectionError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckRemoveStatusProtectionRequest,
-  output: CheckRemoveStatusProtectionResponse,
-  errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -17399,6 +17366,24 @@ export const customPropertiesForReposCreateOrUpdateRepositoryValues: API.Operati
   input: CustomPropertiesForReposCreateOrUpdateRepositoryValuesRequest,
   output: CustomPropertiesForReposCreateOrUpdateRepositoryValuesResponse,
   errors: [Forbidden, NotFound, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CustomPropertiesForReposGetRepositoryValuesError =
+  | Forbidden
+  | NotFound
+  | GithubOpError;
+/** Get all custom property values for a repository Gets all custom property values that are set for a repository. Users with read access to the repository can use this endpoint. */
+export const customPropertiesForReposGetRepositoryValues: API.OperationMethod<
+  CustomPropertiesForReposGetRepositoryValuesRequest,
+  CustomPropertiesForReposGetRepositoryValuesResponse,
+  CustomPropertiesForReposGetRepositoryValuesError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CustomPropertiesForReposGetRepositoryValuesRequest,
+  output: CustomPropertiesForReposGetRepositoryValuesResponse,
+  errors: [Forbidden, NotFound],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -18277,24 +18262,6 @@ export const getCustomDeploymentProtectionRule: API.OperationMethod<
   input: GetCustomDeploymentProtectionRuleRequest,
   output: DeploymentProtectionRule,
   errors: [],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetCustomPropertyForReposRepositoryValueError =
-  | Forbidden
-  | NotFound
-  | GithubOpError;
-/** Get all custom property values for a repository Gets all custom property values that are set for a repository. Users with read access to the repository can use this endpoint. */
-export const getCustomPropertyForReposRepositoryValue: API.OperationMethod<
-  GetCustomPropertyForReposRepositoryValueRequest,
-  GetCustomPropertyForReposRepositoryValueResponse,
-  GetCustomPropertyForReposRepositoryValueError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetCustomPropertyForReposRepositoryValueRequest,
-  output: GetCustomPropertyForReposRepositoryValueResponse,
-  errors: [Forbidden, NotFound],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -19471,21 +19438,6 @@ export const redeliverWebhookDelivery: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReleaseUploadAssetError = UnprocessableEntity | GithubOpError;
-/** Upload a release asset This endpoint makes use of a [Hypermedia relation](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia) to determine which URL to access. The endpoint you call to upload release assets is specific to your release. Use the `upload_url` returned in the response of the [Create a release endpoint](https://docs.github.com/rest/releases/releases#create-a-release) to upload a release asset. You need to use an HTTP client which supports [SNI](http://en.wikipedia.org/wiki/Server_Name_Indication) to make calls to this endpoint. Most libraries will set the required `Content-Length` header automatically. Use the required `Content-Type` header to provide the media type of the asset. For a list of media types, see [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml). For example: `application/zip` GitHub expects the asset data in its raw binary form, rather than JSON. You will send the raw binary content of the asset as the request body. Everything else about the endpoint is the same as the rest of the API. For example, you'll still need to pass your authentication to be able to upload an asset. When an upstream failure occurs, you will receive a `502 Bad Gateway` status. This may leave an empty asset with a state of `starter`. It can be safely deleted. **Notes:** * GitHub renames asset filenames that have special characters, non-alphanumeric characters, and leading or trailing periods. The "[List release assets](https://docs.github.com/rest/releases/assets#list-release-assets)" endpoint lists the renamed filenames. For more information and help, contact [GitHub Support](https://support.github.com/contact?tags=dotcom-rest-api). * To find the `release_id` query the [`GET /repos/{owner}/{repo}/releases/latest` endpoint](https://docs.github.com/rest/releases/releases#get-the-latest-release). * If you upload an asset with the same filename as another uploaded asset, you'll receive an error and must delete the old file before you can re-upload the new asset. */
-export const releaseUploadAsset: API.OperationMethod<
-  ReleaseUploadAssetRequest,
-  ReleaseAsset,
-  ReleaseUploadAssetError,
-  GithubOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReleaseUploadAssetRequest,
-  output: ReleaseAsset,
-  errors: [UnprocessableEntity],
-  protocol: GithubProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RemoveAppAccessRestrictionsError =
   | UnprocessableEntity
   | GithubOpError;
@@ -19517,6 +19469,39 @@ export const removeCollaborator: API.OperationMethod<
   input: RemoveCollaboratorRequest,
   output: RemoveCollaboratorResponse,
   errors: [Forbidden, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveStatusCheckContextsError =
+  | NotFound
+  | UnprocessableEntity
+  | GithubOpError;
+/** Remove status check contexts Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. */
+export const removeStatusCheckContexts: API.OperationMethod<
+  RemoveStatusCheckContextsRequest,
+  RemoveStatusCheckContextsResponse,
+  RemoveStatusCheckContextsError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveStatusCheckContextsRequest,
+  output: RemoveStatusCheckContextsResponse,
+  errors: [NotFound, UnprocessableEntity],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveStatusCheckProtectionError = GithubOpError;
+/** Remove status check protection Protected branches are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud, and GitHub Enterprise Server. For more information, see [GitHub's products](https://docs.github.com/github/getting-started-with-github/githubs-products) in the GitHub Help documentation. */
+export const removeStatusCheckProtection: API.OperationMethod<
+  RemoveStatusCheckProtectionRequest,
+  RemoveStatusCheckProtectionResponse,
+  RemoveStatusCheckProtectionError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveStatusCheckProtectionRequest,
+  output: RemoveStatusCheckProtectionResponse,
+  errors: [],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));
@@ -19948,6 +19933,21 @@ export const updateWebhookConfigForRepo: API.OperationMethod<
   input: UpdateWebhookConfigForRepoRequest,
   output: WebhookConfig,
   errors: [],
+  protocol: GithubProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadReleaseAssetError = UnprocessableEntity | GithubOpError;
+/** Upload a release asset This endpoint makes use of a [Hypermedia relation](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia) to determine which URL to access. The endpoint you call to upload release assets is specific to your release. Use the `upload_url` returned in the response of the [Create a release endpoint](https://docs.github.com/rest/releases/releases#create-a-release) to upload a release asset. You need to use an HTTP client which supports [SNI](http://en.wikipedia.org/wiki/Server_Name_Indication) to make calls to this endpoint. Most libraries will set the required `Content-Length` header automatically. Use the required `Content-Type` header to provide the media type of the asset. For a list of media types, see [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml). For example: `application/zip` GitHub expects the asset data in its raw binary form, rather than JSON. You will send the raw binary content of the asset as the request body. Everything else about the endpoint is the same as the rest of the API. For example, you'll still need to pass your authentication to be able to upload an asset. When an upstream failure occurs, you will receive a `502 Bad Gateway` status. This may leave an empty asset with a state of `starter`. It can be safely deleted. **Notes:** * GitHub renames asset filenames that have special characters, non-alphanumeric characters, and leading or trailing periods. The "[List release assets](https://docs.github.com/rest/releases/assets#list-release-assets)" endpoint lists the renamed filenames. For more information and help, contact [GitHub Support](https://support.github.com/contact?tags=dotcom-rest-api). * To find the `release_id` query the [`GET /repos/{owner}/{repo}/releases/latest` endpoint](https://docs.github.com/rest/releases/releases#get-the-latest-release). * If you upload an asset with the same filename as another uploaded asset, you'll receive an error and must delete the old file before you can re-upload the new asset. */
+export const uploadReleaseAsset: API.OperationMethod<
+  UploadReleaseAssetRequest,
+  ReleaseAsset,
+  UploadReleaseAssetError,
+  GithubOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadReleaseAssetRequest,
+  output: ReleaseAsset,
+  errors: [UnprocessableEntity],
   protocol: GithubProtocol,
   retry: Retry.Retry,
 }));

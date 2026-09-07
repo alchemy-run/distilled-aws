@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.task.command.router#SandboxStdinWriteV2Request": {
@@ -60,7 +61,7 @@
         }
       }
     },
-    "com.modal.task.command.router#WaitSandboxUntilReadyRequest": {
+    "com.modal.task.command.router#SandboxWaitUntilReadyRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -74,7 +75,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.task.command.router#WaitSandboxUntilReadyResponse": {
+    "com.modal.task.command.router#SandboxWaitUntilReadyResponse": {
       "type": "structure",
       "members": {
         "readyAt": {
@@ -85,13 +86,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.task.command.router#WaitSandboxUntilReady": {
+    "com.modal.task.command.router#SandboxWaitUntilReady": {
       "type": "operation",
       "input": {
-        "target": "com.modal.task.command.router#WaitSandboxUntilReadyRequest"
+        "target": "com.modal.task.command.router#SandboxWaitUntilReadyRequest"
       },
       "output": {
-        "target": "com.modal.task.command.router#WaitSandboxUntilReadyResponse"
+        "target": "com.modal.task.command.router#SandboxWaitUntilReadyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -576,7 +577,7 @@
         "smithy.api#documentation": "List containers associated with the task."
       }
     },
-    "com.modal.task.command.router#TaskContainerTerminateRequest": {
+    "com.modal.task.command.router#TerminateTaskContainerRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -590,20 +591,20 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.task.command.router#TaskContainerTerminateResponse": {
+    "com.modal.task.command.router#TerminateTaskContainerResponse": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.modal.task.command.router#TaskContainerTerminate": {
+    "com.modal.task.command.router#TerminateTaskContainer": {
       "type": "operation",
       "input": {
-        "target": "com.modal.task.command.router#TaskContainerTerminateRequest"
+        "target": "com.modal.task.command.router#TerminateTaskContainerRequest"
       },
       "output": {
-        "target": "com.modal.task.command.router#TaskContainerTerminateResponse"
+        "target": "com.modal.task.command.router#TerminateTaskContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -659,7 +660,7 @@
         "smithy.api#documentation": "Wait for a tracked container to reach a terminal result."
       }
     },
-    "com.modal.task.command.router#ExecTaskPollRequest": {
+    "com.modal.task.command.router#TaskExecPollRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -679,7 +680,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.task.command.router#ExecTaskPollResponse": {
+    "com.modal.task.command.router#TaskExecPollResponse": {
       "type": "structure",
       "members": {
         "code": {
@@ -699,13 +700,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.task.command.router#ExecTaskPoll": {
+    "com.modal.task.command.router#TaskExecPoll": {
       "type": "operation",
       "input": {
-        "target": "com.modal.task.command.router#ExecTaskPollRequest"
+        "target": "com.modal.task.command.router#TaskExecPollRequest"
       },
       "output": {
-        "target": "com.modal.task.command.router#ExecTaskPollResponse"
+        "target": "com.modal.task.command.router#TaskExecPollResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -865,7 +866,7 @@
         "smithy.api#documentation": "Execute a command in the task."
       }
     },
-    "com.modal.task.command.router#ExecTaskStdinStatusRequest": {
+    "com.modal.task.command.router#TaskExecStdinStatusRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -885,7 +886,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.task.command.router#ExecTaskStdinStatusResponse": {
+    "com.modal.task.command.router#TaskExecStdinStatusResponse": {
       "type": "structure",
       "members": {
         "numBytesWritten": {
@@ -905,13 +906,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.task.command.router#ExecTaskStdinStatus": {
+    "com.modal.task.command.router#TaskExecStdinStatus": {
       "type": "operation",
       "input": {
-        "target": "com.modal.task.command.router#ExecTaskStdinStatusRequest"
+        "target": "com.modal.task.command.router#TaskExecStdinStatusRequest"
       },
       "output": {
-        "target": "com.modal.task.command.router#ExecTaskStdinStatusResponse"
+        "target": "com.modal.task.command.router#TaskExecStdinStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -922,7 +923,7 @@
         "smithy.api#documentation": "Get the current stdin write status for an exec'd command. Used to resume a TaskExecStdinWriteStream after a stream failure. Evicts any in-flight TaskExecStdinWriteStream for this exec, so it is not safe to call for read-only observability."
       }
     },
-    "com.modal.task.command.router#ExecTaskStdinWriteRequest": {
+    "com.modal.task.command.router#TaskExecStdinWriteRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -957,20 +958,20 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.task.command.router#ExecTaskStdinWriteResponse": {
+    "com.modal.task.command.router#TaskExecStdinWriteResponse": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.modal.task.command.router#ExecTaskStdinWrite": {
+    "com.modal.task.command.router#TaskExecStdinWrite": {
       "type": "operation",
       "input": {
-        "target": "com.modal.task.command.router#ExecTaskStdinWriteRequest"
+        "target": "com.modal.task.command.router#TaskExecStdinWriteRequest"
       },
       "output": {
-        "target": "com.modal.task.command.router#ExecTaskStdinWriteResponse"
+        "target": "com.modal.task.command.router#TaskExecStdinWriteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1125,7 +1126,7 @@
         "smithy.api#documentation": "Reload all Volumes mounted in the task to reflect their latest committed state."
       }
     },
-    "com.modal.task.command.router#SetTaskNetworkAccessRequest": {
+    "com.modal.task.command.router#TaskSetNetworkAccessRequest": {
       "type": "structure",
       "members": {
         "taskId": {
@@ -1142,20 +1143,20 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.task.command.router#SetTaskNetworkAccessResponse": {
+    "com.modal.task.command.router#TaskSetNetworkAccessResponse": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.modal.task.command.router#SetTaskNetworkAccess": {
+    "com.modal.task.command.router#TaskSetNetworkAccess": {
       "type": "operation",
       "input": {
-        "target": "com.modal.task.command.router#SetTaskNetworkAccessRequest"
+        "target": "com.modal.task.command.router#TaskSetNetworkAccessRequest"
       },
       "output": {
-        "target": "com.modal.task.command.router#SetTaskNetworkAccessResponse"
+        "target": "com.modal.task.command.router#TaskSetNetworkAccessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1379,12 +1380,6 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.task.command.router#SandboxStdinWriteV2"
-        },
-        {
-          "target": "com.modal.task.command.router#WaitSandboxUntilReady"
-        },
-        {
           "target": "com.modal.task.command.router#CreateTaskContainer"
         },
         {
@@ -1394,22 +1389,22 @@
           "target": "com.modal.task.command.router#ListTaskContainer"
         },
         {
-          "target": "com.modal.task.command.router#TaskContainerTerminate"
+          "target": "com.modal.task.command.router#SandboxStdinWriteV2"
         },
         {
-          "target": "com.modal.task.command.router#WaitTaskContainer"
+          "target": "com.modal.task.command.router#SandboxWaitUntilReady"
         },
         {
-          "target": "com.modal.task.command.router#ExecTaskPoll"
+          "target": "com.modal.task.command.router#TaskExecPoll"
         },
         {
           "target": "com.modal.task.command.router#TaskExecStart"
         },
         {
-          "target": "com.modal.task.command.router#ExecTaskStdinStatus"
+          "target": "com.modal.task.command.router#TaskExecStdinStatus"
         },
         {
-          "target": "com.modal.task.command.router#ExecTaskStdinWrite"
+          "target": "com.modal.task.command.router#TaskExecStdinWrite"
         },
         {
           "target": "com.modal.task.command.router#TaskExecWait"
@@ -1421,7 +1416,7 @@
           "target": "com.modal.task.command.router#TaskReloadVolumes"
         },
         {
-          "target": "com.modal.task.command.router#SetTaskNetworkAccess"
+          "target": "com.modal.task.command.router#TaskSetNetworkAccess"
         },
         {
           "target": "com.modal.task.command.router#TaskSnapshotDirectory"
@@ -1434,6 +1429,12 @@
         },
         {
           "target": "com.modal.task.command.router#TaskUnmountDirectory"
+        },
+        {
+          "target": "com.modal.task.command.router#TerminateTaskContainer"
+        },
+        {
+          "target": "com.modal.task.command.router#WaitTaskContainer"
         }
       ],
       "traits": {

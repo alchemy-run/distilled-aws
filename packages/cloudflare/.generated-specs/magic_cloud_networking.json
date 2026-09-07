@@ -115,7 +115,8 @@
       "vpcsById": "vpcs_by_id",
       "vpcsByIdUnavailable": "vpcs_by_id_unavailable",
       "yamlDiff": "yaml_diff"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.magic_cloud_networking#CatalogSyncsCreateRequestDestinationType": {
@@ -50688,103 +50689,103 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsCreate"
+          "target": "com.cloudflare.magic_cloud_networking#ApplyOnRamp"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsDelete"
+          "target": "com.cloudflare.magic_cloud_networking#CreateCatalogSync"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsEdit"
+          "target": "com.cloudflare.magic_cloud_networking#CreateCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsGet"
+          "target": "com.cloudflare.magic_cloud_networking#CreateOnRamp"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsList"
+          "target": "com.cloudflare.magic_cloud_networking#DeleteCatalogSync"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsRefresh"
+          "target": "com.cloudflare.magic_cloud_networking#DeleteCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsUpdate"
+          "target": "com.cloudflare.magic_cloud_networking#DeleteOnRamp"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CatalogSyncsPrebuiltPoliciesList"
+          "target": "com.cloudflare.magic_cloud_networking#DiscoverAllCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsCreate"
+          "target": "com.cloudflare.magic_cloud_networking#DiscoverCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsDelete"
+          "target": "com.cloudflare.magic_cloud_networking#ExportOnRamp"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsDiscover"
+          "target": "com.cloudflare.magic_cloud_networking#ExportResource"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsDiscoverAll"
+          "target": "com.cloudflare.magic_cloud_networking#GetCatalogSync"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsEdit"
+          "target": "com.cloudflare.magic_cloud_networking#GetCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsGet"
+          "target": "com.cloudflare.magic_cloud_networking#GetOnRamp"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsInitialSetup"
+          "target": "com.cloudflare.magic_cloud_networking#GetResource"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsList"
+          "target": "com.cloudflare.magic_cloud_networking#InitialSetupCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationsUpdate"
+          "target": "com.cloudflare.magic_cloud_networking#ListCatalogSyncPrebuiltPolicies"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsApply"
+          "target": "com.cloudflare.magic_cloud_networking#ListCatalogSyncs"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsCreate"
+          "target": "com.cloudflare.magic_cloud_networking#ListCloudIntegrations"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsDelete"
+          "target": "com.cloudflare.magic_cloud_networking#ListOnRampAddressSpaces"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsEdit"
+          "target": "com.cloudflare.magic_cloud_networking#ListOnRamps"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsExport"
+          "target": "com.cloudflare.magic_cloud_networking#ListResources"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsGet"
+          "target": "com.cloudflare.magic_cloud_networking#PatchCatalogSync"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsList"
+          "target": "com.cloudflare.magic_cloud_networking#PatchCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsPlan"
+          "target": "com.cloudflare.magic_cloud_networking#PatchOnRamp"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsUpdate"
+          "target": "com.cloudflare.magic_cloud_networking#PatchOnRampAddressSpace"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsAddressSpacesEdit"
+          "target": "com.cloudflare.magic_cloud_networking#PlanOnRamp"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsAddressSpacesList"
+          "target": "com.cloudflare.magic_cloud_networking#PolicyPreviewResource"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#OnRampsAddressSpacesUpdate"
+          "target": "com.cloudflare.magic_cloud_networking#PutOnRampAddressSpace"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#ResourcesExport"
+          "target": "com.cloudflare.magic_cloud_networking#RefreshCatalogSync"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#ResourcesGet"
+          "target": "com.cloudflare.magic_cloud_networking#UpdateCatalogSync"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#ResourcesList"
+          "target": "com.cloudflare.magic_cloud_networking#UpdateCloudIntegration"
         },
         {
-          "target": "com.cloudflare.magic_cloud_networking#ResourcesPolicyPreview"
+          "target": "com.cloudflare.magic_cloud_networking#UpdateOnRamp"
         }
       ],
       "traits": {

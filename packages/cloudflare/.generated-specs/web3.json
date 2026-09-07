@@ -18,7 +18,8 @@
     "keyDictionary": {
       "createdOn": "created_on",
       "modifiedOn": "modified_on"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.web3#HostnamesCreateRequestTarget": {
@@ -544,40 +545,40 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.web3#HostnamesCreate"
+          "target": "com.cloudflare.web3#CreateHostname"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesDelete"
+          "target": "com.cloudflare.web3#CreateHostnameIpfsUniversalPathContentListEntry"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesEdit"
+          "target": "com.cloudflare.web3#DeleteHostname"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesGet"
+          "target": "com.cloudflare.web3#DeleteHostnameIpfsUniversalPathContentListEntry"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesList"
+          "target": "com.cloudflare.web3#GetHostname"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsGet"
+          "target": "com.cloudflare.web3#GetHostnameIpfsUniversalPathContentList"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsUpdate"
+          "target": "com.cloudflare.web3#GetHostnameIpfsUniversalPathContentListEntry"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesCreate"
+          "target": "com.cloudflare.web3#ListHostnameIpfsUniversalPathContentListEntries"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesDelete"
+          "target": "com.cloudflare.web3#ListHostnames"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesGet"
+          "target": "com.cloudflare.web3#PatchHostname"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesList"
+          "target": "com.cloudflare.web3#PutHostnameIpfsUniversalPathContentList"
         },
         {
-          "target": "com.cloudflare.web3#HostnamesIpfsUniversalPathsContentListsEntriesUpdate"
+          "target": "com.cloudflare.web3#UpdateHostnameIpfsUniversalPathContentListEntry"
         }
       ],
       "traits": {
@@ -1511,13 +1512,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.web3#ListPutHostnameIpfUniversalPathContent": {
+    "com.cloudflare.web3#PutHostnameIpfsUniversalPathContentList": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.web3#ListPutHostnameIpfUniversalPathContentRequest"
+        "target": "com.cloudflare.web3#PutHostnameIpfsUniversalPathContentListRequest"
       },
       "output": {
-        "target": "com.cloudflare.web3#ListPutHostnameIpfUniversalPathContentResponse"
+        "target": "com.cloudflare.web3#PutHostnameIpfsUniversalPathContentListResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1540,7 +1541,7 @@
         }
       ]
     },
-    "com.cloudflare.web3#ListPutHostnameIpfUniversalPathContentRequest": {
+    "com.cloudflare.web3#PutHostnameIpfsUniversalPathContentListRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1578,7 +1579,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.web3#ListPutHostnameIpfUniversalPathContentResponse": {
+    "com.cloudflare.web3#PutHostnameIpfsUniversalPathContentListResponse": {
       "type": "structure",
       "members": {
         "action": {

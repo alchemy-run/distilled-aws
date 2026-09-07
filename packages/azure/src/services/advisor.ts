@@ -12,9 +12,9 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export type ConfigurationsCreateInResourceGroupRequestConfigurationName =
+export type CreateConfigurationInResourceGroupRequestConfigurationName =
   "default";
-export const ConfigurationsCreateInResourceGroupRequestConfigurationName =
+export const CreateConfigurationInResourceGroupRequestConfigurationName =
   /*@__PURE__*/ S.String;
 
 /** Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values: 5 (default), 10, 15 or 20. */
@@ -112,7 +112,7 @@ export interface CreateConfigurationInResourceGroupRequest {
   resourceGroup: string;
   /** Advisor configuration name. Value must be 'default' */
   configurationName:
-    | ConfigurationsCreateInResourceGroupRequestConfigurationName
+    | CreateConfigurationInResourceGroupRequestConfigurationName
     | (string & {});
   /** The Advisor configuration data structure. */
   properties?: ConfigDataProperties;
@@ -123,7 +123,7 @@ export const CreateConfigurationInResourceGroupRequest =
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroup: S.String.pipe(T.Label()),
       configurationName:
-        ConfigurationsCreateInResourceGroupRequestConfigurationName.pipe(
+        CreateConfigurationInResourceGroupRequestConfigurationName.pipe(
           T.Label(),
         ),
       properties: S.optional(ConfigDataProperties),
@@ -206,9 +206,9 @@ export const CreateConfigurationInResourceGroupResponse =
     identifier: "CreateConfigurationInResourceGroupResponse",
   }) as any as S.Schema<CreateConfigurationInResourceGroupResponse>;
 
-export type ConfigurationsCreateInSubscriptionRequestConfigurationName =
+export type CreateConfigurationInSubscriptionRequestConfigurationName =
   "default";
-export const ConfigurationsCreateInSubscriptionRequestConfigurationName =
+export const CreateConfigurationInSubscriptionRequestConfigurationName =
   /*@__PURE__*/ S.String;
 
 export interface CreateConfigurationInSubscriptionRequest {
@@ -216,7 +216,7 @@ export interface CreateConfigurationInSubscriptionRequest {
   subscriptionId: string;
   /** Advisor configuration name. Value must be 'default' */
   configurationName:
-    | ConfigurationsCreateInSubscriptionRequestConfigurationName
+    | CreateConfigurationInSubscriptionRequestConfigurationName
     | (string & {});
   /** The Advisor configuration data structure. */
   properties?: ConfigDataProperties;
@@ -226,7 +226,7 @@ export const CreateConfigurationInSubscriptionRequest = /*@__PURE__*/ S.suspend(
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       configurationName:
-        ConfigurationsCreateInSubscriptionRequestConfigurationName.pipe(
+        CreateConfigurationInSubscriptionRequestConfigurationName.pipe(
           T.Label(),
         ),
       properties: S.optional(ConfigDataProperties),
@@ -493,20 +493,20 @@ export const TimeSeriesEntity = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TimeSeriesEntity>;
 
 /** The Advisor score data. */
-export interface AdvisorScoresGetResponseProperties {
+export interface GetAdvisorScoreResponseProperties {
   /** The details of latest available score. */
   lastRefreshedScore?: ScoreEntity;
   /** The historic Advisor score data. */
   timeSeries?: TimeSeriesEntity;
 }
-export const AdvisorScoresGetResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const GetAdvisorScoreResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     lastRefreshedScore: S.optional(ScoreEntity),
     timeSeries: S.optional(TimeSeriesEntity),
   }),
 ).annotate({
-  identifier: "AdvisorScoresGetResponseProperties",
-}) as any as S.Schema<AdvisorScoresGetResponseProperties>;
+  identifier: "GetAdvisorScoreResponseProperties",
+}) as any as S.Schema<GetAdvisorScoreResponseProperties>;
 
 export interface GetAdvisorScoreResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -518,7 +518,7 @@ export interface GetAdvisorScoreResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The Advisor score data. */
-  properties?: AdvisorScoresGetResponseProperties;
+  properties?: GetAdvisorScoreResponseProperties;
 }
 export const GetAdvisorScoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -526,7 +526,7 @@ export const GetAdvisorScoreResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(AdvisorScoresGetResponseProperties),
+    properties: S.optional(GetAdvisorScoreResponseProperties),
   }),
 ).annotate({
   identifier: "GetAdvisorScoreResponse",
@@ -963,8 +963,8 @@ export const ListAdvisorScoresRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListAdvisorScoresRequest>;
 
 /** The Advisor score data. */
-export type AdvisorScoreEntityProperties = AdvisorScoresGetResponseProperties;
-export const AdvisorScoreEntityProperties = AdvisorScoresGetResponseProperties;
+export type AdvisorScoreEntityProperties = GetAdvisorScoreResponseProperties;
+export const AdvisorScoreEntityProperties = GetAdvisorScoreResponseProperties;
 
 /** The details of Advisor score for a single category. */
 export interface AdvisorScoreEntity {
@@ -977,7 +977,7 @@ export interface AdvisorScoreEntity {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The Advisor score data. */
-  properties?: AdvisorScoresGetResponseProperties;
+  properties?: GetAdvisorScoreResponseProperties;
 }
 export const AdvisorScoreEntity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -985,7 +985,7 @@ export const AdvisorScoreEntity = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(AdvisorScoresGetResponseProperties),
+    properties: S.optional(GetAdvisorScoreResponseProperties),
   }),
 ).annotate({
   identifier: "AdvisorScoreEntity",

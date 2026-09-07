@@ -25,12 +25,12 @@ export const ListTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTemplateRequest",
 }) as any as S.Schema<ListTemplateRequest>;
 
-export interface TemplateListResponseTemplateListItem {
+export interface ListTemplateResponseTemplateListItem {
   name?: string;
   repo?: string;
   ref?: string;
 }
-export const TemplateListResponseTemplateListItem = /*@__PURE__*/ S.suspend(
+export const ListTemplateResponseTemplateListItem = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       name: S.optional(S.String),
@@ -38,21 +38,21 @@ export const TemplateListResponseTemplateListItem = /*@__PURE__*/ S.suspend(
       ref: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "TemplateListResponseTemplateListItem",
-}) as any as S.Schema<TemplateListResponseTemplateListItem>;
+  identifier: "ListTemplateResponseTemplateListItem",
+}) as any as S.Schema<ListTemplateResponseTemplateListItem>;
 
-export type TemplateListResponseTemplateListItemList =
-  Array<TemplateListResponseTemplateListItem>;
-export const TemplateListResponseTemplateListItemList = /*@__PURE__*/ S.Array(
-  TemplateListResponseTemplateListItem,
-) as any as S.Schema<TemplateListResponseTemplateListItemList>;
+export type ListTemplateResponseTemplateListItemList =
+  Array<ListTemplateResponseTemplateListItem>;
+export const ListTemplateResponseTemplateListItemList = /*@__PURE__*/ S.Array(
+  ListTemplateResponseTemplateListItem,
+) as any as S.Schema<ListTemplateResponseTemplateListItemList>;
 
 export interface ListTemplateResponse {
-  items?: TemplateListResponseTemplateListItemList;
+  items?: ListTemplateResponseTemplateListItemList;
 }
 export const ListTemplateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    items: S.optional(TemplateListResponseTemplateListItemList),
+    items: S.optional(ListTemplateResponseTemplateListItemList),
   }),
 ).annotate({
   identifier: "ListTemplateResponse",

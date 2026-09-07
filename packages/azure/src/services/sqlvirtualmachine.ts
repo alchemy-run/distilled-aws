@@ -437,6 +437,41 @@ export const DeleteSqlVirtualMachineGroupResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteSqlVirtualMachineGroupResponse",
 }) as any as S.Schema<DeleteSqlVirtualMachineGroupResponse>;
 
+export interface FetchSqlVirtualMachineDCAssessmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+  /** Boolean to run disk config Assessment. Use false to fetch past Assessment. */
+  runDiskConfigRules?: boolean;
+}
+export const FetchSqlVirtualMachineDCAssessmentRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      sqlVirtualMachineName: S.String.pipe(T.Label()),
+      runDiskConfigRules: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/fetchDCAssessment",
+        code: 200,
+        apiVersion: "2023-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "FetchSqlVirtualMachineDCAssessmentRequest",
+  }) as any as S.Schema<FetchSqlVirtualMachineDCAssessmentRequest>;
+
+export interface FetchSqlVirtualMachineDCAssessmentResponse {}
+export const FetchSqlVirtualMachineDCAssessmentResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "FetchSqlVirtualMachineDCAssessmentResponse",
+  }) as any as S.Schema<FetchSqlVirtualMachineDCAssessmentResponse>;
+
 export interface GetAvailabilityGroupListenerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -522,13 +557,13 @@ export const GetSqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSqlVirtualMachineRequest>;
 
 /** Resource tags. */
-export type SqlVirtualMachinesGetResponseTagsMap = {
+export type GetSqlVirtualMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachinesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSqlVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SqlVirtualMachinesGetResponseTagsMap>;
+) as any as S.Schema<GetSqlVirtualMachineResponseTagsMap>;
 
 /** SQL Server license type. */
 export type SqlServerLicenseType = "PAYG" | "AHUB" | "DR";
@@ -1240,7 +1275,7 @@ export interface GetSqlVirtualMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SqlVirtualMachinesGetResponseTagsMap;
+  tags?: GetSqlVirtualMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -1254,7 +1289,7 @@ export const GetSqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SqlVirtualMachinesGetResponseTagsMap),
+    tags: S.optional(GetSqlVirtualMachineResponseTagsMap),
     location: S.String,
     properties: S.optional(SqlVirtualMachineProperties),
     identity: S.optional(ResourceIdentity),
@@ -1289,13 +1324,13 @@ export const GetSqlVirtualMachineGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetSqlVirtualMachineGroupRequest>;
 
 /** Resource tags. */
-export type SqlVirtualMachineGroupsGetResponseTagsMap = {
+export type GetSqlVirtualMachineGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachineGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSqlVirtualMachineGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SqlVirtualMachineGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetSqlVirtualMachineGroupResponseTagsMap>;
 
 /** SQL image sku. */
 export type SqlVmGroupImageSku = "Developer" | "Enterprise";
@@ -1398,7 +1433,7 @@ export interface GetSqlVirtualMachineGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsGetResponseTagsMap;
+  tags?: GetSqlVirtualMachineGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -1410,7 +1445,7 @@ export const GetSqlVirtualMachineGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SqlVirtualMachineGroupsGetResponseTagsMap),
+    tags: S.optional(GetSqlVirtualMachineGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(SqlVirtualMachineGroupProperties),
   }),
@@ -1818,6 +1853,38 @@ export const ListSqlVirtualMachinesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSqlVirtualMachinesRequest",
 }) as any as S.Schema<ListSqlVirtualMachinesRequest>;
 
+export interface RedeploySqlVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the SQL virtual machine. */
+  sqlVirtualMachineName: string;
+}
+export const RedeploySqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    sqlVirtualMachineName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/redeploy",
+      code: 200,
+      apiVersion: "2023-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "RedeploySqlVirtualMachineRequest",
+}) as any as S.Schema<RedeploySqlVirtualMachineRequest>;
+
+export interface RedeploySqlVirtualMachineResponse {}
+export const RedeploySqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RedeploySqlVirtualMachineResponse",
+}) as any as S.Schema<RedeploySqlVirtualMachineResponse>;
+
 /** Resource tags. */
 export type SqlVirtualMachineGroupsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -2103,73 +2170,6 @@ export const SqlVirtualMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "SqlVirtualMachinesCreateOrUpdateResponse",
 }) as any as S.Schema<SqlVirtualMachinesCreateOrUpdateResponse>;
 
-export interface SqlVirtualMachinesFetchDCAssessmentRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
-  /** Boolean to run disk config Assessment. Use false to fetch past Assessment. */
-  runDiskConfigRules?: boolean;
-}
-export const SqlVirtualMachinesFetchDCAssessmentRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      sqlVirtualMachineName: S.String.pipe(T.Label()),
-      runDiskConfigRules: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/fetchDCAssessment",
-        code: 200,
-        apiVersion: "2023-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SqlVirtualMachinesFetchDCAssessmentRequest",
-  }) as any as S.Schema<SqlVirtualMachinesFetchDCAssessmentRequest>;
-
-export interface SqlVirtualMachinesFetchDCAssessmentResponse {}
-export const SqlVirtualMachinesFetchDCAssessmentResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SqlVirtualMachinesFetchDCAssessmentResponse",
-  }) as any as S.Schema<SqlVirtualMachinesFetchDCAssessmentResponse>;
-
-export interface SqlVirtualMachinesRedeployRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the SQL virtual machine. */
-  sqlVirtualMachineName: string;
-}
-export const SqlVirtualMachinesRedeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    sqlVirtualMachineName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine/sqlVirtualMachines/{sqlVirtualMachineName}/redeploy",
-      code: 200,
-      apiVersion: "2023-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "SqlVirtualMachinesRedeployRequest",
-}) as any as S.Schema<SqlVirtualMachinesRedeployRequest>;
-
-export interface SqlVirtualMachinesRedeployResponse {}
-export const SqlVirtualMachinesRedeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SqlVirtualMachinesRedeployResponse",
-}) as any as S.Schema<SqlVirtualMachinesRedeployResponse>;
-
 /** SQL VM troubleshooting scenario. */
 export type SqlVirtualMachineTroubleshootTroubleshootRequestTroubleshootingScenario =
   "UnhealthyReplica";
@@ -2284,13 +2284,13 @@ export const StartSqlVirtualMachineAssessmentResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<StartSqlVirtualMachineAssessmentResponse>;
 
 /** Resource tags. */
-export type SqlVirtualMachinesUpdateRequestTagsMap = {
+export type UpdateSqlVirtualMachineRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachinesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSqlVirtualMachineRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SqlVirtualMachinesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSqlVirtualMachineRequestTagsMap>;
 
 export interface UpdateSqlVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -2300,14 +2300,14 @@ export interface UpdateSqlVirtualMachineRequest {
   /** Name of the SQL virtual machine. */
   sqlVirtualMachineName: string;
   /** Resource tags. */
-  tags?: SqlVirtualMachinesUpdateRequestTagsMap;
+  tags?: UpdateSqlVirtualMachineRequestTagsMap;
 }
 export const UpdateSqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     sqlVirtualMachineName: S.String.pipe(T.Label()),
-    tags: S.optional(SqlVirtualMachinesUpdateRequestTagsMap),
+    tags: S.optional(UpdateSqlVirtualMachineRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2321,13 +2321,13 @@ export const UpdateSqlVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSqlVirtualMachineRequest>;
 
 /** Resource tags. */
-export type SqlVirtualMachinesUpdateResponseTagsMap = {
+export type UpdateSqlVirtualMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachinesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSqlVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SqlVirtualMachinesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSqlVirtualMachineResponseTagsMap>;
 
 export interface UpdateSqlVirtualMachineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2339,7 +2339,7 @@ export interface UpdateSqlVirtualMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SqlVirtualMachinesUpdateResponseTagsMap;
+  tags?: UpdateSqlVirtualMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -2353,7 +2353,7 @@ export const UpdateSqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SqlVirtualMachinesUpdateResponseTagsMap),
+    tags: S.optional(UpdateSqlVirtualMachineResponseTagsMap),
     location: S.String,
     properties: S.optional(SqlVirtualMachineProperties),
     identity: S.optional(ResourceIdentity),
@@ -2363,14 +2363,14 @@ export const UpdateSqlVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSqlVirtualMachineResponse>;
 
 /** Resource tags. */
-export type SqlVirtualMachineGroupsUpdateRequestTagsMap = {
+export type UpdateSqlVirtualMachineGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachineGroupsUpdateRequestTagsMap =
+export const UpdateSqlVirtualMachineGroupRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlVirtualMachineGroupsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateSqlVirtualMachineGroupRequestTagsMap>;
 
 export interface UpdateSqlVirtualMachineGroupRequest {
   /** The ID of the target subscription. */
@@ -2380,14 +2380,14 @@ export interface UpdateSqlVirtualMachineGroupRequest {
   /** Name of the SQL virtual machine group. */
   sqlVirtualMachineGroupName: string;
   /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsUpdateRequestTagsMap;
+  tags?: UpdateSqlVirtualMachineGroupRequestTagsMap;
 }
 export const UpdateSqlVirtualMachineGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     sqlVirtualMachineGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(SqlVirtualMachineGroupsUpdateRequestTagsMap),
+    tags: S.optional(UpdateSqlVirtualMachineGroupRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2401,14 +2401,14 @@ export const UpdateSqlVirtualMachineGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateSqlVirtualMachineGroupRequest>;
 
 /** Resource tags. */
-export type SqlVirtualMachineGroupsUpdateResponseTagsMap = {
+export type UpdateSqlVirtualMachineGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SqlVirtualMachineGroupsUpdateResponseTagsMap =
+export const UpdateSqlVirtualMachineGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SqlVirtualMachineGroupsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateSqlVirtualMachineGroupResponseTagsMap>;
 
 export interface UpdateSqlVirtualMachineGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2420,7 +2420,7 @@ export interface UpdateSqlVirtualMachineGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SqlVirtualMachineGroupsUpdateResponseTagsMap;
+  tags?: UpdateSqlVirtualMachineGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -2433,7 +2433,7 @@ export const UpdateSqlVirtualMachineGroupResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(SqlVirtualMachineGroupsUpdateResponseTagsMap),
+      tags: S.optional(UpdateSqlVirtualMachineGroupResponseTagsMap),
       location: S.String,
       properties: S.optional(SqlVirtualMachineGroupProperties),
     }),
@@ -2496,6 +2496,21 @@ export const DeleteSqlVirtualMachineGroup: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteSqlVirtualMachineGroupRequest,
   output: DeleteSqlVirtualMachineGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FetchSqlVirtualMachineDCAssessmentError = AzureOpError;
+/** Starts SQL best practices Assessment with Disk Config rules on SQL virtual machine */
+export const FetchSqlVirtualMachineDCAssessment: API.OperationMethod<
+  FetchSqlVirtualMachineDCAssessmentRequest,
+  FetchSqlVirtualMachineDCAssessmentResponse,
+  FetchSqlVirtualMachineDCAssessmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchSqlVirtualMachineDCAssessmentRequest,
+  output: FetchSqlVirtualMachineDCAssessmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2651,6 +2666,21 @@ export const ListSqlVirtualMachines: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RedeploySqlVirtualMachineError = AzureOpError;
+/** Uninstalls and reinstalls the SQL IaaS Extension. */
+export const RedeploySqlVirtualMachine: API.OperationMethod<
+  RedeploySqlVirtualMachineRequest,
+  RedeploySqlVirtualMachineResponse,
+  RedeploySqlVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RedeploySqlVirtualMachineRequest,
+  output: RedeploySqlVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SqlVirtualMachineGroupsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a SQL virtual machine group. */
 export const SqlVirtualMachineGroupsCreateOrUpdate: API.OperationMethod<
@@ -2676,36 +2706,6 @@ export const SqlVirtualMachinesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SqlVirtualMachinesCreateOrUpdateRequest,
   output: SqlVirtualMachinesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesFetchDCAssessmentError = AzureOpError;
-/** Starts SQL best practices Assessment with Disk Config rules on SQL virtual machine */
-export const SqlVirtualMachinesFetchDCAssessment: API.OperationMethod<
-  SqlVirtualMachinesFetchDCAssessmentRequest,
-  SqlVirtualMachinesFetchDCAssessmentResponse,
-  SqlVirtualMachinesFetchDCAssessmentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesFetchDCAssessmentRequest,
-  output: SqlVirtualMachinesFetchDCAssessmentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SqlVirtualMachinesRedeployError = AzureOpError;
-/** Uninstalls and reinstalls the SQL IaaS Extension. */
-export const SqlVirtualMachinesRedeploy: API.OperationMethod<
-  SqlVirtualMachinesRedeployRequest,
-  SqlVirtualMachinesRedeployResponse,
-  SqlVirtualMachinesRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SqlVirtualMachinesRedeployRequest,
-  output: SqlVirtualMachinesRedeployResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

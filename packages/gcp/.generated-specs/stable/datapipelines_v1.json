@@ -4,68 +4,10 @@
     "service": "datapipelines",
     "version": "v1",
     "title": "Data pipelines API",
-    "baseUrl": "https://datapipelines.googleapis.com/"
+    "baseUrl": "https://datapipelines.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateParameter": {
-      "type": "structure",
-      "members": {
-        "parameters": {
-          "target": "com.gcp.datapipelines_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "The parameters for the Flex Template. Example: `{\"num_workers\":\"5\"}`"
-          }
-        },
-        "containerSpecGcsPath": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloud Storage path to a file with a JSON-serialized ContainerSpec as content."
-          }
-        },
-        "launchOptions": {
-          "target": "com.gcp.datapipelines_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Launch options for this Flex Template job. This is a common set of options across languages and templates. This should not be used to pass job parameters."
-          }
-        },
-        "update": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Set this to true if you are sending a request to update a running streaming job. When set, the job name should be the same as the running job."
-          }
-        },
-        "transformNameMappings": {
-          "target": "com.gcp.datapipelines_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Use this to pass transform name mappings for streaming update jobs. Example: `{\"oldTransformName\":\"newTransformName\",...}`"
-          }
-        },
-        "environment": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment",
-          "traits": {
-            "smithy.api#documentation": "The runtime environment for the Flex Template job."
-          }
-        },
-        "jobName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The job name to use for the created job. For an update job request, the job name should be the same as the existing running job."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Launch Flex Template parameter."
-      }
-    },
-    "com.gcp.datapipelines_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
     "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchTemplateParameters": {
       "type": "structure",
       "members": {
@@ -81,6 +23,12 @@
             "smithy.api#documentation": "Map of transform name prefixes of the job to be replaced to the corresponding name prefixes of the new job. Only applicable when updating a pipeline."
           }
         },
+        "parameters": {
+          "target": "com.gcp.datapipelines_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The runtime parameters to pass to the job."
+          }
+        },
         "jobName": {
           "target": "smithy.api#String",
           "traits": {
@@ -92,16 +40,475 @@
           "traits": {
             "smithy.api#documentation": "The runtime environment for the job."
           }
-        },
-        "parameters": {
-          "target": "com.gcp.datapipelines_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "The runtime parameters to pass to the job."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Parameters to provide to the template being launched."
+      }
+    },
+    "com.gcp.datapipelines_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateParameter": {
+      "type": "structure",
+      "members": {
+        "environment": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment",
+          "traits": {
+            "smithy.api#documentation": "The runtime environment for the Flex Template job."
+          }
+        },
+        "parameters": {
+          "target": "com.gcp.datapipelines_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The parameters for the Flex Template. Example: `{\"num_workers\":\"5\"}`"
+          }
+        },
+        "transformNameMappings": {
+          "target": "com.gcp.datapipelines_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Use this to pass transform name mappings for streaming update jobs. Example: `{\"oldTransformName\":\"newTransformName\",...}`"
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The job name to use for the created job. For an update job request, the job name should be the same as the existing running job."
+          }
+        },
+        "update": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set this to true if you are sending a request to update a running streaming job. When set, the job name should be the same as the running job."
+          }
+        },
+        "containerSpecGcsPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud Storage path to a file with a JSON-serialized ContainerSpec as content."
+          }
+        },
+        "launchOptions": {
+          "target": "com.gcp.datapipelines_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Launch options for this Flex Template job. This is a common set of options across languages and templates. This should not be used to pass job parameters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Launch Flex Template parameter."
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment": {
+      "type": "structure",
+      "members": {
+        "serviceAccountEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the service account to run the job as."
+          }
+        },
+        "ipConfiguration": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentIpConfigurationEnum",
+          "traits": {
+            "smithy.api#documentation": "Configuration for VM IPs."
+          }
+        },
+        "additionalUserLabels": {
+          "target": "com.gcp.datapipelines_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions). An object containing a list of key/value pairs. Example: `{ \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }`."
+          }
+        },
+        "flexrsGoal": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentFlexrsGoalEnum",
+          "traits": {
+            "smithy.api#documentation": "Set FlexRS goal for the job. https://cloud.google.com/dataflow/docs/guides/flexrs"
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Network to which VMs will be assigned. If empty or unspecified, the service will use the network \"default\"."
+          }
+        },
+        "additionalExperiments": {
+          "target": "com.gcp.datapipelines_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional experiment flags for the job."
+          }
+        },
+        "enableStreamingEngine": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable Streaming Engine for the job."
+          }
+        },
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The machine type to use for the job. Defaults to the value from the template if not specified."
+          }
+        },
+        "zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence."
+          }
+        },
+        "subnetwork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form \"https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK\" or \"regions/REGION/subnetworks/SUBNETWORK\". If the subnetwork is located in a Shared VPC network, you must use the complete URL."
+          }
+        },
+        "workerZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence."
+          }
+        },
+        "tempLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`."
+          }
+        },
+        "maxWorkers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000."
+          }
+        },
+        "numWorkers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The initial number of Compute Engine instances for the job."
+          }
+        },
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/"
+          }
+        },
+        "workerRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1\". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, defaults to the control plane region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The environment values to be set at runtime for a Flex Template."
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentIpConfigurationEnum": {
+      "type": "enum",
+      "members": {
+        "WORKER_IP_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKER_IP_UNSPECIFIED"
+          }
+        },
+        "WORKER_IP_PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKER_IP_PUBLIC"
+          }
+        },
+        "WORKER_IP_PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKER_IP_PRIVATE"
+          }
+        }
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentFlexrsGoalEnum": {
+      "type": "enum",
+      "members": {
+        "FLEXRS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLEXRS_UNSPECIFIED"
+          }
+        },
+        "FLEXRS_SPEED_OPTIMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLEXRS_SPEED_OPTIMIZED"
+          }
+        },
+        "FLEXRS_COST_OPTIMIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLEXRS_COST_OPTIMIZED"
+          }
+        }
+      }
+    },
+    "com.gcp.datapipelines_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RunPipelineResponse": {
+      "type": "structure",
+      "members": {
+        "job": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Job",
+          "traits": {
+            "smithy.api#documentation": "Job that was created as part of RunPipeline operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for RunPipeline"
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "launchParameter": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateParameter",
+          "traits": {
+            "smithy.api#documentation": "Required. Parameter to launch a job from a Flex Template."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. For example, `us-central1`, `us-west1`."
+          }
+        },
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the request is validated but not actually executed. Defaults to false."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Cloud Platform project that the job belongs to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to launch a Dataflow job from a Flex Template."
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Workload": {
+      "type": "structure",
+      "members": {
+        "dataflowLaunchTemplateRequest": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchTemplateRequest",
+          "traits": {
+            "smithy.api#documentation": "Template information and additional parameters needed to launch a Dataflow job using the standard launch API."
+          }
+        },
+        "dataflowFlexTemplateRequest": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest",
+          "traits": {
+            "smithy.api#documentation": "Template information and additional parameters needed to launch a Dataflow job using the flex launch API."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Workload details for creating the pipeline jobs."
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersion": {
+      "type": "structure",
+      "members": {
+        "sdkSupportStatus": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersionSdkSupportStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The support status for this SDK version."
+          }
+        },
+        "versionDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A readable string describing the version of the SDK."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the SDK used to run the job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The version of the SDK used to run the job."
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersionSdkSupportStatusEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "SUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUPPORTED"
+          }
+        },
+        "STALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STALE"
+          }
+        },
+        "DEPRECATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPRECATED"
+          }
+        },
+        "UNSUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSUPPORTED"
+          }
+        }
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1StopPipelineRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for StopPipeline."
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleRpcStatus": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.datapipelines_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.datapipelines_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.datapipelines_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datapipelines_v1#DocumentMap"
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RunPipelineRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for RunPipeline"
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1DataflowJobDetails": {
+      "type": "structure",
+      "members": {
+        "currentWorkers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. The current number of workers used to run the jobs. Only set to a value if the job is still running."
+          }
+        },
+        "resourceInfo": {
+          "target": "com.gcp.datapipelines_v1#DoubleMap",
+          "traits": {
+            "smithy.api#documentation": "Cached version of all the metrics of interest for the job. This value gets stored here when the job is terminated. As long as the job is running, this field is populated from the Dataflow API."
+          }
+        },
+        "sdkVersion": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersion",
+          "traits": {
+            "smithy.api#documentation": "Output only. The SDK version used to run the job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pipeline job details specific to the Dataflow API. This is encapsulated here to allow for more executors to store their specific details separately."
+      }
+    },
+    "com.gcp.datapipelines_v1#DoubleMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1ScheduleSpec": {
+      "type": "structure",
+      "members": {
+        "schedule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unix-cron format of the schedule. This information is retrieved from the linked Cloud Scheduler."
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timezone ID. This matches the timezone IDs used by the Cloud Scheduler API. If empty, UTC time is assumed."
+          }
+        },
+        "nextJobTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. When the next Scheduler job is going to run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the schedule the pipeline runs on."
       }
     },
     "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline": {
@@ -113,22 +520,10 @@
             "smithy.api#documentation": "Required. The state of the pipeline. When the pipeline is created, the state is set to 'PIPELINE_STATE_ACTIVE' by default. State changes can be requested by setting the state to stopping, paused, or resuming. State cannot be changed through UpdatePipeline requests."
           }
         },
-        "lastUpdateTime": {
-          "target": "smithy.api#String",
+        "workload": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Workload",
           "traits": {
-            "smithy.api#documentation": "Output only. Immutable. The timestamp when the pipeline was last modified. Set by the Data Pipelines service."
-          }
-        },
-        "schedulerServiceAccountEmail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A service account email to be used with the Cloud Scheduler job. If not specified, the default compute engine service account will be used."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Immutable. The timestamp when the pipeline was initially created. Set by the Data Pipelines service."
+            "smithy.api#documentation": "Workload information for creating new jobs."
           }
         },
         "name": {
@@ -137,10 +532,16 @@
             "smithy.api#documentation": "The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), and periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects). * `LOCATION_ID` is the canonical ID for the pipeline's location. The list of available locations can be obtained by calling `google.cloud.location.Locations.ListLocations`. Note that the Data Pipelines service is not available in all regions. It depends on Cloud Scheduler, an App Engine application, so it's only available in [App Engine regions](https://cloud.google.com/about/locations#region). * `PIPELINE_ID` is the ID of the pipeline. Must be unique for the selected project and location."
           }
         },
-        "workload": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Workload",
+        "createTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Workload information for creating new jobs."
+            "smithy.api#documentation": "Output only. Immutable. The timestamp when the pipeline was initially created. Set by the Data Pipelines service."
+          }
+        },
+        "pipelineSources": {
+          "target": "com.gcp.datapipelines_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The sources of the pipeline (for example, Knowledge Catalog). The keys and values are set by the corresponding sources during pipeline creation."
           }
         },
         "jobCount": {
@@ -161,16 +562,22 @@
             "smithy.api#documentation": "Required. The display name of the pipeline. It can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), and underscores (_)."
           }
         },
-        "pipelineSources": {
-          "target": "com.gcp.datapipelines_v1#StringMap",
+        "schedulerServiceAccountEmail": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Immutable. The sources of the pipeline (for example, Knowledge Catalog). The keys and values are set by the corresponding sources during pipeline creation."
+            "smithy.api#documentation": "Optional. A service account email to be used with the Cloud Scheduler job. If not specified, the default compute engine service account will be used."
           }
         },
         "scheduleInfo": {
           "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1ScheduleSpec",
           "traits": {
             "smithy.api#documentation": "Internal scheduling information for a pipeline. If this information is provided, periodic jobs will be created per the schedule. If not, users are responsible for creating jobs externally."
+          }
+        },
+        "lastUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. The timestamp when the pipeline was last modified. Set by the Data Pipelines service."
           }
         }
       },
@@ -242,59 +649,13 @@
         }
       }
     },
-    "com.gcp.datapipelines_v1#GoogleProtobufEmpty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RunPipelineRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for RunPipeline"
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest": {
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchTemplateRequest": {
       "type": "structure",
       "members": {
-        "launchParameter": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateParameter",
-          "traits": {
-            "smithy.api#documentation": "Required. Parameter to launch a job from a Flex Template."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request. For example, `us-central1`, `us-west1`."
-          }
-        },
         "projectId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The ID of the Cloud Platform project that the job belongs to."
-          }
-        },
-        "validateOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, the request is validated but not actually executed. Defaults to false."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A request to launch a Dataflow job from a Flex Template."
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchTemplateRequest": {
-      "type": "structure",
-      "members": {
-        "validateOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, the request is validated but not actually executed. Defaults to false."
           }
         },
         "gcsPath": {
@@ -309,10 +670,10 @@
             "smithy.api#documentation": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) to which to direct the request."
           }
         },
-        "projectId": {
-          "target": "smithy.api#String",
+        "validateOnly": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Required. The ID of the Cloud Platform project that the job belongs to."
+            "smithy.api#documentation": "If true, the request is validated but not actually executed. Defaults to false."
           }
         },
         "launchParameters": {
@@ -329,16 +690,70 @@
     "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RuntimeEnvironment": {
       "type": "structure",
       "members": {
+        "zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence."
+          }
+        },
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the Cloud KMS key for the job. The key format is: projects//locations//keyRings//cryptoKeys/"
+          }
+        },
+        "serviceAccountEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the service account to run the job as."
+          }
+        },
         "maxWorkers": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The maximum number of Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000."
           }
         },
+        "workerZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence."
+          }
+        },
+        "additionalExperiments": {
+          "target": "com.gcp.datapipelines_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional experiment flags for the job."
+          }
+        },
+        "enableStreamingEngine": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable Streaming Engine for the job."
+          }
+        },
+        "ipConfiguration": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RuntimeEnvironmentIpConfigurationEnum",
+          "traits": {
+            "smithy.api#documentation": "Configuration for VM IPs."
+          }
+        },
         "network": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Network to which VMs will be assigned. If empty or unspecified, the service will use the network \"default\"."
+          }
+        },
+        "bypassTempDirValidation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to bypass the safety checks for the job's temporary directory. Use with caution."
+          }
+        },
+        "numWorkers": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The initial number of Compute Engine instances for the job."
           }
         },
         "workerRegion": {
@@ -353,70 +768,16 @@
             "smithy.api#documentation": "Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form \"https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK\" or \"regions/REGION/subnetworks/SUBNETWORK\". If the subnetwork is located in a Shared VPC network, you must use the complete URL."
           }
         },
-        "serviceAccountEmail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email address of the service account to run the job as."
-          }
-        },
-        "enableStreamingEngine": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to enable Streaming Engine for the job."
-          }
-        },
-        "zone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence."
-          }
-        },
-        "ipConfiguration": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RuntimeEnvironmentIpConfigurationEnum",
-          "traits": {
-            "smithy.api#documentation": "Configuration for VM IPs."
-          }
-        },
-        "bypassTempDirValidation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to bypass the safety checks for the job's temporary directory. Use with caution."
-          }
-        },
-        "additionalUserLabels": {
-          "target": "com.gcp.datapipelines_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of key/value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }."
-          }
-        },
-        "additionalExperiments": {
-          "target": "com.gcp.datapipelines_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Additional experiment flags for the job."
-          }
-        },
         "machineType": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The machine type to use for the job. Defaults to the value from the template if not specified."
           }
         },
-        "workerZone": {
-          "target": "smithy.api#String",
+        "additionalUserLabels": {
+          "target": "com.gcp.datapipelines_v1#StringMap",
           "traits": {
-            "smithy.api#documentation": "The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence."
-          }
-        },
-        "kmsKeyName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name for the Cloud KMS key for the job. The key format is: projects//locations//keyRings//cryptoKeys/"
-          }
-        },
-        "numWorkers": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The initial number of Compute Engine instances for the job."
+            "smithy.api#documentation": "Additional user labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of key/value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }."
           }
         },
         "tempLocation": {
@@ -453,36 +814,30 @@
         }
       }
     },
-    "com.gcp.datapipelines_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1ScheduleSpec": {
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1ListPipelinesResponse": {
       "type": "structure",
       "members": {
-        "nextJobTime": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. When the next Scheduler job is going to run."
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         },
-        "timeZone": {
-          "target": "smithy.api#String",
+        "pipelines": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1PipelineList",
           "traits": {
-            "smithy.api#documentation": "Timezone ID. This matches the timezone IDs used by the Cloud Scheduler API. If empty, UTC time is assumed."
-          }
-        },
-        "schedule": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unix-cron format of the schedule. This information is retrieved from the linked Cloud Scheduler."
+            "smithy.api#documentation": "Results that matched the filter criteria and were accessible to the caller. Results are always in descending order of pipeline creation date."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Details of the schedule the pipeline runs on."
+        "smithy.api#documentation": "Response message for ListPipelines."
+      }
+    },
+    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1PipelineList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline"
       }
     },
     "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1ListJobsResponse": {
@@ -511,297 +866,31 @@
         "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Job"
       }
     },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1StopPipelineRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for StopPipeline."
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersion": {
-      "type": "structure",
-      "members": {
-        "versionDisplayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A readable string describing the version of the SDK."
-          }
-        },
-        "sdkSupportStatus": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersionSdkSupportStatusEnum",
-          "traits": {
-            "smithy.api#documentation": "The support status for this SDK version."
-          }
-        },
-        "version": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of the SDK used to run the job."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The version of the SDK used to run the job."
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersionSdkSupportStatusEnum": {
-      "type": "enum",
-      "members": {
-        "UNKNOWN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN"
-          }
-        },
-        "SUPPORTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUPPORTED"
-          }
-        },
-        "STALE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STALE"
-          }
-        },
-        "DEPRECATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEPRECATED"
-          }
-        },
-        "UNSUPPORTED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNSUPPORTED"
-          }
-        }
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironment": {
-      "type": "structure",
-      "members": {
-        "workerZone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1-a\". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane region is chosen based on available capacity. If both `worker_zone` and `zone` are set, `worker_zone` takes precedence."
-          }
-        },
-        "enableStreamingEngine": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to enable Streaming Engine for the job."
-          }
-        },
-        "kmsKeyName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/"
-          }
-        },
-        "additionalUserLabels": {
-          "target": "com.gcp.datapipelines_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions). An object containing a list of key/value pairs. Example: `{ \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }`."
-          }
-        },
-        "numWorkers": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The initial number of Compute Engine instances for the job."
-          }
-        },
-        "zone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Compute Engine [availability zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones) for launching worker instances to run your pipeline. In the future, worker_zone will take precedence."
-          }
-        },
-        "workerRegion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. \"us-west1\". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, defaults to the control plane region."
-          }
-        },
-        "serviceAccountEmail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email address of the service account to run the job as."
-          }
-        },
-        "subnetwork": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form \"https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK\" or \"regions/REGION/subnetworks/SUBNETWORK\". If the subnetwork is located in a Shared VPC network, you must use the complete URL."
-          }
-        },
-        "additionalExperiments": {
-          "target": "com.gcp.datapipelines_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Additional experiment flags for the job."
-          }
-        },
-        "network": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Network to which VMs will be assigned. If empty or unspecified, the service will use the network \"default\"."
-          }
-        },
-        "ipConfiguration": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentIpConfigurationEnum",
-          "traits": {
-            "smithy.api#documentation": "Configuration for VM IPs."
-          }
-        },
-        "tempLocation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Cloud Storage path to use for temporary files. Must be a valid Cloud Storage URL, beginning with `gs://`."
-          }
-        },
-        "machineType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The machine type to use for the job. Defaults to the value from the template if not specified."
-          }
-        },
-        "maxWorkers": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000."
-          }
-        },
-        "flexrsGoal": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentFlexrsGoalEnum",
-          "traits": {
-            "smithy.api#documentation": "Set FlexRS goal for the job. https://cloud.google.com/dataflow/docs/guides/flexrs"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The environment values to be set at runtime for a Flex Template."
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentIpConfigurationEnum": {
-      "type": "enum",
-      "members": {
-        "WORKER_IP_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WORKER_IP_UNSPECIFIED"
-          }
-        },
-        "WORKER_IP_PUBLIC": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WORKER_IP_PUBLIC"
-          }
-        },
-        "WORKER_IP_PRIVATE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WORKER_IP_PRIVATE"
-          }
-        }
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1FlexTemplateRuntimeEnvironmentFlexrsGoalEnum": {
-      "type": "enum",
-      "members": {
-        "FLEXRS_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FLEXRS_UNSPECIFIED"
-          }
-        },
-        "FLEXRS_SPEED_OPTIMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FLEXRS_SPEED_OPTIMIZED"
-          }
-        },
-        "FLEXRS_COST_OPTIMIZED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FLEXRS_COST_OPTIMIZED"
-          }
-        }
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1ListPipelinesResponse": {
-      "type": "structure",
-      "members": {
-        "pipelines": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1PipelineList",
-          "traits": {
-            "smithy.api#documentation": "Results that matched the filter criteria and were accessible to the caller. Results are always in descending order of pipeline creation date."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for ListPipelines."
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1PipelineList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline"
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Workload": {
-      "type": "structure",
-      "members": {
-        "dataflowLaunchTemplateRequest": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchTemplateRequest",
-          "traits": {
-            "smithy.api#documentation": "Template information and additional parameters needed to launch a Dataflow job using the standard launch API."
-          }
-        },
-        "dataflowFlexTemplateRequest": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1LaunchFlexTemplateRequest",
-          "traits": {
-            "smithy.api#documentation": "Template information and additional parameters needed to launch a Dataflow job using the flex launch API."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Workload details for creating the pipeline jobs."
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RunPipelineResponse": {
-      "type": "structure",
-      "members": {
-        "job": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Job",
-          "traits": {
-            "smithy.api#documentation": "Job that was created as part of RunPipeline operation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for RunPipeline"
-      }
-    },
     "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Job": {
       "type": "structure",
       "members": {
+        "state": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1JobStateEnum",
+          "traits": {
+            "smithy.api#documentation": "The current state of the job."
+          }
+        },
         "id": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The internal ID for the job."
           }
         },
-        "state": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1JobStateEnum",
+        "endTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The current state of the job."
+            "smithy.api#documentation": "Output only. The time of job termination. This is absent if the job is still running."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time of job creation."
           }
         },
         "name": {
@@ -816,22 +905,10 @@
             "smithy.api#documentation": "Status capturing any error code or message related to job creation or execution."
           }
         },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time of job termination. This is absent if the job is still running."
-          }
-        },
         "dataflowJobDetails": {
           "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1DataflowJobDetails",
           "traits": {
             "smithy.api#documentation": "All the details that are specific to a Dataflow job."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time of job creation."
           }
         }
       },
@@ -880,83 +957,7 @@
         }
       }
     },
-    "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1DataflowJobDetails": {
-      "type": "structure",
-      "members": {
-        "sdkVersion": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1SdkVersion",
-          "traits": {
-            "smithy.api#documentation": "Output only. The SDK version used to run the job."
-          }
-        },
-        "currentWorkers": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. The current number of workers used to run the jobs. Only set to a value if the job is still running."
-          }
-        },
-        "resourceInfo": {
-          "target": "com.gcp.datapipelines_v1#DoubleMap",
-          "traits": {
-            "smithy.api#documentation": "Cached version of all the metrics of interest for the job. This value gets stored here when the job is terminated. As long as the job is running, this field is populated from the Dataflow API."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Pipeline job details specific to the Dataflow API. This is encapsulated here to allow for more executors to store their specific details separately."
-      }
-    },
-    "com.gcp.datapipelines_v1#DoubleMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Double"
-      }
-    },
-    "com.gcp.datapipelines_v1#GoogleRpcStatus": {
-      "type": "structure",
-      "members": {
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "details": {
-          "target": "com.gcp.datapipelines_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.datapipelines_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.datapipelines_v1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.datapipelines_v1#DocumentMap"
-      }
-    },
-    "com.gcp.datapipelines_v1#GetProjectsLocationsPipelinesRequest": {
+    "com.gcp.datapipelines_v1#StopProjectsLocationsPipelinesRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -965,6 +966,13 @@
             "smithy.api#documentation": "Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1StopPipelineRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -995,50 +1003,6 @@
         ]
       }
     },
-    "com.gcp.datapipelines_v1#GetProjectsLocationsPipelines": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datapipelines_v1#GetProjectsLocationsPipelinesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datapipelines_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.datapipelines_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Looks up a single pipeline. Returns a \"NOT_FOUND\" error if no such pipeline exists. Returns a \"FORBIDDEN\" error if the caller doesn't have permission to access it."
-      }
-    },
-    "com.gcp.datapipelines_v1#RunProjectsLocationsPipelinesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RunPipelineRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
     "com.gcp.datapipelines_v1#BadRequest": {
       "type": "structure",
       "members": {},
@@ -1063,6 +1027,113 @@
             "status": 409
           }
         ]
+      }
+    },
+    "com.gcp.datapipelines_v1#StopProjectsLocationsPipelines": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datapipelines_v1#StopProjectsLocationsPipelinesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datapipelines_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datapipelines_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datapipelines_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datapipelines_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:stop"
+        },
+        "smithy.api#documentation": "Freezes pipeline execution permanently. If there's a corresponding scheduler entry, it's deleted, and the pipeline state is changed to \"ARCHIVED\". However, pipeline metadata is retained."
+      }
+    },
+    "com.gcp.datapipelines_v1#PatchProjectsLocationsPipelinesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), and periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects). * `LOCATION_ID` is the canonical ID for the pipeline's location. The list of available locations can be obtained by calling `google.cloud.location.Locations.ListLocations`. Note that the Data Pipelines service is not available in all regions. It depends on Cloud Scheduler, an App Engine application, so it's only available in [App Engine regions](https://cloud.google.com/about/locations#region). * `PIPELINE_ID` is the ID of the pipeline. Must be unique for the selected project and location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list of fields to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.datapipelines_v1#PatchProjectsLocationsPipelines": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.datapipelines_v1#PatchProjectsLocationsPipelinesRequest"
+      },
+      "output": {
+        "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.datapipelines_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.datapipelines_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.datapipelines_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.datapipelines_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a pipeline. If successful, the updated Pipeline is returned. Returns `NOT_FOUND` if the pipeline doesn't exist. If UpdatePipeline does not return successfully, you can retry the UpdatePipeline request until you receive a successful response."
+      }
+    },
+    "com.gcp.datapipelines_v1#RunProjectsLocationsPipelinesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1RunPipelineRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
       }
     },
     "com.gcp.datapipelines_v1#RunProjectsLocationsPipelines": {
@@ -1188,37 +1259,23 @@
         "smithy.api#documentation": "Deletes a pipeline. If a scheduler job is attached to the pipeline, it will be deleted."
       }
     },
-    "com.gcp.datapipelines_v1#PatchProjectsLocationsPipelinesRequest": {
+    "com.gcp.datapipelines_v1#GetProjectsLocationsPipelinesRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), and periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects). * `LOCATION_ID` is the canonical ID for the pipeline's location. The list of available locations can be obtained by calling `google.cloud.location.Locations.ListLocations`. Note that the Data Pipelines service is not available in all regions. It depends on Cloud Scheduler, an App Engine application, so it's only available in [App Engine regions](https://cloud.google.com/about/locations#region). * `PIPELINE_ID` is the ID of the pipeline. Must be unique for the selected project and location.",
+            "smithy.api#documentation": "Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The list of fields to be updated.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.datapipelines_v1#PatchProjectsLocationsPipelines": {
+    "com.gcp.datapipelines_v1#GetProjectsLocationsPipelines": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.datapipelines_v1#PatchProjectsLocationsPipelinesRequest"
+        "target": "com.gcp.datapipelines_v1#GetProjectsLocationsPipelinesRequest"
       },
       "output": {
         "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline"
@@ -1229,31 +1286,24 @@
         },
         {
           "target": "com.gcp.datapipelines_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datapipelines_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datapipelines_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "PATCH",
+          "method": "GET",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Updates a pipeline. If successful, the updated Pipeline is returned. Returns `NOT_FOUND` if the pipeline doesn't exist. If UpdatePipeline does not return successfully, you can retry the UpdatePipeline request until you receive a successful response."
+        "smithy.api#documentation": "Looks up a single pipeline. Returns a \"NOT_FOUND\" error if no such pipeline exists. Returns a \"FORBIDDEN\" error if the caller doesn't have permission to access it."
       }
     },
     "com.gcp.datapipelines_v1#ListProjectsLocationsPipelinesRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "An expression for filtering the results of the request. If unspecified, all pipelines will be returned. Multiple filters can be applied and must be comma separated. Fields eligible for filtering are: + `type`: The type of the pipeline (streaming or batch). Allowed values are `ALL`, `BATCH`, and `STREAMING`. + `status`: The activity status of the pipeline. Allowed values are `ALL`, `ACTIVE`, `ARCHIVED`, and `PAUSED`. For example, to limit results to active batch processing pipelines: type:BATCH,status:ACTIVE",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "pageToken": {
@@ -1263,11 +1313,12 @@
             "smithy.api#httpQuery": "pageToken"
           }
         },
-        "filter": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "An expression for filtering the results of the request. If unspecified, all pipelines will be returned. Multiple filters can be applied and must be comma separated. Fields eligible for filtering are: + `type`: The type of the pipeline (streaming or batch). Allowed values are `ALL`, `BATCH`, and `STREAMING`. + `status`: The activity status of the pipeline. Allowed values are `ALL`, `ACTIVE`, `ARCHIVED`, and `PAUSED`. For example, to limit results to active batch processing pipelines: type:BATCH,status:ACTIVE",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "pageSize": {
@@ -1307,64 +1358,14 @@
         }
       }
     },
-    "com.gcp.datapipelines_v1#StopProjectsLocationsPipelinesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1StopPipelineRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.datapipelines_v1#StopProjectsLocationsPipelines": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.datapipelines_v1#StopProjectsLocationsPipelinesRequest"
-      },
-      "output": {
-        "target": "com.gcp.datapipelines_v1#GoogleCloudDatapipelinesV1Pipeline"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.datapipelines_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.datapipelines_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.datapipelines_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.datapipelines_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:stop"
-        },
-        "smithy.api#documentation": "Freezes pipeline execution permanently. If there's a corresponding scheduler entry, it's deleted, and the pipeline state is changed to \"ARCHIVED\". However, pipeline metadata is retained."
-      }
-    },
     "com.gcp.datapipelines_v1#ListProjectsLocationsPipelinesJobsRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit will be determined by the backend implementation.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "A page token, received from a previous `ListJobs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListJobs` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "parent": {
@@ -1375,11 +1376,11 @@
             "smithy.api#required": {}
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
+        "pageSize": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListJobs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListJobs` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit will be determined by the backend implementation.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }

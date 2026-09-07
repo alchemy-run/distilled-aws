@@ -59,7 +59,8 @@
         "alias": "listTokenPermissionGroups",
         "target": "getTokenPermissionGroup"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.accounts#CreateRequestType": {
@@ -5746,7 +5747,7 @@
         "target": "com.cloudflare.accounts#TokensPermissionGroupsGetResultItem"
       }
     },
-    "com.cloudflare.accounts#ListTokenPermissionGroupsRequest": {
+    "com.cloudflare.accounts#ListTokensPermissionGroupsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -5776,7 +5777,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.accounts#TokensPermissionGroupsListResultItemCategory": {
+    "com.cloudflare.accounts#ListTokensPermissionGroupsResultItemCategory": {
       "type": "enum",
       "members": {
         "DEVELOPER_PLATFORM": {
@@ -5859,7 +5860,7 @@
         }
       }
     },
-    "com.cloudflare.accounts#TokensPermissionGroupsListResultItemScopesItem": {
+    "com.cloudflare.accounts#ListTokensPermissionGroupsResultItemScopesItem": {
       "type": "enum",
       "members": {
         "COM_CLOUDFLARE_API_ACCOUNT": {
@@ -5888,13 +5889,13 @@
         }
       }
     },
-    "com.cloudflare.accounts#TokensPermissionGroupsListResultItemScopesList": {
+    "com.cloudflare.accounts#ListTokensPermissionGroupsResultItemScopesList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.accounts#TokensPermissionGroupsListResultItemScopesItem"
+        "target": "com.cloudflare.accounts#ListTokensPermissionGroupsResultItemScopesItem"
       }
     },
-    "com.cloudflare.accounts#TokensPermissionGroupsListResultItem": {
+    "com.cloudflare.accounts#ListTokensPermissionGroupsResultItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -5904,7 +5905,7 @@
           }
         },
         "category": {
-          "target": "com.cloudflare.accounts#TokensPermissionGroupsListResultItemCategory",
+          "target": "com.cloudflare.accounts#ListTokensPermissionGroupsResultItemCategory",
           "traits": {
             "smithy.api#documentation": "Product category that this permission group belongs to."
           }
@@ -5916,24 +5917,24 @@
           }
         },
         "scopes": {
-          "target": "com.cloudflare.accounts#TokensPermissionGroupsListResultItemScopesList",
+          "target": "com.cloudflare.accounts#ListTokensPermissionGroupsResultItemScopesList",
           "traits": {
             "smithy.api#documentation": "Resources to which the Permission Group is scoped"
           }
         }
       }
     },
-    "com.cloudflare.accounts#TokensPermissionGroupsListResultList": {
+    "com.cloudflare.accounts#ListTokensPermissionGroupsResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.accounts#TokensPermissionGroupsListResultItem"
+        "target": "com.cloudflare.accounts#ListTokensPermissionGroupsResultItem"
       }
     },
-    "com.cloudflare.accounts#ListTokenPermissionGroupsResponse": {
+    "com.cloudflare.accounts#ListTokensPermissionGroupsResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.accounts#TokensPermissionGroupsListResultList",
+          "target": "com.cloudflare.accounts#ListTokensPermissionGroupsResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -5944,13 +5945,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.accounts#ListTokenPermissionGroups": {
+    "com.cloudflare.accounts#ListTokensPermissionGroups": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.accounts#ListTokenPermissionGroupsRequest"
+        "target": "com.cloudflare.accounts#ListTokensPermissionGroupsRequest"
       },
       "output": {
-        "target": "com.cloudflare.accounts#ListTokenPermissionGroupsResponse"
+        "target": "com.cloudflare.accounts#ListTokensPermissionGroupsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5972,91 +5973,91 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.accounts#Create"
-        },
-        {
-          "target": "com.cloudflare.accounts#Delete"
-        },
-        {
-          "target": "com.cloudflare.accounts#Get"
-        },
-        {
-          "target": "com.cloudflare.accounts#List"
-        },
-        {
-          "target": "com.cloudflare.accounts#Update"
+          "target": "com.cloudflare.accounts#CreateAccount"
         },
         {
           "target": "com.cloudflare.accounts#CreateAccountOrganization"
         },
         {
+          "target": "com.cloudflare.accounts#CreateMember"
+        },
+        {
+          "target": "com.cloudflare.accounts#CreateSubscription"
+        },
+        {
+          "target": "com.cloudflare.accounts#CreateToken"
+        },
+        {
+          "target": "com.cloudflare.accounts#DeleteAccount"
+        },
+        {
+          "target": "com.cloudflare.accounts#DeleteMember"
+        },
+        {
+          "target": "com.cloudflare.accounts#DeleteSubscription"
+        },
+        {
+          "target": "com.cloudflare.accounts#DeleteToken"
+        },
+        {
+          "target": "com.cloudflare.accounts#GetAccount"
+        },
+        {
           "target": "com.cloudflare.accounts#GetAccountProfile"
+        },
+        {
+          "target": "com.cloudflare.accounts#GetMember"
+        },
+        {
+          "target": "com.cloudflare.accounts#GetRole"
+        },
+        {
+          "target": "com.cloudflare.accounts#GetSubscription"
+        },
+        {
+          "target": "com.cloudflare.accounts#GetToken"
+        },
+        {
+          "target": "com.cloudflare.accounts#GetTokenPermissionGroup"
+        },
+        {
+          "target": "com.cloudflare.accounts#ListAccounts"
+        },
+        {
+          "target": "com.cloudflare.accounts#ListLogAudits"
+        },
+        {
+          "target": "com.cloudflare.accounts#ListMembers"
+        },
+        {
+          "target": "com.cloudflare.accounts#ListRoles"
+        },
+        {
+          "target": "com.cloudflare.accounts#ListTokens"
+        },
+        {
+          "target": "com.cloudflare.accounts#ListTokensPermissionGroups"
+        },
+        {
+          "target": "com.cloudflare.accounts#PutTokenValue"
+        },
+        {
+          "target": "com.cloudflare.accounts#UpdateAccount"
         },
         {
           "target": "com.cloudflare.accounts#UpdateAccountProfile"
         },
         {
-          "target": "com.cloudflare.accounts#LogsAuditList"
+          "target": "com.cloudflare.accounts#UpdateMember"
         },
         {
-          "target": "com.cloudflare.accounts#MembersCreate"
+          "target": "com.cloudflare.accounts#UpdateSubscription"
         },
         {
-          "target": "com.cloudflare.accounts#MembersDelete"
+          "target": "com.cloudflare.accounts#UpdateToken"
         },
         {
-          "target": "com.cloudflare.accounts#MembersGet"
-        },
-        {
-          "target": "com.cloudflare.accounts#MembersList"
-        },
-        {
-          "target": "com.cloudflare.accounts#MembersUpdate"
-        },
-        {
-          "target": "com.cloudflare.accounts#RolesGet"
-        },
-        {
-          "target": "com.cloudflare.accounts#RolesList"
-        },
-        {
-          "target": "com.cloudflare.accounts#SubscriptionsCreate"
-        },
-        {
-          "target": "com.cloudflare.accounts#SubscriptionsDelete"
-        },
-        {
-          "target": "com.cloudflare.accounts#SubscriptionsGet"
-        },
-        {
-          "target": "com.cloudflare.accounts#SubscriptionsUpdate"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensCreate"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensDelete"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensGet"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensList"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensUpdate"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensVerify"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensPermissionGroupsGet"
-        },
-        {
-          "target": "com.cloudflare.accounts#ListTokenPermissionGroups"
-        },
-        {
-          "target": "com.cloudflare.accounts#TokensValueUpdate"
+          "target": "com.cloudflare.accounts#VerifyToken"
         }
       ],
       "traits": {

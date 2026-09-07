@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.kubernetesruntime#ListOperations": {
@@ -40,7 +41,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.kubernetesruntime#OperationsListResponseValueList",
+          "target": "com.azure.kubernetesruntime#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -56,7 +57,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesruntime#OperationsListResponseValueList": {
+    "com.azure.kubernetesruntime#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesruntime#Operation"
@@ -2535,58 +2536,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.kubernetesruntime#ListOperations"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#DeleteStorageClass"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#UpdateStorageClass"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#StorageClassCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#GetStorageClass"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListStorageClass"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#DeleteService"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#GetService"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListServices"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#DeleteLoadBalancer"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#GetLoadBalancer"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListLoadBalancers"
+          "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdate"
         },
         {
           "target": "com.azure.kubernetesruntime#DeleteBgpPeer"
         },
         {
-          "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdate"
+          "target": "com.azure.kubernetesruntime#DeleteLoadBalancer"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#DeleteService"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#DeleteStorageClass"
         },
         {
           "target": "com.azure.kubernetesruntime#GetBgpPeer"
         },
         {
+          "target": "com.azure.kubernetesruntime#GetLoadBalancer"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#GetService"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#GetStorageClass"
+        },
+        {
           "target": "com.azure.kubernetesruntime#ListBgpPeers"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListLoadBalancers"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListOperations"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListServices"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListStorageClass"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#StorageClassCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#UpdateStorageClass"
         }
       ],
       "traits": {

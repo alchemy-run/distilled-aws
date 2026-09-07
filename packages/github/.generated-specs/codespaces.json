@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.codespaces#ListInOrganizationRequest": {
@@ -8178,10 +8179,61 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.codespaces#ListInOrganization"
+          "target": "com.github.codespaces#AddRepositoryForSecretForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#ListOrgSecrets"
+          "target": "com.github.codespaces#AddSelectedRepoToOrgSecret"
+        },
+        {
+          "target": "com.github.codespaces#CheckPermissionsForDevcontainer"
+        },
+        {
+          "target": "com.github.codespaces#CodespaceMachinesForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#CreateForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#CreateOrUpdateOrgSecret"
+        },
+        {
+          "target": "com.github.codespaces#CreateOrUpdateRepoSecret"
+        },
+        {
+          "target": "com.github.codespaces#CreateOrUpdateSecretForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#CreateWithPrForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#CreateWithRepoForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#DeleteForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#DeleteFromOrganization"
+        },
+        {
+          "target": "com.github.codespaces#DeleteOrgSecret"
+        },
+        {
+          "target": "com.github.codespaces#DeleteRepoSecret"
+        },
+        {
+          "target": "com.github.codespaces#DeleteSecretForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#ExportForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#GetCodespacesForUserInOrg"
+        },
+        {
+          "target": "com.github.codespaces#GetExportDetailsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#GetForAuthenticatedUser"
         },
         {
           "target": "com.github.codespaces#GetOrgPublicKey"
@@ -8190,52 +8242,7 @@
           "target": "com.github.codespaces#GetOrgSecret"
         },
         {
-          "target": "com.github.codespaces#CreateOrUpdateOrgSecret"
-        },
-        {
-          "target": "com.github.codespaces#DeleteOrgSecret"
-        },
-        {
-          "target": "com.github.codespaces#ListSelectedReposForOrgSecret"
-        },
-        {
-          "target": "com.github.codespaces#SetSelectedReposForOrgSecret"
-        },
-        {
-          "target": "com.github.codespaces#AddSelectedRepoToOrgSecret"
-        },
-        {
-          "target": "com.github.codespaces#RemoveSelectedRepoFromOrgSecret"
-        },
-        {
-          "target": "com.github.codespaces#GetCodespacesForUserInOrg"
-        },
-        {
-          "target": "com.github.codespaces#DeleteFromOrganization"
-        },
-        {
-          "target": "com.github.codespaces#StopInOrganization"
-        },
-        {
-          "target": "com.github.codespaces#ListInRepositoryForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#CreateWithRepoForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#ListDevcontainersInRepositoryForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#RepoMachinesForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#PreFlightWithRepoForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#CheckPermissionsForDevcontainer"
-        },
-        {
-          "target": "com.github.codespaces#ListRepoSecrets"
+          "target": "com.github.codespaces#GetPublicKeyForAuthenticatedUser"
         },
         {
           "target": "com.github.codespaces#GetRepoPublicKey"
@@ -8244,73 +8251,67 @@
           "target": "com.github.codespaces#GetRepoSecret"
         },
         {
-          "target": "com.github.codespaces#CreateOrUpdateRepoSecret"
+          "target": "com.github.codespaces#GetSecretForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#DeleteRepoSecret"
-        },
-        {
-          "target": "com.github.codespaces#CreateWithPrForAuthenticatedUser"
+          "target": "com.github.codespaces#ListDevcontainersInRepositoryForAuthenticatedUser"
         },
         {
           "target": "com.github.codespaces#ListForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#CreateForAuthenticatedUser"
+          "target": "com.github.codespaces#ListInOrganization"
         },
         {
-          "target": "com.github.codespaces#ListSecretsForAuthenticatedUser"
+          "target": "com.github.codespaces#ListInRepositoryForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#GetPublicKeyForAuthenticatedUser"
+          "target": "com.github.codespaces#ListOrgSecrets"
         },
         {
-          "target": "com.github.codespaces#GetSecretForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#CreateOrUpdateSecretForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#DeleteSecretForAuthenticatedUser"
+          "target": "com.github.codespaces#ListRepoSecrets"
         },
         {
           "target": "com.github.codespaces#ListRepositoriesForSecretForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#SetRepositoriesForSecretForAuthenticatedUser"
+          "target": "com.github.codespaces#ListSecretsForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#AddRepositoryForSecretForAuthenticatedUser"
+          "target": "com.github.codespaces#ListSelectedReposForOrgSecret"
+        },
+        {
+          "target": "com.github.codespaces#PreFlightWithRepoForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#PublishForAuthenticatedUser"
         },
         {
           "target": "com.github.codespaces#RemoveRepositoryForSecretForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#GetForAuthenticatedUser"
+          "target": "com.github.codespaces#RemoveSelectedRepoFromOrgSecret"
         },
         {
-          "target": "com.github.codespaces#UpdateForAuthenticatedUser"
+          "target": "com.github.codespaces#RepoMachinesForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#DeleteForAuthenticatedUser"
+          "target": "com.github.codespaces#SetRepositoriesForSecretForAuthenticatedUser"
         },
         {
-          "target": "com.github.codespaces#ExportForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#GetExportDetailsForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#CodespaceMachinesForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.codespaces#PublishForAuthenticatedUser"
+          "target": "com.github.codespaces#SetSelectedReposForOrgSecret"
         },
         {
           "target": "com.github.codespaces#StartForAuthenticatedUser"
         },
         {
           "target": "com.github.codespaces#StopForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.codespaces#StopInOrganization"
+        },
+        {
+          "target": "com.github.codespaces#UpdateForAuthenticatedUser"
         }
       ],
       "traits": {

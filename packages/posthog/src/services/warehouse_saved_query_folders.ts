@@ -136,6 +136,27 @@ export const DataWarehouseSavedQueryFolder = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataWarehouseSavedQueryFolder",
 }) as any as S.Schema<DataWarehouseSavedQueryFolder>;
 
+export interface GetWarehouseSavedQueryFolderRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse saved query folder. */
+  id: string;
+}
+export const GetWarehouseSavedQueryFolderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_saved_query_folders/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWarehouseSavedQueryFolderRequest",
+}) as any as S.Schema<GetWarehouseSavedQueryFolderRequest>;
+
 export interface ListWarehouseSavedQueryFoldersRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -155,23 +176,23 @@ export const ListWarehouseSavedQueryFoldersRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListWarehouseSavedQueryFoldersRequest",
 }) as any as S.Schema<ListWarehouseSavedQueryFoldersRequest>;
 
-export type WarehouseSavedQueryFoldersListResponseBodyList =
+export type ListWarehouseSavedQueryFoldersResponseBodyList =
   Array<DataWarehouseSavedQueryFolder>;
-export const WarehouseSavedQueryFoldersListResponseBodyList =
+export const ListWarehouseSavedQueryFoldersResponseBodyList =
   /*@__PURE__*/ S.Array(
     DataWarehouseSavedQueryFolder,
-  ) as any as S.Schema<WarehouseSavedQueryFoldersListResponseBodyList>;
+  ) as any as S.Schema<ListWarehouseSavedQueryFoldersResponseBodyList>;
 
 export type ListWarehouseSavedQueryFoldersResponse =
-  WarehouseSavedQueryFoldersListResponseBodyList;
+  ListWarehouseSavedQueryFoldersResponseBodyList;
 export const ListWarehouseSavedQueryFoldersResponse = /*@__PURE__*/ S.suspend(
   () =>
-    WarehouseSavedQueryFoldersListResponseBodyList.pipe(T.RawResponseRoot()),
+    ListWarehouseSavedQueryFoldersResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListWarehouseSavedQueryFoldersResponse",
 }) as any as S.Schema<ListWarehouseSavedQueryFoldersResponse>;
 
-export interface UpdateWarehouseSavedQueryFolderPartialRequest {
+export interface UpdateWarehouseSavedQueryFoldersPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this data warehouse saved query folder. */
@@ -179,7 +200,7 @@ export interface UpdateWarehouseSavedQueryFolderPartialRequest {
   /** Display name for the folder used to organize saved queries in the SQL editor sidebar. */
   name?: string;
 }
-export const UpdateWarehouseSavedQueryFolderPartialRequest =
+export const UpdateWarehouseSavedQueryFoldersPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -193,8 +214,8 @@ export const UpdateWarehouseSavedQueryFolderPartialRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateWarehouseSavedQueryFolderPartialRequest",
-  }) as any as S.Schema<UpdateWarehouseSavedQueryFolderPartialRequest>;
+    identifier: "UpdateWarehouseSavedQueryFoldersPartialRequest",
+  }) as any as S.Schema<UpdateWarehouseSavedQueryFoldersPartialRequest>;
 
 export interface WarehouseSavedQueryFoldersDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -224,28 +245,6 @@ export const WarehouseSavedQueryFoldersDestroyResponse =
     identifier: "WarehouseSavedQueryFoldersDestroyResponse",
   }) as any as S.Schema<WarehouseSavedQueryFoldersDestroyResponse>;
 
-export interface WarehouseSavedQueryFoldersRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse saved query folder. */
-  id: string;
-}
-export const WarehouseSavedQueryFoldersRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_saved_query_folders/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "WarehouseSavedQueryFoldersRetrieveRequest",
-  }) as any as S.Schema<WarehouseSavedQueryFoldersRetrieveRequest>;
-
 export type CreateWarehouseSavedQueryFolderError =
   | BadRequest
   | Forbidden
@@ -260,6 +259,23 @@ export const createWarehouseSavedQueryFolder: API.OperationMethod<
   input: CreateWarehouseSavedQueryFolderRequest,
   output: DataWarehouseSavedQueryFolder,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWarehouseSavedQueryFolderError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getWarehouseSavedQueryFolder: API.OperationMethod<
+  GetWarehouseSavedQueryFolderRequest,
+  DataWarehouseSavedQueryFolder,
+  GetWarehouseSavedQueryFolderError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseSavedQueryFolderRequest,
+  output: DataWarehouseSavedQueryFolder,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -281,18 +297,18 @@ export const listWarehouseSavedQueryFolders: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateWarehouseSavedQueryFolderPartialError =
+export type UpdateWarehouseSavedQueryFoldersPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const updateWarehouseSavedQueryFolderPartial: API.OperationMethod<
-  UpdateWarehouseSavedQueryFolderPartialRequest,
+export const updateWarehouseSavedQueryFoldersPartial: API.OperationMethod<
+  UpdateWarehouseSavedQueryFoldersPartialRequest,
   DataWarehouseSavedQueryFolder,
-  UpdateWarehouseSavedQueryFolderPartialError,
+  UpdateWarehouseSavedQueryFoldersPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWarehouseSavedQueryFolderPartialRequest,
+  input: UpdateWarehouseSavedQueryFoldersPartialRequest,
   output: DataWarehouseSavedQueryFolder,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -311,23 +327,6 @@ export const warehouseSavedQueryFoldersDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WarehouseSavedQueryFoldersDestroyRequest,
   output: WarehouseSavedQueryFoldersDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseSavedQueryFoldersRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const warehouseSavedQueryFoldersRetrieve: API.OperationMethod<
-  WarehouseSavedQueryFoldersRetrieveRequest,
-  DataWarehouseSavedQueryFolder,
-  WarehouseSavedQueryFoldersRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseSavedQueryFoldersRetrieveRequest,
-  output: DataWarehouseSavedQueryFolder,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

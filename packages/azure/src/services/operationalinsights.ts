@@ -839,7 +839,7 @@ export const DeleteDataSourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDataSourceResponse",
 }) as any as S.Schema<DeleteDataSourceResponse>;
 
-export interface DeleteGatewayRequest {
+export interface DeleteGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -849,7 +849,7 @@ export interface DeleteGatewayRequest {
   /** The Log Analytics gateway Id. */
   gatewayId: string;
 }
-export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -864,15 +864,15 @@ export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteGatewayRequest",
-}) as any as S.Schema<DeleteGatewayRequest>;
+  identifier: "DeleteGatewaysRequest",
+}) as any as S.Schema<DeleteGatewaysRequest>;
 
-export interface DeleteGatewayResponse {}
-export const DeleteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteGatewaysResponse {}
+export const DeleteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteGatewayResponse",
-}) as any as S.Schema<DeleteGatewayResponse>;
+  identifier: "DeleteGatewaysResponse",
+}) as any as S.Schema<DeleteGatewaysResponse>;
 
 export interface DeleteLinkedServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -930,13 +930,13 @@ export const LinkedServiceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LinkedServiceProperties>;
 
 /** Resource tags. */
-export type LinkedServicesDeleteResponseTagsMap = {
+export type DeleteLinkedServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LinkedServicesDeleteResponseTagsMap = /*@__PURE__*/ S.Record(
+export const DeleteLinkedServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LinkedServicesDeleteResponseTagsMap>;
+) as any as S.Schema<DeleteLinkedServiceResponseTagsMap>;
 
 export interface DeleteLinkedServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -950,7 +950,7 @@ export interface DeleteLinkedServiceResponse {
   /** The properties of the linked service. */
   properties: LinkedServiceProperties;
   /** Resource tags. */
-  tags?: LinkedServicesDeleteResponseTagsMap;
+  tags?: DeleteLinkedServiceResponseTagsMap;
 }
 export const DeleteLinkedServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -959,19 +959,19 @@ export const DeleteLinkedServiceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: LinkedServiceProperties,
-    tags: S.optional(LinkedServicesDeleteResponseTagsMap),
+    tags: S.optional(DeleteLinkedServiceResponseTagsMap),
   }),
 ).annotate({
   identifier: "DeleteLinkedServiceResponse",
 }) as any as S.Schema<DeleteLinkedServiceResponse>;
 
-export type LinkedStorageAccountsDeleteRequestDataSourceType =
+export type DeleteLinkedStorageAccountRequestDataSourceType =
   | "CustomLogs"
   | "AzureWatson"
   | "Query"
   | "Ingestion"
   | "Alerts";
-export const LinkedStorageAccountsDeleteRequestDataSourceType =
+export const DeleteLinkedStorageAccountRequestDataSourceType =
   /*@__PURE__*/ S.String;
 
 export interface DeleteLinkedStorageAccountRequest {
@@ -983,7 +983,7 @@ export interface DeleteLinkedStorageAccountRequest {
   workspaceName: string;
   /** Linked storage accounts type. */
   dataSourceType:
-    | LinkedStorageAccountsDeleteRequestDataSourceType
+    | DeleteLinkedStorageAccountRequestDataSourceType
     | (string & {});
 }
 export const DeleteLinkedStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
@@ -991,7 +991,7 @@ export const DeleteLinkedStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    dataSourceType: LinkedStorageAccountsDeleteRequestDataSourceType.pipe(
+    dataSourceType: DeleteLinkedStorageAccountRequestDataSourceType.pipe(
       T.Label(),
     ),
   }).pipe(
@@ -1080,7 +1080,7 @@ export const DeleteQueryPackResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteQueryPackResponse",
 }) as any as S.Schema<DeleteQueryPackResponse>;
 
-export interface DeleteSavedSearcheRequest {
+export interface DeleteSavedSearchRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1090,7 +1090,7 @@ export interface DeleteSavedSearcheRequest {
   /** The id of the saved search. */
   savedSearchId: string;
 }
-export const DeleteSavedSearcheRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSavedSearchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1105,15 +1105,15 @@ export const DeleteSavedSearcheRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteSavedSearcheRequest",
-}) as any as S.Schema<DeleteSavedSearcheRequest>;
+  identifier: "DeleteSavedSearchRequest",
+}) as any as S.Schema<DeleteSavedSearchRequest>;
 
-export interface DeleteSavedSearcheResponse {}
-export const DeleteSavedSearcheResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSavedSearchResponse {}
+export const DeleteSavedSearchResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteSavedSearcheResponse",
-}) as any as S.Schema<DeleteSavedSearcheResponse>;
+  identifier: "DeleteSavedSearchResponse",
+}) as any as S.Schema<DeleteSavedSearchResponse>;
 
 export interface DeleteStorageInsightConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1351,16 +1351,15 @@ export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetClusterRequest>;
 
 /** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
+) as any as S.Schema<GetClusterResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ClustersGetResponseIdentity =
-  ClustersCreateOrUpdateResponseIdentity;
-export const ClustersGetResponseIdentity =
+export type GetClusterResponseIdentity = ClustersCreateOrUpdateResponseIdentity;
+export const GetClusterResponseIdentity =
   ClustersCreateOrUpdateResponseIdentity;
 
 export interface GetClusterResponse {
@@ -1373,7 +1372,7 @@ export interface GetClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
+  tags?: GetClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Log Analytics cluster properties. */
@@ -1389,7 +1388,7 @@ export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersGetResponseTagsMap),
+    tags: S.optional(GetClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
     identity: S.optional(ClustersCreateOrUpdateResponseIdentity),
@@ -1480,13 +1479,13 @@ export const GetDataSourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDataSourceRequest>;
 
 /** Resource tags. */
-export type DataSourcesGetResponseTagsMap = {
+export type GetDataSourceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DataSourcesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDataSourceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DataSourcesGetResponseTagsMap>;
+) as any as S.Schema<GetDataSourceResponseTagsMap>;
 
 export interface GetDataSourceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1504,7 +1503,7 @@ export interface GetDataSourceResponse {
   /** The kind of the DataSource. */
   kind: DataSourceKind;
   /** Resource tags. */
-  tags?: DataSourcesGetResponseTagsMap;
+  tags?: GetDataSourceResponseTagsMap;
 }
 export const GetDataSourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1515,7 +1514,7 @@ export const GetDataSourceResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.Unknown,
     etag: S.optional(S.String),
     kind: DataSourceKind,
-    tags: S.optional(DataSourcesGetResponseTagsMap),
+    tags: S.optional(GetDataSourceResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetDataSourceResponse",
@@ -1550,13 +1549,13 @@ export const GetLinkedServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLinkedServiceRequest>;
 
 /** Resource tags. */
-export type LinkedServicesGetResponseTagsMap = {
+export type GetLinkedServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LinkedServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetLinkedServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LinkedServicesGetResponseTagsMap>;
+) as any as S.Schema<GetLinkedServiceResponseTagsMap>;
 
 export interface GetLinkedServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1570,7 +1569,7 @@ export interface GetLinkedServiceResponse {
   /** The properties of the linked service. */
   properties: LinkedServiceProperties;
   /** Resource tags. */
-  tags?: LinkedServicesGetResponseTagsMap;
+  tags?: GetLinkedServiceResponseTagsMap;
 }
 export const GetLinkedServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1579,19 +1578,19 @@ export const GetLinkedServiceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: LinkedServiceProperties,
-    tags: S.optional(LinkedServicesGetResponseTagsMap),
+    tags: S.optional(GetLinkedServiceResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetLinkedServiceResponse",
 }) as any as S.Schema<GetLinkedServiceResponse>;
 
-export type LinkedStorageAccountsGetRequestDataSourceType =
+export type GetLinkedStorageAccountRequestDataSourceType =
   | "CustomLogs"
   | "AzureWatson"
   | "Query"
   | "Ingestion"
   | "Alerts";
-export const LinkedStorageAccountsGetRequestDataSourceType =
+export const GetLinkedStorageAccountRequestDataSourceType =
   /*@__PURE__*/ S.String;
 
 export interface GetLinkedStorageAccountRequest {
@@ -1602,14 +1601,14 @@ export interface GetLinkedStorageAccountRequest {
   /** The name of the workspace. */
   workspaceName: string;
   /** Linked storage accounts type. */
-  dataSourceType: LinkedStorageAccountsGetRequestDataSourceType | (string & {});
+  dataSourceType: GetLinkedStorageAccountRequestDataSourceType | (string & {});
 }
 export const GetLinkedStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    dataSourceType: LinkedStorageAccountsGetRequestDataSourceType.pipe(
+    dataSourceType: GetLinkedStorageAccountRequestDataSourceType.pipe(
       T.Label(),
     ),
   }).pipe(
@@ -1985,13 +1984,11 @@ export const GetQueryPackRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetQueryPackRequest>;
 
 /** Resource tags. */
-export type QueryPacksGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const QueryPacksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetQueryPackResponseTagsMap = { [key: string]: string | undefined };
+export const GetQueryPackResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<QueryPacksGetResponseTagsMap>;
+) as any as S.Schema<GetQueryPackResponseTagsMap>;
 
 /** Properties that define a Log Analytics QueryPack resource. */
 export interface LogAnalyticsQueryPackProperties {
@@ -2025,7 +2022,7 @@ export interface GetQueryPackResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: QueryPacksGetResponseTagsMap;
+  tags?: GetQueryPackResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties that define a Log Analytics QueryPack resource. */
@@ -2037,7 +2034,7 @@ export const GetQueryPackResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(QueryPacksGetResponseTagsMap),
+    tags: S.optional(GetQueryPackResponseTagsMap),
     location: S.String,
     properties: LogAnalyticsQueryPackProperties,
   }),
@@ -2045,7 +2042,7 @@ export const GetQueryPackResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetQueryPackResponse",
 }) as any as S.Schema<GetQueryPackResponse>;
 
-export interface GetSavedSearcheRequest {
+export interface GetSavedSearchRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2055,7 +2052,7 @@ export interface GetSavedSearcheRequest {
   /** The id of the saved search. */
   savedSearchId: string;
 }
-export const GetSavedSearcheRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSavedSearchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2070,8 +2067,8 @@ export const GetSavedSearcheRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSavedSearcheRequest",
-}) as any as S.Schema<GetSavedSearcheRequest>;
+  identifier: "GetSavedSearchRequest",
+}) as any as S.Schema<GetSavedSearchRequest>;
 
 /** A tag of a saved search. */
 export interface Tag {
@@ -2124,7 +2121,7 @@ export const SavedSearchProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SavedSearchProperties",
 }) as any as S.Schema<SavedSearchProperties>;
 
-export interface GetSavedSearcheResponse {
+export interface GetSavedSearchResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2138,7 +2135,7 @@ export interface GetSavedSearcheResponse {
   /** The ETag of the saved search. To override an existing saved search, use "*" or specify the current Etag */
   etag?: string;
 }
-export const GetSavedSearcheResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSavedSearchResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2148,8 +2145,8 @@ export const GetSavedSearcheResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetSavedSearcheResponse",
-}) as any as S.Schema<GetSavedSearcheResponse>;
+  identifier: "GetSavedSearchResponse",
+}) as any as S.Schema<GetSavedSearchResponse>;
 
 export interface GetSchemaRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2354,7 +2351,7 @@ export const SearchGetSchemaResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchGetSchemaResponse",
 }) as any as S.Schema<SearchGetSchemaResponse>;
 
-export interface GetSharedKeySharedKeyRequest {
+export interface GetSharedKeysSharedKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2362,7 +2359,7 @@ export interface GetSharedKeySharedKeyRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const GetSharedKeySharedKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSharedKeysSharedKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2376,8 +2373,8 @@ export const GetSharedKeySharedKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSharedKeySharedKeyRequest",
-}) as any as S.Schema<GetSharedKeySharedKeyRequest>;
+  identifier: "GetSharedKeysSharedKeysRequest",
+}) as any as S.Schema<GetSharedKeysSharedKeysRequest>;
 
 /** The shared keys for a workspace. */
 export interface SharedKeys {
@@ -2490,13 +2487,13 @@ export const StorageInsightProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StorageInsightProperties>;
 
 /** Resource tags. */
-export type StorageInsightConfigsGetResponseTagsMap = {
+export type GetStorageInsightConfigResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageInsightConfigsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetStorageInsightConfigResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageInsightConfigsGetResponseTagsMap>;
+) as any as S.Schema<GetStorageInsightConfigResponseTagsMap>;
 
 export interface GetStorageInsightConfigResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2512,7 +2509,7 @@ export interface GetStorageInsightConfigResponse {
   /** The ETag of the storage insight. */
   eTag?: string;
   /** Resource tags. */
-  tags?: StorageInsightConfigsGetResponseTagsMap;
+  tags?: GetStorageInsightConfigResponseTagsMap;
 }
 export const GetStorageInsightConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2522,7 +2519,7 @@ export const GetStorageInsightConfigResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(StorageInsightProperties),
     eTag: S.optional(S.String),
-    tags: S.optional(StorageInsightConfigsGetResponseTagsMap),
+    tags: S.optional(GetStorageInsightConfigResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetStorageInsightConfigResponse",
@@ -3063,13 +3060,11 @@ export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
 
 /** The provisioning state of the workspace. */
 export type WorkspaceEntityStatus =
@@ -3393,7 +3388,7 @@ export interface GetWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkspacesGetResponseTagsMap;
+  tags?: GetWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Workspace properties. */
@@ -3409,7 +3404,7 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkspaceProperties),
     identity: S.optional(Identity),
@@ -3419,7 +3414,7 @@ export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetWorkspaceResponse",
 }) as any as S.Schema<GetWorkspaceResponse>;
 
-export interface GetWorkspaceNspRequest {
+export interface GetWorkspaceNSPRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3429,7 +3424,7 @@ export interface GetWorkspaceNspRequest {
   /** The name for a network security perimeter configuration */
   networkSecurityPerimeterConfigurationName: string;
 }
-export const GetWorkspaceNspRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkspaceNSPRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3444,8 +3439,8 @@ export const GetWorkspaceNspRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetWorkspaceNspRequest",
-}) as any as S.Schema<GetWorkspaceNspRequest>;
+  identifier: "GetWorkspaceNSPRequest",
+}) as any as S.Schema<GetWorkspaceNSPRequest>;
 
 /** Provisioning state of a network security perimeter configuration that is being created or updated. */
 export type NetworkSecurityPerimeterConfigurationProvisioningState =
@@ -3747,7 +3742,7 @@ export const NetworkSecurityPerimeterConfigurationProperties =
     identifier: "NetworkSecurityPerimeterConfigurationProperties",
   }) as any as S.Schema<NetworkSecurityPerimeterConfigurationProperties>;
 
-export interface GetWorkspaceNspResponse {
+export interface GetWorkspaceNSPResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3758,7 +3753,7 @@ export interface GetWorkspaceNspResponse {
   systemData?: SystemData;
   properties?: NetworkSecurityPerimeterConfigurationProperties;
 }
-export const GetWorkspaceNspResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkspaceNSPResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3767,53 +3762,8 @@ export const GetWorkspaceNspResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
   }),
 ).annotate({
-  identifier: "GetWorkspaceNspResponse",
-}) as any as S.Schema<GetWorkspaceNspResponse>;
-
-export interface GetWorkspacePurgePurgeStatusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** In a purge status request, this is the Id of the operation the status of which is returned. */
-  purgeId: string;
-}
-export const GetWorkspacePurgePurgeStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    purgeId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/operations/{purgeId}",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetWorkspacePurgePurgeStatusRequest",
-}) as any as S.Schema<GetWorkspacePurgePurgeStatusRequest>;
-
-/** Status of the operation represented by the requested Id. */
-export type PurgeState = "pending" | "completed";
-export const PurgeState = /*@__PURE__*/ S.String;
-
-/** Response containing status for a specific purge operation. */
-export interface WorkspacePurgeStatusResponse {
-  /** Status of the operation represented by the requested Id. */
-  status: PurgeState;
-}
-export const WorkspacePurgeStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: PurgeState,
-  }),
-).annotate({
-  identifier: "WorkspacePurgeStatusResponse",
-}) as any as S.Schema<WorkspacePurgeStatusResponse>;
+  identifier: "GetWorkspaceNSPResponse",
+}) as any as S.Schema<GetWorkspaceNSPResponse>;
 
 /** Resource tags. */
 export type LinkedServicesCreateOrUpdateRequestTagsMap = {
@@ -4036,18 +3986,18 @@ export const AvailableServiceTier = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvailableServiceTier",
 }) as any as S.Schema<AvailableServiceTier>;
 
-export type AvailableServiceTiersListByWorkspaceResponseBodyList =
+export type ListAvailableServiceTierByWorkspaceResponseBodyList =
   Array<AvailableServiceTier>;
-export const AvailableServiceTiersListByWorkspaceResponseBodyList =
+export const ListAvailableServiceTierByWorkspaceResponseBodyList =
   /*@__PURE__*/ S.Array(
     AvailableServiceTier,
-  ) as any as S.Schema<AvailableServiceTiersListByWorkspaceResponseBodyList>;
+  ) as any as S.Schema<ListAvailableServiceTierByWorkspaceResponseBodyList>;
 
 export type ListAvailableServiceTierByWorkspaceResponse =
-  AvailableServiceTiersListByWorkspaceResponseBodyList;
+  ListAvailableServiceTierByWorkspaceResponseBodyList;
 export const ListAvailableServiceTierByWorkspaceResponse =
   /*@__PURE__*/ S.suspend(() =>
-    AvailableServiceTiersListByWorkspaceResponseBodyList.pipe(
+    ListAvailableServiceTierByWorkspaceResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
@@ -4475,15 +4425,15 @@ export const IntelligencePack = /*@__PURE__*/ S.suspend(() =>
   identifier: "IntelligencePack",
 }) as any as S.Schema<IntelligencePack>;
 
-export type IntelligencePacksListResponseBodyList = Array<IntelligencePack>;
-export const IntelligencePacksListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListIntelligencePacksResponseBodyList = Array<IntelligencePack>;
+export const ListIntelligencePacksResponseBodyList = /*@__PURE__*/ S.Array(
   IntelligencePack,
-) as any as S.Schema<IntelligencePacksListResponseBodyList>;
+) as any as S.Schema<ListIntelligencePacksResponseBodyList>;
 
 export type ListIntelligencePacksResponse =
-  IntelligencePacksListResponseBodyList;
+  ListIntelligencePacksResponseBodyList;
 export const ListIntelligencePacksResponse = /*@__PURE__*/ S.suspend(() =>
-  IntelligencePacksListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListIntelligencePacksResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListIntelligencePacksResponse",
 }) as any as S.Schema<ListIntelligencePacksResponse>;
@@ -4998,7 +4948,7 @@ export const ListQueryPacksRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListQueryPacksRequest",
 }) as any as S.Schema<ListQueryPacksRequest>;
 
-export interface ListSavedSearcheByWorkspaceRequest {
+export interface ListSavedSearchByWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5006,7 +4956,7 @@ export interface ListSavedSearcheByWorkspaceRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const ListSavedSearcheByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSavedSearchByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5020,8 +4970,8 @@ export const ListSavedSearcheByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListSavedSearcheByWorkspaceRequest",
-}) as any as S.Schema<ListSavedSearcheByWorkspaceRequest>;
+  identifier: "ListSavedSearchByWorkspaceRequest",
+}) as any as S.Schema<ListSavedSearchByWorkspaceRequest>;
 
 /** Value object for saved search results. */
 export interface SavedSearch {
@@ -5404,7 +5354,7 @@ export const ListWorkspaceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWorkspaceByResourceGroupRequest",
 }) as any as S.Schema<ListWorkspaceByResourceGroupRequest>;
 
-export interface ListWorkspaceNspRequest {
+export interface ListWorkspaceNSPRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5412,7 +5362,7 @@ export interface ListWorkspaceNspRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const ListWorkspaceNspRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkspaceNSPRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5426,8 +5376,8 @@ export const ListWorkspaceNspRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListWorkspaceNspRequest",
-}) as any as S.Schema<ListWorkspaceNspRequest>;
+  identifier: "ListWorkspaceNSPRequest",
+}) as any as S.Schema<ListWorkspaceNSPRequest>;
 
 /** Network security perimeter (NSP) configuration resource */
 export interface NetworkSecurityPerimeterConfiguration {
@@ -5455,26 +5405,26 @@ export const NetworkSecurityPerimeterConfiguration = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<NetworkSecurityPerimeterConfiguration>;
 
 /** Array of network security perimeter results. */
-export type WorkspacesListNSPResponseValueList =
+export type ListWorkspaceNSPResponseValueList =
   Array<NetworkSecurityPerimeterConfiguration>;
-export const WorkspacesListNSPResponseValueList = /*@__PURE__*/ S.Array(
+export const ListWorkspaceNSPResponseValueList = /*@__PURE__*/ S.Array(
   NetworkSecurityPerimeterConfiguration,
-) as any as S.Schema<WorkspacesListNSPResponseValueList>;
+) as any as S.Schema<ListWorkspaceNSPResponseValueList>;
 
-export interface ListWorkspaceNspResponse {
+export interface ListWorkspaceNSPResponse {
   /** Array of network security perimeter results. */
-  value?: WorkspacesListNSPResponseValueList;
+  value?: ListWorkspaceNSPResponseValueList;
   /** The link used to get the next page of results. */
   nextLink?: string;
 }
-export const ListWorkspaceNspResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkspaceNSPResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WorkspacesListNSPResponseValueList),
+    value: S.optional(ListWorkspaceNSPResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListWorkspaceNspResponse",
-}) as any as S.Schema<ListWorkspaceNspResponse>;
+  identifier: "ListWorkspaceNSPResponse",
+}) as any as S.Schema<ListWorkspaceNSPResponse>;
 
 export interface ListWorkspacesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5494,6 +5444,162 @@ export const ListWorkspacesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListWorkspacesRequest",
 }) as any as S.Schema<ListWorkspacesRequest>;
+
+export interface MigrateTableRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The name of the table. */
+  tableName: string;
+}
+export const MigrateTableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    tableName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "MigrateTableRequest",
+}) as any as S.Schema<MigrateTableRequest>;
+
+export interface MigrateTableResponse {}
+export const MigrateTableResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MigrateTableResponse",
+}) as any as S.Schema<MigrateTableResponse>;
+
+/** User-defined filters to return data which will be purged from the table. */
+export interface WorkspacePurgeBodyFilters {
+  /** The column of the table over which the given query should run */
+  column?: string;
+  /** A query operator to evaluate over the provided column and value(s). Supported operators are ==, =~, in, in~, >, >=, <, <=, between, and have the same behavior as they would in a KQL query. */
+  operator?: string;
+  /** the value for the operator to function over. This can be a number (e.g., > 100), a string (timestamp >= '2017-09-01') or array of values. */
+  value?: unknown;
+  /** When filtering over custom dimensions, this key will be used as the name of the custom dimension. */
+  key?: string;
+}
+export const WorkspacePurgeBodyFilters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    column: S.optional(S.String),
+    operator: S.optional(S.String),
+    value: S.optional(S.Unknown),
+    key: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkspacePurgeBodyFilters",
+}) as any as S.Schema<WorkspacePurgeBodyFilters>;
+
+/** The set of columns and filters (queries) to run over them to purge the resulting data. */
+export type PurgeWorkspacePurgeRequestFiltersList =
+  Array<WorkspacePurgeBodyFilters>;
+export const PurgeWorkspacePurgeRequestFiltersList = /*@__PURE__*/ S.Array(
+  WorkspacePurgeBodyFilters,
+) as any as S.Schema<PurgeWorkspacePurgeRequestFiltersList>;
+
+export interface PurgeWorkspacePurgeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** Table from which to purge data. */
+  table: string;
+  /** The set of columns and filters (queries) to run over them to purge the resulting data. */
+  filters: PurgeWorkspacePurgeRequestFiltersList;
+}
+export const PurgeWorkspacePurgeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    table: S.String,
+    filters: PurgeWorkspacePurgeRequestFiltersList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/purge",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeWorkspacePurgeRequest",
+}) as any as S.Schema<PurgeWorkspacePurgeRequest>;
+
+export interface PurgeWorkspacePurgeResponse {}
+export const PurgeWorkspacePurgeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeWorkspacePurgeResponse",
+}) as any as S.Schema<PurgeWorkspacePurgeResponse>;
+
+/** The time range over which a data lake purge request operates. */
+export interface WorkspacePurgeLakeDataTimeRange {
+  /** The inclusive start of the time range, in UTC. Must fall on an hour boundary (minutes and seconds must be zero). */
+  startTime: string;
+  /** The exclusive end of the time range, in UTC. Must fall on an hour boundary and be earlier than the start of the current hour. */
+  endTime: string;
+}
+export const WorkspacePurgeLakeDataTimeRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.String,
+    endTime: S.String,
+  }),
+).annotate({
+  identifier: "WorkspacePurgeLakeDataTimeRange",
+}) as any as S.Schema<WorkspacePurgeLakeDataTimeRange>;
+
+export interface PurgeWorkspacePurgeLakeDataRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The name of the table from which to purge data lake data. Must be an Auxiliary table, or an Analytics table that is mirrored to the data lake. */
+  table: string;
+  /** The time range over which data lake data is purged. */
+  timeRange: WorkspacePurgeLakeDataTimeRange;
+}
+export const PurgeWorkspacePurgeLakeDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    table: S.String,
+    timeRange: WorkspacePurgeLakeDataTimeRange,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/purgeLakeData",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeWorkspacePurgeLakeDataRequest",
+}) as any as S.Schema<PurgeWorkspacePurgeLakeDataRequest>;
+
+export interface PurgeWorkspacePurgeLakeDataResponse {}
+export const PurgeWorkspacePurgeLakeDataResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeWorkspacePurgeLakeDataResponse",
+}) as any as S.Schema<PurgeWorkspacePurgeLakeDataResponse>;
 
 export type LogAnalyticsQueryPackQueryPropertiesInputTagsValueList =
   Array<string>;
@@ -5543,7 +5649,7 @@ export const LogAnalyticsQueryPackQueryPropertiesInput =
     identifier: "LogAnalyticsQueryPackQueryPropertiesInput",
   }) as any as S.Schema<LogAnalyticsQueryPackQueryPropertiesInput>;
 
-export interface QueriesPutRequest {
+export interface PutQueryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5555,7 +5661,7 @@ export interface QueriesPutRequest {
   /** Properties that define an Log Analytics QueryPack-Query resource. */
   properties?: LogAnalyticsQueryPackQueryPropertiesInput;
 }
-export const QueriesPutRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5571,10 +5677,10 @@ export const QueriesPutRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "QueriesPutRequest",
-}) as any as S.Schema<QueriesPutRequest>;
+  identifier: "PutQueryRequest",
+}) as any as S.Schema<PutQueryRequest>;
 
-export interface QueriesPutResponse {
+export interface PutQueryResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5586,7 +5692,7 @@ export interface QueriesPutResponse {
   /** Properties that define an Log Analytics QueryPack-Query resource. */
   properties?: LogAnalyticsQueryPackQueryProperties;
 }
-export const QueriesPutResponse = /*@__PURE__*/ S.suspend(() =>
+export const PutQueryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5595,112 +5701,8 @@ export const QueriesPutResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(LogAnalyticsQueryPackQueryProperties),
   }),
 ).annotate({
-  identifier: "QueriesPutResponse",
-}) as any as S.Schema<QueriesPutResponse>;
-
-/** The related categories for the function. */
-export type LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList =
-  Array<string>;
-export const LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList>;
-
-/** The related resource types for the function. */
-export type LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList =
-  Array<string>;
-export const LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList>;
-
-/** The related Log Analytics solutions for the function. */
-export type LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList =
-  Array<string>;
-export const LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList>;
-
-/** The related metadata items for the function. */
-export interface LogAnalyticsQueryPackQuerySearchPropertiesRelated {
-  /** The related categories for the function. */
-  categories?: LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList;
-  /** The related resource types for the function. */
-  resourceTypes?: LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList;
-  /** The related Log Analytics solutions for the function. */
-  solutions?: LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList;
-}
-export const LogAnalyticsQueryPackQuerySearchPropertiesRelated =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      categories: S.optional(
-        LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList,
-      ),
-      resourceTypes: S.optional(
-        LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList,
-      ),
-      solutions: S.optional(
-        LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "LogAnalyticsQueryPackQuerySearchPropertiesRelated",
-  }) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelated>;
-
-export type QueriesSearchRequestTagsValueList = Array<string>;
-export const QueriesSearchRequestTagsValueList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<QueriesSearchRequestTagsValueList>;
-
-/** Tags associated with the query. */
-export type QueriesSearchRequestTagsMap = {
-  [key: string]: QueriesSearchRequestTagsValueList | undefined;
-};
-export const QueriesSearchRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  QueriesSearchRequestTagsValueList,
-) as any as S.Schema<QueriesSearchRequestTagsMap>;
-
-export interface QueriesSearchRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Log Analytics QueryPack resource. */
-  queryPackName: string;
-  /** Maximum items returned in page. */
-  _top?: number;
-  /** Flag indicating whether or not to return the body of each applicable query. If false, only return the query information. */
-  includeBody?: boolean;
-  /** Base64 encoded token used to fetch the next page of items. Default is null. */
-  _skipToken?: string;
-  /** The related metadata items for the function. */
-  related?: LogAnalyticsQueryPackQuerySearchPropertiesRelated;
-  /** Tags associated with the query. */
-  tags?: QueriesSearchRequestTagsMap;
-}
-export const QueriesSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    queryPackName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    includeBody: S.optional(S.Boolean.pipe(T.Query())),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    related: S.optional(LogAnalyticsQueryPackQuerySearchPropertiesRelated),
-    tags: S.optional(QueriesSearchRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/queryPacks/{queryPackName}/queries/search",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "QueriesSearchRequest",
-}) as any as S.Schema<QueriesSearchRequest>;
+  identifier: "PutQueryResponse",
+}) as any as S.Schema<PutQueryResponse>;
 
 /** Resource tags. */
 export type QueryPacksCreateOrUpdateRequestTagsMap = {
@@ -5871,6 +5873,82 @@ export const QueryPacksCreateOrUpdateWithoutNameResponse =
     identifier: "QueryPacksCreateOrUpdateWithoutNameResponse",
   }) as any as S.Schema<QueryPacksCreateOrUpdateWithoutNameResponse>;
 
+export interface RegenerateSharedKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+}
+export const RegenerateSharedKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/regenerateSharedKey",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateSharedKeysRequest",
+}) as any as S.Schema<RegenerateSharedKeysRequest>;
+
+/** Properties for retrying a Summary rule bin. */
+export interface SummaryLogsRetryBinProperties {
+  /** The time (UTC) of the bin to retry. */
+  retryBinStartTime: string;
+}
+export const SummaryLogsRetryBinProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retryBinStartTime: S.String,
+  }),
+).annotate({
+  identifier: "SummaryLogsRetryBinProperties",
+}) as any as S.Schema<SummaryLogsRetryBinProperties>;
+
+export interface RetrySummaryLogBinRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The name of the summary logs. Must not contain '/'. */
+  summaryLogsName: string;
+  /** Retry bin properties. */
+  properties?: SummaryLogsRetryBinProperties;
+}
+export const RetrySummaryLogBinRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    summaryLogsName: S.String.pipe(T.Label()),
+    properties: S.optional(SummaryLogsRetryBinProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{summaryLogsName}/retrybin",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RetrySummaryLogBinRequest",
+}) as any as S.Schema<RetrySummaryLogBinRequest>;
+
+export interface RetrySummaryLogBinResponse {}
+export const RetrySummaryLogBinResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RetrySummaryLogBinResponse",
+}) as any as S.Schema<RetrySummaryLogBinResponse>;
+
 export interface SavedSearchesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -5932,30 +6010,109 @@ export const SavedSearchesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SavedSearchesCreateOrUpdateResponse",
 }) as any as S.Schema<SavedSearchesCreateOrUpdateResponse>;
 
-export interface SharedKeysRegenerateRequest {
+/** The related categories for the function. */
+export type LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList =
+  Array<string>;
+export const LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList>;
+
+/** The related resource types for the function. */
+export type LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList =
+  Array<string>;
+export const LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList>;
+
+/** The related Log Analytics solutions for the function. */
+export type LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList =
+  Array<string>;
+export const LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList>;
+
+/** The related metadata items for the function. */
+export interface LogAnalyticsQueryPackQuerySearchPropertiesRelated {
+  /** The related categories for the function. */
+  categories?: LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList;
+  /** The related resource types for the function. */
+  resourceTypes?: LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList;
+  /** The related Log Analytics solutions for the function. */
+  solutions?: LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList;
+}
+export const LogAnalyticsQueryPackQuerySearchPropertiesRelated =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      categories: S.optional(
+        LogAnalyticsQueryPackQuerySearchPropertiesRelatedCategoriesList,
+      ),
+      resourceTypes: S.optional(
+        LogAnalyticsQueryPackQuerySearchPropertiesRelatedResourceTypesList,
+      ),
+      solutions: S.optional(
+        LogAnalyticsQueryPackQuerySearchPropertiesRelatedSolutionsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "LogAnalyticsQueryPackQuerySearchPropertiesRelated",
+  }) as any as S.Schema<LogAnalyticsQueryPackQuerySearchPropertiesRelated>;
+
+export type SearchQueryRequestTagsValueList = Array<string>;
+export const SearchQueryRequestTagsValueList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchQueryRequestTagsValueList>;
+
+/** Tags associated with the query. */
+export type SearchQueryRequestTagsMap = {
+  [key: string]: SearchQueryRequestTagsValueList | undefined;
+};
+export const SearchQueryRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  SearchQueryRequestTagsValueList,
+) as any as S.Schema<SearchQueryRequestTagsMap>;
+
+export interface SearchQueryRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
+  /** The name of the Log Analytics QueryPack resource. */
+  queryPackName: string;
+  /** Maximum items returned in page. */
+  _top?: number;
+  /** Flag indicating whether or not to return the body of each applicable query. If false, only return the query information. */
+  includeBody?: boolean;
+  /** Base64 encoded token used to fetch the next page of items. Default is null. */
+  _skipToken?: string;
+  /** The related metadata items for the function. */
+  related?: LogAnalyticsQueryPackQuerySearchPropertiesRelated;
+  /** Tags associated with the query. */
+  tags?: SearchQueryRequestTagsMap;
 }
-export const SharedKeysRegenerateRequest = /*@__PURE__*/ S.suspend(() =>
+export const SearchQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
+    queryPackName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    includeBody: S.optional(S.Boolean.pipe(T.Query())),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    related: S.optional(LogAnalyticsQueryPackQuerySearchPropertiesRelated),
+    tags: S.optional(SearchQueryRequestTagsMap),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/regenerateSharedKey",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/queryPacks/{queryPackName}/queries/search",
       code: 200,
       apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "SharedKeysRegenerateRequest",
-}) as any as S.Schema<SharedKeysRegenerateRequest>;
+  identifier: "SearchQueryRequest",
+}) as any as S.Schema<SearchQueryRequest>;
 
 export interface StartSummaryLogRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6231,57 +6388,6 @@ export const SummaryLogsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SummaryLogsCreateOrUpdateResponse",
 }) as any as S.Schema<SummaryLogsCreateOrUpdateResponse>;
 
-/** Properties for retrying a Summary rule bin. */
-export interface SummaryLogsRetryBinProperties {
-  /** The time (UTC) of the bin to retry. */
-  retryBinStartTime: string;
-}
-export const SummaryLogsRetryBinProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retryBinStartTime: S.String,
-  }),
-).annotate({
-  identifier: "SummaryLogsRetryBinProperties",
-}) as any as S.Schema<SummaryLogsRetryBinProperties>;
-
-export interface SummaryLogsRetryBinRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the summary logs. Must not contain '/'. */
-  summaryLogsName: string;
-  /** Retry bin properties. */
-  properties?: SummaryLogsRetryBinProperties;
-}
-export const SummaryLogsRetryBinRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    summaryLogsName: S.String.pipe(T.Label()),
-    properties: S.optional(SummaryLogsRetryBinProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/summaryLogs/{summaryLogsName}/retrybin",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "SummaryLogsRetryBinRequest",
-}) as any as S.Schema<SummaryLogsRetryBinRequest>;
-
-export interface SummaryLogsRetryBinResponse {}
-export const SummaryLogsRetryBinResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SummaryLogsRetryBinResponse",
-}) as any as S.Schema<SummaryLogsRetryBinResponse>;
-
 export interface TablesCancelSearchRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6496,41 +6602,6 @@ export const TablesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TablesCreateOrUpdateResponse",
 }) as any as S.Schema<TablesCreateOrUpdateResponse>;
 
-export interface TablesMigrateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the table. */
-  tableName: string;
-}
-export const TablesMigrateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    tableName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "TablesMigrateRequest",
-}) as any as S.Schema<TablesMigrateRequest>;
-
-export interface TablesMigrateResponse {}
-export const TablesMigrateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TablesMigrateResponse",
-}) as any as S.Schema<TablesMigrateResponse>;
-
 /** Log Analytics cluster patch properties. */
 export interface ClusterPatchProperties {
   /** The associated key properties. */
@@ -6548,19 +6619,17 @@ export const ClusterPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterPatchProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ClustersUpdateRequestIdentity =
+export type UpdateClusterRequestIdentity =
   ClustersCreateOrUpdateRequestIdentity;
-export const ClustersUpdateRequestIdentity =
+export const UpdateClusterRequestIdentity =
   ClustersCreateOrUpdateRequestIdentity;
 
 /** Resource tags. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
 export interface UpdateClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -6576,7 +6645,7 @@ export interface UpdateClusterRequest {
   /** The sku properties. */
   sku?: ClusterSku;
   /** Resource tags. */
-  tags?: ClustersUpdateRequestTagsMap;
+  tags?: UpdateClusterRequestTagsMap;
 }
 export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -6586,7 +6655,7 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ClusterPatchProperties),
     identity: S.optional(ClustersCreateOrUpdateRequestIdentity),
     sku: S.optional(ClusterSku),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
+    tags: S.optional(UpdateClusterRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -6600,18 +6669,18 @@ export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateClusterRequest>;
 
 /** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
+export type UpdateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ClustersUpdateResponseIdentity =
+export type UpdateClusterResponseIdentity =
   ClustersCreateOrUpdateResponseIdentity;
-export const ClustersUpdateResponseIdentity =
+export const UpdateClusterResponseIdentity =
   ClustersCreateOrUpdateResponseIdentity;
 
 export interface UpdateClusterResponse {
@@ -6624,7 +6693,7 @@ export interface UpdateClusterResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
+  tags?: UpdateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Log Analytics cluster properties. */
@@ -6640,7 +6709,7 @@ export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
+    tags: S.optional(UpdateClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
     identity: S.optional(ClustersCreateOrUpdateResponseIdentity),
@@ -6706,15 +6775,15 @@ export const UpdateQueryResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateQueryResponse>;
 
 /** Resource tags */
-export type QueryPacksUpdateTagsRequestTagsMap = {
+export type UpdateQueryPackTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const QueryPacksUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateQueryPackTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<QueryPacksUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateQueryPackTagsRequestTagsMap>;
 
-export interface UpdateQueryPackTagRequest {
+export interface UpdateQueryPackTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6722,14 +6791,14 @@ export interface UpdateQueryPackTagRequest {
   /** The name of the Log Analytics QueryPack resource. */
   queryPackName: string;
   /** Resource tags */
-  tags?: QueryPacksUpdateTagsRequestTagsMap;
+  tags?: UpdateQueryPackTagsRequestTagsMap;
 }
-export const UpdateQueryPackTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQueryPackTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     queryPackName: S.String.pipe(T.Label()),
-    tags: S.optional(QueryPacksUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateQueryPackTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -6739,19 +6808,19 @@ export const UpdateQueryPackTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateQueryPackTagRequest",
-}) as any as S.Schema<UpdateQueryPackTagRequest>;
+  identifier: "UpdateQueryPackTagsRequest",
+}) as any as S.Schema<UpdateQueryPackTagsRequest>;
 
 /** Resource tags. */
-export type QueryPacksUpdateTagsResponseTagsMap = {
+export type UpdateQueryPackTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const QueryPacksUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateQueryPackTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<QueryPacksUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateQueryPackTagsResponseTagsMap>;
 
-export interface UpdateQueryPackTagResponse {
+export interface UpdateQueryPackTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6761,25 +6830,25 @@ export interface UpdateQueryPackTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: QueryPacksUpdateTagsResponseTagsMap;
+  tags?: UpdateQueryPackTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties that define a Log Analytics QueryPack resource. */
   properties: LogAnalyticsQueryPackProperties;
 }
-export const UpdateQueryPackTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQueryPackTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(QueryPacksUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateQueryPackTagsResponseTagsMap),
     location: S.String,
     properties: LogAnalyticsQueryPackProperties,
   }),
 ).annotate({
-  identifier: "UpdateQueryPackTagResponse",
-}) as any as S.Schema<UpdateQueryPackTagResponse>;
+  identifier: "UpdateQueryPackTagsResponse",
+}) as any as S.Schema<UpdateQueryPackTagsResponse>;
 
 export interface UpdateTableRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7007,13 +7076,13 @@ export const IdentityInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IdentityInput" }) as any as S.Schema<IdentityInput>;
 
 /** Resource tags. Optional. */
-export type WorkspacesUpdateRequestTagsMap = {
+export type UpdateWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
 
 export interface UpdateWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7027,7 +7096,7 @@ export interface UpdateWorkspaceRequest {
   /** The identity of the resource. */
   identity?: IdentityInput;
   /** Resource tags. Optional. */
-  tags?: WorkspacesUpdateRequestTagsMap;
+  tags?: UpdateWorkspaceRequestTagsMap;
 }
 export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -7036,7 +7105,7 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     workspaceName: S.String.pipe(T.Label()),
     properties: S.optional(WorkspacePropertiesInput),
     identity: S.optional(IdentityInput),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -7050,13 +7119,13 @@ export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesUpdateResponseTagsMap = {
+export type UpdateWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
 
 export interface UpdateWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7068,7 +7137,7 @@ export interface UpdateWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkspacesUpdateResponseTagsMap;
+  tags?: UpdateWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Workspace properties. */
@@ -7084,7 +7153,7 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
     location: S.String,
     properties: S.optional(WorkspaceProperties),
     identity: S.optional(Identity),
@@ -7094,126 +7163,50 @@ export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWorkspaceResponse",
 }) as any as S.Schema<UpdateWorkspaceResponse>;
 
-/** User-defined filters to return data which will be purged from the table. */
-export interface WorkspacePurgeBodyFilters {
-  /** The column of the table over which the given query should run */
-  column?: string;
-  /** A query operator to evaluate over the provided column and value(s). Supported operators are ==, =~, in, in~, >, >=, <, <=, between, and have the same behavior as they would in a KQL query. */
-  operator?: string;
-  /** the value for the operator to function over. This can be a number (e.g., > 100), a string (timestamp >= '2017-09-01') or array of values. */
-  value?: unknown;
-  /** When filtering over custom dimensions, this key will be used as the name of the custom dimension. */
-  key?: string;
-}
-export const WorkspacePurgeBodyFilters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    column: S.optional(S.String),
-    operator: S.optional(S.String),
-    value: S.optional(S.Unknown),
-    key: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkspacePurgeBodyFilters",
-}) as any as S.Schema<WorkspacePurgeBodyFilters>;
-
-/** The set of columns and filters (queries) to run over them to purge the resulting data. */
-export type WorkspacePurgePurgeRequestFiltersList =
-  Array<WorkspacePurgeBodyFilters>;
-export const WorkspacePurgePurgeRequestFiltersList = /*@__PURE__*/ S.Array(
-  WorkspacePurgeBodyFilters,
-) as any as S.Schema<WorkspacePurgePurgeRequestFiltersList>;
-
-export interface WorkspacePurgePurgeRequest {
+export interface WorkspacePurgeGetPurgeStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the workspace. */
   workspaceName: string;
-  /** Table from which to purge data. */
-  table: string;
-  /** The set of columns and filters (queries) to run over them to purge the resulting data. */
-  filters: WorkspacePurgePurgeRequestFiltersList;
+  /** In a purge status request, this is the Id of the operation the status of which is returned. */
+  purgeId: string;
 }
-export const WorkspacePurgePurgeRequest = /*@__PURE__*/ S.suspend(() =>
+export const WorkspacePurgeGetPurgeStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    table: S.String,
-    filters: WorkspacePurgePurgeRequestFiltersList,
+    purgeId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/purge",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/operations/{purgeId}",
       code: 200,
       apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkspacePurgePurgeRequest",
-}) as any as S.Schema<WorkspacePurgePurgeRequest>;
+  identifier: "WorkspacePurgeGetPurgeStatusRequest",
+}) as any as S.Schema<WorkspacePurgeGetPurgeStatusRequest>;
 
-export interface WorkspacePurgePurgeResponse {}
-export const WorkspacePurgePurgeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkspacePurgePurgeResponse",
-}) as any as S.Schema<WorkspacePurgePurgeResponse>;
+/** Status of the operation represented by the requested Id. */
+export type PurgeState = "pending" | "completed";
+export const PurgeState = /*@__PURE__*/ S.String;
 
-/** The time range over which a data lake purge request operates. */
-export interface WorkspacePurgeLakeDataTimeRange {
-  /** The inclusive start of the time range, in UTC. Must fall on an hour boundary (minutes and seconds must be zero). */
-  startTime: string;
-  /** The exclusive end of the time range, in UTC. Must fall on an hour boundary and be earlier than the start of the current hour. */
-  endTime: string;
+/** Response containing status for a specific purge operation. */
+export interface WorkspacePurgeStatusResponse {
+  /** Status of the operation represented by the requested Id. */
+  status: PurgeState;
 }
-export const WorkspacePurgeLakeDataTimeRange = /*@__PURE__*/ S.suspend(() =>
+export const WorkspacePurgeStatusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    startTime: S.String,
-    endTime: S.String,
+    status: PurgeState,
   }),
 ).annotate({
-  identifier: "WorkspacePurgeLakeDataTimeRange",
-}) as any as S.Schema<WorkspacePurgeLakeDataTimeRange>;
-
-export interface WorkspacePurgePurgeLakeDataRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the table from which to purge data lake data. Must be an Auxiliary table, or an Analytics table that is mirrored to the data lake. */
-  table: string;
-  /** The time range over which data lake data is purged. */
-  timeRange: WorkspacePurgeLakeDataTimeRange;
-}
-export const WorkspacePurgePurgeLakeDataRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    table: S.String,
-    timeRange: WorkspacePurgeLakeDataTimeRange,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/purgeLakeData",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacePurgePurgeLakeDataRequest",
-}) as any as S.Schema<WorkspacePurgePurgeLakeDataRequest>;
-
-export interface WorkspacePurgePurgeLakeDataResponse {}
-export const WorkspacePurgePurgeLakeDataResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkspacePurgePurgeLakeDataResponse",
-}) as any as S.Schema<WorkspacePurgePurgeLakeDataResponse>;
+  identifier: "WorkspacePurgeStatusResponse",
+}) as any as S.Schema<WorkspacePurgeStatusResponse>;
 
 /** Resource tags. */
 export type WorkspacesCreateOrUpdateRequestTagsMap = {
@@ -7501,16 +7494,16 @@ export const DeleteDataSource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteGatewayError = AzureOpError;
+export type DeleteGatewaysError = AzureOpError;
 /** Delete a Log Analytics gateway. */
-export const DeleteGateway: API.OperationMethod<
-  DeleteGatewayRequest,
-  DeleteGatewayResponse,
-  DeleteGatewayError,
+export const DeleteGateways: API.OperationMethod<
+  DeleteGatewaysRequest,
+  DeleteGatewaysResponse,
+  DeleteGatewaysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGatewayRequest,
-  output: DeleteGatewayResponse,
+  input: DeleteGatewaysRequest,
+  output: DeleteGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7576,16 +7569,16 @@ export const DeleteQueryPack: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSavedSearcheError = AzureOpError;
+export type DeleteSavedSearchError = AzureOpError;
 /** Deletes the specified saved search in a given workspace. */
-export const DeleteSavedSearche: API.OperationMethod<
-  DeleteSavedSearcheRequest,
-  DeleteSavedSearcheResponse,
-  DeleteSavedSearcheError,
+export const DeleteSavedSearch: API.OperationMethod<
+  DeleteSavedSearchRequest,
+  DeleteSavedSearchResponse,
+  DeleteSavedSearchError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSavedSearcheRequest,
-  output: DeleteSavedSearcheResponse,
+  input: DeleteSavedSearchRequest,
+  output: DeleteSavedSearchResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7801,16 +7794,16 @@ export const GetQueryPack: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSavedSearcheError = AzureOpError;
+export type GetSavedSearchError = AzureOpError;
 /** Gets the specified saved search for a given workspace. */
-export const GetSavedSearche: API.OperationMethod<
-  GetSavedSearcheRequest,
-  GetSavedSearcheResponse,
-  GetSavedSearcheError,
+export const GetSavedSearch: API.OperationMethod<
+  GetSavedSearchRequest,
+  GetSavedSearchResponse,
+  GetSavedSearchError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSavedSearcheRequest,
-  output: GetSavedSearcheResponse,
+  input: GetSavedSearchRequest,
+  output: GetSavedSearchResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7831,15 +7824,15 @@ export const GetSchema: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSharedKeySharedKeyError = AzureOpError;
+export type GetSharedKeysSharedKeysError = AzureOpError;
 /** Gets the shared keys for a workspace. */
-export const GetSharedKeySharedKey: API.OperationMethod<
-  GetSharedKeySharedKeyRequest,
+export const GetSharedKeysSharedKeys: API.OperationMethod<
+  GetSharedKeysSharedKeysRequest,
   SharedKeys,
-  GetSharedKeySharedKeyError,
+  GetSharedKeysSharedKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSharedKeySharedKeyRequest,
+  input: GetSharedKeysSharedKeysRequest,
   output: SharedKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -7906,31 +7899,16 @@ export const GetWorkspace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetWorkspaceNspError = AzureOpError;
+export type GetWorkspaceNSPError = AzureOpError;
 /** Gets a network security perimeter configuration. */
-export const GetWorkspaceNsp: API.OperationMethod<
-  GetWorkspaceNspRequest,
-  GetWorkspaceNspResponse,
-  GetWorkspaceNspError,
+export const GetWorkspaceNSP: API.OperationMethod<
+  GetWorkspaceNSPRequest,
+  GetWorkspaceNSPResponse,
+  GetWorkspaceNSPError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetWorkspaceNspRequest,
-  output: GetWorkspaceNspResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetWorkspacePurgePurgeStatusError = AzureOpError;
-/** Gets status of an ongoing purge operation. */
-export const GetWorkspacePurgePurgeStatus: API.OperationMethod<
-  GetWorkspacePurgePurgeStatusRequest,
-  WorkspacePurgeStatusResponse,
-  GetWorkspacePurgePurgeStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetWorkspacePurgePurgeStatusRequest,
-  output: WorkspacePurgeStatusResponse,
+  input: GetWorkspaceNSPRequest,
+  output: GetWorkspaceNSPResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8191,15 +8169,15 @@ export const ListQueryPacks: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSavedSearcheByWorkspaceError = AzureOpError;
+export type ListSavedSearchByWorkspaceError = AzureOpError;
 /** Gets the saved searches for a given Log Analytics Workspace */
-export const ListSavedSearcheByWorkspace: API.OperationMethod<
-  ListSavedSearcheByWorkspaceRequest,
+export const ListSavedSearchByWorkspace: API.OperationMethod<
+  ListSavedSearchByWorkspaceRequest,
   SavedSearchesListResult,
-  ListSavedSearcheByWorkspaceError,
+  ListSavedSearchByWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSavedSearcheByWorkspaceRequest,
+  input: ListSavedSearchByWorkspaceRequest,
   output: SavedSearchesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -8281,16 +8259,16 @@ export const ListWorkspaceByResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListWorkspaceNspError = AzureOpError;
+export type ListWorkspaceNSPError = AzureOpError;
 /** Gets a list of NSP configurations for specified workspace. */
-export const ListWorkspaceNsp: API.OperationMethod<
-  ListWorkspaceNspRequest,
-  ListWorkspaceNspResponse,
-  ListWorkspaceNspError,
+export const ListWorkspaceNSP: API.OperationMethod<
+  ListWorkspaceNSPRequest,
+  ListWorkspaceNSPResponse,
+  ListWorkspaceNSPError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListWorkspaceNspRequest,
-  output: ListWorkspaceNspResponse,
+  input: ListWorkspaceNSPRequest,
+  output: ListWorkspaceNSPResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8311,31 +8289,61 @@ export const ListWorkspaces: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type QueriesPutError = AzureOpError;
-/** Adds or Updates a specific Query within a Log Analytics QueryPack. */
-export const QueriesPut: API.OperationMethod<
-  QueriesPutRequest,
-  QueriesPutResponse,
-  QueriesPutError,
+export type MigrateTableError = AzureOpError;
+/** Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of Data Collection Rule-based Custom Logs. */
+export const MigrateTable: API.OperationMethod<
+  MigrateTableRequest,
+  MigrateTableResponse,
+  MigrateTableError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QueriesPutRequest,
-  output: QueriesPutResponse,
+  input: MigrateTableRequest,
+  output: MigrateTableResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QueriesSearchError = AzureOpError;
-/** Search a list of Queries defined within a Log Analytics QueryPack according to given search properties. */
-export const QueriesSearch: API.OperationMethod<
-  QueriesSearchRequest,
-  LogAnalyticsQueryPackQueryListResult,
-  QueriesSearchError,
+export type PurgeWorkspacePurgeError = AzureOpError;
+/** Purges data in an Log Analytics workspace by a set of user-defined filters. In order to manage system resources, purge requests are throttled at 50 requests per hour. You should batch the execution of purge requests by sending a single command whose predicate includes all user identities that require purging. Use the in operator to specify multiple identities. You should run the query prior to using for a purge request to verify that the results are expected. Log Analytics only supports purge operations required for compliance with GDPR. The Log Analytics product team reserves the right to reject requests for purge operations that are not for the purpose of GDPR compliance. In the event of a dispute, please create a support ticket */
+export const PurgeWorkspacePurge: API.OperationMethod<
+  PurgeWorkspacePurgeRequest,
+  PurgeWorkspacePurgeResponse,
+  PurgeWorkspacePurgeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QueriesSearchRequest,
-  output: LogAnalyticsQueryPackQueryListResult,
+  input: PurgeWorkspacePurgeRequest,
+  output: PurgeWorkspacePurgeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeWorkspacePurgeLakeDataError = AzureOpError;
+/** Purges data lake data in a Log Analytics workspace for a table over a specified time range. This operation deletes data lake data (Auxiliary tables, or Analytics tables mirrored to the data lake) for the specified table within the given time range. The operation is long-running; poll the URL returned in the Azure-AsyncOperation response header to track its status. */
+export const PurgeWorkspacePurgeLakeData: API.OperationMethod<
+  PurgeWorkspacePurgeLakeDataRequest,
+  PurgeWorkspacePurgeLakeDataResponse,
+  PurgeWorkspacePurgeLakeDataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeWorkspacePurgeLakeDataRequest,
+  output: PurgeWorkspacePurgeLakeDataResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutQueryError = AzureOpError;
+/** Adds or Updates a specific Query within a Log Analytics QueryPack. */
+export const PutQuery: API.OperationMethod<
+  PutQueryRequest,
+  PutQueryResponse,
+  PutQueryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutQueryRequest,
+  output: PutQueryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8371,6 +8379,36 @@ export const QueryPacksCreateOrUpdateWithoutName: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RegenerateSharedKeysError = AzureOpError;
+/** Regenerates the shared keys for a Log Analytics Workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. */
+export const RegenerateSharedKeys: API.OperationMethod<
+  RegenerateSharedKeysRequest,
+  SharedKeys,
+  RegenerateSharedKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateSharedKeysRequest,
+  output: SharedKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RetrySummaryLogBinError = AzureOpError;
+/** Retries a failed Summary rule bin. */
+export const RetrySummaryLogBin: API.OperationMethod<
+  RetrySummaryLogBinRequest,
+  RetrySummaryLogBinResponse,
+  RetrySummaryLogBinError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RetrySummaryLogBinRequest,
+  output: RetrySummaryLogBinResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SavedSearchesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a saved search for a given workspace. */
 export const SavedSearchesCreateOrUpdate: API.OperationMethod<
@@ -8386,16 +8424,16 @@ export const SavedSearchesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SharedKeysRegenerateError = AzureOpError;
-/** Regenerates the shared keys for a Log Analytics Workspace. These keys are used to connect Microsoft Operational Insights agents to the workspace. */
-export const SharedKeysRegenerate: API.OperationMethod<
-  SharedKeysRegenerateRequest,
-  SharedKeys,
-  SharedKeysRegenerateError,
+export type SearchQueryError = AzureOpError;
+/** Search a list of Queries defined within a Log Analytics QueryPack according to given search properties. */
+export const SearchQuery: API.OperationMethod<
+  SearchQueryRequest,
+  LogAnalyticsQueryPackQueryListResult,
+  SearchQueryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SharedKeysRegenerateRequest,
-  output: SharedKeys,
+  input: SearchQueryRequest,
+  output: LogAnalyticsQueryPackQueryListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8461,21 +8499,6 @@ export const SummaryLogsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SummaryLogsRetryBinError = AzureOpError;
-/** Retries a failed Summary rule bin. */
-export const SummaryLogsRetryBin: API.OperationMethod<
-  SummaryLogsRetryBinRequest,
-  SummaryLogsRetryBinResponse,
-  SummaryLogsRetryBinError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SummaryLogsRetryBinRequest,
-  output: SummaryLogsRetryBinResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TablesCancelSearchError = AzureOpError;
 /** Cancel a log analytics workspace search results table query run. */
 export const TablesCancelSearch: API.OperationMethod<
@@ -8501,21 +8524,6 @@ export const TablesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TablesCreateOrUpdateRequest,
   output: TablesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TablesMigrateError = AzureOpError;
-/** Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of Data Collection Rule-based Custom Logs. */
-export const TablesMigrate: API.OperationMethod<
-  TablesMigrateRequest,
-  TablesMigrateResponse,
-  TablesMigrateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TablesMigrateRequest,
-  output: TablesMigrateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8551,16 +8559,16 @@ export const UpdateQuery: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateQueryPackTagError = AzureOpError;
+export type UpdateQueryPackTagsError = AzureOpError;
 /** Updates an existing QueryPack's tags. To update other fields use the CreateOrUpdate method. */
-export const UpdateQueryPackTag: API.OperationMethod<
-  UpdateQueryPackTagRequest,
-  UpdateQueryPackTagResponse,
-  UpdateQueryPackTagError,
+export const UpdateQueryPackTags: API.OperationMethod<
+  UpdateQueryPackTagsRequest,
+  UpdateQueryPackTagsResponse,
+  UpdateQueryPackTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateQueryPackTagRequest,
-  output: UpdateQueryPackTagResponse,
+  input: UpdateQueryPackTagsRequest,
+  output: UpdateQueryPackTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8596,31 +8604,16 @@ export const UpdateWorkspace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WorkspacePurgePurgeError = AzureOpError;
-/** Purges data in an Log Analytics workspace by a set of user-defined filters. In order to manage system resources, purge requests are throttled at 50 requests per hour. You should batch the execution of purge requests by sending a single command whose predicate includes all user identities that require purging. Use the in operator to specify multiple identities. You should run the query prior to using for a purge request to verify that the results are expected. Log Analytics only supports purge operations required for compliance with GDPR. The Log Analytics product team reserves the right to reject requests for purge operations that are not for the purpose of GDPR compliance. In the event of a dispute, please create a support ticket */
-export const WorkspacePurgePurge: API.OperationMethod<
-  WorkspacePurgePurgeRequest,
-  WorkspacePurgePurgeResponse,
-  WorkspacePurgePurgeError,
+export type WorkspacePurgeGetPurgeStatusError = AzureOpError;
+/** Gets status of an ongoing purge operation. */
+export const WorkspacePurgeGetPurgeStatus: API.OperationMethod<
+  WorkspacePurgeGetPurgeStatusRequest,
+  WorkspacePurgeStatusResponse,
+  WorkspacePurgeGetPurgeStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacePurgePurgeRequest,
-  output: WorkspacePurgePurgeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacePurgePurgeLakeDataError = AzureOpError;
-/** Purges data lake data in a Log Analytics workspace for a table over a specified time range. This operation deletes data lake data (Auxiliary tables, or Analytics tables mirrored to the data lake) for the specified table within the given time range. The operation is long-running; poll the URL returned in the Azure-AsyncOperation response header to track its status. */
-export const WorkspacePurgePurgeLakeData: API.OperationMethod<
-  WorkspacePurgePurgeLakeDataRequest,
-  WorkspacePurgePurgeLakeDataResponse,
-  WorkspacePurgePurgeLakeDataError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacePurgePurgeLakeDataRequest,
-  output: WorkspacePurgePurgeLakeDataResponse,
+  input: WorkspacePurgeGetPurgeStatusRequest,
+  output: WorkspacePurgeStatusResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

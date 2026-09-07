@@ -963,7 +963,16 @@ export const convertGraphQLToSmithy = (
           operationNaming === "verbNoun"
             ? toVerbNoun(functionName)
             : functionName;
-        if (seenNames.has(sdkName)) continue;
+        if (seenNames.has(sdkName)) {
+          // Two schema fields (or the same field under two paths) map to
+          // one SDK name; the first wins. Silent drops hide real ops.
+          if (sdkName !== functionName) {
+            console.warn(
+              `   ⚠️  verbNoun collision: ${functionName} → ${sdkName} already taken (dropped)`,
+            );
+          }
+          continue;
+        }
         seenNames.add(sdkName);
         pending.push({
           functionName,

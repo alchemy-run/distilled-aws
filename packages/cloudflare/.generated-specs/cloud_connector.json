@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.cloud_connector#RulesListResultItemParameters": {
@@ -247,10 +248,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.cloud_connector#RulesList"
+          "target": "com.cloudflare.cloud_connector#ListRules"
         },
         {
-          "target": "com.cloudflare.cloud_connector#RulesUpdate"
+          "target": "com.cloudflare.cloud_connector#PutRule"
         }
       ],
       "traits": {

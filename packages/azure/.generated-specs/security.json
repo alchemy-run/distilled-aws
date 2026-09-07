@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.security#DeleteDataScanner": {
@@ -380,7 +381,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.security#DataScannersGetResponseIdentity",
+          "target": "com.azure.security#GetDataScannerResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -390,7 +391,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.security#DataScannersGetResponseIdentity": {
+    "com.azure.security#GetDataScannerResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -580,10 +581,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.security#DeleteDataScanner"
+          "target": "com.azure.security#DataScannersCreateOrUpdate"
         },
         {
-          "target": "com.azure.security#DataScannersCreateOrUpdate"
+          "target": "com.azure.security#DeleteDataScanner"
         },
         {
           "target": "com.azure.security#GetDataScanner"

@@ -25,7 +25,8 @@
       "resultInfo": "result_info",
       "startTs": "start_ts",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.cache#PurgeRequestTagsList": {
@@ -351,7 +352,7 @@
         "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponseSucceededItem"
       }
     },
-    "com.cloudflare.cache#DeleteOriginCloudRegionBulkV1Request": {
+    "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1Request": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -471,7 +472,7 @@
         }
       }
     },
-    "com.cloudflare.cache#DeleteOriginCloudRegionBulkV1Response": {
+    "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -505,13 +506,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.cache#DeleteOriginCloudRegionBulkV1": {
+    "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cache#DeleteOriginCloudRegionBulkV1Request"
+        "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1Request"
       },
       "output": {
-        "target": "com.cloudflare.cache#DeleteOriginCloudRegionBulkV1Response"
+        "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -924,7 +925,7 @@
         }
       }
     },
-    "com.cloudflare.cache#CreateOriginCloudRegionV1Request": {
+    "com.cloudflare.cache#OriginCloudRegionsCreateV1Request": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1034,7 +1035,7 @@
         }
       }
     },
-    "com.cloudflare.cache#CreateOriginCloudRegionV1Response": {
+    "com.cloudflare.cache#OriginCloudRegionsCreateV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -1069,13 +1070,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.cache#CreateOriginCloudRegionV1": {
+    "com.cloudflare.cache#OriginCloudRegionsCreateV1": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cache#CreateOriginCloudRegionV1Request"
+        "target": "com.cloudflare.cache#OriginCloudRegionsCreateV1Request"
       },
       "output": {
-        "target": "com.cloudflare.cache#CreateOriginCloudRegionV1Response"
+        "target": "com.cloudflare.cache#OriginCloudRegionsCreateV1Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -1086,7 +1087,7 @@
         "smithy.api#documentation": "Adds a single IP-to-cloud-region mapping for the zone. The IP must be a valid IPv4 or IPv6 address and is normalized to canonical form before storage (RFC 5952 for IPv6). Returns 400 (code 1145) if a mapping for that IP already exists — use PATCH to update an existing entry. The vendor and region are validated against the list from `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`."
       }
     },
-    "com.cloudflare.cache#DeleteOriginCloudRegionV1Request": {
+    "com.cloudflare.cache#OriginCloudRegionsDeleteV1Request": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1182,7 +1183,7 @@
         }
       }
     },
-    "com.cloudflare.cache#DeleteOriginCloudRegionV1Response": {
+    "com.cloudflare.cache#OriginCloudRegionsDeleteV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -1217,13 +1218,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.cache#DeleteOriginCloudRegionV1": {
+    "com.cloudflare.cache#OriginCloudRegionsDeleteV1": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cache#DeleteOriginCloudRegionV1Request"
+        "target": "com.cloudflare.cache#OriginCloudRegionsDeleteV1Request"
       },
       "output": {
-        "target": "com.cloudflare.cache#DeleteOriginCloudRegionV1Response"
+        "target": "com.cloudflare.cache#OriginCloudRegionsDeleteV1Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -1460,7 +1461,7 @@
         }
       }
     },
-    "com.cloudflare.cache#GetOriginCloudRegionV1Request": {
+    "com.cloudflare.cache#OriginCloudRegionsGetV1Request": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1556,7 +1557,7 @@
         }
       }
     },
-    "com.cloudflare.cache#GetOriginCloudRegionV1Response": {
+    "com.cloudflare.cache#OriginCloudRegionsGetV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -1591,13 +1592,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.cache#GetOriginCloudRegionV1": {
+    "com.cloudflare.cache#OriginCloudRegionsGetV1": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cache#GetOriginCloudRegionV1Request"
+        "target": "com.cloudflare.cache#OriginCloudRegionsGetV1Request"
       },
       "output": {
-        "target": "com.cloudflare.cache#GetOriginCloudRegionV1Response"
+        "target": "com.cloudflare.cache#OriginCloudRegionsGetV1Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -1676,7 +1677,7 @@
         "target": "com.cloudflare.cache#OriginCloudRegionsListResultItem"
       }
     },
-    "com.cloudflare.cache#ListOriginCloudRegionV1Request": {
+    "com.cloudflare.cache#OriginCloudRegionsListV1Request": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1771,7 +1772,7 @@
         "target": "com.cloudflare.cache#OriginCloudRegionsListV1ResponseValueItem"
       }
     },
-    "com.cloudflare.cache#ListOriginCloudRegionV1Response": {
+    "com.cloudflare.cache#OriginCloudRegionsListV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -1805,13 +1806,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.cache#ListOriginCloudRegionV1": {
+    "com.cloudflare.cache#OriginCloudRegionsListV1": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cache#ListOriginCloudRegionV1Request"
+        "target": "com.cloudflare.cache#OriginCloudRegionsListV1Request"
       },
       "output": {
-        "target": "com.cloudflare.cache#ListOriginCloudRegionV1Response"
+        "target": "com.cloudflare.cache#OriginCloudRegionsListV1Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -2669,94 +2670,94 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.cache#Purge"
+          "target": "com.cloudflare.cache#BulkDeleteOriginCloudRegions"
         },
         {
-          "target": "com.cloudflare.cache#PurgeEnvironment"
+          "target": "com.cloudflare.cache#BulkPutOriginCloudRegions"
         },
         {
-          "target": "com.cloudflare.cache#CacheReserveClear"
+          "target": "com.cloudflare.cache#ClearCacheReserve"
         },
         {
-          "target": "com.cloudflare.cache#CacheReserveEdit"
+          "target": "com.cloudflare.cache#CreateSmartTieredCache"
         },
         {
-          "target": "com.cloudflare.cache#CacheReserveGet"
+          "target": "com.cloudflare.cache#DeleteOriginCloudRegion"
         },
         {
-          "target": "com.cloudflare.cache#CacheReserveStatus"
+          "target": "com.cloudflare.cache#DeleteSmartTieredCache"
         },
         {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDelete"
+          "target": "com.cloudflare.cache#DeleteVariant"
         },
         {
-          "target": "com.cloudflare.cache#DeleteOriginCloudRegionBulkV1"
+          "target": "com.cloudflare.cache#GetCacheReserve"
+        },
+        {
+          "target": "com.cloudflare.cache#GetOriginCloudRegion"
+        },
+        {
+          "target": "com.cloudflare.cache#GetRegionalTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#GetSmartTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#GetVariant"
+        },
+        {
+          "target": "com.cloudflare.cache#ListOriginCloudRegions"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1"
         },
         {
           "target": "com.cloudflare.cache#OriginCloudRegionsBulkEditV1"
         },
         {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdate"
+          "target": "com.cloudflare.cache#OriginCloudRegionsCreateV1"
         },
         {
-          "target": "com.cloudflare.cache#CreateOriginCloudRegionV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsDelete"
-        },
-        {
-          "target": "com.cloudflare.cache#DeleteOriginCloudRegionV1"
+          "target": "com.cloudflare.cache#OriginCloudRegionsDeleteV1"
         },
         {
           "target": "com.cloudflare.cache#OriginCloudRegionsEditV1"
         },
         {
-          "target": "com.cloudflare.cache#OriginCloudRegionsGet"
+          "target": "com.cloudflare.cache#OriginCloudRegionsGetV1"
         },
         {
-          "target": "com.cloudflare.cache#GetOriginCloudRegionV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsList"
-        },
-        {
-          "target": "com.cloudflare.cache#ListOriginCloudRegionV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegions"
+          "target": "com.cloudflare.cache#OriginCloudRegionsListV1"
         },
         {
           "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsV1"
         },
         {
-          "target": "com.cloudflare.cache#OriginCloudRegionsUpdate"
+          "target": "com.cloudflare.cache#PatchCacheReserve"
         },
         {
-          "target": "com.cloudflare.cache#RegionalTieredCacheEdit"
+          "target": "com.cloudflare.cache#PatchRegionalTieredCache"
         },
         {
-          "target": "com.cloudflare.cache#RegionalTieredCacheGet"
+          "target": "com.cloudflare.cache#PatchSmartTieredCache"
         },
         {
-          "target": "com.cloudflare.cache#SmartTieredCacheCreate"
+          "target": "com.cloudflare.cache#PatchVariant"
         },
         {
-          "target": "com.cloudflare.cache#SmartTieredCacheDelete"
+          "target": "com.cloudflare.cache#PurgeCache"
         },
         {
-          "target": "com.cloudflare.cache#SmartTieredCacheEdit"
+          "target": "com.cloudflare.cache#PurgeEnvironmentCache"
         },
         {
-          "target": "com.cloudflare.cache#SmartTieredCacheGet"
+          "target": "com.cloudflare.cache#PutOriginCloudRegion"
         },
         {
-          "target": "com.cloudflare.cache#VariantsDelete"
+          "target": "com.cloudflare.cache#StatusCacheReserve"
         },
         {
-          "target": "com.cloudflare.cache#VariantsEdit"
-        },
-        {
-          "target": "com.cloudflare.cache#VariantsGet"
+          "target": "com.cloudflare.cache#SupportedRegionsOriginCloudRegion"
         }
       ],
       "traits": {
@@ -2872,13 +2873,13 @@
         ]
       }
     },
-    "com.cloudflare.cache#DeleteBulkOriginCloudRegion": {
+    "com.cloudflare.cache#BulkDeleteOriginCloudRegions": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cache#DeleteBulkOriginCloudRegionRequest"
+        "target": "com.cloudflare.cache#BulkDeleteOriginCloudRegionsRequest"
       },
       "output": {
-        "target": "com.cloudflare.cache#DeleteBulkOriginCloudRegionResponse"
+        "target": "com.cloudflare.cache#BulkDeleteOriginCloudRegionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2890,7 +2891,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.cache#DeleteBulkOriginCloudRegionRequest": {
+    "com.cloudflare.cache#BulkDeleteOriginCloudRegionsRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -2906,7 +2907,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.cache#DeleteBulkOriginCloudRegionResponse": {
+    "com.cloudflare.cache#BulkDeleteOriginCloudRegionsResponse": {
       "type": "structure",
       "members": {
         "failed": {

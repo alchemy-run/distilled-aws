@@ -426,6 +426,209 @@ export const CreateTransferResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateTransferResponse",
 }) as any as S.Schema<CreateTransferResponse>;
 
+export interface GetTransferRequest {
+  /** The transfer ID. */
+  id: string;
+}
+export const GetTransferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/transfers/{id}", code: 200 })),
+).annotate({
+  identifier: "GetTransferRequest",
+}) as any as S.Schema<GetTransferRequest>;
+
+/** The user who initiated the transfer, such as the team member who sent a manual payout. Null if the creator is unavailable. */
+export type GetTransferResponseCreatedByUser =
+  CreateTransferResponseBodyCase0CreatedByUser;
+export const GetTransferResponseCreatedByUser =
+  CreateTransferResponseBodyCase0CreatedByUser;
+
+export type GetTransferResponseDestinationCase0Typename = "Company";
+export const GetTransferResponseDestinationCase0Typename =
+  /*@__PURE__*/ S.String;
+
+export interface GetTransferResponseDestinationCase0 {
+  /** Account ID. */
+  id: string;
+  /** Account route. */
+  route?: string | null;
+  /** Account display name. */
+  title?: string | null;
+  typename: GetTransferResponseDestinationCase0Typename;
+}
+export const GetTransferResponseDestinationCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    route: S.optional(S.NullOr(S.String)),
+    title: S.optional(S.NullOr(S.String)),
+    typename: GetTransferResponseDestinationCase0Typename,
+  }),
+).annotate({
+  identifier: "GetTransferResponseDestinationCase0",
+}) as any as S.Schema<GetTransferResponseDestinationCase0>;
+
+export type GetTransferResponseDestinationCase1Typename = "User";
+export const GetTransferResponseDestinationCase1Typename =
+  /*@__PURE__*/ S.String;
+
+export interface GetTransferResponseDestinationCase1 {
+  /** User ID. */
+  id: string;
+  /** User display name. */
+  name?: string | null;
+  typename: GetTransferResponseDestinationCase1Typename;
+  /** User's username. */
+  username?: string;
+}
+export const GetTransferResponseDestinationCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.optional(S.NullOr(S.String)),
+    typename: GetTransferResponseDestinationCase1Typename,
+    username: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetTransferResponseDestinationCase1",
+}) as any as S.Schema<GetTransferResponseDestinationCase1>;
+
+/** Account or user receiving funds. */
+export type GetTransferResponseDestination =
+  | GetTransferResponseDestinationCase0
+  | GetTransferResponseDestinationCase1;
+export const GetTransferResponseDestination =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTransferResponseDestination>;
+
+/** Custom metadata attached to the transfer. */
+export type GetTransferResponseMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetTransferResponseMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetTransferResponseMetadataMap>;
+
+/** The object type. Discriminates the create response from a send or a claim link. */
+export type GetTransferResponseObject = "transfer";
+export const GetTransferResponseObject = /*@__PURE__*/ S.String;
+
+export type GetTransferResponseOriginCase0Typename = "Company";
+export const GetTransferResponseOriginCase0Typename = /*@__PURE__*/ S.String;
+
+export interface GetTransferResponseOriginCase0 {
+  /** Account ID. */
+  id: string;
+  /** Account route. */
+  route?: string | null;
+  /** Account display name. */
+  title?: string | null;
+  typename: GetTransferResponseOriginCase0Typename;
+}
+export const GetTransferResponseOriginCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    route: S.optional(S.NullOr(S.String)),
+    title: S.optional(S.NullOr(S.String)),
+    typename: GetTransferResponseOriginCase0Typename,
+  }),
+).annotate({
+  identifier: "GetTransferResponseOriginCase0",
+}) as any as S.Schema<GetTransferResponseOriginCase0>;
+
+export type GetTransferResponseOriginCase1Typename = "User";
+export const GetTransferResponseOriginCase1Typename = /*@__PURE__*/ S.String;
+
+export interface GetTransferResponseOriginCase1 {
+  /** User ID. */
+  id: string;
+  /** User display name. */
+  name?: string | null;
+  typename: GetTransferResponseOriginCase1Typename;
+  /** User's username. */
+  username?: string;
+}
+export const GetTransferResponseOriginCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.optional(S.NullOr(S.String)),
+    typename: GetTransferResponseOriginCase1Typename,
+    username: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetTransferResponseOriginCase1",
+}) as any as S.Schema<GetTransferResponseOriginCase1>;
+
+/** Account or user sending funds. */
+export type GetTransferResponseOrigin =
+  | GetTransferResponseOriginCase0
+  | GetTransferResponseOriginCase1;
+export const GetTransferResponseOrigin =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<GetTransferResponseOrigin>;
+
+/** Transfer status. `processing` means the on-chain leg is still executing — poll the transfer until it resolves to `succeeded` or `failed`. A `failed` transfer may be retried under the same ID and later resolve to `succeeded`. */
+export type GetTransferResponseStatus = "processing" | "succeeded" | "failed";
+export const GetTransferResponseStatus = /*@__PURE__*/ S.String;
+
+export interface GetTransferResponse {
+  /** Transfer amount. */
+  amount: number;
+  /** When the transfer was created. */
+  created_at: string;
+  /** The user who initiated the transfer, such as the team member who sent a manual payout. Null if the creator is unavailable. */
+  created_by_user: CreateTransferResponseBodyCase0CreatedByUser | null;
+  /** Transfer currency. */
+  currency: string;
+  /** Account or user receiving funds. */
+  destination: GetTransferResponseDestination;
+  /** Destination ledger account ID. */
+  destination_ledger_account_id: string;
+  /** When the transfer failed, as an ISO 8601 timestamp. Null unless the transfer has failed. */
+  failed_at?: string | null;
+  /** Machine-readable code for why the transfer failed. Null unless the transfer has failed. */
+  failure_code?: string | null;
+  /** Human-readable explanation of why the transfer failed. Null unless the transfer has failed. */
+  failure_reason?: string | null;
+  /** Fee charged for the transfer. */
+  fee_amount?: number | null;
+  /** Transfer ID. */
+  id: string;
+  /** Custom metadata attached to the transfer. */
+  metadata?: GetTransferResponseMetadataMap | null;
+  /** Transfer note. */
+  notes?: string | null;
+  /** The object type. Discriminates the create response from a send or a claim link. */
+  object: GetTransferResponseObject;
+  /** Account or user sending funds. */
+  origin: GetTransferResponseOrigin;
+  /** Source ledger account ID. */
+  origin_ledger_account_id: string;
+  /** Transfer status. `processing` means the on-chain leg is still executing — poll the transfer until it resolves to `succeeded` or `failed`. A `failed` transfer may be retried under the same ID and later resolve to `succeeded`. */
+  status: GetTransferResponseStatus;
+}
+export const GetTransferResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.Number,
+    created_at: S.String,
+    created_by_user: S.NullOr(CreateTransferResponseBodyCase0CreatedByUser),
+    currency: S.String,
+    destination: GetTransferResponseDestination,
+    destination_ledger_account_id: S.String,
+    failed_at: S.optional(S.NullOr(S.String)),
+    failure_code: S.optional(S.NullOr(S.String)),
+    failure_reason: S.optional(S.NullOr(S.String)),
+    fee_amount: S.optional(S.NullOr(S.Number)),
+    id: S.String,
+    metadata: S.optional(S.NullOr(GetTransferResponseMetadataMap)),
+    notes: S.optional(S.NullOr(S.String)),
+    object: GetTransferResponseObject,
+    origin: GetTransferResponseOrigin,
+    origin_ledger_account_id: S.String,
+    status: GetTransferResponseStatus,
+  }),
+).annotate({
+  identifier: "GetTransferResponse",
+}) as any as S.Schema<GetTransferResponse>;
+
 export type ListTransferRequestOrder = "created_at" | "amount";
 export const ListTransferRequestOrder = /*@__PURE__*/ S.String;
 
@@ -694,216 +897,6 @@ export const ListTransferRecipientsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListTransferRecipientsResponse",
 }) as any as S.Schema<ListTransferRecipientsResponse>;
 
-export interface RetrieveTransferRequest {
-  /** The transfer ID. */
-  id: string;
-}
-export const RetrieveTransferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/transfers/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveTransferRequest",
-}) as any as S.Schema<RetrieveTransferRequest>;
-
-/** The user who initiated the transfer, such as the team member who sent a manual payout. Null if the creator is unavailable. */
-export type RetrieveTransferResponseCreatedByUser =
-  CreateTransferResponseBodyCase0CreatedByUser;
-export const RetrieveTransferResponseCreatedByUser =
-  CreateTransferResponseBodyCase0CreatedByUser;
-
-export type RetrieveTransferResponseDestinationCase0Typename = "Company";
-export const RetrieveTransferResponseDestinationCase0Typename =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveTransferResponseDestinationCase0 {
-  /** Account ID. */
-  id: string;
-  /** Account route. */
-  route?: string | null;
-  /** Account display name. */
-  title?: string | null;
-  typename: RetrieveTransferResponseDestinationCase0Typename;
-}
-export const RetrieveTransferResponseDestinationCase0 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      route: S.optional(S.NullOr(S.String)),
-      title: S.optional(S.NullOr(S.String)),
-      typename: RetrieveTransferResponseDestinationCase0Typename,
-    }),
-).annotate({
-  identifier: "RetrieveTransferResponseDestinationCase0",
-}) as any as S.Schema<RetrieveTransferResponseDestinationCase0>;
-
-export type RetrieveTransferResponseDestinationCase1Typename = "User";
-export const RetrieveTransferResponseDestinationCase1Typename =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveTransferResponseDestinationCase1 {
-  /** User ID. */
-  id: string;
-  /** User display name. */
-  name?: string | null;
-  typename: RetrieveTransferResponseDestinationCase1Typename;
-  /** User's username. */
-  username?: string;
-}
-export const RetrieveTransferResponseDestinationCase1 = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-      name: S.optional(S.NullOr(S.String)),
-      typename: RetrieveTransferResponseDestinationCase1Typename,
-      username: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RetrieveTransferResponseDestinationCase1",
-}) as any as S.Schema<RetrieveTransferResponseDestinationCase1>;
-
-/** Account or user receiving funds. */
-export type RetrieveTransferResponseDestination =
-  | RetrieveTransferResponseDestinationCase0
-  | RetrieveTransferResponseDestinationCase1;
-export const RetrieveTransferResponseDestination =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveTransferResponseDestination>;
-
-/** Custom metadata attached to the transfer. */
-export type RetrieveTransferResponseMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const RetrieveTransferResponseMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RetrieveTransferResponseMetadataMap>;
-
-/** The object type. Discriminates the create response from a send or a claim link. */
-export type RetrieveTransferResponseObject = "transfer";
-export const RetrieveTransferResponseObject = /*@__PURE__*/ S.String;
-
-export type RetrieveTransferResponseOriginCase0Typename = "Company";
-export const RetrieveTransferResponseOriginCase0Typename =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveTransferResponseOriginCase0 {
-  /** Account ID. */
-  id: string;
-  /** Account route. */
-  route?: string | null;
-  /** Account display name. */
-  title?: string | null;
-  typename: RetrieveTransferResponseOriginCase0Typename;
-}
-export const RetrieveTransferResponseOriginCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    route: S.optional(S.NullOr(S.String)),
-    title: S.optional(S.NullOr(S.String)),
-    typename: RetrieveTransferResponseOriginCase0Typename,
-  }),
-).annotate({
-  identifier: "RetrieveTransferResponseOriginCase0",
-}) as any as S.Schema<RetrieveTransferResponseOriginCase0>;
-
-export type RetrieveTransferResponseOriginCase1Typename = "User";
-export const RetrieveTransferResponseOriginCase1Typename =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveTransferResponseOriginCase1 {
-  /** User ID. */
-  id: string;
-  /** User display name. */
-  name?: string | null;
-  typename: RetrieveTransferResponseOriginCase1Typename;
-  /** User's username. */
-  username?: string;
-}
-export const RetrieveTransferResponseOriginCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.optional(S.NullOr(S.String)),
-    typename: RetrieveTransferResponseOriginCase1Typename,
-    username: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RetrieveTransferResponseOriginCase1",
-}) as any as S.Schema<RetrieveTransferResponseOriginCase1>;
-
-/** Account or user sending funds. */
-export type RetrieveTransferResponseOrigin =
-  | RetrieveTransferResponseOriginCase0
-  | RetrieveTransferResponseOriginCase1;
-export const RetrieveTransferResponseOrigin =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<RetrieveTransferResponseOrigin>;
-
-/** Transfer status. `processing` means the on-chain leg is still executing — poll the transfer until it resolves to `succeeded` or `failed`. A `failed` transfer may be retried under the same ID and later resolve to `succeeded`. */
-export type RetrieveTransferResponseStatus =
-  | "processing"
-  | "succeeded"
-  | "failed";
-export const RetrieveTransferResponseStatus = /*@__PURE__*/ S.String;
-
-export interface RetrieveTransferResponse {
-  /** Transfer amount. */
-  amount: number;
-  /** When the transfer was created. */
-  created_at: string;
-  /** The user who initiated the transfer, such as the team member who sent a manual payout. Null if the creator is unavailable. */
-  created_by_user: CreateTransferResponseBodyCase0CreatedByUser | null;
-  /** Transfer currency. */
-  currency: string;
-  /** Account or user receiving funds. */
-  destination: RetrieveTransferResponseDestination;
-  /** Destination ledger account ID. */
-  destination_ledger_account_id: string;
-  /** When the transfer failed, as an ISO 8601 timestamp. Null unless the transfer has failed. */
-  failed_at?: string | null;
-  /** Machine-readable code for why the transfer failed. Null unless the transfer has failed. */
-  failure_code?: string | null;
-  /** Human-readable explanation of why the transfer failed. Null unless the transfer has failed. */
-  failure_reason?: string | null;
-  /** Fee charged for the transfer. */
-  fee_amount?: number | null;
-  /** Transfer ID. */
-  id: string;
-  /** Custom metadata attached to the transfer. */
-  metadata?: RetrieveTransferResponseMetadataMap | null;
-  /** Transfer note. */
-  notes?: string | null;
-  /** The object type. Discriminates the create response from a send or a claim link. */
-  object: RetrieveTransferResponseObject;
-  /** Account or user sending funds. */
-  origin: RetrieveTransferResponseOrigin;
-  /** Source ledger account ID. */
-  origin_ledger_account_id: string;
-  /** Transfer status. `processing` means the on-chain leg is still executing — poll the transfer until it resolves to `succeeded` or `failed`. A `failed` transfer may be retried under the same ID and later resolve to `succeeded`. */
-  status: RetrieveTransferResponseStatus;
-}
-export const RetrieveTransferResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.Number,
-    created_at: S.String,
-    created_by_user: S.NullOr(CreateTransferResponseBodyCase0CreatedByUser),
-    currency: S.String,
-    destination: RetrieveTransferResponseDestination,
-    destination_ledger_account_id: S.String,
-    failed_at: S.optional(S.NullOr(S.String)),
-    failure_code: S.optional(S.NullOr(S.String)),
-    failure_reason: S.optional(S.NullOr(S.String)),
-    fee_amount: S.optional(S.NullOr(S.Number)),
-    id: S.String,
-    metadata: S.optional(S.NullOr(RetrieveTransferResponseMetadataMap)),
-    notes: S.optional(S.NullOr(S.String)),
-    object: RetrieveTransferResponseObject,
-    origin: RetrieveTransferResponseOrigin,
-    origin_ledger_account_id: S.String,
-    status: RetrieveTransferResponseStatus,
-  }),
-).annotate({
-  identifier: "RetrieveTransferResponse",
-}) as any as S.Schema<RetrieveTransferResponse>;
-
 export type CreateTransferError =
   | BadRequest
   | Forbidden
@@ -919,6 +912,21 @@ export const createTransfer: API.OperationMethod<
   input: CreateTransferRequest,
   output: CreateTransferResponse,
   errors: [BadRequest, Forbidden, Conflict],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTransferError = NotFound | WhopOpError;
+/** Retrieve Transfer Retrieves a single transfer. */
+export const getTransfer: API.OperationMethod<
+  GetTransferRequest,
+  GetTransferResponse,
+  GetTransferError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTransferRequest,
+  output: GetTransferResponse,
+  errors: [NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));
@@ -980,18 +988,3 @@ export const listTransferRecipients: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveTransferError = NotFound | WhopOpError;
-/** Retrieve Transfer Retrieves a single transfer. */
-export const retrieveTransfer: API.OperationMethod<
-  RetrieveTransferRequest,
-  RetrieveTransferResponse,
-  RetrieveTransferError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveTransferRequest,
-  output: RetrieveTransferResponse,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.discovery#DeleteProject": {
@@ -123,7 +124,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ProjectsUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -251,7 +252,7 @@
         "smithy.api#documentation": "The resource provisioning state."
       }
     },
-    "com.azure.discovery#ProjectsUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -407,7 +408,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ProjectsUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateProjectRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -452,7 +453,7 @@
         "smithy.api#documentation": "Allowed StorageContainers (Control plane resource references)."
       }
     },
-    "com.azure.discovery#ProjectsUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateProjectRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -664,7 +665,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ProjectsGetResponseTagsMap",
+          "target": "com.azure.discovery#GetProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -687,7 +688,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#ProjectsGetResponseTagsMap": {
+    "com.azure.discovery#GetProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -930,7 +931,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.discovery#WorkspacePrivateLinkResourcesGetResponseProperties",
+          "target": "com.azure.discovery#GetWorkspacePrivateLinkResourceResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of a private link resource."
           }
@@ -940,7 +941,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#WorkspacePrivateLinkResourcesGetResponseProperties": {
+    "com.azure.discovery#GetWorkspacePrivateLinkResourceResponseProperties": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -950,13 +951,13 @@
           }
         },
         "requiredMembers": {
-          "target": "com.azure.discovery#WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList",
+          "target": "com.azure.discovery#GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList",
           "traits": {
             "smithy.api#documentation": "The private link resource required member names."
           }
         },
         "requiredZoneNames": {
-          "target": "com.azure.discovery#WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList",
+          "target": "com.azure.discovery#GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList",
           "traits": {
             "smithy.api#documentation": "The private link resource private link DNS zone name."
           }
@@ -966,7 +967,7 @@
         "smithy.api#documentation": "Properties of a private link resource."
       }
     },
-    "com.azure.discovery#WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList": {
+    "com.azure.discovery#GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -975,7 +976,7 @@
         "smithy.api#documentation": "The private link resource private link DNS zone name."
       }
     },
-    "com.azure.discovery#WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList": {
+    "com.azure.discovery#GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1564,7 +1565,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.discovery#WorkspacePrivateEndpointConnectionsGetResponseProperties",
+          "target": "com.azure.discovery#GetWorkspacePrivateEndpointConnectionResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -1574,11 +1575,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#WorkspacePrivateEndpointConnectionsGetResponseProperties": {
+    "com.azure.discovery#GetWorkspacePrivateEndpointConnectionResponseProperties": {
       "type": "structure",
       "members": {
         "groupIds": {
-          "target": "com.azure.discovery#WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList",
+          "target": "com.azure.discovery#GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList",
           "traits": {
             "smithy.api#documentation": "The group ids for the private endpoint resource."
           }
@@ -1607,7 +1608,7 @@
         "smithy.api#documentation": "Properties of the private endpoint connection."
       }
     },
-    "com.azure.discovery#WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList": {
+    "com.azure.discovery#GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1923,7 +1924,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ChatModelDeploymentsUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateChatModelDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1992,7 +1993,7 @@
         "smithy.api#documentation": "Defines a deployment binding a specific model family to a user-defined deployment name for chat inference."
       }
     },
-    "com.azure.discovery#ChatModelDeploymentsUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateChatModelDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2040,7 +2041,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ChatModelDeploymentsUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateChatModelDeploymentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2070,7 +2071,7 @@
         "smithy.api#documentation": "Defines a deployment binding a specific model family to a user-defined deployment name for chat inference."
       }
     },
-    "com.azure.discovery#ChatModelDeploymentsUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateChatModelDeploymentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2322,7 +2323,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ChatModelDeploymentsGetResponseTagsMap",
+          "target": "com.azure.discovery#GetChatModelDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2345,7 +2346,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#ChatModelDeploymentsGetResponseTagsMap": {
+    "com.azure.discovery#GetChatModelDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2639,7 +2640,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2991,7 +2992,7 @@
         "smithy.api#documentation": "List of linked SuperComputers."
       }
     },
-    "com.azure.discovery#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3031,7 +3032,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3102,7 +3103,7 @@
         "smithy.api#documentation": "List of linked SuperComputers."
       }
     },
-    "com.azure.discovery#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3378,7 +3379,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.discovery#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3401,7 +3402,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#WorkspacesGetResponseTagsMap": {
+    "com.azure.discovery#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3679,7 +3680,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ToolsUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateToolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3760,7 +3761,7 @@
         "smithy.api#documentation": "Environment variables to make available"
       }
     },
-    "com.azure.discovery#ToolsUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateToolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3800,7 +3801,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ToolsUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateToolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3866,7 +3867,7 @@
         "smithy.api#documentation": "Environment variables to make available"
       }
     },
-    "com.azure.discovery#ToolsUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateToolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4122,7 +4123,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#ToolsGetResponseTagsMap",
+          "target": "com.azure.discovery#GetToolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4145,7 +4146,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#ToolsGetResponseTagsMap": {
+    "com.azure.discovery#GetToolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4431,7 +4432,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#NodePoolsUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateNodePoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4631,7 +4632,7 @@
         "smithy.api#documentation": "Supported Azure VM Sizes."
       }
     },
-    "com.azure.discovery#NodePoolsUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateNodePoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4679,7 +4680,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#NodePoolsUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateNodePoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4715,7 +4716,7 @@
         "smithy.api#documentation": "NodePool properties"
       }
     },
-    "com.azure.discovery#NodePoolsUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateNodePoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5006,7 +5007,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#NodePoolsGetResponseTagsMap",
+          "target": "com.azure.discovery#GetNodePoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5029,7 +5030,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#NodePoolsGetResponseTagsMap": {
+    "com.azure.discovery#GetNodePoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5323,7 +5324,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#SupercomputersUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateSupercomputerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5342,7 +5343,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.discovery#SupercomputersUpdateResponseIdentity",
+          "target": "com.azure.discovery#UpdateSupercomputerResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -5352,7 +5353,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#SupercomputersUpdateResponseIdentity": {
+    "com.azure.discovery#UpdateSupercomputerResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5580,7 +5581,7 @@
         "smithy.api#documentation": "Network egress type provisioned for the supercomputer workloads.\n    Defaults to LoadBalancer if not specified.\n    If None is specified, the customer is responsible for providing outbound connectivity for Supercomputer functionality."
       }
     },
-    "com.azure.discovery#SupercomputersUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateSupercomputerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5620,7 +5621,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#SupercomputersUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateSupercomputerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5723,7 +5724,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.discovery#SupercomputersUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateSupercomputerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6104,7 +6105,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#SupercomputersGetResponseTagsMap",
+          "target": "com.azure.discovery#GetSupercomputerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6123,7 +6124,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.discovery#SupercomputersGetResponseIdentity",
+          "target": "com.azure.discovery#GetSupercomputerResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -6133,7 +6134,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#SupercomputersGetResponseIdentity": {
+    "com.azure.discovery#GetSupercomputerResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -6159,7 +6160,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.discovery#SupercomputersGetResponseTagsMap": {
+    "com.azure.discovery#GetSupercomputerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6477,7 +6478,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#StorageAssetsUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateStorageAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6527,7 +6528,7 @@
         "smithy.api#documentation": "Storage Asset properties"
       }
     },
-    "com.azure.discovery#StorageAssetsUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateStorageAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6575,7 +6576,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#StorageAssetsUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateStorageAssetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6605,7 +6606,7 @@
         "smithy.api#documentation": "Storage Asset properties"
       }
     },
-    "com.azure.discovery#StorageAssetsUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateStorageAssetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6838,7 +6839,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#StorageAssetsGetResponseTagsMap",
+          "target": "com.azure.discovery#GetStorageAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6861,7 +6862,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#StorageAssetsGetResponseTagsMap": {
+    "com.azure.discovery#GetStorageAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7155,7 +7156,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#StorageContainersUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateStorageContainerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7234,7 +7235,7 @@
         "smithy.api#documentation": "The kind of the backing storage store."
       }
     },
-    "com.azure.discovery#StorageContainersUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateStorageContainerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7274,7 +7275,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#StorageContainersUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateStorageContainerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7290,7 +7291,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.discovery#StorageContainersUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateStorageContainerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7509,7 +7510,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#StorageContainersGetResponseTagsMap",
+          "target": "com.azure.discovery#GetStorageContainerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7532,7 +7533,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#StorageContainersGetResponseTagsMap": {
+    "com.azure.discovery#GetStorageContainerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7759,7 +7760,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.discovery#BookshelfPrivateLinkResourcesGetResponseProperties",
+          "target": "com.azure.discovery#GetBookshelfPrivateLinkResourceResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of a private link resource."
           }
@@ -7769,7 +7770,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#BookshelfPrivateLinkResourcesGetResponseProperties": {
+    "com.azure.discovery#GetBookshelfPrivateLinkResourceResponseProperties": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -7779,13 +7780,13 @@
           }
         },
         "requiredMembers": {
-          "target": "com.azure.discovery#BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList",
+          "target": "com.azure.discovery#GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList",
           "traits": {
             "smithy.api#documentation": "The private link resource required member names."
           }
         },
         "requiredZoneNames": {
-          "target": "com.azure.discovery#BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList",
+          "target": "com.azure.discovery#GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList",
           "traits": {
             "smithy.api#documentation": "The private link resource private link DNS zone name."
           }
@@ -7795,7 +7796,7 @@
         "smithy.api#documentation": "Properties of a private link resource."
       }
     },
-    "com.azure.discovery#BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList": {
+    "com.azure.discovery#GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7804,7 +7805,7 @@
         "smithy.api#documentation": "The private link resource private link DNS zone name."
       }
     },
-    "com.azure.discovery#BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList": {
+    "com.azure.discovery#GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8288,7 +8289,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.discovery#BookshelfPrivateEndpointConnectionsGetResponseProperties",
+          "target": "com.azure.discovery#GetBookshelfPrivateEndpointConnectionResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of the private endpoint connection."
           }
@@ -8298,11 +8299,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#BookshelfPrivateEndpointConnectionsGetResponseProperties": {
+    "com.azure.discovery#GetBookshelfPrivateEndpointConnectionResponseProperties": {
       "type": "structure",
       "members": {
         "groupIds": {
-          "target": "com.azure.discovery#BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList",
+          "target": "com.azure.discovery#GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList",
           "traits": {
             "smithy.api#documentation": "The group ids for the private endpoint resource."
           }
@@ -8331,7 +8332,7 @@
         "smithy.api#documentation": "Properties of the private endpoint connection."
       }
     },
-    "com.azure.discovery#BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList": {
+    "com.azure.discovery#GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8639,7 +8640,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#BookshelvesUpdateResponseTagsMap",
+          "target": "com.azure.discovery#UpdateBookshelveResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8856,7 +8857,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.discovery#BookshelvesUpdateResponseTagsMap": {
+    "com.azure.discovery#UpdateBookshelveResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8896,7 +8897,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#BookshelvesUpdateRequestTagsMap",
+          "target": "com.azure.discovery#UpdateBookshelveRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8952,7 +8953,7 @@
         "smithy.api#documentation": "Key Vault Properties with clientId selection"
       }
     },
-    "com.azure.discovery#BookshelvesUpdateRequestTagsMap": {
+    "com.azure.discovery#UpdateBookshelveRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9225,7 +9226,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.discovery#BookshelvesGetResponseTagsMap",
+          "target": "com.azure.discovery#GetBookshelveResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9248,7 +9249,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#BookshelvesGetResponseTagsMap": {
+    "com.azure.discovery#GetBookshelveResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9626,7 +9627,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.discovery#OperationsListResponseValueList",
+          "target": "com.azure.discovery#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -9642,7 +9643,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.discovery#OperationsListResponseValueList": {
+    "com.azure.discovery#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.discovery#Operation"
@@ -9766,193 +9767,193 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.discovery#DeleteProject"
-        },
-        {
-          "target": "com.azure.discovery#UpdateProject"
-        },
-        {
-          "target": "com.azure.discovery#ProjectsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetProject"
-        },
-        {
-          "target": "com.azure.discovery#ListProjectByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#GetWorkspacePrivateLinkResource"
-        },
-        {
-          "target": "com.azure.discovery#ListWorkspacePrivateLinkResourceByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#DeleteWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.discovery#WorkspacePrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.discovery#ListWorkspacePrivateEndpointConnectionByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#DeleteChatModelDeployment"
-        },
-        {
-          "target": "com.azure.discovery#UpdateChatModelDeployment"
-        },
-        {
-          "target": "com.azure.discovery#ChatModelDeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetChatModelDeployment"
-        },
-        {
-          "target": "com.azure.discovery#ListChatModelDeploymentByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#UpdateWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#WorkspacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#DeleteTool"
-        },
-        {
-          "target": "com.azure.discovery#UpdateTool"
-        },
-        {
-          "target": "com.azure.discovery#ToolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetTool"
-        },
-        {
-          "target": "com.azure.discovery#ListToolByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#DeleteNodePool"
-        },
-        {
-          "target": "com.azure.discovery#UpdateNodePool"
-        },
-        {
-          "target": "com.azure.discovery#NodePoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetNodePool"
-        },
-        {
-          "target": "com.azure.discovery#ListNodePoolBySupercomputer"
-        },
-        {
-          "target": "com.azure.discovery#DeleteSupercomputer"
-        },
-        {
-          "target": "com.azure.discovery#UpdateSupercomputer"
-        },
-        {
-          "target": "com.azure.discovery#SupercomputersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetSupercomputer"
-        },
-        {
-          "target": "com.azure.discovery#ListSupercomputerByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#DeleteStorageAsset"
-        },
-        {
-          "target": "com.azure.discovery#UpdateStorageAsset"
-        },
-        {
-          "target": "com.azure.discovery#StorageAssetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetStorageAsset"
-        },
-        {
-          "target": "com.azure.discovery#ListStorageAssetByStorageContainer"
-        },
-        {
-          "target": "com.azure.discovery#DeleteStorageContainer"
-        },
-        {
-          "target": "com.azure.discovery#UpdateStorageContainer"
-        },
-        {
-          "target": "com.azure.discovery#StorageContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetStorageContainer"
-        },
-        {
-          "target": "com.azure.discovery#ListStorageContainerByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#GetBookshelfPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.discovery#ListBookshelfPrivateLinkResourceByBookshelf"
-        },
-        {
-          "target": "com.azure.discovery#DeleteBookshelfPrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.discovery#BookshelfPrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#GetBookshelfPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.discovery#ListBookshelfPrivateEndpointConnectionByBookshelf"
-        },
-        {
-          "target": "com.azure.discovery#DeleteBookshelve"
-        },
-        {
-          "target": "com.azure.discovery#UpdateBookshelve"
         },
         {
           "target": "com.azure.discovery#BookshelvesCreateOrUpdate"
         },
         {
+          "target": "com.azure.discovery#ChatModelDeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#DeleteBookshelfPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.discovery#DeleteBookshelve"
+        },
+        {
+          "target": "com.azure.discovery#DeleteChatModelDeployment"
+        },
+        {
+          "target": "com.azure.discovery#DeleteNodePool"
+        },
+        {
+          "target": "com.azure.discovery#DeleteProject"
+        },
+        {
+          "target": "com.azure.discovery#DeleteStorageAsset"
+        },
+        {
+          "target": "com.azure.discovery#DeleteStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#DeleteSupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#DeleteTool"
+        },
+        {
+          "target": "com.azure.discovery#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#DeleteWorkspacePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.discovery#GetBookshelfPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.discovery#GetBookshelfPrivateLinkResource"
+        },
+        {
           "target": "com.azure.discovery#GetBookshelve"
+        },
+        {
+          "target": "com.azure.discovery#GetChatModelDeployment"
+        },
+        {
+          "target": "com.azure.discovery#GetNodePool"
+        },
+        {
+          "target": "com.azure.discovery#GetProject"
+        },
+        {
+          "target": "com.azure.discovery#GetStorageAsset"
+        },
+        {
+          "target": "com.azure.discovery#GetStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#GetSupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#GetTool"
+        },
+        {
+          "target": "com.azure.discovery#GetWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#GetWorkspacePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.discovery#GetWorkspacePrivateLinkResource"
+        },
+        {
+          "target": "com.azure.discovery#ListBookshelfPrivateEndpointConnectionByBookshelf"
+        },
+        {
+          "target": "com.azure.discovery#ListBookshelfPrivateLinkResourceByBookshelf"
         },
         {
           "target": "com.azure.discovery#ListBookshelveByResourceGroup"
         },
         {
-          "target": "com.azure.discovery#ListWorkspaceBySubscription"
+          "target": "com.azure.discovery#ListBookshelveBySubscription"
         },
         {
-          "target": "com.azure.discovery#ListToolBySubscription"
+          "target": "com.azure.discovery#ListChatModelDeploymentByWorkspace"
         },
         {
-          "target": "com.azure.discovery#ListSupercomputerBySubscription"
+          "target": "com.azure.discovery#ListNodePoolBySupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#ListOperations"
+        },
+        {
+          "target": "com.azure.discovery#ListProjectByWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#ListStorageAssetByStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#ListStorageContainerByResourceGroup"
         },
         {
           "target": "com.azure.discovery#ListStorageContainerBySubscription"
         },
         {
-          "target": "com.azure.discovery#ListBookshelveBySubscription"
+          "target": "com.azure.discovery#ListSupercomputerByResourceGroup"
         },
         {
-          "target": "com.azure.discovery#ListOperations"
+          "target": "com.azure.discovery#ListSupercomputerBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListToolByResourceGroup"
+        },
+        {
+          "target": "com.azure.discovery#ListToolBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.discovery#ListWorkspaceBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListWorkspacePrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#ListWorkspacePrivateLinkResourceByWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#NodePoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#ProjectsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#StorageAssetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#StorageContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#SupercomputersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#ToolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#UpdateBookshelve"
+        },
+        {
+          "target": "com.azure.discovery#UpdateChatModelDeployment"
+        },
+        {
+          "target": "com.azure.discovery#UpdateNodePool"
+        },
+        {
+          "target": "com.azure.discovery#UpdateProject"
+        },
+        {
+          "target": "com.azure.discovery#UpdateStorageAsset"
+        },
+        {
+          "target": "com.azure.discovery#UpdateStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#UpdateSupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#UpdateTool"
+        },
+        {
+          "target": "com.azure.discovery#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#WorkspacePrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#WorkspacesCreateOrUpdate"
         }
       ],
       "traits": {

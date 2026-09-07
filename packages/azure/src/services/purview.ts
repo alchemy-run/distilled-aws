@@ -12,42 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AccountsAddRootCollectionAdminRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** Gets or sets the object identifier of the admin. */
-  objectId?: string;
-}
-export const AccountsAddRootCollectionAdminRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      objectId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/addRootCollectionAdmin",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "AccountsAddRootCollectionAdminRequest",
-}) as any as S.Schema<AccountsAddRootCollectionAdminRequest>;
-
-export interface AccountsAddRootCollectionAdminResponse {}
-export const AccountsAddRootCollectionAdminResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AccountsAddRootCollectionAdminResponse",
-}) as any as S.Schema<AccountsAddRootCollectionAdminResponse>;
-
 /** Identity Type */
 export type IdentityInputType = "None" | "SystemAssigned" | "UserAssigned";
 export const IdentityInputType = /*@__PURE__*/ S.String;
@@ -636,6 +600,42 @@ export const AccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsCreateOrUpdateResponse",
 }) as any as S.Schema<AccountsCreateOrUpdateResponse>;
 
+export interface AddAccountRootCollectionAdminRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** Gets or sets the object identifier of the admin. */
+  objectId?: string;
+}
+export const AddAccountRootCollectionAdminRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      objectId: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/addRootCollectionAdmin",
+        code: 200,
+        apiVersion: "2021-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "AddAccountRootCollectionAdminRequest",
+}) as any as S.Schema<AddAccountRootCollectionAdminRequest>;
+
+export interface AddAccountRootCollectionAdminResponse {}
+export const AddAccountRootCollectionAdminResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "AddAccountRootCollectionAdminResponse",
+}) as any as S.Schema<AddAccountRootCollectionAdminResponse>;
+
 export interface CheckAccountNameAvailabilityRequest {
   /** The subscription identifier */
   subscriptionId: string;
@@ -683,41 +683,6 @@ export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CheckNameAvailabilityResult",
 }) as any as S.Schema<CheckNameAvailabilityResult>;
-
-export type DefaultAccountsRemoveRequestScopeType = "Tenant" | "Subscription";
-export const DefaultAccountsRemoveRequestScopeType = /*@__PURE__*/ S.String;
-
-export interface DefaultAccountsRemoveRequest {
-  /** The tenant ID. */
-  scopeTenantId: string;
-  /** The scope for the default account. */
-  scopeType: DefaultAccountsRemoveRequestScopeType | (string & {});
-  /** The Id of the scope object, for example if the scope is "Subscription" then it is the ID of that subscription. */
-  scope?: string;
-}
-export const DefaultAccountsRemoveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scopeTenantId: S.String.pipe(T.Query()),
-    scopeType: DefaultAccountsRemoveRequestScopeType.pipe(T.Query()),
-    scope: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Purview/removeDefaultAccount",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DefaultAccountsRemoveRequest",
-}) as any as S.Schema<DefaultAccountsRemoveRequest>;
-
-export interface DefaultAccountsRemoveResponse {}
-export const DefaultAccountsRemoveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DefaultAccountsRemoveResponse",
-}) as any as S.Schema<DefaultAccountsRemoveResponse>;
 
 export interface DeleteAccountRequest {
   /** The subscription identifier */
@@ -848,11 +813,11 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** Tags on the azure resource. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 export interface GetAccountResponse {
   /** Gets or sets the identifier. */
@@ -866,7 +831,7 @@ export interface GetAccountResponse {
   /** Metadata pertaining to creation and last modification of the resource. */
   systemData?: SystemData;
   /** Tags on the azure resource. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** Gets or sets the type. */
   type?: string;
   /** Gets or sets the properties. */
@@ -881,7 +846,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
     name: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     type: S.optional(S.String),
     properties: S.optional(AccountProperties),
     sku: S.optional(AccountSku),
@@ -890,21 +855,21 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAccountResponse",
 }) as any as S.Schema<GetAccountResponse>;
 
-export type DefaultAccountsGetRequestScopeType = "Tenant" | "Subscription";
-export const DefaultAccountsGetRequestScopeType = /*@__PURE__*/ S.String;
+export type GetDefaultAccountRequestScopeType = "Tenant" | "Subscription";
+export const GetDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
 
 export interface GetDefaultAccountRequest {
   /** The tenant ID. */
   scopeTenantId: string;
   /** The scope for the default account. */
-  scopeType: DefaultAccountsGetRequestScopeType | (string & {});
+  scopeType: GetDefaultAccountRequestScopeType | (string & {});
   /** The Id of the scope object, for example if the scope is "Subscription" then it is the ID of that subscription. */
   scope?: string;
 }
 export const GetDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scopeTenantId: S.String.pipe(T.Query()),
-    scopeType: DefaultAccountsGetRequestScopeType.pipe(T.Query()),
+    scopeType: GetDefaultAccountRequestScopeType.pipe(T.Query()),
     scope: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -951,12 +916,12 @@ export const DefaultAccountPayload = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DefaultAccountPayload>;
 
 /** Set of features */
-export type FeaturesAccountGetRequestFeaturesList = Array<string>;
-export const FeaturesAccountGetRequestFeaturesList = /*@__PURE__*/ S.Array(
+export type GetFeaturesAccountRequestFeaturesList = Array<string>;
+export const GetFeaturesAccountRequestFeaturesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FeaturesAccountGetRequestFeaturesList>;
+) as any as S.Schema<GetFeaturesAccountRequestFeaturesList>;
 
-export interface GetFeatureAccountRequest {
+export interface GetFeaturesAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -964,14 +929,14 @@ export interface GetFeatureAccountRequest {
   /** The name of the account. */
   accountName: string;
   /** Set of features */
-  features?: FeaturesAccountGetRequestFeaturesList;
+  features?: GetFeaturesAccountRequestFeaturesList;
 }
-export const GetFeatureAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeaturesAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    features: S.optional(FeaturesAccountGetRequestFeaturesList),
+    features: S.optional(GetFeaturesAccountRequestFeaturesList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -981,8 +946,8 @@ export const GetFeatureAccountRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetFeatureAccountRequest",
-}) as any as S.Schema<GetFeatureAccountRequest>;
+  identifier: "GetFeaturesAccountRequest",
+}) as any as S.Schema<GetFeaturesAccountRequest>;
 
 /** Features with enabled status */
 export type BatchFeatureStatusFeaturesMap = {
@@ -1007,24 +972,24 @@ export const BatchFeatureStatus = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchFeatureStatus>;
 
 /** Set of features */
-export type FeaturesSubscriptionGetRequestFeaturesList = Array<string>;
-export const FeaturesSubscriptionGetRequestFeaturesList = /*@__PURE__*/ S.Array(
+export type GetFeaturesSubscriptionRequestFeaturesList = Array<string>;
+export const GetFeaturesSubscriptionRequestFeaturesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FeaturesSubscriptionGetRequestFeaturesList>;
+) as any as S.Schema<GetFeaturesSubscriptionRequestFeaturesList>;
 
-export interface GetFeatureSubscriptionRequest {
+export interface GetFeaturesSubscriptionRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** Location of feature. */
   locations: string;
   /** Set of features */
-  features?: FeaturesSubscriptionGetRequestFeaturesList;
+  features?: GetFeaturesSubscriptionRequestFeaturesList;
 }
-export const GetFeatureSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeaturesSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     locations: S.String.pipe(T.Label()),
-    features: S.optional(FeaturesSubscriptionGetRequestFeaturesList),
+    features: S.optional(GetFeaturesSubscriptionRequestFeaturesList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -1034,8 +999,8 @@ export const GetFeatureSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetFeatureSubscriptionRequest",
-}) as any as S.Schema<GetFeatureSubscriptionRequest>;
+  identifier: "GetFeaturesSubscriptionRequest",
+}) as any as S.Schema<GetFeaturesSubscriptionRequest>;
 
 export interface GetKafkaConfigurationRequest {
   /** The subscription identifier */
@@ -2086,9 +2051,44 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
+export type RemoveDefaultAccountRequestScopeType = "Tenant" | "Subscription";
+export const RemoveDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
+
+export interface RemoveDefaultAccountRequest {
+  /** The tenant ID. */
+  scopeTenantId: string;
+  /** The scope for the default account. */
+  scopeType: RemoveDefaultAccountRequestScopeType | (string & {});
+  /** The Id of the scope object, for example if the scope is "Subscription" then it is the ID of that subscription. */
+  scope?: string;
+}
+export const RemoveDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scopeTenantId: S.String.pipe(T.Query()),
+    scopeType: RemoveDefaultAccountRequestScopeType.pipe(T.Query()),
+    scope: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Purview/removeDefaultAccount",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "RemoveDefaultAccountRequest",
+}) as any as S.Schema<RemoveDefaultAccountRequest>;
+
+export interface RemoveDefaultAccountResponse {}
+export const RemoveDefaultAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RemoveDefaultAccountResponse",
+}) as any as S.Schema<RemoveDefaultAccountResponse>;
+
 /** The scope where the default account is set. */
-export type DefaultAccountsSetRequestScopeType = "Tenant" | "Subscription";
-export const DefaultAccountsSetRequestScopeType = /*@__PURE__*/ S.String;
+export type SetDefaultAccountRequestScopeType = "Tenant" | "Subscription";
+export const SetDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
 
 export interface SetDefaultAccountRequest {
   /** The name of the account that is set as the default. */
@@ -2100,7 +2100,7 @@ export interface SetDefaultAccountRequest {
   /** The scope tenant in which the default account is set. */
   scopeTenantId?: string;
   /** The scope where the default account is set. */
-  scopeType?: DefaultAccountsSetRequestScopeType | (string & {});
+  scopeType?: SetDefaultAccountRequestScopeType | (string & {});
   /** The subscription ID of the account that is set as the default. */
   subscriptionId?: string;
 }
@@ -2110,7 +2110,7 @@ export const SetDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.optional(S.String),
     scope: S.optional(S.String),
     scopeTenantId: S.optional(S.String),
-    scopeType: S.optional(DefaultAccountsSetRequestScopeType),
+    scopeType: S.optional(SetDefaultAccountRequestScopeType),
     subscriptionId: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -2125,13 +2125,11 @@ export const SetDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SetDefaultAccountRequest>;
 
 /** Tags on the azure resource. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 export interface UpdateAccountRequest {
   /** The subscription identifier */
@@ -2145,7 +2143,7 @@ export interface UpdateAccountRequest {
   /** The account properties. */
   properties?: AccountPropertiesInput;
   /** Tags on the azure resource. */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
 }
 export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2154,7 +2152,7 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     accountName: S.String.pipe(T.Label()),
     identity: S.optional(IdentityInput),
     properties: S.optional(AccountPropertiesInput),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2168,13 +2166,13 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** Tags on the azure resource. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 export interface UpdateAccountResponse {
   /** Gets or sets the identifier. */
@@ -2188,7 +2186,7 @@ export interface UpdateAccountResponse {
   /** Metadata pertaining to creation and last modification of the resource. */
   systemData?: SystemData;
   /** Tags on the azure resource. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** Gets or sets the type. */
   type?: string;
   /** Gets or sets the properties. */
@@ -2203,7 +2201,7 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
     name: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     type: S.optional(S.String),
     properties: S.optional(AccountProperties),
     sku: S.optional(AccountSku),
@@ -2211,21 +2209,6 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateAccountResponse",
 }) as any as S.Schema<UpdateAccountResponse>;
-
-export type AccountsAddRootCollectionAdminError = AzureOpError;
-/** Add the administrator for root collection. Add the administrator for root collection associated with this account. */
-export const AccountsAddRootCollectionAdmin: API.OperationMethod<
-  AccountsAddRootCollectionAdminRequest,
-  AccountsAddRootCollectionAdminResponse,
-  AccountsAddRootCollectionAdminError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsAddRootCollectionAdminRequest,
-  output: AccountsAddRootCollectionAdminResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
 
 export type AccountsCreateOrUpdateError = AzureOpError;
 /** Create or update an account resource Creates or updates an account */
@@ -2242,6 +2225,21 @@ export const AccountsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type AddAccountRootCollectionAdminError = AzureOpError;
+/** Add the administrator for root collection. Add the administrator for root collection associated with this account. */
+export const AddAccountRootCollectionAdmin: API.OperationMethod<
+  AddAccountRootCollectionAdminRequest,
+  AddAccountRootCollectionAdminResponse,
+  AddAccountRootCollectionAdminError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddAccountRootCollectionAdminRequest,
+  output: AddAccountRootCollectionAdminResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CheckAccountNameAvailabilityError = AzureOpError;
 /** Checks the account name availability. Checks if account name is available. */
 export const CheckAccountNameAvailability: API.OperationMethod<
@@ -2252,21 +2250,6 @@ export const CheckAccountNameAvailability: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CheckAccountNameAvailabilityRequest,
   output: CheckNameAvailabilityResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DefaultAccountsRemoveError = AzureOpError;
-/** Removes the default account from the scope. Removes the default account from the scope. */
-export const DefaultAccountsRemove: API.OperationMethod<
-  DefaultAccountsRemoveRequest,
-  DefaultAccountsRemoveResponse,
-  DefaultAccountsRemoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DefaultAccountsRemoveRequest,
-  output: DefaultAccountsRemoveResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2347,30 +2330,30 @@ export const GetDefaultAccount: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetFeatureAccountError = AzureOpError;
+export type GetFeaturesAccountError = AzureOpError;
 /** Gets a list of features and their status for the account. Status of enabled features will be true. Status of disabled features will be false. Features that don't exist will be excluded from the results. Gets details from a list of feature names. */
-export const GetFeatureAccount: API.OperationMethod<
-  GetFeatureAccountRequest,
+export const GetFeaturesAccount: API.OperationMethod<
+  GetFeaturesAccountRequest,
   BatchFeatureStatus,
-  GetFeatureAccountError,
+  GetFeaturesAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetFeatureAccountRequest,
+  input: GetFeaturesAccountRequest,
   output: BatchFeatureStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetFeatureSubscriptionError = AzureOpError;
+export type GetFeaturesSubscriptionError = AzureOpError;
 /** Gets a list of features and their status for the location and subscription. Status of enabled features will be true. Status of disabled features will be false. Features that don't exist will be excluded from the results. Gets details from a list of feature names. */
-export const GetFeatureSubscription: API.OperationMethod<
-  GetFeatureSubscriptionRequest,
+export const GetFeaturesSubscription: API.OperationMethod<
+  GetFeaturesSubscriptionRequest,
   BatchFeatureStatus,
-  GetFeatureSubscriptionError,
+  GetFeaturesSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetFeatureSubscriptionRequest,
+  input: GetFeaturesSubscriptionRequest,
   output: BatchFeatureStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2567,6 +2550,21 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateEndpointConnectionsCreateOrUpdateRequest,
   output: PrivateEndpointConnectionsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveDefaultAccountError = AzureOpError;
+/** Removes the default account from the scope. Removes the default account from the scope. */
+export const RemoveDefaultAccount: API.OperationMethod<
+  RemoveDefaultAccountRequest,
+  RemoveDefaultAccountResponse,
+  RemoveDefaultAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveDefaultAccountRequest,
+  output: RemoveDefaultAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

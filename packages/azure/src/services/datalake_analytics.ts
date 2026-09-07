@@ -13,10 +13,115 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
+export interface AddDataLakeStoreProperties {
+  /** The optional suffix for the Data Lake Store account. */
+  suffix?: string;
+}
+export const AddDataLakeStoreProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    suffix: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AddDataLakeStoreProperties",
+}) as any as S.Schema<AddDataLakeStoreProperties>;
+
+export interface AddDataLakeStoreAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Data Lake Store account to add. */
+  dataLakeStoreAccountName: string;
+  /** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
+  properties?: AddDataLakeStoreProperties;
+}
+export const AddDataLakeStoreAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    dataLakeStoreAccountName: S.String.pipe(T.Label()),
+    properties: S.optional(AddDataLakeStoreProperties),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "AddDataLakeStoreAccountRequest",
+}) as any as S.Schema<AddDataLakeStoreAccountRequest>;
+
+export interface AddDataLakeStoreAccountResponse {}
+export const AddDataLakeStoreAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AddDataLakeStoreAccountResponse",
+}) as any as S.Schema<AddDataLakeStoreAccountResponse>;
+
+/** The Azure Storage account properties to use when adding a new Azure Storage account. */
+export interface AddStorageAccountProperties {
+  /** The access key associated with this Azure Storage account that will be used to connect to it. */
+  accessKey: string;
+  /** The optional suffix for the storage account. */
+  suffix?: string;
+}
+export const AddStorageAccountProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessKey: S.String,
+    suffix: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AddStorageAccountProperties",
+}) as any as S.Schema<AddStorageAccountProperties>;
+
+export interface AddStorageAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Azure Storage account to add */
+  storageAccountName: string;
+  /** The Azure Storage account properties to use when adding a new Azure Storage account. */
+  properties: AddStorageAccountProperties;
+}
+export const AddStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+    properties: AddStorageAccountProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "AddStorageAccountRequest",
+}) as any as S.Schema<AddStorageAccountRequest>;
+
+export interface AddStorageAccountResponse {}
+export const AddStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AddStorageAccountResponse",
+}) as any as S.Schema<AddStorageAccountResponse>;
+
 /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts */
-export type AccountsCheckNameAvailabilityRequestType =
+export type CheckAccountNameAvailabilityRequestType =
   "Microsoft.DataLakeAnalytics/accounts";
-export const AccountsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
 
 export interface CheckAccountNameAvailabilityRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -26,14 +131,14 @@ export interface CheckAccountNameAvailabilityRequest {
   /** The Data Lake Analytics name to check availability for. */
   name: string;
   /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts */
-  type: AccountsCheckNameAvailabilityRequestType | (string & {});
+  type: CheckAccountNameAvailabilityRequestType | (string & {});
 }
 export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
     name: S.String,
-    type: AccountsCheckNameAvailabilityRequestType,
+    type: CheckAccountNameAvailabilityRequestType,
   }).pipe(
     T.Http({
       method: "POST",
@@ -180,26 +285,11 @@ export const ComputePoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ComputePoliciesCreateOrUpdateResponse>;
 
 /** The resource tags. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
-
-/** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
-export interface AddDataLakeStoreProperties {
-  /** The optional suffix for the Data Lake Store account. */
-  suffix?: string;
-}
-export const AddDataLakeStoreProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    suffix: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AddDataLakeStoreProperties",
-}) as any as S.Schema<AddDataLakeStoreProperties>;
+) as any as S.Schema<CreateAccountRequestTagsMap>;
 
 /** The parameters used to add a new Data Lake Store account while creating a new Data Lake Analytics account. */
 export interface AddDataLakeStoreWithAccountParameters {
@@ -225,22 +315,6 @@ export const CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList =
   /*@__PURE__*/ S.Array(
     AddDataLakeStoreWithAccountParameters,
   ) as any as S.Schema<CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList>;
-
-/** The Azure Storage account properties to use when adding a new Azure Storage account. */
-export interface AddStorageAccountProperties {
-  /** The access key associated with this Azure Storage account that will be used to connect to it. */
-  accessKey: string;
-  /** The optional suffix for the storage account. */
-  suffix?: string;
-}
-export const AddStorageAccountProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessKey: S.String,
-    suffix: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AddStorageAccountProperties",
-}) as any as S.Schema<AddStorageAccountProperties>;
 
 /** The parameters used to add a new Azure Storage account while creating a new Data Lake Analytics account. */
 export interface AddStorageAccountWithAccountParameters {
@@ -436,7 +510,7 @@ export interface CreateAccountRequest {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** The Data Lake Analytics account properties to use for creating. */
   properties: CreateDataLakeAnalyticsAccountProperties;
 }
@@ -446,7 +520,7 @@ export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     location: S.String,
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     properties: CreateDataLakeAnalyticsAccountProperties,
   }).pipe(
     T.Http({
@@ -461,13 +535,13 @@ export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** The provisioning status of the Data Lake Analytics account. */
 export type DataLakeAnalyticsAccountPropertiesProvisioningState =
@@ -941,7 +1015,7 @@ export interface CreateAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** The properties defined by Data Lake Analytics all properties are specific to each resource provider. */
   properties?: DataLakeAnalyticsAccountProperties;
 }
@@ -951,50 +1025,12 @@ export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     properties: S.optional(DataLakeAnalyticsAccountProperties),
   }),
 ).annotate({
   identifier: "CreateAccountResponse",
 }) as any as S.Schema<CreateAccountResponse>;
-
-export interface DataLakeStoreAccountsAddRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Data Lake Store account to add. */
-  dataLakeStoreAccountName: string;
-  /** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
-  properties?: AddDataLakeStoreProperties;
-}
-export const DataLakeStoreAccountsAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    dataLakeStoreAccountName: S.String.pipe(T.Label()),
-    properties: S.optional(AddDataLakeStoreProperties),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataLakeStoreAccountsAddRequest",
-}) as any as S.Schema<DataLakeStoreAccountsAddRequest>;
-
-export interface DataLakeStoreAccountsAddResponse {}
-export const DataLakeStoreAccountsAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataLakeStoreAccountsAddResponse",
-}) as any as S.Schema<DataLakeStoreAccountsAddResponse>;
 
 export interface DeleteAccountRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -1246,11 +1282,11 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** The resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 export interface GetAccountResponse {
   /** The resource identifier. */
@@ -1262,7 +1298,7 @@ export interface GetAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The properties defined by Data Lake Analytics all properties are specific to each resource provider. */
   properties?: DataLakeAnalyticsAccountProperties;
 }
@@ -1272,7 +1308,7 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     properties: S.optional(DataLakeAnalyticsAccountProperties),
   }),
 ).annotate({
@@ -2362,52 +2398,12 @@ export const StorageContainerListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageContainerListResult",
 }) as any as S.Schema<StorageContainerListResult>;
 
-export interface StorageAccountsAddRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Azure Storage account to add */
-  storageAccountName: string;
-  /** The Azure Storage account properties to use when adding a new Azure Storage account. */
-  properties: AddStorageAccountProperties;
-}
-export const StorageAccountsAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-    properties: AddStorageAccountProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsAddRequest",
-}) as any as S.Schema<StorageAccountsAddRequest>;
-
-export interface StorageAccountsAddResponse {}
-export const StorageAccountsAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageAccountsAddResponse",
-}) as any as S.Schema<StorageAccountsAddResponse>;
-
 /** The resource tags. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** The Data Lake Store account properties to use when updating a Data Lake Store account. */
 export type UpdateDataLakeStoreProperties = AddDataLakeStoreProperties;
@@ -2661,7 +2657,7 @@ export interface UpdateAccountRequest {
   /** The name of the Data Lake Analytics account. */
   accountName: string;
   /** The resource tags. */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** The properties that can be updated in an existing Data Lake Analytics account. */
   properties?: UpdateDataLakeAnalyticsAccountProperties;
 }
@@ -2670,7 +2666,7 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     properties: S.optional(UpdateDataLakeAnalyticsAccountProperties),
   }).pipe(
     T.Http({
@@ -2685,13 +2681,13 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 export interface UpdateAccountResponse {
   /** The resource identifier. */
@@ -2703,7 +2699,7 @@ export interface UpdateAccountResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The properties defined by Data Lake Analytics all properties are specific to each resource provider. */
   properties?: DataLakeAnalyticsAccountProperties;
 }
@@ -2713,7 +2709,7 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     properties: S.optional(DataLakeAnalyticsAccountProperties),
   }),
 ).annotate({
@@ -2862,6 +2858,36 @@ export const UpdateStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateStorageAccountResponse",
 }) as any as S.Schema<UpdateStorageAccountResponse>;
 
+export type AddDataLakeStoreAccountError = AzureOpError;
+/** Updates the specified Data Lake Analytics account to include the additional Data Lake Store account. */
+export const AddDataLakeStoreAccount: API.OperationMethod<
+  AddDataLakeStoreAccountRequest,
+  AddDataLakeStoreAccountResponse,
+  AddDataLakeStoreAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddDataLakeStoreAccountRequest,
+  output: AddDataLakeStoreAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AddStorageAccountError = AzureOpError;
+/** Updates the specified Data Lake Analytics account to add an Azure Storage account. */
+export const AddStorageAccount: API.OperationMethod<
+  AddStorageAccountRequest,
+  AddStorageAccountResponse,
+  AddStorageAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddStorageAccountRequest,
+  output: AddStorageAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CheckAccountNameAvailabilityError = AzureOpError;
 /** Checks whether the specified account name is available or taken. */
 export const CheckAccountNameAvailability: API.OperationMethod<
@@ -2902,21 +2928,6 @@ export const CreateAccount: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateAccountRequest,
   output: CreateAccountResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataLakeStoreAccountsAddError = AzureOpError;
-/** Updates the specified Data Lake Analytics account to include the additional Data Lake Store account. */
-export const DataLakeStoreAccountsAdd: API.OperationMethod<
-  DataLakeStoreAccountsAddRequest,
-  DataLakeStoreAccountsAddResponse,
-  DataLakeStoreAccountsAddError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataLakeStoreAccountsAddRequest,
-  output: DataLakeStoreAccountsAddResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3247,21 +3258,6 @@ export const ListStorageAccountStorageContainers: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListStorageAccountStorageContainersRequest,
   output: StorageContainerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsAddError = AzureOpError;
-/** Updates the specified Data Lake Analytics account to add an Azure Storage account. */
-export const StorageAccountsAdd: API.OperationMethod<
-  StorageAccountsAddRequest,
-  StorageAccountsAddResponse,
-  StorageAccountsAddError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsAddRequest,
-  output: StorageAccountsAddResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

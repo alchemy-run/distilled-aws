@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.reviews#ListReviewRequest": {
@@ -389,7 +390,7 @@
         }
       }
     },
-    "com.whop.reviews#RetrieveReviewRequest": {
+    "com.whop.reviews#GetReviewRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -645,10 +646,10 @@
         "smithy.api#documentation": "The user account of the person who wrote this review."
       }
     },
-    "com.whop.reviews#RetrieveReview": {
+    "com.whop.reviews#GetReview": {
       "type": "operation",
       "input": {
-        "target": "com.whop.reviews#RetrieveReviewRequest"
+        "target": "com.whop.reviews#GetReviewRequest"
       },
       "output": {
         "target": "com.whop.reviews#Review"
@@ -733,10 +734,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.reviews#ListReview"
+          "target": "com.whop.reviews#GetReview"
         },
         {
-          "target": "com.whop.reviews#RetrieveReview"
+          "target": "com.whop.reviews#ListReview"
         }
       ],
       "traits": {

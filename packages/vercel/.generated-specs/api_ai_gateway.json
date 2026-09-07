@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.api_ai_gateway#GetAiGatewayVirtualModelConfigRequest": {
@@ -1004,19 +1005,19 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.api_ai_gateway#GetAiGatewayVirtualModelConfig"
-        },
-        {
           "target": "com.vercel.api_ai_gateway#CreateAiGatewayVirtualModelConfig"
-        },
-        {
-          "target": "com.vercel.api_ai_gateway#UpdateAiGatewayVirtualModelConfig"
         },
         {
           "target": "com.vercel.api_ai_gateway#DeleteAiGatewayVirtualModelConfig"
         },
         {
+          "target": "com.vercel.api_ai_gateway#GetAiGatewayVirtualModelConfig"
+        },
+        {
           "target": "com.vercel.api_ai_gateway#ListAiGatewayVirtualModelConfigs"
+        },
+        {
+          "target": "com.vercel.api_ai_gateway#UpdateAiGatewayVirtualModelConfig"
         }
       ],
       "traits": {

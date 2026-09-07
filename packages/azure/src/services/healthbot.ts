@@ -12,51 +12,12 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface BotsRegenerateApiJwtSecretRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bot resource. */
-  botName: string;
-}
-export const BotsRegenerateApiJwtSecretRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    botName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}/regenerateApiJwtSecret",
-      code: 200,
-      apiVersion: "2025-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "BotsRegenerateApiJwtSecretRequest",
-}) as any as S.Schema<BotsRegenerateApiJwtSecretRequest>;
-
-/** An entry of HealthBotKeysResponse */
-export interface HealthBotKey {
-  /** The name of the key. */
-  keyName?: string;
-  /** The value of the key. */
-  value?: string;
-}
-export const HealthBotKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyName: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "HealthBotKey" }) as any as S.Schema<HealthBotKey>;
-
 /** Resource tags. */
-export type BotsCreateRequestTagsMap = { [key: string]: string | undefined };
-export const BotsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateBotRequestTagsMap = { [key: string]: string | undefined };
+export const CreateBotRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsCreateRequestTagsMap>;
+) as any as S.Schema<CreateBotRequestTagsMap>;
 
 /** Properties of the key vault. */
 export interface KeyVaultProperties {
@@ -155,7 +116,7 @@ export interface CreateBotRequest {
   /** The name of the Bot resource. */
   botName: string;
   /** Resource tags. */
-  tags?: BotsCreateRequestTagsMap;
+  tags?: CreateBotRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The set of properties specific to Azure Health Bot resource. */
@@ -170,7 +131,7 @@ export const CreateBotRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     botName: S.String.pipe(T.Label()),
-    tags: S.optional(BotsCreateRequestTagsMap),
+    tags: S.optional(CreateBotRequestTagsMap),
     location: S.String,
     properties: S.optional(HealthBotPropertiesInput),
     sku: Sku,
@@ -230,11 +191,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type BotsCreateResponseTagsMap = { [key: string]: string | undefined };
-export const BotsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreateBotResponseTagsMap = { [key: string]: string | undefined };
+export const CreateBotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsCreateResponseTagsMap>;
+) as any as S.Schema<CreateBotResponseTagsMap>;
 
 /** The properties of a Azure Health Bot. The Health Bot Service is a cloud platform that empowers developers in Healthcare organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help them improve processes and reduce costs. */
 export interface HealthBotProperties {
@@ -313,7 +274,7 @@ export interface CreateBotResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BotsCreateResponseTagsMap;
+  tags?: CreateBotResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The set of properties specific to Azure Health Bot resource. */
@@ -329,7 +290,7 @@ export const CreateBotResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BotsCreateResponseTagsMap),
+    tags: S.optional(CreateBotResponseTagsMap),
     location: S.String,
     properties: S.optional(HealthBotProperties),
     sku: Sku,
@@ -395,11 +356,11 @@ export const GetBotRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetBotRequest" }) as any as S.Schema<GetBotRequest>;
 
 /** Resource tags. */
-export type BotsGetResponseTagsMap = { [key: string]: string | undefined };
-export const BotsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetBotResponseTagsMap = { [key: string]: string | undefined };
+export const GetBotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsGetResponseTagsMap>;
+) as any as S.Schema<GetBotResponseTagsMap>;
 
 export interface GetBotResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -411,7 +372,7 @@ export interface GetBotResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BotsGetResponseTagsMap;
+  tags?: GetBotResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The set of properties specific to Azure Health Bot resource. */
@@ -427,7 +388,7 @@ export const GetBotResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BotsGetResponseTagsMap),
+    tags: S.optional(GetBotResponseTagsMap),
     location: S.String,
     properties: S.optional(HealthBotProperties),
     sku: Sku,
@@ -565,6 +526,20 @@ export const ListBotSecretsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListBotSecretsRequest",
 }) as any as S.Schema<ListBotSecretsRequest>;
 
+/** An entry of HealthBotKeysResponse */
+export interface HealthBotKey {
+  /** The name of the key. */
+  keyName?: string;
+  /** The value of the key. */
+  value?: string;
+}
+export const HealthBotKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyName: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "HealthBotKey" }) as any as S.Schema<HealthBotKey>;
+
 /** Array of Azure Health Bot Secrets. */
 export type HealthBotKeysResponseSecretsList = Array<HealthBotKey>;
 export const HealthBotKeysResponseSecretsList = /*@__PURE__*/ S.Array(
@@ -667,12 +642,37 @@ export const AvailableOperations = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvailableOperations",
 }) as any as S.Schema<AvailableOperations>;
 
+export interface RegenerateBotApiJwtSecretRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bot resource. */
+  botName: string;
+}
+export const RegenerateBotApiJwtSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    botName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthBot/healthBots/{botName}/regenerateApiJwtSecret",
+      code: 200,
+      apiVersion: "2025-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateBotApiJwtSecretRequest",
+}) as any as S.Schema<RegenerateBotApiJwtSecretRequest>;
+
 /** Tags for a Azure Health Bot. */
-export type BotsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const BotsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateBotRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateBotRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateBotRequestTagsMap>;
 
 export interface UpdateBotRequest {
   /** The ID of the target subscription. */
@@ -684,7 +684,7 @@ export interface UpdateBotRequest {
   /** Properties of Azure Health Bot. */
   properties?: HealthBotPropertiesInput;
   /** Tags for a Azure Health Bot. */
-  tags?: BotsUpdateRequestTagsMap;
+  tags?: UpdateBotRequestTagsMap;
   /** SKU of the Azure Health Bot. */
   sku?: Sku;
   /** The identity of the Azure Health Bot. */
@@ -697,7 +697,7 @@ export const UpdateBotRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     botName: S.String.pipe(T.Label()),
     properties: S.optional(HealthBotPropertiesInput),
-    tags: S.optional(BotsUpdateRequestTagsMap),
+    tags: S.optional(UpdateBotRequestTagsMap),
     sku: S.optional(Sku),
     identity: S.optional(IdentityInput),
     location: S.optional(S.String),
@@ -714,11 +714,11 @@ export const UpdateBotRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateBotRequest>;
 
 /** Resource tags. */
-export type BotsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const BotsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateBotResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateBotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<BotsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateBotResponseTagsMap>;
 
 export interface UpdateBotResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -730,7 +730,7 @@ export interface UpdateBotResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: BotsUpdateResponseTagsMap;
+  tags?: UpdateBotResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The set of properties specific to Azure Health Bot resource. */
@@ -746,7 +746,7 @@ export const UpdateBotResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(BotsUpdateResponseTagsMap),
+    tags: S.optional(UpdateBotResponseTagsMap),
     location: S.String,
     properties: S.optional(HealthBotProperties),
     sku: Sku,
@@ -755,21 +755,6 @@ export const UpdateBotResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateBotResponse",
 }) as any as S.Schema<UpdateBotResponse>;
-
-export type BotsRegenerateApiJwtSecretError = AzureOpError;
-/** Regenerate the API JWT Secret of a HealthBot. */
-export const BotsRegenerateApiJwtSecret: API.OperationMethod<
-  BotsRegenerateApiJwtSecretRequest,
-  HealthBotKey,
-  BotsRegenerateApiJwtSecretError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BotsRegenerateApiJwtSecretRequest,
-  output: HealthBotKey,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
 
 export type CreateBotError = AzureOpError;
 /** Create a new Azure Health Bot. */
@@ -871,6 +856,21 @@ export const ListOperations: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListOperationsRequest,
   output: AvailableOperations,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateBotApiJwtSecretError = AzureOpError;
+/** Regenerate the API JWT Secret of a HealthBot. */
+export const RegenerateBotApiJwtSecret: API.OperationMethod<
+  RegenerateBotApiJwtSecretRequest,
+  HealthBotKey,
+  RegenerateBotApiJwtSecretError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateBotApiJwtSecretRequest,
+  output: HealthBotKey,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

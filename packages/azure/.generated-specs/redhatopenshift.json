@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.redhatopenshift#ListOpenShiftClusterCredentials": {
@@ -252,7 +253,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersUpdateResponseTagsMap",
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -271,7 +272,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersUpdateResponseIdentity",
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftClusterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -281,7 +282,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersUpdateResponseIdentity": {
+    "com.azure.redhatopenshift#UpdateOpenShiftClusterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -303,7 +304,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -313,7 +314,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.redhatopenshift#UpdateOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -994,7 +995,7 @@
         "smithy.api#documentation": "ProvisioningState represents a provisioning state."
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersUpdateResponseTagsMap": {
+    "com.azure.redhatopenshift#UpdateOpenShiftClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1142,7 +1143,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersUpdateRequestTagsMap",
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1154,7 +1155,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersUpdateRequestIdentity",
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftClusterRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1164,7 +1165,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersUpdateRequestIdentity": {
+    "com.azure.redhatopenshift#UpdateOpenShiftClusterRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -1174,7 +1175,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftClusterRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -1184,7 +1185,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.redhatopenshift#UpdateOpenShiftClusterRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1466,7 +1467,7 @@
         "smithy.api#documentation": "ClusterProfile represents a cluster profile."
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersUpdateRequestTagsMap": {
+    "com.azure.redhatopenshift#UpdateOpenShiftClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1758,7 +1759,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersGetResponseTagsMap",
+          "target": "com.azure.redhatopenshift#GetOpenShiftClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1777,7 +1778,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersGetResponseIdentity",
+          "target": "com.azure.redhatopenshift#GetOpenShiftClusterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1787,7 +1788,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersGetResponseIdentity": {
+    "com.azure.redhatopenshift#GetOpenShiftClusterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1809,7 +1810,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.redhatopenshift#GetOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -1819,7 +1820,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.redhatopenshift#GetOpenShiftClusterResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1831,7 +1832,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.redhatopenshift#OpenShiftClustersGetResponseTagsMap": {
+    "com.azure.redhatopenshift#GetOpenShiftClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2096,13 +2097,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.redhatopenshift#PlatformWorkloadIdentityRoleSetGet": {
+    "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.redhatopenshift#PlatformWorkloadIdentityRoleSetGetRequest"
+        "target": "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSetRequest"
       },
       "output": {
-        "target": "com.azure.redhatopenshift#PlatformWorkloadIdentityRoleSetGetResponse"
+        "target": "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2115,7 +2116,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-25"
       }
     },
-    "com.azure.redhatopenshift#PlatformWorkloadIdentityRoleSetGetResponse": {
+    "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2208,7 +2209,7 @@
         "smithy.api#documentation": "PlatformWorkloadIdentityRole represents a mapping from a particular OCP operator to the built-in role that should be assigned to that operator's corresponding managed identity."
       }
     },
-    "com.azure.redhatopenshift#PlatformWorkloadIdentityRoleSetGetRequest": {
+    "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2677,43 +2678,43 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.redhatopenshift#ListOpenShiftClusterCredentials"
-        },
-        {
-          "target": "com.azure.redhatopenshift#ListOpenShiftClusterAdminCredentials"
-        },
-        {
           "target": "com.azure.redhatopenshift#DeleteOpenShiftCluster"
-        },
-        {
-          "target": "com.azure.redhatopenshift#UpdateOpenShiftCluster"
-        },
-        {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersCreateOrUpdate"
         },
         {
           "target": "com.azure.redhatopenshift#GetOpenShiftCluster"
         },
         {
+          "target": "com.azure.redhatopenshift#GetOpenShiftVersion"
+        },
+        {
+          "target": "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSet"
+        },
+        {
+          "target": "com.azure.redhatopenshift#ListOpenShiftClusterAdminCredentials"
+        },
+        {
           "target": "com.azure.redhatopenshift#ListOpenShiftClusterByResourceGroup"
         },
         {
+          "target": "com.azure.redhatopenshift#ListOpenShiftClusterCredentials"
+        },
+        {
           "target": "com.azure.redhatopenshift#ListOpenShiftClusters"
-        },
-        {
-          "target": "com.azure.redhatopenshift#PlatformWorkloadIdentityRoleSetGet"
-        },
-        {
-          "target": "com.azure.redhatopenshift#ListPlatformWorkloadIdentityRoleSets"
-        },
-        {
-          "target": "com.azure.redhatopenshift#GetOpenShiftVersion"
         },
         {
           "target": "com.azure.redhatopenshift#ListOpenShiftVersions"
         },
         {
           "target": "com.azure.redhatopenshift#ListOperations"
+        },
+        {
+          "target": "com.azure.redhatopenshift#ListPlatformWorkloadIdentityRoleSets"
+        },
+        {
+          "target": "com.azure.redhatopenshift#OpenShiftClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftCluster"
         }
       ],
       "traits": {

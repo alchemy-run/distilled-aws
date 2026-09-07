@@ -13,6 +13,86 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
+export type ApproveVirtualMachineScaleSetRollingUpgradeRequestInstanceIdsList =
+  Array<string>;
+export const ApproveVirtualMachineScaleSetRollingUpgradeRequestInstanceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ApproveVirtualMachineScaleSetRollingUpgradeRequestInstanceIdsList>;
+
+export interface ApproveVirtualMachineScaleSetRollingUpgradeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
+  instanceIds?: ApproveVirtualMachineScaleSetRollingUpgradeRequestInstanceIdsList;
+}
+export const ApproveVirtualMachineScaleSetRollingUpgradeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceIds: S.optional(
+        ApproveVirtualMachineScaleSetRollingUpgradeRequestInstanceIdsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/approveRollingUpgrade",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ApproveVirtualMachineScaleSetRollingUpgradeRequest",
+  }) as any as S.Schema<ApproveVirtualMachineScaleSetRollingUpgradeRequest>;
+
+export interface ApproveVirtualMachineScaleSetRollingUpgradeResponse {}
+export const ApproveVirtualMachineScaleSetRollingUpgradeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ApproveVirtualMachineScaleSetRollingUpgradeResponse",
+  }) as any as S.Schema<ApproveVirtualMachineScaleSetRollingUpgradeResponse>;
+
+export interface ApproveVirtualMachineScaleSetVMRollingUpgradeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const ApproveVirtualMachineScaleSetVMRollingUpgradeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/approveRollingUpgrade",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ApproveVirtualMachineScaleSetVMRollingUpgradeRequest",
+  }) as any as S.Schema<ApproveVirtualMachineScaleSetVMRollingUpgradeRequest>;
+
+export interface ApproveVirtualMachineScaleSetVMRollingUpgradeResponse {}
+export const ApproveVirtualMachineScaleSetVMRollingUpgradeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ApproveVirtualMachineScaleSetVMRollingUpgradeResponse",
+  }) as any as S.Schema<ApproveVirtualMachineScaleSetVMRollingUpgradeResponse>;
+
 /** Resource tags. */
 export type AvailabilitySetsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -443,46 +523,384 @@ export const AvailabilitySetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AvailabilitySetsCreateOrUpdateResponse",
 }) as any as S.Schema<AvailabilitySetsCreateOrUpdateResponse>;
 
-export type AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
+/** The kind of bulk operation that can be performed on resources using Bulkactions API */
+export type ResourceOperationType =
+  | "Unknown"
+  | "Start"
+  | "Deallocate"
+  | "Hibernate"
+  | "Create"
+  | "Delete";
+export const ResourceOperationType = /*@__PURE__*/ S.String;
 
-export interface AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequest {
+/** The retry policy for the user request */
+export interface RetryPolicy {
+  /** Retry count for user request */
+  retryCount?: number;
+  /** Retry window in minutes for user request */
+  retryWindowInMinutes?: number;
+  /** Action to take on failure */
+  onFailureAction?: ResourceOperationType | (string & {});
+}
+export const RetryPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retryCount: S.optional(S.Number),
+    retryWindowInMinutes: S.optional(S.Number),
+    onFailureAction: S.optional(ResourceOperationType),
+  }),
+).annotate({ identifier: "RetryPolicy" }) as any as S.Schema<RetryPolicy>;
+
+/** Extra details needed to run the user's request */
+export interface ExecutionParameters {
+  /** Retry policy the user can pass */
+  retryPolicy?: RetryPolicy;
+}
+export const ExecutionParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retryPolicy: S.optional(RetryPolicy),
+  }),
+).annotate({
+  identifier: "ExecutionParameters",
+}) as any as S.Schema<ExecutionParameters>;
+
+/** The resource ids used for the request */
+export type ResourcesIdsList = Array<string>;
+export const ResourcesIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ResourcesIdsList>;
+
+/** The resources needed for the user request */
+export interface Resources {
+  /** The resource ids used for the request */
+  ids: ResourcesIdsList;
+}
+export const Resources = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ids: ResourcesIdsList,
+  }),
+).annotate({ identifier: "Resources" }) as any as S.Schema<Resources>;
+
+export interface BulkVirtualMachineBulkOperationDeallocateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The location name. */
+  location: string;
+  /** The execution parameters for the request */
+  executionParameters: ExecutionParameters;
+  /** The resources for the request */
+  resources: Resources;
+}
+export const BulkVirtualMachineBulkOperationDeallocateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      executionParameters: ExecutionParameters,
+      resources: Resources,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkDeallocate",
+        code: 200,
+        apiVersion: "2026-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "BulkVirtualMachineBulkOperationDeallocateRequest",
+  }) as any as S.Schema<BulkVirtualMachineBulkOperationDeallocateRequest>;
+
+/** Type of operation performed on the resources */
+export type ResourceOperationDetailsOpType =
+  | "Unknown"
+  | "Start"
+  | "Deallocate"
+  | "Hibernate"
+  | "Create"
+  | "Delete";
+export const ResourceOperationDetailsOpType = /*@__PURE__*/ S.String;
+
+/** Type of deadline of the operation */
+export type ResourceOperationDetailsDeadlineType =
+  | "Unknown"
+  | "InitiateAt"
+  | "CompleteBy";
+export const ResourceOperationDetailsDeadlineType = /*@__PURE__*/ S.String;
+
+/** Current state of the operation */
+export type ResourceOperationDetailsState =
+  | "Unknown"
+  | "PendingScheduling"
+  | "Scheduled"
+  | "PendingExecution"
+  | "Executing"
+  | "Succeeded"
+  | "Failed"
+  | "Cancelled"
+  | "Blocked";
+export const ResourceOperationDetailsState = /*@__PURE__*/ S.String;
+
+/** These describe errors that occur at the resource level */
+export interface ResourceOperationError {
+  /** Code for the error eg 404, 500 */
+  errorCode: string;
+  /** Detailed message about the error */
+  errorDetails: string;
+}
+export const ResourceOperationError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errorCode: S.String,
+    errorDetails: S.String,
+  }),
+).annotate({
+  identifier: "ResourceOperationError",
+}) as any as S.Schema<ResourceOperationError>;
+
+/** Describes the fallback operation that was performed */
+export interface FallbackOperationInfo {
+  /** The last operation type that was performed as a fallback */
+  lastOpType: ResourceOperationType;
+  /** The status of the fallback operation */
+  status: string;
+  /** The error code if the fallback operation failed */
+  error?: ResourceOperationError;
+}
+export const FallbackOperationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lastOpType: ResourceOperationType,
+    status: S.String,
+    error: S.optional(ResourceOperationError),
+  }),
+).annotate({
+  identifier: "FallbackOperationInfo",
+}) as any as S.Schema<FallbackOperationInfo>;
+
+/** The details of a response from an operation on a resource */
+export interface ResourceOperationDetails {
+  /** Operation identifier for the unique operation */
+  operationId: string;
+  /** Unique identifier for the resource involved in the operation, for example Azure resource ID */
+  resourceId?: string;
+  /** Type of operation performed on the resources */
+  opType?: ResourceOperationDetailsOpType;
+  /** Subscription id attached to the request */
+  subscriptionId?: string;
+  /** Deadline for the operation */
+  deadline?: string;
+  /** Type of deadline of the operation */
+  deadlineType?: ResourceOperationDetailsDeadlineType;
+  /** Current state of the operation */
+  state?: ResourceOperationDetailsState;
+  /** Timezone for the operation */
+  timezone?: string;
+  /** Operation level errors if they exist */
+  resourceOperationError?: ResourceOperationError;
+  /** Fallback operation details if a fallback was performed */
+  fallbackOperationInfo?: FallbackOperationInfo;
+  /** Time the operation was complete if errors are null */
+  completedAt?: string;
+  /** Retry policy the user can pass */
+  retryPolicy?: RetryPolicy;
+}
+export const ResourceOperationDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operationId: S.String,
+    resourceId: S.optional(S.String),
+    opType: S.optional(ResourceOperationDetailsOpType),
+    subscriptionId: S.optional(S.String),
+    deadline: S.optional(S.String),
+    deadlineType: S.optional(ResourceOperationDetailsDeadlineType),
+    state: S.optional(ResourceOperationDetailsState),
+    timezone: S.optional(S.String),
+    resourceOperationError: S.optional(ResourceOperationError),
+    fallbackOperationInfo: S.optional(FallbackOperationInfo),
+    completedAt: S.optional(S.String),
+    retryPolicy: S.optional(RetryPolicy),
+  }),
+).annotate({
+  identifier: "ResourceOperationDetails",
+}) as any as S.Schema<ResourceOperationDetails>;
+
+/** High level response from an operation on a resource */
+export interface ResourceOperation {
+  /** Unique identifier for the resource involved in the operation, for example Azure resource ID */
+  resourceId?: string;
+  /** Resource level error code if it exists */
+  errorCode?: string;
+  /** Resource level error details if they exist */
+  errorDetails?: string;
+  /** Details of the operation performed on a resource */
+  operation?: ResourceOperationDetails;
+}
+export const ResourceOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceId: S.optional(S.String),
+    errorCode: S.optional(S.String),
+    errorDetails: S.optional(S.String),
+    operation: S.optional(ResourceOperationDetails),
+  }),
+).annotate({
+  identifier: "ResourceOperation",
+}) as any as S.Schema<ResourceOperation>;
+
+/** The results from the deallocate request if no errors exist */
+export type DeallocateResourceOperationResponseResultsList =
+  Array<ResourceOperation>;
+export const DeallocateResourceOperationResponseResultsList =
+  /*@__PURE__*/ S.Array(
+    ResourceOperation,
+  ) as any as S.Schema<DeallocateResourceOperationResponseResultsList>;
+
+/** The response from a deallocate request */
+export interface DeallocateResourceOperationResponse {
+  /** The description of the operation response */
+  description: string;
+  /** The type of resources used in the deallocate request eg virtual machines */
+  type: string;
+  /** The location of the deallocate request eg westus */
+  location: string;
+  /** The results from the deallocate request if no errors exist */
+  results?: DeallocateResourceOperationResponseResultsList;
+}
+export const DeallocateResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.String,
+    type: S.String,
+    location: S.String,
+    results: S.optional(DeallocateResourceOperationResponseResultsList),
+  }),
+).annotate({
+  identifier: "DeallocateResourceOperationResponse",
+}) as any as S.Schema<DeallocateResourceOperationResponse>;
+
+export interface BulkVirtualMachineBulkOperationHibernateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The location name. */
+  location: string;
+  /** The execution parameters for the request */
+  executionParameters: ExecutionParameters;
+  /** The resources for the request */
+  resources: Resources;
+}
+export const BulkVirtualMachineBulkOperationHibernateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      executionParameters: ExecutionParameters,
+      resources: Resources,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkHibernate",
+        code: 200,
+        apiVersion: "2026-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "BulkVirtualMachineBulkOperationHibernateRequest",
+  }) as any as S.Schema<BulkVirtualMachineBulkOperationHibernateRequest>;
+
+/** The results from the Hibernate request if no errors exist */
+export type HibernateResourceOperationResponseResultsList =
+  Array<ResourceOperation>;
+export const HibernateResourceOperationResponseResultsList =
+  /*@__PURE__*/ S.Array(
+    ResourceOperation,
+  ) as any as S.Schema<HibernateResourceOperationResponseResultsList>;
+
+/** The response from a Hibernate request */
+export interface HibernateResourceOperationResponse {
+  /** The description of the operation response */
+  description: string;
+  /** The type of resources used in the Hibernate request eg virtual machines */
+  type: string;
+  /** The location of the Hibernate request eg westus */
+  location: string;
+  /** The results from the Hibernate request if no errors exist */
+  results?: HibernateResourceOperationResponseResultsList;
+}
+export const HibernateResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.String,
+    type: S.String,
+    location: S.String,
+    results: S.optional(HibernateResourceOperationResponseResultsList),
+  }),
+).annotate({
+  identifier: "HibernateResourceOperationResponse",
+}) as any as S.Schema<HibernateResourceOperationResponse>;
+
+export interface CancelAvailabilitySetMigrationToVirtualMachineScaleSetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the availability set. */
   availabilitySetName: string;
-  virtualMachineScaleSetFlexible: AvailabilitySetPropertiesInputVirtualMachinesItem;
 }
-export const AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequest =
+export const CancelAvailabilitySetMigrationToVirtualMachineScaleSetRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       availabilitySetName: S.String.pipe(T.Label()),
-      virtualMachineScaleSetFlexible:
-        AvailabilitySetPropertiesInputVirtualMachinesItem,
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/startMigrationToVirtualMachineScaleSet",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/cancelMigrationToVirtualMachineScaleSet",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequest",
-  }) as any as S.Schema<AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequest>;
+    identifier: "CancelAvailabilitySetMigrationToVirtualMachineScaleSetRequest",
+  }) as any as S.Schema<CancelAvailabilitySetMigrationToVirtualMachineScaleSetRequest>;
 
-export interface AvailabilitySetsStartMigrationToVirtualMachineScaleSetResponse {}
-export const AvailabilitySetsStartMigrationToVirtualMachineScaleSetResponse =
+export interface CancelAvailabilitySetMigrationToVirtualMachineScaleSetResponse {}
+export const CancelAvailabilitySetMigrationToVirtualMachineScaleSetResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier:
-      "AvailabilitySetsStartMigrationToVirtualMachineScaleSetResponse",
-  }) as any as S.Schema<AvailabilitySetsStartMigrationToVirtualMachineScaleSetResponse>;
+      "CancelAvailabilitySetMigrationToVirtualMachineScaleSetResponse",
+  }) as any as S.Schema<CancelAvailabilitySetMigrationToVirtualMachineScaleSetResponse>;
+
+export interface CancelVirtualMachineScaleSetRollingUpgradeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+}
+export const CancelVirtualMachineScaleSetRollingUpgradeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/rollingUpgrades/cancel",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelVirtualMachineScaleSetRollingUpgradeRequest",
+  }) as any as S.Schema<CancelVirtualMachineScaleSetRollingUpgradeRequest>;
+
+export interface CancelVirtualMachineScaleSetRollingUpgradeResponse {}
+export const CancelVirtualMachineScaleSetRollingUpgradeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CancelVirtualMachineScaleSetRollingUpgradeResponse",
+  }) as any as S.Schema<CancelVirtualMachineScaleSetRollingUpgradeResponse>;
 
 /** Resource tags. */
 export type CapacityReservationGroupsCreateOrUpdateRequestTagsMap = {
@@ -1083,6 +1501,70 @@ export const CapacityReservationsCreateOrUpdateResponse =
     identifier: "CapacityReservationsCreateOrUpdateResponse",
   }) as any as S.Schema<CapacityReservationsCreateOrUpdateResponse>;
 
+export interface CaptureVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  vmName: string;
+  /** The captured virtual hard disk's name prefix. */
+  vhdPrefix: string;
+  /** The destination container name. */
+  destinationContainerName: string;
+  /** Specifies whether to overwrite the destination virtual hard disk, in case of conflict. */
+  overwriteVhds: boolean;
+}
+export const CaptureVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vmName: S.String.pipe(T.Label()),
+    vhdPrefix: S.String,
+    destinationContainerName: S.String,
+    overwriteVhds: S.Boolean,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/capture",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CaptureVirtualMachineRequest",
+}) as any as S.Schema<CaptureVirtualMachineRequest>;
+
+/** a list of resource items of the captured virtual machine */
+export type CaptureVirtualMachineResponseResourcesList = Array<unknown>;
+export const CaptureVirtualMachineResponseResourcesList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<CaptureVirtualMachineResponseResourcesList>;
+
+export interface CaptureVirtualMachineResponse {
+  /** Resource Id */
+  id?: string;
+  /** the schema of the captured virtual machine */
+  _schema?: string;
+  /** the version of the content */
+  contentVersion?: string;
+  /** parameters of the captured virtual machine */
+  parameters?: unknown;
+  /** a list of resource items of the captured virtual machine */
+  resources?: CaptureVirtualMachineResponseResourcesList;
+}
+export const CaptureVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    _schema: S.optional(S.String.pipe(T.Body("$schema"))),
+    contentVersion: S.optional(S.String),
+    parameters: S.optional(S.Unknown),
+    resources: S.optional(CaptureVirtualMachineResponseResourcesList),
+  }),
+).annotate({
+  identifier: "CaptureVirtualMachineResponse",
+}) as any as S.Schema<CaptureVirtualMachineResponse>;
+
 /** Resource tags */
 export type ContainerServicesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1623,14 +2105,1549 @@ export const ContainerServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ContainerServicesCreateOrUpdateResponse",
 }) as any as S.Schema<ContainerServicesCreateOrUpdateResponse>;
 
+export interface ConvertAvailabilitySetToVirtualMachineScaleSetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the availability set. */
+  availabilitySetName: string;
+  /** Specifies information about the Virtual Machine Scale Set that the Availability Set should be converted to. */
+  virtualMachineScaleSetName?: string;
+}
+export const ConvertAvailabilitySetToVirtualMachineScaleSetRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      availabilitySetName: S.String.pipe(T.Label()),
+      virtualMachineScaleSetName: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/convertToVirtualMachineScaleSet",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ConvertAvailabilitySetToVirtualMachineScaleSetRequest",
+  }) as any as S.Schema<ConvertAvailabilitySetToVirtualMachineScaleSetRequest>;
+
+export interface ConvertAvailabilitySetToVirtualMachineScaleSetResponse {}
+export const ConvertAvailabilitySetToVirtualMachineScaleSetResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ConvertAvailabilitySetToVirtualMachineScaleSetResponse",
+  }) as any as S.Schema<ConvertAvailabilitySetToVirtualMachineScaleSetResponse>;
+
+export interface ConvertVirtualMachineScaleSetToSinglePlacementGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** Id of the placement group in which you want future virtual machine instances to be placed. To query placement group Id, please use Virtual Machine Scale Set VMs - Get API. If not provided, the platform will choose one with maximum number of virtual machine instances. */
+  activePlacementGroupId?: string;
+}
+export const ConvertVirtualMachineScaleSetToSinglePlacementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      activePlacementGroupId: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/convertToSinglePlacementGroup",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ConvertVirtualMachineScaleSetToSinglePlacementGroupRequest",
+  }) as any as S.Schema<ConvertVirtualMachineScaleSetToSinglePlacementGroupRequest>;
+
+export interface ConvertVirtualMachineScaleSetToSinglePlacementGroupResponse {}
+export const ConvertVirtualMachineScaleSetToSinglePlacementGroupResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ConvertVirtualMachineScaleSetToSinglePlacementGroupResponse",
+  }) as any as S.Schema<ConvertVirtualMachineScaleSetToSinglePlacementGroupResponse>;
+
+export interface ConvertVirtualMachineToManagedDisksRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  vmName: string;
+}
+export const ConvertVirtualMachineToManagedDisksRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/convertToManagedDisks",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ConvertVirtualMachineToManagedDisksRequest",
+  }) as any as S.Schema<ConvertVirtualMachineToManagedDisksRequest>;
+
+export interface ConvertVirtualMachineToManagedDisksResponse {}
+export const ConvertVirtualMachineToManagedDisksResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ConvertVirtualMachineToManagedDisksResponse",
+  }) as any as S.Schema<ConvertVirtualMachineToManagedDisksResponse>;
+
+/** The API entity reference. */
+export interface ApiEntityReference {
+  /** The ARM resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/... */
+  id?: string;
+}
+export const ApiEntityReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApiEntityReference",
+}) as any as S.Schema<ApiEntityReference>;
+
+/** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
+export type RestorePointPropertiesInputExcludeDisksList =
+  Array<ApiEntityReference>;
+export const RestorePointPropertiesInputExcludeDisksList =
+  /*@__PURE__*/ S.Array(
+    ApiEntityReference,
+  ) as any as S.Schema<RestorePointPropertiesInputExcludeDisksList>;
+
+/** Specifies the storage account type for the managed disk. Managed OS disk storage account type can only be set when you create the scale set. NOTE: UltraSSD_LRS can only be used with data disks. It cannot be used with OS Disk. Standard_LRS uses Standard HDD. StandardSSD_LRS uses Standard SSD. Premium_LRS uses Premium SSD. UltraSSD_LRS uses Ultra disk. Premium_ZRS uses Premium SSD zone redundant storage. StandardSSD_ZRS uses Standard SSD zone redundant storage. For more information regarding disks supported for Windows Virtual Machines, refer to https://docs.microsoft.com/azure/virtual-machines/windows/disks-types and, for Linux Virtual Machines, refer to https://docs.microsoft.com/azure/virtual-machines/linux/disks-types */
+export type StorageAccountTypes =
+  | "Standard_LRS"
+  | "Premium_LRS"
+  | "StandardSSD_LRS"
+  | "UltraSSD_LRS"
+  | "Premium_ZRS"
+  | "StandardSSD_ZRS"
+  | "PremiumV2_LRS";
+export const StorageAccountTypes = /*@__PURE__*/ S.String;
+
+export type DiskEncryptionSetParameters =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const DiskEncryptionSetParameters =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+/** Specifies the EncryptionType of the managed disk. It is set to DiskWithVMGuestState for encryption of the managed disk along with VMGuestState blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and NonPersistedTPM for not persisting firmware state in the VMGuestState blob.. **Note:** It can be set for only Confidential VMs. */
+export type SecurityEncryptionTypes =
+  | "VMGuestStateOnly"
+  | "DiskWithVMGuestState"
+  | "NonPersistedTPM";
+export const SecurityEncryptionTypes = /*@__PURE__*/ S.String;
+
+/** Specifies the security profile settings for the managed disk. **Note:** It can only be set for Confidential VMs. */
+export interface VMDiskSecurityProfile {
+  /** Specifies the EncryptionType of the managed disk. It is set to DiskWithVMGuestState for encryption of the managed disk along with VMGuestState blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and NonPersistedTPM for not persisting firmware state in the VMGuestState blob.. **Note:** It can be set for only Confidential VMs. */
+  securityEncryptionType?: SecurityEncryptionTypes | (string & {});
+  /** Specifies the customer managed disk encryption set resource id for the managed disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and VMGuest blob. */
+  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
+}
+export const VMDiskSecurityProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    securityEncryptionType: S.optional(SecurityEncryptionTypes),
+    diskEncryptionSet: S.optional(
+      AvailabilitySetPropertiesInputVirtualMachinesItem,
+    ),
+  }),
+).annotate({
+  identifier: "VMDiskSecurityProfile",
+}) as any as S.Schema<VMDiskSecurityProfile>;
+
+/** Determines how to handle disks with slow I/O. */
+export type AvailabilityPolicyDiskDelay = "None" | "AutomaticReattach";
+export const AvailabilityPolicyDiskDelay = /*@__PURE__*/ S.String;
+
+/** In the case of an availability or connectivity issue with the disk, specify the behavior of your VM. */
+export interface DiskAvailabilityPolicy {
+  /** Determines how to handle disks with slow I/O. */
+  actionOnDiskDelay?: AvailabilityPolicyDiskDelay | (string & {});
+}
+export const DiskAvailabilityPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actionOnDiskDelay: S.optional(AvailabilityPolicyDiskDelay),
+  }),
+).annotate({
+  identifier: "DiskAvailabilityPolicy",
+}) as any as S.Schema<DiskAvailabilityPolicy>;
+
+/** Policy for accessing the disk via network. */
+export type NetworkAccessPolicy = "AllowAll" | "AllowPrivate" | "DenyAll";
+export const NetworkAccessPolicy = /*@__PURE__*/ S.String;
+
+/** Specifies the properties of a managed disk that can be set at the time of implicit creation of the disk. */
+export interface ManagedDiskProperties {
+  /** Performance tier of the disk (e.g., P4, S10) as described here: https://azure.microsoft.com/en-us/pricing/details/managed-disks/. Does not apply to Ultra disks. */
+  tier?: string;
+  /** Set to true to enable bursting beyond the provisioned performance target of the disk. Bursting is disabled by default. Does not apply to Ultra disks. */
+  burstingEnabled?: boolean;
+  /** Set this flag to true to get a boost on the performance target of the disk deployed. This flag can only be set on disk creation time and cannot be disabled after enabled. */
+  performancePlus?: boolean;
+  /** Setting this property to true improves reliability and performance of data disks that are frequently (more than 5 times a day) detached from one virtual machine and attached to another. This property should not be set for disks that are not detached and attached frequently as it causes the disks to not align with the fault domain of the virtual machine. */
+  optimizedForFrequentAttach?: boolean;
+  /** In the case of an availability or connectivity issue with the disk, specify the behavior of your VM. */
+  availabilityPolicy?: DiskAvailabilityPolicy;
+  /** The maximum number of VMs that can attach to the disk at the same time. Value greater than one indicates a disk that can be mounted on multiple VMs at the same time. Applies to data disks only. */
+  maxShares?: number;
+  /** Policy for accessing the disk via network. */
+  networkAccessPolicy?: NetworkAccessPolicy | (string & {});
+  /** Azure resource Id of the DiskAccess resource for using private endpoints on disks. */
+  diskAccessId?: string;
+  /** The total number of IOPS that will be allowed across all VMs mounting the shared disk as ReadOnly. One operation can transfer between 4k and 256k bytes. */
+  diskIOPSReadOnly?: number;
+  /** The total throughput (MBps) that will be allowed across all VMs mounting the shared disk as ReadOnly. MBps means millions of bytes per second - MB here uses the ISO notation, of powers of 10. */
+  diskMBpsReadOnly?: number;
+  /** Logical sector size in bytes for Ultra Disks. Supported values are 512 and 4096. 4096 is the default. */
+  logicalSectorSize?: number;
+}
+export const ManagedDiskProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tier: S.optional(S.String),
+    burstingEnabled: S.optional(S.Boolean),
+    performancePlus: S.optional(S.Boolean),
+    optimizedForFrequentAttach: S.optional(S.Boolean),
+    availabilityPolicy: S.optional(DiskAvailabilityPolicy),
+    maxShares: S.optional(S.Number),
+    networkAccessPolicy: S.optional(NetworkAccessPolicy),
+    diskAccessId: S.optional(S.String),
+    diskIOPSReadOnly: S.optional(S.Number),
+    diskMBpsReadOnly: S.optional(S.Number),
+    logicalSectorSize: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ManagedDiskProperties",
+}) as any as S.Schema<ManagedDiskProperties>;
+
+/** Specifies additional properties for a managed disk that can be set at the time of implicit creation of the disk. */
+export interface AdditionalDiskProperties {
+  /** Specifies the managed disk properties that can be set at the time of implicit creation of the disk. */
+  managedDiskProperties?: ManagedDiskProperties;
+}
+export const AdditionalDiskProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managedDiskProperties: S.optional(ManagedDiskProperties),
+  }),
+).annotate({
+  identifier: "AdditionalDiskProperties",
+}) as any as S.Schema<AdditionalDiskProperties>;
+
+/** The parameters of a managed disk. */
+export interface ManagedDiskParameters {
+  /** Resource Id */
+  id?: string;
+  /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
+  storageAccountType?: StorageAccountTypes | (string & {});
+  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
+  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
+  /** Specifies the security profile for the managed disk. */
+  securityProfile?: VMDiskSecurityProfile;
+  /** Specifies additional properties for the managed disk that can be set at the time of implicit creation of the disk. This property is not captured for Restore Points. */
+  additionalDiskProperties?: AdditionalDiskProperties;
+}
+export const ManagedDiskParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    storageAccountType: S.optional(StorageAccountTypes),
+    diskEncryptionSet: S.optional(
+      AvailabilitySetPropertiesInputVirtualMachinesItem,
+    ),
+    securityProfile: S.optional(VMDiskSecurityProfile),
+    additionalDiskProperties: S.optional(AdditionalDiskProperties),
+  }),
+).annotate({
+  identifier: "ManagedDiskParameters",
+}) as any as S.Schema<ManagedDiskParameters>;
+
+/** The type of key used to encrypt the data of the disk restore point. */
+export type RestorePointEncryptionType =
+  | "EncryptionAtRestWithPlatformKey"
+  | "EncryptionAtRestWithCustomerKey"
+  | "EncryptionAtRestWithPlatformAndCustomerKeys";
+export const RestorePointEncryptionType = /*@__PURE__*/ S.String;
+
+/** Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point. */
+export interface RestorePointEncryption {
+  /** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. **Note:** The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
+  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
+  /** The type of key used to encrypt the data of the disk restore point. */
+  type?: RestorePointEncryptionType | (string & {});
+}
+export const RestorePointEncryption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskEncryptionSet: S.optional(
+      AvailabilitySetPropertiesInputVirtualMachinesItem,
+    ),
+    type: S.optional(RestorePointEncryptionType),
+  }),
+).annotate({
+  identifier: "RestorePointEncryption",
+}) as any as S.Schema<RestorePointEncryption>;
+
+/** Disk Restore Point details. */
+export interface DiskRestorePointAttributesInput {
+  /** Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point. */
+  encryption?: RestorePointEncryption;
+  /** Resource Id of the source disk restore point. */
+  sourceDiskRestorePoint?: ApiEntityReference;
+}
+export const DiskRestorePointAttributesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    encryption: S.optional(RestorePointEncryption),
+    sourceDiskRestorePoint: S.optional(ApiEntityReference),
+  }),
+).annotate({
+  identifier: "DiskRestorePointAttributesInput",
+}) as any as S.Schema<DiskRestorePointAttributesInput>;
+
+/** Describes an Operating System disk. */
+export interface RestorePointSourceVMOSDiskInput {
+  /** Gets the managed disk details */
+  managedDisk?: ManagedDiskParameters;
+  /** Contains Disk Restore Point properties. */
+  diskRestorePoint?: DiskRestorePointAttributesInput;
+}
+export const RestorePointSourceVMOSDiskInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managedDisk: S.optional(ManagedDiskParameters),
+    diskRestorePoint: S.optional(DiskRestorePointAttributesInput),
+  }),
+).annotate({
+  identifier: "RestorePointSourceVMOSDiskInput",
+}) as any as S.Schema<RestorePointSourceVMOSDiskInput>;
+
+/** Describes a data disk. */
+export interface RestorePointSourceVMDataDiskInput {
+  /** Contains the managed disk details. */
+  managedDisk?: ManagedDiskParameters;
+  /** Contains Disk Restore Point properties. */
+  diskRestorePoint?: DiskRestorePointAttributesInput;
+}
+export const RestorePointSourceVMDataDiskInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managedDisk: S.optional(ManagedDiskParameters),
+    diskRestorePoint: S.optional(DiskRestorePointAttributesInput),
+  }),
+).annotate({
+  identifier: "RestorePointSourceVMDataDiskInput",
+}) as any as S.Schema<RestorePointSourceVMDataDiskInput>;
+
+/** Gets the data disks of the VM captured at the time of the restore point creation. */
+export type RestorePointSourceVMStorageProfileInputDataDisksList =
+  Array<RestorePointSourceVMDataDiskInput>;
+export const RestorePointSourceVMStorageProfileInputDataDisksList =
+  /*@__PURE__*/ S.Array(
+    RestorePointSourceVMDataDiskInput,
+  ) as any as S.Schema<RestorePointSourceVMStorageProfileInputDataDisksList>;
+
+/** Describes the storage profile. */
+export interface RestorePointSourceVMStorageProfileInput {
+  /** Gets the OS disk of the VM captured at the time of the restore point creation. */
+  osDisk?: RestorePointSourceVMOSDiskInput;
+  /** Gets the data disks of the VM captured at the time of the restore point creation. */
+  dataDisks?: RestorePointSourceVMStorageProfileInputDataDisksList;
+}
+export const RestorePointSourceVMStorageProfileInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      osDisk: S.optional(RestorePointSourceVMOSDiskInput),
+      dataDisks: S.optional(
+        RestorePointSourceVMStorageProfileInputDataDisksList,
+      ),
+    }),
+).annotate({
+  identifier: "RestorePointSourceVMStorageProfileInput",
+}) as any as S.Schema<RestorePointSourceVMStorageProfileInput>;
+
+/** Describes the properties of the Virtual Machine for which the restore point was created. The properties provided are a subset and the snapshot of the overall Virtual Machine properties captured at the time of the restore point creation. */
+export interface RestorePointSourceMetadataInput {
+  /** Gets the storage profile. */
+  storageProfile?: RestorePointSourceVMStorageProfileInput;
+}
+export const RestorePointSourceMetadataInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    storageProfile: S.optional(RestorePointSourceVMStorageProfileInput),
+  }),
+).annotate({
+  identifier: "RestorePointSourceMetadataInput",
+}) as any as S.Schema<RestorePointSourceMetadataInput>;
+
+/** ConsistencyMode of the RestorePoint. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. */
+export type ConsistencyModeTypes =
+  | "CrashConsistent"
+  | "FileSystemConsistent"
+  | "ApplicationConsistent";
+export const ConsistencyModeTypes = /*@__PURE__*/ S.String;
+
+/** The restore point properties. */
+export interface RestorePointPropertiesInput {
+  /** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
+  excludeDisks?: RestorePointPropertiesInputExcludeDisksList;
+  /** Gets the details of the VM captured at the time of the restore point creation. */
+  sourceMetadata?: RestorePointSourceMetadataInput;
+  /** ConsistencyMode of the RestorePoint. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. */
+  consistencyMode?: ConsistencyModeTypes | (string & {});
+  /** Gets the creation time of the restore point. */
+  timeCreated?: string;
+  /** Resource Id of the source restore point from which a copy needs to be created. */
+  sourceRestorePoint?: ApiEntityReference;
+  /** This property determines the time in minutes the snapshot is retained as instant access for restoring Premium SSD v2 or Ultra disk with fast restore performance in this restore point. */
+  instantAccessDurationMinutes?: number;
+}
+export const RestorePointPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    excludeDisks: S.optional(RestorePointPropertiesInputExcludeDisksList),
+    sourceMetadata: S.optional(RestorePointSourceMetadataInput),
+    consistencyMode: S.optional(ConsistencyModeTypes),
+    timeCreated: S.optional(S.String),
+    sourceRestorePoint: S.optional(ApiEntityReference),
+    instantAccessDurationMinutes: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RestorePointPropertiesInput",
+}) as any as S.Schema<RestorePointPropertiesInput>;
+
+export interface CreateRestorePointRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the restore point collection. */
+  restorePointCollectionName: string;
+  /** The name of the restore point. */
+  restorePointName: string;
+  /** The restore point properties. */
+  properties?: RestorePointPropertiesInput;
+}
+export const CreateRestorePointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    restorePointCollectionName: S.String.pipe(T.Label()),
+    restorePointName: S.String.pipe(T.Label()),
+    properties: S.optional(RestorePointPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateRestorePointRequest",
+}) as any as S.Schema<CreateRestorePointRequest>;
+
+/** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
+export type RestorePointPropertiesExcludeDisksList = Array<ApiEntityReference>;
+export const RestorePointPropertiesExcludeDisksList = /*@__PURE__*/ S.Array(
+  ApiEntityReference,
+) as any as S.Schema<RestorePointPropertiesExcludeDisksList>;
+
+/** Specifies the size of the virtual machine. The enum data type is currently deprecated and will be removed by December 23rd 2023. The recommended way to get the list of available sizes is using these APIs: [List all available virtual machine sizes in an availability set](https://docs.microsoft.com/rest/api/compute/availabilitysets/listavailablesizes), [List all available virtual machine sizes in a region]( https://docs.microsoft.com/rest/api/compute/resourceskus/list), [List all available virtual machine sizes for resizing](https://docs.microsoft.com/rest/api/compute/virtualmachines/listavailablesizes). For more information about virtual machine sizes, see [Sizes for virtual machines](https://docs.microsoft.com/azure/virtual-machines/sizes). The available VM sizes depend on region and availability set. */
+export type VirtualMachineSizeTypes =
+  | "Basic_A0"
+  | "Basic_A1"
+  | "Basic_A2"
+  | "Basic_A3"
+  | "Basic_A4"
+  | "Standard_A0"
+  | "Standard_A1"
+  | "Standard_A2"
+  | "Standard_A3"
+  | "Standard_A4"
+  | "Standard_A5"
+  | "Standard_A6"
+  | "Standard_A7"
+  | "Standard_A8"
+  | "Standard_A9"
+  | "Standard_A10"
+  | "Standard_A11"
+  | "Standard_A1_v2"
+  | "Standard_A2_v2"
+  | "Standard_A4_v2"
+  | "Standard_A8_v2"
+  | "Standard_A2m_v2"
+  | "Standard_A4m_v2"
+  | "Standard_A8m_v2"
+  | "Standard_B1s"
+  | "Standard_B1ms"
+  | "Standard_B2s"
+  | "Standard_B2ms"
+  | "Standard_B4ms"
+  | "Standard_B8ms"
+  | "Standard_D1"
+  | "Standard_D2"
+  | "Standard_D3"
+  | "Standard_D4"
+  | "Standard_D11"
+  | "Standard_D12"
+  | "Standard_D13"
+  | "Standard_D14"
+  | "Standard_D1_v2"
+  | "Standard_D2_v2"
+  | "Standard_D3_v2"
+  | "Standard_D4_v2"
+  | "Standard_D5_v2"
+  | "Standard_D2_v3"
+  | "Standard_D4_v3"
+  | "Standard_D8_v3"
+  | "Standard_D16_v3"
+  | "Standard_D32_v3"
+  | "Standard_D64_v3"
+  | "Standard_D2s_v3"
+  | "Standard_D4s_v3"
+  | "Standard_D8s_v3"
+  | "Standard_D16s_v3"
+  | "Standard_D32s_v3"
+  | "Standard_D64s_v3"
+  | "Standard_D11_v2"
+  | "Standard_D12_v2"
+  | "Standard_D13_v2"
+  | "Standard_D14_v2"
+  | "Standard_D15_v2"
+  | "Standard_DS1"
+  | "Standard_DS2"
+  | "Standard_DS3"
+  | "Standard_DS4"
+  | "Standard_DS11"
+  | "Standard_DS12"
+  | "Standard_DS13"
+  | "Standard_DS14"
+  | "Standard_DS1_v2"
+  | "Standard_DS2_v2"
+  | "Standard_DS3_v2"
+  | "Standard_DS4_v2"
+  | "Standard_DS5_v2"
+  | "Standard_DS11_v2"
+  | "Standard_DS12_v2"
+  | "Standard_DS13_v2"
+  | "Standard_DS14_v2"
+  | "Standard_DS15_v2"
+  | "Standard_DS13-4_v2"
+  | "Standard_DS13-2_v2"
+  | "Standard_DS14-8_v2"
+  | "Standard_DS14-4_v2"
+  | "Standard_E2_v3"
+  | "Standard_E4_v3"
+  | "Standard_E8_v3"
+  | "Standard_E16_v3"
+  | "Standard_E32_v3"
+  | "Standard_E64_v3"
+  | "Standard_E2s_v3"
+  | "Standard_E4s_v3"
+  | "Standard_E8s_v3"
+  | "Standard_E16s_v3"
+  | "Standard_E32s_v3"
+  | "Standard_E64s_v3"
+  | "Standard_E32-16_v3"
+  | "Standard_E32-8s_v3"
+  | "Standard_E64-32s_v3"
+  | "Standard_E64-16s_v3"
+  | "Standard_F1"
+  | "Standard_F2"
+  | "Standard_F4"
+  | "Standard_F8"
+  | "Standard_F16"
+  | "Standard_F1s"
+  | "Standard_F2s"
+  | "Standard_F4s"
+  | "Standard_F8s"
+  | "Standard_F16s"
+  | "Standard_F2s_v2"
+  | "Standard_F4s_v2"
+  | "Standard_F8s_v2"
+  | "Standard_F16s_v2"
+  | "Standard_F32s_v2"
+  | "Standard_F64s_v2"
+  | "Standard_F72s_v2"
+  | "Standard_G1"
+  | "Standard_G2"
+  | "Standard_G3"
+  | "Standard_G4"
+  | "Standard_G5"
+  | "Standard_GS1"
+  | "Standard_GS2"
+  | "Standard_GS3"
+  | "Standard_GS4"
+  | "Standard_GS5"
+  | "Standard_GS4-8"
+  | "Standard_GS4-4"
+  | "Standard_GS5-16"
+  | "Standard_GS5-8"
+  | "Standard_H8"
+  | "Standard_H16"
+  | "Standard_H8m"
+  | "Standard_H16m"
+  | "Standard_H16r"
+  | "Standard_H16mr"
+  | "Standard_L4s"
+  | "Standard_L8s"
+  | "Standard_L16s"
+  | "Standard_L32s"
+  | "Standard_M64s"
+  | "Standard_M64ms"
+  | "Standard_M128s"
+  | "Standard_M128ms"
+  | "Standard_M64-32ms"
+  | "Standard_M64-16ms"
+  | "Standard_M128-64ms"
+  | "Standard_M128-32ms"
+  | "Standard_NC6"
+  | "Standard_NC12"
+  | "Standard_NC24"
+  | "Standard_NC24r"
+  | "Standard_NC6s_v2"
+  | "Standard_NC12s_v2"
+  | "Standard_NC24s_v2"
+  | "Standard_NC24rs_v2"
+  | "Standard_NC6s_v3"
+  | "Standard_NC12s_v3"
+  | "Standard_NC24s_v3"
+  | "Standard_NC24rs_v3"
+  | "Standard_ND6s"
+  | "Standard_ND12s"
+  | "Standard_ND24s"
+  | "Standard_ND24rs"
+  | "Standard_NV6"
+  | "Standard_NV12"
+  | "Standard_NV24";
+export const VirtualMachineSizeTypes = /*@__PURE__*/ S.String;
+
+/** Specifies VM Size Property settings on the virtual machine. */
+export interface VMSizeProperties {
+  /** Specifies the number of vCPUs available for the VM. When this property is not specified in the request body the default behavior is to set it to the value of vCPUs available for that VM size exposed in api response of [List all available virtual machine sizes in a region](https://docs.microsoft.com/en-us/rest/api/compute/resource-skus/list). */
+  vCPUsAvailable?: number;
+  /** Specifies the vCPU to physical core ratio. When this property is not specified in the request body the default behavior is set to the value of vCPUsPerCore for the VM Size exposed in api response of [List all available virtual machine sizes in a region](https://docs.microsoft.com/en-us/rest/api/compute/resource-skus/list). **Setting this property to 1 also means that hyper-threading is disabled.** */
+  vCPUsPerCore?: number;
+}
+export const VMSizeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vCPUsAvailable: S.optional(S.Number),
+    vCPUsPerCore: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "VMSizeProperties",
+}) as any as S.Schema<VMSizeProperties>;
+
+/** Specifies the processor frequency behavior for the virtual machine. See each member for the behavior it controls. */
+export type ProcessorMode = "Deterministic" | "Opportunistic";
+export const ProcessorMode = /*@__PURE__*/ S.String;
+
+/** Specifies the hardware settings for the virtual machine. */
+export interface HardwareProfile {
+  /** Specifies the size of the virtual machine. The enum data type is currently deprecated and will be removed by December 23rd 2023. The recommended way to get the list of available sizes is using these APIs: [List all available virtual machine sizes in an availability set](https://docs.microsoft.com/rest/api/compute/availabilitysets/listavailablesizes), [List all available virtual machine sizes in a region]( https://docs.microsoft.com/rest/api/compute/resourceskus/list), [List all available virtual machine sizes for resizing](https://docs.microsoft.com/rest/api/compute/virtualmachines/listavailablesizes). For more information about virtual machine sizes, see [Sizes for virtual machines](https://docs.microsoft.com/azure/virtual-machines/sizes). The available VM sizes depend on region and availability set. */
+  vmSize?: VirtualMachineSizeTypes | (string & {});
+  /** Specifies the properties for customizing the size of the virtual machine. Minimum api-version: 2021-07-01. This feature is still in preview mode and is not supported for VirtualMachineScaleSet. Please follow the instructions in [VM Customization](https://aka.ms/vmcustomization) for more details. */
+  vmSizeProperties?: VMSizeProperties;
+  /** Specifies the processor mode for the virtual machine or virtual machine scale set. Optional; if omitted, the platform default applies (currently Deterministic). This property can be updated on a running VM or VMSS without deallocation or reboot. Minimum api-version: 2026-04-01. */
+  processorMode?: ProcessorMode | (string & {});
+}
+export const HardwareProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vmSize: S.optional(VirtualMachineSizeTypes),
+    vmSizeProperties: S.optional(VMSizeProperties),
+    processorMode: S.optional(ProcessorMode),
+  }),
+).annotate({
+  identifier: "HardwareProfile",
+}) as any as S.Schema<HardwareProfile>;
+
+/** Gets the Operating System type. */
+export type OperatingSystemType = "Windows" | "Linux";
+export const OperatingSystemType = /*@__PURE__*/ S.String;
+
+export type KeyVaultSecretReferenceSourceVault =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const KeyVaultSecretReferenceSourceVault =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+/** Describes a reference to Key Vault Secret */
+export interface KeyVaultSecretReference {
+  /** The URL referencing a secret in a Key Vault. */
+  secretUrl: string;
+  sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem;
+}
+export const KeyVaultSecretReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    secretUrl: S.String,
+    sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem,
+  }),
+).annotate({
+  identifier: "KeyVaultSecretReference",
+}) as any as S.Schema<KeyVaultSecretReference>;
+
+export type KeyVaultKeyReferenceSourceVault =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const KeyVaultKeyReferenceSourceVault =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+/** Describes a reference to Key Vault Key */
+export interface KeyVaultKeyReference {
+  /** The URL referencing a key encryption key in Key Vault. */
+  keyUrl: string;
+  sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem;
+}
+export const KeyVaultKeyReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyUrl: S.String,
+    sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem,
+  }),
+).annotate({
+  identifier: "KeyVaultKeyReference",
+}) as any as S.Schema<KeyVaultKeyReference>;
+
+/** Describes a Encryption Settings for a Disk */
+export interface DiskEncryptionSettings {
+  /** Specifies the location of the disk encryption key, which is a Key Vault Secret. */
+  diskEncryptionKey?: KeyVaultSecretReference;
+  /** Specifies the location of the key encryption key in Key Vault. */
+  keyEncryptionKey?: KeyVaultKeyReference;
+  /** Specifies whether disk encryption should be enabled on the virtual machine. */
+  enabled?: boolean;
+}
+export const DiskEncryptionSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskEncryptionKey: S.optional(KeyVaultSecretReference),
+    keyEncryptionKey: S.optional(KeyVaultKeyReference),
+    enabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DiskEncryptionSettings",
+}) as any as S.Schema<DiskEncryptionSettings>;
+
+/** Specifies the caching requirements. Possible values are: **None,** **ReadOnly,** **ReadWrite.** The default values are: **None for Standard storage. ReadOnly for Premium storage** */
+export type CachingTypes = "None" | "ReadOnly" | "ReadWrite";
+export const CachingTypes = /*@__PURE__*/ S.String;
+
+/** Disk Restore Point details. */
+export interface DiskRestorePointAttributes {
+  /** Resource Id */
+  id?: string;
+  /** Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point. */
+  encryption?: RestorePointEncryption;
+  /** Resource Id of the source disk restore point. */
+  sourceDiskRestorePoint?: ApiEntityReference;
+}
+export const DiskRestorePointAttributes = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    encryption: S.optional(RestorePointEncryption),
+    sourceDiskRestorePoint: S.optional(ApiEntityReference),
+  }),
+).annotate({
+  identifier: "DiskRestorePointAttributes",
+}) as any as S.Schema<DiskRestorePointAttributes>;
+
+/** Describes an Operating System disk. */
+export interface RestorePointSourceVMOSDisk {
+  /** Gets the Operating System type. */
+  osType?: OperatingSystemType;
+  /** Gets the disk encryption settings. */
+  encryptionSettings?: DiskEncryptionSettings;
+  /** Gets the disk name. */
+  name?: string;
+  /** Gets the caching type. */
+  caching?: CachingTypes;
+  /** Gets the disk size in GB. */
+  diskSizeGB?: number;
+  /** Gets the managed disk details */
+  managedDisk?: ManagedDiskParameters;
+  /** Contains Disk Restore Point properties. */
+  diskRestorePoint?: DiskRestorePointAttributes;
+  /** Shows true if the disk is write-accelerator enabled. */
+  writeAcceleratorEnabled?: boolean;
+}
+export const RestorePointSourceVMOSDisk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    osType: S.optional(OperatingSystemType),
+    encryptionSettings: S.optional(DiskEncryptionSettings),
+    name: S.optional(S.String),
+    caching: S.optional(CachingTypes),
+    diskSizeGB: S.optional(S.Number),
+    managedDisk: S.optional(ManagedDiskParameters),
+    diskRestorePoint: S.optional(DiskRestorePointAttributes),
+    writeAcceleratorEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RestorePointSourceVMOSDisk",
+}) as any as S.Schema<RestorePointSourceVMOSDisk>;
+
+/** Describes a data disk. */
+export interface RestorePointSourceVMDataDisk {
+  /** Gets the logical unit number. */
+  lun?: number;
+  /** Gets the disk name. */
+  name?: string;
+  /** Gets the caching type. */
+  caching?: CachingTypes;
+  /** Gets the initial disk size in GB for blank data disks, and the new desired size for existing OS and Data disks. */
+  diskSizeGB?: number;
+  /** Contains the managed disk details. */
+  managedDisk?: ManagedDiskParameters;
+  /** Contains Disk Restore Point properties. */
+  diskRestorePoint?: DiskRestorePointAttributes;
+  /** Shows true if the disk is write-accelerator enabled. */
+  writeAcceleratorEnabled?: boolean;
+}
+export const RestorePointSourceVMDataDisk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lun: S.optional(S.Number),
+    name: S.optional(S.String),
+    caching: S.optional(CachingTypes),
+    diskSizeGB: S.optional(S.Number),
+    managedDisk: S.optional(ManagedDiskParameters),
+    diskRestorePoint: S.optional(DiskRestorePointAttributes),
+    writeAcceleratorEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RestorePointSourceVMDataDisk",
+}) as any as S.Schema<RestorePointSourceVMDataDisk>;
+
+/** Gets the data disks of the VM captured at the time of the restore point creation. */
+export type RestorePointSourceVMStorageProfileDataDisksList =
+  Array<RestorePointSourceVMDataDisk>;
+export const RestorePointSourceVMStorageProfileDataDisksList =
+  /*@__PURE__*/ S.Array(
+    RestorePointSourceVMDataDisk,
+  ) as any as S.Schema<RestorePointSourceVMStorageProfileDataDisksList>;
+
+/** Specifies the disk controller type configured for the VM and VirtualMachineScaleSet. This property is only supported for virtual machines whose operating system disk and VM sku supports Generation 2 (https://docs.microsoft.com/en-us/azure/virtual-machines/generation-2), please check the HyperVGenerations capability returned as part of VM sku capabilities in the response of Microsoft.Compute SKUs api for the region contains V2 (https://docs.microsoft.com/rest/api/compute/resourceskus/list). For more information about Disk Controller Types supported please refer to https://aka.ms/azure-diskcontrollertypes. */
+export type DiskControllerTypes = "SCSI" | "NVMe";
+export const DiskControllerTypes = /*@__PURE__*/ S.String;
+
+/** Describes the storage profile. */
+export interface RestorePointSourceVMStorageProfile {
+  /** Gets the OS disk of the VM captured at the time of the restore point creation. */
+  osDisk?: RestorePointSourceVMOSDisk;
+  /** Gets the data disks of the VM captured at the time of the restore point creation. */
+  dataDisks?: RestorePointSourceVMStorageProfileDataDisksList;
+  /** Gets the disk controller type of the VM captured at the time of the restore point creation. */
+  diskControllerType?: DiskControllerTypes;
+}
+export const RestorePointSourceVMStorageProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    osDisk: S.optional(RestorePointSourceVMOSDisk),
+    dataDisks: S.optional(RestorePointSourceVMStorageProfileDataDisksList),
+    diskControllerType: S.optional(DiskControllerTypes),
+  }),
+).annotate({
+  identifier: "RestorePointSourceVMStorageProfile",
+}) as any as S.Schema<RestorePointSourceVMStorageProfile>;
+
+export type PassNames = "OobeSystem";
+export const PassNames = /*@__PURE__*/ S.String;
+
+export type ComponentNames = "Microsoft-Windows-Shell-Setup";
+export const ComponentNames = /*@__PURE__*/ S.String;
+
+/** Specifies the name of the setting to which the content applies. Possible values are: FirstLogonCommands and AutoLogon. */
+export type SettingNames = "AutoLogon" | "FirstLogonCommands";
+export const SettingNames = /*@__PURE__*/ S.String;
+
+/** Specifies additional XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. Contents are defined by setting name, component name, and the pass in which the content is applied. */
+export interface AdditionalUnattendContent {
+  /** The pass name. Currently, the only allowable value is OobeSystem. */
+  passName?: PassNames | (string & {});
+  /** The component name. Currently, the only allowable value is Microsoft-Windows-Shell-Setup. */
+  componentName?: ComponentNames | (string & {});
+  /** Specifies the name of the setting to which the content applies. Possible values are: FirstLogonCommands and AutoLogon. */
+  settingName?: SettingNames | (string & {});
+  /** Specifies the XML formatted content that is added to the unattend.xml file for the specified path and component. The XML must be less than 4KB and must include the root element for the setting or feature that is being inserted. */
+  content?: string;
+}
+export const AdditionalUnattendContent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    passName: S.optional(PassNames),
+    componentName: S.optional(ComponentNames),
+    settingName: S.optional(SettingNames),
+    content: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AdditionalUnattendContent",
+}) as any as S.Schema<AdditionalUnattendContent>;
+
+/** Specifies additional base-64 encoded XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. */
+export type WindowsConfigurationAdditionalUnattendContentList =
+  Array<AdditionalUnattendContent>;
+export const WindowsConfigurationAdditionalUnattendContentList =
+  /*@__PURE__*/ S.Array(
+    AdditionalUnattendContent,
+  ) as any as S.Schema<WindowsConfigurationAdditionalUnattendContentList>;
+
+/** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **Manual** - You control the application of patches to a virtual machine. You do this by applying patches manually inside the VM. In this mode, automatic updates are disabled; the property WindowsConfiguration.enableAutomaticUpdates must be false<br /><br /> **AutomaticByOS** - The virtual machine will automatically be updated by the OS. The property WindowsConfiguration.enableAutomaticUpdates must be true. <br /><br /> **AutomaticByPlatform** - the virtual machine will automatically updated by the platform. The properties provisionVMAgent and WindowsConfiguration.enableAutomaticUpdates must be true */
+export type WindowsVMGuestPatchMode =
+  | "Manual"
+  | "AutomaticByOS"
+  | "AutomaticByPlatform";
+export const WindowsVMGuestPatchMode = /*@__PURE__*/ S.String;
+
+/** Specifies the mode of VM Guest patch assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine.<br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
+export type WindowsPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
+export const WindowsPatchAssessmentMode = /*@__PURE__*/ S.String;
+
+/** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
+export type WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
+  | "Unknown"
+  | "IfRequired"
+  | "Never"
+  | "Always";
+export const WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
+  /*@__PURE__*/ S.String;
+
+/** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Windows patch settings. */
+export interface WindowsVMGuestPatchAutomaticByPlatformSettings {
+  /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
+  rebootSetting?:
+    | WindowsVMGuestPatchAutomaticByPlatformRebootSetting
+    | (string & {});
+  /** Enables customer to schedule patching without accidental upgrades */
+  bypassPlatformSafetyChecksOnUserSchedule?: boolean;
+}
+export const WindowsVMGuestPatchAutomaticByPlatformSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      rebootSetting: S.optional(
+        WindowsVMGuestPatchAutomaticByPlatformRebootSetting,
+      ),
+      bypassPlatformSafetyChecksOnUserSchedule: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "WindowsVMGuestPatchAutomaticByPlatformSettings",
+  }) as any as S.Schema<WindowsVMGuestPatchAutomaticByPlatformSettings>;
+
+/** Specifies settings related to VM Guest Patching on Windows. */
+export interface PatchSettings {
+  /** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **Manual** - You control the application of patches to a virtual machine. You do this by applying patches manually inside the VM. In this mode, automatic updates are disabled; the property WindowsConfiguration.enableAutomaticUpdates must be false<br /><br /> **AutomaticByOS** - The virtual machine will automatically be updated by the OS. The property WindowsConfiguration.enableAutomaticUpdates must be true. <br /><br /> **AutomaticByPlatform** - the virtual machine will automatically updated by the platform. The properties provisionVMAgent and WindowsConfiguration.enableAutomaticUpdates must be true */
+  patchMode?: WindowsVMGuestPatchMode | (string & {});
+  /** Enables customers to patch their Azure VMs without requiring a reboot. For enableHotpatching, the 'provisionVMAgent' must be set to true and 'patchMode' must be set to 'AutomaticByPlatform'. */
+  enableHotpatching?: boolean;
+  /** Specifies the mode of VM Guest patch assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine.<br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
+  assessmentMode?: WindowsPatchAssessmentMode | (string & {});
+  /** Specifies additional settings for patch mode AutomaticByPlatform in VM Guest Patching on Windows. */
+  automaticByPlatformSettings?: WindowsVMGuestPatchAutomaticByPlatformSettings;
+}
+export const PatchSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    patchMode: S.optional(WindowsVMGuestPatchMode),
+    enableHotpatching: S.optional(S.Boolean),
+    assessmentMode: S.optional(WindowsPatchAssessmentMode),
+    automaticByPlatformSettings: S.optional(
+      WindowsVMGuestPatchAutomaticByPlatformSettings,
+    ),
+  }),
+).annotate({ identifier: "PatchSettings" }) as any as S.Schema<PatchSettings>;
+
+/** Specifies the protocol of WinRM listener. Possible values are: **http,** **https.** */
+export type ProtocolTypes = "Http" | "Https";
+export const ProtocolTypes = /*@__PURE__*/ S.String;
+
+/** Describes Protocol and thumbprint of Windows Remote Management listener */
+export interface WinRMListener {
+  /** Specifies the protocol of WinRM listener. Possible values are: **http,** **https.** */
+  protocol?: ProtocolTypes | (string & {});
+  /** This is the URL of a certificate that has been uploaded to Key Vault as a secret. For adding a secret to the Key Vault, see [Add a key or secret to the key vault](https://docs.microsoft.com/azure/key-vault/key-vault-get-started/#add). In this case, your certificate needs to be the Base64 encoding of the following JSON Object which is encoded in UTF-8: <br><br> {<br> "data":"<Base64-encoded-certificate>",<br> "dataType":"pfx",<br> "password":"<pfx-file-password>"<br>} <br> To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
+  certificateUrl?: string;
+}
+export const WinRMListener = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    protocol: S.optional(ProtocolTypes),
+    certificateUrl: S.optional(S.String),
+  }),
+).annotate({ identifier: "WinRMListener" }) as any as S.Schema<WinRMListener>;
+
+/** The list of Windows Remote Management listeners */
+export type WinRMConfigurationListenersList = Array<WinRMListener>;
+export const WinRMConfigurationListenersList = /*@__PURE__*/ S.Array(
+  WinRMListener,
+) as any as S.Schema<WinRMConfigurationListenersList>;
+
+/** Describes Windows Remote Management configuration of the VM */
+export interface WinRMConfiguration {
+  /** The list of Windows Remote Management listeners */
+  listeners?: WinRMConfigurationListenersList;
+}
+export const WinRMConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    listeners: S.optional(WinRMConfigurationListenersList),
+  }),
+).annotate({
+  identifier: "WinRMConfiguration",
+}) as any as S.Schema<WinRMConfiguration>;
+
+/** Specifies Windows operating system settings on the virtual machine. */
+export interface WindowsConfiguration {
+  /** Indicates whether virtual machine agent should be provisioned on the virtual machine. When this property is not specified in the request body, it is set to true by default. This will ensure that VM Agent is installed on the VM so that extensions can be added to the VM later. */
+  provisionVMAgent?: boolean;
+  /** Indicates whether Automatic Updates is enabled for the Windows virtual machine. Default value is true. For virtual machine scale sets, this property can be updated and updates will take effect on OS reprovisioning. */
+  enableAutomaticUpdates?: boolean;
+  /** Specifies the time zone of the virtual machine. e.g. "Pacific Standard Time". Possible values can be [TimeZoneInfo.Id](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.id?#System_TimeZoneInfo_Id) value from time zones returned by [TimeZoneInfo.GetSystemTimeZones](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.getsystemtimezones). */
+  timeZone?: string;
+  /** Specifies additional base-64 encoded XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. */
+  additionalUnattendContent?: WindowsConfigurationAdditionalUnattendContentList;
+  /** [Preview Feature] Specifies settings related to VM Guest Patching on Windows. */
+  patchSettings?: PatchSettings;
+  /** Specifies the Windows Remote Management listeners. This enables remote Windows PowerShell. */
+  winRM?: WinRMConfiguration;
+  /** Indicates whether VMAgent Platform Updates are enabled for the Windows Virtual Machine. */
+  enableVMAgentPlatformUpdates?: boolean;
+}
+export const WindowsConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisionVMAgent: S.optional(S.Boolean),
+    enableAutomaticUpdates: S.optional(S.Boolean),
+    timeZone: S.optional(S.String),
+    additionalUnattendContent: S.optional(
+      WindowsConfigurationAdditionalUnattendContentList,
+    ),
+    patchSettings: S.optional(PatchSettings),
+    winRM: S.optional(WinRMConfiguration),
+    enableVMAgentPlatformUpdates: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "WindowsConfiguration",
+}) as any as S.Schema<WindowsConfiguration>;
+
+/** Contains information about SSH certificate public key and the path on the Linux VM where the public key is placed. */
+export interface SshPublicKey {
+  /** Specifies the full path on the created VM where ssh public key is stored. If the file already exists, the specified key is appended to the file. Example: /home/user/.ssh/authorized_keys */
+  path?: string;
+  /** SSH public key certificate used to authenticate with the VM through ssh. The key needs to be at least 2048-bit and in ssh-rsa format. For creating ssh keys, see [Create SSH keys on Linux and Mac for Linux VMs in Azure]https://docs.microsoft.com/azure/virtual-machines/linux/create-ssh-keys-detailed). */
+  keyData?: string;
+}
+export const SshPublicKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    keyData: S.optional(S.String),
+  }),
+).annotate({ identifier: "SshPublicKey" }) as any as S.Schema<SshPublicKey>;
+
+/** The list of SSH public keys used to authenticate with linux based VMs. */
+export type SshConfigurationPublicKeysList = Array<SshPublicKey>;
+export const SshConfigurationPublicKeysList = /*@__PURE__*/ S.Array(
+  SshPublicKey,
+) as any as S.Schema<SshConfigurationPublicKeysList>;
+
+/** SSH configuration for Linux based VMs running on Azure */
+export interface SshConfiguration {
+  /** The list of SSH public keys used to authenticate with linux based VMs. */
+  publicKeys?: SshConfigurationPublicKeysList;
+}
+export const SshConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publicKeys: S.optional(SshConfigurationPublicKeysList),
+  }),
+).annotate({
+  identifier: "SshConfiguration",
+}) as any as S.Schema<SshConfiguration>;
+
+/** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - The virtual machine's default patching configuration is used. <br /><br /> **AutomaticByPlatform** - The virtual machine will be automatically updated by the platform. The property provisionVMAgent must be true */
+export type LinuxVMGuestPatchMode = "ImageDefault" | "AutomaticByPlatform";
+export const LinuxVMGuestPatchMode = /*@__PURE__*/ S.String;
+
+/** Specifies the mode of VM Guest Patch Assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine. <br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
+export type LinuxPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
+export const LinuxPatchAssessmentMode = /*@__PURE__*/ S.String;
+
+/** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
+export type LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
+  | "Unknown"
+  | "IfRequired"
+  | "Never"
+  | "Always";
+export const LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
+  /*@__PURE__*/ S.String;
+
+/** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Linux patch settings. */
+export interface LinuxVMGuestPatchAutomaticByPlatformSettings {
+  /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
+  rebootSetting?:
+    | LinuxVMGuestPatchAutomaticByPlatformRebootSetting
+    | (string & {});
+  /** Enables customer to schedule patching without accidental upgrades */
+  bypassPlatformSafetyChecksOnUserSchedule?: boolean;
+}
+export const LinuxVMGuestPatchAutomaticByPlatformSettings =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      rebootSetting: S.optional(
+        LinuxVMGuestPatchAutomaticByPlatformRebootSetting,
+      ),
+      bypassPlatformSafetyChecksOnUserSchedule: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "LinuxVMGuestPatchAutomaticByPlatformSettings",
+  }) as any as S.Schema<LinuxVMGuestPatchAutomaticByPlatformSettings>;
+
+/** Specifies settings related to VM Guest Patching on Linux. */
+export interface LinuxPatchSettings {
+  /** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - The virtual machine's default patching configuration is used. <br /><br /> **AutomaticByPlatform** - The virtual machine will be automatically updated by the platform. The property provisionVMAgent must be true */
+  patchMode?: LinuxVMGuestPatchMode | (string & {});
+  /** Specifies the mode of VM Guest Patch Assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine. <br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
+  assessmentMode?: LinuxPatchAssessmentMode | (string & {});
+  /** Specifies additional settings for patch mode AutomaticByPlatform in VM Guest Patching on Linux. */
+  automaticByPlatformSettings?: LinuxVMGuestPatchAutomaticByPlatformSettings;
+}
+export const LinuxPatchSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    patchMode: S.optional(LinuxVMGuestPatchMode),
+    assessmentMode: S.optional(LinuxPatchAssessmentMode),
+    automaticByPlatformSettings: S.optional(
+      LinuxVMGuestPatchAutomaticByPlatformSettings,
+    ),
+  }),
+).annotate({
+  identifier: "LinuxPatchSettings",
+}) as any as S.Schema<LinuxPatchSettings>;
+
+/** Specifies the Linux operating system settings on the virtual machine. For a list of supported Linux distributions, see [Linux on Azure-Endorsed Distributions](https://docs.microsoft.com/azure/virtual-machines/linux/endorsed-distros). */
+export interface LinuxConfiguration {
+  /** Specifies whether password authentication should be disabled. */
+  disablePasswordAuthentication?: boolean;
+  /** Specifies the ssh key configuration for a Linux OS. */
+  ssh?: SshConfiguration;
+  /** Indicates whether virtual machine agent should be provisioned on the virtual machine. When this property is not specified in the request body, default behavior is to set it to true. This will ensure that VM Agent is installed on the VM so that extensions can be added to the VM later. */
+  provisionVMAgent?: boolean;
+  /** [Preview Feature] Specifies settings related to VM Guest Patching on Linux. */
+  patchSettings?: LinuxPatchSettings;
+  /** Indicates whether VMAgent Platform Updates is enabled for the Linux virtual machine. Default value is false. */
+  enableVMAgentPlatformUpdates?: boolean;
+}
+export const LinuxConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    disablePasswordAuthentication: S.optional(S.Boolean),
+    ssh: S.optional(SshConfiguration),
+    provisionVMAgent: S.optional(S.Boolean),
+    patchSettings: S.optional(LinuxPatchSettings),
+    enableVMAgentPlatformUpdates: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "LinuxConfiguration",
+}) as any as S.Schema<LinuxConfiguration>;
+
+export type VaultSecretGroupSourceVault =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const VaultSecretGroupSourceVault =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+/** Describes a single certificate reference in a Key Vault, and where the certificate should reside on the VM. */
+export interface VaultCertificate {
+  /** This is the URL of a certificate that has been uploaded to Key Vault as a secret. For adding a secret to the Key Vault, see [Add a key or secret to the key vault](https://docs.microsoft.com/azure/key-vault/key-vault-get-started/#add). In this case, your certificate needs to be It is the Base64 encoding of the following JSON Object which is encoded in UTF-8: <br><br> {<br> "data":"<Base64-encoded-certificate>",<br> "dataType":"pfx",<br> "password":"<pfx-file-password>"<br>} <br> To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
+  certificateUrl?: string;
+  /** For Windows VMs, specifies the certificate store on the Virtual Machine to which the certificate should be added. The specified certificate store is implicitly in the LocalMachine account. For Linux VMs, the certificate file is placed under the /var/lib/waagent directory, with the file name &lt;UppercaseThumbprint&gt;.crt for the X509 certificate file and &lt;UppercaseThumbprint&gt;.prv for private key. Both of these files are .pem formatted. */
+  certificateStore?: string;
+}
+export const VaultCertificate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificateUrl: S.optional(S.String),
+    certificateStore: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VaultCertificate",
+}) as any as S.Schema<VaultCertificate>;
+
+/** The list of key vault references in SourceVault which contain certificates. */
+export type VaultSecretGroupVaultCertificatesList = Array<VaultCertificate>;
+export const VaultSecretGroupVaultCertificatesList = /*@__PURE__*/ S.Array(
+  VaultCertificate,
+) as any as S.Schema<VaultSecretGroupVaultCertificatesList>;
+
+/** Describes a set of certificates which are all in the same Key Vault. */
+export interface VaultSecretGroup {
+  sourceVault?: AvailabilitySetPropertiesInputVirtualMachinesItem;
+  /** The list of key vault references in SourceVault which contain certificates. */
+  vaultCertificates?: VaultSecretGroupVaultCertificatesList;
+}
+export const VaultSecretGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceVault: S.optional(AvailabilitySetPropertiesInputVirtualMachinesItem),
+    vaultCertificates: S.optional(VaultSecretGroupVaultCertificatesList),
+  }),
+).annotate({
+  identifier: "VaultSecretGroup",
+}) as any as S.Schema<VaultSecretGroup>;
+
+/** Specifies set of certificates that should be installed onto the virtual machine. To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
+export type OSProfileSecretsList = Array<VaultSecretGroup>;
+export const OSProfileSecretsList = /*@__PURE__*/ S.Array(
+  VaultSecretGroup,
+) as any as S.Schema<OSProfileSecretsList>;
+
+/** Specifies the operating system settings for the virtual machine. Some of the settings cannot be changed once VM is provisioned. */
+export interface OSProfile {
+  /** Specifies the host OS name of the virtual machine. This name cannot be updated after the VM is created. **Max-length (Windows):** 15 characters. **Max-length (Linux):** 64 characters. For naming conventions and restrictions see [Azure infrastructure services implementation guidelines](https://docs.microsoft.com/azure/azure-resource-manager/management/resource-name-rules). */
+  computerName?: string;
+  /** Specifies the name of the administrator account. <br><br> This property cannot be updated after the VM is created. <br><br> **Windows-only restriction:** Cannot end in "." <br><br> **Disallowed values:** "administrator", "admin", "user", "user1", "test", "user2", "test1", "user3", "admin1", "1", "123", "a", "actuser", "adm", "admin2", "aspnet", "backup", "console", "david", "guest", "john", "owner", "root", "server", "sql", "support", "support_388945a0", "sys", "test2", "test3", "user4", "user5". <br><br> **Minimum-length (Linux):** 1 character <br><br> **Max-length (Linux):** 64 characters <br><br> **Max-length (Windows):** 20 characters. */
+  adminUsername?: string;
+  /** Specifies the password of the administrator account. <br><br> **Minimum-length (Windows):** 8 characters <br><br> **Minimum-length (Linux):** 6 characters <br><br> **Max-length (Windows):** 123 characters <br><br> **Max-length (Linux):** 72 characters <br><br> **Complexity requirements:** 3 out of 4 conditions below need to be fulfilled <br> Has lower characters <br>Has upper characters <br> Has a digit <br> Has a special character (Regex match [\W_]) <br><br> **Disallowed values:** "abc@123", "P@$$w0rd", "P@ssw0rd", "P@ssword123", "Pa$$word", "pass@word1", "Password!", "Password1", "Password22", "iloveyou!" <br><br> For resetting the password, see [How to reset the Remote Desktop service or its login password in a Windows VM](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/reset-rdp) <br><br> For resetting root password, see [Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/troubleshoot-ssh-connection) */
+  adminPassword?: string | Redacted.Redacted<string>;
+  /** Specifies a base-64 encoded string of custom data. The base-64 encoded string is decoded to a binary array that is saved as a file on the Virtual Machine. The maximum length of the binary array is 65535 bytes. **Note: Do not pass any secrets or passwords in customData property.** This property cannot be updated after the VM is created. The property 'customData' is passed to the VM to be saved as a file, for more information see [Custom Data on Azure VMs](https://azure.microsoft.com/blog/custom-data-and-cloud-init-on-windows-azure/). For using cloud-init for your Linux VM, see [Using cloud-init to customize a Linux VM during creation](https://docs.microsoft.com/azure/virtual-machines/linux/using-cloud-init). */
+  customData?: string;
+  /** Specifies Windows operating system settings on the virtual machine. */
+  windowsConfiguration?: WindowsConfiguration;
+  /** Specifies the Linux operating system settings on the virtual machine. For a list of supported Linux distributions, see [Linux on Azure-Endorsed Distributions](https://docs.microsoft.com/azure/virtual-machines/linux/endorsed-distros). */
+  linuxConfiguration?: LinuxConfiguration;
+  /** Specifies set of certificates that should be installed onto the virtual machine. To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
+  secrets?: OSProfileSecretsList;
+  /** Specifies whether extension operations should be allowed on the virtual machine. This may only be set to False when no extensions are present on the virtual machine. */
+  allowExtensionOperations?: boolean;
+  /** Optional property which must either be set to True or omitted. */
+  requireGuestProvisionSignal?: boolean;
+}
+export const OSProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    computerName: S.optional(S.String),
+    adminUsername: S.optional(S.String),
+    adminPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    customData: S.optional(S.String),
+    windowsConfiguration: S.optional(WindowsConfiguration),
+    linuxConfiguration: S.optional(LinuxConfiguration),
+    secrets: S.optional(OSProfileSecretsList),
+    allowExtensionOperations: S.optional(S.Boolean),
+    requireGuestProvisionSignal: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "OSProfile" }) as any as S.Schema<OSProfile>;
+
+/** Boot Diagnostics is a debugging feature which allows you to view Console Output and Screenshot to diagnose VM status. You can easily view the output of your console log. Azure also enables you to see a screenshot of the VM from the hypervisor. */
+export interface BootDiagnostics {
+  /** Whether boot diagnostics should be enabled on the Virtual Machine. */
+  enabled?: boolean;
+  /** Uri of the storage account to use for placing the console output and screenshot. If storageUri is not specified while enabling boot diagnostics, managed storage will be used. */
+  storageUri?: string;
+}
+export const BootDiagnostics = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    storageUri: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BootDiagnostics",
+}) as any as S.Schema<BootDiagnostics>;
+
+/** Specifies the boot diagnostic settings state. Minimum api-version: 2015-06-15. */
+export interface DiagnosticsProfile {
+  /** Boot Diagnostics is a debugging feature which allows you to view Console Output and Screenshot to diagnose VM status. **NOTE**: If storageUri is being specified then ensure that the storage account is in the same region and subscription as the VM. You can easily view the output of your console log. Azure also enables you to see a screenshot of the VM from the hypervisor. */
+  bootDiagnostics?: BootDiagnostics;
+}
+export const DiagnosticsProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bootDiagnostics: S.optional(BootDiagnostics),
+  }),
+).annotate({
+  identifier: "DiagnosticsProfile",
+}) as any as S.Schema<DiagnosticsProfile>;
+
+/** Specifies the security settings like secure boot and vTPM used while creating the virtual machine. Minimum api-version: 2020-12-01. */
+export interface UefiSettings {
+  /** Specifies whether secure boot should be enabled on the virtual machine. Minimum api-version: 2020-12-01. */
+  secureBootEnabled?: boolean;
+  /** Specifies whether vTPM should be enabled on the virtual machine. Minimum api-version: 2020-12-01. */
+  vTpmEnabled?: boolean;
+}
+export const UefiSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    secureBootEnabled: S.optional(S.Boolean),
+    vTpmEnabled: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "UefiSettings" }) as any as S.Schema<UefiSettings>;
+
+/** Specifies the VM securityType; UefiSettings are enabled only when set to TrustedLaunch or ConfidentialVM, and returns a Standard value starting API version 2025-11-01. */
+export type SecurityTypes = "Standard" | "TrustedLaunch" | "ConfidentialVM";
+export const SecurityTypes = /*@__PURE__*/ S.String;
+
+/** Specifies the Managed Identity used by ADE to get access token for keyvault operations. */
+export interface EncryptionIdentity {
+  /** Specifies ARM Resource ID of one of the user identities associated with the VM. */
+  userAssignedIdentityResourceId?: string;
+}
+export const EncryptionIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userAssignedIdentityResourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EncryptionIdentity",
+}) as any as S.Schema<EncryptionIdentity>;
+
+/** Specifies the mode that ProxyAgent will execute on if the feature is enabled. ProxyAgent will start to audit or monitor but not enforce access control over requests to host endpoints in Audit mode, while in Enforce mode it will enforce access control. The default value is Enforce mode. */
+export type Mode = "Audit" | "Enforce";
+export const Mode = /*@__PURE__*/ S.String;
+
+/** Specifies the execution mode. In Audit mode, the system acts as if it is enforcing the access control policy, including emitting access denial entries in the logs but it does not actually deny any requests to host endpoints. In Enforce mode, the system will enforce the access control and it is the recommended mode of operation. */
+export type Modes = "Audit" | "Enforce" | "Disabled";
+export const Modes = /*@__PURE__*/ S.String;
+
+/** Specifies particular host endpoint settings. */
+export interface HostEndpointSettings {
+  /** Specifies the execution mode. In Audit mode, the system acts as if it is enforcing the access control policy, including emitting access denial entries in the logs but it does not actually deny any requests to host endpoints. In Enforce mode, the system will enforce the access control and it is the recommended mode of operation. */
+  mode?: Modes | (string & {});
+  /** Specifies the InVMAccessControlProfileVersion resource id in the format of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/inVMAccessControlProfiles/{profile}/versions/{version} */
+  inVMAccessControlProfileReferenceId?: string;
+  /** When set to true, instructs the GuestProxyAgent inside the VM to load additional access control rules defined in a local file on the VM. */
+  useLocalFileRules?: boolean;
+}
+export const HostEndpointSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mode: S.optional(Modes),
+    inVMAccessControlProfileReferenceId: S.optional(S.String),
+    useLocalFileRules: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "HostEndpointSettings",
+}) as any as S.Schema<HostEndpointSettings>;
+
+/** Specifies ProxyAgent settings for the virtual machine or virtual machine scale set. Minimum api-version: 2023-09-01. */
+export interface ProxyAgentSettings {
+  /** Specifies whether ProxyAgent feature should be enabled on the virtual machine or virtual machine scale set. */
+  enabled?: boolean;
+  /** Specifies the mode that ProxyAgent will execute on. Warning: this property has been deprecated, please specify 'mode' under particular hostendpoint setting. */
+  mode?: Mode | (string & {});
+  /** Increase the value of this property allows users to reset the key used for securing communication channel between guest and host. */
+  keyIncarnationId?: number;
+  /** Specifies the Wire Server endpoint settings while creating the virtual machine or virtual machine scale set. Minimum api-version: 2024-03-01. */
+  wireServer?: HostEndpointSettings;
+  /** Specifies the IMDS endpoint settings while creating the virtual machine or virtual machine scale set. Minimum api-version: 2024-03-01. */
+  imds?: HostEndpointSettings;
+  /** Specify whether to implicitly install the ProxyAgent Extension. This option is currently applicable only for Linux Os. */
+  addProxyAgentExtension?: boolean;
+}
+export const ProxyAgentSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    mode: S.optional(Mode),
+    keyIncarnationId: S.optional(S.Number),
+    wireServer: S.optional(HostEndpointSettings),
+    imds: S.optional(HostEndpointSettings),
+    addProxyAgentExtension: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ProxyAgentSettings",
+}) as any as S.Schema<ProxyAgentSettings>;
+
+/** Specifies the Security profile settings for the virtual machine or virtual machine scale set. */
+export interface SecurityProfile {
+  /** Specifies the security settings like secure boot and vTPM used while creating the virtual machine. Minimum api-version: 2020-12-01. */
+  uefiSettings?: UefiSettings;
+  /** This property can be used by user in the request to enable or disable the Host Encryption for the virtual machine or virtual machine scale set. This will enable the encryption for all the disks including Resource/Temp disk at host itself. The default behavior is: The Encryption at host will be disabled unless this property is set to true for the resource. */
+  encryptionAtHost?: boolean;
+  /** Specifies the SecurityType of the virtual machine. It has to be set to any specified value to enable UefiSettings. The default behavior is: UefiSettings will not be enabled unless this property is set and is not Standard. If not specified, Standard will be returned starting api version 2025-11-01. */
+  securityType?: SecurityTypes | (string & {});
+  /** Specifies the Managed Identity used by ADE to get access token for keyvault operations. */
+  encryptionIdentity?: EncryptionIdentity;
+  /** Specifies ProxyAgent settings while creating the virtual machine. Minimum api-version: 2023-09-01. */
+  proxyAgentSettings?: ProxyAgentSettings;
+}
+export const SecurityProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uefiSettings: S.optional(UefiSettings),
+    encryptionAtHost: S.optional(S.Boolean),
+    securityType: S.optional(SecurityTypes),
+    encryptionIdentity: S.optional(EncryptionIdentity),
+    proxyAgentSettings: S.optional(ProxyAgentSettings),
+  }),
+).annotate({
+  identifier: "SecurityProfile",
+}) as any as S.Schema<SecurityProfile>;
+
+/** Specifies the HyperVGeneration Type */
+export type HyperVGenerationTypes = "V1" | "V2";
+export const HyperVGenerationTypes = /*@__PURE__*/ S.String;
+
+/** Describes the properties of the Virtual Machine for which the restore point was created. The properties provided are a subset and the snapshot of the overall Virtual Machine properties captured at the time of the restore point creation. */
+export interface RestorePointSourceMetadata {
+  /** Gets the hardware profile. */
+  hardwareProfile?: HardwareProfile;
+  /** Gets the storage profile. */
+  storageProfile?: RestorePointSourceVMStorageProfile;
+  /** Gets the OS profile. */
+  osProfile?: OSProfile;
+  /** Gets the diagnostics profile. */
+  diagnosticsProfile?: DiagnosticsProfile;
+  /** Gets the license type, which is for bring your own license scenario. */
+  licenseType?: string;
+  /** Gets the virtual machine unique id. */
+  vmId?: string;
+  /** Gets the security profile. */
+  securityProfile?: SecurityProfile;
+  /** Location of the VM from which the restore point was created. */
+  location?: string;
+  /** UserData associated with the source VM for which restore point is captured, which is a base-64 encoded value. */
+  userData?: string;
+  /** HyperVGeneration of the source VM for which restore point is captured. */
+  hyperVGeneration?: HyperVGenerationTypes;
+}
+export const RestorePointSourceMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hardwareProfile: S.optional(HardwareProfile),
+    storageProfile: S.optional(RestorePointSourceVMStorageProfile),
+    osProfile: S.optional(OSProfile),
+    diagnosticsProfile: S.optional(DiagnosticsProfile),
+    licenseType: S.optional(S.String),
+    vmId: S.optional(S.String),
+    securityProfile: S.optional(SecurityProfile),
+    location: S.optional(S.String),
+    userData: S.optional(S.String),
+    hyperVGeneration: S.optional(HyperVGenerationTypes),
+  }),
+).annotate({
+  identifier: "RestorePointSourceMetadata",
+}) as any as S.Schema<RestorePointSourceMetadata>;
+
+/** The state of snapshot which determines the access availability of the snapshot. */
+export type CommonSnapshotAccessState =
+  | "Unknown"
+  | "Pending"
+  | "Available"
+  | "InstantAccess"
+  | "AvailableWithInstantAccess";
+export const CommonSnapshotAccessState = /*@__PURE__*/ S.String;
+
+/** The instance view of a disk restore point. */
+export interface DiskRestorePointReplicationStatus {
+  /** The resource status information. */
+  status?: InstanceViewStatus;
+  /** Replication completion percentage. */
+  completionPercent?: number;
+}
+export const DiskRestorePointReplicationStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(InstanceViewStatus),
+    completionPercent: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "DiskRestorePointReplicationStatus",
+}) as any as S.Schema<DiskRestorePointReplicationStatus>;
+
+/** The instance view of a disk restore point. */
+export interface DiskRestorePointInstanceView {
+  /** Disk restore point Id. */
+  id?: string;
+  /** The state of snapshot which determines the access availability of the snapshot. */
+  snapshotAccessState?: CommonSnapshotAccessState;
+  /** The disk restore point replication status information. */
+  replicationStatus?: DiskRestorePointReplicationStatus;
+}
+export const DiskRestorePointInstanceView = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    snapshotAccessState: S.optional(CommonSnapshotAccessState),
+    replicationStatus: S.optional(DiskRestorePointReplicationStatus),
+  }),
+).annotate({
+  identifier: "DiskRestorePointInstanceView",
+}) as any as S.Schema<DiskRestorePointInstanceView>;
+
+/** The disk restore points information. */
+export type RestorePointInstanceViewDiskRestorePointsList =
+  Array<DiskRestorePointInstanceView>;
+export const RestorePointInstanceViewDiskRestorePointsList =
+  /*@__PURE__*/ S.Array(
+    DiskRestorePointInstanceView,
+  ) as any as S.Schema<RestorePointInstanceViewDiskRestorePointsList>;
+
+/** The resource status information. */
+export type RestorePointInstanceViewStatusesList = Array<InstanceViewStatus>;
+export const RestorePointInstanceViewStatusesList = /*@__PURE__*/ S.Array(
+  InstanceViewStatus,
+) as any as S.Schema<RestorePointInstanceViewStatusesList>;
+
+/** The instance view of a restore point. */
+export interface RestorePointInstanceView {
+  /** The disk restore points information. */
+  diskRestorePoints?: RestorePointInstanceViewDiskRestorePointsList;
+  /** The resource status information. */
+  statuses?: RestorePointInstanceViewStatusesList;
+}
+export const RestorePointInstanceView = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskRestorePoints: S.optional(
+      RestorePointInstanceViewDiskRestorePointsList,
+    ),
+    statuses: S.optional(RestorePointInstanceViewStatusesList),
+  }),
+).annotate({
+  identifier: "RestorePointInstanceView",
+}) as any as S.Schema<RestorePointInstanceView>;
+
+/** The restore point properties. */
+export interface RestorePointProperties {
+  /** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
+  excludeDisks?: RestorePointPropertiesExcludeDisksList;
+  /** Gets the details of the VM captured at the time of the restore point creation. */
+  sourceMetadata?: RestorePointSourceMetadata;
+  /** Gets the provisioning state of the restore point. */
+  provisioningState?: string;
+  /** ConsistencyMode of the RestorePoint. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. */
+  consistencyMode?: ConsistencyModeTypes;
+  /** Gets the creation time of the restore point. */
+  timeCreated?: string;
+  /** Resource Id of the source restore point from which a copy needs to be created. */
+  sourceRestorePoint?: ApiEntityReference;
+  /** The restore point instance view. */
+  instanceView?: RestorePointInstanceView;
+  /** This property determines the time in minutes the snapshot is retained as instant access for restoring Premium SSD v2 or Ultra disk with fast restore performance in this restore point. */
+  instantAccessDurationMinutes?: number;
+}
+export const RestorePointProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    excludeDisks: S.optional(RestorePointPropertiesExcludeDisksList),
+    sourceMetadata: S.optional(RestorePointSourceMetadata),
+    provisioningState: S.optional(S.String),
+    consistencyMode: S.optional(ConsistencyModeTypes),
+    timeCreated: S.optional(S.String),
+    sourceRestorePoint: S.optional(ApiEntityReference),
+    instanceView: S.optional(RestorePointInstanceView),
+    instantAccessDurationMinutes: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RestorePointProperties",
+}) as any as S.Schema<RestorePointProperties>;
+
+export interface CreateRestorePointResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The restore point properties. */
+  properties?: RestorePointProperties;
+}
+export const CreateRestorePointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RestorePointProperties),
+  }),
+).annotate({
+  identifier: "CreateRestorePointResponse",
+}) as any as S.Schema<CreateRestorePointResponse>;
+
 /** Resource tags. */
-export type SshPublicKeysCreateRequestTagsMap = {
+export type CreateSshPublicKeysRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SshPublicKeysCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSshPublicKeysRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SshPublicKeysCreateRequestTagsMap>;
+) as any as S.Schema<CreateSshPublicKeysRequestTagsMap>;
 
 /** Properties of the SSH public key. */
 export interface SshPublicKeyResourceProperties {
@@ -1645,7 +3662,7 @@ export const SshPublicKeyResourceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SshPublicKeyResourceProperties",
 }) as any as S.Schema<SshPublicKeyResourceProperties>;
 
-export interface CreateSshPublicKeyRequest {
+export interface CreateSshPublicKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1653,18 +3670,18 @@ export interface CreateSshPublicKeyRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
   /** Resource tags. */
-  tags?: SshPublicKeysCreateRequestTagsMap;
+  tags?: CreateSshPublicKeysRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const CreateSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     sshPublicKeyName: S.String.pipe(T.Label()),
-    tags: S.optional(SshPublicKeysCreateRequestTagsMap),
+    tags: S.optional(CreateSshPublicKeysRequestTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }).pipe(
@@ -1676,19 +3693,19 @@ export const CreateSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateSshPublicKeyRequest",
-}) as any as S.Schema<CreateSshPublicKeyRequest>;
+  identifier: "CreateSshPublicKeysRequest",
+}) as any as S.Schema<CreateSshPublicKeysRequest>;
 
 /** Resource tags. */
-export type SshPublicKeysCreateResponseTagsMap = {
+export type CreateSshPublicKeysResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SshPublicKeysCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateSshPublicKeysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SshPublicKeysCreateResponseTagsMap>;
+) as any as S.Schema<CreateSshPublicKeysResponseTagsMap>;
 
-export interface CreateSshPublicKeyResponse {
+export interface CreateSshPublicKeysResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1698,25 +3715,25 @@ export interface CreateSshPublicKeyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SshPublicKeysCreateResponseTagsMap;
+  tags?: CreateSshPublicKeysResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const CreateSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SshPublicKeysCreateResponseTagsMap),
+    tags: S.optional(CreateSshPublicKeysResponseTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }),
 ).annotate({
-  identifier: "CreateSshPublicKeyResponse",
-}) as any as S.Schema<CreateSshPublicKeyResponse>;
+  identifier: "CreateSshPublicKeysResponse",
+}) as any as S.Schema<CreateSshPublicKeysResponse>;
 
 /** Resource tags. */
 export type DedicatedHostGroupsCreateOrUpdateRequestTagsMap = {
@@ -2180,41 +4197,6 @@ export const DedicatedHostsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "DedicatedHostsCreateOrUpdateResponse",
 }) as any as S.Schema<DedicatedHostsCreateOrUpdateResponse>;
 
-export interface DedicatedHostsRedeployRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the dedicated host group. */
-  hostGroupName: string;
-  /** The name of the dedicated host. */
-  hostName: string;
-}
-export const DedicatedHostsRedeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    hostGroupName: S.String.pipe(T.Label()),
-    hostName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}/hosts/{hostName}/redeploy",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedHostsRedeployRequest",
-}) as any as S.Schema<DedicatedHostsRedeployRequest>;
-
-export interface DedicatedHostsRedeployResponse {}
-export const DedicatedHostsRedeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DedicatedHostsRedeployResponse",
-}) as any as S.Schema<DedicatedHostsRedeployResponse>;
-
 export interface DeleteAvailabilitySetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -2511,7 +4493,74 @@ export const DeleteProximityPlacementGroupResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteProximityPlacementGroupResponse",
 }) as any as S.Schema<DeleteProximityPlacementGroupResponse>;
 
-export interface DeleteSshPublicKeyRequest {
+export interface DeleteRestorePointRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the restore point collection. */
+  restorePointCollectionName: string;
+  /** The name of the restore point. */
+  restorePointName: string;
+}
+export const DeleteRestorePointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    restorePointCollectionName: S.String.pipe(T.Label()),
+    restorePointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRestorePointRequest",
+}) as any as S.Schema<DeleteRestorePointRequest>;
+
+export interface DeleteRestorePointResponse {}
+export const DeleteRestorePointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRestorePointResponse",
+}) as any as S.Schema<DeleteRestorePointResponse>;
+
+export interface DeleteRestorePointCollectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the restore point collection. */
+  restorePointCollectionName: string;
+}
+export const DeleteRestorePointCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    restorePointCollectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRestorePointCollectionRequest",
+}) as any as S.Schema<DeleteRestorePointCollectionRequest>;
+
+export interface DeleteRestorePointCollectionResponse {}
+export const DeleteRestorePointCollectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteRestorePointCollectionResponse",
+}) as any as S.Schema<DeleteRestorePointCollectionResponse>;
+
+export interface DeleteSshPublicKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2519,7 +4568,7 @@ export interface DeleteSshPublicKeyRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
 }
-export const DeleteSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2533,15 +4582,15 @@ export const DeleteSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteSshPublicKeyRequest",
-}) as any as S.Schema<DeleteSshPublicKeyRequest>;
+  identifier: "DeleteSshPublicKeysRequest",
+}) as any as S.Schema<DeleteSshPublicKeysRequest>;
 
-export interface DeleteSshPublicKeyResponse {}
-export const DeleteSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSshPublicKeysResponse {}
+export const DeleteSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteSshPublicKeyResponse",
-}) as any as S.Schema<DeleteSshPublicKeyResponse>;
+  identifier: "DeleteSshPublicKeysResponse",
+}) as any as S.Schema<DeleteSshPublicKeysResponse>;
 
 export interface DeleteVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -2577,260 +4626,6 @@ export const DeleteVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteVirtualMachineResponse",
 }) as any as S.Schema<DeleteVirtualMachineResponse>;
-
-/** The kind of bulk operation that can be performed on resources using Bulkactions API */
-export type ResourceOperationType =
-  | "Unknown"
-  | "Start"
-  | "Deallocate"
-  | "Hibernate"
-  | "Create"
-  | "Delete";
-export const ResourceOperationType = /*@__PURE__*/ S.String;
-
-/** The retry policy for the user request */
-export interface RetryPolicy {
-  /** Retry count for user request */
-  retryCount?: number;
-  /** Retry window in minutes for user request */
-  retryWindowInMinutes?: number;
-  /** Action to take on failure */
-  onFailureAction?: ResourceOperationType | (string & {});
-}
-export const RetryPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retryCount: S.optional(S.Number),
-    retryWindowInMinutes: S.optional(S.Number),
-    onFailureAction: S.optional(ResourceOperationType),
-  }),
-).annotate({ identifier: "RetryPolicy" }) as any as S.Schema<RetryPolicy>;
-
-/** Extra details needed to run the user's request */
-export interface ExecutionParameters {
-  /** Retry policy the user can pass */
-  retryPolicy?: RetryPolicy;
-}
-export const ExecutionParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retryPolicy: S.optional(RetryPolicy),
-  }),
-).annotate({
-  identifier: "ExecutionParameters",
-}) as any as S.Schema<ExecutionParameters>;
-
-/** The resource ids used for the request */
-export type ResourcesIdsList = Array<string>;
-export const ResourcesIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ResourcesIdsList>;
-
-/** The resources needed for the user request */
-export interface Resources {
-  /** The resource ids used for the request */
-  ids: ResourcesIdsList;
-}
-export const Resources = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ids: ResourcesIdsList,
-  }),
-).annotate({ identifier: "Resources" }) as any as S.Schema<Resources>;
-
-export interface DeleteVirtualMachineBulkOperationBulkRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The location name. */
-  location: string;
-  /** The execution parameters for the request */
-  executionParameters: ExecutionParameters;
-  /** The resources for the request */
-  resources: Resources;
-  /** Forced delete resource item */
-  forceDeletion?: boolean;
-}
-export const DeleteVirtualMachineBulkOperationBulkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      executionParameters: ExecutionParameters,
-      resources: Resources,
-      forceDeletion: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkDelete",
-        code: 200,
-        apiVersion: "2026-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeleteVirtualMachineBulkOperationBulkRequest",
-  }) as any as S.Schema<DeleteVirtualMachineBulkOperationBulkRequest>;
-
-/** Type of operation performed on the resources */
-export type ResourceOperationDetailsOpType =
-  | "Unknown"
-  | "Start"
-  | "Deallocate"
-  | "Hibernate"
-  | "Create"
-  | "Delete";
-export const ResourceOperationDetailsOpType = /*@__PURE__*/ S.String;
-
-/** Type of deadline of the operation */
-export type ResourceOperationDetailsDeadlineType =
-  | "Unknown"
-  | "InitiateAt"
-  | "CompleteBy";
-export const ResourceOperationDetailsDeadlineType = /*@__PURE__*/ S.String;
-
-/** Current state of the operation */
-export type ResourceOperationDetailsState =
-  | "Unknown"
-  | "PendingScheduling"
-  | "Scheduled"
-  | "PendingExecution"
-  | "Executing"
-  | "Succeeded"
-  | "Failed"
-  | "Cancelled"
-  | "Blocked";
-export const ResourceOperationDetailsState = /*@__PURE__*/ S.String;
-
-/** These describe errors that occur at the resource level */
-export interface ResourceOperationError {
-  /** Code for the error eg 404, 500 */
-  errorCode: string;
-  /** Detailed message about the error */
-  errorDetails: string;
-}
-export const ResourceOperationError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errorCode: S.String,
-    errorDetails: S.String,
-  }),
-).annotate({
-  identifier: "ResourceOperationError",
-}) as any as S.Schema<ResourceOperationError>;
-
-/** Describes the fallback operation that was performed */
-export interface FallbackOperationInfo {
-  /** The last operation type that was performed as a fallback */
-  lastOpType: ResourceOperationType;
-  /** The status of the fallback operation */
-  status: string;
-  /** The error code if the fallback operation failed */
-  error?: ResourceOperationError;
-}
-export const FallbackOperationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lastOpType: ResourceOperationType,
-    status: S.String,
-    error: S.optional(ResourceOperationError),
-  }),
-).annotate({
-  identifier: "FallbackOperationInfo",
-}) as any as S.Schema<FallbackOperationInfo>;
-
-/** The details of a response from an operation on a resource */
-export interface ResourceOperationDetails {
-  /** Operation identifier for the unique operation */
-  operationId: string;
-  /** Unique identifier for the resource involved in the operation, for example Azure resource ID */
-  resourceId?: string;
-  /** Type of operation performed on the resources */
-  opType?: ResourceOperationDetailsOpType;
-  /** Subscription id attached to the request */
-  subscriptionId?: string;
-  /** Deadline for the operation */
-  deadline?: string;
-  /** Type of deadline of the operation */
-  deadlineType?: ResourceOperationDetailsDeadlineType;
-  /** Current state of the operation */
-  state?: ResourceOperationDetailsState;
-  /** Timezone for the operation */
-  timezone?: string;
-  /** Operation level errors if they exist */
-  resourceOperationError?: ResourceOperationError;
-  /** Fallback operation details if a fallback was performed */
-  fallbackOperationInfo?: FallbackOperationInfo;
-  /** Time the operation was complete if errors are null */
-  completedAt?: string;
-  /** Retry policy the user can pass */
-  retryPolicy?: RetryPolicy;
-}
-export const ResourceOperationDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operationId: S.String,
-    resourceId: S.optional(S.String),
-    opType: S.optional(ResourceOperationDetailsOpType),
-    subscriptionId: S.optional(S.String),
-    deadline: S.optional(S.String),
-    deadlineType: S.optional(ResourceOperationDetailsDeadlineType),
-    state: S.optional(ResourceOperationDetailsState),
-    timezone: S.optional(S.String),
-    resourceOperationError: S.optional(ResourceOperationError),
-    fallbackOperationInfo: S.optional(FallbackOperationInfo),
-    completedAt: S.optional(S.String),
-    retryPolicy: S.optional(RetryPolicy),
-  }),
-).annotate({
-  identifier: "ResourceOperationDetails",
-}) as any as S.Schema<ResourceOperationDetails>;
-
-/** High level response from an operation on a resource */
-export interface ResourceOperation {
-  /** Unique identifier for the resource involved in the operation, for example Azure resource ID */
-  resourceId?: string;
-  /** Resource level error code if it exists */
-  errorCode?: string;
-  /** Resource level error details if they exist */
-  errorDetails?: string;
-  /** Details of the operation performed on a resource */
-  operation?: ResourceOperationDetails;
-}
-export const ResourceOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceId: S.optional(S.String),
-    errorCode: S.optional(S.String),
-    errorDetails: S.optional(S.String),
-    operation: S.optional(ResourceOperationDetails),
-  }),
-).annotate({
-  identifier: "ResourceOperation",
-}) as any as S.Schema<ResourceOperation>;
-
-/** The results from the delete request if no errors exist */
-export type DeleteResourceOperationResponseResultsList =
-  Array<ResourceOperation>;
-export const DeleteResourceOperationResponseResultsList = /*@__PURE__*/ S.Array(
-  ResourceOperation,
-) as any as S.Schema<DeleteResourceOperationResponseResultsList>;
-
-/** The response from a delete request */
-export interface DeleteResourceOperationResponse {
-  /** The description of the operation response */
-  description: string;
-  /** The type of resources used in the delete request eg virtual machines */
-  type: string;
-  /** The location of the delete request eg westus */
-  location: string;
-  /** The results from the delete request if no errors exist */
-  results?: DeleteResourceOperationResponseResultsList;
-}
-export const DeleteResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.String,
-    type: S.String,
-    location: S.String,
-    results: S.optional(DeleteResourceOperationResponseResultsList),
-  }),
-).annotate({
-  identifier: "DeleteResourceOperationResponse",
-}) as any as S.Schema<DeleteResourceOperationResponse>;
 
 export interface DeleteVirtualMachineDiagnosticRunCommandRequest {
   /** The ID of the target subscription. */
@@ -2974,15 +4769,50 @@ export const DeleteVirtualMachineScaleSetResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteVirtualMachineScaleSetResponse",
 }) as any as S.Schema<DeleteVirtualMachineScaleSetResponse>;
 
+export interface DeleteVirtualMachineScaleSetExtensionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The name of the VM scale set extension. */
+  vmssExtensionName: string;
+}
+export const DeleteVirtualMachineScaleSetExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      vmssExtensionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions/{vmssExtensionName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteVirtualMachineScaleSetExtensionRequest",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetExtensionRequest>;
+
+export interface DeleteVirtualMachineScaleSetExtensionResponse {}
+export const DeleteVirtualMachineScaleSetExtensionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteVirtualMachineScaleSetExtensionResponse",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetExtensionResponse>;
+
 /** The virtual machine scale set instance ids. */
-export type VirtualMachineScaleSetsDeleteInstancesRequestInstanceIdsList =
+export type DeleteVirtualMachineScaleSetInstancesRequestInstanceIdsList =
   Array<string>;
-export const VirtualMachineScaleSetsDeleteInstancesRequestInstanceIdsList =
+export const DeleteVirtualMachineScaleSetInstancesRequestInstanceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsDeleteInstancesRequestInstanceIdsList>;
+  ) as any as S.Schema<DeleteVirtualMachineScaleSetInstancesRequestInstanceIdsList>;
 
-export interface DeleteVirtualMachineScaleSetInstanceRequest {
+export interface DeleteVirtualMachineScaleSetInstancesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2992,16 +4822,16 @@ export interface DeleteVirtualMachineScaleSetInstanceRequest {
   /** Optional parameter to force delete virtual machines from the VM scale set. (Feature in Preview) */
   forceDeletion?: boolean;
   /** The virtual machine scale set instance ids. */
-  instanceIds: VirtualMachineScaleSetsDeleteInstancesRequestInstanceIdsList;
+  instanceIds: DeleteVirtualMachineScaleSetInstancesRequestInstanceIdsList;
 }
-export const DeleteVirtualMachineScaleSetInstanceRequest =
+export const DeleteVirtualMachineScaleSetInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vmScaleSetName: S.String.pipe(T.Label()),
       forceDeletion: S.optional(S.Boolean.pipe(T.Query())),
-      instanceIds: VirtualMachineScaleSetsDeleteInstancesRequestInstanceIdsList,
+      instanceIds: DeleteVirtualMachineScaleSetInstancesRequestInstanceIdsList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -3011,20 +4841,304 @@ export const DeleteVirtualMachineScaleSetInstanceRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteVirtualMachineScaleSetInstanceRequest",
-  }) as any as S.Schema<DeleteVirtualMachineScaleSetInstanceRequest>;
+    identifier: "DeleteVirtualMachineScaleSetInstancesRequest",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetInstancesRequest>;
 
-export interface DeleteVirtualMachineScaleSetInstanceResponse {}
-export const DeleteVirtualMachineScaleSetInstanceResponse =
+export interface DeleteVirtualMachineScaleSetInstancesResponse {}
+export const DeleteVirtualMachineScaleSetInstancesResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteVirtualMachineScaleSetInstanceResponse",
-  }) as any as S.Schema<DeleteVirtualMachineScaleSetInstanceResponse>;
+    identifier: "DeleteVirtualMachineScaleSetInstancesResponse",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetInstancesResponse>;
+
+export interface DeleteVirtualMachineScaleSetVMRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** Optional parameter to force delete a virtual machine from a VM scale set. (Feature in Preview) */
+  forceDeletion?: boolean;
+}
+export const DeleteVirtualMachineScaleSetVMRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      forceDeletion: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteVirtualMachineScaleSetVMRequest",
+}) as any as S.Schema<DeleteVirtualMachineScaleSetVMRequest>;
+
+export interface DeleteVirtualMachineScaleSetVMResponse {}
+export const DeleteVirtualMachineScaleSetVMResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualMachineScaleSetVMResponse",
+}) as any as S.Schema<DeleteVirtualMachineScaleSetVMResponse>;
+
+export interface DeleteVirtualMachineScaleSetVMDiagnosticRunCommandRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The name of the VirtualMachineDiagnosticRunCommand */
+  runCommandName: string;
+}
+export const DeleteVirtualMachineScaleSetVMDiagnosticRunCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      runCommandName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands/{runCommandName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteVirtualMachineScaleSetVMDiagnosticRunCommandRequest",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetVMDiagnosticRunCommandRequest>;
+
+export interface DeleteVirtualMachineScaleSetVMDiagnosticRunCommandResponse {}
+export const DeleteVirtualMachineScaleSetVMDiagnosticRunCommandResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteVirtualMachineScaleSetVMDiagnosticRunCommandResponse",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetVMDiagnosticRunCommandResponse>;
+
+export interface DeleteVirtualMachineScaleSetVMExtensionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** The name of the virtual machine extension. */
+  vmExtensionName: string;
+}
+export const DeleteVirtualMachineScaleSetVMExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      vmExtensionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions/{vmExtensionName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteVirtualMachineScaleSetVMExtensionRequest",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetVMExtensionRequest>;
+
+export interface DeleteVirtualMachineScaleSetVMExtensionResponse {}
+export const DeleteVirtualMachineScaleSetVMExtensionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteVirtualMachineScaleSetVMExtensionResponse",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetVMExtensionResponse>;
+
+export interface DeleteVirtualMachineScaleSetVMRunCommandRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The name of the VirtualMachineRunCommand */
+  runCommandName: string;
+}
+export const DeleteVirtualMachineScaleSetVMRunCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      runCommandName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands/{runCommandName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteVirtualMachineScaleSetVMRunCommandRequest",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetVMRunCommandRequest>;
+
+export interface DeleteVirtualMachineScaleSetVMRunCommandResponse {}
+export const DeleteVirtualMachineScaleSetVMRunCommandResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteVirtualMachineScaleSetVMRunCommandResponse",
+  }) as any as S.Schema<DeleteVirtualMachineScaleSetVMRunCommandResponse>;
+
+/** Interval value in minutes used to create LogAnalytics call rate logs. */
+export type IntervalInMins =
+  | "ThreeMins"
+  | "FiveMins"
+  | "ThirtyMins"
+  | "SixtyMins";
+export const IntervalInMins = /*@__PURE__*/ S.String;
+
+export interface ExportLogAnalyticsRequestRateByIntervalRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** SAS Uri of the logging blob container to which LogAnalytics Api writes output logs to. */
+  blobContainerSasUri: string;
+  /** From time of the query */
+  fromTime: string;
+  /** To time of the query */
+  toTime: string;
+  /** Group query result by Throttle Policy applied. */
+  groupByThrottlePolicy?: boolean;
+  /** Group query result by Operation Name. */
+  groupByOperationName?: boolean;
+  /** Group query result by Resource Name. */
+  groupByResourceName?: boolean;
+  /** Group query result by Client Application ID. */
+  groupByClientApplicationId?: boolean;
+  /** Group query result by User Agent. */
+  groupByUserAgent?: boolean;
+  /** Interval value in minutes used to create LogAnalytics call rate logs. */
+  intervalLength: IntervalInMins | (string & {});
+}
+export const ExportLogAnalyticsRequestRateByIntervalRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      blobContainerSasUri: S.String,
+      fromTime: S.String,
+      toTime: S.String,
+      groupByThrottlePolicy: S.optional(S.Boolean),
+      groupByOperationName: S.optional(S.Boolean),
+      groupByResourceName: S.optional(S.Boolean),
+      groupByClientApplicationId: S.optional(S.Boolean),
+      groupByUserAgent: S.optional(S.Boolean),
+      intervalLength: IntervalInMins,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getRequestRateByInterval",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportLogAnalyticsRequestRateByIntervalRequest",
+  }) as any as S.Schema<ExportLogAnalyticsRequestRateByIntervalRequest>;
+
+/** LogAnalytics output properties */
+export interface LogAnalyticsOutput {
+  /** Output file Uri path to blob container. */
+  output?: string;
+}
+export const LogAnalyticsOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    output: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LogAnalyticsOutput",
+}) as any as S.Schema<LogAnalyticsOutput>;
+
+/** LogAnalytics operation status response */
+export interface LogAnalyticsOperationResult {
+  /** LogAnalyticsOutput */
+  properties?: LogAnalyticsOutput;
+}
+export const LogAnalyticsOperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(LogAnalyticsOutput),
+  }),
+).annotate({
+  identifier: "LogAnalyticsOperationResult",
+}) as any as S.Schema<LogAnalyticsOperationResult>;
+
+export interface ExportLogAnalyticsThrottledRequestsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** SAS Uri of the logging blob container to which LogAnalytics Api writes output logs to. */
+  blobContainerSasUri: string;
+  /** From time of the query */
+  fromTime: string;
+  /** To time of the query */
+  toTime: string;
+  /** Group query result by Throttle Policy applied. */
+  groupByThrottlePolicy?: boolean;
+  /** Group query result by Operation Name. */
+  groupByOperationName?: boolean;
+  /** Group query result by Resource Name. */
+  groupByResourceName?: boolean;
+  /** Group query result by Client Application ID. */
+  groupByClientApplicationId?: boolean;
+  /** Group query result by User Agent. */
+  groupByUserAgent?: boolean;
+}
+export const ExportLogAnalyticsThrottledRequestsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      blobContainerSasUri: S.String,
+      fromTime: S.String,
+      toTime: S.String,
+      groupByThrottlePolicy: S.optional(S.Boolean),
+      groupByOperationName: S.optional(S.Boolean),
+      groupByResourceName: S.optional(S.Boolean),
+      groupByClientApplicationId: S.optional(S.Boolean),
+      groupByUserAgent: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getThrottledRequests",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportLogAnalyticsThrottledRequestsRequest",
+  }) as any as S.Schema<ExportLogAnalyticsThrottledRequestsRequest>;
 
 /** The encryption type of the SSH keys to be generated. See SshEncryptionTypes for possible set of values. If not provided, will default to RSA */
 export type SshEncryptionTypes = "RSA" | "Ed25519";
 export const SshEncryptionTypes = /*@__PURE__*/ S.String;
 
-export interface GenerateSshPublicKeyKeyPairRequest {
+export interface GenerateSshPublicKeysKeyPairRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3034,7 +5148,7 @@ export interface GenerateSshPublicKeyKeyPairRequest {
   /** The encryption type of the SSH keys to be generated. See SshEncryptionTypes for possible set of values. If not provided, will default to RSA */
   encryptionType?: SshEncryptionTypes | (string & {});
 }
-export const GenerateSshPublicKeyKeyPairRequest = /*@__PURE__*/ S.suspend(() =>
+export const GenerateSshPublicKeysKeyPairRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3049,8 +5163,8 @@ export const GenerateSshPublicKeyKeyPairRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GenerateSshPublicKeyKeyPairRequest",
-}) as any as S.Schema<GenerateSshPublicKeyKeyPairRequest>;
+  identifier: "GenerateSshPublicKeysKeyPairRequest",
+}) as any as S.Schema<GenerateSshPublicKeysKeyPairRequest>;
 
 /** Response from generation of an SSH key pair. */
 export interface SshPublicKeyGenerateKeyPairResult {
@@ -3097,13 +5211,13 @@ export const GetAvailabilitySetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAvailabilitySetRequest>;
 
 /** Resource tags. */
-export type AvailabilitySetsGetResponseTagsMap = {
+export type GetAvailabilitySetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailabilitySetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAvailabilitySetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AvailabilitySetsGetResponseTagsMap>;
+) as any as S.Schema<GetAvailabilitySetResponseTagsMap>;
 
 export interface GetAvailabilitySetResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3115,7 +5229,7 @@ export interface GetAvailabilitySetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AvailabilitySetsGetResponseTagsMap;
+  tags?: GetAvailabilitySetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The instance view of a resource. */
@@ -3129,7 +5243,7 @@ export const GetAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AvailabilitySetsGetResponseTagsMap),
+    tags: S.optional(GetAvailabilitySetResponseTagsMap),
     location: S.String,
     properties: S.optional(AvailabilitySetProperties),
     sku: S.optional(Sku),
@@ -3138,8 +5252,8 @@ export const GetAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAvailabilitySetResponse",
 }) as any as S.Schema<GetAvailabilitySetResponse>;
 
-export type CapacityReservationsGetRequestExpand = "instanceView";
-export const CapacityReservationsGetRequestExpand = /*@__PURE__*/ S.String;
+export type GetCapacityReservationRequestExpand = "instanceView";
+export const GetCapacityReservationRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetCapacityReservationRequest {
   /** The ID of the target subscription. */
@@ -3151,7 +5265,7 @@ export interface GetCapacityReservationRequest {
   /** The name of the capacity reservation. */
   capacityReservationName: string;
   /** The expand expression to apply on the operation. 'InstanceView' retrieves a snapshot of the runtime properties of the capacity reservation that is managed by the platform and can change outside of control plane operations. */
-  _expand?: CapacityReservationsGetRequestExpand | (string & {});
+  _expand?: GetCapacityReservationRequestExpand | (string & {});
 }
 export const GetCapacityReservationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3160,7 +5274,7 @@ export const GetCapacityReservationRequest = /*@__PURE__*/ S.suspend(() =>
     capacityReservationGroupName: S.String.pipe(T.Label()),
     capacityReservationName: S.String.pipe(T.Label()),
     _expand: S.optional(
-      CapacityReservationsGetRequestExpand.pipe(T.Query("$expand")),
+      GetCapacityReservationRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -3175,19 +5289,19 @@ export const GetCapacityReservationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCapacityReservationRequest>;
 
 /** Resource tags. */
-export type CapacityReservationsGetResponseTagsMap = {
+export type GetCapacityReservationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CapacityReservationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCapacityReservationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CapacityReservationsGetResponseTagsMap>;
+) as any as S.Schema<GetCapacityReservationResponseTagsMap>;
 
 /** The availability zones. */
-export type CapacityReservationsGetResponseZonesList = Array<string>;
-export const CapacityReservationsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetCapacityReservationResponseZonesList = Array<string>;
+export const GetCapacityReservationResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<CapacityReservationsGetResponseZonesList>;
+) as any as S.Schema<GetCapacityReservationResponseZonesList>;
 
 export interface GetCapacityReservationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3199,7 +5313,7 @@ export interface GetCapacityReservationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CapacityReservationsGetResponseTagsMap;
+  tags?: GetCapacityReservationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the Capacity reservation. */
@@ -3207,7 +5321,7 @@ export interface GetCapacityReservationResponse {
   /** SKU of the resource for which capacity needs be reserved. The SKU name and capacity is required to be set. For Block capacity reservations, sku.capacity can only accept values 1, 2, 4, 8, 16, 32, 64. Currently VM Skus with the capability called 'CapacityReservationSupported' set to true are supported. When 'CapacityReservationSupported' is true, the SKU capability also specifies the 'SupportedCapacityReservationTypes', which lists the types of capacity reservations (such as Targeted or Block) that the SKU supports. Refer to List Microsoft.Compute SKUs in a region (https://docs.microsoft.com/rest/api/compute/resourceskus/list) for supported values. */
   sku: Sku;
   /** The availability zones. */
-  zones?: CapacityReservationsGetResponseZonesList;
+  zones?: GetCapacityReservationResponseZonesList;
 }
 export const GetCapacityReservationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3215,18 +5329,18 @@ export const GetCapacityReservationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CapacityReservationsGetResponseTagsMap),
+    tags: S.optional(GetCapacityReservationResponseTagsMap),
     location: S.String,
     properties: S.optional(CapacityReservationProperties),
     sku: Sku,
-    zones: S.optional(CapacityReservationsGetResponseZonesList),
+    zones: S.optional(GetCapacityReservationResponseZonesList),
   }),
 ).annotate({
   identifier: "GetCapacityReservationResponse",
 }) as any as S.Schema<GetCapacityReservationResponse>;
 
-export type CapacityReservationGroupsGetRequestExpand = "instanceView";
-export const CapacityReservationGroupsGetRequestExpand = /*@__PURE__*/ S.String;
+export type GetCapacityReservationGroupRequestExpand = "instanceView";
+export const GetCapacityReservationGroupRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetCapacityReservationGroupRequest {
   /** The ID of the target subscription. */
@@ -3236,7 +5350,7 @@ export interface GetCapacityReservationGroupRequest {
   /** The name of the capacity reservation group. */
   capacityReservationGroupName: string;
   /** The expand expression to apply on the operation. 'InstanceView' will retrieve the list of instance views of the capacity reservations under the capacity reservation group which is a snapshot of the runtime properties of a capacity reservation that is managed by the platform and can change outside of control plane operations. */
-  _expand?: CapacityReservationGroupsGetRequestExpand | (string & {});
+  _expand?: GetCapacityReservationGroupRequestExpand | (string & {});
 }
 export const GetCapacityReservationGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3244,7 +5358,7 @@ export const GetCapacityReservationGroupRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     capacityReservationGroupName: S.String.pipe(T.Label()),
     _expand: S.optional(
-      CapacityReservationGroupsGetRequestExpand.pipe(T.Query("$expand")),
+      GetCapacityReservationGroupRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -3259,21 +5373,21 @@ export const GetCapacityReservationGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetCapacityReservationGroupRequest>;
 
 /** Resource tags. */
-export type CapacityReservationGroupsGetResponseTagsMap = {
+export type GetCapacityReservationGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CapacityReservationGroupsGetResponseTagsMap =
+export const GetCapacityReservationGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CapacityReservationGroupsGetResponseTagsMap>;
+  ) as any as S.Schema<GetCapacityReservationGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type CapacityReservationGroupsGetResponseZonesList = Array<string>;
-export const CapacityReservationGroupsGetResponseZonesList =
+export type GetCapacityReservationGroupResponseZonesList = Array<string>;
+export const GetCapacityReservationGroupResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<CapacityReservationGroupsGetResponseZonesList>;
+  ) as any as S.Schema<GetCapacityReservationGroupResponseZonesList>;
 
 export interface GetCapacityReservationGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3285,13 +5399,13 @@ export interface GetCapacityReservationGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CapacityReservationGroupsGetResponseTagsMap;
+  tags?: GetCapacityReservationGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** capacity reservation group Properties. */
   properties?: CapacityReservationGroupProperties;
   /** The availability zones. */
-  zones?: CapacityReservationGroupsGetResponseZonesList;
+  zones?: GetCapacityReservationGroupResponseZonesList;
 }
 export const GetCapacityReservationGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3299,10 +5413,10 @@ export const GetCapacityReservationGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CapacityReservationGroupsGetResponseTagsMap),
+    tags: S.optional(GetCapacityReservationGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(CapacityReservationGroupProperties),
-    zones: S.optional(CapacityReservationGroupsGetResponseZonesList),
+    zones: S.optional(GetCapacityReservationGroupResponseZonesList),
   }),
 ).annotate({
   identifier: "GetCapacityReservationGroupResponse",
@@ -3334,13 +5448,13 @@ export const GetContainerServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetContainerServiceRequest>;
 
 /** Resource tags */
-export type ContainerServicesGetResponseTagsMap = {
+export type GetContainerServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ContainerServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetContainerServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ContainerServicesGetResponseTagsMap>;
+) as any as S.Schema<GetContainerServiceResponseTagsMap>;
 
 export interface GetContainerServiceResponse {
   /** Resource Id */
@@ -3352,7 +5466,7 @@ export interface GetContainerServiceResponse {
   /** Resource location */
   location: string;
   /** Resource tags */
-  tags?: ContainerServicesGetResponseTagsMap;
+  tags?: GetContainerServiceResponseTagsMap;
   properties?: ContainerServiceProperties;
 }
 export const GetContainerServiceResponse = /*@__PURE__*/ S.suspend(() =>
@@ -3361,18 +5475,18 @@ export const GetContainerServiceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(ContainerServicesGetResponseTagsMap),
+    tags: S.optional(GetContainerServiceResponseTagsMap),
     properties: S.optional(ContainerServiceProperties),
   }),
 ).annotate({
   identifier: "GetContainerServiceResponse",
 }) as any as S.Schema<GetContainerServiceResponse>;
 
-export type DedicatedHostsGetRequestExpand =
+export type GetDedicatedHostRequestExpand =
   | "instanceView"
   | "userData"
   | "resiliencyView";
-export const DedicatedHostsGetRequestExpand = /*@__PURE__*/ S.String;
+export const GetDedicatedHostRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetDedicatedHostRequest {
   /** The ID of the target subscription. */
@@ -3384,7 +5498,7 @@ export interface GetDedicatedHostRequest {
   /** The name of the dedicated host. */
   hostName: string;
   /** The expand expression to apply on the operation. 'InstanceView' will retrieve the list of instance views of the dedicated host. 'UserData' is not supported for dedicated host. */
-  _expand?: DedicatedHostsGetRequestExpand | (string & {});
+  _expand?: GetDedicatedHostRequestExpand | (string & {});
 }
 export const GetDedicatedHostRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3392,9 +5506,7 @@ export const GetDedicatedHostRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     hostGroupName: S.String.pipe(T.Label()),
     hostName: S.String.pipe(T.Label()),
-    _expand: S.optional(
-      DedicatedHostsGetRequestExpand.pipe(T.Query("$expand")),
-    ),
+    _expand: S.optional(GetDedicatedHostRequestExpand.pipe(T.Query("$expand"))),
   }).pipe(
     T.Http({
       method: "GET",
@@ -3408,13 +5520,13 @@ export const GetDedicatedHostRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDedicatedHostRequest>;
 
 /** Resource tags. */
-export type DedicatedHostsGetResponseTagsMap = {
+export type GetDedicatedHostResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHostsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDedicatedHostResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHostsGetResponseTagsMap>;
+) as any as S.Schema<GetDedicatedHostResponseTagsMap>;
 
 export interface GetDedicatedHostResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3426,7 +5538,7 @@ export interface GetDedicatedHostResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHostsGetResponseTagsMap;
+  tags?: GetDedicatedHostResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the dedicated host. */
@@ -3440,7 +5552,7 @@ export const GetDedicatedHostResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHostsGetResponseTagsMap),
+    tags: S.optional(GetDedicatedHostResponseTagsMap),
     location: S.String,
     properties: S.optional(DedicatedHostProperties),
     sku: Sku,
@@ -3449,11 +5561,11 @@ export const GetDedicatedHostResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDedicatedHostResponse",
 }) as any as S.Schema<GetDedicatedHostResponse>;
 
-export type DedicatedHostGroupsGetRequestExpand =
+export type GetDedicatedHostGroupRequestExpand =
   | "instanceView"
   | "userData"
   | "resiliencyView";
-export const DedicatedHostGroupsGetRequestExpand = /*@__PURE__*/ S.String;
+export const GetDedicatedHostGroupRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetDedicatedHostGroupRequest {
   /** The ID of the target subscription. */
@@ -3463,7 +5575,7 @@ export interface GetDedicatedHostGroupRequest {
   /** The name of the dedicated host group. */
   hostGroupName: string;
   /** The expand expression to apply on the operation. 'InstanceView' will retrieve the list of instance views of the dedicated hosts under the dedicated host group. 'UserData' is not supported for dedicated host group. */
-  _expand?: DedicatedHostGroupsGetRequestExpand | (string & {});
+  _expand?: GetDedicatedHostGroupRequestExpand | (string & {});
 }
 export const GetDedicatedHostGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3471,7 +5583,7 @@ export const GetDedicatedHostGroupRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     hostGroupName: S.String.pipe(T.Label()),
     _expand: S.optional(
-      DedicatedHostGroupsGetRequestExpand.pipe(T.Query("$expand")),
+      GetDedicatedHostGroupRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -3486,19 +5598,19 @@ export const GetDedicatedHostGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDedicatedHostGroupRequest>;
 
 /** Resource tags. */
-export type DedicatedHostGroupsGetResponseTagsMap = {
+export type GetDedicatedHostGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHostGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDedicatedHostGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHostGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetDedicatedHostGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type DedicatedHostGroupsGetResponseZonesList = Array<string>;
-export const DedicatedHostGroupsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetDedicatedHostGroupResponseZonesList = Array<string>;
+export const GetDedicatedHostGroupResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<DedicatedHostGroupsGetResponseZonesList>;
+) as any as S.Schema<GetDedicatedHostGroupResponseZonesList>;
 
 export interface GetDedicatedHostGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3510,13 +5622,13 @@ export interface GetDedicatedHostGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHostGroupsGetResponseTagsMap;
+  tags?: GetDedicatedHostGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Dedicated Host Group Properties. */
   properties?: DedicatedHostGroupProperties;
   /** The availability zones. */
-  zones?: DedicatedHostGroupsGetResponseZonesList;
+  zones?: GetDedicatedHostGroupResponseZonesList;
 }
 export const GetDedicatedHostGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3524,10 +5636,10 @@ export const GetDedicatedHostGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHostGroupsGetResponseTagsMap),
+    tags: S.optional(GetDedicatedHostGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(DedicatedHostGroupProperties),
-    zones: S.optional(DedicatedHostGroupsGetResponseZonesList),
+    zones: S.optional(GetDedicatedHostGroupResponseZonesList),
   }),
 ).annotate({
   identifier: "GetDedicatedHostGroupResponse",
@@ -3562,11 +5674,11 @@ export const GetImageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetImageRequest>;
 
 /** Resource tags. */
-export type ImagesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ImagesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetImageResponseTagsMap = { [key: string]: string | undefined };
+export const GetImageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImagesGetResponseTagsMap>;
+) as any as S.Schema<GetImageResponseTagsMap>;
 
 export type ImagePropertiesSourceVirtualMachine =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
@@ -3581,26 +5693,6 @@ export const ImageOSDiskSnapshot =
 export type ImageOSDiskManagedDisk =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
 export const ImageOSDiskManagedDisk =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-
-/** Specifies the caching requirements. Possible values are: **None,** **ReadOnly,** **ReadWrite.** The default values are: **None for Standard storage. ReadOnly for Premium storage** */
-export type CachingTypes = "None" | "ReadOnly" | "ReadWrite";
-export const CachingTypes = /*@__PURE__*/ S.String;
-
-/** Specifies the storage account type for the managed disk. Managed OS disk storage account type can only be set when you create the scale set. NOTE: UltraSSD_LRS can only be used with data disks. It cannot be used with OS Disk. Standard_LRS uses Standard HDD. StandardSSD_LRS uses Standard SSD. Premium_LRS uses Premium SSD. UltraSSD_LRS uses Ultra disk. Premium_ZRS uses Premium SSD zone redundant storage. StandardSSD_ZRS uses Standard SSD zone redundant storage. For more information regarding disks supported for Windows Virtual Machines, refer to https://docs.microsoft.com/azure/virtual-machines/windows/disks-types and, for Linux Virtual Machines, refer to https://docs.microsoft.com/azure/virtual-machines/linux/disks-types */
-export type StorageAccountTypes =
-  | "Standard_LRS"
-  | "Premium_LRS"
-  | "StandardSSD_LRS"
-  | "UltraSSD_LRS"
-  | "Premium_ZRS"
-  | "StandardSSD_ZRS"
-  | "PremiumV2_LRS";
-export const StorageAccountTypes = /*@__PURE__*/ S.String;
-
-export type DiskEncryptionSetParameters =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const DiskEncryptionSetParameters =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
 
 /** This property allows you to specify the type of the OS that is included in the disk if creating a VM from user-image or a specialized VHD. Possible values are: **Windows,** **Linux.** */
@@ -3713,10 +5805,6 @@ export const ImageStorageProfile = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageStorageProfile",
 }) as any as S.Schema<ImageStorageProfile>;
 
-/** Specifies the HyperVGeneration Type */
-export type HyperVGenerationTypes = "V1" | "V2";
-export const HyperVGenerationTypes = /*@__PURE__*/ S.String;
-
 /** Describes the properties of an Image. */
 export interface ImageProperties {
   sourceVirtualMachine?: AvailabilitySetPropertiesInputVirtualMachinesItem;
@@ -3745,20 +5833,20 @@ export type ExtendedLocationType = "EdgeZone";
 export const ExtendedLocationType = /*@__PURE__*/ S.String;
 
 /** The complex type of the extended location. */
-export interface ImagesGetResponseExtendedLocation {
+export interface GetImageResponseExtendedLocation {
   /** The name of the extended location. */
   name?: string;
   /** The type of the extended location. */
   type?: ExtendedLocationType;
 }
-export const ImagesGetResponseExtendedLocation = /*@__PURE__*/ S.suspend(() =>
+export const GetImageResponseExtendedLocation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
     type: S.optional(ExtendedLocationType),
   }),
 ).annotate({
-  identifier: "ImagesGetResponseExtendedLocation",
-}) as any as S.Schema<ImagesGetResponseExtendedLocation>;
+  identifier: "GetImageResponseExtendedLocation",
+}) as any as S.Schema<GetImageResponseExtendedLocation>;
 
 export interface GetImageResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3770,13 +5858,13 @@ export interface GetImageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ImagesGetResponseTagsMap;
+  tags?: GetImageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of an Image. */
   properties?: ImageProperties;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
 }
 export const GetImageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3784,17 +5872,17 @@ export const GetImageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ImagesGetResponseTagsMap),
+    tags: S.optional(GetImageResponseTagsMap),
     location: S.String,
     properties: S.optional(ImageProperties),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
   }),
 ).annotate({
   identifier: "GetImageResponse",
 }) as any as S.Schema<GetImageResponse>;
 
-export type InterconnectBlocksGetRequestExpand = "instanceView";
-export const InterconnectBlocksGetRequestExpand = /*@__PURE__*/ S.String;
+export type GetInterconnectBlockRequestExpand = "instanceView";
+export const GetInterconnectBlockRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetInterconnectBlockRequest {
   /** The ID of the target subscription. */
@@ -3804,7 +5892,7 @@ export interface GetInterconnectBlockRequest {
   /** The name of the Interconnect Block. */
   interconnectBlockName: string;
   /** The expand expression to apply on the operation. 'instanceView' retrieves a snapshot of the runtime properties of the Interconnect Block that is managed by the platform and can change outside of control plane operations. */
-  _expand?: InterconnectBlocksGetRequestExpand | (string & {});
+  _expand?: GetInterconnectBlockRequestExpand | (string & {});
 }
 export const GetInterconnectBlockRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3812,7 +5900,7 @@ export const GetInterconnectBlockRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     interconnectBlockName: S.String.pipe(T.Label()),
     _expand: S.optional(
-      InterconnectBlocksGetRequestExpand.pipe(T.Query("$expand")),
+      GetInterconnectBlockRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -3827,13 +5915,13 @@ export const GetInterconnectBlockRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInterconnectBlockRequest>;
 
 /** Resource tags. */
-export type InterconnectBlocksGetResponseTagsMap = {
+export type GetInterconnectBlockResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InterconnectBlocksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetInterconnectBlockResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InterconnectBlocksGetResponseTagsMap>;
+) as any as S.Schema<GetInterconnectBlockResponseTagsMap>;
 
 export type InterconnectBlockPropertiesVirtualMachinesAssociatedItem =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
@@ -3847,19 +5935,6 @@ export const InterconnectBlockPropertiesVirtualMachinesAssociatedList =
   /*@__PURE__*/ S.Array(
     AvailabilitySetPropertiesInputVirtualMachinesItem,
   ) as any as S.Schema<InterconnectBlockPropertiesVirtualMachinesAssociatedList>;
-
-/** The API entity reference. */
-export interface ApiEntityReference {
-  /** The ARM resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/... */
-  id?: string;
-}
-export const ApiEntityReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiEntityReference",
-}) as any as S.Schema<ApiEntityReference>;
 
 /** The resource status information. */
 export type InterconnectBlockInstanceViewStatusesList =
@@ -3918,10 +5993,10 @@ export const InterconnectBlockProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InterconnectBlockProperties>;
 
 /** The availability zones. */
-export type InterconnectBlocksGetResponseZonesList = Array<string>;
-export const InterconnectBlocksGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetInterconnectBlockResponseZonesList = Array<string>;
+export const GetInterconnectBlockResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<InterconnectBlocksGetResponseZonesList>;
+) as any as S.Schema<GetInterconnectBlockResponseZonesList>;
 
 /** Specifies the policy for resource's placement in availability zone. Possible values are: **Any** (used for Virtual Machines), **Auto** (used for Virtual Machine Scale Sets) - An availability zone will be automatically picked by system as part of resource creation. */
 export type ZonePlacementPolicyType = "Any" | "Auto";
@@ -3966,7 +6041,7 @@ export interface GetInterconnectBlockResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InterconnectBlocksGetResponseTagsMap;
+  tags?: GetInterconnectBlockResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the Interconnect Block. */
@@ -3974,7 +6049,7 @@ export interface GetInterconnectBlockResponse {
   /** SKU of the resource for which capacity needs to be pre-allocated. Both `sku.name` and `sku.capacity` are required at create. After create, only `sku.capacity` can be updated. */
   sku: Sku;
   /** The availability zones. */
-  zones?: InterconnectBlocksGetResponseZonesList;
+  zones?: GetInterconnectBlockResponseZonesList;
   /** Placement section specifies the user-defined constraints for Interconnect Block hardware placement. This property cannot be changed once Interconnect Block is provisioned. */
   placement?: Placement;
 }
@@ -3984,11 +6059,11 @@ export const GetInterconnectBlockResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InterconnectBlocksGetResponseTagsMap),
+    tags: S.optional(GetInterconnectBlockResponseTagsMap),
     location: S.String,
     properties: S.optional(InterconnectBlockProperties),
     sku: Sku,
-    zones: S.optional(InterconnectBlocksGetResponseZonesList),
+    zones: S.optional(GetInterconnectBlockResponseZonesList),
     placement: S.optional(Placement),
   }),
 ).annotate({
@@ -4024,14 +6099,13 @@ export const GetProximityPlacementGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProximityPlacementGroupRequest>;
 
 /** Resource tags. */
-export type ProximityPlacementGroupsGetResponseTagsMap = {
+export type GetProximityPlacementGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProximityPlacementGroupsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ProximityPlacementGroupsGetResponseTagsMap>;
+export const GetProximityPlacementGroupResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetProximityPlacementGroupResponseTagsMap>;
 
 /** Specifies the type of the proximity placement group. Possible values are: **Standard** : Co-locate resources within an Azure region or Availability Zone. **Ultra** : For future use. */
 export type ProximityPlacementGroupType = "Standard" | "Ultra";
@@ -4132,11 +6206,11 @@ export const ProximityPlacementGroupProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProximityPlacementGroupProperties>;
 
 /** The availability zones. */
-export type ProximityPlacementGroupsGetResponseZonesList = Array<string>;
-export const ProximityPlacementGroupsGetResponseZonesList =
+export type GetProximityPlacementGroupResponseZonesList = Array<string>;
+export const GetProximityPlacementGroupResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProximityPlacementGroupsGetResponseZonesList>;
+  ) as any as S.Schema<GetProximityPlacementGroupResponseZonesList>;
 
 export interface GetProximityPlacementGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -4148,13 +6222,13 @@ export interface GetProximityPlacementGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProximityPlacementGroupsGetResponseTagsMap;
+  tags?: GetProximityPlacementGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Proximity Placement Group. */
   properties?: ProximityPlacementGroupProperties;
   /** The availability zones. */
-  zones?: ProximityPlacementGroupsGetResponseZonesList;
+  zones?: GetProximityPlacementGroupResponseZonesList;
 }
 export const GetProximityPlacementGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4162,14 +6236,219 @@ export const GetProximityPlacementGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ProximityPlacementGroupsGetResponseTagsMap),
+    tags: S.optional(GetProximityPlacementGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(ProximityPlacementGroupProperties),
-    zones: S.optional(ProximityPlacementGroupsGetResponseZonesList),
+    zones: S.optional(GetProximityPlacementGroupResponseZonesList),
   }),
 ).annotate({
   identifier: "GetProximityPlacementGroupResponse",
 }) as any as S.Schema<GetProximityPlacementGroupResponse>;
+
+export type GetRestorePointRequestExpand = "instanceView";
+export const GetRestorePointRequestExpand = /*@__PURE__*/ S.String;
+
+export interface GetRestorePointRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the restore point collection. */
+  restorePointCollectionName: string;
+  /** The name of the restore point. */
+  restorePointName: string;
+  /** The expand expression to apply on the operation. 'InstanceView' retrieves information about the run-time state of a restore point. */
+  _expand?: GetRestorePointRequestExpand | (string & {});
+}
+export const GetRestorePointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    restorePointCollectionName: S.String.pipe(T.Label()),
+    restorePointName: S.String.pipe(T.Label()),
+    _expand: S.optional(GetRestorePointRequestExpand.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRestorePointRequest",
+}) as any as S.Schema<GetRestorePointRequest>;
+
+export interface GetRestorePointResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The restore point properties. */
+  properties?: RestorePointProperties;
+}
+export const GetRestorePointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RestorePointProperties),
+  }),
+).annotate({
+  identifier: "GetRestorePointResponse",
+}) as any as S.Schema<GetRestorePointResponse>;
+
+export type GetRestorePointCollectionRequestExpand = "restorePoints";
+export const GetRestorePointCollectionRequestExpand = /*@__PURE__*/ S.String;
+
+export interface GetRestorePointCollectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the restore point collection. */
+  restorePointCollectionName: string;
+  /** The expand expression to apply on the operation. If expand=restorePoints, server will return all contained restore points in the restorePointCollection. */
+  _expand?: GetRestorePointCollectionRequestExpand | (string & {});
+}
+export const GetRestorePointCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    restorePointCollectionName: S.String.pipe(T.Label()),
+    _expand: S.optional(
+      GetRestorePointCollectionRequestExpand.pipe(T.Query("$expand")),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRestorePointCollectionRequest",
+}) as any as S.Schema<GetRestorePointCollectionRequest>;
+
+/** Resource tags. */
+export type GetRestorePointCollectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetRestorePointCollectionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetRestorePointCollectionResponseTagsMap>;
+
+/** The properties of the source resource that this restore point collection is created from. */
+export interface RestorePointCollectionSourceProperties {
+  /** Location of the source resource used to create this restore point collection. */
+  location?: string;
+  /** Resource Id of the source resource used to create this restore point collection */
+  id?: string;
+}
+export const RestorePointCollectionSourceProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      location: S.optional(S.String),
+      id: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "RestorePointCollectionSourceProperties",
+}) as any as S.Schema<RestorePointCollectionSourceProperties>;
+
+/** Restore Point details. */
+export interface RestorePoint {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The restore point properties. */
+  properties?: RestorePointProperties;
+}
+export const RestorePoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RestorePointProperties),
+  }),
+).annotate({ identifier: "RestorePoint" }) as any as S.Schema<RestorePoint>;
+
+/** A list containing all restore points created under this restore point collection. */
+export type RestorePointCollectionPropertiesRestorePointsList =
+  Array<RestorePoint>;
+export const RestorePointCollectionPropertiesRestorePointsList =
+  /*@__PURE__*/ S.Array(
+    RestorePoint,
+  ) as any as S.Schema<RestorePointCollectionPropertiesRestorePointsList>;
+
+/** The restore point collection properties. */
+export interface RestorePointCollectionProperties {
+  /** The properties of the source resource that this restore point collection is created from. */
+  source?: RestorePointCollectionSourceProperties;
+  /** The provisioning state of the restore point collection. */
+  provisioningState?: string;
+  /** The unique id of the restore point collection. */
+  restorePointCollectionId?: string;
+  /** A list containing all restore points created under this restore point collection. */
+  restorePoints?: RestorePointCollectionPropertiesRestorePointsList;
+  /** This property determines whether instant access snapshot is enabled for restore points created under this restore point collection for Premium SSD v2 or Ultra disk. Instant access snapshot for Premium SSD v2 or Ultra disk is instantaneously available for restoring disk with fast restore performance. */
+  instantAccess?: boolean;
+}
+export const RestorePointCollectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source: S.optional(RestorePointCollectionSourceProperties),
+    provisioningState: S.optional(S.String),
+    restorePointCollectionId: S.optional(S.String),
+    restorePoints: S.optional(
+      RestorePointCollectionPropertiesRestorePointsList,
+    ),
+    instantAccess: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RestorePointCollectionProperties",
+}) as any as S.Schema<RestorePointCollectionProperties>;
+
+export interface GetRestorePointCollectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetRestorePointCollectionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The restore point collection properties. */
+  properties?: RestorePointCollectionProperties;
+}
+export const GetRestorePointCollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetRestorePointCollectionResponseTagsMap),
+    location: S.String,
+    properties: S.optional(RestorePointCollectionProperties),
+  }),
+).annotate({
+  identifier: "GetRestorePointCollectionResponse",
+}) as any as S.Schema<GetRestorePointCollectionResponse>;
 
 export interface GetSpotPlacementScoreRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4239,7 +6518,7 @@ export const GetSpotPlacementScoreResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSpotPlacementScoreResponse",
 }) as any as S.Schema<GetSpotPlacementScoreResponse>;
 
-export interface GetSshPublicKeyRequest {
+export interface GetSshPublicKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4247,7 +6526,7 @@ export interface GetSshPublicKeyRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
 }
-export const GetSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4261,19 +6540,19 @@ export const GetSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSshPublicKeyRequest",
-}) as any as S.Schema<GetSshPublicKeyRequest>;
+  identifier: "GetSshPublicKeysRequest",
+}) as any as S.Schema<GetSshPublicKeysRequest>;
 
 /** Resource tags. */
-export type SshPublicKeysGetResponseTagsMap = {
+export type GetSshPublicKeysResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SshPublicKeysGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetSshPublicKeysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SshPublicKeysGetResponseTagsMap>;
+) as any as S.Schema<GetSshPublicKeysResponseTagsMap>;
 
-export interface GetSshPublicKeyResponse {
+export interface GetSshPublicKeysResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4283,31 +6562,31 @@ export interface GetSshPublicKeyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SshPublicKeysGetResponseTagsMap;
+  tags?: GetSshPublicKeysResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const GetSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SshPublicKeysGetResponseTagsMap),
+    tags: S.optional(GetSshPublicKeysResponseTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }),
 ).annotate({
-  identifier: "GetSshPublicKeyResponse",
-}) as any as S.Schema<GetSshPublicKeyResponse>;
+  identifier: "GetSshPublicKeysResponse",
+}) as any as S.Schema<GetSshPublicKeysResponse>;
 
-export type VirtualMachinesGetRequestExpand =
+export type GetVirtualMachineRequestExpand =
   | "instanceView"
   | "userData"
   | "resiliencyView";
-export const VirtualMachinesGetRequestExpand = /*@__PURE__*/ S.String;
+export const GetVirtualMachineRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -4317,7 +6596,7 @@ export interface GetVirtualMachineRequest {
   /** The name of the virtual machine. */
   vmName: string;
   /** The expand expression to apply on the operation. 'InstanceView' retrieves a snapshot of the runtime properties of the virtual machine that is managed by the platform and can change outside of control plane operations. 'UserData' retrieves the UserData property as part of the VM model view that was provided by the user during the VM Create/Update operation. */
-  _expand?: VirtualMachinesGetRequestExpand | (string & {});
+  _expand?: GetVirtualMachineRequestExpand | (string & {});
 }
 export const GetVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -4325,7 +6604,7 @@ export const GetVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     vmName: S.String.pipe(T.Label()),
     _expand: S.optional(
-      VirtualMachinesGetRequestExpand.pipe(T.Query("$expand")),
+      GetVirtualMachineRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -4340,222 +6619,13 @@ export const GetVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualMachineRequest>;
 
 /** Resource tags. */
-export type VirtualMachinesGetResponseTagsMap = {
+export type GetVirtualMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachinesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualMachinesGetResponseTagsMap>;
-
-/** Specifies the size of the virtual machine. The enum data type is currently deprecated and will be removed by December 23rd 2023. The recommended way to get the list of available sizes is using these APIs: [List all available virtual machine sizes in an availability set](https://docs.microsoft.com/rest/api/compute/availabilitysets/listavailablesizes), [List all available virtual machine sizes in a region]( https://docs.microsoft.com/rest/api/compute/resourceskus/list), [List all available virtual machine sizes for resizing](https://docs.microsoft.com/rest/api/compute/virtualmachines/listavailablesizes). For more information about virtual machine sizes, see [Sizes for virtual machines](https://docs.microsoft.com/azure/virtual-machines/sizes). The available VM sizes depend on region and availability set. */
-export type VirtualMachineSizeTypes =
-  | "Basic_A0"
-  | "Basic_A1"
-  | "Basic_A2"
-  | "Basic_A3"
-  | "Basic_A4"
-  | "Standard_A0"
-  | "Standard_A1"
-  | "Standard_A2"
-  | "Standard_A3"
-  | "Standard_A4"
-  | "Standard_A5"
-  | "Standard_A6"
-  | "Standard_A7"
-  | "Standard_A8"
-  | "Standard_A9"
-  | "Standard_A10"
-  | "Standard_A11"
-  | "Standard_A1_v2"
-  | "Standard_A2_v2"
-  | "Standard_A4_v2"
-  | "Standard_A8_v2"
-  | "Standard_A2m_v2"
-  | "Standard_A4m_v2"
-  | "Standard_A8m_v2"
-  | "Standard_B1s"
-  | "Standard_B1ms"
-  | "Standard_B2s"
-  | "Standard_B2ms"
-  | "Standard_B4ms"
-  | "Standard_B8ms"
-  | "Standard_D1"
-  | "Standard_D2"
-  | "Standard_D3"
-  | "Standard_D4"
-  | "Standard_D11"
-  | "Standard_D12"
-  | "Standard_D13"
-  | "Standard_D14"
-  | "Standard_D1_v2"
-  | "Standard_D2_v2"
-  | "Standard_D3_v2"
-  | "Standard_D4_v2"
-  | "Standard_D5_v2"
-  | "Standard_D2_v3"
-  | "Standard_D4_v3"
-  | "Standard_D8_v3"
-  | "Standard_D16_v3"
-  | "Standard_D32_v3"
-  | "Standard_D64_v3"
-  | "Standard_D2s_v3"
-  | "Standard_D4s_v3"
-  | "Standard_D8s_v3"
-  | "Standard_D16s_v3"
-  | "Standard_D32s_v3"
-  | "Standard_D64s_v3"
-  | "Standard_D11_v2"
-  | "Standard_D12_v2"
-  | "Standard_D13_v2"
-  | "Standard_D14_v2"
-  | "Standard_D15_v2"
-  | "Standard_DS1"
-  | "Standard_DS2"
-  | "Standard_DS3"
-  | "Standard_DS4"
-  | "Standard_DS11"
-  | "Standard_DS12"
-  | "Standard_DS13"
-  | "Standard_DS14"
-  | "Standard_DS1_v2"
-  | "Standard_DS2_v2"
-  | "Standard_DS3_v2"
-  | "Standard_DS4_v2"
-  | "Standard_DS5_v2"
-  | "Standard_DS11_v2"
-  | "Standard_DS12_v2"
-  | "Standard_DS13_v2"
-  | "Standard_DS14_v2"
-  | "Standard_DS15_v2"
-  | "Standard_DS13-4_v2"
-  | "Standard_DS13-2_v2"
-  | "Standard_DS14-8_v2"
-  | "Standard_DS14-4_v2"
-  | "Standard_E2_v3"
-  | "Standard_E4_v3"
-  | "Standard_E8_v3"
-  | "Standard_E16_v3"
-  | "Standard_E32_v3"
-  | "Standard_E64_v3"
-  | "Standard_E2s_v3"
-  | "Standard_E4s_v3"
-  | "Standard_E8s_v3"
-  | "Standard_E16s_v3"
-  | "Standard_E32s_v3"
-  | "Standard_E64s_v3"
-  | "Standard_E32-16_v3"
-  | "Standard_E32-8s_v3"
-  | "Standard_E64-32s_v3"
-  | "Standard_E64-16s_v3"
-  | "Standard_F1"
-  | "Standard_F2"
-  | "Standard_F4"
-  | "Standard_F8"
-  | "Standard_F16"
-  | "Standard_F1s"
-  | "Standard_F2s"
-  | "Standard_F4s"
-  | "Standard_F8s"
-  | "Standard_F16s"
-  | "Standard_F2s_v2"
-  | "Standard_F4s_v2"
-  | "Standard_F8s_v2"
-  | "Standard_F16s_v2"
-  | "Standard_F32s_v2"
-  | "Standard_F64s_v2"
-  | "Standard_F72s_v2"
-  | "Standard_G1"
-  | "Standard_G2"
-  | "Standard_G3"
-  | "Standard_G4"
-  | "Standard_G5"
-  | "Standard_GS1"
-  | "Standard_GS2"
-  | "Standard_GS3"
-  | "Standard_GS4"
-  | "Standard_GS5"
-  | "Standard_GS4-8"
-  | "Standard_GS4-4"
-  | "Standard_GS5-16"
-  | "Standard_GS5-8"
-  | "Standard_H8"
-  | "Standard_H16"
-  | "Standard_H8m"
-  | "Standard_H16m"
-  | "Standard_H16r"
-  | "Standard_H16mr"
-  | "Standard_L4s"
-  | "Standard_L8s"
-  | "Standard_L16s"
-  | "Standard_L32s"
-  | "Standard_M64s"
-  | "Standard_M64ms"
-  | "Standard_M128s"
-  | "Standard_M128ms"
-  | "Standard_M64-32ms"
-  | "Standard_M64-16ms"
-  | "Standard_M128-64ms"
-  | "Standard_M128-32ms"
-  | "Standard_NC6"
-  | "Standard_NC12"
-  | "Standard_NC24"
-  | "Standard_NC24r"
-  | "Standard_NC6s_v2"
-  | "Standard_NC12s_v2"
-  | "Standard_NC24s_v2"
-  | "Standard_NC24rs_v2"
-  | "Standard_NC6s_v3"
-  | "Standard_NC12s_v3"
-  | "Standard_NC24s_v3"
-  | "Standard_NC24rs_v3"
-  | "Standard_ND6s"
-  | "Standard_ND12s"
-  | "Standard_ND24s"
-  | "Standard_ND24rs"
-  | "Standard_NV6"
-  | "Standard_NV12"
-  | "Standard_NV24";
-export const VirtualMachineSizeTypes = /*@__PURE__*/ S.String;
-
-/** Specifies VM Size Property settings on the virtual machine. */
-export interface VMSizeProperties {
-  /** Specifies the number of vCPUs available for the VM. When this property is not specified in the request body the default behavior is to set it to the value of vCPUs available for that VM size exposed in api response of [List all available virtual machine sizes in a region](https://docs.microsoft.com/en-us/rest/api/compute/resource-skus/list). */
-  vCPUsAvailable?: number;
-  /** Specifies the vCPU to physical core ratio. When this property is not specified in the request body the default behavior is set to the value of vCPUsPerCore for the VM Size exposed in api response of [List all available virtual machine sizes in a region](https://docs.microsoft.com/en-us/rest/api/compute/resource-skus/list). **Setting this property to 1 also means that hyper-threading is disabled.** */
-  vCPUsPerCore?: number;
-}
-export const VMSizeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vCPUsAvailable: S.optional(S.Number),
-    vCPUsPerCore: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "VMSizeProperties",
-}) as any as S.Schema<VMSizeProperties>;
-
-/** Specifies the processor frequency behavior for the virtual machine. See each member for the behavior it controls. */
-export type ProcessorMode = "Deterministic" | "Opportunistic";
-export const ProcessorMode = /*@__PURE__*/ S.String;
-
-/** Specifies the hardware settings for the virtual machine. */
-export interface HardwareProfile {
-  /** Specifies the size of the virtual machine. The enum data type is currently deprecated and will be removed by December 23rd 2023. The recommended way to get the list of available sizes is using these APIs: [List all available virtual machine sizes in an availability set](https://docs.microsoft.com/rest/api/compute/availabilitysets/listavailablesizes), [List all available virtual machine sizes in a region]( https://docs.microsoft.com/rest/api/compute/resourceskus/list), [List all available virtual machine sizes for resizing](https://docs.microsoft.com/rest/api/compute/virtualmachines/listavailablesizes). For more information about virtual machine sizes, see [Sizes for virtual machines](https://docs.microsoft.com/azure/virtual-machines/sizes). The available VM sizes depend on region and availability set. */
-  vmSize?: VirtualMachineSizeTypes | (string & {});
-  /** Specifies the properties for customizing the size of the virtual machine. Minimum api-version: 2021-07-01. This feature is still in preview mode and is not supported for VirtualMachineScaleSet. Please follow the instructions in [VM Customization](https://aka.ms/vmcustomization) for more details. */
-  vmSizeProperties?: VMSizeProperties;
-  /** Specifies the processor mode for the virtual machine or virtual machine scale set. Optional; if omitted, the platform default applies (currently Deterministic). This property can be updated on a running VM or VMSS without deallocation or reboot. Minimum api-version: 2026-04-01. */
-  processorMode?: ProcessorMode | (string & {});
-}
-export const HardwareProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vmSize: S.optional(VirtualMachineSizeTypes),
-    vmSizeProperties: S.optional(VMSizeProperties),
-    processorMode: S.optional(ProcessorMode),
-  }),
-).annotate({
-  identifier: "HardwareProfile",
-}) as any as S.Schema<HardwareProfile>;
+) as any as S.Schema<GetVirtualMachineResponseTagsMap>;
 
 /** Specifies information about the image to use. You can specify information about platform images, marketplace images, or virtual machine images. This element is required when you want to use a platform image, marketplace image, or virtual machine image, but is not used in other creation operations. NOTE: Image reference publisher and offer can only be set when you create the scale set. */
 export interface ImageReference {
@@ -4588,65 +6658,6 @@ export const ImageReference = /*@__PURE__*/ S.suspend(() =>
     communityGalleryImageId: S.optional(S.String),
   }),
 ).annotate({ identifier: "ImageReference" }) as any as S.Schema<ImageReference>;
-
-export type KeyVaultSecretReferenceSourceVault =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const KeyVaultSecretReferenceSourceVault =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-
-/** Describes a reference to Key Vault Secret */
-export interface KeyVaultSecretReference {
-  /** The URL referencing a secret in a Key Vault. */
-  secretUrl: string;
-  sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem;
-}
-export const KeyVaultSecretReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    secretUrl: S.String,
-    sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem,
-  }),
-).annotate({
-  identifier: "KeyVaultSecretReference",
-}) as any as S.Schema<KeyVaultSecretReference>;
-
-export type KeyVaultKeyReferenceSourceVault =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const KeyVaultKeyReferenceSourceVault =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-
-/** Describes a reference to Key Vault Key */
-export interface KeyVaultKeyReference {
-  /** The URL referencing a key encryption key in Key Vault. */
-  keyUrl: string;
-  sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem;
-}
-export const KeyVaultKeyReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyUrl: S.String,
-    sourceVault: AvailabilitySetPropertiesInputVirtualMachinesItem,
-  }),
-).annotate({
-  identifier: "KeyVaultKeyReference",
-}) as any as S.Schema<KeyVaultKeyReference>;
-
-/** Describes a Encryption Settings for a Disk */
-export interface DiskEncryptionSettings {
-  /** Specifies the location of the disk encryption key, which is a Key Vault Secret. */
-  diskEncryptionKey?: KeyVaultSecretReference;
-  /** Specifies the location of the key encryption key in Key Vault. */
-  keyEncryptionKey?: KeyVaultKeyReference;
-  /** Specifies whether disk encryption should be enabled on the virtual machine. */
-  enabled?: boolean;
-}
-export const DiskEncryptionSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskEncryptionKey: S.optional(KeyVaultSecretReference),
-    keyEncryptionKey: S.optional(KeyVaultKeyReference),
-    enabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "DiskEncryptionSettings",
-}) as any as S.Schema<DiskEncryptionSettings>;
 
 /** Describes the uri of a disk. */
 export interface VirtualHardDisk {
@@ -4700,135 +6711,6 @@ export const DiskCreateOptionTypes = /*@__PURE__*/ S.String;
 /** Specifies the storage fault domain alignment type for the disk. */
 export type StorageFaultDomainAlignmentType = "Aligned" | "BestEffortAligned";
 export const StorageFaultDomainAlignmentType = /*@__PURE__*/ S.String;
-
-/** Specifies the EncryptionType of the managed disk. It is set to DiskWithVMGuestState for encryption of the managed disk along with VMGuestState blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and NonPersistedTPM for not persisting firmware state in the VMGuestState blob.. **Note:** It can be set for only Confidential VMs. */
-export type SecurityEncryptionTypes =
-  | "VMGuestStateOnly"
-  | "DiskWithVMGuestState"
-  | "NonPersistedTPM";
-export const SecurityEncryptionTypes = /*@__PURE__*/ S.String;
-
-/** Specifies the security profile settings for the managed disk. **Note:** It can only be set for Confidential VMs. */
-export interface VMDiskSecurityProfile {
-  /** Specifies the EncryptionType of the managed disk. It is set to DiskWithVMGuestState for encryption of the managed disk along with VMGuestState blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and NonPersistedTPM for not persisting firmware state in the VMGuestState blob.. **Note:** It can be set for only Confidential VMs. */
-  securityEncryptionType?: SecurityEncryptionTypes | (string & {});
-  /** Specifies the customer managed disk encryption set resource id for the managed disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and VMGuest blob. */
-  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
-}
-export const VMDiskSecurityProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    securityEncryptionType: S.optional(SecurityEncryptionTypes),
-    diskEncryptionSet: S.optional(
-      AvailabilitySetPropertiesInputVirtualMachinesItem,
-    ),
-  }),
-).annotate({
-  identifier: "VMDiskSecurityProfile",
-}) as any as S.Schema<VMDiskSecurityProfile>;
-
-/** Determines how to handle disks with slow I/O. */
-export type AvailabilityPolicyDiskDelay = "None" | "AutomaticReattach";
-export const AvailabilityPolicyDiskDelay = /*@__PURE__*/ S.String;
-
-/** In the case of an availability or connectivity issue with the disk, specify the behavior of your VM. */
-export interface DiskAvailabilityPolicy {
-  /** Determines how to handle disks with slow I/O. */
-  actionOnDiskDelay?: AvailabilityPolicyDiskDelay | (string & {});
-}
-export const DiskAvailabilityPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actionOnDiskDelay: S.optional(AvailabilityPolicyDiskDelay),
-  }),
-).annotate({
-  identifier: "DiskAvailabilityPolicy",
-}) as any as S.Schema<DiskAvailabilityPolicy>;
-
-/** Policy for accessing the disk via network. */
-export type NetworkAccessPolicy = "AllowAll" | "AllowPrivate" | "DenyAll";
-export const NetworkAccessPolicy = /*@__PURE__*/ S.String;
-
-/** Specifies the properties of a managed disk that can be set at the time of implicit creation of the disk. */
-export interface ManagedDiskProperties {
-  /** Performance tier of the disk (e.g., P4, S10) as described here: https://azure.microsoft.com/en-us/pricing/details/managed-disks/. Does not apply to Ultra disks. */
-  tier?: string;
-  /** Set to true to enable bursting beyond the provisioned performance target of the disk. Bursting is disabled by default. Does not apply to Ultra disks. */
-  burstingEnabled?: boolean;
-  /** Set this flag to true to get a boost on the performance target of the disk deployed. This flag can only be set on disk creation time and cannot be disabled after enabled. */
-  performancePlus?: boolean;
-  /** Setting this property to true improves reliability and performance of data disks that are frequently (more than 5 times a day) detached from one virtual machine and attached to another. This property should not be set for disks that are not detached and attached frequently as it causes the disks to not align with the fault domain of the virtual machine. */
-  optimizedForFrequentAttach?: boolean;
-  /** In the case of an availability or connectivity issue with the disk, specify the behavior of your VM. */
-  availabilityPolicy?: DiskAvailabilityPolicy;
-  /** The maximum number of VMs that can attach to the disk at the same time. Value greater than one indicates a disk that can be mounted on multiple VMs at the same time. Applies to data disks only. */
-  maxShares?: number;
-  /** Policy for accessing the disk via network. */
-  networkAccessPolicy?: NetworkAccessPolicy | (string & {});
-  /** Azure resource Id of the DiskAccess resource for using private endpoints on disks. */
-  diskAccessId?: string;
-  /** The total number of IOPS that will be allowed across all VMs mounting the shared disk as ReadOnly. One operation can transfer between 4k and 256k bytes. */
-  diskIOPSReadOnly?: number;
-  /** The total throughput (MBps) that will be allowed across all VMs mounting the shared disk as ReadOnly. MBps means millions of bytes per second - MB here uses the ISO notation, of powers of 10. */
-  diskMBpsReadOnly?: number;
-  /** Logical sector size in bytes for Ultra Disks. Supported values are 512 and 4096. 4096 is the default. */
-  logicalSectorSize?: number;
-}
-export const ManagedDiskProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tier: S.optional(S.String),
-    burstingEnabled: S.optional(S.Boolean),
-    performancePlus: S.optional(S.Boolean),
-    optimizedForFrequentAttach: S.optional(S.Boolean),
-    availabilityPolicy: S.optional(DiskAvailabilityPolicy),
-    maxShares: S.optional(S.Number),
-    networkAccessPolicy: S.optional(NetworkAccessPolicy),
-    diskAccessId: S.optional(S.String),
-    diskIOPSReadOnly: S.optional(S.Number),
-    diskMBpsReadOnly: S.optional(S.Number),
-    logicalSectorSize: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ManagedDiskProperties",
-}) as any as S.Schema<ManagedDiskProperties>;
-
-/** Specifies additional properties for a managed disk that can be set at the time of implicit creation of the disk. */
-export interface AdditionalDiskProperties {
-  /** Specifies the managed disk properties that can be set at the time of implicit creation of the disk. */
-  managedDiskProperties?: ManagedDiskProperties;
-}
-export const AdditionalDiskProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managedDiskProperties: S.optional(ManagedDiskProperties),
-  }),
-).annotate({
-  identifier: "AdditionalDiskProperties",
-}) as any as S.Schema<AdditionalDiskProperties>;
-
-/** The parameters of a managed disk. */
-export interface ManagedDiskParameters {
-  /** Resource Id */
-  id?: string;
-  /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
-  storageAccountType?: StorageAccountTypes | (string & {});
-  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
-  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
-  /** Specifies the security profile for the managed disk. */
-  securityProfile?: VMDiskSecurityProfile;
-  /** Specifies additional properties for the managed disk that can be set at the time of implicit creation of the disk. This property is not captured for Restore Points. */
-  additionalDiskProperties?: AdditionalDiskProperties;
-}
-export const ManagedDiskParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    storageAccountType: S.optional(StorageAccountTypes),
-    diskEncryptionSet: S.optional(
-      AvailabilitySetPropertiesInputVirtualMachinesItem,
-    ),
-    securityProfile: S.optional(VMDiskSecurityProfile),
-    additionalDiskProperties: S.optional(AdditionalDiskProperties),
-  }),
-).annotate({
-  identifier: "ManagedDiskParameters",
-}) as any as S.Schema<ManagedDiskParameters>;
 
 /** Specifies the behavior of the managed disk when the VM gets deleted, for example whether the managed disk is deleted or detached. Supported values are: **Delete.** If this value is used, the managed disk is deleted when VM gets deleted. **Detach.** If this value is used, the managed disk is retained after VM gets deleted. Minimum api-version: 2021-03-01. */
 export type DiskDeleteOptionTypes = "Delete" | "Detach";
@@ -4947,10 +6829,6 @@ export const StorageProfileDataDisksList = /*@__PURE__*/ S.Array(
   DataDisk,
 ) as any as S.Schema<StorageProfileDataDisksList>;
 
-/** Specifies the disk controller type configured for the VM and VirtualMachineScaleSet. This property is only supported for virtual machines whose operating system disk and VM sku supports Generation 2 (https://docs.microsoft.com/en-us/azure/virtual-machines/generation-2), please check the HyperVGenerations capability returned as part of VM sku capabilities in the response of Microsoft.Compute SKUs api for the region contains V2 (https://docs.microsoft.com/rest/api/compute/resourceskus/list). For more information about Disk Controller Types supported please refer to https://aka.ms/azure-diskcontrollertypes. */
-export type DiskControllerTypes = "SCSI" | "NVMe";
-export const DiskControllerTypes = /*@__PURE__*/ S.String;
-
 /** Specifies the Disk API version used when applying additionalDiskProperties to managed disks. The value must be in the format YYYY-MM-DD. */
 export type DiskApiVersion = "2025-01-02" | "2026-03-02";
 export const DiskApiVersion = /*@__PURE__*/ S.String;
@@ -4999,379 +6877,6 @@ export const AdditionalCapabilities = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AdditionalCapabilities",
 }) as any as S.Schema<AdditionalCapabilities>;
-
-export type PassNames = "OobeSystem";
-export const PassNames = /*@__PURE__*/ S.String;
-
-export type ComponentNames = "Microsoft-Windows-Shell-Setup";
-export const ComponentNames = /*@__PURE__*/ S.String;
-
-/** Specifies the name of the setting to which the content applies. Possible values are: FirstLogonCommands and AutoLogon. */
-export type SettingNames = "AutoLogon" | "FirstLogonCommands";
-export const SettingNames = /*@__PURE__*/ S.String;
-
-/** Specifies additional XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. Contents are defined by setting name, component name, and the pass in which the content is applied. */
-export interface AdditionalUnattendContent {
-  /** The pass name. Currently, the only allowable value is OobeSystem. */
-  passName?: PassNames | (string & {});
-  /** The component name. Currently, the only allowable value is Microsoft-Windows-Shell-Setup. */
-  componentName?: ComponentNames | (string & {});
-  /** Specifies the name of the setting to which the content applies. Possible values are: FirstLogonCommands and AutoLogon. */
-  settingName?: SettingNames | (string & {});
-  /** Specifies the XML formatted content that is added to the unattend.xml file for the specified path and component. The XML must be less than 4KB and must include the root element for the setting or feature that is being inserted. */
-  content?: string;
-}
-export const AdditionalUnattendContent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    passName: S.optional(PassNames),
-    componentName: S.optional(ComponentNames),
-    settingName: S.optional(SettingNames),
-    content: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AdditionalUnattendContent",
-}) as any as S.Schema<AdditionalUnattendContent>;
-
-/** Specifies additional base-64 encoded XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. */
-export type WindowsConfigurationAdditionalUnattendContentList =
-  Array<AdditionalUnattendContent>;
-export const WindowsConfigurationAdditionalUnattendContentList =
-  /*@__PURE__*/ S.Array(
-    AdditionalUnattendContent,
-  ) as any as S.Schema<WindowsConfigurationAdditionalUnattendContentList>;
-
-/** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **Manual** - You control the application of patches to a virtual machine. You do this by applying patches manually inside the VM. In this mode, automatic updates are disabled; the property WindowsConfiguration.enableAutomaticUpdates must be false<br /><br /> **AutomaticByOS** - The virtual machine will automatically be updated by the OS. The property WindowsConfiguration.enableAutomaticUpdates must be true. <br /><br /> **AutomaticByPlatform** - the virtual machine will automatically updated by the platform. The properties provisionVMAgent and WindowsConfiguration.enableAutomaticUpdates must be true */
-export type WindowsVMGuestPatchMode =
-  | "Manual"
-  | "AutomaticByOS"
-  | "AutomaticByPlatform";
-export const WindowsVMGuestPatchMode = /*@__PURE__*/ S.String;
-
-/** Specifies the mode of VM Guest patch assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine.<br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
-export type WindowsPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
-export const WindowsPatchAssessmentMode = /*@__PURE__*/ S.String;
-
-/** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
-export type WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
-  | "Unknown"
-  | "IfRequired"
-  | "Never"
-  | "Always";
-export const WindowsVMGuestPatchAutomaticByPlatformRebootSetting =
-  /*@__PURE__*/ S.String;
-
-/** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Windows patch settings. */
-export interface WindowsVMGuestPatchAutomaticByPlatformSettings {
-  /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
-  rebootSetting?:
-    | WindowsVMGuestPatchAutomaticByPlatformRebootSetting
-    | (string & {});
-  /** Enables customer to schedule patching without accidental upgrades */
-  bypassPlatformSafetyChecksOnUserSchedule?: boolean;
-}
-export const WindowsVMGuestPatchAutomaticByPlatformSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      rebootSetting: S.optional(
-        WindowsVMGuestPatchAutomaticByPlatformRebootSetting,
-      ),
-      bypassPlatformSafetyChecksOnUserSchedule: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "WindowsVMGuestPatchAutomaticByPlatformSettings",
-  }) as any as S.Schema<WindowsVMGuestPatchAutomaticByPlatformSettings>;
-
-/** Specifies settings related to VM Guest Patching on Windows. */
-export interface PatchSettings {
-  /** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **Manual** - You control the application of patches to a virtual machine. You do this by applying patches manually inside the VM. In this mode, automatic updates are disabled; the property WindowsConfiguration.enableAutomaticUpdates must be false<br /><br /> **AutomaticByOS** - The virtual machine will automatically be updated by the OS. The property WindowsConfiguration.enableAutomaticUpdates must be true. <br /><br /> **AutomaticByPlatform** - the virtual machine will automatically updated by the platform. The properties provisionVMAgent and WindowsConfiguration.enableAutomaticUpdates must be true */
-  patchMode?: WindowsVMGuestPatchMode | (string & {});
-  /** Enables customers to patch their Azure VMs without requiring a reboot. For enableHotpatching, the 'provisionVMAgent' must be set to true and 'patchMode' must be set to 'AutomaticByPlatform'. */
-  enableHotpatching?: boolean;
-  /** Specifies the mode of VM Guest patch assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine.<br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
-  assessmentMode?: WindowsPatchAssessmentMode | (string & {});
-  /** Specifies additional settings for patch mode AutomaticByPlatform in VM Guest Patching on Windows. */
-  automaticByPlatformSettings?: WindowsVMGuestPatchAutomaticByPlatformSettings;
-}
-export const PatchSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    patchMode: S.optional(WindowsVMGuestPatchMode),
-    enableHotpatching: S.optional(S.Boolean),
-    assessmentMode: S.optional(WindowsPatchAssessmentMode),
-    automaticByPlatformSettings: S.optional(
-      WindowsVMGuestPatchAutomaticByPlatformSettings,
-    ),
-  }),
-).annotate({ identifier: "PatchSettings" }) as any as S.Schema<PatchSettings>;
-
-/** Specifies the protocol of WinRM listener. Possible values are: **http,** **https.** */
-export type ProtocolTypes = "Http" | "Https";
-export const ProtocolTypes = /*@__PURE__*/ S.String;
-
-/** Describes Protocol and thumbprint of Windows Remote Management listener */
-export interface WinRMListener {
-  /** Specifies the protocol of WinRM listener. Possible values are: **http,** **https.** */
-  protocol?: ProtocolTypes | (string & {});
-  /** This is the URL of a certificate that has been uploaded to Key Vault as a secret. For adding a secret to the Key Vault, see [Add a key or secret to the key vault](https://docs.microsoft.com/azure/key-vault/key-vault-get-started/#add). In this case, your certificate needs to be the Base64 encoding of the following JSON Object which is encoded in UTF-8: <br><br> {<br> "data":"<Base64-encoded-certificate>",<br> "dataType":"pfx",<br> "password":"<pfx-file-password>"<br>} <br> To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
-  certificateUrl?: string;
-}
-export const WinRMListener = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    protocol: S.optional(ProtocolTypes),
-    certificateUrl: S.optional(S.String),
-  }),
-).annotate({ identifier: "WinRMListener" }) as any as S.Schema<WinRMListener>;
-
-/** The list of Windows Remote Management listeners */
-export type WinRMConfigurationListenersList = Array<WinRMListener>;
-export const WinRMConfigurationListenersList = /*@__PURE__*/ S.Array(
-  WinRMListener,
-) as any as S.Schema<WinRMConfigurationListenersList>;
-
-/** Describes Windows Remote Management configuration of the VM */
-export interface WinRMConfiguration {
-  /** The list of Windows Remote Management listeners */
-  listeners?: WinRMConfigurationListenersList;
-}
-export const WinRMConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    listeners: S.optional(WinRMConfigurationListenersList),
-  }),
-).annotate({
-  identifier: "WinRMConfiguration",
-}) as any as S.Schema<WinRMConfiguration>;
-
-/** Specifies Windows operating system settings on the virtual machine. */
-export interface WindowsConfiguration {
-  /** Indicates whether virtual machine agent should be provisioned on the virtual machine. When this property is not specified in the request body, it is set to true by default. This will ensure that VM Agent is installed on the VM so that extensions can be added to the VM later. */
-  provisionVMAgent?: boolean;
-  /** Indicates whether Automatic Updates is enabled for the Windows virtual machine. Default value is true. For virtual machine scale sets, this property can be updated and updates will take effect on OS reprovisioning. */
-  enableAutomaticUpdates?: boolean;
-  /** Specifies the time zone of the virtual machine. e.g. "Pacific Standard Time". Possible values can be [TimeZoneInfo.Id](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.id?#System_TimeZoneInfo_Id) value from time zones returned by [TimeZoneInfo.GetSystemTimeZones](https://docs.microsoft.com/dotnet/api/system.timezoneinfo.getsystemtimezones). */
-  timeZone?: string;
-  /** Specifies additional base-64 encoded XML formatted information that can be included in the Unattend.xml file, which is used by Windows Setup. */
-  additionalUnattendContent?: WindowsConfigurationAdditionalUnattendContentList;
-  /** [Preview Feature] Specifies settings related to VM Guest Patching on Windows. */
-  patchSettings?: PatchSettings;
-  /** Specifies the Windows Remote Management listeners. This enables remote Windows PowerShell. */
-  winRM?: WinRMConfiguration;
-  /** Indicates whether VMAgent Platform Updates are enabled for the Windows Virtual Machine. */
-  enableVMAgentPlatformUpdates?: boolean;
-}
-export const WindowsConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisionVMAgent: S.optional(S.Boolean),
-    enableAutomaticUpdates: S.optional(S.Boolean),
-    timeZone: S.optional(S.String),
-    additionalUnattendContent: S.optional(
-      WindowsConfigurationAdditionalUnattendContentList,
-    ),
-    patchSettings: S.optional(PatchSettings),
-    winRM: S.optional(WinRMConfiguration),
-    enableVMAgentPlatformUpdates: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "WindowsConfiguration",
-}) as any as S.Schema<WindowsConfiguration>;
-
-/** Contains information about SSH certificate public key and the path on the Linux VM where the public key is placed. */
-export interface SshPublicKey {
-  /** Specifies the full path on the created VM where ssh public key is stored. If the file already exists, the specified key is appended to the file. Example: /home/user/.ssh/authorized_keys */
-  path?: string;
-  /** SSH public key certificate used to authenticate with the VM through ssh. The key needs to be at least 2048-bit and in ssh-rsa format. For creating ssh keys, see [Create SSH keys on Linux and Mac for Linux VMs in Azure]https://docs.microsoft.com/azure/virtual-machines/linux/create-ssh-keys-detailed). */
-  keyData?: string;
-}
-export const SshPublicKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    keyData: S.optional(S.String),
-  }),
-).annotate({ identifier: "SshPublicKey" }) as any as S.Schema<SshPublicKey>;
-
-/** The list of SSH public keys used to authenticate with linux based VMs. */
-export type SshConfigurationPublicKeysList = Array<SshPublicKey>;
-export const SshConfigurationPublicKeysList = /*@__PURE__*/ S.Array(
-  SshPublicKey,
-) as any as S.Schema<SshConfigurationPublicKeysList>;
-
-/** SSH configuration for Linux based VMs running on Azure */
-export interface SshConfiguration {
-  /** The list of SSH public keys used to authenticate with linux based VMs. */
-  publicKeys?: SshConfigurationPublicKeysList;
-}
-export const SshConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publicKeys: S.optional(SshConfigurationPublicKeysList),
-  }),
-).annotate({
-  identifier: "SshConfiguration",
-}) as any as S.Schema<SshConfiguration>;
-
-/** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - The virtual machine's default patching configuration is used. <br /><br /> **AutomaticByPlatform** - The virtual machine will be automatically updated by the platform. The property provisionVMAgent must be true */
-export type LinuxVMGuestPatchMode = "ImageDefault" | "AutomaticByPlatform";
-export const LinuxVMGuestPatchMode = /*@__PURE__*/ S.String;
-
-/** Specifies the mode of VM Guest Patch Assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine. <br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
-export type LinuxPatchAssessmentMode = "ImageDefault" | "AutomaticByPlatform";
-export const LinuxPatchAssessmentMode = /*@__PURE__*/ S.String;
-
-/** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
-export type LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
-  | "Unknown"
-  | "IfRequired"
-  | "Never"
-  | "Always";
-export const LinuxVMGuestPatchAutomaticByPlatformRebootSetting =
-  /*@__PURE__*/ S.String;
-
-/** Specifies additional settings to be applied when patch mode AutomaticByPlatform is selected in Linux patch settings. */
-export interface LinuxVMGuestPatchAutomaticByPlatformSettings {
-  /** Specifies the reboot setting for all AutomaticByPlatform patch installation operations. */
-  rebootSetting?:
-    | LinuxVMGuestPatchAutomaticByPlatformRebootSetting
-    | (string & {});
-  /** Enables customer to schedule patching without accidental upgrades */
-  bypassPlatformSafetyChecksOnUserSchedule?: boolean;
-}
-export const LinuxVMGuestPatchAutomaticByPlatformSettings =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      rebootSetting: S.optional(
-        LinuxVMGuestPatchAutomaticByPlatformRebootSetting,
-      ),
-      bypassPlatformSafetyChecksOnUserSchedule: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "LinuxVMGuestPatchAutomaticByPlatformSettings",
-  }) as any as S.Schema<LinuxVMGuestPatchAutomaticByPlatformSettings>;
-
-/** Specifies settings related to VM Guest Patching on Linux. */
-export interface LinuxPatchSettings {
-  /** Specifies the mode of VM Guest Patching to IaaS virtual machine or virtual machines associated to virtual machine scale set with OrchestrationMode as Flexible.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - The virtual machine's default patching configuration is used. <br /><br /> **AutomaticByPlatform** - The virtual machine will be automatically updated by the platform. The property provisionVMAgent must be true */
-  patchMode?: LinuxVMGuestPatchMode | (string & {});
-  /** Specifies the mode of VM Guest Patch Assessment for the IaaS virtual machine.<br /><br /> Possible values are:<br /><br /> **ImageDefault** - You control the timing of patch assessments on a virtual machine. <br /><br /> **AutomaticByPlatform** - The platform will trigger periodic patch assessments. The property provisionVMAgent must be true. */
-  assessmentMode?: LinuxPatchAssessmentMode | (string & {});
-  /** Specifies additional settings for patch mode AutomaticByPlatform in VM Guest Patching on Linux. */
-  automaticByPlatformSettings?: LinuxVMGuestPatchAutomaticByPlatformSettings;
-}
-export const LinuxPatchSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    patchMode: S.optional(LinuxVMGuestPatchMode),
-    assessmentMode: S.optional(LinuxPatchAssessmentMode),
-    automaticByPlatformSettings: S.optional(
-      LinuxVMGuestPatchAutomaticByPlatformSettings,
-    ),
-  }),
-).annotate({
-  identifier: "LinuxPatchSettings",
-}) as any as S.Schema<LinuxPatchSettings>;
-
-/** Specifies the Linux operating system settings on the virtual machine. For a list of supported Linux distributions, see [Linux on Azure-Endorsed Distributions](https://docs.microsoft.com/azure/virtual-machines/linux/endorsed-distros). */
-export interface LinuxConfiguration {
-  /** Specifies whether password authentication should be disabled. */
-  disablePasswordAuthentication?: boolean;
-  /** Specifies the ssh key configuration for a Linux OS. */
-  ssh?: SshConfiguration;
-  /** Indicates whether virtual machine agent should be provisioned on the virtual machine. When this property is not specified in the request body, default behavior is to set it to true. This will ensure that VM Agent is installed on the VM so that extensions can be added to the VM later. */
-  provisionVMAgent?: boolean;
-  /** [Preview Feature] Specifies settings related to VM Guest Patching on Linux. */
-  patchSettings?: LinuxPatchSettings;
-  /** Indicates whether VMAgent Platform Updates is enabled for the Linux virtual machine. Default value is false. */
-  enableVMAgentPlatformUpdates?: boolean;
-}
-export const LinuxConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    disablePasswordAuthentication: S.optional(S.Boolean),
-    ssh: S.optional(SshConfiguration),
-    provisionVMAgent: S.optional(S.Boolean),
-    patchSettings: S.optional(LinuxPatchSettings),
-    enableVMAgentPlatformUpdates: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "LinuxConfiguration",
-}) as any as S.Schema<LinuxConfiguration>;
-
-export type VaultSecretGroupSourceVault =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const VaultSecretGroupSourceVault =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-
-/** Describes a single certificate reference in a Key Vault, and where the certificate should reside on the VM. */
-export interface VaultCertificate {
-  /** This is the URL of a certificate that has been uploaded to Key Vault as a secret. For adding a secret to the Key Vault, see [Add a key or secret to the key vault](https://docs.microsoft.com/azure/key-vault/key-vault-get-started/#add). In this case, your certificate needs to be It is the Base64 encoding of the following JSON Object which is encoded in UTF-8: <br><br> {<br> "data":"<Base64-encoded-certificate>",<br> "dataType":"pfx",<br> "password":"<pfx-file-password>"<br>} <br> To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
-  certificateUrl?: string;
-  /** For Windows VMs, specifies the certificate store on the Virtual Machine to which the certificate should be added. The specified certificate store is implicitly in the LocalMachine account. For Linux VMs, the certificate file is placed under the /var/lib/waagent directory, with the file name &lt;UppercaseThumbprint&gt;.crt for the X509 certificate file and &lt;UppercaseThumbprint&gt;.prv for private key. Both of these files are .pem formatted. */
-  certificateStore?: string;
-}
-export const VaultCertificate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certificateUrl: S.optional(S.String),
-    certificateStore: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultCertificate",
-}) as any as S.Schema<VaultCertificate>;
-
-/** The list of key vault references in SourceVault which contain certificates. */
-export type VaultSecretGroupVaultCertificatesList = Array<VaultCertificate>;
-export const VaultSecretGroupVaultCertificatesList = /*@__PURE__*/ S.Array(
-  VaultCertificate,
-) as any as S.Schema<VaultSecretGroupVaultCertificatesList>;
-
-/** Describes a set of certificates which are all in the same Key Vault. */
-export interface VaultSecretGroup {
-  sourceVault?: AvailabilitySetPropertiesInputVirtualMachinesItem;
-  /** The list of key vault references in SourceVault which contain certificates. */
-  vaultCertificates?: VaultSecretGroupVaultCertificatesList;
-}
-export const VaultSecretGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceVault: S.optional(AvailabilitySetPropertiesInputVirtualMachinesItem),
-    vaultCertificates: S.optional(VaultSecretGroupVaultCertificatesList),
-  }),
-).annotate({
-  identifier: "VaultSecretGroup",
-}) as any as S.Schema<VaultSecretGroup>;
-
-/** Specifies set of certificates that should be installed onto the virtual machine. To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
-export type OSProfileSecretsList = Array<VaultSecretGroup>;
-export const OSProfileSecretsList = /*@__PURE__*/ S.Array(
-  VaultSecretGroup,
-) as any as S.Schema<OSProfileSecretsList>;
-
-/** Specifies the operating system settings for the virtual machine. Some of the settings cannot be changed once VM is provisioned. */
-export interface OSProfile {
-  /** Specifies the host OS name of the virtual machine. This name cannot be updated after the VM is created. **Max-length (Windows):** 15 characters. **Max-length (Linux):** 64 characters. For naming conventions and restrictions see [Azure infrastructure services implementation guidelines](https://docs.microsoft.com/azure/azure-resource-manager/management/resource-name-rules). */
-  computerName?: string;
-  /** Specifies the name of the administrator account. <br><br> This property cannot be updated after the VM is created. <br><br> **Windows-only restriction:** Cannot end in "." <br><br> **Disallowed values:** "administrator", "admin", "user", "user1", "test", "user2", "test1", "user3", "admin1", "1", "123", "a", "actuser", "adm", "admin2", "aspnet", "backup", "console", "david", "guest", "john", "owner", "root", "server", "sql", "support", "support_388945a0", "sys", "test2", "test3", "user4", "user5". <br><br> **Minimum-length (Linux):** 1 character <br><br> **Max-length (Linux):** 64 characters <br><br> **Max-length (Windows):** 20 characters. */
-  adminUsername?: string;
-  /** Specifies the password of the administrator account. <br><br> **Minimum-length (Windows):** 8 characters <br><br> **Minimum-length (Linux):** 6 characters <br><br> **Max-length (Windows):** 123 characters <br><br> **Max-length (Linux):** 72 characters <br><br> **Complexity requirements:** 3 out of 4 conditions below need to be fulfilled <br> Has lower characters <br>Has upper characters <br> Has a digit <br> Has a special character (Regex match [\W_]) <br><br> **Disallowed values:** "abc@123", "P@$$w0rd", "P@ssw0rd", "P@ssword123", "Pa$$word", "pass@word1", "Password!", "Password1", "Password22", "iloveyou!" <br><br> For resetting the password, see [How to reset the Remote Desktop service or its login password in a Windows VM](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/reset-rdp) <br><br> For resetting root password, see [Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/troubleshoot-ssh-connection) */
-  adminPassword?: string | Redacted.Redacted<string>;
-  /** Specifies a base-64 encoded string of custom data. The base-64 encoded string is decoded to a binary array that is saved as a file on the Virtual Machine. The maximum length of the binary array is 65535 bytes. **Note: Do not pass any secrets or passwords in customData property.** This property cannot be updated after the VM is created. The property 'customData' is passed to the VM to be saved as a file, for more information see [Custom Data on Azure VMs](https://azure.microsoft.com/blog/custom-data-and-cloud-init-on-windows-azure/). For using cloud-init for your Linux VM, see [Using cloud-init to customize a Linux VM during creation](https://docs.microsoft.com/azure/virtual-machines/linux/using-cloud-init). */
-  customData?: string;
-  /** Specifies Windows operating system settings on the virtual machine. */
-  windowsConfiguration?: WindowsConfiguration;
-  /** Specifies the Linux operating system settings on the virtual machine. For a list of supported Linux distributions, see [Linux on Azure-Endorsed Distributions](https://docs.microsoft.com/azure/virtual-machines/linux/endorsed-distros). */
-  linuxConfiguration?: LinuxConfiguration;
-  /** Specifies set of certificates that should be installed onto the virtual machine. To install certificates on a virtual machine it is recommended to use the [Azure Key Vault virtual machine extension for Linux](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-linux) or the [Azure Key Vault virtual machine extension for Windows](https://docs.microsoft.com/azure/virtual-machines/extensions/key-vault-windows). */
-  secrets?: OSProfileSecretsList;
-  /** Specifies whether extension operations should be allowed on the virtual machine. This may only be set to False when no extensions are present on the virtual machine. */
-  allowExtensionOperations?: boolean;
-  /** Optional property which must either be set to True or omitted. */
-  requireGuestProvisionSignal?: boolean;
-}
-export const OSProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    computerName: S.optional(S.String),
-    adminUsername: S.optional(S.String),
-    adminPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    customData: S.optional(S.String),
-    windowsConfiguration: S.optional(WindowsConfiguration),
-    linuxConfiguration: S.optional(LinuxConfiguration),
-    secrets: S.optional(OSProfileSecretsList),
-    allowExtensionOperations: S.optional(S.Boolean),
-    requireGuestProvisionSignal: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "OSProfile" }) as any as S.Schema<OSProfile>;
 
 /** Specify what happens to the network interface when the VM is deleted */
 export type DeleteOptions = "Delete" | "Detach";
@@ -5883,146 +7388,6 @@ export const NetworkProfile = /*@__PURE__*/ S.suspend(() =>
     interconnectGroupProfile: S.optional(InterconnectGroupProfile),
   }),
 ).annotate({ identifier: "NetworkProfile" }) as any as S.Schema<NetworkProfile>;
-
-/** Specifies the security settings like secure boot and vTPM used while creating the virtual machine. Minimum api-version: 2020-12-01. */
-export interface UefiSettings {
-  /** Specifies whether secure boot should be enabled on the virtual machine. Minimum api-version: 2020-12-01. */
-  secureBootEnabled?: boolean;
-  /** Specifies whether vTPM should be enabled on the virtual machine. Minimum api-version: 2020-12-01. */
-  vTpmEnabled?: boolean;
-}
-export const UefiSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    secureBootEnabled: S.optional(S.Boolean),
-    vTpmEnabled: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "UefiSettings" }) as any as S.Schema<UefiSettings>;
-
-/** Specifies the VM securityType; UefiSettings are enabled only when set to TrustedLaunch or ConfidentialVM, and returns a Standard value starting API version 2025-11-01. */
-export type SecurityTypes = "Standard" | "TrustedLaunch" | "ConfidentialVM";
-export const SecurityTypes = /*@__PURE__*/ S.String;
-
-/** Specifies the Managed Identity used by ADE to get access token for keyvault operations. */
-export interface EncryptionIdentity {
-  /** Specifies ARM Resource ID of one of the user identities associated with the VM. */
-  userAssignedIdentityResourceId?: string;
-}
-export const EncryptionIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userAssignedIdentityResourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EncryptionIdentity",
-}) as any as S.Schema<EncryptionIdentity>;
-
-/** Specifies the mode that ProxyAgent will execute on if the feature is enabled. ProxyAgent will start to audit or monitor but not enforce access control over requests to host endpoints in Audit mode, while in Enforce mode it will enforce access control. The default value is Enforce mode. */
-export type Mode = "Audit" | "Enforce";
-export const Mode = /*@__PURE__*/ S.String;
-
-/** Specifies the execution mode. In Audit mode, the system acts as if it is enforcing the access control policy, including emitting access denial entries in the logs but it does not actually deny any requests to host endpoints. In Enforce mode, the system will enforce the access control and it is the recommended mode of operation. */
-export type Modes = "Audit" | "Enforce" | "Disabled";
-export const Modes = /*@__PURE__*/ S.String;
-
-/** Specifies particular host endpoint settings. */
-export interface HostEndpointSettings {
-  /** Specifies the execution mode. In Audit mode, the system acts as if it is enforcing the access control policy, including emitting access denial entries in the logs but it does not actually deny any requests to host endpoints. In Enforce mode, the system will enforce the access control and it is the recommended mode of operation. */
-  mode?: Modes | (string & {});
-  /** Specifies the InVMAccessControlProfileVersion resource id in the format of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/inVMAccessControlProfiles/{profile}/versions/{version} */
-  inVMAccessControlProfileReferenceId?: string;
-  /** When set to true, instructs the GuestProxyAgent inside the VM to load additional access control rules defined in a local file on the VM. */
-  useLocalFileRules?: boolean;
-}
-export const HostEndpointSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mode: S.optional(Modes),
-    inVMAccessControlProfileReferenceId: S.optional(S.String),
-    useLocalFileRules: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "HostEndpointSettings",
-}) as any as S.Schema<HostEndpointSettings>;
-
-/** Specifies ProxyAgent settings for the virtual machine or virtual machine scale set. Minimum api-version: 2023-09-01. */
-export interface ProxyAgentSettings {
-  /** Specifies whether ProxyAgent feature should be enabled on the virtual machine or virtual machine scale set. */
-  enabled?: boolean;
-  /** Specifies the mode that ProxyAgent will execute on. Warning: this property has been deprecated, please specify 'mode' under particular hostendpoint setting. */
-  mode?: Mode | (string & {});
-  /** Increase the value of this property allows users to reset the key used for securing communication channel between guest and host. */
-  keyIncarnationId?: number;
-  /** Specifies the Wire Server endpoint settings while creating the virtual machine or virtual machine scale set. Minimum api-version: 2024-03-01. */
-  wireServer?: HostEndpointSettings;
-  /** Specifies the IMDS endpoint settings while creating the virtual machine or virtual machine scale set. Minimum api-version: 2024-03-01. */
-  imds?: HostEndpointSettings;
-  /** Specify whether to implicitly install the ProxyAgent Extension. This option is currently applicable only for Linux Os. */
-  addProxyAgentExtension?: boolean;
-}
-export const ProxyAgentSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    mode: S.optional(Mode),
-    keyIncarnationId: S.optional(S.Number),
-    wireServer: S.optional(HostEndpointSettings),
-    imds: S.optional(HostEndpointSettings),
-    addProxyAgentExtension: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ProxyAgentSettings",
-}) as any as S.Schema<ProxyAgentSettings>;
-
-/** Specifies the Security profile settings for the virtual machine or virtual machine scale set. */
-export interface SecurityProfile {
-  /** Specifies the security settings like secure boot and vTPM used while creating the virtual machine. Minimum api-version: 2020-12-01. */
-  uefiSettings?: UefiSettings;
-  /** This property can be used by user in the request to enable or disable the Host Encryption for the virtual machine or virtual machine scale set. This will enable the encryption for all the disks including Resource/Temp disk at host itself. The default behavior is: The Encryption at host will be disabled unless this property is set to true for the resource. */
-  encryptionAtHost?: boolean;
-  /** Specifies the SecurityType of the virtual machine. It has to be set to any specified value to enable UefiSettings. The default behavior is: UefiSettings will not be enabled unless this property is set and is not Standard. If not specified, Standard will be returned starting api version 2025-11-01. */
-  securityType?: SecurityTypes | (string & {});
-  /** Specifies the Managed Identity used by ADE to get access token for keyvault operations. */
-  encryptionIdentity?: EncryptionIdentity;
-  /** Specifies ProxyAgent settings while creating the virtual machine. Minimum api-version: 2023-09-01. */
-  proxyAgentSettings?: ProxyAgentSettings;
-}
-export const SecurityProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uefiSettings: S.optional(UefiSettings),
-    encryptionAtHost: S.optional(S.Boolean),
-    securityType: S.optional(SecurityTypes),
-    encryptionIdentity: S.optional(EncryptionIdentity),
-    proxyAgentSettings: S.optional(ProxyAgentSettings),
-  }),
-).annotate({
-  identifier: "SecurityProfile",
-}) as any as S.Schema<SecurityProfile>;
-
-/** Boot Diagnostics is a debugging feature which allows you to view Console Output and Screenshot to diagnose VM status. You can easily view the output of your console log. Azure also enables you to see a screenshot of the VM from the hypervisor. */
-export interface BootDiagnostics {
-  /** Whether boot diagnostics should be enabled on the Virtual Machine. */
-  enabled?: boolean;
-  /** Uri of the storage account to use for placing the console output and screenshot. If storageUri is not specified while enabling boot diagnostics, managed storage will be used. */
-  storageUri?: string;
-}
-export const BootDiagnostics = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    storageUri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BootDiagnostics",
-}) as any as S.Schema<BootDiagnostics>;
-
-/** Specifies the boot diagnostic settings state. Minimum api-version: 2015-06-15. */
-export interface DiagnosticsProfile {
-  /** Boot Diagnostics is a debugging feature which allows you to view Console Output and Screenshot to diagnose VM status. **NOTE**: If storageUri is being specified then ensure that the storage account is in the same region and subscription as the VM. You can easily view the output of your console log. Azure also enables you to see a screenshot of the VM from the hypervisor. */
-  bootDiagnostics?: BootDiagnostics;
-}
-export const DiagnosticsProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bootDiagnostics: S.optional(BootDiagnostics),
-  }),
-).annotate({
-  identifier: "DiagnosticsProfile",
-}) as any as S.Schema<DiagnosticsProfile>;
 
 export type VirtualMachinePropertiesAvailabilitySet =
   AvailabilitySetPropertiesInputVirtualMachinesItem;
@@ -6971,11 +8336,11 @@ export const VirtualMachineExtension = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualMachineExtension>;
 
 /** The virtual machine child extension resources. */
-export type VirtualMachinesGetResponseResourcesList =
+export type GetVirtualMachineResponseResourcesList =
   Array<VirtualMachineExtension>;
-export const VirtualMachinesGetResponseResourcesList = /*@__PURE__*/ S.Array(
+export const GetVirtualMachineResponseResourcesList = /*@__PURE__*/ S.Array(
   VirtualMachineExtension,
-) as any as S.Schema<VirtualMachinesGetResponseResourcesList>;
+) as any as S.Schema<GetVirtualMachineResponseResourcesList>;
 
 /** The type of identity used for the virtual machine scale set. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine scale set. */
 export type CommonResourceIdentityType =
@@ -7035,16 +8400,16 @@ export const VirtualMachineIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualMachineIdentity>;
 
 /** The availability zones. */
-export type VirtualMachinesGetResponseZonesList = Array<string>;
-export const VirtualMachinesGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetVirtualMachineResponseZonesList = Array<string>;
+export const GetVirtualMachineResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<VirtualMachinesGetResponseZonesList>;
+) as any as S.Schema<GetVirtualMachineResponseZonesList>;
 
 /** The complex type of the extended location. */
-export type VirtualMachinesGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
-export const VirtualMachinesGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+export type GetVirtualMachineResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
+export const GetVirtualMachineResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
 
 export interface GetVirtualMachineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -7056,7 +8421,7 @@ export interface GetVirtualMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachinesGetResponseTagsMap;
+  tags?: GetVirtualMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine. */
@@ -7064,13 +8429,13 @@ export interface GetVirtualMachineResponse {
   /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
   plan?: Plan;
   /** The virtual machine child extension resources. */
-  resources?: VirtualMachinesGetResponseResourcesList;
+  resources?: GetVirtualMachineResponseResourcesList;
   /** The identity of the virtual machine, if configured. */
   identity?: VirtualMachineIdentity;
   /** The availability zones. */
-  zones?: VirtualMachinesGetResponseZonesList;
+  zones?: GetVirtualMachineResponseZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** ManagedBy is set to Virtual Machine Scale Set(VMSS) flex ARM resourceID, if the VM is part of the VMSS. This property is used by platform for internal resource group delete optimization. */
   managedBy?: string;
   /** Etag is property returned in Create/Update/Get response of the VM, so that customer can supply it in the header to ensure optimistic updates. */
@@ -7084,14 +8449,14 @@ export const GetVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachinesGetResponseTagsMap),
+    tags: S.optional(GetVirtualMachineResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualMachineProperties),
     plan: S.optional(Plan),
-    resources: S.optional(VirtualMachinesGetResponseResourcesList),
+    resources: S.optional(GetVirtualMachineResponseResourcesList),
     identity: S.optional(VirtualMachineIdentity),
-    zones: S.optional(VirtualMachinesGetResponseZonesList),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    zones: S.optional(GetVirtualMachineResponseZonesList),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
     managedBy: S.optional(S.String),
     etag: S.optional(S.String),
     placement: S.optional(Placement),
@@ -7100,62 +8465,50 @@ export const GetVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVirtualMachineResponse",
 }) as any as S.Schema<GetVirtualMachineResponse>;
 
-/** The list of operation ids to get the status of */
-export type VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList =
-  Array<string>;
-export const VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList>;
-
-export interface GetVirtualMachineBulkOperationBulkOperationStatusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
+export interface GetVirtualMachineBootDiagnosticsDataRequest {
+  /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The location name. */
-  location: string;
-  /** The list of operation ids to get the status of */
-  operationIds: VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList;
+  /** The name of the virtual machine. */
+  vmName: string;
+  /** Expiration duration in minutes for the SAS URIs with a value between 1 to 1440 minutes. **Note:** If not specified, SAS URIs will be generated with a default expiration duration of 120 minutes. */
+  sasUriExpirationTimeInMinutes?: number;
 }
-export const GetVirtualMachineBulkOperationBulkOperationStatusRequest =
+export const GetVirtualMachineBootDiagnosticsDataRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      operationIds:
-        VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList,
+      vmName: S.String.pipe(T.Label()),
+      sasUriExpirationTimeInMinutes: S.optional(S.Number.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkGetOperationStatus",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/retrieveBootDiagnosticsData",
         code: 200,
-        apiVersion: "2026-06-06",
+        apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualMachineBulkOperationBulkOperationStatusRequest",
-  }) as any as S.Schema<GetVirtualMachineBulkOperationBulkOperationStatusRequest>;
+    identifier: "GetVirtualMachineBootDiagnosticsDataRequest",
+  }) as any as S.Schema<GetVirtualMachineBootDiagnosticsDataRequest>;
 
-/** An array of resource operations based on their operation ids */
-export type GetOperationStatusResponseResultsList = Array<ResourceOperation>;
-export const GetOperationStatusResponseResultsList = /*@__PURE__*/ S.Array(
-  ResourceOperation,
-) as any as S.Schema<GetOperationStatusResponseResultsList>;
-
-/** This is the response from a get operations status request */
-export interface GetOperationStatusResponse {
-  /** An array of resource operations based on their operation ids */
-  results: GetOperationStatusResponseResultsList;
+/** The SAS URIs of the console screenshot and serial log blobs. */
+export interface RetrieveBootDiagnosticsDataResult {
+  /** The console screenshot blob URI */
+  consoleScreenshotBlobUri?: string;
+  /** The serial console log blob URI. */
+  serialConsoleLogBlobUri?: string;
 }
-export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const RetrieveBootDiagnosticsDataResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    results: GetOperationStatusResponseResultsList,
+    consoleScreenshotBlobUri: S.optional(S.String),
+    serialConsoleLogBlobUri: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetOperationStatusResponse",
-}) as any as S.Schema<GetOperationStatusResponse>;
+  identifier: "RetrieveBootDiagnosticsDataResult",
+}) as any as S.Schema<RetrieveBootDiagnosticsDataResult>;
 
 export interface GetVirtualMachineDiagnosticRunCommandByVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -7190,13 +8543,13 @@ export const GetVirtualMachineDiagnosticRunCommandByVirtualMachineRequest =
   }) as any as S.Schema<GetVirtualMachineDiagnosticRunCommandByVirtualMachineRequest>;
 
 /** Resource tags. */
-export type VirtualMachineDiagnosticRunCommandsGetByVirtualMachineResponseTagsMap =
+export type GetVirtualMachineDiagnosticRunCommandByVirtualMachineResponseTagsMap =
   { [key: string]: string | undefined };
-export const VirtualMachineDiagnosticRunCommandsGetByVirtualMachineResponseTagsMap =
+export const GetVirtualMachineDiagnosticRunCommandByVirtualMachineResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineDiagnosticRunCommandsGetByVirtualMachineResponseTagsMap>;
+  ) as any as S.Schema<GetVirtualMachineDiagnosticRunCommandByVirtualMachineResponseTagsMap>;
 
 /** Contains clientId or objectId (use only one, not both) of a user-assigned managed identity that has access to storage blob used in Run Command. Use an empty RunCommandManagedIdentity object in case of system-assigned identity. Make sure the Azure storage blob exists in case of scriptUri, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment with scriptUri blob and 'Storage Blob Data Contributor' for Append blobs(outputBlobUri, errorBlobUri). In case of user assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged. */
 export interface RunCommandManagedIdentity {
@@ -7397,7 +8750,7 @@ export interface GetVirtualMachineDiagnosticRunCommandByVirtualMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineDiagnosticRunCommandsGetByVirtualMachineResponseTagsMap;
+  tags?: GetVirtualMachineDiagnosticRunCommandByVirtualMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine diagnostic run command. */
@@ -7411,7 +8764,7 @@ export const GetVirtualMachineDiagnosticRunCommandByVirtualMachineResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       tags: S.optional(
-        VirtualMachineDiagnosticRunCommandsGetByVirtualMachineResponseTagsMap,
+        GetVirtualMachineDiagnosticRunCommandByVirtualMachineResponseTagsMap,
       ),
       location: S.String,
       properties: S.optional(VirtualMachineRunCommandProperties),
@@ -7452,14 +8805,13 @@ export const GetVirtualMachineExtensionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualMachineExtensionRequest>;
 
 /** Resource tags. */
-export type VirtualMachineExtensionsGetResponseTagsMap = {
+export type GetVirtualMachineExtensionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineExtensionsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineExtensionsGetResponseTagsMap>;
+export const GetVirtualMachineExtensionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetVirtualMachineExtensionResponseTagsMap>;
 
 export interface GetVirtualMachineExtensionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -7471,7 +8823,7 @@ export interface GetVirtualMachineExtensionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineExtensionsGetResponseTagsMap;
+  tags?: GetVirtualMachineExtensionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine Extension. */
@@ -7483,7 +8835,7 @@ export const GetVirtualMachineExtensionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachineExtensionsGetResponseTagsMap),
+    tags: S.optional(GetVirtualMachineExtensionResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualMachineExtensionProperties),
   }),
@@ -7521,14 +8873,14 @@ export const GetVirtualMachineExtensionImageRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetVirtualMachineExtensionImageRequest>;
 
 /** Resource tags. */
-export type VirtualMachineExtensionImagesGetResponseTagsMap = {
+export type GetVirtualMachineExtensionImageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineExtensionImagesGetResponseTagsMap =
+export const GetVirtualMachineExtensionImageResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineExtensionImagesGetResponseTagsMap>;
+  ) as any as S.Schema<GetVirtualMachineExtensionImageResponseTagsMap>;
 
 /** Enumerates the type of change introduced in the extension version. */
 export type ReleaseCategory =
@@ -7637,7 +8989,7 @@ export interface GetVirtualMachineExtensionImageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineExtensionImagesGetResponseTagsMap;
+  tags?: GetVirtualMachineExtensionImageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine Extension Image. */
@@ -7650,7 +9002,7 @@ export const GetVirtualMachineExtensionImageResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineExtensionImagesGetResponseTagsMap),
+      tags: S.optional(GetVirtualMachineExtensionImageResponseTagsMap),
       location: S.String,
       properties: S.optional(VirtualMachineExtensionImageProperties),
     }),
@@ -7693,19 +9045,19 @@ export const GetVirtualMachineImageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualMachineImageRequest>;
 
 /** Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). */
-export type VirtualMachineImagesGetResponseTagsMap = {
+export type GetVirtualMachineImageResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineImagesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualMachineImageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualMachineImagesGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualMachineImageResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineImagesGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
-export const VirtualMachineImagesGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+export type GetVirtualMachineImageResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
+export const GetVirtualMachineImageResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
 
 /** Used for establishing the purchase context of any 3rd Party artifact through MarketPlace. */
 export interface PurchasePlan {
@@ -7897,9 +9249,9 @@ export interface GetVirtualMachineImageResponse {
   /** The supported Azure location of the resource. */
   location: string;
   /** Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). */
-  tags?: VirtualMachineImagesGetResponseTagsMap;
+  tags?: GetVirtualMachineImageResponseTagsMap;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** Describes the properties of a Virtual Machine Image. */
   properties?: VirtualMachineImageProperties;
 }
@@ -7908,15 +9260,15 @@ export const GetVirtualMachineImageResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.String,
     location: S.String,
-    tags: S.optional(VirtualMachineImagesGetResponseTagsMap),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    tags: S.optional(GetVirtualMachineImageResponseTagsMap),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
     properties: S.optional(VirtualMachineImageProperties),
   }),
 ).annotate({
   identifier: "GetVirtualMachineImageResponse",
 }) as any as S.Schema<GetVirtualMachineImageResponse>;
 
-export interface GetVirtualMachineImageEdgeZoneRequest {
+export interface GetVirtualMachineImagesEdgeZoneRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of Azure region. */
@@ -7932,7 +9284,7 @@ export interface GetVirtualMachineImageEdgeZoneRequest {
   /** A valid image SKU version. */
   version: string;
 }
-export const GetVirtualMachineImageEdgeZoneRequest = /*@__PURE__*/ S.suspend(
+export const GetVirtualMachineImagesEdgeZoneRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7951,26 +9303,26 @@ export const GetVirtualMachineImageEdgeZoneRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetVirtualMachineImageEdgeZoneRequest",
-}) as any as S.Schema<GetVirtualMachineImageEdgeZoneRequest>;
+  identifier: "GetVirtualMachineImagesEdgeZoneRequest",
+}) as any as S.Schema<GetVirtualMachineImagesEdgeZoneRequest>;
 
 /** Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). */
-export type VirtualMachineImagesEdgeZoneGetResponseTagsMap = {
+export type GetVirtualMachineImagesEdgeZoneResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineImagesEdgeZoneGetResponseTagsMap =
+export const GetVirtualMachineImagesEdgeZoneResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineImagesEdgeZoneGetResponseTagsMap>;
+  ) as any as S.Schema<GetVirtualMachineImagesEdgeZoneResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineImagesEdgeZoneGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
-export const VirtualMachineImagesEdgeZoneGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+export type GetVirtualMachineImagesEdgeZoneResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
+export const GetVirtualMachineImagesEdgeZoneResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
 
-export interface GetVirtualMachineImageEdgeZoneResponse {
+export interface GetVirtualMachineImagesEdgeZoneResponse {
   /** Resource Id */
   id?: string;
   /** The name of the resource. */
@@ -7978,25 +9330,25 @@ export interface GetVirtualMachineImageEdgeZoneResponse {
   /** The supported Azure location of the resource. */
   location: string;
   /** Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). */
-  tags?: VirtualMachineImagesEdgeZoneGetResponseTagsMap;
+  tags?: GetVirtualMachineImagesEdgeZoneResponseTagsMap;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** Describes the properties of a Virtual Machine Image. */
   properties?: VirtualMachineImageProperties;
 }
-export const GetVirtualMachineImageEdgeZoneResponse = /*@__PURE__*/ S.suspend(
+export const GetVirtualMachineImagesEdgeZoneResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.String,
       location: S.String,
-      tags: S.optional(VirtualMachineImagesEdgeZoneGetResponseTagsMap),
-      extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+      tags: S.optional(GetVirtualMachineImagesEdgeZoneResponseTagsMap),
+      extendedLocation: S.optional(GetImageResponseExtendedLocation),
       properties: S.optional(VirtualMachineImageProperties),
     }),
 ).annotate({
-  identifier: "GetVirtualMachineImageEdgeZoneResponse",
-}) as any as S.Schema<GetVirtualMachineImageEdgeZoneResponse>;
+  identifier: "GetVirtualMachineImagesEdgeZoneResponse",
+}) as any as S.Schema<GetVirtualMachineImagesEdgeZoneResponse>;
 
 export interface GetVirtualMachineRunCommandRequest {
   /** The ID of the target subscription. */
@@ -8024,11 +9376,11 @@ export const GetVirtualMachineRunCommandRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualMachineRunCommandRequest>;
 
 /** The script to be executed. */
-export type VirtualMachineRunCommandsGetResponseScriptList = Array<string>;
-export const VirtualMachineRunCommandsGetResponseScriptList =
+export type GetVirtualMachineRunCommandResponseScriptList = Array<string>;
+export const GetVirtualMachineRunCommandResponseScriptList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VirtualMachineRunCommandsGetResponseScriptList>;
+  ) as any as S.Schema<GetVirtualMachineRunCommandResponseScriptList>;
 
 /** Describes the properties of a run command parameter. */
 export interface RunCommandParameterDefinition {
@@ -8053,12 +9405,12 @@ export const RunCommandParameterDefinition = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RunCommandParameterDefinition>;
 
 /** The parameters used by the script. */
-export type VirtualMachineRunCommandsGetResponseParametersList =
+export type GetVirtualMachineRunCommandResponseParametersList =
   Array<RunCommandParameterDefinition>;
-export const VirtualMachineRunCommandsGetResponseParametersList =
+export const GetVirtualMachineRunCommandResponseParametersList =
   /*@__PURE__*/ S.Array(
     RunCommandParameterDefinition,
-  ) as any as S.Schema<VirtualMachineRunCommandsGetResponseParametersList>;
+  ) as any as S.Schema<GetVirtualMachineRunCommandResponseParametersList>;
 
 export interface GetVirtualMachineRunCommandResponse {
   /** The VM run command schema. */
@@ -8072,9 +9424,9 @@ export interface GetVirtualMachineRunCommandResponse {
   /** The VM run command description. */
   description: string;
   /** The script to be executed. */
-  script: VirtualMachineRunCommandsGetResponseScriptList;
+  script: GetVirtualMachineRunCommandResponseScriptList;
   /** The parameters used by the script. */
-  parameters?: VirtualMachineRunCommandsGetResponseParametersList;
+  parameters?: GetVirtualMachineRunCommandResponseParametersList;
 }
 export const GetVirtualMachineRunCommandResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8083,8 +9435,8 @@ export const GetVirtualMachineRunCommandResponse = /*@__PURE__*/ S.suspend(() =>
     osType: CommonOperatingSystemTypes,
     label: S.String,
     description: S.String,
-    script: VirtualMachineRunCommandsGetResponseScriptList,
-    parameters: S.optional(VirtualMachineRunCommandsGetResponseParametersList),
+    script: GetVirtualMachineRunCommandResponseScriptList,
+    parameters: S.optional(GetVirtualMachineRunCommandResponseParametersList),
   }),
 ).annotate({
   identifier: "GetVirtualMachineRunCommandResponse",
@@ -8123,14 +9475,14 @@ export const GetVirtualMachineRunCommandByVirtualMachineRequest =
   }) as any as S.Schema<GetVirtualMachineRunCommandByVirtualMachineRequest>;
 
 /** Resource tags. */
-export type VirtualMachineRunCommandsGetByVirtualMachineResponseTagsMap = {
+export type GetVirtualMachineRunCommandByVirtualMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineRunCommandsGetByVirtualMachineResponseTagsMap =
+export const GetVirtualMachineRunCommandByVirtualMachineResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineRunCommandsGetByVirtualMachineResponseTagsMap>;
+  ) as any as S.Schema<GetVirtualMachineRunCommandByVirtualMachineResponseTagsMap>;
 
 export interface GetVirtualMachineRunCommandByVirtualMachineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -8142,7 +9494,7 @@ export interface GetVirtualMachineRunCommandByVirtualMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineRunCommandsGetByVirtualMachineResponseTagsMap;
+  tags?: GetVirtualMachineRunCommandByVirtualMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine run command. */
@@ -8156,7 +9508,7 @@ export const GetVirtualMachineRunCommandByVirtualMachineResponse =
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       tags: S.optional(
-        VirtualMachineRunCommandsGetByVirtualMachineResponseTagsMap,
+        GetVirtualMachineRunCommandByVirtualMachineResponseTagsMap,
       ),
       location: S.String,
       properties: S.optional(VirtualMachineRunCommandProperties),
@@ -8165,8 +9517,8 @@ export const GetVirtualMachineRunCommandByVirtualMachineResponse =
     identifier: "GetVirtualMachineRunCommandByVirtualMachineResponse",
   }) as any as S.Schema<GetVirtualMachineRunCommandByVirtualMachineResponse>;
 
-export type VirtualMachineScaleSetsGetRequestExpand = "userData";
-export const VirtualMachineScaleSetsGetRequestExpand = /*@__PURE__*/ S.String;
+export type GetVirtualMachineScaleSetRequestExpand = "userData";
+export const GetVirtualMachineScaleSetRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetVirtualMachineScaleSetRequest {
   /** The ID of the target subscription. */
@@ -8176,7 +9528,7 @@ export interface GetVirtualMachineScaleSetRequest {
   /** The name of the VM scale set. */
   vmScaleSetName: string;
   /** The expand expression to apply on the operation. 'UserData' retrieves the UserData property of the VM scale set that was provided by the user during the VM scale set Create/Update operation */
-  _expand?: VirtualMachineScaleSetsGetRequestExpand | (string & {});
+  _expand?: GetVirtualMachineScaleSetRequestExpand | (string & {});
 }
 export const GetVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -8184,7 +9536,7 @@ export const GetVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     vmScaleSetName: S.String.pipe(T.Label()),
     _expand: S.optional(
-      VirtualMachineScaleSetsGetRequestExpand.pipe(T.Query("$expand")),
+      GetVirtualMachineScaleSetRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -8199,13 +9551,13 @@ export const GetVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetVirtualMachineScaleSetRequest>;
 
 /** Resource tags. */
-export type VirtualMachineScaleSetsGetResponseTagsMap = {
+export type GetVirtualMachineScaleSetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineScaleSetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualMachineScaleSetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualMachineScaleSetsGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualMachineScaleSetResponseTagsMap>;
 
 /** Specifies the mode of an upgrade to virtual machines in the scale set.<br /><br /> Possible values are:<br /><br /> **Manual** - You control the application of updates to virtual machines in the scale set. You do this by using the manualUpgrade action.<br /><br /> **Automatic** - All virtual machines in the scale set are automatically updated at the same time. */
 export type UpgradeMode = "Automatic" | "Manual" | "Rolling";
@@ -9617,17 +10969,16 @@ export const VirtualMachineScaleSetIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualMachineScaleSetIdentity>;
 
 /** The availability zones. */
-export type VirtualMachineScaleSetsGetResponseZonesList = Array<string>;
-export const VirtualMachineScaleSetsGetResponseZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsGetResponseZonesList>;
+export type GetVirtualMachineScaleSetResponseZonesList = Array<string>;
+export const GetVirtualMachineScaleSetResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetVirtualMachineScaleSetResponseZonesList>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineScaleSetsGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
-export const VirtualMachineScaleSetsGetResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+export type GetVirtualMachineScaleSetResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
+export const GetVirtualMachineScaleSetResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
 
 export interface GetVirtualMachineScaleSetResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -9639,7 +10990,7 @@ export interface GetVirtualMachineScaleSetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineScaleSetsGetResponseTagsMap;
+  tags?: GetVirtualMachineScaleSetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The virtual machine scale set sku. */
@@ -9651,9 +11002,9 @@ export interface GetVirtualMachineScaleSetResponse {
   /** The identity of the virtual machine scale set, if configured. */
   identity?: VirtualMachineScaleSetIdentity;
   /** The availability zones. */
-  zones?: VirtualMachineScaleSetsGetResponseZonesList;
+  zones?: GetVirtualMachineScaleSetResponseZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** Etag is property returned in Create/Update/Get response of the VMSS, so that customer can supply it in the header to ensure optimistic updates */
   etag?: string;
   /** Placement section specifies the user-defined constraints for virtual machine scale set hardware placement. Minimum api-version: 2025-04-01. */
@@ -9665,20 +11016,74 @@ export const GetVirtualMachineScaleSetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachineScaleSetsGetResponseTagsMap),
+    tags: S.optional(GetVirtualMachineScaleSetResponseTagsMap),
     location: S.String,
     sku: S.optional(Sku),
     plan: S.optional(Plan),
     properties: S.optional(VirtualMachineScaleSetProperties),
     identity: S.optional(VirtualMachineScaleSetIdentity),
-    zones: S.optional(VirtualMachineScaleSetsGetResponseZonesList),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    zones: S.optional(GetVirtualMachineScaleSetResponseZonesList),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
     etag: S.optional(S.String),
     placement: S.optional(Placement),
   }),
 ).annotate({
   identifier: "GetVirtualMachineScaleSetResponse",
 }) as any as S.Schema<GetVirtualMachineScaleSetResponse>;
+
+export interface GetVirtualMachineScaleSetExtensionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The name of the VM scale set extension. */
+  vmssExtensionName: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const GetVirtualMachineScaleSetExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      vmssExtensionName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions/{vmssExtensionName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetExtensionRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetExtensionRequest>;
+
+export interface GetVirtualMachineScaleSetExtensionResponse {
+  /** Resource Id */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Describes the properties of a Virtual Machine Scale Set Extension. */
+  properties?: VirtualMachineScaleSetExtensionProperties;
+}
+export const GetVirtualMachineScaleSetExtensionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(VirtualMachineScaleSetExtensionProperties),
+    }),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetExtensionResponse",
+  }) as any as S.Schema<GetVirtualMachineScaleSetExtensionResponse>;
 
 export interface GetVirtualMachineScaleSetInstanceViewRequest {
   /** The ID of the target subscription. */
@@ -9859,7 +11264,147 @@ export const VirtualMachineScaleSetInstanceView = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachineScaleSetInstanceView",
 }) as any as S.Schema<VirtualMachineScaleSetInstanceView>;
 
-export interface GetVirtualMachineScaleSetOsUpgradeHistoryRequest {
+export interface GetVirtualMachineScaleSetLifeCycleHookEventRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The name of the VMScaleSetLifecycleHookEvent */
+  lifecycleHookEventName: string;
+}
+export const GetVirtualMachineScaleSetLifeCycleHookEventRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      lifecycleHookEventName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/lifecycleHookEvents/{lifecycleHookEventName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetLifeCycleHookEventRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetLifeCycleHookEventRequest>;
+
+/** Approval status of a target resource in a virtual machine scale set lifecycle hook event. */
+export type LifecycleHookActionState = "Waiting" | "Approved" | "Rejected";
+export const LifecycleHookActionState = /*@__PURE__*/ S.String;
+
+/** Define a single target ARM resource in a virtual machine scale set lifecycle hook event. Currently, this can be a virtual machine scale set resource or an individual virtual machine resource within a VMScaleSet. */
+export interface VMScaleSetLifecycleHookEventTargetResource {
+  /** Specifies the target ARM resource. Currently, this can be a virtual machine scale set resource or an individual virtual machine resource within a VMScaleSet. */
+  resource?: ApiEntityReference;
+  /** State of the lifecycle hook for the target resource. The customer can patch this property to move the lifecycle hook to a terminal state. */
+  actionState?: LifecycleHookActionState | (string & {});
+}
+export const VMScaleSetLifecycleHookEventTargetResource =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resource: S.optional(ApiEntityReference),
+      actionState: S.optional(LifecycleHookActionState),
+    }),
+  ).annotate({
+    identifier: "VMScaleSetLifecycleHookEventTargetResource",
+  }) as any as S.Schema<VMScaleSetLifecycleHookEventTargetResource>;
+
+/** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
+export type VMScaleSetLifecycleHookEventPropertiesTargetResourcesList =
+  Array<VMScaleSetLifecycleHookEventTargetResource>;
+export const VMScaleSetLifecycleHookEventPropertiesTargetResourcesList =
+  /*@__PURE__*/ S.Array(
+    VMScaleSetLifecycleHookEventTargetResource,
+  ) as any as S.Schema<VMScaleSetLifecycleHookEventPropertiesTargetResourcesList>;
+
+/** Additional key-value pairs set on the lifecycle hook event that gives customer some useful context/data. The keys in this dictionary are specific to the lifecycle hook type. Different lifecycle hook events can have different sets of keys in the additional context depending on the lifecycle hook type. For example, for a lifecycle hook event with UpgradeAutoOSScheduling type, the additional context can contain the key "priority" that helps customer identify the priority of the Auto OS Upgrade operation triggered on the virtual machine scale set. */
+export interface VMScaleSetLifecycleHookEventAdditionalContext {
+  /** Can only be present for a lifecycle hook event of type "UpgradeAutoOSScheduling". Denotes the priority of the virtual machine scale set lifecycle hook event for the Auto OS Upgrade scheduled on the virtual machine scale set. */
+  priority?: string;
+}
+export const VMScaleSetLifecycleHookEventAdditionalContext =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      priority: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "VMScaleSetLifecycleHookEventAdditionalContext",
+  }) as any as S.Schema<VMScaleSetLifecycleHookEventAdditionalContext>;
+
+/** The states that a virtual machine scale set lifecycle hook event can be in. This is not settable by the customer. It is set only by the platform. */
+export type VMScaleSetLifecycleHookEventState = "Active" | "Completed";
+export const VMScaleSetLifecycleHookEventState = /*@__PURE__*/ S.String;
+
+/** Defines the virtual machine scale set lifecycle hook event properties. */
+export interface VMScaleSetLifecycleHookEventProperties {
+  /** Defines the type or scenario for sending a virtual machine scale set lifecycle hook event to the customer. */
+  type?: VMScaleSetLifecycleHookEventType;
+  /** Specifies the exact UTC timestamp in ISO 8601 format till which the event would remain in the current lifecycle state waiting for an action from the customer. Beyond this timestamp, the platform will apply the defaultAction for the event. */
+  waitUntil?: string;
+  /** Specifies the exact UTC timestamp in ISO 8601 format till when the customer can delay the lifecycle hook event. The customer will not be allowed to delay the event to a timestamp beyond this. */
+  maxWaitUntil?: string;
+  /** The UTC timestamp in ISO 8601 format at which the platform creates the virtual machine scale set lifecycle hook event entity. */
+  timeCreated?: string;
+  /** Specify the action that will be applied on the a target resource in the virtual machine scale set lifecycle hook event if the platform does not get a response from the customer for the target resource before waitUntil. */
+  defaultAction?: LifecycleHookAction;
+  /** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
+  targetResources?: VMScaleSetLifecycleHookEventPropertiesTargetResourcesList;
+  /** Additional key-value pairs set on the lifecycle hook event that gives customer some useful context/data. The keys in this dictionary are specific to the lifecycle hook type. Different lifecycle hook events can have different sets of keys in the additional context depending on the lifecycle hook type. For example, for a lifecycle hook event with UpgradeAutoOSScheduling type, the additional context can contain the key "priority" that helps customer identify the priority of the Auto OS Upgrade operation triggered on the virtual machine scale set. */
+  additionalContext?: VMScaleSetLifecycleHookEventAdditionalContext;
+  /** Specifies the state of the virtual machine scale set lifecycle hook event. */
+  state?: VMScaleSetLifecycleHookEventState;
+}
+export const VMScaleSetLifecycleHookEventProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: S.optional(VMScaleSetLifecycleHookEventType),
+      waitUntil: S.optional(S.String),
+      maxWaitUntil: S.optional(S.String),
+      timeCreated: S.optional(S.String),
+      defaultAction: S.optional(LifecycleHookAction),
+      targetResources: S.optional(
+        VMScaleSetLifecycleHookEventPropertiesTargetResourcesList,
+      ),
+      additionalContext: S.optional(
+        VMScaleSetLifecycleHookEventAdditionalContext,
+      ),
+      state: S.optional(VMScaleSetLifecycleHookEventState),
+    }),
+).annotate({
+  identifier: "VMScaleSetLifecycleHookEventProperties",
+}) as any as S.Schema<VMScaleSetLifecycleHookEventProperties>;
+
+export interface GetVirtualMachineScaleSetLifeCycleHookEventResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Defines the virtual machine scale set lifecycle hook event properties. */
+  properties?: VMScaleSetLifecycleHookEventProperties;
+}
+export const GetVirtualMachineScaleSetLifeCycleHookEventResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(VMScaleSetLifecycleHookEventProperties),
+    }),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetLifeCycleHookEventResponse",
+  }) as any as S.Schema<GetVirtualMachineScaleSetLifeCycleHookEventResponse>;
+
+export interface GetVirtualMachineScaleSetOSUpgradeHistoryRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9867,7 +11412,7 @@ export interface GetVirtualMachineScaleSetOsUpgradeHistoryRequest {
   /** The name of the VM scale set. */
   vmScaleSetName: string;
 }
-export const GetVirtualMachineScaleSetOsUpgradeHistoryRequest =
+export const GetVirtualMachineScaleSetOSUpgradeHistoryRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9882,8 +11427,8 @@ export const GetVirtualMachineScaleSetOsUpgradeHistoryRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetVirtualMachineScaleSetOsUpgradeHistoryRequest",
-  }) as any as S.Schema<GetVirtualMachineScaleSetOsUpgradeHistoryRequest>;
+    identifier: "GetVirtualMachineScaleSetOSUpgradeHistoryRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetOSUpgradeHistoryRequest>;
 
 /** Code indicating the current status of the upgrade. */
 export type UpgradeState =
@@ -10099,6 +11644,787 @@ export const VirtualMachineScaleSetListOSUpgradeHistory =
     identifier: "VirtualMachineScaleSetListOSUpgradeHistory",
   }) as any as S.Schema<VirtualMachineScaleSetListOSUpgradeHistory>;
 
+export interface GetVirtualMachineScaleSetRollingUpgradeLatestRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+}
+export const GetVirtualMachineScaleSetRollingUpgradeLatestRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/rollingUpgrades/latest",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetRollingUpgradeLatestRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetRollingUpgradeLatestRequest>;
+
+/** Resource tags. */
+export type GetVirtualMachineScaleSetRollingUpgradeLatestResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetVirtualMachineScaleSetRollingUpgradeLatestResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetVirtualMachineScaleSetRollingUpgradeLatestResponseTagsMap>;
+
+/** Code indicating the current status of the upgrade. */
+export type RollingUpgradeStatusCode =
+  | "RollingForward"
+  | "RollingBack"
+  | "Cancelled"
+  | "Completed"
+  | "Faulted";
+export const RollingUpgradeStatusCode = /*@__PURE__*/ S.String;
+
+/** The last action performed on the rolling upgrade. */
+export type RollingUpgradeActionType = "Start" | "Cancel";
+export const RollingUpgradeActionType = /*@__PURE__*/ S.String;
+
+/** Information about the current running state of the overall upgrade. */
+export interface RollingUpgradeRunningStatus {
+  /** Code indicating the current status of the upgrade. */
+  code?: RollingUpgradeStatusCode;
+  /** Start time of the upgrade. */
+  startTime?: string;
+  /** The last action performed on the rolling upgrade. */
+  lastAction?: RollingUpgradeActionType;
+  /** Last action time of the upgrade. */
+  lastActionTime?: string;
+}
+export const RollingUpgradeRunningStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(RollingUpgradeStatusCode),
+    startTime: S.optional(S.String),
+    lastAction: S.optional(RollingUpgradeActionType),
+    lastActionTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RollingUpgradeRunningStatus",
+}) as any as S.Schema<RollingUpgradeRunningStatus>;
+
+/** The Api error details */
+export type RollingUpgradeStatusInfoPropertiesErrorDetailsList =
+  Array<ApiErrorBase>;
+export const RollingUpgradeStatusInfoPropertiesErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ApiErrorBase,
+  ) as any as S.Schema<RollingUpgradeStatusInfoPropertiesErrorDetailsList>;
+
+/** Api error. */
+export interface RollingUpgradeStatusInfoPropertiesError {
+  /** The Api error details */
+  details?: RollingUpgradeStatusInfoPropertiesErrorDetailsList;
+  /** The Api inner error */
+  innererror?: InnerError;
+  /** The error code. */
+  code?: string;
+  /** The target of the particular error. */
+  target?: string;
+  /** The error message. */
+  message?: string;
+}
+export const RollingUpgradeStatusInfoPropertiesError = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      details: S.optional(RollingUpgradeStatusInfoPropertiesErrorDetailsList),
+      innererror: S.optional(InnerError),
+      code: S.optional(S.String),
+      target: S.optional(S.String),
+      message: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "RollingUpgradeStatusInfoPropertiesError",
+}) as any as S.Schema<RollingUpgradeStatusInfoPropertiesError>;
+
+/** The status of the latest virtual machine scale set rolling upgrade. */
+export interface RollingUpgradeStatusInfoProperties {
+  /** The rolling upgrade policies applied for this upgrade. */
+  policy?: RollingUpgradePolicy;
+  /** Information about the current running state of the overall upgrade. */
+  runningStatus?: RollingUpgradeRunningStatus;
+  /** Information about the number of virtual machine instances in each upgrade state. */
+  progress?: RollingUpgradeProgressInfo;
+  /** Api error. */
+  error?: RollingUpgradeStatusInfoPropertiesError;
+}
+export const RollingUpgradeStatusInfoProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policy: S.optional(RollingUpgradePolicy),
+    runningStatus: S.optional(RollingUpgradeRunningStatus),
+    progress: S.optional(RollingUpgradeProgressInfo),
+    error: S.optional(RollingUpgradeStatusInfoPropertiesError),
+  }),
+).annotate({
+  identifier: "RollingUpgradeStatusInfoProperties",
+}) as any as S.Schema<RollingUpgradeStatusInfoProperties>;
+
+export interface GetVirtualMachineScaleSetRollingUpgradeLatestResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVirtualMachineScaleSetRollingUpgradeLatestResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The status of the latest virtual machine scale set rolling upgrade. */
+  properties?: RollingUpgradeStatusInfoProperties;
+}
+export const GetVirtualMachineScaleSetRollingUpgradeLatestResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        GetVirtualMachineScaleSetRollingUpgradeLatestResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(RollingUpgradeStatusInfoProperties),
+    }),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetRollingUpgradeLatestResponse",
+  }) as any as S.Schema<GetVirtualMachineScaleSetRollingUpgradeLatestResponse>;
+
+export type GetVirtualMachineScaleSetVMRequestExpand =
+  | "instanceView"
+  | "userData"
+  | "resiliencyView";
+export const GetVirtualMachineScaleSetVMRequestExpand = /*@__PURE__*/ S.String;
+
+export interface GetVirtualMachineScaleSetVMRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** The expand expression to apply on the operation. 'InstanceView' will retrieve the instance view of the virtual machine. 'UserData' will retrieve the UserData of the virtual machine. */
+  _expand?: GetVirtualMachineScaleSetVMRequestExpand | (string & {});
+}
+export const GetVirtualMachineScaleSetVMRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vmScaleSetName: S.String.pipe(T.Label()),
+    instanceId: S.String.pipe(T.Label()),
+    _expand: S.optional(
+      GetVirtualMachineScaleSetVMRequestExpand.pipe(T.Query("$expand")),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualMachineScaleSetVMRequest",
+}) as any as S.Schema<GetVirtualMachineScaleSetVMRequest>;
+
+/** Resource tags. */
+export type GetVirtualMachineScaleSetVMResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetVirtualMachineScaleSetVMResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetVirtualMachineScaleSetVMResponseTagsMap>;
+
+/** The disks information. */
+export type VirtualMachineScaleSetVMInstanceViewDisksList =
+  Array<DiskInstanceView>;
+export const VirtualMachineScaleSetVMInstanceViewDisksList =
+  /*@__PURE__*/ S.Array(
+    DiskInstanceView,
+  ) as any as S.Schema<VirtualMachineScaleSetVMInstanceViewDisksList>;
+
+/** The extensions information. */
+export type VirtualMachineScaleSetVMInstanceViewExtensionsList =
+  Array<VirtualMachineExtensionInstanceView>;
+export const VirtualMachineScaleSetVMInstanceViewExtensionsList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineExtensionInstanceView,
+  ) as any as S.Schema<VirtualMachineScaleSetVMInstanceViewExtensionsList>;
+
+/** The resource status information. */
+export type VirtualMachineScaleSetVMInstanceViewStatusesList =
+  Array<InstanceViewStatus>;
+export const VirtualMachineScaleSetVMInstanceViewStatusesList =
+  /*@__PURE__*/ S.Array(
+    InstanceViewStatus,
+  ) as any as S.Schema<VirtualMachineScaleSetVMInstanceViewStatusesList>;
+
+/** The hypervisor generation of the Virtual Machine. */
+export type CommonHyperVGeneration = "V1" | "V2";
+export const CommonHyperVGeneration = /*@__PURE__*/ S.String;
+
+/** The instance view of a virtual machine scale set VM. */
+export interface VirtualMachineScaleSetVMInstanceView {
+  /** The Update Domain count. */
+  platformUpdateDomain?: number;
+  /** The Fault Domain count. */
+  platformFaultDomain?: number;
+  /** The Remote desktop certificate thumbprint. */
+  rdpThumbPrint?: string;
+  /** The VM Agent running on the virtual machine. */
+  vmAgent?: VirtualMachineAgentInstanceView;
+  /** The Maintenance Operation status on the virtual machine. */
+  maintenanceRedeployStatus?: MaintenanceRedeployStatus;
+  /** The disks information. */
+  disks?: VirtualMachineScaleSetVMInstanceViewDisksList;
+  /** The extensions information. */
+  extensions?: VirtualMachineScaleSetVMInstanceViewExtensionsList;
+  /** The health status for the VM. */
+  vmHealth?: VirtualMachineHealthStatus;
+  /** Boot Diagnostics is a debugging feature which allows you to view Console Output and Screenshot to diagnose VM status. You can easily view the output of your console log. Azure also enables you to see a screenshot of the VM from the hypervisor. */
+  bootDiagnostics?: BootDiagnosticsInstanceView;
+  /** The resource status information. */
+  statuses?: VirtualMachineScaleSetVMInstanceViewStatusesList;
+  /** Resource id of the dedicated host, on which the virtual machine is allocated through automatic placement, when the virtual machine is associated with a dedicated host group that has automatic placement enabled. Minimum api-version: 2020-06-01. */
+  assignedHost?: string;
+  /** The placement group in which the VM is running. If the VM is deallocated it will not have a placementGroupId. */
+  placementGroupId?: string;
+  /** Specifies the host OS name of the virtual machine. <br><br> This name cannot be updated after the VM is created. <br><br> **Max-length (Windows):** 15 characters <br><br> **Max-length (Linux):** 64 characters. <br><br> For naming conventions and restrictions see [Azure infrastructure services implementation guidelines](https://learn.microsoft.com/previous-versions/azure/virtual-machines/linux/infrastructure-example?toc=%2Fazure%2Fvirtual-machines%2Flinux%2Ftoc.json#1-naming-conventions). */
+  computerName?: string;
+  /** The Operating System running on the hybrid machine. */
+  osName?: string;
+  /** The version of Operating System running on the hybrid machine. */
+  osVersion?: string;
+  /** The hypervisor generation of the Virtual Machine [V1, V2] */
+  hyperVGeneration?: CommonHyperVGeneration;
+  /** The Interconnect runtime view of the Scale Set VM instance. Minimum api-version: 2026-03-01. */
+  interconnectInstanceView?: InterconnectInstanceView;
+  /** Specifies which type of capacity reservation the virtual machine scale set VM instance will consume capacity from if eligible or whether it is explicitly opted out from being associated and consuming capacity from any reserved capacity available in the subscription. Minimum api-version: 2026-04-01. */
+  capacityReservationType?: CapacityReservationType;
+}
+export const VirtualMachineScaleSetVMInstanceView = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      platformUpdateDomain: S.optional(S.Number),
+      platformFaultDomain: S.optional(S.Number),
+      rdpThumbPrint: S.optional(S.String),
+      vmAgent: S.optional(VirtualMachineAgentInstanceView),
+      maintenanceRedeployStatus: S.optional(MaintenanceRedeployStatus),
+      disks: S.optional(VirtualMachineScaleSetVMInstanceViewDisksList),
+      extensions: S.optional(
+        VirtualMachineScaleSetVMInstanceViewExtensionsList,
+      ),
+      vmHealth: S.optional(VirtualMachineHealthStatus),
+      bootDiagnostics: S.optional(BootDiagnosticsInstanceView),
+      statuses: S.optional(VirtualMachineScaleSetVMInstanceViewStatusesList),
+      assignedHost: S.optional(S.String),
+      placementGroupId: S.optional(S.String),
+      computerName: S.optional(S.String),
+      osName: S.optional(S.String),
+      osVersion: S.optional(S.String),
+      hyperVGeneration: S.optional(CommonHyperVGeneration),
+      interconnectInstanceView: S.optional(InterconnectInstanceView),
+      capacityReservationType: S.optional(CapacityReservationType),
+    }),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMInstanceView",
+}) as any as S.Schema<VirtualMachineScaleSetVMInstanceView>;
+
+/** Specifies the resilient VM deletion status for the virtual machine. */
+export type ResilientVMDeletionStatus =
+  | "Enabled"
+  | "Disabled"
+  | "InProgress"
+  | "Failed";
+export const ResilientVMDeletionStatus = /*@__PURE__*/ S.String;
+
+/** The list of network configurations. */
+export type VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList =
+  Array<VirtualMachineScaleSetNetworkConfiguration>;
+export const VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineScaleSetNetworkConfiguration,
+  ) as any as S.Schema<VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList>;
+
+/** Describes a virtual machine scale set VM network profile. */
+export interface VirtualMachineScaleSetVMNetworkProfileConfiguration {
+  /** The list of network configurations. */
+  networkInterfaceConfigurations?: VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList;
+  /** Specifies the interconnect group profile to associate with the scale set vm instance. Minimum api-version: 2026-03-01. */
+  interconnectGroupProfile?: InterconnectGroupProfile;
+}
+export const VirtualMachineScaleSetVMNetworkProfileConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      networkInterfaceConfigurations: S.optional(
+        VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList,
+      ),
+      interconnectGroupProfile: S.optional(InterconnectGroupProfile),
+    }),
+  ).annotate({
+    identifier: "VirtualMachineScaleSetVMNetworkProfileConfiguration",
+  }) as any as S.Schema<VirtualMachineScaleSetVMNetworkProfileConfiguration>;
+
+export type VirtualMachineScaleSetVMPropertiesAvailabilitySet =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const VirtualMachineScaleSetVMPropertiesAvailabilitySet =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+/** The protection policy of a virtual machine scale set VM. */
+export interface VirtualMachineScaleSetVMProtectionPolicy {
+  /** Indicates that the virtual machine scale set VM shouldn't be considered for deletion during a scale-in operation. */
+  protectFromScaleIn?: boolean;
+  /** Indicates that model updates or actions (including scale-in) initiated on the virtual machine scale set should not be applied to the virtual machine scale set VM. */
+  protectFromScaleSetActions?: boolean;
+}
+export const VirtualMachineScaleSetVMProtectionPolicy = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      protectFromScaleIn: S.optional(S.Boolean),
+      protectFromScaleSetActions: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMProtectionPolicy",
+}) as any as S.Schema<VirtualMachineScaleSetVMProtectionPolicy>;
+
+/** Describes the properties of a virtual machine scale set virtual machine. */
+export interface VirtualMachineScaleSetVMProperties {
+  /** Specifies whether the latest model has been applied to the virtual machine. */
+  latestModelApplied?: boolean;
+  /** Azure VM unique ID. */
+  vmId?: string;
+  /** The virtual machine instance view. */
+  instanceView?: VirtualMachineScaleSetVMInstanceView;
+  /** Specifies the hardware settings for the virtual machine. */
+  hardwareProfile?: HardwareProfile;
+  /** Specifies the resilient VM deletion status for the virtual machine. */
+  resilientVMDeletionStatus?: ResilientVMDeletionStatus;
+  /** Specifies the storage settings for the virtual machine disks. */
+  storageProfile?: StorageProfile;
+  /** Specifies additional capabilities enabled or disabled on the virtual machine in the scale set. For instance: whether the virtual machine has the capability to support attaching managed data disks with UltraSSD_LRS storage account type. */
+  additionalCapabilities?: AdditionalCapabilities;
+  /** Specifies the operating system settings for the virtual machine. */
+  osProfile?: OSProfile;
+  /** Specifies the Security related profile settings for the virtual machine. */
+  securityProfile?: SecurityProfile;
+  /** Specifies the network interfaces of the virtual machine. */
+  networkProfile?: NetworkProfile;
+  /** Specifies the network profile configuration of the virtual machine. */
+  networkProfileConfiguration?: VirtualMachineScaleSetVMNetworkProfileConfiguration;
+  /** Specifies the boot diagnostic settings state. Minimum api-version: 2015-06-15. */
+  diagnosticsProfile?: DiagnosticsProfile;
+  availabilitySet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
+  /** The provisioning state, which only appears in the response. */
+  provisioningState?: string;
+  /** Specifies that the image or disk that is being used was licensed on-premises. <br><br> Possible values for Windows Server operating system are: <br><br> Windows_Client <br><br> Windows_Server <br><br> Possible values for Linux Server operating system are: <br><br> RHEL_BYOS (for RHEL) <br><br> SLES_BYOS (for SUSE) <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/windows/hybrid-use-benefit-licensing) <br><br> [Azure Hybrid Use Benefit for Linux Server](https://docs.microsoft.com/azure/virtual-machines/linux/azure-hybrid-benefit-linux) <br><br> Minimum api-version: 2015-06-15 */
+  licenseType?: string;
+  /** Specifies whether the model applied to the virtual machine is the model of the virtual machine scale set or the customized model for the virtual machine. */
+  modelDefinitionApplied?: string;
+  /** Specifies the protection policy of the virtual machine. */
+  protectionPolicy?: VirtualMachineScaleSetVMProtectionPolicy;
+  /** UserData for the VM, which must be base-64 encoded. Customer should not pass any secrets in here. Minimum api-version: 2021-03-01 */
+  userData?: string;
+  /** Specifies the time at which the Virtual Machine resource was created. Minimum api-version: 2021-11-01. */
+  timeCreated?: string;
+  /** Specifies the ARM resource ID of the standalone virtual machine associated with this VMSS VM. This property is only applicable to Virtual Machine Scale Sets with Flexible orchestration mode. Minimum api-version: 2025-11-01. */
+  virtualMachineResourceId?: string;
+  /** Specifies the Interconnect Block related details of a Scale Set VM instance. Minimum api-version: 2026-03-01. */
+  interconnectBlockProfile?: InterconnectBlockProfile;
+  /** Specifies information about the capacity reservation that is used to allocate the virtual machine scale set VM instance. The capacity reservation group is inherited from the parent virtual machine scale set and cannot be changed on the individual scale set VM instance. Minimum api-version: 2026-04-01. */
+  capacityReservation?: CapacityReservationProfile;
+}
+export const VirtualMachineScaleSetVMProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    latestModelApplied: S.optional(S.Boolean),
+    vmId: S.optional(S.String),
+    instanceView: S.optional(VirtualMachineScaleSetVMInstanceView),
+    hardwareProfile: S.optional(HardwareProfile),
+    resilientVMDeletionStatus: S.optional(ResilientVMDeletionStatus),
+    storageProfile: S.optional(StorageProfile),
+    additionalCapabilities: S.optional(AdditionalCapabilities),
+    osProfile: S.optional(OSProfile),
+    securityProfile: S.optional(SecurityProfile),
+    networkProfile: S.optional(NetworkProfile),
+    networkProfileConfiguration: S.optional(
+      VirtualMachineScaleSetVMNetworkProfileConfiguration,
+    ),
+    diagnosticsProfile: S.optional(DiagnosticsProfile),
+    availabilitySet: S.optional(
+      AvailabilitySetPropertiesInputVirtualMachinesItem,
+    ),
+    provisioningState: S.optional(S.String),
+    licenseType: S.optional(S.String),
+    modelDefinitionApplied: S.optional(S.String),
+    protectionPolicy: S.optional(VirtualMachineScaleSetVMProtectionPolicy),
+    userData: S.optional(S.String),
+    timeCreated: S.optional(S.String),
+    virtualMachineResourceId: S.optional(S.String),
+    interconnectBlockProfile: S.optional(InterconnectBlockProfile),
+    capacityReservation: S.optional(CapacityReservationProfile),
+  }),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMProperties",
+}) as any as S.Schema<VirtualMachineScaleSetVMProperties>;
+
+/** The virtual machine child extension resources. */
+export type GetVirtualMachineScaleSetVMResponseResourcesList =
+  Array<VirtualMachineExtension>;
+export const GetVirtualMachineScaleSetVMResponseResourcesList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineExtension,
+  ) as any as S.Schema<GetVirtualMachineScaleSetVMResponseResourcesList>;
+
+/** The virtual machine zones. */
+export type GetVirtualMachineScaleSetVMResponseZonesList = Array<string>;
+export const GetVirtualMachineScaleSetVMResponseZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetVirtualMachineScaleSetVMResponseZonesList>;
+
+export interface GetVirtualMachineScaleSetVMResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVirtualMachineScaleSetVMResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a virtual machine scale set virtual machine. */
+  properties?: VirtualMachineScaleSetVMProperties;
+  /** The virtual machine instance ID. */
+  instanceId?: string;
+  /** The virtual machine SKU. */
+  sku?: Sku;
+  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
+  plan?: Plan;
+  /** The virtual machine child extension resources. */
+  resources?: GetVirtualMachineScaleSetVMResponseResourcesList;
+  /** The virtual machine zones. */
+  zones?: GetVirtualMachineScaleSetVMResponseZonesList;
+  /** The identity of the virtual machine, if configured. */
+  identity?: VirtualMachineIdentity;
+  /** Etag is property returned in Update/Get response of the VMSS VM, so that customer can supply it in the header to ensure optimistic updates. */
+  etag?: string;
+}
+export const GetVirtualMachineScaleSetVMResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetVirtualMachineScaleSetVMResponseTagsMap),
+    location: S.String,
+    properties: S.optional(VirtualMachineScaleSetVMProperties),
+    instanceId: S.optional(S.String),
+    sku: S.optional(Sku),
+    plan: S.optional(Plan),
+    resources: S.optional(GetVirtualMachineScaleSetVMResponseResourcesList),
+    zones: S.optional(GetVirtualMachineScaleSetVMResponseZonesList),
+    identity: S.optional(VirtualMachineIdentity),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetVirtualMachineScaleSetVMResponse",
+}) as any as S.Schema<GetVirtualMachineScaleSetVMResponse>;
+
+export interface GetVirtualMachineScaleSetVMBootDiagnosticsDataRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** Expiration duration in minutes for the SAS URIs with a value between 1 to 1440 minutes. **Note:** If not specified, SAS URIs will be generated with a default expiration duration of 120 minutes. */
+  sasUriExpirationTimeInMinutes?: number;
+}
+export const GetVirtualMachineScaleSetVMBootDiagnosticsDataRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      sasUriExpirationTimeInMinutes: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/retrieveBootDiagnosticsData",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMBootDiagnosticsDataRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMBootDiagnosticsDataRequest>;
+
+export interface GetVirtualMachineScaleSetVMDiagnosticRunCommandRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The name of the VirtualMachineDiagnosticRunCommand */
+  runCommandName: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const GetVirtualMachineScaleSetVMDiagnosticRunCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      runCommandName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands/{runCommandName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMDiagnosticRunCommandRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMDiagnosticRunCommandRequest>;
+
+/** Resource tags. */
+export type GetVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap>;
+
+export interface GetVirtualMachineScaleSetVMDiagnosticRunCommandResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a Virtual Machine diagnostic run command. */
+  properties?: VirtualMachineRunCommandProperties;
+}
+export const GetVirtualMachineScaleSetVMDiagnosticRunCommandResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        GetVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(VirtualMachineRunCommandProperties),
+    }),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMDiagnosticRunCommandResponse",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMDiagnosticRunCommandResponse>;
+
+export interface GetVirtualMachineScaleSetVMExtensionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** The name of the virtual machine extension. */
+  vmExtensionName: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const GetVirtualMachineScaleSetVMExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      vmExtensionName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions/{vmExtensionName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMExtensionRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMExtensionRequest>;
+
+export interface GetVirtualMachineScaleSetVMExtensionResponse {
+  /** Resource Id */
+  id?: string;
+  /** Describes the properties of a Virtual Machine Extension. */
+  properties?: VirtualMachineExtensionProperties;
+  /** The location of the extension. */
+  location?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource name */
+  name?: string;
+}
+export const GetVirtualMachineScaleSetVMExtensionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      properties: S.optional(VirtualMachineExtensionProperties),
+      location: S.optional(S.String),
+      type: S.optional(S.String),
+      name: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMExtensionResponse",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMExtensionResponse>;
+
+export interface GetVirtualMachineScaleSetVMInstanceViewRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const GetVirtualMachineScaleSetVMInstanceViewRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/instanceView",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMInstanceViewRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMInstanceViewRequest>;
+
+export interface GetVirtualMachineScaleSetVMRunCommandRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The name of the VirtualMachineRunCommand */
+  runCommandName: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const GetVirtualMachineScaleSetVMRunCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      runCommandName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands/{runCommandName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMRunCommandRequest",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMRunCommandRequest>;
+
+/** Resource tags. */
+export type GetVirtualMachineScaleSetVMRunCommandResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetVirtualMachineScaleSetVMRunCommandResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetVirtualMachineScaleSetVMRunCommandResponseTagsMap>;
+
+export interface GetVirtualMachineScaleSetVMRunCommandResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVirtualMachineScaleSetVMRunCommandResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a Virtual Machine run command. */
+  properties?: VirtualMachineRunCommandProperties;
+}
+export const GetVirtualMachineScaleSetVMRunCommandResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GetVirtualMachineScaleSetVMRunCommandResponseTagsMap),
+      location: S.String,
+      properties: S.optional(VirtualMachineRunCommandProperties),
+    }),
+  ).annotate({
+    identifier: "GetVirtualMachineScaleSetVMRunCommandResponse",
+  }) as any as S.Schema<GetVirtualMachineScaleSetVMRunCommandResponse>;
+
 /** Resource tags. */
 export type ImagesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -10198,9 +12524,9 @@ export const ImagesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
 
 /** The complex type of the extended location. */
 export type ImagesCreateOrUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 export const ImagesCreateOrUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 
 export interface ImagesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -10218,7 +12544,7 @@ export interface ImagesCreateOrUpdateResponse {
   /** Describes the properties of an Image. */
   properties?: ImageProperties;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
 }
 export const ImagesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10229,11 +12555,331 @@ export const ImagesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(ImagesCreateOrUpdateResponseTagsMap),
     location: S.String,
     properties: S.optional(ImageProperties),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
   }),
 ).annotate({
   identifier: "ImagesCreateOrUpdateResponse",
 }) as any as S.Schema<ImagesCreateOrUpdateResponse>;
+
+/** Defines when it is acceptable to reboot a VM during a software update operation. */
+export type VMGuestPatchRebootSetting = "IfRequired" | "Never" | "Always";
+export const VMGuestPatchRebootSetting = /*@__PURE__*/ S.String;
+
+export type VMGuestPatchClassificationWindows =
+  | "Critical"
+  | "Security"
+  | "UpdateRollUp"
+  | "FeaturePack"
+  | "ServicePack"
+  | "Definition"
+  | "Tools"
+  | "Updates";
+export const VMGuestPatchClassificationWindows = /*@__PURE__*/ S.String;
+
+/** The update classifications to select when installing patches for Windows. */
+export type WindowsParametersClassificationsToIncludeList = Array<
+  VMGuestPatchClassificationWindows | (string & {})
+>;
+export const WindowsParametersClassificationsToIncludeList =
+  /*@__PURE__*/ S.Array(
+    VMGuestPatchClassificationWindows,
+  ) as any as S.Schema<WindowsParametersClassificationsToIncludeList>;
+
+/** Kbs to include in the patch operation */
+export type WindowsParametersKbNumbersToIncludeList = Array<string>;
+export const WindowsParametersKbNumbersToIncludeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WindowsParametersKbNumbersToIncludeList>;
+
+/** Kbs to exclude in the patch operation */
+export type WindowsParametersKbNumbersToExcludeList = Array<string>;
+export const WindowsParametersKbNumbersToExcludeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WindowsParametersKbNumbersToExcludeList>;
+
+/** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+export type WindowsParametersPatchNameMasksToIncludeList = Array<string>;
+export const WindowsParametersPatchNameMasksToIncludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WindowsParametersPatchNameMasksToIncludeList>;
+
+/** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+export type WindowsParametersPatchNameMasksToExcludeList = Array<string>;
+export const WindowsParametersPatchNameMasksToExcludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WindowsParametersPatchNameMasksToExcludeList>;
+
+/** Input for InstallPatches on a Windows VM, as directly received by the API */
+export interface WindowsParameters {
+  /** The update classifications to select when installing patches for Windows. */
+  classificationsToInclude?: WindowsParametersClassificationsToIncludeList;
+  /** Kbs to include in the patch operation */
+  kbNumbersToInclude?: WindowsParametersKbNumbersToIncludeList;
+  /** Kbs to exclude in the patch operation */
+  kbNumbersToExclude?: WindowsParametersKbNumbersToExcludeList;
+  /** Filters out Kbs that don't have an InstallationRebootBehavior of 'NeverReboots' when this is set to true. */
+  excludeKbsRequiringReboot?: boolean;
+  /** This is used to install patches that were published on or before this given max published date. */
+  maxPatchPublishDate?: string;
+  /** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+  patchNameMasksToInclude?: WindowsParametersPatchNameMasksToIncludeList;
+  /** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+  patchNameMasksToExclude?: WindowsParametersPatchNameMasksToExcludeList;
+}
+export const WindowsParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    classificationsToInclude: S.optional(
+      WindowsParametersClassificationsToIncludeList,
+    ),
+    kbNumbersToInclude: S.optional(WindowsParametersKbNumbersToIncludeList),
+    kbNumbersToExclude: S.optional(WindowsParametersKbNumbersToExcludeList),
+    excludeKbsRequiringReboot: S.optional(S.Boolean),
+    maxPatchPublishDate: S.optional(S.String),
+    patchNameMasksToInclude: S.optional(
+      WindowsParametersPatchNameMasksToIncludeList,
+    ),
+    patchNameMasksToExclude: S.optional(
+      WindowsParametersPatchNameMasksToExcludeList,
+    ),
+  }),
+).annotate({
+  identifier: "WindowsParameters",
+}) as any as S.Schema<WindowsParameters>;
+
+export type VMGuestPatchClassificationLinux = "Critical" | "Security" | "Other";
+export const VMGuestPatchClassificationLinux = /*@__PURE__*/ S.String;
+
+/** The update classifications to select when installing patches for Linux. */
+export type LinuxParametersClassificationsToIncludeList = Array<
+  VMGuestPatchClassificationLinux | (string & {})
+>;
+export const LinuxParametersClassificationsToIncludeList =
+  /*@__PURE__*/ S.Array(
+    VMGuestPatchClassificationLinux,
+  ) as any as S.Schema<LinuxParametersClassificationsToIncludeList>;
+
+/** packages to include in the patch operation. Format: packageName_packageVersion */
+export type LinuxParametersPackageNameMasksToIncludeList = Array<string>;
+export const LinuxParametersPackageNameMasksToIncludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LinuxParametersPackageNameMasksToIncludeList>;
+
+/** packages to exclude in the patch operation. Format: packageName_packageVersion */
+export type LinuxParametersPackageNameMasksToExcludeList = Array<string>;
+export const LinuxParametersPackageNameMasksToExcludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LinuxParametersPackageNameMasksToExcludeList>;
+
+/** Input for InstallPatches on a Linux VM, as directly received by the API */
+export interface LinuxParameters {
+  /** The update classifications to select when installing patches for Linux. */
+  classificationsToInclude?: LinuxParametersClassificationsToIncludeList;
+  /** packages to include in the patch operation. Format: packageName_packageVersion */
+  packageNameMasksToInclude?: LinuxParametersPackageNameMasksToIncludeList;
+  /** packages to exclude in the patch operation. Format: packageName_packageVersion */
+  packageNameMasksToExclude?: LinuxParametersPackageNameMasksToExcludeList;
+  /** This is used as a maintenance run identifier for Auto VM Guest Patching in Linux. */
+  maintenanceRunId?: string;
+}
+export const LinuxParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    classificationsToInclude: S.optional(
+      LinuxParametersClassificationsToIncludeList,
+    ),
+    packageNameMasksToInclude: S.optional(
+      LinuxParametersPackageNameMasksToIncludeList,
+    ),
+    packageNameMasksToExclude: S.optional(
+      LinuxParametersPackageNameMasksToExcludeList,
+    ),
+    maintenanceRunId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LinuxParameters",
+}) as any as S.Schema<LinuxParameters>;
+
+export interface InstallVirtualMachinePatchesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  vmName: string;
+  /** Specifies the maximum amount of time that the operation will run. It must be an ISO 8601-compliant duration string such as PT4H (4 hours) */
+  maximumDuration?: string;
+  /** Defines when it is acceptable to reboot a VM during a software update operation. */
+  rebootSetting: VMGuestPatchRebootSetting | (string & {});
+  /** Input for InstallPatches on a Windows VM, as directly received by the API */
+  windowsParameters?: WindowsParameters;
+  /** Input for InstallPatches on a Linux VM, as directly received by the API */
+  linuxParameters?: LinuxParameters;
+}
+export const InstallVirtualMachinePatchesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vmName: S.String.pipe(T.Label()),
+    maximumDuration: S.optional(S.String),
+    rebootSetting: VMGuestPatchRebootSetting,
+    windowsParameters: S.optional(WindowsParameters),
+    linuxParameters: S.optional(LinuxParameters),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/installPatches",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "InstallVirtualMachinePatchesRequest",
+}) as any as S.Schema<InstallVirtualMachinePatchesRequest>;
+
+/** The reboot state of the VM following completion of the operation. */
+export type VMGuestPatchRebootStatus =
+  | "Unknown"
+  | "NotNeeded"
+  | "Required"
+  | "Started"
+  | "Failed"
+  | "Completed";
+export const VMGuestPatchRebootStatus = /*@__PURE__*/ S.String;
+
+/** The classification(s) of the patch as provided by the patch publisher. */
+export type PatchInstallationDetailClassificationsList = Array<string>;
+export const PatchInstallationDetailClassificationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PatchInstallationDetailClassificationsList>;
+
+/** The state of the patch after the installation operation completed. */
+export type PatchInstallationState =
+  | "Unknown"
+  | "Installed"
+  | "Failed"
+  | "Excluded"
+  | "NotSelected"
+  | "Pending";
+export const PatchInstallationState = /*@__PURE__*/ S.String;
+
+/** Information about a specific patch that was encountered during an installation action. */
+export interface PatchInstallationDetail {
+  /** A unique identifier for the patch. */
+  patchId?: string;
+  /** The friendly name of the patch. */
+  name?: string;
+  /** The version string of the package. It may conform to Semantic Versioning. Only applies to Linux. */
+  version?: string;
+  /** The KBID of the patch. Only applies to Windows patches. */
+  kbId?: string;
+  /** The classification(s) of the patch as provided by the patch publisher. */
+  classifications?: PatchInstallationDetailClassificationsList;
+  /** The state of the patch after the installation operation completed. */
+  installationState?: PatchInstallationState;
+}
+export const PatchInstallationDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    patchId: S.optional(S.String),
+    name: S.optional(S.String),
+    version: S.optional(S.String),
+    kbId: S.optional(S.String),
+    classifications: S.optional(PatchInstallationDetailClassificationsList),
+    installationState: S.optional(PatchInstallationState),
+  }),
+).annotate({
+  identifier: "PatchInstallationDetail",
+}) as any as S.Schema<PatchInstallationDetail>;
+
+/** The patches that were installed during the operation. */
+export type VirtualMachineInstallPatchesResultPatchesList =
+  Array<PatchInstallationDetail>;
+export const VirtualMachineInstallPatchesResultPatchesList =
+  /*@__PURE__*/ S.Array(
+    PatchInstallationDetail,
+  ) as any as S.Schema<VirtualMachineInstallPatchesResultPatchesList>;
+
+/** The Api error details */
+export type VirtualMachineInstallPatchesResultErrorDetailsList =
+  Array<ApiErrorBase>;
+export const VirtualMachineInstallPatchesResultErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ApiErrorBase,
+  ) as any as S.Schema<VirtualMachineInstallPatchesResultErrorDetailsList>;
+
+/** Api error. */
+export interface VirtualMachineInstallPatchesResultError {
+  /** The Api error details */
+  details?: VirtualMachineInstallPatchesResultErrorDetailsList;
+  /** The Api inner error */
+  innererror?: InnerError;
+  /** The error code. */
+  code?: string;
+  /** The target of the particular error. */
+  target?: string;
+  /** The error message. */
+  message?: string;
+}
+export const VirtualMachineInstallPatchesResultError = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      details: S.optional(VirtualMachineInstallPatchesResultErrorDetailsList),
+      innererror: S.optional(InnerError),
+      code: S.optional(S.String),
+      target: S.optional(S.String),
+      message: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "VirtualMachineInstallPatchesResultError",
+}) as any as S.Schema<VirtualMachineInstallPatchesResultError>;
+
+/** The result summary of an installation operation. */
+export interface VirtualMachineInstallPatchesResult {
+  /** The overall success or failure status of the operation. It remains "InProgress" until the operation completes. At that point it will become "Failed", "Succeeded", "Unknown" or "CompletedWithWarnings." */
+  status?: PatchOperationStatus;
+  /** The activity ID of the operation that produced this result. It is used to correlate across CRP and extension logs. */
+  installationActivityId?: string;
+  /** The reboot state of the VM following completion of the operation. */
+  rebootStatus?: VMGuestPatchRebootStatus;
+  /** Whether the operation ran out of time before it completed all its intended actions. */
+  maintenanceWindowExceeded?: boolean;
+  /** The number of patches that were not installed due to the user blocking their installation. */
+  excludedPatchCount?: number;
+  /** The number of patches that were detected as available for install, but did not meet the operation's criteria. */
+  notSelectedPatchCount?: number;
+  /** The number of patches that were identified as meeting the installation criteria, but were not able to be installed. Typically this happens when maintenanceWindowExceeded == true. */
+  pendingPatchCount?: number;
+  /** The number of patches successfully installed. */
+  installedPatchCount?: number;
+  /** The number of patches that could not be installed due to some issue. See errors for details. */
+  failedPatchCount?: number;
+  /** The patches that were installed during the operation. */
+  patches?: VirtualMachineInstallPatchesResultPatchesList;
+  /** The UTC timestamp when the operation began. */
+  startDateTime?: string;
+  /** Api error. */
+  error?: VirtualMachineInstallPatchesResultError;
+}
+export const VirtualMachineInstallPatchesResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PatchOperationStatus),
+    installationActivityId: S.optional(S.String),
+    rebootStatus: S.optional(VMGuestPatchRebootStatus),
+    maintenanceWindowExceeded: S.optional(S.Boolean),
+    excludedPatchCount: S.optional(S.Number),
+    notSelectedPatchCount: S.optional(S.Number),
+    pendingPatchCount: S.optional(S.Number),
+    installedPatchCount: S.optional(S.Number),
+    failedPatchCount: S.optional(S.Number),
+    patches: S.optional(VirtualMachineInstallPatchesResultPatchesList),
+    startDateTime: S.optional(S.String),
+    error: S.optional(VirtualMachineInstallPatchesResultError),
+  }),
+).annotate({
+  identifier: "VirtualMachineInstallPatchesResult",
+}) as any as S.Schema<VirtualMachineInstallPatchesResult>;
 
 /** Resource tags. */
 export type InterconnectBlocksCreateOrUpdateRequestTagsMap = {
@@ -10550,10 +13196,10 @@ export const ListAvailabilitySetsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAvailabilitySetsRequest",
 }) as any as S.Schema<ListAvailabilitySetsRequest>;
 
-export type CapacityReservationsListByCapacityReservationGroupRequestExpand =
+export type ListCapacityReservationByCapacityReservationGroupRequestExpand =
   | "virtualMachineScaleSetVMs/$ref"
   | "virtualMachines/$ref";
-export const CapacityReservationsListByCapacityReservationGroupRequestExpand =
+export const ListCapacityReservationByCapacityReservationGroupRequestExpand =
   /*@__PURE__*/ S.String;
 
 export interface ListCapacityReservationByCapacityReservationGroupRequest {
@@ -10565,7 +13211,7 @@ export interface ListCapacityReservationByCapacityReservationGroupRequest {
   capacityReservationGroupName: string;
   /** The expand expression to apply on the operation. Based on the expand param(s) specified we return Virtual Machine or ScaleSet VM Instance or both resource Ids which are associated to capacity reservation group in the response. */
   _expand?:
-    | CapacityReservationsListByCapacityReservationGroupRequestExpand
+    | ListCapacityReservationByCapacityReservationGroupRequestExpand
     | (string & {});
 }
 export const ListCapacityReservationByCapacityReservationGroupRequest =
@@ -10575,7 +13221,7 @@ export const ListCapacityReservationByCapacityReservationGroupRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       capacityReservationGroupName: S.String.pipe(T.Label()),
       _expand: S.optional(
-        CapacityReservationsListByCapacityReservationGroupRequestExpand.pipe(
+        ListCapacityReservationByCapacityReservationGroupRequestExpand.pipe(
           T.Query("$expand"),
         ),
       ),
@@ -10663,10 +13309,10 @@ export const CapacityReservationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapacityReservationListResult",
 }) as any as S.Schema<CapacityReservationListResult>;
 
-export type CapacityReservationGroupsListByResourceGroupRequestExpand =
+export type ListCapacityReservationGroupByResourceGroupRequestExpand =
   | "virtualMachineScaleSetVMs/$ref"
   | "virtualMachines/$ref";
-export const CapacityReservationGroupsListByResourceGroupRequestExpand =
+export const ListCapacityReservationGroupByResourceGroupRequestExpand =
   /*@__PURE__*/ S.String;
 
 export interface ListCapacityReservationGroupByResourceGroupRequest {
@@ -10676,7 +13322,7 @@ export interface ListCapacityReservationGroupByResourceGroupRequest {
   resourceGroupName: string;
   /** The expand expression to apply on the operation. Based on the expand param(s) specified we return Virtual Machine or ScaleSet VM Instance or both resource Ids which are associated to capacity reservation group in the response. */
   _expand?:
-    | CapacityReservationGroupsListByResourceGroupRequestExpand
+    | ListCapacityReservationGroupByResourceGroupRequestExpand
     | (string & {});
 }
 export const ListCapacityReservationGroupByResourceGroupRequest =
@@ -10685,7 +13331,7 @@ export const ListCapacityReservationGroupByResourceGroupRequest =
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       _expand: S.optional(
-        CapacityReservationGroupsListByResourceGroupRequestExpand.pipe(
+        ListCapacityReservationGroupByResourceGroupRequestExpand.pipe(
           T.Query("$expand"),
         ),
       ),
@@ -10774,17 +13420,17 @@ export const CapacityReservationGroupListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapacityReservationGroupListResult",
 }) as any as S.Schema<CapacityReservationGroupListResult>;
 
-export type CapacityReservationGroupsListBySubscriptionRequestExpand =
+export type ListCapacityReservationGroupBySubscriptionRequestExpand =
   | "virtualMachineScaleSetVMs/$ref"
   | "virtualMachines/$ref";
-export const CapacityReservationGroupsListBySubscriptionRequestExpand =
+export const ListCapacityReservationGroupBySubscriptionRequestExpand =
   /*@__PURE__*/ S.String;
 
-export type CapacityReservationGroupsListBySubscriptionRequestResourceIdsOnly =
+export type ListCapacityReservationGroupBySubscriptionRequestResourceIdsOnly =
   | "CreatedInSubscription"
   | "SharedWithSubscription"
   | "All";
-export const CapacityReservationGroupsListBySubscriptionRequestResourceIdsOnly =
+export const ListCapacityReservationGroupBySubscriptionRequestResourceIdsOnly =
   /*@__PURE__*/ S.String;
 
 export interface ListCapacityReservationGroupBySubscriptionRequest {
@@ -10792,11 +13438,11 @@ export interface ListCapacityReservationGroupBySubscriptionRequest {
   subscriptionId: string;
   /** The expand expression to apply on the operation. Based on the expand param(s) specified we return Virtual Machine or ScaleSet VM Instance or both resource Ids which are associated to capacity reservation group in the response. */
   _expand?:
-    | CapacityReservationGroupsListBySubscriptionRequestExpand
+    | ListCapacityReservationGroupBySubscriptionRequestExpand
     | (string & {});
   /** The query option to fetch Capacity Reservation Group Resource Ids. <br> 'CreatedInSubscription' enables fetching Resource Ids for all capacity reservation group resources created in the subscription. <br> 'SharedWithSubscription' enables fetching Resource Ids for all capacity reservation group resources shared with the subscription. <br> 'All' enables fetching Resource Ids for all capacity reservation group resources shared with the subscription and created in the subscription. */
   resourceIdsOnly?:
-    | CapacityReservationGroupsListBySubscriptionRequestResourceIdsOnly
+    | ListCapacityReservationGroupBySubscriptionRequestResourceIdsOnly
     | (string & {});
 }
 export const ListCapacityReservationGroupBySubscriptionRequest =
@@ -10804,12 +13450,12 @@ export const ListCapacityReservationGroupBySubscriptionRequest =
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       _expand: S.optional(
-        CapacityReservationGroupsListBySubscriptionRequestExpand.pipe(
+        ListCapacityReservationGroupBySubscriptionRequestExpand.pipe(
           T.Query("$expand"),
         ),
       ),
       resourceIdsOnly: S.optional(
-        CapacityReservationGroupsListBySubscriptionRequestResourceIdsOnly.pipe(
+        ListCapacityReservationGroupBySubscriptionRequestResourceIdsOnly.pipe(
           T.Query(),
         ),
       ),
@@ -11202,8 +13848,8 @@ export const ImageTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ImageTagsMap>;
 
 /** The complex type of the extended location. */
-export type ImageExtendedLocation = ImagesGetResponseExtendedLocation;
-export const ImageExtendedLocation = ImagesGetResponseExtendedLocation;
+export type ImageExtendedLocation = GetImageResponseExtendedLocation;
+export const ImageExtendedLocation = GetImageResponseExtendedLocation;
 
 /** The source user image virtual hard disk. The virtual hard disk will be copied before being attached to the virtual machine. If SourceImage is provided, the destination virtual hard drive must not exist. */
 export interface Image {
@@ -11222,7 +13868,7 @@ export interface Image {
   /** Describes the properties of an Image. */
   properties?: ImageProperties;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
 }
 export const Image = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11233,7 +13879,7 @@ export const Image = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(ImageTagsMap),
     location: S.String,
     properties: S.optional(ImageProperties),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
   }),
 ).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
 
@@ -11464,20 +14110,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -11599,13 +14245,118 @@ export const ListProximityPlacementGroupBySubscriptionRequest =
     identifier: "ListProximityPlacementGroupBySubscriptionRequest",
   }) as any as S.Schema<ListProximityPlacementGroupBySubscriptionRequest>;
 
-export interface ListSshPublicKeyByResourceGroupRequest {
+export interface ListRestorePointCollectionAllRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListRestorePointCollectionAllRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/restorePointCollections",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListRestorePointCollectionAllRequest",
+}) as any as S.Schema<ListRestorePointCollectionAllRequest>;
+
+/** Resource tags. */
+export type RestorePointCollectionTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RestorePointCollectionTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RestorePointCollectionTagsMap>;
+
+/** Create or update Restore Point collection parameters. */
+export interface RestorePointCollection {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: RestorePointCollectionTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The restore point collection properties. */
+  properties?: RestorePointCollectionProperties;
+}
+export const RestorePointCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(RestorePointCollectionTagsMap),
+    location: S.String,
+    properties: S.optional(RestorePointCollectionProperties),
+  }),
+).annotate({
+  identifier: "RestorePointCollection",
+}) as any as S.Schema<RestorePointCollection>;
+
+/** Gets the list of restore point collections. */
+export type RestorePointCollectionListResultValueList =
+  Array<RestorePointCollection>;
+export const RestorePointCollectionListResultValueList = /*@__PURE__*/ S.Array(
+  RestorePointCollection,
+) as any as S.Schema<RestorePointCollectionListResultValueList>;
+
+/** The List restore point collection operation response. */
+export interface RestorePointCollectionListResult {
+  /** Gets the list of restore point collections. */
+  value: RestorePointCollectionListResultValueList;
+  /** The uri to fetch the next page of RestorePointCollections. Call ListNext() with this to fetch the next page of RestorePointCollections. */
+  nextLink?: string;
+}
+export const RestorePointCollectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RestorePointCollectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RestorePointCollectionListResult",
+}) as any as S.Schema<RestorePointCollectionListResult>;
+
+export interface ListRestorePointCollectionsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListSshPublicKeyByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListRestorePointCollectionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRestorePointCollectionsRequest",
+}) as any as S.Schema<ListRestorePointCollectionsRequest>;
+
+export interface ListSshPublicKeysByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSshPublicKeysByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11619,8 +14370,8 @@ export const ListSshPublicKeyByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSshPublicKeyByResourceGroupRequest",
-}) as any as S.Schema<ListSshPublicKeyByResourceGroupRequest>;
+  identifier: "ListSshPublicKeysByResourceGroupRequest",
+}) as any as S.Schema<ListSshPublicKeysByResourceGroupRequest>;
 
 /** Resource tags. */
 export type SshPublicKeyResourceTagsMap = { [key: string]: string | undefined };
@@ -11682,11 +14433,11 @@ export const SshPublicKeysGroupListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SshPublicKeysGroupListResult",
 }) as any as S.Schema<SshPublicKeysGroupListResult>;
 
-export interface ListSshPublicKeyBySubscriptionRequest {
+export interface ListSshPublicKeysBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ListSshPublicKeyBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListSshPublicKeysBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -11699,8 +14450,8 @@ export const ListSshPublicKeyBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListSshPublicKeyBySubscriptionRequest",
-}) as any as S.Schema<ListSshPublicKeyBySubscriptionRequest>;
+  identifier: "ListSshPublicKeysBySubscriptionRequest",
+}) as any as S.Schema<ListSshPublicKeysBySubscriptionRequest>;
 
 export interface ListUsageRequest {
   /** The ID of the target subscription. */
@@ -11784,8 +14535,8 @@ export const ListUsagesResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUsagesResult",
 }) as any as S.Schema<ListUsagesResult>;
 
-export type VirtualMachinesListAllRequestExpand = "instanceView";
-export const VirtualMachinesListAllRequestExpand = /*@__PURE__*/ S.String;
+export type ListVirtualMachineAllRequestExpand = "instanceView";
+export const ListVirtualMachineAllRequestExpand = /*@__PURE__*/ S.String;
 
 export interface ListVirtualMachineAllRequest {
   /** The ID of the target subscription. */
@@ -11795,7 +14546,7 @@ export interface ListVirtualMachineAllRequest {
   /** The system query option to filter VMs returned in the response. Allowed value is 'virtualMachineScaleSet/id' eq /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}' */
   _filter?: string;
   /** The expand expression to apply on operation. 'instanceView' enables fetching run time status of all Virtual Machines, this can only be specified if a valid $filter option is specified */
-  _expand?: VirtualMachinesListAllRequestExpand | (string & {});
+  _expand?: ListVirtualMachineAllRequestExpand | (string & {});
 }
 export const ListVirtualMachineAllRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11803,7 +14554,7 @@ export const ListVirtualMachineAllRequest = /*@__PURE__*/ S.suspend(() =>
     statusOnly: S.optional(S.String.pipe(T.Query())),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
     _expand: S.optional(
-      VirtualMachinesListAllRequestExpand.pipe(T.Query("$expand")),
+      ListVirtualMachineAllRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -11837,8 +14588,8 @@ export const VirtualMachineZonesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<VirtualMachineZonesList>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineExtendedLocation = ImagesGetResponseExtendedLocation;
-export const VirtualMachineExtendedLocation = ImagesGetResponseExtendedLocation;
+export type VirtualMachineExtendedLocation = GetImageResponseExtendedLocation;
+export const VirtualMachineExtendedLocation = GetImageResponseExtendedLocation;
 
 /** Describes a Virtual Machine. */
 export interface VirtualMachine {
@@ -11865,7 +14616,7 @@ export interface VirtualMachine {
   /** The availability zones. */
   zones?: VirtualMachineZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** ManagedBy is set to Virtual Machine Scale Set(VMSS) flex ARM resourceID, if the VM is part of the VMSS. This property is used by platform for internal resource group delete optimization. */
   managedBy?: string;
   /** Etag is property returned in Create/Update/Get response of the VM, so that customer can supply it in the header to ensure optimistic updates. */
@@ -11886,7 +14637,7 @@ export const VirtualMachine = /*@__PURE__*/ S.suspend(() =>
     resources: S.optional(VirtualMachineResourcesList),
     identity: S.optional(VirtualMachineIdentity),
     zones: S.optional(VirtualMachineZonesList),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
     managedBy: S.optional(S.String),
     etag: S.optional(S.String),
     placement: S.optional(Placement),
@@ -11963,101 +14714,6 @@ export const ListVirtualMachineByLocationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVirtualMachineByLocationRequest",
 }) as any as S.Schema<ListVirtualMachineByLocationRequest>;
 
-export interface ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachine */
-  vmName: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/diagnosticRunCommands",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineRequest",
-  }) as any as S.Schema<ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineRequest>;
-
-/** Resource tags. */
-export type VirtualMachineDiagnosticRunCommandTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineDiagnosticRunCommandTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualMachineDiagnosticRunCommandTagsMap>;
-
-/** Describes a Virtual Machine diagnostic run command. */
-export interface VirtualMachineDiagnosticRunCommand {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineDiagnosticRunCommandTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a Virtual Machine diagnostic run command. */
-  properties?: VirtualMachineRunCommandProperties;
-}
-export const VirtualMachineDiagnosticRunCommand = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachineDiagnosticRunCommandTagsMap),
-    location: S.String,
-    properties: S.optional(VirtualMachineRunCommandProperties),
-  }),
-).annotate({
-  identifier: "VirtualMachineDiagnosticRunCommand",
-}) as any as S.Schema<VirtualMachineDiagnosticRunCommand>;
-
-/** The list of diagnostic run commands. */
-export type VirtualMachineDiagnosticRunCommandsListResultValueList =
-  Array<VirtualMachineDiagnosticRunCommand>;
-export const VirtualMachineDiagnosticRunCommandsListResultValueList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineDiagnosticRunCommand,
-  ) as any as S.Schema<VirtualMachineDiagnosticRunCommandsListResultValueList>;
-
-/** The List diagnostic run command operation response */
-export interface VirtualMachineDiagnosticRunCommandsListResult {
-  /** The list of diagnostic run commands. */
-  value: VirtualMachineDiagnosticRunCommandsListResultValueList;
-  /** The uri to fetch the next page of diagnostic run commands. */
-  nextLink?: string;
-}
-export const VirtualMachineDiagnosticRunCommandsListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: VirtualMachineDiagnosticRunCommandsListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineDiagnosticRunCommandsListResult",
-  }) as any as S.Schema<VirtualMachineDiagnosticRunCommandsListResult>;
-
 export interface ListVirtualMachineExtensionImageTypesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -12123,27 +14779,27 @@ export const VirtualMachineExtensionImage = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachineExtensionImage",
 }) as any as S.Schema<VirtualMachineExtensionImage>;
 
-export type VirtualMachineExtensionImagesListTypesResponseBodyList =
+export type ListVirtualMachineExtensionImageTypesResponseBodyList =
   Array<VirtualMachineExtensionImage>;
-export const VirtualMachineExtensionImagesListTypesResponseBodyList =
+export const ListVirtualMachineExtensionImageTypesResponseBodyList =
   /*@__PURE__*/ S.Array(
     VirtualMachineExtensionImage,
-  ) as any as S.Schema<VirtualMachineExtensionImagesListTypesResponseBodyList>;
+  ) as any as S.Schema<ListVirtualMachineExtensionImageTypesResponseBodyList>;
 
 export type ListVirtualMachineExtensionImageTypesResponse =
-  VirtualMachineExtensionImagesListTypesResponseBodyList;
+  ListVirtualMachineExtensionImageTypesResponseBodyList;
 export const ListVirtualMachineExtensionImageTypesResponse =
   /*@__PURE__*/ S.suspend(() =>
-    VirtualMachineExtensionImagesListTypesResponseBodyList.pipe(
+    ListVirtualMachineExtensionImageTypesResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
     identifier: "ListVirtualMachineExtensionImageTypesResponse",
   }) as any as S.Schema<ListVirtualMachineExtensionImageTypesResponse>;
 
-export type VirtualMachineExtensionImagesListVersionsRequestExpand =
+export type ListVirtualMachineExtensionImageVersionsRequestExpand =
   "properties";
-export const VirtualMachineExtensionImagesListVersionsRequestExpand =
+export const ListVirtualMachineExtensionImageVersionsRequestExpand =
   /*@__PURE__*/ S.String;
 
 export interface ListVirtualMachineExtensionImageVersionsRequest {
@@ -12159,7 +14815,7 @@ export interface ListVirtualMachineExtensionImageVersionsRequest {
   _orderby?: string;
   /** Expand the response to include additional read-only metadata. Allowed values: `properties` — returns extended metadata (`releaseCategory`, `urgencyLevel`, `runProfile`). */
   _expand?:
-    | VirtualMachineExtensionImagesListVersionsRequestExpand
+    | ListVirtualMachineExtensionImageVersionsRequestExpand
     | (string & {});
 }
 export const ListVirtualMachineExtensionImageVersionsRequest =
@@ -12173,7 +14829,7 @@ export const ListVirtualMachineExtensionImageVersionsRequest =
       _top: S.optional(S.Number.pipe(T.Query("$top"))),
       _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
       _expand: S.optional(
-        VirtualMachineExtensionImagesListVersionsRequestExpand.pipe(
+        ListVirtualMachineExtensionImageVersionsRequestExpand.pipe(
           T.Query("$expand"),
         ),
       ),
@@ -12189,18 +14845,18 @@ export const ListVirtualMachineExtensionImageVersionsRequest =
     identifier: "ListVirtualMachineExtensionImageVersionsRequest",
   }) as any as S.Schema<ListVirtualMachineExtensionImageVersionsRequest>;
 
-export type VirtualMachineExtensionImagesListVersionsResponseBodyList =
+export type ListVirtualMachineExtensionImageVersionsResponseBodyList =
   Array<VirtualMachineExtensionImage>;
-export const VirtualMachineExtensionImagesListVersionsResponseBodyList =
+export const ListVirtualMachineExtensionImageVersionsResponseBodyList =
   /*@__PURE__*/ S.Array(
     VirtualMachineExtensionImage,
-  ) as any as S.Schema<VirtualMachineExtensionImagesListVersionsResponseBodyList>;
+  ) as any as S.Schema<ListVirtualMachineExtensionImageVersionsResponseBodyList>;
 
 export type ListVirtualMachineExtensionImageVersionsResponse =
-  VirtualMachineExtensionImagesListVersionsResponseBodyList;
+  ListVirtualMachineExtensionImageVersionsResponseBodyList;
 export const ListVirtualMachineExtensionImageVersionsResponse =
   /*@__PURE__*/ S.suspend(() =>
-    VirtualMachineExtensionImagesListVersionsResponseBodyList.pipe(
+    ListVirtualMachineExtensionImageVersionsResponseBodyList.pipe(
       T.RawResponseRoot(),
     ),
   ).annotate({
@@ -12244,17 +14900,17 @@ export const VirtualMachineExtensionsListResultValueList =
   ) as any as S.Schema<VirtualMachineExtensionsListResultValueList>;
 
 /** The List Extension operation response */
-export interface ListVirtualMachineExtensionsResult {
+export interface VirtualMachineExtensionsListResult {
   /** The list of extensions */
   value?: VirtualMachineExtensionsListResultValueList;
 }
-export const ListVirtualMachineExtensionsResult = /*@__PURE__*/ S.suspend(() =>
+export const VirtualMachineExtensionsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(VirtualMachineExtensionsListResultValueList),
   }),
 ).annotate({
-  identifier: "ListVirtualMachineExtensionsResult",
-}) as any as S.Schema<ListVirtualMachineExtensionsResult>;
+  identifier: "VirtualMachineExtensionsListResult",
+}) as any as S.Schema<VirtualMachineExtensionsListResult>;
 
 export interface ListVirtualMachineImageByEdgeZoneRequest {
   /** The ID of the target subscription. */
@@ -12293,9 +14949,9 @@ export const VirtualMachineImageResourceTagsMap = /*@__PURE__*/ S.Record(
 
 /** The complex type of the extended location. */
 export type VirtualMachineImageResourceExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 export const VirtualMachineImageResourceExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 
 /** Virtual machine image resource information. */
 export interface VirtualMachineImageResource {
@@ -12308,7 +14964,7 @@ export interface VirtualMachineImageResource {
   /** Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). */
   tags?: VirtualMachineImageResourceTagsMap;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
 }
 export const VirtualMachineImageResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12316,7 +14972,7 @@ export const VirtualMachineImageResource = /*@__PURE__*/ S.suspend(() =>
     name: S.String,
     location: S.String,
     tags: S.optional(VirtualMachineImageResourceTagsMap),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
   }),
 ).annotate({
   identifier: "VirtualMachineImageResource",
@@ -12345,207 +15001,6 @@ export const VmImagesInEdgeZoneListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmImagesInEdgeZoneListResult",
 }) as any as S.Schema<VmImagesInEdgeZoneListResult>;
 
-export interface ListVirtualMachineImageEdgeZoneRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the edge zone. */
-  edgeZone: string;
-  /** A valid image publisher. */
-  publisherName: string;
-  /** A valid image publisher offer. */
-  offer: string;
-  /** A valid image SKU. */
-  skus: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-  /** An integer value specifying the number of images to return that matches supplied values. */
-  _top?: number;
-  /** Specifies the order of the results returned. Formatted as an OData query. */
-  _orderby?: string;
-}
-export const ListVirtualMachineImageEdgeZoneRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      edgeZone: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      offer: S.String.pipe(T.Label()),
-      skus: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "ListVirtualMachineImageEdgeZoneRequest",
-}) as any as S.Schema<ListVirtualMachineImageEdgeZoneRequest>;
-
-export type VirtualMachineImagesEdgeZoneListResponseBodyList =
-  Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesEdgeZoneListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineImageResource,
-  ) as any as S.Schema<VirtualMachineImagesEdgeZoneListResponseBodyList>;
-
-export type ListVirtualMachineImageEdgeZoneResponse =
-  VirtualMachineImagesEdgeZoneListResponseBodyList;
-export const ListVirtualMachineImageEdgeZoneResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    VirtualMachineImagesEdgeZoneListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListVirtualMachineImageEdgeZoneResponse",
-}) as any as S.Schema<ListVirtualMachineImageEdgeZoneResponse>;
-
-export interface ListVirtualMachineImageEdgeZoneOffersRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the edge zone. */
-  edgeZone: string;
-  /** A valid image publisher. */
-  publisherName: string;
-}
-export const ListVirtualMachineImageEdgeZoneOffersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      edgeZone: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers/{publisherName}/artifacttypes/vmimage/offers",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListVirtualMachineImageEdgeZoneOffersRequest",
-  }) as any as S.Schema<ListVirtualMachineImageEdgeZoneOffersRequest>;
-
-export type VirtualMachineImagesEdgeZoneListOffersResponseBodyList =
-  Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesEdgeZoneListOffersResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineImageResource,
-  ) as any as S.Schema<VirtualMachineImagesEdgeZoneListOffersResponseBodyList>;
-
-export type ListVirtualMachineImageEdgeZoneOffersResponse =
-  VirtualMachineImagesEdgeZoneListOffersResponseBodyList;
-export const ListVirtualMachineImageEdgeZoneOffersResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    VirtualMachineImagesEdgeZoneListOffersResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "ListVirtualMachineImageEdgeZoneOffersResponse",
-  }) as any as S.Schema<ListVirtualMachineImageEdgeZoneOffersResponse>;
-
-export interface ListVirtualMachineImageEdgeZonePublishersRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the edge zone. */
-  edgeZone: string;
-}
-export const ListVirtualMachineImageEdgeZonePublishersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      edgeZone: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListVirtualMachineImageEdgeZonePublishersRequest",
-  }) as any as S.Schema<ListVirtualMachineImageEdgeZonePublishersRequest>;
-
-export type VirtualMachineImagesEdgeZoneListPublishersResponseBodyList =
-  Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesEdgeZoneListPublishersResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineImageResource,
-  ) as any as S.Schema<VirtualMachineImagesEdgeZoneListPublishersResponseBodyList>;
-
-export type ListVirtualMachineImageEdgeZonePublishersResponse =
-  VirtualMachineImagesEdgeZoneListPublishersResponseBodyList;
-export const ListVirtualMachineImageEdgeZonePublishersResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    VirtualMachineImagesEdgeZoneListPublishersResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "ListVirtualMachineImageEdgeZonePublishersResponse",
-  }) as any as S.Schema<ListVirtualMachineImageEdgeZonePublishersResponse>;
-
-export interface ListVirtualMachineImageEdgeZoneSkusRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the edge zone. */
-  edgeZone: string;
-  /** A valid image publisher. */
-  publisherName: string;
-  /** A valid image publisher offer. */
-  offer: string;
-}
-export const ListVirtualMachineImageEdgeZoneSkusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      edgeZone: S.String.pipe(T.Label()),
-      publisherName: S.String.pipe(T.Label()),
-      offer: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ListVirtualMachineImageEdgeZoneSkusRequest",
-  }) as any as S.Schema<ListVirtualMachineImageEdgeZoneSkusRequest>;
-
-export type VirtualMachineImagesEdgeZoneListSkusResponseBodyList =
-  Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesEdgeZoneListSkusResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineImageResource,
-  ) as any as S.Schema<VirtualMachineImagesEdgeZoneListSkusResponseBodyList>;
-
-export type ListVirtualMachineImageEdgeZoneSkusResponse =
-  VirtualMachineImagesEdgeZoneListSkusResponseBodyList;
-export const ListVirtualMachineImageEdgeZoneSkusResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    VirtualMachineImagesEdgeZoneListSkusResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "ListVirtualMachineImageEdgeZoneSkusResponse",
-  }) as any as S.Schema<ListVirtualMachineImageEdgeZoneSkusResponse>;
-
 export interface ListVirtualMachineImageOffersRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -12572,18 +15027,17 @@ export const ListVirtualMachineImageOffersRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListVirtualMachineImageOffersRequest",
 }) as any as S.Schema<ListVirtualMachineImageOffersRequest>;
 
-export type VirtualMachineImagesListOffersResponseBodyList =
+export type ListVirtualMachineImageOffersResponseBodyList =
   Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesListOffersResponseBodyList =
+export const ListVirtualMachineImageOffersResponseBodyList =
   /*@__PURE__*/ S.Array(
     VirtualMachineImageResource,
-  ) as any as S.Schema<VirtualMachineImagesListOffersResponseBodyList>;
+  ) as any as S.Schema<ListVirtualMachineImageOffersResponseBodyList>;
 
 export type ListVirtualMachineImageOffersResponse =
-  VirtualMachineImagesListOffersResponseBodyList;
+  ListVirtualMachineImageOffersResponseBodyList;
 export const ListVirtualMachineImageOffersResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    VirtualMachineImagesListOffersResponseBodyList.pipe(T.RawResponseRoot()),
+  () => ListVirtualMachineImageOffersResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListVirtualMachineImageOffersResponse",
 }) as any as S.Schema<ListVirtualMachineImageOffersResponse>;
@@ -12611,20 +15065,18 @@ export const ListVirtualMachineImagePublishersRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListVirtualMachineImagePublishersRequest",
 }) as any as S.Schema<ListVirtualMachineImagePublishersRequest>;
 
-export type VirtualMachineImagesListPublishersResponseBodyList =
+export type ListVirtualMachineImagePublishersResponseBodyList =
   Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesListPublishersResponseBodyList =
+export const ListVirtualMachineImagePublishersResponseBodyList =
   /*@__PURE__*/ S.Array(
     VirtualMachineImageResource,
-  ) as any as S.Schema<VirtualMachineImagesListPublishersResponseBodyList>;
+  ) as any as S.Schema<ListVirtualMachineImagePublishersResponseBodyList>;
 
 export type ListVirtualMachineImagePublishersResponse =
-  VirtualMachineImagesListPublishersResponseBodyList;
+  ListVirtualMachineImagePublishersResponseBodyList;
 export const ListVirtualMachineImagePublishersResponse =
   /*@__PURE__*/ S.suspend(() =>
-    VirtualMachineImagesListPublishersResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
+    ListVirtualMachineImagePublishersResponseBodyList.pipe(T.RawResponseRoot()),
   ).annotate({
     identifier: "ListVirtualMachineImagePublishersResponse",
   }) as any as S.Schema<ListVirtualMachineImagePublishersResponse>;
@@ -12667,19 +15119,220 @@ export const ListVirtualMachineImagesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVirtualMachineImagesRequest",
 }) as any as S.Schema<ListVirtualMachineImagesRequest>;
 
-export type VirtualMachineImagesListResponseBodyList =
+export type ListVirtualMachineImagesResponseBodyList =
   Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesListResponseBodyList = /*@__PURE__*/ S.Array(
+export const ListVirtualMachineImagesResponseBodyList = /*@__PURE__*/ S.Array(
   VirtualMachineImageResource,
-) as any as S.Schema<VirtualMachineImagesListResponseBodyList>;
+) as any as S.Schema<ListVirtualMachineImagesResponseBodyList>;
 
 export type ListVirtualMachineImagesResponse =
-  VirtualMachineImagesListResponseBodyList;
+  ListVirtualMachineImagesResponseBodyList;
 export const ListVirtualMachineImagesResponse = /*@__PURE__*/ S.suspend(() =>
-  VirtualMachineImagesListResponseBodyList.pipe(T.RawResponseRoot()),
+  ListVirtualMachineImagesResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListVirtualMachineImagesResponse",
 }) as any as S.Schema<ListVirtualMachineImagesResponse>;
+
+export interface ListVirtualMachineImagesEdgeZoneRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of the edge zone. */
+  edgeZone: string;
+  /** A valid image publisher. */
+  publisherName: string;
+  /** A valid image publisher offer. */
+  offer: string;
+  /** A valid image SKU. */
+  skus: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+  /** An integer value specifying the number of images to return that matches supplied values. */
+  _top?: number;
+  /** Specifies the order of the results returned. Formatted as an OData query. */
+  _orderby?: string;
+}
+export const ListVirtualMachineImagesEdgeZoneRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      edgeZone: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      offer: S.String.pipe(T.Label()),
+      skus: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualMachineImagesEdgeZoneRequest",
+}) as any as S.Schema<ListVirtualMachineImagesEdgeZoneRequest>;
+
+export type ListVirtualMachineImagesEdgeZoneResponseBodyList =
+  Array<VirtualMachineImageResource>;
+export const ListVirtualMachineImagesEdgeZoneResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineImageResource,
+  ) as any as S.Schema<ListVirtualMachineImagesEdgeZoneResponseBodyList>;
+
+export type ListVirtualMachineImagesEdgeZoneResponse =
+  ListVirtualMachineImagesEdgeZoneResponseBodyList;
+export const ListVirtualMachineImagesEdgeZoneResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListVirtualMachineImagesEdgeZoneResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListVirtualMachineImagesEdgeZoneResponse",
+}) as any as S.Schema<ListVirtualMachineImagesEdgeZoneResponse>;
+
+export interface ListVirtualMachineImagesEdgeZoneOffersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of the edge zone. */
+  edgeZone: string;
+  /** A valid image publisher. */
+  publisherName: string;
+}
+export const ListVirtualMachineImagesEdgeZoneOffersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      edgeZone: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers/{publisherName}/artifacttypes/vmimage/offers",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineImagesEdgeZoneOffersRequest",
+  }) as any as S.Schema<ListVirtualMachineImagesEdgeZoneOffersRequest>;
+
+export type ListVirtualMachineImagesEdgeZoneOffersResponseBodyList =
+  Array<VirtualMachineImageResource>;
+export const ListVirtualMachineImagesEdgeZoneOffersResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineImageResource,
+  ) as any as S.Schema<ListVirtualMachineImagesEdgeZoneOffersResponseBodyList>;
+
+export type ListVirtualMachineImagesEdgeZoneOffersResponse =
+  ListVirtualMachineImagesEdgeZoneOffersResponseBodyList;
+export const ListVirtualMachineImagesEdgeZoneOffersResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVirtualMachineImagesEdgeZoneOffersResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineImagesEdgeZoneOffersResponse",
+  }) as any as S.Schema<ListVirtualMachineImagesEdgeZoneOffersResponse>;
+
+export interface ListVirtualMachineImagesEdgeZonePublishersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of the edge zone. */
+  edgeZone: string;
+}
+export const ListVirtualMachineImagesEdgeZonePublishersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      edgeZone: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineImagesEdgeZonePublishersRequest",
+  }) as any as S.Schema<ListVirtualMachineImagesEdgeZonePublishersRequest>;
+
+export type ListVirtualMachineImagesEdgeZonePublishersResponseBodyList =
+  Array<VirtualMachineImageResource>;
+export const ListVirtualMachineImagesEdgeZonePublishersResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineImageResource,
+  ) as any as S.Schema<ListVirtualMachineImagesEdgeZonePublishersResponseBodyList>;
+
+export type ListVirtualMachineImagesEdgeZonePublishersResponse =
+  ListVirtualMachineImagesEdgeZonePublishersResponseBodyList;
+export const ListVirtualMachineImagesEdgeZonePublishersResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVirtualMachineImagesEdgeZonePublishersResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineImagesEdgeZonePublishersResponse",
+  }) as any as S.Schema<ListVirtualMachineImagesEdgeZonePublishersResponse>;
+
+export interface ListVirtualMachineImagesEdgeZoneSkusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of the edge zone. */
+  edgeZone: string;
+  /** A valid image publisher. */
+  publisherName: string;
+  /** A valid image publisher offer. */
+  offer: string;
+}
+export const ListVirtualMachineImagesEdgeZoneSkusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      edgeZone: S.String.pipe(T.Label()),
+      publisherName: S.String.pipe(T.Label()),
+      offer: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/edgeZones/{edgeZone}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineImagesEdgeZoneSkusRequest",
+  }) as any as S.Schema<ListVirtualMachineImagesEdgeZoneSkusRequest>;
+
+export type ListVirtualMachineImagesEdgeZoneSkusResponseBodyList =
+  Array<VirtualMachineImageResource>;
+export const ListVirtualMachineImagesEdgeZoneSkusResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineImageResource,
+  ) as any as S.Schema<ListVirtualMachineImagesEdgeZoneSkusResponseBodyList>;
+
+export type ListVirtualMachineImagesEdgeZoneSkusResponse =
+  ListVirtualMachineImagesEdgeZoneSkusResponseBodyList;
+export const ListVirtualMachineImagesEdgeZoneSkusResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListVirtualMachineImagesEdgeZoneSkusResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineImagesEdgeZoneSkusResponse",
+  }) as any as S.Schema<ListVirtualMachineImagesEdgeZoneSkusResponse>;
 
 export interface ListVirtualMachineImageSkusRequest {
   /** The ID of the target subscription. */
@@ -12709,17 +15362,17 @@ export const ListVirtualMachineImageSkusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVirtualMachineImageSkusRequest",
 }) as any as S.Schema<ListVirtualMachineImageSkusRequest>;
 
-export type VirtualMachineImagesListSkusResponseBodyList =
+export type ListVirtualMachineImageSkusResponseBodyList =
   Array<VirtualMachineImageResource>;
-export const VirtualMachineImagesListSkusResponseBodyList =
+export const ListVirtualMachineImageSkusResponseBodyList =
   /*@__PURE__*/ S.Array(
     VirtualMachineImageResource,
-  ) as any as S.Schema<VirtualMachineImagesListSkusResponseBodyList>;
+  ) as any as S.Schema<ListVirtualMachineImageSkusResponseBodyList>;
 
 export type ListVirtualMachineImageSkusResponse =
-  VirtualMachineImagesListSkusResponseBodyList;
+  ListVirtualMachineImageSkusResponseBodyList;
 export const ListVirtualMachineImageSkusResponse = /*@__PURE__*/ S.suspend(() =>
-  VirtualMachineImagesListSkusResponseBodyList.pipe(T.RawResponseRoot()),
+  ListVirtualMachineImageSkusResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "ListVirtualMachineImageSkusResponse",
 }) as any as S.Schema<ListVirtualMachineImageSkusResponse>;
@@ -12802,20 +15455,20 @@ export const VirtualMachineRunCommandsListResultValueList =
   ) as any as S.Schema<VirtualMachineRunCommandsListResultValueList>;
 
 /** The List run command operation response */
-export interface ListVirtualMachineRunCommandsResult {
+export interface VirtualMachineRunCommandsListResult {
   /** The list of run commands. */
   value: VirtualMachineRunCommandsListResultValueList;
   /** The uri to fetch the next page of run commands. */
   nextLink?: string;
 }
-export const ListVirtualMachineRunCommandsResult = /*@__PURE__*/ S.suspend(() =>
+export const VirtualMachineRunCommandsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: VirtualMachineRunCommandsListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListVirtualMachineRunCommandsResult",
-}) as any as S.Schema<ListVirtualMachineRunCommandsResult>;
+  identifier: "VirtualMachineRunCommandsListResult",
+}) as any as S.Schema<VirtualMachineRunCommandsListResult>;
 
 export interface ListVirtualMachineRunCommandsRequest {
   /** The ID of the target subscription. */
@@ -12887,8 +15540,8 @@ export const RunCommandListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunCommandListResult",
 }) as any as S.Schema<RunCommandListResult>;
 
-export type VirtualMachinesListRequestExpand = "instanceView";
-export const VirtualMachinesListRequestExpand = /*@__PURE__*/ S.String;
+export type ListVirtualMachinesRequestExpand = "instanceView";
+export const ListVirtualMachinesRequestExpand = /*@__PURE__*/ S.String;
 
 export interface ListVirtualMachinesRequest {
   /** The ID of the target subscription. */
@@ -12898,7 +15551,7 @@ export interface ListVirtualMachinesRequest {
   /** The system query option to filter VMs returned in the response. Allowed value is 'virtualMachineScaleSet/id' eq /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmssName}' */
   _filter?: string;
   /** The expand expression to apply on operation. 'instanceView' enables fetching run time status of all Virtual Machines, this can only be specified if a valid $filter option is specified */
-  _expand?: VirtualMachinesListRequestExpand | (string & {});
+  _expand?: ListVirtualMachinesRequestExpand | (string & {});
 }
 export const ListVirtualMachinesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -12906,7 +15559,7 @@ export const ListVirtualMachinesRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
     _expand: S.optional(
-      VirtualMachinesListRequestExpand.pipe(T.Query("$expand")),
+      ListVirtualMachinesRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -12957,9 +15610,9 @@ export const VirtualMachineScaleSetZonesList = /*@__PURE__*/ S.Array(
 
 /** The complex type of the extended location. */
 export type VirtualMachineScaleSetExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 export const VirtualMachineScaleSetExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 
 /** Describes a Virtual Machine Scale Set. */
 export interface VirtualMachineScaleSet {
@@ -12986,7 +15639,7 @@ export interface VirtualMachineScaleSet {
   /** The availability zones. */
   zones?: VirtualMachineScaleSetZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** Etag is property returned in Create/Update/Get response of the VMSS, so that customer can supply it in the header to ensure optimistic updates */
   etag?: string;
   /** Placement section specifies the user-defined constraints for virtual machine scale set hardware placement. Minimum api-version: 2025-04-01. */
@@ -13005,7 +15658,7 @@ export const VirtualMachineScaleSet = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(VirtualMachineScaleSetProperties),
     identity: S.optional(VirtualMachineScaleSetIdentity),
     zones: S.optional(VirtualMachineScaleSetZonesList),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
     etag: S.optional(S.String),
     placement: S.optional(Placement),
   }),
@@ -13083,6 +15736,133 @@ export const VirtualMachineScaleSetListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "VirtualMachineScaleSetListResult",
 }) as any as S.Schema<VirtualMachineScaleSetListResult>;
+
+export interface ListVirtualMachineScaleSetExtensionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+}
+export const ListVirtualMachineScaleSetExtensionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineScaleSetExtensionsRequest",
+  }) as any as S.Schema<ListVirtualMachineScaleSetExtensionsRequest>;
+
+/** The list of VM scale set extensions. */
+export type VirtualMachineScaleSetExtensionListResultValueList =
+  Array<VirtualMachineScaleSetExtension>;
+export const VirtualMachineScaleSetExtensionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineScaleSetExtension,
+  ) as any as S.Schema<VirtualMachineScaleSetExtensionListResultValueList>;
+
+/** The List VM scale set extension operation response. */
+export interface VirtualMachineScaleSetExtensionListResult {
+  /** The list of VM scale set extensions. */
+  value: VirtualMachineScaleSetExtensionListResultValueList;
+  /** The uri to fetch the next page of VM scale set extensions. Call ListNext() with this to fetch the next page of VM scale set extensions. */
+  nextLink?: string;
+}
+export const VirtualMachineScaleSetExtensionListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: VirtualMachineScaleSetExtensionListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "VirtualMachineScaleSetExtensionListResult",
+  }) as any as S.Schema<VirtualMachineScaleSetExtensionListResult>;
+
+export interface ListVirtualMachineScaleSetLifeCycleHookEventsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+}
+export const ListVirtualMachineScaleSetLifeCycleHookEventsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/lifecycleHookEvents",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineScaleSetLifeCycleHookEventsRequest",
+  }) as any as S.Schema<ListVirtualMachineScaleSetLifeCycleHookEventsRequest>;
+
+/** Defines a virtual machine scale set lifecycle hook event. */
+export interface VMScaleSetLifecycleHookEvent {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Defines the virtual machine scale set lifecycle hook event properties. */
+  properties?: VMScaleSetLifecycleHookEventProperties;
+}
+export const VMScaleSetLifecycleHookEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VMScaleSetLifecycleHookEventProperties),
+  }),
+).annotate({
+  identifier: "VMScaleSetLifecycleHookEvent",
+}) as any as S.Schema<VMScaleSetLifecycleHookEvent>;
+
+/** The list of virtual machine scale set lifecycle hook events created for a virtual machine scale set resource. */
+export type VMScaleSetLifecycleHookEventListResultValueList =
+  Array<VMScaleSetLifecycleHookEvent>;
+export const VMScaleSetLifecycleHookEventListResultValueList =
+  /*@__PURE__*/ S.Array(
+    VMScaleSetLifecycleHookEvent,
+  ) as any as S.Schema<VMScaleSetLifecycleHookEventListResultValueList>;
+
+/** The List virtual machine scale set lifecycle hook events operation response. */
+export interface VMScaleSetLifecycleHookEventListResult {
+  /** The list of virtual machine scale set lifecycle hook events created for a virtual machine scale set resource. */
+  value: VMScaleSetLifecycleHookEventListResultValueList;
+  /** The uri to fetch the next page of virtual machine scale set lifecycle hook events. Call ListNext() with this to fetch the next page of virtual machine scale set lifecycle hook events. */
+  nextLink?: string;
+}
+export const VMScaleSetLifecycleHookEventListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: VMScaleSetLifecycleHookEventListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "VMScaleSetLifecycleHookEventListResult",
+}) as any as S.Schema<VMScaleSetLifecycleHookEventListResult>;
 
 export interface ListVirtualMachineScaleSetsRequest {
   /** The ID of the target subscription. */
@@ -13202,6 +15982,347 @@ export const VirtualMachineScaleSetListSkusResult = /*@__PURE__*/ S.suspend(
   identifier: "VirtualMachineScaleSetListSkusResult",
 }) as any as S.Schema<VirtualMachineScaleSetListSkusResult>;
 
+export interface ListVirtualMachineScaleSetVMDiagnosticRunCommandsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const ListVirtualMachineScaleSetVMDiagnosticRunCommandsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineScaleSetVMDiagnosticRunCommandsRequest",
+  }) as any as S.Schema<ListVirtualMachineScaleSetVMDiagnosticRunCommandsRequest>;
+
+/** Resource tags. */
+export type VirtualMachineDiagnosticRunCommandTagsMap = {
+  [key: string]: string | undefined;
+};
+export const VirtualMachineDiagnosticRunCommandTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VirtualMachineDiagnosticRunCommandTagsMap>;
+
+/** Describes a Virtual Machine diagnostic run command. */
+export interface VirtualMachineDiagnosticRunCommand {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: VirtualMachineDiagnosticRunCommandTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a Virtual Machine diagnostic run command. */
+  properties?: VirtualMachineRunCommandProperties;
+}
+export const VirtualMachineDiagnosticRunCommand = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(VirtualMachineDiagnosticRunCommandTagsMap),
+    location: S.String,
+    properties: S.optional(VirtualMachineRunCommandProperties),
+  }),
+).annotate({
+  identifier: "VirtualMachineDiagnosticRunCommand",
+}) as any as S.Schema<VirtualMachineDiagnosticRunCommand>;
+
+/** The list of diagnostic run commands. */
+export type VirtualMachineDiagnosticRunCommandsListResultValueList =
+  Array<VirtualMachineDiagnosticRunCommand>;
+export const VirtualMachineDiagnosticRunCommandsListResultValueList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineDiagnosticRunCommand,
+  ) as any as S.Schema<VirtualMachineDiagnosticRunCommandsListResultValueList>;
+
+/** The List diagnostic run command operation response */
+export interface VirtualMachineDiagnosticRunCommandsListResult {
+  /** The list of diagnostic run commands. */
+  value: VirtualMachineDiagnosticRunCommandsListResultValueList;
+  /** The uri to fetch the next page of diagnostic run commands. */
+  nextLink?: string;
+}
+export const VirtualMachineDiagnosticRunCommandsListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: VirtualMachineDiagnosticRunCommandsListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "VirtualMachineDiagnosticRunCommandsListResult",
+  }) as any as S.Schema<VirtualMachineDiagnosticRunCommandsListResult>;
+
+export interface ListVirtualMachineScaleSetVMExtensionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const ListVirtualMachineScaleSetVMExtensionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineScaleSetVMExtensionsRequest",
+  }) as any as S.Schema<ListVirtualMachineScaleSetVMExtensionsRequest>;
+
+/** Describes a VMSS VM Extension. */
+export interface VirtualMachineScaleSetVMExtension {
+  /** Resource Id */
+  id?: string;
+  /** Describes the properties of a Virtual Machine Extension. */
+  properties?: VirtualMachineExtensionProperties;
+  /** The location of the extension. */
+  location?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource name */
+  name?: string;
+}
+export const VirtualMachineScaleSetVMExtension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    properties: S.optional(VirtualMachineExtensionProperties),
+    location: S.optional(S.String),
+    type: S.optional(S.String),
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMExtension",
+}) as any as S.Schema<VirtualMachineScaleSetVMExtension>;
+
+/** The list of VMSS VM extensions */
+export type VirtualMachineScaleSetVMExtensionsListResultValueList =
+  Array<VirtualMachineScaleSetVMExtension>;
+export const VirtualMachineScaleSetVMExtensionsListResultValueList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineScaleSetVMExtension,
+  ) as any as S.Schema<VirtualMachineScaleSetVMExtensionsListResultValueList>;
+
+/** The List VMSS VM Extension operation response */
+export interface VirtualMachineScaleSetVMExtensionsListResult {
+  /** The list of VMSS VM extensions */
+  value?: VirtualMachineScaleSetVMExtensionsListResultValueList;
+}
+export const VirtualMachineScaleSetVMExtensionsListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(VirtualMachineScaleSetVMExtensionsListResultValueList),
+    }),
+  ).annotate({
+    identifier: "VirtualMachineScaleSetVMExtensionsListResult",
+  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsListResult>;
+
+export interface ListVirtualMachineScaleSetVMRunCommandsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const ListVirtualMachineScaleSetVMRunCommandsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListVirtualMachineScaleSetVMRunCommandsRequest",
+  }) as any as S.Schema<ListVirtualMachineScaleSetVMRunCommandsRequest>;
+
+export interface ListVirtualMachineScaleSetVMsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  virtualMachineScaleSetName: string;
+  /** The filter to apply to the operation. Allowed values are 'startswith(instanceView/statuses/code, 'PowerState') eq true', 'properties/latestModelApplied eq true', 'properties/latestModelApplied eq false'. */
+  _filter?: string;
+  /** The list parameters. Allowed values are 'instanceView', 'instanceView/statuses'. */
+  _select?: string;
+  /** The expand expression to apply to the operation. Allowed values are 'instanceView'. */
+  _expand?: string;
+}
+export const ListVirtualMachineScaleSetVMsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualMachineScaleSetName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _select: S.optional(S.String.pipe(T.Query("$select"))),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualMachineScaleSetVMsRequest",
+}) as any as S.Schema<ListVirtualMachineScaleSetVMsRequest>;
+
+/** Resource tags. */
+export type VirtualMachineScaleSetVMTagsMap = {
+  [key: string]: string | undefined;
+};
+export const VirtualMachineScaleSetVMTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VirtualMachineScaleSetVMTagsMap>;
+
+/** The virtual machine child extension resources. */
+export type VirtualMachineScaleSetVMResourcesList =
+  Array<VirtualMachineExtension>;
+export const VirtualMachineScaleSetVMResourcesList = /*@__PURE__*/ S.Array(
+  VirtualMachineExtension,
+) as any as S.Schema<VirtualMachineScaleSetVMResourcesList>;
+
+/** The virtual machine zones. */
+export type VirtualMachineScaleSetVMZonesList = Array<string>;
+export const VirtualMachineScaleSetVMZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<VirtualMachineScaleSetVMZonesList>;
+
+/** Describes a virtual machine scale set virtual machine. */
+export interface VirtualMachineScaleSetVM {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: VirtualMachineScaleSetVMTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a virtual machine scale set virtual machine. */
+  properties?: VirtualMachineScaleSetVMProperties;
+  /** The virtual machine instance ID. */
+  instanceId?: string;
+  /** The virtual machine SKU. */
+  sku?: Sku;
+  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
+  plan?: Plan;
+  /** The virtual machine child extension resources. */
+  resources?: VirtualMachineScaleSetVMResourcesList;
+  /** The virtual machine zones. */
+  zones?: VirtualMachineScaleSetVMZonesList;
+  /** The identity of the virtual machine, if configured. */
+  identity?: VirtualMachineIdentity;
+  /** Etag is property returned in Update/Get response of the VMSS VM, so that customer can supply it in the header to ensure optimistic updates. */
+  etag?: string;
+}
+export const VirtualMachineScaleSetVM = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(VirtualMachineScaleSetVMTagsMap),
+    location: S.String,
+    properties: S.optional(VirtualMachineScaleSetVMProperties),
+    instanceId: S.optional(S.String),
+    sku: S.optional(Sku),
+    plan: S.optional(Plan),
+    resources: S.optional(VirtualMachineScaleSetVMResourcesList),
+    zones: S.optional(VirtualMachineScaleSetVMZonesList),
+    identity: S.optional(VirtualMachineIdentity),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualMachineScaleSetVM",
+}) as any as S.Schema<VirtualMachineScaleSetVM>;
+
+/** The list of virtual machine scale sets VMs. */
+export type VirtualMachineScaleSetVMListResultValueList =
+  Array<VirtualMachineScaleSetVM>;
+export const VirtualMachineScaleSetVMListResultValueList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineScaleSetVM,
+  ) as any as S.Schema<VirtualMachineScaleSetVMListResultValueList>;
+
+/** The List Virtual Machine Scale Set VMs operation response. */
+export interface VirtualMachineScaleSetVMListResult {
+  /** The list of virtual machine scale sets VMs. */
+  value: VirtualMachineScaleSetVMListResultValueList;
+  /** The uri to fetch the next page of Virtual Machine Scale Set VMs. Call ListNext() with this to fetch the next page of VMSS VMs. */
+  nextLink?: string;
+}
+export const VirtualMachineScaleSetVMListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VirtualMachineScaleSetVMListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMListResult",
+}) as any as S.Schema<VirtualMachineScaleSetVMListResult>;
+
 export interface ListVirtualMachineSizesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -13224,78 +16345,226 @@ export const ListVirtualMachineSizesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListVirtualMachineSizesRequest",
 }) as any as S.Schema<ListVirtualMachineSizesRequest>;
 
-export interface LogAnalyticsExportThrottledRequestsRequest {
+/** The virtual machine scale set instance ids to be migrated to the target availability zone. */
+export type MigrateVirtualMachineScaleSetVMAvailabilityZoneRequestInstanceIdsList =
+  Array<string>;
+export const MigrateVirtualMachineScaleSetVMAvailabilityZoneRequestInstanceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MigrateVirtualMachineScaleSetVMAvailabilityZoneRequestInstanceIdsList>;
+
+export interface MigrateVirtualMachineScaleSetVMAvailabilityZoneRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** SAS Uri of the logging blob container to which LogAnalytics Api writes output logs to. */
-  blobContainerSasUri: string;
-  /** From time of the query */
-  fromTime: string;
-  /** To time of the query */
-  toTime: string;
-  /** Group query result by Throttle Policy applied. */
-  groupByThrottlePolicy?: boolean;
-  /** Group query result by Operation Name. */
-  groupByOperationName?: boolean;
-  /** Group query result by Resource Name. */
-  groupByResourceName?: boolean;
-  /** Group query result by Client Application ID. */
-  groupByClientApplicationId?: boolean;
-  /** Group query result by User Agent. */
-  groupByUserAgent?: boolean;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The virtual machine scale set instance ids to be migrated to the target availability zone. */
+  instanceIds: MigrateVirtualMachineScaleSetVMAvailabilityZoneRequestInstanceIdsList;
+  /** The target logical availability zone ("1", "2" or "3") to migrate the virtual machine scale set instances to. If omitted, the platform selects the target zone. */
+  targetZone?: string;
 }
-export const LogAnalyticsExportThrottledRequestsRequest =
+export const MigrateVirtualMachineScaleSetVMAvailabilityZoneRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      blobContainerSasUri: S.String,
-      fromTime: S.String,
-      toTime: S.String,
-      groupByThrottlePolicy: S.optional(S.Boolean),
-      groupByOperationName: S.optional(S.Boolean),
-      groupByResourceName: S.optional(S.Boolean),
-      groupByClientApplicationId: S.optional(S.Boolean),
-      groupByUserAgent: S.optional(S.Boolean),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceIds:
+        MigrateVirtualMachineScaleSetVMAvailabilityZoneRequestInstanceIdsList,
+      targetZone: S.optional(S.String),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getThrottledRequests",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/migrateVMAvailabilityZone",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "LogAnalyticsExportThrottledRequestsRequest",
-  }) as any as S.Schema<LogAnalyticsExportThrottledRequestsRequest>;
+    identifier: "MigrateVirtualMachineScaleSetVMAvailabilityZoneRequest",
+  }) as any as S.Schema<MigrateVirtualMachineScaleSetVMAvailabilityZoneRequest>;
 
-/** LogAnalytics output properties */
-export interface LogAnalyticsOutput {
-  /** Output file Uri path to blob container. */
-  output?: string;
+export interface MigrateVirtualMachineScaleSetVMAvailabilityZoneResponse {}
+export const MigrateVirtualMachineScaleSetVMAvailabilityZoneResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "MigrateVirtualMachineScaleSetVMAvailabilityZoneResponse",
+  }) as any as S.Schema<MigrateVirtualMachineScaleSetVMAvailabilityZoneResponse>;
+
+export interface MigrateVirtualMachineToVMScaleSetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  vmName: string;
+  /** The target zone of VM migration to Flexible Virtual Machine Scale Set. */
+  targetZone?: string;
+  /** The target compute fault domain of VM migration to Flexible Virtual Machine Scale Set. */
+  targetFaultDomain?: number;
+  /** The target Virtual Machine size of VM migration to Flexible Virtual Machine Scale Set. */
+  targetVMSize?: string;
 }
-export const LogAnalyticsOutput = /*@__PURE__*/ S.suspend(() =>
+export const MigrateVirtualMachineToVMScaleSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmName: S.String.pipe(T.Label()),
+      targetZone: S.optional(S.String),
+      targetFaultDomain: S.optional(S.Number),
+      targetVMSize: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/migrateToVirtualMachineScaleSet",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "MigrateVirtualMachineToVMScaleSetRequest",
+}) as any as S.Schema<MigrateVirtualMachineToVMScaleSetRequest>;
+
+export interface MigrateVirtualMachineToVMScaleSetResponse {}
+export const MigrateVirtualMachineToVMScaleSetResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "MigrateVirtualMachineToVMScaleSetResponse",
+  }) as any as S.Schema<MigrateVirtualMachineToVMScaleSetResponse>;
+
+/** The desired regions */
+export type PostSpotPlacementScoreRequestDesiredLocationsList = Array<string>;
+export const PostSpotPlacementScoreRequestDesiredLocationsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PostSpotPlacementScoreRequestDesiredLocationsList>;
+
+/** SpotPlacementRecommender API response. */
+export interface ResourceSize {
+  /** The resource's CRP virtual machine SKU size. */
+  sku?: string;
+}
+export const ResourceSize = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    output: S.optional(S.String),
+    sku: S.optional(S.String),
+  }),
+).annotate({ identifier: "ResourceSize" }) as any as S.Schema<ResourceSize>;
+
+/** The desired virtual machine SKU sizes. */
+export type PostSpotPlacementScoreRequestDesiredSizesList = Array<ResourceSize>;
+export const PostSpotPlacementScoreRequestDesiredSizesList =
+  /*@__PURE__*/ S.Array(
+    ResourceSize,
+  ) as any as S.Schema<PostSpotPlacementScoreRequestDesiredSizesList>;
+
+export interface PostSpotPlacementScoreRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The desired regions */
+  desiredLocations?: PostSpotPlacementScoreRequestDesiredLocationsList;
+  /** The desired virtual machine SKU sizes. */
+  desiredSizes?: PostSpotPlacementScoreRequestDesiredSizesList;
+  /** Desired instance count per region/zone based on the scope. */
+  desiredCount?: number;
+  /** Defines if the scope is zonal or regional. */
+  availabilityZones?: boolean;
+}
+export const PostSpotPlacementScoreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    desiredLocations: S.optional(
+      PostSpotPlacementScoreRequestDesiredLocationsList,
+    ),
+    desiredSizes: S.optional(PostSpotPlacementScoreRequestDesiredSizesList),
+    desiredCount: S.optional(S.Number),
+    availabilityZones: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/placementScores/spot/generate",
+      code: 200,
+      apiVersion: "2025-06-05",
+    }),
+  ),
+).annotate({
+  identifier: "PostSpotPlacementScoreRequest",
+}) as any as S.Schema<PostSpotPlacementScoreRequest>;
+
+/** The desired regions */
+export type SpotPlacementScoresResponseDesiredLocationsList = Array<string>;
+export const SpotPlacementScoresResponseDesiredLocationsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SpotPlacementScoresResponseDesiredLocationsList>;
+
+/** The desired virtual machine SKU sizes. */
+export type SpotPlacementScoresResponseDesiredSizesList = Array<ResourceSize>;
+export const SpotPlacementScoresResponseDesiredSizesList =
+  /*@__PURE__*/ S.Array(
+    ResourceSize,
+  ) as any as S.Schema<SpotPlacementScoresResponseDesiredSizesList>;
+
+/** The spot placement score for sku/region/zone combination. */
+export interface PlacementScore {
+  /** The resource's CRP virtual machine SKU size. */
+  sku?: string;
+  /** The region. */
+  region?: string;
+  /** The availability zone. */
+  availabilityZone?: string;
+  /** A placement score indicating the likelihood of successfully allocating the specified Spot VM(s), as well as the expected lifetimes of the Spot VM(s) after allocation. */
+  score?: string;
+  /** Whether the desired quota is available. */
+  isQuotaAvailable?: boolean;
+}
+export const PlacementScore = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sku: S.optional(S.String),
+    region: S.optional(S.String),
+    availabilityZone: S.optional(S.String),
+    score: S.optional(S.String),
+    isQuotaAvailable: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "PlacementScore" }) as any as S.Schema<PlacementScore>;
+
+/** A placement score indicating the likelihood of successfully allocating the specified Spot VM(s), as well as the expected lifetimes of the Spot VM(s) after allocation. */
+export type SpotPlacementScoresResponsePlacementScoresList =
+  Array<PlacementScore>;
+export const SpotPlacementScoresResponsePlacementScoresList =
+  /*@__PURE__*/ S.Array(
+    PlacementScore,
+  ) as any as S.Schema<SpotPlacementScoresResponsePlacementScoresList>;
+
+/** SpotPlacementScores API response. */
+export interface SpotPlacementScoresResponse {
+  /** The desired regions */
+  desiredLocations?: SpotPlacementScoresResponseDesiredLocationsList;
+  /** The desired virtual machine SKU sizes. */
+  desiredSizes?: SpotPlacementScoresResponseDesiredSizesList;
+  /** Desired instance count per region/zone based on the scope. */
+  desiredCount?: number;
+  /** Defines if the scope is zonal or regional. */
+  availabilityZones?: boolean;
+  /** A placement score indicating the likelihood of successfully allocating the specified Spot VM(s), as well as the expected lifetimes of the Spot VM(s) after allocation. */
+  placementScores?: SpotPlacementScoresResponsePlacementScoresList;
+}
+export const SpotPlacementScoresResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    desiredLocations: S.optional(
+      SpotPlacementScoresResponseDesiredLocationsList,
+    ),
+    desiredSizes: S.optional(SpotPlacementScoresResponseDesiredSizesList),
+    desiredCount: S.optional(S.Number),
+    availabilityZones: S.optional(S.Boolean),
+    placementScores: S.optional(SpotPlacementScoresResponsePlacementScoresList),
   }),
 ).annotate({
-  identifier: "LogAnalyticsOutput",
-}) as any as S.Schema<LogAnalyticsOutput>;
-
-/** LogAnalytics operation status response */
-export interface LogAnalyticsOperationResult {
-  /** LogAnalyticsOutput */
-  properties?: LogAnalyticsOutput;
-}
-export const LogAnalyticsOperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(LogAnalyticsOutput),
-  }),
-).annotate({
-  identifier: "LogAnalyticsOperationResult",
-}) as any as S.Schema<LogAnalyticsOperationResult>;
+  identifier: "SpotPlacementScoresResponse",
+}) as any as S.Schema<SpotPlacementScoresResponse>;
 
 /** Resource tags. */
 export type ProximityPlacementGroupsCreateOrUpdateRequestTagsMap = {
@@ -13427,63 +16696,154 @@ export const ProximityPlacementGroupsCreateOrUpdateResponse =
     identifier: "ProximityPlacementGroupsCreateOrUpdateResponse",
   }) as any as S.Schema<ProximityPlacementGroupsCreateOrUpdateResponse>;
 
-/** Interval value in minutes used to create LogAnalytics call rate logs. */
-export type IntervalInMins =
-  | "ThreeMins"
-  | "FiveMins"
-  | "ThirtyMins"
-  | "SixtyMins";
-export const IntervalInMins = /*@__PURE__*/ S.String;
-
-export interface RequestLogAnalyticExportRateByIntervalRequest {
+export interface RedeployDedicatedHostRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** SAS Uri of the logging blob container to which LogAnalytics Api writes output logs to. */
-  blobContainerSasUri: string;
-  /** From time of the query */
-  fromTime: string;
-  /** To time of the query */
-  toTime: string;
-  /** Group query result by Throttle Policy applied. */
-  groupByThrottlePolicy?: boolean;
-  /** Group query result by Operation Name. */
-  groupByOperationName?: boolean;
-  /** Group query result by Resource Name. */
-  groupByResourceName?: boolean;
-  /** Group query result by Client Application ID. */
-  groupByClientApplicationId?: boolean;
-  /** Group query result by User Agent. */
-  groupByUserAgent?: boolean;
-  /** Interval value in minutes used to create LogAnalytics call rate logs. */
-  intervalLength: IntervalInMins | (string & {});
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the dedicated host group. */
+  hostGroupName: string;
+  /** The name of the dedicated host. */
+  hostName: string;
 }
-export const RequestLogAnalyticExportRateByIntervalRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const RedeployDedicatedHostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    hostGroupName: S.String.pipe(T.Label()),
+    hostName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}/hosts/{hostName}/redeploy",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "RedeployDedicatedHostRequest",
+}) as any as S.Schema<RedeployDedicatedHostRequest>;
+
+export interface RedeployDedicatedHostResponse {}
+export const RedeployDedicatedHostResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RedeployDedicatedHostResponse",
+}) as any as S.Schema<RedeployDedicatedHostResponse>;
+
+export interface RedeployVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the virtual machine. */
+  vmName: string;
+}
+export const RedeployVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vmName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/redeploy",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "RedeployVirtualMachineRequest",
+}) as any as S.Schema<RedeployVirtualMachineRequest>;
+
+export interface RedeployVirtualMachineResponse {}
+export const RedeployVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RedeployVirtualMachineResponse",
+}) as any as S.Schema<RedeployVirtualMachineResponse>;
+
+/** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
+export type RedeployVirtualMachineScaleSetRequestInstanceIdsList =
+  Array<string>;
+export const RedeployVirtualMachineScaleSetRequestInstanceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RedeployVirtualMachineScaleSetRequestInstanceIdsList>;
+
+export interface RedeployVirtualMachineScaleSetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
+  instanceIds?: RedeployVirtualMachineScaleSetRequestInstanceIdsList;
+}
+export const RedeployVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      blobContainerSasUri: S.String,
-      fromTime: S.String,
-      toTime: S.String,
-      groupByThrottlePolicy: S.optional(S.Boolean),
-      groupByOperationName: S.optional(S.Boolean),
-      groupByResourceName: S.optional(S.Boolean),
-      groupByClientApplicationId: S.optional(S.Boolean),
-      groupByUserAgent: S.optional(S.Boolean),
-      intervalLength: IntervalInMins,
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceIds: S.optional(
+        RedeployVirtualMachineScaleSetRequestInstanceIdsList,
+      ),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/logAnalytics/apiAccess/getRequestRateByInterval",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/redeploy",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
-  ).annotate({
-    identifier: "RequestLogAnalyticExportRateByIntervalRequest",
-  }) as any as S.Schema<RequestLogAnalyticExportRateByIntervalRequest>;
+).annotate({
+  identifier: "RedeployVirtualMachineScaleSetRequest",
+}) as any as S.Schema<RedeployVirtualMachineScaleSetRequest>;
+
+export interface RedeployVirtualMachineScaleSetResponse {}
+export const RedeployVirtualMachineScaleSetResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RedeployVirtualMachineScaleSetResponse",
+}) as any as S.Schema<RedeployVirtualMachineScaleSetResponse>;
+
+export interface RedeployVirtualMachineScaleSetVMRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const RedeployVirtualMachineScaleSetVMRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/redeploy",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "RedeployVirtualMachineScaleSetVMRequest",
+}) as any as S.Schema<RedeployVirtualMachineScaleSetVMRequest>;
+
+export interface RedeployVirtualMachineScaleSetVMResponse {}
+export const RedeployVirtualMachineScaleSetVMResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RedeployVirtualMachineScaleSetVMResponse",
+}) as any as S.Schema<RedeployVirtualMachineScaleSetVMResponse>;
 
 export interface RestartDedicatedHostRequest {
   /** The ID of the target subscription. */
@@ -13553,12 +16913,11 @@ export const RestartVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RestartVirtualMachineResponse>;
 
 /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-export type VirtualMachineScaleSetsRestartRequestInstanceIdsList =
-  Array<string>;
-export const VirtualMachineScaleSetsRestartRequestInstanceIdsList =
+export type RestartVirtualMachineScaleSetRequestInstanceIdsList = Array<string>;
+export const RestartVirtualMachineScaleSetRequestInstanceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsRestartRequestInstanceIdsList>;
+  ) as any as S.Schema<RestartVirtualMachineScaleSetRequestInstanceIdsList>;
 
 export interface RestartVirtualMachineScaleSetRequest {
   /** The ID of the target subscription. */
@@ -13568,7 +16927,7 @@ export interface RestartVirtualMachineScaleSetRequest {
   /** The name of the VM scale set. */
   vmScaleSetName: string;
   /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-  instanceIds?: VirtualMachineScaleSetsRestartRequestInstanceIdsList;
+  instanceIds?: RestartVirtualMachineScaleSetRequestInstanceIdsList;
 }
 export const RestartVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -13577,7 +16936,7 @@ export const RestartVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       vmScaleSetName: S.String.pipe(T.Label()),
       instanceIds: S.optional(
-        VirtualMachineScaleSetsRestartRequestInstanceIdsList,
+        RestartVirtualMachineScaleSetRequestInstanceIdsList,
       ),
     }).pipe(
       T.Http({
@@ -13597,6 +16956,42 @@ export const RestartVirtualMachineScaleSetResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "RestartVirtualMachineScaleSetResponse",
 }) as any as S.Schema<RestartVirtualMachineScaleSetResponse>;
+
+export interface RestartVirtualMachineScaleSetVMRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const RestartVirtualMachineScaleSetVMRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/restart",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "RestartVirtualMachineScaleSetVMRequest",
+}) as any as S.Schema<RestartVirtualMachineScaleSetVMRequest>;
+
+export interface RestartVirtualMachineScaleSetVMResponse {}
+export const RestartVirtualMachineScaleSetVMResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RestartVirtualMachineScaleSetVMResponse",
+}) as any as S.Schema<RestartVirtualMachineScaleSetVMResponse>;
 
 /** Resource tags. */
 export type RestorePointCollectionsCreateOrUpdateRequestTagsMap = {
@@ -13684,384 +17079,6 @@ export const RestorePointCollectionsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<RestorePointCollectionsCreateOrUpdateResponseTagsMap>;
 
-/** The properties of the source resource that this restore point collection is created from. */
-export interface RestorePointCollectionSourceProperties {
-  /** Location of the source resource used to create this restore point collection. */
-  location?: string;
-  /** Resource Id of the source resource used to create this restore point collection */
-  id?: string;
-}
-export const RestorePointCollectionSourceProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      location: S.optional(S.String),
-      id: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RestorePointCollectionSourceProperties",
-}) as any as S.Schema<RestorePointCollectionSourceProperties>;
-
-/** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
-export type RestorePointPropertiesExcludeDisksList = Array<ApiEntityReference>;
-export const RestorePointPropertiesExcludeDisksList = /*@__PURE__*/ S.Array(
-  ApiEntityReference,
-) as any as S.Schema<RestorePointPropertiesExcludeDisksList>;
-
-/** Gets the Operating System type. */
-export type OperatingSystemType = "Windows" | "Linux";
-export const OperatingSystemType = /*@__PURE__*/ S.String;
-
-/** The type of key used to encrypt the data of the disk restore point. */
-export type RestorePointEncryptionType =
-  | "EncryptionAtRestWithPlatformKey"
-  | "EncryptionAtRestWithCustomerKey"
-  | "EncryptionAtRestWithPlatformAndCustomerKeys";
-export const RestorePointEncryptionType = /*@__PURE__*/ S.String;
-
-/** Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point. */
-export interface RestorePointEncryption {
-  /** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. **Note:** The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
-  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
-  /** The type of key used to encrypt the data of the disk restore point. */
-  type?: RestorePointEncryptionType | (string & {});
-}
-export const RestorePointEncryption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskEncryptionSet: S.optional(
-      AvailabilitySetPropertiesInputVirtualMachinesItem,
-    ),
-    type: S.optional(RestorePointEncryptionType),
-  }),
-).annotate({
-  identifier: "RestorePointEncryption",
-}) as any as S.Schema<RestorePointEncryption>;
-
-/** Disk Restore Point details. */
-export interface DiskRestorePointAttributes {
-  /** Resource Id */
-  id?: string;
-  /** Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point. */
-  encryption?: RestorePointEncryption;
-  /** Resource Id of the source disk restore point. */
-  sourceDiskRestorePoint?: ApiEntityReference;
-}
-export const DiskRestorePointAttributes = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    encryption: S.optional(RestorePointEncryption),
-    sourceDiskRestorePoint: S.optional(ApiEntityReference),
-  }),
-).annotate({
-  identifier: "DiskRestorePointAttributes",
-}) as any as S.Schema<DiskRestorePointAttributes>;
-
-/** Describes an Operating System disk. */
-export interface RestorePointSourceVMOSDisk {
-  /** Gets the Operating System type. */
-  osType?: OperatingSystemType;
-  /** Gets the disk encryption settings. */
-  encryptionSettings?: DiskEncryptionSettings;
-  /** Gets the disk name. */
-  name?: string;
-  /** Gets the caching type. */
-  caching?: CachingTypes;
-  /** Gets the disk size in GB. */
-  diskSizeGB?: number;
-  /** Gets the managed disk details */
-  managedDisk?: ManagedDiskParameters;
-  /** Contains Disk Restore Point properties. */
-  diskRestorePoint?: DiskRestorePointAttributes;
-  /** Shows true if the disk is write-accelerator enabled. */
-  writeAcceleratorEnabled?: boolean;
-}
-export const RestorePointSourceVMOSDisk = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    osType: S.optional(OperatingSystemType),
-    encryptionSettings: S.optional(DiskEncryptionSettings),
-    name: S.optional(S.String),
-    caching: S.optional(CachingTypes),
-    diskSizeGB: S.optional(S.Number),
-    managedDisk: S.optional(ManagedDiskParameters),
-    diskRestorePoint: S.optional(DiskRestorePointAttributes),
-    writeAcceleratorEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RestorePointSourceVMOSDisk",
-}) as any as S.Schema<RestorePointSourceVMOSDisk>;
-
-/** Describes a data disk. */
-export interface RestorePointSourceVMDataDisk {
-  /** Gets the logical unit number. */
-  lun?: number;
-  /** Gets the disk name. */
-  name?: string;
-  /** Gets the caching type. */
-  caching?: CachingTypes;
-  /** Gets the initial disk size in GB for blank data disks, and the new desired size for existing OS and Data disks. */
-  diskSizeGB?: number;
-  /** Contains the managed disk details. */
-  managedDisk?: ManagedDiskParameters;
-  /** Contains Disk Restore Point properties. */
-  diskRestorePoint?: DiskRestorePointAttributes;
-  /** Shows true if the disk is write-accelerator enabled. */
-  writeAcceleratorEnabled?: boolean;
-}
-export const RestorePointSourceVMDataDisk = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lun: S.optional(S.Number),
-    name: S.optional(S.String),
-    caching: S.optional(CachingTypes),
-    diskSizeGB: S.optional(S.Number),
-    managedDisk: S.optional(ManagedDiskParameters),
-    diskRestorePoint: S.optional(DiskRestorePointAttributes),
-    writeAcceleratorEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RestorePointSourceVMDataDisk",
-}) as any as S.Schema<RestorePointSourceVMDataDisk>;
-
-/** Gets the data disks of the VM captured at the time of the restore point creation. */
-export type RestorePointSourceVMStorageProfileDataDisksList =
-  Array<RestorePointSourceVMDataDisk>;
-export const RestorePointSourceVMStorageProfileDataDisksList =
-  /*@__PURE__*/ S.Array(
-    RestorePointSourceVMDataDisk,
-  ) as any as S.Schema<RestorePointSourceVMStorageProfileDataDisksList>;
-
-/** Describes the storage profile. */
-export interface RestorePointSourceVMStorageProfile {
-  /** Gets the OS disk of the VM captured at the time of the restore point creation. */
-  osDisk?: RestorePointSourceVMOSDisk;
-  /** Gets the data disks of the VM captured at the time of the restore point creation. */
-  dataDisks?: RestorePointSourceVMStorageProfileDataDisksList;
-  /** Gets the disk controller type of the VM captured at the time of the restore point creation. */
-  diskControllerType?: DiskControllerTypes;
-}
-export const RestorePointSourceVMStorageProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    osDisk: S.optional(RestorePointSourceVMOSDisk),
-    dataDisks: S.optional(RestorePointSourceVMStorageProfileDataDisksList),
-    diskControllerType: S.optional(DiskControllerTypes),
-  }),
-).annotate({
-  identifier: "RestorePointSourceVMStorageProfile",
-}) as any as S.Schema<RestorePointSourceVMStorageProfile>;
-
-/** Describes the properties of the Virtual Machine for which the restore point was created. The properties provided are a subset and the snapshot of the overall Virtual Machine properties captured at the time of the restore point creation. */
-export interface RestorePointSourceMetadata {
-  /** Gets the hardware profile. */
-  hardwareProfile?: HardwareProfile;
-  /** Gets the storage profile. */
-  storageProfile?: RestorePointSourceVMStorageProfile;
-  /** Gets the OS profile. */
-  osProfile?: OSProfile;
-  /** Gets the diagnostics profile. */
-  diagnosticsProfile?: DiagnosticsProfile;
-  /** Gets the license type, which is for bring your own license scenario. */
-  licenseType?: string;
-  /** Gets the virtual machine unique id. */
-  vmId?: string;
-  /** Gets the security profile. */
-  securityProfile?: SecurityProfile;
-  /** Location of the VM from which the restore point was created. */
-  location?: string;
-  /** UserData associated with the source VM for which restore point is captured, which is a base-64 encoded value. */
-  userData?: string;
-  /** HyperVGeneration of the source VM for which restore point is captured. */
-  hyperVGeneration?: HyperVGenerationTypes;
-}
-export const RestorePointSourceMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hardwareProfile: S.optional(HardwareProfile),
-    storageProfile: S.optional(RestorePointSourceVMStorageProfile),
-    osProfile: S.optional(OSProfile),
-    diagnosticsProfile: S.optional(DiagnosticsProfile),
-    licenseType: S.optional(S.String),
-    vmId: S.optional(S.String),
-    securityProfile: S.optional(SecurityProfile),
-    location: S.optional(S.String),
-    userData: S.optional(S.String),
-    hyperVGeneration: S.optional(HyperVGenerationTypes),
-  }),
-).annotate({
-  identifier: "RestorePointSourceMetadata",
-}) as any as S.Schema<RestorePointSourceMetadata>;
-
-/** ConsistencyMode of the RestorePoint. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. */
-export type ConsistencyModeTypes =
-  | "CrashConsistent"
-  | "FileSystemConsistent"
-  | "ApplicationConsistent";
-export const ConsistencyModeTypes = /*@__PURE__*/ S.String;
-
-/** The state of snapshot which determines the access availability of the snapshot. */
-export type CommonSnapshotAccessState =
-  | "Unknown"
-  | "Pending"
-  | "Available"
-  | "InstantAccess"
-  | "AvailableWithInstantAccess";
-export const CommonSnapshotAccessState = /*@__PURE__*/ S.String;
-
-/** The instance view of a disk restore point. */
-export interface DiskRestorePointReplicationStatus {
-  /** The resource status information. */
-  status?: InstanceViewStatus;
-  /** Replication completion percentage. */
-  completionPercent?: number;
-}
-export const DiskRestorePointReplicationStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(InstanceViewStatus),
-    completionPercent: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "DiskRestorePointReplicationStatus",
-}) as any as S.Schema<DiskRestorePointReplicationStatus>;
-
-/** The instance view of a disk restore point. */
-export interface DiskRestorePointInstanceView {
-  /** Disk restore point Id. */
-  id?: string;
-  /** The state of snapshot which determines the access availability of the snapshot. */
-  snapshotAccessState?: CommonSnapshotAccessState;
-  /** The disk restore point replication status information. */
-  replicationStatus?: DiskRestorePointReplicationStatus;
-}
-export const DiskRestorePointInstanceView = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    snapshotAccessState: S.optional(CommonSnapshotAccessState),
-    replicationStatus: S.optional(DiskRestorePointReplicationStatus),
-  }),
-).annotate({
-  identifier: "DiskRestorePointInstanceView",
-}) as any as S.Schema<DiskRestorePointInstanceView>;
-
-/** The disk restore points information. */
-export type RestorePointInstanceViewDiskRestorePointsList =
-  Array<DiskRestorePointInstanceView>;
-export const RestorePointInstanceViewDiskRestorePointsList =
-  /*@__PURE__*/ S.Array(
-    DiskRestorePointInstanceView,
-  ) as any as S.Schema<RestorePointInstanceViewDiskRestorePointsList>;
-
-/** The resource status information. */
-export type RestorePointInstanceViewStatusesList = Array<InstanceViewStatus>;
-export const RestorePointInstanceViewStatusesList = /*@__PURE__*/ S.Array(
-  InstanceViewStatus,
-) as any as S.Schema<RestorePointInstanceViewStatusesList>;
-
-/** The instance view of a restore point. */
-export interface RestorePointInstanceView {
-  /** The disk restore points information. */
-  diskRestorePoints?: RestorePointInstanceViewDiskRestorePointsList;
-  /** The resource status information. */
-  statuses?: RestorePointInstanceViewStatusesList;
-}
-export const RestorePointInstanceView = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskRestorePoints: S.optional(
-      RestorePointInstanceViewDiskRestorePointsList,
-    ),
-    statuses: S.optional(RestorePointInstanceViewStatusesList),
-  }),
-).annotate({
-  identifier: "RestorePointInstanceView",
-}) as any as S.Schema<RestorePointInstanceView>;
-
-/** The restore point properties. */
-export interface RestorePointProperties {
-  /** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
-  excludeDisks?: RestorePointPropertiesExcludeDisksList;
-  /** Gets the details of the VM captured at the time of the restore point creation. */
-  sourceMetadata?: RestorePointSourceMetadata;
-  /** Gets the provisioning state of the restore point. */
-  provisioningState?: string;
-  /** ConsistencyMode of the RestorePoint. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. */
-  consistencyMode?: ConsistencyModeTypes;
-  /** Gets the creation time of the restore point. */
-  timeCreated?: string;
-  /** Resource Id of the source restore point from which a copy needs to be created. */
-  sourceRestorePoint?: ApiEntityReference;
-  /** The restore point instance view. */
-  instanceView?: RestorePointInstanceView;
-  /** This property determines the time in minutes the snapshot is retained as instant access for restoring Premium SSD v2 or Ultra disk with fast restore performance in this restore point. */
-  instantAccessDurationMinutes?: number;
-}
-export const RestorePointProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    excludeDisks: S.optional(RestorePointPropertiesExcludeDisksList),
-    sourceMetadata: S.optional(RestorePointSourceMetadata),
-    provisioningState: S.optional(S.String),
-    consistencyMode: S.optional(ConsistencyModeTypes),
-    timeCreated: S.optional(S.String),
-    sourceRestorePoint: S.optional(ApiEntityReference),
-    instanceView: S.optional(RestorePointInstanceView),
-    instantAccessDurationMinutes: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "RestorePointProperties",
-}) as any as S.Schema<RestorePointProperties>;
-
-/** Restore Point details. */
-export interface RestorePoint {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The restore point properties. */
-  properties?: RestorePointProperties;
-}
-export const RestorePoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RestorePointProperties),
-  }),
-).annotate({ identifier: "RestorePoint" }) as any as S.Schema<RestorePoint>;
-
-/** A list containing all restore points created under this restore point collection. */
-export type RestorePointCollectionPropertiesRestorePointsList =
-  Array<RestorePoint>;
-export const RestorePointCollectionPropertiesRestorePointsList =
-  /*@__PURE__*/ S.Array(
-    RestorePoint,
-  ) as any as S.Schema<RestorePointCollectionPropertiesRestorePointsList>;
-
-/** The restore point collection properties. */
-export interface RestorePointCollectionProperties {
-  /** The properties of the source resource that this restore point collection is created from. */
-  source?: RestorePointCollectionSourceProperties;
-  /** The provisioning state of the restore point collection. */
-  provisioningState?: string;
-  /** The unique id of the restore point collection. */
-  restorePointCollectionId?: string;
-  /** A list containing all restore points created under this restore point collection. */
-  restorePoints?: RestorePointCollectionPropertiesRestorePointsList;
-  /** This property determines whether instant access snapshot is enabled for restore points created under this restore point collection for Premium SSD v2 or Ultra disk. Instant access snapshot for Premium SSD v2 or Ultra disk is instantaneously available for restoring disk with fast restore performance. */
-  instantAccess?: boolean;
-}
-export const RestorePointCollectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source: S.optional(RestorePointCollectionSourceProperties),
-    provisioningState: S.optional(S.String),
-    restorePointCollectionId: S.optional(S.String),
-    restorePoints: S.optional(
-      RestorePointCollectionPropertiesRestorePointsList,
-    ),
-    instantAccess: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RestorePointCollectionProperties",
-}) as any as S.Schema<RestorePointCollectionProperties>;
-
 export interface RestorePointCollectionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -14093,753 +17110,178 @@ export const RestorePointCollectionsCreateOrUpdateResponse =
     identifier: "RestorePointCollectionsCreateOrUpdateResponse",
   }) as any as S.Schema<RestorePointCollectionsCreateOrUpdateResponse>;
 
-export interface RestorePointCollectionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the restore point collection. */
-  restorePointCollectionName: string;
-}
-export const RestorePointCollectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      restorePointCollectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "RestorePointCollectionsDeleteRequest",
-}) as any as S.Schema<RestorePointCollectionsDeleteRequest>;
-
-export interface RestorePointCollectionsDeleteResponse {}
-export const RestorePointCollectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "RestorePointCollectionsDeleteResponse",
-}) as any as S.Schema<RestorePointCollectionsDeleteResponse>;
-
-export type RestorePointCollectionsGetRequestExpand = "restorePoints";
-export const RestorePointCollectionsGetRequestExpand = /*@__PURE__*/ S.String;
-
-export interface RestorePointCollectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the restore point collection. */
-  restorePointCollectionName: string;
-  /** The expand expression to apply on the operation. If expand=restorePoints, server will return all contained restore points in the restorePointCollection. */
-  _expand?: RestorePointCollectionsGetRequestExpand | (string & {});
-}
-export const RestorePointCollectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    restorePointCollectionName: S.String.pipe(T.Label()),
-    _expand: S.optional(
-      RestorePointCollectionsGetRequestExpand.pipe(T.Query("$expand")),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RestorePointCollectionsGetRequest",
-}) as any as S.Schema<RestorePointCollectionsGetRequest>;
-
-/** Resource tags. */
-export type RestorePointCollectionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RestorePointCollectionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+/** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
+export type RunVirtualMachineCommandRequestScriptList = Array<string>;
+export const RunVirtualMachineCommandRequestScriptList = /*@__PURE__*/ S.Array(
   S.String,
-  S.String,
-) as any as S.Schema<RestorePointCollectionsGetResponseTagsMap>;
+) as any as S.Schema<RunVirtualMachineCommandRequestScriptList>;
 
-export interface RestorePointCollectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RestorePointCollectionsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The restore point collection properties. */
-  properties?: RestorePointCollectionProperties;
-}
-export const RestorePointCollectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(RestorePointCollectionsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(RestorePointCollectionProperties),
-  }),
-).annotate({
-  identifier: "RestorePointCollectionsGetResponse",
-}) as any as S.Schema<RestorePointCollectionsGetResponse>;
-
-export interface RestorePointCollectionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const RestorePointCollectionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RestorePointCollectionsListRequest",
-}) as any as S.Schema<RestorePointCollectionsListRequest>;
-
-/** Resource tags. */
-export type RestorePointCollectionTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RestorePointCollectionTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RestorePointCollectionTagsMap>;
-
-/** Create or update Restore Point collection parameters. */
-export interface RestorePointCollection {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RestorePointCollectionTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The restore point collection properties. */
-  properties?: RestorePointCollectionProperties;
-}
-export const RestorePointCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(RestorePointCollectionTagsMap),
-    location: S.String,
-    properties: S.optional(RestorePointCollectionProperties),
-  }),
-).annotate({
-  identifier: "RestorePointCollection",
-}) as any as S.Schema<RestorePointCollection>;
-
-/** Gets the list of restore point collections. */
-export type RestorePointCollectionListResultValueList =
-  Array<RestorePointCollection>;
-export const RestorePointCollectionListResultValueList = /*@__PURE__*/ S.Array(
-  RestorePointCollection,
-) as any as S.Schema<RestorePointCollectionListResultValueList>;
-
-/** The List restore point collection operation response. */
-export interface RestorePointCollectionListResult {
-  /** Gets the list of restore point collections. */
-  value: RestorePointCollectionListResultValueList;
-  /** The uri to fetch the next page of RestorePointCollections. Call ListNext() with this to fetch the next page of RestorePointCollections. */
-  nextLink?: string;
-}
-export const RestorePointCollectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RestorePointCollectionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RestorePointCollectionListResult",
-}) as any as S.Schema<RestorePointCollectionListResult>;
-
-export interface RestorePointCollectionsListAllRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const RestorePointCollectionsListAllRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/restorePointCollections",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "RestorePointCollectionsListAllRequest",
-}) as any as S.Schema<RestorePointCollectionsListAllRequest>;
-
-/** Resource tags */
-export type RestorePointCollectionsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RestorePointCollectionsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<RestorePointCollectionsUpdateRequestTagsMap>;
-
-export interface RestorePointCollectionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the restore point collection. */
-  restorePointCollectionName: string;
-  /** Resource tags */
-  tags?: RestorePointCollectionsUpdateRequestTagsMap;
-  /** The restore point collection properties. */
-  properties?: RestorePointCollectionPropertiesInput;
-}
-export const RestorePointCollectionsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      restorePointCollectionName: S.String.pipe(T.Label()),
-      tags: S.optional(RestorePointCollectionsUpdateRequestTagsMap),
-      properties: S.optional(RestorePointCollectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "RestorePointCollectionsUpdateRequest",
-}) as any as S.Schema<RestorePointCollectionsUpdateRequest>;
-
-/** Resource tags. */
-export type RestorePointCollectionsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RestorePointCollectionsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<RestorePointCollectionsUpdateResponseTagsMap>;
-
-export interface RestorePointCollectionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RestorePointCollectionsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The restore point collection properties. */
-  properties?: RestorePointCollectionProperties;
-}
-export const RestorePointCollectionsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(RestorePointCollectionsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(RestorePointCollectionProperties),
-    }),
-).annotate({
-  identifier: "RestorePointCollectionsUpdateResponse",
-}) as any as S.Schema<RestorePointCollectionsUpdateResponse>;
-
-/** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
-export type RestorePointPropertiesInputExcludeDisksList =
-  Array<ApiEntityReference>;
-export const RestorePointPropertiesInputExcludeDisksList =
+/** The run command parameters. */
+export type RunVirtualMachineCommandRequestParametersList =
+  Array<RunCommandInputParameter>;
+export const RunVirtualMachineCommandRequestParametersList =
   /*@__PURE__*/ S.Array(
-    ApiEntityReference,
-  ) as any as S.Schema<RestorePointPropertiesInputExcludeDisksList>;
+    RunCommandInputParameter,
+  ) as any as S.Schema<RunVirtualMachineCommandRequestParametersList>;
 
-/** Disk Restore Point details. */
-export interface DiskRestorePointAttributesInput {
-  /** Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point. */
-  encryption?: RestorePointEncryption;
-  /** Resource Id of the source disk restore point. */
-  sourceDiskRestorePoint?: ApiEntityReference;
-}
-export const DiskRestorePointAttributesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    encryption: S.optional(RestorePointEncryption),
-    sourceDiskRestorePoint: S.optional(ApiEntityReference),
-  }),
-).annotate({
-  identifier: "DiskRestorePointAttributesInput",
-}) as any as S.Schema<DiskRestorePointAttributesInput>;
-
-/** Describes an Operating System disk. */
-export interface RestorePointSourceVMOSDiskInput {
-  /** Gets the managed disk details */
-  managedDisk?: ManagedDiskParameters;
-  /** Contains Disk Restore Point properties. */
-  diskRestorePoint?: DiskRestorePointAttributesInput;
-}
-export const RestorePointSourceVMOSDiskInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managedDisk: S.optional(ManagedDiskParameters),
-    diskRestorePoint: S.optional(DiskRestorePointAttributesInput),
-  }),
-).annotate({
-  identifier: "RestorePointSourceVMOSDiskInput",
-}) as any as S.Schema<RestorePointSourceVMOSDiskInput>;
-
-/** Describes a data disk. */
-export interface RestorePointSourceVMDataDiskInput {
-  /** Contains the managed disk details. */
-  managedDisk?: ManagedDiskParameters;
-  /** Contains Disk Restore Point properties. */
-  diskRestorePoint?: DiskRestorePointAttributesInput;
-}
-export const RestorePointSourceVMDataDiskInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managedDisk: S.optional(ManagedDiskParameters),
-    diskRestorePoint: S.optional(DiskRestorePointAttributesInput),
-  }),
-).annotate({
-  identifier: "RestorePointSourceVMDataDiskInput",
-}) as any as S.Schema<RestorePointSourceVMDataDiskInput>;
-
-/** Gets the data disks of the VM captured at the time of the restore point creation. */
-export type RestorePointSourceVMStorageProfileInputDataDisksList =
-  Array<RestorePointSourceVMDataDiskInput>;
-export const RestorePointSourceVMStorageProfileInputDataDisksList =
-  /*@__PURE__*/ S.Array(
-    RestorePointSourceVMDataDiskInput,
-  ) as any as S.Schema<RestorePointSourceVMStorageProfileInputDataDisksList>;
-
-/** Describes the storage profile. */
-export interface RestorePointSourceVMStorageProfileInput {
-  /** Gets the OS disk of the VM captured at the time of the restore point creation. */
-  osDisk?: RestorePointSourceVMOSDiskInput;
-  /** Gets the data disks of the VM captured at the time of the restore point creation. */
-  dataDisks?: RestorePointSourceVMStorageProfileInputDataDisksList;
-}
-export const RestorePointSourceVMStorageProfileInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      osDisk: S.optional(RestorePointSourceVMOSDiskInput),
-      dataDisks: S.optional(
-        RestorePointSourceVMStorageProfileInputDataDisksList,
-      ),
-    }),
-).annotate({
-  identifier: "RestorePointSourceVMStorageProfileInput",
-}) as any as S.Schema<RestorePointSourceVMStorageProfileInput>;
-
-/** Describes the properties of the Virtual Machine for which the restore point was created. The properties provided are a subset and the snapshot of the overall Virtual Machine properties captured at the time of the restore point creation. */
-export interface RestorePointSourceMetadataInput {
-  /** Gets the storage profile. */
-  storageProfile?: RestorePointSourceVMStorageProfileInput;
-}
-export const RestorePointSourceMetadataInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    storageProfile: S.optional(RestorePointSourceVMStorageProfileInput),
-  }),
-).annotate({
-  identifier: "RestorePointSourceMetadataInput",
-}) as any as S.Schema<RestorePointSourceMetadataInput>;
-
-/** The restore point properties. */
-export interface RestorePointPropertiesInput {
-  /** List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included. */
-  excludeDisks?: RestorePointPropertiesInputExcludeDisksList;
-  /** Gets the details of the VM captured at the time of the restore point creation. */
-  sourceMetadata?: RestorePointSourceMetadataInput;
-  /** ConsistencyMode of the RestorePoint. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. */
-  consistencyMode?: ConsistencyModeTypes | (string & {});
-  /** Gets the creation time of the restore point. */
-  timeCreated?: string;
-  /** Resource Id of the source restore point from which a copy needs to be created. */
-  sourceRestorePoint?: ApiEntityReference;
-  /** This property determines the time in minutes the snapshot is retained as instant access for restoring Premium SSD v2 or Ultra disk with fast restore performance in this restore point. */
-  instantAccessDurationMinutes?: number;
-}
-export const RestorePointPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    excludeDisks: S.optional(RestorePointPropertiesInputExcludeDisksList),
-    sourceMetadata: S.optional(RestorePointSourceMetadataInput),
-    consistencyMode: S.optional(ConsistencyModeTypes),
-    timeCreated: S.optional(S.String),
-    sourceRestorePoint: S.optional(ApiEntityReference),
-    instantAccessDurationMinutes: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "RestorePointPropertiesInput",
-}) as any as S.Schema<RestorePointPropertiesInput>;
-
-export interface RestorePointsCreateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the restore point collection. */
-  restorePointCollectionName: string;
-  /** The name of the restore point. */
-  restorePointName: string;
-  /** The restore point properties. */
-  properties?: RestorePointPropertiesInput;
-}
-export const RestorePointsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    restorePointCollectionName: S.String.pipe(T.Label()),
-    restorePointName: S.String.pipe(T.Label()),
-    properties: S.optional(RestorePointPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RestorePointsCreateRequest",
-}) as any as S.Schema<RestorePointsCreateRequest>;
-
-export interface RestorePointsCreateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The restore point properties. */
-  properties?: RestorePointProperties;
-}
-export const RestorePointsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RestorePointProperties),
-  }),
-).annotate({
-  identifier: "RestorePointsCreateResponse",
-}) as any as S.Schema<RestorePointsCreateResponse>;
-
-export interface RestorePointsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the restore point collection. */
-  restorePointCollectionName: string;
-  /** The name of the restore point. */
-  restorePointName: string;
-}
-export const RestorePointsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    restorePointCollectionName: S.String.pipe(T.Label()),
-    restorePointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RestorePointsDeleteRequest",
-}) as any as S.Schema<RestorePointsDeleteRequest>;
-
-export interface RestorePointsDeleteResponse {}
-export const RestorePointsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RestorePointsDeleteResponse",
-}) as any as S.Schema<RestorePointsDeleteResponse>;
-
-export type RestorePointsGetRequestExpand = "instanceView";
-export const RestorePointsGetRequestExpand = /*@__PURE__*/ S.String;
-
-export interface RestorePointsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the restore point collection. */
-  restorePointCollectionName: string;
-  /** The name of the restore point. */
-  restorePointName: string;
-  /** The expand expression to apply on the operation. 'InstanceView' retrieves information about the run-time state of a restore point. */
-  _expand?: RestorePointsGetRequestExpand | (string & {});
-}
-export const RestorePointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    restorePointCollectionName: S.String.pipe(T.Label()),
-    restorePointName: S.String.pipe(T.Label()),
-    _expand: S.optional(RestorePointsGetRequestExpand.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RestorePointsGetRequest",
-}) as any as S.Schema<RestorePointsGetRequest>;
-
-export interface RestorePointsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The restore point properties. */
-  properties?: RestorePointProperties;
-}
-export const RestorePointsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RestorePointProperties),
-  }),
-).annotate({
-  identifier: "RestorePointsGetResponse",
-}) as any as S.Schema<RestorePointsGetResponse>;
-
-export interface SetAvailabilitySetCancelMigrationToVirtualMachineScaleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the availability set. */
-  availabilitySetName: string;
-}
-export const SetAvailabilitySetCancelMigrationToVirtualMachineScaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      availabilitySetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/cancelMigrationToVirtualMachineScaleSet",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetAvailabilitySetCancelMigrationToVirtualMachineScaleRequest",
-  }) as any as S.Schema<SetAvailabilitySetCancelMigrationToVirtualMachineScaleRequest>;
-
-export interface SetAvailabilitySetCancelMigrationToVirtualMachineScaleResponse {}
-export const SetAvailabilitySetCancelMigrationToVirtualMachineScaleResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "SetAvailabilitySetCancelMigrationToVirtualMachineScaleResponse",
-  }) as any as S.Schema<SetAvailabilitySetCancelMigrationToVirtualMachineScaleResponse>;
-
-export interface SetAvailabilitySetConvertToVirtualMachineScaleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the availability set. */
-  availabilitySetName: string;
-  /** Specifies information about the Virtual Machine Scale Set that the Availability Set should be converted to. */
-  virtualMachineScaleSetName?: string;
-}
-export const SetAvailabilitySetConvertToVirtualMachineScaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      availabilitySetName: S.String.pipe(T.Label()),
-      virtualMachineScaleSetName: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/convertToVirtualMachineScaleSet",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetAvailabilitySetConvertToVirtualMachineScaleRequest",
-  }) as any as S.Schema<SetAvailabilitySetConvertToVirtualMachineScaleRequest>;
-
-export interface SetAvailabilitySetConvertToVirtualMachineScaleResponse {}
-export const SetAvailabilitySetConvertToVirtualMachineScaleResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetAvailabilitySetConvertToVirtualMachineScaleResponse",
-  }) as any as S.Schema<SetAvailabilitySetConvertToVirtualMachineScaleResponse>;
-
-export type AvailabilitySetsValidateMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const AvailabilitySetsValidateMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-
-export interface SetAvailabilitySetValidateMigrationToVirtualMachineScaleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the availability set. */
-  availabilitySetName: string;
-  virtualMachineScaleSetFlexible: AvailabilitySetPropertiesInputVirtualMachinesItem;
-}
-export const SetAvailabilitySetValidateMigrationToVirtualMachineScaleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      availabilitySetName: S.String.pipe(T.Label()),
-      virtualMachineScaleSetFlexible:
-        AvailabilitySetPropertiesInputVirtualMachinesItem,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/validateMigrationToVirtualMachineScaleSet",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "SetAvailabilitySetValidateMigrationToVirtualMachineScaleRequest",
-  }) as any as S.Schema<SetAvailabilitySetValidateMigrationToVirtualMachineScaleRequest>;
-
-export interface SetAvailabilitySetValidateMigrationToVirtualMachineScaleResponse {}
-export const SetAvailabilitySetValidateMigrationToVirtualMachineScaleResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "SetAvailabilitySetValidateMigrationToVirtualMachineScaleResponse",
-  }) as any as S.Schema<SetAvailabilitySetValidateMigrationToVirtualMachineScaleResponse>;
-
-export interface SetVirtualMachineMigrateToVmScaleRequest {
+export interface RunVirtualMachineCommandRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the virtual machine. */
   vmName: string;
-  /** The target zone of VM migration to Flexible Virtual Machine Scale Set. */
-  targetZone?: string;
-  /** The target compute fault domain of VM migration to Flexible Virtual Machine Scale Set. */
-  targetFaultDomain?: number;
-  /** The target Virtual Machine size of VM migration to Flexible Virtual Machine Scale Set. */
-  targetVMSize?: string;
+  /** Specifies a commandId of predefined built-in script. Command IDs available for Linux are listed at https://aka.ms/RunCommandManagedLinux#available-commands, Windows at https://aka.ms/RunCommandManagedWindows#available-commands. */
+  commandId: string;
+  /** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
+  script?: RunVirtualMachineCommandRequestScriptList;
+  /** The run command parameters. */
+  parameters?: RunVirtualMachineCommandRequestParametersList;
 }
-export const SetVirtualMachineMigrateToVmScaleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmName: S.String.pipe(T.Label()),
-      targetZone: S.optional(S.String),
-      targetFaultDomain: S.optional(S.Number),
-      targetVMSize: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/migrateToVirtualMachineScaleSet",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
+export const RunVirtualMachineCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vmName: S.String.pipe(T.Label()),
+    commandId: S.String,
+    script: S.optional(RunVirtualMachineCommandRequestScriptList),
+    parameters: S.optional(RunVirtualMachineCommandRequestParametersList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommand",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "SetVirtualMachineMigrateToVmScaleRequest",
-}) as any as S.Schema<SetVirtualMachineMigrateToVmScaleRequest>;
+  identifier: "RunVirtualMachineCommandRequest",
+}) as any as S.Schema<RunVirtualMachineCommandRequest>;
 
-export interface SetVirtualMachineMigrateToVmScaleResponse {}
-export const SetVirtualMachineMigrateToVmScaleResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineMigrateToVmScaleResponse",
-  }) as any as S.Schema<SetVirtualMachineMigrateToVmScaleResponse>;
+/** Run command operation response. */
+export type RunCommandResultValueList = Array<InstanceViewStatus>;
+export const RunCommandResultValueList = /*@__PURE__*/ S.Array(
+  InstanceViewStatus,
+) as any as S.Schema<RunCommandResultValueList>;
 
-export interface SetVirtualMachineScaleRollingUpgradeCancelRequest {
+export interface RunCommandResult {
+  /** Run command operation response. */
+  value?: RunCommandResultValueList;
+}
+export const RunCommandResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(RunCommandResultValueList),
+  }),
+).annotate({
+  identifier: "RunCommandResult",
+}) as any as S.Schema<RunCommandResult>;
+
+/** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
+export type RunVirtualMachineScaleSetVMCommandRequestScriptList = Array<string>;
+export const RunVirtualMachineScaleSetVMCommandRequestScriptList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RunVirtualMachineScaleSetVMCommandRequestScriptList>;
+
+/** The run command parameters. */
+export type RunVirtualMachineScaleSetVMCommandRequestParametersList =
+  Array<RunCommandInputParameter>;
+export const RunVirtualMachineScaleSetVMCommandRequestParametersList =
+  /*@__PURE__*/ S.Array(
+    RunCommandInputParameter,
+  ) as any as S.Schema<RunVirtualMachineScaleSetVMCommandRequestParametersList>;
+
+export interface RunVirtualMachineScaleSetVMCommandRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the VM scale set. */
   vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** Specifies a commandId of predefined built-in script. Command IDs available for Linux are listed at https://aka.ms/RunCommandManagedLinux#available-commands, Windows at https://aka.ms/RunCommandManagedWindows#available-commands. */
+  commandId: string;
+  /** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
+  script?: RunVirtualMachineScaleSetVMCommandRequestScriptList;
+  /** The run command parameters. */
+  parameters?: RunVirtualMachineScaleSetVMCommandRequestParametersList;
 }
-export const SetVirtualMachineScaleRollingUpgradeCancelRequest =
+export const RunVirtualMachineScaleSetVMCommandRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      commandId: S.String,
+      script: S.optional(RunVirtualMachineScaleSetVMCommandRequestScriptList),
+      parameters: S.optional(
+        RunVirtualMachineScaleSetVMCommandRequestParametersList,
+      ),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/rollingUpgrades/cancel",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommand",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "SetVirtualMachineScaleRollingUpgradeCancelRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleRollingUpgradeCancelRequest>;
+    identifier: "RunVirtualMachineScaleSetVMCommandRequest",
+  }) as any as S.Schema<RunVirtualMachineScaleSetVMCommandRequest>;
 
-export interface SetVirtualMachineScaleRollingUpgradeCancelResponse {}
-export const SetVirtualMachineScaleRollingUpgradeCancelResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleRollingUpgradeCancelResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleRollingUpgradeCancelResponse>;
+/** The input properties for ScaleOut */
+export interface VMScaleSetScaleOutInputProperties {
+  /** The zone in which the scale out is requested for the virtual machine scale set. */
+  zone?: string;
+}
+export const VMScaleSetScaleOutInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zone: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VMScaleSetScaleOutInputProperties",
+}) as any as S.Schema<VMScaleSetScaleOutInputProperties>;
+
+export interface ScaleVirtualMachineScaleSetOutRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** Specifies the number of virtual machines in the scale set. */
+  capacity: number;
+  /** The input properties for ScaleOut */
+  properties?: VMScaleSetScaleOutInputProperties;
+}
+export const ScaleVirtualMachineScaleSetOutRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      capacity: S.Number,
+      properties: S.optional(VMScaleSetScaleOutInputProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/scaleOut",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ScaleVirtualMachineScaleSetOutRequest",
+}) as any as S.Schema<ScaleVirtualMachineScaleSetOutRequest>;
+
+export interface ScaleVirtualMachineScaleSetOutResponse {}
+export const ScaleVirtualMachineScaleSetOutResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "ScaleVirtualMachineScaleSetOutResponse",
+}) as any as S.Schema<ScaleVirtualMachineScaleSetOutResponse>;
 
 /** The action to be performed. */
 export type OrchestrationServiceStateAction = "Resume" | "Suspend";
@@ -14883,674 +17325,45 @@ export const SetVirtualMachineScaleSetOrchestrationServiceStateResponse =
     identifier: "SetVirtualMachineScaleSetOrchestrationServiceStateResponse",
   }) as any as S.Schema<SetVirtualMachineScaleSetOrchestrationServiceStateResponse>;
 
-export interface SetVirtualMachineScaleVMsApproveRollingUpgradeRequest {
+export type StartAvailabilitySetMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const StartAvailabilitySetMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+export interface StartAvailabilitySetMigrationToVirtualMachineScaleSetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
+  /** The name of the availability set. */
+  availabilitySetName: string;
+  virtualMachineScaleSetFlexible: AvailabilitySetPropertiesInputVirtualMachinesItem;
 }
-export const SetVirtualMachineScaleVMsApproveRollingUpgradeRequest =
+export const StartAvailabilitySetMigrationToVirtualMachineScaleSetRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
+      availabilitySetName: S.String.pipe(T.Label()),
+      virtualMachineScaleSetFlexible:
+        AvailabilitySetPropertiesInputVirtualMachinesItem,
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/approveRollingUpgrade",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/startMigrationToVirtualMachineScaleSet",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "SetVirtualMachineScaleVMsApproveRollingUpgradeRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsApproveRollingUpgradeRequest>;
+    identifier: "StartAvailabilitySetMigrationToVirtualMachineScaleSetRequest",
+  }) as any as S.Schema<StartAvailabilitySetMigrationToVirtualMachineScaleSetRequest>;
 
-export interface SetVirtualMachineScaleVMsApproveRollingUpgradeResponse {}
-export const SetVirtualMachineScaleVMsApproveRollingUpgradeResponse =
+export interface StartAvailabilitySetMigrationToVirtualMachineScaleSetResponse {}
+export const StartAvailabilitySetMigrationToVirtualMachineScaleSetResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleVMsApproveRollingUpgradeResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsApproveRollingUpgradeResponse>;
-
-/** Describes the data disk to be attached. */
-export interface DataDisksToAttach {
-  /** ID of the managed data disk. */
-  diskId: string;
-  /** The logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. If not specified, lun would be auto assigned. */
-  lun?: number;
-  /** Specifies the caching requirements. Possible values are: **None,** **ReadOnly,** **ReadWrite.** The defaulting behavior is: **None for Standard storage. ReadOnly for Premium storage.** */
-  caching?: CachingTypes | (string & {});
-  /** Specifies whether data disk should be deleted or detached upon VM deletion. Possible values are: **Delete.** If this value is used, the data disk is deleted when VM is deleted. **Detach.** If this value is used, the data disk is retained after VM is deleted. The default value is set to **Detach**. */
-  deleteOption?: DiskDeleteOptionTypes | (string & {});
-  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
-  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
-  /** Specifies whether writeAccelerator should be enabled or disabled on the disk. */
-  writeAcceleratorEnabled?: boolean;
-}
-export const DataDisksToAttach = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskId: S.String,
-    lun: S.optional(S.Number),
-    caching: S.optional(CachingTypes),
-    deleteOption: S.optional(DiskDeleteOptionTypes),
-    diskEncryptionSet: S.optional(
-      AvailabilitySetPropertiesInputVirtualMachinesItem,
-    ),
-    writeAcceleratorEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "DataDisksToAttach",
-}) as any as S.Schema<DataDisksToAttach>;
-
-/** The list of managed data disks to be attached. */
-export type VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList =
-  Array<DataDisksToAttach>;
-export const VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList =
-  /*@__PURE__*/ S.Array(
-    DataDisksToAttach,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList>;
-
-/** Describes the data disk to be detached. */
-export interface DataDisksToDetach {
-  /** ID of the managed data disk. */
-  diskId: string;
-  /** Supported options available for Detach of a disk from a VM. Refer to DetachOption object reference for more details. */
-  detachOption?: DiskDetachOptionTypes | (string & {});
-}
-export const DataDisksToDetach = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diskId: S.String,
-    detachOption: S.optional(DiskDetachOptionTypes),
-  }),
-).annotate({
-  identifier: "DataDisksToDetach",
-}) as any as S.Schema<DataDisksToDetach>;
-
-/** The list of managed data disks to be detached. */
-export type VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList =
-  Array<DataDisksToDetach>;
-export const VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList =
-  /*@__PURE__*/ S.Array(
-    DataDisksToDetach,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList>;
-
-export interface SetVirtualMachineScaleVMsAttachDetachDataDiskRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** The list of managed data disks to be attached. */
-  dataDisksToAttach?: VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList;
-  /** The list of managed data disks to be detached. */
-  dataDisksToDetach?: VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList;
-}
-export const SetVirtualMachineScaleVMsAttachDetachDataDiskRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      dataDisksToAttach: S.optional(
-        VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList,
-      ),
-      dataDisksToDetach: S.optional(
-        VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/attachDetachDataDisks",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetVirtualMachineScaleVMsAttachDetachDataDiskRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsAttachDetachDataDiskRequest>;
-
-export interface SetVirtualMachineScaleVMsDeallocateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-}
-export const SetVirtualMachineScaleVMsDeallocateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/deallocate",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetVirtualMachineScaleVMsDeallocateRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsDeallocateRequest>;
-
-export interface SetVirtualMachineScaleVMsDeallocateResponse {}
-export const SetVirtualMachineScaleVMsDeallocateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleVMsDeallocateResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsDeallocateResponse>;
-
-export interface SetVirtualMachineScaleVMsPerformMaintenanceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-}
-export const SetVirtualMachineScaleVMsPerformMaintenanceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/performMaintenance",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetVirtualMachineScaleVMsPerformMaintenanceRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsPerformMaintenanceRequest>;
-
-export interface SetVirtualMachineScaleVMsPerformMaintenanceResponse {}
-export const SetVirtualMachineScaleVMsPerformMaintenanceResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleVMsPerformMaintenanceResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsPerformMaintenanceResponse>;
-
-export interface SetVirtualMachineScaleVMsPowerOffRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** The parameter to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Default value for this flag is false if not specified */
-  skipShutdown?: boolean;
-}
-export const SetVirtualMachineScaleVMsPowerOffRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      skipShutdown: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/powerOff",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "SetVirtualMachineScaleVMsPowerOffRequest",
-}) as any as S.Schema<SetVirtualMachineScaleVMsPowerOffRequest>;
-
-export interface SetVirtualMachineScaleVMsPowerOffResponse {}
-export const SetVirtualMachineScaleVMsPowerOffResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleVMsPowerOffResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsPowerOffResponse>;
-
-export interface SetVirtualMachineScaleVMsRedeployRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-}
-export const SetVirtualMachineScaleVMsRedeployRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/redeploy",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "SetVirtualMachineScaleVMsRedeployRequest",
-}) as any as S.Schema<SetVirtualMachineScaleVMsRedeployRequest>;
-
-export interface SetVirtualMachineScaleVMsRedeployResponse {}
-export const SetVirtualMachineScaleVMsRedeployResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleVMsRedeployResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsRedeployResponse>;
-
-/** Additional parameters for Reimaging Non-Ephemeral Virtual Machine. */
-export interface OSProfileProvisioningData {
-  /** Specifies the password of the administrator account. <br><br> **Minimum-length (Windows):** 8 characters <br><br> **Minimum-length (Linux):** 6 characters <br><br> **Max-length (Windows):** 123 characters <br><br> **Max-length (Linux):** 72 characters <br><br> **Complexity requirements:** 3 out of 4 conditions below need to be fulfilled <br> Has lower characters <br>Has upper characters <br> Has a digit <br> Has a special character (Regex match [\W_]) <br><br> **Disallowed values:** "abc@123", "P@$$w0rd", "P@ssw0rd", "P@ssword123", "Pa$$word", "pass@word1", "Password!", "Password1", "Password22", "iloveyou!" <br><br> For resetting the password, see [How to reset the Remote Desktop service or its login password in a Windows VM](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/reset-rdp) <br><br> For resetting root password, see [Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/troubleshoot-ssh-connection) */
-  adminPassword?: string | Redacted.Redacted<string>;
-  /** Specifies a base-64 encoded string of custom data. The base-64 encoded string is decoded to a binary array that is saved as a file on the Virtual Machine. The maximum length of the binary array is 65535 bytes. **Note: Do not pass any secrets or passwords in customData property.** This property cannot be updated after the VM is created. The property customData is passed to the VM to be saved as a file, for more information see [Custom Data on Azure VMs](https://azure.microsoft.com/blog/custom-data-and-cloud-init-on-windows-azure/). If using cloud-init for your Linux VM, see [Using cloud-init to customize a Linux VM during creation](https://docs.microsoft.com/azure/virtual-machines/linux/using-cloud-init). */
-  customData?: string;
-}
-export const OSProfileProvisioningData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adminPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    customData: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OSProfileProvisioningData",
-}) as any as S.Schema<OSProfileProvisioningData>;
-
-export interface SetVirtualMachineScaleVMsReimageRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** Specifies whether to reimage temp disk. Default value: false. Note: This temp disk reimage parameter is only supported for VM/VMSS with Ephemeral OS disk. */
-  tempDisk?: boolean;
-  /** Specifies in decimal number, the version the OS disk should be reimaged to. If exact version is not provided, the OS disk is reimaged to the existing version of OS Disk. */
-  exactVersion?: string;
-  /** Specifies information required for reimaging the non-ephemeral OS disk. */
-  osProfile?: OSProfileProvisioningData;
-  /** Parameter to force update ephemeral OS disk for a virtual machine scale set VM */
-  forceUpdateOSDiskForEphemeral?: boolean;
-}
-export const SetVirtualMachineScaleVMsReimageRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      tempDisk: S.optional(S.Boolean),
-      exactVersion: S.optional(S.String),
-      osProfile: S.optional(OSProfileProvisioningData),
-      forceUpdateOSDiskForEphemeral: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/reimage",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "SetVirtualMachineScaleVMsReimageRequest",
-}) as any as S.Schema<SetVirtualMachineScaleVMsReimageRequest>;
-
-export interface SetVirtualMachineScaleVMsReimageResponse {}
-export const SetVirtualMachineScaleVMsReimageResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SetVirtualMachineScaleVMsReimageResponse",
-}) as any as S.Schema<SetVirtualMachineScaleVMsReimageResponse>;
-
-export interface SetVirtualMachineScaleVMsReimageAllRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-}
-export const SetVirtualMachineScaleVMsReimageAllRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/reimageall",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetVirtualMachineScaleVMsReimageAllRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsReimageAllRequest>;
-
-export interface SetVirtualMachineScaleVMsReimageAllResponse {}
-export const SetVirtualMachineScaleVMsReimageAllResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleVMsReimageAllResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsReimageAllResponse>;
-
-export interface SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** Expiration duration in minutes for the SAS URIs with a value between 1 to 1440 minutes. **Note:** If not specified, SAS URIs will be generated with a default expiration duration of 120 minutes. */
-  sasUriExpirationTimeInMinutes?: number;
-}
-export const SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      sasUriExpirationTimeInMinutes: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/retrieveBootDiagnosticsData",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataRequest>;
-
-/** The SAS URIs of the console screenshot and serial log blobs. */
-export interface RetrieveBootDiagnosticsDataResult {
-  /** The console screenshot blob URI */
-  consoleScreenshotBlobUri?: string;
-  /** The serial console log blob URI. */
-  serialConsoleLogBlobUri?: string;
-}
-export const RetrieveBootDiagnosticsDataResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    consoleScreenshotBlobUri: S.optional(S.String),
-    serialConsoleLogBlobUri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RetrieveBootDiagnosticsDataResult",
-}) as any as S.Schema<RetrieveBootDiagnosticsDataResult>;
-
-/** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
-export type VirtualMachineScaleSetVMsRunCommandRequestScriptList =
-  Array<string>;
-export const VirtualMachineScaleSetVMsRunCommandRequestScriptList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsRunCommandRequestScriptList>;
-
-/** The run command parameters. */
-export type VirtualMachineScaleSetVMsRunCommandRequestParametersList =
-  Array<RunCommandInputParameter>;
-export const VirtualMachineScaleSetVMsRunCommandRequestParametersList =
-  /*@__PURE__*/ S.Array(
-    RunCommandInputParameter,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsRunCommandRequestParametersList>;
-
-export interface SetVirtualMachineScaleVMsRunCommandRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** Specifies a commandId of predefined built-in script. Command IDs available for Linux are listed at https://aka.ms/RunCommandManagedLinux#available-commands, Windows at https://aka.ms/RunCommandManagedWindows#available-commands. */
-  commandId: string;
-  /** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
-  script?: VirtualMachineScaleSetVMsRunCommandRequestScriptList;
-  /** The run command parameters. */
-  parameters?: VirtualMachineScaleSetVMsRunCommandRequestParametersList;
-}
-export const SetVirtualMachineScaleVMsRunCommandRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      commandId: S.String,
-      script: S.optional(VirtualMachineScaleSetVMsRunCommandRequestScriptList),
-      parameters: S.optional(
-        VirtualMachineScaleSetVMsRunCommandRequestParametersList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommand",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetVirtualMachineScaleVMsRunCommandRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsRunCommandRequest>;
-
-/** Run command operation response. */
-export type RunCommandResultValueList = Array<InstanceViewStatus>;
-export const RunCommandResultValueList = /*@__PURE__*/ S.Array(
-  InstanceViewStatus,
-) as any as S.Schema<RunCommandResultValueList>;
-
-export interface RunCommandResult {
-  /** Run command operation response. */
-  value?: RunCommandResultValueList;
-}
-export const RunCommandResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(RunCommandResultValueList),
-  }),
-).annotate({
-  identifier: "RunCommandResult",
-}) as any as S.Schema<RunCommandResult>;
-
-export interface SetVirtualMachineScaleVMsSimulateEvictionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-}
-export const SetVirtualMachineScaleVMsSimulateEvictionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/simulateEviction",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SetVirtualMachineScaleVMsSimulateEvictionRequest",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsSimulateEvictionRequest>;
-
-export interface SetVirtualMachineScaleVMsSimulateEvictionResponse {}
-export const SetVirtualMachineScaleVMsSimulateEvictionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SetVirtualMachineScaleVMsSimulateEvictionResponse",
-  }) as any as S.Schema<SetVirtualMachineScaleVMsSimulateEvictionResponse>;
-
-/** The desired regions */
-export type SpotPlacementScoresPostRequestDesiredLocationsList = Array<string>;
-export const SpotPlacementScoresPostRequestDesiredLocationsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SpotPlacementScoresPostRequestDesiredLocationsList>;
-
-/** SpotPlacementRecommender API response. */
-export interface ResourceSize {
-  /** The resource's CRP virtual machine SKU size. */
-  sku?: string;
-}
-export const ResourceSize = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sku: S.optional(S.String),
-  }),
-).annotate({ identifier: "ResourceSize" }) as any as S.Schema<ResourceSize>;
-
-/** The desired virtual machine SKU sizes. */
-export type SpotPlacementScoresPostRequestDesiredSizesList =
-  Array<ResourceSize>;
-export const SpotPlacementScoresPostRequestDesiredSizesList =
-  /*@__PURE__*/ S.Array(
-    ResourceSize,
-  ) as any as S.Schema<SpotPlacementScoresPostRequestDesiredSizesList>;
-
-export interface SpotPlacementScoresPostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The desired regions */
-  desiredLocations?: SpotPlacementScoresPostRequestDesiredLocationsList;
-  /** The desired virtual machine SKU sizes. */
-  desiredSizes?: SpotPlacementScoresPostRequestDesiredSizesList;
-  /** Desired instance count per region/zone based on the scope. */
-  desiredCount?: number;
-  /** Defines if the scope is zonal or regional. */
-  availabilityZones?: boolean;
-}
-export const SpotPlacementScoresPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    desiredLocations: S.optional(
-      SpotPlacementScoresPostRequestDesiredLocationsList,
-    ),
-    desiredSizes: S.optional(SpotPlacementScoresPostRequestDesiredSizesList),
-    desiredCount: S.optional(S.Number),
-    availabilityZones: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/placementScores/spot/generate",
-      code: 200,
-      apiVersion: "2025-06-05",
-    }),
-  ),
-).annotate({
-  identifier: "SpotPlacementScoresPostRequest",
-}) as any as S.Schema<SpotPlacementScoresPostRequest>;
-
-/** The desired regions */
-export type SpotPlacementScoresResponseDesiredLocationsList = Array<string>;
-export const SpotPlacementScoresResponseDesiredLocationsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SpotPlacementScoresResponseDesiredLocationsList>;
-
-/** The desired virtual machine SKU sizes. */
-export type SpotPlacementScoresResponseDesiredSizesList = Array<ResourceSize>;
-export const SpotPlacementScoresResponseDesiredSizesList =
-  /*@__PURE__*/ S.Array(
-    ResourceSize,
-  ) as any as S.Schema<SpotPlacementScoresResponseDesiredSizesList>;
-
-/** The spot placement score for sku/region/zone combination. */
-export interface PlacementScore {
-  /** The resource's CRP virtual machine SKU size. */
-  sku?: string;
-  /** The region. */
-  region?: string;
-  /** The availability zone. */
-  availabilityZone?: string;
-  /** A placement score indicating the likelihood of successfully allocating the specified Spot VM(s), as well as the expected lifetimes of the Spot VM(s) after allocation. */
-  score?: string;
-  /** Whether the desired quota is available. */
-  isQuotaAvailable?: boolean;
-}
-export const PlacementScore = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sku: S.optional(S.String),
-    region: S.optional(S.String),
-    availabilityZone: S.optional(S.String),
-    score: S.optional(S.String),
-    isQuotaAvailable: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "PlacementScore" }) as any as S.Schema<PlacementScore>;
-
-/** A placement score indicating the likelihood of successfully allocating the specified Spot VM(s), as well as the expected lifetimes of the Spot VM(s) after allocation. */
-export type SpotPlacementScoresResponsePlacementScoresList =
-  Array<PlacementScore>;
-export const SpotPlacementScoresResponsePlacementScoresList =
-  /*@__PURE__*/ S.Array(
-    PlacementScore,
-  ) as any as S.Schema<SpotPlacementScoresResponsePlacementScoresList>;
-
-/** SpotPlacementScores API response. */
-export interface SpotPlacementScoresResponse {
-  /** The desired regions */
-  desiredLocations?: SpotPlacementScoresResponseDesiredLocationsList;
-  /** The desired virtual machine SKU sizes. */
-  desiredSizes?: SpotPlacementScoresResponseDesiredSizesList;
-  /** Desired instance count per region/zone based on the scope. */
-  desiredCount?: number;
-  /** Defines if the scope is zonal or regional. */
-  availabilityZones?: boolean;
-  /** A placement score indicating the likelihood of successfully allocating the specified Spot VM(s), as well as the expected lifetimes of the Spot VM(s) after allocation. */
-  placementScores?: SpotPlacementScoresResponsePlacementScoresList;
-}
-export const SpotPlacementScoresResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    desiredLocations: S.optional(
-      SpotPlacementScoresResponseDesiredLocationsList,
-    ),
-    desiredSizes: S.optional(SpotPlacementScoresResponseDesiredSizesList),
-    desiredCount: S.optional(S.Number),
-    availabilityZones: S.optional(S.Boolean),
-    placementScores: S.optional(SpotPlacementScoresResponsePlacementScoresList),
-  }),
-).annotate({
-  identifier: "SpotPlacementScoresResponse",
-}) as any as S.Schema<SpotPlacementScoresResponse>;
+    identifier: "StartAvailabilitySetMigrationToVirtualMachineScaleSetResponse",
+  }) as any as S.Schema<StartAvailabilitySetMigrationToVirtualMachineScaleSetResponse>;
 
 export interface StartVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -15584,73 +17397,12 @@ export const StartVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartVirtualMachineResponse",
 }) as any as S.Schema<StartVirtualMachineResponse>;
 
-export interface StartVirtualMachineBulkOperationBulkRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The location name. */
-  location: string;
-  /** The execution parameters for the request */
-  executionParameters: ExecutionParameters;
-  /** The resources for the request */
-  resources: Resources;
-}
-export const StartVirtualMachineBulkOperationBulkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      executionParameters: ExecutionParameters,
-      resources: Resources,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkStart",
-        code: 200,
-        apiVersion: "2026-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "StartVirtualMachineBulkOperationBulkRequest",
-  }) as any as S.Schema<StartVirtualMachineBulkOperationBulkRequest>;
-
-/** The results from the start request if no errors exist */
-export type StartResourceOperationResponseResultsList =
-  Array<ResourceOperation>;
-export const StartResourceOperationResponseResultsList = /*@__PURE__*/ S.Array(
-  ResourceOperation,
-) as any as S.Schema<StartResourceOperationResponseResultsList>;
-
-/** The response from a start request */
-export interface StartResourceOperationResponse {
-  /** The description of the operation response */
-  description: string;
-  /** The type of resources used in the start request eg virtual machines */
-  type: string;
-  /** The location of the start request eg westus */
-  location: string;
-  /** The results from the start request if no errors exist */
-  results?: StartResourceOperationResponseResultsList;
-}
-export const StartResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.String,
-    type: S.String,
-    location: S.String,
-    results: S.optional(StartResourceOperationResponseResultsList),
-  }),
-).annotate({
-  identifier: "StartResourceOperationResponse",
-}) as any as S.Schema<StartResourceOperationResponse>;
-
 /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-export type VirtualMachineScaleSetsStartRequestInstanceIdsList = Array<string>;
-export const VirtualMachineScaleSetsStartRequestInstanceIdsList =
+export type StartVirtualMachineScaleSetRequestInstanceIdsList = Array<string>;
+export const StartVirtualMachineScaleSetRequestInstanceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsStartRequestInstanceIdsList>;
+  ) as any as S.Schema<StartVirtualMachineScaleSetRequestInstanceIdsList>;
 
 export interface StartVirtualMachineScaleSetRequest {
   /** The ID of the target subscription. */
@@ -15660,14 +17412,14 @@ export interface StartVirtualMachineScaleSetRequest {
   /** The name of the VM scale set. */
   vmScaleSetName: string;
   /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-  instanceIds?: VirtualMachineScaleSetsStartRequestInstanceIdsList;
+  instanceIds?: StartVirtualMachineScaleSetRequestInstanceIdsList;
 }
 export const StartVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vmScaleSetName: S.String.pipe(T.Label()),
-    instanceIds: S.optional(VirtualMachineScaleSetsStartRequestInstanceIdsList),
+    instanceIds: S.optional(StartVirtualMachineScaleSetRequestInstanceIdsList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -15687,14 +17439,116 @@ export const StartVirtualMachineScaleSetResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartVirtualMachineScaleSetResponse",
 }) as any as S.Schema<StartVirtualMachineScaleSetResponse>;
 
+export interface StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+}
+export const StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensionRollingUpgrade",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeRequest",
+  }) as any as S.Schema<StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeRequest>;
+
+export interface StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeResponse {}
+export const StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier:
+      "StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeResponse",
+  }) as any as S.Schema<StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeResponse>;
+
+export interface StartVirtualMachineScaleSetRollingUpgradeOSUpgradeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+}
+export const StartVirtualMachineScaleSetRollingUpgradeOSUpgradeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/osRollingUpgrade",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "StartVirtualMachineScaleSetRollingUpgradeOSUpgradeRequest",
+  }) as any as S.Schema<StartVirtualMachineScaleSetRollingUpgradeOSUpgradeRequest>;
+
+export interface StartVirtualMachineScaleSetRollingUpgradeOSUpgradeResponse {}
+export const StartVirtualMachineScaleSetRollingUpgradeOSUpgradeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "StartVirtualMachineScaleSetRollingUpgradeOSUpgradeResponse",
+  }) as any as S.Schema<StartVirtualMachineScaleSetRollingUpgradeOSUpgradeResponse>;
+
+export interface StartVirtualMachineScaleSetVMRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const StartVirtualMachineScaleSetVMRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/start",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "StartVirtualMachineScaleSetVMRequest",
+}) as any as S.Schema<StartVirtualMachineScaleSetVMRequest>;
+
+export interface StartVirtualMachineScaleSetVMResponse {}
+export const StartVirtualMachineScaleSetVMResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "StartVirtualMachineScaleSetVMResponse",
+}) as any as S.Schema<StartVirtualMachineScaleSetVMResponse>;
+
 /** Resource tags */
-export type AvailabilitySetsUpdateRequestTagsMap = {
+export type UpdateAvailabilitySetRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailabilitySetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAvailabilitySetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AvailabilitySetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAvailabilitySetRequestTagsMap>;
 
 export interface UpdateAvailabilitySetRequest {
   /** The ID of the target subscription. */
@@ -15704,7 +17558,7 @@ export interface UpdateAvailabilitySetRequest {
   /** The name of the availability set. */
   availabilitySetName: string;
   /** Resource tags */
-  tags?: AvailabilitySetsUpdateRequestTagsMap;
+  tags?: UpdateAvailabilitySetRequestTagsMap;
   /** The instance view of a resource. */
   properties?: AvailabilitySetPropertiesInput;
   /** Sku of the availability set */
@@ -15715,7 +17569,7 @@ export const UpdateAvailabilitySetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     availabilitySetName: S.String.pipe(T.Label()),
-    tags: S.optional(AvailabilitySetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAvailabilitySetRequestTagsMap),
     properties: S.optional(AvailabilitySetPropertiesInput),
     sku: S.optional(Sku),
   }).pipe(
@@ -15731,13 +17585,13 @@ export const UpdateAvailabilitySetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAvailabilitySetRequest>;
 
 /** Resource tags. */
-export type AvailabilitySetsUpdateResponseTagsMap = {
+export type UpdateAvailabilitySetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AvailabilitySetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAvailabilitySetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AvailabilitySetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAvailabilitySetResponseTagsMap>;
 
 export interface UpdateAvailabilitySetResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -15749,7 +17603,7 @@ export interface UpdateAvailabilitySetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AvailabilitySetsUpdateResponseTagsMap;
+  tags?: UpdateAvailabilitySetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The instance view of a resource. */
@@ -15763,7 +17617,7 @@ export const UpdateAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AvailabilitySetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAvailabilitySetResponseTagsMap),
     location: S.String,
     properties: S.optional(AvailabilitySetProperties),
     sku: S.optional(Sku),
@@ -15773,13 +17627,13 @@ export const UpdateAvailabilitySetResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAvailabilitySetResponse>;
 
 /** Resource tags */
-export type CapacityReservationsUpdateRequestTagsMap = {
+export type UpdateCapacityReservationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CapacityReservationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCapacityReservationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CapacityReservationsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCapacityReservationRequestTagsMap>;
 
 export interface UpdateCapacityReservationRequest {
   /** The ID of the target subscription. */
@@ -15791,7 +17645,7 @@ export interface UpdateCapacityReservationRequest {
   /** The name of the capacity reservation. */
   capacityReservationName: string;
   /** Resource tags */
-  tags?: CapacityReservationsUpdateRequestTagsMap;
+  tags?: UpdateCapacityReservationRequestTagsMap;
   /** Properties of the Capacity reservation. */
   properties?: CapacityReservationPropertiesInput;
   /** SKU of the resource for which capacity needs be reserved. The SKU name and capacity is required to be set. Currently VM Skus with the capability called 'CapacityReservationSupported' set to true are supported. When 'CapacityReservationSupported' is true, the SKU capability also specifies the 'SupportedCapacityReservationTypes', which lists the types of capacity reservations (such as Targeted or Block) that the SKU supports. Refer to List Microsoft.Compute SKUs in a region (https://docs.microsoft.com/rest/api/compute/resourceskus/list) for supported values. **Note:** The SKU name and capacity cannot be updated for Block capacity reservations. */
@@ -15803,7 +17657,7 @@ export const UpdateCapacityReservationRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     capacityReservationGroupName: S.String.pipe(T.Label()),
     capacityReservationName: S.String.pipe(T.Label()),
-    tags: S.optional(CapacityReservationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateCapacityReservationRequestTagsMap),
     properties: S.optional(CapacityReservationPropertiesInput),
     sku: S.optional(Sku),
   }).pipe(
@@ -15819,20 +17673,19 @@ export const UpdateCapacityReservationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateCapacityReservationRequest>;
 
 /** Resource tags. */
-export type CapacityReservationsUpdateResponseTagsMap = {
+export type UpdateCapacityReservationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CapacityReservationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCapacityReservationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CapacityReservationsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCapacityReservationResponseTagsMap>;
 
 /** The availability zones. */
-export type CapacityReservationsUpdateResponseZonesList = Array<string>;
-export const CapacityReservationsUpdateResponseZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CapacityReservationsUpdateResponseZonesList>;
+export type UpdateCapacityReservationResponseZonesList = Array<string>;
+export const UpdateCapacityReservationResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateCapacityReservationResponseZonesList>;
 
 export interface UpdateCapacityReservationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -15844,7 +17697,7 @@ export interface UpdateCapacityReservationResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CapacityReservationsUpdateResponseTagsMap;
+  tags?: UpdateCapacityReservationResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the Capacity reservation. */
@@ -15852,7 +17705,7 @@ export interface UpdateCapacityReservationResponse {
   /** SKU of the resource for which capacity needs be reserved. The SKU name and capacity is required to be set. For Block capacity reservations, sku.capacity can only accept values 1, 2, 4, 8, 16, 32, 64. Currently VM Skus with the capability called 'CapacityReservationSupported' set to true are supported. When 'CapacityReservationSupported' is true, the SKU capability also specifies the 'SupportedCapacityReservationTypes', which lists the types of capacity reservations (such as Targeted or Block) that the SKU supports. Refer to List Microsoft.Compute SKUs in a region (https://docs.microsoft.com/rest/api/compute/resourceskus/list) for supported values. */
   sku: Sku;
   /** The availability zones. */
-  zones?: CapacityReservationsUpdateResponseZonesList;
+  zones?: UpdateCapacityReservationResponseZonesList;
 }
 export const UpdateCapacityReservationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -15860,25 +17713,25 @@ export const UpdateCapacityReservationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CapacityReservationsUpdateResponseTagsMap),
+    tags: S.optional(UpdateCapacityReservationResponseTagsMap),
     location: S.String,
     properties: S.optional(CapacityReservationProperties),
     sku: Sku,
-    zones: S.optional(CapacityReservationsUpdateResponseZonesList),
+    zones: S.optional(UpdateCapacityReservationResponseZonesList),
   }),
 ).annotate({
   identifier: "UpdateCapacityReservationResponse",
 }) as any as S.Schema<UpdateCapacityReservationResponse>;
 
 /** Resource tags */
-export type CapacityReservationGroupsUpdateRequestTagsMap = {
+export type UpdateCapacityReservationGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CapacityReservationGroupsUpdateRequestTagsMap =
+export const UpdateCapacityReservationGroupRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CapacityReservationGroupsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateCapacityReservationGroupRequestTagsMap>;
 
 export interface UpdateCapacityReservationGroupRequest {
   /** The ID of the target subscription. */
@@ -15888,7 +17741,7 @@ export interface UpdateCapacityReservationGroupRequest {
   /** The name of the capacity reservation group. */
   capacityReservationGroupName: string;
   /** Resource tags */
-  tags?: CapacityReservationGroupsUpdateRequestTagsMap;
+  tags?: UpdateCapacityReservationGroupRequestTagsMap;
   /** capacity reservation group Properties. */
   properties?: CapacityReservationGroupPropertiesInput;
 }
@@ -15898,7 +17751,7 @@ export const UpdateCapacityReservationGroupRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       capacityReservationGroupName: S.String.pipe(T.Label()),
-      tags: S.optional(CapacityReservationGroupsUpdateRequestTagsMap),
+      tags: S.optional(UpdateCapacityReservationGroupRequestTagsMap),
       properties: S.optional(CapacityReservationGroupPropertiesInput),
     }).pipe(
       T.Http({
@@ -15913,21 +17766,21 @@ export const UpdateCapacityReservationGroupRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateCapacityReservationGroupRequest>;
 
 /** Resource tags. */
-export type CapacityReservationGroupsUpdateResponseTagsMap = {
+export type UpdateCapacityReservationGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CapacityReservationGroupsUpdateResponseTagsMap =
+export const UpdateCapacityReservationGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<CapacityReservationGroupsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateCapacityReservationGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type CapacityReservationGroupsUpdateResponseZonesList = Array<string>;
-export const CapacityReservationGroupsUpdateResponseZonesList =
+export type UpdateCapacityReservationGroupResponseZonesList = Array<string>;
+export const UpdateCapacityReservationGroupResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<CapacityReservationGroupsUpdateResponseZonesList>;
+  ) as any as S.Schema<UpdateCapacityReservationGroupResponseZonesList>;
 
 export interface UpdateCapacityReservationGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -15939,13 +17792,13 @@ export interface UpdateCapacityReservationGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CapacityReservationGroupsUpdateResponseTagsMap;
+  tags?: UpdateCapacityReservationGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** capacity reservation group Properties. */
   properties?: CapacityReservationGroupProperties;
   /** The availability zones. */
-  zones?: CapacityReservationGroupsUpdateResponseZonesList;
+  zones?: UpdateCapacityReservationGroupResponseZonesList;
 }
 export const UpdateCapacityReservationGroupResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -15954,23 +17807,23 @@ export const UpdateCapacityReservationGroupResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(CapacityReservationGroupsUpdateResponseTagsMap),
+      tags: S.optional(UpdateCapacityReservationGroupResponseTagsMap),
       location: S.String,
       properties: S.optional(CapacityReservationGroupProperties),
-      zones: S.optional(CapacityReservationGroupsUpdateResponseZonesList),
+      zones: S.optional(UpdateCapacityReservationGroupResponseZonesList),
     }),
 ).annotate({
   identifier: "UpdateCapacityReservationGroupResponse",
 }) as any as S.Schema<UpdateCapacityReservationGroupResponse>;
 
 /** Resource tags */
-export type DedicatedHostsUpdateRequestTagsMap = {
+export type UpdateDedicatedHostRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHostsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHostRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHostsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDedicatedHostRequestTagsMap>;
 
 export interface UpdateDedicatedHostRequest {
   /** The ID of the target subscription. */
@@ -15982,7 +17835,7 @@ export interface UpdateDedicatedHostRequest {
   /** The name of the dedicated host. */
   hostName: string;
   /** Resource tags */
-  tags?: DedicatedHostsUpdateRequestTagsMap;
+  tags?: UpdateDedicatedHostRequestTagsMap;
   /** Properties of the dedicated host. */
   properties?: DedicatedHostPropertiesInput;
   /** [List all available dedicated host sizes for resizing] (https://docs.microsoft.com/rest/api/compute/dedicated-hosts/listavailablesizes). Resizing can be only used to scale up DedicatedHost. Only name is required to be set. */
@@ -15994,7 +17847,7 @@ export const UpdateDedicatedHostRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     hostGroupName: S.String.pipe(T.Label()),
     hostName: S.String.pipe(T.Label()),
-    tags: S.optional(DedicatedHostsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDedicatedHostRequestTagsMap),
     properties: S.optional(DedicatedHostPropertiesInput),
     sku: S.optional(Sku),
   }).pipe(
@@ -16010,13 +17863,13 @@ export const UpdateDedicatedHostRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDedicatedHostRequest>;
 
 /** Resource tags. */
-export type DedicatedHostsUpdateResponseTagsMap = {
+export type UpdateDedicatedHostResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHostsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHostResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHostsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDedicatedHostResponseTagsMap>;
 
 export interface UpdateDedicatedHostResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -16028,7 +17881,7 @@ export interface UpdateDedicatedHostResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHostsUpdateResponseTagsMap;
+  tags?: UpdateDedicatedHostResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the dedicated host. */
@@ -16042,7 +17895,7 @@ export const UpdateDedicatedHostResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHostsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDedicatedHostResponseTagsMap),
     location: S.String,
     properties: S.optional(DedicatedHostProperties),
     sku: Sku,
@@ -16052,19 +17905,19 @@ export const UpdateDedicatedHostResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDedicatedHostResponse>;
 
 /** Resource tags */
-export type DedicatedHostGroupsUpdateRequestTagsMap = {
+export type UpdateDedicatedHostGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHostGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHostGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHostGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDedicatedHostGroupRequestTagsMap>;
 
 /** Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone. */
-export type DedicatedHostGroupsUpdateRequestZonesList = Array<string>;
-export const DedicatedHostGroupsUpdateRequestZonesList = /*@__PURE__*/ S.Array(
+export type UpdateDedicatedHostGroupRequestZonesList = Array<string>;
+export const UpdateDedicatedHostGroupRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<DedicatedHostGroupsUpdateRequestZonesList>;
+) as any as S.Schema<UpdateDedicatedHostGroupRequestZonesList>;
 
 export interface UpdateDedicatedHostGroupRequest {
   /** The ID of the target subscription. */
@@ -16074,20 +17927,20 @@ export interface UpdateDedicatedHostGroupRequest {
   /** The name of the dedicated host group. */
   hostGroupName: string;
   /** Resource tags */
-  tags?: DedicatedHostGroupsUpdateRequestTagsMap;
+  tags?: UpdateDedicatedHostGroupRequestTagsMap;
   /** Dedicated Host Group Properties. */
   properties?: DedicatedHostGroupPropertiesInput;
   /** Availability Zone to use for this host group. Only single zone is supported. The zone can be assigned only during creation. If not provided, the group supports all zones in the region. If provided, enforces each host in the group to be in the same zone. */
-  zones?: DedicatedHostGroupsUpdateRequestZonesList;
+  zones?: UpdateDedicatedHostGroupRequestZonesList;
 }
 export const UpdateDedicatedHostGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     hostGroupName: S.String.pipe(T.Label()),
-    tags: S.optional(DedicatedHostGroupsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDedicatedHostGroupRequestTagsMap),
     properties: S.optional(DedicatedHostGroupPropertiesInput),
-    zones: S.optional(DedicatedHostGroupsUpdateRequestZonesList),
+    zones: S.optional(UpdateDedicatedHostGroupRequestZonesList),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -16101,19 +17954,19 @@ export const UpdateDedicatedHostGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDedicatedHostGroupRequest>;
 
 /** Resource tags. */
-export type DedicatedHostGroupsUpdateResponseTagsMap = {
+export type UpdateDedicatedHostGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHostGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHostGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHostGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDedicatedHostGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type DedicatedHostGroupsUpdateResponseZonesList = Array<string>;
-export const DedicatedHostGroupsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateDedicatedHostGroupResponseZonesList = Array<string>;
+export const UpdateDedicatedHostGroupResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<DedicatedHostGroupsUpdateResponseZonesList>;
+) as any as S.Schema<UpdateDedicatedHostGroupResponseZonesList>;
 
 export interface UpdateDedicatedHostGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -16125,13 +17978,13 @@ export interface UpdateDedicatedHostGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHostGroupsUpdateResponseTagsMap;
+  tags?: UpdateDedicatedHostGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Dedicated Host Group Properties. */
   properties?: DedicatedHostGroupProperties;
   /** The availability zones. */
-  zones?: DedicatedHostGroupsUpdateResponseZonesList;
+  zones?: UpdateDedicatedHostGroupResponseZonesList;
 }
 export const UpdateDedicatedHostGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -16139,21 +17992,21 @@ export const UpdateDedicatedHostGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHostGroupsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDedicatedHostGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(DedicatedHostGroupProperties),
-    zones: S.optional(DedicatedHostGroupsUpdateResponseZonesList),
+    zones: S.optional(UpdateDedicatedHostGroupResponseZonesList),
   }),
 ).annotate({
   identifier: "UpdateDedicatedHostGroupResponse",
 }) as any as S.Schema<UpdateDedicatedHostGroupResponse>;
 
 /** Resource tags */
-export type ImagesUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const ImagesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateImageRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateImageRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImagesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateImageRequestTagsMap>;
 
 export interface UpdateImageRequest {
   /** The ID of the target subscription. */
@@ -16163,7 +18016,7 @@ export interface UpdateImageRequest {
   /** The name of the image. */
   imageName: string;
   /** Resource tags */
-  tags?: ImagesUpdateRequestTagsMap;
+  tags?: UpdateImageRequestTagsMap;
   /** Describes the properties of an Image. */
   properties?: ImagePropertiesInput;
 }
@@ -16172,7 +18025,7 @@ export const UpdateImageRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     imageName: S.String.pipe(T.Label()),
-    tags: S.optional(ImagesUpdateRequestTagsMap),
+    tags: S.optional(UpdateImageRequestTagsMap),
     properties: S.optional(ImagePropertiesInput),
   }).pipe(
     T.Http({
@@ -16187,17 +18040,17 @@ export const UpdateImageRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateImageRequest>;
 
 /** Resource tags. */
-export type ImagesUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const ImagesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateImageResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateImageResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ImagesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateImageResponseTagsMap>;
 
 /** The complex type of the extended location. */
-export type ImagesUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
-export const ImagesUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+export type UpdateImageResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
+export const UpdateImageResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
 
 export interface UpdateImageResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -16209,13 +18062,13 @@ export interface UpdateImageResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ImagesUpdateResponseTagsMap;
+  tags?: UpdateImageResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of an Image. */
   properties?: ImageProperties;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
 }
 export const UpdateImageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -16223,23 +18076,23 @@ export const UpdateImageResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ImagesUpdateResponseTagsMap),
+    tags: S.optional(UpdateImageResponseTagsMap),
     location: S.String,
     properties: S.optional(ImageProperties),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
   }),
 ).annotate({
   identifier: "UpdateImageResponse",
 }) as any as S.Schema<UpdateImageResponse>;
 
 /** Resource tags */
-export type InterconnectBlocksUpdateRequestTagsMap = {
+export type UpdateInterconnectBlockRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const InterconnectBlocksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInterconnectBlockRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InterconnectBlocksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateInterconnectBlockRequestTagsMap>;
 
 export interface UpdateInterconnectBlockRequest {
   /** The ID of the target subscription. */
@@ -16249,7 +18102,7 @@ export interface UpdateInterconnectBlockRequest {
   /** The name of the Interconnect Block. */
   interconnectBlockName: string;
   /** Resource tags */
-  tags?: InterconnectBlocksUpdateRequestTagsMap;
+  tags?: UpdateInterconnectBlockRequestTagsMap;
   /** SKU of the resource for which capacity needs to be pre-allocated. Only `sku.capacity` is mutable; `sku.name` is immutable. */
   sku?: Sku;
 }
@@ -16258,7 +18111,7 @@ export const UpdateInterconnectBlockRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     interconnectBlockName: S.String.pipe(T.Label()),
-    tags: S.optional(InterconnectBlocksUpdateRequestTagsMap),
+    tags: S.optional(UpdateInterconnectBlockRequestTagsMap),
     sku: S.optional(Sku),
   }).pipe(
     T.Http({
@@ -16273,19 +18126,19 @@ export const UpdateInterconnectBlockRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateInterconnectBlockRequest>;
 
 /** Resource tags. */
-export type InterconnectBlocksUpdateResponseTagsMap = {
+export type UpdateInterconnectBlockResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InterconnectBlocksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInterconnectBlockResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InterconnectBlocksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateInterconnectBlockResponseTagsMap>;
 
 /** The availability zones. */
-export type InterconnectBlocksUpdateResponseZonesList = Array<string>;
-export const InterconnectBlocksUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateInterconnectBlockResponseZonesList = Array<string>;
+export const UpdateInterconnectBlockResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<InterconnectBlocksUpdateResponseZonesList>;
+) as any as S.Schema<UpdateInterconnectBlockResponseZonesList>;
 
 export interface UpdateInterconnectBlockResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -16297,7 +18150,7 @@ export interface UpdateInterconnectBlockResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InterconnectBlocksUpdateResponseTagsMap;
+  tags?: UpdateInterconnectBlockResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the Interconnect Block. */
@@ -16305,7 +18158,7 @@ export interface UpdateInterconnectBlockResponse {
   /** SKU of the resource for which capacity needs to be pre-allocated. Both `sku.name` and `sku.capacity` are required at create. After create, only `sku.capacity` can be updated. */
   sku: Sku;
   /** The availability zones. */
-  zones?: InterconnectBlocksUpdateResponseZonesList;
+  zones?: UpdateInterconnectBlockResponseZonesList;
   /** Placement section specifies the user-defined constraints for Interconnect Block hardware placement. This property cannot be changed once Interconnect Block is provisioned. */
   placement?: Placement;
 }
@@ -16315,11 +18168,11 @@ export const UpdateInterconnectBlockResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InterconnectBlocksUpdateResponseTagsMap),
+    tags: S.optional(UpdateInterconnectBlockResponseTagsMap),
     location: S.String,
     properties: S.optional(InterconnectBlockProperties),
     sku: Sku,
-    zones: S.optional(InterconnectBlocksUpdateResponseZonesList),
+    zones: S.optional(UpdateInterconnectBlockResponseZonesList),
     placement: S.optional(Placement),
   }),
 ).annotate({
@@ -16327,14 +18180,14 @@ export const UpdateInterconnectBlockResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateInterconnectBlockResponse>;
 
 /** Resource tags */
-export type ProximityPlacementGroupsUpdateRequestTagsMap = {
+export type UpdateProximityPlacementGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProximityPlacementGroupsUpdateRequestTagsMap =
+export const UpdateProximityPlacementGroupRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProximityPlacementGroupsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateProximityPlacementGroupRequestTagsMap>;
 
 export interface UpdateProximityPlacementGroupRequest {
   /** The ID of the target subscription. */
@@ -16344,7 +18197,7 @@ export interface UpdateProximityPlacementGroupRequest {
   /** The name of the proximity placement group. */
   proximityPlacementGroupName: string;
   /** Resource tags */
-  tags?: ProximityPlacementGroupsUpdateRequestTagsMap;
+  tags?: UpdateProximityPlacementGroupRequestTagsMap;
 }
 export const UpdateProximityPlacementGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -16352,7 +18205,7 @@ export const UpdateProximityPlacementGroupRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       proximityPlacementGroupName: S.String.pipe(T.Label()),
-      tags: S.optional(ProximityPlacementGroupsUpdateRequestTagsMap),
+      tags: S.optional(UpdateProximityPlacementGroupRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -16366,21 +18219,21 @@ export const UpdateProximityPlacementGroupRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateProximityPlacementGroupRequest>;
 
 /** Resource tags. */
-export type ProximityPlacementGroupsUpdateResponseTagsMap = {
+export type UpdateProximityPlacementGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ProximityPlacementGroupsUpdateResponseTagsMap =
+export const UpdateProximityPlacementGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ProximityPlacementGroupsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateProximityPlacementGroupResponseTagsMap>;
 
 /** The availability zones. */
-export type ProximityPlacementGroupsUpdateResponseZonesList = Array<string>;
-export const ProximityPlacementGroupsUpdateResponseZonesList =
+export type UpdateProximityPlacementGroupResponseZonesList = Array<string>;
+export const UpdateProximityPlacementGroupResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProximityPlacementGroupsUpdateResponseZonesList>;
+  ) as any as S.Schema<UpdateProximityPlacementGroupResponseZonesList>;
 
 export interface UpdateProximityPlacementGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -16392,13 +18245,13 @@ export interface UpdateProximityPlacementGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ProximityPlacementGroupsUpdateResponseTagsMap;
+  tags?: UpdateProximityPlacementGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Proximity Placement Group. */
   properties?: ProximityPlacementGroupProperties;
   /** The availability zones. */
-  zones?: ProximityPlacementGroupsUpdateResponseZonesList;
+  zones?: UpdateProximityPlacementGroupResponseZonesList;
 }
 export const UpdateProximityPlacementGroupResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -16407,25 +18260,107 @@ export const UpdateProximityPlacementGroupResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ProximityPlacementGroupsUpdateResponseTagsMap),
+      tags: S.optional(UpdateProximityPlacementGroupResponseTagsMap),
       location: S.String,
       properties: S.optional(ProximityPlacementGroupProperties),
-      zones: S.optional(ProximityPlacementGroupsUpdateResponseZonesList),
+      zones: S.optional(UpdateProximityPlacementGroupResponseZonesList),
     }),
 ).annotate({
   identifier: "UpdateProximityPlacementGroupResponse",
 }) as any as S.Schema<UpdateProximityPlacementGroupResponse>;
 
 /** Resource tags */
-export type SshPublicKeysUpdateRequestTagsMap = {
+export type UpdateRestorePointCollectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SshPublicKeysUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SshPublicKeysUpdateRequestTagsMap>;
+export const UpdateRestorePointCollectionRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateRestorePointCollectionRequestTagsMap>;
 
-export interface UpdateSshPublicKeyRequest {
+export interface UpdateRestorePointCollectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the restore point collection. */
+  restorePointCollectionName: string;
+  /** Resource tags */
+  tags?: UpdateRestorePointCollectionRequestTagsMap;
+  /** The restore point collection properties. */
+  properties?: RestorePointCollectionPropertiesInput;
+}
+export const UpdateRestorePointCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    restorePointCollectionName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateRestorePointCollectionRequestTagsMap),
+    properties: S.optional(RestorePointCollectionPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateRestorePointCollectionRequest",
+}) as any as S.Schema<UpdateRestorePointCollectionRequest>;
+
+/** Resource tags. */
+export type UpdateRestorePointCollectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateRestorePointCollectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateRestorePointCollectionResponseTagsMap>;
+
+export interface UpdateRestorePointCollectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateRestorePointCollectionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The restore point collection properties. */
+  properties?: RestorePointCollectionProperties;
+}
+export const UpdateRestorePointCollectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateRestorePointCollectionResponseTagsMap),
+      location: S.String,
+      properties: S.optional(RestorePointCollectionProperties),
+    }),
+).annotate({
+  identifier: "UpdateRestorePointCollectionResponse",
+}) as any as S.Schema<UpdateRestorePointCollectionResponse>;
+
+/** Resource tags */
+export type UpdateSshPublicKeysRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSshPublicKeysRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSshPublicKeysRequestTagsMap>;
+
+export interface UpdateSshPublicKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -16433,16 +18368,16 @@ export interface UpdateSshPublicKeyRequest {
   /** The name of the SSH public key. */
   sshPublicKeyName: string;
   /** Resource tags */
-  tags?: SshPublicKeysUpdateRequestTagsMap;
+  tags?: UpdateSshPublicKeysRequestTagsMap;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const UpdateSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSshPublicKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     sshPublicKeyName: S.String.pipe(T.Label()),
-    tags: S.optional(SshPublicKeysUpdateRequestTagsMap),
+    tags: S.optional(UpdateSshPublicKeysRequestTagsMap),
     properties: S.optional(SshPublicKeyResourceProperties),
   }).pipe(
     T.Http({
@@ -16453,19 +18388,19 @@ export const UpdateSshPublicKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSshPublicKeyRequest",
-}) as any as S.Schema<UpdateSshPublicKeyRequest>;
+  identifier: "UpdateSshPublicKeysRequest",
+}) as any as S.Schema<UpdateSshPublicKeysRequest>;
 
 /** Resource tags. */
-export type SshPublicKeysUpdateResponseTagsMap = {
+export type UpdateSshPublicKeysResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SshPublicKeysUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSshPublicKeysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SshPublicKeysUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSshPublicKeysResponseTagsMap>;
 
-export interface UpdateSshPublicKeyResponse {
+export interface UpdateSshPublicKeysResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -16475,34 +18410,34 @@ export interface UpdateSshPublicKeyResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SshPublicKeysUpdateResponseTagsMap;
+  tags?: UpdateSshPublicKeysResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the SSH public key. */
   properties?: SshPublicKeyResourceProperties;
 }
-export const UpdateSshPublicKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSshPublicKeysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SshPublicKeysUpdateResponseTagsMap),
+    tags: S.optional(UpdateSshPublicKeysResponseTagsMap),
     location: S.String,
     properties: S.optional(SshPublicKeyResourceProperties),
   }),
 ).annotate({
-  identifier: "UpdateSshPublicKeyResponse",
-}) as any as S.Schema<UpdateSshPublicKeyResponse>;
+  identifier: "UpdateSshPublicKeysResponse",
+}) as any as S.Schema<UpdateSshPublicKeysResponse>;
 
 /** Resource tags */
-export type VirtualMachinesUpdateRequestTagsMap = {
+export type UpdateVirtualMachineRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachinesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualMachineRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualMachinesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateVirtualMachineRequestTagsMap>;
 
 /** Specifies information about the image to use. You can specify information about platform images, marketplace images, or virtual machine images. This element is required when you want to use a platform image, marketplace image, or virtual machine image, but is not used in other creation operations. NOTE: Image reference publisher and offer can only be set when you create the scale set. */
 export interface ImageReferenceInput {
@@ -16795,10 +18730,10 @@ export const VirtualMachineIdentityInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualMachineIdentityInput>;
 
 /** The virtual machine zones. */
-export type VirtualMachinesUpdateRequestZonesList = Array<string>;
-export const VirtualMachinesUpdateRequestZonesList = /*@__PURE__*/ S.Array(
+export type UpdateVirtualMachineRequestZonesList = Array<string>;
+export const UpdateVirtualMachineRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<VirtualMachinesUpdateRequestZonesList>;
+) as any as S.Schema<UpdateVirtualMachineRequestZonesList>;
 
 export interface UpdateVirtualMachineRequest {
   /** The ID of the target subscription. */
@@ -16808,7 +18743,7 @@ export interface UpdateVirtualMachineRequest {
   /** The name of the virtual machine. */
   vmName: string;
   /** Resource tags */
-  tags?: VirtualMachinesUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineRequestTagsMap;
   /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
   plan?: Plan;
   /** Describes the properties of a Virtual Machine. */
@@ -16816,18 +18751,18 @@ export interface UpdateVirtualMachineRequest {
   /** The identity of the virtual machine, if configured. */
   identity?: VirtualMachineIdentityInput;
   /** The virtual machine zones. */
-  zones?: VirtualMachinesUpdateRequestZonesList;
+  zones?: UpdateVirtualMachineRequestZonesList;
 }
 export const UpdateVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vmName: S.String.pipe(T.Label()),
-    tags: S.optional(VirtualMachinesUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualMachineRequestTagsMap),
     plan: S.optional(Plan),
     properties: S.optional(VirtualMachinePropertiesInput),
     identity: S.optional(VirtualMachineIdentityInput),
-    zones: S.optional(VirtualMachinesUpdateRequestZonesList),
+    zones: S.optional(UpdateVirtualMachineRequestZonesList),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -16841,32 +18776,32 @@ export const UpdateVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualMachineRequest>;
 
 /** Resource tags. */
-export type VirtualMachinesUpdateResponseTagsMap = {
+export type UpdateVirtualMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachinesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateVirtualMachineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VirtualMachinesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVirtualMachineResponseTagsMap>;
 
 /** The virtual machine child extension resources. */
-export type VirtualMachinesUpdateResponseResourcesList =
+export type UpdateVirtualMachineResponseResourcesList =
   Array<VirtualMachineExtension>;
-export const VirtualMachinesUpdateResponseResourcesList = /*@__PURE__*/ S.Array(
+export const UpdateVirtualMachineResponseResourcesList = /*@__PURE__*/ S.Array(
   VirtualMachineExtension,
-) as any as S.Schema<VirtualMachinesUpdateResponseResourcesList>;
+) as any as S.Schema<UpdateVirtualMachineResponseResourcesList>;
 
 /** The availability zones. */
-export type VirtualMachinesUpdateResponseZonesList = Array<string>;
-export const VirtualMachinesUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateVirtualMachineResponseZonesList = Array<string>;
+export const UpdateVirtualMachineResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<VirtualMachinesUpdateResponseZonesList>;
+) as any as S.Schema<UpdateVirtualMachineResponseZonesList>;
 
 /** The complex type of the extended location. */
-export type VirtualMachinesUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
-export const VirtualMachinesUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+export type UpdateVirtualMachineResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
+export const UpdateVirtualMachineResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
 
 export interface UpdateVirtualMachineResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -16878,7 +18813,7 @@ export interface UpdateVirtualMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachinesUpdateResponseTagsMap;
+  tags?: UpdateVirtualMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine. */
@@ -16886,13 +18821,13 @@ export interface UpdateVirtualMachineResponse {
   /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
   plan?: Plan;
   /** The virtual machine child extension resources. */
-  resources?: VirtualMachinesUpdateResponseResourcesList;
+  resources?: UpdateVirtualMachineResponseResourcesList;
   /** The identity of the virtual machine, if configured. */
   identity?: VirtualMachineIdentity;
   /** The availability zones. */
-  zones?: VirtualMachinesUpdateResponseZonesList;
+  zones?: UpdateVirtualMachineResponseZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** ManagedBy is set to Virtual Machine Scale Set(VMSS) flex ARM resourceID, if the VM is part of the VMSS. This property is used by platform for internal resource group delete optimization. */
   managedBy?: string;
   /** Etag is property returned in Create/Update/Get response of the VM, so that customer can supply it in the header to ensure optimistic updates. */
@@ -16906,14 +18841,14 @@ export const UpdateVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachinesUpdateResponseTagsMap),
+    tags: S.optional(UpdateVirtualMachineResponseTagsMap),
     location: S.String,
     properties: S.optional(VirtualMachineProperties),
     plan: S.optional(Plan),
-    resources: S.optional(VirtualMachinesUpdateResponseResourcesList),
+    resources: S.optional(UpdateVirtualMachineResponseResourcesList),
     identity: S.optional(VirtualMachineIdentity),
-    zones: S.optional(VirtualMachinesUpdateResponseZonesList),
-    extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+    zones: S.optional(UpdateVirtualMachineResponseZonesList),
+    extendedLocation: S.optional(GetImageResponseExtendedLocation),
     managedBy: S.optional(S.String),
     etag: S.optional(S.String),
     placement: S.optional(Placement),
@@ -16923,14 +18858,14 @@ export const UpdateVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualMachineResponse>;
 
 /** Resource tags */
-export type VirtualMachineDiagnosticRunCommandsUpdateRequestTagsMap = {
+export type UpdateVirtualMachineDiagnosticRunCommandRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineDiagnosticRunCommandsUpdateRequestTagsMap =
+export const UpdateVirtualMachineDiagnosticRunCommandRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineDiagnosticRunCommandsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineDiagnosticRunCommandRequestTagsMap>;
 
 /** The parameters used by the script. */
 export type VirtualMachineRunCommandPropertiesInputParametersList =
@@ -17009,7 +18944,7 @@ export interface UpdateVirtualMachineDiagnosticRunCommandRequest {
   /** The name of the VirtualMachineDiagnosticRunCommand */
   runCommandName: string;
   /** Resource tags */
-  tags?: VirtualMachineDiagnosticRunCommandsUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineDiagnosticRunCommandRequestTagsMap;
   /** Describes the properties of a Virtual Machine run command. */
   properties?: VirtualMachineRunCommandPropertiesInput;
 }
@@ -17020,7 +18955,7 @@ export const UpdateVirtualMachineDiagnosticRunCommandRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       vmName: S.String.pipe(T.Label()),
       runCommandName: S.String.pipe(T.Label()),
-      tags: S.optional(VirtualMachineDiagnosticRunCommandsUpdateRequestTagsMap),
+      tags: S.optional(UpdateVirtualMachineDiagnosticRunCommandRequestTagsMap),
       properties: S.optional(VirtualMachineRunCommandPropertiesInput),
     }).pipe(
       T.Http({
@@ -17035,14 +18970,14 @@ export const UpdateVirtualMachineDiagnosticRunCommandRequest =
   }) as any as S.Schema<UpdateVirtualMachineDiagnosticRunCommandRequest>;
 
 /** Resource tags. */
-export type VirtualMachineDiagnosticRunCommandsUpdateResponseTagsMap = {
+export type UpdateVirtualMachineDiagnosticRunCommandResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineDiagnosticRunCommandsUpdateResponseTagsMap =
+export const UpdateVirtualMachineDiagnosticRunCommandResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineDiagnosticRunCommandsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineDiagnosticRunCommandResponseTagsMap>;
 
 export interface UpdateVirtualMachineDiagnosticRunCommandResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -17054,7 +18989,7 @@ export interface UpdateVirtualMachineDiagnosticRunCommandResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineDiagnosticRunCommandsUpdateResponseTagsMap;
+  tags?: UpdateVirtualMachineDiagnosticRunCommandResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine diagnostic run command. */
@@ -17067,9 +19002,7 @@ export const UpdateVirtualMachineDiagnosticRunCommandResponse =
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(
-        VirtualMachineDiagnosticRunCommandsUpdateResponseTagsMap,
-      ),
+      tags: S.optional(UpdateVirtualMachineDiagnosticRunCommandResponseTagsMap),
       location: S.String,
       properties: S.optional(VirtualMachineRunCommandProperties),
     }),
@@ -17078,14 +19011,14 @@ export const UpdateVirtualMachineDiagnosticRunCommandResponse =
   }) as any as S.Schema<UpdateVirtualMachineDiagnosticRunCommandResponse>;
 
 /** Resource tags */
-export type VirtualMachineExtensionsUpdateRequestTagsMap = {
+export type UpdateVirtualMachineExtensionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineExtensionsUpdateRequestTagsMap =
+export const UpdateVirtualMachineExtensionRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineExtensionsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineExtensionRequestTagsMap>;
 
 /** Describes the properties of a Virtual Machine Extension. */
 export interface VirtualMachineExtensionUpdateProperties {
@@ -17138,7 +19071,7 @@ export interface UpdateVirtualMachineExtensionRequest {
   /** The name of the virtual machine extension. */
   vmExtensionName: string;
   /** Resource tags */
-  tags?: VirtualMachineExtensionsUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineExtensionRequestTagsMap;
   /** Describes the properties of a Virtual Machine Extension. */
   properties?: VirtualMachineExtensionUpdateProperties;
 }
@@ -17149,7 +19082,7 @@ export const UpdateVirtualMachineExtensionRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       vmName: S.String.pipe(T.Label()),
       vmExtensionName: S.String.pipe(T.Label()),
-      tags: S.optional(VirtualMachineExtensionsUpdateRequestTagsMap),
+      tags: S.optional(UpdateVirtualMachineExtensionRequestTagsMap),
       properties: S.optional(VirtualMachineExtensionUpdateProperties),
     }).pipe(
       T.Http({
@@ -17164,14 +19097,14 @@ export const UpdateVirtualMachineExtensionRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateVirtualMachineExtensionRequest>;
 
 /** Resource tags. */
-export type VirtualMachineExtensionsUpdateResponseTagsMap = {
+export type UpdateVirtualMachineExtensionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineExtensionsUpdateResponseTagsMap =
+export const UpdateVirtualMachineExtensionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineExtensionsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineExtensionResponseTagsMap>;
 
 export interface UpdateVirtualMachineExtensionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -17183,7 +19116,7 @@ export interface UpdateVirtualMachineExtensionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineExtensionsUpdateResponseTagsMap;
+  tags?: UpdateVirtualMachineExtensionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine Extension. */
@@ -17196,7 +19129,7 @@ export const UpdateVirtualMachineExtensionResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineExtensionsUpdateResponseTagsMap),
+      tags: S.optional(UpdateVirtualMachineExtensionResponseTagsMap),
       location: S.String,
       properties: S.optional(VirtualMachineExtensionProperties),
     }),
@@ -17205,14 +19138,14 @@ export const UpdateVirtualMachineExtensionResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateVirtualMachineExtensionResponse>;
 
 /** Resource tags */
-export type VirtualMachineRunCommandsUpdateRequestTagsMap = {
+export type UpdateVirtualMachineRunCommandRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineRunCommandsUpdateRequestTagsMap =
+export const UpdateVirtualMachineRunCommandRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineRunCommandsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineRunCommandRequestTagsMap>;
 
 export interface UpdateVirtualMachineRunCommandRequest {
   /** The ID of the target subscription. */
@@ -17224,7 +19157,7 @@ export interface UpdateVirtualMachineRunCommandRequest {
   /** The name of the VirtualMachineRunCommand */
   runCommandName: string;
   /** Resource tags */
-  tags?: VirtualMachineRunCommandsUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineRunCommandRequestTagsMap;
   /** Describes the properties of a Virtual Machine run command. */
   properties?: VirtualMachineRunCommandPropertiesInput;
 }
@@ -17235,7 +19168,7 @@ export const UpdateVirtualMachineRunCommandRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       vmName: S.String.pipe(T.Label()),
       runCommandName: S.String.pipe(T.Label()),
-      tags: S.optional(VirtualMachineRunCommandsUpdateRequestTagsMap),
+      tags: S.optional(UpdateVirtualMachineRunCommandRequestTagsMap),
       properties: S.optional(VirtualMachineRunCommandPropertiesInput),
     }).pipe(
       T.Http({
@@ -17250,14 +19183,14 @@ export const UpdateVirtualMachineRunCommandRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateVirtualMachineRunCommandRequest>;
 
 /** Resource tags. */
-export type VirtualMachineRunCommandsUpdateResponseTagsMap = {
+export type UpdateVirtualMachineRunCommandResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineRunCommandsUpdateResponseTagsMap =
+export const UpdateVirtualMachineRunCommandResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineRunCommandsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineRunCommandResponseTagsMap>;
 
 export interface UpdateVirtualMachineRunCommandResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -17269,7 +19202,7 @@ export interface UpdateVirtualMachineRunCommandResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineRunCommandsUpdateResponseTagsMap;
+  tags?: UpdateVirtualMachineRunCommandResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the properties of a Virtual Machine run command. */
@@ -17282,7 +19215,7 @@ export const UpdateVirtualMachineRunCommandResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineRunCommandsUpdateResponseTagsMap),
+      tags: S.optional(UpdateVirtualMachineRunCommandResponseTagsMap),
       location: S.String,
       properties: S.optional(VirtualMachineRunCommandProperties),
     }),
@@ -17291,14 +19224,14 @@ export const UpdateVirtualMachineRunCommandResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateVirtualMachineRunCommandResponse>;
 
 /** Resource tags */
-export type VirtualMachineScaleSetsUpdateRequestTagsMap = {
+export type UpdateVirtualMachineScaleSetRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineScaleSetsUpdateRequestTagsMap =
+export const UpdateVirtualMachineScaleSetRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetRequestTagsMap>;
 
 /** The List of certificates for addition to the VM. */
 export type VirtualMachineScaleSetUpdateOSProfileInputSecretsList =
@@ -17999,11 +19932,11 @@ export const VirtualMachineScaleSetIdentityInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<VirtualMachineScaleSetIdentityInput>;
 
 /** The virtual machine scale set zones. */
-export type VirtualMachineScaleSetsUpdateRequestZonesList = Array<string>;
-export const VirtualMachineScaleSetsUpdateRequestZonesList =
+export type UpdateVirtualMachineScaleSetRequestZonesList = Array<string>;
+export const UpdateVirtualMachineScaleSetRequestZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsUpdateRequestZonesList>;
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetRequestZonesList>;
 
 export interface UpdateVirtualMachineScaleSetRequest {
   /** The ID of the target subscription. */
@@ -18013,7 +19946,7 @@ export interface UpdateVirtualMachineScaleSetRequest {
   /** The name of the VM scale set. */
   vmScaleSetName: string;
   /** Resource tags */
-  tags?: VirtualMachineScaleSetsUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineScaleSetRequestTagsMap;
   /** The virtual machine scale set sku. */
   sku?: Sku;
   /** The purchase plan when deploying a virtual machine scale set from VM Marketplace images. */
@@ -18023,7 +19956,7 @@ export interface UpdateVirtualMachineScaleSetRequest {
   /** The identity of the virtual machine scale set, if configured. */
   identity?: VirtualMachineScaleSetIdentityInput;
   /** The virtual machine scale set zones. */
-  zones?: VirtualMachineScaleSetsUpdateRequestZonesList;
+  zones?: UpdateVirtualMachineScaleSetRequestZonesList;
   /** User-defined constraints for virtual machine scale set hardware placement. */
   placement?: Placement;
 }
@@ -18032,12 +19965,12 @@ export const UpdateVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vmScaleSetName: S.String.pipe(T.Label()),
-    tags: S.optional(VirtualMachineScaleSetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateVirtualMachineScaleSetRequestTagsMap),
     sku: S.optional(Sku),
     plan: S.optional(Plan),
     properties: S.optional(VirtualMachineScaleSetUpdatePropertiesInput),
     identity: S.optional(VirtualMachineScaleSetIdentityInput),
-    zones: S.optional(VirtualMachineScaleSetsUpdateRequestZonesList),
+    zones: S.optional(UpdateVirtualMachineScaleSetRequestZonesList),
     placement: S.optional(Placement),
   }).pipe(
     T.Http({
@@ -18052,27 +19985,27 @@ export const UpdateVirtualMachineScaleSetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVirtualMachineScaleSetRequest>;
 
 /** Resource tags. */
-export type VirtualMachineScaleSetsUpdateResponseTagsMap = {
+export type UpdateVirtualMachineScaleSetResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineScaleSetsUpdateResponseTagsMap =
+export const UpdateVirtualMachineScaleSetResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetResponseTagsMap>;
 
 /** The availability zones. */
-export type VirtualMachineScaleSetsUpdateResponseZonesList = Array<string>;
-export const VirtualMachineScaleSetsUpdateResponseZonesList =
+export type UpdateVirtualMachineScaleSetResponseZonesList = Array<string>;
+export const UpdateVirtualMachineScaleSetResponseZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsUpdateResponseZonesList>;
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetResponseZonesList>;
 
 /** The complex type of the extended location. */
-export type VirtualMachineScaleSetsUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
-export const VirtualMachineScaleSetsUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+export type UpdateVirtualMachineScaleSetResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
+export const UpdateVirtualMachineScaleSetResponseExtendedLocation =
+  GetImageResponseExtendedLocation;
 
 export interface UpdateVirtualMachineScaleSetResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -18084,7 +20017,7 @@ export interface UpdateVirtualMachineScaleSetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineScaleSetsUpdateResponseTagsMap;
+  tags?: UpdateVirtualMachineScaleSetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The virtual machine scale set sku. */
@@ -18096,9 +20029,9 @@ export interface UpdateVirtualMachineScaleSetResponse {
   /** The identity of the virtual machine scale set, if configured. */
   identity?: VirtualMachineScaleSetIdentity;
   /** The availability zones. */
-  zones?: VirtualMachineScaleSetsUpdateResponseZonesList;
+  zones?: UpdateVirtualMachineScaleSetResponseZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** Etag is property returned in Create/Update/Get response of the VMSS, so that customer can supply it in the header to ensure optimistic updates */
   etag?: string;
   /** Placement section specifies the user-defined constraints for virtual machine scale set hardware placement. Minimum api-version: 2025-04-01. */
@@ -18111,14 +20044,14 @@ export const UpdateVirtualMachineScaleSetResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineScaleSetsUpdateResponseTagsMap),
+      tags: S.optional(UpdateVirtualMachineScaleSetResponseTagsMap),
       location: S.String,
       sku: S.optional(Sku),
       plan: S.optional(Plan),
       properties: S.optional(VirtualMachineScaleSetProperties),
       identity: S.optional(VirtualMachineScaleSetIdentity),
-      zones: S.optional(VirtualMachineScaleSetsUpdateResponseZonesList),
-      extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+      zones: S.optional(UpdateVirtualMachineScaleSetResponseZonesList),
+      extendedLocation: S.optional(GetImageResponseExtendedLocation),
       etag: S.optional(S.String),
       placement: S.optional(Placement),
     }),
@@ -18126,67 +20059,69 @@ export const UpdateVirtualMachineScaleSetResponse = /*@__PURE__*/ S.suspend(
   identifier: "UpdateVirtualMachineScaleSetResponse",
 }) as any as S.Schema<UpdateVirtualMachineScaleSetResponse>;
 
-export interface UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkRequest {
+export interface UpdateVirtualMachineScaleSetExtensionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the VM scale set. */
   vmScaleSetName: string;
-  /** The platform update domain for which a manual recovery walk is requested */
-  platformUpdateDomain: number;
-  /** The zone in which the manual recovery walk is requested for cross zone virtual machine scale set */
-  zone?: string;
-  /** The placement group id for which the manual recovery walk is requested. */
-  placementGroupId?: string;
+  /** The name of the VM scale set extension. */
+  vmssExtensionName: string;
+  /** Describes the properties of a Virtual Machine Scale Set Extension. */
+  properties?: VirtualMachineScaleSetExtensionPropertiesInput;
 }
-export const UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkRequest =
+export const UpdateVirtualMachineScaleSetExtensionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vmScaleSetName: S.String.pipe(T.Label()),
-      platformUpdateDomain: S.Number.pipe(T.Query()),
-      zone: S.optional(S.String.pipe(T.Query())),
-      placementGroupId: S.optional(S.String.pipe(T.Query())),
+      vmssExtensionName: S.String.pipe(T.Label()),
+      properties: S.optional(VirtualMachineScaleSetExtensionPropertiesInput),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/forceRecoveryServiceFabricPlatformUpdateDomainWalk",
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions/{vmssExtensionName}",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier:
-      "UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkRequest",
-  }) as any as S.Schema<UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkRequest>;
+    identifier: "UpdateVirtualMachineScaleSetExtensionRequest",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetExtensionRequest>;
 
-/** Response after calling a manual recovery walk */
-export interface RecoveryWalkResponse {
-  /** Whether the recovery walk was performed */
-  walkPerformed?: boolean;
-  /** The next update domain that needs to be walked. Null means walk spanning all update domains has been completed */
-  nextPlatformUpdateDomain?: number;
+export interface UpdateVirtualMachineScaleSetExtensionResponse {
+  /** Resource Id */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Describes the properties of a Virtual Machine Scale Set Extension. */
+  properties?: VirtualMachineScaleSetExtensionProperties;
 }
-export const RecoveryWalkResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    walkPerformed: S.optional(S.Boolean),
-    nextPlatformUpdateDomain: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "RecoveryWalkResponse",
-}) as any as S.Schema<RecoveryWalkResponse>;
+export const UpdateVirtualMachineScaleSetExtensionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(VirtualMachineScaleSetExtensionProperties),
+    }),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetExtensionResponse",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetExtensionResponse>;
 
 /** The virtual machine scale set instance ids. */
-export type VirtualMachineScaleSetsUpdateInstancesRequestInstanceIdsList =
+export type UpdateVirtualMachineScaleSetInstancesRequestInstanceIdsList =
   Array<string>;
-export const VirtualMachineScaleSetsUpdateInstancesRequestInstanceIdsList =
+export const UpdateVirtualMachineScaleSetInstancesRequestInstanceIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsUpdateInstancesRequestInstanceIdsList>;
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetInstancesRequestInstanceIdsList>;
 
-export interface UpdateVirtualMachineScaleSetInstanceRequest {
+export interface UpdateVirtualMachineScaleSetInstancesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18194,15 +20129,15 @@ export interface UpdateVirtualMachineScaleSetInstanceRequest {
   /** The name of the VM scale set. */
   vmScaleSetName: string;
   /** The virtual machine scale set instance ids. */
-  instanceIds: VirtualMachineScaleSetsUpdateInstancesRequestInstanceIdsList;
+  instanceIds: UpdateVirtualMachineScaleSetInstancesRequestInstanceIdsList;
 }
-export const UpdateVirtualMachineScaleSetInstanceRequest =
+export const UpdateVirtualMachineScaleSetInstancesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vmScaleSetName: S.String.pipe(T.Label()),
-      instanceIds: VirtualMachineScaleSetsUpdateInstancesRequestInstanceIdsList,
+      instanceIds: UpdateVirtualMachineScaleSetInstancesRequestInstanceIdsList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -18212,14 +20147,586 @@ export const UpdateVirtualMachineScaleSetInstanceRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateVirtualMachineScaleSetInstanceRequest",
-  }) as any as S.Schema<UpdateVirtualMachineScaleSetInstanceRequest>;
+    identifier: "UpdateVirtualMachineScaleSetInstancesRequest",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetInstancesRequest>;
 
-export interface UpdateVirtualMachineScaleSetInstanceResponse {}
-export const UpdateVirtualMachineScaleSetInstanceResponse =
+export interface UpdateVirtualMachineScaleSetInstancesResponse {}
+export const UpdateVirtualMachineScaleSetInstancesResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "UpdateVirtualMachineScaleSetInstanceResponse",
-  }) as any as S.Schema<UpdateVirtualMachineScaleSetInstanceResponse>;
+    identifier: "UpdateVirtualMachineScaleSetInstancesResponse",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetInstancesResponse>;
+
+/** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
+export type VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList =
+  Array<VMScaleSetLifecycleHookEventTargetResource>;
+export const VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList =
+  /*@__PURE__*/ S.Array(
+    VMScaleSetLifecycleHookEventTargetResource,
+  ) as any as S.Schema<VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList>;
+
+/** Defines the virtual machine scale set lifecycle hook event properties. */
+export interface VMScaleSetLifecycleHookEventPropertiesInput {
+  /** Defines the type or scenario for sending a virtual machine scale set lifecycle hook event to the customer. */
+  type?: VMScaleSetLifecycleHookEventType | (string & {});
+  /** Specifies the exact UTC timestamp in ISO 8601 format till which the event would remain in the current lifecycle state waiting for an action from the customer. Beyond this timestamp, the platform will apply the defaultAction for the event. */
+  waitUntil?: string;
+  /** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
+  targetResources?: VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList;
+  /** Additional key-value pairs set on the lifecycle hook event that gives customer some useful context/data. The keys in this dictionary are specific to the lifecycle hook type. Different lifecycle hook events can have different sets of keys in the additional context depending on the lifecycle hook type. For example, for a lifecycle hook event with UpgradeAutoOSScheduling type, the additional context can contain the key "priority" that helps customer identify the priority of the Auto OS Upgrade operation triggered on the virtual machine scale set. */
+  additionalContext?: VMScaleSetLifecycleHookEventAdditionalContext;
+}
+export const VMScaleSetLifecycleHookEventPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(VMScaleSetLifecycleHookEventType),
+      waitUntil: S.optional(S.String),
+      targetResources: S.optional(
+        VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList,
+      ),
+      additionalContext: S.optional(
+        VMScaleSetLifecycleHookEventAdditionalContext,
+      ),
+    }),
+  ).annotate({
+    identifier: "VMScaleSetLifecycleHookEventPropertiesInput",
+  }) as any as S.Schema<VMScaleSetLifecycleHookEventPropertiesInput>;
+
+export interface UpdateVirtualMachineScaleSetLifeCycleHookEventRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The name of the VMScaleSetLifecycleHookEvent */
+  lifecycleHookEventName: string;
+  /** virtual machine scale set lifecycle hook event properties. */
+  properties?: VMScaleSetLifecycleHookEventPropertiesInput;
+}
+export const UpdateVirtualMachineScaleSetLifeCycleHookEventRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      lifecycleHookEventName: S.String.pipe(T.Label()),
+      properties: S.optional(VMScaleSetLifecycleHookEventPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/lifecycleHookEvents/{lifecycleHookEventName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetLifeCycleHookEventRequest",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetLifeCycleHookEventRequest>;
+
+export interface UpdateVirtualMachineScaleSetLifeCycleHookEventResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Defines the virtual machine scale set lifecycle hook event properties. */
+  properties?: VMScaleSetLifecycleHookEventProperties;
+}
+export const UpdateVirtualMachineScaleSetLifeCycleHookEventResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(VMScaleSetLifecycleHookEventProperties),
+    }),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetLifeCycleHookEventResponse",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetLifeCycleHookEventResponse>;
+
+/** Resource tags. */
+export type UpdateVirtualMachineScaleSetVMRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualMachineScaleSetVMRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMRequestTagsMap>;
+
+export type VirtualMachineScaleSetVMPropertiesInputAvailabilitySet =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const VirtualMachineScaleSetVMPropertiesInputAvailabilitySet =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+/** Describes the properties of a virtual machine scale set virtual machine. */
+export interface VirtualMachineScaleSetVMPropertiesInput {
+  /** Specifies the hardware settings for the virtual machine. */
+  hardwareProfile?: HardwareProfile;
+  /** Specifies the resilient VM deletion status for the virtual machine. */
+  resilientVMDeletionStatus?: ResilientVMDeletionStatus | (string & {});
+  /** Specifies the storage settings for the virtual machine disks. */
+  storageProfile?: StorageProfileInput;
+  /** Specifies additional capabilities enabled or disabled on the virtual machine in the scale set. For instance: whether the virtual machine has the capability to support attaching managed data disks with UltraSSD_LRS storage account type. */
+  additionalCapabilities?: AdditionalCapabilities;
+  /** Specifies the operating system settings for the virtual machine. */
+  osProfile?: OSProfileInput;
+  /** Specifies the Security related profile settings for the virtual machine. */
+  securityProfile?: SecurityProfile;
+  /** Specifies the network interfaces of the virtual machine. */
+  networkProfile?: NetworkProfile;
+  /** Specifies the network profile configuration of the virtual machine. */
+  networkProfileConfiguration?: VirtualMachineScaleSetVMNetworkProfileConfiguration;
+  /** Specifies the boot diagnostic settings state. Minimum api-version: 2015-06-15. */
+  diagnosticsProfile?: DiagnosticsProfile;
+  availabilitySet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
+  /** Specifies that the image or disk that is being used was licensed on-premises. <br><br> Possible values for Windows Server operating system are: <br><br> Windows_Client <br><br> Windows_Server <br><br> Possible values for Linux Server operating system are: <br><br> RHEL_BYOS (for RHEL) <br><br> SLES_BYOS (for SUSE) <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/windows/hybrid-use-benefit-licensing) <br><br> [Azure Hybrid Use Benefit for Linux Server](https://docs.microsoft.com/azure/virtual-machines/linux/azure-hybrid-benefit-linux) <br><br> Minimum api-version: 2015-06-15 */
+  licenseType?: string;
+  /** Specifies the protection policy of the virtual machine. */
+  protectionPolicy?: VirtualMachineScaleSetVMProtectionPolicy;
+  /** UserData for the VM, which must be base-64 encoded. Customer should not pass any secrets in here. Minimum api-version: 2021-03-01 */
+  userData?: string;
+  /** Specifies the Interconnect Block related details of a Scale Set VM instance. Minimum api-version: 2026-03-01. */
+  interconnectBlockProfile?: InterconnectBlockProfile;
+  /** Specifies information about the capacity reservation that is used to allocate the virtual machine scale set VM instance. The capacity reservation group is inherited from the parent virtual machine scale set and cannot be changed on the individual scale set VM instance. Minimum api-version: 2026-04-01. */
+  capacityReservation?: CapacityReservationProfile;
+}
+export const VirtualMachineScaleSetVMPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      hardwareProfile: S.optional(HardwareProfile),
+      resilientVMDeletionStatus: S.optional(ResilientVMDeletionStatus),
+      storageProfile: S.optional(StorageProfileInput),
+      additionalCapabilities: S.optional(AdditionalCapabilities),
+      osProfile: S.optional(OSProfileInput),
+      securityProfile: S.optional(SecurityProfile),
+      networkProfile: S.optional(NetworkProfile),
+      networkProfileConfiguration: S.optional(
+        VirtualMachineScaleSetVMNetworkProfileConfiguration,
+      ),
+      diagnosticsProfile: S.optional(DiagnosticsProfile),
+      availabilitySet: S.optional(
+        AvailabilitySetPropertiesInputVirtualMachinesItem,
+      ),
+      licenseType: S.optional(S.String),
+      protectionPolicy: S.optional(VirtualMachineScaleSetVMProtectionPolicy),
+      userData: S.optional(S.String),
+      interconnectBlockProfile: S.optional(InterconnectBlockProfile),
+      capacityReservation: S.optional(CapacityReservationProfile),
+    }),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMPropertiesInput",
+}) as any as S.Schema<VirtualMachineScaleSetVMPropertiesInput>;
+
+export interface UpdateVirtualMachineScaleSetVMRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** Resource tags. */
+  tags?: UpdateVirtualMachineScaleSetVMRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a virtual machine scale set virtual machine. */
+  properties?: VirtualMachineScaleSetVMPropertiesInput;
+  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
+  plan?: Plan;
+  /** The identity of the virtual machine, if configured. */
+  identity?: VirtualMachineIdentityInput;
+}
+export const UpdateVirtualMachineScaleSetVMRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateVirtualMachineScaleSetVMRequestTagsMap),
+      location: S.String,
+      properties: S.optional(VirtualMachineScaleSetVMPropertiesInput),
+      plan: S.optional(Plan),
+      identity: S.optional(VirtualMachineIdentityInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateVirtualMachineScaleSetVMRequest",
+}) as any as S.Schema<UpdateVirtualMachineScaleSetVMRequest>;
+
+/** Resource tags. */
+export type UpdateVirtualMachineScaleSetVMResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualMachineScaleSetVMResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMResponseTagsMap>;
+
+/** The virtual machine child extension resources. */
+export type UpdateVirtualMachineScaleSetVMResponseResourcesList =
+  Array<VirtualMachineExtension>;
+export const UpdateVirtualMachineScaleSetVMResponseResourcesList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineExtension,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMResponseResourcesList>;
+
+/** The virtual machine zones. */
+export type UpdateVirtualMachineScaleSetVMResponseZonesList = Array<string>;
+export const UpdateVirtualMachineScaleSetVMResponseZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMResponseZonesList>;
+
+export interface UpdateVirtualMachineScaleSetVMResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateVirtualMachineScaleSetVMResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a virtual machine scale set virtual machine. */
+  properties?: VirtualMachineScaleSetVMProperties;
+  /** The virtual machine instance ID. */
+  instanceId?: string;
+  /** The virtual machine SKU. */
+  sku?: Sku;
+  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
+  plan?: Plan;
+  /** The virtual machine child extension resources. */
+  resources?: UpdateVirtualMachineScaleSetVMResponseResourcesList;
+  /** The virtual machine zones. */
+  zones?: UpdateVirtualMachineScaleSetVMResponseZonesList;
+  /** The identity of the virtual machine, if configured. */
+  identity?: VirtualMachineIdentity;
+  /** Etag is property returned in Update/Get response of the VMSS VM, so that customer can supply it in the header to ensure optimistic updates. */
+  etag?: string;
+}
+export const UpdateVirtualMachineScaleSetVMResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateVirtualMachineScaleSetVMResponseTagsMap),
+      location: S.String,
+      properties: S.optional(VirtualMachineScaleSetVMProperties),
+      instanceId: S.optional(S.String),
+      sku: S.optional(Sku),
+      plan: S.optional(Plan),
+      resources: S.optional(
+        UpdateVirtualMachineScaleSetVMResponseResourcesList,
+      ),
+      zones: S.optional(UpdateVirtualMachineScaleSetVMResponseZonesList),
+      identity: S.optional(VirtualMachineIdentity),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "UpdateVirtualMachineScaleSetVMResponse",
+}) as any as S.Schema<UpdateVirtualMachineScaleSetVMResponse>;
+
+/** Resource tags */
+export type UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequestTagsMap>;
+
+export interface UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The name of the VirtualMachineDiagnosticRunCommand */
+  runCommandName: string;
+  /** Resource tags */
+  tags?: UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequestTagsMap;
+  /** Describes the properties of a Virtual Machine run command. */
+  properties?: VirtualMachineRunCommandPropertiesInput;
+}
+export const UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      runCommandName: S.String.pipe(T.Label()),
+      tags: S.optional(
+        UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequestTagsMap,
+      ),
+      properties: S.optional(VirtualMachineRunCommandPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands/{runCommandName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequest",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequest>;
+
+/** Resource tags. */
+export type UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap =
+  { [key: string]: string | undefined };
+export const UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap>;
+
+export interface UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a Virtual Machine diagnostic run command. */
+  properties?: VirtualMachineRunCommandProperties;
+}
+export const UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(VirtualMachineRunCommandProperties),
+    }),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponse",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponse>;
+
+export interface UpdateVirtualMachineScaleSetVMExtensionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** The name of the virtual machine extension. */
+  vmExtensionName: string;
+  /** Describes the properties of a Virtual Machine Extension. */
+  properties?: VirtualMachineExtensionUpdateProperties;
+}
+export const UpdateVirtualMachineScaleSetVMExtensionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      vmExtensionName: S.String.pipe(T.Label()),
+      properties: S.optional(VirtualMachineExtensionUpdateProperties),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions/{vmExtensionName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetVMExtensionRequest",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetVMExtensionRequest>;
+
+export interface UpdateVirtualMachineScaleSetVMExtensionResponse {
+  /** Resource Id */
+  id?: string;
+  /** Describes the properties of a Virtual Machine Extension. */
+  properties?: VirtualMachineExtensionProperties;
+  /** The location of the extension. */
+  location?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource name */
+  name?: string;
+}
+export const UpdateVirtualMachineScaleSetVMExtensionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      properties: S.optional(VirtualMachineExtensionProperties),
+      location: S.optional(S.String),
+      type: S.optional(S.String),
+      name: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetVMExtensionResponse",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetVMExtensionResponse>;
+
+/** Resource tags */
+export type UpdateVirtualMachineScaleSetVMRunCommandRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualMachineScaleSetVMRunCommandRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMRunCommandRequestTagsMap>;
+
+export interface UpdateVirtualMachineScaleSetVMRunCommandRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachineScaleSet */
+  vmScaleSetName: string;
+  /** The name of the VirtualMachineScaleSetVM */
+  instanceId: string;
+  /** The name of the VirtualMachineRunCommand */
+  runCommandName: string;
+  /** Resource tags */
+  tags?: UpdateVirtualMachineScaleSetVMRunCommandRequestTagsMap;
+  /** Describes the properties of a Virtual Machine run command. */
+  properties?: VirtualMachineRunCommandPropertiesInput;
+}
+export const UpdateVirtualMachineScaleSetVMRunCommandRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      runCommandName: S.String.pipe(T.Label()),
+      tags: S.optional(UpdateVirtualMachineScaleSetVMRunCommandRequestTagsMap),
+      properties: S.optional(VirtualMachineRunCommandPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands/{runCommandName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetVMRunCommandRequest",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetVMRunCommandRequest>;
+
+/** Resource tags. */
+export type UpdateVirtualMachineScaleSetVMRunCommandResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualMachineScaleSetVMRunCommandResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateVirtualMachineScaleSetVMRunCommandResponseTagsMap>;
+
+export interface UpdateVirtualMachineScaleSetVMRunCommandResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateVirtualMachineScaleSetVMRunCommandResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the properties of a Virtual Machine run command. */
+  properties?: VirtualMachineRunCommandProperties;
+}
+export const UpdateVirtualMachineScaleSetVMRunCommandResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(UpdateVirtualMachineScaleSetVMRunCommandResponseTagsMap),
+      location: S.String,
+      properties: S.optional(VirtualMachineRunCommandProperties),
+    }),
+  ).annotate({
+    identifier: "UpdateVirtualMachineScaleSetVMRunCommandResponse",
+  }) as any as S.Schema<UpdateVirtualMachineScaleSetVMRunCommandResponse>;
+
+export type ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+export const ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequestVirtualMachineScaleSetFlexible =
+  AvailabilitySetPropertiesInputVirtualMachinesItem;
+
+export interface ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the availability set. */
+  availabilitySetName: string;
+  virtualMachineScaleSetFlexible: AvailabilitySetPropertiesInputVirtualMachinesItem;
+}
+export const ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      availabilitySetName: S.String.pipe(T.Label()),
+      virtualMachineScaleSetFlexible:
+        AvailabilitySetPropertiesInputVirtualMachinesItem,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/validateMigrationToVirtualMachineScaleSet",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequest",
+  }) as any as S.Schema<ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequest>;
+
+export interface ValidateAvailabilitySetMigrationToVirtualMachineScaleSetResponse {}
+export const ValidateAvailabilitySetMigrationToVirtualMachineScaleSetResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier:
+      "ValidateAvailabilitySetMigrationToVirtualMachineScaleSetResponse",
+  }) as any as S.Schema<ValidateAvailabilitySetMigrationToVirtualMachineScaleSetResponse>;
 
 /** The list of operation ids to cancel operations on */
 export type VirtualMachineBulkOperationsBulkCancelRequestOperationIdsList =
@@ -18278,7 +20785,128 @@ export const CancelOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelOperationsResponse",
 }) as any as S.Schema<CancelOperationsResponse>;
 
-export interface VirtualMachineBulkOperationsBulkDeallocateRequest {
+export interface VirtualMachineBulkOperationsBulkDeleteRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The location name. */
+  location: string;
+  /** The execution parameters for the request */
+  executionParameters: ExecutionParameters;
+  /** The resources for the request */
+  resources: Resources;
+  /** Forced delete resource item */
+  forceDeletion?: boolean;
+}
+export const VirtualMachineBulkOperationsBulkDeleteRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      executionParameters: ExecutionParameters,
+      resources: Resources,
+      forceDeletion: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkDelete",
+        code: 200,
+        apiVersion: "2026-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "VirtualMachineBulkOperationsBulkDeleteRequest",
+  }) as any as S.Schema<VirtualMachineBulkOperationsBulkDeleteRequest>;
+
+/** The results from the delete request if no errors exist */
+export type DeleteResourceOperationResponseResultsList =
+  Array<ResourceOperation>;
+export const DeleteResourceOperationResponseResultsList = /*@__PURE__*/ S.Array(
+  ResourceOperation,
+) as any as S.Schema<DeleteResourceOperationResponseResultsList>;
+
+/** The response from a delete request */
+export interface DeleteResourceOperationResponse {
+  /** The description of the operation response */
+  description: string;
+  /** The type of resources used in the delete request eg virtual machines */
+  type: string;
+  /** The location of the delete request eg westus */
+  location: string;
+  /** The results from the delete request if no errors exist */
+  results?: DeleteResourceOperationResponseResultsList;
+}
+export const DeleteResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.String,
+    type: S.String,
+    location: S.String,
+    results: S.optional(DeleteResourceOperationResponseResultsList),
+  }),
+).annotate({
+  identifier: "DeleteResourceOperationResponse",
+}) as any as S.Schema<DeleteResourceOperationResponse>;
+
+/** The list of operation ids to get the status of */
+export type VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList =
+  Array<string>;
+export const VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList>;
+
+export interface VirtualMachineBulkOperationsBulkGetOperationsStatusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The location name. */
+  location: string;
+  /** The list of operation ids to get the status of */
+  operationIds: VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList;
+}
+export const VirtualMachineBulkOperationsBulkGetOperationsStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      operationIds:
+        VirtualMachineBulkOperationsBulkGetOperationsStatusRequestOperationIdsList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkGetOperationStatus",
+        code: 200,
+        apiVersion: "2026-06-06",
+      }),
+    ),
+  ).annotate({
+    identifier: "VirtualMachineBulkOperationsBulkGetOperationsStatusRequest",
+  }) as any as S.Schema<VirtualMachineBulkOperationsBulkGetOperationsStatusRequest>;
+
+/** An array of resource operations based on their operation ids */
+export type GetOperationStatusResponseResultsList = Array<ResourceOperation>;
+export const GetOperationStatusResponseResultsList = /*@__PURE__*/ S.Array(
+  ResourceOperation,
+) as any as S.Schema<GetOperationStatusResponseResultsList>;
+
+/** This is the response from a get operations status request */
+export interface GetOperationStatusResponse {
+  /** An array of resource operations based on their operation ids */
+  results: GetOperationStatusResponseResultsList;
+}
+export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: GetOperationStatusResponseResultsList,
+  }),
+).annotate({
+  identifier: "GetOperationStatusResponse",
+}) as any as S.Schema<GetOperationStatusResponse>;
+
+export interface VirtualMachineBulkOperationsBulkStartRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -18290,7 +20918,7 @@ export interface VirtualMachineBulkOperationsBulkDeallocateRequest {
   /** The resources for the request */
   resources: Resources;
 }
-export const VirtualMachineBulkOperationsBulkDeallocateRequest =
+export const VirtualMachineBulkOperationsBulkStartRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -18301,106 +20929,43 @@ export const VirtualMachineBulkOperationsBulkDeallocateRequest =
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkDeallocate",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkStart",
         code: 200,
         apiVersion: "2026-06-06",
       }),
     ),
   ).annotate({
-    identifier: "VirtualMachineBulkOperationsBulkDeallocateRequest",
-  }) as any as S.Schema<VirtualMachineBulkOperationsBulkDeallocateRequest>;
+    identifier: "VirtualMachineBulkOperationsBulkStartRequest",
+  }) as any as S.Schema<VirtualMachineBulkOperationsBulkStartRequest>;
 
-/** The results from the deallocate request if no errors exist */
-export type DeallocateResourceOperationResponseResultsList =
+/** The results from the start request if no errors exist */
+export type StartResourceOperationResponseResultsList =
   Array<ResourceOperation>;
-export const DeallocateResourceOperationResponseResultsList =
-  /*@__PURE__*/ S.Array(
-    ResourceOperation,
-  ) as any as S.Schema<DeallocateResourceOperationResponseResultsList>;
+export const StartResourceOperationResponseResultsList = /*@__PURE__*/ S.Array(
+  ResourceOperation,
+) as any as S.Schema<StartResourceOperationResponseResultsList>;
 
-/** The response from a deallocate request */
-export interface DeallocateResourceOperationResponse {
+/** The response from a start request */
+export interface StartResourceOperationResponse {
   /** The description of the operation response */
   description: string;
-  /** The type of resources used in the deallocate request eg virtual machines */
+  /** The type of resources used in the start request eg virtual machines */
   type: string;
-  /** The location of the deallocate request eg westus */
+  /** The location of the start request eg westus */
   location: string;
-  /** The results from the deallocate request if no errors exist */
-  results?: DeallocateResourceOperationResponseResultsList;
+  /** The results from the start request if no errors exist */
+  results?: StartResourceOperationResponseResultsList;
 }
-export const DeallocateResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
+export const StartResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     description: S.String,
     type: S.String,
     location: S.String,
-    results: S.optional(DeallocateResourceOperationResponseResultsList),
+    results: S.optional(StartResourceOperationResponseResultsList),
   }),
 ).annotate({
-  identifier: "DeallocateResourceOperationResponse",
-}) as any as S.Schema<DeallocateResourceOperationResponse>;
-
-export interface VirtualMachineBulkOperationsBulkHibernateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The location name. */
-  location: string;
-  /** The execution parameters for the request */
-  executionParameters: ExecutionParameters;
-  /** The resources for the request */
-  resources: Resources;
-}
-export const VirtualMachineBulkOperationsBulkHibernateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      executionParameters: ExecutionParameters,
-      resources: Resources,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/locations/{location}/virtualMachinesBulkHibernate",
-        code: 200,
-        apiVersion: "2026-06-06",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineBulkOperationsBulkHibernateRequest",
-  }) as any as S.Schema<VirtualMachineBulkOperationsBulkHibernateRequest>;
-
-/** The results from the Hibernate request if no errors exist */
-export type HibernateResourceOperationResponseResultsList =
-  Array<ResourceOperation>;
-export const HibernateResourceOperationResponseResultsList =
-  /*@__PURE__*/ S.Array(
-    ResourceOperation,
-  ) as any as S.Schema<HibernateResourceOperationResponseResultsList>;
-
-/** The response from a Hibernate request */
-export interface HibernateResourceOperationResponse {
-  /** The description of the operation response */
-  description: string;
-  /** The type of resources used in the Hibernate request eg virtual machines */
-  type: string;
-  /** The location of the Hibernate request eg westus */
-  location: string;
-  /** The results from the Hibernate request if no errors exist */
-  results?: HibernateResourceOperationResponseResultsList;
-}
-export const HibernateResourceOperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.String,
-    type: S.String,
-    location: S.String,
-    results: S.optional(HibernateResourceOperationResponseResultsList),
-  }),
-).annotate({
-  identifier: "HibernateResourceOperationResponse",
-}) as any as S.Schema<HibernateResourceOperationResponse>;
+  identifier: "StartResourceOperationResponse",
+}) as any as S.Schema<StartResourceOperationResponse>;
 
 /** Resource tags. */
 export type VirtualMachineDiagnosticRunCommandsCreateOrUpdateRequestTagsMap = {
@@ -18494,6 +21059,36 @@ export const VirtualMachineDiagnosticRunCommandsCreateOrUpdateResponse =
   ).annotate({
     identifier: "VirtualMachineDiagnosticRunCommandsCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualMachineDiagnosticRunCommandsCreateOrUpdateResponse>;
+
+export interface VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VirtualMachine */
+  vmName: string;
+  /** The expand expression to apply on the operation. */
+  _expand?: string;
+}
+export const VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/diagnosticRunCommands",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineRequest",
+  }) as any as S.Schema<VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineRequest>;
 
 /** Resource tags. */
 export type VirtualMachineExtensionsCreateOrUpdateRequestTagsMap = {
@@ -18896,6 +21491,36 @@ export const VirtualMachineAssessPatchesResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachineAssessPatchesResult",
 }) as any as S.Schema<VirtualMachineAssessPatchesResult>;
 
+/** Describes the data disk to be attached. */
+export interface DataDisksToAttach {
+  /** ID of the managed data disk. */
+  diskId: string;
+  /** The logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM. If not specified, lun would be auto assigned. */
+  lun?: number;
+  /** Specifies the caching requirements. Possible values are: **None,** **ReadOnly,** **ReadWrite.** The defaulting behavior is: **None for Standard storage. ReadOnly for Premium storage.** */
+  caching?: CachingTypes | (string & {});
+  /** Specifies whether data disk should be deleted or detached upon VM deletion. Possible values are: **Delete.** If this value is used, the data disk is deleted when VM is deleted. **Detach.** If this value is used, the data disk is retained after VM is deleted. The default value is set to **Detach**. */
+  deleteOption?: DiskDeleteOptionTypes | (string & {});
+  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
+  diskEncryptionSet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
+  /** Specifies whether writeAccelerator should be enabled or disabled on the disk. */
+  writeAcceleratorEnabled?: boolean;
+}
+export const DataDisksToAttach = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskId: S.String,
+    lun: S.optional(S.Number),
+    caching: S.optional(CachingTypes),
+    deleteOption: S.optional(DiskDeleteOptionTypes),
+    diskEncryptionSet: S.optional(
+      AvailabilitySetPropertiesInputVirtualMachinesItem,
+    ),
+    writeAcceleratorEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DataDisksToAttach",
+}) as any as S.Schema<DataDisksToAttach>;
+
 /** The list of managed data disks to be attached. */
 export type VirtualMachinesAttachDetachDataDisksRequestDataDisksToAttachList =
   Array<DataDisksToAttach>;
@@ -18903,6 +21528,22 @@ export const VirtualMachinesAttachDetachDataDisksRequestDataDisksToAttachList =
   /*@__PURE__*/ S.Array(
     DataDisksToAttach,
   ) as any as S.Schema<VirtualMachinesAttachDetachDataDisksRequestDataDisksToAttachList>;
+
+/** Describes the data disk to be detached. */
+export interface DataDisksToDetach {
+  /** ID of the managed data disk. */
+  diskId: string;
+  /** Supported options available for Detach of a disk from a VM. Refer to DetachOption object reference for more details. */
+  detachOption?: DiskDetachOptionTypes | (string & {});
+}
+export const DataDisksToDetach = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diskId: S.String,
+    detachOption: S.optional(DiskDetachOptionTypes),
+  }),
+).annotate({
+  identifier: "DataDisksToDetach",
+}) as any as S.Schema<DataDisksToDetach>;
 
 /** The list of managed data disks to be detached. */
 export type VirtualMachinesAttachDetachDataDisksRequestDataDisksToDetachList =
@@ -19004,814 +21645,6 @@ export const VirtualMachineScaleSetExtensionsCreateOrUpdateResponse =
   ).annotate({
     identifier: "VirtualMachineScaleSetExtensionsCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>;
-
-export interface VirtualMachineScaleSetExtensionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The name of the VM scale set extension. */
-  vmssExtensionName: string;
-}
-export const VirtualMachineScaleSetExtensionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      vmssExtensionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions/{vmssExtensionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetExtensionsDeleteRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionsDeleteRequest>;
-
-export interface VirtualMachineScaleSetExtensionsDeleteResponse {}
-export const VirtualMachineScaleSetExtensionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetExtensionsDeleteResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionsDeleteResponse>;
-
-export interface VirtualMachineScaleSetExtensionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The name of the VM scale set extension. */
-  vmssExtensionName: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetExtensionsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      vmssExtensionName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions/{vmssExtensionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetExtensionsGetRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionsGetRequest>;
-
-export interface VirtualMachineScaleSetExtensionsGetResponse {
-  /** Resource Id */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Describes the properties of a Virtual Machine Scale Set Extension. */
-  properties?: VirtualMachineScaleSetExtensionProperties;
-}
-export const VirtualMachineScaleSetExtensionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(VirtualMachineScaleSetExtensionProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetExtensionsGetResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionsGetResponse>;
-
-export interface VirtualMachineScaleSetExtensionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-}
-export const VirtualMachineScaleSetExtensionsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetExtensionsListRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionsListRequest>;
-
-/** The list of VM scale set extensions. */
-export type VirtualMachineScaleSetExtensionListResultValueList =
-  Array<VirtualMachineScaleSetExtension>;
-export const VirtualMachineScaleSetExtensionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineScaleSetExtension,
-  ) as any as S.Schema<VirtualMachineScaleSetExtensionListResultValueList>;
-
-/** The List VM scale set extension operation response. */
-export interface VirtualMachineScaleSetExtensionListResult {
-  /** The list of VM scale set extensions. */
-  value: VirtualMachineScaleSetExtensionListResultValueList;
-  /** The uri to fetch the next page of VM scale set extensions. Call ListNext() with this to fetch the next page of VM scale set extensions. */
-  nextLink?: string;
-}
-export const VirtualMachineScaleSetExtensionListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: VirtualMachineScaleSetExtensionListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetExtensionListResult",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionListResult>;
-
-export interface VirtualMachineScaleSetExtensionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The name of the VM scale set extension. */
-  vmssExtensionName: string;
-  /** Describes the properties of a Virtual Machine Scale Set Extension. */
-  properties?: VirtualMachineScaleSetExtensionPropertiesInput;
-}
-export const VirtualMachineScaleSetExtensionsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      vmssExtensionName: S.String.pipe(T.Label()),
-      properties: S.optional(VirtualMachineScaleSetExtensionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensions/{vmssExtensionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetExtensionsUpdateRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionsUpdateRequest>;
-
-export interface VirtualMachineScaleSetExtensionsUpdateResponse {
-  /** Resource Id */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Describes the properties of a Virtual Machine Scale Set Extension. */
-  properties?: VirtualMachineScaleSetExtensionProperties;
-}
-export const VirtualMachineScaleSetExtensionsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(VirtualMachineScaleSetExtensionProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetExtensionsUpdateResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetExtensionsUpdateResponse>;
-
-export interface VirtualMachineScaleSetLifeCycleHookEventsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The name of the VMScaleSetLifecycleHookEvent */
-  lifecycleHookEventName: string;
-}
-export const VirtualMachineScaleSetLifeCycleHookEventsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      lifecycleHookEventName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/lifecycleHookEvents/{lifecycleHookEventName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetLifeCycleHookEventsGetRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetLifeCycleHookEventsGetRequest>;
-
-/** Approval status of a target resource in a virtual machine scale set lifecycle hook event. */
-export type LifecycleHookActionState = "Waiting" | "Approved" | "Rejected";
-export const LifecycleHookActionState = /*@__PURE__*/ S.String;
-
-/** Define a single target ARM resource in a virtual machine scale set lifecycle hook event. Currently, this can be a virtual machine scale set resource or an individual virtual machine resource within a VMScaleSet. */
-export interface VMScaleSetLifecycleHookEventTargetResource {
-  /** Specifies the target ARM resource. Currently, this can be a virtual machine scale set resource or an individual virtual machine resource within a VMScaleSet. */
-  resource?: ApiEntityReference;
-  /** State of the lifecycle hook for the target resource. The customer can patch this property to move the lifecycle hook to a terminal state. */
-  actionState?: LifecycleHookActionState | (string & {});
-}
-export const VMScaleSetLifecycleHookEventTargetResource =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resource: S.optional(ApiEntityReference),
-      actionState: S.optional(LifecycleHookActionState),
-    }),
-  ).annotate({
-    identifier: "VMScaleSetLifecycleHookEventTargetResource",
-  }) as any as S.Schema<VMScaleSetLifecycleHookEventTargetResource>;
-
-/** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
-export type VMScaleSetLifecycleHookEventPropertiesTargetResourcesList =
-  Array<VMScaleSetLifecycleHookEventTargetResource>;
-export const VMScaleSetLifecycleHookEventPropertiesTargetResourcesList =
-  /*@__PURE__*/ S.Array(
-    VMScaleSetLifecycleHookEventTargetResource,
-  ) as any as S.Schema<VMScaleSetLifecycleHookEventPropertiesTargetResourcesList>;
-
-/** Additional key-value pairs set on the lifecycle hook event that gives customer some useful context/data. The keys in this dictionary are specific to the lifecycle hook type. Different lifecycle hook events can have different sets of keys in the additional context depending on the lifecycle hook type. For example, for a lifecycle hook event with UpgradeAutoOSScheduling type, the additional context can contain the key "priority" that helps customer identify the priority of the Auto OS Upgrade operation triggered on the virtual machine scale set. */
-export interface VMScaleSetLifecycleHookEventAdditionalContext {
-  /** Can only be present for a lifecycle hook event of type "UpgradeAutoOSScheduling". Denotes the priority of the virtual machine scale set lifecycle hook event for the Auto OS Upgrade scheduled on the virtual machine scale set. */
-  priority?: string;
-}
-export const VMScaleSetLifecycleHookEventAdditionalContext =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      priority: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "VMScaleSetLifecycleHookEventAdditionalContext",
-  }) as any as S.Schema<VMScaleSetLifecycleHookEventAdditionalContext>;
-
-/** The states that a virtual machine scale set lifecycle hook event can be in. This is not settable by the customer. It is set only by the platform. */
-export type VMScaleSetLifecycleHookEventState = "Active" | "Completed";
-export const VMScaleSetLifecycleHookEventState = /*@__PURE__*/ S.String;
-
-/** Defines the virtual machine scale set lifecycle hook event properties. */
-export interface VMScaleSetLifecycleHookEventProperties {
-  /** Defines the type or scenario for sending a virtual machine scale set lifecycle hook event to the customer. */
-  type?: VMScaleSetLifecycleHookEventType;
-  /** Specifies the exact UTC timestamp in ISO 8601 format till which the event would remain in the current lifecycle state waiting for an action from the customer. Beyond this timestamp, the platform will apply the defaultAction for the event. */
-  waitUntil?: string;
-  /** Specifies the exact UTC timestamp in ISO 8601 format till when the customer can delay the lifecycle hook event. The customer will not be allowed to delay the event to a timestamp beyond this. */
-  maxWaitUntil?: string;
-  /** The UTC timestamp in ISO 8601 format at which the platform creates the virtual machine scale set lifecycle hook event entity. */
-  timeCreated?: string;
-  /** Specify the action that will be applied on the a target resource in the virtual machine scale set lifecycle hook event if the platform does not get a response from the customer for the target resource before waitUntil. */
-  defaultAction?: LifecycleHookAction;
-  /** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
-  targetResources?: VMScaleSetLifecycleHookEventPropertiesTargetResourcesList;
-  /** Additional key-value pairs set on the lifecycle hook event that gives customer some useful context/data. The keys in this dictionary are specific to the lifecycle hook type. Different lifecycle hook events can have different sets of keys in the additional context depending on the lifecycle hook type. For example, for a lifecycle hook event with UpgradeAutoOSScheduling type, the additional context can contain the key "priority" that helps customer identify the priority of the Auto OS Upgrade operation triggered on the virtual machine scale set. */
-  additionalContext?: VMScaleSetLifecycleHookEventAdditionalContext;
-  /** Specifies the state of the virtual machine scale set lifecycle hook event. */
-  state?: VMScaleSetLifecycleHookEventState;
-}
-export const VMScaleSetLifecycleHookEventProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: S.optional(VMScaleSetLifecycleHookEventType),
-      waitUntil: S.optional(S.String),
-      maxWaitUntil: S.optional(S.String),
-      timeCreated: S.optional(S.String),
-      defaultAction: S.optional(LifecycleHookAction),
-      targetResources: S.optional(
-        VMScaleSetLifecycleHookEventPropertiesTargetResourcesList,
-      ),
-      additionalContext: S.optional(
-        VMScaleSetLifecycleHookEventAdditionalContext,
-      ),
-      state: S.optional(VMScaleSetLifecycleHookEventState),
-    }),
-).annotate({
-  identifier: "VMScaleSetLifecycleHookEventProperties",
-}) as any as S.Schema<VMScaleSetLifecycleHookEventProperties>;
-
-export interface VirtualMachineScaleSetLifeCycleHookEventsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Defines the virtual machine scale set lifecycle hook event properties. */
-  properties?: VMScaleSetLifecycleHookEventProperties;
-}
-export const VirtualMachineScaleSetLifeCycleHookEventsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(VMScaleSetLifecycleHookEventProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetLifeCycleHookEventsGetResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetLifeCycleHookEventsGetResponse>;
-
-export interface VirtualMachineScaleSetLifeCycleHookEventsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-}
-export const VirtualMachineScaleSetLifeCycleHookEventsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/lifecycleHookEvents",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetLifeCycleHookEventsListRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetLifeCycleHookEventsListRequest>;
-
-/** Defines a virtual machine scale set lifecycle hook event. */
-export interface VMScaleSetLifecycleHookEvent {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Defines the virtual machine scale set lifecycle hook event properties. */
-  properties?: VMScaleSetLifecycleHookEventProperties;
-}
-export const VMScaleSetLifecycleHookEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VMScaleSetLifecycleHookEventProperties),
-  }),
-).annotate({
-  identifier: "VMScaleSetLifecycleHookEvent",
-}) as any as S.Schema<VMScaleSetLifecycleHookEvent>;
-
-/** The list of virtual machine scale set lifecycle hook events created for a virtual machine scale set resource. */
-export type VMScaleSetLifecycleHookEventListResultValueList =
-  Array<VMScaleSetLifecycleHookEvent>;
-export const VMScaleSetLifecycleHookEventListResultValueList =
-  /*@__PURE__*/ S.Array(
-    VMScaleSetLifecycleHookEvent,
-  ) as any as S.Schema<VMScaleSetLifecycleHookEventListResultValueList>;
-
-/** The List virtual machine scale set lifecycle hook events operation response. */
-export interface VMScaleSetLifecycleHookEventListResult {
-  /** The list of virtual machine scale set lifecycle hook events created for a virtual machine scale set resource. */
-  value: VMScaleSetLifecycleHookEventListResultValueList;
-  /** The uri to fetch the next page of virtual machine scale set lifecycle hook events. Call ListNext() with this to fetch the next page of virtual machine scale set lifecycle hook events. */
-  nextLink?: string;
-}
-export const VMScaleSetLifecycleHookEventListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: VMScaleSetLifecycleHookEventListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "VMScaleSetLifecycleHookEventListResult",
-}) as any as S.Schema<VMScaleSetLifecycleHookEventListResult>;
-
-/** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
-export type VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList =
-  Array<VMScaleSetLifecycleHookEventTargetResource>;
-export const VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList =
-  /*@__PURE__*/ S.Array(
-    VMScaleSetLifecycleHookEventTargetResource,
-  ) as any as S.Schema<VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList>;
-
-/** Defines the virtual machine scale set lifecycle hook event properties. */
-export interface VMScaleSetLifecycleHookEventPropertiesInput {
-  /** Defines the type or scenario for sending a virtual machine scale set lifecycle hook event to the customer. */
-  type?: VMScaleSetLifecycleHookEventType | (string & {});
-  /** Specifies the exact UTC timestamp in ISO 8601 format till which the event would remain in the current lifecycle state waiting for an action from the customer. Beyond this timestamp, the platform will apply the defaultAction for the event. */
-  waitUntil?: string;
-  /** List of target resources which are getting processed in the virtual machine scale set lifecycle hook event. */
-  targetResources?: VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList;
-  /** Additional key-value pairs set on the lifecycle hook event that gives customer some useful context/data. The keys in this dictionary are specific to the lifecycle hook type. Different lifecycle hook events can have different sets of keys in the additional context depending on the lifecycle hook type. For example, for a lifecycle hook event with UpgradeAutoOSScheduling type, the additional context can contain the key "priority" that helps customer identify the priority of the Auto OS Upgrade operation triggered on the virtual machine scale set. */
-  additionalContext?: VMScaleSetLifecycleHookEventAdditionalContext;
-}
-export const VMScaleSetLifecycleHookEventPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(VMScaleSetLifecycleHookEventType),
-      waitUntil: S.optional(S.String),
-      targetResources: S.optional(
-        VMScaleSetLifecycleHookEventPropertiesInputTargetResourcesList,
-      ),
-      additionalContext: S.optional(
-        VMScaleSetLifecycleHookEventAdditionalContext,
-      ),
-    }),
-  ).annotate({
-    identifier: "VMScaleSetLifecycleHookEventPropertiesInput",
-  }) as any as S.Schema<VMScaleSetLifecycleHookEventPropertiesInput>;
-
-export interface VirtualMachineScaleSetLifeCycleHookEventsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The name of the VMScaleSetLifecycleHookEvent */
-  lifecycleHookEventName: string;
-  /** virtual machine scale set lifecycle hook event properties. */
-  properties?: VMScaleSetLifecycleHookEventPropertiesInput;
-}
-export const VirtualMachineScaleSetLifeCycleHookEventsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      lifecycleHookEventName: S.String.pipe(T.Label()),
-      properties: S.optional(VMScaleSetLifecycleHookEventPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/lifecycleHookEvents/{lifecycleHookEventName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetLifeCycleHookEventsUpdateRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetLifeCycleHookEventsUpdateRequest>;
-
-export interface VirtualMachineScaleSetLifeCycleHookEventsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Defines the virtual machine scale set lifecycle hook event properties. */
-  properties?: VMScaleSetLifecycleHookEventProperties;
-}
-export const VirtualMachineScaleSetLifeCycleHookEventsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(VMScaleSetLifecycleHookEventProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetLifeCycleHookEventsUpdateResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetLifeCycleHookEventsUpdateResponse>;
-
-export interface VirtualMachineScaleSetRollingUpgradesGetLatestRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-}
-export const VirtualMachineScaleSetRollingUpgradesGetLatestRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/rollingUpgrades/latest",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetRollingUpgradesGetLatestRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetRollingUpgradesGetLatestRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetRollingUpgradesGetLatestResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetRollingUpgradesGetLatestResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetRollingUpgradesGetLatestResponseTagsMap>;
-
-/** Code indicating the current status of the upgrade. */
-export type RollingUpgradeStatusCode =
-  | "RollingForward"
-  | "RollingBack"
-  | "Cancelled"
-  | "Completed"
-  | "Faulted";
-export const RollingUpgradeStatusCode = /*@__PURE__*/ S.String;
-
-/** The last action performed on the rolling upgrade. */
-export type RollingUpgradeActionType = "Start" | "Cancel";
-export const RollingUpgradeActionType = /*@__PURE__*/ S.String;
-
-/** Information about the current running state of the overall upgrade. */
-export interface RollingUpgradeRunningStatus {
-  /** Code indicating the current status of the upgrade. */
-  code?: RollingUpgradeStatusCode;
-  /** Start time of the upgrade. */
-  startTime?: string;
-  /** The last action performed on the rolling upgrade. */
-  lastAction?: RollingUpgradeActionType;
-  /** Last action time of the upgrade. */
-  lastActionTime?: string;
-}
-export const RollingUpgradeRunningStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(RollingUpgradeStatusCode),
-    startTime: S.optional(S.String),
-    lastAction: S.optional(RollingUpgradeActionType),
-    lastActionTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RollingUpgradeRunningStatus",
-}) as any as S.Schema<RollingUpgradeRunningStatus>;
-
-/** The Api error details */
-export type RollingUpgradeStatusInfoPropertiesErrorDetailsList =
-  Array<ApiErrorBase>;
-export const RollingUpgradeStatusInfoPropertiesErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ApiErrorBase,
-  ) as any as S.Schema<RollingUpgradeStatusInfoPropertiesErrorDetailsList>;
-
-/** Api error. */
-export interface RollingUpgradeStatusInfoPropertiesError {
-  /** The Api error details */
-  details?: RollingUpgradeStatusInfoPropertiesErrorDetailsList;
-  /** The Api inner error */
-  innererror?: InnerError;
-  /** The error code. */
-  code?: string;
-  /** The target of the particular error. */
-  target?: string;
-  /** The error message. */
-  message?: string;
-}
-export const RollingUpgradeStatusInfoPropertiesError = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      details: S.optional(RollingUpgradeStatusInfoPropertiesErrorDetailsList),
-      innererror: S.optional(InnerError),
-      code: S.optional(S.String),
-      target: S.optional(S.String),
-      message: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RollingUpgradeStatusInfoPropertiesError",
-}) as any as S.Schema<RollingUpgradeStatusInfoPropertiesError>;
-
-/** The status of the latest virtual machine scale set rolling upgrade. */
-export interface RollingUpgradeStatusInfoProperties {
-  /** The rolling upgrade policies applied for this upgrade. */
-  policy?: RollingUpgradePolicy;
-  /** Information about the current running state of the overall upgrade. */
-  runningStatus?: RollingUpgradeRunningStatus;
-  /** Information about the number of virtual machine instances in each upgrade state. */
-  progress?: RollingUpgradeProgressInfo;
-  /** Api error. */
-  error?: RollingUpgradeStatusInfoPropertiesError;
-}
-export const RollingUpgradeStatusInfoProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policy: S.optional(RollingUpgradePolicy),
-    runningStatus: S.optional(RollingUpgradeRunningStatus),
-    progress: S.optional(RollingUpgradeProgressInfo),
-    error: S.optional(RollingUpgradeStatusInfoPropertiesError),
-  }),
-).annotate({
-  identifier: "RollingUpgradeStatusInfoProperties",
-}) as any as S.Schema<RollingUpgradeStatusInfoProperties>;
-
-export interface VirtualMachineScaleSetRollingUpgradesGetLatestResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetRollingUpgradesGetLatestResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The status of the latest virtual machine scale set rolling upgrade. */
-  properties?: RollingUpgradeStatusInfoProperties;
-}
-export const VirtualMachineScaleSetRollingUpgradesGetLatestResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        VirtualMachineScaleSetRollingUpgradesGetLatestResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(RollingUpgradeStatusInfoProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetRollingUpgradesGetLatestResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
-
-export interface VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-}
-export const VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensionRollingUpgrade",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeRequest>;
-
-export interface VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeResponse {}
-export const VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier:
-      "VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeResponse>;
-
-export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-}
-export const VirtualMachineScaleSetRollingUpgradesStartOSUpgradeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/osRollingUpgrade",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetRollingUpgradesStartOSUpgradeRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetRollingUpgradesStartOSUpgradeRequest>;
-
-export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeResponse {}
-export const VirtualMachineScaleSetRollingUpgradesStartOSUpgradeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetRollingUpgradesStartOSUpgradeResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetRollingUpgradesStartOSUpgradeResponse>;
-
-/** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-export type VirtualMachineScaleSetsApproveRollingUpgradeRequestInstanceIdsList =
-  Array<string>;
-export const VirtualMachineScaleSetsApproveRollingUpgradeRequestInstanceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsApproveRollingUpgradeRequestInstanceIdsList>;
-
-export interface VirtualMachineScaleSetsApproveRollingUpgradeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-  instanceIds?: VirtualMachineScaleSetsApproveRollingUpgradeRequestInstanceIdsList;
-}
-export const VirtualMachineScaleSetsApproveRollingUpgradeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceIds: S.optional(
-        VirtualMachineScaleSetsApproveRollingUpgradeRequestInstanceIdsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/approveRollingUpgrade",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetsApproveRollingUpgradeRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetsApproveRollingUpgradeRequest>;
-
-export interface VirtualMachineScaleSetsApproveRollingUpgradeResponse {}
-export const VirtualMachineScaleSetsApproveRollingUpgradeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetsApproveRollingUpgradeResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetsApproveRollingUpgradeResponse>;
-
-export interface VirtualMachineScaleSetsConvertToSinglePlacementGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** Id of the placement group in which you want future virtual machine instances to be placed. To query placement group Id, please use Virtual Machine Scale Set VMs - Get API. If not provided, the platform will choose one with maximum number of virtual machine instances. */
-  activePlacementGroupId?: string;
-}
-export const VirtualMachineScaleSetsConvertToSinglePlacementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      activePlacementGroupId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/convertToSinglePlacementGroup",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetsConvertToSinglePlacementGroupRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetsConvertToSinglePlacementGroupRequest>;
-
-export interface VirtualMachineScaleSetsConvertToSinglePlacementGroupResponse {}
-export const VirtualMachineScaleSetsConvertToSinglePlacementGroupResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetsConvertToSinglePlacementGroupResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetsConvertToSinglePlacementGroupResponse>;
 
 /** Resource tags. */
 export type VirtualMachineScaleSetsCreateOrUpdateRequestTagsMap = {
@@ -20155,9 +21988,9 @@ export const VirtualMachineScaleSetsCreateOrUpdateResponseZonesList =
 
 /** The complex type of the extended location. */
 export type VirtualMachineScaleSetsCreateOrUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 export const VirtualMachineScaleSetsCreateOrUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 
 export interface VirtualMachineScaleSetsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -20183,7 +22016,7 @@ export interface VirtualMachineScaleSetsCreateOrUpdateResponse {
   /** The availability zones. */
   zones?: VirtualMachineScaleSetsCreateOrUpdateResponseZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** Etag is property returned in Create/Update/Get response of the VMSS, so that customer can supply it in the header to ensure optimistic updates */
   etag?: string;
   /** Placement section specifies the user-defined constraints for virtual machine scale set hardware placement. Minimum api-version: 2025-04-01. */
@@ -20203,7 +22036,7 @@ export const VirtualMachineScaleSetsCreateOrUpdateResponse =
       properties: S.optional(VirtualMachineScaleSetProperties),
       identity: S.optional(VirtualMachineScaleSetIdentity),
       zones: S.optional(VirtualMachineScaleSetsCreateOrUpdateResponseZonesList),
-      extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+      extendedLocation: S.optional(GetImageResponseExtendedLocation),
       etag: S.optional(S.String),
       placement: S.optional(Placement),
     }),
@@ -20259,52 +22092,57 @@ export const VirtualMachineScaleSetsDeallocateResponse =
     identifier: "VirtualMachineScaleSetsDeallocateResponse",
   }) as any as S.Schema<VirtualMachineScaleSetsDeallocateResponse>;
 
-/** The virtual machine scale set instance ids to be migrated to the target availability zone. */
-export type VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequestInstanceIdsList =
-  Array<string>;
-export const VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequestInstanceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequestInstanceIdsList>;
-
-export interface VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequest {
+export interface VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the VM scale set. */
   vmScaleSetName: string;
-  /** The virtual machine scale set instance ids to be migrated to the target availability zone. */
-  instanceIds: VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequestInstanceIdsList;
-  /** The target logical availability zone ("1", "2" or "3") to migrate the virtual machine scale set instances to. If omitted, the platform selects the target zone. */
-  targetZone?: string;
+  /** The platform update domain for which a manual recovery walk is requested */
+  platformUpdateDomain: number;
+  /** The zone in which the manual recovery walk is requested for cross zone virtual machine scale set */
+  zone?: string;
+  /** The placement group id for which the manual recovery walk is requested. */
+  placementGroupId?: string;
 }
-export const VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequest =
+export const VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vmScaleSetName: S.String.pipe(T.Label()),
-      instanceIds:
-        VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequestInstanceIdsList,
-      targetZone: S.optional(S.String),
+      platformUpdateDomain: S.Number.pipe(T.Query()),
+      zone: S.optional(S.String.pipe(T.Query())),
+      placementGroupId: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/migrateVMAvailabilityZone",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/forceRecoveryServiceFabricPlatformUpdateDomainWalk",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequest>;
+    identifier:
+      "VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkRequest",
+  }) as any as S.Schema<VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkRequest>;
 
-export interface VirtualMachineScaleSetsMigrateVMAvailabilityZoneResponse {}
-export const VirtualMachineScaleSetsMigrateVMAvailabilityZoneResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetsMigrateVMAvailabilityZoneResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetsMigrateVMAvailabilityZoneResponse>;
+/** Response after calling a manual recovery walk */
+export interface RecoveryWalkResponse {
+  /** Whether the recovery walk was performed */
+  walkPerformed?: boolean;
+  /** The next update domain that needs to be walked. Null means walk spanning all update domains has been completed */
+  nextPlatformUpdateDomain?: number;
+}
+export const RecoveryWalkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    walkPerformed: S.optional(S.Boolean),
+    nextPlatformUpdateDomain: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "RecoveryWalkResponse",
+}) as any as S.Schema<RecoveryWalkResponse>;
 
 /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
 export type VirtualMachineScaleSetsPerformMaintenanceRequestInstanceIdsList =
@@ -20433,51 +22271,21 @@ export const VirtualMachineScaleSetsReapplyResponse = /*@__PURE__*/ S.suspend(
   identifier: "VirtualMachineScaleSetsReapplyResponse",
 }) as any as S.Schema<VirtualMachineScaleSetsReapplyResponse>;
 
-/** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-export type VirtualMachineScaleSetsRedeployRequestInstanceIdsList =
-  Array<string>;
-export const VirtualMachineScaleSetsRedeployRequestInstanceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetsRedeployRequestInstanceIdsList>;
-
-export interface VirtualMachineScaleSetsRedeployRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
-  instanceIds?: VirtualMachineScaleSetsRedeployRequestInstanceIdsList;
+/** Additional parameters for Reimaging Non-Ephemeral Virtual Machine. */
+export interface OSProfileProvisioningData {
+  /** Specifies the password of the administrator account. <br><br> **Minimum-length (Windows):** 8 characters <br><br> **Minimum-length (Linux):** 6 characters <br><br> **Max-length (Windows):** 123 characters <br><br> **Max-length (Linux):** 72 characters <br><br> **Complexity requirements:** 3 out of 4 conditions below need to be fulfilled <br> Has lower characters <br>Has upper characters <br> Has a digit <br> Has a special character (Regex match [\W_]) <br><br> **Disallowed values:** "abc@123", "P@$$w0rd", "P@ssw0rd", "P@ssword123", "Pa$$word", "pass@word1", "Password!", "Password1", "Password22", "iloveyou!" <br><br> For resetting the password, see [How to reset the Remote Desktop service or its login password in a Windows VM](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/reset-rdp) <br><br> For resetting root password, see [Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/troubleshoot-ssh-connection) */
+  adminPassword?: string | Redacted.Redacted<string>;
+  /** Specifies a base-64 encoded string of custom data. The base-64 encoded string is decoded to a binary array that is saved as a file on the Virtual Machine. The maximum length of the binary array is 65535 bytes. **Note: Do not pass any secrets or passwords in customData property.** This property cannot be updated after the VM is created. The property customData is passed to the VM to be saved as a file, for more information see [Custom Data on Azure VMs](https://azure.microsoft.com/blog/custom-data-and-cloud-init-on-windows-azure/). If using cloud-init for your Linux VM, see [Using cloud-init to customize a Linux VM during creation](https://docs.microsoft.com/azure/virtual-machines/linux/using-cloud-init). */
+  customData?: string;
 }
-export const VirtualMachineScaleSetsRedeployRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceIds: S.optional(
-        VirtualMachineScaleSetsRedeployRequestInstanceIdsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/redeploy",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
+export const OSProfileProvisioningData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adminPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    customData: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "VirtualMachineScaleSetsRedeployRequest",
-}) as any as S.Schema<VirtualMachineScaleSetsRedeployRequest>;
-
-export interface VirtualMachineScaleSetsRedeployResponse {}
-export const VirtualMachineScaleSetsRedeployResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "VirtualMachineScaleSetsRedeployResponse",
-}) as any as S.Schema<VirtualMachineScaleSetsRedeployResponse>;
+  identifier: "OSProfileProvisioningData",
+}) as any as S.Schema<OSProfileProvisioningData>;
 
 /** The virtual machine scale set instance ids. Omitting the virtual machine scale set instance ids will result in the operation being performed on all virtual machines in the virtual machine scale set. */
 export type VirtualMachineScaleSetsReimageRequestInstanceIdsList =
@@ -20582,58 +22390,6 @@ export const VirtualMachineScaleSetsReimageAllResponse =
     identifier: "VirtualMachineScaleSetsReimageAllResponse",
   }) as any as S.Schema<VirtualMachineScaleSetsReimageAllResponse>;
 
-/** The input properties for ScaleOut */
-export interface VMScaleSetScaleOutInputProperties {
-  /** The zone in which the scale out is requested for the virtual machine scale set. */
-  zone?: string;
-}
-export const VMScaleSetScaleOutInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zone: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VMScaleSetScaleOutInputProperties",
-}) as any as S.Schema<VMScaleSetScaleOutInputProperties>;
-
-export interface VirtualMachineScaleSetsScaleOutRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** Specifies the number of virtual machines in the scale set. */
-  capacity: number;
-  /** The input properties for ScaleOut */
-  properties?: VMScaleSetScaleOutInputProperties;
-}
-export const VirtualMachineScaleSetsScaleOutRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      capacity: S.Number,
-      properties: S.optional(VMScaleSetScaleOutInputProperties),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/scaleOut",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachineScaleSetsScaleOutRequest",
-}) as any as S.Schema<VirtualMachineScaleSetsScaleOutRequest>;
-
-export interface VirtualMachineScaleSetsScaleOutResponse {}
-export const VirtualMachineScaleSetsScaleOutResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "VirtualMachineScaleSetsScaleOutResponse",
-}) as any as S.Schema<VirtualMachineScaleSetsScaleOutResponse>;
-
 /** Resource tags. */
 export type VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdateRequestTagsMap =
   { [key: string]: string | undefined };
@@ -20730,245 +22486,6 @@ export const VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdateResponse
       "VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdateResponse>;
 
-export interface VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
-  instanceId: string;
-  /** The name of the VirtualMachineDiagnosticRunCommand */
-  runCommandName: string;
-}
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      runCommandName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands/{runCommandName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteRequest>;
-
-export interface VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteResponse {}
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteResponse>;
-
-export interface VirtualMachineScaleSetVMDiagnosticRunCommandsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
-  instanceId: string;
-  /** The name of the VirtualMachineDiagnosticRunCommand */
-  runCommandName: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      runCommandName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands/{runCommandName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMDiagnosticRunCommandsGetRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsGetRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponseTagsMap>;
-
-export interface VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a Virtual Machine diagnostic run command. */
-  properties?: VirtualMachineRunCommandProperties;
-}
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(VirtualMachineRunCommandProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponse>;
-
-export interface VirtualMachineScaleSetVMDiagnosticRunCommandsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
-  instanceId: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMDiagnosticRunCommandsListRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsListRequest>;
-
-/** Resource tags */
-export type VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequestTagsMap =
-  { [key: string]: string | undefined };
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequestTagsMap>;
-
-export interface VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
-  instanceId: string;
-  /** The name of the VirtualMachineDiagnosticRunCommand */
-  runCommandName: string;
-  /** Resource tags */
-  tags?: VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequestTagsMap;
-  /** Describes the properties of a Virtual Machine run command. */
-  properties?: VirtualMachineRunCommandPropertiesInput;
-}
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      runCommandName: S.String.pipe(T.Label()),
-      tags: S.optional(
-        VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequestTagsMap,
-      ),
-      properties: S.optional(VirtualMachineRunCommandPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/diagnosticRunCommands/{runCommandName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponseTagsMap =
-  { [key: string]: string | undefined };
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponseTagsMap>;
-
-export interface VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a Virtual Machine diagnostic run command. */
-  properties?: VirtualMachineRunCommandProperties;
-}
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(VirtualMachineRunCommandProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponse>;
-
 export interface VirtualMachineScaleSetVMExtensionsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -21031,243 +22548,6 @@ export const VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse =
   ).annotate({
     identifier: "VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>;
-
-export interface VirtualMachineScaleSetVMExtensionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** The name of the virtual machine extension. */
-  vmExtensionName: string;
-}
-export const VirtualMachineScaleSetVMExtensionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      vmExtensionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions/{vmExtensionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsDeleteRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsDeleteRequest>;
-
-export interface VirtualMachineScaleSetVMExtensionsDeleteResponse {}
-export const VirtualMachineScaleSetVMExtensionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsDeleteResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsDeleteResponse>;
-
-export interface VirtualMachineScaleSetVMExtensionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** The name of the virtual machine extension. */
-  vmExtensionName: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetVMExtensionsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      vmExtensionName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions/{vmExtensionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsGetRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsGetRequest>;
-
-export interface VirtualMachineScaleSetVMExtensionsGetResponse {
-  /** Resource Id */
-  id?: string;
-  /** Describes the properties of a Virtual Machine Extension. */
-  properties?: VirtualMachineExtensionProperties;
-  /** The location of the extension. */
-  location?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource name */
-  name?: string;
-}
-export const VirtualMachineScaleSetVMExtensionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      properties: S.optional(VirtualMachineExtensionProperties),
-      location: S.optional(S.String),
-      type: S.optional(S.String),
-      name: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsGetResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsGetResponse>;
-
-export interface VirtualMachineScaleSetVMExtensionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetVMExtensionsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsListRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsListRequest>;
-
-/** Describes a VMSS VM Extension. */
-export interface VirtualMachineScaleSetVMExtension {
-  /** Resource Id */
-  id?: string;
-  /** Describes the properties of a Virtual Machine Extension. */
-  properties?: VirtualMachineExtensionProperties;
-  /** The location of the extension. */
-  location?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource name */
-  name?: string;
-}
-export const VirtualMachineScaleSetVMExtension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    properties: S.optional(VirtualMachineExtensionProperties),
-    location: S.optional(S.String),
-    type: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMExtension",
-}) as any as S.Schema<VirtualMachineScaleSetVMExtension>;
-
-/** The list of VMSS VM extensions */
-export type VirtualMachineScaleSetVMExtensionsListResultValueList =
-  Array<VirtualMachineScaleSetVMExtension>;
-export const VirtualMachineScaleSetVMExtensionsListResultValueList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineScaleSetVMExtension,
-  ) as any as S.Schema<VirtualMachineScaleSetVMExtensionsListResultValueList>;
-
-/** The List VMSS VM Extension operation response */
-export interface VirtualMachineScaleSetVMExtensionsListResult {
-  /** The list of VMSS VM extensions */
-  value?: VirtualMachineScaleSetVMExtensionsListResultValueList;
-}
-export const VirtualMachineScaleSetVMExtensionsListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(VirtualMachineScaleSetVMExtensionsListResultValueList),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsListResult",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsListResult>;
-
-export interface VirtualMachineScaleSetVMExtensionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** The name of the virtual machine extension. */
-  vmExtensionName: string;
-  /** Describes the properties of a Virtual Machine Extension. */
-  properties?: VirtualMachineExtensionUpdateProperties;
-}
-export const VirtualMachineScaleSetVMExtensionsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      vmExtensionName: S.String.pipe(T.Label()),
-      properties: S.optional(VirtualMachineExtensionUpdateProperties),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/extensions/{vmExtensionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsUpdateRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsUpdateRequest>;
-
-export interface VirtualMachineScaleSetVMExtensionsUpdateResponse {
-  /** Resource Id */
-  id?: string;
-  /** Describes the properties of a Virtual Machine Extension. */
-  properties?: VirtualMachineExtensionProperties;
-  /** The location of the extension. */
-  location?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource name */
-  name?: string;
-}
-export const VirtualMachineScaleSetVMExtensionsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      properties: S.optional(VirtualMachineExtensionProperties),
-      location: S.optional(S.String),
-      type: S.optional(S.String),
-      name: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMExtensionsUpdateResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMExtensionsUpdateResponse>;
 
 /** Resource tags. */
 export type VirtualMachineScaleSetVMRunCommandsCreateOrUpdateRequestTagsMap = {
@@ -21365,630 +22645,97 @@ export const VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse =
     identifier: "VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsCreateOrUpdateResponse>;
 
-export interface VirtualMachineScaleSetVMRunCommandsDeleteRequest {
+/** The list of managed data disks to be attached. */
+export type VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList =
+  Array<DataDisksToAttach>;
+export const VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList =
+  /*@__PURE__*/ S.Array(
+    DataDisksToAttach,
+  ) as any as S.Schema<VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList>;
+
+/** The list of managed data disks to be detached. */
+export type VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList =
+  Array<DataDisksToDetach>;
+export const VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList =
+  /*@__PURE__*/ S.Array(
+    DataDisksToDetach,
+  ) as any as S.Schema<VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList>;
+
+export interface VirtualMachineScaleSetVMsAttachDetachDataDisksRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
+  /** The name of the VM scale set. */
   vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
+  /** The instance ID of the virtual machine. */
   instanceId: string;
-  /** The name of the VirtualMachineRunCommand */
-  runCommandName: string;
+  /** The list of managed data disks to be attached. */
+  dataDisksToAttach?: VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList;
+  /** The list of managed data disks to be detached. */
+  dataDisksToDetach?: VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList;
 }
-export const VirtualMachineScaleSetVMRunCommandsDeleteRequest =
+export const VirtualMachineScaleSetVMsAttachDetachDataDisksRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       vmScaleSetName: S.String.pipe(T.Label()),
       instanceId: S.String.pipe(T.Label()),
-      runCommandName: S.String.pipe(T.Label()),
+      dataDisksToAttach: S.optional(
+        VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToAttachList,
+      ),
+      dataDisksToDetach: S.optional(
+        VirtualMachineScaleSetVMsAttachDetachDataDisksRequestDataDisksToDetachList,
+      ),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands/{runCommandName}",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/attachDetachDataDisks",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "VirtualMachineScaleSetVMRunCommandsDeleteRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsDeleteRequest>;
+    identifier: "VirtualMachineScaleSetVMsAttachDetachDataDisksRequest",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsAttachDetachDataDisksRequest>;
 
-export interface VirtualMachineScaleSetVMRunCommandsDeleteResponse {}
-export const VirtualMachineScaleSetVMRunCommandsDeleteResponse =
+export interface VirtualMachineScaleSetVMsDeallocateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const VirtualMachineScaleSetVMsDeallocateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/deallocate",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "VirtualMachineScaleSetVMsDeallocateRequest",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsDeallocateRequest>;
+
+export interface VirtualMachineScaleSetVMsDeallocateResponse {}
+export const VirtualMachineScaleSetVMsDeallocateResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineScaleSetVMRunCommandsDeleteResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsDeleteResponse>;
+    identifier: "VirtualMachineScaleSetVMsDeallocateResponse",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsDeallocateResponse>;
 
-export interface VirtualMachineScaleSetVMRunCommandsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
-  instanceId: string;
-  /** The name of the VirtualMachineRunCommand */
-  runCommandName: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetVMRunCommandsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      runCommandName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands/{runCommandName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMRunCommandsGetRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsGetRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMRunCommandsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMRunCommandsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsGetResponseTagsMap>;
-
-export interface VirtualMachineScaleSetVMRunCommandsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMRunCommandsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a Virtual Machine run command. */
-  properties?: VirtualMachineRunCommandProperties;
-}
-export const VirtualMachineScaleSetVMRunCommandsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineScaleSetVMRunCommandsGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(VirtualMachineRunCommandProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMRunCommandsGetResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsGetResponse>;
-
-export interface VirtualMachineScaleSetVMRunCommandsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
-  instanceId: string;
-  /** The expand expression to apply on the operation. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetVMRunCommandsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMRunCommandsListRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsListRequest>;
-
-/** Resource tags */
-export type VirtualMachineScaleSetVMRunCommandsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMRunCommandsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsUpdateRequestTagsMap>;
-
-export interface VirtualMachineScaleSetVMRunCommandsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  vmScaleSetName: string;
-  /** The name of the VirtualMachineScaleSetVM */
-  instanceId: string;
-  /** The name of the VirtualMachineRunCommand */
-  runCommandName: string;
-  /** Resource tags */
-  tags?: VirtualMachineScaleSetVMRunCommandsUpdateRequestTagsMap;
-  /** Describes the properties of a Virtual Machine run command. */
-  properties?: VirtualMachineRunCommandPropertiesInput;
-}
-export const VirtualMachineScaleSetVMRunCommandsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      runCommandName: S.String.pipe(T.Label()),
-      tags: S.optional(VirtualMachineScaleSetVMRunCommandsUpdateRequestTagsMap),
-      properties: S.optional(VirtualMachineRunCommandPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/runCommands/{runCommandName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMRunCommandsUpdateRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsUpdateRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMRunCommandsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMRunCommandsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsUpdateResponseTagsMap>;
-
-export interface VirtualMachineScaleSetVMRunCommandsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMRunCommandsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a Virtual Machine run command. */
-  properties?: VirtualMachineRunCommandProperties;
-}
-export const VirtualMachineScaleSetVMRunCommandsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        VirtualMachineScaleSetVMRunCommandsUpdateResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(VirtualMachineRunCommandProperties),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMRunCommandsUpdateResponse",
-  }) as any as S.Schema<VirtualMachineScaleSetVMRunCommandsUpdateResponse>;
-
-export interface VirtualMachineScaleSetVMsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** Optional parameter to force delete a virtual machine from a VM scale set. (Feature in Preview) */
-  forceDeletion?: boolean;
-}
-export const VirtualMachineScaleSetVMsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      forceDeletion: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsDeleteRequest",
-}) as any as S.Schema<VirtualMachineScaleSetVMsDeleteRequest>;
-
-export interface VirtualMachineScaleSetVMsDeleteResponse {}
-export const VirtualMachineScaleSetVMsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsDeleteResponse",
-}) as any as S.Schema<VirtualMachineScaleSetVMsDeleteResponse>;
-
-export type VirtualMachineScaleSetVMsGetRequestExpand =
-  | "instanceView"
-  | "userData"
-  | "resiliencyView";
-export const VirtualMachineScaleSetVMsGetRequestExpand = /*@__PURE__*/ S.String;
-
-export interface VirtualMachineScaleSetVMsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** The expand expression to apply on the operation. 'InstanceView' will retrieve the instance view of the virtual machine. 'UserData' will retrieve the UserData of the virtual machine. */
-  _expand?: VirtualMachineScaleSetVMsGetRequestExpand | (string & {});
-}
-export const VirtualMachineScaleSetVMsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vmScaleSetName: S.String.pipe(T.Label()),
-    instanceId: S.String.pipe(T.Label()),
-    _expand: S.optional(
-      VirtualMachineScaleSetVMsGetRequestExpand.pipe(T.Query("$expand")),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsGetRequest",
-}) as any as S.Schema<VirtualMachineScaleSetVMsGetRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsGetResponseTagsMap>;
-
-/** The disks information. */
-export type VirtualMachineScaleSetVMInstanceViewDisksList =
-  Array<DiskInstanceView>;
-export const VirtualMachineScaleSetVMInstanceViewDisksList =
-  /*@__PURE__*/ S.Array(
-    DiskInstanceView,
-  ) as any as S.Schema<VirtualMachineScaleSetVMInstanceViewDisksList>;
-
-/** The extensions information. */
-export type VirtualMachineScaleSetVMInstanceViewExtensionsList =
-  Array<VirtualMachineExtensionInstanceView>;
-export const VirtualMachineScaleSetVMInstanceViewExtensionsList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineExtensionInstanceView,
-  ) as any as S.Schema<VirtualMachineScaleSetVMInstanceViewExtensionsList>;
-
-/** The resource status information. */
-export type VirtualMachineScaleSetVMInstanceViewStatusesList =
-  Array<InstanceViewStatus>;
-export const VirtualMachineScaleSetVMInstanceViewStatusesList =
-  /*@__PURE__*/ S.Array(
-    InstanceViewStatus,
-  ) as any as S.Schema<VirtualMachineScaleSetVMInstanceViewStatusesList>;
-
-/** The hypervisor generation of the Virtual Machine. */
-export type CommonHyperVGeneration = "V1" | "V2";
-export const CommonHyperVGeneration = /*@__PURE__*/ S.String;
-
-/** The instance view of a virtual machine scale set VM. */
-export interface VirtualMachineScaleSetVMInstanceView {
-  /** The Update Domain count. */
-  platformUpdateDomain?: number;
-  /** The Fault Domain count. */
-  platformFaultDomain?: number;
-  /** The Remote desktop certificate thumbprint. */
-  rdpThumbPrint?: string;
-  /** The VM Agent running on the virtual machine. */
-  vmAgent?: VirtualMachineAgentInstanceView;
-  /** The Maintenance Operation status on the virtual machine. */
-  maintenanceRedeployStatus?: MaintenanceRedeployStatus;
-  /** The disks information. */
-  disks?: VirtualMachineScaleSetVMInstanceViewDisksList;
-  /** The extensions information. */
-  extensions?: VirtualMachineScaleSetVMInstanceViewExtensionsList;
-  /** The health status for the VM. */
-  vmHealth?: VirtualMachineHealthStatus;
-  /** Boot Diagnostics is a debugging feature which allows you to view Console Output and Screenshot to diagnose VM status. You can easily view the output of your console log. Azure also enables you to see a screenshot of the VM from the hypervisor. */
-  bootDiagnostics?: BootDiagnosticsInstanceView;
-  /** The resource status information. */
-  statuses?: VirtualMachineScaleSetVMInstanceViewStatusesList;
-  /** Resource id of the dedicated host, on which the virtual machine is allocated through automatic placement, when the virtual machine is associated with a dedicated host group that has automatic placement enabled. Minimum api-version: 2020-06-01. */
-  assignedHost?: string;
-  /** The placement group in which the VM is running. If the VM is deallocated it will not have a placementGroupId. */
-  placementGroupId?: string;
-  /** Specifies the host OS name of the virtual machine. <br><br> This name cannot be updated after the VM is created. <br><br> **Max-length (Windows):** 15 characters <br><br> **Max-length (Linux):** 64 characters. <br><br> For naming conventions and restrictions see [Azure infrastructure services implementation guidelines](https://learn.microsoft.com/previous-versions/azure/virtual-machines/linux/infrastructure-example?toc=%2Fazure%2Fvirtual-machines%2Flinux%2Ftoc.json#1-naming-conventions). */
-  computerName?: string;
-  /** The Operating System running on the hybrid machine. */
-  osName?: string;
-  /** The version of Operating System running on the hybrid machine. */
-  osVersion?: string;
-  /** The hypervisor generation of the Virtual Machine [V1, V2] */
-  hyperVGeneration?: CommonHyperVGeneration;
-  /** The Interconnect runtime view of the Scale Set VM instance. Minimum api-version: 2026-03-01. */
-  interconnectInstanceView?: InterconnectInstanceView;
-  /** Specifies which type of capacity reservation the virtual machine scale set VM instance will consume capacity from if eligible or whether it is explicitly opted out from being associated and consuming capacity from any reserved capacity available in the subscription. Minimum api-version: 2026-04-01. */
-  capacityReservationType?: CapacityReservationType;
-}
-export const VirtualMachineScaleSetVMInstanceView = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      platformUpdateDomain: S.optional(S.Number),
-      platformFaultDomain: S.optional(S.Number),
-      rdpThumbPrint: S.optional(S.String),
-      vmAgent: S.optional(VirtualMachineAgentInstanceView),
-      maintenanceRedeployStatus: S.optional(MaintenanceRedeployStatus),
-      disks: S.optional(VirtualMachineScaleSetVMInstanceViewDisksList),
-      extensions: S.optional(
-        VirtualMachineScaleSetVMInstanceViewExtensionsList,
-      ),
-      vmHealth: S.optional(VirtualMachineHealthStatus),
-      bootDiagnostics: S.optional(BootDiagnosticsInstanceView),
-      statuses: S.optional(VirtualMachineScaleSetVMInstanceViewStatusesList),
-      assignedHost: S.optional(S.String),
-      placementGroupId: S.optional(S.String),
-      computerName: S.optional(S.String),
-      osName: S.optional(S.String),
-      osVersion: S.optional(S.String),
-      hyperVGeneration: S.optional(CommonHyperVGeneration),
-      interconnectInstanceView: S.optional(InterconnectInstanceView),
-      capacityReservationType: S.optional(CapacityReservationType),
-    }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMInstanceView",
-}) as any as S.Schema<VirtualMachineScaleSetVMInstanceView>;
-
-/** Specifies the resilient VM deletion status for the virtual machine. */
-export type ResilientVMDeletionStatus =
-  | "Enabled"
-  | "Disabled"
-  | "InProgress"
-  | "Failed";
-export const ResilientVMDeletionStatus = /*@__PURE__*/ S.String;
-
-/** The list of network configurations. */
-export type VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList =
-  Array<VirtualMachineScaleSetNetworkConfiguration>;
-export const VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineScaleSetNetworkConfiguration,
-  ) as any as S.Schema<VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList>;
-
-/** Describes a virtual machine scale set VM network profile. */
-export interface VirtualMachineScaleSetVMNetworkProfileConfiguration {
-  /** The list of network configurations. */
-  networkInterfaceConfigurations?: VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList;
-  /** Specifies the interconnect group profile to associate with the scale set vm instance. Minimum api-version: 2026-03-01. */
-  interconnectGroupProfile?: InterconnectGroupProfile;
-}
-export const VirtualMachineScaleSetVMNetworkProfileConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      networkInterfaceConfigurations: S.optional(
-        VirtualMachineScaleSetVMNetworkProfileConfigurationNetworkInterfaceConfigurationsList,
-      ),
-      interconnectGroupProfile: S.optional(InterconnectGroupProfile),
-    }),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMNetworkProfileConfiguration",
-  }) as any as S.Schema<VirtualMachineScaleSetVMNetworkProfileConfiguration>;
-
-export type VirtualMachineScaleSetVMPropertiesAvailabilitySet =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const VirtualMachineScaleSetVMPropertiesAvailabilitySet =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-
-/** The protection policy of a virtual machine scale set VM. */
-export interface VirtualMachineScaleSetVMProtectionPolicy {
-  /** Indicates that the virtual machine scale set VM shouldn't be considered for deletion during a scale-in operation. */
-  protectFromScaleIn?: boolean;
-  /** Indicates that model updates or actions (including scale-in) initiated on the virtual machine scale set should not be applied to the virtual machine scale set VM. */
-  protectFromScaleSetActions?: boolean;
-}
-export const VirtualMachineScaleSetVMProtectionPolicy = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      protectFromScaleIn: S.optional(S.Boolean),
-      protectFromScaleSetActions: S.optional(S.Boolean),
-    }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMProtectionPolicy",
-}) as any as S.Schema<VirtualMachineScaleSetVMProtectionPolicy>;
-
-/** Describes the properties of a virtual machine scale set virtual machine. */
-export interface VirtualMachineScaleSetVMProperties {
-  /** Specifies whether the latest model has been applied to the virtual machine. */
-  latestModelApplied?: boolean;
-  /** Azure VM unique ID. */
-  vmId?: string;
-  /** The virtual machine instance view. */
-  instanceView?: VirtualMachineScaleSetVMInstanceView;
-  /** Specifies the hardware settings for the virtual machine. */
-  hardwareProfile?: HardwareProfile;
-  /** Specifies the resilient VM deletion status for the virtual machine. */
-  resilientVMDeletionStatus?: ResilientVMDeletionStatus;
-  /** Specifies the storage settings for the virtual machine disks. */
-  storageProfile?: StorageProfile;
-  /** Specifies additional capabilities enabled or disabled on the virtual machine in the scale set. For instance: whether the virtual machine has the capability to support attaching managed data disks with UltraSSD_LRS storage account type. */
-  additionalCapabilities?: AdditionalCapabilities;
-  /** Specifies the operating system settings for the virtual machine. */
-  osProfile?: OSProfile;
-  /** Specifies the Security related profile settings for the virtual machine. */
-  securityProfile?: SecurityProfile;
-  /** Specifies the network interfaces of the virtual machine. */
-  networkProfile?: NetworkProfile;
-  /** Specifies the network profile configuration of the virtual machine. */
-  networkProfileConfiguration?: VirtualMachineScaleSetVMNetworkProfileConfiguration;
-  /** Specifies the boot diagnostic settings state. Minimum api-version: 2015-06-15. */
-  diagnosticsProfile?: DiagnosticsProfile;
-  availabilitySet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
-  /** The provisioning state, which only appears in the response. */
-  provisioningState?: string;
-  /** Specifies that the image or disk that is being used was licensed on-premises. <br><br> Possible values for Windows Server operating system are: <br><br> Windows_Client <br><br> Windows_Server <br><br> Possible values for Linux Server operating system are: <br><br> RHEL_BYOS (for RHEL) <br><br> SLES_BYOS (for SUSE) <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/windows/hybrid-use-benefit-licensing) <br><br> [Azure Hybrid Use Benefit for Linux Server](https://docs.microsoft.com/azure/virtual-machines/linux/azure-hybrid-benefit-linux) <br><br> Minimum api-version: 2015-06-15 */
-  licenseType?: string;
-  /** Specifies whether the model applied to the virtual machine is the model of the virtual machine scale set or the customized model for the virtual machine. */
-  modelDefinitionApplied?: string;
-  /** Specifies the protection policy of the virtual machine. */
-  protectionPolicy?: VirtualMachineScaleSetVMProtectionPolicy;
-  /** UserData for the VM, which must be base-64 encoded. Customer should not pass any secrets in here. Minimum api-version: 2021-03-01 */
-  userData?: string;
-  /** Specifies the time at which the Virtual Machine resource was created. Minimum api-version: 2021-11-01. */
-  timeCreated?: string;
-  /** Specifies the ARM resource ID of the standalone virtual machine associated with this VMSS VM. This property is only applicable to Virtual Machine Scale Sets with Flexible orchestration mode. Minimum api-version: 2025-11-01. */
-  virtualMachineResourceId?: string;
-  /** Specifies the Interconnect Block related details of a Scale Set VM instance. Minimum api-version: 2026-03-01. */
-  interconnectBlockProfile?: InterconnectBlockProfile;
-  /** Specifies information about the capacity reservation that is used to allocate the virtual machine scale set VM instance. The capacity reservation group is inherited from the parent virtual machine scale set and cannot be changed on the individual scale set VM instance. Minimum api-version: 2026-04-01. */
-  capacityReservation?: CapacityReservationProfile;
-}
-export const VirtualMachineScaleSetVMProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    latestModelApplied: S.optional(S.Boolean),
-    vmId: S.optional(S.String),
-    instanceView: S.optional(VirtualMachineScaleSetVMInstanceView),
-    hardwareProfile: S.optional(HardwareProfile),
-    resilientVMDeletionStatus: S.optional(ResilientVMDeletionStatus),
-    storageProfile: S.optional(StorageProfile),
-    additionalCapabilities: S.optional(AdditionalCapabilities),
-    osProfile: S.optional(OSProfile),
-    securityProfile: S.optional(SecurityProfile),
-    networkProfile: S.optional(NetworkProfile),
-    networkProfileConfiguration: S.optional(
-      VirtualMachineScaleSetVMNetworkProfileConfiguration,
-    ),
-    diagnosticsProfile: S.optional(DiagnosticsProfile),
-    availabilitySet: S.optional(
-      AvailabilitySetPropertiesInputVirtualMachinesItem,
-    ),
-    provisioningState: S.optional(S.String),
-    licenseType: S.optional(S.String),
-    modelDefinitionApplied: S.optional(S.String),
-    protectionPolicy: S.optional(VirtualMachineScaleSetVMProtectionPolicy),
-    userData: S.optional(S.String),
-    timeCreated: S.optional(S.String),
-    virtualMachineResourceId: S.optional(S.String),
-    interconnectBlockProfile: S.optional(InterconnectBlockProfile),
-    capacityReservation: S.optional(CapacityReservationProfile),
-  }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMProperties",
-}) as any as S.Schema<VirtualMachineScaleSetVMProperties>;
-
-/** The virtual machine child extension resources. */
-export type VirtualMachineScaleSetVMsGetResponseResourcesList =
-  Array<VirtualMachineExtension>;
-export const VirtualMachineScaleSetVMsGetResponseResourcesList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineExtension,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsGetResponseResourcesList>;
-
-/** The virtual machine zones. */
-export type VirtualMachineScaleSetVMsGetResponseZonesList = Array<string>;
-export const VirtualMachineScaleSetVMsGetResponseZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsGetResponseZonesList>;
-
-export interface VirtualMachineScaleSetVMsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a virtual machine scale set virtual machine. */
-  properties?: VirtualMachineScaleSetVMProperties;
-  /** The virtual machine instance ID. */
-  instanceId?: string;
-  /** The virtual machine SKU. */
-  sku?: Sku;
-  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
-  plan?: Plan;
-  /** The virtual machine child extension resources. */
-  resources?: VirtualMachineScaleSetVMsGetResponseResourcesList;
-  /** The virtual machine zones. */
-  zones?: VirtualMachineScaleSetVMsGetResponseZonesList;
-  /** The identity of the virtual machine, if configured. */
-  identity?: VirtualMachineIdentity;
-  /** Etag is property returned in Update/Get response of the VMSS VM, so that customer can supply it in the header to ensure optimistic updates. */
-  etag?: string;
-}
-export const VirtualMachineScaleSetVMsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineScaleSetVMsGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(VirtualMachineScaleSetVMProperties),
-      instanceId: S.optional(S.String),
-      sku: S.optional(Sku),
-      plan: S.optional(Plan),
-      resources: S.optional(VirtualMachineScaleSetVMsGetResponseResourcesList),
-      zones: S.optional(VirtualMachineScaleSetVMsGetResponseZonesList),
-      identity: S.optional(VirtualMachineIdentity),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsGetResponse",
-}) as any as S.Schema<VirtualMachineScaleSetVMsGetResponse>;
-
-export interface VirtualMachineScaleSetVMsGetInstanceViewRequest {
+export interface VirtualMachineScaleSetVMsPerformMaintenanceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21998,170 +22745,8 @@ export interface VirtualMachineScaleSetVMsGetInstanceViewRequest {
   /** The instance ID of the virtual machine. */
   instanceId: string;
 }
-export const VirtualMachineScaleSetVMsGetInstanceViewRequest =
+export const VirtualMachineScaleSetVMsPerformMaintenanceRequest =
   /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/instanceView",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineScaleSetVMsGetInstanceViewRequest",
-  }) as any as S.Schema<VirtualMachineScaleSetVMsGetInstanceViewRequest>;
-
-export interface VirtualMachineScaleSetVMsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VirtualMachineScaleSet */
-  virtualMachineScaleSetName: string;
-  /** The filter to apply to the operation. Allowed values are 'startswith(instanceView/statuses/code, 'PowerState') eq true', 'properties/latestModelApplied eq true', 'properties/latestModelApplied eq false'. */
-  _filter?: string;
-  /** The list parameters. Allowed values are 'instanceView', 'instanceView/statuses'. */
-  _select?: string;
-  /** The expand expression to apply to the operation. Allowed values are 'instanceView'. */
-  _expand?: string;
-}
-export const VirtualMachineScaleSetVMsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualMachineScaleSetName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _select: S.optional(S.String.pipe(T.Query("$select"))),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsListRequest",
-}) as any as S.Schema<VirtualMachineScaleSetVMsListRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualMachineScaleSetVMTagsMap>;
-
-/** The virtual machine child extension resources. */
-export type VirtualMachineScaleSetVMResourcesList =
-  Array<VirtualMachineExtension>;
-export const VirtualMachineScaleSetVMResourcesList = /*@__PURE__*/ S.Array(
-  VirtualMachineExtension,
-) as any as S.Schema<VirtualMachineScaleSetVMResourcesList>;
-
-/** The virtual machine zones. */
-export type VirtualMachineScaleSetVMZonesList = Array<string>;
-export const VirtualMachineScaleSetVMZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VirtualMachineScaleSetVMZonesList>;
-
-/** Describes a virtual machine scale set virtual machine. */
-export interface VirtualMachineScaleSetVM {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a virtual machine scale set virtual machine. */
-  properties?: VirtualMachineScaleSetVMProperties;
-  /** The virtual machine instance ID. */
-  instanceId?: string;
-  /** The virtual machine SKU. */
-  sku?: Sku;
-  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
-  plan?: Plan;
-  /** The virtual machine child extension resources. */
-  resources?: VirtualMachineScaleSetVMResourcesList;
-  /** The virtual machine zones. */
-  zones?: VirtualMachineScaleSetVMZonesList;
-  /** The identity of the virtual machine, if configured. */
-  identity?: VirtualMachineIdentity;
-  /** Etag is property returned in Update/Get response of the VMSS VM, so that customer can supply it in the header to ensure optimistic updates. */
-  etag?: string;
-}
-export const VirtualMachineScaleSetVM = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VirtualMachineScaleSetVMTagsMap),
-    location: S.String,
-    properties: S.optional(VirtualMachineScaleSetVMProperties),
-    instanceId: S.optional(S.String),
-    sku: S.optional(Sku),
-    plan: S.optional(Plan),
-    resources: S.optional(VirtualMachineScaleSetVMResourcesList),
-    zones: S.optional(VirtualMachineScaleSetVMZonesList),
-    identity: S.optional(VirtualMachineIdentity),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVM",
-}) as any as S.Schema<VirtualMachineScaleSetVM>;
-
-/** The list of virtual machine scale sets VMs. */
-export type VirtualMachineScaleSetVMListResultValueList =
-  Array<VirtualMachineScaleSetVM>;
-export const VirtualMachineScaleSetVMListResultValueList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineScaleSetVM,
-  ) as any as S.Schema<VirtualMachineScaleSetVMListResultValueList>;
-
-/** The List Virtual Machine Scale Set VMs operation response. */
-export interface VirtualMachineScaleSetVMListResult {
-  /** The list of virtual machine scale sets VMs. */
-  value: VirtualMachineScaleSetVMListResultValueList;
-  /** The uri to fetch the next page of Virtual Machine Scale Set VMs. Call ListNext() with this to fetch the next page of VMSS VMs. */
-  nextLink?: string;
-}
-export const VirtualMachineScaleSetVMListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VirtualMachineScaleSetVMListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMListResult",
-}) as any as S.Schema<VirtualMachineScaleSetVMListResult>;
-
-export interface VirtualMachineScaleSetVMsRestartRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-}
-export const VirtualMachineScaleSetVMsRestartRequest = /*@__PURE__*/ S.suspend(
-  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
@@ -22170,351 +22755,176 @@ export const VirtualMachineScaleSetVMsRestartRequest = /*@__PURE__*/ S.suspend(
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/restart",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsRestartRequest",
-}) as any as S.Schema<VirtualMachineScaleSetVMsRestartRequest>;
-
-export interface VirtualMachineScaleSetVMsRestartResponse {}
-export const VirtualMachineScaleSetVMsRestartResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsRestartResponse",
-}) as any as S.Schema<VirtualMachineScaleSetVMsRestartResponse>;
-
-export interface VirtualMachineScaleSetVMsStartRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-}
-export const VirtualMachineScaleSetVMsStartRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/start",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsStartRequest",
-}) as any as S.Schema<VirtualMachineScaleSetVMsStartRequest>;
-
-export interface VirtualMachineScaleSetVMsStartResponse {}
-export const VirtualMachineScaleSetVMsStartResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsStartResponse",
-}) as any as S.Schema<VirtualMachineScaleSetVMsStartResponse>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMsUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsUpdateRequestTagsMap>;
-
-export type VirtualMachineScaleSetVMPropertiesInputAvailabilitySet =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-export const VirtualMachineScaleSetVMPropertiesInputAvailabilitySet =
-  AvailabilitySetPropertiesInputVirtualMachinesItem;
-
-/** Describes the properties of a virtual machine scale set virtual machine. */
-export interface VirtualMachineScaleSetVMPropertiesInput {
-  /** Specifies the hardware settings for the virtual machine. */
-  hardwareProfile?: HardwareProfile;
-  /** Specifies the resilient VM deletion status for the virtual machine. */
-  resilientVMDeletionStatus?: ResilientVMDeletionStatus | (string & {});
-  /** Specifies the storage settings for the virtual machine disks. */
-  storageProfile?: StorageProfileInput;
-  /** Specifies additional capabilities enabled or disabled on the virtual machine in the scale set. For instance: whether the virtual machine has the capability to support attaching managed data disks with UltraSSD_LRS storage account type. */
-  additionalCapabilities?: AdditionalCapabilities;
-  /** Specifies the operating system settings for the virtual machine. */
-  osProfile?: OSProfileInput;
-  /** Specifies the Security related profile settings for the virtual machine. */
-  securityProfile?: SecurityProfile;
-  /** Specifies the network interfaces of the virtual machine. */
-  networkProfile?: NetworkProfile;
-  /** Specifies the network profile configuration of the virtual machine. */
-  networkProfileConfiguration?: VirtualMachineScaleSetVMNetworkProfileConfiguration;
-  /** Specifies the boot diagnostic settings state. Minimum api-version: 2015-06-15. */
-  diagnosticsProfile?: DiagnosticsProfile;
-  availabilitySet?: AvailabilitySetPropertiesInputVirtualMachinesItem;
-  /** Specifies that the image or disk that is being used was licensed on-premises. <br><br> Possible values for Windows Server operating system are: <br><br> Windows_Client <br><br> Windows_Server <br><br> Possible values for Linux Server operating system are: <br><br> RHEL_BYOS (for RHEL) <br><br> SLES_BYOS (for SUSE) <br><br> For more information, see [Azure Hybrid Use Benefit for Windows Server](https://docs.microsoft.com/azure/virtual-machines/windows/hybrid-use-benefit-licensing) <br><br> [Azure Hybrid Use Benefit for Linux Server](https://docs.microsoft.com/azure/virtual-machines/linux/azure-hybrid-benefit-linux) <br><br> Minimum api-version: 2015-06-15 */
-  licenseType?: string;
-  /** Specifies the protection policy of the virtual machine. */
-  protectionPolicy?: VirtualMachineScaleSetVMProtectionPolicy;
-  /** UserData for the VM, which must be base-64 encoded. Customer should not pass any secrets in here. Minimum api-version: 2021-03-01 */
-  userData?: string;
-  /** Specifies the Interconnect Block related details of a Scale Set VM instance. Minimum api-version: 2026-03-01. */
-  interconnectBlockProfile?: InterconnectBlockProfile;
-  /** Specifies information about the capacity reservation that is used to allocate the virtual machine scale set VM instance. The capacity reservation group is inherited from the parent virtual machine scale set and cannot be changed on the individual scale set VM instance. Minimum api-version: 2026-04-01. */
-  capacityReservation?: CapacityReservationProfile;
-}
-export const VirtualMachineScaleSetVMPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      hardwareProfile: S.optional(HardwareProfile),
-      resilientVMDeletionStatus: S.optional(ResilientVMDeletionStatus),
-      storageProfile: S.optional(StorageProfileInput),
-      additionalCapabilities: S.optional(AdditionalCapabilities),
-      osProfile: S.optional(OSProfileInput),
-      securityProfile: S.optional(SecurityProfile),
-      networkProfile: S.optional(NetworkProfile),
-      networkProfileConfiguration: S.optional(
-        VirtualMachineScaleSetVMNetworkProfileConfiguration,
-      ),
-      diagnosticsProfile: S.optional(DiagnosticsProfile),
-      availabilitySet: S.optional(
-        AvailabilitySetPropertiesInputVirtualMachinesItem,
-      ),
-      licenseType: S.optional(S.String),
-      protectionPolicy: S.optional(VirtualMachineScaleSetVMProtectionPolicy),
-      userData: S.optional(S.String),
-      interconnectBlockProfile: S.optional(InterconnectBlockProfile),
-      capacityReservation: S.optional(CapacityReservationProfile),
-    }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMPropertiesInput",
-}) as any as S.Schema<VirtualMachineScaleSetVMPropertiesInput>;
-
-export interface VirtualMachineScaleSetVMsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the VM scale set. */
-  vmScaleSetName: string;
-  /** The instance ID of the virtual machine. */
-  instanceId: string;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMsUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a virtual machine scale set virtual machine. */
-  properties?: VirtualMachineScaleSetVMPropertiesInput;
-  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
-  plan?: Plan;
-  /** The identity of the virtual machine, if configured. */
-  identity?: VirtualMachineIdentityInput;
-}
-export const VirtualMachineScaleSetVMsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmScaleSetName: S.String.pipe(T.Label()),
-      instanceId: S.String.pipe(T.Label()),
-      tags: S.optional(VirtualMachineScaleSetVMsUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(VirtualMachineScaleSetVMPropertiesInput),
-      plan: S.optional(Plan),
-      identity: S.optional(VirtualMachineIdentityInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsUpdateRequest",
-}) as any as S.Schema<VirtualMachineScaleSetVMsUpdateRequest>;
-
-/** Resource tags. */
-export type VirtualMachineScaleSetVMsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineScaleSetVMsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsUpdateResponseTagsMap>;
-
-/** The virtual machine child extension resources. */
-export type VirtualMachineScaleSetVMsUpdateResponseResourcesList =
-  Array<VirtualMachineExtension>;
-export const VirtualMachineScaleSetVMsUpdateResponseResourcesList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineExtension,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsUpdateResponseResourcesList>;
-
-/** The virtual machine zones. */
-export type VirtualMachineScaleSetVMsUpdateResponseZonesList = Array<string>;
-export const VirtualMachineScaleSetVMsUpdateResponseZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualMachineScaleSetVMsUpdateResponseZonesList>;
-
-export interface VirtualMachineScaleSetVMsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineScaleSetVMsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the properties of a virtual machine scale set virtual machine. */
-  properties?: VirtualMachineScaleSetVMProperties;
-  /** The virtual machine instance ID. */
-  instanceId?: string;
-  /** The virtual machine SKU. */
-  sku?: Sku;
-  /** Specifies information about the marketplace image used to create the virtual machine. This element is only used for marketplace images. Before you can use a marketplace image from an API, you must enable the image for programmatic use. In the Azure portal, find the marketplace image that you want to use and then click **Want to deploy programmatically, Get Started ->**. Enter any required information and then click **Save**. */
-  plan?: Plan;
-  /** The virtual machine child extension resources. */
-  resources?: VirtualMachineScaleSetVMsUpdateResponseResourcesList;
-  /** The virtual machine zones. */
-  zones?: VirtualMachineScaleSetVMsUpdateResponseZonesList;
-  /** The identity of the virtual machine, if configured. */
-  identity?: VirtualMachineIdentity;
-  /** Etag is property returned in Update/Get response of the VMSS VM, so that customer can supply it in the header to ensure optimistic updates. */
-  etag?: string;
-}
-export const VirtualMachineScaleSetVMsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineScaleSetVMsUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(VirtualMachineScaleSetVMProperties),
-      instanceId: S.optional(S.String),
-      sku: S.optional(Sku),
-      plan: S.optional(Plan),
-      resources: S.optional(
-        VirtualMachineScaleSetVMsUpdateResponseResourcesList,
-      ),
-      zones: S.optional(VirtualMachineScaleSetVMsUpdateResponseZonesList),
-      identity: S.optional(VirtualMachineIdentity),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "VirtualMachineScaleSetVMsUpdateResponse",
-}) as any as S.Schema<VirtualMachineScaleSetVMsUpdateResponse>;
-
-export interface VirtualMachinesCaptureRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  vmName: string;
-  /** The captured virtual hard disk's name prefix. */
-  vhdPrefix: string;
-  /** The destination container name. */
-  destinationContainerName: string;
-  /** Specifies whether to overwrite the destination virtual hard disk, in case of conflict. */
-  overwriteVhds: boolean;
-}
-export const VirtualMachinesCaptureRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vmName: S.String.pipe(T.Label()),
-    vhdPrefix: S.String,
-    destinationContainerName: S.String,
-    overwriteVhds: S.Boolean,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/capture",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesCaptureRequest",
-}) as any as S.Schema<VirtualMachinesCaptureRequest>;
-
-/** a list of resource items of the captured virtual machine */
-export type VirtualMachinesCaptureResponseResourcesList = Array<unknown>;
-export const VirtualMachinesCaptureResponseResourcesList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<VirtualMachinesCaptureResponseResourcesList>;
-
-export interface VirtualMachinesCaptureResponse {
-  /** Resource Id */
-  id?: string;
-  /** the schema of the captured virtual machine */
-  _schema?: string;
-  /** the version of the content */
-  contentVersion?: string;
-  /** parameters of the captured virtual machine */
-  parameters?: unknown;
-  /** a list of resource items of the captured virtual machine */
-  resources?: VirtualMachinesCaptureResponseResourcesList;
-}
-export const VirtualMachinesCaptureResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    _schema: S.optional(S.String.pipe(T.Body("$schema"))),
-    contentVersion: S.optional(S.String),
-    parameters: S.optional(S.Unknown),
-    resources: S.optional(VirtualMachinesCaptureResponseResourcesList),
-  }),
-).annotate({
-  identifier: "VirtualMachinesCaptureResponse",
-}) as any as S.Schema<VirtualMachinesCaptureResponse>;
-
-export interface VirtualMachinesConvertToManagedDisksRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  vmName: string;
-}
-export const VirtualMachinesConvertToManagedDisksRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/convertToManagedDisks",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/performMaintenance",
         code: 200,
         apiVersion: "2026-04-01",
       }),
     ),
   ).annotate({
-    identifier: "VirtualMachinesConvertToManagedDisksRequest",
-  }) as any as S.Schema<VirtualMachinesConvertToManagedDisksRequest>;
+    identifier: "VirtualMachineScaleSetVMsPerformMaintenanceRequest",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsPerformMaintenanceRequest>;
 
-export interface VirtualMachinesConvertToManagedDisksResponse {}
-export const VirtualMachinesConvertToManagedDisksResponse =
+export interface VirtualMachineScaleSetVMsPerformMaintenanceResponse {}
+export const VirtualMachineScaleSetVMsPerformMaintenanceResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachinesConvertToManagedDisksResponse",
-  }) as any as S.Schema<VirtualMachinesConvertToManagedDisksResponse>;
+    identifier: "VirtualMachineScaleSetVMsPerformMaintenanceResponse",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsPerformMaintenanceResponse>;
+
+export interface VirtualMachineScaleSetVMsPowerOffRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** The parameter to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Default value for this flag is false if not specified */
+  skipShutdown?: boolean;
+}
+export const VirtualMachineScaleSetVMsPowerOffRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      skipShutdown: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/powerOff",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMsPowerOffRequest",
+}) as any as S.Schema<VirtualMachineScaleSetVMsPowerOffRequest>;
+
+export interface VirtualMachineScaleSetVMsPowerOffResponse {}
+export const VirtualMachineScaleSetVMsPowerOffResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "VirtualMachineScaleSetVMsPowerOffResponse",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsPowerOffResponse>;
+
+export interface VirtualMachineScaleSetVMsReimageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+  /** Specifies whether to reimage temp disk. Default value: false. Note: This temp disk reimage parameter is only supported for VM/VMSS with Ephemeral OS disk. */
+  tempDisk?: boolean;
+  /** Specifies in decimal number, the version the OS disk should be reimaged to. If exact version is not provided, the OS disk is reimaged to the existing version of OS Disk. */
+  exactVersion?: string;
+  /** Specifies information required for reimaging the non-ephemeral OS disk. */
+  osProfile?: OSProfileProvisioningData;
+  /** Parameter to force update ephemeral OS disk for a virtual machine scale set VM */
+  forceUpdateOSDiskForEphemeral?: boolean;
+}
+export const VirtualMachineScaleSetVMsReimageRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+      tempDisk: S.optional(S.Boolean),
+      exactVersion: S.optional(S.String),
+      osProfile: S.optional(OSProfileProvisioningData),
+      forceUpdateOSDiskForEphemeral: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/reimage",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMsReimageRequest",
+}) as any as S.Schema<VirtualMachineScaleSetVMsReimageRequest>;
+
+export interface VirtualMachineScaleSetVMsReimageResponse {}
+export const VirtualMachineScaleSetVMsReimageResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "VirtualMachineScaleSetVMsReimageResponse",
+}) as any as S.Schema<VirtualMachineScaleSetVMsReimageResponse>;
+
+export interface VirtualMachineScaleSetVMsReimageAllRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const VirtualMachineScaleSetVMsReimageAllRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/reimageall",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "VirtualMachineScaleSetVMsReimageAllRequest",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsReimageAllRequest>;
+
+export interface VirtualMachineScaleSetVMsReimageAllResponse {}
+export const VirtualMachineScaleSetVMsReimageAllResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "VirtualMachineScaleSetVMsReimageAllResponse",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsReimageAllResponse>;
+
+export interface VirtualMachineScaleSetVMsSimulateEvictionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the VM scale set. */
+  vmScaleSetName: string;
+  /** The instance ID of the virtual machine. */
+  instanceId: string;
+}
+export const VirtualMachineScaleSetVMsSimulateEvictionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vmScaleSetName: S.String.pipe(T.Label()),
+      instanceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/simulateEviction",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "VirtualMachineScaleSetVMsSimulateEvictionRequest",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsSimulateEvictionRequest>;
+
+export interface VirtualMachineScaleSetVMsSimulateEvictionResponse {}
+export const VirtualMachineScaleSetVMsSimulateEvictionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "VirtualMachineScaleSetVMsSimulateEvictionResponse",
+  }) as any as S.Schema<VirtualMachineScaleSetVMsSimulateEvictionResponse>;
 
 /** Resource tags. */
 export type VirtualMachinesCreateOrUpdateRequestTagsMap = {
@@ -22616,9 +23026,9 @@ export const VirtualMachinesCreateOrUpdateResponseZonesList =
 
 /** The complex type of the extended location. */
 export type VirtualMachinesCreateOrUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 export const VirtualMachinesCreateOrUpdateResponseExtendedLocation =
-  ImagesGetResponseExtendedLocation;
+  GetImageResponseExtendedLocation;
 
 export interface VirtualMachinesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -22644,7 +23054,7 @@ export interface VirtualMachinesCreateOrUpdateResponse {
   /** The availability zones. */
   zones?: VirtualMachinesCreateOrUpdateResponseZonesList;
   /** The complex type of the extended location. */
-  extendedLocation?: ImagesGetResponseExtendedLocation;
+  extendedLocation?: GetImageResponseExtendedLocation;
   /** ManagedBy is set to Virtual Machine Scale Set(VMSS) flex ARM resourceID, if the VM is part of the VMSS. This property is used by platform for internal resource group delete optimization. */
   managedBy?: string;
   /** Etag is property returned in Create/Update/Get response of the VM, so that customer can supply it in the header to ensure optimistic updates. */
@@ -22666,7 +23076,7 @@ export const VirtualMachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
       resources: S.optional(VirtualMachinesCreateOrUpdateResponseResourcesList),
       identity: S.optional(VirtualMachineIdentity),
       zones: S.optional(VirtualMachinesCreateOrUpdateResponseZonesList),
-      extendedLocation: S.optional(ImagesGetResponseExtendedLocation),
+      extendedLocation: S.optional(GetImageResponseExtendedLocation),
       managedBy: S.optional(S.String),
       etag: S.optional(S.String),
       placement: S.optional(Placement),
@@ -22744,327 +23154,6 @@ export const VirtualMachinesGeneralizeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "VirtualMachinesGeneralizeResponse",
 }) as any as S.Schema<VirtualMachinesGeneralizeResponse>;
-
-/** Defines when it is acceptable to reboot a VM during a software update operation. */
-export type VMGuestPatchRebootSetting = "IfRequired" | "Never" | "Always";
-export const VMGuestPatchRebootSetting = /*@__PURE__*/ S.String;
-
-export type VMGuestPatchClassificationWindows =
-  | "Critical"
-  | "Security"
-  | "UpdateRollUp"
-  | "FeaturePack"
-  | "ServicePack"
-  | "Definition"
-  | "Tools"
-  | "Updates";
-export const VMGuestPatchClassificationWindows = /*@__PURE__*/ S.String;
-
-/** The update classifications to select when installing patches for Windows. */
-export type WindowsParametersClassificationsToIncludeList = Array<
-  VMGuestPatchClassificationWindows | (string & {})
->;
-export const WindowsParametersClassificationsToIncludeList =
-  /*@__PURE__*/ S.Array(
-    VMGuestPatchClassificationWindows,
-  ) as any as S.Schema<WindowsParametersClassificationsToIncludeList>;
-
-/** Kbs to include in the patch operation */
-export type WindowsParametersKbNumbersToIncludeList = Array<string>;
-export const WindowsParametersKbNumbersToIncludeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WindowsParametersKbNumbersToIncludeList>;
-
-/** Kbs to exclude in the patch operation */
-export type WindowsParametersKbNumbersToExcludeList = Array<string>;
-export const WindowsParametersKbNumbersToExcludeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WindowsParametersKbNumbersToExcludeList>;
-
-/** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-export type WindowsParametersPatchNameMasksToIncludeList = Array<string>;
-export const WindowsParametersPatchNameMasksToIncludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WindowsParametersPatchNameMasksToIncludeList>;
-
-/** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-export type WindowsParametersPatchNameMasksToExcludeList = Array<string>;
-export const WindowsParametersPatchNameMasksToExcludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WindowsParametersPatchNameMasksToExcludeList>;
-
-/** Input for InstallPatches on a Windows VM, as directly received by the API */
-export interface WindowsParameters {
-  /** The update classifications to select when installing patches for Windows. */
-  classificationsToInclude?: WindowsParametersClassificationsToIncludeList;
-  /** Kbs to include in the patch operation */
-  kbNumbersToInclude?: WindowsParametersKbNumbersToIncludeList;
-  /** Kbs to exclude in the patch operation */
-  kbNumbersToExclude?: WindowsParametersKbNumbersToExcludeList;
-  /** Filters out Kbs that don't have an InstallationRebootBehavior of 'NeverReboots' when this is set to true. */
-  excludeKbsRequiringReboot?: boolean;
-  /** This is used to install patches that were published on or before this given max published date. */
-  maxPatchPublishDate?: string;
-  /** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-  patchNameMasksToInclude?: WindowsParametersPatchNameMasksToIncludeList;
-  /** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-  patchNameMasksToExclude?: WindowsParametersPatchNameMasksToExcludeList;
-}
-export const WindowsParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    classificationsToInclude: S.optional(
-      WindowsParametersClassificationsToIncludeList,
-    ),
-    kbNumbersToInclude: S.optional(WindowsParametersKbNumbersToIncludeList),
-    kbNumbersToExclude: S.optional(WindowsParametersKbNumbersToExcludeList),
-    excludeKbsRequiringReboot: S.optional(S.Boolean),
-    maxPatchPublishDate: S.optional(S.String),
-    patchNameMasksToInclude: S.optional(
-      WindowsParametersPatchNameMasksToIncludeList,
-    ),
-    patchNameMasksToExclude: S.optional(
-      WindowsParametersPatchNameMasksToExcludeList,
-    ),
-  }),
-).annotate({
-  identifier: "WindowsParameters",
-}) as any as S.Schema<WindowsParameters>;
-
-export type VMGuestPatchClassificationLinux = "Critical" | "Security" | "Other";
-export const VMGuestPatchClassificationLinux = /*@__PURE__*/ S.String;
-
-/** The update classifications to select when installing patches for Linux. */
-export type LinuxParametersClassificationsToIncludeList = Array<
-  VMGuestPatchClassificationLinux | (string & {})
->;
-export const LinuxParametersClassificationsToIncludeList =
-  /*@__PURE__*/ S.Array(
-    VMGuestPatchClassificationLinux,
-  ) as any as S.Schema<LinuxParametersClassificationsToIncludeList>;
-
-/** packages to include in the patch operation. Format: packageName_packageVersion */
-export type LinuxParametersPackageNameMasksToIncludeList = Array<string>;
-export const LinuxParametersPackageNameMasksToIncludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LinuxParametersPackageNameMasksToIncludeList>;
-
-/** packages to exclude in the patch operation. Format: packageName_packageVersion */
-export type LinuxParametersPackageNameMasksToExcludeList = Array<string>;
-export const LinuxParametersPackageNameMasksToExcludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LinuxParametersPackageNameMasksToExcludeList>;
-
-/** Input for InstallPatches on a Linux VM, as directly received by the API */
-export interface LinuxParameters {
-  /** The update classifications to select when installing patches for Linux. */
-  classificationsToInclude?: LinuxParametersClassificationsToIncludeList;
-  /** packages to include in the patch operation. Format: packageName_packageVersion */
-  packageNameMasksToInclude?: LinuxParametersPackageNameMasksToIncludeList;
-  /** packages to exclude in the patch operation. Format: packageName_packageVersion */
-  packageNameMasksToExclude?: LinuxParametersPackageNameMasksToExcludeList;
-  /** This is used as a maintenance run identifier for Auto VM Guest Patching in Linux. */
-  maintenanceRunId?: string;
-}
-export const LinuxParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    classificationsToInclude: S.optional(
-      LinuxParametersClassificationsToIncludeList,
-    ),
-    packageNameMasksToInclude: S.optional(
-      LinuxParametersPackageNameMasksToIncludeList,
-    ),
-    packageNameMasksToExclude: S.optional(
-      LinuxParametersPackageNameMasksToExcludeList,
-    ),
-    maintenanceRunId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LinuxParameters",
-}) as any as S.Schema<LinuxParameters>;
-
-export interface VirtualMachinesInstallPatchesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  vmName: string;
-  /** Specifies the maximum amount of time that the operation will run. It must be an ISO 8601-compliant duration string such as PT4H (4 hours) */
-  maximumDuration?: string;
-  /** Defines when it is acceptable to reboot a VM during a software update operation. */
-  rebootSetting: VMGuestPatchRebootSetting | (string & {});
-  /** Input for InstallPatches on a Windows VM, as directly received by the API */
-  windowsParameters?: WindowsParameters;
-  /** Input for InstallPatches on a Linux VM, as directly received by the API */
-  linuxParameters?: LinuxParameters;
-}
-export const VirtualMachinesInstallPatchesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmName: S.String.pipe(T.Label()),
-      maximumDuration: S.optional(S.String),
-      rebootSetting: VMGuestPatchRebootSetting,
-      windowsParameters: S.optional(WindowsParameters),
-      linuxParameters: S.optional(LinuxParameters),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/installPatches",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachinesInstallPatchesRequest",
-}) as any as S.Schema<VirtualMachinesInstallPatchesRequest>;
-
-/** The reboot state of the VM following completion of the operation. */
-export type VMGuestPatchRebootStatus =
-  | "Unknown"
-  | "NotNeeded"
-  | "Required"
-  | "Started"
-  | "Failed"
-  | "Completed";
-export const VMGuestPatchRebootStatus = /*@__PURE__*/ S.String;
-
-/** The classification(s) of the patch as provided by the patch publisher. */
-export type PatchInstallationDetailClassificationsList = Array<string>;
-export const PatchInstallationDetailClassificationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PatchInstallationDetailClassificationsList>;
-
-/** The state of the patch after the installation operation completed. */
-export type PatchInstallationState =
-  | "Unknown"
-  | "Installed"
-  | "Failed"
-  | "Excluded"
-  | "NotSelected"
-  | "Pending";
-export const PatchInstallationState = /*@__PURE__*/ S.String;
-
-/** Information about a specific patch that was encountered during an installation action. */
-export interface PatchInstallationDetail {
-  /** A unique identifier for the patch. */
-  patchId?: string;
-  /** The friendly name of the patch. */
-  name?: string;
-  /** The version string of the package. It may conform to Semantic Versioning. Only applies to Linux. */
-  version?: string;
-  /** The KBID of the patch. Only applies to Windows patches. */
-  kbId?: string;
-  /** The classification(s) of the patch as provided by the patch publisher. */
-  classifications?: PatchInstallationDetailClassificationsList;
-  /** The state of the patch after the installation operation completed. */
-  installationState?: PatchInstallationState;
-}
-export const PatchInstallationDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    patchId: S.optional(S.String),
-    name: S.optional(S.String),
-    version: S.optional(S.String),
-    kbId: S.optional(S.String),
-    classifications: S.optional(PatchInstallationDetailClassificationsList),
-    installationState: S.optional(PatchInstallationState),
-  }),
-).annotate({
-  identifier: "PatchInstallationDetail",
-}) as any as S.Schema<PatchInstallationDetail>;
-
-/** The patches that were installed during the operation. */
-export type VirtualMachineInstallPatchesResultPatchesList =
-  Array<PatchInstallationDetail>;
-export const VirtualMachineInstallPatchesResultPatchesList =
-  /*@__PURE__*/ S.Array(
-    PatchInstallationDetail,
-  ) as any as S.Schema<VirtualMachineInstallPatchesResultPatchesList>;
-
-/** The Api error details */
-export type VirtualMachineInstallPatchesResultErrorDetailsList =
-  Array<ApiErrorBase>;
-export const VirtualMachineInstallPatchesResultErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ApiErrorBase,
-  ) as any as S.Schema<VirtualMachineInstallPatchesResultErrorDetailsList>;
-
-/** Api error. */
-export interface VirtualMachineInstallPatchesResultError {
-  /** The Api error details */
-  details?: VirtualMachineInstallPatchesResultErrorDetailsList;
-  /** The Api inner error */
-  innererror?: InnerError;
-  /** The error code. */
-  code?: string;
-  /** The target of the particular error. */
-  target?: string;
-  /** The error message. */
-  message?: string;
-}
-export const VirtualMachineInstallPatchesResultError = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      details: S.optional(VirtualMachineInstallPatchesResultErrorDetailsList),
-      innererror: S.optional(InnerError),
-      code: S.optional(S.String),
-      target: S.optional(S.String),
-      message: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "VirtualMachineInstallPatchesResultError",
-}) as any as S.Schema<VirtualMachineInstallPatchesResultError>;
-
-/** The result summary of an installation operation. */
-export interface VirtualMachineInstallPatchesResult {
-  /** The overall success or failure status of the operation. It remains "InProgress" until the operation completes. At that point it will become "Failed", "Succeeded", "Unknown" or "CompletedWithWarnings." */
-  status?: PatchOperationStatus;
-  /** The activity ID of the operation that produced this result. It is used to correlate across CRP and extension logs. */
-  installationActivityId?: string;
-  /** The reboot state of the VM following completion of the operation. */
-  rebootStatus?: VMGuestPatchRebootStatus;
-  /** Whether the operation ran out of time before it completed all its intended actions. */
-  maintenanceWindowExceeded?: boolean;
-  /** The number of patches that were not installed due to the user blocking their installation. */
-  excludedPatchCount?: number;
-  /** The number of patches that were detected as available for install, but did not meet the operation's criteria. */
-  notSelectedPatchCount?: number;
-  /** The number of patches that were identified as meeting the installation criteria, but were not able to be installed. Typically this happens when maintenanceWindowExceeded == true. */
-  pendingPatchCount?: number;
-  /** The number of patches successfully installed. */
-  installedPatchCount?: number;
-  /** The number of patches that could not be installed due to some issue. See errors for details. */
-  failedPatchCount?: number;
-  /** The patches that were installed during the operation. */
-  patches?: VirtualMachineInstallPatchesResultPatchesList;
-  /** The UTC timestamp when the operation began. */
-  startDateTime?: string;
-  /** Api error. */
-  error?: VirtualMachineInstallPatchesResultError;
-}
-export const VirtualMachineInstallPatchesResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PatchOperationStatus),
-    installationActivityId: S.optional(S.String),
-    rebootStatus: S.optional(VMGuestPatchRebootStatus),
-    maintenanceWindowExceeded: S.optional(S.Boolean),
-    excludedPatchCount: S.optional(S.Number),
-    notSelectedPatchCount: S.optional(S.Number),
-    pendingPatchCount: S.optional(S.Number),
-    installedPatchCount: S.optional(S.Number),
-    failedPatchCount: S.optional(S.Number),
-    patches: S.optional(VirtualMachineInstallPatchesResultPatchesList),
-    startDateTime: S.optional(S.String),
-    error: S.optional(VirtualMachineInstallPatchesResultError),
-  }),
-).annotate({
-  identifier: "VirtualMachineInstallPatchesResult",
-}) as any as S.Schema<VirtualMachineInstallPatchesResult>;
 
 export interface VirtualMachinesInstanceViewRequest {
   /** The ID of the target subscription. */
@@ -23190,38 +23279,6 @@ export const VirtualMachinesReapplyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachinesReapplyResponse",
 }) as any as S.Schema<VirtualMachinesReapplyResponse>;
 
-export interface VirtualMachinesRedeployRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  vmName: string;
-}
-export const VirtualMachinesRedeployRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vmName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/redeploy",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesRedeployRequest",
-}) as any as S.Schema<VirtualMachinesRedeployRequest>;
-
-export interface VirtualMachinesRedeployResponse {}
-export const VirtualMachinesRedeployResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesRedeployResponse",
-}) as any as S.Schema<VirtualMachinesRedeployResponse>;
-
 export interface VirtualMachinesReimageRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -23263,83 +23320,6 @@ export const VirtualMachinesReimageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachinesReimageResponse",
 }) as any as S.Schema<VirtualMachinesReimageResponse>;
 
-export interface VirtualMachinesRetrieveBootDiagnosticsDataRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  vmName: string;
-  /** Expiration duration in minutes for the SAS URIs with a value between 1 to 1440 minutes. **Note:** If not specified, SAS URIs will be generated with a default expiration duration of 120 minutes. */
-  sasUriExpirationTimeInMinutes?: number;
-}
-export const VirtualMachinesRetrieveBootDiagnosticsDataRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vmName: S.String.pipe(T.Label()),
-      sasUriExpirationTimeInMinutes: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/retrieveBootDiagnosticsData",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachinesRetrieveBootDiagnosticsDataRequest",
-  }) as any as S.Schema<VirtualMachinesRetrieveBootDiagnosticsDataRequest>;
-
-/** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
-export type VirtualMachinesRunCommandRequestScriptList = Array<string>;
-export const VirtualMachinesRunCommandRequestScriptList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VirtualMachinesRunCommandRequestScriptList>;
-
-/** The run command parameters. */
-export type VirtualMachinesRunCommandRequestParametersList =
-  Array<RunCommandInputParameter>;
-export const VirtualMachinesRunCommandRequestParametersList =
-  /*@__PURE__*/ S.Array(
-    RunCommandInputParameter,
-  ) as any as S.Schema<VirtualMachinesRunCommandRequestParametersList>;
-
-export interface VirtualMachinesRunCommandRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the virtual machine. */
-  vmName: string;
-  /** Specifies a commandId of predefined built-in script. Command IDs available for Linux are listed at https://aka.ms/RunCommandManagedLinux#available-commands, Windows at https://aka.ms/RunCommandManagedWindows#available-commands. */
-  commandId: string;
-  /** Optional. The script to be executed. When this value is given, the given script will override the default script of the command. */
-  script?: VirtualMachinesRunCommandRequestScriptList;
-  /** The run command parameters. */
-  parameters?: VirtualMachinesRunCommandRequestParametersList;
-}
-export const VirtualMachinesRunCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vmName: S.String.pipe(T.Label()),
-    commandId: S.String,
-    script: S.optional(VirtualMachinesRunCommandRequestScriptList),
-    parameters: S.optional(VirtualMachinesRunCommandRequestParametersList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommand",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesRunCommandRequest",
-}) as any as S.Schema<VirtualMachinesRunCommandRequest>;
-
 export interface VirtualMachinesSimulateEvictionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -23373,6 +23353,36 @@ export const VirtualMachinesSimulateEvictionResponse = /*@__PURE__*/ S.suspend(
   identifier: "VirtualMachinesSimulateEvictionResponse",
 }) as any as S.Schema<VirtualMachinesSimulateEvictionResponse>;
 
+export type ApproveVirtualMachineScaleSetRollingUpgradeError = AzureOpError;
+/** Approve upgrade on deferred rolling upgrades for OS disks in the virtual machines in a VM scale set. */
+export const ApproveVirtualMachineScaleSetRollingUpgrade: API.OperationMethod<
+  ApproveVirtualMachineScaleSetRollingUpgradeRequest,
+  ApproveVirtualMachineScaleSetRollingUpgradeResponse,
+  ApproveVirtualMachineScaleSetRollingUpgradeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApproveVirtualMachineScaleSetRollingUpgradeRequest,
+  output: ApproveVirtualMachineScaleSetRollingUpgradeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ApproveVirtualMachineScaleSetVMRollingUpgradeError = AzureOpError;
+/** Approve upgrade on deferred rolling upgrade for OS disk on a VM scale set instance. */
+export const ApproveVirtualMachineScaleSetVMRollingUpgrade: API.OperationMethod<
+  ApproveVirtualMachineScaleSetVMRollingUpgradeRequest,
+  ApproveVirtualMachineScaleSetVMRollingUpgradeResponse,
+  ApproveVirtualMachineScaleSetVMRollingUpgradeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApproveVirtualMachineScaleSetVMRollingUpgradeRequest,
+  output: ApproveVirtualMachineScaleSetVMRollingUpgradeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type AvailabilitySetsCreateOrUpdateError = AzureOpError;
 /** Create or update an availability set. */
 export const AvailabilitySetsCreateOrUpdate: API.OperationMethod<
@@ -23388,17 +23398,62 @@ export const AvailabilitySetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AvailabilitySetsStartMigrationToVirtualMachineScaleSetError =
-  AzureOpError;
-/** Start migration operation on an Availability Set to move its Virtual Machines to a Virtual Machine Scale Set. This should be followed by a migrate operation on each Virtual Machine that triggers a downtime on the Virtual Machine. */
-export const AvailabilitySetsStartMigrationToVirtualMachineScaleSet: API.OperationMethod<
-  AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequest,
-  AvailabilitySetsStartMigrationToVirtualMachineScaleSetResponse,
-  AvailabilitySetsStartMigrationToVirtualMachineScaleSetError,
+export type BulkVirtualMachineBulkOperationDeallocateError = AzureOpError;
+/** BulkDeallocate: Execute deallocate operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
+export const BulkVirtualMachineBulkOperationDeallocate: API.OperationMethod<
+  BulkVirtualMachineBulkOperationDeallocateRequest,
+  DeallocateResourceOperationResponse,
+  BulkVirtualMachineBulkOperationDeallocateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AvailabilitySetsStartMigrationToVirtualMachineScaleSetRequest,
-  output: AvailabilitySetsStartMigrationToVirtualMachineScaleSetResponse,
+  input: BulkVirtualMachineBulkOperationDeallocateRequest,
+  output: DeallocateResourceOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BulkVirtualMachineBulkOperationHibernateError = AzureOpError;
+/** BulkHibernate: Execute hibernate operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
+export const BulkVirtualMachineBulkOperationHibernate: API.OperationMethod<
+  BulkVirtualMachineBulkOperationHibernateRequest,
+  HibernateResourceOperationResponse,
+  BulkVirtualMachineBulkOperationHibernateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkVirtualMachineBulkOperationHibernateRequest,
+  output: HibernateResourceOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelAvailabilitySetMigrationToVirtualMachineScaleSetError =
+  AzureOpError;
+/** Cancel the migration operation on an Availability Set. */
+export const CancelAvailabilitySetMigrationToVirtualMachineScaleSet: API.OperationMethod<
+  CancelAvailabilitySetMigrationToVirtualMachineScaleSetRequest,
+  CancelAvailabilitySetMigrationToVirtualMachineScaleSetResponse,
+  CancelAvailabilitySetMigrationToVirtualMachineScaleSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelAvailabilitySetMigrationToVirtualMachineScaleSetRequest,
+  output: CancelAvailabilitySetMigrationToVirtualMachineScaleSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelVirtualMachineScaleSetRollingUpgradeError = AzureOpError;
+/** Cancels the current virtual machine scale set rolling upgrade. */
+export const CancelVirtualMachineScaleSetRollingUpgrade: API.OperationMethod<
+  CancelVirtualMachineScaleSetRollingUpgradeRequest,
+  CancelVirtualMachineScaleSetRollingUpgradeResponse,
+  CancelVirtualMachineScaleSetRollingUpgradeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelVirtualMachineScaleSetRollingUpgradeRequest,
+  output: CancelVirtualMachineScaleSetRollingUpgradeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23434,6 +23489,21 @@ export const CapacityReservationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CaptureVirtualMachineError = AzureOpError;
+/** Captures the VM by copying virtual hard disks of the VM and outputs a template that can be used to create similar VMs. */
+export const CaptureVirtualMachine: API.OperationMethod<
+  CaptureVirtualMachineRequest,
+  CaptureVirtualMachineResponse,
+  CaptureVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CaptureVirtualMachineRequest,
+  output: CaptureVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ContainerServicesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a container service. Creates or updates a container service with the specified configuration of orchestrator, masters, and agents. */
 export const ContainerServicesCreateOrUpdate: API.OperationMethod<
@@ -23449,16 +23519,77 @@ export const ContainerServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateSshPublicKeyError = AzureOpError;
-/** Creates a new SSH public key resource. */
-export const CreateSshPublicKey: API.OperationMethod<
-  CreateSshPublicKeyRequest,
-  CreateSshPublicKeyResponse,
-  CreateSshPublicKeyError,
+export type ConvertAvailabilitySetToVirtualMachineScaleSetError = AzureOpError;
+/** Create a new Flexible Virtual Machine Scale Set and migrate all the Virtual Machines in the Availability Set. This does not trigger a downtime on the Virtual Machines. */
+export const ConvertAvailabilitySetToVirtualMachineScaleSet: API.OperationMethod<
+  ConvertAvailabilitySetToVirtualMachineScaleSetRequest,
+  ConvertAvailabilitySetToVirtualMachineScaleSetResponse,
+  ConvertAvailabilitySetToVirtualMachineScaleSetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSshPublicKeyRequest,
-  output: CreateSshPublicKeyResponse,
+  input: ConvertAvailabilitySetToVirtualMachineScaleSetRequest,
+  output: ConvertAvailabilitySetToVirtualMachineScaleSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ConvertVirtualMachineScaleSetToSinglePlacementGroupError =
+  AzureOpError;
+/** Converts SinglePlacementGroup property to false for a existing virtual machine scale set. */
+export const ConvertVirtualMachineScaleSetToSinglePlacementGroup: API.OperationMethod<
+  ConvertVirtualMachineScaleSetToSinglePlacementGroupRequest,
+  ConvertVirtualMachineScaleSetToSinglePlacementGroupResponse,
+  ConvertVirtualMachineScaleSetToSinglePlacementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConvertVirtualMachineScaleSetToSinglePlacementGroupRequest,
+  output: ConvertVirtualMachineScaleSetToSinglePlacementGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ConvertVirtualMachineToManagedDisksError = AzureOpError;
+/** Converts virtual machine disks from blob-based to managed disks. Virtual machine must be stop-deallocated before invoking this operation. */
+export const ConvertVirtualMachineToManagedDisks: API.OperationMethod<
+  ConvertVirtualMachineToManagedDisksRequest,
+  ConvertVirtualMachineToManagedDisksResponse,
+  ConvertVirtualMachineToManagedDisksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConvertVirtualMachineToManagedDisksRequest,
+  output: ConvertVirtualMachineToManagedDisksResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateRestorePointError = AzureOpError;
+/** The operation to create the restore point. Updating properties of an existing restore point is not allowed */
+export const CreateRestorePoint: API.OperationMethod<
+  CreateRestorePointRequest,
+  CreateRestorePointResponse,
+  CreateRestorePointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRestorePointRequest,
+  output: CreateRestorePointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSshPublicKeysError = AzureOpError;
+/** Creates a new SSH public key resource. */
+export const CreateSshPublicKeys: API.OperationMethod<
+  CreateSshPublicKeysRequest,
+  CreateSshPublicKeysResponse,
+  CreateSshPublicKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSshPublicKeysRequest,
+  output: CreateSshPublicKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23489,21 +23620,6 @@ export const DedicatedHostsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DedicatedHostsCreateOrUpdateRequest,
   output: DedicatedHostsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DedicatedHostsRedeployError = AzureOpError;
-/** Redeploy the dedicated host. The operation will complete successfully once the dedicated host has migrated to a new node and is running. To determine the health of VMs deployed on the dedicated host after the redeploy check the Resource Health Center in the Azure Portal. Please refer to https://docs.microsoft.com/azure/service-health/resource-health-overview for more details. */
-export const DedicatedHostsRedeploy: API.OperationMethod<
-  DedicatedHostsRedeployRequest,
-  DedicatedHostsRedeployResponse,
-  DedicatedHostsRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHostsRedeployRequest,
-  output: DedicatedHostsRedeployResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23644,16 +23760,46 @@ export const DeleteProximityPlacementGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteSshPublicKeyError = AzureOpError;
-/** Delete an SSH public key. */
-export const DeleteSshPublicKey: API.OperationMethod<
-  DeleteSshPublicKeyRequest,
-  DeleteSshPublicKeyResponse,
-  DeleteSshPublicKeyError,
+export type DeleteRestorePointError = AzureOpError;
+/** The operation to delete the restore point. */
+export const DeleteRestorePoint: API.OperationMethod<
+  DeleteRestorePointRequest,
+  DeleteRestorePointResponse,
+  DeleteRestorePointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteSshPublicKeyRequest,
-  output: DeleteSshPublicKeyResponse,
+  input: DeleteRestorePointRequest,
+  output: DeleteRestorePointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRestorePointCollectionError = AzureOpError;
+/** The operation to delete the restore point collection. This operation will also delete all the contained restore points. */
+export const DeleteRestorePointCollection: API.OperationMethod<
+  DeleteRestorePointCollectionRequest,
+  DeleteRestorePointCollectionResponse,
+  DeleteRestorePointCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRestorePointCollectionRequest,
+  output: DeleteRestorePointCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSshPublicKeysError = AzureOpError;
+/** Delete an SSH public key. */
+export const DeleteSshPublicKeys: API.OperationMethod<
+  DeleteSshPublicKeysRequest,
+  DeleteSshPublicKeysResponse,
+  DeleteSshPublicKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSshPublicKeysRequest,
+  output: DeleteSshPublicKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23669,21 +23815,6 @@ export const DeleteVirtualMachine: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteVirtualMachineRequest,
   output: DeleteVirtualMachineResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteVirtualMachineBulkOperationBulkError = AzureOpError;
-/** BulkDelete: Execute delete operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
-export const DeleteVirtualMachineBulkOperationBulk: API.OperationMethod<
-  DeleteVirtualMachineBulkOperationBulkRequest,
-  DeleteResourceOperationResponse,
-  DeleteVirtualMachineBulkOperationBulkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteVirtualMachineBulkOperationBulkRequest,
-  output: DeleteResourceOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23749,30 +23880,136 @@ export const DeleteVirtualMachineScaleSet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteVirtualMachineScaleSetInstanceError = AzureOpError;
-/** Deletes virtual machines in a VM scale set. */
-export const DeleteVirtualMachineScaleSetInstance: API.OperationMethod<
-  DeleteVirtualMachineScaleSetInstanceRequest,
-  DeleteVirtualMachineScaleSetInstanceResponse,
-  DeleteVirtualMachineScaleSetInstanceError,
+export type DeleteVirtualMachineScaleSetExtensionError = AzureOpError;
+/** The operation to delete the extension. */
+export const DeleteVirtualMachineScaleSetExtension: API.OperationMethod<
+  DeleteVirtualMachineScaleSetExtensionRequest,
+  DeleteVirtualMachineScaleSetExtensionResponse,
+  DeleteVirtualMachineScaleSetExtensionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteVirtualMachineScaleSetInstanceRequest,
-  output: DeleteVirtualMachineScaleSetInstanceResponse,
+  input: DeleteVirtualMachineScaleSetExtensionRequest,
+  output: DeleteVirtualMachineScaleSetExtensionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GenerateSshPublicKeyKeyPairError = AzureOpError;
-/** Generates and returns a public/private key pair and populates the SSH public key resource with the public key. The length of the key will be 3072 bits. This operation can only be performed once per SSH public key resource. */
-export const GenerateSshPublicKeyKeyPair: API.OperationMethod<
-  GenerateSshPublicKeyKeyPairRequest,
-  SshPublicKeyGenerateKeyPairResult,
-  GenerateSshPublicKeyKeyPairError,
+export type DeleteVirtualMachineScaleSetInstancesError = AzureOpError;
+/** Deletes virtual machines in a VM scale set. */
+export const DeleteVirtualMachineScaleSetInstances: API.OperationMethod<
+  DeleteVirtualMachineScaleSetInstancesRequest,
+  DeleteVirtualMachineScaleSetInstancesResponse,
+  DeleteVirtualMachineScaleSetInstancesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GenerateSshPublicKeyKeyPairRequest,
+  input: DeleteVirtualMachineScaleSetInstancesRequest,
+  output: DeleteVirtualMachineScaleSetInstancesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualMachineScaleSetVMError = AzureOpError;
+/** Deletes a virtual machine from a VM scale set. */
+export const DeleteVirtualMachineScaleSetVM: API.OperationMethod<
+  DeleteVirtualMachineScaleSetVMRequest,
+  DeleteVirtualMachineScaleSetVMResponse,
+  DeleteVirtualMachineScaleSetVMError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualMachineScaleSetVMRequest,
+  output: DeleteVirtualMachineScaleSetVMResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualMachineScaleSetVMDiagnosticRunCommandError =
+  AzureOpError;
+/** The operation to delete the VMSS VM diagnostic run command. */
+export const DeleteVirtualMachineScaleSetVMDiagnosticRunCommand: API.OperationMethod<
+  DeleteVirtualMachineScaleSetVMDiagnosticRunCommandRequest,
+  DeleteVirtualMachineScaleSetVMDiagnosticRunCommandResponse,
+  DeleteVirtualMachineScaleSetVMDiagnosticRunCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualMachineScaleSetVMDiagnosticRunCommandRequest,
+  output: DeleteVirtualMachineScaleSetVMDiagnosticRunCommandResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualMachineScaleSetVMExtensionError = AzureOpError;
+/** The operation to delete the VMSS VM extension. */
+export const DeleteVirtualMachineScaleSetVMExtension: API.OperationMethod<
+  DeleteVirtualMachineScaleSetVMExtensionRequest,
+  DeleteVirtualMachineScaleSetVMExtensionResponse,
+  DeleteVirtualMachineScaleSetVMExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualMachineScaleSetVMExtensionRequest,
+  output: DeleteVirtualMachineScaleSetVMExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualMachineScaleSetVMRunCommandError = AzureOpError;
+/** The operation to delete the VMSS VM run command. */
+export const DeleteVirtualMachineScaleSetVMRunCommand: API.OperationMethod<
+  DeleteVirtualMachineScaleSetVMRunCommandRequest,
+  DeleteVirtualMachineScaleSetVMRunCommandResponse,
+  DeleteVirtualMachineScaleSetVMRunCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualMachineScaleSetVMRunCommandRequest,
+  output: DeleteVirtualMachineScaleSetVMRunCommandResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportLogAnalyticsRequestRateByIntervalError = AzureOpError;
+/** Export logs that show Api requests made by this subscription in the given time window to show throttling activities. */
+export const ExportLogAnalyticsRequestRateByInterval: API.OperationMethod<
+  ExportLogAnalyticsRequestRateByIntervalRequest,
+  LogAnalyticsOperationResult,
+  ExportLogAnalyticsRequestRateByIntervalError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportLogAnalyticsRequestRateByIntervalRequest,
+  output: LogAnalyticsOperationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportLogAnalyticsThrottledRequestsError = AzureOpError;
+/** Export logs that show total throttled Api requests for this subscription in the given time window. */
+export const ExportLogAnalyticsThrottledRequests: API.OperationMethod<
+  ExportLogAnalyticsThrottledRequestsRequest,
+  LogAnalyticsOperationResult,
+  ExportLogAnalyticsThrottledRequestsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportLogAnalyticsThrottledRequestsRequest,
+  output: LogAnalyticsOperationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GenerateSshPublicKeysKeyPairError = AzureOpError;
+/** Generates and returns a public/private key pair and populates the SSH public key resource with the public key. The length of the key will be 3072 bits. This operation can only be performed once per SSH public key resource. */
+export const GenerateSshPublicKeysKeyPair: API.OperationMethod<
+  GenerateSshPublicKeysKeyPairRequest,
+  SshPublicKeyGenerateKeyPairResult,
+  GenerateSshPublicKeysKeyPairError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GenerateSshPublicKeysKeyPairRequest,
   output: SshPublicKeyGenerateKeyPairResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -23914,6 +24151,36 @@ export const GetProximityPlacementGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetRestorePointError = AzureOpError;
+/** The operation to get the restore point. */
+export const GetRestorePoint: API.OperationMethod<
+  GetRestorePointRequest,
+  GetRestorePointResponse,
+  GetRestorePointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRestorePointRequest,
+  output: GetRestorePointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRestorePointCollectionError = AzureOpError;
+/** The operation to get the restore point collection. */
+export const GetRestorePointCollection: API.OperationMethod<
+  GetRestorePointCollectionRequest,
+  GetRestorePointCollectionResponse,
+  GetRestorePointCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRestorePointCollectionRequest,
+  output: GetRestorePointCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSpotPlacementScoreError = AzureOpError;
 /** Gets Spot Placement Scores metadata. */
 export const GetSpotPlacementScore: API.OperationMethod<
@@ -23929,16 +24196,16 @@ export const GetSpotPlacementScore: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetSshPublicKeyError = AzureOpError;
+export type GetSshPublicKeysError = AzureOpError;
 /** Retrieves information about an SSH public key. */
-export const GetSshPublicKey: API.OperationMethod<
-  GetSshPublicKeyRequest,
-  GetSshPublicKeyResponse,
-  GetSshPublicKeyError,
+export const GetSshPublicKeys: API.OperationMethod<
+  GetSshPublicKeysRequest,
+  GetSshPublicKeysResponse,
+  GetSshPublicKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSshPublicKeyRequest,
-  output: GetSshPublicKeyResponse,
+  input: GetSshPublicKeysRequest,
+  output: GetSshPublicKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23959,17 +24226,16 @@ export const GetVirtualMachine: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVirtualMachineBulkOperationBulkOperationStatusError =
-  AzureOpError;
-/** BulkGetOperationsStatus: Polling endpoint to read status of operations performed on virtual machines */
-export const GetVirtualMachineBulkOperationBulkOperationStatus: API.OperationMethod<
-  GetVirtualMachineBulkOperationBulkOperationStatusRequest,
-  GetOperationStatusResponse,
-  GetVirtualMachineBulkOperationBulkOperationStatusError,
+export type GetVirtualMachineBootDiagnosticsDataError = AzureOpError;
+/** The operation to retrieve SAS URIs for a virtual machine's boot diagnostic logs. */
+export const GetVirtualMachineBootDiagnosticsData: API.OperationMethod<
+  GetVirtualMachineBootDiagnosticsDataRequest,
+  RetrieveBootDiagnosticsDataResult,
+  GetVirtualMachineBootDiagnosticsDataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualMachineBulkOperationBulkOperationStatusRequest,
-  output: GetOperationStatusResponse,
+  input: GetVirtualMachineBootDiagnosticsDataRequest,
+  output: RetrieveBootDiagnosticsDataResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24036,16 +24302,16 @@ export const GetVirtualMachineImage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVirtualMachineImageEdgeZoneError = AzureOpError;
+export type GetVirtualMachineImagesEdgeZoneError = AzureOpError;
 /** Gets a virtual machine image in an edge zone. */
-export const GetVirtualMachineImageEdgeZone: API.OperationMethod<
-  GetVirtualMachineImageEdgeZoneRequest,
-  GetVirtualMachineImageEdgeZoneResponse,
-  GetVirtualMachineImageEdgeZoneError,
+export const GetVirtualMachineImagesEdgeZone: API.OperationMethod<
+  GetVirtualMachineImagesEdgeZoneRequest,
+  GetVirtualMachineImagesEdgeZoneResponse,
+  GetVirtualMachineImagesEdgeZoneError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualMachineImageEdgeZoneRequest,
-  output: GetVirtualMachineImageEdgeZoneResponse,
+  input: GetVirtualMachineImagesEdgeZoneRequest,
+  output: GetVirtualMachineImagesEdgeZoneResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24096,6 +24362,21 @@ export const GetVirtualMachineScaleSet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetVirtualMachineScaleSetExtensionError = AzureOpError;
+/** The operation to get the extension. */
+export const GetVirtualMachineScaleSetExtension: API.OperationMethod<
+  GetVirtualMachineScaleSetExtensionRequest,
+  GetVirtualMachineScaleSetExtensionResponse,
+  GetVirtualMachineScaleSetExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetExtensionRequest,
+  output: GetVirtualMachineScaleSetExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetVirtualMachineScaleSetInstanceViewError = AzureOpError;
 /** Gets the status of a VM scale set instance. */
 export const GetVirtualMachineScaleSetInstanceView: API.OperationMethod<
@@ -24111,16 +24392,136 @@ export const GetVirtualMachineScaleSetInstanceView: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetVirtualMachineScaleSetOsUpgradeHistoryError = AzureOpError;
-/** Gets list of OS upgrades on a VM scale set instance. */
-export const GetVirtualMachineScaleSetOsUpgradeHistory: API.OperationMethod<
-  GetVirtualMachineScaleSetOsUpgradeHistoryRequest,
-  VirtualMachineScaleSetListOSUpgradeHistory,
-  GetVirtualMachineScaleSetOsUpgradeHistoryError,
+export type GetVirtualMachineScaleSetLifeCycleHookEventError = AzureOpError;
+/** Gets a virtual machine scale set lifecycle hook event. */
+export const GetVirtualMachineScaleSetLifeCycleHookEvent: API.OperationMethod<
+  GetVirtualMachineScaleSetLifeCycleHookEventRequest,
+  GetVirtualMachineScaleSetLifeCycleHookEventResponse,
+  GetVirtualMachineScaleSetLifeCycleHookEventError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetVirtualMachineScaleSetOsUpgradeHistoryRequest,
+  input: GetVirtualMachineScaleSetLifeCycleHookEventRequest,
+  output: GetVirtualMachineScaleSetLifeCycleHookEventResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetOSUpgradeHistoryError = AzureOpError;
+/** Gets list of OS upgrades on a VM scale set instance. */
+export const GetVirtualMachineScaleSetOSUpgradeHistory: API.OperationMethod<
+  GetVirtualMachineScaleSetOSUpgradeHistoryRequest,
+  VirtualMachineScaleSetListOSUpgradeHistory,
+  GetVirtualMachineScaleSetOSUpgradeHistoryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetOSUpgradeHistoryRequest,
   output: VirtualMachineScaleSetListOSUpgradeHistory,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetRollingUpgradeLatestError = AzureOpError;
+/** Gets the status of the latest virtual machine scale set rolling upgrade. */
+export const GetVirtualMachineScaleSetRollingUpgradeLatest: API.OperationMethod<
+  GetVirtualMachineScaleSetRollingUpgradeLatestRequest,
+  GetVirtualMachineScaleSetRollingUpgradeLatestResponse,
+  GetVirtualMachineScaleSetRollingUpgradeLatestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetRollingUpgradeLatestRequest,
+  output: GetVirtualMachineScaleSetRollingUpgradeLatestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetVMError = AzureOpError;
+/** Gets a virtual machine from a VM scale set. */
+export const GetVirtualMachineScaleSetVM: API.OperationMethod<
+  GetVirtualMachineScaleSetVMRequest,
+  GetVirtualMachineScaleSetVMResponse,
+  GetVirtualMachineScaleSetVMError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetVMRequest,
+  output: GetVirtualMachineScaleSetVMResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetVMBootDiagnosticsDataError = AzureOpError;
+/** The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set. */
+export const GetVirtualMachineScaleSetVMBootDiagnosticsData: API.OperationMethod<
+  GetVirtualMachineScaleSetVMBootDiagnosticsDataRequest,
+  RetrieveBootDiagnosticsDataResult,
+  GetVirtualMachineScaleSetVMBootDiagnosticsDataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetVMBootDiagnosticsDataRequest,
+  output: RetrieveBootDiagnosticsDataResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetVMDiagnosticRunCommandError = AzureOpError;
+/** The operation to get the VMSS VM diagnostic run command. */
+export const GetVirtualMachineScaleSetVMDiagnosticRunCommand: API.OperationMethod<
+  GetVirtualMachineScaleSetVMDiagnosticRunCommandRequest,
+  GetVirtualMachineScaleSetVMDiagnosticRunCommandResponse,
+  GetVirtualMachineScaleSetVMDiagnosticRunCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetVMDiagnosticRunCommandRequest,
+  output: GetVirtualMachineScaleSetVMDiagnosticRunCommandResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetVMExtensionError = AzureOpError;
+/** The operation to get the VMSS VM extension. */
+export const GetVirtualMachineScaleSetVMExtension: API.OperationMethod<
+  GetVirtualMachineScaleSetVMExtensionRequest,
+  GetVirtualMachineScaleSetVMExtensionResponse,
+  GetVirtualMachineScaleSetVMExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetVMExtensionRequest,
+  output: GetVirtualMachineScaleSetVMExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetVMInstanceViewError = AzureOpError;
+/** Gets the status of a virtual machine from a VM scale set. */
+export const GetVirtualMachineScaleSetVMInstanceView: API.OperationMethod<
+  GetVirtualMachineScaleSetVMInstanceViewRequest,
+  VirtualMachineScaleSetVMInstanceView,
+  GetVirtualMachineScaleSetVMInstanceViewError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetVMInstanceViewRequest,
+  output: VirtualMachineScaleSetVMInstanceView,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineScaleSetVMRunCommandError = AzureOpError;
+/** The operation to get the VMSS VM run command. */
+export const GetVirtualMachineScaleSetVMRunCommand: API.OperationMethod<
+  GetVirtualMachineScaleSetVMRunCommandRequest,
+  GetVirtualMachineScaleSetVMRunCommandResponse,
+  GetVirtualMachineScaleSetVMRunCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineScaleSetVMRunCommandRequest,
+  output: GetVirtualMachineScaleSetVMRunCommandResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24136,6 +24537,21 @@ export const ImagesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ImagesCreateOrUpdateRequest,
   output: ImagesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InstallVirtualMachinePatchesError = AzureOpError;
+/** Installs patches on the VM. */
+export const InstallVirtualMachinePatches: API.OperationMethod<
+  InstallVirtualMachinePatchesRequest,
+  VirtualMachineInstallPatchesResult,
+  InstallVirtualMachinePatchesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InstallVirtualMachinePatchesRequest,
+  output: VirtualMachineInstallPatchesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24442,30 +24858,60 @@ export const ListProximityPlacementGroupBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListSshPublicKeyByResourceGroupError = AzureOpError;
-/** Lists all of the SSH public keys in the specified resource group. Use the nextLink property in the response to get the next page of SSH public keys. */
-export const ListSshPublicKeyByResourceGroup: API.OperationMethod<
-  ListSshPublicKeyByResourceGroupRequest,
-  SshPublicKeysGroupListResult,
-  ListSshPublicKeyByResourceGroupError,
+export type ListRestorePointCollectionAllError = AzureOpError;
+/** Gets the list of restore point collections in the subscription. Use nextLink property in the response to get the next page of restore point collections. Do this till nextLink is not null to fetch all the restore point collections. */
+export const ListRestorePointCollectionAll: API.OperationMethod<
+  ListRestorePointCollectionAllRequest,
+  RestorePointCollectionListResult,
+  ListRestorePointCollectionAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSshPublicKeyByResourceGroupRequest,
+  input: ListRestorePointCollectionAllRequest,
+  output: RestorePointCollectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRestorePointCollectionsError = AzureOpError;
+/** Gets the list of restore point collections in a resource group. */
+export const ListRestorePointCollections: API.OperationMethod<
+  ListRestorePointCollectionsRequest,
+  RestorePointCollectionListResult,
+  ListRestorePointCollectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRestorePointCollectionsRequest,
+  output: RestorePointCollectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSshPublicKeysByResourceGroupError = AzureOpError;
+/** Lists all of the SSH public keys in the specified resource group. Use the nextLink property in the response to get the next page of SSH public keys. */
+export const ListSshPublicKeysByResourceGroup: API.OperationMethod<
+  ListSshPublicKeysByResourceGroupRequest,
+  SshPublicKeysGroupListResult,
+  ListSshPublicKeysByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSshPublicKeysByResourceGroupRequest,
   output: SshPublicKeysGroupListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListSshPublicKeyBySubscriptionError = AzureOpError;
+export type ListSshPublicKeysBySubscriptionError = AzureOpError;
 /** Lists all of the SSH public keys in the subscription. Use the nextLink property in the response to get the next page of SSH public keys. */
-export const ListSshPublicKeyBySubscription: API.OperationMethod<
-  ListSshPublicKeyBySubscriptionRequest,
+export const ListSshPublicKeysBySubscription: API.OperationMethod<
+  ListSshPublicKeysBySubscriptionRequest,
   SshPublicKeysGroupListResult,
-  ListSshPublicKeyBySubscriptionError,
+  ListSshPublicKeysBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListSshPublicKeyBySubscriptionRequest,
+  input: ListSshPublicKeysBySubscriptionRequest,
   output: SshPublicKeysGroupListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -24532,23 +24978,6 @@ export const ListVirtualMachineByLocation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineError =
-  AzureOpError;
-/** The operation to get all diagnostic run commands of a Virtual Machine. */
-export const ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachine: API.OperationMethod<
-  ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineRequest,
-  VirtualMachineDiagnosticRunCommandsListResult,
-  ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    ListVirtualMachineDiagnosticRunCommandDiagnosticByVirtualMachineRequest,
-  output: VirtualMachineDiagnosticRunCommandsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListVirtualMachineExtensionImageTypesError = AzureOpError;
 /** Gets a list of virtual machine extension image types. */
 export const ListVirtualMachineExtensionImageTypes: API.OperationMethod<
@@ -24583,12 +25012,12 @@ export type ListVirtualMachineExtensionsError = AzureOpError;
 /** The operation to get all extensions of a Virtual Machine. */
 export const ListVirtualMachineExtensions: API.OperationMethod<
   ListVirtualMachineExtensionsRequest,
-  ListVirtualMachineExtensionsResult,
+  VirtualMachineExtensionsListResult,
   ListVirtualMachineExtensionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVirtualMachineExtensionsRequest,
-  output: ListVirtualMachineExtensionsResult,
+  output: VirtualMachineExtensionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24604,66 +25033,6 @@ export const ListVirtualMachineImageByEdgeZone: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVirtualMachineImageByEdgeZoneRequest,
   output: VmImagesInEdgeZoneListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListVirtualMachineImageEdgeZoneError = AzureOpError;
-/** Gets a list of all virtual machine image versions for the specified location, edge zone, publisher, offer, and SKU. */
-export const ListVirtualMachineImageEdgeZone: API.OperationMethod<
-  ListVirtualMachineImageEdgeZoneRequest,
-  ListVirtualMachineImageEdgeZoneResponse,
-  ListVirtualMachineImageEdgeZoneError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListVirtualMachineImageEdgeZoneRequest,
-  output: ListVirtualMachineImageEdgeZoneResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListVirtualMachineImageEdgeZoneOffersError = AzureOpError;
-/** Gets a list of virtual machine image offers for the specified location, edge zone and publisher. */
-export const ListVirtualMachineImageEdgeZoneOffers: API.OperationMethod<
-  ListVirtualMachineImageEdgeZoneOffersRequest,
-  ListVirtualMachineImageEdgeZoneOffersResponse,
-  ListVirtualMachineImageEdgeZoneOffersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListVirtualMachineImageEdgeZoneOffersRequest,
-  output: ListVirtualMachineImageEdgeZoneOffersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListVirtualMachineImageEdgeZonePublishersError = AzureOpError;
-/** Gets a list of virtual machine image publishers for the specified Azure location and edge zone. */
-export const ListVirtualMachineImageEdgeZonePublishers: API.OperationMethod<
-  ListVirtualMachineImageEdgeZonePublishersRequest,
-  ListVirtualMachineImageEdgeZonePublishersResponse,
-  ListVirtualMachineImageEdgeZonePublishersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListVirtualMachineImageEdgeZonePublishersRequest,
-  output: ListVirtualMachineImageEdgeZonePublishersResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListVirtualMachineImageEdgeZoneSkusError = AzureOpError;
-/** Gets a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer. */
-export const ListVirtualMachineImageEdgeZoneSkus: API.OperationMethod<
-  ListVirtualMachineImageEdgeZoneSkusRequest,
-  ListVirtualMachineImageEdgeZoneSkusResponse,
-  ListVirtualMachineImageEdgeZoneSkusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListVirtualMachineImageEdgeZoneSkusRequest,
-  output: ListVirtualMachineImageEdgeZoneSkusResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24714,6 +25083,66 @@ export const ListVirtualMachineImages: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListVirtualMachineImagesEdgeZoneError = AzureOpError;
+/** Gets a list of all virtual machine image versions for the specified location, edge zone, publisher, offer, and SKU. */
+export const ListVirtualMachineImagesEdgeZone: API.OperationMethod<
+  ListVirtualMachineImagesEdgeZoneRequest,
+  ListVirtualMachineImagesEdgeZoneResponse,
+  ListVirtualMachineImagesEdgeZoneError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineImagesEdgeZoneRequest,
+  output: ListVirtualMachineImagesEdgeZoneResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineImagesEdgeZoneOffersError = AzureOpError;
+/** Gets a list of virtual machine image offers for the specified location, edge zone and publisher. */
+export const ListVirtualMachineImagesEdgeZoneOffers: API.OperationMethod<
+  ListVirtualMachineImagesEdgeZoneOffersRequest,
+  ListVirtualMachineImagesEdgeZoneOffersResponse,
+  ListVirtualMachineImagesEdgeZoneOffersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineImagesEdgeZoneOffersRequest,
+  output: ListVirtualMachineImagesEdgeZoneOffersResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineImagesEdgeZonePublishersError = AzureOpError;
+/** Gets a list of virtual machine image publishers for the specified Azure location and edge zone. */
+export const ListVirtualMachineImagesEdgeZonePublishers: API.OperationMethod<
+  ListVirtualMachineImagesEdgeZonePublishersRequest,
+  ListVirtualMachineImagesEdgeZonePublishersResponse,
+  ListVirtualMachineImagesEdgeZonePublishersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineImagesEdgeZonePublishersRequest,
+  output: ListVirtualMachineImagesEdgeZonePublishersResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineImagesEdgeZoneSkusError = AzureOpError;
+/** Gets a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer. */
+export const ListVirtualMachineImagesEdgeZoneSkus: API.OperationMethod<
+  ListVirtualMachineImagesEdgeZoneSkusRequest,
+  ListVirtualMachineImagesEdgeZoneSkusResponse,
+  ListVirtualMachineImagesEdgeZoneSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineImagesEdgeZoneSkusRequest,
+  output: ListVirtualMachineImagesEdgeZoneSkusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVirtualMachineImageSkusError = AzureOpError;
 /** Gets a list of virtual machine image SKUs for the specified location, publisher, and offer. */
 export const ListVirtualMachineImageSkus: API.OperationMethod<
@@ -24733,12 +25162,12 @@ export type ListVirtualMachineRunCommandByVirtualMachineError = AzureOpError;
 /** The operation to get all run commands of a Virtual Machine. */
 export const ListVirtualMachineRunCommandByVirtualMachine: API.OperationMethod<
   ListVirtualMachineRunCommandByVirtualMachineRequest,
-  ListVirtualMachineRunCommandsResult,
+  VirtualMachineRunCommandsListResult,
   ListVirtualMachineRunCommandByVirtualMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListVirtualMachineRunCommandByVirtualMachineRequest,
-  output: ListVirtualMachineRunCommandsResult,
+  output: VirtualMachineRunCommandsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24804,6 +25233,36 @@ export const ListVirtualMachineScaleSetByLocation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListVirtualMachineScaleSetExtensionsError = AzureOpError;
+/** Gets a list of all extensions in a VM scale set. */
+export const ListVirtualMachineScaleSetExtensions: API.OperationMethod<
+  ListVirtualMachineScaleSetExtensionsRequest,
+  VirtualMachineScaleSetExtensionListResult,
+  ListVirtualMachineScaleSetExtensionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineScaleSetExtensionsRequest,
+  output: VirtualMachineScaleSetExtensionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineScaleSetLifeCycleHookEventsError = AzureOpError;
+/** Gets a list of virtual machine scale set lifecycle hook events created for a virtual machine scale set resource. */
+export const ListVirtualMachineScaleSetLifeCycleHookEvents: API.OperationMethod<
+  ListVirtualMachineScaleSetLifeCycleHookEventsRequest,
+  VMScaleSetLifecycleHookEventListResult,
+  ListVirtualMachineScaleSetLifeCycleHookEventsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineScaleSetLifeCycleHookEventsRequest,
+  output: VMScaleSetLifecycleHookEventListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVirtualMachineScaleSetsError = AzureOpError;
 /** Gets a list of all VM scale sets under a resource group. */
 export const ListVirtualMachineScaleSets: API.OperationMethod<
@@ -24834,6 +25293,67 @@ export const ListVirtualMachineScaleSetSkus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListVirtualMachineScaleSetVMDiagnosticRunCommandsError =
+  AzureOpError;
+/** The operation to get all diagnostic run commands of an instance in Virtual Machine Scaleset. */
+export const ListVirtualMachineScaleSetVMDiagnosticRunCommands: API.OperationMethod<
+  ListVirtualMachineScaleSetVMDiagnosticRunCommandsRequest,
+  VirtualMachineDiagnosticRunCommandsListResult,
+  ListVirtualMachineScaleSetVMDiagnosticRunCommandsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineScaleSetVMDiagnosticRunCommandsRequest,
+  output: VirtualMachineDiagnosticRunCommandsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineScaleSetVMExtensionsError = AzureOpError;
+/** The operation to get all extensions of an instance in Virtual Machine Scaleset. */
+export const ListVirtualMachineScaleSetVMExtensions: API.OperationMethod<
+  ListVirtualMachineScaleSetVMExtensionsRequest,
+  VirtualMachineScaleSetVMExtensionsListResult,
+  ListVirtualMachineScaleSetVMExtensionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineScaleSetVMExtensionsRequest,
+  output: VirtualMachineScaleSetVMExtensionsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineScaleSetVMRunCommandsError = AzureOpError;
+/** The operation to get all run commands of an instance in Virtual Machine Scaleset. */
+export const ListVirtualMachineScaleSetVMRunCommands: API.OperationMethod<
+  ListVirtualMachineScaleSetVMRunCommandsRequest,
+  VirtualMachineRunCommandsListResult,
+  ListVirtualMachineScaleSetVMRunCommandsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineScaleSetVMRunCommandsRequest,
+  output: VirtualMachineRunCommandsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineScaleSetVMsError = AzureOpError;
+/** Gets a list of all virtual machines in a VM scale sets. */
+export const ListVirtualMachineScaleSetVMs: API.OperationMethod<
+  ListVirtualMachineScaleSetVMsRequest,
+  VirtualMachineScaleSetVMListResult,
+  ListVirtualMachineScaleSetVMsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineScaleSetVMsRequest,
+  output: VirtualMachineScaleSetVMListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListVirtualMachineSizesError = AzureOpError;
 /** This API is deprecated. Use [Resources Skus](https://docs.microsoft.com/rest/api/compute/resourceskus/list) */
 export const ListVirtualMachineSizes: API.OperationMethod<
@@ -24849,16 +25369,46 @@ export const ListVirtualMachineSizes: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LogAnalyticsExportThrottledRequestsError = AzureOpError;
-/** Export logs that show total throttled Api requests for this subscription in the given time window. */
-export const LogAnalyticsExportThrottledRequests: API.OperationMethod<
-  LogAnalyticsExportThrottledRequestsRequest,
-  LogAnalyticsOperationResult,
-  LogAnalyticsExportThrottledRequestsError,
+export type MigrateVirtualMachineScaleSetVMAvailabilityZoneError = AzureOpError;
+/** Migrates one or more virtual machines in a VM scale set to an availability zone. */
+export const MigrateVirtualMachineScaleSetVMAvailabilityZone: API.OperationMethod<
+  MigrateVirtualMachineScaleSetVMAvailabilityZoneRequest,
+  MigrateVirtualMachineScaleSetVMAvailabilityZoneResponse,
+  MigrateVirtualMachineScaleSetVMAvailabilityZoneError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LogAnalyticsExportThrottledRequestsRequest,
-  output: LogAnalyticsOperationResult,
+  input: MigrateVirtualMachineScaleSetVMAvailabilityZoneRequest,
+  output: MigrateVirtualMachineScaleSetVMAvailabilityZoneResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateVirtualMachineToVMScaleSetError = AzureOpError;
+/** Migrate a virtual machine from availability set to Flexible Virtual Machine Scale Set. */
+export const MigrateVirtualMachineToVMScaleSet: API.OperationMethod<
+  MigrateVirtualMachineToVMScaleSetRequest,
+  MigrateVirtualMachineToVMScaleSetResponse,
+  MigrateVirtualMachineToVMScaleSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateVirtualMachineToVMScaleSetRequest,
+  output: MigrateVirtualMachineToVMScaleSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostSpotPlacementScoreError = AzureOpError;
+/** Generates placement scores for Spot VM skus. */
+export const PostSpotPlacementScore: API.OperationMethod<
+  PostSpotPlacementScoreRequest,
+  SpotPlacementScoresResponse,
+  PostSpotPlacementScoreError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostSpotPlacementScoreRequest,
+  output: SpotPlacementScoresResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24879,16 +25429,61 @@ export const ProximityPlacementGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RequestLogAnalyticExportRateByIntervalError = AzureOpError;
-/** Export logs that show Api requests made by this subscription in the given time window to show throttling activities. */
-export const RequestLogAnalyticExportRateByInterval: API.OperationMethod<
-  RequestLogAnalyticExportRateByIntervalRequest,
-  LogAnalyticsOperationResult,
-  RequestLogAnalyticExportRateByIntervalError,
+export type RedeployDedicatedHostError = AzureOpError;
+/** Redeploy the dedicated host. The operation will complete successfully once the dedicated host has migrated to a new node and is running. To determine the health of VMs deployed on the dedicated host after the redeploy check the Resource Health Center in the Azure Portal. Please refer to https://docs.microsoft.com/azure/service-health/resource-health-overview for more details. */
+export const RedeployDedicatedHost: API.OperationMethod<
+  RedeployDedicatedHostRequest,
+  RedeployDedicatedHostResponse,
+  RedeployDedicatedHostError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RequestLogAnalyticExportRateByIntervalRequest,
-  output: LogAnalyticsOperationResult,
+  input: RedeployDedicatedHostRequest,
+  output: RedeployDedicatedHostResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RedeployVirtualMachineError = AzureOpError;
+/** Shuts down the virtual machine, moves it to a new node, and powers it back on. */
+export const RedeployVirtualMachine: API.OperationMethod<
+  RedeployVirtualMachineRequest,
+  RedeployVirtualMachineResponse,
+  RedeployVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RedeployVirtualMachineRequest,
+  output: RedeployVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RedeployVirtualMachineScaleSetError = AzureOpError;
+/** Shuts down all the virtual machines in the virtual machine scale set, moves them to a new node, and powers them back on. */
+export const RedeployVirtualMachineScaleSet: API.OperationMethod<
+  RedeployVirtualMachineScaleSetRequest,
+  RedeployVirtualMachineScaleSetResponse,
+  RedeployVirtualMachineScaleSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RedeployVirtualMachineScaleSetRequest,
+  output: RedeployVirtualMachineScaleSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RedeployVirtualMachineScaleSetVMError = AzureOpError;
+/** Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers it back on. */
+export const RedeployVirtualMachineScaleSetVM: API.OperationMethod<
+  RedeployVirtualMachineScaleSetVMRequest,
+  RedeployVirtualMachineScaleSetVMResponse,
+  RedeployVirtualMachineScaleSetVMError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RedeployVirtualMachineScaleSetVMRequest,
+  output: RedeployVirtualMachineScaleSetVMResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24939,6 +25534,21 @@ export const RestartVirtualMachineScaleSet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RestartVirtualMachineScaleSetVMError = AzureOpError;
+/** Restarts a virtual machine in a VM scale set. */
+export const RestartVirtualMachineScaleSetVM: API.OperationMethod<
+  RestartVirtualMachineScaleSetVMRequest,
+  RestartVirtualMachineScaleSetVMResponse,
+  RestartVirtualMachineScaleSetVMError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartVirtualMachineScaleSetVMRequest,
+  output: RestartVirtualMachineScaleSetVMResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RestorePointCollectionsCreateOrUpdateError = AzureOpError;
 /** The operation to create or update the restore point collection. Please refer to https://aka.ms/RestorePoints for more details. When updating a restore point collection, only tags may be modified. */
 export const RestorePointCollectionsCreateOrUpdate: API.OperationMethod<
@@ -24954,198 +25564,46 @@ export const RestorePointCollectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestorePointCollectionsDeleteError = AzureOpError;
-/** The operation to delete the restore point collection. This operation will also delete all the contained restore points. */
-export const RestorePointCollectionsDelete: API.OperationMethod<
-  RestorePointCollectionsDeleteRequest,
-  RestorePointCollectionsDeleteResponse,
-  RestorePointCollectionsDeleteError,
+export type RunVirtualMachineCommandError = AzureOpError;
+/** Run command on the VM. */
+export const RunVirtualMachineCommand: API.OperationMethod<
+  RunVirtualMachineCommandRequest,
+  RunCommandResult,
+  RunVirtualMachineCommandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointCollectionsDeleteRequest,
-  output: RestorePointCollectionsDeleteResponse,
+  input: RunVirtualMachineCommandRequest,
+  output: RunCommandResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RestorePointCollectionsGetError = AzureOpError;
-/** The operation to get the restore point collection. */
-export const RestorePointCollectionsGet: API.OperationMethod<
-  RestorePointCollectionsGetRequest,
-  RestorePointCollectionsGetResponse,
-  RestorePointCollectionsGetError,
+export type RunVirtualMachineScaleSetVMCommandError = AzureOpError;
+/** Run command on a virtual machine in a VM scale set. */
+export const RunVirtualMachineScaleSetVMCommand: API.OperationMethod<
+  RunVirtualMachineScaleSetVMCommandRequest,
+  RunCommandResult,
+  RunVirtualMachineScaleSetVMCommandError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointCollectionsGetRequest,
-  output: RestorePointCollectionsGetResponse,
+  input: RunVirtualMachineScaleSetVMCommandRequest,
+  output: RunCommandResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RestorePointCollectionsListError = AzureOpError;
-/** Gets the list of restore point collections in a resource group. */
-export const RestorePointCollectionsList: API.OperationMethod<
-  RestorePointCollectionsListRequest,
-  RestorePointCollectionListResult,
-  RestorePointCollectionsListError,
+export type ScaleVirtualMachineScaleSetOutError = AzureOpError;
+/** Scales out one or more virtual machines in a VM scale set. */
+export const ScaleVirtualMachineScaleSetOut: API.OperationMethod<
+  ScaleVirtualMachineScaleSetOutRequest,
+  ScaleVirtualMachineScaleSetOutResponse,
+  ScaleVirtualMachineScaleSetOutError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointCollectionsListRequest,
-  output: RestorePointCollectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestorePointCollectionsListAllError = AzureOpError;
-/** Gets the list of restore point collections in the subscription. Use nextLink property in the response to get the next page of restore point collections. Do this till nextLink is not null to fetch all the restore point collections. */
-export const RestorePointCollectionsListAll: API.OperationMethod<
-  RestorePointCollectionsListAllRequest,
-  RestorePointCollectionListResult,
-  RestorePointCollectionsListAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointCollectionsListAllRequest,
-  output: RestorePointCollectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestorePointCollectionsUpdateError = AzureOpError;
-/** The operation to update the restore point collection. */
-export const RestorePointCollectionsUpdate: API.OperationMethod<
-  RestorePointCollectionsUpdateRequest,
-  RestorePointCollectionsUpdateResponse,
-  RestorePointCollectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointCollectionsUpdateRequest,
-  output: RestorePointCollectionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestorePointsCreateError = AzureOpError;
-/** The operation to create the restore point. Updating properties of an existing restore point is not allowed */
-export const RestorePointsCreate: API.OperationMethod<
-  RestorePointsCreateRequest,
-  RestorePointsCreateResponse,
-  RestorePointsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointsCreateRequest,
-  output: RestorePointsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestorePointsDeleteError = AzureOpError;
-/** The operation to delete the restore point. */
-export const RestorePointsDelete: API.OperationMethod<
-  RestorePointsDeleteRequest,
-  RestorePointsDeleteResponse,
-  RestorePointsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointsDeleteRequest,
-  output: RestorePointsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RestorePointsGetError = AzureOpError;
-/** The operation to get the restore point. */
-export const RestorePointsGet: API.OperationMethod<
-  RestorePointsGetRequest,
-  RestorePointsGetResponse,
-  RestorePointsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RestorePointsGetRequest,
-  output: RestorePointsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetAvailabilitySetCancelMigrationToVirtualMachineScaleError =
-  AzureOpError;
-/** Cancel the migration operation on an Availability Set. */
-export const SetAvailabilitySetCancelMigrationToVirtualMachineScale: API.OperationMethod<
-  SetAvailabilitySetCancelMigrationToVirtualMachineScaleRequest,
-  SetAvailabilitySetCancelMigrationToVirtualMachineScaleResponse,
-  SetAvailabilitySetCancelMigrationToVirtualMachineScaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetAvailabilitySetCancelMigrationToVirtualMachineScaleRequest,
-  output: SetAvailabilitySetCancelMigrationToVirtualMachineScaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetAvailabilitySetConvertToVirtualMachineScaleError = AzureOpError;
-/** Create a new Flexible Virtual Machine Scale Set and migrate all the Virtual Machines in the Availability Set. This does not trigger a downtime on the Virtual Machines. */
-export const SetAvailabilitySetConvertToVirtualMachineScale: API.OperationMethod<
-  SetAvailabilitySetConvertToVirtualMachineScaleRequest,
-  SetAvailabilitySetConvertToVirtualMachineScaleResponse,
-  SetAvailabilitySetConvertToVirtualMachineScaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetAvailabilitySetConvertToVirtualMachineScaleRequest,
-  output: SetAvailabilitySetConvertToVirtualMachineScaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetAvailabilitySetValidateMigrationToVirtualMachineScaleError =
-  AzureOpError;
-/** Validates that the Virtual Machines in the Availability Set can be migrated to the provided Virtual Machine Scale Set. */
-export const SetAvailabilitySetValidateMigrationToVirtualMachineScale: API.OperationMethod<
-  SetAvailabilitySetValidateMigrationToVirtualMachineScaleRequest,
-  SetAvailabilitySetValidateMigrationToVirtualMachineScaleResponse,
-  SetAvailabilitySetValidateMigrationToVirtualMachineScaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetAvailabilitySetValidateMigrationToVirtualMachineScaleRequest,
-  output: SetAvailabilitySetValidateMigrationToVirtualMachineScaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineMigrateToVmScaleError = AzureOpError;
-/** Migrate a virtual machine from availability set to Flexible Virtual Machine Scale Set. */
-export const SetVirtualMachineMigrateToVmScale: API.OperationMethod<
-  SetVirtualMachineMigrateToVmScaleRequest,
-  SetVirtualMachineMigrateToVmScaleResponse,
-  SetVirtualMachineMigrateToVmScaleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineMigrateToVmScaleRequest,
-  output: SetVirtualMachineMigrateToVmScaleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleRollingUpgradeCancelError = AzureOpError;
-/** Cancels the current virtual machine scale set rolling upgrade. */
-export const SetVirtualMachineScaleRollingUpgradeCancel: API.OperationMethod<
-  SetVirtualMachineScaleRollingUpgradeCancelRequest,
-  SetVirtualMachineScaleRollingUpgradeCancelResponse,
-  SetVirtualMachineScaleRollingUpgradeCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleRollingUpgradeCancelRequest,
-  output: SetVirtualMachineScaleRollingUpgradeCancelResponse,
+  input: ScaleVirtualMachineScaleSetOutRequest,
+  output: ScaleVirtualMachineScaleSetOutResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25167,182 +25625,17 @@ export const SetVirtualMachineScaleSetOrchestrationServiceState: API.OperationMe
   retry: Retry.Retry,
 }));
 
-export type SetVirtualMachineScaleVMsApproveRollingUpgradeError = AzureOpError;
-/** Approve upgrade on deferred rolling upgrade for OS disk on a VM scale set instance. */
-export const SetVirtualMachineScaleVMsApproveRollingUpgrade: API.OperationMethod<
-  SetVirtualMachineScaleVMsApproveRollingUpgradeRequest,
-  SetVirtualMachineScaleVMsApproveRollingUpgradeResponse,
-  SetVirtualMachineScaleVMsApproveRollingUpgradeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsApproveRollingUpgradeRequest,
-  output: SetVirtualMachineScaleVMsApproveRollingUpgradeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsAttachDetachDataDiskError = AzureOpError;
-/** Attach and detach data disks to/from a virtual machine in a VM scale set. */
-export const SetVirtualMachineScaleVMsAttachDetachDataDisk: API.OperationMethod<
-  SetVirtualMachineScaleVMsAttachDetachDataDiskRequest,
-  StorageProfile,
-  SetVirtualMachineScaleVMsAttachDetachDataDiskError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsAttachDetachDataDiskRequest,
-  output: StorageProfile,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsDeallocateError = AzureOpError;
-/** Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and releases the compute resources it uses. You are not billed for the compute resources of this virtual machine once it is deallocated. */
-export const SetVirtualMachineScaleVMsDeallocate: API.OperationMethod<
-  SetVirtualMachineScaleVMsDeallocateRequest,
-  SetVirtualMachineScaleVMsDeallocateResponse,
-  SetVirtualMachineScaleVMsDeallocateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsDeallocateRequest,
-  output: SetVirtualMachineScaleVMsDeallocateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsPerformMaintenanceError = AzureOpError;
-/** Performs maintenance on a virtual machine in a VM scale set. */
-export const SetVirtualMachineScaleVMsPerformMaintenance: API.OperationMethod<
-  SetVirtualMachineScaleVMsPerformMaintenanceRequest,
-  SetVirtualMachineScaleVMsPerformMaintenanceResponse,
-  SetVirtualMachineScaleVMsPerformMaintenanceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsPerformMaintenanceRequest,
-  output: SetVirtualMachineScaleVMsPerformMaintenanceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsPowerOffError = AzureOpError;
-/** Power off (stop) a virtual machine in a VM scale set. Note that resources are still attached and you are getting charged for the resources. Instead, use deallocate to release resources and avoid charges. */
-export const SetVirtualMachineScaleVMsPowerOff: API.OperationMethod<
-  SetVirtualMachineScaleVMsPowerOffRequest,
-  SetVirtualMachineScaleVMsPowerOffResponse,
-  SetVirtualMachineScaleVMsPowerOffError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsPowerOffRequest,
-  output: SetVirtualMachineScaleVMsPowerOffResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsRedeployError = AzureOpError;
-/** Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers it back on. */
-export const SetVirtualMachineScaleVMsRedeploy: API.OperationMethod<
-  SetVirtualMachineScaleVMsRedeployRequest,
-  SetVirtualMachineScaleVMsRedeployResponse,
-  SetVirtualMachineScaleVMsRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsRedeployRequest,
-  output: SetVirtualMachineScaleVMsRedeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsReimageError = AzureOpError;
-/** Reimages (upgrade the operating system) a specific virtual machine in a VM scale set. */
-export const SetVirtualMachineScaleVMsReimage: API.OperationMethod<
-  SetVirtualMachineScaleVMsReimageRequest,
-  SetVirtualMachineScaleVMsReimageResponse,
-  SetVirtualMachineScaleVMsReimageError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsReimageRequest,
-  output: SetVirtualMachineScaleVMsReimageResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsReimageAllError = AzureOpError;
-/** Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This operation is only supported for managed disks. */
-export const SetVirtualMachineScaleVMsReimageAll: API.OperationMethod<
-  SetVirtualMachineScaleVMsReimageAllRequest,
-  SetVirtualMachineScaleVMsReimageAllResponse,
-  SetVirtualMachineScaleVMsReimageAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsReimageAllRequest,
-  output: SetVirtualMachineScaleVMsReimageAllResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataError =
+export type StartAvailabilitySetMigrationToVirtualMachineScaleSetError =
   AzureOpError;
-/** The operation to retrieve SAS URIs of boot diagnostic logs for a virtual machine in a VM scale set. */
-export const SetVirtualMachineScaleVMsRetrieveBootDiagnosticData: API.OperationMethod<
-  SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataRequest,
-  RetrieveBootDiagnosticsDataResult,
-  SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataError,
+/** Start migration operation on an Availability Set to move its Virtual Machines to a Virtual Machine Scale Set. This should be followed by a migrate operation on each Virtual Machine that triggers a downtime on the Virtual Machine. */
+export const StartAvailabilitySetMigrationToVirtualMachineScaleSet: API.OperationMethod<
+  StartAvailabilitySetMigrationToVirtualMachineScaleSetRequest,
+  StartAvailabilitySetMigrationToVirtualMachineScaleSetResponse,
+  StartAvailabilitySetMigrationToVirtualMachineScaleSetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsRetrieveBootDiagnosticDataRequest,
-  output: RetrieveBootDiagnosticsDataResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsRunCommandError = AzureOpError;
-/** Run command on a virtual machine in a VM scale set. */
-export const SetVirtualMachineScaleVMsRunCommand: API.OperationMethod<
-  SetVirtualMachineScaleVMsRunCommandRequest,
-  RunCommandResult,
-  SetVirtualMachineScaleVMsRunCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsRunCommandRequest,
-  output: RunCommandResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetVirtualMachineScaleVMsSimulateEvictionError = AzureOpError;
-/** The operation to simulate the eviction of spot virtual machine in a VM scale set. */
-export const SetVirtualMachineScaleVMsSimulateEviction: API.OperationMethod<
-  SetVirtualMachineScaleVMsSimulateEvictionRequest,
-  SetVirtualMachineScaleVMsSimulateEvictionResponse,
-  SetVirtualMachineScaleVMsSimulateEvictionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SetVirtualMachineScaleVMsSimulateEvictionRequest,
-  output: SetVirtualMachineScaleVMsSimulateEvictionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SpotPlacementScoresPostError = AzureOpError;
-/** Generates placement scores for Spot VM skus. */
-export const SpotPlacementScoresPost: API.OperationMethod<
-  SpotPlacementScoresPostRequest,
-  SpotPlacementScoresResponse,
-  SpotPlacementScoresPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SpotPlacementScoresPostRequest,
-  output: SpotPlacementScoresResponse,
+  input: StartAvailabilitySetMigrationToVirtualMachineScaleSetRequest,
+  output: StartAvailabilitySetMigrationToVirtualMachineScaleSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25363,21 +25656,6 @@ export const StartVirtualMachine: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StartVirtualMachineBulkOperationBulkError = AzureOpError;
-/** BulkStart: Execute start operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
-export const StartVirtualMachineBulkOperationBulk: API.OperationMethod<
-  StartVirtualMachineBulkOperationBulkRequest,
-  StartResourceOperationResponse,
-  StartVirtualMachineBulkOperationBulkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StartVirtualMachineBulkOperationBulkRequest,
-  output: StartResourceOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type StartVirtualMachineScaleSetError = AzureOpError;
 /** Starts one or more virtual machines in a VM scale set. */
 export const StartVirtualMachineScaleSet: API.OperationMethod<
@@ -25388,6 +25666,53 @@ export const StartVirtualMachineScaleSet: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StartVirtualMachineScaleSetRequest,
   output: StartVirtualMachineScaleSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeError =
+  AzureOpError;
+/** Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the latest available extension version. Instances which are already running the latest extension versions are not affected. */
+export const StartVirtualMachineScaleSetRollingUpgradeExtensionUpgrade: API.OperationMethod<
+  StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeRequest,
+  StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeResponse,
+  StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeRequest,
+  output: StartVirtualMachineScaleSetRollingUpgradeExtensionUpgradeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartVirtualMachineScaleSetRollingUpgradeOSUpgradeError =
+  AzureOpError;
+/** Starts a rolling upgrade to move all virtual machine scale set instances to the latest available Platform Image OS version. Instances which are already running the latest available OS version are not affected. */
+export const StartVirtualMachineScaleSetRollingUpgradeOSUpgrade: API.OperationMethod<
+  StartVirtualMachineScaleSetRollingUpgradeOSUpgradeRequest,
+  StartVirtualMachineScaleSetRollingUpgradeOSUpgradeResponse,
+  StartVirtualMachineScaleSetRollingUpgradeOSUpgradeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartVirtualMachineScaleSetRollingUpgradeOSUpgradeRequest,
+  output: StartVirtualMachineScaleSetRollingUpgradeOSUpgradeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartVirtualMachineScaleSetVMError = AzureOpError;
+/** Starts a virtual machine in a VM scale set. */
+export const StartVirtualMachineScaleSetVM: API.OperationMethod<
+  StartVirtualMachineScaleSetVMRequest,
+  StartVirtualMachineScaleSetVMResponse,
+  StartVirtualMachineScaleSetVMError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartVirtualMachineScaleSetVMRequest,
+  output: StartVirtualMachineScaleSetVMResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25513,16 +25838,31 @@ export const UpdateProximityPlacementGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateSshPublicKeyError = AzureOpError;
-/** Updates a new SSH public key resource. */
-export const UpdateSshPublicKey: API.OperationMethod<
-  UpdateSshPublicKeyRequest,
-  UpdateSshPublicKeyResponse,
-  UpdateSshPublicKeyError,
+export type UpdateRestorePointCollectionError = AzureOpError;
+/** The operation to update the restore point collection. */
+export const UpdateRestorePointCollection: API.OperationMethod<
+  UpdateRestorePointCollectionRequest,
+  UpdateRestorePointCollectionResponse,
+  UpdateRestorePointCollectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSshPublicKeyRequest,
-  output: UpdateSshPublicKeyResponse,
+  input: UpdateRestorePointCollectionRequest,
+  output: UpdateRestorePointCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSshPublicKeysError = AzureOpError;
+/** Updates a new SSH public key resource. */
+export const UpdateSshPublicKeys: API.OperationMethod<
+  UpdateSshPublicKeysRequest,
+  UpdateSshPublicKeysResponse,
+  UpdateSshPublicKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSshPublicKeysRequest,
+  output: UpdateSshPublicKeysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25603,33 +25943,123 @@ export const UpdateVirtualMachineScaleSet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkError =
-  AzureOpError;
-/** Manual platform update domain walk to update virtual machines in a service fabric virtual machine scale set. */
-export const UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalk: API.OperationMethod<
-  UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkRequest,
-  RecoveryWalkResponse,
-  UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkError,
+export type UpdateVirtualMachineScaleSetExtensionError = AzureOpError;
+/** The operation to update an extension. */
+export const UpdateVirtualMachineScaleSetExtension: API.OperationMethod<
+  UpdateVirtualMachineScaleSetExtensionRequest,
+  UpdateVirtualMachineScaleSetExtensionResponse,
+  UpdateVirtualMachineScaleSetExtensionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input:
-    UpdateVirtualMachineScaleSetForceRecoveryServiceFabricPlatformDomainWalkRequest,
-  output: RecoveryWalkResponse,
+  input: UpdateVirtualMachineScaleSetExtensionRequest,
+  output: UpdateVirtualMachineScaleSetExtensionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateVirtualMachineScaleSetInstanceError = AzureOpError;
+export type UpdateVirtualMachineScaleSetInstancesError = AzureOpError;
 /** Upgrades one or more virtual machines to the latest SKU set in the VM scale set model. */
-export const UpdateVirtualMachineScaleSetInstance: API.OperationMethod<
-  UpdateVirtualMachineScaleSetInstanceRequest,
-  UpdateVirtualMachineScaleSetInstanceResponse,
-  UpdateVirtualMachineScaleSetInstanceError,
+export const UpdateVirtualMachineScaleSetInstances: API.OperationMethod<
+  UpdateVirtualMachineScaleSetInstancesRequest,
+  UpdateVirtualMachineScaleSetInstancesResponse,
+  UpdateVirtualMachineScaleSetInstancesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateVirtualMachineScaleSetInstanceRequest,
-  output: UpdateVirtualMachineScaleSetInstanceResponse,
+  input: UpdateVirtualMachineScaleSetInstancesRequest,
+  output: UpdateVirtualMachineScaleSetInstancesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualMachineScaleSetLifeCycleHookEventError = AzureOpError;
+/** The operation to update a virtual machine scale set lifecycle hook event. */
+export const UpdateVirtualMachineScaleSetLifeCycleHookEvent: API.OperationMethod<
+  UpdateVirtualMachineScaleSetLifeCycleHookEventRequest,
+  UpdateVirtualMachineScaleSetLifeCycleHookEventResponse,
+  UpdateVirtualMachineScaleSetLifeCycleHookEventError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualMachineScaleSetLifeCycleHookEventRequest,
+  output: UpdateVirtualMachineScaleSetLifeCycleHookEventResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualMachineScaleSetVMError = AzureOpError;
+/** Updates a virtual machine of a VM scale set. */
+export const UpdateVirtualMachineScaleSetVM: API.OperationMethod<
+  UpdateVirtualMachineScaleSetVMRequest,
+  UpdateVirtualMachineScaleSetVMResponse,
+  UpdateVirtualMachineScaleSetVMError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualMachineScaleSetVMRequest,
+  output: UpdateVirtualMachineScaleSetVMResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualMachineScaleSetVMDiagnosticRunCommandError =
+  AzureOpError;
+/** The operation to update the VMSS VM diagnostic run command. */
+export const UpdateVirtualMachineScaleSetVMDiagnosticRunCommand: API.OperationMethod<
+  UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequest,
+  UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponse,
+  UpdateVirtualMachineScaleSetVMDiagnosticRunCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualMachineScaleSetVMDiagnosticRunCommandRequest,
+  output: UpdateVirtualMachineScaleSetVMDiagnosticRunCommandResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualMachineScaleSetVMExtensionError = AzureOpError;
+/** The operation to update the VMSS VM extension. */
+export const UpdateVirtualMachineScaleSetVMExtension: API.OperationMethod<
+  UpdateVirtualMachineScaleSetVMExtensionRequest,
+  UpdateVirtualMachineScaleSetVMExtensionResponse,
+  UpdateVirtualMachineScaleSetVMExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualMachineScaleSetVMExtensionRequest,
+  output: UpdateVirtualMachineScaleSetVMExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualMachineScaleSetVMRunCommandError = AzureOpError;
+/** The operation to update the VMSS VM run command. */
+export const UpdateVirtualMachineScaleSetVMRunCommand: API.OperationMethod<
+  UpdateVirtualMachineScaleSetVMRunCommandRequest,
+  UpdateVirtualMachineScaleSetVMRunCommandResponse,
+  UpdateVirtualMachineScaleSetVMRunCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualMachineScaleSetVMRunCommandRequest,
+  output: UpdateVirtualMachineScaleSetVMRunCommandResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateAvailabilitySetMigrationToVirtualMachineScaleSetError =
+  AzureOpError;
+/** Validates that the Virtual Machines in the Availability Set can be migrated to the provided Virtual Machine Scale Set. */
+export const ValidateAvailabilitySetMigrationToVirtualMachineScaleSet: API.OperationMethod<
+  ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequest,
+  ValidateAvailabilitySetMigrationToVirtualMachineScaleSetResponse,
+  ValidateAvailabilitySetMigrationToVirtualMachineScaleSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateAvailabilitySetMigrationToVirtualMachineScaleSetRequest,
+  output: ValidateAvailabilitySetMigrationToVirtualMachineScaleSetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25650,31 +26080,47 @@ export const VirtualMachineBulkOperationsBulkCancel: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineBulkOperationsBulkDeallocateError = AzureOpError;
-/** BulkDeallocate: Execute deallocate operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
-export const VirtualMachineBulkOperationsBulkDeallocate: API.OperationMethod<
-  VirtualMachineBulkOperationsBulkDeallocateRequest,
-  DeallocateResourceOperationResponse,
-  VirtualMachineBulkOperationsBulkDeallocateError,
+export type VirtualMachineBulkOperationsBulkDeleteError = AzureOpError;
+/** BulkDelete: Execute delete operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
+export const VirtualMachineBulkOperationsBulkDelete: API.OperationMethod<
+  VirtualMachineBulkOperationsBulkDeleteRequest,
+  DeleteResourceOperationResponse,
+  VirtualMachineBulkOperationsBulkDeleteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineBulkOperationsBulkDeallocateRequest,
-  output: DeallocateResourceOperationResponse,
+  input: VirtualMachineBulkOperationsBulkDeleteRequest,
+  output: DeleteResourceOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineBulkOperationsBulkHibernateError = AzureOpError;
-/** BulkHibernate: Execute hibernate operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
-export const VirtualMachineBulkOperationsBulkHibernate: API.OperationMethod<
-  VirtualMachineBulkOperationsBulkHibernateRequest,
-  HibernateResourceOperationResponse,
-  VirtualMachineBulkOperationsBulkHibernateError,
+export type VirtualMachineBulkOperationsBulkGetOperationsStatusError =
+  AzureOpError;
+/** BulkGetOperationsStatus: Polling endpoint to read status of operations performed on virtual machines */
+export const VirtualMachineBulkOperationsBulkGetOperationsStatus: API.OperationMethod<
+  VirtualMachineBulkOperationsBulkGetOperationsStatusRequest,
+  GetOperationStatusResponse,
+  VirtualMachineBulkOperationsBulkGetOperationsStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineBulkOperationsBulkHibernateRequest,
-  output: HibernateResourceOperationResponse,
+  input: VirtualMachineBulkOperationsBulkGetOperationsStatusRequest,
+  output: GetOperationStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type VirtualMachineBulkOperationsBulkStartError = AzureOpError;
+/** BulkStart: Execute start operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it. */
+export const VirtualMachineBulkOperationsBulkStart: API.OperationMethod<
+  VirtualMachineBulkOperationsBulkStartRequest,
+  StartResourceOperationResponse,
+  VirtualMachineBulkOperationsBulkStartError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: VirtualMachineBulkOperationsBulkStartRequest,
+  output: StartResourceOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25691,6 +26137,23 @@ export const VirtualMachineDiagnosticRunCommandsCreateOrUpdate: API.OperationMet
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachineDiagnosticRunCommandsCreateOrUpdateRequest,
   output: VirtualMachineDiagnosticRunCommandsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineError =
+  AzureOpError;
+/** The operation to get all diagnostic run commands of a Virtual Machine. */
+export const VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachine: API.OperationMethod<
+  VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineRequest,
+  VirtualMachineDiagnosticRunCommandsListResult,
+  VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input:
+    VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachineRequest,
+  output: VirtualMachineDiagnosticRunCommandsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25771,189 +26234,6 @@ export const VirtualMachineScaleSetExtensionsCreateOrUpdate: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetExtensionsDeleteError = AzureOpError;
-/** The operation to delete the extension. */
-export const VirtualMachineScaleSetExtensionsDelete: API.OperationMethod<
-  VirtualMachineScaleSetExtensionsDeleteRequest,
-  VirtualMachineScaleSetExtensionsDeleteResponse,
-  VirtualMachineScaleSetExtensionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetExtensionsDeleteRequest,
-  output: VirtualMachineScaleSetExtensionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetExtensionsGetError = AzureOpError;
-/** The operation to get the extension. */
-export const VirtualMachineScaleSetExtensionsGet: API.OperationMethod<
-  VirtualMachineScaleSetExtensionsGetRequest,
-  VirtualMachineScaleSetExtensionsGetResponse,
-  VirtualMachineScaleSetExtensionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetExtensionsGetRequest,
-  output: VirtualMachineScaleSetExtensionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetExtensionsListError = AzureOpError;
-/** Gets a list of all extensions in a VM scale set. */
-export const VirtualMachineScaleSetExtensionsList: API.OperationMethod<
-  VirtualMachineScaleSetExtensionsListRequest,
-  VirtualMachineScaleSetExtensionListResult,
-  VirtualMachineScaleSetExtensionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetExtensionsListRequest,
-  output: VirtualMachineScaleSetExtensionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetExtensionsUpdateError = AzureOpError;
-/** The operation to update an extension. */
-export const VirtualMachineScaleSetExtensionsUpdate: API.OperationMethod<
-  VirtualMachineScaleSetExtensionsUpdateRequest,
-  VirtualMachineScaleSetExtensionsUpdateResponse,
-  VirtualMachineScaleSetExtensionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetExtensionsUpdateRequest,
-  output: VirtualMachineScaleSetExtensionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetLifeCycleHookEventsGetError = AzureOpError;
-/** Gets a virtual machine scale set lifecycle hook event. */
-export const VirtualMachineScaleSetLifeCycleHookEventsGet: API.OperationMethod<
-  VirtualMachineScaleSetLifeCycleHookEventsGetRequest,
-  VirtualMachineScaleSetLifeCycleHookEventsGetResponse,
-  VirtualMachineScaleSetLifeCycleHookEventsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetLifeCycleHookEventsGetRequest,
-  output: VirtualMachineScaleSetLifeCycleHookEventsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetLifeCycleHookEventsListError = AzureOpError;
-/** Gets a list of virtual machine scale set lifecycle hook events created for a virtual machine scale set resource. */
-export const VirtualMachineScaleSetLifeCycleHookEventsList: API.OperationMethod<
-  VirtualMachineScaleSetLifeCycleHookEventsListRequest,
-  VMScaleSetLifecycleHookEventListResult,
-  VirtualMachineScaleSetLifeCycleHookEventsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetLifeCycleHookEventsListRequest,
-  output: VMScaleSetLifecycleHookEventListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetLifeCycleHookEventsUpdateError = AzureOpError;
-/** The operation to update a virtual machine scale set lifecycle hook event. */
-export const VirtualMachineScaleSetLifeCycleHookEventsUpdate: API.OperationMethod<
-  VirtualMachineScaleSetLifeCycleHookEventsUpdateRequest,
-  VirtualMachineScaleSetLifeCycleHookEventsUpdateResponse,
-  VirtualMachineScaleSetLifeCycleHookEventsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetLifeCycleHookEventsUpdateRequest,
-  output: VirtualMachineScaleSetLifeCycleHookEventsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetRollingUpgradesGetLatestError = AzureOpError;
-/** Gets the status of the latest virtual machine scale set rolling upgrade. */
-export const VirtualMachineScaleSetRollingUpgradesGetLatest: API.OperationMethod<
-  VirtualMachineScaleSetRollingUpgradesGetLatestRequest,
-  VirtualMachineScaleSetRollingUpgradesGetLatestResponse,
-  VirtualMachineScaleSetRollingUpgradesGetLatestError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetRollingUpgradesGetLatestRequest,
-  output: VirtualMachineScaleSetRollingUpgradesGetLatestResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeError =
-  AzureOpError;
-/** Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the latest available extension version. Instances which are already running the latest extension versions are not affected. */
-export const VirtualMachineScaleSetRollingUpgradesStartExtensionUpgrade: API.OperationMethod<
-  VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeRequest,
-  VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeResponse,
-  VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeRequest,
-  output: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetRollingUpgradesStartOSUpgradeError =
-  AzureOpError;
-/** Starts a rolling upgrade to move all virtual machine scale set instances to the latest available Platform Image OS version. Instances which are already running the latest available OS version are not affected. */
-export const VirtualMachineScaleSetRollingUpgradesStartOSUpgrade: API.OperationMethod<
-  VirtualMachineScaleSetRollingUpgradesStartOSUpgradeRequest,
-  VirtualMachineScaleSetRollingUpgradesStartOSUpgradeResponse,
-  VirtualMachineScaleSetRollingUpgradesStartOSUpgradeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeRequest,
-  output: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetsApproveRollingUpgradeError = AzureOpError;
-/** Approve upgrade on deferred rolling upgrades for OS disks in the virtual machines in a VM scale set. */
-export const VirtualMachineScaleSetsApproveRollingUpgrade: API.OperationMethod<
-  VirtualMachineScaleSetsApproveRollingUpgradeRequest,
-  VirtualMachineScaleSetsApproveRollingUpgradeResponse,
-  VirtualMachineScaleSetsApproveRollingUpgradeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetsApproveRollingUpgradeRequest,
-  output: VirtualMachineScaleSetsApproveRollingUpgradeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetsConvertToSinglePlacementGroupError =
-  AzureOpError;
-/** Converts SinglePlacementGroup property to false for a existing virtual machine scale set. */
-export const VirtualMachineScaleSetsConvertToSinglePlacementGroup: API.OperationMethod<
-  VirtualMachineScaleSetsConvertToSinglePlacementGroupRequest,
-  VirtualMachineScaleSetsConvertToSinglePlacementGroupResponse,
-  VirtualMachineScaleSetsConvertToSinglePlacementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetsConvertToSinglePlacementGroupRequest,
-  output: VirtualMachineScaleSetsConvertToSinglePlacementGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VirtualMachineScaleSetsCreateOrUpdateError = AzureOpError;
 /** Create or update a VM scale set. */
 export const VirtualMachineScaleSetsCreateOrUpdate: API.OperationMethod<
@@ -25984,17 +26264,18 @@ export const VirtualMachineScaleSetsDeallocate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetsMigrateVMAvailabilityZoneError =
+export type VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkError =
   AzureOpError;
-/** Migrates one or more virtual machines in a VM scale set to an availability zone. */
-export const VirtualMachineScaleSetsMigrateVMAvailabilityZone: API.OperationMethod<
-  VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequest,
-  VirtualMachineScaleSetsMigrateVMAvailabilityZoneResponse,
-  VirtualMachineScaleSetsMigrateVMAvailabilityZoneError,
+/** Manual platform update domain walk to update virtual machines in a service fabric virtual machine scale set. */
+export const VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalk: API.OperationMethod<
+  VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkRequest,
+  RecoveryWalkResponse,
+  VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetsMigrateVMAvailabilityZoneRequest,
-  output: VirtualMachineScaleSetsMigrateVMAvailabilityZoneResponse,
+  input:
+    VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkRequest,
+  output: RecoveryWalkResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26045,21 +26326,6 @@ export const VirtualMachineScaleSetsReapply: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetsRedeployError = AzureOpError;
-/** Shuts down all the virtual machines in the virtual machine scale set, moves them to a new node, and powers them back on. */
-export const VirtualMachineScaleSetsRedeploy: API.OperationMethod<
-  VirtualMachineScaleSetsRedeployRequest,
-  VirtualMachineScaleSetsRedeployResponse,
-  VirtualMachineScaleSetsRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetsRedeployRequest,
-  output: VirtualMachineScaleSetsRedeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VirtualMachineScaleSetsReimageError = AzureOpError;
 /** Reimages (upgrade the operating system) one or more virtual machines in a VM scale set which don't have a ephemeral OS disk, for virtual machines who have a ephemeral OS disk the virtual machine is reset to initial state. */
 export const VirtualMachineScaleSetsReimage: API.OperationMethod<
@@ -26090,21 +26356,6 @@ export const VirtualMachineScaleSetsReimageAll: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetsScaleOutError = AzureOpError;
-/** Scales out one or more virtual machines in a VM scale set. */
-export const VirtualMachineScaleSetsScaleOut: API.OperationMethod<
-  VirtualMachineScaleSetsScaleOutRequest,
-  VirtualMachineScaleSetsScaleOutResponse,
-  VirtualMachineScaleSetsScaleOutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetsScaleOutRequest,
-  output: VirtualMachineScaleSetsScaleOutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdateError =
   AzureOpError;
 /** The operation to create or update the VMSS VM diagnostic run command. */
@@ -26116,70 +26367,6 @@ export const VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdate: API.Op
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdateRequest,
   output: VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteError =
-  AzureOpError;
-/** The operation to delete the VMSS VM diagnostic run command. */
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsDelete: API.OperationMethod<
-  VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteRequest,
-  VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteResponse,
-  VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteRequest,
-  output: VirtualMachineScaleSetVMDiagnosticRunCommandsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMDiagnosticRunCommandsGetError =
-  AzureOpError;
-/** The operation to get the VMSS VM diagnostic run command. */
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsGet: API.OperationMethod<
-  VirtualMachineScaleSetVMDiagnosticRunCommandsGetRequest,
-  VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponse,
-  VirtualMachineScaleSetVMDiagnosticRunCommandsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMDiagnosticRunCommandsGetRequest,
-  output: VirtualMachineScaleSetVMDiagnosticRunCommandsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMDiagnosticRunCommandsListError =
-  AzureOpError;
-/** The operation to get all diagnostic run commands of an instance in Virtual Machine Scaleset. */
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsList: API.OperationMethod<
-  VirtualMachineScaleSetVMDiagnosticRunCommandsListRequest,
-  VirtualMachineDiagnosticRunCommandsListResult,
-  VirtualMachineScaleSetVMDiagnosticRunCommandsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMDiagnosticRunCommandsListRequest,
-  output: VirtualMachineDiagnosticRunCommandsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateError =
-  AzureOpError;
-/** The operation to update the VMSS VM diagnostic run command. */
-export const VirtualMachineScaleSetVMDiagnosticRunCommandsUpdate: API.OperationMethod<
-  VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequest,
-  VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponse,
-  VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateRequest,
-  output: VirtualMachineScaleSetVMDiagnosticRunCommandsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26201,66 +26388,6 @@ export const VirtualMachineScaleSetVMExtensionsCreateOrUpdate: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMExtensionsDeleteError = AzureOpError;
-/** The operation to delete the VMSS VM extension. */
-export const VirtualMachineScaleSetVMExtensionsDelete: API.OperationMethod<
-  VirtualMachineScaleSetVMExtensionsDeleteRequest,
-  VirtualMachineScaleSetVMExtensionsDeleteResponse,
-  VirtualMachineScaleSetVMExtensionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMExtensionsDeleteRequest,
-  output: VirtualMachineScaleSetVMExtensionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMExtensionsGetError = AzureOpError;
-/** The operation to get the VMSS VM extension. */
-export const VirtualMachineScaleSetVMExtensionsGet: API.OperationMethod<
-  VirtualMachineScaleSetVMExtensionsGetRequest,
-  VirtualMachineScaleSetVMExtensionsGetResponse,
-  VirtualMachineScaleSetVMExtensionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMExtensionsGetRequest,
-  output: VirtualMachineScaleSetVMExtensionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMExtensionsListError = AzureOpError;
-/** The operation to get all extensions of an instance in Virtual Machine Scaleset. */
-export const VirtualMachineScaleSetVMExtensionsList: API.OperationMethod<
-  VirtualMachineScaleSetVMExtensionsListRequest,
-  VirtualMachineScaleSetVMExtensionsListResult,
-  VirtualMachineScaleSetVMExtensionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMExtensionsListRequest,
-  output: VirtualMachineScaleSetVMExtensionsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMExtensionsUpdateError = AzureOpError;
-/** The operation to update the VMSS VM extension. */
-export const VirtualMachineScaleSetVMExtensionsUpdate: API.OperationMethod<
-  VirtualMachineScaleSetVMExtensionsUpdateRequest,
-  VirtualMachineScaleSetVMExtensionsUpdateResponse,
-  VirtualMachineScaleSetVMExtensionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMExtensionsUpdateRequest,
-  output: VirtualMachineScaleSetVMExtensionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VirtualMachineScaleSetVMRunCommandsCreateOrUpdateError =
   AzureOpError;
 /** The operation to create or update the VMSS VM run command. */
@@ -26277,196 +26404,106 @@ export const VirtualMachineScaleSetVMRunCommandsCreateOrUpdate: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMRunCommandsDeleteError = AzureOpError;
-/** The operation to delete the VMSS VM run command. */
-export const VirtualMachineScaleSetVMRunCommandsDelete: API.OperationMethod<
-  VirtualMachineScaleSetVMRunCommandsDeleteRequest,
-  VirtualMachineScaleSetVMRunCommandsDeleteResponse,
-  VirtualMachineScaleSetVMRunCommandsDeleteError,
+export type VirtualMachineScaleSetVMsAttachDetachDataDisksError = AzureOpError;
+/** Attach and detach data disks to/from a virtual machine in a VM scale set. */
+export const VirtualMachineScaleSetVMsAttachDetachDataDisks: API.OperationMethod<
+  VirtualMachineScaleSetVMsAttachDetachDataDisksRequest,
+  StorageProfile,
+  VirtualMachineScaleSetVMsAttachDetachDataDisksError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMRunCommandsDeleteRequest,
-  output: VirtualMachineScaleSetVMRunCommandsDeleteResponse,
+  input: VirtualMachineScaleSetVMsAttachDetachDataDisksRequest,
+  output: StorageProfile,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMRunCommandsGetError = AzureOpError;
-/** The operation to get the VMSS VM run command. */
-export const VirtualMachineScaleSetVMRunCommandsGet: API.OperationMethod<
-  VirtualMachineScaleSetVMRunCommandsGetRequest,
-  VirtualMachineScaleSetVMRunCommandsGetResponse,
-  VirtualMachineScaleSetVMRunCommandsGetError,
+export type VirtualMachineScaleSetVMsDeallocateError = AzureOpError;
+/** Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and releases the compute resources it uses. You are not billed for the compute resources of this virtual machine once it is deallocated. */
+export const VirtualMachineScaleSetVMsDeallocate: API.OperationMethod<
+  VirtualMachineScaleSetVMsDeallocateRequest,
+  VirtualMachineScaleSetVMsDeallocateResponse,
+  VirtualMachineScaleSetVMsDeallocateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMRunCommandsGetRequest,
-  output: VirtualMachineScaleSetVMRunCommandsGetResponse,
+  input: VirtualMachineScaleSetVMsDeallocateRequest,
+  output: VirtualMachineScaleSetVMsDeallocateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMRunCommandsListError = AzureOpError;
-/** The operation to get all run commands of an instance in Virtual Machine Scaleset. */
-export const VirtualMachineScaleSetVMRunCommandsList: API.OperationMethod<
-  VirtualMachineScaleSetVMRunCommandsListRequest,
-  ListVirtualMachineRunCommandsResult,
-  VirtualMachineScaleSetVMRunCommandsListError,
+export type VirtualMachineScaleSetVMsPerformMaintenanceError = AzureOpError;
+/** Performs maintenance on a virtual machine in a VM scale set. */
+export const VirtualMachineScaleSetVMsPerformMaintenance: API.OperationMethod<
+  VirtualMachineScaleSetVMsPerformMaintenanceRequest,
+  VirtualMachineScaleSetVMsPerformMaintenanceResponse,
+  VirtualMachineScaleSetVMsPerformMaintenanceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMRunCommandsListRequest,
-  output: ListVirtualMachineRunCommandsResult,
+  input: VirtualMachineScaleSetVMsPerformMaintenanceRequest,
+  output: VirtualMachineScaleSetVMsPerformMaintenanceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMRunCommandsUpdateError = AzureOpError;
-/** The operation to update the VMSS VM run command. */
-export const VirtualMachineScaleSetVMRunCommandsUpdate: API.OperationMethod<
-  VirtualMachineScaleSetVMRunCommandsUpdateRequest,
-  VirtualMachineScaleSetVMRunCommandsUpdateResponse,
-  VirtualMachineScaleSetVMRunCommandsUpdateError,
+export type VirtualMachineScaleSetVMsPowerOffError = AzureOpError;
+/** Power off (stop) a virtual machine in a VM scale set. Note that resources are still attached and you are getting charged for the resources. Instead, use deallocate to release resources and avoid charges. */
+export const VirtualMachineScaleSetVMsPowerOff: API.OperationMethod<
+  VirtualMachineScaleSetVMsPowerOffRequest,
+  VirtualMachineScaleSetVMsPowerOffResponse,
+  VirtualMachineScaleSetVMsPowerOffError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMRunCommandsUpdateRequest,
-  output: VirtualMachineScaleSetVMRunCommandsUpdateResponse,
+  input: VirtualMachineScaleSetVMsPowerOffRequest,
+  output: VirtualMachineScaleSetVMsPowerOffResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMsDeleteError = AzureOpError;
-/** Deletes a virtual machine from a VM scale set. */
-export const VirtualMachineScaleSetVMsDelete: API.OperationMethod<
-  VirtualMachineScaleSetVMsDeleteRequest,
-  VirtualMachineScaleSetVMsDeleteResponse,
-  VirtualMachineScaleSetVMsDeleteError,
+export type VirtualMachineScaleSetVMsReimageError = AzureOpError;
+/** Reimages (upgrade the operating system) a specific virtual machine in a VM scale set. */
+export const VirtualMachineScaleSetVMsReimage: API.OperationMethod<
+  VirtualMachineScaleSetVMsReimageRequest,
+  VirtualMachineScaleSetVMsReimageResponse,
+  VirtualMachineScaleSetVMsReimageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMsDeleteRequest,
-  output: VirtualMachineScaleSetVMsDeleteResponse,
+  input: VirtualMachineScaleSetVMsReimageRequest,
+  output: VirtualMachineScaleSetVMsReimageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMsGetError = AzureOpError;
-/** Gets a virtual machine from a VM scale set. */
-export const VirtualMachineScaleSetVMsGet: API.OperationMethod<
-  VirtualMachineScaleSetVMsGetRequest,
-  VirtualMachineScaleSetVMsGetResponse,
-  VirtualMachineScaleSetVMsGetError,
+export type VirtualMachineScaleSetVMsReimageAllError = AzureOpError;
+/** Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This operation is only supported for managed disks. */
+export const VirtualMachineScaleSetVMsReimageAll: API.OperationMethod<
+  VirtualMachineScaleSetVMsReimageAllRequest,
+  VirtualMachineScaleSetVMsReimageAllResponse,
+  VirtualMachineScaleSetVMsReimageAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMsGetRequest,
-  output: VirtualMachineScaleSetVMsGetResponse,
+  input: VirtualMachineScaleSetVMsReimageAllRequest,
+  output: VirtualMachineScaleSetVMsReimageAllResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachineScaleSetVMsGetInstanceViewError = AzureOpError;
-/** Gets the status of a virtual machine from a VM scale set. */
-export const VirtualMachineScaleSetVMsGetInstanceView: API.OperationMethod<
-  VirtualMachineScaleSetVMsGetInstanceViewRequest,
-  VirtualMachineScaleSetVMInstanceView,
-  VirtualMachineScaleSetVMsGetInstanceViewError,
+export type VirtualMachineScaleSetVMsSimulateEvictionError = AzureOpError;
+/** The operation to simulate the eviction of spot virtual machine in a VM scale set. */
+export const VirtualMachineScaleSetVMsSimulateEviction: API.OperationMethod<
+  VirtualMachineScaleSetVMsSimulateEvictionRequest,
+  VirtualMachineScaleSetVMsSimulateEvictionResponse,
+  VirtualMachineScaleSetVMsSimulateEvictionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMsGetInstanceViewRequest,
-  output: VirtualMachineScaleSetVMInstanceView,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMsListError = AzureOpError;
-/** Gets a list of all virtual machines in a VM scale sets. */
-export const VirtualMachineScaleSetVMsList: API.OperationMethod<
-  VirtualMachineScaleSetVMsListRequest,
-  VirtualMachineScaleSetVMListResult,
-  VirtualMachineScaleSetVMsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMsListRequest,
-  output: VirtualMachineScaleSetVMListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMsRestartError = AzureOpError;
-/** Restarts a virtual machine in a VM scale set. */
-export const VirtualMachineScaleSetVMsRestart: API.OperationMethod<
-  VirtualMachineScaleSetVMsRestartRequest,
-  VirtualMachineScaleSetVMsRestartResponse,
-  VirtualMachineScaleSetVMsRestartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMsRestartRequest,
-  output: VirtualMachineScaleSetVMsRestartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMsStartError = AzureOpError;
-/** Starts a virtual machine in a VM scale set. */
-export const VirtualMachineScaleSetVMsStart: API.OperationMethod<
-  VirtualMachineScaleSetVMsStartRequest,
-  VirtualMachineScaleSetVMsStartResponse,
-  VirtualMachineScaleSetVMsStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMsStartRequest,
-  output: VirtualMachineScaleSetVMsStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineScaleSetVMsUpdateError = AzureOpError;
-/** Updates a virtual machine of a VM scale set. */
-export const VirtualMachineScaleSetVMsUpdate: API.OperationMethod<
-  VirtualMachineScaleSetVMsUpdateRequest,
-  VirtualMachineScaleSetVMsUpdateResponse,
-  VirtualMachineScaleSetVMsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineScaleSetVMsUpdateRequest,
-  output: VirtualMachineScaleSetVMsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesCaptureError = AzureOpError;
-/** Captures the VM by copying virtual hard disks of the VM and outputs a template that can be used to create similar VMs. */
-export const VirtualMachinesCapture: API.OperationMethod<
-  VirtualMachinesCaptureRequest,
-  VirtualMachinesCaptureResponse,
-  VirtualMachinesCaptureError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesCaptureRequest,
-  output: VirtualMachinesCaptureResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesConvertToManagedDisksError = AzureOpError;
-/** Converts virtual machine disks from blob-based to managed disks. Virtual machine must be stop-deallocated before invoking this operation. */
-export const VirtualMachinesConvertToManagedDisks: API.OperationMethod<
-  VirtualMachinesConvertToManagedDisksRequest,
-  VirtualMachinesConvertToManagedDisksResponse,
-  VirtualMachinesConvertToManagedDisksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesConvertToManagedDisksRequest,
-  output: VirtualMachinesConvertToManagedDisksResponse,
+  input: VirtualMachineScaleSetVMsSimulateEvictionRequest,
+  output: VirtualMachineScaleSetVMsSimulateEvictionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26512,21 +26549,6 @@ export const VirtualMachinesGeneralize: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachinesGeneralizeRequest,
   output: VirtualMachinesGeneralizeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesInstallPatchesError = AzureOpError;
-/** Installs patches on the VM. */
-export const VirtualMachinesInstallPatches: API.OperationMethod<
-  VirtualMachinesInstallPatchesRequest,
-  VirtualMachineInstallPatchesResult,
-  VirtualMachinesInstallPatchesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesInstallPatchesRequest,
-  output: VirtualMachineInstallPatchesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -26592,21 +26614,6 @@ export const VirtualMachinesReapply: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VirtualMachinesRedeployError = AzureOpError;
-/** Shuts down the virtual machine, moves it to a new node, and powers it back on. */
-export const VirtualMachinesRedeploy: API.OperationMethod<
-  VirtualMachinesRedeployRequest,
-  VirtualMachinesRedeployResponse,
-  VirtualMachinesRedeployError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesRedeployRequest,
-  output: VirtualMachinesRedeployResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VirtualMachinesReimageError = AzureOpError;
 /** Reimages (upgrade the operating system) a virtual machine which don't have a ephemeral OS disk, for virtual machines who have a ephemeral OS disk the virtual machine is reset to initial state. NOTE: The retaining of old OS disk depends on the value of deleteOption of OS disk. If deleteOption is detach, the old OS disk will be preserved after reimage. If deleteOption is delete, the old OS disk will be deleted after reimage. The deleteOption of the OS disk should be updated accordingly before performing the reimage. */
 export const VirtualMachinesReimage: API.OperationMethod<
@@ -26617,36 +26624,6 @@ export const VirtualMachinesReimage: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachinesReimageRequest,
   output: VirtualMachinesReimageResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesRetrieveBootDiagnosticsDataError = AzureOpError;
-/** The operation to retrieve SAS URIs for a virtual machine's boot diagnostic logs. */
-export const VirtualMachinesRetrieveBootDiagnosticsData: API.OperationMethod<
-  VirtualMachinesRetrieveBootDiagnosticsDataRequest,
-  RetrieveBootDiagnosticsDataResult,
-  VirtualMachinesRetrieveBootDiagnosticsDataError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesRetrieveBootDiagnosticsDataRequest,
-  output: RetrieveBootDiagnosticsDataResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesRunCommandError = AzureOpError;
-/** Run command on the VM. */
-export const VirtualMachinesRunCommand: API.OperationMethod<
-  VirtualMachinesRunCommandRequest,
-  RunCommandResult,
-  VirtualMachinesRunCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesRunCommandRequest,
-  output: RunCommandResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

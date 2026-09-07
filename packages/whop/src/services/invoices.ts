@@ -1164,6 +1164,18 @@ export const DeleteInvoiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteInvoiceResponse",
 }) as any as S.Schema<DeleteInvoiceResponse>;
 
+export interface GetInvoiceRequest {
+  /** The unique identifier of the invoice, or a secure token. */
+  id: string;
+}
+export const GetInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/invoices/{id}", code: 200 })),
+).annotate({
+  identifier: "GetInvoiceRequest",
+}) as any as S.Schema<GetInvoiceRequest>;
+
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
 export const Direction = /*@__PURE__*/ S.String;
@@ -1426,18 +1438,6 @@ export const ResendInvoiceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResendInvoiceResponse",
 }) as any as S.Schema<ResendInvoiceResponse>;
 
-export interface RetrieveInvoiceRequest {
-  /** The unique identifier of the invoice, or a secure token. */
-  id: string;
-}
-export const RetrieveInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/invoices/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveInvoiceRequest",
-}) as any as S.Schema<RetrieveInvoiceRequest>;
-
 /** Inline billing address to create or update a mailing address for this invoice. */
 export type UpdateInvoiceRequestBillingAddress =
   CreateInvoiceRequestBodyCase0BillingAddress;
@@ -1685,6 +1685,26 @@ export const deleteInvoice: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetInvoiceError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve invoice [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing invoice. Required permissions: - `invoice:basic:read` - `member:email:read` - `member:basic:read` - `payment:basic:read` */
+export const getInvoice: API.OperationMethod<
+  GetInvoiceRequest,
+  Invoice,
+  GetInvoiceError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInvoiceRequest,
+  output: Invoice,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListInvoiceError =
   | BadRequest
   | Forbidden
@@ -1772,26 +1792,6 @@ export const resendInvoice: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ResendInvoiceRequest,
   output: ResendInvoiceResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveInvoiceError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve invoice [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing invoice. Required permissions: - `invoice:basic:read` - `member:email:read` - `member:basic:read` - `payment:basic:read` */
-export const retrieveInvoice: API.OperationMethod<
-  RetrieveInvoiceRequest,
-  Invoice,
-  RetrieveInvoiceError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveInvoiceRequest,
-  output: Invoice,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,
   retry: Retry.Retry,

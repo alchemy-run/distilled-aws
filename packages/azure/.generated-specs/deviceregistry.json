@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.deviceregistry#DeleteSchemaVersion": {
@@ -84,13 +85,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceregistry#CreateSchemaVersionOrReplace": {
+    "com.azure.deviceregistry#SchemaVersionsCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateSchemaVersionOrReplaceRequest"
+        "target": "com.azure.deviceregistry#SchemaVersionsCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateSchemaVersionOrReplaceResponse"
+        "target": "com.azure.deviceregistry#SchemaVersionsCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -103,7 +104,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateSchemaVersionOrReplaceResponse": {
+    "com.azure.deviceregistry#SchemaVersionsCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -326,7 +327,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.deviceregistry#CreateSchemaVersionOrReplaceRequest": {
+    "com.azure.deviceregistry#SchemaVersionsCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -692,13 +693,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceregistry#CreateSchemaOrReplace": {
+    "com.azure.deviceregistry#SchemasCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateSchemaOrReplaceRequest"
+        "target": "com.azure.deviceregistry#SchemasCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateSchemaOrReplaceResponse"
+        "target": "com.azure.deviceregistry#SchemasCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -711,7 +712,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateSchemaOrReplaceResponse": {
+    "com.azure.deviceregistry#SchemasCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -847,7 +848,7 @@
         "smithy.api#documentation": "Defines the schema format."
       }
     },
-    "com.azure.deviceregistry#CreateSchemaOrReplaceRequest": {
+    "com.azure.deviceregistry#SchemasCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1259,7 +1260,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#SchemaRegistriesUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateSchemaRegistryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1278,7 +1279,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceregistry#SchemaRegistriesUpdateResponseIdentity",
+          "target": "com.azure.deviceregistry#UpdateSchemaRegistryResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -1288,7 +1289,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#SchemaRegistriesUpdateResponseIdentity": {
+    "com.azure.deviceregistry#UpdateSchemaRegistryResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1380,7 +1381,7 @@
         "smithy.api#documentation": "Defines the schema registry properties."
       }
     },
-    "com.azure.deviceregistry#SchemaRegistriesUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateSchemaRegistryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1420,13 +1421,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceregistry#SchemaRegistriesUpdateRequestIdentity",
+          "target": "com.azure.deviceregistry#UpdateSchemaRegistryRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#SchemaRegistriesUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateSchemaRegistryRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1462,7 +1463,7 @@
         "smithy.api#documentation": "The updatable properties of the SchemaRegistry."
       }
     },
-    "com.azure.deviceregistry#SchemaRegistriesUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateSchemaRegistryRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1474,7 +1475,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#SchemaRegistriesUpdateRequestIdentity": {
+    "com.azure.deviceregistry#UpdateSchemaRegistryRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -1488,13 +1489,13 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.deviceregistry#CreateSchemaRegistryOrReplace": {
+    "com.azure.deviceregistry#SchemaRegistriesCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateSchemaRegistryOrReplaceRequest"
+        "target": "com.azure.deviceregistry#SchemaRegistriesCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateSchemaRegistryOrReplaceResponse"
+        "target": "com.azure.deviceregistry#SchemaRegistriesCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1507,7 +1508,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateSchemaRegistryOrReplaceResponse": {
+    "com.azure.deviceregistry#SchemaRegistriesCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1602,7 +1603,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateSchemaRegistryOrReplaceRequest": {
+    "com.azure.deviceregistry#SchemaRegistriesCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1766,7 +1767,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#SchemaRegistriesGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetSchemaRegistryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1785,7 +1786,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceregistry#SchemaRegistriesGetResponseIdentity",
+          "target": "com.azure.deviceregistry#GetSchemaRegistryResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -1795,7 +1796,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#SchemaRegistriesGetResponseIdentity": {
+    "com.azure.deviceregistry#GetSchemaRegistryResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1821,7 +1822,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.deviceregistry#SchemaRegistriesGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetSchemaRegistryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2033,10 +2034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceregistry#NamespacesMigrate": {
+    "com.azure.deviceregistry#MigrateNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#NamespacesMigrateRequest"
+        "target": "com.azure.deviceregistry#MigrateNamespaceRequest"
       },
       "output": {
         "target": "com.azure.deviceregistry#NamespaceMigrateResponse"
@@ -2188,7 +2189,7 @@
         "smithy.api#documentation": "Result Type of Migrate Operation."
       }
     },
-    "com.azure.deviceregistry#NamespacesMigrateRequest": {
+    "com.azure.deviceregistry#MigrateNamespaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2222,7 +2223,7 @@
           }
         },
         "resourceIds": {
-          "target": "com.azure.deviceregistry#NamespacesMigrateRequestResourceIdsList",
+          "target": "com.azure.deviceregistry#MigrateNamespaceRequestResourceIdsList",
           "traits": {
             "smithy.api#documentation": "List of asset resources to be migrated."
           }
@@ -2232,7 +2233,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceregistry#NamespacesMigrateRequestResourceIdsList": {
+    "com.azure.deviceregistry#MigrateNamespaceRequestResourceIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2361,7 +2362,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredDeviceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2656,7 +2657,7 @@
         "smithy.api#documentation": "The method to authenticate the user of the client at the server."
       }
     },
-    "com.azure.deviceregistry#NamespaceDiscoveredDevicesUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceDiscoveredDeviceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2704,7 +2705,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredDeviceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2907,7 +2908,7 @@
         "smithy.api#documentation": "List of supported authentication methods supported by device for Inbound connections."
       }
     },
-    "com.azure.deviceregistry#NamespaceDiscoveredDevicesUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceDiscoveredDeviceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2919,13 +2920,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDiscoveredDeviceOrReplace": {
+    "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateNamespaceDiscoveredDeviceOrReplaceRequest"
+        "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateNamespaceDiscoveredDeviceOrReplaceResponse"
+        "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2938,7 +2939,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDiscoveredDeviceOrReplaceResponse": {
+    "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3008,7 +3009,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDiscoveredDeviceOrReplaceRequest": {
+    "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3209,7 +3210,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredDeviceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3239,7 +3240,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#NamespaceDiscoveredDevicesGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetNamespaceDiscoveredDeviceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3548,7 +3549,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4398,7 +4399,7 @@
         "smithy.api#documentation": "Defines which device and endpoint to use for this asset"
       }
     },
-    "com.azure.deviceregistry#NamespaceDiscoveredAssetsUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceDiscoveredAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4446,7 +4447,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredAssetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4730,7 +4731,7 @@
         "smithy.api#documentation": "Defines which device and endpoint to use for this asset"
       }
     },
-    "com.azure.deviceregistry#NamespaceDiscoveredAssetsUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceDiscoveredAssetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4742,13 +4743,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDiscoveredAssetOrReplace": {
+    "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateNamespaceDiscoveredAssetOrReplaceRequest"
+        "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateNamespaceDiscoveredAssetOrReplaceResponse"
+        "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4761,7 +4762,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDiscoveredAssetOrReplaceResponse": {
+    "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4831,7 +4832,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDiscoveredAssetOrReplaceRequest": {
+    "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5213,7 +5214,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5243,7 +5244,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#NamespaceDiscoveredAssetsGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetNamespaceDiscoveredAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5552,7 +5553,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDevicesUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceDeviceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6128,7 +6129,7 @@
         "smithy.api#documentation": "Defines the method to authenticate the user of the client at the server."
       }
     },
-    "com.azure.deviceregistry#NamespaceDevicesUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceDeviceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6176,7 +6177,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDevicesUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceDeviceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6455,7 +6456,7 @@
         "smithy.api#documentation": "Defines the method to authenticate the user of the client at the server."
       }
     },
-    "com.azure.deviceregistry#NamespaceDevicesUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceDeviceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6467,13 +6468,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDeviceOrReplace": {
+    "com.azure.deviceregistry#NamespaceDevicesCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateNamespaceDeviceOrReplaceRequest"
+        "target": "com.azure.deviceregistry#NamespaceDevicesCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateNamespaceDeviceOrReplaceResponse"
+        "target": "com.azure.deviceregistry#NamespaceDevicesCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6486,7 +6487,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDeviceOrReplaceResponse": {
+    "com.azure.deviceregistry#NamespaceDevicesCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6561,7 +6562,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceDeviceOrReplaceRequest": {
+    "com.azure.deviceregistry#NamespaceDevicesCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6759,7 +6760,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceDevicesGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetNamespaceDeviceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6794,7 +6795,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#NamespaceDevicesGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetNamespaceDeviceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7002,10 +7003,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceregistry#NamespaceAssetsExecuteAction": {
+    "com.azure.deviceregistry#ExecuteNamespaceAssetAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#NamespaceAssetsExecuteActionRequest"
+        "target": "com.azure.deviceregistry#ExecuteNamespaceAssetActionRequest"
       },
       "output": {
         "target": "com.azure.deviceregistry#NamespaceAssetExecuteActionResponse"
@@ -7101,7 +7102,7 @@
         "smithy.api#documentation": "Status of the management action execution."
       }
     },
-    "com.azure.deviceregistry#NamespaceAssetsExecuteActionRequest": {
+    "com.azure.deviceregistry#ExecuteNamespaceAssetActionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7151,7 +7152,7 @@
           }
         },
         "payload": {
-          "target": "com.azure.deviceregistry#NamespaceAssetsExecuteActionRequestPayloadMap",
+          "target": "com.azure.deviceregistry#ExecuteNamespaceAssetActionRequestPayloadMap",
           "traits": {
             "smithy.api#documentation": "Payload required for executing the management action."
           }
@@ -7161,7 +7162,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceregistry#NamespaceAssetsExecuteActionRequestPayloadMap": {
+    "com.azure.deviceregistry#ExecuteNamespaceAssetActionRequestPayloadMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7279,7 +7280,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceAssetsUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8274,7 +8275,7 @@
         "smithy.api#documentation": "URIs or type definition IDs."
       }
     },
-    "com.azure.deviceregistry#NamespaceAssetsUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8322,7 +8323,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceAssetsUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceAssetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8574,7 +8575,7 @@
         "smithy.api#documentation": "URIs or type definition IDs."
       }
     },
-    "com.azure.deviceregistry#NamespaceAssetsUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceAssetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8586,13 +8587,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceAssetOrReplace": {
+    "com.azure.deviceregistry#NamespaceAssetsCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateNamespaceAssetOrReplaceRequest"
+        "target": "com.azure.deviceregistry#NamespaceAssetsCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateNamespaceAssetOrReplaceResponse"
+        "target": "com.azure.deviceregistry#NamespaceAssetsCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8605,7 +8606,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceAssetOrReplaceResponse": {
+    "com.azure.deviceregistry#NamespaceAssetsCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8675,7 +8676,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceAssetOrReplaceRequest": {
+    "com.azure.deviceregistry#NamespaceAssetsCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9064,7 +9065,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespaceAssetsGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetNamespaceAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9094,7 +9095,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#NamespaceAssetsGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetNamespaceAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9395,7 +9396,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespacesUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9414,7 +9415,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceregistry#NamespacesUpdateResponseIdentity",
+          "target": "com.azure.deviceregistry#UpdateNamespaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -9424,7 +9425,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#NamespacesUpdateResponseIdentity": {
+    "com.azure.deviceregistry#UpdateNamespaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -9597,7 +9598,7 @@
         "smithy.api#documentation": "Namespace messaging endpoint model used by a device to connect to a service."
       }
     },
-    "com.azure.deviceregistry#NamespacesUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9637,13 +9638,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceregistry#NamespacesUpdateRequestIdentity",
+          "target": "com.azure.deviceregistry#UpdateNamespaceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespacesUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateNamespaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9679,7 +9680,7 @@
         "smithy.api#documentation": "The updatable properties of the Namespace."
       }
     },
-    "com.azure.deviceregistry#NamespacesUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateNamespaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9691,7 +9692,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#NamespacesUpdateRequestIdentity": {
+    "com.azure.deviceregistry#UpdateNamespaceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -9705,13 +9706,13 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceOrReplace": {
+    "com.azure.deviceregistry#NamespacesCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateNamespaceOrReplaceRequest"
+        "target": "com.azure.deviceregistry#NamespacesCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateNamespaceOrReplaceResponse"
+        "target": "com.azure.deviceregistry#NamespacesCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9724,7 +9725,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceOrReplaceResponse": {
+    "com.azure.deviceregistry#NamespacesCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9819,7 +9820,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateNamespaceOrReplaceRequest": {
+    "com.azure.deviceregistry#NamespacesCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9969,7 +9970,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#NamespacesGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9988,7 +9989,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceregistry#NamespacesGetResponseIdentity",
+          "target": "com.azure.deviceregistry#GetNamespaceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -9998,7 +9999,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#NamespacesGetResponseIdentity": {
+    "com.azure.deviceregistry#GetNamespaceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10024,7 +10025,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.deviceregistry#NamespacesGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10334,7 +10335,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#AssetsUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10921,7 +10922,7 @@
         "smithy.api#documentation": "A set of key-value pairs that contain custom attributes set by the customer."
       }
     },
-    "com.azure.deviceregistry#AssetsUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10961,7 +10962,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#AssetsUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateAssetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11157,7 +11158,7 @@
         "smithy.api#documentation": "A set of key-value pairs that contain custom attributes set by the customer."
       }
     },
-    "com.azure.deviceregistry#AssetsUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateAssetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11169,13 +11170,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateAssetOrReplace": {
+    "com.azure.deviceregistry#AssetsCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateAssetOrReplaceRequest"
+        "target": "com.azure.deviceregistry#AssetsCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateAssetOrReplaceResponse"
+        "target": "com.azure.deviceregistry#AssetsCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11188,7 +11189,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateAssetOrReplaceResponse": {
+    "com.azure.deviceregistry#AssetsCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11258,7 +11259,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateAssetOrReplaceRequest": {
+    "com.azure.deviceregistry#AssetsCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11543,7 +11544,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#AssetsGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetAssetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11573,7 +11574,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#AssetsGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetAssetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11858,7 +11859,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#AssetEndpointProfilesUpdateResponseTagsMap",
+          "target": "com.azure.deviceregistry#UpdateAssetEndpointProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12057,7 +12058,7 @@
         "smithy.api#documentation": "Defines the method to authenticate the user of the client at the server."
       }
     },
-    "com.azure.deviceregistry#AssetEndpointProfilesUpdateResponseTagsMap": {
+    "com.azure.deviceregistry#UpdateAssetEndpointProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12097,7 +12098,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#AssetEndpointProfilesUpdateRequestTagsMap",
+          "target": "com.azure.deviceregistry#UpdateAssetEndpointProfileRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12211,7 +12212,7 @@
         "smithy.api#documentation": "Defines the method to authenticate the user of the client at the server."
       }
     },
-    "com.azure.deviceregistry#AssetEndpointProfilesUpdateRequestTagsMap": {
+    "com.azure.deviceregistry#UpdateAssetEndpointProfileRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12223,13 +12224,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateAssetEndpointProfileOrReplace": {
+    "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceregistry#CreateAssetEndpointProfileOrReplaceRequest"
+        "target": "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplaceRequest"
       },
       "output": {
-        "target": "com.azure.deviceregistry#CreateAssetEndpointProfileOrReplaceResponse"
+        "target": "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12242,7 +12243,7 @@
         "com.distilled.openapi#apiVersion": "2026-04-01"
       }
     },
-    "com.azure.deviceregistry#CreateAssetEndpointProfileOrReplaceResponse": {
+    "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12312,7 +12313,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceregistry#CreateAssetEndpointProfileOrReplaceRequest": {
+    "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12469,7 +12470,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceregistry#AssetEndpointProfilesGetResponseTagsMap",
+          "target": "com.azure.deviceregistry#GetAssetEndpointProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12499,7 +12500,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#AssetEndpointProfilesGetResponseTagsMap": {
+    "com.azure.deviceregistry#GetAssetEndpointProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12822,7 +12823,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.deviceregistry#OperationStatusGetResponseOperationsList",
+          "target": "com.azure.deviceregistry#GetOperationStatusResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -12914,7 +12915,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.deviceregistry#OperationStatusGetResponseOperationsList": {
+    "com.azure.deviceregistry#GetOperationStatusResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.deviceregistry#OperationStatusResult"
@@ -13330,7 +13331,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.deviceregistry#OperationsListResponseValueList",
+          "target": "com.azure.deviceregistry#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -13346,7 +13347,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceregistry#OperationsListResponseValueList": {
+    "com.azure.deviceregistry#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.deviceregistry#Operation"
@@ -13470,178 +13471,178 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.deviceregistry#DeleteSchemaVersion"
+          "target": "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplace"
         },
         {
-          "target": "com.azure.deviceregistry#CreateSchemaVersionOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetSchemaVersion"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaVersionBySchema"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteSchema"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateSchemaOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetSchema"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaBySchemaRegistry"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteSchemaRegistry"
-        },
-        {
-          "target": "com.azure.deviceregistry#UpdateSchemaRegistry"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateSchemaRegistryOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetSchemaRegistry"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaRegistryByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#NamespacesMigrate"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateNamespaceDiscoveredDeviceOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredDeviceByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateNamespaceDiscoveredAssetOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredAssetByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#UpdateNamespaceDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateNamespaceDeviceOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceDeviceByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#NamespaceAssetsExecuteAction"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#UpdateNamespaceAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateNamespaceAssetOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceAssetByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.deviceregistry#UpdateNamespace"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateNamespaceOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespace"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceByResourceGroup"
+          "target": "com.azure.deviceregistry#AssetsCreateOrReplace"
         },
         {
           "target": "com.azure.deviceregistry#DeleteAsset"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateAsset"
+          "target": "com.azure.deviceregistry#DeleteAssetEndpointProfile"
         },
         {
-          "target": "com.azure.deviceregistry#CreateAssetOrReplace"
+          "target": "com.azure.deviceregistry#DeleteNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteSchema"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteSchemaRegistry"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteSchemaVersion"
+        },
+        {
+          "target": "com.azure.deviceregistry#ExecuteNamespaceAssetAction"
         },
         {
           "target": "com.azure.deviceregistry#GetAsset"
         },
         {
-          "target": "com.azure.deviceregistry#ListAssetByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteAssetEndpointProfile"
-        },
-        {
-          "target": "com.azure.deviceregistry#UpdateAssetEndpointProfile"
-        },
-        {
-          "target": "com.azure.deviceregistry#CreateAssetEndpointProfileOrReplace"
-        },
-        {
           "target": "com.azure.deviceregistry#GetAssetEndpointProfile"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListAssetEndpointProfileByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaRegistryBySubscription"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceBySubscription"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetOperationStatus"
         },
         {
           "target": "com.azure.deviceregistry#GetBillingContainer"
         },
         {
-          "target": "com.azure.deviceregistry#ListBillingContainerBySubscription"
+          "target": "com.azure.deviceregistry#GetNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetSchema"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetSchemaRegistry"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetSchemaVersion"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListAssetByResourceGroup"
         },
         {
           "target": "com.azure.deviceregistry#ListAssetBySubscription"
         },
         {
+          "target": "com.azure.deviceregistry#ListAssetEndpointProfileByResourceGroup"
+        },
+        {
           "target": "com.azure.deviceregistry#ListAssetEndpointProfileBySubscription"
         },
         {
+          "target": "com.azure.deviceregistry#ListBillingContainerBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceAssetByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceDeviceByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredAssetByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredDeviceByResourceGroup"
+        },
+        {
           "target": "com.azure.deviceregistry#ListOperations"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListSchemaBySchemaRegistry"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListSchemaRegistryByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListSchemaRegistryBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListSchemaVersionBySchema"
+        },
+        {
+          "target": "com.azure.deviceregistry#MigrateNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespaceAssetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespaceDevicesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespacesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#SchemaRegistriesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#SchemasCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#SchemaVersionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateAssetEndpointProfile"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespaceAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespaceDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateSchemaRegistry"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.actions#GetActionsCacheRetentionLimitForEnterpriseRequest": {
@@ -6631,6 +6632,76 @@
         "smithy.api#documentation": "List self-hosted runners for an organization\n\nLists all self-hosted runners configured in an organization.\n\nAuthenticated users must have admin access to the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
       }
     },
+    "com.github.actions#GetRunnerVersionDeprecationForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The runner version to look up."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "runner_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runner version string.",
+            "smithy.api#required": {}
+          }
+        },
+        "registration_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which this runner version can no longer register. Null if no schedule is set.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "runtime_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which jobs will no longer be dispatched to runners on this version.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForOrgResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/actions/runners/deprecations/{version}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get runner version end-of-life schedule for an organization\n\nGets the end-of-life schedule for a specific runner version in an organization. Returns the runner version\nand the dates when registration and runtime support will end.\n\nAuthenticated users must have admin access to the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
     "com.github.actions#ListRunnerApplicationsForOrgRequest": {
       "type": "structure",
       "members": {
@@ -10497,7 +10568,7 @@
         "smithy.api#documentation": "Download job logs for a workflow run\n\nGets a redirect URL to download a plain text file of logs for a workflow job. This link expires after 1 minute. Look\nfor `Location:` in the response header to find the URL for the download.\n\nAnyone with read access to the repository can use this endpoint.\n\nIf the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
       }
     },
-    "com.github.actions#ReRunJobForWorkflowRunRequest": {
+    "com.github.actions#RunReRunJobForWorkflowRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -10541,7 +10612,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.actions#ReRunJobForWorkflowRunResponse": {
+    "com.github.actions#RunReRunJobForWorkflowResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10556,13 +10627,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.actions#ReRunJobForWorkflowRun": {
+    "com.github.actions#RunReRunJobForWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.github.actions#ReRunJobForWorkflowRunRequest"
+        "target": "com.github.actions#RunReRunJobForWorkflowRequest"
       },
       "output": {
-        "target": "com.github.actions#ReRunJobForWorkflowRunResponse"
+        "target": "com.github.actions#RunReRunJobForWorkflowResponse"
       },
       "errors": [
         {
@@ -11900,6 +11971,84 @@
           "code": 200
         },
         "smithy.api#documentation": "List self-hosted runners for a repository\n\nLists all self-hosted runners configured in a repository.\n\nAuthenticated users must have admin access to the repository to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The runner version to look up."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "runner_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runner version string.",
+            "smithy.api#required": {}
+          }
+        },
+        "registration_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which this runner version can no longer register. Null if no schedule is set.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "runtime_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which jobs will no longer be dispatched to runners on this version.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForRepoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/actions/runners/deprecations/{version}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get runner version end-of-life schedule for a repository\n\nGets the end-of-life schedule for a specific runner version in a repository. Returns the runner version\nand the dates when registration and runtime support will end.\n\nAuthenticated users must have admin access to the repository to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
       }
     },
     "com.github.actions#ListRunnerApplicationsForRepoRequest": {
@@ -18493,538 +18642,214 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.actions#GetActionsCacheRetentionLimitForEnterprise"
-        },
-        {
-          "target": "com.github.actions#SetActionsCacheRetentionLimitForEnterprise"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheStorageLimitForEnterprise"
-        },
-        {
-          "target": "com.github.actions#SetActionsCacheStorageLimitForEnterprise"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheRetentionLimitForOrganization"
-        },
-        {
-          "target": "com.github.actions#SetActionsCacheRetentionLimitForOrganization"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheStorageLimitForOrganization"
-        },
-        {
-          "target": "com.github.actions#SetActionsCacheStorageLimitForOrganization"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheUsageForOrg"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheUsageByRepoForOrg"
-        },
-        {
-          "target": "com.github.actions#ListHostedRunnersForOrg"
-        },
-        {
-          "target": "com.github.actions#CreateHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#ListCustomImagesForOrg"
-        },
-        {
-          "target": "com.github.actions#GetCustomImageForOrg"
-        },
-        {
-          "target": "com.github.actions#DeleteCustomImageFromOrg"
-        },
-        {
-          "target": "com.github.actions#ListCustomImageVersionsForOrg"
-        },
-        {
-          "target": "com.github.actions#GetCustomImageVersionForOrg"
-        },
-        {
-          "target": "com.github.actions#DeleteCustomImageVersionFromOrg"
-        },
-        {
-          "target": "com.github.actions#GetHostedRunnersGithubOwnedImagesForOrg"
-        },
-        {
-          "target": "com.github.actions#GetHostedRunnersPartnerImagesForOrg"
-        },
-        {
-          "target": "com.github.actions#GetHostedRunnersLimitsForOrg"
-        },
-        {
-          "target": "com.github.actions#GetHostedRunnersMachineSpecsForOrg"
-        },
-        {
-          "target": "com.github.actions#GetHostedRunnersPlatformsForOrg"
-        },
-        {
-          "target": "com.github.actions#GetHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#UpdateHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#DeleteHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#GetGithubActionsPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetGithubActionsPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#GetArtifactAndLogRetentionSettingsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetArtifactAndLogRetentionSettingsOrganization"
-        },
-        {
-          "target": "com.github.actions#GetForkPrContributorApprovalPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetForkPrContributorApprovalPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#GetPrivateRepoForkPrWorkflowsSettingsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetPrivateRepoForkPrWorkflowsSettingsOrganization"
-        },
-        {
-          "target": "com.github.actions#ListSelectedRepositoriesEnabledGithubActionsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetSelectedRepositoriesEnabledGithubActionsOrganization"
-        },
-        {
-          "target": "com.github.actions#EnableSelectedRepositoryGithubActionsOrganization"
-        },
-        {
-          "target": "com.github.actions#DisableSelectedRepositoryGithubActionsOrganization"
-        },
-        {
-          "target": "com.github.actions#GetAllowedActionsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetAllowedActionsOrganization"
-        },
-        {
-          "target": "com.github.actions#GetSelfHostedRunnersPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetSelfHostedRunnersPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#ListSelectedRepositoriesSelfHostedRunnersOrganization"
-        },
-        {
-          "target": "com.github.actions#SetSelectedRepositoriesSelfHostedRunnersOrganization"
-        },
-        {
-          "target": "com.github.actions#EnableSelectedRepositorySelfHostedRunnersOrganization"
-        },
-        {
-          "target": "com.github.actions#DisableSelectedRepositorySelfHostedRunnersOrganization"
-        },
-        {
-          "target": "com.github.actions#GetGithubActionsDefaultWorkflowPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#SetGithubActionsDefaultWorkflowPermissionsOrganization"
-        },
-        {
-          "target": "com.github.actions#ListSelfHostedRunnerGroupsForOrg"
-        },
-        {
-          "target": "com.github.actions#CreateSelfHostedRunnerGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#GetSelfHostedRunnerGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#UpdateSelfHostedRunnerGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#DeleteSelfHostedRunnerGroupFromOrg"
-        },
-        {
-          "target": "com.github.actions#ListGithubHostedRunnersInGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#ListRepoAccessToSelfHostedRunnerGroupInOrg"
-        },
-        {
-          "target": "com.github.actions#SetRepoAccessToSelfHostedRunnerGroupInOrg"
-        },
-        {
-          "target": "com.github.actions#AddRepoAccessToSelfHostedRunnerGroupInOrg"
-        },
-        {
-          "target": "com.github.actions#RemoveRepoAccessToSelfHostedRunnerGroupInOrg"
-        },
-        {
-          "target": "com.github.actions#ListSelfHostedRunnersInGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#SetSelfHostedRunnersInGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#AddSelfHostedRunnerToGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#RemoveSelfHostedRunnerFromGroupForOrg"
-        },
-        {
-          "target": "com.github.actions#ListSelfHostedRunnersForOrg"
-        },
-        {
-          "target": "com.github.actions#ListRunnerApplicationsForOrg"
-        },
-        {
-          "target": "com.github.actions#GenerateRunnerJitconfigForOrg"
-        },
-        {
-          "target": "com.github.actions#CreateRegistrationTokenForOrg"
-        },
-        {
-          "target": "com.github.actions#CreateRemoveTokenForOrg"
-        },
-        {
-          "target": "com.github.actions#GetSelfHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#DeleteSelfHostedRunnerFromOrg"
-        },
-        {
-          "target": "com.github.actions#ListLabelsForSelfHostedRunnerForOrg"
-        },
-        {
           "target": "com.github.actions#AddCustomLabelsToSelfHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#SetCustomLabelsForSelfHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#RemoveAllCustomLabelsFromSelfHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#RemoveCustomLabelFromSelfHostedRunnerForOrg"
-        },
-        {
-          "target": "com.github.actions#ListOrgSecrets"
-        },
-        {
-          "target": "com.github.actions#GetOrgPublicKey"
-        },
-        {
-          "target": "com.github.actions#GetOrgSecret"
-        },
-        {
-          "target": "com.github.actions#CreateOrUpdateOrgSecret"
-        },
-        {
-          "target": "com.github.actions#DeleteOrgSecret"
-        },
-        {
-          "target": "com.github.actions#ListSelectedReposForOrgSecret"
-        },
-        {
-          "target": "com.github.actions#SetSelectedReposForOrgSecret"
-        },
-        {
-          "target": "com.github.actions#AddSelectedRepoToOrgSecret"
-        },
-        {
-          "target": "com.github.actions#RemoveSelectedRepoFromOrgSecret"
-        },
-        {
-          "target": "com.github.actions#ListOrgVariables"
-        },
-        {
-          "target": "com.github.actions#CreateOrgVariable"
-        },
-        {
-          "target": "com.github.actions#GetOrgVariable"
-        },
-        {
-          "target": "com.github.actions#UpdateOrgVariable"
-        },
-        {
-          "target": "com.github.actions#DeleteOrgVariable"
-        },
-        {
-          "target": "com.github.actions#ListSelectedReposForOrgVariable"
-        },
-        {
-          "target": "com.github.actions#SetSelectedReposForOrgVariable"
-        },
-        {
-          "target": "com.github.actions#AddSelectedRepoToOrgVariable"
-        },
-        {
-          "target": "com.github.actions#RemoveSelectedRepoFromOrgVariable"
-        },
-        {
-          "target": "com.github.actions#ListArtifactsForRepo"
-        },
-        {
-          "target": "com.github.actions#GetArtifact"
-        },
-        {
-          "target": "com.github.actions#DeleteArtifact"
-        },
-        {
-          "target": "com.github.actions#DownloadArtifact"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheRetentionLimitForRepository"
-        },
-        {
-          "target": "com.github.actions#SetActionsCacheRetentionLimitForRepository"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheStorageLimitForRepository"
-        },
-        {
-          "target": "com.github.actions#SetActionsCacheStorageLimitForRepository"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheUsage"
-        },
-        {
-          "target": "com.github.actions#GetActionsCacheList"
-        },
-        {
-          "target": "com.github.actions#DeleteActionsCacheByKey"
-        },
-        {
-          "target": "com.github.actions#DeleteActionsCacheById"
-        },
-        {
-          "target": "com.github.actions#ListConcurrencyGroupsForRepository"
-        },
-        {
-          "target": "com.github.actions#GetConcurrencyGroupForRepository"
-        },
-        {
-          "target": "com.github.actions#GetJobForWorkflowRun"
-        },
-        {
-          "target": "com.github.actions#DownloadJobLogsForWorkflowRun"
-        },
-        {
-          "target": "com.github.actions#ReRunJobForWorkflowRun"
-        },
-        {
-          "target": "com.github.actions#GetCustomOidcSubClaimForRepo"
-        },
-        {
-          "target": "com.github.actions#SetCustomOidcSubClaimForRepo"
-        },
-        {
-          "target": "com.github.actions#ListRepoOrganizationSecrets"
-        },
-        {
-          "target": "com.github.actions#ListRepoOrganizationVariables"
-        },
-        {
-          "target": "com.github.actions#GetGithubActionsPermissionsRepository"
-        },
-        {
-          "target": "com.github.actions#SetGithubActionsPermissionsRepository"
-        },
-        {
-          "target": "com.github.actions#GetWorkflowAccessToRepository"
-        },
-        {
-          "target": "com.github.actions#SetWorkflowAccessToRepository"
-        },
-        {
-          "target": "com.github.actions#GetArtifactAndLogRetentionSettingsRepository"
-        },
-        {
-          "target": "com.github.actions#SetArtifactAndLogRetentionSettingsRepository"
-        },
-        {
-          "target": "com.github.actions#GetForkPrContributorApprovalPermissionsRepository"
-        },
-        {
-          "target": "com.github.actions#SetForkPrContributorApprovalPermissionsRepository"
-        },
-        {
-          "target": "com.github.actions#GetPrivateRepoForkPrWorkflowsSettingsRepository"
-        },
-        {
-          "target": "com.github.actions#SetPrivateRepoForkPrWorkflowsSettingsRepository"
-        },
-        {
-          "target": "com.github.actions#GetAllowedActionsRepository"
-        },
-        {
-          "target": "com.github.actions#SetAllowedActionsRepository"
-        },
-        {
-          "target": "com.github.actions#GetGithubActionsDefaultWorkflowPermissionsRepository"
-        },
-        {
-          "target": "com.github.actions#SetGithubActionsDefaultWorkflowPermissionsRepository"
-        },
-        {
-          "target": "com.github.actions#ListSelfHostedRunnersForRepo"
-        },
-        {
-          "target": "com.github.actions#ListRunnerApplicationsForRepo"
-        },
-        {
-          "target": "com.github.actions#GenerateRunnerJitconfigForRepo"
-        },
-        {
-          "target": "com.github.actions#CreateRegistrationTokenForRepo"
-        },
-        {
-          "target": "com.github.actions#CreateRemoveTokenForRepo"
-        },
-        {
-          "target": "com.github.actions#GetSelfHostedRunnerForRepo"
-        },
-        {
-          "target": "com.github.actions#DeleteSelfHostedRunnerFromRepo"
-        },
-        {
-          "target": "com.github.actions#ListLabelsForSelfHostedRunnerForRepo"
         },
         {
           "target": "com.github.actions#AddCustomLabelsToSelfHostedRunnerForRepo"
         },
         {
-          "target": "com.github.actions#SetCustomLabelsForSelfHostedRunnerForRepo"
+          "target": "com.github.actions#AddRepoAccessToSelfHostedRunnerGroupInOrg"
         },
         {
-          "target": "com.github.actions#RemoveAllCustomLabelsFromSelfHostedRunnerForRepo"
+          "target": "com.github.actions#AddSelectedRepoToOrgSecret"
         },
         {
-          "target": "com.github.actions#RemoveCustomLabelFromSelfHostedRunnerForRepo"
+          "target": "com.github.actions#AddSelectedRepoToOrgVariable"
         },
         {
-          "target": "com.github.actions#ListWorkflowRunsForRepo"
-        },
-        {
-          "target": "com.github.actions#GetWorkflowRun"
-        },
-        {
-          "target": "com.github.actions#DeleteWorkflowRun"
-        },
-        {
-          "target": "com.github.actions#GetReviewsForRun"
+          "target": "com.github.actions#AddSelfHostedRunnerToGroupForOrg"
         },
         {
           "target": "com.github.actions#ApproveWorkflowRun"
         },
         {
-          "target": "com.github.actions#ListWorkflowRunArtifacts"
-        },
-        {
-          "target": "com.github.actions#GetWorkflowRunAttempt"
-        },
-        {
-          "target": "com.github.actions#ListJobsForWorkflowRunAttempt"
-        },
-        {
-          "target": "com.github.actions#DownloadWorkflowRunAttemptLogs"
-        },
-        {
           "target": "com.github.actions#CancelWorkflowRun"
         },
         {
-          "target": "com.github.actions#ListConcurrencyGroupsForWorkflowRun"
+          "target": "com.github.actions#CreateEnvironmentVariable"
         },
         {
-          "target": "com.github.actions#ReviewCustomGatesForRun"
+          "target": "com.github.actions#CreateHostedRunnerForOrg"
         },
         {
-          "target": "com.github.actions#ForceCancelWorkflowRun"
+          "target": "com.github.actions#CreateOrgVariable"
         },
         {
-          "target": "com.github.actions#ListJobsForWorkflowRun"
+          "target": "com.github.actions#CreateOrUpdateEnvironmentSecret"
         },
         {
-          "target": "com.github.actions#DownloadWorkflowRunLogs"
-        },
-        {
-          "target": "com.github.actions#DeleteWorkflowRunLogs"
-        },
-        {
-          "target": "com.github.actions#GetPendingDeploymentsForRun"
-        },
-        {
-          "target": "com.github.actions#ReviewPendingDeploymentsForRun"
-        },
-        {
-          "target": "com.github.actions#ReRunWorkflow"
-        },
-        {
-          "target": "com.github.actions#ReRunWorkflowFailedJobs"
-        },
-        {
-          "target": "com.github.actions#GetWorkflowRunUsage"
-        },
-        {
-          "target": "com.github.actions#ListRepoSecrets"
-        },
-        {
-          "target": "com.github.actions#GetRepoPublicKey"
-        },
-        {
-          "target": "com.github.actions#GetRepoSecret"
+          "target": "com.github.actions#CreateOrUpdateOrgSecret"
         },
         {
           "target": "com.github.actions#CreateOrUpdateRepoSecret"
         },
         {
-          "target": "com.github.actions#DeleteRepoSecret"
+          "target": "com.github.actions#CreateRegistrationTokenForOrg"
         },
         {
-          "target": "com.github.actions#ListRepoVariables"
+          "target": "com.github.actions#CreateRegistrationTokenForRepo"
+        },
+        {
+          "target": "com.github.actions#CreateRemoveTokenForOrg"
+        },
+        {
+          "target": "com.github.actions#CreateRemoveTokenForRepo"
         },
         {
           "target": "com.github.actions#CreateRepoVariable"
         },
         {
-          "target": "com.github.actions#GetRepoVariable"
-        },
-        {
-          "target": "com.github.actions#UpdateRepoVariable"
-        },
-        {
-          "target": "com.github.actions#DeleteRepoVariable"
-        },
-        {
-          "target": "com.github.actions#ListRepoWorkflows"
-        },
-        {
-          "target": "com.github.actions#GetWorkflow"
-        },
-        {
-          "target": "com.github.actions#DisableWorkflow"
+          "target": "com.github.actions#CreateSelfHostedRunnerGroupForOrg"
         },
         {
           "target": "com.github.actions#CreateWorkflowDispatch"
         },
         {
+          "target": "com.github.actions#DeleteActionsCacheById"
+        },
+        {
+          "target": "com.github.actions#DeleteActionsCacheByKey"
+        },
+        {
+          "target": "com.github.actions#DeleteArtifact"
+        },
+        {
+          "target": "com.github.actions#DeleteCustomImageFromOrg"
+        },
+        {
+          "target": "com.github.actions#DeleteCustomImageVersionFromOrg"
+        },
+        {
+          "target": "com.github.actions#DeleteEnvironmentSecret"
+        },
+        {
+          "target": "com.github.actions#DeleteEnvironmentVariable"
+        },
+        {
+          "target": "com.github.actions#DeleteHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#DeleteOrgSecret"
+        },
+        {
+          "target": "com.github.actions#DeleteOrgVariable"
+        },
+        {
+          "target": "com.github.actions#DeleteRepoSecret"
+        },
+        {
+          "target": "com.github.actions#DeleteRepoVariable"
+        },
+        {
+          "target": "com.github.actions#DeleteSelfHostedRunnerFromOrg"
+        },
+        {
+          "target": "com.github.actions#DeleteSelfHostedRunnerFromRepo"
+        },
+        {
+          "target": "com.github.actions#DeleteSelfHostedRunnerGroupFromOrg"
+        },
+        {
+          "target": "com.github.actions#DeleteWorkflowRun"
+        },
+        {
+          "target": "com.github.actions#DeleteWorkflowRunLogs"
+        },
+        {
+          "target": "com.github.actions#DisableSelectedRepositoryGithubActionsOrganization"
+        },
+        {
+          "target": "com.github.actions#DisableSelectedRepositorySelfHostedRunnersOrganization"
+        },
+        {
+          "target": "com.github.actions#DisableWorkflow"
+        },
+        {
+          "target": "com.github.actions#DownloadArtifact"
+        },
+        {
+          "target": "com.github.actions#DownloadJobLogsForWorkflowRun"
+        },
+        {
+          "target": "com.github.actions#DownloadWorkflowRunAttemptLogs"
+        },
+        {
+          "target": "com.github.actions#DownloadWorkflowRunLogs"
+        },
+        {
+          "target": "com.github.actions#EnableSelectedRepositoryGithubActionsOrganization"
+        },
+        {
+          "target": "com.github.actions#EnableSelectedRepositorySelfHostedRunnersOrganization"
+        },
+        {
           "target": "com.github.actions#EnableWorkflow"
         },
         {
-          "target": "com.github.actions#ListWorkflowRuns"
+          "target": "com.github.actions#ForceCancelWorkflowRun"
         },
         {
-          "target": "com.github.actions#GetWorkflowUsage"
+          "target": "com.github.actions#GenerateRunnerJitconfigForOrg"
         },
         {
-          "target": "com.github.actions#ListEnvironmentSecrets"
+          "target": "com.github.actions#GenerateRunnerJitconfigForRepo"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheList"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheRetentionLimitForEnterprise"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheRetentionLimitForOrganization"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheRetentionLimitForRepository"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheStorageLimitForEnterprise"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheStorageLimitForOrganization"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheStorageLimitForRepository"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheUsage"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheUsageByRepoForOrg"
+        },
+        {
+          "target": "com.github.actions#GetActionsCacheUsageForOrg"
+        },
+        {
+          "target": "com.github.actions#GetAllowedActionsOrganization"
+        },
+        {
+          "target": "com.github.actions#GetAllowedActionsRepository"
+        },
+        {
+          "target": "com.github.actions#GetArtifact"
+        },
+        {
+          "target": "com.github.actions#GetArtifactAndLogRetentionSettingsOrganization"
+        },
+        {
+          "target": "com.github.actions#GetArtifactAndLogRetentionSettingsRepository"
+        },
+        {
+          "target": "com.github.actions#GetConcurrencyGroupForRepository"
+        },
+        {
+          "target": "com.github.actions#GetCustomImageForOrg"
+        },
+        {
+          "target": "com.github.actions#GetCustomImageVersionForOrg"
+        },
+        {
+          "target": "com.github.actions#GetCustomOidcSubClaimForRepo"
         },
         {
           "target": "com.github.actions#GetEnvironmentPublicKey"
@@ -19033,25 +18858,355 @@
           "target": "com.github.actions#GetEnvironmentSecret"
         },
         {
-          "target": "com.github.actions#CreateOrUpdateEnvironmentSecret"
+          "target": "com.github.actions#GetEnvironmentVariable"
         },
         {
-          "target": "com.github.actions#DeleteEnvironmentSecret"
+          "target": "com.github.actions#GetForkPrContributorApprovalPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#GetForkPrContributorApprovalPermissionsRepository"
+        },
+        {
+          "target": "com.github.actions#GetGithubActionsDefaultWorkflowPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#GetGithubActionsDefaultWorkflowPermissionsRepository"
+        },
+        {
+          "target": "com.github.actions#GetGithubActionsPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#GetGithubActionsPermissionsRepository"
+        },
+        {
+          "target": "com.github.actions#GetHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#GetHostedRunnersGithubOwnedImagesForOrg"
+        },
+        {
+          "target": "com.github.actions#GetHostedRunnersLimitsForOrg"
+        },
+        {
+          "target": "com.github.actions#GetHostedRunnersMachineSpecsForOrg"
+        },
+        {
+          "target": "com.github.actions#GetHostedRunnersPartnerImagesForOrg"
+        },
+        {
+          "target": "com.github.actions#GetHostedRunnersPlatformsForOrg"
+        },
+        {
+          "target": "com.github.actions#GetJobForWorkflowRun"
+        },
+        {
+          "target": "com.github.actions#GetOrgPublicKey"
+        },
+        {
+          "target": "com.github.actions#GetOrgSecret"
+        },
+        {
+          "target": "com.github.actions#GetOrgVariable"
+        },
+        {
+          "target": "com.github.actions#GetPendingDeploymentsForRun"
+        },
+        {
+          "target": "com.github.actions#GetPrivateRepoForkPrWorkflowsSettingsOrganization"
+        },
+        {
+          "target": "com.github.actions#GetPrivateRepoForkPrWorkflowsSettingsRepository"
+        },
+        {
+          "target": "com.github.actions#GetRepoPublicKey"
+        },
+        {
+          "target": "com.github.actions#GetRepoSecret"
+        },
+        {
+          "target": "com.github.actions#GetRepoVariable"
+        },
+        {
+          "target": "com.github.actions#GetReviewsForRun"
+        },
+        {
+          "target": "com.github.actions#GetRunnerVersionDeprecationForOrg"
+        },
+        {
+          "target": "com.github.actions#GetRunnerVersionDeprecationForRepo"
+        },
+        {
+          "target": "com.github.actions#GetSelfHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#GetSelfHostedRunnerForRepo"
+        },
+        {
+          "target": "com.github.actions#GetSelfHostedRunnerGroupForOrg"
+        },
+        {
+          "target": "com.github.actions#GetSelfHostedRunnersPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#GetWorkflow"
+        },
+        {
+          "target": "com.github.actions#GetWorkflowAccessToRepository"
+        },
+        {
+          "target": "com.github.actions#GetWorkflowRun"
+        },
+        {
+          "target": "com.github.actions#GetWorkflowRunAttempt"
+        },
+        {
+          "target": "com.github.actions#GetWorkflowRunUsage"
+        },
+        {
+          "target": "com.github.actions#GetWorkflowUsage"
+        },
+        {
+          "target": "com.github.actions#ListArtifactsForRepo"
+        },
+        {
+          "target": "com.github.actions#ListConcurrencyGroupsForRepository"
+        },
+        {
+          "target": "com.github.actions#ListConcurrencyGroupsForWorkflowRun"
+        },
+        {
+          "target": "com.github.actions#ListCustomImagesForOrg"
+        },
+        {
+          "target": "com.github.actions#ListCustomImageVersionsForOrg"
+        },
+        {
+          "target": "com.github.actions#ListEnvironmentSecrets"
         },
         {
           "target": "com.github.actions#ListEnvironmentVariables"
         },
         {
-          "target": "com.github.actions#CreateEnvironmentVariable"
+          "target": "com.github.actions#ListGithubHostedRunnersInGroupForOrg"
         },
         {
-          "target": "com.github.actions#GetEnvironmentVariable"
+          "target": "com.github.actions#ListHostedRunnersForOrg"
+        },
+        {
+          "target": "com.github.actions#ListJobsForWorkflowRun"
+        },
+        {
+          "target": "com.github.actions#ListJobsForWorkflowRunAttempt"
+        },
+        {
+          "target": "com.github.actions#ListLabelsForSelfHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#ListLabelsForSelfHostedRunnerForRepo"
+        },
+        {
+          "target": "com.github.actions#ListOrgSecrets"
+        },
+        {
+          "target": "com.github.actions#ListOrgVariables"
+        },
+        {
+          "target": "com.github.actions#ListRepoAccessToSelfHostedRunnerGroupInOrg"
+        },
+        {
+          "target": "com.github.actions#ListRepoOrganizationSecrets"
+        },
+        {
+          "target": "com.github.actions#ListRepoOrganizationVariables"
+        },
+        {
+          "target": "com.github.actions#ListRepoSecrets"
+        },
+        {
+          "target": "com.github.actions#ListRepoVariables"
+        },
+        {
+          "target": "com.github.actions#ListRepoWorkflows"
+        },
+        {
+          "target": "com.github.actions#ListRunnerApplicationsForOrg"
+        },
+        {
+          "target": "com.github.actions#ListRunnerApplicationsForRepo"
+        },
+        {
+          "target": "com.github.actions#ListSelectedReposForOrgSecret"
+        },
+        {
+          "target": "com.github.actions#ListSelectedReposForOrgVariable"
+        },
+        {
+          "target": "com.github.actions#ListSelectedRepositoriesEnabledGithubActionsOrganization"
+        },
+        {
+          "target": "com.github.actions#ListSelectedRepositoriesSelfHostedRunnersOrganization"
+        },
+        {
+          "target": "com.github.actions#ListSelfHostedRunnerGroupsForOrg"
+        },
+        {
+          "target": "com.github.actions#ListSelfHostedRunnersForOrg"
+        },
+        {
+          "target": "com.github.actions#ListSelfHostedRunnersForRepo"
+        },
+        {
+          "target": "com.github.actions#ListSelfHostedRunnersInGroupForOrg"
+        },
+        {
+          "target": "com.github.actions#ListWorkflowRunArtifacts"
+        },
+        {
+          "target": "com.github.actions#ListWorkflowRuns"
+        },
+        {
+          "target": "com.github.actions#ListWorkflowRunsForRepo"
+        },
+        {
+          "target": "com.github.actions#RemoveAllCustomLabelsFromSelfHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#RemoveAllCustomLabelsFromSelfHostedRunnerForRepo"
+        },
+        {
+          "target": "com.github.actions#RemoveCustomLabelFromSelfHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#RemoveCustomLabelFromSelfHostedRunnerForRepo"
+        },
+        {
+          "target": "com.github.actions#RemoveRepoAccessToSelfHostedRunnerGroupInOrg"
+        },
+        {
+          "target": "com.github.actions#RemoveSelectedRepoFromOrgSecret"
+        },
+        {
+          "target": "com.github.actions#RemoveSelectedRepoFromOrgVariable"
+        },
+        {
+          "target": "com.github.actions#RemoveSelfHostedRunnerFromGroupForOrg"
+        },
+        {
+          "target": "com.github.actions#ReRunWorkflow"
+        },
+        {
+          "target": "com.github.actions#ReRunWorkflowFailedJobs"
+        },
+        {
+          "target": "com.github.actions#ReviewCustomGatesForRun"
+        },
+        {
+          "target": "com.github.actions#ReviewPendingDeploymentsForRun"
+        },
+        {
+          "target": "com.github.actions#RunReRunJobForWorkflow"
+        },
+        {
+          "target": "com.github.actions#SetActionsCacheRetentionLimitForEnterprise"
+        },
+        {
+          "target": "com.github.actions#SetActionsCacheRetentionLimitForOrganization"
+        },
+        {
+          "target": "com.github.actions#SetActionsCacheRetentionLimitForRepository"
+        },
+        {
+          "target": "com.github.actions#SetActionsCacheStorageLimitForEnterprise"
+        },
+        {
+          "target": "com.github.actions#SetActionsCacheStorageLimitForOrganization"
+        },
+        {
+          "target": "com.github.actions#SetActionsCacheStorageLimitForRepository"
+        },
+        {
+          "target": "com.github.actions#SetAllowedActionsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetAllowedActionsRepository"
+        },
+        {
+          "target": "com.github.actions#SetArtifactAndLogRetentionSettingsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetArtifactAndLogRetentionSettingsRepository"
+        },
+        {
+          "target": "com.github.actions#SetCustomLabelsForSelfHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#SetCustomLabelsForSelfHostedRunnerForRepo"
+        },
+        {
+          "target": "com.github.actions#SetCustomOidcSubClaimForRepo"
+        },
+        {
+          "target": "com.github.actions#SetForkPrContributorApprovalPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetForkPrContributorApprovalPermissionsRepository"
+        },
+        {
+          "target": "com.github.actions#SetGithubActionsDefaultWorkflowPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetGithubActionsDefaultWorkflowPermissionsRepository"
+        },
+        {
+          "target": "com.github.actions#SetGithubActionsPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetGithubActionsPermissionsRepository"
+        },
+        {
+          "target": "com.github.actions#SetPrivateRepoForkPrWorkflowsSettingsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetPrivateRepoForkPrWorkflowsSettingsRepository"
+        },
+        {
+          "target": "com.github.actions#SetRepoAccessToSelfHostedRunnerGroupInOrg"
+        },
+        {
+          "target": "com.github.actions#SetSelectedReposForOrgSecret"
+        },
+        {
+          "target": "com.github.actions#SetSelectedReposForOrgVariable"
+        },
+        {
+          "target": "com.github.actions#SetSelectedRepositoriesEnabledGithubActionsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetSelectedRepositoriesSelfHostedRunnersOrganization"
+        },
+        {
+          "target": "com.github.actions#SetSelfHostedRunnersInGroupForOrg"
+        },
+        {
+          "target": "com.github.actions#SetSelfHostedRunnersPermissionsOrganization"
+        },
+        {
+          "target": "com.github.actions#SetWorkflowAccessToRepository"
         },
         {
           "target": "com.github.actions#UpdateEnvironmentVariable"
         },
         {
-          "target": "com.github.actions#DeleteEnvironmentVariable"
+          "target": "com.github.actions#UpdateHostedRunnerForOrg"
+        },
+        {
+          "target": "com.github.actions#UpdateOrgVariable"
+        },
+        {
+          "target": "com.github.actions#UpdateRepoVariable"
+        },
+        {
+          "target": "com.github.actions#UpdateSelfHostedRunnerGroupForOrg"
         }
       ],
       "traits": {

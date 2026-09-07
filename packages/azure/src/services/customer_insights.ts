@@ -123,64 +123,6 @@ export const AuthorizationPoliciesCreateOrUpdateResponse =
     identifier: "AuthorizationPoliciesCreateOrUpdateResponse",
   }) as any as S.Schema<AuthorizationPoliciesCreateOrUpdateResponse>;
 
-export interface AuthorizationPoliciesRegeneratePrimaryKeyRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the hub. */
-  hubName: string;
-  /** The name of the policy. */
-  authorizationPolicyName: string;
-}
-export const AuthorizationPoliciesRegeneratePrimaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      hubName: S.String.pipe(T.Label()),
-      authorizationPolicyName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/authorizationPolicies/{authorizationPolicyName}/regeneratePrimaryKey",
-        code: 200,
-        apiVersion: "2017-04-26",
-      }),
-    ),
-  ).annotate({
-    identifier: "AuthorizationPoliciesRegeneratePrimaryKeyRequest",
-  }) as any as S.Schema<AuthorizationPoliciesRegeneratePrimaryKeyRequest>;
-
-export interface AuthorizationPoliciesRegenerateSecondaryKeyRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the hub. */
-  hubName: string;
-  /** The name of the policy. */
-  authorizationPolicyName: string;
-}
-export const AuthorizationPoliciesRegenerateSecondaryKeyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      hubName: S.String.pipe(T.Label()),
-      authorizationPolicyName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/authorizationPolicies/{authorizationPolicyName}/regenerateSecondaryKey",
-        code: 200,
-        apiVersion: "2017-04-26",
-      }),
-    ),
-  ).annotate({
-    identifier: "AuthorizationPoliciesRegenerateSecondaryKeyRequest",
-  }) as any as S.Schema<AuthorizationPoliciesRegenerateSecondaryKeyRequest>;
-
 /** Type of connector. */
 export type ConnectorType =
   | "None"
@@ -1237,11 +1179,11 @@ export const GetHubRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetHubRequest" }) as any as S.Schema<GetHubRequest>;
 
 /** Resource tags. */
-export type HubsGetResponseTagsMap = { [key: string]: string | undefined };
-export const HubsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetHubResponseTagsMap = { [key: string]: string | undefined };
+export const GetHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HubsGetResponseTagsMap>;
+) as any as S.Schema<GetHubResponseTagsMap>;
 
 /** Hub billing info. */
 export interface HubBillingInfoFormat {
@@ -1297,7 +1239,7 @@ export interface GetHubResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: HubsGetResponseTagsMap;
+  tags?: GetHubResponseTagsMap;
   properties?: HubPropertiesFormat;
 }
 export const GetHubResponse = /*@__PURE__*/ S.suspend(() =>
@@ -1306,98 +1248,10 @@ export const GetHubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(HubsGetResponseTagsMap),
+    tags: S.optional(GetHubResponseTagsMap),
     properties: S.optional(HubPropertiesFormat),
   }),
 ).annotate({ identifier: "GetHubResponse" }) as any as S.Schema<GetHubResponse>;
-
-export interface GetImageUploadUrlForDataRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the hub. */
-  hubName: string;
-  /** Type of entity. Can be Profile or Interaction. */
-  entityType?: string;
-  /** Name of the entity type. */
-  entityTypeName?: string;
-  /** Relative path of the image. */
-  relativePath?: string;
-}
-export const GetImageUploadUrlForDataRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    hubName: S.String.pipe(T.Label()),
-    entityType: S.optional(S.String),
-    entityTypeName: S.optional(S.String),
-    relativePath: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/images/getDataImageUploadUrl",
-      code: 200,
-      apiVersion: "2017-04-26",
-    }),
-  ),
-).annotate({
-  identifier: "GetImageUploadUrlForDataRequest",
-}) as any as S.Schema<GetImageUploadUrlForDataRequest>;
-
-/** The image definition. */
-export interface ImageDefinition {
-  /** Whether image exists already. */
-  imageExists?: boolean;
-  /** Content URL for the image blob. */
-  contentUrl?: string;
-  /** Relative path of the image. */
-  relativePath?: string;
-}
-export const ImageDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    imageExists: S.optional(S.Boolean),
-    contentUrl: S.optional(S.String),
-    relativePath: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImageDefinition",
-}) as any as S.Schema<ImageDefinition>;
-
-export interface GetImageUploadUrlForEntityTypeRequest {
-  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the hub. */
-  hubName: string;
-  /** Type of entity. Can be Profile or Interaction. */
-  entityType?: string;
-  /** Name of the entity type. */
-  entityTypeName?: string;
-  /** Relative path of the image. */
-  relativePath?: string;
-}
-export const GetImageUploadUrlForEntityTypeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      hubName: S.String.pipe(T.Label()),
-      entityType: S.optional(S.String),
-      entityTypeName: S.optional(S.String),
-      relativePath: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/images/getEntityTypeImageUploadUrl",
-        code: 200,
-        apiVersion: "2017-04-26",
-      }),
-    ),
-).annotate({
-  identifier: "GetImageUploadUrlForEntityTypeRequest",
-}) as any as S.Schema<GetImageUploadUrlForEntityTypeRequest>;
 
 export interface GetInteractionRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -2621,7 +2475,7 @@ export const PredictionModelStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "PredictionModelStatus",
 }) as any as S.Schema<PredictionModelStatus>;
 
-export interface GetPredictionTrainingResultRequest {
+export interface GetPredictionTrainingResultsRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -2631,7 +2485,7 @@ export interface GetPredictionTrainingResultRequest {
   /** The name of the Prediction. */
   predictionName: string;
 }
-export const GetPredictionTrainingResultRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPredictionTrainingResultsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2646,8 +2500,8 @@ export const GetPredictionTrainingResultRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetPredictionTrainingResultRequest",
-}) as any as S.Schema<GetPredictionTrainingResultRequest>;
+  identifier: "GetPredictionTrainingResultsRequest",
+}) as any as S.Schema<GetPredictionTrainingResultsRequest>;
 
 /** The definition of a prediction distribution. */
 export interface PredictionDistributionDefinitionDistributionsItem {
@@ -3053,15 +2907,15 @@ export const GetProfileEnrichingKpisRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProfileEnrichingKpisRequest",
 }) as any as S.Schema<GetProfileEnrichingKpisRequest>;
 
-export type ProfilesGetEnrichingKpisResponseBodyList = Array<KpiDefinition>;
-export const ProfilesGetEnrichingKpisResponseBodyList = /*@__PURE__*/ S.Array(
+export type GetProfileEnrichingKpisResponseBodyList = Array<KpiDefinition>;
+export const GetProfileEnrichingKpisResponseBodyList = /*@__PURE__*/ S.Array(
   KpiDefinition,
-) as any as S.Schema<ProfilesGetEnrichingKpisResponseBodyList>;
+) as any as S.Schema<GetProfileEnrichingKpisResponseBodyList>;
 
 export type GetProfileEnrichingKpisResponse =
-  ProfilesGetEnrichingKpisResponseBodyList;
+  GetProfileEnrichingKpisResponseBodyList;
 export const GetProfileEnrichingKpisResponse = /*@__PURE__*/ S.suspend(() =>
-  ProfilesGetEnrichingKpisResponseBodyList.pipe(T.RawResponseRoot()),
+  GetProfileEnrichingKpisResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "GetProfileEnrichingKpisResponse",
 }) as any as S.Schema<GetProfileEnrichingKpisResponse>;
@@ -3882,6 +3736,94 @@ export const HubsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "HubsCreateOrUpdateResponse",
 }) as any as S.Schema<HubsCreateOrUpdateResponse>;
+
+export interface ImagesGetUploadUrlForDataRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the hub. */
+  hubName: string;
+  /** Type of entity. Can be Profile or Interaction. */
+  entityType?: string;
+  /** Name of the entity type. */
+  entityTypeName?: string;
+  /** Relative path of the image. */
+  relativePath?: string;
+}
+export const ImagesGetUploadUrlForDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    hubName: S.String.pipe(T.Label()),
+    entityType: S.optional(S.String),
+    entityTypeName: S.optional(S.String),
+    relativePath: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/images/getDataImageUploadUrl",
+      code: 200,
+      apiVersion: "2017-04-26",
+    }),
+  ),
+).annotate({
+  identifier: "ImagesGetUploadUrlForDataRequest",
+}) as any as S.Schema<ImagesGetUploadUrlForDataRequest>;
+
+/** The image definition. */
+export interface ImageDefinition {
+  /** Whether image exists already. */
+  imageExists?: boolean;
+  /** Content URL for the image blob. */
+  contentUrl?: string;
+  /** Relative path of the image. */
+  relativePath?: string;
+}
+export const ImageDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    imageExists: S.optional(S.Boolean),
+    contentUrl: S.optional(S.String),
+    relativePath: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ImageDefinition",
+}) as any as S.Schema<ImageDefinition>;
+
+export interface ImagesGetUploadUrlForEntityTypeRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the hub. */
+  hubName: string;
+  /** Type of entity. Can be Profile or Interaction. */
+  entityType?: string;
+  /** Name of the entity type. */
+  entityTypeName?: string;
+  /** Relative path of the image. */
+  relativePath?: string;
+}
+export const ImagesGetUploadUrlForEntityTypeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      hubName: S.String.pipe(T.Label()),
+      entityType: S.optional(S.String),
+      entityTypeName: S.optional(S.String),
+      relativePath: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/images/getEntityTypeImageUploadUrl",
+        code: 200,
+        apiVersion: "2017-04-26",
+      }),
+    ),
+).annotate({
+  identifier: "ImagesGetUploadUrlForEntityTypeRequest",
+}) as any as S.Schema<ImagesGetUploadUrlForEntityTypeRequest>;
 
 export type InteractionTypeDefinitionInputAttributesValueList = Array<string>;
 export const InteractionTypeDefinitionInputAttributesValueList =
@@ -6142,6 +6084,64 @@ export const ProfilesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProfilesCreateOrUpdateResponse",
 }) as any as S.Schema<ProfilesCreateOrUpdateResponse>;
 
+export interface RegenerateAuthorizationPolicyPrimaryKeyRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the hub. */
+  hubName: string;
+  /** The name of the policy. */
+  authorizationPolicyName: string;
+}
+export const RegenerateAuthorizationPolicyPrimaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      hubName: S.String.pipe(T.Label()),
+      authorizationPolicyName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/authorizationPolicies/{authorizationPolicyName}/regeneratePrimaryKey",
+        code: 200,
+        apiVersion: "2017-04-26",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateAuthorizationPolicyPrimaryKeyRequest",
+  }) as any as S.Schema<RegenerateAuthorizationPolicyPrimaryKeyRequest>;
+
+export interface RegenerateAuthorizationPolicySecondaryKeyRequest {
+  /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the hub. */
+  hubName: string;
+  /** The name of the policy. */
+  authorizationPolicyName: string;
+}
+export const RegenerateAuthorizationPolicySecondaryKeyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      hubName: S.String.pipe(T.Label()),
+      authorizationPolicyName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomerInsights/hubs/{hubName}/authorizationPolicies/{authorizationPolicyName}/regenerateSecondaryKey",
+        code: 200,
+        apiVersion: "2017-04-26",
+      }),
+    ),
+  ).annotate({
+    identifier: "RegenerateAuthorizationPolicySecondaryKeyRequest",
+  }) as any as S.Schema<RegenerateAuthorizationPolicySecondaryKeyRequest>;
+
 /** Localized display name for the Relationship Link. */
 export type RelationshipLinkDefinitionInputDisplayNameMap = {
   [key: string]: string | undefined;
@@ -6543,11 +6543,11 @@ export const RoleAssignmentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<RoleAssignmentsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type HubsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const HubsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateHubRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateHubRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HubsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateHubRequestTagsMap>;
 
 export interface UpdateHubRequest {
   /** Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -6559,7 +6559,7 @@ export interface UpdateHubRequest {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: HubsUpdateRequestTagsMap;
+  tags?: UpdateHubRequestTagsMap;
   properties?: HubPropertiesFormatInput;
 }
 export const UpdateHubRequest = /*@__PURE__*/ S.suspend(() =>
@@ -6568,7 +6568,7 @@ export const UpdateHubRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     hubName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(HubsUpdateRequestTagsMap),
+    tags: S.optional(UpdateHubRequestTagsMap),
     properties: S.optional(HubPropertiesFormatInput),
   }).pipe(
     T.Http({
@@ -6583,11 +6583,11 @@ export const UpdateHubRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateHubRequest>;
 
 /** Resource tags. */
-export type HubsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const HubsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateHubResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<HubsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateHubResponseTagsMap>;
 
 export interface UpdateHubResponse {
   /** Resource ID. */
@@ -6599,7 +6599,7 @@ export interface UpdateHubResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: HubsUpdateResponseTagsMap;
+  tags?: UpdateHubResponseTagsMap;
   properties?: HubPropertiesFormat;
 }
 export const UpdateHubResponse = /*@__PURE__*/ S.suspend(() =>
@@ -6608,7 +6608,7 @@ export const UpdateHubResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(HubsUpdateResponseTagsMap),
+    tags: S.optional(UpdateHubResponseTagsMap),
     properties: S.optional(HubPropertiesFormat),
   }),
 ).annotate({
@@ -6699,36 +6699,6 @@ export const AuthorizationPoliciesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AuthorizationPoliciesCreateOrUpdateRequest,
   output: AuthorizationPoliciesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AuthorizationPoliciesRegeneratePrimaryKeyError = AzureOpError;
-/** Regenerates the primary policy key of the specified authorization policy. */
-export const AuthorizationPoliciesRegeneratePrimaryKey: API.OperationMethod<
-  AuthorizationPoliciesRegeneratePrimaryKeyRequest,
-  AuthorizationPolicy,
-  AuthorizationPoliciesRegeneratePrimaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationPoliciesRegeneratePrimaryKeyRequest,
-  output: AuthorizationPolicy,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AuthorizationPoliciesRegenerateSecondaryKeyError = AzureOpError;
-/** Regenerates the secondary policy key of the specified authorization policy. */
-export const AuthorizationPoliciesRegenerateSecondaryKey: API.OperationMethod<
-  AuthorizationPoliciesRegenerateSecondaryKeyRequest,
-  AuthorizationPolicy,
-  AuthorizationPoliciesRegenerateSecondaryKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationPoliciesRegenerateSecondaryKeyRequest,
-  output: AuthorizationPolicy,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6989,36 +6959,6 @@ export const GetHub: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetImageUploadUrlForDataError = AzureOpError;
-/** Gets data image upload URL. */
-export const GetImageUploadUrlForData: API.OperationMethod<
-  GetImageUploadUrlForDataRequest,
-  ImageDefinition,
-  GetImageUploadUrlForDataError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetImageUploadUrlForDataRequest,
-  output: ImageDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetImageUploadUrlForEntityTypeError = AzureOpError;
-/** Gets entity type (profile or interaction) image upload URL. */
-export const GetImageUploadUrlForEntityType: API.OperationMethod<
-  GetImageUploadUrlForEntityTypeRequest,
-  ImageDefinition,
-  GetImageUploadUrlForEntityTypeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetImageUploadUrlForEntityTypeRequest,
-  output: ImageDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetInteractionError = AzureOpError;
 /** Gets information about the specified interaction. */
 export const GetInteraction: API.OperationMethod<
@@ -7094,15 +7034,15 @@ export const GetPredictionModelStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPredictionTrainingResultError = AzureOpError;
+export type GetPredictionTrainingResultsError = AzureOpError;
 /** Gets training results. */
-export const GetPredictionTrainingResult: API.OperationMethod<
-  GetPredictionTrainingResultRequest,
+export const GetPredictionTrainingResults: API.OperationMethod<
+  GetPredictionTrainingResultsRequest,
   PredictionTrainingResults,
-  GetPredictionTrainingResultError,
+  GetPredictionTrainingResultsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPredictionTrainingResultRequest,
+  input: GetPredictionTrainingResultsRequest,
   output: PredictionTrainingResults,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -7224,6 +7164,36 @@ export const HubsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: HubsCreateOrUpdateRequest,
   output: HubsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImagesGetUploadUrlForDataError = AzureOpError;
+/** Gets data image upload URL. */
+export const ImagesGetUploadUrlForData: API.OperationMethod<
+  ImagesGetUploadUrlForDataRequest,
+  ImageDefinition,
+  ImagesGetUploadUrlForDataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImagesGetUploadUrlForDataRequest,
+  output: ImageDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImagesGetUploadUrlForEntityTypeError = AzureOpError;
+/** Gets entity type (profile or interaction) image upload URL. */
+export const ImagesGetUploadUrlForEntityType: API.OperationMethod<
+  ImagesGetUploadUrlForEntityTypeRequest,
+  ImageDefinition,
+  ImagesGetUploadUrlForEntityTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImagesGetUploadUrlForEntityTypeRequest,
+  output: ImageDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7599,6 +7569,36 @@ export const ProfilesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ProfilesCreateOrUpdateRequest,
   output: ProfilesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateAuthorizationPolicyPrimaryKeyError = AzureOpError;
+/** Regenerates the primary policy key of the specified authorization policy. */
+export const RegenerateAuthorizationPolicyPrimaryKey: API.OperationMethod<
+  RegenerateAuthorizationPolicyPrimaryKeyRequest,
+  AuthorizationPolicy,
+  RegenerateAuthorizationPolicyPrimaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateAuthorizationPolicyPrimaryKeyRequest,
+  output: AuthorizationPolicy,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateAuthorizationPolicySecondaryKeyError = AzureOpError;
+/** Regenerates the secondary policy key of the specified authorization policy. */
+export const RegenerateAuthorizationPolicySecondaryKey: API.OperationMethod<
+  RegenerateAuthorizationPolicySecondaryKeyRequest,
+  AuthorizationPolicy,
+  RegenerateAuthorizationPolicySecondaryKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateAuthorizationPolicySecondaryKeyRequest,
+  output: AuthorizationPolicy,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

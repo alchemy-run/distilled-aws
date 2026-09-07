@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.apicenter#DeleteEnvironment": {
@@ -728,10 +729,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.apicenter#ApiDefinitionsImportSpecification": {
+    "com.azure.apicenter#ImportApiDefinitionSpecification": {
       "type": "operation",
       "input": {
-        "target": "com.azure.apicenter#ApiDefinitionsImportSpecificationRequest"
+        "target": "com.azure.apicenter#ImportApiDefinitionSpecificationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -747,7 +748,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.apicenter#ApiDefinitionsImportSpecificationRequest": {
+    "com.azure.apicenter#ImportApiDefinitionSpecificationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -869,10 +870,10 @@
         "smithy.api#documentation": "Source format for imported Api spec"
       }
     },
-    "com.azure.apicenter#ApiDefinitionsExportSpecification": {
+    "com.azure.apicenter#ExportApiDefinitionSpecification": {
       "type": "operation",
       "input": {
-        "target": "com.azure.apicenter#ApiDefinitionsExportSpecificationRequest"
+        "target": "com.azure.apicenter#ExportApiDefinitionSpecificationRequest"
       },
       "output": {
         "target": "com.azure.apicenter#ApiSpecExportResult"
@@ -928,7 +929,7 @@
         "smithy.api#documentation": "Result format for exported Api spec"
       }
     },
-    "com.azure.apicenter#ApiDefinitionsExportSpecificationRequest": {
+    "com.azure.apicenter#ExportApiDefinitionSpecificationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4099,10 +4100,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.apicenter#ServicesExportMetadataSchema": {
+    "com.azure.apicenter#ExportServiceMetadataSchema": {
       "type": "operation",
       "input": {
-        "target": "com.azure.apicenter#ServicesExportMetadataSchemaRequest"
+        "target": "com.azure.apicenter#ExportServiceMetadataSchemaRequest"
       },
       "output": {
         "target": "com.azure.apicenter#MetadataSchemaExportResult"
@@ -4158,7 +4159,7 @@
         "smithy.api#documentation": "The format for schema export"
       }
     },
-    "com.azure.apicenter#ServicesExportMetadataSchemaRequest": {
+    "com.azure.apicenter#ExportServiceMetadataSchemaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4294,7 +4295,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.apicenter#ServicesUpdateResponseTagsMap",
+          "target": "com.azure.apicenter#UpdateServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4313,7 +4314,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.apicenter#ServicesUpdateResponseIdentity",
+          "target": "com.azure.apicenter#UpdateServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4323,7 +4324,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.apicenter#ServicesUpdateResponseIdentity": {
+    "com.azure.apicenter#UpdateServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4456,7 +4457,7 @@
         "smithy.api#documentation": "The provisioning state of the resource"
       }
     },
-    "com.azure.apicenter#ServicesUpdateResponseTagsMap": {
+    "com.azure.apicenter#UpdateServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4496,13 +4497,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.apicenter#ServicesUpdateRequestIdentity",
+          "target": "com.azure.apicenter#UpdateServiceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "tags": {
-          "target": "com.azure.apicenter#ServicesUpdateRequestTagsMap",
+          "target": "com.azure.apicenter#UpdateServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4512,7 +4513,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.apicenter#ServicesUpdateRequestTagsMap": {
+    "com.azure.apicenter#UpdateServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4524,7 +4525,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.apicenter#ServicesUpdateRequestIdentity": {
+    "com.azure.apicenter#UpdateServiceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -4817,7 +4818,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.apicenter#ServicesGetResponseTagsMap",
+          "target": "com.azure.apicenter#GetServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4836,7 +4837,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.apicenter#ServicesGetResponseIdentity",
+          "target": "com.azure.apicenter#GetServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4846,7 +4847,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.apicenter#ServicesGetResponseIdentity": {
+    "com.azure.apicenter#GetServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4875,7 +4876,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.apicenter#ServicesGetResponseTagsMap": {
+    "com.azure.apicenter#GetServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5148,7 +5149,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.apicenter#OperationsListResponseValueList",
+          "target": "com.azure.apicenter#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -5164,7 +5165,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.apicenter#OperationsListResponseValueList": {
+    "com.azure.apicenter#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.apicenter#Operation"
@@ -5288,109 +5289,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.apicenter#DeleteEnvironment"
-        },
-        {
-          "target": "com.azure.apicenter#EnvironmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#GetEnvironment"
-        },
-        {
-          "target": "com.azure.apicenter#ListEnvironments"
-        },
-        {
-          "target": "com.azure.apicenter#ApiDefinitionsImportSpecification"
-        },
-        {
-          "target": "com.azure.apicenter#ApiDefinitionsExportSpecification"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteApiDefinition"
-        },
-        {
           "target": "com.azure.apicenter#ApiDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#GetApiDefinition"
-        },
-        {
-          "target": "com.azure.apicenter#ListApiDefinitions"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteApiVersion"
-        },
-        {
-          "target": "com.azure.apicenter#ApiVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#GetApiVersion"
-        },
-        {
-          "target": "com.azure.apicenter#ListApiVersions"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteDeployment"
-        },
-        {
-          "target": "com.azure.apicenter#DeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#GetDeployment"
-        },
-        {
-          "target": "com.azure.apicenter#ListDeployments"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteApis"
         },
         {
           "target": "com.azure.apicenter#ApisCreateOrUpdate"
         },
         {
-          "target": "com.azure.apicenter#GetApis"
+          "target": "com.azure.apicenter#ApiVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.apicenter#ListApis"
+          "target": "com.azure.apicenter#DeleteApiDefinition"
         },
         {
-          "target": "com.azure.apicenter#DeleteWorkspace"
+          "target": "com.azure.apicenter#DeleteApis"
         },
         {
-          "target": "com.azure.apicenter#WorkspacesCreateOrUpdate"
+          "target": "com.azure.apicenter#DeleteApiVersion"
         },
         {
-          "target": "com.azure.apicenter#GetWorkspace"
+          "target": "com.azure.apicenter#DeleteDeployment"
         },
         {
-          "target": "com.azure.apicenter#ListWorkspaces"
+          "target": "com.azure.apicenter#DeleteEnvironment"
         },
         {
           "target": "com.azure.apicenter#DeleteMetadataSchema"
         },
         {
-          "target": "com.azure.apicenter#MetadataSchemasCreateOrUpdate"
+          "target": "com.azure.apicenter#DeleteService"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.apicenter#DeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#EnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#ExportApiDefinitionSpecification"
+        },
+        {
+          "target": "com.azure.apicenter#ExportServiceMetadataSchema"
+        },
+        {
+          "target": "com.azure.apicenter#GetApiDefinition"
+        },
+        {
+          "target": "com.azure.apicenter#GetApis"
+        },
+        {
+          "target": "com.azure.apicenter#GetApiVersion"
+        },
+        {
+          "target": "com.azure.apicenter#GetDeployment"
+        },
+        {
+          "target": "com.azure.apicenter#GetEnvironment"
         },
         {
           "target": "com.azure.apicenter#GetMetadataSchema"
         },
         {
+          "target": "com.azure.apicenter#GetService"
+        },
+        {
+          "target": "com.azure.apicenter#GetWorkspace"
+        },
+        {
+          "target": "com.azure.apicenter#ImportApiDefinitionSpecification"
+        },
+        {
+          "target": "com.azure.apicenter#ListApiDefinitions"
+        },
+        {
+          "target": "com.azure.apicenter#ListApis"
+        },
+        {
+          "target": "com.azure.apicenter#ListApiVersions"
+        },
+        {
+          "target": "com.azure.apicenter#ListDeployments"
+        },
+        {
+          "target": "com.azure.apicenter#ListEnvironments"
+        },
+        {
           "target": "com.azure.apicenter#ListMetadataSchemas"
         },
         {
-          "target": "com.azure.apicenter#ServicesExportMetadataSchema"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteService"
-        },
-        {
-          "target": "com.azure.apicenter#UpdateService"
-        },
-        {
-          "target": "com.azure.apicenter#ServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#GetService"
+          "target": "com.azure.apicenter#ListOperations"
         },
         {
           "target": "com.azure.apicenter#ListServiceByResourceGroup"
@@ -5399,7 +5388,19 @@
           "target": "com.azure.apicenter#ListServiceBySubscription"
         },
         {
-          "target": "com.azure.apicenter#ListOperations"
+          "target": "com.azure.apicenter#ListWorkspaces"
+        },
+        {
+          "target": "com.azure.apicenter#MetadataSchemasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#UpdateService"
+        },
+        {
+          "target": "com.azure.apicenter#WorkspacesCreateOrUpdate"
         }
       ],
       "traits": {

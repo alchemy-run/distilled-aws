@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.advisor#GetAdvisorScore": {
@@ -64,7 +65,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.advisor#AdvisorScoresGetResponseProperties",
+          "target": "com.azure.advisor#GetAdvisorScoreResponseProperties",
           "traits": {
             "smithy.api#documentation": "The Advisor score data."
           }
@@ -74,7 +75,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.advisor#AdvisorScoresGetResponseProperties": {
+    "com.azure.advisor#GetAdvisorScoreResponseProperties": {
       "type": "structure",
       "members": {
         "lastRefreshedScore": {
@@ -2173,7 +2174,7 @@
           }
         },
         "configurationName": {
-          "target": "com.azure.advisor#ConfigurationsCreateInResourceGroupRequestConfigurationName",
+          "target": "com.azure.advisor#CreateConfigurationInResourceGroupRequestConfigurationName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2191,7 +2192,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInResourceGroupRequestConfigurationName": {
+    "com.azure.advisor#CreateConfigurationInResourceGroupRequestConfigurationName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -2382,7 +2383,7 @@
           }
         },
         "configurationName": {
-          "target": "com.azure.advisor#ConfigurationsCreateInSubscriptionRequestConfigurationName",
+          "target": "com.azure.advisor#CreateConfigurationInSubscriptionRequestConfigurationName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2400,7 +2401,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInSubscriptionRequestConfigurationName": {
+    "com.azure.advisor#CreateConfigurationInSubscriptionRequestConfigurationName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -2673,58 +2674,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.advisor#GetAdvisorScore"
-        },
-        {
-          "target": "com.azure.advisor#ListAdvisorScores"
-        },
-        {
-          "target": "com.azure.advisor#Predict"
-        },
-        {
-          "target": "com.azure.advisor#ListSuppressions"
-        },
-        {
-          "target": "com.azure.advisor#DeleteSuppression"
-        },
-        {
-          "target": "com.azure.advisor#CreateSuppression"
-        },
-        {
-          "target": "com.azure.advisor#GetSuppression"
-        },
-        {
-          "target": "com.azure.advisor#GetRecommendation"
-        },
-        {
-          "target": "com.azure.advisor#ListOperations"
-        },
-        {
-          "target": "com.azure.advisor#ListRecommendations"
-        },
-        {
-          "target": "com.azure.advisor#RecommendationsGetGenerateStatus"
-        },
-        {
-          "target": "com.azure.advisor#GenerateRecommendation"
-        },
-        {
           "target": "com.azure.advisor#CreateConfigurationInResourceGroup"
-        },
-        {
-          "target": "com.azure.advisor#ListConfigurationByResourceGroup"
         },
         {
           "target": "com.azure.advisor#CreateConfigurationInSubscription"
         },
         {
+          "target": "com.azure.advisor#CreateSuppression"
+        },
+        {
+          "target": "com.azure.advisor#DeleteSuppression"
+        },
+        {
+          "target": "com.azure.advisor#GenerateRecommendation"
+        },
+        {
+          "target": "com.azure.advisor#GetAdvisorScore"
+        },
+        {
+          "target": "com.azure.advisor#GetRecommendation"
+        },
+        {
+          "target": "com.azure.advisor#GetRecommendationMetadata"
+        },
+        {
+          "target": "com.azure.advisor#GetSuppression"
+        },
+        {
+          "target": "com.azure.advisor#ListAdvisorScores"
+        },
+        {
+          "target": "com.azure.advisor#ListConfigurationByResourceGroup"
+        },
+        {
           "target": "com.azure.advisor#ListConfigurationBySubscription"
+        },
+        {
+          "target": "com.azure.advisor#ListOperations"
         },
         {
           "target": "com.azure.advisor#ListRecommendationMetadata"
         },
         {
-          "target": "com.azure.advisor#GetRecommendationMetadata"
+          "target": "com.azure.advisor#ListRecommendations"
+        },
+        {
+          "target": "com.azure.advisor#ListSuppressions"
+        },
+        {
+          "target": "com.azure.advisor#Predict"
+        },
+        {
+          "target": "com.azure.advisor#RecommendationsGetGenerateStatus"
         }
       ],
       "traits": {

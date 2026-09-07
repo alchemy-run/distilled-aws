@@ -11,42 +11,42 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export type UserInterviewsCreateRequestIntervieweeEmailsList = Array<string>;
-export const UserInterviewsCreateRequestIntervieweeEmailsList =
+export type CreateUserInterviewRequestIntervieweeEmailsList = Array<string>;
+export const CreateUserInterviewRequestIntervieweeEmailsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewsCreateRequestIntervieweeEmailsList>;
+  ) as any as S.Schema<CreateUserInterviewRequestIntervieweeEmailsList>;
 
 /** * `abandoned` - Abandoned * `off-topic` - Off-topic */
-export type ClassificationsEnum = "abandoned" | "off-topic";
-export const ClassificationsEnum = /*@__PURE__*/ S.String;
+export type UserInterviewClassificationEnum = "abandoned" | "off-topic";
+export const UserInterviewClassificationEnum = /*@__PURE__*/ S.String;
 
 /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
-export type UserInterviewsCreateRequestClassificationsList = Array<
-  ClassificationsEnum | (string & {})
+export type CreateUserInterviewRequestClassificationsList = Array<
+  UserInterviewClassificationEnum | (string & {})
 >;
-export const UserInterviewsCreateRequestClassificationsList =
+export const CreateUserInterviewRequestClassificationsList =
   /*@__PURE__*/ S.Array(
-    ClassificationsEnum,
-  ) as any as S.Schema<UserInterviewsCreateRequestClassificationsList>;
+    UserInterviewClassificationEnum,
+  ) as any as S.Schema<CreateUserInterviewRequestClassificationsList>;
 
 export interface CreateUserInterviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  interviewee_emails?: UserInterviewsCreateRequestIntervieweeEmailsList;
+  interviewee_emails?: CreateUserInterviewRequestIntervieweeEmailsList;
   summary?: string;
   /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
-  classifications?: UserInterviewsCreateRequestClassificationsList;
+  classifications?: CreateUserInterviewRequestClassificationsList;
   audio?: string;
 }
 export const CreateUserInterviewRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     interviewee_emails: S.optional(
-      UserInterviewsCreateRequestIntervieweeEmailsList,
+      CreateUserInterviewRequestIntervieweeEmailsList,
     ),
     summary: S.optional(S.String),
-    classifications: S.optional(UserInterviewsCreateRequestClassificationsList),
+    classifications: S.optional(CreateUserInterviewRequestClassificationsList),
     audio: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -116,9 +116,10 @@ export const UserInterviewOutputIntervieweeEmailsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<UserInterviewOutputIntervieweeEmailsList>;
 
 /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
-export type UserInterviewOutputClassificationsList = Array<ClassificationsEnum>;
+export type UserInterviewOutputClassificationsList =
+  Array<UserInterviewClassificationEnum>;
 export const UserInterviewOutputClassificationsList = /*@__PURE__*/ S.Array(
-  ClassificationsEnum,
+  UserInterviewClassificationEnum,
 ) as any as S.Schema<UserInterviewOutputClassificationsList>;
 
 export interface UserInterviewOutput {
@@ -149,108 +150,26 @@ export const UserInterviewOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserInterviewOutput",
 }) as any as S.Schema<UserInterviewOutput>;
 
-/** * `transcript` - transcript * `summary` - summary */
-export type UserInterviewSearchDocumentTypeEnum = "transcript" | "summary";
-export const UserInterviewSearchDocumentTypeEnum = /*@__PURE__*/ S.String;
-
-/** Which document types to search across. Omit to default to both `transcript` and `summary`. Pass a non-empty subset to restrict the search. */
-export type UserInterviewsSearchCreateRequestDocumentTypesList = Array<
-  UserInterviewSearchDocumentTypeEnum | (string & {})
->;
-export const UserInterviewsSearchCreateRequestDocumentTypesList =
-  /*@__PURE__*/ S.Array(
-    UserInterviewSearchDocumentTypeEnum,
-  ) as any as S.Schema<UserInterviewsSearchCreateRequestDocumentTypesList>;
-
-/** Optional. Restrict results to interviews carrying any of these classifications (OR). Combines with `topic_id` as AND. */
-export type UserInterviewsSearchCreateRequestClassificationsList = Array<
-  ClassificationsEnum | (string & {})
->;
-export const UserInterviewsSearchCreateRequestClassificationsList =
-  /*@__PURE__*/ S.Array(
-    ClassificationsEnum,
-  ) as any as S.Schema<UserInterviewsSearchCreateRequestClassificationsList>;
-
-export interface CreateUserInterviewSearchRequest {
+export interface GetUserInterviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Natural-language query to match semantically against interview transcripts and summaries. */
-  query: string;
-  /** Which document types to search across. Omit to default to both `transcript` and `summary`. Pass a non-empty subset to restrict the search. */
-  document_types?: UserInterviewsSearchCreateRequestDocumentTypesList;
-  /** Optional. Restrict results to interviews belonging to a specific UserInterviewTopic. */
-  topic_id?: string | null;
-  /** Optional. Restrict results to interviews carrying any of these classifications (OR). Combines with `topic_id` as AND. */
-  classifications?: UserInterviewsSearchCreateRequestClassificationsList;
-  /** Maximum number of matches to return (1-50). Defaults to 10. Two matches per interview are possible — one for the transcript, one for the summary. */
-  limit?: number;
+  /** A UUID string identifying this user interview. */
+  id: string;
 }
-export const CreateUserInterviewSearchRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetUserInterviewRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    query: S.String,
-    document_types: S.optional(
-      UserInterviewsSearchCreateRequestDocumentTypesList,
-    ),
-    topic_id: S.optional(S.NullOr(S.String)),
-    classifications: S.optional(
-      UserInterviewsSearchCreateRequestClassificationsList,
-    ),
-    limit: S.optional(S.Number),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/user_interviews/search/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/user_interviews/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "CreateUserInterviewSearchRequest",
-}) as any as S.Schema<CreateUserInterviewSearchRequest>;
-
-export interface UserInterviewSearchResult {
-  /** ID of the matched UserInterview. */
-  interview_id: string;
-  /** Which document type matched — `transcript` is the raw conversation, `summary` is the AI-generated abstract. * `transcript` - transcript * `summary` - summary */
-  document_type: UserInterviewSearchDocumentTypeEnum;
-  /** Cosine similarity in [0, 1]; higher is closer to the query. Computed as `1 - cosineDistance`. */
-  similarity: number;
-  /** Excerpt of the matched document (first 500 characters). */
-  content_snippet: string;
-  /** Email or PostHog distinct ID of the interviewee. */
-  interviewee_identifier: string;
-  /** ID of the UserInterviewTopic the interview was conducted for, or null if detached. */
-  topic_id: string | null;
-  /** When the interview row was created. */
-  created_at: string;
-}
-export const UserInterviewSearchResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    interview_id: S.String,
-    document_type: UserInterviewSearchDocumentTypeEnum,
-    similarity: S.Number,
-    content_snippet: S.String,
-    interviewee_identifier: S.String,
-    topic_id: S.NullOr(S.String),
-    created_at: S.String,
-  }),
-).annotate({
-  identifier: "UserInterviewSearchResult",
-}) as any as S.Schema<UserInterviewSearchResult>;
-
-export type UserInterviewsSearchCreateResponseBodyList =
-  Array<UserInterviewSearchResult>;
-export const UserInterviewsSearchCreateResponseBodyList = /*@__PURE__*/ S.Array(
-  UserInterviewSearchResult,
-) as any as S.Schema<UserInterviewsSearchCreateResponseBodyList>;
-
-export type CreateUserInterviewSearchResponse =
-  UserInterviewsSearchCreateResponseBodyList;
-export const CreateUserInterviewSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  UserInterviewsSearchCreateResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "CreateUserInterviewSearchResponse",
-}) as any as S.Schema<CreateUserInterviewSearchResponse>;
+  identifier: "GetUserInterviewRequest",
+}) as any as S.Schema<GetUserInterviewRequest>;
 
 export interface ListUserInterviewsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -305,30 +224,30 @@ export const PaginatedUserInterviewListOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedUserInterviewListOutput",
 }) as any as S.Schema<PaginatedUserInterviewListOutput>;
 
-export type UserInterviewsUpdateRequestIntervieweeEmailsList = Array<string>;
-export const UserInterviewsUpdateRequestIntervieweeEmailsList =
+export type UpdateUserInterviewRequestIntervieweeEmailsList = Array<string>;
+export const UpdateUserInterviewRequestIntervieweeEmailsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewsUpdateRequestIntervieweeEmailsList>;
+  ) as any as S.Schema<UpdateUserInterviewRequestIntervieweeEmailsList>;
 
 /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
-export type UserInterviewsUpdateRequestClassificationsList = Array<
-  ClassificationsEnum | (string & {})
+export type UpdateUserInterviewRequestClassificationsList = Array<
+  UserInterviewClassificationEnum | (string & {})
 >;
-export const UserInterviewsUpdateRequestClassificationsList =
+export const UpdateUserInterviewRequestClassificationsList =
   /*@__PURE__*/ S.Array(
-    ClassificationsEnum,
-  ) as any as S.Schema<UserInterviewsUpdateRequestClassificationsList>;
+    UserInterviewClassificationEnum,
+  ) as any as S.Schema<UpdateUserInterviewRequestClassificationsList>;
 
 export interface UpdateUserInterviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this user interview. */
   id: string;
-  interviewee_emails?: UserInterviewsUpdateRequestIntervieweeEmailsList;
+  interviewee_emails?: UpdateUserInterviewRequestIntervieweeEmailsList;
   summary?: string;
   /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
-  classifications?: UserInterviewsUpdateRequestClassificationsList;
+  classifications?: UpdateUserInterviewRequestClassificationsList;
   audio?: string;
 }
 export const UpdateUserInterviewRequest = /*@__PURE__*/ S.suspend(() =>
@@ -336,10 +255,10 @@ export const UpdateUserInterviewRequest = /*@__PURE__*/ S.suspend(() =>
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     interviewee_emails: S.optional(
-      UserInterviewsUpdateRequestIntervieweeEmailsList,
+      UpdateUserInterviewRequestIntervieweeEmailsList,
     ),
     summary: S.optional(S.String),
-    classifications: S.optional(UserInterviewsUpdateRequestClassificationsList),
+    classifications: S.optional(UpdateUserInterviewRequestClassificationsList),
     audio: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -352,43 +271,43 @@ export const UpdateUserInterviewRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateUserInterviewRequest",
 }) as any as S.Schema<UpdateUserInterviewRequest>;
 
-export type UserInterviewsPartialUpdateRequestIntervieweeEmailsList =
+export type UpdateUserInterviewsPartialRequestIntervieweeEmailsList =
   Array<string>;
-export const UserInterviewsPartialUpdateRequestIntervieweeEmailsList =
+export const UpdateUserInterviewsPartialRequestIntervieweeEmailsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UserInterviewsPartialUpdateRequestIntervieweeEmailsList>;
+  ) as any as S.Schema<UpdateUserInterviewsPartialRequestIntervieweeEmailsList>;
 
 /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
-export type UserInterviewsPartialUpdateRequestClassificationsList = Array<
-  ClassificationsEnum | (string & {})
+export type UpdateUserInterviewsPartialRequestClassificationsList = Array<
+  UserInterviewClassificationEnum | (string & {})
 >;
-export const UserInterviewsPartialUpdateRequestClassificationsList =
+export const UpdateUserInterviewsPartialRequestClassificationsList =
   /*@__PURE__*/ S.Array(
-    ClassificationsEnum,
-  ) as any as S.Schema<UserInterviewsPartialUpdateRequestClassificationsList>;
+    UserInterviewClassificationEnum,
+  ) as any as S.Schema<UpdateUserInterviewsPartialRequestClassificationsList>;
 
-export interface UpdateUserInterviewPartialRequest {
+export interface UpdateUserInterviewsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this user interview. */
   id: string;
-  interviewee_emails?: UserInterviewsPartialUpdateRequestIntervieweeEmailsList;
+  interviewee_emails?: UpdateUserInterviewsPartialRequestIntervieweeEmailsList;
   summary?: string;
   /** Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta. */
-  classifications?: UserInterviewsPartialUpdateRequestClassificationsList;
+  classifications?: UpdateUserInterviewsPartialRequestClassificationsList;
   audio?: string;
 }
-export const UpdateUserInterviewPartialRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateUserInterviewsPartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     interviewee_emails: S.optional(
-      UserInterviewsPartialUpdateRequestIntervieweeEmailsList,
+      UpdateUserInterviewsPartialRequestIntervieweeEmailsList,
     ),
     summary: S.optional(S.String),
     classifications: S.optional(
-      UserInterviewsPartialUpdateRequestClassificationsList,
+      UpdateUserInterviewsPartialRequestClassificationsList,
     ),
     audio: S.optional(S.String),
   }).pipe(
@@ -399,8 +318,8 @@ export const UpdateUserInterviewPartialRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateUserInterviewPartialRequest",
-}) as any as S.Schema<UpdateUserInterviewPartialRequest>;
+  identifier: "UpdateUserInterviewsPartialRequest",
+}) as any as S.Schema<UpdateUserInterviewsPartialRequest>;
 
 export interface UserInterviewsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -430,26 +349,108 @@ export const UserInterviewsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserInterviewsDestroyResponse",
 }) as any as S.Schema<UserInterviewsDestroyResponse>;
 
-export interface UserInterviewsRetrieveRequest {
+/** * `transcript` - transcript * `summary` - summary */
+export type UserInterviewSearchDocumentTypeEnum = "transcript" | "summary";
+export const UserInterviewSearchDocumentTypeEnum = /*@__PURE__*/ S.String;
+
+/** Which document types to search across. Omit to default to both `transcript` and `summary`. Pass a non-empty subset to restrict the search. */
+export type UserInterviewsSearchCreateRequestDocumentTypesList = Array<
+  UserInterviewSearchDocumentTypeEnum | (string & {})
+>;
+export const UserInterviewsSearchCreateRequestDocumentTypesList =
+  /*@__PURE__*/ S.Array(
+    UserInterviewSearchDocumentTypeEnum,
+  ) as any as S.Schema<UserInterviewsSearchCreateRequestDocumentTypesList>;
+
+/** Optional. Restrict results to interviews carrying any of these classifications (OR). Combines with `topic_id` as AND. */
+export type UserInterviewsSearchCreateRequestClassificationsList = Array<
+  UserInterviewClassificationEnum | (string & {})
+>;
+export const UserInterviewsSearchCreateRequestClassificationsList =
+  /*@__PURE__*/ S.Array(
+    UserInterviewClassificationEnum,
+  ) as any as S.Schema<UserInterviewsSearchCreateRequestClassificationsList>;
+
+export interface UserInterviewsSearchCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this user interview. */
-  id: string;
+  /** Natural-language query to match semantically against interview transcripts and summaries. */
+  query: string;
+  /** Which document types to search across. Omit to default to both `transcript` and `summary`. Pass a non-empty subset to restrict the search. */
+  document_types?: UserInterviewsSearchCreateRequestDocumentTypesList;
+  /** Optional. Restrict results to interviews belonging to a specific UserInterviewTopic. */
+  topic_id?: string | null;
+  /** Optional. Restrict results to interviews carrying any of these classifications (OR). Combines with `topic_id` as AND. */
+  classifications?: UserInterviewsSearchCreateRequestClassificationsList;
+  /** Maximum number of matches to return (1-50). Defaults to 10. Two matches per interview are possible — one for the transcript, one for the summary. */
+  limit?: number;
 }
-export const UserInterviewsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const UserInterviewsSearchCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
+    query: S.String,
+    document_types: S.optional(
+      UserInterviewsSearchCreateRequestDocumentTypesList,
+    ),
+    topic_id: S.optional(S.NullOr(S.String)),
+    classifications: S.optional(
+      UserInterviewsSearchCreateRequestClassificationsList,
+    ),
+    limit: S.optional(S.Number),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/user_interviews/{id}/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/user_interviews/search/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "UserInterviewsRetrieveRequest",
-}) as any as S.Schema<UserInterviewsRetrieveRequest>;
+  identifier: "UserInterviewsSearchCreateRequest",
+}) as any as S.Schema<UserInterviewsSearchCreateRequest>;
+
+export interface UserInterviewSearchResult {
+  /** ID of the matched UserInterview. */
+  interview_id: string;
+  /** Which document type matched — `transcript` is the raw conversation, `summary` is the AI-generated abstract. * `transcript` - transcript * `summary` - summary */
+  document_type: UserInterviewSearchDocumentTypeEnum;
+  /** Cosine similarity in [0, 1]; higher is closer to the query. Computed as `1 - cosineDistance`. */
+  similarity: number;
+  /** Excerpt of the matched document (first 500 characters). */
+  content_snippet: string;
+  /** Email or PostHog distinct ID of the interviewee. */
+  interviewee_identifier: string;
+  /** ID of the UserInterviewTopic the interview was conducted for, or null if detached. */
+  topic_id: string | null;
+  /** When the interview row was created. */
+  created_at: string;
+}
+export const UserInterviewSearchResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    interview_id: S.String,
+    document_type: UserInterviewSearchDocumentTypeEnum,
+    similarity: S.Number,
+    content_snippet: S.String,
+    interviewee_identifier: S.String,
+    topic_id: S.NullOr(S.String),
+    created_at: S.String,
+  }),
+).annotate({
+  identifier: "UserInterviewSearchResult",
+}) as any as S.Schema<UserInterviewSearchResult>;
+
+export type UserInterviewsSearchCreateResponseBodyList =
+  Array<UserInterviewSearchResult>;
+export const UserInterviewsSearchCreateResponseBodyList = /*@__PURE__*/ S.Array(
+  UserInterviewSearchResult,
+) as any as S.Schema<UserInterviewsSearchCreateResponseBodyList>;
+
+export type UserInterviewsSearchCreateResponse =
+  UserInterviewsSearchCreateResponseBodyList;
+export const UserInterviewsSearchCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  UserInterviewsSearchCreateResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "UserInterviewsSearchCreateResponse",
+}) as any as S.Schema<UserInterviewsSearchCreateResponse>;
 
 export type CreateUserInterviewError = PosthogOpError;
 export const createUserInterview: API.OperationMethod<
@@ -465,16 +466,15 @@ export const createUserInterview: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateUserInterviewSearchError = PosthogOpError;
-/** Search interview responses by semantic similarity Embed `query` with the same model used to index interview transcripts and summaries, then return the top matches by cosine distance. Each match is a single (interview, document_type) pair — an interview can appear up to twice if both its transcript and summary score above other interviews. Useful for surfacing relevant interview snippets in natural language, without exact keyword matches. */
-export const createUserInterviewSearch: API.OperationMethod<
-  CreateUserInterviewSearchRequest,
-  CreateUserInterviewSearchResponse,
-  CreateUserInterviewSearchError,
+export type GetUserInterviewError = PosthogOpError;
+export const getUserInterview: API.OperationMethod<
+  GetUserInterviewRequest,
+  UserInterviewOutput,
+  GetUserInterviewError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateUserInterviewSearchRequest,
-  output: CreateUserInterviewSearchResponse,
+  input: GetUserInterviewRequest,
+  output: UserInterviewOutput,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -508,14 +508,14 @@ export const updateUserInterview: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateUserInterviewPartialError = PosthogOpError;
-export const updateUserInterviewPartial: API.OperationMethod<
-  UpdateUserInterviewPartialRequest,
+export type UpdateUserInterviewsPartialError = PosthogOpError;
+export const updateUserInterviewsPartial: API.OperationMethod<
+  UpdateUserInterviewsPartialRequest,
   UserInterviewOutput,
-  UpdateUserInterviewPartialError,
+  UpdateUserInterviewsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateUserInterviewPartialRequest,
+  input: UpdateUserInterviewsPartialRequest,
   output: UserInterviewOutput,
   errors: [],
   protocol: PosthogProtocol,
@@ -536,15 +536,16 @@ export const userInterviewsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UserInterviewsRetrieveError = PosthogOpError;
-export const userInterviewsRetrieve: API.OperationMethod<
-  UserInterviewsRetrieveRequest,
-  UserInterviewOutput,
-  UserInterviewsRetrieveError,
+export type UserInterviewsSearchCreateError = PosthogOpError;
+/** Search interview responses by semantic similarity Embed `query` with the same model used to index interview transcripts and summaries, then return the top matches by cosine distance. Each match is a single (interview, document_type) pair — an interview can appear up to twice if both its transcript and summary score above other interviews. Useful for surfacing relevant interview snippets in natural language, without exact keyword matches. */
+export const userInterviewsSearchCreate: API.OperationMethod<
+  UserInterviewsSearchCreateRequest,
+  UserInterviewsSearchCreateResponse,
+  UserInterviewsSearchCreateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UserInterviewsRetrieveRequest,
-  output: UserInterviewOutput,
+  input: UserInterviewsSearchCreateRequest,
+  output: UserInterviewsSearchCreateResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

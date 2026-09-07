@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.docs#ListDocsResponseBodyItem": {
@@ -742,13 +743,13 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.huggingface.docs#FullTextSearchDocs"
+        },
+        {
           "target": "com.huggingface.docs#ListDocs"
         },
         {
           "target": "com.huggingface.docs#SearchDocs"
-        },
-        {
-          "target": "com.huggingface.docs#FullTextSearchDocs"
         }
       ],
       "traits": {

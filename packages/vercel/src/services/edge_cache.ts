@@ -54,7 +54,7 @@ export const DangerouslyDeleteBySrcImagesRequestSrcImagesList =
     S.String,
   ) as any as S.Schema<DangerouslyDeleteBySrcImagesRequestSrcImagesList>;
 
-export interface DeleteDangerouslyBySrcImageRequest {
+export interface DangerouslyDeleteBySrcImagesRequest {
   projectIdOrName: string;
   /** The Team identifier to perform the request on behalf of. */
   teamId?: string;
@@ -63,7 +63,7 @@ export interface DeleteDangerouslyBySrcImageRequest {
   revalidationDeadlineSeconds?: number;
   srcImages: DangerouslyDeleteBySrcImagesRequestSrcImagesList;
 }
-export const DeleteDangerouslyBySrcImageRequest = /*@__PURE__*/ S.suspend(() =>
+export const DangerouslyDeleteBySrcImagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     projectIdOrName: S.String.pipe(T.Query()),
     teamId: S.optional(S.String.pipe(T.Query())),
@@ -78,15 +78,15 @@ export const DeleteDangerouslyBySrcImageRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteDangerouslyBySrcImageRequest",
-}) as any as S.Schema<DeleteDangerouslyBySrcImageRequest>;
+  identifier: "DangerouslyDeleteBySrcImagesRequest",
+}) as any as S.Schema<DangerouslyDeleteBySrcImagesRequest>;
 
-export interface DeleteDangerouslyBySrcImageResponse {}
-export const DeleteDangerouslyBySrcImageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface DangerouslyDeleteBySrcImagesResponse {}
+export const DangerouslyDeleteBySrcImagesResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "DeleteDangerouslyBySrcImageResponse",
-}) as any as S.Schema<DeleteDangerouslyBySrcImageResponse>;
+  identifier: "DangerouslyDeleteBySrcImagesResponse",
+}) as any as S.Schema<DangerouslyDeleteBySrcImagesResponse>;
 
 export type DangerouslyDeleteByTagsRequestTagsCase0List = Array<string>;
 export const DangerouslyDeleteByTagsRequestTagsCase0List =
@@ -103,7 +103,7 @@ export const DangerouslyDeleteByTagsRequestTags =
 export type DangerouslyDeleteByTagsRequestTarget = "production" | "preview";
 export const DangerouslyDeleteByTagsRequestTarget = /*@__PURE__*/ S.String;
 
-export interface DeleteDangerouslyByTagRequest {
+export interface DangerouslyDeleteByTagsRequest {
   projectIdOrName: string;
   /** The Team identifier to perform the request on behalf of. */
   teamId?: string;
@@ -113,7 +113,7 @@ export interface DeleteDangerouslyByTagRequest {
   tags: DangerouslyDeleteByTagsRequestTags;
   target?: DangerouslyDeleteByTagsRequestTarget | (string & {});
 }
-export const DeleteDangerouslyByTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const DangerouslyDeleteByTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     projectIdOrName: S.String.pipe(T.Query()),
     teamId: S.optional(S.String.pipe(T.Query())),
@@ -129,15 +129,15 @@ export const DeleteDangerouslyByTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteDangerouslyByTagRequest",
-}) as any as S.Schema<DeleteDangerouslyByTagRequest>;
+  identifier: "DangerouslyDeleteByTagsRequest",
+}) as any as S.Schema<DangerouslyDeleteByTagsRequest>;
 
-export interface DeleteDangerouslyByTagResponse {}
-export const DeleteDangerouslyByTagResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DangerouslyDeleteByTagsResponse {}
+export const DangerouslyDeleteByTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteDangerouslyByTagResponse",
-}) as any as S.Schema<DeleteDangerouslyByTagResponse>;
+  identifier: "DangerouslyDeleteByTagsResponse",
+}) as any as S.Schema<DangerouslyDeleteByTagsResponse>;
 
 export type InvalidateBySrcImagesRequestSrcImagesList = Array<string>;
 export const InvalidateBySrcImagesRequestSrcImagesList = /*@__PURE__*/ S.Array(
@@ -224,40 +224,40 @@ export const InvalidateByTagsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "InvalidateByTagsResponse",
 }) as any as S.Schema<InvalidateByTagsResponse>;
 
-export type DeleteDangerouslyBySrcImageError =
+export type DangerouslyDeleteBySrcImagesError =
   | BadRequest
   | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Dangerously delete by source image Marks a source image as deleted, causing cache entries associated with that source image to be revalidated in the foreground on the next request. Use this method with caution because one source image can be associated with many paths and deleting the cache can cause many concurrent requests to the origin leading to cache stampede problem. This method is for advanced use cases and is not recommended; prefer using `invalidateBySrcImage` instead. */
-export const deleteDangerouslyBySrcImage: API.OperationMethod<
-  DeleteDangerouslyBySrcImageRequest,
-  DeleteDangerouslyBySrcImageResponse,
-  DeleteDangerouslyBySrcImageError,
+export const dangerouslyDeleteBySrcImages: API.OperationMethod<
+  DangerouslyDeleteBySrcImagesRequest,
+  DangerouslyDeleteBySrcImagesResponse,
+  DangerouslyDeleteBySrcImagesError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDangerouslyBySrcImageRequest,
-  output: DeleteDangerouslyBySrcImageResponse,
+  input: DangerouslyDeleteBySrcImagesRequest,
+  output: DangerouslyDeleteBySrcImagesResponse,
   errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteDangerouslyByTagError =
+export type DangerouslyDeleteByTagsError =
   | BadRequest
   | Forbidden
   | NotFound
   | VercelOpError;
 /** Dangerously delete by tag Marks a cache tag as deleted, causing cache entries associated with that tag to be revalidated in the foreground on the next request. Use this method with caution because one tag can be associated with many paths and deleting the cache can cause many concurrent requests to the origin leading to cache stampede problem. This method is for advanced use cases and is not recommended; prefer using `invalidateByTag` instead. */
-export const deleteDangerouslyByTag: API.OperationMethod<
-  DeleteDangerouslyByTagRequest,
-  DeleteDangerouslyByTagResponse,
-  DeleteDangerouslyByTagError,
+export const dangerouslyDeleteByTags: API.OperationMethod<
+  DangerouslyDeleteByTagsRequest,
+  DangerouslyDeleteByTagsResponse,
+  DangerouslyDeleteByTagsError,
   VercelOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDangerouslyByTagRequest,
-  output: DeleteDangerouslyByTagResponse,
+  input: DangerouslyDeleteByTagsRequest,
+  output: DangerouslyDeleteByTagsResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,

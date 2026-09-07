@@ -35,7 +35,8 @@
       "userClassification": "user_classification",
       "zoneId": "zone_id",
       "zoneTag": "zone_tag"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.security_center#InsightsContextGetResultMap": {
@@ -52,55 +53,55 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.security_center#InsightsDismissForAccount"
+          "target": "com.cloudflare.security_center#DismissInsightForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsDismissForZone"
+          "target": "com.cloudflare.security_center#DismissInsightForZone"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsListForAccount"
+          "target": "com.cloudflare.security_center#GetInsightClassForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsListForZone"
+          "target": "com.cloudflare.security_center#GetInsightClassForZone"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsAuditLogsListForAccount"
+          "target": "com.cloudflare.security_center#GetInsightContext"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsAuditLogsListForZone"
+          "target": "com.cloudflare.security_center#GetInsightSeverityForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForAccount"
+          "target": "com.cloudflare.security_center#GetInsightSeverityForZone"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsAuditLogsListByInsightForZone"
+          "target": "com.cloudflare.security_center#GetInsightTypeForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsClassGetForAccount"
+          "target": "com.cloudflare.security_center#GetInsightTypeForZone"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsClassGetForZone"
+          "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsClassificationUpdateForAccount"
+          "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogForZone"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsClassificationUpdateForZone"
+          "target": "com.cloudflare.security_center#ListInsightAuditLogsForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsContextGet"
+          "target": "com.cloudflare.security_center#ListInsightAuditLogsForZone"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsSeverityGetForAccount"
+          "target": "com.cloudflare.security_center#ListInsightsForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsSeverityGetForZone"
+          "target": "com.cloudflare.security_center#ListInsightsForZone"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsTypeGetForAccount"
+          "target": "com.cloudflare.security_center#PatchInsightClassificationForAccount"
         },
         {
-          "target": "com.cloudflare.security_center#InsightsTypeGetForZone"
+          "target": "com.cloudflare.security_center#PatchInsightClassificationForZone"
         }
       ],
       "traits": {
@@ -203,7 +204,7 @@
         "target": "com.cloudflare.security_center#GetInsightClassForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#GetInsightClassForAccountResponse"
+        "target": "com.cloudflare.security_center#GetInsightClassResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -303,7 +304,7 @@
         "target": "com.cloudflare.security_center#GetInsightClassForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#GetInsightClassForZoneResponse"
+        "target": "com.cloudflare.security_center#GetInsightClassResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -459,7 +460,7 @@
         "target": "com.cloudflare.security_center#GetInsightSeverityForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#GetInsightSeverityForAccountResponse"
+        "target": "com.cloudflare.security_center#GetInsightSeverityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -559,7 +560,7 @@
         "target": "com.cloudflare.security_center#GetInsightSeverityForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#GetInsightSeverityForZoneResponse"
+        "target": "com.cloudflare.security_center#GetInsightSeverityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -659,7 +660,7 @@
         "target": "com.cloudflare.security_center#GetInsightTypeForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#GetInsightTypeForAccountResponse"
+        "target": "com.cloudflare.security_center#GetInsightTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -759,7 +760,7 @@
         "target": "com.cloudflare.security_center#GetInsightTypeForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#GetInsightTypeForZoneResponse"
+        "target": "com.cloudflare.security_center#GetInsightTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -859,7 +860,7 @@
         "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogForAccountResponse"
+        "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -956,7 +957,7 @@
         "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogForZoneResponse"
+        "target": "com.cloudflare.security_center#ListByInsightInsightAuditLogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1053,7 +1054,7 @@
         "target": "com.cloudflare.security_center#ListInsightAuditLogsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#ListInsightAuditLogsForAccountResponse"
+        "target": "com.cloudflare.security_center#ListInsightAuditLogsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1143,7 +1144,7 @@
         "target": "com.cloudflare.security_center#ListInsightAuditLogsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#ListInsightAuditLogsForZoneResponse"
+        "target": "com.cloudflare.security_center#ListInsightAuditLogsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1233,7 +1234,7 @@
         "target": "com.cloudflare.security_center#ListInsightsForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#ListInsightsForAccountResponse"
+        "target": "com.cloudflare.security_center#ListInsightsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1354,7 +1355,7 @@
         "target": "com.cloudflare.security_center#ListInsightsForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.security_center#ListInsightsForZoneResponse"
+        "target": "com.cloudflare.security_center#ListInsightsResponse"
       },
       "traits": {
         "smithy.api#http": {

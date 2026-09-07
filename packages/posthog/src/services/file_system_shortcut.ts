@@ -104,24 +104,24 @@ export const FileSystemShortcut2 = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FileSystemShortcut2>;
 
 /** IDs of the current user's shortcuts in the desired display order. */
-export type FileSystemShortcutReorderCreateRequestOrderedIdsList =
+export type CreateFileSystemShortcutReorderRequestOrderedIdsList =
   Array<string>;
-export const FileSystemShortcutReorderCreateRequestOrderedIdsList =
+export const CreateFileSystemShortcutReorderRequestOrderedIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<FileSystemShortcutReorderCreateRequestOrderedIdsList>;
+  ) as any as S.Schema<CreateFileSystemShortcutReorderRequestOrderedIdsList>;
 
 export interface CreateFileSystemShortcutReorderRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** IDs of the current user's shortcuts in the desired display order. */
-  ordered_ids: FileSystemShortcutReorderCreateRequestOrderedIdsList;
+  ordered_ids: CreateFileSystemShortcutReorderRequestOrderedIdsList;
 }
 export const CreateFileSystemShortcutReorderRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
-      ordered_ids: FileSystemShortcutReorderCreateRequestOrderedIdsList,
+      ordered_ids: CreateFileSystemShortcutReorderRequestOrderedIdsList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -184,13 +184,13 @@ export const FileSystemShortcutDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileSystemShortcutDestroyResponse",
 }) as any as S.Schema<FileSystemShortcutDestroyResponse>;
 
-export interface FileSystemShortcutRetrieveRequest {
+export interface GetFileSystemShortcutRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this file system shortcut. */
   id: string;
 }
-export const FileSystemShortcutRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFileSystemShortcutRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -202,8 +202,8 @@ export const FileSystemShortcutRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FileSystemShortcutRetrieveRequest",
-}) as any as S.Schema<FileSystemShortcutRetrieveRequest>;
+  identifier: "GetFileSystemShortcutRequest",
+}) as any as S.Schema<GetFileSystemShortcutRequest>;
 
 export interface ListFileSystemShortcutRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -352,17 +352,14 @@ export const fileSystemShortcutDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FileSystemShortcutRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const fileSystemShortcutRetrieve: API.OperationMethod<
-  FileSystemShortcutRetrieveRequest,
+export type GetFileSystemShortcutError = Forbidden | NotFound | PosthogOpError;
+export const getFileSystemShortcut: API.OperationMethod<
+  GetFileSystemShortcutRequest,
   FileSystemShortcut2,
-  FileSystemShortcutRetrieveError,
+  GetFileSystemShortcutError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FileSystemShortcutRetrieveRequest,
+  input: GetFileSystemShortcutRequest,
   output: FileSystemShortcut2,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,

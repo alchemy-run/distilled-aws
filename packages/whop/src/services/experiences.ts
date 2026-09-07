@@ -275,6 +275,18 @@ export const DuplicateExperienceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DuplicateExperienceRequest",
 }) as any as S.Schema<DuplicateExperienceRequest>;
 
+export interface GetExperienceRequest {
+  /** The unique identifier of the experience. */
+  id: string;
+}
+export const GetExperienceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/experiences/{id}", code: 200 })),
+).annotate({
+  identifier: "GetExperienceRequest",
+}) as any as S.Schema<GetExperienceRequest>;
+
 export interface ListExperienceRequest {
   after?: string;
   before?: string;
@@ -392,18 +404,6 @@ export const ListExperienceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListExperienceResponse",
 }) as any as S.Schema<ListExperienceResponse>;
-
-export interface RetrieveExperienceRequest {
-  /** The unique identifier of the experience. */
-  id: string;
-}
-export const RetrieveExperienceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/experiences/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveExperienceRequest",
-}) as any as S.Schema<RetrieveExperienceRequest>;
 
 /** The different access levels for experiences (PUBLIC IS NEVER USED ANYMORE). */
 export type ExperienceAccessLevels = "public" | "private";
@@ -546,6 +546,26 @@ export const duplicateExperience: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetExperienceError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve experience [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing experience. */
+export const getExperience: API.OperationMethod<
+  GetExperienceRequest,
+  Experience,
+  GetExperienceError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExperienceRequest,
+  output: Experience,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListExperienceError =
   | BadRequest
   | Forbidden
@@ -577,26 +597,6 @@ export const listExperience: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveExperienceError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve experience [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing experience. */
-export const retrieveExperience: API.OperationMethod<
-  RetrieveExperienceRequest,
-  Experience,
-  RetrieveExperienceError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveExperienceRequest,
-  output: Experience,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateExperienceError =
   | BadRequest

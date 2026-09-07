@@ -88,7 +88,8 @@
       "webAnalyticsToken": "web_analytics_token",
       "wranglerConfigHash": "wrangler_config_hash",
       "zoneTag": "zone_tag"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.pages#ProjectsCreateRequestBuildConfig": {
@@ -14102,58 +14103,58 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.pages#ProjectsCreate"
+          "target": "com.cloudflare.pages#CreateProject"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDelete"
+          "target": "com.cloudflare.pages#CreateProjectDeployment"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsEdit"
+          "target": "com.cloudflare.pages#CreateProjectDomain"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsGet"
+          "target": "com.cloudflare.pages#DeleteProject"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsList"
+          "target": "com.cloudflare.pages#DeleteProjectDeployment"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsPurgeBuildCache"
+          "target": "com.cloudflare.pages#DeleteProjectDomain"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDeploymentsCreate"
+          "target": "com.cloudflare.pages#GetProject"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDeploymentsDelete"
+          "target": "com.cloudflare.pages#GetProjectDeployment"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDeploymentsGet"
+          "target": "com.cloudflare.pages#GetProjectDeploymentHistoryLog"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDeploymentsList"
+          "target": "com.cloudflare.pages#GetProjectDomain"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDeploymentsRetry"
+          "target": "com.cloudflare.pages#ListProjectDeployments"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDeploymentsRollback"
+          "target": "com.cloudflare.pages#ListProjectDomains"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDeploymentsHistoryLogsGet"
+          "target": "com.cloudflare.pages#ListProjects"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDomainsCreate"
+          "target": "com.cloudflare.pages#PatchProject"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDomainsDelete"
+          "target": "com.cloudflare.pages#PatchProjectDomain"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDomainsEdit"
+          "target": "com.cloudflare.pages#PurgeBuildCacheProject"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDomainsGet"
+          "target": "com.cloudflare.pages#RetryProjectDeployment"
         },
         {
-          "target": "com.cloudflare.pages#ProjectsDomainsList"
+          "target": "com.cloudflare.pages#RollbackProjectDeployment"
         }
       ],
       "traits": {

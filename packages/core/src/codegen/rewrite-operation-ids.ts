@@ -1,12 +1,23 @@
 /**
- * OpenAPI operation naming (dev-time only).
+ * Operation naming (dev-time only).
+ *
+ * Distilled SDK operations are verbNoun (`listApps`, `getApp`,
+ * `createMachine`). Upstream ids come in a handful of shapes and
+ * {@link toVerbNoun} only reorders the ones it can recognise with confidence:
+ *
+ *   - go-swagger `Resource_action` / `Resource_Sub_action` (`Apps_list`)
+ *   - REST `NounsAction` with a trailing CRUD verb (`ConfigsList`,
+ *     `ContainerCreate`, `ServiceMembers_getMetrics`)
+ *   - GraphQL `nounAction` (`projectCreate`)
+ *   - `show` → `get`, `index` → `list`, `retrieve` → `get`
+ *
+ * Anything else is left as-is (lowerFirst only). Reordering a verb out of
+ * the middle of an id (`WatchCoreV1PodList` → `listWatch…`) produced worse
+ * names than the input, so it is not attempted; per-package
+ * {@link OperationIdRewrite} maps cover the tail.
  *
  * RFC-6902 patches that target `/paths/~1foo/get/operationId` break the
- * moment upstream prefixes paths (`/foo` → `/v1/foo`). Naming is a convert
- * policy (`operationNaming: "verbNoun"`), not a spec patch.
- *
- * `rewriteOpenApiOperationIds` still exists for the rare case a later step
- * reads the OpenAPI `operationId`; prefer {@link toVerbNoun} at convert time.
+ * moment upstream prefixes paths. Naming is a convert policy, not a patch.
  */
 export interface OperationIdContext {
   readonly path: string;
@@ -22,62 +33,281 @@ export type OperationIdRewrite =
   | Readonly<Record<string, string>>
   | ((operationId: string, ctx: OperationIdContext) => string | undefined);
 
-const HTTP_METHODS = [
-  "get",
-  "post",
-  "put",
-  "patch",
-  "delete",
-  "head",
-  "options",
-] as const;
-
-/** `show` (go-swagger) → `get`; `index` → `list`. */
+/** Verb spellings normalised on the way out. */
 const VERB_ALIAS: Readonly<Record<string, string>> = {
   show: "get",
   index: "list",
+  retrieve: "get",
 };
 
 /**
- * Action tokens pulled out of go-swagger `Resource_action` ids. Trailing
- * HTTP methods (`get`/`post`/`put`/`patch` as the last `_` segment of
- * `Platform_regions_get`) are not verbs — those stay for {@link operationNames}.
+ * Unambiguous verbs. An id that STARTS with one is already verb-first and
+ * is never reordered (`WatchPodList`, `InsertCalendarList`,
+ * `BulkDeleteMessages`); one found in the middle of a resource name
+ * (`Apps_getOrCreate`) marks the id as a compound we leave alone.
  */
-const VERBS = new Set([
+const STRONG_VERBS = new Set([
+  "get",
   "list",
   "create",
-  "show",
-  "get",
   "delete",
   "update",
-  "check",
-  "set",
+  "patch",
+  "put",
+  "post",
+  "show",
+  "index",
+  "retrieve",
+  "watch",
+  "read",
+  "replace",
+  "connect",
+  "disconnect",
+  "insert",
+  "mutate",
+  "fetch",
+  "remove",
+  "add",
+  "upload",
+  "download",
+  "send",
+  "resend",
+  "validate",
+  "verify",
+  "enable",
+  "disable",
+  "start",
+  "stop",
+  "restart",
+  "cancel",
+  "search",
+  "purge",
+  "revoke",
+  "approve",
+  "reject",
+  "accept",
+  "invoke",
+  "trigger",
+  "deploy",
+  "redeploy",
+  "describe",
+  "generate",
+  "regenerate",
+  "rotate",
+  "restore",
+  "suspend",
+  "resume",
+  "activate",
+  "deactivate",
+  "archive",
+  "unarchive",
+  "publish",
+  "unpublish",
+  "subscribe",
+  "unsubscribe",
+  "register",
+  "unregister",
+  "authenticate",
+  "authorize",
+  "deauthorize",
+  "attach",
+  "detach",
+  "assign",
+  "unassign",
+  "import",
+  "export",
+  "copy",
+  "move",
+  "rename",
+  "retry",
+  "reset",
+  "refresh",
+  "encrypt",
+  "decrypt",
+  "sign",
+  "edit",
+  "bulk",
+  "execute",
+  "submit",
+  "apply",
+  "undelete",
+  "redeliver",
+  "invalidate",
+  "upsert",
   "cordon",
   "uncordon",
   "exec",
   "reclaim",
-  "upsert",
-  "restart",
-  "signal",
-  "start",
-  "stop",
-  "suspend",
+  "modify",
+  "install",
+  "uninstall",
+  "migrate",
+  "terminate",
+  "reboot",
+  "rebuild",
+  "resize",
+  "clone",
+  "duplicate",
+  "acknowledge",
+  "unpause",
+  "unblock",
+  "unlink",
+  "unpin",
+  "unmute",
+  "unhide",
+  "unstar",
+  "unfollow",
+  "unshare",
+  "unban",
+  "unlock",
+  "unflag",
+  "unclaim",
+]);
+
+/**
+ * Words that act as the verb when they TRAIL a resource (`MachinesStart`,
+ * `SecretkeysSet`, `JobsRun`) but are ordinary nouns when they lead
+ * (`ReleaseGet`, `RequestGet`, `SetGet`, `CheckRunsList`). Includes every
+ * strong verb.
+ */
+const TRAILING_VERBS = new Set([
+  ...STRONG_VERBS,
+  "set",
+  "check",
+  "run",
   "wait",
-  "decrypt",
-  "encrypt",
-  "generate",
-  "sign",
-  "verify",
-  "extend",
-  "authenticate",
-  "authorize",
-  "request",
-  "enable",
-  "disable",
+  "signal",
   "fork",
-  "restore",
+  "extend",
+  "test",
+  "sync",
+  "review",
+  "invite",
+  "join",
+  "leave",
+  "capture",
+  "refund",
+  "settle",
+  "void",
+  "preview",
+  "complete",
+  "confirm",
+  "abort",
+  "kill",
+  "scale",
+  "promote",
+  "demote",
+  "renew",
+  "recover",
+  "reveal",
+  "presign",
+  "provision",
+  "trim",
+  "vacuum",
+  "compact",
+  "flush",
+  "merge",
+  "dispatch",
+  "notify",
+  "poll",
+  "redeem",
+  "claim",
+  "lint",
+  "toggle",
+  "pin",
+  "mute",
+  "hide",
+  "ban",
+  "block",
+  "lock",
+  "share",
+  "follow",
+  "star",
+  "pause",
+  "finalize",
+  "transfer",
+  "lookup",
+  "clear",
+  "convert",
+  "dismiss",
+  "reply",
+  "squash",
+  "commit",
+  "swap",
+  "recreate",
+  "seal",
+  "ping",
+  "login",
+  "logout",
+]);
+
+/**
+ * Leading tokens that are verbs often enough that an id starting with one
+ * is left as-is unless a STRONG verb trails it (`QueryCreate` →
+ * `createQuery`, but `QueryRun` stays).
+ */
+const WEAK_LEADING_VERBS = new Set([
+  ...TRAILING_VERBS,
+  "request",
   "release",
-  "rotate",
+  "report",
+  "query",
+  "stream",
+  "open",
+  "close",
+  "head",
+  "options",
+  "compute",
+  "batch",
+  "count",
+  "link",
+  "mark",
+  "grant",
+  "aggregate",
+  "skip",
+  "filter",
+  "change",
+  "vote",
+  "debug",
+  "expire",
+  "issue",
+  "process",
+  "redirect",
+  "estimate",
+  "calculate",
+  "evaluate",
+  "resolve",
+  "load",
+  "unload",
+  "backup",
+  "snapshot",
+  "rollback",
+  "flag",
+  "certify",
+  "checkout",
+  "checkin",
+  "suggest",
+  "predict",
+  "analyze",
+  "annotate",
+  "translate",
+  "recognize",
+  "detect",
+  "classify",
+  "simulate",
+  "take",
+  "end",
+  "reassign",
+  "consume",
+  "prepare",
+  "action",
+  "act",
+  "ask",
+  "answer",
+  "handle",
+  "trace",
+  "track",
+  "log",
 ]);
 
 /** Compound tokens the naive split would leave as `Secretkeys`. */
@@ -89,10 +319,191 @@ const TOKEN_ALIAS: Readonly<Record<string, string>> = {
 const IRREGULAR_SINGULAR: Readonly<Record<string, string>> = {
   processes: "process",
   statuses: "status",
+  addresses: "address",
+  aliases: "alias",
+  indexes: "index",
+  indices: "index",
+  matrices: "matrix",
+  vertices: "vertex",
+  analyses: "analysis",
+  bases: "base",
+  cases: "case",
+  databases: "database",
+  releases: "release",
+  responses: "response",
+  licenses: "license",
+  courses: "course",
+  purchases: "purchase",
+  phases: "phase",
+  leases: "lease",
+  clauses: "clause",
+  causes: "cause",
+  pauses: "pause",
+  houses: "house",
+  children: "child",
+  people: "person",
+  media: "media",
+  data: "data",
+  metadata: "metadata",
+  schemas: "schema",
+  criteria: "criterion",
+  feet: "foot",
+  teeth: "tooth",
+  mice: "mouse",
+  geese: "goose",
 };
 
-/** Product names that happen to end in `s` (Postgres, …). */
-const UNCOUNTABLE = new Set(["postgres"]);
+/**
+ * Nouns whose plural and singular coincide, or product names that end in
+ * `s`. Never trimmed.
+ */
+const UNCOUNTABLE = new Set([
+  "postgres",
+  "redis",
+  "kubernetes",
+  "ios",
+  "macos",
+  "windows",
+  "dns",
+  "tls",
+  "https",
+  "sms",
+  "cors",
+  "oidc",
+  "sso",
+  "saas",
+  "aws",
+  "gcs",
+  "ecs",
+  "eks",
+  "rds",
+  "sqs",
+  "sns",
+  "kms",
+  "ses",
+  "efs",
+  "ebs",
+  "status",
+  "series",
+  "timeseries",
+  "analytics",
+  "metrics",
+  "settings",
+  "credentials",
+  "permissions",
+  "news",
+  "canvas",
+  "lens",
+  "bonus",
+  "campus",
+  "census",
+  "focus",
+  "virus",
+  "corpus",
+  "chorus",
+  "genus",
+  "radius",
+  "consensus",
+  "apparatus",
+  "bus",
+  "gas",
+  "plus",
+  "minus",
+  "nexus",
+  "prometheus",
+  "chaos",
+  "cosmos",
+  "ethos",
+  "pathos",
+  "atlas",
+  "bias",
+  "gps",
+  "cds",
+  "css",
+  "sass",
+  "less",
+  "js",
+  "ts",
+  "os",
+  "fs",
+  "vs",
+  "as",
+  "is",
+  "has",
+  "was",
+  "this",
+  "always",
+  "sis",
+  "axis",
+  "basis",
+  "crisis",
+  "thesis",
+  "diagnosis",
+  "synthesis",
+  "emphasis",
+  "hypothesis",
+  "oasis",
+  "iris",
+  "tennis",
+  "chassis",
+  "debris",
+  "physics",
+  "ethics",
+  "economics",
+  "logistics",
+  "mathematics",
+  "politics",
+  "statistics",
+  "dynamics",
+  "graphics",
+  "robotics",
+  "genetics",
+  "linguistics",
+  "means",
+  "species",
+  "sheep",
+  "fish",
+  "deer",
+  "aircraft",
+  "software",
+  "hardware",
+  "firmware",
+  "middleware",
+  "access",
+  "address",
+  "progress",
+  "success",
+  "process",
+  "business",
+  "ingress",
+  "egress",
+  "express",
+  "compress",
+  "stress",
+  "witness",
+  "fitness",
+  "wellness",
+  "readiness",
+  "liveness",
+  "awareness",
+  "class",
+  "pass",
+  "mass",
+  "glass",
+  "grass",
+  "bypass",
+  "compass",
+  "kms",
+  "eos",
+  "nas",
+  "ras",
+  "sas",
+  "das",
+  "pas",
+  "s3",
+  "k8s",
+  "kubeadm",
+]);
 
 /** Certificate variants that sit in front of the resource noun. */
 const QUALIFIERS = new Set(["acme", "custom"]);
@@ -110,54 +521,58 @@ export const resolveOperationName = (
   return rewrite[operationNameKey(ctx)] ?? rewrite[operationId];
 };
 
+/** `foo` → `Foo`; all-caps tokens (`CSI`, `API`) keep their casing. */
 const pascalToken = (raw: string): string => {
   const alias = TOKEN_ALIAS[raw.toLowerCase()];
   if (alias !== undefined) return alias;
-  if (raw.length > 1 && raw === raw.toUpperCase() && /[A-Z]/.test(raw)) {
-    return raw.charAt(0) + raw.slice(1).toLowerCase();
-  }
   return raw.charAt(0).toUpperCase() + raw.slice(1);
 };
 
-const singularize = (raw: string): string => {
+/**
+ * Conservative singular. Only strips a trailing `s` when the word is a
+ * regular plural we are confident about; anything ambiguous is returned
+ * unchanged, because `getAlia` is worse than `getAliases`.
+ */
+export const singularize = (raw: string): string => {
   const lower = raw.toLowerCase();
+  const keepCase = (s: string): string =>
+    raw[0] === raw[0]?.toUpperCase()
+      ? s.charAt(0).toUpperCase() + s.slice(1)
+      : s;
   const alias = TOKEN_ALIAS[lower];
   if (alias !== undefined) {
     return alias.endsWith("s") ? alias.slice(0, -1) : alias;
   }
   const irregular = IRREGULAR_SINGULAR[lower];
-  if (irregular !== undefined) {
-    return raw[0] === raw[0]?.toUpperCase()
-      ? irregular.charAt(0).toUpperCase() + irregular.slice(1)
-      : irregular;
-  }
+  if (irregular !== undefined) return keepCase(irregular);
   if (UNCOUNTABLE.has(lower)) return raw;
+  // All-caps acronyms (`IPs`, `CIDRs`, `DNS`) — only trim a lowercase `s`
+  // after an acronym.
+  if (/^[A-Z0-9]+s$/.test(raw)) return raw.slice(0, -1);
+  if (raw !== lower && raw.toUpperCase() === raw) return raw;
   if (lower.length <= 3) return raw;
-  if (/(?:ss|us|is|os)$/i.test(raw)) return raw;
-  if (/ies$/i.test(raw) && raw.length > 4) {
-    return `${raw.slice(0, -3)}y`;
-  }
-  if (lower.endsWith("s")) return raw.slice(0, -1);
-  return raw;
+  if (!lower.endsWith("s")) return raw;
+  if (/(?:ss|us|is|os|as|ys)$/.test(lower)) return raw;
+  if (lower.endsWith("ies") && lower.length > 4) return `${raw.slice(0, -3)}y`;
+  if (/(?:ches|shes|xes|zes|sses)$/.test(lower)) return raw.slice(0, -2);
+  if (lower.endsWith("oes") && lower.length > 4) return raw.slice(0, -2);
+  // `-ses` after a vowel is usually a regular `-se` noun (`Response`,
+  // `Release`, `Database`), not an `-s` + `es` plural.
+  if (/[aeiou]ses$/.test(lower)) return raw.slice(0, -1);
+  if (lower.endsWith("ses")) return raw.slice(0, -2);
+  return raw.slice(0, -1);
 };
 
 const lowerFirst = (s: string): string =>
   s.length === 0 ? s : s.charAt(0).toLowerCase() + s.slice(1);
 
-/** REST collection actions that may trail a resource (`ConfigsList`). */
-const REST_LAST = new Set([
-  "list",
-  "create",
-  "get",
-  "show",
-  "delete",
-  "update",
-  "patch",
-]);
-
+/**
+ * Split on `_`, `-`, `/` and camel boundaries. Acronym runs stay together
+ * (`CSIDriver` → `CSI`, `Driver`; `APIGroup` → `API`, `Group`).
+ */
 const splitIdent = (s: string): string[] => {
   const parts: string[] = [];
-  for (const chunk of s.split(/[_/-]+/).filter(Boolean)) {
+  for (const chunk of s.split(/[_/\-.\s]+/).filter(Boolean)) {
     const split = chunk
       .replace(/([a-z0-9])([A-Z])/g, "$1\0$2")
       .replace(/([A-Z]+)([A-Z][a-z])/g, "$1\0$2");
@@ -168,93 +583,131 @@ const splitIdent = (s: string): string[] => {
   return parts;
 };
 
-const isVerbToken = (raw: string): boolean => {
-  const lower = raw.toLowerCase();
-  return (
-    VERBS.has(lower) || REST_LAST.has(lower) || VERB_ALIAS[lower] !== undefined
-  );
+const isStrongVerb = (raw: string): boolean =>
+  STRONG_VERBS.has(raw.toLowerCase());
+const isTrailingVerb = (raw: string): boolean =>
+  TRAILING_VERBS.has(raw.toLowerCase());
+const isWeakLeadingVerb = (raw: string): boolean =>
+  WEAK_LEADING_VERBS.has(raw.toLowerCase());
+
+const alias = (raw: string): string =>
+  VERB_ALIAS[raw.toLowerCase()] ?? raw.toLowerCase();
+
+/** `version`-like tokens (`V1`, `v1beta1`, `V2`) are never nouns to singularise. */
+const isVersionToken = (raw: string): boolean => /^[vV]\d/.test(raw);
+
+/** Adverbs that sit between resource and verb: `HoldoutsPartialUpdate`. */
+const MODIFIERS = new Set(["partial", "bulk", "batch", "all", "many"]);
+
+/**
+ * `verb + Resource + Object`. Only the resource (last noun before the verb)
+ * is singularised, and only for non-list verbs (`getApp`, `listApps`,
+ * `listMachineEvents`). Parent tokens keep their spelling.
+ */
+const assemble = (
+  verb: string,
+  nouns: readonly string[],
+  tail: readonly string[] = [],
+): string => {
+  // `App_Certificates_acme_create`: the qualifier trails the resource in
+  // the id but reads better in front of it (`createAppAcmeCertificate`).
+  let ordered = [...nouns];
+  if (ordered.length >= 2 && QUALIFIERS.has(ordered.at(-1)!.toLowerCase())) {
+    const q = ordered.pop()!;
+    ordered.splice(ordered.length - 1, 0, q);
+  }
+  const shaped = ordered.map((p, i) => {
+    const isLast = i === ordered.length - 1;
+    if (!isLast || isVersionToken(p)) return pascalToken(p);
+    if (verb === "list" && tail.length === 0) return pascalToken(p);
+    return pascalToken(singularize(p));
+  });
+  return verb + shaped.join("") + tail.map(pascalToken).join("");
 };
 
 /**
  * Distilled SDK names are verbNoun (`listApps`, `getApp`, `createMachine`).
  *
- * - Already verb-first (`listSprites`, `GetObject`, `showContact`) stays,
- *   with `show` → `get`.
- * - Trailing REST action (`ConfigsList`, `PlansGet`, `ContainerCreate`)
- *   moves the verb first. Preceding tokens that are themselves verbs
- *   (`AppGetOrCreate`) are left alone.
- * - go-swagger `Apps_list` / `App_Certificates_show` / `Machines_list_events`
- *   uses the underscore-token verb.
+ * - Already verb-first (`listSprites`, `GetObject`, `showContact`,
+ *   `WatchPodList`) stays, with `show`/`index`/`retrieve` aliased.
+ * - Trailing action (`ConfigsList`, `PlansGet`, `ContainerCreate`,
+ *   `VirtualMachinesStart`, `ReleaseGet`) moves the verb first and
+ *   singularises the resource for non-list verbs.
+ * - go-swagger / autorest `Apps_list`, `App_Certificates_show`,
+ *   `Machines_list_events`, `ServiceMembers_getMetrics`: the verb heads the
+ *   first `_` segment after the resource.
+ * - Anything else (`AppGetOrCreate`, `VirtualMachines_createOrUpdate`,
+ *   `DnsRecordsBatch`, `accountById`) is returned unchanged apart from
+ *   lowerFirst. Use {@link OperationIdRewrite} for those.
  */
 export const toVerbNoun = (operationId: string): string => {
-  const parts = splitIdent(operationId);
-  if (parts.length === 0) return lowerFirst(operationId);
+  const trimmed = operationId.trim();
+  if (trimmed === "") return trimmed;
 
-  const alias = (raw: string): string =>
-    VERB_ALIAS[raw.toLowerCase()] ?? raw.toLowerCase();
-
-  if (isVerbToken(parts[0]!)) {
-    return alias(parts[0]!) + parts.slice(1).map(pascalToken).join("");
+  const segments = trimmed.split(/[_/]+/).filter(Boolean);
+  if (segments.length >= 2) {
+    // snake_case verb-first (`get_apps`, `list_all_users`): join.
+    const lead = splitIdent(segments[0]!);
+    if (lead.length === 1 && isStrongVerb(lead[0]!)) {
+      const rest = segments.slice(1).flatMap(splitIdent);
+      return alias(lead[0]!) + rest.map(pascalToken).join("");
+    }
+    // Segments before the verb are the resource by construction, so a
+    // verb-looking token inside them (`OpenIdConnectProvider_get`) is a
+    // noun. Only the object after the verb can make this a compound.
+    const verbSeg = segments.findIndex(
+      (seg, i) => i > 0 && isTrailingVerb(splitIdent(seg)[0] ?? ""),
+    );
+    if (verbSeg > 0) {
+      const head = segments.slice(0, verbSeg).flatMap(splitIdent);
+      const [verb, ...objectHere] = splitIdent(segments[verbSeg]!);
+      const object = [
+        ...objectHere,
+        ...segments.slice(verbSeg + 1).flatMap(splitIdent),
+      ];
+      const compound = object.some(
+        (t) => isStrongVerb(t) || /^(or|and)$/i.test(t),
+      );
+      if (!compound) return assemble(alias(verb!), head, object);
+    }
+    return lowerFirst(trimmed);
   }
 
-  // `AppGetOrCreate` and similar compounds: more than one verb → leave it.
-  if (parts.filter(isVerbToken).length > 1) {
-    return lowerFirst(operationId);
+  const parts = splitIdent(trimmed);
+  if (parts.length <= 1) {
+    return parts.length === 1 && isTrailingVerb(parts[0]!)
+      ? alias(parts[0]!)
+      : lowerFirst(trimmed);
   }
 
+  const first = parts[0]!;
   const last = parts.at(-1)!;
-  const precedingHasVerb = parts.slice(0, -1).some(isVerbToken);
-  if (REST_LAST.has(last.toLowerCase()) && !precedingHasVerb) {
-    const verb = alias(last);
-    const nouns = parts.slice(0, -1);
-    const shaped = nouns.map((p, i) => {
-      const isLast = i === nouns.length - 1;
-      if (verb === "list" && isLast) return pascalToken(p);
-      return pascalToken(singularize(p));
-    });
-    return verb + shaped.join("");
+
+  if (isStrongVerb(first)) {
+    return alias(first) + parts.slice(1).map(pascalToken).join("");
+  }
+  if (parts.some((p) => /^(or|and)$/i.test(p))) return lowerFirst(trimmed);
+
+  const reorder = isWeakLeadingVerb(first)
+    ? isStrongVerb(last)
+    : isTrailingVerb(last);
+  if (!reorder) {
+    return isWeakLeadingVerb(first)
+      ? alias(first) + parts.slice(1).map(pascalToken).join("")
+      : lowerFirst(trimmed);
   }
 
-  let verbIndex = -1;
-  if (VERBS.has(last.toLowerCase()) && !precedingHasVerb) {
-    verbIndex = parts.length - 1;
-  } else {
-    for (let i = 0; i < parts.length; i++) {
-      if (VERBS.has(parts[i]!.toLowerCase())) {
-        verbIndex = i;
-        break;
-      }
-    }
+  const nouns = parts.slice(0, -1);
+  if (nouns.slice(1).some(isStrongVerb)) return lowerFirst(trimmed);
+  const modifier = nouns.at(-1);
+  if (
+    nouns.length > 1 &&
+    modifier !== undefined &&
+    MODIFIERS.has(modifier.toLowerCase())
+  ) {
+    return assemble(alias(last), nouns.slice(0, -1), [modifier]);
   }
-  if (verbIndex < 0) return lowerFirst(operationId);
-
-  const verb = alias(parts[verbIndex]!);
-  let nouns = [...parts.slice(0, verbIndex), ...parts.slice(verbIndex + 1)];
-
-  const orgAt = nouns.findIndex(
-    (p) => p.toLowerCase() === "org" || p.toLowerCase() === "orgs",
-  );
-  if (orgAt >= 0) {
-    const [org] = nouns.splice(orgAt, 1);
-    nouns = [org!, ...nouns];
-  }
-
-  const shaped = nouns.map((p, i) => {
-    const isLast = i === nouns.length - 1;
-    if (verb === "list" && isLast) return pascalToken(p);
-    return pascalToken(singularize(p));
-  });
-
-  if (shaped.length >= 2) {
-    const lastRaw = nouns.at(-1)!.toLowerCase();
-    if (QUALIFIERS.has(lastRaw)) {
-      const q = shaped.pop()!;
-      const resource = shaped.pop()!;
-      shaped.push(q, resource);
-    }
-  }
-
-  return verb + shaped.join("");
+  return assemble(alias(last), nouns);
 };
 
 const COMPANION_SUFFIXES = [
@@ -286,9 +739,10 @@ const remapTargets = (
 };
 
 /**
- * Rename operation (and `*Request`/`*Response` companions) in a Smithy
- * model to verbNoun PascalCase. Mutates `model.shapes`. Colliding names
- * keep the original id.
+ * Rename operations (and every shape whose name starts with the operation
+ * name — `FooRequest`, `FooResponse`, `FooRequestBody`, `FooResponseItemsList`)
+ * in a Smithy model to verbNoun PascalCase. Mutates `model.shapes`.
+ * Colliding names keep the original id and are reported.
  */
 export const verbNounSmithyModel = (model: {
   shapes?: Record<string, any>;
@@ -296,11 +750,18 @@ export const verbNounSmithyModel = (model: {
   const shapes = model.shapes ?? {};
   const mapping = new Map<string, string>();
   const collisions: string[] = [];
+  const taken = new Set(Object.keys(shapes));
 
   const ops = Object.entries(shapes).filter(
     ([, def]) => def?.type === "operation",
   );
-  for (const [id, _def] of ops) {
+  const opLocals = new Set<string>();
+  for (const [id] of ops) {
+    const hash = id.indexOf("#");
+    opLocals.add(hash >= 0 ? id.slice(hash + 1) : id);
+  }
+
+  for (const [id] of ops) {
     const hash = id.indexOf("#");
     const ns = hash >= 0 ? id.slice(0, hash) : "";
     const local = hash >= 0 ? id.slice(hash + 1) : id;
@@ -308,20 +769,37 @@ export const verbNounSmithyModel = (model: {
     const nextLocal = camel.charAt(0).toUpperCase() + camel.slice(1);
     if (nextLocal === local) continue;
     const nextId = ns ? `${ns}#${nextLocal}` : nextLocal;
-    if (
-      shapes[nextId] !== undefined ||
-      [...mapping.values()].includes(nextId)
-    ) {
+    if (taken.has(nextId) && !mapping.has(nextId)) {
+      collisions.push(`${local} → ${nextLocal}`);
+      continue;
+    }
+    if ([...mapping.values()].includes(nextId)) {
       collisions.push(`${local} → ${nextLocal}`);
       continue;
     }
     mapping.set(id, nextId);
-    for (const suffix of COMPANION_SUFFIXES) {
-      const from = ns ? `${ns}#${local}${suffix}` : `${local}${suffix}`;
-      const to = ns ? `${ns}#${nextLocal}${suffix}` : `${nextLocal}${suffix}`;
-      if (shapes[from] !== undefined && shapes[to] === undefined) {
-        mapping.set(from, to);
-      }
+    taken.add(nextId);
+
+    // Companions: `<Op>Request`, `<Op>Response…`, and anything derived
+    // from them by the converters' `${opName}Request${Member}` naming.
+    // Skip prefixes that are themselves another operation's name
+    // (`Get` vs `GetObject`) — only exact suffix matches count there.
+    for (const candidate of Object.keys(shapes)) {
+      if (candidate === id || mapping.has(candidate)) continue;
+      const cHash = candidate.indexOf("#");
+      const cNs = cHash >= 0 ? candidate.slice(0, cHash) : "";
+      const cLocal = cHash >= 0 ? candidate.slice(cHash + 1) : candidate;
+      if (cNs !== ns || !cLocal.startsWith(local)) continue;
+      const tail = cLocal.slice(local.length);
+      if (tail === "") continue;
+      const suffixed = COMPANION_SUFFIXES.some((s) => tail.startsWith(s));
+      if (!suffixed) continue;
+      // `ListAppsRequest` vs op `List` + `AppsRequest`: require the tail to
+      // start with a companion suffix immediately after the op name.
+      const to = ns ? `${ns}#${nextLocal}${tail}` : `${nextLocal}${tail}`;
+      if (taken.has(to)) continue;
+      mapping.set(candidate, to);
+      taken.add(to);
     }
   }
 
@@ -334,36 +812,7 @@ export const verbNounSmithyModel = (model: {
   }
   model.shapes = nextShapes;
   return {
-    renamed: [...mapping.keys()].filter((id) =>
-      ops.some(([opId]) => opId === id),
-    ).length,
+    renamed: ops.filter(([opId]) => mapping.has(opId)).length,
     collisions,
   };
-};
-
-/** Apply {@link rewrite} to every operation in `spec.paths`. Mutates in place. */
-export const rewriteOpenApiOperationIds = (
-  spec: { paths?: Record<string, unknown> },
-  rewrite: OperationIdRewrite,
-): { renamed: number } => {
-  let renamed = 0;
-  for (const [path, item] of Object.entries(spec.paths ?? {})) {
-    if (item === null || typeof item !== "object" || Array.isArray(item)) {
-      continue;
-    }
-    const record = item as Record<string, unknown>;
-    for (const method of HTTP_METHODS) {
-      const op = record[method];
-      if (op === null || typeof op !== "object" || Array.isArray(op)) continue;
-      const body = op as Record<string, unknown>;
-      const current = body.operationId;
-      if (typeof current !== "string" || current === "") continue;
-      const next = resolveOperationName(rewrite, current, { path, method });
-      if (next !== undefined && next !== current) {
-        body.operationId = next;
-        renamed++;
-      }
-    }
-  }
-  return { renamed };
 };

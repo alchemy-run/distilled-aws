@@ -1140,6 +1140,31 @@ export const DuplicateAdResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DuplicateAdResponse",
 }) as any as S.Schema<DuplicateAdResponse>;
 
+export type GetAdRequestAttributionModel = "last_touch" | "first_touch";
+export const GetAdRequestAttributionModel = /*@__PURE__*/ S.String;
+
+export interface GetAdRequest {
+  /** The ad ID. */
+  id: string;
+  /** Start of the stats window. */
+  stats_from?: string;
+  /** End of the stats window. */
+  stats_to?: string;
+  /** IANA timezone the stats window is interpreted in. Defaults to UTC. */
+  time_zone?: string;
+  /** Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise. */
+  attribution_model?: GetAdRequestAttributionModel | (string & {});
+}
+export const GetAdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    stats_from: S.optional(S.String.pipe(T.Query())),
+    stats_to: S.optional(S.String.pipe(T.Query())),
+    time_zone: S.optional(S.String.pipe(T.Query())),
+    attribution_model: S.optional(GetAdRequestAttributionModel.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/ads/{id}", code: 200 })),
+).annotate({ identifier: "GetAdRequest" }) as any as S.Schema<GetAdRequest>;
+
 export type ListAdsRequestAdCampaignIdsList = Array<string>;
 export const ListAdsRequestAdCampaignIdsList = /*@__PURE__*/ S.Array(
   S.String,
@@ -1295,35 +1320,6 @@ export const PauseAdRequest = /*@__PURE__*/ S.suspend(() =>
     idempotency_key: S.optional(S.String.pipe(T.Header("Idempotency-Key"))),
   }).pipe(T.Http({ method: "POST", uri: "/ads/{id}/pause", code: 200 })),
 ).annotate({ identifier: "PauseAdRequest" }) as any as S.Schema<PauseAdRequest>;
-
-export type RetrieveAdRequestAttributionModel = "last_touch" | "first_touch";
-export const RetrieveAdRequestAttributionModel = /*@__PURE__*/ S.String;
-
-export interface RetrieveAdRequest {
-  /** The ad ID. */
-  id: string;
-  /** Start of the stats window. */
-  stats_from?: string;
-  /** End of the stats window. */
-  stats_to?: string;
-  /** IANA timezone the stats window is interpreted in. Defaults to UTC. */
-  time_zone?: string;
-  /** Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise. */
-  attribution_model?: RetrieveAdRequestAttributionModel | (string & {});
-}
-export const RetrieveAdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    stats_from: S.optional(S.String.pipe(T.Query())),
-    stats_to: S.optional(S.String.pipe(T.Query())),
-    time_zone: S.optional(S.String.pipe(T.Query())),
-    attribution_model: S.optional(
-      RetrieveAdRequestAttributionModel.pipe(T.Query()),
-    ),
-  }).pipe(T.Http({ method: "GET", uri: "/ads/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAdRequest",
-}) as any as S.Schema<RetrieveAdRequest>;
 
 export interface UnpauseAdRequest {
   /** The ad ID. */
@@ -1728,6 +1724,21 @@ export const duplicateAd: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAdError = NotFound | WhopOpError;
+/** Retrieve an Ad Retrieves a single ad with stats over the requested window. */
+export const getAd: API.OperationMethod<
+  GetAdRequest,
+  Ad,
+  GetAdError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAdRequest,
+  output: Ad,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAdsError = BadRequest | WhopOpError;
 /** List Ads Lists the ads for an account, with stats over the requested window. */
 export const listAds: API.PaginatedOperationMethod<
@@ -1766,21 +1777,6 @@ export const pauseAd: API.OperationMethod<
   input: PauseAdRequest,
   output: Ad,
   errors: [Conflict],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAdError = NotFound | WhopOpError;
-/** Retrieve an Ad Retrieves a single ad with stats over the requested window. */
-export const retrieveAd: API.OperationMethod<
-  RetrieveAdRequest,
-  Ad,
-  RetrieveAdError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAdRequest,
-  output: Ad,
-  errors: [NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

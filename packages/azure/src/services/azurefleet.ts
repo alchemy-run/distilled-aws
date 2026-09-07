@@ -2595,25 +2595,25 @@ export const GetFleetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFleetRequest>;
 
 /** Resource tags. */
-export type FleetsGetResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFleetResponseTagsMap = { [key: string]: string | undefined };
+export const GetFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsGetResponseTagsMap>;
+) as any as S.Schema<GetFleetResponseTagsMap>;
 
 /** Zones in which the Compute Fleet is available */
-export type FleetsGetResponseZonesList = Array<string>;
-export const FleetsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetFleetResponseZonesList = Array<string>;
+export const GetFleetResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FleetsGetResponseZonesList>;
+) as any as S.Schema<GetFleetResponseZonesList>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export type GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
 
 /** Plan for the resource. */
-export type FleetsGetResponsePlan = FleetsCreateOrUpdateRequestPlan;
-export const FleetsGetResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export type GetFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export const GetFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
 
 export interface GetFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2625,13 +2625,13 @@ export interface GetFleetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetsGetResponseTagsMap;
+  tags?: GetFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: FleetProperties;
   /** Zones in which the Compute Fleet is available */
-  zones?: FleetsGetResponseZonesList;
+  zones?: GetFleetResponseZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: FleetsCreateOrUpdateResponseIdentity;
   /** Plan for the resource. */
@@ -2643,10 +2643,10 @@ export const GetFleetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetsGetResponseTagsMap),
+    tags: S.optional(GetFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetProperties),
-    zones: S.optional(FleetsGetResponseZonesList),
+    zones: S.optional(GetFleetResponseZonesList),
     identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
     plan: S.optional(FleetsCreateOrUpdateRequestPlan),
   }),
@@ -2978,20 +2978,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2999,11 +2999,11 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListOperationsResponse>;
 
 /** Resource tags. */
-export type FleetsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFleetRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityUpdateInputType =
@@ -3080,7 +3080,7 @@ export interface UpdateFleetRequest {
   /** The name of the Compute Fleet */
   fleetName: string;
   /** Resource tags. */
-  tags?: FleetsUpdateRequestTagsMap;
+  tags?: UpdateFleetRequestTagsMap;
   /** Updatable managed service identity */
   identity?: ManagedServiceIdentityUpdateInput;
   /** Updatable resource plan */
@@ -3093,7 +3093,7 @@ export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fleetName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateFleetRequestTagsMap),
     identity: S.optional(ManagedServiceIdentityUpdateInput),
     plan: S.optional(ResourcePlanUpdate),
     properties: S.optional(FleetPropertiesInput),
@@ -3110,26 +3110,25 @@ export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateFleetRequest>;
 
 /** Resource tags. */
-export type FleetsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFleetResponseTagsMap>;
 
 /** Zones in which the Compute Fleet is available */
-export type FleetsUpdateResponseZonesList = Array<string>;
-export const FleetsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateFleetResponseZonesList = Array<string>;
+export const UpdateFleetResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FleetsUpdateResponseZonesList>;
+) as any as S.Schema<UpdateFleetResponseZonesList>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsUpdateResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsUpdateResponseIdentity =
-  FleetsCreateOrUpdateResponseIdentity;
+export type UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
 
 /** Plan for the resource. */
-export type FleetsUpdateResponsePlan = FleetsCreateOrUpdateRequestPlan;
-export const FleetsUpdateResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export type UpdateFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export const UpdateFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
 
 export interface UpdateFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3141,13 +3140,13 @@ export interface UpdateFleetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetsUpdateResponseTagsMap;
+  tags?: UpdateFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: FleetProperties;
   /** Zones in which the Compute Fleet is available */
-  zones?: FleetsUpdateResponseZonesList;
+  zones?: UpdateFleetResponseZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: FleetsCreateOrUpdateResponseIdentity;
   /** Plan for the resource. */
@@ -3159,10 +3158,10 @@ export const UpdateFleetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetProperties),
-    zones: S.optional(FleetsUpdateResponseZonesList),
+    zones: S.optional(UpdateFleetResponseZonesList),
     identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
     plan: S.optional(FleetsCreateOrUpdateRequestPlan),
   }),

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.certificate_actions#ListCertificatesActionsRequestIdList": {
@@ -1282,13 +1283,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.certificate_actions#ListCertificatesActions"
-        },
-        {
           "target": "com.hetzner.certificate_actions#GetCertificatesAction"
         },
         {
           "target": "com.hetzner.certificate_actions#ListCertificateActions"
+        },
+        {
+          "target": "com.hetzner.certificate_actions#ListCertificatesActions"
         },
         {
           "target": "com.hetzner.certificate_actions#RetryCertificate"

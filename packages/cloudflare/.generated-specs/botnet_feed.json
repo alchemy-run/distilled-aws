@@ -17,7 +17,8 @@
     ],
     "keyDictionary": {
       "offenseCount": "offense_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.botnet_feed#BotnetFeed": {
@@ -25,16 +26,16 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.botnet_feed#AsnDayReport"
+          "target": "com.cloudflare.botnet_feed#DayReportAsn"
         },
         {
-          "target": "com.cloudflare.botnet_feed#AsnFullReport"
+          "target": "com.cloudflare.botnet_feed#DeleteConfigAsn"
         },
         {
-          "target": "com.cloudflare.botnet_feed#ConfigsAsnDelete"
+          "target": "com.cloudflare.botnet_feed#FullReportAsn"
         },
         {
-          "target": "com.cloudflare.botnet_feed#ConfigsAsnGet"
+          "target": "com.cloudflare.botnet_feed#GetConfigAsn"
         }
       ],
       "traits": {

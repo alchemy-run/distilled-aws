@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.evaluations#EvaluationsListRequestEvaluationType": {
+    "com.posthog.evaluations#ListEvaluationsRequestEvaluationType": {
       "type": "enum",
       "members": {
         "HOG": {
@@ -41,14 +42,14 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsListRequestIdInList": {
+    "com.posthog.evaluations#ListEvaluationsRequestIdInList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsListRequestOrderByItem": {
+    "com.posthog.evaluations#ListEvaluationsRequestOrderByItem": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -90,10 +91,10 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsListRequestOrderByList": {
+    "com.posthog.evaluations#ListEvaluationsRequestOrderByList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.evaluations#EvaluationsListRequestOrderByItem"
+        "target": "com.posthog.evaluations#ListEvaluationsRequestOrderByItem"
       },
       "traits": {}
     },
@@ -130,14 +131,14 @@
           }
         },
         "evaluation_type": {
-          "target": "com.posthog.evaluations#EvaluationsListRequestEvaluationType",
+          "target": "com.posthog.evaluations#ListEvaluationsRequestEvaluationType",
           "traits": {
             "smithy.api#httpQuery": "evaluation_type",
             "smithy.api#documentation": "Filter by evaluation type\n\n* `llm_judge` - LLM as a judge\n* `hog` - Hog\n* `sentiment` - Sentiment analysis"
           }
         },
         "id__in": {
-          "target": "com.posthog.evaluations#EvaluationsListRequestIdInList",
+          "target": "com.posthog.evaluations#ListEvaluationsRequestIdInList",
           "traits": {
             "smithy.api#httpQuery": "id__in",
             "smithy.api#documentation": "Multiple values may be separated by commas."
@@ -158,7 +159,7 @@
           }
         },
         "order_by": {
-          "target": "com.posthog.evaluations#EvaluationsListRequestOrderByList",
+          "target": "com.posthog.evaluations#ListEvaluationsRequestOrderByList",
           "traits": {
             "smithy.api#httpQuery": "order_by",
             "smithy.api#documentation": "Ordering\n\n* `created_at` - Created At\n* `-created_at` - Created At (descending)\n* `updated_at` - Updated At\n* `-updated_at` - Updated At (descending)\n* `name` - Name\n* `-name` - Name (descending)"
@@ -235,7 +236,7 @@
           "target": "com.posthog.evaluations#EvaluationStatusEnum"
         },
         "status_reason": {
-          "target": "com.posthog.evaluations#StatusReasonEnum",
+          "target": "com.posthog.evaluations#EvaluationStatusReasonEnum",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -353,7 +354,7 @@
         "smithy.api#documentation": "* `active` - Active\n* `paused` - Paused\n* `error` - Error"
       }
     },
-    "com.posthog.evaluations#StatusReasonEnum": {
+    "com.posthog.evaluations#EvaluationStatusReasonEnum": {
       "type": "enum",
       "members": {
         "PROVIDER_KEY_REQUIRED": {
@@ -964,7 +965,7 @@
         }
       }
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase0": {
+    "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase0": {
       "type": "structure",
       "members": {
         "prompt": {
@@ -977,7 +978,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase1": {
+    "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase1": {
       "type": "structure",
       "members": {
         "source": {
@@ -990,7 +991,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2Source": {
+    "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase2Source": {
       "type": "enum",
       "members": {
         "USER_MESSAGES": {
@@ -1004,11 +1005,11 @@
         "smithy.api#documentation": "Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents."
       }
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2": {
+    "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase2": {
       "type": "structure",
       "members": {
         "source": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2Source",
+          "target": "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase2Source",
           "traits": {
             "smithy.api#documentation": "Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents."
           }
@@ -1016,24 +1017,24 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfig": {
+    "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfig": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase0"
+          "target": "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase0"
         },
         "Case1": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase1"
+          "target": "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase1"
         },
         "Case2": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfigCase2"
+          "target": "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfigCase2"
         }
       },
       "traits": {
         "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
       }
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestOutputConfig": {
+    "com.posthog.evaluations#CreateEvaluationRequestOutputConfig": {
       "type": "structure",
       "members": {
         "allows_na": {
@@ -1047,7 +1048,7 @@
         "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
       }
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestConditionsList": {
+    "com.posthog.evaluations#CreateEvaluationRequestConditionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.evaluations#EvaluationCondition"
@@ -1056,7 +1057,7 @@
         "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
       }
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase0Strategy": {
+    "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase0Strategy": {
       "type": "enum",
       "members": {
         "FIXED_WINDOW": {
@@ -1070,11 +1071,11 @@
         "smithy.api#documentation": "Wait a fixed window after the first matching generation, then evaluate."
       }
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase0": {
+    "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase0": {
       "type": "structure",
       "members": {
         "strategy": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase0Strategy",
+          "target": "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase0Strategy",
           "traits": {
             "smithy.api#documentation": "Wait a fixed window after the first matching generation, then evaluate.",
             "smithy.api#required": {}
@@ -1089,7 +1090,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase1Strategy": {
+    "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase1Strategy": {
       "type": "enum",
       "members": {
         "INACTIVITY": {
@@ -1103,11 +1104,11 @@
         "smithy.api#documentation": "Evaluate once the unit has had no new activity for the quiet period."
       }
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase1": {
+    "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase1": {
       "type": "structure",
       "members": {
         "strategy": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase1Strategy",
+          "target": "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase1Strategy",
           "traits": {
             "smithy.api#documentation": "Evaluate once the unit has had no new activity for the quiet period.",
             "smithy.api#required": {}
@@ -1128,14 +1129,14 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsCreateRequestTargetConfig": {
+    "com.posthog.evaluations#CreateEvaluationRequestTargetConfig": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase0"
+          "target": "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase0"
         },
         "Case1": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestTargetConfigCase1"
+          "target": "com.posthog.evaluations#CreateEvaluationRequestTargetConfigCase1"
         }
       },
       "traits": {
@@ -1206,7 +1207,7 @@
           }
         },
         "evaluation_config": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestEvaluationConfig",
+          "target": "com.posthog.evaluations#CreateEvaluationRequestEvaluationConfig",
           "traits": {
             "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
           }
@@ -1218,13 +1219,13 @@
           }
         },
         "output_config": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestOutputConfig",
+          "target": "com.posthog.evaluations#CreateEvaluationRequestOutputConfig",
           "traits": {
             "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
           }
         },
         "conditions": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestConditionsList",
+          "target": "com.posthog.evaluations#CreateEvaluationRequestConditionsList",
           "traits": {
             "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
           }
@@ -1236,7 +1237,7 @@
           }
         },
         "target_config": {
-          "target": "com.posthog.evaluations#EvaluationsCreateRequestTargetConfig",
+          "target": "com.posthog.evaluations#CreateEvaluationRequestTargetConfig",
           "traits": {
             "smithy.api#documentation": "Target-specific config. For 'trace' and 'session' targets: a settle config discriminated on `strategy`, either 'fixed_window' {window_seconds} or 'inactivity' {quiet_period_seconds, max_age_seconds}. Send `strategy` explicitly. The server fills in any other field you omit, using per-target defaults, and the accepted bounds also depend on `target`. Empty for 'generation'."
           }
@@ -1275,7 +1276,7 @@
         }
       }
     },
-    "com.posthog.evaluations#EvaluationsRetrieveRequest": {
+    "com.posthog.evaluations#GetEvaluationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1299,10 +1300,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.evaluations#EvaluationsRetrieve": {
+    "com.posthog.evaluations#GetEvaluation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.evaluations#EvaluationsRetrieveRequest"
+        "target": "com.posthog.evaluations#GetEvaluationRequest"
       },
       "output": {
         "target": "com.posthog.evaluations#Evaluation"
@@ -1315,7 +1316,7 @@
         }
       }
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase0": {
+    "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase0": {
       "type": "structure",
       "members": {
         "prompt": {
@@ -1328,7 +1329,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase1": {
+    "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase1": {
       "type": "structure",
       "members": {
         "source": {
@@ -1341,7 +1342,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2Source": {
+    "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase2Source": {
       "type": "enum",
       "members": {
         "USER_MESSAGES": {
@@ -1355,11 +1356,11 @@
         "smithy.api#documentation": "Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents."
       }
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2": {
+    "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase2": {
       "type": "structure",
       "members": {
         "source": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2Source",
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase2Source",
           "traits": {
             "smithy.api#documentation": "Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents."
           }
@@ -1367,24 +1368,24 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfig": {
+    "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfig": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase0"
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase0"
         },
         "Case1": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase1"
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase1"
         },
         "Case2": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfigCase2"
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfigCase2"
         }
       },
       "traits": {
         "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
       }
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestOutputConfig": {
+    "com.posthog.evaluations#UpdateEvaluationRequestOutputConfig": {
       "type": "structure",
       "members": {
         "allows_na": {
@@ -1398,7 +1399,7 @@
         "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
       }
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestConditionsList": {
+    "com.posthog.evaluations#UpdateEvaluationRequestConditionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.evaluations#EvaluationCondition"
@@ -1407,7 +1408,7 @@
         "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
       }
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase0Strategy": {
+    "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase0Strategy": {
       "type": "enum",
       "members": {
         "FIXED_WINDOW": {
@@ -1421,11 +1422,11 @@
         "smithy.api#documentation": "Wait a fixed window after the first matching generation, then evaluate."
       }
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase0": {
+    "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase0": {
       "type": "structure",
       "members": {
         "strategy": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase0Strategy",
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase0Strategy",
           "traits": {
             "smithy.api#documentation": "Wait a fixed window after the first matching generation, then evaluate.",
             "smithy.api#required": {}
@@ -1440,7 +1441,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase1Strategy": {
+    "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase1Strategy": {
       "type": "enum",
       "members": {
         "INACTIVITY": {
@@ -1454,11 +1455,11 @@
         "smithy.api#documentation": "Evaluate once the unit has had no new activity for the quiet period."
       }
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase1": {
+    "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase1": {
       "type": "structure",
       "members": {
         "strategy": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase1Strategy",
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase1Strategy",
           "traits": {
             "smithy.api#documentation": "Evaluate once the unit has had no new activity for the quiet period.",
             "smithy.api#required": {}
@@ -1479,14 +1480,14 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfig": {
+    "com.posthog.evaluations#UpdateEvaluationRequestTargetConfig": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase0"
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase0"
         },
         "Case1": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfigCase1"
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestTargetConfigCase1"
         }
       },
       "traits": {
@@ -1544,7 +1545,7 @@
           }
         },
         "evaluation_config": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestEvaluationConfig",
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestEvaluationConfig",
           "traits": {
             "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
           }
@@ -1556,13 +1557,13 @@
           }
         },
         "output_config": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestOutputConfig",
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestOutputConfig",
           "traits": {
             "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
           }
         },
         "conditions": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestConditionsList",
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestConditionsList",
           "traits": {
             "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
           }
@@ -1574,7 +1575,7 @@
           }
         },
         "target_config": {
-          "target": "com.posthog.evaluations#EvaluationsUpdateRequestTargetConfig",
+          "target": "com.posthog.evaluations#UpdateEvaluationRequestTargetConfig",
           "traits": {
             "smithy.api#documentation": "Target-specific config. For 'trace' and 'session' targets: a settle config discriminated on `strategy`, either 'fixed_window' {window_seconds} or 'inactivity' {quiet_period_seconds, max_age_seconds}. Send `strategy` explicitly. The server fills in any other field you omit, using per-target defaults, and the accepted bounds also depend on `target`. Empty for 'generation'."
           }
@@ -1613,7 +1614,7 @@
         }
       }
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase0": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase0": {
       "type": "structure",
       "members": {
         "prompt": {
@@ -1626,7 +1627,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase1": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase1": {
       "type": "structure",
       "members": {
         "source": {
@@ -1639,7 +1640,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2Source": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase2Source": {
       "type": "enum",
       "members": {
         "USER_MESSAGES": {
@@ -1653,11 +1654,11 @@
         "smithy.api#documentation": "Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents."
       }
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase2": {
       "type": "structure",
       "members": {
         "source": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2Source",
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase2Source",
           "traits": {
             "smithy.api#documentation": "Classify sentiment from user messages in the generation input. The classifier is trained on English, so labels are unreliable for other languages; use an 'llm_judge' evaluation for multilingual agents."
           }
@@ -1665,24 +1666,24 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfig": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfig": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase0"
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase0"
         },
         "Case1": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase1"
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase1"
         },
         "Case2": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfigCase2"
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfigCase2"
         }
       },
       "traits": {
         "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
       }
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestOutputConfig": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestOutputConfig": {
       "type": "structure",
       "members": {
         "allows_na": {
@@ -1696,7 +1697,7 @@
         "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
       }
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestConditionsList": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestConditionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.evaluations#EvaluationCondition"
@@ -1705,7 +1706,7 @@
         "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
       }
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase0Strategy": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase0Strategy": {
       "type": "enum",
       "members": {
         "FIXED_WINDOW": {
@@ -1719,11 +1720,11 @@
         "smithy.api#documentation": "Wait a fixed window after the first matching generation, then evaluate."
       }
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase0": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase0": {
       "type": "structure",
       "members": {
         "strategy": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase0Strategy",
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase0Strategy",
           "traits": {
             "smithy.api#documentation": "Wait a fixed window after the first matching generation, then evaluate.",
             "smithy.api#required": {}
@@ -1738,7 +1739,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase1Strategy": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase1Strategy": {
       "type": "enum",
       "members": {
         "INACTIVITY": {
@@ -1752,11 +1753,11 @@
         "smithy.api#documentation": "Evaluate once the unit has had no new activity for the quiet period."
       }
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase1": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase1": {
       "type": "structure",
       "members": {
         "strategy": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase1Strategy",
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase1Strategy",
           "traits": {
             "smithy.api#documentation": "Evaluate once the unit has had no new activity for the quiet period.",
             "smithy.api#required": {}
@@ -1777,21 +1778,21 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfig": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfig": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase0"
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase0"
         },
         "Case1": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfigCase1"
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfigCase1"
         }
       },
       "traits": {
         "smithy.api#documentation": "Target-specific config. For 'trace' and 'session' targets: a settle config discriminated on `strategy`, either 'fixed_window' {window_seconds} or 'inactivity' {quiet_period_seconds, max_age_seconds}. Send `strategy` explicitly. The server fills in any other field you omit, using per-target defaults, and the accepted bounds also depend on `target`. Empty for 'generation'."
       }
     },
-    "com.posthog.evaluations#UpdateEvaluationPartialRequest": {
+    "com.posthog.evaluations#UpdateEvaluationsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1842,7 +1843,7 @@
           }
         },
         "evaluation_config": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestEvaluationConfig",
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestEvaluationConfig",
           "traits": {
             "smithy.api#documentation": "Configuration dict. For 'llm_judge': {prompt}; for 'hog': {source}; for 'sentiment': {source: 'user_messages'}."
           }
@@ -1854,13 +1855,13 @@
           }
         },
         "output_config": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestOutputConfig",
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestOutputConfig",
           "traits": {
             "smithy.api#documentation": "Output config. For 'boolean' output_type: {allows_na} to permit N/A results."
           }
         },
         "conditions": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestConditionsList",
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestConditionsList",
           "traits": {
             "smithy.api#documentation": "Trigger conditions that filter which events are evaluated. OR between condition sets, AND within each. Each set is {id, rollout_percentage, properties[]} — `rollout_percentage` (0-100, defaults to 100) is the sampling field the dispatcher reads."
           }
@@ -1872,7 +1873,7 @@
           }
         },
         "target_config": {
-          "target": "com.posthog.evaluations#EvaluationsPartialUpdateRequestTargetConfig",
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequestTargetConfig",
           "traits": {
             "smithy.api#documentation": "Target-specific config. For 'trace' and 'session' targets: a settle config discriminated on `strategy`, either 'fixed_window' {window_seconds} or 'inactivity' {quiet_period_seconds, max_age_seconds}. Send `strategy` explicitly. The server fills in any other field you omit, using per-target defaults, and the accepted bounds also depend on `target`. Empty for 'generation'."
           }
@@ -1895,10 +1896,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.evaluations#UpdateEvaluationPartial": {
+    "com.posthog.evaluations#UpdateEvaluationsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.evaluations#UpdateEvaluationPartialRequest"
+        "target": "com.posthog.evaluations#UpdateEvaluationsPartialRequest"
       },
       "output": {
         "target": "com.posthog.evaluations#Evaluation"
@@ -1952,7 +1953,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsItemMap": {
+    "com.posthog.evaluations#CreateEvaluationsTestHogRequestConditionsItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1962,10 +1963,10 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsList": {
+    "com.posthog.evaluations#CreateEvaluationsTestHogRequestConditionsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsItemMap"
+        "target": "com.posthog.evaluations#CreateEvaluationsTestHogRequestConditionsItemMap"
       },
       "traits": {
         "smithy.api#documentation": "Optional trigger conditions to filter which events are sampled."
@@ -1989,7 +1990,7 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#CreateEvaluationTestHogRequest": {
+    "com.posthog.evaluations#CreateEvaluationsTestHogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2019,7 +2020,7 @@
           }
         },
         "conditions": {
-          "target": "com.posthog.evaluations#EvaluationsTestHogCreateRequestConditionsList",
+          "target": "com.posthog.evaluations#CreateEvaluationsTestHogRequestConditionsList",
           "traits": {
             "smithy.api#documentation": "Optional trigger conditions to filter which events are sampled."
           }
@@ -2128,10 +2129,10 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluations#CreateEvaluationTestHog": {
+    "com.posthog.evaluations#CreateEvaluationsTestHog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.evaluations#CreateEvaluationTestHogRequest"
+        "target": "com.posthog.evaluations#CreateEvaluationsTestHogRequest"
       },
       "output": {
         "target": "com.posthog.evaluations#TestHogResponse"
@@ -2150,25 +2151,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.evaluations#ListEvaluations"
-        },
-        {
           "target": "com.posthog.evaluations#CreateEvaluation"
         },
         {
-          "target": "com.posthog.evaluations#EvaluationsRetrieve"
-        },
-        {
-          "target": "com.posthog.evaluations#UpdateEvaluation"
-        },
-        {
-          "target": "com.posthog.evaluations#UpdateEvaluationPartial"
+          "target": "com.posthog.evaluations#CreateEvaluationsTestHog"
         },
         {
           "target": "com.posthog.evaluations#EvaluationsDestroy"
         },
         {
-          "target": "com.posthog.evaluations#CreateEvaluationTestHog"
+          "target": "com.posthog.evaluations#GetEvaluation"
+        },
+        {
+          "target": "com.posthog.evaluations#ListEvaluations"
+        },
+        {
+          "target": "com.posthog.evaluations#UpdateEvaluation"
+        },
+        {
+          "target": "com.posthog.evaluations#UpdateEvaluationsPartial"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.refunds#Direction": {
@@ -1066,7 +1067,7 @@
         }
       }
     },
-    "com.whop.refunds#RetrieveRefundRequest": {
+    "com.whop.refunds#GetRefundRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2642,10 +2643,10 @@
         "smithy.api#documentation": "The original payment that this refund was issued against. Null if the payment is no longer available."
       }
     },
-    "com.whop.refunds#RetrieveRefund": {
+    "com.whop.refunds#GetRefund": {
       "type": "operation",
       "input": {
-        "target": "com.whop.refunds#RetrieveRefundRequest"
+        "target": "com.whop.refunds#GetRefundRequest"
       },
       "output": {
         "target": "com.whop.refunds#Refund"
@@ -2730,10 +2731,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.refunds#ListRefund"
+          "target": "com.whop.refunds#GetRefund"
         },
         {
-          "target": "com.whop.refunds#RetrieveRefund"
+          "target": "com.whop.refunds#ListRefund"
         }
       ],
       "traits": {

@@ -46,10 +46,10 @@ export const DeleteStorageDiscoveryWorkspaceResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<DeleteStorageDiscoveryWorkspaceResponse>;
 
 /** The queries to execute against Storage Discovery data. Format: Base64-encoded JSON object with structure: {"queries":[{"name":"queryName","query":"KQL query"}]} For query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery */
-export type ReportGenerateReportRequestQueriesList = Array<string>;
-export const ReportGenerateReportRequestQueriesList = /*@__PURE__*/ S.Array(
+export type GenerateReportReportRequestQueriesList = Array<string>;
+export const GenerateReportReportRequestQueriesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ReportGenerateReportRequestQueriesList>;
+) as any as S.Schema<GenerateReportReportRequestQueriesList>;
 
 export interface GenerateReportReportRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -61,7 +61,7 @@ export interface GenerateReportReportRequest {
   /** The name of the ReportResource */
   discoveryResourceName: string;
   /** The queries to execute against Storage Discovery data. Format: Base64-encoded JSON object with structure: {"queries":[{"name":"queryName","query":"KQL query"}]} For query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery */
-  queries: ReportGenerateReportRequestQueriesList;
+  queries: GenerateReportReportRequestQueriesList;
 }
 export const GenerateReportReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -69,7 +69,7 @@ export const GenerateReportReportRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
     discoveryResourceName: S.String.pipe(T.Label()),
-    queries: ReportGenerateReportRequestQueriesList,
+    queries: GenerateReportReportRequestQueriesList,
   }).pipe(
     T.Http({
       method: "POST",
@@ -296,14 +296,14 @@ export const GetStorageDiscoveryWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStorageDiscoveryWorkspaceRequest>;
 
 /** Resource tags. */
-export type StorageDiscoveryWorkspacesGetResponseTagsMap = {
+export type GetStorageDiscoveryWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageDiscoveryWorkspacesGetResponseTagsMap =
+export const GetStorageDiscoveryWorkspaceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacesGetResponseTagsMap>;
+  ) as any as S.Schema<GetStorageDiscoveryWorkspaceResponseTagsMap>;
 
 /** The storage discovery sku */
 export type StorageDiscoveryWorkspacePropertiesSku = "Standard" | "Free";
@@ -411,7 +411,7 @@ export interface GetStorageDiscoveryWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageDiscoveryWorkspacesGetResponseTagsMap;
+  tags?: GetStorageDiscoveryWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -424,7 +424,7 @@ export const GetStorageDiscoveryWorkspaceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(StorageDiscoveryWorkspacesGetResponseTagsMap),
+      tags: S.optional(GetStorageDiscoveryWorkspaceResponseTagsMap),
       location: S.String,
       properties: S.optional(StorageDiscoveryWorkspaceProperties),
     }),
@@ -500,20 +500,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -887,14 +887,14 @@ export const StorageDiscoveryWorkspacesReportRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<StorageDiscoveryWorkspacesReportRequest>;
 
 /** Resource tags. */
-export type StorageDiscoveryWorkspacesUpdateRequestTagsMap = {
+export type UpdateStorageDiscoveryWorkspaceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageDiscoveryWorkspacesUpdateRequestTagsMap =
+export const UpdateStorageDiscoveryWorkspaceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateStorageDiscoveryWorkspaceRequestTagsMap>;
 
 /** Storage Discovery Sku */
 export type StorageDiscoverySku = "Standard" | "Free";
@@ -949,7 +949,7 @@ export interface UpdateStorageDiscoveryWorkspaceRequest {
   /** The name of the StorageDiscoveryWorkspace */
   storageDiscoveryWorkspaceName: string;
   /** Resource tags. */
-  tags?: StorageDiscoveryWorkspacesUpdateRequestTagsMap;
+  tags?: UpdateStorageDiscoveryWorkspaceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: StorageDiscoveryWorkspacePropertiesUpdate;
 }
@@ -959,7 +959,7 @@ export const UpdateStorageDiscoveryWorkspaceRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       storageDiscoveryWorkspaceName: S.String.pipe(T.Label()),
-      tags: S.optional(StorageDiscoveryWorkspacesUpdateRequestTagsMap),
+      tags: S.optional(UpdateStorageDiscoveryWorkspaceRequestTagsMap),
       properties: S.optional(StorageDiscoveryWorkspacePropertiesUpdate),
     }).pipe(
       T.Http({
@@ -974,14 +974,14 @@ export const UpdateStorageDiscoveryWorkspaceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateStorageDiscoveryWorkspaceRequest>;
 
 /** Resource tags. */
-export type StorageDiscoveryWorkspacesUpdateResponseTagsMap = {
+export type UpdateStorageDiscoveryWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageDiscoveryWorkspacesUpdateResponseTagsMap =
+export const UpdateStorageDiscoveryWorkspaceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<StorageDiscoveryWorkspacesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateStorageDiscoveryWorkspaceResponseTagsMap>;
 
 export interface UpdateStorageDiscoveryWorkspaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -993,7 +993,7 @@ export interface UpdateStorageDiscoveryWorkspaceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageDiscoveryWorkspacesUpdateResponseTagsMap;
+  tags?: UpdateStorageDiscoveryWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -1006,7 +1006,7 @@ export const UpdateStorageDiscoveryWorkspaceResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(StorageDiscoveryWorkspacesUpdateResponseTagsMap),
+      tags: S.optional(UpdateStorageDiscoveryWorkspaceResponseTagsMap),
       location: S.String,
       properties: S.optional(StorageDiscoveryWorkspaceProperties),
     }),

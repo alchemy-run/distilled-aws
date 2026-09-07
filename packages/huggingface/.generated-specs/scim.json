@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.scim#GetScimConfigurationRequest": {
@@ -5706,88 +5707,88 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.scim#GetScimConfiguration"
-        },
-        {
-          "target": "com.huggingface.scim#GetScimResourceTypes"
-        },
-        {
-          "target": "com.huggingface.scim#GetScimSchemas"
-        },
-        {
-          "target": "com.huggingface.scim#GetScimSchemaById"
-        },
-        {
-          "target": "com.huggingface.scim#ListScimUsers"
-        },
-        {
-          "target": "com.huggingface.scim#CreateScimUser"
-        },
-        {
-          "target": "com.huggingface.scim#GetScimUser"
-        },
-        {
-          "target": "com.huggingface.scim#ReplaceScimUser"
-        },
-        {
-          "target": "com.huggingface.scim#UpdateScimUser"
-        },
-        {
-          "target": "com.huggingface.scim#DeleteScimUser"
-        },
-        {
-          "target": "com.huggingface.scim#ListScimGroups"
-        },
-        {
           "target": "com.huggingface.scim#CreateScimGroup"
-        },
-        {
-          "target": "com.huggingface.scim#GetScimGroup"
-        },
-        {
-          "target": "com.huggingface.scim#ReplaceScimGroup"
-        },
-        {
-          "target": "com.huggingface.scim#UpdateScimGroup"
-        },
-        {
-          "target": "com.huggingface.scim#DeleteScimGroup"
-        },
-        {
-          "target": "com.huggingface.scim#ListScimManagedUsers"
         },
         {
           "target": "com.huggingface.scim#CreateScimInvitation"
         },
         {
-          "target": "com.huggingface.scim#GetScimProvisioningUser"
+          "target": "com.huggingface.scim#CreateScimProvisioningGroup"
         },
         {
-          "target": "com.huggingface.scim#ReplaceScimProvisioningUser"
+          "target": "com.huggingface.scim#CreateScimUser"
         },
         {
-          "target": "com.huggingface.scim#UpdateScimProvisioningUser"
+          "target": "com.huggingface.scim#DeleteScimGroup"
+        },
+        {
+          "target": "com.huggingface.scim#DeleteScimProvisioningGroup"
         },
         {
           "target": "com.huggingface.scim#DeleteScimProvisioningUser"
         },
         {
-          "target": "com.huggingface.scim#ListScimProvisioningGroups"
+          "target": "com.huggingface.scim#DeleteScimUser"
         },
         {
-          "target": "com.huggingface.scim#CreateScimProvisioningGroup"
+          "target": "com.huggingface.scim#GetScimConfiguration"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimGroup"
         },
         {
           "target": "com.huggingface.scim#GetScimProvisioningGroup"
         },
         {
+          "target": "com.huggingface.scim#GetScimProvisioningUser"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimResourceTypes"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimSchemaById"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimSchemas"
+        },
+        {
+          "target": "com.huggingface.scim#GetScimUser"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimGroups"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimManagedUsers"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimProvisioningGroups"
+        },
+        {
+          "target": "com.huggingface.scim#ListScimUsers"
+        },
+        {
+          "target": "com.huggingface.scim#ReplaceScimGroup"
+        },
+        {
           "target": "com.huggingface.scim#ReplaceScimProvisioningGroup"
+        },
+        {
+          "target": "com.huggingface.scim#ReplaceScimProvisioningUser"
+        },
+        {
+          "target": "com.huggingface.scim#ReplaceScimUser"
+        },
+        {
+          "target": "com.huggingface.scim#UpdateScimGroup"
         },
         {
           "target": "com.huggingface.scim#UpdateScimProvisioningGroup"
         },
         {
-          "target": "com.huggingface.scim#DeleteScimProvisioningGroup"
+          "target": "com.huggingface.scim#UpdateScimProvisioningUser"
+        },
+        {
+          "target": "com.huggingface.scim#UpdateScimUser"
         }
       ],
       "traits": {

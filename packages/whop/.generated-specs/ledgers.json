@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.ledgers#ListFinancialActivityRequestLineTypesItem": {
@@ -4968,10 +4969,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.ledgers#ListFinancialActivity"
+          "target": "com.whop.ledgers#GetFinancialReport"
         },
         {
-          "target": "com.whop.ledgers#GetFinancialReport"
+          "target": "com.whop.ledgers#ListFinancialActivity"
         }
       ],
       "traits": {

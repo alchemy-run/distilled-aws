@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.contosowidgetmanager#DeleteEmployee": {
@@ -115,7 +116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.contosowidgetmanager#EmployeesUpdateResponseTagsMap",
+          "target": "com.azure.contosowidgetmanager#UpdateEmployeeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -220,7 +221,7 @@
         "smithy.api#documentation": "The resource provisioning state."
       }
     },
-    "com.azure.contosowidgetmanager#EmployeesUpdateResponseTagsMap": {
+    "com.azure.contosowidgetmanager#UpdateEmployeeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -368,7 +369,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.contosowidgetmanager#EmployeesUpdateRequestTagsMap",
+          "target": "com.azure.contosowidgetmanager#UpdateEmployeeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -410,7 +411,7 @@
         "smithy.api#documentation": "Employee properties"
       }
     },
-    "com.azure.contosowidgetmanager#EmployeesUpdateRequestTagsMap": {
+    "com.azure.contosowidgetmanager#UpdateEmployeeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -614,7 +615,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.contosowidgetmanager#EmployeesGetResponseTagsMap",
+          "target": "com.azure.contosowidgetmanager#GetEmployeeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -637,7 +638,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.contosowidgetmanager#EmployeesGetResponseTagsMap": {
+    "com.azure.contosowidgetmanager#GetEmployeeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -875,7 +876,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.contosowidgetmanager#OperationsListResponseValueList",
+          "target": "com.azure.contosowidgetmanager#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -891,7 +892,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.contosowidgetmanager#OperationsListResponseValueList": {
+    "com.azure.contosowidgetmanager#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.contosowidgetmanager#Operation"
@@ -1018,9 +1019,6 @@
           "target": "com.azure.contosowidgetmanager#DeleteEmployee"
         },
         {
-          "target": "com.azure.contosowidgetmanager#UpdateEmployee"
-        },
-        {
           "target": "com.azure.contosowidgetmanager#EmployeesCreateOrUpdate"
         },
         {
@@ -1034,6 +1032,9 @@
         },
         {
           "target": "com.azure.contosowidgetmanager#ListOperations"
+        },
+        {
+          "target": "com.azure.contosowidgetmanager#UpdateEmployee"
         }
       ],
       "traits": {

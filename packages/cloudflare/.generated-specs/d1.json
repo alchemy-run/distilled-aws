@@ -44,7 +44,8 @@
       "sqlDurationMs": "sql_duration_ms",
       "totalCount": "total_count",
       "uploadUrl": "upload_url"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.d1#DatabaseCreateRequestJurisdiction": {
@@ -1173,40 +1174,40 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.d1#DatabaseCreate"
+          "target": "com.cloudflare.d1#CreateDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseDelete"
+          "target": "com.cloudflare.d1#DeleteDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseEdit"
+          "target": "com.cloudflare.d1#ExportDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseExport"
+          "target": "com.cloudflare.d1#GetBookmarkDatabaseTimeTravel"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseGet"
+          "target": "com.cloudflare.d1#GetDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseImport"
+          "target": "com.cloudflare.d1#ImportDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseList"
+          "target": "com.cloudflare.d1#ListDatabases"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseQuery"
+          "target": "com.cloudflare.d1#PatchDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseRaw"
+          "target": "com.cloudflare.d1#QueryDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseUpdate"
+          "target": "com.cloudflare.d1#RawDatabase"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseTimeTravelGetBookmark"
+          "target": "com.cloudflare.d1#RestoreDatabaseTimeTravel"
         },
         {
-          "target": "com.cloudflare.d1#DatabaseTimeTravelRestore"
+          "target": "com.cloudflare.d1#UpdateDatabase"
         }
       ],
       "traits": {

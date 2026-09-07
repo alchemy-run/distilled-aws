@@ -4,14 +4,55 @@
     "service": "adsenseplatform",
     "version": "v1",
     "title": "AdSense Platform API",
-    "baseUrl": "https://adsenseplatform.googleapis.com/"
+    "baseUrl": "https://adsenseplatform.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.adsenseplatform_v1#TimeZone": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. IANA Time Zone Database version number. For example \"2019a\"."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA Time Zone Database time zone. For example \"America/New_York\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones)."
+      }
+    },
     "com.gcp.adsenseplatform_v1#CloseAccountResponse": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#documentation": "Response definition for the account close rpc."
+      }
+    },
+    "com.gcp.adsenseplatform_v1#EventInfo": {
+      "type": "structure",
+      "members": {
+        "billingAddress": {
+          "target": "com.gcp.adsenseplatform_v1#Address",
+          "traits": {
+            "smithy.api#documentation": "The billing address of the publisher associated with this event, if available."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The email address that is associated with the publisher when performing the event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private information for partner recorded events (PII)."
       }
     },
     "com.gcp.adsenseplatform_v1#RequestSiteReviewResponse": {
@@ -21,245 +62,37 @@
         "smithy.api#documentation": "Response definition for the site request review rpc."
       }
     },
-    "com.gcp.adsenseplatform_v1#ListSitesResponse": {
+    "com.gcp.adsenseplatform_v1#ListAccountsResponse": {
       "type": "structure",
       "members": {
-        "sites": {
-          "target": "com.gcp.adsenseplatform_v1#SiteList",
+        "accounts": {
+          "target": "com.gcp.adsenseplatform_v1#AccountList",
           "traits": {
-            "smithy.api#documentation": "The sites returned in this list response."
+            "smithy.api#documentation": "The Accounts returned in the list response. Represented by a partial view of the Account resource, populating `name` and `creation_request_id`."
           }
         },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Continuation token used to page through sites. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
+            "smithy.api#documentation": "Continuation token used to page through accounts. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response definition for the site list rpc."
+        "smithy.api#documentation": "Response definition for the list accounts rpc."
       }
     },
-    "com.gcp.adsenseplatform_v1#SiteList": {
+    "com.gcp.adsenseplatform_v1#AccountList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.adsenseplatform_v1#Site"
+        "target": "com.gcp.adsenseplatform_v1#Account"
       }
     },
-    "com.gcp.adsenseplatform_v1#CloseAccountRequest": {
+    "com.gcp.adsenseplatform_v1#Empty": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "Request definition for the account close rpc."
-      }
-    },
-    "com.gcp.adsenseplatform_v1#Account": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Display name of this account."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Creation time of the account."
-          }
-        },
-        "regionCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Input only. CLDR region code of the country/region of the address. Set this to country code of the child account if known, otherwise to your own country code."
-          }
-        },
-        "creationRequestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. An opaque token that uniquely identifies the account among all the platform's accounts. This string may contain at most 64 non-whitespace ASCII characters, but otherwise has no predefined structure. However, it is expected to be a platform-specific identifier for the user creating the account, so that only a single account can be created for any given user. This field must not contain any information that is recognizable as personally identifiable information. e.g. it should not be an email address or login name. Once an account has been created, a second attempt to create an account using the same creation_request_id will result in an ALREADY_EXISTS error."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of the account. Format: platforms/pub-[0-9]+/accounts/pub-[0-9]+"
-          }
-        },
-        "state": {
-          "target": "com.gcp.adsenseplatform_v1#AccountStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Approval state of the account."
-          }
-        },
-        "timeZone": {
-          "target": "com.gcp.adsenseplatform_v1#TimeZone",
-          "traits": {
-            "smithy.api#documentation": "Required. The IANA TZ timezone code of this account. For more information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. This field is used for reporting. It is recommended to set it to the same value for all child accounts."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Representation of an Account."
-      }
-    },
-    "com.gcp.adsenseplatform_v1#AccountStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "UNCHECKED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNCHECKED"
-          }
-        },
-        "APPROVED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "APPROVED"
-          }
-        },
-        "DISAPPROVED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DISAPPROVED"
-          }
-        }
-      }
-    },
-    "com.gcp.adsenseplatform_v1#Site": {
-      "type": "structure",
-      "members": {
-        "state": {
-          "target": "com.gcp.adsenseplatform_v1#SiteStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. State of a site."
-          }
-        },
-        "domain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain/sub-domain of the site. Must be a valid domain complying with [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt) and formatted as punycode [RFC 3492](https://www.ietf.org/rfc/rfc3492.txt) in case the domain contains unicode characters."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Resource name of a site. Format: platforms/{platform}/accounts/{account}/sites/{site}"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Representation of a Site."
-      }
-    },
-    "com.gcp.adsenseplatform_v1#SiteStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "REQUIRES_REVIEW": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REQUIRES_REVIEW"
-          }
-        },
-        "GETTING_READY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GETTING_READY"
-          }
-        },
-        "READY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "READY"
-          }
-        },
-        "NEEDS_ATTENTION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NEEDS_ATTENTION"
-          }
-        }
-      }
-    },
-    "com.gcp.adsenseplatform_v1#Address": {
-      "type": "structure",
-      "members": {
-        "state": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "State. Max length 60 bytes or 30 characters."
-          }
-        },
-        "regionCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Country/Region code. The region is specified as a CLDR region code (e.g. \"US\", \"FR\")."
-          }
-        },
-        "zip": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Zip/post code. Max length 10 bytes or 10 characters."
-          }
-        },
-        "address1": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "First line of address. Max length 64 bytes or 30 characters."
-          }
-        },
-        "contact": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Contact name of the company. Max length 128 bytes or 34 characters."
-          }
-        },
-        "address2": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Second line of address. Max length 64 bytes or 30 characters."
-          }
-        },
-        "city": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "City. Max length 60 bytes or 30 characters."
-          }
-        },
-        "fax": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Fax number with international code (i.e. +441234567890)."
-          }
-        },
-        "phone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Phone number with international code (i.e. +441234567890)."
-          }
-        },
-        "company": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the company. Max length 255 bytes or 34 characters."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Address data."
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
     "com.gcp.adsenseplatform_v1#Event": {
@@ -311,24 +144,144 @@
         }
       }
     },
-    "com.gcp.adsenseplatform_v1#EventInfo": {
+    "com.gcp.adsenseplatform_v1#Account": {
       "type": "structure",
       "members": {
-        "email": {
-          "target": "smithy.api#String",
+        "state": {
+          "target": "com.gcp.adsenseplatform_v1#AccountStateEnum",
           "traits": {
-            "smithy.api#documentation": "Required. The email address that is associated with the publisher when performing the event."
+            "smithy.api#documentation": "Output only. Approval state of the account."
           }
         },
-        "billingAddress": {
-          "target": "com.gcp.adsenseplatform_v1#Address",
+        "creationRequestId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The billing address of the publisher associated with this event, if available."
+            "smithy.api#documentation": "Required. An opaque token that uniquely identifies the account among all the platform's accounts. This string may contain at most 64 non-whitespace ASCII characters, but otherwise has no predefined structure. However, it is expected to be a platform-specific identifier for the user creating the account, so that only a single account can be created for any given user. This field must not contain any information that is recognizable as personally identifiable information. e.g. it should not be an email address or login name. Once an account has been created, a second attempt to create an account using the same creation_request_id will result in an ALREADY_EXISTS error."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of this account."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Creation time of the account."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of the account. Format: platforms/pub-[0-9]+/accounts/pub-[0-9]+"
+          }
+        },
+        "timeZone": {
+          "target": "com.gcp.adsenseplatform_v1#TimeZone",
+          "traits": {
+            "smithy.api#documentation": "Required. The IANA TZ timezone code of this account. For more information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones. This field is used for reporting. It is recommended to set it to the same value for all child accounts."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Input only. CLDR region code of the country/region of the address. Set this to country code of the child account if known, otherwise to your own country code."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Private information for partner recorded events (PII)."
+        "smithy.api#documentation": "Representation of an Account."
+      }
+    },
+    "com.gcp.adsenseplatform_v1#AccountStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "UNCHECKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNCHECKED"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVED"
+          }
+        },
+        "DISAPPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISAPPROVED"
+          }
+        }
+      }
+    },
+    "com.gcp.adsenseplatform_v1#Site": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Resource name of a site. Format: platforms/{platform}/accounts/{account}/sites/{site}"
+          }
+        },
+        "state": {
+          "target": "com.gcp.adsenseplatform_v1#SiteStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of a site."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain/sub-domain of the site. Must be a valid domain complying with [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt) and formatted as punycode [RFC 3492](https://www.ietf.org/rfc/rfc3492.txt) in case the domain contains unicode characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Representation of a Site."
+      }
+    },
+    "com.gcp.adsenseplatform_v1#SiteStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "REQUIRES_REVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUIRES_REVIEW"
+          }
+        },
+        "GETTING_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GETTING_READY"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "NEEDS_ATTENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEEDS_ATTENTION"
+          }
+        }
       }
     },
     "com.gcp.adsenseplatform_v1#LookupAccountResponse": {
@@ -345,75 +298,116 @@
         "smithy.api#documentation": "Response definition for the lookup account rpc."
       }
     },
-    "com.gcp.adsenseplatform_v1#TimeZone": {
+    "com.gcp.adsenseplatform_v1#Address": {
       "type": "structure",
       "members": {
-        "version": {
+        "address2": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. IANA Time Zone Database version number. For example \"2019a\"."
+            "smithy.api#documentation": "Second line of address. Max length 64 bytes or 30 characters."
           }
         },
-        "id": {
+        "fax": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "IANA Time Zone Database time zone. For example \"America/New_York\"."
+            "smithy.api#documentation": "Fax number with international code (i.e. +441234567890)."
+          }
+        },
+        "contact": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact name of the company. Max length 128 bytes or 34 characters."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country/Region code. The region is specified as a CLDR region code (e.g. \"US\", \"FR\")."
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number with international code (i.e. +441234567890)."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "State. Max length 60 bytes or 30 characters."
+          }
+        },
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First line of address. Max length 64 bytes or 30 characters."
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "City. Max length 60 bytes or 30 characters."
+          }
+        },
+        "zip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Zip/post code. Max length 10 bytes or 10 characters."
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the company. Max length 255 bytes or 34 characters."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones)."
+        "smithy.api#documentation": "Address data."
       }
     },
-    "com.gcp.adsenseplatform_v1#Empty": {
+    "com.gcp.adsenseplatform_v1#CloseAccountRequest": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+        "smithy.api#documentation": "Request definition for the account close rpc."
       }
     },
-    "com.gcp.adsenseplatform_v1#ListAccountsResponse": {
+    "com.gcp.adsenseplatform_v1#ListSitesResponse": {
       "type": "structure",
       "members": {
+        "sites": {
+          "target": "com.gcp.adsenseplatform_v1#SiteList",
+          "traits": {
+            "smithy.api#documentation": "The sites returned in this list response."
+          }
+        },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Continuation token used to page through accounts. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
-          }
-        },
-        "accounts": {
-          "target": "com.gcp.adsenseplatform_v1#AccountList",
-          "traits": {
-            "smithy.api#documentation": "The Accounts returned in the list response. Represented by a partial view of the Account resource, populating `name` and `creation_request_id`."
+            "smithy.api#documentation": "Continuation token used to page through sites. To retrieve the next page of the results, set the next request's \"page_token\" value to this."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response definition for the list accounts rpc."
+        "smithy.api#documentation": "Response definition for the site list rpc."
       }
     },
-    "com.gcp.adsenseplatform_v1#AccountList": {
+    "com.gcp.adsenseplatform_v1#SiteList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.adsenseplatform_v1#Account"
+        "target": "com.gcp.adsenseplatform_v1#Site"
       }
     },
-    "com.gcp.adsenseplatform_v1#CreatePlatformsAccountsRequest": {
+    "com.gcp.adsenseplatform_v1#GetPlatformsAccountsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Platform to create an account for. Format: platforms/{platform}",
+            "smithy.api#documentation": "Required. Account to get information about. Format: platforms/{platform}/accounts/{account_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.adsenseplatform_v1#Account",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -442,75 +436,6 @@
             "status": 403
           }
         ]
-      }
-    },
-    "com.gcp.adsenseplatform_v1#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.adsenseplatform_v1#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
-    "com.gcp.adsenseplatform_v1#CreatePlatformsAccounts": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.adsenseplatform_v1#CreatePlatformsAccountsRequest"
-      },
-      "output": {
-        "target": "com.gcp.adsenseplatform_v1#Account"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.adsenseplatform_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.adsenseplatform_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.adsenseplatform_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.adsenseplatform_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/accounts"
-        },
-        "smithy.api#documentation": "Creates a sub-account."
-      }
-    },
-    "com.gcp.adsenseplatform_v1#GetPlatformsAccountsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Account to get information about. Format: platforms/{platform}/accounts/{account_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
       }
     },
     "com.gcp.adsenseplatform_v1#GetPlatformsAccounts": {
@@ -555,6 +480,32 @@
             "smithy.api#documentation": "Request body"
           }
         }
+      }
+    },
+    "com.gcp.adsenseplatform_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.adsenseplatform_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
       }
     },
     "com.gcp.adsenseplatform_v1#ClosePlatformsAccounts": {
@@ -642,18 +593,18 @@
             "smithy.api#required": {}
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional. A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page.",
             "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of accounts to include in the response, used for paging. If unspecified, at most 10000 accounts will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -684,6 +635,56 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.adsenseplatform_v1#CreatePlatformsAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Platform to create an account for. Format: platforms/{platform}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.adsenseplatform_v1#Account",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.adsenseplatform_v1#CreatePlatformsAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsenseplatform_v1#CreatePlatformsAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsenseplatform_v1#Account"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsenseplatform_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.adsenseplatform_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.adsenseplatform_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.adsenseplatform_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/accounts"
+        },
+        "smithy.api#documentation": "Creates a sub-account."
       }
     },
     "com.gcp.adsenseplatform_v1#CreatePlatformsAccountsEventsRequest": {
@@ -736,6 +737,61 @@
         "smithy.api#documentation": "Creates an account event."
       }
     },
+    "com.gcp.adsenseplatform_v1#ListPlatformsAccountsSitesRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSites` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The account which owns the sites. Format: platforms/{platform}/accounts/{account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of sites to include in the response, used for paging. If unspecified, at most 10000 sites will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.adsenseplatform_v1#ListPlatformsAccountsSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsenseplatform_v1#ListPlatformsAccountsSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsenseplatform_v1#ListSitesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsenseplatform_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.adsenseplatform_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/sites"
+        },
+        "smithy.api#documentation": "Lists sites for a specific account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.adsenseplatform_v1#RequestReviewPlatformsAccountsSitesRequest": {
       "type": "structure",
       "members": {
@@ -777,6 +833,49 @@
           "uri": "v1/{+name}:requestReview"
         },
         "smithy.api#documentation": "Requests the review of a site. The site should be in REQUIRES_REVIEW or NEEDS_ATTENTION state. Note: Make sure you place an [ad tag](https://developers.google.com/adsense/platforms/direct/ad-tags) on your site before requesting a review."
+      }
+    },
+    "com.gcp.adsenseplatform_v1#DeletePlatformsAccountsSitesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the site to delete. Format: platforms/{platform}/accounts/{account}/sites/{site}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.adsenseplatform_v1#DeletePlatformsAccountsSites": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.adsenseplatform_v1#DeletePlatformsAccountsSitesRequest"
+      },
+      "output": {
+        "target": "com.gcp.adsenseplatform_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.adsenseplatform_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.adsenseplatform_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.adsenseplatform_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.adsenseplatform_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a site from a specified account."
       }
     },
     "com.gcp.adsenseplatform_v1#CreatePlatformsAccountsSitesRequest": {
@@ -864,104 +963,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Gets a site from a specified sub-account."
-      }
-    },
-    "com.gcp.adsenseplatform_v1#ListPlatformsAccountsSitesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The account which owns the sites. Format: platforms/{platform}/accounts/{account}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of sites to include in the response, used for paging. If unspecified, at most 10000 sites will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSites` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.adsenseplatform_v1#ListPlatformsAccountsSites": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.adsenseplatform_v1#ListPlatformsAccountsSitesRequest"
-      },
-      "output": {
-        "target": "com.gcp.adsenseplatform_v1#ListSitesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.adsenseplatform_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.adsenseplatform_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/sites"
-        },
-        "smithy.api#documentation": "Lists sites for a specific account.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.adsenseplatform_v1#DeletePlatformsAccountsSitesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the site to delete. Format: platforms/{platform}/accounts/{account}/sites/{site}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.adsenseplatform_v1#DeletePlatformsAccountsSites": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.adsenseplatform_v1#DeletePlatformsAccountsSitesRequest"
-      },
-      "output": {
-        "target": "com.gcp.adsenseplatform_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.adsenseplatform_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.adsenseplatform_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.adsenseplatform_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.adsenseplatform_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a site from a specified account."
       }
     }
   }

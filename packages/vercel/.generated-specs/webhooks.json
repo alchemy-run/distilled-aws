@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.webhooks#GetWebhooksRequest": {
@@ -160,6 +161,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -4549,16 +4556,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.webhooks#GetWebhooks"
+          "target": "com.vercel.webhooks#CreateWebhook"
         },
         {
-          "target": "com.vercel.webhooks#CreateWebhook"
+          "target": "com.vercel.webhooks#DeleteWebhook"
         },
         {
           "target": "com.vercel.webhooks#GetWebhook"
         },
         {
-          "target": "com.vercel.webhooks#DeleteWebhook"
+          "target": "com.vercel.webhooks#GetWebhooks"
         }
       ],
       "traits": {

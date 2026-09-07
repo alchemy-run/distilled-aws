@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.zone_actions#ListZonesActionsRequestIdList": {
@@ -1941,15 +1942,6 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.zone_actions#ListZonesActions"
-        },
-        {
-          "target": "com.hetzner.zone_actions#GetZonesAction"
-        },
-        {
-          "target": "com.hetzner.zone_actions#ListZoneActions"
-        },
-        {
           "target": "com.hetzner.zone_actions#ChangeZonePrimaryNameservers"
         },
         {
@@ -1959,7 +1951,16 @@
           "target": "com.hetzner.zone_actions#ChangeZoneTtl"
         },
         {
+          "target": "com.hetzner.zone_actions#GetZonesAction"
+        },
+        {
           "target": "com.hetzner.zone_actions#ImportZoneZonefile"
+        },
+        {
+          "target": "com.hetzner.zone_actions#ListZoneActions"
+        },
+        {
+          "target": "com.hetzner.zone_actions#ListZonesActions"
         }
       ],
       "traits": {

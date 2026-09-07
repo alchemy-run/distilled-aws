@@ -84,6 +84,84 @@ export class VariantsNotConfigured
     [{ status: 404, message: { includes: "zone setting does not exist" } }],
   ) {}
 
+export interface BulkDeleteOriginCloudRegionsRequest {
+  /** Identifier. */
+  zoneId: string;
+}
+export const BulkDeleteOriginCloudRegionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/zones/{zone_id}/origin/cloud_regions/batch",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteOriginCloudRegionsRequest",
+}) as any as S.Schema<BulkDeleteOriginCloudRegionsRequest>;
+
+export interface OriginCloudRegionsBulkDeleteResponseFailedItem {
+  /** The origin IP address for this item. */
+  originIp: string;
+  /** Error message explaining why the item failed. Present only on failed items. */
+  error?: string | null;
+  /** Cloud vendor region identifier. Present on succeeded items (the new value for upsert, the deleted value for delete). */
+  region?: string | null;
+  /** Cloud vendor identifier. Present on succeeded items (the new value for upsert, the deleted value for delete). */
+  vendor?: string | null;
+}
+export const OriginCloudRegionsBulkDeleteResponseFailedItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      originIp: S.String.pipe(T.Body("origin_ip")),
+      error: S.optional(S.NullOr(S.String)),
+      region: S.optional(S.NullOr(S.String)),
+      vendor: S.optional(S.NullOr(S.String)),
+    }),
+  ).annotate({
+    identifier: "OriginCloudRegionsBulkDeleteResponseFailedItem",
+  }) as any as S.Schema<OriginCloudRegionsBulkDeleteResponseFailedItem>;
+
+export type OriginCloudRegionsBulkDeleteResponseFailedList =
+  Array<OriginCloudRegionsBulkDeleteResponseFailedItem>;
+export const OriginCloudRegionsBulkDeleteResponseFailedList =
+  /*@__PURE__*/ S.Array(
+    OriginCloudRegionsBulkDeleteResponseFailedItem,
+  ) as any as S.Schema<OriginCloudRegionsBulkDeleteResponseFailedList>;
+
+export type OriginCloudRegionsBulkDeleteResponseSucceededItem =
+  OriginCloudRegionsBulkDeleteResponseFailedItem;
+export const OriginCloudRegionsBulkDeleteResponseSucceededItem =
+  OriginCloudRegionsBulkDeleteResponseFailedItem;
+
+export type OriginCloudRegionsBulkDeleteResponseSucceededList =
+  Array<OriginCloudRegionsBulkDeleteResponseFailedItem>;
+export const OriginCloudRegionsBulkDeleteResponseSucceededList =
+  /*@__PURE__*/ S.Array(
+    OriginCloudRegionsBulkDeleteResponseFailedItem,
+  ) as any as S.Schema<OriginCloudRegionsBulkDeleteResponseSucceededList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface BulkDeleteOriginCloudRegionsResponse {
+  /** Items that could not be applied, with error details. */
+  failed: OriginCloudRegionsBulkDeleteResponseFailedList;
+  /** Items that were successfully applied. */
+  succeeded: OriginCloudRegionsBulkDeleteResponseSucceededList;
+}
+export const BulkDeleteOriginCloudRegionsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      failed: OriginCloudRegionsBulkDeleteResponseFailedList,
+      succeeded: OriginCloudRegionsBulkDeleteResponseSucceededList,
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkDeleteOriginCloudRegionsResponse",
+}) as any as S.Schema<BulkDeleteOriginCloudRegionsResponse>;
+
 export type OriginCloudRegionsBulkUpdateRequestBodyItemVendor =
   | "aws"
   | "azure"
@@ -140,45 +218,28 @@ export const BulkPutOriginCloudRegionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "BulkPutOriginCloudRegionsRequest",
 }) as any as S.Schema<BulkPutOriginCloudRegionsRequest>;
 
-export interface OriginCloudRegionsBulkUpdateResponseFailedItem {
-  /** The origin IP address for this item. */
-  originIp: string;
-  /** Error message explaining why the item failed. Present only on failed items. */
-  error?: string | null;
-  /** Cloud vendor region identifier. Present on succeeded items (the new value for upsert, the deleted value for delete). */
-  region?: string | null;
-  /** Cloud vendor identifier. Present on succeeded items (the new value for upsert, the deleted value for delete). */
-  vendor?: string | null;
-}
+export type OriginCloudRegionsBulkUpdateResponseFailedItem =
+  OriginCloudRegionsBulkDeleteResponseFailedItem;
 export const OriginCloudRegionsBulkUpdateResponseFailedItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      originIp: S.String.pipe(T.Body("origin_ip")),
-      error: S.optional(S.NullOr(S.String)),
-      region: S.optional(S.NullOr(S.String)),
-      vendor: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "OriginCloudRegionsBulkUpdateResponseFailedItem",
-  }) as any as S.Schema<OriginCloudRegionsBulkUpdateResponseFailedItem>;
+  OriginCloudRegionsBulkDeleteResponseFailedItem;
 
 export type OriginCloudRegionsBulkUpdateResponseFailedList =
-  Array<OriginCloudRegionsBulkUpdateResponseFailedItem>;
+  Array<OriginCloudRegionsBulkDeleteResponseFailedItem>;
 export const OriginCloudRegionsBulkUpdateResponseFailedList =
   /*@__PURE__*/ S.Array(
-    OriginCloudRegionsBulkUpdateResponseFailedItem,
+    OriginCloudRegionsBulkDeleteResponseFailedItem,
   ) as any as S.Schema<OriginCloudRegionsBulkUpdateResponseFailedList>;
 
 export type OriginCloudRegionsBulkUpdateResponseSucceededItem =
-  OriginCloudRegionsBulkUpdateResponseFailedItem;
+  OriginCloudRegionsBulkDeleteResponseFailedItem;
 export const OriginCloudRegionsBulkUpdateResponseSucceededItem =
-  OriginCloudRegionsBulkUpdateResponseFailedItem;
+  OriginCloudRegionsBulkDeleteResponseFailedItem;
 
 export type OriginCloudRegionsBulkUpdateResponseSucceededList =
-  Array<OriginCloudRegionsBulkUpdateResponseFailedItem>;
+  Array<OriginCloudRegionsBulkDeleteResponseFailedItem>;
 export const OriginCloudRegionsBulkUpdateResponseSucceededList =
   /*@__PURE__*/ S.Array(
-    OriginCloudRegionsBulkUpdateResponseFailedItem,
+    OriginCloudRegionsBulkDeleteResponseFailedItem,
   ) as any as S.Schema<OriginCloudRegionsBulkUpdateResponseSucceededList>;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
@@ -248,96 +309,6 @@ export const ClearCacheReserveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClearCacheReserveResponse",
 }) as any as S.Schema<ClearCacheReserveResponse>;
 
-export type OriginCloudRegionsCreateV1RequestVendor =
-  | "aws"
-  | "azure"
-  | "gcp"
-  | "oci";
-export const OriginCloudRegionsCreateV1RequestVendor = /*@__PURE__*/ S.String;
-
-export interface CreateOriginCloudRegionV1Request {
-  /** Identifier. */
-  zoneId: string;
-  /** Origin IP address (IPv4 or IPv6). Normalized to canonical form before storage (RFC 5952 for IPv6). */
-  ip: string;
-  /** Cloud vendor region identifier. Must be a valid region for the specified vendor as returned by the supported_regions endpoint. */
-  region: string;
-  /** Cloud vendor hosting the origin. Must be one of the supported vendors. */
-  vendor: OriginCloudRegionsCreateV1RequestVendor | (string & {});
-}
-export const CreateOriginCloudRegionV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    ip: S.String,
-    region: S.String,
-    vendor: OriginCloudRegionsCreateV1RequestVendor,
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/zones/{zone_id}/cache/origin_cloud_regions",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CreateOriginCloudRegionV1Request",
-}) as any as S.Schema<CreateOriginCloudRegionV1Request>;
-
-export type OriginCloudRegionsCreateV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsCreateV1ResponseId = /*@__PURE__*/ S.String;
-
-export type OriginCloudRegionsCreateV1ResponseValueVendor =
-  | "aws"
-  | "azure"
-  | "gcp"
-  | "oci";
-export const OriginCloudRegionsCreateV1ResponseValueVendor =
-  /*@__PURE__*/ S.String;
-
-export interface OriginCloudRegionsCreateV1ResponseValue {
-  /** The origin IP address (IPv4 or IPv6, canonicalized). */
-  originIp: string;
-  /** Cloud vendor region identifier. */
-  region: string;
-  /** Cloud vendor hosting the origin. */
-  vendor: OriginCloudRegionsCreateV1ResponseValueVendor;
-  /** Time this mapping was last modified. */
-  modifiedOn?: string | null;
-}
-export const OriginCloudRegionsCreateV1ResponseValue = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      originIp: S.String.pipe(T.Body("origin-ip")),
-      region: S.String,
-      vendor: OriginCloudRegionsCreateV1ResponseValueVendor,
-      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-    }),
-).annotate({
-  identifier: "OriginCloudRegionsCreateV1ResponseValue",
-}) as any as S.Schema<OriginCloudRegionsCreateV1ResponseValue>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface CreateOriginCloudRegionV1Response {
-  id: OriginCloudRegionsCreateV1ResponseId;
-  /** Whether the setting can be modified by the current user. */
-  editable: boolean;
-  /** A single origin IP-to-cloud-region mapping. */
-  value: OriginCloudRegionsCreateV1ResponseValue;
-  /** Time the mapping was last modified. */
-  modifiedOn?: string | null;
-}
-export const CreateOriginCloudRegionV1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: OriginCloudRegionsCreateV1ResponseId,
-    editable: S.Boolean,
-    value: OriginCloudRegionsCreateV1ResponseValue,
-    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CreateOriginCloudRegionV1Response",
-}) as any as S.Schema<CreateOriginCloudRegionV1Response>;
-
 export type SmartTieredCacheCreateRequestValue = "on" | "off";
 export const SmartTieredCacheCreateRequestValue = /*@__PURE__*/ S.String;
 
@@ -393,66 +364,6 @@ export const CreateSmartTieredCacheResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSmartTieredCacheResponse",
 }) as any as S.Schema<CreateSmartTieredCacheResponse>;
 
-export interface DeleteBulkOriginCloudRegionRequest {
-  /** Identifier. */
-  zoneId: string;
-}
-export const DeleteBulkOriginCloudRegionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/zones/{zone_id}/origin/cloud_regions/batch",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkOriginCloudRegionRequest",
-}) as any as S.Schema<DeleteBulkOriginCloudRegionRequest>;
-
-export type OriginCloudRegionsBulkDeleteResponseFailedItem =
-  OriginCloudRegionsBulkUpdateResponseFailedItem;
-export const OriginCloudRegionsBulkDeleteResponseFailedItem =
-  OriginCloudRegionsBulkUpdateResponseFailedItem;
-
-export type OriginCloudRegionsBulkDeleteResponseFailedList =
-  Array<OriginCloudRegionsBulkUpdateResponseFailedItem>;
-export const OriginCloudRegionsBulkDeleteResponseFailedList =
-  /*@__PURE__*/ S.Array(
-    OriginCloudRegionsBulkUpdateResponseFailedItem,
-  ) as any as S.Schema<OriginCloudRegionsBulkDeleteResponseFailedList>;
-
-export type OriginCloudRegionsBulkDeleteResponseSucceededItem =
-  OriginCloudRegionsBulkUpdateResponseFailedItem;
-export const OriginCloudRegionsBulkDeleteResponseSucceededItem =
-  OriginCloudRegionsBulkUpdateResponseFailedItem;
-
-export type OriginCloudRegionsBulkDeleteResponseSucceededList =
-  Array<OriginCloudRegionsBulkUpdateResponseFailedItem>;
-export const OriginCloudRegionsBulkDeleteResponseSucceededList =
-  /*@__PURE__*/ S.Array(
-    OriginCloudRegionsBulkUpdateResponseFailedItem,
-  ) as any as S.Schema<OriginCloudRegionsBulkDeleteResponseSucceededList>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface DeleteBulkOriginCloudRegionResponse {
-  /** Items that could not be applied, with error details. */
-  failed: OriginCloudRegionsBulkDeleteResponseFailedList;
-  /** Items that were successfully applied. */
-  succeeded: OriginCloudRegionsBulkDeleteResponseSucceededList;
-}
-export const DeleteBulkOriginCloudRegionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    failed: OriginCloudRegionsBulkDeleteResponseFailedList,
-    succeeded: OriginCloudRegionsBulkDeleteResponseSucceededList,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteBulkOriginCloudRegionResponse",
-}) as any as S.Schema<DeleteBulkOriginCloudRegionResponse>;
-
 export interface DeleteOriginCloudRegionRequest {
   /** Identifier. */
   zoneId: string;
@@ -487,185 +398,6 @@ export const DeleteOriginCloudRegionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteOriginCloudRegionResponse",
 }) as any as S.Schema<DeleteOriginCloudRegionResponse>;
-
-export interface DeleteOriginCloudRegionBulkV1Request {
-  /** Identifier. */
-  zoneId: string;
-}
-export const DeleteOriginCloudRegionBulkV1Request = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      zoneId: S.String.pipe(T.Label("zone_id")),
-    })
-      .pipe(
-        T.Http({
-          method: "DELETE",
-          uri: "/zones/{zone_id}/cache/origin_cloud_regions/batch",
-          code: 200,
-        }),
-      )
-      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteOriginCloudRegionBulkV1Request",
-}) as any as S.Schema<DeleteOriginCloudRegionBulkV1Request>;
-
-export type OriginCloudRegionsBulkDeleteV1ResponseId =
-  "origin_public_cloud_region";
-export const OriginCloudRegionsBulkDeleteV1ResponseId = /*@__PURE__*/ S.String;
-
-export interface OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem {
-  /** The origin IP address for this item. */
-  originIp: string;
-  /** Error message explaining why the item failed. Present only on failed items. */
-  error?: string | null;
-  /** Cloud vendor region identifier. Present on succeeded items for patch operations. */
-  region?: string | null;
-  /** Cloud vendor identifier. Present on succeeded items for patch operations. */
-  vendor?: string | null;
-}
-export const OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      originIp: S.String.pipe(T.Body("origin-ip")),
-      error: S.optional(S.NullOr(S.String)),
-      region: S.optional(S.NullOr(S.String)),
-      vendor: S.optional(S.NullOr(S.String)),
-    }),
-  ).annotate({
-    identifier: "OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem",
-  }) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem>;
-
-export type OriginCloudRegionsBulkDeleteV1ResponseValueFailedList =
-  Array<OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem>;
-export const OriginCloudRegionsBulkDeleteV1ResponseValueFailedList =
-  /*@__PURE__*/ S.Array(
-    OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem,
-  ) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValueFailedList>;
-
-export type OriginCloudRegionsBulkDeleteV1ResponseValueSucceededItem =
-  OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem;
-export const OriginCloudRegionsBulkDeleteV1ResponseValueSucceededItem =
-  OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem;
-
-export type OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList =
-  Array<OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem>;
-export const OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList =
-  /*@__PURE__*/ S.Array(
-    OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem,
-  ) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList>;
-
-export interface OriginCloudRegionsBulkDeleteV1ResponseValue {
-  /** Items that could not be applied, with error details. */
-  failed: OriginCloudRegionsBulkDeleteV1ResponseValueFailedList;
-  /** Items that were successfully applied. */
-  succeeded: OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList;
-}
-export const OriginCloudRegionsBulkDeleteV1ResponseValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      failed: OriginCloudRegionsBulkDeleteV1ResponseValueFailedList,
-      succeeded: OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList,
-    }),
-  ).annotate({
-    identifier: "OriginCloudRegionsBulkDeleteV1ResponseValue",
-  }) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValue>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface DeleteOriginCloudRegionBulkV1Response {
-  id: OriginCloudRegionsBulkDeleteV1ResponseId;
-  /** Whether the setting can be modified by the current user. */
-  editable: boolean;
-  value: OriginCloudRegionsBulkDeleteV1ResponseValue;
-  /** Time the mapping set was last modified. Null when no items were successfully applied. */
-  modifiedOn?: string | null;
-}
-export const DeleteOriginCloudRegionBulkV1Response = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: OriginCloudRegionsBulkDeleteV1ResponseId,
-      editable: S.Boolean,
-      value: OriginCloudRegionsBulkDeleteV1ResponseValue,
-      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteOriginCloudRegionBulkV1Response",
-}) as any as S.Schema<DeleteOriginCloudRegionBulkV1Response>;
-
-export interface DeleteOriginCloudRegionV1Request {
-  /** Identifier. */
-  zoneId: string;
-  originIp: string;
-}
-export const DeleteOriginCloudRegionV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    originIp: S.String.pipe(T.Label("origin_ip")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteOriginCloudRegionV1Request",
-}) as any as S.Schema<DeleteOriginCloudRegionV1Request>;
-
-export type OriginCloudRegionsDeleteV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsDeleteV1ResponseId = /*@__PURE__*/ S.String;
-
-export type OriginCloudRegionsDeleteV1ResponseValueVendor =
-  | "aws"
-  | "azure"
-  | "gcp"
-  | "oci";
-export const OriginCloudRegionsDeleteV1ResponseValueVendor =
-  /*@__PURE__*/ S.String;
-
-export interface OriginCloudRegionsDeleteV1ResponseValue {
-  /** The origin IP address (IPv4 or IPv6, canonicalized). */
-  originIp: string;
-  /** Cloud vendor region identifier. */
-  region: string;
-  /** Cloud vendor hosting the origin. */
-  vendor: OriginCloudRegionsDeleteV1ResponseValueVendor;
-  /** Time this mapping was last modified. */
-  modifiedOn?: string | null;
-}
-export const OriginCloudRegionsDeleteV1ResponseValue = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      originIp: S.String.pipe(T.Body("origin-ip")),
-      region: S.String,
-      vendor: OriginCloudRegionsDeleteV1ResponseValueVendor,
-      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-    }),
-).annotate({
-  identifier: "OriginCloudRegionsDeleteV1ResponseValue",
-}) as any as S.Schema<OriginCloudRegionsDeleteV1ResponseValue>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface DeleteOriginCloudRegionV1Response {
-  id: OriginCloudRegionsDeleteV1ResponseId;
-  /** Whether the setting can be modified by the current user. */
-  editable: boolean;
-  /** A single origin IP-to-cloud-region mapping. */
-  value: OriginCloudRegionsDeleteV1ResponseValue;
-  /** Time the mapping was last modified. */
-  modifiedOn?: string | null;
-}
-export const DeleteOriginCloudRegionV1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: OriginCloudRegionsDeleteV1ResponseId,
-    editable: S.Boolean,
-    value: OriginCloudRegionsDeleteV1ResponseValue,
-    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "DeleteOriginCloudRegionV1Response",
-}) as any as S.Schema<DeleteOriginCloudRegionV1Response>;
 
 export interface DeleteSmartTieredCacheRequest {
   /** Identifier. */
@@ -850,82 +582,6 @@ export const GetOriginCloudRegionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetOriginCloudRegionResponse",
 }) as any as S.Schema<GetOriginCloudRegionResponse>;
-
-export interface GetOriginCloudRegionV1Request {
-  /** Identifier. */
-  zoneId: string;
-  originIp: string;
-}
-export const GetOriginCloudRegionV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    originIp: S.String.pipe(T.Label("origin_ip")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GetOriginCloudRegionV1Request",
-}) as any as S.Schema<GetOriginCloudRegionV1Request>;
-
-export type OriginCloudRegionsGetV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsGetV1ResponseId = /*@__PURE__*/ S.String;
-
-export type OriginCloudRegionsGetV1ResponseValueVendor =
-  | "aws"
-  | "azure"
-  | "gcp"
-  | "oci";
-export const OriginCloudRegionsGetV1ResponseValueVendor =
-  /*@__PURE__*/ S.String;
-
-export interface OriginCloudRegionsGetV1ResponseValue {
-  /** The origin IP address (IPv4 or IPv6, canonicalized). */
-  originIp: string;
-  /** Cloud vendor region identifier. */
-  region: string;
-  /** Cloud vendor hosting the origin. */
-  vendor: OriginCloudRegionsGetV1ResponseValueVendor;
-  /** Time this mapping was last modified. */
-  modifiedOn?: string | null;
-}
-export const OriginCloudRegionsGetV1ResponseValue = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      originIp: S.String.pipe(T.Body("origin-ip")),
-      region: S.String,
-      vendor: OriginCloudRegionsGetV1ResponseValueVendor,
-      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-    }),
-).annotate({
-  identifier: "OriginCloudRegionsGetV1ResponseValue",
-}) as any as S.Schema<OriginCloudRegionsGetV1ResponseValue>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface GetOriginCloudRegionV1Response {
-  id: OriginCloudRegionsGetV1ResponseId;
-  /** Whether the setting can be modified by the current user. */
-  editable: boolean;
-  /** A single origin IP-to-cloud-region mapping. */
-  value: OriginCloudRegionsGetV1ResponseValue;
-  /** Time the mapping was last modified. */
-  modifiedOn?: string | null;
-}
-export const GetOriginCloudRegionV1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: OriginCloudRegionsGetV1ResponseId,
-    editable: S.Boolean,
-    value: OriginCloudRegionsGetV1ResponseValue,
-    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GetOriginCloudRegionV1Response",
-}) as any as S.Schema<GetOriginCloudRegionV1Response>;
 
 export interface GetRegionalTieredCacheRequest {
   /** Identifier. */
@@ -1241,84 +897,108 @@ export const ListOriginCloudRegionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOriginCloudRegionsResponse",
 }) as any as S.Schema<ListOriginCloudRegionsResponse>;
 
-export interface ListOriginCloudRegionV1Request {
+export interface OriginCloudRegionsBulkDeleteV1Request {
   /** Identifier. */
   zoneId: string;
 }
-export const ListOriginCloudRegionV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/zones/{zone_id}/cache/origin_cloud_regions",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+export const OriginCloudRegionsBulkDeleteV1Request = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      zoneId: S.String.pipe(T.Label("zone_id")),
+    })
+      .pipe(
+        T.Http({
+          method: "DELETE",
+          uri: "/zones/{zone_id}/cache/origin_cloud_regions/batch",
+          code: 200,
+        }),
+      )
+      .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "ListOriginCloudRegionV1Request",
-}) as any as S.Schema<ListOriginCloudRegionV1Request>;
+  identifier: "OriginCloudRegionsBulkDeleteV1Request",
+}) as any as S.Schema<OriginCloudRegionsBulkDeleteV1Request>;
 
-export type OriginCloudRegionsListV1ResponseId = "origin_public_cloud_region";
-export const OriginCloudRegionsListV1ResponseId = /*@__PURE__*/ S.String;
+export type OriginCloudRegionsBulkDeleteV1ResponseId =
+  "origin_public_cloud_region";
+export const OriginCloudRegionsBulkDeleteV1ResponseId = /*@__PURE__*/ S.String;
 
-export type OriginCloudRegionsListV1ResponseValueItemVendor =
-  | "aws"
-  | "azure"
-  | "gcp"
-  | "oci";
-export const OriginCloudRegionsListV1ResponseValueItemVendor =
-  /*@__PURE__*/ S.String;
-
-export interface OriginCloudRegionsListV1ResponseValueItem {
-  /** The origin IP address (IPv4 or IPv6, canonicalized). */
+export interface OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem {
+  /** The origin IP address for this item. */
   originIp: string;
-  /** Cloud vendor region identifier. */
-  region: string;
-  /** Cloud vendor hosting the origin. */
-  vendor: OriginCloudRegionsListV1ResponseValueItemVendor;
-  /** Time this mapping was last modified. */
-  modifiedOn?: string | null;
+  /** Error message explaining why the item failed. Present only on failed items. */
+  error?: string | null;
+  /** Cloud vendor region identifier. Present on succeeded items for patch operations. */
+  region?: string | null;
+  /** Cloud vendor identifier. Present on succeeded items for patch operations. */
+  vendor?: string | null;
 }
-export const OriginCloudRegionsListV1ResponseValueItem =
+export const OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       originIp: S.String.pipe(T.Body("origin-ip")),
-      region: S.String,
-      vendor: OriginCloudRegionsListV1ResponseValueItemVendor,
-      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+      error: S.optional(S.NullOr(S.String)),
+      region: S.optional(S.NullOr(S.String)),
+      vendor: S.optional(S.NullOr(S.String)),
     }),
   ).annotate({
-    identifier: "OriginCloudRegionsListV1ResponseValueItem",
-  }) as any as S.Schema<OriginCloudRegionsListV1ResponseValueItem>;
+    identifier: "OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem",
+  }) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem>;
 
-export type OriginCloudRegionsListV1ResponseValueList =
-  Array<OriginCloudRegionsListV1ResponseValueItem>;
-export const OriginCloudRegionsListV1ResponseValueList = /*@__PURE__*/ S.Array(
-  OriginCloudRegionsListV1ResponseValueItem,
-) as any as S.Schema<OriginCloudRegionsListV1ResponseValueList>;
+export type OriginCloudRegionsBulkDeleteV1ResponseValueFailedList =
+  Array<OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem>;
+export const OriginCloudRegionsBulkDeleteV1ResponseValueFailedList =
+  /*@__PURE__*/ S.Array(
+    OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem,
+  ) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValueFailedList>;
+
+export type OriginCloudRegionsBulkDeleteV1ResponseValueSucceededItem =
+  OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem;
+export const OriginCloudRegionsBulkDeleteV1ResponseValueSucceededItem =
+  OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem;
+
+export type OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList =
+  Array<OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem>;
+export const OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList =
+  /*@__PURE__*/ S.Array(
+    OriginCloudRegionsBulkDeleteV1ResponseValueFailedItem,
+  ) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList>;
+
+export interface OriginCloudRegionsBulkDeleteV1ResponseValue {
+  /** Items that could not be applied, with error details. */
+  failed: OriginCloudRegionsBulkDeleteV1ResponseValueFailedList;
+  /** Items that were successfully applied. */
+  succeeded: OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList;
+}
+export const OriginCloudRegionsBulkDeleteV1ResponseValue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      failed: OriginCloudRegionsBulkDeleteV1ResponseValueFailedList,
+      succeeded: OriginCloudRegionsBulkDeleteV1ResponseValueSucceededList,
+    }),
+  ).annotate({
+    identifier: "OriginCloudRegionsBulkDeleteV1ResponseValue",
+  }) as any as S.Schema<OriginCloudRegionsBulkDeleteV1ResponseValue>;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface ListOriginCloudRegionV1Response {
-  id: OriginCloudRegionsListV1ResponseId;
+export interface OriginCloudRegionsBulkDeleteV1Response {
+  id: OriginCloudRegionsBulkDeleteV1ResponseId;
   /** Whether the setting can be modified by the current user. */
   editable: boolean;
-  value: OriginCloudRegionsListV1ResponseValueList;
-  /** Time the mapping set was last modified. Null when no mappings exist. */
+  value: OriginCloudRegionsBulkDeleteV1ResponseValue;
+  /** Time the mapping set was last modified. Null when no items were successfully applied. */
   modifiedOn?: string | null;
 }
-export const ListOriginCloudRegionV1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: OriginCloudRegionsListV1ResponseId,
-    editable: S.Boolean,
-    value: OriginCloudRegionsListV1ResponseValueList,
-    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+export const OriginCloudRegionsBulkDeleteV1Response = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: OriginCloudRegionsBulkDeleteV1ResponseId,
+      editable: S.Boolean,
+      value: OriginCloudRegionsBulkDeleteV1ResponseValue,
+      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "ListOriginCloudRegionV1Response",
-}) as any as S.Schema<ListOriginCloudRegionV1Response>;
+  identifier: "OriginCloudRegionsBulkDeleteV1Response",
+}) as any as S.Schema<OriginCloudRegionsBulkDeleteV1Response>;
 
 export type OriginCloudRegionsBulkEditV1RequestBodyItemVendor =
   | "aws"
@@ -1441,6 +1121,172 @@ export const OriginCloudRegionsBulkEditV1Response = /*@__PURE__*/ S.suspend(
   identifier: "OriginCloudRegionsBulkEditV1Response",
 }) as any as S.Schema<OriginCloudRegionsBulkEditV1Response>;
 
+export type OriginCloudRegionsCreateV1RequestVendor =
+  | "aws"
+  | "azure"
+  | "gcp"
+  | "oci";
+export const OriginCloudRegionsCreateV1RequestVendor = /*@__PURE__*/ S.String;
+
+export interface OriginCloudRegionsCreateV1Request {
+  /** Identifier. */
+  zoneId: string;
+  /** Origin IP address (IPv4 or IPv6). Normalized to canonical form before storage (RFC 5952 for IPv6). */
+  ip: string;
+  /** Cloud vendor region identifier. Must be a valid region for the specified vendor as returned by the supported_regions endpoint. */
+  region: string;
+  /** Cloud vendor hosting the origin. Must be one of the supported vendors. */
+  vendor: OriginCloudRegionsCreateV1RequestVendor | (string & {});
+}
+export const OriginCloudRegionsCreateV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    ip: S.String,
+    region: S.String,
+    vendor: OriginCloudRegionsCreateV1RequestVendor,
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/zones/{zone_id}/cache/origin_cloud_regions",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsCreateV1Request",
+}) as any as S.Schema<OriginCloudRegionsCreateV1Request>;
+
+export type OriginCloudRegionsCreateV1ResponseId = "origin_public_cloud_region";
+export const OriginCloudRegionsCreateV1ResponseId = /*@__PURE__*/ S.String;
+
+export type OriginCloudRegionsCreateV1ResponseValueVendor =
+  | "aws"
+  | "azure"
+  | "gcp"
+  | "oci";
+export const OriginCloudRegionsCreateV1ResponseValueVendor =
+  /*@__PURE__*/ S.String;
+
+export interface OriginCloudRegionsCreateV1ResponseValue {
+  /** The origin IP address (IPv4 or IPv6, canonicalized). */
+  originIp: string;
+  /** Cloud vendor region identifier. */
+  region: string;
+  /** Cloud vendor hosting the origin. */
+  vendor: OriginCloudRegionsCreateV1ResponseValueVendor;
+  /** Time this mapping was last modified. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsCreateV1ResponseValue = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      originIp: S.String.pipe(T.Body("origin-ip")),
+      region: S.String,
+      vendor: OriginCloudRegionsCreateV1ResponseValueVendor,
+      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    }),
+).annotate({
+  identifier: "OriginCloudRegionsCreateV1ResponseValue",
+}) as any as S.Schema<OriginCloudRegionsCreateV1ResponseValue>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface OriginCloudRegionsCreateV1Response {
+  id: OriginCloudRegionsCreateV1ResponseId;
+  /** Whether the setting can be modified by the current user. */
+  editable: boolean;
+  /** A single origin IP-to-cloud-region mapping. */
+  value: OriginCloudRegionsCreateV1ResponseValue;
+  /** Time the mapping was last modified. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsCreateV1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: OriginCloudRegionsCreateV1ResponseId,
+    editable: S.Boolean,
+    value: OriginCloudRegionsCreateV1ResponseValue,
+    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsCreateV1Response",
+}) as any as S.Schema<OriginCloudRegionsCreateV1Response>;
+
+export interface OriginCloudRegionsDeleteV1Request {
+  /** Identifier. */
+  zoneId: string;
+  originIp: string;
+}
+export const OriginCloudRegionsDeleteV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    originIp: S.String.pipe(T.Label("origin_ip")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsDeleteV1Request",
+}) as any as S.Schema<OriginCloudRegionsDeleteV1Request>;
+
+export type OriginCloudRegionsDeleteV1ResponseId = "origin_public_cloud_region";
+export const OriginCloudRegionsDeleteV1ResponseId = /*@__PURE__*/ S.String;
+
+export type OriginCloudRegionsDeleteV1ResponseValueVendor =
+  | "aws"
+  | "azure"
+  | "gcp"
+  | "oci";
+export const OriginCloudRegionsDeleteV1ResponseValueVendor =
+  /*@__PURE__*/ S.String;
+
+export interface OriginCloudRegionsDeleteV1ResponseValue {
+  /** The origin IP address (IPv4 or IPv6, canonicalized). */
+  originIp: string;
+  /** Cloud vendor region identifier. */
+  region: string;
+  /** Cloud vendor hosting the origin. */
+  vendor: OriginCloudRegionsDeleteV1ResponseValueVendor;
+  /** Time this mapping was last modified. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsDeleteV1ResponseValue = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      originIp: S.String.pipe(T.Body("origin-ip")),
+      region: S.String,
+      vendor: OriginCloudRegionsDeleteV1ResponseValueVendor,
+      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    }),
+).annotate({
+  identifier: "OriginCloudRegionsDeleteV1ResponseValue",
+}) as any as S.Schema<OriginCloudRegionsDeleteV1ResponseValue>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface OriginCloudRegionsDeleteV1Response {
+  id: OriginCloudRegionsDeleteV1ResponseId;
+  /** Whether the setting can be modified by the current user. */
+  editable: boolean;
+  /** A single origin IP-to-cloud-region mapping. */
+  value: OriginCloudRegionsDeleteV1ResponseValue;
+  /** Time the mapping was last modified. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsDeleteV1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: OriginCloudRegionsDeleteV1ResponseId,
+    editable: S.Boolean,
+    value: OriginCloudRegionsDeleteV1ResponseValue,
+    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsDeleteV1Response",
+}) as any as S.Schema<OriginCloudRegionsDeleteV1Response>;
+
 export type OriginCloudRegionsEditV1RequestVendor =
   | "aws"
   | "azure"
@@ -1535,6 +1381,161 @@ export const OriginCloudRegionsEditV1Response = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OriginCloudRegionsEditV1Response",
 }) as any as S.Schema<OriginCloudRegionsEditV1Response>;
+
+export interface OriginCloudRegionsGetV1Request {
+  /** Identifier. */
+  zoneId: string;
+  originIp: string;
+}
+export const OriginCloudRegionsGetV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    originIp: S.String.pipe(T.Label("origin_ip")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/zones/{zone_id}/cache/origin_cloud_regions/{origin_ip}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsGetV1Request",
+}) as any as S.Schema<OriginCloudRegionsGetV1Request>;
+
+export type OriginCloudRegionsGetV1ResponseId = "origin_public_cloud_region";
+export const OriginCloudRegionsGetV1ResponseId = /*@__PURE__*/ S.String;
+
+export type OriginCloudRegionsGetV1ResponseValueVendor =
+  | "aws"
+  | "azure"
+  | "gcp"
+  | "oci";
+export const OriginCloudRegionsGetV1ResponseValueVendor =
+  /*@__PURE__*/ S.String;
+
+export interface OriginCloudRegionsGetV1ResponseValue {
+  /** The origin IP address (IPv4 or IPv6, canonicalized). */
+  originIp: string;
+  /** Cloud vendor region identifier. */
+  region: string;
+  /** Cloud vendor hosting the origin. */
+  vendor: OriginCloudRegionsGetV1ResponseValueVendor;
+  /** Time this mapping was last modified. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsGetV1ResponseValue = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      originIp: S.String.pipe(T.Body("origin-ip")),
+      region: S.String,
+      vendor: OriginCloudRegionsGetV1ResponseValueVendor,
+      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    }),
+).annotate({
+  identifier: "OriginCloudRegionsGetV1ResponseValue",
+}) as any as S.Schema<OriginCloudRegionsGetV1ResponseValue>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface OriginCloudRegionsGetV1Response {
+  id: OriginCloudRegionsGetV1ResponseId;
+  /** Whether the setting can be modified by the current user. */
+  editable: boolean;
+  /** A single origin IP-to-cloud-region mapping. */
+  value: OriginCloudRegionsGetV1ResponseValue;
+  /** Time the mapping was last modified. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsGetV1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: OriginCloudRegionsGetV1ResponseId,
+    editable: S.Boolean,
+    value: OriginCloudRegionsGetV1ResponseValue,
+    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsGetV1Response",
+}) as any as S.Schema<OriginCloudRegionsGetV1Response>;
+
+export interface OriginCloudRegionsListV1Request {
+  /** Identifier. */
+  zoneId: string;
+}
+export const OriginCloudRegionsListV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/zones/{zone_id}/cache/origin_cloud_regions",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsListV1Request",
+}) as any as S.Schema<OriginCloudRegionsListV1Request>;
+
+export type OriginCloudRegionsListV1ResponseId = "origin_public_cloud_region";
+export const OriginCloudRegionsListV1ResponseId = /*@__PURE__*/ S.String;
+
+export type OriginCloudRegionsListV1ResponseValueItemVendor =
+  | "aws"
+  | "azure"
+  | "gcp"
+  | "oci";
+export const OriginCloudRegionsListV1ResponseValueItemVendor =
+  /*@__PURE__*/ S.String;
+
+export interface OriginCloudRegionsListV1ResponseValueItem {
+  /** The origin IP address (IPv4 or IPv6, canonicalized). */
+  originIp: string;
+  /** Cloud vendor region identifier. */
+  region: string;
+  /** Cloud vendor hosting the origin. */
+  vendor: OriginCloudRegionsListV1ResponseValueItemVendor;
+  /** Time this mapping was last modified. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsListV1ResponseValueItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      originIp: S.String.pipe(T.Body("origin-ip")),
+      region: S.String,
+      vendor: OriginCloudRegionsListV1ResponseValueItemVendor,
+      modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+    }),
+  ).annotate({
+    identifier: "OriginCloudRegionsListV1ResponseValueItem",
+  }) as any as S.Schema<OriginCloudRegionsListV1ResponseValueItem>;
+
+export type OriginCloudRegionsListV1ResponseValueList =
+  Array<OriginCloudRegionsListV1ResponseValueItem>;
+export const OriginCloudRegionsListV1ResponseValueList = /*@__PURE__*/ S.Array(
+  OriginCloudRegionsListV1ResponseValueItem,
+) as any as S.Schema<OriginCloudRegionsListV1ResponseValueList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface OriginCloudRegionsListV1Response {
+  id: OriginCloudRegionsListV1ResponseId;
+  /** Whether the setting can be modified by the current user. */
+  editable: boolean;
+  value: OriginCloudRegionsListV1ResponseValueList;
+  /** Time the mapping set was last modified. Null when no mappings exist. */
+  modifiedOn?: string | null;
+}
+export const OriginCloudRegionsListV1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: OriginCloudRegionsListV1ResponseId,
+    editable: S.Boolean,
+    value: OriginCloudRegionsListV1ResponseValueList,
+    modifiedOn: S.optional(S.NullOr(S.String).pipe(T.Body("modified_on"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "OriginCloudRegionsListV1Response",
+}) as any as S.Schema<OriginCloudRegionsListV1Response>;
 
 export interface OriginCloudRegionsSupportedRegionsV1Request {
   /** Identifier. */
@@ -2436,6 +2437,21 @@ export const SupportedRegionsOriginCloudRegionResponse =
     identifier: "SupportedRegionsOriginCloudRegionResponse",
   }) as any as S.Schema<SupportedRegionsOriginCloudRegionResponse>;
 
+export type BulkDeleteOriginCloudRegionsError = CloudflareOpError;
+/** Removes up to 100 IP-to-cloud-region mappings in a single request. Each IP is validated independently — successfully deleted items are returned in the `succeeded` array and IPs that could not be found or are invalid are returned in the `failed` array. */
+export const bulkDeleteOriginCloudRegions: API.OperationMethod<
+  BulkDeleteOriginCloudRegionsRequest,
+  BulkDeleteOriginCloudRegionsResponse,
+  BulkDeleteOriginCloudRegionsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkDeleteOriginCloudRegionsRequest,
+  output: BulkDeleteOriginCloudRegionsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type BulkPutOriginCloudRegionsError = CloudflareOpError;
 /** Upserts up to 100 IP-to-cloud-region mappings in a single request. Items in the request body are created or replaced; mappings not included in the request body are preserved unchanged (this is a merge operation, not a full collection replacement). Each item is validated independently — valid items are applied and invalid items are returned in the `failed` array. The vendor and region for every item are validated against the list from `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`. */
 export const bulkPutOriginCloudRegions: API.OperationMethod<
@@ -2466,21 +2482,6 @@ export const clearCacheReserve: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateOriginCloudRegionV1Error = CloudflareOpError;
-/** Adds a single IP-to-cloud-region mapping for the zone. The IP must be a valid IPv4 or IPv6 address and is normalized to canonical form before storage (RFC 5952 for IPv6). Returns 400 (code 1145) if a mapping for that IP already exists — use PATCH to update an existing entry. The vendor and region are validated against the list from `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`. */
-export const createOriginCloudRegionV1: API.OperationMethod<
-  CreateOriginCloudRegionV1Request,
-  CreateOriginCloudRegionV1Response,
-  CreateOriginCloudRegionV1Error,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CreateOriginCloudRegionV1Request,
-  output: CreateOriginCloudRegionV1Response,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateSmartTieredCacheError = CloudflareOpError;
 /** Smart Tiered Cache dynamically selects the single closest upper tier for each of your website's origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin. */
 export const createSmartTieredCache: API.OperationMethod<
@@ -2491,21 +2492,6 @@ export const createSmartTieredCache: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateSmartTieredCacheRequest,
   output: CreateSmartTieredCacheResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteBulkOriginCloudRegionError = CloudflareOpError;
-/** Removes up to 100 IP-to-cloud-region mappings in a single request. Each IP is validated independently — successfully deleted items are returned in the `succeeded` array and IPs that could not be found or are invalid are returned in the `failed` array. */
-export const deleteBulkOriginCloudRegion: API.OperationMethod<
-  DeleteBulkOriginCloudRegionRequest,
-  DeleteBulkOriginCloudRegionResponse,
-  DeleteBulkOriginCloudRegionError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteBulkOriginCloudRegionRequest,
-  output: DeleteBulkOriginCloudRegionResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -2530,36 +2516,6 @@ export const deleteOriginCloudRegion: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOriginCloudRegionBulkV1Error = CloudflareOpError;
-/** Removes up to 100 IP-to-cloud-region mappings in a single request. Each IP is validated independently — successfully deleted items are returned in the `succeeded` array and IPs that could not be found or are invalid are returned in the `failed` array. */
-export const deleteOriginCloudRegionBulkV1: API.OperationMethod<
-  DeleteOriginCloudRegionBulkV1Request,
-  DeleteOriginCloudRegionBulkV1Response,
-  DeleteOriginCloudRegionBulkV1Error,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOriginCloudRegionBulkV1Request,
-  output: DeleteOriginCloudRegionBulkV1Response,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteOriginCloudRegionV1Error = CloudflareOpError;
-/** Removes the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup. Returns the deleted entry on success. Returns 404 (code 1163) if no mapping exists for the specified IP. When the last mapping for the zone is removed the underlying rule record is also deleted. */
-export const deleteOriginCloudRegionV1: API.OperationMethod<
-  DeleteOriginCloudRegionV1Request,
-  DeleteOriginCloudRegionV1Response,
-  DeleteOriginCloudRegionV1Error,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteOriginCloudRegionV1Request,
-  output: DeleteOriginCloudRegionV1Response,
-  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -2644,21 +2600,6 @@ export const getOriginCloudRegion: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetOriginCloudRegionV1Error = CloudflareOpError;
-/** Returns the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404 (code 1142) if the zone has no mappings or if the specified IP has no mapping. */
-export const getOriginCloudRegionV1: API.OperationMethod<
-  GetOriginCloudRegionV1Request,
-  GetOriginCloudRegionV1Response,
-  GetOriginCloudRegionV1Error,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetOriginCloudRegionV1Request,
-  output: GetOriginCloudRegionV1Response,
-  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -2752,16 +2693,16 @@ export const listOriginCloudRegions: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
-export type ListOriginCloudRegionV1Error = CloudflareOpError;
-/** Returns all IP-to-cloud-region mappings configured for the zone. Each mapping tells Cloudflare which cloud vendor and region hosts the origin at that IP, enabling the edge to route via the nearest Tiered Cache upper-tier co-located with that cloud provider. Returns an empty array when no mappings exist. */
-export const listOriginCloudRegionV1: API.OperationMethod<
-  ListOriginCloudRegionV1Request,
-  ListOriginCloudRegionV1Response,
-  ListOriginCloudRegionV1Error,
+export type OriginCloudRegionsBulkDeleteV1Error = CloudflareOpError;
+/** Removes up to 100 IP-to-cloud-region mappings in a single request. Each IP is validated independently — successfully deleted items are returned in the `succeeded` array and IPs that could not be found or are invalid are returned in the `failed` array. */
+export const originCloudRegionsBulkDeleteV1: API.OperationMethod<
+  OriginCloudRegionsBulkDeleteV1Request,
+  OriginCloudRegionsBulkDeleteV1Response,
+  OriginCloudRegionsBulkDeleteV1Error,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListOriginCloudRegionV1Request,
-  output: ListOriginCloudRegionV1Response,
+  input: OriginCloudRegionsBulkDeleteV1Request,
+  output: OriginCloudRegionsBulkDeleteV1Response,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -2782,6 +2723,36 @@ export const originCloudRegionsBulkEditV1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type OriginCloudRegionsCreateV1Error = CloudflareOpError;
+/** Adds a single IP-to-cloud-region mapping for the zone. The IP must be a valid IPv4 or IPv6 address and is normalized to canonical form before storage (RFC 5952 for IPv6). Returns 400 (code 1145) if a mapping for that IP already exists — use PATCH to update an existing entry. The vendor and region are validated against the list from `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`. */
+export const originCloudRegionsCreateV1: API.OperationMethod<
+  OriginCloudRegionsCreateV1Request,
+  OriginCloudRegionsCreateV1Response,
+  OriginCloudRegionsCreateV1Error,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: OriginCloudRegionsCreateV1Request,
+  output: OriginCloudRegionsCreateV1Response,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type OriginCloudRegionsDeleteV1Error = CloudflareOpError;
+/** Removes the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup. Returns the deleted entry on success. Returns 404 (code 1163) if no mapping exists for the specified IP. When the last mapping for the zone is removed the underlying rule record is also deleted. */
+export const originCloudRegionsDeleteV1: API.OperationMethod<
+  OriginCloudRegionsDeleteV1Request,
+  OriginCloudRegionsDeleteV1Response,
+  OriginCloudRegionsDeleteV1Error,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: OriginCloudRegionsDeleteV1Request,
+  output: OriginCloudRegionsDeleteV1Response,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type OriginCloudRegionsEditV1Error = CloudflareOpError;
 /** Adds or updates a single IP-to-cloud-region mapping for the zone. Unlike POST, this operation is idempotent — if a mapping for the IP already exists it is overwritten. Returns the complete updated list of all mappings for the zone. Returns 403 (code 1164) when the zone has reached the limit of 3,500 IP mappings. */
 export const originCloudRegionsEditV1: API.OperationMethod<
@@ -2792,6 +2763,36 @@ export const originCloudRegionsEditV1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: OriginCloudRegionsEditV1Request,
   output: OriginCloudRegionsEditV1Response,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type OriginCloudRegionsGetV1Error = CloudflareOpError;
+/** Returns the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404 (code 1142) if the zone has no mappings or if the specified IP has no mapping. */
+export const originCloudRegionsGetV1: API.OperationMethod<
+  OriginCloudRegionsGetV1Request,
+  OriginCloudRegionsGetV1Response,
+  OriginCloudRegionsGetV1Error,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: OriginCloudRegionsGetV1Request,
+  output: OriginCloudRegionsGetV1Response,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type OriginCloudRegionsListV1Error = CloudflareOpError;
+/** Returns all IP-to-cloud-region mappings configured for the zone. Each mapping tells Cloudflare which cloud vendor and region hosts the origin at that IP, enabling the edge to route via the nearest Tiered Cache upper-tier co-located with that cloud provider. Returns an empty array when no mappings exist. */
+export const originCloudRegionsListV1: API.OperationMethod<
+  OriginCloudRegionsListV1Request,
+  OriginCloudRegionsListV1Response,
+  OriginCloudRegionsListV1Error,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: OriginCloudRegionsListV1Request,
+  output: OriginCloudRegionsListV1Response,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

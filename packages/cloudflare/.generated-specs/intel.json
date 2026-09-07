@@ -150,7 +150,8 @@
       "userClassification": "user_classification",
       "whoisServer": "whois_server",
       "zoneTag": "zone_tag"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.intel#AsnSubnetsGetResponseSubnetsList": {
@@ -1476,79 +1477,79 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.intel#AsnGet"
+          "target": "com.cloudflare.intel#ClassAttackSurfaceReportIssue"
         },
         {
-          "target": "com.cloudflare.intel#AsnSubnetsGet"
+          "target": "com.cloudflare.intel#CreateIndicatorFeed"
         },
         {
-          "target": "com.cloudflare.intel#AttackSurfaceReportIssueTypesGet"
+          "target": "com.cloudflare.intel#CreateIndicatorFeedPermission"
         },
         {
-          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesClass"
+          "target": "com.cloudflare.intel#CreateMiscategorization"
         },
         {
-          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesDismiss"
+          "target": "com.cloudflare.intel#DataIndicatorFeed"
         },
         {
-          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesList"
+          "target": "com.cloudflare.intel#DeleteIndicatorFeedPermission"
         },
         {
-          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesSeverity"
+          "target": "com.cloudflare.intel#DismissAttackSurfaceReportIssue"
         },
         {
-          "target": "com.cloudflare.intel#AttackSurfaceReportIssuesType"
+          "target": "com.cloudflare.intel#GetAsn"
         },
         {
-          "target": "com.cloudflare.intel#DnsList"
+          "target": "com.cloudflare.intel#GetAsnSubnet"
         },
         {
-          "target": "com.cloudflare.intel#DomainHistoryGet"
+          "target": "com.cloudflare.intel#GetAttackSurfaceReportIssueType"
         },
         {
-          "target": "com.cloudflare.intel#DomainsGet"
+          "target": "com.cloudflare.intel#GetDomain"
         },
         {
-          "target": "com.cloudflare.intel#DomainsBulksGet"
+          "target": "com.cloudflare.intel#GetDomainBulk"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsCreate"
+          "target": "com.cloudflare.intel#GetDomainHistory"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsData"
+          "target": "com.cloudflare.intel#GetIndicatorFeed"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsGet"
+          "target": "com.cloudflare.intel#GetIp"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsList"
+          "target": "com.cloudflare.intel#GetWhoi"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsUpdate"
+          "target": "com.cloudflare.intel#ListAttackSurfaceReportIssues"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsPermissionsCreate"
+          "target": "com.cloudflare.intel#ListDns"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsPermissionsDelete"
+          "target": "com.cloudflare.intel#ListIndicatorFeedPermissions"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsPermissionsList"
+          "target": "com.cloudflare.intel#ListIndicatorFeeds"
         },
         {
-          "target": "com.cloudflare.intel#IndicatorFeedsSnapshotsUpdate"
+          "target": "com.cloudflare.intel#ListSinkholes"
         },
         {
-          "target": "com.cloudflare.intel#IpsGet"
+          "target": "com.cloudflare.intel#PutIndicatorFeedSnapshot"
         },
         {
-          "target": "com.cloudflare.intel#MiscategorizationsCreate"
+          "target": "com.cloudflare.intel#SeverityAttackSurfaceReportIssue"
         },
         {
-          "target": "com.cloudflare.intel#SinkholesList"
+          "target": "com.cloudflare.intel#TypeAttackSurfaceReportIssue"
         },
         {
-          "target": "com.cloudflare.intel#WhoisGet"
+          "target": "com.cloudflare.intel#UpdateIndicatorFeed"
         }
       ],
       "traits": {

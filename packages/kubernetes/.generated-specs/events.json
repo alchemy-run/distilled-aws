@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.events#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.events#GetEventsApiGroup": {
+    "com.kubernetes.events#GetEventsAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.events#GetEventsV1ApiResources": {
+    "com.kubernetes.events#GetEventsV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2021,7 +2022,7 @@
         "smithy.api#documentation": "delete an Event"
       }
     },
-    "com.kubernetes.events#ListWatchEventV1EventForAllNamespacesRequest": {
+    "com.kubernetes.events#WatchEventsV1EventListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -2134,10 +2135,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.events#ListWatchEventV1EventForAllNamespaces": {
+    "com.kubernetes.events#WatchEventsV1EventListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.events#ListWatchEventV1EventForAllNamespacesRequest"
+        "target": "com.kubernetes.events#WatchEventsV1EventListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.events#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2151,7 +2152,7 @@
         "smithy.api#documentation": "watch individual changes to a list of Event. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.events#ListWatchEventV1NamespacedEventRequest": {
+    "com.kubernetes.events#WatchEventsV1NamespacedEventListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2251,10 +2252,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.events#ListWatchEventV1NamespacedEvent": {
+    "com.kubernetes.events#WatchEventsV1NamespacedEventList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.events#ListWatchEventV1NamespacedEventRequest"
+        "target": "com.kubernetes.events#WatchEventsV1NamespacedEventListRequest"
       },
       "output": {
         "target": "com.kubernetes.events#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2437,10 +2438,19 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.events#GetEventsApiGroup"
+          "target": "com.kubernetes.events#CreateEventsV1NamespacedEvent"
         },
         {
-          "target": "com.kubernetes.events#GetEventsV1ApiResources"
+          "target": "com.kubernetes.events#DeleteEventsV1CollectionNamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.events#DeleteEventsV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.events#GetEventsAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.events#GetEventsV1APIResources"
         },
         {
           "target": "com.kubernetes.events#ListEventsV1EventForAllNamespaces"
@@ -2449,10 +2459,7 @@
           "target": "com.kubernetes.events#ListEventsV1NamespacedEvent"
         },
         {
-          "target": "com.kubernetes.events#CreateEventsV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.events#DeleteEventsV1CollectionNamespacedEvent"
+          "target": "com.kubernetes.events#PatchEventsV1NamespacedEvent"
         },
         {
           "target": "com.kubernetes.events#ReadEventsV1NamespacedEvent"
@@ -2461,19 +2468,13 @@
           "target": "com.kubernetes.events#ReplaceEventsV1NamespacedEvent"
         },
         {
-          "target": "com.kubernetes.events#PatchEventsV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.events#DeleteEventsV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.events#ListWatchEventV1EventForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.events#ListWatchEventV1NamespacedEvent"
+          "target": "com.kubernetes.events#WatchEventsV1EventListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.events#WatchEventsV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.events#WatchEventsV1NamespacedEventList"
         }
       ],
       "traits": {

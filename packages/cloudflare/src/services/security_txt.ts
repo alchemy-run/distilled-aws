@@ -83,9 +83,62 @@ export const GetSecurityTxtRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSecurityTxtRequest",
 }) as any as S.Schema<GetSecurityTxtRequest>;
 
-export type SecurityTxtFile = SecurityTxtFile;
+export type GetResponseAcknowledgmentsList = Array<string>;
+export const GetResponseAcknowledgmentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponseAcknowledgmentsList>;
+
+export type GetResponseCanonicalList = Array<string>;
+export const GetResponseCanonicalList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponseCanonicalList>;
+
+export type GetResponseContactList = Array<string>;
+export const GetResponseContactList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponseContactList>;
+
+export type GetResponseEncryptionList = Array<string>;
+export const GetResponseEncryptionList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponseEncryptionList>;
+
+export type GetResponseHiringList = Array<string>;
+export const GetResponseHiringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponseHiringList>;
+
+export type GetResponsePolicyList = Array<string>;
+export const GetResponsePolicyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponsePolicyList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface SecurityTxtFile {
+  acknowledgments?: GetResponseAcknowledgmentsList | null;
+  canonical?: GetResponseCanonicalList | null;
+  contact?: GetResponseContactList | null;
+  enabled?: boolean | null;
+  encryption?: GetResponseEncryptionList | null;
+  expires?: string | null;
+  hiring?: GetResponseHiringList | null;
+  policy?: GetResponsePolicyList | null;
+  preferredLanguages?: string | null;
+}
 export const SecurityTxtFile = /*@__PURE__*/ S.suspend(() =>
-  SecurityTxtFile.pipe(T.EnvelopePayloadRoot()),
+  S.Struct({
+    acknowledgments: S.optional(S.NullOr(GetResponseAcknowledgmentsList)),
+    canonical: S.optional(S.NullOr(GetResponseCanonicalList)),
+    contact: S.optional(S.NullOr(GetResponseContactList)),
+    enabled: S.optional(S.NullOr(S.Boolean)),
+    encryption: S.optional(S.NullOr(GetResponseEncryptionList)),
+    expires: S.optional(S.NullOr(S.String)),
+    hiring: S.optional(S.NullOr(GetResponseHiringList)),
+    policy: S.optional(S.NullOr(GetResponsePolicyList)),
+    preferredLanguages: S.optional(
+      S.NullOr(S.String).pipe(T.Body("preferred_languages")),
+    ),
+  }),
 ).annotate({
   identifier: "SecurityTxtFile",
 }) as any as S.Schema<SecurityTxtFile>;

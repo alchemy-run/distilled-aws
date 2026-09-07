@@ -39,13 +39,13 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface FlagValueValuesRetrieveRequest {
+export interface GetFlagValueValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The flag ID */
   key?: string;
 }
-export const FlagValueValuesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFlagValueValueRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     key: S.optional(S.String.pipe(T.Query())),
@@ -57,8 +57,8 @@ export const FlagValueValuesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FlagValueValuesRetrieveRequest",
-}) as any as S.Schema<FlagValueValuesRetrieveRequest>;
+  identifier: "GetFlagValueValueRequest",
+}) as any as S.Schema<GetFlagValueValueRequest>;
 
 export interface FlagValueItem {
   name?: unknown;
@@ -87,19 +87,19 @@ export const FlagValueResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FlagValueResponse",
 }) as any as S.Schema<FlagValueResponse>;
 
-export type FlagValueValuesRetrieveError =
+export type GetFlagValueValueError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Get possible values for a feature flag. Query parameters: - key: The flag ID (required) Returns: - Array of objects with 'name' field containing possible values */
-export const flagValueValuesRetrieve: API.OperationMethod<
-  FlagValueValuesRetrieveRequest,
+export const getFlagValueValue: API.OperationMethod<
+  GetFlagValueValueRequest,
   FlagValueResponse,
-  FlagValueValuesRetrieveError,
+  GetFlagValueValueError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FlagValueValuesRetrieveRequest,
+  input: GetFlagValueValueRequest,
   output: FlagValueResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

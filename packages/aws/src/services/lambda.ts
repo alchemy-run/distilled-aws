@@ -2286,7 +2286,6 @@ export type StateReasonCode =
   | "DisallowedByVpcEncryptionControl"
   | "DrainingDurableExecutions"
   | "DependencyError"
-  | "Creating"
   | (string & {});
 export const StateReasonCode = /*@__PURE__*/ S.String;
 

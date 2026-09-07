@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.fist#GetUsageMetric": {
+    "com.azure.fist#GetUsageMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fist#GetUsageMetricRequest"
+        "target": "com.azure.fist#GetUsageMetricsRequest"
       },
       "output": {
-        "target": "com.azure.fist#GetUsageMetricResponse"
+        "target": "com.azure.fist#GetUsageMetricsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-02"
       }
     },
-    "com.azure.fist#GetUsageMetricResponse": {
+    "com.azure.fist#GetUsageMetricsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -254,7 +255,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.fist#GetUsageMetricRequest": {
+    "com.azure.fist#GetUsageMetricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -294,10 +295,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#ListUsageMetricByWorkspace": {
+    "com.azure.fist#ListUsageMetricsByWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fist#ListUsageMetricByWorkspaceRequest"
+        "target": "com.azure.fist#ListUsageMetricsByWorkspaceRequest"
       },
       "output": {
         "target": "com.azure.fist#UsageMetricListResult"
@@ -381,7 +382,7 @@
         "smithy.api#documentation": "The object representing how many firmwares the user has uploaded to the workspace."
       }
     },
-    "com.azure.fist#ListUsageMetricByWorkspaceRequest": {
+    "com.azure.fist#ListUsageMetricsByWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -413,10 +414,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#GenerateWorkspaceUploadUrl": {
+    "com.azure.fist#WorkspacesGenerateUploadUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fist#GenerateWorkspaceUploadUrlRequest"
+        "target": "com.azure.fist#WorkspacesGenerateUploadUrlRequest"
       },
       "output": {
         "target": "com.azure.fist#UrlToken"
@@ -446,7 +447,7 @@
         "smithy.api#documentation": "Url data for creating or accessing a blob file."
       }
     },
-    "com.azure.fist#GenerateWorkspaceUploadUrlRequest": {
+    "com.azure.fist#WorkspacesGenerateUploadUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -636,7 +637,7 @@
           }
         },
         "summaryType": {
-          "target": "com.azure.fist#SummariesGetRequestSummaryType",
+          "target": "com.azure.fist#GetSummaryRequestSummaryType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -648,7 +649,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#SummariesGetRequestSummaryType": {
+    "com.azure.fist#GetSummaryRequestSummaryType": {
       "type": "enum",
       "members": {
         "FIRMWARE": {
@@ -991,10 +992,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#ListPasswordHasheByFirmware": {
+    "com.azure.fist#ListPasswordHashByFirmware": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fist#ListPasswordHasheByFirmwareRequest"
+        "target": "com.azure.fist#ListPasswordHashByFirmwareRequest"
       },
       "output": {
         "target": "com.azure.fist#PasswordHashResourceListResult"
@@ -1135,7 +1136,7 @@
         "smithy.api#documentation": "Password hash properties"
       }
     },
-    "com.azure.fist#ListPasswordHasheByFirmwareRequest": {
+    "com.azure.fist#ListPasswordHashByFirmwareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1497,10 +1498,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#ListCryptoKeyByFirmware": {
+    "com.azure.fist#ListCryptoKeysByFirmware": {
       "type": "operation",
       "input": {
-        "target": "com.azure.fist#ListCryptoKeyByFirmwareRequest"
+        "target": "com.azure.fist#ListCryptoKeysByFirmwareRequest"
       },
       "output": {
         "target": "com.azure.fist#CryptoKeyResourceListResult"
@@ -1704,7 +1705,7 @@
         "smithy.api#documentation": "Different types of cryptographic keys."
       }
     },
-    "com.azure.fist#ListCryptoKeyByFirmwareRequest": {
+    "com.azure.fist#ListCryptoKeysByFirmwareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3179,7 +3180,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fist#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.fist#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3198,7 +3199,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.fist#WorkspacesUpdateResponseSku",
+          "target": "com.azure.fist#UpdateWorkspaceResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -3208,7 +3209,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fist#WorkspacesUpdateResponseSku": {
+    "com.azure.fist#UpdateWorkspaceResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -3290,7 +3291,7 @@
         "smithy.api#documentation": "Workspace properties."
       }
     },
-    "com.azure.fist#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.fist#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3336,7 +3337,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fist#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.fist#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3346,7 +3347,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.fist#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3475,7 +3476,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fist#WorkspacesCreateResponseTagsMap",
+          "target": "com.azure.fist#CreateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3494,7 +3495,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.fist#WorkspacesCreateResponseSku",
+          "target": "com.azure.fist#CreateWorkspaceResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -3504,7 +3505,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fist#WorkspacesCreateResponseSku": {
+    "com.azure.fist#CreateWorkspaceResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -3540,7 +3541,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.fist#WorkspacesCreateResponseTagsMap": {
+    "com.azure.fist#CreateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3580,7 +3581,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fist#WorkspacesCreateRequestTagsMap",
+          "target": "com.azure.fist#CreateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3599,7 +3600,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.fist#WorkspacesCreateRequestSku",
+          "target": "com.azure.fist#CreateWorkspaceRequestSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -3609,7 +3610,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.fist#WorkspacesCreateRequestSku": {
+    "com.azure.fist#CreateWorkspaceRequestSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -3652,7 +3653,7 @@
         "smithy.api#documentation": "Workspace properties."
       }
     },
-    "com.azure.fist#WorkspacesCreateRequestTagsMap": {
+    "com.azure.fist#CreateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3711,7 +3712,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.fist#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.fist#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3730,7 +3731,7 @@
           }
         },
         "sku": {
-          "target": "com.azure.fist#WorkspacesGetResponseSku",
+          "target": "com.azure.fist#GetWorkspaceResponseSku",
           "traits": {
             "smithy.api#documentation": "The resource model definition representing SKU"
           }
@@ -3740,7 +3741,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fist#WorkspacesGetResponseSku": {
+    "com.azure.fist#GetWorkspaceResponseSku": {
       "type": "structure",
       "members": {
         "name": {
@@ -3776,7 +3777,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU"
       }
     },
-    "com.azure.fist#WorkspacesGetResponseTagsMap": {
+    "com.azure.fist#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4056,7 +4057,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.fist#OperationsListResponseValueList",
+          "target": "com.azure.fist#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4072,7 +4073,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.fist#OperationsListResponseValueList": {
+    "com.azure.fist#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.fist#Operation"
@@ -4196,64 +4197,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.fist#GetUsageMetric"
-        },
-        {
-          "target": "com.azure.fist#ListUsageMetricByWorkspace"
-        },
-        {
-          "target": "com.azure.fist#GenerateWorkspaceUploadUrl"
-        },
-        {
-          "target": "com.azure.fist#GetSummary"
-        },
-        {
-          "target": "com.azure.fist#ListSummaryByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListSbomComponentByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListPasswordHasheByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListCveByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListCryptoKeyByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListCryptoCertificateByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListBinaryHardeningByFirmware"
-        },
-        {
-          "target": "com.azure.fist#DeleteFirmware"
-        },
-        {
-          "target": "com.azure.fist#UpdateFirmware"
-        },
-        {
           "target": "com.azure.fist#CreateFirmware"
-        },
-        {
-          "target": "com.azure.fist#GetFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListFirmwareByWorkspace"
-        },
-        {
-          "target": "com.azure.fist#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.fist#UpdateWorkspace"
         },
         {
           "target": "com.azure.fist#CreateWorkspace"
         },
         {
+          "target": "com.azure.fist#DeleteFirmware"
+        },
+        {
+          "target": "com.azure.fist#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.fist#GetFirmware"
+        },
+        {
+          "target": "com.azure.fist#GetSummary"
+        },
+        {
+          "target": "com.azure.fist#GetUsageMetrics"
+        },
+        {
           "target": "com.azure.fist#GetWorkspace"
+        },
+        {
+          "target": "com.azure.fist#ListBinaryHardeningByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListCryptoCertificateByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListCryptoKeysByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListCveByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListFirmwareByWorkspace"
+        },
+        {
+          "target": "com.azure.fist#ListOperations"
+        },
+        {
+          "target": "com.azure.fist#ListPasswordHashByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListSbomComponentByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListSummaryByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListUsageMetricsByWorkspace"
         },
         {
           "target": "com.azure.fist#ListWorkspaceByResourceGroup"
@@ -4262,7 +4257,13 @@
           "target": "com.azure.fist#ListWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.fist#ListOperations"
+          "target": "com.azure.fist#UpdateFirmware"
+        },
+        {
+          "target": "com.azure.fist#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesGenerateUploadUrl"
         }
       ],
       "traits": {

@@ -12,6 +12,161 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+/** Tags for the subscription */
+export type AcceptOwnershipRequestPropertiesTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AcceptOwnershipRequestPropertiesTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AcceptOwnershipRequestPropertiesTagsMap>;
+
+/** Accept subscription ownership request properties. */
+export interface AcceptOwnershipRequestProperties {
+  /** The friendly name of the subscription. */
+  displayName: string;
+  /** Management group Id for the subscription. */
+  managementGroupId?: string;
+  /** Tags for the subscription */
+  tags?: AcceptOwnershipRequestPropertiesTagsMap;
+}
+export const AcceptOwnershipRequestProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.String,
+    managementGroupId: S.optional(S.String),
+    tags: S.optional(AcceptOwnershipRequestPropertiesTagsMap),
+  }),
+).annotate({
+  identifier: "AcceptOwnershipRequestProperties",
+}) as any as S.Schema<AcceptOwnershipRequestProperties>;
+
+export interface AcceptSubscriptionOwnershipRequest {
+  /** Subscription Id. */
+  subscriptionId: string;
+  /** Accept subscription ownership request properties. */
+  properties?: AcceptOwnershipRequestProperties;
+}
+export const AcceptSubscriptionOwnershipRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    properties: S.optional(AcceptOwnershipRequestProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Subscription/subscriptions/{subscriptionId}/acceptOwnership",
+      code: 200,
+      apiVersion: "2021-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "AcceptSubscriptionOwnershipRequest",
+}) as any as S.Schema<AcceptSubscriptionOwnershipRequest>;
+
+export interface AcceptSubscriptionOwnershipResponse {}
+export const AcceptSubscriptionOwnershipResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AcceptSubscriptionOwnershipResponse",
+}) as any as S.Schema<AcceptSubscriptionOwnershipResponse>;
+
+export interface AcceptSubscriptionOwnershipStatusRequest {
+  /** Subscription Id. */
+  subscriptionId: string;
+}
+export const AcceptSubscriptionOwnershipStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Subscription/subscriptions/{subscriptionId}/acceptOwnershipStatus",
+        code: 200,
+        apiVersion: "2021-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "AcceptSubscriptionOwnershipStatusRequest",
+}) as any as S.Schema<AcceptSubscriptionOwnershipStatusRequest>;
+
+/** The accept ownership state of the resource. */
+export type AcceptOwnershipState = "Pending" | "Completed" | "Expired";
+export const AcceptOwnershipState = /*@__PURE__*/ S.String;
+
+/** The provisioning state of the resource. */
+export type ProvisioningState = "Pending" | "Accepted" | "Succeeded";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Tags for the subscription */
+export type AcceptOwnershipStatusResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AcceptOwnershipStatusResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AcceptOwnershipStatusResponseTagsMap>;
+
+/** Subscription Accept Ownership Response */
+export interface AcceptOwnershipStatusResponse {
+  /** Newly created subscription Id. */
+  subscriptionId?: string;
+  acceptOwnershipState?: AcceptOwnershipState;
+  provisioningState?: ProvisioningState;
+  /** UPN of the billing owner */
+  billingOwner?: string;
+  /** Tenant Id of the subscription */
+  subscriptionTenantId?: string;
+  /** The display name of the subscription. */
+  displayName?: string;
+  /** Tags for the subscription */
+  tags?: AcceptOwnershipStatusResponseTagsMap;
+}
+export const AcceptOwnershipStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.optional(S.String),
+    acceptOwnershipState: S.optional(AcceptOwnershipState),
+    provisioningState: S.optional(ProvisioningState),
+    billingOwner: S.optional(S.String),
+    subscriptionTenantId: S.optional(S.String),
+    displayName: S.optional(S.String),
+    tags: S.optional(AcceptOwnershipStatusResponseTagsMap),
+  }),
+).annotate({
+  identifier: "AcceptOwnershipStatusResponse",
+}) as any as S.Schema<AcceptOwnershipStatusResponse>;
+
+export interface CancelSubscriptionRequest {
+  /** Subscription Id. */
+  subscriptionId: string;
+}
+export const CancelSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Subscription/cancel",
+      code: 200,
+      apiVersion: "2021-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelSubscriptionRequest",
+}) as any as S.Schema<CancelSubscriptionRequest>;
+
+/** The ID of the canceled subscription */
+export interface CanceledSubscriptionId {
+  /** The ID of the canceled subscription */
+  subscriptionId?: string;
+}
+export const CanceledSubscriptionId = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CanceledSubscriptionId",
+}) as any as S.Schema<CanceledSubscriptionId>;
+
 /** The workload type of the subscription. It can be either Production or DevTest. */
 export type Workload = "Production" | "DevTest";
 export const Workload = /*@__PURE__*/ S.String;
@@ -74,13 +229,13 @@ export const PutAliasRequestProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutAliasRequestProperties",
 }) as any as S.Schema<PutAliasRequestProperties>;
 
-export interface CreateAliaRequest {
+export interface CreateAliasRequest {
   /** AliasName is the name for the subscription creation request. Note that this is not the same as subscription name and this doesn’t have any other lifecycle need beyond the request for subscription creation. */
   aliasName: string;
   /** Put alias request properties. */
   properties?: PutAliasRequestProperties;
 }
-export const CreateAliaRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAliasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     aliasName: S.String.pipe(T.Label()),
     properties: S.optional(PutAliasRequestProperties),
@@ -93,8 +248,8 @@ export const CreateAliaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateAliaRequest",
-}) as any as S.Schema<CreateAliaRequest>;
+  identifier: "CreateAliasRequest",
+}) as any as S.Schema<CreateAliasRequest>;
 
 /** The provisioning state of the resource. */
 export type SubscriptionAliasResponsePropertiesProvisioningState =
@@ -103,10 +258,6 @@ export type SubscriptionAliasResponsePropertiesProvisioningState =
   | "Failed";
 export const SubscriptionAliasResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
-
-/** The accept ownership state of the resource. */
-export type AcceptOwnershipState = "Pending" | "Completed" | "Expired";
-export const AcceptOwnershipState = /*@__PURE__*/ S.String;
 
 /** Tags for the subscription */
 export type SubscriptionAliasResponsePropertiesTagsMap = {
@@ -236,11 +387,11 @@ export const SubscriptionAliasResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SubscriptionAliasResponse",
 }) as any as S.Schema<SubscriptionAliasResponse>;
 
-export interface DeleteAliaRequest {
+export interface DeleteAliasRequest {
   /** AliasName is the name for the subscription creation request. Note that this is not the same as subscription name and this doesn’t have any other lifecycle need beyond the request for subscription creation. */
   aliasName: string;
 }
-export const DeleteAliaRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAliasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     aliasName: S.String.pipe(T.Label()),
   }).pipe(
@@ -252,15 +403,15 @@ export const DeleteAliaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteAliaRequest",
-}) as any as S.Schema<DeleteAliaRequest>;
+  identifier: "DeleteAliasRequest",
+}) as any as S.Schema<DeleteAliasRequest>;
 
-export interface DeleteAliaResponse {}
-export const DeleteAliaResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAliasResponse {}
+export const DeleteAliasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteAliaResponse",
-}) as any as S.Schema<DeleteAliaResponse>;
+  identifier: "DeleteAliasResponse",
+}) as any as S.Schema<DeleteAliasResponse>;
 
 export interface EnableSubscriptionRequest {
   /** Subscription Id. */
@@ -294,11 +445,11 @@ export const EnabledSubscriptionId = /*@__PURE__*/ S.suspend(() =>
   identifier: "EnabledSubscriptionId",
 }) as any as S.Schema<EnabledSubscriptionId>;
 
-export interface GetAliaRequest {
+export interface GetAliasRequest {
   /** AliasName is the name for the subscription creation request. Note that this is not the same as subscription name and this doesn’t have any other lifecycle need beyond the request for subscription creation. */
   aliasName: string;
 }
-export const GetAliaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAliasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     aliasName: S.String.pipe(T.Label()),
   }).pipe(
@@ -309,7 +460,9 @@ export const GetAliaRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2021-10-01",
     }),
   ),
-).annotate({ identifier: "GetAliaRequest" }) as any as S.Schema<GetAliaRequest>;
+).annotate({
+  identifier: "GetAliasRequest",
+}) as any as S.Schema<GetAliasRequest>;
 
 export interface GetBillingAccountPolicyRequest {
   /** Billing Account Id. */
@@ -745,164 +898,13 @@ export const GetTenantPolicyListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTenantPolicyListResponse",
 }) as any as S.Schema<GetTenantPolicyListResponse>;
 
-/** Tags for the subscription */
-export type AcceptOwnershipRequestPropertiesTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AcceptOwnershipRequestPropertiesTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AcceptOwnershipRequestPropertiesTagsMap>;
-
-/** Accept subscription ownership request properties. */
-export interface AcceptOwnershipRequestProperties {
-  /** The friendly name of the subscription. */
-  displayName: string;
-  /** Management group Id for the subscription. */
-  managementGroupId?: string;
-  /** Tags for the subscription */
-  tags?: AcceptOwnershipRequestPropertiesTagsMap;
-}
-export const AcceptOwnershipRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.String,
-    managementGroupId: S.optional(S.String),
-    tags: S.optional(AcceptOwnershipRequestPropertiesTagsMap),
-  }),
-).annotate({
-  identifier: "AcceptOwnershipRequestProperties",
-}) as any as S.Schema<AcceptOwnershipRequestProperties>;
-
-export interface SubscriptionAcceptOwnershipRequest {
-  /** Subscription Id. */
-  subscriptionId: string;
-  /** Accept subscription ownership request properties. */
-  properties?: AcceptOwnershipRequestProperties;
-}
-export const SubscriptionAcceptOwnershipRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    properties: S.optional(AcceptOwnershipRequestProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Subscription/subscriptions/{subscriptionId}/acceptOwnership",
-      code: 200,
-      apiVersion: "2021-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionAcceptOwnershipRequest",
-}) as any as S.Schema<SubscriptionAcceptOwnershipRequest>;
-
-export interface SubscriptionAcceptOwnershipResponse {}
-export const SubscriptionAcceptOwnershipResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SubscriptionAcceptOwnershipResponse",
-}) as any as S.Schema<SubscriptionAcceptOwnershipResponse>;
-
-export interface SubscriptionAcceptOwnershipStatusRequest {
-  /** Subscription Id. */
-  subscriptionId: string;
-}
-export const SubscriptionAcceptOwnershipStatusRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Subscription/subscriptions/{subscriptionId}/acceptOwnershipStatus",
-        code: 200,
-        apiVersion: "2021-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "SubscriptionAcceptOwnershipStatusRequest",
-}) as any as S.Schema<SubscriptionAcceptOwnershipStatusRequest>;
-
-/** The provisioning state of the resource. */
-export type ProvisioningState = "Pending" | "Accepted" | "Succeeded";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** Tags for the subscription */
-export type AcceptOwnershipStatusResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AcceptOwnershipStatusResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AcceptOwnershipStatusResponseTagsMap>;
-
-/** Subscription Accept Ownership Response */
-export interface AcceptOwnershipStatusResponse {
-  /** Newly created subscription Id. */
-  subscriptionId?: string;
-  acceptOwnershipState?: AcceptOwnershipState;
-  provisioningState?: ProvisioningState;
-  /** UPN of the billing owner */
-  billingOwner?: string;
-  /** Tenant Id of the subscription */
-  subscriptionTenantId?: string;
-  /** The display name of the subscription. */
-  displayName?: string;
-  /** Tags for the subscription */
-  tags?: AcceptOwnershipStatusResponseTagsMap;
-}
-export const AcceptOwnershipStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.optional(S.String),
-    acceptOwnershipState: S.optional(AcceptOwnershipState),
-    provisioningState: S.optional(ProvisioningState),
-    billingOwner: S.optional(S.String),
-    subscriptionTenantId: S.optional(S.String),
-    displayName: S.optional(S.String),
-    tags: S.optional(AcceptOwnershipStatusResponseTagsMap),
-  }),
-).annotate({
-  identifier: "AcceptOwnershipStatusResponse",
-}) as any as S.Schema<AcceptOwnershipStatusResponse>;
-
-export interface SubscriptionCancelRequest {
-  /** Subscription Id. */
-  subscriptionId: string;
-}
-export const SubscriptionCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Subscription/cancel",
-      code: 200,
-      apiVersion: "2021-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionCancelRequest",
-}) as any as S.Schema<SubscriptionCancelRequest>;
-
-/** The ID of the canceled subscription */
-export interface CanceledSubscriptionId {
-  /** The ID of the canceled subscription */
-  subscriptionId?: string;
-}
-export const CanceledSubscriptionId = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CanceledSubscriptionId",
-}) as any as S.Schema<CanceledSubscriptionId>;
-
-export interface SubscriptionRenameRequest {
+export interface RenameSubscriptionRequest {
   /** Subscription Id. */
   subscriptionId: string;
   /** New subscription name */
   subscriptionName?: string;
 }
-export const SubscriptionRenameRequest = /*@__PURE__*/ S.suspend(() =>
+export const RenameSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     subscriptionName: S.optional(S.String),
@@ -915,8 +917,8 @@ export const SubscriptionRenameRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SubscriptionRenameRequest",
-}) as any as S.Schema<SubscriptionRenameRequest>;
+  identifier: "RenameSubscriptionRequest",
+}) as any as S.Schema<RenameSubscriptionRequest>;
 
 /** The ID of the subscriptions that is being renamed */
 export interface RenamedSubscriptionId {
@@ -939,7 +941,7 @@ export const SubscriptionPolicyAddUpdatePolicyForTenantRequestExemptedPrincipals
     S.String,
   ) as any as S.Schema<SubscriptionPolicyAddUpdatePolicyForTenantRequestExemptedPrincipalsList>;
 
-export interface UpdateSubscriptionPolicyAddPolicyForTenantRequest {
+export interface SubscriptionPolicyAddUpdatePolicyForTenantRequest {
   /** Blocks the leaving of subscriptions from user's tenant. */
   blockSubscriptionsLeavingTenant?: boolean;
   /** Blocks the entering of subscriptions into user's tenant. */
@@ -947,7 +949,7 @@ export interface UpdateSubscriptionPolicyAddPolicyForTenantRequest {
   /** List of user objectIds that are exempted from the set subscription tenant policies for the user's tenant. */
   exemptedPrincipals?: SubscriptionPolicyAddUpdatePolicyForTenantRequestExemptedPrincipalsList;
 }
-export const UpdateSubscriptionPolicyAddPolicyForTenantRequest =
+export const SubscriptionPolicyAddUpdatePolicyForTenantRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       blockSubscriptionsLeavingTenant: S.optional(S.Boolean),
@@ -964,34 +966,79 @@ export const UpdateSubscriptionPolicyAddPolicyForTenantRequest =
       }),
     ),
   ).annotate({
-    identifier: "UpdateSubscriptionPolicyAddPolicyForTenantRequest",
-  }) as any as S.Schema<UpdateSubscriptionPolicyAddPolicyForTenantRequest>;
+    identifier: "SubscriptionPolicyAddUpdatePolicyForTenantRequest",
+  }) as any as S.Schema<SubscriptionPolicyAddUpdatePolicyForTenantRequest>;
 
-export type CreateAliaError = AzureOpError;
-/** Create Alias Subscription. */
-export const CreateAlia: API.OperationMethod<
-  CreateAliaRequest,
-  SubscriptionAliasResponse,
-  CreateAliaError,
+export type AcceptSubscriptionOwnershipError = AzureOpError;
+/** Accept subscription ownership. */
+export const AcceptSubscriptionOwnership: API.OperationMethod<
+  AcceptSubscriptionOwnershipRequest,
+  AcceptSubscriptionOwnershipResponse,
+  AcceptSubscriptionOwnershipError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAliaRequest,
+  input: AcceptSubscriptionOwnershipRequest,
+  output: AcceptSubscriptionOwnershipResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AcceptSubscriptionOwnershipStatusError = AzureOpError;
+/** Accept subscription ownership status. */
+export const AcceptSubscriptionOwnershipStatus: API.OperationMethod<
+  AcceptSubscriptionOwnershipStatusRequest,
+  AcceptOwnershipStatusResponse,
+  AcceptSubscriptionOwnershipStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AcceptSubscriptionOwnershipStatusRequest,
+  output: AcceptOwnershipStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelSubscriptionError = AzureOpError;
+/** The operation to cancel a subscription */
+export const CancelSubscription: API.OperationMethod<
+  CancelSubscriptionRequest,
+  CanceledSubscriptionId,
+  CancelSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelSubscriptionRequest,
+  output: CanceledSubscriptionId,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAliasError = AzureOpError;
+/** Create Alias Subscription. */
+export const CreateAlias: API.OperationMethod<
+  CreateAliasRequest,
+  SubscriptionAliasResponse,
+  CreateAliasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAliasRequest,
   output: SubscriptionAliasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteAliaError = AzureOpError;
+export type DeleteAliasError = AzureOpError;
 /** Delete Alias. */
-export const DeleteAlia: API.OperationMethod<
-  DeleteAliaRequest,
-  DeleteAliaResponse,
-  DeleteAliaError,
+export const DeleteAlias: API.OperationMethod<
+  DeleteAliasRequest,
+  DeleteAliasResponse,
+  DeleteAliasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteAliaRequest,
-  output: DeleteAliaResponse,
+  input: DeleteAliasRequest,
+  output: DeleteAliasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1012,15 +1059,15 @@ export const EnableSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAliaError = AzureOpError;
+export type GetAliasError = AzureOpError;
 /** Get Alias Subscription. */
-export const GetAlia: API.OperationMethod<
-  GetAliaRequest,
+export const GetAlias: API.OperationMethod<
+  GetAliasRequest,
   SubscriptionAliasResponse,
-  GetAliaError,
+  GetAliasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetAliaRequest,
+  input: GetAliasRequest,
   output: SubscriptionAliasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1117,75 +1164,30 @@ export const ListSubscriptionPolicyPolicyForTenant: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SubscriptionAcceptOwnershipError = AzureOpError;
-/** Accept subscription ownership. */
-export const SubscriptionAcceptOwnership: API.OperationMethod<
-  SubscriptionAcceptOwnershipRequest,
-  SubscriptionAcceptOwnershipResponse,
-  SubscriptionAcceptOwnershipError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionAcceptOwnershipRequest,
-  output: SubscriptionAcceptOwnershipResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionAcceptOwnershipStatusError = AzureOpError;
-/** Accept subscription ownership status. */
-export const SubscriptionAcceptOwnershipStatus: API.OperationMethod<
-  SubscriptionAcceptOwnershipStatusRequest,
-  AcceptOwnershipStatusResponse,
-  SubscriptionAcceptOwnershipStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionAcceptOwnershipStatusRequest,
-  output: AcceptOwnershipStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionCancelError = AzureOpError;
-/** The operation to cancel a subscription */
-export const SubscriptionCancel: API.OperationMethod<
-  SubscriptionCancelRequest,
-  CanceledSubscriptionId,
-  SubscriptionCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionCancelRequest,
-  output: CanceledSubscriptionId,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionRenameError = AzureOpError;
+export type RenameSubscriptionError = AzureOpError;
 /** The operation to rename a subscription */
-export const SubscriptionRename: API.OperationMethod<
-  SubscriptionRenameRequest,
+export const RenameSubscription: API.OperationMethod<
+  RenameSubscriptionRequest,
   RenamedSubscriptionId,
-  SubscriptionRenameError,
+  RenameSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionRenameRequest,
+  input: RenameSubscriptionRequest,
   output: RenamedSubscriptionId,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSubscriptionPolicyAddPolicyForTenantError = AzureOpError;
+export type SubscriptionPolicyAddUpdatePolicyForTenantError = AzureOpError;
 /** Create or Update Subscription tenant policy for user's tenant. */
-export const UpdateSubscriptionPolicyAddPolicyForTenant: API.OperationMethod<
-  UpdateSubscriptionPolicyAddPolicyForTenantRequest,
+export const SubscriptionPolicyAddUpdatePolicyForTenant: API.OperationMethod<
+  SubscriptionPolicyAddUpdatePolicyForTenantRequest,
   GetTenantPolicyResponse,
-  UpdateSubscriptionPolicyAddPolicyForTenantError,
+  SubscriptionPolicyAddUpdatePolicyForTenantError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSubscriptionPolicyAddPolicyForTenantRequest,
+  input: SubscriptionPolicyAddUpdatePolicyForTenantRequest,
   output: GetTenantPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

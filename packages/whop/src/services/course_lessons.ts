@@ -371,6 +371,18 @@ export const DeleteCourseLessonResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteCourseLessonResponse",
 }) as any as S.Schema<DeleteCourseLessonResponse>;
 
+export interface GetCourseLessonRequest {
+  /** The unique identifier of the lesson to retrieve. */
+  id: string;
+}
+export const GetCourseLessonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/course_lessons/{id}", code: 200 })),
+).annotate({
+  identifier: "GetCourseLessonRequest",
+}) as any as S.Schema<GetCourseLessonRequest>;
+
 export interface ListCourseLessonRequest {
   after?: string;
   before?: string;
@@ -504,18 +516,6 @@ export const MarkAsCompletedCourseLessonResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MarkAsCompletedCourseLessonResponse",
 }) as any as S.Schema<MarkAsCompletedCourseLessonResponse>;
-
-export interface RetrieveCourseLessonRequest {
-  /** The unique identifier of the lesson to retrieve. */
-  id: string;
-}
-export const RetrieveCourseLessonRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/course_lessons/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveCourseLessonRequest",
-}) as any as S.Schema<RetrieveCourseLessonRequest>;
 
 export interface StartCourseLessonRequest {
   /** The unique identifier of the lesson the user is starting (e.g., "les_XXXXX"). */
@@ -907,6 +907,26 @@ export const deleteCourseLesson: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCourseLessonError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve course lesson [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course lesson. Required permissions: - `courses:read` */
+export const getCourseLesson: API.OperationMethod<
+  GetCourseLessonRequest,
+  CourseLesson,
+  GetCourseLessonError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCourseLessonRequest,
+  output: CourseLesson,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListCourseLessonError =
   | BadRequest
   | Forbidden
@@ -954,26 +974,6 @@ export const markAsCompletedCourseLesson: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: MarkAsCompletedCourseLessonRequest,
   output: MarkAsCompletedCourseLessonResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCourseLessonError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve course lesson [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course lesson. Required permissions: - `courses:read` */
-export const retrieveCourseLesson: API.OperationMethod<
-  RetrieveCourseLessonRequest,
-  CourseLesson,
-  RetrieveCourseLessonError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCourseLessonRequest,
-  output: CourseLesson,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,
   retry: Retry.Retry,

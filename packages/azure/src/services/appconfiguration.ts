@@ -14,10 +14,9 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** The resource type to check for name availability. */
-export type OperationsCheckNameAvailabilityRequestType =
+export type CheckOperationNameAvailabilityRequestType =
   "Microsoft.AppConfiguration/configurationStores";
-export const OperationsCheckNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+export const CheckOperationNameAvailabilityRequestType = /*@__PURE__*/ S.String;
 
 export interface CheckOperationNameAvailabilityRequest {
   /** The Microsoft Azure subscription ID. */
@@ -25,14 +24,14 @@ export interface CheckOperationNameAvailabilityRequest {
   /** The name to check for availability. */
   name: string;
   /** The resource type to check for name availability. */
-  type: OperationsCheckNameAvailabilityRequestType | (string & {});
+  type: CheckOperationNameAvailabilityRequestType | (string & {});
 }
 export const CheckOperationNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       name: S.String,
-      type: OperationsCheckNameAvailabilityRequestType,
+      type: CheckOperationNameAvailabilityRequestType,
     }).pipe(
       T.Http({
         method: "POST",
@@ -64,137 +63,14 @@ export const NameAvailabilityStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "NameAvailabilityStatus",
 }) as any as S.Schema<NameAvailabilityStatus>;
 
-/** The resource type to check for name availability. */
-export type OperationsRegionalCheckNameAvailabilityRequestType =
-  "Microsoft.AppConfiguration/configurationStores";
-export const OperationsRegionalCheckNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface CheckOperationRegionalNameAvailabilityRequest {
-  /** The Microsoft Azure subscription ID. */
-  subscriptionId: string;
-  /** The location in which uniqueness will be verified. */
-  location: string;
-  /** The name to check for availability. */
-  name: string;
-  /** The resource type to check for name availability. */
-  type: OperationsRegionalCheckNameAvailabilityRequestType | (string & {});
-}
-export const CheckOperationRegionalNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      name: S.String,
-      type: OperationsRegionalCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2024-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CheckOperationRegionalNameAvailabilityRequest",
-  }) as any as S.Schema<CheckOperationRegionalNameAvailabilityRequest>;
-
-export interface ConfigurationStoresPurgeDeletedRequest {
-  /** The Microsoft Azure subscription ID. */
-  subscriptionId: string;
-  /** The location in which uniqueness will be verified. */
-  location: string;
-  /** The name of the configuration store. */
-  configStoreName: string;
-}
-export const ConfigurationStoresPurgeDeletedRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      configStoreName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}/deletedConfigurationStores/{configStoreName}/purge",
-        code: 200,
-        apiVersion: "2024-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ConfigurationStoresPurgeDeletedRequest",
-}) as any as S.Schema<ConfigurationStoresPurgeDeletedRequest>;
-
-export interface ConfigurationStoresPurgeDeletedResponse {}
-export const ConfigurationStoresPurgeDeletedResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ConfigurationStoresPurgeDeletedResponse",
-}) as any as S.Schema<ConfigurationStoresPurgeDeletedResponse>;
-
-export interface ConfigurationStoresRegenerateKeyRequest {
-  /** The Microsoft Azure subscription ID. */
-  subscriptionId: string;
-  /** The name of the resource group to which the container registry belongs. */
-  resourceGroupName: string;
-  /** The name of the configuration store. */
-  configStoreName: string;
-  /** The id of the key to regenerate. */
-  id?: string;
-}
-export const ConfigurationStoresRegenerateKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      configStoreName: S.String.pipe(T.Label()),
-      id: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/regenerateKey",
-        code: 200,
-        apiVersion: "2024-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ConfigurationStoresRegenerateKeyRequest",
-}) as any as S.Schema<ConfigurationStoresRegenerateKeyRequest>;
-
-/** An API key used for authenticating with a configuration store endpoint. */
-export interface ApiKey {
-  /** The key ID. */
-  id?: string;
-  /** A name for the key describing its usage. */
-  name?: string;
-  /** The value of the key that is used for authentication purposes. */
-  value?: string;
-  /** A connection string that can be used by supporting clients for authentication. */
-  connectionString?: string | Redacted.Redacted<string>;
-  /** The last time any of the key's properties were modified. */
-  lastModified?: string;
-  /** Whether this key can only be used for read operations. */
-  readOnly?: boolean;
-}
-export const ApiKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    lastModified: S.optional(S.String),
-    readOnly: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "ApiKey" }) as any as S.Schema<ApiKey>;
-
 /** Resource tags. */
-export type ConfigurationStoresCreateRequestTagsMap = {
+export type CreateConfigurationStoreRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationStoresCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateConfigurationStoreRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationStoresCreateRequestTagsMap>;
+) as any as S.Schema<CreateConfigurationStoreRequestTagsMap>;
 
 /** The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities. */
 export type ResourceIdentityInputType =
@@ -374,7 +250,7 @@ export interface CreateConfigurationStoreRequest {
   /** The name of the configuration store. */
   configStoreName: string;
   /** Resource tags. */
-  tags?: ConfigurationStoresCreateRequestTagsMap;
+  tags?: CreateConfigurationStoreRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The managed identity information, if configured. */
@@ -389,7 +265,7 @@ export const CreateConfigurationStoreRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     configStoreName: S.String.pipe(T.Label()),
-    tags: S.optional(ConfigurationStoresCreateRequestTagsMap),
+    tags: S.optional(CreateConfigurationStoreRequestTagsMap),
     location: S.String,
     identity: S.optional(ResourceIdentityInput),
     properties: S.optional(ConfigurationStorePropertiesInput),
@@ -407,13 +283,13 @@ export const CreateConfigurationStoreRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateConfigurationStoreRequest>;
 
 /** Resource tags. */
-export type ConfigurationStoresCreateResponseTagsMap = {
+export type CreateConfigurationStoreResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationStoresCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateConfigurationStoreResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationStoresCreateResponseTagsMap>;
+) as any as S.Schema<CreateConfigurationStoreResponseTagsMap>;
 
 /** The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities. */
 export type ResourceIdentityType =
@@ -656,55 +532,55 @@ export const ConfigurationStoreProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ConfigurationStoreProperties>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationStoresCreateResponseSystemDataCreatedByType =
+export type CreateConfigurationStoreResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationStoresCreateResponseSystemDataCreatedByType =
+export const CreateConfigurationStoreResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationStoresCreateResponseSystemDataLastModifiedByType =
+export type CreateConfigurationStoreResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationStoresCreateResponseSystemDataLastModifiedByType =
+export const CreateConfigurationStoreResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationStoresCreateResponseSystemData {
+export interface CreateConfigurationStoreResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationStoresCreateResponseSystemDataCreatedByType;
+  createdByType?: CreateConfigurationStoreResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationStoresCreateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: CreateConfigurationStoreResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationStoresCreateResponseSystemData =
+export const CreateConfigurationStoreResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationStoresCreateResponseSystemDataCreatedByType,
+        CreateConfigurationStoreResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationStoresCreateResponseSystemDataLastModifiedByType,
+        CreateConfigurationStoreResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationStoresCreateResponseSystemData",
-  }) as any as S.Schema<ConfigurationStoresCreateResponseSystemData>;
+    identifier: "CreateConfigurationStoreResponseSystemData",
+  }) as any as S.Schema<CreateConfigurationStoreResponseSystemData>;
 
 export interface CreateConfigurationStoreResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -714,7 +590,7 @@ export interface CreateConfigurationStoreResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ConfigurationStoresCreateResponseTagsMap;
+  tags?: CreateConfigurationStoreResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The managed identity information, if configured. */
@@ -724,25 +600,25 @@ export interface CreateConfigurationStoreResponse {
   /** The sku of the configuration store. */
   sku: Sku;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationStoresCreateResponseSystemData;
+  systemData?: CreateConfigurationStoreResponseSystemData;
 }
 export const CreateConfigurationStoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ConfigurationStoresCreateResponseTagsMap),
+    tags: S.optional(CreateConfigurationStoreResponseTagsMap),
     location: S.String,
     identity: S.optional(ResourceIdentity),
     properties: S.optional(ConfigurationStoreProperties),
     sku: Sku,
-    systemData: S.optional(ConfigurationStoresCreateResponseSystemData),
+    systemData: S.optional(CreateConfigurationStoreResponseSystemData),
   }),
 ).annotate({
   identifier: "CreateConfigurationStoreResponse",
 }) as any as S.Schema<CreateConfigurationStoreResponse>;
 
-export interface CreateReplicaRequest {
+export interface CreateReplicasRequest {
   /** The Microsoft Azure subscription ID. */
   subscriptionId: string;
   /** The name of the resource group to which the container registry belongs. */
@@ -754,7 +630,7 @@ export interface CreateReplicaRequest {
   /** The location of the replica. */
   location?: string;
 }
-export const CreateReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -770,8 +646,8 @@ export const CreateReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateReplicaRequest",
-}) as any as S.Schema<CreateReplicaRequest>;
+  identifier: "CreateReplicasRequest",
+}) as any as S.Schema<CreateReplicasRequest>;
 
 /** The type of identity that created the resource. */
 export type ReplicaSystemDataCreatedByType =
@@ -1155,7 +1031,7 @@ export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeletePrivateEndpointConnectionResponse",
 }) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface DeleteReplicaRequest {
+export interface DeleteReplicasRequest {
   /** The Microsoft Azure subscription ID. */
   subscriptionId: string;
   /** The name of the resource group to which the container registry belongs. */
@@ -1165,7 +1041,7 @@ export interface DeleteReplicaRequest {
   /** The name of the replica. */
   replicaName: string;
 }
-export const DeleteReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1180,15 +1056,15 @@ export const DeleteReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteReplicaRequest",
-}) as any as S.Schema<DeleteReplicaRequest>;
+  identifier: "DeleteReplicasRequest",
+}) as any as S.Schema<DeleteReplicasRequest>;
 
-export interface DeleteReplicaResponse {}
-export const DeleteReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteReplicasResponse {}
+export const DeleteReplicasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteReplicaResponse",
-}) as any as S.Schema<DeleteReplicaResponse>;
+  identifier: "DeleteReplicasResponse",
+}) as any as S.Schema<DeleteReplicasResponse>;
 
 export interface GetConfigurationStoreRequest {
   /** The Microsoft Azure subscription ID. */
@@ -1216,64 +1092,64 @@ export const GetConfigurationStoreRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetConfigurationStoreRequest>;
 
 /** Resource tags. */
-export type ConfigurationStoresGetResponseTagsMap = {
+export type GetConfigurationStoreResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationStoresGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetConfigurationStoreResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationStoresGetResponseTagsMap>;
+) as any as S.Schema<GetConfigurationStoreResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationStoresGetResponseSystemDataCreatedByType =
+export type GetConfigurationStoreResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationStoresGetResponseSystemDataCreatedByType =
+export const GetConfigurationStoreResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationStoresGetResponseSystemDataLastModifiedByType =
+export type GetConfigurationStoreResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationStoresGetResponseSystemDataLastModifiedByType =
+export const GetConfigurationStoreResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationStoresGetResponseSystemData {
+export interface GetConfigurationStoreResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationStoresGetResponseSystemDataCreatedByType;
+  createdByType?: GetConfigurationStoreResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationStoresGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetConfigurationStoreResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationStoresGetResponseSystemData = /*@__PURE__*/ S.suspend(
+export const GetConfigurationStoreResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationStoresGetResponseSystemDataCreatedByType,
+        GetConfigurationStoreResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationStoresGetResponseSystemDataLastModifiedByType,
+        GetConfigurationStoreResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ConfigurationStoresGetResponseSystemData",
-}) as any as S.Schema<ConfigurationStoresGetResponseSystemData>;
+  identifier: "GetConfigurationStoreResponseSystemData",
+}) as any as S.Schema<GetConfigurationStoreResponseSystemData>;
 
 export interface GetConfigurationStoreResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1283,7 +1159,7 @@ export interface GetConfigurationStoreResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ConfigurationStoresGetResponseTagsMap;
+  tags?: GetConfigurationStoreResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The managed identity information, if configured. */
@@ -1293,19 +1169,19 @@ export interface GetConfigurationStoreResponse {
   /** The sku of the configuration store. */
   sku: Sku;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationStoresGetResponseSystemData;
+  systemData?: GetConfigurationStoreResponseSystemData;
 }
 export const GetConfigurationStoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ConfigurationStoresGetResponseTagsMap),
+    tags: S.optional(GetConfigurationStoreResponseTagsMap),
     location: S.String,
     identity: S.optional(ResourceIdentity),
     properties: S.optional(ConfigurationStoreProperties),
     sku: Sku,
-    systemData: S.optional(ConfigurationStoresGetResponseSystemData),
+    systemData: S.optional(GetConfigurationStoreResponseSystemData),
   }),
 ).annotate({
   identifier: "GetConfigurationStoreResponse",
@@ -1622,7 +1498,7 @@ export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResource",
 }) as any as S.Schema<PrivateLinkResource>;
 
-export interface GetReplicaRequest {
+export interface GetReplicasRequest {
   /** The Microsoft Azure subscription ID. */
   subscriptionId: string;
   /** The name of the resource group to which the container registry belongs. */
@@ -1632,7 +1508,7 @@ export interface GetReplicaRequest {
   /** The name of the replica. */
   replicaName: string;
 }
-export const GetReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1647,8 +1523,8 @@ export const GetReplicaRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetReplicaRequest",
-}) as any as S.Schema<GetReplicaRequest>;
+  identifier: "GetReplicasRequest",
+}) as any as S.Schema<GetReplicasRequest>;
 
 export interface GetSnapshotRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1947,6 +1823,32 @@ export const ListConfigurationStoreKeysRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListConfigurationStoreKeysRequest",
 }) as any as S.Schema<ListConfigurationStoreKeysRequest>;
+
+/** An API key used for authenticating with a configuration store endpoint. */
+export interface ApiKey {
+  /** The key ID. */
+  id?: string;
+  /** A name for the key describing its usage. */
+  name?: string;
+  /** The value of the key that is used for authentication purposes. */
+  value?: string;
+  /** A connection string that can be used by supporting clients for authentication. */
+  connectionString?: string | Redacted.Redacted<string>;
+  /** The last time any of the key's properties were modified. */
+  lastModified?: string;
+  /** Whether this key can only be used for read operations. */
+  readOnly?: boolean;
+}
+export const ApiKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    lastModified: S.optional(S.String),
+    readOnly: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "ApiKey" }) as any as S.Schema<ApiKey>;
 
 /** The collection value. */
 export type ApiKeyListResultValueList = Array<ApiKey>;
@@ -2301,7 +2203,7 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
-export interface ListReplicaByConfigurationStoreRequest {
+export interface ListReplicasByConfigurationStoreRequest {
   /** The Microsoft Azure subscription ID. */
   subscriptionId: string;
   /** The name of the resource group to which the container registry belongs. */
@@ -2311,7 +2213,7 @@ export interface ListReplicaByConfigurationStoreRequest {
   /** A skip token is used to continue retrieving items after an operation returns a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skipToken parameter that specifies a starting point to use for subsequent calls. */
   _skipToken?: string;
 }
-export const ListReplicaByConfigurationStoreRequest = /*@__PURE__*/ S.suspend(
+export const ListReplicasByConfigurationStoreRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2327,8 +2229,8 @@ export const ListReplicaByConfigurationStoreRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListReplicaByConfigurationStoreRequest",
-}) as any as S.Schema<ListReplicaByConfigurationStoreRequest>;
+  identifier: "ListReplicasByConfigurationStoreRequest",
+}) as any as S.Schema<ListReplicasByConfigurationStoreRequest>;
 
 /** The collection value. */
 export type ReplicaListResultValueList = Array<Replica>;
@@ -2351,6 +2253,41 @@ export const ReplicaListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReplicaListResult",
 }) as any as S.Schema<ReplicaListResult>;
+
+/** The resource type to check for name availability. */
+export type OperationsRegionalCheckNameAvailabilityRequestType =
+  "Microsoft.AppConfiguration/configurationStores";
+export const OperationsRegionalCheckNameAvailabilityRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface OperationsRegionalCheckNameAvailabilityRequest {
+  /** The Microsoft Azure subscription ID. */
+  subscriptionId: string;
+  /** The location in which uniqueness will be verified. */
+  location: string;
+  /** The name to check for availability. */
+  name: string;
+  /** The resource type to check for name availability. */
+  type: OperationsRegionalCheckNameAvailabilityRequestType | (string & {});
+}
+export const OperationsRegionalCheckNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      name: S.String,
+      type: OperationsRegionalCheckNameAvailabilityRequestType,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2024-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "OperationsRegionalCheckNameAvailabilityRequest",
+  }) as any as S.Schema<OperationsRegionalCheckNameAvailabilityRequest>;
 
 /** The private link service connection status. */
 export type PrivateLinkServiceConnectionStateInputStatus =
@@ -2427,6 +2364,68 @@ export const PrivateEndpointConnectionsCreateOrUpdateRequest =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
 
+export interface PurgeConfigurationStoreDeletedRequest {
+  /** The Microsoft Azure subscription ID. */
+  subscriptionId: string;
+  /** The location in which uniqueness will be verified. */
+  location: string;
+  /** The name of the configuration store. */
+  configStoreName: string;
+}
+export const PurgeConfigurationStoreDeletedRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      configStoreName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}/deletedConfigurationStores/{configStoreName}/purge",
+        code: 200,
+        apiVersion: "2024-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "PurgeConfigurationStoreDeletedRequest",
+}) as any as S.Schema<PurgeConfigurationStoreDeletedRequest>;
+
+export interface PurgeConfigurationStoreDeletedResponse {}
+export const PurgeConfigurationStoreDeletedResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PurgeConfigurationStoreDeletedResponse",
+}) as any as S.Schema<PurgeConfigurationStoreDeletedResponse>;
+
+export interface RegenerateConfigurationStoreKeyRequest {
+  /** The Microsoft Azure subscription ID. */
+  subscriptionId: string;
+  /** The name of the resource group to which the container registry belongs. */
+  resourceGroupName: string;
+  /** The name of the configuration store. */
+  configStoreName: string;
+  /** The id of the key to regenerate. */
+  id?: string;
+}
+export const RegenerateConfigurationStoreKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      configStoreName: S.String.pipe(T.Label()),
+      id: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration/configurationStores/{configStoreName}/regenerateKey",
+        code: 200,
+        apiVersion: "2024-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "RegenerateConfigurationStoreKeyRequest",
+}) as any as S.Schema<RegenerateConfigurationStoreKeyRequest>;
+
 /** Control permission for data plane traffic coming from public networks while private endpoint is enabled. */
 export type ConfigurationStorePropertiesUpdateParametersPublicNetworkAccess =
   | "Enabled"
@@ -2468,13 +2467,13 @@ export const ConfigurationStorePropertiesUpdateParameters =
   }) as any as S.Schema<ConfigurationStorePropertiesUpdateParameters>;
 
 /** The ARM resource tags. */
-export type ConfigurationStoresUpdateRequestTagsMap = {
+export type UpdateConfigurationStoreRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationStoresUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigurationStoreRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationStoresUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateConfigurationStoreRequestTagsMap>;
 
 export interface UpdateConfigurationStoreRequest {
   /** The Microsoft Azure subscription ID. */
@@ -2490,7 +2489,7 @@ export interface UpdateConfigurationStoreRequest {
   /** The SKU of the configuration store. */
   sku?: Sku;
   /** The ARM resource tags. */
-  tags?: ConfigurationStoresUpdateRequestTagsMap;
+  tags?: UpdateConfigurationStoreRequestTagsMap;
 }
 export const UpdateConfigurationStoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2500,7 +2499,7 @@ export const UpdateConfigurationStoreRequest = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ConfigurationStorePropertiesUpdateParameters),
     identity: S.optional(ResourceIdentityInput),
     sku: S.optional(Sku),
-    tags: S.optional(ConfigurationStoresUpdateRequestTagsMap),
+    tags: S.optional(UpdateConfigurationStoreRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2514,64 +2513,64 @@ export const UpdateConfigurationStoreRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateConfigurationStoreRequest>;
 
 /** Resource tags. */
-export type ConfigurationStoresUpdateResponseTagsMap = {
+export type UpdateConfigurationStoreResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigurationStoresUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigurationStoreResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigurationStoresUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateConfigurationStoreResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type ConfigurationStoresUpdateResponseSystemDataCreatedByType =
+export type UpdateConfigurationStoreResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationStoresUpdateResponseSystemDataCreatedByType =
+export const UpdateConfigurationStoreResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ConfigurationStoresUpdateResponseSystemDataLastModifiedByType =
+export type UpdateConfigurationStoreResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ConfigurationStoresUpdateResponseSystemDataLastModifiedByType =
+export const UpdateConfigurationStoreResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ConfigurationStoresUpdateResponseSystemData {
+export interface UpdateConfigurationStoreResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ConfigurationStoresUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateConfigurationStoreResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ConfigurationStoresUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateConfigurationStoreResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ConfigurationStoresUpdateResponseSystemData =
+export const UpdateConfigurationStoreResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        ConfigurationStoresUpdateResponseSystemDataCreatedByType,
+        UpdateConfigurationStoreResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        ConfigurationStoresUpdateResponseSystemDataLastModifiedByType,
+        UpdateConfigurationStoreResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ConfigurationStoresUpdateResponseSystemData",
-  }) as any as S.Schema<ConfigurationStoresUpdateResponseSystemData>;
+    identifier: "UpdateConfigurationStoreResponseSystemData",
+  }) as any as S.Schema<UpdateConfigurationStoreResponseSystemData>;
 
 export interface UpdateConfigurationStoreResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2581,7 +2580,7 @@ export interface UpdateConfigurationStoreResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ConfigurationStoresUpdateResponseTagsMap;
+  tags?: UpdateConfigurationStoreResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The managed identity information, if configured. */
@@ -2591,19 +2590,19 @@ export interface UpdateConfigurationStoreResponse {
   /** The sku of the configuration store. */
   sku: Sku;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ConfigurationStoresUpdateResponseSystemData;
+  systemData?: UpdateConfigurationStoreResponseSystemData;
 }
 export const UpdateConfigurationStoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ConfigurationStoresUpdateResponseTagsMap),
+    tags: S.optional(UpdateConfigurationStoreResponseTagsMap),
     location: S.String,
     identity: S.optional(ResourceIdentity),
     properties: S.optional(ConfigurationStoreProperties),
     sku: Sku,
-    systemData: S.optional(ConfigurationStoresUpdateResponseSystemData),
+    systemData: S.optional(UpdateConfigurationStoreResponseSystemData),
   }),
 ).annotate({
   identifier: "UpdateConfigurationStoreResponse",
@@ -2624,51 +2623,6 @@ export const CheckOperationNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckOperationRegionalNameAvailabilityError = AzureOpError;
-/** Checks whether the configuration store name is available for use. */
-export const CheckOperationRegionalNameAvailability: API.OperationMethod<
-  CheckOperationRegionalNameAvailabilityRequest,
-  NameAvailabilityStatus,
-  CheckOperationRegionalNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckOperationRegionalNameAvailabilityRequest,
-  output: NameAvailabilityStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationStoresPurgeDeletedError = AzureOpError;
-/** Permanently deletes the specified configuration store. */
-export const ConfigurationStoresPurgeDeleted: API.OperationMethod<
-  ConfigurationStoresPurgeDeletedRequest,
-  ConfigurationStoresPurgeDeletedResponse,
-  ConfigurationStoresPurgeDeletedError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationStoresPurgeDeletedRequest,
-  output: ConfigurationStoresPurgeDeletedResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationStoresRegenerateKeyError = AzureOpError;
-/** Regenerates an access key for the specified configuration store. */
-export const ConfigurationStoresRegenerateKey: API.OperationMethod<
-  ConfigurationStoresRegenerateKeyRequest,
-  ApiKey,
-  ConfigurationStoresRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationStoresRegenerateKeyRequest,
-  output: ApiKey,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateConfigurationStoreError = AzureOpError;
 /** Creates a configuration store with the specified parameters. */
 export const CreateConfigurationStore: API.OperationMethod<
@@ -2684,15 +2638,15 @@ export const CreateConfigurationStore: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateReplicaError = AzureOpError;
+export type CreateReplicasError = AzureOpError;
 /** Creates a replica with the specified parameters. */
-export const CreateReplica: API.OperationMethod<
-  CreateReplicaRequest,
+export const CreateReplicas: API.OperationMethod<
+  CreateReplicasRequest,
   Replica,
-  CreateReplicaError,
+  CreateReplicasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateReplicaRequest,
+  input: CreateReplicasRequest,
   output: Replica,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -2759,16 +2713,16 @@ export const DeletePrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteReplicaError = AzureOpError;
+export type DeleteReplicasError = AzureOpError;
 /** Deletes a replica. */
-export const DeleteReplica: API.OperationMethod<
-  DeleteReplicaRequest,
-  DeleteReplicaResponse,
-  DeleteReplicaError,
+export const DeleteReplicas: API.OperationMethod<
+  DeleteReplicasRequest,
+  DeleteReplicasResponse,
+  DeleteReplicasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteReplicaRequest,
-  output: DeleteReplicaResponse,
+  input: DeleteReplicasRequest,
+  output: DeleteReplicasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2849,15 +2803,15 @@ export const GetPrivateLinkResource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetReplicaError = AzureOpError;
+export type GetReplicasError = AzureOpError;
 /** Gets the properties of the specified replica. */
-export const GetReplica: API.OperationMethod<
-  GetReplicaRequest,
+export const GetReplicas: API.OperationMethod<
+  GetReplicasRequest,
   Replica,
-  GetReplicaError,
+  GetReplicasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReplicaRequest,
+  input: GetReplicasRequest,
   output: Replica,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3000,16 +2954,31 @@ export const ListPrivateLinkResourceByConfigurationStore: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListReplicaByConfigurationStoreError = AzureOpError;
+export type ListReplicasByConfigurationStoreError = AzureOpError;
 /** Lists the replicas for a given configuration store. */
-export const ListReplicaByConfigurationStore: API.OperationMethod<
-  ListReplicaByConfigurationStoreRequest,
+export const ListReplicasByConfigurationStore: API.OperationMethod<
+  ListReplicasByConfigurationStoreRequest,
   ReplicaListResult,
-  ListReplicaByConfigurationStoreError,
+  ListReplicasByConfigurationStoreError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListReplicaByConfigurationStoreRequest,
+  input: ListReplicasByConfigurationStoreRequest,
   output: ReplicaListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type OperationsRegionalCheckNameAvailabilityError = AzureOpError;
+/** Checks whether the configuration store name is available for use. */
+export const OperationsRegionalCheckNameAvailability: API.OperationMethod<
+  OperationsRegionalCheckNameAvailabilityRequest,
+  NameAvailabilityStatus,
+  OperationsRegionalCheckNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: OperationsRegionalCheckNameAvailabilityRequest,
+  output: NameAvailabilityStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3025,6 +2994,36 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateEndpointConnectionsCreateOrUpdateRequest,
   output: PrivateEndpointConnection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeConfigurationStoreDeletedError = AzureOpError;
+/** Permanently deletes the specified configuration store. */
+export const PurgeConfigurationStoreDeleted: API.OperationMethod<
+  PurgeConfigurationStoreDeletedRequest,
+  PurgeConfigurationStoreDeletedResponse,
+  PurgeConfigurationStoreDeletedError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeConfigurationStoreDeletedRequest,
+  output: PurgeConfigurationStoreDeletedResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateConfigurationStoreKeyError = AzureOpError;
+/** Regenerates an access key for the specified configuration store. */
+export const RegenerateConfigurationStoreKey: API.OperationMethod<
+  RegenerateConfigurationStoreKeyRequest,
+  ApiKey,
+  RegenerateConfigurationStoreKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateConfigurationStoreKeyRequest,
+  output: ApiKey,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

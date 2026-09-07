@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.developerhub#GeneratePreviewArtifacts": {
@@ -364,13 +365,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.developerhub#UpdateWorkflowTag": {
+    "com.azure.developerhub#UpdateWorkflowTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.developerhub#UpdateWorkflowTagRequest"
+        "target": "com.azure.developerhub#UpdateWorkflowTagsRequest"
       },
       "output": {
-        "target": "com.azure.developerhub#UpdateWorkflowTagResponse"
+        "target": "com.azure.developerhub#UpdateWorkflowTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -383,7 +384,7 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.developerhub#UpdateWorkflowTagResponse": {
+    "com.azure.developerhub#UpdateWorkflowTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -411,7 +412,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.developerhub#WorkflowUpdateTagsResponseTagsMap",
+          "target": "com.azure.developerhub#UpdateWorkflowTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -849,7 +850,7 @@
         "smithy.api#documentation": "Determines the type of manifests within the repository."
       }
     },
-    "com.azure.developerhub#WorkflowUpdateTagsResponseTagsMap": {
+    "com.azure.developerhub#UpdateWorkflowTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -969,7 +970,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.developerhub#UpdateWorkflowTagRequest": {
+    "com.azure.developerhub#UpdateWorkflowTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -997,14 +998,14 @@
           }
         },
         "tags": {
-          "target": "com.azure.developerhub#WorkflowUpdateTagsRequestTagsMap"
+          "target": "com.azure.developerhub#UpdateWorkflowTagsRequestTagsMap"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.azure.developerhub#WorkflowUpdateTagsRequestTagsMap": {
+    "com.azure.developerhub#UpdateWorkflowTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1320,7 +1321,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.developerhub#WorkflowGetResponseTagsMap",
+          "target": "com.azure.developerhub#GetWorkflowResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1343,7 +1344,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.developerhub#WorkflowGetResponseTagsMap": {
+    "com.azure.developerhub#GetWorkflowResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1393,7 +1394,7 @@
         "target": "com.azure.developerhub#ListWorkflowByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.developerhub#ListWorkflowResult"
+        "target": "com.azure.developerhub#WorkflowListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -1406,7 +1407,7 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.developerhub#ListWorkflowResult": {
+    "com.azure.developerhub#WorkflowListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -1535,7 +1536,7 @@
         "target": "com.azure.developerhub#ListWorkflowRequest"
       },
       "output": {
-        "target": "com.azure.developerhub#ListWorkflowResult"
+        "target": "com.azure.developerhub#WorkflowListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -1871,7 +1872,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.developerhub#OperationsListResponseValueList",
+          "target": "com.azure.developerhub#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1887,7 +1888,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.developerhub#OperationsListResponseValueList": {
+    "com.azure.developerhub#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.developerhub#Operation"
@@ -2011,37 +2012,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.developerhub#GeneratePreviewArtifacts"
-        },
-        {
           "target": "com.azure.developerhub#DeleteWorkflow"
         },
         {
-          "target": "com.azure.developerhub#UpdateWorkflowTag"
-        },
-        {
-          "target": "com.azure.developerhub#WorkflowCreateOrUpdate"
+          "target": "com.azure.developerhub#GeneratePreviewArtifacts"
         },
         {
           "target": "com.azure.developerhub#GetWorkflow"
         },
         {
-          "target": "com.azure.developerhub#ListWorkflowByResourceGroup"
-        },
-        {
-          "target": "com.azure.developerhub#ListWorkflow"
-        },
-        {
-          "target": "com.azure.developerhub#ListGitHubOAuth"
+          "target": "com.azure.developerhub#GitHubOAuth"
         },
         {
           "target": "com.azure.developerhub#GitHubOAuthCallback"
         },
         {
-          "target": "com.azure.developerhub#GitHubOAuth"
+          "target": "com.azure.developerhub#ListGitHubOAuth"
         },
         {
           "target": "com.azure.developerhub#ListOperations"
+        },
+        {
+          "target": "com.azure.developerhub#ListWorkflow"
+        },
+        {
+          "target": "com.azure.developerhub#ListWorkflowByResourceGroup"
+        },
+        {
+          "target": "com.azure.developerhub#UpdateWorkflowTags"
+        },
+        {
+          "target": "com.azure.developerhub#WorkflowCreateOrUpdate"
         }
       ],
       "traits": {

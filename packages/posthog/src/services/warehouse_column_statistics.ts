@@ -11,33 +11,26 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface ListWarehouseColumnStatisticsRequest {
+export interface GetWarehouseColumnStatisticsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Only return statistics for this data warehouse table. */
-  table_id?: string;
+  /** A UUID string identifying this warehouse column statistics. */
+  id: string;
 }
-export const ListWarehouseColumnStatisticsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-      table_id: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_column_statistics/",
-        code: 200,
-      }),
-    ),
+export const GetWarehouseColumnStatisticsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_column_statistics/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "ListWarehouseColumnStatisticsRequest",
-}) as any as S.Schema<ListWarehouseColumnStatisticsRequest>;
+  identifier: "GetWarehouseColumnStatisticsRequest",
+}) as any as S.Schema<GetWarehouseColumnStatisticsRequest>;
 
 export interface WarehouseColumnStatistics2 {
   id: string;
@@ -90,6 +83,34 @@ export const WarehouseColumnStatistics2 = /*@__PURE__*/ S.suspend(() =>
   identifier: "WarehouseColumnStatistics2",
 }) as any as S.Schema<WarehouseColumnStatistics2>;
 
+export interface ListWarehouseColumnStatisticsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Only return statistics for this data warehouse table. */
+  table_id?: string;
+}
+export const ListWarehouseColumnStatisticsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+      table_id: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/warehouse_column_statistics/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListWarehouseColumnStatisticsRequest",
+}) as any as S.Schema<ListWarehouseColumnStatisticsRequest>;
+
 export type PaginatedWarehouseColumnStatisticsListResultsList =
   Array<WarehouseColumnStatistics2>;
 export const PaginatedWarehouseColumnStatisticsListResultsList =
@@ -115,27 +136,20 @@ export const PaginatedWarehouseColumnStatisticsList = /*@__PURE__*/ S.suspend(
   identifier: "PaginatedWarehouseColumnStatisticsList",
 }) as any as S.Schema<PaginatedWarehouseColumnStatisticsList>;
 
-export interface WarehouseColumnStatisticsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this warehouse column statistics. */
-  id: string;
-}
-export const WarehouseColumnStatisticsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/warehouse_column_statistics/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "WarehouseColumnStatisticsRetrieveRequest",
-}) as any as S.Schema<WarehouseColumnStatisticsRetrieveRequest>;
+export type GetWarehouseColumnStatisticsError = PosthogOpError;
+/** Read per-column data statistics (null fraction, min/max, row count) for warehouse tables. Statistics are computed automatically after a sync and surfaced to the AI agent so it can write better queries. They are system-owned and read-only here. List can be filtered to one table with `?table_id=<uuid>`. */
+export const getWarehouseColumnStatistics: API.OperationMethod<
+  GetWarehouseColumnStatisticsRequest,
+  WarehouseColumnStatistics2,
+  GetWarehouseColumnStatisticsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseColumnStatisticsRequest,
+  output: WarehouseColumnStatistics2,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListWarehouseColumnStatisticsError = PosthogOpError;
 /** Read per-column data statistics (null fraction, min/max, row count) for warehouse tables. Statistics are computed automatically after a sync and surfaced to the AI agent so it can write better queries. They are system-owned and read-only here. List can be filtered to one table with `?table_id=<uuid>`. */
@@ -147,21 +161,6 @@ export const listWarehouseColumnStatistics: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListWarehouseColumnStatisticsRequest,
   output: PaginatedWarehouseColumnStatisticsList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseColumnStatisticsRetrieveError = PosthogOpError;
-/** Read per-column data statistics (null fraction, min/max, row count) for warehouse tables. Statistics are computed automatically after a sync and surfaced to the AI agent so it can write better queries. They are system-owned and read-only here. List can be filtered to one table with `?table_id=<uuid>`. */
-export const warehouseColumnStatisticsRetrieve: API.OperationMethod<
-  WarehouseColumnStatisticsRetrieveRequest,
-  WarehouseColumnStatistics2,
-  WarehouseColumnStatisticsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseColumnStatisticsRetrieveRequest,
-  output: WarehouseColumnStatistics2,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

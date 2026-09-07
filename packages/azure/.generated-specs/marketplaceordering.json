@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.marketplaceordering#ListMarketplaceAgreements": {
@@ -257,13 +258,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsCancel": {
+    "com.azure.marketplaceordering#CancelMarketplaceAgreement": {
       "type": "operation",
       "input": {
-        "target": "com.azure.marketplaceordering#MarketplaceAgreementsCancelRequest"
+        "target": "com.azure.marketplaceordering#CancelMarketplaceAgreementRequest"
       },
       "output": {
-        "target": "com.azure.marketplaceordering#MarketplaceAgreementsCancelResponse"
+        "target": "com.azure.marketplaceordering#CancelMarketplaceAgreementResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -276,7 +277,7 @@
         "com.distilled.openapi#apiVersion": "2021-01-01"
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsCancelResponse": {
+    "com.azure.marketplaceordering#CancelMarketplaceAgreementResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -308,7 +309,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsCancelRequest": {
+    "com.azure.marketplaceordering#CancelMarketplaceAgreementRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -586,7 +587,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemData",
+          "target": "com.azure.marketplaceordering#CreateMarketplaceAgreementResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -596,7 +597,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemData": {
+    "com.azure.marketplaceordering#CreateMarketplaceAgreementResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -606,7 +607,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataCreatedByType",
+          "target": "com.azure.marketplaceordering#CreateMarketplaceAgreementResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -624,7 +625,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.marketplaceordering#CreateMarketplaceAgreementResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -640,7 +641,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataLastModifiedByType": {
+    "com.azure.marketplaceordering#CreateMarketplaceAgreementResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -672,7 +673,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataCreatedByType": {
+    "com.azure.marketplaceordering#CreateMarketplaceAgreementResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -778,7 +779,7 @@
           }
         },
         "offerType": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateRequestOfferType",
+          "target": "com.azure.marketplaceordering#CreateMarketplaceAgreementRequestOfferType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -820,7 +821,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsCreateRequestOfferType": {
+    "com.azure.marketplaceordering#CreateMarketplaceAgreementRequestOfferType": {
       "type": "enum",
       "members": {
         "VIRTUALMACHINE": {
@@ -879,7 +880,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemData",
+          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -889,7 +890,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemData": {
+    "com.azure.marketplaceordering#GetMarketplaceAgreementResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -899,7 +900,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -917,7 +918,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -933,7 +934,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.marketplaceordering#GetMarketplaceAgreementResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -965,7 +966,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataCreatedByType": {
+    "com.azure.marketplaceordering#GetMarketplaceAgreementResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1009,7 +1010,7 @@
           }
         },
         "offerType": {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetRequestOfferType",
+          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementRequestOfferType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -1045,7 +1046,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.marketplaceordering#MarketplaceAgreementsGetRequestOfferType": {
+    "com.azure.marketplaceordering#GetMarketplaceAgreementRequestOfferType": {
       "type": "enum",
       "members": {
         "VIRTUALMACHINE": {
@@ -1062,25 +1063,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.marketplaceordering#ListMarketplaceAgreements"
-        },
-        {
-          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementAgreement"
-        },
-        {
-          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCancel"
-        },
-        {
-          "target": "com.azure.marketplaceordering#SignMarketplaceAgreement"
-        },
-        {
-          "target": "com.azure.marketplaceordering#ListOperations"
+          "target": "com.azure.marketplaceordering#CancelMarketplaceAgreement"
         },
         {
           "target": "com.azure.marketplaceordering#CreateMarketplaceAgreement"
         },
         {
           "target": "com.azure.marketplaceordering#GetMarketplaceAgreement"
+        },
+        {
+          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementAgreement"
+        },
+        {
+          "target": "com.azure.marketplaceordering#ListMarketplaceAgreements"
+        },
+        {
+          "target": "com.azure.marketplaceordering#ListOperations"
+        },
+        {
+          "target": "com.azure.marketplaceordering#SignMarketplaceAgreement"
         }
       ],
       "traits": {

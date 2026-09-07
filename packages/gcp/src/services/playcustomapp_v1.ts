@@ -90,17 +90,17 @@ export interface CustomApp {
   organizations?: OrganizationList;
   /** Output only. Package name of the created Android app. Only present in the API response. */
   packageName?: string;
-  /** Default listing language in BCP 47 format. */
-  languageCode?: string;
   /** Title for the Android app. */
   title?: string;
+  /** Default listing language in BCP 47 format. */
+  languageCode?: string;
 }
 export const CustomApp = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organizations: S.optional(OrganizationList),
     packageName: S.optional(S.String),
-    languageCode: S.optional(S.String),
     title: S.optional(S.String),
+    languageCode: S.optional(S.String),
   }),
 ).annotate({ identifier: "CustomApp" }) as any as S.Schema<CustomApp>;
 

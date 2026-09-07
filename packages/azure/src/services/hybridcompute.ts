@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DeleteGatewayRequest {
+export interface DeleteGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21,7 +21,7 @@ export interface DeleteGatewayRequest {
   /** The name of the Gateway. */
   gatewayName: string;
 }
-export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -35,15 +35,15 @@ export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteGatewayRequest",
-}) as any as S.Schema<DeleteGatewayRequest>;
+  identifier: "DeleteGatewaysRequest",
+}) as any as S.Schema<DeleteGatewaysRequest>;
 
-export interface DeleteGatewayResponse {}
-export const DeleteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteGatewaysResponse {}
+export const DeleteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteGatewayResponse",
-}) as any as S.Schema<DeleteGatewayResponse>;
+  identifier: "DeleteGatewaysResponse",
+}) as any as S.Schema<DeleteGatewaysResponse>;
 
 export interface DeleteLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -77,8 +77,8 @@ export const DeleteLicenseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteLicenseResponse",
 }) as any as S.Schema<DeleteLicenseResponse>;
 
-export type LicenseProfilesDeleteRequestLicenseProfileName = "default";
-export const LicenseProfilesDeleteRequestLicenseProfileName =
+export type DeleteLicenseProfileRequestLicenseProfileName = "default";
+export const DeleteLicenseProfileRequestLicenseProfileName =
   /*@__PURE__*/ S.String;
 
 export interface DeleteLicenseProfileRequest {
@@ -90,7 +90,7 @@ export interface DeleteLicenseProfileRequest {
   machineName: string;
   /** The name of the license profile. */
   licenseProfileName:
-    | LicenseProfilesDeleteRequestLicenseProfileName
+    | DeleteLicenseProfileRequestLicenseProfileName
     | (string & {});
 }
 export const DeleteLicenseProfileRequest = /*@__PURE__*/ S.suspend(() =>
@@ -98,7 +98,7 @@ export const DeleteLicenseProfileRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     machineName: S.String.pipe(T.Label()),
-    licenseProfileName: LicenseProfilesDeleteRequestLicenseProfileName.pipe(
+    licenseProfileName: DeleteLicenseProfileRequestLicenseProfileName.pipe(
       T.Label(),
     ),
   }).pipe(
@@ -671,7 +671,7 @@ export const GetExtensionMetadataV2Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetExtensionMetadataV2Response",
 }) as any as S.Schema<GetExtensionMetadataV2Response>;
 
-export interface GetGatewayRequest {
+export interface GetGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -679,7 +679,7 @@ export interface GetGatewayRequest {
   /** The name of the Gateway. */
   gatewayName: string;
 }
-export const GetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -693,17 +693,17 @@ export const GetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetGatewayRequest",
-}) as any as S.Schema<GetGatewayRequest>;
+  identifier: "GetGatewaysRequest",
+}) as any as S.Schema<GetGatewaysRequest>;
 
 /** Resource tags. */
-export type GatewaysGetResponseTagsMap = { [key: string]: string | undefined };
-export const GatewaysGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetGatewaysResponseTagsMap = { [key: string]: string | undefined };
+export const GetGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GatewaysGetResponseTagsMap>;
+) as any as S.Schema<GetGatewaysResponseTagsMap>;
 
-export interface GetGatewayResponse {
+export interface GetGatewaysResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -713,25 +713,25 @@ export interface GetGatewayResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GatewaysGetResponseTagsMap;
+  tags?: GetGatewaysResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute Gateway properties */
   properties?: GatewayProperties;
 }
-export const GetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GatewaysGetResponseTagsMap),
+    tags: S.optional(GetGatewaysResponseTagsMap),
     location: S.String,
     properties: S.optional(GatewayProperties),
   }),
 ).annotate({
-  identifier: "GetGatewayResponse",
-}) as any as S.Schema<GetGatewayResponse>;
+  identifier: "GetGatewaysResponse",
+}) as any as S.Schema<GetGatewaysResponse>;
 
 export interface GetLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -759,11 +759,11 @@ export const GetLicenseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLicenseRequest>;
 
 /** Resource tags. */
-export type LicensesGetResponseTagsMap = { [key: string]: string | undefined };
-export const LicensesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetLicenseResponseTagsMap = { [key: string]: string | undefined };
+export const GetLicenseResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LicensesGetResponseTagsMap>;
+) as any as S.Schema<GetLicenseResponseTagsMap>;
 
 /** The type of the license resource. */
 export type LicenseType = "ESU";
@@ -878,7 +878,7 @@ export interface GetLicenseResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LicensesGetResponseTagsMap;
+  tags?: GetLicenseResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute License properties */
@@ -890,7 +890,7 @@ export const GetLicenseResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LicensesGetResponseTagsMap),
+    tags: S.optional(GetLicenseResponseTagsMap),
     location: S.String,
     properties: S.optional(LicenseProperties),
   }),
@@ -898,8 +898,8 @@ export const GetLicenseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetLicenseResponse",
 }) as any as S.Schema<GetLicenseResponse>;
 
-export type LicenseProfilesGetRequestLicenseProfileName = "default";
-export const LicenseProfilesGetRequestLicenseProfileName =
+export type GetLicenseProfileRequestLicenseProfileName = "default";
+export const GetLicenseProfileRequestLicenseProfileName =
   /*@__PURE__*/ S.String;
 
 export interface GetLicenseProfileRequest {
@@ -911,7 +911,7 @@ export interface GetLicenseProfileRequest {
   machineName: string;
   /** The name of the license profile. */
   licenseProfileName:
-    | LicenseProfilesGetRequestLicenseProfileName
+    | GetLicenseProfileRequestLicenseProfileName
     | (string & {});
 }
 export const GetLicenseProfileRequest = /*@__PURE__*/ S.suspend(() =>
@@ -919,7 +919,7 @@ export const GetLicenseProfileRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     machineName: S.String.pipe(T.Label()),
-    licenseProfileName: LicenseProfilesGetRequestLicenseProfileName.pipe(
+    licenseProfileName: GetLicenseProfileRequestLicenseProfileName.pipe(
       T.Label(),
     ),
   }).pipe(
@@ -935,13 +935,13 @@ export const GetLicenseProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLicenseProfileRequest>;
 
 /** Resource tags. */
-export type LicenseProfilesGetResponseTagsMap = {
+export type GetLicenseProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LicenseProfilesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetLicenseProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LicenseProfilesGetResponseTagsMap>;
+) as any as S.Schema<GetLicenseProfileResponseTagsMap>;
 
 export interface LicenseProfilePropertiesSoftwareAssurance {
   /** Specifies if this machine is licensed as part of a Software Assurance agreement. */
@@ -1271,7 +1271,7 @@ export interface GetLicenseProfileResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LicenseProfilesGetResponseTagsMap;
+  tags?: GetLicenseProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describe the properties of a license profile. */
@@ -1283,7 +1283,7 @@ export const GetLicenseProfileResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LicenseProfilesGetResponseTagsMap),
+    tags: S.optional(GetLicenseProfileResponseTagsMap),
     location: S.String,
     properties: S.optional(LicenseProfileProperties),
   }),
@@ -1291,8 +1291,8 @@ export const GetLicenseProfileResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetLicenseProfileResponse",
 }) as any as S.Schema<GetLicenseProfileResponse>;
 
-export type MachinesGetRequestExpand = "instanceView";
-export const MachinesGetRequestExpand = /*@__PURE__*/ S.String;
+export type GetMachineRequestExpand = "instanceView";
+export const GetMachineRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetMachineRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1302,14 +1302,14 @@ export interface GetMachineRequest {
   /** The name of the hybrid machine. */
   machineName: string;
   /** The expand expression to apply on the operation. */
-  _expand?: MachinesGetRequestExpand | (string & {});
+  _expand?: GetMachineRequestExpand | (string & {});
 }
 export const GetMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     machineName: S.String.pipe(T.Label()),
-    _expand: S.optional(MachinesGetRequestExpand.pipe(T.Query("$expand"))),
+    _expand: S.optional(GetMachineRequestExpand.pipe(T.Query("$expand"))),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1323,11 +1323,11 @@ export const GetMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMachineRequest>;
 
 /** Resource tags. */
-export type MachinesGetResponseTagsMap = { [key: string]: string | undefined };
-export const MachinesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetMachineResponseTagsMap = { [key: string]: string | undefined };
+export const GetMachineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MachinesGetResponseTagsMap>;
+) as any as S.Schema<GetMachineResponseTagsMap>;
 
 /** Metadata pertaining to the geographic location of the resource. */
 export interface MachinePropertiesLocationData {
@@ -2289,10 +2289,10 @@ export const MachineExtension = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MachineExtension>;
 
 /** The list of extensions affiliated to the machine */
-export type MachinesGetResponseResourcesList = Array<MachineExtension>;
-export const MachinesGetResponseResourcesList = /*@__PURE__*/ S.Array(
+export type GetMachineResponseResourcesList = Array<MachineExtension>;
+export const GetMachineResponseResourcesList = /*@__PURE__*/ S.Array(
   MachineExtension,
-) as any as S.Schema<MachinesGetResponseResourcesList>;
+) as any as S.Schema<GetMachineResponseResourcesList>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType =
@@ -2319,37 +2319,37 @@ export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserAssignedIdentity>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type MachinesGetResponseIdentityUserAssignedIdentitiesMap = {
+export type GetMachineResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const MachinesGetResponseIdentityUserAssignedIdentitiesMap =
+export const GetMachineResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<MachinesGetResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetMachineResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface MachinesGetResponseIdentity {
+export interface GetMachineResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: MachinesGetResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetMachineResponseIdentityUserAssignedIdentitiesMap;
 }
-export const MachinesGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetMachineResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      MachinesGetResponseIdentityUserAssignedIdentitiesMap,
+      GetMachineResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "MachinesGetResponseIdentity",
-}) as any as S.Schema<MachinesGetResponseIdentity>;
+  identifier: "GetMachineResponseIdentity",
+}) as any as S.Schema<GetMachineResponseIdentity>;
 
 /** Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc. */
 export type ArcKindEnum =
@@ -2372,15 +2372,15 @@ export interface GetMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MachinesGetResponseTagsMap;
+  tags?: GetMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute Machine properties */
   properties?: MachineProperties;
   /** The list of extensions affiliated to the machine */
-  resources?: MachinesGetResponseResourcesList;
+  resources?: GetMachineResponseResourcesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: MachinesGetResponseIdentity;
+  identity?: GetMachineResponseIdentity;
   /** Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc. */
   kind?: ArcKindEnum;
 }
@@ -2390,11 +2390,11 @@ export const GetMachineResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MachinesGetResponseTagsMap),
+    tags: S.optional(GetMachineResponseTagsMap),
     location: S.String,
     properties: S.optional(MachineProperties),
-    resources: S.optional(MachinesGetResponseResourcesList),
-    identity: S.optional(MachinesGetResponseIdentity),
+    resources: S.optional(GetMachineResponseResourcesList),
+    identity: S.optional(GetMachineResponseIdentity),
     kind: S.optional(ArcKindEnum),
   }),
 ).annotate({
@@ -2430,13 +2430,13 @@ export const GetMachineExtensionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMachineExtensionRequest>;
 
 /** Resource tags. */
-export type MachineExtensionsGetResponseTagsMap = {
+export type GetMachineExtensionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MachineExtensionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetMachineExtensionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MachineExtensionsGetResponseTagsMap>;
+) as any as S.Schema<GetMachineExtensionResponseTagsMap>;
 
 export interface GetMachineExtensionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2448,7 +2448,7 @@ export interface GetMachineExtensionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MachineExtensionsGetResponseTagsMap;
+  tags?: GetMachineExtensionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes Machine Extension Properties. */
@@ -2460,7 +2460,7 @@ export const GetMachineExtensionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MachineExtensionsGetResponseTagsMap),
+    tags: S.optional(GetMachineExtensionResponseTagsMap),
     location: S.String,
     properties: S.optional(MachineExtensionProperties),
   }),
@@ -2497,13 +2497,13 @@ export const GetMachineRunCommandRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetMachineRunCommandRequest>;
 
 /** Resource tags. */
-export type MachineRunCommandsGetResponseTagsMap = {
+export type GetMachineRunCommandResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MachineRunCommandsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetMachineRunCommandResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MachineRunCommandsGetResponseTagsMap>;
+) as any as S.Schema<GetMachineRunCommandResponseTagsMap>;
 
 /** Contains clientId or objectId (use only one, not both) of a user-assigned managed identity that has access to storage blob used in Run Command. Use an empty RunCommandManagedIdentity object in case of system-assigned identity. Make sure the Azure storage blob exists in case of scriptUri, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment with scriptUri blob and 'Storage Blob Data Contributor' for Append blobs(outputBlobUri, errorBlobUri). In case of user assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged. */
 export interface RunCommandManagedIdentity {
@@ -2716,7 +2716,7 @@ export interface GetMachineRunCommandResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MachineRunCommandsGetResponseTagsMap;
+  tags?: GetMachineRunCommandResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes Run Command Properties */
@@ -2728,7 +2728,7 @@ export const GetMachineRunCommandResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MachineRunCommandsGetResponseTagsMap),
+    tags: S.optional(GetMachineRunCommandResponseTagsMap),
     location: S.String,
     properties: S.optional(MachineRunCommandProperties),
   }),
@@ -3278,13 +3278,13 @@ export const GetPrivateLinkScopeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPrivateLinkScopeRequest>;
 
 /** Resource tags. */
-export type PrivateLinkScopesGetResponseTagsMap = {
+export type GetPrivateLinkScopeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkScopesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPrivateLinkScopeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateLinkScopesGetResponseTagsMap>;
+) as any as S.Schema<GetPrivateLinkScopeResponseTagsMap>;
 
 /** Indicates whether machines associated with the private link scope can also use public Azure Arc service endpoints. */
 export type HybridComputePrivateLinkScopePropertiesPublicNetworkAccess =
@@ -3397,7 +3397,7 @@ export interface GetPrivateLinkScopeResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PrivateLinkScopesGetResponseTagsMap;
+  tags?: GetPrivateLinkScopeResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties that define a Azure Arc PrivateLinkScope resource. */
@@ -3409,7 +3409,7 @@ export const GetPrivateLinkScopeResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PrivateLinkScopesGetResponseTagsMap),
+    tags: S.optional(GetPrivateLinkScopeResponseTagsMap),
     location: S.String,
     properties: S.optional(HybridComputePrivateLinkScopeProperties),
   }),
@@ -3417,7 +3417,7 @@ export const GetPrivateLinkScopeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPrivateLinkScopeResponse",
 }) as any as S.Schema<GetPrivateLinkScopeResponse>;
 
-export interface GetPrivateLinkScopeValidationDetailRequest {
+export interface GetPrivateLinkScopeValidationDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -3425,7 +3425,7 @@ export interface GetPrivateLinkScopeValidationDetailRequest {
   /** The id (Guid) of the Azure Arc PrivateLinkScope resource. */
   privateLinkScopeId: string;
 }
-export const GetPrivateLinkScopeValidationDetailRequest =
+export const GetPrivateLinkScopeValidationDetailsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3440,8 +3440,8 @@ export const GetPrivateLinkScopeValidationDetailRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkScopeValidationDetailRequest",
-  }) as any as S.Schema<GetPrivateLinkScopeValidationDetailRequest>;
+    identifier: "GetPrivateLinkScopeValidationDetailsRequest",
+  }) as any as S.Schema<GetPrivateLinkScopeValidationDetailsRequest>;
 
 /** Indicates whether machines associated with the private link scope can also use public Azure Arc service endpoints. */
 export type PrivateLinkScopeValidationDetailsPublicNetworkAccess =
@@ -3504,7 +3504,7 @@ export const PrivateLinkScopeValidationDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkScopeValidationDetails",
 }) as any as S.Schema<PrivateLinkScopeValidationDetails>;
 
-export interface GetPrivateLinkScopeValidationDetailForMachineRequest {
+export interface GetPrivateLinkScopeValidationDetailsForMachineRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3512,7 +3512,7 @@ export interface GetPrivateLinkScopeValidationDetailForMachineRequest {
   /** The name of the hybrid machine. */
   machineName: string;
 }
-export const GetPrivateLinkScopeValidationDetailForMachineRequest =
+export const GetPrivateLinkScopeValidationDetailsForMachineRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3527,10 +3527,10 @@ export const GetPrivateLinkScopeValidationDetailForMachineRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetPrivateLinkScopeValidationDetailForMachineRequest",
-  }) as any as S.Schema<GetPrivateLinkScopeValidationDetailForMachineRequest>;
+    identifier: "GetPrivateLinkScopeValidationDetailsForMachineRequest",
+  }) as any as S.Schema<GetPrivateLinkScopeValidationDetailsForMachineRequest>;
 
-export interface GetSettingRequest {
+export interface GetSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3544,7 +3544,7 @@ export interface GetSettingRequest {
   /** The name of the settings resource. */
   settingsResourceName: string;
 }
-export const GetSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3561,8 +3561,8 @@ export const GetSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetSettingRequest",
-}) as any as S.Schema<GetSettingRequest>;
+  identifier: "GetSettingsRequest",
+}) as any as S.Schema<GetSettingsRequest>;
 
 /** Settings Gateway properties */
 export interface SettingsGatewayProperties {
@@ -3593,7 +3593,7 @@ export const SettingsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SettingsProperties",
 }) as any as S.Schema<SettingsProperties>;
 
-export interface GetSettingResponse {
+export interface GetSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3605,7 +3605,7 @@ export interface GetSettingResponse {
   /** Settings properties */
   properties?: SettingsProperties;
 }
-export const GetSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3614,8 +3614,319 @@ export const GetSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SettingsProperties),
   }),
 ).annotate({
-  identifier: "GetSettingResponse",
-}) as any as S.Schema<GetSettingResponse>;
+  identifier: "GetSettingsResponse",
+}) as any as S.Schema<GetSettingsResponse>;
+
+/** Defines when it is acceptable to reboot a VM during a software update operation. */
+export type VMGuestPatchRebootSetting = "IfRequired" | "Never" | "Always";
+export const VMGuestPatchRebootSetting = /*@__PURE__*/ S.String;
+
+export type VMGuestPatchClassificationWindows =
+  | "Critical"
+  | "Security"
+  | "UpdateRollUp"
+  | "FeaturePack"
+  | "ServicePack"
+  | "Definition"
+  | "Tools"
+  | "Updates";
+export const VMGuestPatchClassificationWindows = /*@__PURE__*/ S.String;
+
+/** The update classifications to select when installing patches for Windows. */
+export type WindowsParametersClassificationsToIncludeList = Array<
+  VMGuestPatchClassificationWindows | (string & {})
+>;
+export const WindowsParametersClassificationsToIncludeList =
+  /*@__PURE__*/ S.Array(
+    VMGuestPatchClassificationWindows,
+  ) as any as S.Schema<WindowsParametersClassificationsToIncludeList>;
+
+/** Kbs to include in the patch operation */
+export type WindowsParametersKbNumbersToIncludeList = Array<string>;
+export const WindowsParametersKbNumbersToIncludeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WindowsParametersKbNumbersToIncludeList>;
+
+/** Kbs to exclude in the patch operation */
+export type WindowsParametersKbNumbersToExcludeList = Array<string>;
+export const WindowsParametersKbNumbersToExcludeList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WindowsParametersKbNumbersToExcludeList>;
+
+/** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+export type WindowsParametersPatchNameMasksToIncludeList = Array<string>;
+export const WindowsParametersPatchNameMasksToIncludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WindowsParametersPatchNameMasksToIncludeList>;
+
+/** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+export type WindowsParametersPatchNameMasksToExcludeList = Array<string>;
+export const WindowsParametersPatchNameMasksToExcludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WindowsParametersPatchNameMasksToExcludeList>;
+
+/** Input for InstallPatches on a Windows VM, as directly received by the API */
+export interface WindowsParameters {
+  /** The update classifications to select when installing patches for Windows. */
+  classificationsToInclude?: WindowsParametersClassificationsToIncludeList;
+  /** Kbs to include in the patch operation */
+  kbNumbersToInclude?: WindowsParametersKbNumbersToIncludeList;
+  /** Kbs to exclude in the patch operation */
+  kbNumbersToExclude?: WindowsParametersKbNumbersToExcludeList;
+  /** Filters out Kbs that don't have an InstallationRebootBehavior of 'NeverReboots' when this is set to true. */
+  excludeKbsRequiringReboot?: boolean;
+  /** This is used to install patches that were published on or before this given max published date. */
+  maxPatchPublishDate?: string;
+  /** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+  patchNameMasksToInclude?: WindowsParametersPatchNameMasksToIncludeList;
+  /** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
+  patchNameMasksToExclude?: WindowsParametersPatchNameMasksToExcludeList;
+}
+export const WindowsParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    classificationsToInclude: S.optional(
+      WindowsParametersClassificationsToIncludeList,
+    ),
+    kbNumbersToInclude: S.optional(WindowsParametersKbNumbersToIncludeList),
+    kbNumbersToExclude: S.optional(WindowsParametersKbNumbersToExcludeList),
+    excludeKbsRequiringReboot: S.optional(S.Boolean),
+    maxPatchPublishDate: S.optional(S.String),
+    patchNameMasksToInclude: S.optional(
+      WindowsParametersPatchNameMasksToIncludeList,
+    ),
+    patchNameMasksToExclude: S.optional(
+      WindowsParametersPatchNameMasksToExcludeList,
+    ),
+  }),
+).annotate({
+  identifier: "WindowsParameters",
+}) as any as S.Schema<WindowsParameters>;
+
+export type VMGuestPatchClassificationLinux = "Critical" | "Security" | "Other";
+export const VMGuestPatchClassificationLinux = /*@__PURE__*/ S.String;
+
+/** The update classifications to select when installing patches for Linux. */
+export type LinuxParametersClassificationsToIncludeList = Array<
+  VMGuestPatchClassificationLinux | (string & {})
+>;
+export const LinuxParametersClassificationsToIncludeList =
+  /*@__PURE__*/ S.Array(
+    VMGuestPatchClassificationLinux,
+  ) as any as S.Schema<LinuxParametersClassificationsToIncludeList>;
+
+/** packages to include in the patch operation. Format: packageName_packageVersion */
+export type LinuxParametersPackageNameMasksToIncludeList = Array<string>;
+export const LinuxParametersPackageNameMasksToIncludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LinuxParametersPackageNameMasksToIncludeList>;
+
+/** packages to exclude in the patch operation. Format: packageName_packageVersion */
+export type LinuxParametersPackageNameMasksToExcludeList = Array<string>;
+export const LinuxParametersPackageNameMasksToExcludeList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LinuxParametersPackageNameMasksToExcludeList>;
+
+/** Input for InstallPatches on a Linux VM, as directly received by the API */
+export interface LinuxParameters {
+  /** The update classifications to select when installing patches for Linux. */
+  classificationsToInclude?: LinuxParametersClassificationsToIncludeList;
+  /** packages to include in the patch operation. Format: packageName_packageVersion */
+  packageNameMasksToInclude?: LinuxParametersPackageNameMasksToIncludeList;
+  /** packages to exclude in the patch operation. Format: packageName_packageVersion */
+  packageNameMasksToExclude?: LinuxParametersPackageNameMasksToExcludeList;
+}
+export const LinuxParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    classificationsToInclude: S.optional(
+      LinuxParametersClassificationsToIncludeList,
+    ),
+    packageNameMasksToInclude: S.optional(
+      LinuxParametersPackageNameMasksToIncludeList,
+    ),
+    packageNameMasksToExclude: S.optional(
+      LinuxParametersPackageNameMasksToExcludeList,
+    ),
+  }),
+).annotate({
+  identifier: "LinuxParameters",
+}) as any as S.Schema<LinuxParameters>;
+
+export interface InstallMachinePatchesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the hybrid machine. */
+  name: string;
+  /** Specifies the maximum amount of time that the operation will run. It must be an ISO 8601-compliant duration string such as PT4H (4 hours) */
+  maximumDuration: string;
+  /** Defines when it is acceptable to reboot a VM during a software update operation. */
+  rebootSetting: VMGuestPatchRebootSetting | (string & {});
+  /** Input for InstallPatches on a Windows VM, as directly received by the API */
+  windowsParameters?: WindowsParameters;
+  /** Input for InstallPatches on a Linux VM, as directly received by the API */
+  linuxParameters?: LinuxParameters;
+}
+export const InstallMachinePatchesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    maximumDuration: S.String,
+    rebootSetting: VMGuestPatchRebootSetting,
+    windowsParameters: S.optional(WindowsParameters),
+    linuxParameters: S.optional(LinuxParameters),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{name}/installPatches",
+      code: 200,
+      apiVersion: "2026-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "InstallMachinePatchesRequest",
+}) as any as S.Schema<InstallMachinePatchesRequest>;
+
+/** The overall success or failure status of the operation. It remains "InProgress" until the operation completes. At that point it will become "Unknown", "Failed", "Succeeded", or "CompletedWithWarnings." */
+export type PatchOperationStatus =
+  | "Unknown"
+  | "InProgress"
+  | "Failed"
+  | "Succeeded"
+  | "CompletedWithWarnings";
+export const PatchOperationStatus = /*@__PURE__*/ S.String;
+
+/** The reboot state of the VM following completion of the operation. */
+export type VMGuestPatchRebootStatus =
+  | "Unknown"
+  | "NotNeeded"
+  | "Required"
+  | "Started"
+  | "Failed"
+  | "Completed";
+export const VMGuestPatchRebootStatus = /*@__PURE__*/ S.String;
+
+/** Indicates if operation was triggered by user or by platform. */
+export type PatchOperationStartedBy = "User" | "Platform";
+export const PatchOperationStartedBy = /*@__PURE__*/ S.String;
+
+/** Specifies the patch service used for the operation. */
+export type PatchServiceUsed =
+  | "Unknown"
+  | "WU"
+  | "WU_WSUS"
+  | "YUM"
+  | "APT"
+  | "Zypper";
+export const PatchServiceUsed = /*@__PURE__*/ S.String;
+
+/** The operating system type of the machine. */
+export type OsType = "Windows" | "Linux";
+export const OsType = /*@__PURE__*/ S.String;
+
+/** The error details. */
+export type MachineInstallPatchesResultErrorDetailsDetailsList =
+  Array<ErrorDetail>;
+export const MachineInstallPatchesResultErrorDetailsDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<MachineInstallPatchesResultErrorDetailsDetailsList>;
+
+/** The error additional info. */
+export type MachineInstallPatchesResultErrorDetailsAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const MachineInstallPatchesResultErrorDetailsAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<MachineInstallPatchesResultErrorDetailsAdditionalInfoList>;
+
+/** The error detail. */
+export interface MachineInstallPatchesResultErrorDetails {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: MachineInstallPatchesResultErrorDetailsDetailsList;
+  /** The error additional info. */
+  additionalInfo?: MachineInstallPatchesResultErrorDetailsAdditionalInfoList;
+}
+export const MachineInstallPatchesResultErrorDetails = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(MachineInstallPatchesResultErrorDetailsDetailsList),
+      additionalInfo: S.optional(
+        MachineInstallPatchesResultErrorDetailsAdditionalInfoList,
+      ),
+    }),
+).annotate({
+  identifier: "MachineInstallPatchesResultErrorDetails",
+}) as any as S.Schema<MachineInstallPatchesResultErrorDetails>;
+
+/** The result summary of an installation operation. */
+export interface MachineInstallPatchesResult {
+  /** The overall success or failure status of the operation. It remains "InProgress" until the operation completes. At that point it will become "Failed", "Succeeded", "Unknown" or "CompletedWithWarnings." */
+  status?: PatchOperationStatus;
+  /** The activity ID of the operation that produced this result. */
+  installationActivityId?: string;
+  /** The reboot state of the VM following completion of the operation. */
+  rebootStatus?: VMGuestPatchRebootStatus;
+  /** Whether the operation ran out of time before it completed all its intended actions. */
+  maintenanceWindowExceeded?: boolean;
+  /** The number of patches that were not installed due to the user blocking their installation. */
+  excludedPatchCount?: number;
+  /** The number of patches that were detected as available for install, but did not meet the operation's criteria. */
+  notSelectedPatchCount?: number;
+  /** The number of patches that were identified as meeting the installation criteria, but were not able to be installed. Typically this happens when maintenanceWindowExceeded == true. */
+  pendingPatchCount?: number;
+  /** The number of patches successfully installed. */
+  installedPatchCount?: number;
+  /** The number of patches that could not be installed due to some issue. See errors for details. */
+  failedPatchCount?: number;
+  /** The UTC timestamp when the operation began. */
+  startDateTime?: string;
+  /** The UTC timestamp when the operation finished. */
+  lastModifiedDateTime?: string;
+  /** Indicates if operation was triggered by user or by platform. */
+  startedBy?: PatchOperationStartedBy;
+  /** Specifies the patch service used for the operation. */
+  patchServiceUsed?: PatchServiceUsed;
+  /** The operating system type of the machine. */
+  osType?: OsType;
+  /** The error detail. */
+  errorDetails?: MachineInstallPatchesResultErrorDetails;
+}
+export const MachineInstallPatchesResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PatchOperationStatus),
+    installationActivityId: S.optional(S.String),
+    rebootStatus: S.optional(VMGuestPatchRebootStatus),
+    maintenanceWindowExceeded: S.optional(S.Boolean),
+    excludedPatchCount: S.optional(S.Number),
+    notSelectedPatchCount: S.optional(S.Number),
+    pendingPatchCount: S.optional(S.Number),
+    installedPatchCount: S.optional(S.Number),
+    failedPatchCount: S.optional(S.Number),
+    startDateTime: S.optional(S.String),
+    lastModifiedDateTime: S.optional(S.String),
+    startedBy: S.optional(PatchOperationStartedBy),
+    patchServiceUsed: S.optional(PatchServiceUsed),
+    osType: S.optional(OsType),
+    errorDetails: S.optional(MachineInstallPatchesResultErrorDetails),
+  }),
+).annotate({
+  identifier: "MachineInstallPatchesResult",
+}) as any as S.Schema<MachineInstallPatchesResult>;
 
 export type LicenseProfilesCreateOrUpdateRequestLicenseProfileName = "default";
 export const LicenseProfilesCreateOrUpdateRequestLicenseProfileName =
@@ -3948,82 +4259,6 @@ export const LicensesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LicensesCreateOrUpdateResponse",
 }) as any as S.Schema<LicensesCreateOrUpdateResponse>;
 
-/** Resource tags. */
-export type LicensesValidateLicenseRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const LicensesValidateLicenseRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LicensesValidateLicenseRequestTagsMap>;
-
-export interface LicensesValidateLicenseRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** Resource tags. */
-  tags?: LicensesValidateLicenseRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Hybrid Compute License properties */
-  properties?: LicensePropertiesInput;
-}
-export const LicensesValidateLicenseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    tags: S.optional(LicensesValidateLicenseRequestTagsMap),
-    location: S.String,
-    properties: S.optional(LicensePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridCompute/validateLicense",
-      code: 200,
-      apiVersion: "2026-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "LicensesValidateLicenseRequest",
-}) as any as S.Schema<LicensesValidateLicenseRequest>;
-
-/** Resource tags. */
-export type LicensesValidateLicenseResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const LicensesValidateLicenseResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LicensesValidateLicenseResponseTagsMap>;
-
-export interface LicensesValidateLicenseResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: LicensesValidateLicenseResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Hybrid Compute License properties */
-  properties?: LicenseProperties;
-}
-export const LicensesValidateLicenseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(LicensesValidateLicenseResponseTagsMap),
-    location: S.String,
-    properties: S.optional(LicenseProperties),
-  }),
-).annotate({
-  identifier: "LicensesValidateLicenseResponse",
-}) as any as S.Schema<LicensesValidateLicenseResponse>;
-
 export interface ListExtensionMetadataRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -4211,20 +4446,20 @@ export const ExtensionPublisherListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ExtensionPublisherListResultValueList>;
 
 /** The List of Extension Publishers. */
-export interface ListExtensionPublisherResult {
+export interface ExtensionPublisherListResult {
   /** The ExtensionPublisher items on this page */
   value: ExtensionPublisherListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListExtensionPublisherResult = /*@__PURE__*/ S.suspend(() =>
+export const ExtensionPublisherListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: ExtensionPublisherListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListExtensionPublisherResult",
-}) as any as S.Schema<ListExtensionPublisherResult>;
+  identifier: "ExtensionPublisherListResult",
+}) as any as S.Schema<ExtensionPublisherListResult>;
 
 export interface ListExtensionTypeRequest {
   /** The name of the Azure region. */
@@ -4269,28 +4504,28 @@ export const ExtensionTypeListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ExtensionTypeListResultValueList>;
 
 /** The List of Extension Types. */
-export interface ListExtensionTypeResult {
+export interface ExtensionTypeListResult {
   /** The ExtensionType items on this page */
   value: ExtensionTypeListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListExtensionTypeResult = /*@__PURE__*/ S.suspend(() =>
+export const ExtensionTypeListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: ExtensionTypeListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListExtensionTypeResult",
-}) as any as S.Schema<ListExtensionTypeResult>;
+  identifier: "ExtensionTypeListResult",
+}) as any as S.Schema<ExtensionTypeListResult>;
 
-export interface ListGatewayByResourceGroupRequest {
+export interface ListGatewaysByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListGatewayByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGatewaysByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4303,8 +4538,8 @@ export const ListGatewayByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListGatewayByResourceGroupRequest",
-}) as any as S.Schema<ListGatewayByResourceGroupRequest>;
+  identifier: "ListGatewaysByResourceGroupRequest",
+}) as any as S.Schema<ListGatewaysByResourceGroupRequest>;
 
 /** Resource tags. */
 export type GatewayTagsMap = { [key: string]: string | undefined };
@@ -4364,11 +4599,11 @@ export const GatewaysListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewaysListResult",
 }) as any as S.Schema<GatewaysListResult>;
 
-export interface ListGatewayBySubscriptionRequest {
+export interface ListGatewaysBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListGatewayBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGatewaysBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -4380,8 +4615,8 @@ export const ListGatewayBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListGatewayBySubscriptionRequest",
-}) as any as S.Schema<ListGatewayBySubscriptionRequest>;
+  identifier: "ListGatewaysBySubscriptionRequest",
+}) as any as S.Schema<ListGatewaysBySubscriptionRequest>;
 
 export interface ListLicenseByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4514,20 +4749,20 @@ export const LicenseProfilesListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<LicenseProfilesListResultValueList>;
 
 /** Paged collection of LicenseProfile items */
-export interface ListLicenseProfilesResult {
+export interface LicenseProfilesListResult {
   /** The LicenseProfile items on this page */
   value: LicenseProfilesListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListLicenseProfilesResult = /*@__PURE__*/ S.suspend(() =>
+export const LicenseProfilesListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: LicenseProfilesListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListLicenseProfilesResult",
-}) as any as S.Schema<ListLicenseProfilesResult>;
+  identifier: "LicenseProfilesListResult",
+}) as any as S.Schema<LicenseProfilesListResult>;
 
 export interface ListMachineByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4713,20 +4948,20 @@ export const MachineExtensionsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MachineExtensionsListResultValueList>;
 
 /** Paged collection of MachineExtension items */
-export interface ListMachineExtensionsResult {
+export interface MachineExtensionsListResult {
   /** The MachineExtension items on this page */
   value: MachineExtensionsListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListMachineExtensionsResult = /*@__PURE__*/ S.suspend(() =>
+export const MachineExtensionsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: MachineExtensionsListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListMachineExtensionsResult",
-}) as any as S.Schema<ListMachineExtensionsResult>;
+  identifier: "MachineExtensionsListResult",
+}) as any as S.Schema<MachineExtensionsListResult>;
 
 export interface ListMachineRunCommandsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4801,20 +5036,20 @@ export const MachineRunCommandsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<MachineRunCommandsListResultValueList>;
 
 /** Paged collection of MachineRunCommand items */
-export interface ListMachineRunCommandsResult {
+export interface MachineRunCommandsListResult {
   /** The MachineRunCommand items on this page */
   value: MachineRunCommandsListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListMachineRunCommandsResult = /*@__PURE__*/ S.suspend(() =>
+export const MachineRunCommandsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: MachineRunCommandsListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListMachineRunCommandsResult",
-}) as any as S.Schema<ListMachineRunCommandsResult>;
+  identifier: "MachineRunCommandsListResult",
+}) as any as S.Schema<MachineRunCommandsListResult>;
 
 export interface ListNetworkSecurityPerimeterConfigurationByPrivateLinkScopeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5550,15 +5785,6 @@ export const MachinesAssessPatchesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachinesAssessPatchesRequest",
 }) as any as S.Schema<MachinesAssessPatchesRequest>;
 
-/** The overall success or failure status of the operation. It remains "InProgress" until the operation completes. At that point it will become "Unknown", "Failed", "Succeeded", or "CompletedWithWarnings." */
-export type PatchOperationStatus =
-  | "Unknown"
-  | "InProgress"
-  | "Failed"
-  | "Succeeded"
-  | "CompletedWithWarnings";
-export const PatchOperationStatus = /*@__PURE__*/ S.String;
-
 /** Summarization of patches available for installation on the machine by classification. */
 export interface AvailablePatchCountByClassification {
   /** Number of security patches available for installation. */
@@ -5595,24 +5821,6 @@ export const AvailablePatchCountByClassification = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AvailablePatchCountByClassification",
 }) as any as S.Schema<AvailablePatchCountByClassification>;
-
-/** Indicates if operation was triggered by user or by platform. */
-export type PatchOperationStartedBy = "User" | "Platform";
-export const PatchOperationStartedBy = /*@__PURE__*/ S.String;
-
-/** Specifies the patch service used for the operation. */
-export type PatchServiceUsed =
-  | "Unknown"
-  | "WU"
-  | "WU_WSUS"
-  | "YUM"
-  | "APT"
-  | "Zypper";
-export const PatchServiceUsed = /*@__PURE__*/ S.String;
-
-/** The operating system type of the machine. */
-export type OsType = "Windows" | "Linux";
-export const OsType = /*@__PURE__*/ S.String;
 
 /** The error details. */
 export type MachineAssessPatchesResultErrorDetailsDetailsList =
@@ -6083,290 +6291,6 @@ export const MachinesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "MachinesCreateOrUpdateResponse",
 }) as any as S.Schema<MachinesCreateOrUpdateResponse>;
 
-/** Defines when it is acceptable to reboot a VM during a software update operation. */
-export type VMGuestPatchRebootSetting = "IfRequired" | "Never" | "Always";
-export const VMGuestPatchRebootSetting = /*@__PURE__*/ S.String;
-
-export type VMGuestPatchClassificationWindows =
-  | "Critical"
-  | "Security"
-  | "UpdateRollUp"
-  | "FeaturePack"
-  | "ServicePack"
-  | "Definition"
-  | "Tools"
-  | "Updates";
-export const VMGuestPatchClassificationWindows = /*@__PURE__*/ S.String;
-
-/** The update classifications to select when installing patches for Windows. */
-export type WindowsParametersClassificationsToIncludeList = Array<
-  VMGuestPatchClassificationWindows | (string & {})
->;
-export const WindowsParametersClassificationsToIncludeList =
-  /*@__PURE__*/ S.Array(
-    VMGuestPatchClassificationWindows,
-  ) as any as S.Schema<WindowsParametersClassificationsToIncludeList>;
-
-/** Kbs to include in the patch operation */
-export type WindowsParametersKbNumbersToIncludeList = Array<string>;
-export const WindowsParametersKbNumbersToIncludeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WindowsParametersKbNumbersToIncludeList>;
-
-/** Kbs to exclude in the patch operation */
-export type WindowsParametersKbNumbersToExcludeList = Array<string>;
-export const WindowsParametersKbNumbersToExcludeList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WindowsParametersKbNumbersToExcludeList>;
-
-/** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-export type WindowsParametersPatchNameMasksToIncludeList = Array<string>;
-export const WindowsParametersPatchNameMasksToIncludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WindowsParametersPatchNameMasksToIncludeList>;
-
-/** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-export type WindowsParametersPatchNameMasksToExcludeList = Array<string>;
-export const WindowsParametersPatchNameMasksToExcludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WindowsParametersPatchNameMasksToExcludeList>;
-
-/** Input for InstallPatches on a Windows VM, as directly received by the API */
-export interface WindowsParameters {
-  /** The update classifications to select when installing patches for Windows. */
-  classificationsToInclude?: WindowsParametersClassificationsToIncludeList;
-  /** Kbs to include in the patch operation */
-  kbNumbersToInclude?: WindowsParametersKbNumbersToIncludeList;
-  /** Kbs to exclude in the patch operation */
-  kbNumbersToExclude?: WindowsParametersKbNumbersToExcludeList;
-  /** Filters out Kbs that don't have an InstallationRebootBehavior of 'NeverReboots' when this is set to true. */
-  excludeKbsRequiringReboot?: boolean;
-  /** This is used to install patches that were published on or before this given max published date. */
-  maxPatchPublishDate?: string;
-  /** This is used to include patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-  patchNameMasksToInclude?: WindowsParametersPatchNameMasksToIncludeList;
-  /** This is used to exclude patches that match the given patch name masks. Alphanumeric strings and wildcard expressions consisting of * and ? are only supported as input values in the list. Null, empty and only whitespaces strings as inputs values are not supported. */
-  patchNameMasksToExclude?: WindowsParametersPatchNameMasksToExcludeList;
-}
-export const WindowsParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    classificationsToInclude: S.optional(
-      WindowsParametersClassificationsToIncludeList,
-    ),
-    kbNumbersToInclude: S.optional(WindowsParametersKbNumbersToIncludeList),
-    kbNumbersToExclude: S.optional(WindowsParametersKbNumbersToExcludeList),
-    excludeKbsRequiringReboot: S.optional(S.Boolean),
-    maxPatchPublishDate: S.optional(S.String),
-    patchNameMasksToInclude: S.optional(
-      WindowsParametersPatchNameMasksToIncludeList,
-    ),
-    patchNameMasksToExclude: S.optional(
-      WindowsParametersPatchNameMasksToExcludeList,
-    ),
-  }),
-).annotate({
-  identifier: "WindowsParameters",
-}) as any as S.Schema<WindowsParameters>;
-
-export type VMGuestPatchClassificationLinux = "Critical" | "Security" | "Other";
-export const VMGuestPatchClassificationLinux = /*@__PURE__*/ S.String;
-
-/** The update classifications to select when installing patches for Linux. */
-export type LinuxParametersClassificationsToIncludeList = Array<
-  VMGuestPatchClassificationLinux | (string & {})
->;
-export const LinuxParametersClassificationsToIncludeList =
-  /*@__PURE__*/ S.Array(
-    VMGuestPatchClassificationLinux,
-  ) as any as S.Schema<LinuxParametersClassificationsToIncludeList>;
-
-/** packages to include in the patch operation. Format: packageName_packageVersion */
-export type LinuxParametersPackageNameMasksToIncludeList = Array<string>;
-export const LinuxParametersPackageNameMasksToIncludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LinuxParametersPackageNameMasksToIncludeList>;
-
-/** packages to exclude in the patch operation. Format: packageName_packageVersion */
-export type LinuxParametersPackageNameMasksToExcludeList = Array<string>;
-export const LinuxParametersPackageNameMasksToExcludeList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LinuxParametersPackageNameMasksToExcludeList>;
-
-/** Input for InstallPatches on a Linux VM, as directly received by the API */
-export interface LinuxParameters {
-  /** The update classifications to select when installing patches for Linux. */
-  classificationsToInclude?: LinuxParametersClassificationsToIncludeList;
-  /** packages to include in the patch operation. Format: packageName_packageVersion */
-  packageNameMasksToInclude?: LinuxParametersPackageNameMasksToIncludeList;
-  /** packages to exclude in the patch operation. Format: packageName_packageVersion */
-  packageNameMasksToExclude?: LinuxParametersPackageNameMasksToExcludeList;
-}
-export const LinuxParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    classificationsToInclude: S.optional(
-      LinuxParametersClassificationsToIncludeList,
-    ),
-    packageNameMasksToInclude: S.optional(
-      LinuxParametersPackageNameMasksToIncludeList,
-    ),
-    packageNameMasksToExclude: S.optional(
-      LinuxParametersPackageNameMasksToExcludeList,
-    ),
-  }),
-).annotate({
-  identifier: "LinuxParameters",
-}) as any as S.Schema<LinuxParameters>;
-
-export interface MachinesInstallPatchesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the hybrid machine. */
-  name: string;
-  /** Specifies the maximum amount of time that the operation will run. It must be an ISO 8601-compliant duration string such as PT4H (4 hours) */
-  maximumDuration: string;
-  /** Defines when it is acceptable to reboot a VM during a software update operation. */
-  rebootSetting: VMGuestPatchRebootSetting | (string & {});
-  /** Input for InstallPatches on a Windows VM, as directly received by the API */
-  windowsParameters?: WindowsParameters;
-  /** Input for InstallPatches on a Linux VM, as directly received by the API */
-  linuxParameters?: LinuxParameters;
-}
-export const MachinesInstallPatchesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    maximumDuration: S.String,
-    rebootSetting: VMGuestPatchRebootSetting,
-    windowsParameters: S.optional(WindowsParameters),
-    linuxParameters: S.optional(LinuxParameters),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{name}/installPatches",
-      code: 200,
-      apiVersion: "2026-07-15",
-    }),
-  ),
-).annotate({
-  identifier: "MachinesInstallPatchesRequest",
-}) as any as S.Schema<MachinesInstallPatchesRequest>;
-
-/** The reboot state of the VM following completion of the operation. */
-export type VMGuestPatchRebootStatus =
-  | "Unknown"
-  | "NotNeeded"
-  | "Required"
-  | "Started"
-  | "Failed"
-  | "Completed";
-export const VMGuestPatchRebootStatus = /*@__PURE__*/ S.String;
-
-/** The error details. */
-export type MachineInstallPatchesResultErrorDetailsDetailsList =
-  Array<ErrorDetail>;
-export const MachineInstallPatchesResultErrorDetailsDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<MachineInstallPatchesResultErrorDetailsDetailsList>;
-
-/** The error additional info. */
-export type MachineInstallPatchesResultErrorDetailsAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const MachineInstallPatchesResultErrorDetailsAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<MachineInstallPatchesResultErrorDetailsAdditionalInfoList>;
-
-/** The error detail. */
-export interface MachineInstallPatchesResultErrorDetails {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: MachineInstallPatchesResultErrorDetailsDetailsList;
-  /** The error additional info. */
-  additionalInfo?: MachineInstallPatchesResultErrorDetailsAdditionalInfoList;
-}
-export const MachineInstallPatchesResultErrorDetails = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(MachineInstallPatchesResultErrorDetailsDetailsList),
-      additionalInfo: S.optional(
-        MachineInstallPatchesResultErrorDetailsAdditionalInfoList,
-      ),
-    }),
-).annotate({
-  identifier: "MachineInstallPatchesResultErrorDetails",
-}) as any as S.Schema<MachineInstallPatchesResultErrorDetails>;
-
-/** The result summary of an installation operation. */
-export interface MachineInstallPatchesResult {
-  /** The overall success or failure status of the operation. It remains "InProgress" until the operation completes. At that point it will become "Failed", "Succeeded", "Unknown" or "CompletedWithWarnings." */
-  status?: PatchOperationStatus;
-  /** The activity ID of the operation that produced this result. */
-  installationActivityId?: string;
-  /** The reboot state of the VM following completion of the operation. */
-  rebootStatus?: VMGuestPatchRebootStatus;
-  /** Whether the operation ran out of time before it completed all its intended actions. */
-  maintenanceWindowExceeded?: boolean;
-  /** The number of patches that were not installed due to the user blocking their installation. */
-  excludedPatchCount?: number;
-  /** The number of patches that were detected as available for install, but did not meet the operation's criteria. */
-  notSelectedPatchCount?: number;
-  /** The number of patches that were identified as meeting the installation criteria, but were not able to be installed. Typically this happens when maintenanceWindowExceeded == true. */
-  pendingPatchCount?: number;
-  /** The number of patches successfully installed. */
-  installedPatchCount?: number;
-  /** The number of patches that could not be installed due to some issue. See errors for details. */
-  failedPatchCount?: number;
-  /** The UTC timestamp when the operation began. */
-  startDateTime?: string;
-  /** The UTC timestamp when the operation finished. */
-  lastModifiedDateTime?: string;
-  /** Indicates if operation was triggered by user or by platform. */
-  startedBy?: PatchOperationStartedBy;
-  /** Specifies the patch service used for the operation. */
-  patchServiceUsed?: PatchServiceUsed;
-  /** The operating system type of the machine. */
-  osType?: OsType;
-  /** The error detail. */
-  errorDetails?: MachineInstallPatchesResultErrorDetails;
-}
-export const MachineInstallPatchesResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PatchOperationStatus),
-    installationActivityId: S.optional(S.String),
-    rebootStatus: S.optional(VMGuestPatchRebootStatus),
-    maintenanceWindowExceeded: S.optional(S.Boolean),
-    excludedPatchCount: S.optional(S.Number),
-    notSelectedPatchCount: S.optional(S.Number),
-    pendingPatchCount: S.optional(S.Number),
-    installedPatchCount: S.optional(S.Number),
-    failedPatchCount: S.optional(S.Number),
-    startDateTime: S.optional(S.String),
-    lastModifiedDateTime: S.optional(S.String),
-    startedBy: S.optional(PatchOperationStartedBy),
-    patchServiceUsed: S.optional(PatchServiceUsed),
-    osType: S.optional(OsType),
-    errorDetails: S.optional(MachineInstallPatchesResultErrorDetails),
-  }),
-).annotate({
-  identifier: "MachineInstallPatchesResult",
-}) as any as S.Schema<MachineInstallPatchesResult>;
-
 export interface NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScopeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -6424,7 +6348,7 @@ export const SettingsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SettingsPropertiesInput",
 }) as any as S.Schema<SettingsPropertiesInput>;
 
-export interface PatchSettingRequest {
+export interface PatchSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6440,7 +6364,7 @@ export interface PatchSettingRequest {
   /** Settings properties */
   properties?: SettingsPropertiesInput;
 }
-export const PatchSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6458,10 +6382,10 @@ export const PatchSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PatchSettingRequest",
-}) as any as S.Schema<PatchSettingRequest>;
+  identifier: "PatchSettingsRequest",
+}) as any as S.Schema<PatchSettingsRequest>;
 
-export interface PatchSettingResponse {
+export interface PatchSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6473,7 +6397,7 @@ export interface PatchSettingResponse {
   /** Settings properties */
   properties?: SettingsProperties;
 }
-export const PatchSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const PatchSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -6482,8 +6406,8 @@ export const PatchSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SettingsProperties),
   }),
 ).annotate({
-  identifier: "PatchSettingResponse",
-}) as any as S.Schema<PatchSettingResponse>;
+  identifier: "PatchSettingsResponse",
+}) as any as S.Schema<PatchSettingsResponse>;
 
 /** State of the private endpoint connection. */
 export interface PrivateLinkServiceConnectionStatePropertyInput {
@@ -6757,13 +6681,13 @@ export const SetupExtensionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SetupExtensionRequest>;
 
 /** Resource tags */
-export type GatewaysUpdateRequestTagsMap = {
+export type UpdateGatewaysRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const GatewaysUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGatewaysRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GatewaysUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateGatewaysRequestTagsMap>;
 
 /** Specifies the list of features that are enabled for this Gateway. */
 export type GatewayUpdatePropertiesAllowedFeaturesList = Array<string>;
@@ -6793,7 +6717,7 @@ export const GatewayUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewayUpdateProperties",
 }) as any as S.Schema<GatewayUpdateProperties>;
 
-export interface UpdateGatewayRequest {
+export interface UpdateGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6801,16 +6725,16 @@ export interface UpdateGatewayRequest {
   /** The name of the Gateway. */
   gatewayName: string;
   /** Resource tags */
-  tags?: GatewaysUpdateRequestTagsMap;
+  tags?: UpdateGatewaysRequestTagsMap;
   /** Gateway Update properties */
   properties?: GatewayUpdateProperties;
 }
-export const UpdateGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     gatewayName: S.String.pipe(T.Label()),
-    tags: S.optional(GatewaysUpdateRequestTagsMap),
+    tags: S.optional(UpdateGatewaysRequestTagsMap),
     properties: S.optional(GatewayUpdateProperties),
   }).pipe(
     T.Http({
@@ -6821,19 +6745,19 @@ export const UpdateGatewayRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateGatewayRequest",
-}) as any as S.Schema<UpdateGatewayRequest>;
+  identifier: "UpdateGatewaysRequest",
+}) as any as S.Schema<UpdateGatewaysRequest>;
 
 /** Resource tags. */
-export type GatewaysUpdateResponseTagsMap = {
+export type UpdateGatewaysResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GatewaysUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGatewaysResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GatewaysUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateGatewaysResponseTagsMap>;
 
-export interface UpdateGatewayResponse {
+export interface UpdateGatewaysResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6843,34 +6767,32 @@ export interface UpdateGatewayResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: GatewaysUpdateResponseTagsMap;
+  tags?: UpdateGatewaysResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute Gateway properties */
   properties?: GatewayProperties;
 }
-export const UpdateGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(GatewaysUpdateResponseTagsMap),
+    tags: S.optional(UpdateGatewaysResponseTagsMap),
     location: S.String,
     properties: S.optional(GatewayProperties),
   }),
 ).annotate({
-  identifier: "UpdateGatewayResponse",
-}) as any as S.Schema<UpdateGatewayResponse>;
+  identifier: "UpdateGatewaysResponse",
+}) as any as S.Schema<UpdateGatewaysResponse>;
 
 /** Resource tags */
-export type LicensesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const LicensesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateLicenseRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateLicenseRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LicensesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateLicenseRequestTagsMap>;
 
 export interface LicenseUpdatePropertiesLicenseDetails {
   /** Describes the state of the license. */
@@ -6920,7 +6842,7 @@ export interface UpdateLicenseRequest {
   /** The name of the license. */
   licenseName: string;
   /** Resource tags */
-  tags?: LicensesUpdateRequestTagsMap;
+  tags?: UpdateLicenseRequestTagsMap;
   /** License Update properties */
   properties?: LicenseUpdateProperties;
 }
@@ -6929,7 +6851,7 @@ export const UpdateLicenseRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     licenseName: S.String.pipe(T.Label()),
-    tags: S.optional(LicensesUpdateRequestTagsMap),
+    tags: S.optional(UpdateLicenseRequestTagsMap),
     properties: S.optional(LicenseUpdateProperties),
   }).pipe(
     T.Http({
@@ -6944,13 +6866,13 @@ export const UpdateLicenseRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLicenseRequest>;
 
 /** Resource tags. */
-export type LicensesUpdateResponseTagsMap = {
+export type UpdateLicenseResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LicensesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateLicenseResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LicensesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateLicenseResponseTagsMap>;
 
 export interface UpdateLicenseResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -6962,7 +6884,7 @@ export interface UpdateLicenseResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LicensesUpdateResponseTagsMap;
+  tags?: UpdateLicenseResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute License properties */
@@ -6974,7 +6896,7 @@ export const UpdateLicenseResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LicensesUpdateResponseTagsMap),
+    tags: S.optional(UpdateLicenseResponseTagsMap),
     location: S.String,
     properties: S.optional(LicenseProperties),
   }),
@@ -6982,18 +6904,18 @@ export const UpdateLicenseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateLicenseResponse",
 }) as any as S.Schema<UpdateLicenseResponse>;
 
-export type LicenseProfilesUpdateRequestLicenseProfileName = "default";
-export const LicenseProfilesUpdateRequestLicenseProfileName =
+export type UpdateLicenseProfileRequestLicenseProfileName = "default";
+export const UpdateLicenseProfileRequestLicenseProfileName =
   /*@__PURE__*/ S.String;
 
 /** Resource tags */
-export type LicenseProfilesUpdateRequestTagsMap = {
+export type UpdateLicenseProfileRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const LicenseProfilesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateLicenseProfileRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LicenseProfilesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateLicenseProfileRequestTagsMap>;
 
 export type LicenseProfileUpdatePropertiesSoftwareAssurance =
   LicenseProfilePropertiesSoftwareAssurance;
@@ -7080,10 +7002,10 @@ export interface UpdateLicenseProfileRequest {
   machineName: string;
   /** The name of the license profile. */
   licenseProfileName:
-    | LicenseProfilesUpdateRequestLicenseProfileName
+    | UpdateLicenseProfileRequestLicenseProfileName
     | (string & {});
   /** Resource tags */
-  tags?: LicenseProfilesUpdateRequestTagsMap;
+  tags?: UpdateLicenseProfileRequestTagsMap;
   /** Describe the Update properties of a license profile. */
   properties?: LicenseProfileUpdateProperties;
 }
@@ -7092,10 +7014,10 @@ export const UpdateLicenseProfileRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     machineName: S.String.pipe(T.Label()),
-    licenseProfileName: LicenseProfilesUpdateRequestLicenseProfileName.pipe(
+    licenseProfileName: UpdateLicenseProfileRequestLicenseProfileName.pipe(
       T.Label(),
     ),
-    tags: S.optional(LicenseProfilesUpdateRequestTagsMap),
+    tags: S.optional(UpdateLicenseProfileRequestTagsMap),
     properties: S.optional(LicenseProfileUpdateProperties),
   }).pipe(
     T.Http({
@@ -7110,13 +7032,13 @@ export const UpdateLicenseProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLicenseProfileRequest>;
 
 /** Resource tags. */
-export type LicenseProfilesUpdateResponseTagsMap = {
+export type UpdateLicenseProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const LicenseProfilesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateLicenseProfileResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LicenseProfilesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateLicenseProfileResponseTagsMap>;
 
 export interface UpdateLicenseProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7128,7 +7050,7 @@ export interface UpdateLicenseProfileResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LicenseProfilesUpdateResponseTagsMap;
+  tags?: UpdateLicenseProfileResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describe the properties of a license profile. */
@@ -7140,7 +7062,7 @@ export const UpdateLicenseProfileResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LicenseProfilesUpdateResponseTagsMap),
+    tags: S.optional(UpdateLicenseProfileResponseTagsMap),
     location: S.String,
     properties: S.optional(LicenseProfileProperties),
   }),
@@ -7149,42 +7071,40 @@ export const UpdateLicenseProfileResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateLicenseProfileResponse>;
 
 /** Resource tags */
-export type MachinesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MachinesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateMachineRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateMachineRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MachinesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateMachineRequestTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type MachinesUpdateRequestIdentityUserAssignedIdentitiesMap = {
+export type UpdateMachineRequestIdentityUserAssignedIdentitiesMap = {
   [key: string]:
     | LicenseProfileArmProductProfilePropertiesInputError
     | undefined;
 };
-export const MachinesUpdateRequestIdentityUserAssignedIdentitiesMap =
+export const UpdateMachineRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     LicenseProfileArmProductProfilePropertiesInputError,
-  ) as any as S.Schema<MachinesUpdateRequestIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateMachineRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface MachinesUpdateRequestIdentity {
+export interface UpdateMachineRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: MachinesUpdateRequestIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateMachineRequestIdentityUserAssignedIdentitiesMap;
 }
-export const MachinesUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMachineRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      MachinesUpdateRequestIdentityUserAssignedIdentitiesMap,
+      UpdateMachineRequestIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "MachinesUpdateRequestIdentity",
-}) as any as S.Schema<MachinesUpdateRequestIdentity>;
+  identifier: "UpdateMachineRequestIdentity",
+}) as any as S.Schema<UpdateMachineRequestIdentity>;
 
 /** Metadata pertaining to the geographic location of the resource. */
 export type MachineUpdatePropertiesInputLocationData =
@@ -7236,9 +7156,9 @@ export interface UpdateMachineRequest {
   /** The name of the hybrid machine. */
   machineName: string;
   /** Resource tags */
-  tags?: MachinesUpdateRequestTagsMap;
+  tags?: UpdateMachineRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: MachinesUpdateRequestIdentity;
+  identity?: UpdateMachineRequestIdentity;
   /** Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc. */
   kind?: ArcKindEnum | (string & {});
   /** Hybrid Compute Machine properties */
@@ -7249,8 +7169,8 @@ export const UpdateMachineRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     machineName: S.String.pipe(T.Label()),
-    tags: S.optional(MachinesUpdateRequestTagsMap),
-    identity: S.optional(MachinesUpdateRequestIdentity),
+    tags: S.optional(UpdateMachineRequestTagsMap),
+    identity: S.optional(UpdateMachineRequestIdentity),
     kind: S.optional(ArcKindEnum),
     properties: S.optional(MachineUpdatePropertiesInput),
   }).pipe(
@@ -7266,52 +7186,52 @@ export const UpdateMachineRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMachineRequest>;
 
 /** Resource tags. */
-export type MachinesUpdateResponseTagsMap = {
+export type UpdateMachineResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MachinesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateMachineResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MachinesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateMachineResponseTagsMap>;
 
 /** The list of extensions affiliated to the machine */
-export type MachinesUpdateResponseResourcesList = Array<MachineExtension>;
-export const MachinesUpdateResponseResourcesList = /*@__PURE__*/ S.Array(
+export type UpdateMachineResponseResourcesList = Array<MachineExtension>;
+export const UpdateMachineResponseResourcesList = /*@__PURE__*/ S.Array(
   MachineExtension,
-) as any as S.Schema<MachinesUpdateResponseResourcesList>;
+) as any as S.Schema<UpdateMachineResponseResourcesList>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type MachinesUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateMachineResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const MachinesUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateMachineResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<MachinesUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateMachineResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface MachinesUpdateResponseIdentity {
+export interface UpdateMachineResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: MachinesUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateMachineResponseIdentityUserAssignedIdentitiesMap;
 }
-export const MachinesUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMachineResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      MachinesUpdateResponseIdentityUserAssignedIdentitiesMap,
+      UpdateMachineResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "MachinesUpdateResponseIdentity",
-}) as any as S.Schema<MachinesUpdateResponseIdentity>;
+  identifier: "UpdateMachineResponseIdentity",
+}) as any as S.Schema<UpdateMachineResponseIdentity>;
 
 export interface UpdateMachineResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7323,15 +7243,15 @@ export interface UpdateMachineResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MachinesUpdateResponseTagsMap;
+  tags?: UpdateMachineResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Hybrid Compute Machine properties */
   properties?: MachineProperties;
   /** The list of extensions affiliated to the machine */
-  resources?: MachinesUpdateResponseResourcesList;
+  resources?: UpdateMachineResponseResourcesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: MachinesUpdateResponseIdentity;
+  identity?: UpdateMachineResponseIdentity;
   /** Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc. */
   kind?: ArcKindEnum;
 }
@@ -7341,11 +7261,11 @@ export const UpdateMachineResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MachinesUpdateResponseTagsMap),
+    tags: S.optional(UpdateMachineResponseTagsMap),
     location: S.String,
     properties: S.optional(MachineProperties),
-    resources: S.optional(MachinesUpdateResponseResourcesList),
-    identity: S.optional(MachinesUpdateResponseIdentity),
+    resources: S.optional(UpdateMachineResponseResourcesList),
+    identity: S.optional(UpdateMachineResponseIdentity),
     kind: S.optional(ArcKindEnum),
   }),
 ).annotate({
@@ -7353,13 +7273,13 @@ export const UpdateMachineResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMachineResponse>;
 
 /** Resource tags */
-export type MachineExtensionsUpdateRequestTagsMap = {
+export type UpdateMachineExtensionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const MachineExtensionsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateMachineExtensionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MachineExtensionsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateMachineExtensionRequestTagsMap>;
 
 /** Json formatted public settings for the extension. */
 export type MachineExtensionUpdatePropertiesSettingsMap = {
@@ -7427,7 +7347,7 @@ export interface UpdateMachineExtensionRequest {
   /** The name of the machine extension. */
   extensionName: string;
   /** Resource tags */
-  tags?: MachineExtensionsUpdateRequestTagsMap;
+  tags?: UpdateMachineExtensionRequestTagsMap;
   /** Describes Machine Extension Update Properties. */
   properties?: MachineExtensionUpdateProperties;
 }
@@ -7437,7 +7357,7 @@ export const UpdateMachineExtensionRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     machineName: S.String.pipe(T.Label()),
     extensionName: S.String.pipe(T.Label()),
-    tags: S.optional(MachineExtensionsUpdateRequestTagsMap),
+    tags: S.optional(UpdateMachineExtensionRequestTagsMap),
     properties: S.optional(MachineExtensionUpdateProperties),
   }).pipe(
     T.Http({
@@ -7452,13 +7372,13 @@ export const UpdateMachineExtensionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMachineExtensionRequest>;
 
 /** Resource tags. */
-export type MachineExtensionsUpdateResponseTagsMap = {
+export type UpdateMachineExtensionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MachineExtensionsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateMachineExtensionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MachineExtensionsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateMachineExtensionResponseTagsMap>;
 
 export interface UpdateMachineExtensionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -7470,7 +7390,7 @@ export interface UpdateMachineExtensionResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MachineExtensionsUpdateResponseTagsMap;
+  tags?: UpdateMachineExtensionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes Machine Extension Properties. */
@@ -7482,7 +7402,7 @@ export const UpdateMachineExtensionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MachineExtensionsUpdateResponseTagsMap),
+    tags: S.optional(UpdateMachineExtensionResponseTagsMap),
     location: S.String,
     properties: S.optional(MachineExtensionProperties),
   }),
@@ -7491,15 +7411,15 @@ export const UpdateMachineExtensionResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateMachineExtensionResponse>;
 
 /** Resource tags */
-export type PrivateLinkScopesUpdateTagsRequestTagsMap = {
+export type UpdatePrivateLinkScopeTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkScopesUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdatePrivateLinkScopeTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateLinkScopesUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdatePrivateLinkScopeTagsRequestTagsMap>;
 
-export interface UpdatePrivateLinkScopeTagRequest {
+export interface UpdatePrivateLinkScopeTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7507,14 +7427,14 @@ export interface UpdatePrivateLinkScopeTagRequest {
   /** The name of the Azure Arc PrivateLinkScope resource. */
   scopeName: string;
   /** Resource tags */
-  tags?: PrivateLinkScopesUpdateTagsRequestTagsMap;
+  tags?: UpdatePrivateLinkScopeTagsRequestTagsMap;
 }
-export const UpdatePrivateLinkScopeTagRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePrivateLinkScopeTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     scopeName: S.String.pipe(T.Label()),
-    tags: S.optional(PrivateLinkScopesUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdatePrivateLinkScopeTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -7524,20 +7444,19 @@ export const UpdatePrivateLinkScopeTagRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdatePrivateLinkScopeTagRequest",
-}) as any as S.Schema<UpdatePrivateLinkScopeTagRequest>;
+  identifier: "UpdatePrivateLinkScopeTagsRequest",
+}) as any as S.Schema<UpdatePrivateLinkScopeTagsRequest>;
 
 /** Resource tags. */
-export type PrivateLinkScopesUpdateTagsResponseTagsMap = {
+export type UpdatePrivateLinkScopeTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateLinkScopesUpdateTagsResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateLinkScopesUpdateTagsResponseTagsMap>;
+export const UpdatePrivateLinkScopeTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePrivateLinkScopeTagsResponseTagsMap>;
 
-export interface UpdatePrivateLinkScopeTagResponse {
+export interface UpdatePrivateLinkScopeTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7547,27 +7466,27 @@ export interface UpdatePrivateLinkScopeTagResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PrivateLinkScopesUpdateTagsResponseTagsMap;
+  tags?: UpdatePrivateLinkScopeTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties that define a Azure Arc PrivateLinkScope resource. */
   properties?: HybridComputePrivateLinkScopeProperties;
 }
-export const UpdatePrivateLinkScopeTagResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePrivateLinkScopeTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PrivateLinkScopesUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdatePrivateLinkScopeTagsResponseTagsMap),
     location: S.String,
     properties: S.optional(HybridComputePrivateLinkScopeProperties),
   }),
 ).annotate({
-  identifier: "UpdatePrivateLinkScopeTagResponse",
-}) as any as S.Schema<UpdatePrivateLinkScopeTagResponse>;
+  identifier: "UpdatePrivateLinkScopeTagsResponse",
+}) as any as S.Schema<UpdatePrivateLinkScopeTagsResponse>;
 
-export interface UpdateSettingRequest {
+export interface UpdateSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7583,7 +7502,7 @@ export interface UpdateSettingRequest {
   /** Settings properties */
   properties?: SettingsPropertiesInput;
 }
-export const UpdateSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7601,10 +7520,10 @@ export const UpdateSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateSettingRequest",
-}) as any as S.Schema<UpdateSettingRequest>;
+  identifier: "UpdateSettingsRequest",
+}) as any as S.Schema<UpdateSettingsRequest>;
 
-export interface UpdateSettingResponse {
+export interface UpdateSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7616,7 +7535,7 @@ export interface UpdateSettingResponse {
   /** Settings properties */
   properties?: SettingsProperties;
 }
-export const UpdateSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -7625,8 +7544,8 @@ export const UpdateSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(SettingsProperties),
   }),
 ).annotate({
-  identifier: "UpdateSettingResponse",
-}) as any as S.Schema<UpdateSettingResponse>;
+  identifier: "UpdateSettingsResponse",
+}) as any as S.Schema<UpdateSettingsResponse>;
 
 /** Describes the Machine Extension Target Version Properties */
 export interface ExtensionTargetProperties {
@@ -7686,16 +7605,92 @@ export const UpgradeExtensionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpgradeExtensionsResponse",
 }) as any as S.Schema<UpgradeExtensionsResponse>;
 
-export type DeleteGatewayError = AzureOpError;
+/** Resource tags. */
+export type ValidateLicenseLicenseRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateLicenseLicenseRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ValidateLicenseLicenseRequestTagsMap>;
+
+export interface ValidateLicenseLicenseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** Resource tags. */
+  tags?: ValidateLicenseLicenseRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Hybrid Compute License properties */
+  properties?: LicensePropertiesInput;
+}
+export const ValidateLicenseLicenseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    tags: S.optional(ValidateLicenseLicenseRequestTagsMap),
+    location: S.String,
+    properties: S.optional(LicensePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HybridCompute/validateLicense",
+      code: 200,
+      apiVersion: "2026-07-15",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateLicenseLicenseRequest",
+}) as any as S.Schema<ValidateLicenseLicenseRequest>;
+
+/** Resource tags. */
+export type ValidateLicenseLicenseResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateLicenseLicenseResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ValidateLicenseLicenseResponseTagsMap>;
+
+export interface ValidateLicenseLicenseResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ValidateLicenseLicenseResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Hybrid Compute License properties */
+  properties?: LicenseProperties;
+}
+export const ValidateLicenseLicenseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ValidateLicenseLicenseResponseTagsMap),
+    location: S.String,
+    properties: S.optional(LicenseProperties),
+  }),
+).annotate({
+  identifier: "ValidateLicenseLicenseResponse",
+}) as any as S.Schema<ValidateLicenseLicenseResponse>;
+
+export type DeleteGatewaysError = AzureOpError;
 /** The operation to delete a gateway. */
-export const DeleteGateway: API.OperationMethod<
-  DeleteGatewayRequest,
-  DeleteGatewayResponse,
-  DeleteGatewayError,
+export const DeleteGateways: API.OperationMethod<
+  DeleteGatewaysRequest,
+  DeleteGatewaysResponse,
+  DeleteGatewaysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGatewayRequest,
-  output: DeleteGatewayResponse,
+  input: DeleteGatewaysRequest,
+  output: DeleteGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7851,16 +7846,16 @@ export const GetExtensionMetadataV2: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetGatewayError = AzureOpError;
+export type GetGatewaysError = AzureOpError;
 /** Retrieves information about the view of a gateway. */
-export const GetGateway: API.OperationMethod<
-  GetGatewayRequest,
-  GetGatewayResponse,
-  GetGatewayError,
+export const GetGateways: API.OperationMethod<
+  GetGatewaysRequest,
+  GetGatewaysResponse,
+  GetGatewaysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetGatewayRequest,
-  output: GetGatewayResponse,
+  input: GetGatewaysRequest,
+  output: GetGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8017,46 +8012,61 @@ export const GetPrivateLinkScope: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkScopeValidationDetailError = AzureOpError;
+export type GetPrivateLinkScopeValidationDetailsError = AzureOpError;
 /** Returns a Azure Arc PrivateLinkScope's validation details. */
-export const GetPrivateLinkScopeValidationDetail: API.OperationMethod<
-  GetPrivateLinkScopeValidationDetailRequest,
+export const GetPrivateLinkScopeValidationDetails: API.OperationMethod<
+  GetPrivateLinkScopeValidationDetailsRequest,
   PrivateLinkScopeValidationDetails,
-  GetPrivateLinkScopeValidationDetailError,
+  GetPrivateLinkScopeValidationDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkScopeValidationDetailRequest,
+  input: GetPrivateLinkScopeValidationDetailsRequest,
   output: PrivateLinkScopeValidationDetails,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetPrivateLinkScopeValidationDetailForMachineError = AzureOpError;
+export type GetPrivateLinkScopeValidationDetailsForMachineError = AzureOpError;
 /** Returns a Azure Arc PrivateLinkScope's validation details for a given machine. */
-export const GetPrivateLinkScopeValidationDetailForMachine: API.OperationMethod<
-  GetPrivateLinkScopeValidationDetailForMachineRequest,
+export const GetPrivateLinkScopeValidationDetailsForMachine: API.OperationMethod<
+  GetPrivateLinkScopeValidationDetailsForMachineRequest,
   PrivateLinkScopeValidationDetails,
-  GetPrivateLinkScopeValidationDetailForMachineError,
+  GetPrivateLinkScopeValidationDetailsForMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetPrivateLinkScopeValidationDetailForMachineRequest,
+  input: GetPrivateLinkScopeValidationDetailsForMachineRequest,
   output: PrivateLinkScopeValidationDetails,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetSettingError = AzureOpError;
+export type GetSettingsError = AzureOpError;
 /** Returns the base Settings for the target resource. */
-export const GetSetting: API.OperationMethod<
-  GetSettingRequest,
-  GetSettingResponse,
-  GetSettingError,
+export const GetSettings: API.OperationMethod<
+  GetSettingsRequest,
+  GetSettingsResponse,
+  GetSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetSettingRequest,
-  output: GetSettingResponse,
+  input: GetSettingsRequest,
+  output: GetSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InstallMachinePatchesError = AzureOpError;
+/** The operation to install patches on a hybrid machine identity in Azure. */
+export const InstallMachinePatches: API.OperationMethod<
+  InstallMachinePatchesRequest,
+  MachineInstallPatchesResult,
+  InstallMachinePatchesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InstallMachinePatchesRequest,
+  output: MachineInstallPatchesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8087,21 +8097,6 @@ export const LicensesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: LicensesCreateOrUpdateRequest,
   output: LicensesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LicensesValidateLicenseError = AzureOpError;
-/** The operation to validate a license. */
-export const LicensesValidateLicense: API.OperationMethod<
-  LicensesValidateLicenseRequest,
-  LicensesValidateLicenseResponse,
-  LicensesValidateLicenseError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LicensesValidateLicenseRequest,
-  output: LicensesValidateLicenseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8141,12 +8136,12 @@ export type ListExtensionPublisherError = AzureOpError;
 /** Gets all Extension publishers based on the location */
 export const ListExtensionPublisher: API.OperationMethod<
   ListExtensionPublisherRequest,
-  ListExtensionPublisherResult,
+  ExtensionPublisherListResult,
   ListExtensionPublisherError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListExtensionPublisherRequest,
-  output: ListExtensionPublisherResult,
+  output: ExtensionPublisherListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8156,41 +8151,41 @@ export type ListExtensionTypeError = AzureOpError;
 /** Gets all Extension types based on location and publisher */
 export const ListExtensionType: API.OperationMethod<
   ListExtensionTypeRequest,
-  ListExtensionTypeResult,
+  ExtensionTypeListResult,
   ListExtensionTypeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListExtensionTypeRequest,
-  output: ListExtensionTypeResult,
+  output: ExtensionTypeListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListGatewayByResourceGroupError = AzureOpError;
+export type ListGatewaysByResourceGroupError = AzureOpError;
 /** The operation to get all gateways of a non-Azure machine */
-export const ListGatewayByResourceGroup: API.OperationMethod<
-  ListGatewayByResourceGroupRequest,
+export const ListGatewaysByResourceGroup: API.OperationMethod<
+  ListGatewaysByResourceGroupRequest,
   GatewaysListResult,
-  ListGatewayByResourceGroupError,
+  ListGatewaysByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGatewayByResourceGroupRequest,
+  input: ListGatewaysByResourceGroupRequest,
   output: GatewaysListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListGatewayBySubscriptionError = AzureOpError;
+export type ListGatewaysBySubscriptionError = AzureOpError;
 /** The operation to get all gateways of a non-Azure machine */
-export const ListGatewayBySubscription: API.OperationMethod<
-  ListGatewayBySubscriptionRequest,
+export const ListGatewaysBySubscription: API.OperationMethod<
+  ListGatewaysBySubscriptionRequest,
   GatewaysListResult,
-  ListGatewayBySubscriptionError,
+  ListGatewaysBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListGatewayBySubscriptionRequest,
+  input: ListGatewaysBySubscriptionRequest,
   output: GatewaysListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -8231,12 +8226,12 @@ export type ListLicenseProfilesError = AzureOpError;
 /** The operation to get all license profiles of a non-Azure machine */
 export const ListLicenseProfiles: API.OperationMethod<
   ListLicenseProfilesRequest,
-  ListLicenseProfilesResult,
+  LicenseProfilesListResult,
   ListLicenseProfilesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListLicenseProfilesRequest,
-  output: ListLicenseProfilesResult,
+  output: LicenseProfilesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8276,12 +8271,12 @@ export type ListMachineExtensionsError = AzureOpError;
 /** The operation to get all extensions of a non-Azure machine */
 export const ListMachineExtensions: API.OperationMethod<
   ListMachineExtensionsRequest,
-  ListMachineExtensionsResult,
+  MachineExtensionsListResult,
   ListMachineExtensionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListMachineExtensionsRequest,
-  output: ListMachineExtensionsResult,
+  output: MachineExtensionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8291,12 +8286,12 @@ export type ListMachineRunCommandsError = AzureOpError;
 /** The operation to get all the run commands of a non-Azure machine. */
 export const ListMachineRunCommands: API.OperationMethod<
   ListMachineRunCommandsRequest,
-  ListMachineRunCommandsResult,
+  MachineRunCommandsListResult,
   ListMachineRunCommandsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListMachineRunCommandsRequest,
-  output: ListMachineRunCommandsResult,
+  output: MachineRunCommandsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8453,21 +8448,6 @@ export const MachinesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MachinesInstallPatchesError = AzureOpError;
-/** The operation to install patches on a hybrid machine identity in Azure. */
-export const MachinesInstallPatches: API.OperationMethod<
-  MachinesInstallPatchesRequest,
-  MachineInstallPatchesResult,
-  MachinesInstallPatchesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MachinesInstallPatchesRequest,
-  output: MachineInstallPatchesResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScopeError =
   AzureOpError;
 /** Forces the network security perimeter configuration to refresh for a private link scope. */
@@ -8485,16 +8465,16 @@ export const NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScope:
   retry: Retry.Retry,
 }));
 
-export type PatchSettingError = AzureOpError;
+export type PatchSettings2Error = AzureOpError;
 /** Update the base Settings of the target resource. */
-export const PatchSetting: API.OperationMethod<
-  PatchSettingRequest,
-  PatchSettingResponse,
-  PatchSettingError,
+export const PatchSettings2: API.OperationMethod<
+  PatchSettingsRequest,
+  PatchSettingsResponse,
+  PatchSettings2Error,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchSettingRequest,
-  output: PatchSettingResponse,
+  input: PatchSettingsRequest,
+  output: PatchSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8545,16 +8525,16 @@ export const SetupExtensions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateGatewayError = AzureOpError;
+export type UpdateGatewaysError = AzureOpError;
 /** The operation to update a gateway. */
-export const UpdateGateway: API.OperationMethod<
-  UpdateGatewayRequest,
-  UpdateGatewayResponse,
-  UpdateGatewayError,
+export const UpdateGateways: API.OperationMethod<
+  UpdateGatewaysRequest,
+  UpdateGatewaysResponse,
+  UpdateGatewaysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateGatewayRequest,
-  output: UpdateGatewayResponse,
+  input: UpdateGatewaysRequest,
+  output: UpdateGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8620,31 +8600,31 @@ export const UpdateMachineExtension: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateLinkScopeTagError = AzureOpError;
+export type UpdatePrivateLinkScopeTagsError = AzureOpError;
 /** Updates an existing PrivateLinkScope's tags. To update other fields use the CreateOrUpdate method. */
-export const UpdatePrivateLinkScopeTag: API.OperationMethod<
-  UpdatePrivateLinkScopeTagRequest,
-  UpdatePrivateLinkScopeTagResponse,
-  UpdatePrivateLinkScopeTagError,
+export const UpdatePrivateLinkScopeTags: API.OperationMethod<
+  UpdatePrivateLinkScopeTagsRequest,
+  UpdatePrivateLinkScopeTagsResponse,
+  UpdatePrivateLinkScopeTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateLinkScopeTagRequest,
-  output: UpdatePrivateLinkScopeTagResponse,
+  input: UpdatePrivateLinkScopeTagsRequest,
+  output: UpdatePrivateLinkScopeTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UpdateSettingError = AzureOpError;
+export type UpdateSettingsError = AzureOpError;
 /** Updates the base Settings of the target resource. */
-export const UpdateSetting: API.OperationMethod<
-  UpdateSettingRequest,
-  UpdateSettingResponse,
-  UpdateSettingError,
+export const UpdateSettings: API.OperationMethod<
+  UpdateSettingsRequest,
+  UpdateSettingsResponse,
+  UpdateSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateSettingRequest,
-  output: UpdateSettingResponse,
+  input: UpdateSettingsRequest,
+  output: UpdateSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -8660,6 +8640,21 @@ export const UpgradeExtensions: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpgradeExtensionsRequest,
   output: UpgradeExtensionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateLicenseLicenseError = AzureOpError;
+/** The operation to validate a license. */
+export const ValidateLicenseLicense: API.OperationMethod<
+  ValidateLicenseLicenseRequest,
+  ValidateLicenseLicenseResponse,
+  ValidateLicenseLicenseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateLicenseLicenseRequest,
+  output: ValidateLicenseLicenseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

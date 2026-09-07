@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.prisma.postgres#GetV1ServicesRequest": {
@@ -6580,7 +6581,7 @@
         "smithy.api#documentation": "Delete connection\n\nDeletes the connection with the given ID."
       }
     },
-    "com.prisma.postgres#RotatePostV1ConnectionByIdRequest": {
+    "com.prisma.postgres#PostV1ConnectionsByIdRotateRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -6846,7 +6847,7 @@
       },
       "traits": {}
     },
-    "com.prisma.postgres#RotatePostV1ConnectionByIdResponse": {
+    "com.prisma.postgres#PostV1ConnectionsByIdRotateResponse": {
       "type": "structure",
       "members": {
         "data": {
@@ -6860,13 +6861,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.prisma.postgres#RotatePostV1ConnectionById": {
+    "com.prisma.postgres#PostV1ConnectionsByIdRotate": {
       "type": "operation",
       "input": {
-        "target": "com.prisma.postgres#RotatePostV1ConnectionByIdRequest"
+        "target": "com.prisma.postgres#PostV1ConnectionsByIdRotateRequest"
       },
       "output": {
-        "target": "com.prisma.postgres#RotatePostV1ConnectionByIdResponse"
+        "target": "com.prisma.postgres#PostV1ConnectionsByIdRotateResponse"
       },
       "errors": [
         {
@@ -9796,9 +9797,7 @@
           }
         }
       },
-      "traits": {
-        "smithy.api#documentation": "Type of backup"
-      }
+      "traits": {}
     },
     "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus": {
       "type": "enum",
@@ -9828,9 +9827,7 @@
           }
         }
       },
-      "traits": {
-        "smithy.api#documentation": "Status of backup instance"
-      }
+      "traits": {}
     },
     "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItem": {
       "type": "structure",
@@ -9838,34 +9835,27 @@
         "id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The unique identifier for this backup",
             "smithy.api#required": {}
           }
         },
         "backupType": {
           "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType",
           "traits": {
-            "smithy.api#documentation": "Type of backup",
             "smithy.api#required": {}
           }
         },
         "createdAt": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Timestamp when the backup was created",
             "smithy.api#required": {}
           }
         },
         "size": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Total file size (in MiB) of gzipped backup files"
-          }
+          "target": "smithy.api#Double"
         },
         "status": {
           "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus",
           "traits": {
-            "smithy.api#documentation": "Status of backup instance",
             "smithy.api#required": {}
           }
         },
@@ -9990,7 +9980,7 @@
       },
       "traits": {}
     },
-    "com.prisma.postgres#RestorePostV1DatabaseByTargetDatabaseIdRequest": {
+    "com.prisma.postgres#PostV1DatabasesByTargetDatabaseIdRestoreRequest": {
       "type": "structure",
       "members": {
         "targetDatabaseId": {
@@ -10399,7 +10389,7 @@
       },
       "traits": {}
     },
-    "com.prisma.postgres#RestorePostV1DatabaseByTargetDatabaseIdResponse": {
+    "com.prisma.postgres#PostV1DatabasesByTargetDatabaseIdRestoreResponse": {
       "type": "structure",
       "members": {
         "data": {
@@ -10413,13 +10403,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.prisma.postgres#RestorePostV1DatabaseByTargetDatabaseId": {
+    "com.prisma.postgres#PostV1DatabasesByTargetDatabaseIdRestore": {
       "type": "operation",
       "input": {
-        "target": "com.prisma.postgres#RestorePostV1DatabaseByTargetDatabaseIdRequest"
+        "target": "com.prisma.postgres#PostV1DatabasesByTargetDatabaseIdRestoreRequest"
       },
       "output": {
-        "target": "com.prisma.postgres#RestorePostV1DatabaseByTargetDatabaseIdResponse"
+        "target": "com.prisma.postgres#PostV1DatabasesByTargetDatabaseIdRestoreResponse"
       },
       "errors": [
         {
@@ -10776,7 +10766,7 @@
         "smithy.api#documentation": "Delete deployment\n\n⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️\n\nPermanently deletes the deployment, its metadata, and any associated VM. The deployment must be stopped or in the `new` state before it can be deleted."
       }
     },
-    "com.prisma.postgres#StartPostV1DeploymentByDeploymentIdRequest": {
+    "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStartRequest": {
       "type": "structure",
       "members": {
         "deploymentId": {
@@ -10803,7 +10793,7 @@
       },
       "traits": {}
     },
-    "com.prisma.postgres#StartPostV1DeploymentByDeploymentIdResponse": {
+    "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStartResponse": {
       "type": "structure",
       "members": {
         "data": {
@@ -10817,13 +10807,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.prisma.postgres#StartPostV1DeploymentByDeploymentId": {
+    "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStart": {
       "type": "operation",
       "input": {
-        "target": "com.prisma.postgres#StartPostV1DeploymentByDeploymentIdRequest"
+        "target": "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStartRequest"
       },
       "output": {
-        "target": "com.prisma.postgres#StartPostV1DeploymentByDeploymentIdResponse"
+        "target": "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStartResponse"
       },
       "errors": [
         {
@@ -10845,7 +10835,7 @@
         "smithy.api#documentation": "Start deployment\n\n⚠️ Experimental endpoint: this API is in active development and may change at any time without notice. ⚠️\n\nRequests VM creation and startup for the deployment. The artifact must be uploaded before calling this endpoint. Returns a preview domain that becomes reachable once the VM is running. Poll the status endpoint until `running` is reached."
       }
     },
-    "com.prisma.postgres#StopPostV1DeploymentByDeploymentIdRequest": {
+    "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStopRequest": {
       "type": "structure",
       "members": {
         "deploymentId": {
@@ -10860,10 +10850,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.prisma.postgres#StopPostV1DeploymentByDeploymentId": {
+    "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStop": {
       "type": "operation",
       "input": {
-        "target": "com.prisma.postgres#StopPostV1DeploymentByDeploymentIdRequest"
+        "target": "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStopRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14932,10 +14922,7 @@
           }
         },
         "backupId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier for this backup"
-          }
+          "target": "smithy.api#String"
         }
       },
       "traits": {
@@ -19361,142 +19348,94 @@
       "version": "v1",
       "operations": [
         {
-          "target": "com.prisma.postgres#GetV1Services"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1Services"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ServicesByServiceId"
-        },
-        {
-          "target": "com.prisma.postgres#PatchV1ServicesByServiceId"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1ServicesByServiceId"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ServicesByServiceIdPromote"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ServicesByServiceIdRollback"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ServicesByServiceIdDomains"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ServicesByServiceIdDomains"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ServicesByServiceIdDeployments"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ServicesByServiceIdDeployments"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranches"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ProjectsByProjectIdBranches"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1BranchesByBranchId"
-        },
-        {
-          "target": "com.prisma.postgres#PatchV1BranchesByBranchId"
-        },
-        {
           "target": "com.prisma.postgres#DeleteV1BranchesByBranchId"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1Buckets"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1Buckets"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1BucketsByBucketId"
         },
         {
           "target": "com.prisma.postgres#DeleteV1BucketsByBucketId"
         },
         {
-          "target": "com.prisma.postgres#GetV1BucketsByBucketIdKeys"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1BucketsByBucketIdKeys"
-        },
-        {
           "target": "com.prisma.postgres#DeleteV1BucketsByBucketIdKeysByKeyId"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1Builds"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1Builds"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1BuildsByBuildId"
-        },
-        {
-          "target": "com.prisma.postgres#PatchV1BuildsByBuildId"
-        },
-        {
-          "target": "com.prisma.postgres#PutV1BuildsByBuildIdResourcesByResourceTypeByResourceId"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1BuildsByBuildIdLogs"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1DomainsByDomainId"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1DomainsByDomainId"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1DomainsByDomainIdRetry"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1Connections"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1Connections"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ConnectionsById"
         },
         {
           "target": "com.prisma.postgres#DeleteV1ConnectionsById"
         },
         {
-          "target": "com.prisma.postgres#RotatePostV1ConnectionById"
+          "target": "com.prisma.postgres#DeleteV1DatabasesByDatabaseId"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1DeploymentsByDeploymentId"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1DomainsByDomainId"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1EnvironmentVariablesByEnvVarId"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1IntegrationsById"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1ProjectsById"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStack"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1ServicesByServiceId"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1SourceRepositoriesById"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientId"
+        },
+        {
+          "target": "com.prisma.postgres#DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenId"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1BranchesByBranchId"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1Buckets"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1BucketsByBucketId"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1BucketsByBucketIdKeys"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1Builds"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1BuildsByBuildId"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1BuildsByBuildIdLogs"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1Connections"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ConnectionsById"
         },
         {
           "target": "com.prisma.postgres#GetV1Databases"
         },
         {
-          "target": "com.prisma.postgres#PostV1Databases"
-        },
-        {
           "target": "com.prisma.postgres#GetV1DatabasesByDatabaseId"
-        },
-        {
-          "target": "com.prisma.postgres#PatchV1DatabasesByDatabaseId"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1DatabasesByDatabaseId"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdConnections"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1DatabasesByDatabaseIdConnections"
         },
         {
           "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdBackups"
         },
         {
-          "target": "com.prisma.postgres#RestorePostV1DatabaseByTargetDatabaseId"
+          "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdConnections"
         },
         {
           "target": "com.prisma.postgres#GetV1DatabasesByDatabaseIdUsage"
@@ -19505,103 +19444,16 @@
           "target": "com.prisma.postgres#GetV1DeploymentsByDeploymentId"
         },
         {
-          "target": "com.prisma.postgres#DeleteV1DeploymentsByDeploymentId"
-        },
-        {
-          "target": "com.prisma.postgres#StartPostV1DeploymentByDeploymentId"
-        },
-        {
-          "target": "com.prisma.postgres#StopPostV1DeploymentByDeploymentId"
-        },
-        {
           "target": "com.prisma.postgres#GetV1DeploymentsByDeploymentIdLogs"
         },
         {
-          "target": "com.prisma.postgres#GetV1Projects"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1Projects"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsById"
-        },
-        {
-          "target": "com.prisma.postgres#PatchV1ProjectsById"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1ProjectsById"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ProjectsByIdTransfer"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease"
-        },
-        {
-          "target": "com.prisma.postgres#PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersion"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacks"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStages"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResources"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn"
-        },
-        {
-          "target": "com.prisma.postgres#PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResources"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutput"
-        },
-        {
-          "target": "com.prisma.postgres#PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutput"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStack"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopology"
-        },
-        {
-          "target": "com.prisma.postgres#PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopology"
-        },
-        {
-          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdDatabases"
-        },
-        {
-          "target": "com.prisma.postgres#PostV1ProjectsByProjectIdDatabases"
+          "target": "com.prisma.postgres#GetV1DomainsByDomainId"
         },
         {
           "target": "com.prisma.postgres#GetV1EnvironmentVariables"
         },
         {
-          "target": "com.prisma.postgres#PostV1EnvironmentVariables"
-        },
-        {
           "target": "com.prisma.postgres#GetV1EnvironmentVariablesByEnvVarId"
-        },
-        {
-          "target": "com.prisma.postgres#PatchV1EnvironmentVariablesByEnvVarId"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1EnvironmentVariablesByEnvVarId"
         },
         {
           "target": "com.prisma.postgres#GetV1Integrations"
@@ -19610,58 +19462,76 @@
           "target": "com.prisma.postgres#GetV1IntegrationsById"
         },
         {
-          "target": "com.prisma.postgres#DeleteV1IntegrationsById"
-        },
-        {
           "target": "com.prisma.postgres#GetV1Me"
         },
         {
-          "target": "com.prisma.postgres#GetV1WorkspacesByWorkspaceIdIntegrations"
+          "target": "com.prisma.postgres#GetV1Projects"
         },
         {
-          "target": "com.prisma.postgres#DeleteV1WorkspacesByWorkspaceIdIntegrationsByClientId"
+          "target": "com.prisma.postgres#GetV1ProjectsById"
         },
         {
-          "target": "com.prisma.postgres#GetV1WorkspacesByWorkspaceIdServiceTokens"
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranches"
         },
         {
-          "target": "com.prisma.postgres#PostV1WorkspacesByWorkspaceIdServiceTokens"
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacks"
         },
         {
-          "target": "com.prisma.postgres#DeleteV1WorkspacesByWorkspaceIdServiceTokensByServiceTokenId"
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStages"
         },
         {
-          "target": "com.prisma.postgres#PostV1AuthGithubActionsToken"
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutput"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageReplacedResources"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResources"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateVersion"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdBranchesByBranchIdApplicationTopology"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ProjectsByProjectIdDatabases"
         },
         {
           "target": "com.prisma.postgres#GetV1Regions"
         },
         {
-          "target": "com.prisma.postgres#GetV1RegionsPostgres"
+          "target": "com.prisma.postgres#GetV1RegionsAccelerate"
         },
         {
-          "target": "com.prisma.postgres#GetV1RegionsAccelerate"
+          "target": "com.prisma.postgres#GetV1RegionsPostgres"
         },
         {
           "target": "com.prisma.postgres#GetV1ScmInstallations"
         },
         {
-          "target": "com.prisma.postgres#PostV1ScmInstallationsInstallIntents"
+          "target": "com.prisma.postgres#GetV1ScmInstallationsByInstallationIdRepositories"
         },
         {
-          "target": "com.prisma.postgres#GetV1ScmInstallationsByInstallationIdRepositories"
+          "target": "com.prisma.postgres#GetV1Services"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ServicesByServiceId"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ServicesByServiceIdDeployments"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1ServicesByServiceIdDomains"
         },
         {
           "target": "com.prisma.postgres#GetV1SourceRepositories"
         },
         {
-          "target": "com.prisma.postgres#PostV1SourceRepositories"
-        },
-        {
           "target": "com.prisma.postgres#GetV1SourceRepositoriesById"
-        },
-        {
-          "target": "com.prisma.postgres#DeleteV1SourceRepositoriesById"
         },
         {
           "target": "com.prisma.postgres#GetV1Workspaces"
@@ -19671,6 +19541,123 @@
         },
         {
           "target": "com.prisma.postgres#GetV1WorkspacesByIdSubscription"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1WorkspacesByWorkspaceIdIntegrations"
+        },
+        {
+          "target": "com.prisma.postgres#GetV1WorkspacesByWorkspaceIdServiceTokens"
+        },
+        {
+          "target": "com.prisma.postgres#PatchV1BranchesByBranchId"
+        },
+        {
+          "target": "com.prisma.postgres#PatchV1BuildsByBuildId"
+        },
+        {
+          "target": "com.prisma.postgres#PatchV1DatabasesByDatabaseId"
+        },
+        {
+          "target": "com.prisma.postgres#PatchV1EnvironmentVariablesByEnvVarId"
+        },
+        {
+          "target": "com.prisma.postgres#PatchV1ProjectsById"
+        },
+        {
+          "target": "com.prisma.postgres#PatchV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease"
+        },
+        {
+          "target": "com.prisma.postgres#PatchV1ServicesByServiceId"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1AuthGithubActionsToken"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1Buckets"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1BucketsByBucketIdKeys"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1Builds"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1Connections"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ConnectionsByIdRotate"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1Databases"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1DatabasesByDatabaseIdConnections"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1DatabasesByTargetDatabaseIdRestore"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStart"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1DeploymentsByDeploymentIdStop"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1DomainsByDomainIdRetry"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1EnvironmentVariables"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1Projects"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ProjectsByIdTransfer"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ProjectsByProjectIdBranches"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateLease"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ProjectsByProjectIdDatabases"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ScmInstallationsInstallIntents"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1Services"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ServicesByServiceIdDeployments"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ServicesByServiceIdDomains"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ServicesByServiceIdPromote"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1ServicesByServiceIdRollback"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1SourceRepositories"
+        },
+        {
+          "target": "com.prisma.postgres#PostV1WorkspacesByWorkspaceIdServiceTokens"
+        },
+        {
+          "target": "com.prisma.postgres#PutV1BuildsByBuildIdResourcesByResourceTypeByResourceId"
+        },
+        {
+          "target": "com.prisma.postgres#PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageOutput"
+        },
+        {
+          "target": "com.prisma.postgres#PutV1ProjectsByProjectIdBranchesByBranchIdAlchemyStateStateStacksByStackStagesByStageResourcesByFqn"
+        },
+        {
+          "target": "com.prisma.postgres#PutV1ProjectsByProjectIdBranchesByBranchIdApplicationTopology"
         }
       ],
       "traits": {

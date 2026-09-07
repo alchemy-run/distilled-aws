@@ -61,19 +61,17 @@ export const CheckNameAvailabilityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckNameAvailabilityResponse>;
 
 /** Resource tags. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
+) as any as S.Schema<CreateAccountRequestTagsMap>;
 
 /** Whether or not public network access is allowed for the account. */
-export type AccountsCreateRequestPropertiesPublicNetworkAccess =
+export type CreateAccountRequestPropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const AccountsCreateRequestPropertiesPublicNetworkAccess =
+export const CreateAccountRequestPropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The Private Endpoint resource. */
@@ -141,30 +139,30 @@ export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
 
 /** The Private Endpoint Connection resource. */
-export interface AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem {
+export interface CreateAccountRequestPropertiesPrivateEndpointConnectionsItem {
   /** Resource properties. */
   properties: PrivateEndpointConnectionPropertiesInput;
 }
-export const AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem =
+export const CreateAccountRequestPropertiesPrivateEndpointConnectionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       properties: PrivateEndpointConnectionPropertiesInput,
     }),
   ).annotate({
-    identifier: "AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem",
-  }) as any as S.Schema<AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem>;
+    identifier: "CreateAccountRequestPropertiesPrivateEndpointConnectionsItem",
+  }) as any as S.Schema<CreateAccountRequestPropertiesPrivateEndpointConnectionsItem>;
 
 /** List of private endpoint connections associated with the account. */
-export type AccountsCreateRequestPropertiesPrivateEndpointConnectionsList =
-  Array<AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem>;
-export const AccountsCreateRequestPropertiesPrivateEndpointConnectionsList =
+export type CreateAccountRequestPropertiesPrivateEndpointConnectionsList =
+  Array<CreateAccountRequestPropertiesPrivateEndpointConnectionsItem>;
+export const CreateAccountRequestPropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<AccountsCreateRequestPropertiesPrivateEndpointConnectionsList>;
+    CreateAccountRequestPropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<CreateAccountRequestPropertiesPrivateEndpointConnectionsList>;
 
 /** Device Update Sku */
-export type AccountsCreateRequestPropertiesSku = "Free" | "Standard";
-export const AccountsCreateRequestPropertiesSku = /*@__PURE__*/ S.String;
+export type CreateAccountRequestPropertiesSku = "Free" | "Standard";
+export const CreateAccountRequestPropertiesSku = /*@__PURE__*/ S.String;
 
 /** The CMK encryption settings on the Device Update account. */
 export interface Encryption {
@@ -181,32 +179,32 @@ export const Encryption = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Encryption" }) as any as S.Schema<Encryption>;
 
 /** Device Update account properties. */
-export interface AccountsCreateRequestProperties {
+export interface CreateAccountRequestProperties {
   /** Whether or not public network access is allowed for the account. */
   publicNetworkAccess?:
-    | AccountsCreateRequestPropertiesPublicNetworkAccess
+    | CreateAccountRequestPropertiesPublicNetworkAccess
     | (string & {});
   /** List of private endpoint connections associated with the account. */
-  privateEndpointConnections?: AccountsCreateRequestPropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: CreateAccountRequestPropertiesPrivateEndpointConnectionsList;
   /** Device Update Sku */
-  sku?: AccountsCreateRequestPropertiesSku | (string & {});
+  sku?: CreateAccountRequestPropertiesSku | (string & {});
   /** CMK encryption at rest properties */
   encryption?: Encryption;
 }
-export const AccountsCreateRequestProperties = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountRequestProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     publicNetworkAccess: S.optional(
-      AccountsCreateRequestPropertiesPublicNetworkAccess,
+      CreateAccountRequestPropertiesPublicNetworkAccess,
     ),
     privateEndpointConnections: S.optional(
-      AccountsCreateRequestPropertiesPrivateEndpointConnectionsList,
+      CreateAccountRequestPropertiesPrivateEndpointConnectionsList,
     ),
-    sku: S.optional(AccountsCreateRequestPropertiesSku),
+    sku: S.optional(CreateAccountRequestPropertiesSku),
     encryption: S.optional(Encryption),
   }),
 ).annotate({
-  identifier: "AccountsCreateRequestProperties",
-}) as any as S.Schema<AccountsCreateRequestProperties>;
+  identifier: "CreateAccountRequestProperties",
+}) as any as S.Schema<CreateAccountRequestProperties>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType =
@@ -230,18 +228,18 @@ export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentitiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AccountsCreateRequestIdentity {
+export interface CreateAccountRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   userAssignedIdentities?: UserAssignedIdentitiesInput | null;
 }
-export const AccountsCreateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(S.NullOr(UserAssignedIdentitiesInput)),
   }),
 ).annotate({
-  identifier: "AccountsCreateRequestIdentity",
-}) as any as S.Schema<AccountsCreateRequestIdentity>;
+  identifier: "CreateAccountRequestIdentity",
+}) as any as S.Schema<CreateAccountRequestIdentity>;
 
 export interface CreateAccountRequest {
   /** The Azure subscription ID. */
@@ -251,23 +249,23 @@ export interface CreateAccountRequest {
   /** Account name. */
   accountName: string;
   /** Resource tags. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update account properties. */
-  properties?: AccountsCreateRequestProperties;
+  properties?: CreateAccountRequestProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateRequestIdentity;
+  identity?: CreateAccountRequestIdentity;
 }
 export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     location: S.String,
-    properties: S.optional(AccountsCreateRequestProperties),
-    identity: S.optional(AccountsCreateRequestIdentity),
+    properties: S.optional(CreateAccountRequestProperties),
+    identity: S.optional(CreateAccountRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -323,30 +321,30 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** Provisioning state. */
-export type AccountsCreateResponsePropertiesProvisioningState =
+export type CreateAccountResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Deleted"
   | "Failed"
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const AccountsCreateResponsePropertiesProvisioningState =
+export const CreateAccountResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** Whether or not public network access is allowed for the account. */
-export type AccountsCreateResponsePropertiesPublicNetworkAccess =
+export type CreateAccountResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const AccountsCreateResponsePropertiesPublicNetworkAccess =
+export const CreateAccountResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The Private Endpoint resource. */
@@ -401,7 +399,7 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
 /** The Private Endpoint Connection resource. */
-export interface AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem {
+export interface CreateAccountResponsePropertiesPrivateEndpointConnectionsItem {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -413,7 +411,7 @@ export interface AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem 
   /** Resource properties. */
   properties: PrivateEndpointConnectionProperties;
 }
-export const AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem =
+export const CreateAccountResponsePropertiesPrivateEndpointConnectionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -423,21 +421,20 @@ export const AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem =
       properties: PrivateEndpointConnectionProperties,
     }),
   ).annotate({
-    identifier:
-      "AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem",
-  }) as any as S.Schema<AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem>;
+    identifier: "CreateAccountResponsePropertiesPrivateEndpointConnectionsItem",
+  }) as any as S.Schema<CreateAccountResponsePropertiesPrivateEndpointConnectionsItem>;
 
 /** List of private endpoint connections associated with the account. */
-export type AccountsCreateResponsePropertiesPrivateEndpointConnectionsList =
-  Array<AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem>;
-export const AccountsCreateResponsePropertiesPrivateEndpointConnectionsList =
+export type CreateAccountResponsePropertiesPrivateEndpointConnectionsList =
+  Array<CreateAccountResponsePropertiesPrivateEndpointConnectionsItem>;
+export const CreateAccountResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<AccountsCreateResponsePropertiesPrivateEndpointConnectionsList>;
+    CreateAccountResponsePropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<CreateAccountResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Device Update Sku */
-export type AccountsCreateResponsePropertiesSku = "Free" | "Standard";
-export const AccountsCreateResponsePropertiesSku = /*@__PURE__*/ S.String;
+export type CreateAccountResponsePropertiesSku = "Free" | "Standard";
+export const CreateAccountResponsePropertiesSku = /*@__PURE__*/ S.String;
 
 /** Whether the location is primary or failover */
 export type LocationRole = "Primary" | "Failover";
@@ -456,48 +453,48 @@ export const Location = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
 /** Device Update account primary and failover location details */
-export type AccountsCreateResponsePropertiesLocationsList = Array<Location>;
-export const AccountsCreateResponsePropertiesLocationsList =
+export type CreateAccountResponsePropertiesLocationsList = Array<Location>;
+export const CreateAccountResponsePropertiesLocationsList =
   /*@__PURE__*/ S.Array(
     Location,
-  ) as any as S.Schema<AccountsCreateResponsePropertiesLocationsList>;
+  ) as any as S.Schema<CreateAccountResponsePropertiesLocationsList>;
 
 /** Device Update account properties. */
-export interface AccountsCreateResponseProperties {
+export interface CreateAccountResponseProperties {
   /** Provisioning state. */
-  provisioningState?: AccountsCreateResponsePropertiesProvisioningState;
+  provisioningState?: CreateAccountResponsePropertiesProvisioningState;
   /** API host name. */
   hostName?: string;
   /** Whether or not public network access is allowed for the account. */
-  publicNetworkAccess?: AccountsCreateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: CreateAccountResponsePropertiesPublicNetworkAccess;
   /** List of private endpoint connections associated with the account. */
-  privateEndpointConnections?: AccountsCreateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: CreateAccountResponsePropertiesPrivateEndpointConnectionsList;
   /** Device Update Sku */
-  sku?: AccountsCreateResponsePropertiesSku;
+  sku?: CreateAccountResponsePropertiesSku;
   /** CMK encryption at rest properties */
   encryption?: Encryption;
   /** Device Update account primary and failover location details */
-  locations?: AccountsCreateResponsePropertiesLocationsList;
+  locations?: CreateAccountResponsePropertiesLocationsList;
 }
-export const AccountsCreateResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(
-      AccountsCreateResponsePropertiesProvisioningState,
+      CreateAccountResponsePropertiesProvisioningState,
     ),
     hostName: S.optional(S.String),
     publicNetworkAccess: S.optional(
-      AccountsCreateResponsePropertiesPublicNetworkAccess,
+      CreateAccountResponsePropertiesPublicNetworkAccess,
     ),
     privateEndpointConnections: S.optional(
-      AccountsCreateResponsePropertiesPrivateEndpointConnectionsList,
+      CreateAccountResponsePropertiesPrivateEndpointConnectionsList,
     ),
-    sku: S.optional(AccountsCreateResponsePropertiesSku),
+    sku: S.optional(CreateAccountResponsePropertiesSku),
     encryption: S.optional(Encryption),
-    locations: S.optional(AccountsCreateResponsePropertiesLocationsList),
+    locations: S.optional(CreateAccountResponsePropertiesLocationsList),
   }),
 ).annotate({
-  identifier: "AccountsCreateResponseProperties",
-}) as any as S.Schema<AccountsCreateResponseProperties>;
+  identifier: "CreateAccountResponseProperties",
+}) as any as S.Schema<CreateAccountResponseProperties>;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -525,7 +522,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface AccountsCreateResponseIdentity {
+export interface CreateAccountResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -533,7 +530,7 @@ export interface AccountsCreateResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities | null;
 }
-export const AccountsCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -541,8 +538,8 @@ export const AccountsCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(S.NullOr(UserAssignedIdentities)),
   }),
 ).annotate({
-  identifier: "AccountsCreateResponseIdentity",
-}) as any as S.Schema<AccountsCreateResponseIdentity>;
+  identifier: "CreateAccountResponseIdentity",
+}) as any as S.Schema<CreateAccountResponseIdentity>;
 
 export interface CreateAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -554,13 +551,13 @@ export interface CreateAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update account properties. */
-  properties?: AccountsCreateResponseProperties;
+  properties?: CreateAccountResponseProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateResponseIdentity;
+  identity?: CreateAccountResponseIdentity;
 }
 export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -568,23 +565,23 @@ export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     location: S.String,
-    properties: S.optional(AccountsCreateResponseProperties),
-    identity: S.optional(AccountsCreateResponseIdentity),
+    properties: S.optional(CreateAccountResponseProperties),
+    identity: S.optional(CreateAccountResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateAccountResponse",
 }) as any as S.Schema<CreateAccountResponse>;
 
 /** Resource tags. */
-export type InstancesCreateRequestTagsMap = {
+export type CreateInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const InstancesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateInstanceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesCreateRequestTagsMap>;
+) as any as S.Schema<CreateInstanceRequestTagsMap>;
 
 /** Device Update account integration with IoT Hub settings. */
 export interface IotHubSettings {
@@ -598,11 +595,10 @@ export const IotHubSettings = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IotHubSettings" }) as any as S.Schema<IotHubSettings>;
 
 /** List of IoT Hubs associated with the account. */
-export type InstancesCreateRequestPropertiesIotHubsList = Array<IotHubSettings>;
-export const InstancesCreateRequestPropertiesIotHubsList =
-  /*@__PURE__*/ S.Array(
-    IotHubSettings,
-  ) as any as S.Schema<InstancesCreateRequestPropertiesIotHubsList>;
+export type CreateInstanceRequestPropertiesIotHubsList = Array<IotHubSettings>;
+export const CreateInstanceRequestPropertiesIotHubsList = /*@__PURE__*/ S.Array(
+  IotHubSettings,
+) as any as S.Schema<CreateInstanceRequestPropertiesIotHubsList>;
 
 /** Authentication Type */
 export type DiagnosticStoragePropertiesAuthenticationType = "KeyBased";
@@ -631,22 +627,22 @@ export const DiagnosticStorageProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DiagnosticStorageProperties>;
 
 /** Device Update instance properties. */
-export interface InstancesCreateRequestProperties {
+export interface CreateInstanceRequestProperties {
   /** List of IoT Hubs associated with the account. */
-  iotHubs?: InstancesCreateRequestPropertiesIotHubsList;
+  iotHubs?: CreateInstanceRequestPropertiesIotHubsList;
   /** Enables or Disables the diagnostic logs collection */
   enableDiagnostics?: boolean;
   diagnosticStorageProperties?: DiagnosticStorageProperties;
 }
-export const InstancesCreateRequestProperties = /*@__PURE__*/ S.suspend(() =>
+export const CreateInstanceRequestProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    iotHubs: S.optional(InstancesCreateRequestPropertiesIotHubsList),
+    iotHubs: S.optional(CreateInstanceRequestPropertiesIotHubsList),
     enableDiagnostics: S.optional(S.Boolean),
     diagnosticStorageProperties: S.optional(DiagnosticStorageProperties),
   }),
 ).annotate({
-  identifier: "InstancesCreateRequestProperties",
-}) as any as S.Schema<InstancesCreateRequestProperties>;
+  identifier: "CreateInstanceRequestProperties",
+}) as any as S.Schema<CreateInstanceRequestProperties>;
 
 export interface CreateInstanceRequest {
   /** The Azure subscription ID. */
@@ -658,11 +654,11 @@ export interface CreateInstanceRequest {
   /** Instance name. */
   instanceName: string;
   /** Resource tags. */
-  tags?: InstancesCreateRequestTagsMap;
+  tags?: CreateInstanceRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update instance properties. */
-  properties: InstancesCreateRequestProperties;
+  properties: CreateInstanceRequestProperties;
 }
 export const CreateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -670,9 +666,9 @@ export const CreateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     instanceName: S.String.pipe(T.Label()),
-    tags: S.optional(InstancesCreateRequestTagsMap),
+    tags: S.optional(CreateInstanceRequestTagsMap),
     location: S.String,
-    properties: InstancesCreateRequestProperties,
+    properties: CreateInstanceRequestProperties,
   }).pipe(
     T.Http({
       method: "PUT",
@@ -686,58 +682,57 @@ export const CreateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateInstanceRequest>;
 
 /** Resource tags. */
-export type InstancesCreateResponseTagsMap = {
+export type CreateInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InstancesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesCreateResponseTagsMap>;
+) as any as S.Schema<CreateInstanceResponseTagsMap>;
 
 /** Provisioning state. */
-export type InstancesCreateResponsePropertiesProvisioningState =
+export type CreateInstanceResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Deleted"
   | "Failed"
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const InstancesCreateResponsePropertiesProvisioningState =
+export const CreateInstanceResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** List of IoT Hubs associated with the account. */
-export type InstancesCreateResponsePropertiesIotHubsList =
-  Array<IotHubSettings>;
-export const InstancesCreateResponsePropertiesIotHubsList =
+export type CreateInstanceResponsePropertiesIotHubsList = Array<IotHubSettings>;
+export const CreateInstanceResponsePropertiesIotHubsList =
   /*@__PURE__*/ S.Array(
     IotHubSettings,
-  ) as any as S.Schema<InstancesCreateResponsePropertiesIotHubsList>;
+  ) as any as S.Schema<CreateInstanceResponsePropertiesIotHubsList>;
 
 /** Device Update instance properties. */
-export interface InstancesCreateResponseProperties {
+export interface CreateInstanceResponseProperties {
   /** Provisioning state. */
-  provisioningState?: InstancesCreateResponsePropertiesProvisioningState;
+  provisioningState?: CreateInstanceResponsePropertiesProvisioningState;
   /** Parent Device Update Account name which Instance belongs to. */
   accountName?: string;
   /** List of IoT Hubs associated with the account. */
-  iotHubs?: InstancesCreateResponsePropertiesIotHubsList;
+  iotHubs?: CreateInstanceResponsePropertiesIotHubsList;
   /** Enables or Disables the diagnostic logs collection */
   enableDiagnostics?: boolean;
   diagnosticStorageProperties?: DiagnosticStorageProperties;
 }
-export const InstancesCreateResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const CreateInstanceResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(
-      InstancesCreateResponsePropertiesProvisioningState,
+      CreateInstanceResponsePropertiesProvisioningState,
     ),
     accountName: S.optional(S.String),
-    iotHubs: S.optional(InstancesCreateResponsePropertiesIotHubsList),
+    iotHubs: S.optional(CreateInstanceResponsePropertiesIotHubsList),
     enableDiagnostics: S.optional(S.Boolean),
     diagnosticStorageProperties: S.optional(DiagnosticStorageProperties),
   }),
 ).annotate({
-  identifier: "InstancesCreateResponseProperties",
-}) as any as S.Schema<InstancesCreateResponseProperties>;
+  identifier: "CreateInstanceResponseProperties",
+}) as any as S.Schema<CreateInstanceResponseProperties>;
 
 export interface CreateInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -749,11 +744,11 @@ export interface CreateInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InstancesCreateResponseTagsMap;
+  tags?: CreateInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update instance properties. */
-  properties: InstancesCreateResponseProperties;
+  properties: CreateInstanceResponseProperties;
 }
 export const CreateInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -761,9 +756,9 @@ export const CreateInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InstancesCreateResponseTagsMap),
+    tags: S.optional(CreateInstanceResponseTagsMap),
     location: S.String,
-    properties: InstancesCreateResponseProperties,
+    properties: CreateInstanceResponseProperties,
   }),
 ).annotate({
   identifier: "CreateInstanceResponse",
@@ -933,94 +928,94 @@ export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 /** Provisioning state. */
-export type AccountsGetResponsePropertiesProvisioningState =
+export type GetAccountResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Deleted"
   | "Failed"
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const AccountsGetResponsePropertiesProvisioningState =
+export const GetAccountResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** Whether or not public network access is allowed for the account. */
-export type AccountsGetResponsePropertiesPublicNetworkAccess =
+export type GetAccountResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const AccountsGetResponsePropertiesPublicNetworkAccess =
+export const GetAccountResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The Private Endpoint Connection resource. */
-export type AccountsGetResponsePropertiesPrivateEndpointConnectionsItem =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
-export const AccountsGetResponsePropertiesPrivateEndpointConnectionsItem =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
+export type GetAccountResponsePropertiesPrivateEndpointConnectionsItem =
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
+export const GetAccountResponsePropertiesPrivateEndpointConnectionsItem =
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
 
 /** List of private endpoint connections associated with the account. */
-export type AccountsGetResponsePropertiesPrivateEndpointConnectionsList =
-  Array<AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem>;
-export const AccountsGetResponsePropertiesPrivateEndpointConnectionsList =
+export type GetAccountResponsePropertiesPrivateEndpointConnectionsList =
+  Array<CreateAccountResponsePropertiesPrivateEndpointConnectionsItem>;
+export const GetAccountResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<AccountsGetResponsePropertiesPrivateEndpointConnectionsList>;
+    CreateAccountResponsePropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<GetAccountResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Device Update Sku */
-export type AccountsGetResponsePropertiesSku = "Free" | "Standard";
-export const AccountsGetResponsePropertiesSku = /*@__PURE__*/ S.String;
+export type GetAccountResponsePropertiesSku = "Free" | "Standard";
+export const GetAccountResponsePropertiesSku = /*@__PURE__*/ S.String;
 
 /** Device Update account primary and failover location details */
-export type AccountsGetResponsePropertiesLocationsList = Array<Location>;
-export const AccountsGetResponsePropertiesLocationsList = /*@__PURE__*/ S.Array(
+export type GetAccountResponsePropertiesLocationsList = Array<Location>;
+export const GetAccountResponsePropertiesLocationsList = /*@__PURE__*/ S.Array(
   Location,
-) as any as S.Schema<AccountsGetResponsePropertiesLocationsList>;
+) as any as S.Schema<GetAccountResponsePropertiesLocationsList>;
 
 /** Device Update account properties. */
-export interface AccountsGetResponseProperties {
+export interface GetAccountResponseProperties {
   /** Provisioning state. */
-  provisioningState?: AccountsGetResponsePropertiesProvisioningState;
+  provisioningState?: GetAccountResponsePropertiesProvisioningState;
   /** API host name. */
   hostName?: string;
   /** Whether or not public network access is allowed for the account. */
-  publicNetworkAccess?: AccountsGetResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: GetAccountResponsePropertiesPublicNetworkAccess;
   /** List of private endpoint connections associated with the account. */
-  privateEndpointConnections?: AccountsGetResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: GetAccountResponsePropertiesPrivateEndpointConnectionsList;
   /** Device Update Sku */
-  sku?: AccountsGetResponsePropertiesSku;
+  sku?: GetAccountResponsePropertiesSku;
   /** CMK encryption at rest properties */
   encryption?: Encryption;
   /** Device Update account primary and failover location details */
-  locations?: AccountsGetResponsePropertiesLocationsList;
+  locations?: GetAccountResponsePropertiesLocationsList;
 }
-export const AccountsGetResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(
-      AccountsGetResponsePropertiesProvisioningState,
+      GetAccountResponsePropertiesProvisioningState,
     ),
     hostName: S.optional(S.String),
     publicNetworkAccess: S.optional(
-      AccountsGetResponsePropertiesPublicNetworkAccess,
+      GetAccountResponsePropertiesPublicNetworkAccess,
     ),
     privateEndpointConnections: S.optional(
-      AccountsGetResponsePropertiesPrivateEndpointConnectionsList,
+      GetAccountResponsePropertiesPrivateEndpointConnectionsList,
     ),
-    sku: S.optional(AccountsGetResponsePropertiesSku),
+    sku: S.optional(GetAccountResponsePropertiesSku),
     encryption: S.optional(Encryption),
-    locations: S.optional(AccountsGetResponsePropertiesLocationsList),
+    locations: S.optional(GetAccountResponsePropertiesLocationsList),
   }),
 ).annotate({
-  identifier: "AccountsGetResponseProperties",
-}) as any as S.Schema<AccountsGetResponseProperties>;
+  identifier: "GetAccountResponseProperties",
+}) as any as S.Schema<GetAccountResponseProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsGetResponseIdentity = AccountsCreateResponseIdentity;
-export const AccountsGetResponseIdentity = AccountsCreateResponseIdentity;
+export type GetAccountResponseIdentity = CreateAccountResponseIdentity;
+export const GetAccountResponseIdentity = CreateAccountResponseIdentity;
 
 export interface GetAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1032,13 +1027,13 @@ export interface GetAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update account properties. */
-  properties?: AccountsGetResponseProperties;
+  properties?: GetAccountResponseProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateResponseIdentity;
+  identity?: CreateAccountResponseIdentity;
 }
 export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1046,10 +1041,10 @@ export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     location: S.String,
-    properties: S.optional(AccountsGetResponseProperties),
-    identity: S.optional(AccountsCreateResponseIdentity),
+    properties: S.optional(GetAccountResponseProperties),
+    identity: S.optional(CreateAccountResponseIdentity),
   }),
 ).annotate({
   identifier: "GetAccountResponse",
@@ -1084,54 +1079,54 @@ export const GetInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetInstanceRequest>;
 
 /** Resource tags. */
-export type InstancesGetResponseTagsMap = { [key: string]: string | undefined };
-export const InstancesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetInstanceResponseTagsMap = { [key: string]: string | undefined };
+export const GetInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesGetResponseTagsMap>;
+) as any as S.Schema<GetInstanceResponseTagsMap>;
 
 /** Provisioning state. */
-export type InstancesGetResponsePropertiesProvisioningState =
+export type GetInstanceResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Deleted"
   | "Failed"
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const InstancesGetResponsePropertiesProvisioningState =
+export const GetInstanceResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** List of IoT Hubs associated with the account. */
-export type InstancesGetResponsePropertiesIotHubsList = Array<IotHubSettings>;
-export const InstancesGetResponsePropertiesIotHubsList = /*@__PURE__*/ S.Array(
+export type GetInstanceResponsePropertiesIotHubsList = Array<IotHubSettings>;
+export const GetInstanceResponsePropertiesIotHubsList = /*@__PURE__*/ S.Array(
   IotHubSettings,
-) as any as S.Schema<InstancesGetResponsePropertiesIotHubsList>;
+) as any as S.Schema<GetInstanceResponsePropertiesIotHubsList>;
 
 /** Device Update instance properties. */
-export interface InstancesGetResponseProperties {
+export interface GetInstanceResponseProperties {
   /** Provisioning state. */
-  provisioningState?: InstancesGetResponsePropertiesProvisioningState;
+  provisioningState?: GetInstanceResponsePropertiesProvisioningState;
   /** Parent Device Update Account name which Instance belongs to. */
   accountName?: string;
   /** List of IoT Hubs associated with the account. */
-  iotHubs?: InstancesGetResponsePropertiesIotHubsList;
+  iotHubs?: GetInstanceResponsePropertiesIotHubsList;
   /** Enables or Disables the diagnostic logs collection */
   enableDiagnostics?: boolean;
   diagnosticStorageProperties?: DiagnosticStorageProperties;
 }
-export const InstancesGetResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const GetInstanceResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(
-      InstancesGetResponsePropertiesProvisioningState,
+      GetInstanceResponsePropertiesProvisioningState,
     ),
     accountName: S.optional(S.String),
-    iotHubs: S.optional(InstancesGetResponsePropertiesIotHubsList),
+    iotHubs: S.optional(GetInstanceResponsePropertiesIotHubsList),
     enableDiagnostics: S.optional(S.Boolean),
     diagnosticStorageProperties: S.optional(DiagnosticStorageProperties),
   }),
 ).annotate({
-  identifier: "InstancesGetResponseProperties",
-}) as any as S.Schema<InstancesGetResponseProperties>;
+  identifier: "GetInstanceResponseProperties",
+}) as any as S.Schema<GetInstanceResponseProperties>;
 
 export interface GetInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1143,11 +1138,11 @@ export interface GetInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InstancesGetResponseTagsMap;
+  tags?: GetInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update instance properties. */
-  properties: InstancesGetResponseProperties;
+  properties: GetInstanceResponseProperties;
 }
 export const GetInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1155,9 +1150,9 @@ export const GetInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InstancesGetResponseTagsMap),
+    tags: S.optional(GetInstanceResponseTagsMap),
     location: S.String,
-    properties: InstancesGetResponseProperties,
+    properties: GetInstanceResponseProperties,
   }),
 ).annotate({
   identifier: "GetInstanceResponse",
@@ -1487,11 +1482,11 @@ export const PrivateEndpointConnectionProxyProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** Private endpoint connection proxy object property bag. */
-export interface PrivateEndpointConnectionProxiesGetResponseProperties {
+export interface GetPrivateEndpointConnectionProxyResponseProperties {
   /** The provisioning state of the private endpoint connection proxy resource. */
   provisioningState?: PrivateEndpointConnectionProxyProvisioningState;
 }
-export const PrivateEndpointConnectionProxiesGetResponseProperties =
+export const GetPrivateEndpointConnectionProxyResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       provisioningState: S.optional(
@@ -1499,8 +1494,8 @@ export const PrivateEndpointConnectionProxiesGetResponseProperties =
       ),
     }),
   ).annotate({
-    identifier: "PrivateEndpointConnectionProxiesGetResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionProxiesGetResponseProperties>;
+    identifier: "GetPrivateEndpointConnectionProxyResponseProperties",
+  }) as any as S.Schema<GetPrivateEndpointConnectionProxyResponseProperties>;
 
 export interface GetPrivateEndpointConnectionProxyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1518,7 +1513,7 @@ export interface GetPrivateEndpointConnectionProxyResponse {
   /** Operation status. */
   status?: string;
   /** Private endpoint connection proxy object property bag. */
-  properties?: PrivateEndpointConnectionProxiesGetResponseProperties;
+  properties?: GetPrivateEndpointConnectionProxyResponseProperties;
 }
 export const GetPrivateEndpointConnectionProxyResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -1531,7 +1526,7 @@ export const GetPrivateEndpointConnectionProxyResponse =
       remotePrivateEndpoint: S.optional(RemotePrivateEndpoint),
       status: S.optional(S.String),
       properties: S.optional(
-        PrivateEndpointConnectionProxiesGetResponseProperties,
+        GetPrivateEndpointConnectionProxyResponseProperties,
       ),
     }),
   ).annotate({
@@ -1681,16 +1676,16 @@ export const AccountPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
 
 /** The Private Endpoint Connection resource. */
 export type AccountPropertiesPrivateEndpointConnectionsItem =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
 export const AccountPropertiesPrivateEndpointConnectionsItem =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
 
 /** List of private endpoint connections associated with the account. */
 export type AccountPropertiesPrivateEndpointConnectionsList =
-  Array<AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem>;
+  Array<CreateAccountResponsePropertiesPrivateEndpointConnectionsItem>;
 export const AccountPropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem,
+    CreateAccountResponsePropertiesPrivateEndpointConnectionsItem,
   ) as any as S.Schema<AccountPropertiesPrivateEndpointConnectionsList>;
 
 /** Device Update Sku */
@@ -1737,8 +1732,8 @@ export const AccountProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountIdentity = AccountsCreateResponseIdentity;
-export const AccountIdentity = AccountsCreateResponseIdentity;
+export type AccountIdentity = CreateAccountResponseIdentity;
+export const AccountIdentity = CreateAccountResponseIdentity;
 
 /** Device Update account details. */
 export interface Account {
@@ -1757,7 +1752,7 @@ export interface Account {
   /** Device Update account properties. */
   properties?: AccountProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateResponseIdentity;
+  identity?: CreateAccountResponseIdentity;
 }
 export const Account = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1768,7 +1763,7 @@ export const Account = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(AccountTagsMap),
     location: S.String,
     properties: S.optional(AccountProperties),
-    identity: S.optional(AccountsCreateResponseIdentity),
+    identity: S.optional(CreateAccountResponseIdentity),
   }),
 ).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
 
@@ -2000,20 +1995,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2048,27 +2043,27 @@ export const ListPrivateEndpointConnectionByAccountRequest =
 
 /** The Private Endpoint Connection resource. */
 export type PrivateEndpointConnection =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
 export const PrivateEndpointConnection =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
 
 /** Array of private endpoint connections */
-export type PrivateEndpointConnectionsListByAccountResponseValueList =
-  Array<AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem>;
-export const PrivateEndpointConnectionsListByAccountResponseValueList =
+export type ListPrivateEndpointConnectionByAccountResponseValueList =
+  Array<CreateAccountResponsePropertiesPrivateEndpointConnectionsItem>;
+export const ListPrivateEndpointConnectionByAccountResponseValueList =
   /*@__PURE__*/ S.Array(
-    AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<PrivateEndpointConnectionsListByAccountResponseValueList>;
+    CreateAccountResponsePropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<ListPrivateEndpointConnectionByAccountResponseValueList>;
 
 export interface ListPrivateEndpointConnectionByAccountResponse {
   /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsListByAccountResponseValueList;
+  value?: ListPrivateEndpointConnectionByAccountResponseValueList;
 }
 export const ListPrivateEndpointConnectionByAccountResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       value: S.optional(
-        PrivateEndpointConnectionsListByAccountResponseValueList,
+        ListPrivateEndpointConnectionByAccountResponseValueList,
       ),
     }),
   ).annotate({
@@ -2103,9 +2098,9 @@ export const ListPrivateEndpointConnectionProxyByAccountRequest =
 
 /** Private endpoint connection proxy object property bag. */
 export type PrivateEndpointConnectionProxyProperties =
-  PrivateEndpointConnectionProxiesGetResponseProperties;
+  GetPrivateEndpointConnectionProxyResponseProperties;
 export const PrivateEndpointConnectionProxyProperties =
-  PrivateEndpointConnectionProxiesGetResponseProperties;
+  GetPrivateEndpointConnectionProxyResponseProperties;
 
 /** Private endpoint connection proxy details. */
 export interface PrivateEndpointConnectionProxy {
@@ -2124,7 +2119,7 @@ export interface PrivateEndpointConnectionProxy {
   /** Operation status. */
   status?: string;
   /** Private endpoint connection proxy object property bag. */
-  properties?: PrivateEndpointConnectionProxiesGetResponseProperties;
+  properties?: GetPrivateEndpointConnectionProxyResponseProperties;
 }
 export const PrivateEndpointConnectionProxy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2135,9 +2130,7 @@ export const PrivateEndpointConnectionProxy = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
     remotePrivateEndpoint: S.optional(RemotePrivateEndpoint),
     status: S.optional(S.String),
-    properties: S.optional(
-      PrivateEndpointConnectionProxiesGetResponseProperties,
-    ),
+    properties: S.optional(GetPrivateEndpointConnectionProxyResponseProperties),
   }),
 ).annotate({
   identifier: "PrivateEndpointConnectionProxy",
@@ -2441,9 +2434,9 @@ export const PrivateEndpointConnectionProxiesCreateOrUpdateRequest =
 
 /** Private endpoint connection proxy object property bag. */
 export type PrivateEndpointConnectionProxiesCreateOrUpdateResponseProperties =
-  PrivateEndpointConnectionProxiesGetResponseProperties;
+  GetPrivateEndpointConnectionProxyResponseProperties;
 export const PrivateEndpointConnectionProxiesCreateOrUpdateResponseProperties =
-  PrivateEndpointConnectionProxiesGetResponseProperties;
+  GetPrivateEndpointConnectionProxyResponseProperties;
 
 export interface PrivateEndpointConnectionProxiesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2461,7 +2454,7 @@ export interface PrivateEndpointConnectionProxiesCreateOrUpdateResponse {
   /** Operation status. */
   status?: string;
   /** Private endpoint connection proxy object property bag. */
-  properties?: PrivateEndpointConnectionProxiesGetResponseProperties;
+  properties?: GetPrivateEndpointConnectionProxyResponseProperties;
 }
 export const PrivateEndpointConnectionProxiesCreateOrUpdateResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -2474,62 +2467,12 @@ export const PrivateEndpointConnectionProxiesCreateOrUpdateResponse =
       remotePrivateEndpoint: S.optional(RemotePrivateEndpoint),
       status: S.optional(S.String),
       properties: S.optional(
-        PrivateEndpointConnectionProxiesGetResponseProperties,
+        GetPrivateEndpointConnectionProxyResponseProperties,
       ),
     }),
   ).annotate({
     identifier: "PrivateEndpointConnectionProxiesCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionProxiesCreateOrUpdateResponse>;
-
-/** Private endpoint connection proxy object property bag. */
-export type PrivateEndpointConnectionProxiesValidateRequestProperties =
-  PrivateEndpointInput;
-export const PrivateEndpointConnectionProxiesValidateRequestProperties =
-  PrivateEndpointInput;
-
-export interface PrivateEndpointConnectionProxiesValidateRequest {
-  /** The Azure subscription ID. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** Account name. */
-  accountName: string;
-  /** The ID of the private endpoint connection proxy object. */
-  privateEndpointConnectionProxyId: string;
-  /** Remote private endpoint details. */
-  remotePrivateEndpoint?: RemotePrivateEndpointInput;
-  /** Operation status. */
-  status?: string;
-  /** Private endpoint connection proxy object property bag. */
-  properties?: PrivateEndpointInput;
-}
-export const PrivateEndpointConnectionProxiesValidateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionProxyId: S.String.pipe(T.Label()),
-      remotePrivateEndpoint: S.optional(RemotePrivateEndpointInput),
-      status: S.optional(S.String),
-      properties: S.optional(PrivateEndpointInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies/{privateEndpointConnectionProxyId}/validate",
-        code: 200,
-        apiVersion: "2023-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionProxiesValidateRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionProxiesValidateRequest>;
-
-export interface PrivateEndpointConnectionProxiesValidateResponse {}
-export const PrivateEndpointConnectionProxiesValidateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PrivateEndpointConnectionProxiesValidateResponse",
-  }) as any as S.Schema<PrivateEndpointConnectionProxiesValidateResponse>;
 
 export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
   /** The Azure subscription ID. */
@@ -2589,17 +2532,15 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
 /** List of key value pairs that describe the resource. This will overwrite the existing tags. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsUpdateRequestIdentity = AccountsCreateRequestIdentity;
-export const AccountsUpdateRequestIdentity = AccountsCreateRequestIdentity;
+export type UpdateAccountRequestIdentity = CreateAccountRequestIdentity;
+export const UpdateAccountRequestIdentity = CreateAccountRequestIdentity;
 
 export interface UpdateAccountRequest {
   /** The Azure subscription ID. */
@@ -2609,9 +2550,9 @@ export interface UpdateAccountRequest {
   /** Account name. */
   accountName: string;
   /** List of key value pairs that describe the resource. This will overwrite the existing tags. */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateRequestIdentity;
+  identity?: CreateAccountRequestIdentity;
   /** The geo-location where the resource lives */
   location?: string;
 }
@@ -2620,8 +2561,8 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
-    identity: S.optional(AccountsCreateRequestIdentity),
+    tags: S.optional(UpdateAccountRequestTagsMap),
+    identity: S.optional(CreateAccountRequestIdentity),
     location: S.optional(S.String),
   }).pipe(
     T.Http({
@@ -2636,97 +2577,97 @@ export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAccountRequest>;
 
 /** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
 /** Provisioning state. */
-export type AccountsUpdateResponsePropertiesProvisioningState =
+export type UpdateAccountResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Deleted"
   | "Failed"
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const AccountsUpdateResponsePropertiesProvisioningState =
+export const UpdateAccountResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** Whether or not public network access is allowed for the account. */
-export type AccountsUpdateResponsePropertiesPublicNetworkAccess =
+export type UpdateAccountResponsePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled";
-export const AccountsUpdateResponsePropertiesPublicNetworkAccess =
+export const UpdateAccountResponsePropertiesPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
 /** The Private Endpoint Connection resource. */
-export type AccountsUpdateResponsePropertiesPrivateEndpointConnectionsItem =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
-export const AccountsUpdateResponsePropertiesPrivateEndpointConnectionsItem =
-  AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem;
+export type UpdateAccountResponsePropertiesPrivateEndpointConnectionsItem =
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
+export const UpdateAccountResponsePropertiesPrivateEndpointConnectionsItem =
+  CreateAccountResponsePropertiesPrivateEndpointConnectionsItem;
 
 /** List of private endpoint connections associated with the account. */
-export type AccountsUpdateResponsePropertiesPrivateEndpointConnectionsList =
-  Array<AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem>;
-export const AccountsUpdateResponsePropertiesPrivateEndpointConnectionsList =
+export type UpdateAccountResponsePropertiesPrivateEndpointConnectionsList =
+  Array<CreateAccountResponsePropertiesPrivateEndpointConnectionsItem>;
+export const UpdateAccountResponsePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<AccountsUpdateResponsePropertiesPrivateEndpointConnectionsList>;
+    CreateAccountResponsePropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<UpdateAccountResponsePropertiesPrivateEndpointConnectionsList>;
 
 /** Device Update Sku */
-export type AccountsUpdateResponsePropertiesSku = "Free" | "Standard";
-export const AccountsUpdateResponsePropertiesSku = /*@__PURE__*/ S.String;
+export type UpdateAccountResponsePropertiesSku = "Free" | "Standard";
+export const UpdateAccountResponsePropertiesSku = /*@__PURE__*/ S.String;
 
 /** Device Update account primary and failover location details */
-export type AccountsUpdateResponsePropertiesLocationsList = Array<Location>;
-export const AccountsUpdateResponsePropertiesLocationsList =
+export type UpdateAccountResponsePropertiesLocationsList = Array<Location>;
+export const UpdateAccountResponsePropertiesLocationsList =
   /*@__PURE__*/ S.Array(
     Location,
-  ) as any as S.Schema<AccountsUpdateResponsePropertiesLocationsList>;
+  ) as any as S.Schema<UpdateAccountResponsePropertiesLocationsList>;
 
 /** Device Update account properties. */
-export interface AccountsUpdateResponseProperties {
+export interface UpdateAccountResponseProperties {
   /** Provisioning state. */
-  provisioningState?: AccountsUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdateAccountResponsePropertiesProvisioningState;
   /** API host name. */
   hostName?: string;
   /** Whether or not public network access is allowed for the account. */
-  publicNetworkAccess?: AccountsUpdateResponsePropertiesPublicNetworkAccess;
+  publicNetworkAccess?: UpdateAccountResponsePropertiesPublicNetworkAccess;
   /** List of private endpoint connections associated with the account. */
-  privateEndpointConnections?: AccountsUpdateResponsePropertiesPrivateEndpointConnectionsList;
+  privateEndpointConnections?: UpdateAccountResponsePropertiesPrivateEndpointConnectionsList;
   /** Device Update Sku */
-  sku?: AccountsUpdateResponsePropertiesSku;
+  sku?: UpdateAccountResponsePropertiesSku;
   /** CMK encryption at rest properties */
   encryption?: Encryption;
   /** Device Update account primary and failover location details */
-  locations?: AccountsUpdateResponsePropertiesLocationsList;
+  locations?: UpdateAccountResponsePropertiesLocationsList;
 }
-export const AccountsUpdateResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(
-      AccountsUpdateResponsePropertiesProvisioningState,
+      UpdateAccountResponsePropertiesProvisioningState,
     ),
     hostName: S.optional(S.String),
     publicNetworkAccess: S.optional(
-      AccountsUpdateResponsePropertiesPublicNetworkAccess,
+      UpdateAccountResponsePropertiesPublicNetworkAccess,
     ),
     privateEndpointConnections: S.optional(
-      AccountsUpdateResponsePropertiesPrivateEndpointConnectionsList,
+      UpdateAccountResponsePropertiesPrivateEndpointConnectionsList,
     ),
-    sku: S.optional(AccountsUpdateResponsePropertiesSku),
+    sku: S.optional(UpdateAccountResponsePropertiesSku),
     encryption: S.optional(Encryption),
-    locations: S.optional(AccountsUpdateResponsePropertiesLocationsList),
+    locations: S.optional(UpdateAccountResponsePropertiesLocationsList),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponseProperties",
-}) as any as S.Schema<AccountsUpdateResponseProperties>;
+  identifier: "UpdateAccountResponseProperties",
+}) as any as S.Schema<UpdateAccountResponseProperties>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsUpdateResponseIdentity = AccountsCreateResponseIdentity;
-export const AccountsUpdateResponseIdentity = AccountsCreateResponseIdentity;
+export type UpdateAccountResponseIdentity = CreateAccountResponseIdentity;
+export const UpdateAccountResponseIdentity = CreateAccountResponseIdentity;
 
 export interface UpdateAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2738,13 +2679,13 @@ export interface UpdateAccountResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update account properties. */
-  properties?: AccountsUpdateResponseProperties;
+  properties?: UpdateAccountResponseProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateResponseIdentity;
+  identity?: CreateAccountResponseIdentity;
 }
 export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2752,23 +2693,23 @@ export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     location: S.String,
-    properties: S.optional(AccountsUpdateResponseProperties),
-    identity: S.optional(AccountsCreateResponseIdentity),
+    properties: S.optional(UpdateAccountResponseProperties),
+    identity: S.optional(CreateAccountResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateAccountResponse",
 }) as any as S.Schema<UpdateAccountResponse>;
 
 /** List of key value pairs that describe the resource. This will overwrite the existing tags. */
-export type InstancesUpdateRequestTagsMap = {
+export type UpdateInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const InstancesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInstanceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateInstanceRequestTagsMap>;
 
 export interface UpdateInstanceRequest {
   /** The Azure subscription ID. */
@@ -2780,7 +2721,7 @@ export interface UpdateInstanceRequest {
   /** Instance name. */
   instanceName: string;
   /** List of key value pairs that describe the resource. This will overwrite the existing tags. */
-  tags?: InstancesUpdateRequestTagsMap;
+  tags?: UpdateInstanceRequestTagsMap;
 }
 export const UpdateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2788,7 +2729,7 @@ export const UpdateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     instanceName: S.String.pipe(T.Label()),
-    tags: S.optional(InstancesUpdateRequestTagsMap),
+    tags: S.optional(UpdateInstanceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2802,58 +2743,57 @@ export const UpdateInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateInstanceRequest>;
 
 /** Resource tags. */
-export type InstancesUpdateResponseTagsMap = {
+export type UpdateInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const InstancesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<InstancesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateInstanceResponseTagsMap>;
 
 /** Provisioning state. */
-export type InstancesUpdateResponsePropertiesProvisioningState =
+export type UpdateInstanceResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Deleted"
   | "Failed"
   | "Canceled"
   | "Accepted"
   | "Creating";
-export const InstancesUpdateResponsePropertiesProvisioningState =
+export const UpdateInstanceResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** List of IoT Hubs associated with the account. */
-export type InstancesUpdateResponsePropertiesIotHubsList =
-  Array<IotHubSettings>;
-export const InstancesUpdateResponsePropertiesIotHubsList =
+export type UpdateInstanceResponsePropertiesIotHubsList = Array<IotHubSettings>;
+export const UpdateInstanceResponsePropertiesIotHubsList =
   /*@__PURE__*/ S.Array(
     IotHubSettings,
-  ) as any as S.Schema<InstancesUpdateResponsePropertiesIotHubsList>;
+  ) as any as S.Schema<UpdateInstanceResponsePropertiesIotHubsList>;
 
 /** Device Update instance properties. */
-export interface InstancesUpdateResponseProperties {
+export interface UpdateInstanceResponseProperties {
   /** Provisioning state. */
-  provisioningState?: InstancesUpdateResponsePropertiesProvisioningState;
+  provisioningState?: UpdateInstanceResponsePropertiesProvisioningState;
   /** Parent Device Update Account name which Instance belongs to. */
   accountName?: string;
   /** List of IoT Hubs associated with the account. */
-  iotHubs?: InstancesUpdateResponsePropertiesIotHubsList;
+  iotHubs?: UpdateInstanceResponsePropertiesIotHubsList;
   /** Enables or Disables the diagnostic logs collection */
   enableDiagnostics?: boolean;
   diagnosticStorageProperties?: DiagnosticStorageProperties;
 }
-export const InstancesUpdateResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateInstanceResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(
-      InstancesUpdateResponsePropertiesProvisioningState,
+      UpdateInstanceResponsePropertiesProvisioningState,
     ),
     accountName: S.optional(S.String),
-    iotHubs: S.optional(InstancesUpdateResponsePropertiesIotHubsList),
+    iotHubs: S.optional(UpdateInstanceResponsePropertiesIotHubsList),
     enableDiagnostics: S.optional(S.Boolean),
     diagnosticStorageProperties: S.optional(DiagnosticStorageProperties),
   }),
 ).annotate({
-  identifier: "InstancesUpdateResponseProperties",
-}) as any as S.Schema<InstancesUpdateResponseProperties>;
+  identifier: "UpdateInstanceResponseProperties",
+}) as any as S.Schema<UpdateInstanceResponseProperties>;
 
 export interface UpdateInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2865,11 +2805,11 @@ export interface UpdateInstanceResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: InstancesUpdateResponseTagsMap;
+  tags?: UpdateInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Device Update instance properties. */
-  properties: InstancesUpdateResponseProperties;
+  properties: UpdateInstanceResponseProperties;
 }
 export const UpdateInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2877,15 +2817,15 @@ export const UpdateInstanceResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(InstancesUpdateResponseTagsMap),
+    tags: S.optional(UpdateInstanceResponseTagsMap),
     location: S.String,
-    properties: InstancesUpdateResponseProperties,
+    properties: UpdateInstanceResponseProperties,
   }),
 ).annotate({
   identifier: "UpdateInstanceResponse",
 }) as any as S.Schema<UpdateInstanceResponse>;
 
-export interface UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequest {
+export interface UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesRequest {
   /** The Azure subscription ID. */
   subscriptionId: string;
   /** The resource group name. */
@@ -2905,7 +2845,7 @@ export interface UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequ
   /** Virtual network traffic tag. */
   vnetTrafficTag?: string;
 }
-export const UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequest =
+export const UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2927,15 +2867,65 @@ export const UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequest 
     ),
   ).annotate({
     identifier:
-      "UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequest",
-  }) as any as S.Schema<UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequest>;
+      "UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesRequest",
+  }) as any as S.Schema<UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesRequest>;
 
-export interface UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyResponse {}
-export const UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyResponse =
+export interface UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesResponse {}
+export const UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier:
-      "UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyResponse",
-  }) as any as S.Schema<UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyResponse>;
+      "UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesResponse",
+  }) as any as S.Schema<UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesResponse>;
+
+/** Private endpoint connection proxy object property bag. */
+export type ValidatePrivateEndpointConnectionProxyRequestProperties =
+  PrivateEndpointInput;
+export const ValidatePrivateEndpointConnectionProxyRequestProperties =
+  PrivateEndpointInput;
+
+export interface ValidatePrivateEndpointConnectionProxyRequest {
+  /** The Azure subscription ID. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** Account name. */
+  accountName: string;
+  /** The ID of the private endpoint connection proxy object. */
+  privateEndpointConnectionProxyId: string;
+  /** Remote private endpoint details. */
+  remotePrivateEndpoint?: RemotePrivateEndpointInput;
+  /** Operation status. */
+  status?: string;
+  /** Private endpoint connection proxy object property bag. */
+  properties?: PrivateEndpointInput;
+}
+export const ValidatePrivateEndpointConnectionProxyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      privateEndpointConnectionProxyId: S.String.pipe(T.Label()),
+      remotePrivateEndpoint: S.optional(RemotePrivateEndpointInput),
+      status: S.optional(S.String),
+      properties: S.optional(PrivateEndpointInput),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies/{privateEndpointConnectionProxyId}/validate",
+        code: 200,
+        apiVersion: "2023-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidatePrivateEndpointConnectionProxyRequest",
+  }) as any as S.Schema<ValidatePrivateEndpointConnectionProxyRequest>;
+
+export interface ValidatePrivateEndpointConnectionProxyResponse {}
+export const ValidatePrivateEndpointConnectionProxyResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ValidatePrivateEndpointConnectionProxyResponse",
+  }) as any as S.Schema<ValidatePrivateEndpointConnectionProxyResponse>;
 
 export type CheckNameAvailabilityError = AzureOpError;
 /** Checks ADU resource name availability. */
@@ -3237,21 +3227,6 @@ export const PrivateEndpointConnectionProxiesCreateOrUpdate: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionProxiesValidateError = AzureOpError;
-/** (INTERNAL - DO NOT USE) Validates a private endpoint connection proxy object. */
-export const PrivateEndpointConnectionProxiesValidate: API.OperationMethod<
-  PrivateEndpointConnectionProxiesValidateRequest,
-  PrivateEndpointConnectionProxiesValidateResponse,
-  PrivateEndpointConnectionProxiesValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionProxiesValidateRequest,
-  output: PrivateEndpointConnectionProxiesValidateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateEndpointConnectionsCreateOrUpdateError = AzureOpError;
 /** Update the state of specified private endpoint connection associated with the device update account. */
 export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
@@ -3297,17 +3272,32 @@ export const UpdateInstance: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyError =
+export type UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesError =
   AzureOpError;
 /** (INTERNAL - DO NOT USE) Updates a private endpoint inside the private endpoint connection proxy object. */
-export const UpdatePrivateEndpointConnectionProxyPrivateEndpointProperty: API.OperationMethod<
-  UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequest,
-  UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyResponse,
-  UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyError,
+export const UpdatePrivateEndpointConnectionProxyPrivateEndpointProperties: API.OperationMethod<
+  UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesRequest,
+  UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesResponse,
+  UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyRequest,
-  output: UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertyResponse,
+  input: UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesRequest,
+  output: UpdatePrivateEndpointConnectionProxyPrivateEndpointPropertiesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidatePrivateEndpointConnectionProxyError = AzureOpError;
+/** (INTERNAL - DO NOT USE) Validates a private endpoint connection proxy object. */
+export const ValidatePrivateEndpointConnectionProxy: API.OperationMethod<
+  ValidatePrivateEndpointConnectionProxyRequest,
+  ValidatePrivateEndpointConnectionProxyResponse,
+  ValidatePrivateEndpointConnectionProxyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidatePrivateEndpointConnectionProxyRequest,
+  output: ValidatePrivateEndpointConnectionProxyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

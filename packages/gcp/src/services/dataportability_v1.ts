@@ -65,6 +65,71 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+/** Request to kick off an Archive job. */
+export interface ArchiveInitiatePortabilityRequest {
+  /** Optional. The timestamp that represents the starting point for the data you are exporting. If the start_time is not specified in the InitiatePortabilityArchiveRequest, the field is set to the earliest available data. */
+  startTime?: string;
+  /** Optional. The timestamp that represents the end point for the data you are exporting. If the end_time is not specified in the InitiatePortabilityArchiveRequest, this field is set to the latest available data. */
+  endTime?: string;
+  /** The resources from which you're exporting data. These values have a 1:1 correspondence with the OAuth scopes. */
+  resources?: StringList;
+}
+export const ArchiveInitiatePortabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    resources: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "ArchiveInitiatePortabilityRequest",
+}) as any as S.Schema<ArchiveInitiatePortabilityRequest>;
+
+export interface ArchiveInitiatePortabilityRequest_ {
+  /** Request body */
+  body?: ArchiveInitiatePortabilityRequest;
+}
+export const ArchiveInitiatePortabilityRequest_ = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    body: S.optional(ArchiveInitiatePortabilityRequest.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "v1/portabilityArchive:initiate",
+      baseUrl: "https://dataportability.googleapis.com/",
+    }),
+  ),
+).annotate({
+  identifier: "ArchiveInitiatePortabilityRequest_",
+}) as any as S.Schema<ArchiveInitiatePortabilityRequest_>;
+
+export type ArchiveInitiatePortabilityResponseAccessTypeEnum =
+  | "ACCESS_TYPE_UNSPECIFIED"
+  | "ACCESS_TYPE_ONE_TIME"
+  | "ACCESS_TYPE_TIME_BASED";
+export const ArchiveInitiatePortabilityResponseAccessTypeEnum =
+  /*@__PURE__*/ S.String;
+
+/** Response from initiating an Archive job. */
+export interface ArchiveInitiatePortabilityResponse {
+  /** The access type of the Archive job initiated by the API. */
+  accessType?: ArchiveInitiatePortabilityResponseAccessTypeEnum;
+  /** The archive job ID that is initiated in the API. This can be used to get the state of the job. */
+  archiveJobId?: string;
+}
+export const ArchiveInitiatePortabilityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessType: S.optional(ArchiveInitiatePortabilityResponseAccessTypeEnum),
+    archiveJobId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ArchiveInitiatePortabilityResponse",
+}) as any as S.Schema<ArchiveInitiatePortabilityResponse>;
+
 /** Request to cancel a Portability Archive job. */
 export interface CancelPortabilityArchiveRequest {}
 export const CancelPortabilityArchiveRequest = /*@__PURE__*/ S.suspend(() =>
@@ -124,22 +189,17 @@ export const CheckAccessTypeRequest_ = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckAccessTypeRequest_",
 }) as any as S.Schema<CheckAccessTypeRequest_>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
 /** Response to checking the token's access type. */
 export interface CheckAccessTypeResponse {
-  /** Jobs initiated with this token will be time-based if all requested resources have time-based access. */
-  timeBasedResources?: StringList;
   /** Jobs initiated with this token will be one-time if any requested resources have one-time access. */
   oneTimeResources?: StringList;
+  /** Jobs initiated with this token will be time-based if all requested resources have time-based access. */
+  timeBasedResources?: StringList;
 }
 export const CheckAccessTypeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    timeBasedResources: S.optional(StringList),
     oneTimeResources: S.optional(StringList),
+    timeBasedResources: S.optional(StringList),
   }),
 ).annotate({
   identifier: "CheckAccessTypeResponse",
@@ -174,88 +234,28 @@ export const PortabilityArchiveStateStateEnum = /*@__PURE__*/ S.String;
 
 /** Resource that contains the state of an Archive job. */
 export interface PortabilityArchiveState {
-  /** If the state is complete, this method returns the signed URLs of the objects in the Cloud Storage bucket. */
-  urls?: StringList;
-  /** The timestamp that represents the end point for the data you are exporting. If the end_time value is set in the InitiatePortabilityArchiveRequest, this field is set to that value. If end_time is not set, this value is set to the time the export was requested. */
-  exportTime?: string;
   /** Resource that represents the state of the Archive job. */
   state?: PortabilityArchiveStateStateEnum;
   /** The timestamp that represents the starting point for the data you are exporting. This field is set only if the start_time field is specified in the InitiatePortabilityArchiveRequest. */
   startTime?: string;
+  /** The timestamp that represents the end point for the data you are exporting. If the end_time value is set in the InitiatePortabilityArchiveRequest, this field is set to that value. If end_time is not set, this value is set to the time the export was requested. */
+  exportTime?: string;
+  /** If the state is complete, this method returns the signed URLs of the objects in the Cloud Storage bucket. */
+  urls?: StringList;
   /** The resource name of ArchiveJob's PortabilityArchiveState singleton. The format is: archiveJobs/{archive_job}/portabilityArchiveState. archive_job is the job ID provided in the request. */
   name?: string;
 }
 export const PortabilityArchiveState = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    urls: S.optional(StringList),
-    exportTime: S.optional(S.String),
     state: S.optional(PortabilityArchiveStateStateEnum),
     startTime: S.optional(S.String),
+    exportTime: S.optional(S.String),
+    urls: S.optional(StringList),
     name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "PortabilityArchiveState",
 }) as any as S.Schema<PortabilityArchiveState>;
-
-/** Request to kick off an Archive job. */
-export interface InitiatePortabilityArchiveRequest {
-  /** The resources from which you're exporting data. These values have a 1:1 correspondence with the OAuth scopes. */
-  resources?: StringList;
-  /** Optional. The timestamp that represents the starting point for the data you are exporting. If the start_time is not specified in the InitiatePortabilityArchiveRequest, the field is set to the earliest available data. */
-  startTime?: string;
-  /** Optional. The timestamp that represents the end point for the data you are exporting. If the end_time is not specified in the InitiatePortabilityArchiveRequest, this field is set to the latest available data. */
-  endTime?: string;
-}
-export const InitiatePortabilityArchiveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resources: S.optional(StringList),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "InitiatePortabilityArchiveRequest",
-}) as any as S.Schema<InitiatePortabilityArchiveRequest>;
-
-export interface InitiatePortabilityArchiveRequest_ {
-  /** Request body */
-  body?: InitiatePortabilityArchiveRequest;
-}
-export const InitiatePortabilityArchiveRequest_ = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    body: S.optional(InitiatePortabilityArchiveRequest.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "v1/portabilityArchive:initiate",
-      baseUrl: "https://dataportability.googleapis.com/",
-    }),
-  ),
-).annotate({
-  identifier: "InitiatePortabilityArchiveRequest_",
-}) as any as S.Schema<InitiatePortabilityArchiveRequest_>;
-
-export type InitiatePortabilityArchiveResponseAccessTypeEnum =
-  | "ACCESS_TYPE_UNSPECIFIED"
-  | "ACCESS_TYPE_ONE_TIME"
-  | "ACCESS_TYPE_TIME_BASED";
-export const InitiatePortabilityArchiveResponseAccessTypeEnum =
-  /*@__PURE__*/ S.String;
-
-/** Response from initiating an Archive job. */
-export interface InitiatePortabilityArchiveResponse {
-  /** The archive job ID that is initiated in the API. This can be used to get the state of the job. */
-  archiveJobId?: string;
-  /** The access type of the Archive job initiated by the API. */
-  accessType?: InitiatePortabilityArchiveResponseAccessTypeEnum;
-}
-export const InitiatePortabilityArchiveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    archiveJobId: S.optional(S.String),
-    accessType: S.optional(InitiatePortabilityArchiveResponseAccessTypeEnum),
-  }),
-).annotate({
-  identifier: "InitiatePortabilityArchiveResponse",
-}) as any as S.Schema<InitiatePortabilityArchiveResponse>;
 
 /** Request to reset exhausted OAuth scopes. */
 export type ResetAuthorizationRequest = CancelPortabilityArchiveRequest;
@@ -323,6 +323,26 @@ export const RetryPortabilityArchiveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RetryPortabilityArchiveResponse",
 }) as any as S.Schema<RetryPortabilityArchiveResponse>;
 
+export type ArchiveInitiatePortabilityError =
+  | NotFound
+  | Forbidden
+  | BadRequest
+  | Conflict
+  | GcpOpError;
+/** Initiates a new Archive job for the Portability API. */
+export const archiveInitiatePortability: API.OperationMethod<
+  ArchiveInitiatePortabilityRequest_,
+  ArchiveInitiatePortabilityResponse,
+  ArchiveInitiatePortabilityError,
+  GcpOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ArchiveInitiatePortabilityRequest_,
+  output: ArchiveInitiatePortabilityResponse,
+  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
+  protocol: GcpProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CancelArchiveJobsError =
   | NotFound
   | Forbidden
@@ -377,26 +397,6 @@ export const getPortabilityArchiveStateArchiveJobs: API.OperationMethod<
   input: GetPortabilityArchiveStateArchiveJobsRequest,
   output: PortabilityArchiveState,
   errors: [NotFound, Forbidden, UnknownGCPError],
-  protocol: GcpProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InitiatePortabilityArchiveError =
-  | NotFound
-  | Forbidden
-  | BadRequest
-  | Conflict
-  | GcpOpError;
-/** Initiates a new Archive job for the Portability API. */
-export const initiatePortabilityArchive: API.OperationMethod<
-  InitiatePortabilityArchiveRequest_,
-  InitiatePortabilityArchiveResponse,
-  InitiatePortabilityArchiveError,
-  GcpOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InitiatePortabilityArchiveRequest_,
-  output: InitiatePortabilityArchiveResponse,
-  errors: [NotFound, Forbidden, BadRequest, Conflict, UnknownGCPError],
   protocol: GcpProtocol,
   retry: Retry.Retry,
 }));

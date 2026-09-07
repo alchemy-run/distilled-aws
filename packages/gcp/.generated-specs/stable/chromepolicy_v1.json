@@ -4,29 +4,23 @@
     "service": "chromepolicy",
     "version": "v1",
     "title": "Chrome Policy API",
-    "baseUrl": "https://chromepolicy.googleapis.com/"
+    "baseUrl": "https://chromepolicy.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveNetworkResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Response object for removing a network."
-      }
-    },
     "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NumericRangeConstraint": {
       "type": "structure",
       "members": {
-        "minimum": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Minimum value."
-          }
-        },
         "maximum": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Maximum value."
+          }
+        },
+        "minimum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum value."
           }
         }
       },
@@ -34,74 +28,149 @@
         "smithy.api#documentation": "A constraint on upper and/or lower bounds, with at least one being set."
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolveRequest": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchema": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "additionalTargetKeyNames": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyNameList",
           "traits": {
-            "smithy.api#documentation": "The maximum number of policies to return, defaults to 100 and has a maximum of 1000."
+            "smithy.api#documentation": "Output only. Additional key names that will be used to identify the target of the policy value. When specifying a `policyTargetKey`, each of the additional keys specified here will have to be included in the `additionalTargetKeys` map."
           }
         },
-        "policySchemaFilter": {
+        "schemaName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: \"chrome.users.*\", \"chrome.users.apps.*\", \"chrome.printers.*\" Invalid: \"*\", \"*.users\", \"chrome.*\", \"chrome.*.apps.*\""
+            "smithy.api#documentation": "Output only. The fully qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies BatchModifyOrgUnitPolicies BatchModifyGroupPolicies or BatchDeleteGroupPolicies."
           }
         },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+        "supportedPlatforms": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnumList",
           "traits": {
-            "smithy.api#documentation": "Required. The key of the target resource on which the policies should be resolved."
+            "smithy.api#documentation": "Output only. List indicates that the policy will only apply to devices/users on these platforms."
           }
         },
-        "pageToken": {
+        "notices": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescriptionList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Special notice messages related to setting certain values in certain fields in the schema."
+          }
+        },
+        "policyApiLifecycle": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecycle",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current lifecycle information."
+          }
+        },
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The page token used to retrieve a specific page of the request."
+            "smithy.api#documentation": "Format: name=customers/{customer}/policySchemas/{schema_namespace}"
+          }
+        },
+        "definition": {
+          "target": "com.gcp.chromepolicy_v1#Proto2FileDescriptorProto",
+          "traits": {
+            "smithy.api#documentation": "Schema definition using proto descriptor."
+          }
+        },
+        "policyDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Description about the policy schema for user consumption."
+          }
+        },
+        "fieldDescriptions": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescriptionList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Detailed description of each field that is part of the schema. Fields are suggested to be displayed by the ordering in this list, not by field number."
+          }
+        },
+        "supportUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. URI to related support article for this schema."
+          }
+        },
+        "categoryTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the category in which a setting belongs."
+          }
+        },
+        "accessRestrictions": {
+          "target": "com.gcp.chromepolicy_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specific access restrictions related to this policy."
+          }
+        },
+        "validTargetResources": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Information about applicable target resources for the policy."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for getting the resolved policy value for a specific target."
+        "smithy.api#documentation": "Resource representing a policy schema."
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecycle": {
-      "type": "structure",
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyNameList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyName"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnum": {
+      "type": "enum",
       "members": {
-        "deprecatedInFavorOf": {
-          "target": "com.gcp.chromepolicy_v1#StringList",
+        "PLATFORM_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI. Could only be set if policy_api_lifecycle_stage is API_DEPRECATED."
+            "smithy.api#enumValue": "PLATFORM_UNSPECIFIED"
           }
         },
-        "description": {
-          "target": "smithy.api#String",
+        "CHROME_OS": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "Description about current life cycle."
+            "smithy.api#enumValue": "CHROME_OS"
           }
         },
-        "policyApiLifecycleStage": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecyclePolicyApiLifecycleStageEnum",
+        "CHROME_BROWSER": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "Indicates current life cycle stage of the policy API."
+            "smithy.api#enumValue": "CHROME_BROWSER"
           }
         },
-        "scheduledToDeprecatePolicies": {
-          "target": "com.gcp.chromepolicy_v1#StringList",
+        "CHROME_BROWSER_FOR_ANDROID": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "Corresponding to deprecated_in_favor_of, the fully qualified namespace(s) of the old policies that will be deprecated because of introduction of this policy."
+            "smithy.api#enumValue": "CHROME_BROWSER_FOR_ANDROID"
           }
         },
-        "endSupport": {
-          "target": "com.gcp.chromepolicy_v1#GoogleTypeDate",
+        "CHROME_BROWSER_FOR_IOS": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "End supporting date for current policy. Attempting to modify a policy after its end support date will result in a Bad Request (400 error). Could only be set if policy_api_lifecycle_stage is API_DEPRECATED."
+            "smithy.api#enumValue": "CHROME_BROWSER_FOR_IOS"
           }
         }
-      },
-      "traits": {
-        "smithy.api#documentation": "Lifecycle information."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnum"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescription"
       }
     },
     "com.gcp.chromepolicy_v1#StringList": {
@@ -110,39 +179,554 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecyclePolicyApiLifecycleStageEnum": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnum": {
       "type": "enum",
       "members": {
-        "API_UNSPECIFIED": {
+        "TARGET_RESOURCE_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "API_UNSPECIFIED"
+            "smithy.api#enumValue": "TARGET_RESOURCE_UNSPECIFIED"
           }
         },
-        "API_PREVIEW": {
+        "ORG_UNIT": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "API_PREVIEW"
+            "smithy.api#enumValue": "ORG_UNIT"
           }
         },
-        "API_DEVELOPMENT": {
+        "GROUP": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "API_DEVELOPMENT"
-          }
-        },
-        "API_CURRENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "API_CURRENT"
-          }
-        },
-        "API_DEPRECATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "API_DEPRECATED"
+            "smithy.api#enumValue": "GROUP"
           }
         }
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnum"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolveRequest": {
+      "type": "structure",
+      "members": {
+        "policySchemaFilter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: \"chrome.users.*\", \"chrome.users.apps.*\", \"chrome.printers.*\" Invalid: \"*\", \"*.users\", \"chrome.*\", \"chrome.*.apps.*\""
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of policies to return, defaults to 100 and has a maximum of 1000."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to retrieve a specific page of the request."
+          }
+        },
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Required. The key of the target resource on which the policies should be resolved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for getting the resolved policy value for a specific target."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UpdateGroupPriorityOrderingRequest": {
+      "type": "structure",
+      "members": {
+        "policySchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The schema name of the policy for the request."
+          }
+        },
+        "policyNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace of the policy type for the request."
+          }
+        },
+        "groupIds": {
+          "target": "com.gcp.chromepolicy_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The group IDs, in desired priority ordering."
+          }
+        },
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Required. The key of the target for which we want to update the group priority ordering. The target resource must point to an app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for updating the group priority ordering of an app."
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProto": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProtoList"
+        },
+        "visibility": {
+          "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoVisibilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Support for `export` and `local` keywords on enums."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes an enum type."
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProtoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProto"
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoVisibilityEnum": {
+      "type": "enum",
+      "members": {
+        "VISIBILITY_UNSET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBILITY_UNSET"
+          }
+        },
+        "VISIBILITY_LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBILITY_LOCAL"
+          }
+        },
+        "VISIBILITY_EXPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBILITY_EXPORT"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProto": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a oneof."
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProto": {
+      "type": "structure",
+      "members": {
+        "number": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a value within an enum."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target resource on which this network will be removed. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
+          }
+        },
+        "networkId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The GUID of the network to remove."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request object for removing a network"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicy": {
+      "type": "structure",
+      "members": {
+        "addedSourceKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Output only. The added source key establishes at which level an entity was explicitly added for management. This is useful for certain type of policies that are only applied if they are explicitly added for management. For example: apps and networks. An entity can only be deleted from management in an Organizational Unit that it was explicitly added to. If this is not present it means that the policy is managed without the need to explicitly add an entity, for example: standard user or device policies."
+          }
+        },
+        "value": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resolved value of the policy."
+          }
+        },
+        "targetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Output only. The target resource for which the resolved policy value applies."
+          }
+        },
+        "sourceKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Output only. The source resource from which this policy value is obtained. May be the same as `targetKey` if the policy is directly modified on the target, otherwise it would be another resource from which the policy gets its value (if applicable). If not present, the source is the default value for the customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resolved value of a policy for a given target."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationErrorDetails": {
+      "type": "structure",
+      "members": {
+        "modificationErrors": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationErrorList",
+          "traits": {
+            "smithy.api#documentation": "Output only. List of specific policy modifications errors that may have occurred during a modifying request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the errors encountered during a policy modification request. This message will be returned as part of the details of a google.rpc.Status returned to the user when there is an error in their request."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationErrorList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationError"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveNetworkResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response object for removing a network."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies": {
+      "type": "structure",
+      "members": {
+        "sourceField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source field which this field depends on."
+          }
+        },
+        "sourceFieldValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value which the source field must have for this field to be allowed to be set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The field and the value it must have for another field to be allowed to be set."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineNetworkResponse": {
+      "type": "structure",
+      "members": {
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target resource on which this new network will be defined. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
+          }
+        },
+        "networkId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Network ID of the new created network."
+          }
+        },
+        "settings": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
+          "traits": {
+            "smithy.api#documentation": "Detailed network settings of the new created network"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response object for creating a network."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSetting"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1CertificateReference": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the referencing network."
+          }
+        },
+        "orgUnitId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The obfuscated id of the org unit the referencing network is in."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error information for removing of a specific certificate on a specific target. A reference to a certificate."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest": {
+      "type": "structure",
+      "members": {
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Required. The key of the target for which we want to retrieve the group priority ordering. The target resource must point to an app."
+          }
+        },
+        "policySchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The schema name of the policy for the request."
+          }
+        },
+        "policyNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace of the policy type for the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for listing the group priority ordering of an app."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Policy fields to update. Only fields in this mask will be updated; other fields in `policy_value` will be ignored (even if they have values). If a field is in this list it must have a value in 'policy_value'."
+          }
+        },
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to a Group."
+          }
+        },
+        "policyValue": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue",
+          "traits": {
+            "smithy.api#documentation": "The new value for the policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request parameters for modifying a policy value for a specific group target."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey": {
+      "type": "structure",
+      "members": {
+        "additionalTargetKeys": {
+          "target": "com.gcp.chromepolicy_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Map containing the additional target key name and value pairs used to further identify the target of the policy."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\") * Group (\"groups/{group_id}\")"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The key used to identify the target on which the policy will be applied."
+      }
+    },
+    "com.gcp.chromepolicy_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "networkId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The GUID of the certificate to remove."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target resource on which this certificate will be removed. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request object for removing a certificate."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchModifyGroupPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "requests": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequestList",
+          "traits": {
+            "smithy.api#documentation": "List of policies to modify as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to a group resource. 3. All `policyTargetKey` values must have the same `app_id` key name in the `additionalTargetKeys`. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for modifying multiple policy values for a specific group-based target."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequest"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItems": {
+      "type": "structure",
+      "members": {
+        "requiredFields": {
+          "target": "com.gcp.chromepolicy_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The fields that are required as a consequence of the field conditions."
+          }
+        },
+        "fieldConditions": {
+          "target": "com.gcp.chromepolicy_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The value(s) of the field that provoke required field enforcement. An empty field_conditions implies that any value assigned to this field will provoke required field enforcement."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The fields that will become required based on the value of this field."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolveResponse": {
+      "type": "structure",
+      "members": {
+        "resolvedPolicies": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicyList",
+          "traits": {
+            "smithy.api#documentation": "The list of resolved policies found by the resolve request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to get the next set of resolved policies found by the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for getting the resolved policy value for a specific target."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicyList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicy"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse": {
+      "type": "structure",
+      "members": {
+        "groupIds": {
+          "target": "com.gcp.chromepolicy_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The group IDs, in priority ordering."
+          }
+        },
+        "policyNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The namespace of the policy type of the group IDs."
+          }
+        },
+        "policySchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The schema name of the policy for the group IDs."
+          }
+        },
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Output only. The target resource for which the group priority ordering has been retrieved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for listing the group priority ordering of an app."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ListPolicySchemasResponse": {
+      "type": "structure",
+      "members": {
+        "policySchemas": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaList",
+          "traits": {
+            "smithy.api#documentation": "The list of policy schemas that match the query."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page token used to get the next page of policy schemas."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for listing policy schemas that match a filter."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchema"
       }
     },
     "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1FieldConstraints": {
@@ -165,102 +749,96 @@
         "smithy.api#documentation": "Information about any range constraints."
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DeleteGroupPolicyRequest": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the resource at which the certificate is defined."
+          }
+        },
+        "networkId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The guid of the certificate created by the action."
+          }
+        },
+        "settings": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
+          "traits": {
+            "smithy.api#documentation": "the affiliated settings of the certificate (NOT IMPLEMENTED)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response object for creating a certificate."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadPolicyFileRequest": {
+      "type": "structure",
+      "members": {
+        "policyField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fully qualified policy schema and field name this file is uploaded for. This information will be used to validate the content type of the file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for uploading a file for a policy."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target resource on which this certificate is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The raw contents of the .PEM, .CRT, or .CER file."
+          }
+        },
+        "ceritificateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The optional name of the certificate. If not specified, the certificate issuer will be used as the name."
+          }
+        },
+        "settings": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Certificate settings within the chrome.networks.certificates namespace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request object for creating a certificate."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue": {
       "type": "structure",
       "members": {
         "policySchema": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The fully qualified name of the policy schema that is being inherited."
-          }
-        },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to a Group."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request parameters for deleting the policy value of a specific group target."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription": {
-      "type": "structure",
-      "members": {
-        "fieldDependencies": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependenciesList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Field conditions required for this value to be valid."
-          }
-        },
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The string represenstation of the value that can be set for the field."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Additional description for this value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Provides detailed information about a known value that is allowed for a particular field in a PolicySchema."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependenciesList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequest": {
-      "type": "structure",
-      "members": {
-        "policyValue": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue",
-          "traits": {
-            "smithy.api#documentation": "The new value for the policy."
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Policy fields to update. Only fields in this mask will be updated; other fields in `policy_value` will be ignored (even if they have values). If a field is in this list it must have a value in 'policy_value'."
-          }
-        },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to a Group."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request parameters for modifying a policy value for a specific group target."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSetting": {
-      "type": "structure",
-      "members": {
-        "policySchema": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fully qualified name of the network setting."
+            "smithy.api#documentation": "The fully qualified name of the policy schema associated with this policy."
           }
         },
         "value": {
           "target": "com.gcp.chromepolicy_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "The value of the network setting."
+            "smithy.api#documentation": "The value of the policy that is compatible with the schema that it is associated with."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A network setting contains network configurations. It adheres to the PolicyAPI formats defined under the namespace chrome.networks.{wifi/ethernet/cellular/vpn}.Details"
+        "smithy.api#documentation": "A particular value for a policy managed by the service."
       }
     },
     "com.gcp.chromepolicy_v1#DocumentMap": {
@@ -270,6 +848,129 @@
       },
       "value": {
         "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2FileDescriptorProto": {
+      "type": "structure",
+      "members": {
+        "package": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "e.g. \"foo\", \"foo.bar\", etc."
+          }
+        },
+        "messageType": {
+          "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProtoList",
+          "traits": {
+            "smithy.api#documentation": "All top-level definitions in this file."
+          }
+        },
+        "enumType": {
+          "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoList"
+        },
+        "syntax": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The syntax of the proto file. The supported values are \"proto2\", \"proto3\", and \"editions\". If `edition` is present, this value must be \"editions\". WARNING: This field should only be used by protobuf plugins or special cases like the proto compiler. Other uses are discouraged and developers should rely on the protoreflect APIs for their client language."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "file name, relative to root of source tree"
+          }
+        },
+        "editionDeprecated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "copybara:strip_begin TODO(b/538805613) Deprecate and remove this field in favor of enums. copybara:strip_end"
+          }
+        },
+        "optionDependency": {
+          "target": "com.gcp.chromepolicy_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Names of files imported by this file purely for the purpose of providing option extensions. These are excluded from the dependency list above."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a complete .proto file."
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2DescriptorProtoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProto"
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProto"
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2DescriptorProto": {
+      "type": "structure",
+      "members": {
+        "visibility": {
+          "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProtoVisibilityEnum",
+          "traits": {
+            "smithy.api#documentation": "Support for `export` and `local` keywords on enums."
+          }
+        },
+        "enumType": {
+          "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoList"
+        },
+        "nestedType": {
+          "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProtoList"
+        },
+        "field": {
+          "target": "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoList"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "oneofDecl": {
+          "target": "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProtoList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes a message type."
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2DescriptorProtoVisibilityEnum": {
+      "type": "enum",
+      "members": {
+        "VISIBILITY_UNSET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBILITY_UNSET"
+          }
+        },
+        "VISIBILITY_LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBILITY_LOCAL"
+          }
+        },
+        "VISIBILITY_EXPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISIBILITY_EXPORT"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProto"
+      }
+    },
+    "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProtoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProto"
       }
     },
     "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateErrorDetails": {
@@ -292,19 +993,150 @@
         "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1CertificateReference"
       }
     },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Response object for removing a certificate."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription": {
+      "type": "structure",
+      "members": {
+        "noticeValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The value of the field that has a notice. When setting the field to this value, the user may be required to acknowledge the notice message in order for the value to be set."
+          }
+        },
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The field name associated with the notice."
+          }
+        },
+        "acknowledgementRequired": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the user needs to acknowledge the notice message before the value can be set."
+          }
+        },
+        "noticeMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The notice message associate with the value of the field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides special notice messages related to a particular value in a field that is part of a PolicySchema."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to an Org Unit."
+          }
+        },
+        "policySchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified name of the policy schema that is being inherited."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyOrgUnitPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to an Org Unit."
+          }
+        },
+        "policyValue": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue",
+          "traits": {
+            "smithy.api#documentation": "The new value for the policy."
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Policy fields to update. Only fields in this mask will be updated; other fields in `policy_value` will be ignored (even if they have values). If a field is in this list it must have a value in 'policy_value'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request parameters for modifying a policy value for a specific org unit target."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineNetworkRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the new created network."
+          }
+        },
+        "targetResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The target resource on which this new network will be defined. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
+          }
+        },
+        "settings": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
+          "traits": {
+            "smithy.api#documentation": "Required. Detailed network settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request object for creating a new network."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSetting": {
+      "type": "structure",
+      "members": {
+        "policySchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified name of the network setting."
+          }
+        },
+        "value": {
+          "target": "com.gcp.chromepolicy_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The value of the network setting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A network setting contains network configurations. It adheres to the PolicyAPI formats defined under the namespace chrome.networks.{wifi/ethernet/cellular/vpn}.Details"
+      }
+    },
     "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadedFileConstraints": {
       "type": "structure",
       "members": {
-        "supportedContentTypes": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadedFileConstraintsSupportedContentTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "File types that can be uploaded for a setting."
-          }
-        },
         "sizeLimitBytes": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The size limit of uploaded files for a setting, in bytes."
+          }
+        },
+        "supportedContentTypes": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadedFileConstraintsSupportedContentTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "File types that can be uploaded for a setting."
           }
         }
       },
@@ -395,140 +1227,42 @@
         "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadedFileConstraintsSupportedContentTypesItemEnum"
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleTypeDate": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationError": {
       "type": "structure",
       "members": {
-        "year": {
-          "target": "smithy.api#Integer",
+        "fieldErrors": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldErrorList",
           "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+            "smithy.api#documentation": "Output only. The error messages related to the modification."
           }
         },
-        "day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
-          }
-        },
-        "month": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItems": {
-      "type": "structure",
-      "members": {
-        "fieldConditions": {
+        "errors": {
           "target": "com.gcp.chromepolicy_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "The value(s) of the field that provoke required field enforcement. An empty field_conditions implies that any value assigned to this field will provoke required field enforcement."
+            "smithy.api#documentation": "Output only. The non-field errors related to the modification."
           }
         },
-        "requiredFields": {
-          "target": "com.gcp.chromepolicy_v1#StringList",
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
           "traits": {
-            "smithy.api#documentation": "The fields that are required as a consequence of the field conditions."
+            "smithy.api#documentation": "Output only. The specific policy target modification that had error."
+          }
+        },
+        "policySchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The specific policy schema modification that had an error."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The fields that will become required based on the value of this field."
+        "smithy.api#documentation": "Error information for a modification request of a specific policy on a specific target."
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineNetworkResponse": {
-      "type": "structure",
-      "members": {
-        "settings": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
-          "traits": {
-            "smithy.api#documentation": "Detailed network settings of the new created network"
-          }
-        },
-        "networkId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Network ID of the new created network."
-          }
-        },
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The target resource on which this new network will be defined. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response object for creating a network."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldErrorList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSetting"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleProtobufEmpty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldError": {
-      "type": "structure",
-      "members": {
-        "error": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The error message related to the field."
-          }
-        },
-        "field": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of the field with the error."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Error information for a modification request of a specific field on a specific policy."
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProto": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes a oneof."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1CertificateReference": {
-      "type": "structure",
-      "members": {
-        "network": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of the referencing network."
-          }
-        },
-        "orgUnitId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The obfuscated id of the org unit the referencing network is in."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Error information for removing of a specific certificate on a specific target. A reference to a certificate."
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldError"
       }
     },
     "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchDeleteGroupPoliciesRequest": {
@@ -551,133 +1285,36 @@
         "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DeleteGroupPolicyRequest"
       }
     },
-    "com.gcp.chromepolicy_v1#Proto2FileDescriptorProto": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription": {
       "type": "structure",
       "members": {
-        "syntax": {
+        "value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The syntax of the proto file. The supported values are \"proto2\", \"proto3\", and \"editions\". If `edition` is present, this value must be \"editions\". WARNING: This field should only be used by protobuf plugins or special cases like the proto compiler. Other uses are discouraged and developers should rely on the protoreflect APIs for their client language."
+            "smithy.api#documentation": "Output only. The string represenstation of the value that can be set for the field."
           }
         },
-        "enumType": {
-          "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoList"
-        },
-        "messageType": {
-          "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProtoList",
+        "fieldDependencies": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependenciesList",
           "traits": {
-            "smithy.api#documentation": "All top-level definitions in this file."
+            "smithy.api#documentation": "Output only. Field conditions required for this value to be valid."
           }
         },
-        "name": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "file name, relative to root of source tree"
-          }
-        },
-        "editionDeprecated": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "copybara:strip_begin TODO(b/538805613) Deprecate and remove this field in favor of enums. copybara:strip_end"
-          }
-        },
-        "package": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "e.g. \"foo\", \"foo.bar\", etc."
-          }
-        },
-        "optionDependency": {
-          "target": "com.gcp.chromepolicy_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Names of files imported by this file purely for the purpose of providing option extensions. These are excluded from the dependency list above."
+            "smithy.api#documentation": "Output only. Additional description for this value."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Describes a complete .proto file."
+        "smithy.api#documentation": "Provides detailed information about a known value that is allowed for a particular field in a PolicySchema."
       }
     },
-    "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoList": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependenciesList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProto"
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2DescriptorProtoList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProto"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationError": {
-      "type": "structure",
-      "members": {
-        "policySchema": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The specific policy schema modification that had an error."
-          }
-        },
-        "fieldErrors": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldErrorList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The error messages related to the modification."
-          }
-        },
-        "errors": {
-          "target": "com.gcp.chromepolicy_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Output only. The non-field errors related to the modification."
-          }
-        },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Output only. The specific policy target modification that had error."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Error information for a modification request of a specific policy on a specific target."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldErrorList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldError"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription": {
-      "type": "structure",
-      "members": {
-        "field": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The field name associated with the notice."
-          }
-        },
-        "noticeValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The value of the field that has a notice. When setting the field to this value, the user may be required to acknowledge the notice message in order for the value to be set."
-          }
-        },
-        "noticeMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The notice message associate with the value of the field."
-          }
-        },
-        "acknowledgementRequired": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether the user needs to acknowledge the notice message before the value can be set."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Provides special notice messages related to a particular value in a field that is part of a PolicySchema."
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies"
       }
     },
     "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchModifyOrgUnitPoliciesRequest": {
@@ -700,387 +1337,6 @@
         "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyOrgUnitPolicyRequest"
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateResponse": {
-      "type": "structure",
-      "members": {
-        "settings": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
-          "traits": {
-            "smithy.api#documentation": "the affiliated settings of the certificate (NOT IMPLEMENTED)"
-          }
-        },
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "the resource at which the certificate is defined."
-          }
-        },
-        "networkId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The guid of the certificate created by the action."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response object for creating a certificate."
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProto": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String"
-        },
-        "value": {
-          "target": "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProtoList"
-        },
-        "visibility": {
-          "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoVisibilityEnum",
-          "traits": {
-            "smithy.api#documentation": "Support for `export` and `local` keywords on enums."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes an enum type."
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProtoList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProto"
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoVisibilityEnum": {
-      "type": "enum",
-      "members": {
-        "VISIBILITY_UNSET": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VISIBILITY_UNSET"
-          }
-        },
-        "VISIBILITY_LOCAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VISIBILITY_LOCAL"
-          }
-        },
-        "VISIBILITY_EXPORT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VISIBILITY_EXPORT"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2DescriptorProto": {
-      "type": "structure",
-      "members": {
-        "field": {
-          "target": "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoList"
-        },
-        "nestedType": {
-          "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProtoList"
-        },
-        "name": {
-          "target": "smithy.api#String"
-        },
-        "enumType": {
-          "target": "com.gcp.chromepolicy_v1#Proto2EnumDescriptorProtoList"
-        },
-        "oneofDecl": {
-          "target": "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProtoList"
-        },
-        "visibility": {
-          "target": "com.gcp.chromepolicy_v1#Proto2DescriptorProtoVisibilityEnum",
-          "traits": {
-            "smithy.api#documentation": "Support for `export` and `local` keywords on enums."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes a message type."
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProto"
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProtoList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#Proto2OneofDescriptorProto"
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2DescriptorProtoVisibilityEnum": {
-      "type": "enum",
-      "members": {
-        "VISIBILITY_UNSET": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VISIBILITY_UNSET"
-          }
-        },
-        "VISIBILITY_LOCAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VISIBILITY_LOCAL"
-          }
-        },
-        "VISIBILITY_EXPORT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "VISIBILITY_EXPORT"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
-      "type": "structure",
-      "members": {
-        "key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Key name."
-          }
-        },
-        "keyDescription": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Key description."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Additional key names that will be used to identify the target of the policy value."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineNetworkRequest": {
-      "type": "structure",
-      "members": {
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The target resource on which this new network will be defined. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
-          }
-        },
-        "settings": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
-          "traits": {
-            "smithy.api#documentation": "Required. Detailed network settings."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the new created network."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request object for creating a new network."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ListPolicySchemasResponse": {
-      "type": "structure",
-      "members": {
-        "policySchemas": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaList",
-          "traits": {
-            "smithy.api#documentation": "The list of policy schemas that match the query."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The page token used to get the next page of policy schemas."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for listing policy schemas that match a filter."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchema"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolveResponse": {
-      "type": "structure",
-      "members": {
-        "resolvedPolicies": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicyList",
-          "traits": {
-            "smithy.api#documentation": "The list of resolved policies found by the resolve request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The page token used to get the next set of resolved policies found by the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for getting the resolved policy value for a specific target."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicyList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicy"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveNetworkRequest": {
-      "type": "structure",
-      "members": {
-        "networkId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The GUID of the network to remove."
-          }
-        },
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The target resource on which this network will be removed. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request object for removing a network"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest": {
-      "type": "structure",
-      "members": {
-        "policySchema": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The schema name of the policy for the request."
-          }
-        },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Required. The key of the target for which we want to retrieve the group priority ordering. The target resource must point to an app."
-          }
-        },
-        "policyNamespace": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The namespace of the policy type for the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for listing the group priority ordering of an app."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchInheritOrgUnitPoliciesRequest": {
-      "type": "structure",
-      "members": {
-        "requests": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequestList",
-          "traits": {
-            "smithy.api#documentation": "List of policies that have to inherit their values as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to an org unit resource. 3. All `policyTargetKey` values must have the same key names in the ` additionalTargetKeys`. This also means if one of the targets has an empty `additionalTargetKeys` map, all of the targets must have an empty `additionalTargetKeys` map. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair. "
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for specifying that multiple policy values inherit their value from their parents."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequestList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationErrorDetails": {
-      "type": "structure",
-      "members": {
-        "modificationErrors": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationErrorList",
-          "traits": {
-            "smithy.api#documentation": "Output only. List of specific policy modifications errors that may have occurred during a modifying request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Details of the errors encountered during a policy modification request. This message will be returned as part of the details of a google.rpc.Status returned to the user when there is an error in their request."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationErrorList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationError"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UpdateGroupPriorityOrderingRequest": {
-      "type": "structure",
-      "members": {
-        "policySchema": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The schema name of the policy for the request."
-          }
-        },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Required. The key of the target for which we want to update the group priority ordering. The target resource must point to an app."
-          }
-        },
-        "policyNamespace": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The namespace of the policy type for the request."
-          }
-        },
-        "groupIds": {
-          "target": "com.gcp.chromepolicy_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. The group IDs, in desired priority ordering."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for updating the group priority ordering of an app."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyOrgUnitPolicyRequest": {
-      "type": "structure",
-      "members": {
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to an Org Unit."
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Policy fields to update. Only fields in this mask will be updated; other fields in `policy_value` will be ignored (even if they have values). If a field is in this list it must have a value in 'policy_value'."
-          }
-        },
-        "policyValue": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue",
-          "traits": {
-            "smithy.api#documentation": "The new value for the policy."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request parameters for modifying a policy value for a specific org unit target."
-      }
-    },
     "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadPolicyFileResponse": {
       "type": "structure",
       "members": {
@@ -1095,533 +1351,121 @@
         "smithy.api#documentation": "Response message for downloading an uploaded file."
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadPolicyFileRequest": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecycle": {
       "type": "structure",
       "members": {
-        "policyField": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fully qualified policy schema and field name this file is uploaded for. This information will be used to validate the content type of the file."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for uploading a file for a policy."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Response object for removing a certificate."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest": {
-      "type": "structure",
-      "members": {
-        "policySchema": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fully qualified name of the policy schema that is being inherited."
-          }
-        },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to an Org Unit."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue": {
-      "type": "structure",
-      "members": {
-        "policySchema": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fully qualified name of the policy schema associated with this policy."
-          }
-        },
-        "value": {
-          "target": "com.gcp.chromepolicy_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The value of the policy that is compatible with the schema that it is associated with."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A particular value for a policy managed by the service."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolvedPolicy": {
-      "type": "structure",
-      "members": {
-        "targetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Output only. The target resource for which the resolved policy value applies."
-          }
-        },
-        "sourceKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Output only. The source resource from which this policy value is obtained. May be the same as `targetKey` if the policy is directly modified on the target, otherwise it would be another resource from which the policy gets its value (if applicable). If not present, the source is the default value for the customer."
-          }
-        },
-        "value": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyValue",
-          "traits": {
-            "smithy.api#documentation": "Output only. The resolved value of the policy."
-          }
-        },
-        "addedSourceKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Output only. The added source key establishes at which level an entity was explicitly added for management. This is useful for certain type of policies that are only applied if they are explicitly added for management. For example: apps and networks. An entity can only be deleted from management in an Organizational Unit that it was explicitly added to. If this is not present it means that the policy is managed without the need to explicitly add an entity, for example: standard user or device policies."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The resolved value of a policy for a given target."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies": {
-      "type": "structure",
-      "members": {
-        "sourceFieldValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value which the source field must have for this field to be allowed to be set."
-          }
-        },
-        "sourceField": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The source field which this field depends on."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The field and the value it must have for another field to be allowed to be set."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey": {
-      "type": "structure",
-      "members": {
-        "additionalTargetKeys": {
-          "target": "com.gcp.chromepolicy_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Map containing the additional target key name and value pairs used to further identify the target of the policy."
-          }
-        },
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\") * Group (\"groups/{group_id}\")"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The key used to identify the target on which the policy will be applied."
-      }
-    },
-    "com.gcp.chromepolicy_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateRequest": {
-      "type": "structure",
-      "members": {
-        "ceritificateName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The optional name of the certificate. If not specified, the certificate issuer will be used as the name."
-          }
-        },
-        "settings": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1NetworkSettingList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Certificate settings within the chrome.networks.certificates namespace."
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The raw contents of the .PEM, .CRT, or .CER file."
-          }
-        },
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The target resource on which this certificate is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request object for creating a certificate."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescription": {
-      "type": "structure",
-      "members": {
-        "field": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The name of the field for associated with this description."
-          }
-        },
-        "requiredItems": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItemsList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Provides a list of fields that are required to be set if this field has a certain value."
-          }
-        },
-        "fieldDescription": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The description of the field."
-          }
-        },
         "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Deprecated. Use name and field_description instead. The description for the field."
+            "smithy.api#documentation": "Description about current life cycle."
           }
         },
-        "name": {
-          "target": "smithy.api#String",
+        "endSupport": {
+          "target": "com.gcp.chromepolicy_v1#GoogleTypeDate",
           "traits": {
-            "smithy.api#documentation": "Output only. The name of the field."
+            "smithy.api#documentation": "End supporting date for current policy. Attempting to modify a policy after its end support date will result in a Bad Request (400 error). Could only be set if policy_api_lifecycle_stage is API_DEPRECATED."
           }
         },
-        "fieldConstraints": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1FieldConstraints",
+        "policyApiLifecycleStage": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecyclePolicyApiLifecycleStageEnum",
           "traits": {
-            "smithy.api#documentation": "Output only. Information on any input constraints associated on the values for the field."
+            "smithy.api#documentation": "Indicates current life cycle stage of the policy API."
           }
         },
-        "defaultValue": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "Output only. Client default if the policy is unset."
-          }
-        },
-        "inputConstraint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Any input constraints associated on the values for the field."
-          }
-        },
-        "fieldDependencies": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependenciesList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set."
-          }
-        },
-        "knownValueDescriptions": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescriptionList",
-          "traits": {
-            "smithy.api#documentation": "Output only. If the field has a set of known values, this field will provide a description for these values."
-          }
-        },
-        "nestedFieldDescriptions": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescriptionList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields. Fields are suggested to be displayed by the ordering in this list, not by field number."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Provides detailed information for a particular field that is part of a PolicySchema."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItemsList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItems"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescriptionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescriptionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescription"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateRequest": {
-      "type": "structure",
-      "members": {
-        "targetResource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The target resource on which this certificate will be removed. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")"
-          }
-        },
-        "networkId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The GUID of the certificate to remove."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request object for removing a certificate."
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2EnumValueDescriptorProto": {
-      "type": "structure",
-      "members": {
-        "number": {
-          "target": "smithy.api#Integer"
-        },
-        "name": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes a value within an enum."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse": {
-      "type": "structure",
-      "members": {
-        "policySchema": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The schema name of the policy for the group IDs."
-          }
-        },
-        "groupIds": {
+        "scheduledToDeprecatePolicies": {
           "target": "com.gcp.chromepolicy_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Output only. The group IDs, in priority ordering."
+            "smithy.api#documentation": "Corresponding to deprecated_in_favor_of, the fully qualified namespace(s) of the old policies that will be deprecated because of introduction of this policy."
           }
         },
-        "policyTargetKey": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "traits": {
-            "smithy.api#documentation": "Output only. The target resource for which the group priority ordering has been retrieved."
-          }
-        },
-        "policyNamespace": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The namespace of the policy type of the group IDs."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for listing the group priority ordering of an app."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchema": {
-      "type": "structure",
-      "members": {
-        "supportedPlatforms": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Output only. List indicates that the policy will only apply to devices/users on these platforms."
-          }
-        },
-        "policyApiLifecycle": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecycle",
-          "traits": {
-            "smithy.api#documentation": "Output only. Current lifecycle information."
-          }
-        },
-        "fieldDescriptions": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescriptionList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Detailed description of each field that is part of the schema. Fields are suggested to be displayed by the ordering in this list, not by field number."
-          }
-        },
-        "validTargetResources": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Information about applicable target resources for the policy."
-          }
-        },
-        "policyDescription": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Description about the policy schema for user consumption."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Format: name=customers/{customer}/policySchemas/{schema_namespace}"
-          }
-        },
-        "notices": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescriptionList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Special notice messages related to setting certain values in certain fields in the schema."
-          }
-        },
-        "categoryTitle": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Title of the category in which a setting belongs."
-          }
-        },
-        "definition": {
-          "target": "com.gcp.chromepolicy_v1#Proto2FileDescriptorProto",
-          "traits": {
-            "smithy.api#documentation": "Schema definition using proto descriptor."
-          }
-        },
-        "supportUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. URI to related support article for this schema."
-          }
-        },
-        "schemaName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The fully qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies BatchModifyOrgUnitPolicies BatchModifyGroupPolicies or BatchDeleteGroupPolicies."
-          }
-        },
-        "accessRestrictions": {
+        "deprecatedInFavorOf": {
           "target": "com.gcp.chromepolicy_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Output only. Specific access restrictions related to this policy."
-          }
-        },
-        "additionalTargetKeyNames": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyNameList",
-          "traits": {
-            "smithy.api#documentation": "Output only. Additional key names that will be used to identify the target of the policy value. When specifying a `policyTargetKey`, each of the additional keys specified here will have to be included in the `additionalTargetKeys` map."
+            "smithy.api#documentation": "In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI. Could only be set if policy_api_lifecycle_stage is API_DEPRECATED."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Resource representing a policy schema."
+        "smithy.api#documentation": "Lifecycle information."
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnum": {
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyApiLifecyclePolicyApiLifecycleStageEnum": {
       "type": "enum",
       "members": {
-        "PLATFORM_UNSPECIFIED": {
+        "API_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "PLATFORM_UNSPECIFIED"
+            "smithy.api#enumValue": "API_UNSPECIFIED"
           }
         },
-        "CHROME_OS": {
+        "API_PREVIEW": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CHROME_OS"
+            "smithy.api#enumValue": "API_PREVIEW"
           }
         },
-        "CHROME_BROWSER": {
+        "API_DEVELOPMENT": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CHROME_BROWSER"
+            "smithy.api#enumValue": "API_DEVELOPMENT"
           }
         },
-        "CHROME_BROWSER_FOR_ANDROID": {
+        "API_CURRENT": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CHROME_BROWSER_FOR_ANDROID"
+            "smithy.api#enumValue": "API_CURRENT"
           }
         },
-        "CHROME_BROWSER_FOR_IOS": {
+        "API_DEPRECATED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CHROME_BROWSER_FOR_IOS"
+            "smithy.api#enumValue": "API_DEPRECATED"
           }
         }
       }
     },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaSupportedPlatformsItemEnum"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnum": {
-      "type": "enum",
-      "members": {
-        "TARGET_RESOURCE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TARGET_RESOURCE_UNSPECIFIED"
-          }
-        },
-        "ORG_UNIT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ORG_UNIT"
-          }
-        },
-        "GROUP": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GROUP"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaValidTargetResourcesItemEnum"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescriptionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyNameList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyName"
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchModifyGroupPoliciesRequest": {
+    "com.gcp.chromepolicy_v1#GoogleTypeDate": {
       "type": "structure",
       "members": {
-        "requests": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequestList",
+        "day": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "List of policies to modify as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to a group resource. 3. All `policyTargetKey` values must have the same `app_id` key name in the `additionalTargetKeys`. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair. "
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request message for modifying multiple policy values for a specific group-based target."
-      }
-    },
-    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequestList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ModifyGroupPolicyRequest"
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
       }
     },
     "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProto": {
       "type": "structure",
       "members": {
-        "typeName": {
+        "number": {
+          "target": "smithy.api#Integer"
+        },
+        "defaultValue": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "For message and enum types, this is the name of the type. If the name starts with a '.', it is fully-qualified. Otherwise, C++-like scoping rules are used to find the type (i.e. first the nested types within this message are searched, then within the parent, on up to the root namespace)."
+            "smithy.api#documentation": "For numeric types, contains the original text representation of the value. For booleans, \"true\" or \"false\". For strings, contains the default text contents (not escaped in any way). For bytes, contains the C escaped value. All bytes >= 128 are escaped."
+          }
+        },
+        "proto3Optional": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, this is a proto3 \"optional\". When a proto3 field is optional, it tracks presence regardless of field type. When proto3_optional is true, this field must belong to a oneof to signal to old proto3 clients that presence is tracked for this field. This oneof is known as a \"synthetic\" oneof, and this field must be its sole member (each proto3 optional field gets its own synthetic oneof). Synthetic oneofs exist in the descriptor only, and do not generate any API. Synthetic oneofs must be ordered after all \"real\" oneofs. For message fields, proto3_optional doesn't create any semantic change, since non-repeated message fields always track presence. However it still indicates the semantic detail of whether the user wrote \"optional\" or not. This can be useful for round-tripping the .proto file. For consistency we give message fields a synthetic oneof also, even though it is not required to track presence. This is especially important because the parser can't tell if a field is a message or an enum, so it must always create a synthetic oneof. Proto2 optional fields do not set this flag, because they already indicate optional with `LABEL_OPTIONAL`."
           }
         },
         "oneofIndex": {
@@ -1630,20 +1474,11 @@
             "smithy.api#documentation": "If set, gives the index of a oneof in the containing type's oneof_decl list. This field is a member of that oneof."
           }
         },
-        "label": {
-          "target": "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoLabelEnum"
-        },
-        "proto3Optional": {
-          "target": "smithy.api#Boolean",
+        "typeName": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If true, this is a proto3 \"optional\". When a proto3 field is optional, it tracks presence regardless of field type. When proto3_optional is true, this field must belong to a oneof to signal to old proto3 clients that presence is tracked for this field. This oneof is known as a \"synthetic\" oneof, and this field must be its sole member (each proto3 optional field gets its own synthetic oneof). Synthetic oneofs exist in the descriptor only, and do not generate any API. Synthetic oneofs must be ordered after all \"real\" oneofs. For message fields, proto3_optional doesn't create any semantic change, since non-repeated message fields always track presence. However it still indicates the semantic detail of whether the user wrote \"optional\" or not. This can be useful for round-tripping the .proto file. For consistency we give message fields a synthetic oneof also, even though it is not required to track presence. This is especially important because the parser can't tell if a field is a message or an enum, so it must always create a synthetic oneof. Proto2 optional fields do not set this flag, because they already indicate optional with `LABEL_OPTIONAL`."
+            "smithy.api#documentation": "For message and enum types, this is the name of the type. If the name starts with a '.', it is fully-qualified. Otherwise, C++-like scoping rules are used to find the type (i.e. first the nested types within this message are searched, then within the parent, on up to the root namespace)."
           }
-        },
-        "name": {
-          "target": "smithy.api#String"
-        },
-        "number": {
-          "target": "smithy.api#Integer"
         },
         "type": {
           "target": "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoTypeEnum",
@@ -1651,44 +1486,21 @@
             "smithy.api#documentation": "If type_name is set, this need not be set. If both this and type_name are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP."
           }
         },
+        "label": {
+          "target": "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoLabelEnum"
+        },
         "jsonName": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "JSON name of this field. The value is set by protocol compiler. If the user has set a \"json_name\" option on this field, that option's value will be used. Otherwise, it's deduced from the field's name by converting it to camelCase."
           }
         },
-        "defaultValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For numeric types, contains the original text representation of the value. For booleans, \"true\" or \"false\". For strings, contains the default text contents (not escaped in any way). For bytes, contains the C escaped value. All bytes >= 128 are escaped."
-          }
+        "name": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {
         "smithy.api#documentation": "Describes a field within a message."
-      }
-    },
-    "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoLabelEnum": {
-      "type": "enum",
-      "members": {
-        "LABEL_OPTIONAL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LABEL_OPTIONAL"
-          }
-        },
-        "LABEL_REPEATED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LABEL_REPEATED"
-          }
-        },
-        "LABEL_REQUIRED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LABEL_REQUIRED"
-          }
-        }
       }
     },
     "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoTypeEnum": {
@@ -1804,19 +1616,208 @@
         }
       }
     },
-    "com.gcp.chromepolicy_v1#UploadMediaRequest": {
+    "com.gcp.chromepolicy_v1#Proto2FieldDescriptorProtoLabelEnum": {
+      "type": "enum",
+      "members": {
+        "LABEL_OPTIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_OPTIONAL"
+          }
+        },
+        "LABEL_REPEATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_REPEATED"
+          }
+        },
+        "LABEL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABEL_REQUIRED"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescription": {
+      "type": "structure",
+      "members": {
+        "inputConstraint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Any input constraints associated on the values for the field."
+          }
+        },
+        "fieldDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The description of the field."
+          }
+        },
+        "nestedFieldDescriptions": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDescriptionList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields. Fields are suggested to be displayed by the ordering in this list, not by field number."
+          }
+        },
+        "fieldConstraints": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1FieldConstraints",
+          "traits": {
+            "smithy.api#documentation": "Output only. Information on any input constraints associated on the values for the field."
+          }
+        },
+        "fieldDependencies": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldDependenciesList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the field."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated. Use name and field_description instead. The description for the field."
+          }
+        },
+        "defaultValue": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Output only. Client default if the policy is unset."
+          }
+        },
+        "requiredItems": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItemsList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Provides a list of fields that are required to be set if this field has a certain value."
+          }
+        },
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the field for associated with this description."
+          }
+        },
+        "knownValueDescriptions": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescriptionList",
+          "traits": {
+            "smithy.api#documentation": "Output only. If the field has a set of known values, this field will provide a description for these values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides detailed information for a particular field that is part of a PolicySchema."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaRequiredItems"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchInheritOrgUnitPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "requests": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequestList",
+          "traits": {
+            "smithy.api#documentation": "List of policies that have to inherit their values as defined by the `requests`. All requests in the list must follow these restrictions: 1. All schemas in the list must have the same root namespace. 2. All `policyTargetKey.targetResource` values must point to an org unit resource. 3. All `policyTargetKey` values must have the same key names in the ` additionalTargetKeys`. This also means if one of the targets has an empty `additionalTargetKeys` map, all of the targets must have an empty `additionalTargetKeys` map. 4. No two modification requests can reference the same `policySchema` + ` policyTargetKey` pair. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for specifying that multiple policy values inherit their value from their parents."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest"
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyModificationFieldError": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the field with the error."
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The error message related to the field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error information for a modification request of a specific field on a specific policy."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DeleteGroupPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policySchema": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified name of the policy schema that is being inherited."
+          }
+        },
+        "policyTargetKey": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "traits": {
+            "smithy.api#documentation": "Required. The key of the target for which we want to modify a policy. The target resource must point to a Group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request parameters for deleting the policy value of a specific group target."
+      }
+    },
+    "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
+      "type": "structure",
+      "members": {
+        "keyDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key description."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional key names that will be used to identify the target of the policy value."
+      }
+    },
+    "com.gcp.chromepolicy_v1#ResolveCustomersPoliciesRequest": {
       "type": "structure",
       "members": {
         "customer": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The customer for which the file upload will apply.",
+            "smithy.api#documentation": "ID of the G Suite account or literal \"my_customer\" for the customer associated to the request.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadPolicyFileRequest",
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolveRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1876,56 +1877,6 @@
         ]
       }
     },
-    "com.gcp.chromepolicy_v1#UploadMedia": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.chromepolicy_v1#UploadMediaRequest"
-      },
-      "output": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadPolicyFileResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.chromepolicy_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+customer}/policies/files:uploadPolicyFile"
-        },
-        "smithy.api#documentation": "Creates an enterprise file from the content provided by user. Returns a public download url for end user."
-      }
-    },
-    "com.gcp.chromepolicy_v1#ResolveCustomersPoliciesRequest": {
-      "type": "structure",
-      "members": {
-        "customer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the G Suite account or literal \"my_customer\" for the customer associated to the request.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1ResolveRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
     "com.gcp.chromepolicy_v1#ResolveCustomersPolicies": {
       "type": "operation",
       "input": {
@@ -1954,206 +1905,6 @@
           "uri": "v1/{+customer}/policies:resolve"
         },
         "smithy.api#documentation": "Gets the resolved policy values for a list of policies that match a search query."
-      }
-    },
-    "com.gcp.chromepolicy_v1#BatchModifyCustomersPoliciesOrgunitsRequest": {
-      "type": "structure",
-      "members": {
-        "customer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the G Suite account or literal \"my_customer\" for the customer associated to the request.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchModifyOrgUnitPoliciesRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#BatchModifyCustomersPoliciesOrgunits": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.chromepolicy_v1#BatchModifyCustomersPoliciesOrgunitsRequest"
-      },
-      "output": {
-        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.chromepolicy_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+customer}/policies/orgunits:batchModify"
-        },
-        "smithy.api#documentation": "Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status."
-      }
-    },
-    "com.gcp.chromepolicy_v1#BatchInheritCustomersPoliciesOrgunitsRequest": {
-      "type": "structure",
-      "members": {
-        "customer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the G Suite account or literal \"my_customer\" for the customer associated to the request.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchInheritOrgUnitPoliciesRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#BatchInheritCustomersPoliciesOrgunits": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.chromepolicy_v1#BatchInheritCustomersPoliciesOrgunitsRequest"
-      },
-      "output": {
-        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.chromepolicy_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+customer}/policies/orgunits:batchInherit"
-        },
-        "smithy.api#documentation": "Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status."
-      }
-    },
-    "com.gcp.chromepolicy_v1#RemoveCertificateCustomersPoliciesNetworksRequest": {
-      "type": "structure",
-      "members": {
-        "customer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The customer whose certificate will be removed.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#RemoveCertificateCustomersPoliciesNetworks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.chromepolicy_v1#RemoveCertificateCustomersPoliciesNetworksRequest"
-      },
-      "output": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.chromepolicy_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+customer}/policies/networks:removeCertificate"
-        },
-        "smithy.api#documentation": "Remove an existing certificate by guid."
-      }
-    },
-    "com.gcp.chromepolicy_v1#DefineCertificateCustomersPoliciesNetworksRequest": {
-      "type": "structure",
-      "members": {
-        "customer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The customer for which the certificate will apply.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#DefineCertificateCustomersPoliciesNetworks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.chromepolicy_v1#DefineCertificateCustomersPoliciesNetworksRequest"
-      },
-      "output": {
-        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.chromepolicy_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+customer}/policies/networks:defineCertificate"
-        },
-        "smithy.api#documentation": "Creates a certificate at a specified OU for a customer."
       }
     },
     "com.gcp.chromepolicy_v1#RemoveNetworkCustomersPoliciesNetworksRequest": {
@@ -2206,6 +1957,106 @@
         "smithy.api#documentation": "Remove an existing network by guid."
       }
     },
+    "com.gcp.chromepolicy_v1#DefineCertificateCustomersPoliciesNetworksRequest": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The customer for which the certificate will apply.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#DefineCertificateCustomersPoliciesNetworks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromepolicy_v1#DefineCertificateCustomersPoliciesNetworksRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1DefineCertificateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromepolicy_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+customer}/policies/networks:defineCertificate"
+        },
+        "smithy.api#documentation": "Creates a certificate at a specified OU for a customer."
+      }
+    },
+    "com.gcp.chromepolicy_v1#RemoveCertificateCustomersPoliciesNetworksRequest": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The customer whose certificate will be removed.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#RemoveCertificateCustomersPoliciesNetworks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromepolicy_v1#RemoveCertificateCustomersPoliciesNetworksRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1RemoveCertificateResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromepolicy_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+customer}/policies/networks:removeCertificate"
+        },
+        "smithy.api#documentation": "Remove an existing certificate by guid."
+      }
+    },
     "com.gcp.chromepolicy_v1#DefineNetworkCustomersPoliciesNetworksRequest": {
       "type": "structure",
       "members": {
@@ -2254,106 +2105,6 @@
           "uri": "v1/{+customer}/policies/networks:defineNetwork"
         },
         "smithy.api#documentation": "Define a new network."
-      }
-    },
-    "com.gcp.chromepolicy_v1#UpdateGroupPriorityOrderingCustomersPoliciesGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "customer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UpdateGroupPriorityOrderingRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#UpdateGroupPriorityOrderingCustomersPoliciesGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.chromepolicy_v1#UpdateGroupPriorityOrderingCustomersPoliciesGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.chromepolicy_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+customer}/policies/groups:updateGroupPriorityOrdering"
-        },
-        "smithy.api#documentation": "Update a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status."
-      }
-    },
-    "com.gcp.chromepolicy_v1#DeleteBatchCustomerPolicyGroupRequest": {
-      "type": "structure",
-      "members": {
-        "customer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchDeleteGroupPoliciesRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.chromepolicy_v1#DeleteBatchCustomerPolicyGroup": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.chromepolicy_v1#DeleteBatchCustomerPolicyGroupRequest"
-      },
-      "output": {
-        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.chromepolicy_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.chromepolicy_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+customer}/policies/groups:batchDelete"
-        },
-        "smithy.api#documentation": "Delete multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status."
       }
     },
     "com.gcp.chromepolicy_v1#ListGroupPriorityOrderingCustomersPoliciesGroupsRequest": {
@@ -2456,16 +2207,209 @@
         "smithy.api#documentation": "Modify multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status."
       }
     },
+    "com.gcp.chromepolicy_v1#UpdateGroupPriorityOrderingCustomersPoliciesGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UpdateGroupPriorityOrderingRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#UpdateGroupPriorityOrderingCustomersPoliciesGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromepolicy_v1#UpdateGroupPriorityOrderingCustomersPoliciesGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromepolicy_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+customer}/policies/groups:updateGroupPriorityOrdering"
+        },
+        "smithy.api#documentation": "Update a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status."
+      }
+    },
+    "com.gcp.chromepolicy_v1#BatchDeleteCustomersPoliciesGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the Google Workspace account or literal \"my_customer\" for the customer associated to the request.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchDeleteGroupPoliciesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#BatchDeleteCustomersPoliciesGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromepolicy_v1#BatchDeleteCustomersPoliciesGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromepolicy_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+customer}/policies/groups:batchDelete"
+        },
+        "smithy.api#documentation": "Delete multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status."
+      }
+    },
+    "com.gcp.chromepolicy_v1#BatchInheritCustomersPoliciesOrgunitsRequest": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the G Suite account or literal \"my_customer\" for the customer associated to the request.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchInheritOrgUnitPoliciesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#BatchInheritCustomersPoliciesOrgunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromepolicy_v1#BatchInheritCustomersPoliciesOrgunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromepolicy_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+customer}/policies/orgunits:batchInherit"
+        },
+        "smithy.api#documentation": "Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status."
+      }
+    },
+    "com.gcp.chromepolicy_v1#BatchModifyCustomersPoliciesOrgunitsRequest": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the G Suite account or literal \"my_customer\" for the customer associated to the request.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1BatchModifyOrgUnitPoliciesRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#BatchModifyCustomersPoliciesOrgunits": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromepolicy_v1#BatchModifyCustomersPoliciesOrgunitsRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromepolicy_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromepolicy_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+customer}/policies/orgunits:batchModify"
+        },
+        "smithy.api#documentation": "Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status."
+      }
+    },
     "com.gcp.chromepolicy_v1#ListCustomersPolicySchemasRequest": {
       "type": "structure",
       "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The schema filter used to find a particular schema based on fields like its resource name, description and `additionalTargetKeyNames`.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -2486,6 +2430,13 @@
             "smithy.api#documentation": "Required. The customer for which the listing request will apply.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The schema filter used to find a particular schema based on fields like its resource name, description and `additionalTargetKeyNames`.",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -2553,6 +2504,56 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Get a specific policy schema for a customer by its resource name."
+      }
+    },
+    "com.gcp.chromepolicy_v1#UploadMediaRequest": {
+      "type": "structure",
+      "members": {
+        "customer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The customer for which the file upload will apply.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadPolicyFileRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.chromepolicy_v1#UploadMedia": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.chromepolicy_v1#UploadMediaRequest"
+      },
+      "output": {
+        "target": "com.gcp.chromepolicy_v1#GoogleChromePolicyVersionsV1UploadPolicyFileResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.chromepolicy_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.chromepolicy_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+customer}/policies/files:uploadPolicyFile"
+        },
+        "smithy.api#documentation": "Creates an enterprise file from the content provided by user. Returns a public download url for end user."
       }
     }
   }

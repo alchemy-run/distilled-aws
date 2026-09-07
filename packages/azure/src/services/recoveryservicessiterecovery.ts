@@ -12,7 +12,33 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CheckReplicationFabricConsistencyRequest {
+/** Add Disks provider specific input. */
+export interface AddDisksProviderSpecificInput {
+  /** The class type. */
+  instanceType: string;
+}
+export const AddDisksProviderSpecificInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "AddDisksProviderSpecificInput",
+}) as any as S.Schema<AddDisksProviderSpecificInput>;
+
+/** Add Disks input properties. */
+export interface AddDisksInputProperties {
+  /** The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null. */
+  providerSpecificDetails: AddDisksProviderSpecificInput;
+}
+export const AddDisksInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    providerSpecificDetails: AddDisksProviderSpecificInput,
+  }),
+).annotate({
+  identifier: "AddDisksInputProperties",
+}) as any as S.Schema<AddDisksInputProperties>;
+
+export interface AddReplicationProtectedItemDisksRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21,25 +47,34 @@ export interface CheckReplicationFabricConsistencyRequest {
   resourceName: string;
   /** Fabric name. */
   fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+  /** Add disks input properties. */
+  properties?: AddDisksInputProperties;
 }
-export const CheckReplicationFabricConsistencyRequest = /*@__PURE__*/ S.suspend(
+export const AddReplicationProtectedItemDisksRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
       fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+      properties: S.optional(AddDisksInputProperties),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/checkConsistency",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/addDisks",
         code: 200,
         apiVersion: "2026-07-01",
       }),
     ),
 ).annotate({
-  identifier: "CheckReplicationFabricConsistencyRequest",
-}) as any as S.Schema<CheckReplicationFabricConsistencyRequest>;
+  identifier: "AddReplicationProtectedItemDisksRequest",
+}) as any as S.Schema<AddReplicationProtectedItemDisksRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -83,37 +118,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
-/** Encryption details for the fabric. */
-export interface EncryptionDetails {
-  /** The key encryption key state for the Vmm. */
-  kekState?: string;
-  /** The key encryption key certificate thumbprint. */
-  kekCertThumbprint?: string;
-  /** The key encryption key certificate expiry date. */
-  kekCertExpiryDate?: string;
-}
-export const EncryptionDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kekState: S.optional(S.String),
-    kekCertThumbprint: S.optional(S.String),
-    kekCertExpiryDate: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EncryptionDetails",
-}) as any as S.Schema<EncryptionDetails>;
-
-/** Fabric specific details. */
-export interface FabricSpecificDetails {
-  /** Gets the class type. Overridden in derived classes. */
-  instanceType: string;
-}
-export const FabricSpecificDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-  }),
-).annotate({
-  identifier: "FabricSpecificDetails",
-}) as any as S.Schema<FabricSpecificDetails>;
+/** The allowed operations on the Replication protected item. */
+export type ReplicationProtectedItemPropertiesAllowedOperationsList =
+  Array<string>;
+export const ReplicationProtectedItemPropertiesAllowedOperationsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ReplicationProtectedItemPropertiesAllowedOperationsList>;
 
 /** Value indicating whether the health error is customer resolvable. */
 export type HealthErrorCustomerResolvability = "Allowed" | "NotAllowed";
@@ -230,6 +241,1330 @@ export const HealthError = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "HealthError" }) as any as S.Schema<HealthError>;
 
+/** List of health errors. */
+export type ReplicationProtectedItemPropertiesHealthErrorsList =
+  Array<HealthError>;
+export const ReplicationProtectedItemPropertiesHealthErrorsList =
+  /*@__PURE__*/ S.Array(
+    HealthError,
+  ) as any as S.Schema<ReplicationProtectedItemPropertiesHealthErrorsList>;
+
+/** Current scenario details of the protected entity. */
+export interface CurrentScenarioDetails {
+  /** Scenario name. */
+  scenarioName?: string;
+  /** ARM Id of the job being executed. */
+  jobId?: string;
+  /** Start time of the workflow. */
+  startTime?: string;
+}
+export const CurrentScenarioDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scenarioName: S.optional(S.String),
+    jobId: S.optional(S.String),
+    startTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CurrentScenarioDetails",
+}) as any as S.Schema<CurrentScenarioDetails>;
+
+/** Replication provider specific settings. */
+export interface ReplicationProviderSpecificSettings {
+  /** Gets the Instance type. */
+  instanceType: string;
+}
+export const ReplicationProviderSpecificSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "ReplicationProviderSpecificSettings",
+}) as any as S.Schema<ReplicationProviderSpecificSettings>;
+
+/** Replication protected item custom data details. */
+export interface ReplicationProtectedItemProperties {
+  /** The name. */
+  friendlyName?: string;
+  /** The type of protected item type. */
+  protectedItemType?: string;
+  /** The protected item ARM Id. */
+  protectableItemId?: string;
+  /** The recovery provider ARM Id. */
+  recoveryServicesProviderId?: string;
+  /** The friendly name of the primary fabric. */
+  primaryFabricFriendlyName?: string;
+  /** The fabric provider of the primary fabric. */
+  primaryFabricProvider?: string;
+  /** The friendly name of recovery fabric. */
+  recoveryFabricFriendlyName?: string;
+  /** The Arm Id of recovery fabric. */
+  recoveryFabricId?: string;
+  /** The name of primary protection container friendly name. */
+  primaryProtectionContainerFriendlyName?: string;
+  /** The name of recovery container friendly name. */
+  recoveryProtectionContainerFriendlyName?: string;
+  /** The protection status. */
+  protectionState?: string;
+  /** The protection state description. */
+  protectionStateDescription?: string;
+  /** The Current active location of the PE. */
+  activeLocation?: string;
+  /** The Test failover state. */
+  testFailoverState?: string;
+  /** The Test failover state description. */
+  testFailoverStateDescription?: string;
+  /** The switch provider state. */
+  switchProviderState?: string;
+  /** The switch provider state description. */
+  switchProviderStateDescription?: string;
+  /** The allowed operations on the Replication protected item. */
+  allowedOperations?: ReplicationProtectedItemPropertiesAllowedOperationsList;
+  /** The consolidated protection health for the VM taking any issues with SRS as well as all the replication units associated with the VM's replication group into account. This is a string representation of the ProtectionHealth enumeration. */
+  replicationHealth?: string;
+  /** The consolidated failover health for the VM. */
+  failoverHealth?: string;
+  /** List of health errors. */
+  healthErrors?: ReplicationProtectedItemPropertiesHealthErrorsList;
+  /** The ID of Policy governing this PE. */
+  policyId?: string;
+  /** The name of Policy governing this PE. */
+  policyFriendlyName?: string;
+  /** The Last successful failover time. */
+  lastSuccessfulFailoverTime?: string;
+  /** The Last successful test failover time. */
+  lastSuccessfulTestFailoverTime?: string;
+  /** The current scenario. */
+  currentScenario?: CurrentScenarioDetails;
+  /** The recovery point ARM Id to which the Vm was failed over. */
+  failoverRecoveryPointId?: string;
+  /** The Replication provider custom settings. */
+  providerSpecificDetails?: ReplicationProviderSpecificSettings;
+  /** The recovery container Id. */
+  recoveryContainerId?: string;
+  /** The correlation Id for events associated with this protected item. */
+  eventCorrelationId?: string;
+}
+export const ReplicationProtectedItemProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    friendlyName: S.optional(S.String),
+    protectedItemType: S.optional(S.String),
+    protectableItemId: S.optional(S.String),
+    recoveryServicesProviderId: S.optional(S.String),
+    primaryFabricFriendlyName: S.optional(S.String),
+    primaryFabricProvider: S.optional(S.String),
+    recoveryFabricFriendlyName: S.optional(S.String),
+    recoveryFabricId: S.optional(S.String),
+    primaryProtectionContainerFriendlyName: S.optional(S.String),
+    recoveryProtectionContainerFriendlyName: S.optional(S.String),
+    protectionState: S.optional(S.String),
+    protectionStateDescription: S.optional(S.String),
+    activeLocation: S.optional(S.String),
+    testFailoverState: S.optional(S.String),
+    testFailoverStateDescription: S.optional(S.String),
+    switchProviderState: S.optional(S.String),
+    switchProviderStateDescription: S.optional(S.String),
+    allowedOperations: S.optional(
+      ReplicationProtectedItemPropertiesAllowedOperationsList,
+    ),
+    replicationHealth: S.optional(S.String),
+    failoverHealth: S.optional(S.String),
+    healthErrors: S.optional(
+      ReplicationProtectedItemPropertiesHealthErrorsList,
+    ),
+    policyId: S.optional(S.String),
+    policyFriendlyName: S.optional(S.String),
+    lastSuccessfulFailoverTime: S.optional(S.String),
+    lastSuccessfulTestFailoverTime: S.optional(S.String),
+    currentScenario: S.optional(CurrentScenarioDetails),
+    failoverRecoveryPointId: S.optional(S.String),
+    providerSpecificDetails: S.optional(ReplicationProviderSpecificSettings),
+    recoveryContainerId: S.optional(S.String),
+    eventCorrelationId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReplicationProtectedItemProperties",
+}) as any as S.Schema<ReplicationProtectedItemProperties>;
+
+export interface AddReplicationProtectedItemDisksResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectedItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const AddReplicationProtectedItemDisksResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectedItemProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "AddReplicationProtectedItemDisksResponse",
+}) as any as S.Schema<AddReplicationProtectedItemDisksResponse>;
+
+/** Provider specific input for apply recovery point. */
+export type ApplyRecoveryPointProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+export const ApplyRecoveryPointProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+
+/** Input properties to apply recovery point. */
+export interface ApplyRecoveryPointInputProperties {
+  /** The recovery point Id. */
+  recoveryPointId?: string;
+  /** Provider specific input for applying recovery point. */
+  providerSpecificDetails: AddDisksProviderSpecificInput;
+}
+export const ApplyRecoveryPointInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    recoveryPointId: S.optional(S.String),
+    providerSpecificDetails: AddDisksProviderSpecificInput,
+  }),
+).annotate({
+  identifier: "ApplyRecoveryPointInputProperties",
+}) as any as S.Schema<ApplyRecoveryPointInputProperties>;
+
+export interface ApplyReplicationProtectedItemRecoveryPointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+  /** The input properties to apply recovery point. */
+  properties: ApplyRecoveryPointInputProperties;
+}
+export const ApplyReplicationProtectedItemRecoveryPointRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+      properties: ApplyRecoveryPointInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/applyRecoveryPoint",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ApplyReplicationProtectedItemRecoveryPointRequest",
+  }) as any as S.Schema<ApplyReplicationProtectedItemRecoveryPointRequest>;
+
+export interface ApplyReplicationProtectedItemRecoveryPointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectedItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const ApplyReplicationProtectedItemRecoveryPointResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectedItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ApplyReplicationProtectedItemRecoveryPointResponse",
+  }) as any as S.Schema<ApplyReplicationProtectedItemRecoveryPointResponse>;
+
+/** The list of individual node recovery points. */
+export type ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList =
+  Array<string>;
+export const ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList>;
+
+/** Provider specific input for apply cluster recovery point. */
+export type ApplyClusterRecoveryPointProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+export const ApplyClusterRecoveryPointProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+
+/** Input definition for apply cluster recovery point properties. */
+export interface ApplyClusterRecoveryPointInputProperties {
+  /** The cluster recovery point id to be passed to failover to a particular recovery point. */
+  clusterRecoveryPointId?: string;
+  /** The list of individual node recovery points. */
+  individualNodeRecoveryPoints?: ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList;
+  /** The provider specific input for applying cluster recovery point. */
+  providerSpecificDetails: AddDisksProviderSpecificInput;
+}
+export const ApplyClusterRecoveryPointInputProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      clusterRecoveryPointId: S.optional(S.String),
+      individualNodeRecoveryPoints: S.optional(
+        ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList,
+      ),
+      providerSpecificDetails: AddDisksProviderSpecificInput,
+    }),
+).annotate({
+  identifier: "ApplyClusterRecoveryPointInputProperties",
+}) as any as S.Schema<ApplyClusterRecoveryPointInputProperties>;
+
+export interface ApplyReplicationProtectionClusterRecoveryPointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protection cluster name. */
+  replicationProtectionClusterName: string;
+  /** The properties to apply cluster recovery point input. */
+  properties: ApplyClusterRecoveryPointInputProperties;
+}
+export const ApplyReplicationProtectionClusterRecoveryPointRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicationProtectionClusterName: S.String.pipe(T.Label()),
+      properties: ApplyClusterRecoveryPointInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/applyRecoveryPoint",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ApplyReplicationProtectionClusterRecoveryPointRequest",
+  }) as any as S.Schema<ApplyReplicationProtectionClusterRecoveryPointRequest>;
+
+/** The allowed operations on the Replication protection cluster. */
+export type ReplicationProtectionClusterPropertiesAllowedOperationsList =
+  Array<string>;
+export const ReplicationProtectionClusterPropertiesAllowedOperationsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ReplicationProtectionClusterPropertiesAllowedOperationsList>;
+
+/** List of health errors. */
+export type ReplicationProtectionClusterPropertiesHealthErrorsList =
+  Array<HealthError>;
+export const ReplicationProtectionClusterPropertiesHealthErrorsList =
+  /*@__PURE__*/ S.Array(
+    HealthError,
+  ) as any as S.Schema<ReplicationProtectionClusterPropertiesHealthErrorsList>;
+
+/** The List of cluster Node FQDNs. */
+export type ReplicationProtectionClusterPropertiesClusterNodeFqdnsList =
+  Array<string>;
+export const ReplicationProtectionClusterPropertiesClusterNodeFqdnsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ReplicationProtectionClusterPropertiesClusterNodeFqdnsList>;
+
+/** The List of Protected Item Id's. */
+export type ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList =
+  Array<string>;
+export const ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList>;
+
+/** Extended location of the resource. */
+export interface RegisteredClusterNodes {
+  /** The cluster node name. */
+  clusterNodeFqdn?: string;
+  /** The machine ID. */
+  machineId?: string;
+  /** The BIOS ID. */
+  biosId?: string;
+  /** A value indicating whether this represents virtual entity hosting all the shared disks. */
+  isSharedDiskVirtualNode?: boolean;
+}
+export const RegisteredClusterNodes = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterNodeFqdn: S.optional(S.String),
+    machineId: S.optional(S.String),
+    biosId: S.optional(S.String),
+    isSharedDiskVirtualNode: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RegisteredClusterNodes",
+}) as any as S.Schema<RegisteredClusterNodes>;
+
+/** The registered node details. */
+export type ReplicationProtectionClusterPropertiesClusterRegisteredNodesList =
+  Array<RegisteredClusterNodes>;
+export const ReplicationProtectionClusterPropertiesClusterRegisteredNodesList =
+  /*@__PURE__*/ S.Array(
+    RegisteredClusterNodes,
+  ) as any as S.Schema<ReplicationProtectionClusterPropertiesClusterRegisteredNodesList>;
+
+/** Replication cluster provider specific settings. */
+export type ReplicationClusterProviderSpecificSettings =
+  ReplicationProviderSpecificSettings;
+export const ReplicationClusterProviderSpecificSettings =
+  ReplicationProviderSpecificSettings;
+
+/** The allowed operations on the Replication protected item. */
+export type SharedDiskReplicationItemPropertiesAllowedOperationsList =
+  Array<string>;
+export const SharedDiskReplicationItemPropertiesAllowedOperationsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SharedDiskReplicationItemPropertiesAllowedOperationsList>;
+
+/** List of health errors. */
+export type SharedDiskReplicationItemPropertiesHealthErrorsList =
+  Array<HealthError>;
+export const SharedDiskReplicationItemPropertiesHealthErrorsList =
+  /*@__PURE__*/ S.Array(
+    HealthError,
+  ) as any as S.Schema<SharedDiskReplicationItemPropertiesHealthErrorsList>;
+
+/** Replication provider specific settings. */
+export type SharedDiskReplicationProviderSpecificSettings =
+  ReplicationProviderSpecificSettings;
+export const SharedDiskReplicationProviderSpecificSettings =
+  ReplicationProviderSpecificSettings;
+
+/** Shared Disk Replication item custom data details. */
+export interface SharedDiskReplicationItemProperties {
+  /** The protection state of shared disk. */
+  protectionState?: string;
+  /** The tfo state of shared disk. */
+  testFailoverState?: string;
+  /** The Current active location of the PE. */
+  activeLocation?: string;
+  /** The allowed operations on the Replication protected item. */
+  allowedOperations?: SharedDiskReplicationItemPropertiesAllowedOperationsList;
+  /** The consolidated protection health for the VM taking any issues with SRS as well as all the replication units associated with the VM's replication group into account. This is a string representation of the ProtectionHealth enumeration. */
+  replicationHealth?: string;
+  /** List of health errors. */
+  healthErrors?: SharedDiskReplicationItemPropertiesHealthErrorsList;
+  /** The current scenario. */
+  currentScenario?: CurrentScenarioDetails;
+  /** The Replication provider custom settings. */
+  sharedDiskProviderSpecificDetails?: ReplicationProviderSpecificSettings;
+}
+export const SharedDiskReplicationItemProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    protectionState: S.optional(S.String),
+    testFailoverState: S.optional(S.String),
+    activeLocation: S.optional(S.String),
+    allowedOperations: S.optional(
+      SharedDiskReplicationItemPropertiesAllowedOperationsList,
+    ),
+    replicationHealth: S.optional(S.String),
+    healthErrors: S.optional(
+      SharedDiskReplicationItemPropertiesHealthErrorsList,
+    ),
+    currentScenario: S.optional(CurrentScenarioDetails),
+    sharedDiskProviderSpecificDetails: S.optional(
+      ReplicationProviderSpecificSettings,
+    ),
+  }),
+).annotate({
+  identifier: "SharedDiskReplicationItemProperties",
+}) as any as S.Schema<SharedDiskReplicationItemProperties>;
+
+/** Replication protection cluster custom data details. */
+export interface ReplicationProtectionClusterProperties {
+  /** The type of protection cluster type. */
+  protectionClusterType?: string;
+  /** The friendly name of the primary fabric. */
+  primaryFabricFriendlyName?: string;
+  /** The fabric provider of the primary fabric. */
+  primaryFabricProvider?: string;
+  /** The friendly name of recovery fabric. */
+  recoveryFabricFriendlyName?: string;
+  /** The Arm Id of recovery fabric. */
+  recoveryFabricId?: string;
+  /** The name of primary protection container friendly name. */
+  primaryProtectionContainerFriendlyName?: string;
+  /** The name of recovery container friendly name. */
+  recoveryProtectionContainerFriendlyName?: string;
+  /** The protection status. */
+  protectionState?: string;
+  /** The protection state description. */
+  protectionStateDescription?: string;
+  /** The Current active location of the Protection cluster. */
+  activeLocation?: string;
+  /** The Test failover state. */
+  testFailoverState?: string;
+  /** The Test failover state description. */
+  testFailoverStateDescription?: string;
+  /** The allowed operations on the Replication protection cluster. */
+  allowedOperations?: ReplicationProtectionClusterPropertiesAllowedOperationsList;
+  /** The consolidated protection health for the VM taking any issues with SRS as well as all the replication units associated with the VM's replication group into account. This is a string representation of the ProtectionHealth enumeration. */
+  replicationHealth?: string;
+  /** List of health errors. */
+  healthErrors?: ReplicationProtectionClusterPropertiesHealthErrorsList;
+  /** The last successful failover time. */
+  lastSuccessfulFailoverTime?: string;
+  /** The last successful test failover time. */
+  lastSuccessfulTestFailoverTime?: string;
+  /** The name of Policy governing this PE. */
+  policyFriendlyName?: string;
+  /** The current scenario. */
+  currentScenario?: CurrentScenarioDetails;
+  /** The recovery container Id. */
+  recoveryContainerId?: string;
+  /** The Agent cluster Id. */
+  agentClusterId?: string;
+  /** The cluster FQDN. */
+  clusterFqdn?: string;
+  /** The List of cluster Node FQDNs. */
+  clusterNodeFqdns?: ReplicationProtectionClusterPropertiesClusterNodeFqdnsList;
+  /** The List of Protected Item Id's. */
+  clusterProtectedItemIds?: ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList;
+  /** The provisioning state of the cluster. */
+  provisioningState?: string;
+  /** A value indicating whether all nodes of the cluster are registered or not. */
+  areAllClusterNodesRegistered?: boolean;
+  /** The registered node details. */
+  clusterRegisteredNodes?: ReplicationProtectionClusterPropertiesClusterRegisteredNodesList;
+  /** The Replication cluster provider custom settings. */
+  providerSpecificDetails?: ReplicationProviderSpecificSettings;
+  /** The shared disk properties. */
+  sharedDiskProperties?: SharedDiskReplicationItemProperties;
+  /** The Policy Id. */
+  policyId?: string;
+}
+export const ReplicationProtectionClusterProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      protectionClusterType: S.optional(S.String),
+      primaryFabricFriendlyName: S.optional(S.String),
+      primaryFabricProvider: S.optional(S.String),
+      recoveryFabricFriendlyName: S.optional(S.String),
+      recoveryFabricId: S.optional(S.String),
+      primaryProtectionContainerFriendlyName: S.optional(S.String),
+      recoveryProtectionContainerFriendlyName: S.optional(S.String),
+      protectionState: S.optional(S.String),
+      protectionStateDescription: S.optional(S.String),
+      activeLocation: S.optional(S.String),
+      testFailoverState: S.optional(S.String),
+      testFailoverStateDescription: S.optional(S.String),
+      allowedOperations: S.optional(
+        ReplicationProtectionClusterPropertiesAllowedOperationsList,
+      ),
+      replicationHealth: S.optional(S.String),
+      healthErrors: S.optional(
+        ReplicationProtectionClusterPropertiesHealthErrorsList,
+      ),
+      lastSuccessfulFailoverTime: S.optional(S.String),
+      lastSuccessfulTestFailoverTime: S.optional(S.String),
+      policyFriendlyName: S.optional(S.String),
+      currentScenario: S.optional(CurrentScenarioDetails),
+      recoveryContainerId: S.optional(S.String),
+      agentClusterId: S.optional(S.String),
+      clusterFqdn: S.optional(S.String),
+      clusterNodeFqdns: S.optional(
+        ReplicationProtectionClusterPropertiesClusterNodeFqdnsList,
+      ),
+      clusterProtectedItemIds: S.optional(
+        ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList,
+      ),
+      provisioningState: S.optional(S.String),
+      areAllClusterNodesRegistered: S.optional(S.Boolean),
+      clusterRegisteredNodes: S.optional(
+        ReplicationProtectionClusterPropertiesClusterRegisteredNodesList,
+      ),
+      providerSpecificDetails: S.optional(ReplicationProviderSpecificSettings),
+      sharedDiskProperties: S.optional(SharedDiskReplicationItemProperties),
+      policyId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ReplicationProtectionClusterProperties",
+}) as any as S.Schema<ReplicationProtectionClusterProperties>;
+
+export interface ApplyReplicationProtectionClusterRecoveryPointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectionClusterProperties;
+}
+export const ApplyReplicationProtectionClusterRecoveryPointResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectionClusterProperties),
+    }),
+  ).annotate({
+    identifier: "ApplyReplicationProtectionClusterRecoveryPointResponse",
+  }) as any as S.Schema<ApplyReplicationProtectionClusterRecoveryPointResponse>;
+
+export interface CancelReplicationJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Job identifier. */
+  jobName: string;
+}
+export const CancelReplicationJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationJobs/{jobName}/cancel",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelReplicationJobRequest",
+}) as any as S.Schema<CancelReplicationJobRequest>;
+
+/** The state/actions applicable on this task. */
+export type ASRTaskAllowedActionsList = Array<string>;
+export const ASRTaskAllowedActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ASRTaskAllowedActionsList>;
+
+/** Task details based on specific task type. */
+export interface TaskTypeDetails {
+  /** The type of task details. */
+  instanceType: string;
+}
+export const TaskTypeDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "TaskTypeDetails",
+}) as any as S.Schema<TaskTypeDetails>;
+
+/** The child tasks. */
+export type GroupTaskDetailsChildTasksList = Array<ASRTask>;
+export const GroupTaskDetailsChildTasksList = /*@__PURE__*/ S.Array(
+  S.suspend(() => ASRTask),
+) as any as S.Schema<GroupTaskDetailsChildTasksList>;
+
+/** This class represents the group task details when parent child relationship exists in the drill down. */
+export interface GroupTaskDetails {
+  /** The type of task details. */
+  instanceType: string;
+  /** The child tasks. */
+  childTasks?: GroupTaskDetailsChildTasksList;
+}
+export const GroupTaskDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+    childTasks: S.optional(GroupTaskDetailsChildTasksList),
+  }),
+).annotate({
+  identifier: "GroupTaskDetails",
+}) as any as S.Schema<GroupTaskDetails>;
+
+/** ASR error model. */
+export interface ServiceError {
+  /** Error code. */
+  code?: string;
+  /** Error message. */
+  message?: string;
+  /** Possible causes of error. */
+  possibleCauses?: string;
+  /** Recommended action to resolve error. */
+  recommendedAction?: string;
+  /** Activity Id. */
+  activityId?: string;
+}
+export const ServiceError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    possibleCauses: S.optional(S.String),
+    recommendedAction: S.optional(S.String),
+    activityId: S.optional(S.String),
+  }),
+).annotate({ identifier: "ServiceError" }) as any as S.Schema<ServiceError>;
+
+/** This class contains the error details per object. */
+export interface ProviderError {
+  /** The Error code. */
+  errorCode?: number;
+  /** The Error message. */
+  errorMessage?: string;
+  /** The Provider error Id. */
+  errorId?: string;
+  /** The possible causes for the error. */
+  possibleCauses?: string;
+  /** The recommended action to resolve the error. */
+  recommendedAction?: string;
+}
+export const ProviderError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errorCode: S.optional(S.Number),
+    errorMessage: S.optional(S.String),
+    errorId: S.optional(S.String),
+    possibleCauses: S.optional(S.String),
+    recommendedAction: S.optional(S.String),
+  }),
+).annotate({ identifier: "ProviderError" }) as any as S.Schema<ProviderError>;
+
+/** This class contains the error details per object. */
+export interface JobErrorDetails {
+  /** The Service error details. */
+  serviceErrorDetails?: ServiceError;
+  /** The Provider error details. */
+  providerErrorDetails?: ProviderError;
+  /** Error level of error. */
+  errorLevel?: string;
+  /** The creation time of job error. */
+  creationTime?: string;
+  /** The Id of the task. */
+  taskId?: string;
+}
+export const JobErrorDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceErrorDetails: S.optional(ServiceError),
+    providerErrorDetails: S.optional(ProviderError),
+    errorLevel: S.optional(S.String),
+    creationTime: S.optional(S.String),
+    taskId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "JobErrorDetails",
+}) as any as S.Schema<JobErrorDetails>;
+
+/** The task error details. */
+export type ASRTaskErrorsList = Array<JobErrorDetails>;
+export const ASRTaskErrorsList = /*@__PURE__*/ S.Array(
+  JobErrorDetails,
+) as any as S.Schema<ASRTaskErrorsList>;
+
+/** Task of the Job. */
+export interface ASRTask {
+  /** The Id. */
+  taskId?: string;
+  /** The unique Task name. */
+  name?: string;
+  /** The start time. */
+  startTime?: string;
+  /** The end time. */
+  endTime?: string;
+  /** The state/actions applicable on this task. */
+  allowedActions?: ASRTaskAllowedActionsList;
+  /** The name. */
+  friendlyName?: string;
+  /** The State. It is one of these values - NotStarted, InProgress, Succeeded, Failed, Cancelled, Suspended or Other. */
+  state?: string;
+  /** The description of the task state. For example - For Succeeded state, description can be Completed, PartiallySucceeded, CompletedWithInformation or Skipped. */
+  stateDescription?: string;
+  /** The type of task. Details in CustomDetails property depend on this type. */
+  taskType?: string;
+  /** The custom task details based on the task type. */
+  customDetails?: TaskTypeDetails;
+  /** The custom task details based on the task type, if the task type is GroupTaskDetails or one of the types derived from it. */
+  groupTaskCustomDetails?: GroupTaskDetails;
+  /** The task error details. */
+  errors?: ASRTaskErrorsList;
+}
+export const ASRTask = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+    name: S.optional(S.String),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    allowedActions: S.optional(ASRTaskAllowedActionsList),
+    friendlyName: S.optional(S.String),
+    state: S.optional(S.String),
+    stateDescription: S.optional(S.String),
+    taskType: S.optional(S.String),
+    customDetails: S.optional(TaskTypeDetails),
+    groupTaskCustomDetails: S.optional(GroupTaskDetails),
+    errors: S.optional(ASRTaskErrorsList),
+  }),
+).annotate({ identifier: "ASRTask" }) as any as S.Schema<ASRTask>;
+
+/** The tasks. */
+export type JobPropertiesTasksList = Array<ASRTask>;
+export const JobPropertiesTasksList = /*@__PURE__*/ S.Array(
+  ASRTask,
+) as any as S.Schema<JobPropertiesTasksList>;
+
+/** The errors. */
+export type JobPropertiesErrorsList = Array<JobErrorDetails>;
+export const JobPropertiesErrorsList = /*@__PURE__*/ S.Array(
+  JobErrorDetails,
+) as any as S.Schema<JobPropertiesErrorsList>;
+
+/** The Allowed action the job. */
+export type JobPropertiesAllowedActionsList = Array<string>;
+export const JobPropertiesAllowedActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<JobPropertiesAllowedActionsList>;
+
+/** The affected object properties like source server, source cloud, target server, target cloud etc. based on the workflow object details. */
+export type JobDetailsAffectedObjectDetailsMap = {
+  [key: string]: string | undefined;
+};
+export const JobDetailsAffectedObjectDetailsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<JobDetailsAffectedObjectDetailsMap>;
+
+/** Job details based on specific job type. */
+export interface JobDetails {
+  /** Gets the type of job details (see JobDetailsTypes enum for possible values). */
+  instanceType: string;
+  /** The affected object properties like source server, source cloud, target server, target cloud etc. based on the workflow object details. */
+  affectedObjectDetails?: JobDetailsAffectedObjectDetailsMap;
+}
+export const JobDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+    affectedObjectDetails: S.optional(JobDetailsAffectedObjectDetailsMap),
+  }),
+).annotate({ identifier: "JobDetails" }) as any as S.Schema<JobDetails>;
+
+/** Job custom data details. */
+export interface JobProperties {
+  /** The activity id. */
+  activityId?: string;
+  /** The ScenarioName. */
+  scenarioName?: string;
+  /** The DisplayName. */
+  friendlyName?: string;
+  /** The status of the Job. It is one of these values - NotStarted, InProgress, Succeeded, Failed, Cancelled, Suspended or Other. */
+  state?: string;
+  /** The description of the state of the Job. For e.g. - For Succeeded state, description can be Completed, PartiallySucceeded, CompletedWithInformation or Skipped. */
+  stateDescription?: string;
+  /** The tasks. */
+  tasks?: JobPropertiesTasksList;
+  /** The errors. */
+  errors?: JobPropertiesErrorsList;
+  /** The start time. */
+  startTime?: string;
+  /** The end time. */
+  endTime?: string;
+  /** The Allowed action the job. */
+  allowedActions?: JobPropertiesAllowedActionsList;
+  /** The affected Object Id. */
+  targetObjectId?: string;
+  /** The name of the affected object. */
+  targetObjectName?: string;
+  /** The type of the affected object which is of Microsoft.Azure.SiteRecovery.V2015_11_10.AffectedObjectType class. */
+  targetInstanceType?: string;
+  /** The custom job details like test failover job details. */
+  customDetails?: JobDetails;
+}
+export const JobProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    activityId: S.optional(S.String),
+    scenarioName: S.optional(S.String),
+    friendlyName: S.optional(S.String),
+    state: S.optional(S.String),
+    stateDescription: S.optional(S.String),
+    tasks: S.optional(JobPropertiesTasksList),
+    errors: S.optional(JobPropertiesErrorsList),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    allowedActions: S.optional(JobPropertiesAllowedActionsList),
+    targetObjectId: S.optional(S.String),
+    targetObjectName: S.optional(S.String),
+    targetInstanceType: S.optional(S.String),
+    customDetails: S.optional(JobDetails),
+  }),
+).annotate({ identifier: "JobProperties" }) as any as S.Schema<JobProperties>;
+
+export interface CancelReplicationJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: JobProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const CancelReplicationJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(JobProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CancelReplicationJobResponse",
+}) as any as S.Schema<CancelReplicationJobResponse>;
+
+export interface CancelReplicationProtectedItemsFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+}
+export const CancelReplicationProtectedItemsFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/failoverCancel",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelReplicationProtectedItemsFailoverRequest",
+  }) as any as S.Schema<CancelReplicationProtectedItemsFailoverRequest>;
+
+export interface CancelReplicationProtectedItemsFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectedItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const CancelReplicationProtectedItemsFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectedItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CancelReplicationProtectedItemsFailoverResponse",
+  }) as any as S.Schema<CancelReplicationProtectedItemsFailoverResponse>;
+
+export interface CancelReplicationRecoveryPlansFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Name of the recovery plan. */
+  recoveryPlanName: string;
+}
+export const CancelReplicationRecoveryPlansFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      recoveryPlanName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/failoverCancel",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelReplicationRecoveryPlansFailoverRequest",
+  }) as any as S.Schema<CancelReplicationRecoveryPlansFailoverRequest>;
+
+/** The list of replication providers. */
+export type RecoveryPlanPropertiesReplicationProvidersList = Array<string>;
+export const RecoveryPlanPropertiesReplicationProvidersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RecoveryPlanPropertiesReplicationProvidersList>;
+
+/** The list of allowed operations. */
+export type RecoveryPlanPropertiesAllowedOperationsList = Array<string>;
+export const RecoveryPlanPropertiesAllowedOperationsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RecoveryPlanPropertiesAllowedOperationsList>;
+
+/** The group type. */
+export type RecoveryPlanGroupType = "Shutdown" | "Boot" | "Failover";
+export const RecoveryPlanGroupType = /*@__PURE__*/ S.String;
+
+/** Recovery plan protected item. */
+export interface RecoveryPlanProtectedItem {
+  /** The ARM Id of the recovery plan protected item. */
+  id?: string;
+  /** The virtual machine Id. */
+  virtualMachineId?: string;
+}
+export const RecoveryPlanProtectedItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    virtualMachineId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RecoveryPlanProtectedItem",
+}) as any as S.Schema<RecoveryPlanProtectedItem>;
+
+/** The list of protected items. */
+export type RecoveryPlanGroupReplicationProtectedItemsList =
+  Array<RecoveryPlanProtectedItem>;
+export const RecoveryPlanGroupReplicationProtectedItemsList =
+  /*@__PURE__*/ S.Array(
+    RecoveryPlanProtectedItem,
+  ) as any as S.Schema<RecoveryPlanGroupReplicationProtectedItemsList>;
+
+/** The list of failover types. */
+export type ReplicationProtectedItemOperation =
+  | "ReverseReplicate"
+  | "Commit"
+  | "PlannedFailover"
+  | "UnplannedFailover"
+  | "DisableProtection"
+  | "TestFailover"
+  | "TestFailoverCleanup"
+  | "Failback"
+  | "FinalizeFailback"
+  | "CancelFailover"
+  | "ChangePit"
+  | "RepairReplication"
+  | "SwitchProtection"
+  | "CompleteMigration";
+export const ReplicationProtectedItemOperation = /*@__PURE__*/ S.String;
+
+/** The list of failover types. */
+export type RecoveryPlanActionFailoverTypesList = Array<
+  ReplicationProtectedItemOperation | (string & {})
+>;
+export const RecoveryPlanActionFailoverTypesList = /*@__PURE__*/ S.Array(
+  ReplicationProtectedItemOperation,
+) as any as S.Schema<RecoveryPlanActionFailoverTypesList>;
+
+/** The failover direction. */
+export type PossibleOperationsDirections =
+  | "PrimaryToRecovery"
+  | "RecoveryToPrimary";
+export const PossibleOperationsDirections = /*@__PURE__*/ S.String;
+
+/** The list of failover directions. */
+export type RecoveryPlanActionFailoverDirectionsList = Array<
+  PossibleOperationsDirections | (string & {})
+>;
+export const RecoveryPlanActionFailoverDirectionsList = /*@__PURE__*/ S.Array(
+  PossibleOperationsDirections,
+) as any as S.Schema<RecoveryPlanActionFailoverDirectionsList>;
+
+/** Recovery plan action custom details. */
+export interface RecoveryPlanActionDetails {
+  /** Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for possible values). */
+  instanceType: string;
+}
+export const RecoveryPlanActionDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "RecoveryPlanActionDetails",
+}) as any as S.Schema<RecoveryPlanActionDetails>;
+
+/** Recovery plan action details. */
+export interface RecoveryPlanAction {
+  /** The action name. */
+  actionName: string;
+  /** The list of failover types. */
+  failoverTypes: RecoveryPlanActionFailoverTypesList;
+  /** The list of failover directions. */
+  failoverDirections: RecoveryPlanActionFailoverDirectionsList;
+  /** The custom details. */
+  customDetails: RecoveryPlanActionDetails;
+}
+export const RecoveryPlanAction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actionName: S.String,
+    failoverTypes: RecoveryPlanActionFailoverTypesList,
+    failoverDirections: RecoveryPlanActionFailoverDirectionsList,
+    customDetails: RecoveryPlanActionDetails,
+  }),
+).annotate({
+  identifier: "RecoveryPlanAction",
+}) as any as S.Schema<RecoveryPlanAction>;
+
+/** The start group actions. */
+export type RecoveryPlanGroupStartGroupActionsList = Array<RecoveryPlanAction>;
+export const RecoveryPlanGroupStartGroupActionsList = /*@__PURE__*/ S.Array(
+  RecoveryPlanAction,
+) as any as S.Schema<RecoveryPlanGroupStartGroupActionsList>;
+
+/** The end group actions. */
+export type RecoveryPlanGroupEndGroupActionsList = Array<RecoveryPlanAction>;
+export const RecoveryPlanGroupEndGroupActionsList = /*@__PURE__*/ S.Array(
+  RecoveryPlanAction,
+) as any as S.Schema<RecoveryPlanGroupEndGroupActionsList>;
+
+/** Recovery plan group details. */
+export interface RecoveryPlanGroup {
+  /** The group type. */
+  groupType: RecoveryPlanGroupType | (string & {});
+  /** The list of protected items. */
+  replicationProtectedItems?: RecoveryPlanGroupReplicationProtectedItemsList;
+  /** The start group actions. */
+  startGroupActions?: RecoveryPlanGroupStartGroupActionsList;
+  /** The end group actions. */
+  endGroupActions?: RecoveryPlanGroupEndGroupActionsList;
+}
+export const RecoveryPlanGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupType: RecoveryPlanGroupType,
+    replicationProtectedItems: S.optional(
+      RecoveryPlanGroupReplicationProtectedItemsList,
+    ),
+    startGroupActions: S.optional(RecoveryPlanGroupStartGroupActionsList),
+    endGroupActions: S.optional(RecoveryPlanGroupEndGroupActionsList),
+  }),
+).annotate({
+  identifier: "RecoveryPlanGroup",
+}) as any as S.Schema<RecoveryPlanGroup>;
+
+/** The recovery plan groups. */
+export type RecoveryPlanPropertiesGroupsList = Array<RecoveryPlanGroup>;
+export const RecoveryPlanPropertiesGroupsList = /*@__PURE__*/ S.Array(
+  RecoveryPlanGroup,
+) as any as S.Schema<RecoveryPlanPropertiesGroupsList>;
+
+/** Recovery plan provider specific details. */
+export type RecoveryPlanProviderSpecificDetails =
+  ReplicationProviderSpecificSettings;
+export const RecoveryPlanProviderSpecificDetails =
+  ReplicationProviderSpecificSettings;
+
+/** The provider id and provider specific details. */
+export type RecoveryPlanPropertiesProviderSpecificDetailsList =
+  Array<ReplicationProviderSpecificSettings>;
+export const RecoveryPlanPropertiesProviderSpecificDetailsList =
+  /*@__PURE__*/ S.Array(
+    ReplicationProviderSpecificSettings,
+  ) as any as S.Schema<RecoveryPlanPropertiesProviderSpecificDetailsList>;
+
+/** Recovery plan properties. */
+export interface RecoveryPlanProperties {
+  /** The friendly name. */
+  friendlyName?: string;
+  /** The primary fabric Id. */
+  primaryFabricId?: string;
+  /** The primary fabric friendly name. */
+  primaryFabricFriendlyName?: string;
+  /** The recovery fabric Id. */
+  recoveryFabricId?: string;
+  /** The recovery fabric friendly name. */
+  recoveryFabricFriendlyName?: string;
+  /** The failover deployment model. */
+  failoverDeploymentModel?: string;
+  /** The list of replication providers. */
+  replicationProviders?: RecoveryPlanPropertiesReplicationProvidersList;
+  /** The list of allowed operations. */
+  allowedOperations?: RecoveryPlanPropertiesAllowedOperationsList;
+  /** The start time of the last planned failover. */
+  lastPlannedFailoverTime?: string;
+  /** The start time of the last unplanned failover. */
+  lastUnplannedFailoverTime?: string;
+  /** The start time of the last test failover. */
+  lastTestFailoverTime?: string;
+  /** The current scenario details. */
+  currentScenario?: CurrentScenarioDetails;
+  /** The recovery plan status. */
+  currentScenarioStatus?: string;
+  /** The recovery plan status description. */
+  currentScenarioStatusDescription?: string;
+  /** The recovery plan groups. */
+  groups?: RecoveryPlanPropertiesGroupsList;
+  /** The provider id and provider specific details. */
+  providerSpecificDetails?: RecoveryPlanPropertiesProviderSpecificDetailsList;
+}
+export const RecoveryPlanProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    friendlyName: S.optional(S.String),
+    primaryFabricId: S.optional(S.String),
+    primaryFabricFriendlyName: S.optional(S.String),
+    recoveryFabricId: S.optional(S.String),
+    recoveryFabricFriendlyName: S.optional(S.String),
+    failoverDeploymentModel: S.optional(S.String),
+    replicationProviders: S.optional(
+      RecoveryPlanPropertiesReplicationProvidersList,
+    ),
+    allowedOperations: S.optional(RecoveryPlanPropertiesAllowedOperationsList),
+    lastPlannedFailoverTime: S.optional(S.String),
+    lastUnplannedFailoverTime: S.optional(S.String),
+    lastTestFailoverTime: S.optional(S.String),
+    currentScenario: S.optional(CurrentScenarioDetails),
+    currentScenarioStatus: S.optional(S.String),
+    currentScenarioStatusDescription: S.optional(S.String),
+    groups: S.optional(RecoveryPlanPropertiesGroupsList),
+    providerSpecificDetails: S.optional(
+      RecoveryPlanPropertiesProviderSpecificDetailsList,
+    ),
+  }),
+).annotate({
+  identifier: "RecoveryPlanProperties",
+}) as any as S.Schema<RecoveryPlanProperties>;
+
+export interface CancelReplicationRecoveryPlansFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom details. */
+  properties?: RecoveryPlanProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const CancelReplicationRecoveryPlansFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RecoveryPlanProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CancelReplicationRecoveryPlansFailoverResponse",
+  }) as any as S.Schema<CancelReplicationRecoveryPlansFailoverResponse>;
+
+export interface CheckReplicationFabricConsistencyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+}
+export const CheckReplicationFabricConsistencyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/checkConsistency",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckReplicationFabricConsistencyRequest",
+}) as any as S.Schema<CheckReplicationFabricConsistencyRequest>;
+
+/** Encryption details for the fabric. */
+export interface EncryptionDetails {
+  /** The key encryption key state for the Vmm. */
+  kekState?: string;
+  /** The key encryption key certificate thumbprint. */
+  kekCertThumbprint?: string;
+  /** The key encryption key certificate expiry date. */
+  kekCertExpiryDate?: string;
+}
+export const EncryptionDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kekState: S.optional(S.String),
+    kekCertThumbprint: S.optional(S.String),
+    kekCertExpiryDate: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EncryptionDetails",
+}) as any as S.Schema<EncryptionDetails>;
+
+/** Fabric specific details. */
+export interface FabricSpecificDetails {
+  /** Gets the class type. Overridden in derived classes. */
+  instanceType: string;
+}
+export const FabricSpecificDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "FabricSpecificDetails",
+}) as any as S.Schema<FabricSpecificDetails>;
+
 /** Fabric health error details. */
 export type FabricPropertiesHealthErrorDetailsList = Array<HealthError>;
 export const FabricPropertiesHealthErrorDetailsList = /*@__PURE__*/ S.Array(
@@ -298,6 +1633,186 @@ export const CheckReplicationFabricConsistencyResponse =
     identifier: "CheckReplicationFabricConsistencyResponse",
   }) as any as S.Schema<CheckReplicationFabricConsistencyResponse>;
 
+export interface CommitReplicationProtectedItemsFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+}
+export const CommitReplicationProtectedItemsFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/failoverCommit",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CommitReplicationProtectedItemsFailoverRequest",
+  }) as any as S.Schema<CommitReplicationProtectedItemsFailoverRequest>;
+
+export interface CommitReplicationProtectedItemsFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectedItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const CommitReplicationProtectedItemsFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectedItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CommitReplicationProtectedItemsFailoverResponse",
+  }) as any as S.Schema<CommitReplicationProtectedItemsFailoverResponse>;
+
+export interface CommitReplicationProtectionClustersFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protection cluster name. */
+  replicationProtectionClusterName: string;
+}
+export const CommitReplicationProtectionClustersFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicationProtectionClusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/failoverCommit",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CommitReplicationProtectionClustersFailoverRequest",
+  }) as any as S.Schema<CommitReplicationProtectionClustersFailoverRequest>;
+
+export interface CommitReplicationProtectionClustersFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectionClusterProperties;
+}
+export const CommitReplicationProtectionClustersFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectionClusterProperties),
+    }),
+  ).annotate({
+    identifier: "CommitReplicationProtectionClustersFailoverResponse",
+  }) as any as S.Schema<CommitReplicationProtectionClustersFailoverResponse>;
+
+export interface CommitReplicationRecoveryPlansFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Name of the recovery plan. */
+  recoveryPlanName: string;
+}
+export const CommitReplicationRecoveryPlansFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      recoveryPlanName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/failoverCommit",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CommitReplicationRecoveryPlansFailoverRequest",
+  }) as any as S.Schema<CommitReplicationRecoveryPlansFailoverRequest>;
+
+export interface CommitReplicationRecoveryPlansFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom details. */
+  properties?: RecoveryPlanProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const CommitReplicationRecoveryPlansFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RecoveryPlanProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CommitReplicationRecoveryPlansFailoverResponse",
+  }) as any as S.Schema<CommitReplicationRecoveryPlansFailoverResponse>;
+
 /** The custom email address for sending emails. */
 export type ConfigureAlertRequestPropertiesCustomEmailAddressesList =
   Array<string>;
@@ -327,7 +1842,7 @@ export const ConfigureAlertRequestProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigureAlertRequestProperties",
 }) as any as S.Schema<ConfigureAlertRequestProperties>;
 
-export interface CreateReplicationAlertSettingRequest {
+export interface CreateReplicationAlertSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -339,7 +1854,7 @@ export interface CreateReplicationAlertSettingRequest {
   /** The properties of a configure alert request. */
   properties?: ConfigureAlertRequestProperties;
 }
-export const CreateReplicationAlertSettingRequest = /*@__PURE__*/ S.suspend(
+export const CreateReplicationAlertSettingsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -356,8 +1871,8 @@ export const CreateReplicationAlertSettingRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateReplicationAlertSettingRequest",
-}) as any as S.Schema<CreateReplicationAlertSettingRequest>;
+  identifier: "CreateReplicationAlertSettingsRequest",
+}) as any as S.Schema<CreateReplicationAlertSettingsRequest>;
 
 /** The custom email address for sending emails. */
 export type AlertPropertiesCustomEmailAddressesList = Array<string>;
@@ -384,7 +1899,7 @@ export const AlertProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AlertProperties",
 }) as any as S.Schema<AlertProperties>;
 
-export interface CreateReplicationAlertSettingResponse {
+export interface CreateReplicationAlertSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -398,7 +1913,7 @@ export interface CreateReplicationAlertSettingResponse {
   /** Resource Location */
   location?: string;
 }
-export const CreateReplicationAlertSettingResponse = /*@__PURE__*/ S.suspend(
+export const CreateReplicationAlertSettingsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -409,8 +1924,8 @@ export const CreateReplicationAlertSettingResponse = /*@__PURE__*/ S.suspend(
       location: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "CreateReplicationAlertSettingResponse",
-}) as any as S.Schema<CreateReplicationAlertSettingResponse>;
+  identifier: "CreateReplicationAlertSettingsResponse",
+}) as any as S.Schema<CreateReplicationAlertSettingsResponse>;
 
 /** Fabric provider specific settings. */
 export interface FabricSpecificCreationInput {
@@ -497,30 +2012,22 @@ export const CreateReplicationFabricResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateReplicationFabricResponse>;
 
 /** Enable migration provider specific input. */
-export interface EnableMigrationProviderSpecificInput {
-  /** The class type. */
-  instanceType: string;
-}
-export const EnableMigrationProviderSpecificInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      instanceType: S.String,
-    }),
-).annotate({
-  identifier: "EnableMigrationProviderSpecificInput",
-}) as any as S.Schema<EnableMigrationProviderSpecificInput>;
+export type EnableMigrationProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+export const EnableMigrationProviderSpecificInput =
+  AddDisksProviderSpecificInput;
 
 /** Enable migration input properties. */
 export interface EnableMigrationInputProperties {
   /** The policy Id. */
   policyId: string;
   /** The provider specific details. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails: AddDisksProviderSpecificInput;
 }
 export const EnableMigrationInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     policyId: S.String,
-    providerSpecificDetails: EnableMigrationProviderSpecificInput,
+    providerSpecificDetails: AddDisksProviderSpecificInput,
   }),
 ).annotate({
   identifier: "EnableMigrationInputProperties",
@@ -859,18 +2366,10 @@ export const CreateReplicationNetworkMappingRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateReplicationNetworkMappingRequest>;
 
 /** Network Mapping fabric specific settings. */
-export interface NetworkMappingFabricSpecificSettings {
-  /** Gets the Instance type. */
-  instanceType: string;
-}
-export const NetworkMappingFabricSpecificSettings = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      instanceType: S.String,
-    }),
-).annotate({
-  identifier: "NetworkMappingFabricSpecificSettings",
-}) as any as S.Schema<NetworkMappingFabricSpecificSettings>;
+export type NetworkMappingFabricSpecificSettings =
+  ReplicationProviderSpecificSettings;
+export const NetworkMappingFabricSpecificSettings =
+  ReplicationProviderSpecificSettings;
 
 /** Network Mapping Properties. */
 export interface NetworkMappingProperties {
@@ -891,7 +2390,7 @@ export interface NetworkMappingProperties {
   /** The recovery fabric friendly name. */
   recoveryFabricFriendlyName?: string;
   /** The fabric specific settings. */
-  fabricSpecificSettings?: NetworkMappingFabricSpecificSettings;
+  fabricSpecificSettings?: ReplicationProviderSpecificSettings;
 }
 export const NetworkMappingProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -903,7 +2402,7 @@ export const NetworkMappingProperties = /*@__PURE__*/ S.suspend(() =>
     recoveryNetworkId: S.optional(S.String),
     recoveryFabricArmId: S.optional(S.String),
     recoveryFabricFriendlyName: S.optional(S.String),
-    fabricSpecificSettings: S.optional(NetworkMappingFabricSpecificSettings),
+    fabricSpecificSettings: S.optional(ReplicationProviderSpecificSettings),
   }),
 ).annotate({
   identifier: "NetworkMappingProperties",
@@ -938,17 +2437,17 @@ export const CreateReplicationNetworkMappingResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<CreateReplicationNetworkMappingResponse>;
 
 /** Base class for provider specific input. */
-export type PolicyProviderSpecificInput = EnableMigrationProviderSpecificInput;
-export const PolicyProviderSpecificInput = EnableMigrationProviderSpecificInput;
+export type PolicyProviderSpecificInput = AddDisksProviderSpecificInput;
+export const PolicyProviderSpecificInput = AddDisksProviderSpecificInput;
 
 /** Policy creation properties. */
 export interface CreatePolicyInputProperties {
   /** The ReplicationProviderSettings. */
-  providerSpecificInput?: EnableMigrationProviderSpecificInput;
+  providerSpecificInput?: AddDisksProviderSpecificInput;
 }
 export const CreatePolicyInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    providerSpecificInput: S.optional(EnableMigrationProviderSpecificInput),
+    providerSpecificInput: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "CreatePolicyInputProperties",
@@ -1034,9 +2533,9 @@ export const CreateReplicationPolicyResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Enable protection provider specific input. */
 export type EnableProtectionProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const EnableProtectionProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Enable protection input properties. */
 export interface EnableProtectionInputProperties {
@@ -1045,13 +2544,13 @@ export interface EnableProtectionInputProperties {
   /** The protectable item Id. */
   protectableItemId?: string;
   /** The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
 }
 export const EnableProtectionInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     policyId: S.optional(S.String),
     protectableItemId: S.optional(S.String),
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "EnableProtectionInputProperties",
@@ -1094,151 +2593,6 @@ export const CreateReplicationProtectedItemRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "CreateReplicationProtectedItemRequest",
 }) as any as S.Schema<CreateReplicationProtectedItemRequest>;
-
-/** The allowed operations on the Replication protected item. */
-export type ReplicationProtectedItemPropertiesAllowedOperationsList =
-  Array<string>;
-export const ReplicationProtectedItemPropertiesAllowedOperationsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ReplicationProtectedItemPropertiesAllowedOperationsList>;
-
-/** List of health errors. */
-export type ReplicationProtectedItemPropertiesHealthErrorsList =
-  Array<HealthError>;
-export const ReplicationProtectedItemPropertiesHealthErrorsList =
-  /*@__PURE__*/ S.Array(
-    HealthError,
-  ) as any as S.Schema<ReplicationProtectedItemPropertiesHealthErrorsList>;
-
-/** Current scenario details of the protected entity. */
-export interface CurrentScenarioDetails {
-  /** Scenario name. */
-  scenarioName?: string;
-  /** ARM Id of the job being executed. */
-  jobId?: string;
-  /** Start time of the workflow. */
-  startTime?: string;
-}
-export const CurrentScenarioDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scenarioName: S.optional(S.String),
-    jobId: S.optional(S.String),
-    startTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CurrentScenarioDetails",
-}) as any as S.Schema<CurrentScenarioDetails>;
-
-/** Replication provider specific settings. */
-export type ReplicationProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
-export const ReplicationProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
-
-/** Replication protected item custom data details. */
-export interface ReplicationProtectedItemProperties {
-  /** The name. */
-  friendlyName?: string;
-  /** The type of protected item type. */
-  protectedItemType?: string;
-  /** The protected item ARM Id. */
-  protectableItemId?: string;
-  /** The recovery provider ARM Id. */
-  recoveryServicesProviderId?: string;
-  /** The friendly name of the primary fabric. */
-  primaryFabricFriendlyName?: string;
-  /** The fabric provider of the primary fabric. */
-  primaryFabricProvider?: string;
-  /** The friendly name of recovery fabric. */
-  recoveryFabricFriendlyName?: string;
-  /** The Arm Id of recovery fabric. */
-  recoveryFabricId?: string;
-  /** The name of primary protection container friendly name. */
-  primaryProtectionContainerFriendlyName?: string;
-  /** The name of recovery container friendly name. */
-  recoveryProtectionContainerFriendlyName?: string;
-  /** The protection status. */
-  protectionState?: string;
-  /** The protection state description. */
-  protectionStateDescription?: string;
-  /** The Current active location of the PE. */
-  activeLocation?: string;
-  /** The Test failover state. */
-  testFailoverState?: string;
-  /** The Test failover state description. */
-  testFailoverStateDescription?: string;
-  /** The switch provider state. */
-  switchProviderState?: string;
-  /** The switch provider state description. */
-  switchProviderStateDescription?: string;
-  /** The allowed operations on the Replication protected item. */
-  allowedOperations?: ReplicationProtectedItemPropertiesAllowedOperationsList;
-  /** The consolidated protection health for the VM taking any issues with SRS as well as all the replication units associated with the VM's replication group into account. This is a string representation of the ProtectionHealth enumeration. */
-  replicationHealth?: string;
-  /** The consolidated failover health for the VM. */
-  failoverHealth?: string;
-  /** List of health errors. */
-  healthErrors?: ReplicationProtectedItemPropertiesHealthErrorsList;
-  /** The ID of Policy governing this PE. */
-  policyId?: string;
-  /** The name of Policy governing this PE. */
-  policyFriendlyName?: string;
-  /** The Last successful failover time. */
-  lastSuccessfulFailoverTime?: string;
-  /** The Last successful test failover time. */
-  lastSuccessfulTestFailoverTime?: string;
-  /** The current scenario. */
-  currentScenario?: CurrentScenarioDetails;
-  /** The recovery point ARM Id to which the Vm was failed over. */
-  failoverRecoveryPointId?: string;
-  /** The Replication provider custom settings. */
-  providerSpecificDetails?: NetworkMappingFabricSpecificSettings;
-  /** The recovery container Id. */
-  recoveryContainerId?: string;
-  /** The correlation Id for events associated with this protected item. */
-  eventCorrelationId?: string;
-}
-export const ReplicationProtectedItemProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    friendlyName: S.optional(S.String),
-    protectedItemType: S.optional(S.String),
-    protectableItemId: S.optional(S.String),
-    recoveryServicesProviderId: S.optional(S.String),
-    primaryFabricFriendlyName: S.optional(S.String),
-    primaryFabricProvider: S.optional(S.String),
-    recoveryFabricFriendlyName: S.optional(S.String),
-    recoveryFabricId: S.optional(S.String),
-    primaryProtectionContainerFriendlyName: S.optional(S.String),
-    recoveryProtectionContainerFriendlyName: S.optional(S.String),
-    protectionState: S.optional(S.String),
-    protectionStateDescription: S.optional(S.String),
-    activeLocation: S.optional(S.String),
-    testFailoverState: S.optional(S.String),
-    testFailoverStateDescription: S.optional(S.String),
-    switchProviderState: S.optional(S.String),
-    switchProviderStateDescription: S.optional(S.String),
-    allowedOperations: S.optional(
-      ReplicationProtectedItemPropertiesAllowedOperationsList,
-    ),
-    replicationHealth: S.optional(S.String),
-    failoverHealth: S.optional(S.String),
-    healthErrors: S.optional(
-      ReplicationProtectedItemPropertiesHealthErrorsList,
-    ),
-    policyId: S.optional(S.String),
-    policyFriendlyName: S.optional(S.String),
-    lastSuccessfulFailoverTime: S.optional(S.String),
-    lastSuccessfulTestFailoverTime: S.optional(S.String),
-    currentScenario: S.optional(CurrentScenarioDetails),
-    failoverRecoveryPointId: S.optional(S.String),
-    providerSpecificDetails: S.optional(NetworkMappingFabricSpecificSettings),
-    recoveryContainerId: S.optional(S.String),
-    eventCorrelationId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReplicationProtectedItemProperties",
-}) as any as S.Schema<ReplicationProtectedItemProperties>;
 
 export interface CreateReplicationProtectedItemResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1300,28 +2654,6 @@ export const ReplicationProtectionClusterPropertiesInputClusterProtectedItemIdsL
     S.String,
   ) as any as S.Schema<ReplicationProtectionClusterPropertiesInputClusterProtectedItemIdsList>;
 
-/** Extended location of the resource. */
-export interface RegisteredClusterNodes {
-  /** The cluster node name. */
-  clusterNodeFqdn?: string;
-  /** The machine ID. */
-  machineId?: string;
-  /** The BIOS ID. */
-  biosId?: string;
-  /** A value indicating whether this represents virtual entity hosting all the shared disks. */
-  isSharedDiskVirtualNode?: boolean;
-}
-export const RegisteredClusterNodes = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterNodeFqdn: S.optional(S.String),
-    machineId: S.optional(S.String),
-    biosId: S.optional(S.String),
-    isSharedDiskVirtualNode: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RegisteredClusterNodes",
-}) as any as S.Schema<RegisteredClusterNodes>;
-
 /** The registered node details. */
 export type ReplicationProtectionClusterPropertiesInputClusterRegisteredNodesList =
   Array<RegisteredClusterNodes>;
@@ -1329,74 +2661,6 @@ export const ReplicationProtectionClusterPropertiesInputClusterRegisteredNodesLi
   /*@__PURE__*/ S.Array(
     RegisteredClusterNodes,
   ) as any as S.Schema<ReplicationProtectionClusterPropertiesInputClusterRegisteredNodesList>;
-
-/** Replication cluster provider specific settings. */
-export type ReplicationClusterProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
-export const ReplicationClusterProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
-
-/** The allowed operations on the Replication protected item. */
-export type SharedDiskReplicationItemPropertiesAllowedOperationsList =
-  Array<string>;
-export const SharedDiskReplicationItemPropertiesAllowedOperationsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SharedDiskReplicationItemPropertiesAllowedOperationsList>;
-
-/** List of health errors. */
-export type SharedDiskReplicationItemPropertiesHealthErrorsList =
-  Array<HealthError>;
-export const SharedDiskReplicationItemPropertiesHealthErrorsList =
-  /*@__PURE__*/ S.Array(
-    HealthError,
-  ) as any as S.Schema<SharedDiskReplicationItemPropertiesHealthErrorsList>;
-
-/** Replication provider specific settings. */
-export type SharedDiskReplicationProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
-export const SharedDiskReplicationProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
-
-/** Shared Disk Replication item custom data details. */
-export interface SharedDiskReplicationItemProperties {
-  /** The protection state of shared disk. */
-  protectionState?: string;
-  /** The tfo state of shared disk. */
-  testFailoverState?: string;
-  /** The Current active location of the PE. */
-  activeLocation?: string;
-  /** The allowed operations on the Replication protected item. */
-  allowedOperations?: SharedDiskReplicationItemPropertiesAllowedOperationsList;
-  /** The consolidated protection health for the VM taking any issues with SRS as well as all the replication units associated with the VM's replication group into account. This is a string representation of the ProtectionHealth enumeration. */
-  replicationHealth?: string;
-  /** List of health errors. */
-  healthErrors?: SharedDiskReplicationItemPropertiesHealthErrorsList;
-  /** The current scenario. */
-  currentScenario?: CurrentScenarioDetails;
-  /** The Replication provider custom settings. */
-  sharedDiskProviderSpecificDetails?: NetworkMappingFabricSpecificSettings;
-}
-export const SharedDiskReplicationItemProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    protectionState: S.optional(S.String),
-    testFailoverState: S.optional(S.String),
-    activeLocation: S.optional(S.String),
-    allowedOperations: S.optional(
-      SharedDiskReplicationItemPropertiesAllowedOperationsList,
-    ),
-    replicationHealth: S.optional(S.String),
-    healthErrors: S.optional(
-      SharedDiskReplicationItemPropertiesHealthErrorsList,
-    ),
-    currentScenario: S.optional(CurrentScenarioDetails),
-    sharedDiskProviderSpecificDetails: S.optional(
-      NetworkMappingFabricSpecificSettings,
-    ),
-  }),
-).annotate({
-  identifier: "SharedDiskReplicationItemProperties",
-}) as any as S.Schema<SharedDiskReplicationItemProperties>;
 
 /** Replication protection cluster custom data details. */
 export interface ReplicationProtectionClusterPropertiesInput {
@@ -1453,7 +2717,7 @@ export interface ReplicationProtectionClusterPropertiesInput {
   /** The registered node details. */
   clusterRegisteredNodes?: ReplicationProtectionClusterPropertiesInputClusterRegisteredNodesList;
   /** The Replication cluster provider custom settings. */
-  providerSpecificDetails?: NetworkMappingFabricSpecificSettings;
+  providerSpecificDetails?: ReplicationProviderSpecificSettings;
   /** The shared disk properties. */
   sharedDiskProperties?: SharedDiskReplicationItemProperties;
   /** The Policy Id. */
@@ -1498,7 +2762,7 @@ export const ReplicationProtectionClusterPropertiesInput =
       clusterRegisteredNodes: S.optional(
         ReplicationProtectionClusterPropertiesInputClusterRegisteredNodesList,
       ),
-      providerSpecificDetails: S.optional(NetworkMappingFabricSpecificSettings),
+      providerSpecificDetails: S.optional(ReplicationProviderSpecificSettings),
       sharedDiskProperties: S.optional(SharedDiskReplicationItemProperties),
       policyId: S.optional(S.String),
     }),
@@ -1544,157 +2808,6 @@ export const CreateReplicationProtectionClusterRequest =
     identifier: "CreateReplicationProtectionClusterRequest",
   }) as any as S.Schema<CreateReplicationProtectionClusterRequest>;
 
-/** The allowed operations on the Replication protection cluster. */
-export type ReplicationProtectionClusterPropertiesAllowedOperationsList =
-  Array<string>;
-export const ReplicationProtectionClusterPropertiesAllowedOperationsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ReplicationProtectionClusterPropertiesAllowedOperationsList>;
-
-/** List of health errors. */
-export type ReplicationProtectionClusterPropertiesHealthErrorsList =
-  Array<HealthError>;
-export const ReplicationProtectionClusterPropertiesHealthErrorsList =
-  /*@__PURE__*/ S.Array(
-    HealthError,
-  ) as any as S.Schema<ReplicationProtectionClusterPropertiesHealthErrorsList>;
-
-/** The List of cluster Node FQDNs. */
-export type ReplicationProtectionClusterPropertiesClusterNodeFqdnsList =
-  Array<string>;
-export const ReplicationProtectionClusterPropertiesClusterNodeFqdnsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ReplicationProtectionClusterPropertiesClusterNodeFqdnsList>;
-
-/** The List of Protected Item Id's. */
-export type ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList =
-  Array<string>;
-export const ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList>;
-
-/** The registered node details. */
-export type ReplicationProtectionClusterPropertiesClusterRegisteredNodesList =
-  Array<RegisteredClusterNodes>;
-export const ReplicationProtectionClusterPropertiesClusterRegisteredNodesList =
-  /*@__PURE__*/ S.Array(
-    RegisteredClusterNodes,
-  ) as any as S.Schema<ReplicationProtectionClusterPropertiesClusterRegisteredNodesList>;
-
-/** Replication protection cluster custom data details. */
-export interface ReplicationProtectionClusterProperties {
-  /** The type of protection cluster type. */
-  protectionClusterType?: string;
-  /** The friendly name of the primary fabric. */
-  primaryFabricFriendlyName?: string;
-  /** The fabric provider of the primary fabric. */
-  primaryFabricProvider?: string;
-  /** The friendly name of recovery fabric. */
-  recoveryFabricFriendlyName?: string;
-  /** The Arm Id of recovery fabric. */
-  recoveryFabricId?: string;
-  /** The name of primary protection container friendly name. */
-  primaryProtectionContainerFriendlyName?: string;
-  /** The name of recovery container friendly name. */
-  recoveryProtectionContainerFriendlyName?: string;
-  /** The protection status. */
-  protectionState?: string;
-  /** The protection state description. */
-  protectionStateDescription?: string;
-  /** The Current active location of the Protection cluster. */
-  activeLocation?: string;
-  /** The Test failover state. */
-  testFailoverState?: string;
-  /** The Test failover state description. */
-  testFailoverStateDescription?: string;
-  /** The allowed operations on the Replication protection cluster. */
-  allowedOperations?: ReplicationProtectionClusterPropertiesAllowedOperationsList;
-  /** The consolidated protection health for the VM taking any issues with SRS as well as all the replication units associated with the VM's replication group into account. This is a string representation of the ProtectionHealth enumeration. */
-  replicationHealth?: string;
-  /** List of health errors. */
-  healthErrors?: ReplicationProtectionClusterPropertiesHealthErrorsList;
-  /** The last successful failover time. */
-  lastSuccessfulFailoverTime?: string;
-  /** The last successful test failover time. */
-  lastSuccessfulTestFailoverTime?: string;
-  /** The name of Policy governing this PE. */
-  policyFriendlyName?: string;
-  /** The current scenario. */
-  currentScenario?: CurrentScenarioDetails;
-  /** The recovery container Id. */
-  recoveryContainerId?: string;
-  /** The Agent cluster Id. */
-  agentClusterId?: string;
-  /** The cluster FQDN. */
-  clusterFqdn?: string;
-  /** The List of cluster Node FQDNs. */
-  clusterNodeFqdns?: ReplicationProtectionClusterPropertiesClusterNodeFqdnsList;
-  /** The List of Protected Item Id's. */
-  clusterProtectedItemIds?: ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList;
-  /** The provisioning state of the cluster. */
-  provisioningState?: string;
-  /** A value indicating whether all nodes of the cluster are registered or not. */
-  areAllClusterNodesRegistered?: boolean;
-  /** The registered node details. */
-  clusterRegisteredNodes?: ReplicationProtectionClusterPropertiesClusterRegisteredNodesList;
-  /** The Replication cluster provider custom settings. */
-  providerSpecificDetails?: NetworkMappingFabricSpecificSettings;
-  /** The shared disk properties. */
-  sharedDiskProperties?: SharedDiskReplicationItemProperties;
-  /** The Policy Id. */
-  policyId?: string;
-}
-export const ReplicationProtectionClusterProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      protectionClusterType: S.optional(S.String),
-      primaryFabricFriendlyName: S.optional(S.String),
-      primaryFabricProvider: S.optional(S.String),
-      recoveryFabricFriendlyName: S.optional(S.String),
-      recoveryFabricId: S.optional(S.String),
-      primaryProtectionContainerFriendlyName: S.optional(S.String),
-      recoveryProtectionContainerFriendlyName: S.optional(S.String),
-      protectionState: S.optional(S.String),
-      protectionStateDescription: S.optional(S.String),
-      activeLocation: S.optional(S.String),
-      testFailoverState: S.optional(S.String),
-      testFailoverStateDescription: S.optional(S.String),
-      allowedOperations: S.optional(
-        ReplicationProtectionClusterPropertiesAllowedOperationsList,
-      ),
-      replicationHealth: S.optional(S.String),
-      healthErrors: S.optional(
-        ReplicationProtectionClusterPropertiesHealthErrorsList,
-      ),
-      lastSuccessfulFailoverTime: S.optional(S.String),
-      lastSuccessfulTestFailoverTime: S.optional(S.String),
-      policyFriendlyName: S.optional(S.String),
-      currentScenario: S.optional(CurrentScenarioDetails),
-      recoveryContainerId: S.optional(S.String),
-      agentClusterId: S.optional(S.String),
-      clusterFqdn: S.optional(S.String),
-      clusterNodeFqdns: S.optional(
-        ReplicationProtectionClusterPropertiesClusterNodeFqdnsList,
-      ),
-      clusterProtectedItemIds: S.optional(
-        ReplicationProtectionClusterPropertiesClusterProtectedItemIdsList,
-      ),
-      provisioningState: S.optional(S.String),
-      areAllClusterNodesRegistered: S.optional(S.Boolean),
-      clusterRegisteredNodes: S.optional(
-        ReplicationProtectionClusterPropertiesClusterRegisteredNodesList,
-      ),
-      providerSpecificDetails: S.optional(NetworkMappingFabricSpecificSettings),
-      sharedDiskProperties: S.optional(SharedDiskReplicationItemProperties),
-      policyId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ReplicationProtectionClusterProperties",
-}) as any as S.Schema<ReplicationProtectionClusterProperties>;
-
 export interface CreateReplicationProtectionClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -1722,16 +2835,16 @@ export const CreateReplicationProtectionClusterResponse =
 
 /** Provider specific input for container creation operation. */
 export type ReplicationProviderSpecificContainerCreationInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const ReplicationProviderSpecificContainerCreationInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Provider specific inputs for container creation. */
 export type CreateProtectionContainerInputPropertiesProviderSpecificInputList =
-  Array<EnableMigrationProviderSpecificInput>;
+  Array<AddDisksProviderSpecificInput>;
 export const CreateProtectionContainerInputPropertiesProviderSpecificInputList =
   /*@__PURE__*/ S.Array(
-    EnableMigrationProviderSpecificInput,
+    AddDisksProviderSpecificInput,
   ) as any as S.Schema<CreateProtectionContainerInputPropertiesProviderSpecificInputList>;
 
 /** Create protection container input properties. */
@@ -1860,9 +2973,9 @@ export const CreateReplicationProtectionContainerResponse =
 
 /** Provider specific input for pairing operations. */
 export type ReplicationProviderSpecificContainerMappingInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const ReplicationProviderSpecificContainerMappingInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Configure pairing input properties. */
 export interface CreateProtectionContainerMappingInputProperties {
@@ -1871,14 +2984,14 @@ export interface CreateProtectionContainerMappingInputProperties {
   /** Applicable policy. */
   policyId?: string;
   /** Provider specific input for pairing. */
-  providerSpecificInput?: EnableMigrationProviderSpecificInput;
+  providerSpecificInput?: AddDisksProviderSpecificInput;
 }
 export const CreateProtectionContainerMappingInputProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       targetProtectionContainerId: S.optional(S.String),
       policyId: S.optional(S.String),
-      providerSpecificInput: S.optional(EnableMigrationProviderSpecificInput),
+      providerSpecificInput: S.optional(AddDisksProviderSpecificInput),
     }),
   ).annotate({
     identifier: "CreateProtectionContainerMappingInputProperties",
@@ -2012,18 +3125,18 @@ export const CreateReplicationProtectionContainerMappingResponse =
 
 /** Create protection intent provider specific input. */
 export type CreateProtectionIntentProviderSpecificDetails =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const CreateProtectionIntentProviderSpecificDetails =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Create protection intent input properties. */
 export interface CreateProtectionIntentProperties {
   /** The ReplicationProviderInput. For A2A provider, it will be A2ACreateProtectionIntentInput object. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
 }
 export const CreateProtectionIntentProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "CreateProtectionIntentProperties",
@@ -2063,9 +3176,9 @@ export const CreateReplicationProtectionIntentRequest = /*@__PURE__*/ S.suspend(
 
 /** Replication provider specific settings. */
 export type ReplicationProtectionIntentProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 export const ReplicationProtectionIntentProviderSpecificSettings =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 
 /** Replication protection intent custom data details. */
 export interface ReplicationProtectionIntentProperties {
@@ -2080,7 +3193,7 @@ export interface ReplicationProtectionIntentProperties {
   /** The creation time in UTC. */
   creationTimeUTC?: string;
   /** The Replication provider custom settings. */
-  providerSpecificDetails?: NetworkMappingFabricSpecificSettings;
+  providerSpecificDetails?: ReplicationProviderSpecificSettings;
 }
 export const ReplicationProtectionIntentProperties = /*@__PURE__*/ S.suspend(
   () =>
@@ -2090,7 +3203,7 @@ export const ReplicationProtectionIntentProperties = /*@__PURE__*/ S.suspend(
       jobState: S.optional(S.String),
       isActive: S.optional(S.Boolean),
       creationTimeUTC: S.optional(S.String),
-      providerSpecificDetails: S.optional(NetworkMappingFabricSpecificSettings),
+      providerSpecificDetails: S.optional(ReplicationProviderSpecificSettings),
     }),
 ).annotate({
   identifier: "ReplicationProtectionIntentProperties",
@@ -2131,145 +3244,6 @@ export type FailoverDeploymentModel =
   | "ResourceManager";
 export const FailoverDeploymentModel = /*@__PURE__*/ S.String;
 
-/** The group type. */
-export type RecoveryPlanGroupType = "Shutdown" | "Boot" | "Failover";
-export const RecoveryPlanGroupType = /*@__PURE__*/ S.String;
-
-/** Recovery plan protected item. */
-export interface RecoveryPlanProtectedItem {
-  /** The ARM Id of the recovery plan protected item. */
-  id?: string;
-  /** The virtual machine Id. */
-  virtualMachineId?: string;
-}
-export const RecoveryPlanProtectedItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    virtualMachineId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RecoveryPlanProtectedItem",
-}) as any as S.Schema<RecoveryPlanProtectedItem>;
-
-/** The list of protected items. */
-export type RecoveryPlanGroupReplicationProtectedItemsList =
-  Array<RecoveryPlanProtectedItem>;
-export const RecoveryPlanGroupReplicationProtectedItemsList =
-  /*@__PURE__*/ S.Array(
-    RecoveryPlanProtectedItem,
-  ) as any as S.Schema<RecoveryPlanGroupReplicationProtectedItemsList>;
-
-/** The list of failover types. */
-export type ReplicationProtectedItemOperation =
-  | "ReverseReplicate"
-  | "Commit"
-  | "PlannedFailover"
-  | "UnplannedFailover"
-  | "DisableProtection"
-  | "TestFailover"
-  | "TestFailoverCleanup"
-  | "Failback"
-  | "FinalizeFailback"
-  | "CancelFailover"
-  | "ChangePit"
-  | "RepairReplication"
-  | "SwitchProtection"
-  | "CompleteMigration";
-export const ReplicationProtectedItemOperation = /*@__PURE__*/ S.String;
-
-/** The list of failover types. */
-export type RecoveryPlanActionFailoverTypesList = Array<
-  ReplicationProtectedItemOperation | (string & {})
->;
-export const RecoveryPlanActionFailoverTypesList = /*@__PURE__*/ S.Array(
-  ReplicationProtectedItemOperation,
-) as any as S.Schema<RecoveryPlanActionFailoverTypesList>;
-
-/** The failover direction. */
-export type PossibleOperationsDirections =
-  | "PrimaryToRecovery"
-  | "RecoveryToPrimary";
-export const PossibleOperationsDirections = /*@__PURE__*/ S.String;
-
-/** The list of failover directions. */
-export type RecoveryPlanActionFailoverDirectionsList = Array<
-  PossibleOperationsDirections | (string & {})
->;
-export const RecoveryPlanActionFailoverDirectionsList = /*@__PURE__*/ S.Array(
-  PossibleOperationsDirections,
-) as any as S.Schema<RecoveryPlanActionFailoverDirectionsList>;
-
-/** Recovery plan action custom details. */
-export interface RecoveryPlanActionDetails {
-  /** Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for possible values). */
-  instanceType: string;
-}
-export const RecoveryPlanActionDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-  }),
-).annotate({
-  identifier: "RecoveryPlanActionDetails",
-}) as any as S.Schema<RecoveryPlanActionDetails>;
-
-/** Recovery plan action details. */
-export interface RecoveryPlanAction {
-  /** The action name. */
-  actionName: string;
-  /** The list of failover types. */
-  failoverTypes: RecoveryPlanActionFailoverTypesList;
-  /** The list of failover directions. */
-  failoverDirections: RecoveryPlanActionFailoverDirectionsList;
-  /** The custom details. */
-  customDetails: RecoveryPlanActionDetails;
-}
-export const RecoveryPlanAction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actionName: S.String,
-    failoverTypes: RecoveryPlanActionFailoverTypesList,
-    failoverDirections: RecoveryPlanActionFailoverDirectionsList,
-    customDetails: RecoveryPlanActionDetails,
-  }),
-).annotate({
-  identifier: "RecoveryPlanAction",
-}) as any as S.Schema<RecoveryPlanAction>;
-
-/** The start group actions. */
-export type RecoveryPlanGroupStartGroupActionsList = Array<RecoveryPlanAction>;
-export const RecoveryPlanGroupStartGroupActionsList = /*@__PURE__*/ S.Array(
-  RecoveryPlanAction,
-) as any as S.Schema<RecoveryPlanGroupStartGroupActionsList>;
-
-/** The end group actions. */
-export type RecoveryPlanGroupEndGroupActionsList = Array<RecoveryPlanAction>;
-export const RecoveryPlanGroupEndGroupActionsList = /*@__PURE__*/ S.Array(
-  RecoveryPlanAction,
-) as any as S.Schema<RecoveryPlanGroupEndGroupActionsList>;
-
-/** Recovery plan group details. */
-export interface RecoveryPlanGroup {
-  /** The group type. */
-  groupType: RecoveryPlanGroupType | (string & {});
-  /** The list of protected items. */
-  replicationProtectedItems?: RecoveryPlanGroupReplicationProtectedItemsList;
-  /** The start group actions. */
-  startGroupActions?: RecoveryPlanGroupStartGroupActionsList;
-  /** The end group actions. */
-  endGroupActions?: RecoveryPlanGroupEndGroupActionsList;
-}
-export const RecoveryPlanGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupType: RecoveryPlanGroupType,
-    replicationProtectedItems: S.optional(
-      RecoveryPlanGroupReplicationProtectedItemsList,
-    ),
-    startGroupActions: S.optional(RecoveryPlanGroupStartGroupActionsList),
-    endGroupActions: S.optional(RecoveryPlanGroupEndGroupActionsList),
-  }),
-).annotate({
-  identifier: "RecoveryPlanGroup",
-}) as any as S.Schema<RecoveryPlanGroup>;
-
 /** The recovery plan groups. */
 export type CreateRecoveryPlanInputPropertiesGroupsList =
   Array<RecoveryPlanGroup>;
@@ -2280,16 +3254,16 @@ export const CreateRecoveryPlanInputPropertiesGroupsList =
 
 /** Recovery plan provider specific input base class. */
 export type RecoveryPlanProviderSpecificInput =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 export const RecoveryPlanProviderSpecificInput =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 
 /** The provider specific input. */
 export type CreateRecoveryPlanInputPropertiesProviderSpecificInputList =
-  Array<NetworkMappingFabricSpecificSettings>;
+  Array<ReplicationProviderSpecificSettings>;
 export const CreateRecoveryPlanInputPropertiesProviderSpecificInputList =
   /*@__PURE__*/ S.Array(
-    NetworkMappingFabricSpecificSettings,
+    ReplicationProviderSpecificSettings,
   ) as any as S.Schema<CreateRecoveryPlanInputPropertiesProviderSpecificInputList>;
 
 /** Recovery plan creation properties. */
@@ -2350,102 +3324,6 @@ export const CreateReplicationRecoveryPlanRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "CreateReplicationRecoveryPlanRequest",
 }) as any as S.Schema<CreateReplicationRecoveryPlanRequest>;
-
-/** The list of replication providers. */
-export type RecoveryPlanPropertiesReplicationProvidersList = Array<string>;
-export const RecoveryPlanPropertiesReplicationProvidersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RecoveryPlanPropertiesReplicationProvidersList>;
-
-/** The list of allowed operations. */
-export type RecoveryPlanPropertiesAllowedOperationsList = Array<string>;
-export const RecoveryPlanPropertiesAllowedOperationsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RecoveryPlanPropertiesAllowedOperationsList>;
-
-/** The recovery plan groups. */
-export type RecoveryPlanPropertiesGroupsList = Array<RecoveryPlanGroup>;
-export const RecoveryPlanPropertiesGroupsList = /*@__PURE__*/ S.Array(
-  RecoveryPlanGroup,
-) as any as S.Schema<RecoveryPlanPropertiesGroupsList>;
-
-/** Recovery plan provider specific details. */
-export type RecoveryPlanProviderSpecificDetails =
-  NetworkMappingFabricSpecificSettings;
-export const RecoveryPlanProviderSpecificDetails =
-  NetworkMappingFabricSpecificSettings;
-
-/** The provider id and provider specific details. */
-export type RecoveryPlanPropertiesProviderSpecificDetailsList =
-  Array<NetworkMappingFabricSpecificSettings>;
-export const RecoveryPlanPropertiesProviderSpecificDetailsList =
-  /*@__PURE__*/ S.Array(
-    NetworkMappingFabricSpecificSettings,
-  ) as any as S.Schema<RecoveryPlanPropertiesProviderSpecificDetailsList>;
-
-/** Recovery plan properties. */
-export interface RecoveryPlanProperties {
-  /** The friendly name. */
-  friendlyName?: string;
-  /** The primary fabric Id. */
-  primaryFabricId?: string;
-  /** The primary fabric friendly name. */
-  primaryFabricFriendlyName?: string;
-  /** The recovery fabric Id. */
-  recoveryFabricId?: string;
-  /** The recovery fabric friendly name. */
-  recoveryFabricFriendlyName?: string;
-  /** The failover deployment model. */
-  failoverDeploymentModel?: string;
-  /** The list of replication providers. */
-  replicationProviders?: RecoveryPlanPropertiesReplicationProvidersList;
-  /** The list of allowed operations. */
-  allowedOperations?: RecoveryPlanPropertiesAllowedOperationsList;
-  /** The start time of the last planned failover. */
-  lastPlannedFailoverTime?: string;
-  /** The start time of the last unplanned failover. */
-  lastUnplannedFailoverTime?: string;
-  /** The start time of the last test failover. */
-  lastTestFailoverTime?: string;
-  /** The current scenario details. */
-  currentScenario?: CurrentScenarioDetails;
-  /** The recovery plan status. */
-  currentScenarioStatus?: string;
-  /** The recovery plan status description. */
-  currentScenarioStatusDescription?: string;
-  /** The recovery plan groups. */
-  groups?: RecoveryPlanPropertiesGroupsList;
-  /** The provider id and provider specific details. */
-  providerSpecificDetails?: RecoveryPlanPropertiesProviderSpecificDetailsList;
-}
-export const RecoveryPlanProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    friendlyName: S.optional(S.String),
-    primaryFabricId: S.optional(S.String),
-    primaryFabricFriendlyName: S.optional(S.String),
-    recoveryFabricId: S.optional(S.String),
-    recoveryFabricFriendlyName: S.optional(S.String),
-    failoverDeploymentModel: S.optional(S.String),
-    replicationProviders: S.optional(
-      RecoveryPlanPropertiesReplicationProvidersList,
-    ),
-    allowedOperations: S.optional(RecoveryPlanPropertiesAllowedOperationsList),
-    lastPlannedFailoverTime: S.optional(S.String),
-    lastUnplannedFailoverTime: S.optional(S.String),
-    lastTestFailoverTime: S.optional(S.String),
-    currentScenario: S.optional(CurrentScenarioDetails),
-    currentScenarioStatus: S.optional(S.String),
-    currentScenarioStatusDescription: S.optional(S.String),
-    groups: S.optional(RecoveryPlanPropertiesGroupsList),
-    providerSpecificDetails: S.optional(
-      RecoveryPlanPropertiesProviderSpecificDetailsList,
-    ),
-  }),
-).annotate({
-  identifier: "RecoveryPlanProperties",
-}) as any as S.Schema<RecoveryPlanProperties>;
 
 export interface CreateReplicationRecoveryPlanResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -2529,7 +3407,7 @@ export const AddRecoveryServicesProviderInputProperties =
     identifier: "AddRecoveryServicesProviderInputProperties",
   }) as any as S.Schema<AddRecoveryServicesProviderInputProperties>;
 
-export interface CreateReplicationRecoveryServiceProviderRequest {
+export interface CreateReplicationRecoveryServicesProviderRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2543,7 +3421,7 @@ export interface CreateReplicationRecoveryServiceProviderRequest {
   /** The properties of an add provider request. */
   properties: AddRecoveryServicesProviderInputProperties;
 }
-export const CreateReplicationRecoveryServiceProviderRequest =
+export const CreateReplicationRecoveryServicesProviderRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2561,8 +3439,8 @@ export const CreateReplicationRecoveryServiceProviderRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateReplicationRecoveryServiceProviderRequest",
-  }) as any as S.Schema<CreateReplicationRecoveryServiceProviderRequest>;
+    identifier: "CreateReplicationRecoveryServicesProviderRequest",
+  }) as any as S.Schema<CreateReplicationRecoveryServicesProviderRequest>;
 
 /** The scenarios allowed on this provider. */
 export type RecoveryServicesProviderPropertiesAllowedScenariosList =
@@ -2705,7 +3583,7 @@ export const RecoveryServicesProviderProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecoveryServicesProviderProperties",
 }) as any as S.Schema<RecoveryServicesProviderProperties>;
 
-export interface CreateReplicationRecoveryServiceProviderResponse {
+export interface CreateReplicationRecoveryServicesProviderResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2719,7 +3597,7 @@ export interface CreateReplicationRecoveryServiceProviderResponse {
   /** Resource Location */
   location?: string;
 }
-export const CreateReplicationRecoveryServiceProviderResponse =
+export const CreateReplicationRecoveryServicesProviderResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -2730,8 +3608,8 @@ export const CreateReplicationRecoveryServiceProviderResponse =
       location: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "CreateReplicationRecoveryServiceProviderResponse",
-  }) as any as S.Schema<CreateReplicationRecoveryServiceProviderResponse>;
+    identifier: "CreateReplicationRecoveryServicesProviderResponse",
+  }) as any as S.Schema<CreateReplicationRecoveryServicesProviderResponse>;
 
 /** Storage mapping input properties. */
 export interface StorageMappingInputProperties {
@@ -3216,21 +4094,21 @@ export const DisableProtectionReason = /*@__PURE__*/ S.String;
 
 /** Disable protection provider specific input. */
 export type DisableProtectionProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const DisableProtectionProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Disable protection input properties. */
 export interface DisableProtectionInputProperties {
   /** Disable protection reason. It can have values NotSpecified/MigrationComplete. */
   disableProtectionReason?: DisableProtectionReason | (string & {});
   /** Replication provider specific input. */
-  replicationProviderInput?: EnableMigrationProviderSpecificInput;
+  replicationProviderInput?: AddDisksProviderSpecificInput;
 }
 export const DisableProtectionInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     disableProtectionReason: S.optional(DisableProtectionReason),
-    replicationProviderInput: S.optional(EnableMigrationProviderSpecificInput),
+    replicationProviderInput: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "DisableProtectionInputProperties",
@@ -3429,7 +4307,7 @@ export const DeleteReplicationRecoveryPlanResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteReplicationRecoveryPlanResponse",
 }) as any as S.Schema<DeleteReplicationRecoveryPlanResponse>;
 
-export interface DeleteReplicationRecoveryServiceProviderRequest {
+export interface DeleteReplicationRecoveryServicesProviderRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3441,7 +4319,7 @@ export interface DeleteReplicationRecoveryServiceProviderRequest {
   /** Recovery services provider name. */
   providerName: string;
 }
-export const DeleteReplicationRecoveryServiceProviderRequest =
+export const DeleteReplicationRecoveryServicesProviderRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3458,14 +4336,14 @@ export const DeleteReplicationRecoveryServiceProviderRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteReplicationRecoveryServiceProviderRequest",
-  }) as any as S.Schema<DeleteReplicationRecoveryServiceProviderRequest>;
+    identifier: "DeleteReplicationRecoveryServicesProviderRequest",
+  }) as any as S.Schema<DeleteReplicationRecoveryServicesProviderRequest>;
 
-export interface DeleteReplicationRecoveryServiceProviderResponse {}
-export const DeleteReplicationRecoveryServiceProviderResponse =
+export interface DeleteReplicationRecoveryServicesProviderResponse {}
+export const DeleteReplicationRecoveryServicesProviderResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteReplicationRecoveryServiceProviderResponse",
-  }) as any as S.Schema<DeleteReplicationRecoveryServiceProviderResponse>;
+    identifier: "DeleteReplicationRecoveryServicesProviderResponse",
+  }) as any as S.Schema<DeleteReplicationRecoveryServicesProviderResponse>;
 
 export interface DeleteReplicationStorageClassificationMappingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3545,6 +4423,86 @@ export const DeleteReplicationvCenterResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteReplicationvCenterResponse",
 }) as any as S.Schema<DeleteReplicationvCenterResponse>;
+
+/** The output type of the jobs. */
+export type ExportJobOutputSerializationType = "Json" | "Xml" | "Excel";
+export const ExportJobOutputSerializationType = /*@__PURE__*/ S.String;
+
+export interface ExportReplicationJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+  /** Date time to get jobs from. */
+  startTime?: string;
+  /** Date time to get jobs upto. */
+  endTime?: string;
+  /** The Id of the fabric to search jobs under. */
+  fabricId?: string;
+  /** The type of objects. */
+  affectedObjectTypes?: string;
+  /** The states of the job to be filtered can be in. */
+  jobStatus?: string;
+  /** The output type of the jobs. */
+  jobOutputType?: ExportJobOutputSerializationType | (string & {});
+  /** The job Name. */
+  jobName?: string;
+  /** The timezone offset for the location of the request (in minutes). */
+  timezoneOffset?: number;
+}
+export const ExportReplicationJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    fabricId: S.optional(S.String),
+    affectedObjectTypes: S.optional(S.String),
+    jobStatus: S.optional(S.String),
+    jobOutputType: S.optional(ExportJobOutputSerializationType),
+    jobName: S.optional(S.String),
+    timezoneOffset: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationJobs/export",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExportReplicationJobRequest",
+}) as any as S.Schema<ExportReplicationJobRequest>;
+
+export interface ExportReplicationJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: JobProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const ExportReplicationJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(JobProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExportReplicationJobResponse",
+}) as any as S.Schema<ExportReplicationJobResponse>;
 
 export interface GetClusterRecoveryPointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -3825,7 +4783,7 @@ export const GetRecoveryPointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRecoveryPointResponse",
 }) as any as S.Schema<GetRecoveryPointResponse>;
 
-export interface GetReplicationAlertSettingRequest {
+export interface GetReplicationAlertSettingsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3835,7 +4793,7 @@ export interface GetReplicationAlertSettingRequest {
   /** The name of the email notification configuration. */
   alertSettingName: string;
 }
-export const GetReplicationAlertSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReplicationAlertSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3850,10 +4808,10 @@ export const GetReplicationAlertSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetReplicationAlertSettingRequest",
-}) as any as S.Schema<GetReplicationAlertSettingRequest>;
+  identifier: "GetReplicationAlertSettingsRequest",
+}) as any as S.Schema<GetReplicationAlertSettingsRequest>;
 
-export interface GetReplicationAlertSettingResponse {
+export interface GetReplicationAlertSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3867,7 +4825,7 @@ export interface GetReplicationAlertSettingResponse {
   /** Resource Location */
   location?: string;
 }
-export const GetReplicationAlertSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetReplicationAlertSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3877,8 +4835,8 @@ export const GetReplicationAlertSettingResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetReplicationAlertSettingResponse",
-}) as any as S.Schema<GetReplicationAlertSettingResponse>;
+  identifier: "GetReplicationAlertSettingsResponse",
+}) as any as S.Schema<GetReplicationAlertSettingsResponse>;
 
 export interface GetReplicationEligibilityResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -4179,259 +5137,6 @@ export const GetReplicationJobRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetReplicationJobRequest",
 }) as any as S.Schema<GetReplicationJobRequest>;
-
-/** The state/actions applicable on this task. */
-export type ASRTaskAllowedActionsList = Array<string>;
-export const ASRTaskAllowedActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ASRTaskAllowedActionsList>;
-
-/** Task details based on specific task type. */
-export interface TaskTypeDetails {
-  /** The type of task details. */
-  instanceType: string;
-}
-export const TaskTypeDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-  }),
-).annotate({
-  identifier: "TaskTypeDetails",
-}) as any as S.Schema<TaskTypeDetails>;
-
-/** The child tasks. */
-export type GroupTaskDetailsChildTasksList = Array<ASRTask>;
-export const GroupTaskDetailsChildTasksList = /*@__PURE__*/ S.Array(
-  S.suspend(() => ASRTask),
-) as any as S.Schema<GroupTaskDetailsChildTasksList>;
-
-/** This class represents the group task details when parent child relationship exists in the drill down. */
-export interface GroupTaskDetails {
-  /** The type of task details. */
-  instanceType: string;
-  /** The child tasks. */
-  childTasks?: GroupTaskDetailsChildTasksList;
-}
-export const GroupTaskDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-    childTasks: S.optional(GroupTaskDetailsChildTasksList),
-  }),
-).annotate({
-  identifier: "GroupTaskDetails",
-}) as any as S.Schema<GroupTaskDetails>;
-
-/** ASR error model. */
-export interface ServiceError {
-  /** Error code. */
-  code?: string;
-  /** Error message. */
-  message?: string;
-  /** Possible causes of error. */
-  possibleCauses?: string;
-  /** Recommended action to resolve error. */
-  recommendedAction?: string;
-  /** Activity Id. */
-  activityId?: string;
-}
-export const ServiceError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    possibleCauses: S.optional(S.String),
-    recommendedAction: S.optional(S.String),
-    activityId: S.optional(S.String),
-  }),
-).annotate({ identifier: "ServiceError" }) as any as S.Schema<ServiceError>;
-
-/** This class contains the error details per object. */
-export interface ProviderError {
-  /** The Error code. */
-  errorCode?: number;
-  /** The Error message. */
-  errorMessage?: string;
-  /** The Provider error Id. */
-  errorId?: string;
-  /** The possible causes for the error. */
-  possibleCauses?: string;
-  /** The recommended action to resolve the error. */
-  recommendedAction?: string;
-}
-export const ProviderError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errorCode: S.optional(S.Number),
-    errorMessage: S.optional(S.String),
-    errorId: S.optional(S.String),
-    possibleCauses: S.optional(S.String),
-    recommendedAction: S.optional(S.String),
-  }),
-).annotate({ identifier: "ProviderError" }) as any as S.Schema<ProviderError>;
-
-/** This class contains the error details per object. */
-export interface JobErrorDetails {
-  /** The Service error details. */
-  serviceErrorDetails?: ServiceError;
-  /** The Provider error details. */
-  providerErrorDetails?: ProviderError;
-  /** Error level of error. */
-  errorLevel?: string;
-  /** The creation time of job error. */
-  creationTime?: string;
-  /** The Id of the task. */
-  taskId?: string;
-}
-export const JobErrorDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceErrorDetails: S.optional(ServiceError),
-    providerErrorDetails: S.optional(ProviderError),
-    errorLevel: S.optional(S.String),
-    creationTime: S.optional(S.String),
-    taskId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JobErrorDetails",
-}) as any as S.Schema<JobErrorDetails>;
-
-/** The task error details. */
-export type ASRTaskErrorsList = Array<JobErrorDetails>;
-export const ASRTaskErrorsList = /*@__PURE__*/ S.Array(
-  JobErrorDetails,
-) as any as S.Schema<ASRTaskErrorsList>;
-
-/** Task of the Job. */
-export interface ASRTask {
-  /** The Id. */
-  taskId?: string;
-  /** The unique Task name. */
-  name?: string;
-  /** The start time. */
-  startTime?: string;
-  /** The end time. */
-  endTime?: string;
-  /** The state/actions applicable on this task. */
-  allowedActions?: ASRTaskAllowedActionsList;
-  /** The name. */
-  friendlyName?: string;
-  /** The State. It is one of these values - NotStarted, InProgress, Succeeded, Failed, Cancelled, Suspended or Other. */
-  state?: string;
-  /** The description of the task state. For example - For Succeeded state, description can be Completed, PartiallySucceeded, CompletedWithInformation or Skipped. */
-  stateDescription?: string;
-  /** The type of task. Details in CustomDetails property depend on this type. */
-  taskType?: string;
-  /** The custom task details based on the task type. */
-  customDetails?: TaskTypeDetails;
-  /** The custom task details based on the task type, if the task type is GroupTaskDetails or one of the types derived from it. */
-  groupTaskCustomDetails?: GroupTaskDetails;
-  /** The task error details. */
-  errors?: ASRTaskErrorsList;
-}
-export const ASRTask = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-    name: S.optional(S.String),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    allowedActions: S.optional(ASRTaskAllowedActionsList),
-    friendlyName: S.optional(S.String),
-    state: S.optional(S.String),
-    stateDescription: S.optional(S.String),
-    taskType: S.optional(S.String),
-    customDetails: S.optional(TaskTypeDetails),
-    groupTaskCustomDetails: S.optional(GroupTaskDetails),
-    errors: S.optional(ASRTaskErrorsList),
-  }),
-).annotate({ identifier: "ASRTask" }) as any as S.Schema<ASRTask>;
-
-/** The tasks. */
-export type JobPropertiesTasksList = Array<ASRTask>;
-export const JobPropertiesTasksList = /*@__PURE__*/ S.Array(
-  ASRTask,
-) as any as S.Schema<JobPropertiesTasksList>;
-
-/** The errors. */
-export type JobPropertiesErrorsList = Array<JobErrorDetails>;
-export const JobPropertiesErrorsList = /*@__PURE__*/ S.Array(
-  JobErrorDetails,
-) as any as S.Schema<JobPropertiesErrorsList>;
-
-/** The Allowed action the job. */
-export type JobPropertiesAllowedActionsList = Array<string>;
-export const JobPropertiesAllowedActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<JobPropertiesAllowedActionsList>;
-
-/** The affected object properties like source server, source cloud, target server, target cloud etc. based on the workflow object details. */
-export type JobDetailsAffectedObjectDetailsMap = {
-  [key: string]: string | undefined;
-};
-export const JobDetailsAffectedObjectDetailsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JobDetailsAffectedObjectDetailsMap>;
-
-/** Job details based on specific job type. */
-export interface JobDetails {
-  /** Gets the type of job details (see JobDetailsTypes enum for possible values). */
-  instanceType: string;
-  /** The affected object properties like source server, source cloud, target server, target cloud etc. based on the workflow object details. */
-  affectedObjectDetails?: JobDetailsAffectedObjectDetailsMap;
-}
-export const JobDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-    affectedObjectDetails: S.optional(JobDetailsAffectedObjectDetailsMap),
-  }),
-).annotate({ identifier: "JobDetails" }) as any as S.Schema<JobDetails>;
-
-/** Job custom data details. */
-export interface JobProperties {
-  /** The activity id. */
-  activityId?: string;
-  /** The ScenarioName. */
-  scenarioName?: string;
-  /** The DisplayName. */
-  friendlyName?: string;
-  /** The status of the Job. It is one of these values - NotStarted, InProgress, Succeeded, Failed, Cancelled, Suspended or Other. */
-  state?: string;
-  /** The description of the state of the Job. For e.g. - For Succeeded state, description can be Completed, PartiallySucceeded, CompletedWithInformation or Skipped. */
-  stateDescription?: string;
-  /** The tasks. */
-  tasks?: JobPropertiesTasksList;
-  /** The errors. */
-  errors?: JobPropertiesErrorsList;
-  /** The start time. */
-  startTime?: string;
-  /** The end time. */
-  endTime?: string;
-  /** The Allowed action the job. */
-  allowedActions?: JobPropertiesAllowedActionsList;
-  /** The affected Object Id. */
-  targetObjectId?: string;
-  /** The name of the affected object. */
-  targetObjectName?: string;
-  /** The type of the affected object which is of Microsoft.Azure.SiteRecovery.V2015_11_10.AffectedObjectType class. */
-  targetInstanceType?: string;
-  /** The custom job details like test failover job details. */
-  customDetails?: JobDetails;
-}
-export const JobProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    activityId: S.optional(S.String),
-    scenarioName: S.optional(S.String),
-    friendlyName: S.optional(S.String),
-    state: S.optional(S.String),
-    stateDescription: S.optional(S.String),
-    tasks: S.optional(JobPropertiesTasksList),
-    errors: S.optional(JobPropertiesErrorsList),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    allowedActions: S.optional(JobPropertiesAllowedActionsList),
-    targetObjectId: S.optional(S.String),
-    targetObjectName: S.optional(S.String),
-    targetInstanceType: S.optional(S.String),
-    customDetails: S.optional(JobDetails),
-  }),
-).annotate({ identifier: "JobProperties" }) as any as S.Schema<JobProperties>;
 
 export interface GetReplicationJobResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5067,7 +5772,7 @@ export const GetReplicationProtectionClusterResponse = /*@__PURE__*/ S.suspend(
   identifier: "GetReplicationProtectionClusterResponse",
 }) as any as S.Schema<GetReplicationProtectionClusterResponse>;
 
-export interface GetReplicationProtectionClusterOperationResultRequest {
+export interface GetReplicationProtectionClusterOperationResultsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5083,7 +5788,7 @@ export interface GetReplicationProtectionClusterOperationResultRequest {
   /** job id to track. */
   jobId: string;
 }
-export const GetReplicationProtectionClusterOperationResultRequest =
+export const GetReplicationProtectionClusterOperationResultsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5102,10 +5807,10 @@ export const GetReplicationProtectionClusterOperationResultRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetReplicationProtectionClusterOperationResultRequest",
-  }) as any as S.Schema<GetReplicationProtectionClusterOperationResultRequest>;
+    identifier: "GetReplicationProtectionClusterOperationResultsRequest",
+  }) as any as S.Schema<GetReplicationProtectionClusterOperationResultsRequest>;
 
-export interface GetReplicationProtectionClusterOperationResultResponse {
+export interface GetReplicationProtectionClusterOperationResultsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5117,7 +5822,7 @@ export interface GetReplicationProtectionClusterOperationResultResponse {
   /** The custom data. */
   properties?: ReplicationProtectionClusterProperties;
 }
-export const GetReplicationProtectionClusterOperationResultResponse =
+export const GetReplicationProtectionClusterOperationResultsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -5127,8 +5832,8 @@ export const GetReplicationProtectionClusterOperationResultResponse =
       properties: S.optional(ReplicationProtectionClusterProperties),
     }),
   ).annotate({
-    identifier: "GetReplicationProtectionClusterOperationResultResponse",
-  }) as any as S.Schema<GetReplicationProtectionClusterOperationResultResponse>;
+    identifier: "GetReplicationProtectionClusterOperationResultsResponse",
+  }) as any as S.Schema<GetReplicationProtectionClusterOperationResultsResponse>;
 
 export interface GetReplicationProtectionContainerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -5365,7 +6070,7 @@ export const GetReplicationRecoveryPlanResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetReplicationRecoveryPlanResponse",
 }) as any as S.Schema<GetReplicationRecoveryPlanResponse>;
 
-export interface GetReplicationRecoveryServiceProviderRequest {
+export interface GetReplicationRecoveryServicesProviderRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5377,7 +6082,7 @@ export interface GetReplicationRecoveryServiceProviderRequest {
   /** Recovery services provider name. */
   providerName: string;
 }
-export const GetReplicationRecoveryServiceProviderRequest =
+export const GetReplicationRecoveryServicesProviderRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5394,10 +6099,10 @@ export const GetReplicationRecoveryServiceProviderRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetReplicationRecoveryServiceProviderRequest",
-  }) as any as S.Schema<GetReplicationRecoveryServiceProviderRequest>;
+    identifier: "GetReplicationRecoveryServicesProviderRequest",
+  }) as any as S.Schema<GetReplicationRecoveryServicesProviderRequest>;
 
-export interface GetReplicationRecoveryServiceProviderResponse {
+export interface GetReplicationRecoveryServicesProviderResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5411,7 +6116,7 @@ export interface GetReplicationRecoveryServiceProviderResponse {
   /** Resource Location */
   location?: string;
 }
-export const GetReplicationRecoveryServiceProviderResponse =
+export const GetReplicationRecoveryServicesProviderResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -5422,8 +6127,8 @@ export const GetReplicationRecoveryServiceProviderResponse =
       location: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "GetReplicationRecoveryServiceProviderResponse",
-  }) as any as S.Schema<GetReplicationRecoveryServiceProviderResponse>;
+    identifier: "GetReplicationRecoveryServicesProviderResponse",
+  }) as any as S.Schema<GetReplicationRecoveryServicesProviderResponse>;
 
 export interface GetReplicationStorageClassificationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -7933,7 +8638,7 @@ export const RecoveryPlanCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecoveryPlanCollection",
 }) as any as S.Schema<RecoveryPlanCollection>;
 
-export interface ListReplicationRecoveryServiceProviderByReplicationFabricsRequest {
+export interface ListReplicationRecoveryServicesProviderByReplicationFabricsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7943,7 +8648,7 @@ export interface ListReplicationRecoveryServiceProviderByReplicationFabricsReque
   /** Fabric name. */
   fabricName: string;
 }
-export const ListReplicationRecoveryServiceProviderByReplicationFabricsRequest =
+export const ListReplicationRecoveryServicesProviderByReplicationFabricsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7960,8 +8665,8 @@ export const ListReplicationRecoveryServiceProviderByReplicationFabricsRequest =
     ),
   ).annotate({
     identifier:
-      "ListReplicationRecoveryServiceProviderByReplicationFabricsRequest",
-  }) as any as S.Schema<ListReplicationRecoveryServiceProviderByReplicationFabricsRequest>;
+      "ListReplicationRecoveryServicesProviderByReplicationFabricsRequest",
+  }) as any as S.Schema<ListReplicationRecoveryServicesProviderByReplicationFabricsRequest>;
 
 /** Provider details. */
 export interface RecoveryServicesProvider {
@@ -8015,7 +8720,7 @@ export const RecoveryServicesProviderCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecoveryServicesProviderCollection",
 }) as any as S.Schema<RecoveryServicesProviderCollection>;
 
-export interface ListReplicationRecoveryServiceProvidersRequest {
+export interface ListReplicationRecoveryServicesProvidersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8023,7 +8728,7 @@ export interface ListReplicationRecoveryServiceProvidersRequest {
   /** The name of the recovery services vault. */
   resourceName: string;
 }
-export const ListReplicationRecoveryServiceProvidersRequest =
+export const ListReplicationRecoveryServicesProvidersRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8038,8 +8743,8 @@ export const ListReplicationRecoveryServiceProvidersRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListReplicationRecoveryServiceProvidersRequest",
-  }) as any as S.Schema<ListReplicationRecoveryServiceProvidersRequest>;
+    identifier: "ListReplicationRecoveryServicesProvidersRequest",
+  }) as any as S.Schema<ListReplicationRecoveryServicesProvidersRequest>;
 
 export interface ListReplicationStorageClassificationByReplicationFabricsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -8435,7 +9140,7 @@ export const ListReplicationvCentersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListReplicationvCentersRequest",
 }) as any as S.Schema<ListReplicationvCentersRequest>;
 
-export interface ListTargetComputeSizeByReplicationProtectedItemsRequest {
+export interface ListTargetComputeSizByReplicationProtectedItemsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8449,7 +9154,7 @@ export interface ListTargetComputeSizeByReplicationProtectedItemsRequest {
   /** Replication protected item name. */
   replicatedProtectedItemName: string;
 }
-export const ListTargetComputeSizeByReplicationProtectedItemsRequest =
+export const ListTargetComputeSizByReplicationProtectedItemsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8467,8 +9172,8 @@ export const ListTargetComputeSizeByReplicationProtectedItemsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListTargetComputeSizeByReplicationProtectedItemsRequest",
-  }) as any as S.Schema<ListTargetComputeSizeByReplicationProtectedItemsRequest>;
+    identifier: "ListTargetComputeSizByReplicationProtectedItemsRequest",
+  }) as any as S.Schema<ListTargetComputeSizByReplicationProtectedItemsRequest>;
 
 /** Represents the error used to indicate why the target compute size is not applicable. */
 export interface ComputeSizeErrorDetails {
@@ -8586,7 +9291,7 @@ export const TargetComputeSizeCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "TargetComputeSizeCollection",
 }) as any as S.Schema<TargetComputeSizeCollection>;
 
-export interface ReplicationFabricsMigrateToAadRequest {
+export interface MigrateReplicationFabricToAadRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8596,7 +9301,7 @@ export interface ReplicationFabricsMigrateToAadRequest {
   /** Fabric name. */
   fabricName: string;
 }
-export const ReplicationFabricsMigrateToAadRequest = /*@__PURE__*/ S.suspend(
+export const MigrateReplicationFabricToAadRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -8612,17 +9317,244 @@ export const ReplicationFabricsMigrateToAadRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ReplicationFabricsMigrateToAadRequest",
-}) as any as S.Schema<ReplicationFabricsMigrateToAadRequest>;
+  identifier: "MigrateReplicationFabricToAadRequest",
+}) as any as S.Schema<MigrateReplicationFabricToAadRequest>;
 
-export interface ReplicationFabricsMigrateToAadResponse {}
-export const ReplicationFabricsMigrateToAadResponse = /*@__PURE__*/ S.suspend(
+export interface MigrateReplicationFabricToAadResponse {}
+export const MigrateReplicationFabricToAadResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "ReplicationFabricsMigrateToAadResponse",
-}) as any as S.Schema<ReplicationFabricsMigrateToAadResponse>;
+  identifier: "MigrateReplicationFabricToAadResponse",
+}) as any as S.Schema<MigrateReplicationFabricToAadResponse>;
 
-export interface ReplicationFabricsPurgeRequest {
+/** Migrate provider specific input. */
+export type MigrateProviderSpecificInput = AddDisksProviderSpecificInput;
+export const MigrateProviderSpecificInput = AddDisksProviderSpecificInput;
+
+/** Migrate input properties. */
+export interface MigrateInputProperties {
+  /** The provider specific details. */
+  providerSpecificDetails: AddDisksProviderSpecificInput;
+}
+export const MigrateInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    providerSpecificDetails: AddDisksProviderSpecificInput,
+  }),
+).annotate({
+  identifier: "MigrateInputProperties",
+}) as any as S.Schema<MigrateInputProperties>;
+
+export interface MigrateReplicationMigrationItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Migration item name. */
+  migrationItemName: string;
+  /** Migrate input properties. */
+  properties: MigrateInputProperties;
+}
+export const MigrateReplicationMigrationItemRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      migrationItemName: S.String.pipe(T.Label()),
+      properties: MigrateInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/migrate",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "MigrateReplicationMigrationItemRequest",
+}) as any as S.Schema<MigrateReplicationMigrationItemRequest>;
+
+export interface MigrateReplicationMigrationItemResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The migration item properties. */
+  properties?: MigrationItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const MigrateReplicationMigrationItemResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MigrationItemProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "MigrateReplicationMigrationItemResponse",
+}) as any as S.Schema<MigrateReplicationMigrationItemResponse>;
+
+/** Test migrate provider specific input. */
+export type TestMigrateProviderSpecificInput = AddDisksProviderSpecificInput;
+export const TestMigrateProviderSpecificInput = AddDisksProviderSpecificInput;
+
+/** Test migrate input properties. */
+export type TestMigrateInputProperties = MigrateInputProperties;
+export const TestMigrateInputProperties = MigrateInputProperties;
+
+export interface MigrateReplicationMigrationItemsTestRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Migration item name. */
+  migrationItemName: string;
+  /** Test migrate input properties. */
+  properties: MigrateInputProperties;
+}
+export const MigrateReplicationMigrationItemsTestRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      migrationItemName: S.String.pipe(T.Label()),
+      properties: MigrateInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/testMigrate",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrateReplicationMigrationItemsTestRequest",
+  }) as any as S.Schema<MigrateReplicationMigrationItemsTestRequest>;
+
+export interface MigrateReplicationMigrationItemsTestResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The migration item properties. */
+  properties?: MigrationItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const MigrateReplicationMigrationItemsTestResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MigrationItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "MigrateReplicationMigrationItemsTestResponse",
+  }) as any as S.Schema<MigrateReplicationMigrationItemsTestResponse>;
+
+/** Pause replication input properties. */
+export type PauseReplicationInputProperties = AddDisksProviderSpecificInput;
+export const PauseReplicationInputProperties = AddDisksProviderSpecificInput;
+
+export interface PauseReplicationMigrationItemReplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Migration item name. */
+  migrationItemName: string;
+  /** Pause replication input properties. */
+  properties: AddDisksProviderSpecificInput;
+}
+export const PauseReplicationMigrationItemReplicationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      migrationItemName: S.String.pipe(T.Label()),
+      properties: AddDisksProviderSpecificInput,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/pauseReplication",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PauseReplicationMigrationItemReplicationRequest",
+  }) as any as S.Schema<PauseReplicationMigrationItemReplicationRequest>;
+
+export interface PauseReplicationMigrationItemReplicationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The migration item properties. */
+  properties?: MigrationItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const PauseReplicationMigrationItemReplicationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MigrationItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PauseReplicationMigrationItemReplicationResponse",
+  }) as any as S.Schema<PauseReplicationMigrationItemReplicationResponse>;
+
+export interface PurgeReplicationFabricRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8632,7 +9564,7 @@ export interface ReplicationFabricsPurgeRequest {
   /** Fabric name. */
   fabricName: string;
 }
-export const ReplicationFabricsPurgeRequest = /*@__PURE__*/ S.suspend(() =>
+export const PurgeReplicationFabricRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8647,15 +9579,482 @@ export const ReplicationFabricsPurgeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ReplicationFabricsPurgeRequest",
-}) as any as S.Schema<ReplicationFabricsPurgeRequest>;
+  identifier: "PurgeReplicationFabricRequest",
+}) as any as S.Schema<PurgeReplicationFabricRequest>;
 
-export interface ReplicationFabricsPurgeResponse {}
-export const ReplicationFabricsPurgeResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PurgeReplicationFabricResponse {}
+export const PurgeReplicationFabricResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ReplicationFabricsPurgeResponse",
-}) as any as S.Schema<ReplicationFabricsPurgeResponse>;
+  identifier: "PurgeReplicationFabricResponse",
+}) as any as S.Schema<PurgeReplicationFabricResponse>;
+
+export interface PurgeReplicationProtectedItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+}
+export const PurgeReplicationProtectedItemRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "PurgeReplicationProtectedItemRequest",
+}) as any as S.Schema<PurgeReplicationProtectedItemRequest>;
+
+export interface PurgeReplicationProtectedItemResponse {}
+export const PurgeReplicationProtectedItemResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PurgeReplicationProtectedItemResponse",
+}) as any as S.Schema<PurgeReplicationProtectedItemResponse>;
+
+export interface PurgeReplicationProtectionClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protection cluster name. */
+  replicationProtectionClusterName: string;
+}
+export const PurgeReplicationProtectionClusterRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicationProtectionClusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "PurgeReplicationProtectionClusterRequest",
+}) as any as S.Schema<PurgeReplicationProtectionClusterRequest>;
+
+export interface PurgeReplicationProtectionClusterResponse {}
+export const PurgeReplicationProtectionClusterResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PurgeReplicationProtectionClusterResponse",
+  }) as any as S.Schema<PurgeReplicationProtectionClusterResponse>;
+
+export interface PurgeReplicationProtectionContainerMappingRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Protection Container mapping name. */
+  mappingName: string;
+}
+export const PurgeReplicationProtectionContainerMappingRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      mappingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionContainerMappings/{mappingName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PurgeReplicationProtectionContainerMappingRequest",
+  }) as any as S.Schema<PurgeReplicationProtectionContainerMappingRequest>;
+
+export interface PurgeReplicationProtectionContainerMappingResponse {}
+export const PurgeReplicationProtectionContainerMappingResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PurgeReplicationProtectionContainerMappingResponse",
+  }) as any as S.Schema<PurgeReplicationProtectionContainerMappingResponse>;
+
+export interface PurgeReplicationRecoveryServicesProviderRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Recovery services provider name. */
+  providerName: string;
+}
+export const PurgeReplicationRecoveryServicesProviderRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      providerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationRecoveryServicesProviders/{providerName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PurgeReplicationRecoveryServicesProviderRequest",
+  }) as any as S.Schema<PurgeReplicationRecoveryServicesProviderRequest>;
+
+export interface PurgeReplicationRecoveryServicesProviderResponse {}
+export const PurgeReplicationRecoveryServicesProviderResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PurgeReplicationRecoveryServicesProviderResponse",
+  }) as any as S.Schema<PurgeReplicationRecoveryServicesProviderResponse>;
+
+export interface RefreshReplicationRecoveryServicesProviderProviderRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Recovery services provider name. */
+  providerName: string;
+}
+export const RefreshReplicationRecoveryServicesProviderProviderRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      providerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationRecoveryServicesProviders/{providerName}/refreshProvider",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RefreshReplicationRecoveryServicesProviderProviderRequest",
+  }) as any as S.Schema<RefreshReplicationRecoveryServicesProviderProviderRequest>;
+
+export interface RefreshReplicationRecoveryServicesProviderProviderResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Provider properties. */
+  properties?: RecoveryServicesProviderProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const RefreshReplicationRecoveryServicesProviderProviderResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RecoveryServicesProviderProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "RefreshReplicationRecoveryServicesProviderProviderResponse",
+  }) as any as S.Schema<RefreshReplicationRecoveryServicesProviderProviderResponse>;
+
+export interface RefreshReplicationVaultHealthRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+}
+export const RefreshReplicationVaultHealthRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationVaultHealth/default/refresh",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshReplicationVaultHealthRequest",
+}) as any as S.Schema<RefreshReplicationVaultHealthRequest>;
+
+export interface RefreshReplicationVaultHealthResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The vault health related data. */
+  properties?: VaultHealthProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const RefreshReplicationVaultHealthResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(VaultHealthProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "RefreshReplicationVaultHealthResponse",
+}) as any as S.Schema<RefreshReplicationVaultHealthResponse>;
+
+export interface RemoveReplicationFabricInfraRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+}
+export const RemoveReplicationFabricInfraRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/removeInfra",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RemoveReplicationFabricInfraRequest",
+}) as any as S.Schema<RemoveReplicationFabricInfraRequest>;
+
+export interface RemoveReplicationFabricInfraResponse {}
+export const RemoveReplicationFabricInfraResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RemoveReplicationFabricInfraResponse",
+}) as any as S.Schema<RemoveReplicationFabricInfraResponse>;
+
+/** Remove Disk provider specific input. */
+export type RemoveDisksProviderSpecificInput = AddDisksProviderSpecificInput;
+export const RemoveDisksProviderSpecificInput = AddDisksProviderSpecificInput;
+
+/** Remove Disk input properties. */
+export interface RemoveDisksInputProperties {
+  /** The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null. */
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
+}
+export const RemoveDisksInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
+  }),
+).annotate({
+  identifier: "RemoveDisksInputProperties",
+}) as any as S.Schema<RemoveDisksInputProperties>;
+
+export interface RemoveReplicationProtectedItemDisksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+  /** Remove disk input properties. */
+  properties?: RemoveDisksInputProperties;
+}
+export const RemoveReplicationProtectedItemDisksRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+      properties: S.optional(RemoveDisksInputProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/removeDisks",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RemoveReplicationProtectedItemDisksRequest",
+  }) as any as S.Schema<RemoveReplicationProtectedItemDisksRequest>;
+
+export interface RemoveReplicationProtectedItemDisksResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectedItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const RemoveReplicationProtectedItemDisksResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectedItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "RemoveReplicationProtectedItemDisksResponse",
+  }) as any as S.Schema<RemoveReplicationProtectedItemDisksResponse>;
+
+/** Renew Certificate input properties. */
+export interface RenewCertificateInputProperties {
+  /** Renew certificate type. */
+  renewCertificateType?: string;
+}
+export const RenewCertificateInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    renewCertificateType: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RenewCertificateInputProperties",
+}) as any as S.Schema<RenewCertificateInputProperties>;
+
+export interface RenewReplicationFabricCertificateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Renew certificate input properties. */
+  properties?: RenewCertificateInputProperties;
+}
+export const RenewReplicationFabricCertificateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      properties: S.optional(RenewCertificateInputProperties),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/renewCertificate",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RenewReplicationFabricCertificateRequest",
+}) as any as S.Schema<RenewReplicationFabricCertificateRequest>;
+
+export interface RenewReplicationFabricCertificateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Fabric related data. */
+  properties?: FabricProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const RenewReplicationFabricCertificateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(FabricProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "RenewReplicationFabricCertificateResponse",
+  }) as any as S.Schema<RenewReplicationFabricCertificateResponse>;
 
 /** The VMS to migrate. */
 export type FailoverProcessServerRequestPropertiesVmsToMigrateList =
@@ -8753,565 +10152,9 @@ export const ReplicationFabricsReassociateGatewayResponse =
     identifier: "ReplicationFabricsReassociateGatewayResponse",
   }) as any as S.Schema<ReplicationFabricsReassociateGatewayResponse>;
 
-export interface ReplicationFabricsRemoveInfraRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-}
-export const ReplicationFabricsRemoveInfraRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/removeInfra",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ReplicationFabricsRemoveInfraRequest",
-}) as any as S.Schema<ReplicationFabricsRemoveInfraRequest>;
-
-export interface ReplicationFabricsRemoveInfraResponse {}
-export const ReplicationFabricsRemoveInfraResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ReplicationFabricsRemoveInfraResponse",
-}) as any as S.Schema<ReplicationFabricsRemoveInfraResponse>;
-
-/** Renew Certificate input properties. */
-export interface RenewCertificateInputProperties {
-  /** Renew certificate type. */
-  renewCertificateType?: string;
-}
-export const RenewCertificateInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    renewCertificateType: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RenewCertificateInputProperties",
-}) as any as S.Schema<RenewCertificateInputProperties>;
-
-export interface ReplicationFabricsRenewCertificateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Renew certificate input properties. */
-  properties?: RenewCertificateInputProperties;
-}
-export const ReplicationFabricsRenewCertificateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      properties: S.optional(RenewCertificateInputProperties),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/renewCertificate",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationFabricsRenewCertificateRequest",
-  }) as any as S.Schema<ReplicationFabricsRenewCertificateRequest>;
-
-export interface ReplicationFabricsRenewCertificateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Fabric related data. */
-  properties?: FabricProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationFabricsRenewCertificateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(FabricProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationFabricsRenewCertificateResponse",
-  }) as any as S.Schema<ReplicationFabricsRenewCertificateResponse>;
-
-export interface ReplicationJobsCancelRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Job identifier. */
-  jobName: string;
-}
-export const ReplicationJobsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationJobs/{jobName}/cancel",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReplicationJobsCancelRequest",
-}) as any as S.Schema<ReplicationJobsCancelRequest>;
-
-export interface ReplicationJobsCancelResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: JobProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationJobsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(JobProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReplicationJobsCancelResponse",
-}) as any as S.Schema<ReplicationJobsCancelResponse>;
-
-/** The output type of the jobs. */
-export type ExportJobOutputSerializationType = "Json" | "Xml" | "Excel";
-export const ExportJobOutputSerializationType = /*@__PURE__*/ S.String;
-
-export interface ReplicationJobsExportRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-  /** Date time to get jobs from. */
-  startTime?: string;
-  /** Date time to get jobs upto. */
-  endTime?: string;
-  /** The Id of the fabric to search jobs under. */
-  fabricId?: string;
-  /** The type of objects. */
-  affectedObjectTypes?: string;
-  /** The states of the job to be filtered can be in. */
-  jobStatus?: string;
-  /** The output type of the jobs. */
-  jobOutputType?: ExportJobOutputSerializationType | (string & {});
-  /** The job Name. */
-  jobName?: string;
-  /** The timezone offset for the location of the request (in minutes). */
-  timezoneOffset?: number;
-}
-export const ReplicationJobsExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    fabricId: S.optional(S.String),
-    affectedObjectTypes: S.optional(S.String),
-    jobStatus: S.optional(S.String),
-    jobOutputType: S.optional(ExportJobOutputSerializationType),
-    jobName: S.optional(S.String),
-    timezoneOffset: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationJobs/export",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReplicationJobsExportRequest",
-}) as any as S.Schema<ReplicationJobsExportRequest>;
-
-export interface ReplicationJobsExportResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: JobProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationJobsExportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(JobProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReplicationJobsExportResponse",
-}) as any as S.Schema<ReplicationJobsExportResponse>;
-
-/** Resume job properties. */
-export interface ResumeJobParamsProperties {
-  /** Resume job comments. */
-  comments?: string;
-}
-export const ResumeJobParamsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comments: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResumeJobParamsProperties",
-}) as any as S.Schema<ResumeJobParamsProperties>;
-
-export interface ReplicationJobsResumeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Job identifier. */
-  jobName: string;
-  /** Resume job properties. */
-  properties?: ResumeJobParamsProperties;
-}
-export const ReplicationJobsResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-    properties: S.optional(ResumeJobParamsProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationJobs/{jobName}/resume",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReplicationJobsResumeRequest",
-}) as any as S.Schema<ReplicationJobsResumeRequest>;
-
-export interface ReplicationJobsResumeResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: JobProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationJobsResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(JobProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReplicationJobsResumeResponse",
-}) as any as S.Schema<ReplicationJobsResumeResponse>;
-
-/** Migrate provider specific input. */
-export type MigrateProviderSpecificInput = EnableMigrationProviderSpecificInput;
-export const MigrateProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Migrate input properties. */
-export interface MigrateInputProperties {
-  /** The provider specific details. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
-}
-export const MigrateInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    providerSpecificDetails: EnableMigrationProviderSpecificInput,
-  }),
-).annotate({
-  identifier: "MigrateInputProperties",
-}) as any as S.Schema<MigrateInputProperties>;
-
-export interface ReplicationMigrationItemsMigrateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Migration item name. */
-  migrationItemName: string;
-  /** Migrate input properties. */
-  properties: MigrateInputProperties;
-}
-export const ReplicationMigrationItemsMigrateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      migrationItemName: S.String.pipe(T.Label()),
-      properties: MigrateInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/migrate",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ReplicationMigrationItemsMigrateRequest",
-}) as any as S.Schema<ReplicationMigrationItemsMigrateRequest>;
-
-export interface ReplicationMigrationItemsMigrateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The migration item properties. */
-  properties?: MigrationItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationMigrationItemsMigrateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MigrationItemProperties),
-      location: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ReplicationMigrationItemsMigrateResponse",
-}) as any as S.Schema<ReplicationMigrationItemsMigrateResponse>;
-
-/** Pause replication input properties. */
-export type PauseReplicationInputProperties =
-  EnableMigrationProviderSpecificInput;
-export const PauseReplicationInputProperties =
-  EnableMigrationProviderSpecificInput;
-
-export interface ReplicationMigrationItemsPauseReplicationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Migration item name. */
-  migrationItemName: string;
-  /** Pause replication input properties. */
-  properties: EnableMigrationProviderSpecificInput;
-}
-export const ReplicationMigrationItemsPauseReplicationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      migrationItemName: S.String.pipe(T.Label()),
-      properties: EnableMigrationProviderSpecificInput,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/pauseReplication",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationMigrationItemsPauseReplicationRequest",
-  }) as any as S.Schema<ReplicationMigrationItemsPauseReplicationRequest>;
-
-export interface ReplicationMigrationItemsPauseReplicationResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The migration item properties. */
-  properties?: MigrationItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationMigrationItemsPauseReplicationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MigrationItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationMigrationItemsPauseReplicationResponse",
-  }) as any as S.Schema<ReplicationMigrationItemsPauseReplicationResponse>;
-
-/** Resume replication provider specific input. */
-export type ResumeReplicationProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const ResumeReplicationProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Resume replication input properties. */
-export interface ResumeReplicationInputProperties {
-  /** The provider specific input for resume replication. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
-}
-export const ResumeReplicationInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    providerSpecificDetails: EnableMigrationProviderSpecificInput,
-  }),
-).annotate({
-  identifier: "ResumeReplicationInputProperties",
-}) as any as S.Schema<ResumeReplicationInputProperties>;
-
-export interface ReplicationMigrationItemsResumeReplicationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Migration item name. */
-  migrationItemName: string;
-  /** Resume replication input properties. */
-  properties: ResumeReplicationInputProperties;
-}
-export const ReplicationMigrationItemsResumeReplicationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      migrationItemName: S.String.pipe(T.Label()),
-      properties: ResumeReplicationInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/resumeReplication",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationMigrationItemsResumeReplicationRequest",
-  }) as any as S.Schema<ReplicationMigrationItemsResumeReplicationRequest>;
-
-export interface ReplicationMigrationItemsResumeReplicationResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The migration item properties. */
-  properties?: MigrationItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationMigrationItemsResumeReplicationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MigrationItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationMigrationItemsResumeReplicationResponse",
-  }) as any as S.Schema<ReplicationMigrationItemsResumeReplicationResponse>;
-
 /** Resync provider specific input. */
-export type ResyncProviderSpecificInput = EnableMigrationProviderSpecificInput;
-export const ResyncProviderSpecificInput = EnableMigrationProviderSpecificInput;
+export type ResyncProviderSpecificInput = AddDisksProviderSpecificInput;
+export const ResyncProviderSpecificInput = AddDisksProviderSpecificInput;
 
 /** Resync input properties. */
 export type ResyncInputProperties = MigrateInputProperties;
@@ -9382,82 +10225,6 @@ export const ReplicationMigrationItemsResyncResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ReplicationMigrationItemsResyncResponse",
 }) as any as S.Schema<ReplicationMigrationItemsResyncResponse>;
-
-/** Test migrate provider specific input. */
-export type TestMigrateProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const TestMigrateProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Test migrate input properties. */
-export type TestMigrateInputProperties = MigrateInputProperties;
-export const TestMigrateInputProperties = MigrateInputProperties;
-
-export interface ReplicationMigrationItemsTestMigrateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Migration item name. */
-  migrationItemName: string;
-  /** Test migrate input properties. */
-  properties: MigrateInputProperties;
-}
-export const ReplicationMigrationItemsTestMigrateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      migrationItemName: S.String.pipe(T.Label()),
-      properties: MigrateInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/testMigrate",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationMigrationItemsTestMigrateRequest",
-  }) as any as S.Schema<ReplicationMigrationItemsTestMigrateRequest>;
-
-export interface ReplicationMigrationItemsTestMigrateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The migration item properties. */
-  properties?: MigrationItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationMigrationItemsTestMigrateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MigrationItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationMigrationItemsTestMigrateResponse",
-  }) as any as S.Schema<ReplicationMigrationItemsTestMigrateResponse>;
 
 /** Test migrate cleanup input properties. */
 export interface TestMigrateCleanupInputProperties {
@@ -9538,322 +10305,23 @@ export const ReplicationMigrationItemsTestMigrateCleanupResponse =
     identifier: "ReplicationMigrationItemsTestMigrateCleanupResponse",
   }) as any as S.Schema<ReplicationMigrationItemsTestMigrateCleanupResponse>;
 
-/** Add Disks provider specific input. */
-export type AddDisksProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const AddDisksProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Add Disks input properties. */
-export interface AddDisksInputProperties {
-  /** The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
-}
-export const AddDisksInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    providerSpecificDetails: EnableMigrationProviderSpecificInput,
-  }),
-).annotate({
-  identifier: "AddDisksInputProperties",
-}) as any as S.Schema<AddDisksInputProperties>;
-
-export interface ReplicationProtectedItemsAddDisksRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-  /** Add disks input properties. */
-  properties?: AddDisksInputProperties;
-}
-export const ReplicationProtectedItemsAddDisksRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-      properties: S.optional(AddDisksInputProperties),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/addDisks",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ReplicationProtectedItemsAddDisksRequest",
-}) as any as S.Schema<ReplicationProtectedItemsAddDisksRequest>;
-
-export interface ReplicationProtectedItemsAddDisksResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectedItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationProtectedItemsAddDisksResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectedItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsAddDisksResponse",
-  }) as any as S.Schema<ReplicationProtectedItemsAddDisksResponse>;
-
-/** Provider specific input for apply recovery point. */
-export type ApplyRecoveryPointProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const ApplyRecoveryPointProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Input properties to apply recovery point. */
-export interface ApplyRecoveryPointInputProperties {
-  /** The recovery point Id. */
-  recoveryPointId?: string;
-  /** Provider specific input for applying recovery point. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
-}
-export const ApplyRecoveryPointInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    recoveryPointId: S.optional(S.String),
-    providerSpecificDetails: EnableMigrationProviderSpecificInput,
-  }),
-).annotate({
-  identifier: "ApplyRecoveryPointInputProperties",
-}) as any as S.Schema<ApplyRecoveryPointInputProperties>;
-
-export interface ReplicationProtectedItemsApplyRecoveryPointRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-  /** The input properties to apply recovery point. */
-  properties: ApplyRecoveryPointInputProperties;
-}
-export const ReplicationProtectedItemsApplyRecoveryPointRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-      properties: ApplyRecoveryPointInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/applyRecoveryPoint",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsApplyRecoveryPointRequest",
-  }) as any as S.Schema<ReplicationProtectedItemsApplyRecoveryPointRequest>;
-
-export interface ReplicationProtectedItemsApplyRecoveryPointResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectedItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationProtectedItemsApplyRecoveryPointResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectedItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsApplyRecoveryPointResponse",
-  }) as any as S.Schema<ReplicationProtectedItemsApplyRecoveryPointResponse>;
-
-export interface ReplicationProtectedItemsFailoverCancelRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-}
-export const ReplicationProtectedItemsFailoverCancelRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/failoverCancel",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsFailoverCancelRequest",
-  }) as any as S.Schema<ReplicationProtectedItemsFailoverCancelRequest>;
-
-export interface ReplicationProtectedItemsFailoverCancelResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectedItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationProtectedItemsFailoverCancelResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectedItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsFailoverCancelResponse",
-  }) as any as S.Schema<ReplicationProtectedItemsFailoverCancelResponse>;
-
-export interface ReplicationProtectedItemsFailoverCommitRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-}
-export const ReplicationProtectedItemsFailoverCommitRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/failoverCommit",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsFailoverCommitRequest",
-  }) as any as S.Schema<ReplicationProtectedItemsFailoverCommitRequest>;
-
-export interface ReplicationProtectedItemsFailoverCommitResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectedItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationProtectedItemsFailoverCommitResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectedItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsFailoverCommitResponse",
-  }) as any as S.Schema<ReplicationProtectedItemsFailoverCommitResponse>;
-
 /** Provider specific failover input. */
 export type PlannedFailoverProviderSpecificFailoverInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const PlannedFailoverProviderSpecificFailoverInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Input definition for planned failover input properties. */
 export interface PlannedFailoverInputProperties {
   /** Failover direction. */
   failoverDirection?: string;
   /** Provider specific settings. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
 }
 export const PlannedFailoverInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     failoverDirection: S.optional(S.String),
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "PlannedFailoverInputProperties",
@@ -9924,48 +10392,6 @@ export const ReplicationProtectedItemsPlannedFailoverResponse =
   ).annotate({
     identifier: "ReplicationProtectedItemsPlannedFailoverResponse",
   }) as any as S.Schema<ReplicationProtectedItemsPlannedFailoverResponse>;
-
-export interface ReplicationProtectedItemsPurgeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-}
-export const ReplicationProtectedItemsPurgeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ReplicationProtectedItemsPurgeRequest",
-}) as any as S.Schema<ReplicationProtectedItemsPurgeRequest>;
-
-export interface ReplicationProtectedItemsPurgeResponse {}
-export const ReplicationProtectedItemsPurgeResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ReplicationProtectedItemsPurgeResponse",
-}) as any as S.Schema<ReplicationProtectedItemsPurgeResponse>;
 
 /** The properties of an update mobility service request. */
 export interface ReinstallMobilityServiceRequestProperties {
@@ -10047,91 +10473,6 @@ export const ReplicationProtectedItemsReinstallMobilityServiceResponse =
     identifier: "ReplicationProtectedItemsReinstallMobilityServiceResponse",
   }) as any as S.Schema<ReplicationProtectedItemsReinstallMobilityServiceResponse>;
 
-/** Remove Disk provider specific input. */
-export type RemoveDisksProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const RemoveDisksProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Remove Disk input properties. */
-export interface RemoveDisksInputProperties {
-  /** The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
-}
-export const RemoveDisksInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
-  }),
-).annotate({
-  identifier: "RemoveDisksInputProperties",
-}) as any as S.Schema<RemoveDisksInputProperties>;
-
-export interface ReplicationProtectedItemsRemoveDisksRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-  /** Remove disk input properties. */
-  properties?: RemoveDisksInputProperties;
-}
-export const ReplicationProtectedItemsRemoveDisksRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-      properties: S.optional(RemoveDisksInputProperties),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/removeDisks",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsRemoveDisksRequest",
-  }) as any as S.Schema<ReplicationProtectedItemsRemoveDisksRequest>;
-
-export interface ReplicationProtectedItemsRemoveDisksResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectedItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationProtectedItemsRemoveDisksResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectedItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsRemoveDisksResponse",
-  }) as any as S.Schema<ReplicationProtectedItemsRemoveDisksResponse>;
-
 export interface ReplicationProtectedItemsRepairReplicationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -10197,21 +10538,21 @@ export const ReplicationProtectedItemsRepairReplicationResponse =
 
 /** Provider specific reverse replication input. */
 export type ReverseReplicationProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const ReverseReplicationProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Reverse replication input properties. */
 export interface ReverseReplicationInputProperties {
   /** Failover direction. */
   failoverDirection?: string;
   /** Provider specific reverse replication input. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
 }
 export const ReverseReplicationInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     failoverDirection: S.optional(S.String),
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "ReverseReplicationInputProperties",
@@ -10384,22 +10725,21 @@ export const ReplicationProtectedItemsResolveHealthErrorsResponse =
   }) as any as S.Schema<ReplicationProtectedItemsResolveHealthErrorsResponse>;
 
 /** Provider specific switch provider input. */
-export type SwitchProviderProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+export type SwitchProviderProviderSpecificInput = AddDisksProviderSpecificInput;
 export const SwitchProviderProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Input definition for switch provider input properties. */
 export interface SwitchProviderInputProperties {
   /** Target provider type. */
   targetInstanceType?: string;
   /** Provider specific settings. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
 }
 export const SwitchProviderInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     targetInstanceType: S.optional(S.String),
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "SwitchProviderInputProperties",
@@ -10471,184 +10811,11 @@ export const ReplicationProtectedItemsSwitchProviderResponse =
     identifier: "ReplicationProtectedItemsSwitchProviderResponse",
   }) as any as S.Schema<ReplicationProtectedItemsSwitchProviderResponse>;
 
-/** Provider specific test failover input. */
-export type TestFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const TestFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Input definition for test failover input properties. */
-export interface TestFailoverInputProperties {
-  /** Test failover direction. */
-  failoverDirection?: string;
-  /** Network type to be used for test failover. */
-  networkType?: string;
-  /** The id of the network to be used for test failover. */
-  networkId?: string;
-  /** Provider specific settings. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
-}
-export const TestFailoverInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    failoverDirection: S.optional(S.String),
-    networkType: S.optional(S.String),
-    networkId: S.optional(S.String),
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
-  }),
-).annotate({
-  identifier: "TestFailoverInputProperties",
-}) as any as S.Schema<TestFailoverInputProperties>;
-
-export interface ReplicationProtectedItemsTestFailoverRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-  /** Test failover input properties. */
-  properties: TestFailoverInputProperties;
-}
-export const ReplicationProtectedItemsTestFailoverRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-      properties: TestFailoverInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/testFailover",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsTestFailoverRequest",
-  }) as any as S.Schema<ReplicationProtectedItemsTestFailoverRequest>;
-
-export interface ReplicationProtectedItemsTestFailoverResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectedItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationProtectedItemsTestFailoverResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectedItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsTestFailoverResponse",
-  }) as any as S.Schema<ReplicationProtectedItemsTestFailoverResponse>;
-
-/** Input definition for test failover cleanup input properties. */
-export interface TestFailoverCleanupInputProperties {
-  /** Test failover cleanup comments. */
-  comments?: string;
-}
-export const TestFailoverCleanupInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    comments: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TestFailoverCleanupInputProperties",
-}) as any as S.Schema<TestFailoverCleanupInputProperties>;
-
-export interface ReplicationProtectedItemsTestFailoverCleanupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protected item name. */
-  replicatedProtectedItemName: string;
-  /** Test failover cleanup input properties. */
-  properties: TestFailoverCleanupInputProperties;
-}
-export const ReplicationProtectedItemsTestFailoverCleanupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicatedProtectedItemName: S.String.pipe(T.Label()),
-      properties: TestFailoverCleanupInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/testFailoverCleanup",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsTestFailoverCleanupRequest",
-  }) as any as S.Schema<ReplicationProtectedItemsTestFailoverCleanupRequest>;
-
-export interface ReplicationProtectedItemsTestFailoverCleanupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectedItemProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationProtectedItemsTestFailoverCleanupResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectedItemProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectedItemsTestFailoverCleanupResponse",
-  }) as any as S.Schema<ReplicationProtectedItemsTestFailoverCleanupResponse>;
-
 /** Provider specific unplanned failover input. */
 export type UnplannedFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const UnplannedFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Input definition for unplanned failover input properties. */
 export interface UnplannedFailoverInputProperties {
@@ -10657,13 +10824,13 @@ export interface UnplannedFailoverInputProperties {
   /** Source site operations status. */
   sourceSiteOperations?: string;
   /** Provider specific settings. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
 }
 export const UnplannedFailoverInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     failoverDirection: S.optional(S.String),
     sourceSiteOperations: S.optional(S.String),
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "UnplannedFailoverInputProperties",
@@ -10735,206 +10902,6 @@ export const ReplicationProtectedItemsUnplannedFailoverResponse =
     identifier: "ReplicationProtectedItemsUnplannedFailoverResponse",
   }) as any as S.Schema<ReplicationProtectedItemsUnplannedFailoverResponse>;
 
-/** The list of individual node recovery points. */
-export type ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList =
-  Array<string>;
-export const ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList>;
-
-/** Provider specific input for apply cluster recovery point. */
-export type ApplyClusterRecoveryPointProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const ApplyClusterRecoveryPointProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Input definition for apply cluster recovery point properties. */
-export interface ApplyClusterRecoveryPointInputProperties {
-  /** The cluster recovery point id to be passed to failover to a particular recovery point. */
-  clusterRecoveryPointId?: string;
-  /** The list of individual node recovery points. */
-  individualNodeRecoveryPoints?: ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList;
-  /** The provider specific input for applying cluster recovery point. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
-}
-export const ApplyClusterRecoveryPointInputProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      clusterRecoveryPointId: S.optional(S.String),
-      individualNodeRecoveryPoints: S.optional(
-        ApplyClusterRecoveryPointInputPropertiesIndividualNodeRecoveryPointsList,
-      ),
-      providerSpecificDetails: EnableMigrationProviderSpecificInput,
-    }),
-).annotate({
-  identifier: "ApplyClusterRecoveryPointInputProperties",
-}) as any as S.Schema<ApplyClusterRecoveryPointInputProperties>;
-
-export interface ReplicationProtectionClustersApplyRecoveryPointRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protection cluster name. */
-  replicationProtectionClusterName: string;
-  /** The properties to apply cluster recovery point input. */
-  properties: ApplyClusterRecoveryPointInputProperties;
-}
-export const ReplicationProtectionClustersApplyRecoveryPointRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicationProtectionClusterName: S.String.pipe(T.Label()),
-      properties: ApplyClusterRecoveryPointInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/applyRecoveryPoint",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersApplyRecoveryPointRequest",
-  }) as any as S.Schema<ReplicationProtectionClustersApplyRecoveryPointRequest>;
-
-export interface ReplicationProtectionClustersApplyRecoveryPointResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectionClusterProperties;
-}
-export const ReplicationProtectionClustersApplyRecoveryPointResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectionClusterProperties),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersApplyRecoveryPointResponse",
-  }) as any as S.Schema<ReplicationProtectionClustersApplyRecoveryPointResponse>;
-
-export interface ReplicationProtectionClustersFailoverCommitRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protection cluster name. */
-  replicationProtectionClusterName: string;
-}
-export const ReplicationProtectionClustersFailoverCommitRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicationProtectionClusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/failoverCommit",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersFailoverCommitRequest",
-  }) as any as S.Schema<ReplicationProtectionClustersFailoverCommitRequest>;
-
-export interface ReplicationProtectionClustersFailoverCommitResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectionClusterProperties;
-}
-export const ReplicationProtectionClustersFailoverCommitResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectionClusterProperties),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersFailoverCommitResponse",
-  }) as any as S.Schema<ReplicationProtectionClustersFailoverCommitResponse>;
-
-export interface ReplicationProtectionClustersPurgeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protection cluster name. */
-  replicationProtectionClusterName: string;
-}
-export const ReplicationProtectionClustersPurgeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicationProtectionClusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersPurgeRequest",
-  }) as any as S.Schema<ReplicationProtectionClustersPurgeRequest>;
-
-export interface ReplicationProtectionClustersPurgeResponse {}
-export const ReplicationProtectionClustersPurgeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ReplicationProtectionClustersPurgeResponse",
-  }) as any as S.Schema<ReplicationProtectionClustersPurgeResponse>;
-
 export interface ReplicationProtectionClustersRepairReplicationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -10995,175 +10962,11 @@ export const ReplicationProtectionClustersRepairReplicationResponse =
     identifier: "ReplicationProtectionClustersRepairReplicationResponse",
   }) as any as S.Schema<ReplicationProtectionClustersRepairReplicationResponse>;
 
-/** Failover direction. */
-export type FailoverDirection = "PrimaryToRecovery" | "RecoveryToPrimary";
-export const FailoverDirection = /*@__PURE__*/ S.String;
-
-/** Provider specific test cluster failover input. */
-export type ClusterTestFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-export const ClusterTestFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
-
-/** Input definition for test failover input properties. */
-export interface ClusterTestFailoverInputProperties {
-  /** Failover direction. */
-  failoverDirection?: FailoverDirection | (string & {});
-  /** Network type to be used for test failover. */
-  networkType?: string;
-  /** The id of the network to be used for test failover. */
-  networkId?: string;
-  /** Provider specific settings. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
-}
-export const ClusterTestFailoverInputProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    failoverDirection: S.optional(FailoverDirection),
-    networkType: S.optional(S.String),
-    networkId: S.optional(S.String),
-    providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
-  }),
-).annotate({
-  identifier: "ClusterTestFailoverInputProperties",
-}) as any as S.Schema<ClusterTestFailoverInputProperties>;
-
-export interface ReplicationProtectionClustersTestFailoverRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protection cluster name. */
-  replicationProtectionClusterName: string;
-  /** Test failover input properties. */
-  properties: ClusterTestFailoverInputProperties;
-}
-export const ReplicationProtectionClustersTestFailoverRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicationProtectionClusterName: S.String.pipe(T.Label()),
-      properties: ClusterTestFailoverInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/testFailover",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersTestFailoverRequest",
-  }) as any as S.Schema<ReplicationProtectionClustersTestFailoverRequest>;
-
-export interface ReplicationProtectionClustersTestFailoverResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectionClusterProperties;
-}
-export const ReplicationProtectionClustersTestFailoverResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectionClusterProperties),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersTestFailoverResponse",
-  }) as any as S.Schema<ReplicationProtectionClustersTestFailoverResponse>;
-
-/** Input definition for test failover cleanup input properties. */
-export type ClusterTestFailoverCleanupInputProperties =
-  TestFailoverCleanupInputProperties;
-export const ClusterTestFailoverCleanupInputProperties =
-  TestFailoverCleanupInputProperties;
-
-export interface ReplicationProtectionClustersTestFailoverCleanupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Replication protection cluster name. */
-  replicationProtectionClusterName: string;
-  /** Test failover cleanup input properties. */
-  properties: TestFailoverCleanupInputProperties;
-}
-export const ReplicationProtectionClustersTestFailoverCleanupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      replicationProtectionClusterName: S.String.pipe(T.Label()),
-      properties: TestFailoverCleanupInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/testFailoverCleanup",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersTestFailoverCleanupRequest",
-  }) as any as S.Schema<ReplicationProtectionClustersTestFailoverCleanupRequest>;
-
-export interface ReplicationProtectionClustersTestFailoverCleanupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom data. */
-  properties?: ReplicationProtectionClusterProperties;
-}
-export const ReplicationProtectionClustersTestFailoverCleanupResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ReplicationProtectionClusterProperties),
-    }),
-  ).annotate({
-    identifier: "ReplicationProtectionClustersTestFailoverCleanupResponse",
-  }) as any as S.Schema<ReplicationProtectionClustersTestFailoverCleanupResponse>;
-
 /** Provider specific unplanned cluster failover input. */
 export type ClusterUnplannedFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const ClusterUnplannedFailoverProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Input definition for unplanned failover input properties. */
 export type ClusterUnplannedFailoverInputProperties =
@@ -11233,47 +11036,6 @@ export const ReplicationProtectionClustersUnplannedFailoverResponse =
   ).annotate({
     identifier: "ReplicationProtectionClustersUnplannedFailoverResponse",
   }) as any as S.Schema<ReplicationProtectionClustersUnplannedFailoverResponse>;
-
-export interface ReplicationProtectionContainerMappingsPurgeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Protection container name. */
-  protectionContainerName: string;
-  /** Protection Container mapping name. */
-  mappingName: string;
-}
-export const ReplicationProtectionContainerMappingsPurgeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      protectionContainerName: S.String.pipe(T.Label()),
-      mappingName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionContainerMappings/{mappingName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationProtectionContainerMappingsPurgeRequest",
-  }) as any as S.Schema<ReplicationProtectionContainerMappingsPurgeRequest>;
-
-export interface ReplicationProtectionContainerMappingsPurgeResponse {}
-export const ReplicationProtectionContainerMappingsPurgeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ReplicationProtectionContainerMappingsPurgeResponse",
-  }) as any as S.Schema<ReplicationProtectionContainerMappingsPurgeResponse>;
 
 /** Discover protectable item properties. */
 export interface DiscoverProtectableItemRequestProperties {
@@ -11361,22 +11123,22 @@ export const ReplicationProtectionContainersDiscoverProtectableItemResponse =
 
 /** Provider specific switch cluster protection input. */
 export type SwitchClusterProtectionProviderSpecificInput =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 export const SwitchClusterProtectionProviderSpecificInput =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 
 /** Switch cluster protection input properties. */
 export interface SwitchClusterProtectionInputProperties {
   /** The unique replication protection cluster name. */
   replicationProtectionClusterName?: string;
   /** Provider specific switch protection input. */
-  providerSpecificDetails?: NetworkMappingFabricSpecificSettings;
+  providerSpecificDetails?: ReplicationProviderSpecificSettings;
 }
 export const SwitchClusterProtectionInputProperties = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       replicationProtectionClusterName: S.optional(S.String),
-      providerSpecificDetails: S.optional(NetworkMappingFabricSpecificSettings),
+      providerSpecificDetails: S.optional(ReplicationProviderSpecificSettings),
     }),
 ).annotate({
   identifier: "SwitchClusterProtectionInputProperties",
@@ -11448,21 +11210,21 @@ export const ReplicationProtectionContainersSwitchClusterProtectionResponse =
 
 /** Provider specific switch protection input. */
 export type SwitchProtectionProviderSpecificInput =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 export const SwitchProtectionProviderSpecificInput =
-  NetworkMappingFabricSpecificSettings;
+  ReplicationProviderSpecificSettings;
 
 /** Switch protection input properties. */
 export interface SwitchProtectionInputProperties {
   /** The unique replication protected item name. */
   replicationProtectedItemName?: string;
   /** Provider specific switch protection input. */
-  providerSpecificDetails?: NetworkMappingFabricSpecificSettings;
+  providerSpecificDetails?: ReplicationProviderSpecificSettings;
 }
 export const SwitchProtectionInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     replicationProtectedItemName: S.optional(S.String),
-    providerSpecificDetails: S.optional(NetworkMappingFabricSpecificSettings),
+    providerSpecificDetails: S.optional(ReplicationProviderSpecificSettings),
   }),
 ).annotate({
   identifier: "SwitchProtectionInputProperties",
@@ -11531,132 +11293,18 @@ export const ReplicationProtectionContainersSwitchProtectionResponse =
     identifier: "ReplicationProtectionContainersSwitchProtectionResponse",
   }) as any as S.Schema<ReplicationProtectionContainersSwitchProtectionResponse>;
 
-export interface ReplicationRecoveryPlansFailoverCancelRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Name of the recovery plan. */
-  recoveryPlanName: string;
-}
-export const ReplicationRecoveryPlansFailoverCancelRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      recoveryPlanName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/failoverCancel",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansFailoverCancelRequest",
-  }) as any as S.Schema<ReplicationRecoveryPlansFailoverCancelRequest>;
-
-export interface ReplicationRecoveryPlansFailoverCancelResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom details. */
-  properties?: RecoveryPlanProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationRecoveryPlansFailoverCancelResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RecoveryPlanProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansFailoverCancelResponse",
-  }) as any as S.Schema<ReplicationRecoveryPlansFailoverCancelResponse>;
-
-export interface ReplicationRecoveryPlansFailoverCommitRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Name of the recovery plan. */
-  recoveryPlanName: string;
-}
-export const ReplicationRecoveryPlansFailoverCommitRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      recoveryPlanName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/failoverCommit",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansFailoverCommitRequest",
-  }) as any as S.Schema<ReplicationRecoveryPlansFailoverCommitRequest>;
-
-export interface ReplicationRecoveryPlansFailoverCommitResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom details. */
-  properties?: RecoveryPlanProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationRecoveryPlansFailoverCommitResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RecoveryPlanProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansFailoverCommitResponse",
-  }) as any as S.Schema<ReplicationRecoveryPlansFailoverCommitResponse>;
-
 /** Recovery plan provider specific failover input. */
 export type RecoveryPlanProviderSpecificFailoverInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const RecoveryPlanProviderSpecificFailoverInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** The provider specific properties. */
 export type RecoveryPlanPlannedFailoverInputPropertiesProviderSpecificDetailsList =
-  Array<EnableMigrationProviderSpecificInput>;
+  Array<AddDisksProviderSpecificInput>;
 export const RecoveryPlanPlannedFailoverInputPropertiesProviderSpecificDetailsList =
   /*@__PURE__*/ S.Array(
-    EnableMigrationProviderSpecificInput,
+    AddDisksProviderSpecificInput,
   ) as any as S.Schema<RecoveryPlanPlannedFailoverInputPropertiesProviderSpecificDetailsList>;
 
 /** Recovery plan planned failover input properties. */
@@ -11795,183 +11443,16 @@ export const ReplicationRecoveryPlansReprotectResponse =
     identifier: "ReplicationRecoveryPlansReprotectResponse",
   }) as any as S.Schema<ReplicationRecoveryPlansReprotectResponse>;
 
-/** The provider specific properties. */
-export type RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList =
-  Array<EnableMigrationProviderSpecificInput>;
-export const RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList =
-  /*@__PURE__*/ S.Array(
-    EnableMigrationProviderSpecificInput,
-  ) as any as S.Schema<RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList>;
-
-/** Recovery plan test failover input properties. */
-export interface RecoveryPlanTestFailoverInputProperties {
-  /** The failover direction. */
-  failoverDirection: PossibleOperationsDirections | (string & {});
-  /** The network type to be used for test failover. */
-  networkType: string;
-  /** The Id of the network to be used for test failover. */
-  networkId?: string;
-  /** The provider specific properties. */
-  providerSpecificDetails?: RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList;
-}
-export const RecoveryPlanTestFailoverInputProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      failoverDirection: PossibleOperationsDirections,
-      networkType: S.String,
-      networkId: S.optional(S.String),
-      providerSpecificDetails: S.optional(
-        RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList,
-      ),
-    }),
-).annotate({
-  identifier: "RecoveryPlanTestFailoverInputProperties",
-}) as any as S.Schema<RecoveryPlanTestFailoverInputProperties>;
-
-export interface ReplicationRecoveryPlansTestFailoverRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Name of the recovery plan. */
-  recoveryPlanName: string;
-  /** The recovery plan test failover input properties. */
-  properties: RecoveryPlanTestFailoverInputProperties;
-}
-export const ReplicationRecoveryPlansTestFailoverRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      recoveryPlanName: S.String.pipe(T.Label()),
-      properties: RecoveryPlanTestFailoverInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/testFailover",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansTestFailoverRequest",
-  }) as any as S.Schema<ReplicationRecoveryPlansTestFailoverRequest>;
-
-export interface ReplicationRecoveryPlansTestFailoverResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom details. */
-  properties?: RecoveryPlanProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationRecoveryPlansTestFailoverResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RecoveryPlanProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansTestFailoverResponse",
-  }) as any as S.Schema<ReplicationRecoveryPlansTestFailoverResponse>;
-
-/** Recovery plan test failover cleanup input properties. */
-export interface RecoveryPlanTestFailoverCleanupInputProperties {
-  /** The test failover cleanup comments. */
-  comments?: string;
-}
-export const RecoveryPlanTestFailoverCleanupInputProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      comments: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "RecoveryPlanTestFailoverCleanupInputProperties",
-  }) as any as S.Schema<RecoveryPlanTestFailoverCleanupInputProperties>;
-
-export interface ReplicationRecoveryPlansTestFailoverCleanupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Name of the recovery plan. */
-  recoveryPlanName: string;
-  /** The recovery plan test failover cleanup input properties. */
-  properties: RecoveryPlanTestFailoverCleanupInputProperties;
-}
-export const ReplicationRecoveryPlansTestFailoverCleanupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      recoveryPlanName: S.String.pipe(T.Label()),
-      properties: RecoveryPlanTestFailoverCleanupInputProperties,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/testFailoverCleanup",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansTestFailoverCleanupRequest",
-  }) as any as S.Schema<ReplicationRecoveryPlansTestFailoverCleanupRequest>;
-
-export interface ReplicationRecoveryPlansTestFailoverCleanupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The custom details. */
-  properties?: RecoveryPlanProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationRecoveryPlansTestFailoverCleanupResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RecoveryPlanProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationRecoveryPlansTestFailoverCleanupResponse",
-  }) as any as S.Schema<ReplicationRecoveryPlansTestFailoverCleanupResponse>;
-
 /** A value indicating whether source site operations are required. */
 export type SourceSiteOperations = "Required" | "NotRequired";
 export const SourceSiteOperations = /*@__PURE__*/ S.String;
 
 /** The provider specific properties. */
 export type RecoveryPlanUnplannedFailoverInputPropertiesProviderSpecificDetailsList =
-  Array<EnableMigrationProviderSpecificInput>;
+  Array<AddDisksProviderSpecificInput>;
 export const RecoveryPlanUnplannedFailoverInputPropertiesProviderSpecificDetailsList =
   /*@__PURE__*/ S.Array(
-    EnableMigrationProviderSpecificInput,
+    AddDisksProviderSpecificInput,
   ) as any as S.Schema<RecoveryPlanUnplannedFailoverInputPropertiesProviderSpecificDetailsList>;
 
 /** Recovery plan unplanned failover input properties. */
@@ -12056,158 +11537,6 @@ export const ReplicationRecoveryPlansUnplannedFailoverResponse =
     identifier: "ReplicationRecoveryPlansUnplannedFailoverResponse",
   }) as any as S.Schema<ReplicationRecoveryPlansUnplannedFailoverResponse>;
 
-export interface ReplicationRecoveryServicesProvidersPurgeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Recovery services provider name. */
-  providerName: string;
-}
-export const ReplicationRecoveryServicesProvidersPurgeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      providerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationRecoveryServicesProviders/{providerName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationRecoveryServicesProvidersPurgeRequest",
-  }) as any as S.Schema<ReplicationRecoveryServicesProvidersPurgeRequest>;
-
-export interface ReplicationRecoveryServicesProvidersPurgeResponse {}
-export const ReplicationRecoveryServicesProvidersPurgeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ReplicationRecoveryServicesProvidersPurgeResponse",
-  }) as any as S.Schema<ReplicationRecoveryServicesProvidersPurgeResponse>;
-
-export interface ReplicationRecoveryServicesProvidersRefreshProviderRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Vault */
-  resourceName: string;
-  /** Fabric name. */
-  fabricName: string;
-  /** Recovery services provider name. */
-  providerName: string;
-}
-export const ReplicationRecoveryServicesProvidersRefreshProviderRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      fabricName: S.String.pipe(T.Label()),
-      providerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationRecoveryServicesProviders/{providerName}/refreshProvider",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ReplicationRecoveryServicesProvidersRefreshProviderRequest",
-  }) as any as S.Schema<ReplicationRecoveryServicesProvidersRefreshProviderRequest>;
-
-export interface ReplicationRecoveryServicesProvidersRefreshProviderResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Provider properties. */
-  properties?: RecoveryServicesProviderProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationRecoveryServicesProvidersRefreshProviderResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RecoveryServicesProviderProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ReplicationRecoveryServicesProvidersRefreshProviderResponse",
-  }) as any as S.Schema<ReplicationRecoveryServicesProvidersRefreshProviderResponse>;
-
-export interface ReplicationVaultHealthRefreshRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the recovery services vault. */
-  resourceName: string;
-}
-export const ReplicationVaultHealthRefreshRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationVaultHealth/default/refresh",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "ReplicationVaultHealthRefreshRequest",
-}) as any as S.Schema<ReplicationVaultHealthRefreshRequest>;
-
-export interface ReplicationVaultHealthRefreshResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The vault health related data. */
-  properties?: VaultHealthProperties;
-  /** Resource Location */
-  location?: string;
-}
-export const ReplicationVaultHealthRefreshResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(VaultHealthProperties),
-      location: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ReplicationVaultHealthRefreshResponse",
-}) as any as S.Schema<ReplicationVaultHealthRefreshResponse>;
-
 export interface RestartReplicationJobRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -12263,20 +11592,678 @@ export const RestartReplicationJobResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestartReplicationJobResponse",
 }) as any as S.Schema<RestartReplicationJobResponse>;
 
+/** Resume job properties. */
+export interface ResumeJobParamsProperties {
+  /** Resume job comments. */
+  comments?: string;
+}
+export const ResumeJobParamsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comments: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResumeJobParamsProperties",
+}) as any as S.Schema<ResumeJobParamsProperties>;
+
+export interface ResumeReplicationJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Job identifier. */
+  jobName: string;
+  /** Resume job properties. */
+  properties?: ResumeJobParamsProperties;
+}
+export const ResumeReplicationJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+    properties: S.optional(ResumeJobParamsProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationJobs/{jobName}/resume",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeReplicationJobRequest",
+}) as any as S.Schema<ResumeReplicationJobRequest>;
+
+export interface ResumeReplicationJobResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: JobProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const ResumeReplicationJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(JobProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResumeReplicationJobResponse",
+}) as any as S.Schema<ResumeReplicationJobResponse>;
+
+/** Resume replication provider specific input. */
+export type ResumeReplicationProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+export const ResumeReplicationProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+
+/** Resume replication input properties. */
+export interface ResumeReplicationInputProperties {
+  /** The provider specific input for resume replication. */
+  providerSpecificDetails: AddDisksProviderSpecificInput;
+}
+export const ResumeReplicationInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    providerSpecificDetails: AddDisksProviderSpecificInput,
+  }),
+).annotate({
+  identifier: "ResumeReplicationInputProperties",
+}) as any as S.Schema<ResumeReplicationInputProperties>;
+
+export interface ResumeReplicationMigrationItemReplicationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Migration item name. */
+  migrationItemName: string;
+  /** Resume replication input properties. */
+  properties: ResumeReplicationInputProperties;
+}
+export const ResumeReplicationMigrationItemReplicationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      migrationItemName: S.String.pipe(T.Label()),
+      properties: ResumeReplicationInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationMigrationItems/{migrationItemName}/resumeReplication",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ResumeReplicationMigrationItemReplicationRequest",
+  }) as any as S.Schema<ResumeReplicationMigrationItemReplicationRequest>;
+
+export interface ResumeReplicationMigrationItemReplicationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The migration item properties. */
+  properties?: MigrationItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const ResumeReplicationMigrationItemReplicationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MigrationItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ResumeReplicationMigrationItemReplicationResponse",
+  }) as any as S.Schema<ResumeReplicationMigrationItemReplicationResponse>;
+
+/** Provider specific test failover input. */
+export type TestFailoverProviderSpecificInput = AddDisksProviderSpecificInput;
+export const TestFailoverProviderSpecificInput = AddDisksProviderSpecificInput;
+
+/** Input definition for test failover input properties. */
+export interface TestFailoverInputProperties {
+  /** Test failover direction. */
+  failoverDirection?: string;
+  /** Network type to be used for test failover. */
+  networkType?: string;
+  /** The id of the network to be used for test failover. */
+  networkId?: string;
+  /** Provider specific settings. */
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
+}
+export const TestFailoverInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    failoverDirection: S.optional(S.String),
+    networkType: S.optional(S.String),
+    networkId: S.optional(S.String),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
+  }),
+).annotate({
+  identifier: "TestFailoverInputProperties",
+}) as any as S.Schema<TestFailoverInputProperties>;
+
+export interface TestReplicationProtectedItemFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+  /** Test failover input properties. */
+  properties: TestFailoverInputProperties;
+}
+export const TestReplicationProtectedItemFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+      properties: TestFailoverInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/testFailover",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TestReplicationProtectedItemFailoverRequest",
+  }) as any as S.Schema<TestReplicationProtectedItemFailoverRequest>;
+
+export interface TestReplicationProtectedItemFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectedItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const TestReplicationProtectedItemFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectedItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "TestReplicationProtectedItemFailoverResponse",
+  }) as any as S.Schema<TestReplicationProtectedItemFailoverResponse>;
+
+/** Input definition for test failover cleanup input properties. */
+export interface TestFailoverCleanupInputProperties {
+  /** Test failover cleanup comments. */
+  comments?: string;
+}
+export const TestFailoverCleanupInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    comments: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TestFailoverCleanupInputProperties",
+}) as any as S.Schema<TestFailoverCleanupInputProperties>;
+
+export interface TestReplicationProtectedItemFailoverCleanupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protected item name. */
+  replicatedProtectedItemName: string;
+  /** Test failover cleanup input properties. */
+  properties: TestFailoverCleanupInputProperties;
+}
+export const TestReplicationProtectedItemFailoverCleanupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicatedProtectedItemName: S.String.pipe(T.Label()),
+      properties: TestFailoverCleanupInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectedItems/{replicatedProtectedItemName}/testFailoverCleanup",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TestReplicationProtectedItemFailoverCleanupRequest",
+  }) as any as S.Schema<TestReplicationProtectedItemFailoverCleanupRequest>;
+
+export interface TestReplicationProtectedItemFailoverCleanupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectedItemProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const TestReplicationProtectedItemFailoverCleanupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectedItemProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "TestReplicationProtectedItemFailoverCleanupResponse",
+  }) as any as S.Schema<TestReplicationProtectedItemFailoverCleanupResponse>;
+
+/** Failover direction. */
+export type FailoverDirection = "PrimaryToRecovery" | "RecoveryToPrimary";
+export const FailoverDirection = /*@__PURE__*/ S.String;
+
+/** Provider specific test cluster failover input. */
+export type ClusterTestFailoverProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+export const ClusterTestFailoverProviderSpecificInput =
+  AddDisksProviderSpecificInput;
+
+/** Input definition for test failover input properties. */
+export interface ClusterTestFailoverInputProperties {
+  /** Failover direction. */
+  failoverDirection?: FailoverDirection | (string & {});
+  /** Network type to be used for test failover. */
+  networkType?: string;
+  /** The id of the network to be used for test failover. */
+  networkId?: string;
+  /** Provider specific settings. */
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
+}
+export const ClusterTestFailoverInputProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    failoverDirection: S.optional(FailoverDirection),
+    networkType: S.optional(S.String),
+    networkId: S.optional(S.String),
+    providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
+  }),
+).annotate({
+  identifier: "ClusterTestFailoverInputProperties",
+}) as any as S.Schema<ClusterTestFailoverInputProperties>;
+
+export interface TestReplicationProtectionClusterFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protection cluster name. */
+  replicationProtectionClusterName: string;
+  /** Test failover input properties. */
+  properties: ClusterTestFailoverInputProperties;
+}
+export const TestReplicationProtectionClusterFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicationProtectionClusterName: S.String.pipe(T.Label()),
+      properties: ClusterTestFailoverInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/testFailover",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TestReplicationProtectionClusterFailoverRequest",
+  }) as any as S.Schema<TestReplicationProtectionClusterFailoverRequest>;
+
+export interface TestReplicationProtectionClusterFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectionClusterProperties;
+}
+export const TestReplicationProtectionClusterFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectionClusterProperties),
+    }),
+  ).annotate({
+    identifier: "TestReplicationProtectionClusterFailoverResponse",
+  }) as any as S.Schema<TestReplicationProtectionClusterFailoverResponse>;
+
+/** Input definition for test failover cleanup input properties. */
+export type ClusterTestFailoverCleanupInputProperties =
+  TestFailoverCleanupInputProperties;
+export const ClusterTestFailoverCleanupInputProperties =
+  TestFailoverCleanupInputProperties;
+
+export interface TestReplicationProtectionClusterFailoverCleanupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the recovery services vault. */
+  resourceName: string;
+  /** Fabric name. */
+  fabricName: string;
+  /** Protection container name. */
+  protectionContainerName: string;
+  /** Replication protection cluster name. */
+  replicationProtectionClusterName: string;
+  /** Test failover cleanup input properties. */
+  properties: TestFailoverCleanupInputProperties;
+}
+export const TestReplicationProtectionClusterFailoverCleanupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      fabricName: S.String.pipe(T.Label()),
+      protectionContainerName: S.String.pipe(T.Label()),
+      replicationProtectionClusterName: S.String.pipe(T.Label()),
+      properties: TestFailoverCleanupInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics/{fabricName}/replicationProtectionContainers/{protectionContainerName}/replicationProtectionClusters/{replicationProtectionClusterName}/testFailoverCleanup",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TestReplicationProtectionClusterFailoverCleanupRequest",
+  }) as any as S.Schema<TestReplicationProtectionClusterFailoverCleanupRequest>;
+
+export interface TestReplicationProtectionClusterFailoverCleanupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom data. */
+  properties?: ReplicationProtectionClusterProperties;
+}
+export const TestReplicationProtectionClusterFailoverCleanupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ReplicationProtectionClusterProperties),
+    }),
+  ).annotate({
+    identifier: "TestReplicationProtectionClusterFailoverCleanupResponse",
+  }) as any as S.Schema<TestReplicationProtectionClusterFailoverCleanupResponse>;
+
+/** The provider specific properties. */
+export type RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList =
+  Array<AddDisksProviderSpecificInput>;
+export const RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList =
+  /*@__PURE__*/ S.Array(
+    AddDisksProviderSpecificInput,
+  ) as any as S.Schema<RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList>;
+
+/** Recovery plan test failover input properties. */
+export interface RecoveryPlanTestFailoverInputProperties {
+  /** The failover direction. */
+  failoverDirection: PossibleOperationsDirections | (string & {});
+  /** The network type to be used for test failover. */
+  networkType: string;
+  /** The Id of the network to be used for test failover. */
+  networkId?: string;
+  /** The provider specific properties. */
+  providerSpecificDetails?: RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList;
+}
+export const RecoveryPlanTestFailoverInputProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      failoverDirection: PossibleOperationsDirections,
+      networkType: S.String,
+      networkId: S.optional(S.String),
+      providerSpecificDetails: S.optional(
+        RecoveryPlanTestFailoverInputPropertiesProviderSpecificDetailsList,
+      ),
+    }),
+).annotate({
+  identifier: "RecoveryPlanTestFailoverInputProperties",
+}) as any as S.Schema<RecoveryPlanTestFailoverInputProperties>;
+
+export interface TestReplicationRecoveryPlanFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Name of the recovery plan. */
+  recoveryPlanName: string;
+  /** The recovery plan test failover input properties. */
+  properties: RecoveryPlanTestFailoverInputProperties;
+}
+export const TestReplicationRecoveryPlanFailoverRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      recoveryPlanName: S.String.pipe(T.Label()),
+      properties: RecoveryPlanTestFailoverInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/testFailover",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TestReplicationRecoveryPlanFailoverRequest",
+  }) as any as S.Schema<TestReplicationRecoveryPlanFailoverRequest>;
+
+export interface TestReplicationRecoveryPlanFailoverResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom details. */
+  properties?: RecoveryPlanProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const TestReplicationRecoveryPlanFailoverResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RecoveryPlanProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "TestReplicationRecoveryPlanFailoverResponse",
+  }) as any as S.Schema<TestReplicationRecoveryPlanFailoverResponse>;
+
+/** Recovery plan test failover cleanup input properties. */
+export interface RecoveryPlanTestFailoverCleanupInputProperties {
+  /** The test failover cleanup comments. */
+  comments?: string;
+}
+export const RecoveryPlanTestFailoverCleanupInputProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      comments: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "RecoveryPlanTestFailoverCleanupInputProperties",
+  }) as any as S.Schema<RecoveryPlanTestFailoverCleanupInputProperties>;
+
+export interface TestReplicationRecoveryPlanFailoverCleanupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Vault */
+  resourceName: string;
+  /** Name of the recovery plan. */
+  recoveryPlanName: string;
+  /** The recovery plan test failover cleanup input properties. */
+  properties: RecoveryPlanTestFailoverCleanupInputProperties;
+}
+export const TestReplicationRecoveryPlanFailoverCleanupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      recoveryPlanName: S.String.pipe(T.Label()),
+      properties: RecoveryPlanTestFailoverCleanupInputProperties,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}/testFailoverCleanup",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TestReplicationRecoveryPlanFailoverCleanupRequest",
+  }) as any as S.Schema<TestReplicationRecoveryPlanFailoverCleanupRequest>;
+
+export interface TestReplicationRecoveryPlanFailoverCleanupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The custom details. */
+  properties?: RecoveryPlanProperties;
+  /** Resource Location */
+  location?: string;
+}
+export const TestReplicationRecoveryPlanFailoverCleanupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RecoveryPlanProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "TestReplicationRecoveryPlanFailoverCleanupResponse",
+  }) as any as S.Schema<TestReplicationRecoveryPlanFailoverCleanupResponse>;
+
 /** Update migration item provider specific input. */
 export type UpdateMigrationItemProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const UpdateMigrationItemProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Update migration item input properties. */
 export interface UpdateMigrationItemInputProperties {
   /** The provider specific input to update migration item. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails: AddDisksProviderSpecificInput;
 }
 export const UpdateMigrationItemInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    providerSpecificDetails: EnableMigrationProviderSpecificInput,
+    providerSpecificDetails: AddDisksProviderSpecificInput,
   }),
 ).annotate({
   identifier: "UpdateMigrationItemInputProperties",
@@ -12442,13 +12429,11 @@ export const UpdateReplicationNetworkMappingResponse = /*@__PURE__*/ S.suspend(
 /** Policy update properties. */
 export interface UpdatePolicyInputProperties {
   /** The ReplicationProviderSettings. */
-  replicationProviderSettings?: EnableMigrationProviderSpecificInput;
+  replicationProviderSettings?: AddDisksProviderSpecificInput;
 }
 export const UpdatePolicyInputProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    replicationProviderSettings: S.optional(
-      EnableMigrationProviderSpecificInput,
-    ),
+    replicationProviderSettings: S.optional(AddDisksProviderSpecificInput),
   }),
 ).annotate({
   identifier: "UpdatePolicyInputProperties",
@@ -12632,9 +12617,9 @@ export const LicenseType = /*@__PURE__*/ S.String;
 
 /** Update replication protected item provider specific input. */
 export type UpdateReplicationProtectedItemProviderInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const UpdateReplicationProtectedItemProviderInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Update protected item input properties. */
 export interface UpdateReplicationProtectedItemInputProperties {
@@ -12657,7 +12642,7 @@ export interface UpdateReplicationProtectedItemInputProperties {
   /** The target availability set Id. */
   recoveryAvailabilitySetId?: string;
   /** The provider specific input to update replication protected item. */
-  providerSpecificDetails?: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails?: AddDisksProviderSpecificInput;
 }
 export const UpdateReplicationProtectedItemInputProperties =
   /*@__PURE__*/ S.suspend(() =>
@@ -12673,7 +12658,7 @@ export const UpdateReplicationProtectedItemInputProperties =
       ),
       licenseType: S.optional(LicenseType),
       recoveryAvailabilitySetId: S.optional(S.String),
-      providerSpecificDetails: S.optional(EnableMigrationProviderSpecificInput),
+      providerSpecificDetails: S.optional(AddDisksProviderSpecificInput),
     }),
   ).annotate({
     identifier: "UpdateReplicationProtectedItemInputProperties",
@@ -12747,22 +12732,22 @@ export const UpdateReplicationProtectedItemResponse = /*@__PURE__*/ S.suspend(
 
 /** Update replication protected item provider specific input. */
 export type UpdateApplianceForReplicationProtectedItemProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const UpdateApplianceForReplicationProtectedItemProviderSpecificInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Update appliance for protected item input properties. */
 export interface UpdateApplianceForReplicationProtectedItemInputProperties {
   /** The target appliance Id. */
   targetApplianceId: string;
   /** The provider specific input to update replication protected item. */
-  providerSpecificDetails: EnableMigrationProviderSpecificInput;
+  providerSpecificDetails: AddDisksProviderSpecificInput;
 }
 export const UpdateApplianceForReplicationProtectedItemInputProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       targetApplianceId: S.String,
-      providerSpecificDetails: EnableMigrationProviderSpecificInput,
+      providerSpecificDetails: AddDisksProviderSpecificInput,
     }),
   ).annotate({
     identifier: "UpdateApplianceForReplicationProtectedItemInputProperties",
@@ -12908,19 +12893,19 @@ export const UpdateReplicationProtectedItemMobilityServiceResponse =
 
 /** Provider specific input for update pairing operations. */
 export type ReplicationProviderSpecificUpdateContainerMappingInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 export const ReplicationProviderSpecificUpdateContainerMappingInput =
-  EnableMigrationProviderSpecificInput;
+  AddDisksProviderSpecificInput;
 
 /** Container pairing update input. */
 export interface UpdateProtectionContainerMappingInputProperties {
   /** Provider specific input for updating protection container mapping. */
-  providerSpecificInput?: EnableMigrationProviderSpecificInput;
+  providerSpecificInput?: AddDisksProviderSpecificInput;
 }
 export const UpdateProtectionContainerMappingInputProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      providerSpecificInput: S.optional(EnableMigrationProviderSpecificInput),
+      providerSpecificInput: S.optional(AddDisksProviderSpecificInput),
     }),
   ).annotate({
     identifier: "UpdateProtectionContainerMappingInputProperties",
@@ -13159,6 +13144,96 @@ export const UpdateReplicationvCenterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateReplicationvCenterResponse",
 }) as any as S.Schema<UpdateReplicationvCenterResponse>;
 
+export type AddReplicationProtectedItemDisksError = AzureOpError;
+/** Add disk(s) for protection. Operation to add disks(s) to the replication protected item. */
+export const AddReplicationProtectedItemDisks: API.OperationMethod<
+  AddReplicationProtectedItemDisksRequest,
+  AddReplicationProtectedItemDisksResponse,
+  AddReplicationProtectedItemDisksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddReplicationProtectedItemDisksRequest,
+  output: AddReplicationProtectedItemDisksResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ApplyReplicationProtectedItemRecoveryPointError = AzureOpError;
+/** Change or apply recovery point. The operation to change the recovery point of a failed over replication protected item. */
+export const ApplyReplicationProtectedItemRecoveryPoint: API.OperationMethod<
+  ApplyReplicationProtectedItemRecoveryPointRequest,
+  ApplyReplicationProtectedItemRecoveryPointResponse,
+  ApplyReplicationProtectedItemRecoveryPointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApplyReplicationProtectedItemRecoveryPointRequest,
+  output: ApplyReplicationProtectedItemRecoveryPointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ApplyReplicationProtectionClusterRecoveryPointError = AzureOpError;
+/** Execute the change recovery point operation for cluster. Operation to apply a new cluster recovery point on the Protection cluster. */
+export const ApplyReplicationProtectionClusterRecoveryPoint: API.OperationMethod<
+  ApplyReplicationProtectionClusterRecoveryPointRequest,
+  ApplyReplicationProtectionClusterRecoveryPointResponse,
+  ApplyReplicationProtectionClusterRecoveryPointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ApplyReplicationProtectionClusterRecoveryPointRequest,
+  output: ApplyReplicationProtectionClusterRecoveryPointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelReplicationJobError = AzureOpError;
+/** Cancels the specified job. The operation to cancel an Azure Site Recovery job. */
+export const CancelReplicationJob: API.OperationMethod<
+  CancelReplicationJobRequest,
+  CancelReplicationJobResponse,
+  CancelReplicationJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelReplicationJobRequest,
+  output: CancelReplicationJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelReplicationProtectedItemsFailoverError = AzureOpError;
+/** Execute cancel failover. Operation to cancel the failover of the replication protected item. */
+export const CancelReplicationProtectedItemsFailover: API.OperationMethod<
+  CancelReplicationProtectedItemsFailoverRequest,
+  CancelReplicationProtectedItemsFailoverResponse,
+  CancelReplicationProtectedItemsFailoverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelReplicationProtectedItemsFailoverRequest,
+  output: CancelReplicationProtectedItemsFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelReplicationRecoveryPlansFailoverError = AzureOpError;
+/** Execute cancel failover of the recovery plan. The operation to cancel the failover of a recovery plan. */
+export const CancelReplicationRecoveryPlansFailover: API.OperationMethod<
+  CancelReplicationRecoveryPlansFailoverRequest,
+  CancelReplicationRecoveryPlansFailoverResponse,
+  CancelReplicationRecoveryPlansFailoverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelReplicationRecoveryPlansFailoverRequest,
+  output: CancelReplicationRecoveryPlansFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CheckReplicationFabricConsistencyError = AzureOpError;
 /** Checks the consistency of the ASR fabric. The operation to perform a consistency check on the fabric. */
 export const CheckReplicationFabricConsistency: API.OperationMethod<
@@ -13174,16 +13249,61 @@ export const CheckReplicationFabricConsistency: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateReplicationAlertSettingError = AzureOpError;
-/** Configures email notifications for this vault. Create or update an email notification(alert) configuration. */
-export const CreateReplicationAlertSetting: API.OperationMethod<
-  CreateReplicationAlertSettingRequest,
-  CreateReplicationAlertSettingResponse,
-  CreateReplicationAlertSettingError,
+export type CommitReplicationProtectedItemsFailoverError = AzureOpError;
+/** Execute commit failover. Operation to commit the failover of the replication protected item. */
+export const CommitReplicationProtectedItemsFailover: API.OperationMethod<
+  CommitReplicationProtectedItemsFailoverRequest,
+  CommitReplicationProtectedItemsFailoverResponse,
+  CommitReplicationProtectedItemsFailoverError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateReplicationAlertSettingRequest,
-  output: CreateReplicationAlertSettingResponse,
+  input: CommitReplicationProtectedItemsFailoverRequest,
+  output: CommitReplicationProtectedItemsFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CommitReplicationProtectionClustersFailoverError = AzureOpError;
+/** Execute commit failover for cluster. Operation to initiate commit failover of the replication protection cluster. */
+export const CommitReplicationProtectionClustersFailover: API.OperationMethod<
+  CommitReplicationProtectionClustersFailoverRequest,
+  CommitReplicationProtectionClustersFailoverResponse,
+  CommitReplicationProtectionClustersFailoverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CommitReplicationProtectionClustersFailoverRequest,
+  output: CommitReplicationProtectionClustersFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CommitReplicationRecoveryPlansFailoverError = AzureOpError;
+/** Execute commit failover of the recovery plan. The operation to commit the failover of a recovery plan. */
+export const CommitReplicationRecoveryPlansFailover: API.OperationMethod<
+  CommitReplicationRecoveryPlansFailoverRequest,
+  CommitReplicationRecoveryPlansFailoverResponse,
+  CommitReplicationRecoveryPlansFailoverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CommitReplicationRecoveryPlansFailoverRequest,
+  output: CommitReplicationRecoveryPlansFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateReplicationAlertSettingsError = AzureOpError;
+/** Configures email notifications for this vault. Create or update an email notification(alert) configuration. */
+export const CreateReplicationAlertSettings: API.OperationMethod<
+  CreateReplicationAlertSettingsRequest,
+  CreateReplicationAlertSettingsResponse,
+  CreateReplicationAlertSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateReplicationAlertSettingsRequest,
+  output: CreateReplicationAlertSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13339,16 +13459,16 @@ export const CreateReplicationRecoveryPlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateReplicationRecoveryServiceProviderError = AzureOpError;
+export type CreateReplicationRecoveryServicesProviderError = AzureOpError;
 /** Adds a recovery services provider. The operation to add a recovery services provider. */
-export const CreateReplicationRecoveryServiceProvider: API.OperationMethod<
-  CreateReplicationRecoveryServiceProviderRequest,
-  CreateReplicationRecoveryServiceProviderResponse,
-  CreateReplicationRecoveryServiceProviderError,
+export const CreateReplicationRecoveryServicesProvider: API.OperationMethod<
+  CreateReplicationRecoveryServicesProviderRequest,
+  CreateReplicationRecoveryServicesProviderResponse,
+  CreateReplicationRecoveryServicesProviderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateReplicationRecoveryServiceProviderRequest,
-  output: CreateReplicationRecoveryServiceProviderResponse,
+  input: CreateReplicationRecoveryServicesProviderRequest,
+  output: CreateReplicationRecoveryServicesProviderResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13519,16 +13639,16 @@ export const DeleteReplicationRecoveryPlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteReplicationRecoveryServiceProviderError = AzureOpError;
+export type DeleteReplicationRecoveryServicesProviderError = AzureOpError;
 /** Deletes provider from fabric. Note: Deleting provider for any fabric other than SingleHost is unsupported. To maintain backward compatibility for released clients the object "deleteRspInput" is used (if the object is empty we assume that it is old client and continue the old behavior). The operation to removes/delete(unregister) a recovery services provider from the vault. */
-export const DeleteReplicationRecoveryServiceProvider: API.OperationMethod<
-  DeleteReplicationRecoveryServiceProviderRequest,
-  DeleteReplicationRecoveryServiceProviderResponse,
-  DeleteReplicationRecoveryServiceProviderError,
+export const DeleteReplicationRecoveryServicesProvider: API.OperationMethod<
+  DeleteReplicationRecoveryServicesProviderRequest,
+  DeleteReplicationRecoveryServicesProviderResponse,
+  DeleteReplicationRecoveryServicesProviderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteReplicationRecoveryServiceProviderRequest,
-  output: DeleteReplicationRecoveryServiceProviderResponse,
+  input: DeleteReplicationRecoveryServicesProviderRequest,
+  output: DeleteReplicationRecoveryServicesProviderResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13559,6 +13679,21 @@ export const DeleteReplicationvCenter: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteReplicationvCenterRequest,
   output: DeleteReplicationvCenterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportReplicationJobError = AzureOpError;
+/** Exports the details of the Azure Site Recovery jobs of the vault. The operation to export the details of the Azure Site Recovery jobs of the vault. */
+export const ExportReplicationJob: API.OperationMethod<
+  ExportReplicationJobRequest,
+  ExportReplicationJobResponse,
+  ExportReplicationJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportReplicationJobRequest,
+  output: ExportReplicationJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13609,16 +13744,16 @@ export const GetRecoveryPoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetReplicationAlertSettingError = AzureOpError;
+export type GetReplicationAlertSettingsError = AzureOpError;
 /** Gets an email notification(alert) configuration. Gets the details of the specified email notification(alert) configuration. */
-export const GetReplicationAlertSetting: API.OperationMethod<
-  GetReplicationAlertSettingRequest,
-  GetReplicationAlertSettingResponse,
-  GetReplicationAlertSettingError,
+export const GetReplicationAlertSettings: API.OperationMethod<
+  GetReplicationAlertSettingsRequest,
+  GetReplicationAlertSettingsResponse,
+  GetReplicationAlertSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReplicationAlertSettingRequest,
-  output: GetReplicationAlertSettingResponse,
+  input: GetReplicationAlertSettingsRequest,
+  output: GetReplicationAlertSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13804,16 +13939,16 @@ export const GetReplicationProtectionCluster: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetReplicationProtectionClusterOperationResultError = AzureOpError;
+export type GetReplicationProtectionClusterOperationResultsError = AzureOpError;
 /** Tracks the Replication protection cluster async operation. Track the results of an asynchronous operation on the replication protection cluster. */
-export const GetReplicationProtectionClusterOperationResult: API.OperationMethod<
-  GetReplicationProtectionClusterOperationResultRequest,
-  GetReplicationProtectionClusterOperationResultResponse,
-  GetReplicationProtectionClusterOperationResultError,
+export const GetReplicationProtectionClusterOperationResults: API.OperationMethod<
+  GetReplicationProtectionClusterOperationResultsRequest,
+  GetReplicationProtectionClusterOperationResultsResponse,
+  GetReplicationProtectionClusterOperationResultsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReplicationProtectionClusterOperationResultRequest,
-  output: GetReplicationProtectionClusterOperationResultResponse,
+  input: GetReplicationProtectionClusterOperationResultsRequest,
+  output: GetReplicationProtectionClusterOperationResultsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13879,16 +14014,16 @@ export const GetReplicationRecoveryPlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetReplicationRecoveryServiceProviderError = AzureOpError;
+export type GetReplicationRecoveryServicesProviderError = AzureOpError;
 /** Gets the details of a recovery services provider. Gets the details of registered recovery services provider. */
-export const GetReplicationRecoveryServiceProvider: API.OperationMethod<
-  GetReplicationRecoveryServiceProviderRequest,
-  GetReplicationRecoveryServiceProviderResponse,
-  GetReplicationRecoveryServiceProviderError,
+export const GetReplicationRecoveryServicesProvider: API.OperationMethod<
+  GetReplicationRecoveryServicesProviderRequest,
+  GetReplicationRecoveryServicesProviderResponse,
+  GetReplicationRecoveryServicesProviderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReplicationRecoveryServiceProviderRequest,
-  output: GetReplicationRecoveryServiceProviderResponse,
+  input: GetReplicationRecoveryServicesProviderRequest,
+  output: GetReplicationRecoveryServicesProviderResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14431,31 +14566,31 @@ export const ListReplicationRecoveryPlans: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListReplicationRecoveryServiceProviderByReplicationFabricsError =
+export type ListReplicationRecoveryServicesProviderByReplicationFabricsError =
   AzureOpError;
 /** Gets the list of registered recovery services providers for the fabric. Lists the registered recovery services providers for the specified fabric. */
-export const ListReplicationRecoveryServiceProviderByReplicationFabrics: API.OperationMethod<
-  ListReplicationRecoveryServiceProviderByReplicationFabricsRequest,
+export const ListReplicationRecoveryServicesProviderByReplicationFabrics: API.OperationMethod<
+  ListReplicationRecoveryServicesProviderByReplicationFabricsRequest,
   RecoveryServicesProviderCollection,
-  ListReplicationRecoveryServiceProviderByReplicationFabricsError,
+  ListReplicationRecoveryServicesProviderByReplicationFabricsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListReplicationRecoveryServiceProviderByReplicationFabricsRequest,
+  input: ListReplicationRecoveryServicesProviderByReplicationFabricsRequest,
   output: RecoveryServicesProviderCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListReplicationRecoveryServiceProvidersError = AzureOpError;
+export type ListReplicationRecoveryServicesProvidersError = AzureOpError;
 /** Gets the list of registered recovery services providers in the vault. This is a view only api. Lists the registered recovery services providers in the vault. */
-export const ListReplicationRecoveryServiceProviders: API.OperationMethod<
-  ListReplicationRecoveryServiceProvidersRequest,
+export const ListReplicationRecoveryServicesProviders: API.OperationMethod<
+  ListReplicationRecoveryServicesProvidersRequest,
   RecoveryServicesProviderCollection,
-  ListReplicationRecoveryServiceProvidersError,
+  ListReplicationRecoveryServicesProvidersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListReplicationRecoveryServiceProvidersRequest,
+  input: ListReplicationRecoveryServicesProvidersRequest,
   output: RecoveryServicesProviderCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14570,47 +14705,227 @@ export const ListReplicationvCenters: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListTargetComputeSizeByReplicationProtectedItemsError =
-  AzureOpError;
+export type ListTargetComputeSizByReplicationProtectedItemsError = AzureOpError;
 /** Gets the list of target compute sizes for the replication protected item. Lists the available target compute sizes for a replication protected item. */
-export const ListTargetComputeSizeByReplicationProtectedItems: API.OperationMethod<
-  ListTargetComputeSizeByReplicationProtectedItemsRequest,
+export const ListTargetComputeSizByReplicationProtectedItems: API.OperationMethod<
+  ListTargetComputeSizByReplicationProtectedItemsRequest,
   TargetComputeSizeCollection,
-  ListTargetComputeSizeByReplicationProtectedItemsError,
+  ListTargetComputeSizByReplicationProtectedItemsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListTargetComputeSizeByReplicationProtectedItemsRequest,
+  input: ListTargetComputeSizByReplicationProtectedItemsRequest,
   output: TargetComputeSizeCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReplicationFabricsMigrateToAadError = AzureOpError;
+export type MigrateReplicationFabricToAadError = AzureOpError;
 /** Migrates the site to AAD. The operation to migrate an Azure Site Recovery fabric to AAD. */
-export const ReplicationFabricsMigrateToAad: API.OperationMethod<
-  ReplicationFabricsMigrateToAadRequest,
-  ReplicationFabricsMigrateToAadResponse,
-  ReplicationFabricsMigrateToAadError,
+export const MigrateReplicationFabricToAad: API.OperationMethod<
+  MigrateReplicationFabricToAadRequest,
+  MigrateReplicationFabricToAadResponse,
+  MigrateReplicationFabricToAadError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationFabricsMigrateToAadRequest,
-  output: ReplicationFabricsMigrateToAadResponse,
+  input: MigrateReplicationFabricToAadRequest,
+  output: MigrateReplicationFabricToAadResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReplicationFabricsPurgeError = AzureOpError;
-/** Purges the site. The operation to purge(force delete) an Azure Site Recovery fabric. */
-export const ReplicationFabricsPurge: API.OperationMethod<
-  ReplicationFabricsPurgeRequest,
-  ReplicationFabricsPurgeResponse,
-  ReplicationFabricsPurgeError,
+export type MigrateReplicationMigrationItemError = AzureOpError;
+/** Migrate item. The operation to initiate migration of the item. */
+export const MigrateReplicationMigrationItem: API.OperationMethod<
+  MigrateReplicationMigrationItemRequest,
+  MigrateReplicationMigrationItemResponse,
+  MigrateReplicationMigrationItemError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationFabricsPurgeRequest,
-  output: ReplicationFabricsPurgeResponse,
+  input: MigrateReplicationMigrationItemRequest,
+  output: MigrateReplicationMigrationItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateReplicationMigrationItemsTestError = AzureOpError;
+/** Test migrate item. The operation to initiate test migration of the item. */
+export const MigrateReplicationMigrationItemsTest: API.OperationMethod<
+  MigrateReplicationMigrationItemsTestRequest,
+  MigrateReplicationMigrationItemsTestResponse,
+  MigrateReplicationMigrationItemsTestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateReplicationMigrationItemsTestRequest,
+  output: MigrateReplicationMigrationItemsTestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PauseReplicationMigrationItemReplicationError = AzureOpError;
+/** Pause replication. The operation to initiate pause replication of the item. */
+export const PauseReplicationMigrationItemReplication: API.OperationMethod<
+  PauseReplicationMigrationItemReplicationRequest,
+  PauseReplicationMigrationItemReplicationResponse,
+  PauseReplicationMigrationItemReplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PauseReplicationMigrationItemReplicationRequest,
+  output: PauseReplicationMigrationItemReplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeReplicationFabricError = AzureOpError;
+/** Purges the site. The operation to purge(force delete) an Azure Site Recovery fabric. */
+export const PurgeReplicationFabric: API.OperationMethod<
+  PurgeReplicationFabricRequest,
+  PurgeReplicationFabricResponse,
+  PurgeReplicationFabricError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeReplicationFabricRequest,
+  output: PurgeReplicationFabricResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeReplicationProtectedItemError = AzureOpError;
+/** Purges protection. The operation to delete or purge a replication protected item. This operation will force delete the replication protected item. Use the remove operation on replication protected item to perform a clean disable replication for the item. */
+export const PurgeReplicationProtectedItem: API.OperationMethod<
+  PurgeReplicationProtectedItemRequest,
+  PurgeReplicationProtectedItemResponse,
+  PurgeReplicationProtectedItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeReplicationProtectedItemRequest,
+  output: PurgeReplicationProtectedItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeReplicationProtectionClusterError = AzureOpError;
+/** Purge the replication protection cluster. The operation to purge the replication protection cluster. This operation will force delete the replication protection cluster. Use the remove operation on replication protection cluster to perform a clean disable replication protection cluster. */
+export const PurgeReplicationProtectionCluster: API.OperationMethod<
+  PurgeReplicationProtectionClusterRequest,
+  PurgeReplicationProtectionClusterResponse,
+  PurgeReplicationProtectionClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeReplicationProtectionClusterRequest,
+  output: PurgeReplicationProtectionClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeReplicationProtectionContainerMappingError = AzureOpError;
+/** Purge protection container mapping. The operation to purge(force delete) a protection container mapping. */
+export const PurgeReplicationProtectionContainerMapping: API.OperationMethod<
+  PurgeReplicationProtectionContainerMappingRequest,
+  PurgeReplicationProtectionContainerMappingResponse,
+  PurgeReplicationProtectionContainerMappingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeReplicationProtectionContainerMappingRequest,
+  output: PurgeReplicationProtectionContainerMappingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeReplicationRecoveryServicesProviderError = AzureOpError;
+/** Purges recovery service provider from fabric. The operation to purge(force delete) a recovery services provider from the vault. */
+export const PurgeReplicationRecoveryServicesProvider: API.OperationMethod<
+  PurgeReplicationRecoveryServicesProviderRequest,
+  PurgeReplicationRecoveryServicesProviderResponse,
+  PurgeReplicationRecoveryServicesProviderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeReplicationRecoveryServicesProviderRequest,
+  output: PurgeReplicationRecoveryServicesProviderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshReplicationRecoveryServicesProviderProviderError =
+  AzureOpError;
+/** Refresh details from the recovery services provider. The operation to refresh the information from the recovery services provider. */
+export const RefreshReplicationRecoveryServicesProviderProvider: API.OperationMethod<
+  RefreshReplicationRecoveryServicesProviderProviderRequest,
+  RefreshReplicationRecoveryServicesProviderProviderResponse,
+  RefreshReplicationRecoveryServicesProviderProviderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshReplicationRecoveryServicesProviderProviderRequest,
+  output: RefreshReplicationRecoveryServicesProviderProviderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshReplicationVaultHealthError = AzureOpError;
+/** Refreshes health summary of the vault. Refreshes health summary of the vault. */
+export const RefreshReplicationVaultHealth: API.OperationMethod<
+  RefreshReplicationVaultHealthRequest,
+  RefreshReplicationVaultHealthResponse,
+  RefreshReplicationVaultHealthError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshReplicationVaultHealthRequest,
+  output: RefreshReplicationVaultHealthResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveReplicationFabricInfraError = AzureOpError;
+/** Removes the appliance's infrastructure under the fabric. Removes the appliance's infrastructure under the fabric. */
+export const RemoveReplicationFabricInfra: API.OperationMethod<
+  RemoveReplicationFabricInfraRequest,
+  RemoveReplicationFabricInfraResponse,
+  RemoveReplicationFabricInfraError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveReplicationFabricInfraRequest,
+  output: RemoveReplicationFabricInfraResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RemoveReplicationProtectedItemDisksError = AzureOpError;
+/** Removes disk(s). Operation to remove disk(s) from the replication protected item. */
+export const RemoveReplicationProtectedItemDisks: API.OperationMethod<
+  RemoveReplicationProtectedItemDisksRequest,
+  RemoveReplicationProtectedItemDisksResponse,
+  RemoveReplicationProtectedItemDisksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RemoveReplicationProtectedItemDisksRequest,
+  output: RemoveReplicationProtectedItemDisksResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RenewReplicationFabricCertificateError = AzureOpError;
+/** Renews certificate for the fabric. Renews the connection certificate for the ASR replication fabric. */
+export const RenewReplicationFabricCertificate: API.OperationMethod<
+  RenewReplicationFabricCertificateRequest,
+  RenewReplicationFabricCertificateResponse,
+  RenewReplicationFabricCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RenewReplicationFabricCertificateRequest,
+  output: RenewReplicationFabricCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14631,126 +14946,6 @@ export const ReplicationFabricsReassociateGateway: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReplicationFabricsRemoveInfraError = AzureOpError;
-/** Removes the appliance's infrastructure under the fabric. Removes the appliance's infrastructure under the fabric. */
-export const ReplicationFabricsRemoveInfra: API.OperationMethod<
-  ReplicationFabricsRemoveInfraRequest,
-  ReplicationFabricsRemoveInfraResponse,
-  ReplicationFabricsRemoveInfraError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationFabricsRemoveInfraRequest,
-  output: ReplicationFabricsRemoveInfraResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationFabricsRenewCertificateError = AzureOpError;
-/** Renews certificate for the fabric. Renews the connection certificate for the ASR replication fabric. */
-export const ReplicationFabricsRenewCertificate: API.OperationMethod<
-  ReplicationFabricsRenewCertificateRequest,
-  ReplicationFabricsRenewCertificateResponse,
-  ReplicationFabricsRenewCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationFabricsRenewCertificateRequest,
-  output: ReplicationFabricsRenewCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationJobsCancelError = AzureOpError;
-/** Cancels the specified job. The operation to cancel an Azure Site Recovery job. */
-export const ReplicationJobsCancel: API.OperationMethod<
-  ReplicationJobsCancelRequest,
-  ReplicationJobsCancelResponse,
-  ReplicationJobsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationJobsCancelRequest,
-  output: ReplicationJobsCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationJobsExportError = AzureOpError;
-/** Exports the details of the Azure Site Recovery jobs of the vault. The operation to export the details of the Azure Site Recovery jobs of the vault. */
-export const ReplicationJobsExport: API.OperationMethod<
-  ReplicationJobsExportRequest,
-  ReplicationJobsExportResponse,
-  ReplicationJobsExportError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationJobsExportRequest,
-  output: ReplicationJobsExportResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationJobsResumeError = AzureOpError;
-/** Resumes the specified job. The operation to resume an Azure Site Recovery job. */
-export const ReplicationJobsResume: API.OperationMethod<
-  ReplicationJobsResumeRequest,
-  ReplicationJobsResumeResponse,
-  ReplicationJobsResumeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationJobsResumeRequest,
-  output: ReplicationJobsResumeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationMigrationItemsMigrateError = AzureOpError;
-/** Migrate item. The operation to initiate migration of the item. */
-export const ReplicationMigrationItemsMigrate: API.OperationMethod<
-  ReplicationMigrationItemsMigrateRequest,
-  ReplicationMigrationItemsMigrateResponse,
-  ReplicationMigrationItemsMigrateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationMigrationItemsMigrateRequest,
-  output: ReplicationMigrationItemsMigrateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationMigrationItemsPauseReplicationError = AzureOpError;
-/** Pause replication. The operation to initiate pause replication of the item. */
-export const ReplicationMigrationItemsPauseReplication: API.OperationMethod<
-  ReplicationMigrationItemsPauseReplicationRequest,
-  ReplicationMigrationItemsPauseReplicationResponse,
-  ReplicationMigrationItemsPauseReplicationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationMigrationItemsPauseReplicationRequest,
-  output: ReplicationMigrationItemsPauseReplicationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationMigrationItemsResumeReplicationError = AzureOpError;
-/** Resume replication. The operation to initiate resume replication of the item. */
-export const ReplicationMigrationItemsResumeReplication: API.OperationMethod<
-  ReplicationMigrationItemsResumeReplicationRequest,
-  ReplicationMigrationItemsResumeReplicationResponse,
-  ReplicationMigrationItemsResumeReplicationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationMigrationItemsResumeReplicationRequest,
-  output: ReplicationMigrationItemsResumeReplicationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReplicationMigrationItemsResyncError = AzureOpError;
 /** Resynchronizes replication. The operation to resynchronize replication of an ASR migration item. */
 export const ReplicationMigrationItemsResync: API.OperationMethod<
@@ -14761,21 +14956,6 @@ export const ReplicationMigrationItemsResync: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ReplicationMigrationItemsResyncRequest,
   output: ReplicationMigrationItemsResyncResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationMigrationItemsTestMigrateError = AzureOpError;
-/** Test migrate item. The operation to initiate test migration of the item. */
-export const ReplicationMigrationItemsTestMigrate: API.OperationMethod<
-  ReplicationMigrationItemsTestMigrateRequest,
-  ReplicationMigrationItemsTestMigrateResponse,
-  ReplicationMigrationItemsTestMigrateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationMigrationItemsTestMigrateRequest,
-  output: ReplicationMigrationItemsTestMigrateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14796,66 +14976,6 @@ export const ReplicationMigrationItemsTestMigrateCleanup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReplicationProtectedItemsAddDisksError = AzureOpError;
-/** Add disk(s) for protection. Operation to add disks(s) to the replication protected item. */
-export const ReplicationProtectedItemsAddDisks: API.OperationMethod<
-  ReplicationProtectedItemsAddDisksRequest,
-  ReplicationProtectedItemsAddDisksResponse,
-  ReplicationProtectedItemsAddDisksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsAddDisksRequest,
-  output: ReplicationProtectedItemsAddDisksResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectedItemsApplyRecoveryPointError = AzureOpError;
-/** Change or apply recovery point. The operation to change the recovery point of a failed over replication protected item. */
-export const ReplicationProtectedItemsApplyRecoveryPoint: API.OperationMethod<
-  ReplicationProtectedItemsApplyRecoveryPointRequest,
-  ReplicationProtectedItemsApplyRecoveryPointResponse,
-  ReplicationProtectedItemsApplyRecoveryPointError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsApplyRecoveryPointRequest,
-  output: ReplicationProtectedItemsApplyRecoveryPointResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectedItemsFailoverCancelError = AzureOpError;
-/** Execute cancel failover. Operation to cancel the failover of the replication protected item. */
-export const ReplicationProtectedItemsFailoverCancel: API.OperationMethod<
-  ReplicationProtectedItemsFailoverCancelRequest,
-  ReplicationProtectedItemsFailoverCancelResponse,
-  ReplicationProtectedItemsFailoverCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsFailoverCancelRequest,
-  output: ReplicationProtectedItemsFailoverCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectedItemsFailoverCommitError = AzureOpError;
-/** Execute commit failover. Operation to commit the failover of the replication protected item. */
-export const ReplicationProtectedItemsFailoverCommit: API.OperationMethod<
-  ReplicationProtectedItemsFailoverCommitRequest,
-  ReplicationProtectedItemsFailoverCommitResponse,
-  ReplicationProtectedItemsFailoverCommitError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsFailoverCommitRequest,
-  output: ReplicationProtectedItemsFailoverCommitResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReplicationProtectedItemsPlannedFailoverError = AzureOpError;
 /** Execute planned failover. Operation to initiate a planned failover of the replication protected item. */
 export const ReplicationProtectedItemsPlannedFailover: API.OperationMethod<
@@ -14866,21 +14986,6 @@ export const ReplicationProtectedItemsPlannedFailover: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ReplicationProtectedItemsPlannedFailoverRequest,
   output: ReplicationProtectedItemsPlannedFailoverResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectedItemsPurgeError = AzureOpError;
-/** Purges protection. The operation to delete or purge a replication protected item. This operation will force delete the replication protected item. Use the remove operation on replication protected item to perform a clean disable replication for the item. */
-export const ReplicationProtectedItemsPurge: API.OperationMethod<
-  ReplicationProtectedItemsPurgeRequest,
-  ReplicationProtectedItemsPurgeResponse,
-  ReplicationProtectedItemsPurgeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsPurgeRequest,
-  output: ReplicationProtectedItemsPurgeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14897,21 +15002,6 @@ export const ReplicationProtectedItemsReinstallMobilityService: API.OperationMet
 > = /*@__PURE__*/ API.make(() => ({
   input: ReplicationProtectedItemsReinstallMobilityServiceRequest,
   output: ReplicationProtectedItemsReinstallMobilityServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectedItemsRemoveDisksError = AzureOpError;
-/** Removes disk(s). Operation to remove disk(s) from the replication protected item. */
-export const ReplicationProtectedItemsRemoveDisks: API.OperationMethod<
-  ReplicationProtectedItemsRemoveDisksRequest,
-  ReplicationProtectedItemsRemoveDisksResponse,
-  ReplicationProtectedItemsRemoveDisksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsRemoveDisksRequest,
-  output: ReplicationProtectedItemsRemoveDisksResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14977,36 +15067,6 @@ export const ReplicationProtectedItemsSwitchProvider: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReplicationProtectedItemsTestFailoverError = AzureOpError;
-/** Execute test failover. Operation to perform a test failover of the replication protected item. */
-export const ReplicationProtectedItemsTestFailover: API.OperationMethod<
-  ReplicationProtectedItemsTestFailoverRequest,
-  ReplicationProtectedItemsTestFailoverResponse,
-  ReplicationProtectedItemsTestFailoverError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsTestFailoverRequest,
-  output: ReplicationProtectedItemsTestFailoverResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectedItemsTestFailoverCleanupError = AzureOpError;
-/** Execute test failover cleanup. Operation to clean up the test failover of a replication protected item. */
-export const ReplicationProtectedItemsTestFailoverCleanup: API.OperationMethod<
-  ReplicationProtectedItemsTestFailoverCleanupRequest,
-  ReplicationProtectedItemsTestFailoverCleanupResponse,
-  ReplicationProtectedItemsTestFailoverCleanupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectedItemsTestFailoverCleanupRequest,
-  output: ReplicationProtectedItemsTestFailoverCleanupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReplicationProtectedItemsUnplannedFailoverError = AzureOpError;
 /** Execute unplanned failover. Operation to initiate a failover of the replication protected item. */
 export const ReplicationProtectedItemsUnplannedFailover: API.OperationMethod<
@@ -15017,51 +15077,6 @@ export const ReplicationProtectedItemsUnplannedFailover: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ReplicationProtectedItemsUnplannedFailoverRequest,
   output: ReplicationProtectedItemsUnplannedFailoverResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectionClustersApplyRecoveryPointError = AzureOpError;
-/** Execute the change recovery point operation for cluster. Operation to apply a new cluster recovery point on the Protection cluster. */
-export const ReplicationProtectionClustersApplyRecoveryPoint: API.OperationMethod<
-  ReplicationProtectionClustersApplyRecoveryPointRequest,
-  ReplicationProtectionClustersApplyRecoveryPointResponse,
-  ReplicationProtectionClustersApplyRecoveryPointError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectionClustersApplyRecoveryPointRequest,
-  output: ReplicationProtectionClustersApplyRecoveryPointResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectionClustersFailoverCommitError = AzureOpError;
-/** Execute commit failover for cluster. Operation to initiate commit failover of the replication protection cluster. */
-export const ReplicationProtectionClustersFailoverCommit: API.OperationMethod<
-  ReplicationProtectionClustersFailoverCommitRequest,
-  ReplicationProtectionClustersFailoverCommitResponse,
-  ReplicationProtectionClustersFailoverCommitError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectionClustersFailoverCommitRequest,
-  output: ReplicationProtectionClustersFailoverCommitResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectionClustersPurgeError = AzureOpError;
-/** Purge the replication protection cluster. The operation to purge the replication protection cluster. This operation will force delete the replication protection cluster. Use the remove operation on replication protection cluster to perform a clean disable replication protection cluster. */
-export const ReplicationProtectionClustersPurge: API.OperationMethod<
-  ReplicationProtectionClustersPurgeRequest,
-  ReplicationProtectionClustersPurgeResponse,
-  ReplicationProtectionClustersPurgeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectionClustersPurgeRequest,
-  output: ReplicationProtectionClustersPurgeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15082,37 +15097,6 @@ export const ReplicationProtectionClustersRepairReplication: API.OperationMethod
   retry: Retry.Retry,
 }));
 
-export type ReplicationProtectionClustersTestFailoverError = AzureOpError;
-/** Execute test failover for cluster. Operation to initiate a failover of the replication protection cluster. */
-export const ReplicationProtectionClustersTestFailover: API.OperationMethod<
-  ReplicationProtectionClustersTestFailoverRequest,
-  ReplicationProtectionClustersTestFailoverResponse,
-  ReplicationProtectionClustersTestFailoverError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectionClustersTestFailoverRequest,
-  output: ReplicationProtectionClustersTestFailoverResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectionClustersTestFailoverCleanupError =
-  AzureOpError;
-/** Execute test failover cleanup for cluster. Operation to clean up the test failover of a replication protected cluster. */
-export const ReplicationProtectionClustersTestFailoverCleanup: API.OperationMethod<
-  ReplicationProtectionClustersTestFailoverCleanupRequest,
-  ReplicationProtectionClustersTestFailoverCleanupResponse,
-  ReplicationProtectionClustersTestFailoverCleanupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectionClustersTestFailoverCleanupRequest,
-  output: ReplicationProtectionClustersTestFailoverCleanupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReplicationProtectionClustersUnplannedFailoverError = AzureOpError;
 /** Execute unplanned cluster failover. Operation to initiate a failover of the replication protection cluster. */
 export const ReplicationProtectionClustersUnplannedFailover: API.OperationMethod<
@@ -15123,21 +15107,6 @@ export const ReplicationProtectionClustersUnplannedFailover: API.OperationMethod
 > = /*@__PURE__*/ API.make(() => ({
   input: ReplicationProtectionClustersUnplannedFailoverRequest,
   output: ReplicationProtectionClustersUnplannedFailoverResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationProtectionContainerMappingsPurgeError = AzureOpError;
-/** Purge protection container mapping. The operation to purge(force delete) a protection container mapping. */
-export const ReplicationProtectionContainerMappingsPurge: API.OperationMethod<
-  ReplicationProtectionContainerMappingsPurgeRequest,
-  ReplicationProtectionContainerMappingsPurgeResponse,
-  ReplicationProtectionContainerMappingsPurgeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationProtectionContainerMappingsPurgeRequest,
-  output: ReplicationProtectionContainerMappingsPurgeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15190,36 +15159,6 @@ export const ReplicationProtectionContainersSwitchProtection: API.OperationMetho
   retry: Retry.Retry,
 }));
 
-export type ReplicationRecoveryPlansFailoverCancelError = AzureOpError;
-/** Execute cancel failover of the recovery plan. The operation to cancel the failover of a recovery plan. */
-export const ReplicationRecoveryPlansFailoverCancel: API.OperationMethod<
-  ReplicationRecoveryPlansFailoverCancelRequest,
-  ReplicationRecoveryPlansFailoverCancelResponse,
-  ReplicationRecoveryPlansFailoverCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationRecoveryPlansFailoverCancelRequest,
-  output: ReplicationRecoveryPlansFailoverCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationRecoveryPlansFailoverCommitError = AzureOpError;
-/** Execute commit failover of the recovery plan. The operation to commit the failover of a recovery plan. */
-export const ReplicationRecoveryPlansFailoverCommit: API.OperationMethod<
-  ReplicationRecoveryPlansFailoverCommitRequest,
-  ReplicationRecoveryPlansFailoverCommitResponse,
-  ReplicationRecoveryPlansFailoverCommitError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationRecoveryPlansFailoverCommitRequest,
-  output: ReplicationRecoveryPlansFailoverCommitResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReplicationRecoveryPlansPlannedFailoverError = AzureOpError;
 /** Execute planned failover of the recovery plan. The operation to start the planned failover of a recovery plan. */
 export const ReplicationRecoveryPlansPlannedFailover: API.OperationMethod<
@@ -15250,36 +15189,6 @@ export const ReplicationRecoveryPlansReprotect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReplicationRecoveryPlansTestFailoverError = AzureOpError;
-/** Execute test failover of the recovery plan. The operation to start the test failover of a recovery plan. */
-export const ReplicationRecoveryPlansTestFailover: API.OperationMethod<
-  ReplicationRecoveryPlansTestFailoverRequest,
-  ReplicationRecoveryPlansTestFailoverResponse,
-  ReplicationRecoveryPlansTestFailoverError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationRecoveryPlansTestFailoverRequest,
-  output: ReplicationRecoveryPlansTestFailoverResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationRecoveryPlansTestFailoverCleanupError = AzureOpError;
-/** Execute test failover cleanup of the recovery plan. The operation to cleanup test failover of a recovery plan. */
-export const ReplicationRecoveryPlansTestFailoverCleanup: API.OperationMethod<
-  ReplicationRecoveryPlansTestFailoverCleanupRequest,
-  ReplicationRecoveryPlansTestFailoverCleanupResponse,
-  ReplicationRecoveryPlansTestFailoverCleanupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationRecoveryPlansTestFailoverCleanupRequest,
-  output: ReplicationRecoveryPlansTestFailoverCleanupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReplicationRecoveryPlansUnplannedFailoverError = AzureOpError;
 /** Execute unplanned failover of the recovery plan. The operation to start the unplanned failover of a recovery plan. */
 export const ReplicationRecoveryPlansUnplannedFailover: API.OperationMethod<
@@ -15295,52 +15204,6 @@ export const ReplicationRecoveryPlansUnplannedFailover: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReplicationRecoveryServicesProvidersPurgeError = AzureOpError;
-/** Purges recovery service provider from fabric. The operation to purge(force delete) a recovery services provider from the vault. */
-export const ReplicationRecoveryServicesProvidersPurge: API.OperationMethod<
-  ReplicationRecoveryServicesProvidersPurgeRequest,
-  ReplicationRecoveryServicesProvidersPurgeResponse,
-  ReplicationRecoveryServicesProvidersPurgeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationRecoveryServicesProvidersPurgeRequest,
-  output: ReplicationRecoveryServicesProvidersPurgeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationRecoveryServicesProvidersRefreshProviderError =
-  AzureOpError;
-/** Refresh details from the recovery services provider. The operation to refresh the information from the recovery services provider. */
-export const ReplicationRecoveryServicesProvidersRefreshProvider: API.OperationMethod<
-  ReplicationRecoveryServicesProvidersRefreshProviderRequest,
-  ReplicationRecoveryServicesProvidersRefreshProviderResponse,
-  ReplicationRecoveryServicesProvidersRefreshProviderError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationRecoveryServicesProvidersRefreshProviderRequest,
-  output: ReplicationRecoveryServicesProvidersRefreshProviderResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationVaultHealthRefreshError = AzureOpError;
-/** Refreshes health summary of the vault. Refreshes health summary of the vault. */
-export const ReplicationVaultHealthRefresh: API.OperationMethod<
-  ReplicationVaultHealthRefreshRequest,
-  ReplicationVaultHealthRefreshResponse,
-  ReplicationVaultHealthRefreshError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationVaultHealthRefreshRequest,
-  output: ReplicationVaultHealthRefreshResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RestartReplicationJobError = AzureOpError;
 /** Restarts the specified job. The operation to restart an Azure Site Recovery job. */
 export const RestartReplicationJob: API.OperationMethod<
@@ -15351,6 +15214,126 @@ export const RestartReplicationJob: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RestartReplicationJobRequest,
   output: RestartReplicationJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeReplicationJobError = AzureOpError;
+/** Resumes the specified job. The operation to resume an Azure Site Recovery job. */
+export const ResumeReplicationJob: API.OperationMethod<
+  ResumeReplicationJobRequest,
+  ResumeReplicationJobResponse,
+  ResumeReplicationJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeReplicationJobRequest,
+  output: ResumeReplicationJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResumeReplicationMigrationItemReplicationError = AzureOpError;
+/** Resume replication. The operation to initiate resume replication of the item. */
+export const ResumeReplicationMigrationItemReplication: API.OperationMethod<
+  ResumeReplicationMigrationItemReplicationRequest,
+  ResumeReplicationMigrationItemReplicationResponse,
+  ResumeReplicationMigrationItemReplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResumeReplicationMigrationItemReplicationRequest,
+  output: ResumeReplicationMigrationItemReplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestReplicationProtectedItemFailoverError = AzureOpError;
+/** Execute test failover. Operation to perform a test failover of the replication protected item. */
+export const TestReplicationProtectedItemFailover: API.OperationMethod<
+  TestReplicationProtectedItemFailoverRequest,
+  TestReplicationProtectedItemFailoverResponse,
+  TestReplicationProtectedItemFailoverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestReplicationProtectedItemFailoverRequest,
+  output: TestReplicationProtectedItemFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestReplicationProtectedItemFailoverCleanupError = AzureOpError;
+/** Execute test failover cleanup. Operation to clean up the test failover of a replication protected item. */
+export const TestReplicationProtectedItemFailoverCleanup: API.OperationMethod<
+  TestReplicationProtectedItemFailoverCleanupRequest,
+  TestReplicationProtectedItemFailoverCleanupResponse,
+  TestReplicationProtectedItemFailoverCleanupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestReplicationProtectedItemFailoverCleanupRequest,
+  output: TestReplicationProtectedItemFailoverCleanupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestReplicationProtectionClusterFailoverError = AzureOpError;
+/** Execute test failover for cluster. Operation to initiate a failover of the replication protection cluster. */
+export const TestReplicationProtectionClusterFailover: API.OperationMethod<
+  TestReplicationProtectionClusterFailoverRequest,
+  TestReplicationProtectionClusterFailoverResponse,
+  TestReplicationProtectionClusterFailoverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestReplicationProtectionClusterFailoverRequest,
+  output: TestReplicationProtectionClusterFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestReplicationProtectionClusterFailoverCleanupError = AzureOpError;
+/** Execute test failover cleanup for cluster. Operation to clean up the test failover of a replication protected cluster. */
+export const TestReplicationProtectionClusterFailoverCleanup: API.OperationMethod<
+  TestReplicationProtectionClusterFailoverCleanupRequest,
+  TestReplicationProtectionClusterFailoverCleanupResponse,
+  TestReplicationProtectionClusterFailoverCleanupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestReplicationProtectionClusterFailoverCleanupRequest,
+  output: TestReplicationProtectionClusterFailoverCleanupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestReplicationRecoveryPlanFailoverError = AzureOpError;
+/** Execute test failover of the recovery plan. The operation to start the test failover of a recovery plan. */
+export const TestReplicationRecoveryPlanFailover: API.OperationMethod<
+  TestReplicationRecoveryPlanFailoverRequest,
+  TestReplicationRecoveryPlanFailoverResponse,
+  TestReplicationRecoveryPlanFailoverError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestReplicationRecoveryPlanFailoverRequest,
+  output: TestReplicationRecoveryPlanFailoverResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestReplicationRecoveryPlanFailoverCleanupError = AzureOpError;
+/** Execute test failover cleanup of the recovery plan. The operation to cleanup test failover of a recovery plan. */
+export const TestReplicationRecoveryPlanFailoverCleanup: API.OperationMethod<
+  TestReplicationRecoveryPlanFailoverCleanupRequest,
+  TestReplicationRecoveryPlanFailoverCleanupResponse,
+  TestReplicationRecoveryPlanFailoverCleanupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestReplicationRecoveryPlanFailoverCleanupRequest,
+  output: TestReplicationRecoveryPlanFailoverCleanupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

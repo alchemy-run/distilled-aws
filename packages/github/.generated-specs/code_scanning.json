@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.code_scanning#ListAlertsForOrgRequestDirection": {
@@ -6634,49 +6635,37 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.code_scanning#ListAlertsForOrg"
-        },
-        {
-          "target": "com.github.code_scanning#ListAlertsForRepo"
-        },
-        {
-          "target": "com.github.code_scanning#GetAlert"
-        },
-        {
-          "target": "com.github.code_scanning#UpdateAlert"
-        },
-        {
-          "target": "com.github.code_scanning#GetAutofix"
+          "target": "com.github.code_scanning#CommitAutofix"
         },
         {
           "target": "com.github.code_scanning#CreateAutofix"
         },
         {
-          "target": "com.github.code_scanning#CommitAutofix"
-        },
-        {
-          "target": "com.github.code_scanning#ListAlertInstances"
-        },
-        {
-          "target": "com.github.code_scanning#ListRecentAnalyses"
-        },
-        {
-          "target": "com.github.code_scanning#GetAnalysis"
+          "target": "com.github.code_scanning#CreateVariantAnalysis"
         },
         {
           "target": "com.github.code_scanning#DeleteAnalysis"
         },
         {
-          "target": "com.github.code_scanning#ListCodeqlDatabases"
+          "target": "com.github.code_scanning#DeleteCodeqlDatabase"
+        },
+        {
+          "target": "com.github.code_scanning#GetAlert"
+        },
+        {
+          "target": "com.github.code_scanning#GetAnalysis"
+        },
+        {
+          "target": "com.github.code_scanning#GetAutofix"
         },
         {
           "target": "com.github.code_scanning#GetCodeqlDatabase"
         },
         {
-          "target": "com.github.code_scanning#DeleteCodeqlDatabase"
+          "target": "com.github.code_scanning#GetDefaultSetup"
         },
         {
-          "target": "com.github.code_scanning#CreateVariantAnalysis"
+          "target": "com.github.code_scanning#GetSarif"
         },
         {
           "target": "com.github.code_scanning#GetVariantAnalysis"
@@ -6685,16 +6674,28 @@
           "target": "com.github.code_scanning#GetVariantAnalysisRepoTask"
         },
         {
-          "target": "com.github.code_scanning#GetDefaultSetup"
+          "target": "com.github.code_scanning#ListAlertInstances"
+        },
+        {
+          "target": "com.github.code_scanning#ListAlertsForOrg"
+        },
+        {
+          "target": "com.github.code_scanning#ListAlertsForRepo"
+        },
+        {
+          "target": "com.github.code_scanning#ListCodeqlDatabases"
+        },
+        {
+          "target": "com.github.code_scanning#ListRecentAnalyses"
+        },
+        {
+          "target": "com.github.code_scanning#UpdateAlert"
         },
         {
           "target": "com.github.code_scanning#UpdateDefaultSetup"
         },
         {
           "target": "com.github.code_scanning#UploadSarif"
-        },
-        {
-          "target": "com.github.code_scanning#GetSarif"
         }
       ],
       "traits": {

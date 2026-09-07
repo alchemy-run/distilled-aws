@@ -161,6 +161,32 @@ export const BatchHandleAccessRequestsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchHandleAccessRequestsResponse",
 }) as any as S.Schema<BatchHandleAccessRequestsResponse>;
 
+export interface CancelAccessRequestRequest {
+  namespace: string;
+  repo: string;
+}
+export const CancelAccessRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/models/{namespace}/{repo}/user-access-request/cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelAccessRequestRequest",
+}) as any as S.Schema<CancelAccessRequestRequest>;
+
+export interface CancelAccessRequestResponse {}
+export const CancelAccessRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelAccessRequestResponse",
+}) as any as S.Schema<CancelAccessRequestResponse>;
+
 export interface CheckUploadMethodRequestFilesItem {
   path: string;
   size: number;
@@ -2300,6 +2326,48 @@ export const GrantAccessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GrantAccessResponse",
 }) as any as S.Schema<GrantAccessResponse>;
 
+export type HandleAccessRequestRequestStatus =
+  | "accepted"
+  | "rejected"
+  | "pending";
+export const HandleAccessRequestRequestStatus = /*@__PURE__*/ S.String;
+
+export interface HandleAccessRequestRequest {
+  namespace: string;
+  repo: string;
+  /** Either userId or user must be provided */
+  userId?: string;
+  /** Either userId or user must be provided */
+  user?: string;
+  status: HandleAccessRequestRequestStatus | (string & {});
+  rejectionReason?: string;
+}
+export const HandleAccessRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    namespace: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    userId: S.optional(S.String),
+    user: S.optional(S.String),
+    status: HandleAccessRequestRequestStatus,
+    rejectionReason: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/models/{namespace}/{repo}/user-access-request/handle",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "HandleAccessRequestRequest",
+}) as any as S.Schema<HandleAccessRequestRequest>;
+
+export interface HandleAccessRequestResponse {}
+export const HandleAccessRequestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "HandleAccessRequestResponse",
+}) as any as S.Schema<HandleAccessRequestResponse>;
+
 export type ListAccessRequestsRequestStatus =
   | "pending"
   | "accepted"
@@ -3954,74 +4022,6 @@ export const RequestAccessResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RequestAccessResponse",
 }) as any as S.Schema<RequestAccessResponse>;
 
-export interface RequestCancelAccessRequest {
-  namespace: string;
-  repo: string;
-}
-export const RequestCancelAccessRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/models/{namespace}/{repo}/user-access-request/cancel",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RequestCancelAccessRequest",
-}) as any as S.Schema<RequestCancelAccessRequest>;
-
-export interface RequestCancelAccessResponse {}
-export const RequestCancelAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RequestCancelAccessResponse",
-}) as any as S.Schema<RequestCancelAccessResponse>;
-
-export type HandleAccessRequestRequestStatus =
-  | "accepted"
-  | "rejected"
-  | "pending";
-export const HandleAccessRequestRequestStatus = /*@__PURE__*/ S.String;
-
-export interface RequestHandleAccessRequest {
-  namespace: string;
-  repo: string;
-  /** Either userId or user must be provided */
-  userId?: string;
-  /** Either userId or user must be provided */
-  user?: string;
-  status: HandleAccessRequestRequestStatus | (string & {});
-  rejectionReason?: string;
-}
-export const RequestHandleAccessRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    namespace: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    userId: S.optional(S.String),
-    user: S.optional(S.String),
-    status: HandleAccessRequestRequestStatus,
-    rejectionReason: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/models/{namespace}/{repo}/user-access-request/handle",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RequestHandleAccessRequest",
-}) as any as S.Schema<RequestHandleAccessRequest>;
-
-export interface RequestHandleAccessResponse {}
-export const RequestHandleAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RequestHandleAccessResponse",
-}) as any as S.Schema<RequestHandleAccessResponse>;
-
 export interface ResolveFileRequest {
   namespace: string;
   repo: string;
@@ -4393,6 +4393,21 @@ export const batchHandleAccessRequests: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CancelAccessRequestError = HuggingFaceOpError;
+/** Cancel access request Cancel the current user's access request to a gated repository */
+export const cancelAccessRequest: API.OperationMethod<
+  CancelAccessRequestRequest,
+  CancelAccessRequestResponse,
+  CancelAccessRequestError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelAccessRequestRequest,
+  output: CancelAccessRequestResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CheckUploadMethodError = UnprocessableEntity | HuggingFaceOpError;
 /** Check upload method Check if a file should be uploaded through the Large File mechanism or directly. */
 export const checkUploadMethod: API.OperationMethod<
@@ -4678,6 +4693,21 @@ export const grantAccess: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type HandleAccessRequestError = HuggingFaceOpError;
+/** Handle access request Handle a user's access request to a gated repository */
+export const handleAccessRequest: API.OperationMethod<
+  HandleAccessRequestRequest,
+  HandleAccessRequestResponse,
+  HandleAccessRequestError,
+  HuggingFaceOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: HandleAccessRequestRequest,
+  output: HandleAccessRequestResponse,
+  errors: [],
+  protocol: HuggingFaceProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAccessRequestsError = HuggingFaceOpError;
 /** List access requests List access requests for a gated repository */
 export const listAccessRequests: API.OperationMethod<
@@ -4778,36 +4808,6 @@ export const requestAccess: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RequestAccessRequest,
   output: RequestAccessResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RequestCancelAccessError = HuggingFaceOpError;
-/** Cancel access request Cancel the current user's access request to a gated repository */
-export const requestCancelAccess: API.OperationMethod<
-  RequestCancelAccessRequest,
-  RequestCancelAccessResponse,
-  RequestCancelAccessError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestCancelAccessRequest,
-  output: RequestCancelAccessResponse,
-  errors: [],
-  protocol: HuggingFaceProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RequestHandleAccessError = HuggingFaceOpError;
-/** Handle access request Handle a user's access request to a gated repository */
-export const requestHandleAccess: API.OperationMethod<
-  RequestHandleAccessRequest,
-  RequestHandleAccessResponse,
-  RequestHandleAccessError,
-  HuggingFaceOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RequestHandleAccessRequest,
-  output: RequestHandleAccessResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

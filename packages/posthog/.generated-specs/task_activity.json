@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.task_activity#ListTaskActivityRequest": {
@@ -372,7 +373,7 @@
         "smithy.api#documentation": "Displayed task activities to mark read if they have not changed."
       }
     },
-    "com.posthog.task_activity#CreateTaskActivityMarkReadRequest": {
+    "com.posthog.task_activity#TaskActivityMarkReadCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -415,10 +416,10 @@
       },
       "traits": {}
     },
-    "com.posthog.task_activity#CreateTaskActivityMarkRead": {
+    "com.posthog.task_activity#TaskActivityMarkReadCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.task_activity#CreateTaskActivityMarkReadRequest"
+        "target": "com.posthog.task_activity#TaskActivityMarkReadCreateRequest"
       },
       "output": {
         "target": "com.posthog.task_activity#TaskActivityMarkReadResponse"
@@ -440,7 +441,7 @@
           "target": "com.posthog.task_activity#ListTaskActivity"
         },
         {
-          "target": "com.posthog.task_activity#CreateTaskActivityMarkRead"
+          "target": "com.posthog.task_activity#TaskActivityMarkReadCreate"
         }
       ],
       "traits": {

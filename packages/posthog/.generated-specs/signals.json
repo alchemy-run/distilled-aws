@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.signals#ListSignalProcessingRequest": {
+    "com.posthog.signals#ListSignalsProcessingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -91,10 +92,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalProcessing": {
+    "com.posthog.signals#ListSignalsProcessing": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalProcessingRequest"
+        "target": "com.posthog.signals#ListSignalsProcessingRequest"
       },
       "output": {
         "target": "com.posthog.signals#PaginatedPauseStateResponseList"
@@ -119,7 +120,7 @@
         "smithy.api#documentation": "Return current processing state including pause status."
       }
     },
-    "com.posthog.signals#UpdateSignalProcessingPauseRequest": {
+    "com.posthog.signals#UpdateSignalsProcessingPauseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -159,10 +160,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#UpdateSignalProcessingPause": {
+    "com.posthog.signals#UpdateSignalsProcessingPause": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#UpdateSignalProcessingPauseRequest"
+        "target": "com.posthog.signals#UpdateSignalsProcessingPauseRequest"
       },
       "output": {
         "target": "com.posthog.signals#PauseResponse"
@@ -187,7 +188,7 @@
         "smithy.api#documentation": "View and control signal processing pipeline state for a team."
       }
     },
-    "com.posthog.signals#SignalsProcessingPauseDestroyRequest": {
+    "com.posthog.signals#PauseSignalsProcessingDestroyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -203,10 +204,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsProcessingPauseDestroy": {
+    "com.posthog.signals#PauseSignalsProcessingDestroy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsProcessingPauseDestroyRequest"
+        "target": "com.posthog.signals#PauseSignalsProcessingDestroyRequest"
       },
       "output": {
         "target": "com.posthog.signals#PauseResponse"
@@ -228,7 +229,7 @@
         "smithy.api#documentation": "View and control signal processing pipeline state for a team."
       }
     },
-    "com.posthog.signals#ListSignalReportsRequest": {
+    "com.posthog.signals#ListSignalsReportsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -239,6 +240,20 @@
             "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
           }
         },
+        "actionability": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "actionability",
+            "smithy.api#documentation": "Comma-separated actionability judgments to include. Valid values: immediately_actionable, requires_human_input, not_actionable. Reports without a judgment are excluded."
+          }
+        },
+        "already_addressed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "already_addressed",
+            "smithy.api#documentation": "Filter by whether the latest actionability judgment says the issue is already being handled. False also includes older reports where that judgment did not record a value."
+          }
+        },
         "channel_id": {
           "target": "smithy.api#String",
           "traits": {
@@ -246,11 +261,18 @@
             "smithy.api#documentation": "Narrow to reports assigned to one space (channel). Absent or empty means all reports regardless of assignment."
           }
         },
+        "count_only": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "count_only",
+            "smithy.api#documentation": "Return the filtered total with an empty results page. Skips report ordering, serialization, and decorative metadata lookups. Defaults to false."
+          }
+        },
         "has_implementation_pr": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#httpQuery": "has_implementation_pr",
-            "smithy.api#documentation": "Filter reports by whether a shipped implementation pull request exists. 'true' keeps only reports with a PR; 'false' keeps only those without. Pair with limit=1 to count PR reports cheaply."
+            "smithy.api#documentation": "Filter reports by whether a shipped implementation pull request exists. 'true' keeps only reports with a PR; 'false' keeps only those without. Pair with count_only=true to return only the filtered total."
           }
         },
         "include_all_statuses": {
@@ -288,6 +310,13 @@
             "smithy.api#documentation": "Comma-separated list of priorities to include. Valid values: P0, P1, P2, P3, P4. Reports without a priority assignment are excluded when this filter is set."
           }
         },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scope",
+            "smithy.api#documentation": "Reviewer scope: for_me, entire_project, or teammate. Pass teammate_uuid with teammate."
+          }
+        },
         "scout": {
           "target": "smithy.api#String",
           "traits": {
@@ -307,6 +336,13 @@
           "traits": {
             "smithy.api#httpQuery": "search",
             "smithy.api#documentation": "Case-insensitive substring match against report title and summary."
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Inbox sort preset: priority, last_updated, newest, or oldest. Ignored when ordering is supplied."
           }
         },
         "source_id": {
@@ -342,6 +378,27 @@
           "traits": {
             "smithy.api#httpQuery": "task_id",
             "smithy.api#documentation": "Only reports associated with this task (via the report's task associations)."
+          }
+        },
+        "teammate_uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teammate_uuid",
+            "smithy.api#documentation": "PostHog user UUID used when scope=teammate."
+          }
+        },
+        "use_priority_preference": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "use_priority_preference",
+            "smithy.api#documentation": "When true and priority is omitted, include priorities at or above the requesting user's personal PR-generation threshold, falling back to the project threshold."
+          }
+        },
+        "view": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "view",
+            "smithy.api#documentation": "Apply an inbox view: actionable, needs_input, monitoring, resolved, dismissed, not_actionable, or all. Each view applies the corresponding status, actionability, and implementation-PR filters."
           }
         }
       },
@@ -454,7 +511,7 @@
         "suggested_prompts": {
           "target": "com.posthog.signals#SignalReportSuggestedPromptsList",
           "traits": {
-            "smithy.api#documentation": "Follow-up questions the report's author suggests asking about it, in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it.",
+            "smithy.api#documentation": "Follow-up prompts the report's author suggests sending about it (questions to ask, or next-step actions to request), in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it.",
             "smithy.api#required": {}
           }
         },
@@ -551,7 +608,7 @@
           }
         },
         "billing_exempt_reason": {
-          "target": "com.posthog.signals#BillingExemptReasonEnum",
+          "target": "com.posthog.signals#SignalReportBillingExemptReasonEnum",
           "traits": {
             "smithy.api#documentation": "Non-null when this report is system-marked never-billable (PostHog-system origin, e.g. a health-check scout finding) — its implementation PRs are free and cannot be refunded because nothing was charged.\n\n* `posthog_health_check` - PostHog health check\n* `posthog_onboarding` - PostHog onboarding\n* `posthog_system` - PostHog system",
             "smithy.api#required": {},
@@ -715,7 +772,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "Follow-up questions the report's author suggests asking about it, in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it."
+        "smithy.api#documentation": "Follow-up prompts the report's author suggests sending about it (questions to ask, or next-step actions to request), in the order they were written. The inbox offers them above the `Ask AI` box; clicking one fills the box with it."
       }
     },
     "com.posthog.signals#SignalReportSourceProductsList": {
@@ -751,7 +808,7 @@
           }
         },
         "billing_path": {
-          "target": "com.posthog.signals#BillingPathEnum",
+          "target": "com.posthog.signals#SignalReportRefundBillingPathEnum",
           "traits": {
             "smithy.api#documentation": "How the refund was executed, frozen at refund time: 'excluded' (same UTC day as the billable PR run — the report never reaches billing) or 'credited' (billing issues a Stripe customer-balance credit).\n\n* `excluded` - Excluded\n* `credited` - Credited",
             "smithy.api#required": {}
@@ -835,7 +892,7 @@
         "smithy.api#documentation": "* `pr_incorrect` - PR incorrect\n* `pr_not_useful` - PR not useful\n* `duplicate` - Duplicate\n* `other` - Other"
       }
     },
-    "com.posthog.signals#BillingPathEnum": {
+    "com.posthog.signals#SignalReportRefundBillingPathEnum": {
       "type": "enum",
       "members": {
         "EXCLUDED": {
@@ -885,7 +942,7 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#BillingExemptReasonEnum": {
+    "com.posthog.signals#SignalReportBillingExemptReasonEnum": {
       "type": "enum",
       "members": {
         "POSTHOG_HEALTH_CHECK": {
@@ -918,10 +975,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalReports": {
+    "com.posthog.signals#ListSignalsReports": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalReportsRequest"
+        "target": "com.posthog.signals#ListSignalsReportsRequest"
       },
       "output": {
         "target": "com.posthog.signals#PaginatedSignalReportList"
@@ -934,7 +991,7 @@
         }
       }
     },
-    "com.posthog.signals#SignalsReportsRetrieveRequest": {
+    "com.posthog.signals#GetSignalsReportRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -958,10 +1015,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsReportsRetrieve": {
+    "com.posthog.signals#GetSignalsReport": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsReportsRetrieveRequest"
+        "target": "com.posthog.signals#GetSignalsReportRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReport"
@@ -974,7 +1031,7 @@
         }
       }
     },
-    "com.posthog.signals#UpdateSignalReportPartialRequest": {
+    "com.posthog.signals#UpdateSignalsReportsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1010,10 +1067,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#UpdateSignalReportPartial": {
+    "com.posthog.signals#UpdateSignalsReportsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#UpdateSignalReportPartialRequest"
+        "target": "com.posthog.signals#UpdateSignalsReportsPartialRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReport"
@@ -1055,7 +1112,7 @@
         "smithy.api#documentation": "* `positive` - positive\n* `negative` - negative"
       }
     },
-    "com.posthog.signals#CreateSignalReportFeedbackRequest": {
+    "com.posthog.signals#CreateSignalsReportsFeedbackRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1105,10 +1162,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#CreateSignalReportFeedback": {
+    "com.posthog.signals#CreateSignalsReportsFeedback": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportFeedbackRequest"
+        "target": "com.posthog.signals#CreateSignalsReportsFeedbackRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReportFeedbackResponse"
@@ -1498,7 +1555,7 @@
         "smithy.api#documentation": "Fetch comments for a report's implementation PR\n\nFetch the pull request's conversation comments and inline review comments, merged chronologically, via the team's GitHub integration."
       }
     },
-    "com.posthog.signals#CreateSignalReportPrReviewCommentRequest": {
+    "com.posthog.signals#CreateSignalsReportPrReviewCommentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1571,10 +1628,10 @@
         "smithy.api#documentation": "Response after posting a review comment — the created comment in the normalized PR-comment shape."
       }
     },
-    "com.posthog.signals#CreateSignalReportPrReviewComment": {
+    "com.posthog.signals#CreateSignalsReportPrReviewComment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportPrReviewCommentRequest"
+        "target": "com.posthog.signals#CreateSignalsReportPrReviewCommentRequest"
       },
       "output": {
         "target": "com.posthog.signals#PullRequestReviewCommentCreateResponse"
@@ -1599,7 +1656,7 @@
         "smithy.api#documentation": "Post an inline review comment on a report's implementation PR\n\nPost an inline review comment on the report's implementation pull request, attributed to the requesting user's own GitHub identity via their personal GitHub connection. Either replies to an existing thread (`in_reply_to`) or starts a new thread on a diff line (`path` + `line`)."
       }
     },
-    "com.posthog.signals#UpdateSignalReportPrReviewCommentRequest": {
+    "com.posthog.signals#UpdateSignalsReportPrReviewCommentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1636,10 +1693,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#UpdateSignalReportPrReviewComment": {
+    "com.posthog.signals#UpdateSignalsReportPrReviewComment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#UpdateSignalReportPrReviewCommentRequest"
+        "target": "com.posthog.signals#UpdateSignalsReportPrReviewCommentRequest"
       },
       "output": {
         "target": "com.posthog.signals#PullRequestReviewCommentCreateResponse"
@@ -1661,7 +1718,7 @@
         "smithy.api#documentation": "Edit one of the requesting user's own review comments"
       }
     },
-    "com.posthog.signals#SignalsReportPrReviewCommentDestroyRequest": {
+    "com.posthog.signals#ReviewSignalsReportPrCommentDestroyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1692,10 +1749,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsReportPrReviewCommentDestroy": {
+    "com.posthog.signals#ReviewSignalsReportPrCommentDestroy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsReportPrReviewCommentDestroyRequest"
+        "target": "com.posthog.signals#ReviewSignalsReportPrCommentDestroyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1773,7 +1830,7 @@
         "smithy.api#documentation": "* `+1` - +1\n* `-1` - -1\n* `laugh` - laugh\n* `hooray` - hooray\n* `confused` - confused\n* `heart` - heart\n* `rocket` - rocket\n* `eyes` - eyes"
       }
     },
-    "com.posthog.signals#CreateSignalReportPrReviewCommentReactionRequest": {
+    "com.posthog.signals#CreateSignalsReportPrReviewCommentReactionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1825,10 +1882,10 @@
         "smithy.api#documentation": "Response after adding a reaction — the created reaction, so the frontend can track its id."
       }
     },
-    "com.posthog.signals#CreateSignalReportPrReviewCommentReaction": {
+    "com.posthog.signals#CreateSignalsReportPrReviewCommentReaction": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportPrReviewCommentReactionRequest"
+        "target": "com.posthog.signals#CreateSignalsReportPrReviewCommentReactionRequest"
       },
       "output": {
         "target": "com.posthog.signals#PullRequestReviewCommentReactionCreateResponse"
@@ -1850,7 +1907,7 @@
         "smithy.api#documentation": "React to a review comment as the requesting user"
       }
     },
-    "com.posthog.signals#SignalsReportPrReviewCommentReactionDestroyRequest": {
+    "com.posthog.signals#ReviewSignalsReportPrCommentReactionDestroyRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1888,10 +1945,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsReportPrReviewCommentReactionDestroy": {
+    "com.posthog.signals#ReviewSignalsReportPrCommentReactionDestroy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsReportPrReviewCommentReactionDestroyRequest"
+        "target": "com.posthog.signals#ReviewSignalsReportPrCommentReactionDestroyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1913,7 +1970,7 @@
         "smithy.api#documentation": "Remove one of the requesting user's own reactions from a review comment"
       }
     },
-    "com.posthog.signals#CreateSignalReportRefundRequest": {
+    "com.posthog.signals#CreateSignalsReportsRefundRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1974,7 +2031,7 @@
           }
         },
         "billing_path": {
-          "target": "com.posthog.signals#BillingPathEnum",
+          "target": "com.posthog.signals#SignalReportRefundBillingPathEnum",
           "traits": {
             "smithy.api#documentation": "How the refund was executed, frozen at refund time: 'excluded' (same UTC day as the billable PR run — the report never reaches billing) or 'credited' (billing issues a Stripe customer-balance credit).\n\n* `excluded` - Excluded\n* `credited` - Credited",
             "smithy.api#required": {}
@@ -2033,10 +2090,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#CreateSignalReportRefund": {
+    "com.posthog.signals#CreateSignalsReportsRefund": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportRefundRequest"
+        "target": "com.posthog.signals#CreateSignalsReportsRefundRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReportRefundResponse"
@@ -2058,7 +2115,7 @@
         "smithy.api#documentation": "Refund a report's implementation PR\n\nRefund the flat charge for this report's implementation PR and archive the report. Refunds auto-approve: the charge is either excluded from usage before it is ever reported to billing (refund on the same UTC day as the PR run) or returned as a Stripe customer-balance credit on the next invoice. A refunded PR does not count toward the free monthly PR allowance. One refund per report, ever — repeat calls return the existing refund with already_refunded=true. The report is archived as part of the refund (a resolved report stays resolved) and can't be restored afterwards."
       }
     },
-    "com.posthog.signals#SignalsReportsSignalsRetrieveRequest": {
+    "com.posthog.signals#GetSignalsReportsSignalRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5788,10 +5845,10 @@
         "smithy.api#documentation": "All signals contributing to the report."
       }
     },
-    "com.posthog.signals#SignalsReportsSignalsRetrieve": {
+    "com.posthog.signals#GetSignalsReportsSignal": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsReportsSignalsRetrieveRequest"
+        "target": "com.posthog.signals#GetSignalsReportsSignalRequest"
       },
       "output": {
         "target": "com.posthog.signals#ReportSignalsResponse"
@@ -5852,6 +5909,12 @@
             "smithy.api#enumValue": "analysis_wrong"
           }
         },
+        "WRONG_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wrong_repo"
+          }
+        },
         "WONTFIX_INTENTIONAL": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -5864,6 +5927,18 @@
             "smithy.api#enumValue": "wontfix_irrelevant"
           }
         },
+        "FIXED_OUTSIDE_POSTHOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fixed_outside_posthog"
+          }
+        },
+        "PR_MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pr_merged"
+          }
+        },
         "OTHER": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -5872,10 +5947,10 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "* `already_fixed` - Already fixed\n* `report_unclear` - Report is unclear to me\n* `analysis_wrong` - Agent's analysis is wrong\n* `wontfix_intentional` - Won't fix - intentional behavior\n* `wontfix_irrelevant` - Won't fix - issue is real but insignificant\n* `other` - Something else…"
+        "smithy.api#documentation": "* `already_fixed` - Already fixed\n* `report_unclear` - Report is unclear to me\n* `analysis_wrong` - Agent's analysis is wrong\n* `wrong_repo` - Agent picked the wrong repository\n* `wontfix_intentional` - Won't fix - intentional behavior\n* `wontfix_irrelevant` - Won't fix - issue is real but insignificant\n* `fixed_outside_posthog` - Fixed outside PostHog\n* `pr_merged` - PR was merged\n* `other` - Something else…"
       }
     },
-    "com.posthog.signals#CreateSignalReportStateRequest": {
+    "com.posthog.signals#CreateSignalsReportsStateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5897,20 +5972,26 @@
         "state": {
           "target": "com.posthog.signals#SignalReportStateEnum",
           "traits": {
-            "smithy.api#documentation": "Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk).\n\n* `suppressed` - suppressed\n* `potential` - potential\n* `resolved` - resolved",
+            "smithy.api#documentation": "Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk). Dismissing or resolving closes the report's open implementation PR, if it has one.\n\n* `suppressed` - suppressed\n* `potential` - potential\n* `resolved` - resolved",
             "smithy.api#required": {}
           }
         },
         "dismissal_reason": {
           "target": "com.posthog.signals#DismissalReasonEnum",
           "traits": {
-            "smithy.api#documentation": "Optional canonical reason code for the dismissal. Must be one of: already_fixed, report_unclear, analysis_wrong, wontfix_intentional, wontfix_irrelevant, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' (the reason/note records why). Reserve 'already_fixed' with state='potential' (snooze/restore) for \"fixed by something else / might recur\" cases, so the report reappears if the issue comes back. Use 'other' together with a dismissal_note for anything that doesn't fit a code.\n\n* `already_fixed` - Already fixed\n* `report_unclear` - Report is unclear to me\n* `analysis_wrong` - Agent's analysis is wrong\n* `wontfix_intentional` - Won't fix - intentional behavior\n* `wontfix_irrelevant` - Won't fix - issue is real but insignificant\n* `other` - Something else…"
+            "smithy.api#documentation": "Optional canonical reason code recorded with the transition. Must be one of: already_fixed, report_unclear, analysis_wrong, wrong_repo, wontfix_intentional, wontfix_irrelevant, fixed_outside_posthog, pr_merged, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' with 'fixed_outside_posthog' (the fix landed without a pull request), 'pr_merged' (a pull request with the fix was merged but did not resolve the report on its own), or 'already_fixed' (it was fixed before the report was filed). The dismissal codes (report_unclear, analysis_wrong, wrong_repo, wontfix_*) go with state='suppressed'. Use 'wrong_repo' when the agent picked the wrong repository for this report, ideally with corrected_repository naming the right one. Use 'other' together with a dismissal_note for anything that doesn't fit a code.\n\n* `already_fixed` - Already fixed\n* `report_unclear` - Report is unclear to me\n* `analysis_wrong` - Agent's analysis is wrong\n* `wrong_repo` - Agent picked the wrong repository\n* `wontfix_intentional` - Won't fix - intentional behavior\n* `wontfix_irrelevant` - Won't fix - issue is real but insignificant\n* `fixed_outside_posthog` - Fixed outside PostHog\n* `pr_merged` - PR was merged\n* `other` - Something else…"
           }
         },
         "dismissal_note": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional free-form note explaining the dismissal. Capped at 4000 characters."
+          }
+        },
+        "corrected_repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional, only allowed with dismissal_reason='wrong_repo'. The repository this report should have targeted, in 'owner/repo' format (case-insensitive). It is recorded with the dismissal and fed into future repository selection for this project. When the repository is connected to the project, it also becomes the report's corrected repo selection, so restoring the report re-researches against it."
           }
         },
         "snooze_for": {
@@ -5924,10 +6005,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#CreateSignalReportState": {
+    "com.posthog.signals#CreateSignalsReportsState": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportStateRequest"
+        "target": "com.posthog.signals#CreateSignalsReportsStateRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReport"
@@ -5938,10 +6019,10 @@
           "uri": "/api/projects/{project_id}/signals/reports/{id}/state/",
           "code": 200
         },
-        "smithy.api#documentation": "Transition a report to a new state. The model validates allowed transitions.\n\nThe request body is validated by SignalReportStateRequestSerializer — only the\nfields it declares (state, dismissal_reason, dismissal_note, snooze_for) are read,\nand only snooze_for is ever forwarded to transition_to. Any other key is ignored,\nso internal transition_to kwargs (reset_weight, error, ...) can't be injected.\n\nBody: {\n    \"state\": \"suppressed\" | \"potential\" | \"resolved\",\n    # Optional dismissal feedback (honored when state == \"suppressed\", \"potential\", or \"resolved\"):\n    \"dismissal_reason\": \"<canonical reason code, see SIGNAL_REPORT_DISMISSAL_REASON_CHOICES>\",\n    \"dismissal_note\": \"free-form text\",\n    # Optional, only honored for state == \"potential\":\n    \"snooze_for\": <number of additional signals before re-promotion>,\n}"
+        "smithy.api#documentation": "Transition a report to a new state. The model validates allowed transitions.\n\nThe request body is validated by SignalReportStateRequestSerializer — only the\nfields it declares (state, dismissal_reason, dismissal_note, corrected_repository,\nsnooze_for) are read, and only snooze_for is ever forwarded to transition_to. Any\nother key is ignored, so internal transition_to kwargs (reset_weight, error, ...)\ncan't be injected.\n\nBody: {\n    \"state\": \"suppressed\" | \"potential\" | \"resolved\",\n    # Optional dismissal feedback (honored when state == \"suppressed\", \"potential\", or \"resolved\"):\n    \"dismissal_reason\": \"<canonical reason code, see SIGNAL_REPORT_DISMISSAL_REASON_CHOICES>\",\n    \"dismissal_note\": \"free-form text\",\n    # Optional, only allowed with dismissal_reason == \"wrong_repo\":\n    \"corrected_repository\": \"owner/repo the report should have targeted\",\n    # Optional, only honored for state == \"potential\":\n    \"snooze_for\": <number of additional signals before re-promotion>,\n}"
       }
     },
-    "com.posthog.signals#CreateSignalReportViewedRequest": {
+    "com.posthog.signals#CreateSignalsReportsViewedRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5965,10 +6046,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#CreateSignalReportViewed": {
+    "com.posthog.signals#CreateSignalsReportsViewed": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportViewedRequest"
+        "target": "com.posthog.signals#CreateSignalsReportsViewedRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5982,7 +6063,7 @@
         "smithy.api#documentation": "Record that a person viewed a report\n\nRecord that the caller opened this report's detail view. One row per person per report is kept (repeat views bump a counter), and the record counts as consumption evidence for the scout that authored the report — scouts whose reports nobody consumes are eventually paused. Intended as fire-and-forget from the inbox UI when a person opens a report. Only browser-session requests leave a record; a call with any other credential (personal API key, OAuth token) returns 204 but records nothing."
       }
     },
-    "com.posthog.signals#ListSignalReportArtefactsRequest": {
+    "com.posthog.signals#ListSignalsReportArtefactsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6060,7 +6141,7 @@
           }
         },
         "type": {
-          "target": "com.posthog.signals#SignalReportArtefactTypeEnum",
+          "target": "com.posthog.signals#SignalReportArtefactArtefactTypeEnum",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6103,7 +6184,7 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#SignalReportArtefactTypeEnum": {
+    "com.posthog.signals#SignalReportArtefactArtefactTypeEnum": {
       "type": "enum",
       "members": {
         "VIDEO_SEGMENT": {
@@ -6270,10 +6351,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalReportArtefacts": {
+    "com.posthog.signals#ListSignalsReportArtefacts": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalReportArtefactsRequest"
+        "target": "com.posthog.signals#ListSignalsReportArtefactsRequest"
       },
       "output": {
         "target": "com.posthog.signals#PaginatedSignalReportArtefactList"
@@ -6287,7 +6368,7 @@
         "smithy.api#documentation": "List a report's artefacts\n\nList every artefact on a report — the full work log: signal findings (the evidence behind the report), status judgments (safety / actionability / priority, repo selection, suggested reviewers — the newest row of each status type is canonical), and log entries (code references, commits, task runs, notes). `suggested_reviewers` content is enriched with PostHog user info at read time."
       }
     },
-    "com.posthog.signals#CreateSignalReportArtefactRequest": {
+    "com.posthog.signals#CreateSignalsReportArtefactRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6384,10 +6465,10 @@
         "smithy.api#documentation": "Response shape for the log-artefact create/update endpoints — echoes the stored row."
       }
     },
-    "com.posthog.signals#CreateSignalReportArtefact": {
+    "com.posthog.signals#CreateSignalsReportArtefact": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportArtefactRequest"
+        "target": "com.posthog.signals#CreateSignalsReportArtefactRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReportArtefactWriteResponse"
@@ -6409,7 +6490,7 @@
         "smithy.api#documentation": "Append an artefact to a report\n\nAppend an artefact to a report (see artefact_type for the writable types). Everything is append-only: log entries (code reference, commit, task run, note) accumulate, while status types (safety / actionability / priority judgments, repo selection, suggested reviewers, channel assignments) are latest-wins — appending a new version supersedes the previous one as the report's canonical status. Content is validated against the type's schema."
       }
     },
-    "com.posthog.signals#SignalsReportArtefactsRetrieveRequest": {
+    "com.posthog.signals#GetSignalsReportArtefactRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6441,10 +6522,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsReportArtefactsRetrieve": {
+    "com.posthog.signals#GetSignalsReportArtefact": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsReportArtefactsRetrieveRequest"
+        "target": "com.posthog.signals#GetSignalsReportArtefactRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReportArtefact"
@@ -6458,7 +6539,7 @@
         "smithy.api#documentation": "Get a single artefact\n\nGet one artefact by id, content parsed (and reviewers enriched) the same way as the list."
       }
     },
-    "com.posthog.signals#UpdateSignalReportArtefactPartialRequest": {
+    "com.posthog.signals#UpdateSignalsReportArtefactsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6496,10 +6577,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#UpdateSignalReportArtefactPartial": {
+    "com.posthog.signals#UpdateSignalsReportArtefactsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#UpdateSignalReportArtefactPartialRequest"
+        "target": "com.posthog.signals#UpdateSignalsReportArtefactsPartialRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReportArtefactWriteResponse"
@@ -6663,10 +6744,10 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note` and `snooze_for` apply to every id."
+        "smithy.api#documentation": "Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note`, `corrected_repository` and `snooze_for` apply to every id."
       }
     },
-    "com.posthog.signals#CreateSignalReportBulkStateRequest": {
+    "com.posthog.signals#SignalsReportsBulkStateCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6680,20 +6761,26 @@
         "state": {
           "target": "com.posthog.signals#SignalReportStateEnum",
           "traits": {
-            "smithy.api#documentation": "Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk).\n\n* `suppressed` - suppressed\n* `potential` - potential\n* `resolved` - resolved",
+            "smithy.api#documentation": "Target state for the report. Use 'suppressed' to dismiss the report from the inbox, 'potential' to snooze/reopen it for later review, or 'resolved' when the work this report asked for has been done. Resolving is only allowed from a researched status (ready or pending_input) or a suppressed report; other statuses return 409 (skipped in bulk). Dismissing or resolving closes the report's open implementation PR, if it has one.\n\n* `suppressed` - suppressed\n* `potential` - potential\n* `resolved` - resolved",
             "smithy.api#required": {}
           }
         },
         "dismissal_reason": {
           "target": "com.posthog.signals#DismissalReasonEnum",
           "traits": {
-            "smithy.api#documentation": "Optional canonical reason code for the dismissal. Must be one of: already_fixed, report_unclear, analysis_wrong, wontfix_intentional, wontfix_irrelevant, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' (the reason/note records why). Reserve 'already_fixed' with state='potential' (snooze/restore) for \"fixed by something else / might recur\" cases, so the report reappears if the issue comes back. Use 'other' together with a dismissal_note for anything that doesn't fit a code.\n\n* `already_fixed` - Already fixed\n* `report_unclear` - Report is unclear to me\n* `analysis_wrong` - Agent's analysis is wrong\n* `wontfix_intentional` - Won't fix - intentional behavior\n* `wontfix_irrelevant` - Won't fix - issue is real but insignificant\n* `other` - Something else…"
+            "smithy.api#documentation": "Optional canonical reason code recorded with the transition. Must be one of: already_fixed, report_unclear, analysis_wrong, wrong_repo, wontfix_intentional, wontfix_irrelevant, fixed_outside_posthog, pr_merged, other — these match the inbox UI so the rationale renders as a labelled chip rather than a raw code. When the work this report asked for is done, the honest transition is state='resolved' with 'fixed_outside_posthog' (the fix landed without a pull request), 'pr_merged' (a pull request with the fix was merged but did not resolve the report on its own), or 'already_fixed' (it was fixed before the report was filed). The dismissal codes (report_unclear, analysis_wrong, wrong_repo, wontfix_*) go with state='suppressed'. Use 'wrong_repo' when the agent picked the wrong repository for this report, ideally with corrected_repository naming the right one. Use 'other' together with a dismissal_note for anything that doesn't fit a code.\n\n* `already_fixed` - Already fixed\n* `report_unclear` - Report is unclear to me\n* `analysis_wrong` - Agent's analysis is wrong\n* `wrong_repo` - Agent picked the wrong repository\n* `wontfix_intentional` - Won't fix - intentional behavior\n* `wontfix_irrelevant` - Won't fix - issue is real but insignificant\n* `fixed_outside_posthog` - Fixed outside PostHog\n* `pr_merged` - PR was merged\n* `other` - Something else…"
           }
         },
         "dismissal_note": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Optional free-form note explaining the dismissal. Capped at 4000 characters."
+          }
+        },
+        "corrected_repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional, only allowed with dismissal_reason='wrong_repo'. The repository this report should have targeted, in 'owner/repo' format (case-insensitive). It is recorded with the dismissal and fed into future repository selection for this project. When the repository is connected to the project, it also becomes the report's corrected repo selection, so restoring the report re-researches against it."
           }
         },
         "snooze_for": {
@@ -6705,7 +6792,7 @@
         "ids": {
           "target": "com.posthog.signals#SignalsReportsBulkStateCreateRequestIdsList",
           "traits": {
-            "smithy.api#documentation": "Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note` and `snooze_for` apply to every id.",
+            "smithy.api#documentation": "Report ids to transition to `state` in one call (1–100). Duplicates are de-duplicated; each id is processed independently so one disallowed transition does not block the rest. `dismissal_reason`, `dismissal_note`, `corrected_repository` and `snooze_for` apply to every id.",
             "smithy.api#required": {}
           }
         }
@@ -6798,10 +6885,10 @@
         "smithy.api#documentation": "One result per requested id, in request order (after de-duplication)."
       }
     },
-    "com.posthog.signals#CreateSignalReportBulkState": {
+    "com.posthog.signals#SignalsReportsBulkStateCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalReportBulkStateRequest"
+        "target": "com.posthog.signals#SignalsReportsBulkStateCreateRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReportBulkStateResponse"
@@ -6815,7 +6902,7 @@
         "smithy.api#documentation": "Transition many reports to a new state in one call.\n\nEach id is processed independently: a report whose transition isn't allowed from its\ncurrent status is reported as `skipped` (a 409 on the single-report endpoint) and the\nrest still go through. Returns one result per requested id (in request order, after\nde-duplication) plus per-outcome counts. The whole call is 200 even on partial failure —\ninspect `results` / the counts to see what happened."
       }
     },
-    "com.posthog.signals#SignalsReportsRefundSummaryRetrieveRequest": {
+    "com.posthog.signals#GetSignalsReportsRefundSummaryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6865,10 +6952,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#SignalsReportsRefundSummaryRetrieve": {
+    "com.posthog.signals#GetSignalsReportsRefundSummary": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsReportsRefundSummaryRetrieveRequest"
+        "target": "com.posthog.signals#GetSignalsReportsRefundSummaryRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalReportRefundSummaryResponse"
@@ -6911,7 +6998,7 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#SignalsScoutCreateRequestFilesList": {
+    "com.posthog.signals#CreateSignalsScoutRequestFilesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#LLMSkillFileInput"
@@ -6948,7 +7035,7 @@
           }
         },
         "network_access": {
-          "target": "com.posthog.signals#ScoutConfigNetworkAccessEnum",
+          "target": "com.posthog.signals#SignalScoutConfigNetworkAccessEnum",
           "traits": {
             "smithy.api#documentation": "What the scout's sandbox can reach over the network while it runs. Defaults to `trusted`, the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). Set `full` to let this scout reach any site, for skills that read external sources such as documentation or papers.\n\n* `trusted` - Trusted domains only\n* `full` - Full"
           }
@@ -7030,18 +7117,34 @@
         "channel": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Slack channel target in the channel picker's `channel_id|#channel-name` format. Null while choosing a channel; no messages are sent until it is set.",
+            "smithy.api#documentation": "Slack channel target in the channel picker's `channel_id|#channel-name` format. Null while choosing a channel; no messages are sent until a channel or user is set.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "users": {
+          "target": "com.posthog.signals#SignalScoutSlackDestinationUsersList",
+          "traits": {
+            "smithy.api#documentation": "Slack members to send output to as direct messages, each in `member_id|@display-name` format (a bare member ID like `U0123ABC456` also works). Each member gets their own DM from the PostHog app; at most 5. Set either this or `channel`, not both. Useful for personal scouts where a DM beats a channel.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "thread_reports": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When true, post a report as a thread: a short lead in the channel and the rest split by the report's Markdown headings into replies. Keeps a long summary from being clipped at Slack's section limit. Off by default, and it does not change how findings post."
+            "smithy.api#documentation": "When true, post a report as a thread: a short lead in the channel and the rest split into replies at the summary's section labels, which can be Markdown headings or bold labels. Keeps a long summary from being clipped at Slack's section limit. Off by default, and it does not change how findings post."
           }
         }
       },
       "traits": {}
+    },
+    "com.posthog.signals#SignalScoutSlackDestinationUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Slack members to send output to as direct messages, each in `member_id|@display-name` format (a bare member ID like `U0123ABC456` also works). Each member gets their own DM from the PostHog app; at most 5. Set either this or `channel`, not both. Useful for personal scouts where a DM beats a channel."
+      }
     },
     "com.posthog.signals#SignalScoutWebhookDestination": {
       "type": "structure",
@@ -7056,7 +7159,7 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#ScoutConfigNetworkAccessEnum": {
+    "com.posthog.signals#SignalScoutConfigNetworkAccessEnum": {
       "type": "enum",
       "members": {
         "TRUSTED": {
@@ -7106,7 +7209,7 @@
         "smithy.api#documentation": "MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run."
       }
     },
-    "com.posthog.signals#CreateSignalScoutRequest": {
+    "com.posthog.signals#CreateSignalsScoutRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7139,7 +7242,7 @@
           }
         },
         "files": {
-          "target": "com.posthog.signals#SignalsScoutCreateRequestFilesList",
+          "target": "com.posthog.signals#CreateSignalsScoutRequestFilesList",
           "traits": {
             "smithy.api#documentation": "Optional reference files bundled with the scout prompt."
           }
@@ -7271,14 +7374,14 @@
           }
         },
         "status": {
-          "target": "com.posthog.signals#ScoutConfigStatusEnum",
+          "target": "com.posthog.signals#SignalScoutConfigStatusEnum",
           "traits": {
             "smithy.api#documentation": "Lifecycle status. `active`: runs on its schedule. `pending_pause`: still running, but flagged by the system to pause soon unless something changes (any config edit clears it). `paused_by_system`: paused automatically, see `pause_reason`; set `enabled=true` to resume. `paused_by_user`: switched off by a person and never resumed automatically.\n\n* `active` - Active\n* `pending_pause` - Pending pause\n* `paused_by_system` - Paused by system\n* `paused_by_user` - Paused by user",
             "smithy.api#required": {}
           }
         },
         "pause_reason": {
-          "target": "com.posthog.signals#ScoutConfigPauseReasonEnum",
+          "target": "com.posthog.signals#SignalScoutConfigPauseReasonEnum",
           "traits": {
             "smithy.api#documentation": "Why the system paused (or warned) this scout: `no_output` (it emitted nothing over the evaluation window), `ignored` (no person engaged with its reports — no view, rating, note, dismissal, or resolution), or `repeated_failures` (consecutive failed runs). Null unless `status` is `pending_pause` or `paused_by_system`.\n\n* `no_output` - No output\n* `ignored` - Ignored\n* `repeated_failures` - Repeated failures",
             "smithy.api#required": {},
@@ -7323,7 +7426,7 @@
           }
         },
         "network_access": {
-          "target": "com.posthog.signals#ScoutConfigNetworkAccessEnum",
+          "target": "com.posthog.signals#SignalScoutConfigNetworkAccessEnum",
           "traits": {
             "smithy.api#documentation": "What the scout's sandbox can reach over the network while it runs. `trusted` (the default) restricts runs to the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). `full` lets the scout reach any site, for skills that read external sources such as documentation or papers.\n\n* `trusted` - Trusted domains only\n* `full` - Full",
             "smithy.api#required": {}
@@ -7423,7 +7526,9 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "* `canonical` - canonical\n* `custom` - custom"
+      }
     },
     "com.posthog.signals#UserBasic": {
       "type": "structure",
@@ -7575,7 +7680,7 @@
         "smithy.api#documentation": "Who answers for this scout, seed-creator first. Ownership is recorded on the scout's skill rather than on this config, so editing the skill or toggling the scout leaves it unchanged. Reports the scout files suggest these people as reviewers. Prefer this over `created_by`-style fields, which only say who last flipped a switch. Empty when nobody owns the scout, when the owners are no longer members with access to the project, or when the caller is a scout sandbox token: owners are member PII, and a scout reads them through the skill API instead."
       }
     },
-    "com.posthog.signals#ScoutConfigStatusEnum": {
+    "com.posthog.signals#SignalScoutConfigStatusEnum": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -7607,7 +7712,7 @@
         "smithy.api#documentation": "* `active` - Active\n* `pending_pause` - Pending pause\n* `paused_by_system` - Paused by system\n* `paused_by_user` - Paused by user"
       }
     },
-    "com.posthog.signals#ScoutConfigPauseReasonEnum": {
+    "com.posthog.signals#SignalScoutConfigPauseReasonEnum": {
       "type": "enum",
       "members": {
         "NO_OUTPUT": {
@@ -7663,10 +7768,10 @@
         "smithy.api#documentation": "Free-form labels for grouping the fleet, e.g. `[\"revenue\", \"on-call\"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter."
       }
     },
-    "com.posthog.signals#CreateSignalScout": {
+    "com.posthog.signals#CreateSignalsScout": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalScoutRequest"
+        "target": "com.posthog.signals#CreateSignalsScoutRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalScoutCreateResponse"
@@ -7714,7 +7819,7 @@
         "smithy.api#documentation": "* `author_scout` - author_scout\n* `fleet_overview` - fleet_overview\n* `recent_signals` - recent_signals"
       }
     },
-    "com.posthog.signals#CreateSignalScoutChatTaskRequest": {
+    "com.posthog.signals#CreateSignalsScoutChatTaskRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7750,10 +7855,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#CreateSignalScoutChatTask": {
+    "com.posthog.signals#CreateSignalsScoutChatTask": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalScoutChatTaskRequest"
+        "target": "com.posthog.signals#CreateSignalsScoutChatTaskRequest"
       },
       "output": {
         "target": "com.posthog.signals#ScoutChatTask"
@@ -7772,7 +7877,7 @@
         "smithy.api#documentation": "Start a scout chat task\n\nCreate and run a cloud task for one of the fixed scout chat templates (suggest a scout, fleet overview, recent signals). The prompt is server-owned; the response carries the task id to navigate to."
       }
     },
-    "com.posthog.signals#ListSignalScoutConfigRequest": {
+    "com.posthog.signals#ListSignalsScoutConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7795,18 +7900,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsScoutConfigListResponseBodyList": {
+    "com.posthog.signals#ListSignalsScoutConfigResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#SignalScoutConfig"
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalScoutConfigResponse": {
+    "com.posthog.signals#ListSignalsScoutConfigResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.signals#SignalsScoutConfigListResponseBodyList",
+          "target": "com.posthog.signals#ListSignalsScoutConfigResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7817,13 +7922,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.signals#ListSignalScoutConfig": {
+    "com.posthog.signals#ListSignalsScoutConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalScoutConfigRequest"
+        "target": "com.posthog.signals#ListSignalsScoutConfigRequest"
       },
       "output": {
-        "target": "com.posthog.signals#ListSignalScoutConfigResponse"
+        "target": "com.posthog.signals#ListSignalsScoutConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7834,7 +7939,7 @@
         "smithy.api#documentation": "List scout configs\n\nList the per-(team, skill) scout configs for this project. Each row includes its schedule (rolling `run_interval_minutes`, or a project-local `run_cron_schedule` when set), `enabled`, `emit` posture, and `tags`. A freshly authored scout skill appears here once its config is registered, either explicitly via create or by the coordinator's next tick. Pass `tags` to narrow the fleet to the scouts carrying at least one of the given labels."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigCreateRequestTagsList": {
+    "com.posthog.signals#CreateSignalsScoutConfigRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7843,7 +7948,7 @@
         "smithy.api#documentation": "Free-form labels for grouping the fleet, e.g. `[\"revenue\", \"on-call\"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigCreateRequestStructuredOutputSchemaMap": {
+    "com.posthog.signals#CreateSignalsScoutConfigRequestStructuredOutputSchemaMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7855,7 +7960,7 @@
         "smithy.api#documentation": "Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{\"type\": \"object\", \"properties\": {\"verdict\": {\"enum\": [\"good\", \"bad\", \"unsure\"]}, \"reason\": {\"type\": \"string\"}}, \"required\": [\"verdict\", \"reason\"]}`). The root must be `\"type\": \"object\"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigCreateRequestMcpGatewayServerIdsList": {
+    "com.posthog.signals#CreateSignalsScoutConfigRequestMcpGatewayServerIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7864,7 +7969,7 @@
         "smithy.api#documentation": "MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run."
       }
     },
-    "com.posthog.signals#CreateSignalScoutConfigRequest": {
+    "com.posthog.signals#CreateSignalsScoutConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7900,7 +8005,7 @@
           }
         },
         "network_access": {
-          "target": "com.posthog.signals#ScoutConfigNetworkAccessEnum",
+          "target": "com.posthog.signals#SignalScoutConfigNetworkAccessEnum",
           "traits": {
             "smithy.api#documentation": "What the scout's sandbox can reach over the network while it runs. Defaults to `trusted`, the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). Set `full` to let this scout reach any site, for skills that read external sources such as documentation or papers.\n\n* `trusted` - Trusted domains only\n* `full` - Full"
           }
@@ -7926,20 +8031,20 @@
           }
         },
         "tags": {
-          "target": "com.posthog.signals#SignalsScoutConfigCreateRequestTagsList",
+          "target": "com.posthog.signals#CreateSignalsScoutConfigRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Free-form labels for grouping the fleet, e.g. `[\"revenue\", \"on-call\"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter."
           }
         },
         "structured_output_schema": {
-          "target": "com.posthog.signals#SignalsScoutConfigCreateRequestStructuredOutputSchemaMap",
+          "target": "com.posthog.signals#CreateSignalsScoutConfigRequestStructuredOutputSchemaMap",
           "traits": {
             "smithy.api#documentation": "Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{\"type\": \"object\", \"properties\": {\"verdict\": {\"enum\": [\"good\", \"bad\", \"unsure\"]}, \"reason\": {\"type\": \"string\"}}, \"required\": [\"verdict\", \"reason\"]}`). The root must be `\"type\": \"object\"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "mcp_gateway_server_ids": {
-          "target": "com.posthog.signals#SignalsScoutConfigCreateRequestMcpGatewayServerIdsList",
+          "target": "com.posthog.signals#CreateSignalsScoutConfigRequestMcpGatewayServerIdsList",
           "traits": {
             "smithy.api#documentation": "MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run."
           }
@@ -7956,10 +8061,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#CreateSignalScoutConfig": {
+    "com.posthog.signals#CreateSignalsScoutConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalScoutConfigRequest"
+        "target": "com.posthog.signals#CreateSignalsScoutConfigRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalScoutConfig"
@@ -7978,7 +8083,7 @@
         "smithy.api#documentation": "Create a scout config\n\nRegister the config for a `signals-scout-*` skill immediately, without waiting for the coordinator to auto-register it. The same call can optionally set `run_interval_minutes`, a cron `run_cron_schedule`, `enabled`, `emit`, `network_access`, and output destinations. The skill must already exist on this project. Upsert: if a config already exists for the skill, the provided fields are applied to it."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigUpdateRequestStructuredOutputSchemaMap": {
+    "com.posthog.signals#UpdateSignalsScoutConfigRequestStructuredOutputSchemaMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7990,7 +8095,7 @@
         "smithy.api#documentation": "Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{\"type\": \"object\", \"properties\": {\"verdict\": {\"enum\": [\"good\", \"bad\", \"unsure\"]}, \"reason\": {\"type\": \"string\"}}, \"required\": [\"verdict\", \"reason\"]}`). The root must be `\"type\": \"object\"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigUpdateRequestTagsList": {
+    "com.posthog.signals#UpdateSignalsScoutConfigRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7999,7 +8104,7 @@
         "smithy.api#documentation": "Free-form labels for grouping the fleet, e.g. `[\"revenue\", \"on-call\"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigUpdateRequestMcpGatewayServerIdsList": {
+    "com.posthog.signals#UpdateSignalsScoutConfigRequestMcpGatewayServerIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8008,7 +8113,7 @@
         "smithy.api#documentation": "MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run."
       }
     },
-    "com.posthog.signals#UpdateSignalScoutConfigRequest": {
+    "com.posthog.signals#UpdateSignalsScoutConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8059,14 +8164,14 @@
           }
         },
         "structured_output_schema": {
-          "target": "com.posthog.signals#SignalsScoutConfigUpdateRequestStructuredOutputSchemaMap",
+          "target": "com.posthog.signals#UpdateSignalsScoutConfigRequestStructuredOutputSchemaMap",
           "traits": {
             "smithy.api#documentation": "Optional JSON Schema (draft 2020-12) describing ONE structured record this scout produces via `scout-record-output` — e.g. a per-report quality judgment (`{\"type\": \"object\", \"properties\": {\"verdict\": {\"enum\": [\"good\", \"bad\", \"unsure\"]}, \"reason\": {\"type\": \"string\"}}, \"required\": [\"verdict\", \"reason\"]}`). The root must be `\"type\": \"object\"`. Setting a schema turns the structured-output channel on: the run prompt renders the schema and every submitted record is validated against it and recorded in the project as a `$scout_structured_output` event, queryable like any event. The channel also requires emit — a dry-run scout has nowhere to record to. Cardinality is the scout's call (one record per run, one per judged entity, ...). Null = channel off. Setting a schema requires skill-authoring authorization (the `llm_skill:write` scope and skill editor access) since the scout reads it verbatim in its prompt; clearing it needs only the config write. Records validate against the schema in force when the run was dispatched.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "network_access": {
-          "target": "com.posthog.signals#ScoutConfigNetworkAccessEnum",
+          "target": "com.posthog.signals#SignalScoutConfigNetworkAccessEnum",
           "traits": {
             "smithy.api#documentation": "What the scout's sandbox can reach over the network while it runs. `trusted` (the default) restricts runs to the platform's trusted-domain allowlist (PostHog, GitHub, common package registries). Set `full` to let this scout reach any site, for skills that read external sources such as documentation or papers. Applies from the scout's next run.\n\n* `trusted` - Trusted domains only\n* `full` - Full"
           }
@@ -8085,13 +8190,13 @@
           }
         },
         "tags": {
-          "target": "com.posthog.signals#SignalsScoutConfigUpdateRequestTagsList",
+          "target": "com.posthog.signals#UpdateSignalsScoutConfigRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Free-form labels for grouping the fleet, e.g. `[\"revenue\", \"on-call\"]`. Normalized to lowercase kebab-case (`On Call` and `on_call` both become `on-call`), deduped, and stored sorted; at most 10 tags, each at most 50 characters once normalized. Pass the full desired set — a write replaces the existing tags rather than merging into them. Filter the config list with the `tags` query parameter."
           }
         },
         "mcp_gateway_server_ids": {
-          "target": "com.posthog.signals#SignalsScoutConfigUpdateRequestMcpGatewayServerIdsList",
+          "target": "com.posthog.signals#UpdateSignalsScoutConfigRequestMcpGatewayServerIdsList",
           "traits": {
             "smithy.api#documentation": "MCP gateway servers (by id) this scout's runs may use, chosen from the connections members shared to the whole team. Selection is per scout: an empty list gives the scout no MCP servers. Applies from the scout's next run."
           }
@@ -8101,10 +8206,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#UpdateSignalScoutConfig": {
+    "com.posthog.signals#UpdateSignalsScoutConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#UpdateSignalScoutConfigRequest"
+        "target": "com.posthog.signals#UpdateSignalsScoutConfigRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalScoutConfig"
@@ -8172,7 +8277,7 @@
         "smithy.api#documentation": "Delete a scout config\n\nDelete one scout config by its `id`, removing the per-(team, skill) schedule/emit row outright. The point is cleaning up an orphaned config whose `signals-scout-*` skill was archived or deleted — it lingers in `list` with an empty `description`, never runs (the coordinator skips it and the skill can't load), but can't otherwise be removed over the API. Deletion is activity-logged. Note: if the skill still exists, the coordinator re-creates a default-schedule config on its next tick — to retire a live scout, archive its skill (or set `enabled=false` to make it inert) rather than deleting the config."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigRunRequest": {
+    "com.posthog.signals#RunSignalsScoutConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8196,10 +8301,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsScoutConfigRun": {
+    "com.posthog.signals#RunSignalsScoutConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsScoutConfigRunRequest"
+        "target": "com.posthog.signals#RunSignalsScoutConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8224,7 +8329,31 @@
         "smithy.api#documentation": "Run a scout now\n\nDispatch one on-demand run of this scout immediately, regardless of its schedule. Useful to test a scout right after authoring it, or to refresh its findings on demand. The run executes asynchronously on the worker and inherits every guard the scheduled path has: it is forbidden if scouts are not enabled for the project (403), and skipped if the project is over its Signals credits quota, daily report limit, or daily run budget (429) or a run for this scout is already in progress (409). A manual run counts against the same daily run budget as scheduled runs, so repeated manual runs of the same scout can exhaust the project's daily allowance. A manual run does not change the scout's schedule or `last_run_at`. A disabled scout can still be run this way (to test before enabling). Returns immediately with the workflow id — poll the scout's runs for the result."
       }
     },
-    "com.posthog.signals#SignalsScoutConfigSyncRequest": {
+    "com.posthog.signals#SyncSignalsScoutConfigRequestSurface": {
+      "type": "enum",
+      "members": {
+        "ROSTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "roster"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desktop"
+          }
+        },
+        "WIZARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "wizard"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.signals#SyncSignalsScoutConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8234,24 +8363,31 @@
             "smithy.api#required": {},
             "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
           }
+        },
+        "surface": {
+          "target": "com.posthog.signals#SyncSignalsScoutConfigRequestSurface",
+          "traits": {
+            "smithy.api#httpQuery": "surface",
+            "smithy.api#documentation": "Which surface asked for the materialization, recorded on the `signals_scout_fleet_synced` analytics event so a fleet a person's tab-open delivered is separable from one the coordinator was going to deliver anyway. Omitted means unknown.\n\n* `roster` - roster\n* `desktop` - desktop\n* `wizard` - wizard"
+          }
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsScoutConfigSyncResponseBodyList": {
+    "com.posthog.signals#SyncSignalsScoutConfigResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#SignalScoutConfig"
       },
       "traits": {}
     },
-    "com.posthog.signals#SignalsScoutConfigSyncResponse": {
+    "com.posthog.signals#SyncSignalsScoutConfigResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.signals#SignalsScoutConfigSyncResponseBodyList",
+          "target": "com.posthog.signals#SyncSignalsScoutConfigResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8262,13 +8398,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.signals#SignalsScoutConfigSync": {
+    "com.posthog.signals#SyncSignalsScoutConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsScoutConfigSyncRequest"
+        "target": "com.posthog.signals#SyncSignalsScoutConfigRequest"
       },
       "output": {
-        "target": "com.posthog.signals#SignalsScoutConfigSyncResponse"
+        "target": "com.posthog.signals#SyncSignalsScoutConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8276,10 +8412,10 @@
           "uri": "/api/projects/{project_id}/signals/scout/configs/sync/",
           "code": 200
         },
-        "smithy.api#documentation": "Sync scout configs\n\nMaterialize the scout fleet for this project on demand (idempotent): seed the canonical `signals-scout-*` skills, create a default-schedule config for any scout lacking one, and return all scout configs. Normally the Temporal coordinator does this on its next tick; this action exists so setup flows (e.g. the wizard's self-driving program) can hand the user a tunable fleet immediately."
+        "smithy.api#documentation": "Sync scout configs\n\nMaterialize the scout fleet for this project on demand (idempotent): seed the canonical `signals-scout-*` skills, create a default-schedule config for any scout lacking one, retire the skills whose canonical scout no longer ships, and return all scout configs. Normally the Temporal coordinator does this on its next tick; this action exists so the scout UIs and setup flows (e.g. the wizard's self-driving program) can hand the user a tunable fleet immediately."
       }
     },
-    "com.posthog.signals#ListSignalScoutMembersRequest": {
+    "com.posthog.signals#ListSignalsScoutMembersRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8346,18 +8482,18 @@
         "smithy.api#documentation": "One project member's routing identity, for picking a `suggested_reviewers` entry on a report."
       }
     },
-    "com.posthog.signals#SignalsScoutMembersListResponseBodyList": {
+    "com.posthog.signals#ListSignalsScoutMembersResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#ScoutMember"
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalScoutMembersResponse": {
+    "com.posthog.signals#ListSignalsScoutMembersResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.signals#SignalsScoutMembersListResponseBodyList",
+          "target": "com.posthog.signals#ListSignalsScoutMembersResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8368,13 +8504,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.signals#ListSignalScoutMembers": {
+    "com.posthog.signals#ListSignalsScoutMembers": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalScoutMembersRequest"
+        "target": "com.posthog.signals#ListSignalsScoutMembersRequest"
       },
       "output": {
-        "target": "com.posthog.signals#ListSignalScoutMembersResponse"
+        "target": "com.posthog.signals#ListSignalsScoutMembersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8385,7 +8521,7 @@
         "smithy.api#documentation": "List project members for reviewer routing\n\nReturn the people who can review work on this project — one row per member with access to it, each with their `user_uuid`, `email`, `first_name`/`last_name`, and resolved GitHub `login` (null when they have no linked GitHub identity). The cold-start reviewer-routing path: when a finding's owner can't be read off a fetched entity's `created_by` and there's no cached `reviewer:<area>` memory or inbox precedent, list members, match the owner by email/name, then put their resolved `github_login` in `suggested_reviewers` on `emit-report` / `edit-report`. Pass `search` to narrow a large roster; the result is capped at 200. Strictly team-scoped."
       }
     },
-    "com.posthog.signals#GetSignalScoutMetadataRequest": {
+    "com.posthog.signals#GetSignalsScoutMetadataRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8469,10 +8605,10 @@
         "smithy.api#documentation": "A team's enforced scout run caps and current usage.\n\nThese are the values the coordinator actually applies at dispatch (resolved per-team override →\nfleet-wide default → code constant), so the UI can show the real throttle rather than what a\nuser thinks they configured."
       }
     },
-    "com.posthog.signals#GetSignalScoutMetadata": {
+    "com.posthog.signals#GetSignalsScoutMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#GetSignalScoutMetadataRequest"
+        "target": "com.posthog.signals#GetSignalsScoutMetadataRequest"
       },
       "output": {
         "target": "com.posthog.signals#ScoutMetadata"
@@ -8486,7 +8622,7 @@
         "smithy.api#documentation": "Get scout metadata\n\nReturn the project's scout metadata: whether it is enrolled, the current announcement banner (e.g. an alpha run-limit notice, or null when unset), and the enforced run limits with current usage. Limits reflect what the coordinator actually applies at dispatch, so a user can see the real throttle rather than what they assume they set. All values come from the `signals-scout` flag payload, so the banner and caps can change with no deploy."
       }
     },
-    "com.posthog.signals#ListSignalScoutNotesRequest": {
+    "com.posthog.signals#ListSignalsScoutNotesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8602,7 +8738,7 @@
         "origin": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Where the note came from. `human` for one left directly through this API. `report_dismissal` for one forwarded from the note someone typed when they dismissed, snoozed, or restored one or more inbox reports: one reviewer's verdict on the reports its content names, so weigh it as evidence about those reports rather than as fleet-level steering. `report_discussion` for the question someone asked when they opened a discussion on a report: context to weigh, neither a verdict on the report nor a directive. `report_feedback` for the note someone left when rating a report useful or not: one reader's rating of the named report, context to weigh rather than a directive.",
+            "smithy.api#documentation": "Where the note came from. `human` for one left directly through this API. `report_dismissal` for one forwarded from the note someone typed when they dismissed, snoozed, or restored one or more inbox reports: one reviewer's verdict on the reports its content names, so weigh it as evidence about those reports rather than as fleet-level steering. `report_discussion` for the question someone asked when they opened a discussion on a report: context to weigh, neither a verdict on the report nor a directive. `report_feedback` for the note someone left when rating a report useful or not: one reader's rating of the named report, context to weigh rather than a directive. `report_reviewer_correction` for a suggested reviewer someone added or removed on a report: evidence about who owns that surface, and a prompt to revisit the routing memory it corrects, rather than a directive.",
             "smithy.api#required": {}
           }
         }
@@ -8611,18 +8747,18 @@
         "smithy.api#documentation": "`SignalScoutNote` projection used by `notes-list` and `notes-create`."
       }
     },
-    "com.posthog.signals#SignalsScoutNotesListResponseBodyList": {
+    "com.posthog.signals#ListSignalsScoutNotesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#ScoutNote"
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalScoutNotesResponse": {
+    "com.posthog.signals#ListSignalsScoutNotesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.signals#SignalsScoutNotesListResponseBodyList",
+          "target": "com.posthog.signals#ListSignalsScoutNotesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8633,13 +8769,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.signals#ListSignalScoutNotes": {
+    "com.posthog.signals#ListSignalsScoutNotes": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalScoutNotesRequest"
+        "target": "com.posthog.signals#ListSignalsScoutNotesRequest"
       },
       "output": {
-        "target": "com.posthog.signals#ListSignalScoutNotesResponse"
+        "target": "com.posthog.signals#ListSignalsScoutNotesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8650,7 +8786,7 @@
         "smithy.api#documentation": "List scout notes\n\nReturn the steering notes left for this project's scouts, newest first. Pass `skill_name` to get the notes addressed to one scout (or one pipeline audience, e.g. `pipeline:report-research`) plus the general (blank-target) fleet-wide notes — the shape a scout run reads at cold start. Omit `skill_name` to browse every note. Expired notes are excluded unless `include_expired=true`. `date_from` / `date_to` are a half-open window on `created_at` (`>= date_from`, `< date_to`); pass `date_to` (the `created_at` of the oldest note seen) to walk past the cap. Results capped at 500."
       }
     },
-    "com.posthog.signals#CreateSignalScoutNoteRequest": {
+    "com.posthog.signals#CreateSignalsScoutNoteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8686,10 +8822,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#CreateSignalScoutNote": {
+    "com.posthog.signals#CreateSignalsScoutNote": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalScoutNoteRequest"
+        "target": "com.posthog.signals#CreateSignalsScoutNoteRequest"
       },
       "output": {
         "target": "com.posthog.signals#ScoutNote"
@@ -8753,7 +8889,7 @@
         "smithy.api#documentation": "Delete a scout note\n\nDelete one note by its `id`, retiring it from every scout's view. Use this when a note has been acted on or no longer applies; time-boxed notes can instead carry an `expires_at` and retire themselves."
       }
     },
-    "com.posthog.signals#GetSignalScoutProjectProfileRequest": {
+    "com.posthog.signals#GetSignalsScoutProjectProfileRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10441,10 +10577,10 @@
         "smithy.api#documentation": "Top ~50 events by count over a recent rolling window (each row carries `window_days`), with first/last seen timestamps within that window. These are WINDOWED counts, not lifetime totals: a capture gap can collapse a real, high-volume project's counts to near-zero here, so rule out an ingestion gap (compare against a trailing baseline via a direct `execute-sql`) before reading thinness as a genuinely low-volume project. `null` if the underlying ClickHouse query failed or timed out (distinct from `[]`, which means the team has no captures in the window). Use the gap between `first_seen_in_window` and `now` to spot new event types or recent bursts."
       }
     },
-    "com.posthog.signals#GetSignalScoutProjectProfile": {
+    "com.posthog.signals#GetSignalsScoutProjectProfile": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#GetSignalScoutProjectProfileRequest"
+        "target": "com.posthog.signals#GetSignalsScoutProjectProfileRequest"
       },
       "output": {
         "target": "com.posthog.signals#ProjectProfile"
@@ -10463,7 +10599,7 @@
         "smithy.api#documentation": "Get the current project profile\n\nReturn the team's deterministic project profile. For the internal scout token the response reflects the newest non-expired cached row or a freshly-built one (lazy compute on cache miss); `force_refresh=true` skips the cache and rebuilds from authoritative sources. Public read callers (session auth or a `signal_scout:read` PAK) get the newest cached profile, or 404 if none has been built yet — they never trigger a rebuild. Read this at the start of a run to orient on the team's product mix, integrations, warehouse sources, signal coverage, and existing inbox surface."
       }
     },
-    "com.posthog.signals#ListSignalScoutRunsRequest": {
+    "com.posthog.signals#ListSignalsScoutRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10654,7 +10790,7 @@
         "metadata": {
           "target": "com.posthog.signals#SignalScoutRunSummaryMetadata",
           "traits": {
-            "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed.",
+            "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed.",
             "smithy.api#required": {}
           }
         }
@@ -10806,26 +10942,29 @@
         "network_access": {
           "target": "smithy.api#String"
         },
+        "triggered_by": {
+          "target": "smithy.api#String"
+        },
         "derived": {
           "target": "com.posthog.signals#SignalScoutRunSummaryMetadataDerived"
         }
       },
       "traits": {
-        "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed."
+        "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed."
       }
     },
-    "com.posthog.signals#SignalsScoutRunsListResponseBodyList": {
+    "com.posthog.signals#ListSignalsScoutRunsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#SignalScoutRunSummary"
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalScoutRunsResponse": {
+    "com.posthog.signals#ListSignalsScoutRunsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.signals#SignalsScoutRunsListResponseBodyList",
+          "target": "com.posthog.signals#ListSignalsScoutRunsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10836,13 +10975,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.signals#ListSignalScoutRuns": {
+    "com.posthog.signals#ListSignalsScoutRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalScoutRunsRequest"
+        "target": "com.posthog.signals#ListSignalsScoutRunsRequest"
       },
       "output": {
-        "target": "com.posthog.signals#ListSignalScoutRunsResponse"
+        "target": "com.posthog.signals#ListSignalsScoutRunsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10853,7 +10992,7 @@
         "smithy.api#documentation": "Search recent agent runs\n\nReturn the most recent `SignalScoutRun` summaries for this project, newest first. Used by the headless scout to dedupe against work other runs already covered. ILIKE matches on `summary`. `date_from` / `date_to` are a half-open window on `created_at` (`>= date_from`, `< date_to`); pass `date_to` on subsequent calls to walk past the 100-row cap. Pass `emitted=true` to see only runs that surfaced at least one finding. Pass `skill_name` (optionally with `skill_version`) to scope to a single scout. Results capped at 100."
       }
     },
-    "com.posthog.signals#SignalsScoutRunsRetrieveRequest": {
+    "com.posthog.signals#GetSignalsScoutRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -11003,7 +11142,7 @@
         "metadata": {
           "target": "com.posthog.signals#SignalScoutRunDetailMetadata",
           "traits": {
-            "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed.",
+            "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed.",
             "smithy.api#required": {}
           }
         }
@@ -11111,18 +11250,21 @@
         "network_access": {
           "target": "smithy.api#String"
         },
+        "triggered_by": {
+          "target": "smithy.api#String"
+        },
         "derived": {
           "target": "com.posthog.signals#SignalScoutRunDetailMetadataDerived"
         }
       },
       "traits": {
-        "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), and `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed."
+        "smithy.api#documentation": "Scout-owned per-run context, in two regions. Top-level keys are stamped by the runner at run start. Always present: `harness_prompt_version` (id of the harness prompt build the run was given), `report_channel` (which report tools the run held: `none`, `emit`, `edit`, or `both`), `skill_origin` (`canonical` or `custom`), `github_guidance` (whether the run got the GitHub evidence section), and `business_knowledge_maintained` (whether the run got the business-knowledge section: the product flag is on and the team's knowledge base looks maintained) — the provenance set that says which instructions the run actually got, so runs are only compared against runs of the same shape. Present only when the run departed from a default: `model`, `runtime_adapter`, and `reasoning_effort` (routing overrode the agent-server default), `network_access` (`full` when the scout's config lifted the trusted-domain network restriction for this run), and `triggered_by` (`manual` or `workflow` when the run was fired off-schedule; absent means the run came from the coordinator's schedule). The nested `derived` object is the harness's own map of boolean run dimensions, computed server-side at finalize: `has_emit_report`, `has_edit_report`, `has_self_improvement`, `has_chart`, and `has_self_validation`. Use `derived` to answer 'what kind of run was this?' instead of parsing the `summary` prose. Note the flags describe the reports the run authored as they stand now, so charts attached to someone else's report via an edit are not counted. A missing `derived` object is unknown, not all-false: the run predates the field, never finalized, or its stamp failed."
       }
     },
-    "com.posthog.signals#SignalsScoutRunsRetrieve": {
+    "com.posthog.signals#GetSignalsScoutRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsScoutRunsRetrieveRequest"
+        "target": "com.posthog.signals#GetSignalsScoutRunRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalScoutRunDetail"
@@ -11168,7 +11310,7 @@
         "smithy.api#documentation": "One suggested reviewer — identified by `github_login`, `user_uuid`, or both.\n\nThe server canonicalizes each entry to a lowercased GitHub login: a `user_uuid` is resolved to the\norg member's linked GitHub login (and wins over a supplied `github_login` when both are given). A\n`user_uuid` that isn't an org member of this team with a linked GitHub identity is rejected — so a\nreviewer is never silently dropped."
       }
     },
-    "com.posthog.signals#SignalsScoutEditReportRequestSuggestedReviewersList": {
+    "com.posthog.signals#EditSignalsScoutReportRequestSuggestedReviewersList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#SuggestedReviewer"
@@ -11177,7 +11319,7 @@
         "smithy.api#documentation": "Optional reviewers to set on the report (each a `github_login` and/or `user_uuid`), replacing any existing list. Use this to route a report that surfaced with no reviewer — it re-runs autostart, so a report that was missing a qualifying reviewer can now open a draft PR. An empty list is a no-op (existing reviewers are left untouched, never cleared)."
       }
     },
-    "com.posthog.signals#SignalsScoutEditReportRequestChartsList": {
+    "com.posthog.signals#EditSignalsScoutReportRequestChartsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#ReportChart"
@@ -11186,16 +11328,16 @@
         "smithy.api#documentation": "The full set of charts the report should show. Replaces the report's charts rather than adding to them, the way `summary` replaces the summary — so send every chart you want kept. Omit the field (or send null) to leave the report's existing charts untouched, and send an empty list to take them all down."
       }
     },
-    "com.posthog.signals#SignalsScoutEditReportRequestSuggestedPromptsList": {
+    "com.posthog.signals#EditSignalsScoutReportRequestSuggestedPromptsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "The full set of follow-up questions the report should offer above its `Ask AI` box. Replaces the report's questions rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them answering the old report."
+        "smithy.api#documentation": "The full set of follow-up prompts (questions or next-step actions) the report should offer above its `Ask AI` box. Replaces the report's prompts rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them pointing at the old report."
       }
     },
-    "com.posthog.signals#SignalsScoutEditReportRequest": {
+    "com.posthog.signals#EditSignalsScoutReportRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -11231,7 +11373,7 @@
         "summary": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional new summary. Markdown is supported (headings, lists, code, links; images are not rendered); lead with one plain declarative sentence — it becomes the inbox card headline. The pipeline may later re-research and overwrite it.",
+            "smithy.api#documentation": "Optional new summary. Markdown is supported (headings, lists, code, links; images are not rendered); lead with one plain declarative sentence — it becomes the inbox card headline. A heading, or a bold label on a line of its own with a blank line above it, marks a section that a threaded Slack delivery splits into its own reply. The pipeline may later re-research and overwrite it.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -11243,22 +11385,22 @@
           }
         },
         "suggested_reviewers": {
-          "target": "com.posthog.signals#SignalsScoutEditReportRequestSuggestedReviewersList",
+          "target": "com.posthog.signals#EditSignalsScoutReportRequestSuggestedReviewersList",
           "traits": {
             "smithy.api#documentation": "Optional reviewers to set on the report (each a `github_login` and/or `user_uuid`), replacing any existing list. Use this to route a report that surfaced with no reviewer — it re-runs autostart, so a report that was missing a qualifying reviewer can now open a draft PR. An empty list is a no-op (existing reviewers are left untouched, never cleared)."
           }
         },
         "charts": {
-          "target": "com.posthog.signals#SignalsScoutEditReportRequestChartsList",
+          "target": "com.posthog.signals#EditSignalsScoutReportRequestChartsList",
           "traits": {
             "smithy.api#documentation": "The full set of charts the report should show. Replaces the report's charts rather than adding to them, the way `summary` replaces the summary — so send every chart you want kept. Omit the field (or send null) to leave the report's existing charts untouched, and send an empty list to take them all down.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "suggested_prompts": {
-          "target": "com.posthog.signals#SignalsScoutEditReportRequestSuggestedPromptsList",
+          "target": "com.posthog.signals#EditSignalsScoutReportRequestSuggestedPromptsList",
           "traits": {
-            "smithy.api#documentation": "The full set of follow-up questions the report should offer above its `Ask AI` box. Replaces the report's questions rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them answering the old report.",
+            "smithy.api#documentation": "The full set of follow-up prompts (questions or next-step actions) the report should offer above its `Ask AI` box. Replaces the report's prompts rather than adding to them, so send every one you want kept. Omit the field (or send null) to leave them untouched, and send an empty list to take them down, which is what you want once a rewrite has left them pointing at the old report.",
             "com.distilled.openapi#nullable": {}
           }
         }
@@ -11309,7 +11451,7 @@
         "suggested_prompts_set": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "How many questions the report now suggests, or null if the edit left them as they were (the field omitted, or a re-send of what was already stored). 0 means the edit took the report's suggested prompts down.",
+            "smithy.api#documentation": "How many prompts the report now suggests, or null if the edit left them as they were (the field omitted, or a re-send of what was already stored). 0 means the edit took the report's suggested prompts down.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -11326,10 +11468,10 @@
         "smithy.api#documentation": "Which presentation fields changed (e.g. `title`, `summary`); empty if only a note was appended."
       }
     },
-    "com.posthog.signals#SignalsScoutEditReport": {
+    "com.posthog.signals#EditSignalsScoutReport": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsScoutEditReportRequest"
+        "target": "com.posthog.signals#EditSignalsScoutReportRequest"
       },
       "output": {
         "target": "com.posthog.signals#EditReportResponse"
@@ -11759,7 +11901,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "Optional follow-up questions to offer above the report's `Ask AI` box. The reader clicks one to fill the box with it, then sends or edits it. Write the questions your own research left open, phrased as the reader would ask them."
+        "smithy.api#documentation": "Optional follow-up prompts to offer above the report's `Ask AI` box: questions to ask, or next-step actions to request (e.g. carrying out the report's recommendation). The reader clicks one to fill the box with it, then sends or edits it. Write the prompts your own research left open, phrased as the reader would send them."
       }
     },
     "com.posthog.signals#SignalsScoutEmitReportRequest": {
@@ -11791,7 +11933,7 @@
         "summary": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The report body the inbox shows. Markdown is supported (headings, lists, code, links; images are not rendered). Lead with one plain declarative sentence — the inbox card uses your first line verbatim as the headline (~140 chars, emphasis stripped), then renders the full markdown in the detail view.",
+            "smithy.api#documentation": "The report body the inbox shows. Markdown is supported (headings, lists, code, links; images are not rendered). Lead with one plain declarative sentence — the inbox card uses your first line verbatim as the headline (~140 chars, emphasis stripped), then renders the full markdown in the detail view. A heading, or a bold label on a line of its own with a blank line above it, marks a section that a threaded Slack delivery splits into its own reply.",
             "smithy.api#required": {}
           }
         },
@@ -11825,7 +11967,7 @@
         "repository": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional repo for autostart (opening a draft PR): `owner/repo` targets that repo, the `NO_REPO` sentinel opts out (report lands without a PR), and omitting it triggers free-form selection across the team's repos — the slow path on a many-repo team, so pass `owner/repo` when you know it.",
+            "smithy.api#documentation": "Optional repo for opening a draft PR, by autostart or by a person from the inbox. Pass `owner/repo` whenever you can say where a fix would land. Omit the field when you can't, which triggers free-form selection across the team's repos (the slow path on a many-repo team). Keep the `NO_REPO` sentinel for the rare report where nothing under version control could change, since a skill body, a config file, or a doc still lives in a repo.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -11858,7 +12000,7 @@
         "suggested_prompts": {
           "target": "com.posthog.signals#SignalsScoutEmitReportRequestSuggestedPromptsList",
           "traits": {
-            "smithy.api#documentation": "Optional follow-up questions to offer above the report's `Ask AI` box. The reader clicks one to fill the box with it, then sends or edits it. Write the questions your own research left open, phrased as the reader would ask them."
+            "smithy.api#documentation": "Optional follow-up prompts to offer above the report's `Ask AI` box: questions to ask, or next-step actions to request (e.g. carrying out the report's recommendation). The reader clicks one to fill the box with it, then sends or edits it. Write the prompts your own research left open, phrased as the reader would send them."
           }
         }
       },
@@ -11973,7 +12115,7 @@
         "smithy.api#documentation": "One citation attached to a finding. Mirrors `SignalsScoutEvidenceEntry`."
       }
     },
-    "com.posthog.signals#SignalsScoutEmitSignalRequestEvidenceList": {
+    "com.posthog.signals#SignalSignalsScoutEmitRequestEvidenceList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#EvidenceEntry"
@@ -11982,7 +12124,7 @@
         "smithy.api#documentation": "Citations supporting the finding. Capped at 20 entries."
       }
     },
-    "com.posthog.signals#SignalsScoutEmitSignalRequestDedupeKeysList": {
+    "com.posthog.signals#SignalSignalsScoutEmitRequestDedupeKeysList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -11991,7 +12133,7 @@
         "smithy.api#documentation": "Optional keys for downstream dedupe (e.g. `error_tracking_issue:<id>`)."
       }
     },
-    "com.posthog.signals#SignalsScoutEmitSignalRequestTagsList": {
+    "com.posthog.signals#SignalSignalsScoutEmitRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -12020,7 +12162,7 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#SignalSignalScoutEmitRequest": {
+    "com.posthog.signals#SignalSignalsScoutEmitRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -12054,7 +12196,7 @@
           }
         },
         "evidence": {
-          "target": "com.posthog.signals#SignalsScoutEmitSignalRequestEvidenceList",
+          "target": "com.posthog.signals#SignalSignalsScoutEmitRequestEvidenceList",
           "traits": {
             "smithy.api#documentation": "Citations supporting the finding. Capped at 20 entries.",
             "smithy.api#required": {}
@@ -12075,13 +12217,13 @@
           }
         },
         "dedupe_keys": {
-          "target": "com.posthog.signals#SignalsScoutEmitSignalRequestDedupeKeysList",
+          "target": "com.posthog.signals#SignalSignalsScoutEmitRequestDedupeKeysList",
           "traits": {
             "smithy.api#documentation": "Optional keys for downstream dedupe (e.g. `error_tracking_issue:<id>`)."
           }
         },
         "tags": {
-          "target": "com.posthog.signals#SignalsScoutEmitSignalRequestTagsList",
+          "target": "com.posthog.signals#SignalSignalsScoutEmitRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Optional category tags as lowercase kebab-case slugs (e.g. `cost-spike`, `silent-failure`), max 10. Reuse the vocabulary in your `tags:<domain>:taxonomy` scratchpad entry when a tag fits; coin a new slug when a genuinely new category emerges. Near-miss formats are normalized to slugs; persisted in the signal's `extra.tags` and on the emission row."
           }
@@ -12148,10 +12290,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#SignalSignalScoutEmit": {
+    "com.posthog.signals#SignalSignalsScoutEmit": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalSignalScoutEmitRequest"
+        "target": "com.posthog.signals#SignalSignalsScoutEmitRequest"
       },
       "output": {
         "target": "com.posthog.signals#EmitFindingResponse"
@@ -12688,7 +12830,7 @@
         "smithy.api#documentation": "List each scout's most recent runs\n\nReturn the most recent `per_scout_limit` runs of *every* configured scout on the project (default 25), newest-first across the fleet. The per-scout probe is the point: a fleet-wide time window has to serve hourly and weekly scouts from one result cap, so the busy scouts crowd out the sparse ones and a scout's visible history shrinks as the rest of the fleet gets busier. Probing each `skill_name` gives every scout the same depth of history whatever its schedule, and bounds the response at scouts x `per_scout_limit` rather than at the fleet's run rate. Only scouts that still have a config are covered, so runs left behind by a deleted or renamed scout are excluded. Runs older than the staleness guard are excluded too, so a scout that stopped running reads as stale instead of healthy — `max_age_days` (default 30) is that guard's floor, which each scout's own cadence extends. Use `list` instead when you want a literal time window or a text/emitted filter. Strictly team-scoped."
       }
     },
-    "com.posthog.signals#SignalsScoutScratchpadSearchRequest": {
+    "com.posthog.signals#SearchSignalsScoutScratchpadRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -12803,7 +12945,7 @@
         "created_by_run_id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Run that wrote this entry, or null if human-authored.",
+            "smithy.api#documentation": "Scout run that wrote this entry, or null when a report-pipeline stage or a human wrote it.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -12811,7 +12953,7 @@
         "created_by_skill": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Canonical skill name of the scout that created this entry (e.g. `signals-scout-apm`), or null if human-authored.",
+            "smithy.api#documentation": "Who created this entry: the canonical skill name of the scout that wrote it (e.g. `signals-scout-apm`), or the report-pipeline stage that did (`pipeline:report-research`, `pipeline:implementation`). Null if human-authored.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -12827,18 +12969,18 @@
         "smithy.api#documentation": "`SignalScratchpad` projection used by `search-memory` and `remember`."
       }
     },
-    "com.posthog.signals#SignalsScoutScratchpadSearchResponseBodyList": {
+    "com.posthog.signals#SearchSignalsScoutScratchpadResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.signals#ScratchpadEntry"
       },
       "traits": {}
     },
-    "com.posthog.signals#SignalsScoutScratchpadSearchResponse": {
+    "com.posthog.signals#SearchSignalsScoutScratchpadResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.signals#SignalsScoutScratchpadSearchResponseBodyList",
+          "target": "com.posthog.signals#SearchSignalsScoutScratchpadResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12849,13 +12991,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.signals#SignalsScoutScratchpadSearch": {
+    "com.posthog.signals#SearchSignalsScoutScratchpad": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsScoutScratchpadSearchRequest"
+        "target": "com.posthog.signals#SearchSignalsScoutScratchpadRequest"
       },
       "output": {
-        "target": "com.posthog.signals#SignalsScoutScratchpadSearchResponse"
+        "target": "com.posthog.signals#SearchSignalsScoutScratchpadResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12894,14 +13036,14 @@
         "run_id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Run that authored this memory; persisted as `created_by_run_id` for lineage. Best-effort — a `run_id` that isn't a run on this project is dropped (lineage left null), not rejected, so the memory write is never lost.",
+            "smithy.api#documentation": "Run that authored this memory; persisted as `created_by_run_id` for lineage. Best-effort — a `run_id` that is unparseable, or that isn't a run on this project, is dropped rather than rejected, so the memory write is never lost. Omit it and the lineage still lands: a write from a scout sandbox is attributed to that sandbox's own run.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "expires_at": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional ISO-8601 expiry for a memory that's only true for a while (a cooldown, a window you're watching). After this time the entry drops out of searches, so you don't have to come back and forget it. Omit for a durable memory — every write sets the whole entry, so omitting it on a later write clears an expiry set earlier.",
+            "smithy.api#documentation": "Optional ISO-8601 expiry for a memory that's only true for a while (a cooldown, a window you're watching). After this time the entry drops out of searches, so you don't have to come back and forget it. Omit for a durable memory — every write sets the whole entry, so omitting it on a later write clears an expiry set earlier. Best-effort — a value that can't be parsed or is already in the past is dropped (the memory stays durable), not rejected, so the memory write is never lost.",
             "com.distilled.openapi#nullable": {}
           }
         }
@@ -12985,7 +13127,348 @@
         "smithy.api#documentation": "Forget a scratchpad entry by key\n\nDelete an entry by key. Returns `deleted=false` if no row matched."
       }
     },
-    "com.posthog.signals#ListSignalSourceConfigsRequest": {
+    "com.posthog.signals#ListSignalsScoutSuggestionsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.signals#ScoutSuggestionSet": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.posthog.signals#SignalScoutSuggestionSetStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "`fresh`: current batch. `stale`: the fleet changed since it was generated, or the batch aged past the refresh window. `failed`: the last refresh failed (items are the prior batch, if any). `empty`: nothing to suggest yet.\n\n* `fresh` - Fresh\n* `stale` - Stale\n* `failed` - Failed\n* `empty` - Empty",
+            "smithy.api#required": {}
+          }
+        },
+        "generated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the current batch was generated; null before the first run.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model that produced the batch, when pinned.",
+            "smithy.api#required": {}
+          }
+        },
+        "fleet_snapshot": {
+          "target": "com.posthog.signals#ScoutSuggestionSetFleetSnapshotList",
+          "traits": {
+            "smithy.api#documentation": "Skill names that were enabled when the batch was generated.",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.posthog.signals#ScoutSuggestionSetItemsList",
+          "traits": {
+            "smithy.api#documentation": "Suggestions not yet dismissed or created, best first. Up to 5.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.signals#SignalScoutSuggestionSetStatusEnum": {
+      "type": "enum",
+      "members": {
+        "FRESH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fresh"
+          }
+        },
+        "STALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stale"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "EMPTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "empty"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `fresh` - Fresh\n* `stale` - Stale\n* `failed` - Failed\n* `empty` - Empty"
+      }
+    },
+    "com.posthog.signals#ScoutSuggestionSetFleetSnapshotList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Skill names that were enabled when the batch was generated."
+      }
+    },
+    "com.posthog.signals#ScoutSuggestionItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable id of this suggestion within the batch; use it to dismiss.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.posthog.signals#ScoutOriginEnum",
+          "traits": {
+            "smithy.api#documentation": "`canonical`: enable a PostHog-authored scout that exists but is off. `custom`: create a drafted scout.\n\n* `canonical` - canonical\n* `custom` - custom",
+            "smithy.api#required": {}
+          }
+        },
+        "skill_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scout's `signals-scout-*` skill name (existing for canonical, proposed for custom).",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short sentence-case title: what the scout watches.",
+            "smithy.api#required": {}
+          }
+        },
+        "why_here": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Project-specific evidence for this suggestion, in prose.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom only: the one-line description the scout would be created with.",
+            "smithy.api#required": {}
+          }
+        },
+        "draft_body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Custom only: the complete skill body the scout would be created with.",
+            "smithy.api#required": {}
+          }
+        },
+        "proposed_config": {
+          "target": "com.posthog.signals#ScoutSuggestionProposedConfig",
+          "traits": {
+            "smithy.api#documentation": "Suggested schedule and emit posture.",
+            "smithy.api#required": {}
+          }
+        },
+        "gap": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when nothing in the current fleet covers this.",
+            "smithy.api#required": {}
+          }
+        },
+        "confidence": {
+          "target": "com.posthog.signals#ConfidenceTierEnum",
+          "traits": {
+            "smithy.api#documentation": "The producer's confidence.\n\n* `low` - low\n* `medium` - medium\n* `high` - high",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.signals#ScoutSuggestionProposedConfig": {
+      "type": "structure",
+      "members": {
+        "run_cron_schedule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Suggested five-field cron schedule in the project timezone, or null for an interval.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "run_interval_minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Suggested minutes between runs when no cron is given; null means the daily default.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "emit": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the suggested scout should write to the inbox (false = dry run).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.signals#ConfidenceTierEnum": {
+      "type": "enum",
+      "members": {
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        },
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `low` - low\n* `medium` - medium\n* `high` - high"
+      }
+    },
+    "com.posthog.signals#ScoutSuggestionSetItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.signals#ScoutSuggestionItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Suggestions not yet dismissed or created, best first. Up to 5."
+      }
+    },
+    "com.posthog.signals#ListSignalsScoutSuggestions": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.signals#ListSignalsScoutSuggestionsRequest"
+      },
+      "output": {
+        "target": "com.posthog.signals#ScoutSuggestionSet"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/signals/scout/suggestions/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get suggested scouts for this project\n\nReturn the pre-computed scout suggestions for this project: up to five picks, best first, each either a PostHog-authored scout to turn on or a drafted custom scout. Dismissed and already-created suggestions are omitted. An empty `items` with status `empty` means no batch has been generated yet; the interactive `scout-chat-tasks` path still works."
+      }
+    },
+    "com.posthog.signals#DismissSignalsScoutSuggestionRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this Signal scout suggestion set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.signals#DismissSignalsScoutSuggestion": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.signals#DismissSignalsScoutSuggestionRequest"
+      },
+      "output": {
+        "target": "com.posthog.signals#ScoutSuggestionItem"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.signals#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/signals/scout/suggestions/{id}/dismiss/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Dismiss a suggested scout\n\nHide one suggestion from this project's batch. Dismissal is remembered across refreshes by skill name, so the same suggestion is not shown again."
+      }
+    },
+    "com.posthog.signals#RefreshSignalsScoutSuggestionRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.signals#RefreshSignalsScoutSuggestion": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.signals#RefreshSignalsScoutSuggestionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.signals#Forbidden"
+        },
+        {
+          "target": "com.posthog.signals#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/signals/scout/suggestions/refresh/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Refresh suggested scouts\n\nRe-run the suggestion scan for this project now instead of waiting for the scheduled refresh. Runs headlessly; poll the list endpoint for the new batch (`generated_at` advances). Capped per project per day."
+      }
+    },
+    "com.posthog.signals#ListSignalsSourceConfigsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -13524,10 +14007,10 @@
       },
       "traits": {}
     },
-    "com.posthog.signals#ListSignalSourceConfigs": {
+    "com.posthog.signals#ListSignalsSourceConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#ListSignalSourceConfigsRequest"
+        "target": "com.posthog.signals#ListSignalsSourceConfigsRequest"
       },
       "output": {
         "target": "com.posthog.signals#PaginatedSignalSourceConfigList"
@@ -13551,7 +14034,7 @@
         }
       }
     },
-    "com.posthog.signals#SignalsSourceConfigsCreateRequestConfigMap": {
+    "com.posthog.signals#CreateSignalsSourceConfigRequestConfigMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13563,7 +14046,7 @@
         "smithy.api#documentation": "Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis."
       }
     },
-    "com.posthog.signals#CreateSignalSourceConfigRequest": {
+    "com.posthog.signals#CreateSignalsSourceConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -13584,7 +14067,7 @@
           "target": "smithy.api#Boolean"
         },
         "config": {
-          "target": "com.posthog.signals#SignalsSourceConfigsCreateRequestConfigMap",
+          "target": "com.posthog.signals#CreateSignalsSourceConfigRequestConfigMap",
           "traits": {
             "smithy.api#documentation": "Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis."
           }
@@ -13594,10 +14077,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#CreateSignalSourceConfig": {
+    "com.posthog.signals#CreateSignalsSourceConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#CreateSignalSourceConfigRequest"
+        "target": "com.posthog.signals#CreateSignalsSourceConfigRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalSourceConfig"
@@ -13621,7 +14104,7 @@
         }
       }
     },
-    "com.posthog.signals#SignalsSourceConfigsRetrieveRequest": {
+    "com.posthog.signals#GetSignalsSourceConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -13645,10 +14128,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#SignalsSourceConfigsRetrieve": {
+    "com.posthog.signals#GetSignalsSourceConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#SignalsSourceConfigsRetrieveRequest"
+        "target": "com.posthog.signals#GetSignalsSourceConfigRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalSourceConfig"
@@ -13669,7 +14152,7 @@
         }
       }
     },
-    "com.posthog.signals#SignalsSourceConfigsUpdateRequestConfigMap": {
+    "com.posthog.signals#UpdateSignalsSourceConfigRequestConfigMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13681,7 +14164,7 @@
         "smithy.api#documentation": "Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis."
       }
     },
-    "com.posthog.signals#UpdateSignalSourceConfigRequest": {
+    "com.posthog.signals#UpdateSignalsSourceConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -13710,7 +14193,7 @@
           "target": "smithy.api#Boolean"
         },
         "config": {
-          "target": "com.posthog.signals#SignalsSourceConfigsUpdateRequestConfigMap",
+          "target": "com.posthog.signals#UpdateSignalsSourceConfigRequestConfigMap",
           "traits": {
             "smithy.api#documentation": "Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis."
           }
@@ -13720,10 +14203,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#UpdateSignalSourceConfig": {
+    "com.posthog.signals#UpdateSignalsSourceConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#UpdateSignalSourceConfigRequest"
+        "target": "com.posthog.signals#UpdateSignalsSourceConfigRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalSourceConfig"
@@ -13747,7 +14230,7 @@
         }
       }
     },
-    "com.posthog.signals#SignalsSourceConfigsPartialUpdateRequestConfigMap": {
+    "com.posthog.signals#UpdateSignalsSourceConfigsPartialRequestConfigMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13759,7 +14242,7 @@
         "smithy.api#documentation": "Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis."
       }
     },
-    "com.posthog.signals#UpdateSignalSourceConfigPartialRequest": {
+    "com.posthog.signals#UpdateSignalsSourceConfigsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -13788,7 +14271,7 @@
           "target": "smithy.api#Boolean"
         },
         "config": {
-          "target": "com.posthog.signals#SignalsSourceConfigsPartialUpdateRequestConfigMap",
+          "target": "com.posthog.signals#UpdateSignalsSourceConfigsPartialRequestConfigMap",
           "traits": {
             "smithy.api#documentation": "Per-source settings as a JSON object. Keys read by the emission actionability gate on sources that define one (most data warehouse imports, and Conversations): `steering` (string, max 2000 characters) holds the team's preferences about this source's records in plain language: what matters, what to skip, what's out of scope. The emission actionability gate applies it when deciding which records become signals; rules apply from the next sync and nothing already emitted is retracted. `default_not_actionable` (boolean, default false) flips the gate's default: instead of keeping every record the steering rules don't exclude, only records that clearly match the team's preferences are kept. Other sources store these keys without reading them yet; future pipeline stages will consume the same steering text. Some sources read additional keys, for example `recording_filters` and `sample_rate` for session analysis."
           }
@@ -13798,10 +14281,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.signals#UpdateSignalSourceConfigPartial": {
+    "com.posthog.signals#UpdateSignalsSourceConfigsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.signals#UpdateSignalSourceConfigPartialRequest"
+        "target": "com.posthog.signals#UpdateSignalsSourceConfigsPartialRequest"
       },
       "output": {
         "target": "com.posthog.signals#SignalSourceConfig"
@@ -13930,70 +14413,118 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.signals#ListSignalProcessing"
+          "target": "com.posthog.signals#CreateSignalsReportArtefact"
         },
         {
-          "target": "com.posthog.signals#UpdateSignalProcessingPause"
+          "target": "com.posthog.signals#CreateSignalsReportPrReviewComment"
         },
         {
-          "target": "com.posthog.signals#SignalsProcessingPauseDestroy"
+          "target": "com.posthog.signals#CreateSignalsReportPrReviewCommentReaction"
         },
         {
-          "target": "com.posthog.signals#ListSignalReports"
+          "target": "com.posthog.signals#CreateSignalsReportsFeedback"
         },
         {
-          "target": "com.posthog.signals#SignalsReportsRetrieve"
+          "target": "com.posthog.signals#CreateSignalsReportsRefund"
         },
         {
-          "target": "com.posthog.signals#UpdateSignalReportPartial"
+          "target": "com.posthog.signals#CreateSignalsReportsState"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportFeedback"
+          "target": "com.posthog.signals#CreateSignalsReportsViewed"
         },
         {
-          "target": "com.posthog.signals#SignalsReportPrChecks"
+          "target": "com.posthog.signals#CreateSignalsScout"
         },
         {
-          "target": "com.posthog.signals#SignalsReportPrComments"
+          "target": "com.posthog.signals#CreateSignalsScoutChatTask"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportPrReviewComment"
+          "target": "com.posthog.signals#CreateSignalsScoutConfig"
         },
         {
-          "target": "com.posthog.signals#UpdateSignalReportPrReviewComment"
+          "target": "com.posthog.signals#CreateSignalsScoutNote"
         },
         {
-          "target": "com.posthog.signals#SignalsReportPrReviewCommentDestroy"
+          "target": "com.posthog.signals#CreateSignalsSourceConfig"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportPrReviewCommentReaction"
+          "target": "com.posthog.signals#DismissSignalsScoutSuggestion"
         },
         {
-          "target": "com.posthog.signals#SignalsReportPrReviewCommentReactionDestroy"
+          "target": "com.posthog.signals#EditSignalsScoutReport"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportRefund"
+          "target": "com.posthog.signals#GetSignalsReport"
         },
         {
-          "target": "com.posthog.signals#SignalsReportsSignalsRetrieve"
+          "target": "com.posthog.signals#GetSignalsReportArtefact"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportState"
+          "target": "com.posthog.signals#GetSignalsReportsRefundSummary"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportViewed"
+          "target": "com.posthog.signals#GetSignalsReportsSignal"
         },
         {
-          "target": "com.posthog.signals#ListSignalReportArtefacts"
+          "target": "com.posthog.signals#GetSignalsScoutMetadata"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportArtefact"
+          "target": "com.posthog.signals#GetSignalsScoutProjectProfile"
         },
         {
-          "target": "com.posthog.signals#SignalsReportArtefactsRetrieve"
+          "target": "com.posthog.signals#GetSignalsScoutRun"
         },
         {
-          "target": "com.posthog.signals#UpdateSignalReportArtefactPartial"
+          "target": "com.posthog.signals#GetSignalsSourceConfig"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsProcessing"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsReportArtefacts"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsReports"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutMembers"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutNotes"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutRuns"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutSuggestions"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsSourceConfigs"
+        },
+        {
+          "target": "com.posthog.signals#PauseSignalsProcessingDestroy"
+        },
+        {
+          "target": "com.posthog.signals#RefreshSignalsScoutSuggestion"
+        },
+        {
+          "target": "com.posthog.signals#ReviewSignalsReportPrCommentDestroy"
+        },
+        {
+          "target": "com.posthog.signals#ReviewSignalsReportPrCommentReactionDestroy"
+        },
+        {
+          "target": "com.posthog.signals#RunSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#SearchSignalsScoutScratchpad"
+        },
+        {
+          "target": "com.posthog.signals#SignalSignalsScoutEmit"
         },
         {
           "target": "com.posthog.signals#SignalsReportArtefactsDestroy"
@@ -14002,118 +14533,79 @@
           "target": "com.posthog.signals#SignalsReportArtefactsDiff"
         },
         {
-          "target": "com.posthog.signals#CreateSignalReportBulkState"
+          "target": "com.posthog.signals#SignalsReportPrChecks"
         },
         {
-          "target": "com.posthog.signals#SignalsReportsRefundSummaryRetrieve"
+          "target": "com.posthog.signals#SignalsReportPrComments"
         },
         {
-          "target": "com.posthog.signals#CreateSignalScout"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalScoutChatTask"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalScoutConfig"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalScoutConfig"
-        },
-        {
-          "target": "com.posthog.signals#UpdateSignalScoutConfig"
+          "target": "com.posthog.signals#SignalsReportsBulkStateCreate"
         },
         {
           "target": "com.posthog.signals#SignalsScoutConfigDestroy"
         },
         {
-          "target": "com.posthog.signals#SignalsScoutConfigRun"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutConfigSync"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalScoutMembers"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalScoutMetadata"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalScoutNotes"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalScoutNote"
+          "target": "com.posthog.signals#SignalsScoutEmitReport"
         },
         {
           "target": "com.posthog.signals#SignalsScoutNotesDestroy"
         },
         {
-          "target": "com.posthog.signals#GetSignalScoutProjectProfile"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalScoutRuns"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsRetrieve"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutEditReport"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsEmissions"
+          "target": "com.posthog.signals#SignalsScoutRecordOutput"
         },
         {
           "target": "com.posthog.signals#SignalsScoutRunsEmissionReports"
         },
         {
-          "target": "com.posthog.signals#SignalsScoutEmitReport"
+          "target": "com.posthog.signals#SignalsScoutRunsEmissionReportsBatch"
         },
         {
-          "target": "com.posthog.signals#SignalSignalScoutEmit"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRecordOutput"
+          "target": "com.posthog.signals#SignalsScoutRunsEmissions"
         },
         {
           "target": "com.posthog.signals#SignalsScoutRunsEmissionsBatch"
         },
         {
-          "target": "com.posthog.signals#SignalsScoutRunsRecentEmissions"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsEmissionReportsBatch"
-        },
-        {
           "target": "com.posthog.signals#SignalsScoutRunsFindingsSummary"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsRecentEmissions"
         },
         {
           "target": "com.posthog.signals#SignalsScoutRunsRecentPerScout"
         },
         {
-          "target": "com.posthog.signals#SignalsScoutScratchpadSearch"
+          "target": "com.posthog.signals#SignalsScoutScratchpadForget"
         },
         {
           "target": "com.posthog.signals#SignalsScoutScratchpadRemember"
         },
         {
-          "target": "com.posthog.signals#SignalsScoutScratchpadForget"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalSourceConfigs"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalSourceConfig"
-        },
-        {
-          "target": "com.posthog.signals#SignalsSourceConfigsRetrieve"
-        },
-        {
-          "target": "com.posthog.signals#UpdateSignalSourceConfig"
-        },
-        {
-          "target": "com.posthog.signals#UpdateSignalSourceConfigPartial"
-        },
-        {
           "target": "com.posthog.signals#SignalsSourceConfigsDestroy"
+        },
+        {
+          "target": "com.posthog.signals#SyncSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsProcessingPause"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsReportArtefactsPartial"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsReportPrReviewComment"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsReportsPartial"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsSourceConfig"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsSourceConfigsPartial"
         }
       ],
       "traits": {

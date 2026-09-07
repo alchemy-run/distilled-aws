@@ -48,7 +48,8 @@
       "totalCount": "total_count",
       "valueType": "value_type",
       "workerBinding": "worker_binding"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.pipelines#CreateRequestDestinationBatch": {
@@ -8630,61 +8631,61 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.pipelines#Create"
+          "target": "com.cloudflare.pipelines#CreatePipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#CreateV1"
+          "target": "com.cloudflare.pipelines#CreateSink"
         },
         {
-          "target": "com.cloudflare.pipelines#Delete"
+          "target": "com.cloudflare.pipelines#CreateStream"
         },
         {
-          "target": "com.cloudflare.pipelines#DeleteV1"
+          "target": "com.cloudflare.pipelines#CreateV1Pipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#Get"
+          "target": "com.cloudflare.pipelines#DeletePipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#GetV1"
+          "target": "com.cloudflare.pipelines#DeleteSink"
         },
         {
-          "target": "com.cloudflare.pipelines#List"
+          "target": "com.cloudflare.pipelines#DeleteStream"
         },
         {
-          "target": "com.cloudflare.pipelines#ListV1"
+          "target": "com.cloudflare.pipelines#DeleteV1Pipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#Update"
+          "target": "com.cloudflare.pipelines#GetPipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#ValidateSql"
+          "target": "com.cloudflare.pipelines#GetSink"
         },
         {
-          "target": "com.cloudflare.pipelines#SinksCreate"
+          "target": "com.cloudflare.pipelines#GetStream"
         },
         {
-          "target": "com.cloudflare.pipelines#SinksDelete"
+          "target": "com.cloudflare.pipelines#GetV1Pipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#SinksGet"
+          "target": "com.cloudflare.pipelines#ListPipelines"
         },
         {
-          "target": "com.cloudflare.pipelines#SinksList"
+          "target": "com.cloudflare.pipelines#ListSinks"
         },
         {
-          "target": "com.cloudflare.pipelines#StreamsCreate"
+          "target": "com.cloudflare.pipelines#ListStreams"
         },
         {
-          "target": "com.cloudflare.pipelines#StreamsDelete"
+          "target": "com.cloudflare.pipelines#ListV1Pipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#StreamsGet"
+          "target": "com.cloudflare.pipelines#PatchStream"
         },
         {
-          "target": "com.cloudflare.pipelines#StreamsList"
+          "target": "com.cloudflare.pipelines#UpdatePipeline"
         },
         {
-          "target": "com.cloudflare.pipelines#StreamsUpdate"
+          "target": "com.cloudflare.pipelines#ValidateSqlPipeline"
         }
       ],
       "traits": {

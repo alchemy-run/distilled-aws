@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.management#TenantBackfillStatus": {
@@ -142,7 +143,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.management#OperationsListResponseValueList",
+          "target": "com.azure.management#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -158,7 +159,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.management#OperationsListResponseValueList": {
+    "com.azure.management#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.management#Operation"
@@ -637,10 +638,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#GetManagementGroupSubscriptionSubscriptionUnderManagementGroup": {
+    "com.azure.management#GetManagementGroupSubscriptionSubscriptionsUnderManagementGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.management#GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest"
+        "target": "com.azure.management#GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest"
       },
       "output": {
         "target": "com.azure.management#ListSubscriptionUnderManagementGroup"
@@ -724,7 +725,7 @@
         "smithy.api#documentation": "The details of subscription under management group."
       }
     },
-    "com.azure.management#GetManagementGroupSubscriptionSubscriptionUnderManagementGroupRequest": {
+    "com.azure.management#GetManagementGroupSubscriptionSubscriptionsUnderManagementGroupRequest": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -747,10 +748,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#DeleteHierarchySetting": {
+    "com.azure.management#DeleteHierarchySettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.management#DeleteHierarchySettingRequest"
+        "target": "com.azure.management#DeleteHierarchySettingsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -766,7 +767,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.management#DeleteHierarchySettingRequest": {
+    "com.azure.management#DeleteHierarchySettingsRequest": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -782,13 +783,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#UpdateHierarchySetting": {
+    "com.azure.management#UpdateHierarchySettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.management#UpdateHierarchySettingRequest"
+        "target": "com.azure.management#UpdateHierarchySettingsRequest"
       },
       "output": {
-        "target": "com.azure.management#UpdateHierarchySettingResponse"
+        "target": "com.azure.management#UpdateHierarchySettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -801,7 +802,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.management#UpdateHierarchySettingResponse": {
+    "com.azure.management#UpdateHierarchySettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -865,7 +866,7 @@
         "smithy.api#documentation": "The generic properties of hierarchy settings."
       }
     },
-    "com.azure.management#UpdateHierarchySettingRequest": {
+    "com.azure.management#UpdateHierarchySettingsRequest": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -986,13 +987,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#GetHierarchySetting": {
+    "com.azure.management#GetHierarchySettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.management#GetHierarchySettingRequest"
+        "target": "com.azure.management#GetHierarchySettingsRequest"
       },
       "output": {
-        "target": "com.azure.management#GetHierarchySettingResponse"
+        "target": "com.azure.management#GetHierarchySettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1005,7 +1006,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-01"
       }
     },
-    "com.azure.management#GetHierarchySettingResponse": {
+    "com.azure.management#GetHierarchySettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1043,7 +1044,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.management#GetHierarchySettingRequest": {
+    "com.azure.management#GetHierarchySettingsRequest": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -1059,10 +1060,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#HierarchySettingsList2": {
+    "com.azure.management#ListHierarchySettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.management#HierarchySettingsListRequest"
+        "target": "com.azure.management#ListHierarchySettingsRequest"
       },
       "output": {
         "target": "com.azure.management#HierarchySettingsList"
@@ -1140,7 +1141,7 @@
         "smithy.api#documentation": "The hierarchy settings resource."
       }
     },
-    "com.azure.management#HierarchySettingsListRequest": {
+    "com.azure.management#ListHierarchySettingsRequest": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -1156,10 +1157,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#GetManagementGroupDescendant": {
+    "com.azure.management#GetManagementGroupDescendants": {
       "type": "operation",
       "input": {
-        "target": "com.azure.management#GetManagementGroupDescendantRequest"
+        "target": "com.azure.management#GetManagementGroupDescendantsRequest"
       },
       "output": {
         "target": "com.azure.management#DescendantListResult"
@@ -1262,7 +1263,7 @@
         "smithy.api#documentation": "The generic properties of an descendant."
       }
     },
-    "com.azure.management#GetManagementGroupDescendantRequest": {
+    "com.azure.management#GetManagementGroupDescendantsRequest": {
       "type": "structure",
       "members": {
         "groupId": {
@@ -1848,7 +1849,7 @@
           }
         },
         "_expand": {
-          "target": "com.azure.management#ManagementGroupsGetRequestExpand",
+          "target": "com.azure.management#GetManagementGroupRequestExpand",
           "traits": {
             "smithy.api#httpQuery": "$expand",
             "smithy.api#documentation": "The $expand=children query string parameter allows clients to request inclusion of children in the response payload.  $expand=path includes the path from the root group to the current group.  $expand=ancestors includes the ancestor Ids of the current group."
@@ -1873,7 +1874,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#ManagementGroupsGetRequestExpand": {
+    "com.azure.management#GetManagementGroupRequestExpand": {
       "type": "enum",
       "members": {
         "CHILDREN": {
@@ -2277,7 +2278,7 @@
           }
         },
         "_search": {
-          "target": "com.azure.management#EntitiesListRequestSearch",
+          "target": "com.azure.management#ListEntitiesRequestSearch",
           "traits": {
             "smithy.api#httpQuery": "$search",
             "smithy.api#documentation": "The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.\nWith $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.\nWith $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.\nWith $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants.\nWith $search=ParentOnly the API will return only the group if the user has access to at least one of the descendants of the group.\nWith $search=ChildrenOnly the API will return only the first level of children of the group entity info specified in $filter.  The user must have direct access to the children entities or one of it's descendants for it to show up in the results."
@@ -2291,7 +2292,7 @@
           }
         },
         "_view": {
-          "target": "com.azure.management#EntitiesListRequestView",
+          "target": "com.azure.management#ListEntitiesRequestView",
           "traits": {
             "smithy.api#httpQuery": "$view",
             "smithy.api#documentation": "The view parameter allows clients to filter the type of data that is returned by the getEntities call."
@@ -2309,7 +2310,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.management#EntitiesListRequestView": {
+    "com.azure.management#ListEntitiesRequestView": {
       "type": "enum",
       "members": {
         "FULLHIERARCHY": {
@@ -2339,7 +2340,7 @@
       },
       "traits": {}
     },
-    "com.azure.management#EntitiesListRequestSearch": {
+    "com.azure.management#ListEntitiesRequestSearch": {
       "type": "enum",
       "members": {
         "ALLOWEDPARENTS": {
@@ -2920,7 +2921,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.management#ServiceGroupsGetResponseTagsMap",
+          "target": "com.azure.management#GetServiceGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The serviceGroup tags."
           }
@@ -2930,7 +2931,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.management#ServiceGroupsGetResponseTagsMap": {
+    "com.azure.management#GetServiceGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2963,76 +2964,76 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.management#TenantBackfillStatus"
-        },
-        {
-          "target": "com.azure.management#StartTenantBackfill"
-        },
-        {
-          "target": "com.azure.management#ListOperations"
-        },
-        {
-          "target": "com.azure.management#DeleteManagementGroupSubscription"
+          "target": "com.azure.management#CheckNameAvailability"
         },
         {
           "target": "com.azure.management#CreateManagementGroupSubscription"
         },
         {
-          "target": "com.azure.management#GetManagementGroupSubscriptionSubscription"
+          "target": "com.azure.management#CreateOrUpdateServiceGroup"
         },
         {
-          "target": "com.azure.management#GetManagementGroupSubscriptionSubscriptionUnderManagementGroup"
-        },
-        {
-          "target": "com.azure.management#DeleteHierarchySetting"
-        },
-        {
-          "target": "com.azure.management#UpdateHierarchySetting"
-        },
-        {
-          "target": "com.azure.management#HierarchySettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.management#GetHierarchySetting"
-        },
-        {
-          "target": "com.azure.management#HierarchySettingsList2"
-        },
-        {
-          "target": "com.azure.management#GetManagementGroupDescendant"
+          "target": "com.azure.management#DeleteHierarchySettings"
         },
         {
           "target": "com.azure.management#DeleteManagementGroup"
         },
         {
-          "target": "com.azure.management#UpdateManagementGroup"
-        },
-        {
-          "target": "com.azure.management#ManagementGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.management#GetManagementGroup"
-        },
-        {
-          "target": "com.azure.management#ListManagementGroups"
-        },
-        {
-          "target": "com.azure.management#ListEntities"
-        },
-        {
-          "target": "com.azure.management#CheckNameAvailability"
+          "target": "com.azure.management#DeleteManagementGroupSubscription"
         },
         {
           "target": "com.azure.management#DeleteServiceGroup"
         },
         {
-          "target": "com.azure.management#UpdateServiceGroup"
+          "target": "com.azure.management#GetHierarchySettings"
         },
         {
-          "target": "com.azure.management#CreateOrUpdateServiceGroup"
+          "target": "com.azure.management#GetManagementGroup"
+        },
+        {
+          "target": "com.azure.management#GetManagementGroupDescendants"
+        },
+        {
+          "target": "com.azure.management#GetManagementGroupSubscriptionSubscription"
+        },
+        {
+          "target": "com.azure.management#GetManagementGroupSubscriptionSubscriptionsUnderManagementGroup"
         },
         {
           "target": "com.azure.management#GetServiceGroup"
+        },
+        {
+          "target": "com.azure.management#HierarchySettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.management#ListEntities"
+        },
+        {
+          "target": "com.azure.management#ListHierarchySettings"
+        },
+        {
+          "target": "com.azure.management#ListManagementGroups"
+        },
+        {
+          "target": "com.azure.management#ListOperations"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.management#StartTenantBackfill"
+        },
+        {
+          "target": "com.azure.management#TenantBackfillStatus"
+        },
+        {
+          "target": "com.azure.management#UpdateHierarchySettings"
+        },
+        {
+          "target": "com.azure.management#UpdateManagementGroup"
+        },
+        {
+          "target": "com.azure.management#UpdateServiceGroup"
         }
       ],
       "traits": {

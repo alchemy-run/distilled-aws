@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.networks#ListNetworksRequestSortItem": {
@@ -1507,19 +1508,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.networks#ListNetworks"
+          "target": "com.hetzner.networks#CreateNetwork"
         },
         {
-          "target": "com.hetzner.networks#CreateNetwork"
+          "target": "com.hetzner.networks#DeleteNetwork"
         },
         {
           "target": "com.hetzner.networks#GetNetwork"
         },
         {
-          "target": "com.hetzner.networks#UpdateNetwork"
+          "target": "com.hetzner.networks#ListNetworks"
         },
         {
-          "target": "com.hetzner.networks#DeleteNetwork"
+          "target": "com.hetzner.networks#UpdateNetwork"
         }
       ],
       "traits": {

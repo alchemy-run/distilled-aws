@@ -85,13 +85,13 @@ export const ScansBulkCreateRequestBodyList = /*@__PURE__*/ S.Array(
   ScansBulkCreateRequestBodyItem,
 ) as any as S.Schema<ScansBulkCreateRequestBodyList>;
 
-export interface CreateBulkScanRequest {
+export interface BulkCreateScansRequest {
   /** Account ID. */
   accountId: string;
   /** List of urls to scan (up to a 100). */
   body?: ScansBulkCreateRequestBodyList;
 }
-export const CreateBulkScanRequest = /*@__PURE__*/ S.suspend(() =>
+export const BulkCreateScansRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     accountId: S.String.pipe(T.Label("account_id")),
     body: S.optional(ScansBulkCreateRequestBodyList.pipe(T.HttpBody())),
@@ -105,15 +105,15 @@ export const CreateBulkScanRequest = /*@__PURE__*/ S.suspend(() =>
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkScanRequest",
-}) as any as S.Schema<CreateBulkScanRequest>;
+  identifier: "BulkCreateScansRequest",
+}) as any as S.Schema<BulkCreateScansRequest>;
 
-export type CreateBulkScanResponse = string;
-export const CreateBulkScanResponse = /*@__PURE__*/ S.suspend(() =>
+export type BulkCreateScansResponse = string;
+export const BulkCreateScansResponse = /*@__PURE__*/ S.suspend(() =>
   S.String.pipe(T.EnvelopePayloadRoot(), T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "CreateBulkScanResponse",
-}) as any as S.Schema<CreateBulkScanResponse>;
+  identifier: "BulkCreateScansResponse",
+}) as any as S.Schema<BulkCreateScansResponse>;
 
 export type ScansCreateRequestCountry =
   | "AF"
@@ -3941,16 +3941,16 @@ export const ScreenshotScanResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScreenshotScanResponse",
 }) as any as S.Schema<ScreenshotScanResponse>;
 
-export type CreateBulkScanError = CloudflareOpError;
+export type BulkCreateScansError = CloudflareOpError;
 /** Submit URLs to scan. Check limits at https://developers.cloudflare.com/security-center/investigate/scan-limits/ and take into account scans submitted in bulk have lower priority and may take longer to finish. */
-export const createBulkScan: API.OperationMethod<
-  CreateBulkScanRequest,
-  CreateBulkScanResponse,
-  CreateBulkScanError,
+export const bulkCreateScans: API.OperationMethod<
+  BulkCreateScansRequest,
+  BulkCreateScansResponse,
+  BulkCreateScansError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateBulkScanRequest,
-  output: CreateBulkScanResponse,
+  input: BulkCreateScansRequest,
+  output: BulkCreateScansResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

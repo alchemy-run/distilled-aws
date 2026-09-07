@@ -125,6 +125,27 @@ export const DataWarehouseExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataWarehouseExpression",
 }) as any as S.Schema<DataWarehouseExpression>;
 
+export interface GetWarehouseExpressionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse expression. */
+  id: string;
+}
+export const GetWarehouseExpressionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWarehouseExpressionRequest",
+}) as any as S.Schema<GetWarehouseExpressionRequest>;
+
 export interface ListWarehouseExpressionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -213,7 +234,7 @@ export const UpdateWarehouseExpressionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateWarehouseExpressionRequest",
 }) as any as S.Schema<UpdateWarehouseExpressionRequest>;
 
-export interface UpdateWarehouseExpressionPartialRequest {
+export interface UpdateWarehouseExpressionsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this data warehouse expression. */
@@ -229,7 +250,7 @@ export interface UpdateWarehouseExpressionPartialRequest {
   /** ExternalDataSource id to scope the expression to that connection's direct-query database. Null applies it to the default warehouse database. */
   connection_id?: string | null;
 }
-export const UpdateWarehouseExpressionPartialRequest = /*@__PURE__*/ S.suspend(
+export const UpdateWarehouseExpressionsPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -247,8 +268,8 @@ export const UpdateWarehouseExpressionPartialRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "UpdateWarehouseExpressionPartialRequest",
-}) as any as S.Schema<UpdateWarehouseExpressionPartialRequest>;
+  identifier: "UpdateWarehouseExpressionsPartialRequest",
+}) as any as S.Schema<UpdateWarehouseExpressionsPartialRequest>;
 
 export interface WarehouseExpressionsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -278,27 +299,6 @@ export const WarehouseExpressionsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WarehouseExpressionsDestroyResponse",
 }) as any as S.Schema<WarehouseExpressionsDestroyResponse>;
 
-export interface WarehouseExpressionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse expression. */
-  id: string;
-}
-export const WarehouseExpressionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseExpressionsRetrieveRequest",
-}) as any as S.Schema<WarehouseExpressionsRetrieveRequest>;
-
 export type CreateWarehouseExpressionError = PosthogOpError;
 /** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
 export const createWarehouseExpression: API.OperationMethod<
@@ -308,6 +308,21 @@ export const createWarehouseExpression: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateWarehouseExpressionRequest,
+  output: DataWarehouseExpression,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWarehouseExpressionError = PosthogOpError;
+/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
+export const getWarehouseExpression: API.OperationMethod<
+  GetWarehouseExpressionRequest,
+  DataWarehouseExpression,
+  GetWarehouseExpressionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseExpressionRequest,
   output: DataWarehouseExpression,
   errors: [],
   protocol: PosthogProtocol,
@@ -344,15 +359,15 @@ export const updateWarehouseExpression: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateWarehouseExpressionPartialError = PosthogOpError;
+export type UpdateWarehouseExpressionsPartialError = PosthogOpError;
 /** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
-export const updateWarehouseExpressionPartial: API.OperationMethod<
-  UpdateWarehouseExpressionPartialRequest,
+export const updateWarehouseExpressionsPartial: API.OperationMethod<
+  UpdateWarehouseExpressionsPartialRequest,
   DataWarehouseExpression,
-  UpdateWarehouseExpressionPartialError,
+  UpdateWarehouseExpressionsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateWarehouseExpressionPartialRequest,
+  input: UpdateWarehouseExpressionsPartialRequest,
   output: DataWarehouseExpression,
   errors: [],
   protocol: PosthogProtocol,
@@ -369,21 +384,6 @@ export const warehouseExpressionsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WarehouseExpressionsDestroyRequest,
   output: WarehouseExpressionsDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseExpressionsRetrieveError = PosthogOpError;
-/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
-export const warehouseExpressionsRetrieve: API.OperationMethod<
-  WarehouseExpressionsRetrieveRequest,
-  DataWarehouseExpression,
-  WarehouseExpressionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseExpressionsRetrieveRequest,
-  output: DataWarehouseExpression,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

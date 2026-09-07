@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.containerinstance#DeleteSubnetServiceAssociationLink": {
@@ -76,10 +77,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#SandboxGroupsConnect": {
+    "com.azure.containerinstance#ConnectSandboxGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#SandboxGroupsConnectRequest"
+        "target": "com.azure.containerinstance#ConnectSandboxGroupRequest"
       },
       "output": {
         "target": "com.azure.containerinstance#SandboxGroupAccessToken"
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "The result of getting an access token for a SandboxGroup."
       }
     },
-    "com.azure.containerinstance#SandboxGroupsConnectRequest": {
+    "com.azure.containerinstance#ConnectSandboxGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -255,7 +256,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#SandboxGroupsUpdateResponseTagsMap",
+          "target": "com.azure.containerinstance#UpdateSandboxGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -274,7 +275,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.containerinstance#SandboxGroupsUpdateResponseIdentity",
+          "target": "com.azure.containerinstance#UpdateSandboxGroupResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -284,7 +285,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#SandboxGroupsUpdateResponseIdentity": {
+    "com.azure.containerinstance#UpdateSandboxGroupResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -473,7 +474,7 @@
         "smithy.api#documentation": "The provisioning state of a SandboxGroup resource."
       }
     },
-    "com.azure.containerinstance#SandboxGroupsUpdateResponseTagsMap": {
+    "com.azure.containerinstance#UpdateSandboxGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -621,13 +622,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#SandboxGroupsUpdateRequestTagsMap",
+          "target": "com.azure.containerinstance#UpdateSandboxGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.containerinstance#SandboxGroupsUpdateRequestIdentity",
+          "target": "com.azure.containerinstance#UpdateSandboxGroupRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -637,7 +638,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#SandboxGroupsUpdateRequestIdentity": {
+    "com.azure.containerinstance#UpdateSandboxGroupRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -661,7 +662,7 @@
         "smithy.api#documentation": "The list of user identities associated with the container group. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
       }
     },
-    "com.azure.containerinstance#SandboxGroupsUpdateRequestTagsMap": {
+    "com.azure.containerinstance#UpdateSandboxGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -937,7 +938,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#SandboxGroupsGetResponseTagsMap",
+          "target": "com.azure.containerinstance#GetSandboxGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -956,7 +957,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.containerinstance#SandboxGroupsGetResponseIdentity",
+          "target": "com.azure.containerinstance#GetSandboxGroupResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -966,7 +967,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#SandboxGroupsGetResponseIdentity": {
+    "com.azure.containerinstance#GetSandboxGroupResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -995,7 +996,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.containerinstance#SandboxGroupsGetResponseTagsMap": {
+    "com.azure.containerinstance#GetSandboxGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1467,7 +1468,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#NGroupsUpdateResponseTagsMap",
+          "target": "com.azure.containerinstance#UpdateNGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1479,7 +1480,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#NGroupsUpdateResponseZonesList",
+          "target": "com.azure.containerinstance#UpdateNGroupResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -1571,7 +1572,7 @@
         "smithy.api#documentation": "The type of identity used for the container group. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the container group."
       }
     },
-    "com.azure.containerinstance#NGroupsUpdateResponseZonesList": {
+    "com.azure.containerinstance#UpdateNGroupResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1580,7 +1581,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#NGroupsUpdateResponseTagsMap": {
+    "com.azure.containerinstance#UpdateNGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2323,13 +2324,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#NGroupsUpdateRequestTagsMap",
+          "target": "com.azure.containerinstance#UpdateNGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#NGroupsUpdateRequestZonesList",
+          "target": "com.azure.containerinstance#UpdateNGroupRequestZonesList",
           "traits": {
             "smithy.api#documentation": "The zones for the NGroup."
           }
@@ -2339,7 +2340,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#NGroupsUpdateRequestZonesList": {
+    "com.azure.containerinstance#UpdateNGroupRequestZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2348,7 +2349,7 @@
         "smithy.api#documentation": "The zones for the NGroup."
       }
     },
-    "com.azure.containerinstance#NGroupsUpdateRequestTagsMap": {
+    "com.azure.containerinstance#UpdateNGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2630,7 +2631,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#NGroupsGetResponseTagsMap",
+          "target": "com.azure.containerinstance#GetNGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2642,7 +2643,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#NGroupsGetResponseZonesList",
+          "target": "com.azure.containerinstance#GetNGroupResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -2658,7 +2659,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#NGroupsGetResponseZonesList": {
+    "com.azure.containerinstance#GetNGroupResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2667,7 +2668,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#NGroupsGetResponseTagsMap": {
+    "com.azure.containerinstance#GetNGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2717,7 +2718,7 @@
         "target": "com.azure.containerinstance#ListNGroupByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.containerinstance#ListNGroupsResult"
+        "target": "com.azure.containerinstance#NGroupsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -2730,7 +2731,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#ListNGroupsResult": {
+    "com.azure.containerinstance#NGroupsListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -3020,13 +3021,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependencyEndpoint": {
+    "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependencyEndpointRequest"
+        "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
-        "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependencyEndpointResponse"
+        "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpointsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3039,7 +3040,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependencyEndpointResponse": {
+    "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpointsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -3063,7 +3064,7 @@
         "smithy.api#documentation": "Response for network dependencies, always empty list."
       }
     },
-    "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependencyEndpointRequest": {
+    "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3182,10 +3183,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#ContainersExecuteCommand": {
+    "com.azure.containerinstance#ExecuteContainerCommand": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#ContainersExecuteCommandRequest"
+        "target": "com.azure.containerinstance#ExecuteContainerCommandRequest"
       },
       "output": {
         "target": "com.azure.containerinstance#ContainerExecResponse"
@@ -3222,7 +3223,7 @@
         "smithy.api#documentation": "The information for the container exec command."
       }
     },
-    "com.azure.containerinstance#ContainersExecuteCommandRequest": {
+    "com.azure.containerinstance#ExecuteContainerCommandRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3294,10 +3295,10 @@
         "smithy.api#documentation": "The size of the terminal."
       }
     },
-    "com.azure.containerinstance#ContainersAttach": {
+    "com.azure.containerinstance#AttachContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#ContainersAttachRequest"
+        "target": "com.azure.containerinstance#AttachContainerRequest"
       },
       "output": {
         "target": "com.azure.containerinstance#ContainerAttachResponse"
@@ -3334,7 +3335,7 @@
         "smithy.api#documentation": "The information for the output stream from container attach."
       }
     },
-    "com.azure.containerinstance#ContainersAttachRequest": {
+    "com.azure.containerinstance#AttachContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3427,13 +3428,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#ContainerGroupsDeleteResponseTagsMap",
+          "target": "com.azure.containerinstance#DeleteContainerGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#ContainerGroupsDeleteResponseZonesList",
+          "target": "com.azure.containerinstance#DeleteContainerGroupResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -4411,13 +4412,13 @@
         "secret": {
           "target": "com.azure.containerinstance#VolumeSecretMap",
           "traits": {
-            "smithy.api#documentation": "The secret volume."
+            "smithy.api#documentation": "Defines files for a secret volume. Dictionary keys are file names and values are Base64-encoded secret data used as file contents. The values are sensitive, and the service does not return the contents of this property in GET responses."
           }
         },
         "secretReference": {
           "target": "com.azure.containerinstance#VolumeSecretReferenceMap",
           "traits": {
-            "smithy.api#documentation": "The secret reference volume."
+            "smithy.api#documentation": "Defines files for a secret reference volume. Dictionary keys are file names and values identify entries in the container group's secretReferences collection. This property contains reference names rather than secret values."
           }
         },
         "gitRepo": {
@@ -4467,7 +4468,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "The secret reference volume."
+        "smithy.api#documentation": "Defines files for a secret reference volume. Dictionary keys are file names and values identify entries in the container group's secretReferences collection. This property contains reference names rather than secret values."
       }
     },
     "com.azure.containerinstance#VolumeSecretMap": {
@@ -4479,7 +4480,7 @@
         "target": "smithy.api#String"
       },
       "traits": {
-        "smithy.api#documentation": "The secret volume."
+        "smithy.api#documentation": "Defines files for a secret volume. Dictionary keys are file names and values are Base64-encoded secret data used as file contents. The values are sensitive, and the service does not return the contents of this property in GET responses."
       }
     },
     "com.azure.containerinstance#OperatingSystemTypes": {
@@ -5347,7 +5348,7 @@
         "smithy.api#documentation": "The list of user identities associated with the container group."
       }
     },
-    "com.azure.containerinstance#ContainerGroupsDeleteResponseZonesList": {
+    "com.azure.containerinstance#DeleteContainerGroupResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5356,7 +5357,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#ContainerGroupsDeleteResponseTagsMap": {
+    "com.azure.containerinstance#DeleteContainerGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5453,13 +5454,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#ContainerGroupsUpdateResponseTagsMap",
+          "target": "com.azure.containerinstance#UpdateContainerGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#ContainerGroupsUpdateResponseZonesList",
+          "target": "com.azure.containerinstance#UpdateContainerGroupResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -5482,7 +5483,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#ContainerGroupsUpdateResponseZonesList": {
+    "com.azure.containerinstance#UpdateContainerGroupResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5491,7 +5492,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#ContainerGroupsUpdateResponseTagsMap": {
+    "com.azure.containerinstance#UpdateContainerGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5537,13 +5538,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#ContainerGroupsUpdateRequestTagsMap",
+          "target": "com.azure.containerinstance#UpdateContainerGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#ContainerGroupsUpdateRequestZonesList",
+          "target": "com.azure.containerinstance#UpdateContainerGroupRequestZonesList",
           "traits": {
             "smithy.api#documentation": "The zones for the container group."
           }
@@ -5553,7 +5554,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#ContainerGroupsUpdateRequestZonesList": {
+    "com.azure.containerinstance#UpdateContainerGroupRequestZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5562,7 +5563,7 @@
         "smithy.api#documentation": "The zones for the container group."
       }
     },
-    "com.azure.containerinstance#ContainerGroupsUpdateRequestTagsMap": {
+    "com.azure.containerinstance#UpdateContainerGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6332,13 +6333,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#ContainerGroupsGetResponseTagsMap",
+          "target": "com.azure.containerinstance#GetContainerGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#ContainerGroupsGetResponseZonesList",
+          "target": "com.azure.containerinstance#GetContainerGroupResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -6361,7 +6362,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#ContainerGroupsGetResponseZonesList": {
+    "com.azure.containerinstance#GetContainerGroupResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6370,7 +6371,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#ContainerGroupsGetResponseTagsMap": {
+    "com.azure.containerinstance#GetContainerGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6850,13 +6851,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#GetCgProfileByRevisionNumber": {
+    "com.azure.containerinstance#GetCGProfileByRevisionNumber": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#GetCgProfileByRevisionNumberRequest"
+        "target": "com.azure.containerinstance#GetCGProfileByRevisionNumberRequest"
       },
       "output": {
-        "target": "com.azure.containerinstance#GetCgProfileByRevisionNumberResponse"
+        "target": "com.azure.containerinstance#GetCGProfileByRevisionNumberResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6869,7 +6870,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#GetCgProfileByRevisionNumberResponse": {
+    "com.azure.containerinstance#GetCGProfileByRevisionNumberResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6903,7 +6904,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#CGProfileGetByRevisionNumberResponseTagsMap",
+          "target": "com.azure.containerinstance#GetCGProfileByRevisionNumberResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6915,7 +6916,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#CGProfileGetByRevisionNumberResponseZonesList",
+          "target": "com.azure.containerinstance#GetCGProfileByRevisionNumberResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -6925,7 +6926,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#CGProfileGetByRevisionNumberResponseZonesList": {
+    "com.azure.containerinstance#GetCGProfileByRevisionNumberResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6934,7 +6935,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#CGProfileGetByRevisionNumberResponseTagsMap": {
+    "com.azure.containerinstance#GetCGProfileByRevisionNumberResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7124,7 +7125,7 @@
         "smithy.api#documentation": "The containers within the container group."
       }
     },
-    "com.azure.containerinstance#GetCgProfileByRevisionNumberRequest": {
+    "com.azure.containerinstance#GetCGProfileByRevisionNumberRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7164,10 +7165,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#ListCgProfileAllRevisions": {
+    "com.azure.containerinstance#ListCGProfileAllRevisions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#ListCgProfileAllRevisionsRequest"
+        "target": "com.azure.containerinstance#ListCGProfileAllRevisionsRequest"
       },
       "output": {
         "target": "com.azure.containerinstance#ContainerGroupProfileListResult"
@@ -7290,7 +7291,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerinstance#ListCgProfileAllRevisionsRequest": {
+    "com.azure.containerinstance#ListCGProfileAllRevisionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7322,10 +7323,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#DeleteCgProfile": {
+    "com.azure.containerinstance#DeleteCGProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#DeleteCgProfileRequest"
+        "target": "com.azure.containerinstance#DeleteCGProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7341,7 +7342,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#DeleteCgProfileRequest": {
+    "com.azure.containerinstance#DeleteCGProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7373,13 +7374,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#UpdateCgProfile": {
+    "com.azure.containerinstance#UpdateCGProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#UpdateCgProfileRequest"
+        "target": "com.azure.containerinstance#UpdateCGProfileRequest"
       },
       "output": {
-        "target": "com.azure.containerinstance#UpdateCgProfileResponse"
+        "target": "com.azure.containerinstance#UpdateCGProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7392,7 +7393,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#UpdateCgProfileResponse": {
+    "com.azure.containerinstance#UpdateCGProfileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7426,7 +7427,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#CGProfileUpdateResponseTagsMap",
+          "target": "com.azure.containerinstance#UpdateCGProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7438,7 +7439,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#CGProfileUpdateResponseZonesList",
+          "target": "com.azure.containerinstance#UpdateCGProfileResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -7448,7 +7449,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#CGProfileUpdateResponseZonesList": {
+    "com.azure.containerinstance#UpdateCGProfileResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7457,7 +7458,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#CGProfileUpdateResponseTagsMap": {
+    "com.azure.containerinstance#UpdateCGProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7469,7 +7470,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerinstance#UpdateCgProfileRequest": {
+    "com.azure.containerinstance#UpdateCGProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7497,7 +7498,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#CGProfileUpdateRequestTagsMap",
+          "target": "com.azure.containerinstance#UpdateCGProfileRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7507,7 +7508,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#CGProfileUpdateRequestTagsMap": {
+    "com.azure.containerinstance#UpdateCGProfileRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7849,13 +7850,13 @@
         "smithy.api#documentation": "The containers within the container group."
       }
     },
-    "com.azure.containerinstance#GetCgProfile": {
+    "com.azure.containerinstance#GetCGProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#GetCgProfileRequest"
+        "target": "com.azure.containerinstance#GetCGProfileRequest"
       },
       "output": {
-        "target": "com.azure.containerinstance#GetCgProfileResponse"
+        "target": "com.azure.containerinstance#GetCGProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7868,7 +7869,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#GetCgProfileResponse": {
+    "com.azure.containerinstance#GetCGProfileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7902,7 +7903,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerinstance#CGProfileGetResponseTagsMap",
+          "target": "com.azure.containerinstance#GetCGProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7914,7 +7915,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.containerinstance#CGProfileGetResponseZonesList",
+          "target": "com.azure.containerinstance#GetCGProfileResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -7924,7 +7925,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerinstance#CGProfileGetResponseZonesList": {
+    "com.azure.containerinstance#GetCGProfileResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7933,7 +7934,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.containerinstance#CGProfileGetResponseTagsMap": {
+    "com.azure.containerinstance#GetCGProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7945,7 +7946,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerinstance#GetCgProfileRequest": {
+    "com.azure.containerinstance#GetCGProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7977,10 +7978,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#ListCgProfileByResourceGroup": {
+    "com.azure.containerinstance#ListCGProfileByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#ListCgProfileByResourceGroupRequest"
+        "target": "com.azure.containerinstance#ListCGProfileByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.containerinstance#ContainerGroupProfileListResult"
@@ -7996,7 +7997,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#ListCgProfileByResourceGroupRequest": {
+    "com.azure.containerinstance#ListCGProfileByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8061,7 +8062,7 @@
         "target": "com.azure.containerinstance#ListNGroupsRequest"
       },
       "output": {
-        "target": "com.azure.containerinstance#ListNGroupsResult"
+        "target": "com.azure.containerinstance#NGroupsListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -8491,10 +8492,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerinstance#ListCgProfileBySubscription": {
+    "com.azure.containerinstance#ListCGProfileBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerinstance#ListCgProfileBySubscriptionRequest"
+        "target": "com.azure.containerinstance#ListCGProfileBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.containerinstance#ContainerGroupProfileListResult"
@@ -8510,7 +8511,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.containerinstance#ListCgProfileBySubscriptionRequest": {
+    "com.azure.containerinstance#ListCGProfileBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8666,130 +8667,130 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.containerinstance#DeleteSubnetServiceAssociationLink"
-        },
-        {
-          "target": "com.azure.containerinstance#SandboxGroupsConnect"
-        },
-        {
-          "target": "com.azure.containerinstance#DeleteSandboxGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#UpdateSandboxGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#SandboxGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.containerinstance#GetSandboxGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListSandboxGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#StopNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#StartNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#RestartNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#DeleteNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#UpdateNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#NGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.containerinstance#GetNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListNGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#StopContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#StartContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#RestartContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependencyEndpoint"
-        },
-        {
-          "target": "com.azure.containerinstance#ListContainerLogs"
-        },
-        {
-          "target": "com.azure.containerinstance#ContainersExecuteCommand"
-        },
-        {
-          "target": "com.azure.containerinstance#ContainersAttach"
-        },
-        {
-          "target": "com.azure.containerinstance#DeleteContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#UpdateContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ContainerGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.containerinstance#GetContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListContainerGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#GetCgProfileByRevisionNumber"
-        },
-        {
-          "target": "com.azure.containerinstance#ListCgProfileAllRevisions"
-        },
-        {
-          "target": "com.azure.containerinstance#DeleteCgProfile"
-        },
-        {
-          "target": "com.azure.containerinstance#UpdateCgProfile"
+          "target": "com.azure.containerinstance#AttachContainer"
         },
         {
           "target": "com.azure.containerinstance#CGProfileCreateOrUpdate"
         },
         {
-          "target": "com.azure.containerinstance#GetCgProfile"
+          "target": "com.azure.containerinstance#ConnectSandboxGroup"
         },
         {
-          "target": "com.azure.containerinstance#ListCgProfileByResourceGroup"
+          "target": "com.azure.containerinstance#ContainerGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.containerinstance#ListSandboxGroupBySubscription"
+          "target": "com.azure.containerinstance#DeleteCGProfile"
         },
         {
-          "target": "com.azure.containerinstance#ListNGroups"
+          "target": "com.azure.containerinstance#DeleteContainerGroup"
         },
         {
-          "target": "com.azure.containerinstance#ListLocationUsage"
+          "target": "com.azure.containerinstance#DeleteNGroup"
         },
         {
-          "target": "com.azure.containerinstance#ListLocationCapabilities"
+          "target": "com.azure.containerinstance#DeleteSandboxGroup"
         },
         {
-          "target": "com.azure.containerinstance#ListLocationCachedImages"
+          "target": "com.azure.containerinstance#DeleteSubnetServiceAssociationLink"
+        },
+        {
+          "target": "com.azure.containerinstance#ExecuteContainerCommand"
+        },
+        {
+          "target": "com.azure.containerinstance#GetCGProfile"
+        },
+        {
+          "target": "com.azure.containerinstance#GetCGProfileByRevisionNumber"
+        },
+        {
+          "target": "com.azure.containerinstance#GetContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.containerinstance#GetNGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#GetSandboxGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ListCGProfileAllRevisions"
+        },
+        {
+          "target": "com.azure.containerinstance#ListCGProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ListCGProfileBySubscription"
+        },
+        {
+          "target": "com.azure.containerinstance#ListContainerGroupByResourceGroup"
         },
         {
           "target": "com.azure.containerinstance#ListContainerGroups"
         },
         {
-          "target": "com.azure.containerinstance#ListCgProfileBySubscription"
+          "target": "com.azure.containerinstance#ListContainerLogs"
+        },
+        {
+          "target": "com.azure.containerinstance#ListLocationCachedImages"
+        },
+        {
+          "target": "com.azure.containerinstance#ListLocationCapabilities"
+        },
+        {
+          "target": "com.azure.containerinstance#ListLocationUsage"
+        },
+        {
+          "target": "com.azure.containerinstance#ListNGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ListNGroups"
         },
         {
           "target": "com.azure.containerinstance#ListOperations"
+        },
+        {
+          "target": "com.azure.containerinstance#ListSandboxGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ListSandboxGroupBySubscription"
+        },
+        {
+          "target": "com.azure.containerinstance#NGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.containerinstance#RestartContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#RestartNGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#SandboxGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.containerinstance#StartContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#StartNGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#StopContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#StopNGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#UpdateCGProfile"
+        },
+        {
+          "target": "com.azure.containerinstance#UpdateContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#UpdateNGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#UpdateSandboxGroup"
         }
       ],
       "traits": {

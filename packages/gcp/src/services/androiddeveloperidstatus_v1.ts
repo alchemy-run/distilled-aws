@@ -40,16 +40,16 @@ export class NotFound
   ) {}
 
 export interface CheckPackagesPackageRegistrationStatusRequest {
-  /** Optional. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`). */
-  certificateFingerprint?: string;
   /** Required. The name of the package registration status resource. Format: packages/{package}/packageRegistrationStatus `{package}` must follow the specific format: The fully-qualified Android package name with dots ('.') replaced by hyphens ('-') (e.g., `com-example-app` instead of `com.example.app`). */
   name: string;
+  /** Optional. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`). */
+  certificateFingerprint?: string;
 }
 export const CheckPackagesPackageRegistrationStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      certificateFingerprint: S.optional(S.String.pipe(T.Query())),
       name: S.String.pipe(T.Label()),
+      certificateFingerprint: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -72,16 +72,16 @@ export const PackageRegistrationStatusStateEnum = /*@__PURE__*/ S.String;
 export interface PackageRegistrationStatus {
   /** Identifier. The name of the package registration status resource. Format: packages/{package}/packageRegistrationStatus `{package}` must follow the specific format: The fully-qualified Android package name with dots ('.') replaced by hyphens ('-') (e.g., `com-example-app` instead of `com.example.app`). */
   name?: string;
-  /** Output only. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`). */
-  certificateFingerprint?: string;
   /** Output only. Registration state of the package, or pair. */
   state?: PackageRegistrationStatusStateEnum;
+  /** Output only. The SHA-256 fingerprint of the public certificate represented as a 64-character lowercase hexadecimal string without any colons or separators (e.g., `d6ac89ed1d0a805aad4b087d06d5f41645b814480b133fbc867ef7498d069e06`). */
+  certificateFingerprint?: string;
 }
 export const PackageRegistrationStatus = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
-    certificateFingerprint: S.optional(S.String),
     state: S.optional(PackageRegistrationStatusStateEnum),
+    certificateFingerprint: S.optional(S.String),
   }),
 ).annotate({
   identifier: "PackageRegistrationStatus",

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.planetscale.api#ListOrganizationsRequest": {
@@ -1268,7 +1269,6 @@
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The amount of storage in bytes",
-            "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -1297,7 +1297,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The provider of the cluster SKU (nil, AWS or GCP)",
-            "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -1312,7 +1311,13 @@
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#documentation": "The default vtgate rate for the cluster SKU",
-            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "default_neki_router": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recommended Neki router size for the cluster SKU",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -4664,6 +4669,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Restore from a point-in-time recovery timestamp (e.g. 2023-01-01T00:00:00Z). Available only for PostgreSQL databases."
+          }
+        },
+        "replicas": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For PostgreSQL backup restores and point-in-time recovery, the number of additional replicas from 0 to 8, subject to the target cluster size. 0 creates a single-node branch. If omitted, the target cluster size's minimum is used."
           }
         },
         "seed_data": {
@@ -9350,7 +9361,7 @@
         "smithy.api#documentation": "Upsert a bouncer resize request"
       }
     },
-    "com.planetscale.api#RequestCancelBouncerResizeRequest": {
+    "com.planetscale.api#CancelBouncerResizeRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -9390,10 +9401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestCancelBouncerResize": {
+    "com.planetscale.api#CancelBouncerResizeRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestCancelBouncerResizeRequest"
+        "target": "com.planetscale.api#CancelBouncerResizeRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17127,6 +17138,13 @@
             "smithy.api#required": {}
           }
         },
+        "external": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the keyspace uses an external datasource",
+            "smithy.api#required": {}
+          }
+        },
         "replicas": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -17393,6 +17411,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "If the keyspace is sharded",
+            "smithy.api#required": {}
+          }
+        },
+        "external": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the keyspace uses an external datasource",
             "smithy.api#required": {}
           }
         },
@@ -18301,7 +18326,7 @@
         "smithy.api#documentation": "Create a keyspace resize request\n\nStarts or queues an in-place resize of a branch keyspace's cluster size and/or replica count. Rejected with 422 while another resize is in progress or when the keyspace is already configured with the requested values."
       }
     },
-    "com.planetscale.api#RequestCancelKeyspaceResizeRequest": {
+    "com.planetscale.api#CancelKeyspaceResizeRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -18341,10 +18366,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestCancelKeyspaceResize": {
+    "com.planetscale.api#CancelKeyspaceResizeRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestCancelKeyspaceResizeRequest"
+        "target": "com.planetscale.api#CancelKeyspaceResizeRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -22617,6 +22642,13 @@
             "smithy.api#required": {}
           }
         },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
+            "smithy.api#required": {}
+          }
+        },
         "renewable": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -22925,6 +22957,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Whether or not the password is for a read replica",
+            "smithy.api#required": {}
+          }
+        },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
             "smithy.api#required": {}
           }
         },
@@ -23370,6 +23409,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Whether or not the password is for a read replica",
+            "smithy.api#required": {}
+          }
+        },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
             "smithy.api#required": {}
           }
         },
@@ -26511,7 +26557,7 @@
         "smithy.api#documentation": "Upsert a resize request"
       }
     },
-    "com.planetscale.api#RequestCancelBranchChangeRequest": {
+    "com.planetscale.api#CancelBranchChangeRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -26543,10 +26589,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestCancelBranchChange": {
+    "com.planetscale.api#CancelBranchChangeRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestCancelBranchChangeRequest"
+        "target": "com.planetscale.api#CancelBranchChangeRequestRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36047,7 +36093,7 @@
         "smithy.api#documentation": "Get a deploy request"
       }
     },
-    "com.planetscale.api#CloseDeployRequestRequestState": {
+    "com.planetscale.api#DeployCloseRequestRequestState": {
       "type": "enum",
       "members": {
         "CLOSED": {
@@ -36061,7 +36107,7 @@
         "smithy.api#documentation": "The deploy request will be updated to this state"
       }
     },
-    "com.planetscale.api#RequestCloseDeployRequest": {
+    "com.planetscale.api#DeployCloseRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36089,7 +36135,7 @@
           }
         },
         "state": {
-          "target": "com.planetscale.api#CloseDeployRequestRequestState",
+          "target": "com.planetscale.api#DeployCloseRequestRequestState",
           "traits": {
             "smithy.api#documentation": "The deploy request will be updated to this state"
           }
@@ -36099,10 +36145,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestCloseDeploy": {
+    "com.planetscale.api#DeployCloseRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestCloseDeployRequest"
+        "target": "com.planetscale.api#DeployCloseRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -36124,7 +36170,7 @@
         "smithy.api#documentation": "Close a deploy request"
       }
     },
-    "com.planetscale.api#RequestCompleteGatedDeployRequest": {
+    "com.planetscale.api#DeployCompleteGatedRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36156,10 +36202,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestCompleteGatedDeploy": {
+    "com.planetscale.api#DeployCompleteGatedRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestCompleteGatedDeployRequest"
+        "target": "com.planetscale.api#DeployCompleteGatedRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -36307,7 +36353,7 @@
         "smithy.api#documentation": "Update auto-delete branch for deploy request\n\nEnables or disabled the auto-delete branch setting for a deploy request"
       }
     },
-    "com.planetscale.api#RequestCancelDeployRequest": {
+    "com.planetscale.api#CancelDeployRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36339,10 +36385,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestCancelDeploy": {
+    "com.planetscale.api#CancelDeployRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestCancelDeployRequest"
+        "target": "com.planetscale.api#CancelDeployRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -36364,7 +36410,7 @@
         "smithy.api#documentation": "Cancel a queued deploy request"
       }
     },
-    "com.planetscale.api#CompleteErroredDeployRequest": {
+    "com.planetscale.api#DeployCompleteErroredRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36396,10 +36442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#CompleteErroredDeploy": {
+    "com.planetscale.api#DeployCompleteErrored": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#CompleteErroredDeployRequest"
+        "target": "com.planetscale.api#DeployCompleteErroredRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -36421,7 +36467,7 @@
         "smithy.api#documentation": "Complete an errored deploy"
       }
     },
-    "com.planetscale.api#RequestQueueDeployRequest": {
+    "com.planetscale.api#DeployQueueRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36459,10 +36505,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestQueueDeploy": {
+    "com.planetscale.api#DeployQueueRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestQueueDeployRequest"
+        "target": "com.planetscale.api#DeployQueueRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -37621,7 +37667,7 @@
         "smithy.api#documentation": "Get a deployment\n\nGet the deployment for a deploy request"
       }
     },
-    "com.planetscale.api#RequestForceCutoverDeployRequest": {
+    "com.planetscale.api#DeployForceCutoverRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -37653,10 +37699,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#RequestForceCutoverDeploy": {
+    "com.planetscale.api#DeployForceCutoverRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestForceCutoverDeployRequest"
+        "target": "com.planetscale.api#DeployForceCutoverRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -38333,7 +38379,7 @@
         }
       }
     },
-    "com.planetscale.api#ReviewDeployRequestRequestState": {
+    "com.planetscale.api#DeployReviewRequestRequestState": {
       "type": "enum",
       "members": {
         "COMMENTED": {
@@ -38353,7 +38399,7 @@
         "smithy.api#documentation": "Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`)"
       }
     },
-    "com.planetscale.api#RequestReviewDeployRequest": {
+    "com.planetscale.api#DeployReviewRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -38381,7 +38427,7 @@
           }
         },
         "state": {
-          "target": "com.planetscale.api#ReviewDeployRequestRequestState",
+          "target": "com.planetscale.api#DeployReviewRequestRequestState",
           "traits": {
             "smithy.api#documentation": "Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`)"
           }
@@ -38498,10 +38544,10 @@
       },
       "traits": {}
     },
-    "com.planetscale.api#RequestReviewDeploy": {
+    "com.planetscale.api#DeployReviewRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#RequestReviewDeployRequest"
+        "target": "com.planetscale.api#DeployReviewRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DeployRequestReview"
@@ -38580,7 +38626,7 @@
         "smithy.api#documentation": "Skip revert period\n\nSkips the revert period for a deploy request"
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageRequest": {
+    "com.planetscale.api#DeployCheckRequestStorageRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -38612,7 +38658,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueValue": {
+    "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueValue": {
       "type": "structure",
       "members": {
         "used": {
@@ -38650,35 +38696,41 @@
           "traits": {
             "smithy.api#documentation": "Whether this shard has enough remaining storage for the deployment"
           }
+        },
+        "blocked_by_in_flight": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this shard lacks storage only because a competing in-flight deployment is still copying"
+          }
         }
       },
       "traits": {}
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueMap": {
+    "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueValue"
+        "target": "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueValue"
       },
       "traits": {
         "smithy.api#documentation": "Per-shard storage details. Keys are shard names."
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportMap": {
+    "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueMap"
+        "target": "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueMap"
       },
       "traits": {
         "smithy.api#documentation": "Per-keyspace and per-shard storage report. Keys are keyspace names."
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponse": {
+    "com.planetscale.api#DeployCheckRequestStorageResponse": {
       "type": "structure",
       "members": {
         "enough_storage": {
@@ -38703,7 +38755,7 @@
           }
         },
         "storage_report": {
-          "target": "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportMap",
+          "target": "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportMap",
           "traits": {
             "smithy.api#documentation": "Per-keyspace and per-shard storage report. Keys are keyspace names.",
             "smithy.api#required": {}
@@ -38714,13 +38766,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorage": {
+    "com.planetscale.api#DeployCheckRequestStorage": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageRequest"
+        "target": "com.planetscale.api#DeployCheckRequestStorageRequest"
       },
       "output": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageResponse"
+        "target": "com.planetscale.api#DeployCheckRequestStorageResponse"
       },
       "errors": [
         {
@@ -41342,6 +41394,12 @@
             "smithy.api#enumValue": "branch.primary_promoted"
           }
         },
+        "BRANCH_PRIMARY_SWITCHOVER_IMMINENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch.primary_switchover_imminent"
+          }
+        },
         "BRANCH_SCHEMA_RECOMMENDATION": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -41731,6 +41789,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "branch.primary_promoted"
+          }
+        },
+        "BRANCH_PRIMARY_SWITCHOVER_IMMINENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch.primary_switchover_imminent"
           }
         },
         "BRANCH_SCHEMA_RECOMMENDATION": {
@@ -44258,7 +44322,7 @@
         "smithy.api#documentation": "Get a workflow"
       }
     },
-    "com.planetscale.api#WorkflowCancelRequest": {
+    "com.planetscale.api#CancelWorkflowRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -44290,10 +44354,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#WorkflowCancel": {
+    "com.planetscale.api#CancelWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#WorkflowCancelRequest"
+        "target": "com.planetscale.api#CancelWorkflowRequest"
       },
       "output": {
         "target": "com.planetscale.api#Workflow"
@@ -44315,7 +44379,7 @@
         "smithy.api#documentation": "Cancel a workflow"
       }
     },
-    "com.planetscale.api#WorkflowCompleteRequest": {
+    "com.planetscale.api#CompleteWorkflowRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -44347,10 +44411,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#WorkflowComplete": {
+    "com.planetscale.api#CompleteWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#WorkflowCompleteRequest"
+        "target": "com.planetscale.api#CompleteWorkflowRequest"
       },
       "output": {
         "target": "com.planetscale.api#Workflow"
@@ -44429,7 +44493,7 @@
         "smithy.api#documentation": "Cutover traffic"
       }
     },
-    "com.planetscale.api#WorkflowRetryRequest": {
+    "com.planetscale.api#RetryWorkflowRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -44461,10 +44525,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#WorkflowRetry": {
+    "com.planetscale.api#RetryWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#WorkflowRetryRequest"
+        "target": "com.planetscale.api#RetryWorkflowRequest"
       },
       "output": {
         "target": "com.planetscale.api#Workflow"
@@ -50843,6 +50907,13 @@
             "smithy.api#required": {}
           }
         },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
+            "smithy.api#required": {}
+          }
+        },
         "renewable": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -51557,6 +51628,13 @@
             "smithy.api#required": {}
           }
         },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
+            "smithy.api#required": {}
+          }
+        },
         "renewable": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -52153,193 +52231,289 @@
       "version": "v1",
       "operations": [
         {
-          "target": "com.planetscale.api#ListOrganizations"
+          "target": "com.planetscale.api#AddOrganizationTeamMember"
         },
         {
-          "target": "com.planetscale.api#GetOrganization"
+          "target": "com.planetscale.api#CancelBouncerResizeRequest"
         },
         {
-          "target": "com.planetscale.api#UpdateOrganization"
+          "target": "com.planetscale.api#CancelBranchChangeRequest"
         },
         {
-          "target": "com.planetscale.api#ListAuditLogs"
+          "target": "com.planetscale.api#CancelDeployRequest"
         },
         {
-          "target": "com.planetscale.api#GetOrganizationBillingPaymentMethod"
+          "target": "com.planetscale.api#CancelKeyspaceResizeRequest"
         },
         {
-          "target": "com.planetscale.api#DeleteOrganizationBillingPaymentMethod"
+          "target": "com.planetscale.api#CancelWorkflow"
         },
         {
-          "target": "com.planetscale.api#UpdatePaymentMethod"
+          "target": "com.planetscale.api#CompleteRevert"
         },
         {
-          "target": "com.planetscale.api#GetPaymentMethodSetup"
+          "target": "com.planetscale.api#CompleteWorkflow"
         },
         {
-          "target": "com.planetscale.api#ListClusterSizeSkus"
-        },
-        {
-          "target": "com.planetscale.api#ListDatabases"
-        },
-        {
-          "target": "com.planetscale.api#CreateDatabase"
-        },
-        {
-          "target": "com.planetscale.api#GetDatabase"
-        },
-        {
-          "target": "com.planetscale.api#UpdateDatabaseSettings"
-        },
-        {
-          "target": "com.planetscale.api#DeleteDatabase"
-        },
-        {
-          "target": "com.planetscale.api#ListBackupPolicies"
-        },
-        {
-          "target": "com.planetscale.api#CreateBackupPolicy"
-        },
-        {
-          "target": "com.planetscale.api#GetBackupPolicy"
-        },
-        {
-          "target": "com.planetscale.api#UpdateBackupPolicy"
-        },
-        {
-          "target": "com.planetscale.api#DeleteBackupPolicy"
-        },
-        {
-          "target": "com.planetscale.api#ListBranches"
-        },
-        {
-          "target": "com.planetscale.api#CreateBranch"
-        },
-        {
-          "target": "com.planetscale.api#GetBranch"
-        },
-        {
-          "target": "com.planetscale.api#UpdateBranch"
-        },
-        {
-          "target": "com.planetscale.api#DeleteBranch"
-        },
-        {
-          "target": "com.planetscale.api#ListBackups"
+          "target": "com.planetscale.api#ConfigureOrganizationSso"
         },
         {
           "target": "com.planetscale.api#CreateBackup"
         },
         {
-          "target": "com.planetscale.api#GetBackup"
-        },
-        {
-          "target": "com.planetscale.api#UpdateBackup"
-        },
-        {
-          "target": "com.planetscale.api#DeleteBackup"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchBouncerResizeRequests"
-        },
-        {
-          "target": "com.planetscale.api#ListBouncers"
+          "target": "com.planetscale.api#CreateBackupPolicy"
         },
         {
           "target": "com.planetscale.api#CreateBouncer"
         },
         {
-          "target": "com.planetscale.api#GetBouncer"
+          "target": "com.planetscale.api#CreateBranch"
         },
         {
-          "target": "com.planetscale.api#DeleteBouncer"
+          "target": "com.planetscale.api#CreateDatabase"
         },
         {
-          "target": "com.planetscale.api#ListBouncerResizeRequests"
+          "target": "com.planetscale.api#CreateDatabasePostgresCidr"
         },
         {
-          "target": "com.planetscale.api#UpdateBouncerResizeRequest"
-        },
-        {
-          "target": "com.planetscale.api#RequestCancelBouncerResize"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchChangeRequests"
-        },
-        {
-          "target": "com.planetscale.api#UpdateBranchChangeRequest"
-        },
-        {
-          "target": "com.planetscale.api#GetBranchChangeRequest"
-        },
-        {
-          "target": "com.planetscale.api#UpdateBranchClusterConfig"
-        },
-        {
-          "target": "com.planetscale.api#DemoteBranch"
-        },
-        {
-          "target": "com.planetscale.api#ListExtensions"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchQueries"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchAnomalies"
-        },
-        {
-          "target": "com.planetscale.api#GetBranchAnomaly"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchQueryErrors"
-        },
-        {
-          "target": "com.planetscale.api#GetBranchQueryError"
-        },
-        {
-          "target": "com.planetscale.api#GetBranchQuery"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchQueryTags"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchQueryTagSummaries"
-        },
-        {
-          "target": "com.planetscale.api#GetBranchQueryTag"
-        },
-        {
-          "target": "com.planetscale.api#GetQueryStatistics"
-        },
-        {
-          "target": "com.planetscale.api#GetQuerySummary"
-        },
-        {
-          "target": "com.planetscale.api#ListTrafficBudgetsForQuery"
-        },
-        {
-          "target": "com.planetscale.api#ListKeyspaces"
+          "target": "com.planetscale.api#CreateDeployRequest"
         },
         {
           "target": "com.planetscale.api#CreateKeyspace"
         },
         {
-          "target": "com.planetscale.api#GetKeyspace"
+          "target": "com.planetscale.api#CreateKeyspaceResizeRequest"
         },
         {
-          "target": "com.planetscale.api#UpdateKeyspace"
+          "target": "com.planetscale.api#CreateOauthToken"
+        },
+        {
+          "target": "com.planetscale.api#CreateOrganizationSsoDomain"
+        },
+        {
+          "target": "com.planetscale.api#CreateOrganizationTeam"
+        },
+        {
+          "target": "com.planetscale.api#CreatePassword"
+        },
+        {
+          "target": "com.planetscale.api#CreateQueryPatternsReport"
+        },
+        {
+          "target": "com.planetscale.api#CreateReadOnlyReplica"
+        },
+        {
+          "target": "com.planetscale.api#CreateRole"
+        },
+        {
+          "target": "com.planetscale.api#CreateServiceToken"
+        },
+        {
+          "target": "com.planetscale.api#CreateSwitchover"
+        },
+        {
+          "target": "com.planetscale.api#CreateTrafficBudget"
+        },
+        {
+          "target": "com.planetscale.api#CreateTrafficRule"
+        },
+        {
+          "target": "com.planetscale.api#CreateWebhook"
+        },
+        {
+          "target": "com.planetscale.api#CreateWorkflow"
+        },
+        {
+          "target": "com.planetscale.api#DeleteBackup"
+        },
+        {
+          "target": "com.planetscale.api#DeleteBackupPolicy"
+        },
+        {
+          "target": "com.planetscale.api#DeleteBouncer"
+        },
+        {
+          "target": "com.planetscale.api#DeleteBranch"
+        },
+        {
+          "target": "com.planetscale.api#DeleteDatabase"
+        },
+        {
+          "target": "com.planetscale.api#DeleteDatabasePostgresCidr"
         },
         {
           "target": "com.planetscale.api#DeleteKeyspace"
         },
         {
-          "target": "com.planetscale.api#ListKeyspaceResizeRequests"
+          "target": "com.planetscale.api#DeleteOauthToken"
         },
         {
-          "target": "com.planetscale.api#CreateKeyspaceResizeRequest"
+          "target": "com.planetscale.api#DeleteOrganizationBillingPaymentMethod"
         },
         {
-          "target": "com.planetscale.api#RequestCancelKeyspaceResize"
+          "target": "com.planetscale.api#DeleteOrganizationSsoDomain"
+        },
+        {
+          "target": "com.planetscale.api#DeleteOrganizationTeam"
+        },
+        {
+          "target": "com.planetscale.api#DeletePassword"
+        },
+        {
+          "target": "com.planetscale.api#DeleteQueryPatternsReport"
+        },
+        {
+          "target": "com.planetscale.api#DeleteReadOnlyReplica"
+        },
+        {
+          "target": "com.planetscale.api#DeleteRole"
+        },
+        {
+          "target": "com.planetscale.api#DeleteServiceToken"
+        },
+        {
+          "target": "com.planetscale.api#DeleteTrafficBudget"
+        },
+        {
+          "target": "com.planetscale.api#DeleteTrafficRule"
+        },
+        {
+          "target": "com.planetscale.api#DeleteWebhook"
+        },
+        {
+          "target": "com.planetscale.api#DemoteBranch"
+        },
+        {
+          "target": "com.planetscale.api#DeployCheckRequestStorage"
+        },
+        {
+          "target": "com.planetscale.api#DeployCloseRequest"
+        },
+        {
+          "target": "com.planetscale.api#DeployCompleteErrored"
+        },
+        {
+          "target": "com.planetscale.api#DeployCompleteGatedRequest"
+        },
+        {
+          "target": "com.planetscale.api#DeployForceCutoverRequest"
+        },
+        {
+          "target": "com.planetscale.api#DeployQueueRequest"
+        },
+        {
+          "target": "com.planetscale.api#DeployReviewRequest"
+        },
+        {
+          "target": "com.planetscale.api#DisableOrganizationSso"
+        },
+        {
+          "target": "com.planetscale.api#DisableOrganizationSsoDirectory"
+        },
+        {
+          "target": "com.planetscale.api#DisableSafeMigrations"
+        },
+        {
+          "target": "com.planetscale.api#DismissSchemaRecommendation"
+        },
+        {
+          "target": "com.planetscale.api#EnableOrganizationSso"
+        },
+        {
+          "target": "com.planetscale.api#EnableOrganizationSsoDirectory"
+        },
+        {
+          "target": "com.planetscale.api#EnableSafeMigrations"
+        },
+        {
+          "target": "com.planetscale.api#GetBackup"
+        },
+        {
+          "target": "com.planetscale.api#GetBackupPolicy"
+        },
+        {
+          "target": "com.planetscale.api#GetBouncer"
+        },
+        {
+          "target": "com.planetscale.api#GetBranch"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchAnomaly"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchChangeRequest"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchKeyspaceTableMetrics"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchMetrics"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchQuery"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchQueryError"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchQueryMetrics"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchQueryTag"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchResizeRequest"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchSchema"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchTableMetrics"
+        },
+        {
+          "target": "com.planetscale.api#GetBranchTagMetrics"
+        },
+        {
+          "target": "com.planetscale.api#GetCurrentUser"
+        },
+        {
+          "target": "com.planetscale.api#GetDatabase"
+        },
+        {
+          "target": "com.planetscale.api#GetDatabasePostgresCidr"
+        },
+        {
+          "target": "com.planetscale.api#GetDatabaseThrottler"
+        },
+        {
+          "target": "com.planetscale.api#GetDefaultRole"
+        },
+        {
+          "target": "com.planetscale.api#GetDeployment"
+        },
+        {
+          "target": "com.planetscale.api#GetDeployQueue"
+        },
+        {
+          "target": "com.planetscale.api#GetDeployRequest"
+        },
+        {
+          "target": "com.planetscale.api#GetDeployRequestThrottler"
+        },
+        {
+          "target": "com.planetscale.api#GetInstantBranchMetrics"
+        },
+        {
+          "target": "com.planetscale.api#GetInstantTabletMetrics"
+        },
+        {
+          "target": "com.planetscale.api#GetInvoice"
+        },
+        {
+          "target": "com.planetscale.api#GetInvoiceLineItems"
+        },
+        {
+          "target": "com.planetscale.api#GetKeyspace"
         },
         {
           "target": "com.planetscale.api#GetKeyspaceResizeRequest"
@@ -52351,34 +52525,187 @@
           "target": "com.planetscale.api#GetKeyspaceVschema"
         },
         {
-          "target": "com.planetscale.api#UpdateKeyspaceVschema"
+          "target": "com.planetscale.api#GetMaintenanceSchedule"
         },
         {
-          "target": "com.planetscale.api#RunBranchMaintenance"
+          "target": "com.planetscale.api#GetOauthApplication"
         },
         {
-          "target": "com.planetscale.api#GetBranchMetrics"
+          "target": "com.planetscale.api#GetOauthToken"
         },
         {
-          "target": "com.planetscale.api#GetInstantBranchMetrics"
+          "target": "com.planetscale.api#GetOrganization"
         },
         {
-          "target": "com.planetscale.api#GetBranchKeyspaceTableMetrics"
+          "target": "com.planetscale.api#GetOrganizationBillingPaymentMethod"
         },
         {
-          "target": "com.planetscale.api#GetBranchQueryMetrics"
+          "target": "com.planetscale.api#GetOrganizationMembership"
         },
         {
-          "target": "com.planetscale.api#GetBranchTableMetrics"
+          "target": "com.planetscale.api#GetOrganizationSso"
+        },
+        {
+          "target": "com.planetscale.api#GetOrganizationSsoDomain"
+        },
+        {
+          "target": "com.planetscale.api#GetOrganizationTeam"
+        },
+        {
+          "target": "com.planetscale.api#GetOrganizationTeamMember"
+        },
+        {
+          "target": "com.planetscale.api#GetPassword"
+        },
+        {
+          "target": "com.planetscale.api#GetPaymentMethodSetup"
+        },
+        {
+          "target": "com.planetscale.api#GetQueryPatternsReport"
+        },
+        {
+          "target": "com.planetscale.api#GetQueryPatternsReportStatus"
+        },
+        {
+          "target": "com.planetscale.api#GetQueryStatistics"
+        },
+        {
+          "target": "com.planetscale.api#GetQuerySummary"
+        },
+        {
+          "target": "com.planetscale.api#GetReadOnlyReplica"
+        },
+        {
+          "target": "com.planetscale.api#GetRole"
+        },
+        {
+          "target": "com.planetscale.api#GetSchemaRecommendation"
+        },
+        {
+          "target": "com.planetscale.api#GetServiceToken"
+        },
+        {
+          "target": "com.planetscale.api#GetSwitchover"
         },
         {
           "target": "com.planetscale.api#GetTabletMetrics"
         },
         {
-          "target": "com.planetscale.api#GetInstantTabletMetrics"
+          "target": "com.planetscale.api#GetTrafficBudget"
         },
         {
-          "target": "com.planetscale.api#GetBranchTagMetrics"
+          "target": "com.planetscale.api#GetWebhook"
+        },
+        {
+          "target": "com.planetscale.api#GetWorkflow"
+        },
+        {
+          "target": "com.planetscale.api#LintBranchSchema"
+        },
+        {
+          "target": "com.planetscale.api#ListAuditLogs"
+        },
+        {
+          "target": "com.planetscale.api#ListBackupPolicies"
+        },
+        {
+          "target": "com.planetscale.api#ListBackups"
+        },
+        {
+          "target": "com.planetscale.api#ListBouncerResizeRequests"
+        },
+        {
+          "target": "com.planetscale.api#ListBouncers"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchAnomalies"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchBouncerResizeRequests"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchChangeRequests"
+        },
+        {
+          "target": "com.planetscale.api#ListBranches"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchQueries"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchQueryErrors"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchQueryTags"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchQueryTagSummaries"
+        },
+        {
+          "target": "com.planetscale.api#ListBranchResizeRequests"
+        },
+        {
+          "target": "com.planetscale.api#ListClusterSizeSkus"
+        },
+        {
+          "target": "com.planetscale.api#ListDatabasePostgresCidrs"
+        },
+        {
+          "target": "com.planetscale.api#ListDatabaseRegions"
+        },
+        {
+          "target": "com.planetscale.api#ListDatabases"
+        },
+        {
+          "target": "com.planetscale.api#ListDeployOperations"
+        },
+        {
+          "target": "com.planetscale.api#ListDeployRequestReviews"
+        },
+        {
+          "target": "com.planetscale.api#ListDeployRequests"
+        },
+        {
+          "target": "com.planetscale.api#ListExtensions"
+        },
+        {
+          "target": "com.planetscale.api#ListGeneratedQueryPatternsReports"
+        },
+        {
+          "target": "com.planetscale.api#ListInvoices"
+        },
+        {
+          "target": "com.planetscale.api#ListKeyspaceResizeRequests"
+        },
+        {
+          "target": "com.planetscale.api#ListKeyspaces"
+        },
+        {
+          "target": "com.planetscale.api#ListMaintenanceSchedules"
+        },
+        {
+          "target": "com.planetscale.api#ListMaintenanceWindows"
+        },
+        {
+          "target": "com.planetscale.api#ListOauthApplications"
+        },
+        {
+          "target": "com.planetscale.api#ListOauthTokens"
+        },
+        {
+          "target": "com.planetscale.api#ListOrganizationMembers"
+        },
+        {
+          "target": "com.planetscale.api#ListOrganizations"
+        },
+        {
+          "target": "com.planetscale.api#ListOrganizationSsoDomains"
+        },
+        {
+          "target": "com.planetscale.api#ListOrganizationTeamMembers"
+        },
+        {
+          "target": "com.planetscale.api#ListOrganizationTeams"
         },
         {
           "target": "com.planetscale.api#ListParameters"
@@ -52387,37 +52714,10 @@
           "target": "com.planetscale.api#ListPasswords"
         },
         {
-          "target": "com.planetscale.api#CreatePassword"
+          "target": "com.planetscale.api#ListPublicRegions"
         },
         {
-          "target": "com.planetscale.api#GetPassword"
-        },
-        {
-          "target": "com.planetscale.api#UpdatePassword"
-        },
-        {
-          "target": "com.planetscale.api#DeletePassword"
-        },
-        {
-          "target": "com.planetscale.api#RenewPassword"
-        },
-        {
-          "target": "com.planetscale.api#PromoteBranch"
-        },
-        {
-          "target": "com.planetscale.api#ListGeneratedQueryPatternsReports"
-        },
-        {
-          "target": "com.planetscale.api#CreateQueryPatternsReport"
-        },
-        {
-          "target": "com.planetscale.api#GetQueryPatternsReportStatus"
-        },
-        {
-          "target": "com.planetscale.api#DeleteQueryPatternsReport"
-        },
-        {
-          "target": "com.planetscale.api#GetQueryPatternsReport"
+          "target": "com.planetscale.api#ListReadOnlyRegions"
         },
         {
           "target": "com.planetscale.api#ListReadOnlyReplicaChangeRequests"
@@ -52426,136 +52726,67 @@
           "target": "com.planetscale.api#ListReadOnlyReplicas"
         },
         {
-          "target": "com.planetscale.api#CreateReadOnlyReplica"
-        },
-        {
-          "target": "com.planetscale.api#GetReadOnlyReplica"
-        },
-        {
-          "target": "com.planetscale.api#UpdateReadOnlyReplica"
-        },
-        {
-          "target": "com.planetscale.api#DeleteReadOnlyReplica"
-        },
-        {
-          "target": "com.planetscale.api#ListBranchResizeRequests"
-        },
-        {
-          "target": "com.planetscale.api#UpdateBranchResizeRequest"
-        },
-        {
-          "target": "com.planetscale.api#RequestCancelBranchChange"
-        },
-        {
-          "target": "com.planetscale.api#GetBranchResizeRequest"
+          "target": "com.planetscale.api#ListRegionsForOrganization"
         },
         {
           "target": "com.planetscale.api#ListRoles"
         },
         {
-          "target": "com.planetscale.api#CreateRole"
+          "target": "com.planetscale.api#ListSchemaRecommendations"
         },
         {
-          "target": "com.planetscale.api#GetDefaultRole"
-        },
-        {
-          "target": "com.planetscale.api#ResetDefaultRole"
-        },
-        {
-          "target": "com.planetscale.api#GetRole"
-        },
-        {
-          "target": "com.planetscale.api#UpdateRole"
-        },
-        {
-          "target": "com.planetscale.api#DeleteRole"
-        },
-        {
-          "target": "com.planetscale.api#ReassignRoleObjects"
-        },
-        {
-          "target": "com.planetscale.api#RenewRole"
-        },
-        {
-          "target": "com.planetscale.api#ResetRole"
-        },
-        {
-          "target": "com.planetscale.api#EnableSafeMigrations"
-        },
-        {
-          "target": "com.planetscale.api#UpdateSafeMigrations"
-        },
-        {
-          "target": "com.planetscale.api#DisableSafeMigrations"
-        },
-        {
-          "target": "com.planetscale.api#GetBranchSchema"
-        },
-        {
-          "target": "com.planetscale.api#LintBranchSchema"
+          "target": "com.planetscale.api#ListServiceTokens"
         },
         {
           "target": "com.planetscale.api#ListSwitchovers"
         },
         {
-          "target": "com.planetscale.api#CreateSwitchover"
-        },
-        {
-          "target": "com.planetscale.api#GetSwitchover"
-        },
-        {
           "target": "com.planetscale.api#ListTrafficBudgets"
         },
         {
-          "target": "com.planetscale.api#CreateTrafficBudget"
+          "target": "com.planetscale.api#ListTrafficBudgetsForQuery"
         },
         {
-          "target": "com.planetscale.api#CreateTrafficRule"
+          "target": "com.planetscale.api#ListWebhooks"
         },
         {
-          "target": "com.planetscale.api#DeleteTrafficRule"
+          "target": "com.planetscale.api#ListWorkflows"
         },
         {
-          "target": "com.planetscale.api#GetTrafficBudget"
+          "target": "com.planetscale.api#PromoteBranch"
         },
         {
-          "target": "com.planetscale.api#UpdateTrafficBudget"
+          "target": "com.planetscale.api#ReassignRoleObjects"
         },
         {
-          "target": "com.planetscale.api#DeleteTrafficBudget"
+          "target": "com.planetscale.api#RemoveOrganizationMember"
         },
         {
-          "target": "com.planetscale.api#ListDatabasePostgresCidrs"
+          "target": "com.planetscale.api#RemoveOrganizationTeamMember"
         },
         {
-          "target": "com.planetscale.api#CreateDatabasePostgresCidr"
+          "target": "com.planetscale.api#RenewPassword"
         },
         {
-          "target": "com.planetscale.api#GetDatabasePostgresCidr"
+          "target": "com.planetscale.api#RenewRole"
         },
         {
-          "target": "com.planetscale.api#UpdateDatabasePostgresCidr"
+          "target": "com.planetscale.api#ResetDefaultRole"
         },
         {
-          "target": "com.planetscale.api#DeleteDatabasePostgresCidr"
+          "target": "com.planetscale.api#ResetRole"
         },
         {
-          "target": "com.planetscale.api#GetDeployQueue"
+          "target": "com.planetscale.api#RetryWorkflow"
         },
         {
-          "target": "com.planetscale.api#ListDeployRequests"
+          "target": "com.planetscale.api#RunBranchMaintenance"
         },
         {
-          "target": "com.planetscale.api#CreateDeployRequest"
+          "target": "com.planetscale.api#SkipRevertPeriod"
         },
         {
-          "target": "com.planetscale.api#GetDeployRequest"
-        },
-        {
-          "target": "com.planetscale.api#RequestCloseDeploy"
-        },
-        {
-          "target": "com.planetscale.api#RequestCompleteGatedDeploy"
+          "target": "com.planetscale.api#TestWebhook"
         },
         {
           "target": "com.planetscale.api#UpdateAutoApply"
@@ -52564,112 +52795,79 @@
           "target": "com.planetscale.api#UpdateAutoDeleteBranch"
         },
         {
-          "target": "com.planetscale.api#RequestCancelDeploy"
+          "target": "com.planetscale.api#UpdateBackup"
         },
         {
-          "target": "com.planetscale.api#CompleteErroredDeploy"
+          "target": "com.planetscale.api#UpdateBackupPolicy"
         },
         {
-          "target": "com.planetscale.api#RequestQueueDeploy"
+          "target": "com.planetscale.api#UpdateBouncerResizeRequest"
         },
         {
-          "target": "com.planetscale.api#GetDeployment"
+          "target": "com.planetscale.api#UpdateBranch"
         },
         {
-          "target": "com.planetscale.api#RequestForceCutoverDeploy"
+          "target": "com.planetscale.api#UpdateBranchChangeRequest"
         },
         {
-          "target": "com.planetscale.api#ListDeployOperations"
+          "target": "com.planetscale.api#UpdateBranchClusterConfig"
         },
         {
-          "target": "com.planetscale.api#CompleteRevert"
+          "target": "com.planetscale.api#UpdateBranchResizeRequest"
         },
         {
-          "target": "com.planetscale.api#ListDeployRequestReviews"
+          "target": "com.planetscale.api#UpdateDatabasePostgresCidr"
         },
         {
-          "target": "com.planetscale.api#RequestReviewDeploy"
-        },
-        {
-          "target": "com.planetscale.api#SkipRevertPeriod"
-        },
-        {
-          "target": "com.planetscale.api#CheckDeployRequestStorage"
-        },
-        {
-          "target": "com.planetscale.api#GetDeployRequestThrottler"
-        },
-        {
-          "target": "com.planetscale.api#UpdateDeployRequestThrottler"
-        },
-        {
-          "target": "com.planetscale.api#ListMaintenanceSchedules"
-        },
-        {
-          "target": "com.planetscale.api#GetMaintenanceSchedule"
-        },
-        {
-          "target": "com.planetscale.api#ListMaintenanceWindows"
-        },
-        {
-          "target": "com.planetscale.api#ListReadOnlyRegions"
-        },
-        {
-          "target": "com.planetscale.api#ListDatabaseRegions"
-        },
-        {
-          "target": "com.planetscale.api#ListSchemaRecommendations"
-        },
-        {
-          "target": "com.planetscale.api#GetSchemaRecommendation"
-        },
-        {
-          "target": "com.planetscale.api#DismissSchemaRecommendation"
-        },
-        {
-          "target": "com.planetscale.api#GetDatabaseThrottler"
+          "target": "com.planetscale.api#UpdateDatabaseSettings"
         },
         {
           "target": "com.planetscale.api#UpdateDatabaseThrottler"
         },
         {
-          "target": "com.planetscale.api#ListWebhooks"
+          "target": "com.planetscale.api#UpdateDeployRequestThrottler"
         },
         {
-          "target": "com.planetscale.api#CreateWebhook"
+          "target": "com.planetscale.api#UpdateKeyspace"
         },
         {
-          "target": "com.planetscale.api#GetWebhook"
+          "target": "com.planetscale.api#UpdateKeyspaceVschema"
+        },
+        {
+          "target": "com.planetscale.api#UpdateOrganization"
+        },
+        {
+          "target": "com.planetscale.api#UpdateOrganizationMembership"
+        },
+        {
+          "target": "com.planetscale.api#UpdateOrganizationTeam"
+        },
+        {
+          "target": "com.planetscale.api#UpdatePassword"
+        },
+        {
+          "target": "com.planetscale.api#UpdatePaymentMethod"
+        },
+        {
+          "target": "com.planetscale.api#UpdateReadOnlyReplica"
+        },
+        {
+          "target": "com.planetscale.api#UpdateRole"
+        },
+        {
+          "target": "com.planetscale.api#UpdateSafeMigrations"
+        },
+        {
+          "target": "com.planetscale.api#UpdateTrafficBudget"
         },
         {
           "target": "com.planetscale.api#UpdateWebhook"
         },
         {
-          "target": "com.planetscale.api#DeleteWebhook"
-        },
-        {
-          "target": "com.planetscale.api#TestWebhook"
-        },
-        {
-          "target": "com.planetscale.api#ListWorkflows"
-        },
-        {
-          "target": "com.planetscale.api#CreateWorkflow"
-        },
-        {
-          "target": "com.planetscale.api#GetWorkflow"
-        },
-        {
-          "target": "com.planetscale.api#WorkflowCancel"
-        },
-        {
-          "target": "com.planetscale.api#WorkflowComplete"
+          "target": "com.planetscale.api#VerifyWorkflow"
         },
         {
           "target": "com.planetscale.api#WorkflowCutover"
-        },
-        {
-          "target": "com.planetscale.api#WorkflowRetry"
         },
         {
           "target": "com.planetscale.api#WorkflowReverseCutover"
@@ -52682,126 +52880,6 @@
         },
         {
           "target": "com.planetscale.api#WorkflowSwitchReplicas"
-        },
-        {
-          "target": "com.planetscale.api#VerifyWorkflow"
-        },
-        {
-          "target": "com.planetscale.api#ListInvoices"
-        },
-        {
-          "target": "com.planetscale.api#GetInvoice"
-        },
-        {
-          "target": "com.planetscale.api#GetInvoiceLineItems"
-        },
-        {
-          "target": "com.planetscale.api#ListOrganizationMembers"
-        },
-        {
-          "target": "com.planetscale.api#GetOrganizationMembership"
-        },
-        {
-          "target": "com.planetscale.api#UpdateOrganizationMembership"
-        },
-        {
-          "target": "com.planetscale.api#RemoveOrganizationMember"
-        },
-        {
-          "target": "com.planetscale.api#ListOauthApplications"
-        },
-        {
-          "target": "com.planetscale.api#GetOauthApplication"
-        },
-        {
-          "target": "com.planetscale.api#ListOauthTokens"
-        },
-        {
-          "target": "com.planetscale.api#GetOauthToken"
-        },
-        {
-          "target": "com.planetscale.api#DeleteOauthToken"
-        },
-        {
-          "target": "com.planetscale.api#CreateOauthToken"
-        },
-        {
-          "target": "com.planetscale.api#ListRegionsForOrganization"
-        },
-        {
-          "target": "com.planetscale.api#ListServiceTokens"
-        },
-        {
-          "target": "com.planetscale.api#CreateServiceToken"
-        },
-        {
-          "target": "com.planetscale.api#GetServiceToken"
-        },
-        {
-          "target": "com.planetscale.api#DeleteServiceToken"
-        },
-        {
-          "target": "com.planetscale.api#GetOrganizationSso"
-        },
-        {
-          "target": "com.planetscale.api#EnableOrganizationSso"
-        },
-        {
-          "target": "com.planetscale.api#DisableOrganizationSso"
-        },
-        {
-          "target": "com.planetscale.api#ConfigureOrganizationSso"
-        },
-        {
-          "target": "com.planetscale.api#EnableOrganizationSsoDirectory"
-        },
-        {
-          "target": "com.planetscale.api#DisableOrganizationSsoDirectory"
-        },
-        {
-          "target": "com.planetscale.api#ListOrganizationSsoDomains"
-        },
-        {
-          "target": "com.planetscale.api#CreateOrganizationSsoDomain"
-        },
-        {
-          "target": "com.planetscale.api#GetOrganizationSsoDomain"
-        },
-        {
-          "target": "com.planetscale.api#DeleteOrganizationSsoDomain"
-        },
-        {
-          "target": "com.planetscale.api#ListOrganizationTeams"
-        },
-        {
-          "target": "com.planetscale.api#CreateOrganizationTeam"
-        },
-        {
-          "target": "com.planetscale.api#GetOrganizationTeam"
-        },
-        {
-          "target": "com.planetscale.api#UpdateOrganizationTeam"
-        },
-        {
-          "target": "com.planetscale.api#DeleteOrganizationTeam"
-        },
-        {
-          "target": "com.planetscale.api#ListOrganizationTeamMembers"
-        },
-        {
-          "target": "com.planetscale.api#AddOrganizationTeamMember"
-        },
-        {
-          "target": "com.planetscale.api#GetOrganizationTeamMember"
-        },
-        {
-          "target": "com.planetscale.api#RemoveOrganizationTeamMember"
-        },
-        {
-          "target": "com.planetscale.api#ListPublicRegions"
-        },
-        {
-          "target": "com.planetscale.api#GetCurrentUser"
         }
       ],
       "traits": {

@@ -13,7 +13,252 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CheckGrafanaEnterpriseDetailRequest {
+/** The Private Endpoint resource. */
+export interface PrivateEndpointConnectionPropertiesInputPrivateEndpoint {}
+export const PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "PrivateEndpointConnectionPropertiesInputPrivateEndpoint",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateEndpoint>;
+
+/** The private endpoint connection status. */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected";
+export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(PrivateEndpointServiceConnectionStatus),
+      description: S.optional(S.String),
+      actionsRequired: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState>;
+
+/** The private endpoint connection group ids. */
+export type PrivateEndpointConnectionPropertiesInputGroupIdsList =
+  Array<string>;
+export const PrivateEndpointConnectionPropertiesInputGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesInputGroupIdsList>;
+
+/** Properties of the PrivateEndpointConnectProperties. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The Private Endpoint resource. */
+  privateEndpoint?: PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState;
+  /** The private endpoint connection group ids. */
+  groupIds?: PrivateEndpointConnectionPropertiesInputGroupIdsList;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(
+        PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
+      ),
+      privateLinkServiceConnectionState:
+        PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState,
+      groupIds: S.optional(
+        PrivateEndpointConnectionPropertiesInputGroupIdsList,
+      ),
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface ApprovePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The workspace name of Azure Managed Grafana. */
+  workspaceName: string;
+  /** The private endpoint connection name of Azure Managed Grafana. */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const ApprovePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
+).annotate({
+  identifier: "ApprovePrivateEndpointConnectionRequest",
+}) as any as S.Schema<ApprovePrivateEndpointConnectionRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** The Private Endpoint resource. */
+export interface PrivateEndpointConnectionPropertiesPrivateEndpoint {
+  /** The ARM identifier for Private Endpoint */
+  id?: string;
+}
+export const PrivateEndpointConnectionPropertiesPrivateEndpoint =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionPropertiesPrivateEndpoint",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateEndpoint>;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus;
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(PrivateEndpointServiceConnectionStatus),
+      description: S.optional(S.String),
+      actionsRequired: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState>;
+
+/** The private endpoint connection group ids. */
+export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
+export const PrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionPropertiesProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Failed";
+export const PrivateEndpointConnectionPropertiesProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the PrivateEndpointConnectProperties. */
+export interface PrivateEndpointConnectionProperties {
+  /** The Private Endpoint resource. */
+  privateEndpoint?: PrivateEndpointConnectionPropertiesPrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState;
+  /** The private endpoint connection group ids. */
+  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
+  /** The current provisioning state. */
+  provisioningState?: PrivateEndpointConnectionPropertiesProvisioningState;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateEndpoint: S.optional(
+      PrivateEndpointConnectionPropertiesPrivateEndpoint,
+    ),
+    privateLinkServiceConnectionState:
+      PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState,
+    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
+    provisioningState: S.optional(
+      PrivateEndpointConnectionPropertiesProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+
+export interface ApprovePrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const ApprovePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "ApprovePrivateEndpointConnectionResponse",
+}) as any as S.Schema<ApprovePrivateEndpointConnectionResponse>;
+
+export interface CheckGrafanaEnterpriseDetailsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -21,22 +266,23 @@ export interface CheckGrafanaEnterpriseDetailRequest {
   /** The workspace name of Azure Managed Grafana. */
   workspaceName: string;
 }
-export const CheckGrafanaEnterpriseDetailRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/checkEnterpriseDetails",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
+export const CheckGrafanaEnterpriseDetailsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/checkEnterpriseDetails",
+        code: 200,
+        apiVersion: "2025-08-01",
+      }),
+    ),
 ).annotate({
-  identifier: "CheckGrafanaEnterpriseDetailRequest",
-}) as any as S.Schema<CheckGrafanaEnterpriseDetailRequest>;
+  identifier: "CheckGrafanaEnterpriseDetailsRequest",
+}) as any as S.Schema<CheckGrafanaEnterpriseDetailsRequest>;
 
 /** The current billing term of the SaaS Subscription. */
 export interface SubscriptionTerm {
@@ -322,21 +568,21 @@ export const GrafanaConfigurations = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GrafanaConfigurations>;
 
 /** Plugin of Grafana */
-export interface GrafanaPluginInput {}
-export const GrafanaPluginInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GrafanaPluginInput",
-}) as any as S.Schema<GrafanaPluginInput>;
+export type GrafanaPluginInput =
+  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
+export const GrafanaPluginInput =
+  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
 
 /** Installed plugin list of the Grafana instance. Key is plugin id, value is plugin definition. */
 export type ManagedGrafanaPropertiesInputGrafanaPluginsMap = {
-  [key: string]: GrafanaPluginInput | undefined;
+  [key: string]:
+    | PrivateEndpointConnectionPropertiesInputPrivateEndpoint
+    | undefined;
 };
 export const ManagedGrafanaPropertiesInputGrafanaPluginsMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    GrafanaPluginInput,
+    PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
   ) as any as S.Schema<ManagedGrafanaPropertiesInputGrafanaPluginsMap>;
 
 /** Properties specific to the grafana resource. */
@@ -413,11 +659,11 @@ export const ResourceSku = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ResourceSku" }) as any as S.Schema<ResourceSku>;
 
 /** Resource tags. */
-export type GrafanaCreateRequestTagsMap = { [key: string]: string | undefined };
-export const GrafanaCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateGrafanaRequestTagsMap = { [key: string]: string | undefined };
+export const CreateGrafanaRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GrafanaCreateRequestTagsMap>;
+) as any as S.Schema<CreateGrafanaRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType =
@@ -428,31 +674,35 @@ export type ManagedServiceIdentityType =
 export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** User assigned identity properties */
-export type UserAssignedIdentityInput = GrafanaPluginInput;
-export const UserAssignedIdentityInput = GrafanaPluginInput;
+export type UserAssignedIdentityInput =
+  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
+export const UserAssignedIdentityInput =
+  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
 export type UserAssignedIdentitiesInput = {
-  [key: string]: GrafanaPluginInput | undefined;
+  [key: string]:
+    | PrivateEndpointConnectionPropertiesInputPrivateEndpoint
+    | undefined;
 };
 export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
   S.String,
-  GrafanaPluginInput,
+  PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
 ) as any as S.Schema<UserAssignedIdentitiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface GrafanaCreateRequestIdentity {
+export interface CreateGrafanaRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   userAssignedIdentities?: UserAssignedIdentitiesInput | null;
 }
-export const GrafanaCreateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateGrafanaRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(S.NullOr(UserAssignedIdentitiesInput)),
   }),
 ).annotate({
-  identifier: "GrafanaCreateRequestIdentity",
-}) as any as S.Schema<GrafanaCreateRequestIdentity>;
+  identifier: "CreateGrafanaRequestIdentity",
+}) as any as S.Schema<CreateGrafanaRequestIdentity>;
 
 export interface CreateGrafanaRequest {
   /** The ID of the target subscription. */
@@ -466,11 +716,11 @@ export interface CreateGrafanaRequest {
   /** The Sku of the grafana resource. */
   sku?: ResourceSku;
   /** Resource tags. */
-  tags?: GrafanaCreateRequestTagsMap;
+  tags?: CreateGrafanaRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GrafanaCreateRequestIdentity;
+  identity?: CreateGrafanaRequestIdentity;
 }
 export const CreateGrafanaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -479,9 +729,9 @@ export const CreateGrafanaRequest = /*@__PURE__*/ S.suspend(() =>
     workspaceName: S.String.pipe(T.Label()),
     properties: S.optional(ManagedGrafanaPropertiesInput),
     sku: S.optional(ResourceSku),
-    tags: S.optional(GrafanaCreateRequestTagsMap),
+    tags: S.optional(CreateGrafanaRequestTagsMap),
     location: S.optional(S.String),
-    identity: S.optional(GrafanaCreateRequestIdentity),
+    identity: S.optional(CreateGrafanaRequestIdentity),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -493,48 +743,6 @@ export const CreateGrafanaRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateGrafanaRequest",
 }) as any as S.Schema<CreateGrafanaRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 export type ProvisioningState =
   | "Accepted"
@@ -575,91 +783,6 @@ export type ManagedGrafanaPropertiesOutboundIPsList = Array<string>;
 export const ManagedGrafanaPropertiesOutboundIPsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<ManagedGrafanaPropertiesOutboundIPsList>;
-
-/** The Private Endpoint resource. */
-export interface PrivateEndpointConnectionPropertiesPrivateEndpoint {
-  /** The ARM identifier for Private Endpoint */
-  id?: string;
-}
-export const PrivateEndpointConnectionPropertiesPrivateEndpoint =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionPropertiesPrivateEndpoint",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateEndpoint>;
-
-/** The private endpoint connection status. */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus;
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(PrivateEndpointServiceConnectionStatus),
-      description: S.optional(S.String),
-      actionsRequired: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState>;
-
-/** The private endpoint connection group ids. */
-export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
-export const PrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionPropertiesProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Failed";
-export const PrivateEndpointConnectionPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the PrivateEndpointConnectProperties. */
-export interface PrivateEndpointConnectionProperties {
-  /** The Private Endpoint resource. */
-  privateEndpoint?: PrivateEndpointConnectionPropertiesPrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState;
-  /** The private endpoint connection group ids. */
-  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
-  /** The current provisioning state. */
-  provisioningState?: PrivateEndpointConnectionPropertiesProvisioningState;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateEndpoint: S.optional(
-      PrivateEndpointConnectionPropertiesPrivateEndpoint,
-    ),
-    privateLinkServiceConnectionState:
-      PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState,
-    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
-    provisioningState: S.optional(
-      PrivateEndpointConnectionPropertiesProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
 /** The Private Endpoint Connection resource. */
 export interface PrivateEndpointConnection {
@@ -781,13 +904,13 @@ export const ManagedGrafanaProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedGrafanaProperties>;
 
 /** Resource tags. */
-export type GrafanaCreateResponseTagsMap = {
+export type CreateGrafanaResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GrafanaCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateGrafanaResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GrafanaCreateResponseTagsMap>;
+) as any as S.Schema<CreateGrafanaResponseTagsMap>;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -815,7 +938,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface GrafanaCreateResponseIdentity {
+export interface CreateGrafanaResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -823,7 +946,7 @@ export interface GrafanaCreateResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities | null;
 }
-export const GrafanaCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateGrafanaResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -831,8 +954,8 @@ export const GrafanaCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(S.NullOr(UserAssignedIdentities)),
   }),
 ).annotate({
-  identifier: "GrafanaCreateResponseIdentity",
-}) as any as S.Schema<GrafanaCreateResponseIdentity>;
+  identifier: "CreateGrafanaResponseIdentity",
+}) as any as S.Schema<CreateGrafanaResponseIdentity>;
 
 export interface CreateGrafanaResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -848,11 +971,11 @@ export interface CreateGrafanaResponse {
   /** The Sku of the grafana resource. */
   sku?: ResourceSku;
   /** Resource tags. */
-  tags?: GrafanaCreateResponseTagsMap;
+  tags?: CreateGrafanaResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GrafanaCreateResponseIdentity;
+  identity?: CreateGrafanaResponseIdentity;
 }
 export const CreateGrafanaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -862,22 +985,22 @@ export const CreateGrafanaResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ManagedGrafanaProperties),
     sku: S.optional(ResourceSku),
-    tags: S.optional(GrafanaCreateResponseTagsMap),
+    tags: S.optional(CreateGrafanaResponseTagsMap),
     location: S.optional(S.String),
-    identity: S.optional(GrafanaCreateResponseIdentity),
+    identity: S.optional(CreateGrafanaResponseIdentity),
   }),
 ).annotate({
   identifier: "CreateGrafanaResponse",
 }) as any as S.Schema<CreateGrafanaResponse>;
 
 /** Resource tags. */
-export type IntegrationFabricsCreateRequestTagsMap = {
+export type CreateIntegrationFabricRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationFabricsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateIntegrationFabricRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationFabricsCreateRequestTagsMap>;
+) as any as S.Schema<CreateIntegrationFabricRequestTagsMap>;
 
 /** A list of integration scenarios covered by this integration fabric */
 export type IntegrationFabricPropertiesInputScenariosList = Array<string>;
@@ -914,7 +1037,7 @@ export interface CreateIntegrationFabricRequest {
   /** The integration fabric name of Azure Managed Grafana. */
   integrationFabricName: string;
   /** Resource tags. */
-  tags?: IntegrationFabricsCreateRequestTagsMap;
+  tags?: CreateIntegrationFabricRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: IntegrationFabricPropertiesInput;
@@ -925,7 +1048,7 @@ export const CreateIntegrationFabricRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     integrationFabricName: S.String.pipe(T.Label()),
-    tags: S.optional(IntegrationFabricsCreateRequestTagsMap),
+    tags: S.optional(CreateIntegrationFabricRequestTagsMap),
     location: S.String,
     properties: S.optional(IntegrationFabricPropertiesInput),
   }).pipe(
@@ -941,13 +1064,13 @@ export const CreateIntegrationFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIntegrationFabricRequest>;
 
 /** Resource tags. */
-export type IntegrationFabricsCreateResponseTagsMap = {
+export type CreateIntegrationFabricResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationFabricsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateIntegrationFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationFabricsCreateResponseTagsMap>;
+) as any as S.Schema<CreateIntegrationFabricResponseTagsMap>;
 
 /** A list of integration scenarios covered by this integration fabric */
 export type IntegrationFabricPropertiesScenariosList = Array<string>;
@@ -986,7 +1109,7 @@ export interface CreateIntegrationFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IntegrationFabricsCreateResponseTagsMap;
+  tags?: CreateIntegrationFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: IntegrationFabricProperties;
@@ -997,7 +1120,7 @@ export const CreateIntegrationFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IntegrationFabricsCreateResponseTagsMap),
+    tags: S.optional(CreateIntegrationFabricResponseTagsMap),
     location: S.String,
     properties: S.optional(IntegrationFabricProperties),
   }),
@@ -1006,17 +1129,19 @@ export const CreateIntegrationFabricResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateIntegrationFabricResponse>;
 
 /** Resource tags. */
-export type ManagedDashboardsCreateRequestTagsMap = {
+export type CreateManagedDashboardRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedDashboardsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateManagedDashboardRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedDashboardsCreateRequestTagsMap>;
+) as any as S.Schema<CreateManagedDashboardRequestTagsMap>;
 
 /** Properties specific to the grafana resource. */
-export type ManagedDashboardPropertiesInput = GrafanaPluginInput;
-export const ManagedDashboardPropertiesInput = GrafanaPluginInput;
+export type ManagedDashboardPropertiesInput =
+  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
+export const ManagedDashboardPropertiesInput =
+  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
 
 export interface CreateManagedDashboardRequest {
   /** The ID of the target subscription. */
@@ -1026,20 +1151,22 @@ export interface CreateManagedDashboardRequest {
   /** The name of the Azure Managed Dashboard. */
   dashboardName: string;
   /** Resource tags. */
-  tags?: ManagedDashboardsCreateRequestTagsMap;
+  tags?: CreateManagedDashboardRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the managed dashboard resource. */
-  properties?: GrafanaPluginInput;
+  properties?: PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
 }
 export const CreateManagedDashboardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     dashboardName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedDashboardsCreateRequestTagsMap),
+    tags: S.optional(CreateManagedDashboardRequestTagsMap),
     location: S.String,
-    properties: S.optional(GrafanaPluginInput),
+    properties: S.optional(
+      PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
+    ),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -1053,13 +1180,13 @@ export const CreateManagedDashboardRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateManagedDashboardRequest>;
 
 /** Resource tags. */
-export type ManagedDashboardsCreateResponseTagsMap = {
+export type CreateManagedDashboardResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedDashboardsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateManagedDashboardResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedDashboardsCreateResponseTagsMap>;
+) as any as S.Schema<CreateManagedDashboardResponseTagsMap>;
 
 /** Properties specific to the grafana resource. */
 export interface ManagedDashboardProperties {
@@ -1084,7 +1211,7 @@ export interface CreateManagedDashboardResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedDashboardsCreateResponseTagsMap;
+  tags?: CreateManagedDashboardResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the managed dashboard resource. */
@@ -1096,7 +1223,7 @@ export const CreateManagedDashboardResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedDashboardsCreateResponseTagsMap),
+    tags: S.optional(CreateManagedDashboardResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedDashboardProperties),
   }),
@@ -1105,14 +1232,14 @@ export const CreateManagedDashboardResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateManagedDashboardResponse>;
 
 /** Resource tags. */
-export type ManagedPrivateEndpointsCreateRequestTagsMap = {
+export type CreateManagedPrivateEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedPrivateEndpointsCreateRequestTagsMap =
+export const CreateManagedPrivateEndpointRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedPrivateEndpointsCreateRequestTagsMap>;
+  ) as any as S.Schema<CreateManagedPrivateEndpointRequestTagsMap>;
 
 /** The group Ids of the managed private endpoint. */
 export type ManagedPrivateEndpointModelPropertiesInputGroupIdsList =
@@ -1160,7 +1287,7 @@ export interface CreateManagedPrivateEndpointRequest {
   /** The managed private endpoint name of Azure Managed Grafana. */
   managedPrivateEndpointName: string;
   /** Resource tags. */
-  tags?: ManagedPrivateEndpointsCreateRequestTagsMap;
+  tags?: CreateManagedPrivateEndpointRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -1172,7 +1299,7 @@ export const CreateManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     managedPrivateEndpointName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedPrivateEndpointsCreateRequestTagsMap),
+    tags: S.optional(CreateManagedPrivateEndpointRequestTagsMap),
     location: S.String,
     properties: S.optional(ManagedPrivateEndpointModelPropertiesInput),
   }).pipe(
@@ -1188,14 +1315,14 @@ export const CreateManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CreateManagedPrivateEndpointRequest>;
 
 /** Resource tags. */
-export type ManagedPrivateEndpointsCreateResponseTagsMap = {
+export type CreateManagedPrivateEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedPrivateEndpointsCreateResponseTagsMap =
+export const CreateManagedPrivateEndpointResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedPrivateEndpointsCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateManagedPrivateEndpointResponseTagsMap>;
 
 /** The group Ids of the managed private endpoint. */
 export type ManagedPrivateEndpointModelPropertiesGroupIdsList = Array<string>;
@@ -1274,7 +1401,7 @@ export interface CreateManagedPrivateEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedPrivateEndpointsCreateResponseTagsMap;
+  tags?: CreateManagedPrivateEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -1287,7 +1414,7 @@ export const CreateManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ManagedPrivateEndpointsCreateResponseTagsMap),
+      tags: S.optional(CreateManagedPrivateEndpointResponseTagsMap),
       location: S.String,
       properties: S.optional(ManagedPrivateEndpointModelProperties),
     }),
@@ -1465,6 +1592,73 @@ export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeletePrivateEndpointConnectionResponse",
 }) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
+export interface FetchGrafanaAvailablePluginsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The workspace name of Azure Managed Grafana. */
+  workspaceName: string;
+}
+export const FetchGrafanaAvailablePluginsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/fetchAvailablePlugins",
+      code: 200,
+      apiVersion: "2025-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "FetchGrafanaAvailablePluginsRequest",
+}) as any as S.Schema<FetchGrafanaAvailablePluginsRequest>;
+
+/** Available plugins of grafana */
+export interface GrafanaAvailablePlugin {
+  /** Grafana plugin id */
+  pluginId?: string;
+  /** Grafana plugin display name */
+  name?: string;
+  /** Grafana plugin type */
+  type?: string;
+  /** Grafana plugin author/publisher name */
+  author?: string;
+}
+export const GrafanaAvailablePlugin = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pluginId: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    author: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GrafanaAvailablePlugin",
+}) as any as S.Schema<GrafanaAvailablePlugin>;
+
+export type GrafanaAvailablePluginListResponseValueList =
+  Array<GrafanaAvailablePlugin>;
+export const GrafanaAvailablePluginListResponseValueList =
+  /*@__PURE__*/ S.Array(
+    GrafanaAvailablePlugin,
+  ) as any as S.Schema<GrafanaAvailablePluginListResponseValueList>;
+
+export interface GrafanaAvailablePluginListResponse {
+  value?: GrafanaAvailablePluginListResponseValueList;
+  nextLink?: string;
+}
+export const GrafanaAvailablePluginListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(GrafanaAvailablePluginListResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GrafanaAvailablePluginListResponse",
+}) as any as S.Schema<GrafanaAvailablePluginListResponse>;
+
 export interface GetDashboardRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1491,13 +1685,11 @@ export const GetDashboardRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDashboardRequest>;
 
 /** Resource tags. */
-export type DashboardsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DashboardsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDashboardResponseTagsMap = { [key: string]: string | undefined };
+export const GetDashboardResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DashboardsGetResponseTagsMap>;
+) as any as S.Schema<GetDashboardResponseTagsMap>;
 
 export interface GetDashboardResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1509,7 +1701,7 @@ export interface GetDashboardResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DashboardsGetResponseTagsMap;
+  tags?: GetDashboardResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the managed dashboard resource. */
@@ -1521,7 +1713,7 @@ export const GetDashboardResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DashboardsGetResponseTagsMap),
+    tags: S.optional(GetDashboardResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedDashboardProperties),
   }),
@@ -1555,15 +1747,15 @@ export const GetGrafanaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetGrafanaRequest>;
 
 /** Resource tags. */
-export type GrafanaGetResponseTagsMap = { [key: string]: string | undefined };
-export const GrafanaGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetGrafanaResponseTagsMap = { [key: string]: string | undefined };
+export const GetGrafanaResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GrafanaGetResponseTagsMap>;
+) as any as S.Schema<GetGrafanaResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type GrafanaGetResponseIdentity = GrafanaCreateResponseIdentity;
-export const GrafanaGetResponseIdentity = GrafanaCreateResponseIdentity;
+export type GetGrafanaResponseIdentity = CreateGrafanaResponseIdentity;
+export const GetGrafanaResponseIdentity = CreateGrafanaResponseIdentity;
 
 export interface GetGrafanaResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1579,11 +1771,11 @@ export interface GetGrafanaResponse {
   /** The Sku of the grafana resource. */
   sku?: ResourceSku;
   /** Resource tags. */
-  tags?: GrafanaGetResponseTagsMap;
+  tags?: GetGrafanaResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GrafanaCreateResponseIdentity;
+  identity?: CreateGrafanaResponseIdentity;
 }
 export const GetGrafanaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1593,9 +1785,9 @@ export const GetGrafanaResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ManagedGrafanaProperties),
     sku: S.optional(ResourceSku),
-    tags: S.optional(GrafanaGetResponseTagsMap),
+    tags: S.optional(GetGrafanaResponseTagsMap),
     location: S.optional(S.String),
-    identity: S.optional(GrafanaCreateResponseIdentity),
+    identity: S.optional(CreateGrafanaResponseIdentity),
   }),
 ).annotate({
   identifier: "GetGrafanaResponse",
@@ -1630,13 +1822,13 @@ export const GetIntegrationFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetIntegrationFabricRequest>;
 
 /** Resource tags. */
-export type IntegrationFabricsGetResponseTagsMap = {
+export type GetIntegrationFabricResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationFabricsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetIntegrationFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationFabricsGetResponseTagsMap>;
+) as any as S.Schema<GetIntegrationFabricResponseTagsMap>;
 
 export interface GetIntegrationFabricResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1648,7 +1840,7 @@ export interface GetIntegrationFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IntegrationFabricsGetResponseTagsMap;
+  tags?: GetIntegrationFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: IntegrationFabricProperties;
@@ -1659,7 +1851,7 @@ export const GetIntegrationFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IntegrationFabricsGetResponseTagsMap),
+    tags: S.optional(GetIntegrationFabricResponseTagsMap),
     location: S.String,
     properties: S.optional(IntegrationFabricProperties),
   }),
@@ -1696,13 +1888,13 @@ export const GetManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetManagedPrivateEndpointRequest>;
 
 /** Resource tags. */
-export type ManagedPrivateEndpointsGetResponseTagsMap = {
+export type GetManagedPrivateEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedPrivateEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedPrivateEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedPrivateEndpointsGetResponseTagsMap>;
+) as any as S.Schema<GetManagedPrivateEndpointResponseTagsMap>;
 
 export interface GetManagedPrivateEndpointResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1714,7 +1906,7 @@ export interface GetManagedPrivateEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedPrivateEndpointsGetResponseTagsMap;
+  tags?: GetManagedPrivateEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -1726,7 +1918,7 @@ export const GetManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedPrivateEndpointsGetResponseTagsMap),
+    tags: S.optional(GetManagedPrivateEndpointResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedPrivateEndpointModelProperties),
   }),
@@ -1878,73 +2070,6 @@ export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPrivateLinkResourceResponse",
 }) as any as S.Schema<GetPrivateLinkResourceResponse>;
 
-export interface GrafanaFetchAvailablePluginsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The workspace name of Azure Managed Grafana. */
-  workspaceName: string;
-}
-export const GrafanaFetchAvailablePluginsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/fetchAvailablePlugins",
-      code: 200,
-      apiVersion: "2025-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "GrafanaFetchAvailablePluginsRequest",
-}) as any as S.Schema<GrafanaFetchAvailablePluginsRequest>;
-
-/** Available plugins of grafana */
-export interface GrafanaAvailablePlugin {
-  /** Grafana plugin id */
-  pluginId?: string;
-  /** Grafana plugin display name */
-  name?: string;
-  /** Grafana plugin type */
-  type?: string;
-  /** Grafana plugin author/publisher name */
-  author?: string;
-}
-export const GrafanaAvailablePlugin = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pluginId: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    author: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GrafanaAvailablePlugin",
-}) as any as S.Schema<GrafanaAvailablePlugin>;
-
-export type GrafanaAvailablePluginListResponseValueList =
-  Array<GrafanaAvailablePlugin>;
-export const GrafanaAvailablePluginListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    GrafanaAvailablePlugin,
-  ) as any as S.Schema<GrafanaAvailablePluginListResponseValueList>;
-
-export interface GrafanaAvailablePluginListResponse {
-  value?: GrafanaAvailablePluginListResponseValueList;
-  nextLink?: string;
-}
-export const GrafanaAvailablePluginListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(GrafanaAvailablePluginListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GrafanaAvailablePluginListResponse",
-}) as any as S.Schema<GrafanaAvailablePluginListResponse>;
-
 export interface ListDashboardBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -2073,8 +2198,8 @@ export const ManagedGrafanaTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<ManagedGrafanaTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedGrafanaIdentity = GrafanaCreateResponseIdentity;
-export const ManagedGrafanaIdentity = GrafanaCreateResponseIdentity;
+export type ManagedGrafanaIdentity = CreateGrafanaResponseIdentity;
+export const ManagedGrafanaIdentity = CreateGrafanaResponseIdentity;
 
 /** The grafana resource type. */
 export interface ManagedGrafana {
@@ -2095,7 +2220,7 @@ export interface ManagedGrafana {
   /** The geo-location where the resource lives */
   location?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GrafanaCreateResponseIdentity;
+  identity?: CreateGrafanaResponseIdentity;
 }
 export const ManagedGrafana = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2107,7 +2232,7 @@ export const ManagedGrafana = /*@__PURE__*/ S.suspend(() =>
     sku: S.optional(ResourceSku),
     tags: S.optional(ManagedGrafanaTagsMap),
     location: S.optional(S.String),
-    identity: S.optional(GrafanaCreateResponseIdentity),
+    identity: S.optional(CreateGrafanaResponseIdentity),
   }),
 ).annotate({ identifier: "ManagedGrafana" }) as any as S.Schema<ManagedGrafana>;
 
@@ -2397,20 +2522,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2539,7 +2664,7 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
-export interface ManagedPrivateEndpointsRefreshRequest {
+export interface RefreshManagedPrivateEndpointRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2547,7 +2672,7 @@ export interface ManagedPrivateEndpointsRefreshRequest {
   /** The workspace name of Azure Managed Grafana. */
   workspaceName: string;
 }
-export const ManagedPrivateEndpointsRefreshRequest = /*@__PURE__*/ S.suspend(
+export const RefreshManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2562,141 +2687,26 @@ export const ManagedPrivateEndpointsRefreshRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ManagedPrivateEndpointsRefreshRequest",
-}) as any as S.Schema<ManagedPrivateEndpointsRefreshRequest>;
+  identifier: "RefreshManagedPrivateEndpointRequest",
+}) as any as S.Schema<RefreshManagedPrivateEndpointRequest>;
 
-export interface ManagedPrivateEndpointsRefreshResponse {}
-export const ManagedPrivateEndpointsRefreshResponse = /*@__PURE__*/ S.suspend(
+export interface RefreshManagedPrivateEndpointResponse {}
+export const RefreshManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "ManagedPrivateEndpointsRefreshResponse",
-}) as any as S.Schema<ManagedPrivateEndpointsRefreshResponse>;
-
-/** The Private Endpoint resource. */
-export type PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
-  GrafanaPluginInput;
-export const PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
-  GrafanaPluginInput;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(PrivateEndpointServiceConnectionStatus),
-      description: S.optional(S.String),
-      actionsRequired: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState>;
-
-/** The private endpoint connection group ids. */
-export type PrivateEndpointConnectionPropertiesInputGroupIdsList =
-  Array<string>;
-export const PrivateEndpointConnectionPropertiesInputGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesInputGroupIdsList>;
-
-/** Properties of the PrivateEndpointConnectProperties. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The Private Endpoint resource. */
-  privateEndpoint?: GrafanaPluginInput;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState;
-  /** The private endpoint connection group ids. */
-  groupIds?: PrivateEndpointConnectionPropertiesInputGroupIdsList;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(GrafanaPluginInput),
-      privateLinkServiceConnectionState:
-        PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState,
-      groupIds: S.optional(
-        PrivateEndpointConnectionPropertiesInputGroupIdsList,
-      ),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionsApproveRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The workspace name of Azure Managed Grafana. */
-  workspaceName: string;
-  /** The private endpoint connection name of Azure Managed Grafana. */
-  privateEndpointConnectionName: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionsApproveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Dashboard/grafana/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-08-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsApproveRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsApproveRequest>;
-
-export interface PrivateEndpointConnectionsApproveResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsApproveResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsApproveResponse",
-  }) as any as S.Schema<PrivateEndpointConnectionsApproveResponse>;
+  identifier: "RefreshManagedPrivateEndpointResponse",
+}) as any as S.Schema<RefreshManagedPrivateEndpointResponse>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type GrafanaUpdateRequestIdentity = GrafanaCreateRequestIdentity;
-export const GrafanaUpdateRequestIdentity = GrafanaCreateRequestIdentity;
+export type UpdateGrafanaRequestIdentity = CreateGrafanaRequestIdentity;
+export const UpdateGrafanaRequestIdentity = CreateGrafanaRequestIdentity;
 
 /** The new tags of the grafana resource. */
-export type GrafanaUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const GrafanaUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateGrafanaRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateGrafanaRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GrafanaUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateGrafanaRequestTagsMap>;
 
 /** The zone redundancy setting of the Grafana instance. */
 export type ManagedGrafanaPropertiesUpdateParametersInputZoneRedundancy =
@@ -2728,12 +2738,14 @@ export const ManagedGrafanaPropertiesUpdateParametersInputPublicNetworkAccess =
 
 /** Update of Grafana plugin. Key is plugin id, value is plugin definition. If plugin definition is null, plugin with given plugin id will be removed. Otherwise, given plugin will be installed. */
 export type ManagedGrafanaPropertiesUpdateParametersInputGrafanaPluginsMap = {
-  [key: string]: GrafanaPluginInput | undefined;
+  [key: string]:
+    | PrivateEndpointConnectionPropertiesInputPrivateEndpoint
+    | undefined;
 };
 export const ManagedGrafanaPropertiesUpdateParametersInputGrafanaPluginsMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    GrafanaPluginInput,
+    PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
   ) as any as S.Schema<ManagedGrafanaPropertiesUpdateParametersInputGrafanaPluginsMap>;
 
 /** The properties parameters for a PATCH request to a grafana resource. */
@@ -2800,9 +2812,9 @@ export interface UpdateGrafanaRequest {
   workspaceName: string;
   sku?: ResourceSku;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GrafanaCreateRequestIdentity;
+  identity?: CreateGrafanaRequestIdentity;
   /** The new tags of the grafana resource. */
-  tags?: GrafanaUpdateRequestTagsMap;
+  tags?: UpdateGrafanaRequestTagsMap;
   /** Properties specific to the managed grafana resource. */
   properties?: ManagedGrafanaPropertiesUpdateParametersInput;
 }
@@ -2812,8 +2824,8 @@ export const UpdateGrafanaRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     sku: S.optional(ResourceSku),
-    identity: S.optional(GrafanaCreateRequestIdentity),
-    tags: S.optional(GrafanaUpdateRequestTagsMap),
+    identity: S.optional(CreateGrafanaRequestIdentity),
+    tags: S.optional(UpdateGrafanaRequestTagsMap),
     properties: S.optional(ManagedGrafanaPropertiesUpdateParametersInput),
   }).pipe(
     T.Http({
@@ -2828,17 +2840,17 @@ export const UpdateGrafanaRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateGrafanaRequest>;
 
 /** Resource tags. */
-export type GrafanaUpdateResponseTagsMap = {
+export type UpdateGrafanaResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const GrafanaUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGrafanaResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<GrafanaUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateGrafanaResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type GrafanaUpdateResponseIdentity = GrafanaCreateResponseIdentity;
-export const GrafanaUpdateResponseIdentity = GrafanaCreateResponseIdentity;
+export type UpdateGrafanaResponseIdentity = CreateGrafanaResponseIdentity;
+export const UpdateGrafanaResponseIdentity = CreateGrafanaResponseIdentity;
 
 export interface UpdateGrafanaResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2854,11 +2866,11 @@ export interface UpdateGrafanaResponse {
   /** The Sku of the grafana resource. */
   sku?: ResourceSku;
   /** Resource tags. */
-  tags?: GrafanaUpdateResponseTagsMap;
+  tags?: UpdateGrafanaResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: GrafanaCreateResponseIdentity;
+  identity?: CreateGrafanaResponseIdentity;
 }
 export const UpdateGrafanaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2868,22 +2880,22 @@ export const UpdateGrafanaResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ManagedGrafanaProperties),
     sku: S.optional(ResourceSku),
-    tags: S.optional(GrafanaUpdateResponseTagsMap),
+    tags: S.optional(UpdateGrafanaResponseTagsMap),
     location: S.optional(S.String),
-    identity: S.optional(GrafanaCreateResponseIdentity),
+    identity: S.optional(CreateGrafanaResponseIdentity),
   }),
 ).annotate({
   identifier: "UpdateGrafanaResponse",
 }) as any as S.Schema<UpdateGrafanaResponse>;
 
 /** The new tags of the Integration Fabric resource. */
-export type IntegrationFabricsUpdateRequestTagsMap = {
+export type UpdateIntegrationFabricRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationFabricsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIntegrationFabricRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationFabricsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateIntegrationFabricRequestTagsMap>;
 
 /** The new integration scenarios covered by this integration fabric. */
 export type IntegrationFabricPropertiesUpdateParametersScenariosList =
@@ -2918,7 +2930,7 @@ export interface UpdateIntegrationFabricRequest {
   /** The integration fabric name of Azure Managed Grafana. */
   integrationFabricName: string;
   /** The new tags of the Integration Fabric resource. */
-  tags?: IntegrationFabricsUpdateRequestTagsMap;
+  tags?: UpdateIntegrationFabricRequestTagsMap;
   /** The new properties of this Integration Fabric resource */
   properties?: IntegrationFabricPropertiesUpdateParameters;
 }
@@ -2928,7 +2940,7 @@ export const UpdateIntegrationFabricRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     integrationFabricName: S.String.pipe(T.Label()),
-    tags: S.optional(IntegrationFabricsUpdateRequestTagsMap),
+    tags: S.optional(UpdateIntegrationFabricRequestTagsMap),
     properties: S.optional(IntegrationFabricPropertiesUpdateParameters),
   }).pipe(
     T.Http({
@@ -2943,13 +2955,13 @@ export const UpdateIntegrationFabricRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIntegrationFabricRequest>;
 
 /** Resource tags. */
-export type IntegrationFabricsUpdateResponseTagsMap = {
+export type UpdateIntegrationFabricResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IntegrationFabricsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIntegrationFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IntegrationFabricsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateIntegrationFabricResponseTagsMap>;
 
 export interface UpdateIntegrationFabricResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2961,7 +2973,7 @@ export interface UpdateIntegrationFabricResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: IntegrationFabricsUpdateResponseTagsMap;
+  tags?: UpdateIntegrationFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   properties?: IntegrationFabricProperties;
@@ -2972,7 +2984,7 @@ export const UpdateIntegrationFabricResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(IntegrationFabricsUpdateResponseTagsMap),
+    tags: S.optional(UpdateIntegrationFabricResponseTagsMap),
     location: S.String,
     properties: S.optional(IntegrationFabricProperties),
   }),
@@ -2981,13 +2993,13 @@ export const UpdateIntegrationFabricResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateIntegrationFabricResponse>;
 
 /** The new tags of the managed dashboard resource. */
-export type ManagedDashboardsUpdateRequestTagsMap = {
+export type UpdateManagedDashboardRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedDashboardsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedDashboardRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedDashboardsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateManagedDashboardRequestTagsMap>;
 
 export interface UpdateManagedDashboardRequest {
   /** The ID of the target subscription. */
@@ -2997,14 +3009,14 @@ export interface UpdateManagedDashboardRequest {
   /** The name of the Azure Managed Dashboard. */
   dashboardName: string;
   /** The new tags of the managed dashboard resource. */
-  tags?: ManagedDashboardsUpdateRequestTagsMap;
+  tags?: UpdateManagedDashboardRequestTagsMap;
 }
 export const UpdateManagedDashboardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     dashboardName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedDashboardsUpdateRequestTagsMap),
+    tags: S.optional(UpdateManagedDashboardRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3018,13 +3030,13 @@ export const UpdateManagedDashboardRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedDashboardRequest>;
 
 /** Resource tags. */
-export type ManagedDashboardsUpdateResponseTagsMap = {
+export type UpdateManagedDashboardResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedDashboardsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateManagedDashboardResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedDashboardsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateManagedDashboardResponseTagsMap>;
 
 export interface UpdateManagedDashboardResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3036,7 +3048,7 @@ export interface UpdateManagedDashboardResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedDashboardsUpdateResponseTagsMap;
+  tags?: UpdateManagedDashboardResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties specific to the managed dashboard resource. */
@@ -3048,7 +3060,7 @@ export const UpdateManagedDashboardResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedDashboardsUpdateResponseTagsMap),
+    tags: S.optional(UpdateManagedDashboardResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedDashboardProperties),
   }),
@@ -3057,14 +3069,14 @@ export const UpdateManagedDashboardResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedDashboardResponse>;
 
 /** The new tags of the managed private endpoint. */
-export type ManagedPrivateEndpointsUpdateRequestTagsMap = {
+export type UpdateManagedPrivateEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedPrivateEndpointsUpdateRequestTagsMap =
+export const UpdateManagedPrivateEndpointRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedPrivateEndpointsUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateManagedPrivateEndpointRequestTagsMap>;
 
 export interface UpdateManagedPrivateEndpointRequest {
   /** The ID of the target subscription. */
@@ -3076,7 +3088,7 @@ export interface UpdateManagedPrivateEndpointRequest {
   /** The managed private endpoint name of Azure Managed Grafana. */
   managedPrivateEndpointName: string;
   /** The new tags of the managed private endpoint. */
-  tags?: ManagedPrivateEndpointsUpdateRequestTagsMap;
+  tags?: UpdateManagedPrivateEndpointRequestTagsMap;
 }
 export const UpdateManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -3084,7 +3096,7 @@ export const UpdateManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
     managedPrivateEndpointName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedPrivateEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateManagedPrivateEndpointRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3098,14 +3110,14 @@ export const UpdateManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateManagedPrivateEndpointRequest>;
 
 /** Resource tags. */
-export type ManagedPrivateEndpointsUpdateResponseTagsMap = {
+export type UpdateManagedPrivateEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedPrivateEndpointsUpdateResponseTagsMap =
+export const UpdateManagedPrivateEndpointResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedPrivateEndpointsUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateManagedPrivateEndpointResponseTagsMap>;
 
 export interface UpdateManagedPrivateEndpointResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -3117,7 +3129,7 @@ export interface UpdateManagedPrivateEndpointResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedPrivateEndpointsUpdateResponseTagsMap;
+  tags?: UpdateManagedPrivateEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Resource properties. */
@@ -3130,7 +3142,7 @@ export const UpdateManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ManagedPrivateEndpointsUpdateResponseTagsMap),
+      tags: S.optional(UpdateManagedPrivateEndpointResponseTagsMap),
       location: S.String,
       properties: S.optional(ManagedPrivateEndpointModelProperties),
     }),
@@ -3138,15 +3150,30 @@ export const UpdateManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(
   identifier: "UpdateManagedPrivateEndpointResponse",
 }) as any as S.Schema<UpdateManagedPrivateEndpointResponse>;
 
-export type CheckGrafanaEnterpriseDetailError = AzureOpError;
-/** Retrieve enterprise add-on details information */
-export const CheckGrafanaEnterpriseDetail: API.OperationMethod<
-  CheckGrafanaEnterpriseDetailRequest,
-  EnterpriseDetails,
-  CheckGrafanaEnterpriseDetailError,
+export type ApprovePrivateEndpointConnectionError = AzureOpError;
+/** Manual approve private endpoint connection */
+export const ApprovePrivateEndpointConnection: API.OperationMethod<
+  ApprovePrivateEndpointConnectionRequest,
+  ApprovePrivateEndpointConnectionResponse,
+  ApprovePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckGrafanaEnterpriseDetailRequest,
+  input: ApprovePrivateEndpointConnectionRequest,
+  output: ApprovePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckGrafanaEnterpriseDetailsError = AzureOpError;
+/** Retrieve enterprise add-on details information */
+export const CheckGrafanaEnterpriseDetails: API.OperationMethod<
+  CheckGrafanaEnterpriseDetailsRequest,
+  EnterpriseDetails,
+  CheckGrafanaEnterpriseDetailsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckGrafanaEnterpriseDetailsRequest,
   output: EnterpriseDetails,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -3288,6 +3315,21 @@ export const DeletePrivateEndpointConnection: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type FetchGrafanaAvailablePluginsError = AzureOpError;
+/** A synchronous resource action. */
+export const FetchGrafanaAvailablePlugins: API.OperationMethod<
+  FetchGrafanaAvailablePluginsRequest,
+  GrafanaAvailablePluginListResponse,
+  FetchGrafanaAvailablePluginsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FetchGrafanaAvailablePluginsRequest,
+  output: GrafanaAvailablePluginListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDashboardError = AzureOpError;
 /** Get the properties of a specific dashboard for grafana resource. */
 export const GetDashboard: API.OperationMethod<
@@ -3373,21 +3415,6 @@ export const GetPrivateLinkResource: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetPrivateLinkResourceRequest,
   output: GetPrivateLinkResourceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GrafanaFetchAvailablePluginsError = AzureOpError;
-/** A synchronous resource action. */
-export const GrafanaFetchAvailablePlugins: API.OperationMethod<
-  GrafanaFetchAvailablePluginsRequest,
-  GrafanaAvailablePluginListResponse,
-  GrafanaFetchAvailablePluginsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GrafanaFetchAvailablePluginsRequest,
-  output: GrafanaAvailablePluginListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3528,31 +3555,16 @@ export const ListPrivateLinkResources: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedPrivateEndpointsRefreshError = AzureOpError;
+export type RefreshManagedPrivateEndpointError = AzureOpError;
 /** Refresh and sync managed private endpoints of a grafana resource to latest state. */
-export const ManagedPrivateEndpointsRefresh: API.OperationMethod<
-  ManagedPrivateEndpointsRefreshRequest,
-  ManagedPrivateEndpointsRefreshResponse,
-  ManagedPrivateEndpointsRefreshError,
+export const RefreshManagedPrivateEndpoint: API.OperationMethod<
+  RefreshManagedPrivateEndpointRequest,
+  RefreshManagedPrivateEndpointResponse,
+  RefreshManagedPrivateEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsRefreshRequest,
-  output: ManagedPrivateEndpointsRefreshResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsApproveError = AzureOpError;
-/** Manual approve private endpoint connection */
-export const PrivateEndpointConnectionsApprove: API.OperationMethod<
-  PrivateEndpointConnectionsApproveRequest,
-  PrivateEndpointConnectionsApproveResponse,
-  PrivateEndpointConnectionsApproveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsApproveRequest,
-  output: PrivateEndpointConnectionsApproveResponse,
+  input: RefreshManagedPrivateEndpointRequest,
+  output: RefreshManagedPrivateEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

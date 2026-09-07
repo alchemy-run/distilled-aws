@@ -71,23 +71,23 @@ export interface BillingAccount {
   currencyCode?: string;
   /** The display name given to the billing account, such as `My Billing Account`. This name is displayed in the Google Cloud Console. */
   displayName?: string;
-  /** If this account is a [subaccount](https://cloud.google.com/billing/docs/concepts), then this will be the resource name of the parent billing account that it is being resold through. Otherwise this will be empty. */
-  masterBillingAccount?: string;
   /** Output only. The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`. */
   name?: string;
-  /** Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it are unable to use paid services. */
-  open?: boolean;
+  /** If this account is a [subaccount](https://cloud.google.com/billing/docs/concepts), then this will be the resource name of the parent billing account that it is being resold through. Otherwise this will be empty. */
+  masterBillingAccount?: string;
   /** Output only. The billing account's parent resource identifier. Use the `MoveBillingAccount` method to update the account's parent resource if it is a organization. Format: - `organizations/{organization_id}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id}`, for example, `billingAccounts/012345-567890-ABCDEF` */
   parent?: string;
+  /** Output only. True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it are unable to use paid services. */
+  open?: boolean;
 }
 export const BillingAccount = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     currencyCode: S.optional(S.String),
     displayName: S.optional(S.String),
-    masterBillingAccount: S.optional(S.String),
     name: S.optional(S.String),
-    open: S.optional(S.Boolean),
+    masterBillingAccount: S.optional(S.String),
     parent: S.optional(S.String),
+    open: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "BillingAccount" }) as any as S.Schema<BillingAccount>;
 
@@ -194,21 +194,21 @@ export const GetBillingInfoProjectsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Encapsulation of billing information for a Google Cloud Console project. A project has at most one associated billing account at a time (but a billing account can be assigned to multiple projects). */
 export interface ProjectBillingInfo {
+  /** Output only. The resource name for the `ProjectBillingInfo`; has the form `projects/{project_id}/billingInfo`. For example, the resource name for the billing information for project `tokyo-rain-123` would be `projects/tokyo-rain-123/billingInfo`. */
+  name?: string;
   /** Output only. The ID of the project that this `ProjectBillingInfo` represents, such as `tokyo-rain-123`. This is a convenience field so that you don't need to parse the `name` field to obtain a project ID. */
   projectId?: string;
   /** The resource name of the billing account associated with the project, if any. For example, `billingAccounts/012345-567890-ABCDEF`. */
   billingAccountName?: string;
   /** Output only. True if the project is associated with an open billing account, to which usage on the project is charged. False if the project is associated with a closed billing account, or no billing account at all, and therefore cannot use paid services. */
   billingEnabled?: boolean;
-  /** Output only. The resource name for the `ProjectBillingInfo`; has the form `projects/{project_id}/billingInfo`. For example, the resource name for the billing information for project `tokyo-rain-123` would be `projects/tokyo-rain-123/billingInfo`. */
-  name?: string;
 }
 export const ProjectBillingInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    name: S.optional(S.String),
     projectId: S.optional(S.String),
     billingAccountName: S.optional(S.String),
     billingEnabled: S.optional(S.Boolean),
-    name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ProjectBillingInfo",
@@ -235,59 +235,17 @@ export const GetIamPolicyBillingAccountsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIamPolicyBillingAccountsRequest",
 }) as any as S.Schema<GetIamPolicyBillingAccountsRequest>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
-export interface Expr {
-  /** Textual representation of an expression in Common Expression Language syntax. */
-  expression?: string;
-  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
-  description?: string;
-  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
-  title?: string;
-  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
-  location?: string;
-}
-export const Expr = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expression: S.optional(S.String),
-    description: S.optional(S.String),
-    title: S.optional(S.String),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
-
-/** Associates `members`, or principals, with a `role`. */
-export interface Binding {
-  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
-  members?: StringList;
-  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
-  role?: string;
-  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  condition?: Expr;
-}
-export const Binding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    members: S.optional(StringList),
-    role: S.optional(S.String),
-    condition: S.optional(Expr),
-  }),
-).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
-
-export type BindingList = Array<Binding>;
-export const BindingList = /*@__PURE__*/ S.Array(
-  Binding,
-) as any as S.Schema<BindingList>;
-
 export type AuditLogConfigLogTypeEnum =
   | "LOG_TYPE_UNSPECIFIED"
   | "ADMIN_READ"
   | "DATA_WRITE"
   | "DATA_READ";
 export const AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface AuditLogConfig {
@@ -327,42 +285,84 @@ export const AuditConfigList = /*@__PURE__*/ S.Array(
   AuditConfig,
 ) as any as S.Schema<AuditConfigList>;
 
+/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
+export interface Expr {
+  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
+  description?: string;
+  /** Textual representation of an expression in Common Expression Language syntax. */
+  expression?: string;
+  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
+  location?: string;
+  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
+  title?: string;
+}
+export const Expr = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    expression: S.optional(S.String),
+    location: S.optional(S.String),
+    title: S.optional(S.String),
+  }),
+).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
+
+/** Associates `members`, or principals, with a `role`. */
+export interface Binding {
+  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  condition?: Expr;
+  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
+  members?: StringList;
+  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
+  role?: string;
+}
+export const Binding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    condition: S.optional(Expr),
+    members: S.optional(StringList),
+    role: S.optional(S.String),
+  }),
+).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
+
+export type BindingList = Array<Binding>;
+export const BindingList = /*@__PURE__*/ S.Array(
+  Binding,
+) as any as S.Schema<BindingList>;
+
 /** An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/). */
 export interface Policy {
-  /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
-  bindings?: BindingList;
-  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
-  etag?: string;
-  /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  version?: number;
   /** Specifies cloud audit logging configuration for this policy. */
   auditConfigs?: AuditConfigList;
+  /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
+  bindings?: BindingList;
+  /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  version?: number;
+  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
+  etag?: string;
 }
 export const Policy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    bindings: S.optional(BindingList),
-    etag: S.optional(S.String),
-    version: S.optional(S.Number),
     auditConfigs: S.optional(AuditConfigList),
+    bindings: S.optional(BindingList),
+    version: S.optional(S.Number),
+    etag: S.optional(S.String),
   }),
 ).annotate({ identifier: "Policy" }) as any as S.Schema<Policy>;
 
 export interface ListBillingAccountsRequest {
+  /** Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id}`, for example, `billingAccounts/012345-567890-ABCDEF` */
+  parent?: string;
   /** Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported. */
   filter?: string;
   /** Requested page size. The maximum page size is 100; this is also the default. */
   pageSize?: number;
   /** A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned. */
   pageToken?: string;
-  /** Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id}`, for example, `billingAccounts/012345-567890-ABCDEF` */
-  parent?: string;
 }
 export const ListBillingAccountsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    parent: S.optional(S.String.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
-    parent: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -441,22 +441,22 @@ export const ListProjectBillingInfoResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListProjectBillingInfoResponse>;
 
 export interface ListBillingAccountsSubAccountsRequest {
-  /** Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id}`, for example, `billingAccounts/012345-567890-ABCDEF` */
-  parent: string;
   /** Requested page size. The maximum page size is 100; this is also the default. */
   pageSize?: number;
-  /** Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported. */
-  filter?: string;
+  /** Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id}`, for example, `billingAccounts/012345-567890-ABCDEF` */
+  parent: string;
   /** A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned. */
   pageToken?: string;
+  /** Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported. */
+  filter?: string;
 }
 export const ListBillingAccountsSubAccountsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
-      filter: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -469,22 +469,22 @@ export const ListBillingAccountsSubAccountsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListBillingAccountsSubAccountsRequest>;
 
 export interface ListOrganizationsBillingAccountsRequest {
-  /** Requested page size. The maximum page size is 100; this is also the default. */
-  pageSize?: number;
-  /** Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id}`, for example, `billingAccounts/012345-567890-ABCDEF` */
-  parent: string;
-  /** Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported. */
-  filter?: string;
   /** A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned. */
   pageToken?: string;
+  /** Optional. The parent resource to list billing accounts from. Format: - `organizations/{organization_id}`, for example, `organizations/12345678` - `billingAccounts/{billing_account_id}`, for example, `billingAccounts/012345-567890-ABCDEF` */
+  parent: string;
+  /** Requested page size. The maximum page size is 100; this is also the default. */
+  pageSize?: number;
+  /** Options for how to filter the returned billing accounts. This only supports filtering for [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single provided parent billing account. (for example, `master_billing_account=billingAccounts/012345-678901-ABCDEF`). Boolean algebra and other fields are not currently supported. */
+  filter?: string;
 }
 export const ListOrganizationsBillingAccountsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
-      filter: S.optional(S.String.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      filter: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -497,15 +497,15 @@ export const ListOrganizationsBillingAccountsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ListOrganizationsBillingAccountsRequest>;
 
 export interface ListServicesRequest {
-  /** Requested page size. Defaults to 5000. */
-  pageSize?: number;
   /** A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListServices` call. If unspecified, the first page of results is returned. */
   pageToken?: string;
+  /** Requested page size. Defaults to 5000. */
+  pageSize?: number;
 }
 export const ListServicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -519,21 +519,21 @@ export const ListServicesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Encapsulates a single service in Google Cloud Platform. */
 export interface Service {
-  /** The identifier for the service. Example: "6F81-5844-456A" */
-  serviceId?: string;
-  /** A human readable display name for this service. */
-  displayName?: string;
-  /** The business under which the service is offered. Ex. "businessEntities/GCP", "businessEntities/Maps" */
-  businessEntityName?: string;
   /** The resource name for the service. Example: "services/6F81-5844-456A" */
   name?: string;
+  /** The business under which the service is offered. Ex. "businessEntities/GCP", "businessEntities/Maps" */
+  businessEntityName?: string;
+  /** A human readable display name for this service. */
+  displayName?: string;
+  /** The identifier for the service. Example: "6F81-5844-456A" */
+  serviceId?: string;
 }
 export const Service = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    serviceId: S.optional(S.String),
-    displayName: S.optional(S.String),
-    businessEntityName: S.optional(S.String),
     name: S.optional(S.String),
+    businessEntityName: S.optional(S.String),
+    displayName: S.optional(S.String),
+    serviceId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
 
@@ -544,41 +544,41 @@ export const ServiceList = /*@__PURE__*/ S.Array(
 
 /** Response message for `ListServices`. */
 export interface ListServicesResponse {
-  /** A token to retrieve the next page of results. To retrieve the next page, call `ListServices` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve. */
-  nextPageToken?: string;
   /** A list of services. */
   services?: ServiceList;
+  /** A token to retrieve the next page of results. To retrieve the next page, call `ListServices` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve. */
+  nextPageToken?: string;
 }
 export const ListServicesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     services: S.optional(ServiceList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListServicesResponse",
 }) as any as S.Schema<ListServicesResponse>;
 
 export interface ListServicesSkusRequest {
-  /** A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListSkus` call. If unspecified, the first page of results is returned. */
-  pageToken?: string;
-  /** Requested page size. Defaults to 5000. */
-  pageSize?: number;
+  /** Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most). */
+  startTime?: string;
   /** Optional exclusive end time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most). */
   endTime?: string;
   /** The ISO 4217 currency code for the pricing info in the response proto. Will use the conversion rate as of start_time. Optional. If not specified USD will be used. */
   currencyCode?: string;
-  /** Optional inclusive start time of the time range for which the pricing versions will be returned. Timestamps in the future are not allowed. The time range has to be within a single calendar month in America/Los_Angeles timezone. Time range as a whole is optional. If not specified, the latest pricing will be returned (up to 12 hours old at most). */
-  startTime?: string;
+  /** A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListSkus` call. If unspecified, the first page of results is returned. */
+  pageToken?: string;
+  /** Requested page size. Defaults to 5000. */
+  pageSize?: number;
   /** Required. The name of the service. Example: "services/6F81-5844-456A" */
   parent: string;
 }
 export const ListServicesSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
+    startTime: S.optional(S.String.pipe(T.Query())),
     endTime: S.optional(S.String.pipe(T.Query())),
     currencyCode: S.optional(S.String.pipe(T.Query())),
-    startTime: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -591,129 +591,25 @@ export const ListServicesSkusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListServicesSkusRequest",
 }) as any as S.Schema<ListServicesSkusRequest>;
 
-/** Represents an amount of money with its currency type. */
-export interface Money {
-  /** Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000. */
-  nanos?: number;
-  /** The three-letter currency code defined in ISO 4217. */
-  currencyCode?: string;
-  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
-  units?: string;
+/** Represents the category hierarchy of a SKU. */
+export interface Category {
+  /** The display name of the service this SKU belongs to. */
+  serviceDisplayName?: string;
+  /** The type of product the SKU refers to. Example: "Compute", "Storage", "Network", "ApplicationServices" etc. */
+  resourceFamily?: string;
+  /** A group classification for related SKUs. Example: "RAM", "GPU", "Prediction", "Ops", "GoogleEgress" etc. */
+  resourceGroup?: string;
+  /** Represents how the SKU is consumed. Example: "OnDemand", "Preemptible", "Commit1Mo", "Commit1Yr" etc. */
+  usageType?: string;
 }
-export const Money = /*@__PURE__*/ S.suspend(() =>
+export const Category = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nanos: S.optional(S.Number),
-    currencyCode: S.optional(S.String),
-    units: S.optional(S.String),
+    serviceDisplayName: S.optional(S.String),
+    resourceFamily: S.optional(S.String),
+    resourceGroup: S.optional(S.String),
+    usageType: S.optional(S.String),
   }),
-).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
-
-/** The price rate indicating starting usage and its corresponding price. */
-export interface TierRate {
-  /** Usage is priced at this rate only after this amount. Example: start_usage_amount of 10 indicates that the usage will be priced at the unit_price after the first 10 usage_units. */
-  startUsageAmount?: number;
-  /** The price per unit of usage. Example: unit_price of amount $10 indicates that each unit will cost $10. */
-  unitPrice?: Money;
-}
-export const TierRate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startUsageAmount: S.optional(S.Number),
-    unitPrice: S.optional(Money),
-  }),
-).annotate({ identifier: "TierRate" }) as any as S.Schema<TierRate>;
-
-export type TierRateList = Array<TierRate>;
-export const TierRateList = /*@__PURE__*/ S.Array(
-  TierRate,
-) as any as S.Schema<TierRateList>;
-
-/** Expresses a mathematical pricing formula. For Example:- `usage_unit: GBy` `tiered_rates:` `[start_usage_amount: 20, unit_price: $10]` `[start_usage_amount: 100, unit_price: $5]` The above expresses a pricing formula where the first 20GB is free, the next 80GB is priced at $10 per GB followed by $5 per GB for additional usage. */
-export interface PricingExpression {
-  /** Conversion factor for converting from price per usage_unit to price per base_unit, and start_usage_amount to start_usage_amount in base_unit. unit_price / base_unit_conversion_factor = price per base_unit. start_usage_amount * base_unit_conversion_factor = start_usage_amount in base_unit. */
-  baseUnitConversionFactor?: number;
-  /** The list of tiered rates for this pricing. The total cost is computed by applying each of the tiered rates on usage. This repeated list is sorted by ascending order of start_usage_amount. */
-  tieredRates?: TierRateList;
-  /** The recommended quantity of units for displaying pricing info. When displaying pricing info it is recommended to display: (unit_price * display_quantity) per display_quantity usage_unit. This field does not affect the pricing formula and is for display purposes only. Example: If the unit_price is "0.0001 USD", the usage_unit is "GB" and the display_quantity is "1000" then the recommended way of displaying the pricing info is "0.10 USD per 1000 GB" */
-  displayQuantity?: number;
-  /** The short hand for unit of usage this pricing is specified in. Example: usage_unit of "GiBy" means that usage is specified in "Gibi Byte". */
-  usageUnit?: string;
-  /** The base unit in human readable form. Example: "byte". */
-  baseUnitDescription?: string;
-  /** The unit of usage in human readable form. Example: "gibi byte". */
-  usageUnitDescription?: string;
-  /** The base unit for the SKU which is the unit used in usage exports. Example: "By" */
-  baseUnit?: string;
-}
-export const PricingExpression = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    baseUnitConversionFactor: S.optional(S.Number),
-    tieredRates: S.optional(TierRateList),
-    displayQuantity: S.optional(S.Number),
-    usageUnit: S.optional(S.String),
-    baseUnitDescription: S.optional(S.String),
-    usageUnitDescription: S.optional(S.String),
-    baseUnit: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PricingExpression",
-}) as any as S.Schema<PricingExpression>;
-
-export type AggregationInfoAggregationLevelEnum =
-  | "AGGREGATION_LEVEL_UNSPECIFIED"
-  | "ACCOUNT"
-  | "PROJECT";
-export const AggregationInfoAggregationLevelEnum = /*@__PURE__*/ S.String;
-
-export type AggregationInfoAggregationIntervalEnum =
-  | "AGGREGATION_INTERVAL_UNSPECIFIED"
-  | "DAILY"
-  | "MONTHLY";
-export const AggregationInfoAggregationIntervalEnum = /*@__PURE__*/ S.String;
-
-/** Represents the aggregation level and interval for pricing of a single SKU. */
-export interface AggregationInfo {
-  aggregationLevel?: AggregationInfoAggregationLevelEnum;
-  aggregationInterval?: AggregationInfoAggregationIntervalEnum;
-  /** The number of intervals to aggregate over. Example: If aggregation_level is "DAILY" and aggregation_count is 14, aggregation will be over 14 days. */
-  aggregationCount?: number;
-}
-export const AggregationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aggregationLevel: S.optional(AggregationInfoAggregationLevelEnum),
-    aggregationInterval: S.optional(AggregationInfoAggregationIntervalEnum),
-    aggregationCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AggregationInfo",
-}) as any as S.Schema<AggregationInfo>;
-
-/** Represents the pricing information for a SKU at a single point of time. */
-export interface PricingInfo {
-  /** An optional human readable summary of the pricing information, has a maximum length of 256 characters. */
-  summary?: string;
-  /** The timestamp from which this pricing was effective within the requested time range. This is guaranteed to be greater than or equal to the start_time field in the request and less than the end_time field in the request. If a time range was not specified in the request this field will be equivalent to a time within the last 12 hours, indicating the latest pricing info. */
-  effectiveTime?: string;
-  /** Expresses the pricing formula. See `PricingExpression` for an example. */
-  pricingExpression?: PricingExpression;
-  /** Conversion rate used for currency conversion, from USD to the currency specified in the request. This includes any surcharge collected for billing in non USD currency. If a currency is not specified in the request this defaults to 1.0. Example: USD * currency_conversion_rate = JPY */
-  currencyConversionRate?: number;
-  /** Aggregation Info. This can be left unspecified if the pricing expression doesn't require aggregation. */
-  aggregationInfo?: AggregationInfo;
-}
-export const PricingInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    summary: S.optional(S.String),
-    effectiveTime: S.optional(S.String),
-    pricingExpression: S.optional(PricingExpression),
-    currencyConversionRate: S.optional(S.Number),
-    aggregationInfo: S.optional(AggregationInfo),
-  }),
-).annotate({ identifier: "PricingInfo" }) as any as S.Schema<PricingInfo>;
-
-export type PricingInfoList = Array<PricingInfo>;
-export const PricingInfoList = /*@__PURE__*/ S.Array(
-  PricingInfo,
-) as any as S.Schema<PricingInfoList>;
+).annotate({ identifier: "Category" }) as any as S.Schema<Category>;
 
 export type GeoTaxonomyTypeEnum =
   | "TYPE_UNSPECIFIED"
@@ -736,25 +632,129 @@ export const GeoTaxonomy = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "GeoTaxonomy" }) as any as S.Schema<GeoTaxonomy>;
 
-/** Represents the category hierarchy of a SKU. */
-export interface Category {
-  /** Represents how the SKU is consumed. Example: "OnDemand", "Preemptible", "Commit1Mo", "Commit1Yr" etc. */
-  usageType?: string;
-  /** The type of product the SKU refers to. Example: "Compute", "Storage", "Network", "ApplicationServices" etc. */
-  resourceFamily?: string;
-  /** The display name of the service this SKU belongs to. */
-  serviceDisplayName?: string;
-  /** A group classification for related SKUs. Example: "RAM", "GPU", "Prediction", "Ops", "GoogleEgress" etc. */
-  resourceGroup?: string;
+export type AggregationInfoAggregationLevelEnum =
+  | "AGGREGATION_LEVEL_UNSPECIFIED"
+  | "ACCOUNT"
+  | "PROJECT";
+export const AggregationInfoAggregationLevelEnum = /*@__PURE__*/ S.String;
+
+export type AggregationInfoAggregationIntervalEnum =
+  | "AGGREGATION_INTERVAL_UNSPECIFIED"
+  | "DAILY"
+  | "MONTHLY";
+export const AggregationInfoAggregationIntervalEnum = /*@__PURE__*/ S.String;
+
+/** Represents the aggregation level and interval for pricing of a single SKU. */
+export interface AggregationInfo {
+  aggregationLevel?: AggregationInfoAggregationLevelEnum;
+  /** The number of intervals to aggregate over. Example: If aggregation_level is "DAILY" and aggregation_count is 14, aggregation will be over 14 days. */
+  aggregationCount?: number;
+  aggregationInterval?: AggregationInfoAggregationIntervalEnum;
 }
-export const Category = /*@__PURE__*/ S.suspend(() =>
+export const AggregationInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    usageType: S.optional(S.String),
-    resourceFamily: S.optional(S.String),
-    serviceDisplayName: S.optional(S.String),
-    resourceGroup: S.optional(S.String),
+    aggregationLevel: S.optional(AggregationInfoAggregationLevelEnum),
+    aggregationCount: S.optional(S.Number),
+    aggregationInterval: S.optional(AggregationInfoAggregationIntervalEnum),
   }),
-).annotate({ identifier: "Category" }) as any as S.Schema<Category>;
+).annotate({
+  identifier: "AggregationInfo",
+}) as any as S.Schema<AggregationInfo>;
+
+/** Represents an amount of money with its currency type. */
+export interface Money {
+  /** The three-letter currency code defined in ISO 4217. */
+  currencyCode?: string;
+  /** Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000. */
+  nanos?: number;
+  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
+  units?: string;
+}
+export const Money = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currencyCode: S.optional(S.String),
+    nanos: S.optional(S.Number),
+    units: S.optional(S.String),
+  }),
+).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+
+/** The price rate indicating starting usage and its corresponding price. */
+export interface TierRate {
+  /** The price per unit of usage. Example: unit_price of amount $10 indicates that each unit will cost $10. */
+  unitPrice?: Money;
+  /** Usage is priced at this rate only after this amount. Example: start_usage_amount of 10 indicates that the usage will be priced at the unit_price after the first 10 usage_units. */
+  startUsageAmount?: number;
+}
+export const TierRate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unitPrice: S.optional(Money),
+    startUsageAmount: S.optional(S.Number),
+  }),
+).annotate({ identifier: "TierRate" }) as any as S.Schema<TierRate>;
+
+export type TierRateList = Array<TierRate>;
+export const TierRateList = /*@__PURE__*/ S.Array(
+  TierRate,
+) as any as S.Schema<TierRateList>;
+
+/** Expresses a mathematical pricing formula. For Example:- `usage_unit: GBy` `tiered_rates:` `[start_usage_amount: 20, unit_price: $10]` `[start_usage_amount: 100, unit_price: $5]` The above expresses a pricing formula where the first 20GB is free, the next 80GB is priced at $10 per GB followed by $5 per GB for additional usage. */
+export interface PricingExpression {
+  /** The recommended quantity of units for displaying pricing info. When displaying pricing info it is recommended to display: (unit_price * display_quantity) per display_quantity usage_unit. This field does not affect the pricing formula and is for display purposes only. Example: If the unit_price is "0.0001 USD", the usage_unit is "GB" and the display_quantity is "1000" then the recommended way of displaying the pricing info is "0.10 USD per 1000 GB" */
+  displayQuantity?: number;
+  /** The base unit in human readable form. Example: "byte". */
+  baseUnitDescription?: string;
+  /** The base unit for the SKU which is the unit used in usage exports. Example: "By" */
+  baseUnit?: string;
+  /** The unit of usage in human readable form. Example: "gibi byte". */
+  usageUnitDescription?: string;
+  /** Conversion factor for converting from price per usage_unit to price per base_unit, and start_usage_amount to start_usage_amount in base_unit. unit_price / base_unit_conversion_factor = price per base_unit. start_usage_amount * base_unit_conversion_factor = start_usage_amount in base_unit. */
+  baseUnitConversionFactor?: number;
+  /** The list of tiered rates for this pricing. The total cost is computed by applying each of the tiered rates on usage. This repeated list is sorted by ascending order of start_usage_amount. */
+  tieredRates?: TierRateList;
+  /** The short hand for unit of usage this pricing is specified in. Example: usage_unit of "GiBy" means that usage is specified in "Gibi Byte". */
+  usageUnit?: string;
+}
+export const PricingExpression = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayQuantity: S.optional(S.Number),
+    baseUnitDescription: S.optional(S.String),
+    baseUnit: S.optional(S.String),
+    usageUnitDescription: S.optional(S.String),
+    baseUnitConversionFactor: S.optional(S.Number),
+    tieredRates: S.optional(TierRateList),
+    usageUnit: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PricingExpression",
+}) as any as S.Schema<PricingExpression>;
+
+/** Represents the pricing information for a SKU at a single point of time. */
+export interface PricingInfo {
+  /** Aggregation Info. This can be left unspecified if the pricing expression doesn't require aggregation. */
+  aggregationInfo?: AggregationInfo;
+  /** Expresses the pricing formula. See `PricingExpression` for an example. */
+  pricingExpression?: PricingExpression;
+  /** The timestamp from which this pricing was effective within the requested time range. This is guaranteed to be greater than or equal to the start_time field in the request and less than the end_time field in the request. If a time range was not specified in the request this field will be equivalent to a time within the last 12 hours, indicating the latest pricing info. */
+  effectiveTime?: string;
+  /** An optional human readable summary of the pricing information, has a maximum length of 256 characters. */
+  summary?: string;
+  /** Conversion rate used for currency conversion, from USD to the currency specified in the request. This includes any surcharge collected for billing in non USD currency. If a currency is not specified in the request this defaults to 1.0. Example: USD * currency_conversion_rate = JPY */
+  currencyConversionRate?: number;
+}
+export const PricingInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aggregationInfo: S.optional(AggregationInfo),
+    pricingExpression: S.optional(PricingExpression),
+    effectiveTime: S.optional(S.String),
+    summary: S.optional(S.String),
+    currencyConversionRate: S.optional(S.Number),
+  }),
+).annotate({ identifier: "PricingInfo" }) as any as S.Schema<PricingInfo>;
+
+export type PricingInfoList = Array<PricingInfo>;
+export const PricingInfoList = /*@__PURE__*/ S.Array(
+  PricingInfo,
+) as any as S.Schema<PricingInfoList>;
 
 /** Encapsulates a single SKU in Google Cloud */
 export interface Sku {
@@ -762,29 +762,29 @@ export interface Sku {
   name?: string;
   /** The identifier for the SKU. Example: "D041-B8A1-6E0B" */
   skuId?: string;
-  /** A human readable description of the SKU, has a maximum length of 256 characters. */
-  description?: string;
-  /** Identifies the service provider. This is 'Google' for first party services in Google Cloud Platform. */
-  serviceProviderName?: string;
-  /** List of service regions this SKU is offered at. Example: "asia-east1" Service regions can be found at https://cloud.google.com/about/locations/ */
-  serviceRegions?: StringList;
-  /** A timeline of pricing info for this SKU in chronological order. */
-  pricingInfo?: PricingInfoList;
-  /** The geographic taxonomy for this sku. */
-  geoTaxonomy?: GeoTaxonomy;
   /** The category hierarchy of this SKU, purely for organizational purpose. */
   category?: Category;
+  /** The geographic taxonomy for this sku. */
+  geoTaxonomy?: GeoTaxonomy;
+  /** List of service regions this SKU is offered at. Example: "asia-east1" Service regions can be found at https://cloud.google.com/about/locations/ */
+  serviceRegions?: StringList;
+  /** A human readable description of the SKU, has a maximum length of 256 characters. */
+  description?: string;
+  /** A timeline of pricing info for this SKU in chronological order. */
+  pricingInfo?: PricingInfoList;
+  /** Identifies the service provider. This is 'Google' for first party services in Google Cloud Platform. */
+  serviceProviderName?: string;
 }
 export const Sku = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
     skuId: S.optional(S.String),
-    description: S.optional(S.String),
-    serviceProviderName: S.optional(S.String),
-    serviceRegions: S.optional(StringList),
-    pricingInfo: S.optional(PricingInfoList),
-    geoTaxonomy: S.optional(GeoTaxonomy),
     category: S.optional(Category),
+    geoTaxonomy: S.optional(GeoTaxonomy),
+    serviceRegions: S.optional(StringList),
+    description: S.optional(S.String),
+    pricingInfo: S.optional(PricingInfoList),
+    serviceProviderName: S.optional(S.String),
   }),
 ).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
 
@@ -864,17 +864,17 @@ export const MoveOrganizationsBillingAccountsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<MoveOrganizationsBillingAccountsRequest>;
 
 export interface PatchBillingAccountsRequest {
-  /** Required. The name of the billing account resource to be updated. */
-  name: string;
   /** The update mask applied to the resource. Only "display_name" is currently supported. */
   updateMask?: string;
+  /** Required. The name of the billing account resource to be updated. */
+  name: string;
   /** Request body */
   body?: BillingAccount;
 }
 export const PatchBillingAccountsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     updateMask: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     body: S.optional(BillingAccount.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -889,15 +889,15 @@ export const PatchBillingAccountsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Request message for `SetIamPolicy` method. */
 export interface SetIamPolicyRequest {
-  /** OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"` */
-  updateMask?: string;
   /** REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them. */
   policy?: Policy;
+  /** OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"` */
+  updateMask?: string;
 }
 export const SetIamPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String),
     policy: S.optional(Policy),
+    updateMask: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SetIamPolicyRequest",

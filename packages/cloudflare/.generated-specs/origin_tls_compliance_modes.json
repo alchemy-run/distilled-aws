@@ -17,7 +17,8 @@
     ],
     "keyDictionary": {
       "modifiedOn": "modified_on"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.origin_tls_compliance_modes#DeleteResponseId": {
@@ -99,16 +100,16 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Delete"
+          "target": "com.cloudflare.origin_tls_compliance_modes#DeleteOriginTlsComplianceMode"
         },
         {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Edit"
+          "target": "com.cloudflare.origin_tls_compliance_modes#GetOriginTlsComplianceMode"
         },
         {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Get"
+          "target": "com.cloudflare.origin_tls_compliance_modes#PatchOriginTlsComplianceMode"
         },
         {
-          "target": "com.cloudflare.origin_tls_compliance_modes#Update"
+          "target": "com.cloudflare.origin_tls_compliance_modes#PutOriginTlsComplianceMode"
         }
       ],
       "traits": {

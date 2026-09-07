@@ -40,7 +40,7 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface CreateSessionRecordingSharingPasswordRequest {
+export interface CreateSessionRecordingsSharingPasswordRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   recording_id: string;
@@ -48,7 +48,7 @@ export interface CreateSessionRecordingSharingPasswordRequest {
   settings?: unknown;
   password_required?: boolean;
 }
-export const CreateSessionRecordingSharingPasswordRequest =
+export const CreateSessionRecordingsSharingPasswordRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -64,8 +64,8 @@ export const CreateSessionRecordingSharingPasswordRequest =
       }),
     ),
   ).annotate({
-    identifier: "CreateSessionRecordingSharingPasswordRequest",
-  }) as any as S.Schema<CreateSessionRecordingSharingPasswordRequest>;
+    identifier: "CreateSessionRecordingsSharingPasswordRequest",
+  }) as any as S.Schema<CreateSessionRecordingsSharingPasswordRequest>;
 
 export interface SharePassword {
   id?: number;
@@ -114,39 +114,12 @@ export const SharingConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "SharingConfiguration",
 }) as any as S.Schema<SharingConfiguration>;
 
-export interface CreateSessionRecordingSharingRefreshRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  recording_id: string;
-  enabled?: boolean;
-  settings?: unknown;
-  password_required?: boolean;
-}
-export const CreateSessionRecordingSharingRefreshRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      recording_id: S.String.pipe(T.Label()),
-      enabled: S.optional(S.Boolean),
-      settings: S.optional(S.Unknown),
-      password_required: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/session_recordings/{recording_id}/sharing/refresh/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CreateSessionRecordingSharingRefreshRequest",
-  }) as any as S.Schema<CreateSessionRecordingSharingRefreshRequest>;
-
-export interface ListSessionRecordingSharingRequest {
+export interface ListSessionRecordingsSharingRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   recording_id: string;
 }
-export const ListSessionRecordingSharingRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSessionRecordingsSharingRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     recording_id: S.String.pipe(T.Label()),
@@ -158,23 +131,23 @@ export const ListSessionRecordingSharingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListSessionRecordingSharingRequest",
-}) as any as S.Schema<ListSessionRecordingSharingRequest>;
+  identifier: "ListSessionRecordingsSharingRequest",
+}) as any as S.Schema<ListSessionRecordingsSharingRequest>;
 
-export type SessionRecordingsSharingListResponseBodyList =
+export type ListSessionRecordingsSharingResponseBodyList =
   Array<SharingConfiguration>;
-export const SessionRecordingsSharingListResponseBodyList =
+export const ListSessionRecordingsSharingResponseBodyList =
   /*@__PURE__*/ S.Array(
     SharingConfiguration,
-  ) as any as S.Schema<SessionRecordingsSharingListResponseBodyList>;
+  ) as any as S.Schema<ListSessionRecordingsSharingResponseBodyList>;
 
-export type ListSessionRecordingSharingResponse =
-  SessionRecordingsSharingListResponseBodyList;
-export const ListSessionRecordingSharingResponse = /*@__PURE__*/ S.suspend(() =>
-  SessionRecordingsSharingListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListSessionRecordingsSharingResponse =
+  ListSessionRecordingsSharingResponseBodyList;
+export const ListSessionRecordingsSharingResponse = /*@__PURE__*/ S.suspend(
+  () => ListSessionRecordingsSharingResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "ListSessionRecordingSharingResponse",
-}) as any as S.Schema<ListSessionRecordingSharingResponse>;
+  identifier: "ListSessionRecordingsSharingResponse",
+}) as any as S.Schema<ListSessionRecordingsSharingResponse>;
 
 export interface SessionRecordingsSharingPasswordsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -205,55 +178,64 @@ export const SessionRecordingsSharingPasswordsDestroyResponse =
     identifier: "SessionRecordingsSharingPasswordsDestroyResponse",
   }) as any as S.Schema<SessionRecordingsSharingPasswordsDestroyResponse>;
 
-export type CreateSessionRecordingSharingPasswordError =
+export interface SessionRecordingsSharingRefreshCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  recording_id: string;
+  enabled?: boolean;
+  settings?: unknown;
+  password_required?: boolean;
+}
+export const SessionRecordingsSharingRefreshCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      recording_id: S.String.pipe(T.Label()),
+      enabled: S.optional(S.Boolean),
+      settings: S.optional(S.Unknown),
+      password_required: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/session_recordings/{recording_id}/sharing/refresh/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "SessionRecordingsSharingRefreshCreateRequest",
+  }) as any as S.Schema<SessionRecordingsSharingRefreshCreateRequest>;
+
+export type CreateSessionRecordingsSharingPasswordError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create a new password for the sharing configuration. */
-export const createSessionRecordingSharingPassword: API.OperationMethod<
-  CreateSessionRecordingSharingPasswordRequest,
+export const createSessionRecordingsSharingPassword: API.OperationMethod<
+  CreateSessionRecordingsSharingPasswordRequest,
   SharingConfiguration,
-  CreateSessionRecordingSharingPasswordError,
+  CreateSessionRecordingsSharingPasswordError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSessionRecordingSharingPasswordRequest,
+  input: CreateSessionRecordingsSharingPasswordRequest,
   output: SharingConfiguration,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateSessionRecordingSharingRefreshError =
-  | BadRequest
+export type ListSessionRecordingsSharingError =
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const createSessionRecordingSharingRefresh: API.OperationMethod<
-  CreateSessionRecordingSharingRefreshRequest,
-  SharingConfiguration,
-  CreateSessionRecordingSharingRefreshError,
+export const listSessionRecordingsSharing: API.OperationMethod<
+  ListSessionRecordingsSharingRequest,
+  ListSessionRecordingsSharingResponse,
+  ListSessionRecordingsSharingError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateSessionRecordingSharingRefreshRequest,
-  output: SharingConfiguration,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ListSessionRecordingSharingError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const listSessionRecordingSharing: API.OperationMethod<
-  ListSessionRecordingSharingRequest,
-  ListSessionRecordingSharingResponse,
-  ListSessionRecordingSharingError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListSessionRecordingSharingRequest,
-  output: ListSessionRecordingSharingResponse,
+  input: ListSessionRecordingsSharingRequest,
+  output: ListSessionRecordingsSharingResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -273,6 +255,24 @@ export const sessionRecordingsSharingPasswordsDestroy: API.OperationMethod<
   input: SessionRecordingsSharingPasswordsDestroyRequest,
   output: SessionRecordingsSharingPasswordsDestroyResponse,
   errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SessionRecordingsSharingRefreshCreateError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const sessionRecordingsSharingRefreshCreate: API.OperationMethod<
+  SessionRecordingsSharingRefreshCreateRequest,
+  SharingConfiguration,
+  SessionRecordingsSharingRefreshCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SessionRecordingsSharingRefreshCreateRequest,
+  output: SharingConfiguration,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

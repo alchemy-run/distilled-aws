@@ -231,6 +231,24 @@ export const CompanyTokenTransaction = /*@__PURE__*/ S.suspend(() =>
   identifier: "CompanyTokenTransaction",
 }) as any as S.Schema<CompanyTokenTransaction>;
 
+export interface GetCompanyTokenTransactionRequest {
+  /** The unique identifier of the token transaction to retrieve. */
+  id: string;
+}
+export const GetCompanyTokenTransactionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/company_token_transactions/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCompanyTokenTransactionRequest",
+}) as any as S.Schema<GetCompanyTokenTransactionRequest>;
+
 export interface ListCompanyTokenTransactionRequest {
   after?: string;
   before?: string;
@@ -355,25 +373,6 @@ export const ListCompanyTokenTransactionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCompanyTokenTransactionResponse",
 }) as any as S.Schema<ListCompanyTokenTransactionResponse>;
 
-export interface RetrieveCompanyTokenTransactionRequest {
-  /** The unique identifier of the token transaction to retrieve. */
-  id: string;
-}
-export const RetrieveCompanyTokenTransactionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/company_token_transactions/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RetrieveCompanyTokenTransactionRequest",
-}) as any as S.Schema<RetrieveCompanyTokenTransactionRequest>;
-
 export type CreateCompanyTokenTransactionError =
   | BadRequest
   | Forbidden
@@ -388,6 +387,26 @@ export const createCompanyTokenTransaction: API.OperationMethod<
   WhopOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateCompanyTokenTransactionRequest,
+  output: CompanyTokenTransaction,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCompanyTokenTransactionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve company token transaction [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing company token transaction. Required permissions: - `company_token_transaction:read` - `member:basic:read` - `company:basic:read` */
+export const getCompanyTokenTransaction: API.OperationMethod<
+  GetCompanyTokenTransactionRequest,
+  CompanyTokenTransaction,
+  GetCompanyTokenTransactionError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCompanyTokenTransactionRequest,
   output: CompanyTokenTransaction,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,
@@ -425,23 +444,3 @@ export const listCompanyTokenTransaction: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCompanyTokenTransactionError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve company token transaction [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing company token transaction. Required permissions: - `company_token_transaction:read` - `member:basic:read` - `company:basic:read` */
-export const retrieveCompanyTokenTransaction: API.OperationMethod<
-  RetrieveCompanyTokenTransactionRequest,
-  CompanyTokenTransaction,
-  RetrieveCompanyTokenTransactionError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCompanyTokenTransactionRequest,
-  output: CompanyTokenTransaction,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

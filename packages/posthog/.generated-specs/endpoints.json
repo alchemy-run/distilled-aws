@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.endpoints#ListEndpointsRequest": {
@@ -537,7 +538,7 @@
         "smithy.api#documentation": "List all endpoints for the team."
       }
     },
-    "com.posthog.endpoints#EndpointsCreateRequestBucketOverridesMap": {
+    "com.posthog.endpoints#CreateEndpointRequestBucketOverridesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -549,7 +550,7 @@
         "smithy.api#documentation": "Per-column bucket overrides for range variable materialization. Keys are column names, values are bucket keys."
       }
     },
-    "com.posthog.endpoints#EndpointsCreateRequestTagsList": {
+    "com.posthog.endpoints#CreateEndpointRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -558,7 +559,7 @@
         "smithy.api#documentation": "List of tag names to associate with this endpoint. Replaces any existing tags."
       }
     },
-    "com.posthog.endpoints#EndpointsCreateRequestOptionalBreakdownPropertiesList": {
+    "com.posthog.endpoints#CreateEndpointRequestOptionalBreakdownPropertiesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -634,7 +635,7 @@
           }
         },
         "bucket_overrides": {
-          "target": "com.posthog.endpoints#EndpointsCreateRequestBucketOverridesMap",
+          "target": "com.posthog.endpoints#CreateEndpointRequestBucketOverridesMap",
           "traits": {
             "smithy.api#documentation": "Per-column bucket overrides for range variable materialization. Keys are column names, values are bucket keys.",
             "com.distilled.openapi#nullable": {}
@@ -648,14 +649,14 @@
           }
         },
         "tags": {
-          "target": "com.posthog.endpoints#EndpointsCreateRequestTagsList",
+          "target": "com.posthog.endpoints#CreateEndpointRequestTagsList",
           "traits": {
             "smithy.api#documentation": "List of tag names to associate with this endpoint. Replaces any existing tags.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "optional_breakdown_properties": {
-          "target": "com.posthog.endpoints#EndpointsCreateRequestOptionalBreakdownPropertiesList",
+          "target": "com.posthog.endpoints#CreateEndpointRequestOptionalBreakdownPropertiesList",
           "traits": {
             "smithy.api#documentation": "Breakdown property names that may be omitted on /run. Omitted ones return data aggregated across all values of that breakdown. Defaults to [] — every breakdown variable is required.",
             "com.distilled.openapi#nullable": {}
@@ -694,7 +695,7 @@
         "smithy.api#documentation": "Create a new endpoint."
       }
     },
-    "com.posthog.endpoints#EndpointsRetrieveRequest": {
+    "com.posthog.endpoints#GetEndpointRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -948,10 +949,10 @@
         "smithy.api#documentation": "Breakdown property names that may be omitted on /run. Omitted ones return data aggregated across all values of that breakdown."
       }
     },
-    "com.posthog.endpoints#EndpointsRetrieve": {
+    "com.posthog.endpoints#GetEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#EndpointsRetrieveRequest"
+        "target": "com.posthog.endpoints#GetEndpointRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#EndpointVersionResponse"
@@ -973,7 +974,7 @@
         "smithy.api#documentation": "Retrieve an endpoint, or a specific version via ?version=N."
       }
     },
-    "com.posthog.endpoints#EndpointsUpdateRequestBucketOverridesMap": {
+    "com.posthog.endpoints#UpdateEndpointRequestBucketOverridesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -985,7 +986,7 @@
         "smithy.api#documentation": "Per-column bucket overrides for range variable materialization. Keys are column names, values are bucket keys."
       }
     },
-    "com.posthog.endpoints#EndpointsUpdateRequestTagsList": {
+    "com.posthog.endpoints#UpdateEndpointRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -994,7 +995,7 @@
         "smithy.api#documentation": "List of tag names to associate with this endpoint. Replaces any existing tags."
       }
     },
-    "com.posthog.endpoints#EndpointsUpdateRequestOptionalBreakdownPropertiesList": {
+    "com.posthog.endpoints#UpdateEndpointRequestOptionalBreakdownPropertiesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1070,7 +1071,7 @@
           }
         },
         "bucket_overrides": {
-          "target": "com.posthog.endpoints#EndpointsUpdateRequestBucketOverridesMap",
+          "target": "com.posthog.endpoints#UpdateEndpointRequestBucketOverridesMap",
           "traits": {
             "smithy.api#documentation": "Per-column bucket overrides for range variable materialization. Keys are column names, values are bucket keys.",
             "com.distilled.openapi#nullable": {}
@@ -1084,14 +1085,14 @@
           }
         },
         "tags": {
-          "target": "com.posthog.endpoints#EndpointsUpdateRequestTagsList",
+          "target": "com.posthog.endpoints#UpdateEndpointRequestTagsList",
           "traits": {
             "smithy.api#documentation": "List of tag names to associate with this endpoint. Replaces any existing tags.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "optional_breakdown_properties": {
-          "target": "com.posthog.endpoints#EndpointsUpdateRequestOptionalBreakdownPropertiesList",
+          "target": "com.posthog.endpoints#UpdateEndpointRequestOptionalBreakdownPropertiesList",
           "traits": {
             "smithy.api#documentation": "Breakdown property names that may be omitted on /run. Omitted ones return data aggregated across all values of that breakdown. Defaults to [] — every breakdown variable is required.",
             "com.distilled.openapi#nullable": {}
@@ -1130,7 +1131,7 @@
         "smithy.api#documentation": "Update an existing endpoint. Parameters are optional. Pass version in body or ?version=N query param to target a specific version."
       }
     },
-    "com.posthog.endpoints#EndpointsPartialUpdateRequestBucketOverridesMap": {
+    "com.posthog.endpoints#UpdateEndpointsPartialRequestBucketOverridesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1142,7 +1143,7 @@
         "smithy.api#documentation": "Per-column bucket overrides for range variable materialization. Keys are column names, values are bucket keys."
       }
     },
-    "com.posthog.endpoints#EndpointsPartialUpdateRequestTagsList": {
+    "com.posthog.endpoints#UpdateEndpointsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1151,7 +1152,7 @@
         "smithy.api#documentation": "List of tag names to associate with this endpoint. Replaces any existing tags."
       }
     },
-    "com.posthog.endpoints#EndpointsPartialUpdateRequestOptionalBreakdownPropertiesList": {
+    "com.posthog.endpoints#UpdateEndpointsPartialRequestOptionalBreakdownPropertiesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1160,7 +1161,7 @@
         "smithy.api#documentation": "Breakdown property names that may be omitted on /run. Omitted ones return data aggregated across all values of that breakdown. Defaults to [] — every breakdown variable is required."
       }
     },
-    "com.posthog.endpoints#UpdateEndpointPartialRequest": {
+    "com.posthog.endpoints#UpdateEndpointsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1227,7 +1228,7 @@
           }
         },
         "bucket_overrides": {
-          "target": "com.posthog.endpoints#EndpointsPartialUpdateRequestBucketOverridesMap",
+          "target": "com.posthog.endpoints#UpdateEndpointsPartialRequestBucketOverridesMap",
           "traits": {
             "smithy.api#documentation": "Per-column bucket overrides for range variable materialization. Keys are column names, values are bucket keys.",
             "com.distilled.openapi#nullable": {}
@@ -1241,14 +1242,14 @@
           }
         },
         "tags": {
-          "target": "com.posthog.endpoints#EndpointsPartialUpdateRequestTagsList",
+          "target": "com.posthog.endpoints#UpdateEndpointsPartialRequestTagsList",
           "traits": {
             "smithy.api#documentation": "List of tag names to associate with this endpoint. Replaces any existing tags.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "optional_breakdown_properties": {
-          "target": "com.posthog.endpoints#EndpointsPartialUpdateRequestOptionalBreakdownPropertiesList",
+          "target": "com.posthog.endpoints#UpdateEndpointsPartialRequestOptionalBreakdownPropertiesList",
           "traits": {
             "smithy.api#documentation": "Breakdown property names that may be omitted on /run. Omitted ones return data aggregated across all values of that breakdown. Defaults to [] — every breakdown variable is required.",
             "com.distilled.openapi#nullable": {}
@@ -1259,10 +1260,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.endpoints#UpdateEndpointPartial": {
+    "com.posthog.endpoints#UpdateEndpointsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#UpdateEndpointPartialRequest"
+        "target": "com.posthog.endpoints#UpdateEndpointsPartialRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#EndpointResponse"
@@ -1335,7 +1336,7 @@
         "smithy.api#documentation": "Delete an endpoint and clean up materialized query."
       }
     },
-    "com.posthog.endpoints#EndpointsLogsRetrieveRequest": {
+    "com.posthog.endpoints#GetEndpointsLogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1400,10 +1401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.endpoints#EndpointsLogsRetrieve": {
+    "com.posthog.endpoints#GetEndpointsLog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#EndpointsLogsRetrieveRequest"
+        "target": "com.posthog.endpoints#GetEndpointsLogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1416,7 +1417,7 @@
         }
       }
     },
-    "com.posthog.endpoints#EndpointsMaterializationPreviewCreateRequestBucketOverridesMap": {
+    "com.posthog.endpoints#CreateEndpointsMaterializationPreviewRequestBucketOverridesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1428,7 +1429,7 @@
         "smithy.api#documentation": "Per-column bucket function overrides, e.g. {\"timestamp\": \"hour\"}"
       }
     },
-    "com.posthog.endpoints#CreateEndpointMaterializationPreviewRequest": {
+    "com.posthog.endpoints#CreateEndpointsMaterializationPreviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1450,7 +1451,7 @@
           "target": "smithy.api#Integer"
         },
         "bucket_overrides": {
-          "target": "com.posthog.endpoints#EndpointsMaterializationPreviewCreateRequestBucketOverridesMap",
+          "target": "com.posthog.endpoints#CreateEndpointsMaterializationPreviewRequestBucketOverridesMap",
           "traits": {
             "smithy.api#documentation": "Per-column bucket function overrides, e.g. {\"timestamp\": \"hour\"}",
             "com.distilled.openapi#nullable": {}
@@ -1461,10 +1462,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.endpoints#CreateEndpointMaterializationPreview": {
+    "com.posthog.endpoints#CreateEndpointsMaterializationPreview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#CreateEndpointMaterializationPreviewRequest"
+        "target": "com.posthog.endpoints#CreateEndpointsMaterializationPreviewRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1489,7 +1490,7 @@
         "smithy.api#documentation": "Preview the materialization transform for an endpoint. Shows what the query will look like after materialization, including range pair detection and bucket functions."
       }
     },
-    "com.posthog.endpoints#EndpointsMaterializationStatusRetrieveRequest": {
+    "com.posthog.endpoints#GetEndpointsMaterializationStatusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1512,10 +1513,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.endpoints#EndpointsMaterializationStatusRetrieve": {
+    "com.posthog.endpoints#GetEndpointsMaterializationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#EndpointsMaterializationStatusRetrieveRequest"
+        "target": "com.posthog.endpoints#GetEndpointsMaterializationStatusRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#EndpointMaterialization"
@@ -1537,7 +1538,7 @@
         "smithy.api#documentation": "Get materialization status for an endpoint. Supports ?version=N query param."
       }
     },
-    "com.posthog.endpoints#CreateEndpointMaterializationSuggestionRequest": {
+    "com.posthog.endpoints#CreateEndpointsMaterializationSuggestionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1652,10 +1653,10 @@
         "smithy.api#documentation": "* `ok` - ok\n* `cannot_fix` - cannot_fix\n* `invalid` - invalid\n* `model_error` - model_error"
       }
     },
-    "com.posthog.endpoints#CreateEndpointMaterializationSuggestion": {
+    "com.posthog.endpoints#CreateEndpointsMaterializationSuggestion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#CreateEndpointMaterializationSuggestionRequest"
+        "target": "com.posthog.endpoints#CreateEndpointsMaterializationSuggestionRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#EndpointMaterializationSuggestion"
@@ -1669,7 +1670,7 @@
         "smithy.api#documentation": "Ask AI to rewrite the endpoint's query into a semantically equivalent form that can be materialized. Only applicable to SQL (HogQL) endpoints that currently fail the materialization checks. The suggestion is validated against the live checks before being returned; nothing is saved. Requires the organization's AI data processing approval."
       }
     },
-    "com.posthog.endpoints#EndpointsOpenapiSpecRetrieveRequest": {
+    "com.posthog.endpoints#GetEndpointsOpenapiSpecRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1699,10 +1700,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.endpoints#EndpointsOpenapiSpecRetrieve": {
+    "com.posthog.endpoints#GetEndpointsOpenapiSpec": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#EndpointsOpenapiSpecRetrieveRequest"
+        "target": "com.posthog.endpoints#GetEndpointsOpenapiSpecRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1727,7 +1728,7 @@
         "smithy.api#documentation": "Get OpenAPI 3.0 specification for this endpoint. Use this to generate typed SDK clients."
       }
     },
-    "com.posthog.endpoints#EndpointsRunRetrieveRequest": {
+    "com.posthog.endpoints#GetEndpointsRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1812,10 +1813,10 @@
         "smithy.api#documentation": "Column names from the query SELECT clause."
       }
     },
-    "com.posthog.endpoints#EndpointsRunRetrieve": {
+    "com.posthog.endpoints#GetEndpointsRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#EndpointsRunRetrieveRequest"
+        "target": "com.posthog.endpoints#GetEndpointsRunRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#EndpointRunResponse"
@@ -4348,7 +4349,7 @@
       },
       "traits": {}
     },
-    "com.posthog.endpoints#EndpointsRunCreateRequestVariablesMap": {
+    "com.posthog.endpoints#CreateEndpointsRunRequestVariablesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4358,7 +4359,7 @@
       },
       "traits": {}
     },
-    "com.posthog.endpoints#CreateEndpointRunRequest": {
+    "com.posthog.endpoints#CreateEndpointsRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4417,7 +4418,7 @@
           }
         },
         "variables": {
-          "target": "com.posthog.endpoints#EndpointsRunCreateRequestVariablesMap",
+          "target": "com.posthog.endpoints#CreateEndpointsRunRequestVariablesMap",
           "traits": {
             "smithy.api#documentation": "Variables to parameterize the endpoint query. The key is the variable name and the value is the variable value.\n\nFor HogQL endpoints:   Keys must match a variable `code_name` defined in the query (referenced as `{variables.code_name}`).   Example: `{\"event_name\": \"$pageview\"}`\n\nFor non-materialized insight endpoints (e.g. TrendsQuery):   - `date_from` and `date_to` are built-in variables that filter the date range.     Example: `{\"date_from\": \"2024-01-01\", \"date_to\": \"2024-01-31\"}`\n\nFor materialized insight endpoints:   - Use the breakdown property name as the key to filter by breakdown value.     Example: `{\"$browser\": \"Chrome\"}`   - `date_from`/`date_to` are not supported on materialized insight endpoints.\n\nUnknown variable names will return a 400 error.",
             "com.distilled.openapi#nullable": {}
@@ -4435,10 +4436,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.endpoints#CreateEndpointRun": {
+    "com.posthog.endpoints#CreateEndpointsRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#CreateEndpointRunRequest"
+        "target": "com.posthog.endpoints#CreateEndpointsRunRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#EndpointRunResponse"
@@ -4463,7 +4464,7 @@
         "smithy.api#documentation": "Execute endpoint with optional materialization. Supports version parameter, runs latest version if not set."
       }
     },
-    "com.posthog.endpoints#ListEndpointVersionsRequest": {
+    "com.posthog.endpoints#ListEndpointsVersionsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4543,10 +4544,10 @@
       },
       "traits": {}
     },
-    "com.posthog.endpoints#ListEndpointVersions": {
+    "com.posthog.endpoints#ListEndpointsVersions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#ListEndpointVersionsRequest"
+        "target": "com.posthog.endpoints#ListEndpointsVersionsRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#PaginatedEndpointVersionResponseList"
@@ -4571,14 +4572,14 @@
         "smithy.api#documentation": "List all versions for an endpoint."
       }
     },
-    "com.posthog.endpoints#EndpointsLastExecutionTimesCreateRequestNamesList": {
+    "com.posthog.endpoints#CreateEndpointsLastExecutionTimeRequestNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.endpoints#CreateEndpointLastExecutionTimeRequest": {
+    "com.posthog.endpoints#CreateEndpointsLastExecutionTimeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4590,7 +4591,7 @@
           }
         },
         "names": {
-          "target": "com.posthog.endpoints#EndpointsLastExecutionTimesCreateRequestNamesList"
+          "target": "com.posthog.endpoints#CreateEndpointsLastExecutionTimeRequestNamesList"
         }
       },
       "traits": {
@@ -4739,10 +4740,10 @@
       },
       "traits": {}
     },
-    "com.posthog.endpoints#CreateEndpointLastExecutionTime": {
+    "com.posthog.endpoints#CreateEndpointsLastExecutionTime": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#CreateEndpointLastExecutionTimeRequest"
+        "target": "com.posthog.endpoints#CreateEndpointsLastExecutionTimeRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#QueryStatusResponse"
@@ -4767,7 +4768,7 @@
         "smithy.api#documentation": "Get the most recent execution time per endpoint (endpoint-level). Timestamps are recorded by the run path for personal-API-key calls. For per-version usage, query the query_log table directly."
       }
     },
-    "com.posthog.endpoints#EndpointsMaterializationConditionsRetrieveRequest": {
+    "com.posthog.endpoints#GetEndpointsMaterializationConditionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4805,10 +4806,10 @@
         "smithy.api#documentation": "The live materialization rules, for agents that want to rewrite a rejected query themselves."
       }
     },
-    "com.posthog.endpoints#EndpointsMaterializationConditionsRetrieve": {
+    "com.posthog.endpoints#GetEndpointsMaterializationCondition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.endpoints#EndpointsMaterializationConditionsRetrieveRequest"
+        "target": "com.posthog.endpoints#GetEndpointsMaterializationConditionRequest"
       },
       "output": {
         "target": "com.posthog.endpoints#EndpointMaterializationConditions"
@@ -4866,52 +4867,52 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.endpoints#ListEndpoints"
-        },
-        {
           "target": "com.posthog.endpoints#CreateEndpoint"
         },
         {
-          "target": "com.posthog.endpoints#EndpointsRetrieve"
+          "target": "com.posthog.endpoints#CreateEndpointsLastExecutionTime"
         },
         {
-          "target": "com.posthog.endpoints#UpdateEndpoint"
+          "target": "com.posthog.endpoints#CreateEndpointsMaterializationPreview"
         },
         {
-          "target": "com.posthog.endpoints#UpdateEndpointPartial"
+          "target": "com.posthog.endpoints#CreateEndpointsMaterializationSuggestion"
+        },
+        {
+          "target": "com.posthog.endpoints#CreateEndpointsRun"
         },
         {
           "target": "com.posthog.endpoints#EndpointsDestroy"
         },
         {
-          "target": "com.posthog.endpoints#EndpointsLogsRetrieve"
+          "target": "com.posthog.endpoints#GetEndpoint"
         },
         {
-          "target": "com.posthog.endpoints#CreateEndpointMaterializationPreview"
+          "target": "com.posthog.endpoints#GetEndpointsLog"
         },
         {
-          "target": "com.posthog.endpoints#EndpointsMaterializationStatusRetrieve"
+          "target": "com.posthog.endpoints#GetEndpointsMaterializationCondition"
         },
         {
-          "target": "com.posthog.endpoints#CreateEndpointMaterializationSuggestion"
+          "target": "com.posthog.endpoints#GetEndpointsMaterializationStatus"
         },
         {
-          "target": "com.posthog.endpoints#EndpointsOpenapiSpecRetrieve"
+          "target": "com.posthog.endpoints#GetEndpointsOpenapiSpec"
         },
         {
-          "target": "com.posthog.endpoints#EndpointsRunRetrieve"
+          "target": "com.posthog.endpoints#GetEndpointsRun"
         },
         {
-          "target": "com.posthog.endpoints#CreateEndpointRun"
+          "target": "com.posthog.endpoints#ListEndpoints"
         },
         {
-          "target": "com.posthog.endpoints#ListEndpointVersions"
+          "target": "com.posthog.endpoints#ListEndpointsVersions"
         },
         {
-          "target": "com.posthog.endpoints#CreateEndpointLastExecutionTime"
+          "target": "com.posthog.endpoints#UpdateEndpoint"
         },
         {
-          "target": "com.posthog.endpoints#EndpointsMaterializationConditionsRetrieve"
+          "target": "com.posthog.endpoints#UpdateEndpointsPartial"
         }
       ],
       "traits": {

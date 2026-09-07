@@ -981,38 +981,151 @@ export const ApplicationsCreateOrUpdateByIdResponse = /*@__PURE__*/ S.suspend(
   identifier: "ApplicationsCreateOrUpdateByIdResponse",
 }) as any as S.Schema<ApplicationsCreateOrUpdateByIdResponse>;
 
-export interface ApplicationsRefreshPermissionsRequest {
+export interface CancelDeploymentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
+  /** The name of the resource group. */
   resourceGroupName: string;
-  /** The name of the managed application. */
-  applicationName: string;
+  /** The name of the deployment. */
+  deploymentName: string;
 }
-export const ApplicationsRefreshPermissionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const CancelDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelDeploymentRequest",
+}) as any as S.Schema<CancelDeploymentRequest>;
+
+export interface CancelDeploymentResponse {}
+export const CancelDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelDeploymentResponse",
+}) as any as S.Schema<CancelDeploymentResponse>;
+
+export interface CancelDeploymentAtManagementGroupScopeRequest {
+  /** The management group ID. */
+  groupId: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+}
+export const CancelDeploymentAtManagementGroupScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      applicationName: S.String.pipe(T.Label()),
+      groupId: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/refreshPermissions",
+        uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
         code: 200,
-        apiVersion: "2019-07-01",
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelDeploymentAtManagementGroupScopeRequest",
+  }) as any as S.Schema<CancelDeploymentAtManagementGroupScopeRequest>;
+
+export interface CancelDeploymentAtManagementGroupScopeResponse {}
+export const CancelDeploymentAtManagementGroupScopeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CancelDeploymentAtManagementGroupScopeResponse",
+  }) as any as S.Schema<CancelDeploymentAtManagementGroupScopeResponse>;
+
+export interface CancelDeploymentAtScopeRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+}
+export const CancelDeploymentAtScopeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelDeploymentAtScopeRequest",
+}) as any as S.Schema<CancelDeploymentAtScopeRequest>;
+
+export interface CancelDeploymentAtScopeResponse {}
+export const CancelDeploymentAtScopeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelDeploymentAtScopeResponse",
+}) as any as S.Schema<CancelDeploymentAtScopeResponse>;
+
+export interface CancelDeploymentAtSubscriptionScopeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+}
+export const CancelDeploymentAtSubscriptionScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CancelDeploymentAtSubscriptionScopeRequest",
+  }) as any as S.Schema<CancelDeploymentAtSubscriptionScopeRequest>;
+
+export interface CancelDeploymentAtSubscriptionScopeResponse {}
+export const CancelDeploymentAtSubscriptionScopeResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CancelDeploymentAtSubscriptionScopeResponse",
+  }) as any as S.Schema<CancelDeploymentAtSubscriptionScopeResponse>;
+
+export interface CancelDeploymentAtTenantScopeRequest {
+  /** The name of the deployment. */
+  deploymentName: string;
+}
+export const CancelDeploymentAtTenantScopeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      deploymentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+        code: 200,
+        apiVersion: "2026-06-01",
       }),
     ),
 ).annotate({
-  identifier: "ApplicationsRefreshPermissionsRequest",
-}) as any as S.Schema<ApplicationsRefreshPermissionsRequest>;
+  identifier: "CancelDeploymentAtTenantScopeRequest",
+}) as any as S.Schema<CancelDeploymentAtTenantScopeRequest>;
 
-export interface ApplicationsRefreshPermissionsResponse {}
-export const ApplicationsRefreshPermissionsResponse = /*@__PURE__*/ S.suspend(
+export interface CancelDeploymentAtTenantScopeResponse {}
+export const CancelDeploymentAtTenantScopeResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "ApplicationsRefreshPermissionsResponse",
-}) as any as S.Schema<ApplicationsRefreshPermissionsResponse>;
+  identifier: "CancelDeploymentAtTenantScopeResponse",
+}) as any as S.Schema<CancelDeploymentAtTenantScopeResponse>;
 
 export interface CheckResourceNameRequest {
   /** Name of the resource */
@@ -1060,27 +1173,27 @@ export const CheckResourceNameResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckResourceNameResult>;
 
 /** The peer Microsoft Azure subscription ID. */
-export type SubscriptionsCheckZonePeersRequestSubscriptionIdsList =
+export type CheckSubscriptionZonePeersRequestSubscriptionIdsList =
   Array<string>;
-export const SubscriptionsCheckZonePeersRequestSubscriptionIdsList =
+export const CheckSubscriptionZonePeersRequestSubscriptionIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<SubscriptionsCheckZonePeersRequestSubscriptionIdsList>;
+  ) as any as S.Schema<CheckSubscriptionZonePeersRequestSubscriptionIdsList>;
 
-export interface CheckSubscriptionZonePeerRequest {
+export interface CheckSubscriptionZonePeersRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The Microsoft location. */
   location?: string;
   /** The peer Microsoft Azure subscription ID. */
-  subscriptionIds?: SubscriptionsCheckZonePeersRequestSubscriptionIdsList;
+  subscriptionIds?: CheckSubscriptionZonePeersRequestSubscriptionIdsList;
 }
-export const CheckSubscriptionZonePeerRequest = /*@__PURE__*/ S.suspend(() =>
+export const CheckSubscriptionZonePeersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.optional(S.String),
     subscriptionIds: S.optional(
-      SubscriptionsCheckZonePeersRequestSubscriptionIdsList,
+      CheckSubscriptionZonePeersRequestSubscriptionIdsList,
     ),
   }).pipe(
     T.Http({
@@ -1091,8 +1204,8 @@ export const CheckSubscriptionZonePeerRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CheckSubscriptionZonePeerRequest",
-}) as any as S.Schema<CheckSubscriptionZonePeerRequest>;
+  identifier: "CheckSubscriptionZonePeersRequest",
+}) as any as S.Schema<CheckSubscriptionZonePeersRequest>;
 
 /** Information about shared availability zone. */
 export interface Peers {
@@ -1160,13 +1273,13 @@ export const CheckZonePeersResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckZonePeersResult>;
 
 /** Resource tags. */
-export type DeploymentScriptsCreateRequestTagsMap = {
+export type CreateDeploymentScriptRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentScriptsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateDeploymentScriptRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentScriptsCreateRequestTagsMap>;
+) as any as S.Schema<CreateDeploymentScriptRequestTagsMap>;
 
 /** Type of the script. */
 export type ScriptType = "AzurePowerShell" | "AzureCLI";
@@ -1216,7 +1329,7 @@ export interface CreateDeploymentScriptRequest {
   /** Name of the deployment script. */
   scriptName: string;
   /** Resource tags. */
-  tags?: DeploymentScriptsCreateRequestTagsMap;
+  tags?: CreateDeploymentScriptRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Type of the script. */
@@ -1229,7 +1342,7 @@ export const CreateDeploymentScriptRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     scriptName: S.String.pipe(T.Label()),
-    tags: S.optional(DeploymentScriptsCreateRequestTagsMap),
+    tags: S.optional(CreateDeploymentScriptRequestTagsMap),
     location: S.String,
     kind: ScriptType,
     identity: S.optional(ManagedServiceIdentityInput),
@@ -1288,13 +1401,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type DeploymentScriptsCreateResponseTagsMap = {
+export type CreateDeploymentScriptResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentScriptsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateDeploymentScriptResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentScriptsCreateResponseTagsMap>;
+) as any as S.Schema<CreateDeploymentScriptResponseTagsMap>;
 
 /** User-assigned managed identity. */
 export interface UserAssignedIdentity {
@@ -1353,7 +1466,7 @@ export interface CreateDeploymentScriptResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DeploymentScriptsCreateResponseTagsMap;
+  tags?: CreateDeploymentScriptResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Type of the script. */
@@ -1367,7 +1480,7 @@ export const CreateDeploymentScriptResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DeploymentScriptsCreateResponseTagsMap),
+    tags: S.optional(CreateDeploymentScriptResponseTagsMap),
     location: S.String,
     kind: ScriptType,
     identity: S.optional(ManagedServiceIdentity),
@@ -1880,86 +1993,6 @@ export const CreatePolicyAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreatePolicyAssignmentResponse",
 }) as any as S.Schema<CreatePolicyAssignmentResponse>;
 
-export type DataBoundariesPutRequestDefault = "default";
-export const DataBoundariesPutRequestDefault = /*@__PURE__*/ S.String;
-
-/** The data boundary definition. */
-export type DataBoundary = "NotDefined" | "Global" | "EU";
-export const DataBoundary = /*@__PURE__*/ S.String;
-
-/** Denotes the state of provisioning. */
-export type ProvisioningState =
-  | "Accepted"
-  | "Running"
-  | "Creating"
-  | "Canceled"
-  | "Failed"
-  | "Succeeded"
-  | "Updating";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** Data boundary properties */
-export interface DataBoundaryProperties {
-  /** The data boundary definition. */
-  dataBoundary?: DataBoundary | (string & {});
-  /** Denotes the state of provisioning. */
-  provisioningState?: ProvisioningState | (string & {});
-}
-export const DataBoundaryProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dataBoundary: S.optional(DataBoundary),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "DataBoundaryProperties",
-}) as any as S.Schema<DataBoundaryProperties>;
-
-export interface DataBoundariesPutRequest {
-  /** Default string modeled as parameter for auto generation to work correctly. */
-  default: DataBoundariesPutRequestDefault | (string & {});
-  /** Data boundary properties */
-  properties?: DataBoundaryProperties;
-}
-export const DataBoundariesPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    default: DataBoundariesPutRequestDefault.pipe(T.Label()),
-    properties: S.optional(DataBoundaryProperties),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/providers/Microsoft.Resources/dataBoundaries/{default}",
-      code: 200,
-      apiVersion: "2024-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataBoundariesPutRequest",
-}) as any as S.Schema<DataBoundariesPutRequest>;
-
-export interface DataBoundariesPutResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Data boundary properties */
-  properties?: DataBoundaryProperties;
-}
-export const DataBoundariesPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DataBoundaryProperties),
-  }),
-).annotate({
-  identifier: "DataBoundariesPutResponse",
-}) as any as S.Schema<DataBoundariesPutResponse>;
-
 export interface DecompileBicepRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -2286,28 +2319,28 @@ export const DeleteDeploymentScriptResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDeploymentScriptResponse",
 }) as any as S.Schema<DeleteDeploymentScriptResponse>;
 
-export type DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResources =
+export type DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResources =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResources =
+export const DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResources =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourceGroups =
+export type DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourceGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourceGroups =
+export const DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourceGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionManagementGroups =
+export type DeleteDeploymentStackAtManagementGroupRequestUnmanageActionManagementGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionManagementGroups =
+export const DeleteDeploymentStackAtManagementGroupRequestUnmanageActionManagementGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
+export type DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   | "detach"
   | "fail";
-export const DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
+export const DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   /*@__PURE__*/ S.String;
 
 export interface DeleteDeploymentStackAtManagementGroupRequest {
@@ -2317,19 +2350,19 @@ export interface DeleteDeploymentStackAtManagementGroupRequest {
   deploymentStackName: string;
   /** Flag to indicate delete rather than detach for unmanaged resources. */
   unmanageAction_Resources?:
-    | DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResources
+    | DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResources
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged resource groups. */
   unmanageAction_ResourceGroups?:
-    | DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourceGroups
+    | DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourceGroups
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged management groups. */
   unmanageAction_ManagementGroups?:
-    | DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionManagementGroups
+    | DeleteDeploymentStackAtManagementGroupRequestUnmanageActionManagementGroups
     | (string & {});
   /** Some resources do not support deletion. This flag will denote how the stack should handle those resources. */
   unmanageAction_ResourcesWithoutDeleteSupport?:
-    | DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport
+    | DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport
     | (string & {});
   /** Flag to bypass service errors that indicate the stack resource list is not correctly synchronized. */
   bypassStackOutOfSyncError?: boolean;
@@ -2340,22 +2373,22 @@ export const DeleteDeploymentStackAtManagementGroupRequest =
       managementGroupId: S.String.pipe(T.Label()),
       deploymentStackName: S.String.pipe(T.Label()),
       unmanageAction_Resources: S.optional(
-        DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResources.pipe(
+        DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResources.pipe(
           T.Query("unmanageAction.Resources"),
         ),
       ),
       unmanageAction_ResourceGroups: S.optional(
-        DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourceGroups.pipe(
+        DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourceGroups.pipe(
           T.Query("unmanageAction.ResourceGroups"),
         ),
       ),
       unmanageAction_ManagementGroups: S.optional(
-        DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionManagementGroups.pipe(
+        DeleteDeploymentStackAtManagementGroupRequestUnmanageActionManagementGroups.pipe(
           T.Query("unmanageAction.ManagementGroups"),
         ),
       ),
       unmanageAction_ResourcesWithoutDeleteSupport: S.optional(
-        DeploymentStacksDeleteAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
+        DeleteDeploymentStackAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
           T.Query("unmanageAction.ResourcesWithoutDeleteSupport"),
         ),
       ),
@@ -2378,28 +2411,28 @@ export const DeleteDeploymentStackAtManagementGroupResponse =
     identifier: "DeleteDeploymentStackAtManagementGroupResponse",
   }) as any as S.Schema<DeleteDeploymentStackAtManagementGroupResponse>;
 
-export type DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResources =
+export type DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResources =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResources =
+export const DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResources =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourceGroups =
+export type DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourceGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourceGroups =
+export const DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourceGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionManagementGroups =
+export type DeleteDeploymentStackAtResourceGroupRequestUnmanageActionManagementGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionManagementGroups =
+export const DeleteDeploymentStackAtResourceGroupRequestUnmanageActionManagementGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
+export type DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   | "detach"
   | "fail";
-export const DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
+export const DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   /*@__PURE__*/ S.String;
 
 export interface DeleteDeploymentStackAtResourceGroupRequest {
@@ -2411,19 +2444,19 @@ export interface DeleteDeploymentStackAtResourceGroupRequest {
   deploymentStackName: string;
   /** Flag to indicate delete rather than detach for unmanaged resources. */
   unmanageAction_Resources?:
-    | DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResources
+    | DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResources
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged resource groups. */
   unmanageAction_ResourceGroups?:
-    | DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourceGroups
+    | DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourceGroups
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged management groups. */
   unmanageAction_ManagementGroups?:
-    | DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionManagementGroups
+    | DeleteDeploymentStackAtResourceGroupRequestUnmanageActionManagementGroups
     | (string & {});
   /** Some resources do not support deletion. This flag will denote how the stack should handle those resources. */
   unmanageAction_ResourcesWithoutDeleteSupport?:
-    | DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport
+    | DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport
     | (string & {});
   /** Flag to bypass service errors that indicate the stack resource list is not correctly synchronized. */
   bypassStackOutOfSyncError?: boolean;
@@ -2435,22 +2468,22 @@ export const DeleteDeploymentStackAtResourceGroupRequest =
       resourceGroupName: S.String.pipe(T.Label()),
       deploymentStackName: S.String.pipe(T.Label()),
       unmanageAction_Resources: S.optional(
-        DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResources.pipe(
+        DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResources.pipe(
           T.Query("unmanageAction.Resources"),
         ),
       ),
       unmanageAction_ResourceGroups: S.optional(
-        DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourceGroups.pipe(
+        DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourceGroups.pipe(
           T.Query("unmanageAction.ResourceGroups"),
         ),
       ),
       unmanageAction_ManagementGroups: S.optional(
-        DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionManagementGroups.pipe(
+        DeleteDeploymentStackAtResourceGroupRequestUnmanageActionManagementGroups.pipe(
           T.Query("unmanageAction.ManagementGroups"),
         ),
       ),
       unmanageAction_ResourcesWithoutDeleteSupport: S.optional(
-        DeploymentStacksDeleteAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
+        DeleteDeploymentStackAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
           T.Query("unmanageAction.ResourcesWithoutDeleteSupport"),
         ),
       ),
@@ -2473,28 +2506,28 @@ export const DeleteDeploymentStackAtResourceGroupResponse =
     identifier: "DeleteDeploymentStackAtResourceGroupResponse",
   }) as any as S.Schema<DeleteDeploymentStackAtResourceGroupResponse>;
 
-export type DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResources =
+export type DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResources =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResources =
+export const DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResources =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourceGroups =
+export type DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourceGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourceGroups =
+export const DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourceGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionManagementGroups =
+export type DeleteDeploymentStackAtSubscriptionRequestUnmanageActionManagementGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionManagementGroups =
+export const DeleteDeploymentStackAtSubscriptionRequestUnmanageActionManagementGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport =
+export type DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport =
   | "detach"
   | "fail";
-export const DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport =
+export const DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport =
   /*@__PURE__*/ S.String;
 
 export interface DeleteDeploymentStackAtSubscriptionRequest {
@@ -2504,19 +2537,19 @@ export interface DeleteDeploymentStackAtSubscriptionRequest {
   deploymentStackName: string;
   /** Flag to indicate delete rather than detach for unmanaged resources. */
   unmanageAction_Resources?:
-    | DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResources
+    | DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResources
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged resource groups. */
   unmanageAction_ResourceGroups?:
-    | DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourceGroups
+    | DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourceGroups
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged management groups. */
   unmanageAction_ManagementGroups?:
-    | DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionManagementGroups
+    | DeleteDeploymentStackAtSubscriptionRequestUnmanageActionManagementGroups
     | (string & {});
   /** Some resources do not support deletion. This flag will denote how the stack should handle those resources. */
   unmanageAction_ResourcesWithoutDeleteSupport?:
-    | DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport
+    | DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport
     | (string & {});
   /** Flag to bypass service errors that indicate the stack resource list is not correctly synchronized. */
   bypassStackOutOfSyncError?: boolean;
@@ -2527,22 +2560,22 @@ export const DeleteDeploymentStackAtSubscriptionRequest =
       subscriptionId: S.String.pipe(T.Label()),
       deploymentStackName: S.String.pipe(T.Label()),
       unmanageAction_Resources: S.optional(
-        DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResources.pipe(
+        DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResources.pipe(
           T.Query("unmanageAction.Resources"),
         ),
       ),
       unmanageAction_ResourceGroups: S.optional(
-        DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourceGroups.pipe(
+        DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourceGroups.pipe(
           T.Query("unmanageAction.ResourceGroups"),
         ),
       ),
       unmanageAction_ManagementGroups: S.optional(
-        DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionManagementGroups.pipe(
+        DeleteDeploymentStackAtSubscriptionRequestUnmanageActionManagementGroups.pipe(
           T.Query("unmanageAction.ManagementGroups"),
         ),
       ),
       unmanageAction_ResourcesWithoutDeleteSupport: S.optional(
-        DeploymentStacksDeleteAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
+        DeleteDeploymentStackAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
           T.Query("unmanageAction.ResourcesWithoutDeleteSupport"),
         ),
       ),
@@ -2565,76 +2598,76 @@ export const DeleteDeploymentStackAtSubscriptionResponse =
     identifier: "DeleteDeploymentStackAtSubscriptionResponse",
   }) as any as S.Schema<DeleteDeploymentStackAtSubscriptionResponse>;
 
-export type DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResources =
+export type DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResources =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResources =
+export const DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResources =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourceGroups =
+export type DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourceGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourceGroups =
+export const DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourceGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionManagementGroups =
+export type DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionManagementGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionManagementGroups =
+export const DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionManagementGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport =
+export type DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   | "detach"
   | "fail";
-export const DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport =
+export const DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   /*@__PURE__*/ S.String;
 
-export interface DeleteDeploymentStackWhatIfResultAtManagementGroupRequest {
+export interface DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** Name of the deployment stack what-if result. */
   deploymentStacksWhatIfResultName: string;
   /** Flag to indicate delete rather than detach for unmanaged resources. */
   unmanageAction_Resources?:
-    | DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResources
+    | DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResources
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged resource groups. */
   unmanageAction_ResourceGroups?:
-    | DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourceGroups
+    | DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourceGroups
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged management groups. */
   unmanageAction_ManagementGroups?:
-    | DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionManagementGroups
+    | DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionManagementGroups
     | (string & {});
   /** Some resources do not support deletion. This flag will denote how the stack should handle those resources. */
   unmanageAction_ResourcesWithoutDeleteSupport?:
-    | DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport
+    | DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport
     | (string & {});
   /** Flag to bypass service errors that indicate the stack resource list is not correctly synchronized. */
   bypassStackOutOfSyncError?: boolean;
 }
-export const DeleteDeploymentStackWhatIfResultAtManagementGroupRequest =
+export const DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       managementGroupId: S.String.pipe(T.Label()),
       deploymentStacksWhatIfResultName: S.String.pipe(T.Label()),
       unmanageAction_Resources: S.optional(
-        DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResources.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResources.pipe(
           T.Query("unmanageAction.Resources"),
         ),
       ),
       unmanageAction_ResourceGroups: S.optional(
-        DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourceGroups.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourceGroups.pipe(
           T.Query("unmanageAction.ResourceGroups"),
         ),
       ),
       unmanageAction_ManagementGroups: S.optional(
-        DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionManagementGroups.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionManagementGroups.pipe(
           T.Query("unmanageAction.ManagementGroups"),
         ),
       ),
       unmanageAction_ResourcesWithoutDeleteSupport: S.optional(
-        DeploymentStacksWhatIfResultsAtManagementGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
           T.Query("unmanageAction.ResourcesWithoutDeleteSupport"),
         ),
       ),
@@ -2648,40 +2681,40 @@ export const DeleteDeploymentStackWhatIfResultAtManagementGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteDeploymentStackWhatIfResultAtManagementGroupRequest",
-  }) as any as S.Schema<DeleteDeploymentStackWhatIfResultAtManagementGroupRequest>;
+    identifier: "DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequest",
+  }) as any as S.Schema<DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequest>;
 
-export interface DeleteDeploymentStackWhatIfResultAtManagementGroupResponse {}
-export const DeleteDeploymentStackWhatIfResultAtManagementGroupResponse =
+export interface DeleteDeploymentStacksWhatIfResultsAtManagementGroupResponse {}
+export const DeleteDeploymentStacksWhatIfResultsAtManagementGroupResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteDeploymentStackWhatIfResultAtManagementGroupResponse",
-  }) as any as S.Schema<DeleteDeploymentStackWhatIfResultAtManagementGroupResponse>;
+    identifier: "DeleteDeploymentStacksWhatIfResultsAtManagementGroupResponse",
+  }) as any as S.Schema<DeleteDeploymentStacksWhatIfResultsAtManagementGroupResponse>;
 
-export type DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResources =
+export type DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResources =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResources =
+export const DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResources =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourceGroups =
+export type DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourceGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourceGroups =
+export const DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourceGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionManagementGroups =
+export type DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionManagementGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionManagementGroups =
+export const DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionManagementGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport =
+export type DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   | "detach"
   | "fail";
-export const DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport =
+export const DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport =
   /*@__PURE__*/ S.String;
 
-export interface DeleteDeploymentStackWhatIfResultAtResourceGroupRequest {
+export interface DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2690,46 +2723,46 @@ export interface DeleteDeploymentStackWhatIfResultAtResourceGroupRequest {
   deploymentStacksWhatIfResultName: string;
   /** Flag to indicate delete rather than detach for unmanaged resources. */
   unmanageAction_Resources?:
-    | DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResources
+    | DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResources
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged resource groups. */
   unmanageAction_ResourceGroups?:
-    | DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourceGroups
+    | DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourceGroups
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged management groups. */
   unmanageAction_ManagementGroups?:
-    | DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionManagementGroups
+    | DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionManagementGroups
     | (string & {});
   /** Some resources do not support deletion. This flag will denote how the stack should handle those resources. */
   unmanageAction_ResourcesWithoutDeleteSupport?:
-    | DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport
+    | DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport
     | (string & {});
   /** Flag to bypass service errors that indicate the stack resource list is not correctly synchronized. */
   bypassStackOutOfSyncError?: boolean;
 }
-export const DeleteDeploymentStackWhatIfResultAtResourceGroupRequest =
+export const DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       deploymentStacksWhatIfResultName: S.String.pipe(T.Label()),
       unmanageAction_Resources: S.optional(
-        DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResources.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResources.pipe(
           T.Query("unmanageAction.Resources"),
         ),
       ),
       unmanageAction_ResourceGroups: S.optional(
-        DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourceGroups.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourceGroups.pipe(
           T.Query("unmanageAction.ResourceGroups"),
         ),
       ),
       unmanageAction_ManagementGroups: S.optional(
-        DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionManagementGroups.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionManagementGroups.pipe(
           T.Query("unmanageAction.ManagementGroups"),
         ),
       ),
       unmanageAction_ResourcesWithoutDeleteSupport: S.optional(
-        DeploymentStacksWhatIfResultsAtResourceGroupDeleteRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
           T.Query("unmanageAction.ResourcesWithoutDeleteSupport"),
         ),
       ),
@@ -2743,85 +2776,85 @@ export const DeleteDeploymentStackWhatIfResultAtResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteDeploymentStackWhatIfResultAtResourceGroupRequest",
-  }) as any as S.Schema<DeleteDeploymentStackWhatIfResultAtResourceGroupRequest>;
+    identifier: "DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequest",
+  }) as any as S.Schema<DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequest>;
 
-export interface DeleteDeploymentStackWhatIfResultAtResourceGroupResponse {}
-export const DeleteDeploymentStackWhatIfResultAtResourceGroupResponse =
+export interface DeleteDeploymentStacksWhatIfResultsAtResourceGroupResponse {}
+export const DeleteDeploymentStacksWhatIfResultsAtResourceGroupResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteDeploymentStackWhatIfResultAtResourceGroupResponse",
-  }) as any as S.Schema<DeleteDeploymentStackWhatIfResultAtResourceGroupResponse>;
+    identifier: "DeleteDeploymentStacksWhatIfResultsAtResourceGroupResponse",
+  }) as any as S.Schema<DeleteDeploymentStacksWhatIfResultsAtResourceGroupResponse>;
 
-export type DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResources =
+export type DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResources =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResources =
+export const DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResources =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourceGroups =
+export type DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourceGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourceGroups =
+export const DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourceGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionManagementGroups =
+export type DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionManagementGroups =
   | "delete"
   | "detach";
-export const DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionManagementGroups =
+export const DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionManagementGroups =
   /*@__PURE__*/ S.String;
 
-export type DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourcesWithoutDeleteSupport =
+export type DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport =
   | "detach"
   | "fail";
-export const DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourcesWithoutDeleteSupport =
+export const DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport =
   /*@__PURE__*/ S.String;
 
-export interface DeleteDeploymentStackWhatIfResultAtSubscriptionRequest {
+export interface DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Name of the deployment stack what-if result. */
   deploymentStacksWhatIfResultName: string;
   /** Flag to indicate delete rather than detach for unmanaged resources. */
   unmanageAction_Resources?:
-    | DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResources
+    | DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResources
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged resource groups. */
   unmanageAction_ResourceGroups?:
-    | DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourceGroups
+    | DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourceGroups
     | (string & {});
   /** Flag to indicate delete rather than detach for unmanaged management groups. */
   unmanageAction_ManagementGroups?:
-    | DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionManagementGroups
+    | DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionManagementGroups
     | (string & {});
   /** Some resources do not support deletion. This flag will denote how the stack should handle those resources. */
   unmanageAction_ResourcesWithoutDeleteSupport?:
-    | DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourcesWithoutDeleteSupport
+    | DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport
     | (string & {});
   /** Flag to bypass service errors that indicate the stack resource list is not correctly synchronized. */
   bypassStackOutOfSyncError?: boolean;
 }
-export const DeleteDeploymentStackWhatIfResultAtSubscriptionRequest =
+export const DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       deploymentStacksWhatIfResultName: S.String.pipe(T.Label()),
       unmanageAction_Resources: S.optional(
-        DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResources.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResources.pipe(
           T.Query("unmanageAction.Resources"),
         ),
       ),
       unmanageAction_ResourceGroups: S.optional(
-        DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourceGroups.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourceGroups.pipe(
           T.Query("unmanageAction.ResourceGroups"),
         ),
       ),
       unmanageAction_ManagementGroups: S.optional(
-        DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionManagementGroups.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionManagementGroups.pipe(
           T.Query("unmanageAction.ManagementGroups"),
         ),
       ),
       unmanageAction_ResourcesWithoutDeleteSupport: S.optional(
-        DeploymentStacksWhatIfResultsAtSubscriptionDeleteRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
+        DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequestUnmanageActionResourcesWithoutDeleteSupport.pipe(
           T.Query("unmanageAction.ResourcesWithoutDeleteSupport"),
         ),
       ),
@@ -2835,14 +2868,14 @@ export const DeleteDeploymentStackWhatIfResultAtSubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteDeploymentStackWhatIfResultAtSubscriptionRequest",
-  }) as any as S.Schema<DeleteDeploymentStackWhatIfResultAtSubscriptionRequest>;
+    identifier: "DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequest",
+  }) as any as S.Schema<DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequest>;
 
-export interface DeleteDeploymentStackWhatIfResultAtSubscriptionResponse {}
-export const DeleteDeploymentStackWhatIfResultAtSubscriptionResponse =
+export interface DeleteDeploymentStacksWhatIfResultsAtSubscriptionResponse {}
+export const DeleteDeploymentStacksWhatIfResultsAtSubscriptionResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeleteDeploymentStackWhatIfResultAtSubscriptionResponse",
-  }) as any as S.Schema<DeleteDeploymentStackWhatIfResultAtSubscriptionResponse>;
+    identifier: "DeleteDeploymentStacksWhatIfResultsAtSubscriptionResponse",
+  }) as any as S.Schema<DeleteDeploymentStacksWhatIfResultsAtSubscriptionResponse>;
 
 export interface DeleteJitRequestRequest {
   /** The ID of the target subscription. */
@@ -3184,6 +3217,129 @@ export const DeletePolicyDefinitionVersionAtManagementGroupResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "DeletePolicyDefinitionVersionAtManagementGroupResponse",
   }) as any as S.Schema<DeletePolicyDefinitionVersionAtManagementGroupResponse>;
+
+export interface DeletePolicySetDefinitionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the policy set definition to get. */
+  policySetDefinitionName: string;
+}
+export const DeletePolicySetDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    policySetDefinitionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePolicySetDefinitionRequest",
+}) as any as S.Schema<DeletePolicySetDefinitionRequest>;
+
+export interface DeletePolicySetDefinitionResponse {}
+export const DeletePolicySetDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePolicySetDefinitionResponse",
+}) as any as S.Schema<DeletePolicySetDefinitionResponse>;
+
+export interface DeletePolicySetDefinitionAtManagementGroupRequest {
+  /** The ID of the management group. */
+  managementGroupId: string;
+  /** The name of the policy set definition to get. */
+  policySetDefinitionName: string;
+}
+export const DeletePolicySetDefinitionAtManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeletePolicySetDefinitionAtManagementGroupRequest",
+  }) as any as S.Schema<DeletePolicySetDefinitionAtManagementGroupRequest>;
+
+export interface DeletePolicySetDefinitionAtManagementGroupResponse {}
+export const DeletePolicySetDefinitionAtManagementGroupResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeletePolicySetDefinitionAtManagementGroupResponse",
+  }) as any as S.Schema<DeletePolicySetDefinitionAtManagementGroupResponse>;
+
+export interface DeletePolicySetDefinitionVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
+  policyDefinitionVersion: string;
+}
+export const DeletePolicySetDefinitionVersionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      policyDefinitionVersion: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePolicySetDefinitionVersionRequest",
+}) as any as S.Schema<DeletePolicySetDefinitionVersionRequest>;
+
+export interface DeletePolicySetDefinitionVersionResponse {}
+export const DeletePolicySetDefinitionVersionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePolicySetDefinitionVersionResponse",
+}) as any as S.Schema<DeletePolicySetDefinitionVersionResponse>;
+
+export interface DeletePolicySetDefinitionVersionAtManagementGroupRequest {
+  /** The name of the management group. The name is case insensitive. */
+  managementGroupName: string;
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
+  policyDefinitionVersion: string;
+}
+export const DeletePolicySetDefinitionVersionAtManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupName: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      policyDefinitionVersion: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeletePolicySetDefinitionVersionAtManagementGroupRequest",
+  }) as any as S.Schema<DeletePolicySetDefinitionVersionAtManagementGroupRequest>;
+
+export interface DeletePolicySetDefinitionVersionAtManagementGroupResponse {}
+export const DeletePolicySetDefinitionVersionAtManagementGroupResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeletePolicySetDefinitionVersionAtManagementGroupResponse",
+  }) as any as S.Schema<DeletePolicySetDefinitionVersionAtManagementGroupResponse>;
 
 export interface DeletePrivateLinkAssociationRequest {
   /** The management group ID. */
@@ -3586,152 +3742,6 @@ export const TemplateHashResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TemplateHashResult",
 }) as any as S.Schema<TemplateHashResult>;
-
-export interface DeploymentsCancelRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsCancelRequest",
-}) as any as S.Schema<DeploymentsCancelRequest>;
-
-export interface DeploymentsCancelResponse {}
-export const DeploymentsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeploymentsCancelResponse",
-}) as any as S.Schema<DeploymentsCancelResponse>;
-
-export interface DeploymentsCancelAtManagementGroupScopeRequest {
-  /** The management group ID. */
-  groupId: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsCancelAtManagementGroupScopeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupId: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentsCancelAtManagementGroupScopeRequest",
-  }) as any as S.Schema<DeploymentsCancelAtManagementGroupScopeRequest>;
-
-export interface DeploymentsCancelAtManagementGroupScopeResponse {}
-export const DeploymentsCancelAtManagementGroupScopeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeploymentsCancelAtManagementGroupScopeResponse",
-  }) as any as S.Schema<DeploymentsCancelAtManagementGroupScopeResponse>;
-
-export interface DeploymentsCancelAtScopeRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsCancelAtScopeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsCancelAtScopeRequest",
-}) as any as S.Schema<DeploymentsCancelAtScopeRequest>;
-
-export interface DeploymentsCancelAtScopeResponse {}
-export const DeploymentsCancelAtScopeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeploymentsCancelAtScopeResponse",
-}) as any as S.Schema<DeploymentsCancelAtScopeResponse>;
-
-export interface DeploymentsCancelAtSubscriptionScopeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsCancelAtSubscriptionScopeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentsCancelAtSubscriptionScopeRequest",
-  }) as any as S.Schema<DeploymentsCancelAtSubscriptionScopeRequest>;
-
-export interface DeploymentsCancelAtSubscriptionScopeResponse {}
-export const DeploymentsCancelAtSubscriptionScopeResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DeploymentsCancelAtSubscriptionScopeResponse",
-  }) as any as S.Schema<DeploymentsCancelAtSubscriptionScopeResponse>;
-
-export interface DeploymentsCancelAtTenantScopeRequest {
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsCancelAtTenantScopeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      deploymentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeploymentsCancelAtTenantScopeRequest",
-}) as any as S.Schema<DeploymentsCancelAtTenantScopeRequest>;
-
-export interface DeploymentsCancelAtTenantScopeResponse {}
-export const DeploymentsCancelAtTenantScopeResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DeploymentsCancelAtTenantScopeResponse",
-}) as any as S.Schema<DeploymentsCancelAtTenantScopeResponse>;
 
 /** Entity representing the reference to the template. */
 export interface TemplateLink {
@@ -5147,133 +5157,6 @@ export const DeploymentsCreateOrUpdateAtTenantScopeResponse =
     identifier: "DeploymentsCreateOrUpdateAtTenantScopeResponse",
   }) as any as S.Schema<DeploymentsCreateOrUpdateAtTenantScopeResponse>;
 
-export interface DeploymentsExportTemplateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsExportTemplateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsExportTemplateRequest",
-}) as any as S.Schema<DeploymentsExportTemplateRequest>;
-
-/** The deployment export result. */
-export interface DeploymentExportResult {
-  /** The template content. */
-  template?: unknown;
-}
-export const DeploymentExportResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    template: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DeploymentExportResult",
-}) as any as S.Schema<DeploymentExportResult>;
-
-export interface DeploymentsExportTemplateAtManagementGroupScopeRequest {
-  /** The management group ID. */
-  groupId: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsExportTemplateAtManagementGroupScopeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupId: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentsExportTemplateAtManagementGroupScopeRequest",
-  }) as any as S.Schema<DeploymentsExportTemplateAtManagementGroupScopeRequest>;
-
-export interface DeploymentsExportTemplateAtScopeRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsExportTemplateAtScopeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      scope: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeploymentsExportTemplateAtScopeRequest",
-}) as any as S.Schema<DeploymentsExportTemplateAtScopeRequest>;
-
-export interface DeploymentsExportTemplateAtSubscriptionScopeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsExportTemplateAtSubscriptionScopeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentsExportTemplateAtSubscriptionScopeRequest",
-  }) as any as S.Schema<DeploymentsExportTemplateAtSubscriptionScopeRequest>;
-
-export interface DeploymentsExportTemplateAtTenantScopeRequest {
-  /** The name of the deployment. */
-  deploymentName: string;
-}
-export const DeploymentsExportTemplateAtTenantScopeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      deploymentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentsExportTemplateAtTenantScopeRequest",
-  }) as any as S.Schema<DeploymentsExportTemplateAtTenantScopeRequest>;
-
 /** The error detail. */
 export type DeploymentStackPropertiesInputError =
   UserAssignedResourceIdentityInput;
@@ -6355,430 +6238,6 @@ export const DeploymentStacksCreateOrUpdateAtSubscriptionResponse =
   ).annotate({
     identifier: "DeploymentStacksCreateOrUpdateAtSubscriptionResponse",
   }) as any as S.Schema<DeploymentStacksCreateOrUpdateAtSubscriptionResponse>;
-
-export interface DeploymentStacksExportTemplateAtManagementGroupRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** Name of the deployment stack. */
-  deploymentStackName: string;
-}
-export const DeploymentStacksExportTemplateAtManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      deploymentStackName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/exportTemplate",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentStacksExportTemplateAtManagementGroupRequest",
-  }) as any as S.Schema<DeploymentStacksExportTemplateAtManagementGroupRequest>;
-
-/** The template content. Use this element to pass the template syntax directly in the request rather than link to an existing template. It can be a JObject or well-formed JSON string. Use either the templateLink property or the template property, but not both. */
-export type DeploymentStackTemplateDefinitionTemplateMap = {
-  [key: string]: unknown | undefined;
-};
-export const DeploymentStackTemplateDefinitionTemplateMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<DeploymentStackTemplateDefinitionTemplateMap>;
-
-/** Export Template specific properties of the Deployment stack. */
-export interface DeploymentStackTemplateDefinition {
-  /** The template content. Use this element to pass the template syntax directly in the request rather than link to an existing template. It can be a JObject or well-formed JSON string. Use either the templateLink property or the template property, but not both. */
-  template?: DeploymentStackTemplateDefinitionTemplateMap;
-  /** The URI of the template. Use either the templateLink property or the template property, but not both. */
-  templateLink?: DeploymentStacksTemplateLink;
-}
-export const DeploymentStackTemplateDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    template: S.optional(DeploymentStackTemplateDefinitionTemplateMap),
-    templateLink: S.optional(DeploymentStacksTemplateLink),
-  }),
-).annotate({
-  identifier: "DeploymentStackTemplateDefinition",
-}) as any as S.Schema<DeploymentStackTemplateDefinition>;
-
-export interface DeploymentStacksExportTemplateAtResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the deployment stack. */
-  deploymentStackName: string;
-}
-export const DeploymentStacksExportTemplateAtResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deploymentStackName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/exportTemplate",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentStacksExportTemplateAtResourceGroupRequest",
-  }) as any as S.Schema<DeploymentStacksExportTemplateAtResourceGroupRequest>;
-
-export interface DeploymentStacksExportTemplateAtSubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** Name of the deployment stack. */
-  deploymentStackName: string;
-}
-export const DeploymentStacksExportTemplateAtSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      deploymentStackName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/exportTemplate",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentStacksExportTemplateAtSubscriptionRequest",
-  }) as any as S.Schema<DeploymentStacksExportTemplateAtSubscriptionRequest>;
-
-/** Resource tags. */
-export type DeploymentStacksValidateStackAtManagementGroupRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentStacksValidateStackAtManagementGroupRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DeploymentStacksValidateStackAtManagementGroupRequestTagsMap>;
-
-export interface DeploymentStacksValidateStackAtManagementGroupRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** Name of the deployment stack. */
-  deploymentStackName: string;
-  /** Deployment stack properties. */
-  properties?: DeploymentStackPropertiesInput;
-  /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
-  location?: string;
-  /** Resource tags. */
-  tags?: DeploymentStacksValidateStackAtManagementGroupRequestTagsMap;
-}
-export const DeploymentStacksValidateStackAtManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      deploymentStackName: S.String.pipe(T.Label()),
-      properties: S.optional(DeploymentStackPropertiesInput),
-      location: S.optional(S.String),
-      tags: S.optional(
-        DeploymentStacksValidateStackAtManagementGroupRequestTagsMap,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/validate",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentStacksValidateStackAtManagementGroupRequest",
-  }) as any as S.Schema<DeploymentStacksValidateStackAtManagementGroupRequest>;
-
-/** The type of identity that created the resource. */
-export type DeploymentStackValidateResultSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const DeploymentStackValidateResultSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type DeploymentStackValidateResultSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const DeploymentStackValidateResultSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface DeploymentStackValidateResultSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: DeploymentStackValidateResultSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: DeploymentStackValidateResultSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const DeploymentStackValidateResultSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        DeploymentStackValidateResultSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        DeploymentStackValidateResultSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DeploymentStackValidateResultSystemData",
-}) as any as S.Schema<DeploymentStackValidateResultSystemData>;
-
-/** The error details. */
-export type DeploymentStackValidateResultErrorDetailsList = Array<ErrorDetail>;
-export const DeploymentStackValidateResultErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<DeploymentStackValidateResultErrorDetailsList>;
-
-/** The error additional info. */
-export type DeploymentStackValidateResultErrorAdditionalInfoList =
-  Array<ErrorResponseAdditionalInfoItem>;
-export const DeploymentStackValidateResultErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorResponseAdditionalInfoItem,
-  ) as any as S.Schema<DeploymentStackValidateResultErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface DeploymentStackValidateResultError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: DeploymentStackValidateResultErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: DeploymentStackValidateResultErrorAdditionalInfoList;
-}
-export const DeploymentStackValidateResultError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(DeploymentStackValidateResultErrorDetailsList),
-    additionalInfo: S.optional(
-      DeploymentStackValidateResultErrorAdditionalInfoList,
-    ),
-  }),
-).annotate({
-  identifier: "DeploymentStackValidateResultError",
-}) as any as S.Schema<DeploymentStackValidateResultError>;
-
-/** Deployment parameters. */
-export type DeploymentStackValidatePropertiesParametersMap = {
-  [key: string]: DeploymentParameter | undefined;
-};
-export const DeploymentStackValidatePropertiesParametersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    DeploymentParameter,
-  ) as any as S.Schema<DeploymentStackValidatePropertiesParametersMap>;
-
-/** The array of resources that were validated. */
-export type DeploymentStackValidatePropertiesValidatedResourcesList =
-  Array<ResourceReference>;
-export const DeploymentStackValidatePropertiesValidatedResourcesList =
-  /*@__PURE__*/ S.Array(
-    ResourceReference,
-  ) as any as S.Schema<DeploymentStackValidatePropertiesValidatedResourcesList>;
-
-/** The deployment extensions. */
-export type DeploymentStackValidatePropertiesDeploymentExtensionsList =
-  Array<DeploymentExtension>;
-export const DeploymentStackValidatePropertiesDeploymentExtensionsList =
-  /*@__PURE__*/ S.Array(
-    DeploymentExtension,
-  ) as any as S.Schema<DeploymentStackValidatePropertiesDeploymentExtensionsList>;
-
-/** The Deployment stack validation result details. */
-export interface DeploymentStackValidateProperties {
-  /** Defines the behavior of resources that are no longer managed after the Deployment stack is updated or deleted. */
-  actionOnUnmanage?: ActionOnUnmanage;
-  /** The correlation id of the Deployment stack validate operation. It is in GUID format and is used for tracing. */
-  correlationId?: string;
-  /** The Deployment stack deny settings. */
-  denySettings?: DenySettings;
-  /** The Deployment stack deployment scope. */
-  deploymentScope?: string;
-  /** The Deployment stack validation description. */
-  description?: string;
-  /** Deployment parameters. */
-  parameters?: DeploymentStackValidatePropertiesParametersMap;
-  /** The URI of the template. */
-  templateLink?: DeploymentStacksTemplateLink;
-  /** The array of resources that were validated. */
-  validatedResources?: DeploymentStackValidatePropertiesValidatedResourcesList;
-  /** The deployment extensions. */
-  deploymentExtensions?: DeploymentStackValidatePropertiesDeploymentExtensionsList;
-  /** The validation level of the deployment stack */
-  validationLevel?: ValidationLevel;
-}
-export const DeploymentStackValidateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actionOnUnmanage: S.optional(ActionOnUnmanage),
-    correlationId: S.optional(S.String),
-    denySettings: S.optional(DenySettings),
-    deploymentScope: S.optional(S.String),
-    description: S.optional(S.String),
-    parameters: S.optional(DeploymentStackValidatePropertiesParametersMap),
-    templateLink: S.optional(DeploymentStacksTemplateLink),
-    validatedResources: S.optional(
-      DeploymentStackValidatePropertiesValidatedResourcesList,
-    ),
-    deploymentExtensions: S.optional(
-      DeploymentStackValidatePropertiesDeploymentExtensionsList,
-    ),
-    validationLevel: S.optional(ValidationLevel),
-  }),
-).annotate({
-  identifier: "DeploymentStackValidateProperties",
-}) as any as S.Schema<DeploymentStackValidateProperties>;
-
-/** The Deployment stack validation result. */
-export interface DeploymentStackValidateResult {
-  /** String Id used to locate any resource on Azure. */
-  id?: string;
-  /** Name of this resource. */
-  name?: string;
-  /** Type of this resource. */
-  type?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: DeploymentStackValidateResultSystemData;
-  /** The error detail. */
-  error?: DeploymentStackValidateResultError;
-  /** The validation result details. */
-  properties?: DeploymentStackValidateProperties;
-}
-export const DeploymentStackValidateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(DeploymentStackValidateResultSystemData),
-    error: S.optional(DeploymentStackValidateResultError),
-    properties: S.optional(DeploymentStackValidateProperties),
-  }),
-).annotate({
-  identifier: "DeploymentStackValidateResult",
-}) as any as S.Schema<DeploymentStackValidateResult>;
-
-/** Resource tags. */
-export type DeploymentStacksValidateStackAtResourceGroupRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentStacksValidateStackAtResourceGroupRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DeploymentStacksValidateStackAtResourceGroupRequestTagsMap>;
-
-export interface DeploymentStacksValidateStackAtResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the deployment stack. */
-  deploymentStackName: string;
-  /** Deployment stack properties. */
-  properties?: DeploymentStackPropertiesInput;
-  /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
-  location?: string;
-  /** Resource tags. */
-  tags?: DeploymentStacksValidateStackAtResourceGroupRequestTagsMap;
-}
-export const DeploymentStacksValidateStackAtResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      deploymentStackName: S.String.pipe(T.Label()),
-      properties: S.optional(DeploymentStackPropertiesInput),
-      location: S.optional(S.String),
-      tags: S.optional(
-        DeploymentStacksValidateStackAtResourceGroupRequestTagsMap,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/validate",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentStacksValidateStackAtResourceGroupRequest",
-  }) as any as S.Schema<DeploymentStacksValidateStackAtResourceGroupRequest>;
-
-/** Resource tags. */
-export type DeploymentStacksValidateStackAtSubscriptionRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentStacksValidateStackAtSubscriptionRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DeploymentStacksValidateStackAtSubscriptionRequestTagsMap>;
-
-export interface DeploymentStacksValidateStackAtSubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** Name of the deployment stack. */
-  deploymentStackName: string;
-  /** Deployment stack properties. */
-  properties?: DeploymentStackPropertiesInput;
-  /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
-  location?: string;
-  /** Resource tags. */
-  tags?: DeploymentStacksValidateStackAtSubscriptionRequestTagsMap;
-}
-export const DeploymentStacksValidateStackAtSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      deploymentStackName: S.String.pipe(T.Label()),
-      properties: S.optional(DeploymentStackPropertiesInput),
-      location: S.optional(S.String),
-      tags: S.optional(
-        DeploymentStacksValidateStackAtSubscriptionRequestTagsMap,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/validate",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentStacksValidateStackAtSubscriptionRequest",
-  }) as any as S.Schema<DeploymentStacksValidateStackAtSubscriptionRequest>;
 
 /** The error detail. */
 export type DeploymentStacksWhatIfResultPropertiesInputError =
@@ -7903,246 +7362,6 @@ export const DeploymentStacksWhatIfResultsAtSubscriptionWhatIfResponse =
     identifier: "DeploymentStacksWhatIfResultsAtSubscriptionWhatIfResponse",
   }) as any as S.Schema<DeploymentStacksWhatIfResultsAtSubscriptionWhatIfResponse>;
 
-/** Deployment tags */
-export type DeploymentsValidateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsValidateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsValidateRequestTagsMap>;
-
-export interface DeploymentsValidateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-  /** The location to store the deployment data. */
-  location?: string;
-  /** The deployment properties. */
-  properties: DeploymentProperties;
-  /** Deployment tags */
-  tags?: DeploymentsValidateRequestTagsMap;
-  /** The Managed Identity configuration for a deployment. */
-  identity?: DeploymentIdentityInput;
-}
-export const DeploymentsValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    properties: DeploymentProperties,
-    tags: S.optional(DeploymentsValidateRequestTagsMap),
-    identity: S.optional(DeploymentIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsValidateRequest",
-}) as any as S.Schema<DeploymentsValidateRequest>;
-
-/** Information from validate template deployment response. */
-export interface DeploymentValidateResult {
-  /** The deployment validation error. */
-  error?: ErrorResponse;
-  /** The ID of the deployment. */
-  id?: string;
-  /** The name of the deployment. */
-  name?: string;
-  /** The type of the deployment. */
-  type?: string;
-  /** The template deployment properties. */
-  properties?: DeploymentPropertiesExtended;
-}
-export const DeploymentValidateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(ErrorResponse),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(DeploymentPropertiesExtended),
-  }),
-).annotate({
-  identifier: "DeploymentValidateResult",
-}) as any as S.Schema<DeploymentValidateResult>;
-
-/** Deployment tags */
-export type DeploymentsValidateAtManagementGroupScopeRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsValidateAtManagementGroupScopeRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DeploymentsValidateAtManagementGroupScopeRequestTagsMap>;
-
-export interface DeploymentsValidateAtManagementGroupScopeRequest {
-  /** The management group ID. */
-  groupId: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-  /** The location to store the deployment data. */
-  location: string;
-  /** The deployment properties. */
-  properties: DeploymentProperties;
-  /** Deployment tags */
-  tags?: DeploymentsValidateAtManagementGroupScopeRequestTagsMap;
-}
-export const DeploymentsValidateAtManagementGroupScopeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupId: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-      location: S.String,
-      properties: DeploymentProperties,
-      tags: S.optional(DeploymentsValidateAtManagementGroupScopeRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentsValidateAtManagementGroupScopeRequest",
-  }) as any as S.Schema<DeploymentsValidateAtManagementGroupScopeRequest>;
-
-/** Deployment tags */
-export type DeploymentsValidateAtScopeRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsValidateAtScopeRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsValidateAtScopeRequestTagsMap>;
-
-export interface DeploymentsValidateAtScopeRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-  /** The location to store the deployment data. */
-  location?: string;
-  /** The deployment properties. */
-  properties: DeploymentProperties;
-  /** Deployment tags */
-  tags?: DeploymentsValidateAtScopeRequestTagsMap;
-  /** The Managed Identity configuration for a deployment. */
-  identity?: DeploymentIdentityInput;
-}
-export const DeploymentsValidateAtScopeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    properties: DeploymentProperties,
-    tags: S.optional(DeploymentsValidateAtScopeRequestTagsMap),
-    identity: S.optional(DeploymentIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsValidateAtScopeRequest",
-}) as any as S.Schema<DeploymentsValidateAtScopeRequest>;
-
-/** Deployment tags */
-export type DeploymentsValidateAtSubscriptionScopeRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsValidateAtSubscriptionScopeRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DeploymentsValidateAtSubscriptionScopeRequestTagsMap>;
-
-export interface DeploymentsValidateAtSubscriptionScopeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the deployment. */
-  deploymentName: string;
-  /** The location to store the deployment data. */
-  location?: string;
-  /** The deployment properties. */
-  properties: DeploymentProperties;
-  /** Deployment tags */
-  tags?: DeploymentsValidateAtSubscriptionScopeRequestTagsMap;
-  /** The Managed Identity configuration for a deployment. */
-  identity?: DeploymentIdentityInput;
-}
-export const DeploymentsValidateAtSubscriptionScopeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-      properties: DeploymentProperties,
-      tags: S.optional(DeploymentsValidateAtSubscriptionScopeRequestTagsMap),
-      identity: S.optional(DeploymentIdentityInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DeploymentsValidateAtSubscriptionScopeRequest",
-  }) as any as S.Schema<DeploymentsValidateAtSubscriptionScopeRequest>;
-
-/** Deployment tags */
-export type DeploymentsValidateAtTenantScopeRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsValidateAtTenantScopeRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DeploymentsValidateAtTenantScopeRequestTagsMap>;
-
-export interface DeploymentsValidateAtTenantScopeRequest {
-  /** The name of the deployment. */
-  deploymentName: string;
-  /** The location to store the deployment data. */
-  location: string;
-  /** The deployment properties. */
-  properties: DeploymentProperties;
-  /** Deployment tags */
-  tags?: DeploymentsValidateAtTenantScopeRequestTagsMap;
-}
-export const DeploymentsValidateAtTenantScopeRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      deploymentName: S.String.pipe(T.Label()),
-      location: S.String,
-      properties: DeploymentProperties,
-      tags: S.optional(DeploymentsValidateAtTenantScopeRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "DeploymentsValidateAtTenantScopeRequest",
-}) as any as S.Schema<DeploymentsValidateAtTenantScopeRequest>;
-
 /** Name and value pairs that define the deployment parameters for the template. You use this element when you want to provide the parameter values directly in the request rather than link to an existing parameter file. Use either the parametersLink property or the parameters property, but not both. It can be a JObject or a well formed JSON string. */
 export type DeploymentWhatIfPropertiesInputParametersMap = {
   [key: string]: DeploymentParameter_2 | undefined;
@@ -8593,88 +7812,332 @@ export const DeploymentsWhatIfAtTenantScopeRequest = /*@__PURE__*/ S.suspend(
   identifier: "DeploymentsWhatIfAtTenantScopeRequest",
 }) as any as S.Schema<DeploymentsWhatIfAtTenantScopeRequest>;
 
-export interface FeaturesRegisterRequest {
-  /** The Azure subscription ID. */
-  subscriptionId: string;
-  /** The namespace of the resource provider. */
-  resourceProviderNamespace: string;
-  /** The name of the feature to register. */
-  featureName: string;
+export interface ExportDeploymentStackTemplateAtManagementGroupRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** Name of the deployment stack. */
+  deploymentStackName: string;
 }
-export const FeaturesRegisterRequest = /*@__PURE__*/ S.suspend(() =>
+export const ExportDeploymentStackTemplateAtManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      deploymentStackName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/exportTemplate",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportDeploymentStackTemplateAtManagementGroupRequest",
+  }) as any as S.Schema<ExportDeploymentStackTemplateAtManagementGroupRequest>;
+
+/** The template content. Use this element to pass the template syntax directly in the request rather than link to an existing template. It can be a JObject or well-formed JSON string. Use either the templateLink property or the template property, but not both. */
+export type DeploymentStackTemplateDefinitionTemplateMap = {
+  [key: string]: unknown | undefined;
+};
+export const DeploymentStackTemplateDefinitionTemplateMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<DeploymentStackTemplateDefinitionTemplateMap>;
+
+/** Export Template specific properties of the Deployment stack. */
+export interface DeploymentStackTemplateDefinition {
+  /** The template content. Use this element to pass the template syntax directly in the request rather than link to an existing template. It can be a JObject or well-formed JSON string. Use either the templateLink property or the template property, but not both. */
+  template?: DeploymentStackTemplateDefinitionTemplateMap;
+  /** The URI of the template. Use either the templateLink property or the template property, but not both. */
+  templateLink?: DeploymentStacksTemplateLink;
+}
+export const DeploymentStackTemplateDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    template: S.optional(DeploymentStackTemplateDefinitionTemplateMap),
+    templateLink: S.optional(DeploymentStacksTemplateLink),
+  }),
+).annotate({
+  identifier: "DeploymentStackTemplateDefinition",
+}) as any as S.Schema<DeploymentStackTemplateDefinition>;
+
+export interface ExportDeploymentStackTemplateAtResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the deployment stack. */
+  deploymentStackName: string;
+}
+export const ExportDeploymentStackTemplateAtResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deploymentStackName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/exportTemplate",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportDeploymentStackTemplateAtResourceGroupRequest",
+  }) as any as S.Schema<ExportDeploymentStackTemplateAtResourceGroupRequest>;
+
+export interface ExportDeploymentStackTemplateAtSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** Name of the deployment stack. */
+  deploymentStackName: string;
+}
+export const ExportDeploymentStackTemplateAtSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      deploymentStackName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/exportTemplate",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportDeploymentStackTemplateAtSubscriptionRequest",
+  }) as any as S.Schema<ExportDeploymentStackTemplateAtSubscriptionRequest>;
+
+export interface ExportDeploymentTemplateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+}
+export const ExportDeploymentTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceProviderNamespace: S.String.pipe(T.Label()),
-    featureName: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features/{featureName}/register",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
       code: 200,
-      apiVersion: "2021-07-01",
+      apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "FeaturesRegisterRequest",
-}) as any as S.Schema<FeaturesRegisterRequest>;
+  identifier: "ExportDeploymentTemplateRequest",
+}) as any as S.Schema<ExportDeploymentTemplateRequest>;
 
-/** Information about feature. */
-export interface FeatureProperties {
-  /** The registration state of the feature for the subscription. */
-  state?: string;
+/** The deployment export result. */
+export interface DeploymentExportResult {
+  /** The template content. */
+  template?: unknown;
 }
-export const FeatureProperties = /*@__PURE__*/ S.suspend(() =>
+export const DeploymentExportResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    state: S.optional(S.String),
+    template: S.optional(S.Unknown),
   }),
 ).annotate({
-  identifier: "FeatureProperties",
-}) as any as S.Schema<FeatureProperties>;
+  identifier: "DeploymentExportResult",
+}) as any as S.Schema<DeploymentExportResult>;
 
-/** Previewed feature information. */
-export interface FeatureResult {
-  /** The name of the feature. */
-  name?: string;
-  /** Properties of the previewed feature. */
-  properties?: FeatureProperties;
-  /** The resource ID of the feature. */
-  id?: string;
-  /** The resource type of the feature. */
-  type?: string;
+export interface ExportDeploymentTemplateAtManagementGroupScopeRequest {
+  /** The management group ID. */
+  groupId: string;
+  /** The name of the deployment. */
+  deploymentName: string;
 }
-export const FeatureResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: S.optional(FeatureProperties),
-    id: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({ identifier: "FeatureResult" }) as any as S.Schema<FeatureResult>;
+export const ExportDeploymentTemplateAtManagementGroupScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupId: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportDeploymentTemplateAtManagementGroupScopeRequest",
+  }) as any as S.Schema<ExportDeploymentTemplateAtManagementGroupScopeRequest>;
 
-export interface FeaturesUnregisterRequest {
-  /** The Azure subscription ID. */
+export interface ExportDeploymentTemplateAtScopeRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+}
+export const ExportDeploymentTemplateAtScopeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      scope: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ExportDeploymentTemplateAtScopeRequest",
+}) as any as S.Schema<ExportDeploymentTemplateAtScopeRequest>;
+
+export interface ExportDeploymentTemplateAtSubscriptionScopeRequest {
+  /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The namespace of the resource provider. */
-  resourceProviderNamespace: string;
-  /** The name of the feature to unregister. */
-  featureName: string;
+  /** The name of the deployment. */
+  deploymentName: string;
 }
-export const FeaturesUnregisterRequest = /*@__PURE__*/ S.suspend(() =>
+export const ExportDeploymentTemplateAtSubscriptionScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportDeploymentTemplateAtSubscriptionScopeRequest",
+  }) as any as S.Schema<ExportDeploymentTemplateAtSubscriptionScopeRequest>;
+
+export interface ExportDeploymentTemplateAtTenantScopeRequest {
+  /** The name of the deployment. */
+  deploymentName: string;
+}
+export const ExportDeploymentTemplateAtTenantScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      deploymentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ExportDeploymentTemplateAtTenantScopeRequest",
+  }) as any as S.Schema<ExportDeploymentTemplateAtTenantScopeRequest>;
+
+/** The IDs of the resources to filter the export by. To export all resources, supply an array with single entry '*'. */
+export type ExportResourceGroupTemplateRequestResourcesList = Array<string>;
+export const ExportResourceGroupTemplateRequestResourcesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ExportResourceGroupTemplateRequestResourcesList>;
+
+/** The output format for the exported resources. */
+export type ExportTemplateOutputFormat = "Json" | "Bicep";
+export const ExportTemplateOutputFormat = /*@__PURE__*/ S.String;
+
+export interface ExportResourceGroupTemplateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group to get. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The IDs of the resources to filter the export by. To export all resources, supply an array with single entry '*'. */
+  resources?: ExportResourceGroupTemplateRequestResourcesList;
+  /** The export template options. A CSV-formatted list containing zero or more of the following: 'IncludeParameterDefaultValue', 'IncludeComments', 'SkipResourceNameParameterization', 'SkipAllParameterization' */
+  options?: string;
+  /** The output format for the exported resources. */
+  outputFormat?: ExportTemplateOutputFormat | (string & {});
+}
+export const ExportResourceGroupTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceProviderNamespace: S.String.pipe(T.Label()),
-    featureName: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resources: S.optional(ExportResourceGroupTemplateRequestResourcesList),
+    options: S.optional(S.String),
+    outputFormat: S.optional(ExportTemplateOutputFormat),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features/{featureName}/unregister",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/exportTemplate",
       code: 200,
-      apiVersion: "2021-07-01",
+      apiVersion: "2025-04-01",
     }),
   ),
 ).annotate({
-  identifier: "FeaturesUnregisterRequest",
-}) as any as S.Schema<FeaturesUnregisterRequest>;
+  identifier: "ExportResourceGroupTemplateRequest",
+}) as any as S.Schema<ExportResourceGroupTemplateRequest>;
+
+/** The error details. */
+export type ResourceGroupExportResultErrorDetailsList = Array<ErrorDetail>;
+export const ResourceGroupExportResultErrorDetailsList = /*@__PURE__*/ S.Array(
+  ErrorDetail,
+) as any as S.Schema<ResourceGroupExportResultErrorDetailsList>;
+
+/** The error additional info. */
+export type ResourceGroupExportResultErrorAdditionalInfoList =
+  Array<ErrorResponseAdditionalInfoItem>;
+export const ResourceGroupExportResultErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorResponseAdditionalInfoItem,
+  ) as any as S.Schema<ResourceGroupExportResultErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface ResourceGroupExportResultError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: ResourceGroupExportResultErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: ResourceGroupExportResultErrorAdditionalInfoList;
+}
+export const ResourceGroupExportResultError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(ResourceGroupExportResultErrorDetailsList),
+    additionalInfo: S.optional(
+      ResourceGroupExportResultErrorAdditionalInfoList,
+    ),
+  }),
+).annotate({
+  identifier: "ResourceGroupExportResultError",
+}) as any as S.Schema<ResourceGroupExportResultError>;
+
+/** Resource group export result. */
+export interface ResourceGroupExportResult {
+  /** The template content. Used if outputFormat is empty or set to 'Json'. */
+  template?: unknown;
+  /** The formatted export content. Used if outputFormat is set to 'Bicep'. */
+  output?: string;
+  /** The error detail. */
+  error?: ResourceGroupExportResultError;
+}
+export const ResourceGroupExportResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    template: S.optional(S.Unknown),
+    output: S.optional(S.String),
+    error: S.optional(ResourceGroupExportResultError),
+  }),
+).annotate({
+  identifier: "ResourceGroupExportResult",
+}) as any as S.Schema<ResourceGroupExportResult>;
 
 export interface GetApplicationRequest {
   /** The ID of the target subscription. */
@@ -8702,13 +8165,13 @@ export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationRequest>;
 
 /** Resource tags */
-export type ApplicationsGetResponseTagsMap = {
+export type GetApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationResponseTagsMap>;
 
 export interface GetApplicationResponse {
   /** Resource ID */
@@ -8720,7 +8183,7 @@ export interface GetApplicationResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsGetResponseTagsMap;
+  tags?: GetApplicationResponseTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -8740,7 +8203,7 @@ export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
+    tags: S.optional(GetApplicationResponseTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku_2),
     properties: ApplicationProperties,
@@ -8772,13 +8235,13 @@ export const GetApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationByIdRequest>;
 
 /** Resource tags */
-export type ApplicationsGetByIdResponseTagsMap = {
+export type GetApplicationByIdResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsGetByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationByIdResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsGetByIdResponseTagsMap>;
+) as any as S.Schema<GetApplicationByIdResponseTagsMap>;
 
 export interface GetApplicationByIdResponse {
   /** Resource ID */
@@ -8790,7 +8253,7 @@ export interface GetApplicationByIdResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsGetByIdResponseTagsMap;
+  tags?: GetApplicationByIdResponseTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -8810,7 +8273,7 @@ export const GetApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsGetByIdResponseTagsMap),
+    tags: S.optional(GetApplicationByIdResponseTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku_2),
     properties: ApplicationProperties,
@@ -8848,13 +8311,13 @@ export const GetApplicationDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetApplicationDefinitionRequest>;
 
 /** Resource tags */
-export type ApplicationDefinitionsGetResponseTagsMap = {
+export type GetApplicationDefinitionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationDefinitionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetApplicationDefinitionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationDefinitionsGetResponseTagsMap>;
+) as any as S.Schema<GetApplicationDefinitionResponseTagsMap>;
 
 export interface GetApplicationDefinitionResponse {
   /** Resource ID */
@@ -8866,7 +8329,7 @@ export interface GetApplicationDefinitionResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationDefinitionsGetResponseTagsMap;
+  tags?: GetApplicationDefinitionResponseTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -8880,7 +8343,7 @@ export const GetApplicationDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationDefinitionsGetResponseTagsMap),
+    tags: S.optional(GetApplicationDefinitionResponseTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku_2),
     properties: ApplicationDefinitionProperties,
@@ -9030,19 +8493,19 @@ export const GetChangeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetChangeResponse",
 }) as any as S.Schema<GetChangeResponse>;
 
-export type DataBoundariesGetScopeRequestDefault = "default";
-export const DataBoundariesGetScopeRequestDefault = /*@__PURE__*/ S.String;
+export type GetDataBoundaryScopeRequestDefault = "default";
+export const GetDataBoundaryScopeRequestDefault = /*@__PURE__*/ S.String;
 
 export interface GetDataBoundaryScopeRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   scope: string;
   /** Default string modeled as parameter for auto generation to work correctly. */
-  default: DataBoundariesGetScopeRequestDefault | (string & {});
+  default: GetDataBoundaryScopeRequestDefault | (string & {});
 }
 export const GetDataBoundaryScopeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
-    default: DataBoundariesGetScopeRequestDefault.pipe(T.Label()),
+    default: GetDataBoundaryScopeRequestDefault.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -9054,6 +8517,37 @@ export const GetDataBoundaryScopeRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetDataBoundaryScopeRequest",
 }) as any as S.Schema<GetDataBoundaryScopeRequest>;
+
+/** The data boundary definition. */
+export type DataBoundary = "NotDefined" | "Global" | "EU";
+export const DataBoundary = /*@__PURE__*/ S.String;
+
+/** Denotes the state of provisioning. */
+export type ProvisioningState =
+  | "Accepted"
+  | "Running"
+  | "Creating"
+  | "Canceled"
+  | "Failed"
+  | "Succeeded"
+  | "Updating";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Data boundary properties */
+export interface DataBoundaryProperties {
+  /** The data boundary definition. */
+  dataBoundary?: DataBoundary | (string & {});
+  /** Denotes the state of provisioning. */
+  provisioningState?: ProvisioningState | (string & {});
+}
+export const DataBoundaryProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dataBoundary: S.optional(DataBoundary),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "DataBoundaryProperties",
+}) as any as S.Schema<DataBoundaryProperties>;
 
 export interface GetDataBoundaryScopeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -9079,16 +8573,16 @@ export const GetDataBoundaryScopeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDataBoundaryScopeResponse",
 }) as any as S.Schema<GetDataBoundaryScopeResponse>;
 
-export type DataBoundariesGetTenantRequestDefault = "default";
-export const DataBoundariesGetTenantRequestDefault = /*@__PURE__*/ S.String;
+export type GetDataBoundaryTenantRequestDefault = "default";
+export const GetDataBoundaryTenantRequestDefault = /*@__PURE__*/ S.String;
 
 export interface GetDataBoundaryTenantRequest {
   /** Default string modeled as parameter for auto generation to work correctly. */
-  default: DataBoundariesGetTenantRequestDefault | (string & {});
+  default: GetDataBoundaryTenantRequestDefault | (string & {});
 }
 export const GetDataBoundaryTenantRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    default: DataBoundariesGetTenantRequestDefault.pipe(T.Label()),
+    default: GetDataBoundaryTenantRequestDefault.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -9434,13 +8928,13 @@ export const GetDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeploymentRequest>;
 
 /** Deployment tags */
-export type DeploymentsGetResponseTagsMap = {
+export type GetDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentsGetResponseTagsMap>;
+) as any as S.Schema<GetDeploymentResponseTagsMap>;
 
 export interface GetDeploymentResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -9456,7 +8950,7 @@ export interface GetDeploymentResponse {
   /** the location of the deployment. */
   location?: string;
   /** Deployment tags */
-  tags?: DeploymentsGetResponseTagsMap;
+  tags?: GetDeploymentResponseTagsMap;
 }
 export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9466,7 +8960,7 @@ export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(DeploymentPropertiesExtended),
     location: S.optional(S.String),
-    tags: S.optional(DeploymentsGetResponseTagsMap),
+    tags: S.optional(GetDeploymentResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetDeploymentResponse",
@@ -9496,14 +8990,14 @@ export const GetDeploymentAtManagementGroupScopeRequest =
   }) as any as S.Schema<GetDeploymentAtManagementGroupScopeRequest>;
 
 /** Deployment tags */
-export type DeploymentsGetAtManagementGroupScopeResponseTagsMap = {
+export type GetDeploymentAtManagementGroupScopeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsGetAtManagementGroupScopeResponseTagsMap =
+export const GetDeploymentAtManagementGroupScopeResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentsGetAtManagementGroupScopeResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentAtManagementGroupScopeResponseTagsMap>;
 
 export interface GetDeploymentAtManagementGroupScopeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -9519,7 +9013,7 @@ export interface GetDeploymentAtManagementGroupScopeResponse {
   /** the location of the deployment. */
   location?: string;
   /** Deployment tags */
-  tags?: DeploymentsGetAtManagementGroupScopeResponseTagsMap;
+  tags?: GetDeploymentAtManagementGroupScopeResponseTagsMap;
 }
 export const GetDeploymentAtManagementGroupScopeResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -9530,7 +9024,7 @@ export const GetDeploymentAtManagementGroupScopeResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(DeploymentPropertiesExtended),
       location: S.optional(S.String),
-      tags: S.optional(DeploymentsGetAtManagementGroupScopeResponseTagsMap),
+      tags: S.optional(GetDeploymentAtManagementGroupScopeResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetDeploymentAtManagementGroupScopeResponse",
@@ -9559,13 +9053,13 @@ export const GetDeploymentAtScopeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeploymentAtScopeRequest>;
 
 /** Deployment tags */
-export type DeploymentsGetAtScopeResponseTagsMap = {
+export type GetDeploymentAtScopeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsGetAtScopeResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDeploymentAtScopeResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentsGetAtScopeResponseTagsMap>;
+) as any as S.Schema<GetDeploymentAtScopeResponseTagsMap>;
 
 export interface GetDeploymentAtScopeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -9581,7 +9075,7 @@ export interface GetDeploymentAtScopeResponse {
   /** the location of the deployment. */
   location?: string;
   /** Deployment tags */
-  tags?: DeploymentsGetAtScopeResponseTagsMap;
+  tags?: GetDeploymentAtScopeResponseTagsMap;
 }
 export const GetDeploymentAtScopeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9591,7 +9085,7 @@ export const GetDeploymentAtScopeResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(DeploymentPropertiesExtended),
     location: S.optional(S.String),
-    tags: S.optional(DeploymentsGetAtScopeResponseTagsMap),
+    tags: S.optional(GetDeploymentAtScopeResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetDeploymentAtScopeResponse",
@@ -9621,14 +9115,14 @@ export const GetDeploymentAtSubscriptionScopeRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDeploymentAtSubscriptionScopeRequest>;
 
 /** Deployment tags */
-export type DeploymentsGetAtSubscriptionScopeResponseTagsMap = {
+export type GetDeploymentAtSubscriptionScopeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsGetAtSubscriptionScopeResponseTagsMap =
+export const GetDeploymentAtSubscriptionScopeResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentsGetAtSubscriptionScopeResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentAtSubscriptionScopeResponseTagsMap>;
 
 export interface GetDeploymentAtSubscriptionScopeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -9644,7 +9138,7 @@ export interface GetDeploymentAtSubscriptionScopeResponse {
   /** the location of the deployment. */
   location?: string;
   /** Deployment tags */
-  tags?: DeploymentsGetAtSubscriptionScopeResponseTagsMap;
+  tags?: GetDeploymentAtSubscriptionScopeResponseTagsMap;
 }
 export const GetDeploymentAtSubscriptionScopeResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -9655,7 +9149,7 @@ export const GetDeploymentAtSubscriptionScopeResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(DeploymentPropertiesExtended),
       location: S.optional(S.String),
-      tags: S.optional(DeploymentsGetAtSubscriptionScopeResponseTagsMap),
+      tags: S.optional(GetDeploymentAtSubscriptionScopeResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetDeploymentAtSubscriptionScopeResponse",
@@ -9681,14 +9175,13 @@ export const GetDeploymentAtTenantScopeRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeploymentAtTenantScopeRequest>;
 
 /** Deployment tags */
-export type DeploymentsGetAtTenantScopeResponseTagsMap = {
+export type GetDeploymentAtTenantScopeResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentsGetAtTenantScopeResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DeploymentsGetAtTenantScopeResponseTagsMap>;
+export const GetDeploymentAtTenantScopeResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDeploymentAtTenantScopeResponseTagsMap>;
 
 export interface GetDeploymentAtTenantScopeResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -9704,7 +9197,7 @@ export interface GetDeploymentAtTenantScopeResponse {
   /** the location of the deployment. */
   location?: string;
   /** Deployment tags */
-  tags?: DeploymentsGetAtTenantScopeResponseTagsMap;
+  tags?: GetDeploymentAtTenantScopeResponseTagsMap;
 }
 export const GetDeploymentAtTenantScopeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -9714,7 +9207,7 @@ export const GetDeploymentAtTenantScopeResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(DeploymentPropertiesExtended),
     location: S.optional(S.String),
-    tags: S.optional(DeploymentsGetAtTenantScopeResponseTagsMap),
+    tags: S.optional(GetDeploymentAtTenantScopeResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetDeploymentAtTenantScopeResponse",
@@ -10011,13 +9504,13 @@ export const GetDeploymentScriptRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetDeploymentScriptRequest>;
 
 /** Resource tags. */
-export type DeploymentScriptsGetResponseTagsMap = {
+export type GetDeploymentScriptResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentScriptsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDeploymentScriptResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentScriptsGetResponseTagsMap>;
+) as any as S.Schema<GetDeploymentScriptResponseTagsMap>;
 
 export interface GetDeploymentScriptResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -10029,7 +9522,7 @@ export interface GetDeploymentScriptResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DeploymentScriptsGetResponseTagsMap;
+  tags?: GetDeploymentScriptResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Type of the script. */
@@ -10043,7 +9536,7 @@ export const GetDeploymentScriptResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DeploymentScriptsGetResponseTagsMap),
+    tags: S.optional(GetDeploymentScriptResponseTagsMap),
     location: S.String,
     kind: ScriptType,
     identity: S.optional(ManagedServiceIdentity),
@@ -10052,7 +9545,7 @@ export const GetDeploymentScriptResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDeploymentScriptResponse",
 }) as any as S.Schema<GetDeploymentScriptResponse>;
 
-export interface GetDeploymentScriptLogRequest {
+export interface GetDeploymentScriptLogsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10060,7 +9553,7 @@ export interface GetDeploymentScriptLogRequest {
   /** Name of the deployment script. */
   scriptName: string;
 }
-export const GetDeploymentScriptLogRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeploymentScriptLogsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -10074,8 +9567,8 @@ export const GetDeploymentScriptLogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetDeploymentScriptLogRequest",
-}) as any as S.Schema<GetDeploymentScriptLogRequest>;
+  identifier: "GetDeploymentScriptLogsRequest",
+}) as any as S.Schema<GetDeploymentScriptLogsRequest>;
 
 /** Script log properties. */
 export interface LogProperties {
@@ -10128,7 +9621,7 @@ export const ScriptLogsList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ScriptLogsList" }) as any as S.Schema<ScriptLogsList>;
 
-export interface GetDeploymentScriptLogDefaultRequest {
+export interface GetDeploymentScriptLogsDefaultRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10138,7 +9631,7 @@ export interface GetDeploymentScriptLogDefaultRequest {
   /** The number of lines to show from the tail of the deployment script log. Valid value is a positive number up to 1000. If 'tail' is not provided, all available logs are shown up to container instance log capacity of 4mb. */
   tail?: number;
 }
-export const GetDeploymentScriptLogDefaultRequest = /*@__PURE__*/ S.suspend(
+export const GetDeploymentScriptLogsDefaultRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10154,10 +9647,10 @@ export const GetDeploymentScriptLogDefaultRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetDeploymentScriptLogDefaultRequest",
-}) as any as S.Schema<GetDeploymentScriptLogDefaultRequest>;
+  identifier: "GetDeploymentScriptLogsDefaultRequest",
+}) as any as S.Schema<GetDeploymentScriptLogsDefaultRequest>;
 
-export interface GetDeploymentScriptLogDefaultResponse {
+export interface GetDeploymentScriptLogsDefaultResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -10169,7 +9662,7 @@ export interface GetDeploymentScriptLogDefaultResponse {
   /** Script log properties. */
   properties?: LogProperties;
 }
-export const GetDeploymentScriptLogDefaultResponse = /*@__PURE__*/ S.suspend(
+export const GetDeploymentScriptLogsDefaultResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -10179,8 +9672,8 @@ export const GetDeploymentScriptLogDefaultResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(LogProperties),
     }),
 ).annotate({
-  identifier: "GetDeploymentScriptLogDefaultResponse",
-}) as any as S.Schema<GetDeploymentScriptLogDefaultResponse>;
+  identifier: "GetDeploymentScriptLogsDefaultResponse",
+}) as any as S.Schema<GetDeploymentScriptLogsDefaultResponse>;
 
 export interface GetDeploymentStackAtManagementGroupRequest {
   /** The management group ID. */
@@ -10206,14 +9699,14 @@ export const GetDeploymentStackAtManagementGroupRequest =
   }) as any as S.Schema<GetDeploymentStackAtManagementGroupRequest>;
 
 /** Resource tags. */
-export type DeploymentStacksGetAtManagementGroupResponseTagsMap = {
+export type GetDeploymentStackAtManagementGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentStacksGetAtManagementGroupResponseTagsMap =
+export const GetDeploymentStackAtManagementGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentStacksGetAtManagementGroupResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentStackAtManagementGroupResponseTagsMap>;
 
 export interface GetDeploymentStackAtManagementGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10229,7 +9722,7 @@ export interface GetDeploymentStackAtManagementGroupResponse {
   /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
   location?: string;
   /** Resource tags. */
-  tags?: DeploymentStacksGetAtManagementGroupResponseTagsMap;
+  tags?: GetDeploymentStackAtManagementGroupResponseTagsMap;
 }
 export const GetDeploymentStackAtManagementGroupResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -10240,7 +9733,7 @@ export const GetDeploymentStackAtManagementGroupResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(DeploymentStackProperties),
       location: S.optional(S.String),
-      tags: S.optional(DeploymentStacksGetAtManagementGroupResponseTagsMap),
+      tags: S.optional(GetDeploymentStackAtManagementGroupResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetDeploymentStackAtManagementGroupResponse",
@@ -10273,14 +9766,14 @@ export const GetDeploymentStackAtResourceGroupRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDeploymentStackAtResourceGroupRequest>;
 
 /** Resource tags. */
-export type DeploymentStacksGetAtResourceGroupResponseTagsMap = {
+export type GetDeploymentStackAtResourceGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentStacksGetAtResourceGroupResponseTagsMap =
+export const GetDeploymentStackAtResourceGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentStacksGetAtResourceGroupResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentStackAtResourceGroupResponseTagsMap>;
 
 export interface GetDeploymentStackAtResourceGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10296,7 +9789,7 @@ export interface GetDeploymentStackAtResourceGroupResponse {
   /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
   location?: string;
   /** Resource tags. */
-  tags?: DeploymentStacksGetAtResourceGroupResponseTagsMap;
+  tags?: GetDeploymentStackAtResourceGroupResponseTagsMap;
 }
 export const GetDeploymentStackAtResourceGroupResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -10307,7 +9800,7 @@ export const GetDeploymentStackAtResourceGroupResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(DeploymentStackProperties),
       location: S.optional(S.String),
-      tags: S.optional(DeploymentStacksGetAtResourceGroupResponseTagsMap),
+      tags: S.optional(GetDeploymentStackAtResourceGroupResponseTagsMap),
     }),
   ).annotate({
     identifier: "GetDeploymentStackAtResourceGroupResponse",
@@ -10337,14 +9830,14 @@ export const GetDeploymentStackAtSubscriptionRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetDeploymentStackAtSubscriptionRequest>;
 
 /** Resource tags. */
-export type DeploymentStacksGetAtSubscriptionResponseTagsMap = {
+export type GetDeploymentStackAtSubscriptionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentStacksGetAtSubscriptionResponseTagsMap =
+export const GetDeploymentStackAtSubscriptionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentStacksGetAtSubscriptionResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentStackAtSubscriptionResponseTagsMap>;
 
 export interface GetDeploymentStackAtSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -10360,7 +9853,7 @@ export interface GetDeploymentStackAtSubscriptionResponse {
   /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
   location?: string;
   /** Resource tags. */
-  tags?: DeploymentStacksGetAtSubscriptionResponseTagsMap;
+  tags?: GetDeploymentStackAtSubscriptionResponseTagsMap;
 }
 export const GetDeploymentStackAtSubscriptionResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -10371,19 +9864,19 @@ export const GetDeploymentStackAtSubscriptionResponse = /*@__PURE__*/ S.suspend(
       systemData: S.optional(SystemData),
       properties: S.optional(DeploymentStackProperties),
       location: S.optional(S.String),
-      tags: S.optional(DeploymentStacksGetAtSubscriptionResponseTagsMap),
+      tags: S.optional(GetDeploymentStackAtSubscriptionResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetDeploymentStackAtSubscriptionResponse",
 }) as any as S.Schema<GetDeploymentStackAtSubscriptionResponse>;
 
-export interface GetDeploymentStackWhatIfResultAtManagementGroupRequest {
+export interface GetDeploymentStacksWhatIfResultsAtManagementGroupRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** Name of the deployment stack what-if result. */
   deploymentStacksWhatIfResultName: string;
 }
-export const GetDeploymentStackWhatIfResultAtManagementGroupRequest =
+export const GetDeploymentStacksWhatIfResultsAtManagementGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       managementGroupId: S.String.pipe(T.Label()),
@@ -10397,20 +9890,20 @@ export const GetDeploymentStackWhatIfResultAtManagementGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetDeploymentStackWhatIfResultAtManagementGroupRequest",
-  }) as any as S.Schema<GetDeploymentStackWhatIfResultAtManagementGroupRequest>;
+    identifier: "GetDeploymentStacksWhatIfResultsAtManagementGroupRequest",
+  }) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtManagementGroupRequest>;
 
 /** Resource tags. */
-export type DeploymentStacksWhatIfResultsAtManagementGroupGetResponseTagsMap = {
+export type GetDeploymentStacksWhatIfResultsAtManagementGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentStacksWhatIfResultsAtManagementGroupGetResponseTagsMap =
+export const GetDeploymentStacksWhatIfResultsAtManagementGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentStacksWhatIfResultsAtManagementGroupGetResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtManagementGroupResponseTagsMap>;
 
-export interface GetDeploymentStackWhatIfResultAtManagementGroupResponse {
+export interface GetDeploymentStacksWhatIfResultsAtManagementGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10424,9 +9917,9 @@ export interface GetDeploymentStackWhatIfResultAtManagementGroupResponse {
   /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
   location?: string;
   /** Resource tags. */
-  tags?: DeploymentStacksWhatIfResultsAtManagementGroupGetResponseTagsMap;
+  tags?: GetDeploymentStacksWhatIfResultsAtManagementGroupResponseTagsMap;
 }
-export const GetDeploymentStackWhatIfResultAtManagementGroupResponse =
+export const GetDeploymentStacksWhatIfResultsAtManagementGroupResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -10436,14 +9929,14 @@ export const GetDeploymentStackWhatIfResultAtManagementGroupResponse =
       properties: S.optional(DeploymentStacksWhatIfResultProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        DeploymentStacksWhatIfResultsAtManagementGroupGetResponseTagsMap,
+        GetDeploymentStacksWhatIfResultsAtManagementGroupResponseTagsMap,
       ),
     }),
   ).annotate({
-    identifier: "GetDeploymentStackWhatIfResultAtManagementGroupResponse",
-  }) as any as S.Schema<GetDeploymentStackWhatIfResultAtManagementGroupResponse>;
+    identifier: "GetDeploymentStacksWhatIfResultsAtManagementGroupResponse",
+  }) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtManagementGroupResponse>;
 
-export interface GetDeploymentStackWhatIfResultAtResourceGroupRequest {
+export interface GetDeploymentStacksWhatIfResultsAtResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10451,7 +9944,7 @@ export interface GetDeploymentStackWhatIfResultAtResourceGroupRequest {
   /** Name of the deployment stack what-if result. */
   deploymentStacksWhatIfResultName: string;
 }
-export const GetDeploymentStackWhatIfResultAtResourceGroupRequest =
+export const GetDeploymentStacksWhatIfResultsAtResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10466,20 +9959,20 @@ export const GetDeploymentStackWhatIfResultAtResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetDeploymentStackWhatIfResultAtResourceGroupRequest",
-  }) as any as S.Schema<GetDeploymentStackWhatIfResultAtResourceGroupRequest>;
+    identifier: "GetDeploymentStacksWhatIfResultsAtResourceGroupRequest",
+  }) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtResourceGroupRequest>;
 
 /** Resource tags. */
-export type DeploymentStacksWhatIfResultsAtResourceGroupGetResponseTagsMap = {
+export type GetDeploymentStacksWhatIfResultsAtResourceGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentStacksWhatIfResultsAtResourceGroupGetResponseTagsMap =
+export const GetDeploymentStacksWhatIfResultsAtResourceGroupResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentStacksWhatIfResultsAtResourceGroupGetResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtResourceGroupResponseTagsMap>;
 
-export interface GetDeploymentStackWhatIfResultAtResourceGroupResponse {
+export interface GetDeploymentStacksWhatIfResultsAtResourceGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10493,9 +9986,9 @@ export interface GetDeploymentStackWhatIfResultAtResourceGroupResponse {
   /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
   location?: string;
   /** Resource tags. */
-  tags?: DeploymentStacksWhatIfResultsAtResourceGroupGetResponseTagsMap;
+  tags?: GetDeploymentStacksWhatIfResultsAtResourceGroupResponseTagsMap;
 }
-export const GetDeploymentStackWhatIfResultAtResourceGroupResponse =
+export const GetDeploymentStacksWhatIfResultsAtResourceGroupResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -10505,20 +9998,20 @@ export const GetDeploymentStackWhatIfResultAtResourceGroupResponse =
       properties: S.optional(DeploymentStacksWhatIfResultProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        DeploymentStacksWhatIfResultsAtResourceGroupGetResponseTagsMap,
+        GetDeploymentStacksWhatIfResultsAtResourceGroupResponseTagsMap,
       ),
     }),
   ).annotate({
-    identifier: "GetDeploymentStackWhatIfResultAtResourceGroupResponse",
-  }) as any as S.Schema<GetDeploymentStackWhatIfResultAtResourceGroupResponse>;
+    identifier: "GetDeploymentStacksWhatIfResultsAtResourceGroupResponse",
+  }) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtResourceGroupResponse>;
 
-export interface GetDeploymentStackWhatIfResultAtSubscriptionRequest {
+export interface GetDeploymentStacksWhatIfResultsAtSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Name of the deployment stack what-if result. */
   deploymentStacksWhatIfResultName: string;
 }
-export const GetDeploymentStackWhatIfResultAtSubscriptionRequest =
+export const GetDeploymentStacksWhatIfResultsAtSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10532,20 +10025,20 @@ export const GetDeploymentStackWhatIfResultAtSubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetDeploymentStackWhatIfResultAtSubscriptionRequest",
-  }) as any as S.Schema<GetDeploymentStackWhatIfResultAtSubscriptionRequest>;
+    identifier: "GetDeploymentStacksWhatIfResultsAtSubscriptionRequest",
+  }) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtSubscriptionRequest>;
 
 /** Resource tags. */
-export type DeploymentStacksWhatIfResultsAtSubscriptionGetResponseTagsMap = {
+export type GetDeploymentStacksWhatIfResultsAtSubscriptionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentStacksWhatIfResultsAtSubscriptionGetResponseTagsMap =
+export const GetDeploymentStacksWhatIfResultsAtSubscriptionResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<DeploymentStacksWhatIfResultsAtSubscriptionGetResponseTagsMap>;
+  ) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtSubscriptionResponseTagsMap>;
 
-export interface GetDeploymentStackWhatIfResultAtSubscriptionResponse {
+export interface GetDeploymentStacksWhatIfResultsAtSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10559,9 +10052,9 @@ export interface GetDeploymentStackWhatIfResultAtSubscriptionResponse {
   /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
   location?: string;
   /** Resource tags. */
-  tags?: DeploymentStacksWhatIfResultsAtSubscriptionGetResponseTagsMap;
+  tags?: GetDeploymentStacksWhatIfResultsAtSubscriptionResponseTagsMap;
 }
-export const GetDeploymentStackWhatIfResultAtSubscriptionResponse =
+export const GetDeploymentStacksWhatIfResultsAtSubscriptionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -10571,12 +10064,12 @@ export const GetDeploymentStackWhatIfResultAtSubscriptionResponse =
       properties: S.optional(DeploymentStacksWhatIfResultProperties),
       location: S.optional(S.String),
       tags: S.optional(
-        DeploymentStacksWhatIfResultsAtSubscriptionGetResponseTagsMap,
+        GetDeploymentStacksWhatIfResultsAtSubscriptionResponseTagsMap,
       ),
     }),
   ).annotate({
-    identifier: "GetDeploymentStackWhatIfResultAtSubscriptionResponse",
-  }) as any as S.Schema<GetDeploymentStackWhatIfResultAtSubscriptionResponse>;
+    identifier: "GetDeploymentStacksWhatIfResultsAtSubscriptionResponse",
+  }) as any as S.Schema<GetDeploymentStacksWhatIfResultsAtSubscriptionResponse>;
 
 export interface GetFeatureRequest {
   /** The Azure subscription ID. */
@@ -10602,6 +10095,39 @@ export const GetFeatureRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetFeatureRequest",
 }) as any as S.Schema<GetFeatureRequest>;
+
+/** Information about feature. */
+export interface FeatureProperties {
+  /** The registration state of the feature for the subscription. */
+  state?: string;
+}
+export const FeatureProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FeatureProperties",
+}) as any as S.Schema<FeatureProperties>;
+
+/** Previewed feature information. */
+export interface FeatureResult {
+  /** The name of the feature. */
+  name?: string;
+  /** Properties of the previewed feature. */
+  properties?: FeatureProperties;
+  /** The resource ID of the feature. */
+  id?: string;
+  /** The resource type of the feature. */
+  type?: string;
+}
+export const FeatureResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: S.optional(FeatureProperties),
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({ identifier: "FeatureResult" }) as any as S.Schema<FeatureResult>;
 
 export interface GetJitRequestRequest {
   /** The ID of the target subscription. */
@@ -10629,13 +10155,13 @@ export const GetJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetJitRequestRequest>;
 
 /** Resource tags */
-export type JitRequestsGetResponseTagsMap = {
+export type GetJitRequestResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const JitRequestsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetJitRequestResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JitRequestsGetResponseTagsMap>;
+) as any as S.Schema<GetJitRequestResponseTagsMap>;
 
 /** The JIT authorization policies. */
 export interface JitAuthorizationPolicies {
@@ -10739,7 +10265,7 @@ export interface GetJitRequestResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: JitRequestsGetResponseTagsMap;
+  tags?: GetJitRequestResponseTagsMap;
   /** The JIT request properties. */
   properties?: JitRequestProperties;
 }
@@ -10749,7 +10275,7 @@ export const GetJitRequestResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(JitRequestsGetResponseTagsMap),
+    tags: S.optional(GetJitRequestResponseTagsMap),
     properties: S.optional(JitRequestProperties),
   }),
 ).annotate({
@@ -11546,6 +11072,519 @@ export const GetPolicyDefinitionVersionBuiltInResponse =
     identifier: "GetPolicyDefinitionVersionBuiltInResponse",
   }) as any as S.Schema<GetPolicyDefinitionVersionBuiltInResponse>;
 
+export interface GetPolicySetDefinitionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the policy set definition to get. */
+  policySetDefinitionName: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+}
+export const GetPolicySetDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    policySetDefinitionName: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPolicySetDefinitionRequest",
+}) as any as S.Schema<GetPolicySetDefinitionRequest>;
+
+/** The policy set definition parameters that can be used in policy definition references. */
+export type PolicySetDefinitionPropertiesParametersMap = {
+  [key: string]: ParameterDefinitionsValue | undefined;
+};
+export const PolicySetDefinitionPropertiesParametersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ParameterDefinitionsValue,
+  ) as any as S.Schema<PolicySetDefinitionPropertiesParametersMap>;
+
+/** The parameter values for the referenced policy rule. The keys are the parameter names. */
+export type PolicyDefinitionReferenceParametersMap = {
+  [key: string]: ParameterValuesValue | undefined;
+};
+export const PolicyDefinitionReferenceParametersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ParameterValuesValue,
+) as any as S.Schema<PolicyDefinitionReferenceParametersMap>;
+
+/** The name of the groups that this policy definition reference belongs to. */
+export type PolicyDefinitionReferenceGroupNamesList = Array<string>;
+export const PolicyDefinitionReferenceGroupNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PolicyDefinitionReferenceGroupNamesList>;
+
+/** The policy definition reference. */
+export interface PolicyDefinitionReference {
+  /** The ID of the policy definition or policy set definition. */
+  policyDefinitionId: string;
+  /** The version of the policy definition to use. */
+  definitionVersion?: string;
+  /** The latest version of the policy definition available. This is only present if requested via the $expand query parameter. */
+  latestDefinitionVersion?: string;
+  /** The effective version of the policy definition in use. This is only present if requested via the $expand query parameter. */
+  effectiveDefinitionVersion?: string;
+  /** The parameter values for the referenced policy rule. The keys are the parameter names. */
+  parameters?: PolicyDefinitionReferenceParametersMap;
+  /** A unique id (within the policy set definition) for this policy definition reference. */
+  policyDefinitionReferenceId?: string;
+  /** The name of the groups that this policy definition reference belongs to. */
+  groupNames?: PolicyDefinitionReferenceGroupNamesList;
+}
+export const PolicyDefinitionReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policyDefinitionId: S.String,
+    definitionVersion: S.optional(S.String),
+    latestDefinitionVersion: S.optional(S.String),
+    effectiveDefinitionVersion: S.optional(S.String),
+    parameters: S.optional(PolicyDefinitionReferenceParametersMap),
+    policyDefinitionReferenceId: S.optional(S.String),
+    groupNames: S.optional(PolicyDefinitionReferenceGroupNamesList),
+  }),
+).annotate({
+  identifier: "PolicyDefinitionReference",
+}) as any as S.Schema<PolicyDefinitionReference>;
+
+/** An array of policy definition references. */
+export type PolicySetDefinitionPropertiesPolicyDefinitionsList =
+  Array<PolicyDefinitionReference>;
+export const PolicySetDefinitionPropertiesPolicyDefinitionsList =
+  /*@__PURE__*/ S.Array(
+    PolicyDefinitionReference,
+  ) as any as S.Schema<PolicySetDefinitionPropertiesPolicyDefinitionsList>;
+
+/** The policy definition group. */
+export interface PolicyDefinitionGroup {
+  /** The name of the group. */
+  name: string;
+  /** The group's display name. */
+  displayName?: string;
+  /** The group's category. */
+  category?: string;
+  /** The group's description. */
+  description?: string;
+  /** A resource ID of a resource that contains additional metadata about the group. */
+  additionalMetadataId?: string;
+}
+export const PolicyDefinitionGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    displayName: S.optional(S.String),
+    category: S.optional(S.String),
+    description: S.optional(S.String),
+    additionalMetadataId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PolicyDefinitionGroup",
+}) as any as S.Schema<PolicyDefinitionGroup>;
+
+/** The metadata describing groups of policy definition references within the policy set definition. */
+export type PolicySetDefinitionPropertiesPolicyDefinitionGroupsList =
+  Array<PolicyDefinitionGroup>;
+export const PolicySetDefinitionPropertiesPolicyDefinitionGroupsList =
+  /*@__PURE__*/ S.Array(
+    PolicyDefinitionGroup,
+  ) as any as S.Schema<PolicySetDefinitionPropertiesPolicyDefinitionGroupsList>;
+
+/** A list of available versions for this policy set definition. */
+export type PolicySetDefinitionPropertiesVersionsList = Array<string>;
+export const PolicySetDefinitionPropertiesVersionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PolicySetDefinitionPropertiesVersionsList>;
+
+/** The policy set definition properties. */
+export interface PolicySetDefinitionProperties {
+  /** The type of policy set definition. Possible values are NotSpecified, BuiltIn, Custom, and Static. */
+  policyType?: PolicyType;
+  /** The display name of the policy set definition. */
+  displayName?: string;
+  /** The policy set definition description. */
+  description?: string;
+  /** The policy set definition metadata. Metadata is an open ended object and is typically a collection of key value pairs. */
+  metadata?: unknown;
+  /** The policy set definition parameters that can be used in policy definition references. */
+  parameters?: PolicySetDefinitionPropertiesParametersMap;
+  /** An array of policy definition references. */
+  policyDefinitions: PolicySetDefinitionPropertiesPolicyDefinitionsList;
+  /** The metadata describing groups of policy definition references within the policy set definition. */
+  policyDefinitionGroups?: PolicySetDefinitionPropertiesPolicyDefinitionGroupsList;
+  /** The policy set definition version in #.#.# format. */
+  version?: string;
+  /** A list of available versions for this policy set definition. */
+  versions?: PolicySetDefinitionPropertiesVersionsList;
+}
+export const PolicySetDefinitionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policyType: S.optional(PolicyType),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    metadata: S.optional(S.Unknown),
+    parameters: S.optional(PolicySetDefinitionPropertiesParametersMap),
+    policyDefinitions: PolicySetDefinitionPropertiesPolicyDefinitionsList,
+    policyDefinitionGroups: S.optional(
+      PolicySetDefinitionPropertiesPolicyDefinitionGroupsList,
+    ),
+    version: S.optional(S.String),
+    versions: S.optional(PolicySetDefinitionPropertiesVersionsList),
+  }),
+).annotate({
+  identifier: "PolicySetDefinitionProperties",
+}) as any as S.Schema<PolicySetDefinitionProperties>;
+
+export interface GetPolicySetDefinitionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition properties. */
+  properties?: PolicySetDefinitionProperties;
+}
+export const GetPolicySetDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PolicySetDefinitionProperties),
+  }),
+).annotate({
+  identifier: "GetPolicySetDefinitionResponse",
+}) as any as S.Schema<GetPolicySetDefinitionResponse>;
+
+export interface GetPolicySetDefinitionAtManagementGroupRequest {
+  /** The ID of the management group. */
+  managementGroupId: string;
+  /** The name of the policy set definition to get. */
+  policySetDefinitionName: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+}
+export const GetPolicySetDefinitionAtManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPolicySetDefinitionAtManagementGroupRequest",
+  }) as any as S.Schema<GetPolicySetDefinitionAtManagementGroupRequest>;
+
+export interface GetPolicySetDefinitionAtManagementGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition properties. */
+  properties?: PolicySetDefinitionProperties;
+}
+export const GetPolicySetDefinitionAtManagementGroupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PolicySetDefinitionProperties),
+    }),
+  ).annotate({
+    identifier: "GetPolicySetDefinitionAtManagementGroupResponse",
+  }) as any as S.Schema<GetPolicySetDefinitionAtManagementGroupResponse>;
+
+export interface GetPolicySetDefinitionBuiltInRequest {
+  /** The name of the policy set definition to get. */
+  policySetDefinitionName: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+}
+export const GetPolicySetDefinitionBuiltInRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetPolicySetDefinitionBuiltInRequest",
+}) as any as S.Schema<GetPolicySetDefinitionBuiltInRequest>;
+
+export interface GetPolicySetDefinitionBuiltInResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition properties. */
+  properties?: PolicySetDefinitionProperties;
+}
+export const GetPolicySetDefinitionBuiltInResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PolicySetDefinitionProperties),
+    }),
+).annotate({
+  identifier: "GetPolicySetDefinitionBuiltInResponse",
+}) as any as S.Schema<GetPolicySetDefinitionBuiltInResponse>;
+
+export interface GetPolicySetDefinitionVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
+  policyDefinitionVersion: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+}
+export const GetPolicySetDefinitionVersionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      policyDefinitionVersion: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetPolicySetDefinitionVersionRequest",
+}) as any as S.Schema<GetPolicySetDefinitionVersionRequest>;
+
+/** The policy set definition parameters that can be used in policy definition references. */
+export type PolicySetDefinitionVersionPropertiesParametersMap = {
+  [key: string]: ParameterDefinitionsValue | undefined;
+};
+export const PolicySetDefinitionVersionPropertiesParametersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ParameterDefinitionsValue,
+  ) as any as S.Schema<PolicySetDefinitionVersionPropertiesParametersMap>;
+
+/** An array of policy definition references. */
+export type PolicySetDefinitionVersionPropertiesPolicyDefinitionsList =
+  Array<PolicyDefinitionReference>;
+export const PolicySetDefinitionVersionPropertiesPolicyDefinitionsList =
+  /*@__PURE__*/ S.Array(
+    PolicyDefinitionReference,
+  ) as any as S.Schema<PolicySetDefinitionVersionPropertiesPolicyDefinitionsList>;
+
+/** The metadata describing groups of policy definition references within the policy set definition. */
+export type PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList =
+  Array<PolicyDefinitionGroup>;
+export const PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList =
+  /*@__PURE__*/ S.Array(
+    PolicyDefinitionGroup,
+  ) as any as S.Schema<PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList>;
+
+/** The policy set definition properties. */
+export interface PolicySetDefinitionVersionProperties {
+  /** The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static. */
+  policyType?: PolicyType;
+  /** The display name of the policy set definition. */
+  displayName?: string;
+  /** The policy set definition description. */
+  description?: string;
+  /** The policy set definition metadata. Metadata is an open ended object and is typically a collection of key value pairs. */
+  metadata?: unknown;
+  /** The policy set definition parameters that can be used in policy definition references. */
+  parameters?: PolicySetDefinitionVersionPropertiesParametersMap;
+  /** An array of policy definition references. */
+  policyDefinitions: PolicySetDefinitionVersionPropertiesPolicyDefinitionsList;
+  /** The metadata describing groups of policy definition references within the policy set definition. */
+  policyDefinitionGroups?: PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList;
+  /** The policy set definition version in #.#.# format. */
+  version?: string;
+}
+export const PolicySetDefinitionVersionProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      policyType: S.optional(PolicyType),
+      displayName: S.optional(S.String),
+      description: S.optional(S.String),
+      metadata: S.optional(S.Unknown),
+      parameters: S.optional(PolicySetDefinitionVersionPropertiesParametersMap),
+      policyDefinitions:
+        PolicySetDefinitionVersionPropertiesPolicyDefinitionsList,
+      policyDefinitionGroups: S.optional(
+        PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList,
+      ),
+      version: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PolicySetDefinitionVersionProperties",
+}) as any as S.Schema<PolicySetDefinitionVersionProperties>;
+
+export interface GetPolicySetDefinitionVersionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition version properties. */
+  properties?: PolicySetDefinitionVersionProperties;
+}
+export const GetPolicySetDefinitionVersionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PolicySetDefinitionVersionProperties),
+    }),
+).annotate({
+  identifier: "GetPolicySetDefinitionVersionResponse",
+}) as any as S.Schema<GetPolicySetDefinitionVersionResponse>;
+
+export interface GetPolicySetDefinitionVersionAtManagementGroupRequest {
+  /** The name of the management group. The name is case insensitive. */
+  managementGroupName: string;
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
+  policyDefinitionVersion: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+}
+export const GetPolicySetDefinitionVersionAtManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupName: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      policyDefinitionVersion: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPolicySetDefinitionVersionAtManagementGroupRequest",
+  }) as any as S.Schema<GetPolicySetDefinitionVersionAtManagementGroupRequest>;
+
+export interface GetPolicySetDefinitionVersionAtManagementGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition version properties. */
+  properties?: PolicySetDefinitionVersionProperties;
+}
+export const GetPolicySetDefinitionVersionAtManagementGroupResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PolicySetDefinitionVersionProperties),
+    }),
+  ).annotate({
+    identifier: "GetPolicySetDefinitionVersionAtManagementGroupResponse",
+  }) as any as S.Schema<GetPolicySetDefinitionVersionAtManagementGroupResponse>;
+
+export interface GetPolicySetDefinitionVersionBuiltInRequest {
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
+  policyDefinitionVersion: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+}
+export const GetPolicySetDefinitionVersionBuiltInRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      policyDefinitionVersion: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetPolicySetDefinitionVersionBuiltInRequest",
+  }) as any as S.Schema<GetPolicySetDefinitionVersionBuiltInRequest>;
+
+export interface GetPolicySetDefinitionVersionBuiltInResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition version properties. */
+  properties?: PolicySetDefinitionVersionProperties;
+}
+export const GetPolicySetDefinitionVersionBuiltInResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PolicySetDefinitionVersionProperties),
+    }),
+  ).annotate({
+    identifier: "GetPolicySetDefinitionVersionBuiltInResponse",
+  }) as any as S.Schema<GetPolicySetDefinitionVersionBuiltInResponse>;
+
 export interface GetPrivateLinkAssociationRequest {
   /** The management group ID. */
   groupId: string;
@@ -11810,11 +11849,11 @@ export const ExtendedLocation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ExtendedLocation>;
 
 /** Resource tags */
-export type ResourcesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ResourcesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetResourceResponseTagsMap = { [key: string]: string | undefined };
+export const GetResourceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcesGetResponseTagsMap>;
+) as any as S.Schema<GetResourceResponseTagsMap>;
 
 export interface GetResourceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -11842,7 +11881,7 @@ export interface GetResourceResponse {
   /** Resource extended location. */
   extendedLocation?: ExtendedLocation;
   /** Resource tags */
-  tags?: ResourcesGetResponseTagsMap;
+  tags?: GetResourceResponseTagsMap;
 }
 export const GetResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11858,7 +11897,7 @@ export const GetResourceResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(Identity_2),
     location: S.optional(S.String),
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ResourcesGetResponseTagsMap),
+    tags: S.optional(GetResourceResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetResourceResponse",
@@ -11883,13 +11922,13 @@ export const GetResourceByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResourceByIdRequest>;
 
 /** Resource tags */
-export type ResourcesGetByIdResponseTagsMap = {
+export type GetResourceByIdResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourcesGetByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetResourceByIdResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcesGetByIdResponseTagsMap>;
+) as any as S.Schema<GetResourceByIdResponseTagsMap>;
 
 export interface GetResourceByIdResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -11917,7 +11956,7 @@ export interface GetResourceByIdResponse {
   /** Resource extended location. */
   extendedLocation?: ExtendedLocation;
   /** Resource tags */
-  tags?: ResourcesGetByIdResponseTagsMap;
+  tags?: GetResourceByIdResponseTagsMap;
 }
 export const GetResourceByIdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -11933,7 +11972,7 @@ export const GetResourceByIdResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(Identity_2),
     location: S.optional(S.String),
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ResourcesGetByIdResponseTagsMap),
+    tags: S.optional(GetResourceByIdResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetResourceByIdResponse",
@@ -11962,13 +12001,13 @@ export const GetResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetResourceGroupRequest>;
 
 /** Resource tags. */
-export type ResourceGroupsGetResponseTagsMap = {
+export type GetResourceGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGroupsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetResourceGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourceGroupsGetResponseTagsMap>;
+) as any as S.Schema<GetResourceGroupResponseTagsMap>;
 
 /** The resource group properties. */
 export interface ResourceGroupProperties {
@@ -11993,7 +12032,7 @@ export interface GetResourceGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ResourceGroupsGetResponseTagsMap;
+  tags?: GetResourceGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource group properties. */
@@ -12007,7 +12046,7 @@ export const GetResourceGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ResourceGroupsGetResponseTagsMap),
+    tags: S.optional(GetResourceGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(ResourceGroupProperties),
     managedBy: S.optional(S.String),
@@ -12285,7 +12324,7 @@ export const GetSubscriptionFeatureRegistrationRequest =
   }) as any as S.Schema<GetSubscriptionFeatureRegistrationRequest>;
 
 /** The state. */
-export type SubscriptionFeatureRegistrationsGetResponsePropertiesState =
+export type GetSubscriptionFeatureRegistrationResponsePropertiesState =
   | "NotSpecified"
   | "NotRegistered"
   | "Pending"
@@ -12293,7 +12332,7 @@ export type SubscriptionFeatureRegistrationsGetResponsePropertiesState =
   | "Registered"
   | "Unregistering"
   | "Unregistered";
-export const SubscriptionFeatureRegistrationsGetResponsePropertiesState =
+export const GetSubscriptionFeatureRegistrationResponsePropertiesState =
   /*@__PURE__*/ S.String;
 
 /** Authorization Profile */
@@ -12322,24 +12361,24 @@ export const AuthorizationProfile = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AuthorizationProfile>;
 
 /** Key-value pairs for meta data. */
-export type SubscriptionFeatureRegistrationsGetResponsePropertiesMetadataMap = {
+export type GetSubscriptionFeatureRegistrationResponsePropertiesMetadataMap = {
   [key: string]: string | undefined;
 };
-export const SubscriptionFeatureRegistrationsGetResponsePropertiesMetadataMap =
+export const GetSubscriptionFeatureRegistrationResponsePropertiesMetadataMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<SubscriptionFeatureRegistrationsGetResponsePropertiesMetadataMap>;
+  ) as any as S.Schema<GetSubscriptionFeatureRegistrationResponsePropertiesMetadataMap>;
 
 /** The feature approval type. */
-export type SubscriptionFeatureRegistrationsGetResponsePropertiesApprovalType =
+export type GetSubscriptionFeatureRegistrationResponsePropertiesApprovalType =
   | "NotSpecified"
   | "ApprovalRequired"
   | "AutoApproval";
-export const SubscriptionFeatureRegistrationsGetResponsePropertiesApprovalType =
+export const GetSubscriptionFeatureRegistrationResponsePropertiesApprovalType =
   /*@__PURE__*/ S.String;
 
-export interface SubscriptionFeatureRegistrationsGetResponseProperties {
+export interface GetSubscriptionFeatureRegistrationResponseProperties {
   /** The tenantId. */
   tenantId?: string;
   /** The subscriptionId. */
@@ -12351,10 +12390,10 @@ export interface SubscriptionFeatureRegistrationsGetResponseProperties {
   /** The providerNamespace. */
   providerNamespace?: string;
   /** The state. */
-  state?: SubscriptionFeatureRegistrationsGetResponsePropertiesState;
+  state?: GetSubscriptionFeatureRegistrationResponsePropertiesState;
   authorizationProfile?: AuthorizationProfile;
   /** Key-value pairs for meta data. */
-  metadata?: SubscriptionFeatureRegistrationsGetResponsePropertiesMetadataMap;
+  metadata?: GetSubscriptionFeatureRegistrationResponsePropertiesMetadataMap;
   /** The feature release date. */
   releaseDate?: string;
   /** The feature registration date. */
@@ -12362,13 +12401,13 @@ export interface SubscriptionFeatureRegistrationsGetResponseProperties {
   /** The feature documentation link. */
   documentationLink?: string;
   /** The feature approval type. */
-  approvalType?: SubscriptionFeatureRegistrationsGetResponsePropertiesApprovalType;
+  approvalType?: GetSubscriptionFeatureRegistrationResponsePropertiesApprovalType;
   /** Indicates whether feature should be displayed in Portal. */
   shouldFeatureDisplayInPortal?: boolean;
   /** The feature description. */
   description?: string;
 }
-export const SubscriptionFeatureRegistrationsGetResponseProperties =
+export const GetSubscriptionFeatureRegistrationResponseProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       tenantId: S.optional(S.String),
@@ -12377,24 +12416,24 @@ export const SubscriptionFeatureRegistrationsGetResponseProperties =
       displayName: S.optional(S.String),
       providerNamespace: S.optional(S.String),
       state: S.optional(
-        SubscriptionFeatureRegistrationsGetResponsePropertiesState,
+        GetSubscriptionFeatureRegistrationResponsePropertiesState,
       ),
       authorizationProfile: S.optional(AuthorizationProfile),
       metadata: S.optional(
-        SubscriptionFeatureRegistrationsGetResponsePropertiesMetadataMap,
+        GetSubscriptionFeatureRegistrationResponsePropertiesMetadataMap,
       ),
       releaseDate: S.optional(S.String),
       registrationDate: S.optional(S.String),
       documentationLink: S.optional(S.String),
       approvalType: S.optional(
-        SubscriptionFeatureRegistrationsGetResponsePropertiesApprovalType,
+        GetSubscriptionFeatureRegistrationResponsePropertiesApprovalType,
       ),
       shouldFeatureDisplayInPortal: S.optional(S.Boolean),
       description: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "SubscriptionFeatureRegistrationsGetResponseProperties",
-  }) as any as S.Schema<SubscriptionFeatureRegistrationsGetResponseProperties>;
+    identifier: "GetSubscriptionFeatureRegistrationResponseProperties",
+  }) as any as S.Schema<GetSubscriptionFeatureRegistrationResponseProperties>;
 
 export interface GetSubscriptionFeatureRegistrationResponse {
   /** Azure resource Id. */
@@ -12403,7 +12442,7 @@ export interface GetSubscriptionFeatureRegistrationResponse {
   name?: string;
   /** Azure resource type. */
   type?: string;
-  properties?: SubscriptionFeatureRegistrationsGetResponseProperties;
+  properties?: GetSubscriptionFeatureRegistrationResponseProperties;
 }
 export const GetSubscriptionFeatureRegistrationResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -12412,7 +12451,7 @@ export const GetSubscriptionFeatureRegistrationResponse =
       name: S.optional(S.String),
       type: S.optional(S.String),
       properties: S.optional(
-        SubscriptionFeatureRegistrationsGetResponseProperties,
+        GetSubscriptionFeatureRegistrationResponseProperties,
       ),
     }),
   ).annotate({
@@ -12480,8 +12519,8 @@ export const GetTagAtScopeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetTagAtScopeResponse",
 }) as any as S.Schema<GetTagAtScopeResponse>;
 
-export type TemplateSpecsGetRequestExpand = "versions";
-export const TemplateSpecsGetRequestExpand = /*@__PURE__*/ S.String;
+export type GetTemplateSpecRequestExpand = "versions";
+export const GetTemplateSpecRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetTemplateSpecRequest {
   /** Subscription Id which forms part of the URI for every service call. */
@@ -12491,14 +12530,14 @@ export interface GetTemplateSpecRequest {
   /** Name of the Template Spec. */
   templateSpecName: string;
   /** Allows for expansion of additional Template Spec details in the response. Optional. */
-  _expand?: TemplateSpecsGetRequestExpand | (string & {});
+  _expand?: GetTemplateSpecRequestExpand | (string & {});
 }
 export const GetTemplateSpecRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     templateSpecName: S.String.pipe(T.Label()),
-    _expand: S.optional(TemplateSpecsGetRequestExpand.pipe(T.Query("$expand"))),
+    _expand: S.optional(GetTemplateSpecRequestExpand.pipe(T.Query("$expand"))),
   }).pipe(
     T.Http({
       method: "GET",
@@ -12512,52 +12551,52 @@ export const GetTemplateSpecRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTemplateSpecRequest>;
 
 /** The type of identity that created the resource. */
-export type TemplateSpecsGetResponseSystemDataCreatedByType =
+export type GetTemplateSpecResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecsGetResponseSystemDataCreatedByType =
+export const GetTemplateSpecResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type TemplateSpecsGetResponseSystemDataLastModifiedByType =
+export type GetTemplateSpecResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecsGetResponseSystemDataLastModifiedByType =
+export const GetTemplateSpecResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface TemplateSpecsGetResponseSystemData {
+export interface GetTemplateSpecResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: TemplateSpecsGetResponseSystemDataCreatedByType;
+  createdByType?: GetTemplateSpecResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: TemplateSpecsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetTemplateSpecResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const TemplateSpecsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetTemplateSpecResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(TemplateSpecsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetTemplateSpecResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      TemplateSpecsGetResponseSystemDataLastModifiedByType,
+      GetTemplateSpecResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "TemplateSpecsGetResponseSystemData",
-}) as any as S.Schema<TemplateSpecsGetResponseSystemData>;
+  identifier: "GetTemplateSpecResponseSystemData",
+}) as any as S.Schema<GetTemplateSpecResponseSystemData>;
 
 /** High-level information about a Template Spec version. */
 export interface TemplateSpecVersionInfo {
@@ -12610,13 +12649,13 @@ export const TemplateSpecProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TemplateSpecProperties>;
 
 /** Resource tags. */
-export type TemplateSpecsGetResponseTagsMap = {
+export type GetTemplateSpecResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetTemplateSpecResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TemplateSpecsGetResponseTagsMap>;
+) as any as S.Schema<GetTemplateSpecResponseTagsMap>;
 
 export interface GetTemplateSpecResponse {
   /** String Id used to locate any resource on Azure. */
@@ -12626,42 +12665,42 @@ export interface GetTemplateSpecResponse {
   /** Type of this resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: TemplateSpecsGetResponseSystemData;
+  systemData?: GetTemplateSpecResponseSystemData;
   /** The location of the Template Spec. It cannot be changed after Template Spec creation. It must be one of the supported Azure locations. */
   location: string;
   /** Template Spec properties. */
   properties?: TemplateSpecProperties;
   /** Resource tags. */
-  tags?: TemplateSpecsGetResponseTagsMap;
+  tags?: GetTemplateSpecResponseTagsMap;
 }
 export const GetTemplateSpecResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(TemplateSpecsGetResponseSystemData),
+    systemData: S.optional(GetTemplateSpecResponseSystemData),
     location: S.String,
     properties: S.optional(TemplateSpecProperties),
-    tags: S.optional(TemplateSpecsGetResponseTagsMap),
+    tags: S.optional(GetTemplateSpecResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetTemplateSpecResponse",
 }) as any as S.Schema<GetTemplateSpecResponse>;
 
-export type TemplateSpecsGetBuiltInRequestExpand = "versions";
-export const TemplateSpecsGetBuiltInRequestExpand = /*@__PURE__*/ S.String;
+export type GetTemplateSpecBuiltInRequestExpand = "versions";
+export const GetTemplateSpecBuiltInRequestExpand = /*@__PURE__*/ S.String;
 
 export interface GetTemplateSpecBuiltInRequest {
   /** Name of the Template Spec. */
   templateSpecName: string;
   /** Allows for expansion of additional Template Spec details in the response. Optional. */
-  _expand?: TemplateSpecsGetBuiltInRequestExpand | (string & {});
+  _expand?: GetTemplateSpecBuiltInRequestExpand | (string & {});
 }
 export const GetTemplateSpecBuiltInRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     templateSpecName: S.String.pipe(T.Label()),
     _expand: S.optional(
-      TemplateSpecsGetBuiltInRequestExpand.pipe(T.Query("$expand")),
+      GetTemplateSpecBuiltInRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -12676,64 +12715,64 @@ export const GetTemplateSpecBuiltInRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTemplateSpecBuiltInRequest>;
 
 /** The type of identity that created the resource. */
-export type TemplateSpecsGetBuiltInResponseSystemDataCreatedByType =
+export type GetTemplateSpecBuiltInResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecsGetBuiltInResponseSystemDataCreatedByType =
+export const GetTemplateSpecBuiltInResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type TemplateSpecsGetBuiltInResponseSystemDataLastModifiedByType =
+export type GetTemplateSpecBuiltInResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecsGetBuiltInResponseSystemDataLastModifiedByType =
+export const GetTemplateSpecBuiltInResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface TemplateSpecsGetBuiltInResponseSystemData {
+export interface GetTemplateSpecBuiltInResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: TemplateSpecsGetBuiltInResponseSystemDataCreatedByType;
+  createdByType?: GetTemplateSpecBuiltInResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: TemplateSpecsGetBuiltInResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetTemplateSpecBuiltInResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const TemplateSpecsGetBuiltInResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetTemplateSpecBuiltInResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        TemplateSpecsGetBuiltInResponseSystemDataCreatedByType,
+        GetTemplateSpecBuiltInResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        TemplateSpecsGetBuiltInResponseSystemDataLastModifiedByType,
+        GetTemplateSpecBuiltInResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "TemplateSpecsGetBuiltInResponseSystemData",
-  }) as any as S.Schema<TemplateSpecsGetBuiltInResponseSystemData>;
+).annotate({
+  identifier: "GetTemplateSpecBuiltInResponseSystemData",
+}) as any as S.Schema<GetTemplateSpecBuiltInResponseSystemData>;
 
 /** Resource tags. */
-export type TemplateSpecsGetBuiltInResponseTagsMap = {
+export type GetTemplateSpecBuiltInResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecsGetBuiltInResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetTemplateSpecBuiltInResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TemplateSpecsGetBuiltInResponseTagsMap>;
+) as any as S.Schema<GetTemplateSpecBuiltInResponseTagsMap>;
 
 export interface GetTemplateSpecBuiltInResponse {
   /** String Id used to locate any resource on Azure. */
@@ -12743,23 +12782,23 @@ export interface GetTemplateSpecBuiltInResponse {
   /** Type of this resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: TemplateSpecsGetBuiltInResponseSystemData;
+  systemData?: GetTemplateSpecBuiltInResponseSystemData;
   /** The location of the Template Spec. It cannot be changed after Template Spec creation. It must be one of the supported Azure locations. */
   location: string;
   /** Template Spec properties. */
   properties?: TemplateSpecProperties;
   /** Resource tags. */
-  tags?: TemplateSpecsGetBuiltInResponseTagsMap;
+  tags?: GetTemplateSpecBuiltInResponseTagsMap;
 }
 export const GetTemplateSpecBuiltInResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(TemplateSpecsGetBuiltInResponseSystemData),
+    systemData: S.optional(GetTemplateSpecBuiltInResponseSystemData),
     location: S.String,
     properties: S.optional(TemplateSpecProperties),
-    tags: S.optional(TemplateSpecsGetBuiltInResponseTagsMap),
+    tags: S.optional(GetTemplateSpecBuiltInResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetTemplateSpecBuiltInResponse",
@@ -12794,55 +12833,55 @@ export const GetTemplateSpecVersionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTemplateSpecVersionRequest>;
 
 /** The type of identity that created the resource. */
-export type TemplateSpecVersionsGetResponseSystemDataCreatedByType =
+export type GetTemplateSpecVersionResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecVersionsGetResponseSystemDataCreatedByType =
+export const GetTemplateSpecVersionResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type TemplateSpecVersionsGetResponseSystemDataLastModifiedByType =
+export type GetTemplateSpecVersionResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecVersionsGetResponseSystemDataLastModifiedByType =
+export const GetTemplateSpecVersionResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface TemplateSpecVersionsGetResponseSystemData {
+export interface GetTemplateSpecVersionResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: TemplateSpecVersionsGetResponseSystemDataCreatedByType;
+  createdByType?: GetTemplateSpecVersionResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: TemplateSpecVersionsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetTemplateSpecVersionResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const TemplateSpecVersionsGetResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetTemplateSpecVersionResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        TemplateSpecVersionsGetResponseSystemDataCreatedByType,
+        GetTemplateSpecVersionResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        TemplateSpecVersionsGetResponseSystemDataLastModifiedByType,
+        GetTemplateSpecVersionResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "TemplateSpecVersionsGetResponseSystemData",
-  }) as any as S.Schema<TemplateSpecVersionsGetResponseSystemData>;
+).annotate({
+  identifier: "GetTemplateSpecVersionResponseSystemData",
+}) as any as S.Schema<GetTemplateSpecVersionResponseSystemData>;
 
 /** Represents a Template Spec artifact containing an embedded Azure Resource Manager template for use as a linked template. */
 export interface LinkedTemplateArtifact {
@@ -12896,13 +12935,13 @@ export const TemplateSpecVersionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TemplateSpecVersionProperties>;
 
 /** Resource tags. */
-export type TemplateSpecVersionsGetResponseTagsMap = {
+export type GetTemplateSpecVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecVersionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetTemplateSpecVersionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TemplateSpecVersionsGetResponseTagsMap>;
+) as any as S.Schema<GetTemplateSpecVersionResponseTagsMap>;
 
 export interface GetTemplateSpecVersionResponse {
   /** String Id used to locate any resource on Azure. */
@@ -12912,23 +12951,23 @@ export interface GetTemplateSpecVersionResponse {
   /** Type of this resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: TemplateSpecVersionsGetResponseSystemData;
+  systemData?: GetTemplateSpecVersionResponseSystemData;
   /** The location of the Template Spec Version. It must match the location of the parent Template Spec. */
   location: string;
   /** Template Spec Version properties. */
   properties: TemplateSpecVersionProperties;
   /** Resource tags. */
-  tags?: TemplateSpecVersionsGetResponseTagsMap;
+  tags?: GetTemplateSpecVersionResponseTagsMap;
 }
 export const GetTemplateSpecVersionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(TemplateSpecVersionsGetResponseSystemData),
+    systemData: S.optional(GetTemplateSpecVersionResponseSystemData),
     location: S.String,
     properties: TemplateSpecVersionProperties,
-    tags: S.optional(TemplateSpecVersionsGetResponseTagsMap),
+    tags: S.optional(GetTemplateSpecVersionResponseTagsMap),
   }),
 ).annotate({
   identifier: "GetTemplateSpecVersionResponse",
@@ -12958,65 +12997,65 @@ export const GetTemplateSpecVersionBuiltInRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetTemplateSpecVersionBuiltInRequest>;
 
 /** The type of identity that created the resource. */
-export type TemplateSpecVersionsGetBuiltInResponseSystemDataCreatedByType =
+export type GetTemplateSpecVersionBuiltInResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecVersionsGetBuiltInResponseSystemDataCreatedByType =
+export const GetTemplateSpecVersionBuiltInResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type TemplateSpecVersionsGetBuiltInResponseSystemDataLastModifiedByType =
+export type GetTemplateSpecVersionBuiltInResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecVersionsGetBuiltInResponseSystemDataLastModifiedByType =
+export const GetTemplateSpecVersionBuiltInResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface TemplateSpecVersionsGetBuiltInResponseSystemData {
+export interface GetTemplateSpecVersionBuiltInResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: TemplateSpecVersionsGetBuiltInResponseSystemDataCreatedByType;
+  createdByType?: GetTemplateSpecVersionBuiltInResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: TemplateSpecVersionsGetBuiltInResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetTemplateSpecVersionBuiltInResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const TemplateSpecVersionsGetBuiltInResponseSystemData =
+export const GetTemplateSpecVersionBuiltInResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        TemplateSpecVersionsGetBuiltInResponseSystemDataCreatedByType,
+        GetTemplateSpecVersionBuiltInResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        TemplateSpecVersionsGetBuiltInResponseSystemDataLastModifiedByType,
+        GetTemplateSpecVersionBuiltInResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "TemplateSpecVersionsGetBuiltInResponseSystemData",
-  }) as any as S.Schema<TemplateSpecVersionsGetBuiltInResponseSystemData>;
+    identifier: "GetTemplateSpecVersionBuiltInResponseSystemData",
+  }) as any as S.Schema<GetTemplateSpecVersionBuiltInResponseSystemData>;
 
 /** Resource tags. */
-export type TemplateSpecVersionsGetBuiltInResponseTagsMap = {
+export type GetTemplateSpecVersionBuiltInResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecVersionsGetBuiltInResponseTagsMap =
+export const GetTemplateSpecVersionBuiltInResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<TemplateSpecVersionsGetBuiltInResponseTagsMap>;
+  ) as any as S.Schema<GetTemplateSpecVersionBuiltInResponseTagsMap>;
 
 export interface GetTemplateSpecVersionBuiltInResponse {
   /** String Id used to locate any resource on Azure. */
@@ -13026,13 +13065,13 @@ export interface GetTemplateSpecVersionBuiltInResponse {
   /** Type of this resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: TemplateSpecVersionsGetBuiltInResponseSystemData;
+  systemData?: GetTemplateSpecVersionBuiltInResponseSystemData;
   /** The location of the Template Spec Version. It must match the location of the parent Template Spec. */
   location: string;
   /** Template Spec Version properties. */
   properties: TemplateSpecVersionProperties;
   /** Resource tags. */
-  tags?: TemplateSpecVersionsGetBuiltInResponseTagsMap;
+  tags?: GetTemplateSpecVersionBuiltInResponseTagsMap;
 }
 export const GetTemplateSpecVersionBuiltInResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -13040,10 +13079,10 @@ export const GetTemplateSpecVersionBuiltInResponse = /*@__PURE__*/ S.suspend(
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
-      systemData: S.optional(TemplateSpecVersionsGetBuiltInResponseSystemData),
+      systemData: S.optional(GetTemplateSpecVersionBuiltInResponseSystemData),
       location: S.String,
       properties: TemplateSpecVersionProperties,
-      tags: S.optional(TemplateSpecVersionsGetBuiltInResponseTagsMap),
+      tags: S.optional(GetTemplateSpecVersionBuiltInResponseTagsMap),
     }),
 ).annotate({
   identifier: "GetTemplateSpecVersionBuiltInResponse",
@@ -13810,20 +13849,20 @@ export const DeploymentOperationsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DeploymentOperationsListResultValueList>;
 
 /** List of deployment operations. */
-export interface ListDeploymentOperationsResult {
+export interface DeploymentOperationsListResult {
   /** The DeploymentOperation items on this page */
   value: DeploymentOperationsListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListDeploymentOperationsResult = /*@__PURE__*/ S.suspend(() =>
+export const DeploymentOperationsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: DeploymentOperationsListResultValueList,
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListDeploymentOperationsResult",
-}) as any as S.Schema<ListDeploymentOperationsResult>;
+  identifier: "DeploymentOperationsListResult",
+}) as any as S.Schema<DeploymentOperationsListResult>;
 
 export interface ListDeploymentOperationAtScopeRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
@@ -14157,11 +14196,11 @@ export const ListDeploymentStackAtSubscriptionRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListDeploymentStackAtSubscriptionRequest",
 }) as any as S.Schema<ListDeploymentStackAtSubscriptionRequest>;
 
-export interface ListDeploymentStackWhatIfResultAtManagementGroupRequest {
+export interface ListDeploymentStacksWhatIfResultsAtManagementGroupRequest {
   /** The management group ID. */
   managementGroupId: string;
 }
-export const ListDeploymentStackWhatIfResultAtManagementGroupRequest =
+export const ListDeploymentStacksWhatIfResultsAtManagementGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       managementGroupId: S.String.pipe(T.Label()),
@@ -14174,8 +14213,8 @@ export const ListDeploymentStackWhatIfResultAtManagementGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListDeploymentStackWhatIfResultAtManagementGroupRequest",
-  }) as any as S.Schema<ListDeploymentStackWhatIfResultAtManagementGroupRequest>;
+    identifier: "ListDeploymentStacksWhatIfResultsAtManagementGroupRequest",
+  }) as any as S.Schema<ListDeploymentStacksWhatIfResultsAtManagementGroupRequest>;
 
 /** Resource tags. */
 export type DeploymentStacksWhatIfResultTagsMap = {
@@ -14242,13 +14281,13 @@ export const DeploymentStacksWhatIfResultListResult = /*@__PURE__*/ S.suspend(
   identifier: "DeploymentStacksWhatIfResultListResult",
 }) as any as S.Schema<DeploymentStacksWhatIfResultListResult>;
 
-export interface ListDeploymentStackWhatIfResultAtResourceGroupRequest {
+export interface ListDeploymentStacksWhatIfResultsAtResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ListDeploymentStackWhatIfResultAtResourceGroupRequest =
+export const ListDeploymentStacksWhatIfResultsAtResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14262,14 +14301,14 @@ export const ListDeploymentStackWhatIfResultAtResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListDeploymentStackWhatIfResultAtResourceGroupRequest",
-  }) as any as S.Schema<ListDeploymentStackWhatIfResultAtResourceGroupRequest>;
+    identifier: "ListDeploymentStacksWhatIfResultsAtResourceGroupRequest",
+  }) as any as S.Schema<ListDeploymentStacksWhatIfResultsAtResourceGroupRequest>;
 
-export interface ListDeploymentStackWhatIfResultAtSubscriptionRequest {
+export interface ListDeploymentStacksWhatIfResultsAtSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ListDeploymentStackWhatIfResultAtSubscriptionRequest =
+export const ListDeploymentStacksWhatIfResultsAtSubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -14282,8 +14321,8 @@ export const ListDeploymentStackWhatIfResultAtSubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ListDeploymentStackWhatIfResultAtSubscriptionRequest",
-  }) as any as S.Schema<ListDeploymentStackWhatIfResultAtSubscriptionRequest>;
+    identifier: "ListDeploymentStacksWhatIfResultsAtSubscriptionRequest",
+  }) as any as S.Schema<ListDeploymentStacksWhatIfResultsAtSubscriptionRequest>;
 
 export interface ListFeatureAllRequest {
   /** The Azure subscription ID. */
@@ -15131,6 +15170,325 @@ export const ListPolicyDefinitionVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPolicyDefinitionVersionsRequest",
 }) as any as S.Schema<ListPolicyDefinitionVersionsRequest>;
 
+export interface ListPolicySetDefinitionBuiltInRequest {
+  /** The filter to apply on the operation. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, no filtering is performed. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given scope. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn, Custom, and Static. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
+  _filter?: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
+  _top?: number;
+}
+export const ListPolicySetDefinitionBuiltInRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Authorization/policySetDefinitions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPolicySetDefinitionBuiltInRequest",
+}) as any as S.Schema<ListPolicySetDefinitionBuiltInRequest>;
+
+/** The policy set definition. */
+export interface PolicySetDefinition {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition properties. */
+  properties?: PolicySetDefinitionProperties;
+}
+export const PolicySetDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PolicySetDefinitionProperties),
+  }),
+).annotate({
+  identifier: "PolicySetDefinition",
+}) as any as S.Schema<PolicySetDefinition>;
+
+/** The PolicySetDefinition items on this page */
+export type PolicySetDefinitionListResultValueList = Array<PolicySetDefinition>;
+export const PolicySetDefinitionListResultValueList = /*@__PURE__*/ S.Array(
+  PolicySetDefinition,
+) as any as S.Schema<PolicySetDefinitionListResultValueList>;
+
+/** The response of a PolicySetDefinition list operation. */
+export interface PolicySetDefinitionListResult {
+  /** The PolicySetDefinition items on this page */
+  value: PolicySetDefinitionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PolicySetDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PolicySetDefinitionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PolicySetDefinitionListResult",
+}) as any as S.Schema<PolicySetDefinitionListResult>;
+
+export interface ListPolicySetDefinitionByManagementGroupRequest {
+  /** The ID of the management group. */
+  managementGroupId: string;
+  /** The filter to apply on the operation. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, no filtering is performed. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given scope. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn, Custom, and Static. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
+  _filter?: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
+  _top?: number;
+}
+export const ListPolicySetDefinitionByManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPolicySetDefinitionByManagementGroupRequest",
+  }) as any as S.Schema<ListPolicySetDefinitionByManagementGroupRequest>;
+
+export interface ListPolicySetDefinitionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The filter to apply on the operation. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, no filtering is performed. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given scope. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn, Custom, and Static. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
+  _filter?: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
+  _top?: number;
+}
+export const ListPolicySetDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPolicySetDefinitionsRequest",
+}) as any as S.Schema<ListPolicySetDefinitionsRequest>;
+
+export interface ListPolicySetDefinitionVersionAllRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListPolicySetDefinitionVersionAllRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/listPolicySetDefinitionVersions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPolicySetDefinitionVersionAllRequest",
+}) as any as S.Schema<ListPolicySetDefinitionVersionAllRequest>;
+
+/** The policy set definition version. */
+export interface PolicySetDefinitionVersion {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The policy set definition version properties. */
+  properties?: PolicySetDefinitionVersionProperties;
+}
+export const PolicySetDefinitionVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PolicySetDefinitionVersionProperties),
+  }),
+).annotate({
+  identifier: "PolicySetDefinitionVersion",
+}) as any as S.Schema<PolicySetDefinitionVersion>;
+
+/** The PolicySetDefinitionVersion items on this page */
+export type PolicySetDefinitionVersionListResultValueList =
+  Array<PolicySetDefinitionVersion>;
+export const PolicySetDefinitionVersionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PolicySetDefinitionVersion,
+  ) as any as S.Schema<PolicySetDefinitionVersionListResultValueList>;
+
+/** The response of a PolicySetDefinitionVersion list operation. */
+export interface PolicySetDefinitionVersionListResult {
+  /** The PolicySetDefinitionVersion items on this page */
+  value: PolicySetDefinitionVersionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PolicySetDefinitionVersionListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: PolicySetDefinitionVersionListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PolicySetDefinitionVersionListResult",
+}) as any as S.Schema<PolicySetDefinitionVersionListResult>;
+
+export interface ListPolicySetDefinitionVersionAllAtManagementGroupRequest {
+  /** The name of the management group. The name is case insensitive. */
+  managementGroupName: string;
+}
+export const ListPolicySetDefinitionVersionAllAtManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/listPolicySetDefinitionVersions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPolicySetDefinitionVersionAllAtManagementGroupRequest",
+  }) as any as S.Schema<ListPolicySetDefinitionVersionAllAtManagementGroupRequest>;
+
+export interface ListPolicySetDefinitionVersionAllBuiltinsRequest {}
+export const ListPolicySetDefinitionVersionAllBuiltinsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({}).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Authorization/listPolicySetDefinitionVersions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPolicySetDefinitionVersionAllBuiltinsRequest",
+  }) as any as S.Schema<ListPolicySetDefinitionVersionAllBuiltinsRequest>;
+
+export interface ListPolicySetDefinitionVersionBuiltInRequest {
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
+  _top?: number;
+}
+export const ListPolicySetDefinitionVersionBuiltInRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPolicySetDefinitionVersionBuiltInRequest",
+  }) as any as S.Schema<ListPolicySetDefinitionVersionBuiltInRequest>;
+
+export interface ListPolicySetDefinitionVersionByManagementGroupRequest {
+  /** The name of the management group. The name is case insensitive. */
+  managementGroupName: string;
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
+  _top?: number;
+}
+export const ListPolicySetDefinitionVersionByManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupName: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPolicySetDefinitionVersionByManagementGroupRequest",
+  }) as any as S.Schema<ListPolicySetDefinitionVersionByManagementGroupRequest>;
+
+export interface ListPolicySetDefinitionVersionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the policy set definition. */
+  policySetDefinitionName: string;
+  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
+  _expand?: string;
+  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
+  _top?: number;
+}
+export const ListPolicySetDefinitionVersionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      policySetDefinitionName: S.String.pipe(T.Label()),
+      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPolicySetDefinitionVersionsRequest",
+}) as any as S.Schema<ListPolicySetDefinitionVersionsRequest>;
+
 export interface ListPrivateLinkAssociationRequest {
   /** The management group ID. */
   groupId: string;
@@ -15158,17 +15516,17 @@ export const PrivateLinkAssociationGetResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<PrivateLinkAssociationGetResultValueList>;
 
 /** Result of the request to get PLA for a MG scope. */
-export interface GetPrivateLinkAssociationResult {
+export interface PrivateLinkAssociationGetResult {
   /** private link association information. */
   value?: PrivateLinkAssociationGetResultValueList;
 }
-export const GetPrivateLinkAssociationResult = /*@__PURE__*/ S.suspend(() =>
+export const PrivateLinkAssociationGetResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(PrivateLinkAssociationGetResultValueList),
   }),
 ).annotate({
-  identifier: "GetPrivateLinkAssociationResult",
-}) as any as S.Schema<GetPrivateLinkAssociationResult>;
+  identifier: "PrivateLinkAssociationGetResult",
+}) as any as S.Schema<PrivateLinkAssociationGetResult>;
 
 export interface ListProviderAtTenantScopeRequest {
   /** The properties to include in the results. */
@@ -15210,6 +15568,54 @@ export const ProviderListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ProviderListResult",
 }) as any as S.Schema<ProviderListResult>;
+
+export interface ListProviderResourceTypesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The namespace of the resource provider. */
+  resourceProviderNamespace: string;
+  /** The $expand query parameter. */
+  _expand?: string;
+}
+export const ListProviderResourceTypesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceProviderNamespace: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/resourceTypes",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProviderResourceTypesRequest",
+}) as any as S.Schema<ListProviderResourceTypesRequest>;
+
+/** The ProviderResourceType items on this page */
+export type ProviderResourceTypeListResultValueList =
+  Array<ProviderResourceType>;
+export const ProviderResourceTypeListResultValueList = /*@__PURE__*/ S.Array(
+  ProviderResourceType,
+) as any as S.Schema<ProviderResourceTypeListResultValueList>;
+
+/** List of resource types of a resource provider. */
+export interface ProviderResourceTypeListResult {
+  /** The ProviderResourceType items on this page */
+  value: ProviderResourceTypeListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ProviderResourceTypeListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ProviderResourceTypeListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProviderResourceTypeListResult",
+}) as any as S.Schema<ProviderResourceTypeListResult>;
 
 export interface ListProvidersRequest {
   /** The ID of the target subscription. */
@@ -15439,22 +15845,22 @@ export const ResourceGroupListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceGroupListResult",
 }) as any as S.Schema<ResourceGroupListResult>;
 
-export type ResourceLinksListAtSourceScopeRequestFilter = "atScope()";
-export const ResourceLinksListAtSourceScopeRequestFilter =
+export type ListResourceLinkAtSourceScopeRequestFilter = "atScope()";
+export const ListResourceLinkAtSourceScopeRequestFilter =
   /*@__PURE__*/ S.String;
 
 export interface ListResourceLinkAtSourceScopeRequest {
   /** The fully qualified ID of the scope for getting the resource links. For example, to list resource links at and under a resource group, set the scope to /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup. */
   scope: string;
   /** The filter to apply when getting resource links. To get links only at the specified scope (not below the scope), use Filter.atScope(). */
-  _filter?: ResourceLinksListAtSourceScopeRequestFilter | (string & {});
+  _filter?: ListResourceLinkAtSourceScopeRequestFilter | (string & {});
 }
 export const ListResourceLinkAtSourceScopeRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       scope: S.String.pipe(T.Label()),
       _filter: S.optional(
-        ResourceLinksListAtSourceScopeRequestFilter.pipe(T.Query("$filter")),
+        ListResourceLinkAtSourceScopeRequestFilter.pipe(T.Query("$filter")),
       ),
     }).pipe(
       T.Http({
@@ -15541,18 +15947,18 @@ export const ResourceManagementPrivateLinkListResultValueList =
     ResourceManagementPrivateLink,
   ) as any as S.Schema<ResourceManagementPrivateLinkListResultValueList>;
 
-export interface ListResourceManagementPrivateLinkResult {
+export interface ResourceManagementPrivateLinkListResult {
   /** An array of resource management private links. */
   value?: ResourceManagementPrivateLinkListResultValueList;
 }
-export const ListResourceManagementPrivateLinkResult = /*@__PURE__*/ S.suspend(
+export const ResourceManagementPrivateLinkListResult = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       value: S.optional(ResourceManagementPrivateLinkListResultValueList),
     }),
 ).annotate({
-  identifier: "ListResourceManagementPrivateLinkResult",
-}) as any as S.Schema<ListResourceManagementPrivateLinkResult>;
+  identifier: "ResourceManagementPrivateLinkListResult",
+}) as any as S.Schema<ResourceManagementPrivateLinkListResult>;
 
 export interface ListResourceManagementPrivateLinkByResourceGroupRequest {
   /** The ID of the target subscription. */
@@ -16068,30 +16474,30 @@ export const TagsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TagsListResultValueList>;
 
 /** List of subscription tags. */
-export interface ListTagsResult {
+export interface TagsListResult {
   /** The TagDetails items on this page */
   value: TagsListResultValueList;
   /** The link to the next page of items */
   nextLink?: string;
 }
-export const ListTagsResult = /*@__PURE__*/ S.suspend(() =>
+export const TagsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: TagsListResultValueList,
     nextLink: S.optional(S.String),
   }),
-).annotate({ identifier: "ListTagsResult" }) as any as S.Schema<ListTagsResult>;
+).annotate({ identifier: "TagsListResult" }) as any as S.Schema<TagsListResult>;
 
-export type TemplateSpecsListBuiltInsRequestExpand = "versions";
-export const TemplateSpecsListBuiltInsRequestExpand = /*@__PURE__*/ S.String;
+export type ListTemplateSpecBuiltInsRequestExpand = "versions";
+export const ListTemplateSpecBuiltInsRequestExpand = /*@__PURE__*/ S.String;
 
 export interface ListTemplateSpecBuiltInsRequest {
   /** Allows for expansion of additional Template Spec details in the response. Optional. */
-  _expand?: TemplateSpecsListBuiltInsRequestExpand | (string & {});
+  _expand?: ListTemplateSpecBuiltInsRequestExpand | (string & {});
 }
 export const ListTemplateSpecBuiltInsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     _expand: S.optional(
-      TemplateSpecsListBuiltInsRequestExpand.pipe(T.Query("$expand")),
+      ListTemplateSpecBuiltInsRequestExpand.pipe(T.Query("$expand")),
     ),
   }).pipe(
     T.Http({
@@ -16207,8 +16613,8 @@ export const TemplateSpecsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TemplateSpecsListResult",
 }) as any as S.Schema<TemplateSpecsListResult>;
 
-export type TemplateSpecsListByResourceGroupRequestExpand = "versions";
-export const TemplateSpecsListByResourceGroupRequestExpand =
+export type ListTemplateSpecByResourceGroupRequestExpand = "versions";
+export const ListTemplateSpecByResourceGroupRequestExpand =
   /*@__PURE__*/ S.String;
 
 export interface ListTemplateSpecByResourceGroupRequest {
@@ -16217,7 +16623,7 @@ export interface ListTemplateSpecByResourceGroupRequest {
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Allows for expansion of additional Template Spec details in the response. Optional. */
-  _expand?: TemplateSpecsListByResourceGroupRequestExpand | (string & {});
+  _expand?: ListTemplateSpecByResourceGroupRequestExpand | (string & {});
 }
 export const ListTemplateSpecByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -16225,7 +16631,7 @@ export const ListTemplateSpecByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       _expand: S.optional(
-        TemplateSpecsListByResourceGroupRequestExpand.pipe(T.Query("$expand")),
+        ListTemplateSpecByResourceGroupRequestExpand.pipe(T.Query("$expand")),
       ),
     }).pipe(
       T.Http({
@@ -16239,22 +16645,22 @@ export const ListTemplateSpecByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListTemplateSpecByResourceGroupRequest",
 }) as any as S.Schema<ListTemplateSpecByResourceGroupRequest>;
 
-export type TemplateSpecsListBySubscriptionRequestExpand = "versions";
-export const TemplateSpecsListBySubscriptionRequestExpand =
+export type ListTemplateSpecBySubscriptionRequestExpand = "versions";
+export const ListTemplateSpecBySubscriptionRequestExpand =
   /*@__PURE__*/ S.String;
 
 export interface ListTemplateSpecBySubscriptionRequest {
   /** Subscription Id which forms part of the URI for every service call. */
   subscriptionId: string;
   /** Allows for expansion of additional Template Spec details in the response. Optional. */
-  _expand?: TemplateSpecsListBySubscriptionRequestExpand | (string & {});
+  _expand?: ListTemplateSpecBySubscriptionRequestExpand | (string & {});
 }
 export const ListTemplateSpecBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       _expand: S.optional(
-        TemplateSpecsListBySubscriptionRequestExpand.pipe(T.Query("$expand")),
+        ListTemplateSpecBySubscriptionRequestExpand.pipe(T.Query("$expand")),
       ),
     }).pipe(
       T.Http({
@@ -16382,20 +16788,20 @@ export const TemplateSpecVersionsListResultValueList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<TemplateSpecVersionsListResultValueList>;
 
 /** List of Template Specs versions */
-export interface ListTemplateSpecVersionsResult {
+export interface TemplateSpecVersionsListResult {
   /** An array of Template Spec versions. */
   value?: TemplateSpecVersionsListResultValueList;
   /** The URL to use for getting the next set of results. */
   nextLink?: string;
 }
-export const ListTemplateSpecVersionsResult = /*@__PURE__*/ S.suspend(() =>
+export const TemplateSpecVersionsListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     value: S.optional(TemplateSpecVersionsListResultValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ListTemplateSpecVersionsResult",
-}) as any as S.Schema<ListTemplateSpecVersionsResult>;
+  identifier: "TemplateSpecVersionsListResult",
+}) as any as S.Schema<TemplateSpecVersionsListResult>;
 
 export interface ListTemplateSpecVersionsRequest {
   /** Subscription Id which forms part of the URI for every service call. */
@@ -16630,93 +17036,46 @@ export const ManagementLocksCreateOrUpdateByScopeRequest =
     identifier: "ManagementLocksCreateOrUpdateByScopeRequest",
   }) as any as S.Schema<ManagementLocksCreateOrUpdateByScopeRequest>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
+/** The IDs of the resources. */
+export type MoveResourceResourcesRequestResourcesList = Array<string>;
+export const MoveResourceResourcesRequestResourcesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MoveResourceResourcesRequestResourcesList>;
+
+export interface MoveResourceResourcesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group to get. The name is case insensitive. */
+  sourceResourceGroupName: string;
+  /** The IDs of the resources. */
+  resources?: MoveResourceResourcesRequestResourcesList;
+  /** The target resource group. */
+  targetResourceGroup?: string;
+}
+export const MoveResourceResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    sourceResourceGroupName: S.String.pipe(T.Label()),
+    resources: S.optional(MoveResourceResourcesRequestResourcesList),
+    targetResourceGroup: S.optional(S.String),
+  }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Resources/operations",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{sourceResourceGroupName}/moveResources",
       code: 200,
-      apiVersion: "2024-08-01",
+      apiVersion: "2025-04-01",
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "MoveResourceResourcesRequest",
+}) as any as S.Schema<MoveResourceResourcesRequest>;
 
-/** Localized display information for this particular operation. */
-export interface OperationDisplay_3 {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay_3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
+export interface MoveResourceResourcesResponse {}
+export const MoveResourceResourcesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "OperationDisplay_3",
-}) as any as S.Schema<OperationDisplay_3>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation_3 {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay_3;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation_3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay_3),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation_3" }) as any as S.Schema<Operation_3>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation_3>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation_3,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "MoveResourceResourcesResponse",
+}) as any as S.Schema<MoveResourceResourcesResponse>;
 
 export interface PolicyDefinitionsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -16990,31 +17349,6 @@ export const PolicySetDefinitionPropertiesInputPolicyDefinitionsList =
     PolicyDefinitionReferenceInput,
   ) as any as S.Schema<PolicySetDefinitionPropertiesInputPolicyDefinitionsList>;
 
-/** The policy definition group. */
-export interface PolicyDefinitionGroup {
-  /** The name of the group. */
-  name: string;
-  /** The group's display name. */
-  displayName?: string;
-  /** The group's category. */
-  category?: string;
-  /** The group's description. */
-  description?: string;
-  /** A resource ID of a resource that contains additional metadata about the group. */
-  additionalMetadataId?: string;
-}
-export const PolicyDefinitionGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    displayName: S.optional(S.String),
-    category: S.optional(S.String),
-    description: S.optional(S.String),
-    additionalMetadataId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PolicyDefinitionGroup",
-}) as any as S.Schema<PolicyDefinitionGroup>;
-
 /** The metadata describing groups of policy definition references within the policy set definition. */
 export type PolicySetDefinitionPropertiesInputPolicyDefinitionGroupsList =
   Array<PolicyDefinitionGroup>;
@@ -17095,123 +17429,6 @@ export const PolicySetDefinitionsCreateOrUpdateRequest =
     identifier: "PolicySetDefinitionsCreateOrUpdateRequest",
   }) as any as S.Schema<PolicySetDefinitionsCreateOrUpdateRequest>;
 
-/** The policy set definition parameters that can be used in policy definition references. */
-export type PolicySetDefinitionPropertiesParametersMap = {
-  [key: string]: ParameterDefinitionsValue | undefined;
-};
-export const PolicySetDefinitionPropertiesParametersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ParameterDefinitionsValue,
-  ) as any as S.Schema<PolicySetDefinitionPropertiesParametersMap>;
-
-/** The parameter values for the referenced policy rule. The keys are the parameter names. */
-export type PolicyDefinitionReferenceParametersMap = {
-  [key: string]: ParameterValuesValue | undefined;
-};
-export const PolicyDefinitionReferenceParametersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ParameterValuesValue,
-) as any as S.Schema<PolicyDefinitionReferenceParametersMap>;
-
-/** The name of the groups that this policy definition reference belongs to. */
-export type PolicyDefinitionReferenceGroupNamesList = Array<string>;
-export const PolicyDefinitionReferenceGroupNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PolicyDefinitionReferenceGroupNamesList>;
-
-/** The policy definition reference. */
-export interface PolicyDefinitionReference {
-  /** The ID of the policy definition or policy set definition. */
-  policyDefinitionId: string;
-  /** The version of the policy definition to use. */
-  definitionVersion?: string;
-  /** The latest version of the policy definition available. This is only present if requested via the $expand query parameter. */
-  latestDefinitionVersion?: string;
-  /** The effective version of the policy definition in use. This is only present if requested via the $expand query parameter. */
-  effectiveDefinitionVersion?: string;
-  /** The parameter values for the referenced policy rule. The keys are the parameter names. */
-  parameters?: PolicyDefinitionReferenceParametersMap;
-  /** A unique id (within the policy set definition) for this policy definition reference. */
-  policyDefinitionReferenceId?: string;
-  /** The name of the groups that this policy definition reference belongs to. */
-  groupNames?: PolicyDefinitionReferenceGroupNamesList;
-}
-export const PolicyDefinitionReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policyDefinitionId: S.String,
-    definitionVersion: S.optional(S.String),
-    latestDefinitionVersion: S.optional(S.String),
-    effectiveDefinitionVersion: S.optional(S.String),
-    parameters: S.optional(PolicyDefinitionReferenceParametersMap),
-    policyDefinitionReferenceId: S.optional(S.String),
-    groupNames: S.optional(PolicyDefinitionReferenceGroupNamesList),
-  }),
-).annotate({
-  identifier: "PolicyDefinitionReference",
-}) as any as S.Schema<PolicyDefinitionReference>;
-
-/** An array of policy definition references. */
-export type PolicySetDefinitionPropertiesPolicyDefinitionsList =
-  Array<PolicyDefinitionReference>;
-export const PolicySetDefinitionPropertiesPolicyDefinitionsList =
-  /*@__PURE__*/ S.Array(
-    PolicyDefinitionReference,
-  ) as any as S.Schema<PolicySetDefinitionPropertiesPolicyDefinitionsList>;
-
-/** The metadata describing groups of policy definition references within the policy set definition. */
-export type PolicySetDefinitionPropertiesPolicyDefinitionGroupsList =
-  Array<PolicyDefinitionGroup>;
-export const PolicySetDefinitionPropertiesPolicyDefinitionGroupsList =
-  /*@__PURE__*/ S.Array(
-    PolicyDefinitionGroup,
-  ) as any as S.Schema<PolicySetDefinitionPropertiesPolicyDefinitionGroupsList>;
-
-/** A list of available versions for this policy set definition. */
-export type PolicySetDefinitionPropertiesVersionsList = Array<string>;
-export const PolicySetDefinitionPropertiesVersionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PolicySetDefinitionPropertiesVersionsList>;
-
-/** The policy set definition properties. */
-export interface PolicySetDefinitionProperties {
-  /** The type of policy set definition. Possible values are NotSpecified, BuiltIn, Custom, and Static. */
-  policyType?: PolicyType;
-  /** The display name of the policy set definition. */
-  displayName?: string;
-  /** The policy set definition description. */
-  description?: string;
-  /** The policy set definition metadata. Metadata is an open ended object and is typically a collection of key value pairs. */
-  metadata?: unknown;
-  /** The policy set definition parameters that can be used in policy definition references. */
-  parameters?: PolicySetDefinitionPropertiesParametersMap;
-  /** An array of policy definition references. */
-  policyDefinitions: PolicySetDefinitionPropertiesPolicyDefinitionsList;
-  /** The metadata describing groups of policy definition references within the policy set definition. */
-  policyDefinitionGroups?: PolicySetDefinitionPropertiesPolicyDefinitionGroupsList;
-  /** The policy set definition version in #.#.# format. */
-  version?: string;
-  /** A list of available versions for this policy set definition. */
-  versions?: PolicySetDefinitionPropertiesVersionsList;
-}
-export const PolicySetDefinitionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policyType: S.optional(PolicyType),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    metadata: S.optional(S.Unknown),
-    parameters: S.optional(PolicySetDefinitionPropertiesParametersMap),
-    policyDefinitions: PolicySetDefinitionPropertiesPolicyDefinitionsList,
-    policyDefinitionGroups: S.optional(
-      PolicySetDefinitionPropertiesPolicyDefinitionGroupsList,
-    ),
-    version: S.optional(S.String),
-    versions: S.optional(PolicySetDefinitionPropertiesVersionsList),
-  }),
-).annotate({
-  identifier: "PolicySetDefinitionProperties",
-}) as any as S.Schema<PolicySetDefinitionProperties>;
-
 export interface PolicySetDefinitionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -17287,342 +17504,6 @@ export const PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse =
   ).annotate({
     identifier: "PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse",
   }) as any as S.Schema<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse>;
-
-export interface PolicySetDefinitionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the policy set definition to get. */
-  policySetDefinitionName: string;
-}
-export const PolicySetDefinitionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    policySetDefinitionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "PolicySetDefinitionsDeleteRequest",
-}) as any as S.Schema<PolicySetDefinitionsDeleteRequest>;
-
-export interface PolicySetDefinitionsDeleteResponse {}
-export const PolicySetDefinitionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PolicySetDefinitionsDeleteResponse",
-}) as any as S.Schema<PolicySetDefinitionsDeleteResponse>;
-
-export interface PolicySetDefinitionsDeleteAtManagementGroupRequest {
-  /** The ID of the management group. */
-  managementGroupId: string;
-  /** The name of the policy set definition to get. */
-  policySetDefinitionName: string;
-}
-export const PolicySetDefinitionsDeleteAtManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionsDeleteAtManagementGroupRequest",
-  }) as any as S.Schema<PolicySetDefinitionsDeleteAtManagementGroupRequest>;
-
-export interface PolicySetDefinitionsDeleteAtManagementGroupResponse {}
-export const PolicySetDefinitionsDeleteAtManagementGroupResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PolicySetDefinitionsDeleteAtManagementGroupResponse",
-  }) as any as S.Schema<PolicySetDefinitionsDeleteAtManagementGroupResponse>;
-
-export interface PolicySetDefinitionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the policy set definition to get. */
-  policySetDefinitionName: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-}
-export const PolicySetDefinitionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    policySetDefinitionName: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "PolicySetDefinitionsGetRequest",
-}) as any as S.Schema<PolicySetDefinitionsGetRequest>;
-
-export interface PolicySetDefinitionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition properties. */
-  properties?: PolicySetDefinitionProperties;
-}
-export const PolicySetDefinitionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PolicySetDefinitionProperties),
-  }),
-).annotate({
-  identifier: "PolicySetDefinitionsGetResponse",
-}) as any as S.Schema<PolicySetDefinitionsGetResponse>;
-
-export interface PolicySetDefinitionsGetAtManagementGroupRequest {
-  /** The ID of the management group. */
-  managementGroupId: string;
-  /** The name of the policy set definition to get. */
-  policySetDefinitionName: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-}
-export const PolicySetDefinitionsGetAtManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionsGetAtManagementGroupRequest",
-  }) as any as S.Schema<PolicySetDefinitionsGetAtManagementGroupRequest>;
-
-export interface PolicySetDefinitionsGetAtManagementGroupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition properties. */
-  properties?: PolicySetDefinitionProperties;
-}
-export const PolicySetDefinitionsGetAtManagementGroupResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PolicySetDefinitionProperties),
-    }),
-  ).annotate({
-    identifier: "PolicySetDefinitionsGetAtManagementGroupResponse",
-  }) as any as S.Schema<PolicySetDefinitionsGetAtManagementGroupResponse>;
-
-export interface PolicySetDefinitionsGetBuiltInRequest {
-  /** The name of the policy set definition to get. */
-  policySetDefinitionName: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-}
-export const PolicySetDefinitionsGetBuiltInRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PolicySetDefinitionsGetBuiltInRequest",
-}) as any as S.Schema<PolicySetDefinitionsGetBuiltInRequest>;
-
-export interface PolicySetDefinitionsGetBuiltInResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition properties. */
-  properties?: PolicySetDefinitionProperties;
-}
-export const PolicySetDefinitionsGetBuiltInResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PolicySetDefinitionProperties),
-    }),
-).annotate({
-  identifier: "PolicySetDefinitionsGetBuiltInResponse",
-}) as any as S.Schema<PolicySetDefinitionsGetBuiltInResponse>;
-
-export interface PolicySetDefinitionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The filter to apply on the operation. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, no filtering is performed. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given scope. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn, Custom, and Static. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
-  _filter?: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
-  _top?: number;
-}
-export const PolicySetDefinitionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "PolicySetDefinitionsListRequest",
-}) as any as S.Schema<PolicySetDefinitionsListRequest>;
-
-/** The policy set definition. */
-export interface PolicySetDefinition {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition properties. */
-  properties?: PolicySetDefinitionProperties;
-}
-export const PolicySetDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PolicySetDefinitionProperties),
-  }),
-).annotate({
-  identifier: "PolicySetDefinition",
-}) as any as S.Schema<PolicySetDefinition>;
-
-/** The PolicySetDefinition items on this page */
-export type PolicySetDefinitionListResultValueList = Array<PolicySetDefinition>;
-export const PolicySetDefinitionListResultValueList = /*@__PURE__*/ S.Array(
-  PolicySetDefinition,
-) as any as S.Schema<PolicySetDefinitionListResultValueList>;
-
-/** The response of a PolicySetDefinition list operation. */
-export interface PolicySetDefinitionListResult {
-  /** The PolicySetDefinition items on this page */
-  value: PolicySetDefinitionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PolicySetDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PolicySetDefinitionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PolicySetDefinitionListResult",
-}) as any as S.Schema<PolicySetDefinitionListResult>;
-
-export interface PolicySetDefinitionsListBuiltInRequest {
-  /** The filter to apply on the operation. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, no filtering is performed. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given scope. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn, Custom, and Static. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
-  _filter?: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
-  _top?: number;
-}
-export const PolicySetDefinitionsListBuiltInRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Authorization/policySetDefinitions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PolicySetDefinitionsListBuiltInRequest",
-}) as any as S.Schema<PolicySetDefinitionsListBuiltInRequest>;
-
-export interface PolicySetDefinitionsListByManagementGroupRequest {
-  /** The ID of the management group. */
-  managementGroupId: string;
-  /** The filter to apply on the operation. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, no filtering is performed. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given scope. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn, Custom, and Static. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
-  _filter?: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
-  _top?: number;
-}
-export const PolicySetDefinitionsListByManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionsListByManagementGroupRequest",
-  }) as any as S.Schema<PolicySetDefinitionsListByManagementGroupRequest>;
 
 /** The policy set definition parameters that can be used in policy definition references. */
 export type PolicySetDefinitionVersionPropertiesInputParametersMap = {
@@ -17719,70 +17600,6 @@ export const PolicySetDefinitionVersionsCreateOrUpdateRequest =
     identifier: "PolicySetDefinitionVersionsCreateOrUpdateRequest",
   }) as any as S.Schema<PolicySetDefinitionVersionsCreateOrUpdateRequest>;
 
-/** The policy set definition parameters that can be used in policy definition references. */
-export type PolicySetDefinitionVersionPropertiesParametersMap = {
-  [key: string]: ParameterDefinitionsValue | undefined;
-};
-export const PolicySetDefinitionVersionPropertiesParametersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ParameterDefinitionsValue,
-  ) as any as S.Schema<PolicySetDefinitionVersionPropertiesParametersMap>;
-
-/** An array of policy definition references. */
-export type PolicySetDefinitionVersionPropertiesPolicyDefinitionsList =
-  Array<PolicyDefinitionReference>;
-export const PolicySetDefinitionVersionPropertiesPolicyDefinitionsList =
-  /*@__PURE__*/ S.Array(
-    PolicyDefinitionReference,
-  ) as any as S.Schema<PolicySetDefinitionVersionPropertiesPolicyDefinitionsList>;
-
-/** The metadata describing groups of policy definition references within the policy set definition. */
-export type PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList =
-  Array<PolicyDefinitionGroup>;
-export const PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList =
-  /*@__PURE__*/ S.Array(
-    PolicyDefinitionGroup,
-  ) as any as S.Schema<PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList>;
-
-/** The policy set definition properties. */
-export interface PolicySetDefinitionVersionProperties {
-  /** The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static. */
-  policyType?: PolicyType;
-  /** The display name of the policy set definition. */
-  displayName?: string;
-  /** The policy set definition description. */
-  description?: string;
-  /** The policy set definition metadata. Metadata is an open ended object and is typically a collection of key value pairs. */
-  metadata?: unknown;
-  /** The policy set definition parameters that can be used in policy definition references. */
-  parameters?: PolicySetDefinitionVersionPropertiesParametersMap;
-  /** An array of policy definition references. */
-  policyDefinitions: PolicySetDefinitionVersionPropertiesPolicyDefinitionsList;
-  /** The metadata describing groups of policy definition references within the policy set definition. */
-  policyDefinitionGroups?: PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList;
-  /** The policy set definition version in #.#.# format. */
-  version?: string;
-}
-export const PolicySetDefinitionVersionProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      policyType: S.optional(PolicyType),
-      displayName: S.optional(S.String),
-      description: S.optional(S.String),
-      metadata: S.optional(S.Unknown),
-      parameters: S.optional(PolicySetDefinitionVersionPropertiesParametersMap),
-      policyDefinitions:
-        PolicySetDefinitionVersionPropertiesPolicyDefinitionsList,
-      policyDefinitionGroups: S.optional(
-        PolicySetDefinitionVersionPropertiesPolicyDefinitionGroupsList,
-      ),
-      version: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PolicySetDefinitionVersionProperties",
-}) as any as S.Schema<PolicySetDefinitionVersionProperties>;
-
 export interface PolicySetDefinitionVersionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -17863,418 +17680,6 @@ export const PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroupResponse 
     identifier:
       "PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroupResponse",
   }) as any as S.Schema<PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroupResponse>;
-
-export interface PolicySetDefinitionVersionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
-  policyDefinitionVersion: string;
-}
-export const PolicySetDefinitionVersionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      policyDefinitionVersion: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PolicySetDefinitionVersionsDeleteRequest",
-}) as any as S.Schema<PolicySetDefinitionVersionsDeleteRequest>;
-
-export interface PolicySetDefinitionVersionsDeleteResponse {}
-export const PolicySetDefinitionVersionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PolicySetDefinitionVersionsDeleteResponse",
-  }) as any as S.Schema<PolicySetDefinitionVersionsDeleteResponse>;
-
-export interface PolicySetDefinitionVersionsDeleteAtManagementGroupRequest {
-  /** The name of the management group. The name is case insensitive. */
-  managementGroupName: string;
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
-  policyDefinitionVersion: string;
-}
-export const PolicySetDefinitionVersionsDeleteAtManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupName: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      policyDefinitionVersion: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsDeleteAtManagementGroupRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsDeleteAtManagementGroupRequest>;
-
-export interface PolicySetDefinitionVersionsDeleteAtManagementGroupResponse {}
-export const PolicySetDefinitionVersionsDeleteAtManagementGroupResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PolicySetDefinitionVersionsDeleteAtManagementGroupResponse",
-  }) as any as S.Schema<PolicySetDefinitionVersionsDeleteAtManagementGroupResponse>;
-
-export interface PolicySetDefinitionVersionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
-  policyDefinitionVersion: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-}
-export const PolicySetDefinitionVersionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      policyDefinitionVersion: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PolicySetDefinitionVersionsGetRequest",
-}) as any as S.Schema<PolicySetDefinitionVersionsGetRequest>;
-
-export interface PolicySetDefinitionVersionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition version properties. */
-  properties?: PolicySetDefinitionVersionProperties;
-}
-export const PolicySetDefinitionVersionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PolicySetDefinitionVersionProperties),
-    }),
-).annotate({
-  identifier: "PolicySetDefinitionVersionsGetResponse",
-}) as any as S.Schema<PolicySetDefinitionVersionsGetResponse>;
-
-export interface PolicySetDefinitionVersionsGetAtManagementGroupRequest {
-  /** The name of the management group. The name is case insensitive. */
-  managementGroupName: string;
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
-  policyDefinitionVersion: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-}
-export const PolicySetDefinitionVersionsGetAtManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupName: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      policyDefinitionVersion: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsGetAtManagementGroupRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsGetAtManagementGroupRequest>;
-
-export interface PolicySetDefinitionVersionsGetAtManagementGroupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition version properties. */
-  properties?: PolicySetDefinitionVersionProperties;
-}
-export const PolicySetDefinitionVersionsGetAtManagementGroupResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PolicySetDefinitionVersionProperties),
-    }),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsGetAtManagementGroupResponse",
-  }) as any as S.Schema<PolicySetDefinitionVersionsGetAtManagementGroupResponse>;
-
-export interface PolicySetDefinitionVersionsGetBuiltInRequest {
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** The policy set definition version. The format is x.y.z where x is the major version number, y is the minor version number, and z is the patch number */
-  policyDefinitionVersion: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-}
-export const PolicySetDefinitionVersionsGetBuiltInRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      policyDefinitionVersion: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions/{policyDefinitionVersion}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsGetBuiltInRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsGetBuiltInRequest>;
-
-export interface PolicySetDefinitionVersionsGetBuiltInResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition version properties. */
-  properties?: PolicySetDefinitionVersionProperties;
-}
-export const PolicySetDefinitionVersionsGetBuiltInResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PolicySetDefinitionVersionProperties),
-    }),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsGetBuiltInResponse",
-  }) as any as S.Schema<PolicySetDefinitionVersionsGetBuiltInResponse>;
-
-export interface PolicySetDefinitionVersionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
-  _top?: number;
-}
-export const PolicySetDefinitionVersionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PolicySetDefinitionVersionsListRequest",
-}) as any as S.Schema<PolicySetDefinitionVersionsListRequest>;
-
-/** The policy set definition version. */
-export interface PolicySetDefinitionVersion {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The policy set definition version properties. */
-  properties?: PolicySetDefinitionVersionProperties;
-}
-export const PolicySetDefinitionVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PolicySetDefinitionVersionProperties),
-  }),
-).annotate({
-  identifier: "PolicySetDefinitionVersion",
-}) as any as S.Schema<PolicySetDefinitionVersion>;
-
-/** The PolicySetDefinitionVersion items on this page */
-export type PolicySetDefinitionVersionListResultValueList =
-  Array<PolicySetDefinitionVersion>;
-export const PolicySetDefinitionVersionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PolicySetDefinitionVersion,
-  ) as any as S.Schema<PolicySetDefinitionVersionListResultValueList>;
-
-/** The response of a PolicySetDefinitionVersion list operation. */
-export interface PolicySetDefinitionVersionListResult {
-  /** The PolicySetDefinitionVersion items on this page */
-  value: PolicySetDefinitionVersionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PolicySetDefinitionVersionListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: PolicySetDefinitionVersionListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PolicySetDefinitionVersionListResult",
-}) as any as S.Schema<PolicySetDefinitionVersionListResult>;
-
-export interface PolicySetDefinitionVersionsListAllRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const PolicySetDefinitionVersionsListAllRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/listPolicySetDefinitionVersions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsListAllRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsListAllRequest>;
-
-export interface PolicySetDefinitionVersionsListAllAtManagementGroupRequest {
-  /** The name of the management group. The name is case insensitive. */
-  managementGroupName: string;
-}
-export const PolicySetDefinitionVersionsListAllAtManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/listPolicySetDefinitionVersions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsListAllAtManagementGroupRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsListAllAtManagementGroupRequest>;
-
-export interface PolicySetDefinitionVersionsListAllBuiltinsRequest {}
-export const PolicySetDefinitionVersionsListAllBuiltinsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({}).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Authorization/listPolicySetDefinitionVersions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsListAllBuiltinsRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsListAllBuiltinsRequest>;
-
-export interface PolicySetDefinitionVersionsListBuiltInRequest {
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
-  _top?: number;
-}
-export const PolicySetDefinitionVersionsListBuiltInRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsListBuiltInRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsListBuiltInRequest>;
-
-export interface PolicySetDefinitionVersionsListByManagementGroupRequest {
-  /** The name of the management group. The name is case insensitive. */
-  managementGroupName: string;
-  /** The name of the policy set definition. */
-  policySetDefinitionName: string;
-  /** Comma-separated list of additional properties to be included in the response. Supported values are 'LatestDefinitionVersion, EffectiveDefinitionVersion'. */
-  _expand?: string;
-  /** Maximum number of records to return. When the $top filter is not provided, it will return 500 records. */
-  _top?: number;
-}
-export const PolicySetDefinitionVersionsListByManagementGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupName: S.String.pipe(T.Label()),
-      policySetDefinitionName: S.String.pipe(T.Label()),
-      _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}/versions",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PolicySetDefinitionVersionsListByManagementGroupRequest",
-  }) as any as S.Schema<PolicySetDefinitionVersionsListByManagementGroupRequest>;
 
 /** The resource operation to acquire a token for. */
 export interface PolicyTokenOperation {
@@ -18561,103 +17966,6 @@ export const PolicyTokensAcquireAtResourceGroupRequest =
     identifier: "PolicyTokensAcquireAtResourceGroupRequest",
   }) as any as S.Schema<PolicyTokensAcquireAtResourceGroupRequest>;
 
-export type PrivateLinkAssociationPropertiesPublicNetworkAccess =
-  | "Enabled"
-  | "Disabled";
-export const PrivateLinkAssociationPropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
-
-export interface PrivateLinkAssociationProperties {
-  /** The rmpl Resource ID. */
-  privateLink?: string;
-  publicNetworkAccess?:
-    | PrivateLinkAssociationPropertiesPublicNetworkAccess
-    | (string & {});
-}
-export const PrivateLinkAssociationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateLink: S.optional(S.String),
-    publicNetworkAccess: S.optional(
-      PrivateLinkAssociationPropertiesPublicNetworkAccess,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkAssociationProperties",
-}) as any as S.Schema<PrivateLinkAssociationProperties>;
-
-export interface PrivateLinkAssociationPutRequest {
-  /** The management group ID. */
-  groupId: string;
-  /** The ID of the PLA */
-  plaId: string;
-  /** The properties of the PrivateLinkAssociation. */
-  properties?: PrivateLinkAssociationProperties;
-}
-export const PrivateLinkAssociationPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.String.pipe(T.Label()),
-    plaId: S.String.pipe(T.Label()),
-    properties: S.optional(PrivateLinkAssociationProperties),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Authorization/privateLinkAssociations/{plaId}",
-      code: 200,
-      apiVersion: "2020-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkAssociationPutRequest",
-}) as any as S.Schema<PrivateLinkAssociationPutRequest>;
-
-export interface ProviderResourceTypesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The namespace of the resource provider. */
-  resourceProviderNamespace: string;
-  /** The $expand query parameter. */
-  _expand?: string;
-}
-export const ProviderResourceTypesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceProviderNamespace: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/resourceTypes",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProviderResourceTypesListRequest",
-}) as any as S.Schema<ProviderResourceTypesListRequest>;
-
-/** The ProviderResourceType items on this page */
-export type ProviderResourceTypeListResultValueList =
-  Array<ProviderResourceType>;
-export const ProviderResourceTypeListResultValueList = /*@__PURE__*/ S.Array(
-  ProviderResourceType,
-) as any as S.Schema<ProviderResourceTypeListResultValueList>;
-
-/** List of resource types of a resource provider. */
-export interface ProviderResourceTypeListResult {
-  /** The ProviderResourceType items on this page */
-  value: ProviderResourceTypeListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ProviderResourceTypeListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ProviderResourceTypeListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProviderResourceTypeListResult",
-}) as any as S.Schema<ProviderResourceTypeListResult>;
-
 export interface ProvidersProviderPermissionsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -18805,6 +18113,191 @@ export const ProviderPermissionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProviderPermissionListResult",
 }) as any as S.Schema<ProviderPermissionListResult>;
 
+export type PutDataBoundaryRequestDefault = "default";
+export const PutDataBoundaryRequestDefault = /*@__PURE__*/ S.String;
+
+export interface PutDataBoundaryRequest {
+  /** Default string modeled as parameter for auto generation to work correctly. */
+  default: PutDataBoundaryRequestDefault | (string & {});
+  /** Data boundary properties */
+  properties?: DataBoundaryProperties;
+}
+export const PutDataBoundaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    default: PutDataBoundaryRequestDefault.pipe(T.Label()),
+    properties: S.optional(DataBoundaryProperties),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/providers/Microsoft.Resources/dataBoundaries/{default}",
+      code: 200,
+      apiVersion: "2024-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutDataBoundaryRequest",
+}) as any as S.Schema<PutDataBoundaryRequest>;
+
+export interface PutDataBoundaryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Data boundary properties */
+  properties?: DataBoundaryProperties;
+}
+export const PutDataBoundaryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DataBoundaryProperties),
+  }),
+).annotate({
+  identifier: "PutDataBoundaryResponse",
+}) as any as S.Schema<PutDataBoundaryResponse>;
+
+export type PrivateLinkAssociationPropertiesPublicNetworkAccess =
+  | "Enabled"
+  | "Disabled";
+export const PrivateLinkAssociationPropertiesPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
+
+export interface PrivateLinkAssociationProperties {
+  /** The rmpl Resource ID. */
+  privateLink?: string;
+  publicNetworkAccess?:
+    | PrivateLinkAssociationPropertiesPublicNetworkAccess
+    | (string & {});
+}
+export const PrivateLinkAssociationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateLink: S.optional(S.String),
+    publicNetworkAccess: S.optional(
+      PrivateLinkAssociationPropertiesPublicNetworkAccess,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkAssociationProperties",
+}) as any as S.Schema<PrivateLinkAssociationProperties>;
+
+export interface PutPrivateLinkAssociationRequest {
+  /** The management group ID. */
+  groupId: string;
+  /** The ID of the PLA */
+  plaId: string;
+  /** The properties of the PrivateLinkAssociation. */
+  properties?: PrivateLinkAssociationProperties;
+}
+export const PutPrivateLinkAssociationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.String.pipe(T.Label()),
+    plaId: S.String.pipe(T.Label()),
+    properties: S.optional(PrivateLinkAssociationProperties),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Authorization/privateLinkAssociations/{plaId}",
+      code: 200,
+      apiVersion: "2020-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutPrivateLinkAssociationRequest",
+}) as any as S.Schema<PutPrivateLinkAssociationRequest>;
+
+export interface PutResourceManagementPrivateLinkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource management private link. */
+  rmplName: string;
+  /** the region to create private link association. */
+  location?: string;
+}
+export const PutResourceManagementPrivateLinkRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      rmplName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/resourceManagementPrivateLinks/{rmplName}",
+        code: 200,
+        apiVersion: "2020-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "PutResourceManagementPrivateLinkRequest",
+}) as any as S.Schema<PutResourceManagementPrivateLinkRequest>;
+
+export interface RefreshApplicationPermissionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed application. */
+  applicationName: string;
+}
+export const RefreshApplicationPermissionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      applicationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}/refreshPermissions",
+        code: 200,
+        apiVersion: "2019-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RefreshApplicationPermissionsRequest",
+}) as any as S.Schema<RefreshApplicationPermissionsRequest>;
+
+export interface RefreshApplicationPermissionsResponse {}
+export const RefreshApplicationPermissionsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RefreshApplicationPermissionsResponse",
+}) as any as S.Schema<RefreshApplicationPermissionsResponse>;
+
+export interface RegisterFeatureRequest {
+  /** The Azure subscription ID. */
+  subscriptionId: string;
+  /** The namespace of the resource provider. */
+  resourceProviderNamespace: string;
+  /** The name of the feature to register. */
+  featureName: string;
+}
+export const RegisterFeatureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceProviderNamespace: S.String.pipe(T.Label()),
+    featureName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features/{featureName}/register",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegisterFeatureRequest",
+}) as any as S.Schema<RegisterFeatureRequest>;
+
 /** The provider consent. */
 export interface ProviderConsentDefinition {
   /** A value indicating whether authorization is consented or not. */
@@ -18818,7 +18311,7 @@ export const ProviderConsentDefinition = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProviderConsentDefinition",
 }) as any as S.Schema<ProviderConsentDefinition>;
 
-export interface ProvidersRegisterRequest {
+export interface RegisterProviderRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The namespace of the resource provider to register. */
@@ -18826,7 +18319,7 @@ export interface ProvidersRegisterRequest {
   /** The provider consent. */
   thirdPartyProviderConsent?: ProviderConsentDefinition;
 }
-export const ProvidersRegisterRequest = /*@__PURE__*/ S.suspend(() =>
+export const RegisterProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceProviderNamespace: S.String.pipe(T.Label()),
@@ -18840,15 +18333,15 @@ export const ProvidersRegisterRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProvidersRegisterRequest",
-}) as any as S.Schema<ProvidersRegisterRequest>;
+  identifier: "RegisterProviderRequest",
+}) as any as S.Schema<RegisterProviderRequest>;
 
-export interface ProvidersRegisterAtManagementGroupScopeRequest {
+export interface RegisterProviderAtManagementGroupScopeRequest {
   groupId: string;
   /** The management group ID.The namespace of the resource provider to register. */
   resourceProviderNamespace: string;
 }
-export const ProvidersRegisterAtManagementGroupScopeRequest =
+export const RegisterProviderAtManagementGroupScopeRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       groupId: S.String.pipe(T.Label()),
@@ -18862,36 +18355,14 @@ export const ProvidersRegisterAtManagementGroupScopeRequest =
       }),
     ),
   ).annotate({
-    identifier: "ProvidersRegisterAtManagementGroupScopeRequest",
-  }) as any as S.Schema<ProvidersRegisterAtManagementGroupScopeRequest>;
+    identifier: "RegisterProviderAtManagementGroupScopeRequest",
+  }) as any as S.Schema<RegisterProviderAtManagementGroupScopeRequest>;
 
-export interface ProvidersRegisterAtManagementGroupScopeResponse {}
-export const ProvidersRegisterAtManagementGroupScopeResponse =
+export interface RegisterProviderAtManagementGroupScopeResponse {}
+export const RegisterProviderAtManagementGroupScopeResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ProvidersRegisterAtManagementGroupScopeResponse",
-  }) as any as S.Schema<ProvidersRegisterAtManagementGroupScopeResponse>;
-
-export interface ProvidersUnregisterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The namespace of the resource provider to unregister. */
-  resourceProviderNamespace: string;
-}
-export const ProvidersUnregisterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceProviderNamespace: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/unregister",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProvidersUnregisterRequest",
-}) as any as S.Schema<ProvidersUnregisterRequest>;
+    identifier: "RegisterProviderAtManagementGroupScopeResponse",
+  }) as any as S.Schema<RegisterProviderAtManagementGroupScopeResponse>;
 
 /** Resource tags. */
 export type ResourceGroupsCreateOrUpdateRequestTagsMap = {
@@ -18985,108 +18456,6 @@ export const ResourceGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ResourceGroupsCreateOrUpdateResponse",
 }) as any as S.Schema<ResourceGroupsCreateOrUpdateResponse>;
 
-/** The IDs of the resources to filter the export by. To export all resources, supply an array with single entry '*'. */
-export type ResourceGroupsExportTemplateRequestResourcesList = Array<string>;
-export const ResourceGroupsExportTemplateRequestResourcesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceGroupsExportTemplateRequestResourcesList>;
-
-/** The output format for the exported resources. */
-export type ExportTemplateOutputFormat = "Json" | "Bicep";
-export const ExportTemplateOutputFormat = /*@__PURE__*/ S.String;
-
-export interface ResourceGroupsExportTemplateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group to get. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The IDs of the resources to filter the export by. To export all resources, supply an array with single entry '*'. */
-  resources?: ResourceGroupsExportTemplateRequestResourcesList;
-  /** The export template options. A CSV-formatted list containing zero or more of the following: 'IncludeParameterDefaultValue', 'IncludeComments', 'SkipResourceNameParameterization', 'SkipAllParameterization' */
-  options?: string;
-  /** The output format for the exported resources. */
-  outputFormat?: ExportTemplateOutputFormat | (string & {});
-}
-export const ResourceGroupsExportTemplateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resources: S.optional(ResourceGroupsExportTemplateRequestResourcesList),
-    options: S.optional(S.String),
-    outputFormat: S.optional(ExportTemplateOutputFormat),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/exportTemplate",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ResourceGroupsExportTemplateRequest",
-}) as any as S.Schema<ResourceGroupsExportTemplateRequest>;
-
-/** The error details. */
-export type ResourceGroupExportResultErrorDetailsList = Array<ErrorDetail>;
-export const ResourceGroupExportResultErrorDetailsList = /*@__PURE__*/ S.Array(
-  ErrorDetail,
-) as any as S.Schema<ResourceGroupExportResultErrorDetailsList>;
-
-/** The error additional info. */
-export type ResourceGroupExportResultErrorAdditionalInfoList =
-  Array<ErrorResponseAdditionalInfoItem>;
-export const ResourceGroupExportResultErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorResponseAdditionalInfoItem,
-  ) as any as S.Schema<ResourceGroupExportResultErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface ResourceGroupExportResultError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: ResourceGroupExportResultErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: ResourceGroupExportResultErrorAdditionalInfoList;
-}
-export const ResourceGroupExportResultError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(ResourceGroupExportResultErrorDetailsList),
-    additionalInfo: S.optional(
-      ResourceGroupExportResultErrorAdditionalInfoList,
-    ),
-  }),
-).annotate({
-  identifier: "ResourceGroupExportResultError",
-}) as any as S.Schema<ResourceGroupExportResultError>;
-
-/** Resource group export result. */
-export interface ResourceGroupExportResult {
-  /** The template content. Used if outputFormat is empty or set to 'Json'. */
-  template?: unknown;
-  /** The formatted export content. Used if outputFormat is set to 'Bicep'. */
-  output?: string;
-  /** The error detail. */
-  error?: ResourceGroupExportResultError;
-}
-export const ResourceGroupExportResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    template: S.optional(S.Unknown),
-    output: S.optional(S.String),
-    error: S.optional(ResourceGroupExportResultError),
-  }),
-).annotate({
-  identifier: "ResourceGroupExportResult",
-}) as any as S.Schema<ResourceGroupExportResult>;
-
 /** The resource link properties. */
 export interface ResourceLinkPropertiesInput {
   /** The fully qualified ID of the target resource in the link. */
@@ -19124,35 +18493,6 @@ export const ResourceLinksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ResourceLinksCreateOrUpdateRequest",
 }) as any as S.Schema<ResourceLinksCreateOrUpdateRequest>;
-
-export interface ResourceManagementPrivateLinkPutRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource management private link. */
-  rmplName: string;
-  /** the region to create private link association. */
-  location?: string;
-}
-export const ResourceManagementPrivateLinkPutRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      rmplName: S.String.pipe(T.Label()),
-      location: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/resourceManagementPrivateLinks/{rmplName}",
-        code: 200,
-        apiVersion: "2020-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "ResourceManagementPrivateLinkPutRequest",
-}) as any as S.Schema<ResourceManagementPrivateLinkPutRequest>;
 
 export type IdentityUserAssignedIdentitiesValueInput =
   UserAssignedResourceIdentityInput;
@@ -19426,47 +18766,6 @@ export const ResourcesCreateOrUpdateByIdResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ResourcesCreateOrUpdateByIdResponse>;
 
 /** The IDs of the resources. */
-export type ResourcesMoveResourcesRequestResourcesList = Array<string>;
-export const ResourcesMoveResourcesRequestResourcesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ResourcesMoveResourcesRequestResourcesList>;
-
-export interface ResourcesMoveResourcesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group to get. The name is case insensitive. */
-  sourceResourceGroupName: string;
-  /** The IDs of the resources. */
-  resources?: ResourcesMoveResourcesRequestResourcesList;
-  /** The target resource group. */
-  targetResourceGroup?: string;
-}
-export const ResourcesMoveResourcesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    sourceResourceGroupName: S.String.pipe(T.Label()),
-    resources: S.optional(ResourcesMoveResourcesRequestResourcesList),
-    targetResourceGroup: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{sourceResourceGroupName}/moveResources",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ResourcesMoveResourcesRequest",
-}) as any as S.Schema<ResourcesMoveResourcesRequest>;
-
-export interface ResourcesMoveResourcesResponse {}
-export const ResourcesMoveResourcesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ResourcesMoveResourcesResponse",
-}) as any as S.Schema<ResourcesMoveResourcesResponse>;
-
-/** The IDs of the resources. */
 export type ResourcesValidateMoveResourcesRequestResourcesList = Array<string>;
 export const ResourcesValidateMoveResourcesRequestResourcesList =
   /*@__PURE__*/ S.Array(
@@ -19508,108 +18807,6 @@ export const ResourcesValidateMoveResourcesResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ResourcesValidateMoveResourcesResponse",
 }) as any as S.Schema<ResourcesValidateMoveResourcesResponse>;
-
-/** The body of the resource to validate. In most cases, this should be the exact same resource body as on an ARM resource PUT request plus the apiVersion property. */
-export interface ResourceValidationRequestResource {
-  /** The API version to use with this resource. */
-  apiVersion: string;
-  /** Set this to true if this resource is meant to be provisioned only if it does not exist. */
-  onlyIfNotExists?: boolean;
-}
-export const ResourceValidationRequestResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    apiVersion: S.String,
-    onlyIfNotExists: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ResourceValidationRequestResource",
-}) as any as S.Schema<ResourceValidationRequestResource>;
-
-/** The list of resources to validate. Each resource in the list must have the same namespace, type, and location. The namespace and type on each resource must match the corresponding values in the top-level request. The location on each resource must match the top-level location in the request if specified. */
-export type ResourceValidatorValidateResourcesRequestResourcesList =
-  Array<ResourceValidationRequestResource>;
-export const ResourceValidatorValidateResourcesRequestResourcesList =
-  /*@__PURE__*/ S.Array(
-    ResourceValidationRequestResource,
-  ) as any as S.Schema<ResourceValidatorValidateResourcesRequestResourcesList>;
-
-/** The type of resource validation */
-export type ResourceValidationType = "ArmFull" | "ArmPartial";
-export const ResourceValidationType = /*@__PURE__*/ S.String;
-
-export interface ResourceValidatorValidateResourcesRequest {
-  /** The resource provider namespace of the resources being validated */
-  provider: string;
-  /** The type of the resources being validated */
-  type: string;
-  /** The optional location for the resources being validated */
-  location?: string;
-  /** The scope of the resources being validated */
-  scope: string;
-  /** The list of resources to validate. Each resource in the list must have the same namespace, type, and location. The namespace and type on each resource must match the corresponding values in the top-level request. The location on each resource must match the top-level location in the request if specified. */
-  resources: ResourceValidatorValidateResourcesRequestResourcesList;
-  /** The type of resource validation to perform */
-  validationType?: ResourceValidationType | (string & {});
-  /** If true, the validation will be performed without checking RBAC write permissions. */
-  performPreflightWithoutRbacWriteCheck?: boolean;
-}
-export const ResourceValidatorValidateResourcesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provider: S.String,
-      type: S.String,
-      location: S.optional(S.String),
-      scope: S.String,
-      resources: ResourceValidatorValidateResourcesRequestResourcesList,
-      validationType: S.optional(ResourceValidationType),
-      performPreflightWithoutRbacWriteCheck: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/providers/Microsoft.Resources/validateResources",
-        code: 200,
-        apiVersion: "2022-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ResourceValidatorValidateResourcesRequest",
-  }) as any as S.Schema<ResourceValidatorValidateResourcesRequest>;
-
-/** List of ARM resource IDs corresponding to the resources that were successfully validated */
-export type ResourceValidationResponsePropertiesValidatedResourcesList =
-  Array<string>;
-export const ResourceValidationResponsePropertiesValidatedResourcesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResourceValidationResponsePropertiesValidatedResourcesList>;
-
-/** Details about the results of the validation */
-export interface ResourceValidationResponseProperties {
-  /** List of ARM resource IDs corresponding to the resources that were successfully validated */
-  validatedResources: ResourceValidationResponsePropertiesValidatedResourcesList;
-}
-export const ResourceValidationResponseProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      validatedResources:
-        ResourceValidationResponsePropertiesValidatedResourcesList,
-    }),
-).annotate({
-  identifier: "ResourceValidationResponseProperties",
-}) as any as S.Schema<ResourceValidationResponseProperties>;
-
-/** Resource validator successful response */
-export interface ResourceValidationResponse {
-  /** Details about the results of the validation */
-  properties: ResourceValidationResponseProperties;
-}
-export const ResourceValidationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: ResourceValidationResponseProperties,
-  }),
-).annotate({
-  identifier: "ResourceValidationResponse",
-}) as any as S.Schema<ResourceValidationResponse>;
 
 /** The state. */
 export type SubscriptionFeatureRegistrationsCreateOrUpdateRequestPropertiesState =
@@ -20195,14 +19392,61 @@ export const TemplateSpecVersionsCreateOrUpdateResponse =
     identifier: "TemplateSpecVersionsCreateOrUpdateResponse",
   }) as any as S.Schema<TemplateSpecVersionsCreateOrUpdateResponse>;
 
+export interface UnregisterFeatureRequest {
+  /** The Azure subscription ID. */
+  subscriptionId: string;
+  /** The namespace of the resource provider. */
+  resourceProviderNamespace: string;
+  /** The name of the feature to unregister. */
+  featureName: string;
+}
+export const UnregisterFeatureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceProviderNamespace: S.String.pipe(T.Label()),
+    featureName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features/{featureName}/unregister",
+      code: 200,
+      apiVersion: "2021-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UnregisterFeatureRequest",
+}) as any as S.Schema<UnregisterFeatureRequest>;
+
+export interface UnregisterProviderRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The namespace of the resource provider to unregister. */
+  resourceProviderNamespace: string;
+}
+export const UnregisterProviderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceProviderNamespace: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/unregister",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UnregisterProviderRequest",
+}) as any as S.Schema<UnregisterProviderRequest>;
+
 /** Resource tags */
-export type ApplicationsUpdateRequestTagsMap = {
+export type UpdateApplicationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationRequestTagsMap>;
 
 /** Plan for the managed application. */
 export interface PlanPatchable {
@@ -20237,7 +19481,7 @@ export interface UpdateApplicationRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateRequestTagsMap;
+  tags?: UpdateApplicationRequestTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -20257,7 +19501,7 @@ export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateRequestTagsMap),
+    tags: S.optional(UpdateApplicationRequestTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku_2),
     properties: S.optional(ApplicationPropertiesInput),
@@ -20277,13 +19521,13 @@ export const UpdateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationRequest>;
 
 /** Resource tags */
-export type ApplicationsUpdateResponseTagsMap = {
+export type UpdateApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateApplicationResponseTagsMap>;
 
 export interface UpdateApplicationResponse {
   /** Resource ID */
@@ -20295,7 +19539,7 @@ export interface UpdateApplicationResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateResponseTagsMap;
+  tags?: UpdateApplicationResponseTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -20315,7 +19559,7 @@ export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateResponseTagsMap),
+    tags: S.optional(UpdateApplicationResponseTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku_2),
     properties: ApplicationProperties,
@@ -20328,13 +19572,13 @@ export const UpdateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationResponse>;
 
 /** Resource tags */
-export type ApplicationsUpdateByIdRequestTagsMap = {
+export type UpdateApplicationByIdRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateByIdRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationByIdRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateByIdRequestTagsMap>;
+) as any as S.Schema<UpdateApplicationByIdRequestTagsMap>;
 
 export interface UpdateApplicationByIdRequest {
   /** The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name} */
@@ -20342,7 +19586,7 @@ export interface UpdateApplicationByIdRequest {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateByIdRequestTagsMap;
+  tags?: UpdateApplicationByIdRequestTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -20360,7 +19604,7 @@ export const UpdateApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     applicationId: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateByIdRequestTagsMap),
+    tags: S.optional(UpdateApplicationByIdRequestTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku_2),
     properties: ApplicationPropertiesInput,
@@ -20380,13 +19624,13 @@ export const UpdateApplicationByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationByIdRequest>;
 
 /** Resource tags */
-export type ApplicationsUpdateByIdResponseTagsMap = {
+export type UpdateApplicationByIdResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsUpdateByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateApplicationByIdResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsUpdateByIdResponseTagsMap>;
+) as any as S.Schema<UpdateApplicationByIdResponseTagsMap>;
 
 export interface UpdateApplicationByIdResponse {
   /** Resource ID */
@@ -20398,7 +19642,7 @@ export interface UpdateApplicationByIdResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: ApplicationsUpdateByIdResponseTagsMap;
+  tags?: UpdateApplicationByIdResponseTagsMap;
   /** ID of the resource that manages this resource. */
   managedBy?: string;
   /** The SKU of the resource. */
@@ -20418,7 +19662,7 @@ export const UpdateApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ApplicationsUpdateByIdResponseTagsMap),
+    tags: S.optional(UpdateApplicationByIdResponseTagsMap),
     managedBy: S.optional(S.String),
     sku: S.optional(Sku_2),
     properties: ApplicationProperties,
@@ -20431,13 +19675,13 @@ export const UpdateApplicationByIdResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateApplicationByIdResponse>;
 
 /** Resource tags to be updated. */
-export type DeploymentScriptsUpdateRequestTagsMap = {
+export type UpdateDeploymentScriptRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentScriptsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDeploymentScriptRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentScriptsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDeploymentScriptRequestTagsMap>;
 
 export interface UpdateDeploymentScriptRequest {
   /** The ID of the target subscription. */
@@ -20447,14 +19691,14 @@ export interface UpdateDeploymentScriptRequest {
   /** Name of the deployment script. */
   scriptName: string;
   /** Resource tags to be updated. */
-  tags?: DeploymentScriptsUpdateRequestTagsMap;
+  tags?: UpdateDeploymentScriptRequestTagsMap;
 }
 export const UpdateDeploymentScriptRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     scriptName: S.String.pipe(T.Label()),
-    tags: S.optional(DeploymentScriptsUpdateRequestTagsMap),
+    tags: S.optional(UpdateDeploymentScriptRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -20468,13 +19712,13 @@ export const UpdateDeploymentScriptRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDeploymentScriptRequest>;
 
 /** Resource tags. */
-export type DeploymentScriptsUpdateResponseTagsMap = {
+export type UpdateDeploymentScriptResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DeploymentScriptsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDeploymentScriptResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DeploymentScriptsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDeploymentScriptResponseTagsMap>;
 
 export interface UpdateDeploymentScriptResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -20486,7 +19730,7 @@ export interface UpdateDeploymentScriptResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DeploymentScriptsUpdateResponseTagsMap;
+  tags?: UpdateDeploymentScriptResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Type of the script. */
@@ -20500,7 +19744,7 @@ export const UpdateDeploymentScriptResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DeploymentScriptsUpdateResponseTagsMap),
+    tags: S.optional(UpdateDeploymentScriptResponseTagsMap),
     location: S.String,
     kind: ScriptType,
     identity: S.optional(ManagedServiceIdentity),
@@ -20510,13 +19754,13 @@ export const UpdateDeploymentScriptResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateDeploymentScriptResponse>;
 
 /** Jit request tags */
-export type JitRequestsUpdateRequestTagsMap = {
+export type UpdateJitRequestRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const JitRequestsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateJitRequestRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JitRequestsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateJitRequestRequestTagsMap>;
 
 export interface UpdateJitRequestRequest {
   /** The ID of the target subscription. */
@@ -20526,14 +19770,14 @@ export interface UpdateJitRequestRequest {
   /** The name of the JIT request. */
   jitRequestName: string;
   /** Jit request tags */
-  tags?: JitRequestsUpdateRequestTagsMap;
+  tags?: UpdateJitRequestRequestTagsMap;
 }
 export const UpdateJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     jitRequestName: S.String.pipe(T.Label()),
-    tags: S.optional(JitRequestsUpdateRequestTagsMap),
+    tags: S.optional(UpdateJitRequestRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -20547,13 +19791,13 @@ export const UpdateJitRequestRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateJitRequestRequest>;
 
 /** Resource tags */
-export type JitRequestsUpdateResponseTagsMap = {
+export type UpdateJitRequestResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const JitRequestsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateJitRequestResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<JitRequestsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateJitRequestResponseTagsMap>;
 
 export interface UpdateJitRequestResponse {
   /** Resource ID */
@@ -20565,7 +19809,7 @@ export interface UpdateJitRequestResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: JitRequestsUpdateResponseTagsMap;
+  tags?: UpdateJitRequestResponseTagsMap;
   /** The JIT request properties. */
   properties?: JitRequestProperties;
 }
@@ -20575,7 +19819,7 @@ export const UpdateJitRequestResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(JitRequestsUpdateResponseTagsMap),
+    tags: S.optional(UpdateJitRequestResponseTagsMap),
     properties: S.optional(JitRequestProperties),
   }),
 ).annotate({
@@ -20680,13 +19924,13 @@ export const UpdatePolicyAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePolicyAssignmentResponse>;
 
 /** Resource tags */
-export type ResourcesUpdateRequestTagsMap = {
+export type UpdateResourceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourcesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateResourceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateResourceRequestTagsMap>;
 
 export interface UpdateResourceRequest {
   /** The ID of the target subscription. */
@@ -20718,7 +19962,7 @@ export interface UpdateResourceRequest {
   /** Resource extended location. */
   extendedLocation?: ExtendedLocation;
   /** Resource tags */
-  tags?: ResourcesUpdateRequestTagsMap;
+  tags?: UpdateResourceRequestTagsMap;
 }
 export const UpdateResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -20736,7 +19980,7 @@ export const UpdateResourceRequest = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(IdentityInput_2),
     location: S.optional(S.String),
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ResourcesUpdateRequestTagsMap),
+    tags: S.optional(UpdateResourceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -20750,13 +19994,13 @@ export const UpdateResourceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResourceRequest>;
 
 /** Resource tags */
-export type ResourcesUpdateResponseTagsMap = {
+export type UpdateResourceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourcesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateResourceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateResourceResponseTagsMap>;
 
 export interface UpdateResourceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -20784,7 +20028,7 @@ export interface UpdateResourceResponse {
   /** Resource extended location. */
   extendedLocation?: ExtendedLocation;
   /** Resource tags */
-  tags?: ResourcesUpdateResponseTagsMap;
+  tags?: UpdateResourceResponseTagsMap;
 }
 export const UpdateResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -20800,20 +20044,20 @@ export const UpdateResourceResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(Identity_2),
     location: S.optional(S.String),
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ResourcesUpdateResponseTagsMap),
+    tags: S.optional(UpdateResourceResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateResourceResponse",
 }) as any as S.Schema<UpdateResourceResponse>;
 
 /** Resource tags */
-export type ResourcesUpdateByIdRequestTagsMap = {
+export type UpdateResourceByIdRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourcesUpdateByIdRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateResourceByIdRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcesUpdateByIdRequestTagsMap>;
+) as any as S.Schema<UpdateResourceByIdRequestTagsMap>;
 
 export interface UpdateResourceByIdRequest {
   resourceId: string;
@@ -20834,7 +20078,7 @@ export interface UpdateResourceByIdRequest {
   /** Resource extended location. */
   extendedLocation?: ExtendedLocation;
   /** Resource tags */
-  tags?: ResourcesUpdateByIdRequestTagsMap;
+  tags?: UpdateResourceByIdRequestTagsMap;
 }
 export const UpdateResourceByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -20847,7 +20091,7 @@ export const UpdateResourceByIdRequest = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(IdentityInput_2),
     location: S.optional(S.String),
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ResourcesUpdateByIdRequestTagsMap),
+    tags: S.optional(UpdateResourceByIdRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -20861,13 +20105,13 @@ export const UpdateResourceByIdRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResourceByIdRequest>;
 
 /** Resource tags */
-export type ResourcesUpdateByIdResponseTagsMap = {
+export type UpdateResourceByIdResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourcesUpdateByIdResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateResourceByIdResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourcesUpdateByIdResponseTagsMap>;
+) as any as S.Schema<UpdateResourceByIdResponseTagsMap>;
 
 export interface UpdateResourceByIdResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -20895,7 +20139,7 @@ export interface UpdateResourceByIdResponse {
   /** Resource extended location. */
   extendedLocation?: ExtendedLocation;
   /** Resource tags */
-  tags?: ResourcesUpdateByIdResponseTagsMap;
+  tags?: UpdateResourceByIdResponseTagsMap;
 }
 export const UpdateResourceByIdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -20911,20 +20155,20 @@ export const UpdateResourceByIdResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(Identity_2),
     location: S.optional(S.String),
     extendedLocation: S.optional(ExtendedLocation),
-    tags: S.optional(ResourcesUpdateByIdResponseTagsMap),
+    tags: S.optional(UpdateResourceByIdResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateResourceByIdResponse",
 }) as any as S.Schema<UpdateResourceByIdResponse>;
 
 /** The tags attached to the resource group. */
-export type ResourceGroupsUpdateRequestTagsMap = {
+export type UpdateResourceGroupRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGroupsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateResourceGroupRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourceGroupsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateResourceGroupRequestTagsMap>;
 
 export interface UpdateResourceGroupRequest {
   /** The ID of the target subscription. */
@@ -20938,7 +20182,7 @@ export interface UpdateResourceGroupRequest {
   /** The ID of the resource that manages this resource group. */
   managedBy?: string;
   /** The tags attached to the resource group. */
-  tags?: ResourceGroupsUpdateRequestTagsMap;
+  tags?: UpdateResourceGroupRequestTagsMap;
 }
 export const UpdateResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -20947,7 +20191,7 @@ export const UpdateResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     properties: S.optional(UserAssignedResourceIdentityInput),
     managedBy: S.optional(S.String),
-    tags: S.optional(ResourceGroupsUpdateRequestTagsMap),
+    tags: S.optional(UpdateResourceGroupRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -20961,13 +20205,13 @@ export const UpdateResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateResourceGroupRequest>;
 
 /** Resource tags. */
-export type ResourceGroupsUpdateResponseTagsMap = {
+export type UpdateResourceGroupResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ResourceGroupsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateResourceGroupResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ResourceGroupsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateResourceGroupResponseTagsMap>;
 
 export interface UpdateResourceGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -20979,7 +20223,7 @@ export interface UpdateResourceGroupResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ResourceGroupsUpdateResponseTagsMap;
+  tags?: UpdateResourceGroupResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource group properties. */
@@ -20993,7 +20237,7 @@ export const UpdateResourceGroupResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ResourceGroupsUpdateResponseTagsMap),
+    tags: S.optional(UpdateResourceGroupResponseTagsMap),
     location: S.String,
     properties: S.optional(ResourceGroupProperties),
     managedBy: S.optional(S.String),
@@ -21056,13 +20300,13 @@ export const UpdateTagAtScopeResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateTagAtScopeResponse>;
 
 /** Resource tags. */
-export type TemplateSpecsUpdateRequestTagsMap = {
+export type UpdateTemplateSpecRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTemplateSpecRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TemplateSpecsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateTemplateSpecRequestTagsMap>;
 
 export interface UpdateTemplateSpecRequest {
   /** Subscription Id which forms part of the URI for every service call. */
@@ -21072,14 +20316,14 @@ export interface UpdateTemplateSpecRequest {
   /** Name of the Template Spec. */
   templateSpecName: string;
   /** Resource tags. */
-  tags?: TemplateSpecsUpdateRequestTagsMap;
+  tags?: UpdateTemplateSpecRequestTagsMap;
 }
 export const UpdateTemplateSpecRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     templateSpecName: S.String.pipe(T.Label()),
-    tags: S.optional(TemplateSpecsUpdateRequestTagsMap),
+    tags: S.optional(UpdateTemplateSpecRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -21093,64 +20337,64 @@ export const UpdateTemplateSpecRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateTemplateSpecRequest>;
 
 /** The type of identity that created the resource. */
-export type TemplateSpecsUpdateResponseSystemDataCreatedByType =
+export type UpdateTemplateSpecResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecsUpdateResponseSystemDataCreatedByType =
+export const UpdateTemplateSpecResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type TemplateSpecsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateTemplateSpecResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateTemplateSpecResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface TemplateSpecsUpdateResponseSystemData {
+export interface UpdateTemplateSpecResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: TemplateSpecsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateTemplateSpecResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: TemplateSpecsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateTemplateSpecResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const TemplateSpecsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
+export const UpdateTemplateSpecResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        TemplateSpecsUpdateResponseSystemDataCreatedByType,
+        UpdateTemplateSpecResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        TemplateSpecsUpdateResponseSystemDataLastModifiedByType,
+        UpdateTemplateSpecResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "TemplateSpecsUpdateResponseSystemData",
-}) as any as S.Schema<TemplateSpecsUpdateResponseSystemData>;
+  identifier: "UpdateTemplateSpecResponseSystemData",
+}) as any as S.Schema<UpdateTemplateSpecResponseSystemData>;
 
 /** Resource tags. */
-export type TemplateSpecsUpdateResponseTagsMap = {
+export type UpdateTemplateSpecResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTemplateSpecResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TemplateSpecsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateTemplateSpecResponseTagsMap>;
 
 export interface UpdateTemplateSpecResponse {
   /** String Id used to locate any resource on Azure. */
@@ -21160,36 +20404,36 @@ export interface UpdateTemplateSpecResponse {
   /** Type of this resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: TemplateSpecsUpdateResponseSystemData;
+  systemData?: UpdateTemplateSpecResponseSystemData;
   /** The location of the Template Spec. It cannot be changed after Template Spec creation. It must be one of the supported Azure locations. */
   location: string;
   /** Template Spec properties. */
   properties?: TemplateSpecProperties;
   /** Resource tags. */
-  tags?: TemplateSpecsUpdateResponseTagsMap;
+  tags?: UpdateTemplateSpecResponseTagsMap;
 }
 export const UpdateTemplateSpecResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(TemplateSpecsUpdateResponseSystemData),
+    systemData: S.optional(UpdateTemplateSpecResponseSystemData),
     location: S.String,
     properties: S.optional(TemplateSpecProperties),
-    tags: S.optional(TemplateSpecsUpdateResponseTagsMap),
+    tags: S.optional(UpdateTemplateSpecResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateTemplateSpecResponse",
 }) as any as S.Schema<UpdateTemplateSpecResponse>;
 
 /** Resource tags. */
-export type TemplateSpecVersionsUpdateRequestTagsMap = {
+export type UpdateTemplateSpecVersionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecVersionsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTemplateSpecVersionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TemplateSpecVersionsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateTemplateSpecVersionRequestTagsMap>;
 
 export interface UpdateTemplateSpecVersionRequest {
   /** Subscription Id which forms part of the URI for every service call. */
@@ -21201,7 +20445,7 @@ export interface UpdateTemplateSpecVersionRequest {
   /** The version of the Template Spec. */
   templateSpecVersion: string;
   /** Resource tags. */
-  tags?: TemplateSpecVersionsUpdateRequestTagsMap;
+  tags?: UpdateTemplateSpecVersionRequestTagsMap;
 }
 export const UpdateTemplateSpecVersionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -21209,7 +20453,7 @@ export const UpdateTemplateSpecVersionRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     templateSpecName: S.String.pipe(T.Label()),
     templateSpecVersion: S.String.pipe(T.Label()),
-    tags: S.optional(TemplateSpecVersionsUpdateRequestTagsMap),
+    tags: S.optional(UpdateTemplateSpecVersionRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -21223,64 +20467,64 @@ export const UpdateTemplateSpecVersionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateTemplateSpecVersionRequest>;
 
 /** The type of identity that created the resource. */
-export type TemplateSpecVersionsUpdateResponseSystemDataCreatedByType =
+export type UpdateTemplateSpecVersionResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecVersionsUpdateResponseSystemDataCreatedByType =
+export const UpdateTemplateSpecVersionResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type TemplateSpecVersionsUpdateResponseSystemDataLastModifiedByType =
+export type UpdateTemplateSpecVersionResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const TemplateSpecVersionsUpdateResponseSystemDataLastModifiedByType =
+export const UpdateTemplateSpecVersionResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface TemplateSpecVersionsUpdateResponseSystemData {
+export interface UpdateTemplateSpecVersionResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: TemplateSpecVersionsUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateTemplateSpecVersionResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: TemplateSpecVersionsUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateTemplateSpecVersionResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const TemplateSpecVersionsUpdateResponseSystemData =
+export const UpdateTemplateSpecVersionResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        TemplateSpecVersionsUpdateResponseSystemDataCreatedByType,
+        UpdateTemplateSpecVersionResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        TemplateSpecVersionsUpdateResponseSystemDataLastModifiedByType,
+        UpdateTemplateSpecVersionResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "TemplateSpecVersionsUpdateResponseSystemData",
-  }) as any as S.Schema<TemplateSpecVersionsUpdateResponseSystemData>;
+    identifier: "UpdateTemplateSpecVersionResponseSystemData",
+  }) as any as S.Schema<UpdateTemplateSpecVersionResponseSystemData>;
 
 /** Resource tags. */
-export type TemplateSpecVersionsUpdateResponseTagsMap = {
+export type UpdateTemplateSpecVersionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TemplateSpecVersionsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTemplateSpecVersionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TemplateSpecVersionsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateTemplateSpecVersionResponseTagsMap>;
 
 export interface UpdateTemplateSpecVersionResponse {
   /** String Id used to locate any resource on Azure. */
@@ -21290,27 +20534,695 @@ export interface UpdateTemplateSpecVersionResponse {
   /** Type of this resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: TemplateSpecVersionsUpdateResponseSystemData;
+  systemData?: UpdateTemplateSpecVersionResponseSystemData;
   /** The location of the Template Spec Version. It must match the location of the parent Template Spec. */
   location: string;
   /** Template Spec Version properties. */
   properties: TemplateSpecVersionProperties;
   /** Resource tags. */
-  tags?: TemplateSpecVersionsUpdateResponseTagsMap;
+  tags?: UpdateTemplateSpecVersionResponseTagsMap;
 }
 export const UpdateTemplateSpecVersionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(TemplateSpecVersionsUpdateResponseSystemData),
+    systemData: S.optional(UpdateTemplateSpecVersionResponseSystemData),
     location: S.String,
     properties: TemplateSpecVersionProperties,
-    tags: S.optional(TemplateSpecVersionsUpdateResponseTagsMap),
+    tags: S.optional(UpdateTemplateSpecVersionResponseTagsMap),
   }),
 ).annotate({
   identifier: "UpdateTemplateSpecVersionResponse",
 }) as any as S.Schema<UpdateTemplateSpecVersionResponse>;
+
+/** Deployment tags */
+export type ValidateDeploymentRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ValidateDeploymentRequestTagsMap>;
+
+export interface ValidateDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+  /** The location to store the deployment data. */
+  location?: string;
+  /** The deployment properties. */
+  properties: DeploymentProperties;
+  /** Deployment tags */
+  tags?: ValidateDeploymentRequestTagsMap;
+  /** The Managed Identity configuration for a deployment. */
+  identity?: DeploymentIdentityInput;
+}
+export const ValidateDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    properties: DeploymentProperties,
+    tags: S.optional(ValidateDeploymentRequestTagsMap),
+    identity: S.optional(DeploymentIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateDeploymentRequest",
+}) as any as S.Schema<ValidateDeploymentRequest>;
+
+/** Information from validate template deployment response. */
+export interface DeploymentValidateResult {
+  /** The deployment validation error. */
+  error?: ErrorResponse;
+  /** The ID of the deployment. */
+  id?: string;
+  /** The name of the deployment. */
+  name?: string;
+  /** The type of the deployment. */
+  type?: string;
+  /** The template deployment properties. */
+  properties?: DeploymentPropertiesExtended;
+}
+export const DeploymentValidateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(ErrorResponse),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(DeploymentPropertiesExtended),
+  }),
+).annotate({
+  identifier: "DeploymentValidateResult",
+}) as any as S.Schema<DeploymentValidateResult>;
+
+/** Deployment tags */
+export type ValidateDeploymentAtManagementGroupScopeRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentAtManagementGroupScopeRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateDeploymentAtManagementGroupScopeRequestTagsMap>;
+
+export interface ValidateDeploymentAtManagementGroupScopeRequest {
+  /** The management group ID. */
+  groupId: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+  /** The location to store the deployment data. */
+  location: string;
+  /** The deployment properties. */
+  properties: DeploymentProperties;
+  /** Deployment tags */
+  tags?: ValidateDeploymentAtManagementGroupScopeRequestTagsMap;
+}
+export const ValidateDeploymentAtManagementGroupScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupId: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
+      location: S.String,
+      properties: DeploymentProperties,
+      tags: S.optional(ValidateDeploymentAtManagementGroupScopeRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateDeploymentAtManagementGroupScopeRequest",
+  }) as any as S.Schema<ValidateDeploymentAtManagementGroupScopeRequest>;
+
+/** Deployment tags */
+export type ValidateDeploymentAtScopeRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentAtScopeRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ValidateDeploymentAtScopeRequestTagsMap>;
+
+export interface ValidateDeploymentAtScopeRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+  /** The location to store the deployment data. */
+  location?: string;
+  /** The deployment properties. */
+  properties: DeploymentProperties;
+  /** Deployment tags */
+  tags?: ValidateDeploymentAtScopeRequestTagsMap;
+  /** The Managed Identity configuration for a deployment. */
+  identity?: DeploymentIdentityInput;
+}
+export const ValidateDeploymentAtScopeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    properties: DeploymentProperties,
+    tags: S.optional(ValidateDeploymentAtScopeRequestTagsMap),
+    identity: S.optional(DeploymentIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateDeploymentAtScopeRequest",
+}) as any as S.Schema<ValidateDeploymentAtScopeRequest>;
+
+/** Deployment tags */
+export type ValidateDeploymentAtSubscriptionScopeRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentAtSubscriptionScopeRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateDeploymentAtSubscriptionScopeRequestTagsMap>;
+
+export interface ValidateDeploymentAtSubscriptionScopeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the deployment. */
+  deploymentName: string;
+  /** The location to store the deployment data. */
+  location?: string;
+  /** The deployment properties. */
+  properties: DeploymentProperties;
+  /** Deployment tags */
+  tags?: ValidateDeploymentAtSubscriptionScopeRequestTagsMap;
+  /** The Managed Identity configuration for a deployment. */
+  identity?: DeploymentIdentityInput;
+}
+export const ValidateDeploymentAtSubscriptionScopeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
+      location: S.optional(S.String),
+      properties: DeploymentProperties,
+      tags: S.optional(ValidateDeploymentAtSubscriptionScopeRequestTagsMap),
+      identity: S.optional(DeploymentIdentityInput),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateDeploymentAtSubscriptionScopeRequest",
+  }) as any as S.Schema<ValidateDeploymentAtSubscriptionScopeRequest>;
+
+/** Deployment tags */
+export type ValidateDeploymentAtTenantScopeRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentAtTenantScopeRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateDeploymentAtTenantScopeRequestTagsMap>;
+
+export interface ValidateDeploymentAtTenantScopeRequest {
+  /** The name of the deployment. */
+  deploymentName: string;
+  /** The location to store the deployment data. */
+  location: string;
+  /** The deployment properties. */
+  properties: DeploymentProperties;
+  /** Deployment tags */
+  tags?: ValidateDeploymentAtTenantScopeRequestTagsMap;
+}
+export const ValidateDeploymentAtTenantScopeRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      deploymentName: S.String.pipe(T.Label()),
+      location: S.String,
+      properties: DeploymentProperties,
+      tags: S.optional(ValidateDeploymentAtTenantScopeRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ValidateDeploymentAtTenantScopeRequest",
+}) as any as S.Schema<ValidateDeploymentAtTenantScopeRequest>;
+
+/** Resource tags. */
+export type ValidateDeploymentStackStackAtManagementGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentStackStackAtManagementGroupRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateDeploymentStackStackAtManagementGroupRequestTagsMap>;
+
+export interface ValidateDeploymentStackStackAtManagementGroupRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** Name of the deployment stack. */
+  deploymentStackName: string;
+  /** Deployment stack properties. */
+  properties?: DeploymentStackPropertiesInput;
+  /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
+  location?: string;
+  /** Resource tags. */
+  tags?: ValidateDeploymentStackStackAtManagementGroupRequestTagsMap;
+}
+export const ValidateDeploymentStackStackAtManagementGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      deploymentStackName: S.String.pipe(T.Label()),
+      properties: S.optional(DeploymentStackPropertiesInput),
+      location: S.optional(S.String),
+      tags: S.optional(
+        ValidateDeploymentStackStackAtManagementGroupRequestTagsMap,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/validate",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateDeploymentStackStackAtManagementGroupRequest",
+  }) as any as S.Schema<ValidateDeploymentStackStackAtManagementGroupRequest>;
+
+/** The type of identity that created the resource. */
+export type DeploymentStackValidateResultSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const DeploymentStackValidateResultSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type DeploymentStackValidateResultSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const DeploymentStackValidateResultSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface DeploymentStackValidateResultSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: DeploymentStackValidateResultSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: DeploymentStackValidateResultSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const DeploymentStackValidateResultSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        DeploymentStackValidateResultSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        DeploymentStackValidateResultSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DeploymentStackValidateResultSystemData",
+}) as any as S.Schema<DeploymentStackValidateResultSystemData>;
+
+/** The error details. */
+export type DeploymentStackValidateResultErrorDetailsList = Array<ErrorDetail>;
+export const DeploymentStackValidateResultErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<DeploymentStackValidateResultErrorDetailsList>;
+
+/** The error additional info. */
+export type DeploymentStackValidateResultErrorAdditionalInfoList =
+  Array<ErrorResponseAdditionalInfoItem>;
+export const DeploymentStackValidateResultErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorResponseAdditionalInfoItem,
+  ) as any as S.Schema<DeploymentStackValidateResultErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface DeploymentStackValidateResultError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: DeploymentStackValidateResultErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: DeploymentStackValidateResultErrorAdditionalInfoList;
+}
+export const DeploymentStackValidateResultError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(DeploymentStackValidateResultErrorDetailsList),
+    additionalInfo: S.optional(
+      DeploymentStackValidateResultErrorAdditionalInfoList,
+    ),
+  }),
+).annotate({
+  identifier: "DeploymentStackValidateResultError",
+}) as any as S.Schema<DeploymentStackValidateResultError>;
+
+/** Deployment parameters. */
+export type DeploymentStackValidatePropertiesParametersMap = {
+  [key: string]: DeploymentParameter | undefined;
+};
+export const DeploymentStackValidatePropertiesParametersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    DeploymentParameter,
+  ) as any as S.Schema<DeploymentStackValidatePropertiesParametersMap>;
+
+/** The array of resources that were validated. */
+export type DeploymentStackValidatePropertiesValidatedResourcesList =
+  Array<ResourceReference>;
+export const DeploymentStackValidatePropertiesValidatedResourcesList =
+  /*@__PURE__*/ S.Array(
+    ResourceReference,
+  ) as any as S.Schema<DeploymentStackValidatePropertiesValidatedResourcesList>;
+
+/** The deployment extensions. */
+export type DeploymentStackValidatePropertiesDeploymentExtensionsList =
+  Array<DeploymentExtension>;
+export const DeploymentStackValidatePropertiesDeploymentExtensionsList =
+  /*@__PURE__*/ S.Array(
+    DeploymentExtension,
+  ) as any as S.Schema<DeploymentStackValidatePropertiesDeploymentExtensionsList>;
+
+/** The Deployment stack validation result details. */
+export interface DeploymentStackValidateProperties {
+  /** Defines the behavior of resources that are no longer managed after the Deployment stack is updated or deleted. */
+  actionOnUnmanage?: ActionOnUnmanage;
+  /** The correlation id of the Deployment stack validate operation. It is in GUID format and is used for tracing. */
+  correlationId?: string;
+  /** The Deployment stack deny settings. */
+  denySettings?: DenySettings;
+  /** The Deployment stack deployment scope. */
+  deploymentScope?: string;
+  /** The Deployment stack validation description. */
+  description?: string;
+  /** Deployment parameters. */
+  parameters?: DeploymentStackValidatePropertiesParametersMap;
+  /** The URI of the template. */
+  templateLink?: DeploymentStacksTemplateLink;
+  /** The array of resources that were validated. */
+  validatedResources?: DeploymentStackValidatePropertiesValidatedResourcesList;
+  /** The deployment extensions. */
+  deploymentExtensions?: DeploymentStackValidatePropertiesDeploymentExtensionsList;
+  /** The validation level of the deployment stack */
+  validationLevel?: ValidationLevel;
+}
+export const DeploymentStackValidateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actionOnUnmanage: S.optional(ActionOnUnmanage),
+    correlationId: S.optional(S.String),
+    denySettings: S.optional(DenySettings),
+    deploymentScope: S.optional(S.String),
+    description: S.optional(S.String),
+    parameters: S.optional(DeploymentStackValidatePropertiesParametersMap),
+    templateLink: S.optional(DeploymentStacksTemplateLink),
+    validatedResources: S.optional(
+      DeploymentStackValidatePropertiesValidatedResourcesList,
+    ),
+    deploymentExtensions: S.optional(
+      DeploymentStackValidatePropertiesDeploymentExtensionsList,
+    ),
+    validationLevel: S.optional(ValidationLevel),
+  }),
+).annotate({
+  identifier: "DeploymentStackValidateProperties",
+}) as any as S.Schema<DeploymentStackValidateProperties>;
+
+/** The Deployment stack validation result. */
+export interface DeploymentStackValidateResult {
+  /** String Id used to locate any resource on Azure. */
+  id?: string;
+  /** Name of this resource. */
+  name?: string;
+  /** Type of this resource. */
+  type?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: DeploymentStackValidateResultSystemData;
+  /** The error detail. */
+  error?: DeploymentStackValidateResultError;
+  /** The validation result details. */
+  properties?: DeploymentStackValidateProperties;
+}
+export const DeploymentStackValidateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(DeploymentStackValidateResultSystemData),
+    error: S.optional(DeploymentStackValidateResultError),
+    properties: S.optional(DeploymentStackValidateProperties),
+  }),
+).annotate({
+  identifier: "DeploymentStackValidateResult",
+}) as any as S.Schema<DeploymentStackValidateResult>;
+
+/** Resource tags. */
+export type ValidateDeploymentStackStackAtResourceGroupRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentStackStackAtResourceGroupRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateDeploymentStackStackAtResourceGroupRequestTagsMap>;
+
+export interface ValidateDeploymentStackStackAtResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the deployment stack. */
+  deploymentStackName: string;
+  /** Deployment stack properties. */
+  properties?: DeploymentStackPropertiesInput;
+  /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
+  location?: string;
+  /** Resource tags. */
+  tags?: ValidateDeploymentStackStackAtResourceGroupRequestTagsMap;
+}
+export const ValidateDeploymentStackStackAtResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      deploymentStackName: S.String.pipe(T.Label()),
+      properties: S.optional(DeploymentStackPropertiesInput),
+      location: S.optional(S.String),
+      tags: S.optional(
+        ValidateDeploymentStackStackAtResourceGroupRequestTagsMap,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/validate",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateDeploymentStackStackAtResourceGroupRequest",
+  }) as any as S.Schema<ValidateDeploymentStackStackAtResourceGroupRequest>;
+
+/** Resource tags. */
+export type ValidateDeploymentStackStackAtSubscriptionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ValidateDeploymentStackStackAtSubscriptionRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ValidateDeploymentStackStackAtSubscriptionRequestTagsMap>;
+
+export interface ValidateDeploymentStackStackAtSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** Name of the deployment stack. */
+  deploymentStackName: string;
+  /** Deployment stack properties. */
+  properties?: DeploymentStackPropertiesInput;
+  /** The geo-location where the resource lives. Required for subscription and management group scoped stacks. The location is inherited from the resource group for resource group scoped stacks. */
+  location?: string;
+  /** Resource tags. */
+  tags?: ValidateDeploymentStackStackAtSubscriptionRequestTagsMap;
+}
+export const ValidateDeploymentStackStackAtSubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      deploymentStackName: S.String.pipe(T.Label()),
+      properties: S.optional(DeploymentStackPropertiesInput),
+      location: S.optional(S.String),
+      tags: S.optional(
+        ValidateDeploymentStackStackAtSubscriptionRequestTagsMap,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deploymentStacks/{deploymentStackName}/validate",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateDeploymentStackStackAtSubscriptionRequest",
+  }) as any as S.Schema<ValidateDeploymentStackStackAtSubscriptionRequest>;
+
+/** The body of the resource to validate. In most cases, this should be the exact same resource body as on an ARM resource PUT request plus the apiVersion property. */
+export interface ResourceValidationRequestResource {
+  /** The API version to use with this resource. */
+  apiVersion: string;
+  /** Set this to true if this resource is meant to be provisioned only if it does not exist. */
+  onlyIfNotExists?: boolean;
+}
+export const ResourceValidationRequestResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    apiVersion: S.String,
+    onlyIfNotExists: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ResourceValidationRequestResource",
+}) as any as S.Schema<ResourceValidationRequestResource>;
+
+/** The list of resources to validate. Each resource in the list must have the same namespace, type, and location. The namespace and type on each resource must match the corresponding values in the top-level request. The location on each resource must match the top-level location in the request if specified. */
+export type ValidateResourceValidatorResourcesRequestResourcesList =
+  Array<ResourceValidationRequestResource>;
+export const ValidateResourceValidatorResourcesRequestResourcesList =
+  /*@__PURE__*/ S.Array(
+    ResourceValidationRequestResource,
+  ) as any as S.Schema<ValidateResourceValidatorResourcesRequestResourcesList>;
+
+/** The type of resource validation */
+export type ResourceValidationType = "ArmFull" | "ArmPartial";
+export const ResourceValidationType = /*@__PURE__*/ S.String;
+
+export interface ValidateResourceValidatorResourcesRequest {
+  /** The resource provider namespace of the resources being validated */
+  provider: string;
+  /** The type of the resources being validated */
+  type: string;
+  /** The optional location for the resources being validated */
+  location?: string;
+  /** The scope of the resources being validated */
+  scope: string;
+  /** The list of resources to validate. Each resource in the list must have the same namespace, type, and location. The namespace and type on each resource must match the corresponding values in the top-level request. The location on each resource must match the top-level location in the request if specified. */
+  resources: ValidateResourceValidatorResourcesRequestResourcesList;
+  /** The type of resource validation to perform */
+  validationType?: ResourceValidationType | (string & {});
+  /** If true, the validation will be performed without checking RBAC write permissions. */
+  performPreflightWithoutRbacWriteCheck?: boolean;
+}
+export const ValidateResourceValidatorResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provider: S.String,
+      type: S.String,
+      location: S.optional(S.String),
+      scope: S.String,
+      resources: ValidateResourceValidatorResourcesRequestResourcesList,
+      validationType: S.optional(ResourceValidationType),
+      performPreflightWithoutRbacWriteCheck: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/providers/Microsoft.Resources/validateResources",
+        code: 200,
+        apiVersion: "2022-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateResourceValidatorResourcesRequest",
+  }) as any as S.Schema<ValidateResourceValidatorResourcesRequest>;
+
+/** List of ARM resource IDs corresponding to the resources that were successfully validated */
+export type ResourceValidationResponsePropertiesValidatedResourcesList =
+  Array<string>;
+export const ResourceValidationResponsePropertiesValidatedResourcesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ResourceValidationResponsePropertiesValidatedResourcesList>;
+
+/** Details about the results of the validation */
+export interface ResourceValidationResponseProperties {
+  /** List of ARM resource IDs corresponding to the resources that were successfully validated */
+  validatedResources: ResourceValidationResponsePropertiesValidatedResourcesList;
+}
+export const ResourceValidationResponseProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      validatedResources:
+        ResourceValidationResponsePropertiesValidatedResourcesList,
+    }),
+).annotate({
+  identifier: "ResourceValidationResponseProperties",
+}) as any as S.Schema<ResourceValidationResponseProperties>;
+
+/** Resource validator successful response */
+export interface ResourceValidationResponse {
+  /** Details about the results of the validation */
+  properties: ResourceValidationResponseProperties;
+}
+export const ResourceValidationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: ResourceValidationResponseProperties,
+  }),
+).annotate({
+  identifier: "ResourceValidationResponse",
+}) as any as S.Schema<ResourceValidationResponse>;
 
 export type ApplicationDefinitionsCreateOrUpdateError = AzureOpError;
 /** Creates a new managed application definition. */
@@ -21357,16 +21269,76 @@ export const ApplicationsCreateOrUpdateById: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApplicationsRefreshPermissionsError = AzureOpError;
-/** Refresh Permissions for application. */
-export const ApplicationsRefreshPermissions: API.OperationMethod<
-  ApplicationsRefreshPermissionsRequest,
-  ApplicationsRefreshPermissionsResponse,
-  ApplicationsRefreshPermissionsError,
+export type CancelDeploymentError = AzureOpError;
+/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resource group partially deployed. */
+export const CancelDeployment: API.OperationMethod<
+  CancelDeploymentRequest,
+  CancelDeploymentResponse,
+  CancelDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsRefreshPermissionsRequest,
-  output: ApplicationsRefreshPermissionsResponse,
+  input: CancelDeploymentRequest,
+  output: CancelDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelDeploymentAtManagementGroupScopeError = AzureOpError;
+/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
+export const CancelDeploymentAtManagementGroupScope: API.OperationMethod<
+  CancelDeploymentAtManagementGroupScopeRequest,
+  CancelDeploymentAtManagementGroupScopeResponse,
+  CancelDeploymentAtManagementGroupScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelDeploymentAtManagementGroupScopeRequest,
+  output: CancelDeploymentAtManagementGroupScopeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelDeploymentAtScopeError = AzureOpError;
+/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
+export const CancelDeploymentAtScope: API.OperationMethod<
+  CancelDeploymentAtScopeRequest,
+  CancelDeploymentAtScopeResponse,
+  CancelDeploymentAtScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelDeploymentAtScopeRequest,
+  output: CancelDeploymentAtScopeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelDeploymentAtSubscriptionScopeError = AzureOpError;
+/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
+export const CancelDeploymentAtSubscriptionScope: API.OperationMethod<
+  CancelDeploymentAtSubscriptionScopeRequest,
+  CancelDeploymentAtSubscriptionScopeResponse,
+  CancelDeploymentAtSubscriptionScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelDeploymentAtSubscriptionScopeRequest,
+  output: CancelDeploymentAtSubscriptionScopeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelDeploymentAtTenantScopeError = AzureOpError;
+/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
+export const CancelDeploymentAtTenantScope: API.OperationMethod<
+  CancelDeploymentAtTenantScopeRequest,
+  CancelDeploymentAtTenantScopeResponse,
+  CancelDeploymentAtTenantScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelDeploymentAtTenantScopeRequest,
+  output: CancelDeploymentAtTenantScopeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21387,15 +21359,15 @@ export const CheckResourceName: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CheckSubscriptionZonePeerError = AzureOpError;
+export type CheckSubscriptionZonePeersError = AzureOpError;
 /** Compares a subscriptions logical zone mapping */
-export const CheckSubscriptionZonePeer: API.OperationMethod<
-  CheckSubscriptionZonePeerRequest,
+export const CheckSubscriptionZonePeers: API.OperationMethod<
+  CheckSubscriptionZonePeersRequest,
   CheckZonePeersResult,
-  CheckSubscriptionZonePeerError,
+  CheckSubscriptionZonePeersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CheckSubscriptionZonePeerRequest,
+  input: CheckSubscriptionZonePeersRequest,
   output: CheckZonePeersResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -21427,21 +21399,6 @@ export const CreatePolicyAssignment: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreatePolicyAssignmentRequest,
   output: CreatePolicyAssignmentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataBoundariesPutError = AzureOpError;
-/** Opt-in tenant to data boundary. */
-export const DataBoundariesPut: API.OperationMethod<
-  DataBoundariesPutRequest,
-  DataBoundariesPutResponse,
-  DataBoundariesPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataBoundariesPutRequest,
-  output: DataBoundariesPutResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21642,48 +21599,49 @@ export const DeleteDeploymentStackAtSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteDeploymentStackWhatIfResultAtManagementGroupError =
+export type DeleteDeploymentStacksWhatIfResultsAtManagementGroupError =
   AzureOpError;
 /** Deletes a Deployment stack by name at the specified scope. When operation completes, status code 200 returned without content. */
-export const DeleteDeploymentStackWhatIfResultAtManagementGroup: API.OperationMethod<
-  DeleteDeploymentStackWhatIfResultAtManagementGroupRequest,
-  DeleteDeploymentStackWhatIfResultAtManagementGroupResponse,
-  DeleteDeploymentStackWhatIfResultAtManagementGroupError,
+export const DeleteDeploymentStacksWhatIfResultsAtManagementGroup: API.OperationMethod<
+  DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequest,
+  DeleteDeploymentStacksWhatIfResultsAtManagementGroupResponse,
+  DeleteDeploymentStacksWhatIfResultsAtManagementGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDeploymentStackWhatIfResultAtManagementGroupRequest,
-  output: DeleteDeploymentStackWhatIfResultAtManagementGroupResponse,
+  input: DeleteDeploymentStacksWhatIfResultsAtManagementGroupRequest,
+  output: DeleteDeploymentStacksWhatIfResultsAtManagementGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteDeploymentStackWhatIfResultAtResourceGroupError =
+export type DeleteDeploymentStacksWhatIfResultsAtResourceGroupError =
   AzureOpError;
 /** Deletes a Deployment stack by name at the specified scope. When operation completes, status code 200 returned without content. */
-export const DeleteDeploymentStackWhatIfResultAtResourceGroup: API.OperationMethod<
-  DeleteDeploymentStackWhatIfResultAtResourceGroupRequest,
-  DeleteDeploymentStackWhatIfResultAtResourceGroupResponse,
-  DeleteDeploymentStackWhatIfResultAtResourceGroupError,
+export const DeleteDeploymentStacksWhatIfResultsAtResourceGroup: API.OperationMethod<
+  DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequest,
+  DeleteDeploymentStacksWhatIfResultsAtResourceGroupResponse,
+  DeleteDeploymentStacksWhatIfResultsAtResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDeploymentStackWhatIfResultAtResourceGroupRequest,
-  output: DeleteDeploymentStackWhatIfResultAtResourceGroupResponse,
+  input: DeleteDeploymentStacksWhatIfResultsAtResourceGroupRequest,
+  output: DeleteDeploymentStacksWhatIfResultsAtResourceGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteDeploymentStackWhatIfResultAtSubscriptionError = AzureOpError;
+export type DeleteDeploymentStacksWhatIfResultsAtSubscriptionError =
+  AzureOpError;
 /** Deletes a Deployment stack by name at the specified scope. When operation completes, status code 200 returned without content. */
-export const DeleteDeploymentStackWhatIfResultAtSubscription: API.OperationMethod<
-  DeleteDeploymentStackWhatIfResultAtSubscriptionRequest,
-  DeleteDeploymentStackWhatIfResultAtSubscriptionResponse,
-  DeleteDeploymentStackWhatIfResultAtSubscriptionError,
+export const DeleteDeploymentStacksWhatIfResultsAtSubscription: API.OperationMethod<
+  DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequest,
+  DeleteDeploymentStacksWhatIfResultsAtSubscriptionResponse,
+  DeleteDeploymentStacksWhatIfResultsAtSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDeploymentStackWhatIfResultAtSubscriptionRequest,
-  output: DeleteDeploymentStackWhatIfResultAtSubscriptionResponse,
+  input: DeleteDeploymentStacksWhatIfResultsAtSubscriptionRequest,
+  output: DeleteDeploymentStacksWhatIfResultsAtSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -21834,6 +21792,67 @@ export const DeletePolicyDefinitionVersionAtManagementGroup: API.OperationMethod
 > = /*@__PURE__*/ API.make(() => ({
   input: DeletePolicyDefinitionVersionAtManagementGroupRequest,
   output: DeletePolicyDefinitionVersionAtManagementGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePolicySetDefinitionError = AzureOpError;
+/** This operation deletes the policy set definition in the given subscription with the given name. */
+export const DeletePolicySetDefinition: API.OperationMethod<
+  DeletePolicySetDefinitionRequest,
+  DeletePolicySetDefinitionResponse,
+  DeletePolicySetDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePolicySetDefinitionRequest,
+  output: DeletePolicySetDefinitionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePolicySetDefinitionAtManagementGroupError = AzureOpError;
+/** This operation deletes the policy set definition in the given management group with the given name. */
+export const DeletePolicySetDefinitionAtManagementGroup: API.OperationMethod<
+  DeletePolicySetDefinitionAtManagementGroupRequest,
+  DeletePolicySetDefinitionAtManagementGroupResponse,
+  DeletePolicySetDefinitionAtManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePolicySetDefinitionAtManagementGroupRequest,
+  output: DeletePolicySetDefinitionAtManagementGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePolicySetDefinitionVersionError = AzureOpError;
+/** This operation deletes the policy set definition version in the given subscription with the given name and version. */
+export const DeletePolicySetDefinitionVersion: API.OperationMethod<
+  DeletePolicySetDefinitionVersionRequest,
+  DeletePolicySetDefinitionVersionResponse,
+  DeletePolicySetDefinitionVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePolicySetDefinitionVersionRequest,
+  output: DeletePolicySetDefinitionVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePolicySetDefinitionVersionAtManagementGroupError =
+  AzureOpError;
+/** This operation deletes the policy set definition version in the given management group with the given name and version. */
+export const DeletePolicySetDefinitionVersionAtManagementGroup: API.OperationMethod<
+  DeletePolicySetDefinitionVersionAtManagementGroupRequest,
+  DeletePolicySetDefinitionVersionAtManagementGroupResponse,
+  DeletePolicySetDefinitionVersionAtManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePolicySetDefinitionVersionAtManagementGroupRequest,
+  output: DeletePolicySetDefinitionVersionAtManagementGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22034,81 +22053,6 @@ export const DeploymentsCalculateTemplateHash: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeploymentsCancelError = AzureOpError;
-/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resource group partially deployed. */
-export const DeploymentsCancel: API.OperationMethod<
-  DeploymentsCancelRequest,
-  DeploymentsCancelResponse,
-  DeploymentsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsCancelRequest,
-  output: DeploymentsCancelResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsCancelAtManagementGroupScopeError = AzureOpError;
-/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
-export const DeploymentsCancelAtManagementGroupScope: API.OperationMethod<
-  DeploymentsCancelAtManagementGroupScopeRequest,
-  DeploymentsCancelAtManagementGroupScopeResponse,
-  DeploymentsCancelAtManagementGroupScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsCancelAtManagementGroupScopeRequest,
-  output: DeploymentsCancelAtManagementGroupScopeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsCancelAtScopeError = AzureOpError;
-/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
-export const DeploymentsCancelAtScope: API.OperationMethod<
-  DeploymentsCancelAtScopeRequest,
-  DeploymentsCancelAtScopeResponse,
-  DeploymentsCancelAtScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsCancelAtScopeRequest,
-  output: DeploymentsCancelAtScopeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsCancelAtSubscriptionScopeError = AzureOpError;
-/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
-export const DeploymentsCancelAtSubscriptionScope: API.OperationMethod<
-  DeploymentsCancelAtSubscriptionScopeRequest,
-  DeploymentsCancelAtSubscriptionScopeResponse,
-  DeploymentsCancelAtSubscriptionScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsCancelAtSubscriptionScopeRequest,
-  output: DeploymentsCancelAtSubscriptionScopeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsCancelAtTenantScopeError = AzureOpError;
-/** Cancels a currently running template deployment. You can cancel a deployment only if the provisioningState is Accepted or Running. After the deployment is canceled, the provisioningState is set to Canceled. Canceling a template deployment stops the currently running template deployment and leaves the resources partially deployed. */
-export const DeploymentsCancelAtTenantScope: API.OperationMethod<
-  DeploymentsCancelAtTenantScopeRequest,
-  DeploymentsCancelAtTenantScopeResponse,
-  DeploymentsCancelAtTenantScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsCancelAtTenantScopeRequest,
-  output: DeploymentsCancelAtTenantScopeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeploymentsCreateOrUpdateError = AzureOpError;
 /** Deploys resources to a resource group. You can provide the template and parameters directly in the request or link to JSON files. */
 export const DeploymentsCreateOrUpdate: API.OperationMethod<
@@ -22184,81 +22128,6 @@ export const DeploymentsCreateOrUpdateAtTenantScope: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeploymentsExportTemplateError = AzureOpError;
-/** Exports the template used for specified deployment. */
-export const DeploymentsExportTemplate: API.OperationMethod<
-  DeploymentsExportTemplateRequest,
-  DeploymentExportResult,
-  DeploymentsExportTemplateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsExportTemplateRequest,
-  output: DeploymentExportResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsExportTemplateAtManagementGroupScopeError = AzureOpError;
-/** Exports the template used for specified deployment. */
-export const DeploymentsExportTemplateAtManagementGroupScope: API.OperationMethod<
-  DeploymentsExportTemplateAtManagementGroupScopeRequest,
-  DeploymentExportResult,
-  DeploymentsExportTemplateAtManagementGroupScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsExportTemplateAtManagementGroupScopeRequest,
-  output: DeploymentExportResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsExportTemplateAtScopeError = AzureOpError;
-/** Exports the template used for specified deployment. */
-export const DeploymentsExportTemplateAtScope: API.OperationMethod<
-  DeploymentsExportTemplateAtScopeRequest,
-  DeploymentExportResult,
-  DeploymentsExportTemplateAtScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsExportTemplateAtScopeRequest,
-  output: DeploymentExportResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsExportTemplateAtSubscriptionScopeError = AzureOpError;
-/** Exports the template used for specified deployment. */
-export const DeploymentsExportTemplateAtSubscriptionScope: API.OperationMethod<
-  DeploymentsExportTemplateAtSubscriptionScopeRequest,
-  DeploymentExportResult,
-  DeploymentsExportTemplateAtSubscriptionScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsExportTemplateAtSubscriptionScopeRequest,
-  output: DeploymentExportResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsExportTemplateAtTenantScopeError = AzureOpError;
-/** Exports the template used for specified deployment. */
-export const DeploymentsExportTemplateAtTenantScope: API.OperationMethod<
-  DeploymentsExportTemplateAtTenantScopeRequest,
-  DeploymentExportResult,
-  DeploymentsExportTemplateAtTenantScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsExportTemplateAtTenantScopeRequest,
-  output: DeploymentExportResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeploymentStacksCreateOrUpdateAtManagementGroupError = AzureOpError;
 /** Creates or updates a Deployment stack at the specified scope. */
 export const DeploymentStacksCreateOrUpdateAtManagementGroup: API.OperationMethod<
@@ -22299,96 +22168,6 @@ export const DeploymentStacksCreateOrUpdateAtSubscription: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeploymentStacksCreateOrUpdateAtSubscriptionRequest,
   output: DeploymentStacksCreateOrUpdateAtSubscriptionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentStacksExportTemplateAtManagementGroupError = AzureOpError;
-/** Exports the template used to create the Deployment stack at the specified scope. */
-export const DeploymentStacksExportTemplateAtManagementGroup: API.OperationMethod<
-  DeploymentStacksExportTemplateAtManagementGroupRequest,
-  DeploymentStackTemplateDefinition,
-  DeploymentStacksExportTemplateAtManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentStacksExportTemplateAtManagementGroupRequest,
-  output: DeploymentStackTemplateDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentStacksExportTemplateAtResourceGroupError = AzureOpError;
-/** Exports the template used to create the Deployment stack at the specified scope. */
-export const DeploymentStacksExportTemplateAtResourceGroup: API.OperationMethod<
-  DeploymentStacksExportTemplateAtResourceGroupRequest,
-  DeploymentStackTemplateDefinition,
-  DeploymentStacksExportTemplateAtResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentStacksExportTemplateAtResourceGroupRequest,
-  output: DeploymentStackTemplateDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentStacksExportTemplateAtSubscriptionError = AzureOpError;
-/** Exports the template used to create the Deployment stack at the specified scope. */
-export const DeploymentStacksExportTemplateAtSubscription: API.OperationMethod<
-  DeploymentStacksExportTemplateAtSubscriptionRequest,
-  DeploymentStackTemplateDefinition,
-  DeploymentStacksExportTemplateAtSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentStacksExportTemplateAtSubscriptionRequest,
-  output: DeploymentStackTemplateDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentStacksValidateStackAtManagementGroupError = AzureOpError;
-/** Runs preflight validation on the Deployment stack template at the specified scope to verify its acceptance to Azure Resource Manager. */
-export const DeploymentStacksValidateStackAtManagementGroup: API.OperationMethod<
-  DeploymentStacksValidateStackAtManagementGroupRequest,
-  DeploymentStackValidateResult,
-  DeploymentStacksValidateStackAtManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentStacksValidateStackAtManagementGroupRequest,
-  output: DeploymentStackValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentStacksValidateStackAtResourceGroupError = AzureOpError;
-/** Runs preflight validation on the Deployment stack template at the specified scope to verify its acceptance to Azure Resource Manager. */
-export const DeploymentStacksValidateStackAtResourceGroup: API.OperationMethod<
-  DeploymentStacksValidateStackAtResourceGroupRequest,
-  DeploymentStackValidateResult,
-  DeploymentStacksValidateStackAtResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentStacksValidateStackAtResourceGroupRequest,
-  output: DeploymentStackValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentStacksValidateStackAtSubscriptionError = AzureOpError;
-/** Runs preflight validation on the Deployment stack template at the specified scope to verify its acceptance to Azure Resource Manager. */
-export const DeploymentStacksValidateStackAtSubscription: API.OperationMethod<
-  DeploymentStacksValidateStackAtSubscriptionRequest,
-  DeploymentStackValidateResult,
-  DeploymentStacksValidateStackAtSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentStacksValidateStackAtSubscriptionRequest,
-  output: DeploymentStackValidateResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22490,81 +22269,6 @@ export const DeploymentStacksWhatIfResultsAtSubscriptionWhatIf: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type DeploymentsValidateError = AzureOpError;
-/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
-export const DeploymentsValidate: API.OperationMethod<
-  DeploymentsValidateRequest,
-  DeploymentValidateResult,
-  DeploymentsValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsValidateRequest,
-  output: DeploymentValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsValidateAtManagementGroupScopeError = AzureOpError;
-/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
-export const DeploymentsValidateAtManagementGroupScope: API.OperationMethod<
-  DeploymentsValidateAtManagementGroupScopeRequest,
-  DeploymentValidateResult,
-  DeploymentsValidateAtManagementGroupScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsValidateAtManagementGroupScopeRequest,
-  output: DeploymentValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsValidateAtScopeError = AzureOpError;
-/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
-export const DeploymentsValidateAtScope: API.OperationMethod<
-  DeploymentsValidateAtScopeRequest,
-  DeploymentValidateResult,
-  DeploymentsValidateAtScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsValidateAtScopeRequest,
-  output: DeploymentValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsValidateAtSubscriptionScopeError = AzureOpError;
-/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
-export const DeploymentsValidateAtSubscriptionScope: API.OperationMethod<
-  DeploymentsValidateAtSubscriptionScopeRequest,
-  DeploymentValidateResult,
-  DeploymentsValidateAtSubscriptionScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsValidateAtSubscriptionScopeRequest,
-  output: DeploymentValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsValidateAtTenantScopeError = AzureOpError;
-/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
-export const DeploymentsValidateAtTenantScope: API.OperationMethod<
-  DeploymentsValidateAtTenantScopeRequest,
-  DeploymentValidateResult,
-  DeploymentsValidateAtTenantScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsValidateAtTenantScopeRequest,
-  output: DeploymentValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeploymentsWhatIfError = AzureOpError;
 /** Returns changes that will be made by the deployment if executed at the scope of the resource group. */
 export const DeploymentsWhatIf: API.OperationMethod<
@@ -22625,31 +22329,136 @@ export const DeploymentsWhatIfAtTenantScope: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FeaturesRegisterError = AzureOpError;
-/** Registers the preview feature for the subscription. */
-export const FeaturesRegister: API.OperationMethod<
-  FeaturesRegisterRequest,
-  FeatureResult,
-  FeaturesRegisterError,
+export type ExportDeploymentStackTemplateAtManagementGroupError = AzureOpError;
+/** Exports the template used to create the Deployment stack at the specified scope. */
+export const ExportDeploymentStackTemplateAtManagementGroup: API.OperationMethod<
+  ExportDeploymentStackTemplateAtManagementGroupRequest,
+  DeploymentStackTemplateDefinition,
+  ExportDeploymentStackTemplateAtManagementGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesRegisterRequest,
-  output: FeatureResult,
+  input: ExportDeploymentStackTemplateAtManagementGroupRequest,
+  output: DeploymentStackTemplateDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeaturesUnregisterError = AzureOpError;
-/** Unregisters the preview feature for the subscription. */
-export const FeaturesUnregister: API.OperationMethod<
-  FeaturesUnregisterRequest,
-  FeatureResult,
-  FeaturesUnregisterError,
+export type ExportDeploymentStackTemplateAtResourceGroupError = AzureOpError;
+/** Exports the template used to create the Deployment stack at the specified scope. */
+export const ExportDeploymentStackTemplateAtResourceGroup: API.OperationMethod<
+  ExportDeploymentStackTemplateAtResourceGroupRequest,
+  DeploymentStackTemplateDefinition,
+  ExportDeploymentStackTemplateAtResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesUnregisterRequest,
-  output: FeatureResult,
+  input: ExportDeploymentStackTemplateAtResourceGroupRequest,
+  output: DeploymentStackTemplateDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDeploymentStackTemplateAtSubscriptionError = AzureOpError;
+/** Exports the template used to create the Deployment stack at the specified scope. */
+export const ExportDeploymentStackTemplateAtSubscription: API.OperationMethod<
+  ExportDeploymentStackTemplateAtSubscriptionRequest,
+  DeploymentStackTemplateDefinition,
+  ExportDeploymentStackTemplateAtSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDeploymentStackTemplateAtSubscriptionRequest,
+  output: DeploymentStackTemplateDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDeploymentTemplateError = AzureOpError;
+/** Exports the template used for specified deployment. */
+export const ExportDeploymentTemplate: API.OperationMethod<
+  ExportDeploymentTemplateRequest,
+  DeploymentExportResult,
+  ExportDeploymentTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDeploymentTemplateRequest,
+  output: DeploymentExportResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDeploymentTemplateAtManagementGroupScopeError = AzureOpError;
+/** Exports the template used for specified deployment. */
+export const ExportDeploymentTemplateAtManagementGroupScope: API.OperationMethod<
+  ExportDeploymentTemplateAtManagementGroupScopeRequest,
+  DeploymentExportResult,
+  ExportDeploymentTemplateAtManagementGroupScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDeploymentTemplateAtManagementGroupScopeRequest,
+  output: DeploymentExportResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDeploymentTemplateAtScopeError = AzureOpError;
+/** Exports the template used for specified deployment. */
+export const ExportDeploymentTemplateAtScope: API.OperationMethod<
+  ExportDeploymentTemplateAtScopeRequest,
+  DeploymentExportResult,
+  ExportDeploymentTemplateAtScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDeploymentTemplateAtScopeRequest,
+  output: DeploymentExportResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDeploymentTemplateAtSubscriptionScopeError = AzureOpError;
+/** Exports the template used for specified deployment. */
+export const ExportDeploymentTemplateAtSubscriptionScope: API.OperationMethod<
+  ExportDeploymentTemplateAtSubscriptionScopeRequest,
+  DeploymentExportResult,
+  ExportDeploymentTemplateAtSubscriptionScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDeploymentTemplateAtSubscriptionScopeRequest,
+  output: DeploymentExportResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDeploymentTemplateAtTenantScopeError = AzureOpError;
+/** Exports the template used for specified deployment. */
+export const ExportDeploymentTemplateAtTenantScope: API.OperationMethod<
+  ExportDeploymentTemplateAtTenantScopeRequest,
+  DeploymentExportResult,
+  ExportDeploymentTemplateAtTenantScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDeploymentTemplateAtTenantScopeRequest,
+  output: DeploymentExportResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportResourceGroupTemplateError = AzureOpError;
+/** Captures the specified resource group as a template. */
+export const ExportResourceGroupTemplate: API.OperationMethod<
+  ExportResourceGroupTemplateRequest,
+  ResourceGroupExportResult,
+  ExportResourceGroupTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportResourceGroupTemplateRequest,
+  output: ResourceGroupExportResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -22925,31 +22734,31 @@ export const GetDeploymentScript: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDeploymentScriptLogError = AzureOpError;
+export type GetDeploymentScriptLogsError = AzureOpError;
 /** Gets deployment script logs for a given deployment script name. */
-export const GetDeploymentScriptLog: API.OperationMethod<
-  GetDeploymentScriptLogRequest,
+export const GetDeploymentScriptLogs: API.OperationMethod<
+  GetDeploymentScriptLogsRequest,
   ScriptLogsList,
-  GetDeploymentScriptLogError,
+  GetDeploymentScriptLogsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDeploymentScriptLogRequest,
+  input: GetDeploymentScriptLogsRequest,
   output: ScriptLogsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDeploymentScriptLogDefaultError = AzureOpError;
+export type GetDeploymentScriptLogsDefaultError = AzureOpError;
 /** Gets deployment script logs for a given deployment script name. */
-export const GetDeploymentScriptLogDefault: API.OperationMethod<
-  GetDeploymentScriptLogDefaultRequest,
-  GetDeploymentScriptLogDefaultResponse,
-  GetDeploymentScriptLogDefaultError,
+export const GetDeploymentScriptLogsDefault: API.OperationMethod<
+  GetDeploymentScriptLogsDefaultRequest,
+  GetDeploymentScriptLogsDefaultResponse,
+  GetDeploymentScriptLogsDefaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDeploymentScriptLogDefaultRequest,
-  output: GetDeploymentScriptLogDefaultResponse,
+  input: GetDeploymentScriptLogsDefaultRequest,
+  output: GetDeploymentScriptLogsDefaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23000,46 +22809,47 @@ export const GetDeploymentStackAtSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDeploymentStackWhatIfResultAtManagementGroupError = AzureOpError;
+export type GetDeploymentStacksWhatIfResultsAtManagementGroupError =
+  AzureOpError;
 /** Gets the Deployment stack with the given name. */
-export const GetDeploymentStackWhatIfResultAtManagementGroup: API.OperationMethod<
-  GetDeploymentStackWhatIfResultAtManagementGroupRequest,
-  GetDeploymentStackWhatIfResultAtManagementGroupResponse,
-  GetDeploymentStackWhatIfResultAtManagementGroupError,
+export const GetDeploymentStacksWhatIfResultsAtManagementGroup: API.OperationMethod<
+  GetDeploymentStacksWhatIfResultsAtManagementGroupRequest,
+  GetDeploymentStacksWhatIfResultsAtManagementGroupResponse,
+  GetDeploymentStacksWhatIfResultsAtManagementGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDeploymentStackWhatIfResultAtManagementGroupRequest,
-  output: GetDeploymentStackWhatIfResultAtManagementGroupResponse,
+  input: GetDeploymentStacksWhatIfResultsAtManagementGroupRequest,
+  output: GetDeploymentStacksWhatIfResultsAtManagementGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDeploymentStackWhatIfResultAtResourceGroupError = AzureOpError;
+export type GetDeploymentStacksWhatIfResultsAtResourceGroupError = AzureOpError;
 /** Gets the Deployment stack with the given name. */
-export const GetDeploymentStackWhatIfResultAtResourceGroup: API.OperationMethod<
-  GetDeploymentStackWhatIfResultAtResourceGroupRequest,
-  GetDeploymentStackWhatIfResultAtResourceGroupResponse,
-  GetDeploymentStackWhatIfResultAtResourceGroupError,
+export const GetDeploymentStacksWhatIfResultsAtResourceGroup: API.OperationMethod<
+  GetDeploymentStacksWhatIfResultsAtResourceGroupRequest,
+  GetDeploymentStacksWhatIfResultsAtResourceGroupResponse,
+  GetDeploymentStacksWhatIfResultsAtResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDeploymentStackWhatIfResultAtResourceGroupRequest,
-  output: GetDeploymentStackWhatIfResultAtResourceGroupResponse,
+  input: GetDeploymentStacksWhatIfResultsAtResourceGroupRequest,
+  output: GetDeploymentStacksWhatIfResultsAtResourceGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDeploymentStackWhatIfResultAtSubscriptionError = AzureOpError;
+export type GetDeploymentStacksWhatIfResultsAtSubscriptionError = AzureOpError;
 /** Gets the Deployment stack with the given name. */
-export const GetDeploymentStackWhatIfResultAtSubscription: API.OperationMethod<
-  GetDeploymentStackWhatIfResultAtSubscriptionRequest,
-  GetDeploymentStackWhatIfResultAtSubscriptionResponse,
-  GetDeploymentStackWhatIfResultAtSubscriptionError,
+export const GetDeploymentStacksWhatIfResultsAtSubscription: API.OperationMethod<
+  GetDeploymentStacksWhatIfResultsAtSubscriptionRequest,
+  GetDeploymentStacksWhatIfResultsAtSubscriptionResponse,
+  GetDeploymentStacksWhatIfResultsAtSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDeploymentStackWhatIfResultAtSubscriptionRequest,
-  output: GetDeploymentStackWhatIfResultAtSubscriptionResponse,
+  input: GetDeploymentStacksWhatIfResultsAtSubscriptionRequest,
+  output: GetDeploymentStacksWhatIfResultsAtSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23235,6 +23045,96 @@ export const GetPolicyDefinitionVersionBuiltIn: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetPolicyDefinitionVersionBuiltInRequest,
   output: GetPolicyDefinitionVersionBuiltInResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPolicySetDefinitionError = AzureOpError;
+/** This operation retrieves the policy set definition in the given subscription with the given name. */
+export const GetPolicySetDefinition: API.OperationMethod<
+  GetPolicySetDefinitionRequest,
+  GetPolicySetDefinitionResponse,
+  GetPolicySetDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPolicySetDefinitionRequest,
+  output: GetPolicySetDefinitionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPolicySetDefinitionAtManagementGroupError = AzureOpError;
+/** This operation retrieves the policy set definition in the given management group with the given name. */
+export const GetPolicySetDefinitionAtManagementGroup: API.OperationMethod<
+  GetPolicySetDefinitionAtManagementGroupRequest,
+  GetPolicySetDefinitionAtManagementGroupResponse,
+  GetPolicySetDefinitionAtManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPolicySetDefinitionAtManagementGroupRequest,
+  output: GetPolicySetDefinitionAtManagementGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPolicySetDefinitionBuiltInError = AzureOpError;
+/** This operation retrieves the built-in policy set definition with the given name. */
+export const GetPolicySetDefinitionBuiltIn: API.OperationMethod<
+  GetPolicySetDefinitionBuiltInRequest,
+  GetPolicySetDefinitionBuiltInResponse,
+  GetPolicySetDefinitionBuiltInError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPolicySetDefinitionBuiltInRequest,
+  output: GetPolicySetDefinitionBuiltInResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPolicySetDefinitionVersionError = AzureOpError;
+/** This operation retrieves the policy set definition version in the given subscription with the given name and version. */
+export const GetPolicySetDefinitionVersion: API.OperationMethod<
+  GetPolicySetDefinitionVersionRequest,
+  GetPolicySetDefinitionVersionResponse,
+  GetPolicySetDefinitionVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPolicySetDefinitionVersionRequest,
+  output: GetPolicySetDefinitionVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPolicySetDefinitionVersionAtManagementGroupError = AzureOpError;
+/** This operation retrieves the policy set definition version in the given management group with the given name and version. */
+export const GetPolicySetDefinitionVersionAtManagementGroup: API.OperationMethod<
+  GetPolicySetDefinitionVersionAtManagementGroupRequest,
+  GetPolicySetDefinitionVersionAtManagementGroupResponse,
+  GetPolicySetDefinitionVersionAtManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPolicySetDefinitionVersionAtManagementGroupRequest,
+  output: GetPolicySetDefinitionVersionAtManagementGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPolicySetDefinitionVersionBuiltInError = AzureOpError;
+/** This operation retrieves the built-in policy set definition version with the given name and version. */
+export const GetPolicySetDefinitionVersionBuiltIn: API.OperationMethod<
+  GetPolicySetDefinitionVersionBuiltInRequest,
+  GetPolicySetDefinitionVersionBuiltInResponse,
+  GetPolicySetDefinitionVersionBuiltInError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPolicySetDefinitionVersionBuiltInRequest,
+  output: GetPolicySetDefinitionVersionBuiltInResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23649,12 +23549,12 @@ export type ListDeploymentOperationAtManagementGroupScopeError = AzureOpError;
 /** Gets all deployments operations for a deployment. */
 export const ListDeploymentOperationAtManagementGroupScope: API.OperationMethod<
   ListDeploymentOperationAtManagementGroupScopeRequest,
-  ListDeploymentOperationsResult,
+  DeploymentOperationsListResult,
   ListDeploymentOperationAtManagementGroupScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDeploymentOperationAtManagementGroupScopeRequest,
-  output: ListDeploymentOperationsResult,
+  output: DeploymentOperationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23664,12 +23564,12 @@ export type ListDeploymentOperationAtScopeError = AzureOpError;
 /** Gets all deployments operations for a deployment. */
 export const ListDeploymentOperationAtScope: API.OperationMethod<
   ListDeploymentOperationAtScopeRequest,
-  ListDeploymentOperationsResult,
+  DeploymentOperationsListResult,
   ListDeploymentOperationAtScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDeploymentOperationAtScopeRequest,
-  output: ListDeploymentOperationsResult,
+  output: DeploymentOperationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23679,12 +23579,12 @@ export type ListDeploymentOperationAtSubscriptionScopeError = AzureOpError;
 /** Gets all deployments operations for a deployment. */
 export const ListDeploymentOperationAtSubscriptionScope: API.OperationMethod<
   ListDeploymentOperationAtSubscriptionScopeRequest,
-  ListDeploymentOperationsResult,
+  DeploymentOperationsListResult,
   ListDeploymentOperationAtSubscriptionScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDeploymentOperationAtSubscriptionScopeRequest,
-  output: ListDeploymentOperationsResult,
+  output: DeploymentOperationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23694,12 +23594,12 @@ export type ListDeploymentOperationAtTenantScopeError = AzureOpError;
 /** Gets all deployments operations for a deployment. */
 export const ListDeploymentOperationAtTenantScope: API.OperationMethod<
   ListDeploymentOperationAtTenantScopeRequest,
-  ListDeploymentOperationsResult,
+  DeploymentOperationsListResult,
   ListDeploymentOperationAtTenantScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDeploymentOperationAtTenantScopeRequest,
-  output: ListDeploymentOperationsResult,
+  output: DeploymentOperationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23709,12 +23609,12 @@ export type ListDeploymentOperationsError = AzureOpError;
 /** Gets all deployments operations for a deployment. */
 export const ListDeploymentOperations: API.OperationMethod<
   ListDeploymentOperationsRequest,
-  ListDeploymentOperationsResult,
+  DeploymentOperationsListResult,
   ListDeploymentOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListDeploymentOperationsRequest,
-  output: ListDeploymentOperationsResult,
+  output: DeploymentOperationsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -23795,46 +23695,47 @@ export const ListDeploymentStackAtSubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListDeploymentStackWhatIfResultAtManagementGroupError =
+export type ListDeploymentStacksWhatIfResultsAtManagementGroupError =
   AzureOpError;
 /** Lists Deployment stacks at the specified scope. */
-export const ListDeploymentStackWhatIfResultAtManagementGroup: API.OperationMethod<
-  ListDeploymentStackWhatIfResultAtManagementGroupRequest,
+export const ListDeploymentStacksWhatIfResultsAtManagementGroup: API.OperationMethod<
+  ListDeploymentStacksWhatIfResultsAtManagementGroupRequest,
   DeploymentStacksWhatIfResultListResult,
-  ListDeploymentStackWhatIfResultAtManagementGroupError,
+  ListDeploymentStacksWhatIfResultsAtManagementGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDeploymentStackWhatIfResultAtManagementGroupRequest,
+  input: ListDeploymentStacksWhatIfResultsAtManagementGroupRequest,
   output: DeploymentStacksWhatIfResultListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListDeploymentStackWhatIfResultAtResourceGroupError = AzureOpError;
+export type ListDeploymentStacksWhatIfResultsAtResourceGroupError =
+  AzureOpError;
 /** Lists Deployment stacks at the specified scope. */
-export const ListDeploymentStackWhatIfResultAtResourceGroup: API.OperationMethod<
-  ListDeploymentStackWhatIfResultAtResourceGroupRequest,
+export const ListDeploymentStacksWhatIfResultsAtResourceGroup: API.OperationMethod<
+  ListDeploymentStacksWhatIfResultsAtResourceGroupRequest,
   DeploymentStacksWhatIfResultListResult,
-  ListDeploymentStackWhatIfResultAtResourceGroupError,
+  ListDeploymentStacksWhatIfResultsAtResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDeploymentStackWhatIfResultAtResourceGroupRequest,
+  input: ListDeploymentStacksWhatIfResultsAtResourceGroupRequest,
   output: DeploymentStacksWhatIfResultListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListDeploymentStackWhatIfResultAtSubscriptionError = AzureOpError;
+export type ListDeploymentStacksWhatIfResultsAtSubscriptionError = AzureOpError;
 /** Lists Deployment stacks at the specified scope. */
-export const ListDeploymentStackWhatIfResultAtSubscription: API.OperationMethod<
-  ListDeploymentStackWhatIfResultAtSubscriptionRequest,
+export const ListDeploymentStacksWhatIfResultsAtSubscription: API.OperationMethod<
+  ListDeploymentStacksWhatIfResultsAtSubscriptionRequest,
   DeploymentStacksWhatIfResultListResult,
-  ListDeploymentStackWhatIfResultAtSubscriptionError,
+  ListDeploymentStacksWhatIfResultsAtSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListDeploymentStackWhatIfResultAtSubscriptionRequest,
+  input: ListDeploymentStacksWhatIfResultsAtSubscriptionRequest,
   output: DeploymentStacksWhatIfResultListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -24171,16 +24072,152 @@ export const ListPolicyDefinitionVersions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListPolicySetDefinitionBuiltInError = AzureOpError;
+/** This operation retrieves a list of all the built-in policy set definitions that match the optional given $filter. If $filter='category -eq {value}' is provided, the returned list only includes all built-in policy set definitions whose category match the {value}. */
+export const ListPolicySetDefinitionBuiltIn: API.OperationMethod<
+  ListPolicySetDefinitionBuiltInRequest,
+  PolicySetDefinitionListResult,
+  ListPolicySetDefinitionBuiltInError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionBuiltInRequest,
+  output: PolicySetDefinitionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionByManagementGroupError = AzureOpError;
+/** This operation retrieves a list of all the policy set definitions in a given management group that match the optional given $filter. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, the unfiltered list includes all policy set definitions associated with the management group, including those that apply directly or from management groups that contain the given management group. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given management group. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn and Custom. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
+export const ListPolicySetDefinitionByManagementGroup: API.OperationMethod<
+  ListPolicySetDefinitionByManagementGroupRequest,
+  PolicySetDefinitionListResult,
+  ListPolicySetDefinitionByManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionByManagementGroupRequest,
+  output: PolicySetDefinitionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionsError = AzureOpError;
+/** This operation retrieves a list of all the policy set definitions in a given subscription that match the optional given $filter. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, the unfiltered list includes all policy set definitions associated with the subscription, including those that apply directly or from management groups that contain the given subscription. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given subscription. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn and Custom. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
+export const ListPolicySetDefinitions: API.OperationMethod<
+  ListPolicySetDefinitionsRequest,
+  PolicySetDefinitionListResult,
+  ListPolicySetDefinitionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionsRequest,
+  output: PolicySetDefinitionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionVersionAllError = AzureOpError;
+/** Lists all policy set definition versions within a subscription. This operation lists all the policy set definition versions for all policy set definitions within a subscription. */
+export const ListPolicySetDefinitionVersionAll: API.OperationMethod<
+  ListPolicySetDefinitionVersionAllRequest,
+  PolicySetDefinitionVersionListResult,
+  ListPolicySetDefinitionVersionAllError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionVersionAllRequest,
+  output: PolicySetDefinitionVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionVersionAllAtManagementGroupError =
+  AzureOpError;
+/** Lists all policy set definition versions at management group scope. This operation lists all the policy set definition versions for all policy set definitions at the management group scope. */
+export const ListPolicySetDefinitionVersionAllAtManagementGroup: API.OperationMethod<
+  ListPolicySetDefinitionVersionAllAtManagementGroupRequest,
+  PolicySetDefinitionVersionListResult,
+  ListPolicySetDefinitionVersionAllAtManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionVersionAllAtManagementGroupRequest,
+  output: PolicySetDefinitionVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionVersionAllBuiltinsError = AzureOpError;
+/** Lists all built-in policy set definition versions. This operation lists all the built-in policy set definition versions for all built-in policy set definitions. */
+export const ListPolicySetDefinitionVersionAllBuiltins: API.OperationMethod<
+  ListPolicySetDefinitionVersionAllBuiltinsRequest,
+  PolicySetDefinitionVersionListResult,
+  ListPolicySetDefinitionVersionAllBuiltinsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionVersionAllBuiltinsRequest,
+  output: PolicySetDefinitionVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionVersionBuiltInError = AzureOpError;
+/** This operation retrieves a list of all the built-in policy set definition versions for the given built-in policy set definition. */
+export const ListPolicySetDefinitionVersionBuiltIn: API.OperationMethod<
+  ListPolicySetDefinitionVersionBuiltInRequest,
+  PolicySetDefinitionVersionListResult,
+  ListPolicySetDefinitionVersionBuiltInError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionVersionBuiltInRequest,
+  output: PolicySetDefinitionVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionVersionByManagementGroupError = AzureOpError;
+/** This operation retrieves a list of all the policy set definition versions for the given policy set definition in a given management group. */
+export const ListPolicySetDefinitionVersionByManagementGroup: API.OperationMethod<
+  ListPolicySetDefinitionVersionByManagementGroupRequest,
+  PolicySetDefinitionVersionListResult,
+  ListPolicySetDefinitionVersionByManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionVersionByManagementGroupRequest,
+  output: PolicySetDefinitionVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPolicySetDefinitionVersionsError = AzureOpError;
+/** This operation retrieves a list of all the policy set definition versions for the given policy set definition. */
+export const ListPolicySetDefinitionVersions: API.OperationMethod<
+  ListPolicySetDefinitionVersionsRequest,
+  PolicySetDefinitionVersionListResult,
+  ListPolicySetDefinitionVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPolicySetDefinitionVersionsRequest,
+  output: PolicySetDefinitionVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListPrivateLinkAssociationError = AzureOpError;
 /** Get a private link association for a management group scope */
 export const ListPrivateLinkAssociation: API.OperationMethod<
   ListPrivateLinkAssociationRequest,
-  GetPrivateLinkAssociationResult,
+  PrivateLinkAssociationGetResult,
   ListPrivateLinkAssociationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListPrivateLinkAssociationRequest,
-  output: GetPrivateLinkAssociationResult,
+  output: PrivateLinkAssociationGetResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24196,6 +24233,21 @@ export const ListProviderAtTenantScope: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListProviderAtTenantScopeRequest,
   output: ProviderListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProviderResourceTypesError = AzureOpError;
+/** List the resource types for a specified resource provider. */
+export const ListProviderResourceTypes: API.OperationMethod<
+  ListProviderResourceTypesRequest,
+  ProviderResourceTypeListResult,
+  ListProviderResourceTypesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProviderResourceTypesRequest,
+  output: ProviderResourceTypeListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24280,12 +24332,12 @@ export type ListResourceManagementPrivateLinkError = AzureOpError;
 /** Get all the resource management private links in a subscription. */
 export const ListResourceManagementPrivateLink: API.OperationMethod<
   ListResourceManagementPrivateLinkRequest,
-  ListResourceManagementPrivateLinkResult,
+  ResourceManagementPrivateLinkListResult,
   ListResourceManagementPrivateLinkError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListResourceManagementPrivateLinkRequest,
-  output: ListResourceManagementPrivateLinkResult,
+  output: ResourceManagementPrivateLinkListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24296,12 +24348,12 @@ export type ListResourceManagementPrivateLinkByResourceGroupError =
 /** Get all the resource management private links in a resource group. */
 export const ListResourceManagementPrivateLinkByResourceGroup: API.OperationMethod<
   ListResourceManagementPrivateLinkByResourceGroupRequest,
-  ListResourceManagementPrivateLinkResult,
+  ResourceManagementPrivateLinkListResult,
   ListResourceManagementPrivateLinkByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListResourceManagementPrivateLinkByResourceGroupRequest,
-  output: ListResourceManagementPrivateLinkResult,
+  output: ResourceManagementPrivateLinkListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24388,12 +24440,12 @@ export type ListTagsError = AzureOpError;
 /** Gets a summary of tag usage under the subscription. This operation performs a union of predefined tags, resource tags, resource group tags and subscription tags, and returns a summary of usage for each tag name and value under the given subscription. In case of a large number of tags, this operation may return a previously cached result. */
 export const ListTags: API.OperationMethod<
   ListTagsRequest,
-  ListTagsResult,
+  TagsListResult,
   ListTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTagsRequest,
-  output: ListTagsResult,
+  output: TagsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24448,12 +24500,12 @@ export type ListTemplateSpecVersionBuiltInsError = AzureOpError;
 /** Lists all the Template Spec versions in the specified built-in Template Spec. */
 export const ListTemplateSpecVersionBuiltIns: API.OperationMethod<
   ListTemplateSpecVersionBuiltInsRequest,
-  ListTemplateSpecVersionsResult,
+  TemplateSpecVersionsListResult,
   ListTemplateSpecVersionBuiltInsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTemplateSpecVersionBuiltInsRequest,
-  output: ListTemplateSpecVersionsResult,
+  output: TemplateSpecVersionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24463,12 +24515,12 @@ export type ListTemplateSpecVersionsError = AzureOpError;
 /** Lists all the Template Spec versions in the specified Template Spec. */
 export const ListTemplateSpecVersions: API.OperationMethod<
   ListTemplateSpecVersionsRequest,
-  ListTemplateSpecVersionsResult,
+  TemplateSpecVersionsListResult,
   ListTemplateSpecVersionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ListTemplateSpecVersionsRequest,
-  output: ListTemplateSpecVersionsResult,
+  output: TemplateSpecVersionsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24551,16 +24603,16 @@ export const ManagementLocksCreateOrUpdateByScope: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type MoveResourceResourcesError = AzureOpError;
+/** Moves resources from one resource group to another resource group. The resources to be moved must be in the same source resource group in the source subscription being used. The target resource group may be in a different subscription. When moving resources, both the source group and the target group are locked for the duration of the operation. Write and delete operations are blocked on the groups until the move completes. */
+export const MoveResourceResources: API.OperationMethod<
+  MoveResourceResourcesRequest,
+  MoveResourceResourcesResponse,
+  MoveResourceResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: MoveResourceResourcesRequest,
+  output: MoveResourceResourcesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -24659,126 +24711,6 @@ export const PolicySetDefinitionsCreateOrUpdateAtManagementGroup: API.OperationM
   retry: Retry.Retry,
 }));
 
-export type PolicySetDefinitionsDeleteError = AzureOpError;
-/** This operation deletes the policy set definition in the given subscription with the given name. */
-export const PolicySetDefinitionsDelete: API.OperationMethod<
-  PolicySetDefinitionsDeleteRequest,
-  PolicySetDefinitionsDeleteResponse,
-  PolicySetDefinitionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsDeleteRequest,
-  output: PolicySetDefinitionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionsDeleteAtManagementGroupError = AzureOpError;
-/** This operation deletes the policy set definition in the given management group with the given name. */
-export const PolicySetDefinitionsDeleteAtManagementGroup: API.OperationMethod<
-  PolicySetDefinitionsDeleteAtManagementGroupRequest,
-  PolicySetDefinitionsDeleteAtManagementGroupResponse,
-  PolicySetDefinitionsDeleteAtManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsDeleteAtManagementGroupRequest,
-  output: PolicySetDefinitionsDeleteAtManagementGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionsGetError = AzureOpError;
-/** This operation retrieves the policy set definition in the given subscription with the given name. */
-export const PolicySetDefinitionsGet: API.OperationMethod<
-  PolicySetDefinitionsGetRequest,
-  PolicySetDefinitionsGetResponse,
-  PolicySetDefinitionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsGetRequest,
-  output: PolicySetDefinitionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionsGetAtManagementGroupError = AzureOpError;
-/** This operation retrieves the policy set definition in the given management group with the given name. */
-export const PolicySetDefinitionsGetAtManagementGroup: API.OperationMethod<
-  PolicySetDefinitionsGetAtManagementGroupRequest,
-  PolicySetDefinitionsGetAtManagementGroupResponse,
-  PolicySetDefinitionsGetAtManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsGetAtManagementGroupRequest,
-  output: PolicySetDefinitionsGetAtManagementGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionsGetBuiltInError = AzureOpError;
-/** This operation retrieves the built-in policy set definition with the given name. */
-export const PolicySetDefinitionsGetBuiltIn: API.OperationMethod<
-  PolicySetDefinitionsGetBuiltInRequest,
-  PolicySetDefinitionsGetBuiltInResponse,
-  PolicySetDefinitionsGetBuiltInError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsGetBuiltInRequest,
-  output: PolicySetDefinitionsGetBuiltInResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionsListError = AzureOpError;
-/** This operation retrieves a list of all the policy set definitions in a given subscription that match the optional given $filter. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, the unfiltered list includes all policy set definitions associated with the subscription, including those that apply directly or from management groups that contain the given subscription. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given subscription. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn and Custom. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
-export const PolicySetDefinitionsList: API.OperationMethod<
-  PolicySetDefinitionsListRequest,
-  PolicySetDefinitionListResult,
-  PolicySetDefinitionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsListRequest,
-  output: PolicySetDefinitionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionsListBuiltInError = AzureOpError;
-/** This operation retrieves a list of all the built-in policy set definitions that match the optional given $filter. If $filter='category -eq {value}' is provided, the returned list only includes all built-in policy set definitions whose category match the {value}. */
-export const PolicySetDefinitionsListBuiltIn: API.OperationMethod<
-  PolicySetDefinitionsListBuiltInRequest,
-  PolicySetDefinitionListResult,
-  PolicySetDefinitionsListBuiltInError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsListBuiltInRequest,
-  output: PolicySetDefinitionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionsListByManagementGroupError = AzureOpError;
-/** This operation retrieves a list of all the policy set definitions in a given management group that match the optional given $filter. Valid values for $filter are: 'atExactScope()', 'policyType -eq {value}' or 'category eq '{value}''. If $filter is not provided, the unfiltered list includes all policy set definitions associated with the management group, including those that apply directly or from management groups that contain the given management group. If $filter=atExactScope() is provided, the returned list only includes all policy set definitions that at the given management group. If $filter='policyType -eq {value}' is provided, the returned list only includes all policy set definitions whose type match the {value}. Possible policyType values are NotSpecified, BuiltIn and Custom. If $filter='category -eq {value}' is provided, the returned list only includes all policy set definitions whose category match the {value}. */
-export const PolicySetDefinitionsListByManagementGroup: API.OperationMethod<
-  PolicySetDefinitionsListByManagementGroupRequest,
-  PolicySetDefinitionListResult,
-  PolicySetDefinitionsListByManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionsListByManagementGroupRequest,
-  output: PolicySetDefinitionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PolicySetDefinitionVersionsCreateOrUpdateError = AzureOpError;
 /** This operation creates or updates a policy set definition version in the given subscription with the given name and version. */
 export const PolicySetDefinitionVersionsCreateOrUpdate: API.OperationMethod<
@@ -24805,174 +24737,6 @@ export const PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroup: API.Ope
 > = /*@__PURE__*/ API.make(() => ({
   input: PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroupRequest,
   output: PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsDeleteError = AzureOpError;
-/** This operation deletes the policy set definition version in the given subscription with the given name and version. */
-export const PolicySetDefinitionVersionsDelete: API.OperationMethod<
-  PolicySetDefinitionVersionsDeleteRequest,
-  PolicySetDefinitionVersionsDeleteResponse,
-  PolicySetDefinitionVersionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsDeleteRequest,
-  output: PolicySetDefinitionVersionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsDeleteAtManagementGroupError =
-  AzureOpError;
-/** This operation deletes the policy set definition version in the given management group with the given name and version. */
-export const PolicySetDefinitionVersionsDeleteAtManagementGroup: API.OperationMethod<
-  PolicySetDefinitionVersionsDeleteAtManagementGroupRequest,
-  PolicySetDefinitionVersionsDeleteAtManagementGroupResponse,
-  PolicySetDefinitionVersionsDeleteAtManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsDeleteAtManagementGroupRequest,
-  output: PolicySetDefinitionVersionsDeleteAtManagementGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsGetError = AzureOpError;
-/** This operation retrieves the policy set definition version in the given subscription with the given name and version. */
-export const PolicySetDefinitionVersionsGet: API.OperationMethod<
-  PolicySetDefinitionVersionsGetRequest,
-  PolicySetDefinitionVersionsGetResponse,
-  PolicySetDefinitionVersionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsGetRequest,
-  output: PolicySetDefinitionVersionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsGetAtManagementGroupError = AzureOpError;
-/** This operation retrieves the policy set definition version in the given management group with the given name and version. */
-export const PolicySetDefinitionVersionsGetAtManagementGroup: API.OperationMethod<
-  PolicySetDefinitionVersionsGetAtManagementGroupRequest,
-  PolicySetDefinitionVersionsGetAtManagementGroupResponse,
-  PolicySetDefinitionVersionsGetAtManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsGetAtManagementGroupRequest,
-  output: PolicySetDefinitionVersionsGetAtManagementGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsGetBuiltInError = AzureOpError;
-/** This operation retrieves the built-in policy set definition version with the given name and version. */
-export const PolicySetDefinitionVersionsGetBuiltIn: API.OperationMethod<
-  PolicySetDefinitionVersionsGetBuiltInRequest,
-  PolicySetDefinitionVersionsGetBuiltInResponse,
-  PolicySetDefinitionVersionsGetBuiltInError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsGetBuiltInRequest,
-  output: PolicySetDefinitionVersionsGetBuiltInResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsListError = AzureOpError;
-/** This operation retrieves a list of all the policy set definition versions for the given policy set definition. */
-export const PolicySetDefinitionVersionsList: API.OperationMethod<
-  PolicySetDefinitionVersionsListRequest,
-  PolicySetDefinitionVersionListResult,
-  PolicySetDefinitionVersionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsListRequest,
-  output: PolicySetDefinitionVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsListAllError = AzureOpError;
-/** Lists all policy set definition versions within a subscription. This operation lists all the policy set definition versions for all policy set definitions within a subscription. */
-export const PolicySetDefinitionVersionsListAll: API.OperationMethod<
-  PolicySetDefinitionVersionsListAllRequest,
-  PolicySetDefinitionVersionListResult,
-  PolicySetDefinitionVersionsListAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsListAllRequest,
-  output: PolicySetDefinitionVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsListAllAtManagementGroupError =
-  AzureOpError;
-/** Lists all policy set definition versions at management group scope. This operation lists all the policy set definition versions for all policy set definitions at the management group scope. */
-export const PolicySetDefinitionVersionsListAllAtManagementGroup: API.OperationMethod<
-  PolicySetDefinitionVersionsListAllAtManagementGroupRequest,
-  PolicySetDefinitionVersionListResult,
-  PolicySetDefinitionVersionsListAllAtManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsListAllAtManagementGroupRequest,
-  output: PolicySetDefinitionVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsListAllBuiltinsError = AzureOpError;
-/** Lists all built-in policy set definition versions. This operation lists all the built-in policy set definition versions for all built-in policy set definitions. */
-export const PolicySetDefinitionVersionsListAllBuiltins: API.OperationMethod<
-  PolicySetDefinitionVersionsListAllBuiltinsRequest,
-  PolicySetDefinitionVersionListResult,
-  PolicySetDefinitionVersionsListAllBuiltinsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsListAllBuiltinsRequest,
-  output: PolicySetDefinitionVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsListBuiltInError = AzureOpError;
-/** This operation retrieves a list of all the built-in policy set definition versions for the given built-in policy set definition. */
-export const PolicySetDefinitionVersionsListBuiltIn: API.OperationMethod<
-  PolicySetDefinitionVersionsListBuiltInRequest,
-  PolicySetDefinitionVersionListResult,
-  PolicySetDefinitionVersionsListBuiltInError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsListBuiltInRequest,
-  output: PolicySetDefinitionVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicySetDefinitionVersionsListByManagementGroupError =
-  AzureOpError;
-/** This operation retrieves a list of all the policy set definition versions for the given policy set definition in a given management group. */
-export const PolicySetDefinitionVersionsListByManagementGroup: API.OperationMethod<
-  PolicySetDefinitionVersionsListByManagementGroupRequest,
-  PolicySetDefinitionVersionListResult,
-  PolicySetDefinitionVersionsListByManagementGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicySetDefinitionVersionsListByManagementGroupRequest,
-  output: PolicySetDefinitionVersionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25023,36 +24787,6 @@ export const PolicyTokensAcquireAtResourceGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkAssociationPutError = AzureOpError;
-/** Create a PrivateLinkAssociation */
-export const PrivateLinkAssociationPut: API.OperationMethod<
-  PrivateLinkAssociationPutRequest,
-  PrivateLinkAssociation,
-  PrivateLinkAssociationPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkAssociationPutRequest,
-  output: PrivateLinkAssociation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProviderResourceTypesList2Error = AzureOpError;
-/** List the resource types for a specified resource provider. */
-export const ProviderResourceTypesList2: API.OperationMethod<
-  ProviderResourceTypesListRequest,
-  ProviderResourceTypeListResult,
-  ProviderResourceTypesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProviderResourceTypesListRequest,
-  output: ProviderResourceTypeListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProvidersProviderPermissionsError = AzureOpError;
 /** Get the provider permissions. */
 export const ProvidersProviderPermissions: API.OperationMethod<
@@ -25068,46 +24802,106 @@ export const ProvidersProviderPermissions: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProvidersRegisterError = AzureOpError;
+export type PutDataBoundaryError = AzureOpError;
+/** Opt-in tenant to data boundary. */
+export const PutDataBoundary: API.OperationMethod<
+  PutDataBoundaryRequest,
+  PutDataBoundaryResponse,
+  PutDataBoundaryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutDataBoundaryRequest,
+  output: PutDataBoundaryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutPrivateLinkAssociationError = AzureOpError;
+/** Create a PrivateLinkAssociation */
+export const PutPrivateLinkAssociation: API.OperationMethod<
+  PutPrivateLinkAssociationRequest,
+  PrivateLinkAssociation,
+  PutPrivateLinkAssociationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutPrivateLinkAssociationRequest,
+  output: PrivateLinkAssociation,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutResourceManagementPrivateLinkError = AzureOpError;
+/** Create a resource management group private link. */
+export const PutResourceManagementPrivateLink: API.OperationMethod<
+  PutResourceManagementPrivateLinkRequest,
+  ResourceManagementPrivateLink,
+  PutResourceManagementPrivateLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutResourceManagementPrivateLinkRequest,
+  output: ResourceManagementPrivateLink,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefreshApplicationPermissionsError = AzureOpError;
+/** Refresh Permissions for application. */
+export const RefreshApplicationPermissions: API.OperationMethod<
+  RefreshApplicationPermissionsRequest,
+  RefreshApplicationPermissionsResponse,
+  RefreshApplicationPermissionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefreshApplicationPermissionsRequest,
+  output: RefreshApplicationPermissionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegisterFeatureError = AzureOpError;
+/** Registers the preview feature for the subscription. */
+export const RegisterFeature: API.OperationMethod<
+  RegisterFeatureRequest,
+  FeatureResult,
+  RegisterFeatureError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegisterFeatureRequest,
+  output: FeatureResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegisterProviderError = AzureOpError;
 /** Registers a subscription with a resource provider. */
-export const ProvidersRegister: API.OperationMethod<
-  ProvidersRegisterRequest,
+export const RegisterProvider: API.OperationMethod<
+  RegisterProviderRequest,
   Provider,
-  ProvidersRegisterError,
+  RegisterProviderError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProvidersRegisterRequest,
+  input: RegisterProviderRequest,
   output: Provider,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProvidersRegisterAtManagementGroupScopeError = AzureOpError;
+export type RegisterProviderAtManagementGroupScopeError = AzureOpError;
 /** Registers a management group with a resource provider. Use this operation to register a resource provider with resource types that can be deployed at the management group scope. It does not recursively register subscriptions within the management group. Instead, you must register subscriptions individually. */
-export const ProvidersRegisterAtManagementGroupScope: API.OperationMethod<
-  ProvidersRegisterAtManagementGroupScopeRequest,
-  ProvidersRegisterAtManagementGroupScopeResponse,
-  ProvidersRegisterAtManagementGroupScopeError,
+export const RegisterProviderAtManagementGroupScope: API.OperationMethod<
+  RegisterProviderAtManagementGroupScopeRequest,
+  RegisterProviderAtManagementGroupScopeResponse,
+  RegisterProviderAtManagementGroupScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProvidersRegisterAtManagementGroupScopeRequest,
-  output: ProvidersRegisterAtManagementGroupScopeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProvidersUnregisterError = AzureOpError;
-/** Unregisters a subscription from a resource provider. */
-export const ProvidersUnregister: API.OperationMethod<
-  ProvidersUnregisterRequest,
-  Provider,
-  ProvidersUnregisterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProvidersUnregisterRequest,
-  output: Provider,
+  input: RegisterProviderAtManagementGroupScopeRequest,
+  output: RegisterProviderAtManagementGroupScopeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25128,21 +24922,6 @@ export const ResourceGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ResourceGroupsExportTemplateError = AzureOpError;
-/** Captures the specified resource group as a template. */
-export const ResourceGroupsExportTemplate: API.OperationMethod<
-  ResourceGroupsExportTemplateRequest,
-  ResourceGroupExportResult,
-  ResourceGroupsExportTemplateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceGroupsExportTemplateRequest,
-  output: ResourceGroupExportResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ResourceLinksCreateOrUpdateError = AzureOpError;
 /** Creates or updates a resource link between the specified resources. */
 export const ResourceLinksCreateOrUpdate: API.OperationMethod<
@@ -25153,21 +24932,6 @@ export const ResourceLinksCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ResourceLinksCreateOrUpdateRequest,
   output: ResourceLink,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourceManagementPrivateLinkPutError = AzureOpError;
-/** Create a resource management group private link. */
-export const ResourceManagementPrivateLinkPut: API.OperationMethod<
-  ResourceManagementPrivateLinkPutRequest,
-  ResourceManagementPrivateLink,
-  ResourceManagementPrivateLinkPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceManagementPrivateLinkPutRequest,
-  output: ResourceManagementPrivateLink,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25203,21 +24967,6 @@ export const ResourcesCreateOrUpdateById: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ResourcesMoveResourcesError = AzureOpError;
-/** Moves resources from one resource group to another resource group. The resources to be moved must be in the same source resource group in the source subscription being used. The target resource group may be in a different subscription. When moving resources, both the source group and the target group are locked for the duration of the operation. Write and delete operations are blocked on the groups until the move completes. */
-export const ResourcesMoveResources: API.OperationMethod<
-  ResourcesMoveResourcesRequest,
-  ResourcesMoveResourcesResponse,
-  ResourcesMoveResourcesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourcesMoveResourcesRequest,
-  output: ResourcesMoveResourcesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ResourcesValidateMoveResourcesError = AzureOpError;
 /** Validates whether resources can be moved from one resource group to another resource group. This operation checks whether the specified resources can be moved to the target. The resources to be moved must be in the same source resource group in the source subscription being used. The target resource group may be in a different subscription. If validation succeeds, it returns HTTP response code 204 (no content). If validation fails, it returns HTTP response code 409 (Conflict) with an error message. Retrieve the URL in the Location header value to check the result of the long-running operation. */
 export const ResourcesValidateMoveResources: API.OperationMethod<
@@ -25228,21 +24977,6 @@ export const ResourcesValidateMoveResources: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ResourcesValidateMoveResourcesRequest,
   output: ResourcesValidateMoveResourcesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourceValidatorValidateResourcesError = AzureOpError;
-/** Validates multiple ARM resources. */
-export const ResourceValidatorValidateResources: API.OperationMethod<
-  ResourceValidatorValidateResourcesRequest,
-  ResourceValidationResponse,
-  ResourceValidatorValidateResourcesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceValidatorValidateResourcesRequest,
-  output: ResourceValidationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25333,6 +25067,36 @@ export const TemplateSpecVersionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TemplateSpecVersionsCreateOrUpdateRequest,
   output: TemplateSpecVersionsCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UnregisterFeatureError = AzureOpError;
+/** Unregisters the preview feature for the subscription. */
+export const UnregisterFeature: API.OperationMethod<
+  UnregisterFeatureRequest,
+  FeatureResult,
+  UnregisterFeatureError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnregisterFeatureRequest,
+  output: FeatureResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UnregisterProviderError = AzureOpError;
+/** Unregisters a subscription from a resource provider. */
+export const UnregisterProvider: API.OperationMethod<
+  UnregisterProviderRequest,
+  Provider,
+  UnregisterProviderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnregisterProviderRequest,
+  output: Provider,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -25498,6 +25262,141 @@ export const UpdateTemplateSpecVersion: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateTemplateSpecVersionRequest,
   output: UpdateTemplateSpecVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentError = AzureOpError;
+/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
+export const ValidateDeployment: API.OperationMethod<
+  ValidateDeploymentRequest,
+  DeploymentValidateResult,
+  ValidateDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentRequest,
+  output: DeploymentValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentAtManagementGroupScopeError = AzureOpError;
+/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
+export const ValidateDeploymentAtManagementGroupScope: API.OperationMethod<
+  ValidateDeploymentAtManagementGroupScopeRequest,
+  DeploymentValidateResult,
+  ValidateDeploymentAtManagementGroupScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentAtManagementGroupScopeRequest,
+  output: DeploymentValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentAtScopeError = AzureOpError;
+/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
+export const ValidateDeploymentAtScope: API.OperationMethod<
+  ValidateDeploymentAtScopeRequest,
+  DeploymentValidateResult,
+  ValidateDeploymentAtScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentAtScopeRequest,
+  output: DeploymentValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentAtSubscriptionScopeError = AzureOpError;
+/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
+export const ValidateDeploymentAtSubscriptionScope: API.OperationMethod<
+  ValidateDeploymentAtSubscriptionScopeRequest,
+  DeploymentValidateResult,
+  ValidateDeploymentAtSubscriptionScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentAtSubscriptionScopeRequest,
+  output: DeploymentValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentAtTenantScopeError = AzureOpError;
+/** Validates whether the specified template is syntactically correct and will be accepted by Azure Resource Manager.. */
+export const ValidateDeploymentAtTenantScope: API.OperationMethod<
+  ValidateDeploymentAtTenantScopeRequest,
+  DeploymentValidateResult,
+  ValidateDeploymentAtTenantScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentAtTenantScopeRequest,
+  output: DeploymentValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentStackStackAtManagementGroupError = AzureOpError;
+/** Runs preflight validation on the Deployment stack template at the specified scope to verify its acceptance to Azure Resource Manager. */
+export const ValidateDeploymentStackStackAtManagementGroup: API.OperationMethod<
+  ValidateDeploymentStackStackAtManagementGroupRequest,
+  DeploymentStackValidateResult,
+  ValidateDeploymentStackStackAtManagementGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentStackStackAtManagementGroupRequest,
+  output: DeploymentStackValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentStackStackAtResourceGroupError = AzureOpError;
+/** Runs preflight validation on the Deployment stack template at the specified scope to verify its acceptance to Azure Resource Manager. */
+export const ValidateDeploymentStackStackAtResourceGroup: API.OperationMethod<
+  ValidateDeploymentStackStackAtResourceGroupRequest,
+  DeploymentStackValidateResult,
+  ValidateDeploymentStackStackAtResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentStackStackAtResourceGroupRequest,
+  output: DeploymentStackValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateDeploymentStackStackAtSubscriptionError = AzureOpError;
+/** Runs preflight validation on the Deployment stack template at the specified scope to verify its acceptance to Azure Resource Manager. */
+export const ValidateDeploymentStackStackAtSubscription: API.OperationMethod<
+  ValidateDeploymentStackStackAtSubscriptionRequest,
+  DeploymentStackValidateResult,
+  ValidateDeploymentStackStackAtSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateDeploymentStackStackAtSubscriptionRequest,
+  output: DeploymentStackValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateResourceValidatorResourcesError = AzureOpError;
+/** Validates multiple ARM resources. */
+export const ValidateResourceValidatorResources: API.OperationMethod<
+  ValidateResourceValidatorResourcesRequest,
+  ResourceValidationResponse,
+  ValidateResourceValidatorResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateResourceValidatorResourcesRequest,
+  output: ResourceValidationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

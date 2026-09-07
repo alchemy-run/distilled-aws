@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.synapse#ListAzureAdOnlyAuthentications": {
+    "com.azure.synapse#ListAzureADOnlyAuthentications": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#ListAzureAdOnlyAuthenticationsRequest"
+        "target": "com.azure.synapse#ListAzureADOnlyAuthenticationsRequest"
       },
       "output": {
         "target": "com.azure.synapse#AzureADOnlyAuthenticationListResult"
@@ -150,7 +151,7 @@
         "smithy.api#documentation": "property configuration state"
       }
     },
-    "com.azure.synapse#ListAzureAdOnlyAuthenticationsRequest": {
+    "com.azure.synapse#ListAzureADOnlyAuthenticationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -182,13 +183,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#CreateAzureAdOnlyAuthentication": {
+    "com.azure.synapse#CreateAzureADOnlyAuthentication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#CreateAzureAdOnlyAuthenticationRequest"
+        "target": "com.azure.synapse#CreateAzureADOnlyAuthenticationRequest"
       },
       "output": {
-        "target": "com.azure.synapse#CreateAzureAdOnlyAuthenticationResponse"
+        "target": "com.azure.synapse#CreateAzureADOnlyAuthenticationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -201,7 +202,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#CreateAzureAdOnlyAuthenticationResponse": {
+    "com.azure.synapse#CreateAzureADOnlyAuthenticationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -233,7 +234,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#CreateAzureAdOnlyAuthenticationRequest": {
+    "com.azure.synapse#CreateAzureADOnlyAuthenticationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -261,7 +262,7 @@
           }
         },
         "azureADOnlyAuthenticationName": {
-          "target": "com.azure.synapse#AzureADOnlyAuthenticationsCreateRequestAzureADOnlyAuthenticationName",
+          "target": "com.azure.synapse#CreateAzureADOnlyAuthenticationRequestAzureADOnlyAuthenticationName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -294,7 +295,7 @@
         "smithy.api#documentation": "Properties of a active directory only authentication."
       }
     },
-    "com.azure.synapse#AzureADOnlyAuthenticationsCreateRequestAzureADOnlyAuthenticationName": {
+    "com.azure.synapse#CreateAzureADOnlyAuthenticationRequestAzureADOnlyAuthenticationName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -306,13 +307,13 @@
       },
       "traits": {}
     },
-    "com.azure.synapse#GetAzureAdOnlyAuthentication": {
+    "com.azure.synapse#GetAzureADOnlyAuthentication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#GetAzureAdOnlyAuthenticationRequest"
+        "target": "com.azure.synapse#GetAzureADOnlyAuthenticationRequest"
       },
       "output": {
-        "target": "com.azure.synapse#GetAzureAdOnlyAuthenticationResponse"
+        "target": "com.azure.synapse#GetAzureADOnlyAuthenticationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -325,7 +326,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#GetAzureAdOnlyAuthenticationResponse": {
+    "com.azure.synapse#GetAzureADOnlyAuthenticationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -357,7 +358,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#GetAzureAdOnlyAuthenticationRequest": {
+    "com.azure.synapse#GetAzureADOnlyAuthenticationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -385,7 +386,7 @@
           }
         },
         "azureADOnlyAuthenticationName": {
-          "target": "com.azure.synapse#AzureADOnlyAuthenticationsGetRequestAzureADOnlyAuthenticationName",
+          "target": "com.azure.synapse#GetAzureADOnlyAuthenticationRequestAzureADOnlyAuthenticationName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -397,7 +398,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#AzureADOnlyAuthenticationsGetRequestAzureADOnlyAuthenticationName": {
+    "com.azure.synapse#GetAzureADOnlyAuthenticationRequestAzureADOnlyAuthenticationName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -1000,7 +1001,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#BigDataPoolsDeleteResponseTagsMap",
+          "target": "com.azure.synapse#DeleteBigDataPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1023,7 +1024,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#BigDataPoolsDeleteResponseTagsMap": {
+    "com.azure.synapse#DeleteBigDataPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1116,7 +1117,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#BigDataPoolsUpdateResponseTagsMap",
+          "target": "com.azure.synapse#UpdateBigDataPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1139,7 +1140,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#BigDataPoolsUpdateResponseTagsMap": {
+    "com.azure.synapse#UpdateBigDataPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1187,7 +1188,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#BigDataPoolsUpdateRequestTagsMap",
+          "target": "com.azure.synapse#UpdateBigDataPoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Updated tags for the Big Data pool"
           }
@@ -1197,7 +1198,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#BigDataPoolsUpdateRequestTagsMap": {
+    "com.azure.synapse#UpdateBigDataPoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1703,7 +1704,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#BigDataPoolsGetResponseTagsMap",
+          "target": "com.azure.synapse#GetBigDataPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1726,7 +1727,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#BigDataPoolsGetResponseTagsMap": {
+    "com.azure.synapse#GetBigDataPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1857,10 +1858,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#IpFirewallRulesReplaceAll": {
+    "com.azure.synapse#ReplaceIpFirewallRuleAll": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#IpFirewallRulesReplaceAllRequest"
+        "target": "com.azure.synapse#ReplaceIpFirewallRuleAllRequest"
       },
       "output": {
         "target": "com.azure.synapse#ReplaceAllFirewallRulesOperationResponse"
@@ -1890,7 +1891,7 @@
         "smithy.api#documentation": "An existing operation for replacing the firewall rules"
       }
     },
-    "com.azure.synapse#IpFirewallRulesReplaceAllRequest": {
+    "com.azure.synapse#ReplaceIpFirewallRuleAllRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1918,7 +1919,7 @@
           }
         },
         "ipFirewallRules": {
-          "target": "com.azure.synapse#IpFirewallRulesReplaceAllRequestIpFirewallRulesMap",
+          "target": "com.azure.synapse#ReplaceIpFirewallRuleAllRequestIpFirewallRulesMap",
           "traits": {
             "smithy.api#documentation": "IP firewall rule properties"
           }
@@ -1928,7 +1929,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#IpFirewallRulesReplaceAllRequestIpFirewallRulesMap": {
+    "com.azure.synapse#ReplaceIpFirewallRuleAllRequestIpFirewallRulesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2533,10 +2534,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependencyEndpoints": {
+    "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest"
+        "target": "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.synapse#IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse"
@@ -2647,7 +2648,7 @@
         "smithy.api#documentation": "The details of Azure-SSIS integration runtime outbound network dependency endpoint."
       }
     },
-    "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest": {
+    "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2882,10 +2883,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#IntegrationRuntimeObjectMetadataRefresh": {
+    "com.azure.synapse#RefreshIntegrationRuntimeObjectMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#IntegrationRuntimeObjectMetadataRefreshRequest"
+        "target": "com.azure.synapse#RefreshIntegrationRuntimeObjectMetadataRequest"
       },
       "output": {
         "target": "com.azure.synapse#SsisObjectMetadataStatusResponse"
@@ -2933,7 +2934,7 @@
         "smithy.api#documentation": "The status of the operation."
       }
     },
-    "com.azure.synapse#IntegrationRuntimeObjectMetadataRefreshRequest": {
+    "com.azure.synapse#RefreshIntegrationRuntimeObjectMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3255,10 +3256,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#IntegrationRuntimeAuthKeysRegenerate": {
+    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#IntegrationRuntimeAuthKeysRegenerateRequest"
+        "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequest"
       },
       "output": {
         "target": "com.azure.synapse#IntegrationRuntimeAuthKeys"
@@ -3274,7 +3275,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#IntegrationRuntimeAuthKeysRegenerateRequest": {
+    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3310,7 +3311,7 @@
           }
         },
         "keyName": {
-          "target": "com.azure.synapse#IntegrationRuntimeAuthKeysRegenerateRequestKeyName",
+          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequestKeyName",
           "traits": {
             "smithy.api#documentation": "The name of the authentication key to regenerate."
           }
@@ -3320,7 +3321,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#IntegrationRuntimeAuthKeysRegenerateRequestKeyName": {
+    "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeysRequestKeyName": {
       "type": "enum",
       "members": {
         "AUTHKEY1": {
@@ -3643,10 +3644,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#IntegrationRuntimeCredentialsSync": {
+    "com.azure.synapse#SyncIntegrationRuntimeCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#IntegrationRuntimeCredentialsSyncRequest"
+        "target": "com.azure.synapse#SyncIntegrationRuntimeCredentialsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3662,7 +3663,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#IntegrationRuntimeCredentialsSyncRequest": {
+    "com.azure.synapse#SyncIntegrationRuntimeCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4804,13 +4805,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#DeleteKey": {
+    "com.azure.synapse#DeleteKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#DeleteKeyRequest"
+        "target": "com.azure.synapse#DeleteKeysRequest"
       },
       "output": {
-        "target": "com.azure.synapse#DeleteKeyResponse"
+        "target": "com.azure.synapse#DeleteKeysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4823,7 +4824,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#DeleteKeyResponse": {
+    "com.azure.synapse#DeleteKeysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4875,7 +4876,7 @@
         "smithy.api#documentation": "Key properties"
       }
     },
-    "com.azure.synapse#DeleteKeyRequest": {
+    "com.azure.synapse#DeleteKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5012,13 +5013,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#GetKey": {
+    "com.azure.synapse#GetKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#GetKeyRequest"
+        "target": "com.azure.synapse#GetKeysRequest"
       },
       "output": {
-        "target": "com.azure.synapse#GetKeyResponse"
+        "target": "com.azure.synapse#GetKeysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5031,7 +5032,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#GetKeyResponse": {
+    "com.azure.synapse#GetKeysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5063,7 +5064,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#GetKeyRequest": {
+    "com.azure.synapse#GetKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5103,10 +5104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#ListKeyByWorkspace": {
+    "com.azure.synapse#ListKeysByWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#ListKeyByWorkspaceRequest"
+        "target": "com.azure.synapse#ListKeysByWorkspaceRequest"
       },
       "output": {
         "target": "com.azure.synapse#KeyInfoListResult"
@@ -5183,7 +5184,7 @@
         "smithy.api#documentation": "A workspace key"
       }
     },
-    "com.azure.synapse#ListKeyByWorkspaceRequest": {
+    "com.azure.synapse#ListKeysByWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5432,7 +5433,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.synapse#LibraryGetResponseProperties",
+          "target": "com.azure.synapse#GetLibraryResponseProperties",
           "traits": {
             "smithy.api#documentation": "Library/package information of a Big Data pool powered by Apache Spark",
             "smithy.api#required": {}
@@ -5443,7 +5444,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#LibraryGetResponseProperties": {
+    "com.azure.synapse#GetLibraryResponseProperties": {
       "type": "structure",
       "members": {
         "name": {
@@ -5568,7 +5569,7 @@
           }
         },
         "status": {
-          "target": "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseStatus",
+          "target": "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseStatus",
           "traits": {
             "smithy.api#documentation": "Operation status"
           }
@@ -5580,7 +5581,7 @@
           }
         },
         "error": {
-          "target": "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseError",
+          "target": "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseError",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
@@ -5608,7 +5609,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseError": {
+    "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseError": {
       "type": "structure",
       "members": {
         "code": {
@@ -5630,13 +5631,13 @@
           }
         },
         "details": {
-          "target": "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseErrorDetailsList",
+          "target": "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseErrorDetailsList",
           "traits": {
             "smithy.api#documentation": "The error details."
           }
         },
         "additionalInfo": {
-          "target": "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseErrorAdditionalInfoList",
+          "target": "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseErrorAdditionalInfoList",
           "traits": {
             "smithy.api#documentation": "The error additional info."
           }
@@ -5646,7 +5647,7 @@
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseErrorAdditionalInfoList": {
+    "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseErrorAdditionalInfoList": {
       "type": "list",
       "member": {
         "target": "com.azure.synapse#ErrorAdditionalInfo"
@@ -5675,7 +5676,7 @@
         "smithy.api#documentation": "The resource management error additional info."
       }
     },
-    "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseErrorDetailsList": {
+    "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseErrorDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.synapse#ErrorDetail"
@@ -5740,7 +5741,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.synapse#OperationsGetAzureAsyncHeaderResultResponseStatus": {
+    "com.azure.synapse#GetOperationAzureAsyncHeaderResultResponseStatus": {
       "type": "enum",
       "members": {
         "INPROGRESS": {
@@ -5894,7 +5895,7 @@
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.synapse#OperationsListResponseBodyList",
+          "target": "com.azure.synapse#ListOperationsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -5905,7 +5906,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#OperationsListResponseBodyList": {
+    "com.azure.synapse#ListOperationsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.synapse#AvailableRpOperation"
@@ -6192,7 +6193,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.synapse#PrivateEndpointConnectionsListResponseValueList",
+          "target": "com.azure.synapse#ListPrivateEndpointConnectionsResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -6208,7 +6209,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#PrivateEndpointConnectionsListResponseValueList": {
+    "com.azure.synapse#ListPrivateEndpointConnectionsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.synapse#PrivateEndpointConnection"
@@ -7030,13 +7031,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#GetPrivateEndpointConnectionPrivateLinkHub": {
+    "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#GetPrivateEndpointConnectionPrivateLinkHubRequest"
+        "target": "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHubRequest"
       },
       "output": {
-        "target": "com.azure.synapse#GetPrivateEndpointConnectionPrivateLinkHubResponse"
+        "target": "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7049,7 +7050,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#GetPrivateEndpointConnectionPrivateLinkHubResponse": {
+    "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHubResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7059,7 +7060,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.synapse#PrivateEndpointConnectionsPrivateLinkHubGetResponseProperties",
+          "target": "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHubResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of a private endpoint connection."
           }
@@ -7075,7 +7076,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#PrivateEndpointConnectionsPrivateLinkHubGetResponseProperties": {
+    "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHubResponseProperties": {
       "type": "structure",
       "members": {
         "privateEndpoint": {
@@ -7101,7 +7102,7 @@
         "smithy.api#documentation": "Properties of a private endpoint connection."
       }
     },
-    "com.azure.synapse#GetPrivateEndpointConnectionPrivateLinkHubRequest": {
+    "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7141,13 +7142,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#ListPrivateEndpointConnectionPrivateLinkHub": {
+    "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#ListPrivateEndpointConnectionPrivateLinkHubRequest"
+        "target": "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHubRequest"
       },
       "output": {
-        "target": "com.azure.synapse#ListPrivateEndpointConnectionPrivateLinkHubResponse"
+        "target": "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7160,11 +7161,11 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#ListPrivateEndpointConnectionPrivateLinkHubResponse": {
+    "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHubResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.synapse#PrivateEndpointConnectionsPrivateLinkHubListResponseValueList"
+          "target": "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHubResponseValueList"
         },
         "nextLink": {
           "target": "smithy.api#String"
@@ -7174,7 +7175,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#PrivateEndpointConnectionsPrivateLinkHubListResponseValueList": {
+    "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHubResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.synapse#PrivateEndpointConnectionForPrivateLinkHub"
@@ -7231,7 +7232,7 @@
         "smithy.api#documentation": "Properties of a private endpoint connection."
       }
     },
-    "com.azure.synapse#ListPrivateEndpointConnectionPrivateLinkHubRequest": {
+    "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7551,7 +7552,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#PrivateLinkHubsUpdateResponseTagsMap",
+          "target": "com.azure.synapse#UpdatePrivateLinkHubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7574,7 +7575,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#PrivateLinkHubsUpdateResponseTagsMap": {
+    "com.azure.synapse#UpdatePrivateLinkHubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7614,7 +7615,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#PrivateLinkHubsUpdateRequestTagsMap",
+          "target": "com.azure.synapse#UpdatePrivateLinkHubRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -7624,7 +7625,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#PrivateLinkHubsUpdateRequestTagsMap": {
+    "com.azure.synapse#UpdatePrivateLinkHubRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7830,7 +7831,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#PrivateLinkHubsGetResponseTagsMap",
+          "target": "com.azure.synapse#GetPrivateLinkHubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7853,7 +7854,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#PrivateLinkHubsGetResponseTagsMap": {
+    "com.azure.synapse#GetPrivateLinkHubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8846,10 +8847,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsDelete": {
+    "com.azure.synapse#DeleteSqlPoolRestorePoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolRestorePointsDeleteRequest"
+        "target": "com.azure.synapse#DeleteSqlPoolRestorePointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8865,7 +8866,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsDeleteRequest": {
+    "com.azure.synapse#DeleteSqlPoolRestorePointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8913,13 +8914,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsGet": {
+    "com.azure.synapse#GetSqlPoolRestorePoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolRestorePointsGetRequest"
+        "target": "com.azure.synapse#GetSqlPoolRestorePointRequest"
       },
       "output": {
-        "target": "com.azure.synapse#SqlPoolRestorePointsGetResponse"
+        "target": "com.azure.synapse#GetSqlPoolRestorePointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8932,7 +8933,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsGetResponse": {
+    "com.azure.synapse#GetSqlPoolRestorePointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9022,7 +9023,7 @@
         "smithy.api#documentation": "The type of restore point"
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsGetRequest": {
+    "com.azure.synapse#GetSqlPoolRestorePointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9294,7 +9295,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansGetRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentScanRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -9314,7 +9315,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansGetRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentScanRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -10349,7 +10350,7 @@
           }
         },
         "dataMaskingPolicyName": {
-          "target": "com.azure.synapse#DataMaskingRulesListBySqlPoolRequestDataMaskingPolicyName",
+          "target": "com.azure.synapse#ListDataMaskingRuleBySqlPoolRequestDataMaskingPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -10361,7 +10362,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#DataMaskingRulesListBySqlPoolRequestDataMaskingPolicyName": {
+    "com.azure.synapse#ListDataMaskingRuleBySqlPoolRequestDataMaskingPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -10751,7 +10752,7 @@
           }
         },
         "dataMaskingPolicyName": {
-          "target": "com.azure.synapse#DataMaskingRulesGetRequestDataMaskingPolicyName",
+          "target": "com.azure.synapse#GetDataMaskingRuleRequestDataMaskingPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -10771,7 +10772,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#DataMaskingRulesGetRequestDataMaskingPolicyName": {
+    "com.azure.synapse#GetDataMaskingRuleRequestDataMaskingPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -11117,7 +11118,7 @@
           }
         },
         "dataMaskingPolicyName": {
-          "target": "com.azure.synapse#DataMaskingPoliciesGetRequestDataMaskingPolicyName",
+          "target": "com.azure.synapse#GetDataMaskingPolicyRequestDataMaskingPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -11129,7 +11130,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#DataMaskingPoliciesGetRequestDataMaskingPolicyName": {
+    "com.azure.synapse#GetDataMaskingPolicyRequestDataMaskingPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -11563,7 +11564,7 @@
           }
         },
         "blobAuditingPolicyName": {
-          "target": "com.azure.synapse#ExtendedSqlPoolBlobAuditingPoliciesGetRequestBlobAuditingPolicyName",
+          "target": "com.azure.synapse#GetExtendedSqlPoolBlobAuditingPolicyRequestBlobAuditingPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -11575,7 +11576,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#ExtendedSqlPoolBlobAuditingPoliciesGetRequestBlobAuditingPolicyName": {
+    "com.azure.synapse#GetExtendedSqlPoolBlobAuditingPolicyRequestBlobAuditingPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -11642,7 +11643,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentsDeleteRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -11654,7 +11655,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentsDeleteRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -11937,7 +11938,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentsGetRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -11949,7 +11950,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentsGetRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -12016,7 +12017,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesDeleteRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaselineRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -12032,7 +12033,7 @@
           }
         },
         "baselineName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesDeleteRequestBaselineName",
+          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaselineRequestBaselineName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -12044,7 +12045,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesDeleteRequestBaselineName": {
+    "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaselineRequestBaselineName": {
       "type": "enum",
       "members": {
         "MASTER": {
@@ -12062,7 +12063,7 @@
       },
       "traits": {}
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesDeleteRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaselineRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -12360,7 +12361,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesGetRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaselineRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -12376,7 +12377,7 @@
           }
         },
         "baselineName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesGetRequestBaselineName",
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaselineRequestBaselineName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -12388,7 +12389,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesGetRequestBaselineName": {
+    "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaselineRequestBaselineName": {
       "type": "enum",
       "members": {
         "MASTER": {
@@ -12406,7 +12407,7 @@
       },
       "traits": {}
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesGetRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaselineRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -12818,7 +12819,7 @@
           }
         },
         "securityAlertPolicyName": {
-          "target": "com.azure.synapse#SqlPoolSecurityAlertPoliciesGetRequestSecurityAlertPolicyName",
+          "target": "com.azure.synapse#GetSqlPoolSecurityAlertPolicyRequestSecurityAlertPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -12830,7 +12831,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolSecurityAlertPoliciesGetRequestSecurityAlertPolicyName": {
+    "com.azure.synapse#GetSqlPoolSecurityAlertPolicyRequestSecurityAlertPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -12842,10 +12843,10 @@
       },
       "traits": {}
     },
-    "com.azure.synapse#SqlPoolSecurityAlertPoliciesList": {
+    "com.azure.synapse#ListSqlPoolSecurityAlertPolicies2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolSecurityAlertPoliciesListRequest"
+        "target": "com.azure.synapse#ListSqlPoolSecurityAlertPoliciesRequest"
       },
       "output": {
         "target": "com.azure.synapse#ListSqlPoolSecurityAlertPolicies"
@@ -12922,7 +12923,7 @@
         "smithy.api#documentation": "A Sql pool security alert policy."
       }
     },
-    "com.azure.synapse#SqlPoolSecurityAlertPoliciesListRequest": {
+    "com.azure.synapse#ListSqlPoolSecurityAlertPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12962,13 +12963,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExport": {
+    "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExportRequest"
+        "target": "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScanRequest"
       },
       "output": {
-        "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExportResponse"
+        "target": "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12981,7 +12982,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExportResponse": {
+    "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13027,7 +13028,7 @@
         "smithy.api#documentation": "Properties of the export operation's result."
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExportRequest": {
+    "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13063,7 +13064,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExportRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScanRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -13083,7 +13084,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExportRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScanRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -13298,7 +13299,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansListRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessmentScansRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -13310,7 +13311,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansListRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#ListSqlPoolVulnerabilityAssessmentScansRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -13888,7 +13889,7 @@
           }
         },
         "sensitivityLabelSource": {
-          "target": "com.azure.synapse#SqlPoolSensitivityLabelsDisableRecommendationRequestSensitivityLabelSource",
+          "target": "com.azure.synapse#DisableSqlPoolSensitivityLabelRecommendationRequestSensitivityLabelSource",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -13900,7 +13901,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolSensitivityLabelsDisableRecommendationRequestSensitivityLabelSource": {
+    "com.azure.synapse#DisableSqlPoolSensitivityLabelRecommendationRequestSensitivityLabelSource": {
       "type": "enum",
       "members": {
         "RECOMMENDED": {
@@ -13991,7 +13992,7 @@
           }
         },
         "sensitivityLabelSource": {
-          "target": "com.azure.synapse#SqlPoolSensitivityLabelsEnableRecommendationRequestSensitivityLabelSource",
+          "target": "com.azure.synapse#EnableSqlPoolSensitivityLabelRecommendationRequestSensitivityLabelSource",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -14003,7 +14004,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolSensitivityLabelsEnableRecommendationRequestSensitivityLabelSource": {
+    "com.azure.synapse#EnableSqlPoolSensitivityLabelRecommendationRequestSensitivityLabelSource": {
       "type": "enum",
       "members": {
         "RECOMMENDED": {
@@ -14094,7 +14095,7 @@
           }
         },
         "sensitivityLabelSource": {
-          "target": "com.azure.synapse#SqlPoolSensitivityLabelsDeleteRequestSensitivityLabelSource",
+          "target": "com.azure.synapse#DeleteSqlPoolSensitivityLabelRequestSensitivityLabelSource",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -14106,7 +14107,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolSensitivityLabelsDeleteRequestSensitivityLabelSource": {
+    "com.azure.synapse#DeleteSqlPoolSensitivityLabelRequestSensitivityLabelSource": {
       "type": "enum",
       "members": {
         "CURRENT": {
@@ -14548,7 +14549,7 @@
           }
         },
         "sensitivityLabelSource": {
-          "target": "com.azure.synapse#SqlPoolSensitivityLabelsGetRequestSensitivityLabelSource",
+          "target": "com.azure.synapse#GetSqlPoolSensitivityLabelRequestSensitivityLabelSource",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -14560,7 +14561,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolSensitivityLabelsGetRequestSensitivityLabelSource": {
+    "com.azure.synapse#GetSqlPoolSensitivityLabelRequestSensitivityLabelSource": {
       "type": "enum",
       "members": {
         "CURRENT": {
@@ -14633,14 +14634,14 @@
           }
         },
         "operations": {
-          "target": "com.azure.synapse#SqlPoolRecommendedSensitivityLabelsUpdateRequestOperationsList"
+          "target": "com.azure.synapse#UpdateSqlPoolRecommendedSensitivityLabelRequestOperationsList"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolRecommendedSensitivityLabelsUpdateRequestOperationsList": {
+    "com.azure.synapse#UpdateSqlPoolRecommendedSensitivityLabelRequestOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.synapse#RecommendedSensitivityLabelUpdateInput"
@@ -14916,14 +14917,14 @@
           }
         },
         "operations": {
-          "target": "com.azure.synapse#SqlPoolSensitivityLabelsUpdateRequestOperationsList"
+          "target": "com.azure.synapse#UpdateSqlPoolSensitivityLabelRequestOperationsList"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolSensitivityLabelsUpdateRequestOperationsList": {
+    "com.azure.synapse#UpdateSqlPoolSensitivityLabelRequestOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.synapse#SensitivityLabelUpdateInput"
@@ -15694,7 +15695,7 @@
           }
         },
         "blobAuditingPolicyName": {
-          "target": "com.azure.synapse#SqlPoolBlobAuditingPoliciesGetRequestBlobAuditingPolicyName",
+          "target": "com.azure.synapse#GetSqlPoolBlobAuditingPolicyRequestBlobAuditingPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -15706,7 +15707,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolBlobAuditingPoliciesGetRequestBlobAuditingPolicyName": {
+    "com.azure.synapse#GetSqlPoolBlobAuditingPolicyRequestBlobAuditingPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -16094,7 +16095,7 @@
           }
         },
         "transparentDataEncryptionName": {
-          "target": "com.azure.synapse#SqlPoolTransparentDataEncryptionsGetRequestTransparentDataEncryptionName",
+          "target": "com.azure.synapse#GetSqlPoolTransparentDataEncryptionRequestTransparentDataEncryptionName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -16106,7 +16107,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolTransparentDataEncryptionsGetRequestTransparentDataEncryptionName": {
+    "com.azure.synapse#GetSqlPoolTransparentDataEncryptionRequestTransparentDataEncryptionName": {
       "type": "enum",
       "members": {
         "CURRENT": {
@@ -16443,13 +16444,13 @@
       },
       "traits": {}
     },
-    "com.azure.synapse#GetSqlPoolMaintenanceWindow": {
+    "com.azure.synapse#GetSqlPoolMaintenanceWindows": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowRequest"
+        "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowsRequest"
       },
       "output": {
-        "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowResponse"
+        "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16462,7 +16463,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#GetSqlPoolMaintenanceWindowResponse": {
+    "com.azure.synapse#GetSqlPoolMaintenanceWindowsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16494,7 +16495,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#GetSqlPoolMaintenanceWindowRequest": {
+    "com.azure.synapse#GetSqlPoolMaintenanceWindowsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16949,13 +16950,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsCreate": {
+    "com.azure.synapse#CreateSqlPoolRestorePoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolRestorePointsCreateRequest"
+        "target": "com.azure.synapse#CreateSqlPoolRestorePointRequest"
       },
       "output": {
-        "target": "com.azure.synapse#SqlPoolRestorePointsCreateResponse"
+        "target": "com.azure.synapse#CreateSqlPoolRestorePointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16968,7 +16969,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsCreateResponse": {
+    "com.azure.synapse#CreateSqlPoolRestorePointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17006,7 +17007,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsCreateRequest": {
+    "com.azure.synapse#CreateSqlPoolRestorePointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17053,10 +17054,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsList": {
+    "com.azure.synapse#ListSqlPoolRestorePoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolRestorePointsListRequest"
+        "target": "com.azure.synapse#ListSqlPoolRestorePointsRequest"
       },
       "output": {
         "target": "com.azure.synapse#RestorePointListResult"
@@ -17139,7 +17140,7 @@
         "smithy.api#documentation": "Database restore points."
       }
     },
-    "com.azure.synapse#SqlPoolRestorePointsListRequest": {
+    "com.azure.synapse#ListSqlPoolRestorePointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17280,7 +17281,7 @@
           }
         },
         "dataWarehouseUserActivityName": {
-          "target": "com.azure.synapse#SqlPoolDataWarehouseUserActivitiesGetRequestDataWarehouseUserActivityName",
+          "target": "com.azure.synapse#GetSqlPoolDataWarehouseUserActivityRequestDataWarehouseUserActivityName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -17292,7 +17293,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolDataWarehouseUserActivitiesGetRequestDataWarehouseUserActivityName": {
+    "com.azure.synapse#GetSqlPoolDataWarehouseUserActivityRequestDataWarehouseUserActivityName": {
       "type": "enum",
       "members": {
         "CURRENT": {
@@ -17611,7 +17612,7 @@
           }
         },
         "geoBackupPolicyName": {
-          "target": "com.azure.synapse#SqlPoolGeoBackupPoliciesGetRequestGeoBackupPolicyName",
+          "target": "com.azure.synapse#GetSqlPoolGeoBackupPolicyRequestGeoBackupPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -17623,7 +17624,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolGeoBackupPoliciesGetRequestGeoBackupPolicyName": {
+    "com.azure.synapse#GetSqlPoolGeoBackupPolicyRequestGeoBackupPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -17803,7 +17804,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolOperationResultsGetLocationHeaderResultResponseTagsMap",
+          "target": "com.azure.synapse#GetSqlPoolOperationResultLocationHeaderResultResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17984,7 +17985,7 @@
         "smithy.api#documentation": "SQL pool SKU"
       }
     },
-    "com.azure.synapse#SqlPoolOperationResultsGetLocationHeaderResultResponseTagsMap": {
+    "com.azure.synapse#GetSqlPoolOperationResultLocationHeaderResultResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18044,13 +18045,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolsResume": {
+    "com.azure.synapse#ResumeSqlPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolsResumeRequest"
+        "target": "com.azure.synapse#ResumeSqlPoolRequest"
       },
       "output": {
-        "target": "com.azure.synapse#SqlPoolsResumeResponse"
+        "target": "com.azure.synapse#ResumeSqlPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18063,7 +18064,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#SqlPoolsResumeResponse": {
+    "com.azure.synapse#ResumeSqlPoolResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18085,7 +18086,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsResumeResponseTagsMap",
+          "target": "com.azure.synapse#ResumeSqlPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18114,7 +18115,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#SqlPoolsResumeResponseTagsMap": {
+    "com.azure.synapse#ResumeSqlPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18126,7 +18127,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.synapse#SqlPoolsResumeRequest": {
+    "com.azure.synapse#ResumeSqlPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18166,13 +18167,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolsPause": {
+    "com.azure.synapse#PauseSqlPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#SqlPoolsPauseRequest"
+        "target": "com.azure.synapse#PauseSqlPoolRequest"
       },
       "output": {
-        "target": "com.azure.synapse#SqlPoolsPauseResponse"
+        "target": "com.azure.synapse#PauseSqlPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18185,7 +18186,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#SqlPoolsPauseResponse": {
+    "com.azure.synapse#PauseSqlPoolResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18207,7 +18208,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsPauseResponseTagsMap",
+          "target": "com.azure.synapse#PauseSqlPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18236,7 +18237,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#SqlPoolsPauseResponseTagsMap": {
+    "com.azure.synapse#PauseSqlPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18248,7 +18249,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.synapse#SqlPoolsPauseRequest": {
+    "com.azure.synapse#PauseSqlPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18472,7 +18473,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsDeleteResponseTagsMap",
+          "target": "com.azure.synapse#DeleteSqlPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18501,7 +18502,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#SqlPoolsDeleteResponseTagsMap": {
+    "com.azure.synapse#DeleteSqlPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18594,7 +18595,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsUpdateResponseTagsMap",
+          "target": "com.azure.synapse#UpdateSqlPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18623,7 +18624,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#SqlPoolsUpdateResponseTagsMap": {
+    "com.azure.synapse#UpdateSqlPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18671,7 +18672,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsUpdateRequestTagsMap",
+          "target": "com.azure.synapse#UpdateSqlPoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18813,7 +18814,7 @@
         "smithy.api#documentation": "Specifies the mode of sql pool creation.\n\nDefault: regular sql pool creation.\n\nPointInTimeRestore: Creates a sql pool by restoring a point in time backup of an existing sql pool. sourceDatabaseId must be specified as the resource ID of the existing sql pool, and restorePointInTime must be specified.\n\nRecovery: Creates a sql pool by a geo-replicated backup. sourceDatabaseId  must be specified as the recoverableDatabaseId to restore.\n\nRestore: Creates a sql pool by restoring a backup of a deleted sql  pool. SourceDatabaseId should be the sql pool's original resource ID. SourceDatabaseId and sourceDatabaseDeletionDate must be specified."
       }
     },
-    "com.azure.synapse#SqlPoolsUpdateRequestTagsMap": {
+    "com.azure.synapse#UpdateSqlPoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18866,7 +18867,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsCreateResponseTagsMap",
+          "target": "com.azure.synapse#CreateSqlPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18895,7 +18896,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#SqlPoolsCreateResponseTagsMap": {
+    "com.azure.synapse#CreateSqlPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18943,7 +18944,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsCreateRequestTagsMap",
+          "target": "com.azure.synapse#CreateSqlPoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18972,7 +18973,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#SqlPoolsCreateRequestTagsMap": {
+    "com.azure.synapse#CreateSqlPoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19025,7 +19026,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#SqlPoolsGetResponseTagsMap",
+          "target": "com.azure.synapse#GetSqlPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19054,7 +19055,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#SqlPoolsGetResponseTagsMap": {
+    "com.azure.synapse#GetSqlPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19106,10 +19107,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettings": {
+    "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingsRequest"
+        "target": "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequest"
       },
       "output": {
         "target": "com.azure.synapse#DedicatedSQLminimalTlsSettingsListResult"
@@ -19206,7 +19207,7 @@
         "smithy.api#documentation": "Properties of a dedicated sql minimal tls settings."
       }
     },
-    "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingsRequest": {
+    "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19238,13 +19239,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSetting": {
+    "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingRequest"
+        "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequest"
       },
       "output": {
-        "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingResponse"
+        "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19257,7 +19258,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingResponse": {
+    "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19295,7 +19296,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingRequest": {
+    "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19323,7 +19324,7 @@
           }
         },
         "dedicatedSQLminimalTlsSettingsName": {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsUpdateRequestDedicatedSQLminimalTlsSettingsName",
+          "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequestDedicatedSQLminimalTlsSettingsName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -19341,7 +19342,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsUpdateRequestDedicatedSQLminimalTlsSettingsName": {
+    "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequestDedicatedSQLminimalTlsSettingsName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -19353,13 +19354,13 @@
       },
       "traits": {}
     },
-    "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSetting": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingRequest"
+        "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequest"
       },
       "output": {
-        "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingResponse"
+        "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19372,7 +19373,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingResponse": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19410,7 +19411,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingRequest": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20323,7 +20324,7 @@
           }
         },
         "encryptionProtectorName": {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorGetRequestEncryptionProtectorName",
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerEncryptionProtectorRequestEncryptionProtectorName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -20335,7 +20336,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorGetRequestEncryptionProtectorName": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerEncryptionProtectorRequestEncryptionProtectorName": {
       "type": "enum",
       "members": {
         "CURRENT": {
@@ -20539,7 +20540,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerVulnerabilityAssessmentsDeleteRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#DeleteWorkspaceManagedSqlServerVulnerabilityAssessmentRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -20551,7 +20552,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedSqlServerVulnerabilityAssessmentsDeleteRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#DeleteWorkspaceManagedSqlServerVulnerabilityAssessmentRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -20751,7 +20752,7 @@
           }
         },
         "vulnerabilityAssessmentName": {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerVulnerabilityAssessmentsGetRequestVulnerabilityAssessmentName",
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerVulnerabilityAssessmentRequestVulnerabilityAssessmentName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -20763,7 +20764,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedSqlServerVulnerabilityAssessmentsGetRequestVulnerabilityAssessmentName": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerVulnerabilityAssessmentRequestVulnerabilityAssessmentName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -21271,7 +21272,7 @@
           }
         },
         "securityAlertPolicyName": {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerSecurityAlertPolicyGetRequestSecurityAlertPolicyName",
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerSecurityAlertPolicyRequestSecurityAlertPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -21283,7 +21284,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedSqlServerSecurityAlertPolicyGetRequestSecurityAlertPolicyName": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerSecurityAlertPolicyRequestSecurityAlertPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -21699,7 +21700,7 @@
           }
         },
         "blobAuditingPolicyName": {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesGetRequestBlobAuditingPolicyName",
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerExtendedBlobAuditingPolicyRequestBlobAuditingPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -21711,7 +21712,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesGetRequestBlobAuditingPolicyName": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerExtendedBlobAuditingPolicyRequestBlobAuditingPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -22121,7 +22122,7 @@
           }
         },
         "blobAuditingPolicyName": {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerBlobAuditingPoliciesGetRequestBlobAuditingPolicyName",
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerBlobAuditingPolicyRequestBlobAuditingPolicyName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -22133,7 +22134,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedSqlServerBlobAuditingPoliciesGetRequestBlobAuditingPolicyName": {
+    "com.azure.synapse#GetWorkspaceManagedSqlServerBlobAuditingPolicyRequestBlobAuditingPolicyName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -22640,13 +22641,13 @@
         "smithy.api#documentation": "Desired state"
       }
     },
-    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSetting": {
+    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingRequest"
+        "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsRequest"
       },
       "output": {
-        "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingResponse"
+        "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22659,7 +22660,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingResponse": {
+    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22681,7 +22682,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponseProperties",
+          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponseProperties",
           "traits": {
             "smithy.api#documentation": "Sql Control Settings for workspace managed identity"
           }
@@ -22691,11 +22692,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponseProperties": {
+    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponseProperties": {
       "type": "structure",
       "members": {
         "grantSqlControlToManagedIdentity": {
-          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponsePropertiesGrantSqlControlToManagedIdentity",
+          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponsePropertiesGrantSqlControlToManagedIdentity",
           "traits": {
             "smithy.api#documentation": "Grant sql control to managed identity"
           }
@@ -22705,17 +22706,17 @@
         "smithy.api#documentation": "Sql Control Settings for workspace managed identity"
       }
     },
-    "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponsePropertiesGrantSqlControlToManagedIdentity": {
+    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponsePropertiesGrantSqlControlToManagedIdentity": {
       "type": "structure",
       "members": {
         "desiredState": {
-          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponsePropertiesGrantSqlControlToManagedIdentityDesiredState",
+          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponsePropertiesGrantSqlControlToManagedIdentityDesiredState",
           "traits": {
             "smithy.api#documentation": "Desired state"
           }
         },
         "actualState": {
-          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponsePropertiesGrantSqlControlToManagedIdentityActualState",
+          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponsePropertiesGrantSqlControlToManagedIdentityActualState",
           "traits": {
             "smithy.api#documentation": "Actual state"
           }
@@ -22725,7 +22726,7 @@
         "smithy.api#documentation": "Grant sql control to managed identity"
       }
     },
-    "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponsePropertiesGrantSqlControlToManagedIdentityActualState": {
+    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponsePropertiesGrantSqlControlToManagedIdentityActualState": {
       "type": "enum",
       "members": {
         "ENABLING": {
@@ -22763,7 +22764,7 @@
         "smithy.api#documentation": "Actual state"
       }
     },
-    "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsGetResponsePropertiesGrantSqlControlToManagedIdentityDesiredState": {
+    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsResponsePropertiesGrantSqlControlToManagedIdentityDesiredState": {
       "type": "enum",
       "members": {
         "ENABLED": {
@@ -22783,7 +22784,7 @@
         "smithy.api#documentation": "Desired state"
       }
     },
-    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingRequest": {
+    "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24030,7 +24031,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#WorkspacesDeleteResponseTagsMap",
+          "target": "com.azure.synapse#DeleteWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -24059,7 +24060,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#WorkspacesDeleteResponseTagsMap": {
+    "com.azure.synapse#DeleteWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -24144,7 +24145,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#WorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.synapse#UpdateWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -24173,7 +24174,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#WorkspacesUpdateResponseTagsMap": {
+    "com.azure.synapse#UpdateWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -24213,7 +24214,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#WorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.synapse#UpdateWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -24399,7 +24400,7 @@
         "smithy.api#documentation": "The type of managed identity for the workspace"
       }
     },
-    "com.azure.synapse#WorkspacesUpdateRequestTagsMap": {
+    "com.azure.synapse#UpdateWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -24745,7 +24746,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.synapse#WorkspacesGetResponseTagsMap",
+          "target": "com.azure.synapse#GetWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -24774,7 +24775,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.synapse#WorkspacesGetResponseTagsMap": {
+    "com.azure.synapse#GetWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -24866,130 +24867,139 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.synapse#ListAzureAdOnlyAuthentications"
-        },
-        {
-          "target": "com.azure.synapse#CreateAzureAdOnlyAuthentication"
-        },
-        {
-          "target": "com.azure.synapse#GetAzureAdOnlyAuthentication"
-        },
-        {
-          "target": "com.azure.synapse#ListBigDataPoolByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#DeleteBigDataPool"
-        },
-        {
-          "target": "com.azure.synapse#UpdateBigDataPool"
-        },
-        {
           "target": "com.azure.synapse#BigDataPoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetBigDataPool"
         },
         {
           "target": "com.azure.synapse#CheckOperationNameAvailability"
         },
         {
-          "target": "com.azure.synapse#IpFirewallRulesReplaceAll"
-        },
-        {
-          "target": "com.azure.synapse#DeleteIpFirewallRule"
-        },
-        {
-          "target": "com.azure.synapse#IpFirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetIpFirewallRule"
-        },
-        {
-          "target": "com.azure.synapse#ListIpFirewallRuleByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#DisableIntegrationRuntimeInteractiveQuery"
-        },
-        {
-          "target": "com.azure.synapse#EnableIntegrationRuntimeInteractiveQuery"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependencyEndpoints"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeStatus"
-        },
-        {
-          "target": "com.azure.synapse#IntegrationRuntimeObjectMetadataRefresh"
-        },
-        {
-          "target": "com.azure.synapse#StopIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeMonitoringData"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeAuthKeys"
-        },
-        {
-          "target": "com.azure.synapse#IntegrationRuntimeAuthKeysRegenerate"
-        },
-        {
-          "target": "com.azure.synapse#StartIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeConnectionInfos"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#IntegrationRuntimeCredentialsSync"
-        },
-        {
-          "target": "com.azure.synapse#DeleteIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.synapse#UpdateIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeObjectMetadata"
-        },
-        {
-          "target": "com.azure.synapse#IntegrationRuntimesUpgrade"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeNodeIpAddress"
-        },
-        {
-          "target": "com.azure.synapse#DeleteIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.synapse#UpdateIntegrationRuntime"
+          "target": "com.azure.synapse#CreateAzureADOnlyAuthentication"
         },
         {
           "target": "com.azure.synapse#CreateIntegrationRuntime"
         },
         {
+          "target": "com.azure.synapse#CreatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.synapse#CreateSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#CreateSqlPoolRestorePoint"
+        },
+        {
+          "target": "com.azure.synapse#DataMaskingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#DataMaskingRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#DeleteBigDataPool"
+        },
+        {
+          "target": "com.azure.synapse#DeleteIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#DeleteIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.synapse#DeleteIpFirewallRule"
+        },
+        {
+          "target": "com.azure.synapse#DeleteKeys"
+        },
+        {
+          "target": "com.azure.synapse#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.synapse#DeletePrivateLinkHub"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolRestorePoint"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolSensitivityLabel"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolWorkloadClassifier"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolWorkloadGroup"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspaceAadAdmin"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspaceManagedSqlServerVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspaceSqlAadAdmin"
+        },
+        {
+          "target": "com.azure.synapse#DisableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.synapse#DisableSqlPoolSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.synapse#EnableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.synapse#EnableSqlPoolSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScan"
+        },
+        {
+          "target": "com.azure.synapse#ExtendedSqlPoolBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetAzureADOnlyAuthentication"
+        },
+        {
+          "target": "com.azure.synapse#GetBigDataPool"
+        },
+        {
+          "target": "com.azure.synapse#GetDataMaskingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#GetDataMaskingRule"
+        },
+        {
+          "target": "com.azure.synapse#GetExtendedSqlPoolBlobAuditingPolicy"
+        },
+        {
           "target": "com.azure.synapse#GetIntegrationRuntime"
         },
         {
-          "target": "com.azure.synapse#DeleteKey"
+          "target": "com.azure.synapse#GetIntegrationRuntimeConnectionInfos"
         },
         {
-          "target": "com.azure.synapse#KeysCreateOrUpdate"
+          "target": "com.azure.synapse#GetIntegrationRuntimeNode"
         },
         {
-          "target": "com.azure.synapse#GetKey"
+          "target": "com.azure.synapse#GetIntegrationRuntimeNodeIpAddress"
         },
         {
-          "target": "com.azure.synapse#ListKeyByWorkspace"
+          "target": "com.azure.synapse#GetIntegrationRuntimeStatus"
         },
         {
-          "target": "com.azure.synapse#ListLibraryByWorkspace"
+          "target": "com.azure.synapse#GetIpFirewallRule"
+        },
+        {
+          "target": "com.azure.synapse#GetKeys"
         },
         {
           "target": "com.azure.synapse#GetLibrary"
@@ -25001,394 +25011,385 @@
           "target": "com.azure.synapse#GetOperationLocationHeaderResult"
         },
         {
+          "target": "com.azure.synapse#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHub"
+        },
+        {
+          "target": "com.azure.synapse#GetPrivateLinkHub"
+        },
+        {
+          "target": "com.azure.synapse#GetPrivateLinkHubPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.synapse#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.synapse#GetRestorableDroppedSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolColumn"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolDataWarehouseUserActivity"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolGeoBackupPolicy"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowOption"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindows"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolOperationResultLocationHeaderResult"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolReplicationLinkByName"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolRestorePoint"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolSchema"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolSecurityAlertPolicy"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolSensitivityLabel"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolTable"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolTransparentDataEncryption"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentScan"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolWorkloadClassifier"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolWorkloadGroup"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceAadAdmin"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettings"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerEncryptionProtector"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerExtendedBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerRecoverableSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerSecurityAlertPolicy"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceSqlAadAdmin"
+        },
+        {
+          "target": "com.azure.synapse#IntegrationRuntimesUpgrade"
+        },
+        {
+          "target": "com.azure.synapse#IpFirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#KeysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#ListAzureADOnlyAuthentications"
+        },
+        {
+          "target": "com.azure.synapse#ListBigDataPoolByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListDataMaskingRuleBySqlPool"
+        },
+        {
+          "target": "com.azure.synapse#ListExtendedSqlPoolBlobAuditingPolicyBySqlPool"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeAuthKeys"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeMonitoringData"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.synapse#ListIpFirewallRuleByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListKeysByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListLibraryByWorkspace"
+        },
+        {
           "target": "com.azure.synapse#ListOperations"
         },
         {
           "target": "com.azure.synapse#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.synapse#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.synapse#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateLinkHubPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.synapse#ListPrivateLinkHubPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.synapse#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateEndpointConnectionPrivateLinkHub"
-        },
-        {
-          "target": "com.azure.synapse#ListPrivateEndpointConnectionPrivateLinkHub"
-        },
-        {
-          "target": "com.azure.synapse#ListPrivateLinkHubs"
-        },
-        {
-          "target": "com.azure.synapse#DeletePrivateLinkHub"
-        },
-        {
-          "target": "com.azure.synapse#UpdatePrivateLinkHub"
-        },
-        {
-          "target": "com.azure.synapse#PrivateLinkHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateLinkHub"
+          "target": "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHub"
         },
         {
           "target": "com.azure.synapse#ListPrivateLinkHubByResourceGroup"
         },
         {
-          "target": "com.azure.synapse#ListSqlPoolWorkloadClassifier"
+          "target": "com.azure.synapse#ListPrivateLinkHubPrivateLinkResources"
         },
         {
-          "target": "com.azure.synapse#DeleteSqlPoolWorkloadClassifier"
+          "target": "com.azure.synapse#ListPrivateLinkHubs"
         },
         {
-          "target": "com.azure.synapse#SqlPoolWorkloadClassifierCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolWorkloadClassifier"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolWorkloadGroup"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolWorkloadGroup"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolWorkloadGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolWorkloadGroup"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolRestorePointsDelete"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolRestorePointsGet"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentScan"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolColumn"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolTable"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolSchema"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolBlobAuditingPolicyBySqlPool"
-        },
-        {
-          "target": "com.azure.synapse#ListDataMaskingRuleBySqlPool"
-        },
-        {
-          "target": "com.azure.synapse#DataMaskingRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetDataMaskingRule"
-        },
-        {
-          "target": "com.azure.synapse#DataMaskingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetDataMaskingPolicy"
-        },
-        {
-          "target": "com.azure.synapse#ListExtendedSqlPoolBlobAuditingPolicyBySqlPool"
-        },
-        {
-          "target": "com.azure.synapse#ExtendedSqlPoolBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetExtendedSqlPoolBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolSecurityAlertPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolSecurityAlertPoliciesList"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansExport"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansInitiateScan"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessmentScans"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessments"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolTableColumnByTableName"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolTableBySchema"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolSchemas"
-        },
-        {
-          "target": "com.azure.synapse#DisableSqlPoolSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.synapse#EnableSqlPoolSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolSensitivityLabel"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolSensitivityLabelsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolSensitivityLabel"
-        },
-        {
-          "target": "com.azure.synapse#UpdateSqlPoolRecommendedSensitivityLabel"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelRecommended"
-        },
-        {
-          "target": "com.azure.synapse#UpdateSqlPoolSensitivityLabel"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelCurrent"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolUsages"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolOperations"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolTransparentDataEncryptions"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolTransparentDataEncryptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolTransparentDataEncryption"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowOption"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolMaintenanceWindowsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindow"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolReplicationLinkByName"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolReplicationLinks"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolRestorePointsCreate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolRestorePointsList"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolDataWarehouseUserActivity"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolGeoBackupPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolGeoBackupPolicy"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolGeoBackupPolicies"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolOperationResultLocationHeaderResult"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolsResume"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolsPause"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#UpdateSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#CreateSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettings"
-        },
-        {
-          "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSetting"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSqlMinimalTlsSetting"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerRecoverableSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerRecoverableSqlPools"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerUsages"
-        },
-        {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorRevalidate"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerEncryptionProtector"
-        },
-        {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerEncryptionProtector"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerVulnerabilityAssessments"
-        },
-        {
-          "target": "com.azure.synapse#DeleteWorkspaceManagedSqlServerVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerVulnerabilityAssessmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerExtendedBlobAuditingPolicyByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerExtendedBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerBlobAuditingPolicyByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerBlobAuditingPolicy"
+          "target": "com.azure.synapse#ListPrivateLinkResources"
         },
         {
           "target": "com.azure.synapse#ListRestorableDroppedSqlPoolByWorkspace"
         },
         {
-          "target": "com.azure.synapse#GetRestorableDroppedSqlPool"
+          "target": "com.azure.synapse#ListSqlPoolBlobAuditingPolicyBySqlPool"
         },
         {
-          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdate"
+          "target": "com.azure.synapse#ListSqlPoolByWorkspace"
         },
         {
-          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSetting"
+          "target": "com.azure.synapse#ListSqlPoolGeoBackupPolicies"
         },
         {
-          "target": "com.azure.synapse#DeleteWorkspaceSqlAadAdmin"
+          "target": "com.azure.synapse#ListSqlPoolOperations"
         },
         {
-          "target": "com.azure.synapse#WorkspaceSqlAadAdminsCreateOrUpdate"
+          "target": "com.azure.synapse#ListSqlPoolReplicationLinks"
         },
         {
-          "target": "com.azure.synapse#GetWorkspaceSqlAadAdmin"
+          "target": "com.azure.synapse#ListSqlPoolRestorePoints"
         },
         {
-          "target": "com.azure.synapse#DeleteWorkspaceAadAdmin"
+          "target": "com.azure.synapse#ListSqlPoolSchemas"
         },
         {
-          "target": "com.azure.synapse#WorkspaceAadAdminsCreateOrUpdate"
+          "target": "com.azure.synapse#ListSqlPoolSecurityAlertPolicies2"
         },
         {
-          "target": "com.azure.synapse#GetWorkspaceAadAdmin"
+          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelCurrent"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelRecommended"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolTableBySchema"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolTableColumnByTableName"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolTransparentDataEncryptions"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolUsages"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessments"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessmentScans"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolWorkloadClassifier"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolWorkloadGroup"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerBlobAuditingPolicyByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerEncryptionProtector"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerExtendedBlobAuditingPolicyByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerRecoverableSqlPools"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerSecurityAlertPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerUsages"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerVulnerabilityAssessments"
         },
         {
           "target": "com.azure.synapse#ListWorkspaces"
         },
         {
-          "target": "com.azure.synapse#DeleteWorkspace"
+          "target": "com.azure.synapse#PauseSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#PrivateLinkHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#RefreshIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeys"
+        },
+        {
+          "target": "com.azure.synapse#ReplaceIpFirewallRuleAll"
+        },
+        {
+          "target": "com.azure.synapse#ResumeSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolGeoBackupPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolMaintenanceWindowsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolSecurityAlertPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolSensitivityLabelsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolTransparentDataEncryptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansInitiateScan"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolWorkloadClassifierCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolWorkloadGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#StartIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#StopIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#SyncIntegrationRuntimeCredentials"
+        },
+        {
+          "target": "com.azure.synapse#UpdateBigDataPool"
+        },
+        {
+          "target": "com.azure.synapse#UpdateIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#UpdateIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.synapse#UpdatePrivateLinkHub"
+        },
+        {
+          "target": "com.azure.synapse#UpdateSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#UpdateSqlPoolRecommendedSensitivityLabel"
+        },
+        {
+          "target": "com.azure.synapse#UpdateSqlPoolSensitivityLabel"
         },
         {
           "target": "com.azure.synapse#UpdateWorkspace"
         },
         {
+          "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceAadAdminsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorRevalidate"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerVulnerabilityAssessmentsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.synapse#WorkspacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.synapse#GetWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceByResourceGroup"
+          "target": "com.azure.synapse#WorkspaceSqlAadAdminsCreateOrUpdate"
         }
       ],
       "traits": {

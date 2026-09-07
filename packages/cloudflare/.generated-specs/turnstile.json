@@ -25,7 +25,8 @@
       "perPage": "per_page",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.turnstile#WidgetsCreateRequestDirection": {
@@ -824,22 +825,22 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.turnstile#WidgetsCreate"
+          "target": "com.cloudflare.turnstile#CreateWidget"
         },
         {
-          "target": "com.cloudflare.turnstile#WidgetsDelete"
+          "target": "com.cloudflare.turnstile#DeleteWidget"
         },
         {
-          "target": "com.cloudflare.turnstile#WidgetsGet"
+          "target": "com.cloudflare.turnstile#GetWidget"
         },
         {
-          "target": "com.cloudflare.turnstile#WidgetsList"
+          "target": "com.cloudflare.turnstile#ListWidgets"
         },
         {
-          "target": "com.cloudflare.turnstile#WidgetsRotateSecret"
+          "target": "com.cloudflare.turnstile#RotateSecretWidget"
         },
         {
-          "target": "com.cloudflare.turnstile#WidgetsUpdate"
+          "target": "com.cloudflare.turnstile#UpdateWidget"
         }
       ],
       "traits": {

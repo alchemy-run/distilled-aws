@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.mount#StringList": {
@@ -23,7 +24,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.modal.mount#CheckMountBatchedExistenceRequest": {
+    "com.modal.mount#MountBatchedCheckExistenceRequest": {
       "type": "structure",
       "members": {
         "sha256HexHashes": {
@@ -34,7 +35,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.mount#CheckMountBatchedExistenceResponse": {
+    "com.modal.mount#MountBatchedCheckExistenceResponse": {
       "type": "structure",
       "members": {
         "missingSha256HexHashes": {
@@ -45,13 +46,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.mount#CheckMountBatchedExistence": {
+    "com.modal.mount#MountBatchedCheckExistence": {
       "type": "operation",
       "input": {
-        "target": "com.modal.mount#CheckMountBatchedExistenceRequest"
+        "target": "com.modal.mount#MountBatchedCheckExistenceRequest"
       },
       "output": {
-        "target": "com.modal.mount#CheckMountBatchedExistenceResponse"
+        "target": "com.modal.mount#MountBatchedCheckExistenceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -270,7 +271,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.mount#CheckMountBatchedExistence"
+          "target": "com.modal.mount#MountBatchedCheckExistence"
         },
         {
           "target": "com.modal.mount#MountGetOrCreate"

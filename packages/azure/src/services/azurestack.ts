@@ -645,6 +645,77 @@ export const GetProductProductResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProductProductResponse",
 }) as any as S.Schema<GetProductProductResponse>;
 
+export interface GetProductProductsRequest {
+  /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** Name of the resource group. */
+  resourceGroup: string;
+  /** Name of the Azure Stack registration. */
+  registrationName: string;
+  /** Name of the product. */
+  productName: string;
+}
+export const GetProductProductsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroup: S.String.pipe(T.Label()),
+    registrationName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/getProducts",
+      code: 200,
+      apiVersion: "2022-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetProductProductsRequest",
+}) as any as S.Schema<GetProductProductsRequest>;
+
+/** Product information. */
+export interface Product {
+  /** ID of the resource. */
+  id?: string;
+  /** Name of the resource. */
+  name?: string;
+  /** Type of Resource. */
+  type?: string;
+  /** The entity tag used for optimistic concurrency when modifying the resource. */
+  etag?: string;
+  /** Properties of the product resource. */
+  properties?: ProductNestedProperties;
+}
+export const Product = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    etag: S.optional(S.String),
+    properties: S.optional(ProductNestedProperties),
+  }),
+).annotate({ identifier: "Product" }) as any as S.Schema<Product>;
+
+/** List of products. */
+export type ProductListValueList = Array<Product>;
+export const ProductListValueList = /*@__PURE__*/ S.Array(
+  Product,
+) as any as S.Schema<ProductListValueList>;
+
+/** Pageable list of products. */
+export interface ProductList {
+  /** URI to the next page. */
+  nextLink?: string;
+  /** List of products. */
+  value?: ProductListValueList;
+}
+export const ProductList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ProductListValueList),
+  }),
+).annotate({ identifier: "ProductList" }) as any as S.Schema<ProductList>;
+
 export interface GetRegistrationRequest {
   /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -671,17 +742,17 @@ export const GetRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetRegistrationRequest>;
 
 /** Location of the resource. */
-export type RegistrationsGetResponseLocation = "global";
-export const RegistrationsGetResponseLocation = /*@__PURE__*/ S.String;
+export type GetRegistrationResponseLocation = "global";
+export const GetRegistrationResponseLocation = /*@__PURE__*/ S.String;
 
 /** Custom tags for the resource. */
-export type RegistrationsGetResponseTagsMap = {
+export type GetRegistrationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RegistrationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRegistrationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RegistrationsGetResponseTagsMap>;
+) as any as S.Schema<GetRegistrationResponseTagsMap>;
 
 /** Properties portion of the registration resource. */
 export interface RegistrationProperties {
@@ -710,9 +781,9 @@ export interface GetRegistrationResponse {
   /** Type of Resource. */
   type?: string;
   /** Location of the resource. */
-  location: RegistrationsGetResponseLocation;
+  location: GetRegistrationResponseLocation;
   /** Custom tags for the resource. */
-  tags?: RegistrationsGetResponseTagsMap;
+  tags?: GetRegistrationResponseTagsMap;
   /** The entity tag used for optimistic concurrency when modifying the resource. */
   etag?: string;
   /** Registration resource. */
@@ -723,8 +794,8 @@ export const GetRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    location: RegistrationsGetResponseLocation,
-    tags: S.optional(RegistrationsGetResponseTagsMap),
+    location: GetRegistrationResponseLocation,
+    tags: S.optional(GetRegistrationResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(RegistrationProperties),
   }),
@@ -1117,49 +1188,6 @@ export const ListProductProductsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListProductProductsRequest",
 }) as any as S.Schema<ListProductProductsRequest>;
 
-/** Product information. */
-export interface Product {
-  /** ID of the resource. */
-  id?: string;
-  /** Name of the resource. */
-  name?: string;
-  /** Type of Resource. */
-  type?: string;
-  /** The entity tag used for optimistic concurrency when modifying the resource. */
-  etag?: string;
-  /** Properties of the product resource. */
-  properties?: ProductNestedProperties;
-}
-export const Product = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    etag: S.optional(S.String),
-    properties: S.optional(ProductNestedProperties),
-  }),
-).annotate({ identifier: "Product" }) as any as S.Schema<Product>;
-
-/** List of products. */
-export type ProductListValueList = Array<Product>;
-export const ProductListValueList = /*@__PURE__*/ S.Array(
-  Product,
-) as any as S.Schema<ProductListValueList>;
-
-/** Pageable list of products. */
-export interface ProductList {
-  /** URI to the next page. */
-  nextLink?: string;
-  /** List of products. */
-  value?: ProductListValueList;
-}
-export const ProductList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(ProductListValueList),
-  }),
-).annotate({ identifier: "ProductList" }) as any as S.Schema<ProductList>;
-
 export interface ListProductsRequest {
   /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -1289,103 +1317,6 @@ export const ListRegistrationsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRegistrationsRequest",
 }) as any as S.Schema<ListRegistrationsRequest>;
 
-export interface ProductsGetProductsRequest {
-  /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** Name of the resource group. */
-  resourceGroup: string;
-  /** Name of the Azure Stack registration. */
-  registrationName: string;
-  /** Name of the product. */
-  productName: string;
-}
-export const ProductsGetProductsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroup: S.String.pipe(T.Label()),
-    registrationName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/getProducts",
-      code: 200,
-      apiVersion: "2022-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProductsGetProductsRequest",
-}) as any as S.Schema<ProductsGetProductsRequest>;
-
-export interface ProductsUploadLogRequest {
-  /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** Name of the resource group. */
-  resourceGroup: string;
-  /** Name of the Azure Stack registration. */
-  registrationName: string;
-  /** Name of the product. */
-  productName: string;
-}
-export const ProductsUploadLogRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroup: S.String.pipe(T.Label()),
-    registrationName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/uploadProductLog",
-      code: 200,
-      apiVersion: "2022-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProductsUploadLogRequest",
-}) as any as S.Schema<ProductsUploadLogRequest>;
-
-/** Product action log. */
-export interface ProductLog {
-  /** Log ID. */
-  id?: string;
-  /** Logged product ID. */
-  productId?: string;
-  /** Logged subscription ID. */
-  subscriptionId?: string;
-  /** Logged registration name. */
-  registrationName?: string;
-  /** Logged resource group name. */
-  resourceGroupName?: string;
-  /** Logged operation. */
-  operation?: string;
-  /** Operation start datetime. */
-  startDate?: string;
-  /** Operation end datetime. */
-  endDate?: string;
-  /** Operation status. */
-  status?: string;
-  /** Operation error data. */
-  error?: string;
-  /** Operation error details. */
-  details?: string;
-}
-export const ProductLog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    productId: S.optional(S.String),
-    subscriptionId: S.optional(S.String),
-    registrationName: S.optional(S.String),
-    resourceGroupName: S.optional(S.String),
-    operation: S.optional(S.String),
-    startDate: S.optional(S.String),
-    endDate: S.optional(S.String),
-    status: S.optional(S.String),
-    error: S.optional(S.String),
-    details: S.optional(S.String),
-  }),
-).annotate({ identifier: "ProductLog" }) as any as S.Schema<ProductLog>;
-
 /** Properties of the Azure Stack registration resource */
 export interface RegistrationParameterProperties {
   /** The token identifying registered Azure Stack */
@@ -1481,8 +1412,8 @@ export const RegistrationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RegistrationsCreateOrUpdateResponse>;
 
 /** Location of the resource. */
-export type RegistrationsUpdateRequestLocation = "global";
-export const RegistrationsUpdateRequestLocation = /*@__PURE__*/ S.String;
+export type UpdateRegistrationRequestLocation = "global";
+export const UpdateRegistrationRequestLocation = /*@__PURE__*/ S.String;
 
 export interface UpdateRegistrationRequest {
   /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -1494,7 +1425,7 @@ export interface UpdateRegistrationRequest {
   /** Properties of the Azure Stack registration resource */
   properties: RegistrationParameterProperties;
   /** Location of the resource. */
-  location: RegistrationsUpdateRequestLocation | (string & {});
+  location: UpdateRegistrationRequestLocation | (string & {});
 }
 export const UpdateRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1502,7 +1433,7 @@ export const UpdateRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroup: S.String.pipe(T.Label()),
     registrationName: S.String.pipe(T.Label()),
     properties: RegistrationParameterProperties,
-    location: RegistrationsUpdateRequestLocation,
+    location: UpdateRegistrationRequestLocation,
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1516,17 +1447,17 @@ export const UpdateRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRegistrationRequest>;
 
 /** Location of the resource. */
-export type RegistrationsUpdateResponseLocation = "global";
-export const RegistrationsUpdateResponseLocation = /*@__PURE__*/ S.String;
+export type UpdateRegistrationResponseLocation = "global";
+export const UpdateRegistrationResponseLocation = /*@__PURE__*/ S.String;
 
 /** Custom tags for the resource. */
-export type RegistrationsUpdateResponseTagsMap = {
+export type UpdateRegistrationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RegistrationsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRegistrationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RegistrationsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateRegistrationResponseTagsMap>;
 
 export interface UpdateRegistrationResponse {
   /** ID of the resource. */
@@ -1536,9 +1467,9 @@ export interface UpdateRegistrationResponse {
   /** Type of Resource. */
   type?: string;
   /** Location of the resource. */
-  location: RegistrationsUpdateResponseLocation;
+  location: UpdateRegistrationResponseLocation;
   /** Custom tags for the resource. */
-  tags?: RegistrationsUpdateResponseTagsMap;
+  tags?: UpdateRegistrationResponseTagsMap;
   /** The entity tag used for optimistic concurrency when modifying the resource. */
   etag?: string;
   /** Registration resource. */
@@ -1549,14 +1480,83 @@ export const UpdateRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    location: RegistrationsUpdateResponseLocation,
-    tags: S.optional(RegistrationsUpdateResponseTagsMap),
+    location: UpdateRegistrationResponseLocation,
+    tags: S.optional(UpdateRegistrationResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(RegistrationProperties),
   }),
 ).annotate({
   identifier: "UpdateRegistrationResponse",
 }) as any as S.Schema<UpdateRegistrationResponse>;
+
+export interface UploadProductLogRequest {
+  /** Subscription credentials that uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** Name of the resource group. */
+  resourceGroup: string;
+  /** Name of the Azure Stack registration. */
+  registrationName: string;
+  /** Name of the product. */
+  productName: string;
+}
+export const UploadProductLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroup: S.String.pipe(T.Label()),
+    registrationName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.AzureStack/registrations/{registrationName}/products/{productName}/uploadProductLog",
+      code: 200,
+      apiVersion: "2022-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UploadProductLogRequest",
+}) as any as S.Schema<UploadProductLogRequest>;
+
+/** Product action log. */
+export interface ProductLog {
+  /** Log ID. */
+  id?: string;
+  /** Logged product ID. */
+  productId?: string;
+  /** Logged subscription ID. */
+  subscriptionId?: string;
+  /** Logged registration name. */
+  registrationName?: string;
+  /** Logged resource group name. */
+  resourceGroupName?: string;
+  /** Logged operation. */
+  operation?: string;
+  /** Operation start datetime. */
+  startDate?: string;
+  /** Operation end datetime. */
+  endDate?: string;
+  /** Operation status. */
+  status?: string;
+  /** Operation error data. */
+  error?: string;
+  /** Operation error details. */
+  details?: string;
+}
+export const ProductLog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    productId: S.optional(S.String),
+    subscriptionId: S.optional(S.String),
+    registrationName: S.optional(S.String),
+    resourceGroupName: S.optional(S.String),
+    operation: S.optional(S.String),
+    startDate: S.optional(S.String),
+    endDate: S.optional(S.String),
+    status: S.optional(S.String),
+    error: S.optional(S.String),
+    details: S.optional(S.String),
+  }),
+).annotate({ identifier: "ProductLog" }) as any as S.Schema<ProductLog>;
 
 export type CreateCustomerSubscriptionError = AzureOpError;
 /** Creates a new customer subscription under a registration. */
@@ -1688,6 +1688,21 @@ export const GetProductProduct: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetProductProductRequest,
   output: GetProductProductResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProductProductsError = AzureOpError;
+/** Returns a list of products. */
+export const GetProductProducts: API.OperationMethod<
+  GetProductProductsRequest,
+  ProductList,
+  GetProductProductsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProductProductsRequest,
+  output: ProductList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1843,36 +1858,6 @@ export const ListRegistrations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProductsGetProductsError = AzureOpError;
-/** Returns a list of products. */
-export const ProductsGetProducts: API.OperationMethod<
-  ProductsGetProductsRequest,
-  ProductList,
-  ProductsGetProductsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProductsGetProductsRequest,
-  output: ProductList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProductsUploadLogError = AzureOpError;
-/** Returns the specified product. */
-export const ProductsUploadLog: API.OperationMethod<
-  ProductsUploadLogRequest,
-  ProductLog,
-  ProductsUploadLogError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProductsUploadLogRequest,
-  output: ProductLog,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RegistrationsCreateOrUpdateError = AzureOpError;
 /** Create or update an Azure Stack registration. */
 export const RegistrationsCreateOrUpdate: API.OperationMethod<
@@ -1898,6 +1883,21 @@ export const UpdateRegistration: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateRegistrationRequest,
   output: UpdateRegistrationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadProductLogError = AzureOpError;
+/** Returns the specified product. */
+export const UploadProductLog: API.OperationMethod<
+  UploadProductLogRequest,
+  ProductLog,
+  UploadProductLogError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadProductLogRequest,
+  output: ProductLog,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

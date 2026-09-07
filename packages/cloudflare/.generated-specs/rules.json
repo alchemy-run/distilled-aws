@@ -31,7 +31,8 @@
       "subpathMatching": "subpath_matching",
       "targetUrl": "target_url",
       "urlHostname": "url_hostname"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.rules#ListsCreateRequestKind": {
@@ -1253,37 +1254,37 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.rules#ListsCreate"
+          "target": "com.cloudflare.rules#CreateList"
         },
         {
-          "target": "com.cloudflare.rules#ListsDelete"
+          "target": "com.cloudflare.rules#CreateListItem"
         },
         {
-          "target": "com.cloudflare.rules#ListsGet"
+          "target": "com.cloudflare.rules#DeleteList"
         },
         {
-          "target": "com.cloudflare.rules#ListsList"
+          "target": "com.cloudflare.rules#DeleteListItem"
         },
         {
-          "target": "com.cloudflare.rules#ListsUpdate"
+          "target": "com.cloudflare.rules#GetList"
         },
         {
-          "target": "com.cloudflare.rules#ListsBulkOperationsGet"
+          "target": "com.cloudflare.rules#GetListBulkOperation"
         },
         {
-          "target": "com.cloudflare.rules#ListsItemsCreate"
+          "target": "com.cloudflare.rules#GetListItem"
         },
         {
-          "target": "com.cloudflare.rules#ListsItemsDelete"
+          "target": "com.cloudflare.rules#ListListItems"
         },
         {
-          "target": "com.cloudflare.rules#ListsItemsGet"
+          "target": "com.cloudflare.rules#ListLists"
         },
         {
-          "target": "com.cloudflare.rules#ListsItemsList"
+          "target": "com.cloudflare.rules#UpdateList"
         },
         {
-          "target": "com.cloudflare.rules#ListsItemsUpdate"
+          "target": "com.cloudflare.rules#UpdateListItem"
         }
       ],
       "traits": {

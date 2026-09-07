@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.max#ListConversationsRequest": {
@@ -78,7 +79,7 @@
           "target": "smithy.api#String"
         },
         "status": {
-          "target": "com.posthog.max#ConversationStatus"
+          "target": "com.posthog.max#ConversationStatusEnum"
         },
         "title": {
           "target": "smithy.api#String",
@@ -88,7 +89,7 @@
           }
         },
         "topic": {
-          "target": "com.posthog.max#TopicEnum",
+          "target": "com.posthog.max#ConversationTopicEnum",
           "traits": {
             "smithy.api#documentation": "Product domain the conversation is about, classified from the first question.\n\n* `web_analytics` - Web analytics\n* `product_analytics` - Product analytics\n* `session_replay` - Session replay\n* `surveys` - Surveys\n* `feature_flags` - Feature flags\n* `experiments` - Experiments\n* `error_tracking` - Error tracking\n* `data_warehouse` - Data warehouse\n* `other` - Other",
             "com.distilled.openapi#nullable": {}
@@ -113,7 +114,7 @@
           }
         },
         "type": {
-          "target": "com.posthog.max#ConversationType"
+          "target": "com.posthog.max#ConversationTypeEnum"
         },
         "is_internal": {
           "target": "smithy.api#Boolean",
@@ -145,7 +146,7 @@
       },
       "traits": {}
     },
-    "com.posthog.max#ConversationStatus": {
+    "com.posthog.max#ConversationStatusEnum": {
       "type": "enum",
       "members": {
         "IDLE": {
@@ -171,7 +172,7 @@
         "smithy.api#documentation": "* `idle` - Idle\n* `in_progress` - In progress\n* `canceling` - Canceling"
       }
     },
-    "com.posthog.max#TopicEnum": {
+    "com.posthog.max#ConversationTopicEnum": {
       "type": "enum",
       "members": {
         "WEB_ANALYTICS": {
@@ -374,7 +375,7 @@
       },
       "traits": {}
     },
-    "com.posthog.max#ConversationType": {
+    "com.posthog.max#ConversationTypeEnum": {
       "type": "enum",
       "members": {
         "ASSISTANT": {
@@ -453,7 +454,7 @@
           }
         },
         "runtime": {
-          "target": "com.posthog.max#RuntimeEnum",
+          "target": "com.posthog.max#TaskRuntimeEnum",
           "traits": {
             "smithy.api#documentation": "Agent protocol and harness used for this task's runs.\n\n* `acp` - ACP\n* `pi` - Pi",
             "smithy.api#required": {}
@@ -551,7 +552,7 @@
         "smithy.api#documentation": "Conversation envelope variant: ``latest_run`` is just the latest run's id, not the nested\nrun detail. The frontend only needs the id to reconnect to sandbox logs, and emitting the id\navoids presigning a log URL per conversation. Task data follows the task's space visibility."
       }
     },
-    "com.posthog.max#RuntimeEnum": {
+    "com.posthog.max#TaskRuntimeEnum": {
       "type": "enum",
       "members": {
         "ACP": {
@@ -676,7 +677,7 @@
         }
       }
     },
-    "com.posthog.max#ConversationsCreateRequestContextualToolsMap": {
+    "com.posthog.max#CreateConversationRequestContextualToolsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -793,7 +794,7 @@
           "target": "smithy.api#String"
         },
         "contextual_tools": {
-          "target": "com.posthog.max#ConversationsCreateRequestContextualToolsMap"
+          "target": "com.posthog.max#CreateConversationRequestContextualToolsMap"
         },
         "ui_context": {
           "target": "smithy.api#Document"
@@ -889,7 +890,7 @@
         "smithy.api#documentation": "Unified endpoint that handles both conversation creation and streaming.\n\n- If message is provided: Start new conversation processing\n- If no message: Stream from existing conversation"
       }
     },
-    "com.posthog.max#ConversationsRetrieveRequest": {
+    "com.posthog.max#GetConversationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -920,7 +921,7 @@
           "target": "smithy.api#String"
         },
         "status": {
-          "target": "com.posthog.max#ConversationStatus"
+          "target": "com.posthog.max#ConversationStatusEnum"
         },
         "title": {
           "target": "smithy.api#String",
@@ -930,7 +931,7 @@
           }
         },
         "topic": {
-          "target": "com.posthog.max#TopicEnum",
+          "target": "com.posthog.max#ConversationTopicEnum",
           "traits": {
             "smithy.api#documentation": "Product domain the conversation is about, classified from the first question.\n\n* `web_analytics` - Web analytics\n* `product_analytics` - Product analytics\n* `session_replay` - Session replay\n* `surveys` - Surveys\n* `feature_flags` - Feature flags\n* `experiments` - Experiments\n* `error_tracking` - Error tracking\n* `data_warehouse` - Data warehouse\n* `other` - Other",
             "com.distilled.openapi#nullable": {}
@@ -955,7 +956,7 @@
           }
         },
         "type": {
-          "target": "com.posthog.max#ConversationType"
+          "target": "com.posthog.max#ConversationTypeEnum"
         },
         "is_internal": {
           "target": "smithy.api#Boolean",
@@ -991,7 +992,7 @@
           }
         },
         "agent_runtime": {
-          "target": "com.posthog.max#AgentRuntimeEnum",
+          "target": "com.posthog.max#ConversationAgentRuntimeEnum",
           "traits": {
             "smithy.api#documentation": "Runtime that owns this conversation. 'langgraph' conversations return their messages in the `messages` field; born-'sandbox' conversations return an empty `messages` array and load history from the products/tasks logs endpoint. A converted conversation is 'sandbox' but still returns its legacy thread in `messages`.\n\n* `langgraph` - LangGraph\n* `sandbox` - Sandbox"
           }
@@ -1031,7 +1032,7 @@
       },
       "traits": {}
     },
-    "com.posthog.max#AgentRuntimeEnum": {
+    "com.posthog.max#ConversationAgentRuntimeEnum": {
       "type": "enum",
       "members": {
         "LANGGRAPH": {
@@ -1070,10 +1071,10 @@
         "smithy.api#documentation": "Return pending approval cards as structured data.\n\nCombines metadata from conversation.approval_decisions with payload from checkpoint\ninterrupts (single source of truth for payload data)."
       }
     },
-    "com.posthog.max#ConversationsRetrieve": {
+    "com.posthog.max#GetConversation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#ConversationsRetrieveRequest"
+        "target": "com.posthog.max#GetConversationRequest"
       },
       "output": {
         "target": "com.posthog.max#Conversation"
@@ -1127,7 +1128,7 @@
         "smithy.api#documentation": "Delete a conversation."
       }
     },
-    "com.posthog.max#CreateConversationAppendMessageRequest": {
+    "com.posthog.max#CreateConversationsAppendMessageRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1165,10 +1166,10 @@
         "smithy.api#documentation": "Serializer for appending a message to an existing conversation without triggering AI processing."
       }
     },
-    "com.posthog.max#CreateConversationAppendMessage": {
+    "com.posthog.max#CreateConversationsAppendMessage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#CreateConversationAppendMessageRequest"
+        "target": "com.posthog.max#CreateConversationsAppendMessageRequest"
       },
       "output": {
         "target": "com.posthog.max#MessageMinimal"
@@ -1182,7 +1183,7 @@
         "smithy.api#documentation": "Appends a message to an existing conversation without triggering AI processing.\nThis is used for client-side generated messages that need to be persisted\n(e.g., support ticket confirmation messages)."
       }
     },
-    "com.posthog.max#UpdateConversationCancelPartialRequest": {
+    "com.posthog.max#ConversationsCancelPartialUpdateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1206,10 +1207,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.max#UpdateConversationCancelPartial": {
+    "com.posthog.max#ConversationsCancelPartialUpdate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#UpdateConversationCancelPartialRequest"
+        "target": "com.posthog.max#ConversationsCancelPartialUpdateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1317,7 +1318,7 @@
         "smithy.api#documentation": "* `action` - action\n* `dashboard` - dashboard\n* `error_tracking_issue` - error_tracking_issue\n* `evaluation` - evaluation\n* `event` - event\n* `insight` - insight\n* `notebook` - notebook\n* `text` - text"
       }
     },
-    "com.posthog.max#ConversationsOpenCreateRequestAttachedContextList": {
+    "com.posthog.max#CreateConversationsOpenRequestAttachedContextList": {
       "type": "list",
       "member": {
         "target": "com.posthog.max#SandboxAttachedContextItem"
@@ -1364,7 +1365,7 @@
         "smithy.api#documentation": "* `default` - default\n* `acceptEdits` - acceptEdits\n* `plan` - plan\n* `bypassPermissions` - bypassPermissions\n* `auto` - auto"
       }
     },
-    "com.posthog.max#CreateConversationOpenRequest": {
+    "com.posthog.max#CreateConversationsOpenRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1397,7 +1398,7 @@
           }
         },
         "attached_context": {
-          "target": "com.posthog.max#ConversationsOpenCreateRequestAttachedContextList",
+          "target": "com.posthog.max#CreateConversationsOpenRequestAttachedContextList",
           "traits": {
             "smithy.api#documentation": "Typed PostHog entities (and free text) attached to this message."
           }
@@ -1463,10 +1464,10 @@
         "smithy.api#documentation": "Response for `POST /conversations/{id}/open/` — the IDs the frontend opens SSE against."
       }
     },
-    "com.posthog.max#CreateConversationOpen": {
+    "com.posthog.max#CreateConversationsOpen": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#CreateConversationOpenRequest"
+        "target": "com.posthog.max#CreateConversationsOpenRequest"
       },
       "output": {
         "target": "com.posthog.max#SandboxMessageResponse"
@@ -1485,7 +1486,7 @@
         "smithy.api#documentation": "Create-or-resume a sandbox conversation — the single sandbox session opener. With `content`, processes the turn (first message, in-progress follow-up, or terminal resume); without `content`, warms a sandbox that idles awaiting the first message. Returns the `(task, run)` handle the frontend opens SSE against. The conversation row is created on first use from the URL id."
       }
     },
-    "com.posthog.max#ConversationsQueueRetrieveRequest": {
+    "com.posthog.max#GetConversationsQueueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1509,10 +1510,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.max#ConversationsQueueRetrieve": {
+    "com.posthog.max#GetConversationsQueue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#ConversationsQueueRetrieveRequest"
+        "target": "com.posthog.max#GetConversationsQueueRequest"
       },
       "output": {
         "target": "com.posthog.max#Conversation"
@@ -1525,7 +1526,7 @@
         }
       }
     },
-    "com.posthog.max#CreateConversationQueueRequest": {
+    "com.posthog.max#CreateConversationsQueueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1549,10 +1550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.max#CreateConversationQueue": {
+    "com.posthog.max#CreateConversationsQueue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#CreateConversationQueueRequest"
+        "target": "com.posthog.max#CreateConversationsQueueRequest"
       },
       "output": {
         "target": "com.posthog.max#Conversation"
@@ -1565,7 +1566,7 @@
         }
       }
     },
-    "com.posthog.max#UpdateConversationQueuePartialRequest": {
+    "com.posthog.max#UpdateConversationsQueuePartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1596,10 +1597,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.max#UpdateConversationQueuePartial": {
+    "com.posthog.max#UpdateConversationsQueuePartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#UpdateConversationQueuePartialRequest"
+        "target": "com.posthog.max#UpdateConversationsQueuePartialRequest"
       },
       "output": {
         "target": "com.posthog.max#Conversation"
@@ -1659,7 +1660,7 @@
         }
       }
     },
-    "com.posthog.max#CreateConversationQueueClearRequest": {
+    "com.posthog.max#CreateConversationsQueueClearRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1683,10 +1684,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.max#CreateConversationQueueClear": {
+    "com.posthog.max#CreateConversationsQueueClear": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.max#CreateConversationQueueClearRequest"
+        "target": "com.posthog.max#CreateConversationsQueueClearRequest"
       },
       "output": {
         "target": "com.posthog.max#Conversation"
@@ -1730,40 +1731,40 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.max#ListConversations"
-        },
-        {
-          "target": "com.posthog.max#CreateConversation"
-        },
-        {
-          "target": "com.posthog.max#ConversationsRetrieve"
+          "target": "com.posthog.max#ConversationsCancelPartialUpdate"
         },
         {
           "target": "com.posthog.max#ConversationsDestroy"
         },
         {
-          "target": "com.posthog.max#CreateConversationAppendMessage"
-        },
-        {
-          "target": "com.posthog.max#UpdateConversationCancelPartial"
-        },
-        {
-          "target": "com.posthog.max#CreateConversationOpen"
-        },
-        {
-          "target": "com.posthog.max#ConversationsQueueRetrieve"
-        },
-        {
-          "target": "com.posthog.max#CreateConversationQueue"
-        },
-        {
-          "target": "com.posthog.max#UpdateConversationQueuePartial"
-        },
-        {
           "target": "com.posthog.max#ConversationsQueueDestroy"
         },
         {
-          "target": "com.posthog.max#CreateConversationQueueClear"
+          "target": "com.posthog.max#CreateConversation"
+        },
+        {
+          "target": "com.posthog.max#CreateConversationsAppendMessage"
+        },
+        {
+          "target": "com.posthog.max#CreateConversationsOpen"
+        },
+        {
+          "target": "com.posthog.max#CreateConversationsQueue"
+        },
+        {
+          "target": "com.posthog.max#CreateConversationsQueueClear"
+        },
+        {
+          "target": "com.posthog.max#GetConversation"
+        },
+        {
+          "target": "com.posthog.max#GetConversationsQueue"
+        },
+        {
+          "target": "com.posthog.max#ListConversations"
+        },
+        {
+          "target": "com.posthog.max#UpdateConversationsQueuePartial"
         }
       ],
       "traits": {

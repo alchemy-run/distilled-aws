@@ -36,7 +36,8 @@
       "transferIn": "transfer_in",
       "unlockDomain": "unlock_domain",
       "updatedAt": "updated_at"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.registrar#CheckRequestDomainsList": {
@@ -768,7 +769,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateRequestContactsRegistrantPostalInfoAddress": {
+    "com.cloudflare.registrar#CreateRegistrationRequestContactsRegistrantPostalInfoAddress": {
       "type": "structure",
       "members": {
         "city": {
@@ -808,11 +809,11 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateRequestContactsRegistrantPostalInfo": {
+    "com.cloudflare.registrar#CreateRegistrationRequestContactsRegistrantPostalInfo": {
       "type": "structure",
       "members": {
         "address": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateRequestContactsRegistrantPostalInfoAddress",
+          "target": "com.cloudflare.registrar#CreateRegistrationRequestContactsRegistrantPostalInfoAddress",
           "traits": {
             "smithy.api#documentation": "Physical mailing address for the registrant contact.",
             "smithy.api#required": {}
@@ -833,7 +834,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateRequestContactsRegistrant": {
+    "com.cloudflare.registrar#CreateRegistrationRequestContactsRegistrant": {
       "type": "structure",
       "members": {
         "email": {
@@ -851,7 +852,7 @@
           }
         },
         "postal_info": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateRequestContactsRegistrantPostalInfo",
+          "target": "com.cloudflare.registrar#CreateRegistrationRequestContactsRegistrantPostalInfo",
           "traits": {
             "smithy.api#documentation": "Postal/mailing information for the registrant contact.",
             "smithy.api#required": {}
@@ -865,18 +866,18 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateRequestContacts": {
+    "com.cloudflare.registrar#CreateRegistrationRequestContacts": {
       "type": "structure",
       "members": {
         "registrant": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateRequestContactsRegistrant",
+          "target": "com.cloudflare.registrar#CreateRegistrationRequestContactsRegistrant",
           "traits": {
             "smithy.api#documentation": "Registrant contact data for the domain registration. This information"
           }
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateRequestPrivacyMode": {
+    "com.cloudflare.registrar#CreateRegistrationRequestPrivacyMode": {
       "type": "enum",
       "members": {
         "REDACTION": {
@@ -918,13 +919,13 @@
           }
         },
         "contacts": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateRequestContacts",
+          "target": "com.cloudflare.registrar#CreateRegistrationRequestContacts",
           "traits": {
             "smithy.api#documentation": "Contact data for the registration request."
           }
         },
         "privacy_mode": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateRequestPrivacyMode",
+          "target": "com.cloudflare.registrar#CreateRegistrationRequestPrivacyMode",
           "traits": {
             "smithy.api#documentation": "WHOIS privacy mode for the registration. Defaults to `redaction`."
           }
@@ -940,7 +941,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateResponseLinks": {
+    "com.cloudflare.registrar#CreateRegistrationResponseLinks": {
       "type": "structure",
       "members": {
         "self": {
@@ -958,7 +959,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateResponseState": {
+    "com.cloudflare.registrar#CreateRegistrationResponseState": {
       "type": "enum",
       "members": {
         "PENDING": {
@@ -999,7 +1000,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateResponseContextMap": {
+    "com.cloudflare.registrar#CreateRegistrationResponseContextMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1008,7 +1009,7 @@
         "target": "smithy.api#Document"
       }
     },
-    "com.cloudflare.registrar#RegistrationsCreateResponseError": {
+    "com.cloudflare.registrar#CreateRegistrationResponseError": {
       "type": "structure",
       "members": {
         "code": {
@@ -1044,13 +1045,13 @@
           }
         },
         "links": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateResponseLinks",
+          "target": "com.cloudflare.registrar#CreateRegistrationResponseLinks",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "state": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateResponseState",
+          "target": "com.cloudflare.registrar#CreateRegistrationResponseState",
           "traits": {
             "smithy.api#documentation": "Workflow lifecycle state.",
             "smithy.api#required": {}
@@ -1063,13 +1064,13 @@
           }
         },
         "context": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateResponseContextMap",
+          "target": "com.cloudflare.registrar#CreateRegistrationResponseContextMap",
           "traits": {
             "smithy.api#documentation": "Workflow-specific data for this workflow."
           }
         },
         "error": {
-          "target": "com.cloudflare.registrar#RegistrationsCreateResponseError",
+          "target": "com.cloudflare.registrar#CreateRegistrationResponseError",
           "traits": {
             "smithy.api#documentation": "Error details when a workflow reaches the `failed` state. The specific"
           }
@@ -1097,7 +1098,7 @@
         "smithy.api#documentation": "Starts a domain registration workflow. This is a billable operation — successful registration charges the account's default payment method. All successful domain registrations are non-refundable — once the workflow completes with `state: succeeded`, the charge cannot be reversed."
       }
     },
-    "com.cloudflare.registrar#RegistrationsEditRequestPrefer": {
+    "com.cloudflare.registrar#EditRegistrationRequestPrefer": {
       "type": "enum",
       "members": {
         "RESPOND_ASYNC": {
@@ -1108,7 +1109,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsEditRequest": {
+    "com.cloudflare.registrar#EditRegistrationRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1128,7 +1129,7 @@
           }
         },
         "Prefer": {
-          "target": "com.cloudflare.registrar#RegistrationsEditRequestPrefer",
+          "target": "com.cloudflare.registrar#EditRegistrationRequestPrefer",
           "traits": {
             "smithy.api#httpHeader": "Prefer"
           }
@@ -1144,7 +1145,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.registrar#RegistrationsEditResponseLinks": {
+    "com.cloudflare.registrar#EditRegistrationResponseLinks": {
       "type": "structure",
       "members": {
         "self": {
@@ -1162,7 +1163,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsEditResponseState": {
+    "com.cloudflare.registrar#EditRegistrationResponseState": {
       "type": "enum",
       "members": {
         "PENDING": {
@@ -1203,7 +1204,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsEditResponseContextMap": {
+    "com.cloudflare.registrar#EditRegistrationResponseContextMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1212,7 +1213,7 @@
         "target": "smithy.api#Document"
       }
     },
-    "com.cloudflare.registrar#RegistrationsEditResponseError": {
+    "com.cloudflare.registrar#EditRegistrationResponseError": {
       "type": "structure",
       "members": {
         "code": {
@@ -1231,7 +1232,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsEditResponse": {
+    "com.cloudflare.registrar#EditRegistrationResponse": {
       "type": "structure",
       "members": {
         "completed": {
@@ -1248,13 +1249,13 @@
           }
         },
         "links": {
-          "target": "com.cloudflare.registrar#RegistrationsEditResponseLinks",
+          "target": "com.cloudflare.registrar#EditRegistrationResponseLinks",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "state": {
-          "target": "com.cloudflare.registrar#RegistrationsEditResponseState",
+          "target": "com.cloudflare.registrar#EditRegistrationResponseState",
           "traits": {
             "smithy.api#documentation": "Workflow lifecycle state.",
             "smithy.api#required": {}
@@ -1267,13 +1268,13 @@
           }
         },
         "context": {
-          "target": "com.cloudflare.registrar#RegistrationsEditResponseContextMap",
+          "target": "com.cloudflare.registrar#EditRegistrationResponseContextMap",
           "traits": {
             "smithy.api#documentation": "Workflow-specific data for this workflow."
           }
         },
         "error": {
-          "target": "com.cloudflare.registrar#RegistrationsEditResponseError",
+          "target": "com.cloudflare.registrar#EditRegistrationResponseError",
           "traits": {
             "smithy.api#documentation": "Error details when a workflow reaches the `failed` state. The specific"
           }
@@ -1284,13 +1285,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.registrar#RegistrationsEdit": {
+    "com.cloudflare.registrar#EditRegistration": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.registrar#RegistrationsEditRequest"
+        "target": "com.cloudflare.registrar#EditRegistrationRequest"
       },
       "output": {
-        "target": "com.cloudflare.registrar#RegistrationsEditResponse"
+        "target": "com.cloudflare.registrar#EditRegistrationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1325,7 +1326,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.registrar#RegistrationsGetResponsePrivacyMode": {
+    "com.cloudflare.registrar#GetRegistrationResponsePrivacyMode": {
       "type": "enum",
       "members": {
         "REDACTION": {
@@ -1336,7 +1337,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsGetResponseStatus": {
+    "com.cloudflare.registrar#GetRegistrationResponseStatus": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -1416,14 +1417,14 @@
           }
         },
         "privacy_mode": {
-          "target": "com.cloudflare.registrar#RegistrationsGetResponsePrivacyMode",
+          "target": "com.cloudflare.registrar#GetRegistrationResponsePrivacyMode",
           "traits": {
             "smithy.api#documentation": "Current WHOIS privacy mode for the registration.",
             "smithy.api#required": {}
           }
         },
         "status": {
-          "target": "com.cloudflare.registrar#RegistrationsGetResponseStatus",
+          "target": "com.cloudflare.registrar#GetRegistrationResponseStatus",
           "traits": {
             "smithy.api#documentation": "Current registration status.",
             "smithy.api#required": {}
@@ -1453,7 +1454,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.registrar#RegistrationsListRequestDirection": {
+    "com.cloudflare.registrar#ListRegistrationsRequestDirection": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -1470,7 +1471,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsListRequestSortBy": {
+    "com.cloudflare.registrar#ListRegistrationsRequestSortBy": {
       "type": "enum",
       "members": {
         "REGISTRY_CREATED_AT": {
@@ -1512,7 +1513,7 @@
           }
         },
         "direction": {
-          "target": "com.cloudflare.registrar#RegistrationsListRequestDirection",
+          "target": "com.cloudflare.registrar#ListRegistrationsRequestDirection",
           "traits": {
             "smithy.api#documentation": "Sort direction for results. Defaults to ascending order.",
             "smithy.api#httpQuery": "direction"
@@ -1526,7 +1527,7 @@
           }
         },
         "sort_by": {
-          "target": "com.cloudflare.registrar#RegistrationsListRequestSortBy",
+          "target": "com.cloudflare.registrar#ListRegistrationsRequestSortBy",
           "traits": {
             "smithy.api#documentation": "Column to sort results by. Defaults to registration date",
             "smithy.api#httpQuery": "sort_by"
@@ -1537,7 +1538,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.registrar#RegistrationsListResultItemPrivacyMode": {
+    "com.cloudflare.registrar#ListRegistrationsResultItemPrivacyMode": {
       "type": "enum",
       "members": {
         "REDACTION": {
@@ -1548,7 +1549,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsListResultItemStatus": {
+    "com.cloudflare.registrar#ListRegistrationsResultItemStatus": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -1589,7 +1590,7 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsListResultItem": {
+    "com.cloudflare.registrar#ListRegistrationsResultItem": {
       "type": "structure",
       "members": {
         "auto_renew": {
@@ -1628,14 +1629,14 @@
           }
         },
         "privacy_mode": {
-          "target": "com.cloudflare.registrar#RegistrationsListResultItemPrivacyMode",
+          "target": "com.cloudflare.registrar#ListRegistrationsResultItemPrivacyMode",
           "traits": {
             "smithy.api#documentation": "Current WHOIS privacy mode for the registration.",
             "smithy.api#required": {}
           }
         },
         "status": {
-          "target": "com.cloudflare.registrar#RegistrationsListResultItemStatus",
+          "target": "com.cloudflare.registrar#ListRegistrationsResultItemStatus",
           "traits": {
             "smithy.api#documentation": "Current registration status.",
             "smithy.api#required": {}
@@ -1643,17 +1644,17 @@
         }
       }
     },
-    "com.cloudflare.registrar#RegistrationsListResultList": {
+    "com.cloudflare.registrar#ListRegistrationsResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.registrar#RegistrationsListResultItem"
+        "target": "com.cloudflare.registrar#ListRegistrationsResultItem"
       }
     },
     "com.cloudflare.registrar#ListRegistrationsResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.registrar#RegistrationsListResultList",
+          "target": "com.cloudflare.registrar#ListRegistrationsResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -1774,37 +1775,37 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.registrar#Check"
-        },
-        {
-          "target": "com.cloudflare.registrar#Search"
-        },
-        {
-          "target": "com.cloudflare.registrar#DomainsGet"
-        },
-        {
-          "target": "com.cloudflare.registrar#DomainsList"
-        },
-        {
-          "target": "com.cloudflare.registrar#DomainsUpdate"
-        },
-        {
-          "target": "com.cloudflare.registrar#RegistrationStatusGet"
+          "target": "com.cloudflare.registrar#CheckRegistrar"
         },
         {
           "target": "com.cloudflare.registrar#CreateRegistration"
         },
         {
-          "target": "com.cloudflare.registrar#RegistrationsEdit"
+          "target": "com.cloudflare.registrar#EditRegistration"
+        },
+        {
+          "target": "com.cloudflare.registrar#GetDomain"
         },
         {
           "target": "com.cloudflare.registrar#GetRegistration"
         },
         {
+          "target": "com.cloudflare.registrar#GetRegistrationStatus"
+        },
+        {
+          "target": "com.cloudflare.registrar#GetUpdateStatus"
+        },
+        {
+          "target": "com.cloudflare.registrar#ListDomains"
+        },
+        {
           "target": "com.cloudflare.registrar#ListRegistrations"
         },
         {
-          "target": "com.cloudflare.registrar#UpdateStatusGet"
+          "target": "com.cloudflare.registrar#PutDomain"
+        },
+        {
+          "target": "com.cloudflare.registrar#SearchRegistrar"
         }
       ],
       "traits": {

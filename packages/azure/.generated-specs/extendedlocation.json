@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.extendedlocation#ListCustomLocationEnabledResourceTypes": {
@@ -396,7 +397,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.extendedlocation#CustomLocationsUpdateResponseTagsMap",
+          "target": "com.azure.extendedlocation#UpdateCustomLocationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -421,7 +422,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.extendedlocation#CustomLocationsUpdateResponseSystemData",
+          "target": "com.azure.extendedlocation#UpdateCustomLocationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -431,7 +432,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.extendedlocation#CustomLocationsUpdateResponseSystemData": {
+    "com.azure.extendedlocation#UpdateCustomLocationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -441,7 +442,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.extendedlocation#CustomLocationsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.extendedlocation#UpdateCustomLocationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -459,7 +460,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.extendedlocation#CustomLocationsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.extendedlocation#UpdateCustomLocationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -475,7 +476,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.extendedlocation#CustomLocationsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.extendedlocation#UpdateCustomLocationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -507,7 +508,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.extendedlocation#CustomLocationsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.extendedlocation#UpdateCustomLocationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -678,7 +679,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.extendedlocation#CustomLocationsUpdateResponseTagsMap": {
+    "com.azure.extendedlocation#UpdateCustomLocationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -730,7 +731,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.extendedlocation#CustomLocationsUpdateRequestTagsMap",
+          "target": "com.azure.extendedlocation#UpdateCustomLocationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -740,7 +741,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.extendedlocation#CustomLocationsUpdateRequestTagsMap": {
+    "com.azure.extendedlocation#UpdateCustomLocationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1092,7 +1093,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.extendedlocation#CustomLocationsGetResponseTagsMap",
+          "target": "com.azure.extendedlocation#GetCustomLocationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1117,7 +1118,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.extendedlocation#CustomLocationsGetResponseSystemData",
+          "target": "com.azure.extendedlocation#GetCustomLocationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1127,7 +1128,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.extendedlocation#CustomLocationsGetResponseSystemData": {
+    "com.azure.extendedlocation#GetCustomLocationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1137,7 +1138,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.extendedlocation#CustomLocationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.extendedlocation#GetCustomLocationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1155,7 +1156,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.extendedlocation#CustomLocationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.extendedlocation#GetCustomLocationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1171,7 +1172,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.extendedlocation#CustomLocationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.extendedlocation#GetCustomLocationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1203,7 +1204,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.extendedlocation#CustomLocationsGetResponseSystemDataCreatedByType": {
+    "com.azure.extendedlocation#GetCustomLocationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1235,7 +1236,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.extendedlocation#CustomLocationsGetResponseTagsMap": {
+    "com.azure.extendedlocation#GetCustomLocationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1681,16 +1682,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.extendedlocation#ListCustomLocationEnabledResourceTypes"
+          "target": "com.azure.extendedlocation#CustomLocationsCreateOrUpdate"
         },
         {
           "target": "com.azure.extendedlocation#DeleteCustomLocation"
-        },
-        {
-          "target": "com.azure.extendedlocation#UpdateCustomLocation"
-        },
-        {
-          "target": "com.azure.extendedlocation#CustomLocationsCreateOrUpdate"
         },
         {
           "target": "com.azure.extendedlocation#GetCustomLocation"
@@ -1702,7 +1697,13 @@
           "target": "com.azure.extendedlocation#ListCustomLocationBySubscription"
         },
         {
+          "target": "com.azure.extendedlocation#ListCustomLocationEnabledResourceTypes"
+        },
+        {
           "target": "com.azure.extendedlocation#ListCustomLocationOperations"
+        },
+        {
+          "target": "com.azure.extendedlocation#UpdateCustomLocation"
         }
       ],
       "traits": {

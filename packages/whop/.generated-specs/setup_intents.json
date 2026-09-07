@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.setup_intents#UpdateReturnUrlSetupIntentRequest": {
@@ -791,7 +792,7 @@
         "smithy.api#documentation": "Update setup return URL\n\nChanges where the buyer lands after completing an off-site step, up until they return. Accepts either a secret key or the setup's own `client_secret`, so the surface that knows the final destination can set it."
       }
     },
-    "com.whop.setup_intents#RetrieveStatusSetupIntentRequest": {
+    "com.whop.setup_intents#GetStatusSetupIntentRequest": {
       "type": "structure",
       "members": {
         "setup_intent_id": {
@@ -807,10 +808,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.setup_intents#RetrieveStatusSetupIntent": {
+    "com.whop.setup_intents#GetStatusSetupIntent": {
       "type": "operation",
       "input": {
-        "target": "com.whop.setup_intents#RetrieveStatusSetupIntentRequest"
+        "target": "com.whop.setup_intents#GetStatusSetupIntentRequest"
       },
       "output": {
         "target": "com.whop.setup_intents#SetupStatus"
@@ -3449,7 +3450,7 @@
         "smithy.api#documentation": "Create setup intent\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nSave a buyer's payment method for later without charging it. Provide a confirmation token for a method the buyer just supplied, or an existing payment method to re-verify. The buyer may still have a step to complete — 3D Secure, a hosted enrollment, linking a bank account — so poll the setup intent's status endpoint for what to do next.\n\nRequired permissions:\n - `payment:charge`\n - `member:basic:read`\n - `member:email:read`"
       }
     },
-    "com.whop.setup_intents#RetrieveSetupIntentRequest": {
+    "com.whop.setup_intents#GetSetupIntentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3801,10 +3802,10 @@
         "smithy.api#documentation": "The saved payment method created by this setup intent. Null if the setup has not completed successfully."
       }
     },
-    "com.whop.setup_intents#RetrieveSetupIntent": {
+    "com.whop.setup_intents#GetSetupIntent": {
       "type": "operation",
       "input": {
-        "target": "com.whop.setup_intents#RetrieveSetupIntentRequest"
+        "target": "com.whop.setup_intents#GetSetupIntentRequest"
       },
       "output": {
         "target": "com.whop.setup_intents#SetupIntent"
@@ -3889,19 +3890,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.setup_intents#UpdateReturnUrlSetupIntent"
+          "target": "com.whop.setup_intents#CreateSetupIntent"
         },
         {
-          "target": "com.whop.setup_intents#RetrieveStatusSetupIntent"
+          "target": "com.whop.setup_intents#GetSetupIntent"
+        },
+        {
+          "target": "com.whop.setup_intents#GetStatusSetupIntent"
         },
         {
           "target": "com.whop.setup_intents#ListSetupIntent"
         },
         {
-          "target": "com.whop.setup_intents#CreateSetupIntent"
-        },
-        {
-          "target": "com.whop.setup_intents#RetrieveSetupIntent"
+          "target": "com.whop.setup_intents#UpdateReturnUrlSetupIntent"
         }
       ],
       "traits": {

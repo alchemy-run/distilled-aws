@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.timeseriesinsights#ListAccessPolicyByEnvironment": {
@@ -947,7 +948,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#ReferenceDataSetsUpdateResponseTagsMap",
+          "target": "com.azure.timeseriesinsights#UpdateReferenceDataSetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -960,7 +961,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.timeseriesinsights#ReferenceDataSetsUpdateResponseTagsMap": {
+    "com.azure.timeseriesinsights#UpdateReferenceDataSetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1008,7 +1009,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#ReferenceDataSetsUpdateRequestTagsMap",
+          "target": "com.azure.timeseriesinsights#UpdateReferenceDataSetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional properties for the reference data set."
           }
@@ -1018,7 +1019,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.timeseriesinsights#ReferenceDataSetsUpdateRequestTagsMap": {
+    "com.azure.timeseriesinsights#UpdateReferenceDataSetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1272,7 +1273,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#ReferenceDataSetsGetResponseTagsMap",
+          "target": "com.azure.timeseriesinsights#GetReferenceDataSetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -1285,7 +1286,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.timeseriesinsights#ReferenceDataSetsGetResponseTagsMap": {
+    "com.azure.timeseriesinsights#GetReferenceDataSetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1596,13 +1597,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#EventSourcesUpdateResponseTagsMap",
+          "target": "com.azure.timeseriesinsights#UpdateEventSourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
         },
         "kind": {
-          "target": "com.azure.timeseriesinsights#EventSourcesUpdateResponseKind",
+          "target": "com.azure.timeseriesinsights#UpdateEventSourceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the event source.",
             "smithy.api#required": {}
@@ -1613,7 +1614,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.timeseriesinsights#EventSourcesUpdateResponseKind": {
+    "com.azure.timeseriesinsights#UpdateEventSourceResponseKind": {
       "type": "enum",
       "members": {
         "MICROSOFT_EVENTHUB": {
@@ -1633,7 +1634,7 @@
         "smithy.api#documentation": "The kind of the event source."
       }
     },
-    "com.azure.timeseriesinsights#EventSourcesUpdateResponseTagsMap": {
+    "com.azure.timeseriesinsights#UpdateEventSourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1681,14 +1682,14 @@
           }
         },
         "kind": {
-          "target": "com.azure.timeseriesinsights#EventSourcesUpdateRequestKind",
+          "target": "com.azure.timeseriesinsights#UpdateEventSourceRequestKind",
           "traits": {
             "smithy.api#documentation": "The kind of the event source.",
             "smithy.api#required": {}
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#EventSourcesUpdateRequestTagsMap",
+          "target": "com.azure.timeseriesinsights#UpdateEventSourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional properties for the event source."
           }
@@ -1698,7 +1699,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.timeseriesinsights#EventSourcesUpdateRequestTagsMap": {
+    "com.azure.timeseriesinsights#UpdateEventSourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1710,7 +1711,7 @@
         "smithy.api#documentation": "Key-value pairs of additional properties for the event source."
       }
     },
-    "com.azure.timeseriesinsights#EventSourcesUpdateRequestKind": {
+    "com.azure.timeseriesinsights#UpdateEventSourceRequestKind": {
       "type": "enum",
       "members": {
         "MICROSOFT_EVENTHUB": {
@@ -2021,13 +2022,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#EventSourcesGetResponseTagsMap",
+          "target": "com.azure.timeseriesinsights#GetEventSourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
         },
         "kind": {
-          "target": "com.azure.timeseriesinsights#EventSourcesGetResponseKind",
+          "target": "com.azure.timeseriesinsights#GetEventSourceResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the event source.",
             "smithy.api#required": {}
@@ -2038,7 +2039,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.timeseriesinsights#EventSourcesGetResponseKind": {
+    "com.azure.timeseriesinsights#GetEventSourceResponseKind": {
       "type": "enum",
       "members": {
         "MICROSOFT_EVENTHUB": {
@@ -2058,7 +2059,7 @@
         "smithy.api#documentation": "The kind of the event source."
       }
     },
-    "com.azure.timeseriesinsights#EventSourcesGetResponseTagsMap": {
+    "com.azure.timeseriesinsights#GetEventSourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2449,7 +2450,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateResponseTagsMap",
+          "target": "com.azure.timeseriesinsights#UpdateEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -2462,7 +2463,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateResponseKind",
+          "target": "com.azure.timeseriesinsights#UpdateEnvironmentResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the environment.",
             "smithy.api#required": {}
@@ -2473,7 +2474,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.timeseriesinsights#EnvironmentsUpdateResponseKind": {
+    "com.azure.timeseriesinsights#UpdateEnvironmentResponseKind": {
       "type": "enum",
       "members": {
         "GEN1": {
@@ -2493,7 +2494,7 @@
         "smithy.api#documentation": "The kind of the environment."
       }
     },
-    "com.azure.timeseriesinsights#EnvironmentsUpdateResponseTagsMap": {
+    "com.azure.timeseriesinsights#UpdateEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2533,14 +2534,14 @@
           }
         },
         "kind": {
-          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateRequestKind",
+          "target": "com.azure.timeseriesinsights#UpdateEnvironmentRequestKind",
           "traits": {
             "smithy.api#documentation": "The kind of the environment.",
             "smithy.api#required": {}
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#EnvironmentsUpdateRequestTagsMap",
+          "target": "com.azure.timeseriesinsights#UpdateEnvironmentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional properties for the environment."
           }
@@ -2550,7 +2551,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.timeseriesinsights#EnvironmentsUpdateRequestTagsMap": {
+    "com.azure.timeseriesinsights#UpdateEnvironmentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2562,7 +2563,7 @@
         "smithy.api#documentation": "Key-value pairs of additional properties for the environment."
       }
     },
-    "com.azure.timeseriesinsights#EnvironmentsUpdateRequestKind": {
+    "com.azure.timeseriesinsights#UpdateEnvironmentRequestKind": {
       "type": "enum",
       "members": {
         "GEN1": {
@@ -2825,7 +2826,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.timeseriesinsights#EnvironmentsGetResponseTagsMap",
+          "target": "com.azure.timeseriesinsights#GetEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -2838,7 +2839,7 @@
           }
         },
         "kind": {
-          "target": "com.azure.timeseriesinsights#EnvironmentsGetResponseKind",
+          "target": "com.azure.timeseriesinsights#GetEnvironmentResponseKind",
           "traits": {
             "smithy.api#documentation": "The kind of the environment.",
             "smithy.api#required": {}
@@ -2849,7 +2850,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.timeseriesinsights#EnvironmentsGetResponseKind": {
+    "com.azure.timeseriesinsights#GetEnvironmentResponseKind": {
       "type": "enum",
       "members": {
         "GEN1": {
@@ -2869,7 +2870,7 @@
         "smithy.api#documentation": "The kind of the environment."
       }
     },
-    "com.azure.timeseriesinsights#EnvironmentsGetResponseTagsMap": {
+    "com.azure.timeseriesinsights#GetEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3217,70 +3218,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.timeseriesinsights#ListAccessPolicyByEnvironment"
+          "target": "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdate"
         },
         {
           "target": "com.azure.timeseriesinsights#DeleteAccessPolicy"
         },
         {
-          "target": "com.azure.timeseriesinsights#UpdateAccessPolicy"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#GetAccessPolicy"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListReferenceDataSetByEnvironment"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#DeleteReferenceDataSet"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#UpdateReferenceDataSet"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#GetReferenceDataSet"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListEventSourceByEnvironment"
+          "target": "com.azure.timeseriesinsights#DeleteEnvironment"
         },
         {
           "target": "com.azure.timeseriesinsights#DeleteEventSource"
         },
         {
-          "target": "com.azure.timeseriesinsights#UpdateEventSource"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#GetEventSource"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListEnvironmentBySubscription"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListEnvironmentByResourceGroup"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#DeleteEnvironment"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#UpdateEnvironment"
+          "target": "com.azure.timeseriesinsights#DeleteReferenceDataSet"
         },
         {
           "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdate"
         },
         {
+          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#GetAccessPolicy"
+        },
+        {
           "target": "com.azure.timeseriesinsights#GetEnvironment"
         },
         {
+          "target": "com.azure.timeseriesinsights#GetEventSource"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#GetReferenceDataSet"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListAccessPolicyByEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListEnvironmentByResourceGroup"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListEnvironmentBySubscription"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListEventSourceByEnvironment"
+        },
+        {
           "target": "com.azure.timeseriesinsights#ListOperations"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListReferenceDataSetByEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#UpdateAccessPolicy"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#UpdateEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#UpdateEventSource"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#UpdateReferenceDataSet"
         }
       ],
       "traits": {

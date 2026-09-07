@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.ad_groups#ListAdGroupsRequestAdCampaignIdsList": {
@@ -4240,7 +4241,7 @@
         "smithy.api#documentation": "Search Targeting Options\n\nSearches the ad platform's targeting taxonomy for options to target an ad group with. Each result comes back in the exact shape the ad-group body accepts for its `type`, so it can be used in `detailed_targeting`, `regions`, or `languages` as-is. A blank `query` browses the small fixed lists (behaviors, browse demographic categories, languages); interests, work employers, job titles, schools, majors, and locations need a search term."
       }
     },
-    "com.whop.ad_groups#RetrieveAdGroupRequestAttributionModel": {
+    "com.whop.ad_groups#GetAdGroupRequestAttributionModel": {
       "type": "enum",
       "members": {
         "LAST_TOUCH": {
@@ -4258,7 +4259,7 @@
       },
       "traits": {}
     },
-    "com.whop.ad_groups#RetrieveAdGroupRequest": {
+    "com.whop.ad_groups#GetAdGroupRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4291,7 +4292,7 @@
           }
         },
         "attribution_model": {
-          "target": "com.whop.ad_groups#RetrieveAdGroupRequestAttributionModel",
+          "target": "com.whop.ad_groups#GetAdGroupRequestAttributionModel",
           "traits": {
             "smithy.api#httpQuery": "attribution_model",
             "smithy.api#documentation": "Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise."
@@ -4302,10 +4303,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.ad_groups#RetrieveAdGroup": {
+    "com.whop.ad_groups#GetAdGroup": {
       "type": "operation",
       "input": {
-        "target": "com.whop.ad_groups#RetrieveAdGroupRequest"
+        "target": "com.whop.ad_groups#GetAdGroupRequest"
       },
       "output": {
         "target": "com.whop.ad_groups#AdGroup"
@@ -5191,22 +5192,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.ad_groups#ListAdGroups"
-        },
-        {
           "target": "com.whop.ad_groups#CreateAdGroup"
-        },
-        {
-          "target": "com.whop.ad_groups#EstimateAdGroupReach"
-        },
-        {
-          "target": "com.whop.ad_groups#SearchAdGroupTargetingOptions"
-        },
-        {
-          "target": "com.whop.ad_groups#RetrieveAdGroup"
-        },
-        {
-          "target": "com.whop.ad_groups#UpdateAdGroup"
         },
         {
           "target": "com.whop.ad_groups#DeleteAdGroup"
@@ -5215,10 +5201,25 @@
           "target": "com.whop.ad_groups#DuplicateAdGroup"
         },
         {
+          "target": "com.whop.ad_groups#EstimateAdGroupReach"
+        },
+        {
+          "target": "com.whop.ad_groups#GetAdGroup"
+        },
+        {
+          "target": "com.whop.ad_groups#ListAdGroups"
+        },
+        {
           "target": "com.whop.ad_groups#PauseAdGroup"
         },
         {
+          "target": "com.whop.ad_groups#SearchAdGroupTargetingOptions"
+        },
+        {
           "target": "com.whop.ad_groups#UnpauseAdGroup"
+        },
+        {
+          "target": "com.whop.ad_groups#UpdateAdGroup"
         }
       ],
       "traits": {

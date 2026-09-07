@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.sdk_health#SdkHealthReportRetrieveRequest": {
+    "com.posthog.sdk_health#GetSdkHealthReportRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -465,10 +466,10 @@
         "smithy.api#documentation": "Per-SDK health assessments."
       }
     },
-    "com.posthog.sdk_health#SdkHealthReportRetrieve": {
+    "com.posthog.sdk_health#GetSdkHealthReport": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.sdk_health#SdkHealthReportRetrieveRequest"
+        "target": "com.posthog.sdk_health#GetSdkHealthReportRequest"
       },
       "output": {
         "target": "com.posthog.sdk_health#SdkHealthReport"
@@ -487,7 +488,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.sdk_health#SdkHealthReportRetrieve"
+          "target": "com.posthog.sdk_health#GetSdkHealthReport"
         }
       ],
       "traits": {

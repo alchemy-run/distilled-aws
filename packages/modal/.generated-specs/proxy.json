@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.proxy#ProxyAddIpRequest": {
@@ -407,9 +408,6 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.proxy#ProxyAddIp"
-        },
-        {
           "target": "com.modal.proxy#CreateProxy"
         },
         {
@@ -419,10 +417,13 @@
           "target": "com.modal.proxy#GetProxy"
         },
         {
-          "target": "com.modal.proxy#ProxyGetOrCreate"
+          "target": "com.modal.proxy#ListProxy"
         },
         {
-          "target": "com.modal.proxy#ListProxy"
+          "target": "com.modal.proxy#ProxyAddIp"
+        },
+        {
+          "target": "com.modal.proxy#ProxyGetOrCreate"
         },
         {
           "target": "com.modal.proxy#ProxyRemoveIp"

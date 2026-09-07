@@ -4,33 +4,64 @@
     "service": "cloudcontrolspartner",
     "version": "v1",
     "title": "Cloud Controls Partner API",
-    "baseUrl": "https://cloudcontrolspartner.googleapis.com/"
+    "baseUrl": "https://cloudcontrolspartner.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.cloudcontrolspartner_v1#Console": {
+    "com.gcp.cloudcontrolspartner_v1#Partner": {
       "type": "structure",
       "members": {
-        "consoleUris": {
-          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+        "ekmSolutions": {
+          "target": "com.gcp.cloudcontrolspartner_v1#EkmMetadataList",
           "traits": {
-            "smithy.api#documentation": "Link to console page where violations can be resolved"
+            "smithy.api#documentation": "List of Google Cloud supported EKM partners supported by the partner"
           }
         },
-        "additionalLinks": {
+        "operatedCloudRegions": {
           "target": "com.gcp.cloudcontrolspartner_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Additional urls for more information about steps"
+            "smithy.api#documentation": "List of Google Cloud regions that the partner sells services to customers. Valid Google Cloud regions found here: https://cloud.google.com/compute/docs/regions-zones"
           }
         },
-        "steps": {
-          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Steps to resolve violation via cloud console"
+            "smithy.api#documentation": "Identifier. The resource name of the partner. Format: `organizations/{organization}/locations/{location}/partner` Example: \"organizations/123456/locations/us-central1/partner\""
+          }
+        },
+        "partnerProjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud project ID in the partner's Google Cloud organization for receiving enhanced Logs for Partners."
+          }
+        },
+        "skus": {
+          "target": "com.gcp.cloudcontrolspartner_v1#SkuList",
+          "traits": {
+            "smithy.api#documentation": "List of SKUs the partner is offering"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time the resource was updated"
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time the resource was created"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Remediation instructions to resolve violation via cloud console"
+        "smithy.api#documentation": "Message describing Partner resource"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#EkmMetadataList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudcontrolspartner_v1#EkmMetadata"
       }
     },
     "com.gcp.cloudcontrolspartner_v1#StringList": {
@@ -39,65 +70,133 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#EkmConnection": {
+    "com.gcp.cloudcontrolspartner_v1#SkuList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudcontrolspartner_v1#Sku"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#Violation": {
       "type": "structure",
       "members": {
-        "connectionName": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Resource name of the EKM connection in the format: projects/{project}/locations/{location}/ekmConnections/{ekm_connection}"
+            "smithy.api#documentation": "Output only. Description for the Violation. e.g. OrgPolicy gcp.resourceLocations has non compliant value."
           }
         },
-        "connectionError": {
-          "target": "com.gcp.cloudcontrolspartner_v1#ConnectionError",
+        "resolveTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The connection error that occurred if any"
+            "smithy.api#documentation": "Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty."
           }
         },
-        "connectionState": {
-          "target": "com.gcp.cloudcontrolspartner_v1#EkmConnectionConnectionStateEnum",
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The connection state"
+            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`"
+          }
+        },
+        "state": {
+          "target": "com.gcp.cloudcontrolspartner_v1#ViolationStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. State of the violation"
+          }
+        },
+        "folderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The folder_id of the violation"
+          }
+        },
+        "nonCompliantOrgPolicy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: `projects/{project_number}/policies/{constraint_name}` `folders/{folder_id}/policies/{constraint_name}` `organizations/{organization_id}/policies/{constraint_name}`"
+          }
+        },
+        "beginTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Time of the event which triggered the Violation."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Category under which this violation is mapped. e.g. Location, Service Usage, Access, Encryption, etc."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last time when the Violation record was updated."
+          }
+        },
+        "remediation": {
+          "target": "com.gcp.cloudcontrolspartner_v1#Remediation",
+          "traits": {
+            "smithy.api#documentation": "Output only. Compliance violation remediation"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Details about the EKM connection"
+        "smithy.api#documentation": "Details of resource Violation"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#EkmConnectionConnectionStateEnum": {
+    "com.gcp.cloudcontrolspartner_v1#ViolationStateEnum": {
       "type": "enum",
       "members": {
-        "CONNECTION_STATE_UNSPECIFIED": {
+        "STATE_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "CONNECTION_STATE_UNSPECIFIED"
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
           }
         },
-        "AVAILABLE": {
+        "RESOLVED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "AVAILABLE"
+            "smithy.api#enumValue": "RESOLVED"
           }
         },
-        "NOT_AVAILABLE": {
+        "UNRESOLVED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "NOT_AVAILABLE"
+            "smithy.api#enumValue": "UNRESOLVED"
           }
         },
-        "ERROR": {
+        "EXCEPTION": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "ERROR"
-          }
-        },
-        "PERMISSION_DENIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PERMISSION_DENIED"
+            "smithy.api#enumValue": "EXCEPTION"
           }
         }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#Gcloud": {
+      "type": "structure",
+      "members": {
+        "steps": {
+          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Steps to resolve violation via gcloud cli"
+          }
+        },
+        "gcloudCommands": {
+          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Gcloud command to resolve violation"
+          }
+        },
+        "additionalLinks": {
+          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional urls for more information about steps"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remediation instructions to resolve violation via gcloud cli"
       }
     },
     "com.gcp.cloudcontrolspartner_v1#Remediation": {
@@ -167,326 +266,6 @@
         }
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStep": {
-      "type": "structure",
-      "members": {
-        "completionState": {
-          "target": "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepCompletionStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Current state of the step"
-          }
-        },
-        "step": {
-          "target": "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepStepEnum",
-          "traits": {
-            "smithy.api#documentation": "The onboarding step"
-          }
-        },
-        "completionTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The completion time of the onboarding step"
-          }
-        },
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The starting time of the onboarding step"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Container for customer onboarding information"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepCompletionStateEnum": {
-      "type": "enum",
-      "members": {
-        "COMPLETION_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COMPLETION_STATE_UNSPECIFIED"
-          }
-        },
-        "PENDING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PENDING"
-          }
-        },
-        "SUCCEEDED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUCCEEDED"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        },
-        "NOT_APPLICABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_APPLICABLE"
-          }
-        }
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepStepEnum": {
-      "type": "enum",
-      "members": {
-        "STEP_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STEP_UNSPECIFIED"
-          }
-        },
-        "KAJ_ENROLLMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "KAJ_ENROLLMENT"
-          }
-        },
-        "CUSTOMER_ENVIRONMENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CUSTOMER_ENVIRONMENT"
-          }
-        }
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#ListWorkloadsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "workloads": {
-          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadList",
-          "traits": {
-            "smithy.api#documentation": "List of customer workloads"
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for list customer workloads requests."
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#WorkloadList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudcontrolspartner_v1#Workload"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingState": {
-      "type": "structure",
-      "members": {
-        "onboardingSteps": {
-          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepList",
-          "traits": {
-            "smithy.api#documentation": "List of workload onboarding steps."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Container for workload onboarding steps."
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStep"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStep": {
-      "type": "structure",
-      "members": {
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The starting time of the onboarding step."
-          }
-        },
-        "completionState": {
-          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepCompletionStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The completion state of the onboarding step."
-          }
-        },
-        "completionTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The completion time of the onboarding step."
-          }
-        },
-        "step": {
-          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepStepEnum",
-          "traits": {
-            "smithy.api#documentation": "The onboarding step."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Container for workload onboarding information."
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepCompletionStateEnum": {
-      "type": "enum",
-      "members": {
-        "COMPLETION_STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "COMPLETION_STATE_UNSPECIFIED"
-          }
-        },
-        "PENDING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PENDING"
-          }
-        },
-        "SUCCEEDED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SUCCEEDED"
-          }
-        },
-        "FAILED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FAILED"
-          }
-        },
-        "NOT_APPLICABLE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_APPLICABLE"
-          }
-        }
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepStepEnum": {
-      "type": "enum",
-      "members": {
-        "STEP_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STEP_UNSPECIFIED"
-          }
-        },
-        "EKM_PROVISIONED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EKM_PROVISIONED"
-          }
-        },
-        "SIGNED_ACCESS_APPROVAL_CONFIGURED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SIGNED_ACCESS_APPROVAL_CONFIGURED"
-          }
-        }
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#Partner": {
-      "type": "structure",
-      "members": {
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time the resource was created"
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The last time the resource was updated"
-          }
-        },
-        "ekmSolutions": {
-          "target": "com.gcp.cloudcontrolspartner_v1#EkmMetadataList",
-          "traits": {
-            "smithy.api#documentation": "List of Google Cloud supported EKM partners supported by the partner"
-          }
-        },
-        "partnerProjectId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Google Cloud project ID in the partner's Google Cloud organization for receiving enhanced Logs for Partners."
-          }
-        },
-        "skus": {
-          "target": "com.gcp.cloudcontrolspartner_v1#SkuList",
-          "traits": {
-            "smithy.api#documentation": "List of SKUs the partner is offering"
-          }
-        },
-        "operatedCloudRegions": {
-          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of Google Cloud regions that the partner sells services to customers. Valid Google Cloud regions found here: https://cloud.google.com/compute/docs/regions-zones"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the partner. Format: `organizations/{organization}/locations/{location}/partner` Example: \"organizations/123456/locations/us-central1/partner\""
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message describing Partner resource"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#EkmMetadataList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudcontrolspartner_v1#EkmMetadata"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#SkuList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudcontrolspartner_v1#Sku"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#EkmConnections": {
-      "type": "structure",
-      "members": {
-        "ekmConnections": {
-          "target": "com.gcp.cloudcontrolspartner_v1#EkmConnectionList",
-          "traits": {
-            "smithy.api#documentation": "The EKM connections associated with the workload"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The EKM connections associated with a workload"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#EkmConnectionList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudcontrolspartner_v1#EkmConnection"
-      }
-    },
     "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingState": {
       "type": "structure",
       "members": {
@@ -507,116 +286,127 @@
         "target": "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStep"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#Violation": {
+    "com.gcp.cloudcontrolspartner_v1#Instructions": {
       "type": "structure",
       "members": {
-        "nonCompliantOrgPolicy": {
-          "target": "smithy.api#String",
+        "gcloudInstructions": {
+          "target": "com.gcp.cloudcontrolspartner_v1#Gcloud",
           "traits": {
-            "smithy.api#documentation": "Output only. Immutable. Name of the OrgPolicy which was modified with non-compliant change and resulted this violation. Format: `projects/{project_number}/policies/{constraint_name}` `folders/{folder_id}/policies/{constraint_name}` `organizations/{organization_id}/policies/{constraint_name}`"
+            "smithy.api#documentation": "Remediation instructions to resolve violation via gcloud cli"
           }
         },
-        "updateTime": {
+        "consoleInstructions": {
+          "target": "com.gcp.cloudcontrolspartner_v1#Console",
+          "traits": {
+            "smithy.api#documentation": "Remediation instructions to resolve violation via cloud console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Instructions to remediate violation"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "statusMessage": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The last time when the Violation record was updated."
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#Customer": {
+      "type": "structure",
+      "members": {
+        "customerOnboardingState": {
+          "target": "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingState",
+          "traits": {
+            "smithy.api#documentation": "Output only. Container for customer onboarding steps"
+          }
+        },
+        "isOnboarded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Indicates whether a customer is fully onboarded"
+          }
+        },
+        "organizationDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The customer organization domain, extracted from CRM Organization’s display_name field. e.g. \"google.com\""
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Display name for the customer"
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/violations/{violation}`"
-          }
-        },
-        "resolveTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time of the event which fixed the Violation. If the violation is ACTIVE this will be empty."
-          }
-        },
-        "state": {
-          "target": "com.gcp.cloudcontrolspartner_v1#ViolationStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. State of the violation"
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Description for the Violation. e.g. OrgPolicy gcp.resourceLocations has non compliant value."
-          }
-        },
-        "category": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Category under which this violation is mapped. e.g. Location, Service Usage, Access, Encryption, etc."
-          }
-        },
-        "beginTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Time of the event which triggered the Violation."
-          }
-        },
-        "remediation": {
-          "target": "com.gcp.cloudcontrolspartner_v1#Remediation",
-          "traits": {
-            "smithy.api#documentation": "Output only. Compliance violation remediation"
-          }
-        },
-        "folderId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The folder_id of the violation"
+            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}`"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Details of resource Violation"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#ViolationStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "RESOLVED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RESOLVED"
-          }
-        },
-        "UNRESOLVED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNRESOLVED"
-          }
-        },
-        "EXCEPTION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EXCEPTION"
-          }
-        }
+        "smithy.api#documentation": "Contains metadata around a Cloud Controls Partner Customer"
       }
     },
     "com.gcp.cloudcontrolspartner_v1#PartnerPermissions": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`"
-          }
-        },
         "partnerPermissions": {
           "target": "com.gcp.cloudcontrolspartner_v1#PartnerPermissionsPartnerPermissionsItemEnumList",
           "traits": {
             "smithy.api#documentation": "The partner permissions granted for the workload"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`"
           }
         }
       },
@@ -671,30 +461,36 @@
         "target": "com.gcp.cloudcontrolspartner_v1#PartnerPermissionsPartnerPermissionsItemEnum"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#Gcloud": {
+    "com.gcp.cloudcontrolspartner_v1#ListWorkloadsResponse": {
       "type": "structure",
       "members": {
-        "additionalLinks": {
-          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+        "nextPageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Additional urls for more information about steps"
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         },
-        "steps": {
+        "unreachable": {
           "target": "com.gcp.cloudcontrolspartner_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Steps to resolve violation via gcloud cli"
+            "smithy.api#documentation": "Locations that could not be reached."
           }
         },
-        "gcloudCommands": {
-          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+        "workloads": {
+          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadList",
           "traits": {
-            "smithy.api#documentation": "Gcloud command to resolve violation"
+            "smithy.api#documentation": "List of customer workloads"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Remediation instructions to resolve violation via gcloud cli"
+        "smithy.api#documentation": "Response message for list customer workloads requests."
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#WorkloadList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudcontrolspartner_v1#Workload"
       }
     },
     "com.gcp.cloudcontrolspartner_v1#Sku": {
@@ -717,106 +513,30 @@
         "smithy.api#documentation": "Represents the SKU a partner owns inside Google Cloud to sell to customers."
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#OperationMetadata": {
+    "com.gcp.cloudcontrolspartner_v1#EkmConnections": {
       "type": "structure",
       "members": {
-        "verb": {
-          "target": "smithy.api#String",
+        "ekmConnections": {
+          "target": "com.gcp.cloudcontrolspartner_v1#EkmConnectionList",
           "traits": {
-            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+            "smithy.api#documentation": "The EKM connections associated with the workload"
           }
         },
-        "endTime": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The time the operation finished running."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. API version used to start the operation."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation was created."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+        "smithy.api#documentation": "The EKM connections associated with a workload"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#ListCustomersResponse": {
-      "type": "structure",
-      "members": {
-        "customers": {
-          "target": "com.gcp.cloudcontrolspartner_v1#CustomerList",
-          "traits": {
-            "smithy.api#documentation": "List of customers"
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for list customer Customers requests"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#CustomerList": {
+    "com.gcp.cloudcontrolspartner_v1#EkmConnectionList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.cloudcontrolspartner_v1#Customer"
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#ConnectionError": {
-      "type": "structure",
-      "members": {
-        "errorDomain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The error domain for the error"
-          }
-        },
-        "errorMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The error message for the error"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information around the error that occurred if the connection state is anything other than available or unspecified"
+        "target": "com.gcp.cloudcontrolspartner_v1#EkmConnection"
       }
     },
     "com.gcp.cloudcontrolspartner_v1#AccessReason": {
@@ -889,16 +609,16 @@
     "com.gcp.cloudcontrolspartner_v1#ListViolationsResponse": {
       "type": "structure",
       "members": {
-        "violations": {
-          "target": "com.gcp.cloudcontrolspartner_v1#ViolationList",
-          "traits": {
-            "smithy.api#documentation": "List of violation"
-          }
-        },
         "unreachable": {
           "target": "com.gcp.cloudcontrolspartner_v1#StringList",
           "traits": {
             "smithy.api#documentation": "Workloads that could not be reached due to permission errors or any other error. Ref: https://google.aip.dev/217"
+          }
+        },
+        "violations": {
+          "target": "com.gcp.cloudcontrolspartner_v1#ViolationList",
+          "traits": {
+            "smithy.api#documentation": "List of violation"
           }
         },
         "nextPageToken": {
@@ -918,45 +638,19 @@
         "target": "com.gcp.cloudcontrolspartner_v1#Violation"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#Instructions": {
-      "type": "structure",
-      "members": {
-        "gcloudInstructions": {
-          "target": "com.gcp.cloudcontrolspartner_v1#Gcloud",
-          "traits": {
-            "smithy.api#documentation": "Remediation instructions to resolve violation via gcloud cli"
-          }
-        },
-        "consoleInstructions": {
-          "target": "com.gcp.cloudcontrolspartner_v1#Console",
-          "traits": {
-            "smithy.api#documentation": "Remediation instructions to resolve violation via cloud console"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Instructions to remediate violation"
-      }
-    },
     "com.gcp.cloudcontrolspartner_v1#Workload": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
+        "workloadOnboardingState": {
+          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingState",
           "traits": {
-            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`"
+            "smithy.api#documentation": "Container for workload onboarding steps."
           }
         },
-        "keyManagementProjectId": {
-          "target": "smithy.api#String",
+        "partner": {
+          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadPartnerEnum",
           "traits": {
-            "smithy.api#documentation": "The project id of the key management project for the workload"
-          }
-        },
-        "folderId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Folder id this workload is associated with"
+            "smithy.api#documentation": "Partner associated with this workload."
           }
         },
         "location": {
@@ -965,10 +659,16 @@
             "smithy.api#documentation": "The Google Cloud location of the workload"
           }
         },
-        "workloadOnboardingState": {
-          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingState",
+        "folder": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Container for workload onboarding steps."
+            "smithy.api#documentation": "Output only. The name of container folder of the assured workload"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`"
           }
         },
         "createTime": {
@@ -977,10 +677,10 @@
             "smithy.api#documentation": "Output only. Time the resource was created."
           }
         },
-        "folder": {
+        "keyManagementProjectId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The name of container folder of the assured workload"
+            "smithy.api#documentation": "The project id of the key management project for the workload"
           }
         },
         "isOnboarded": {
@@ -989,10 +689,10 @@
             "smithy.api#documentation": "Indicates whether a workload is fully onboarded."
           }
         },
-        "partner": {
-          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadPartnerEnum",
+        "folderId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Partner associated with this workload."
+            "smithy.api#documentation": "Output only. Folder id this workload is associated with"
           }
         }
       },
@@ -1053,6 +753,154 @@
         }
       }
     },
+    "com.gcp.cloudcontrolspartner_v1#AccessApprovalRequest": {
+      "type": "structure",
+      "members": {
+        "requestedReason": {
+          "target": "com.gcp.cloudcontrolspartner_v1#AccessReason",
+          "traits": {
+            "smithy.api#documentation": "The justification for which approval is being requested."
+          }
+        },
+        "requestTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which approval was requested."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/accessApprovalRequests/{access_approval_request}`"
+          }
+        },
+        "requestedExpirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The requested expiration for the approval. If the request is approved, access will be granted from the time of approval until the expiration time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the Access request."
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#Console": {
+      "type": "structure",
+      "members": {
+        "consoleUris": {
+          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Link to console page where violations can be resolved"
+          }
+        },
+        "additionalLinks": {
+          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Additional urls for more information about steps"
+          }
+        },
+        "steps": {
+          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Steps to resolve violation via cloud console"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remediation instructions to resolve violation via cloud console"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStep": {
+      "type": "structure",
+      "members": {
+        "completionState": {
+          "target": "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepCompletionStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current state of the step"
+          }
+        },
+        "completionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The completion time of the onboarding step"
+          }
+        },
+        "step": {
+          "target": "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepStepEnum",
+          "traits": {
+            "smithy.api#documentation": "The onboarding step"
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The starting time of the onboarding step"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container for customer onboarding information"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepCompletionStateEnum": {
+      "type": "enum",
+      "members": {
+        "COMPLETION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETION_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "NOT_APPLICABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_APPLICABLE"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingStepStepEnum": {
+      "type": "enum",
+      "members": {
+        "STEP_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STEP_UNSPECIFIED"
+          }
+        },
+        "KAJ_ENROLLMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KAJ_ENROLLMENT"
+          }
+        },
+        "CUSTOMER_ENVIRONMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOMER_ENVIRONMENT"
+          }
+        }
+      }
+    },
     "com.gcp.cloudcontrolspartner_v1#Empty": {
       "type": "structure",
       "members": {},
@@ -1063,10 +911,10 @@
     "com.gcp.cloudcontrolspartner_v1#ListAccessApprovalRequestsResponse": {
       "type": "structure",
       "members": {
-        "accessApprovalRequests": {
-          "target": "com.gcp.cloudcontrolspartner_v1#AccessApprovalRequestList",
+        "nextPageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "List of access approval requests"
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         },
         "unreachable": {
@@ -1075,10 +923,10 @@
             "smithy.api#documentation": "Locations that could not be reached."
           }
         },
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "accessApprovalRequests": {
+          "target": "com.gcp.cloudcontrolspartner_v1#AccessApprovalRequestList",
           "traits": {
-            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            "smithy.api#documentation": "List of access approval requests"
           }
         }
       },
@@ -1147,74 +995,227 @@
         }
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#Customer": {
+    "com.gcp.cloudcontrolspartner_v1#ListCustomersResponse": {
       "type": "structure",
       "members": {
-        "name": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}`"
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         },
-        "customerOnboardingState": {
-          "target": "com.gcp.cloudcontrolspartner_v1#CustomerOnboardingState",
+        "customers": {
+          "target": "com.gcp.cloudcontrolspartner_v1#CustomerList",
           "traits": {
-            "smithy.api#documentation": "Output only. Container for customer onboarding steps"
+            "smithy.api#documentation": "List of customers"
           }
         },
-        "displayName": {
-          "target": "smithy.api#String",
+        "unreachable": {
+          "target": "com.gcp.cloudcontrolspartner_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Required. Display name for the customer"
-          }
-        },
-        "isOnboarded": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Indicates whether a customer is fully onboarded"
-          }
-        },
-        "organizationDomain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The customer organization domain, extracted from CRM Organization’s display_name field. e.g. \"google.com\""
+            "smithy.api#documentation": "Locations that could not be reached."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains metadata around a Cloud Controls Partner Customer"
+        "smithy.api#documentation": "Response message for list customer Customers requests"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#AccessApprovalRequest": {
+    "com.gcp.cloudcontrolspartner_v1#CustomerList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudcontrolspartner_v1#Customer"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStep": {
       "type": "structure",
       "members": {
-        "requestedReason": {
-          "target": "com.gcp.cloudcontrolspartner_v1#AccessReason",
-          "traits": {
-            "smithy.api#documentation": "The justification for which approval is being requested."
-          }
-        },
-        "requestTime": {
+        "startTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The time at which approval was requested."
+            "smithy.api#documentation": "The starting time of the onboarding step."
           }
         },
-        "name": {
+        "completionTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/accessApprovalRequests/{access_approval_request}`"
+            "smithy.api#documentation": "The completion time of the onboarding step."
           }
         },
-        "requestedExpirationTime": {
-          "target": "smithy.api#String",
+        "step": {
+          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepStepEnum",
           "traits": {
-            "smithy.api#documentation": "The requested expiration for the approval. If the request is approved, access will be granted from the time of approval until the expiration time."
+            "smithy.api#documentation": "The onboarding step."
+          }
+        },
+        "completionState": {
+          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepCompletionStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The completion state of the onboarding step."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Details about the Access request."
+        "smithy.api#documentation": "Container for workload onboarding information."
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepStepEnum": {
+      "type": "enum",
+      "members": {
+        "STEP_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STEP_UNSPECIFIED"
+          }
+        },
+        "EKM_PROVISIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EKM_PROVISIONED"
+          }
+        },
+        "SIGNED_ACCESS_APPROVAL_CONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIGNED_ACCESS_APPROVAL_CONFIGURED"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepCompletionStateEnum": {
+      "type": "enum",
+      "members": {
+        "COMPLETION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPLETION_STATE_UNSPECIFIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "NOT_APPLICABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_APPLICABLE"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingState": {
+      "type": "structure",
+      "members": {
+        "onboardingSteps": {
+          "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepList",
+          "traits": {
+            "smithy.api#documentation": "List of workload onboarding steps."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Container for workload onboarding steps."
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStepList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudcontrolspartner_v1#WorkloadOnboardingStep"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#ConnectionError": {
+      "type": "structure",
+      "members": {
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message for the error"
+          }
+        },
+        "errorDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error domain for the error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information around the error that occurred if the connection state is anything other than available or unspecified"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#EkmConnection": {
+      "type": "structure",
+      "members": {
+        "connectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name of the EKM connection in the format: projects/{project}/locations/{location}/ekmConnections/{ekm_connection}"
+          }
+        },
+        "connectionState": {
+          "target": "com.gcp.cloudcontrolspartner_v1#EkmConnectionConnectionStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The connection state"
+          }
+        },
+        "connectionError": {
+          "target": "com.gcp.cloudcontrolspartner_v1#ConnectionError",
+          "traits": {
+            "smithy.api#documentation": "The connection error that occurred if any"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the EKM connection"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#EkmConnectionConnectionStateEnum": {
+      "type": "enum",
+      "members": {
+        "CONNECTION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECTION_STATE_UNSPECIFIED"
+          }
+        },
+        "AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVAILABLE"
+          }
+        },
+        "NOT_AVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_AVAILABLE"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "PERMISSION_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_DENIED"
+          }
+        }
       }
     },
     "com.gcp.cloudcontrolspartner_v1#GetPartnerOrganizationsLocationsRequest": {
@@ -1349,22 +1350,79 @@
         "smithy.api#documentation": "Delete details of a single customer"
       }
     },
+    "com.gcp.cloudcontrolspartner_v1#PatchOrganizationsLocationsCustomersRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.cloudcontrolspartner_v1#Customer",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#PatchOrganizationsLocationsCustomers": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudcontrolspartner_v1#PatchOrganizationsLocationsCustomersRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudcontrolspartner_v1#Customer"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update details of a single customer"
+      }
+    },
     "com.gcp.cloudcontrolspartner_v1#CreateOrganizationsLocationsCustomersRequest": {
       "type": "structure",
       "members": {
-        "customerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The customer id to use for the customer, which will become the final component of the customer's resource name. The specified value must be a valid Google cloud organization id.",
-            "smithy.api#httpQuery": "customerId"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. Parent resource Format: `organizations/{organization}/locations/{location}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The customer id to use for the customer, which will become the final component of the customer's resource name. The specified value must be a valid Google cloud organization id.",
+            "smithy.api#httpQuery": "customerId"
           }
         },
         "body": {
@@ -1409,20 +1467,6 @@
     "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListCustomers` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filtering results",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "orderBy": {
           "target": "smithy.api#String",
           "traits": {
@@ -1443,6 +1487,20 @@
             "smithy.api#documentation": "Required. Parent resource Format: `organizations/{organization}/locations/{location}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListCustomers` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -1512,63 +1570,6 @@
         "smithy.api#documentation": "Gets details of a single customer"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#PatchOrganizationsLocationsCustomersRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Format: `organizations/{organization}/locations/{location}/customers/{customer}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.cloudcontrolspartner_v1#Customer",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#PatchOrganizationsLocationsCustomers": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.cloudcontrolspartner_v1#PatchOrganizationsLocationsCustomersRequest"
-      },
-      "output": {
-        "target": "com.gcp.cloudcontrolspartner_v1#Customer"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Update details of a single customer"
-      }
-    },
     "com.gcp.cloudcontrolspartner_v1#GetEkmConnectionsOrganizationsLocationsCustomersWorkloadsRequest": {
       "type": "structure",
       "members": {
@@ -1616,18 +1617,18 @@
             "smithy.api#httpQuery": "pageToken"
           }
         },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Hint for how to order the results.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The maximum number of workloads to return. The service may return fewer than this value. If unspecified, at most 500 workloads will be returned.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results.",
+            "smithy.api#httpQuery": "orderBy"
           }
         },
         "filter": {
@@ -1675,43 +1676,6 @@
         }
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#GetOrganizationsLocationsCustomersWorkloadsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#GetOrganizationsLocationsCustomersWorkloads": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.cloudcontrolspartner_v1#GetOrganizationsLocationsCustomersWorkloadsRequest"
-      },
-      "output": {
-        "target": "com.gcp.cloudcontrolspartner_v1#Workload"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single workload"
-      }
-    },
     "com.gcp.cloudcontrolspartner_v1#GetPartnerPermissionsOrganizationsLocationsCustomersWorkloadsRequest": {
       "type": "structure",
       "members": {
@@ -1749,31 +1713,46 @@
         "smithy.api#documentation": "Gets the partner permissions granted for a workload"
       }
     },
-    "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsAccessApprovalRequestsRequest": {
+    "com.gcp.cloudcontrolspartner_v1#GetOrganizationsLocationsCustomersWorkloadsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Parent resource Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
+            "smithy.api#documentation": "Required. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
+        }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#GetOrganizationsLocationsCustomersWorkloads": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudcontrolspartner_v1#GetOrganizationsLocationsCustomersWorkloadsRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudcontrolspartner_v1#Workload"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#NotFound"
         },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListAccessApprovalRequests` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
         },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Hint for how to order the results.",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
+        "smithy.api#documentation": "Gets details of a single workload"
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsAccessApprovalRequestsRequest": {
+      "type": "structure",
+      "members": {
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -1786,6 +1765,28 @@
           "traits": {
             "smithy.api#documentation": "Optional. Filtering results.",
             "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListAccessApprovalRequests` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results.",
+            "smithy.api#httpQuery": "orderBy"
           }
         }
       }
@@ -1812,6 +1813,89 @@
           "uri": "v1/{+parent}/accessApprovalRequests"
         },
         "smithy.api#documentation": "Deprecated: Only returns access approval requests directly associated with an assured workload folder.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsViolationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of customers row to return. The service may return fewer than this value. If unspecified, at most 10 customers will be returned.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "interval.endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
+            "smithy.api#httpQuery": "interval.endTime"
+          }
+        },
+        "interval.startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
+            "smithy.api#httpQuery": "interval.startTime"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent resource Format `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListViolations` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsViolations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsViolationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudcontrolspartner_v1#ListViolationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudcontrolspartner_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/violations"
+        },
+        "smithy.api#documentation": "Lists Violations for a workload Callers may also choose to read across multiple Customers or for a single customer as per [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash character) as a wildcard character instead of {customer} & {workload}. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
@@ -1853,89 +1937,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Gets details of a single Violation."
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsViolationsRequest": {
-      "type": "structure",
-      "members": {
-        "interval.endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
-            "smithy.api#httpQuery": "interval.endTime"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Parent resource Format `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of customers row to return. The service may return fewer than this value. If unspecified, at most 10 customers will be returned.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListViolations` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "interval.startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
-            "smithy.api#httpQuery": "interval.startTime"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Hint for how to order the results",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Filtering results",
-            "smithy.api#httpQuery": "filter"
-          }
-        }
-      }
-    },
-    "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsViolations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.cloudcontrolspartner_v1#ListOrganizationsLocationsCustomersWorkloadsViolationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.cloudcontrolspartner_v1#ListViolationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.cloudcontrolspartner_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/violations"
-        },
-        "smithy.api#documentation": "Lists Violations for a workload Callers may also choose to read across multiple Customers or for a single customer as per [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash character) as a wildcard character instead of {customer} & {workload}. Format: `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
       }
     }
   }

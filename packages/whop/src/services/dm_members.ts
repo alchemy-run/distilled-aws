@@ -122,6 +122,18 @@ export const DeleteDmMemberResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDmMemberResponse",
 }) as any as S.Schema<DeleteDmMemberResponse>;
 
+export interface GetDmMemberRequest {
+  /** The unique identifier of the DM channel member to retrieve. */
+  id: string;
+}
+export const GetDmMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/dm_members/{id}", code: 200 })),
+).annotate({
+  identifier: "GetDmMemberRequest",
+}) as any as S.Schema<GetDmMemberRequest>;
+
 export interface ListDmMemberRequest {
   after?: string;
   before?: string;
@@ -207,18 +219,6 @@ export const ListDmMemberResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDmMemberResponse",
 }) as any as S.Schema<ListDmMemberResponse>;
 
-export interface RetrieveDmMemberRequest {
-  /** The unique identifier of the DM channel member to retrieve. */
-  id: string;
-}
-export const RetrieveDmMemberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/dm_members/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveDmMemberRequest",
-}) as any as S.Schema<RetrieveDmMemberRequest>;
-
 export interface UpdateDmMemberRequest {
   /** The unique identifier of the DM channel member to update. */
   id: string;
@@ -282,6 +282,26 @@ export const deleteDmMember: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetDmMemberError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve dm member [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing DM member. Required permissions (one of): - `dms:read` - `support_chat:read` */
+export const getDmMember: API.OperationMethod<
+  GetDmMemberRequest,
+  DmMember,
+  GetDmMemberError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDmMemberRequest,
+  output: DmMember,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListDmMemberError =
   | BadRequest
   | Forbidden
@@ -313,26 +333,6 @@ export const listDmMember: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveDmMemberError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve dm member [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing DM member. Required permissions (one of): - `dms:read` - `support_chat:read` */
-export const retrieveDmMember: API.OperationMethod<
-  RetrieveDmMemberRequest,
-  DmMember,
-  RetrieveDmMemberError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDmMemberRequest,
-  output: DmMember,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateDmMemberError =
   | BadRequest

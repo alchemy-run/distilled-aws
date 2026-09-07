@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.kubernetes.autoscaling#IoK8sApimachineryPkgApisMetaV1APIGroup": {
@@ -125,7 +126,7 @@
         "smithy.api#documentation": "versions are the versions supported in this group."
       }
     },
-    "com.kubernetes.autoscaling#GetAutoscalingApiGroup": {
+    "com.kubernetes.autoscaling#GetAutoscalingAPIGroup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -285,7 +286,7 @@
         "smithy.api#documentation": "resources contains the name of the resources and if they are namespaced."
       }
     },
-    "com.kubernetes.autoscaling#GetAutoscalingV1ApiResources": {
+    "com.kubernetes.autoscaling#GetAutoscalingV1APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2051,7 +2052,7 @@
         "smithy.api#documentation": "partially update status of the specified HorizontalPodAutoscaler"
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -2164,10 +2165,10 @@
         "smithy.api#documentation": "Event represents a single event to a watched resource."
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespaces": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespacesRequest"
+        "target": "com.kubernetes.autoscaling#WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.autoscaling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2181,7 +2182,7 @@
         "smithy.api#documentation": "watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2281,10 +2282,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV1NamespacedHorizontalPodAutoscaler": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV1NamespacedHorizontalPodAutoscalerList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV1NamespacedHorizontalPodAutoscalerRequest"
+        "target": "com.kubernetes.autoscaling#WatchAutoscalingV1NamespacedHorizontalPodAutoscalerListRequest"
       },
       "output": {
         "target": "com.kubernetes.autoscaling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -2423,7 +2424,7 @@
         "smithy.api#documentation": "watch changes to an object of kind HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead, filtered to a single item with the 'fieldSelector' parameter."
       }
     },
-    "com.kubernetes.autoscaling#GetAutoscalingV2ApiResources": {
+    "com.kubernetes.autoscaling#GetAutoscalingV2APIResources": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -4404,7 +4405,7 @@
         "smithy.api#documentation": "partially update status of the specified HorizontalPodAutoscaler"
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest": {
       "type": "structure",
       "members": {
         "allowWatchBookmarks": {
@@ -4496,10 +4497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespaces": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespacesRequest"
+        "target": "com.kubernetes.autoscaling#WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespacesRequest"
       },
       "output": {
         "target": "com.kubernetes.autoscaling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -4513,7 +4514,7 @@
         "smithy.api#documentation": "watch individual changes to a list of HorizontalPodAutoscaler. deprecated: use the 'watch' parameter with a list operation instead."
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -4613,10 +4614,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.kubernetes.autoscaling#ListWatchAutoscalingV2NamespacedHorizontalPodAutoscaler": {
+    "com.kubernetes.autoscaling#WatchAutoscalingV2NamespacedHorizontalPodAutoscalerList": {
       "type": "operation",
       "input": {
-        "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV2NamespacedHorizontalPodAutoscalerRequest"
+        "target": "com.kubernetes.autoscaling#WatchAutoscalingV2NamespacedHorizontalPodAutoscalerListRequest"
       },
       "output": {
         "target": "com.kubernetes.autoscaling#IoK8sApimachineryPkgApisMetaV1WatchEvent"
@@ -4799,10 +4800,31 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.autoscaling#GetAutoscalingApiGroup"
+          "target": "com.kubernetes.autoscaling#CreateAutoscalingV1NamespacedHorizontalPodAutoscaler"
         },
         {
-          "target": "com.kubernetes.autoscaling#GetAutoscalingV1ApiResources"
+          "target": "com.kubernetes.autoscaling#CreateAutoscalingV2NamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV1NamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV2CollectionNamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV2NamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#GetAutoscalingAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#GetAutoscalingV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#GetAutoscalingV2APIResources"
         },
         {
           "target": "com.kubernetes.autoscaling#ListAutoscalingV1HorizontalPodAutoscalerForAllNamespaces"
@@ -4811,85 +4833,64 @@
           "target": "com.kubernetes.autoscaling#ListAutoscalingV1NamespacedHorizontalPodAutoscaler"
         },
         {
-          "target": "com.kubernetes.autoscaling#CreateAutoscalingV1NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV1CollectionNamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ReadAutoscalingV1NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ReplaceAutoscalingV1NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#PatchAutoscalingV1NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV1NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ReadAutoscalingV1NamespacedHorizontalPodAutoscalerStatus"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ReplaceAutoscalingV1NamespacedHorizontalPodAutoscalerStatus"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#PatchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV1HorizontalPodAutoscalerForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV1NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#WatchAutoscalingV1NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#GetAutoscalingV2ApiResources"
-        },
-        {
           "target": "com.kubernetes.autoscaling#ListAutoscalingV2HorizontalPodAutoscalerForAllNamespaces"
         },
         {
           "target": "com.kubernetes.autoscaling#ListAutoscalingV2NamespacedHorizontalPodAutoscaler"
         },
         {
-          "target": "com.kubernetes.autoscaling#CreateAutoscalingV2NamespacedHorizontalPodAutoscaler"
+          "target": "com.kubernetes.autoscaling#PatchAutoscalingV1NamespacedHorizontalPodAutoscaler"
         },
         {
-          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV2CollectionNamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ReadAutoscalingV2NamespacedHorizontalPodAutoscaler"
-        },
-        {
-          "target": "com.kubernetes.autoscaling#ReplaceAutoscalingV2NamespacedHorizontalPodAutoscaler"
+          "target": "com.kubernetes.autoscaling#PatchAutoscalingV1NamespacedHorizontalPodAutoscalerStatus"
         },
         {
           "target": "com.kubernetes.autoscaling#PatchAutoscalingV2NamespacedHorizontalPodAutoscaler"
         },
         {
-          "target": "com.kubernetes.autoscaling#DeleteAutoscalingV2NamespacedHorizontalPodAutoscaler"
+          "target": "com.kubernetes.autoscaling#PatchAutoscalingV2NamespacedHorizontalPodAutoscalerStatus"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#ReadAutoscalingV1NamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#ReadAutoscalingV1NamespacedHorizontalPodAutoscalerStatus"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#ReadAutoscalingV2NamespacedHorizontalPodAutoscaler"
         },
         {
           "target": "com.kubernetes.autoscaling#ReadAutoscalingV2NamespacedHorizontalPodAutoscalerStatus"
         },
         {
+          "target": "com.kubernetes.autoscaling#ReplaceAutoscalingV1NamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#ReplaceAutoscalingV1NamespacedHorizontalPodAutoscalerStatus"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#ReplaceAutoscalingV2NamespacedHorizontalPodAutoscaler"
+        },
+        {
           "target": "com.kubernetes.autoscaling#ReplaceAutoscalingV2NamespacedHorizontalPodAutoscalerStatus"
         },
         {
-          "target": "com.kubernetes.autoscaling#PatchAutoscalingV2NamespacedHorizontalPodAutoscalerStatus"
+          "target": "com.kubernetes.autoscaling#WatchAutoscalingV1HorizontalPodAutoscalerListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV2HorizontalPodAutoscalerForAllNamespaces"
+          "target": "com.kubernetes.autoscaling#WatchAutoscalingV1NamespacedHorizontalPodAutoscaler"
         },
         {
-          "target": "com.kubernetes.autoscaling#ListWatchAutoscalingV2NamespacedHorizontalPodAutoscaler"
+          "target": "com.kubernetes.autoscaling#WatchAutoscalingV1NamespacedHorizontalPodAutoscalerList"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#WatchAutoscalingV2HorizontalPodAutoscalerListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.autoscaling#WatchAutoscalingV2NamespacedHorizontalPodAutoscaler"
+        },
+        {
+          "target": "com.kubernetes.autoscaling#WatchAutoscalingV2NamespacedHorizontalPodAutoscalerList"
         }
       ],
       "traits": {

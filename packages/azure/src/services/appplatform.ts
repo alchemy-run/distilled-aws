@@ -378,53 +378,6 @@ export const ApiPortalsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApiPortalsCreateOrUpdateResponse",
 }) as any as S.Schema<ApiPortalsCreateOrUpdateResponse>;
 
-export interface ApiPortalsValidateDomainRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of API portal. */
-  apiPortalName: string;
-  /** Name to be validated */
-  name: string;
-}
-export const ApiPortalsValidateDomainRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    apiPortalName: S.String.pipe(T.Label()),
-    name: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apiPortals/{apiPortalName}/validateDomain",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApiPortalsValidateDomainRequest",
-}) as any as S.Schema<ApiPortalsValidateDomainRequest>;
-
-/** Validation result for custom domain. */
-export interface CustomDomainValidateResult {
-  /** Indicates if domain name is valid. */
-  isValid?: boolean;
-  /** Message of why domain name is invalid. */
-  message?: string;
-}
-export const CustomDomainValidateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isValid: S.optional(S.Boolean),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomDomainValidateResult",
-}) as any as S.Schema<CustomDomainValidateResult>;
-
 /** Non-sensitive properties for the APM */
 export type ApmPropertiesInputPropertiesMap = {
   [key: string]: string | undefined;
@@ -1371,7 +1324,7 @@ export const AppsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppsCreateOrUpdateResponse",
 }) as any as S.Schema<AppsCreateOrUpdateResponse>;
 
-export interface AppsValidateDomainRequest {
+export interface AppsGetResourceUploadUrlRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
@@ -1380,27 +1333,40 @@ export interface AppsValidateDomainRequest {
   serviceName: string;
   /** The name of the App resource. */
   appName: string;
-  /** Name to be validated */
-  name: string;
 }
-export const AppsValidateDomainRequest = /*@__PURE__*/ S.suspend(() =>
+export const AppsGetResourceUploadUrlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     appName: S.String.pipe(T.Label()),
-    name: S.String,
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apps/{appName}/validateDomain",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apps/{appName}/getResourceUploadUrl",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "AppsValidateDomainRequest",
-}) as any as S.Schema<AppsValidateDomainRequest>;
+  identifier: "AppsGetResourceUploadUrlRequest",
+}) as any as S.Schema<AppsGetResourceUploadUrlRequest>;
+
+/** Resource upload definition payload */
+export interface ResourceUploadDefinition {
+  /** Source relative path */
+  relativePath?: string;
+  /** Upload URL */
+  uploadUrl?: string;
+}
+export const ResourceUploadDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    relativePath: S.optional(S.String),
+    uploadUrl: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceUploadDefinition",
+}) as any as S.Schema<ResourceUploadDefinition>;
 
 /** Binding parameters of the Binding resource */
 export type BindingResourcePropertiesInputBindingParametersMap = {
@@ -1699,6 +1665,128 @@ export const BuildpackBindingCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "BuildpackBindingCreateOrUpdateResponse",
 }) as any as S.Schema<BuildpackBindingCreateOrUpdateResponse>;
+
+/** Build service agent pool size properties */
+export interface BuildServiceAgentPoolSizePropertiesInput {
+  /** The name of build service agent pool size */
+  name?: string;
+}
+export const BuildServiceAgentPoolSizePropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "BuildServiceAgentPoolSizePropertiesInput",
+}) as any as S.Schema<BuildServiceAgentPoolSizePropertiesInput>;
+
+/** Build service agent pool properties */
+export interface BuildServiceAgentPoolPropertiesInput {
+  /** build service agent pool size properties */
+  poolSize?: BuildServiceAgentPoolSizePropertiesInput;
+}
+export const BuildServiceAgentPoolPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      poolSize: S.optional(BuildServiceAgentPoolSizePropertiesInput),
+    }),
+).annotate({
+  identifier: "BuildServiceAgentPoolPropertiesInput",
+}) as any as S.Schema<BuildServiceAgentPoolPropertiesInput>;
+
+export interface BuildServiceAgentPoolUpdatePutRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of the build service resource. */
+  buildServiceName: string;
+  /** The name of the build service agent pool resource. */
+  agentPoolName: string;
+  /** build service agent pool properties */
+  properties?: BuildServiceAgentPoolPropertiesInput;
+}
+export const BuildServiceAgentPoolUpdatePutRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      buildServiceName: S.String.pipe(T.Label()),
+      agentPoolName: S.String.pipe(T.Label()),
+      properties: S.optional(BuildServiceAgentPoolPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/buildServices/{buildServiceName}/agentPools/{agentPoolName}",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "BuildServiceAgentPoolUpdatePutRequest",
+}) as any as S.Schema<BuildServiceAgentPoolUpdatePutRequest>;
+
+/** Build service agent pool size properties */
+export interface BuildServiceAgentPoolSizeProperties {
+  /** The name of build service agent pool size */
+  name?: string;
+  /** The cpu property of build service agent pool size */
+  cpu?: string;
+  /** The memory property of build service agent pool size */
+  memory?: string;
+}
+export const BuildServiceAgentPoolSizeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    cpu: S.optional(S.String),
+    memory: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BuildServiceAgentPoolSizeProperties",
+}) as any as S.Schema<BuildServiceAgentPoolSizeProperties>;
+
+/** Build service agent pool properties */
+export interface BuildServiceAgentPoolProperties {
+  /** Provisioning state of the build service agent pool */
+  provisioningState?: string;
+  /** build service agent pool size properties */
+  poolSize?: BuildServiceAgentPoolSizeProperties;
+}
+export const BuildServiceAgentPoolProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(S.String),
+    poolSize: S.optional(BuildServiceAgentPoolSizeProperties),
+  }),
+).annotate({
+  identifier: "BuildServiceAgentPoolProperties",
+}) as any as S.Schema<BuildServiceAgentPoolProperties>;
+
+export interface BuildServiceAgentPoolUpdatePutResponse {
+  /** Fully qualified resource Id for the resource. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  systemData?: SystemData;
+  /** build service agent pool properties */
+  properties?: BuildServiceAgentPoolProperties;
+}
+export const BuildServiceAgentPoolUpdatePutResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(BuildServiceAgentPoolProperties),
+    }),
+).annotate({
+  identifier: "BuildServiceAgentPoolUpdatePutResponse",
+}) as any as S.Schema<BuildServiceAgentPoolUpdatePutResponse>;
 
 /** KPack ClusterStack properties payload */
 export interface StackProperties {
@@ -2233,6 +2321,35 @@ export const BuildServiceCreateOrUpdateBuildResponse = /*@__PURE__*/ S.suspend(
   identifier: "BuildServiceCreateOrUpdateBuildResponse",
 }) as any as S.Schema<BuildServiceCreateOrUpdateBuildResponse>;
 
+export interface BuildServiceGetResourceUploadUrlRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of the build service resource. */
+  buildServiceName: string;
+}
+export const BuildServiceGetResourceUploadUrlRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      buildServiceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/buildServices/{buildServiceName}/getResourceUploadUrl",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "BuildServiceGetResourceUploadUrlRequest",
+}) as any as S.Schema<BuildServiceGetResourceUploadUrlRequest>;
+
 /** Certificate resource payload. */
 export interface CertificatePropertiesInput {
   /** The type of the certificate source. */
@@ -2629,83 +2746,56 @@ export const ConfigServersUpdatePatchResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfigServersUpdatePatchResponse",
 }) as any as S.Schema<ConfigServersUpdatePatchResponse>;
 
-export interface ConfigServersValidateRequest {
+export interface ConfigServersUpdatePutRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
   resourceGroupName: string;
   /** The name of the Service resource. */
   serviceName: string;
-  /** Property of git environment. */
-  gitProperty?: ConfigServerGitProperty;
+  /** Properties of the Config Server resource */
+  properties?: ConfigServerPropertiesInput;
 }
-export const ConfigServersValidateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ConfigServersUpdatePutRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
-    gitProperty: S.optional(ConfigServerGitProperty),
+    properties: S.optional(ConfigServerPropertiesInput),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configServers/validate",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configServers/default",
       code: 200,
       apiVersion: "2023-12-01",
     }),
   ),
 ).annotate({
-  identifier: "ConfigServersValidateRequest",
-}) as any as S.Schema<ConfigServersValidateRequest>;
+  identifier: "ConfigServersUpdatePutRequest",
+}) as any as S.Schema<ConfigServersUpdatePutRequest>;
 
-/** The detail error messages of the record */
-export type ConfigServerSettingsErrorRecordMessagesList = Array<string>;
-export const ConfigServerSettingsErrorRecordMessagesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ConfigServerSettingsErrorRecordMessagesList>;
-
-/** Error record of the config server settings */
-export interface ConfigServerSettingsErrorRecord {
-  /** The name of the config server settings error record */
+export interface ConfigServersUpdatePutResponse {
+  /** Fully qualified resource Id for the resource. */
+  id?: string;
+  /** The name of the resource. */
   name?: string;
-  /** The uri of the config server settings error record */
-  uri?: string;
-  /** The detail error messages of the record */
-  messages?: ConfigServerSettingsErrorRecordMessagesList;
+  /** The type of the resource. */
+  type?: string;
+  systemData?: SystemData;
+  /** Properties of the Config Server resource */
+  properties?: ConfigServerProperties;
 }
-export const ConfigServerSettingsErrorRecord = /*@__PURE__*/ S.suspend(() =>
+export const ConfigServersUpdatePutResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.optional(S.String),
     name: S.optional(S.String),
-    uri: S.optional(S.String),
-    messages: S.optional(ConfigServerSettingsErrorRecordMessagesList),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ConfigServerProperties),
   }),
 ).annotate({
-  identifier: "ConfigServerSettingsErrorRecord",
-}) as any as S.Schema<ConfigServerSettingsErrorRecord>;
-
-/** The detail validation results */
-export type ConfigServerSettingsValidateResultDetailsList =
-  Array<ConfigServerSettingsErrorRecord>;
-export const ConfigServerSettingsValidateResultDetailsList =
-  /*@__PURE__*/ S.Array(
-    ConfigServerSettingsErrorRecord,
-  ) as any as S.Schema<ConfigServerSettingsValidateResultDetailsList>;
-
-/** Validation result for config server settings */
-export interface ConfigServerSettingsValidateResult {
-  /** Indicate if the config server settings are valid */
-  isValid?: boolean;
-  /** The detail validation results */
-  details?: ConfigServerSettingsValidateResultDetailsList;
-}
-export const ConfigServerSettingsValidateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isValid: S.optional(S.Boolean),
-    details: S.optional(ConfigServerSettingsValidateResultDetailsList),
-  }),
-).annotate({
-  identifier: "ConfigServerSettingsValidateResult",
-}) as any as S.Schema<ConfigServerSettingsValidateResult>;
+  identifier: "ConfigServersUpdatePutResponse",
+}) as any as S.Schema<ConfigServersUpdatePutResponse>;
 
 /** The generation of the Application Configuration Service. */
 export type ConfigurationServicePropertiesInputGeneration = "Gen1" | "Gen2";
@@ -2963,132 +3053,6 @@ export const ConfigurationServicesCreateOrUpdateResponse =
     identifier: "ConfigurationServicesCreateOrUpdateResponse",
   }) as any as S.Schema<ConfigurationServicesCreateOrUpdateResponse>;
 
-export interface ConfigurationServicesValidateRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Application Configuration Service. */
-  configurationServiceName: string;
-  gitProperty?: ConfigurationServiceGitProperty;
-}
-export const ConfigurationServicesValidateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      configurationServiceName: S.String.pipe(T.Label()),
-      gitProperty: S.optional(ConfigurationServiceGitProperty),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configurationServices/{configurationServiceName}/validate",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "ConfigurationServicesValidateRequest",
-}) as any as S.Schema<ConfigurationServicesValidateRequest>;
-
-/** Detailed validation messages. */
-export type ValidationMessagesMessagesList = Array<string>;
-export const ValidationMessagesMessagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ValidationMessagesMessagesList>;
-
-/** Validate messages of the configuration service git repositories */
-export interface ValidationMessages {
-  /** The name of the configuration service git repository. */
-  name?: string;
-  /** Detailed validation messages. */
-  messages?: ValidationMessagesMessagesList;
-}
-export const ValidationMessages = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    messages: S.optional(ValidationMessagesMessagesList),
-  }),
-).annotate({
-  identifier: "ValidationMessages",
-}) as any as S.Schema<ValidationMessages>;
-
-/** The detail validation results */
-export type ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList =
-  Array<ValidationMessages>;
-export const ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList =
-  /*@__PURE__*/ S.Array(
-    ValidationMessages,
-  ) as any as S.Schema<ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList>;
-
-/** Validation result for configuration service settings */
-export interface ConfigurationServiceGitPropertyValidateResult {
-  /** Indicate if the configuration service settings are valid */
-  isValid?: boolean;
-  /** The detail validation results */
-  gitReposValidationResult?: ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList;
-}
-export const ConfigurationServiceGitPropertyValidateResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      isValid: S.optional(S.Boolean),
-      gitReposValidationResult: S.optional(
-        ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ConfigurationServiceGitPropertyValidateResult",
-  }) as any as S.Schema<ConfigurationServiceGitPropertyValidateResult>;
-
-/** Validation result for configuration service settings */
-export interface ConfigurationServiceSettingsValidateResult {
-  gitPropertyValidationResult?: ConfigurationServiceGitPropertyValidateResult;
-}
-export const ConfigurationServiceSettingsValidateResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      gitPropertyValidationResult: S.optional(
-        ConfigurationServiceGitPropertyValidateResult,
-      ),
-    }),
-  ).annotate({
-    identifier: "ConfigurationServiceSettingsValidateResult",
-  }) as any as S.Schema<ConfigurationServiceSettingsValidateResult>;
-
-export interface ConfigurationServicesValidateResourceRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Application Configuration Service. */
-  configurationServiceName: string;
-  properties?: ConfigurationServicePropertiesInput;
-}
-export const ConfigurationServicesValidateResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      configurationServiceName: S.String.pipe(T.Label()),
-      properties: S.optional(ConfigurationServicePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configurationServices/{configurationServiceName}/validateResource",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConfigurationServicesValidateResourceRequest",
-  }) as any as S.Schema<ConfigurationServicesValidateResourceRequest>;
-
 /** The credential for the container registry resource. */
 export interface ContainerRegistryCredentials {
   /** The credential type of the container registry credentials. */
@@ -3197,53 +3161,6 @@ export const ContainerRegistriesCreateOrUpdateResponse =
   ).annotate({
     identifier: "ContainerRegistriesCreateOrUpdateResponse",
   }) as any as S.Schema<ContainerRegistriesCreateOrUpdateResponse>;
-
-export interface ContainerRegistriesValidateRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of the container registry. */
-  containerRegistryName: string;
-  /** The credentials of the container registry resource. */
-  credentials: ContainerRegistryCredentials;
-}
-export const ContainerRegistriesValidateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    containerRegistryName: S.String.pipe(T.Label()),
-    credentials: ContainerRegistryCredentials,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/containerRegistries/{containerRegistryName}/validate",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContainerRegistriesValidateRequest",
-}) as any as S.Schema<ContainerRegistriesValidateRequest>;
-
-/** Validation result for container registry properties */
-export interface ContainerRegistryValidateResult {
-  /** Indicate if the container registry properties are valid */
-  isValid?: boolean;
-  /** Detailed validation messages. */
-  message?: string;
-}
-export const ContainerRegistryValidateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isValid: S.optional(S.Boolean),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerRegistryValidateResult",
-}) as any as S.Schema<ContainerRegistryValidateResult>;
 
 /** Custom domain of app resource payload. */
 export interface CustomDomainPropertiesInput {
@@ -3561,91 +3478,6 @@ export const CustomizedAcceleratorsCreateOrUpdateResponse =
   ).annotate({
     identifier: "CustomizedAcceleratorsCreateOrUpdateResponse",
   }) as any as S.Schema<CustomizedAcceleratorsCreateOrUpdateResponse>;
-
-/** Type of the customized accelerator. */
-export type CustomizedAcceleratorsValidateRequestAcceleratorType =
-  | "Accelerator"
-  | "Fragment";
-export const CustomizedAcceleratorsValidateRequestAcceleratorType =
-  /*@__PURE__*/ S.String;
-
-export type CustomizedAcceleratorsValidateRequestAcceleratorTagsList =
-  Array<string>;
-export const CustomizedAcceleratorsValidateRequestAcceleratorTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CustomizedAcceleratorsValidateRequestAcceleratorTagsList>;
-
-export interface CustomizedAcceleratorsValidateRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of the application accelerator. */
-  applicationAcceleratorName: string;
-  /** The name of the customized accelerator. */
-  customizedAcceleratorName: string;
-  /** Type of the customized accelerator. */
-  acceleratorType?:
-    | CustomizedAcceleratorsValidateRequestAcceleratorType
-    | (string & {});
-  displayName?: string;
-  description?: string;
-  iconUrl?: string;
-  acceleratorTags?: CustomizedAcceleratorsValidateRequestAcceleratorTagsList;
-  gitRepository: AcceleratorGitRepository;
-}
-export const CustomizedAcceleratorsValidateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      applicationAcceleratorName: S.String.pipe(T.Label()),
-      customizedAcceleratorName: S.String.pipe(T.Label()),
-      acceleratorType: S.optional(
-        CustomizedAcceleratorsValidateRequestAcceleratorType,
-      ),
-      displayName: S.optional(S.String),
-      description: S.optional(S.String),
-      iconUrl: S.optional(S.String),
-      acceleratorTags: S.optional(
-        CustomizedAcceleratorsValidateRequestAcceleratorTagsList,
-      ),
-      gitRepository: AcceleratorGitRepository,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/applicationAccelerators/{applicationAcceleratorName}/customizedAccelerators/{customizedAcceleratorName}/validate",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "CustomizedAcceleratorsValidateRequest",
-}) as any as S.Schema<CustomizedAcceleratorsValidateRequest>;
-
-/** State of the customized accelerator validation result */
-export type CustomizedAcceleratorValidateResultState = "Valid" | "Invalid";
-export const CustomizedAcceleratorValidateResultState = /*@__PURE__*/ S.String;
-
-/** Validation result for customized accelerator properties */
-export interface CustomizedAcceleratorValidateResult {
-  /** State of the customized accelerator validation result */
-  state?: CustomizedAcceleratorValidateResultState;
-  /** The detail validation results */
-  errorMessage?: string;
-}
-export const CustomizedAcceleratorValidateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(CustomizedAcceleratorValidateResultState),
-    errorMessage: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomizedAcceleratorValidateResult",
-}) as any as S.Schema<CustomizedAcceleratorValidateResult>;
 
 export interface DeleteApiPortalRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -4269,41 +4101,6 @@ export const DeleteDevToolPortalResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteDevToolPortalResponse",
 }) as any as S.Schema<DeleteDevToolPortalResponse>;
 
-export interface DeleteGatewayRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Spring Cloud Gateway. */
-  gatewayName: string;
-}
-export const DeleteGatewayRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeleteGatewayRequest",
-}) as any as S.Schema<DeleteGatewayRequest>;
-
-export interface DeleteGatewayResponse {}
-export const DeleteGatewayResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteGatewayResponse",
-}) as any as S.Schema<DeleteGatewayResponse>;
-
 export interface DeleteGatewayCustomDomainRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -4379,6 +4176,41 @@ export const DeleteGatewayRouteConfigResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteGatewayRouteConfigResponse",
 }) as any as S.Schema<DeleteGatewayRouteConfigResponse>;
+
+export interface DeleteGatewaysRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Spring Cloud Gateway. */
+  gatewayName: string;
+}
+export const DeleteGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGatewaysRequest",
+}) as any as S.Schema<DeleteGatewaysRequest>;
+
+export interface DeleteGatewaysResponse {}
+export const DeleteGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGatewaysResponse",
+}) as any as S.Schema<DeleteGatewaysResponse>;
 
 export interface DeleteServiceRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -5367,6 +5199,38 @@ export const TestKeys = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TestKeys" }) as any as S.Schema<TestKeys>;
 
+export interface FlushServiceVnetDnsSettingRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+}
+export const FlushServiceVnetDnsSettingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/flushVirtualNetworkDnsSettings",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "FlushServiceVnetDnsSettingRequest",
+}) as any as S.Schema<FlushServiceVnetDnsSettingRequest>;
+
+export interface FlushServiceVnetDnsSettingResponse {}
+export const FlushServiceVnetDnsSettingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "FlushServiceVnetDnsSettingResponse",
+}) as any as S.Schema<FlushServiceVnetDnsSettingResponse>;
+
 /** The properties of custom domain for Spring Cloud Gateway */
 export type GatewayCustomDomainProperties = ApiPortalCustomDomainProperties;
 export const GatewayCustomDomainProperties = ApiPortalCustomDomainProperties;
@@ -6136,37 +6000,6 @@ export const GatewaysCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GatewaysCreateOrUpdateResponse",
 }) as any as S.Schema<GatewaysCreateOrUpdateResponse>;
 
-export interface GatewaysValidateDomainRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Spring Cloud Gateway. */
-  gatewayName: string;
-  /** Name to be validated */
-  name: string;
-}
-export const GatewaysValidateDomainRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayName: S.String.pipe(T.Label()),
-    name: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}/validateDomain",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "GatewaysValidateDomainRequest",
-}) as any as S.Schema<GatewaysValidateDomainRequest>;
-
 export interface GenerateDeploymentHeapDumpRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -6573,50 +6406,6 @@ export const GetApplicationLiveViewResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetApplicationLiveViewResponse",
 }) as any as S.Schema<GetApplicationLiveViewResponse>;
 
-export interface GetAppResourceUploadUrlRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of the App resource. */
-  appName: string;
-}
-export const GetAppResourceUploadUrlRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    appName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apps/{appName}/getResourceUploadUrl",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetAppResourceUploadUrlRequest",
-}) as any as S.Schema<GetAppResourceUploadUrlRequest>;
-
-/** Resource upload definition payload */
-export interface ResourceUploadDefinition {
-  /** Source relative path */
-  relativePath?: string;
-  /** Upload URL */
-  uploadUrl?: string;
-}
-export const ResourceUploadDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    relativePath: S.optional(S.String),
-    uploadUrl: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceUploadDefinition",
-}) as any as S.Schema<ResourceUploadDefinition>;
-
 export interface GetBindingRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -6758,41 +6547,6 @@ export const GetBuildServiceAgentPoolRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetBuildServiceAgentPoolRequest",
 }) as any as S.Schema<GetBuildServiceAgentPoolRequest>;
-
-/** Build service agent pool size properties */
-export interface BuildServiceAgentPoolSizeProperties {
-  /** The name of build service agent pool size */
-  name?: string;
-  /** The cpu property of build service agent pool size */
-  cpu?: string;
-  /** The memory property of build service agent pool size */
-  memory?: string;
-}
-export const BuildServiceAgentPoolSizeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    cpu: S.optional(S.String),
-    memory: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BuildServiceAgentPoolSizeProperties",
-}) as any as S.Schema<BuildServiceAgentPoolSizeProperties>;
-
-/** Build service agent pool properties */
-export interface BuildServiceAgentPoolProperties {
-  /** Provisioning state of the build service agent pool */
-  provisioningState?: string;
-  /** build service agent pool size properties */
-  poolSize?: BuildServiceAgentPoolSizeProperties;
-}
-export const BuildServiceAgentPoolProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(S.String),
-    poolSize: S.optional(BuildServiceAgentPoolSizeProperties),
-  }),
-).annotate({
-  identifier: "BuildServiceAgentPoolProperties",
-}) as any as S.Schema<BuildServiceAgentPoolProperties>;
 
 export interface GetBuildServiceAgentPoolResponse {
   /** Fully qualified resource Id for the resource. */
@@ -7151,35 +6905,6 @@ export const GetBuildServiceBuildServiceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetBuildServiceBuildServiceResponse",
 }) as any as S.Schema<GetBuildServiceBuildServiceResponse>;
-
-export interface GetBuildServiceResourceUploadUrlRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of the build service resource. */
-  buildServiceName: string;
-}
-export const GetBuildServiceResourceUploadUrlRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      buildServiceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/buildServices/{buildServiceName}/getResourceUploadUrl",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "GetBuildServiceResourceUploadUrlRequest",
-}) as any as S.Schema<GetBuildServiceResourceUploadUrlRequest>;
 
 export interface GetBuildServiceSupportedBuildpackRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -7814,59 +7539,6 @@ export const GetDevToolPortalResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDevToolPortalResponse",
 }) as any as S.Schema<GetDevToolPortalResponse>;
 
-export interface GetGatewayRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Spring Cloud Gateway. */
-  gatewayName: string;
-}
-export const GetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetGatewayRequest",
-}) as any as S.Schema<GetGatewayRequest>;
-
-export interface GetGatewayResponse {
-  /** Fully qualified resource Id for the resource. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  systemData?: SystemData;
-  properties?: GatewayProperties;
-  /** Sku of the Spring Cloud Gateway resource */
-  sku?: Sku;
-}
-export const GetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GatewayProperties),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "GetGatewayResponse",
-}) as any as S.Schema<GetGatewayResponse>;
-
 export interface GetGatewayCustomDomainRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -7973,7 +7645,60 @@ export const GetGatewayRouteConfigResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetGatewayRouteConfigResponse",
 }) as any as S.Schema<GetGatewayRouteConfigResponse>;
 
-export interface GetMonitoringSettingRequest {
+export interface GetGatewaysRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Spring Cloud Gateway. */
+  gatewayName: string;
+}
+export const GetGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetGatewaysRequest",
+}) as any as S.Schema<GetGatewaysRequest>;
+
+export interface GetGatewaysResponse {
+  /** Fully qualified resource Id for the resource. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  systemData?: SystemData;
+  properties?: GatewayProperties;
+  /** Sku of the Spring Cloud Gateway resource */
+  sku?: Sku;
+}
+export const GetGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GatewayProperties),
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "GetGatewaysResponse",
+}) as any as S.Schema<GetGatewaysResponse>;
+
+export interface GetMonitoringSettingsRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
@@ -7981,7 +7706,7 @@ export interface GetMonitoringSettingRequest {
   /** The name of the Service resource. */
   serviceName: string;
 }
-export const GetMonitoringSettingRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMonitoringSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7995,8 +7720,8 @@ export const GetMonitoringSettingRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetMonitoringSettingRequest",
-}) as any as S.Schema<GetMonitoringSettingRequest>;
+  identifier: "GetMonitoringSettingsRequest",
+}) as any as S.Schema<GetMonitoringSettingsRequest>;
 
 /** State of the Monitoring Setting. */
 export type MonitoringSettingPropertiesProvisioningState =
@@ -8048,7 +7773,7 @@ export const MonitoringSettingProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MonitoringSettingProperties",
 }) as any as S.Schema<MonitoringSettingProperties>;
 
-export interface GetMonitoringSettingResponse {
+export interface GetMonitoringSettingsResponse {
   /** Fully qualified resource Id for the resource. */
   id?: string;
   /** The name of the resource. */
@@ -8059,7 +7784,7 @@ export interface GetMonitoringSettingResponse {
   /** Properties of the Monitoring Setting resource */
   properties?: MonitoringSettingProperties;
 }
-export const GetMonitoringSettingResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMonitoringSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -8068,8 +7793,8 @@ export const GetMonitoringSettingResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(MonitoringSettingProperties),
   }),
 ).annotate({
-  identifier: "GetMonitoringSettingResponse",
-}) as any as S.Schema<GetMonitoringSettingResponse>;
+  identifier: "GetMonitoringSettingsResponse",
+}) as any as S.Schema<GetMonitoringSettingsResponse>;
 
 export interface GetPredefinedAcceleratorRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -8201,11 +7926,11 @@ export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServiceRequest>;
 
 /** Tags of the service which is a list of key value pairs that describe the resource. */
-export type ServicesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetServiceResponseTagsMap = { [key: string]: string | undefined };
+export const GetServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesGetResponseTagsMap>;
+) as any as S.Schema<GetServiceResponseTagsMap>;
 
 /** Provisioning state of the Service */
 export type ClusterResourcePropertiesProvisioningState =
@@ -8421,7 +8146,7 @@ export interface GetServiceResponse {
   /** The GEO location of the resource. */
   location?: string;
   /** Tags of the service which is a list of key value pairs that describe the resource. */
-  tags?: ServicesGetResponseTagsMap;
+  tags?: GetServiceResponseTagsMap;
   /** Properties of the Service resource */
   properties?: ClusterResourceProperties;
   /** Sku of the Service resource */
@@ -8434,7 +8159,7 @@ export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     location: S.optional(S.String),
-    tags: S.optional(ServicesGetResponseTagsMap),
+    tags: S.optional(GetServiceResponseTagsMap),
     properties: S.optional(ClusterResourceProperties),
     sku: S.optional(Sku),
   }),
@@ -10230,11 +9955,10 @@ export const CustomizedAcceleratorResourceCollection = /*@__PURE__*/ S.suspend(
   identifier: "CustomizedAcceleratorResourceCollection",
 }) as any as S.Schema<CustomizedAcceleratorResourceCollection>;
 
-export type DeploymentsListForClusterRequestVersionList = Array<string>;
-export const DeploymentsListForClusterRequestVersionList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DeploymentsListForClusterRequestVersionList>;
+export type ListDeploymentForClusterRequestVersionList = Array<string>;
+export const ListDeploymentForClusterRequestVersionList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListDeploymentForClusterRequestVersionList>;
 
 export interface ListDeploymentForClusterRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -10244,7 +9968,7 @@ export interface ListDeploymentForClusterRequest {
   /** The name of the Service resource. */
   serviceName: string;
   /** Version of the deployments to be listed */
-  version?: DeploymentsListForClusterRequestVersionList;
+  version?: ListDeploymentForClusterRequestVersionList;
   /** The expand expression to apply on the operation. */
   _expand?: string;
 }
@@ -10254,7 +9978,7 @@ export const ListDeploymentForClusterRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     version: S.optional(
-      DeploymentsListForClusterRequestVersionList.pipe(T.Query()),
+      ListDeploymentForClusterRequestVersionList.pipe(T.Query()),
     ),
     _expand: S.optional(S.String.pipe(T.Query("$expand"))),
   }).pipe(
@@ -10318,10 +10042,10 @@ export const DeploymentResourceCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeploymentResourceCollection",
 }) as any as S.Schema<DeploymentResourceCollection>;
 
-export type DeploymentsListRequestVersionList = Array<string>;
-export const DeploymentsListRequestVersionList = /*@__PURE__*/ S.Array(
+export type ListDeploymentsRequestVersionList = Array<string>;
+export const ListDeploymentsRequestVersionList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<DeploymentsListRequestVersionList>;
+) as any as S.Schema<ListDeploymentsRequestVersionList>;
 
 export interface ListDeploymentsRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -10333,7 +10057,7 @@ export interface ListDeploymentsRequest {
   /** The name of the App resource. */
   appName: string;
   /** Version of the deployments to be listed */
-  version?: DeploymentsListRequestVersionList;
+  version?: ListDeploymentsRequestVersionList;
 }
 export const ListDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -10341,7 +10065,7 @@ export const ListDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     appName: S.String.pipe(T.Label()),
-    version: S.optional(DeploymentsListRequestVersionList.pipe(T.Query())),
+    version: S.optional(ListDeploymentsRequestVersionList.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -10481,48 +10205,6 @@ export const GatewayCustomDomainResourceCollection = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "GatewayCustomDomainResourceCollection",
 }) as any as S.Schema<GatewayCustomDomainResourceCollection>;
-
-export interface ListGatewayEnvSecretsRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of Spring Cloud Gateway. */
-  gatewayName: string;
-}
-export const ListGatewayEnvSecretsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    gatewayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}/listEnvSecrets",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ListGatewayEnvSecretsRequest",
-}) as any as S.Schema<ListGatewayEnvSecretsRequest>;
-
-/** Sensitive properties for Spring Cloud Gateway */
-export type GatewayEnvSecrets = { [key: string]: string | undefined };
-export const GatewayEnvSecrets = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GatewayEnvSecrets>;
-
-export type ListGatewayEnvSecretsResponse = GatewayEnvSecrets;
-export const ListGatewayEnvSecretsResponse = /*@__PURE__*/ S.suspend(() =>
-  GatewayEnvSecrets.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ListGatewayEnvSecretsResponse",
-}) as any as S.Schema<ListGatewayEnvSecretsResponse>;
 
 export interface ListGatewayRouteConfigsRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -10672,6 +10354,48 @@ export const GatewayResourceCollection = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GatewayResourceCollection",
 }) as any as S.Schema<GatewayResourceCollection>;
+
+export interface ListGatewaysEnvSecretsRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Spring Cloud Gateway. */
+  gatewayName: string;
+}
+export const ListGatewaysEnvSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}/listEnvSecrets",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListGatewaysEnvSecretsRequest",
+}) as any as S.Schema<ListGatewaysEnvSecretsRequest>;
+
+/** Sensitive properties for Spring Cloud Gateway */
+export type GatewayEnvSecrets = { [key: string]: string | undefined };
+export const GatewayEnvSecrets = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GatewayEnvSecrets>;
+
+export type ListGatewaysEnvSecretsResponse = GatewayEnvSecrets;
+export const ListGatewaysEnvSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+  GatewayEnvSecrets.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListGatewaysEnvSecretsResponse",
+}) as any as S.Schema<ListGatewaysEnvSecretsResponse>;
 
 export interface ListOperationsRequest {}
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -11832,6 +11556,89 @@ export const MonitoringSettingsUpdatePatchResponse = /*@__PURE__*/ S.suspend(
   identifier: "MonitoringSettingsUpdatePatchResponse",
 }) as any as S.Schema<MonitoringSettingsUpdatePatchResponse>;
 
+export interface MonitoringSettingsUpdatePutRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** Properties of the Monitoring Setting resource */
+  properties?: MonitoringSettingPropertiesInput;
+}
+export const MonitoringSettingsUpdatePutRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    properties: S.optional(MonitoringSettingPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/monitoringSettings/default",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "MonitoringSettingsUpdatePutRequest",
+}) as any as S.Schema<MonitoringSettingsUpdatePutRequest>;
+
+export interface MonitoringSettingsUpdatePutResponse {
+  /** Fully qualified resource Id for the resource. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  systemData?: SystemData;
+  /** Properties of the Monitoring Setting resource */
+  properties?: MonitoringSettingProperties;
+}
+export const MonitoringSettingsUpdatePutResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MonitoringSettingProperties),
+  }),
+).annotate({
+  identifier: "MonitoringSettingsUpdatePutResponse",
+}) as any as S.Schema<MonitoringSettingsUpdatePutResponse>;
+
+/** Type of the test key */
+export type RegenerateServiceTestKeyRequestKeyType = "Primary" | "Secondary";
+export const RegenerateServiceTestKeyRequestKeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateServiceTestKeyRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** Type of the test key */
+  keyType: RegenerateServiceTestKeyRequestKeyType | (string & {});
+}
+export const RegenerateServiceTestKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    keyType: RegenerateServiceTestKeyRequestKeyType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/regenerateTestKey",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateServiceTestKeyRequest",
+}) as any as S.Schema<RegenerateServiceTestKeyRequest>;
+
 export interface RestartDeploymentRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -11870,7 +11677,7 @@ export const RestartDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestartDeploymentResponse",
 }) as any as S.Schema<RestartDeploymentResponse>;
 
-export interface RestartGatewayRequest {
+export interface RestartGatewaysRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
@@ -11880,7 +11687,7 @@ export interface RestartGatewayRequest {
   /** The name of Spring Cloud Gateway. */
   gatewayName: string;
 }
-export const RestartGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestartGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -11895,15 +11702,15 @@ export const RestartGatewayRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestartGatewayRequest",
-}) as any as S.Schema<RestartGatewayRequest>;
+  identifier: "RestartGatewaysRequest",
+}) as any as S.Schema<RestartGatewaysRequest>;
 
-export interface RestartGatewayResponse {}
-export const RestartGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RestartGatewaysResponse {}
+export const RestartGatewaysResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RestartGatewayResponse",
-}) as any as S.Schema<RestartGatewayResponse>;
+  identifier: "RestartGatewaysResponse",
+}) as any as S.Schema<RestartGatewaysResponse>;
 
 export interface ServiceRegistriesCreateOrUpdateRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -12096,79 +11903,15 @@ export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServicesCreateOrUpdateResponse",
 }) as any as S.Schema<ServicesCreateOrUpdateResponse>;
 
-export interface ServicesFlushVnetDnsSettingRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-}
-export const ServicesFlushVnetDnsSettingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/flushVirtualNetworkDnsSettings",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesFlushVnetDnsSettingRequest",
-}) as any as S.Schema<ServicesFlushVnetDnsSettingRequest>;
-
-export interface ServicesFlushVnetDnsSettingResponse {}
-export const ServicesFlushVnetDnsSettingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServicesFlushVnetDnsSettingResponse",
-}) as any as S.Schema<ServicesFlushVnetDnsSettingResponse>;
-
-/** Type of the test key */
-export type ServicesRegenerateTestKeyRequestKeyType = "Primary" | "Secondary";
-export const ServicesRegenerateTestKeyRequestKeyType = /*@__PURE__*/ S.String;
-
-export interface ServicesRegenerateTestKeyRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** Type of the test key */
-  keyType: ServicesRegenerateTestKeyRequestKeyType | (string & {});
-}
-export const ServicesRegenerateTestKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    keyType: ServicesRegenerateTestKeyRequestKeyType,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/regenerateTestKey",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesRegenerateTestKeyRequest",
-}) as any as S.Schema<ServicesRegenerateTestKeyRequest>;
-
 /** Collection of Deployment name. */
-export type AppsSetActiveDeploymentsRequestActiveDeploymentNamesList =
+export type SetAppActiveDeploymentsRequestActiveDeploymentNamesList =
   Array<string>;
-export const AppsSetActiveDeploymentsRequestActiveDeploymentNamesList =
+export const SetAppActiveDeploymentsRequestActiveDeploymentNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<AppsSetActiveDeploymentsRequestActiveDeploymentNamesList>;
+  ) as any as S.Schema<SetAppActiveDeploymentsRequestActiveDeploymentNamesList>;
 
-export interface SetAppActiveDeploymentRequest {
+export interface SetAppActiveDeploymentsRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
@@ -12178,16 +11921,16 @@ export interface SetAppActiveDeploymentRequest {
   /** The name of the App resource. */
   appName: string;
   /** Collection of Deployment name. */
-  activeDeploymentNames?: AppsSetActiveDeploymentsRequestActiveDeploymentNamesList;
+  activeDeploymentNames?: SetAppActiveDeploymentsRequestActiveDeploymentNamesList;
 }
-export const SetAppActiveDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+export const SetAppActiveDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     appName: S.String.pipe(T.Label()),
     activeDeploymentNames: S.optional(
-      AppsSetActiveDeploymentsRequestActiveDeploymentNamesList,
+      SetAppActiveDeploymentsRequestActiveDeploymentNamesList,
     ),
   }).pipe(
     T.Http({
@@ -12198,10 +11941,10 @@ export const SetAppActiveDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SetAppActiveDeploymentRequest",
-}) as any as S.Schema<SetAppActiveDeploymentRequest>;
+  identifier: "SetAppActiveDeploymentsRequest",
+}) as any as S.Schema<SetAppActiveDeploymentsRequest>;
 
-export interface SetAppActiveDeploymentResponse {
+export interface SetAppActiveDeploymentsResponse {
   /** Fully qualified resource Id for the resource. */
   id?: string;
   /** The name of the resource. */
@@ -12216,7 +11959,7 @@ export interface SetAppActiveDeploymentResponse {
   /** The GEO location of the application, always the same with its parent resource */
   location?: string;
 }
-export const SetAppActiveDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+export const SetAppActiveDeploymentsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -12227,8 +11970,8 @@ export const SetAppActiveDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SetAppActiveDeploymentResponse",
-}) as any as S.Schema<SetAppActiveDeploymentResponse>;
+  identifier: "SetAppActiveDeploymentsResponse",
+}) as any as S.Schema<SetAppActiveDeploymentsResponse>;
 
 export interface StartDeploymentRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -12268,7 +12011,7 @@ export const StartDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartDeploymentResponse",
 }) as any as S.Schema<StartDeploymentResponse>;
 
-export interface StartDeploymentJfrRequest {
+export interface StartDeploymentJFRRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
@@ -12286,7 +12029,7 @@ export interface StartDeploymentJfrRequest {
   /** Duration of your JFR. 1 min can be represented by 1m or 60s. */
   duration?: string;
 }
-export const StartDeploymentJfrRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartDeploymentJFRRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12305,15 +12048,15 @@ export const StartDeploymentJfrRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StartDeploymentJfrRequest",
-}) as any as S.Schema<StartDeploymentJfrRequest>;
+  identifier: "StartDeploymentJFRRequest",
+}) as any as S.Schema<StartDeploymentJFRRequest>;
 
-export interface StartDeploymentJfrResponse {}
-export const StartDeploymentJfrResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StartDeploymentJFRResponse {}
+export const StartDeploymentJFRResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StartDeploymentJfrResponse",
-}) as any as S.Schema<StartDeploymentJfrResponse>;
+  identifier: "StartDeploymentJFRResponse",
+}) as any as S.Schema<StartDeploymentJFRResponse>;
 
 export interface StartServiceRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -12594,144 +12337,6 @@ export const UpdateBindingResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateBindingResponse",
 }) as any as S.Schema<UpdateBindingResponse>;
 
-/** Build service agent pool size properties */
-export interface BuildServiceAgentPoolSizePropertiesInput {
-  /** The name of build service agent pool size */
-  name?: string;
-}
-export const BuildServiceAgentPoolSizePropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BuildServiceAgentPoolSizePropertiesInput",
-}) as any as S.Schema<BuildServiceAgentPoolSizePropertiesInput>;
-
-/** Build service agent pool properties */
-export interface BuildServiceAgentPoolPropertiesInput {
-  /** build service agent pool size properties */
-  poolSize?: BuildServiceAgentPoolSizePropertiesInput;
-}
-export const BuildServiceAgentPoolPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      poolSize: S.optional(BuildServiceAgentPoolSizePropertiesInput),
-    }),
-).annotate({
-  identifier: "BuildServiceAgentPoolPropertiesInput",
-}) as any as S.Schema<BuildServiceAgentPoolPropertiesInput>;
-
-export interface UpdateBuildServiceAgentPoolPutRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** The name of the build service resource. */
-  buildServiceName: string;
-  /** The name of the build service agent pool resource. */
-  agentPoolName: string;
-  /** build service agent pool properties */
-  properties?: BuildServiceAgentPoolPropertiesInput;
-}
-export const UpdateBuildServiceAgentPoolPutRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      serviceName: S.String.pipe(T.Label()),
-      buildServiceName: S.String.pipe(T.Label()),
-      agentPoolName: S.String.pipe(T.Label()),
-      properties: S.optional(BuildServiceAgentPoolPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/buildServices/{buildServiceName}/agentPools/{agentPoolName}",
-        code: 200,
-        apiVersion: "2023-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "UpdateBuildServiceAgentPoolPutRequest",
-}) as any as S.Schema<UpdateBuildServiceAgentPoolPutRequest>;
-
-export interface UpdateBuildServiceAgentPoolPutResponse {
-  /** Fully qualified resource Id for the resource. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  systemData?: SystemData;
-  /** build service agent pool properties */
-  properties?: BuildServiceAgentPoolProperties;
-}
-export const UpdateBuildServiceAgentPoolPutResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(BuildServiceAgentPoolProperties),
-    }),
-).annotate({
-  identifier: "UpdateBuildServiceAgentPoolPutResponse",
-}) as any as S.Schema<UpdateBuildServiceAgentPoolPutResponse>;
-
-export interface UpdateConfigServerPutRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** Properties of the Config Server resource */
-  properties?: ConfigServerPropertiesInput;
-}
-export const UpdateConfigServerPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    properties: S.optional(ConfigServerPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configServers/default",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateConfigServerPutRequest",
-}) as any as S.Schema<UpdateConfigServerPutRequest>;
-
-export interface UpdateConfigServerPutResponse {
-  /** Fully qualified resource Id for the resource. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  systemData?: SystemData;
-  /** Properties of the Config Server resource */
-  properties?: ConfigServerProperties;
-}
-export const UpdateConfigServerPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ConfigServerProperties),
-  }),
-).annotate({
-  identifier: "UpdateConfigServerPutResponse",
-}) as any as S.Schema<UpdateConfigServerPutResponse>;
-
 export interface UpdateCustomDomainRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
@@ -12852,65 +12457,12 @@ export const UpdateDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateDeploymentResponse",
 }) as any as S.Schema<UpdateDeploymentResponse>;
 
-export interface UpdateMonitoringSettingPutRequest {
-  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
-  resourceGroupName: string;
-  /** The name of the Service resource. */
-  serviceName: string;
-  /** Properties of the Monitoring Setting resource */
-  properties?: MonitoringSettingPropertiesInput;
-}
-export const UpdateMonitoringSettingPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    properties: S.optional(MonitoringSettingPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/monitoringSettings/default",
-      code: 200,
-      apiVersion: "2023-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateMonitoringSettingPutRequest",
-}) as any as S.Schema<UpdateMonitoringSettingPutRequest>;
-
-export interface UpdateMonitoringSettingPutResponse {
-  /** Fully qualified resource Id for the resource. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  systemData?: SystemData;
-  /** Properties of the Monitoring Setting resource */
-  properties?: MonitoringSettingProperties;
-}
-export const UpdateMonitoringSettingPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MonitoringSettingProperties),
-  }),
-).annotate({
-  identifier: "UpdateMonitoringSettingPutResponse",
-}) as any as S.Schema<UpdateMonitoringSettingPutResponse>;
-
 /** Tags of the service which is a list of key value pairs that describe the resource. */
-export type ServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateServiceRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateServiceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateServiceRequestTagsMap>;
 
 export interface UpdateServiceRequest {
   /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
@@ -12922,7 +12474,7 @@ export interface UpdateServiceRequest {
   /** The GEO location of the resource. */
   location?: string;
   /** Tags of the service which is a list of key value pairs that describe the resource. */
-  tags?: ServicesUpdateRequestTagsMap;
+  tags?: UpdateServiceRequestTagsMap;
   /** Properties of the Service resource */
   properties?: ClusterResourcePropertiesInput;
   /** Sku of the Service resource */
@@ -12934,7 +12486,7 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ServicesUpdateRequestTagsMap),
+    tags: S.optional(UpdateServiceRequestTagsMap),
     properties: S.optional(ClusterResourcePropertiesInput),
     sku: S.optional(Sku),
   }).pipe(
@@ -12950,13 +12502,13 @@ export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateServiceRequest>;
 
 /** Tags of the service which is a list of key value pairs that describe the resource. */
-export type ServicesUpdateResponseTagsMap = {
+export type UpdateServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ServicesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateServiceResponseTagsMap>;
 
 export interface UpdateServiceResponse {
   /** Fully qualified resource Id for the resource. */
@@ -12969,7 +12521,7 @@ export interface UpdateServiceResponse {
   /** The GEO location of the resource. */
   location?: string;
   /** Tags of the service which is a list of key value pairs that describe the resource. */
-  tags?: ServicesUpdateResponseTagsMap;
+  tags?: UpdateServiceResponseTagsMap;
   /** Properties of the Service resource */
   properties?: ClusterResourceProperties;
   /** Sku of the Service resource */
@@ -12982,13 +12534,457 @@ export const UpdateServiceResponse = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     location: S.optional(S.String),
-    tags: S.optional(ServicesUpdateResponseTagsMap),
+    tags: S.optional(UpdateServiceResponseTagsMap),
     properties: S.optional(ClusterResourceProperties),
     sku: S.optional(Sku),
   }),
 ).annotate({
   identifier: "UpdateServiceResponse",
 }) as any as S.Schema<UpdateServiceResponse>;
+
+export interface ValidateApiPortalDomainRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of API portal. */
+  apiPortalName: string;
+  /** Name to be validated */
+  name: string;
+}
+export const ValidateApiPortalDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    apiPortalName: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apiPortals/{apiPortalName}/validateDomain",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateApiPortalDomainRequest",
+}) as any as S.Schema<ValidateApiPortalDomainRequest>;
+
+/** Validation result for custom domain. */
+export interface CustomDomainValidateResult {
+  /** Indicates if domain name is valid. */
+  isValid?: boolean;
+  /** Message of why domain name is invalid. */
+  message?: string;
+}
+export const CustomDomainValidateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isValid: S.optional(S.Boolean),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomDomainValidateResult",
+}) as any as S.Schema<CustomDomainValidateResult>;
+
+export interface ValidateAppDomainRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of the App resource. */
+  appName: string;
+  /** Name to be validated */
+  name: string;
+}
+export const ValidateAppDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    appName: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/apps/{appName}/validateDomain",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateAppDomainRequest",
+}) as any as S.Schema<ValidateAppDomainRequest>;
+
+export interface ValidateConfigServerRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** Property of git environment. */
+  gitProperty?: ConfigServerGitProperty;
+}
+export const ValidateConfigServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gitProperty: S.optional(ConfigServerGitProperty),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configServers/validate",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateConfigServerRequest",
+}) as any as S.Schema<ValidateConfigServerRequest>;
+
+/** The detail error messages of the record */
+export type ConfigServerSettingsErrorRecordMessagesList = Array<string>;
+export const ConfigServerSettingsErrorRecordMessagesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ConfigServerSettingsErrorRecordMessagesList>;
+
+/** Error record of the config server settings */
+export interface ConfigServerSettingsErrorRecord {
+  /** The name of the config server settings error record */
+  name?: string;
+  /** The uri of the config server settings error record */
+  uri?: string;
+  /** The detail error messages of the record */
+  messages?: ConfigServerSettingsErrorRecordMessagesList;
+}
+export const ConfigServerSettingsErrorRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    uri: S.optional(S.String),
+    messages: S.optional(ConfigServerSettingsErrorRecordMessagesList),
+  }),
+).annotate({
+  identifier: "ConfigServerSettingsErrorRecord",
+}) as any as S.Schema<ConfigServerSettingsErrorRecord>;
+
+/** The detail validation results */
+export type ConfigServerSettingsValidateResultDetailsList =
+  Array<ConfigServerSettingsErrorRecord>;
+export const ConfigServerSettingsValidateResultDetailsList =
+  /*@__PURE__*/ S.Array(
+    ConfigServerSettingsErrorRecord,
+  ) as any as S.Schema<ConfigServerSettingsValidateResultDetailsList>;
+
+/** Validation result for config server settings */
+export interface ConfigServerSettingsValidateResult {
+  /** Indicate if the config server settings are valid */
+  isValid?: boolean;
+  /** The detail validation results */
+  details?: ConfigServerSettingsValidateResultDetailsList;
+}
+export const ConfigServerSettingsValidateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isValid: S.optional(S.Boolean),
+    details: S.optional(ConfigServerSettingsValidateResultDetailsList),
+  }),
+).annotate({
+  identifier: "ConfigServerSettingsValidateResult",
+}) as any as S.Schema<ConfigServerSettingsValidateResult>;
+
+export interface ValidateConfigurationServiceRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Application Configuration Service. */
+  configurationServiceName: string;
+  gitProperty?: ConfigurationServiceGitProperty;
+}
+export const ValidateConfigurationServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    configurationServiceName: S.String.pipe(T.Label()),
+    gitProperty: S.optional(ConfigurationServiceGitProperty),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configurationServices/{configurationServiceName}/validate",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateConfigurationServiceRequest",
+}) as any as S.Schema<ValidateConfigurationServiceRequest>;
+
+/** Detailed validation messages. */
+export type ValidationMessagesMessagesList = Array<string>;
+export const ValidationMessagesMessagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ValidationMessagesMessagesList>;
+
+/** Validate messages of the configuration service git repositories */
+export interface ValidationMessages {
+  /** The name of the configuration service git repository. */
+  name?: string;
+  /** Detailed validation messages. */
+  messages?: ValidationMessagesMessagesList;
+}
+export const ValidationMessages = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    messages: S.optional(ValidationMessagesMessagesList),
+  }),
+).annotate({
+  identifier: "ValidationMessages",
+}) as any as S.Schema<ValidationMessages>;
+
+/** The detail validation results */
+export type ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList =
+  Array<ValidationMessages>;
+export const ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList =
+  /*@__PURE__*/ S.Array(
+    ValidationMessages,
+  ) as any as S.Schema<ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList>;
+
+/** Validation result for configuration service settings */
+export interface ConfigurationServiceGitPropertyValidateResult {
+  /** Indicate if the configuration service settings are valid */
+  isValid?: boolean;
+  /** The detail validation results */
+  gitReposValidationResult?: ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList;
+}
+export const ConfigurationServiceGitPropertyValidateResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      isValid: S.optional(S.Boolean),
+      gitReposValidationResult: S.optional(
+        ConfigurationServiceGitPropertyValidateResultGitReposValidationResultList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ConfigurationServiceGitPropertyValidateResult",
+  }) as any as S.Schema<ConfigurationServiceGitPropertyValidateResult>;
+
+/** Validation result for configuration service settings */
+export interface ConfigurationServiceSettingsValidateResult {
+  gitPropertyValidationResult?: ConfigurationServiceGitPropertyValidateResult;
+}
+export const ConfigurationServiceSettingsValidateResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      gitPropertyValidationResult: S.optional(
+        ConfigurationServiceGitPropertyValidateResult,
+      ),
+    }),
+  ).annotate({
+    identifier: "ConfigurationServiceSettingsValidateResult",
+  }) as any as S.Schema<ConfigurationServiceSettingsValidateResult>;
+
+export interface ValidateConfigurationServiceResourceRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Application Configuration Service. */
+  configurationServiceName: string;
+  properties?: ConfigurationServicePropertiesInput;
+}
+export const ValidateConfigurationServiceResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      configurationServiceName: S.String.pipe(T.Label()),
+      properties: S.optional(ConfigurationServicePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/configurationServices/{configurationServiceName}/validateResource",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateConfigurationServiceResourceRequest",
+  }) as any as S.Schema<ValidateConfigurationServiceResourceRequest>;
+
+export interface ValidateContainerRegistryRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of the container registry. */
+  containerRegistryName: string;
+  /** The credentials of the container registry resource. */
+  credentials: ContainerRegistryCredentials;
+}
+export const ValidateContainerRegistryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    containerRegistryName: S.String.pipe(T.Label()),
+    credentials: ContainerRegistryCredentials,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/containerRegistries/{containerRegistryName}/validate",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateContainerRegistryRequest",
+}) as any as S.Schema<ValidateContainerRegistryRequest>;
+
+/** Validation result for container registry properties */
+export interface ContainerRegistryValidateResult {
+  /** Indicate if the container registry properties are valid */
+  isValid?: boolean;
+  /** Detailed validation messages. */
+  message?: string;
+}
+export const ContainerRegistryValidateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isValid: S.optional(S.Boolean),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerRegistryValidateResult",
+}) as any as S.Schema<ContainerRegistryValidateResult>;
+
+/** Type of the customized accelerator. */
+export type ValidateCustomizedAcceleratorRequestAcceleratorType =
+  | "Accelerator"
+  | "Fragment";
+export const ValidateCustomizedAcceleratorRequestAcceleratorType =
+  /*@__PURE__*/ S.String;
+
+export type ValidateCustomizedAcceleratorRequestAcceleratorTagsList =
+  Array<string>;
+export const ValidateCustomizedAcceleratorRequestAcceleratorTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ValidateCustomizedAcceleratorRequestAcceleratorTagsList>;
+
+export interface ValidateCustomizedAcceleratorRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of the application accelerator. */
+  applicationAcceleratorName: string;
+  /** The name of the customized accelerator. */
+  customizedAcceleratorName: string;
+  /** Type of the customized accelerator. */
+  acceleratorType?:
+    | ValidateCustomizedAcceleratorRequestAcceleratorType
+    | (string & {});
+  displayName?: string;
+  description?: string;
+  iconUrl?: string;
+  acceleratorTags?: ValidateCustomizedAcceleratorRequestAcceleratorTagsList;
+  gitRepository: AcceleratorGitRepository;
+}
+export const ValidateCustomizedAcceleratorRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      serviceName: S.String.pipe(T.Label()),
+      applicationAcceleratorName: S.String.pipe(T.Label()),
+      customizedAcceleratorName: S.String.pipe(T.Label()),
+      acceleratorType: S.optional(
+        ValidateCustomizedAcceleratorRequestAcceleratorType,
+      ),
+      displayName: S.optional(S.String),
+      description: S.optional(S.String),
+      iconUrl: S.optional(S.String),
+      acceleratorTags: S.optional(
+        ValidateCustomizedAcceleratorRequestAcceleratorTagsList,
+      ),
+      gitRepository: AcceleratorGitRepository,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/applicationAccelerators/{applicationAcceleratorName}/customizedAccelerators/{customizedAcceleratorName}/validate",
+        code: 200,
+        apiVersion: "2023-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "ValidateCustomizedAcceleratorRequest",
+}) as any as S.Schema<ValidateCustomizedAcceleratorRequest>;
+
+/** State of the customized accelerator validation result */
+export type CustomizedAcceleratorValidateResultState = "Valid" | "Invalid";
+export const CustomizedAcceleratorValidateResultState = /*@__PURE__*/ S.String;
+
+/** Validation result for customized accelerator properties */
+export interface CustomizedAcceleratorValidateResult {
+  /** State of the customized accelerator validation result */
+  state?: CustomizedAcceleratorValidateResultState;
+  /** The detail validation results */
+  errorMessage?: string;
+}
+export const CustomizedAcceleratorValidateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(CustomizedAcceleratorValidateResultState),
+    errorMessage: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomizedAcceleratorValidateResult",
+}) as any as S.Schema<CustomizedAcceleratorValidateResult>;
+
+export interface ValidateGatewaysDomainRequest {
+  /** Gets subscription ID which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the resource. You can obtain this value from the Azure Resource Manager API or the portal. */
+  resourceGroupName: string;
+  /** The name of the Service resource. */
+  serviceName: string;
+  /** The name of Spring Cloud Gateway. */
+  gatewayName: string;
+  /** Name to be validated */
+  name: string;
+}
+export const ValidateGatewaysDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    gatewayName: S.String.pipe(T.Label()),
+    name: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/gateways/{gatewayName}/validateDomain",
+      code: 200,
+      apiVersion: "2023-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ValidateGatewaysDomainRequest",
+}) as any as S.Schema<ValidateGatewaysDomainRequest>;
 
 export type ApiPortalCustomDomainsCreateOrUpdateError = AzureOpError;
 /** Create or update the API portal custom domain. */
@@ -13015,21 +13011,6 @@ export const ApiPortalsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ApiPortalsCreateOrUpdateRequest,
   output: ApiPortalsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApiPortalsValidateDomainError = AzureOpError;
-/** Check the domains are valid as well as not in use. */
-export const ApiPortalsValidateDomain: API.OperationMethod<
-  ApiPortalsValidateDomainRequest,
-  CustomDomainValidateResult,
-  ApiPortalsValidateDomainError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApiPortalsValidateDomainRequest,
-  output: CustomDomainValidateResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13095,16 +13076,16 @@ export const AppsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AppsValidateDomainError = AzureOpError;
-/** Check the resource name is valid as well as not in use. */
-export const AppsValidateDomain: API.OperationMethod<
-  AppsValidateDomainRequest,
-  CustomDomainValidateResult,
-  AppsValidateDomainError,
+export type AppsGetResourceUploadUrlError = AzureOpError;
+/** Get an resource upload URL for an App, which may be artifacts or source archive. */
+export const AppsGetResourceUploadUrl: API.OperationMethod<
+  AppsGetResourceUploadUrlRequest,
+  ResourceUploadDefinition,
+  AppsGetResourceUploadUrlError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AppsValidateDomainRequest,
-  output: CustomDomainValidateResult,
+  input: AppsGetResourceUploadUrlRequest,
+  output: ResourceUploadDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13135,6 +13116,21 @@ export const BuildpackBindingCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BuildpackBindingCreateOrUpdateRequest,
   output: BuildpackBindingCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type BuildServiceAgentPoolUpdatePutError = AzureOpError;
+/** Create or update build service agent pool. */
+export const BuildServiceAgentPoolUpdatePut: API.OperationMethod<
+  BuildServiceAgentPoolUpdatePutRequest,
+  BuildServiceAgentPoolUpdatePutResponse,
+  BuildServiceAgentPoolUpdatePutError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BuildServiceAgentPoolUpdatePutRequest,
+  output: BuildServiceAgentPoolUpdatePutResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13185,6 +13181,21 @@ export const BuildServiceCreateOrUpdateBuild: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type BuildServiceGetResourceUploadUrlError = AzureOpError;
+/** Get an resource upload URL for build service, which may be artifacts or source archive. */
+export const BuildServiceGetResourceUploadUrl: API.OperationMethod<
+  BuildServiceGetResourceUploadUrlRequest,
+  ResourceUploadDefinition,
+  BuildServiceGetResourceUploadUrlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BuildServiceGetResourceUploadUrlRequest,
+  output: ResourceUploadDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CertificatesCreateOrUpdateError = AzureOpError;
 /** Create or update certificate resource. */
 export const CertificatesCreateOrUpdate: API.OperationMethod<
@@ -13230,16 +13241,16 @@ export const ConfigServersUpdatePatch: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigServersValidateError = AzureOpError;
-/** Check if the config server settings are valid. */
-export const ConfigServersValidate: API.OperationMethod<
-  ConfigServersValidateRequest,
-  ConfigServerSettingsValidateResult,
-  ConfigServersValidateError,
+export type ConfigServersUpdatePutError = AzureOpError;
+/** Update the config server. */
+export const ConfigServersUpdatePut: API.OperationMethod<
+  ConfigServersUpdatePutRequest,
+  ConfigServersUpdatePutResponse,
+  ConfigServersUpdatePutError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigServersValidateRequest,
-  output: ConfigServerSettingsValidateResult,
+  input: ConfigServersUpdatePutRequest,
+  output: ConfigServersUpdatePutResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13260,36 +13271,6 @@ export const ConfigurationServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigurationServicesValidateError = AzureOpError;
-/** Check if the Application Configuration Service settings are valid. */
-export const ConfigurationServicesValidate: API.OperationMethod<
-  ConfigurationServicesValidateRequest,
-  ConfigurationServiceSettingsValidateResult,
-  ConfigurationServicesValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationServicesValidateRequest,
-  output: ConfigurationServiceSettingsValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationServicesValidateResourceError = AzureOpError;
-/** Check if the Application Configuration Service resource is valid. */
-export const ConfigurationServicesValidateResource: API.OperationMethod<
-  ConfigurationServicesValidateResourceRequest,
-  ConfigurationServiceSettingsValidateResult,
-  ConfigurationServicesValidateResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationServicesValidateResourceRequest,
-  output: ConfigurationServiceSettingsValidateResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ContainerRegistriesCreateOrUpdateError = AzureOpError;
 /** Create or update container registry resource. */
 export const ContainerRegistriesCreateOrUpdate: API.OperationMethod<
@@ -13300,21 +13281,6 @@ export const ContainerRegistriesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ContainerRegistriesCreateOrUpdateRequest,
   output: ContainerRegistriesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerRegistriesValidateError = AzureOpError;
-/** Check if the container registry properties are valid. */
-export const ContainerRegistriesValidate: API.OperationMethod<
-  ContainerRegistriesValidateRequest,
-  ContainerRegistryValidateResult,
-  ContainerRegistriesValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerRegistriesValidateRequest,
-  output: ContainerRegistryValidateResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13345,21 +13311,6 @@ export const CustomizedAcceleratorsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CustomizedAcceleratorsCreateOrUpdateRequest,
   output: CustomizedAcceleratorsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomizedAcceleratorsValidateError = AzureOpError;
-/** Check the customized accelerator are valid. */
-export const CustomizedAcceleratorsValidate: API.OperationMethod<
-  CustomizedAcceleratorsValidateRequest,
-  CustomizedAcceleratorValidateResult,
-  CustomizedAcceleratorsValidateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomizedAcceleratorsValidateRequest,
-  output: CustomizedAcceleratorValidateResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13620,21 +13571,6 @@ export const DeleteDevToolPortal: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteGatewayError = AzureOpError;
-/** Disable the default Spring Cloud Gateway. */
-export const DeleteGateway: API.OperationMethod<
-  DeleteGatewayRequest,
-  DeleteGatewayResponse,
-  DeleteGatewayError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteGatewayRequest,
-  output: DeleteGatewayResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteGatewayCustomDomainError = AzureOpError;
 /** Delete the Spring Cloud Gateway custom domain. */
 export const DeleteGatewayCustomDomain: API.OperationMethod<
@@ -13660,6 +13596,21 @@ export const DeleteGatewayRouteConfig: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteGatewayRouteConfigRequest,
   output: DeleteGatewayRouteConfigResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteGatewaysError = AzureOpError;
+/** Disable the default Spring Cloud Gateway. */
+export const DeleteGateways: API.OperationMethod<
+  DeleteGatewaysRequest,
+  DeleteGatewaysResponse,
+  DeleteGatewaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGatewaysRequest,
+  output: DeleteGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13860,6 +13811,21 @@ export const EnableServiceTestEndpoint: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type FlushServiceVnetDnsSettingError = AzureOpError;
+/** Flush Virtual Network DNS settings for a VNET injected Service. */
+export const FlushServiceVnetDnsSetting: API.OperationMethod<
+  FlushServiceVnetDnsSettingRequest,
+  FlushServiceVnetDnsSettingResponse,
+  FlushServiceVnetDnsSettingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FlushServiceVnetDnsSettingRequest,
+  output: FlushServiceVnetDnsSettingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GatewayCustomDomainsCreateOrUpdateError = AzureOpError;
 /** Create or update the Spring Cloud Gateway custom domain. */
 export const GatewayCustomDomainsCreateOrUpdate: API.OperationMethod<
@@ -13900,21 +13866,6 @@ export const GatewaysCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GatewaysCreateOrUpdateRequest,
   output: GatewaysCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GatewaysValidateDomainError = AzureOpError;
-/** Check the domains are valid as well as not in use. */
-export const GatewaysValidateDomain: API.OperationMethod<
-  GatewaysValidateDomainRequest,
-  CustomDomainValidateResult,
-  GatewaysValidateDomainError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GatewaysValidateDomainRequest,
-  output: CustomDomainValidateResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14040,21 +13991,6 @@ export const GetApplicationLiveView: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetAppResourceUploadUrlError = AzureOpError;
-/** Get an resource upload URL for an App, which may be artifacts or source archive. */
-export const GetAppResourceUploadUrl: API.OperationMethod<
-  GetAppResourceUploadUrlRequest,
-  ResourceUploadDefinition,
-  GetAppResourceUploadUrlError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetAppResourceUploadUrlRequest,
-  output: ResourceUploadDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetBindingError = AzureOpError;
 /** Get a Binding and its properties. */
 export const GetBinding: API.OperationMethod<
@@ -14170,21 +14106,6 @@ export const GetBuildServiceBuildService: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetBuildServiceBuildServiceRequest,
   output: GetBuildServiceBuildServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetBuildServiceResourceUploadUrlError = AzureOpError;
-/** Get an resource upload URL for build service, which may be artifacts or source archive. */
-export const GetBuildServiceResourceUploadUrl: API.OperationMethod<
-  GetBuildServiceResourceUploadUrlRequest,
-  ResourceUploadDefinition,
-  GetBuildServiceResourceUploadUrlError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetBuildServiceResourceUploadUrlRequest,
-  output: ResourceUploadDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14370,21 +14291,6 @@ export const GetDevToolPortal: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetGatewayError = AzureOpError;
-/** Get the Spring Cloud Gateway and its properties. */
-export const GetGateway: API.OperationMethod<
-  GetGatewayRequest,
-  GetGatewayResponse,
-  GetGatewayError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetGatewayRequest,
-  output: GetGatewayResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetGatewayCustomDomainError = AzureOpError;
 /** Get the Spring Cloud Gateway custom domain. */
 export const GetGatewayCustomDomain: API.OperationMethod<
@@ -14415,16 +14321,31 @@ export const GetGatewayRouteConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetMonitoringSettingError = AzureOpError;
-/** Get the Monitoring Setting and its properties. */
-export const GetMonitoringSetting: API.OperationMethod<
-  GetMonitoringSettingRequest,
-  GetMonitoringSettingResponse,
-  GetMonitoringSettingError,
+export type GetGatewaysError = AzureOpError;
+/** Get the Spring Cloud Gateway and its properties. */
+export const GetGateways: API.OperationMethod<
+  GetGatewaysRequest,
+  GetGatewaysResponse,
+  GetGatewaysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetMonitoringSettingRequest,
-  output: GetMonitoringSettingResponse,
+  input: GetGatewaysRequest,
+  output: GetGatewaysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMonitoringSettingsError = AzureOpError;
+/** Get the Monitoring Setting and its properties. */
+export const GetMonitoringSettings: API.OperationMethod<
+  GetMonitoringSettingsRequest,
+  GetMonitoringSettingsResponse,
+  GetMonitoringSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMonitoringSettingsRequest,
+  output: GetMonitoringSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14895,21 +14816,6 @@ export const ListGatewayCustomDomains: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListGatewayEnvSecretsError = AzureOpError;
-/** List sensitive environment variables of Spring Cloud Gateway. */
-export const ListGatewayEnvSecrets: API.OperationMethod<
-  ListGatewayEnvSecretsRequest,
-  ListGatewayEnvSecretsResponse,
-  ListGatewayEnvSecretsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListGatewayEnvSecretsRequest,
-  output: ListGatewayEnvSecretsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ListGatewayRouteConfigsError = AzureOpError;
 /** Handle requests to list all Spring Cloud Gateway route configs. */
 export const ListGatewayRouteConfigs: API.OperationMethod<
@@ -14935,6 +14841,21 @@ export const ListGateways: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ListGatewaysRequest,
   output: GatewayResourceCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGatewaysEnvSecretsError = AzureOpError;
+/** List sensitive environment variables of Spring Cloud Gateway. */
+export const ListGatewaysEnvSecrets: API.OperationMethod<
+  ListGatewaysEnvSecretsRequest,
+  ListGatewaysEnvSecretsResponse,
+  ListGatewaysEnvSecretsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGatewaysEnvSecretsRequest,
+  output: ListGatewaysEnvSecretsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15135,6 +15056,36 @@ export const MonitoringSettingsUpdatePatch: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type MonitoringSettingsUpdatePutError = AzureOpError;
+/** Update the Monitoring Setting. */
+export const MonitoringSettingsUpdatePut: API.OperationMethod<
+  MonitoringSettingsUpdatePutRequest,
+  MonitoringSettingsUpdatePutResponse,
+  MonitoringSettingsUpdatePutError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MonitoringSettingsUpdatePutRequest,
+  output: MonitoringSettingsUpdatePutResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateServiceTestKeyError = AzureOpError;
+/** Regenerate a test key for a Service. */
+export const RegenerateServiceTestKey: API.OperationMethod<
+  RegenerateServiceTestKeyRequest,
+  TestKeys,
+  RegenerateServiceTestKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateServiceTestKeyRequest,
+  output: TestKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RestartDeploymentError = AzureOpError;
 /** Restart the deployment. */
 export const RestartDeployment: API.OperationMethod<
@@ -15150,16 +15101,16 @@ export const RestartDeployment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestartGatewayError = AzureOpError;
+export type RestartGatewaysError = AzureOpError;
 /** Restart the Spring Cloud Gateway. */
-export const RestartGateway: API.OperationMethod<
-  RestartGatewayRequest,
-  RestartGatewayResponse,
-  RestartGatewayError,
+export const RestartGateways: API.OperationMethod<
+  RestartGatewaysRequest,
+  RestartGatewaysResponse,
+  RestartGatewaysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestartGatewayRequest,
-  output: RestartGatewayResponse,
+  input: RestartGatewaysRequest,
+  output: RestartGatewaysResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15195,46 +15146,16 @@ export const ServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ServicesFlushVnetDnsSettingError = AzureOpError;
-/** Flush Virtual Network DNS settings for a VNET injected Service. */
-export const ServicesFlushVnetDnsSetting: API.OperationMethod<
-  ServicesFlushVnetDnsSettingRequest,
-  ServicesFlushVnetDnsSettingResponse,
-  ServicesFlushVnetDnsSettingError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServicesFlushVnetDnsSettingRequest,
-  output: ServicesFlushVnetDnsSettingResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServicesRegenerateTestKeyError = AzureOpError;
-/** Regenerate a test key for a Service. */
-export const ServicesRegenerateTestKey: API.OperationMethod<
-  ServicesRegenerateTestKeyRequest,
-  TestKeys,
-  ServicesRegenerateTestKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServicesRegenerateTestKeyRequest,
-  output: TestKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SetAppActiveDeploymentError = AzureOpError;
+export type SetAppActiveDeploymentsError = AzureOpError;
 /** Set existing Deployment under the app as active */
-export const SetAppActiveDeployment: API.OperationMethod<
-  SetAppActiveDeploymentRequest,
-  SetAppActiveDeploymentResponse,
-  SetAppActiveDeploymentError,
+export const SetAppActiveDeployments: API.OperationMethod<
+  SetAppActiveDeploymentsRequest,
+  SetAppActiveDeploymentsResponse,
+  SetAppActiveDeploymentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetAppActiveDeploymentRequest,
-  output: SetAppActiveDeploymentResponse,
+  input: SetAppActiveDeploymentsRequest,
+  output: SetAppActiveDeploymentsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15255,16 +15176,16 @@ export const StartDeployment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StartDeploymentJfrError = AzureOpError;
+export type StartDeploymentJFRError = AzureOpError;
 /** Start JFR */
-export const StartDeploymentJfr: API.OperationMethod<
-  StartDeploymentJfrRequest,
-  StartDeploymentJfrResponse,
-  StartDeploymentJfrError,
+export const StartDeploymentJFR: API.OperationMethod<
+  StartDeploymentJFRRequest,
+  StartDeploymentJFRResponse,
+  StartDeploymentJFRError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StartDeploymentJfrRequest,
-  output: StartDeploymentJfrResponse,
+  input: StartDeploymentJFRRequest,
+  output: StartDeploymentJFRResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15360,36 +15281,6 @@ export const UpdateBinding: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateBuildServiceAgentPoolPutError = AzureOpError;
-/** Create or update build service agent pool. */
-export const UpdateBuildServiceAgentPoolPut: API.OperationMethod<
-  UpdateBuildServiceAgentPoolPutRequest,
-  UpdateBuildServiceAgentPoolPutResponse,
-  UpdateBuildServiceAgentPoolPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBuildServiceAgentPoolPutRequest,
-  output: UpdateBuildServiceAgentPoolPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateConfigServerPutError = AzureOpError;
-/** Update the config server. */
-export const UpdateConfigServerPut: API.OperationMethod<
-  UpdateConfigServerPutRequest,
-  UpdateConfigServerPutResponse,
-  UpdateConfigServerPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateConfigServerPutRequest,
-  output: UpdateConfigServerPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateCustomDomainError = AzureOpError;
 /** Update custom domain of one lifecycle application. */
 export const UpdateCustomDomain: API.OperationMethod<
@@ -15420,21 +15311,6 @@ export const UpdateDeployment: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateMonitoringSettingPutError = AzureOpError;
-/** Update the Monitoring Setting. */
-export const UpdateMonitoringSettingPut: API.OperationMethod<
-  UpdateMonitoringSettingPutRequest,
-  UpdateMonitoringSettingPutResponse,
-  UpdateMonitoringSettingPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateMonitoringSettingPutRequest,
-  output: UpdateMonitoringSettingPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateServiceError = AzureOpError;
 /** Operation to update an exiting Service. */
 export const UpdateService: API.OperationMethod<
@@ -15445,6 +15321,126 @@ export const UpdateService: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateServiceRequest,
   output: UpdateServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateApiPortalDomainError = AzureOpError;
+/** Check the domains are valid as well as not in use. */
+export const ValidateApiPortalDomain: API.OperationMethod<
+  ValidateApiPortalDomainRequest,
+  CustomDomainValidateResult,
+  ValidateApiPortalDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateApiPortalDomainRequest,
+  output: CustomDomainValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateAppDomainError = AzureOpError;
+/** Check the resource name is valid as well as not in use. */
+export const ValidateAppDomain: API.OperationMethod<
+  ValidateAppDomainRequest,
+  CustomDomainValidateResult,
+  ValidateAppDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateAppDomainRequest,
+  output: CustomDomainValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateConfigServerError = AzureOpError;
+/** Check if the config server settings are valid. */
+export const ValidateConfigServer: API.OperationMethod<
+  ValidateConfigServerRequest,
+  ConfigServerSettingsValidateResult,
+  ValidateConfigServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateConfigServerRequest,
+  output: ConfigServerSettingsValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateConfigurationServiceError = AzureOpError;
+/** Check if the Application Configuration Service settings are valid. */
+export const ValidateConfigurationService: API.OperationMethod<
+  ValidateConfigurationServiceRequest,
+  ConfigurationServiceSettingsValidateResult,
+  ValidateConfigurationServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateConfigurationServiceRequest,
+  output: ConfigurationServiceSettingsValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateConfigurationServiceResourceError = AzureOpError;
+/** Check if the Application Configuration Service resource is valid. */
+export const ValidateConfigurationServiceResource: API.OperationMethod<
+  ValidateConfigurationServiceResourceRequest,
+  ConfigurationServiceSettingsValidateResult,
+  ValidateConfigurationServiceResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateConfigurationServiceResourceRequest,
+  output: ConfigurationServiceSettingsValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateContainerRegistryError = AzureOpError;
+/** Check if the container registry properties are valid. */
+export const ValidateContainerRegistry: API.OperationMethod<
+  ValidateContainerRegistryRequest,
+  ContainerRegistryValidateResult,
+  ValidateContainerRegistryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateContainerRegistryRequest,
+  output: ContainerRegistryValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateCustomizedAcceleratorError = AzureOpError;
+/** Check the customized accelerator are valid. */
+export const ValidateCustomizedAccelerator: API.OperationMethod<
+  ValidateCustomizedAcceleratorRequest,
+  CustomizedAcceleratorValidateResult,
+  ValidateCustomizedAcceleratorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateCustomizedAcceleratorRequest,
+  output: CustomizedAcceleratorValidateResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateGatewaysDomainError = AzureOpError;
+/** Check the domains are valid as well as not in use. */
+export const ValidateGatewaysDomain: API.OperationMethod<
+  ValidateGatewaysDomainRequest,
+  CustomDomainValidateResult,
+  ValidateGatewaysDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateGatewaysDomainRequest,
+  output: CustomDomainValidateResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

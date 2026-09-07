@@ -314,7 +314,7 @@ export const IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceStatus =
     identifier: "IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceStatus",
   }) as any as S.Schema<IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceStatus>;
 
-export interface CreateApiregistrationV1ApiServiceRequest {
+export interface CreateApiregistrationV1APIServiceRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed */
@@ -334,7 +334,7 @@ export interface CreateApiregistrationV1ApiServiceRequest {
   /** Status contains derived information about an API server */
   status?: IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceStatus;
 }
-export const CreateApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
+export const CreateApiregistrationV1APIServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       pretty: S.optional(S.String.pipe(T.Query())),
@@ -358,8 +358,8 @@ export const CreateApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateApiregistrationV1ApiServiceRequest",
-}) as any as S.Schema<CreateApiregistrationV1ApiServiceRequest>;
+  identifier: "CreateApiregistrationV1APIServiceRequest",
+}) as any as S.Schema<CreateApiregistrationV1APIServiceRequest>;
 
 /** APIService represents a server for a particular GroupVersion. Name must be "version.group". */
 export interface IoK8sKubeAggregatorPkgApisApiregistrationV1APIService {
@@ -408,7 +408,7 @@ export const IoK8sApimachineryPkgApisMetaV1Preconditions =
     identifier: "IoK8sApimachineryPkgApisMetaV1Preconditions",
   }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1Preconditions>;
 
-export interface DeleteApiregistrationV1ApiServiceRequest {
+export interface DeleteApiregistrationV1APIServiceRequest {
   /** name of the APIService */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -430,7 +430,7 @@ export interface DeleteApiregistrationV1ApiServiceRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
+export const DeleteApiregistrationV1APIServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       name: S.String.pipe(T.Label()),
@@ -453,8 +453,8 @@ export const DeleteApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DeleteApiregistrationV1ApiServiceRequest",
-}) as any as S.Schema<DeleteApiregistrationV1ApiServiceRequest>;
+  identifier: "DeleteApiregistrationV1APIServiceRequest",
+}) as any as S.Schema<DeleteApiregistrationV1APIServiceRequest>;
 
 /** StatusCause provides more information about an api.Status failure, including cases when multiple errors are encountered. */
 export interface IoK8sApimachineryPkgApisMetaV1StatusCause {
@@ -588,7 +588,7 @@ export const IoK8sApimachineryPkgApisMetaV1Status = /*@__PURE__*/ S.suspend(
   identifier: "IoK8sApimachineryPkgApisMetaV1Status",
 }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1Status>;
 
-export interface DeleteApiregistrationV1CollectionApiServiceRequest {
+export interface DeleteApiregistrationV1CollectionAPIServiceRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
@@ -626,7 +626,7 @@ export interface DeleteApiregistrationV1CollectionApiServiceRequest {
   /** Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be returned. */
   preconditions?: IoK8sApimachineryPkgApisMetaV1Preconditions;
 }
-export const DeleteApiregistrationV1CollectionApiServiceRequest =
+export const DeleteApiregistrationV1CollectionAPIServiceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       pretty: S.optional(S.String.pipe(T.Query())),
@@ -657,17 +657,17 @@ export const DeleteApiregistrationV1CollectionApiServiceRequest =
       }),
     ),
   ).annotate({
-    identifier: "DeleteApiregistrationV1CollectionApiServiceRequest",
-  }) as any as S.Schema<DeleteApiregistrationV1CollectionApiServiceRequest>;
+    identifier: "DeleteApiregistrationV1CollectionAPIServiceRequest",
+  }) as any as S.Schema<DeleteApiregistrationV1CollectionAPIServiceRequest>;
 
-export interface GetApiregistrationApiGroupRequest {}
-export const GetApiregistrationApiGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetApiregistrationAPIGroupRequest {}
+export const GetApiregistrationAPIGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/apis/apiregistration.k8s.io/", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetApiregistrationApiGroupRequest",
-}) as any as S.Schema<GetApiregistrationApiGroupRequest>;
+  identifier: "GetApiregistrationAPIGroupRequest",
+}) as any as S.Schema<GetApiregistrationAPIGroupRequest>;
 
 /** GroupVersion contains the "group/version" and "version" string of a version. It is made a struct to keep extensibility. */
 export interface IoK8sApimachineryPkgApisMetaV1GroupVersionForDiscovery {
@@ -752,8 +752,8 @@ export const IoK8sApimachineryPkgApisMetaV1APIGroup = /*@__PURE__*/ S.suspend(
   identifier: "IoK8sApimachineryPkgApisMetaV1APIGroup",
 }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1APIGroup>;
 
-export interface GetApiregistrationV1ApiResourcesRequest {}
-export const GetApiregistrationV1ApiResourcesRequest = /*@__PURE__*/ S.suspend(
+export interface GetApiregistrationV1APIResourcesRequest {}
+export const GetApiregistrationV1APIResourcesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({}).pipe(
       T.Http({
@@ -763,8 +763,8 @@ export const GetApiregistrationV1ApiResourcesRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GetApiregistrationV1ApiResourcesRequest",
-}) as any as S.Schema<GetApiregistrationV1ApiResourcesRequest>;
+  identifier: "GetApiregistrationV1APIResourcesRequest",
+}) as any as S.Schema<GetApiregistrationV1APIResourcesRequest>;
 
 /** categories is a list of the grouped resources this resource belongs to (e.g. 'all') */
 export type IoK8sApimachineryPkgApisMetaV1APIResourceCategoriesList =
@@ -865,7 +865,7 @@ export const IoK8sApimachineryPkgApisMetaV1APIResourceList =
     identifier: "IoK8sApimachineryPkgApisMetaV1APIResourceList",
   }) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1APIResourceList>;
 
-export interface ListApiregistrationV1ApiServiceRequest {
+export interface ListApiregistrationV1APIServiceRequest {
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
   pretty?: string;
   /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
@@ -891,7 +891,7 @@ export interface ListApiregistrationV1ApiServiceRequest {
   /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
   watch?: boolean;
 }
-export const ListApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
+export const ListApiregistrationV1APIServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       pretty: S.optional(S.String.pipe(T.Query())),
@@ -914,8 +914,8 @@ export const ListApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ListApiregistrationV1ApiServiceRequest",
-}) as any as S.Schema<ListApiregistrationV1ApiServiceRequest>;
+  identifier: "ListApiregistrationV1APIServiceRequest",
+}) as any as S.Schema<ListApiregistrationV1APIServiceRequest>;
 
 /** Items is the list of APIService */
 export type IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceListItemsList =
@@ -948,75 +948,7 @@ export const IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceList =
     identifier: "IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceList",
   }) as any as S.Schema<IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceList>;
 
-export interface ListWatchApiregistrationV1ApiServiceRequest {
-  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
-  allowWatchBookmarks?: boolean;
-  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
-  continue?: string;
-  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
-  fieldSelector?: string;
-  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
-  labelSelector?: string;
-  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
-  limit?: number;
-  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
-  pretty?: string;
-  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersion?: string;
-  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
-  resourceVersionMatch?: string;
-  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
-  sendInitialEvents?: boolean;
-  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
-  shardSelector?: string;
-  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
-  timeoutSeconds?: number;
-  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
-  watch?: boolean;
-}
-export const ListWatchApiregistrationV1ApiServiceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
-      continue: S.optional(S.String.pipe(T.Query())),
-      fieldSelector: S.optional(S.String.pipe(T.Query())),
-      labelSelector: S.optional(S.String.pipe(T.Query())),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      pretty: S.optional(S.String.pipe(T.Query())),
-      resourceVersion: S.optional(S.String.pipe(T.Query())),
-      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
-      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
-      shardSelector: S.optional(S.String.pipe(T.Query())),
-      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
-      watch: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/apis/apiregistration.k8s.io/v1/watch/apiservices",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "ListWatchApiregistrationV1ApiServiceRequest",
-  }) as any as S.Schema<ListWatchApiregistrationV1ApiServiceRequest>;
-
-/** Event represents a single event to a watched resource. */
-export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
-  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
-  object: unknown;
-  type: string;
-}
-export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      object: S.Unknown,
-      type: S.String,
-    }),
-).annotate({
-  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
-}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
-
-export interface PatchApiregistrationV1ApiServiceRequest {
+export interface PatchApiregistrationV1APIServiceRequest {
   /** name of the APIService */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -1030,7 +962,7 @@ export interface PatchApiregistrationV1ApiServiceRequest {
   /** Force is going to "force" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. */
   force?: boolean;
 }
-export const PatchApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
+export const PatchApiregistrationV1APIServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       name: S.String.pipe(T.Label()),
@@ -1047,10 +979,10 @@ export const PatchApiregistrationV1ApiServiceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PatchApiregistrationV1ApiServiceRequest",
-}) as any as S.Schema<PatchApiregistrationV1ApiServiceRequest>;
+  identifier: "PatchApiregistrationV1APIServiceRequest",
+}) as any as S.Schema<PatchApiregistrationV1APIServiceRequest>;
 
-export interface PatchApiregistrationV1ApiServiceStatusRequest {
+export interface PatchApiregistrationV1APIServiceStatusRequest {
   /** name of the APIService */
   name: string;
   /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
@@ -1064,7 +996,7 @@ export interface PatchApiregistrationV1ApiServiceStatusRequest {
   /** Force is going to "force" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. */
   force?: boolean;
 }
-export const PatchApiregistrationV1ApiServiceStatusRequest =
+export const PatchApiregistrationV1APIServiceStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String.pipe(T.Label()),
@@ -1081,8 +1013,8 @@ export const PatchApiregistrationV1ApiServiceStatusRequest =
       }),
     ),
   ).annotate({
-    identifier: "PatchApiregistrationV1ApiServiceStatusRequest",
-  }) as any as S.Schema<PatchApiregistrationV1ApiServiceStatusRequest>;
+    identifier: "PatchApiregistrationV1APIServiceStatusRequest",
+  }) as any as S.Schema<PatchApiregistrationV1APIServiceStatusRequest>;
 
 export interface ReadApiregistrationV1APIServiceRequest {
   /** name of the APIService */
@@ -1283,150 +1215,203 @@ export const WatchApiregistrationV1APIServiceRequest = /*@__PURE__*/ S.suspend(
   identifier: "WatchApiregistrationV1APIServiceRequest",
 }) as any as S.Schema<WatchApiregistrationV1APIServiceRequest>;
 
-export type CreateApiregistrationV1ApiServiceError =
+/** Event represents a single event to a watched resource. */
+export interface IoK8sApimachineryPkgApisMetaV1WatchEvent {
+  /** Object is: * If Type is Added or Modified: the new state of the object. * If Type is Deleted: the state of the object immediately before deletion. * If Type is Error: *Status is recommended; other types may make sense depending on context. */
+  object: unknown;
+  type: string;
+}
+export const IoK8sApimachineryPkgApisMetaV1WatchEvent = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      object: S.Unknown,
+      type: S.String,
+    }),
+).annotate({
+  identifier: "IoK8sApimachineryPkgApisMetaV1WatchEvent",
+}) as any as S.Schema<IoK8sApimachineryPkgApisMetaV1WatchEvent>;
+
+export interface WatchApiregistrationV1APIServiceListRequest {
+  /** allowWatchBookmarks requests watch events with type "BOOKMARK". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. */
+  allowWatchBookmarks?: boolean;
+  /** The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the "next key". This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. */
+  continue?: string;
+  /** A selector to restrict the list of returned objects by their fields. Defaults to everything. */
+  fieldSelector?: string;
+  /** A selector to restrict the list of returned objects by their labels. Defaults to everything. */
+  labelSelector?: string;
+  /** limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true. The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. */
+  limit?: number;
+  /** If 'true', then the output is pretty printed. Defaults to 'false' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). */
+  pretty?: string;
+  /** resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersion?: string;
+  /** resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details. Defaults to unset */
+  resourceVersionMatch?: string;
+  /** `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic "Bookmark" event will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched. When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan is interpreted as "data at least as new as the provided `resourceVersion`" and the bookmark event is send when the state is synced to a `resourceVersion` at least as fresh as the one provided by the ListOptions. If `resourceVersion` is unset, this is interpreted as "consistent read" and the bookmark event is send when the state is synced at least to the moment when request started being processed. - `resourceVersionMatch` set to any other value or unset Invalid error is returned. Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward compatibility reasons) and to false otherwise. */
+  sendInitialEvents?: boolean;
+  /** shardSelector restricts the list of returned objects using a CEL-based shard selector expression. The format uses the shardRange() function combined with || (logical OR) to specify one or more hash ranges: shardRange(object.metadata.uid, '0x0', '0x8000000000000000') shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"), NOT the fieldSelector format ("metadata.uid"). Currently supported paths: - object.metadata.uid - object.metadata.namespace hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix, defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a hash space. The full range is [0x0, 0x10000000000000000), where the exclusive upper bound equals 2^64. Examples: 2-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000') shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000') 4-shard split: shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000') shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000') shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000') shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000') This is an alpha field and requires enabling the ShardedListAndWatch feature gate. */
+  shardSelector?: string;
+  /** Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. */
+  timeoutSeconds?: number;
+  /** Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. */
+  watch?: boolean;
+}
+export const WatchApiregistrationV1APIServiceListRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      allowWatchBookmarks: S.optional(S.Boolean.pipe(T.Query())),
+      continue: S.optional(S.String.pipe(T.Query())),
+      fieldSelector: S.optional(S.String.pipe(T.Query())),
+      labelSelector: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      pretty: S.optional(S.String.pipe(T.Query())),
+      resourceVersion: S.optional(S.String.pipe(T.Query())),
+      resourceVersionMatch: S.optional(S.String.pipe(T.Query())),
+      sendInitialEvents: S.optional(S.Boolean.pipe(T.Query())),
+      shardSelector: S.optional(S.String.pipe(T.Query())),
+      timeoutSeconds: S.optional(S.Number.pipe(T.Query())),
+      watch: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/apis/apiregistration.k8s.io/v1/watch/apiservices",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "WatchApiregistrationV1APIServiceListRequest",
+  }) as any as S.Schema<WatchApiregistrationV1APIServiceListRequest>;
+
+export type CreateApiregistrationV1APIServiceError =
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** create an APIService */
-export const createApiregistrationV1ApiService: API.OperationMethod<
-  CreateApiregistrationV1ApiServiceRequest,
+export const createApiregistrationV1APIService: API.OperationMethod<
+  CreateApiregistrationV1APIServiceRequest,
   IoK8sKubeAggregatorPkgApisApiregistrationV1APIService,
-  CreateApiregistrationV1ApiServiceError,
+  CreateApiregistrationV1APIServiceError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateApiregistrationV1ApiServiceRequest,
+  input: CreateApiregistrationV1APIServiceRequest,
   output: IoK8sKubeAggregatorPkgApisApiregistrationV1APIService,
   errors: [Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteApiregistrationV1ApiServiceError =
+export type DeleteApiregistrationV1APIServiceError =
   | NotFound
   | Conflict
   | KubernetesOpError;
 /** delete an APIService */
-export const deleteApiregistrationV1ApiService: API.OperationMethod<
-  DeleteApiregistrationV1ApiServiceRequest,
+export const deleteApiregistrationV1APIService: API.OperationMethod<
+  DeleteApiregistrationV1APIServiceRequest,
   IoK8sApimachineryPkgApisMetaV1Status,
-  DeleteApiregistrationV1ApiServiceError,
+  DeleteApiregistrationV1APIServiceError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteApiregistrationV1ApiServiceRequest,
+  input: DeleteApiregistrationV1APIServiceRequest,
   output: IoK8sApimachineryPkgApisMetaV1Status,
   errors: [NotFound, Conflict, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteApiregistrationV1CollectionApiServiceError =
+export type DeleteApiregistrationV1CollectionAPIServiceError =
   KubernetesOpError;
 /** delete collection of APIService */
-export const deleteApiregistrationV1CollectionApiService: API.OperationMethod<
-  DeleteApiregistrationV1CollectionApiServiceRequest,
+export const deleteApiregistrationV1CollectionAPIService: API.OperationMethod<
+  DeleteApiregistrationV1CollectionAPIServiceRequest,
   IoK8sApimachineryPkgApisMetaV1Status,
-  DeleteApiregistrationV1CollectionApiServiceError,
+  DeleteApiregistrationV1CollectionAPIServiceError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteApiregistrationV1CollectionApiServiceRequest,
+  input: DeleteApiregistrationV1CollectionAPIServiceRequest,
   output: IoK8sApimachineryPkgApisMetaV1Status,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiregistrationApiGroupError = KubernetesOpError;
+export type GetApiregistrationAPIGroupError = KubernetesOpError;
 /** get information of a group */
-export const getApiregistrationApiGroup: API.OperationMethod<
-  GetApiregistrationApiGroupRequest,
+export const getApiregistrationAPIGroup: API.OperationMethod<
+  GetApiregistrationAPIGroupRequest,
   IoK8sApimachineryPkgApisMetaV1APIGroup,
-  GetApiregistrationApiGroupError,
+  GetApiregistrationAPIGroupError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiregistrationApiGroupRequest,
+  input: GetApiregistrationAPIGroupRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIGroup,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetApiregistrationV1ApiResourcesError = KubernetesOpError;
+export type GetApiregistrationV1APIResourcesError = KubernetesOpError;
 /** get available resources */
-export const getApiregistrationV1ApiResources: API.OperationMethod<
-  GetApiregistrationV1ApiResourcesRequest,
+export const getApiregistrationV1APIResources: API.OperationMethod<
+  GetApiregistrationV1APIResourcesRequest,
   IoK8sApimachineryPkgApisMetaV1APIResourceList,
-  GetApiregistrationV1ApiResourcesError,
+  GetApiregistrationV1APIResourcesError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApiregistrationV1ApiResourcesRequest,
+  input: GetApiregistrationV1APIResourcesRequest,
   output: IoK8sApimachineryPkgApisMetaV1APIResourceList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListApiregistrationV1ApiServiceError = KubernetesOpError;
+export type ListApiregistrationV1APIServiceError = KubernetesOpError;
 /** list or watch objects of kind APIService */
-export const listApiregistrationV1ApiService: API.OperationMethod<
-  ListApiregistrationV1ApiServiceRequest,
+export const listApiregistrationV1APIService: API.OperationMethod<
+  ListApiregistrationV1APIServiceRequest,
   IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceList,
-  ListApiregistrationV1ApiServiceError,
+  ListApiregistrationV1APIServiceError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListApiregistrationV1ApiServiceRequest,
+  input: ListApiregistrationV1APIServiceRequest,
   output: IoK8sKubeAggregatorPkgApisApiregistrationV1APIServiceList,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListWatchApiregistrationV1ApiServiceError = KubernetesOpError;
-/** watch individual changes to a list of APIService. deprecated: use the 'watch' parameter with a list operation instead. */
-export const listWatchApiregistrationV1ApiService: API.OperationMethod<
-  ListWatchApiregistrationV1ApiServiceRequest,
-  IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  ListWatchApiregistrationV1ApiServiceError,
-  KubernetesOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListWatchApiregistrationV1ApiServiceRequest,
-  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
-  errors: [UnknownKubernetesError],
-  protocol: KubernetesProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchApiregistrationV1ApiServiceError =
+export type PatchApiregistrationV1APIServiceError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** partially update the specified APIService */
-export const patchApiregistrationV1ApiService: API.OperationMethod<
-  PatchApiregistrationV1ApiServiceRequest,
+export const patchApiregistrationV1APIService: API.OperationMethod<
+  PatchApiregistrationV1APIServiceRequest,
   IoK8sKubeAggregatorPkgApisApiregistrationV1APIService,
-  PatchApiregistrationV1ApiServiceError,
+  PatchApiregistrationV1APIServiceError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchApiregistrationV1ApiServiceRequest,
+  input: PatchApiregistrationV1APIServiceRequest,
   output: IoK8sKubeAggregatorPkgApisApiregistrationV1APIService,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
   retry: Retry.Retry,
 }));
 
-export type PatchApiregistrationV1ApiServiceStatusError =
+export type PatchApiregistrationV1APIServiceStatusError =
   | NotFound
   | Conflict
   | UnprocessableEntity
   | KubernetesOpError;
 /** partially update status of the specified APIService */
-export const patchApiregistrationV1ApiServiceStatus: API.OperationMethod<
-  PatchApiregistrationV1ApiServiceStatusRequest,
+export const patchApiregistrationV1APIServiceStatus: API.OperationMethod<
+  PatchApiregistrationV1APIServiceStatusRequest,
   IoK8sKubeAggregatorPkgApisApiregistrationV1APIService,
-  PatchApiregistrationV1ApiServiceStatusError,
+  PatchApiregistrationV1APIServiceStatusError,
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchApiregistrationV1ApiServiceStatusRequest,
+  input: PatchApiregistrationV1APIServiceStatusRequest,
   output: IoK8sKubeAggregatorPkgApisApiregistrationV1APIService,
   errors: [NotFound, Conflict, UnprocessableEntity, UnknownKubernetesError],
   protocol: KubernetesProtocol,
@@ -1512,6 +1497,21 @@ export const watchApiregistrationV1APIService: API.OperationMethod<
   KubernetesOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchApiregistrationV1APIServiceRequest,
+  output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  errors: [UnknownKubernetesError],
+  protocol: KubernetesProtocol,
+  retry: Retry.Retry,
+}));
+
+export type WatchApiregistrationV1APIServiceListError = KubernetesOpError;
+/** watch individual changes to a list of APIService. deprecated: use the 'watch' parameter with a list operation instead. */
+export const watchApiregistrationV1APIServiceList: API.OperationMethod<
+  WatchApiregistrationV1APIServiceListRequest,
+  IoK8sApimachineryPkgApisMetaV1WatchEvent,
+  WatchApiregistrationV1APIServiceListError,
+  KubernetesOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: WatchApiregistrationV1APIServiceListRequest,
   output: IoK8sApimachineryPkgApisMetaV1WatchEvent,
   errors: [UnknownKubernetesError],
   protocol: KubernetesProtocol,

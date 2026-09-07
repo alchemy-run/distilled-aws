@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebrationRequest": {
+    "com.posthog.web_analytics_achievements#AcknowledgeWebAnalyticsAchievementCelebrationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -60,10 +61,10 @@
       },
       "traits": {}
     },
-    "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebration": {
+    "com.posthog.web_analytics_achievements#AcknowledgeWebAnalyticsAchievementCelebration": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebrationRequest"
+        "target": "com.posthog.web_analytics_achievements#AcknowledgeWebAnalyticsAchievementCelebrationRequest"
       },
       "output": {
         "target": "com.posthog.web_analytics_achievements#AcknowledgeCelebrationResponse"
@@ -411,7 +412,7 @@
         "smithy.api#documentation": "Get Web analytics achievements preferences\n\nReturns the requesting user's per-project Web analytics achievements preferences."
       }
     },
-    "com.posthog.web_analytics_achievements#UpdateWebAnalyticAchievementPreferenceRequest": {
+    "com.posthog.web_analytics_achievements#UpdateWebAnalyticsAchievementPreferencesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -434,10 +435,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.web_analytics_achievements#UpdateWebAnalyticAchievementPreference": {
+    "com.posthog.web_analytics_achievements#UpdateWebAnalyticsAchievementPreferences": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.web_analytics_achievements#UpdateWebAnalyticAchievementPreferenceRequest"
+        "target": "com.posthog.web_analytics_achievements#UpdateWebAnalyticsAchievementPreferencesRequest"
       },
       "output": {
         "target": "com.posthog.web_analytics_achievements#WebAnalyticsUserPreferences"
@@ -575,16 +576,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsAcknowledgeCelebration"
+          "target": "com.posthog.web_analytics_achievements#AcknowledgeWebAnalyticsAchievementCelebration"
+        },
+        {
+          "target": "com.posthog.web_analytics_achievements#UpdateWebAnalyticsAchievementPreferences"
         },
         {
           "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsOverview"
         },
         {
           "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsPreferences"
-        },
-        {
-          "target": "com.posthog.web_analytics_achievements#UpdateWebAnalyticAchievementPreference"
         },
         {
           "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordInteraction"

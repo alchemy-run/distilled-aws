@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export type RecordSetsDeleteRequestRecordType =
+export type DeleteRecordSetRequestRecordType =
   | "A"
   | "AAAA"
   | "CAA"
@@ -23,7 +23,7 @@ export type RecordSetsDeleteRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsDeleteRequestRecordType = /*@__PURE__*/ S.String;
+export const DeleteRecordSetRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface DeleteRecordSetRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -33,7 +33,7 @@ export interface DeleteRecordSetRequest {
   /** The name of the DNS zone (without a terminating dot). */
   zoneName: string;
   /** The type of DNS record in this record set. Record sets of type SOA cannot be deleted (they are deleted when the DNS zone is deleted). */
-  recordType: RecordSetsDeleteRequestRecordType | (string & {});
+  recordType: DeleteRecordSetRequestRecordType | (string & {});
   /** The name of the record set, relative to the name of the zone. */
   relativeRecordSetName: string;
 }
@@ -42,7 +42,7 @@ export const DeleteRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     zoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsDeleteRequestRecordType.pipe(T.Label()),
+    recordType: DeleteRecordSetRequestRecordType.pipe(T.Label()),
     relativeRecordSetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -130,13 +130,13 @@ export const DnsResourceReferenceRequestProperties = /*@__PURE__*/ S.suspend(
   identifier: "DnsResourceReferenceRequestProperties",
 }) as any as S.Schema<DnsResourceReferenceRequestProperties>;
 
-export interface GetDnsResourceReferenceByTargetResourceRequest {
+export interface GetDnsResourceReferenceByTargetResourcesRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
   subscriptionId: string;
   /** The properties of the Resource Reference Request. */
   properties?: DnsResourceReferenceRequestProperties;
 }
-export const GetDnsResourceReferenceByTargetResourceRequest =
+export const GetDnsResourceReferenceByTargetResourcesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -150,8 +150,8 @@ export const GetDnsResourceReferenceByTargetResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "GetDnsResourceReferenceByTargetResourceRequest",
-  }) as any as S.Schema<GetDnsResourceReferenceByTargetResourceRequest>;
+    identifier: "GetDnsResourceReferenceByTargetResourcesRequest",
+  }) as any as S.Schema<GetDnsResourceReferenceByTargetResourcesRequest>;
 
 /** A list of dns Records */
 export type DnsResourceReferenceDnsResourcesList = Array<SubResource>;
@@ -212,7 +212,7 @@ export const DnsResourceReferenceResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DnsResourceReferenceResult",
 }) as any as S.Schema<DnsResourceReferenceResult>;
 
-export type RecordSetsGetRequestRecordType =
+export type GetRecordSetRequestRecordType =
   | "A"
   | "AAAA"
   | "CAA"
@@ -223,7 +223,7 @@ export type RecordSetsGetRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsGetRequestRecordType = /*@__PURE__*/ S.String;
+export const GetRecordSetRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface GetRecordSetRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -233,7 +233,7 @@ export interface GetRecordSetRequest {
   /** The name of the DNS zone (without a terminating dot). */
   zoneName: string;
   /** The type of DNS record in this record set. */
-  recordType: RecordSetsGetRequestRecordType | (string & {});
+  recordType: GetRecordSetRequestRecordType | (string & {});
   /** The name of the record set, relative to the name of the zone. */
   relativeRecordSetName: string;
 }
@@ -242,7 +242,7 @@ export const GetRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     zoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsGetRequestRecordType.pipe(T.Label()),
+    recordType: GetRecordSetRequestRecordType.pipe(T.Label()),
     relativeRecordSetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -567,11 +567,11 @@ export const GetZoneRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "GetZoneRequest" }) as any as S.Schema<GetZoneRequest>;
 
 /** Resource tags. */
-export type ZonesGetResponseTagsMap = { [key: string]: string | undefined };
-export const ZonesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetZoneResponseTagsMap = { [key: string]: string | undefined };
+export const GetZoneResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ZonesGetResponseTagsMap>;
+) as any as S.Schema<GetZoneResponseTagsMap>;
 
 /** The name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored. */
 export type ZonePropertiesNameServersList = Array<string>;
@@ -640,7 +640,7 @@ export interface GetZoneResponse {
   /** Resource location. */
   location: string;
   /** Resource tags. */
-  tags?: ZonesGetResponseTagsMap;
+  tags?: GetZoneResponseTagsMap;
   /** The etag of the zone. */
   etag?: string;
   /** The properties of the zone. */
@@ -652,7 +652,7 @@ export const GetZoneResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(ZonesGetResponseTagsMap),
+    tags: S.optional(GetZoneResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(ZoneProperties),
   }),
@@ -748,7 +748,7 @@ export const ListRecordSetByDnsZoneRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListRecordSetByDnsZoneRequest",
 }) as any as S.Schema<ListRecordSetByDnsZoneRequest>;
 
-export type RecordSetsListByTypeRequestRecordType =
+export type ListRecordSetByTypeRequestRecordType =
   | "A"
   | "AAAA"
   | "CAA"
@@ -759,7 +759,7 @@ export type RecordSetsListByTypeRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsListByTypeRequestRecordType = /*@__PURE__*/ S.String;
+export const ListRecordSetByTypeRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface ListRecordSetByTypeRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -769,7 +769,7 @@ export interface ListRecordSetByTypeRequest {
   /** The name of the DNS zone (without a terminating dot). */
   zoneName: string;
   /** The type of record sets to enumerate. */
-  recordType: RecordSetsListByTypeRequestRecordType | (string & {});
+  recordType: ListRecordSetByTypeRequestRecordType | (string & {});
   /** The maximum number of record sets to return. If not specified, returns up to 100 record sets. */
   _top?: number;
   /** The suffix label of the record set name that has to be used to filter the record set enumerations. If this parameter is specified, Enumeration will return only records that end with .<recordSetNameSuffix> */
@@ -780,7 +780,7 @@ export const ListRecordSetByTypeRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     zoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsListByTypeRequestRecordType.pipe(T.Label()),
+    recordType: ListRecordSetByTypeRequestRecordType.pipe(T.Label()),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _recordsetnamesuffix: S.optional(
       S.String.pipe(T.Query("$recordsetnamesuffix")),
@@ -1056,7 +1056,7 @@ export const RecordSetsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecordSetsCreateOrUpdateRequest",
 }) as any as S.Schema<RecordSetsCreateOrUpdateRequest>;
 
-export type RecordSetsUpdateRequestRecordType =
+export type UpdateRecordSetRequestRecordType =
   | "A"
   | "AAAA"
   | "CAA"
@@ -1067,7 +1067,7 @@ export type RecordSetsUpdateRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsUpdateRequestRecordType = /*@__PURE__*/ S.String;
+export const UpdateRecordSetRequestRecordType = /*@__PURE__*/ S.String;
 
 export interface UpdateRecordSetRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -1077,7 +1077,7 @@ export interface UpdateRecordSetRequest {
   /** The name of the DNS zone (without a terminating dot). */
   zoneName: string;
   /** The type of DNS record in this record set. */
-  recordType: RecordSetsUpdateRequestRecordType | (string & {});
+  recordType: UpdateRecordSetRequestRecordType | (string & {});
   /** The name of the record set, relative to the name of the zone. */
   relativeRecordSetName: string;
   /** The etag of the record set. */
@@ -1090,7 +1090,7 @@ export const UpdateRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     zoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsUpdateRequestRecordType.pipe(T.Label()),
+    recordType: UpdateRecordSetRequestRecordType.pipe(T.Label()),
     relativeRecordSetName: S.String.pipe(T.Label()),
     etag: S.optional(S.String),
     properties: S.optional(RecordSetPropertiesInput),
@@ -1107,11 +1107,11 @@ export const UpdateRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateRecordSetRequest>;
 
 /** Resource tags. */
-export type ZonesUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const ZonesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateZoneRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateZoneRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ZonesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateZoneRequestTagsMap>;
 
 export interface UpdateZoneRequest {
   /** Specifies the Azure subscription ID, which uniquely identifies the Microsoft Azure subscription. */
@@ -1121,14 +1121,14 @@ export interface UpdateZoneRequest {
   /** The name of the DNS zone (without a terminating dot). */
   zoneName: string;
   /** Resource tags. */
-  tags?: ZonesUpdateRequestTagsMap;
+  tags?: UpdateZoneRequestTagsMap;
 }
 export const UpdateZoneRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     zoneName: S.String.pipe(T.Label()),
-    tags: S.optional(ZonesUpdateRequestTagsMap),
+    tags: S.optional(UpdateZoneRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1142,11 +1142,11 @@ export const UpdateZoneRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateZoneRequest>;
 
 /** Resource tags. */
-export type ZonesUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const ZonesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateZoneResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateZoneResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ZonesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateZoneResponseTagsMap>;
 
 export interface UpdateZoneResponse {
   /** Resource ID. */
@@ -1158,7 +1158,7 @@ export interface UpdateZoneResponse {
   /** Resource location. */
   location: string;
   /** Resource tags. */
-  tags?: ZonesUpdateResponseTagsMap;
+  tags?: UpdateZoneResponseTagsMap;
   /** The etag of the zone. */
   etag?: string;
   /** The properties of the zone. */
@@ -1170,7 +1170,7 @@ export const UpdateZoneResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(ZonesUpdateResponseTagsMap),
+    tags: S.optional(UpdateZoneResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(ZoneProperties),
   }),
@@ -1336,15 +1336,15 @@ export const DeleteZone: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDnsResourceReferenceByTargetResourceError = AzureOpError;
+export type GetDnsResourceReferenceByTargetResourcesError = AzureOpError;
 /** Returns the DNS records specified by the referencing targetResourceIds. */
-export const GetDnsResourceReferenceByTargetResource: API.OperationMethod<
-  GetDnsResourceReferenceByTargetResourceRequest,
+export const GetDnsResourceReferenceByTargetResources: API.OperationMethod<
+  GetDnsResourceReferenceByTargetResourcesRequest,
   DnsResourceReferenceResult,
-  GetDnsResourceReferenceByTargetResourceError,
+  GetDnsResourceReferenceByTargetResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDnsResourceReferenceByTargetResourceRequest,
+  input: GetDnsResourceReferenceByTargetResourcesRequest,
   output: DnsResourceReferenceResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

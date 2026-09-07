@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.engineering_analytics#EngineeringAnalyticsAuthorWorkflowCostsRequest": {
@@ -429,7 +430,7 @@
         "smithy.api#documentation": "The broken-tests triage panel: live CI failures over the last 2 days grouped into distinct failures (by test id + normalized error signature) and classified by how each is behaving right now — breaking trunk, blocking the merge queue, a new failure spreading across branches, probably-resolved, flaky, or one PR's own problem — ranked with the most urgent first. A blocking_merge_queue row is a failure on a merge-queue gate branch that never hit trunk: the commit had already passed the PR's own CI, so it is the semantic conflict the queue exists to catch, and it is holding up landings. Also returns breaking_master_jobs, the default-branch jobs whose latest run is red. Reach for this to answer 'what CI failures should I care about right now'; expand a row's latest_run_id via run_failure_logs for the failing lines. Fingerprinting is pytest-only for now (jest/playwright/cargo failures aren't grouped yet), and the breaking/resolved distinction needs the job-level source synced — without it those failures fall through to flaky/pr_only rather than being misreported."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsCiSignalsConfigRetrieveRequest": {
+    "com.posthog.engineering_analytics#GetEngineeringAnalyticsCiSignalsConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -499,10 +500,10 @@
         "smithy.api#documentation": "* `running` - RUNNING\n* `completed` - COMPLETED\n* `failed` - FAILED"
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsCiSignalsConfigRetrieve": {
+    "com.posthog.engineering_analytics#GetEngineeringAnalyticsCiSignalsConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsCiSignalsConfigRetrieveRequest"
+        "target": "com.posthog.engineering_analytics#GetEngineeringAnalyticsCiSignalsConfigRequest"
       },
       "output": {
         "target": "com.posthog.engineering_analytics#CISignalsConfig"
@@ -516,7 +517,7 @@
         "smithy.api#documentation": "Return the atomic CI Signals configuration and aggregate GitHub warehouse sync status."
       }
     },
-    "com.posthog.engineering_analytics#UpdateEngineeringAnalyticCiSignalConfigRequest": {
+    "com.posthog.engineering_analytics#UpdateEngineeringAnalyticsCiSignalsConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -539,10 +540,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.engineering_analytics#UpdateEngineeringAnalyticCiSignalConfig": {
+    "com.posthog.engineering_analytics#UpdateEngineeringAnalyticsCiSignalsConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.engineering_analytics#UpdateEngineeringAnalyticCiSignalConfigRequest"
+        "target": "com.posthog.engineering_analytics#UpdateEngineeringAnalyticsCiSignalsConfigRequest"
       },
       "output": {
         "target": "com.posthog.engineering_analytics#CISignalsConfig"
@@ -974,6 +975,37 @@
         "smithy.api#documentation": "Current default-branch CI verdict over the fixed last-24-hours window. Counts every workflow whose latest completed run failed or timed out; failing workflow names are a bounded preview. The default branch is detected from the same window, independently of analytics date filters."
       }
     },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsDoraRequestEnvironmentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsDoraRequestGranularity": {
+      "type": "enum",
+      "members": {
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day"
+          }
+        },
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "week"
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.posthog.engineering_analytics#EngineeringAnalyticsDoraRequest": {
       "type": "structure",
       "members": {
@@ -1000,10 +1032,10 @@
           }
         },
         "environment": {
-          "target": "smithy.api#String",
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsDoraRequestEnvironmentList",
           "traits": {
             "smithy.api#httpQuery": "environment",
-            "smithy.api#documentation": "Exact deploy environment to scope to (from the response's `environments` list). Omit to scope to production-marked deployments, falling back to every persistent (non-transient) environment when none are marked production."
+            "smithy.api#documentation": "Deploy environment(s) to scope to, repeatable (from the response's `environments` list). Omit to scope to the busiest environment GitHub marks production, falling back to the busiest persistent (non-transient) environment when none are marked production."
           }
         },
         "github_team": {
@@ -1011,6 +1043,13 @@
           "traits": {
             "smithy.api#httpQuery": "github_team",
             "smithy.api#documentation": "GitHub team slug (from the response's `github_teams` list) to narrow the PR-scoped merge-to-deploy figures to that team's authors. Deploy counts stay repo-wide. Needs the team-membership snapshot synced; without it the merge-to-deploy figures return empty rather than silently unfiltered."
+          }
+        },
+        "granularity": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsDoraRequestGranularity",
+          "traits": {
+            "smithy.api#httpQuery": "granularity",
+            "smithy.api#documentation": "Bucket width for every series. Omit to pick one that fits the window: hour up to 48h, day up to 90 days, week beyond."
           }
         },
         "repo": {
@@ -1045,7 +1084,7 @@
         "merge_to_deploy_series": {
           "target": "com.posthog.engineering_analytics#DoraOverviewMergeToDeploySeriesList",
           "traits": {
-            "smithy.api#documentation": "Merge-to-deploy distribution per bucket across the window, oldest first — the box-plot series (min/p25/p50/mean/p75/max seconds per bucket). Empty when the deploy tables aren't synced, or when github_team was passed without membership data synced.",
+            "smithy.api#documentation": "Merge-to-deploy distribution per bucket across the window, oldest first — the box-plot series (min/p5/p25/p50/mean/p75/p95/max seconds per bucket). Empty when the deploy tables aren't synced, or when github_team was passed without membership data synced.",
             "smithy.api#required": {}
           }
         },
@@ -1073,7 +1112,7 @@
         "environment_scope": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "What the environment filter resolved to: 'production' (deployments GitHub marks production_environment), an exact environment name (the one passed, or the busiest persistent environment when nothing is marked production), or 'persistent' (no persistent environment deployed in the window, so every non-transient one counts). Transient environments (ephemeral per-PR previews) never join a default scope. The scope resolves from deployments in the scan window, so two different windows can resolve different scopes and are not always comparable.",
+            "smithy.api#documentation": "What the environment filter resolved to: the exact environment name(s) it matches (the caller's picks, comma-joined when several; by default the busiest production-marked environment, falling back to the busiest persistent one), or 'persistent' (no persistent environment deployed in the window, so every non-transient one counts). Transient environments (ephemeral per-PR previews) never join a default scope. The scope resolves from deployments in the scan window, so two different windows can resolve different scopes and are not always comparable.",
             "smithy.api#required": {}
           }
         },
@@ -1140,6 +1179,22 @@
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#documentation": "Previous-window twin of median_merge_to_deploy_seconds.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "median_open_to_deploy_seconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Median seconds from a PR's open to the first successful deployment containing it — the full open-to-deploy lead time over the same deployed-PR population as median_merge_to_deploy_seconds. Null when nothing deployed in the window.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "median_open_to_deploy_seconds_prev": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Previous-window twin of median_open_to_deploy_seconds.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -1230,7 +1285,7 @@
         "series_granularity": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Bucket width of every series, chosen to fit the window: 'hour', 'day', or 'week'.",
+            "smithy.api#documentation": "Bucket width of every series: the granularity param when given, else chosen to fit the window: 'hour', 'day', or 'week'.",
             "smithy.api#required": {}
           }
         }
@@ -1291,6 +1346,14 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "p05_seconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "5th percentile of the stage's duration, in seconds — the lower whisker when outliers are excluded. Null when nothing deployed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "p25_seconds": {
           "target": "smithy.api#Double",
           "traits": {
@@ -1323,6 +1386,14 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "p95_seconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "95th percentile of the stage's duration, in seconds — the upper whisker when outliers are excluded. Null when nothing deployed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "max_seconds": {
           "target": "smithy.api#Double",
           "traits": {
@@ -1340,7 +1411,7 @@
         "target": "com.posthog.engineering_analytics#LeadTimeBucket"
       },
       "traits": {
-        "smithy.api#documentation": "Merge-to-deploy distribution per bucket across the window, oldest first — the box-plot series (min/p25/p50/mean/p75/max seconds per bucket). Empty when the deploy tables aren't synced, or when github_team was passed without membership data synced."
+        "smithy.api#documentation": "Merge-to-deploy distribution per bucket across the window, oldest first — the box-plot series (min/p5/p25/p50/mean/p75/p95/max seconds per bucket). Empty when the deploy tables aren't synced, or when github_team was passed without membership data synced."
       }
     },
     "com.posthog.engineering_analytics#DoraOverviewOpenToMergeSeriesList": {
@@ -2983,7 +3054,7 @@
         "failing": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Latest runs that completed with conclusion 'failure' or 'timed_out'.",
+            "smithy.api#documentation": "Latest runs that ended in failure, timeout, startup failure, or staleness.",
             "smithy.api#required": {}
           }
         },
@@ -3040,7 +3111,7 @@
         "failed": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "True when any latest-per-workflow run on this push concluded 'failure' or 'timed_out'.",
+            "smithy.api#documentation": "True when any latest-per-workflow run on this push ended in a decisive failure.",
             "smithy.api#required": {}
           }
         },
@@ -3652,7 +3723,7 @@
         "success_rate_series": {
           "target": "com.posthog.engineering_analytics#RepoOverviewSuccessRateSeriesList",
           "traits": {
-            "smithy.api#documentation": "CI pass rate (completed runs that succeeded, all branches) per bucket across the window, oldest first, bucketed by success_rate_series_granularity. Empty buckets carry null; the whole series is empty when include_series=false.",
+            "smithy.api#documentation": "CI pass rate (conclusive runs that succeeded, all branches) per bucket across the window, oldest first, bucketed by success_rate_series_granularity. Skipped, cancelled, neutral, and action_required runs are excluded. Empty buckets carry null; the whole series is empty when include_series=false.",
             "smithy.api#required": {}
           }
         },
@@ -3660,6 +3731,13 @@
           "target": "com.posthog.engineering_analytics#RepoOverviewOpenToMergeSeriesList",
           "traits": {
             "smithy.api#documentation": "Median time-to-merge (p50 open_to_merge_seconds, bots/drafts excluded) per bucket across the window, oldest first, bucketed by open_to_merge_series_granularity. Empty buckets carry null; the whole series is empty when include_series=false.",
+            "smithy.api#required": {}
+          }
+        },
+        "delivery_pipeline": {
+          "target": "com.posthog.engineering_analytics#DeliveryPipeline",
+          "traits": {
+            "smithy.api#documentation": "Where a change's wall-clock time goes on the way to production, over PRs merged in the window with bots and drafts excluded.",
             "smithy.api#required": {}
           }
         },
@@ -3687,7 +3765,7 @@
         "success_rate": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Fraction of completed runs that succeeded (0-1) in the window. Null if none completed.",
+            "smithy.api#documentation": "Fraction of conclusive runs that succeeded (0-1) in the window. Skipped, cancelled, neutral, and action_required runs are excluded. Null if no run reached a verdict.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -3695,7 +3773,7 @@
         "success_rate_prev": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Success rate over the previous window. Null if none completed.",
+            "smithy.api#documentation": "Conclusive-run success rate over the previous window. Null if no run reached a verdict.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -4145,7 +4223,7 @@
         "success_rate": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Fraction (0-1) of completed runs started in this bucket that succeeded. Null when the bucket had no completed run (a gap, not a 0% pass rate).",
+            "smithy.api#documentation": "Fraction (0-1) of conclusive runs started in this bucket that succeeded. Skipped, cancelled, neutral, and action_required runs are excluded. Null when the bucket had no conclusive run (a gap, not a 0% pass rate).",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -4159,7 +4237,7 @@
         "target": "com.posthog.engineering_analytics#PassRateBucket"
       },
       "traits": {
-        "smithy.api#documentation": "CI pass rate (completed runs that succeeded, all branches) per bucket across the window, oldest first, bucketed by success_rate_series_granularity. Empty buckets carry null; the whole series is empty when include_series=false."
+        "smithy.api#documentation": "CI pass rate (conclusive runs that succeeded, all branches) per bucket across the window, oldest first, bucketed by success_rate_series_granularity. Skipped, cancelled, neutral, and action_required runs are excluded. Empty buckets carry null; the whole series is empty when include_series=false."
       }
     },
     "com.posthog.engineering_analytics#OpenToMergeBucket": {
@@ -4190,6 +4268,91 @@
       },
       "traits": {
         "smithy.api#documentation": "Median time-to-merge (p50 open_to_merge_seconds, bots/drafts excluded) per bucket across the window, oldest first, bucketed by open_to_merge_series_granularity. Empty buckets carry null; the whole series is empty when include_series=false."
+      }
+    },
+    "com.posthog.engineering_analytics#DeliveryPipeline": {
+      "type": "structure",
+      "members": {
+        "stages": {
+          "target": "com.posthog.engineering_analytics#DeliveryPipelineStagesList",
+          "traits": {
+            "smithy.api#documentation": "The legs, ordered open to merge. A leg with nothing observed still appears, with a zero pr_count and null timings. The leg medians do not sum to a cycle-time median: a median of sums is not a sum of medians.",
+            "smithy.api#required": {}
+          }
+        },
+        "merged_pr_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "PRs merged in the window with bots and drafts excluded. A narrower population than RepoOverview.merged_pr_count, which counts all authors.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#DeliveryStageTiming": {
+      "type": "structure",
+      "members": {
+        "stage": {
+          "target": "com.posthog.engineering_analytics#DeliveryStageTimingStageEnum",
+          "traits": {
+            "smithy.api#documentation": "Which leg this is: 'open_to_gate' (created_at to the PR's first merge-queue gate run starting) or 'gate_to_merge' (that gate run to merged_at). The post-merge leg is the DORA endpoint's median_merge_to_deploy_seconds.\n\n* `open_to_gate` - OPEN_TO_GATE\n* `gate_to_merge` - GATE_TO_MERGE",
+            "smithy.api#required": {}
+          }
+        },
+        "median_seconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Median seconds for this leg. Null when no PR in the window has both of its bounds observed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "p90_seconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "90th-percentile seconds for this leg. Null when not observed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "pr_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "PRs behind this leg's figures: those with an observed gate run. A PR that skipped the merge queue has no gate legs, so read a median against this count, not merged_pr_count.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#DeliveryStageTimingStageEnum": {
+      "type": "enum",
+      "members": {
+        "OPEN_TO_GATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open_to_gate"
+          }
+        },
+        "GATE_TO_MERGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gate_to_merge"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `open_to_gate` - OPEN_TO_GATE\n* `gate_to_merge` - GATE_TO_MERGE"
+      }
+    },
+    "com.posthog.engineering_analytics#DeliveryPipelineStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#DeliveryStageTiming"
+      },
+      "traits": {
+        "smithy.api#documentation": "The legs, ordered open to merge. A leg with nothing observed still appears, with a zero pr_count and null timings. The leg medians do not sum to a cycle-time median: a median of sums is not a sum of medians."
       }
     },
     "com.posthog.engineering_analytics#ReadyToMergeBucket": {
@@ -4241,10 +4404,10 @@
           "uri": "/api/projects/{project_id}/engineering_analytics/repo_overview/",
           "code": 200
         },
-        "smithy.api#documentation": "Repo-level headline aggregates over a window (default -30d): run count, success rate, re-run cycles, merged-PR count (bots included), median PR open-to-merge (bots and drafts excluded; coarse — draft and ready time fused), median time-to-green, billable minutes + estimated cost (with the merge-queue slice of billable minutes broken out), and merge-queue landing stats (queue-landed merges, first-gate-to-merge median and p90, gate attempts, failed-gate share) — each with its equal-length previous-window twin so a caller can render honest deltas. Also carries the detected default branch and its completed-run history series (skippable via include_series=false). Cost figures are null until the job-level source is synced."
+        "smithy.api#documentation": "Repo-level headline aggregates over a window (default -30d): run count, conclusive-run success rate, re-run cycles, merged-PR count (bots included), median PR open-to-merge (bots and drafts excluded; coarse — draft and ready time fused), median time-to-green, billable minutes + estimated cost (with the merge-queue slice of billable minutes broken out), and merge-queue landing stats (queue-landed merges, first-gate-to-merge median and p90, gate attempts, failed-gate share) — each with its equal-length previous-window twin so a caller can render honest deltas. Also carries the detected default branch and its completed-run history series (skippable via include_series=false). Cost figures are null until the job-level source is synced."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsRepoRunActivityRequest": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsRepoActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4388,10 +4551,10 @@
         "smithy.api#documentation": "Per-run chart points, newest first, capped at `limit`."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsRepoRunActivity": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsRepoActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsRepoRunActivityRequest"
+        "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsRepoActivityRequest"
       },
       "output": {
         "target": "com.posthog.engineering_analytics#WorkflowRunActivity"
@@ -4535,7 +4698,7 @@
         "smithy.api#documentation": "Resolve a git branch to the pull request(s) it belongs to — the cross-product link seam so another product (the LLM analytics UI) can turn a git branch into a PR detail link. Matches the PR's head ref, open PRs first then most recently updated. Pass `timestamp` (the trace's capture time) to prefer the PR that was active at that moment when a branch name has been reused across PRs. `branch` is required. Returns a possibly-empty, possibly-multi list — an empty list is a valid 200 (the caller renders a plain chip)."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsRunFailureLogsRequest": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsFailureLogsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4616,10 +4779,10 @@
         "smithy.api#documentation": "Failed CI jobs of this run with their thinned failure logs, grouped by job."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsRunFailureLogs": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsFailureLogs": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsRunFailureLogsRequest"
+        "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsFailureLogsRequest"
       },
       "output": {
         "target": "com.posthog.engineering_analytics#RunFailureLogs"
@@ -4923,6 +5086,13 @@
             "smithy.api#documentation": "An unrecovered test counts toward regression_test_count once it failed on at least this many distinct pull requests in the window. Minimum 1. Defaults to 3. Does not affect flaky_test_count, which needs proof, not a threshold."
           }
         },
+        "owner_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "owner_team",
+            "smithy.api#documentation": "Restrict the roster to one owning team slug (or 'unowned'). The cheap way to read a single team's rollup."
+          }
+        },
         "source_id": {
           "target": "smithy.api#String",
           "traits": {
@@ -4968,7 +5138,7 @@
         "owner_team": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Owning team slug (the CODEOWNERS handle minus '@PostHog/', e.g. 'team-replay'), or the literal 'unowned' for tests whose spans carry no ownership stamp.",
+            "smithy.api#documentation": "Owning team slug from the repo's owners.yaml map (e.g. 'team-replay'), or the literal 'unowned' for tests whose spans carry no ownership stamp.",
             "smithy.api#required": {}
           }
         },
@@ -5045,8 +5215,37 @@
         "last_seen_at": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Most recent failure, recovery, or quarantined-failure run across the team's owned tests, either window.",
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Most recent failure, recovery, or quarantined-failure run across the team's owned tests, either window. Null for a team present only through the census (no CI signal recorded).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "test_file_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Test files the team owns per the daily owners.yaml census. Null until a census event exists for the repository.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "test_file_count_prior": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The latest census value at or before the window start, for the trend.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "merged_pr_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Merged PRs authored by the team's members in the window, bots excluded. Null when the team_members snapshot isn't synced, or for 'unowned'.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "merged_pr_count_prior": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Same count over the prior window.",
+            "com.distilled.openapi#nullable": {}
           }
         }
       },
@@ -5080,10 +5279,10 @@
           "uri": "/api/projects/{project_id}/engineering_analytics/team_ci_health/",
           "code": 200
         },
-        "smithy.api#documentation": "Per-owning-team rollup of the CI test surfaces each team owns, over the same run evidence as flaky_tests and with the same meaning of flaky: flaky_test_count is owned tests one commit was seen both failing and passing in the window, regression_test_count is owned tests that failed with no such proof and still hit the blast-radius bar, plus failed/recovery/quarantined run counts. Each has an equal-length previous-window twin for honest deltas. Ownership is stamped on the spans at CI emission time from the repo's ownership map (products/*/product.yaml + CODEOWNERS); unstamped spans aggregate under the literal team 'unowned', and a re-stamped test lands under its latest owner only. Teams are organizational owners of code surfaces, never authors. Counts are absolute, never rates: CI emits every failure but omits ordinary passing spans, so there is no execution denominator. 'suspected_regression' means no recovery was recorded in this data, not that the test never flakes."
+        "smithy.api#documentation": "Per-owning-team rollup of the CI test surfaces each team owns, over the same run evidence as flaky_tests and with the same meaning of flaky: flaky_test_count is owned tests one commit was seen both failing and passing in the window, regression_test_count is owned tests that failed with no such proof and still hit the blast-radius bar, plus failed/recovery/quarantined run counts. Each has an equal-length previous-window twin for honest deltas. Ownership is stamped on the spans at CI emission time from the repo's ownership map (the distributed owners.yaml files); unstamped spans aggregate under the literal team 'unowned', and a re-stamped test lands under its latest owner only. Each row also carries test_file_count (the daily owners.yaml census denominator, with a window-start twin) and merged_pr_count (merged PRs by the team's members, bots excluded); teams with census counts but no CI signal appear with zero signal counts and a null last_seen_at. Teams are organizational owners of code surfaces, never authors. Counts are absolute, never rates: CI emits every failure but omits ordinary passing spans, so there is no execution denominator. 'suspected_regression' means no recovery was recorded in this data, not that the test never flakes."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsTeamMergeTrendRequest": {
+    "com.posthog.engineering_analytics#MergeEngineeringAnalyticsTeamTrendRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5200,10 +5399,10 @@
         "smithy.api#documentation": "Daily median and average open→merge over the PRs this team's members merged, ascending by day. Coarse timing (open→merge combines draft and review time); bots excluded."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsTeamMergeTrend": {
+    "com.posthog.engineering_analytics#MergeEngineeringAnalyticsTeamTrend": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsTeamMergeTrendRequest"
+        "target": "com.posthog.engineering_analytics#MergeEngineeringAnalyticsTeamTrendRequest"
       },
       "output": {
         "target": "com.posthog.engineering_analytics#TeamMergeTrend"
@@ -5273,6 +5472,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "False when no TrunkIo source has the QuarantinedTests endpoint synced; not an error.",
+            "smithy.api#required": {}
+          }
+        },
+        "owners_resolved": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "False when the repository's ownership files could not be read, so every test reads as 'unowned' for that reason rather than because no team claims it.",
             "smithy.api#required": {}
           }
         },
@@ -5364,14 +5570,14 @@
         "file": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Repo-relative path of the test file, as Trunk reports it.",
+            "smithy.api#documentation": "Repo-relative path of the test file, empty when neither the repository nor Trunk places it.",
             "smithy.api#required": {}
           }
         },
         "owner_team": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Owning team slug from the per-test CI spans' emission-time stamp, or 'unowned' when no in-retention span carries one.",
+            "smithy.api#documentation": "Owning team slug from the repository's ownership files, or 'unowned' when the test's file cannot be placed or no team claims its path.",
             "smithy.api#required": {}
           }
         },
@@ -5449,7 +5655,7 @@
           "uri": "/api/projects/{project_id}/engineering_analytics/trunk_quarantine/",
           "code": 200
         },
-        "smithy.api#documentation": "Trunk quarantine debt by owning team\n\nThe standing Trunk quarantine debt: every test Trunk currently quarantines (failures suppressed in CI), attributed to its owning team from the per-test CI spans, aged against a TTL, and rolled up per team with the most indebted first. A quarantine only masks a test; it never fixes it, so this is the work queue of tests someone still has to repair or delete. `available` is false when no TrunkIo source has the QuarantinedTests endpoint synced — that is not an error."
+        "smithy.api#documentation": "Trunk quarantine debt by owning team\n\nThe standing Trunk quarantine debt: every test Trunk currently quarantines (failures suppressed in CI), attributed to the team that owns its file in the repository, aged against a TTL, and rolled up per team with the most indebted first. A quarantine only masks a test; it never fixes it, so this is the work queue of tests someone still has to repair or delete. `available` is false when no TrunkIo source has the QuarantinedTests endpoint synced — that is not an error."
       }
     },
     "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealthRequestRunScope": {
@@ -5562,19 +5768,21 @@
         "successful_run_count": {
           "target": "smithy.api#Integer",
           "traits": {
+            "smithy.api#documentation": "Completed runs with conclusion 'success'.",
             "smithy.api#required": {}
           }
         },
         "conclusive_run_count": {
           "target": "smithy.api#Integer",
           "traits": {
+            "smithy.api#documentation": "Completed runs that succeeded or ended in failure, timeout, startup failure, or staleness. This is the success_rate denominator.",
             "smithy.api#required": {}
           }
         },
         "success_rate": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Fraction of completed runs that succeeded (0-1). Null if no completed runs.",
+            "smithy.api#documentation": "Fraction of conclusive runs that succeeded (0-1). Failures include failure, timed_out, startup_failure, and stale. Skipped, cancelled, neutral, and action_required runs are excluded. Null if no run reached a verdict.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -5598,7 +5806,7 @@
         "last_failure_at": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When the most recent failing run (conclusion 'failure' or 'timed_out') started, or null.",
+            "smithy.api#documentation": "When the most recent decisive failure started, or null.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -5606,7 +5814,7 @@
         "latest_run_failed": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Whether the most recent completed run was a decisive failure (conclusion 'failure' or 'timed_out'). Null when no run has completed in the window. Powers the OK/RED status badge.",
+            "smithy.api#documentation": "Whether the most recent completed run ended in failure, timeout, startup failure, or staleness. Null when no run has completed in the window. Powers the OK/RED status badge.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -5663,12 +5871,15 @@
         "success_rate_prev": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Success rate over the equal-length window before date_from - the delta baseline. Null when that window had no completed runs.",
+            "smithy.api#documentation": "Conclusive-run success rate over the equal-length window before date_from - the delta baseline. Null when that window had no conclusive runs.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "percentile_run_count": {
-          "target": "smithy.api#Integer"
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Successful runs that did real CI work. This is the p50/p95 sample count."
+          }
         }
       },
       "traits": {}
@@ -5707,7 +5918,7 @@
         "failures": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Completed runs that failed in this bucket (conclusion 'failure' or 'timed_out'); excludes skipped, cancelled, and action_required runs.",
+            "smithy.api#documentation": "Completed runs with conclusion 'failure', 'timed_out', 'startup_failure', or 'stale'. Skipped, cancelled, neutral, and action_required runs are excluded.",
             "smithy.api#required": {}
           }
         }
@@ -5764,7 +5975,7 @@
           "uri": "/api/projects/{project_id}/engineering_analytics/workflow_health/",
           "code": 200
         },
-        "smithy.api#documentation": "Per-workflow CI health over a window (default last 24 hours, maximum 366 days): run count, success rate, p50/p95 duration, last failure time, latest-run status, and a zero-filled run history bucketed by hour/day/week to fit the window. p50/p95 are over successful runs only, so cancelled (superseded) and failed runs never bias the duration trend. Optionally scope to a single git branch via `branch`, or to attributed pull-request runs via `run_scope=pull_request`. Use this for 'is CI getting slower' and 'which workflow is the long pole'; compare two windows to get a trend."
+        "smithy.api#documentation": "Per-workflow CI health over a window (default last 24 hours, maximum 366 days): run count, success rate, p50/p95 duration, last failure time, latest-run status, and a zero-filled run history bucketed by hour/day/week to fit the window. Success rate covers runs that succeeded or ended in a decisive failure. Skipped, cancelled, neutral, and action-required runs are excluded. p50/p95 are over successful runs only, so cancelled (superseded) and failed runs never bias the duration trend. Optionally scope to a single git branch via `branch`, or to attributed pull-request runs via `run_scope=pull_request`. Use this for 'is CI getting slower' and 'which workflow is the long pole'; compare two windows to get a trend."
       }
     },
     "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobsRequest": {
@@ -5944,7 +6155,7 @@
         "smithy.api#documentation": "Jobs of a single workflow run attempt, with per-job duration, runner tier, and estimated cost. Scoped to one run_attempt (the latest unless specified) so a re-run's attempts don't merge. Returns an empty list when the job-level source isn't synced yet."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunRequest": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflowRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5982,10 +6193,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRun": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunRequest"
+        "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflowRequest"
       },
       "output": {
         "target": "com.posthog.engineering_analytics#WorkflowRunDetail"
@@ -6007,7 +6218,7 @@
         "smithy.api#documentation": "A single workflow run: status, conclusion, duration, branch, attempt, and the attributed pull request. Run-level only — per-job and per-step detail are not tracked yet."
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunActivityRequest": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflowActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6067,10 +6278,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunActivity": {
+    "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflowActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunActivityRequest"
+        "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflowActivityRequest"
       },
       "output": {
         "target": "com.posthog.engineering_analytics#WorkflowRunActivity"
@@ -6376,12 +6587,6 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsBrokenTests"
         },
         {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsCiSignalsConfigRetrieve"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#UpdateEngineeringAnalyticCiSignalConfig"
-        },
-        {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsCiCards"
         },
         {
@@ -6424,13 +6629,7 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsRepoOverview"
         },
         {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsRepoRunActivity"
-        },
-        {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsResolveBranch"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsRunFailureLogs"
         },
         {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsSources"
@@ -6442,9 +6641,6 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsTeamCiHealth"
         },
         {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsTeamMergeTrend"
-        },
-        {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsTrunkQuarantine"
         },
         {
@@ -6454,16 +6650,31 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobs"
         },
         {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRun"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunActivity"
-        },
-        {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCosts"
         },
         {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRuns"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#GetEngineeringAnalyticsCiSignalsConfig"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#MergeEngineeringAnalyticsTeamTrend"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsFailureLogs"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsRepoActivity"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflow"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflowActivity"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#UpdateEngineeringAnalyticsCiSignalsConfig"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.hetzner.server_actions#ListServersActionsRequestIdList": {
@@ -5983,15 +5984,6 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.server_actions#ListServersActions"
-        },
-        {
-          "target": "com.hetzner.server_actions#GetServersAction"
-        },
-        {
-          "target": "com.hetzner.server_actions#ListServerActions"
-        },
-        {
           "target": "com.hetzner.server_actions#AddServerToPlacementGroup"
         },
         {
@@ -6032,6 +6024,15 @@
         },
         {
           "target": "com.hetzner.server_actions#EnableServerRescue"
+        },
+        {
+          "target": "com.hetzner.server_actions#GetServersAction"
+        },
+        {
+          "target": "com.hetzner.server_actions#ListServerActions"
+        },
+        {
+          "target": "com.hetzner.server_actions#ListServersActions"
         },
         {
           "target": "com.hetzner.server_actions#PoweroffServer"

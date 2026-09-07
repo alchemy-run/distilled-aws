@@ -251,6 +251,7 @@ export type CancelDeploymentResponseProjectSettingsFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -1734,6 +1735,22 @@ export type CancelDeploymentResponseFunctionsValueMaxDuration =
 export const CancelDeploymentResponseFunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CancelDeploymentResponseFunctionsValueMaxDuration>;
 
+export type CancelDeploymentResponseFunctionsValueAffinityMode = "strict";
+export const CancelDeploymentResponseFunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CancelDeploymentResponseFunctionsValueAffinity {
+  mode: CancelDeploymentResponseFunctionsValueAffinityMode;
+}
+export const CancelDeploymentResponseFunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CancelDeploymentResponseFunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier: "CancelDeploymentResponseFunctionsValueAffinity",
+  }) as any as S.Schema<CancelDeploymentResponseFunctionsValueAffinity>;
+
 export type CancelDeploymentResponseFunctionsValueRegionsList = Array<string>;
 export const CancelDeploymentResponseFunctionsValueRegionsList =
   /*@__PURE__*/ S.Array(
@@ -1860,6 +1877,7 @@ export interface CancelDeploymentResponseFunctionsValue {
   architecture?: CancelDeploymentResponseFunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CancelDeploymentResponseFunctionsValueMaxDuration;
+  affinity?: CancelDeploymentResponseFunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CancelDeploymentResponseFunctionsValueRegionsList;
   functionFailoverRegions?: CancelDeploymentResponseFunctionsValueFunctionFailoverRegionsList;
@@ -1879,6 +1897,7 @@ export const CancelDeploymentResponseFunctionsValue = /*@__PURE__*/ S.suspend(
       maxDuration: S.optional(
         CancelDeploymentResponseFunctionsValueMaxDuration,
       ),
+      affinity: S.optional(CancelDeploymentResponseFunctionsValueAffinity),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(CancelDeploymentResponseFunctionsValueRegionsList),
       functionFailoverRegions: S.optional(
@@ -2762,6 +2781,24 @@ export type CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValue
 export const CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueMaxDuration>;
 
+export type CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinityMode =
+  "strict";
+export const CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity {
+  mode: CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinityMode;
+}
+export const CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity",
+  }) as any as S.Schema<CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity>;
+
 export type CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueRegionsList =
   Array<string>;
 export const CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueRegionsList =
@@ -2889,6 +2926,7 @@ export interface CancelDeploymentResponseServicesItemCase0BuilderConfigFunctions
   architecture?: CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueMaxDuration;
+  affinity?: CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueRegionsList;
   functionFailoverRegions?: CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueFunctionFailoverRegionsList;
@@ -2907,6 +2945,9 @@ export const CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValu
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        CancelDeploymentResponseServicesItemCase0BuilderConfigFunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -3290,6 +3331,24 @@ export type CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValue
 export const CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueMaxDuration>;
 
+export type CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinityMode =
+  "strict";
+export const CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity {
+  mode: CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinityMode;
+}
+export const CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity",
+  }) as any as S.Schema<CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity>;
+
 export type CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueRegionsList =
   Array<string>;
 export const CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueRegionsList =
@@ -3417,6 +3476,7 @@ export interface CancelDeploymentResponseServicesItemCase1BuilderConfigFunctions
   architecture?: CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueMaxDuration;
+  affinity?: CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueRegionsList;
   functionFailoverRegions?: CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueFunctionFailoverRegionsList;
@@ -3435,6 +3495,9 @@ export const CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValu
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        CancelDeploymentResponseServicesItemCase1BuilderConfigFunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -3645,6 +3708,24 @@ export type CancelDeploymentResponseServicesItemCase1FunctionsValueMaxDuration =
 export const CancelDeploymentResponseServicesItemCase1FunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CancelDeploymentResponseServicesItemCase1FunctionsValueMaxDuration>;
 
+export type CancelDeploymentResponseServicesItemCase1FunctionsValueAffinityMode =
+  "strict";
+export const CancelDeploymentResponseServicesItemCase1FunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity {
+  mode: CancelDeploymentResponseServicesItemCase1FunctionsValueAffinityMode;
+}
+export const CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CancelDeploymentResponseServicesItemCase1FunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity",
+  }) as any as S.Schema<CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity>;
+
 export type CancelDeploymentResponseServicesItemCase1FunctionsValueRegionsList =
   Array<string>;
 export const CancelDeploymentResponseServicesItemCase1FunctionsValueRegionsList =
@@ -3773,6 +3854,7 @@ export interface CancelDeploymentResponseServicesItemCase1FunctionsValue {
   architecture?: CancelDeploymentResponseServicesItemCase1FunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CancelDeploymentResponseServicesItemCase1FunctionsValueMaxDuration;
+  affinity?: CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CancelDeploymentResponseServicesItemCase1FunctionsValueRegionsList;
   functionFailoverRegions?: CancelDeploymentResponseServicesItemCase1FunctionsValueFunctionFailoverRegionsList;
@@ -3791,6 +3873,9 @@ export const CancelDeploymentResponseServicesItemCase1FunctionsValue =
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         CancelDeploymentResponseServicesItemCase1FunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        CancelDeploymentResponseServicesItemCase1FunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -7435,6 +7520,7 @@ export type CreateDeploymentRequestProjectSettingsFramework =
   | "fasthtml"
   | "django"
   | "ash"
+  | "factory-eve"
   | "eve"
   | "sanity"
   | "sanity-v2"
@@ -7824,6 +7910,7 @@ export type CreateDeploymentResponseBodyCase1ProjectSettingsFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -9221,6 +9308,23 @@ export type CreateDeploymentResponseBodyCase1FunctionsValueMaxDuration =
 export const CreateDeploymentResponseBodyCase1FunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentResponseBodyCase1FunctionsValueMaxDuration>;
 
+export type CreateDeploymentResponseBodyCase1FunctionsValueAffinityMode =
+  "strict";
+export const CreateDeploymentResponseBodyCase1FunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CreateDeploymentResponseBodyCase1FunctionsValueAffinity {
+  mode: CreateDeploymentResponseBodyCase1FunctionsValueAffinityMode;
+}
+export const CreateDeploymentResponseBodyCase1FunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CreateDeploymentResponseBodyCase1FunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier: "CreateDeploymentResponseBodyCase1FunctionsValueAffinity",
+  }) as any as S.Schema<CreateDeploymentResponseBodyCase1FunctionsValueAffinity>;
+
 export type CreateDeploymentResponseBodyCase1FunctionsValueRegionsList =
   Array<string>;
 export const CreateDeploymentResponseBodyCase1FunctionsValueRegionsList =
@@ -9348,6 +9452,7 @@ export interface CreateDeploymentResponseBodyCase1FunctionsValue {
   architecture?: CreateDeploymentResponseBodyCase1FunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CreateDeploymentResponseBodyCase1FunctionsValueMaxDuration;
+  affinity?: CreateDeploymentResponseBodyCase1FunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CreateDeploymentResponseBodyCase1FunctionsValueRegionsList;
   functionFailoverRegions?: CreateDeploymentResponseBodyCase1FunctionsValueFunctionFailoverRegionsList;
@@ -9366,6 +9471,9 @@ export const CreateDeploymentResponseBodyCase1FunctionsValue =
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         CreateDeploymentResponseBodyCase1FunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        CreateDeploymentResponseBodyCase1FunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -10274,6 +10382,24 @@ export type CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunct
 export const CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration>;
 
+export type CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode =
+  "strict";
+export const CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity {
+  mode: CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode;
+}
+export const CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity",
+  }) as any as S.Schema<CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity>;
+
 export type CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList =
   Array<string>;
 export const CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList =
@@ -10401,6 +10527,7 @@ export interface CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfig
   architecture?: CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration;
+  affinity?: CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList;
   functionFailoverRegions?: CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueFunctionFailoverRegionsList;
@@ -10419,6 +10546,9 @@ export const CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunc
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        CreateDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -10765,6 +10895,24 @@ export type CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunct
 export const CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration>;
 
+export type CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode =
+  "strict";
+export const CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity {
+  mode: CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode;
+}
+export const CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity",
+  }) as any as S.Schema<CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity>;
+
 export type CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList =
   Array<string>;
 export const CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList =
@@ -10892,6 +11040,7 @@ export interface CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfig
   architecture?: CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration;
+  affinity?: CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList;
   functionFailoverRegions?: CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueFunctionFailoverRegionsList;
@@ -10910,6 +11059,9 @@ export const CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunc
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        CreateDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -11124,6 +11276,24 @@ export type CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxD
 export const CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration>;
 
+export type CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode =
+  "strict";
+export const CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity {
+  mode: CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode;
+}
+export const CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity",
+  }) as any as S.Schema<CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity>;
+
 export type CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList =
   Array<string>;
 export const CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList =
@@ -11252,6 +11422,7 @@ export interface CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValu
   architecture?: CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueArchitecture;
   memory?: number;
   maxDuration?: CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration;
+  affinity?: CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList;
   functionFailoverRegions?: CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueFunctionFailoverRegionsList;
@@ -11270,6 +11441,9 @@ export const CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValue =
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        CreateDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -14822,6 +14996,7 @@ export type GetDeploymentResponseBodyCase1ProjectSettingsFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -16199,6 +16374,22 @@ export type GetDeploymentResponseBodyCase1FunctionsValueMaxDuration =
 export const GetDeploymentResponseBodyCase1FunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeploymentResponseBodyCase1FunctionsValueMaxDuration>;
 
+export type GetDeploymentResponseBodyCase1FunctionsValueAffinityMode = "strict";
+export const GetDeploymentResponseBodyCase1FunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface GetDeploymentResponseBodyCase1FunctionsValueAffinity {
+  mode: GetDeploymentResponseBodyCase1FunctionsValueAffinityMode;
+}
+export const GetDeploymentResponseBodyCase1FunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: GetDeploymentResponseBodyCase1FunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier: "GetDeploymentResponseBodyCase1FunctionsValueAffinity",
+  }) as any as S.Schema<GetDeploymentResponseBodyCase1FunctionsValueAffinity>;
+
 export type GetDeploymentResponseBodyCase1FunctionsValueRegionsList =
   Array<string>;
 export const GetDeploymentResponseBodyCase1FunctionsValueRegionsList =
@@ -16326,6 +16517,7 @@ export interface GetDeploymentResponseBodyCase1FunctionsValue {
   architecture?: GetDeploymentResponseBodyCase1FunctionsValueArchitecture;
   memory?: number;
   maxDuration?: GetDeploymentResponseBodyCase1FunctionsValueMaxDuration;
+  affinity?: GetDeploymentResponseBodyCase1FunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: GetDeploymentResponseBodyCase1FunctionsValueRegionsList;
   functionFailoverRegions?: GetDeploymentResponseBodyCase1FunctionsValueFunctionFailoverRegionsList;
@@ -16344,6 +16536,9 @@ export const GetDeploymentResponseBodyCase1FunctionsValue =
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         GetDeploymentResponseBodyCase1FunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        GetDeploymentResponseBodyCase1FunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -17246,6 +17441,24 @@ export type GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunction
 export const GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration>;
 
+export type GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode =
+  "strict";
+export const GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity {
+  mode: GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode;
+}
+export const GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity",
+  }) as any as S.Schema<GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity>;
+
 export type GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList =
   Array<string>;
 export const GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList =
@@ -17373,6 +17586,7 @@ export interface GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFun
   architecture?: GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueArchitecture;
   memory?: number;
   maxDuration?: GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration;
+  affinity?: GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueRegionsList;
   functionFailoverRegions?: GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueFunctionFailoverRegionsList;
@@ -17391,6 +17605,9 @@ export const GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctio
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        GetDeploymentResponseBodyCase1ServicesItemCase0BuilderConfigFunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -17734,6 +17951,24 @@ export type GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunction
 export const GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration>;
 
+export type GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode =
+  "strict";
+export const GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity {
+  mode: GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode;
+}
+export const GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity",
+  }) as any as S.Schema<GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity>;
+
 export type GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList =
   Array<string>;
 export const GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList =
@@ -17861,6 +18096,7 @@ export interface GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFun
   architecture?: GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueArchitecture;
   memory?: number;
   maxDuration?: GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration;
+  affinity?: GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueRegionsList;
   functionFailoverRegions?: GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueFunctionFailoverRegionsList;
@@ -17879,6 +18115,9 @@ export const GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctio
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        GetDeploymentResponseBodyCase1ServicesItemCase1BuilderConfigFunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -18090,6 +18329,24 @@ export type GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDura
 export const GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration =
   /*@__PURE__*/ S.Unknown as any as S.Schema<GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration>;
 
+export type GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode =
+  "strict";
+export const GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode =
+  /*@__PURE__*/ S.String;
+
+export interface GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity {
+  mode: GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode;
+}
+export const GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      mode: GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinityMode,
+    }),
+  ).annotate({
+    identifier:
+      "GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity",
+  }) as any as S.Schema<GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity>;
+
 export type GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList =
   Array<string>;
 export const GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList =
@@ -18218,6 +18475,7 @@ export interface GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValue {
   architecture?: GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueArchitecture;
   memory?: number;
   maxDuration?: GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration;
+  affinity?: GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity;
   maxConcurrency?: number;
   regions?: GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueRegionsList;
   functionFailoverRegions?: GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueFunctionFailoverRegionsList;
@@ -18236,6 +18494,9 @@ export const GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValue =
       memory: S.optional(S.Number),
       maxDuration: S.optional(
         GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueMaxDuration,
+      ),
+      affinity: S.optional(
+        GetDeploymentResponseBodyCase1ServicesItemCase1FunctionsValueAffinity,
       ),
       maxConcurrency: S.optional(S.Number),
       regions: S.optional(
@@ -22747,6 +23008,7 @@ export interface GetDeploymentEventsResponseBodyItemCase0PayloadInfo {
   path?: string;
   step?: string;
   readyState?: string;
+  serviceName?: string;
 }
 export const GetDeploymentEventsResponseBodyItemCase0PayloadInfo =
   /*@__PURE__*/ S.suspend(() =>
@@ -22757,6 +23019,7 @@ export const GetDeploymentEventsResponseBodyItemCase0PayloadInfo =
       path: S.optional(S.String),
       step: S.optional(S.String),
       readyState: S.optional(S.String),
+      serviceName: S.optional(S.String),
     }),
   ).annotate({
     identifier: "GetDeploymentEventsResponseBodyItemCase0PayloadInfo",
@@ -23559,6 +23822,7 @@ export type GetDeploymentsResponseDeploymentsItemProjectSettingsFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"
@@ -24279,10 +24543,10 @@ export const UploadFileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     teamId: S.optional(S.String.pipe(T.Query())),
     slug: S.optional(S.String.pipe(T.Query())),
-    contentLength: S.optional(S.Number.pipe(T.Header("content-Length"))),
-    xVercelDigest: S.optional(S.String.pipe(T.Header("x-Vercel-Digest"))),
-    xNowDigest: S.optional(S.String.pipe(T.Header("x-Now-Digest"))),
-    xNowSize: S.optional(S.Number.pipe(T.Header("x-Now-Size"))),
+    contentLength: S.optional(S.Number.pipe(T.Header("Content-Length"))),
+    xVercelDigest: S.optional(S.String.pipe(T.Header("x-vercel-digest"))),
+    xNowDigest: S.optional(S.String.pipe(T.Header("x-now-digest"))),
+    xNowSize: S.optional(S.Number.pipe(T.Header("x-now-size"))),
   }).pipe(T.Http({ method: "POST", uri: "/v2/files", code: 200 })),
 ).annotate({
   identifier: "UploadFileRequest",

@@ -18,7 +18,8 @@
     "keyDictionary": {
       "createdOn": "created_on",
       "modifiedOn": "modified_on"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.vectorize#IndexesCreateRequestConfigIndexDimensionConfigurationMetric": {
@@ -487,46 +488,46 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.vectorize#IndexesCreate"
+          "target": "com.cloudflare.vectorize#CreateIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesDelete"
+          "target": "com.cloudflare.vectorize#CreateIndexMetadataIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesDeleteByIds"
+          "target": "com.cloudflare.vectorize#DeleteByIdsIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesGet"
+          "target": "com.cloudflare.vectorize#DeleteIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesGetByIds"
+          "target": "com.cloudflare.vectorize#DeleteIndexMetadataIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesInfo"
+          "target": "com.cloudflare.vectorize#GetByIdsIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesInsert"
+          "target": "com.cloudflare.vectorize#GetIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesList"
+          "target": "com.cloudflare.vectorize#InsertIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesListVectors"
+          "target": "com.cloudflare.vectorize#ListIndexes"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesQuery"
+          "target": "com.cloudflare.vectorize#ListIndexMetadataIndexes"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesUpsert"
+          "target": "com.cloudflare.vectorize#ListInfo"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesMetadataIndexCreate"
+          "target": "com.cloudflare.vectorize#ListQuery"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesMetadataIndexDelete"
+          "target": "com.cloudflare.vectorize#ListVectorsIndex"
         },
         {
-          "target": "com.cloudflare.vectorize#IndexesMetadataIndexList"
+          "target": "com.cloudflare.vectorize#UpsertIndex"
         }
       ],
       "traits": {
@@ -1209,13 +1210,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.vectorize#InfoIndex": {
+    "com.cloudflare.vectorize#ListInfo": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.vectorize#InfoIndexRequest"
+        "target": "com.cloudflare.vectorize#ListInfoRequest"
       },
       "output": {
-        "target": "com.cloudflare.vectorize#InfoIndexResponse"
+        "target": "com.cloudflare.vectorize#ListInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1227,7 +1228,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.vectorize#InfoIndexRequest": {
+    "com.cloudflare.vectorize#ListInfoRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1250,7 +1251,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.vectorize#InfoIndexResponse": {
+    "com.cloudflare.vectorize#ListInfoResponse": {
       "type": "structure",
       "members": {
         "dimensions": {
@@ -1583,13 +1584,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.vectorize#QueryIndex": {
+    "com.cloudflare.vectorize#ListQuery": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.vectorize#QueryIndexRequest"
+        "target": "com.cloudflare.vectorize#ListQueryRequest"
       },
       "output": {
-        "target": "com.cloudflare.vectorize#QueryIndexResponse"
+        "target": "com.cloudflare.vectorize#ListQueryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1600,7 +1601,7 @@
         "smithy.api#documentation": "Finds vectors closest to a given vector in an index."
       }
     },
-    "com.cloudflare.vectorize#QueryIndexRequest": {
+    "com.cloudflare.vectorize#ListQueryRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1654,7 +1655,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.vectorize#QueryIndexResponse": {
+    "com.cloudflare.vectorize#ListQueryResponse": {
       "type": "structure",
       "members": {
         "count": {

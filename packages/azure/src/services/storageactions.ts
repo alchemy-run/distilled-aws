@@ -13,13 +13,13 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource tags. */
-export type StorageTasksCreateRequestTagsMap = {
+export type CreateStorageTaskRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageTasksCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateStorageTaskRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageTasksCreateRequestTagsMap>;
+) as any as S.Schema<CreateStorageTaskRequestTagsMap>;
 
 /** The operation to be performed on the object. */
 export type StorageTaskOperationName =
@@ -169,18 +169,18 @@ export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentitiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface StorageTasksCreateRequestIdentity {
+export interface CreateStorageTaskRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   userAssignedIdentities?: UserAssignedIdentitiesInput;
 }
-export const StorageTasksCreateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateStorageTaskRequestIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
   }),
 ).annotate({
-  identifier: "StorageTasksCreateRequestIdentity",
-}) as any as S.Schema<StorageTasksCreateRequestIdentity>;
+  identifier: "CreateStorageTaskRequestIdentity",
+}) as any as S.Schema<CreateStorageTaskRequestIdentity>;
 
 export interface CreateStorageTaskRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -190,23 +190,23 @@ export interface CreateStorageTaskRequest {
   /** The name of the storage task within the specified resource group. Storage task names must be between 3 and 18 characters in length and use numbers and lower-case letters only. */
   storageTaskName: string;
   /** Resource tags. */
-  tags?: StorageTasksCreateRequestTagsMap;
+  tags?: CreateStorageTaskRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the storage task. */
   properties: StorageTaskPropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity: StorageTasksCreateRequestIdentity;
+  identity: CreateStorageTaskRequestIdentity;
 }
 export const CreateStorageTaskRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     storageTaskName: S.String.pipe(T.Label()),
-    tags: S.optional(StorageTasksCreateRequestTagsMap),
+    tags: S.optional(CreateStorageTaskRequestTagsMap),
     location: S.String,
     properties: StorageTaskPropertiesInput,
-    identity: StorageTasksCreateRequestIdentity,
+    identity: CreateStorageTaskRequestIdentity,
   }).pipe(
     T.Http({
       method: "PUT",
@@ -262,13 +262,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type StorageTasksCreateResponseTagsMap = {
+export type CreateStorageTaskResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageTasksCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateStorageTaskResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageTasksCreateResponseTagsMap>;
+) as any as S.Schema<CreateStorageTaskResponseTagsMap>;
 
 /** Represents the provisioning state of the storage task. */
 export type ProvisioningState =
@@ -336,7 +336,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface StorageTasksCreateResponseIdentity {
+export interface CreateStorageTaskResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -344,7 +344,7 @@ export interface StorageTasksCreateResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const StorageTasksCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateStorageTaskResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
@@ -352,8 +352,8 @@ export const StorageTasksCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
     userAssignedIdentities: S.optional(UserAssignedIdentities),
   }),
 ).annotate({
-  identifier: "StorageTasksCreateResponseIdentity",
-}) as any as S.Schema<StorageTasksCreateResponseIdentity>;
+  identifier: "CreateStorageTaskResponseIdentity",
+}) as any as S.Schema<CreateStorageTaskResponseIdentity>;
 
 export interface CreateStorageTaskResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -365,13 +365,13 @@ export interface CreateStorageTaskResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageTasksCreateResponseTagsMap;
+  tags?: CreateStorageTaskResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the storage task. */
   properties: StorageTaskProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity: StorageTasksCreateResponseIdentity;
+  identity: CreateStorageTaskResponseIdentity;
 }
 export const CreateStorageTaskResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -379,10 +379,10 @@ export const CreateStorageTaskResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageTasksCreateResponseTagsMap),
+    tags: S.optional(CreateStorageTaskResponseTagsMap),
     location: S.String,
     properties: StorageTaskProperties,
-    identity: StorageTasksCreateResponseIdentity,
+    identity: CreateStorageTaskResponseIdentity,
   }),
 ).annotate({
   identifier: "CreateStorageTaskResponse",
@@ -446,19 +446,17 @@ export const GetStorageTaskRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetStorageTaskRequest>;
 
 /** Resource tags. */
-export type StorageTasksGetResponseTagsMap = {
+export type GetStorageTaskResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageTasksGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetStorageTaskResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageTasksGetResponseTagsMap>;
+) as any as S.Schema<GetStorageTaskResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type StorageTasksGetResponseIdentity =
-  StorageTasksCreateResponseIdentity;
-export const StorageTasksGetResponseIdentity =
-  StorageTasksCreateResponseIdentity;
+export type GetStorageTaskResponseIdentity = CreateStorageTaskResponseIdentity;
+export const GetStorageTaskResponseIdentity = CreateStorageTaskResponseIdentity;
 
 export interface GetStorageTaskResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -470,13 +468,13 @@ export interface GetStorageTaskResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageTasksGetResponseTagsMap;
+  tags?: GetStorageTaskResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the storage task. */
   properties: StorageTaskProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity: StorageTasksCreateResponseIdentity;
+  identity: CreateStorageTaskResponseIdentity;
 }
 export const GetStorageTaskResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -484,10 +482,10 @@ export const GetStorageTaskResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageTasksGetResponseTagsMap),
+    tags: S.optional(GetStorageTaskResponseTagsMap),
     location: S.String,
     properties: StorageTaskProperties,
-    identity: StorageTasksCreateResponseIdentity,
+    identity: CreateStorageTaskResponseIdentity,
   }),
 ).annotate({
   identifier: "GetStorageTaskResponse",
@@ -561,20 +559,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -676,8 +674,8 @@ export const StorageTaskTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<StorageTaskTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type StorageTaskIdentity = StorageTasksCreateResponseIdentity;
-export const StorageTaskIdentity = StorageTasksCreateResponseIdentity;
+export type StorageTaskIdentity = CreateStorageTaskResponseIdentity;
+export const StorageTaskIdentity = CreateStorageTaskResponseIdentity;
 
 /** Represents Storage Task. */
 export interface StorageTask {
@@ -696,7 +694,7 @@ export interface StorageTask {
   /** Properties of the storage task. */
   properties: StorageTaskProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity: StorageTasksCreateResponseIdentity;
+  identity: CreateStorageTaskResponseIdentity;
 }
 export const StorageTask = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -707,7 +705,7 @@ export const StorageTask = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(StorageTaskTagsMap),
     location: S.String,
     properties: StorageTaskProperties,
-    identity: StorageTasksCreateResponseIdentity,
+    identity: CreateStorageTaskResponseIdentity,
   }),
 ).annotate({ identifier: "StorageTask" }) as any as S.Schema<StorageTask>;
 
@@ -753,7 +751,7 @@ export const ListStorageTaskBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   identifier: "ListStorageTaskBySubscriptionRequest",
 }) as any as S.Schema<ListStorageTaskBySubscriptionRequest>;
 
-export interface ListStorageTaskReportRequest {
+export interface ListStorageTasksReportRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -765,7 +763,7 @@ export interface ListStorageTaskReportRequest {
   /** Optional. When specified, it can be used to query using reporting properties. */
   _filter?: string;
 }
-export const ListStorageTaskReportRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListStorageTasksReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -781,8 +779,8 @@ export const ListStorageTaskReportRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListStorageTaskReportRequest",
-}) as any as S.Schema<ListStorageTaskReportRequest>;
+  identifier: "ListStorageTasksReportRequest",
+}) as any as S.Schema<ListStorageTasksReportRequest>;
 
 /** Represents the status of the execution. */
 export type RunStatusEnum = "InProgress" | "Finished";
@@ -891,38 +889,6 @@ export const StorageTaskReportSummary = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "StorageTaskReportSummary",
 }) as any as S.Schema<StorageTaskReportSummary>;
-
-export interface StopStorageTaskAllAssignmentRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the storage task within the specified resource group. Storage task names must be between 3 and 18 characters in length and use numbers and lower-case letters only. */
-  storageTaskName: string;
-}
-export const StopStorageTaskAllAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageTaskName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}/stopAllAssignments",
-      code: 200,
-      apiVersion: "2026-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "StopStorageTaskAllAssignmentRequest",
-}) as any as S.Schema<StopStorageTaskAllAssignmentRequest>;
-
-export interface StopStorageTaskAllAssignmentResponse {}
-export const StopStorageTaskAllAssignmentResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "StopStorageTaskAllAssignmentResponse",
-}) as any as S.Schema<StopStorageTaskAllAssignmentResponse>;
 
 /** Storage task preview object key value pair properties. */
 export interface StorageTaskPreviewKeyValueProperties {
@@ -1067,7 +1033,7 @@ export const StorageTaskPreviewActionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageTaskPreviewActionProperties",
 }) as any as S.Schema<StorageTaskPreviewActionProperties>;
 
-export interface StorageTasksPreviewActionsRequest {
+export interface PreviewStorageTaskActionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Represents an Azure geography region where supported resource providers live. */
@@ -1075,7 +1041,7 @@ export interface StorageTasksPreviewActionsRequest {
   /** Properties of the storage task preview. */
   properties: StorageTaskPreviewActionProperties;
 }
-export const StorageTasksPreviewActionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const PreviewStorageTaskActionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -1089,8 +1055,8 @@ export const StorageTasksPreviewActionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StorageTasksPreviewActionsRequest",
-}) as any as S.Schema<StorageTasksPreviewActionsRequest>;
+  identifier: "PreviewStorageTaskActionsRequest",
+}) as any as S.Schema<PreviewStorageTaskActionsRequest>;
 
 /** Storage Task Preview Action. */
 export interface StorageTaskPreviewAction {
@@ -1105,20 +1071,52 @@ export const StorageTaskPreviewAction = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageTaskPreviewAction",
 }) as any as S.Schema<StorageTaskPreviewAction>;
 
+export interface StopStorageTaskAllAssignmentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the storage task within the specified resource group. Storage task names must be between 3 and 18 characters in length and use numbers and lower-case letters only. */
+  storageTaskName: string;
+}
+export const StopStorageTaskAllAssignmentsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      storageTaskName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}/stopAllAssignments",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "StopStorageTaskAllAssignmentsRequest",
+}) as any as S.Schema<StopStorageTaskAllAssignmentsRequest>;
+
+export interface StopStorageTaskAllAssignmentsResponse {}
+export const StopStorageTaskAllAssignmentsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "StopStorageTaskAllAssignmentsResponse",
+}) as any as S.Schema<StopStorageTaskAllAssignmentsResponse>;
+
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type StorageTasksUpdateRequestIdentity =
-  StorageTasksCreateRequestIdentity;
-export const StorageTasksUpdateRequestIdentity =
-  StorageTasksCreateRequestIdentity;
+export type UpdateStorageTaskRequestIdentity = CreateStorageTaskRequestIdentity;
+export const UpdateStorageTaskRequestIdentity =
+  CreateStorageTaskRequestIdentity;
 
 /** Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than 256 characters. */
-export type StorageTasksUpdateRequestTagsMap = {
+export type UpdateStorageTaskRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageTasksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageTaskRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageTasksUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateStorageTaskRequestTagsMap>;
 
 /** Properties of the storage task. */
 export interface StorageTaskUpdatePropertiesInput {
@@ -1147,9 +1145,9 @@ export interface UpdateStorageTaskRequest {
   /** The name of the storage task within the specified resource group. Storage task names must be between 3 and 18 characters in length and use numbers and lower-case letters only. */
   storageTaskName: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: StorageTasksCreateRequestIdentity;
+  identity?: CreateStorageTaskRequestIdentity;
   /** Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than 256 characters. */
-  tags?: StorageTasksUpdateRequestTagsMap;
+  tags?: UpdateStorageTaskRequestTagsMap;
   /** Properties of the storage task. */
   properties?: StorageTaskUpdatePropertiesInput;
 }
@@ -1158,8 +1156,8 @@ export const UpdateStorageTaskRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     storageTaskName: S.String.pipe(T.Label()),
-    identity: S.optional(StorageTasksCreateRequestIdentity),
-    tags: S.optional(StorageTasksUpdateRequestTagsMap),
+    identity: S.optional(CreateStorageTaskRequestIdentity),
+    tags: S.optional(UpdateStorageTaskRequestTagsMap),
     properties: S.optional(StorageTaskUpdatePropertiesInput),
   }).pipe(
     T.Http({
@@ -1174,19 +1172,19 @@ export const UpdateStorageTaskRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateStorageTaskRequest>;
 
 /** Resource tags. */
-export type StorageTasksUpdateResponseTagsMap = {
+export type UpdateStorageTaskResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const StorageTasksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateStorageTaskResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<StorageTasksUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateStorageTaskResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type StorageTasksUpdateResponseIdentity =
-  StorageTasksCreateResponseIdentity;
-export const StorageTasksUpdateResponseIdentity =
-  StorageTasksCreateResponseIdentity;
+export type UpdateStorageTaskResponseIdentity =
+  CreateStorageTaskResponseIdentity;
+export const UpdateStorageTaskResponseIdentity =
+  CreateStorageTaskResponseIdentity;
 
 export interface UpdateStorageTaskResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1198,13 +1196,13 @@ export interface UpdateStorageTaskResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: StorageTasksUpdateResponseTagsMap;
+  tags?: UpdateStorageTaskResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the storage task. */
   properties: StorageTaskProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity: StorageTasksCreateResponseIdentity;
+  identity: CreateStorageTaskResponseIdentity;
 }
 export const UpdateStorageTaskResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1212,10 +1210,10 @@ export const UpdateStorageTaskResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(StorageTasksUpdateResponseTagsMap),
+    tags: S.optional(UpdateStorageTaskResponseTagsMap),
     location: S.String,
     properties: StorageTaskProperties,
-    identity: StorageTasksCreateResponseIdentity,
+    identity: CreateStorageTaskResponseIdentity,
   }),
 ).annotate({
   identifier: "UpdateStorageTaskResponse",
@@ -1326,46 +1324,46 @@ export const ListStorageTaskBySubscription: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListStorageTaskReportError = AzureOpError;
+export type ListStorageTasksReportError = AzureOpError;
 /** Fetch the storage tasks run report summary for each assignment. */
-export const ListStorageTaskReport: API.OperationMethod<
-  ListStorageTaskReportRequest,
+export const ListStorageTasksReport: API.OperationMethod<
+  ListStorageTasksReportRequest,
   StorageTaskReportSummary,
-  ListStorageTaskReportError,
+  ListStorageTasksReportError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListStorageTaskReportRequest,
+  input: ListStorageTasksReportRequest,
   output: StorageTaskReportSummary,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StopStorageTaskAllAssignmentError = AzureOpError;
-/** Stops all active running assignments for the storage task */
-export const StopStorageTaskAllAssignment: API.OperationMethod<
-  StopStorageTaskAllAssignmentRequest,
-  StopStorageTaskAllAssignmentResponse,
-  StopStorageTaskAllAssignmentError,
+export type PreviewStorageTaskActionsError = AzureOpError;
+/** Runs the input conditions against input object metadata properties and designates matched objects in response. */
+export const PreviewStorageTaskActions: API.OperationMethod<
+  PreviewStorageTaskActionsRequest,
+  StorageTaskPreviewAction,
+  PreviewStorageTaskActionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StopStorageTaskAllAssignmentRequest,
-  output: StopStorageTaskAllAssignmentResponse,
+  input: PreviewStorageTaskActionsRequest,
+  output: StorageTaskPreviewAction,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageTasksPreviewActionsError = AzureOpError;
-/** Runs the input conditions against input object metadata properties and designates matched objects in response. */
-export const StorageTasksPreviewActions: API.OperationMethod<
-  StorageTasksPreviewActionsRequest,
-  StorageTaskPreviewAction,
-  StorageTasksPreviewActionsError,
+export type StopStorageTaskAllAssignmentsError = AzureOpError;
+/** Stops all active running assignments for the storage task */
+export const StopStorageTaskAllAssignments: API.OperationMethod<
+  StopStorageTaskAllAssignmentsRequest,
+  StopStorageTaskAllAssignmentsResponse,
+  StopStorageTaskAllAssignmentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageTasksPreviewActionsRequest,
-  output: StorageTaskPreviewAction,
+  input: StopStorageTaskAllAssignmentsRequest,
+  output: StopStorageTaskAllAssignmentsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

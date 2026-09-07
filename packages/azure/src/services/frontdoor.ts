@@ -222,7 +222,7 @@ export const DeletePolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePolicyResponse",
 }) as any as S.Schema<DeletePolicyResponse>;
 
-export interface DeleteRuleEngineRequest {
+export interface DeleteRulesEngineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -232,7 +232,7 @@ export interface DeleteRuleEngineRequest {
   /** Name of the Rules Engine which is unique within the Front Door. */
   rulesEngineName: string;
 }
-export const DeleteRuleEngineRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteRulesEngineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -247,17 +247,17 @@ export const DeleteRuleEngineRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeleteRuleEngineRequest",
-}) as any as S.Schema<DeleteRuleEngineRequest>;
+  identifier: "DeleteRulesEngineRequest",
+}) as any as S.Schema<DeleteRulesEngineRequest>;
 
-export interface DeleteRuleEngineResponse {}
-export const DeleteRuleEngineResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteRulesEngineResponse {}
+export const DeleteRulesEngineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteRuleEngineResponse",
-}) as any as S.Schema<DeleteRuleEngineResponse>;
+  identifier: "DeleteRulesEngineResponse",
+}) as any as S.Schema<DeleteRulesEngineResponse>;
 
-export interface DisableFrontendEndpointHttpRequest {
+export interface DisableFrontendEndpointHttpsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -267,7 +267,7 @@ export interface DisableFrontendEndpointHttpRequest {
   /** Name of the Frontend endpoint which is unique within the Front Door. */
   frontendEndpointName: string;
 }
-export const DisableFrontendEndpointHttpRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisableFrontendEndpointHttpsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -282,15 +282,15 @@ export const DisableFrontendEndpointHttpRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DisableFrontendEndpointHttpRequest",
-}) as any as S.Schema<DisableFrontendEndpointHttpRequest>;
+  identifier: "DisableFrontendEndpointHttpsRequest",
+}) as any as S.Schema<DisableFrontendEndpointHttpsRequest>;
 
-export interface DisableFrontendEndpointHttpResponse {}
-export const DisableFrontendEndpointHttpResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface DisableFrontendEndpointHttpsResponse {}
+export const DisableFrontendEndpointHttpsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "DisableFrontendEndpointHttpResponse",
-}) as any as S.Schema<DisableFrontendEndpointHttpResponse>;
+  identifier: "DisableFrontendEndpointHttpsResponse",
+}) as any as S.Schema<DisableFrontendEndpointHttpsResponse>;
 
 /** Defines the source of the SSL certificate */
 export type FrontDoorCertificateSource = "AzureKeyVault" | "FrontDoor";
@@ -355,7 +355,7 @@ export const FrontDoorCertificateSourceParameters = /*@__PURE__*/ S.suspend(
   identifier: "FrontDoorCertificateSourceParameters",
 }) as any as S.Schema<FrontDoorCertificateSourceParameters>;
 
-export interface EnableFrontendEndpointHttpRequest {
+export interface EnableFrontendEndpointHttpsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -375,7 +375,7 @@ export interface EnableFrontendEndpointHttpRequest {
   /** Parameters required for enabling SSL with Front Door-managed certificates (if certificateSource=FrontDoor) */
   frontDoorCertificateSourceParameters?: FrontDoorCertificateSourceParameters;
 }
-export const EnableFrontendEndpointHttpRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableFrontendEndpointHttpsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -399,57 +399,15 @@ export const EnableFrontendEndpointHttpRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EnableFrontendEndpointHttpRequest",
-}) as any as S.Schema<EnableFrontendEndpointHttpRequest>;
+  identifier: "EnableFrontendEndpointHttpsRequest",
+}) as any as S.Schema<EnableFrontendEndpointHttpsRequest>;
 
-export interface EnableFrontendEndpointHttpResponse {}
-export const EnableFrontendEndpointHttpResponse = /*@__PURE__*/ S.suspend(() =>
+export interface EnableFrontendEndpointHttpsResponse {}
+export const EnableFrontendEndpointHttpsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "EnableFrontendEndpointHttpResponse",
-}) as any as S.Schema<EnableFrontendEndpointHttpResponse>;
-
-/** The path to the content to be purged. Can describe a file path or a wild card directory. */
-export type EndpointsPurgeContentRequestContentPathsList = Array<string>;
-export const EndpointsPurgeContentRequestContentPathsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EndpointsPurgeContentRequestContentPathsList>;
-
-export interface EndpointsPurgeContentRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Front Door which is globally unique. */
-  frontDoorName: string;
-  /** The path to the content to be purged. Can describe a file path or a wild card directory. */
-  contentPaths: EndpointsPurgeContentRequestContentPathsList;
-}
-export const EndpointsPurgeContentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    frontDoorName: S.String.pipe(T.Label()),
-    contentPaths: EndpointsPurgeContentRequestContentPathsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors/{frontDoorName}/purge",
-      code: 200,
-      apiVersion: "2025-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "EndpointsPurgeContentRequest",
-}) as any as S.Schema<EndpointsPurgeContentRequest>;
-
-export interface EndpointsPurgeContentResponse {}
-export const EndpointsPurgeContentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EndpointsPurgeContentResponse",
-}) as any as S.Schema<EndpointsPurgeContentResponse>;
+  identifier: "EnableFrontendEndpointHttpsResponse",
+}) as any as S.Schema<EnableFrontendEndpointHttpsResponse>;
 
 /** Resource tags. */
 export type ExperimentsCreateOrUpdateRequestTagsMap = {
@@ -1668,54 +1626,6 @@ export const FrontDoorsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FrontDoorsCreateOrUpdateResponse",
 }) as any as S.Schema<FrontDoorsCreateOrUpdateResponse>;
 
-export interface FrontDoorsValidateCustomDomainRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Front Door which is globally unique. */
-  frontDoorName: string;
-  /** The host name of the custom domain. Must be a domain name. */
-  hostName: string;
-}
-export const FrontDoorsValidateCustomDomainRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      frontDoorName: S.String.pipe(T.Label()),
-      hostName: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors/{frontDoorName}/validateCustomDomain",
-        code: 200,
-        apiVersion: "2025-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "FrontDoorsValidateCustomDomainRequest",
-}) as any as S.Schema<FrontDoorsValidateCustomDomainRequest>;
-
-/** Output of custom domain validation. */
-export interface ValidateCustomDomainOutput {
-  /** Indicates whether the custom domain is valid or not. */
-  customDomainValidated?: boolean;
-  /** The reason why the custom domain is not valid. */
-  reason?: string;
-  /** Error message describing why the custom domain is not valid. */
-  message?: string;
-}
-export const ValidateCustomDomainOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customDomainValidated: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ValidateCustomDomainOutput",
-}) as any as S.Schema<ValidateCustomDomainOutput>;
-
 export interface GetExperimentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1745,13 +1655,13 @@ export const GetExperimentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetExperimentRequest>;
 
 /** Resource tags. */
-export type ExperimentsGetResponseTagsMap = {
+export type GetExperimentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExperimentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetExperimentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExperimentsGetResponseTagsMap>;
+) as any as S.Schema<GetExperimentResponseTagsMap>;
 
 export interface GetExperimentResponse {
   /** Resource ID. */
@@ -1763,7 +1673,7 @@ export interface GetExperimentResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: ExperimentsGetResponseTagsMap;
+  tags?: GetExperimentResponseTagsMap;
   /** The properties of an Experiment */
   properties?: ExperimentProperties;
 }
@@ -1773,7 +1683,7 @@ export const GetExperimentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ExperimentsGetResponseTagsMap),
+    tags: S.optional(GetExperimentResponseTagsMap),
     properties: S.optional(ExperimentProperties),
   }),
 ).annotate({
@@ -1806,13 +1716,11 @@ export const GetFrontDoorRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetFrontDoorRequest>;
 
 /** Resource tags. */
-export type FrontDoorsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FrontDoorsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFrontDoorResponseTagsMap = { [key: string]: string | undefined };
+export const GetFrontDoorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FrontDoorsGetResponseTagsMap>;
+) as any as S.Schema<GetFrontDoorResponseTagsMap>;
 
 export interface GetFrontDoorResponse {
   /** Resource ID. */
@@ -1824,7 +1732,7 @@ export interface GetFrontDoorResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: FrontDoorsGetResponseTagsMap;
+  tags?: GetFrontDoorResponseTagsMap;
   /** Properties of the Front Door Load Balancer */
   properties?: FrontDoorProperties;
 }
@@ -1834,7 +1742,7 @@ export const GetFrontDoorResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(FrontDoorsGetResponseTagsMap),
+    tags: S.optional(GetFrontDoorResponseTagsMap),
     properties: S.optional(FrontDoorProperties),
   }),
 ).annotate({
@@ -1916,14 +1824,14 @@ export const GetNetworkExperimentProfileRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetNetworkExperimentProfileRequest>;
 
 /** Resource tags. */
-export type NetworkExperimentProfilesGetResponseTagsMap = {
+export type GetNetworkExperimentProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkExperimentProfilesGetResponseTagsMap =
+export const GetNetworkExperimentProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkExperimentProfilesGetResponseTagsMap>;
+  ) as any as S.Schema<GetNetworkExperimentProfileResponseTagsMap>;
 
 /** Defines the properties of an experiment */
 export interface ProfileProperties {
@@ -1951,7 +1859,7 @@ export interface GetNetworkExperimentProfileResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: NetworkExperimentProfilesGetResponseTagsMap;
+  tags?: GetNetworkExperimentProfileResponseTagsMap;
   /** The properties of a Profile */
   properties?: ProfileProperties;
   /** Gets a unique read-only string that changes whenever the resource is updated. */
@@ -1963,7 +1871,7 @@ export const GetNetworkExperimentProfileResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(NetworkExperimentProfilesGetResponseTagsMap),
+    tags: S.optional(GetNetworkExperimentProfileResponseTagsMap),
     properties: S.optional(ProfileProperties),
     etag: S.optional(S.String),
   }),
@@ -1997,11 +1905,11 @@ export const GetPolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPolicyRequest>;
 
 /** Resource tags. */
-export type PoliciesGetResponseTagsMap = { [key: string]: string | undefined };
-export const PoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetPolicyResponseTagsMap = { [key: string]: string | undefined };
+export const GetPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoliciesGetResponseTagsMap>;
+) as any as S.Schema<GetPolicyResponseTagsMap>;
 
 /** Describes if the policy is in enabled or disabled state. Defaults to Enabled if not specified. */
 export type PolicyEnabledState = "Disabled" | "Enabled";
@@ -2725,7 +2633,7 @@ export interface GetPolicyResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: PoliciesGetResponseTagsMap;
+  tags?: GetPolicyResponseTagsMap;
   /** Properties of the web application firewall policy. */
   properties?: WebApplicationFirewallPolicyProperties;
   /** Gets a unique read-only string that changes whenever the resource is updated. */
@@ -2739,7 +2647,7 @@ export const GetPolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(PoliciesGetResponseTagsMap),
+    tags: S.optional(GetPolicyResponseTagsMap),
     properties: S.optional(WebApplicationFirewallPolicyProperties),
     etag: S.optional(S.String),
     sku: S.optional(Sku),
@@ -2748,14 +2656,14 @@ export const GetPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPolicyResponse",
 }) as any as S.Schema<GetPolicyResponse>;
 
-export type ReportsGetLatencyScorecardsRequestAggregationInterval =
+export type GetReportLatencyScorecardsRequestAggregationInterval =
   | "Daily"
   | "Weekly"
   | "Monthly";
-export const ReportsGetLatencyScorecardsRequestAggregationInterval =
+export const GetReportLatencyScorecardsRequestAggregationInterval =
   /*@__PURE__*/ S.String;
 
-export interface GetReportLatencyScorecardRequest {
+export interface GetReportLatencyScorecardsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2770,10 +2678,10 @@ export interface GetReportLatencyScorecardRequest {
   country?: string;
   /** The aggregation interval of the Latency Scorecard */
   aggregationInterval:
-    | ReportsGetLatencyScorecardsRequestAggregationInterval
+    | GetReportLatencyScorecardsRequestAggregationInterval
     | (string & {});
 }
-export const GetReportLatencyScorecardRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReportLatencyScorecardsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2782,7 +2690,7 @@ export const GetReportLatencyScorecardRequest = /*@__PURE__*/ S.suspend(() =>
     endDateTimeUTC: S.optional(S.String.pipe(T.Query())),
     country: S.optional(S.String.pipe(T.Query())),
     aggregationInterval:
-      ReportsGetLatencyScorecardsRequestAggregationInterval.pipe(T.Query()),
+      GetReportLatencyScorecardsRequestAggregationInterval.pipe(T.Query()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2792,18 +2700,17 @@ export const GetReportLatencyScorecardRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetReportLatencyScorecardRequest",
-}) as any as S.Schema<GetReportLatencyScorecardRequest>;
+  identifier: "GetReportLatencyScorecardsRequest",
+}) as any as S.Schema<GetReportLatencyScorecardsRequest>;
 
 /** Resource tags. */
-export type ReportsGetLatencyScorecardsResponseTagsMap = {
+export type GetReportLatencyScorecardsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ReportsGetLatencyScorecardsResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ReportsGetLatencyScorecardsResponseTagsMap>;
+export const GetReportLatencyScorecardsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetReportLatencyScorecardsResponseTagsMap>;
 
 /** Defines the properties of a latency metric used in the latency scorecard */
 export interface LatencyMetric {
@@ -2887,7 +2794,7 @@ export const LatencyScorecardProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "LatencyScorecardProperties",
 }) as any as S.Schema<LatencyScorecardProperties>;
 
-export interface GetReportLatencyScorecardResponse {
+export interface GetReportLatencyScorecardsResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -2897,35 +2804,35 @@ export interface GetReportLatencyScorecardResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: ReportsGetLatencyScorecardsResponseTagsMap;
+  tags?: GetReportLatencyScorecardsResponseTagsMap;
   /** The properties of a latency scorecard */
   properties?: LatencyScorecardProperties;
 }
-export const GetReportLatencyScorecardResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetReportLatencyScorecardsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ReportsGetLatencyScorecardsResponseTagsMap),
+    tags: S.optional(GetReportLatencyScorecardsResponseTagsMap),
     properties: S.optional(LatencyScorecardProperties),
   }),
 ).annotate({
-  identifier: "GetReportLatencyScorecardResponse",
-}) as any as S.Schema<GetReportLatencyScorecardResponse>;
+  identifier: "GetReportLatencyScorecardsResponse",
+}) as any as S.Schema<GetReportLatencyScorecardsResponse>;
 
-export type ReportsGetTimeseriesRequestAggregationInterval = "Hourly" | "Daily";
-export const ReportsGetTimeseriesRequestAggregationInterval =
+export type GetReportTimeseriesRequestAggregationInterval = "Hourly" | "Daily";
+export const GetReportTimeseriesRequestAggregationInterval =
   /*@__PURE__*/ S.String;
 
-export type ReportsGetTimeseriesRequestTimeseriesType =
+export type GetReportTimeseriesRequestTimeseriesType =
   | "MeasurementCounts"
   | "LatencyP50"
   | "LatencyP75"
   | "LatencyP95";
-export const ReportsGetTimeseriesRequestTimeseriesType = /*@__PURE__*/ S.String;
+export const GetReportTimeseriesRequestTimeseriesType = /*@__PURE__*/ S.String;
 
-export interface GetReportTimeseryRequest {
+export interface GetReportTimeseriesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2940,16 +2847,16 @@ export interface GetReportTimeseryRequest {
   endDateTimeUTC: string;
   /** The aggregation interval of the Timeseries */
   aggregationInterval:
-    | ReportsGetTimeseriesRequestAggregationInterval
+    | GetReportTimeseriesRequestAggregationInterval
     | (string & {});
   /** The type of Timeseries */
-  timeseriesType: ReportsGetTimeseriesRequestTimeseriesType | (string & {});
+  timeseriesType: GetReportTimeseriesRequestTimeseriesType | (string & {});
   /** The specific endpoint */
   endpoint?: string;
   /** The country associated with the Timeseries. Values are country ISO codes as specified here- https://www.iso.org/iso-3166-country-codes.html */
   country?: string;
 }
-export const GetReportTimeseryRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetReportTimeseriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2957,10 +2864,10 @@ export const GetReportTimeseryRequest = /*@__PURE__*/ S.suspend(() =>
     experimentName: S.String.pipe(T.Label()),
     startDateTimeUTC: S.String.pipe(T.Query()),
     endDateTimeUTC: S.String.pipe(T.Query()),
-    aggregationInterval: ReportsGetTimeseriesRequestAggregationInterval.pipe(
+    aggregationInterval: GetReportTimeseriesRequestAggregationInterval.pipe(
       T.Query(),
     ),
-    timeseriesType: ReportsGetTimeseriesRequestTimeseriesType.pipe(T.Query()),
+    timeseriesType: GetReportTimeseriesRequestTimeseriesType.pipe(T.Query()),
     endpoint: S.optional(S.String.pipe(T.Query())),
     country: S.optional(S.String.pipe(T.Query())),
   }).pipe(
@@ -2972,17 +2879,17 @@ export const GetReportTimeseryRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetReportTimeseryRequest",
-}) as any as S.Schema<GetReportTimeseryRequest>;
+  identifier: "GetReportTimeseriesRequest",
+}) as any as S.Schema<GetReportTimeseriesRequest>;
 
 /** Resource tags. */
-export type ReportsGetTimeseriesResponseTagsMap = {
+export type GetReportTimeseriesResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ReportsGetTimeseriesResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetReportTimeseriesResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ReportsGetTimeseriesResponseTagsMap>;
+) as any as S.Schema<GetReportTimeseriesResponseTagsMap>;
 
 /** The aggregation interval of the Timeseries */
 export type AggregationInterval = "Hourly" | "Daily";
@@ -3049,7 +2956,7 @@ export const TimeseriesProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "TimeseriesProperties",
 }) as any as S.Schema<TimeseriesProperties>;
 
-export interface GetReportTimeseryResponse {
+export interface GetReportTimeseriesResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -3059,24 +2966,24 @@ export interface GetReportTimeseryResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: ReportsGetTimeseriesResponseTagsMap;
+  tags?: GetReportTimeseriesResponseTagsMap;
   /** The properties of a Timeseries */
   properties?: TimeseriesProperties;
 }
-export const GetReportTimeseryResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetReportTimeseriesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ReportsGetTimeseriesResponseTagsMap),
+    tags: S.optional(GetReportTimeseriesResponseTagsMap),
     properties: S.optional(TimeseriesProperties),
   }),
 ).annotate({
-  identifier: "GetReportTimeseryResponse",
-}) as any as S.Schema<GetReportTimeseryResponse>;
+  identifier: "GetReportTimeseriesResponse",
+}) as any as S.Schema<GetReportTimeseriesResponse>;
 
-export interface GetRuleEngineRequest {
+export interface GetRulesEngineRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3086,7 +2993,7 @@ export interface GetRuleEngineRequest {
   /** Name of the Rules Engine which is unique within the Front Door. */
   rulesEngineName: string;
 }
-export const GetRuleEngineRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRulesEngineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3101,10 +3008,10 @@ export const GetRuleEngineRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GetRuleEngineRequest",
-}) as any as S.Schema<GetRuleEngineRequest>;
+  identifier: "GetRulesEngineRequest",
+}) as any as S.Schema<GetRulesEngineRequest>;
 
-export interface GetRuleEngineResponse {
+export interface GetRulesEngineResponse {
   /** Resource ID. */
   id?: string;
   /** Resource name. */
@@ -3114,7 +3021,7 @@ export interface GetRuleEngineResponse {
   /** Properties of the Rules Engine Configuration. */
   properties?: RulesEngineProperties;
 }
-export const GetRuleEngineResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRulesEngineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3122,8 +3029,8 @@ export const GetRuleEngineResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(RulesEngineProperties),
   }),
 ).annotate({
-  identifier: "GetRuleEngineResponse",
-}) as any as S.Schema<GetRuleEngineResponse>;
+  identifier: "GetRulesEngineResponse",
+}) as any as S.Schema<GetRulesEngineResponse>;
 
 export interface ListExperimentByProfileRequest {
   /** The ID of the target subscription. */
@@ -3825,7 +3732,7 @@ export const PreconfiguredEndpointList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PreconfiguredEndpointList",
 }) as any as S.Schema<PreconfiguredEndpointList>;
 
-export interface ListRuleEngineByFrontDoorRequest {
+export interface ListRulesEngineByFrontDoorRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3833,7 +3740,7 @@ export interface ListRuleEngineByFrontDoorRequest {
   /** Name of the Front Door which is globally unique. */
   frontDoorName: string;
 }
-export const ListRuleEngineByFrontDoorRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListRulesEngineByFrontDoorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3847,8 +3754,8 @@ export const ListRuleEngineByFrontDoorRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListRuleEngineByFrontDoorRequest",
-}) as any as S.Schema<ListRuleEngineByFrontDoorRequest>;
+  identifier: "ListRulesEngineByFrontDoorRequest",
+}) as any as S.Schema<ListRulesEngineByFrontDoorRequest>;
 
 /** The RulesEngine items on this page */
 export type RulesEngineListResultValueList = Array<RulesEngine>;
@@ -4072,6 +3979,48 @@ export const PoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PoliciesCreateOrUpdateResponse",
 }) as any as S.Schema<PoliciesCreateOrUpdateResponse>;
 
+/** The path to the content to be purged. Can describe a file path or a wild card directory. */
+export type PurgeEndpointContentRequestContentPathsList = Array<string>;
+export const PurgeEndpointContentRequestContentPathsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PurgeEndpointContentRequestContentPathsList>;
+
+export interface PurgeEndpointContentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Front Door which is globally unique. */
+  frontDoorName: string;
+  /** The path to the content to be purged. Can describe a file path or a wild card directory. */
+  contentPaths: PurgeEndpointContentRequestContentPathsList;
+}
+export const PurgeEndpointContentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    frontDoorName: S.String.pipe(T.Label()),
+    contentPaths: PurgeEndpointContentRequestContentPathsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors/{frontDoorName}/purge",
+      code: 200,
+      apiVersion: "2025-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeEndpointContentRequest",
+}) as any as S.Schema<PurgeEndpointContentRequest>;
+
+export interface PurgeEndpointContentResponse {}
+export const PurgeEndpointContentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeEndpointContentResponse",
+}) as any as S.Schema<PurgeEndpointContentResponse>;
+
 export interface RulesEnginesCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -4125,13 +4074,13 @@ export const RulesEnginesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RulesEnginesCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type ExperimentsUpdateRequestTagsMap = {
+export type UpdateExperimentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExperimentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateExperimentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExperimentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateExperimentRequestTagsMap>;
 
 /** Defines the properties of an experiment */
 export interface ExperimentUpdateProperties {
@@ -4159,7 +4108,7 @@ export interface UpdateExperimentRequest {
   /** The Experiment identifier associated with the Experiment */
   experimentName: string;
   /** Resource tags. */
-  tags?: ExperimentsUpdateRequestTagsMap;
+  tags?: UpdateExperimentRequestTagsMap;
   /** The properties of a Profile */
   properties?: ExperimentUpdateProperties;
 }
@@ -4169,7 +4118,7 @@ export const UpdateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     profileName: S.String.pipe(T.Label()),
     experimentName: S.String.pipe(T.Label()),
-    tags: S.optional(ExperimentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateExperimentRequestTagsMap),
     properties: S.optional(ExperimentUpdateProperties),
   }).pipe(
     T.Http({
@@ -4184,13 +4133,13 @@ export const UpdateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateExperimentRequest>;
 
 /** Resource tags. */
-export type ExperimentsUpdateResponseTagsMap = {
+export type UpdateExperimentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExperimentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateExperimentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExperimentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateExperimentResponseTagsMap>;
 
 export interface UpdateExperimentResponse {
   /** Resource ID. */
@@ -4202,7 +4151,7 @@ export interface UpdateExperimentResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: ExperimentsUpdateResponseTagsMap;
+  tags?: UpdateExperimentResponseTagsMap;
   /** The properties of an Experiment */
   properties?: ExperimentProperties;
 }
@@ -4212,7 +4161,7 @@ export const UpdateExperimentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(ExperimentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateExperimentResponseTagsMap),
     properties: S.optional(ExperimentProperties),
   }),
 ).annotate({
@@ -4233,14 +4182,14 @@ export const ProfileUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ProfileUpdateProperties>;
 
 /** Resource tags. */
-export type NetworkExperimentProfilesUpdateRequestTagsMap = {
+export type UpdateNetworkExperimentProfileRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkExperimentProfilesUpdateRequestTagsMap =
+export const UpdateNetworkExperimentProfileRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkExperimentProfilesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateNetworkExperimentProfileRequestTagsMap>;
 
 export interface UpdateNetworkExperimentProfileRequest {
   /** The ID of the target subscription. */
@@ -4252,7 +4201,7 @@ export interface UpdateNetworkExperimentProfileRequest {
   /** The properties of a Profile */
   properties?: ProfileUpdateProperties;
   /** Resource tags. */
-  tags?: NetworkExperimentProfilesUpdateRequestTagsMap;
+  tags?: UpdateNetworkExperimentProfileRequestTagsMap;
 }
 export const UpdateNetworkExperimentProfileRequest = /*@__PURE__*/ S.suspend(
   () =>
@@ -4261,7 +4210,7 @@ export const UpdateNetworkExperimentProfileRequest = /*@__PURE__*/ S.suspend(
       resourceGroupName: S.String.pipe(T.Label()),
       profileName: S.String.pipe(T.Label()),
       properties: S.optional(ProfileUpdateProperties),
-      tags: S.optional(NetworkExperimentProfilesUpdateRequestTagsMap),
+      tags: S.optional(UpdateNetworkExperimentProfileRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -4275,14 +4224,14 @@ export const UpdateNetworkExperimentProfileRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNetworkExperimentProfileRequest>;
 
 /** Resource tags. */
-export type NetworkExperimentProfilesUpdateResponseTagsMap = {
+export type UpdateNetworkExperimentProfileResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkExperimentProfilesUpdateResponseTagsMap =
+export const UpdateNetworkExperimentProfileResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<NetworkExperimentProfilesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateNetworkExperimentProfileResponseTagsMap>;
 
 export interface UpdateNetworkExperimentProfileResponse {
   /** Resource ID. */
@@ -4294,7 +4243,7 @@ export interface UpdateNetworkExperimentProfileResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: NetworkExperimentProfilesUpdateResponseTagsMap;
+  tags?: UpdateNetworkExperimentProfileResponseTagsMap;
   /** The properties of a Profile */
   properties?: ProfileProperties;
   /** Gets a unique read-only string that changes whenever the resource is updated. */
@@ -4307,7 +4256,7 @@ export const UpdateNetworkExperimentProfileResponse = /*@__PURE__*/ S.suspend(
       name: S.optional(S.String),
       type: S.optional(S.String),
       location: S.optional(S.String),
-      tags: S.optional(NetworkExperimentProfilesUpdateResponseTagsMap),
+      tags: S.optional(UpdateNetworkExperimentProfileResponseTagsMap),
       properties: S.optional(ProfileProperties),
       etag: S.optional(S.String),
     }),
@@ -4316,13 +4265,11 @@ export const UpdateNetworkExperimentProfileResponse = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<UpdateNetworkExperimentProfileResponse>;
 
 /** Resource tags. */
-export type PoliciesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PoliciesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdatePolicyRequestTagsMap = { [key: string]: string | undefined };
+export const UpdatePolicyRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoliciesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdatePolicyRequestTagsMap>;
 
 export interface UpdatePolicyRequest {
   /** The ID of the target subscription. */
@@ -4332,14 +4279,14 @@ export interface UpdatePolicyRequest {
   /** The name of the Web Application Firewall Policy. */
   policyName: string;
   /** Resource tags. */
-  tags?: PoliciesUpdateRequestTagsMap;
+  tags?: UpdatePolicyRequestTagsMap;
 }
 export const UpdatePolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     policyName: S.String.pipe(T.Label()),
-    tags: S.optional(PoliciesUpdateRequestTagsMap),
+    tags: S.optional(UpdatePolicyRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4353,13 +4300,11 @@ export const UpdatePolicyRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePolicyRequest>;
 
 /** Resource tags. */
-export type PoliciesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PoliciesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdatePolicyResponseTagsMap = { [key: string]: string | undefined };
+export const UpdatePolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoliciesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdatePolicyResponseTagsMap>;
 
 export interface UpdatePolicyResponse {
   /** Resource ID. */
@@ -4371,7 +4316,7 @@ export interface UpdatePolicyResponse {
   /** Resource location. */
   location?: string;
   /** Resource tags. */
-  tags?: PoliciesUpdateResponseTagsMap;
+  tags?: UpdatePolicyResponseTagsMap;
   /** Properties of the web application firewall policy. */
   properties?: WebApplicationFirewallPolicyProperties;
   /** Gets a unique read-only string that changes whenever the resource is updated. */
@@ -4385,7 +4330,7 @@ export const UpdatePolicyResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(PoliciesUpdateResponseTagsMap),
+    tags: S.optional(UpdatePolicyResponseTagsMap),
     properties: S.optional(WebApplicationFirewallPolicyProperties),
     etag: S.optional(S.String),
     sku: S.optional(Sku),
@@ -4393,6 +4338,54 @@ export const UpdatePolicyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdatePolicyResponse",
 }) as any as S.Schema<UpdatePolicyResponse>;
+
+export interface ValidateFrontDoorCustomDomainRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Front Door which is globally unique. */
+  frontDoorName: string;
+  /** The host name of the custom domain. Must be a domain name. */
+  hostName: string;
+}
+export const ValidateFrontDoorCustomDomainRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      frontDoorName: S.String.pipe(T.Label()),
+      hostName: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/frontDoors/{frontDoorName}/validateCustomDomain",
+        code: 200,
+        apiVersion: "2025-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ValidateFrontDoorCustomDomainRequest",
+}) as any as S.Schema<ValidateFrontDoorCustomDomainRequest>;
+
+/** Output of custom domain validation. */
+export interface ValidateCustomDomainOutput {
+  /** Indicates whether the custom domain is valid or not. */
+  customDomainValidated?: boolean;
+  /** The reason why the custom domain is not valid. */
+  reason?: string;
+  /** Error message describing why the custom domain is not valid. */
+  message?: string;
+}
+export const ValidateCustomDomainOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customDomainValidated: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ValidateCustomDomainOutput",
+}) as any as S.Schema<ValidateCustomDomainOutput>;
 
 export type CheckFrontDoorNameAvailabilityError = AzureOpError;
 /** Check the availability of a Front Door resource name. */
@@ -4484,61 +4477,46 @@ export const DeletePolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteRuleEngineError = AzureOpError;
+export type DeleteRulesEngineError = AzureOpError;
 /** Deletes an existing Rules Engine Configuration with the specified parameters. */
-export const DeleteRuleEngine: API.OperationMethod<
-  DeleteRuleEngineRequest,
-  DeleteRuleEngineResponse,
-  DeleteRuleEngineError,
+export const DeleteRulesEngine: API.OperationMethod<
+  DeleteRulesEngineRequest,
+  DeleteRulesEngineResponse,
+  DeleteRulesEngineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteRuleEngineRequest,
-  output: DeleteRuleEngineResponse,
+  input: DeleteRulesEngineRequest,
+  output: DeleteRulesEngineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DisableFrontendEndpointHttpError = AzureOpError;
+export type DisableFrontendEndpointHttpsError = AzureOpError;
 /** Disables a frontendEndpoint for HTTPS traffic */
-export const DisableFrontendEndpointHttp: API.OperationMethod<
-  DisableFrontendEndpointHttpRequest,
-  DisableFrontendEndpointHttpResponse,
-  DisableFrontendEndpointHttpError,
+export const DisableFrontendEndpointHttps: API.OperationMethod<
+  DisableFrontendEndpointHttpsRequest,
+  DisableFrontendEndpointHttpsResponse,
+  DisableFrontendEndpointHttpsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisableFrontendEndpointHttpRequest,
-  output: DisableFrontendEndpointHttpResponse,
+  input: DisableFrontendEndpointHttpsRequest,
+  output: DisableFrontendEndpointHttpsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnableFrontendEndpointHttpError = AzureOpError;
+export type EnableFrontendEndpointHttpsError = AzureOpError;
 /** Enables a frontendEndpoint for HTTPS traffic */
-export const EnableFrontendEndpointHttp: API.OperationMethod<
-  EnableFrontendEndpointHttpRequest,
-  EnableFrontendEndpointHttpResponse,
-  EnableFrontendEndpointHttpError,
+export const EnableFrontendEndpointHttps: API.OperationMethod<
+  EnableFrontendEndpointHttpsRequest,
+  EnableFrontendEndpointHttpsResponse,
+  EnableFrontendEndpointHttpsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnableFrontendEndpointHttpRequest,
-  output: EnableFrontendEndpointHttpResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EndpointsPurgeContentError = AzureOpError;
-/** Removes a content from Front Door. */
-export const EndpointsPurgeContent: API.OperationMethod<
-  EndpointsPurgeContentRequest,
-  EndpointsPurgeContentResponse,
-  EndpointsPurgeContentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EndpointsPurgeContentRequest,
-  output: EndpointsPurgeContentResponse,
+  input: EnableFrontendEndpointHttpsRequest,
+  output: EnableFrontendEndpointHttpsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4569,21 +4547,6 @@ export const FrontDoorsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: FrontDoorsCreateOrUpdateRequest,
   output: FrontDoorsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FrontDoorsValidateCustomDomainError = AzureOpError;
-/** Validates the custom domain mapping to ensure it maps to the correct Front Door endpoint in DNS. */
-export const FrontDoorsValidateCustomDomain: API.OperationMethod<
-  FrontDoorsValidateCustomDomainRequest,
-  ValidateCustomDomainOutput,
-  FrontDoorsValidateCustomDomainError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FrontDoorsValidateCustomDomainRequest,
-  output: ValidateCustomDomainOutput,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4664,46 +4627,46 @@ export const GetPolicy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetReportLatencyScorecardError = AzureOpError;
+export type GetReportLatencyScorecardsError = AzureOpError;
 /** Gets a Latency Scorecard for a given Experiment Gets a Latency Scorecard for a given Experiment */
-export const GetReportLatencyScorecard: API.OperationMethod<
-  GetReportLatencyScorecardRequest,
-  GetReportLatencyScorecardResponse,
-  GetReportLatencyScorecardError,
+export const GetReportLatencyScorecards: API.OperationMethod<
+  GetReportLatencyScorecardsRequest,
+  GetReportLatencyScorecardsResponse,
+  GetReportLatencyScorecardsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReportLatencyScorecardRequest,
-  output: GetReportLatencyScorecardResponse,
+  input: GetReportLatencyScorecardsRequest,
+  output: GetReportLatencyScorecardsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetReportTimeseryError = AzureOpError;
+export type GetReportTimeseriesError = AzureOpError;
 /** Gets a Timeseries for a given Experiment Gets a Timeseries for a given Experiment */
-export const GetReportTimesery: API.OperationMethod<
-  GetReportTimeseryRequest,
-  GetReportTimeseryResponse,
-  GetReportTimeseryError,
+export const GetReportTimeseries: API.OperationMethod<
+  GetReportTimeseriesRequest,
+  GetReportTimeseriesResponse,
+  GetReportTimeseriesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetReportTimeseryRequest,
-  output: GetReportTimeseryResponse,
+  input: GetReportTimeseriesRequest,
+  output: GetReportTimeseriesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetRuleEngineError = AzureOpError;
+export type GetRulesEngineError = AzureOpError;
 /** Gets a Rules Engine Configuration with the specified name within the specified Front Door. */
-export const GetRuleEngine: API.OperationMethod<
-  GetRuleEngineRequest,
-  GetRuleEngineResponse,
-  GetRuleEngineError,
+export const GetRulesEngine: API.OperationMethod<
+  GetRulesEngineRequest,
+  GetRulesEngineResponse,
+  GetRulesEngineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetRuleEngineRequest,
-  output: GetRuleEngineResponse,
+  input: GetRulesEngineRequest,
+  output: GetRulesEngineResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4859,15 +4822,15 @@ export const ListPreconfiguredEndpoints: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListRuleEngineByFrontDoorError = AzureOpError;
+export type ListRulesEngineByFrontDoorError = AzureOpError;
 /** Lists all of the Rules Engine Configurations within a Front Door. */
-export const ListRuleEngineByFrontDoor: API.OperationMethod<
-  ListRuleEngineByFrontDoorRequest,
+export const ListRulesEngineByFrontDoor: API.OperationMethod<
+  ListRulesEngineByFrontDoorRequest,
   RulesEngineListResult,
-  ListRuleEngineByFrontDoorError,
+  ListRulesEngineByFrontDoorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListRuleEngineByFrontDoorRequest,
+  input: ListRulesEngineByFrontDoorRequest,
   output: RulesEngineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -4899,6 +4862,21 @@ export const PoliciesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PoliciesCreateOrUpdateRequest,
   output: PoliciesCreateOrUpdateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PurgeEndpointContentError = AzureOpError;
+/** Removes a content from Front Door. */
+export const PurgeEndpointContent: API.OperationMethod<
+  PurgeEndpointContentRequest,
+  PurgeEndpointContentResponse,
+  PurgeEndpointContentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeEndpointContentRequest,
+  output: PurgeEndpointContentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4959,6 +4937,21 @@ export const UpdatePolicy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdatePolicyRequest,
   output: UpdatePolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateFrontDoorCustomDomainError = AzureOpError;
+/** Validates the custom domain mapping to ensure it maps to the correct Front Door endpoint in DNS. */
+export const ValidateFrontDoorCustomDomain: API.OperationMethod<
+  ValidateFrontDoorCustomDomainRequest,
+  ValidateCustomDomainOutput,
+  ValidateFrontDoorCustomDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateFrontDoorCustomDomainRequest,
+  output: ValidateCustomDomainOutput,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

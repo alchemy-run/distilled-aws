@@ -4,9 +4,11 @@ import * as API from "@distilled.cloud/core/api";
 import * as T from "../traits.ts";
 import {
   CloudflareProtocol,
+  CloudflarePaginatedProtocol,
   type CloudflareOpError,
   type CloudflareOpContext,
 } from "../protocol.ts";
+import { cloudflarePaginate, ResultInfo } from "../pagination.ts";
 import { CloudflareError, CloudflareRateLimited } from "../errors.ts";
 import * as Retry from "../retry.ts";
 
@@ -84,6 +86,68 @@ export const CreateCustomCsrForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCustomCsrForAccountRequest",
 }) as any as S.Schema<CreateCustomCsrForAccountRequest>;
 
+export type CreateResponseKeyType = "rsa2048" | "p256v1";
+export const CreateResponseKeyType = /*@__PURE__*/ S.String;
+
+export type CreateResponseSansList = Array<string>;
+export const CreateResponseSansList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateResponseSansList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface CreateCustomCsrResponse {
+  /** Custom CSR identifier tag. */
+  id: string;
+  /** When the CSR was created. */
+  createdAt: string;
+  /** The key algorithm used to generate the CSR. */
+  keyType: CreateResponseKeyType;
+  /** Account identifier associated with this CSR. */
+  accountTag?: string | null;
+  /** The common name (domain) for the CSR. */
+  commonName?: string | null;
+  /** Two-letter ISO 3166-1 alpha-2 country code. */
+  country?: string | null;
+  /** The PEM-encoded Certificate Signing Request. */
+  csr?: string | null;
+  /** Optional description for the CSR. */
+  description?: string | null;
+  /** City or locality name. */
+  locality?: string | null;
+  /** Human-readable name for the CSR. */
+  name?: string | null;
+  /** Organization name. */
+  organization?: string | null;
+  /** Organizational unit name. */
+  organizationalUnit?: string | null;
+  /** Subject Alternative Names included in the CSR. */
+  sans?: CreateResponseSansList | null;
+  /** State or province name. */
+  state?: string | null;
+}
+export const CreateCustomCsrResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    keyType: CreateResponseKeyType.pipe(T.Body("key_type")),
+    accountTag: S.optional(S.NullOr(S.String).pipe(T.Body("account_tag"))),
+    commonName: S.optional(S.NullOr(S.String).pipe(T.Body("common_name"))),
+    country: S.optional(S.NullOr(S.String)),
+    csr: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+    locality: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+    organization: S.optional(S.NullOr(S.String)),
+    organizationalUnit: S.optional(
+      S.NullOr(S.String).pipe(T.Body("organizational_unit")),
+    ),
+    sans: S.optional(S.NullOr(CreateResponseSansList)),
+    state: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateCustomCsrResponse",
+}) as any as S.Schema<CreateCustomCsrResponse>;
+
 export interface CreateCustomCsrForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -159,6 +223,19 @@ export const DeleteCustomCsrForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteCustomCsrForAccountRequest",
 }) as any as S.Schema<DeleteCustomCsrForAccountRequest>;
 
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface DeleteCustomCsrResponse {
+  /** Custom CSR identifier tag. */
+  id?: string | null;
+}
+export const DeleteCustomCsrResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteCustomCsrResponse",
+}) as any as S.Schema<DeleteCustomCsrResponse>;
+
 export interface DeleteCustomCsrForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -204,6 +281,68 @@ export const GetCustomCsrForAccountRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetCustomCsrForAccountRequest",
 }) as any as S.Schema<GetCustomCsrForAccountRequest>;
+
+export type GetResponseKeyType = "rsa2048" | "p256v1";
+export const GetResponseKeyType = /*@__PURE__*/ S.String;
+
+export type GetResponseSansList = Array<string>;
+export const GetResponseSansList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetResponseSansList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetCustomCsrResponse {
+  /** Custom CSR identifier tag. */
+  id: string;
+  /** When the CSR was created. */
+  createdAt: string;
+  /** The key algorithm used to generate the CSR. */
+  keyType: GetResponseKeyType;
+  /** Account identifier associated with this CSR. */
+  accountTag?: string | null;
+  /** The common name (domain) for the CSR. */
+  commonName?: string | null;
+  /** Two-letter ISO 3166-1 alpha-2 country code. */
+  country?: string | null;
+  /** The PEM-encoded Certificate Signing Request. */
+  csr?: string | null;
+  /** Optional description for the CSR. */
+  description?: string | null;
+  /** City or locality name. */
+  locality?: string | null;
+  /** Human-readable name for the CSR. */
+  name?: string | null;
+  /** Organization name. */
+  organization?: string | null;
+  /** Organizational unit name. */
+  organizationalUnit?: string | null;
+  /** Subject Alternative Names included in the CSR. */
+  sans?: GetResponseSansList | null;
+  /** State or province name. */
+  state?: string | null;
+}
+export const GetCustomCsrResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    keyType: GetResponseKeyType.pipe(T.Body("key_type")),
+    accountTag: S.optional(S.NullOr(S.String).pipe(T.Body("account_tag"))),
+    commonName: S.optional(S.NullOr(S.String).pipe(T.Body("common_name"))),
+    country: S.optional(S.NullOr(S.String)),
+    csr: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+    locality: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+    organization: S.optional(S.NullOr(S.String)),
+    organizationalUnit: S.optional(
+      S.NullOr(S.String).pipe(T.Body("organizational_unit")),
+    ),
+    sans: S.optional(S.NullOr(GetResponseSansList)),
+    state: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetCustomCsrResponse",
+}) as any as S.Schema<GetCustomCsrResponse>;
 
 export interface GetCustomCsrForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
@@ -254,6 +393,85 @@ export const ListCustomCsrsForAccountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCustomCsrsForAccountRequest",
 }) as any as S.Schema<ListCustomCsrsForAccountRequest>;
 
+export type ListResultItemKeyType = "rsa2048" | "p256v1";
+export const ListResultItemKeyType = /*@__PURE__*/ S.String;
+
+export type ListResultItemSansList = Array<string>;
+export const ListResultItemSansList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListResultItemSansList>;
+
+export interface ListResultItem {
+  /** Custom CSR identifier tag. */
+  id: string;
+  /** When the CSR was created. */
+  createdAt: string;
+  /** The key algorithm used to generate the CSR. */
+  keyType: ListResultItemKeyType;
+  /** Account identifier associated with this CSR. */
+  accountTag?: string | null;
+  /** The common name (domain) for the CSR. */
+  commonName?: string | null;
+  /** Two-letter ISO 3166-1 alpha-2 country code. */
+  country?: string | null;
+  /** The PEM-encoded Certificate Signing Request. */
+  csr?: string | null;
+  /** Optional description for the CSR. */
+  description?: string | null;
+  /** City or locality name. */
+  locality?: string | null;
+  /** Human-readable name for the CSR. */
+  name?: string | null;
+  /** Organization name. */
+  organization?: string | null;
+  /** Organizational unit name. */
+  organizationalUnit?: string | null;
+  /** Subject Alternative Names included in the CSR. */
+  sans?: ListResultItemSansList | null;
+  /** State or province name. */
+  state?: string | null;
+}
+export const ListResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    keyType: ListResultItemKeyType.pipe(T.Body("key_type")),
+    accountTag: S.optional(S.NullOr(S.String).pipe(T.Body("account_tag"))),
+    commonName: S.optional(S.NullOr(S.String).pipe(T.Body("common_name"))),
+    country: S.optional(S.NullOr(S.String)),
+    csr: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+    locality: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.NullOr(S.String)),
+    organization: S.optional(S.NullOr(S.String)),
+    organizationalUnit: S.optional(
+      S.NullOr(S.String).pipe(T.Body("organizational_unit")),
+    ),
+    sans: S.optional(S.NullOr(ListResultItemSansList)),
+    state: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "ListResultItem" }) as any as S.Schema<ListResultItem>;
+
+export type ListResultList = Array<ListResultItem>;
+export const ListResultList = /*@__PURE__*/ S.Array(
+  ListResultItem,
+) as any as S.Schema<ListResultList>;
+
+export interface ListCustomCsrsResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: ListResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListCustomCsrsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: ListResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListCustomCsrsResponse",
+}) as any as S.Schema<ListCustomCsrsResponse>;
+
 export interface ListCustomCsrsForZoneRequest {
   /** The Zone ID to use for this endpoint. Mutually exclusive with the Account ID. */
   zoneId: string;
@@ -280,12 +498,12 @@ export type CreateCustomCsrForAccountError = CloudflareOpError;
 /** Generate a new custom Certificate Signing Request (CSR) for an account or zone. Cloudflare generates and securely stores the private key associated with the CSR. */
 export const createCustomCsrForAccount: API.OperationMethod<
   CreateCustomCsrForAccountRequest,
-  CreateCustomCsrForAccountResponse,
+  CreateCustomCsrResponse,
   CreateCustomCsrForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateCustomCsrForAccountRequest,
-  output: CreateCustomCsrForAccountResponse,
+  output: CreateCustomCsrResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -295,12 +513,12 @@ export type CreateCustomCsrForZoneError = CloudflareOpError;
 /** Generate a new custom Certificate Signing Request (CSR) for an account or zone. Cloudflare generates and securely stores the private key associated with the CSR. */
 export const createCustomCsrForZone: API.OperationMethod<
   CreateCustomCsrForZoneRequest,
-  CreateCustomCsrForZoneResponse,
+  CreateCustomCsrResponse,
   CreateCustomCsrForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateCustomCsrForZoneRequest,
-  output: CreateCustomCsrForZoneResponse,
+  output: CreateCustomCsrResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -310,12 +528,12 @@ export type DeleteCustomCsrForAccountError = CloudflareOpError;
 /** Delete a custom Certificate Signing Request (CSR) and its associated private key. */
 export const deleteCustomCsrForAccount: API.OperationMethod<
   DeleteCustomCsrForAccountRequest,
-  DeleteCustomCsrForAccountResponse,
+  DeleteCustomCsrResponse,
   DeleteCustomCsrForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteCustomCsrForAccountRequest,
-  output: DeleteCustomCsrForAccountResponse,
+  output: DeleteCustomCsrResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -325,12 +543,12 @@ export type DeleteCustomCsrForZoneError = CloudflareOpError;
 /** Delete a custom Certificate Signing Request (CSR) and its associated private key. */
 export const deleteCustomCsrForZone: API.OperationMethod<
   DeleteCustomCsrForZoneRequest,
-  DeleteCustomCsrForZoneResponse,
+  DeleteCustomCsrResponse,
   DeleteCustomCsrForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteCustomCsrForZoneRequest,
-  output: DeleteCustomCsrForZoneResponse,
+  output: DeleteCustomCsrResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -340,12 +558,12 @@ export type GetCustomCsrForAccountError = CloudflareOpError;
 /** Retrieve details for a specific custom Certificate Signing Request (CSR). */
 export const getCustomCsrForAccount: API.OperationMethod<
   GetCustomCsrForAccountRequest,
-  GetCustomCsrForAccountResponse,
+  GetCustomCsrResponse,
   GetCustomCsrForAccountError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetCustomCsrForAccountRequest,
-  output: GetCustomCsrForAccountResponse,
+  output: GetCustomCsrResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -355,12 +573,12 @@ export type GetCustomCsrForZoneError = CloudflareOpError;
 /** Retrieve details for a specific custom Certificate Signing Request (CSR). */
 export const getCustomCsrForZone: API.OperationMethod<
   GetCustomCsrForZoneRequest,
-  GetCustomCsrForZoneResponse,
+  GetCustomCsrResponse,
   GetCustomCsrForZoneError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: GetCustomCsrForZoneRequest,
-  output: GetCustomCsrForZoneResponse,
+  output: GetCustomCsrResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -368,30 +586,52 @@ export const getCustomCsrForZone: API.OperationMethod<
 
 export type ListCustomCsrsForAccountError = CloudflareOpError;
 /** List all custom Certificate Signing Requests (CSRs) for an account or zone. */
-export const listCustomCsrsForAccount: API.OperationMethod<
+export const listCustomCsrsForAccount: API.PaginatedOperationMethod<
   ListCustomCsrsForAccountRequest,
-  ListCustomCsrsForAccountResponse,
+  ListCustomCsrsResponse,
   ListCustomCsrsForAccountError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListCustomCsrsForAccountRequest,
-  output: ListCustomCsrsForAccountResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  ListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListCustomCsrsForAccountRequest,
+    output: ListCustomCsrsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "page",
+      inputToken: "page",
+      outputToken: "resultInfo.page",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;
 
 export type ListCustomCsrsForZoneError = CloudflareOpError;
 /** List all custom Certificate Signing Requests (CSRs) for an account or zone. */
-export const listCustomCsrsForZone: API.OperationMethod<
+export const listCustomCsrsForZone: API.PaginatedOperationMethod<
   ListCustomCsrsForZoneRequest,
-  ListCustomCsrsForZoneResponse,
+  ListCustomCsrsResponse,
   ListCustomCsrsForZoneError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ListCustomCsrsForZoneRequest,
-  output: ListCustomCsrsForZoneResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
+  CloudflareOpContext,
+  ListResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListCustomCsrsForZoneRequest,
+    output: ListCustomCsrsResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "page",
+      inputToken: "page",
+      outputToken: "resultInfo.page",
+      items: "result",
+      pageSize: "perPage",
+    } as const,
+  }),
+  cloudflarePaginate,
+) as any;

@@ -182,7 +182,7 @@ export const CreateAPITokenRequestScopesList = /*@__PURE__*/ S.Array(
   CreateAPITokenRequestScopesItem,
 ) as any as S.Schema<CreateAPITokenRequestScopesList>;
 
-export interface CreateApiTokenRequest {
+export interface CreateAPITokenRequest {
   /** The name of the api token. */
   tokenName: string;
   /** The organization slug to restrict this token to. Required when `group` is set. */
@@ -192,7 +192,7 @@ export interface CreateApiTokenRequest {
   /** Permissions to grant a group-scoped token. Each entry is either an individual scope or one of the presets `read-only` (expands to `read`) and `full-access` (expands to every scope). Required and must be non-empty when `group` is set. `db:mint-token` lets the token issue new SQL credentials; `db:rotate-creds` invalidates every existing SQL token for the database — they are deliberately separate because rotation is destructive. */
   scopes?: CreateAPITokenRequestScopesList;
 }
-export const CreateApiTokenRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAPITokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tokenName: S.String.pipe(T.Label()),
     organization: S.optional(S.String),
@@ -206,24 +206,24 @@ export const CreateApiTokenRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CreateApiTokenRequest",
-}) as any as S.Schema<CreateApiTokenRequest>;
+  identifier: "CreateAPITokenRequest",
+}) as any as S.Schema<CreateAPITokenRequest>;
 
-export interface CreateApiTokenResponse {
+export interface CreateAPITokenResponse {
   name?: string;
   id?: string;
   /** The actual token contents as a JWT. This is used with the `Bearer` header, see [Authentication](/authentication) for more details. **This token is never revealed again.** */
   token?: string;
 }
-export const CreateApiTokenResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateAPITokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
     id: S.optional(S.String),
     token: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "CreateApiTokenResponse",
-}) as any as S.Schema<CreateApiTokenResponse>;
+  identifier: "CreateAPITokenResponse",
+}) as any as S.Schema<CreateAPITokenResponse>;
 
 /** The type of seed to be used to create a new database. Use `database` to copy from an existing database, or `database_upload` to [upload a SQLite database file](/api-reference/databases/upload). */
 export type CreateDatabaseRequestSeedType = "database" | "database_upload";
@@ -1541,14 +1541,14 @@ export const InviteOrganizationMemberV2Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "InviteOrganizationMemberV2Response",
 }) as any as S.Schema<InviteOrganizationMemberV2Response>;
 
-export interface ListApiTokensRequest {}
-export const ListApiTokensRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListAPITokensRequest {}
+export const ListAPITokensRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/v1/auth/api-tokens", code: 200 }),
   ),
 ).annotate({
-  identifier: "ListApiTokensRequest",
-}) as any as S.Schema<ListApiTokensRequest>;
+  identifier: "ListAPITokensRequest",
+}) as any as S.Schema<ListAPITokensRequest>;
 
 /** The expanded list of scopes granted to this token. Present only for group-scoped tokens. Presets passed at creation time (`read-only`, `full-access`) are stored as the underlying individual scopes and are returned in that form. */
 export type APITokenScopesList = Array<string>;
@@ -1586,16 +1586,16 @@ export const ListAPITokensResponseTokensList = /*@__PURE__*/ S.Array(
   APIToken,
 ) as any as S.Schema<ListAPITokensResponseTokensList>;
 
-export interface ListApiTokensResponse {
+export interface ListAPITokensResponse {
   tokens?: ListAPITokensResponseTokensList;
 }
-export const ListApiTokensResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListAPITokensResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tokens: S.optional(ListAPITokensResponseTokensList),
   }),
 ).annotate({
-  identifier: "ListApiTokensResponse",
-}) as any as S.Schema<ListApiTokensResponse>;
+  identifier: "ListAPITokensResponse",
+}) as any as S.Schema<ListAPITokensResponse>;
 
 export interface ListDatabaseInstancesRequest {
   /** The slug of the organization or user account. */
@@ -1739,11 +1739,11 @@ export const ListLocationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListLocationsResponse",
 }) as any as S.Schema<ListLocationsResponse>;
 
-export interface ListOrganizationApiTokensRequest {
+export interface ListOrganizationAPITokensRequest {
   /** The slug of the organization or user account. */
   organizationSlug: string;
 }
-export const ListOrganizationApiTokensRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOrganizationAPITokensRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     organizationSlug: S.String.pipe(T.Label()),
   }).pipe(
@@ -1754,8 +1754,8 @@ export const ListOrganizationApiTokensRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ListOrganizationApiTokensRequest",
-}) as any as S.Schema<ListOrganizationApiTokensRequest>;
+  identifier: "ListOrganizationAPITokensRequest",
+}) as any as S.Schema<ListOrganizationAPITokensRequest>;
 
 /** The expanded scope list. Present only for group-scoped tokens. */
 export type ListOrganizationAPITokensResponseTokensItemScopesList =
@@ -1818,16 +1818,16 @@ export const ListOrganizationAPITokensResponseTokensList =
     ListOrganizationAPITokensResponseTokensItem,
   ) as any as S.Schema<ListOrganizationAPITokensResponseTokensList>;
 
-export interface ListOrganizationApiTokensResponse {
+export interface ListOrganizationAPITokensResponse {
   tokens?: ListOrganizationAPITokensResponseTokensList;
 }
-export const ListOrganizationApiTokensResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOrganizationAPITokensResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tokens: S.optional(ListOrganizationAPITokensResponseTokensList),
   }),
 ).annotate({
-  identifier: "ListOrganizationApiTokensResponse",
-}) as any as S.Schema<ListOrganizationApiTokensResponse>;
+  identifier: "ListOrganizationAPITokensResponse",
+}) as any as S.Schema<ListOrganizationAPITokensResponse>;
 
 export interface ListOrganizationAuditLogsRequest {
   /** The slug of the organization or user account. */
@@ -2717,16 +2717,16 @@ export const addOrganizationMember: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CreateApiTokenError = TursoOpError;
+export type CreateAPITokenError = TursoOpError;
 /** Create API Token Returns a new API token belonging to a user. The token can be minted at three levels of restriction, in increasing order of narrowness: - **Organization-scoped** — pass `organization`. The token can only act on resources inside that organization. - **Group-scoped** — pass `organization`, `group`, and `scopes`. The token is pinned to a single group inside the organization and only the operations listed in `scopes` are allowed. The caller must be an admin or owner of the organization. - **Unrestricted** *(deprecated)* — no request body. The token can act on every organization the caller belongs to. **Unrestricted tokens are deprecated and will be removed in a future release.** Always pass `organization` for new tokens and rotate existing unrestricted tokens to scoped tokens. Group-scoped tokens are designed for automations that should be able to provision and manage databases inside a single group without being able to touch the rest of the organization. */
-export const createApiToken: API.OperationMethod<
-  CreateApiTokenRequest,
-  CreateApiTokenResponse,
-  CreateApiTokenError,
+export const createAPIToken: API.OperationMethod<
+  CreateAPITokenRequest,
+  CreateAPITokenResponse,
+  CreateAPITokenError,
   TursoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateApiTokenRequest,
-  output: CreateApiTokenResponse,
+  input: CreateAPITokenRequest,
+  output: CreateAPITokenResponse,
   errors: [],
   protocol: TursoProtocol,
   retry: Retry.Retry,
@@ -3047,7 +3047,7 @@ export const invalidateGroupTokens: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InviteOrganizationMemberV2Error = TursoOpError;
+export type InviteOrganizationMemberV2Error = BadRequest | TursoOpError;
 /** Invite Organization Member Invite a user to an organization. If the user isn't already registered with Turso, they will receive a signup link. If an existing pending invite exists for the same email, it will be replaced. */
 export const inviteOrganizationMemberV2: API.OperationMethod<
   InviteOrganizationMemberV2Request,
@@ -3057,21 +3057,21 @@ export const inviteOrganizationMemberV2: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InviteOrganizationMemberV2Request,
   output: InviteOrganizationMemberV2Response,
-  errors: [],
+  errors: [BadRequest],
   protocol: TursoProtocol,
   retry: Retry.Retry,
 }));
 
-export type ListApiTokensError = TursoOpError;
+export type ListAPITokensError = TursoOpError;
 /** List API Tokens Returns a list of API tokens belonging to a user. */
-export const listApiTokens: API.OperationMethod<
-  ListApiTokensRequest,
-  ListApiTokensResponse,
-  ListApiTokensError,
+export const listAPITokens: API.OperationMethod<
+  ListAPITokensRequest,
+  ListAPITokensResponse,
+  ListAPITokensError,
   TursoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListApiTokensRequest,
-  output: ListApiTokensResponse,
+  input: ListAPITokensRequest,
+  output: ListAPITokensResponse,
   errors: [],
   protocol: TursoProtocol,
   retry: Retry.Retry,
@@ -3137,16 +3137,16 @@ export const listLocations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListOrganizationApiTokensError = TursoOpError;
+export type ListOrganizationAPITokensError = TursoOpError;
 /** List Organization API Tokens Returns the API tokens scoped to this organization (both organization-scoped and group-scoped). Unrestricted tokens are not returned here — manage those via [`GET /v1/auth/api-tokens`](/api-reference/tokens/list). Authorization is symmetric with the revoke endpoint: - **Admins and owners** see every token scoped to the organization, with the minting user attached in the `owner` field. - **Members and viewers** see only tokens they minted themselves. This mirrors the personal-access-token model used in GitHub organization settings: admins get the full attribution list; everyone else sees their own access. */
-export const listOrganizationApiTokens: API.OperationMethod<
-  ListOrganizationApiTokensRequest,
-  ListOrganizationApiTokensResponse,
-  ListOrganizationApiTokensError,
+export const listOrganizationAPITokens: API.OperationMethod<
+  ListOrganizationAPITokensRequest,
+  ListOrganizationAPITokensResponse,
+  ListOrganizationAPITokensError,
   TursoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListOrganizationApiTokensRequest,
-  output: ListOrganizationApiTokensResponse,
+  input: ListOrganizationAPITokensRequest,
+  output: ListOrganizationAPITokensResponse,
   errors: [],
   protocol: TursoProtocol,
   retry: Retry.Retry,

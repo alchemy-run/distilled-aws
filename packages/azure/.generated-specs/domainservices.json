@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.domainservices#DeleteDomainService": {
@@ -115,7 +116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainservices#DomainServicesUpdateResponseTagsMap",
+          "target": "com.azure.domainservices#UpdateDomainServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -127,7 +128,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.domainservices#DomainServicesUpdateResponseSystemData",
+          "target": "com.azure.domainservices#UpdateDomainServiceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1144,7 +1145,7 @@
         "smithy.api#documentation": "List of Domain Controller IP Address"
       }
     },
-    "com.azure.domainservices#DomainServicesUpdateResponseSystemData": {
+    "com.azure.domainservices#UpdateDomainServiceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1154,7 +1155,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.domainservices#DomainServicesUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.domainservices#UpdateDomainServiceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1172,7 +1173,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.domainservices#DomainServicesUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.domainservices#UpdateDomainServiceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1188,7 +1189,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.domainservices#DomainServicesUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.domainservices#UpdateDomainServiceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1220,7 +1221,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.domainservices#DomainServicesUpdateResponseSystemDataCreatedByType": {
+    "com.azure.domainservices#UpdateDomainServiceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1252,7 +1253,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.domainservices#DomainServicesUpdateResponseTagsMap": {
+    "com.azure.domainservices#UpdateDomainServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1298,7 +1299,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainservices#DomainServicesUpdateRequestTagsMap",
+          "target": "com.azure.domainservices#UpdateDomainServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -1536,7 +1537,7 @@
         "smithy.api#documentation": "Replica Set Definition"
       }
     },
-    "com.azure.domainservices#DomainServicesUpdateRequestTagsMap": {
+    "com.azure.domainservices#UpdateDomainServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1858,7 +1859,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainservices#DomainServicesGetResponseTagsMap",
+          "target": "com.azure.domainservices#GetDomainServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -1870,7 +1871,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.domainservices#DomainServicesGetResponseSystemData",
+          "target": "com.azure.domainservices#GetDomainServiceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1886,7 +1887,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.domainservices#DomainServicesGetResponseSystemData": {
+    "com.azure.domainservices#GetDomainServiceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1896,7 +1897,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.domainservices#DomainServicesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.domainservices#GetDomainServiceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1914,7 +1915,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.domainservices#DomainServicesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.domainservices#GetDomainServiceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1930,7 +1931,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.domainservices#DomainServicesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.domainservices#GetDomainServiceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1962,7 +1963,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.domainservices#DomainServicesGetResponseSystemDataCreatedByType": {
+    "com.azure.domainservices#GetDomainServiceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1994,7 +1995,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.domainservices#DomainServicesGetResponseTagsMap": {
+    "com.azure.domainservices#GetDomainServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2533,7 +2534,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainservices#OuContainerUpdateResponseTagsMap",
+          "target": "com.azure.domainservices#UpdateOuContainerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -2545,7 +2546,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.domainservices#OuContainerUpdateResponseSystemData",
+          "target": "com.azure.domainservices#UpdateOuContainerResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2653,7 +2654,7 @@
         "smithy.api#documentation": "Container Account Description"
       }
     },
-    "com.azure.domainservices#OuContainerUpdateResponseSystemData": {
+    "com.azure.domainservices#UpdateOuContainerResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2663,7 +2664,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.domainservices#OuContainerUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.domainservices#UpdateOuContainerResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2681,7 +2682,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.domainservices#OuContainerUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.domainservices#UpdateOuContainerResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2697,7 +2698,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.domainservices#OuContainerUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.domainservices#UpdateOuContainerResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2729,7 +2730,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.domainservices#OuContainerUpdateResponseSystemDataCreatedByType": {
+    "com.azure.domainservices#UpdateOuContainerResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2761,7 +2762,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.domainservices#OuContainerUpdateResponseTagsMap": {
+    "com.azure.domainservices#UpdateOuContainerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2879,7 +2880,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainservices#OuContainerCreateResponseTagsMap",
+          "target": "com.azure.domainservices#CreateOuContainerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -2891,7 +2892,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.domainservices#OuContainerCreateResponseSystemData",
+          "target": "com.azure.domainservices#CreateOuContainerResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2907,7 +2908,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.domainservices#OuContainerCreateResponseSystemData": {
+    "com.azure.domainservices#CreateOuContainerResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2917,7 +2918,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.domainservices#OuContainerCreateResponseSystemDataCreatedByType",
+          "target": "com.azure.domainservices#CreateOuContainerResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2935,7 +2936,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.domainservices#OuContainerCreateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.domainservices#CreateOuContainerResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2951,7 +2952,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.domainservices#OuContainerCreateResponseSystemDataLastModifiedByType": {
+    "com.azure.domainservices#CreateOuContainerResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2983,7 +2984,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.domainservices#OuContainerCreateResponseSystemDataCreatedByType": {
+    "com.azure.domainservices#CreateOuContainerResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3015,7 +3016,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.domainservices#OuContainerCreateResponseTagsMap": {
+    "com.azure.domainservices#CreateOuContainerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3133,7 +3134,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.domainservices#OuContainerGetResponseTagsMap",
+          "target": "com.azure.domainservices#GetOuContainerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -3145,7 +3146,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.domainservices#OuContainerGetResponseSystemData",
+          "target": "com.azure.domainservices#GetOuContainerResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3161,7 +3162,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.domainservices#OuContainerGetResponseSystemData": {
+    "com.azure.domainservices#GetOuContainerResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3171,7 +3172,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.domainservices#OuContainerGetResponseSystemDataCreatedByType",
+          "target": "com.azure.domainservices#GetOuContainerResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3189,7 +3190,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.domainservices#OuContainerGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.domainservices#GetOuContainerResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3205,7 +3206,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.domainservices#OuContainerGetResponseSystemDataLastModifiedByType": {
+    "com.azure.domainservices#GetOuContainerResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3237,7 +3238,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.domainservices#OuContainerGetResponseSystemDataCreatedByType": {
+    "com.azure.domainservices#GetOuContainerResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3269,7 +3270,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.domainservices#OuContainerGetResponseTagsMap": {
+    "com.azure.domainservices#GetOuContainerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3327,7 +3328,7 @@
         "target": "com.azure.domainservices#ListOuContainerRequest"
       },
       "output": {
-        "target": "com.azure.domainservices#ListOuContainerResult"
+        "target": "com.azure.domainservices#OuContainerListResult"
       },
       "traits": {
         "smithy.api#http": {
@@ -3340,7 +3341,7 @@
         "com.distilled.openapi#apiVersion": "2022-12-01"
       }
     },
-    "com.azure.domainservices#ListOuContainerResult": {
+    "com.azure.domainservices#OuContainerListResult": {
       "type": "structure",
       "members": {
         "value": {
@@ -3601,10 +3602,13 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.domainservices#CreateOuContainer"
+        },
+        {
           "target": "com.azure.domainservices#DeleteDomainService"
         },
         {
-          "target": "com.azure.domainservices#UpdateDomainService"
+          "target": "com.azure.domainservices#DeleteOuContainer"
         },
         {
           "target": "com.azure.domainservices#DomainServicesCreateOrUpdate"
@@ -3613,31 +3617,28 @@
           "target": "com.azure.domainservices#GetDomainService"
         },
         {
-          "target": "com.azure.domainservices#ListDomainServiceByResourceGroup"
+          "target": "com.azure.domainservices#GetOuContainer"
         },
         {
-          "target": "com.azure.domainservices#ListDomainServices"
+          "target": "com.azure.domainservices#ListDomainServiceByResourceGroup"
         },
         {
           "target": "com.azure.domainservices#ListDomainServiceOperations"
         },
         {
-          "target": "com.azure.domainservices#DeleteOuContainer"
-        },
-        {
-          "target": "com.azure.domainservices#UpdateOuContainer"
-        },
-        {
-          "target": "com.azure.domainservices#CreateOuContainer"
-        },
-        {
-          "target": "com.azure.domainservices#GetOuContainer"
+          "target": "com.azure.domainservices#ListDomainServices"
         },
         {
           "target": "com.azure.domainservices#ListOuContainer"
         },
         {
           "target": "com.azure.domainservices#ListOuContainerOperations"
+        },
+        {
+          "target": "com.azure.domainservices#UpdateDomainService"
+        },
+        {
+          "target": "com.azure.domainservices#UpdateOuContainer"
         }
       ],
       "traits": {

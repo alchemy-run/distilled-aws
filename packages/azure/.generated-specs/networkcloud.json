@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.networkcloud#DeleteVolume": {
@@ -115,7 +116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#VolumesUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateVolumeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -330,7 +331,7 @@
         "smithy.api#documentation": "The list of resource IDs that attach the volume. It may include virtual machines and Hybrid AKS clusters."
       }
     },
-    "com.azure.networkcloud#VolumesUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateVolumeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -478,7 +479,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#VolumesUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateVolumeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -488,7 +489,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#VolumesUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateVolumeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -735,7 +736,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#VolumesGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetVolumeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -772,7 +773,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#VolumesGetResponseTagsMap": {
+    "com.azure.networkcloud#GetVolumeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1316,7 +1317,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ConsolesUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateConsoleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1504,7 +1505,7 @@
         "smithy.api#documentation": "The indicator of whether the console access is enabled."
       }
     },
-    "com.azure.networkcloud#ConsolesUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateConsoleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1558,7 +1559,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ConsolesUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateConsoleRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1568,7 +1569,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ConsolesUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateConsoleRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1870,7 +1871,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ConsolesGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetConsoleResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1907,7 +1908,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#ConsolesGetResponseTagsMap": {
+    "com.azure.networkcloud#GetConsoleResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2131,10 +2132,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#VirtualMachinesAssignRelay": {
+    "com.azure.networkcloud#AssignVirtualMachineRelay": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#VirtualMachinesAssignRelayRequest"
+        "target": "com.azure.networkcloud#AssignVirtualMachineRelayRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2150,7 +2151,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#VirtualMachinesAssignRelayRequest": {
+    "com.azure.networkcloud#AssignVirtualMachineRelayRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2185,7 +2186,7 @@
           }
         },
         "relayType": {
-          "target": "com.azure.networkcloud#VirtualMachinesAssignRelayRequestRelayType",
+          "target": "com.azure.networkcloud#AssignVirtualMachineRelayRequestRelayType",
           "traits": {
             "smithy.api#documentation": "The indicator of which relay type the machine should be assigned to use. Platform indicates the use of a platform-dedicated relay. Public indicates the use of the standard public relay for Arc services."
           }
@@ -2195,7 +2196,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#VirtualMachinesAssignRelayRequestRelayType": {
+    "com.azure.networkcloud#AssignVirtualMachineRelayRequestRelayType": {
       "type": "enum",
       "members": {
         "PLATFORM": {
@@ -2313,7 +2314,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#VirtualMachinesUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateVirtualMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2346,7 +2347,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#VirtualMachinesUpdateResponseIdentity",
+          "target": "com.azure.networkcloud#UpdateVirtualMachineResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2356,7 +2357,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#VirtualMachinesUpdateResponseIdentity": {
+    "com.azure.networkcloud#UpdateVirtualMachineResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2378,7 +2379,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#VirtualMachinesUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#UpdateVirtualMachineResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2388,7 +2389,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#VirtualMachinesUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#UpdateVirtualMachineResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3185,7 +3186,7 @@
         "smithy.api#documentation": "Selects the boot method for the virtual machine."
       }
     },
-    "com.azure.networkcloud#VirtualMachinesUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateVirtualMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3225,7 +3226,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#VirtualMachinesUpdateRequestIdentity",
+          "target": "com.azure.networkcloud#UpdateVirtualMachineRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3237,7 +3238,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#VirtualMachinesUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateVirtualMachineRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3247,7 +3248,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#VirtualMachinesUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateVirtualMachineRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3300,7 +3301,7 @@
         "smithy.api#documentation": "ImageRepositoryCredentialsPatch represents the credentials used to login to the image repository for patch operations."
       }
     },
-    "com.azure.networkcloud#VirtualMachinesUpdateRequestIdentity": {
+    "com.azure.networkcloud#UpdateVirtualMachineRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3310,7 +3311,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#VirtualMachinesUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#UpdateVirtualMachineRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3320,7 +3321,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#VirtualMachinesUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#UpdateVirtualMachineRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3928,7 +3929,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#VirtualMachinesGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetVirtualMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3961,7 +3962,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#VirtualMachinesGetResponseIdentity",
+          "target": "com.azure.networkcloud#GetVirtualMachineResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3971,7 +3972,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#VirtualMachinesGetResponseIdentity": {
+    "com.azure.networkcloud#GetVirtualMachineResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3993,7 +3994,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#VirtualMachinesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#GetVirtualMachineResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -4003,7 +4004,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#VirtualMachinesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#GetVirtualMachineResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4015,7 +4016,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.networkcloud#VirtualMachinesGetResponseTagsMap": {
+    "com.azure.networkcloud#GetVirtualMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4371,7 +4372,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#TrunkedNetworksUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateTrunkedNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4619,7 +4620,7 @@
         "smithy.api#documentation": "Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS."
       }
     },
-    "com.azure.networkcloud#TrunkedNetworksUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateTrunkedNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4659,7 +4660,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#TrunkedNetworksUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateTrunkedNetworkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4669,7 +4670,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#TrunkedNetworksUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateTrunkedNetworkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4973,7 +4974,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#TrunkedNetworksGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetTrunkedNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5010,7 +5011,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#TrunkedNetworksGetResponseTagsMap": {
+    "com.azure.networkcloud#GetTrunkedNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5369,7 +5370,7 @@
           }
         },
         "supportEndpoints": {
-          "target": "com.azure.networkcloud#StorageAppliancesEnableRemoteVendorManagementRequestSupportEndpointsList",
+          "target": "com.azure.networkcloud#EnableStorageApplianceRemoteVendorManagementRequestSupportEndpointsList",
           "traits": {
             "smithy.api#documentation": "Field Deprecated. This field is not used and will be rejected if provided. The list of IPv4 subnets (in CIDR format), IPv6 subnets (in CIDR format), or hostnames that the storage appliance needs accessible in order to turn on the remote vendor management."
           }
@@ -5379,7 +5380,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#StorageAppliancesEnableRemoteVendorManagementRequestSupportEndpointsList": {
+    "com.azure.networkcloud#EnableStorageApplianceRemoteVendorManagementRequestSupportEndpointsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5537,7 +5538,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#StorageAppliancesUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateStorageApplianceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6040,7 +6041,7 @@
         "smithy.api#documentation": "AdministrativeCredentials represents the admin credentials for the device requiring password-based authentication."
       }
     },
-    "com.azure.networkcloud#StorageAppliancesUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateStorageApplianceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6086,7 +6087,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#StorageAppliancesUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateStorageApplianceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6096,7 +6097,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#StorageAppliancesUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateStorageApplianceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6379,7 +6380,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#StorageAppliancesGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetStorageApplianceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6416,7 +6417,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#StorageAppliancesGetResponseTagsMap": {
+    "com.azure.networkcloud#GetStorageApplianceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6722,7 +6723,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#RacksUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateRackResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6883,7 +6884,7 @@
         "smithy.api#documentation": "The more detailed status of the rack."
       }
     },
-    "com.azure.networkcloud#RacksUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateRackResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6929,7 +6930,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#RacksUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateRackRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6939,7 +6940,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#RacksUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateRackRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7221,7 +7222,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#RacksGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetRackResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7258,7 +7259,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#RacksGetResponseTagsMap": {
+    "com.azure.networkcloud#GetRackResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7564,7 +7565,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#L3NetworksUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateL3NetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7864,7 +7865,7 @@
         "smithy.api#documentation": "Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The indicator of whether or not to disable IPAM allocation on the network attachment definition injected into the Hybrid AKS Cluster."
       }
     },
-    "com.azure.networkcloud#L3NetworksUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateL3NetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7904,7 +7905,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#L3NetworksUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateL3NetworkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7914,7 +7915,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#L3NetworksUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateL3NetworkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8270,7 +8271,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#L3NetworksGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetL3NetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8307,7 +8308,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#L3NetworksGetResponseTagsMap": {
+    "com.azure.networkcloud#GetL3NetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8613,7 +8614,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#L2NetworksUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateL2NetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8836,7 +8837,7 @@
         "smithy.api#documentation": "Field Deprecated. The field was previously optional, now it will have no defined behavior and will be ignored. The network plugin type for Hybrid AKS."
       }
     },
-    "com.azure.networkcloud#L2NetworksUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateL2NetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8876,7 +8877,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#L2NetworksUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateL2NetworkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8886,7 +8887,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#L2NetworksUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateL2NetworkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9165,7 +9166,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#L2NetworksGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetL2NetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9202,7 +9203,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#L2NetworksGetResponseTagsMap": {
+    "com.azure.networkcloud#GetL2NetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9410,10 +9411,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#DeleteKuberneteVersion": {
+    "com.azure.networkcloud#DeleteKubernetesVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#DeleteKuberneteVersionRequest"
+        "target": "com.azure.networkcloud#DeleteKubernetesVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9429,7 +9430,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#DeleteKuberneteVersionRequest": {
+    "com.azure.networkcloud#DeleteKubernetesVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9461,13 +9462,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteVersion": {
+    "com.azure.networkcloud#UpdateKubernetesVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#UpdateKuberneteVersionRequest"
+        "target": "com.azure.networkcloud#UpdateKubernetesVersionRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#UpdateKuberneteVersionResponse"
+        "target": "com.azure.networkcloud#UpdateKubernetesVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9480,7 +9481,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteVersionResponse": {
+    "com.azure.networkcloud#UpdateKubernetesVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9508,7 +9509,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesVersionsUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateKubernetesVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9626,7 +9627,7 @@
         "smithy.api#documentation": "KubernetesVersionValue describes a specific Kubernetes version that can be deployed."
       }
     },
-    "com.azure.networkcloud#KubernetesVersionsUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateKubernetesVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9638,7 +9639,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteVersionRequest": {
+    "com.azure.networkcloud#UpdateKubernetesVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9666,7 +9667,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesVersionsUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateKubernetesVersionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9676,7 +9677,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#KubernetesVersionsUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateKubernetesVersionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9862,13 +9863,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetKuberneteVersion": {
+    "com.azure.networkcloud#GetKubernetesVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#GetKuberneteVersionRequest"
+        "target": "com.azure.networkcloud#GetKubernetesVersionRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#GetKuberneteVersionResponse"
+        "target": "com.azure.networkcloud#GetKubernetesVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9881,7 +9882,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#GetKuberneteVersionResponse": {
+    "com.azure.networkcloud#GetKubernetesVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9909,7 +9910,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesVersionsGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetKubernetesVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9946,7 +9947,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#KubernetesVersionsGetResponseTagsMap": {
+    "com.azure.networkcloud#GetKubernetesVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9958,7 +9959,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetKuberneteVersionRequest": {
+    "com.azure.networkcloud#GetKubernetesVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9990,10 +9991,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListKuberneteVersionByResourceGroup": {
+    "com.azure.networkcloud#ListKubernetesVersionByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListKuberneteVersionByResourceGroupRequest"
+        "target": "com.azure.networkcloud#ListKubernetesVersionByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#KubernetesVersionList"
@@ -10116,7 +10117,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#ListKuberneteVersionByResourceGroupRequest": {
+    "com.azure.networkcloud#ListKubernetesVersionByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10154,10 +10155,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#RestartKuberneteClusterNode": {
+    "com.azure.networkcloud#RestartKubernetesClusterNode": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#RestartKuberneteClusterNodeRequest"
+        "target": "com.azure.networkcloud#RestartKubernetesClusterNodeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10173,7 +10174,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#RestartKuberneteClusterNodeRequest": {
+    "com.azure.networkcloud#RestartKubernetesClusterNodeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10212,10 +10213,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#DeleteKuberneteClusterFeature": {
+    "com.azure.networkcloud#DeleteKubernetesClusterFeature": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#DeleteKuberneteClusterFeatureRequest"
+        "target": "com.azure.networkcloud#DeleteKubernetesClusterFeatureRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10231,7 +10232,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#DeleteKuberneteClusterFeatureRequest": {
+    "com.azure.networkcloud#DeleteKubernetesClusterFeatureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10271,13 +10272,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteClusterFeature": {
+    "com.azure.networkcloud#UpdateKubernetesClusterFeature": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#UpdateKuberneteClusterFeatureRequest"
+        "target": "com.azure.networkcloud#UpdateKubernetesClusterFeatureRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#UpdateKuberneteClusterFeatureResponse"
+        "target": "com.azure.networkcloud#UpdateKubernetesClusterFeatureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10290,7 +10291,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteClusterFeatureResponse": {
+    "com.azure.networkcloud#UpdateKubernetesClusterFeatureResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10318,7 +10319,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesClusterFeaturesUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateKubernetesClusterFeatureResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10538,7 +10539,7 @@
         "smithy.api#documentation": "StringKeyValuePair represents a single entry in a mapping of keys to values."
       }
     },
-    "com.azure.networkcloud#KubernetesClusterFeaturesUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateKubernetesClusterFeatureResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10550,7 +10551,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteClusterFeatureRequest": {
+    "com.azure.networkcloud#UpdateKubernetesClusterFeatureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10592,7 +10593,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesClusterFeaturesUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateKubernetesClusterFeatureRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10602,7 +10603,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#KubernetesClusterFeaturesUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateKubernetesClusterFeatureRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10819,13 +10820,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetKuberneteClusterFeature": {
+    "com.azure.networkcloud#GetKubernetesClusterFeature": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#GetKuberneteClusterFeatureRequest"
+        "target": "com.azure.networkcloud#GetKubernetesClusterFeatureRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#GetKuberneteClusterFeatureResponse"
+        "target": "com.azure.networkcloud#GetKubernetesClusterFeatureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10838,7 +10839,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#GetKuberneteClusterFeatureResponse": {
+    "com.azure.networkcloud#GetKubernetesClusterFeatureResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10866,7 +10867,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesClusterFeaturesGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetKubernetesClusterFeatureResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10895,7 +10896,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#KubernetesClusterFeaturesGetResponseTagsMap": {
+    "com.azure.networkcloud#GetKubernetesClusterFeatureResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10907,7 +10908,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetKuberneteClusterFeatureRequest": {
+    "com.azure.networkcloud#GetKubernetesClusterFeatureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10947,10 +10948,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListKuberneteClusterFeatureByKuberneteCluster": {
+    "com.azure.networkcloud#ListKubernetesClusterFeatureByKubernetesCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListKuberneteClusterFeatureByKuberneteClusterRequest"
+        "target": "com.azure.networkcloud#ListKubernetesClusterFeatureByKubernetesClusterRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#KubernetesClusterFeatureList"
@@ -11065,7 +11066,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#ListKuberneteClusterFeatureByKuberneteClusterRequest": {
+    "com.azure.networkcloud#ListKubernetesClusterFeatureByKubernetesClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11217,7 +11218,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#AgentPoolsUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateAgentPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11851,7 +11852,7 @@
         "smithy.api#documentation": "The SSH configuration for the operating systems that run the nodes in the Kubernetes cluster. In some cases, specification of public keys may be required to produce a working environment."
       }
     },
-    "com.azure.networkcloud#AgentPoolsUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateAgentPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11905,7 +11906,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#AgentPoolsUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateAgentPoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11915,7 +11916,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#AgentPoolsUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateAgentPoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12294,7 +12295,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#AgentPoolsGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetAgentPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12330,7 +12331,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#AgentPoolsGetResponseTagsMap": {
+    "com.azure.networkcloud#GetAgentPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12382,10 +12383,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListAgentPoolByKuberneteCluster": {
+    "com.azure.networkcloud#ListAgentPoolByKubernetesCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListAgentPoolByKuberneteClusterRequest"
+        "target": "com.azure.networkcloud#ListAgentPoolByKubernetesClusterRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#AgentPoolList"
@@ -12507,7 +12508,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#ListAgentPoolByKuberneteClusterRequest": {
+    "com.azure.networkcloud#ListAgentPoolByKubernetesClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12553,10 +12554,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#DeleteKuberneteCluster": {
+    "com.azure.networkcloud#DeleteKubernetesCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#DeleteKuberneteClusterRequest"
+        "target": "com.azure.networkcloud#DeleteKubernetesClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12572,7 +12573,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#DeleteKuberneteClusterRequest": {
+    "com.azure.networkcloud#DeleteKubernetesClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12604,13 +12605,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteCluster": {
+    "com.azure.networkcloud#UpdateKubernetesCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#UpdateKuberneteClusterRequest"
+        "target": "com.azure.networkcloud#UpdateKubernetesClusterRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#UpdateKuberneteClusterResponse"
+        "target": "com.azure.networkcloud#UpdateKubernetesClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12623,7 +12624,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteClusterResponse": {
+    "com.azure.networkcloud#UpdateKubernetesClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12651,7 +12652,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesClustersUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateKubernetesClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13917,7 +13918,7 @@
         "smithy.api#documentation": "The list of Azure Active Directory group object IDs that will have an administrative role on the Kubernetes cluster."
       }
     },
-    "com.azure.networkcloud#KubernetesClustersUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateKubernetesClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13929,7 +13930,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#UpdateKuberneteClusterRequest": {
+    "com.azure.networkcloud#UpdateKubernetesClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13963,7 +13964,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesClustersUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateKubernetesClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13973,7 +13974,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#KubernetesClustersUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateKubernetesClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14284,13 +14285,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetKuberneteCluster": {
+    "com.azure.networkcloud#GetKubernetesCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#GetKuberneteClusterRequest"
+        "target": "com.azure.networkcloud#GetKubernetesClusterRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#GetKuberneteClusterResponse"
+        "target": "com.azure.networkcloud#GetKubernetesClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14303,7 +14304,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#GetKuberneteClusterResponse": {
+    "com.azure.networkcloud#GetKubernetesClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14331,7 +14332,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#KubernetesClustersGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetKubernetesClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14368,7 +14369,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#KubernetesClustersGetResponseTagsMap": {
+    "com.azure.networkcloud#GetKubernetesClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14380,7 +14381,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetKuberneteClusterRequest": {
+    "com.azure.networkcloud#GetKubernetesClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14412,10 +14413,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListKuberneteClusterByResourceGroup": {
+    "com.azure.networkcloud#ListKubernetesClusterByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListKuberneteClusterByResourceGroupRequest"
+        "target": "com.azure.networkcloud#ListKubernetesClusterByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#KubernetesClusterList"
@@ -14538,7 +14539,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#ListKuberneteClusterByResourceGroupRequest": {
+    "com.azure.networkcloud#ListKubernetesClusterByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14784,7 +14785,7 @@
           }
         },
         "credentials": {
-          "target": "com.azure.networkcloud#ClustersRotateCredentialRequestCredentialsList",
+          "target": "com.azure.networkcloud#RotateClusterCredentialRequestCredentialsList",
           "traits": {
             "smithy.api#documentation": "The list of credential names for the credentials to rotate.",
             "smithy.api#required": {}
@@ -14795,7 +14796,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ClustersRotateCredentialRequestCredentialsList": {
+    "com.azure.networkcloud#RotateClusterCredentialRequestCredentialsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -14804,10 +14805,10 @@
         "smithy.api#documentation": "The list of credential names for the credentials to rotate."
       }
     },
-    "com.azure.networkcloud#DeleteMetricConfiguration": {
+    "com.azure.networkcloud#DeleteMetricsConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#DeleteMetricConfigurationRequest"
+        "target": "com.azure.networkcloud#DeleteMetricsConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14823,7 +14824,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#DeleteMetricConfigurationRequest": {
+    "com.azure.networkcloud#DeleteMetricsConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14863,13 +14864,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#UpdateMetricConfiguration": {
+    "com.azure.networkcloud#UpdateMetricsConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#UpdateMetricConfigurationRequest"
+        "target": "com.azure.networkcloud#UpdateMetricsConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#UpdateMetricConfigurationResponse"
+        "target": "com.azure.networkcloud#UpdateMetricsConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14882,7 +14883,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#UpdateMetricConfigurationResponse": {
+    "com.azure.networkcloud#UpdateMetricsConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14910,7 +14911,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#MetricsConfigurationsUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateMetricsConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15074,7 +15075,7 @@
         "smithy.api#documentation": "The list of metric names that have been chosen to be enabled in addition to the core set of enabled metrics."
       }
     },
-    "com.azure.networkcloud#MetricsConfigurationsUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateMetricsConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15086,7 +15087,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#UpdateMetricConfigurationRequest": {
+    "com.azure.networkcloud#UpdateMetricsConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15128,7 +15129,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#MetricsConfigurationsUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateMetricsConfigurationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15138,7 +15139,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#MetricsConfigurationsUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateMetricsConfigurationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15384,13 +15385,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetMetricConfiguration": {
+    "com.azure.networkcloud#GetMetricsConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#GetMetricConfigurationRequest"
+        "target": "com.azure.networkcloud#GetMetricsConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#GetMetricConfigurationResponse"
+        "target": "com.azure.networkcloud#GetMetricsConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15403,7 +15404,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#GetMetricConfigurationResponse": {
+    "com.azure.networkcloud#GetMetricsConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15431,7 +15432,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#MetricsConfigurationsGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetMetricsConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15468,7 +15469,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#MetricsConfigurationsGetResponseTagsMap": {
+    "com.azure.networkcloud#GetMetricsConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15480,7 +15481,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetMetricConfigurationRequest": {
+    "com.azure.networkcloud#GetMetricsConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15520,10 +15521,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListMetricConfigurationByCluster": {
+    "com.azure.networkcloud#ListMetricsConfigurationByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListMetricConfigurationByClusterRequest"
+        "target": "com.azure.networkcloud#ListMetricsConfigurationByClusterRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#ClusterMetricsConfigurationList"
@@ -15646,7 +15647,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#ListMetricConfigurationByClusterRequest": {
+    "com.azure.networkcloud#ListMetricsConfigurationByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15816,10 +15817,10 @@
         "smithy.api#documentation": "Additional actions supplement the default non-disruptive cluster inspection. Additional actions may be disallowed if the cluster is in a deployed and running state."
       }
     },
-    "com.azure.networkcloud#ClustersDeploy": {
+    "com.azure.networkcloud#DeployCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ClustersDeployRequest"
+        "target": "com.azure.networkcloud#DeployClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15835,7 +15836,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#ClustersDeployRequest": {
+    "com.azure.networkcloud#DeployClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15863,7 +15864,7 @@
           }
         },
         "skipValidationsForMachines": {
-          "target": "com.azure.networkcloud#ClustersDeployRequestSkipValidationsForMachinesList",
+          "target": "com.azure.networkcloud#DeployClusterRequestSkipValidationsForMachinesList",
           "traits": {
             "smithy.api#documentation": "The names of bare metal machines in the cluster that should be skipped during environment validation."
           }
@@ -15873,7 +15874,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ClustersDeployRequestSkipValidationsForMachinesList": {
+    "com.azure.networkcloud#DeployClusterRequestSkipValidationsForMachinesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -15882,10 +15883,10 @@
         "smithy.api#documentation": "The names of bare metal machines in the cluster that should be skipped during environment validation."
       }
     },
-    "com.azure.networkcloud#UpdateClusterContinueVersion": {
+    "com.azure.networkcloud#ClustersContinueUpdateVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#UpdateClusterContinueVersionRequest"
+        "target": "com.azure.networkcloud#ClustersContinueUpdateVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15901,7 +15902,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#UpdateClusterContinueVersionRequest": {
+    "com.azure.networkcloud#ClustersContinueUpdateVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16085,7 +16086,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BmcKeySetsUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateBmcKeySetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16376,7 +16377,7 @@
         "smithy.api#documentation": "The access level allowed for the users in this key set."
       }
     },
-    "com.azure.networkcloud#BmcKeySetsUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateBmcKeySetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16430,7 +16431,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BmcKeySetsUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateBmcKeySetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16440,7 +16441,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BmcKeySetsUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateBmcKeySetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16748,7 +16749,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BmcKeySetsGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetBmcKeySetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16785,7 +16786,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#BmcKeySetsGetResponseTagsMap": {
+    "com.azure.networkcloud#GetBmcKeySetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17115,7 +17116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BareMetalMachineKeySetsUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateBareMetalMachineKeySetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17360,7 +17361,7 @@
         "smithy.api#documentation": "The list of IP addresses of jump hosts with management network access from which a login will be allowed for the users."
       }
     },
-    "com.azure.networkcloud#BareMetalMachineKeySetsUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateBareMetalMachineKeySetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17414,7 +17415,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BareMetalMachineKeySetsUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateBareMetalMachineKeySetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17424,7 +17425,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachineKeySetsUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateBareMetalMachineKeySetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17775,7 +17776,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BareMetalMachineKeySetsGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetBareMetalMachineKeySetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17812,7 +17813,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachineKeySetsGetResponseTagsMap": {
+    "com.azure.networkcloud#GetBareMetalMachineKeySetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18134,7 +18135,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ClustersUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18167,7 +18168,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#ClustersUpdateResponseIdentity",
+          "target": "com.azure.networkcloud#UpdateClusterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -18203,7 +18204,7 @@
         "smithy.api#documentation": "The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager."
       }
     },
-    "com.azure.networkcloud#ClustersUpdateResponseIdentity": {
+    "com.azure.networkcloud#UpdateClusterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -18225,7 +18226,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#ClustersUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#UpdateClusterResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -18235,7 +18236,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#ClustersUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#UpdateClusterResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19647,7 +19648,7 @@
         "smithy.api#documentation": "AnalyticsOutputSettings represents the settings for the log analytics workspace used for output of logs from this cluster."
       }
     },
-    "com.azure.networkcloud#ClustersUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19687,7 +19688,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#ClustersUpdateRequestIdentity",
+          "target": "com.azure.networkcloud#UpdateClusterRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -19699,7 +19700,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ClustersUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19709,7 +19710,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ClustersUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20230,7 +20231,7 @@
         "smithy.api#documentation": "ServicePrincipalInformationPatch represents the details of the service principal to be used by the cluster during Arc Appliance installation for patch operations."
       }
     },
-    "com.azure.networkcloud#ClustersUpdateRequestIdentity": {
+    "com.azure.networkcloud#UpdateClusterRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -20240,7 +20241,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#ClustersUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#UpdateClusterRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -20250,7 +20251,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#ClustersUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#UpdateClusterRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20825,7 +20826,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ClustersGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20858,7 +20859,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#ClustersGetResponseIdentity",
+          "target": "com.azure.networkcloud#GetClusterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -20874,7 +20875,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#ClustersGetResponseIdentity": {
+    "com.azure.networkcloud#GetClusterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -20896,7 +20897,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#ClustersGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#GetClusterResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -20906,7 +20907,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#ClustersGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#GetClusterResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20918,7 +20919,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.networkcloud#ClustersGetResponseTagsMap": {
+    "com.azure.networkcloud#GetClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21371,7 +21372,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ClusterManagersUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateClusterManagerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -21397,7 +21398,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#ClusterManagersUpdateResponseIdentity",
+          "target": "com.azure.networkcloud#UpdateClusterManagerResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -21413,7 +21414,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#ClusterManagersUpdateResponseIdentity": {
+    "com.azure.networkcloud#UpdateClusterManagerResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -21435,7 +21436,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#ClusterManagersUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#UpdateClusterManagerResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -21445,7 +21446,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#ClusterManagersUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#UpdateClusterManagerResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21672,7 +21673,7 @@
         "smithy.api#documentation": "The Azure availability zones within the region that will be used to support the cluster manager resource."
       }
     },
-    "com.azure.networkcloud#ClusterManagersUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateClusterManagerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21712,13 +21713,13 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#ClusterManagersUpdateRequestIdentity",
+          "target": "com.azure.networkcloud#UpdateClusterManagerRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ClusterManagersUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateClusterManagerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -21728,7 +21729,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ClusterManagersUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateClusterManagerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21740,7 +21741,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#ClusterManagersUpdateRequestIdentity": {
+    "com.azure.networkcloud#UpdateClusterManagerRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -21750,7 +21751,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#ClusterManagersUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#UpdateClusterManagerRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -21760,7 +21761,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#ClusterManagersUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#UpdateClusterManagerRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22120,7 +22121,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#ClusterManagersGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetClusterManagerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -22146,7 +22147,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.networkcloud#ClusterManagersGetResponseIdentity",
+          "target": "com.azure.networkcloud#GetClusterManagerResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -22162,7 +22163,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#ClusterManagersGetResponseIdentity": {
+    "com.azure.networkcloud#GetClusterManagerResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -22184,7 +22185,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.networkcloud#ClusterManagersGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.networkcloud#GetClusterManagerResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -22194,7 +22195,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.networkcloud#ClusterManagersGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.networkcloud#GetClusterManagerResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22206,7 +22207,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.networkcloud#ClusterManagersGetResponseTagsMap": {
+    "com.azure.networkcloud#GetClusterManagerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22463,10 +22464,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#DeleteCloudServiceNetwork": {
+    "com.azure.networkcloud#DeleteCloudServicesNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#DeleteCloudServiceNetworkRequest"
+        "target": "com.azure.networkcloud#DeleteCloudServicesNetworkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -22482,7 +22483,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#DeleteCloudServiceNetworkRequest": {
+    "com.azure.networkcloud#DeleteCloudServicesNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22514,13 +22515,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#UpdateCloudServiceNetwork": {
+    "com.azure.networkcloud#UpdateCloudServicesNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#UpdateCloudServiceNetworkRequest"
+        "target": "com.azure.networkcloud#UpdateCloudServicesNetworkRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#UpdateCloudServiceNetworkResponse"
+        "target": "com.azure.networkcloud#UpdateCloudServicesNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22533,7 +22534,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#UpdateCloudServiceNetworkResponse": {
+    "com.azure.networkcloud#UpdateCloudServicesNetworkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22561,7 +22562,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#CloudServicesNetworksUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateCloudServicesNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -23012,7 +23013,7 @@
         "smithy.api#documentation": "The list of egress endpoints. This allows for connection from a Hybrid AKS cluster to the specified endpoint."
       }
     },
-    "com.azure.networkcloud#CloudServicesNetworksUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateCloudServicesNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23024,7 +23025,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#UpdateCloudServiceNetworkRequest": {
+    "com.azure.networkcloud#UpdateCloudServicesNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23058,7 +23059,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#CloudServicesNetworksUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateCloudServicesNetworkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -23068,7 +23069,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#CloudServicesNetworksUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateCloudServicesNetworkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23381,13 +23382,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetCloudServiceNetwork": {
+    "com.azure.networkcloud#GetCloudServicesNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#GetCloudServiceNetworkRequest"
+        "target": "com.azure.networkcloud#GetCloudServicesNetworkRequest"
       },
       "output": {
-        "target": "com.azure.networkcloud#GetCloudServiceNetworkResponse"
+        "target": "com.azure.networkcloud#GetCloudServicesNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -23400,7 +23401,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#GetCloudServiceNetworkResponse": {
+    "com.azure.networkcloud#GetCloudServicesNetworkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -23428,7 +23429,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#CloudServicesNetworksGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetCloudServicesNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -23464,7 +23465,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#CloudServicesNetworksGetResponseTagsMap": {
+    "com.azure.networkcloud#GetCloudServicesNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -23476,7 +23477,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#GetCloudServiceNetworkRequest": {
+    "com.azure.networkcloud#GetCloudServicesNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23508,10 +23509,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListCloudServiceNetworkByResourceGroup": {
+    "com.azure.networkcloud#ListCloudServicesNetworkByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListCloudServiceNetworkByResourceGroupRequest"
+        "target": "com.azure.networkcloud#ListCloudServicesNetworkByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#CloudServicesNetworkList"
@@ -23633,7 +23634,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.networkcloud#ListCloudServiceNetworkByResourceGroupRequest": {
+    "com.azure.networkcloud#ListCloudServicesNetworkByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23877,10 +23878,10 @@
         "smithy.api#documentation": "The list of string arguments that will be passed to the script in order as separate arguments."
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRestricted": {
+    "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestricted": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRestrictedRequest"
+        "target": "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestrictedRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -23896,7 +23897,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRestrictedRequest": {
+    "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestrictedRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23924,7 +23925,7 @@
           }
         },
         "commands": {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRestrictedRequestCommandsList",
+          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestrictedRequestCommandsList",
           "traits": {
             "smithy.api#documentation": "The list of curated data extraction commands to be executed directly against the target machine.",
             "smithy.api#required": {}
@@ -23942,7 +23943,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRestrictedRequestCommandsList": {
+    "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestrictedRequestCommandsList": {
       "type": "list",
       "member": {
         "target": "com.azure.networkcloud#BareMetalMachineCommandSpecification"
@@ -23951,10 +23952,10 @@
         "smithy.api#documentation": "The list of curated data extraction commands to be executed directly against the target machine."
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunDataExtracts": {
+    "com.azure.networkcloud#RunBareMetalMachineDataExtracts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRequest"
+        "target": "com.azure.networkcloud#RunBareMetalMachineDataExtractsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -23970,7 +23971,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRequest": {
+    "com.azure.networkcloud#RunBareMetalMachineDataExtractsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23998,7 +23999,7 @@
           }
         },
         "commands": {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRequestCommandsList",
+          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtractsRequestCommandsList",
           "traits": {
             "smithy.api#documentation": "The list of curated data extraction commands to be executed directly against the target machine.",
             "smithy.api#required": {}
@@ -24016,7 +24017,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRequestCommandsList": {
+    "com.azure.networkcloud#RunBareMetalMachineDataExtractsRequestCommandsList": {
       "type": "list",
       "member": {
         "target": "com.azure.networkcloud#BareMetalMachineCommandSpecification"
@@ -24025,10 +24026,10 @@
         "smithy.api#documentation": "The list of curated data extraction commands to be executed directly against the target machine."
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunCommand": {
+    "com.azure.networkcloud#RunBareMetalMachineCommand": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#BareMetalMachinesRunCommandRequest"
+        "target": "com.azure.networkcloud#RunBareMetalMachineCommandRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -24044,7 +24045,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunCommandRequest": {
+    "com.azure.networkcloud#RunBareMetalMachineCommandRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24072,7 +24073,7 @@
           }
         },
         "arguments": {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunCommandRequestArgumentsList",
+          "target": "com.azure.networkcloud#RunBareMetalMachineCommandRequestArgumentsList",
           "traits": {
             "smithy.api#documentation": "The list of string arguments that will be passed to the script in order as separate arguments."
           }
@@ -24096,7 +24097,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesRunCommandRequestArgumentsList": {
+    "com.azure.networkcloud#RunBareMetalMachineCommandRequestArgumentsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -24156,10 +24157,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesReplace": {
+    "com.azure.networkcloud#ReplaceBareMetalMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#BareMetalMachinesReplaceRequest"
+        "target": "com.azure.networkcloud#ReplaceBareMetalMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -24175,7 +24176,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesReplaceRequest": {
+    "com.azure.networkcloud#ReplaceBareMetalMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -24227,7 +24228,7 @@
           }
         },
         "safeguardMode": {
-          "target": "com.azure.networkcloud#BareMetalMachinesReplaceRequestSafeguardMode",
+          "target": "com.azure.networkcloud#ReplaceBareMetalMachineRequestSafeguardMode",
           "traits": {
             "smithy.api#documentation": "The safeguard mode to use for the replace action, where None indicates to bypass safeguards and All indicates to utilize all safeguards."
           }
@@ -24239,7 +24240,7 @@
           }
         },
         "storagePolicy": {
-          "target": "com.azure.networkcloud#BareMetalMachinesReplaceRequestStoragePolicy",
+          "target": "com.azure.networkcloud#ReplaceBareMetalMachineRequestStoragePolicy",
           "traits": {
             "smithy.api#documentation": "The indicator of whether to bypass clearing storage while replacing a bare metal machine."
           }
@@ -24249,7 +24250,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesReplaceRequestStoragePolicy": {
+    "com.azure.networkcloud#ReplaceBareMetalMachineRequestStoragePolicy": {
       "type": "enum",
       "members": {
         "PRESERVE": {
@@ -24269,7 +24270,7 @@
         "smithy.api#documentation": "The indicator of whether to bypass clearing storage while replacing a bare metal machine."
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesReplaceRequestSafeguardMode": {
+    "com.azure.networkcloud#ReplaceBareMetalMachineRequestSafeguardMode": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -24490,7 +24491,7 @@
           }
         },
         "evacuate": {
-          "target": "com.azure.networkcloud#BareMetalMachinesCordonRequestEvacuate",
+          "target": "com.azure.networkcloud#CordonBareMetalMachineRequestEvacuate",
           "traits": {
             "smithy.api#documentation": "The indicator of whether to evacuate the node workload when the bare metal machine is cordoned."
           }
@@ -24500,7 +24501,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesCordonRequestEvacuate": {
+    "com.azure.networkcloud#CordonBareMetalMachineRequestEvacuate": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -24618,7 +24619,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BareMetalMachinesUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateBareMetalMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25442,7 +25443,7 @@
         "smithy.api#documentation": "The current state of any in progress or completed actions. The most recent known instance of each action type is shown."
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateBareMetalMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25488,7 +25489,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BareMetalMachinesUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateBareMetalMachineRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25498,7 +25499,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateBareMetalMachineRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -25822,7 +25823,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#BareMetalMachinesGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetBareMetalMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -25859,7 +25860,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#BareMetalMachinesGetResponseTagsMap": {
+    "com.azure.networkcloud#GetBareMetalMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -26106,7 +26107,7 @@
           }
         },
         "accessBridgeName": {
-          "target": "com.azure.networkcloud#AccessBridgesDeleteRequestAccessBridgeName",
+          "target": "com.azure.networkcloud#DeleteAccessBridgeRequestAccessBridgeName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -26118,7 +26119,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#AccessBridgesDeleteRequestAccessBridgeName": {
+    "com.azure.networkcloud#DeleteAccessBridgeRequestAccessBridgeName": {
       "type": "enum",
       "members": {
         "BASTION": {
@@ -26189,7 +26190,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#AccessBridgesUpdateResponseTagsMap",
+          "target": "com.azure.networkcloud#UpdateAccessBridgeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -26501,7 +26502,7 @@
         "smithy.api#documentation": "The direction of allowed network traffic based on the rule."
       }
     },
-    "com.azure.networkcloud#AccessBridgesUpdateResponseTagsMap": {
+    "com.azure.networkcloud#UpdateAccessBridgeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -26533,7 +26534,7 @@
           }
         },
         "accessBridgeName": {
-          "target": "com.azure.networkcloud#AccessBridgesUpdateRequestAccessBridgeName",
+          "target": "com.azure.networkcloud#UpdateAccessBridgeRequestAccessBridgeName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -26547,7 +26548,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#AccessBridgesUpdateRequestTagsMap",
+          "target": "com.azure.networkcloud#UpdateAccessBridgeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -26557,7 +26558,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#AccessBridgesUpdateRequestTagsMap": {
+    "com.azure.networkcloud#UpdateAccessBridgeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -26592,7 +26593,7 @@
         "smithy.api#documentation": "The list of security rules enforced by the access bridge."
       }
     },
-    "com.azure.networkcloud#AccessBridgesUpdateRequestAccessBridgeName": {
+    "com.azure.networkcloud#UpdateAccessBridgeRequestAccessBridgeName": {
       "type": "enum",
       "members": {
         "BASTION": {
@@ -26896,7 +26897,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.networkcloud#AccessBridgesGetResponseTagsMap",
+          "target": "com.azure.networkcloud#GetAccessBridgeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -26933,7 +26934,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#AccessBridgesGetResponseTagsMap": {
+    "com.azure.networkcloud#GetAccessBridgeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -26965,7 +26966,7 @@
           }
         },
         "accessBridgeName": {
-          "target": "com.azure.networkcloud#AccessBridgesGetRequestAccessBridgeName",
+          "target": "com.azure.networkcloud#GetAccessBridgeRequestAccessBridgeName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -26977,7 +26978,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#AccessBridgesGetRequestAccessBridgeName": {
+    "com.azure.networkcloud#GetAccessBridgeRequestAccessBridgeName": {
       "type": "enum",
       "members": {
         "BASTION": {
@@ -28152,10 +28153,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListKuberneteVersionBySubscription": {
+    "com.azure.networkcloud#ListKubernetesVersionBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListKuberneteVersionBySubscriptionRequest"
+        "target": "com.azure.networkcloud#ListKubernetesVersionBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#KubernetesVersionList"
@@ -28171,7 +28172,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#ListKuberneteVersionBySubscriptionRequest": {
+    "com.azure.networkcloud#ListKubernetesVersionBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -28201,10 +28202,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListKuberneteClusterBySubscription": {
+    "com.azure.networkcloud#ListKubernetesClusterBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListKuberneteClusterBySubscriptionRequest"
+        "target": "com.azure.networkcloud#ListKubernetesClusterBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#KubernetesClusterList"
@@ -28220,7 +28221,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#ListKuberneteClusterBySubscriptionRequest": {
+    "com.azure.networkcloud#ListKubernetesClusterBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -28348,10 +28349,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.networkcloud#ListCloudServiceNetworkBySubscription": {
+    "com.azure.networkcloud#ListCloudServicesNetworkBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.networkcloud#ListCloudServiceNetworkBySubscriptionRequest"
+        "target": "com.azure.networkcloud#ListCloudServicesNetworkBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.networkcloud#CloudServicesNetworkList"
@@ -28367,7 +28368,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.networkcloud#ListCloudServiceNetworkBySubscriptionRequest": {
+    "com.azure.networkcloud#ListCloudServicesNetworkBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -28518,7 +28519,7 @@
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.networkcloud#OperationsListResponseValueList",
+          "target": "com.azure.networkcloud#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -28534,7 +28535,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.networkcloud#OperationsListResponseValueList": {
+    "com.azure.networkcloud#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.networkcloud#Operation"
@@ -28658,436 +28659,436 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.networkcloud#DeleteVolume"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateVolume"
-        },
-        {
-          "target": "com.azure.networkcloud#VolumesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetVolume"
-        },
-        {
-          "target": "com.azure.networkcloud#ListVolumeByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#StartVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#RestartVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#VirtualMachinesReimage"
-        },
-        {
-          "target": "com.azure.networkcloud#VirtualMachinesPowerOff"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteConsole"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateConsole"
-        },
-        {
-          "target": "com.azure.networkcloud#ConsolesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetConsole"
-        },
-        {
-          "target": "com.azure.networkcloud#ListConsoleByVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#VirtualMachinesAssignRelay"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#VirtualMachinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#ListVirtualMachineByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteTrunkedNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateTrunkedNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#TrunkedNetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetTrunkedNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#ListTrunkedNetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#StorageAppliancesRunReadCommands"
-        },
-        {
-          "target": "com.azure.networkcloud#EnableStorageApplianceRemoteVendorManagement"
-        },
-        {
-          "target": "com.azure.networkcloud#DisableStorageApplianceRemoteVendorManagement"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteStorageAppliance"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateStorageAppliance"
-        },
-        {
-          "target": "com.azure.networkcloud#StorageAppliancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetStorageAppliance"
-        },
-        {
-          "target": "com.azure.networkcloud#ListStorageApplianceByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteRack"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateRack"
-        },
-        {
-          "target": "com.azure.networkcloud#RacksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetRack"
-        },
-        {
-          "target": "com.azure.networkcloud#ListRackByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteL3Network"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateL3Network"
-        },
-        {
-          "target": "com.azure.networkcloud#L3NetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetL3Network"
-        },
-        {
-          "target": "com.azure.networkcloud#ListL3NetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteL2Network"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateL2Network"
-        },
-        {
-          "target": "com.azure.networkcloud#L2NetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetL2Network"
-        },
-        {
-          "target": "com.azure.networkcloud#ListL2NetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteKuberneteVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateKuberneteVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#KubernetesVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetKuberneteVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKuberneteVersionByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#RestartKuberneteClusterNode"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteKuberneteClusterFeature"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateKuberneteClusterFeature"
-        },
-        {
-          "target": "com.azure.networkcloud#KubernetesClusterFeaturesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetKuberneteClusterFeature"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKuberneteClusterFeatureByKuberneteCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteAgentPool"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateAgentPool"
+          "target": "com.azure.networkcloud#AccessBridgesCreateOrUpdate"
         },
         {
           "target": "com.azure.networkcloud#AgentPoolsCreateOrUpdate"
         },
         {
-          "target": "com.azure.networkcloud#GetAgentPool"
-        },
-        {
-          "target": "com.azure.networkcloud#ListAgentPoolByKuberneteCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteKuberneteCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateKuberneteCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#KubernetesClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetKuberneteCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKuberneteClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateClusterVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersScanRuntime"
-        },
-        {
-          "target": "com.azure.networkcloud#RotateClusterCredential"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteMetricConfiguration"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateMetricConfiguration"
-        },
-        {
-          "target": "com.azure.networkcloud#MetricsConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetMetricConfiguration"
-        },
-        {
-          "target": "com.azure.networkcloud#ListMetricConfigurationByCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersInspect"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersDeploy"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateClusterContinueVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteBmcKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateBmcKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#BmcKeySetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetBmcKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#ListBmcKeySetByCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteBareMetalMachineKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateBareMetalMachineKeySet"
+          "target": "com.azure.networkcloud#AssignVirtualMachineRelay"
         },
         {
           "target": "com.azure.networkcloud#BareMetalMachineKeySetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.networkcloud#GetBareMetalMachineKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#ListBareMetalMachineKeySetByCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateClusterManagerRelayPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteClusterManager"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateClusterManager"
-        },
-        {
-          "target": "com.azure.networkcloud#ClusterManagersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetClusterManager"
-        },
-        {
-          "target": "com.azure.networkcloud#ListClusterManagerByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteCloudServiceNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateCloudServiceNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#CloudServicesNetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetCloudServiceNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#ListCloudServiceNetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#UncordonBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#StartBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunReadCommands"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunDataExtractsRestricted"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunDataExtracts"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunCommand"
-        },
-        {
-          "target": "com.azure.networkcloud#RestartBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesReplace"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesReimage"
+          "target": "com.azure.networkcloud#BareMetalMachinesCreateOrUpdate"
         },
         {
           "target": "com.azure.networkcloud#BareMetalMachinesPowerOff"
         },
         {
+          "target": "com.azure.networkcloud#BareMetalMachinesReimage"
+        },
+        {
+          "target": "com.azure.networkcloud#BareMetalMachinesRunReadCommands"
+        },
+        {
+          "target": "com.azure.networkcloud#BmcKeySetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#CloudServicesNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#ClusterManagersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersContinueUpdateVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersInspect"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersScanRuntime"
+        },
+        {
+          "target": "com.azure.networkcloud#ConsolesCreateOrUpdate"
+        },
+        {
           "target": "com.azure.networkcloud#CordonBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#GetBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#ListBareMetalMachineByResourceGroup"
         },
         {
           "target": "com.azure.networkcloud#DeleteAccessBridge"
         },
         {
-          "target": "com.azure.networkcloud#UpdateAccessBridge"
+          "target": "com.azure.networkcloud#DeleteAgentPool"
         },
         {
-          "target": "com.azure.networkcloud#AccessBridgesCreateOrUpdate"
+          "target": "com.azure.networkcloud#DeleteBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteBareMetalMachineKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteBmcKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteCloudServicesNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteClusterManager"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteConsole"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteKubernetesClusterFeature"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteKubernetesVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteL2Network"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteL3Network"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteMetricsConfiguration"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteRack"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteStorageAppliance"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteTrunkedNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteVolume"
+        },
+        {
+          "target": "com.azure.networkcloud#DeployCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#DisableStorageApplianceRemoteVendorManagement"
+        },
+        {
+          "target": "com.azure.networkcloud#EnableStorageApplianceRemoteVendorManagement"
         },
         {
           "target": "com.azure.networkcloud#GetAccessBridge"
         },
         {
-          "target": "com.azure.networkcloud#ListAccessBridgeByResourceGroup"
+          "target": "com.azure.networkcloud#GetAgentPool"
         },
         {
-          "target": "com.azure.networkcloud#ListVolumeBySubscription"
+          "target": "com.azure.networkcloud#GetBareMetalMachine"
         },
         {
-          "target": "com.azure.networkcloud#ListVirtualMachineBySubscription"
+          "target": "com.azure.networkcloud#GetBareMetalMachineKeySet"
         },
         {
-          "target": "com.azure.networkcloud#ListTrunkedNetworkBySubscription"
+          "target": "com.azure.networkcloud#GetBmcKeySet"
         },
         {
-          "target": "com.azure.networkcloud#ListStorageApplianceBySubscription"
+          "target": "com.azure.networkcloud#GetCloudServicesNetwork"
         },
         {
-          "target": "com.azure.networkcloud#ListRackBySubscription"
+          "target": "com.azure.networkcloud#GetCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#GetClusterManager"
+        },
+        {
+          "target": "com.azure.networkcloud#GetConsole"
+        },
+        {
+          "target": "com.azure.networkcloud#GetKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#GetKubernetesClusterFeature"
+        },
+        {
+          "target": "com.azure.networkcloud#GetKubernetesVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#GetL2Network"
+        },
+        {
+          "target": "com.azure.networkcloud#GetL3Network"
+        },
+        {
+          "target": "com.azure.networkcloud#GetMetricsConfiguration"
+        },
+        {
+          "target": "com.azure.networkcloud#GetRack"
         },
         {
           "target": "com.azure.networkcloud#GetRackSkus"
         },
         {
-          "target": "com.azure.networkcloud#ListRackSkusBySubscription"
+          "target": "com.azure.networkcloud#GetStorageAppliance"
         },
         {
-          "target": "com.azure.networkcloud#ListL3NetworkBySubscription"
+          "target": "com.azure.networkcloud#GetTrunkedNetwork"
         },
         {
-          "target": "com.azure.networkcloud#ListL2NetworkBySubscription"
+          "target": "com.azure.networkcloud#GetVirtualMachine"
         },
         {
-          "target": "com.azure.networkcloud#ListKuberneteVersionBySubscription"
+          "target": "com.azure.networkcloud#GetVolume"
         },
         {
-          "target": "com.azure.networkcloud#ListKuberneteClusterBySubscription"
+          "target": "com.azure.networkcloud#KubernetesClusterFeaturesCreateOrUpdate"
         },
         {
-          "target": "com.azure.networkcloud#ListClusterBySubscription"
+          "target": "com.azure.networkcloud#KubernetesClustersCreateOrUpdate"
         },
         {
-          "target": "com.azure.networkcloud#ListClusterManagerBySubscription"
+          "target": "com.azure.networkcloud#KubernetesVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.networkcloud#ListCloudServiceNetworkBySubscription"
+          "target": "com.azure.networkcloud#L2NetworksCreateOrUpdate"
         },
         {
-          "target": "com.azure.networkcloud#ListBareMetalMachineBySubscription"
+          "target": "com.azure.networkcloud#L3NetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#ListAccessBridgeByResourceGroup"
         },
         {
           "target": "com.azure.networkcloud#ListAccessBridgeBySubscription"
         },
         {
+          "target": "com.azure.networkcloud#ListAgentPoolByKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBareMetalMachineByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBareMetalMachineBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBareMetalMachineKeySetByCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBmcKeySetByCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ListCloudServicesNetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListCloudServicesNetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterManagerByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterManagerBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListConsoleByVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesClusterBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesClusterFeatureByKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesVersionByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesVersionBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL2NetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL2NetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL3NetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL3NetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListMetricsConfigurationByCluster"
+        },
+        {
           "target": "com.azure.networkcloud#ListOperations"
+        },
+        {
+          "target": "com.azure.networkcloud#ListRackByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListRackBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListRackSkusBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListStorageApplianceByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListStorageApplianceBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListTrunkedNetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListTrunkedNetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVirtualMachineByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVirtualMachineBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVolumeByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVolumeBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#MetricsConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#RacksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#ReplaceBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#RestartBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#RestartKubernetesClusterNode"
+        },
+        {
+          "target": "com.azure.networkcloud#RestartVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#RotateClusterCredential"
+        },
+        {
+          "target": "com.azure.networkcloud#RunBareMetalMachineCommand"
+        },
+        {
+          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtracts"
+        },
+        {
+          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestricted"
+        },
+        {
+          "target": "com.azure.networkcloud#StartBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#StartVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#StorageAppliancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#StorageAppliancesRunReadCommands"
+        },
+        {
+          "target": "com.azure.networkcloud#TrunkedNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#UncordonBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateAccessBridge"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateAgentPool"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateBareMetalMachineKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateBmcKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateCloudServicesNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateClusterManager"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateClusterManagerRelayPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateClusterVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateConsole"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateKubernetesClusterFeature"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateKubernetesVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateL2Network"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateL3Network"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateMetricsConfiguration"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateRack"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateStorageAppliance"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateTrunkedNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateVolume"
+        },
+        {
+          "target": "com.azure.networkcloud#VirtualMachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#VirtualMachinesPowerOff"
+        },
+        {
+          "target": "com.azure.networkcloud#VirtualMachinesReimage"
+        },
+        {
+          "target": "com.azure.networkcloud#VolumesCreateOrUpdate"
         }
       ],
       "traits": {

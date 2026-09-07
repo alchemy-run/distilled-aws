@@ -21,7 +21,8 @@
       "modifiedOn": "modified_on",
       "privateIp": "private_ip",
       "vnetId": "vnet_id"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.keyless_certificates#CreateRequestBundleMethod": {
@@ -338,19 +339,19 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.keyless_certificates#Create"
+          "target": "com.cloudflare.keyless_certificates#CreateKeylessCertificate"
         },
         {
-          "target": "com.cloudflare.keyless_certificates#Delete"
+          "target": "com.cloudflare.keyless_certificates#DeleteKeylessCertificate"
         },
         {
-          "target": "com.cloudflare.keyless_certificates#Edit"
+          "target": "com.cloudflare.keyless_certificates#GetKeylessCertificate"
         },
         {
-          "target": "com.cloudflare.keyless_certificates#Get"
+          "target": "com.cloudflare.keyless_certificates#ListKeylessCertificates"
         },
         {
-          "target": "com.cloudflare.keyless_certificates#List"
+          "target": "com.cloudflare.keyless_certificates#PatchKeylessCertificate"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.promo_codes#ListPromoCodesRequestStatus": {
@@ -2546,7 +2547,7 @@
         "smithy.api#documentation": "Create Promo Code\n\nCreates a promo code for an account. First-party sessions may attach an affiliate."
       }
     },
-    "com.whop.promo_codes#RetrievePromoCodeRequest": {
+    "com.whop.promo_codes#GetPromoCodeRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2562,10 +2563,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.promo_codes#RetrievePromoCode": {
+    "com.whop.promo_codes#GetPromoCode": {
       "type": "operation",
       "input": {
-        "target": "com.whop.promo_codes#RetrievePromoCodeRequest"
+        "target": "com.whop.promo_codes#GetPromoCodeRequest"
       },
       "output": {
         "target": "com.whop.promo_codes#PromoCode"
@@ -3684,25 +3685,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.promo_codes#ListPromoCodes"
+          "target": "com.whop.promo_codes#ActivatePromoCode"
         },
         {
           "target": "com.whop.promo_codes#CreatePromoCode"
         },
         {
-          "target": "com.whop.promo_codes#RetrievePromoCode"
-        },
-        {
-          "target": "com.whop.promo_codes#UpdatePromoCode"
+          "target": "com.whop.promo_codes#DeactivatePromoCode"
         },
         {
           "target": "com.whop.promo_codes#DeletePromoCode"
         },
         {
-          "target": "com.whop.promo_codes#ActivatePromoCode"
+          "target": "com.whop.promo_codes#GetPromoCode"
         },
         {
-          "target": "com.whop.promo_codes#DeactivatePromoCode"
+          "target": "com.whop.promo_codes#ListPromoCodes"
+        },
+        {
+          "target": "com.whop.promo_codes#UpdatePromoCode"
         }
       ],
       "traits": {

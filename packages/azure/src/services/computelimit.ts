@@ -563,11 +563,10 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type FeaturesDisableResponseOperationsList =
-  Array<OperationStatusResult>;
-export const FeaturesDisableResponseOperationsList = /*@__PURE__*/ S.Array(
+export type DisableFeatureResponseOperationsList = Array<OperationStatusResult>;
+export const DisableFeatureResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<FeaturesDisableResponseOperationsList>;
+) as any as S.Schema<DisableFeatureResponseOperationsList>;
 
 export interface DisableFeatureResponse {
   /** Fully qualified ID for the async operation. */
@@ -585,7 +584,7 @@ export interface DisableFeatureResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: FeaturesDisableResponseOperationsList;
+  operations?: DisableFeatureResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
@@ -598,7 +597,7 @@ export const DisableFeatureResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(FeaturesDisableResponseOperationsList),
+    operations: S.optional(DisableFeatureResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
@@ -634,10 +633,10 @@ export const EnableFeatureRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EnableFeatureRequest>;
 
 /** The operations list. */
-export type FeaturesEnableResponseOperationsList = Array<OperationStatusResult>;
-export const FeaturesEnableResponseOperationsList = /*@__PURE__*/ S.Array(
+export type EnableFeatureResponseOperationsList = Array<OperationStatusResult>;
+export const EnableFeatureResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<FeaturesEnableResponseOperationsList>;
+) as any as S.Schema<EnableFeatureResponseOperationsList>;
 
 export interface EnableFeatureResponse {
   /** Fully qualified ID for the async operation. */
@@ -655,7 +654,7 @@ export interface EnableFeatureResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: FeaturesEnableResponseOperationsList;
+  operations?: EnableFeatureResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
@@ -668,7 +667,7 @@ export const EnableFeatureResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(FeaturesEnableResponseOperationsList),
+    operations: S.optional(EnableFeatureResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
@@ -1376,20 +1375,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -1754,14 +1753,14 @@ export const MemberCap = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "MemberCap" }) as any as S.Schema<MemberCap>;
 
 /** The full set of per-member cap overrides to persist for this resource. This call replaces the existing set entirely; supply an empty array (`[]`) to clear all overrides. */
-export type SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList =
+export type SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList =
   Array<MemberCap>;
-export const SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList =
+export const SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList =
   /*@__PURE__*/ S.Array(
     MemberCap,
-  ) as any as S.Schema<SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList>;
+  ) as any as S.Schema<SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList>;
 
-export interface SetSharedLimitCapMemberCapOverrideRequest {
+export interface SetSharedLimitCapMemberCapOverridesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -1769,16 +1768,16 @@ export interface SetSharedLimitCapMemberCapOverrideRequest {
   /** The name of the SharedLimitCap */
   vmFamilyName: string;
   /** The full set of per-member cap overrides to persist for this resource. This call replaces the existing set entirely; supply an empty array (`[]`) to clear all overrides. */
-  memberCapOverrides: SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList;
+  memberCapOverrides: SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList;
 }
-export const SetSharedLimitCapMemberCapOverrideRequest =
+export const SetSharedLimitCapMemberCapOverridesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
       vmFamilyName: S.String.pipe(T.Label()),
       memberCapOverrides:
-        SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList,
+        SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -1788,8 +1787,8 @@ export const SetSharedLimitCapMemberCapOverrideRequest =
       }),
     ),
   ).annotate({
-    identifier: "SetSharedLimitCapMemberCapOverrideRequest",
-  }) as any as S.Schema<SetSharedLimitCapMemberCapOverrideRequest>;
+    identifier: "SetSharedLimitCapMemberCapOverridesRequest",
+  }) as any as S.Schema<SetSharedLimitCapMemberCapOverridesRequest>;
 
 /** The per-member cap overrides as persisted after the action completed. */
 export type SetMemberCapOverridesResultMemberCapOverridesList =
@@ -2275,15 +2274,15 @@ export const MemberCapOverridesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SetSharedLimitCapMemberCapOverrideError = AzureOpError;
+export type SetSharedLimitCapMemberCapOverridesError = AzureOpError;
 /** Replaces the full set of per-member cap overrides for this shared limit cap. The supplied array becomes the new complete set of overrides; supplying an empty array clears all existing overrides. */
-export const SetSharedLimitCapMemberCapOverride: API.OperationMethod<
-  SetSharedLimitCapMemberCapOverrideRequest,
+export const SetSharedLimitCapMemberCapOverrides: API.OperationMethod<
+  SetSharedLimitCapMemberCapOverridesRequest,
   SetMemberCapOverridesResult,
-  SetSharedLimitCapMemberCapOverrideError,
+  SetSharedLimitCapMemberCapOverridesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SetSharedLimitCapMemberCapOverrideRequest,
+  input: SetSharedLimitCapMemberCapOverridesRequest,
   output: SetMemberCapOverridesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

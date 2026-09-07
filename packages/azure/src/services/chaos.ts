@@ -12,6 +12,38 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface CancelExperimentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** String that represents a Experiment resource name. */
+  experimentName: string;
+}
+export const CancelExperimentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    experimentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/cancel",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelExperimentRequest",
+}) as any as S.Schema<CancelExperimentRequest>;
+
+export interface CancelExperimentResponse {}
+export const CancelExperimentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelExperimentResponse",
+}) as any as S.Schema<CancelExperimentResponse>;
+
 /** Model that represents the Capability properties model. */
 export interface CapabilityPropertiesInput {}
 export const CapabilityPropertiesInput = /*@__PURE__*/ S.suspend(() =>
@@ -267,38 +299,6 @@ export const DeleteTargetResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteTargetResponse",
 }) as any as S.Schema<DeleteTargetResponse>;
-
-export interface ExperimentsCancelRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** String that represents a Experiment resource name. */
-  experimentName: string;
-}
-export const ExperimentsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    experimentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/cancel",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExperimentsCancelRequest",
-}) as any as S.Schema<ExperimentsCancelRequest>;
-
-export interface ExperimentsCancelResponse {}
-export const ExperimentsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ExperimentsCancelResponse",
-}) as any as S.Schema<ExperimentsCancelResponse>;
 
 /** Resource tags. */
 export type ExperimentsCreateOrUpdateRequestTagsMap = {
@@ -1098,18 +1098,18 @@ export const GetExperimentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetExperimentRequest>;
 
 /** Resource tags. */
-export type ExperimentsGetResponseTagsMap = {
+export type GetExperimentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExperimentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetExperimentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExperimentsGetResponseTagsMap>;
+) as any as S.Schema<GetExperimentResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ExperimentsGetResponseIdentity =
+export type GetExperimentResponseIdentity =
   ExperimentsCreateOrUpdateResponseIdentity;
-export const ExperimentsGetResponseIdentity =
+export const GetExperimentResponseIdentity =
   ExperimentsCreateOrUpdateResponseIdentity;
 
 export interface GetExperimentResponse {
@@ -1122,7 +1122,7 @@ export interface GetExperimentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ExperimentsGetResponseTagsMap;
+  tags?: GetExperimentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
@@ -1136,7 +1136,7 @@ export const GetExperimentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ExperimentsGetResponseTagsMap),
+    tags: S.optional(GetExperimentResponseTagsMap),
     location: S.String,
     identity: S.optional(ExperimentsCreateOrUpdateResponseIdentity),
     properties: ExperimentProperties,
@@ -1336,11 +1336,11 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type OperationStatusesGetResponseOperationsList =
+export type GetOperationStatusResponseOperationsList =
   Array<OperationStatusResult>;
-export const OperationStatusesGetResponseOperationsList = /*@__PURE__*/ S.Array(
+export const GetOperationStatusResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<OperationStatusesGetResponseOperationsList>;
+) as any as S.Schema<GetOperationStatusResponseOperationsList>;
 
 export interface GetOperationStatusResponse {
   /** Fully qualified ID for the async operation. */
@@ -1358,7 +1358,7 @@ export interface GetOperationStatusResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: OperationStatusesGetResponseOperationsList;
+  operations?: GetOperationStatusResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
@@ -1371,7 +1371,7 @@ export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusesGetResponseOperationsList),
+    operations: S.optional(GetOperationStatusResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
@@ -1413,13 +1413,13 @@ export const GetTargetRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetTargetRequest>;
 
 /** The properties of the target resource. */
-export type TargetsGetResponsePropertiesMap = {
+export type GetTargetResponsePropertiesMap = {
   [key: string]: unknown | undefined;
 };
-export const TargetsGetResponsePropertiesMap = /*@__PURE__*/ S.Record(
+export const GetTargetResponsePropertiesMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<TargetsGetResponsePropertiesMap>;
+) as any as S.Schema<GetTargetResponsePropertiesMap>;
 
 export interface GetTargetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -1431,7 +1431,7 @@ export interface GetTargetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The properties of the target resource. */
-  properties: TargetsGetResponsePropertiesMap;
+  properties: GetTargetResponsePropertiesMap;
   /** Azure resource location. */
   location?: string;
 }
@@ -1441,7 +1441,7 @@ export const GetTargetResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: TargetsGetResponsePropertiesMap,
+    properties: GetTargetResponsePropertiesMap,
     location: S.optional(S.String),
   }),
 ).annotate({
@@ -1938,20 +1938,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListAllResponseValueList = Array<Operation>;
-export const OperationsListAllResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationAllResponseValueList = Array<Operation>;
+export const ListOperationAllResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListAllResponseValueList>;
+) as any as S.Schema<ListOperationAllResponseValueList>;
 
 export interface ListOperationAllResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListAllResponseValueList;
+  value?: ListOperationAllResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationAllResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListAllResponseValueList),
+    value: S.optional(ListOperationAllResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2236,18 +2236,18 @@ export const TargetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TargetsCreateOrUpdateResponse>;
 
 /** Resource tags. */
-export type ExperimentsUpdateRequestTagsMap = {
+export type UpdateExperimentRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExperimentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateExperimentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExperimentsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateExperimentRequestTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ExperimentsUpdateRequestIdentity =
+export type UpdateExperimentRequestIdentity =
   ExperimentsCreateOrUpdateRequestIdentity;
-export const ExperimentsUpdateRequestIdentity =
+export const UpdateExperimentRequestIdentity =
   ExperimentsCreateOrUpdateRequestIdentity;
 
 export interface UpdateExperimentRequest {
@@ -2258,7 +2258,7 @@ export interface UpdateExperimentRequest {
   /** String that represents a Experiment resource name. */
   experimentName: string;
   /** Resource tags. */
-  tags?: ExperimentsUpdateRequestTagsMap;
+  tags?: UpdateExperimentRequestTagsMap;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: ExperimentsCreateOrUpdateRequestIdentity;
 }
@@ -2267,7 +2267,7 @@ export const UpdateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     experimentName: S.String.pipe(T.Label()),
-    tags: S.optional(ExperimentsUpdateRequestTagsMap),
+    tags: S.optional(UpdateExperimentRequestTagsMap),
     identity: S.optional(ExperimentsCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
@@ -2282,18 +2282,18 @@ export const UpdateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateExperimentRequest>;
 
 /** Resource tags. */
-export type ExperimentsUpdateResponseTagsMap = {
+export type UpdateExperimentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExperimentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateExperimentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExperimentsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateExperimentResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ExperimentsUpdateResponseIdentity =
+export type UpdateExperimentResponseIdentity =
   ExperimentsCreateOrUpdateResponseIdentity;
-export const ExperimentsUpdateResponseIdentity =
+export const UpdateExperimentResponseIdentity =
   ExperimentsCreateOrUpdateResponseIdentity;
 
 export interface UpdateExperimentResponse {
@@ -2306,7 +2306,7 @@ export interface UpdateExperimentResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ExperimentsUpdateResponseTagsMap;
+  tags?: UpdateExperimentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
@@ -2320,7 +2320,7 @@ export const UpdateExperimentResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ExperimentsUpdateResponseTagsMap),
+    tags: S.optional(UpdateExperimentResponseTagsMap),
     location: S.String,
     identity: S.optional(ExperimentsCreateOrUpdateResponseIdentity),
     properties: ExperimentProperties,
@@ -2328,6 +2328,21 @@ export const UpdateExperimentResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateExperimentResponse",
 }) as any as S.Schema<UpdateExperimentResponse>;
+
+export type CancelExperimentError = AzureOpError;
+/** Cancel a running Experiment resource. */
+export const CancelExperiment: API.OperationMethod<
+  CancelExperimentRequest,
+  CancelExperimentResponse,
+  CancelExperimentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelExperimentRequest,
+  output: CancelExperimentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CapabilitiesCreateOrUpdateError = AzureOpError;
 /** Create or update a Capability resource that extends a Target resource. */
@@ -2384,21 +2399,6 @@ export const DeleteTarget: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteTargetRequest,
   output: DeleteTargetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExperimentsCancelError = AzureOpError;
-/** Cancel a running Experiment resource. */
-export const ExperimentsCancel: API.OperationMethod<
-  ExperimentsCancelRequest,
-  ExperimentsCancelResponse,
-  ExperimentsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsCancelRequest,
-  output: ExperimentsCancelResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

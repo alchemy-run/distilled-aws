@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.code_security#GetConfigurationsForEnterpriseRequest": {
@@ -5886,40 +5887,22 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.code_security#GetConfigurationsForEnterprise"
-        },
-        {
-          "target": "com.github.code_security#CreateConfigurationForEnterprise"
-        },
-        {
-          "target": "com.github.code_security#GetDefaultConfigurationsForEnterprise"
-        },
-        {
-          "target": "com.github.code_security#GetSingleConfigurationForEnterprise"
-        },
-        {
-          "target": "com.github.code_security#UpdateEnterpriseConfiguration"
-        },
-        {
-          "target": "com.github.code_security#DeleteConfigurationForEnterprise"
+          "target": "com.github.code_security#AttachConfiguration"
         },
         {
           "target": "com.github.code_security#AttachEnterpriseConfiguration"
         },
         {
-          "target": "com.github.code_security#SetConfigurationAsDefaultForEnterprise"
-        },
-        {
-          "target": "com.github.code_security#GetRepositoriesForEnterpriseConfiguration"
-        },
-        {
-          "target": "com.github.code_security#GetConfigurationsForOrg"
-        },
-        {
           "target": "com.github.code_security#CreateConfiguration"
         },
         {
-          "target": "com.github.code_security#GetDefaultConfigurations"
+          "target": "com.github.code_security#CreateConfigurationForEnterprise"
+        },
+        {
+          "target": "com.github.code_security#DeleteConfiguration"
+        },
+        {
+          "target": "com.github.code_security#DeleteConfigurationForEnterprise"
         },
         {
           "target": "com.github.code_security#DetachConfiguration"
@@ -5928,22 +5911,40 @@
           "target": "com.github.code_security#GetConfiguration"
         },
         {
-          "target": "com.github.code_security#UpdateConfiguration"
+          "target": "com.github.code_security#GetConfigurationForRepository"
         },
         {
-          "target": "com.github.code_security#DeleteConfiguration"
+          "target": "com.github.code_security#GetConfigurationsForEnterprise"
         },
         {
-          "target": "com.github.code_security#AttachConfiguration"
+          "target": "com.github.code_security#GetConfigurationsForOrg"
         },
         {
-          "target": "com.github.code_security#SetConfigurationAsDefault"
+          "target": "com.github.code_security#GetDefaultConfigurations"
+        },
+        {
+          "target": "com.github.code_security#GetDefaultConfigurationsForEnterprise"
         },
         {
           "target": "com.github.code_security#GetRepositoriesForConfiguration"
         },
         {
-          "target": "com.github.code_security#GetConfigurationForRepository"
+          "target": "com.github.code_security#GetRepositoriesForEnterpriseConfiguration"
+        },
+        {
+          "target": "com.github.code_security#GetSingleConfigurationForEnterprise"
+        },
+        {
+          "target": "com.github.code_security#SetConfigurationAsDefault"
+        },
+        {
+          "target": "com.github.code_security#SetConfigurationAsDefaultForEnterprise"
+        },
+        {
+          "target": "com.github.code_security#UpdateConfiguration"
+        },
+        {
+          "target": "com.github.code_security#UpdateEnterpriseConfiguration"
         }
       ],
       "traits": {

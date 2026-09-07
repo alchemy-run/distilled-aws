@@ -341,7 +341,8 @@
       "vlanTag": "vlan_tag",
       "weightedTimeInProgressMs": "weighted_time_in_progress_ms",
       "writesMerged": "writes_merged"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.magic_transit#AppsCreateRequestHostnamesList": {
@@ -14151,13 +14152,13 @@
         "target": "com.cloudflare.magic_transit#SitesAclsUpdateResponseProtocolsItem"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationCreateRequestPreferredWansList": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationRequestPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#CreateSiteAppConfigurationRequest": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -14189,7 +14190,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationCreateRequestPreferredWansList",
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationRequestPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14211,13 +14212,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultAccountAppPreferredWansList": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultAccountAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultAccountApp": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultAccountApp": {
       "type": "structure",
       "members": {
         "account_app_id": {
@@ -14240,7 +14241,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultAccountAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultAccountAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14259,13 +14260,13 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultManagedAppPreferredWansList": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultManagedAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultManagedApp": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultManagedApp": {
       "type": "structure",
       "members": {
         "managed_app_id": {
@@ -14288,7 +14289,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultManagedAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultManagedAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14307,22 +14308,22 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#CreateSiteAppConfigurationResult": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationResult": {
       "type": "union",
       "members": {
         "AccountApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultAccountApp"
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultAccountApp"
         },
         "ManagedApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationCreateResultManagedApp"
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationResultManagedApp"
         }
       }
     },
-    "com.cloudflare.magic_transit#CreateSiteAppConfigurationResponse": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfigurationResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.magic_transit#CreateSiteAppConfigurationResult",
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationResult",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -14333,13 +14334,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.magic_transit#CreateSiteAppConfiguration": {
+    "com.cloudflare.magic_transit#CreateSitesAppConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.magic_transit#CreateSiteAppConfigurationRequest"
+        "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationRequest"
       },
       "output": {
-        "target": "com.cloudflare.magic_transit#CreateSiteAppConfigurationResponse"
+        "target": "com.cloudflare.magic_transit#CreateSitesAppConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14350,7 +14351,7 @@
         "smithy.api#documentation": "Creates a new App Config for a site"
       }
     },
-    "com.cloudflare.magic_transit#DeleteSiteAppConfigurationRequest": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfigurationRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -14382,13 +14383,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultAccountAppPreferredWansList": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultAccountAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultAccountApp": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultAccountApp": {
       "type": "structure",
       "members": {
         "account_app_id": {
@@ -14411,7 +14412,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultAccountAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultAccountAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14430,13 +14431,13 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultManagedAppPreferredWansList": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultManagedAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultManagedApp": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultManagedApp": {
       "type": "structure",
       "members": {
         "managed_app_id": {
@@ -14459,7 +14460,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultManagedAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultManagedAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14478,22 +14479,22 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#DeleteSiteAppConfigurationResult": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResult": {
       "type": "union",
       "members": {
         "AccountApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultAccountApp"
+          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultAccountApp"
         },
         "ManagedApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationDeleteResultManagedApp"
+          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResultManagedApp"
         }
       }
     },
-    "com.cloudflare.magic_transit#DeleteSiteAppConfigurationResponse": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.magic_transit#DeleteSiteAppConfigurationResult",
+          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResult",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -14504,13 +14505,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.magic_transit#DeleteSiteAppConfiguration": {
+    "com.cloudflare.magic_transit#DeleteSitesAppConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.magic_transit#DeleteSiteAppConfigurationRequest"
+        "target": "com.cloudflare.magic_transit#DeleteSitesAppConfigurationRequest"
       },
       "output": {
-        "target": "com.cloudflare.magic_transit#DeleteSiteAppConfigurationResponse"
+        "target": "com.cloudflare.magic_transit#DeleteSitesAppConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14522,13 +14523,13 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditRequestPreferredWansList": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationRequestPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditRequest": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -14574,7 +14575,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditRequestPreferredWansList",
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationRequestPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14590,13 +14591,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditResultAccountAppPreferredWansList": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationResultAccountAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditResultAccountApp": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationResultAccountApp": {
       "type": "structure",
       "members": {
         "account_app_id": {
@@ -14619,7 +14620,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditResultAccountAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationResultAccountAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14638,13 +14639,13 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditResultManagedAppPreferredWansList": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationResultManagedAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditResultManagedApp": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationResultManagedApp": {
       "type": "structure",
       "members": {
         "managed_app_id": {
@@ -14667,7 +14668,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditResultManagedAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationResultManagedAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14686,22 +14687,22 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditResult": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationResult": {
       "type": "union",
       "members": {
         "AccountApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditResultAccountApp"
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationResultAccountApp"
         },
         "ManagedApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditResultManagedApp"
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationResultManagedApp"
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEditResponse": {
+    "com.cloudflare.magic_transit#EditSitesAppConfigurationResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditResult",
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationResult",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -14712,13 +14713,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationEdit": {
+    "com.cloudflare.magic_transit#EditSitesAppConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditRequest"
+        "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationRequest"
       },
       "output": {
-        "target": "com.cloudflare.magic_transit#SitesAppConfigurationEditResponse"
+        "target": "com.cloudflare.magic_transit#EditSitesAppConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14729,7 +14730,7 @@
         "smithy.api#documentation": "Updates an App Config for a site"
       }
     },
-    "com.cloudflare.magic_transit#ListSiteAppConfigurationRequest": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -14753,13 +14754,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemAccountAppPreferredWansList": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemAccountAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemAccountApp": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemAccountApp": {
       "type": "structure",
       "members": {
         "account_app_id": {
@@ -14782,7 +14783,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemAccountAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemAccountAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14801,13 +14802,13 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemManagedAppPreferredWansList": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemManagedAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemManagedApp": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemManagedApp": {
       "type": "structure",
       "members": {
         "managed_app_id": {
@@ -14830,7 +14831,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemManagedAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemManagedAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14849,28 +14850,28 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationListResultItem": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItem": {
       "type": "union",
       "members": {
         "AccountApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemAccountApp"
+          "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemAccountApp"
         },
         "ManagedApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationListResultItemManagedApp"
+          "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItemManagedApp"
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationListResultList": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.magic_transit#SitesAppConfigurationListResultItem"
+        "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationResultItem"
       }
     },
-    "com.cloudflare.magic_transit#ListSiteAppConfigurationResponse": {
+    "com.cloudflare.magic_transit#ListSitesAppConfigurationResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationListResultList",
+          "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -14881,13 +14882,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.magic_transit#ListSiteAppConfiguration": {
+    "com.cloudflare.magic_transit#ListSitesAppConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.magic_transit#ListSiteAppConfigurationRequest"
+        "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationRequest"
       },
       "output": {
-        "target": "com.cloudflare.magic_transit#ListSiteAppConfigurationResponse"
+        "target": "com.cloudflare.magic_transit#ListSitesAppConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14899,13 +14900,13 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationUpdateRequestPreferredWansList": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationRequestPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#UpdateSiteAppConfigurationRequest": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -14951,7 +14952,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationUpdateRequestPreferredWansList",
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationRequestPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -14967,13 +14968,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultAccountAppPreferredWansList": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultAccountAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultAccountApp": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultAccountApp": {
       "type": "structure",
       "members": {
         "account_app_id": {
@@ -14996,7 +14997,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultAccountAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultAccountAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -15015,13 +15016,13 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultManagedAppPreferredWansList": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultManagedAppPreferredWansList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultManagedApp": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultManagedApp": {
       "type": "structure",
       "members": {
         "managed_app_id": {
@@ -15044,7 +15045,7 @@
           }
         },
         "preferred_wans": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultManagedAppPreferredWansList",
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultManagedAppPreferredWansList",
           "traits": {
             "smithy.api#documentation": "WAN interfaces to prefer over default WANs, highest-priority first. Can only be specified for breakout rules (breakout must be true)."
           }
@@ -15063,22 +15064,22 @@
         }
       }
     },
-    "com.cloudflare.magic_transit#UpdateSiteAppConfigurationResult": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResult": {
       "type": "union",
       "members": {
         "AccountApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultAccountApp"
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultAccountApp"
         },
         "ManagedApp": {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationUpdateResultManagedApp"
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResultManagedApp"
         }
       }
     },
-    "com.cloudflare.magic_transit#UpdateSiteAppConfigurationResponse": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.magic_transit#UpdateSiteAppConfigurationResult",
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResult",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -15089,13 +15090,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.magic_transit#UpdateSiteAppConfiguration": {
+    "com.cloudflare.magic_transit#UpdateSitesAppConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.magic_transit#UpdateSiteAppConfigurationRequest"
+        "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationRequest"
       },
       "output": {
-        "target": "com.cloudflare.magic_transit#UpdateSiteAppConfigurationResponse"
+        "target": "com.cloudflare.magic_transit#UpdateSitesAppConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17625,271 +17626,271 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.magic_transit#AppsCreate"
+          "target": "com.cloudflare.magic_transit#BulkPutCfInterconnects"
         },
         {
-          "target": "com.cloudflare.magic_transit#AppsDelete"
+          "target": "com.cloudflare.magic_transit#BulkPutGreTunnels"
         },
         {
-          "target": "com.cloudflare.magic_transit#AppsEdit"
+          "target": "com.cloudflare.magic_transit#BulkPutIpsecTunnels"
         },
         {
-          "target": "com.cloudflare.magic_transit#AppsList"
+          "target": "com.cloudflare.magic_transit#BulkPutRoutes"
         },
         {
-          "target": "com.cloudflare.magic_transit#AppsUpdate"
+          "target": "com.cloudflare.magic_transit#CreateApp"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesCreate"
+          "target": "com.cloudflare.magic_transit#CreateCf1Site"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesDelete"
+          "target": "com.cloudflare.magic_transit#CreateCf1SiteRamp"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesGet"
+          "target": "com.cloudflare.magic_transit#CreateConnector"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesList"
+          "target": "com.cloudflare.magic_transit#CreateGreTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesUpdate"
+          "target": "com.cloudflare.magic_transit#CreateIpsecTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesRampsCreate"
+          "target": "com.cloudflare.magic_transit#CreatePcap"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesRampsDelete"
+          "target": "com.cloudflare.magic_transit#CreatePcapOwnership"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesRampsGet"
+          "target": "com.cloudflare.magic_transit#CreateRoute"
         },
         {
-          "target": "com.cloudflare.magic_transit#Cf1SitesRampsList"
+          "target": "com.cloudflare.magic_transit#CreateSite"
         },
         {
-          "target": "com.cloudflare.magic_transit#CfInterconnectsBulkUpdate"
+          "target": "com.cloudflare.magic_transit#CreateSiteAcl"
         },
         {
-          "target": "com.cloudflare.magic_transit#CfInterconnectsGet"
+          "target": "com.cloudflare.magic_transit#CreateSiteLan"
         },
         {
-          "target": "com.cloudflare.magic_transit#CfInterconnectsList"
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfiguration"
         },
         {
-          "target": "com.cloudflare.magic_transit#CfInterconnectsUpdate"
+          "target": "com.cloudflare.magic_transit#CreateSiteWan"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsCreate"
+          "target": "com.cloudflare.magic_transit#DeleteApp"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsDelete"
+          "target": "com.cloudflare.magic_transit#DeleteCf1Site"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsEdit"
+          "target": "com.cloudflare.magic_transit#DeleteCf1SiteRamp"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsGet"
+          "target": "com.cloudflare.magic_transit#DeleteConnector"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsList"
+          "target": "com.cloudflare.magic_transit#DeleteGreTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsUpdate"
+          "target": "com.cloudflare.magic_transit#DeleteIpsecTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsEventsGet"
+          "target": "com.cloudflare.magic_transit#DeletePcapOwnership"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsEventsList"
+          "target": "com.cloudflare.magic_transit#DeleteRoute"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsEventsLatestList"
+          "target": "com.cloudflare.magic_transit#DeleteSite"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsSnapshotsGet"
+          "target": "com.cloudflare.magic_transit#DeleteSiteAcl"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsSnapshotsList"
+          "target": "com.cloudflare.magic_transit#DeleteSiteLan"
         },
         {
-          "target": "com.cloudflare.magic_transit#ConnectorsSnapshotsLatestList"
+          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfiguration"
         },
         {
-          "target": "com.cloudflare.magic_transit#GreTunnelsBulkUpdate"
+          "target": "com.cloudflare.magic_transit#DeleteSiteWan"
         },
         {
-          "target": "com.cloudflare.magic_transit#GreTunnelsCreate"
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfiguration"
         },
         {
-          "target": "com.cloudflare.magic_transit#GreTunnelsDelete"
+          "target": "com.cloudflare.magic_transit#EmptyRoute"
         },
         {
-          "target": "com.cloudflare.magic_transit#GreTunnelsGet"
+          "target": "com.cloudflare.magic_transit#GetCf1Site"
         },
         {
-          "target": "com.cloudflare.magic_transit#GreTunnelsList"
+          "target": "com.cloudflare.magic_transit#GetCf1SiteRamp"
         },
         {
-          "target": "com.cloudflare.magic_transit#GreTunnelsUpdate"
+          "target": "com.cloudflare.magic_transit#GetCfInterconnect"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsBulkUpdate"
+          "target": "com.cloudflare.magic_transit#GetConnector"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsCreate"
+          "target": "com.cloudflare.magic_transit#GetConnectorEvent"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsDelete"
+          "target": "com.cloudflare.magic_transit#GetConnectorSnapshot"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsGet"
+          "target": "com.cloudflare.magic_transit#GetGreTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsList"
+          "target": "com.cloudflare.magic_transit#GetIpsecTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsPskGenerate"
+          "target": "com.cloudflare.magic_transit#GetPcap"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsPskSet"
+          "target": "com.cloudflare.magic_transit#GetPcapDownload"
         },
         {
-          "target": "com.cloudflare.magic_transit#IpsecTunnelsUpdate"
+          "target": "com.cloudflare.magic_transit#GetPcapOwnership"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsCreate"
+          "target": "com.cloudflare.magic_transit#GetRoute"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsGet"
+          "target": "com.cloudflare.magic_transit#GetSite"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsList"
+          "target": "com.cloudflare.magic_transit#GetSiteAcl"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsStop"
+          "target": "com.cloudflare.magic_transit#GetSiteLan"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsDownloadGet"
+          "target": "com.cloudflare.magic_transit#GetSiteWan"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsOwnershipCreate"
+          "target": "com.cloudflare.magic_transit#ListApps"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsOwnershipDelete"
+          "target": "com.cloudflare.magic_transit#ListCf1SiteRamps"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsOwnershipGet"
+          "target": "com.cloudflare.magic_transit#ListCf1Sites"
         },
         {
-          "target": "com.cloudflare.magic_transit#PcapsOwnershipValidate"
+          "target": "com.cloudflare.magic_transit#ListCfInterconnects"
         },
         {
-          "target": "com.cloudflare.magic_transit#RoutesBulkUpdate"
+          "target": "com.cloudflare.magic_transit#ListConnectorEventLatests"
         },
         {
-          "target": "com.cloudflare.magic_transit#RoutesCreate"
+          "target": "com.cloudflare.magic_transit#ListConnectorEvents"
         },
         {
-          "target": "com.cloudflare.magic_transit#RoutesDelete"
+          "target": "com.cloudflare.magic_transit#ListConnectors"
         },
         {
-          "target": "com.cloudflare.magic_transit#RoutesEmpty"
+          "target": "com.cloudflare.magic_transit#ListConnectorSnapshotLatests"
         },
         {
-          "target": "com.cloudflare.magic_transit#RoutesGet"
+          "target": "com.cloudflare.magic_transit#ListConnectorSnapshots"
         },
         {
-          "target": "com.cloudflare.magic_transit#RoutesList"
+          "target": "com.cloudflare.magic_transit#ListGreTunnels"
         },
         {
-          "target": "com.cloudflare.magic_transit#RoutesUpdate"
+          "target": "com.cloudflare.magic_transit#ListIpsecTunnels"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesCreate"
+          "target": "com.cloudflare.magic_transit#ListPcaps"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesDelete"
+          "target": "com.cloudflare.magic_transit#ListRoutes"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesEdit"
+          "target": "com.cloudflare.magic_transit#ListSiteAcls"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesGet"
+          "target": "com.cloudflare.magic_transit#ListSiteLans"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesList"
+          "target": "com.cloudflare.magic_transit#ListSites"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesUpdate"
+          "target": "com.cloudflare.magic_transit#ListSitesAppConfiguration"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesAclsCreate"
+          "target": "com.cloudflare.magic_transit#ListSiteWans"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesAclsDelete"
+          "target": "com.cloudflare.magic_transit#PatchApp"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesAclsEdit"
+          "target": "com.cloudflare.magic_transit#PatchCf1Site"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesAclsGet"
+          "target": "com.cloudflare.magic_transit#PatchConnector"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesAclsList"
+          "target": "com.cloudflare.magic_transit#PatchSite"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesAclsUpdate"
+          "target": "com.cloudflare.magic_transit#PatchSiteAcl"
         },
         {
-          "target": "com.cloudflare.magic_transit#CreateSiteAppConfiguration"
+          "target": "com.cloudflare.magic_transit#PatchSiteLan"
         },
         {
-          "target": "com.cloudflare.magic_transit#DeleteSiteAppConfiguration"
+          "target": "com.cloudflare.magic_transit#PatchSiteWan"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesAppConfigurationEdit"
+          "target": "com.cloudflare.magic_transit#PskGenerateIpsecTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#ListSiteAppConfiguration"
+          "target": "com.cloudflare.magic_transit#PskSetIpsecTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#UpdateSiteAppConfiguration"
+          "target": "com.cloudflare.magic_transit#PutCfInterconnect"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesLansCreate"
+          "target": "com.cloudflare.magic_transit#StopPcap"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesLansDelete"
+          "target": "com.cloudflare.magic_transit#UpdateApp"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesLansEdit"
+          "target": "com.cloudflare.magic_transit#UpdateConnector"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesLansGet"
+          "target": "com.cloudflare.magic_transit#UpdateGreTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesLansList"
+          "target": "com.cloudflare.magic_transit#UpdateIpsecTunnel"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesLansUpdate"
+          "target": "com.cloudflare.magic_transit#UpdateRoute"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesWansCreate"
+          "target": "com.cloudflare.magic_transit#UpdateSite"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesWansDelete"
+          "target": "com.cloudflare.magic_transit#UpdateSiteAcl"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesWansEdit"
+          "target": "com.cloudflare.magic_transit#UpdateSiteLan"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesWansGet"
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfiguration"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesWansList"
+          "target": "com.cloudflare.magic_transit#UpdateSiteWan"
         },
         {
-          "target": "com.cloudflare.magic_transit#SitesWansUpdate"
+          "target": "com.cloudflare.magic_transit#ValidatePcapOwnership"
         }
       ],
       "traits": {
@@ -25547,13 +25548,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.magic_transit#GeneratePskIpsecTunnel": {
+    "com.cloudflare.magic_transit#PskGenerateIpsecTunnel": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.magic_transit#GeneratePskIpsecTunnelRequest"
+        "target": "com.cloudflare.magic_transit#PskGenerateIpsecTunnelRequest"
       },
       "output": {
-        "target": "com.cloudflare.magic_transit#GeneratePskIpsecTunnelResponse"
+        "target": "com.cloudflare.magic_transit#PskGenerateIpsecTunnelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -25564,7 +25565,7 @@
         "smithy.api#documentation": "Generates a Pre-Shared Key for a specific IPsec tunnel used in the IKE session. Use `?validate_only=true` as an optional query parameter to only run validation without persisting changes. After a PSK is generated, the PSK is immediately persisted to Cloudflare's edge and cannot be retrieved later. Store the PSK in a safe place."
       }
     },
-    "com.cloudflare.magic_transit#GeneratePskIpsecTunnelRequest": {
+    "com.cloudflare.magic_transit#PskGenerateIpsecTunnelRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -25588,7 +25589,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.magic_transit#GeneratePskIpsecTunnelResponse": {
+    "com.cloudflare.magic_transit#PskGenerateIpsecTunnelResponse": {
       "type": "structure",
       "members": {
         "ipsec_tunnel_id": {
@@ -25615,13 +25616,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.magic_transit#SetPskIpsecTunnel": {
+    "com.cloudflare.magic_transit#PskSetIpsecTunnel": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.magic_transit#SetPskIpsecTunnelRequest"
+        "target": "com.cloudflare.magic_transit#PskSetIpsecTunnelRequest"
       },
       "output": {
-        "target": "com.cloudflare.magic_transit#SetPskIpsecTunnelResponse"
+        "target": "com.cloudflare.magic_transit#PskSetIpsecTunnelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -25632,7 +25633,7 @@
         "smithy.api#documentation": "Sets Pre-Shared Keys for multiple IPsec tunnels associated with an account. Use `?validate_only=true` as an optional query parameter to only run validation without persisting changes. After PSKs are applied, they are immediately persisted to Cloudflare's edge and cannot be retrieved later. Store the PSKs in a safe place."
       }
     },
-    "com.cloudflare.magic_transit#SetPskIpsecTunnelRequest": {
+    "com.cloudflare.magic_transit#PskSetIpsecTunnelRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -25662,7 +25663,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.magic_transit#SetPskIpsecTunnelResponse": {
+    "com.cloudflare.magic_transit#PskSetIpsecTunnelResponse": {
       "type": "structure",
       "members": {
         "successfully_applied_psks": {

@@ -19,7 +19,8 @@
       "perPage": "per_page",
       "resultInfo": "result_info",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.filters#BulkDeleteRequestIdList": {
@@ -255,25 +256,25 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.filters#BulkDelete"
+          "target": "com.cloudflare.filters#BulkDeleteFilters"
         },
         {
-          "target": "com.cloudflare.filters#BulkUpdate"
+          "target": "com.cloudflare.filters#BulkPutFilters"
         },
         {
-          "target": "com.cloudflare.filters#Create"
+          "target": "com.cloudflare.filters#CreateFilter"
         },
         {
-          "target": "com.cloudflare.filters#Delete"
+          "target": "com.cloudflare.filters#DeleteFilter"
         },
         {
-          "target": "com.cloudflare.filters#Get"
+          "target": "com.cloudflare.filters#GetFilter"
         },
         {
-          "target": "com.cloudflare.filters#List"
+          "target": "com.cloudflare.filters#ListFilters"
         },
         {
-          "target": "com.cloudflare.filters#Update"
+          "target": "com.cloudflare.filters#UpdateFilter"
         }
       ],
       "traits": {
@@ -282,13 +283,13 @@
         "smithy.api#documentation": "Cloudflare API — filters resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     },
-    "com.cloudflare.filters#DeleteBulkFilter": {
+    "com.cloudflare.filters#BulkDeleteFilters": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.filters#DeleteBulkFilterRequest"
+        "target": "com.cloudflare.filters#BulkDeleteFiltersRequest"
       },
       "output": {
-        "target": "com.cloudflare.filters#DeleteBulkFilterResponse"
+        "target": "com.cloudflare.filters#BulkDeleteFiltersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -300,7 +301,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.filters#DeleteBulkFilterRequest": {
+    "com.cloudflare.filters#BulkDeleteFiltersRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -323,7 +324,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.filters#DeleteBulkFilterResponse": {
+    "com.cloudflare.filters#BulkDeleteFiltersResponse": {
       "type": "structure",
       "members": {
         "result": {

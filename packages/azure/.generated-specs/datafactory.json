@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.datafactory#TriggersUnsubscribeFromEvents": {
+    "com.azure.datafactory#UnsubscribeTriggerFromEvents": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#TriggersUnsubscribeFromEventsRequest"
+        "target": "com.azure.datafactory#UnsubscribeTriggerFromEventsRequest"
       },
       "output": {
         "target": "com.azure.datafactory#TriggerSubscriptionOperationStatus"
@@ -94,7 +95,7 @@
         "smithy.api#documentation": "Event Subscription Status."
       }
     },
-    "com.azure.datafactory#TriggersUnsubscribeFromEventsRequest": {
+    "com.azure.datafactory#UnsubscribeTriggerFromEventsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -199,10 +200,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#TriggerRunsCancel": {
+    "com.azure.datafactory#CancelTriggerRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#TriggerRunsCancelRequest"
+        "target": "com.azure.datafactory#CancelTriggerRunRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -218,7 +219,7 @@
         "com.distilled.openapi#apiVersion": "2018-06-01"
       }
     },
-    "com.azure.datafactory#TriggerRunsCancelRequest": {
+    "com.azure.datafactory#CancelTriggerRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -264,10 +265,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#TriggersSubscribeToEvents": {
+    "com.azure.datafactory#SubscribeTriggerToEvents": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#TriggersSubscribeToEventsRequest"
+        "target": "com.azure.datafactory#SubscribeTriggerToEventsRequest"
       },
       "output": {
         "target": "com.azure.datafactory#TriggerSubscriptionOperationStatus"
@@ -283,7 +284,7 @@
         "com.distilled.openapi#apiVersion": "2018-06-01"
       }
     },
-    "com.azure.datafactory#TriggersSubscribeToEventsRequest": {
+    "com.azure.datafactory#SubscribeTriggerToEventsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2991,7 +2992,7 @@
           }
         },
         "body": {
-          "target": "com.azure.datafactory#PipelinesCreateRunRequestBodyMap",
+          "target": "com.azure.datafactory#CreatePipelineRunRequestBodyMap",
           "traits": {
             "smithy.api#httpPayload": {}
           }
@@ -3001,7 +3002,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#PipelinesCreateRunRequestBodyMap": {
+    "com.azure.datafactory#CreatePipelineRunRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3886,10 +3887,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#ActivityRunsQueryByPipelineRun": {
+    "com.azure.datafactory#RunActivityRunsQueryByPipeline": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#ActivityRunsQueryByPipelineRunRequest"
+        "target": "com.azure.datafactory#RunActivityRunsQueryByPipelineRequest"
       },
       "output": {
         "target": "com.azure.datafactory#ActivityRunsQueryResponse"
@@ -4021,7 +4022,7 @@
         "smithy.api#documentation": "Information about an activity run in a pipeline."
       }
     },
-    "com.azure.datafactory#ActivityRunsQueryByPipelineRunRequest": {
+    "com.azure.datafactory#RunActivityRunsQueryByPipelineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4076,13 +4077,13 @@
           }
         },
         "filters": {
-          "target": "com.azure.datafactory#ActivityRunsQueryByPipelineRunRequestFiltersList",
+          "target": "com.azure.datafactory#RunActivityRunsQueryByPipelineRequestFiltersList",
           "traits": {
             "smithy.api#documentation": "List of filters."
           }
         },
         "orderBy": {
-          "target": "com.azure.datafactory#ActivityRunsQueryByPipelineRunRequestOrderByList",
+          "target": "com.azure.datafactory#RunActivityRunsQueryByPipelineRequestOrderByList",
           "traits": {
             "smithy.api#documentation": "List of OrderBy option."
           }
@@ -4092,7 +4093,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#ActivityRunsQueryByPipelineRunRequestOrderByList": {
+    "com.azure.datafactory#RunActivityRunsQueryByPipelineRequestOrderByList": {
       "type": "list",
       "member": {
         "target": "com.azure.datafactory#RunQueryOrderBy"
@@ -4101,7 +4102,7 @@
         "smithy.api#documentation": "List of OrderBy option."
       }
     },
-    "com.azure.datafactory#ActivityRunsQueryByPipelineRunRequestFiltersList": {
+    "com.azure.datafactory#RunActivityRunsQueryByPipelineRequestFiltersList": {
       "type": "list",
       "member": {
         "target": "com.azure.datafactory#RunQueryFilter"
@@ -4110,10 +4111,10 @@
         "smithy.api#documentation": "List of filters."
       }
     },
-    "com.azure.datafactory#PipelineRunsCancel": {
+    "com.azure.datafactory#CancelPipelineRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#PipelineRunsCancelRequest"
+        "target": "com.azure.datafactory#CancelPipelineRunRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4129,7 +4130,7 @@
         "com.distilled.openapi#apiVersion": "2018-06-01"
       }
     },
-    "com.azure.datafactory#PipelineRunsCancelRequest": {
+    "com.azure.datafactory#CancelPipelineRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5739,10 +5740,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#IntegrationRuntimesSyncCredentials": {
+    "com.azure.datafactory#SyncIntegrationRuntimeCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#IntegrationRuntimesSyncCredentialsRequest"
+        "target": "com.azure.datafactory#SyncIntegrationRuntimeCredentialsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5758,7 +5759,7 @@
         "com.distilled.openapi#apiVersion": "2018-06-01"
       }
     },
-    "com.azure.datafactory#IntegrationRuntimesSyncCredentialsRequest": {
+    "com.azure.datafactory#SyncIntegrationRuntimeCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6052,10 +6053,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#IntegrationRuntimesRemoveLinks": {
+    "com.azure.datafactory#RemoveIntegrationRuntimeLinks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#IntegrationRuntimesRemoveLinksRequest"
+        "target": "com.azure.datafactory#RemoveIntegrationRuntimeLinksRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6071,7 +6072,7 @@
         "com.distilled.openapi#apiVersion": "2018-06-01"
       }
     },
-    "com.azure.datafactory#IntegrationRuntimesRemoveLinksRequest": {
+    "com.azure.datafactory#RemoveIntegrationRuntimeLinksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6111,10 +6112,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#IntegrationRuntimesRegenerateAuthKey": {
+    "com.azure.datafactory#RegenerateIntegrationRuntimeAuthKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#IntegrationRuntimesRegenerateAuthKeyRequest"
+        "target": "com.azure.datafactory#RegenerateIntegrationRuntimeAuthKeyRequest"
       },
       "output": {
         "target": "com.azure.datafactory#IntegrationRuntimeAuthKeys"
@@ -6150,7 +6151,7 @@
         "smithy.api#documentation": "The integration runtime authentication keys."
       }
     },
-    "com.azure.datafactory#IntegrationRuntimesRegenerateAuthKeyRequest": {
+    "com.azure.datafactory#RegenerateIntegrationRuntimeAuthKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6216,10 +6217,10 @@
         "smithy.api#documentation": "The name of the authentication key to regenerate."
       }
     },
-    "com.azure.datafactory#IntegrationRuntimeObjectMetadataRefresh": {
+    "com.azure.datafactory#RefreshIntegrationRuntimeObjectMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#IntegrationRuntimeObjectMetadataRefreshRequest"
+        "target": "com.azure.datafactory#RefreshIntegrationRuntimeObjectMetadataRequest"
       },
       "output": {
         "target": "com.azure.datafactory#SsisObjectMetadataStatusResponse"
@@ -6267,7 +6268,7 @@
         "smithy.api#documentation": "The status of the operation."
       }
     },
-    "com.azure.datafactory#IntegrationRuntimeObjectMetadataRefreshRequest": {
+    "com.azure.datafactory#RefreshIntegrationRuntimeObjectMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6307,10 +6308,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependencyEndpoints": {
+    "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest"
+        "target": "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.datafactory#IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponse"
@@ -6421,7 +6422,7 @@
         "smithy.api#documentation": "The details of Azure-SSIS integration runtime outbound network dependency endpoint."
       }
     },
-    "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependencyEndpointsRequest": {
+    "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8625,7 +8626,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.datafactory#GlobalParametersGetResponsePropertiesMap",
+          "target": "com.azure.datafactory#GetGlobalParameterResponsePropertiesMap",
           "traits": {
             "smithy.api#documentation": "Properties of the global parameter.",
             "smithy.api#required": {}
@@ -8642,7 +8643,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datafactory#GlobalParametersGetResponsePropertiesMap": {
+    "com.azure.datafactory#GetGlobalParameterResponsePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9152,10 +9153,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#DataFlowDebugSessionExecuteCommand": {
+    "com.azure.datafactory#ExecuteDataFlowDebugSessionCommand": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#DataFlowDebugSessionExecuteCommandRequest"
+        "target": "com.azure.datafactory#ExecuteDataFlowDebugSessionCommandRequest"
       },
       "output": {
         "target": "com.azure.datafactory#DataFlowDebugCommandResponse"
@@ -9191,7 +9192,7 @@
         "smithy.api#documentation": "Response body structure of data flow result for data preview, statistics or expression preview."
       }
     },
-    "com.azure.datafactory#DataFlowDebugSessionExecuteCommandRequest": {
+    "com.azure.datafactory#ExecuteDataFlowDebugSessionCommandRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12098,10 +12099,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datafactory#DataFlowDebugSessionAddDataFlow": {
+    "com.azure.datafactory#AddDataFlowDebugSessionDataFlow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequest"
+        "target": "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequest"
       },
       "output": {
         "target": "com.azure.datafactory#AddDataFlowToDebugSessionResponse"
@@ -12131,7 +12132,7 @@
         "smithy.api#documentation": "Response body structure for starting data flow debug session."
       }
     },
-    "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequest": {
+    "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12171,19 +12172,19 @@
           }
         },
         "dataFlows": {
-          "target": "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequestDataFlowsList",
+          "target": "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequestDataFlowsList",
           "traits": {
             "smithy.api#documentation": "List of Data flows"
           }
         },
         "datasets": {
-          "target": "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequestDatasetsList",
+          "target": "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequestDatasetsList",
           "traits": {
             "smithy.api#documentation": "List of datasets."
           }
         },
         "linkedServices": {
-          "target": "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequestLinkedServicesList",
+          "target": "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequestLinkedServicesList",
           "traits": {
             "smithy.api#documentation": "List of linked services."
           }
@@ -12292,7 +12293,7 @@
         "smithy.api#documentation": "Staging info for execute data flow activity."
       }
     },
-    "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequestLinkedServicesList": {
+    "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequestLinkedServicesList": {
       "type": "list",
       "member": {
         "target": "com.azure.datafactory#LinkedServiceDebugResource"
@@ -12322,7 +12323,7 @@
         "smithy.api#documentation": "Linked service debug resource."
       }
     },
-    "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequestDatasetsList": {
+    "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequestDatasetsList": {
       "type": "list",
       "member": {
         "target": "com.azure.datafactory#DatasetDebugResource"
@@ -12352,7 +12353,7 @@
         "smithy.api#documentation": "Dataset debug resource."
       }
     },
-    "com.azure.datafactory#DataFlowDebugSessionAddDataFlowRequestDataFlowsList": {
+    "com.azure.datafactory#AddDataFlowDebugSessionDataFlowRequestDataFlowsList": {
       "type": "list",
       "member": {
         "target": "com.azure.datafactory#DataFlowDebugResource"
@@ -12498,7 +12499,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datafactory#FactoriesUpdateResponseTagsMap",
+          "target": "com.azure.datafactory#UpdateFactoryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -12514,7 +12515,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datafactory#FactoriesUpdateResponseTagsMap": {
+    "com.azure.datafactory#UpdateFactoryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12830,7 +12831,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datafactory#FactoriesUpdateRequestTagsMap",
+          "target": "com.azure.datafactory#UpdateFactoryRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -12866,7 +12867,7 @@
         "smithy.api#documentation": "Factory update resource properties."
       }
     },
-    "com.azure.datafactory#FactoriesUpdateRequestTagsMap": {
+    "com.azure.datafactory#UpdateFactoryRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13154,7 +13155,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datafactory#FactoriesGetResponseTagsMap",
+          "target": "com.azure.datafactory#GetFactoryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -13170,7 +13171,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datafactory#FactoriesGetResponseTagsMap": {
+    "com.azure.datafactory#GetFactoryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13907,223 +13908,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datafactory#TriggersUnsubscribeFromEvents"
+          "target": "com.azure.datafactory#AddDataFlowDebugSessionDataFlow"
         },
         {
-          "target": "com.azure.datafactory#TriggerRunsRerun"
+          "target": "com.azure.datafactory#CancelPipelineRun"
         },
         {
-          "target": "com.azure.datafactory#TriggerRunsCancel"
+          "target": "com.azure.datafactory#CancelTriggerRun"
         },
         {
-          "target": "com.azure.datafactory#TriggersSubscribeToEvents"
+          "target": "com.azure.datafactory#ChangeDataCaptureCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#StopTrigger"
+          "target": "com.azure.datafactory#ChangeDataCaptureStatus"
         },
         {
-          "target": "com.azure.datafactory#StartTrigger"
-        },
-        {
-          "target": "com.azure.datafactory#GetTriggerEventSubscriptionStatus"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteTrigger"
-        },
-        {
-          "target": "com.azure.datafactory#TriggersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetTrigger"
-        },
-        {
-          "target": "com.azure.datafactory#ListTriggerByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#TriggersQueryByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#TriggerRunsQueryByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#PipelineRunsQueryByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ExposureControlQueryFeatureValuesByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#DataFlowDebugSessionQueryByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.datafactory#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.datafactory#PrivateEndpointConnectionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.datafactory#ListPrivateEndPointConnectionByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#CreatePipelineRun"
-        },
-        {
-          "target": "com.azure.datafactory#DeletePipeline"
-        },
-        {
-          "target": "com.azure.datafactory#PipelinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetPipeline"
-        },
-        {
-          "target": "com.azure.datafactory#ListPipelineByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ActivityRunsQueryByPipelineRun"
-        },
-        {
-          "target": "com.azure.datafactory#PipelineRunsCancel"
-        },
-        {
-          "target": "com.azure.datafactory#GetPipelineRun"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.datafactory#ManagedPrivateEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.datafactory#ListManagedPrivateEndpointByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ManagedVirtualNetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetManagedVirtualNetwork"
-        },
-        {
-          "target": "com.azure.datafactory#ListManagedVirtualNetworkByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteLinkedService"
-        },
-        {
-          "target": "com.azure.datafactory#LinkedServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetLinkedService"
-        },
-        {
-          "target": "com.azure.datafactory#ListLinkedServiceByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#IntegrationRuntimesUpgrade"
-        },
-        {
-          "target": "com.azure.datafactory#IntegrationRuntimesSyncCredentials"
-        },
-        {
-          "target": "com.azure.datafactory#StopIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.datafactory#StartIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.datafactory#IntegrationRuntimesRemoveLinks"
-        },
-        {
-          "target": "com.azure.datafactory#IntegrationRuntimesRegenerateAuthKey"
-        },
-        {
-          "target": "com.azure.datafactory#IntegrationRuntimeObjectMetadataRefresh"
-        },
-        {
-          "target": "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependencyEndpoints"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeNodeIpAddress"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.datafactory#UpdateIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeMonitoringData"
-        },
-        {
-          "target": "com.azure.datafactory#ListIntegrationRuntimeAuthKeys"
+          "target": "com.azure.datafactory#CreateDataFlowDebugSession"
         },
         {
           "target": "com.azure.datafactory#CreateIntegrationRuntimeLinkedIntegrationRuntime"
         },
         {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeStatus"
+          "target": "com.azure.datafactory#CreatePipelineRun"
         },
         {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeObjectMetadata"
+          "target": "com.azure.datafactory#CredentialOperationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeConnectionInfo"
+          "target": "com.azure.datafactory#DataFlowDebugSessionQueryByFactory"
         },
         {
-          "target": "com.azure.datafactory#EnableIntegrationRuntimeInteractiveQuery"
+          "target": "com.azure.datafactory#DataFlowsCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#DisableIntegrationRuntimeInteractiveQuery"
+          "target": "com.azure.datafactory#DatasetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#DeleteIntegrationRuntime"
+          "target": "com.azure.datafactory#DeleteChangeDataCapture"
         },
         {
-          "target": "com.azure.datafactory#UpdateIntegrationRuntime"
+          "target": "com.azure.datafactory#DeleteCredentialOperation"
         },
         {
-          "target": "com.azure.datafactory#IntegrationRuntimesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.datafactory#ListIntegrationRuntimeByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteGlobalParameter"
-        },
-        {
-          "target": "com.azure.datafactory#GlobalParametersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetGlobalParameter"
-        },
-        {
-          "target": "com.azure.datafactory#ListGlobalParameterByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#GetFactoryGitHubAccessToken"
-        },
-        {
-          "target": "com.azure.datafactory#GetExposureControlFeatureValueByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#GetFactoryDataPlaneAccess"
-        },
-        {
-          "target": "com.azure.datafactory#DataFlowDebugSessionExecuteCommand"
+          "target": "com.azure.datafactory#DeleteDataFlow"
         },
         {
           "target": "com.azure.datafactory#DeleteDataFlowDebugSession"
@@ -14132,91 +13959,265 @@
           "target": "com.azure.datafactory#DeleteDataset"
         },
         {
-          "target": "com.azure.datafactory#DatasetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetDataset"
-        },
-        {
-          "target": "com.azure.datafactory#ListDatasetByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteDataFlow"
-        },
-        {
-          "target": "com.azure.datafactory#DataFlowsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetDataFlow"
-        },
-        {
-          "target": "com.azure.datafactory#ListDataFlowByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteCredentialOperation"
-        },
-        {
-          "target": "com.azure.datafactory#CredentialOperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetCredentialOperation"
-        },
-        {
-          "target": "com.azure.datafactory#ListCredentialOperationByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#CreateDataFlowDebugSession"
-        },
-        {
-          "target": "com.azure.datafactory#StopChangeDataCapture"
-        },
-        {
-          "target": "com.azure.datafactory#ChangeDataCaptureStatus"
-        },
-        {
-          "target": "com.azure.datafactory#StartChangeDataCapture"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteChangeDataCapture"
-        },
-        {
-          "target": "com.azure.datafactory#ChangeDataCaptureCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetChangeDataCapture"
-        },
-        {
-          "target": "com.azure.datafactory#ListChangeDataCaptureByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#DataFlowDebugSessionAddDataFlow"
-        },
-        {
           "target": "com.azure.datafactory#DeleteFactory"
         },
         {
-          "target": "com.azure.datafactory#UpdateFactory"
+          "target": "com.azure.datafactory#DeleteGlobalParameter"
         },
         {
-          "target": "com.azure.datafactory#FactoriesCreateOrUpdate"
+          "target": "com.azure.datafactory#DeleteIntegrationRuntime"
         },
         {
-          "target": "com.azure.datafactory#GetFactory"
+          "target": "com.azure.datafactory#DeleteIntegrationRuntimeNode"
         },
         {
-          "target": "com.azure.datafactory#ListFactoryByResourceGroup"
+          "target": "com.azure.datafactory#DeleteLinkedService"
         },
         {
-          "target": "com.azure.datafactory#GetExposureControlFeatureValue"
+          "target": "com.azure.datafactory#DeleteManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.datafactory#DeletePipeline"
+        },
+        {
+          "target": "com.azure.datafactory#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.datafactory#DeleteTrigger"
+        },
+        {
+          "target": "com.azure.datafactory#DisableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.datafactory#EnableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.datafactory#ExecuteDataFlowDebugSessionCommand"
+        },
+        {
+          "target": "com.azure.datafactory#ExposureControlQueryFeatureValuesByFactory"
         },
         {
           "target": "com.azure.datafactory#FactoriesConfigureFactoryRepo"
         },
         {
+          "target": "com.azure.datafactory#FactoriesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetChangeDataCapture"
+        },
+        {
+          "target": "com.azure.datafactory#GetCredentialOperation"
+        },
+        {
+          "target": "com.azure.datafactory#GetDataFlow"
+        },
+        {
+          "target": "com.azure.datafactory#GetDataset"
+        },
+        {
+          "target": "com.azure.datafactory#GetExposureControlFeatureValue"
+        },
+        {
+          "target": "com.azure.datafactory#GetExposureControlFeatureValueByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#GetFactory"
+        },
+        {
+          "target": "com.azure.datafactory#GetFactoryDataPlaneAccess"
+        },
+        {
+          "target": "com.azure.datafactory#GetFactoryGitHubAccessToken"
+        },
+        {
+          "target": "com.azure.datafactory#GetGlobalParameter"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeConnectionInfo"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeMonitoringData"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeNodeIpAddress"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeStatus"
+        },
+        {
+          "target": "com.azure.datafactory#GetLinkedService"
+        },
+        {
+          "target": "com.azure.datafactory#GetManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.datafactory#GetManagedVirtualNetwork"
+        },
+        {
+          "target": "com.azure.datafactory#GetPipeline"
+        },
+        {
+          "target": "com.azure.datafactory#GetPipelineRun"
+        },
+        {
+          "target": "com.azure.datafactory#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.datafactory#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.datafactory#GetTrigger"
+        },
+        {
+          "target": "com.azure.datafactory#GetTriggerEventSubscriptionStatus"
+        },
+        {
+          "target": "com.azure.datafactory#GlobalParametersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#IntegrationRuntimesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#IntegrationRuntimesUpgrade"
+        },
+        {
+          "target": "com.azure.datafactory#LinkedServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#ListChangeDataCaptureByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListCredentialOperationByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListDataFlowByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListDatasetByFactory"
+        },
+        {
           "target": "com.azure.datafactory#ListFactories"
         },
         {
+          "target": "com.azure.datafactory#ListFactoryByResourceGroup"
+        },
+        {
+          "target": "com.azure.datafactory#ListGlobalParameterByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListIntegrationRuntimeAuthKeys"
+        },
+        {
+          "target": "com.azure.datafactory#ListIntegrationRuntimeByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.datafactory#ListLinkedServiceByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListManagedPrivateEndpointByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListManagedVirtualNetworkByFactory"
+        },
+        {
           "target": "com.azure.datafactory#ListOperations"
+        },
+        {
+          "target": "com.azure.datafactory#ListPipelineByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListPrivateEndPointConnectionByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListTriggerByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ManagedPrivateEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#ManagedVirtualNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#PipelineRunsQueryByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#PipelinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#PrivateEndpointConnectionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#RefreshIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.datafactory#RegenerateIntegrationRuntimeAuthKey"
+        },
+        {
+          "target": "com.azure.datafactory#RemoveIntegrationRuntimeLinks"
+        },
+        {
+          "target": "com.azure.datafactory#RunActivityRunsQueryByPipeline"
+        },
+        {
+          "target": "com.azure.datafactory#StartChangeDataCapture"
+        },
+        {
+          "target": "com.azure.datafactory#StartIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#StartTrigger"
+        },
+        {
+          "target": "com.azure.datafactory#StopChangeDataCapture"
+        },
+        {
+          "target": "com.azure.datafactory#StopIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#StopTrigger"
+        },
+        {
+          "target": "com.azure.datafactory#SubscribeTriggerToEvents"
+        },
+        {
+          "target": "com.azure.datafactory#SyncIntegrationRuntimeCredentials"
+        },
+        {
+          "target": "com.azure.datafactory#TriggerRunsQueryByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#TriggerRunsRerun"
+        },
+        {
+          "target": "com.azure.datafactory#TriggersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#TriggersQueryByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#UnsubscribeTriggerFromEvents"
+        },
+        {
+          "target": "com.azure.datafactory#UpdateFactory"
+        },
+        {
+          "target": "com.azure.datafactory#UpdateIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#UpdateIntegrationRuntimeNode"
         }
       ],
       "traits": {

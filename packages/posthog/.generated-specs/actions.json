@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.actions#ActionsListRequestFormat": {
+    "com.posthog.actions#ListActionsRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -54,7 +55,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.actions#ActionsListRequestFormat",
+          "target": "com.posthog.actions#ListActionsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1088,7 +1089,7 @@
         }
       }
     },
-    "com.posthog.actions#ActionsCreateRequestFormat": {
+    "com.posthog.actions#CreateActionRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1106,7 +1107,7 @@
       },
       "traits": {}
     },
-    "com.posthog.actions#ActionsCreateRequestTagsList": {
+    "com.posthog.actions#CreateActionRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1198,7 +1199,7 @@
         "smithy.api#documentation": "Event or person property filters. Each item should have 'key' (string), 'value' (string, number, boolean, or array), optional 'operator' (exact, is_not, is_set, is_not_set, icontains, not_icontains, regex, not_regex, gt, gte, lt, lte), and optional 'type' (event, person)."
       }
     },
-    "com.posthog.actions#ActionsCreateRequestStepsList": {
+    "com.posthog.actions#CreateActionRequestStepsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.actions#ActionStepJSONInput"
@@ -1219,7 +1220,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.actions#ActionsCreateRequestFormat",
+          "target": "com.posthog.actions#CreateActionRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1238,7 +1239,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.actions#ActionsCreateRequestTagsList"
+          "target": "com.posthog.actions#CreateActionRequestTagsList"
         },
         "post_to_slack": {
           "target": "smithy.api#Boolean",
@@ -1253,7 +1254,7 @@
           }
         },
         "steps": {
-          "target": "com.posthog.actions#ActionsCreateRequestStepsList",
+          "target": "com.posthog.actions#CreateActionRequestStepsList",
           "traits": {
             "smithy.api#documentation": "Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together."
           }
@@ -1306,7 +1307,7 @@
         }
       }
     },
-    "com.posthog.actions#ActionsRetrieveRequestFormat": {
+    "com.posthog.actions#GetActionRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1324,7 +1325,7 @@
       },
       "traits": {}
     },
-    "com.posthog.actions#ActionsRetrieveRequest": {
+    "com.posthog.actions#GetActionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1344,7 +1345,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.actions#ActionsRetrieveRequestFormat",
+          "target": "com.posthog.actions#GetActionRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1354,10 +1355,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.actions#ActionsRetrieve": {
+    "com.posthog.actions#GetAction": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.actions#ActionsRetrieveRequest"
+        "target": "com.posthog.actions#GetActionRequest"
       },
       "output": {
         "target": "com.posthog.actions#ActionOutput"
@@ -1381,7 +1382,7 @@
         }
       }
     },
-    "com.posthog.actions#ActionsUpdateRequestFormat": {
+    "com.posthog.actions#UpdateActionRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1399,14 +1400,14 @@
       },
       "traits": {}
     },
-    "com.posthog.actions#ActionsUpdateRequestTagsList": {
+    "com.posthog.actions#UpdateActionRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.actions#ActionsUpdateRequestStepsList": {
+    "com.posthog.actions#UpdateActionRequestStepsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.actions#ActionStepJSONInput"
@@ -1435,7 +1436,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.actions#ActionsUpdateRequestFormat",
+          "target": "com.posthog.actions#UpdateActionRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1454,7 +1455,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.actions#ActionsUpdateRequestTagsList"
+          "target": "com.posthog.actions#UpdateActionRequestTagsList"
         },
         "post_to_slack": {
           "target": "smithy.api#Boolean",
@@ -1469,7 +1470,7 @@
           }
         },
         "steps": {
-          "target": "com.posthog.actions#ActionsUpdateRequestStepsList",
+          "target": "com.posthog.actions#UpdateActionRequestStepsList",
           "traits": {
             "smithy.api#documentation": "Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together."
           }
@@ -1522,7 +1523,7 @@
         }
       }
     },
-    "com.posthog.actions#ActionsPartialUpdateRequestFormat": {
+    "com.posthog.actions#UpdateActionsPartialRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1540,14 +1541,14 @@
       },
       "traits": {}
     },
-    "com.posthog.actions#ActionsPartialUpdateRequestTagsList": {
+    "com.posthog.actions#UpdateActionsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.actions#ActionsPartialUpdateRequestStepsList": {
+    "com.posthog.actions#UpdateActionsPartialRequestStepsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.actions#ActionStepJSONInput"
@@ -1556,7 +1557,7 @@
         "smithy.api#documentation": "Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together."
       }
     },
-    "com.posthog.actions#UpdateActionPartialRequest": {
+    "com.posthog.actions#UpdateActionsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1576,7 +1577,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.actions#ActionsPartialUpdateRequestFormat",
+          "target": "com.posthog.actions#UpdateActionsPartialRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1595,7 +1596,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.actions#ActionsPartialUpdateRequestTagsList"
+          "target": "com.posthog.actions#UpdateActionsPartialRequestTagsList"
         },
         "post_to_slack": {
           "target": "smithy.api#Boolean",
@@ -1610,7 +1611,7 @@
           }
         },
         "steps": {
-          "target": "com.posthog.actions#ActionsPartialUpdateRequestStepsList",
+          "target": "com.posthog.actions#UpdateActionsPartialRequestStepsList",
           "traits": {
             "smithy.api#documentation": "Action steps defining trigger conditions. Each step matches events by name, properties, URL, or element attributes. Multiple steps are OR-ed together."
           }
@@ -1636,10 +1637,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.actions#UpdateActionPartial": {
+    "com.posthog.actions#UpdateActionsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.actions#UpdateActionPartialRequest"
+        "target": "com.posthog.actions#UpdateActionsPartialRequest"
       },
       "output": {
         "target": "com.posthog.actions#ActionOutput"
@@ -1739,7 +1740,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.actions#ActionsReferencesListRequestFormat": {
+    "com.posthog.actions#ListActionsReferencesRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1757,7 +1758,7 @@
       },
       "traits": {}
     },
-    "com.posthog.actions#ListActionReferencesRequest": {
+    "com.posthog.actions#ListActionsReferencesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1777,7 +1778,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.actions#ActionsReferencesListRequestFormat",
+          "target": "com.posthog.actions#ListActionsReferencesRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1831,18 +1832,18 @@
       },
       "traits": {}
     },
-    "com.posthog.actions#ActionsReferencesListResponseBodyList": {
+    "com.posthog.actions#ListActionsReferencesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.actions#ActionReference"
       },
       "traits": {}
     },
-    "com.posthog.actions#ListActionReferencesResponse": {
+    "com.posthog.actions#ListActionsReferencesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.actions#ActionsReferencesListResponseBodyList",
+          "target": "com.posthog.actions#ListActionsReferencesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1853,13 +1854,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.actions#ListActionReferences": {
+    "com.posthog.actions#ListActionsReferences": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.actions#ListActionReferencesRequest"
+        "target": "com.posthog.actions#ListActionsReferencesRequest"
       },
       "output": {
-        "target": "com.posthog.actions#ListActionReferencesResponse"
+        "target": "com.posthog.actions#ListActionsReferencesResponse"
       },
       "errors": [
         {
@@ -1924,25 +1925,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.actions#ListActions"
+          "target": "com.posthog.actions#ActionsDestroy"
         },
         {
           "target": "com.posthog.actions#CreateAction"
         },
         {
-          "target": "com.posthog.actions#ActionsRetrieve"
+          "target": "com.posthog.actions#GetAction"
+        },
+        {
+          "target": "com.posthog.actions#ListActions"
+        },
+        {
+          "target": "com.posthog.actions#ListActionsReferences"
         },
         {
           "target": "com.posthog.actions#UpdateAction"
         },
         {
-          "target": "com.posthog.actions#UpdateActionPartial"
-        },
-        {
-          "target": "com.posthog.actions#ActionsDestroy"
-        },
-        {
-          "target": "com.posthog.actions#ListActionReferences"
+          "target": "com.posthog.actions#UpdateActionsPartial"
         }
       ],
       "traits": {

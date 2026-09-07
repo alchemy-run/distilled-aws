@@ -517,6 +517,251 @@ export class WorkerVersionNotFound
     [{ code: 10071 }],
   ) {}
 
+export type ScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
+  "secret_text";
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
+  /*@__PURE__*/ S.String;
+
+export interface ScriptsSecretsBulkUpdateRequestSecretsSecretText {
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The secret value to use. */
+  text: string;
+  /** The kind of resource that the binding provides. */
+  type: ScriptsSecretsBulkUpdateRequestSecretsSecretTextType;
+}
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretText =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      text: S.String,
+      type: ScriptsSecretsBulkUpdateRequestSecretsSecretTextType,
+    }),
+  ).annotate({
+    identifier: "ScriptsSecretsBulkUpdateRequestSecretsSecretText",
+  }) as any as S.Schema<ScriptsSecretsBulkUpdateRequestSecretsSecretText>;
+
+export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
+  | "raw"
+  | "pkcs8"
+  | "spki"
+  | "jwk";
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
+  /*@__PURE__*/ S.String;
+
+export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType = "secret_key";
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
+  /*@__PURE__*/ S.String;
+
+export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
+  | "encrypt"
+  | "decrypt"
+  | "sign"
+  | "verify"
+  | "deriveKey"
+  | "deriveBits"
+  | "wrapKey"
+  | "unwrapKey";
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
+  /*@__PURE__*/ S.String;
+
+export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList = Array<
+  ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem | (string & {})
+>;
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList =
+  /*@__PURE__*/ S.Array(
+    ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem,
+  ) as any as S.Schema<ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList>;
+
+export interface ScriptsSecretsBulkUpdateRequestSecretsSecretKey {
+  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
+  algorithm: unknown;
+  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
+  format: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat | (string & {});
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The kind of resource that the binding provides. */
+  type: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType;
+  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
+  usages: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList;
+  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
+  keyBase64?: string;
+  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
+  keyJwk?: unknown;
+}
+export const ScriptsSecretsBulkUpdateRequestSecretsSecretKey =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      algorithm: S.Unknown,
+      format: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat,
+      name: S.String,
+      type: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType,
+      usages: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList,
+      keyBase64: S.optional(S.String.pipe(T.Body("key_base64"))),
+      keyJwk: S.optional(S.Unknown.pipe(T.Body("key_jwk"))),
+    }),
+  ).annotate({
+    identifier: "ScriptsSecretsBulkUpdateRequestSecretsSecretKey",
+  }) as any as S.Schema<ScriptsSecretsBulkUpdateRequestSecretsSecretKey>;
+
+export type ScriptsSecretsBulkUpdateRequestSecrets =
+  | ScriptsSecretsBulkUpdateRequestSecretsSecretText
+  | ScriptsSecretsBulkUpdateRequestSecretsSecretKey;
+export const ScriptsSecretsBulkUpdateRequestSecrets =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["name", "text", "type"],
+      ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
+    ]),
+  );
+
+export type ScriptsSecretsBulkUpdateRequestVersionTagsMap = {
+  [key: string]: unknown | undefined;
+};
+export const ScriptsSecretsBulkUpdateRequestVersionTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<ScriptsSecretsBulkUpdateRequestVersionTagsMap>;
+
+export interface BulkUpdateScriptSecretsRequest {
+  /** Identifier. */
+  accountId: string;
+  /** Name of the script, used in URLs and route configuration. */
+  scriptName: string;
+  /** Map of secret names to secret values: */
+  secrets?: ScriptsSecretsBulkUpdateRequestSecrets;
+  /** Optional version tags to apply to the new script version. */
+  versionTags?: ScriptsSecretsBulkUpdateRequestVersionTagsMap;
+}
+export const BulkUpdateScriptSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    scriptName: S.String.pipe(T.Label("script_name")),
+    secrets: S.optional(ScriptsSecretsBulkUpdateRequestSecrets),
+    versionTags: S.optional(
+      ScriptsSecretsBulkUpdateRequestVersionTagsMap.pipe(
+        T.Body("version_tags"),
+      ),
+    ),
+  })
+    .pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/accounts/{account_id}/workers/scripts/{script_name}/secrets-bulk",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkUpdateScriptSecretsRequest",
+}) as any as S.Schema<BulkUpdateScriptSecretsRequest>;
+
+export type ScriptsSecretsBulkUpdateResultSecretTextType = "secret_text";
+export const ScriptsSecretsBulkUpdateResultSecretTextType =
+  /*@__PURE__*/ S.String;
+
+export interface ScriptsSecretsBulkUpdateResultSecretText {
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The secret value to use. */
+  text: string;
+  /** The kind of resource that the binding provides. */
+  type: ScriptsSecretsBulkUpdateResultSecretTextType;
+}
+export const ScriptsSecretsBulkUpdateResultSecretText = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      text: S.String,
+      type: ScriptsSecretsBulkUpdateResultSecretTextType,
+    }),
+).annotate({
+  identifier: "ScriptsSecretsBulkUpdateResultSecretText",
+}) as any as S.Schema<ScriptsSecretsBulkUpdateResultSecretText>;
+
+export type ScriptsSecretsBulkUpdateResultSecretKeyFormat =
+  | "raw"
+  | "pkcs8"
+  | "spki"
+  | "jwk";
+export const ScriptsSecretsBulkUpdateResultSecretKeyFormat =
+  /*@__PURE__*/ S.String;
+
+export type ScriptsSecretsBulkUpdateResultSecretKeyType = "secret_key";
+export const ScriptsSecretsBulkUpdateResultSecretKeyType =
+  /*@__PURE__*/ S.String;
+
+export type ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
+  | "encrypt"
+  | "decrypt"
+  | "sign"
+  | "verify"
+  | "deriveKey"
+  | "deriveBits"
+  | "wrapKey"
+  | "unwrapKey";
+export const ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
+  /*@__PURE__*/ S.String;
+
+export type ScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
+  Array<ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem>;
+export const ScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
+  /*@__PURE__*/ S.Array(
+    ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem,
+  ) as any as S.Schema<ScriptsSecretsBulkUpdateResultSecretKeyUsagesList>;
+
+export interface ScriptsSecretsBulkUpdateResultSecretKey {
+  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
+  algorithm: unknown;
+  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
+  format: ScriptsSecretsBulkUpdateResultSecretKeyFormat;
+  /** A JavaScript variable name for the binding. */
+  name: string;
+  /** The kind of resource that the binding provides. */
+  type: ScriptsSecretsBulkUpdateResultSecretKeyType;
+  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
+  usages: ScriptsSecretsBulkUpdateResultSecretKeyUsagesList;
+  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
+  keyBase64?: string | null;
+  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
+  keyJwk?: unknown | null;
+}
+export const ScriptsSecretsBulkUpdateResultSecretKey = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      algorithm: S.Unknown,
+      format: ScriptsSecretsBulkUpdateResultSecretKeyFormat,
+      name: S.String,
+      type: ScriptsSecretsBulkUpdateResultSecretKeyType,
+      usages: ScriptsSecretsBulkUpdateResultSecretKeyUsagesList,
+      keyBase64: S.optional(S.NullOr(S.String).pipe(T.Body("key_base64"))),
+      keyJwk: S.optional(S.NullOr(S.Unknown).pipe(T.Body("key_jwk"))),
+    }),
+).annotate({
+  identifier: "ScriptsSecretsBulkUpdateResultSecretKey",
+}) as any as S.Schema<ScriptsSecretsBulkUpdateResultSecretKey>;
+
+export type ScriptsSecretsBulkUpdateResult =
+  | ScriptsSecretsBulkUpdateResultSecretText
+  | ScriptsSecretsBulkUpdateResultSecretKey;
+export const ScriptsSecretsBulkUpdateResult = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([
+    ["name", "text", "type"],
+    ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
+  ]),
+);
+
+export type BulkUpdateScriptSecretsResponse = ScriptsSecretsBulkUpdateResult;
+export const BulkUpdateScriptSecretsResponse = /*@__PURE__*/ S.suspend(() =>
+  ScriptsSecretsBulkUpdateResult.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "BulkUpdateScriptSecretsResponse",
+}) as any as S.Schema<BulkUpdateScriptSecretsResponse>;
+
 export type CreateAssetUploadBodyMap = { [key: string]: unknown | undefined };
 export const CreateAssetUploadBodyMap = /*@__PURE__*/ S.Record(
   S.String,
@@ -31969,251 +32214,6 @@ export const UpdateBetaWorkerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateBetaWorkerResponse",
 }) as any as S.Schema<UpdateBetaWorkerResponse>;
 
-export type ScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
-  "secret_text";
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretTextType =
-  /*@__PURE__*/ S.String;
-
-export interface ScriptsSecretsBulkUpdateRequestSecretsSecretText {
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The secret value to use. */
-  text: string;
-  /** The kind of resource that the binding provides. */
-  type: ScriptsSecretsBulkUpdateRequestSecretsSecretTextType;
-}
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretText =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      text: S.String,
-      type: ScriptsSecretsBulkUpdateRequestSecretsSecretTextType,
-    }),
-  ).annotate({
-    identifier: "ScriptsSecretsBulkUpdateRequestSecretsSecretText",
-  }) as any as S.Schema<ScriptsSecretsBulkUpdateRequestSecretsSecretText>;
-
-export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
-  | "raw"
-  | "pkcs8"
-  | "spki"
-  | "jwk";
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat =
-  /*@__PURE__*/ S.String;
-
-export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType = "secret_key";
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType =
-  /*@__PURE__*/ S.String;
-
-export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
-  | "encrypt"
-  | "decrypt"
-  | "sign"
-  | "verify"
-  | "deriveKey"
-  | "deriveBits"
-  | "wrapKey"
-  | "unwrapKey";
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
-
-export type ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList = Array<
-  ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem | (string & {})
->;
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList =
-  /*@__PURE__*/ S.Array(
-    ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesItem,
-  ) as any as S.Schema<ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList>;
-
-export interface ScriptsSecretsBulkUpdateRequestSecretsSecretKey {
-  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
-  algorithm: unknown;
-  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
-  format: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat | (string & {});
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The kind of resource that the binding provides. */
-  type: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType;
-  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
-  usages: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList;
-  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
-  keyBase64?: string;
-  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
-  keyJwk?: unknown;
-}
-export const ScriptsSecretsBulkUpdateRequestSecretsSecretKey =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      algorithm: S.Unknown,
-      format: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyFormat,
-      name: S.String,
-      type: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyType,
-      usages: ScriptsSecretsBulkUpdateRequestSecretsSecretKeyUsagesList,
-      keyBase64: S.optional(S.String.pipe(T.Body("key_base64"))),
-      keyJwk: S.optional(S.Unknown.pipe(T.Body("key_jwk"))),
-    }),
-  ).annotate({
-    identifier: "ScriptsSecretsBulkUpdateRequestSecretsSecretKey",
-  }) as any as S.Schema<ScriptsSecretsBulkUpdateRequestSecretsSecretKey>;
-
-export type ScriptsSecretsBulkUpdateRequestSecrets =
-  | ScriptsSecretsBulkUpdateRequestSecretsSecretText
-  | ScriptsSecretsBulkUpdateRequestSecretsSecretKey;
-export const ScriptsSecretsBulkUpdateRequestSecrets =
-  /*@__PURE__*/ S.Unknown.pipe(
-    T.UnionCases([
-      ["name", "text", "type"],
-      ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
-    ]),
-  );
-
-export type ScriptsSecretsBulkUpdateRequestVersionTagsMap = {
-  [key: string]: unknown | undefined;
-};
-export const ScriptsSecretsBulkUpdateRequestVersionTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<ScriptsSecretsBulkUpdateRequestVersionTagsMap>;
-
-export interface UpdateBulkScriptSecretRequest {
-  /** Identifier. */
-  accountId: string;
-  /** Name of the script, used in URLs and route configuration. */
-  scriptName: string;
-  /** Map of secret names to secret values: */
-  secrets?: ScriptsSecretsBulkUpdateRequestSecrets;
-  /** Optional version tags to apply to the new script version. */
-  versionTags?: ScriptsSecretsBulkUpdateRequestVersionTagsMap;
-}
-export const UpdateBulkScriptSecretRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    scriptName: S.String.pipe(T.Label("script_name")),
-    secrets: S.optional(ScriptsSecretsBulkUpdateRequestSecrets),
-    versionTags: S.optional(
-      ScriptsSecretsBulkUpdateRequestVersionTagsMap.pipe(
-        T.Body("version_tags"),
-      ),
-    ),
-  })
-    .pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/accounts/{account_id}/workers/scripts/{script_name}/secrets-bulk",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "UpdateBulkScriptSecretRequest",
-}) as any as S.Schema<UpdateBulkScriptSecretRequest>;
-
-export type ScriptsSecretsBulkUpdateResultSecretTextType = "secret_text";
-export const ScriptsSecretsBulkUpdateResultSecretTextType =
-  /*@__PURE__*/ S.String;
-
-export interface ScriptsSecretsBulkUpdateResultSecretText {
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The secret value to use. */
-  text: string;
-  /** The kind of resource that the binding provides. */
-  type: ScriptsSecretsBulkUpdateResultSecretTextType;
-}
-export const ScriptsSecretsBulkUpdateResultSecretText = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      text: S.String,
-      type: ScriptsSecretsBulkUpdateResultSecretTextType,
-    }),
-).annotate({
-  identifier: "ScriptsSecretsBulkUpdateResultSecretText",
-}) as any as S.Schema<ScriptsSecretsBulkUpdateResultSecretText>;
-
-export type ScriptsSecretsBulkUpdateResultSecretKeyFormat =
-  | "raw"
-  | "pkcs8"
-  | "spki"
-  | "jwk";
-export const ScriptsSecretsBulkUpdateResultSecretKeyFormat =
-  /*@__PURE__*/ S.String;
-
-export type ScriptsSecretsBulkUpdateResultSecretKeyType = "secret_key";
-export const ScriptsSecretsBulkUpdateResultSecretKeyType =
-  /*@__PURE__*/ S.String;
-
-export type ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
-  | "encrypt"
-  | "decrypt"
-  | "sign"
-  | "verify"
-  | "deriveKey"
-  | "deriveBits"
-  | "wrapKey"
-  | "unwrapKey";
-export const ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem =
-  /*@__PURE__*/ S.String;
-
-export type ScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
-  Array<ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem>;
-export const ScriptsSecretsBulkUpdateResultSecretKeyUsagesList =
-  /*@__PURE__*/ S.Array(
-    ScriptsSecretsBulkUpdateResultSecretKeyUsagesItem,
-  ) as any as S.Schema<ScriptsSecretsBulkUpdateResultSecretKeyUsagesList>;
-
-export interface ScriptsSecretsBulkUpdateResultSecretKey {
-  /** Algorithm-specific key parameters. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm). */
-  algorithm: unknown;
-  /** Data format of the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format). */
-  format: ScriptsSecretsBulkUpdateResultSecretKeyFormat;
-  /** A JavaScript variable name for the binding. */
-  name: string;
-  /** The kind of resource that the binding provides. */
-  type: ScriptsSecretsBulkUpdateResultSecretKeyType;
-  /** Allowed operations with the key. [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages). */
-  usages: ScriptsSecretsBulkUpdateResultSecretKeyUsagesList;
-  /** Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki". */
-  keyBase64?: string | null;
-  /** Key data in [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key) format. Required if `format` is "jwk". */
-  keyJwk?: unknown | null;
-}
-export const ScriptsSecretsBulkUpdateResultSecretKey = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      algorithm: S.Unknown,
-      format: ScriptsSecretsBulkUpdateResultSecretKeyFormat,
-      name: S.String,
-      type: ScriptsSecretsBulkUpdateResultSecretKeyType,
-      usages: ScriptsSecretsBulkUpdateResultSecretKeyUsagesList,
-      keyBase64: S.optional(S.NullOr(S.String).pipe(T.Body("key_base64"))),
-      keyJwk: S.optional(S.NullOr(S.Unknown).pipe(T.Body("key_jwk"))),
-    }),
-).annotate({
-  identifier: "ScriptsSecretsBulkUpdateResultSecretKey",
-}) as any as S.Schema<ScriptsSecretsBulkUpdateResultSecretKey>;
-
-export type ScriptsSecretsBulkUpdateResult =
-  | ScriptsSecretsBulkUpdateResultSecretText
-  | ScriptsSecretsBulkUpdateResultSecretKey;
-export const ScriptsSecretsBulkUpdateResult = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["name", "text", "type"],
-    ["algorithm", "format", "name", "type", "usages", "keyBase64", "keyJwk"],
-  ]),
-);
-
-export type UpdateBulkScriptSecretResponse = ScriptsSecretsBulkUpdateResult;
-export const UpdateBulkScriptSecretResponse = /*@__PURE__*/ S.suspend(() =>
-  ScriptsSecretsBulkUpdateResult.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "UpdateBulkScriptSecretResponse",
-}) as any as S.Schema<UpdateBulkScriptSecretResponse>;
-
 export interface UpdateRouteRequest {
   /** Identifier. */
   zoneId: string;
@@ -32691,6 +32691,21 @@ export const ValuesObservabilityTelemetryResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ValuesObservabilityTelemetryResponse",
 }) as any as S.Schema<ValuesObservabilityTelemetryResponse>;
+
+export type BulkUpdateScriptSecretsError = CloudflareOpError;
+/** Create, update, or delete multiple secrets on a script in a single operation using JSON Merge Patch (RFC 7396). Usage: - To create or update a secret, set its value to a secret object. - To delete a secret, set its value to `null`. - Secrets not included in the request are left unchanged. */
+export const bulkUpdateScriptSecrets: API.OperationMethod<
+  BulkUpdateScriptSecretsRequest,
+  BulkUpdateScriptSecretsResponse,
+  BulkUpdateScriptSecretsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: BulkUpdateScriptSecretsRequest,
+  output: BulkUpdateScriptSecretsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CreateAssetUploadError = InvalidRoute | CloudflareOpError;
 /** Upload assets ahead of creating a Worker version. To learn more about the direct uploads of assets, see https://developers.cloudflare.com/workers/static-assets/direct-upload/. */
@@ -34073,21 +34088,6 @@ export const updateBetaWorker: API.OperationMethod<
   input: UpdateBetaWorkerRequest,
   output: UpdateBetaWorkerResponse,
   errors: [WorkerNotFound, CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateBulkScriptSecretError = CloudflareOpError;
-/** Create, update, or delete multiple secrets on a script in a single operation using JSON Merge Patch (RFC 7396). Usage: - To create or update a secret, set its value to a secret object. - To delete a secret, set its value to `null`. - Secrets not included in the request are left unchanged. */
-export const updateBulkScriptSecret: API.OperationMethod<
-  UpdateBulkScriptSecretRequest,
-  UpdateBulkScriptSecretResponse,
-  UpdateBulkScriptSecretError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateBulkScriptSecretRequest,
-  output: UpdateBulkScriptSecretResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));

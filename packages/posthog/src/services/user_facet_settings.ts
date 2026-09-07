@@ -11,9 +11,28 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export type UserFacetSettingsPartialUpdateRequestProduct = "logs" | "tracing";
-export const UserFacetSettingsPartialUpdateRequestProduct =
-  /*@__PURE__*/ S.String;
+export type GetUserFacetSettingsRequestProduct = "logs" | "tracing";
+export const GetUserFacetSettingsRequestProduct = /*@__PURE__*/ S.String;
+
+export interface GetUserFacetSettingsRequest {
+  uuid: string;
+  /** Which product's custom facets to read or update. */
+  product: GetUserFacetSettingsRequestProduct | (string & {});
+}
+export const GetUserFacetSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.String.pipe(T.Label()),
+    product: GetUserFacetSettingsRequestProduct.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/user_facet_settings/{uuid}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetUserFacetSettingsRequest",
+}) as any as S.Schema<GetUserFacetSettingsRequest>;
 
 /** * `attribute` - attribute * `resourceAttribute` - resourceAttribute */
 export type UserFacetSettingsEntrySourceTypeEnum =
@@ -37,40 +56,6 @@ export const UserFacetSettingsEntry = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserFacetSettingsEntry>;
 
 /** Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set. */
-export type UserFacetSettingsPartialUpdateRequestCustomFacetsList =
-  Array<UserFacetSettingsEntry>;
-export const UserFacetSettingsPartialUpdateRequestCustomFacetsList =
-  /*@__PURE__*/ S.Array(
-    UserFacetSettingsEntry,
-  ) as any as S.Schema<UserFacetSettingsPartialUpdateRequestCustomFacetsList>;
-
-export interface UpdateUserFacetSettingPartialRequest {
-  uuid: string;
-  /** Which product's custom facets to read or update. */
-  product: UserFacetSettingsPartialUpdateRequestProduct | (string & {});
-  /** Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set. */
-  custom_facets?: UserFacetSettingsPartialUpdateRequestCustomFacetsList;
-}
-export const UpdateUserFacetSettingPartialRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      uuid: S.String.pipe(T.Label()),
-      product: UserFacetSettingsPartialUpdateRequestProduct.pipe(T.Query()),
-      custom_facets: S.optional(
-        UserFacetSettingsPartialUpdateRequestCustomFacetsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/user_facet_settings/{uuid}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "UpdateUserFacetSettingPartialRequest",
-}) as any as S.Schema<UpdateUserFacetSettingPartialRequest>;
-
-/** Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set. */
 export type UserFacetSettingsCustomFacetsList = Array<UserFacetSettingsEntry>;
 export const UserFacetSettingsCustomFacetsList = /*@__PURE__*/ S.Array(
   UserFacetSettingsEntry,
@@ -88,53 +73,68 @@ export const UserFacetSettings2 = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserFacetSettings2",
 }) as any as S.Schema<UserFacetSettings2>;
 
-export type UserFacetSettingsRetrieveRequestProduct = "logs" | "tracing";
-export const UserFacetSettingsRetrieveRequestProduct = /*@__PURE__*/ S.String;
+export type UpdateUserFacetSettingsPartialRequestProduct = "logs" | "tracing";
+export const UpdateUserFacetSettingsPartialRequestProduct =
+  /*@__PURE__*/ S.String;
 
-export interface UserFacetSettingsRetrieveRequest {
+/** Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set. */
+export type UpdateUserFacetSettingsPartialRequestCustomFacetsList =
+  Array<UserFacetSettingsEntry>;
+export const UpdateUserFacetSettingsPartialRequestCustomFacetsList =
+  /*@__PURE__*/ S.Array(
+    UserFacetSettingsEntry,
+  ) as any as S.Schema<UpdateUserFacetSettingsPartialRequestCustomFacetsList>;
+
+export interface UpdateUserFacetSettingsPartialRequest {
   uuid: string;
   /** Which product's custom facets to read or update. */
-  product: UserFacetSettingsRetrieveRequestProduct | (string & {});
+  product: UpdateUserFacetSettingsPartialRequestProduct | (string & {});
+  /** Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set. */
+  custom_facets?: UpdateUserFacetSettingsPartialRequestCustomFacetsList;
 }
-export const UserFacetSettingsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.String.pipe(T.Label()),
-    product: UserFacetSettingsRetrieveRequestProduct.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/user_facet_settings/{uuid}/",
-      code: 200,
-    }),
-  ),
+export const UpdateUserFacetSettingsPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      uuid: S.String.pipe(T.Label()),
+      product: UpdateUserFacetSettingsPartialRequestProduct.pipe(T.Query()),
+      custom_facets: S.optional(
+        UpdateUserFacetSettingsPartialRequestCustomFacetsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/user_facet_settings/{uuid}/",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "UserFacetSettingsRetrieveRequest",
-}) as any as S.Schema<UserFacetSettingsRetrieveRequest>;
+  identifier: "UpdateUserFacetSettingsPartialRequest",
+}) as any as S.Schema<UpdateUserFacetSettingsPartialRequest>;
 
-export type UpdateUserFacetSettingPartialError = PosthogOpError;
-/** Replace the authenticated user's custom facets for a product, within the current team. Pass `@me` as the UUID. */
-export const updateUserFacetSettingPartial: API.OperationMethod<
-  UpdateUserFacetSettingPartialRequest,
+export type GetUserFacetSettingsError = PosthogOpError;
+/** Get the authenticated user's custom facets for a product, within the current team. Pass `@me` as the UUID. */
+export const getUserFacetSettings: API.OperationMethod<
+  GetUserFacetSettingsRequest,
   UserFacetSettings2,
-  UpdateUserFacetSettingPartialError,
+  GetUserFacetSettingsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateUserFacetSettingPartialRequest,
+  input: GetUserFacetSettingsRequest,
   output: UserFacetSettings2,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type UserFacetSettingsRetrieveError = PosthogOpError;
-/** Get the authenticated user's custom facets for a product, within the current team. Pass `@me` as the UUID. */
-export const userFacetSettingsRetrieve: API.OperationMethod<
-  UserFacetSettingsRetrieveRequest,
+export type UpdateUserFacetSettingsPartialError = PosthogOpError;
+/** Replace the authenticated user's custom facets for a product, within the current team. Pass `@me` as the UUID. */
+export const updateUserFacetSettingsPartial: API.OperationMethod<
+  UpdateUserFacetSettingsPartialRequest,
   UserFacetSettings2,
-  UserFacetSettingsRetrieveError,
+  UpdateUserFacetSettingsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UserFacetSettingsRetrieveRequest,
+  input: UpdateUserFacetSettingsPartialRequest,
   output: UserFacetSettings2,
   errors: [],
   protocol: PosthogProtocol,

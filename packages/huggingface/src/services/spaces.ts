@@ -914,14 +914,14 @@ export const GetSecurityStatusResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSecurityStatusResponse",
 }) as any as S.Schema<GetSecurityStatusResponse>;
 
-export interface GetZeroGpuQuotaRequest {}
-export const GetZeroGpuQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetZeroGPUQuotaRequest {}
+export const GetZeroGPUQuotaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/api/spaces/zero-gpu/quota", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetZeroGpuQuotaRequest",
-}) as any as S.Schema<GetZeroGpuQuotaRequest>;
+  identifier: "GetZeroGPUQuotaRequest",
+}) as any as S.Schema<GetZeroGPUQuotaRequest>;
 
 /** Execution (runs) accounting, or omitted for visitors without a runs limit */
 export interface GetZeroGPUQuotaResponseRuns {
@@ -945,7 +945,7 @@ export const GetZeroGPUQuotaResponseRuns = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetZeroGPUQuotaResponseRuns",
 }) as any as S.Schema<GetZeroGPUQuotaResponseRuns>;
 
-export interface GetZeroGpuQuotaResponse {
+export interface GetZeroGPUQuotaResponse {
   /** Total quota in GPU-seconds */
   base: number;
   /** Remaining quota in GPU-seconds */
@@ -957,7 +957,7 @@ export interface GetZeroGpuQuotaResponse {
   /** Execution (runs) accounting, or omitted for visitors without a runs limit */
   runs?: GetZeroGPUQuotaResponseRuns;
 }
-export const GetZeroGpuQuotaResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetZeroGPUQuotaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     base: S.Number,
     current: S.Number,
@@ -966,8 +966,8 @@ export const GetZeroGpuQuotaResponse = /*@__PURE__*/ S.suspend(() =>
     runs: S.optional(GetZeroGPUQuotaResponseRuns),
   }),
 ).annotate({
-  identifier: "GetZeroGpuQuotaResponse",
-}) as any as S.Schema<GetZeroGpuQuotaResponse>;
+  identifier: "GetZeroGPUQuotaResponse",
+}) as any as S.Schema<GetZeroGPUQuotaResponse>;
 
 export type ListCommitsRequestExpandItem = "formatted";
 export const ListCommitsRequestExpandItem = /*@__PURE__*/ S.String;
@@ -3372,16 +3372,16 @@ export const getSecurityStatus: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetZeroGpuQuotaError = HuggingFaceOpError;
+export type GetZeroGPUQuotaError = HuggingFaceOpError;
 /** Get ZeroGPU quota Get the authenticated user's current ZeroGPU quota usage and limits */
-export const getZeroGpuQuota: API.OperationMethod<
-  GetZeroGpuQuotaRequest,
-  GetZeroGpuQuotaResponse,
-  GetZeroGpuQuotaError,
+export const getZeroGPUQuota: API.OperationMethod<
+  GetZeroGPUQuotaRequest,
+  GetZeroGPUQuotaResponse,
+  GetZeroGPUQuotaError,
   HuggingFaceOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetZeroGpuQuotaRequest,
-  output: GetZeroGpuQuotaResponse,
+  input: GetZeroGPUQuotaRequest,
+  output: GetZeroGPUQuotaResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.announcements#ListAnnouncementsRequest": {
@@ -451,7 +452,7 @@
         }
       }
     },
-    "com.posthog.announcements#AnnouncementsCreateRequestChannelsList": {
+    "com.posthog.announcements#CreateAnnouncementRequestChannelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -479,7 +480,7 @@
           }
         },
         "channels": {
-          "target": "com.posthog.announcements#AnnouncementsCreateRequestChannelsList",
+          "target": "com.posthog.announcements#CreateAnnouncementRequestChannelsList",
           "traits": {
             "smithy.api#documentation": "Slack channel IDs to send to. Each must be a channel the SupportHog bot is a member of; names are resolved server-side.",
             "smithy.api#required": {}
@@ -506,7 +507,7 @@
         }
       }
     },
-    "com.posthog.announcements#AnnouncementsRetrieveRequest": {
+    "com.posthog.announcements#GetAnnouncementRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -529,10 +530,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.announcements#AnnouncementsRetrieve": {
+    "com.posthog.announcements#GetAnnouncement": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.announcements#AnnouncementsRetrieveRequest"
+        "target": "com.posthog.announcements#GetAnnouncementRequest"
       },
       "output": {
         "target": "com.posthog.announcements#AnnouncementOutput"
@@ -545,7 +546,7 @@
         }
       }
     },
-    "com.posthog.announcements#ListAnnouncementChannelsRequest": {
+    "com.posthog.announcements#ListAnnouncementsChannelsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -596,18 +597,18 @@
       },
       "traits": {}
     },
-    "com.posthog.announcements#AnnouncementsChannelsListResponseBodyList": {
+    "com.posthog.announcements#ListAnnouncementsChannelsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.announcements#AnnouncementChannel"
       },
       "traits": {}
     },
-    "com.posthog.announcements#ListAnnouncementChannelsResponse": {
+    "com.posthog.announcements#ListAnnouncementsChannelsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.announcements#AnnouncementsChannelsListResponseBodyList",
+          "target": "com.posthog.announcements#ListAnnouncementsChannelsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -618,13 +619,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.announcements#ListAnnouncementChannels": {
+    "com.posthog.announcements#ListAnnouncementsChannels": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.announcements#ListAnnouncementChannelsRequest"
+        "target": "com.posthog.announcements#ListAnnouncementsChannelsRequest"
       },
       "output": {
-        "target": "com.posthog.announcements#ListAnnouncementChannelsResponse"
+        "target": "com.posthog.announcements#ListAnnouncementsChannelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -640,16 +641,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.announcements#ListAnnouncements"
-        },
-        {
           "target": "com.posthog.announcements#CreateAnnouncement"
         },
         {
-          "target": "com.posthog.announcements#AnnouncementsRetrieve"
+          "target": "com.posthog.announcements#GetAnnouncement"
         },
         {
-          "target": "com.posthog.announcements#ListAnnouncementChannels"
+          "target": "com.posthog.announcements#ListAnnouncements"
+        },
+        {
+          "target": "com.posthog.announcements#ListAnnouncementsChannels"
         }
       ],
       "traits": {

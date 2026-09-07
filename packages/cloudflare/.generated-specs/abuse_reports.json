@@ -50,7 +50,8 @@
       "trademarkNumber": "trademark_number",
       "trademarkOffice": "trademark_office",
       "trademarkSymbol": "trademark_symbol"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.abuse_reports#CreateRequestAct": {
@@ -1753,19 +1754,19 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.abuse_reports#Create"
+          "target": "com.cloudflare.abuse_reports#CreateAbuseReport"
         },
         {
           "target": "com.cloudflare.abuse_reports#Get"
         },
         {
-          "target": "com.cloudflare.abuse_reports#List"
+          "target": "com.cloudflare.abuse_reports#ListAbuseReports"
         },
         {
-          "target": "com.cloudflare.abuse_reports#MitigationsList"
+          "target": "com.cloudflare.abuse_reports#ListMitigations"
         },
         {
-          "target": "com.cloudflare.abuse_reports#MitigationsReview"
+          "target": "com.cloudflare.abuse_reports#ReviewMitigation"
         }
       ],
       "traits": {

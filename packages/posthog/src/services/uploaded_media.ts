@@ -12,6 +12,15 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
+export class BadRequest
+  extends /*@__PURE__*/ T.applyErrorMatchers(
+    /*@__PURE__*/ S.TaggedError<BadRequest>()("BadRequest", {
+      code: S.Number,
+      message: S.String,
+    }).pipe(C.withBadRequestError),
+    [{ status: 400 }],
+  ) {}
+
 export class Forbidden
   extends /*@__PURE__*/ T.applyErrorMatchers(
     /*@__PURE__*/ S.TaggedError<Forbidden>()("Forbidden", {
@@ -30,41 +39,204 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+/** Library to add this image to. Omit to upload without joining a library (as dashboard text cards and notebooks do). */
+export type CreateUploadedMediaRequestPurpose = "email" | "canvas";
+export const CreateUploadedMediaRequestPurpose = /*@__PURE__*/ S.String;
+
 export interface CreateUploadedMediaRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
+  /** Image file. Must be under 4MB and a real, decodable image. */
+  image: string;
+  /** Library to add this image to. Omit to upload without joining a library (as dashboard text cards and notebooks do). */
+  purpose?: CreateUploadedMediaRequestPurpose | (string & {});
 }
 export const CreateUploadedMediaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
+    image: S.String,
+    purpose: S.optional(CreateUploadedMediaRequestPurpose),
   }).pipe(
     T.Http({
       method: "POST",
       uri: "/api/projects/{project_id}/uploaded_media/",
       code: 200,
+      contentType: "multipart",
     }),
   ),
 ).annotate({
   identifier: "CreateUploadedMediaRequest",
 }) as any as S.Schema<CreateUploadedMediaRequest>;
 
-export type UploadedMediaCreateResponseBodyMap = {
+export type CreateUploadedMediaResponseBodyMap = {
   [key: string]: unknown | undefined;
 };
-export const UploadedMediaCreateResponseBodyMap = /*@__PURE__*/ S.Record(
+export const CreateUploadedMediaResponseBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<UploadedMediaCreateResponseBodyMap>;
+) as any as S.Schema<CreateUploadedMediaResponseBodyMap>;
 
-export type CreateUploadedMediaResponse = UploadedMediaCreateResponseBodyMap;
+export type CreateUploadedMediaResponse = CreateUploadedMediaResponseBodyMap;
 export const CreateUploadedMediaResponse = /*@__PURE__*/ S.suspend(() =>
-  UploadedMediaCreateResponseBodyMap.pipe(T.RawResponseRoot()),
+  CreateUploadedMediaResponseBodyMap.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "CreateUploadedMediaResponse",
 }) as any as S.Schema<CreateUploadedMediaResponse>;
 
+export type ListUploadedMediaRequestPurpose = "canvas" | "email";
+export const ListUploadedMediaRequestPurpose = /*@__PURE__*/ S.String;
+
+export interface ListUploadedMediaRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** The library to list. */
+  purpose: ListUploadedMediaRequestPurpose | (string & {});
+}
+export const ListUploadedMediaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    purpose: ListUploadedMediaRequestPurpose.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/uploaded_media/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListUploadedMediaRequest",
+}) as any as S.Schema<ListUploadedMediaRequest>;
+
+export interface UploadedMedia2 {
+  id: string;
+  /** The file's original name. */
+  name: string;
+  purpose: string | null;
+  content_type: string | null;
+  size_bytes: number | null;
+  /** Permanent, public URL of the image. For emails, put this in an image block's values.src.url. */
+  url: string;
+  created_at: string;
+}
+export const UploadedMedia2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    purpose: S.NullOr(S.String),
+    content_type: S.NullOr(S.String),
+    size_bytes: S.NullOr(S.Number),
+    url: S.String,
+    created_at: S.String,
+  }),
+).annotate({ identifier: "UploadedMedia2" }) as any as S.Schema<UploadedMedia2>;
+
+export type PaginatedUploadedMediaListResultsList = Array<UploadedMedia2>;
+export const PaginatedUploadedMediaListResultsList = /*@__PURE__*/ S.Array(
+  UploadedMedia2,
+) as any as S.Schema<PaginatedUploadedMediaListResultsList>;
+
+export interface PaginatedUploadedMediaList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedUploadedMediaListResultsList;
+}
+export const PaginatedUploadedMediaList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedUploadedMediaListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedUploadedMediaList",
+}) as any as S.Schema<PaginatedUploadedMediaList>;
+
+export interface UploadedMediaCompleteUploadCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this uploaded media. */
+  id: string;
+}
+export const UploadedMediaCompleteUploadCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/uploaded_media/{id}/complete_upload/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UploadedMediaCompleteUploadCreateRequest",
+}) as any as S.Schema<UploadedMediaCompleteUploadCreateRequest>;
+
+export interface UploadedMediaStartUploadCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The file's display name, e.g. 'logo.png'. */
+  name: string;
+  /** Library to add this image to once uploaded, e.g. 'email'. */
+  purpose: string;
+}
+export const UploadedMediaStartUploadCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      name: S.String,
+      purpose: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/uploaded_media/start_upload/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UploadedMediaStartUploadCreateRequest",
+}) as any as S.Schema<UploadedMediaStartUploadCreateRequest>;
+
+/** Extra form fields to send alongside the file in the same POST. */
+export type UploadedMediaUploadStartedFormFieldsMap = {
+  [key: string]: string | undefined;
+};
+export const UploadedMediaUploadStartedFormFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UploadedMediaUploadStartedFormFieldsMap>;
+
+export interface UploadedMediaUploadStarted {
+  /** Id of the pending upload — pass this to complete_upload. */
+  id: string;
+  /** POST the image file here as multipart/form-data. */
+  upload_url: string;
+  /** Extra form fields to send alongside the file in the same POST. */
+  form_fields: UploadedMediaUploadStartedFormFieldsMap;
+  /** Seconds before upload_url expires. */
+  expires_in: number;
+}
+export const UploadedMediaUploadStarted = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    upload_url: S.String,
+    form_fields: UploadedMediaUploadStartedFormFieldsMap,
+    expires_in: S.Number,
+  }),
+).annotate({
+  identifier: "UploadedMediaUploadStarted",
+}) as any as S.Schema<UploadedMediaUploadStarted>;
+
 export type CreateUploadedMediaError = Forbidden | NotFound | PosthogOpError;
-/** When object storage is available this API allows upload of media which can be used, for example, in text cards on dashboards. Uploaded media must have a content type beginning with 'image/' and be less than 4MB. */
+/** When object storage is available this API allows upload of media which can be used, for example, in text cards on dashboards. Uploaded media must be less than 4MB and decode as a PNG, JPEG, GIF, WebP, AVIF or BMP image — the formats the download route will serve inline. Pass `purpose` to also add the image to a library, making it visible to `GET ?purpose=...`. */
 export const createUploadedMedia: API.OperationMethod<
   CreateUploadedMediaRequest,
   CreateUploadedMediaResponse,
@@ -74,6 +246,54 @@ export const createUploadedMedia: API.OperationMethod<
   input: CreateUploadedMediaRequest,
   output: CreateUploadedMediaResponse,
   errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUploadedMediaError = BadRequest | PosthogOpError;
+/** List images in the media library. Requires a `purpose` filter — the library is scoped per consumer (e.g. `email`), so browsing without one would mix in unrelated uploads (dashboard images, toolbar screenshots, ...). */
+export const listUploadedMedia: API.OperationMethod<
+  ListUploadedMediaRequest,
+  PaginatedUploadedMediaList,
+  ListUploadedMediaError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUploadedMediaRequest,
+  output: PaginatedUploadedMediaList,
+  errors: [BadRequest],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadedMediaCompleteUploadCreateError =
+  | BadRequest
+  | NotFound
+  | PosthogOpError;
+/** Step 2 of the presigned upload flow: verifies the object POSTed to the upload_url, sniffs its real content type, and activates it — after this it appears in the library and is publicly servable. */
+export const uploadedMediaCompleteUploadCreate: API.OperationMethod<
+  UploadedMediaCompleteUploadCreateRequest,
+  UploadedMedia2,
+  UploadedMediaCompleteUploadCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadedMediaCompleteUploadCreateRequest,
+  output: UploadedMedia2,
+  errors: [BadRequest, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadedMediaStartUploadCreateError = BadRequest | PosthogOpError;
+/** Step 1 of the presigned upload flow: reserves a pending image and returns a presigned URL to POST the file to directly, bytes never pass through this API. Call complete_upload with the returned id once the upload finishes. */
+export const uploadedMediaStartUploadCreate: API.OperationMethod<
+  UploadedMediaStartUploadCreateRequest,
+  UploadedMediaUploadStarted,
+  UploadedMediaStartUploadCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadedMediaStartUploadCreateRequest,
+  output: UploadedMediaUploadStarted,
+  errors: [BadRequest],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

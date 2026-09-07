@@ -14127,41 +14127,49 @@
       "type": "enum",
       "members": {
         "http1_1": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "http1.1"
           }
         },
         "http2": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "http2"
           }
         },
         "http3": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "http3"
           }
         },
         "http2and3": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "http2and3"
           }
         },
         "HTTP1_1": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "HTTP1.1"
           }
         },
         "HTTP2": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "HTTP2"
           }
         },
         "HTTP3": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "HTTP3"
           }
         },
         "HTTP2AND3": {
+          "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "HTTP2AND3"
           }

@@ -72,6 +72,272 @@ export class TokenValidationRuleNotFound
     [{ status: 404 }],
   ) {}
 
+export type RulesBulkCreateRequestBodyItemAction = "log" | "block";
+export const RulesBulkCreateRequestBodyItemAction = /*@__PURE__*/ S.String;
+
+export type RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList =
+  Array<string>;
+export const RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList>;
+
+export interface RulesBulkCreateRequestBodyItemSelectorExcludeItem {
+  /** Excluded operation IDs. */
+  operationIds?: RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList;
+}
+export const RulesBulkCreateRequestBodyItemSelectorExcludeItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      operationIds: S.optional(
+        RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList.pipe(
+          T.Body("operation_ids"),
+        ),
+      ),
+    }),
+  ).annotate({
+    identifier: "RulesBulkCreateRequestBodyItemSelectorExcludeItem",
+  }) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorExcludeItem>;
+
+export type RulesBulkCreateRequestBodyItemSelectorExcludeList =
+  Array<RulesBulkCreateRequestBodyItemSelectorExcludeItem>;
+export const RulesBulkCreateRequestBodyItemSelectorExcludeList =
+  /*@__PURE__*/ S.Array(
+    RulesBulkCreateRequestBodyItemSelectorExcludeItem,
+  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorExcludeList>;
+
+export type RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList =
+  Array<string>;
+export const RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList>;
+
+export interface RulesBulkCreateRequestBodyItemSelectorIncludeItem {
+  /** Included hostnames. */
+  host?: RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList;
+}
+export const RulesBulkCreateRequestBodyItemSelectorIncludeItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      host: S.optional(
+        RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList,
+      ),
+    }),
+  ).annotate({
+    identifier: "RulesBulkCreateRequestBodyItemSelectorIncludeItem",
+  }) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorIncludeItem>;
+
+export type RulesBulkCreateRequestBodyItemSelectorIncludeList =
+  Array<RulesBulkCreateRequestBodyItemSelectorIncludeItem>;
+export const RulesBulkCreateRequestBodyItemSelectorIncludeList =
+  /*@__PURE__*/ S.Array(
+    RulesBulkCreateRequestBodyItemSelectorIncludeItem,
+  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorIncludeList>;
+
+export interface RulesBulkCreateRequestBodyItemSelector {
+  /** Ignore operations that were otherwise included by `include`. */
+  exclude?: RulesBulkCreateRequestBodyItemSelectorExcludeList;
+  /** Select all matching operations. */
+  include?: RulesBulkCreateRequestBodyItemSelectorIncludeList;
+}
+export const RulesBulkCreateRequestBodyItemSelector = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      exclude: S.optional(RulesBulkCreateRequestBodyItemSelectorExcludeList),
+      include: S.optional(RulesBulkCreateRequestBodyItemSelectorIncludeList),
+    }),
+).annotate({
+  identifier: "RulesBulkCreateRequestBodyItemSelector",
+}) as any as S.Schema<RulesBulkCreateRequestBodyItemSelector>;
+
+export interface RulesBulkCreateRequestBodyItem {
+  /** Action to take on requests that match operations included in `selector` and fail `expression`. */
+  action: RulesBulkCreateRequestBodyItemAction | (string & {});
+  /** A human-readable description that gives more details than `title`. */
+  description: string;
+  /** Toggle rule on or off. */
+  enabled: boolean;
+  /** Rule expression. Requests that fail to match this expression will be subject to `action`. */
+  expression: string;
+  /** Select operations covered by this rule. */
+  selector: RulesBulkCreateRequestBodyItemSelector;
+  /** A human-readable name for the rule. */
+  title: string;
+}
+export const RulesBulkCreateRequestBodyItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: RulesBulkCreateRequestBodyItemAction,
+    description: S.String,
+    enabled: S.Boolean,
+    expression: S.String,
+    selector: RulesBulkCreateRequestBodyItemSelector,
+    title: S.String,
+  }),
+).annotate({
+  identifier: "RulesBulkCreateRequestBodyItem",
+}) as any as S.Schema<RulesBulkCreateRequestBodyItem>;
+
+export type RulesBulkCreateRequestBodyList =
+  Array<RulesBulkCreateRequestBodyItem>;
+export const RulesBulkCreateRequestBodyList = /*@__PURE__*/ S.Array(
+  RulesBulkCreateRequestBodyItem,
+) as any as S.Schema<RulesBulkCreateRequestBodyList>;
+
+export interface BulkCreateRulesRequest {
+  /** Identifier. */
+  zoneId: string;
+  body: RulesBulkCreateRequestBodyList;
+}
+export const BulkCreateRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    body: RulesBulkCreateRequestBodyList.pipe(T.HttpBody()),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/zones/{zone_id}/token_validation/rules/bulk",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkCreateRulesRequest",
+}) as any as S.Schema<BulkCreateRulesRequest>;
+
+export type RulesBulkCreateResultItemAction = "log" | "block";
+export const RulesBulkCreateResultItemAction = /*@__PURE__*/ S.String;
+
+export type RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList =
+  Array<string>;
+export const RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList>;
+
+export interface RulesBulkCreateResultItemSelectorExcludeItem {
+  /** Excluded operation IDs. */
+  operationIds?: RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList | null;
+}
+export const RulesBulkCreateResultItemSelectorExcludeItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      operationIds: S.optional(
+        S.NullOr(
+          RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList,
+        ).pipe(T.Body("operation_ids")),
+      ),
+    }),
+  ).annotate({
+    identifier: "RulesBulkCreateResultItemSelectorExcludeItem",
+  }) as any as S.Schema<RulesBulkCreateResultItemSelectorExcludeItem>;
+
+export type RulesBulkCreateResultItemSelectorExcludeList =
+  Array<RulesBulkCreateResultItemSelectorExcludeItem>;
+export const RulesBulkCreateResultItemSelectorExcludeList =
+  /*@__PURE__*/ S.Array(
+    RulesBulkCreateResultItemSelectorExcludeItem,
+  ) as any as S.Schema<RulesBulkCreateResultItemSelectorExcludeList>;
+
+export type RulesBulkCreateResultItemSelectorIncludeItemHostList =
+  Array<string>;
+export const RulesBulkCreateResultItemSelectorIncludeItemHostList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RulesBulkCreateResultItemSelectorIncludeItemHostList>;
+
+export interface RulesBulkCreateResultItemSelectorIncludeItem {
+  /** Included hostnames. */
+  host?: RulesBulkCreateResultItemSelectorIncludeItemHostList | null;
+}
+export const RulesBulkCreateResultItemSelectorIncludeItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      host: S.optional(
+        S.NullOr(RulesBulkCreateResultItemSelectorIncludeItemHostList),
+      ),
+    }),
+  ).annotate({
+    identifier: "RulesBulkCreateResultItemSelectorIncludeItem",
+  }) as any as S.Schema<RulesBulkCreateResultItemSelectorIncludeItem>;
+
+export type RulesBulkCreateResultItemSelectorIncludeList =
+  Array<RulesBulkCreateResultItemSelectorIncludeItem>;
+export const RulesBulkCreateResultItemSelectorIncludeList =
+  /*@__PURE__*/ S.Array(
+    RulesBulkCreateResultItemSelectorIncludeItem,
+  ) as any as S.Schema<RulesBulkCreateResultItemSelectorIncludeList>;
+
+export interface RulesBulkCreateResultItemSelector {
+  /** Ignore operations that were otherwise included by `include`. */
+  exclude?: RulesBulkCreateResultItemSelectorExcludeList | null;
+  /** Select all matching operations. */
+  include?: RulesBulkCreateResultItemSelectorIncludeList | null;
+}
+export const RulesBulkCreateResultItemSelector = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    exclude: S.optional(S.NullOr(RulesBulkCreateResultItemSelectorExcludeList)),
+    include: S.optional(S.NullOr(RulesBulkCreateResultItemSelectorIncludeList)),
+  }),
+).annotate({
+  identifier: "RulesBulkCreateResultItemSelector",
+}) as any as S.Schema<RulesBulkCreateResultItemSelector>;
+
+export interface RulesBulkCreateResultItem {
+  /** Action to take on requests that match operations included in `selector` and fail `expression`. */
+  action: RulesBulkCreateResultItemAction;
+  /** A human-readable description that gives more details than `title`. */
+  description: string;
+  /** Toggle rule on or off. */
+  enabled: boolean;
+  /** Rule expression. Requests that fail to match this expression will be subject to `action`. */
+  expression: string;
+  /** Select operations covered by this rule. */
+  selector: RulesBulkCreateResultItemSelector;
+  /** A human-readable name for the rule. */
+  title: string;
+  /** UUID. */
+  id?: string | null;
+  createdAt?: string | null;
+  lastUpdated?: string | null;
+}
+export const RulesBulkCreateResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    action: RulesBulkCreateResultItemAction,
+    description: S.String,
+    enabled: S.Boolean,
+    expression: S.String,
+    selector: RulesBulkCreateResultItemSelector,
+    title: S.String,
+    id: S.optional(S.NullOr(S.String)),
+    createdAt: S.optional(S.NullOr(S.String).pipe(T.Body("created_at"))),
+    lastUpdated: S.optional(S.NullOr(S.String).pipe(T.Body("last_updated"))),
+  }),
+).annotate({
+  identifier: "RulesBulkCreateResultItem",
+}) as any as S.Schema<RulesBulkCreateResultItem>;
+
+export type RulesBulkCreateResultList = Array<RulesBulkCreateResultItem>;
+export const RulesBulkCreateResultList = /*@__PURE__*/ S.Array(
+  RulesBulkCreateResultItem,
+) as any as S.Schema<RulesBulkCreateResultList>;
+
+export interface BulkCreateRulesResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: RulesBulkCreateResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const BulkCreateRulesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: RulesBulkCreateResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "BulkCreateRulesResponse",
+}) as any as S.Schema<BulkCreateRulesResponse>;
+
 export type RulesBulkEditRequestBodyItemAction = "log" | "block";
 export const RulesBulkEditRequestBodyItemAction = /*@__PURE__*/ S.String;
 
@@ -385,272 +651,6 @@ export const BulkPatchRulesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BulkPatchRulesResponse",
 }) as any as S.Schema<BulkPatchRulesResponse>;
-
-export type RulesBulkCreateRequestBodyItemAction = "log" | "block";
-export const RulesBulkCreateRequestBodyItemAction = /*@__PURE__*/ S.String;
-
-export type RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList =
-  Array<string>;
-export const RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList>;
-
-export interface RulesBulkCreateRequestBodyItemSelectorExcludeItem {
-  /** Excluded operation IDs. */
-  operationIds?: RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList;
-}
-export const RulesBulkCreateRequestBodyItemSelectorExcludeItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operationIds: S.optional(
-        RulesBulkCreateRequestBodyItemSelectorExcludeItemOperationIdsList.pipe(
-          T.Body("operation_ids"),
-        ),
-      ),
-    }),
-  ).annotate({
-    identifier: "RulesBulkCreateRequestBodyItemSelectorExcludeItem",
-  }) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorExcludeItem>;
-
-export type RulesBulkCreateRequestBodyItemSelectorExcludeList =
-  Array<RulesBulkCreateRequestBodyItemSelectorExcludeItem>;
-export const RulesBulkCreateRequestBodyItemSelectorExcludeList =
-  /*@__PURE__*/ S.Array(
-    RulesBulkCreateRequestBodyItemSelectorExcludeItem,
-  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorExcludeList>;
-
-export type RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList =
-  Array<string>;
-export const RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList>;
-
-export interface RulesBulkCreateRequestBodyItemSelectorIncludeItem {
-  /** Included hostnames. */
-  host?: RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList;
-}
-export const RulesBulkCreateRequestBodyItemSelectorIncludeItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      host: S.optional(
-        RulesBulkCreateRequestBodyItemSelectorIncludeItemHostList,
-      ),
-    }),
-  ).annotate({
-    identifier: "RulesBulkCreateRequestBodyItemSelectorIncludeItem",
-  }) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorIncludeItem>;
-
-export type RulesBulkCreateRequestBodyItemSelectorIncludeList =
-  Array<RulesBulkCreateRequestBodyItemSelectorIncludeItem>;
-export const RulesBulkCreateRequestBodyItemSelectorIncludeList =
-  /*@__PURE__*/ S.Array(
-    RulesBulkCreateRequestBodyItemSelectorIncludeItem,
-  ) as any as S.Schema<RulesBulkCreateRequestBodyItemSelectorIncludeList>;
-
-export interface RulesBulkCreateRequestBodyItemSelector {
-  /** Ignore operations that were otherwise included by `include`. */
-  exclude?: RulesBulkCreateRequestBodyItemSelectorExcludeList;
-  /** Select all matching operations. */
-  include?: RulesBulkCreateRequestBodyItemSelectorIncludeList;
-}
-export const RulesBulkCreateRequestBodyItemSelector = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      exclude: S.optional(RulesBulkCreateRequestBodyItemSelectorExcludeList),
-      include: S.optional(RulesBulkCreateRequestBodyItemSelectorIncludeList),
-    }),
-).annotate({
-  identifier: "RulesBulkCreateRequestBodyItemSelector",
-}) as any as S.Schema<RulesBulkCreateRequestBodyItemSelector>;
-
-export interface RulesBulkCreateRequestBodyItem {
-  /** Action to take on requests that match operations included in `selector` and fail `expression`. */
-  action: RulesBulkCreateRequestBodyItemAction | (string & {});
-  /** A human-readable description that gives more details than `title`. */
-  description: string;
-  /** Toggle rule on or off. */
-  enabled: boolean;
-  /** Rule expression. Requests that fail to match this expression will be subject to `action`. */
-  expression: string;
-  /** Select operations covered by this rule. */
-  selector: RulesBulkCreateRequestBodyItemSelector;
-  /** A human-readable name for the rule. */
-  title: string;
-}
-export const RulesBulkCreateRequestBodyItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: RulesBulkCreateRequestBodyItemAction,
-    description: S.String,
-    enabled: S.Boolean,
-    expression: S.String,
-    selector: RulesBulkCreateRequestBodyItemSelector,
-    title: S.String,
-  }),
-).annotate({
-  identifier: "RulesBulkCreateRequestBodyItem",
-}) as any as S.Schema<RulesBulkCreateRequestBodyItem>;
-
-export type RulesBulkCreateRequestBodyList =
-  Array<RulesBulkCreateRequestBodyItem>;
-export const RulesBulkCreateRequestBodyList = /*@__PURE__*/ S.Array(
-  RulesBulkCreateRequestBodyItem,
-) as any as S.Schema<RulesBulkCreateRequestBodyList>;
-
-export interface CreateBulkRuleRequest {
-  /** Identifier. */
-  zoneId: string;
-  body: RulesBulkCreateRequestBodyList;
-}
-export const CreateBulkRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    body: RulesBulkCreateRequestBodyList.pipe(T.HttpBody()),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/zones/{zone_id}/token_validation/rules/bulk",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CreateBulkRuleRequest",
-}) as any as S.Schema<CreateBulkRuleRequest>;
-
-export type RulesBulkCreateResultItemAction = "log" | "block";
-export const RulesBulkCreateResultItemAction = /*@__PURE__*/ S.String;
-
-export type RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList =
-  Array<string>;
-export const RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList>;
-
-export interface RulesBulkCreateResultItemSelectorExcludeItem {
-  /** Excluded operation IDs. */
-  operationIds?: RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList | null;
-}
-export const RulesBulkCreateResultItemSelectorExcludeItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      operationIds: S.optional(
-        S.NullOr(
-          RulesBulkCreateResultItemSelectorExcludeItemOperationIdsList,
-        ).pipe(T.Body("operation_ids")),
-      ),
-    }),
-  ).annotate({
-    identifier: "RulesBulkCreateResultItemSelectorExcludeItem",
-  }) as any as S.Schema<RulesBulkCreateResultItemSelectorExcludeItem>;
-
-export type RulesBulkCreateResultItemSelectorExcludeList =
-  Array<RulesBulkCreateResultItemSelectorExcludeItem>;
-export const RulesBulkCreateResultItemSelectorExcludeList =
-  /*@__PURE__*/ S.Array(
-    RulesBulkCreateResultItemSelectorExcludeItem,
-  ) as any as S.Schema<RulesBulkCreateResultItemSelectorExcludeList>;
-
-export type RulesBulkCreateResultItemSelectorIncludeItemHostList =
-  Array<string>;
-export const RulesBulkCreateResultItemSelectorIncludeItemHostList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RulesBulkCreateResultItemSelectorIncludeItemHostList>;
-
-export interface RulesBulkCreateResultItemSelectorIncludeItem {
-  /** Included hostnames. */
-  host?: RulesBulkCreateResultItemSelectorIncludeItemHostList | null;
-}
-export const RulesBulkCreateResultItemSelectorIncludeItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      host: S.optional(
-        S.NullOr(RulesBulkCreateResultItemSelectorIncludeItemHostList),
-      ),
-    }),
-  ).annotate({
-    identifier: "RulesBulkCreateResultItemSelectorIncludeItem",
-  }) as any as S.Schema<RulesBulkCreateResultItemSelectorIncludeItem>;
-
-export type RulesBulkCreateResultItemSelectorIncludeList =
-  Array<RulesBulkCreateResultItemSelectorIncludeItem>;
-export const RulesBulkCreateResultItemSelectorIncludeList =
-  /*@__PURE__*/ S.Array(
-    RulesBulkCreateResultItemSelectorIncludeItem,
-  ) as any as S.Schema<RulesBulkCreateResultItemSelectorIncludeList>;
-
-export interface RulesBulkCreateResultItemSelector {
-  /** Ignore operations that were otherwise included by `include`. */
-  exclude?: RulesBulkCreateResultItemSelectorExcludeList | null;
-  /** Select all matching operations. */
-  include?: RulesBulkCreateResultItemSelectorIncludeList | null;
-}
-export const RulesBulkCreateResultItemSelector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    exclude: S.optional(S.NullOr(RulesBulkCreateResultItemSelectorExcludeList)),
-    include: S.optional(S.NullOr(RulesBulkCreateResultItemSelectorIncludeList)),
-  }),
-).annotate({
-  identifier: "RulesBulkCreateResultItemSelector",
-}) as any as S.Schema<RulesBulkCreateResultItemSelector>;
-
-export interface RulesBulkCreateResultItem {
-  /** Action to take on requests that match operations included in `selector` and fail `expression`. */
-  action: RulesBulkCreateResultItemAction;
-  /** A human-readable description that gives more details than `title`. */
-  description: string;
-  /** Toggle rule on or off. */
-  enabled: boolean;
-  /** Rule expression. Requests that fail to match this expression will be subject to `action`. */
-  expression: string;
-  /** Select operations covered by this rule. */
-  selector: RulesBulkCreateResultItemSelector;
-  /** A human-readable name for the rule. */
-  title: string;
-  /** UUID. */
-  id?: string | null;
-  createdAt?: string | null;
-  lastUpdated?: string | null;
-}
-export const RulesBulkCreateResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    action: RulesBulkCreateResultItemAction,
-    description: S.String,
-    enabled: S.Boolean,
-    expression: S.String,
-    selector: RulesBulkCreateResultItemSelector,
-    title: S.String,
-    id: S.optional(S.NullOr(S.String)),
-    createdAt: S.optional(S.NullOr(S.String).pipe(T.Body("created_at"))),
-    lastUpdated: S.optional(S.NullOr(S.String).pipe(T.Body("last_updated"))),
-  }),
-).annotate({
-  identifier: "RulesBulkCreateResultItem",
-}) as any as S.Schema<RulesBulkCreateResultItem>;
-
-export type RulesBulkCreateResultList = Array<RulesBulkCreateResultItem>;
-export const RulesBulkCreateResultList = /*@__PURE__*/ S.Array(
-  RulesBulkCreateResultItem,
-) as any as S.Schema<RulesBulkCreateResultList>;
-
-export interface CreateBulkRuleResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: RulesBulkCreateResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const CreateBulkRuleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: RulesBulkCreateResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "CreateBulkRuleResponse",
-}) as any as S.Schema<CreateBulkRuleResponse>;
 
 export type ConfigurationCreateRequestCredentialsKeysItemAPIShieldCredentialsJWTKeyRSAAlg =
   | "RS256"
@@ -2765,6 +2765,26 @@ export const PutConfigurationCredentialResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutConfigurationCredentialResponse",
 }) as any as S.Schema<PutConfigurationCredentialResponse>;
 
+export type BulkCreateRulesError = CloudflareOpError;
+/** Create zone token validation rules. A request can create multiple Token Validation Rules. */
+export const bulkCreateRules: API.PaginatedOperationMethod<
+  BulkCreateRulesRequest,
+  BulkCreateRulesResponse,
+  BulkCreateRulesError,
+  CloudflareOpContext,
+  RulesBulkCreateResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: BulkCreateRulesRequest,
+    output: BulkCreateRulesResponse,
+    errors: [CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
 export type BulkPatchRulesError = CloudflareOpError;
 /** Edit token validation rules. A request can update multiple Token Validation Rules. Rules can be re-ordered using the `position` field. Returns all updated rules. */
 export const bulkPatchRules: API.PaginatedOperationMethod<
@@ -2777,26 +2797,6 @@ export const bulkPatchRules: API.PaginatedOperationMethod<
   () => ({
     input: BulkPatchRulesRequest,
     output: BulkPatchRulesResponse,
-    errors: [CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
-export type CreateBulkRuleError = CloudflareOpError;
-/** Create zone token validation rules. A request can create multiple Token Validation Rules. */
-export const createBulkRule: API.PaginatedOperationMethod<
-  CreateBulkRuleRequest,
-  CreateBulkRuleResponse,
-  CreateBulkRuleError,
-  CloudflareOpContext,
-  RulesBulkCreateResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: CreateBulkRuleRequest,
-    output: CreateBulkRuleResponse,
     errors: [CloudflareRateLimited, CloudflareError],
     protocol: CloudflarePaginatedProtocol,
     retry: Retry.Retry,

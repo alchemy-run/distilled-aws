@@ -204,10 +204,10 @@ export const DownloadArtifactRequest = /*@__PURE__*/ S.suspend(() =>
     teamId: S.optional(S.String.pipe(T.Query())),
     slug: S.optional(S.String.pipe(T.Query())),
     xArtifactClientCi: S.optional(
-      S.String.pipe(T.Header("x-Artifact-Client-Ci")),
+      S.String.pipe(T.Header("x-artifact-client-ci")),
     ),
     xArtifactClientInteractive: S.optional(
-      S.Number.pipe(T.Header("x-Artifact-Client-Interactive")),
+      S.Number.pipe(T.Header("x-artifact-client-interactive")),
     ),
   }).pipe(T.Http({ method: "GET", uri: "/v8/artifacts/{hash}", code: 200 })),
 ).annotate({
@@ -274,10 +274,10 @@ export const RecordEventsRequest = /*@__PURE__*/ S.suspend(() =>
     teamId: S.optional(S.String.pipe(T.Query())),
     slug: S.optional(S.String.pipe(T.Query())),
     xArtifactClientCi: S.optional(
-      S.String.pipe(T.Header("x-Artifact-Client-Ci")),
+      S.String.pipe(T.Header("x-artifact-client-ci")),
     ),
     xArtifactClientInteractive: S.optional(
-      S.Number.pipe(T.Header("x-Artifact-Client-Interactive")),
+      S.Number.pipe(T.Header("x-artifact-client-interactive")),
     ),
     body: RecordEventsRequestBodyList.pipe(T.HttpBody()),
   }).pipe(T.Http({ method: "POST", uri: "/v8/artifacts/events", code: 200 })),
@@ -353,7 +353,7 @@ export interface UploadArtifactRequest {
   /** The Team slug to perform the request on behalf of. */
   slug?: string;
   /** The artifact size in bytes */
-  contentLength?: number;
+  contentLength: number;
   /** The time taken to generate the uploaded artifact in milliseconds. */
   xArtifactDuration?: number;
   /** The continuous integration or delivery environment where this artifact was generated. */
@@ -372,20 +372,20 @@ export const UploadArtifactRequest = /*@__PURE__*/ S.suspend(() =>
     hash: S.String.pipe(T.Label()),
     teamId: S.optional(S.String.pipe(T.Query())),
     slug: S.optional(S.String.pipe(T.Query())),
-    contentLength: S.optional(S.Number.pipe(T.Header("content-Length"))),
+    contentLength: S.Number.pipe(T.Header("Content-Length")),
     xArtifactDuration: S.optional(
-      S.Number.pipe(T.Header("x-Artifact-Duration")),
+      S.Number.pipe(T.Header("x-artifact-duration")),
     ),
     xArtifactClientCi: S.optional(
-      S.String.pipe(T.Header("x-Artifact-Client-Ci")),
+      S.String.pipe(T.Header("x-artifact-client-ci")),
     ),
     xArtifactClientInteractive: S.optional(
-      S.Number.pipe(T.Header("x-Artifact-Client-Interactive")),
+      S.Number.pipe(T.Header("x-artifact-client-interactive")),
     ),
-    xArtifactTag: S.optional(S.String.pipe(T.Header("x-Artifact-Tag"))),
-    xArtifactSha: S.optional(S.String.pipe(T.Header("x-Artifact-Sha"))),
+    xArtifactTag: S.optional(S.String.pipe(T.Header("x-artifact-tag"))),
+    xArtifactSha: S.optional(S.String.pipe(T.Header("x-artifact-sha"))),
     xArtifactDirtyHash: S.optional(
-      S.String.pipe(T.Header("x-Artifact-Dirty-Hash")),
+      S.String.pipe(T.Header("x-artifact-dirty-hash")),
     ),
   }).pipe(T.Http({ method: "PUT", uri: "/v8/artifacts/{hash}", code: 200 })),
 ).annotate({

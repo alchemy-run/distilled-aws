@@ -29,7 +29,8 @@
       "rewriteAction": "rewrite_action",
       "rulesCount": "rules_count",
       "totalCount": "total_count"
-    }
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.firewall#LockdownsCreateRequestConfigurationsLockdownIPConfigurationTarget": {
@@ -5592,130 +5593,130 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.firewall#AccessRulesCreateForAccount"
+          "target": "com.cloudflare.firewall#BulkDeleteRules"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesCreateForZone"
+          "target": "com.cloudflare.firewall#BulkPatchRules"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesDeleteForAccount"
+          "target": "com.cloudflare.firewall#BulkPutRules"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesDeleteForZone"
+          "target": "com.cloudflare.firewall#CreateAccessRuleForAccount"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesEditForAccount"
+          "target": "com.cloudflare.firewall#CreateAccessRuleForZone"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesEditForZone"
+          "target": "com.cloudflare.firewall#CreateLockdown"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesGetForAccount"
+          "target": "com.cloudflare.firewall#CreateRule"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesGetForZone"
+          "target": "com.cloudflare.firewall#CreateUaRule"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesListForAccount"
+          "target": "com.cloudflare.firewall#CreateWafOverride"
         },
         {
-          "target": "com.cloudflare.firewall#AccessRulesListForZone"
+          "target": "com.cloudflare.firewall#DeleteAccessRuleForAccount"
         },
         {
-          "target": "com.cloudflare.firewall#LockdownsCreate"
+          "target": "com.cloudflare.firewall#DeleteAccessRuleForZone"
         },
         {
-          "target": "com.cloudflare.firewall#LockdownsDelete"
+          "target": "com.cloudflare.firewall#DeleteLockdown"
         },
         {
-          "target": "com.cloudflare.firewall#LockdownsGet"
+          "target": "com.cloudflare.firewall#DeleteRule"
         },
         {
-          "target": "com.cloudflare.firewall#LockdownsList"
+          "target": "com.cloudflare.firewall#DeleteUaRule"
         },
         {
-          "target": "com.cloudflare.firewall#LockdownsUpdate"
+          "target": "com.cloudflare.firewall#DeleteWafOverride"
         },
         {
-          "target": "com.cloudflare.firewall#RulesBulkDelete"
+          "target": "com.cloudflare.firewall#GetAccessRuleForAccount"
         },
         {
-          "target": "com.cloudflare.firewall#RulesBulkEdit"
+          "target": "com.cloudflare.firewall#GetAccessRuleForZone"
         },
         {
-          "target": "com.cloudflare.firewall#RulesBulkUpdate"
+          "target": "com.cloudflare.firewall#GetLockdown"
         },
         {
-          "target": "com.cloudflare.firewall#RulesCreate"
+          "target": "com.cloudflare.firewall#GetRule"
         },
         {
-          "target": "com.cloudflare.firewall#RulesDelete"
+          "target": "com.cloudflare.firewall#GetUaRule"
         },
         {
-          "target": "com.cloudflare.firewall#RulesEdit"
+          "target": "com.cloudflare.firewall#GetWafOverride"
         },
         {
-          "target": "com.cloudflare.firewall#RulesGet"
+          "target": "com.cloudflare.firewall#GetWafPackage"
         },
         {
-          "target": "com.cloudflare.firewall#RulesList"
+          "target": "com.cloudflare.firewall#GetWafPackageGroup"
         },
         {
-          "target": "com.cloudflare.firewall#RulesUpdate"
+          "target": "com.cloudflare.firewall#GetWafPackageRule"
         },
         {
-          "target": "com.cloudflare.firewall#UaRulesCreate"
+          "target": "com.cloudflare.firewall#ListAccessRulesForAccount"
         },
         {
-          "target": "com.cloudflare.firewall#UaRulesDelete"
+          "target": "com.cloudflare.firewall#ListAccessRulesForZone"
         },
         {
-          "target": "com.cloudflare.firewall#UaRulesGet"
+          "target": "com.cloudflare.firewall#ListLockdowns"
         },
         {
-          "target": "com.cloudflare.firewall#UaRulesList"
+          "target": "com.cloudflare.firewall#ListRules"
         },
         {
-          "target": "com.cloudflare.firewall#UaRulesUpdate"
+          "target": "com.cloudflare.firewall#ListUaRules"
         },
         {
-          "target": "com.cloudflare.firewall#WafOverridesCreate"
+          "target": "com.cloudflare.firewall#ListWafOverrides"
         },
         {
-          "target": "com.cloudflare.firewall#WafOverridesDelete"
+          "target": "com.cloudflare.firewall#ListWafPackageGroups"
         },
         {
-          "target": "com.cloudflare.firewall#WafOverridesGet"
+          "target": "com.cloudflare.firewall#ListWafPackageRules"
         },
         {
-          "target": "com.cloudflare.firewall#WafOverridesList"
+          "target": "com.cloudflare.firewall#ListWafPackages"
         },
         {
-          "target": "com.cloudflare.firewall#WafOverridesUpdate"
+          "target": "com.cloudflare.firewall#PatchAccessRuleForAccount"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesGet"
+          "target": "com.cloudflare.firewall#PatchAccessRuleForZone"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesList"
+          "target": "com.cloudflare.firewall#PatchRule"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesGroupsEdit"
+          "target": "com.cloudflare.firewall#PatchWafPackageGroup"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesGroupsGet"
+          "target": "com.cloudflare.firewall#PatchWafPackageRule"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesGroupsList"
+          "target": "com.cloudflare.firewall#UpdateLockdown"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesRulesEdit"
+          "target": "com.cloudflare.firewall#UpdateRule"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesRulesGet"
+          "target": "com.cloudflare.firewall#UpdateUaRule"
         },
         {
-          "target": "com.cloudflare.firewall#WafPackagesRulesList"
+          "target": "com.cloudflare.firewall#UpdateWafOverride"
         }
       ],
       "traits": {
@@ -5884,13 +5885,13 @@
         ]
       }
     },
-    "com.cloudflare.firewall#DeleteBulkRule": {
+    "com.cloudflare.firewall#BulkDeleteRules": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.firewall#DeleteBulkRuleRequest"
+        "target": "com.cloudflare.firewall#BulkDeleteRulesRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#DeleteBulkRuleResponse"
+        "target": "com.cloudflare.firewall#BulkDeleteRulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5906,7 +5907,7 @@
         }
       }
     },
-    "com.cloudflare.firewall#DeleteBulkRuleRequest": {
+    "com.cloudflare.firewall#BulkDeleteRulesRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -5922,7 +5923,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.firewall#DeleteBulkRuleResponse": {
+    "com.cloudflare.firewall#BulkDeleteRulesResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -6048,7 +6049,7 @@
         "target": "com.cloudflare.firewall#CreateAccessRuleForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#CreateAccessRuleForAccountResponse"
+        "target": "com.cloudflare.firewall#CreateAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6109,7 +6110,7 @@
         "target": "com.cloudflare.firewall#CreateAccessRuleForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#CreateAccessRuleForZoneResponse"
+        "target": "com.cloudflare.firewall#CreateAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6574,7 +6575,7 @@
         "target": "com.cloudflare.firewall#DeleteAccessRuleForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#DeleteAccessRuleForAccountResponse"
+        "target": "com.cloudflare.firewall#DeleteAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6624,7 +6625,7 @@
         "target": "com.cloudflare.firewall#DeleteAccessRuleForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#DeleteAccessRuleForZoneResponse"
+        "target": "com.cloudflare.firewall#DeleteAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6978,7 +6979,7 @@
         "target": "com.cloudflare.firewall#GetAccessRuleForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#GetAccessRuleForAccountResponse"
+        "target": "com.cloudflare.firewall#GetAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7028,7 +7029,7 @@
         "target": "com.cloudflare.firewall#GetAccessRuleForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#GetAccessRuleForZoneResponse"
+        "target": "com.cloudflare.firewall#GetAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7653,7 +7654,7 @@
         "target": "com.cloudflare.firewall#ListAccessRulesForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#ListAccessRulesForAccountResponse"
+        "target": "com.cloudflare.firewall#ListAccessRulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7754,7 +7755,7 @@
         "target": "com.cloudflare.firewall#ListAccessRulesForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#ListAccessRulesForZoneResponse"
+        "target": "com.cloudflare.firewall#ListAccessRulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8595,7 +8596,7 @@
         "target": "com.cloudflare.firewall#PatchAccessRuleForAccountRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#PatchAccessRuleForAccountResponse"
+        "target": "com.cloudflare.firewall#PatchAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8664,7 +8665,7 @@
         "target": "com.cloudflare.firewall#PatchAccessRuleForZoneRequest"
       },
       "output": {
-        "target": "com.cloudflare.firewall#PatchAccessRuleForZoneResponse"
+        "target": "com.cloudflare.firewall#PatchAccessRuleResponse"
       },
       "traits": {
         "smithy.api#http": {

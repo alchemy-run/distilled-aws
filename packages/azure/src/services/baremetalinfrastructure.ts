@@ -13,14 +13,14 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource tags. */
-export type AzureBareMetalStorageInstancesCreateRequestTagsMap = {
+export type CreateAzureBareMetalStorageInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalStorageInstancesCreateRequestTagsMap =
+export const CreateAzureBareMetalStorageInstanceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureBareMetalStorageInstancesCreateRequestTagsMap>;
+  ) as any as S.Schema<CreateAzureBareMetalStorageInstanceRequestTagsMap>;
 
 /** State of provisioning of the AzureBareMetalStorageInstance */
 export type StoragePropertiesProvisioningState =
@@ -106,7 +106,7 @@ export interface CreateAzureBareMetalStorageInstanceRequest {
   /** Name of the AzureBareMetalStorage on Azure instance. */
   azureBareMetalStorageInstanceName: string;
   /** Resource tags. */
-  tags?: AzureBareMetalStorageInstancesCreateRequestTagsMap;
+  tags?: CreateAzureBareMetalStorageInstanceRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** AzureBareMetalStorageInstance properties */
@@ -118,7 +118,7 @@ export const CreateAzureBareMetalStorageInstanceRequest =
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       azureBareMetalStorageInstanceName: S.String.pipe(T.Label()),
-      tags: S.optional(AzureBareMetalStorageInstancesCreateRequestTagsMap),
+      tags: S.optional(CreateAzureBareMetalStorageInstanceRequestTagsMap),
       location: S.String,
       properties: S.optional(AzureBareMetalStorageInstanceProperties),
     }).pipe(
@@ -134,65 +134,65 @@ export const CreateAzureBareMetalStorageInstanceRequest =
   }) as any as S.Schema<CreateAzureBareMetalStorageInstanceRequest>;
 
 /** Resource tags. */
-export type AzureBareMetalStorageInstancesCreateResponseTagsMap = {
+export type CreateAzureBareMetalStorageInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalStorageInstancesCreateResponseTagsMap =
+export const CreateAzureBareMetalStorageInstanceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureBareMetalStorageInstancesCreateResponseTagsMap>;
+  ) as any as S.Schema<CreateAzureBareMetalStorageInstanceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType =
+export type CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType =
+export const CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType =
+export type CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType =
+export const CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AzureBareMetalStorageInstancesCreateResponseSystemData {
+export interface CreateAzureBareMetalStorageInstanceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType;
+  createdByType?: CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AzureBareMetalStorageInstancesCreateResponseSystemData =
+export const CreateAzureBareMetalStorageInstanceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType,
+        CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType,
+        CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "AzureBareMetalStorageInstancesCreateResponseSystemData",
-  }) as any as S.Schema<AzureBareMetalStorageInstancesCreateResponseSystemData>;
+    identifier: "CreateAzureBareMetalStorageInstanceResponseSystemData",
+  }) as any as S.Schema<CreateAzureBareMetalStorageInstanceResponseSystemData>;
 
 export interface CreateAzureBareMetalStorageInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -202,13 +202,13 @@ export interface CreateAzureBareMetalStorageInstanceResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: AzureBareMetalStorageInstancesCreateResponseTagsMap;
+  tags?: CreateAzureBareMetalStorageInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** AzureBareMetalStorageInstance properties */
   properties?: AzureBareMetalStorageInstanceProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AzureBareMetalStorageInstancesCreateResponseSystemData;
+  systemData?: CreateAzureBareMetalStorageInstanceResponseSystemData;
 }
 export const CreateAzureBareMetalStorageInstanceResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -216,11 +216,11 @@ export const CreateAzureBareMetalStorageInstanceResponse =
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
-      tags: S.optional(AzureBareMetalStorageInstancesCreateResponseTagsMap),
+      tags: S.optional(CreateAzureBareMetalStorageInstanceResponseTagsMap),
       location: S.String,
       properties: S.optional(AzureBareMetalStorageInstanceProperties),
       systemData: S.optional(
-        AzureBareMetalStorageInstancesCreateResponseSystemData,
+        CreateAzureBareMetalStorageInstanceResponseSystemData,
       ),
     }),
   ).annotate({
@@ -285,13 +285,13 @@ export const GetAzureBareMetalInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetAzureBareMetalInstanceRequest>;
 
 /** Resource tags. */
-export type AzureBareMetalInstancesGetResponseTagsMap = {
+export type GetAzureBareMetalInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalInstancesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetAzureBareMetalInstanceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AzureBareMetalInstancesGetResponseTagsMap>;
+) as any as S.Schema<GetAzureBareMetalInstanceResponseTagsMap>;
 
 /** Name of the hardware type (vendor and/or their product name) */
 export type HardwareProfileHardwareType = "Cisco_UCS" | "HPE";
@@ -516,55 +516,55 @@ export const AzureBareMetalInstanceProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AzureBareMetalInstanceProperties>;
 
 /** The type of identity that created the resource. */
-export type AzureBareMetalInstancesGetResponseSystemDataCreatedByType =
+export type GetAzureBareMetalInstanceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalInstancesGetResponseSystemDataCreatedByType =
+export const GetAzureBareMetalInstanceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType =
+export type GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType =
+export const GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AzureBareMetalInstancesGetResponseSystemData {
+export interface GetAzureBareMetalInstanceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: AzureBareMetalInstancesGetResponseSystemDataCreatedByType;
+  createdByType?: GetAzureBareMetalInstanceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AzureBareMetalInstancesGetResponseSystemData =
+export const GetAzureBareMetalInstanceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        AzureBareMetalInstancesGetResponseSystemDataCreatedByType,
+        GetAzureBareMetalInstanceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType,
+        GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "AzureBareMetalInstancesGetResponseSystemData",
-  }) as any as S.Schema<AzureBareMetalInstancesGetResponseSystemData>;
+    identifier: "GetAzureBareMetalInstanceResponseSystemData",
+  }) as any as S.Schema<GetAzureBareMetalInstanceResponseSystemData>;
 
 export interface GetAzureBareMetalInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -574,23 +574,23 @@ export interface GetAzureBareMetalInstanceResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: AzureBareMetalInstancesGetResponseTagsMap;
+  tags?: GetAzureBareMetalInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** AzureBareMetal instance properties */
   properties?: AzureBareMetalInstanceProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AzureBareMetalInstancesGetResponseSystemData;
+  systemData?: GetAzureBareMetalInstanceResponseSystemData;
 }
 export const GetAzureBareMetalInstanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(AzureBareMetalInstancesGetResponseTagsMap),
+    tags: S.optional(GetAzureBareMetalInstanceResponseTagsMap),
     location: S.String,
     properties: S.optional(AzureBareMetalInstanceProperties),
-    systemData: S.optional(AzureBareMetalInstancesGetResponseSystemData),
+    systemData: S.optional(GetAzureBareMetalInstanceResponseSystemData),
   }),
 ).annotate({
   identifier: "GetAzureBareMetalInstanceResponse",
@@ -623,65 +623,65 @@ export const GetAzureBareMetalStorageInstanceRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetAzureBareMetalStorageInstanceRequest>;
 
 /** Resource tags. */
-export type AzureBareMetalStorageInstancesGetResponseTagsMap = {
+export type GetAzureBareMetalStorageInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalStorageInstancesGetResponseTagsMap =
+export const GetAzureBareMetalStorageInstanceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureBareMetalStorageInstancesGetResponseTagsMap>;
+  ) as any as S.Schema<GetAzureBareMetalStorageInstanceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType =
+export type GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType =
+export const GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType =
+export type GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType =
+export const GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AzureBareMetalStorageInstancesGetResponseSystemData {
+export interface GetAzureBareMetalStorageInstanceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType;
+  createdByType?: GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AzureBareMetalStorageInstancesGetResponseSystemData =
+export const GetAzureBareMetalStorageInstanceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType,
+        GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType,
+        GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "AzureBareMetalStorageInstancesGetResponseSystemData",
-  }) as any as S.Schema<AzureBareMetalStorageInstancesGetResponseSystemData>;
+    identifier: "GetAzureBareMetalStorageInstanceResponseSystemData",
+  }) as any as S.Schema<GetAzureBareMetalStorageInstanceResponseSystemData>;
 
 export interface GetAzureBareMetalStorageInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -691,13 +691,13 @@ export interface GetAzureBareMetalStorageInstanceResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: AzureBareMetalStorageInstancesGetResponseTagsMap;
+  tags?: GetAzureBareMetalStorageInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** AzureBareMetalStorageInstance properties */
   properties?: AzureBareMetalStorageInstanceProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AzureBareMetalStorageInstancesGetResponseSystemData;
+  systemData?: GetAzureBareMetalStorageInstanceResponseSystemData;
 }
 export const GetAzureBareMetalStorageInstanceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -705,11 +705,11 @@ export const GetAzureBareMetalStorageInstanceResponse = /*@__PURE__*/ S.suspend(
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
-      tags: S.optional(AzureBareMetalStorageInstancesGetResponseTagsMap),
+      tags: S.optional(GetAzureBareMetalStorageInstanceResponseTagsMap),
       location: S.String,
       properties: S.optional(AzureBareMetalStorageInstanceProperties),
       systemData: S.optional(
-        AzureBareMetalStorageInstancesGetResponseSystemData,
+        GetAzureBareMetalStorageInstanceResponseSystemData,
       ),
     }),
 ).annotate({
@@ -1098,14 +1098,14 @@ export const OperationList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
 
 /** Tags field of the AzureBareMetal/AzureBareMetaStorage instance. */
-export type AzureBareMetalInstancesUpdateRequestTagsMap = {
+export type UpdateAzureBareMetalInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalInstancesUpdateRequestTagsMap =
+export const UpdateAzureBareMetalInstanceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureBareMetalInstancesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateAzureBareMetalInstanceRequestTagsMap>;
 
 export interface UpdateAzureBareMetalInstanceRequest {
   /** The ID of the target subscription. */
@@ -1115,14 +1115,14 @@ export interface UpdateAzureBareMetalInstanceRequest {
   /** Name of the Azure BareMetal on Azure instance. */
   azureBareMetalInstanceName: string;
   /** Tags field of the AzureBareMetal/AzureBareMetaStorage instance. */
-  tags?: AzureBareMetalInstancesUpdateRequestTagsMap;
+  tags?: UpdateAzureBareMetalInstanceRequestTagsMap;
 }
 export const UpdateAzureBareMetalInstanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     azureBareMetalInstanceName: S.String.pipe(T.Label()),
-    tags: S.optional(AzureBareMetalInstancesUpdateRequestTagsMap),
+    tags: S.optional(UpdateAzureBareMetalInstanceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1136,65 +1136,65 @@ export const UpdateAzureBareMetalInstanceRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateAzureBareMetalInstanceRequest>;
 
 /** Resource tags. */
-export type AzureBareMetalInstancesUpdateResponseTagsMap = {
+export type UpdateAzureBareMetalInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalInstancesUpdateResponseTagsMap =
+export const UpdateAzureBareMetalInstanceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureBareMetalInstancesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateAzureBareMetalInstanceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType =
+export type UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType =
+export const UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType =
+export type UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType =
+export const UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AzureBareMetalInstancesUpdateResponseSystemData {
+export interface UpdateAzureBareMetalInstanceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AzureBareMetalInstancesUpdateResponseSystemData =
+export const UpdateAzureBareMetalInstanceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType,
+        UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType,
+        UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "AzureBareMetalInstancesUpdateResponseSystemData",
-  }) as any as S.Schema<AzureBareMetalInstancesUpdateResponseSystemData>;
+    identifier: "UpdateAzureBareMetalInstanceResponseSystemData",
+  }) as any as S.Schema<UpdateAzureBareMetalInstanceResponseSystemData>;
 
 export interface UpdateAzureBareMetalInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1204,13 +1204,13 @@ export interface UpdateAzureBareMetalInstanceResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: AzureBareMetalInstancesUpdateResponseTagsMap;
+  tags?: UpdateAzureBareMetalInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** AzureBareMetal instance properties */
   properties?: AzureBareMetalInstanceProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AzureBareMetalInstancesUpdateResponseSystemData;
+  systemData?: UpdateAzureBareMetalInstanceResponseSystemData;
 }
 export const UpdateAzureBareMetalInstanceResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -1218,24 +1218,24 @@ export const UpdateAzureBareMetalInstanceResponse = /*@__PURE__*/ S.suspend(
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
-      tags: S.optional(AzureBareMetalInstancesUpdateResponseTagsMap),
+      tags: S.optional(UpdateAzureBareMetalInstanceResponseTagsMap),
       location: S.String,
       properties: S.optional(AzureBareMetalInstanceProperties),
-      systemData: S.optional(AzureBareMetalInstancesUpdateResponseSystemData),
+      systemData: S.optional(UpdateAzureBareMetalInstanceResponseSystemData),
     }),
 ).annotate({
   identifier: "UpdateAzureBareMetalInstanceResponse",
 }) as any as S.Schema<UpdateAzureBareMetalInstanceResponse>;
 
 /** Tags field of the AzureBareMetal/AzureBareMetaStorage instance. */
-export type AzureBareMetalStorageInstancesUpdateRequestTagsMap = {
+export type UpdateAzureBareMetalStorageInstanceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalStorageInstancesUpdateRequestTagsMap =
+export const UpdateAzureBareMetalStorageInstanceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureBareMetalStorageInstancesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateAzureBareMetalStorageInstanceRequestTagsMap>;
 
 export interface UpdateAzureBareMetalStorageInstanceRequest {
   /** The ID of the target subscription. */
@@ -1245,7 +1245,7 @@ export interface UpdateAzureBareMetalStorageInstanceRequest {
   /** Name of the AzureBareMetalStorage on Azure instance. */
   azureBareMetalStorageInstanceName: string;
   /** Tags field of the AzureBareMetal/AzureBareMetaStorage instance. */
-  tags?: AzureBareMetalStorageInstancesUpdateRequestTagsMap;
+  tags?: UpdateAzureBareMetalStorageInstanceRequestTagsMap;
 }
 export const UpdateAzureBareMetalStorageInstanceRequest =
   /*@__PURE__*/ S.suspend(() =>
@@ -1253,7 +1253,7 @@ export const UpdateAzureBareMetalStorageInstanceRequest =
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       azureBareMetalStorageInstanceName: S.String.pipe(T.Label()),
-      tags: S.optional(AzureBareMetalStorageInstancesUpdateRequestTagsMap),
+      tags: S.optional(UpdateAzureBareMetalStorageInstanceRequestTagsMap),
     }).pipe(
       T.Http({
         method: "PATCH",
@@ -1267,65 +1267,65 @@ export const UpdateAzureBareMetalStorageInstanceRequest =
   }) as any as S.Schema<UpdateAzureBareMetalStorageInstanceRequest>;
 
 /** Resource tags. */
-export type AzureBareMetalStorageInstancesUpdateResponseTagsMap = {
+export type UpdateAzureBareMetalStorageInstanceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AzureBareMetalStorageInstancesUpdateResponseTagsMap =
+export const UpdateAzureBareMetalStorageInstanceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<AzureBareMetalStorageInstancesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateAzureBareMetalStorageInstanceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType =
+export type UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType =
+export const UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType =
+export type UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType =
+export const UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AzureBareMetalStorageInstancesUpdateResponseSystemData {
+export interface UpdateAzureBareMetalStorageInstanceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AzureBareMetalStorageInstancesUpdateResponseSystemData =
+export const UpdateAzureBareMetalStorageInstanceResponseSystemData =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType,
+        UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType,
+        UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "AzureBareMetalStorageInstancesUpdateResponseSystemData",
-  }) as any as S.Schema<AzureBareMetalStorageInstancesUpdateResponseSystemData>;
+    identifier: "UpdateAzureBareMetalStorageInstanceResponseSystemData",
+  }) as any as S.Schema<UpdateAzureBareMetalStorageInstanceResponseSystemData>;
 
 export interface UpdateAzureBareMetalStorageInstanceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1335,13 +1335,13 @@ export interface UpdateAzureBareMetalStorageInstanceResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: AzureBareMetalStorageInstancesUpdateResponseTagsMap;
+  tags?: UpdateAzureBareMetalStorageInstanceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** AzureBareMetalStorageInstance properties */
   properties?: AzureBareMetalStorageInstanceProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AzureBareMetalStorageInstancesUpdateResponseSystemData;
+  systemData?: UpdateAzureBareMetalStorageInstanceResponseSystemData;
 }
 export const UpdateAzureBareMetalStorageInstanceResponse =
   /*@__PURE__*/ S.suspend(() =>
@@ -1349,11 +1349,11 @@ export const UpdateAzureBareMetalStorageInstanceResponse =
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
-      tags: S.optional(AzureBareMetalStorageInstancesUpdateResponseTagsMap),
+      tags: S.optional(UpdateAzureBareMetalStorageInstanceResponseTagsMap),
       location: S.String,
       properties: S.optional(AzureBareMetalStorageInstanceProperties),
       systemData: S.optional(
-        AzureBareMetalStorageInstancesUpdateResponseSystemData,
+        UpdateAzureBareMetalStorageInstanceResponseSystemData,
       ),
     }),
   ).annotate({

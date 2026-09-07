@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.eventhub#DeleteSchemaRegistry": {
@@ -1959,10 +1960,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#NetworkSecurityPerimeterConfigurationList2": {
+    "com.azure.eventhub#ListNetworkSecurityPerimeterConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventhub#NetworkSecurityPerimeterConfigurationListRequest"
+        "target": "com.azure.eventhub#ListNetworkSecurityPerimeterConfigurationRequest"
       },
       "output": {
         "target": "com.azure.eventhub#NetworkSecurityPerimeterConfigurationList"
@@ -2045,7 +2046,7 @@
         "smithy.api#documentation": "Network Security Perimeter related configurations of a given namespace"
       }
     },
-    "com.azure.eventhub#NetworkSecurityPerimeterConfigurationListRequest": {
+    "com.azure.eventhub#ListNetworkSecurityPerimeterConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2348,13 +2349,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#NamespacesGetNetworkRuleSet": {
+    "com.azure.eventhub#GetNamespaceNetworkRuleSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventhub#NamespacesGetNetworkRuleSetRequest"
+        "target": "com.azure.eventhub#GetNamespaceNetworkRuleSetRequest"
       },
       "output": {
-        "target": "com.azure.eventhub#NamespacesGetNetworkRuleSetResponse"
+        "target": "com.azure.eventhub#GetNamespaceNetworkRuleSetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2367,7 +2368,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.eventhub#NamespacesGetNetworkRuleSetResponse": {
+    "com.azure.eventhub#GetNamespaceNetworkRuleSetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2411,7 +2412,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventhub#NamespacesGetNetworkRuleSetRequest": {
+    "com.azure.eventhub#GetNamespaceNetworkRuleSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2443,10 +2444,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#NamespacesListNetworkRuleSet": {
+    "com.azure.eventhub#ListNamespaceNetworkRuleSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventhub#NamespacesListNetworkRuleSetRequest"
+        "target": "com.azure.eventhub#ListNamespaceNetworkRuleSetRequest"
       },
       "output": {
         "target": "com.azure.eventhub#NetworkRuleSetListResult"
@@ -2536,7 +2537,7 @@
         "smithy.api#documentation": "Description of topic resource."
       }
     },
-    "com.azure.eventhub#NamespacesListNetworkRuleSetRequest": {
+    "com.azure.eventhub#ListNamespaceNetworkRuleSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3122,10 +3123,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#EventHubsRegenerateKeys": {
+    "com.azure.eventhub#RegenerateEventHubKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventhub#EventHubsRegenerateKeysRequest"
+        "target": "com.azure.eventhub#RegenerateEventHubKeysRequest"
       },
       "output": {
         "target": "com.azure.eventhub#AccessKeys"
@@ -3191,7 +3192,7 @@
         "smithy.api#documentation": "Namespace/EventHub Connection String"
       }
     },
-    "com.azure.eventhub#EventHubsRegenerateKeysRequest": {
+    "com.azure.eventhub#RegenerateEventHubKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5675,10 +5676,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#NamespacesRegenerateKeys": {
+    "com.azure.eventhub#RegenerateNamespaceKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.eventhub#NamespacesRegenerateKeysRequest"
+        "target": "com.azure.eventhub#RegenerateNamespaceKeysRequest"
       },
       "output": {
         "target": "com.azure.eventhub#AccessKeys"
@@ -5694,7 +5695,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.eventhub#NamespacesRegenerateKeysRequest": {
+    "com.azure.eventhub#RegenerateNamespaceKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6704,7 +6705,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventhub#NamespacesUpdateResponseTagsMap",
+          "target": "com.azure.eventhub#UpdateNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6714,7 +6715,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventhub#NamespacesUpdateResponseTagsMap": {
+    "com.azure.eventhub#UpdateNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7377,7 +7378,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventhub#NamespacesUpdateRequestTagsMap",
+          "target": "com.azure.eventhub#UpdateNamespaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7387,7 +7388,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#NamespacesUpdateRequestTagsMap": {
+    "com.azure.eventhub#UpdateNamespaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7869,7 +7870,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventhub#NamespacesGetResponseTagsMap",
+          "target": "com.azure.eventhub#GetNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7879,7 +7880,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventhub#NamespacesGetResponseTagsMap": {
+    "com.azure.eventhub#GetNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8143,7 +8144,7 @@
           }
         },
         "settings": {
-          "target": "com.azure.eventhub#ConfigurationPatchRequestSettingsMap",
+          "target": "com.azure.eventhub#PatchConfigurationRequestSettingsMap",
           "traits": {
             "smithy.api#documentation": "All possible Cluster settings - a collection of key/value paired settings which apply to quotas and configurations imposed on the cluster."
           }
@@ -8153,7 +8154,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#ConfigurationPatchRequestSettingsMap": {
+    "com.azure.eventhub#PatchConfigurationRequestSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8420,7 +8421,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventhub#ClustersUpdateResponseTagsMap",
+          "target": "com.azure.eventhub#UpdateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8430,7 +8431,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventhub#ClustersUpdateResponseTagsMap": {
+    "com.azure.eventhub#UpdateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8632,7 +8633,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventhub#ClustersUpdateRequestTagsMap",
+          "target": "com.azure.eventhub#UpdateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8642,7 +8643,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.eventhub#ClustersUpdateRequestTagsMap": {
+    "com.azure.eventhub#UpdateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8897,7 +8898,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.eventhub#ClustersGetResponseTagsMap",
+          "target": "com.azure.eventhub#GetClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8907,7 +8908,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.eventhub#ClustersGetResponseTagsMap": {
+    "com.azure.eventhub#GetClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9400,208 +9401,208 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.eventhub#DeleteSchemaRegistry"
-        },
-        {
-          "target": "com.azure.eventhub#SchemaRegistryCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#GetSchemaRegistry"
-        },
-        {
-          "target": "com.azure.eventhub#ListSchemaRegistryByNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.eventhub#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventhub#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventhub#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.eventhub#NetworkSecurityPerimeterConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#GetNetworkSecurityPerimeterConfigurationResourceAssociationName"
-        },
-        {
-          "target": "com.azure.eventhub#NetworkSecurityPerimeterConfigurationList2"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesCreateOrUpdateNetworkRuleSet"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesGetNetworkRuleSet"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesListNetworkRuleSet"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesFailover"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteConsumerGroup"
-        },
-        {
-          "target": "com.azure.eventhub#ConsumerGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#GetConsumerGroup"
-        },
-        {
-          "target": "com.azure.eventhub#ListConsumerGroupByEventHub"
-        },
-        {
-          "target": "com.azure.eventhub#EventHubsRegenerateKeys"
-        },
-        {
-          "target": "com.azure.eventhub#ListEventHubKeys"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteEventHubAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#EventHubsCreateOrUpdateAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#GetEventHubAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#ListEventHubAuthorizationRules"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteEventHub"
-        },
-        {
-          "target": "com.azure.eventhub#EventHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#GetEventHub"
-        },
-        {
-          "target": "com.azure.eventhub#ListEventHubByNamespace"
+          "target": "com.azure.eventhub#ApplicationGroupCreateOrUpdateApplicationGroup"
         },
         {
           "target": "com.azure.eventhub#CheckDisasterRecoveryConfigNameAvailability"
         },
         {
-          "target": "com.azure.eventhub#DisasterRecoveryConfigsFailOver"
-        },
-        {
-          "target": "com.azure.eventhub#DisasterRecoveryConfigsBreakPairing"
-        },
-        {
-          "target": "com.azure.eventhub#ListDisasterRecoveryConfigKeys"
-        },
-        {
-          "target": "com.azure.eventhub#GetDisasterRecoveryConfigAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#ListDisasterRecoveryConfigAuthorizationRules"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteDisasterRecoveryConfig"
-        },
-        {
-          "target": "com.azure.eventhub#DisasterRecoveryConfigsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#GetDisasterRecoveryConfig"
-        },
-        {
-          "target": "com.azure.eventhub#ListDisasterRecoveryConfigs"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesRegenerateKeys"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaceKeys"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesCreateOrUpdateAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#GetNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaceAuthorizationRules"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteApplicationGroup"
-        },
-        {
-          "target": "com.azure.eventhub#ApplicationGroupCreateOrUpdateApplicationGroup"
-        },
-        {
-          "target": "com.azure.eventhub#GetApplicationGroup"
-        },
-        {
-          "target": "com.azure.eventhub#ListApplicationGroupByNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#UpdateNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#GetNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventhub#PatchConfiguration"
-        },
-        {
-          "target": "com.azure.eventhub#GetConfiguration"
-        },
-        {
-          "target": "com.azure.eventhub#ListClusterNamespaces"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteCluster"
-        },
-        {
-          "target": "com.azure.eventhub#UpdateCluster"
+          "target": "com.azure.eventhub#CheckNamespaceNameAvailability"
         },
         {
           "target": "com.azure.eventhub#ClustersCreateOrUpdate"
         },
         {
+          "target": "com.azure.eventhub#ConsumerGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteApplicationGroup"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteCluster"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteConsumerGroup"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteDisasterRecoveryConfig"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteEventHub"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteEventHubAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteSchemaRegistry"
+        },
+        {
+          "target": "com.azure.eventhub#DisasterRecoveryConfigsBreakPairing"
+        },
+        {
+          "target": "com.azure.eventhub#DisasterRecoveryConfigsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#DisasterRecoveryConfigsFailOver"
+        },
+        {
+          "target": "com.azure.eventhub#EventHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#EventHubsCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#GetApplicationGroup"
+        },
+        {
           "target": "com.azure.eventhub#GetCluster"
         },
         {
-          "target": "com.azure.eventhub#ListClusterByResourceGroup"
+          "target": "com.azure.eventhub#GetConfiguration"
         },
         {
-          "target": "com.azure.eventhub#ListNamespaces"
+          "target": "com.azure.eventhub#GetConsumerGroup"
         },
         {
-          "target": "com.azure.eventhub#ListClusterBySubscription"
+          "target": "com.azure.eventhub#GetDisasterRecoveryConfig"
         },
         {
-          "target": "com.azure.eventhub#CheckNamespaceNameAvailability"
+          "target": "com.azure.eventhub#GetDisasterRecoveryConfigAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#GetEventHub"
+        },
+        {
+          "target": "com.azure.eventhub#GetEventHubAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#GetNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#GetNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#GetNamespaceNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.eventhub#GetNetworkSecurityPerimeterConfigurationResourceAssociationName"
+        },
+        {
+          "target": "com.azure.eventhub#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventhub#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.eventhub#GetSchemaRegistry"
+        },
+        {
+          "target": "com.azure.eventhub#ListApplicationGroupByNamespace"
         },
         {
           "target": "com.azure.eventhub#ListClusterAvailableClusterRegion"
         },
         {
+          "target": "com.azure.eventhub#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventhub#ListClusterBySubscription"
+        },
+        {
+          "target": "com.azure.eventhub#ListClusterNamespaces"
+        },
+        {
+          "target": "com.azure.eventhub#ListConsumerGroupByEventHub"
+        },
+        {
+          "target": "com.azure.eventhub#ListDisasterRecoveryConfigAuthorizationRules"
+        },
+        {
+          "target": "com.azure.eventhub#ListDisasterRecoveryConfigKeys"
+        },
+        {
+          "target": "com.azure.eventhub#ListDisasterRecoveryConfigs"
+        },
+        {
+          "target": "com.azure.eventhub#ListEventHubAuthorizationRules"
+        },
+        {
+          "target": "com.azure.eventhub#ListEventHubByNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#ListEventHubKeys"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceAuthorizationRules"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceKeys"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaces"
+        },
+        {
+          "target": "com.azure.eventhub#ListNetworkSecurityPerimeterConfiguration"
+        },
+        {
           "target": "com.azure.eventhub#ListOperations"
+        },
+        {
+          "target": "com.azure.eventhub#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.eventhub#ListSchemaRegistryByNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesCreateOrUpdateNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesFailover"
+        },
+        {
+          "target": "com.azure.eventhub#NetworkSecurityPerimeterConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#PatchConfiguration"
+        },
+        {
+          "target": "com.azure.eventhub#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#RegenerateEventHubKeys"
+        },
+        {
+          "target": "com.azure.eventhub#RegenerateNamespaceKeys"
+        },
+        {
+          "target": "com.azure.eventhub#SchemaRegistryCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#UpdateCluster"
+        },
+        {
+          "target": "com.azure.eventhub#UpdateNamespace"
         }
       ],
       "traits": {

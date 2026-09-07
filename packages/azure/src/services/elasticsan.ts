@@ -13,13 +13,13 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource tags. */
-export type ElasticSansCreateRequestTagsMap = {
+export type CreateElasticSanRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ElasticSansCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateElasticSanRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ElasticSansCreateRequestTagsMap>;
+) as any as S.Schema<CreateElasticSanRequestTagsMap>;
 
 /** The sku name. */
 export type SkuName = "Premium_LRS" | "Premium_ZRS";
@@ -131,7 +131,7 @@ export interface CreateElasticSanRequest {
   /** The name of the ElasticSan. */
   elasticSanName: string;
   /** Resource tags. */
-  tags?: ElasticSansCreateRequestTagsMap;
+  tags?: CreateElasticSanRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of ElasticSan. */
@@ -142,7 +142,7 @@ export const CreateElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     elasticSanName: S.String.pipe(T.Label()),
-    tags: S.optional(ElasticSansCreateRequestTagsMap),
+    tags: S.optional(CreateElasticSanRequestTagsMap),
     location: S.String,
     properties: ElasticSanPropertiesInput,
   }).pipe(
@@ -200,13 +200,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type ElasticSansCreateResponseTagsMap = {
+export type CreateElasticSanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ElasticSansCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateElasticSanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ElasticSansCreateResponseTagsMap>;
+) as any as S.Schema<CreateElasticSanResponseTagsMap>;
 
 /** Logical zone for Elastic San resource; example: ["1"]. */
 export type ElasticSanPropertiesAvailabilityZonesList = Array<string>;
@@ -391,7 +391,7 @@ export interface CreateElasticSanResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ElasticSansCreateResponseTagsMap;
+  tags?: CreateElasticSanResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of ElasticSan. */
@@ -403,7 +403,7 @@ export const CreateElasticSanResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ElasticSansCreateResponseTagsMap),
+    tags: S.optional(CreateElasticSanResponseTagsMap),
     location: S.String,
     properties: ElasticSanProperties,
   }),
@@ -1337,13 +1337,13 @@ export const GetElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetElasticSanRequest>;
 
 /** Resource tags. */
-export type ElasticSansGetResponseTagsMap = {
+export type GetElasticSanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ElasticSansGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetElasticSanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ElasticSansGetResponseTagsMap>;
+) as any as S.Schema<GetElasticSanResponseTagsMap>;
 
 export interface GetElasticSanResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1355,7 +1355,7 @@ export interface GetElasticSanResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ElasticSansGetResponseTagsMap;
+  tags?: GetElasticSanResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of ElasticSan. */
@@ -1367,7 +1367,7 @@ export const GetElasticSanResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ElasticSansGetResponseTagsMap),
+    tags: S.optional(GetElasticSanResponseTagsMap),
     location: S.String,
     properties: ElasticSanProperties,
   }),
@@ -1759,20 +1759,20 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
 export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
@@ -2283,13 +2283,13 @@ export const SnapshotList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SnapshotList" }) as any as S.Schema<SnapshotList>;
 
 /** array of DiskSnapshot ARM IDs */
-export type VolumesPreRestoreRequestDiskSnapshotIdsList = Array<string>;
-export const VolumesPreRestoreRequestDiskSnapshotIdsList =
+export type RestoreVolumesPreRequestDiskSnapshotIdsList = Array<string>;
+export const RestoreVolumesPreRequestDiskSnapshotIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<VolumesPreRestoreRequestDiskSnapshotIdsList>;
+  ) as any as S.Schema<RestoreVolumesPreRequestDiskSnapshotIdsList>;
 
-export interface RestoreVolumePreRequest {
+export interface RestoreVolumesPreRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2299,15 +2299,15 @@ export interface RestoreVolumePreRequest {
   /** The name of the VolumeGroup. */
   volumeGroupName: string;
   /** array of DiskSnapshot ARM IDs */
-  diskSnapshotIds: VolumesPreRestoreRequestDiskSnapshotIdsList;
+  diskSnapshotIds: RestoreVolumesPreRequestDiskSnapshotIdsList;
 }
-export const RestoreVolumePreRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestoreVolumesPreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     elasticSanName: S.String.pipe(T.Label()),
     volumeGroupName: S.String.pipe(T.Label()),
-    diskSnapshotIds: VolumesPreRestoreRequestDiskSnapshotIdsList,
+    diskSnapshotIds: RestoreVolumesPreRequestDiskSnapshotIdsList,
   }).pipe(
     T.Http({
       method: "POST",
@@ -2317,8 +2317,8 @@ export const RestoreVolumePreRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RestoreVolumePreRequest",
-}) as any as S.Schema<RestoreVolumePreRequest>;
+  identifier: "RestoreVolumesPreRequest",
+}) as any as S.Schema<RestoreVolumesPreRequest>;
 
 /** response object for pre validation api */
 export interface PreValidationResponse {
@@ -2356,13 +2356,13 @@ export const ElasticSanUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ElasticSanUpdateProperties>;
 
 /** Update tags */
-export type ElasticSansUpdateRequestTagsMap = {
+export type UpdateElasticSanRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ElasticSansUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateElasticSanRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ElasticSansUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateElasticSanRequestTagsMap>;
 
 export interface UpdateElasticSanRequest {
   /** The ID of the target subscription. */
@@ -2374,7 +2374,7 @@ export interface UpdateElasticSanRequest {
   /** Properties of ElasticSan. */
   properties?: ElasticSanUpdateProperties;
   /** Update tags */
-  tags?: ElasticSansUpdateRequestTagsMap;
+  tags?: UpdateElasticSanRequestTagsMap;
 }
 export const UpdateElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2382,7 +2382,7 @@ export const UpdateElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
     resourceGroupName: S.String.pipe(T.Label()),
     elasticSanName: S.String.pipe(T.Label()),
     properties: S.optional(ElasticSanUpdateProperties),
-    tags: S.optional(ElasticSansUpdateRequestTagsMap),
+    tags: S.optional(UpdateElasticSanRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2396,13 +2396,13 @@ export const UpdateElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateElasticSanRequest>;
 
 /** Resource tags. */
-export type ElasticSansUpdateResponseTagsMap = {
+export type UpdateElasticSanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ElasticSansUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateElasticSanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ElasticSansUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateElasticSanResponseTagsMap>;
 
 export interface UpdateElasticSanResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2414,7 +2414,7 @@ export interface UpdateElasticSanResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ElasticSansUpdateResponseTagsMap;
+  tags?: UpdateElasticSanResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of ElasticSan. */
@@ -2426,7 +2426,7 @@ export const UpdateElasticSanResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ElasticSansUpdateResponseTagsMap),
+    tags: S.optional(UpdateElasticSanResponseTagsMap),
     location: S.String,
     properties: ElasticSanProperties,
   }),
@@ -2970,15 +2970,15 @@ export const ListVolumeSnapshotByVolumeGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RestoreVolumePreError = AzureOpError;
+export type RestoreVolumesPreError = AzureOpError;
 /** Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes. */
-export const RestoreVolumePre: API.OperationMethod<
-  RestoreVolumePreRequest,
+export const RestoreVolumesPre: API.OperationMethod<
+  RestoreVolumesPreRequest,
   PreValidationResponse,
-  RestoreVolumePreError,
+  RestoreVolumesPreError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RestoreVolumePreRequest,
+  input: RestoreVolumesPreRequest,
   output: PreValidationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.events#EventsListRequestFormat": {
+    "com.posthog.events#ListEventsRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -39,7 +40,7 @@
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.posthog.events#PropertyGroupOperator",
+          "target": "com.posthog.events#PropertyGroupOperatorEnum",
           "traits": {
             "smithy.api#documentation": "\n You can use a simplified version:\n```json\n{\n    \"properties\": [\n        {\n            \"key\": \"email\",\n            \"value\": \"x@y.com\",\n            \"operator\": \"exact\",\n            \"type\": \"event\"\n        }\n    ]\n}\n```\n\nOr you can create more complicated queries with AND and OR:\n```json\n{\n    \"properties\": {\n        \"type\": \"AND\",\n        \"values\": [\n            {\n                \"type\": \"OR\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            },\n            {\n                \"type\": \"AND\",\n                \"values\": [\n                    {\"key\": \"email\", ...},\n                    {\"key\": \"email\", ...}\n                ]\n            }\n        ]\n    ]\n}\n```\n\n\n* `AND` - AND\n* `OR` - OR"
           }
@@ -50,7 +51,7 @@
       },
       "traits": {}
     },
-    "com.posthog.events#PropertyGroupOperator": {
+    "com.posthog.events#PropertyGroupOperatorEnum": {
       "type": "enum",
       "members": {
         "AND": {
@@ -499,21 +500,21 @@
       },
       "traits": {}
     },
-    "com.posthog.events#EventsListRequestPropertiesList": {
+    "com.posthog.events#ListEventsRequestPropertiesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.events#Property"
       },
       "traits": {}
     },
-    "com.posthog.events#EventsListRequestSelectList": {
+    "com.posthog.events#ListEventsRequestSelectList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.events#EventsListRequestWhereList": {
+    "com.posthog.events#ListEventsRequestWhereList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -560,7 +561,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.events#EventsListRequestFormat",
+          "target": "com.posthog.events#ListEventsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -594,21 +595,21 @@
           }
         },
         "properties": {
-          "target": "com.posthog.events#EventsListRequestPropertiesList",
+          "target": "com.posthog.events#ListEventsRequestPropertiesList",
           "traits": {
             "smithy.api#httpQuery": "properties",
             "smithy.api#documentation": "Filter events by event property, person property, cohort, groups and more."
           }
         },
         "select": {
-          "target": "com.posthog.events#EventsListRequestSelectList",
+          "target": "com.posthog.events#ListEventsRequestSelectList",
           "traits": {
             "smithy.api#httpQuery": "select",
             "smithy.api#documentation": "(Experimental) JSON-serialized array of HogQL expressions to return"
           }
         },
         "where": {
-          "target": "com.posthog.events#EventsListRequestWhereList",
+          "target": "com.posthog.events#ListEventsRequestWhereList",
           "traits": {
             "smithy.api#httpQuery": "where",
             "smithy.api#documentation": "(Experimental) JSON-serialized array of HogQL expressions that must pass"
@@ -796,7 +797,7 @@
         "smithy.api#documentation": "This endpoint allows you to list and filter events.\n        It is effectively deprecated and is kept only for backwards compatibility.\n        If you ever ask about it you will be advised to not use it...\n        If you want to ad-hoc list or aggregate events, use the Query endpoint instead.\n        If you want to export all events or many pages of events you should use our CDP/Batch Exports products instead."
       }
     },
-    "com.posthog.events#EventsRetrieveRequestFormat": {
+    "com.posthog.events#GetEventRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -814,7 +815,7 @@
       },
       "traits": {}
     },
-    "com.posthog.events#EventsRetrieveRequest": {
+    "com.posthog.events#GetEventRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -833,7 +834,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.events#EventsRetrieveRequestFormat",
+          "target": "com.posthog.events#GetEventRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -850,7 +851,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.events#EventsRetrieveResponseBodyMap": {
+    "com.posthog.events#GetEventResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -860,11 +861,11 @@
       },
       "traits": {}
     },
-    "com.posthog.events#EventsRetrieveResponse": {
+    "com.posthog.events#GetEventResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.events#EventsRetrieveResponseBodyMap",
+          "target": "com.posthog.events#GetEventResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -875,13 +876,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.events#EventsRetrieve": {
+    "com.posthog.events#GetEvent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.events#EventsRetrieveRequest"
+        "target": "com.posthog.events#GetEventRequest"
       },
       "output": {
-        "target": "com.posthog.events#EventsRetrieveResponse"
+        "target": "com.posthog.events#GetEventResponse"
       },
       "errors": [
         {
@@ -902,7 +903,7 @@
         }
       }
     },
-    "com.posthog.events#EventsValuesRetrieveRequestFormat": {
+    "com.posthog.events#GetEventsValueRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -920,7 +921,7 @@
       },
       "traits": {}
     },
-    "com.posthog.events#EventsValuesRetrieveRequest": {
+    "com.posthog.events#GetEventsValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -932,7 +933,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.events#EventsValuesRetrieveRequestFormat",
+          "target": "com.posthog.events#GetEventsValueRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -942,10 +943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.events#EventsValuesRetrieve": {
+    "com.posthog.events#GetEventsValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.events#EventsValuesRetrieveRequest"
+        "target": "com.posthog.events#GetEventsValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1013,13 +1014,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.events#GetEvent"
+        },
+        {
+          "target": "com.posthog.events#GetEventsValue"
+        },
+        {
           "target": "com.posthog.events#ListEvents"
-        },
-        {
-          "target": "com.posthog.events#EventsRetrieve"
-        },
-        {
-          "target": "com.posthog.events#EventsValuesRetrieve"
         }
       ],
       "traits": {
